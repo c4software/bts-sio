@@ -1,4 +1,4 @@
-# Débuter avec GIT.
+# Initiation GIT
 
 Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base de la ligne de commande Git.
 
