@@ -21,5 +21,7 @@ Support de cours &amp; TP pour le BTS
 - [Projet Démo](https://github.com/c4software/vuejs-cordova-sample)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/cordova/README.md)
 
+## Découverte de Docker
+
 ## Intégration continue avec GitLab-CI
 
