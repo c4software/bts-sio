@@ -68,7 +68,7 @@ $ tree
 
 ### Question bonus
 
-* Comment avez-vous procédez?
+* Comment avez-vous procédé?
 	* Est-ce la technique utilisée en entreprise ?
 	* Est-ce pratique ?
 	* Comment faire autrement ?
@@ -192,7 +192,7 @@ $ git commit --amend
 $ vim source/index.html
 ```
 
-Sauvegarder les modifications après avoir vérifier que celle-ci sont bien présentes
+Sauvegarder les modifications après avoir vérifié que celle-ci sont bien présentes
 
 ```
 $ git diff
@@ -238,7 +238,7 @@ Faites des modifications dans les fichiers que vous voulez.
 
 * Vérifier l’état de votre dépôt Git
 * Quel est l’avantage de travailler dans une branch ?
-* À votre avis quel sont les prochaines étapes ?
+* À votre avis qu’elles sont les prochaines étapes ?
 
 ## Fusion / Merge de la fonctionnalité
 
@@ -251,8 +251,8 @@ $ git merge evolution1
 
 ### Questions
 
-* À votre avis, en entreprise « merge / fusionne » ton directement sur la master ?
-* Une autre personne peut-elle / doit-elle être impliqué dans cette étape ?
+* À votre avis, en entreprise « merge / fusionne » t-on directement sur la master ?
+* Une autre personne peut-elle / doit-elle être impliquée dans cette étape ?
 
 ## Annulation, retour arrière
 
@@ -269,7 +269,7 @@ $ git reset HEAD
 
 ## Finalisation
 
-Voilà, votre projet à atteint une première étape. Que pouvez-vous faire pour « marquer » cette première version ?
+Voilà, votre projet a atteint une première étape. Que pouvez-vous faire pour « marquer » cette première version ?
 
 ```
 $ git tag "V1"
