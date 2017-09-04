@@ -7,14 +7,16 @@ Support de cours &amp; TP pour le BTS
 - [TP](https://github.com/c4software/bts/blob/master/tp/git_initiation/README.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
 
-## Git en groupe + GitLab (Prochainement)
+## Git en groupe + GitLab
 - [Slides](https://rawgit.com/c4software/bts/master/cours/gitlab/) ([Les sources](cours/gitlab))
 - [TP](https://github.com/c4software/bts/blob/master/tp/gitlab/README.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
 
+## Propriété du code
+
 ## Programmation Sécurisée
 
-## VueJS (Prochainement)
+## VueJS
 
 ## Cordova + VueJS 
 
