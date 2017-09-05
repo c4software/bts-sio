@@ -1,6 +1,6 @@
-# BTS
+# BTS SIO
 
-Support de cours &amp; TP pour le BTS
+Support de cours &amp; TP pour le BTS SIO
 
 ## Initiation à GIT
 - [Slides](https://rawgit.com/c4software/bts/master/cours/git/) ([Les sources](cours/git))
