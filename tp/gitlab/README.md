@@ -86,6 +86,12 @@ $
 $ 
 ```
 
+### Création d’une merge request
+
+[Création de la merge request](https://gitlab.com/groups/bts-sio-chevrollier/merge_requests)
+
+* Remplissez l’ensemble des champs qui vous semble nécéssaire. N’oubliez pas que ça sera quelqu’un d’autre qui va regarder et traiter votre demande !
+
 ### Question
 
 * Pourquoi travailler de cette façon ?
@@ -101,7 +107,7 @@ Vous venez (normalement) d’avoir au moins un « merge request » d’assigner.
 * Apporter des commentaires
 	* Dans l’issue, général.
 	* Directement dans la partie code de l’issue.
-* Laisser votre collègue éffectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc)
+* Laisser votre collègue éffectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc). DISCUTER ! (du code)
 * Si tout vous semble correcte « Merger » les modifications.
 
 ### Questions
