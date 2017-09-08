@@ -4,7 +4,7 @@ Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base d
 
 ## Ressources utiles
 
-* [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git.md)
+* [Aide mémoire](https://github.com/c4software/cheatsheet/)
 * [Google](https://www.google.fr)
 * [Livre Git en ligne](https://git-scm.com/book/fr/v2)
 
