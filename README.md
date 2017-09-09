@@ -12,11 +12,20 @@ Support de cours &amp; TP pour le BTS SIO
 - [TP](https://github.com/c4software/bts/blob/master/tp/gitlab/README.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
 
-## Propriété du code
 
-## Programmation Sécurisée
+## Programmation sécurisée avec OWASP
+- [Slides](#)
+- [TP](#)
+
+
+## Propriété du code
+- [Slides](#)
 
 ## VueJS
+- [Slides](#)
+- [TP1: Je migre une application existante avec VueJS]()
+- [TP2: Je réalise une application à partir de 0 en VueJS]()
+- [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/vuejs/README.md)
 
 ## Cordova + VueJS 
 
