@@ -24,7 +24,7 @@ Avant d’utiliser GitLab nous allons dans un premier temps créer un site Inter
 
 * Créer un nouveau dossier
 * Initialiser un nouveau projet Git (en ligne de commande)
-* Créer la page d’accueil du votre site Internet (Rester simple, mais créatif ;))
+* Créer la page d’accueil du votre site Internet (Un truc qui soit sympa et créatif ;))
 * Versionner cette première version. (Vérifier avec ```git status``` que c’est bien ok)
 * Ajouter une 2nd page dans votre site Internet, par exemple une page vous présentant.
 * Versionner cette 2nd page. (Vérifier avec ```git status``` que c’est bien ok)
