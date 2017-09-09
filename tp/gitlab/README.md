@@ -18,23 +18,37 @@ L’entreprise ou vous effectuez votre stage utilise GitLab, vous allez donc dev
 * Pourquoi à votre avis l’entreprise utilise GitLab ?
 * Pourquoi GitLab plutôt que GitHub ?
 
-## Création du compte
+## Création du projet
 
-Créer votre compte sur GitLab.com. Une fois votre compte créé « Demander l’accès au groupe : [BTS SIO Chevrollier](https://gitlab.com/bts-sio-chevrollier)
+Avant d’utiliser GitLab nous allons dans un premier temps créer un site Internet sur votre ordinateur.
 
-### Questions
+* Créer un nouveau dossier
+* Initialiser un nouveau projet Git (en ligne de commande)
+* Créer la page d’accueil du votre site Internet (Rester simple, mais créatif ;))
+* Versionner cette première version. (Vérifier avec ```git status``` que c’est bien ok)
+* Ajouter une 2nd page dans votre site Internet, par exemple une page vous présentant.
+* Versionner cette 2nd page. (Vérifier avec ```git status``` que c’est bien ok)
+* Ajouter un « formulaire de contact », ce formulaire devras contenir à minima 3 « input » :
+	* Un champs email
+	* Un champs sujet
+	* Un champs message
+* Ajouter une page PHP que enregistre les valeurs dans un fichier sur disque à chaque fois qu’un utilisateur valide le formulaire.
+* Versionner le formulaire de contact (attention, il serait intéréssant de faire plusieurs ```commit```, si vous avez ajouter plusieurs pages, vérifier avec ```git status``` que c’est bien ok) 
 
-* Pourquoi devez-vous demander l’accès ?
-* Pourquoi est-ce important ?
-* Si nous étions sur un GitLab « privé » (interne à l’entreprise) cela aurait-il été aussi important ?
+## Les logs
 
-## Cloner le projet
+Vérifier que votre projet est bien commité, avec la commande ```git status```. Vous pouvez également vérifier l’historique de vos commits via ```git log```
 
-Maintenant que votre compte est actif, vous pouvez cloner le projet :
 
-### Échange de clef
+## GitLab
 
-Pour vous reconnaitre GitLab / Github utilise un système de clef. Cette clef garantie votre identité sans utiliser un mot de passe.
+### Création du compte
+
+Créer votre compte sur [GitLab.com onglet Register](https://gitlab.com/users/sign_in). Se compte sera utile pour plusieurs projets, remplisser les champs avec attention.
+
+#### Échange de clef
+
+Pour vous reconnaitre GitLab / Github utilise un système de clef. Cette clef garantie votre identité sans utiliser un mot de passe. 
 
 #### Génération de votre clef
 
@@ -52,6 +66,65 @@ Deux fichiers seront créé une clef « publique » ET une clef privée.
 
 [Ajouter une clef sur votre profil](https://gitlab.com/profile/keys)
 
+La clef que vous devez envoyer est dans votre dossier personnel (W:) dans le dossier ```.ssh```. Une fois dans le dossier (masquer par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est .pub
+
+### Création de votre premier projet
+
+Maintenant que votre compte est créé (et que l’échange de clef est effectif), vous allez pouvoir créer un nouveau projet. Ce projet « gitlab », aura pour vocation de contenir les sources de votre site Internet (celui créé au début du TP). Nommer le bien !
+
+### Question 
+
+* Comment choisir la Visiblité du projet ? (Visiblity Level)
+
+### Envoi sur GitLab
+
+Maintenant que votre projet est créé GitLab doit vous donnez les instructions pour « pusher » votre projet sur le serveurs. Suivez les instructions. 
+
+![Création d’un projet](gitlab.png)
+
+Une fois que c’est fait. Regarder les différentes options que GitLab vous propose.
+
+* Inviter un (ou plusieurs) autres étudiants dans votre projets (C’est dans l’onglets Members dans les paramètres)
+* Créer une nouvelle issue
+* Assigner l’issue à vous même (ou a un autre étudiant).
+* Regarder les options autour de l’issue (Création de branch, issue board, etc…)
+
+### Édition en ligne
+
+GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester les différentes fonctionnalités :
+
+* Créer une issue (exemple, Ajout d’informations sur la page d’accueil)
+* Créer une branche relative à cette issue.
+* Vérifier que vous êtes bien sur la branche en question avant d’éditer le fichier index.html dans l’onglet ```files```
+* Ajouter une image dans votre projet (via GitLab)
+* Ajouter dans la page index.html l’image en question (```<img src…```)
+* ⚠️  Comme en local, le commentaire est très important! Indiquer un commentaire pertinant. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Testé 😉)
+* Une fois les modifications faites, vous allez pouvoir créer un ```merge request```. Une fois le merge request créé assigné le à un autre étudiant! Demandez lui de le merger pour vous.
+* ⚠️ ⚠️  L’autre étudiant doit regarder le code, et si possible vous faire des commentainres, par exemple :
+	* Tu as oublié le ```alt``` à ton image.
+	* Tu as oublié le ```title``` à ton image.
+	* Ou même pourquoi a tu choisis cette image?
+* Prenez en compte les remarques et modifier le code
+* Ajouter un commentaire (dans le merge request) pour indiquer à l’autre étudiant que vous avez terminé.
+* L’autre étudiant peu merger votre code
+
+## Participation à un projet collectif
+
+GitLab (comme Github) est un outil / site web, permettant le travail collaboratif, dans cette optique vous allez pouvoir travailler sur un projet à plusieurs :
+
+* Demander l’accès au groupe : [BTS SIO Chevrollier](https://gitlab.com/bts-sio-chevrollier)
+* Aller dans le projet : [Découverte GitLab](https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab) et demander l’accès.
+
+### Questions
+
+* Pourquoi devez-vous demander l’accès ?
+* Pourquoi est-ce important ?
+* Si nous étions sur un GitLab « privé » (interne à l’entreprise) cela aurait-il été aussi important ?
+
+## Cloner le projet
+
+Maintenant que votre compte est actif, vous pouvez cloner le projet :
+
 ### Cloner le projet sur votre machine
 
 ```
@@ -60,7 +133,7 @@ $
 
 ## Traiter une des issues
 
-Un ensemble « d’issues » / tickets dans le projet « SIO 2017-2018 » sont disponibles choisissez en une. Traitez là en utilisant le « Worflow GitLab » :
+Un ensemble « d’issues » / tickets dans le projet « Découverte GitLab » sont disponibles choisissez en une. Traitez là en utilisant le « Worflow GitLab » :
 
 * Assignation de l’issue à vous même.
 * Création d’une branche relative à l’issue (un bouton permet de le faire directement).
