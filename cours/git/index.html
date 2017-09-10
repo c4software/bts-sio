@@ -261,6 +261,30 @@ $ git init
 				</section>
 
 				<section>
+					<h1>À tout moment</h1>
+					<h2>Vérifier le statut de mon dépot Git</h2>
+					<pre><code>$ git status</code></pre>
+					<pre><code>On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   index.html
+	modified:   ../gitlab/index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
+				</section>
+
+				<section>
+					<h2>Ou</h2>
+					<pre><code>$ git config --global diff.tool vimdiff</code></pre>
+					<pre><code>$ git difftool</code></pre>
+					<img src="./img/gitdiff.png" />
+				</section>
+
+				<section>
 					<h2>Les branches</h2>
 					<ul>
 						<li class="fragment">Pourquoi ?</li>
