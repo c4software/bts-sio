@@ -78,8 +78,9 @@ Maintenant que votre compte est créé (et que l’échange de clef est effectif
 
 ### Envoi sur GitLab
 
-Maintenant que votre projet est créé GitLab doit vous donnez les instructions pour « pusher » votre projet sur le serveurs. Suivez les instructions.
+Maintenant que votre projet est créé GitLab doit vous donner les instructions pour « pusher » votre projet sur le serveurs. Suivez les instructions.
 
+#### Exemple:
 ![Création d’un projet](gitlab.png)
 
 Une fois que c’est fait. Regarder les différentes options que GitLab vous propose.
