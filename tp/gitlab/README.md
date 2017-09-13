@@ -1,6 +1,6 @@
 # GitLab
 
-Introduction au travail à plusieurs avec GIT. 
+Introduction au travail à plusieurs avec GIT.
 
 ## Ressources utiles
 
@@ -25,15 +25,15 @@ Avant d’utiliser GitLab nous allons dans un premier temps créer un site Inter
 * Créer un nouveau dossier
 * Initialiser un nouveau projet Git (en ligne de commande)
 * Créer la page d’accueil du votre site Internet (Un truc qui soit sympa et créatif ;))
-* Versionner cette première version. (Vérifier avec ```git status``` que c’est bien ok)
+* Versionner cette première version. (```git commit``` et vérifier avec ```git status``` que c’est bien ok)
 * Ajouter une 2nd page dans votre site Internet, par exemple une page vous présentant.
-* Versionner cette 2nd page. (Vérifier avec ```git status``` que c’est bien ok)
-* Ajouter un « formulaire de contact », ce formulaire devras contenir à minima 3 « input » :
+* Versionner cette 2nd page. (```git commit``` et vérifier avec ```git status``` que c’est bien ok)
+* Ajouter un « formulaire de contact », ce formulaire devra contenir à minima 3 « input » :
 	* Un champs email
 	* Un champs sujet
 	* Un champs message
 * Ajouter une page PHP que enregistre les valeurs dans un fichier sur disque à chaque fois qu’un utilisateur valide le formulaire.
-* Versionner le formulaire de contact (attention, il serait intéréssant de faire plusieurs ```commit```, si vous avez ajouter plusieurs pages, vérifier avec ```git status``` que c’est bien ok) 
+* Versionner le formulaire de contact (attention, il serait intéréssant de faire plusieurs ```commit```, si vous avez ajouter plusieurs pages, vérifier avec ```git status``` que c’est bien ok)
 
 ## Les logs
 
@@ -48,7 +48,7 @@ Créer votre compte sur [GitLab.com onglet Register](https://gitlab.com/users/si
 
 #### Échange de clef
 
-Pour vous reconnaitre GitLab / Github utilise un système de clef. Cette clef garantie votre identité sans utiliser un mot de passe. 
+Pour vous reconnaitre GitLab / Github utilise un système de clef. Cette clef garantie votre identité sans utiliser un mot de passe.
 
 #### Génération de votre clef
 
@@ -58,7 +58,7 @@ Sur votre ordinateur, en ligne de commande :
 $ ssh-keygen
 ```
 
-Deux fichiers seront créé une clef « publique » ET une clef privée.
+Deux fichiers seront créés une clef « publique » ET une clef privée.
 
 ⚠️ ⚠️  Vous ne devez JAMAIS rendre publique votre clef **privée**. Si ça vous arrive, vous devez imédiatement révoquer les clefs !
 
@@ -72,13 +72,13 @@ La clef que vous devez envoyer est dans votre dossier personnel (W:) dans le dos
 
 Maintenant que votre compte est créé (et que l’échange de clef est effectif), vous allez pouvoir créer un nouveau projet. Ce projet « gitlab », aura pour vocation de contenir les sources de votre site Internet (celui créé au début du TP). Nommer le bien !
 
-### Question 
+### Question
 
 * Comment choisir la Visiblité du projet ? (Visiblity Level)
 
 ### Envoi sur GitLab
 
-Maintenant que votre projet est créé GitLab doit vous donnez les instructions pour « pusher » votre projet sur le serveurs. Suivez les instructions. 
+Maintenant que votre projet est créé GitLab doit vous donnez les instructions pour « pusher » votre projet sur le serveurs. Suivez les instructions.
 
 ![Création d’un projet](gitlab.png)
 
@@ -128,7 +128,7 @@ Maintenant que votre compte est actif, vous pouvez cloner le projet :
 ### Cloner le projet sur votre machine
 
 ```
-$ 
+$
 ```
 
 ## Traiter une des issues
@@ -144,7 +144,7 @@ Un ensemble « d’issues » / tickets dans le projet « Découverte GitLab » s
 ### Mettre à jour le code local.
 
 ```
-$ 
+$
 ```
 
 ### Changer de branch
@@ -156,7 +156,7 @@ $
 ### Envoyer vos modifications sur le serveurs GitLab
 
 ```
-$ 
+$
 ```
 
 ### Création d’une merge request
@@ -169,7 +169,7 @@ $
 
 * Pourquoi travailler de cette façon ?
 
-## Bonne nouvelle ! 
+## Bonne nouvelle !
 
 Vous venez (normalement) d’avoir au moins un « merge request » d’assigner. Vous allez devoir traiter la demande, à votre avis comment se déroule la suite ?
 
