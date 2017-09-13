@@ -74,7 +74,7 @@ Maintenant que votre compte est créé (et que l’échange de clef est effectif
 
 ### Question
 
-* Comment choisir la Visiblité du projet ? (Visiblity Level)
+* Comment choisir la visiblité du projet ? (Visiblity Level)
 
 ### Envoi sur GitLab
 
