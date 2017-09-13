@@ -100,14 +100,14 @@ GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester l
 * Ajouter une image dans votre projet (via GitLab)
 * Ajouter dans la page index.html l’image en question (```<img src…```)
 * ⚠️  Comme en local, le commentaire est très important! Indiquer un commentaire pertinant. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Testé 😉)
-* Une fois les modifications faites, vous allez pouvoir créer un ```merge request```. Une fois le merge request créé assigné le à un autre étudiant! Demandez lui de le merger pour vous.
-* ⚠️ ⚠️  L’autre étudiant doit regarder le code, et si possible vous faire des commentainres, par exemple :
+* Une fois les modifications faites, vous allez pouvoir créer un ```merge request```. Une fois le merge request créé assignez le à un autre étudiant! Demandez lui de le merger pour vous.
+* ⚠️ ⚠️  L’autre étudiant doit regarder le code, et si possible vous faire des commentaires, par exemple :
 	* Tu as oublié le ```alt``` à ton image.
 	* Tu as oublié le ```title``` à ton image.
 	* Ou même pourquoi a tu choisis cette image?
 * Prenez en compte les remarques et modifier le code
 * Ajouter un commentaire (dans le merge request) pour indiquer à l’autre étudiant que vous avez terminé.
-* L’autre étudiant peu merger votre code
+* L’autre étudiant peut merger votre code
 
 ## Participation à un projet collectif
 
