@@ -48,3 +48,5 @@ java -jar webgoat-container-7.1-exec.jar
 ```
 
 C’est parti, vous pouvez maintenant aller sur [http://localhost:8080/WebGoat](http://localhost:8080/WebGoat)
+
+⚠️ Nous allons utiliser un outil intégrant des failles… Pour éviter tout risque pour votre machine le mieux est de couper l’accès au réseau de votre ordinateur. ⚠️
