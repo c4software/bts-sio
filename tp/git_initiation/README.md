@@ -4,7 +4,7 @@ Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base d
 
 ## Ressources utiles
 
-* [Aide mémoire](https://github.com/c4software/cheatsheet/)
+* [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
 * [Google](https://www.google.fr)
 * [Livre Git en ligne](https://git-scm.com/book/fr/v2)
 
@@ -240,7 +240,7 @@ $
 Voilà, votre projet a atteint une première étape. Que pouvez-vous faire pour « marquer » cette première version ?
 
 ```
-$ 
+$
 ```
 
 ### Questions
