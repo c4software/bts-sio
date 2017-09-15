@@ -13,7 +13,7 @@ Support de cours &amp; TP pour le BTS SIO
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
 
 
-## Programmation sécurisée avec OWASP
+## [WIP] Programmation sécurisée avec OWASP
 - [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
 - [TP](#)
 
@@ -21,13 +21,13 @@ Support de cours &amp; TP pour le BTS SIO
 ## Propriété du code
 - [Slides](#)
 
-## VueJS
+## [WIP] VueJS
 - [Slides](#)
 - [TP1: Je migre une application existante avec VueJS]()
 - [TP2: Je réalise une application à partir de 0 en VueJS]()
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/vuejs/README.md)
 
-## Cordova + VueJS 
+## [WIP] Cordova + VueJS
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/cordova/) ([Les sources](cours/cordova))
 - [Projet Démo](https://github.com/c4software/vuejs-cordova-sample)
@@ -36,4 +36,3 @@ Support de cours &amp; TP pour le BTS SIO
 ## Découverte de Docker
 
 ## Intégration continue avec GitLab-CI
-
