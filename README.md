@@ -15,7 +15,7 @@ Support de cours &amp; TP pour le BTS SIO
 
 ## [WIP] Programmation sécurisée avec OWASP
 - [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
-- [TP](#)
+- [TP](https://github.com/c4software/bts/blob/master/tp/securite/README.md)
 
 
 ## Propriété du code
