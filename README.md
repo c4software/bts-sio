@@ -30,6 +30,7 @@ Support de cours &amp; TP pour le BTS SIO
 ## [WIP] Cordova + VueJS
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/cordova/) ([Les sources](cours/cordova))
+- [TP](https://github.com/c4software/bts/blob/master/tp/cordova/README.md)
 - [Projet Démo](https://github.com/c4software/vuejs-cordova-sample)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/cordova/README.md)
 
