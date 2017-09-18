@@ -381,6 +381,12 @@
 					<h3>Pour éviter d’être vulnérable</h3>
 				</section>
 
+				<section>
+					<h3>L’injection</h3>
+					<code><pre>SELECT * FROM client WHERE id='" . $_GET["id"] . "'</pre></code>
+					<code><pre>http://exemple.com/liste?id='or '1'='1</pre></code>
+				</section>
+
 			</div>
 		</div>
 
