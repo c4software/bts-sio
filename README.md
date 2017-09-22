@@ -17,10 +17,6 @@ Support de cours &amp; TP pour le BTS SIO
 - [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
 - [TP](https://github.com/c4software/bts/blob/master/tp/securite/README.md)
 
-
-## Propriété du code
-- [Slides](#)
-
 ## [WIP] VueJS
 - [Slides](#)
 - [TP1: Je migre une application existante avec VueJS]()
