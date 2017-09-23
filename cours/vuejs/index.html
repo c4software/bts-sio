@@ -143,6 +143,7 @@
 						<li>VueJS est « plus simple »</li>
 						<li>Le site de VueJS est plus clair ?</li>
 						<li>La fondation Apache ne veux pas des projets ReactJS (<a href="https://www.theregister.co.uk/2017/07/17/apache_says_no_to_facebook_code_libraries/">C’est un signe…</a>)</li>
+						<li>Mais… Facebook à annoncer un changement dans les licences (très récemment)</li>
 					</ul>
 				</section>
 
@@ -150,6 +151,73 @@
 					<h3>Quelques stats</h3>
 					<img src="./img/react.png">
 					<img src="./img/vuejs.png">
+				</section>
+
+				<section>
+					<h3>Qui utilise VueJS ?</h3>
+					<ul>
+						<li>GitLab</li>
+						<li>Weex (Alibaba)</li>
+						<li>Baidu</li>
+						<li>…</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Comment VueJS fonctionne ?</h2>
+				</section>
+
+				<section>
+					<ul>
+						<li>Virtual DOM (ne « re-dessine » que les zones modifiés)</li>
+						<li>Fonctionnement en composant</li>
+						<li>Des « .Vue » / Monofichier important tout le composant</li>
+						<li>Un cycle de vie complet pour chaque composant</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="./img/fonctionnement.png" />
+				</section>
+
+				<section>
+					<h3>L’objet VueJS</h3>
+					<pre><code data-trim>
+var vm = new Vue({
+// Options
+});
+					</code></pre>
+					<ul>
+						<li>Constructeur de l’objet</li>
+						<li>Propriétés et méthodes</li>
+						<li>Cycle de vie</li>
+					</ul>
+				</section>
+
+				<section>
+					<a href="./img/component-lifecycle.png" target="blank"><img src="./img/component-lifecycle.png" ></a>
+				</section>
+
+				<section>
+				<pre><code data-trim>
+var vm = new Vue({
+	data: { demo: 1 },
+	created: function () {
+		 console.log('demo est: ' + this.a);
+	}
+});
+				</code></pre>
+				</section>
+
+				<section>
+					<h2>Un vrai exemple</h2>
+					<a href="">Démo</a>
+				</section>
+
+				<section>
+					<ul>
+						<li></li>
+					</ul>
 				</section>
 
 			</div>
