@@ -262,7 +262,18 @@ var vm = new Vue({
 
 				<section>
 					<h3>Les listes / Boucles</h3>
-					TODO
+					<pre><code data-trim>
+<ul>
+	<li v-for="(items, index) in items">items.message</li>
+</ul>
+
+// Exemple structure de « items »
+items = [
+	{message: "Message 1"},
+	{message: "Message 2"},
+	{message: "Message 3"}
+]
+					</code></pre>
 				</section>
 
 				<section>
