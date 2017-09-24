@@ -231,7 +231,24 @@ var vm = new Vue({
 
 				<section>
 					<h3>Gestion des évènements</h3>
-					TODO
+					<pre><code data-trim>
+	var vm = new Vue({
+		el: "#demo"
+		data: { compteur: 0 },
+		methods: {
+			message: function(message){
+			 alert(message)
+		 	}
+		}
+	});
+					</code></pre>
+					<pre><code data-trim>
+<div id="demo">
+	<button @click="message('yolo')">Yolo</button>
+	<button v-on:click="compteur += 1"></button>
+	<p>Vous avez cliqué : {{compteur}}</p>
+</div>
+					</code></pre>
 				</section>
 
 				<section>
