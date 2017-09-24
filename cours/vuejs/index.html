@@ -278,7 +278,19 @@ items = [
 
 				<section>
 					<h3>Les évènements HTML / Les touches de modifications</h3>
-					TODO
+					<pre><code data-trim>
+<!-- Arrêt de la propagation de l’évènements -->
+<a @click.stop="clickEvent"></a>
+
+<!-- Le « submit » est intercepté, et le navigateur ne rechargera plus la page -->
+<form @submit.prevent="onSubmit"></form>
+
+<!-- Il est possible de les chainer -->
+<a @click.stop.prevent="clickMessage"></a>
+
+<!-- Également disponnible tab, delete, esc, space, ...-->
+<input @keyup.enter="submit">
+					</code></pre>
 				</section>
 
 				<section>
