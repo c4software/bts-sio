@@ -201,6 +201,7 @@ var vm = new Vue({
 				<section>
 				<pre><code data-trim>
 var vm = new Vue({
+	el: "#demo",
 	data: { demo: 1 },
 	created: function () {
 		 console.log('demo est: ' + this.a);
@@ -330,7 +331,6 @@ items = [
 						<li>Découpe les JS pour la distribution</li>
 						<li>Assemble aussi des modules « css » (jusqu’au images incluse)</li>
 					</ul>
-					<p> It takes JavaScript modules, understands their dependencies, and then concatenates them together in the most efficient way possible, spitting out a single JS file at the end. </p>
 				</section>
 
 				<section>
@@ -370,7 +370,24 @@ items = [
 				</section>
 
 				<section>
-					TODO Suite « composant .vue »
+					<img src="./img/composant.png" >
+				</section>
+
+				<section>
+					<h3>Quelques différences avec les précédents exemples…</h3>
+					<pre><code data-trim>
+var vm = new Vue({
+	el: "#demo",
+	data: {demo: 1}
+});
+					</code></pre>
+					<pre><code data-trim>
+export default {
+	data: () => {
+		return {demo: 1}
+	}
+};
+					</code></pre>
 				</section>
 
 				<section>
