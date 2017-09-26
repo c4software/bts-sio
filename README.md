@@ -13,12 +13,12 @@ Support de cours &amp; TP pour le BTS SIO
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
 
 
-## [WIP] Programmation sécurisée avec OWASP
+## Programmation sécurisée avec OWASP
 - [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
 - [TP](https://github.com/c4software/bts/blob/master/tp/securite/README.md)
 
 ## [WIP] VueJS
-- [Slides](#)
+- [Slides](https://rawgit.com/c4software/bts/master/cours/vuejs/) ([Les sources](cours/vuejs))
 - [TP1: Je migre une application existante avec VueJS]()
 - [TP2: Je réalise une application à partir de 0 en VueJS]()
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/vuejs/README.md)
