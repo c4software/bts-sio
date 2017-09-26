@@ -1,9 +1,9 @@
 # Sécurité des développements
 
-Le meilleurs moyen de comprendre la sécurisation d’une application / site Internet, c’est de …
+Le meilleur moyen de comprendre la sécurisation d’une application / site Internet, c’est de …
 
 * Passer des heures sur de la théorie ?
-* Passer des heures sur de code à vous ?
+* Passer des heures sur du code à vous ?
 * Passer des heures à tenter des intrusions ?
 * La réponse D ?
 
