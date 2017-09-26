@@ -191,7 +191,7 @@
 				<section>
 					<h3>Weak Server Side Controls</h3>
 					<h4>Suis-je vulnérable ?</h4>
-					<p>Test d’intrusion, audit d’attaque, qu’est-ce qui est attaquable?</p>
+					<p>Test d’intrusion, audit d’attaque, qu’est-ce qui est attaquable ?</p>
 					<h4>Comment ne pas être touché ?</h4>
 					<p>Développements sécurisés</p>
 				</section>
@@ -215,9 +215,9 @@
 				<section>
 					<h3>Poor Authorization and Authentication</h3>
 					<h4>Suis-je vulnérable ?</h4>
-					<p>Les utilisateurs doivent t’il se connecter / créer un compte dans mon application</p>
+					<p>Les utilisateurs doivent-ils se connecter ?/ créer un compte dans mon application ?</p>
 					<h4>Comment ne pas être touché ?</h4>
-					<p>Contrôl côté serveur, Oauth2, etc</p>
+					<p>Contrôle côté serveur, Oauth2, etc</p>
 				</section>
 
 				<section>
@@ -225,7 +225,7 @@
 					<h4>Suis-je vulnérable ?</h4>
 					<p>Mon application chiffre ou hash les données ?</p>
 					<h4>Comment ne pas être touché ?</h4>
-					<p>Est-ce une bonne idée de réinventé un système de Crypto ?</p>
+					<p>Est-ce une bonne idée de réinventer un système de Crypto ?</p>
 					<p class="fragment">
 						NON! S’appuyer sur des méthodes de chiffrement connues et reconnues
 					</p>
@@ -239,11 +239,12 @@
 						<li>URLScheme</li>
 						<li>Intent</li>
 					</ul>
+					<br><br>
 					<h4>Comment ne pas être touché ?</h4>
 					<ul>
 						<li>Contrôle des entrées</li>
 						<li>Vérifier via Regex (expressions régulières)</li>
-						<li>Blacklist, Whitelist? On fonctionne dans quel sens ?</li>
+						<li>Blacklist, Whitelist ? On fonctionne dans quel sens ?</li>
 					</ul>
 				</section>
 
@@ -256,12 +257,12 @@
 						<li>Chiffrer</li>
 						<li>Obfusquer</li>
 						<li>Protéger</li>
-						<li>Et dans l’hybride ? À votre avis?</li>
+						<li>Et dans l’hybride ? À votre avis ?</li>
 					</ul>
 				</section>
 
 				<section>
-					<h3>L’hybride et les problématique OWASP</h3>
+					<h3>L’hybride et les problématiques OWASP</h3>
 					<p>Rappel, l’hybride c’est un developpement Web « contenu » dans une application</p>
 				</section>
 
@@ -275,33 +276,33 @@
 				</section>
 
 				<section>
-					<h3>Broken Authentification and Session Management</h3>
+					<h3>Broken Authentication and Session Management</h3>
 					<p>Correspond au risque de casser la gestion de l’authentification et de la session. Comprend notamment le vol de session ou la récupération de mots de passe.</p>
 				</section>
 
 				<section>
 					<h3>Cross-Site Scripting</h3>
-					<p>Correspond au XSS soit l’injection de contenu dans une page, ce qui provoquent des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.</p>
+					<p>Correspond au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.</p>
 				</section>
 
 				<section>
 					<h3>Insecure Direct Object References</h3>
-					<p>Correspond aux failles de sécurité des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.</p>
+					<p>Correspond aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.</p>
 				</section>
 
 				<section>
 					<h3>Security Misconfiguration</h3>
-					<p>Correspond aux failles de configuration liés aux serveurs Web, applications, base de données ou framework.</p>
+					<p>Correspond aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.</p>
 				</section>
 
 				<section>
 					<h3>Sensitive Data Exposure</h3>
-					<p>Correspond aux failles de sécurité liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.</p>
+					<p>Correspond aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.</p>
 				</section>
 
 				<section>
 					<h3>Missing Function Level Access Control</h3>
-					<p>Failles de sécurité liés aux accès de fonctionnalité.</p>
+					<p>Failles de sécurité liées aux accès de fonctionnalité.</p>
 				</section>
 
 				<section>
@@ -316,7 +317,7 @@
 
 				<section>
 					<h3>Unvalidated Redirects and Forwards</h3>
-					<p>Faillies liées aux redirect et forward générique des applications.</p>
+					<p>Failles liées aux redirects et forwards génériques des applications.</p>
 				</section>
 
 				<section>
@@ -335,8 +336,8 @@
 				</section>
 
 				<section>
-					<h3>On connais les failles</h3>
-					<h4>Comment on les corriges ?</h4>
+					<h3>On connait les failles</h3>
+					<h4>Comment on les corrige ?</h4>
 				</section>
 
 				<section>
@@ -361,7 +362,7 @@
 
 				<section>
 					<h3>IDS</h3>
-					<p>Un système de détection d'intrusion (ou IDS: Intrusion Detection System) est un mécanisme destiné à repérer des activités anormales ou suspectes sur la cible analysée</p>
+					<p>Un système de détection d'intrusion (Intrusion Detection System) est un mécanisme destiné à repérer des activités anormales ou suspectes sur la cible analysée</p>
 					<img src="./img/nids.png">
 				</section>
 
@@ -407,7 +408,7 @@
 				</section>
 
 				<section>
-					<h3>Référence directes non sécurisées à un objet</h3>
+					<h3>Référence directe non sécurisée à un objet</h3>
 					<pre><code>http://exemple.com/liste?mode=client</code></pre>
 					<div class="fragment">
 						<p>Si je change client par … admin ?</p>
@@ -417,7 +418,7 @@
 				</section>
 
 				<section>
-					<h3>Mauvaise configuration sécurisé</h3>
+					<h3>Mauvaise configuration sécurisée</h3>
 					<ul>
 						<li>Console d’administration disponible sans authentification en ligne</li>
 						<li>Listage des repertoires (<a href="https://www.google.fr/search?dcr=0&q=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A"index+of"+%2B"last+modified"+%2B"parent+directory"+%2Bdescription+%2Bsize&oq=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A"index+of"+%2B"last+modified"+%2B"parent+directory"+%2Bdescription+%2Bsize">Exemple</a>)</li>
@@ -446,7 +447,7 @@
 					<ul>
 						<li>Rejeu de requête déjà joué</li>
 					</ul>
-
+					<br><br>
 					<h4>Comment le bloquer ?</h4>
 					<p>Ajouter un identifiant/jeton dans la requête, unique et non réutilisable</p>
 				</section>
@@ -455,13 +456,13 @@
 					<h3>Utilisation de composants avec des vulnérabilités connues</h3>
 					<ul>
 						<li>CMS non à jour</li>
-						<li>Apache / Tomcat non paché</li>
+						<li>Apache / Tomcat non patchés</li>
 						<li>Librairies XYZ non à jour</li>
 					</ul>
 				</section>
 
 				<section>
-					<h3>Redirection et renvois non validés</h3>
+					<h3>Redirections et renvois non validés</h3>
 					<ul>
 						<li>Utilisation de votre site comme « masque » dans du phishing</li>
 					</ul>
@@ -474,8 +475,8 @@
 						<li>Revue de code</li>
 						<li>Tests d’intrusions</li>
 						<li>Sécurité lors du recrutement</li>
-						<li>Sucurité des la conception du projet</li>
-						<li>Suivi des bonnes pratique (ex OWASP)</li>
+						<li>Sécurité dès la conception du projet</li>
+						<li>Suivi des bonnes pratiques (ex: OWASP)</li>
 					</ul>
 				</section>
 
@@ -485,7 +486,7 @@
 					<ul class="fragement">
 						<li>Résistance au changement</li>
 						<li>ERP / CMS</li>
-						<li>La sécurité est vu comme un frein, pas une fonctionnalitée</li>
+						<li>La sécurité est vue comme un frein, pas une fonctionnalitée</li>
 						<li>Déni de la réalité</li>
 						<li>Multitude de librairies</li>
 						<li>Developpement externe (presta, stagiaires, …)</li>
