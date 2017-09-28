@@ -11,3 +11,30 @@ Avant de commencer à travailler, il faut récupérer le code source de l’appl
 Faire « fonctionner » en local l’application, une fois installé, celle-ci doit ressembler à :
 
 TODO IMAGE
+
+Étudier le fonctionnement du code source actuel.
+
+## Liste des fonctionnalités
+
+Voilà la liste des fonctionnalités de l’application existante :
+
+- Liste des tâches.
+- Ajout de tâche.
+- Suppression de tâche.
+- Marquer comme terminé une tâche.
+
+## Refaire un VueJS
+
+### Création des API.
+
+### Structure de base.
+
+### Migration des fonctionnalités
+
+#### Liste des tâches
+
+#### Ajout d’une tâche
+
+#### Suppression d’une tâche
+
+#### Marquer une tâche comme terminé
