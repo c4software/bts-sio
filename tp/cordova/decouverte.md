@@ -15,7 +15,7 @@ Pour pouvoir utiliser Cordova, vous allez devoir installer le ```cordova-cli```.
 (Normalement NodeJS est déjà installé sur votre poste).
 
 ```
-$
+$ npm install -g cordova
 ```
 
 L’installation prend quelques minutes, un certains nombre de dépendances NodeJS sont nécessaires au bon fonctionnement.
@@ -42,7 +42,7 @@ Une fois correctement défini le mieux est de redémarrer votre ordinateur pour 
 La ligne de commande cordova fourni l’ensemble des éléments pour créer un nouveau projet. Le projet que vous allez créer contient une première « page Web » permettant d’avoir un projet Cordova directement fonctionnel.
 
 ```
-$
+$ cordova create demo com.chevrollier.demo Demo 
 ```
 
 ⚠️ Plusieurs paramètres sont nécéssaires à la commande, attention à bien les choisirs des maintenants.
