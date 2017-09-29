@@ -167,7 +167,8 @@ Téléchargé le [ici](https://www.getpostman.com/)
 
 Une fois installé appeler vos API pour tester leur fonctionnement.
 
-### Structure de base.
+### Intégration de VueJS
+
 
 ### Migration des fonctionnalités
 
