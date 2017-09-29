@@ -65,6 +65,9 @@ Voilà un exemple de code pour réaliser un fichier JSON en PHP :
 ```
 <?php
   header("content-type: application/json");
+  …
+  // Vérifier si en $_SESSION["taches"] est bien un tableau
+  …
   echo json_encode($variable);
 ?>
 ```
@@ -79,8 +82,90 @@ C’est à vous, réaliser votre première API.
 ```
 
 ##### creation.php
+
+L’API « creation.php » doit retourner un JSON permettant de savoir dans votre application si le traimente c’est bien passé. Cette API ne doit fonctionner qu’en POST.
+
+Paramètres d’entrés :
+
+| Nom           | Type          | Méthod|
+| ------------- |:-------------:| -----:|
+| texte         | string        | POST  |
+| date          | string        | POST  |
+
+
+Voici un exemple de code PHP :
+
+```
+<?php
+header("content-type: application/json");
+…
+// Vérifier si en $_SESSION["taches"] est bien un tableau
+…
+
+$todo = array("id" => uniqid(), "texte" => $_POST["texte"], "date" => $_POST["date"], "termine" => false);
+
+// Sauvegarder dans la Session.
+$_SESSION["taches"][uniqid()] = $todo;
+…
+
+?>
+```
+
+Retour :
+
+Par exemple :
+```
+{"success": true}
+```
+
+Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+Question:
+
+- Comment bloquer l’ajout de TODO vide ?
+- Comment n’autoriser que le POST ?
+
 ##### suppression.php
+
+L’API « suppression » doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
+
+Contraintes :
+
+- L’API doit fonctionner en GET et en POST.
+- Il est impossible de supprimer un tâche non terminé.
+
+Paramètres d’entrés :
+
+| Nom           | Type          | Méthod|
+| ------------- |:-------------:| -----:|
+| id            | string        | GET   |
+
+Par exemple :
+```
+{"success": true}
+```
+
+Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
 ##### terminer.php
+
+L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
+
+Paramètres d’entrés :
+
+| Nom           | Type          | Méthod|
+| ------------- |:-------------:| -----:|
+| id            | string        | GET   |
+
+Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+### POSTMAN
+
+Pour tester vos traitement, vous avez la possibilité d’utiliser le logicel POSTMAN.
+
+Téléchargé le [ici](https://www.getpostman.com/)
+
+Une fois installé appeler vos API pour tester leur fonctionnement.
 
 ### Structure de base.
 
