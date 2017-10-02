@@ -189,6 +189,34 @@ Valider le fonctionnement grâce à la « Console de Développement » de votre 
 
 * Comment validez-vous le fonctionnement ?
 
+### Conversion du template existant
+
+Maintenant que la librairie est présente, nous allons pouvoir l’utiliser. La première étape est de convertir le fichier ```index.php```. Notre application 2.0, ne sera plus une application PHP classique, mais une application reposant sur un modèle Client <-> Serveur. Pour ça vous devez procéder à quelques ajustement dans le site Internet :
+
+- Supprimer le fichier index.php (il n’est plus nécéssaire).
+- Déplacer le template (dans le dossier template à la racine).
+- Renommer le template que vous avec déplacé en « index.html », ça va être la base de notre application.
+
+#### Ajouter un script pour le JS
+
+Ajouter dans le ```head``` de l’index.html un nouveau script ```main.js```, il contiendra le code nécéssaire au fonctionnement de notre site Web.
+
+Attention: Inclure le script après VueJS.
+
+#### Déclarer votre premier composant
+
+Pour déclarer votre premier composant, c’est simple il suffit de mettre dans le fichier ```main.js``` le code suivant :
+
+```
+var app = new Vue({
+  el: '#body',
+  created: function () {
+    console.log("Démarrage TODO-APP");
+  }
+})
+```
+
+- Vérifier le bon fonctionnement en regardant la « Console de Développement ». Le log est-il visible ?
 
 ### Migration des fonctionnalités
 
