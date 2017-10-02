@@ -171,6 +171,23 @@ Une fois installé, appeler vos APIs pour tester leur fonctionnement.
 
 ### Intégration de VueJS
 
+Maintenant que nous avons créé les API nous allons pouvoir nous intérésser à la partie « J’intégre VueJS ». Le déroulement vas être se suivant :
+
+- Intégré la librairie VueJS dans le code existant.
+- Créer un composant global que gère l’application.
+- « Convertir » le code existant en code « VueJS » (le Foreach par exemple).
+
+### Ajout de la librairie VueJS
+
+L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « head » du code existant :
+
+```
+<script src="https://unpkg.com/vue"></script>
+```
+
+Valider le fonctionnement grace à la « Console de Développement » de votre Navigateur (Touche F12 en général).
+
+* Comment validez-vous le fonctionnement ?
 
 
 ### Migration des fonctionnalités
