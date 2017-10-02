@@ -33,11 +33,11 @@ Au passage, regarder le fonctionnement de la SESSION en utilisant plusieurs navi
 
 ## Moderniser avec VueJS
 
-### Création des API.
+## Création des API.
 
 Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur vas-être réalisée en PHP, mais il est possible de la faire dans n’importe qu’elle language. En Entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
 
-#### Les API
+### Les API
 
 Notre cas étant simple, chaque API sera en réalité un fichier PHP qui se chargera de faire l’action voulue. Exemple :
 
@@ -46,11 +46,11 @@ Notre cas étant simple, chaque API sera en réalité un fichier PHP qui se char
 - suppression.php
 - terminer.php
 
-Dans un nouveau dossier dans votre WAMP, créer les ```4``` fichiers, nous allons les completer dans la suite du TP.
+Dans les sources de l’application todo-list, ajouter un dossier ```api``` puis créer les ```4``` fichiers, nous allons les completer dans la suite du TP.
 
-##### liste.php
+### L’API pour lister les tâches en attente « liste.php »
 
-L’API « liste », doit retourner un JSON. Le JSON retourner est une représentation au format texte des valeurs contenu dans la variable ```$_SESSION["taches"]```
+L’API « liste », doit retourner un JSON. Le JSON retourner est une représentation au format texte des valeurs contenu dans la variable ```$_SESSION["todos"]```
 
 Exemple de retour :
 ```JSON
@@ -81,9 +81,9 @@ C’est à vous, réaliser votre première API.
 …
 ```
 
-##### creation.php
+### L’API de création « creation.php »
 
-L’API « creation.php » doit retourner un JSON permettant de savoir dans votre application si le traimente c’est bien passé. Cette API ne doit fonctionner qu’en POST.
+L’API « creation.php », vas permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. Cette API ne doit fonctionner qu’en POST.
 
 Paramètres d’entrés :
 
@@ -125,14 +125,14 @@ Question:
 - Comment bloquer l’ajout de TODO vide ?
 - Comment n’autoriser que le POST ?
 
-##### suppression.php
+##### L’API de suppression « suppression.php »
 
-L’API « suppression » doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
+L’API « suppression » va permettre la suppression du la « tache » passé en paramètre, ***uniquement*** les tâches termine à « true » peuvent-être terminé, dans tous le cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
 
 Contraintes :
 
 - L’API doit fonctionner en GET et en POST.
-- Il est impossible de supprimer un tâche non terminé.
+- Il est impossible de supprimer un tâche non terminé. (termine==true)
 
 Paramètres d’entrés :
 
@@ -147,7 +147,7 @@ Par exemple :
 
 Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-##### terminer.php
+##### L’API pour marquer une tâche comme « terminé » : « terminer.php »
 
 L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
 
@@ -159,15 +159,18 @@ Paramètres d’entrés :
 
 Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-### POSTMAN
+### Valider le fonctionnement : Postman
 
-Pour tester vos traitement, vous avez la possibilité d’utiliser le logicel POSTMAN.
+Pour tester vos traitement, vous avez la possibilité d’utiliser le logiciel POSTMAN.
 
 Téléchargé le [ici](https://www.getpostman.com/)
 
-Une fois installé appeler vos API pour tester leur fonctionnement.
+Une fois installé, appeler vos APIs pour tester leur fonctionnement.
+
+- Valider le fonctionnement à chaque étape (Création, liste, termine, suppression)
 
 ### Intégration de VueJS
+
 
 
 ### Migration des fonctionnalités
