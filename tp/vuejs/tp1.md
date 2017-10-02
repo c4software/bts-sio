@@ -169,6 +169,13 @@ Une fois installé, appeler vos APIs pour tester leur fonctionnement.
 
 - Valider le fonctionnement à chaque étape (Création, liste, termine, suppression)
 
+### Optimisation du code.
+
+Après avoir réalisé vos 4 API, vous devez certainement avoir du code « dupliqué ». Modifier vos API pour créer des fonctions « utilitaires » permettant de réduire la duplication de code.
+
+- Comment procédez-vous ?
+- Tester le fonctionnement à nouveau.
+
 ### Intégration de VueJS
 
 Maintenant que nous avons créé les API nous allons pouvoir nous intérésser à la partie « J’intégre VueJS ». Le déroulement vas être se suivant :
