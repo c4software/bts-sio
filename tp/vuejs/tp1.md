@@ -185,7 +185,7 @@ L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « hea
 <script src="https://unpkg.com/vue"></script>
 ```
 
-Valider le fonctionnement grace à la « Console de Développement » de votre Navigateur (Touche F12 en général).
+Valider le fonctionnement grâce à la « Console de Développement » de votre Navigateur (Touche F12 en général).
 
 * Comment validez-vous le fonctionnement ?
 
