@@ -184,6 +184,12 @@ Maintenant que nous avons créé les API nous allons pouvoir nous intérésser �
 - Créer un composant global que gère l’application.
 - « Convertir » le code existant en code « VueJS » (le Foreach par exemple).
 
+### Ressources utiles
+
+- [VueJS](https://vuejs.org)
+- [VueJS](https://caniuse.com)
+
+
 ### Ajout de la librairie VueJS
 
 L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « head » du code existant :
@@ -223,11 +229,22 @@ var app = new Vue({
 })
 ```
 
-- Vérifier le bon fonctionnement en regardant la « Console de Développement ». Le log est-il visible ?
+- Vérifier le bon fonctionnement en regardant la « Console de Développement ». Le « log » est-il visible ?
 
 ### Migration des fonctionnalités
 
+Maintenant que nous avons notre base, nous allons pouvoir convertir l’application pour cela nous allons procéder par étape, chaque étape est directement lié aux différentes API que vous avez pu précédemment écrite.
+
+L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter beaucoup d’Ajax. Pour faire nos appels nous utiliserons l’API « Fetch », celle-ci est intégré dans l’ensemble des navigateur récent ([consulter le support de fetch](https://caniuse.com/#search=fetch))
+
+#### Découverte de Fetch
+
+
 #### Liste des tâches
+
+La liste des tâches est chargé dès l’arrivée sur la page « principale ». Vous devez donc écrire du code dans l’évènement « beforeMount » (pour rappel n’hésité pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
+
+1/ Ajouter …
 
 #### Ajout d’une tâche
 
