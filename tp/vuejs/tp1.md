@@ -239,6 +239,44 @@ L’ensemble de l’application va devenir « asynchrone », vous allez vite vou
 
 #### Découverte de Fetch
 
+L'API Fetch fournit une interface JavaScript pour l'accès et la manipulation des parties de la pipeline HTTP, comme les requêtes et les réponses. Cela fournit aussi une méthode globale fetch() qui procure un moyen facile et logique de récupérer des ressources à travers le réseau de manière asynchrone.
+
+Ce genre de fonctionnalité était auparavant réalisé avec XMLHttpRequest. Fetch fournit une meilleure alternative qui peut être utilisée facilement par d’autres technologies comme Service Workers. Fetch fournit aussi un endroit unique et logique pour la définition d'autres concepts liés à HTTP comme CORS et les extensions d'HTTP.
+
+(Source: MDM)
+
+Le support de l'API Fetch peut être détecté en vérifiant l'existance de Headers, Request, Response ou fetch() sur la portée de Window ou de Worker.
+Par exemple, vous pouvez faire cela dans votre script:
+
+```
+if(self.fetch) {
+  // Le support de Fetch est présent
+}else{
+  // Gérer le cas du non support de fetch.
+  // Pour réduire le nombre de cas possible vous pouvez ajouter : https://github.github.io/fetch/ à votre projet
+}
+```
+
+Appeler une API grâce à Fetch :
+
+```
+fetch('api/liste.php')
+.then(function(response){
+  // On décode le JSON, et on continue
+  return response.json();
+})
+.then(function(response) {
+  // Votre retour est ICI
+  console.log(response);
+})
+.catch(function(error) {
+  console.log('Récupération impossible: ' + error.message);
+});
+```
+
+- Tester dès à présent cet appel dans la « Console développeur »
+
+[Consulter la documentation complète](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
 
 #### Liste des tâches
 
