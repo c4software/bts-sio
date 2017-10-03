@@ -276,7 +276,7 @@ fetch('api/liste.php')
 
 - Tester dès à présent cet appel dans la « Console développeur »
 
-[Consulter la documentation complète](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
+[Consulter la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
 
 #### Liste des tâches
 
