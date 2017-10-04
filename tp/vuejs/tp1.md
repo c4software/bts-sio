@@ -17,10 +17,11 @@ L’application existante est une « todo liste » codée en PHP + HTML.
 - [Ajout de la librairie VueJS](#ajout-de-la-librairie-vuejs)
 - [Conversion du template existant](#conversion-du-template-existant)
 - [Migration des fonctionnalités](#migration-des-fonctionnalités)
-  - [Liste des tâches](#liste-des-taches)
-  - [Ajout d’une tâche](#Ajout-d-une-tâche)
-  - [Marquer une tâche comme terminé](#marquer-une-tache-comme-terminé)
-  - [Suppression d’une tâche](#suppression-d-une-tache)
+  - [Découverte de Fetch](#migration-des-fonctionnalités)
+  - [Liste des tâches](#liste-des-tâches)
+  - [Ajout d’une tâche](#ajout-dune-tâche)
+  - [Marquer une tâche comme terminé](#marquer-une-tâche-comme-terminé)
+  - [Suppression d’une tâche](#suppression-dune-tâche)
 
 ## Récupération et installation des sources
 
@@ -435,6 +436,10 @@ var app = new Vue({
 - Tester l’ajout de tâche.
 - Tenter d’injecter du code. Que se passe t’il ?
 
+#### Marquer une tâche comme terminé
+
+TODO
+
 #### Suppression d’une tâche
 
-#### Marquer une tâche comme terminé
+TODO
