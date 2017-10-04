@@ -17,6 +17,10 @@ L’application existante est une « todo liste » codée en PHP + HTML.
 - [Ajout de la librairie VueJS](#ajout-de-la-librairie-vuejs)
 - [Conversion du template existant](#conversion-du-template-existant)
 - [Migration des fonctionnalités](#migration-des-fonctionnalités)
+  - [Liste des tâches](#liste-des-taches)
+  - [Ajout d’une tâche](#Ajout-d-une-tâche)
+  - [Marquer une tâche comme terminé](#marquer-une-tache-comme-terminé)
+  - [Suppression d’une tâche](#suppression-d-une-tache)
 
 ## Récupération et installation des sources
 
