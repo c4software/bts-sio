@@ -327,7 +327,7 @@ var app = new Vue({
 
 ```
 <ul>
-  <li v-for="tache in taches">{{tache.contenu}}</li>
+  <li v-for="tache in taches">{{tache.texte}}</li>
 <ul>
 ```
 
@@ -340,6 +340,72 @@ Adapter l’exemple précédent dans pour utiliser le modèle actuellement prés
 - Comment gérer le cas de la liste vide ?
 
 #### Ajout d’une tâche
+
+Maintenant que la liste est affichée, vous allez pouvoir gérer le cas de l’ajout d’une nouvelle tâche. L’ajout va également être faite via un appel Ajax.
+
+1/ Créer une méthode Javascript, réalisant l’appel de l’API. Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, OU [librairie Sweetalert](https://sweetalert.js.org/))
+
+```
+var app = new Vue({
+  […]
+  methods: {
+    ajout: function () {
+      var contenu = document.getElementById("texte");
+      if(contenu == ""){
+        swal("Oops","Vous devez spécifier du texte…" , "error" );
+      }else{
+        // Appel de l’API avec Fetch (Ajax)
+      }
+    }
+  }
+  […]
+```
+
+2/ Créer l’appel à l’API
+
+```
+var form = new FormData();
+form.append('texte', contenu);
+fetch("api/creation.php", {
+  method: "POST",
+  body: form
+})
+.then(function(response){
+  return response.json();
+})
+.then(function(response) {
+  if(reponse.success){
+    this.recupererListe();
+  }else{
+    // Sweetalert pour l’utilisateur.
+  }
+})
+.catch(function(error) {
+  console.log('Récupération impossible: ' + error.message);
+});
+```
+
+3/ Rafraichir la liste des tâche, pour ça vous allez créer une 2nd méthode qui réalise l’appel Ajax de récupération de la liste. Une fois cette méthode faite, appeler la dans la partie ```// traiter le retour```.
+4/ Optimiser votre code en remplaçant le code dans le ```beforeMount``` par un appel à la méthodes que vous avez créer
+
+Votre objet VueJS, doit ressembler à quelques chose comme ça :
+
+
+```
+var app = new Vue({
+  el: '#body',
+  created: function () {
+    console.log("Démarrage TODO-APP");
+  },
+  beforeMount: function() {
+    this.recuperer_liste();
+  },
+  methods:{
+    ajout: function () {},
+    recupererListe: function (){}
+  }
+})
+```
 
 #### Suppression d’une tâche
 
