@@ -9,14 +9,14 @@ L’application existante est une « todo liste » codée en PHP + HTML.
 - [Stockage](#stockage)
 - [Moderniser avec VueJS](#moderniser-avec-vuejs)
 - [Création des API.](#cration-des-api)
-	- [Les API](#les-api)
-	- [Valider le fonctionnement : Postman](#valider-le-fonctionnement-postman)
-	- [Optimisation du code.](#optimisation-du-code)
-	- [Intégration de VueJS](#intgration-de-vuejs)
-	- [Ressources utiles](#ressources-utiles)
-	- [Ajout de la librairie VueJS](#ajout-de-la-librairie-vuejs)
-	- [Conversion du template existant](#conversion-du-template-existant)
-	- [Migration des fonctionnalités](#migration-des-fonctionnalits)
+  - [Les API](#les-api)
+  - [Valider le fonctionnement : Postman](#valider-le-fonctionnement-postman)
+  - [Optimisation du code.](#optimisation-du-code)
+- [Intégration de VueJS](#intgration-de-vuejs)
+- [Ressources utiles](#ressources-utiles)
+- [Ajout de la librairie VueJS](#ajout-de-la-librairie-vuejs)
+- [Conversion du template existant](#conversion-du-template-existant)
+- [Migration des fonctionnalités](#migration-des-fonctionnalits)
 
 ## Récupération et installation des sources
 
