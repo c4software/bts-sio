@@ -413,6 +413,10 @@ var app = new Vue({
 <form v-on:submit.prevent="ajout"></form>
 ```
 
+- Tester votre code.
+- Tester l’ajout de tâche.
+- Tenter d’injecter du code. Que se passe t’il ?
+
 #### Suppression d’une tâche
 
 #### Marquer une tâche comme terminé
