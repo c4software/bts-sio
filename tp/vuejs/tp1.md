@@ -10,25 +10,13 @@ L’application existante est une « todo liste » codée en PHP + HTML.
 - [Moderniser avec VueJS](#moderniser-avec-vuejs)
 - [Création des API.](#cration-des-api)
 	- [Les API](#les-api)
-	- [L’API pour lister les tâches en attente « liste.php »](#lapi-pour-lister-les-tches-en-attente-listephp-)
-	- [L’API de création « creation.php »](#lapi-de-cration-creationphp-)
-			- [L’API de suppression « suppression.php »](#lapi-de-suppression-suppressionphp-)
-			- [L’API pour marquer une tâche comme « terminé » : « terminer.php »](#lapi-pour-marquer-une-tche-comme-termin-terminerphp-)
 	- [Valider le fonctionnement : Postman](#valider-le-fonctionnement-postman)
 	- [Optimisation du code.](#optimisation-du-code)
 	- [Intégration de VueJS](#intgration-de-vuejs)
 	- [Ressources utiles](#ressources-utiles)
 	- [Ajout de la librairie VueJS](#ajout-de-la-librairie-vuejs)
 	- [Conversion du template existant](#conversion-du-template-existant)
-		- [Ajouter un script pour le JS](#ajouter-un-script-pour-le-js)
-		- [Déclarer votre premier composant](#dclarer-votre-premier-composant)
 	- [Migration des fonctionnalités](#migration-des-fonctionnalits)
-		- [Découverte de Fetch](#dcouverte-de-fetch)
-		- [Liste des tâches](#liste-des-tches)
-		- [Ajout d’une tâche](#ajout-dune-tche)
-		- [Suppression d’une tâche](#suppression-dune-tche)
-		- [Marquer une tâche comme terminé](#marquer-une-tche-comme-termin)
-
 
 ## Récupération et installation des sources
 
