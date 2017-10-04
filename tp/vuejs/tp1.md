@@ -282,7 +282,62 @@ fetch('api/liste.php')
 
 La liste des tâches est chargé dès l’arrivée sur la page « principale ». Vous devez donc écrire du code dans l’évènement « beforeMount » (pour rappel n’hésité pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
 
-1/ Ajouter …
+1/ Édition du main.js
+2/ Ajouter le beforeMount
+
+```
+var app = new Vue({
+  el: '#body',
+  created: function () {
+    console.log("Démarrage TODO-APP");
+  },
+  beforeMount: function() {
+    // C’est ici que le traitement doit être fait
+  }
+})
+```
+
+3/ Exemple d’appel pour récupérer les tâches
+
+```
+fetch('api/liste.php')
+.then(function(response){
+  return response.json();
+})
+.then(function(response) {
+  app.tache = this.response;
+})
+.catch(function(error) {
+  console.log('Récupération impossible: ' + error.message);
+});
+```
+
+4/ Initialiser la variable tache dans l’objet VueJS, Exemple :
+
+```
+var app = new Vue({
+  el: '#body',
+  data: {
+      taches: []
+    }
+  […]
+```
+
+5/ Ajouter l’affichage dans le « template ». Dans la page HTML vous allez devoir utiliser l’attribut ```v-for```. Exemple :
+
+```
+<ul>
+  <li v-for="tache in taches">{{tache.contenu}}</li>
+<ul>
+```
+
+Adapter l’exemple précédent dans pour utiliser le modèle actuellement présent dans la page HTML.
+
+[Plus de détail sur la partie « rendu des listes »](https://fr.vuejs.org/v2/guide/list.html)
+
+- L’affichage est-il le même ?
+- Comment gérer le cas du chargement ? (dans le monde réel Internet peut-être lent…)
+- Comment gérer le cas de la liste vide ?
 
 #### Ajout d’une tâche
 
