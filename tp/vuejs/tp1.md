@@ -438,7 +438,45 @@ var app = new Vue({
 
 #### Marquer une tâche comme terminé
 
-TODO
+Pour marquer une tâche comme terminé, vous allez devoir appeler l’api « terminer.php ». Cette API doit-être appelé lors du click sur l’icône « oi oi-check ».
+
+1/ Utiliser le [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
+2/ Remplacer :
+
+```
+<a href="./actions/done.php?id={id}" class="btn btn-success"><span class="oi oi-check"></span></a>
+```
+
+Par
+```
+<span class="oi oi-check" v-on:click="terminer()"></span>
+```
+
+3/ Déclarer la méthode « terminer » dans votre objet VueJS. Faite l’appel à votre API.
+4/ L’objet VueJS doit maintenant ressemble à quelques choses comme ça :
+
+```
+var app = new Vue({
+  el: '#body',
+  created: function () {
+    console.log("Démarrage TODO-APP");
+  },
+  beforeMount: function() {
+    this.recuperer_liste();
+  },
+  methods:{
+    ajout: function () {},
+    recupererListe: function (){},
+    terminer: function(){}
+  }
+})
+```
+
+5/ Ajouter le [v-if](https://fr.vuejs.org/v2/guide/conditional.html) nécéssaire à la règle suivante « uniquement les tâches non terminée peuvent-être marquer comme terminé »
+
+
+- Tester le fonctionnement.
+- Valider que seulement les tâches marqué comme « non terminée » peuvent-être terminée.
 
 #### Suppression d’une tâche
 
