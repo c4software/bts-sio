@@ -416,6 +416,9 @@ var app = new Vue({
   created: function () {
     console.log("Démarrage TODO-APP");
   },
+  data: {
+      taches: []
+  },
   beforeMount: function() {
     this.recuperer_liste();
   },
@@ -461,6 +464,9 @@ var app = new Vue({
   created: function () {
     console.log("Démarrage TODO-APP");
   },
+  data: {
+      taches: []
+  },
   beforeMount: function() {
     this.recuperer_liste();
   },
@@ -480,4 +486,29 @@ var app = new Vue({
 
 #### Suppression d’une tâche
 
-TODO
+La suppression d’une tâche est très similaire à l’action « terminer.php ». Je vous laisse appliquer la méthodologie précédente.
+
+Ne pas oublier la règle de gestion : « Une tâche non marqué comme terminée ne peut-être supprimée. »
+
+L’objet doit ressembler à :
+
+```
+var app = new Vue({
+  el: '#body',
+  created: function () {
+    console.log("Démarrage TODO-APP");
+  },
+  data: {
+      taches: []
+  },
+  beforeMount: function() {
+    this.recuperer_liste();
+  },
+  methods:{
+    ajout: function () {},
+    recupererListe: function (){},
+    terminer: function(){}
+    supprimer: function(){}
+  }
+})
+```
