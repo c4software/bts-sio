@@ -450,7 +450,7 @@ Pour marquer une tâche comme terminé, vous allez devoir appeler l’api « ter
 
 Par
 ```
-<span class="oi oi-check" v-on:click="terminer()"></span>
+<span class="oi oi-check" v-on:click="terminer(todo.id)"></span>
 ```
 
 3/ Déclarer la méthode « terminer » dans votre objet VueJS. Faite l’appel à votre API.
@@ -471,7 +471,7 @@ var app = new Vue({
   methods:{
     ajout: function () {},
     recupererListe: function (){},
-    terminer: function(){}
+    terminer: function(id){}
   }
 })
 ```
@@ -505,8 +505,8 @@ var app = new Vue({
   methods:{
     ajout: function () {},
     recupererListe: function (){},
-    terminer: function(){},
-    supprimer: function(){}
+    terminer: function(id){},
+    supprimer: function(id){}
   }
 })
 ```
