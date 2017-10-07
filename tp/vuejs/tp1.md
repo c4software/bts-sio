@@ -505,7 +505,7 @@ var app = new Vue({
   methods:{
     ajout: function () {},
     recupererListe: function (){},
-    terminer: function(){}
+    terminer: function(){},
     supprimer: function(){}
   }
 })
