@@ -231,9 +231,7 @@ Maintenant que la librairie est présente, nous allons pouvoir l’utiliser. La 
 
 #### Ajouter un script pour le JS
 
-Ajouter dans le ```head``` de l’index.html un nouveau script ```main.js```, il contiendra le code nécéssaire au fonctionnement de notre site Web.
-
-Attention: Inclure le script après VueJS.
+Ajouter avant la balise ```</body>``` de l’index.html un nouveau script ```main.js```, il contiendra le code nécéssaire au fonctionnement de notre site Web.
 
 #### Déclarer votre premier composant
 
