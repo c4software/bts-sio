@@ -418,7 +418,7 @@ var app = new Vue({
       taches: []
   },
   beforeMount: function() {
-    this.recuperer_liste();
+    this.recupererListe();
   },
   methods:{
     ajout: function () {},
@@ -466,7 +466,7 @@ var app = new Vue({
       taches: []
   },
   beforeMount: function() {
-    this.recuperer_liste();
+    this.recupererListe();
   },
   methods:{
     ajout: function () {},
@@ -500,7 +500,7 @@ var app = new Vue({
       taches: []
   },
   beforeMount: function() {
-    this.recuperer_liste();
+    this.recupererListe();
   },
   methods:{
     ajout: function () {},
