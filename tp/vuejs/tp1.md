@@ -241,7 +241,7 @@ Pour déclarer votre premier composant, c’est simple il suffit de mettre dans 
 
 ```
 var app = new Vue({
-  el: '#body',
+  el: '.container',
   created: function () {
     console.log("Démarrage TODO-APP");
   }
@@ -306,7 +306,7 @@ La liste des tâches est chargé dès l’arrivée sur la page « principale ».
 
 ```
 var app = new Vue({
-  el: '#body',
+  el: '.container',
   created: function () {
     console.log("Démarrage TODO-APP");
   },
@@ -335,7 +335,7 @@ fetch('api/liste.php')
 
 ```
 var app = new Vue({
-  el: '#body',
+  el: '.container',
   data: {
       taches: []
     }
@@ -412,7 +412,7 @@ Votre objet VueJS, doit ressembler à quelques chose comme ça :
 
 ```
 var app = new Vue({
-  el: '#body',
+  el: '.container',
   created: function () {
     console.log("Démarrage TODO-APP");
   },
@@ -460,7 +460,7 @@ Par
 
 ```
 var app = new Vue({
-  el: '#body',
+  el: '.container',
   created: function () {
     console.log("Démarrage TODO-APP");
   },
@@ -494,7 +494,7 @@ L’objet doit ressembler à :
 
 ```
 var app = new Vue({
-  el: '#body',
+  el: '.container',
   created: function () {
     console.log("Démarrage TODO-APP");
   },
