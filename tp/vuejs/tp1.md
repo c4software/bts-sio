@@ -516,3 +516,18 @@ var app = new Vue({
 #### Optimisation
 
 Comme vous l’avez certainement constaté les deux dernières actions sont très similaire. Faite fusionner les deux actions en ajoutant un paramètre « action » par exemple. Ce paramètre vous permettra de s’avoir dans quel cas vous vous trouvez.
+
+#### Allez plus loin
+
+Quelques piste pour allez plus loin :
+
+- Ajout des confirmation avant les action « marquer comme terminé » et l’action suppression.
+
+- Ajouter des règles de réécriture via un fichier .htaccess
+
+Le fichier ```.htaccess``` exemple :
+
+```
+RewriteEngine On
+RewriteRule	^api/ajouter$	api/ajouter.php	[L,QSA]
+```
