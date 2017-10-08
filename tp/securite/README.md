@@ -1,19 +1,17 @@
 # Sécurité des développements
 
+- [Partie 1 : WebGoat](#partie-1-webgoat)
+  	- [Téléchargement](#téléchargement)
+  	- [Lancement](#lancement)
+  	- [À faire](#À-faire)
+- [Partie 2 : Les injections SQL](#partie-2--les-injections-sql)
+
 Le meilleur moyen de comprendre la sécurisation d’une application / site Internet, c’est de …
 
 * Passer des heures sur de la théorie ?
 * Passer des heures sur du code à vous ?
 * Passer des heures à tenter des intrusions ?
 * La réponse D ?
-
-
-- [Sécurité des développements](#sécurité-des-développements)
-	- [Partie 1 : WebGoat](#partie-1-webgoat)
-	- [Téléchargement](#téléchargement)
-	- [Lancement](#lancement)
-	- [À faire](#À-faire)
-- [Partie 2 : Les injections SQL](#partie-2-les-injections-sql)
 
 
 ## Partie 1 : WebGoat
