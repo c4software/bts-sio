@@ -510,3 +510,7 @@ var app = new Vue({
   }
 })
 ```
+
+#### Optimisation
+
+Comme vous l’avez certainement constaté les deux dernières actions sont très similaire. Faite fusionner les deux actions en ajoutant un paramètre « action » par exemple. Ce paramètre vous permettra de s’avoir dans quel cas vous vous trouvez.
