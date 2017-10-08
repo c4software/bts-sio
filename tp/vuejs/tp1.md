@@ -277,7 +277,7 @@ if(self.fetch) {
 Appeler une API grâce à Fetch :
 
 ```
-fetch('api/liste.php')
+fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 .then(function(response){
   // On décode le JSON, et on continue
   return response.json();
@@ -290,6 +290,8 @@ fetch('api/liste.php')
   console.log('Récupération impossible: ' + error.message);
 });
 ```
+
+Attention: Par défaut, Fetch n’utilise pas le Cookie, vous pouvez forcer l’utilisation des cookie en indiquant ```credentials: 'same-origin'```
 
 - Tester dès à présent cet appel dans la « Console développeur »
 
@@ -317,7 +319,7 @@ var app = new Vue({
 3/ Exemple d’appel pour récupérer les tâches
 
 ```
-fetch('api/liste.php')
+fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 .then(function(response){
   return response.json();
 })
