@@ -7,7 +7,16 @@ Le meilleur moyen de comprendre la sécurisation d’une application / site Inte
 * Passer des heures à tenter des intrusions ?
 * La réponse D ?
 
-## WebGoat
+
+- [Sécurité des développements](#sécurité-des-développements)
+	- [Partie 1 : WebGoat](#partie-1-webgoat)
+	- [Téléchargement](#téléchargement)
+	- [Lancement](#lancement)
+	- [À faire](#À-faire)
+- [Partie 2 : Les injections SQL](#partie-2-les-injections-sql)
+
+
+## Partie 1 : WebGoat
 
 ![Superbe Logo](./webgoat.png)
 
@@ -50,3 +59,23 @@ java -jar webgoat-container-7.1-exec.jar
 C’est parti, vous pouvez maintenant aller sur [http://localhost:8080/WebGoat](http://localhost:8080/WebGoat)
 
 ⚠️ Nous allons utiliser un outil intégrant des failles… Pour éviter tout risque pour votre machine le mieux est de couper l’accès au réseau de votre ordinateur. ⚠️
+
+## À faire
+
+- AJAX Security
+  - LAB: Client Side Filtering
+  - LAB: DOM-Based cross-site scripting
+  - Dangerous Use of Eval
+- Concurrency
+  - Thread Safety Problems
+  - Shopping Cart Concurrency Flaw
+- Injection Flaws
+  - Command Injection
+  - Numeric SQL Injection
+  - String SQL Injection
+- Parameter Tampering
+  - Exploit Hidden Fields
+
+# Partie 2 : Les injections SQL
+
+Maintenant que nous avons joué un peu avec l’application WebGoat, nous allons nous focaliser sur la partie Injection SQL, pour ça nous allons utiliser le site [Code Bashing](https://www.codebashing.com/sql_demo). Celui-ci contient un bon « tutoriel » interactif permettant de tester et de se former au principe d’injections SQL.
