@@ -290,7 +290,11 @@ fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 });
 ```
 
-__Attention:__ Par défaut, Fetch n’utilise pas le Cookie, vous pouvez forcer l’utilisation des cookie en indiquant ```credentials: 'same-origin'```
+⚠️ Attention: Par défaut, Fetch n’utilise pas le Cookie, vous pouvez forcer l’utilisation des cookie en indiquant ```credentials: 'same-origin'```
+
+Si vous ne le faites pas vos ```$_SESSION``` ne seront pas sauvegardée ⚠️
+
+
 
 - Tester dès à présent cet appel dans la « Console développeur »
 
@@ -360,7 +364,9 @@ Adapter l’exemple précédent dans pour utiliser le modèle actuellement prés
 
 Maintenant que la liste est affichée, vous allez pouvoir gérer le cas de l’ajout d’une nouvelle tâche. L’ajout va également être faite via un appel Ajax.
 
-- Créer une méthode Javascript, réalisant l’appel de l’API. Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, OU [librairie Sweetalert](https://sweetalert.js.org/))
+- Créer une méthode Javascript, réalisant l’appel de l’API.
+
+ ⚠️ Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, et/ou via [librairie Sweetalert](https://sweetalert.js.org/)) ⚠️
 
 ```javascript
 var app = new Vue({
