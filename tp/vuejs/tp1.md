@@ -57,7 +57,7 @@ Dans ce TP nous allons parcourir les différentes étapes de la migration de l�
 
 ## Création des API.
 
-Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur vas-être réalisée en PHP, mais il est possible de la faire dans n’importe qu’elle language. En Entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
+Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur va-être réalisée en PHP, mais il est possible de la faire dans n’importe quel language. En entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
 
 ### Les API
 
@@ -68,17 +68,17 @@ Notre cas étant simple, chaque API sera en réalité un fichier PHP qui se char
 - suppression.php
 - terminer.php
 
-Dans les sources de l’application todo-list, ajouter un dossier ```api``` puis créer les ```4``` fichiers, nous allons les completer dans la suite du TP.
+Dans les sources de l’application todo-list, ajouter un dossier ```api``` puis créer les ```4``` fichiers dans le dossier, nous les completerons dans la suite du TP.
 
-### L’API pour lister les tâches en attente « liste.php »
+### L’API pour lister les tâches « liste.php »
 
-L’API « liste », doit retourner un JSON. Le JSON retourner est une représentation au format texte des valeurs contenu dans la variable ```$_SESSION["todos"]```
+L’API « liste », doit retourné un JSON. Le JSON retourner est une représentation au format texte des valeurs contenues dans la variable ```$_SESSION["todos"]```.
 
 Exemple de retour :
 ```JSON
 [
-  {"contenu": "Démo", "terminer": true},
-  {"contenu": "Exemple", "terminer": false}
+  {"contenu": "Démo", "termine": true},
+  {"contenu": "Exemple", "termine": false}
 ]
 ```
 
@@ -88,7 +88,7 @@ Voilà un exemple de code pour réaliser un fichier JSON en PHP :
 <?php
   header("content-type: application/json");
   …
-  // Vérifier si en $_SESSION["taches"] est bien un tableau
+  // Vérifier si en $_SESSION["todos"] est bien un tableau
   …
   echo json_encode($variable);
 ?>
@@ -105,9 +105,9 @@ C’est à vous, réaliser votre première API.
 
 ### L’API de création « creation.php »
 
-L’API « creation.php », vas permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. Cette API ne doit fonctionner qu’en POST.
+L’API « creation.php », va permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. Cette API ne doit fonctionner qu’en POST.
 
-Paramètres d’entrés :
+Paramètre d’entré :
 
 | Nom           | Type          | Méthod|
 | ------------- |:-------------:| -----:|
@@ -120,10 +120,10 @@ Voici un exemple de code PHP :
 <?php
 header("content-type: application/json");
 …
-// Vérifier si en $_SESSION["taches"] est bien un tableau
+// Vérifier si en $_SESSION["todos"] est bien un tableau
 …
 
-$todo = array("id" => uniqid(), "texte" => $_POST["texte"], "date" => $_POST["date"], "termine" => false);
+$todo = array("id" => uniqid(), "texte" => $_POST["texte"], "date" => time(), "termine" => false);
 
 // Sauvegarder dans la Session.
 $_SESSION["taches"][$todo["id"]] = $todo;
@@ -146,16 +146,16 @@ Question:
 - Comment bloquer l’ajout de TODO vide ?
 - Comment n’autoriser que le POST ?
 
-##### L’API de suppression « suppression.php »
+### L’API de suppression « suppression.php »
 
-L’API « suppression » va permettre la suppression du la « tache » passé en paramètre, ***uniquement*** les tâches termine à « true » peuvent-être terminé, dans tous le cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
+L’API « suppression » va permettre la suppression de la « tâche » passée en paramètre, ***uniquement*** les tâches dont le parametre ```termine == true``` peuvent être terminée, dans tous les cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
 
 Contraintes :
 
 - L’API doit fonctionner en GET et en POST.
-- Il est impossible de supprimer un tâche non terminé. (termine==true)
+- Il est impossible de supprimer une tâche non terminée. ``` termine == true```
 
-Paramètres d’entrés :
+Paramètre d’entré :
 
 | Nom           | Type          | Méthod|
 | ------------- |:-------------:| -----:|
@@ -168,11 +168,11 @@ Par exemple :
 
 Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-##### L’API pour marquer une tâche comme « terminé » : « terminer.php »
+### L’API pour marquer une tâche comme « terminée » : « terminer.php »
 
 L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
 
-Paramètres d’entrés :
+Paramètre d’entré :
 
 | Nom           | Type          | Méthod|
 | ------------- |:-------------:| -----:|
@@ -182,13 +182,13 @@ Vous pouvez également utiliser les codes de retour HTTP pour indique l’état 
 
 ### Valider le fonctionnement : Postman
 
-Pour tester vos traitement, vous avez la possibilité d’utiliser le logiciel POSTMAN.
+Pour tester vos traitements, vous avez la possibilité d’utiliser le logiciel POSTMAN.
 
-Téléchargé le [ici](https://www.getpostman.com/)
+Télécharger le [ici](https://www.getpostman.com/)
 
-Une fois installé, appeler vos APIs pour tester leur fonctionnement.
+Une fois installé, tester les appels à vos APIs pour valider leur fonctionnement.
 
-- Valider le fonctionnement à chaque étape (Création, liste, termine, suppression)
+- Valider le fonctionnement à chaque étape (Création, liste, terminer, suppression).
 
 ### Optimisation du code.
 
@@ -199,16 +199,16 @@ Après avoir réalisé vos 4 API, vous devez certainement avoir du code « dupli
 
 ### Intégration de VueJS
 
-Maintenant que nous avons créé les API nous allons pouvoir nous intérésser à la partie « J’intégre VueJS ». Le déroulement vas être se suivant :
+Maintenant que nous avons créé les API nous allons pouvoir nous intérésser à la partie « J’intégre VueJS ». Le déroulement va être le suivant :
 
-- Intégré la librairie VueJS dans le code existant.
-- Créer un composant global que gère l’application.
+- Intégrer la librairie VueJS dans le code existant.
+- Créer « un composant / objet » global qui va gerer l’application.
 - « Convertir » le code existant en code « VueJS » (le Foreach par exemple).
 
 ### Ressources utiles
 
 - [VueJS](https://vuejs.org)
-- [VueJS](https://caniuse.com)
+- [CanIUse](https://caniuse.com)
 
 
 ### Ajout de la librairie VueJS
@@ -221,7 +221,10 @@ L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « hea
 
 Valider le fonctionnement grâce à la « Console de Développement » de votre Navigateur (Touche F12 en général).
 
+⚠️ Dans une optique développement sécurisé, il est préférable d’intégrer VueJS dans vos sources plutôt que de « linker » directement depuis Internet.
+
 * Comment validez-vous le fonctionnement ?
+* Changer les sources, pour intégrer la librairie en local.
 
 ### Conversion du template existant
 
@@ -229,7 +232,7 @@ Maintenant que la librairie est présente, nous allons pouvoir l’utiliser. La 
 
 - Supprimer le fichier index.php (il n’est plus nécéssaire).
 - Déplacer le template (dans le dossier template à la racine).
-- Renommer le template que vous avec déplacé en « index.html », ça va être la base de notre application.
+- Renommer le template que vous avez déplacé en « index.html », ça va être la base de notre application.
 
 #### Ajouter un script pour le JS
 
@@ -237,7 +240,7 @@ Ajouter avant la balise ```</body>``` de l’index.html un nouveau script ```mai
 
 #### Déclarer votre premier composant
 
-Pour déclarer votre premier composant, c’est simple il suffit de mettre dans le fichier ```main.js``` le code suivant :
+Pour déclarer votre premier composant / objet VueJS, c’est simple il suffit de mettre dans le fichier ```main.js``` le code suivant :
 
 ```javascript
 var app = new Vue({
@@ -252,9 +255,9 @@ var app = new Vue({
 
 ### Migration des fonctionnalités
 
-Maintenant que nous avons notre base, nous allons pouvoir convertir l’application pour cela nous allons procéder par étape, chaque étape est directement lié aux différentes API que vous avez pu précédemment écrite.
+Maintenant que nous avons notre base, nous allons pouvoir convertir l’application pour cela nous allons procéder par étape, chaque étape est directement liée aux différentes API que vous avez pu précédemment écrite.
 
-L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter beaucoup d’Ajax. Pour faire nos appels nous utiliserons l’API « Fetch », celle-ci est intégré dans l’ensemble des navigateur récent ([consulter le support de fetch](https://caniuse.com/#search=fetch))
+L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter beaucoup d’Ajax. Pour faire nos appels nous utiliserons l’API « Fetch », celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflex est quand même d’allez voir le support de Fetch sur  ([Can i use](https://caniuse.com/#search=fetch)).
 
 #### Découverte de Fetch
 
@@ -293,11 +296,9 @@ fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 });
 ```
 
-⚠️ Attention: Par défaut, Fetch n’utilise pas le Cookie, vous pouvez forcer l’utilisation des cookie en indiquant ```credentials: 'same-origin'```
+⚠️ Attention: Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant ```credentials: 'same-origin'```.
 
-Si vous ne le faites pas vos ```$_SESSION``` ne seront pas sauvegardée ⚠️
-
-
+Si vous ne le faites pas vos ```$_SESSION``` ne seront pas sauvegardées ⚠️
 
 - Tester dès à présent cet appel dans la « Console développeur »
 
@@ -305,7 +306,7 @@ Si vous ne le faites pas vos ```$_SESSION``` ne seront pas sauvegardée ⚠️
 
 #### Liste des tâches
 
-La liste des tâches est chargé dès l’arrivée sur la page « principale ». Vous devez donc écrire du code dans l’évènement « beforeMount » (pour rappel n’hésité pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
+La liste des tâches est chargée dès l’arrivée sur la page « principale ». Vous devez donc écrire du code dans l’évènement « beforeMount » (pour rappel n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
 
 - Dans le fichier main.js, ajouter à l’objet Vue ```beforeMount```
 
@@ -336,14 +337,14 @@ fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 });
 ```
 
-- Initialiser la variable tache dans l’objet VueJS, Exemple :
+- Initialiser la variable taches dans l’objet VueJS, Exemple :
 
 ```javascript
 var app = new Vue({
   el: '.container',
   data: {
       taches: []
-    }
+  }
   […]
 ```
 
@@ -355,7 +356,7 @@ var app = new Vue({
 <ul>
 ```
 
-Adapter l’exemple précédent dans pour utiliser le modèle actuellement présent dans la page HTML.
+Adapter l’exemple précédant pour afficher les tâches comme ils l’étaient dans la page en version PHP.
 
 [Plus de détail sur la partie « rendu des listes »](https://fr.vuejs.org/v2/guide/list.html)
 
@@ -411,11 +412,10 @@ fetch("api/creation.php", {
 });
 ```
 
-- Rafraichir la liste des tâche, pour ça vous allez créer une 2nd méthode qui réalise l’appel Ajax de récupération de la liste. Une fois cette méthode faite, appeler la dans la partie ```// traiter le retour```.
-- Optimiser votre code en remplaçant le code dans le ```beforeMount``` par un appel à la méthodes que vous avez créer
+- Rafraichir la liste des tâches, pour ça vous allez créer une 2nd méthode qui réalise l’appel Ajax de récupération de la liste. Une fois cette méthode faite, appeler la dans la partie ```// traiter le retour```.
+- Optimiser votre code en remplaçant le code dans le ```beforeMount``` par un appel à la méthode que vous avez créé.
 
 Votre objet VueJS, doit ressembler à quelques chose comme ça :
-
 
 ```javascript
 var app = new Vue({
@@ -444,11 +444,11 @@ var app = new Vue({
 
 - Tester votre code.
 - Tester l’ajout de tâche.
-- Tenter d’injecter du code. Que se passe t’il ?
+- Tenter d’injecter du code. Que se passe-t-il ?
 
-#### Marquer une tâche comme terminé
+#### Marquer une tâche comme terminée
 
-Pour marquer une tâche comme terminé, vous allez devoir appeler l’api « terminer.php ». Cette API doit-être appelé lors du click sur l’icône « oi oi-check ».
+Pour marquer une tâche comme terminée, vous allez devoir appeler l’api « terminer.php ». Cette API doit être appelée lors du clique sur l’icône qui à comme class « oi oi-check ».
 
 - Utiliser le [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
 - Remplacer :
@@ -485,17 +485,17 @@ var app = new Vue({
 })
 ```
 
-- Ajouter le [v-if](https://fr.vuejs.org/v2/guide/conditional.html) nécéssaire à la règle suivante « uniquement les tâches non terminée peuvent-être marquer comme terminé »
+- Ajouter le [v-if](https://fr.vuejs.org/v2/guide/conditional.html) nécéssaire à la règle suivante « uniquement les tâches non terminées peuvent être marquées comme terminées »
 - Tester le fonctionnement.
-- Valider que seulement les tâches marqué comme « non terminée » peuvent-être terminée.
+- Valider que seulement les tâches marquées comme « non terminées » peuvent être terminées.
 
 #### Suppression d’une tâche
 
 La suppression d’une tâche est très similaire à l’action « terminer.php ». Je vous laisse appliquer la méthodologie précédente.
 
-Ne pas oublier la règle de gestion : « Une tâche non marqué comme terminée ne peut-être supprimée. »
+Ne pas oublier la règle de gestion : « Une tâche non marquée comme terminée ne peut être supprimée. »
 
-L’objet doit ressembler à :
+L’objet doit maintenant ressembler à :
 
 ```javascript
 var app = new Vue({
@@ -520,13 +520,13 @@ var app = new Vue({
 
 #### Optimisation
 
-Comme vous l’avez certainement constaté les deux dernières actions sont très similaire. Faite fusionner les deux actions en ajoutant un paramètre « action » par exemple. Ce paramètre vous permettra de s’avoir dans quel cas vous vous trouvez.
+Comme vous l’avez certainement constaté les deux dernières actions sont très similaire. Faites fusionner les deux actions en ajoutant par exemple un paramètre « action ». Ce paramètre vous permettra de s’avoir dans quel cas vous vous trouvez, je vous laisse écrire le code.
 
 #### Allez plus loin
 
-Quelques piste pour allez plus loin :
+Quelques pistes pour allez plus loin dans le code :
 
-- Ajout des confirmation avant les action « marquer comme terminé » et l’action suppression.
+- Ajout des confirmations avant les actions « marquer comme terminée » et l’action suppression.
 
 - Ajouter des règles de réécriture via un fichier .htaccess
 
