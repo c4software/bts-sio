@@ -81,7 +81,7 @@ Exemple de retour :
 
 Voilà un exemple de code pour réaliser un fichier JSON en PHP :
 
-```
+```php
 <?php
   header("content-type: application/json");
   …
@@ -95,7 +95,7 @@ Rappel: Avant de pouvoir utiliser la session vous devez faire un ```session_star
 
 C’est à vous, réaliser votre première API.
 
-```
+```php
 <?php
 …
 ```
@@ -113,7 +113,7 @@ Paramètres d’entrés :
 
 Voici un exemple de code PHP :
 
-```
+```php
 <?php
 header("content-type: application/json");
 …
@@ -132,7 +132,7 @@ $_SESSION["taches"][$todo["id"]] = $todo;
 Retour :
 
 Par exemple :
-```
+```json
 {"success": true}
 ```
 
@@ -159,7 +159,7 @@ Paramètres d’entrés :
 | id            | string        | GET   |
 
 Par exemple :
-```
+```json
 {"success": true}
 ```
 
@@ -212,7 +212,7 @@ Maintenant que nous avons créé les API nous allons pouvoir nous intérésser �
 
 L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « head » du code existant :
 
-```
+```html
 <script src="https://unpkg.com/vue"></script>
 ```
 
@@ -236,7 +236,7 @@ Ajouter avant la balise ```</body>``` de l’index.html un nouveau script ```mai
 
 Pour déclarer votre premier composant, c’est simple il suffit de mettre dans le fichier ```main.js``` le code suivant :
 
-```
+```javascript
 var app = new Vue({
   el: '.container',
   created: function () {
@@ -264,7 +264,7 @@ Ce genre de fonctionnalité était auparavant réalisé avec XMLHttpRequest. Fet
 Le support de l'API Fetch peut être détecté en vérifiant l'existance de Headers, Request, Response ou fetch() sur la portée de Window ou de Worker.
 Par exemple, vous pouvez faire cela dans votre script:
 
-```
+```javascript
 if(self.fetch) {
   // Le support de Fetch est présent
 }else{
@@ -275,7 +275,7 @@ if(self.fetch) {
 
 Appeler une API grâce à Fetch :
 
-```
+```javascript
 fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 .then(function(response){
   // On décode le JSON, et on continue
@@ -302,7 +302,7 @@ La liste des tâches est chargé dès l’arrivée sur la page « principale ».
 
 - Dans le fichier main.js, ajouter à l’objet Vue ```beforeMount```
 
-```
+```javascript
 var app = new Vue({
   el: '.container',
   created: function () {
@@ -316,7 +316,7 @@ var app = new Vue({
 
 - Exemple d’appel pour récupérer les tâches
 
-```
+```javascript
 fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 .then(function(response){
   return response.json();
@@ -362,7 +362,7 @@ Maintenant que la liste est affichée, vous allez pouvoir gérer le cas de l’a
 
 - Créer une méthode Javascript, réalisant l’appel de l’API. Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, OU [librairie Sweetalert](https://sweetalert.js.org/))
 
-```
+```javascript
 var app = new Vue({
   […]
   methods: {
@@ -380,7 +380,7 @@ var app = new Vue({
 
 - Créer l’appel à l’API
 
-```
+```javascript
 var form = new FormData();
 form.append('texte', contenu);
 fetch("api/creation.php", {
@@ -408,7 +408,7 @@ fetch("api/creation.php", {
 Votre objet VueJS, doit ressembler à quelques chose comme ça :
 
 
-```
+```javascript
 var app = new Vue({
   el: '.container',
   created: function () {
@@ -429,7 +429,7 @@ var app = new Vue({
 
 - Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des événements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
 
-```
+```html
 <form v-on:submit.prevent="ajout"></form>
 ```
 
@@ -444,19 +444,19 @@ Pour marquer une tâche comme terminé, vous allez devoir appeler l’api « ter
 - Utiliser le [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
 - Remplacer :
 
-```
+```html
 <a href="./actions/done.php?id={id}" class="btn btn-success"><span class="oi oi-check"></span></a>
 ```
 
 Par
-```
+```html
 <span class="oi oi-check" v-on:click="terminer(todo.id)"></span>
 ```
 
 - Déclarer la méthode « terminer » dans votre objet VueJS. Faite l’appel à votre API.
 - L’objet VueJS doit maintenant ressemble à quelques choses comme ça :
 
-```
+```javascript
 var app = new Vue({
   el: '.container',
   created: function () {
@@ -488,7 +488,7 @@ Ne pas oublier la règle de gestion : « Une tâche non marqué comme terminée 
 
 L’objet doit ressembler à :
 
-```
+```javascript
 var app = new Vue({
   el: '.container',
   created: function () {
@@ -523,7 +523,7 @@ Quelques piste pour allez plus loin :
 
 Le fichier ```.htaccess``` exemple :
 
-```
+```apacheconf
 RewriteEngine On
 RewriteRule	^api/ajouter$	api/ajouter.php	[L,QSA]
 ```
