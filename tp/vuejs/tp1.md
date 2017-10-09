@@ -300,8 +300,7 @@ __Attention:__ Par défaut, Fetch n’utilise pas le Cookie, vous pouvez forcer 
 
 La liste des tâches est chargé dès l’arrivée sur la page « principale ». Vous devez donc écrire du code dans l’évènement « beforeMount » (pour rappel n’hésité pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
 
-- Édition du main.js
-- Ajouter le beforeMount
+- Dans le fichier main.js, ajouter à l’objet Vue ```beforeMount```
 
 ```
 var app = new Vue({
@@ -332,7 +331,7 @@ fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 
 - Initialiser la variable tache dans l’objet VueJS, Exemple :
 
-```
+```javascript
 var app = new Vue({
   el: '.container',
   data: {
@@ -343,7 +342,7 @@ var app = new Vue({
 
 - Ajouter l’affichage dans le « template ». Dans la page HTML vous allez devoir utiliser l’attribut ```v-for```. Exemple :
 
-```
+```html
 <ul>
   <li v-for="tache in taches">{{tache.texte}}</li>
 <ul>
