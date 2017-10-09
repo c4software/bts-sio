@@ -109,7 +109,6 @@ Paramètres d’entrés :
 | Nom           | Type          | Méthod|
 | ------------- |:-------------:| -----:|
 | texte         | string        | POST  |
-| date          | string        | POST  |
 
 
 Voici un exemple de code PHP :
@@ -291,7 +290,7 @@ fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 });
 ```
 
-Attention: Par défaut, Fetch n’utilise pas le Cookie, vous pouvez forcer l’utilisation des cookie en indiquant ```credentials: 'same-origin'```
+__Attention:__ Par défaut, Fetch n’utilise pas le Cookie, vous pouvez forcer l’utilisation des cookie en indiquant ```credentials: 'same-origin'```
 
 - Tester dès à présent cet appel dans la « Console développeur »
 
@@ -301,8 +300,8 @@ Attention: Par défaut, Fetch n’utilise pas le Cookie, vous pouvez forcer l’
 
 La liste des tâches est chargé dès l’arrivée sur la page « principale ». Vous devez donc écrire du code dans l’évènement « beforeMount » (pour rappel n’hésité pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
 
-1/ Édition du main.js
-2/ Ajouter le beforeMount
+- Édition du main.js
+- Ajouter le beforeMount
 
 ```
 var app = new Vue({
@@ -316,7 +315,7 @@ var app = new Vue({
 })
 ```
 
-3/ Exemple d’appel pour récupérer les tâches
+- Exemple d’appel pour récupérer les tâches
 
 ```
 fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
@@ -331,7 +330,7 @@ fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 });
 ```
 
-4/ Initialiser la variable tache dans l’objet VueJS, Exemple :
+- Initialiser la variable tache dans l’objet VueJS, Exemple :
 
 ```
 var app = new Vue({
@@ -342,7 +341,7 @@ var app = new Vue({
   […]
 ```
 
-5/ Ajouter l’affichage dans le « template ». Dans la page HTML vous allez devoir utiliser l’attribut ```v-for```. Exemple :
+- Ajouter l’affichage dans le « template ». Dans la page HTML vous allez devoir utiliser l’attribut ```v-for```. Exemple :
 
 ```
 <ul>
@@ -362,7 +361,7 @@ Adapter l’exemple précédent dans pour utiliser le modèle actuellement prés
 
 Maintenant que la liste est affichée, vous allez pouvoir gérer le cas de l’ajout d’une nouvelle tâche. L’ajout va également être faite via un appel Ajax.
 
-1/ Créer une méthode Javascript, réalisant l’appel de l’API. Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, OU [librairie Sweetalert](https://sweetalert.js.org/))
+- Créer une méthode Javascript, réalisant l’appel de l’API. Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, OU [librairie Sweetalert](https://sweetalert.js.org/))
 
 ```
 var app = new Vue({
@@ -380,7 +379,7 @@ var app = new Vue({
   […]
 ```
 
-2/ Créer l’appel à l’API
+- Créer l’appel à l’API
 
 ```
 var form = new FormData();
@@ -404,8 +403,8 @@ fetch("api/creation.php", {
 });
 ```
 
-3/ Rafraichir la liste des tâche, pour ça vous allez créer une 2nd méthode qui réalise l’appel Ajax de récupération de la liste. Une fois cette méthode faite, appeler la dans la partie ```// traiter le retour```.
-4/ Optimiser votre code en remplaçant le code dans le ```beforeMount``` par un appel à la méthodes que vous avez créer
+- Rafraichir la liste des tâche, pour ça vous allez créer une 2nd méthode qui réalise l’appel Ajax de récupération de la liste. Une fois cette méthode faite, appeler la dans la partie ```// traiter le retour```.
+- Optimiser votre code en remplaçant le code dans le ```beforeMount``` par un appel à la méthodes que vous avez créer
 
 Votre objet VueJS, doit ressembler à quelques chose comme ça :
 
@@ -429,7 +428,7 @@ var app = new Vue({
 })
 ```
 
-5/ Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des événements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
+- Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des événements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
 
 ```
 <form v-on:submit.prevent="ajout"></form>
@@ -443,8 +442,8 @@ var app = new Vue({
 
 Pour marquer une tâche comme terminé, vous allez devoir appeler l’api « terminer.php ». Cette API doit-être appelé lors du click sur l’icône « oi oi-check ».
 
-1/ Utiliser le [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
-2/ Remplacer :
+- Utiliser le [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
+- Remplacer :
 
 ```
 <a href="./actions/done.php?id={id}" class="btn btn-success"><span class="oi oi-check"></span></a>
@@ -455,8 +454,8 @@ Par
 <span class="oi oi-check" v-on:click="terminer(todo.id)"></span>
 ```
 
-3/ Déclarer la méthode « terminer » dans votre objet VueJS. Faite l’appel à votre API.
-4/ L’objet VueJS doit maintenant ressemble à quelques choses comme ça :
+- Déclarer la méthode « terminer » dans votre objet VueJS. Faite l’appel à votre API.
+- L’objet VueJS doit maintenant ressemble à quelques choses comme ça :
 
 ```
 var app = new Vue({
@@ -478,9 +477,7 @@ var app = new Vue({
 })
 ```
 
-5/ Ajouter le [v-if](https://fr.vuejs.org/v2/guide/conditional.html) nécéssaire à la règle suivante « uniquement les tâches non terminée peuvent-être marquer comme terminé »
-
-
+- Ajouter le [v-if](https://fr.vuejs.org/v2/guide/conditional.html) nécéssaire à la règle suivante « uniquement les tâches non terminée peuvent-être marquer comme terminé »
 - Tester le fonctionnement.
 - Valider que seulement les tâches marqué comme « non terminée » peuvent-être terminée.
 
