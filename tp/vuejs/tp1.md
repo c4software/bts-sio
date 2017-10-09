@@ -1,6 +1,6 @@
 # Ajouter VueJS dans une application existante
 
-Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer été réalisée dans le cadre de la démonstration.
+Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer était réalisée dans le cadre de la démonstration.
 
 L’application existante est une « todo liste » codée en PHP + HTML.
 
@@ -20,18 +20,18 @@ L’application existante est une « todo liste » codée en PHP + HTML.
   - [Découverte de Fetch](#migration-des-fonctionnalités)
   - [Liste des tâches](#liste-des-tâches)
   - [Ajout d’une tâche](#ajout-dune-tâche)
-  - [Marquer une tâche comme terminé](#marquer-une-tâche-comme-terminé)
+  - [Marquer une tâche comme terminée](#marquer-une-tâche-comme-terminée)
   - [Suppression d’une tâche](#suppression-dune-tâche)
 
 ## Récupération et installation des sources
 
 Avant de commencer à travailler, il faut récupérer le code source de l’application éxistante. Celui-ci est disponible sur le groupe « Gitlab » du BTS-SIO. Le projet est disponible sur Github : [Télécharger les sources](https://github.com/c4software/php-todo/archive/v1.0.zip)
 
-1/ Faire « fonctionner » l’application en locale, une fois installé, celle-ci doit ressembler à :
+- Faire « fonctionner » l’application en locale, une fois installée, celle-ci doit ressembler à :
 
 ![Exemple](https://github.com/c4software/php-todo/raw/master/sample.png)
 
-2/ Étudier le fonctionnement du code source actuel. (créer des tâches, etc…)
+- Étudier le fonctionnement du code source actuel. (créer des tâches, etc…)
 
 ## Liste des fonctionnalités
 
@@ -44,15 +44,18 @@ Voilà la liste des fonctionnalités de l’application existante :
 
 ## Stockage
 
-Lors de votre étupde du code, vous avez du vous rendre compte que l’application utilisait la variable ```$_SESSION``` pour stocker les « tâches ».
+Lors de votre étude du code, vous avez du vous rendre compte que l’application utilisait la variable ```$_SESSION``` pour stocker les « tâches ».
 
 La SESSION étant non persistante, dans du vrai code il ne faut en ```aucun cas``` stocker des données comme des tâches dedans (au risque de tout perdre…).
 
-Au passage, regarder le fonctionnement de la SESSION en utilisant plusieurs navigateur.
+
+🔎 Au passage, regarder le fonctionnement de la SESSION en utilisant plusieurs navigateurs.
 
 ## Moderniser avec VueJS
 
-## Création des API.
+Dans ce TP nous allons parcourir les différentes étapes de la migration de l’application (site web) « classique » en version « moderne » à savoir avec VueJS
+
+### Création des API.
 
 Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur vas-être réalisée en PHP, mais il est possible de la faire dans n’importe qu’elle language. En Entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
 
