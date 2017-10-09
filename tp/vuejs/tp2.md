@@ -1,4 +1,4 @@
-# Je réalise une application à partir de 0 en VueJS
+# Réaliser une application avec VueJS
 
 Dans ce TP nous allons utiliser une autre façon d’utiliser VueJS, une façon plus moderne, celle qui utilise à 100% le modèle MVVM (Modèle Vue, Vue-Modèle) ainsi que la puissance de VueJS (```.vue```, VueCli, ES5)
 
