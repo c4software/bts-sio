@@ -72,7 +72,7 @@ Dans les sources de l’application todo-list, ajouter un dossier ```api``` puis
 
 ### L’API pour lister les tâches « liste.php »
 
-L’API « liste », doit retourné un JSON. Le JSON retourner est une représentation au format texte des valeurs contenues dans la variable ```$_SESSION["todos"]```.
+L’API « liste », doit retourné un JSON. Le JSON retourné est une représentation au format texte des valeurs contenues dans la variable ```$_SESSION["todos"]```.
 
 Exemple de retour :
 ```JSON
@@ -105,7 +105,7 @@ C’est à vous, réaliser votre première API.
 
 ### L’API de création « creation.php »
 
-L’API « creation.php », va permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. Cette API ne doit fonctionner qu’en POST.
+L’API « creation.php », va permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement s’est bien passé. Cette API ne doit fonctionner qu’en POST.
 
 Paramètre d’entré :
 
@@ -257,7 +257,7 @@ var app = new Vue({
 
 Maintenant que nous avons notre base, nous allons pouvoir convertir l’application pour cela nous allons procéder par étape, chaque étape est directement liée aux différentes API que vous avez pu précédemment écrite.
 
-L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter beaucoup d’Ajax. Pour faire nos appels nous utiliserons l’API « Fetch », celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflex est quand même d’allez voir le support de Fetch sur  ([Can i use](https://caniuse.com/#search=fetch)).
+L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter beaucoup d’Ajax. Pour faire nos appels nous utiliserons l’API « Fetch », celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflexe est quand même d’allez voir le support de Fetch sur  ([Can i use](https://caniuse.com/#search=fetch)).
 
 #### Découverte de Fetch
 
