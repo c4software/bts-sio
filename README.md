@@ -19,7 +19,7 @@ Support de cours &amp; TP pour le BTS SIO
 
 ## [WIP] VueJS
 - [Slides](https://rawgit.com/c4software/bts/master/cours/vuejs/) ([Les sources](cours/vuejs))
-- [TP1: J’ajoute VueJS dans une application existante](https://github.com/c4software/bts/blob/master/tp/vuejs/tp1.md)
+- [TP1: Ajouter VueJS dans une application existante](tp/vuejs/tp1.md)
 - [TP2: Je réalise une application à partir de 0 en VueJS]()
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/vuejs/README.md)
 

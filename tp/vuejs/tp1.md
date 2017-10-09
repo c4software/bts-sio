@@ -1,4 +1,4 @@
-# J’ajoute VueJS dans une application existante
+# Ajouter VueJS dans une application existante
 
 Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer été réalisée dans le cadre de la démonstration.
 
