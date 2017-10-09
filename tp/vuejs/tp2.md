@@ -2,7 +2,7 @@
 
 Dans ce TP nous allons utiliser une autre façon d’utiliser VueJS, une façon plus moderne, celle qui utilise à 100% le modèle MVVM (Modèle Vue, Vue-Modèle) ainsi que la puissance de VueJS (```.vue```, VueCli, ES5)
 
-[MVVM](./MVVMPattern.png)
+![MVVM](./MVVMPattern.png)
 
 ## MVVM en quelques mots
 
