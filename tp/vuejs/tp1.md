@@ -126,7 +126,7 @@ header("content-type: application/json");
 $todo = array("id" => uniqid(), "texte" => $_POST["texte"], "date" => time(), "termine" => false);
 
 // Sauvegarder dans la Session.
-$_SESSION["taches"][$todo["id"]] = $todo;
+$_SESSION["todos"][$todo["id"]] = $todo;
 …
 
 ?>
