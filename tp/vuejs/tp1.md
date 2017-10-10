@@ -526,9 +526,14 @@ Comme vous l’avez certainement constaté les deux dernières actions sont trè
 
 Quelques pistes pour allez plus loin dans le code :
 
-- Ajout des confirmations avant les actions « marquer comme terminée » et l’action suppression.
 
-- Ajouter des règles de réécriture via un fichier .htaccess
+##### Ajouter des confirmations
+
+ Ajout des confirmations avant les actions « marquer comme terminée » et l’action suppression.
+
+##### Ajouter des règles de réécriture
+
+Ajouter des règles de réécriture via un fichier .htaccess
 
 Le fichier ```.htaccess``` exemple :
 
@@ -537,4 +542,45 @@ RewriteEngine On
 RewriteRule	^api/ajouter$	api/ajouter.php	[L,QSA]
 ```
 
-Une fois les règles de réécriture faite, modifiier les différents chemin (appel d’API) dans votre fichier Javascript.
+Une fois les règles de réécriture faite, modifier les différents chemin (appel d’API) dans votre fichier Javascript.
+
+##### Partager les TODOS au monde !
+
+Ajout l’API « Share », depuis quelques jours Chrome propose une nouvelle API, C’est une API qui permet de déclencher « le Partage » d’une informations en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
+
+```javascript
+if(navigator.share){}
+```
+
+Mais comme nous sommes avec VueJS nous allons gérer ça avec le MVVM (Modèle Vue, Vue-Modèle), ça va nous permettre d’injecter une variable à la création de l’objet ```app``` pour connaitre si le partage est disponible. Exemple :
+
+```javascript
+var app = new Vue({
+  el: '.container',
+  created: function () {
+    console.log("Démarrage TODO-APP");
+  },
+  data: {
+      taches: [],
+      isShare: navigator.share?true:false
+  },
+  […]
+```
+
+Une fois fait, vous avez une variable ```isShare``` qui sera ```True``` Ou ```False``` en fonction du support du navigateur. Maintenant que le booléen est disponible vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
+
+```javascript
+[…]
+methods:{
+    share: function(texte){
+      navigator.share({
+        title: 'VueJS-Todo',
+        text: texte,
+        url: ""})
+        .then(function(){})
+        .catch(function(){})
+    },
+[…]
+```
+
+C’est à vous !
