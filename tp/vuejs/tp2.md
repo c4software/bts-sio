@@ -119,4 +119,4 @@ Comme vous avez pu le constater dans votre invite de commande (terminal), vous a
 Et si vous avez les outils sur votre machine il peu également :
 
 - Créer la CSS à partir du SCSS présent dans le .vue
-- …
+- Et plein d’autres usage car Webpack c’est un outil qui permet l’assemblage de différent outils
