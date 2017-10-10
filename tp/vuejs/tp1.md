@@ -120,7 +120,7 @@ Voici un exemple de code PHP :
 <?php
 header("content-type: application/json");
 …
-// Vérifier si en $_SESSION["todos"] est bien un tableau
+// Dans le cadre du traitement, vérifier si $_SESSION["todos"] est bien un tableau (is_array…)
 …
 
 $todo = array("id" => uniqid(), "texte" => $_POST["texte"], "date" => time(), "termine" => false);
