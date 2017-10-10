@@ -536,3 +536,5 @@ Le fichier ```.htaccess``` exemple :
 RewriteEngine On
 RewriteRule	^api/ajouter$	api/ajouter.php	[L,QSA]
 ```
+
+Une fois les règles de réécriture faite, modifiier les différents chemin (appel d’API) dans votre fichier Javascript.
