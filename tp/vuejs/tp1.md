@@ -546,11 +546,13 @@ Une fois les règles de réécriture faite, modifier les différents chemin (app
 
 ##### Partager les TODOS au monde !
 
-Ajout l’API « Share », depuis quelques jours Chrome propose une nouvelle API, C’est une API qui permet de déclencher « le Partage » d’une informations en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
+Depuis quelques jours Chrome propose une nouvelle API nommée « Web Share Api », Cette API  permet de déclencher « le Partage » d’une informations en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
 
 ```javascript
 if(navigator.share){}
 ```
+
+[Voir le support de Share](https://caniuse.com/#search=Web%20Share%20Api)
 
 Mais comme nous sommes avec VueJS nous allons gérer ça avec le MVVM (Modèle Vue, Vue-Modèle), ça va nous permettre d’injecter une variable à la création de l’objet ```app``` pour connaitre si le partage est disponible. Exemple :
 
