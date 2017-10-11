@@ -140,11 +140,20 @@ Apporter des modifications dans le fichier :
 
 - Modifier le code HTML de la page, par exemple le ```h2```
 - Modifier le contenue de la variable (dans la partie data)
-- Modifier la CSS en bas du ```.vue```, par exemple la couleur des a
+- Modifier la CSS en bas du ```.vue```, par exemple la couleur pour les ```a```
 
 ## Ajout de VuetifyJS dans le projet
 
+## Le Routeur
 
-## Création de votre première vue
+## Ajout du multilangues (i18n)
 
-## Ajout du multilangue (i18n)
+## Les .vues
+
+### La « page » accueil
+
+### La « page » historique
+
+### La « page » À Propos
+
+## Distribuer vos sources
