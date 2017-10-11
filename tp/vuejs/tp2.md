@@ -120,3 +120,31 @@ Et si vous avez les outils sur votre machine il peu également :
 
 - Créer la CSS à partir du SCSS présent dans le .vue
 - Et plein d’autres usage car Webpack c’est un outil qui permet l’assemblage de différent outils
+
+
+## Le code source
+
+Les sources de l’application sont dans le dossier ```src/``` il contient l’ensemble du code source de votre application. Pour l’instant nous avons le code fourni par VueJS, au fur et à mesure des futures étapes nous allons le modifier pour le transformer dans l’application « cliff height timer ». Avant de « presque » tout remplacer nous allons modifier celui fourni pour nous familiariser avec « le serveur de dévoloppement »
+
+### L’IDE
+
+Pour faire du VueJS le mieux c’est d’avoir un bon IDE. Au revoir Notepad++ (qui d’ailleurs au passage est rarement un bon choix pour faire du code de qualité), bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit).
+
+Pour ceux qui n’ont pas de licence je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plugin ```Vetur``` pour pouvoir éditer les ```.vue``` dans de bonne condition.
+
+### Éditer le App.vue
+
+Pour commencer simple nous allons éditer le fichier ```components/HelloWord.vue```, ce fichier est la « page d’accueil » de l’application fourni (nous allons verront comment dans les prochaines étapes)
+
+Apporter des modifications dans le fichier :
+
+- Modifier le code HTML de la page, par exemple le ```h2```
+- Modifier le contenue de la variable (dans la partie data)
+- Modifier la CSS en bas du ```.vue```, par exemple la couleur des a
+
+## Ajout de VuetifyJS dans le projet
+
+
+## Création de votre première vue
+
+## Ajout du multilangue (i18n)
