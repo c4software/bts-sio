@@ -183,8 +183,17 @@ Un petit détail, pour que tout soit parfait ajouter le code suivant dans le ```
 ```html
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
 ```
-
 Cette CSS est la déclaration de la « font » Roboto (font par défaut) d’Android.
+
+### Activer le Responsive
+
+Pour que le responsive fonctionne correctement, il faut ajouter les bon viewport grace à la ```meta``` suivante :
+
+```
+<meta name="viewport" content="width=device-width, initial-      scale=1">
+```
+
+Ajouter la dans le fichier ```index.html``` à la racine
 
 ## Le Routeur
 
