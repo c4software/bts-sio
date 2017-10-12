@@ -201,7 +201,7 @@ Maintenant que VuetifyJS est complètement disponible vous allez pouvoir utilise
 
 Pour débuter nous allons remplacer le contenu du fichier ```App.vue``` pour déclarer le gabarit principale de l’application :
 
-```javascript
+```html
 <template>
   <v-app toolbar fill-height>
     <myToolbar />
@@ -227,7 +227,7 @@ Pour l’instant le code que vous avez remplacer n’est pas fonctionnel, pour l
 
 ### Déclaration de myToolbar
 
- 
+
 
 ## Le Routeur
 
