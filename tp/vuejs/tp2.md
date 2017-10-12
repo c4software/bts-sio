@@ -158,7 +158,33 @@ npm install vuetify
 
 PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu’il existe des « templates » VuetifyJS pour VueCLI. Dans ce TP découverte j’ai volontairement fait le choix de ne pas les utiliser pour que vous découvriez un peu plus en détails la construction d’une application VueJS.
 
+### Déclarer et utiliser VuetifyJS
 
+Maintenant que la dépendance est installé nous allons pouvoir l’utiliser.
+
+Première étape modifier le fichier ```main.js``` pour ajouter le code suivant :
+
+```javascript
+require('vuetify/dist/vuetify.min.css');
+import Vuetify from 'vuetify'
+Vue.use(Vuetify);
+```
+
+❓❓ Ajouter le code **avant** :
+
+```javascript
+Vue.config.productionTip = false
+```
+
+Voilà ! Votre application utilise maintenant VuetifyJS. Cependant, aucune de vos ```.vue``` n’utilises de composants fourni vous. Pour l’instant aucune différences donc ;). Pour l’instant…
+
+Un petit détail, pour que tout soit parfait ajouter le code suivant dans le ```head``` du fichier ```index.html``` à la racine:
+
+```html
+<link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+```
+
+Cette CSS est la déclaration de la « font » Roboto (font par défaut) d’Android.
 
 ## Le Routeur
 
