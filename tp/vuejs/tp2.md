@@ -223,7 +223,7 @@ export default {
 </script>
 ```
 
-Pour l’instant le code que vous avez remplacer n’est pas fonctionnel, pour la simple et bonne raison qu’il fait référence à un composant que vous n’avez pas encore écrit ```myToolbar```
+⚠️ Pour l’instant le code que vous avez remplacer n’est pas fonctionnel, pour la simple et bonne raison qu’il fait référence à un composant que vous n’avez pas encore écrit ```myToolbar```
 
 ### Déclaration de myToolbar
 
