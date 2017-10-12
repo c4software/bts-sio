@@ -144,6 +144,18 @@ Apporter des modifications dans le fichier :
 
 ## Ajout de VuetifyJS dans le projet
 
+Nous allons commencer notre projet en intégrant [VuetifyJS](https://vuetifyjs.com/). Pour rappel VuetifyJS est un ensemble de composants respectant les guidelines Material Design.
+
+![VuetifyJS](./vuetify.png)
+
+La première étape est l’installation de la dépendance :
+
+```
+npm install vuetify
+```
+
+PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu’il existe des « templates » VuetifyJS pour VueCLI. Dans ce TP découverte j’ai volontairement fait le choix de ne pas les utiliser pour que vous découvriez un peu plus en détails la construction d’une application VueJS.
+
 ## Le Routeur
 
 ## Ajout du multilangues (i18n)
