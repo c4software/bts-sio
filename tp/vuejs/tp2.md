@@ -170,7 +170,7 @@ import Vuetify from 'vuetify'
 Vue.use(Vuetify);
 ```
 
-❓❓ Ajouter le code **avant** :
+⚠️ Ajouter le code **avant** :
 
 ```javascript
 Vue.config.productionTip = false
