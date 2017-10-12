@@ -193,7 +193,41 @@ Pour que le responsive fonctionne correctement, il faut ajouter les bon viewport
 <meta name="viewport" content="width=device-width, initial-      scale=1">
 ```
 
-Ajouter la dans le fichier ```index.html``` à la racine
+Ajouter la dans le fichier ```index.html``` à la racine.
+
+### Transformer le template de base
+
+Maintenant que VuetifyJS est complètement disponible vous allez pouvoir utiliser vos premiers composants
+
+Pour débuter nous allons remplacer le contenu du fichier ```App.vue``` pour déclarer le gabarit principale de l’application :
+
+```javascript
+<template>
+  <v-app toolbar fill-height>
+    <myToolbar />
+    <main>
+      <v-container fluid pa-0>
+        <router-view></router-view>
+      </v-container>
+    </main>
+  </v-app>
+</template>
+
+<script>
+import myToolbar from "@/components/MyToolbar"
+
+export default {
+  name: 'app',
+  components: {myToolbar}
+}
+</script>
+```
+
+Pour l’instant le code que vous avez remplacer n’est pas fonctionnel, pour la simple et bonne raison qu’il fait référence à un composant que vous n’avez pas encore écrit ```myToolbar```
+
+### Déclaration de myToolbar
+
+ 
 
 ## Le Routeur
 
