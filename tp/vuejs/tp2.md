@@ -294,6 +294,89 @@ C’est dans le tableau « routes » que vous allez ajouter les différents « c
 
 ## Ajout du multilangues (i18n)
 
+Quand on conçoit un application il est important de gérer certains points dès le début, le multilangues est est l’un de c’est points.  Dans le développement le multilangues s’appel « internationalisation » abrégé en i18n, où 18 représente le nombre de caractères entre le i et le n dans « internationalisation »)
+
+Pour gérer l’internationalisation VueJS propose une librairie appelée ```vue-i18n```, avant de pouvoir l’utiliser il faut l’installer via :
+
+```shell
+npm install vue-i18n --save
+```
+
+Une fois installé, nous allons pouvoir gérer nos textes en plusieurs langues (et sans se prendre la tête).
+
+### Ajout du fichier de langue
+
+Nous allons maintenant ajouter notre code qui gèrera le i18n. Pour ça nous allons créer un dossier ```i18n``` dans le dossier ```src```
+
+```shell
+mkdir src/i18n
+```
+
+Puis dans le dossier, nous allons ajouter le fichier ```index.js``` suivant :
+
+```javascript
+import VueI18n from 'vue-i18n'
+import Vue from 'vue'
+Vue.use(VueI18n);
+
+const messages = {
+    en: {
+    },
+    fr: {
+    }
+};
+
+export const i18n = new VueI18n({
+    locale: getLanguage(),
+    fallbackLocale: 'en',
+    messages,
+});
+
+function getLanguage() {
+    try {
+        let l = navigator.language.split("-");
+        return l[0];
+    }catch(err){
+        return navigator.language;
+    }
+}
+```
+
+Le tableau messages contiendra vos prochains textes dans les différentes langues.
+
+### Déclarer à notre application la présence du i18n
+
+Maintenant que nous avons créer notre « module » i18n, nous devons indiquer à notre application qu’elle doit s’en servir. Pour ça nous allons éditer le fichier ```src/main.js```
+
+Pour ajouter :
+
+```javascript
+[…]
+import {i18n} from './i18n' // <== ICI
+[…]
+  router,
+  i18n, // <== ICI
+  template: '<App/>',
+[…]
+```
+
+J’ai volontairement ellipsé le code source… Je ne vais pas tout vous dire…
+
+### Déclarer un nouveau texte
+
+Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier  ```/components/MyToolbar```
+
+- Remplacer la chaine ```Cliff height timer``` par => ```{{ $t("title") }}```
+- Déclarer « title » dans ```i18n/index.js```
+
+### Tester
+
+Vérifier en relançant votre application que votre titre est toujours présent :
+
+```shell
+npm run dev
+```
+
 ## Les .vues
 
 ### La « page » accueil
