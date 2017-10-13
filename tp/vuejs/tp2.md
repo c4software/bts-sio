@@ -342,7 +342,11 @@ function getLanguage() {
 }
 ```
 
-Le tableau messages contiendra vos prochains textes dans les différentes langues.
+ℹ️ Étudier le code précédent :
+
+- ```messages``` contiendra vos prochains textes dans les différentes langues.
+- ```getLanguage``` est une fonction qui retourne la langue actuellement définie pour le poste de client.
+- ```i18n``` est l’objet représentant la fonctionnalité i18n.
 
 ### Déclarer à notre application la présence du i18n
 
@@ -368,6 +372,8 @@ Notre internationalisation est maintenant prête à être utilisée. Nous allons
 
 - Remplacer la chaine ```Cliff height timer``` par => ```{{ $t("title") }}```
 - Déclarer « title » dans ```i18n/index.js```
+
+ℹ️ $t est un objet qui permet d’accéder aux textes actuellement chargé pour la langue de l’utilisateur.
 
 ### Tester
 
