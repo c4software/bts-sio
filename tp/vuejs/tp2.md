@@ -189,8 +189,8 @@ Cette CSS est la déclaration de la « font » Roboto (font par défaut) d’And
 
 Pour que le responsive fonctionne correctement, il faut ajouter les bon viewport grace à la ```meta``` suivante :
 
-```
-<meta name="viewport" content="width=device-width, initial-      scale=1">
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
 Ajouter la dans le fichier ```index.html``` à la racine.
@@ -227,6 +227,34 @@ export default {
 
 ### Déclaration de myToolbar
 
+Créer un nouveau fichier nommé ```MyToolbar.vue``` dans le dossier ```components```
+
+```javascript
+<template>
+  <div>
+    <v-toolbar class="primary deep-purple" fixed >
+      <v-toolbar-side-icon dark @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title @click="goHome" class="white--text">Cliff height timer</v-toolbar-title>
+    </v-toolbar>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "myToolbar",
+  data: function() {
+    return {
+      drawer: false
+    }
+  },
+  methods: {
+    goHome (){
+      window.location.hash = "/";
+    }
+  }
+}
+</script>
+```
 
 
 ## Le Routeur
