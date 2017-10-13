@@ -44,7 +44,7 @@ Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à 
 
 Dans un terminal lancer la commande suivante :
 
-```
+```bash
 npm install -g vue-cli
 ```
 
@@ -63,7 +63,7 @@ Pour notre exemple nous allons prendre le Webpack, il contient tous les élémen
 
 Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante :
 
-```
+```bash
 vue init webpack cliff-height-timer
 ```
 
@@ -81,7 +81,7 @@ Le projet que vous avez initialisé est « vide », c’est-à-dire que dans l�
 
 Pour l’installation la procédure est la suivante :
 
-```
+```bash
 cd cliff-height-timer/
 npm install
 ```
@@ -100,7 +100,7 @@ Une fois terminé votre projet est prêt à être lancé.
 
 Les librairies étant maintenant disponible, nous allons pouvoir lancer l’exemple fourni par Vue-Cli, pour ça rien de plus simple
 
-```
+```bash
 npm run dev
 ```
 
@@ -152,7 +152,7 @@ Nous allons commencer notre projet en intégrant [VuetifyJS](https://vuetifyjs.c
 
 Comme vue en cours VueJS repose sur NodeJS, nous avons donc la possibilité de gérer nos dépendances avec npm. La première étape est donc d’ajouter la dépendance à notre projet :
 
-```
+```bash
 npm install vuetify
 ```
 
