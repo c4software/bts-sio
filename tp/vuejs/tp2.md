@@ -264,7 +264,33 @@ Voilà, vous avez atteint la première étape. Vous pouvez lancer votre applicat
 npm run dev
 ```
 
+TODO IMAGE
+
 ## Le Routeur
+
+Votre application est maintenant fonctionnel cependant comme vous le constater vous n’avez pour l’instant qu’une « seule page », le fichier ressemble à quelques chose comme ça :
+
+```javascript
+import Vue from 'vue'
+import Router from 'vue-router'
+import Home from '@/views/Home'
+
+Vue.use(Router);
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    }
+  ]
+})
+```
+
+⚠️ Ne copiez pas le contenu garder le votre ⚠️
+
+C’est dans le tableau « routes » que vous allez ajouter les différents « chemin » qui conduiront à vos différentes pages. Pour l’instant la seul qui existe c’est la « home ».
 
 ## Ajout du multilangues (i18n)
 
