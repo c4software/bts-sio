@@ -256,6 +256,13 @@ export default {
 </script>
 ```
 
+### Voir le changement
+
+Voilà, vous avez atteint la première étape. Vous pouvez lancer votre application en faisant :
+
+```bash
+npm run dev
+```
 
 ## Le Routeur
 
