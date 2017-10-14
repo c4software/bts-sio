@@ -527,7 +527,7 @@ Création :
 
 - Pour ça, créer le fichier ```/src/components/Drawer.vue```
 
-```
+```javascript
 <template>
   <div>
     <v-toolbar class="primary deep-purple" />
