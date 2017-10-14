@@ -393,6 +393,8 @@ Contrairement à l’exemples par défaut, nous allons mettre nos fichiers ```.v
 mkdir src/views/
 ```
 
+Profitons en également pour supprimer le fichier ```src/components/HelloWorld.vue``` qui est maintenant inutile
+
 ### La « page » Accueil
 
 Nous allons commencer par la page d’accueil, celle-ci doit ressembler à :
@@ -510,6 +512,92 @@ Voilà le rendu de « la page » que vous devez réaliser :
 - Ajouter dans ```router/index.js``` le code pour pouvoir accèder à votre Vue.
 
 ✋ Vous avez ajouter votre nouveau fichier, mais pour l’instant votre application ne contient pas de menu. Nous allons en ajouter un pour pouvoir naviguer entre les pages.
+
+### Ajout du « Drawer »
+
+Dans le monde « mobile », un menu s’appel un Drawer (un tirroir). Nous allons donc créer un Drawer. Pour ça nous allons avoir besoin des ressources suivantes:
+
+- [v-toolbar](https://vuetifyjs.com/components/toolbars)
+- [v-list](https://vuetifyjs.com/components/lists)
+- [Vue-i18n](https://kazupon.github.io/vue-i18n/en/)
+
+![Drawer](./ressources/drawer.png)
+
+Création :
+
+- Pour ça, créer le fichier ```/src/components/Drawer.vue```
+
+```
+<template>
+  <div>
+    <v-toolbar class="primary deep-purple" />
+    <v-list dense>
+      <template v-for="(item, i) in items">
+        <v-divider dark v-if="item.divider" :key="i"></v-divider>
+        <v-list-tile :href="item.action" :key="i" v-else>
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>
+              {{ item.text }}
+            </v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </template>
+    </v-list>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "drawer",
+  data: function() {
+    return {
+      items: [
+        { icon: 'home', text: this.$t("drawer.home"), action: '#/' }
+        { icon: 'help', text: this.$t("drawer.about"), action: '#/about' },
+        { divider: true },
+        { icon: 'pets', text: this.$t('see_on_github'), action: '#' },
+      ]
+    }
+  }
+}
+</script>
+```
+
+- Déclarer les différents textes dans le fichier ```i18n/index.js```
+
+Maintenant que notre composant est terminé, nous devons l’utiliser. Nous allons l’utiliser dans le premier composant que nous avons écrit ```src/components/MyToolbar.vue```, modifier le pour intégrer les modifications suivantes :
+
+```javascript
+<template>
+  <div>
+    // Nouveau
+    <v-navigation-drawer v-model="drawer" temporary>
+      <myContentDrawer />
+    </v-navigation-drawer>
+    // Reste du code déjà présent
+[…]
+<script>
+import myContentDrawer from "@/components/Drawer"
+
+export default {
+  name: "myToolbar",
+  components: {myContentDrawer},
+  data: function() {
+    return {
+      drawer: false
+    }
+  },
+[…]
+```
+
+- Tester votre application :
+
+```shell
+npm run dev
+```
 
 ### La « page » historique
 
