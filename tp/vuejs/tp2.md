@@ -218,7 +218,7 @@ import myToolbar from "@/components/MyToolbar"
 
 export default {
   name: 'app',
-  components: {myToolbar}
+  components: {myToolbar},
 }
 </script>
 ```
@@ -580,16 +580,11 @@ Maintenant que notre composant est terminé, nous devons l’utiliser. Nous allo
     // Reste du code déjà présent
 […]
 <script>
-import myContentDrawer from "@/components/Drawer"
+import myContentDrawer from "@/components/Drawer" // <== Nouveau
 
 export default {
   name: "myToolbar",
-  components: {myContentDrawer},
-  data: function() {
-    return {
-      drawer: false
-    }
-  },
+  components: {myContentDrawer}, // <== Nouveau
 […]
 ```
 
