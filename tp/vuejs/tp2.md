@@ -385,10 +385,106 @@ npm run dev
 
 ## Les .vues
 
-### La « page » accueil
+Maintenant que nous avons la base de notre projet, nous allons commencer à créer les différents fichiers Vue’s
 
-### La « page » historique
+Contrairement à l’exemples par défaut, nous allons mettre nos fichiers ```.vue``` dans un nouveau dossier ```src/views```. Première étape créer le dossier :
+
+```
+mkdir src/views/
+```
+
+### La « page » Accueil
+
+Nous allons commencer par la page d’accueil, celle-ci doit ressembler à :
+
+![Accueil](./ressources/accueil.png)
+
+Pour faite cette vue, vous allez avoir besoin des éléments suivants :
+
+- [FAB](https://vuetifyjs.com/components/floating-action-buttons)
+- [Les variables computed](https://vuejs.org/v2/guide/computed.html)
+- [v-bind:class](https://vuejs.org/v2/guide/class-and-style.html)
+- [Afficher une variables](https://vuejs.org/v2/guide/syntax.html)
+- [Centrer verticalement](https://gist.github.com/c4software/b9fe4cd06e99d3bff16a09260b03e149)
+
+Étape de la création :
+
+- Créer le fichier ```Home.vue``` dans le dossier ```src/views/```
+- Créer la structure de votre Vue :
+
+```javascript
+<template>
+  // Votre template ici.
+</template>
+
+<script>
+export default {
+    name: 'home',
+    data: () => {
+        return {
+            running: false,
+            time: 0,
+            m: "0",
+            ft: "0"
+        }
+    },
+    computed:{
+      state_icon() {
+        // Retourne l’icone utilisé pour le FAB
+      },
+      state_class() {
+        // Retourne la couleur du FAB
+      }
+    },
+    methods:{
+        action(){
+          // Action au click sur le FAB « start / stop »
+        },
+        compute(){
+          // Méthode qui calcul la hauteur par rapport au temps de chute.
+
+          let fallTime = new Date().getTime() - this.start;
+          let height = 16*Math.pow((fallTime/1000), 2);
+          let numberDigits = 1;
+
+          if(height < 1){
+              numberDigits = 2;
+          }
+
+          this.time   = (fallTime/1000).toFixed(2);
+          this.ft     = height.toFixed(numberDigits);
+          this.m      = (height/3.2808).toFixed(numberDigits);
+        }
+    }
+}
+</script>
+
+<style scoped>
+  // CSS du composant
+</style>
+```
+
+- Déclarer la vue dans votre ```router/index.js```. Retirer la vue ```/``` existante pour y mettre la votre. Exemple :
+
+```javascript
+[…]
+import Home from '@/views/Home'
+[…]
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    }
+[…]
+```
+- Tester votre code :
+
+```shell
+npm run dev
+```
 
 ### La « page » À Propos
+
+### La « page » historique
 
 ## Distribuer vos sources
