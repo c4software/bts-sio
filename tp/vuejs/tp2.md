@@ -485,6 +485,32 @@ npm run dev
 
 ### La « page » À Propos
 
+Voilà le rendu de « la page » que vous devez réaliser :
+
+![Vue À Propos](./ressources/apropos.png)
+
+- Créer le fichier ```src/views/About.vue```
+
+```javascript
+<template>
+    <v-container>
+    […]
+    </v-container>
+</template>
+
+<script>
+    export default {
+        name: 'about'
+    }
+</script>
+```
+
+⚠️ N’oubliez pas tous les textes doivent-être dans le fichier ```i18n/index.js``` et être utiliser via ```{{$t("label")}}```
+
+- Ajouter dans ```router/index.js``` le code pour pouvoir accèder à votre Vue.
+
+✋ Vous avez ajouter votre nouveau fichier, mais pour l’instant votre application ne contient pas de menu. Nous allons en ajouter un pour pouvoir naviguer entre les pages.
+
 ### La « page » historique
 
 ## Distribuer vos sources
