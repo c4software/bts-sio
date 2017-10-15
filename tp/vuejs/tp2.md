@@ -511,11 +511,11 @@ Voilà le rendu de « la page » que vous devez réaliser :
 
 - Ajouter dans ```router/index.js``` le code pour pouvoir accèder à votre Vue.
 
-✋ Vous avez ajouter votre nouveau fichier, mais pour l’instant votre application ne contient pas de menu. Nous allons en ajouter un pour pouvoir naviguer entre les pages.
+✋ Vous avez ajouté votre nouveau fichier, mais pour l’instant votre application ne contient pas de menu. Nous allons en ajouter un pour pouvoir naviguer entre les pages.
 
 ### Ajout du « Drawer »
 
-Dans le monde « mobile », un menu s’appel un Drawer (un tirroir). Nous allons donc créer un Drawer. Pour ça nous allons avoir besoin des ressources suivantes:
+Dans le monde « mobile », un menu s’appel un Drawer (un tiroir). Nous allons donc créer un Drawer. Pour ça nous allons avoir besoin des ressources suivantes:
 
 - [v-toolbar](https://vuetifyjs.com/components/toolbars)
 - [v-list](https://vuetifyjs.com/components/lists)
