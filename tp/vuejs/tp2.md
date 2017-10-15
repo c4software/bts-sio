@@ -638,3 +638,15 @@ Ressources utiles :
 Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus nécéssaire que je vous fournisse du code.
 
 ## Distribuer vos sources
+
+Voilà votre application est maintenant terminé bravo 👏👏. Cependant vous ne savez pas encore comment packager votre application. Pour ça rien de plus simple il vous suffit de faire
+
+```
+npm run build
+```
+
+Cette commande va compiler votre application et vous fournir une version que vous allez pouvoir héberger comme n’importe quel site Internet (sur un serveur Apache par exemple).
+
+Le résultat de la compilation est dans le dossier ```dist/```
+
+- Héberger le résultat sur un serveur Apache.
