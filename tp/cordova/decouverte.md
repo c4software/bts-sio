@@ -42,7 +42,7 @@ Une fois correctement défini le mieux est de redémarrer votre ordinateur pour 
 La ligne de commande cordova fourni l’ensemble des éléments pour créer un nouveau projet. Le projet que vous allez créer contient une première « page Web » permettant d’avoir un projet Cordova directement fonctionnel.
 
 ```
-$ cordova create demo com.chevrollier.demo Demo 
+$ cordova create demo com.chevrollier.demo Demo
 ```
 
 ⚠️ Plusieurs paramètres sont nécéssaires à la commande, attention à bien les choisirs des maintenants.
