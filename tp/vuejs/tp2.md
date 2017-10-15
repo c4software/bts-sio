@@ -596,4 +596,45 @@ npm run dev
 
 ### La « page » historique
 
+Notre application est maintenant fonctionnelle. Nous avons la capacité de calculer des chutes, d’afficher le informations sur l’application, et bonus dans plusieurs langues !
+
+Mais je pense qu’une application n’est jamais vraiment complète sans une  notion d’historique. Pour ça nous allons créer une nouvelle « vue »
+
+- Créer le fichier ```src/views/History.vue```
+- Créer la correspondance entre la Vue et le chemin dans le fichier  ```router/index.js```
+- N’oubliez pas également d’ajouter l’élément dans le menu Drawer.
+- Les textes doivent également être mis dans la partie i18n
+
+Pour réaliser la vue Historique nous allons devoir sauvegarder les différents résultat. Pour ça nous allons utiliser le ```Localstorage```, avant d’allez plus loin je vous propose un peu de lecture sur le Localstorage :
+
+> La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session navigateur prend fin — donc quand on ferme le navigateur.
+Source: https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage
+
+⚠️ Petite subtilitée, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
+
+#### Sauvegarder un élément dans le localStorage
+
+```javascript
+localStorage.setItem('historique', JSON.stringify([]));
+```
+
+#### Lire un élément dans le localStorage
+
+```javascript
+JSON.parse(localStorage.getItem("history"));
+```
+
+#### Démarche
+
+- Adapter le code de ```Home.vue``` pour sauvegarder le résultat dans un tableau d’historique à chaque fois que l’utilisateur enregistre une nouvelle chute.
+- Écrire le code de la page ```History.vue``` pour afficher les valeurs enregistrées.
+
+Ressources utiles :
+
+- [Liste Vuetify](https://vuetifyjs.com/components/lists)
+- [JSON](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/JSON)
+- [Tester si tableau](https://www.w3schools.com/jsref/jsref_isarray.asp)
+
+Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus nécéssaire que je vous fournisse du code.
+
 ## Distribuer vos sources
