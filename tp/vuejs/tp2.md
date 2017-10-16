@@ -604,9 +604,10 @@ Mais je pense qu’une application n’est jamais vraiment complète sans une  n
 - N’oubliez pas également d’ajouter l’élément dans le menu Drawer.
 - Les textes doivent également être mis dans la partie i18n
 
-Pour réaliser la vue Historique nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le ```Localstorage```, avant d’allez plus loin je vous propose un peu de lecture sur le Localstorage :
+Pour réaliser la vue Historique nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le ```Localstorage```, avant d’allez plus loin je vous propose un peu de lecture sur le localStorage :
 
 > La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session navigateur prend fin — donc quand on ferme le navigateur.
+
 Source: https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage
 
 ⚠️ Petite subtilitée, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
@@ -659,9 +660,9 @@ Pour ça nous allons utiliser deux site :
 - [Un générateur de fichier Manifest](https://app-manifest.firebaseapp.com/)
 - [Un générateur d’icône](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html)
 
-Le manifeste d'une application web fournit des informations concernant celle-ci (comme son nom, son auteur, une icône et une description) dans un document texte JSON. Le but du manifeste est d'installer des applications sur l'écran d'accueil d'un appareil, offrant aux utilisateurs un accès plus rapide et une expérience plus riche.
+> Le manifeste d'une application web fournit des informations concernant celle-ci (comme son nom, son auteur, une icône et une description) dans un document texte JSON. Le but du manifeste est d'installer des applications sur l'écran d'accueil d'un appareil, offrant aux utilisateurs un accès plus rapide et une expérience plus riche.
+> Les manifestes font partie d'un ensemble de technologies appellées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion internet et sont capables de recevoir des notifications push.
 
-Les manifestes font partie d'un ensemble de technologies appellées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion internet et sont capables de recevoir des notifications push.
 Source: Mozilla.org
 
 - Générer les icones ainsi que le fichier Manifest
