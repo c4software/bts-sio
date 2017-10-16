@@ -651,3 +651,31 @@ Le résultat de la compilation est dans le dossier ```dist/```
 - Héberger le résultat sur un serveur Apache.
 
 ## Ajouter un mannifest
+
+Nous allons maintenant ajouter la dernière pierre à notre édifice, le fichier Manifest. Ce fichier décrit le fonctionnement du site Web en tant « qu’application », une fois que ce fichier est en place votre navigateur le lira et adaptera son fonctionnement poru qu’il se rapproche d’une application (Comme une APK).
+
+Pour ça nous allons utiliser deux site :
+
+- [Un générateur de fichier Manifest](https://app-manifest.firebaseapp.com/)
+- [Un générateur d’icône](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html)
+
+Le manifeste d'une application web fournit des informations concernant celle-ci (comme son nom, son auteur, une icône et une description) dans un document texte JSON. Le but du manifeste est d'installer des applications sur l'écran d'accueil d'un appareil, offrant aux utilisateurs un accès plus rapide et une expérience plus riche.
+
+Les manifestes font partie d'un ensemble de technologies appellées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion internet et sont capables de recevoir des notifications push.
+Source: Mozilla.org
+
+- Générer les icones ainsi que le fichier Manifest
+- Télécharger le manifest.json et le mettre dans le dossier ```static/``` faire la même chose pour les icones.
+- Éditer le fichien ```index.html``` pour ajouter :
+
+```html
+<link rel="manifest" href="./static/manifest.json">
+```
+
+- Vous pouvez builder votre application et la mettre à jour sur votre serveur Web.
+
+```
+npm run build
+```
+
+- Tester l’application depuis votre Téléphone Android.
