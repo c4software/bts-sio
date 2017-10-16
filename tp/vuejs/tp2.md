@@ -650,3 +650,5 @@ Cette commande va compiler votre application et vous fournir une version que vou
 Le résultat de la compilation est dans le dossier ```dist/```
 
 - Héberger le résultat sur un serveur Apache.
+
+## Ajouter un mannifest
