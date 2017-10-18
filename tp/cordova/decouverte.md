@@ -2,6 +2,21 @@
 
 Dans ce TP vous aller découvrir la ligne de commande Cordova et créer votre premier TP. Comme les autres TP, utiliser l’aide mémoire Cordova pour trouver les bonnes commandes à chaque étape.
 
+<!-- TOC -->
+
+- [Découverte de Cordova](#découverte-de-cordova)
+    - [Ressources](#ressources)
+    - [Installation de Cordova](#installation-de-cordova)
+    - [Android](#android)
+    - [Création du projet « démo »](#création-du-projet-«-démo-»)
+    - [Ajout d’une plateforme](#ajout-dune-plateforme)
+    - [Ajouter une seconde plateforme](#ajouter-une-seconde-plateforme)
+    - [Lancer l’application sur votre téléphone](#lancer-lapplication-sur-votre-téléphone)
+    - [Ajouter un premier plugin](#ajouter-un-premier-plugin)
+    - [Ajouter un 2nd plugin, l’intégrer dans code JS](#ajouter-un-2nd-plugin-lintégrer-dans-code-js)
+
+<!-- /TOC -->
+
 ## Ressources
 
 - [Le site Cordova](https://cordova.apache.org)
@@ -95,3 +110,10 @@ $ cordova platform add android
 Une fois ajouter nous allons pouvoir « lancer » / « compiler » des applications pour Android.
 
 ⚠️ Attention, à cette étape nous avons besoin d’un poste correctement équipé pour compiler de l’Android
+
+
+## Lancer l’application sur votre téléphone
+
+## Ajouter un premier plugin
+
+## Ajouter un 2nd plugin, l’intégrer dans code JS
