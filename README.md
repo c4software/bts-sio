@@ -30,6 +30,6 @@ Support de cours &amp; TP pour le BTS SIO
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/cordova/README.md)
 - [Projet Démo VueJS + Cordova](https://github.com/c4software/vuejs-cordova-sample)
 
-## Découverte de Docker
+## [WIP] Découverte de Docker
 
-## Intégration continue avec GitLab-CI
+## [WIP] Intégration continue avec GitLab-CI
