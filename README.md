@@ -17,7 +17,7 @@ Support de cours &amp; TP pour le BTS SIO
 - [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
 - [TP](https://github.com/c4software/bts/blob/master/tp/securite/README.md)
 
-## [WIP] VueJS
+## VueJS
 - [Slides](https://rawgit.com/c4software/bts/master/cours/vuejs/) ([Les sources](cours/vuejs))
 - [TP1: Ajouter VueJS dans une application existante](tp/vuejs/tp1.md)
 - [TP2: Réaliser une application avec VueJS](tp/vuejs/tp2.md)
@@ -26,9 +26,9 @@ Support de cours &amp; TP pour le BTS SIO
 ## [WIP] Cordova + VueJS
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/cordova/) ([Les sources](cours/cordova))
-- [TP](https://github.com/c4software/bts/blob/master/tp/cordova/README.md)
-- [Projet Démo](https://github.com/c4software/vuejs-cordova-sample)
+- [TP Découverte](https://github.com/c4software/bts/blob/master/tp/cordova/decouverte.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/cordova/README.md)
+- [Projet Démo VueJS + Cordova](https://github.com/c4software/vuejs-cordova-sample)
 
 ## Découverte de Docker
 
