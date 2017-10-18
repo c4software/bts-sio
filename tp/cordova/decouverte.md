@@ -46,3 +46,39 @@ $ cordova create demo com.chevrollier.demo Demo
 ```
 
 ⚠️ Plusieurs paramètres sont nécéssaires à la commande, attention à bien les choisirs des maintenants.
+
+## Ajout d’une plateforme
+
+Votre projet est maintenant prêt vous allez pouvoir ajout une plateforme. Pour rappel Cordova est un framework de développement capable de gérer plusieurs plateforme :
+
+- android
+- ios
+- browser
+- …
+
+Pour commencer nous allons ajouter la plateforme « générique » à savoir browser, celle-ci nous permettra de tester simplement notre configuration.
+
+```shell
+$ cordova platform add browser
+
+Using cordova-fetch for cordova-browser@~4.1.0
+Adding browser project...
+Creating Browser project. Path: platforms/browser
+Discovered plugin "cordova-plugin-whitelist" in config.xml. Adding it to the project
+Installing "cordova-plugin-whitelist" for browser
+Adding cordova-plugin-whitelist to package.json
+Saved plugin info for "cordova-plugin-whitelist" to config.xml
+--save flag or autosave detected
+Saving browser@~4.1.0 into config.xml file ...
+```
+
+La plateforme étant maintenant ajouté nous pouvons « démarrer » Cordova en utilisant la commande :
+
+```shell
+$ cordova run browser
+```
+
+![Premier lancement](./ressources/run.png)
+
+Et voilà, le code de démo tourne dans votre navigateur, génial non ? Bon je vois bien que vous êtes déçu…
+ 
