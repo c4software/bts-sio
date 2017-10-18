@@ -82,3 +82,16 @@ $ cordova run browser
 
 Et voilà, le code de démo tourne dans votre navigateur, génial non ? Bon je vois bien que vous êtes déçu…
  
+## Ajouter une seconde plateforme
+
+Bon l’intérêt de Cordova c’est vraiment le mobile, l’utilisation de la plateforme « browser » va nous permettre de valider notre développement sans avoir à brancher son mobile pour valider le fonctionnement.
+
+Pour ajouter la plateforme Android la commande est la suivante :
+
+```shell
+$ cordova platform add android 
+```
+
+Une fois ajouter nous allons pouvoir « lancer » / « compiler » des applications pour Android.
+
+⚠️ Attention, à cette étape nous avons besoin d’un poste correctement équipé pour compiler de l’Android
