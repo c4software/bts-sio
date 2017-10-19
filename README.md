@@ -26,21 +26,21 @@ Support de cours &amp; TP pour le BTS SIO
 ## [WIP] Cordova + VueJS
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/cordova/) ([Les sources](cours/cordova))
-- [TP Découverte](https://github.com/c4software/bts/blob/master/tp/cordova/decouverte.md)
-- [TP VueJS + Cordova](https://github.com/c4software/bts/blob/master/tp/cordova/vuejs_cordova.md)
+- [TP Découverte](./tp/cordova/decouverte.md)
+- [TP VueJS + Cordova](./tp/cordova/vuejs_cordova.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/cordova/README.md)
 - [Projet Démo VueJS + Cordova](https://github.com/c4software/vuejs-cordova-sample)
 
 ## [WIP] Framework PHP : Laravel
 
 - [Slides]()
-- [Installation de Laravel]()
+- [Installation de Laravel](./tp/laravel/introduction.md)
 - [Réécriture des API de la TODO List avec Laravel]()
 
 ## [WIP] Framework Python : Flask
 
 - [Slides]()
-- [Installation de Python + Flask]()
+- [Installation de Python + Flask](./tp/python/flask.md)
 - [Réécriture des API de la TODO List avec Flask]()
 
 ## [WIP] Découverte de Docker
