@@ -30,6 +30,21 @@ Support de cours &amp; TP pour le BTS SIO
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/cordova/README.md)
 - [Projet Démo VueJS + Cordova](https://github.com/c4software/vuejs-cordova-sample)
 
+## [WIP] Framework PHP : Laravel
+
+- [Slides]()
+- [Installation de Laravel]()
+- [Réécriture des API de la TODO List avec Laravel]()
+
 ## [WIP] Découverte de Docker
 
+- [Slides](https://rawgit.com/c4software/bts/master/cours/docker/) ([Les sources](cours/docker))
+- [Première approche Docker]()
+- [Créer un Dockerfile]()
+- [Créer un DockerCompose]()
+
 ## [WIP] Intégration continue avec GitLab-CI
+
+- [Slides](https://rawgit.com/c4software/bts/master/cours/gitlabci/) ([Les sources](cours/gitlabci))
+- [Utiliser Gitlab Pages]()
+- [Utiliser Gitlab-CI pour construire une application hybride]()
