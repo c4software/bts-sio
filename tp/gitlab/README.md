@@ -2,6 +2,40 @@
 
 Introduction au travail à plusieurs avec GIT.
 
+<!-- TOC -->
+
+- [GitLab](#gitlab)
+    - [Ressources utiles](#ressources-utiles)
+    - [Situation](#situation)
+        - [Questions](#questions)
+    - [Création du projet](#création-du-projet)
+    - [Les logs](#les-logs)
+    - [GitLab](#gitlab-1)
+        - [Création du compte](#création-du-compte)
+            - [Échange de clef](#échange-de-clef)
+            - [Génération de votre clef](#génération-de-votre-clef)
+            - [Envoyer votre clef sur GitLab](#envoyer-votre-clef-sur-gitlab)
+        - [Création de votre premier projet](#création-de-votre-premier-projet)
+        - [Question](#question)
+        - [Envoi sur GitLab](#envoi-sur-gitlab)
+            - [Exemple:](#exemple)
+        - [Édition en ligne](#édition-en-ligne)
+    - [Participation à un projet collectif](#participation-à-un-projet-collectif)
+        - [Questions](#questions-1)
+    - [Cloner le projet](#cloner-le-projet)
+        - [Cloner le projet sur votre machine](#cloner-le-projet-sur-votre-machine)
+    - [Traiter une des issues](#traiter-une-des-issues)
+        - [Mettre à jour le code local.](#mettre-à-jour-le-code-local)
+        - [Changer de branch](#changer-de-branch)
+        - [Envoyer vos modifications sur le serveurs GitLab](#envoyer-vos-modifications-sur-le-serveurs-gitlab)
+        - [Création d’une merge request](#création-dune-merge-request)
+        - [Question](#question-1)
+    - [Bonne nouvelle !](#bonne-nouvelle-)
+    - [La revue de code](#la-revue-de-code)
+        - [Questions](#questions-2)
+
+<!-- /TOC -->
+
 ## Ressources utiles
 
 * [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
