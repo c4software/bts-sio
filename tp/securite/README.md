@@ -68,7 +68,7 @@ C’est parti, vous pouvez maintenant aller sur [http://localhost:8080/WebGoat](
   - Thread Safety Problems
   - Shopping Cart Concurrency Flaw
 - Injection Flaws
-  - Command Injection
+  - Command Injection (Si vous souhaitez faire du MITM - Man In The Middle -)
   - Numeric SQL Injection
   - String SQL Injection
 - Parameter Tampering
