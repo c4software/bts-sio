@@ -2,6 +2,38 @@
 
 Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base de la ligne de commande Git.
 
+<!-- TOC -->
+
+- [Initiation GIT](#initiation-git)
+    - [Ressources utiles](#ressources-utiles)
+    - [Situation](#situation)
+        - [Questions](#questions)
+    - [Initialisation](#initialisation)
+        - [Définir votre identité dans GIT](#définir-votre-identité-dans-git)
+        - [Initialiser votre projet](#initialiser-votre-projet)
+    - [Début du code](#début-du-code)
+        - [Question bonus](#question-bonus)
+        - [Questions](#questions-1)
+        - [Questions](#questions-2)
+    - [Ajout / Modification de fichiers](#ajout--modification-de-fichiers)
+        - [Questions](#questions-3)
+    - [Modifier le message du précédent commit](#modifier-le-message-du-précédent-commit)
+        - [Questions](#questions-4)
+    - [Ajout d’une évolution dans le précédent fichier](#ajout-dune-évolution-dans-le-précédent-fichier)
+        - [Question](#question)
+    - [Un coup d’oeil dans le rétroviseur](#un-coup-doeil-dans-le-rétroviseur)
+        - [Questions](#questions-5)
+    - [Une autre évolution](#une-autre-évolution)
+        - [Questions](#questions-6)
+    - [Fusion / Merge de la fonctionnalité](#fusion--merge-de-la-fonctionnalité)
+        - [Questions](#questions-7)
+    - [Annulation, retour arrière](#annulation-retour-arrière)
+        - [Questions](#questions-8)
+    - [Finalisation](#finalisation)
+        - [Questions](#questions-9)
+
+<!-- /TOC -->
+
 ## Ressources utiles
 
 * [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
