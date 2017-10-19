@@ -1,4 +1,4 @@
-# 1. Réaliser une application avec VueJS
+# Réaliser une application avec VueJS
 
 Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus moderne, celle qui utilise à 100% le modèle MVVM (Modèle Vue, Vue-Modèle) ainsi que la puissance de VueJS (```.vue```, VueCli, ES5).
 
@@ -7,45 +7,45 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
 
 <!-- TOC -->
 
-- [1. Réaliser une application avec VueJS](#1-réaliser-une-application-avec-vuejs)
-    - [1.1. MVVM en quelques mots](#11-mvvm-en-quelques-mots)
-    - [1.2. Introduction](#12-introduction)
-    - [1.3. Initialisation du projet](#13-initialisation-du-projet)
-        - [1.3.1. NodeJS](#131-nodejs)
-        - [1.3.2. Vue-cli](#132-vue-cli)
-    - [1.4. Installation des librairies (du projet)](#14-installation-des-librairies-du-projet)
-    - [1.5. Premier lancement (l’exemple)](#15-premier-lancement-lexemple)
-    - [1.6. Le serveur de développement](#16-le-serveur-de-développement)
-    - [1.7. Le code source](#17-le-code-source)
-        - [1.7.1. L’IDE](#171-lide)
-        - [1.7.2. Éditer le HelloWord.vue](#172-éditer-le-hellowordvue)
-    - [1.8. Ajout de VuetifyJS dans le projet](#18-ajout-de-vuetifyjs-dans-le-projet)
-        - [1.8.1. Ajout de la dépendance](#181-ajout-de-la-dépendance)
-        - [1.8.2. Déclarer et utiliser VuetifyJS](#182-déclarer-et-utiliser-vuetifyjs)
-        - [1.8.3. Activer le Responsive](#183-activer-le-responsive)
-        - [1.8.4. Transformer le template de base](#184-transformer-le-template-de-base)
-        - [1.8.5. Déclaration de myToolbar](#185-déclaration-de-mytoolbar)
-        - [1.8.6. Voir le changement](#186-voir-le-changement)
-    - [1.9. Le Routeur](#19-le-routeur)
-    - [1.10. Ajout du multilangues (i18n)](#110-ajout-du-multilangues-i18n)
-        - [1.10.1. Ajout du fichier de langue](#1101-ajout-du-fichier-de-langue)
-        - [1.10.2. Déclarer à notre application la présence du i18n](#1102-déclarer-à-notre-application-la-présence-du-i18n)
-        - [1.10.3. Déclarer un nouveau texte](#1103-déclarer-un-nouveau-texte)
-        - [1.10.4. Tester](#1104-tester)
-    - [1.11. Les .vues](#111-les-vues)
-        - [1.11.1. La page : Accueil](#1111-la-page--accueil)
-        - [1.11.2. La page : À Propos](#1112-la-page--à-propos)
-        - [1.11.3. Ajout du : Drawer](#1113-ajout-du--drawer)
-        - [1.11.4. La page : Historique](#1114-la-page--historique)
-            - [1.11.4.1. Sauvegarder un élément dans le localStorage](#11141-sauvegarder-un-élément-dans-le-localstorage)
-            - [1.11.4.2. Lire un élément dans le localStorage](#11142-lire-un-élément-dans-le-localstorage)
-            - [1.11.4.3. Démarche](#11143-démarche)
-    - [1.12. Distribuer vos sources](#112-distribuer-vos-sources)
-    - [1.13. Ajouter un mannifest](#113-ajouter-un-mannifest)
+- [Réaliser une application avec VueJS](#réaliser-une-application-avec-vuejs)
+    - [MVVM en quelques mots](#mvvm-en-quelques-mots)
+    - [Introduction](#introduction)
+    - [Initialisation du projet](#initialisation-du-projet)
+        - [NodeJS](#nodejs)
+        - [Vue-cli](#vue-cli)
+    - [Installation des librairies (du projet)](#installation-des-librairies-du-projet)
+    - [Premier lancement (l’exemple)](#premier-lancement-lexemple)
+    - [Le serveur de développement](#le-serveur-de-développement)
+    - [Le code source](#le-code-source)
+        - [L’IDE](#lide)
+        - [Éditer le HelloWord.vue](#éditer-le-hellowordvue)
+    - [Ajout de VuetifyJS dans le projet](#ajout-de-vuetifyjs-dans-le-projet)
+        - [Ajout de la dépendance](#ajout-de-la-dépendance)
+        - [Déclarer et utiliser VuetifyJS](#déclarer-et-utiliser-vuetifyjs)
+        - [Activer le Responsive](#activer-le-responsive)
+        - [Transformer le template de base](#transformer-le-template-de-base)
+        - [Déclaration de myToolbar](#déclaration-de-mytoolbar)
+        - [Voir le changement](#voir-le-changement)
+    - [Le Routeur](#le-routeur)
+    - [Ajout du multilangues (i18n)](#ajout-du-multilangues-i18n)
+        - [Ajout du fichier de langue](#ajout-du-fichier-de-langue)
+        - [Déclarer à notre application la présence du i18n](#déclarer-à-notre-application-la-présence-du-i18n)
+        - [Déclarer un nouveau texte](#déclarer-un-nouveau-texte)
+        - [Tester](#tester)
+    - [Les .vues](#les-vues)
+        - [La page : Accueil](#la-page--accueil)
+        - [La page : À Propos](#la-page--à-propos)
+        - [Ajout du : Drawer](#ajout-du--drawer)
+        - [La page : Historique](#la-page--historique)
+            - [Sauvegarder un élément dans le localStorage](#sauvegarder-un-élément-dans-le-localstorage)
+            - [Lire un élément dans le localStorage](#lire-un-élément-dans-le-localstorage)
+            - [Démarche](#démarche)
+    - [Distribuer vos sources](#distribuer-vos-sources)
+    - [Ajouter un mannifest](#ajouter-un-mannifest)
 
 <!-- /TOC -->
 
-## 1.1. MVVM en quelques mots
+## MVVM en quelques mots
 
 Non mais moi je connais que MVC, C’est quoi MVVM ?
 
@@ -59,26 +59,26 @@ Ce pattern a spécialement été conçu pour améliorer la séparation entre les
 
 L’important avec MVVM c’est que ***la vue ne doit jamais traiter de données***. Elle s’occupe uniquement de les afficher. Le View-Model aura en charge les conversions et les accès au modèle de données.
 
-## 1.2. Introduction
+## Introduction
 
 Maintenant que vous savez ce que c’est le MVVM, nous allons attaquer le TP pour de vrai. Nous allons réaliser « une application » à l’aide de VueJS. Cette application est purement démonstrative. Cette application calculera la hauteur d’une falaise (ou de n’importe quoi de suffisamment haut) en fonction du temps chute d’un objet jeter du haut de celle-ci.
 
 ![Cliff-Height-Timer-VueJS](https://github.com/c4software/Cliff-Height-Timer-VueJS/raw/master/demo.png)
 
-## 1.3. Initialisation du projet
+## Initialisation du projet
 
 Avant de commencer nous allons avoir besoin de plusieurs outils :
 
 - NodeJS
 - Vue-cli
 
-### 1.3.1. NodeJS
+### NodeJS
 
 La première étape va être l’installation de NodeJS, la démarche est différente en fonction de votre environnement, mais pour résumer [sous Windows c’est ici](https://nodejs.org/en/download/), sous OSX le plus simple c’est via Brew ```brew install nodejs```, et sous Linux c’est via le gestionnaire de paquet ```apt install nodejs```
 
 Une fois installé, vous êtes prêt, votre PC est prêt à accueillir l’outil VueCLI
 
-### 1.3.2. Vue-cli
+### Vue-cli
 
 Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
 
@@ -115,7 +115,7 @@ Le Vue-Cli est interactif il va vous poser des questions permettant de configure
 
 Voilà notre projet est maintenant prêt. Place à la suite.
 
-## 1.4. Installation des librairies (du projet)
+## Installation des librairies (du projet)
 
 Le projet que vous avez initialisé est « vide », c’est-à-dire que dans l’état il n’est pas fonctionnel. Avant de pouvoir l’afficher vous allez devoir installer les librairies (VueJS, WebPack, …). Cette étape n’est à faire qu’une seul fois sur votre poste, en effet en général on ne commit pas les fichiers « librairies » qui sont présents dans le future dossier ```node_module``` pour la simple et bonne raison que celui-ci est gros et rempli de pleins de petits fichiers (et qu’en plus ça se re-télécharge facilement depuis Internet).
 
@@ -138,7 +138,7 @@ Une fois terminé votre projet est prêt à être lancé.
 
 ⚠️ Ajouter le dossier ```node_module``` dans le ```.gitignore```
 
-## 1.5. Premier lancement (l’exemple)
+## Premier lancement (l’exemple)
 
 Les librairies étant maintenant disponible, nous allons pouvoir lancer l’exemple fourni par Vue-Cli, pour ça rien de plus simple
 
@@ -150,7 +150,7 @@ une fois cette commande lancée, votre navigateur va s’ouvrir sur un nouvel on
 
 ![sample application](./vuecli-template.png)
 
-## 1.6. Le serveur de développement
+## Le serveur de développement
 
 Comme vous avez pu le constater dans votre invite de commande (terminal), vous avez un serveur qui tourne. Ce serveur est un peu particulié, il n’est utilisé que dans la phase de développement il incorpore plusieurs outils permettant de simplifier la création d’application Javascript :
 
@@ -164,17 +164,17 @@ Et si vous avez les outils sur votre machine il peut également :
 - Et plein d’autres usages car Webpack c’est un outil qui permet l’assemblage de différent outils
 
 
-## 1.7. Le code source
+## Le code source
 
 Les sources de l’application sont dans le dossier ```src/``` il contient l’ensemble du code source de votre application. Pour l’instant nous avons le code fourni par VueJS, au fur et à mesure des futures étapes nous allons le modifier pour le transformer dans l’application « cliff height timer ». Avant de « presque » tout remplacer nous allons modifier celui fourni pour nous familiariser avec « le serveur de dévoloppement ».
 
-### 1.7.1. L’IDE
+### L’IDE
 
 Pour faire du VueJS le mieux c’est d’avoir un bon IDE. Au revoir Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit).
 
 Pour ceux qui n’ont pas de licence je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plugin ```Vetur``` pour pouvoir éditer les ```.vue``` dans de bonne condition.
 
-### 1.7.2. Éditer le HelloWord.vue
+### Éditer le HelloWord.vue
 
 Pour commencer simple nous allons éditer le fichier ```components/HelloWord.vue```, ce fichier est la « page d’accueil » de l’application fourni (nous allons voir comment dans les prochaines étapes).
 
@@ -184,13 +184,13 @@ Apporter des modifications dans le fichier :
 - Modifier le contenu de la variable (dans la partie data)
 - Modifier la CSS en bas du ```.vue```, par exemple la couleur pour les ```a```
 
-## 1.8. Ajout de VuetifyJS dans le projet
+## Ajout de VuetifyJS dans le projet
 
 Nous allons commencer notre projet en intégrant [VuetifyJS](https://vuetifyjs.com/). Pour rappel VuetifyJS est un ensemble de composants respectant les guidelines Material Design.
 
 ![VuetifyJS](./vuetify.png)
 
-### 1.8.1. Ajout de la dépendance
+### Ajout de la dépendance
 
 Comme vue en cours VueJS repose sur NodeJS, nous avons donc la possibilité de gérer nos dépendances avec npm. La première étape est donc d’ajouter la dépendance à notre projet :
 
@@ -200,7 +200,7 @@ npm install vuetify
 
 PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu’il existe des « templates » VuetifyJS pour VueCLI. Dans ce TP découverte j’ai volontairement fait le choix de ne pas les utiliser pour que vous découvriez un peu plus en détails la construction d’une application VueJS.
 
-### 1.8.2. Déclarer et utiliser VuetifyJS
+### Déclarer et utiliser VuetifyJS
 
 Maintenant que la dépendance est installée nous allons pouvoir l’utiliser.
 
@@ -227,7 +227,7 @@ Un petit détail, pour que tout soit parfait ajouter le code suivant dans le ```
 ```
 Cette CSS est la déclaration de la « font » Roboto (font par défaut) d’Android.
 
-### 1.8.3. Activer le Responsive
+### Activer le Responsive
 
 Pour que le responsive fonctionne correctement, il faut ajouter le bon viewport grace à la ```meta``` suivante :
 
@@ -237,7 +237,7 @@ Pour que le responsive fonctionne correctement, il faut ajouter le bon viewport 
 
 Ajouter la dans le fichier ```index.html``` à la racine.
 
-### 1.8.4. Transformer le template de base
+### Transformer le template de base
 
 Maintenant que VuetifyJS est complètement disponible vous allez pouvoir utiliser vos premiers composants.
 
@@ -267,7 +267,7 @@ export default {
 
 ⚠️ Pour l’instant le code que vous avez remplacé n’est pas fonctionnel, pour la simple et bonne raison qu’il fait référence à un composant que vous n’avez pas encore écrit : ```myToolbar```
 
-### 1.8.5. Déclaration de myToolbar
+### Déclaration de myToolbar
 
 Créer un nouveau fichier nommé ```MyToolbar.vue``` dans le dossier ```components```
 
@@ -298,7 +298,7 @@ export default {
 </script>
 ```
 
-### 1.8.6. Voir le changement
+### Voir le changement
 
 Voilà, vous avez atteint la première étape. Vous pouvez lancer votre application en faisant :
 
@@ -306,7 +306,7 @@ Voilà, vous avez atteint la première étape. Vous pouvez lancer votre applicat
 npm run dev
 ```
 
-## 1.9. Le Routeur
+## Le Routeur
 
 Votre application est maintenant fonctionnelle cependant comme vous le constatez, vous avez pour l’instant qu’une « seule page », le fichier ressemble à quelques chose comme ça :
 
@@ -332,7 +332,7 @@ export default new Router({
 
 C’est dans le tableau « routes » que vous allez ajouter les différents « chemin » qui conduiront à vos différentes pages. Pour l’instant la seule qui existe c’est la « home ».
 
-## 1.10. Ajout du multilangues (i18n)
+## Ajout du multilangues (i18n)
 
 Quand on conçoit une application il est important de gérer certains points dès le début, le multilangues est l’un de ces points.  Dans le développement le multilangues s’appelle « l’internationalisation » abrégé en i18n, où 18 représente le nombre de caractères entre le i et le n dans « internationalisation »
 
@@ -344,7 +344,7 @@ npm install vue-i18n --save
 
 Une fois installé, nous allons pouvoir gérer nos textes en plusieurs langues (et sans se prendre la tête).
 
-### 1.10.1. Ajout du fichier de langue
+### Ajout du fichier de langue
 
 Nous allons maintenant ajouter notre code qui gèrera le i18n. Pour ça nous allons créer un dossier ```i18n``` dans le dossier ```src```
 
@@ -388,7 +388,7 @@ function getLanguage() {
 - ```getLanguage``` est une fonction qui retourne la langue actuellement définie pour le poste de client.
 - ```i18n``` est l’objet représentant la fonctionnalité i18n.
 
-### 1.10.2. Déclarer à notre application la présence du i18n
+### Déclarer à notre application la présence du i18n
 
 Maintenant que nous avons créé notre « module » i18n, nous devons indiquer à notre application qu’elle doit s’en servir. Pour ça nous allons éditer le fichier ```src/main.js```
 
@@ -406,7 +406,7 @@ import {i18n} from './i18n' // <== ICI
 
 J’ai volontairement ellipsé le code source… Je ne vais pas tout vous dire…
 
-### 1.10.3. Déclarer un nouveau texte
+### Déclarer un nouveau texte
 
 Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier  ```/components/MyToolbar```
 
@@ -415,7 +415,7 @@ Notre internationalisation est maintenant prête à être utilisée. Nous allons
 
 ℹ️ $t est un objet qui permet d’accéder aux textes actuellement chargés pour la langue de l’utilisateur.
 
-### 1.10.4. Tester
+### Tester
 
 Vérifier en relançant votre application que votre titre est toujours présent :
 
@@ -423,7 +423,7 @@ Vérifier en relançant votre application que votre titre est toujours présent 
 npm run dev
 ```
 
-## 1.11. Les .vues
+## Les .vues
 
 Maintenant que nous avons la base de notre projet, nous allons commencer à créer les différents fichiers Vue’s.
 
@@ -435,7 +435,7 @@ mkdir src/views/
 
 Profitons en également pour supprimer le fichier ```src/components/HelloWorld.vue``` qui est maintenant inutile.
 
-### 1.11.1. La page : Accueil
+### La page : Accueil
 
 Nous allons commencer par la page d’accueil, celle-ci doit ressembler à :
 
@@ -525,7 +525,7 @@ import Home from '@/views/Home'
 npm run dev
 ```
 
-### 1.11.2. La page : À Propos
+### La page : À Propos
 
 Voilà le rendu de « la page » que vous devez réaliser :
 
@@ -553,7 +553,7 @@ Voilà le rendu de « la page » que vous devez réaliser :
 
 ✋ Vous avez ajouté votre nouveau fichier, mais pour l’instant votre application ne contient pas de menu. Nous allons en ajouter un pour pouvoir naviguer entre les pages.
 
-### 1.11.3. Ajout du : Drawer
+### Ajout du : Drawer
 
 Dans le monde « mobile », un menu s’appelle un Drawer (un tiroir). Nous allons donc créer un Drawer. Pour ça nous allons avoir besoin des ressources suivantes:
 
@@ -634,7 +634,7 @@ export default {
 npm run dev
 ```
 
-### 1.11.4. La page : Historique
+### La page : Historique
 
 Notre application est maintenant fonctionnelle. Nous avons la capacité de calculer des chutes, d’afficher les informations sur l’application, et bonus dans plusieurs langues !
 
@@ -653,19 +653,19 @@ Source: https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage
 
 ⚠️ Petite subtilitée, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
 
-#### 1.11.4.1. Sauvegarder un élément dans le localStorage
+#### Sauvegarder un élément dans le localStorage
 
 ```javascript
 localStorage.setItem('historique', JSON.stringify([]));
 ```
 
-#### 1.11.4.2. Lire un élément dans le localStorage
+#### Lire un élément dans le localStorage
 
 ```javascript
 JSON.parse(localStorage.getItem("history"));
 ```
 
-#### 1.11.4.3. Démarche
+#### Démarche
 
 - Adapter le code de ```Home.vue``` pour sauvegarder le résultat dans un tableau d’historique à chaque fois que l’utilisateur enregistre une nouvelle chute.
 - Écrire le code de la page ```History.vue``` pour afficher les valeurs enregistrées.
@@ -678,7 +678,7 @@ Ressources utiles :
 
 Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus nécéssaire que je vous fournisse du code.
 
-## 1.12. Distribuer vos sources
+## Distribuer vos sources
 
 Voilà votre application est maintenant terminée bravo 👏👏. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour ça rien de plus simple il vous suffit de faire
 
@@ -692,7 +692,7 @@ Le résultat de la compilation est dans le dossier ```dist/```
 
 - Héberger le résultat sur un serveur Apache.
 
-## 1.13. Ajouter un mannifest
+## Ajouter un mannifest
 
 Nous allons maintenant ajouter la dernière pierre à notre édifice, le fichier Manifest. Ce fichier décrit le fonctionnement du site Web en tant « qu’application », une fois que ce fichier est en place votre navigateur le lira et adaptera son fonctionnement poru qu’il se rapproche d’une application (Comme une APK).
 
