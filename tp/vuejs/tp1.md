@@ -338,7 +338,7 @@ fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
   return response.json();
 })
 .then(function(response) {
-  app.tache = this.response;
+  app.tache = response;
 })
 .catch(function(error) {
   console.log('Récupération impossible: ' + error.message);
