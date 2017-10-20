@@ -68,7 +68,7 @@ Notre cas étant simple, chaque API sera en réalité un fichier PHP qui se char
 - suppression.php
 - terminer.php
 
-Dans les sources de l’application todo-list, ajouter un dossier ```api``` puis créer les ```4``` fichiers dans le dossier, nous les completerons dans la suite du TP.
+Dans un nouveau dossier (version VueJS du site Web), ajouter un dossier ```api``` puis créer les ```4``` fichiers dans le dossier, nous les completerons dans la suite du TP.
 
 ### L’API pour lister les tâches « liste.php »
 
