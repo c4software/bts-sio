@@ -86,6 +86,7 @@ Voilà un exemple de code pour réaliser un fichier JSON en PHP :
 
 ```php
 <?php
+  session_start();
   header("content-type: application/json");
   // Vérifier si en $_SESSION["todos"] est bien un tableau
   if(is_array($variable)){
