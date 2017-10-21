@@ -89,8 +89,8 @@ Voilà un exemple de code pour réaliser un fichier JSON en PHP :
   session_start();
   header("content-type: application/json");
   // Vérifier si en $_SESSION["todos"] est bien un tableau
-  if(is_array($variable)){
-    echo json_encode($variable);
+  if(is_array($_SESSION["todos"])){
+    echo json_encode($_SESSION["todos"]);
   }else{
     echo json_encode(array());
   }
@@ -101,10 +101,8 @@ Rappel: Avant de pouvoir utiliser la session vous devez faire un ```session_star
 
 C’est à vous, réaliser votre première API.
 
-```php
-<?php
-…
-```
+
+✋ STOP ! En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API utiliser les exemples fourni dans le code actuel (dans le dossier actions/) 
 
 ### L’API de création « creation.php »
 
@@ -149,10 +147,9 @@ Par exemple :
 
 Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-Question:
+Contraintes:
 
-- Comment bloquer l’ajout de TODO vide ?
-- Comment n’autoriser que le POST ?
+- Bloquer l’ajout de TODO vide ($_POST["texte"] == "") ? (en retournant success: false en cas de texte vide)
 
 ### L’API de suppression « suppression.php »
 
@@ -174,8 +171,6 @@ Par exemple :
 {"success": true}
 ```
 
-Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
-
 ### L’API pour marquer une tâche comme « terminée » : « terminer.php »
 
 L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
@@ -185,8 +180,6 @@ Paramètre d’entré :
 | Nom           | Type          | Méthod|
 | ------------- |:-------------:| -----:|
 | id            | string        | GET   |
-
-Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
 ### Valider le fonctionnement : Postman
 
