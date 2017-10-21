@@ -12,6 +12,10 @@ Dans ce TP vous aller découvrir la ligne de commande Cordova et créer votre pr
     - [Ajout d’une plateforme](#ajout-dune-plateforme)
     - [Ajouter une seconde plateforme](#ajouter-une-seconde-plateforme)
     - [Lancer l’application sur votre téléphone](#lancer-lapplication-sur-votre-téléphone)
+        - [1. Activer le mode développeur](#1-activer-le-mode-développeur)
+        - [2. Installer le driver adb pour l’ordinateur](#2-installer-le-driver-adb-pour-lordinateur)
+        - [3. Lancer l’application sur votre mobile](#3-lancer-lapplication-sur-votre-mobile)
+        - [4. Voir / Débugger le code de l’application sur votre mobile](#4-voir--débugger-le-code-de-lapplication-sur-votre-mobile)
     - [Ajouter un premier plugin](#ajouter-un-premier-plugin)
     - [Ajouter un 2nd plugin, l’intégrer dans code JS](#ajouter-un-2nd-plugin-lintégrer-dans-code-js)
 
@@ -113,6 +117,52 @@ Une fois ajouter nous allons pouvoir « lancer » / « compiler » des applicati
 
 
 ## Lancer l’application sur votre téléphone
+
+Maintenant que nous avons notre plateforme de prête lancons l’application sur un téléphone Android (oui, pour iOs il faut un Mac). 
+
+### 1. Activer le mode développeur
+
+Sur votre téléphone, vous devez activer le mode développeur pour lancer une application depuis un ordinateur. Pour l’activer, rendez-vous dans les Paramètres généraux de l’onglet Système, pour ensuite ouvrir le volet À propos de l’appareil. Une fois que cela est fait, il vous suffit de tapoter par quatre fois le Numéro de Build pour débloquer les Options pour les développeurs.
+
+Le mode développeur débloque les options « avancé » de votre téléphone Android. Vous allez pouvoir activer le lancement à distance d’application (avec adb).
+
+Dans le nouveau Menu activer :
+
+- Le mode débogage USB pour copier des données entre le terminal et l’ordinateur, installer des applications sur votre appareil.
+
+### 2. Installer le driver adb pour l’ordinateur
+
+Votre téléphone est un périphérique usb comment un autre, pour dialoguer avec votre ordinateur à besoin d’un driver. De base votre téléphone est une sorte de « clef usb ». Une fois le debug actif il va devenir un « Android Debug Bridge Device ». Ce mode la n’est par défaut pas connu par Windows (quelques soit la version), vous devez donc installer un driver. Nous allons utiliser « Universal Adb Drivers » fourni par Clockworkmod :
+
+- Brancher votre téléphone au PC.
+- [Télécharger](https://adb.clockworkmod.com/)
+
+### 3. Lancer l’application sur votre mobile 
+
+Maintenant que votre mobile est reconnu (il faut peut-être débrancher et rebrancher votre mobile pour que ça fonctionne à 100%), nous allons lancer l’application sur votre mobile, pour ça c’est très simple il suffit de faire sur votre ordinateur :
+
+```shell
+cordova run android
+```
+
+### 4. Voir / Débugger le code de l’application sur votre mobile
+
+Maintenant que l’application fonctionne sur votre mobile, vous pouvez le débugger en temps réel. Les modifications ne sont bien sur par permanente par contre elle vous permette de tester des modifications sans pour autant avoir a recompiler votre application. Pour ça rien de plus simple il suffit d’utiliser Google Chrome, dans les options « avancés » de Chrome nous avons le remote debbugging et c’est cette option qui nous intéresse :
+
+- Ouvrez un nouvelle onglet Chrome [chrome://inspect/#devices](chrome://inspect/#devices) 
+
+![Remote](./ressources/remote_debug.png)
+
+- Patientez quelques secondes votre mobile doit appairaitre dans la liste.
+
+![Remote](./ressources/remote_debug_show.png)
+Votre application (ainsi que vos Tabs Chrome) doit apparaitre dans la liste
+
+- Séléctionnez le « Inspect » qui correspond à votre application.
+
+![inspect](./ressources/inspect.png)
+
+Tenter des choses dans la « Console » qui vient de s’ouvrir.
 
 ## Ajouter un premier plugin
 
