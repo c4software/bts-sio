@@ -280,7 +280,7 @@ if(self.fetch) {
 }
 ```
 
-Appeler une API grâce à Fetch :
+Par exemple, pour appeler l’API liste :
 
 ```javascript
 fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
