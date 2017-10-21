@@ -20,6 +20,10 @@ Dans ce TP vous aller découvrir la ligne de commande Cordova et créer votre pr
         - [1. Ajouter un plugin](#1-ajouter-un-plugin)
         - [2. Utiliser le plugin](#2-utiliser-le-plugin)
         - [3. Modifier le code de démo](#3-modifier-le-code-de-démo)
+    - [Ajouter un second plugin](#ajouter-un-second-plugin)
+        - [1. Ajouter le plugin](#1-ajouter-le-plugin)
+        - [2. Ajouter la configuration du plugin](#2-ajouter-la-configuration-du-plugin)
+        - [3. Lancer l’application pour voir le changement](#3-lancer-lapplication-pour-voir-le-changement)
 
 <!-- /TOC -->
 
@@ -228,3 +232,35 @@ Modifier le code de démonstration pour utiliser le plugin de manière permanent
 - Ajouter un bouton.
 - Ajouter un fonction javascript pour déclencher la caméra
 - Ajouter un événement ```onClick``` sur le bouton que vous avez créé
+
+
+## Ajouter un second plugin
+
+Pour le second plugin nous allons ajouter un plugin qui n’as pas comme vocation direct d’éxposer un bridge en Javascript. Nous allons ajouter un plugin qui intégre encore un peu plus une application hybride dans le système Android  ```cordova-plugin-headercolor```
+
+Le plugin permet de :
+
+- HeaderColor is a cordova plugin to change color of header in multitask view. Android devices.
+
+Les sources du plugin sont [disponibles ici](https://github.com/tomloprod/cordova-plugin-headercolor)
+
+### 1. Ajouter le plugin
+
+```shell
+cordova plugin add cordova-plugin-headercolor
+```
+
+### 2. Ajouter la configuration du plugin
+
+Ajouter dans le fichier ```config.xml``` l’élément suivant :
+
+```xml
+<preference name="HeaderColor" value="#2959cb" />
+```
+
+
+### 3. Lancer l’application pour voir le changement
+
+```shell
+cordova run android
+```
