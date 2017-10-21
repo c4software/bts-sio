@@ -23,11 +23,11 @@ Support de cours &amp; TP pour le BTS SIO
 - [TP2: Réaliser une application avec VueJS](tp/vuejs/tp2.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/vuejs/README.md)
 
-## [WIP] Cordova + VueJS
+## Cordova + VueJS
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/cordova/) ([Les sources](cours/cordova))
 - [TP Découverte](./tp/cordova/decouverte.md)
-- [TP VueJS + Cordova](./tp/cordova/vuejs_cordova.md)
+- [[WIP] TP VueJS + Cordova](./tp/cordova/vuejs_cordova.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/cordova/README.md)
 - [Projet Démo VueJS + Cordova](https://github.com/c4software/vuejs-cordova-sample)
 
