@@ -17,7 +17,9 @@ Dans ce TP vous aller découvrir la ligne de commande Cordova et créer votre pr
         - [3. Lancer l’application sur votre mobile](#3-lancer-lapplication-sur-votre-mobile)
         - [4. Voir / Débugger le code de l’application sur votre mobile](#4-voir--débugger-le-code-de-lapplication-sur-votre-mobile)
     - [Ajouter un premier plugin](#ajouter-un-premier-plugin)
-    - [Ajouter un 2nd plugin, l’intégrer dans code JS](#ajouter-un-2nd-plugin-lintégrer-dans-code-js)
+        - [1. Ajouter un plugin](#1-ajouter-un-plugin)
+        - [2. Utiliser le plugin](#2-utiliser-le-plugin)
+        - [3. Modifier le code de démo](#3-modifier-le-code-de-démo)
 
 <!-- /TOC -->
 
@@ -166,4 +168,63 @@ Tenter des choses dans la « Console » qui vient de s’ouvrir.
 
 ## Ajouter un premier plugin
 
-## Ajouter un 2nd plugin, l’intégrer dans code JS
+Cordova fonctionne avec des plugins, à chaque fois que vous voulez utiliser une fonctionnalité « native » de votre mobile vous devez installer un plugin. Les plugins sont une combinaison de :
+
+- Le code natif (Android, iOs, …)
+- Un bridge (interface de communication) Javascript.
+
+Les plugins sont disponible en ligne sur le site :
+
+- [Plugin Cordova](https://cordova.apache.org/plugins/)
+
+Comme toujours, il est possible de trouver des plugins (non officel) sur Gitub par exemple, cependant il faut faire attention à leur contenu (il vaux mieux être prudent…).
+
+### 1. Ajouter un plugin
+
+Pour ajouter un plugin il suffit de faire :
+
+```shell
+cordova plugin add <monPlugin>
+```
+
+Pour l’exemple nous allons ajouter le plugin ```cordova-plugin-camera```
+
+```shell
+cordova plugin add cordova-plugin-camera
+```
+
+Quelques secondes plus tard votre application est ```capable``` d’utiliser la Caméra de votre téléphone 🎉🎉
+
+### 2. Utiliser le plugin
+
+Pour le test nous allons utiliser la console pour tester le plugin :
+
+- Lancer/Compiler l’application à nouveau sur votre mobile :
+
+```shell
+cordova run android
+```
+
+- Lancer le Remote Debug sur Chrome.
+- Dans la console qui vient de s’ouvrir faite :
+
+```javascript
+function cameraSuccess(i){
+    console.log(i);
+}
+
+function cameraError(e){
+    console.log(e)
+}
+navigator.camera.getPicture(cameraSuccess, cameraError, {});
+```
+
+Le ```{}``` est la liste des options, tester quelques options [disponible ici](https://www.npmjs.com/package/cordova-plugin-camera#module_camera.CameraOptions)
+
+### 3. Modifier le code de démo
+
+Modifier le code de démonstration pour utiliser le plugin de manière permanente.
+
+- Ajouter un bouton.
+- Ajouter un fonction javascript pour déclencher la caméra
+- Ajouter un événement ```onClick``` sur le bouton que vous avez créé
