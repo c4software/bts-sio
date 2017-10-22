@@ -527,7 +527,6 @@ Comme vous l’avez certainement constaté les deux dernières actions sont trè
 
 Quelques pistes pour allez plus loin dans le code :
 
-
 ##### Ajouter des confirmations
 
  Ajout des confirmations avant les actions « marquer comme terminée » et l’action suppression.
