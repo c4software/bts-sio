@@ -18,7 +18,7 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
         - [1. Compliler une première fois le code](#1-compliler-une-première-fois-le-code)
         - [2. Ajouter la plateforme](#2-ajouter-la-plateforme)
         - [3. Lancer sur votre mobile](#3-lancer-sur-votre-mobile)
-    - [Ajouter une « première Vue »](#ajouter-une-«-première-vue-»)
+    - [Ajouter la vue Localisation](#ajouter-la-vue-localisation)
 
 <!-- /TOC -->
 
@@ -106,7 +106,7 @@ cordova run android
 
 ✋ Votre mobile doit-être connecté à cet étape, l’application va se lancer directement sur votre mobile. Si ce n’est pas le cas il vous faut un émulateur Android sur votre machine.
 
-## Ajouter une « première Vue » 
+## Ajouter la vue Localisation
 
 Pour commencer nous allons ajouter la vue « Localisation ». C’est certainement la plus compliqué de toutes. Par contre c’est celle qui est la plus intéréssante en terme de fonctionnement 
 
