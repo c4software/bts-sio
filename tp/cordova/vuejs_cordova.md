@@ -20,6 +20,8 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
         - [3. Lancer sur votre mobile](#3-lancer-sur-votre-mobile)
     - [Ajouter la vue Localisation](#ajouter-la-vue-localisation)
     - [Ajouter la vue Vibration](#ajouter-la-vue-vibration)
+        - [1. Le code](#1-le-code)
+        - [2. La route](#2-la-route)
 
 <!-- /TOC -->
 
@@ -257,10 +259,12 @@ $ cordova run android
 
 Cette vue est très simple, elle a pour but d’utiliser le plugin vibration. Avant de faire le code, je vous propose de regarder la documentation du plugin [cordova-vibrate](https://github.com/apache/cordova-plugin-vibration#vibrate-recommended). Une fois la documentation lu. Passons à l’écriture de la vue.
 
-L’écriture de la vue va se dérouler en 3 étapes :
+L’écriture de la fonctionnalitée va se dérouler en 3 étapes :
 
 - Création de ```Vibration.vue``` dans ```views```.
 - Écriture de code de la vue.
 - Déclaration de la route.
 
-TODO
+### 1. Le code
+
+### 2. La route
