@@ -22,6 +22,9 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
     - [Ajouter la vue Vibration](#ajouter-la-vue-vibration)
         - [1. Le code](#1-le-code)
         - [2. La route](#2-la-route)
+    - [Ajouter la vue Flash](#ajouter-la-vue-flash)
+        - [1. Le code](#1-le-code-1)
+        - [2. La route](#2-la-route-1)
 
 <!-- /TOC -->
 
@@ -264,6 +267,23 @@ L’écriture de la fonctionnalitée va se dérouler en 3 étapes :
 - Création de ```Vibration.vue``` dans ```views```.
 - Écriture de code de la vue.
 - Déclaration de la route.
+
+### 1. Le code
+
+### 2. La route
+
+
+## Ajouter la vue Flash
+
+Une lampe torche c’est fun non ? Et bien nous allons réaliser une nouvelle page qui aura pour simple but d’allumer (ou éteindre) le flash de votre téléphone. Pour ça nous allons utiliser le plugin ```cordova-plugin-flashlight```, avant d’écrire de code nous allons lire la documentation à [l’adresse suivante](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin). C’est fait ? Bien passons au code.
+
+L’écriture va se dérouler en 3 étapes :
+
+- Création de ```Flash.vue``` dans ```views```.
+- Écriture de code de la vue.
+- Déclaration de la route.
+
+✋ Petite subtilité! N’oubliez pas VueJS propose une gestion du cycle de vie. Dans cette vue ça vas nous servir. Nous allons utiliser le ```beforeDestroy``` pour éteindre la lampe si celle si est allumée. 
 
 ### 1. Le code
 
