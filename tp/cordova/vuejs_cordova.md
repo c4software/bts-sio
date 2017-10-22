@@ -25,6 +25,7 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
     - [Ajouter la vue Flash](#ajouter-la-vue-flash)
         - [1. Le code](#1-le-code-1)
         - [2. La route](#2-la-route-1)
+    - [Ajouter la vue Camera](#ajouter-la-vue-camera)
 
 <!-- /TOC -->
 
@@ -272,7 +273,6 @@ L’écriture de la fonctionnalitée va se dérouler en 3 étapes :
 
 ### 2. La route
 
-
 ## Ajouter la vue Flash
 
 Une lampe torche c’est fun non ? Et bien nous allons réaliser une nouvelle page qui aura pour simple but d’allumer (ou éteindre) le flash de votre téléphone. Pour ça nous allons utiliser le plugin ```cordova-plugin-flashlight```, avant d’écrire de code nous allons lire la documentation à [l’adresse suivante](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin). C’est fait ? Bien passons au code.
@@ -288,3 +288,13 @@ L’écriture va se dérouler en 3 étapes :
 ### 1. Le code
 
 ### 2. La route
+
+## Ajouter la vue Camera
+
+Après le flash, pourquoi ne pas prendre une photo? Et bien avec Cordova c’est très simple. En quelques bout de code Javascript vous allez pouvoir utiliser l’appareil photo du téléphone. Nous allons utiliser le plugin ```cordova-plugin-camera```, avant d’attaquer le code regarder la documentation [disponible ici](https://github.com/apache/cordova-plugin-camera#api-reference-)
+
+L’écriture va se dérouler en 3 étapes :
+
+- Création de ```Camera.vue``` dans ```views```.
+- Écriture de code de la vue.
+- Déclaration de la route.
