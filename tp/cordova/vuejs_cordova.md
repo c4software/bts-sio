@@ -94,7 +94,7 @@ npm run build
 - ```build/build.js```
 - ```config/index.js```
 
-Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normal.
+Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normal. Notamment le la partie concernant le file://, cordova utilise l’URI ```file://``` pour servir les ressources dans l’APK, par défaut les développeur de VueCLI on mis des liens avec ```/``` en dur ce qui pose des soucis. J’ai donc remplacé le ```/``` par ```./``` ce qui corrige le soucis. 
 
 Maintenant que le « build » est terminé nous pouvons réaliser le lancement sur le mobile via les commandes suivantes :
 
