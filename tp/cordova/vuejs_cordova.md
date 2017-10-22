@@ -26,6 +26,9 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
         - [1. Le code](#1-le-code-1)
         - [2. La route](#2-la-route-1)
     - [Ajouter la vue Camera](#ajouter-la-vue-camera)
+        - [1. Le code](#1-le-code-2)
+        - [2. La route](#2-la-route-2)
+    - [Fonction avancée le NFC](#fonction-avancée-le-nfc)
 
 <!-- /TOC -->
 
@@ -298,3 +301,12 @@ L’écriture va se dérouler en 3 étapes :
 - Création de ```Camera.vue``` dans ```views```.
 - Écriture de code de la vue.
 - Déclaration de la route.
+
+### 1. Le code
+
+### 2. La route
+
+
+## Fonction avancée le NFC
+
+TODO
