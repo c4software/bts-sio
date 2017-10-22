@@ -23,6 +23,15 @@ Nous allons réaliser une application qui tests plusieurs plugin Cordova. Cette 
 
 ![Exemple](https://github.com/c4software/vuejs-cordova-sample/raw/master/demo.png)
 
-Cette application sera très simple. Mais va permettre de tester la puissance de Cordova.
+Cette application sera très simple. Mais va permettre de tester la puissance de Cordova, nous allons utiliser les plugins suivants 
+
+- cordova-plugin-dialogs
+- cordova-plugin-vibration
+- cordova-plugin-geolocation
+- cordova-plugin-flashlight
+- cordova-plugin-camera
+- phonegap-nfc
+- cordova-plugin-statusbar
+- cordova-plugin-headercolor
 
 ## Le code
