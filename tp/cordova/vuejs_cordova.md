@@ -29,6 +29,8 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
         - [1. Le code](#1-le-code-2)
         - [2. La route](#2-la-route-2)
     - [Fonction avancée le NFC](#fonction-avancée-le-nfc)
+        - [1. Le code](#1-le-code-3)
+        - [2. La route](#2-la-route-3)
 
 <!-- /TOC -->
 
@@ -274,7 +276,24 @@ L’écriture de la fonctionnalitée va se dérouler en 3 étapes :
 
 ### 1. Le code
 
+
 ### 2. La route
+
+- Ajouter l’import dans ```router/index.js``` :
+
+```js
+import Vibration from '@/views/Vibration'
+```
+
+- Ajouter l’élément ***au bon endroit*** suivant dans ```router/index.js``` :
+
+```js
+{
+    path: '/vibration',
+    name: 'Vibration',
+    component: Vibration
+}
+```
 
 ## Ajouter la vue Flash
 
@@ -292,6 +311,22 @@ L’écriture va se dérouler en 3 étapes :
 
 ### 2. La route
 
+- Ajouter l’import dans ```router/index.js``` :
+
+```js
+import Flash from '@/views/Flash'
+```
+
+- Ajouter l’élément ***au bon endroit*** suivant dans ```router/index.js``` :
+
+```js
+{
+    path: '/flash',
+    name: 'Flash',
+    component: Flash
+}
+```
+
 ## Ajouter la vue Camera
 
 Après le flash, pourquoi ne pas prendre une photo? Et bien avec Cordova c’est très simple. En quelques bout de code Javascript vous allez pouvoir utiliser l’appareil photo du téléphone. Nous allons utiliser le plugin ```cordova-plugin-camera```, avant d’attaquer le code regarder la documentation [disponible ici](https://github.com/apache/cordova-plugin-camera#api-reference-)
@@ -306,6 +341,22 @@ L’écriture va se dérouler en 3 étapes :
 
 ### 2. La route
 
+- Ajouter l’import dans ```router/index.js``` :
+
+```js
+import Vibration from '@/views/Camera'
+```
+
+- Ajouter l’élément ***au bon endroit*** suivant dans ```router/index.js``` :
+
+```js
+{
+    path: '/camera',
+    name: 'Camera',
+    component: Camera
+}
+```
+
 
 ## Fonction avancée le NFC
 
@@ -316,3 +367,7 @@ L’écriture va se dérouler en 3 étapes :
 - Création de ```Nfc.vue``` dans ```views```.
 - Écriture de code de la vue.
 - Déclaration de la route.
+
+### 1. Le code
+
+### 2. La route
