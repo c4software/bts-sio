@@ -309,4 +309,10 @@ L’écriture va se dérouler en 3 étapes :
 
 ## Fonction avancée le NFC
 
-TODO
+Il est également possible d’intéragir avec la « puce » NFC de votre mobile (si équipé bien sur). Comme toujours ça passe par un plugin ```phonegap-nfc``` le plugin est plus complet, mais par contre la lecture du serial number est plutôt simple. C’est ce que l’on va voir dans cette partie.
+
+L’écriture va se dérouler en 3 étapes :
+
+- Création de ```Nfc.vue``` dans ```views```.
+- Écriture de code de la vue.
+- Déclaration de la route.
