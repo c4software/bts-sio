@@ -337,6 +337,68 @@ L’écriture va se dérouler en 3 étapes :
 
 ### 1. Le code
 
+Voici la structure de code. Je vous laisse la compléter
+
+✋ N’oublier pas de gérer le ```beforeDestroy``` pour stoper le flash en changeant de « page »
+
+```js
+<template>
+  <div class="middle-centered">
+    <v-btn v-on:click="toggle">{{ btnTitle }}</v-btn>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'flash',
+    mounted(){
+      // Set the ButtonTitle according the plugin state
+      this.setBtnTitle();
+    },
+    beforeDestroy(){
+      // When the view is destroyed turnoff the flashlight
+      // TODO
+    },
+    data: () => {
+      return {
+        btnTitle: ""
+      }
+    },
+    methods: {
+      pluginInstalled() {
+        // Check if the cordova Flashlight is available
+        return (typeof(plugins) !== "undefined" && typeof(window.plugins.flashlight) !== "undefined");
+      },
+      toggle() {
+        if (this.pluginInstalled()){
+          // Toggle the flashlight state
+          // TODO Call The plugin
+        }
+      },
+      switchOff() {
+        if (this.pluginInstalled()){
+          // Turn off the flashlight led
+          // TODO Call The plugin
+        }
+      },
+      setBtnTitle() {
+        // Manage the button title state
+        if (this.pluginInstalled()){
+          // Test if flashlight is On ?
+          if (window.plugins.flashlight.isSwitchedOn()){
+            this.btnTitle = this.$t("flashlight.stop");
+          }else{
+            this.btnTitle = this.$t("flashlight.start");
+          }
+        }else{
+          this.btnTitle = this.$t("flashlight.notAvailable");
+        }
+      }
+    }
+  }
+</script>
+```
+
 ### 2. La route
 
 - Ajouter l’import dans ```router/index.js``` :
