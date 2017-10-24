@@ -276,6 +276,34 @@ L’écriture de la fonctionnalitée va se dérouler en 3 étapes :
 
 ### 1. Le code
 
+Le projet étant déjà réalisé le plugin est déjà installé, il nous suffit donc d’écrire le de la vue. Je vous laisse la base du code, je vous laisse écrire le code permettant la vibration :
+
+```js
+// Require Cordova plugin : cordova-plugin-vibration
+
+<template>
+  <div class="middle-centered">
+    <v-btn v-on:click="doVibrate">{{$t("startVibration")}}</v-btn>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'vibration',
+    methods: {
+      doVibrate () {
+        // Test si la vibration est disponible
+        if (navigator.vibrate){
+            // Code 
+        }else{
+          console.error("[cordova-plugin-vibration] Is required to use this function");
+        }
+      }
+    }
+  }
+</script>
+```
+
 
 ### 2. La route
 
