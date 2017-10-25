@@ -29,8 +29,6 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
         - [1. Le code](#1-le-code-2)
         - [2. La route](#2-la-route-2)
     - [Fonction avancée le NFC](#fonction-avancée-le-nfc)
-        - [1. Le code](#1-le-code-3)
-        - [2. La route](#2-la-route-3)
 
 <!-- /TOC -->
 
@@ -429,6 +427,58 @@ L’écriture va se dérouler en 3 étapes :
 
 ### 1. Le code
 
+Pour la caméra, nous allons « juste » faire une simple vue qui permet de lancer l’appareil photo et on affichera l’image prise dans l’application (Tester différentes options pour regarder le fonctionnement du plugin). Voici la structure de code :
+
+```js
+<template>
+  <div class="middle-centered">
+    <div class="text-center">
+      <img v-if='imagePath !== ""' v-bind:src="imagePath">
+      <v-btn v-on:click="takePicture">{{$t("takePhoto")}}</v-btn>
+    </div>
+  </div>
+</template>
+<script>
+  import {nativeAlert} from "../libs/index";
+
+  export default {
+    name: 'camera',
+    data() {
+      return {
+        imagePath: ""
+      }
+    },
+    methods: {
+      // Use the camera plugin to capture image
+      takePicture() {
+        if (navigator.camera) {
+          navigator.camera.getPicture(this.setPicture, {}, {});
+        }else{
+          // If the navigator.camera is not available display generic error to the user.
+          this.error();
+        }
+      },
+      // Set the picture path in the data of the vue
+      // this action will automatically update the view.
+      setPicture(imagePath){
+        this.imagePath = imagePath;
+      },
+      error(){
+        nativeAlert(this.$t("error"));
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  img{
+    width: 50%;
+    display: block;
+    margin: auto;
+  }
+</style>
+```
+
 ### 2. La route
 
 - Ajouter l’import dans ```router/index.js``` :
@@ -457,7 +507,3 @@ L’écriture va se dérouler en 3 étapes :
 - Création de ```Nfc.vue``` dans ```views```.
 - Écriture de code de la vue.
 - Déclaration de la route.
-
-### 1. Le code
-
-### 2. La route
