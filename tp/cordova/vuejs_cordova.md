@@ -28,7 +28,7 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
     - [Ajouter la vue Camera](#ajouter-la-vue-camera)
         - [1. Le code](#1-le-code-2)
         - [2. La route](#2-la-route-2)
-    - [Fonction avancée le NFC](#fonction-avancée-le-nfc)
+    - [Un peu plus? Oui! Le NFC](#un-peu-plus-oui-le-nfc)
         - [1. Le code](#1-le-code-3)
         - [2. La route](#2-la-route-3)
 
@@ -500,7 +500,7 @@ import Vibration from '@/views/Camera'
 ```
 
 
-## Fonction avancée le NFC
+## Un peu plus? Oui! Le NFC
 
 Il est également possible d’intéragir avec la « puce » NFC de votre mobile (si équipé bien sur). Comme toujours ça passe par un plugin ```phonegap-nfc``` le plugin est plus complet, mais par contre la lecture du serial number est plutôt simple. C’est ce que l’on va voir dans cette partie.
 
