@@ -36,9 +36,13 @@
 		<![endif]-->
 
 		<style>
-			.reveal p{
+			.reveal p, .reveal ul{
 				margin-bottom: 40px;
 			}
+			strong{
+				color: #f4645f;
+			}
+
 		</style>
 
 	</head>
@@ -58,7 +62,7 @@
 				</section>
 
 				<section>
-					<h1>Laravel c’est ?</h1>
+					<h2>Laravel c’est ?</h2>
 					<ul>
 						<li>Un framework</li>
 						<li>Gratuit et Open-Source</li>
@@ -70,18 +74,19 @@
 				</section>
 
 				<section>
-					<h1>Historique</h1>
+					<h2>Historique</h2>
 					<ul>
 						<li>Taylor Otwell</li>
 						<li>2011: Création</li>
 						<li>2016: Projet PHP le mieux noté sur GitHub</li>
 					</ul>
+					<br><br>
 					<p>La communautée c’est rapidement formée autour du projet. C’est bon signe!</p>
 				</section>
 
 
 				<section>
-					<h1>La vision…</h1>
+					<h2>La vision…</h2>
 					<p>
 						Taylor Otwell, était un utilisateur de CodeIgniter. <strong>Mais</strong> il le trouvais trop compliquer, trop lourd, et chaque modification était trop complexe…
 					</p>
@@ -94,7 +99,7 @@
 				</section>
 
 				<section>
-					<h1>L’histoire</h1>
+					<h2>L’histoire</h2>
 					<ul>
 						<li>V1, V2: Le début, les versions sont rapidement disponible. Système de routes, et controller MVC très simple.</li>
 						<li>V3: Février 2012, Boom de la popularité.</li>
@@ -107,7 +112,7 @@
 				</section>
 
 				<section>
-					<h1>Zoom sur Composer</h1>
+					<h2>Zoom sur Composer</h2>
 					<ul>
 						<li>Partage simple des dépendances</li>
 						<li>Multi-plateforme</li>
@@ -116,23 +121,23 @@
 				</section>
 
 				<section>
-					<h1>L’histoire… (maintenant)</h1>
+					<h2>L’histoire… (maintenant)</h2>
 					<ul>
 						<li>5.5: Version actuelle (Support de PHP 7)</li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>Architecture</h1>
+					<h2>Architecture</h2>
 					<ul>
-						<li>Model : La base de données (ORM: Eloquent).</li>
-						<li>Vue : Gestion du HTML (Moteur de template : Blade).</li>
-						<li>Controller: Gestion des requêtes et génère le contenu.</li>
+						<li><strong>Model</strong>: La base de données (ORM: Eloquent).</li>
+						<li><strong>Vue</strong>: Gestion du HTML (Moteur de template : Blade).</li>
+						<li><strong>Controller</strong>: Gestion des requêtes et génère le contenu.</li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>ORM ?</h1>
+					<h2>ORM ?</h2>
 					<img src="./img/what.gif">
 				</section>
 
@@ -143,7 +148,7 @@
 				</section>
 
 				<section>
-					<h1>Du PHP Objet ?</h1>
+					<h2>Du PHP Objet ?</h2>
 					<ul>
 						<li>Logique découpé dans des classes avec des comportements et des fonctionnements propres.</li>
 						<li>Plus simple, plus maintenante, plus facilement <strong>TESTABLE</strong></li>
@@ -156,30 +161,30 @@
 				</section>
 
 				<section>
-					<h1>Comment ça fonctionne ?</h1>
+					<h2>Comment ça fonctionne ?</h2>
 				</section>
 
 				<section>
-					<h1>Les « routes »</h1>
+					<h2>Les « routes »</h2>
 					<ul>
 						<li>Gestion des URL de l’application</li>
 					</ul>
 					<h3>3 fichiers</h3>
 					<ul>
-						<li>web.php : Gestion des urls pour le « web »</li>
-						<li>api.php : Gestion des urls pour les API.</li>
-						<li>console.php: Gestion des commandes pour la console Laravel</li>
+						<li><strong>web.php</strong>: Gestion des urls pour le « web »</li>
+						<li><strong>api.php</strong>: Gestion des urls pour les API.</li>
+						<li><strong>console.php</strong>: Gestion des commandes pour la console Laravel</li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>Un exemple</h1>
+					<h2>Un exemple</h2>
 				</section>
 
 				<section>
 					<pre><code data-trim>
 Route::get('/', function () {
-	return "Bonjour Monde";
+  return "Bonjour Monde";
 });
 					</code></pre>
 				</section>
@@ -211,7 +216,7 @@ Route::get('/', function () {
 				center: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Parallax scrolling
 				//parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
