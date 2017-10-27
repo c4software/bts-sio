@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>VueJS</title>
+		<title>Laravel</title>
 
 		<meta name="description" content="Du Web 1.0 à l'application mobile">
 		<meta name="author" content="Valentin Brosseau">
@@ -187,6 +187,21 @@ Route::get('/', function () {
   return "Bonjour Monde";
 });
 					</code></pre>
+				</section>
+
+				<section>
+						<h3>Avec des paramètres</h3>
+						<pre><code data-trim>
+Route::get('/demo/{id}', "demo@voir");
+						</code></pre>
+						<p>Consulter la page <strong>/demo/3</strong> chargera automatiquement le bon controller et la bonne méthode en passant le paramètre <strong>3</strong></p>
+				</section>
+
+				<section>
+						<h3>Et pour le POST ?</h3>
+						<pre><code data-trim>
+Route::post('/demo/ajout', "demo@ajout");
+						</code></pre>
 				</section>
 
 				<section>
