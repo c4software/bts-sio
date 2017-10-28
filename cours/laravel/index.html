@@ -325,23 +325,29 @@ class Demo extends Controller
 				</section>
 
 				<section>
-						<pre><code data-trim>
-	<?php
-	
-	namespace App\Http\Controllers;
-	use App\Http\Controllers\Controller;
-	
-	class Demo extends Controller
-	{
-		public function voir($id)
-		{
-			return "Identifiant => ".$id;
-		}
-	}
+					<pre><code data-trim>
 					</code></pre>
 				</section>
 
-				
+				<section>
+					<h2>La sécurité</h2>
+					<p>Exemple le CSRF</p>
+				</section>
+
+				<section>
+					<pre><code data-trim>
+<form method="POST" action="/profile">
+	{{ csrf_field() }}
+	...
+</form>					
+					</code></pre>
+					<p>La vérification côté serveur est <strong>automatique</strong></p>
+				</section>
+
+				<section>
+					<h3>Des questions ?</h3>
+					<p>(Il doit y en avoir beaucoup)</p>
+				</section>
 
 			</div>
 		</div>
