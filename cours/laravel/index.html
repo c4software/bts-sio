@@ -260,6 +260,23 @@ Route::post('/demo/ajout', "demo@ajout");
 				</section>
 
 				<section>
+					<pre><code data-trim>
+<?php
+
+namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
+
+class Demo extends Controller
+{
+	public function voir($id)
+	{
+		return "Identifiant => ".$id;
+	}
+}
+					</code></pre>
+				</section>
+
+				<section>
 					<h3>Des questions ?</h3>
 					<p>(Il doit y en avoir beaucoup)</p>
 				</section>
