@@ -316,9 +316,32 @@ class Demo extends Controller
 				</section>
 
 				<section>
-					<h3>Des questions ?</h3>
-					<p>(Il doit y en avoir beaucoup)</p>
+					<h2>Les modeles</h2>
+					<p>La représentation en objet de la base de données</p>
 				</section>
+
+				<section>
+					<h2>Exemple</h2>
+				</section>
+
+				<section>
+						<pre><code data-trim>
+	<?php
+	
+	namespace App\Http\Controllers;
+	use App\Http\Controllers\Controller;
+	
+	class Demo extends Controller
+	{
+		public function voir($id)
+		{
+			return "Identifiant => ".$id;
+		}
+	}
+					</code></pre>
+				</section>
+
+				
 
 			</div>
 		</div>
