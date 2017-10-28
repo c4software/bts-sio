@@ -210,6 +210,45 @@
 				</section>
 
 				<section>
+					<h2>Installation</h2>
+					<pre><code data-trim>
+$ composer global require "laravel/installer"
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Créer un projet</h2>
+					<pre><code data-trim>
+$ laravel new exemple
+laravel new exemple
+Crafting application...
+Loading composer repositories with package information
+Installing dependencies (including require-dev) from lock file
+Package operations: 68 installs, 0 updates, 0 removals
+  - Installing doctrine/inflector (v1.2.0): Loading from cache
+  - Installing doctrine/lexer (v1.0.1): Loading from cache
+  - Installing erusev/parsedown (1.6.3): Loading from cache
+[…]
+Application ready! Build something amazing.
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Gérer l’application créée</h2>
+					<code><pre data-trim>
+$ php artisan
+Laravel Framework 5.5.19
+
+Usage:
+command [options] [arguments]
+
+Options:
+-h, --help            Display this help message
+[…]	
+					</pre></code>
+				</section>
+
+				<section>
 					<h2>Les « routes »</h2>
 					<ul>
 						<li>Gestion des URL de l’application</li>
