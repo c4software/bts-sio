@@ -440,14 +440,14 @@ Route::get('/', function () {
 				<section>
 					<h2>Les directives « Blade »</h2>
 					<ul>
-						<li>@if, @elseif, @else et @endif</li>
-						<li>@switch, @case, @break, @default et @endswitch</li>
-						<li>@for, @endfor</li>
-						<li>@foreach, @endforeach</li>
-						<li>@forelse, @empty, @endforelse <= Permet d’afficher autre chose si pas de données dans la boucle</li>
-						<li>@include('view.name') <= Inclusion d’une autre vue</li>
-						<li>@includeWhen($boolean, 'view.name') <= Inclusion conditionnelle</li>
-						<li>@auth, @guest <= Gestion des droits d’accès</li>
+						<li><strong>@if</strong>, <strong>@elseif</strong>, <strong>@else</strong> et <strong>@endif</strong></li>
+						<li><strong>@switch</strong>, <strong>@case</strong>, <strong>@break</strong>, <strong>@default</strong> et <strong>@endswitch</strong></li>
+						<li><strong>@for</strong>, <strong>@endfor</strong></li>
+						<li><strong>@foreach</strong>, <strong>@endforeach</strong></li>
+						<li><strong>@forelse</strong>, <strong>@empty</strong>, <strong>@endforelse</strong> <= Permet d’afficher autre chose si pas de données dans la boucle</li>
+						<li><strong>@include</strong>('view.name') <= Inclusion d’une autre vue</li>
+						<li><strong>@include</strong>When($boolean, 'view.name') <= Inclusion conditionnelle</li>
+						<li><strong>@auth</strong>, <strong>@guest</strong> <= Gestion des droits d’accès</li>
 					</ul>
 				</section>
 
@@ -482,6 +482,12 @@ Route::get('/', function () {
 </form>					
 					</code></pre>
 					<p>La vérification côté serveur est <strong>automatique</strong></p>
+				</section>
+
+				<section>
+					<h2>L’authentification</h2>
+					<p>Intégré dans Laravel, s’initialise simple en suivant la documentation</p>
+					<a href="https://laravel.com/docs/5.5/authentication">En savoir plus</a>
 				</section>
 
 				<section>
