@@ -387,6 +387,8 @@ $ php artisan migrate
 use App\TodoList;
 
 $todos = App\TodoList::all();
+// Ou pour le Todo avec l’identifiant « 42 »
+$todo = App\TodoList::find(42);
 					</code></pre>
 				</section>
 
@@ -406,6 +408,20 @@ $todos = App\TodoList::all();
 $users = DB::table('users')->paginate(15);
 // Ou avec un where
 $users = User::where('votes', '>', 100)->paginate(15);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Eloquent : Mettre à jour un enregistrement</h2>
+					<pre><code data-trim>
+// Rechercher celui avec l’id 1
+$todo = App\TodoList::find(1)->first();
+
+// Le passer à terminer
+$todo->termine = true;
+
+// Le sauvegarder en base de données
+$todo->save();		
 					</code></pre>
 				</section>
 
