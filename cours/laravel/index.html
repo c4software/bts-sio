@@ -412,6 +412,18 @@ $users = User::where('votes', '>', 100)->paginate(15);
 				</section>
 
 				<section>
+					<h2>Eloquent : Créer un enregistrement</h2>
+					<pre><code data-trim>
+// Créer une Todo
+App\TodoList::create(array(
+	'texte'    	   => 'Super Cool',
+	'termine'      => false
+));
+// La sauvegarde est automatique.
+					</code></pre>
+				</section>
+
+				<section>
 					<h2>Eloquent : Mettre à jour un enregistrement</h2>
 					<pre><code data-trim>
 // Rechercher celui avec l’id 1
