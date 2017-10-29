@@ -385,6 +385,8 @@ $flights = App\Flight::all();
 					<pre><code data-trim>
 <?php
 $users = DB::table('users')->paginate(15);
+// Ou avec un where
+$users = User::where('votes', '>', 100)->paginate(15);
 					</code></pre>
 				</section>
 					
