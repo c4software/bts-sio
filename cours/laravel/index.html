@@ -451,6 +451,23 @@ Route::get('/', function () {
 					</ul>
 				</section>
 
+				<section>
+					<h2>@stack : Afficher du texte à un autre endroit</h2>
+					<p>Exemple, injecter une librairie JS dans le header de votre site</p>
+					<h3>Dans la vue enfant</h3>
+					<pre><code data-trim>
+@push('scripts')
+	&lt;script src="/demo.js"&gt;&lt;/script&gt;
+@endpush					
+					</code></pre>
+					<h3>Dans la vue parent</h3>
+					<pre><code data-trim>
+&lt;head&gt;
+	&lt;!-- Head Contents --&gt;
+	@stack('scripts')
+&lt;/head&gt;
+					</code></pre>
+				</section>
 
 				<section>
 					<h2>La sécurité</h2>
