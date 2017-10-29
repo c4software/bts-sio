@@ -438,6 +438,26 @@ $todo->save();
 				</section>
 
 				<section>
+					<h2>Eloquent : Suppression d’un enregistrement</h2>
+					<pre><code data-trim>
+// Rechercher celui avec l’id 1
+$todo = App\TodoList::find(1)->first();
+
+// Le supprimer
+$todo->delete();
+
+// Le supprimer directement
+App\TodoList::destroy(1);
+
+// En supprimer plusieurs directement
+App\TodoList::destroy(1,2,3);
+
+// Supprimer avec une condition
+App\TodoList::where('termine', '==', 1)->delete();	
+					</code></pre>
+				</section>
+				
+				<section>
 					<h2>La Vue : Blade</h2>
 					<ul>
 						<li>Moteur de template</li>
