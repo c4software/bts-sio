@@ -342,25 +342,59 @@ use Illuminate\Database\Eloquent\Model;
 
 class TodoList extends Model
 {
-	// TODO
+	protected $table = "todoList";
+	protected $fillable = array(texte', 'termine');
 }		
 				</code></pre>
 				</section>				
 				
 				<section>
-					<h2>Eloquent : Le « Query Builder »</h2>
-					<pre><code data-trim>
-use App\Flight;
+					<h2>Initialiser la base de données</h2>
+				</section>
 
-$flights = App\Flight::all();
+				<section>
+					<pre><code data-trim>
+$ php artisan migrate:make create_todoList_table --create=todoList			
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code data-trim>
+// app/database/migrations/####_##_##_######_create_todoList_table.php
+
+Schema::create('todoList', function(Blueprint $table)
+{
+	$table->increments('id');
+
+	$table->string('texte');
+	$table->boolean('termine');
+
+	$table->timestamps();
+});				
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>On lance la création</h2>
+					<pre><code data-trim>
+$ php artisan migrate
 					</code></pre>
 				</section>
 
 				<section>
 					<h2>Eloquent : Le « Query Builder »</h2>
 					<pre><code data-trim>
-	$flights = App\Flight::where('active', 1)
-	->orderBy('name', 'desc')
+use App\TodoList;
+
+$todos = App\TodoList::all();
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Eloquent : Le « Query Builder »</h2>
+					<pre><code data-trim>
+	$flights = App\TodoList::where('temine', 1)
+	->orderBy('id', 'desc')
 	->take(10)
 	->get();					
 					</code></pre>
