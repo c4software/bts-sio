@@ -306,8 +306,6 @@ $ php artisan make:controller DemoController
 
 				<section>
 					<pre><code data-trim>
-<?php
-
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
@@ -338,8 +336,6 @@ $ php artisan make:model TodoList
 
 				<section>
 				<pre><code data-trim>
-<?php
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -350,19 +346,10 @@ class TodoList extends Model
 }		
 				</code></pre>
 				</section>				
-
-				<section>
-					<h2>Utilisation</h2>
-					<pre><code data-trim>
-// TODO					
-					</code></pre>
-				</section>
-
+				
 				<section>
 					<h2>Eloquent : Le « Query Builder »</h2>
 					<pre><code data-trim>
-<?php
-
 use App\Flight;
 
 $flights = App\Flight::all();
@@ -372,7 +359,6 @@ $flights = App\Flight::all();
 				<section>
 					<h2>Eloquent : Le « Query Builder »</h2>
 					<pre><code data-trim>
-<?php
 	$flights = App\Flight::where('active', 1)
 	->orderBy('name', 'desc')
 	->take(10)
@@ -383,13 +369,87 @@ $flights = App\Flight::all();
 				<section>
 					<h2>Eloquent : Le « Query Builder »</h2>
 					<pre><code data-trim>
-<?php
 $users = DB::table('users')->paginate(15);
 // Ou avec un where
 $users = User::where('votes', '>', 100)->paginate(15);
 					</code></pre>
 				</section>
-					
+
+				<section>
+					<h2>La Vue : Blade</h2>
+					<ul>
+						<li>Moteur de template</li>
+						<li>Performant</li>
+						<li>Héritage et re-définition</li>
+						<li>Les fichiers Blade sont des fichiers PHP</li>
+						<li>Contrairement à beaucoup d’autre moteur de template, le mix PHP + HTML est possible <small>(Mais personnelement je ne trouve pas que ça soit une bonne idée…)</small></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Utilisation</h2>
+					<p>Afficher un template</p>
+					<pre><code data-trim>
+Route::get('/', function () {
+	return view('accueil');
+});					
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Le template principal</h2>
+					<pre><code data-trim>
+&lt;!-- Stored in resources/views/layouts/app.blade.php --&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Site Exemple - @yield('titre')&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		@section('sidebar')
+			« Section » Sidebard principal
+		@show
+
+		&lt;div class=&quot;container&quot;&gt;
+			@yield('content')
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Le template « enfant »</h2>
+					<pre><code data-trim>
+&lt;!-- Stored in resources/views/child.blade.php --&gt;
+
+@extends('layouts.app')
+
+@section('titre', 'Page enfant')
+
+@section('sidebar')
+  @parent // <-- Hérite des donnés du parents
+  Données de l’enfant
+@endsection
+
+@section('content')
+  &lt;p&gt;Contenu de la page enfant.&lt;/p&gt;
+@endsection						
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Les directives « Blade »</h2>
+					<ul>
+						<li>@if, @elseif, @else et @endif</li>
+						<li>@switch, @case, @break, @default et @endswitch</li>
+						<li>@for, @endfor</li>
+						<li>@foreach, @endforeach</li>
+						<li>@forelse, @empty, @endforelse <= Permet d’afficher autre chose si pas de données dans la boucle</li>
+						<li>@include('view.name') <= Inclusion d’une autre vue</li>
+						<li>@includeWhen($boolean, 'view.name') <= Inclusion conditionnelle</li>
+						<li>@auth, @guest <= Gestion des droits d’accès</li>
+					</ul>
+				</section>
 
 
 				<section>
