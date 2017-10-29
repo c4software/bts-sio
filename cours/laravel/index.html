@@ -359,6 +359,38 @@ class TodoList extends Model
 				</section>
 
 				<section>
+					<h2>Eloquent : Le « Query Builder »</h2>
+					<pre><code data-trim>
+<?php
+
+use App\Flight;
+
+$flights = App\Flight::all();
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Eloquent : Le « Query Builder »</h2>
+					<pre><code data-trim>
+<?php
+	$flights = App\Flight::where('active', 1)
+	->orderBy('name', 'desc')
+	->take(10)
+	->get();					
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Eloquent : Le « Query Builder »</h2>
+					<pre><code data-trim>
+<?php
+$users = DB::table('users')->paginate(15);
+					</code></pre>
+				</section>
+					
+
+
+				<section>
 					<h2>La sécurité</h2>
 					<p>Exemple le CSRF</p>
 				</section>
