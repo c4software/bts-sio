@@ -1,5 +1,7 @@
 # Introduction à Laravel
 
+![Laravel](./ressources/logo.png)
+
 Dans ce TP nous allons couvrir l’installation la configuration et la création d’un premier projet « démo » à base de Laravel
 
 <!-- TOC -->
