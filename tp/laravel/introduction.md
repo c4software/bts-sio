@@ -14,6 +14,7 @@ Dans ce TP nous allons couvrir l’installation la configuration et la création
         - [Linux](#linux)
             - [Installer Laravel](#installer-laravel-1)
         - [Osx (High Sierra)](#osx-high-sierra)
+            - [Installer Laravel](#installer-laravel-2)
     - [Créer le premier Projet](#créer-le-premier-projet)
 
 <!-- /TOC -->
@@ -75,5 +76,30 @@ composer global require "laravel/installer"
 ✋ Vérifier que la commande laravel fonctionne
 
 ### Osx (High Sierra)
+
+Sur les dernières version de MacOS PHP 7 est déjà disponible en version 7, Il suffit donc d’installer ```Composer```
+
+```shell
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/local/bin/composer
+```
+
+Ajouter dans votre PATH la home de composer, exemple : 
+
+```shell
+export COMPOSER_HOME="$HOME/.composer/vendor/bin"
+export PATH="$PATH:$COMPOSER_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+```
+
+#### Installer Laravel
+
+```shell
+composer global require "laravel/installer"
+```
+
+✋ Vérifier que la commande laravel fonctionne
+
 
 ## Créer le premier Projet
