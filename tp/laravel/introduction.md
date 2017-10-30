@@ -9,6 +9,12 @@ Dans ce TP nous allons couvrir l’installation la configuration et la création
 - [Introduction à Laravel](#introduction-à-laravel)
     - [Introduction](#introduction)
         - [Windows](#windows)
+            - [Installer Composer](#installer-composer)
+            - [Installer Laravel](#installer-laravel)
+        - [Linux](#linux)
+            - [Installer Laravel](#installer-laravel-1)
+        - [Osx (High Sierra)](#osx-high-sierra)
+    - [Créer le premier Projet](#créer-le-premier-projet)
 
 <!-- /TOC -->
 
@@ -29,18 +35,44 @@ Pour « installer » Laravel sous Windows vous devez dans un premier temps insta
 - Installer Wamp, et vérifier que celui-ci fonctionne correctement.
 - Activer l’extension ```php_openssl.dll``` dans la liste des extensions PHP.
 
-Installer Composer :
+#### Installer Composer
 
 - [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de séléctionner l’éxecutable PHP. ```ATTENTION:``` Bien séléctionner la version 7 de PHP dans le dossier ```C:\wamp\bin\php\php\7.X.X\bin\php.exe``` <= Attention à prendre la bonne version
 - Vérifier que la commande est bien disponible en tappant ```composer``` dans un terminal
 
-Installer Laravel :
+#### Installer Laravel
 
-```$ composer global require "laravel/installer"```
+```shell
+composer global require "laravel/installer"
+```
 
 ✋ Vérifier que la commande laravel fonctionne
 
 ### Linux
+
+Pour Linux c’est plus simple, il suffit d’installer PHP 7 sur votre machine (regarder la documentation de votre distribution). Une fois que PHP est installé il suffit de faire :
+
+```shell
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/local/bin/composer
+```
+
+Ajouter dans votre PATH la home de composer, exemple : 
+
+```shell
+export COMPOSER_HOME="$HOME/.composer/vendor/bin"
+export PATH="$PATH:$COMPOSER_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+```
+
+#### Installer Laravel
+
+```shell
+composer global require "laravel/installer"
+```
+
+✋ Vérifier que la commande laravel fonctionne
 
 ### Osx (High Sierra)
 
