@@ -16,6 +16,7 @@ Dans ce TP nous allons couvrir l’installation la configuration et la création
         - [Osx (High Sierra)](#osx-high-sierra)
             - [Installer Laravel](#installer-laravel-2)
     - [Créer le premier Projet](#créer-le-premier-projet)
+    - [Lancer le projet d’exemple](#lancer-le-projet-dexemple)
 
 <!-- /TOC -->
 
@@ -103,3 +104,21 @@ composer global require "laravel/installer"
 
 
 ## Créer le premier Projet
+
+Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un nouveau projet grace à la commande :
+
+✋ Attention, le projet sera créé dans le dossier courant.
+
+```shell
+laravel new mon-premier-projet
+```
+
+## Lancer le projet d’exemple
+
+Laravel intègre un serveur de test permettant de valider son développement avec rien d’autre que PHP sur sa machine. Pour ça dans le dossier du projet (```cd mon-premier-projet```) vous pouvez faire la commande suivante :
+
+```shell
+php artisan serve
+```
+
+Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir le site de démonstration fourni par Laravel.
