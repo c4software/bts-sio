@@ -16,6 +16,7 @@ Dans ce TP nous allons couvrir l’installation la configuration et la création
         - [Osx (High Sierra)](#osx-high-sierra)
             - [Installer Laravel](#installer-laravel-2)
     - [Créer le premier Projet](#créer-le-premier-projet)
+    - [Initialisation](#initialisation)
     - [Lancer le projet d’exemple](#lancer-le-projet-dexemple)
 
 <!-- /TOC -->
@@ -111,6 +112,16 @@ Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un n
 
 ```shell
 laravel new mon-premier-projet
+```
+
+## Initialisation
+
+Renommer le fichier ```.env.example``` en ```.env```.
+
+Puis générer les clef pour votre nouveau projet :
+
+```shell
+php artisan key:generate
 ```
 
 ## Lancer le projet d’exemple
