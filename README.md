@@ -35,7 +35,7 @@ Support de cours &amp; TP pour le BTS SIO
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/laravel/) ([Les sources](cours/laravel))
 - [Installation de Laravel](./tp/laravel/introduction.md)
-- [Réécriture des API de la TODO List avec Laravel]()
+- [Réécriture des API de la TODO List avec Laravel](./tp/laravel/creation_api.md)
 
 ## [WIP] Framework Python : Flask
 
