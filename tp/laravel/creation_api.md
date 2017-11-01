@@ -1,12 +1,12 @@
-# TodoList : Écrire les API du projet
+# TodoList : (Ré-)écrire les API du projet
 
 <!-- TOC -->
 
-- [TodoList : Écrire les API du projet](#todolist--écrire-les-api-du-projet)
+- [TodoList : (Ré-)écrire les API du projet](#todolist--ré-écrire-les-api-du-projet)
     - [Introduction](#introduction)
     - [Création du projet](#création-du-projet)
-    - [Initialisation](#initialisation)
-    - [Tester le projet de base](#tester-le-projet-de-base)
+    - [Installer Lumen](#installer-lumen)
+    - [Créer le nouveau Projet](#créer-le-nouveau-projet)
     - [Déclarer les routes](#déclarer-les-routes)
     - [Créer les API](#créer-les-api)
 
@@ -23,27 +23,25 @@ Dans ce TP nous allons voir la création d’API pour le projet « TodoList ». 
 
 ## Création du projet
 
-Pour créer le projet, vous devez avoir un environnement Laravel fonctionnel ([voir le TP introduction](./introduction.md)).
+Pour créer des API Laravel est un peu « lourd » (dans notre cas, dans certains cas se choix est complètement justifié). Nous allons donc utiliser son petit frère Lumen. Lumen est un micro-framework reprenant les concepts de Laravel (et les même briques). Mais en beaucoup plus petit et donc plus adaptés à des micro-projets comme celui-ci.
 
-La première étape est la création du projet grace à la commande Laravel :
+## Installer Lumen
 
-```shell
-laravel new todolist-api
-```
-
-✋ Attention: La commande créer un nouveau projet dans le dossier courant, ça sera votre future projet API.
-
-## Initialisation
-
-Votre nouveau projet contient un fichier ```.env``` ouvrez le et modifier le contenu pour y mettre la bonne configuration.
-
-## Tester le projet de base
-
-Pour rappel vous pouvez tester votre nouveau projet directement via :
+L’installation de Lumen est similaire à celle de Laravel
 
 ```shell
-php artisan serve
+composer global require "laravel/lumen-installer"
 ```
+
+## Créer le nouveau Projet
+
+Maintenat que vous avez installer Lumen nous allons pouvoir utiliser la ligne de commande pour créer un nouveau projet :
+
+```shell
+lumen new api-todo
+```
+
+✋ Attention, le projet va être créé dans le dossier api-todo dans le dossier courant.
 
 ## Déclarer les routes
 
