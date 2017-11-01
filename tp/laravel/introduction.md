@@ -23,6 +23,7 @@ Dans ce TP nous allons couvrir l’installation la configuration et la création
     - [Ajouter une nouvelle vue](#ajouter-une-nouvelle-vue)
         - [Créer le layout](#créer-le-layout)
         - [Utiliser le layout dans welcome.blade.php](#utiliser-le-layout-dans-welcomebladephp)
+        - [Utiliser le layout dans la route Pong](#utiliser-le-layout-dans-la-route-pong)
 
 <!-- /TOC -->
 
@@ -174,7 +175,7 @@ Maintenant que nous avons déclaré une nouvelle route, nous allons revoir lég�
 
 - Déclarer un template principale (layout).
 - Modifier le welcome.blade.php pour y faire référence.
-- Utiliser le template principale pour répondre ```pong```.
+- Utiliser le layout pour répondre ```pong```.
 
 ### Créer le layout
 
@@ -267,7 +268,7 @@ Créer un nouveau fichier ```resources/views/layouts/base.blade.php``` avec le c
 Maintenant que nous avons notre template de base nous allons l’utiliser dans le template « Welcome ». Remplacer le contenu de ```resources/views/welcome.blade.php``` par :
 
 ```html
-@extends('layouts.app')
+@extends('base.app')
 
 @section('title', 'Bienvenue')
 
@@ -285,3 +286,13 @@ Maintenant que nous avons notre template de base nous allons l’utiliser dans l
     </div> 
 @endsection
 ```
+
+### Utiliser le layout dans la route Pong
+
+Bon, maintenant que nous avons déclaré un layout utilisont le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créé tout à l’heure. Pour cette dernière action je ne vous donne pas de code, mais uniquement les étapes :
+
+- Créer une Vue par exemple ```ping.blade.php```
+- Utiliser ```@extends``` pour « hériter » de votre layout.
+- Modifier ```web.php``` pour répondre avec la fonction ```view``` comme dans l’autre route.
+
+Avec c’est quelques expliquations vous allez pouvoir atteindre l’objectif. Bon courage.
