@@ -19,6 +19,10 @@ Dans ce TP nous allons couvrir l’installation la configuration et la création
     - [Initialisation](#initialisation)
     - [Lancer le projet d’exemple](#lancer-le-projet-dexemple)
     - [Modification du template par défaut](#modification-du-template-par-défaut)
+    - [Ajouter une nouvelle Route](#ajouter-une-nouvelle-route)
+    - [Ajouter une nouvelle vue](#ajouter-une-nouvelle-vue)
+        - [Créer le layout](#créer-le-layout)
+        - [Utiliser le layout dans welcome.blade.php](#utiliser-le-layout-dans-welcomebladephp)
 
 <!-- /TOC -->
 
@@ -131,7 +135,7 @@ Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir 
 
 ## Modification du template par défaut
 
-Éditer le fichier ```resources/views/welcome.blade.php```. 
+Éditer le fichier ```resources/views/welcome.blade.php```.
 
 - Ajouter une variable, par exemple ```{{ $titre }}```
 - Modifier ```routes/web.php```, transformer :
@@ -152,4 +156,132 @@ return view('welcome', ['titre' => 'Mon premier exemple.']);
 <p>Le Timestamp est {{ time() }}</p>
 ```
 
+## Ajouter une nouvelle Route
 
+Pour tester le fonctionnement nous allons ajouter une nouvelle ```Route``` dans le projet de démonstration. Nous allons donc ajouter dans le fichier ```routes/web.php``` :
+
+```php
+Route::get('/ping', function () {
+    return "pong";
+});
+```
+
+Tester la modification en [accédant à votre site](http://localhost:8000/ping)
+
+## Ajouter une nouvelle vue
+
+Maintenant que nous avons déclaré une nouvelle route, nous allons revoir légèrement les templates pour :
+
+- Déclarer un template principale (layout).
+- Modifier le welcome.blade.php pour y faire référence.
+- Utiliser le template principale pour répondre ```pong```.
+
+### Créer le layout
+
+Créer un nouveau fichier ```resources/views/layouts/base.blade.php``` avec le contenu suivant :
+
+```html
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Laravel - @yield('title')</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 100;
+                height: 100vh;
+                margin: 0;
+            }
+            .full-height {
+                height: 100vh;
+            }
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+            .position-ref {
+                position: relative;
+            }
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+            .content {
+                text-align: center;
+            }
+            .title {
+                font-size: 84px;
+            }
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('register') }}">Register</a>
+                    @endauth
+                </div>
+            @endif
+
+            <div class="content">
+                @yield('content')
+            </div>
+        </div>
+    </body>
+</html>
+```
+
+✋ Mais d’où vient ce contenu ? C’est tout simplement un découpage en « layout » du template de base de démonstration. 
+
+### Utiliser le layout dans welcome.blade.php
+
+Maintenant que nous avons notre template de base nous allons l’utiliser dans le template « Welcome ». Remplacer le contenu de ```resources/views/welcome.blade.php``` par :
+
+```html
+@extends('layouts.app')
+
+@section('title', 'Bienvenue')
+
+@section('content')
+   <div class="title m-b-md">
+        Laravel
+    </div>
+
+    <div class="links">
+        <a href="https://laravel.com/docs">Documentation</a>
+        <a href="https://laracasts.com">Laracasts</a>
+        <a href="https://laravel-news.com">News</a>
+        <a href="https://forge.laravel.com">Forge</a>
+        <a href="https://github.com/laravel/laravel">GitHub</a>
+    </div> 
+@endsection
+```
