@@ -116,13 +116,7 @@ laravel new mon-premier-projet
 
 ## Initialisation
 
-Renommer le fichier ```.env.example``` en ```.env```.
-
-Puis générer les clef pour votre nouveau projet :
-
-```shell
-php artisan key:generate
-```
+Votre nouveau projet contient un fichier ```.env``` ouvrez le et modifier le contenu pour y mettre la bonne configuration.
 
 ## Lancer le projet d’exemple
 
