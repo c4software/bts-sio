@@ -18,6 +18,7 @@ Dans ce TP nous allons couvrir l’installation la configuration et la création
     - [Créer le premier Projet](#créer-le-premier-projet)
     - [Initialisation](#initialisation)
     - [Lancer le projet d’exemple](#lancer-le-projet-dexemple)
+    - [Modification du template par défaut](#modification-du-template-par-défaut)
 
 <!-- /TOC -->
 
@@ -127,3 +128,28 @@ php artisan serve
 ```
 
 Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir le site de démonstration fourni par Laravel.
+
+## Modification du template par défaut
+
+Éditer le fichier ```resources/views/welcome.blade.php```. 
+
+- Ajouter une variable, par exemple ```{{ $titre }}```
+- Modifier ```routes/web.php```, transformer :
+
+```php
+return view('welcome');
+```
+
+en
+
+```php
+return view('welcome', ['titre' => 'Mon premier exemple.']);
+```
+
+💡 Vous pouvez également appeler des fonctions dans les templates, exemple ```{{ time() }}```. Tester cette fonction en ajoutant par exemple :
+
+```html
+<p>Le Timestamp est {{ time() }}</p>
+```
+
+
