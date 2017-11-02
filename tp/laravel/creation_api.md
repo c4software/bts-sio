@@ -1,5 +1,7 @@
 # TodoList : (Ré-)écrire les API du projet
 
+Le But de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données
+
 <!-- TOC -->
 
 - [TodoList : (Ré-)écrire les API du projet](#todolist--ré-écrire-les-api-du-projet)
@@ -9,7 +11,8 @@
     - [Créer le nouveau Projet](#créer-le-nouveau-projet)
     - [Initialisation](#initialisation)
     - [Tester votre application](#tester-votre-application)
-    - [Créer le Model](#créer-le-model)
+    - [Gestion de la bose de données](#gestion-de-la-bose-de-données)
+        - [Le script de création / migration](#le-script-de-création--migration)
     - [Déclarer les routes](#déclarer-les-routes)
 
 <!-- /TOC -->
@@ -81,7 +84,63 @@ Une fois lancé vous avez un serveur Web qui écoute sur [le port 8000](http://l
 
 🤔 Pourquoi Lumen n’intègre pas la commande ```php artisan serve``` ? La raison est plutôt logique, Lumen étant un ```micro framework``` il n’embarque pas toutes les options de base de Laravel. Options qui peuvent d’ailleurs simplement être remplacée.
 
-## Créer le Model
+## Gestion de la bose de données
+
+### Le script de création / migration
+
+Contrairement à la première version de notre application, nous allons stocker les données dans une Base de données. Qui dit base de données dit « ORM » et donc mapping objet. Pour rappel un ORM :
+
+>> Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
+
+Pour rappel, le But de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données. 
+
+L’option ```--create=todos``` permet d’indiquer le nom de la table à créer
+
+```shell
+php artisan make:migration create_todos_table --create=todos
+```
+
+✋ Le contenu du fichier est fictif est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre base de données.
+
+La commande à créér un nouveau fichier (dans mon cas) : ```database/migration/2017_11_02_205700_create_todos_table.php```
+
+Dans le fichier créer nous allons définir notre schéma (à savoir la table) pour ajouter les 2 colonnes qui nous sont utiles ```texte``` et ```termine```. Le fichier après modification doit ressembler à :
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateTodosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('todos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('texte');
+            $table->boolean('termine');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('todos');
+    }
+}
+```
 
 ## Déclarer les routes
 
