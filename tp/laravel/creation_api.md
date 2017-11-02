@@ -8,6 +8,7 @@
     - [Installer Lumen](#installer-lumen)
     - [Créer le nouveau Projet](#créer-le-nouveau-projet)
     - [Initialisation](#initialisation)
+    - [Tester votre application](#tester-votre-application)
     - [Déclarer les routes](#déclarer-les-routes)
     - [Créer les API](#créer-les-api)
 
@@ -67,6 +68,18 @@ $ openssl rand -base64 24
 éditer le fichier ```.env``` pour renseigner une valeur pour :
 
 - ```APP_KEY``` (exemple ```APP_KEY="I82xtis8Tsur2"```)
+
+## Tester votre application
+
+Pour tester votre application avec Lumen sur votre poste, c’est un peu plus « complexe » qu’avec Laravel. Vous devez saisir la commande suivante :
+
+```shell
+$ php -S localhost:8000 -t ./public
+```
+
+Une fois lancé vous avez un serveur Web qui écoute sur [le port 8000](http://localhost:8000)
+
+🤔 Pourquoi Lumen n’intègre pas la commande ```php artisan serve``` ? La raison est plutôt logique, Lumen étant un ```micro framework``` il n’embarque pas toutes les options de base de Laravel. Options qui peuvent d’ailleurs simplement être remplacée.
 
 ## Déclarer les routes
 
