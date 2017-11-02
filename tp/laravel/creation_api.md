@@ -14,6 +14,11 @@ Le But de notre application est de créer des API Rest qui vont exposer la gesti
     - [Gestion de la bose de données](#gestion-de-la-bose-de-données)
         - [Le script de création / migration](#le-script-de-création--migration)
         - [Le modèle](#le-modèle)
+    - [Le controller](#le-controller)
+        - [Liste](#liste)
+        - [Création](#création)
+        - [Terminer](#terminer)
+        - [Suppression](#suppression)
     - [Déclarer les routes](#déclarer-les-routes)
 
 <!-- /TOC -->
@@ -194,6 +199,37 @@ class Todos extends Model
 ```
 
 le ```$fillable``` définie les propriétés qui doivent êtres automatiquement rempli par éloquent (l’orm) lors de la gestion de la demande.
+
+## Le controller
+
+Maintenant que nous avons notre base de données, nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique metier de nos API.
+
+Pour commencer nous allons créer « la structure de base » de notre controller. Pour ça créer le fichier ```TodosController.php``` dans le chemin suivant ```app/Http/Controllers/``` et mettez le contenu suivant :
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Todos;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+
+class TodoController extends Controller{
+    // C’est ici que seront nos méthodes
+}
+```
+
+Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression)
+
+### Liste
+
+### Création
+
+### Terminer
+
+### Suppression
 
 ## Déclarer les routes
 
