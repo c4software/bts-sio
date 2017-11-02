@@ -7,6 +7,7 @@
     - [Création du projet](#création-du-projet)
     - [Installer Lumen](#installer-lumen)
     - [Créer le nouveau Projet](#créer-le-nouveau-projet)
+    - [Initialisation](#initialisation)
     - [Déclarer les routes](#déclarer-les-routes)
     - [Créer les API](#créer-les-api)
 
@@ -42,6 +43,14 @@ lumen new api-todo
 ```
 
 ✋ Attention, le projet va être créé dans le dossier api-todo dans le dossier courant.
+
+## Initialisation
+
+Contrairement à un projet Laravel, les dépendances ```composer``` ne sont pas installés par défaut. Il faut donc les installer via la ligne de commande en faisant :
+
+```shell
+composer install
+```
 
 ## Déclarer les routes
 
