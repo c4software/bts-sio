@@ -13,6 +13,7 @@ Le But de notre application est de créer des API Rest qui vont exposer la gesti
     - [Tester votre application](#tester-votre-application)
     - [Gestion de la bose de données](#gestion-de-la-bose-de-données)
         - [Le script de création / migration](#le-script-de-création--migration)
+        - [Le modèle](#le-modèle)
     - [Déclarer les routes](#déclarer-les-routes)
 
 <!-- /TOC -->
@@ -168,6 +169,23 @@ class CreateTodosTable extends Migration
     }
 }
 ```
+
+### Le modèle
+
+Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle. Pour ça créer un fichier ```Todos.php``` dans le dossier ``app/``` avec le contenu suivant :
+
+```php
+<?php namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Todos extends Model
+{
+    protected $fillable = ['texte', 'termine'];
+}
+```
+
+le $fillable définie les propriétés qui doivent êtres automatiquement rempli par éloquent (l’orm) lors de la gestion de la demande.
 
 ## Déclarer les routes
 
