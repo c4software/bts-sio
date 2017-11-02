@@ -86,6 +86,33 @@ Une fois lancé vous avez un serveur Web qui écoute sur [le port 8000](http://l
 
 ## Gestion de la bose de données
 
+Pour la démonstration nous allons utiliser SQLite au lieux de MySQL. Pour ça rien de plus simple, Lumen utilise PDO il suffit donc de changer la configuration par défaut dans le fichier ```.env```. Modifier le fichier pour qu’il ressemble à celui-ci
+
+```conf
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY="CHANGEME"
+APP_TIMEZONE=UTC
+
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=homestead
+# DB_USERNAME=homestead
+# DB_PASSWORD=secret
+
+CACHE_DRIVER=file
+QUEUE_DRIVER=sync
+```
+
+Par défaut la configuration de base de SQLite dans Lumen est l’utilisation d’une base de données nommée ```database.sqlite``` il faut donc créer un fichier vide qui recevra les données :
+
+```
+touch database/database.sqlite
+```
+
+C’est parti ! Tout est prêt, nous pouvons commencer à écrire du code. 
+
 ### Le script de création / migration
 
 Contrairement à la première version de notre application, nous allons stocker les données dans une Base de données. Qui dit base de données dit « ORM » et donc mapping objet. Pour rappel un ORM :
