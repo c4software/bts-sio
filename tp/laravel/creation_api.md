@@ -49,8 +49,24 @@ lumen new api-todo
 Contrairement à un projet Laravel, les dépendances ```composer``` ne sont pas installés par défaut. Il faut donc les installer via la ligne de commande en faisant :
 
 ```shell
-composer install
+$ composer install
 ```
+
+Le projet n’étant pas initialisé nous allons devoir jouer quelques commande pour terminer l’installation :
+
+```shell
+$ mv .env.example .env
+```
+
+Contrairement à Laravel, Lumen ne contient pas l’outils permettant d’initialiser la « secret key » nécéssaire à la sécurisation de votre application. Je pous propose par exemple de passer via la commande suivante :
+
+```shell
+$ openssl rand -base64 24
+```
+
+éditer le fichier ```.env``` pour renseigner une valeur pour :
+
+- ```APP_KEY``` (exemple ```APP_KEY="I82xtis8Tsur2"```)
 
 ## Déclarer les routes
 
