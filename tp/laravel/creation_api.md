@@ -135,7 +135,7 @@ php artisan make:migration create_todos_table --create=todos
 
 ✋ Le contenu du fichier est fictif est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre base de données.
 
-La commande à créér un nouveau fichier (dans mon cas) : ```database/migration/2017_11_02_205700_create_todos_table.php```
+La commande à créé un nouveau fichier (dans mon cas) : ```database/migration/2017_11_02_205700_create_todos_table.php```
 
 Dans le fichier créer nous allons définir notre schéma (à savoir la table) pour ajouter les 2 colonnes qui nous sont utiles ```texte``` et ```termine```. Le fichier après modification doit ressembler à :
 
