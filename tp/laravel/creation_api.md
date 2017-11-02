@@ -9,8 +9,8 @@
     - [Créer le nouveau Projet](#créer-le-nouveau-projet)
     - [Initialisation](#initialisation)
     - [Tester votre application](#tester-votre-application)
+    - [Créer le Model](#créer-le-model)
     - [Déclarer les routes](#déclarer-les-routes)
-    - [Créer les API](#créer-les-api)
 
 <!-- /TOC -->
 
@@ -81,8 +81,13 @@ Une fois lancé vous avez un serveur Web qui écoute sur [le port 8000](http://l
 
 🤔 Pourquoi Lumen n’intègre pas la commande ```php artisan serve``` ? La raison est plutôt logique, Lumen étant un ```micro framework``` il n’embarque pas toutes les options de base de Laravel. Options qui peuvent d’ailleurs simplement être remplacée.
 
+## Créer le Model
+
 ## Déclarer les routes
 
-Pour commencer nous allons créer les différentes « routes » (c’est à dire les chemins d’accès à votre API).
+Pour commencer nous allons créer les différentes « routes » (c’est à dire les chemins d’accès à votre API). Dans notre applicaton nous avons 4 routes :
 
-## Créer les API
+- Liste (/liste)
+- Création (/creation)
+- Terminer (/terminer)
+- Suppression (/suppression)
