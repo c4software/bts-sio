@@ -170,6 +170,14 @@ class CreateTodosTable extends Migration
 }
 ```
 
+Maintenant que le script est terminé, nous pouvons lancer la commande de migration :
+
+```shell
+$ php artisan migration
+```
+
+Une fois cette commande lancée, Lumen va créer la structure de base de votre base de données.
+
 ### Le modèle
 
 Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle. Pour ça créer un fichier ```Todos.php``` dans le dossier ``app/``` avec le contenu suivant :
@@ -185,7 +193,7 @@ class Todos extends Model
 }
 ```
 
-le $fillable définie les propriétés qui doivent êtres automatiquement rempli par éloquent (l’orm) lors de la gestion de la demande.
+le ```$fillable``` définie les propriétés qui doivent êtres automatiquement rempli par éloquent (l’orm) lors de la gestion de la demande.
 
 ## Déclarer les routes
 
