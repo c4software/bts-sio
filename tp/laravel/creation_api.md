@@ -20,6 +20,8 @@ Le But de notre application est de créer des API Rest qui vont exposer la gesti
         - [Terminer](#terminer)
         - [Suppression](#suppression)
     - [Déclarer les routes](#déclarer-les-routes)
+    - [Activer le support d’Eloquent](#activer-le-support-deloquent)
+    - [Tester](#tester)
 
 <!-- /TOC -->
 
@@ -300,4 +302,20 @@ $router->get('api/todo','TodosController@list');
 $router->post('api/todo','TodosController@saveTodo');
 $router->post('api/todo/done/{id}','TodosController@markAsDone');
 $router->delete('api/todo/delete/{id}','TodosController@deleteTodo');
+```
+
+## Activer le support d’Eloquent
+
+Avant de pouvoir tester votre application vous devez éditer le fichier ```bootstrap/app.php``` pour décommenter la ligne :
+
+```php
+$app->withEloquent();
+```
+
+## Tester
+
+Pour tester votre application il suffit de lancer la commande suivante :
+
+```shell
+$ php -S localhost:8000 -t ./public
 ```
