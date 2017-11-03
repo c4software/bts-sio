@@ -216,7 +216,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 
-class TodoController extends Controller{
+class TodosController extends Controller{
     // C’est ici que seront nos méthodes
 }
 ```
@@ -230,7 +230,7 @@ Nous allons maintenant écrire une méthode pour chaque actions. Avec les diffé
 La méthode ```liste``` est certainement la plus simple, nous allons simplement faire appels à la méthode ```all()``` de eloquent (ORM pour l’accès à la base de données). Pour ça créer une nouvelle méthodes dans la class ```TodoController``` avec le code suivant :
 
 ```php
-public function liste(){
+public function list(){
     $todos  = Todos::all();
     return response()->json($todos);
 }
@@ -286,9 +286,18 @@ public function deleteTodo($id){
 
 ## Déclarer les routes
 
-Pour commencer nous allons créer les différentes « routes » (c’est à dire les chemins d’accès à votre API). Dans notre applicaton nous avons 4 routes :
+Maintenant que le mapping avec la base de données est créé, et que notre controller est disponible nous allons pouvoir déclarer les différentes « routes » (c’est à dire les chemins d’accès à votre API). Dans notre applicaton nous avons 4 routes :
 
 - Liste (/liste)
 - Création (/creation)
 - Terminer (/terminer)
 - Suppression (/suppression)
+
+Nous allons « mapper » / « connecter » les routes avec les différentes actions de notre controller. Avec un framework c’est très simple il suffit d’ajouter dans le fichier ```routes/web.php``` le code suivant :
+
+```php
+$router->get('api/todo','TodosController@list');
+$router->post('api/todo','TodosController@saveTodo');
+$router->post('api/todo/{id}','TodosController@markAsDone');
+$router->delete('api/todo/{id}','TodosController@deleteTodo');
+```
