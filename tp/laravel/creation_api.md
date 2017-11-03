@@ -240,6 +240,16 @@ Rien de bien compliqué, comme vous pouvez le voir. Le ```response()->json(…)`
 
 ### Création
 
+Pour la partie création, nous allons faire un mapping automatique entre la requette HTTP et le modèle ```Todos```
+
+```php
+public function saveTodo(Request $request){
+    $todo = Todos::create($request->all());
+    return response()->json($todo);
+}
+```
+
+Que va t’il se passer lors de l’appel ? L’objet ```$request``` contient tous les paramètres de l’appel HTTP, la méthode ```all()``` permet de les récupérer. L’objet ```Todos``` possède une méthode permettant de créer un nouvelle enregistrement en base de donnés. Les valeurs passés en paramètre de ```create()``` permette de renseigner automatiquement les champs en base de données.
 
 ### Terminer
 
