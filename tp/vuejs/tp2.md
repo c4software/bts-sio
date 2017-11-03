@@ -84,8 +84,8 @@ Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à 
 
 Dans un terminal lancer la commande suivante :
 
-```bash
-npm install -g vue-cli
+```shell
+$ npm install -g vue-cli
 ```
 
 Maintenant que vue-cli est installé, vous avez à votre disposition sur votre ordinateur une nouvelle commande, la commande ```vue```
@@ -103,8 +103,8 @@ Pour notre exemple nous allons prendre le Webpack, il contient tous les élémen
 
 Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante :
 
-```bash
-vue init webpack cliff-height-timer
+```shell
+$ vue init webpack cliff-height-timer
 ```
 
 ⚠️ Attention, la commande crée le projet dans le dossier courant ! ⚠️
@@ -142,8 +142,8 @@ Une fois terminé votre projet est prêt à être lancé.
 
 Les librairies étant maintenant disponible, nous allons pouvoir lancer l’exemple fourni par Vue-Cli, pour ça rien de plus simple
 
-```bash
-npm run dev
+```shell
+$ npm run dev
 ```
 
 une fois cette commande lancée, votre navigateur va s’ouvrir sur un nouvel onglet contenant « l’application » de démonstration fournie par le template
@@ -194,8 +194,8 @@ Nous allons commencer notre projet en intégrant [VuetifyJS](https://vuetifyjs.c
 
 Comme vue en cours VueJS repose sur NodeJS, nous avons donc la possibilité de gérer nos dépendances avec npm. La première étape est donc d’ajouter la dépendance à notre projet :
 
-```bash
-npm install vuetify
+```shell
+$ npm install vuetify
 ```
 
 PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu’il existe des « templates » VuetifyJS pour VueCLI. Dans ce TP découverte j’ai volontairement fait le choix de ne pas les utiliser pour que vous découvriez un peu plus en détails la construction d’une application VueJS.
@@ -302,8 +302,8 @@ export default {
 
 Voilà, vous avez atteint la première étape. Vous pouvez lancer votre application en faisant :
 
-```bash
-npm run dev
+```shell
+$ npm run dev
 ```
 
 ## Le Routeur
@@ -420,7 +420,7 @@ Notre internationalisation est maintenant prête à être utilisée. Nous allons
 Vérifier en relançant votre application que votre titre est toujours présent :
 
 ```shell
-npm run dev
+$ npm run dev
 ```
 
 ## Les .vues
@@ -429,8 +429,8 @@ Maintenant que nous avons la base de notre projet, nous allons commencer à cré
 
 Contrairement à l’exemple par défaut, nous allons mettre nos fichiers ```.vue``` dans un nouveau dossier ```src/views```. Première étape créer le dossier :
 
-```
-mkdir src/views/
+```shell
+$ mkdir src/views/
 ```
 
 Profitons en également pour supprimer le fichier ```src/components/HelloWorld.vue``` qui est maintenant inutile.
@@ -519,10 +519,11 @@ import Home from '@/views/Home'
     }
 […]
 ```
+
 - Tester votre code :
 
 ```shell
-npm run dev
+$npm run dev
 ```
 
 ### La page : À Propos
@@ -631,7 +632,7 @@ export default {
 - Tester votre application :
 
 ```shell
-npm run dev
+$ npm run dev
 ```
 
 ### La page : Historique
@@ -682,8 +683,8 @@ Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus néc�
 
 Voilà votre application est maintenant terminée bravo 👏👏. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour ça rien de plus simple il vous suffit de faire
 
-```
-npm run build
+```shell
+$ npm run build
 ```
 
 Cette commande va compiler votre application et vous fournir une version que vous allez pouvoir héberger comme n’importe quel site Internet (sur un serveur Apache par exemple).
@@ -717,8 +718,8 @@ Source: Mozilla.org
 
 - Vous pouvez builder votre application et la mettre à jour sur votre serveur Web.
 
-```
-npm run build
+```shell
+$ npm run build
 ```
 
 - Tester l’application depuis votre Téléphone Android.
