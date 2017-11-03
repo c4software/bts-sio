@@ -22,6 +22,7 @@ Le But de notre application est de créer des API Rest qui vont exposer la gesti
     - [Déclarer les routes](#déclarer-les-routes)
     - [Activer le support d’Eloquent](#activer-le-support-deloquent)
     - [Tester](#tester)
+    - [Changer les API dans votre application VueJS](#changer-les-api-dans-votre-application-vuejs)
 
 <!-- /TOC -->
 
@@ -321,3 +322,7 @@ $ php -S localhost:8000 -t ./public
 ```
 
 Pour tester vous pouvez utiliser PostMan.
+
+## Changer les API dans votre application VueJS
+
+Maintenant que nvos nouvelles API sont terminées nous allons pouvoir les utiliser dans VueJS. Pour ça iditer le code Javascript de votre projet VueJS pour pointer vers votre serveur Lumen.
