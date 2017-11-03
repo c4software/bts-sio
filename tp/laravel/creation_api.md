@@ -270,6 +270,20 @@ public function markAsDone($id){
 
 ### Suppression
 
+Pour la partie suppression, nous allons devoir dans un premier temps récupérer le todos par son ID. Seul les ```Todos``` marqué comme terminé peuvent être supprimé, il faudra donc controller l’état avant de faire le ```delete()```
+
+```php
+public function deleteTodo($id){
+        $todo  = Todos::find($id);
+        if($todo && $todo->termine){
+            $todo->delete();
+            return response()->json('success');
+        }else{
+            return response()->json('error');
+        }
+}
+```
+
 ## Déclarer les routes
 
 Pour commencer nous allons créer les différentes « routes » (c’est à dire les chemins d’accès à votre API). Dans notre applicaton nous avons 4 routes :
