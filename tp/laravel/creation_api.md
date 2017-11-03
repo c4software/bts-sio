@@ -319,3 +319,5 @@ Pour tester votre application il suffit de lancer la commande suivante :
 ```shell
 $ php -S localhost:8000 -t ./public
 ```
+
+Pour tester vous pouvez utiliser PostMan.
