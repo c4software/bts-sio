@@ -221,11 +221,25 @@ class TodoController extends Controller{
 }
 ```
 
-Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression)
+Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression). 
+
+Nous allons maintenant écrire une méthode pour chaque actions. Avec les différentes conditions nécéssaire au bon fonctionnement de notre applications.
 
 ### Liste
 
+La méthode ```liste``` est certainement la plus simple, nous allons simplement faire appels à la méthode ```all()``` de eloquent (ORM pour l’accès à la base de données). Pour ça créer une nouvelle méthodes dans la class ```TodoController``` avec le code suivant :
+
+```php
+public function liste(){
+    $todos  = Todos::all();
+    return response()->json($todos);
+}
+```
+
+Rien de bien compliqué, comme vous pouvez le voir. Le ```response()->json(…)``` permet de créer une réponse pour au format JSON pour votre API (que l’on utilisera plus tard au moment de la mise en place des routes).
+
 ### Création
+
 
 ### Terminer
 
