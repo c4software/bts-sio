@@ -253,6 +253,21 @@ Que va t’il se passer lors de l’appel ? L’objet ```$request``` contient to
 
 ### Terminer
 
+Pour l’action terminer nous allons devoir updater un enregistrement en base de données, pour ça nous allons le récupérer puis mettre le ```boolean``` termine à 1.
+
+```php
+public function markAsDone($id){
+        $todo  = Todos::find($id);
+        if($todo){
+            $todo->termine = 1;
+            $todo->save();
+            return response()->json("success");
+        }else{
+            return response()->json("error");
+        }
+    }
+```
+
 ### Suppression
 
 ## Déclarer les routes
