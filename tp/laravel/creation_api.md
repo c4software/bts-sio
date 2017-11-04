@@ -17,7 +17,7 @@ Le But de notre application est de créer des API Rest qui vont exposer la gesti
     - [Le controller](#le-controller)
         - [Liste](#liste)
         - [Création](#création)
-        - [Création 2](#création-2)
+        - [Création, version alternative](#création-version-alternative)
         - [Terminer](#terminer)
         - [Suppression](#suppression)
     - [Déclarer les routes](#déclarer-les-routes)
@@ -255,7 +255,7 @@ public function saveTodo(Request $request){
 
 Que va t’il se passer lors de l’appel ? L’objet ```$request``` contient tous les paramètres de l’appel HTTP, la méthode ```all()``` permet de les récupérer. L’objet ```Todos``` possède une méthode permettant de créer un nouvelle enregistrement en base de donnés. Les valeurs passés en paramètre de ```create()``` permette de renseigner automatiquement les champs en base de données.
 
-### Création 2
+### Création, version alternative
 
 La première approche est la plus rapide mais elle sous entend que tous les paramétres soient bien initialisé dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de la Todo manuelement en récupérant les différents éléments dans la requette HTTP
 
