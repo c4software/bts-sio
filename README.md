@@ -31,7 +31,7 @@ Support de cours &amp; TP pour le BTS SIO
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/cordova/README.md)
 - [Projet Démo VueJS + Cordova](https://github.com/c4software/vuejs-cordova-sample)
 
-## [WIP] Framework PHP : Laravel
+## Framework PHP : Laravel
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/laravel/) ([Les sources](cours/laravel))
 - [Installation de Laravel](./tp/laravel/introduction.md)
