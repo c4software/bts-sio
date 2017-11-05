@@ -1,6 +1,6 @@
 # TodoList : (Ré-)écrire les API du projet
 
-Le But de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données
+Le but de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données
 
 <!-- TOC -->
 
@@ -38,7 +38,7 @@ Dans ce TP nous allons voir la création d’API pour le projet « TodoList ». 
 
 ## Création du projet
 
-Pour créer des API Laravel est un peu « lourd » (dans notre cas, dans certains cas se choix est complètement justifié). Nous allons donc utiliser son petit frère Lumen. Lumen est un micro-framework reprenant les concepts de Laravel (et les même briques). Mais en beaucoup plus petit et donc plus adaptés à des micro-projets comme celui-ci.
+Pour créer des API, Laravel est un peu « lourd » (dans notre cas bien évidemment, dans certains cas te choix est complètement justifié). Nous allons donc utiliser son petit frère Lumen. Lumen est un micro-framework reprenant les concepts de Laravel (et les même briques), mais en beaucoup plus petit et donc plus adapté à des micro-projets comme celui-ci.
 
 ## Installer Lumen
 
@@ -50,7 +50,7 @@ composer global require "laravel/lumen-installer"
 
 ## Créer le nouveau Projet
 
-Maintenat que vous avez installer Lumen nous allons pouvoir utiliser la ligne de commande pour créer un nouveau projet :
+Maintenant que vous avez installé Lumen nous allons pouvoir utiliser la ligne de commande pour créer un nouveau projet :
 
 ```shell
 lumen new api-todo
@@ -60,7 +60,7 @@ lumen new api-todo
 
 ## Initialisation
 
-Contrairement à un projet Laravel, les dépendances ```composer``` ne sont pas installés par défaut. Il faut donc les installer via la ligne de commande en faisant :
+Contrairement à un projet Laravel, les dépendances ```composer``` ne sont pas installées par défaut. Il faut donc les installer via la ligne de commande en faisant :
 
 ```shell
 $ composer install
