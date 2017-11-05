@@ -127,11 +127,11 @@ C’est parti ! Tout est prêt, nous pouvons commencer à écrire du code.
 
 ### Le script de création / migration
 
-Contrairement à la première version de notre application, nous allons stocker les données dans une Base de données. Qui dit base de données dit « ORM » et donc mapping objet. Pour rappel un ORM :
+Contrairement à la première version de notre application, nous allons stocker les données dans une base de données. Qui dit base de données dit « ORM » et donc mapping objet. Pour rappel un ORM :
 
->> Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
+> Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
 
-Pour rappel, le But de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données. 
+Pour rappel, le but de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données. 
 
 L’option ```--create=todos``` permet d’indiquer le nom de la table à créer
 
@@ -139,7 +139,7 @@ L’option ```--create=todos``` permet d’indiquer le nom de la table à créer
 php artisan make:migration create_todos_table --create=todos
 ```
 
-✋ Le contenu du fichier est fictif est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre base de données.
+✋ Le contenu du fichier est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre base de données.
 
 La commande à créé un nouveau fichier (dans mon cas) : ```database/migration/2017_11_02_205700_create_todos_table.php```
 
