@@ -2,7 +2,7 @@
 
 ![Laravel](./ressources/logo.png)
 
-Dans ce TP nous allons couvrir l’installation la configuration et la création d’un premier projet « démo » à base de Laravel
+Dans ce TP nous allons couvrir l’installation, la configuration et la création d’un premier projet « démo » à base de Laravel
 
 <!-- TOC -->
 
@@ -13,7 +13,7 @@ Dans ce TP nous allons couvrir l’installation la configuration et la création
             - [Installer Laravel](#installer-laravel)
         - [Linux](#linux)
             - [Installer Laravel](#installer-laravel-1)
-        - [Osx (High Sierra)](#osx-high-sierra)
+        - [MacOS (High Sierra)](#macos-high-sierra)
             - [Installer Laravel](#installer-laravel-2)
     - [Créer le premier Projet](#créer-le-premier-projet)
     - [Initialisation](#initialisation)
@@ -83,9 +83,9 @@ composer global require "laravel/installer"
 
 ✋ Vérifier que la commande laravel fonctionne
 
-### Osx (High Sierra)
+### MacOS (High Sierra)
 
-Sur les dernières version de MacOS PHP 7 est déjà disponible en version 7, Il suffit donc d’installer ```Composer```
+Sur les dernières version de MacOS, PHP est déjà disponible en version 7. Il suffit donc d’installer ```Composer```, pour l’installer il suffit :
 
 ```shell
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -94,7 +94,7 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ```
 
-Ajouter dans votre PATH la home de composer, exemple : 
+Ajouter dans votre PATH la home de composer, exemple :
 
 ```shell
 export COMPOSER_HOME="$HOME/.composer/vendor/bin"
@@ -122,7 +122,7 @@ laravel new mon-premier-projet
 
 ## Initialisation
 
-Votre nouveau projet contient un fichier ```.env``` ouvrez le et modifier le contenu pour y mettre la bonne configuration.
+Votre nouveau projet contient un fichier ```.env``` ouvrez le et modifiez le contenu pour y mettre la bonne configuration.
 
 ## Lancer le projet d’exemple
 
@@ -173,7 +173,7 @@ Tester la modification en [accédant à votre site](http://localhost:8000/ping)
 
 Maintenant que nous avons déclaré une nouvelle route, nous allons revoir légèrement les templates pour :
 
-- Déclarer un template principale (layout).
+- Déclarer un template principal (aussi appelé : layout).
 - Modifier le welcome.blade.php pour y faire référence.
 - Utiliser le layout pour répondre ```pong```.
 
@@ -289,7 +289,7 @@ Maintenant que nous avons notre template de base nous allons l’utiliser dans l
 
 ### Utiliser le layout dans la route Pong
 
-Bon, maintenant que nous avons déclaré un layout utilisont le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créé tout à l’heure. Pour cette dernière action je ne vous donne pas de code, mais uniquement les étapes :
+Bon, maintenant que nous avons déclaré un layout utilisons le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créé tout à l’heure. Pour cette dernière action je ne vous donne pas de code, mais uniquement les étapes :
 
 - Créer une Vue par exemple ```ping.blade.php```
 - Utiliser ```@extends``` pour « hériter » de votre layout.
