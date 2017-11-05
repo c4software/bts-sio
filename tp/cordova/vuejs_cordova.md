@@ -14,8 +14,8 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
 - [VueJS et Cordova](#vuejs-et-cordova)
     - [Le projet](#le-projet)
     - [Le code](#le-code)
-    - [Utilser le code fourni](#utilser-le-code-fourni)
-        - [1. Compliler une première fois le code](#1-compliler-une-première-fois-le-code)
+    - [Utiliser le code fourni](#utiliser-le-code-fourni)
+        - [1. Compiler une première fois le code](#1-compiler-une-première-fois-le-code)
         - [2. Ajouter la plateforme](#2-ajouter-la-plateforme)
         - [3. Lancer sur votre mobile](#3-lancer-sur-votre-mobile)
     - [Ajouter la vue Localisation](#ajouter-la-vue-localisation)
@@ -36,7 +36,7 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
 
 ## Le projet
 
-Nous allons réaliser une application qui tests plusieurs plugin Cordova. Cette application utilisera VueJS et VuetifyJS
+Nous allons réaliser une application qui teste plusieurs plugins Cordova. Cette application utilisera VueJS et VuetifyJS
 
 ![Exemple](https://github.com/c4software/vuejs-cordova-sample/raw/master/demo.png)
 
@@ -61,11 +61,11 @@ Le projet étant assez conséquent je vous propose de partir d’une base déjà
 
 Le code est [téléchargeable ici](sources/vuejs-cordova-sample.zip)
 
-## Utilser le code fourni
+## Utiliser le code fourni
 
 Maintenant que vous avez récupéré le code. Nous allons le rendre fonctionnel pour votre ordinateur.
 
-### 1. Compliler une première fois le code
+### 1. Compiler une première fois le code
 
 Le projet étant « non compilé » / « non installé », nous allons devoir dans un premier temps installer les dépendances nécéssaires à notre projet. Pour se faire nous allons utiliser ```npm``` avec la commande ```install```. Dans le dossier du projet :
 
@@ -73,13 +73,13 @@ Le projet étant « non compilé » / « non installé », nous allons devoir da
 npm install .
 ``` 
 
-Les dépendances « VueJS » s’installe, l’installation peut prendre quelques minutes. Une fois installé tester le fonctionnement avec la commande :
+Les dépendances « VueJS » s’installent, l’installation peut prendre quelques minutes. Une fois installé tester le fonctionnement avec la commande :
 
 ```shell
 npm run dev
 ```
 
-Ouvrez un navigateur et accéder à l’url suivante [http://localhost:8080/](http://localhost:8080/) vous devez voir :
+Ouvrez un navigateur et accédez à l’url suivante [http://localhost:8080/](http://localhost:8080/) vous devez voir :
 
 ![run1](./ressources/run1.png)
 
@@ -107,7 +107,7 @@ npm run build
 - ```build/build.js```
 - ```config/index.js```
 
-Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normal. Notamment le la partie concernant le file://, cordova utilise l’URI ```file://``` pour servir les ressources dans l’APK, par défaut les développeur de VueCLI on mis des liens avec ```/``` en dur ce qui pose des soucis. J’ai donc remplacé le ```/``` par ```./``` ce qui corrige le soucis. 
+Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normal. Notamment la partie concernant le file://, cordova utilise l’URI ```file://``` pour servir les ressources dans l’APK, par défaut les développeurs de VueCLI ont mis des liens avec ```/``` en dur ce qui pose des soucis. J’ai donc remplacé le ```/``` par ```./``` ce qui corrige le soucis. 
 
 Maintenant que le « build » est terminé nous pouvons réaliser le lancement sur le mobile via les commandes suivantes :
 
@@ -116,11 +116,11 @@ cd cordova_app/
 cordova run android
 ```
 
-✋ Votre mobile doit-être connecté à cet étape, l’application va se lancer directement sur votre mobile. Si ce n’est pas le cas il vous faut un émulateur Android sur votre machine.
+✋ Votre mobile doit être connecté à cette étape, l’application va se lancer directement sur votre mobile. Si ce n’est pas le cas il vous faut un émulateur Android sur votre machine.
 
 ## Ajouter la vue Localisation
 
-Pour commencer nous allons ajouter la vue « Localisation ». C’est certainement la plus compliqué de toutes. Par contre c’est celle qui est la plus intéréssante en terme de fonctionnement 
+Pour commencer nous allons ajouter la vue « Localisation ». C’est certainement la plus compliqué de toutes, mais c’est celle qui est la plus intéréssante en terme de fonctionnement.
 
 ![Localisation](./ressources/localisation.png)
 
@@ -233,6 +233,7 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
   }
 </style>
 ```
+
 - Ajouter l’import dans ```router/index.js``` :
 
 ```js
@@ -266,7 +267,7 @@ $ cordova run android
 
 ## Ajouter la vue Vibration
 
-Cette vue est très simple, elle a pour but d’utiliser le plugin vibration. Avant de faire le code, je vous propose de regarder la documentation du plugin [cordova-vibrate](https://github.com/apache/cordova-plugin-vibration#vibrate-recommended). Une fois la documentation lu. Passons à l’écriture de la vue.
+Cette vue est très simple, elle a pour but d’utiliser le plugin vibration. Avant de faire le code, je vous propose de regarder la documentation du plugin [cordova-vibrate](https://github.com/apache/cordova-plugin-vibration#vibrate-recommended). Une fois la documentation lue, passons à l’écriture de la vue.
 
 L’écriture de la fonctionnalitée va se dérouler en 3 étapes :
 
@@ -276,7 +277,7 @@ L’écriture de la fonctionnalitée va se dérouler en 3 étapes :
 
 ### 1. Le code
 
-Le projet étant déjà réalisé le plugin est déjà installé, il nous suffit donc d’écrire le de la vue. Je vous laisse la base du code, je vous laisse écrire le code permettant la vibration :
+Le projet étant déjà réalisé le plugin est déjà installé, il nous suffit donc d’écrire le code de la vue. Je vous laisse la base du code, je vous laisse écrire le code permettant la vibration :
 
 ```js
 // Require Cordova plugin : cordova-plugin-vibration
@@ -294,7 +295,7 @@ Le projet étant déjà réalisé le plugin est déjà installé, il nous suffit
       doVibrate () {
         // Test si la vibration est disponible
         if (navigator.vibrate){
-            // Code 
+            // Code ICI (utiliser la documentation bien évidement…)
         }else{
           console.error("[cordova-plugin-vibration] Is required to use this function");
         }
@@ -325,7 +326,7 @@ import Vibration from '@/views/Vibration'
 
 ## Ajouter la vue Flash
 
-Une lampe torche c’est fun non ? Et bien nous allons réaliser une nouvelle page qui aura pour simple but d’allumer (ou éteindre) le flash de votre téléphone. Pour ça nous allons utiliser le plugin ```cordova-plugin-flashlight```, avant d’écrire de code nous allons lire la documentation à [l’adresse suivante](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin). C’est fait ? Bien passons au code.
+Une lampe torche c’est fun non ? Et bien nous allons réaliser une nouvelle page qui aura pour simple but d’allumer (ou éteindre) le flash de votre téléphone. Pour ça nous allons utiliser le plugin ```cordova-plugin-flashlight```, avant d’écrire le code nous allons lire la documentation à [l’adresse suivante](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin). C’est fait ? Passons au code.
 
 L’écriture va se dérouler en 3 étapes :
 
@@ -333,7 +334,7 @@ L’écriture va se dérouler en 3 étapes :
 - Écriture de code de la vue.
 - Déclaration de la route.
 
-✋ Petite subtilité! N’oubliez pas VueJS propose une gestion du cycle de vie. Dans cette vue ça vas nous servir. Nous allons utiliser le ```beforeDestroy``` pour éteindre la lampe si celle si est allumée. 
+✋ Petite subtilité! N’oubliez pas, VueJS propose une gestion du cycle de vie. Dans cette vue ça va nous servir, nous allons utiliser le ```beforeDestroy``` pour éteindre la lampe si celle si est allumée.
 
 ### 1. Le code
 
@@ -419,7 +420,7 @@ import Flash from '@/views/Flash'
 
 ## Ajouter la vue Camera
 
-Après le flash, pourquoi ne pas prendre une photo? Et bien avec Cordova c’est très simple. En quelques bout de code Javascript vous allez pouvoir utiliser l’appareil photo du téléphone. Nous allons utiliser le plugin ```cordova-plugin-camera```, avant d’attaquer le code regarder la documentation [disponible ici](https://github.com/apache/cordova-plugin-camera#api-reference-)
+Après le flash, pourquoi ne pas prendre une photo? Et bien avec Cordova c’est très simple. En quelques bout de code Javascript vous allez pouvoir utiliser l’appareil photo du téléphone. Nous allons utiliser le plugin ```cordova-plugin-camera```, avant d’attaquer le code regardez la documentation [disponible ici](https://github.com/apache/cordova-plugin-camera#api-reference-).
 
 L’écriture va se dérouler en 3 étapes :
 
