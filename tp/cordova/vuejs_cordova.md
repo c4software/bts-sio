@@ -513,7 +513,7 @@ L’écriture va se dérouler en 3 étapes :
 
 ### 1. Le code
 
-Le code de la partie NFC est un peu plus complexe, pour la démo, j’ai mis un exemple de lecture du « Numéro de série » d’un tag NFC (Avec historique)
+Le code de la partie NFC est un peu plus complexe. Pour la démo, j’ai mis un exemple de lecture du « numéro de série » d’un tag NFC (avec historique)
 
 ```js
 // Require Cordova plugin : phonegap-nfc
