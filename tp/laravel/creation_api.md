@@ -229,11 +229,11 @@ class TodosController extends Controller{
 
 Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression).
 
-Nous allons maintenant écrire une méthode pour chaque actions. Avec les différentes conditions nécéssaire au bon fonctionnement de notre applications.
+Nous allons maintenant écrire une méthode pour chaque actions. Avec les différentes conditions nécéssaires au bon fonctionnement de votre application.
 
 ### Liste
 
-La méthode ```liste``` est certainement la plus simple, nous allons simplement faire appels à la méthode ```all()``` de eloquent (ORM pour l’accès à la base de données). Pour ça créer une nouvelle méthodes dans la class ```TodoController``` avec le code suivant :
+La méthode ```liste``` est certainement la plus simple, nous allons simplement faire appel à la méthode ```all()``` de Eloquent (ORM pour l’accès à la base de données). Pour ça créez une nouvelle méthode dans la Class ```TodoController``` avec le code suivant :
 
 ```php
 public function list(){
@@ -242,7 +242,7 @@ public function list(){
 }
 ```
 
-Rien de bien compliqué, comme vous pouvez le voir. Le ```response()->json(…)``` permet de créer une réponse pour au format JSON pour votre API (que l’on utilisera plus tard au moment de la mise en place des routes).
+Rien de bien compliqué, comme vous pouvez le voir le ```response()->json(…)``` permet de créer une réponse au format JSON pour votre API (que l’on utilisera plus tard au moment de la mise en place des routes).
 
 ### Création
 
@@ -255,11 +255,11 @@ public function saveTodo(Request $request){
 }
 ```
 
-Que va t’il se passer lors de l’appel ? L’objet ```$request``` contient tous les paramètres de l’appel HTTP, la méthode ```all()``` permet de les récupérer. L’objet ```Todos``` possède une méthode permettant de créer un nouvelle enregistrement en base de donnés. Les valeurs passés en paramètre de ```create()``` permette de renseigner automatiquement les champs en base de données.
+Que va t’il se passer lors de l’appel ? L’objet ```$request``` contient tous les paramètres de l’appel HTTP, la méthode ```all()``` permet de les récupérer. L’objet ```Todos``` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de ```create()``` permette de renseigner automatiquement les champs en base de données.
 
 ### Création, version alternative
 
-La première approche est la plus rapide mais elle sous entend que tous les paramétres soient bien initialisé dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de la Todo manuelement en récupérant les différents éléments dans la requette HTTP
+La première approche est la plus rapide mais elle sous entend que tous les paramètres soient bien initialisés dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todo manuellement en récupérant les différents éléments dans la requette HTTP
 
 ```php
 public function saveTodo(Request $request){
@@ -296,7 +296,7 @@ public function markAsDone($id){
 
 ### Suppression
 
-Pour la partie suppression, nous allons devoir dans un premier temps récupérer le todos par son ID. Seul les ```Todos``` marqué comme terminé peuvent être supprimé, il faudra donc controller l’état avant de faire le ```delete()```
+Pour la partie suppression, nous allons devoir dans un premier temps récupérer la todo par son ID. Seul les ```Todos``` marqués comme terminés peuvent être supprimé, il faudra donc controller l’état avant de faire le ```delete()```
 
 ```php
 public function deleteTodo($id){
@@ -348,4 +348,4 @@ Pour tester vous pouvez utiliser PostMan.
 
 ## Changer les API dans votre application VueJS
 
-Maintenant que nvos nouvelles API sont terminées nous allons pouvoir les utiliser dans VueJS. Pour ça iditer le code Javascript de votre projet VueJS pour pointer vers votre serveur Lumen.
+Maintenant que vos nouvelles API sont terminées nous allons pouvoir les utiliser dans VueJS. Pour ça éditer le code Javascript de votre projet VueJS pour pointer vers votre serveur Lumen.
