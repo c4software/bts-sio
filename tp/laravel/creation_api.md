@@ -66,7 +66,7 @@ Contrairement à un projet Laravel, les dépendances ```composer``` ne sont pas 
 $ composer install
 ```
 
-Le projet n’étant pas initialisé nous allons devoir jouer quelques commande pour terminer l’installation :
+Le projet n’étant pas initialisé nous allons devoir jouer quelques commandes pour terminer l’installation :
 
 ```shell
 $ mv .env.example .env
@@ -78,7 +78,9 @@ Contrairement à Laravel, Lumen ne contient pas l’outils permettant d’initia
 $ openssl rand -base64 24
 ```
 
-éditer le fichier ```.env``` pour renseigner une valeur pour :
+(Vous pouvez également faire du monkey typing… et saisir une chaine de caractère aléatoire avec votre clavier…)
+
+éditer le fichier ```.env``` pour y renseigner la valeur obtenue :
 
 - ```APP_KEY``` (exemple ```APP_KEY="I82xtis8Tsur2"```)
 
