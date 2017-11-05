@@ -11,7 +11,7 @@ Le but de notre application est de créer des API Rest qui vont exposer la gesti
     - [Créer le nouveau Projet](#créer-le-nouveau-projet)
     - [Initialisation](#initialisation)
     - [Tester votre application](#tester-votre-application)
-    - [Gestion de la bose de données](#gestion-de-la-bose-de-données)
+    - [Gestion de la base de données](#gestion-de-la-base-de-données)
         - [Le script de création / migration](#le-script-de-création--migration)
         - [Le modèle](#le-modèle)
     - [Le controller](#le-controller)
@@ -96,7 +96,7 @@ Une fois lancé vous avez un serveur Web qui écoute sur [le port 8000](http://l
 
 🤔 Pourquoi Lumen n’intègre pas la commande ```php artisan serve``` ? La raison est plutôt logique, Lumen étant un ```micro framework``` il n’embarque pas toutes les options de base de Laravel. Options qui peuvent d’ailleurs simplement être remplacée.
 
-## Gestion de la bose de données
+## Gestion de la base de données
 
 Pour la démonstration nous allons utiliser SQLite au lieux de MySQL. Pour ça rien de plus simple, Lumen utilise PDO il suffit donc de changer la configuration par défaut dans le fichier ```.env```. Modifier le fichier pour qu’il ressemble à celui-ci
 
@@ -141,9 +141,9 @@ php artisan make:migration create_todos_table --create=todos
 
 ✋ Le contenu du fichier est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre base de données.
 
-La commande à créé un nouveau fichier (dans mon cas) : ```database/migration/2017_11_02_205700_create_todos_table.php```
+La commande a créé un nouveau fichier (dans mon cas) : ```database/migration/2017_11_02_205700_create_todos_table.php```
 
-Dans le fichier créer nous allons définir notre schéma (à savoir la table) pour ajouter les 2 colonnes qui nous sont utiles ```texte``` et ```termine```. Le fichier après modification doit ressembler à :
+Dans le fichier créé nous allons définir notre schéma (à savoir la définition de la table) pour ajouter les 2 colonnes qui nous serons utiles ```texte``` et ```termine```. Le fichier après modification doit ressembler à :
 
 ```php
 <?php
@@ -191,7 +191,7 @@ Une fois cette commande lancée, Lumen va créer la structure de base de votre b
 
 ### Le modèle
 
-Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle. Pour ça créer un fichier ```Todos.php``` dans le dossier ``app/``` avec le contenu suivant :
+Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle. Pour ça créez un fichier ```Todos.php``` dans le dossier ```app/``` avec le contenu suivant :
 
 ```php
 <?php namespace App;
@@ -204,13 +204,13 @@ class Todos extends Model
 }
 ```
 
-le ```$fillable``` définie les propriétés qui doivent êtres automatiquement rempli par éloquent (l’orm) lors de la gestion de la demande.
+le ```$fillable``` définie les propriétés qui doivent êtres automatiquement remplis par Eloquent (l’ORM) lors de l’execution du code.
 
 ## Le controller
 
-Maintenant que nous avons notre base de données, nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique metier de nos API.
+Maintenant que nous avons notre base de données, nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de nos API.
 
-Pour commencer nous allons créer « la structure de base » de notre controller. Pour ça créer le fichier ```TodosController.php``` dans le chemin suivant ```app/Http/Controllers/``` et mettez le contenu suivant :
+Pour commencer nous allons créer « la structure de base » de notre controller. Pour ça créez le fichier ```TodosController.php``` dans le chemin suivant ```app/Http/Controllers/``` et mettez y le contenu suivant :
 
 ```php
 <?php
@@ -227,7 +227,7 @@ class TodosController extends Controller{
 }
 ```
 
-Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression). 
+Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression).
 
 Nous allons maintenant écrire une méthode pour chaque actions. Avec les différentes conditions nécéssaire au bon fonctionnement de notre applications.
 
