@@ -37,18 +37,18 @@ Support de cours &amp; TP pour le BTS SIO
 - [Installation de Laravel](./tp/laravel/introduction.md)
 - [Réécriture des API de la TODO List avec Laravel](./tp/laravel/creation_api.md)
 
-## [WIP] Framework Python : Flask
-
-- [Slides]()
-- [Installation de Python + Flask](./tp/python/flask.md)
-- [Réécriture des API de la TODO List avec Flask]()
-
 ## [WIP] Découverte de Docker
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/docker/) ([Les sources](cours/docker))
 - [Première approche Docker](./tp/docker/introduction.md)
 - [Créer un Dockerfile](./tp/docker/dockerfile.md)
 - [Créer un DockerCompose](./tp/docker/docker_compose.md)
+
+## [WIP] Framework Python : Flask
+
+- [Slides](https://rawgit.com/c4software/bts/master/cours/flask/) ([Les sources](cours/flask))
+- [Installation de Python + Flask](./tp/python/flask.md)
+- [Réécriture des API de la TODO List avec Flask](./tp/python/flask_todolist_api.md)
 
 ## [WIP] Intégration continue avec GitLab-CI
 
