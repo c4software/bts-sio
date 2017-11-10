@@ -378,7 +378,7 @@ var app = new Vue({
   […]
   methods: {
     ajout: function () {
-      var contenu = document.getElementById("texte");
+      var contenu = document.getElementById("texte").value;
       if(contenu == ""){
         swal("Oops","Vous devez spécifier du texte…" , "error" );
       }else{
@@ -396,14 +396,15 @@ var form = new FormData();
 form.append('texte', contenu);
 fetch("api/creation.php", {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'same-origin'
 })
 .then(function(response){
   return response.json();
 })
 .then(function(response) {
-  if(reponse.success){
-    this.recupererListe();
+  if(response.success){
+    app.recupererListe();
   }else{
     // Sweetalert pour l’utilisateur.
   }
