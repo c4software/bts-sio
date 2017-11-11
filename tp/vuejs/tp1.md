@@ -200,21 +200,40 @@ Après avoir réalisé vos 4 API, vous devez certainement avoir du code « dupli
 
 ### Intégration de VueJS
 
-Maintenant que nous avons créé les API nous allons pouvoir nous intérésser à la partie « J’intégre VueJS ». Le déroulement va être le suivant :
+Maintenant que nous avons créé les API nous allons pouvoir nous intérésser à la partie « J’intégre VueJS ».
+
+Le déroulement des prochainse étapes va être le suivant :
 
 - Intégrer la librairie VueJS dans le code existant.
 - Créer « un composant / objet » global qui va gerer l’application.
 - « Convertir » le code existant en code « VueJS » (le Foreach par exemple).
 
-### Ressources utiles
+Ne vous inquietez pas, tout est détaillé dans les prochaines étapes :
+
+Pour réaliser la suite du TP, nous allons avoir besoin des ressources suivantes :
 
 - [VueJS](https://vuejs.org)
 - [CanIUse](https://caniuse.com)
 
+### Création de la structure de « futur » projet
+
+Maintenant que nous avons les API nous allons pouvoir créer la structure de la « V2 ». La suite du TP va détailler le processus mais voilà le rendu du projet que vous allez obtenir:
+
+![Structure](./ressources/projet_migration.png)
+
+Vous pouvez dès à présent déplacer les différents fichiers, pour obtenir la même chose (surtout pour le dossier ```public```)
+
+### Conversion du template existant
+
+La première étape est de convertir le fichier ```index.php```. Notre application 2.0, ne sera plus une application PHP classique, mais une application reposant sur un modèle Client <-> Serveur. Pour ça vous devez procéder à quelques ajustement dans le site Internet :
+
+- Supprimer le fichier index.php (il n’est plus nécéssaire).
+- Déplacer le template (dans le dossier template à la racine).
+- Renommer le template que vous avez déplacé en « index.html », ça va être la base de notre application.
 
 ### Ajout de la librairie VueJS
 
-L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « head » du code existant :
+L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « head » du index.html :
 
 ```html
 <script src="https://unpkg.com/vue"></script>
@@ -226,14 +245,6 @@ Valider le fonctionnement grâce à la « Console de Développement » de votre 
 
 * Comment validez-vous le fonctionnement ?
 * Changer les sources, pour intégrer la librairie en local.
-
-### Conversion du template existant
-
-Maintenant que la librairie est présente, nous allons pouvoir l’utiliser. La première étape est de convertir le fichier ```index.php```. Notre application 2.0, ne sera plus une application PHP classique, mais une application reposant sur un modèle Client <-> Serveur. Pour ça vous devez procéder à quelques ajustement dans le site Internet :
-
-- Supprimer le fichier index.php (il n’est plus nécéssaire).
-- Déplacer le template (dans le dossier template à la racine).
-- Renommer le template que vous avez déplacé en « index.html », ça va être la base de notre application.
 
 #### Ajouter un script pour le JS
 
