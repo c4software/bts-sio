@@ -11,9 +11,10 @@ L’application existante est une « todo liste » codée en PHP + HTML.
     - [Liste des fonctionnalités](#liste-des-fonctionnalités)
     - [Stockage](#stockage)
     - [Moderniser avec VueJS](#moderniser-avec-vuejs)
-    - [Création des API.](#création-des-api)
+    - [Création des API](#création-des-api)
         - [Les API](#les-api)
         - [L’API pour lister les tâches « liste.php »](#lapi-pour-lister-les-tâches-«-listephp-»)
+        - [Comment procéder pour les prochaines API ✋](#comment-procéder-pour-les-prochaines-api-✋)
         - [L’API de création « creation.php »](#lapi-de-création-«-creationphp-»)
         - [L’API de suppression « suppression.php »](#lapi-de-suppression-«-suppressionphp-»)
         - [L’API pour marquer une tâche comme « terminée » : « terminer.php »](#lapi-pour-marquer-une-tâche-comme-«-terminée-»--«-terminerphp-»)
@@ -71,7 +72,7 @@ La SESSION étant non persistante, dans du vrai code il ne faut en ```aucun cas`
 
 Dans ce TP nous allons parcourir les différentes étapes de la migration de l’application (site web) « classique » en version « moderne » à savoir avec VueJS
 
-## Création des API.
+## Création des API
 
 Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur va-être réalisée en PHP, mais il est possible de la faire dans n’importe quel language. En entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
 
@@ -117,8 +118,9 @@ Rappel: Avant de pouvoir utiliser la session vous devez faire un ```session_star
 
 C’est à vous, réaliser votre première API.
 
+### Comment procéder pour les prochaines API ✋
 
-✋ STOP ! En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API utiliser les exemples fourni dans le code actuel (dans le dossier actions/) 
+En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, utiliser les exemples fourni dans le code actuel (dans le dossier ```actions``` par exemple).
 
 ### L’API de création « creation.php »
 
@@ -139,17 +141,19 @@ session_start();
 header("content-type: application/json");
 
 // Dans le cadre du traitement, vérifier si $_SESSION["todos"] est bien un tableau (is_array…)
-if(!is_array($_SESSION["todos"])){
+if(!isset($_SESSION["todos"]) || !is_array($_SESSION["todos"])){
   $_SESSION["todos"] = array();
 }
 
-$todo = array("id" => uniqid(), "texte" => $_POST["texte"], "date" => time(), "termine" => false);
-
-// Sauvegarder dans la Session.
-$_SESSION["todos"][$todo["id"]] = $todo;
-
-// Afficher un JSON
-echo json_encode(array("success" => true));
+if(isset($_POST["texte"]) && $_POST["texte"] != ""){
+  $todo = array("id" => uniqid(), "texte" => $_POST["texte"], "date" => time(), "termine" => false);
+  // Sauvegarder dans la Session.
+  $_SESSION["todos"][$todo["id"]] = $todo;
+  // Afficher un JSON
+  echo json_encode(array("success" => true));
+}else{
+  echo json_encode(array("success" => false));
+}
 
 ?>
 ```
