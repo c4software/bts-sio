@@ -13,11 +13,11 @@ L’application existante est une « todo liste » codée en PHP + HTML.
     - [Moderniser avec VueJS](#moderniser-avec-vuejs)
     - [Création des API](#création-des-api)
             - [Les API](#les-api)
-            - [L’API pour lister les tâches « liste.php »](#lapi-pour-lister-les-tâches-«-listephp-»)
+            - [L’API pour lister les tâches : liste.php](#lapi-pour-lister-les-tâches--listephp)
             - [Comment procéder pour les prochaines API](#comment-procéder-pour-les-prochaines-api)
-            - [L’API de création « creation.php »](#lapi-de-création-«-creationphp-»)
-            - [L’API pour marquer une tâche comme « terminée » : « terminer.php »](#lapi-pour-marquer-une-tâche-comme-«-terminée-»--«-terminerphp-»)
-            - [L’API de suppression « suppression.php »](#lapi-de-suppression-«-suppressionphp-»)
+            - [L’API de création: creation.php](#lapi-de-création-creationphp)
+            - [L’API pour marquer une tâche comme terminée : terminer.php](#lapi-pour-marquer-une-tâche-comme-terminée--terminerphp)
+            - [L’API de suppression : suppression.php](#lapi-de-suppression--suppressionphp)
             - [Valider le fonctionnement : Postman](#valider-le-fonctionnement--postman)
                 - [Pour l’API création](#pour-lapi-création)
                 - [Pour les autres API](#pour-les-autres-api)
@@ -89,7 +89,7 @@ Notre cas étant simple, chaque API sera en réalité un fichier PHP qui se char
 
 Dans un nouveau dossier (version VueJS du site Web), ajouter un dossier ```api``` puis créer les ```4``` fichiers dans le dossier, nous les completerons dans la suite du TP.
 
-#### L’API pour lister les tâches « liste.php »
+#### L’API pour lister les tâches : liste.php
 
 L’API « liste », doit retourné un JSON. Le JSON retourné est une représentation au format texte des valeurs contenues dans la variable ```$_SESSION["todos"]```.
 
@@ -124,7 +124,7 @@ C’est à vous, réaliser votre première API.
 
 ✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, utiliser les exemples fourni dans le code actuel (dans le dossier ```actions``` par exemple).
 
-#### L’API de création « creation.php »
+#### L’API de création: creation.php
 
 L’API « creation.php », va permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement s’est bien passé. Cette API ne doit fonctionner qu’en POST.
 
@@ -169,7 +169,7 @@ Par exemple :
 
 Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-#### L’API pour marquer une tâche comme « terminée » : « terminer.php »
+#### L’API pour marquer une tâche comme terminée : terminer.php
 
 L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
 
@@ -179,7 +179,7 @@ Paramètre d’entré :
 | ------------- |:-------------:| -----:|
 | id            | string        | GET   |
 
-#### L’API de suppression « suppression.php »
+#### L’API de suppression : suppression.php
 
 L’API « suppression » va permettre la suppression de la « tâche » passée en paramètre, ***uniquement*** les tâches dont le parametre ```termine == true``` peuvent être terminée, dans tous les cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
 
