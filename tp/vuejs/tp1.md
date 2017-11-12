@@ -12,16 +12,16 @@ L’application existante est une « todo liste » codée en PHP + HTML.
     - [Stockage](#stockage)
     - [Moderniser avec VueJS](#moderniser-avec-vuejs)
     - [Création des API](#création-des-api)
-            - [Les API](#les-api)
-            - [L’API pour lister les tâches : liste.php](#lapi-pour-lister-les-tâches--listephp)
-            - [Comment procéder pour les prochaines API](#comment-procéder-pour-les-prochaines-api)
-            - [L’API de création: creation.php](#lapi-de-création-creationphp)
-            - [L’API pour marquer une tâche comme terminée : terminer.php](#lapi-pour-marquer-une-tâche-comme-terminée--terminerphp)
-            - [L’API de suppression : suppression.php](#lapi-de-suppression--suppressionphp)
-            - [Valider le fonctionnement : Postman](#valider-le-fonctionnement--postman)
-                - [Pour l’API création](#pour-lapi-création)
-                - [Pour les autres API](#pour-les-autres-api)
-            - [Optimisation du code](#optimisation-du-code)
+        - [Les API](#les-api)
+        - [L’API pour lister les tâches : liste.php](#lapi-pour-lister-les-tâches--listephp)
+        - [Comment procéder pour les prochaines API](#comment-procéder-pour-les-prochaines-api)
+        - [L’API de création: creation.php](#lapi-de-création-creationphp)
+        - [L’API pour marquer une tâche comme terminée : terminer.php](#lapi-pour-marquer-une-tâche-comme-terminée--terminerphp)
+        - [L’API de suppression : suppression.php](#lapi-de-suppression--suppressionphp)
+        - [Valider le fonctionnement : Postman](#valider-le-fonctionnement--postman)
+            - [Pour l’API création](#pour-lapi-création)
+            - [Pour les autres API](#pour-les-autres-api)
+        - [Optimisation du code](#optimisation-du-code)
     - [Intégration de VueJS](#intégration-de-vuejs)
         - [Création de la structure de « futur » projet](#création-de-la-structure-de-«-futur-»-projet)
         - [Conversion du template existant](#conversion-du-template-existant)
@@ -78,7 +78,7 @@ Dans ce TP nous allons parcourir les différentes étapes de la migration de l�
 
 Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur va-être réalisée en PHP, mais il est possible de la faire dans n’importe quel language. En entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
 
-#### Les API
+### Les API
 
 Notre cas étant simple, chaque API sera en réalité un fichier PHP qui se chargera de faire l’action voulue. Exemple :
 
@@ -89,7 +89,7 @@ Notre cas étant simple, chaque API sera en réalité un fichier PHP qui se char
 
 Dans un nouveau dossier (version VueJS du site Web), ajouter un dossier ```api``` puis créer les ```4``` fichiers dans le dossier, nous les completerons dans la suite du TP.
 
-#### L’API pour lister les tâches : liste.php
+### L’API pour lister les tâches : liste.php
 
 L’API « liste », doit retourné un JSON. Le JSON retourné est une représentation au format texte des valeurs contenues dans la variable ```$_SESSION["todos"]```.
 
@@ -120,11 +120,11 @@ Rappel: Avant de pouvoir utiliser la session vous devez faire un ```session_star
 
 C’est à vous, réaliser votre première API.
 
-#### Comment procéder pour les prochaines API
+### Comment procéder pour les prochaines API
 
 ✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, utiliser les exemples fourni dans le code actuel (dans le dossier ```actions``` par exemple).
 
-#### L’API de création: creation.php
+### L’API de création: creation.php
 
 L’API « creation.php », va permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement s’est bien passé. Cette API ne doit fonctionner qu’en POST.
 
@@ -169,7 +169,7 @@ Par exemple :
 
 Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-#### L’API pour marquer une tâche comme terminée : terminer.php
+### L’API pour marquer une tâche comme terminée : terminer.php
 
 L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
 
@@ -179,7 +179,7 @@ Paramètre d’entré :
 | ------------- |:-------------:| -----:|
 | id            | string        | GET   |
 
-#### L’API de suppression : suppression.php
+### L’API de suppression : suppression.php
 
 L’API « suppression » va permettre la suppression de la « tâche » passée en paramètre, ***uniquement*** les tâches dont le parametre ```termine == true``` peuvent être terminée, dans tous les cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
 
@@ -199,7 +199,7 @@ Par exemple :
 {"success": true}
 ```
 
-#### Valider le fonctionnement : Postman
+### Valider le fonctionnement : Postman
 
 Pour tester vos traitements, vous avez la possibilité d’utiliser le logiciel PostMan. PostMan va vous permettre de tester vos API simplement avec une interface Graphique.
 
@@ -209,19 +209,19 @@ Une fois installé, tester les appels à vos APIs pour valider le bon fonctionne
 
 - Valider le fonctionnement à chaque étape (Création, liste, terminer, suppression).
 
-##### Pour l’API création
+#### Pour l’API création
 
 Petite subtilité, pour l’API de création vous devez faire une requête en POST. Vous devez donc régler PostMan comme ça :
 
 ![PostMan Démo configuration Post](./ressources/postman.png)
 
-##### Pour les autres API
+#### Pour les autres API
 
 Pour les autres API (sauf liste), vous allez devoir envoyer un ```id``` en paramètre, avec PostMan c’est simple, voilà la configuration que vous allez devoir faire :
 
 ![Postman Demo GET](./ressources/postman_get.png)
 
-#### Optimisation du code
+### Optimisation du code
 
 Après avoir réalisé vos 4 API, vous devez certainement avoir du code « dupliqué ». Modifier vos API pour créer des fonctions « utilitaires » permettant de réduire la duplication de code.
 
