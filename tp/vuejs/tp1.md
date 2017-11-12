@@ -19,7 +19,9 @@ L’application existante est une « todo liste » codée en PHP + HTML.
         - [L’API pour marquer une tâche comme « terminée » : « terminer.php »](#lapi-pour-marquer-une-tâche-comme-«-terminée-»--«-terminerphp-»)
         - [L’API de suppression « suppression.php »](#lapi-de-suppression-«-suppressionphp-»)
         - [Valider le fonctionnement : Postman](#valider-le-fonctionnement--postman)
-        - [Optimisation du code.](#optimisation-du-code)
+            - [Pour l’API création](#pour-lapi-création)
+        - [Pour les autres API](#pour-les-autres-api)
+        - [Optimisation du code](#optimisation-du-code)
         - [Intégration de VueJS](#intégration-de-vuejs)
         - [Création de la structure de « futur » projet](#création-de-la-structure-de-«-futur-»-projet)
         - [Conversion du template existant](#conversion-du-template-existant)
@@ -200,15 +202,27 @@ Par exemple :
 
 ### Valider le fonctionnement : Postman
 
-Pour tester vos traitements, vous avez la possibilité d’utiliser le logiciel POSTMAN.
+Pour tester vos traitements, vous avez la possibilité d’utiliser le logiciel PostMan. PostMan va vous permettre de tester vos API simplement avec une interface Graphique.
 
 Télécharger le [ici](https://www.getpostman.com/)
 
-Une fois installé, tester les appels à vos APIs pour valider leur fonctionnement.
+Une fois installé, tester les appels à vos APIs pour valider le bon fonctionnements
 
 - Valider le fonctionnement à chaque étape (Création, liste, terminer, suppression).
 
-### Optimisation du code.
+#### Pour l’API création
+
+Petite subtilité, pour l’API de création vous devez faire une requête en POST. Vous devez donc régler PostMan comme ça :
+
+![PostMan Démo configuration Post](./ressources/postman.png)
+
+### Pour les autres API
+
+Pour les autres API (sauf liste), vous allez devoir envoyer un ```id``` en paramètre, avec PostMan c’est simple, voilà la configuration que vous allez devoir faire :
+
+![Postman Demo GET](./ressources/postman_get.png)
+
+### Optimisation du code
 
 Après avoir réalisé vos 4 API, vous devez certainement avoir du code « dupliqué ». Modifier vos API pour créer des fonctions « utilitaires » permettant de réduire la duplication de code.
 
