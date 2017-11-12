@@ -4,24 +4,7 @@ Dans le cadre du TP, vous allez devoir « moderniser » une application simple. 
 
 L’application existante est une « todo liste » codée en PHP + HTML.
 
-- [Récupération et installation des sources](#récupération-et-installation-des-sources)
-- [Liste des fonctionnalités](#liste-des-fonctionnalités)
-- [Stockage](#stockage)
-- [Moderniser avec VueJS](#moderniser-avec-vuejs)
-- [Création des API.](#création-des-api)
-  - [Les API](#les-api)
-  - [Valider le fonctionnement : Postman](#valider-le-fonctionnement--postman)
-  - [Optimisation du code.](#optimisation-du-code)
-- [Intégration de VueJS](#intégration-de-vuejs)
-- [Ressources utiles](#ressources-utiles)
-- [Ajout de la librairie VueJS](#ajout-de-la-librairie-vuejs)
-- [Conversion du template existant](#conversion-du-template-existant)
-- [Migration des fonctionnalités](#migration-des-fonctionnalités)
-  - [Découverte de Fetch](#migration-des-fonctionnalités)
-  - [Liste des tâches](#liste-des-tâches)
-  - [Ajout d’une tâche](#ajout-dune-tâche)
-  - [Marquer une tâche comme terminée](#marquer-une-tâche-comme-terminée)
-  - [Suppression d’une tâche](#suppression-dune-tâche)
+
 
 ## Récupération et installation des sources
 
