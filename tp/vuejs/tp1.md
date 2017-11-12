@@ -4,7 +4,40 @@ Dans le cadre du TP, vous allez devoir « moderniser » une application simple. 
 
 L’application existante est une « todo liste » codée en PHP + HTML.
 
+<!-- TOC -->
 
+- [Ajouter VueJS dans une application existante](#ajouter-vuejs-dans-une-application-existante)
+    - [Récupération et installation des sources](#récupération-et-installation-des-sources)
+    - [Liste des fonctionnalités](#liste-des-fonctionnalités)
+    - [Stockage](#stockage)
+    - [Moderniser avec VueJS](#moderniser-avec-vuejs)
+    - [Création des API.](#création-des-api)
+        - [Les API](#les-api)
+        - [L’API pour lister les tâches « liste.php »](#lapi-pour-lister-les-tâches-«-listephp-»)
+        - [L’API de création « creation.php »](#lapi-de-création-«-creationphp-»)
+        - [L’API de suppression « suppression.php »](#lapi-de-suppression-«-suppressionphp-»)
+        - [L’API pour marquer une tâche comme « terminée » : « terminer.php »](#lapi-pour-marquer-une-tâche-comme-«-terminée-»--«-terminerphp-»)
+        - [Valider le fonctionnement : Postman](#valider-le-fonctionnement--postman)
+        - [Optimisation du code.](#optimisation-du-code)
+        - [Intégration de VueJS](#intégration-de-vuejs)
+        - [Création de la structure de « futur » projet](#création-de-la-structure-de-«-futur-»-projet)
+        - [Conversion du template existant](#conversion-du-template-existant)
+        - [Ajout de la librairie VueJS](#ajout-de-la-librairie-vuejs)
+            - [Ajouter un script pour le JS](#ajouter-un-script-pour-le-js)
+            - [Déclarer votre premier composant](#déclarer-votre-premier-composant)
+        - [Migration des fonctionnalités](#migration-des-fonctionnalités)
+            - [Découverte de Fetch](#découverte-de-fetch)
+            - [Liste des tâches](#liste-des-tâches)
+            - [Ajout d’une tâche](#ajout-dune-tâche)
+            - [Marquer une tâche comme terminée](#marquer-une-tâche-comme-terminée)
+            - [Suppression d’une tâche](#suppression-dune-tâche)
+            - [Optimisation](#optimisation)
+            - [Allez plus loin](#allez-plus-loin)
+                - [Ajouter des confirmations](#ajouter-des-confirmations)
+                - [Ajouter des règles de réécriture](#ajouter-des-règles-de-réécriture)
+                - [Partager les TODOS au monde !](#partager-les-todos-au-monde-)
+
+<!-- /TOC -->
 
 ## Récupération et installation des sources
 
