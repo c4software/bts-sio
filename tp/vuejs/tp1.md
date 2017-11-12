@@ -321,7 +321,7 @@ if(self.fetch) {
 }
 ```
 
-Par exemple, pour appeler l’API liste :
+Voici un EXEMPLE d’utilisation de Fetch :
 
 ```javascript
 fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
@@ -338,13 +338,14 @@ fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
 });
 ```
 
-⚠️ Attention: Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant ```credentials: 'same-origin'```.
+⚠️ Que veux dire ```credentials: 'same-origin'```? Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant ```credentials: 'same-origin'```. Si vous ne le faites pas vos ```$_SESSION``` ne seront pas sauvegardées ⚠️
 
-Si vous ne le faites pas vos ```$_SESSION``` ne seront pas sauvegardées ⚠️
+Tester le code précédent dans :
 
 - Tester dès à présent cet appel dans la « Console développeur »
 
-[Consulter la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
+
+Pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
 
 #### Liste des tâches
 
