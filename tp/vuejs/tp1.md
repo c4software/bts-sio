@@ -14,7 +14,7 @@ L’application existante est une « todo liste » codée en PHP + HTML.
     - [Création des API](#création-des-api)
             - [Les API](#les-api)
             - [L’API pour lister les tâches « liste.php »](#lapi-pour-lister-les-tâches-«-listephp-»)
-            - [Comment procéder pour les prochaines API ✋](#comment-procéder-pour-les-prochaines-api-✋)
+            - [Comment procéder pour les prochaines API](#comment-procéder-pour-les-prochaines-api)
             - [L’API de création « creation.php »](#lapi-de-création-«-creationphp-»)
             - [L’API pour marquer une tâche comme « terminée » : « terminer.php »](#lapi-pour-marquer-une-tâche-comme-«-terminée-»--«-terminerphp-»)
             - [L’API de suppression « suppression.php »](#lapi-de-suppression-«-suppressionphp-»)
@@ -120,9 +120,9 @@ Rappel: Avant de pouvoir utiliser la session vous devez faire un ```session_star
 
 C’est à vous, réaliser votre première API.
 
-#### Comment procéder pour les prochaines API ✋
+#### Comment procéder pour les prochaines API
 
-En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, utiliser les exemples fourni dans le code actuel (dans le dossier ```actions``` par exemple).
+✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, utiliser les exemples fourni dans le code actuel (dans le dossier ```actions``` par exemple).
 
 #### L’API de création « creation.php »
 
