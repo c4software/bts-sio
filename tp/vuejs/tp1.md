@@ -16,8 +16,8 @@ L’application existante est une « todo liste » codée en PHP + HTML.
         - [L’API pour lister les tâches « liste.php »](#lapi-pour-lister-les-tâches-«-listephp-»)
         - [Comment procéder pour les prochaines API ✋](#comment-procéder-pour-les-prochaines-api-✋)
         - [L’API de création « creation.php »](#lapi-de-création-«-creationphp-»)
-        - [L’API de suppression « suppression.php »](#lapi-de-suppression-«-suppressionphp-»)
         - [L’API pour marquer une tâche comme « terminée » : « terminer.php »](#lapi-pour-marquer-une-tâche-comme-«-terminée-»--«-terminerphp-»)
+        - [L’API de suppression « suppression.php »](#lapi-de-suppression-«-suppressionphp-»)
         - [Valider le fonctionnement : Postman](#valider-le-fonctionnement--postman)
         - [Optimisation du code.](#optimisation-du-code)
         - [Intégration de VueJS](#intégration-de-vuejs)
@@ -167,9 +167,16 @@ Par exemple :
 
 Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
-Contraintes:
 
-- Bloquer l’ajout de TODO vide ($_POST["texte"] == "") ? (en retournant success: false en cas de texte vide)
+### L’API pour marquer une tâche comme « terminée » : « terminer.php »
+
+L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
+
+Paramètre d’entré :
+
+| Nom           | Type          | Méthod|
+| ------------- |:-------------:| -----:|
+| id            | string        | GET   |
 
 ### L’API de suppression « suppression.php »
 
@@ -178,7 +185,7 @@ L’API « suppression » va permettre la suppression de la « tâche » passée
 Contraintes :
 
 - L’API doit fonctionner en GET et en POST.
-- Il est impossible de supprimer une tâche non terminée. ``` termine == true```
+- Il est impossible de supprimer une tâche non terminée. ```termine == true```
 
 Paramètre d’entré :
 
@@ -190,16 +197,6 @@ Par exemple :
 ```json
 {"success": true}
 ```
-
-### L’API pour marquer une tâche comme « terminée » : « terminer.php »
-
-L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
-
-Paramètre d’entré :
-
-| Nom           | Type          | Méthod|
-| ------------- |:-------------:| -----:|
-| id            | string        | GET   |
 
 ### Valider le fonctionnement : Postman
 
