@@ -235,7 +235,7 @@ Pour que le responsive fonctionne correctement, il faut ajouter le bon viewport 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
-Ajouter la dans le fichier ```index.html``` à la racine.
+Ajouter le dans le ```head``` du fichier ```index.html```.
 
 ### Transformer le template de base
 
