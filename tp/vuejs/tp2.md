@@ -24,7 +24,7 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
         - [Déclarer et utiliser VuetifyJS](#déclarer-et-utiliser-vuetifyjs)
         - [Activer le Responsive](#activer-le-responsive)
         - [Transformer le template de base](#transformer-le-template-de-base)
-        - [Déclaration de myToolbar](#déclaration-de-mytoolbar)
+        - [Création de myToolbar](#création-de-mytoolbar)
         - [Voir le changement](#voir-le-changement)
     - [Le Routeur](#le-routeur)
     - [Ajout du multilangues (i18n)](#ajout-du-multilangues-i18n)
@@ -267,7 +267,7 @@ export default {
 
 ⚠️ Pour l’instant le code que vous avez remplacé n’est pas fonctionnel, pour la simple et bonne raison qu’il fait référence à un composant que vous n’avez pas encore écrit : ```myToolbar```
 
-### Déclaration de myToolbar
+### Création de myToolbar
 
 Créer un nouveau fichier nommé ```MyToolbar.vue``` dans le dossier ```components```
 
