@@ -512,7 +512,7 @@ var app = new Vue({
 - Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des événements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
 
 ```html
-<form v-on:submit.prevent="ajout"></form>
+<form v-on:submit.prevent="ajout()"></form>
 ```
 
 - Tester votre code.
