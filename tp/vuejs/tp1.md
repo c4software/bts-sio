@@ -31,6 +31,7 @@ L’application existante est une « todo liste » codée en PHP + HTML.
         - [Migration des fonctionnalités](#migration-des-fonctionnalités)
             - [Découverte de Fetch](#découverte-de-fetch)
             - [Liste des tâches](#liste-des-tâches)
+            - [Optimisation.](#optimisation)
             - [Ajout d’une tâche](#ajout-dune-tâche)
             - [Marquer une tâche comme terminée](#marquer-une-tâche-comme-terminée)
             - [Suppression d’une tâche](#suppression-dune-tâche)
@@ -365,7 +366,7 @@ var app = new Vue({
 })
 ```
 
-- Exemple d’appel pour récupérer les tâches
+- Ajouter le code suivant dans la partie ```beforeMount```
 
 ```javascript
 fetch('api/liste.php', {method: "GET", credentials: 'same-origin'})
@@ -406,6 +407,34 @@ Adapter l’exemple précédant pour afficher les tâches comme ils l’étaient
 - L’affichage est-il le même ?
 - Comment gérer le cas du chargement ? (dans le monde réel Internet peut-être lent…)
 - Comment gérer le cas de la liste vide ?
+
+#### Optimisation.
+
+Déplacer le code dans le ```beforeMount``` dans la methode ```recupererListe``` :
+
+```javascript
+var app = new Vue({
+  […]
+  methods: {
+    recupererListe: function() {
+      // …
+    }
+  }
+```
+
+Remplacer le code dans le ```beforeMount``` pour appeler la méthode ```recupererListe```.
+
+```javascript
+var app = new Vue({
+  el: '.container',
+  created: function () {
+    console.log("Démarrage TODO-APP");
+  },
+  beforeMount: function() {
+    app.recupererListe();
+  }
+})
+```
 
 #### Ajout d’une tâche
 
