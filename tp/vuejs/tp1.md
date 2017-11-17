@@ -410,7 +410,7 @@ Adapter l’exemple précédant pour afficher les tâches comme ils l’étaient
 
 #### Optimisation.
 
-Déplacer le code dans le ```beforeMount``` dans la methode ```recupererListe``` :
+Déplacer le code actellement dans ```beforeMount``` dans une nouvelle methode appelée ```recupererListe``` :
 
 ```javascript
 var app = new Vue({
