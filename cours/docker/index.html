@@ -222,18 +222,52 @@
 				</section>
 
 				<section>
-					<h3>Les avantages de Docker</h3>
-					TODO #24
+						<h3>La terminologie</h3>
+						<ul>
+							<li><em>Image</em> Les fichiers, le contenu de votre « système »</li>
+							<li><em>Container</em> L’image quand elle est en fonctionnement.</li>
+							<li><em>Engine</em> Ce qui fait fonctionner votre « container ». Les volumes et le réseau font partie de « l’engine ».</li>
+							<li><em>Registry</em> Entrepôt d’image à télécharger (fourni par d’autre, ou construite par vous). <a href="https://hub.docker.com/">https://hub.docker.com/</a></li>
+							<li><em>Volume</em>, les « montages » / ressources, emplacement (réseau ou non) disponible dans votre Container.</li>
+						</ul>
 				</section>
 
 				<section>
-					<h3>La terminologie</h3>
+					<h3>Pour résumer Docker c’est : </h3>
 					<ul>
-						<li><em>Image</em> Les fichiers, le contenu de votre « système »</li>
-						<li><em>Container</em> L’image quand elle est en fonctionnement.</li>
-						<li><em>Engine</em> Ce qui fait fonctionner votre « container ». Les volumes et le réseau font partie de « l’engine ».</li>
-						<li><em>Registry</em> Entrepôt d’image à télécharger (fourni par d’autre, ou construite par vous). <a href="https://hub.docker.com/">https://hub.docker.com/</a></li>
-						<li><em>Volume</em>, les « montages » / ressources, emplacement (réseau ou non) disponible dans votre Container.</li>
+						<li>Un projet open-source qui à pour but d’automatiser le déploiement d’application dans un « container »</li>
+						<li>Le container un sorte « d’archive » qui contient tout ce qu’il faut pour faire tourner un logiciel : Code, Librairies pour l’éxecution, outils système, et librairies système.</li>
+						<li>Ça garantie que le code fonctionnera toujours de la même façon quelques soit l’environnement.</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>Le Docker Engine :</h3>
+					<ul>
+						<li>La sécurité</li>
+						<li>Le réseau</li>
+						<li>Les volumes</li>
+						<li>L’orchestration</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Mais surtout …</h3>
+					<h4>C’est portable, ça fonctionne sur </h4>
+					<ul>
+						<li>Linux</li>
+						<li>OSX</li>
+						<li>Windows</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Registry</h3>
+					<ul>
+						<li>Docker Hub</li>
+						<li>Communautaire</li>
+						<li>Images certifiés</li>
+						<li>Énormémement d’image</li>
 					</ul>
 				</section>
 
