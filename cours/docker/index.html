@@ -295,12 +295,92 @@
 
 				<section>
 					<h3>Cas d’usage 1</h3>
+					TODO
 				</section>
 
 				<section>
 					<h3>Cas d’usage 2</h3>
+					TODO
 				</section>
 
+				<section>
+					<h3>Mais contrètement…</h3>
+					<h4>Créer la définition d’un container</h4>
+				</section>
+
+				<section>
+					<h3>Le Docker File</h3>
+					<ul>
+						<li>Utilisé par Docker pour créer des container à partir de la définition, le fichier « Dockerfile »</li>
+						<li>C’est un fichier texte, qui contient toutes les commandes que l’utilisateur va faire pour assembler l’image</li>
+						<li>Construit via la commande « docker build ».</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Le Docker File</h3>
+					<pre><code data-trim>
+FROM ubuntu:latest
+MAINTAINER Valentin Brosseau
+
+RUN apt-get update
+RUN apt-get install -y python python-pip wget
+RUN pip install Flask
+
+ADD hello.py /home/hello.py
+
+WORKDIR /home									
+</code></pre>
+				</section>
+
+				<section>
+					<h3>La construction </h3>
+					<pre><code data-trim>
+$ docker build -t "flask:demo" .
+</code></pre>
+				</section>
+
+				<section>
+					<h3>Lancement</h3>
+					<pre><code data-trim>
+$ docker run -p 5000:5000 flask:demo python hello.py
+</code></pre>
+				</section>				
+
+				<section>
+					<h3>Mais…</h3>
+					<p>Le container est <em>éphémère</em> il ne sauvegarde rien, à chaque arrêt tout est supprimé.</p>
+				</section>
+
+				<section>
+					<h3>Mais ?</h3>
+					<p>Pour <em>sauvegarder</em> de la donnés il faut faire un volume.</p>
+				</section>
+
+				<section>
+					<h3>Un volume</h3>
+					<ul>
+						<li>Un dossier « partagé » entre votre machine et le container</li>
+						<li>Une sorte de point de montage</li>
+						<li>Persitant, la donnés est modifié en temps réel et est sauvegardés</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Quelques commandes Docker</h3>
+					<ul>
+						<li>docker run</li>
+						<li>docker ps</li>
+						<li>Docker stop|start|restart</li>
+						<li>docker build</li>
+						<li>docker rm</li>
+						<li>docker logs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>DÉMO</h2>
+				</section>
 			</div>
 		</div>
 
