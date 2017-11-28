@@ -417,7 +417,36 @@ $ docker run -p 5000:5000 flask:demo python hello.py
 				</section>
 
 				<section>
+					<h3>C’est un outil officiel - Fourni par Docker</h3>
+				</section>
 
+				<section>
+					<h3>Un fichier… le docker-compose.yml</h3>
+				</section>
+
+				<section>
+					<pre><code data-trim>
+redis:
+	image: redis
+	command: redis-server --appendonly yes
+	volumes:
+		- /root/rss2twitter/data:/data
+	ports:
+		- "6379:6379"
+
+rss2twitter:
+	build: app
+	links:
+		- redis						
+</code></pre>
+				</section>
+				
+				<section>
+					<h3>Utilisation</h3>
+					<ul>
+						<li>docker-compose up</li>
+						<li>docker-compose up -d</li>
+					</ul>
 				</section>
 			</div>
 		</div>
