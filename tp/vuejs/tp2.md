@@ -82,7 +82,7 @@ Une fois installé, vous êtes prêt, votre PC est prêt à accueillir l’outil
 
 Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
 
-Dans un terminal lancer la commande suivante :
+Dans un terminal lancer la commande suivante dans le ```Node.js Command Prompt``` :
 
 ```shell
 $ npm install -g vue-cli
@@ -101,7 +101,7 @@ Vue-Cli intègre plusieurs templates :
 
 Pour notre exemple nous allons prendre le Webpack, il contient tous les éléments qui seront intéressant pour réaliser notre application.
 
-Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante :
+Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante  dans le ```Node.js Command Prompt```
 
 ```shell
 $ vue init webpack cliff-height-timer
@@ -162,7 +162,6 @@ Et si vous avez les outils sur votre machine il peut également :
 
 - Créer la CSS à partir du SCSS présent dans le .vue
 - Et plein d’autres usages car Webpack c’est un outil qui permet l’assemblage de différent outils
-
 
 ## Le code source
 
