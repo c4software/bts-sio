@@ -26,6 +26,7 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
         - [Transformer le template de base](#transformer-le-template-de-base)
         - [Création de myToolbar](#création-de-mytoolbar)
         - [Voir le changement](#voir-le-changement)
+    - [Organisation](#organisation)
     - [Le Routeur](#le-routeur)
     - [Ajout du multilangues (i18n)](#ajout-du-multilangues-i18n)
         - [Ajout du fichier de langue](#ajout-du-fichier-de-langue)
@@ -206,9 +207,9 @@ Maintenant que la dépendance est installée nous allons pouvoir l’utiliser.
 Première étape modifier le fichier ```main.js``` pour ajouter le code suivant :
 
 ```javascript
-require('vuetify/dist/vuetify.min.css');
+require('vuetify/dist/vuetify.min.css')
 import Vuetify from 'vuetify'
-Vue.use(Vuetify);
+Vue.use(Vuetify)
 ```
 
 ⚠️ Ajouter le code **avant** :
@@ -304,6 +305,31 @@ Voilà, vous avez atteint la première étape. Vous pouvez lancer votre applicat
 ```shell
 $ npm run dev
 ```
+
+## Organisation
+
+Nous allons légèrement modifier l’arborescence pour rendre le projet « plus simple », créer un dossier ```src/views```. Celui-ci contiendra « nos vues » c’est à dire les différentes pages de notre application. 
+
+Déplacer le fichier ```src/components/HelloWorld.vue``` dans ```src/views/HelloWorld.vue```. Une fois fait vous pouvez éditer le fichier ```src/router/index.js``` pour y mettre le contenu suivant :
+
+```javascript
+router/index.js
+import Vue from 'vue'
+import Router from 'vue-router'
+import HelloWorld from '@/views/HelloWorld'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'HelloWorld',
+      component: HelloWorld
+    }
+  ]
+})
+``` 
 
 ## Le Routeur
 
