@@ -9,6 +9,8 @@ Dans ce TP nous allons voir l’installation de Docker et les premiers test de v
 - [Premier test](#premier-test)
 - [Second test](#second-test)
 - [Les sources de l’image hello world](#les-sources-de-limage-hello-world)
+- [Pour aller plus loin](#pour-aller-plus-loin)
+    - [Créer un fichier dans la machine](#créer-un-fichier-dans-la-machine)
 
 <!-- /TOC -->
 
@@ -59,3 +61,41 @@ Peu d’informations, 3 lignes :
 - ```CMD ["/hello"]``` (Commande lancé au démarrage de votre image)
 
 PS: Pas d’inquietude on créera un DockerFile dans le 2nd TP.
+
+# Pour aller plus loin
+
+Bon un texte à l’écran c’est bien… Mais si on lancais un système entier… Ubuntu par exemple. Pour ça rien de plus simple, dans la console lancé :
+
+```
+docker run -it ubuntu bash
+```
+
+![Ubuntu](./ressources/ubuntu.png)
+
+Et voilà vous avez un Linux complètement opérationnel en quelques minutes sur votre poste Windows. Pas mal ? C’est pas vraiment le but premier de Docker mais c’est cool.
+
+Utiliser un peu le shell de votre « nouveau Linux », exemple de commande :
+
+- ```uname -a```
+- ```whoami```
+- ```top```
+- ```ls /```
+
+- D’ailleurs, pourquoi le top ne retourne que deux processus ?
+- Aucune trace de vos fichiers… c’est normal, de base rien n’est accessible.
+
+## Créer un fichier dans la machine
+
+Créer un fichier vide avec la commande :
+
+```
+touch fichier_test
+```
+
+Vérifier avec un ```ls``` que le fichier est bien présent. Quitter maintenant votre l’image en tappant ```exit```. Relancer de nouveau l’image avec la commande :
+
+```
+docker run -it ubuntu bash
+```
+
+Faites à nouveau un ```ls```, que constatez-vous? Et bien oui, le fichier n’est plus présent… C’est normal tous les fichiers créé dans l’image sont non persistant (c’est à dire qu’ils sont supprimés à chaque fois que l’image s’arrête). 
