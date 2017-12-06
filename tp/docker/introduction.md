@@ -12,6 +12,8 @@ Dans ce TP nous allons voir l’installation de Docker et les premiers test de v
 - [Pour aller plus loin](#pour-aller-plus-loin)
     - [Créer un fichier dans la machine](#créer-un-fichier-dans-la-machine)
     - [Avoir accès au fichier de votre machine](#avoir-accès-au-fichier-de-votre-machine)
+        - [Monter un dossier](#monter-un-dossier)
+        - [Monter un fichier](#monter-un-fichier)
 
 <!-- /TOC -->
 
@@ -105,6 +107,8 @@ Faites à nouveau un ```ls```, que constatez-vous? Et bien oui, le fichier n’e
 
 Bon c’est bien, mais si on donnais accès à un stockage persistant à notre image. Sur votre machine le Stockage persistant c’est votre disque dur (HDD, SSD, etc). Avec docker (comme sous Linux d’ailleurs) on parle de monter « un volume », une fois monté ce volume sera accessible comme un dossier (ou un fichier, on y reviendra).
 
+### Monter un dossier
+
 Pour monter un volume il suffit d’ajouter un ```-v``` à la commande de lancement, exemple pour avoir le dossier courant :
 
 Sous Windows :
@@ -119,4 +123,26 @@ docker run -v $(pwd):/mnt/ -it ubuntu bash
 
 Lancer la commande ```ls /mnt``` vous devriez vour vos fichiers.
 
-Attention! L’accès est en lecture ET en écriture donc attention.
+⚠️⚠️ Attention! L’accès est en lecture ET en écriture donc attention.
+
+### Monter un fichier
+
+Comme je le disais dans l’introduction avec docker il est possible de rendre accessible le dossier, mais également les fichiers. Pour les fichiers la commande est la même sauf qu’au lieu de spécifier un dossier on spécifie le chemin d’un fichier. Exemple :
+
+Windows :
+```shell
+docker run -v %cd%/mon_fichier:/mnt/mon_fichier -it ubuntu bash
+```
+
+Unix :
+```shell
+docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier -it ubuntu bash
+```
+
+Le fichier est maintenant accessible dans votre image Docker. Il est également possible de limiter l’accès à votre fichier en le montant par exemple en « lecture seulement » :
+
+```shell
+docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier:ro -it ubuntu bash
+```
+
+Et c’est la que l’on voit la puissance, on verra qu’il sera possible par la suite de créer de vrai « stack » applicative qui définiront l’ensemble des paramètres de notre environnement (cloisonné) et gérant finement les droits d’accès à la configuration par exemple! Un régal !
