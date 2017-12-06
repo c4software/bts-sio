@@ -11,6 +11,7 @@ Dans ce TP nous allons voir l’installation de Docker et les premiers test de v
 - [Les sources de l’image hello world](#les-sources-de-limage-hello-world)
 - [Pour aller plus loin](#pour-aller-plus-loin)
     - [Créer un fichier dans la machine](#créer-un-fichier-dans-la-machine)
+    - [Avoir accès au fichier de votre machine](#avoir-accès-au-fichier-de-votre-machine)
 
 <!-- /TOC -->
 
@@ -22,7 +23,7 @@ Pour installer Docker rien de plus simple, il suffit d’utiliser l’installeur
 
 Maintenant qu’il est installé sur votre poste rien de plus simple. Dans une console entrer la commande suivante :
 
-```
+```shell
 docker version
 ```
 
@@ -35,7 +36,7 @@ Vous devez voir la version de Docker.
 
 Maintenant que nous savons que Docker est correctement installé, testons avec une « machine » fourni par Docker. L’image ce nomme ```hello-world``` et celle-ci ne fait qu’afficher un message de bienvenue. De nouveau dans la console entrer la commande suivante :
 
-```
+```shell
 docker run hello-world
 ```
 
@@ -66,7 +67,7 @@ PS: Pas d’inquietude on créera un DockerFile dans le 2nd TP.
 
 Bon un texte à l’écran c’est bien… Mais si on lancais un système entier… Ubuntu par exemple. Pour ça rien de plus simple, dans la console lancé :
 
-```
+```shell
 docker run -it ubuntu bash
 ```
 
@@ -88,14 +89,34 @@ Utiliser un peu le shell de votre « nouveau Linux », exemple de commande :
 
 Créer un fichier vide avec la commande :
 
-```
+```shell
 touch fichier_test
 ```
 
 Vérifier avec un ```ls``` que le fichier est bien présent. Quitter maintenant votre l’image en tappant ```exit```. Relancer de nouveau l’image avec la commande :
 
-```
+```shell
 docker run -it ubuntu bash
 ```
 
-Faites à nouveau un ```ls```, que constatez-vous? Et bien oui, le fichier n’est plus présent… C’est normal tous les fichiers créé dans l’image sont non persistant (c’est à dire qu’ils sont supprimés à chaque fois que l’image s’arrête). 
+Faites à nouveau un ```ls```, que constatez-vous? Et bien oui, le fichier n’est plus présent… C’est normal tous les fichiers créé dans l’image sont non persistant (c’est à dire qu’ils sont supprimés à chaque fois que l’image s’arrête).
+
+## Avoir accès au fichier de votre machine
+
+Bon c’est bien, mais si on donnais accès à un stockage persistant à notre image. Sur votre machine le Stockage persistant c’est votre disque dur (HDD, SSD, etc). Avec docker (comme sous Linux d’ailleurs) on parle de monter « un volume », une fois monté ce volume sera accessible comme un dossier (ou un fichier, on y reviendra).
+
+Pour monter un volume il suffit d’ajouter un ```-v``` à la commande de lancement, exemple pour avoir le dossier courant :
+
+Sous Windows :
+```shell
+docker run -v %cd%:/mnt/ -it ubuntu bash
+```
+
+Sous Unix :
+```shell
+docker run -v $(pwd):/mnt/ -it ubuntu bash
+```
+
+Lancer la commande ```ls /mnt``` vous devriez vour vos fichiers.
+
+Attention! L’accès est en lecture ET en écriture donc attention.
