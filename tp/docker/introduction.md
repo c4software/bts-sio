@@ -42,7 +42,7 @@ Maintenant que nous savons que Docker est correctement installé, testons avec u
 docker run hello-world
 ```
 
-[Docker Hello World](./ressources/hello-world.png)
+![Docker Hello World](./ressources/hello-world.png)
 
 - Que constatez-vous ?
 - Comment être certain que l’image n’a rien fait d’anormal sur notre machine ?
@@ -55,7 +55,7 @@ Surprise ! On retrouve des plateformes (amd64, i686, armXX). Et c’est normal, 
 
 Maintenant que nous avons vu le projet, entrons plus en détail allons vour la définition de notre image le ![fichier Dockerfile](https://github.com/docker-library/hello-world/blob/master/i386/hello-world/Dockerfile)
 
-[Hello World 2](./ressources/hello-world2.png)
+![Hello World 2](./ressources/hello-world2.png)
 
 Peu d’informations, 3 lignes :
 
