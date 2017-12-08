@@ -443,7 +443,7 @@ Notre internationalisation est maintenant prête à être utilisée. Nous allons
 
 ### Tester
 
-Vérifier en relançant votre application que votre titre est toujours présent :
+Vérifier en relançant votre application que le titre à bien été modifié :
 
 ```shell
 $ npm run dev
