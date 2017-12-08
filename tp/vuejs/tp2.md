@@ -363,7 +363,7 @@ Quand on conçoit une application il est important de gérer certains points dè
 Pour gérer l’internationalisation VueJS propose une librairie appelée ```vue-i18n```, avant de pouvoir l’utiliser il faut l’installer via :
 
 ```shell
-npm install vue-i18n --save
+npm add vue-i18n --save
 ```
 
 Une fois installé, nous allons pouvoir gérer nos textes en plusieurs langues (et sans se prendre la tête).
