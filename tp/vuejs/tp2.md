@@ -507,60 +507,60 @@ export default {
       ft: '0'
     }
   },
-  computed:{
+  computed: {
     state_icon () {
       // Retourne l’icone pour le FAB
-      if(this.running){
-          return 'stop'
-      }else{
-          return 'play_arrow'
+      if (this.running) {
+        return 'stop'
+      } else {
+        return 'play_arrow'
       }
     },
     state_class () {
       // Retourne la class pour le FAB
-      if(this.running){
-          return 'red'
-      }else{
-          return 'green'
+      if (this.running) {
+        return 'red'
+      } else {
+        return 'green'
       }
     }
   },
-  methods:{
+  methods: {
     action () {
-      // Gestion du start / stop 
+      // Gestion du start / stop
       this.start = new Date().getTime()
 
-      if (!this.running){
-        this.running = true;
+      if (!this.running) {
+        this.running = true
         this.timerId = setInterval(() => {
           this.compute()
-        }, 10);
-      }else{
-        this.running = false;
+        }, 10)
+      } else {
+        this.running = false
         clearInterval(this.timerId)
-        this.saveHistory({time: this.time,m: this.m,ft: this.ft})
+        this.saveHistory({time: this.time, m: this.m, ft: this.ft})
       }
     },
     saveHistory (item) {
       // Sauvegarde dans l’historique
-      let history = JSON.parse(localStorage.getItem("history"));
-      if (!Array.isArray(history)){
+      let history = JSON.parse(localStorage.getItem('history'))
+      if (!Array.isArray(history)) {
         history = []
       }
-      history.unshift(item);
-      localStorage.setItem("history", JSON.stringify(history));
+      history.unshift(item)
+      localStorage.setItem('history', JSON.stringify(history))
     },
     compute () {
       let fallTime = new Date().getTime() - this.start
-      let height = 16*Math.pow((fallTime/1000), 2)
+      let height = 16 * Math.pow((fallTime / 1000), 2)
       let numberDigits = 1
-      if(height < 1){
+      if (height < 1) {
         numberDigits = 2
       }
 
-      this.time   = (fallTime/1000).toFixed(2)
-      this.ft     = height.toFixed(numberDigits)
-      this.m      = (height/3.2808).toFixed(numberDigits)
+      this.time = (fallTime / 1000).toFixed(2)
+      this.ft = height.toFixed(numberDigits)
+      this.m = (height / 3.2808).toFixed(numberDigits)
     }
   }
 }
@@ -574,6 +574,7 @@ export default {
     color: white;
   }
 </style>
+
 ```
 
 - Déclarer la vue dans votre ```router/index.js```. Retirer la vue ```/``` existante pour y mettre la votre. Exemple :
