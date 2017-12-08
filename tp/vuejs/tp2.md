@@ -284,13 +284,13 @@ Créer un nouveau fichier nommé ```MyToolbar.vue``` dans le dossier ```componen
 <script>
 export default {
   name: 'myToolbar',
-  data: function() {
+  data: function () {
     return {
       drawer: false
     }
   },
   methods: {
-    goHome (){
+    goHome () {
       window.location.hash = "/"
     }
   }
@@ -397,7 +397,7 @@ export const i18n = new VueI18n({
     messages
 });
 
-function getLanguage() {
+function getLanguage () {
     try {
         let l = navigator.language.split("-");
         return l[0];
@@ -506,7 +506,7 @@ export default {
         }
     },
     computed:{
-      state_icon() {
+      state_icon () {
           // Retourne l’icone pour le FAB
           if(this.running){
               return "stop";
@@ -514,7 +514,7 @@ export default {
               return "play_arrow";
           }
       },
-      state_class() {
+      state_class () {
           // Retourne la class pour le FAB
           if(this.running){
               return "red";
@@ -524,7 +524,7 @@ export default {
       }
     },
     methods:{
-        action(){
+        action (){
           // Gestion du start / stop 
             this.start = new Date().getTime();
 
@@ -540,7 +540,7 @@ export default {
             }
 
         },
-        saveHistory(item){
+        saveHistory (item){
           // Sauvegarde dans l’historique
           let history = JSON.parse(localStorage.getItem("history"));
           if (!Array.isArray(history)){
@@ -549,7 +549,7 @@ export default {
           history.unshift(item);
           localStorage.setItem("history", JSON.stringify(history));
         },
-        compute(){
+        compute (){
             let fallTime = new Date().getTime() - this.start;
             let height = 16*Math.pow((fallTime/1000), 2);
             let numberDigits = 1;
@@ -662,7 +662,7 @@ Création :
 <script>
 export default {
   name: "drawer",
-  data: function() {
+  data: function () {
     return {
       items: [
         { icon: 'home', text: this.$t("drawer.home"), action: '#/' }
