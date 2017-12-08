@@ -291,7 +291,7 @@ export default {
   },
   methods: {
     goHome () {
-      window.location.hash = "/"
+      window.location.hash = '/'
     }
   }
 }
@@ -313,7 +313,6 @@ Nous allons légèrement modifier l’arborescence pour rendre le projet « plus
 Déplacer le fichier ```src/components/HelloWorld.vue``` dans ```src/views/HelloWorld.vue```. Une fois fait vous pouvez éditer le fichier ```src/router/index.js``` pour y mettre le contenu suivant :
 
 ```javascript
-router/index.js
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/views/HelloWorld'
@@ -401,8 +400,8 @@ export const i18n = new VueI18n({
 
 function getLanguage () {
     try {
-        let l = navigator.language.split("-");
-        return l[0];
+        let l = navigator.language.split('-')
+        return l[0]
     }catch(err){
         return navigator.language
     }
