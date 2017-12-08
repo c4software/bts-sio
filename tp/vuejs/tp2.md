@@ -339,7 +339,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
   routes: [
@@ -390,13 +390,13 @@ const messages = {
     fr: {
       'title': 'Cliff Height Timer'
     }
-};
+}
 
 export const i18n = new VueI18n({
     locale: getLanguage(),
     fallbackLocale: 'en',
     messages
-});
+})
 
 function getLanguage () {
     try {
@@ -669,7 +669,7 @@ export default {
         { icon: 'home', text: this.$t("drawer.home"), action: '#/' }
         { icon: 'help', text: this.$t("drawer.about"), action: '#/about' },
         { divider: true },
-        { icon: 'pets', text: this.$t('see_on_github'), action: '#' },
+        { icon: 'pets', text: this.$t('see_on_github'), action: '#' }
       ]
     }
   }
@@ -727,13 +727,13 @@ Source: https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage
 #### Sauvegarder un élément dans le localStorage
 
 ```javascript
-localStorage.setItem('historique', JSON.stringify([]));
+localStorage.setItem('historique', JSON.stringify([]))
 ```
 
 #### Lire un élément dans le localStorage
 
 ```javascript
-JSON.parse(localStorage.getItem("history"));
+JSON.parse(localStorage.getItem("history"))
 ```
 
 #### Démarche
