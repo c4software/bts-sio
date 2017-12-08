@@ -422,10 +422,10 @@ Pour ajouter :
 
 ```javascript
 […]
-import {i18n} from './i18n' // <== ICI
+import {i18n} from './i18n' // <== Ajouter l’import en haut du fichier.
 […]
   router,
-  i18n, // <== ICI
+  i18n, // <== Ajouter i18n entre router et templates déj présent dans votre code.
   template: '<App/>',
 […]
 ```
@@ -437,7 +437,7 @@ J’ai volontairement ellipsé le code source… Je ne vais pas tout vous dire�
 Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier  ```/components/MyToolbar```
 
 - Remplacer la chaine ```Cliff height timer``` par => ```{{ $t("title") }}```
-- Déclarer « title » dans ```i18n/index.js```
+- Le titre doit maintenant s’afficher. Et c’est normal la clef « title » est déjà présente dans le fichier : ```i18n/index.js```, modifier le titre pour la langue « fr ».
 
 ℹ️ $t est un objet qui permet d’accéder aux textes actuellement chargés pour la langue de l’utilisateur.
 
