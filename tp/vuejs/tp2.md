@@ -384,27 +384,27 @@ import Vue from 'vue'
 Vue.use(VueI18n)
 
 const messages = {
-    en: {
-      'title': 'Cliff Height Timer'
-    },
-    fr: {
-      'title': 'Cliff Height Timer'
-    }
+  en: {
+    'title': 'Cliff Height Timer'
+  },
+  fr: {
+    'title': 'Cliff Height Timer'
+  }
 }
 
 export const i18n = new VueI18n({
-    locale: getLanguage(),
-    fallbackLocale: 'en',
-    messages
+  locale: getLanguage(),
+  fallbackLocale: 'en',
+  messages
 })
 
 function getLanguage () {
-    try {
-        let l = navigator.language.split('-')
-        return l[0]
-    } catch (err) {
-        return navigator.language
-    }
+  try {
+    let l = navigator.language.split('-')
+    return l[0]
+  } catch (err) {
+    return navigator.language
+  }
 }
 ```
 
