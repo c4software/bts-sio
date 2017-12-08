@@ -256,11 +256,11 @@ Pour débuter nous allons remplacer le contenu du fichier ```App.vue``` pour dé
 </template>
 
 <script>
-import myToolbar from "@/components/MyToolbar"
+import myToolbar from '@/components/MyToolbar'
 
 export default {
   name: 'app',
-  components: {myToolbar},
+  components: {myToolbar}
 }
 </script>
 ```
@@ -283,7 +283,7 @@ Créer un nouveau fichier nommé ```MyToolbar.vue``` dans le dossier ```componen
 
 <script>
 export default {
-  name: "myToolbar",
+  name: 'myToolbar',
   data: function() {
     return {
       drawer: false
@@ -291,7 +291,7 @@ export default {
   },
   methods: {
     goHome (){
-      window.location.hash = "/";
+      window.location.hash = "/"
     }
   }
 }
@@ -394,7 +394,7 @@ const messages = {
 export const i18n = new VueI18n({
     locale: getLanguage(),
     fallbackLocale: 'en',
-    messages,
+    messages
 });
 
 function getLanguage() {
@@ -402,7 +402,7 @@ function getLanguage() {
         let l = navigator.language.split("-");
         return l[0];
     }catch(err){
-        return navigator.language;
+        return navigator.language
     }
 }
 ```
