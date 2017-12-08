@@ -207,8 +207,8 @@ Maintenant que la dépendance est installée nous allons pouvoir l’utiliser.
 Première étape modifier le fichier ```src/main.js``` pour ajouter le code suivant :
 
 ```javascript
-require('vuetify/dist/vuetify.min.css')
 import Vuetify from 'vuetify'
+require('vuetify/dist/vuetify.min.css')
 Vue.use(Vuetify)
 ```
 
@@ -498,72 +498,72 @@ Pour faire cette vue, vous allez avoir besoin des éléments suivants :
 
 <script>
 export default {
-    name: 'home',
-    data: () => {
-        return {
-            running: false,
-            time: 0,
-            m: "0",
-            ft: "0"
+  name: 'home',
+  data: () => {
+      return {
+          running: false,
+          time: 0,
+          m: "0",
+          ft: "0"
+      }
+  },
+  computed:{
+    state_icon () {
+        // Retourne l’icone pour le FAB
+        if(this.running){
+            return "stop";
+        }else{
+            return "play_arrow";
         }
     },
-    computed:{
-      state_icon () {
-          // Retourne l’icone pour le FAB
-          if(this.running){
-              return "stop";
-          }else{
-              return "play_arrow";
-          }
-      },
-      state_class () {
-          // Retourne la class pour le FAB
-          if(this.running){
-              return "red";
-          }else{
-              return "green";
-          }
-      }
-    },
-    methods:{
-        action (){
-          // Gestion du start / stop 
-            this.start = new Date().getTime();
-
-            if (!this.running){
-                this.running = true;
-                this.timerId = setInterval(() => {
-                    this.compute();
-                }, 10);
-            }else{
-                this.running = false;
-                clearInterval(this.timerId);
-                this.saveHistory({time: this.time,m: this.m,ft: this.ft});
-            }
-
-        },
-        saveHistory (item){
-          // Sauvegarde dans l’historique
-          let history = JSON.parse(localStorage.getItem("history"));
-          if (!Array.isArray(history)){
-            history = [];
-          }
-          history.unshift(item);
-          localStorage.setItem("history", JSON.stringify(history));
-        },
-        compute (){
-            let fallTime = new Date().getTime() - this.start;
-            let height = 16*Math.pow((fallTime/1000), 2);
-            let numberDigits = 1;
-            if(height < 1){
-                numberDigits = 2;
-            }
-
-            this.time   = (fallTime/1000).toFixed(2);
-            this.ft     = height.toFixed(numberDigits);
-            this.m      = (height/3.2808).toFixed(numberDigits);
+    state_class () {
+        // Retourne la class pour le FAB
+        if(this.running){
+            return "red";
+        }else{
+            return "green";
         }
     }
+  },
+  methods:{
+      action () {
+        // Gestion du start / stop 
+          this.start = new Date().getTime();
+
+          if (!this.running){
+              this.running = true;
+              this.timerId = setInterval(() => {
+                  this.compute();
+              }, 10);
+          }else{
+              this.running = false;
+              clearInterval(this.timerId);
+              this.saveHistory({time: this.time,m: this.m,ft: this.ft});
+          }
+
+      },
+      saveHistory (item) {
+        // Sauvegarde dans l’historique
+        let history = JSON.parse(localStorage.getItem("history"));
+        if (!Array.isArray(history)){
+          history = [];
+        }
+        history.unshift(item);
+        localStorage.setItem("history", JSON.stringify(history));
+      },
+      compute () {
+          let fallTime = new Date().getTime() - this.start;
+          let height = 16*Math.pow((fallTime/1000), 2);
+          let numberDigits = 1;
+          if(height < 1){
+              numberDigits = 2;
+          }
+
+          this.time   = (fallTime/1000).toFixed(2);
+          this.ft     = height.toFixed(numberDigits);
+          this.m      = (height/3.2808).toFixed(numberDigits);
+      }
+  }
 }
 </script>
 
