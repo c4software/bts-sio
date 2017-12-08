@@ -381,7 +381,7 @@ Puis dans le dossier, nous allons ajouter le fichier ```index.js``` suivant :
 ```javascript
 import VueI18n from 'vue-i18n'
 import Vue from 'vue'
-Vue.use(VueI18n);
+Vue.use(VueI18n)
 
 const messages = {
     en: {
