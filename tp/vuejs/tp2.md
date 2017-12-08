@@ -386,8 +386,10 @@ Vue.use(VueI18n);
 
 const messages = {
     en: {
+      'title': 'Cliff Height Timer'
     },
     fr: {
+      'title': 'Cliff Height Timer'
     }
 };
 
