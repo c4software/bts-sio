@@ -526,43 +526,42 @@ export default {
     }
   },
   methods:{
-      action () {
-        // Gestion du start / stop 
-          this.start = new Date().getTime();
+    action () {
+      // Gestion du start / stop 
+      this.start = new Date().getTime();
 
-          if (!this.running){
-              this.running = true;
-              this.timerId = setInterval(() => {
-                  this.compute();
-              }, 10);
-          }else{
-              this.running = false;
-              clearInterval(this.timerId);
-              this.saveHistory({time: this.time,m: this.m,ft: this.ft});
-          }
-
-      },
-      saveHistory (item) {
-        // Sauvegarde dans l’historique
-        let history = JSON.parse(localStorage.getItem("history"));
-        if (!Array.isArray(history)){
-          history = [];
-        }
-        history.unshift(item);
-        localStorage.setItem("history", JSON.stringify(history));
-      },
-      compute () {
-          let fallTime = new Date().getTime() - this.start;
-          let height = 16*Math.pow((fallTime/1000), 2);
-          let numberDigits = 1;
-          if(height < 1){
-              numberDigits = 2;
-          }
-
-          this.time   = (fallTime/1000).toFixed(2);
-          this.ft     = height.toFixed(numberDigits);
-          this.m      = (height/3.2808).toFixed(numberDigits);
+      if (!this.running){
+          this.running = true;
+          this.timerId = setInterval(() => {
+              this.compute();
+          }, 10);
+      }else{
+          this.running = false;
+          clearInterval(this.timerId);
+          this.saveHistory({time: this.time,m: this.m,ft: this.ft});
       }
+    },
+    saveHistory (item) {
+      // Sauvegarde dans l’historique
+      let history = JSON.parse(localStorage.getItem("history"));
+      if (!Array.isArray(history)){
+        history = [];
+      }
+      history.unshift(item);
+      localStorage.setItem("history", JSON.stringify(history));
+    },
+    compute () {
+      let fallTime = new Date().getTime() - this.start;
+      let height = 16*Math.pow((fallTime/1000), 2);
+      let numberDigits = 1;
+      if(height < 1){
+          numberDigits = 2;
+      }
+
+      this.time   = (fallTime/1000).toFixed(2);
+      this.ft     = height.toFixed(numberDigits);
+      this.m      = (height/3.2808).toFixed(numberDigits);
+    }
   }
 }
 </script>
@@ -614,7 +613,7 @@ Voilà le rendu de « la page » que vous devez réaliser :
 
 <script>
     export default {
-        name: 'about'
+      name: 'about'
     }
 </script>
 ```
