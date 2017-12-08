@@ -204,7 +204,7 @@ PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu
 
 Maintenant que la dépendance est installée nous allons pouvoir l’utiliser.
 
-Première étape modifier le fichier ```main.js``` pour ajouter le code suivant :
+Première étape modifier le fichier ```src/main.js``` pour ajouter le code suivant :
 
 ```javascript
 require('vuetify/dist/vuetify.min.css')
