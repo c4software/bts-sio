@@ -402,7 +402,7 @@ function getLanguage () {
     try {
         let l = navigator.language.split('-')
         return l[0]
-    }catch(err){
+    } catch (err) {
         return navigator.language
     }
 }
