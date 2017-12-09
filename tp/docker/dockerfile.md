@@ -16,6 +16,10 @@ Comme nous l’avons vu dans le premier TP chaque image Docker repose sur un fic
 
 ## Pourquoi faire des Dockerfile
 
+Comme vous avez pu le voir sur le DockerHub il existe énormément d’image déjà prête, elles nous seront bien évidement utiles dans nos images Docker, mais tels qu’elles elle n’ont que « peu d’intérêts ». Nous allons donc écrire un fichier Dockefile qui va permettre de créer toutes la définition pour le bon fonctionnement de l’application Todo que vous avez écrit dans un autre TP.
+
+Une fois le fichier Dockerfile écrit votre applications sera fonctionnelle sur toutes les plateforme supportées par Docker (Windows, Linux, OSX, Raspberry Pi…), fonctionelle oui, mais surtout fonctionnelle en quelques secondes !
+
 ## Créer un Dockerfile
 
 ## Image Docker pour l’application TODO
