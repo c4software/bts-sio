@@ -22,4 +22,20 @@ Une fois le fichier Dockerfile écrit votre applications sera fonctionnelle sur 
 
 ## Créer un Dockerfile
 
+Les « Dockerfile » sont des simple fichier texte mais avec un formalisme précis. Par exemple :
+
+```conf
+FROM alpine:latest
+MAINTAINER Valentin Brosseau "c4software@gmail.com"
+ENTRYPOINT ["echo", "Mon premier Dockerfile"]
+```
+
+Avant de « builder » cette première image, arretons nous sur les différentes lignes :
+
+- « FROM alpine:latest », c’est l’image de référence, dans le cas présent une image très légère (un linux avec très peu de dépendance).
+- « MAINTAINER Valentin Brosseau "c4software@gmail.com" », Le mainteneur de l’image (purement indicatif).
+- « ENTRYPOINT ["echo", "Mon premier Dockerfile"] », La commande qui sera lancé au **démarrage** de votre image.
+
+Pour finir enregistrer la définition précédente dans un fichier nommé « Dockerfile ».
+
 ## Image Docker pour l’application TODO
