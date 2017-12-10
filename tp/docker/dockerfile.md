@@ -6,6 +6,7 @@
     - [Introduction](#introduction)
     - [Pourquoi faire des Dockerfile](#pourquoi-faire-des-dockerfile)
     - [Créer un Dockerfile](#créer-un-dockerfile)
+    - [Builder votre image](#builder-votre-image)
     - [Image Docker pour l’application TODO](#image-docker-pour-lapplication-todo)
 
 <!-- /TOC -->
@@ -37,5 +38,23 @@ Avant de « builder » cette première image, arretons nous sur les différentes
 - « ENTRYPOINT ["echo", "Mon premier Dockerfile"] », La commande qui sera lancé au **démarrage** de votre image.
 
 Pour finir enregistrer la définition précédente dans un fichier nommé « Dockerfile ».
+
+## Builder votre image
+
+Pour builder votre image il suffit de lancer la commande suivante :
+
+```
+docker build --tag "docker-hello:latest" .
+```
+
+Avant de lancer cette commande, regardons les différents éléments :
+
+- « --tag "docker-hello" », c’est le nom de votre image.
+- « …:latest », c’est en quelques sorte la version de votre image. Latest indique la version la plus récente.
+- « . » indique à Docker que le fichier Dockerfile est dans le dossier courant.
+
+Lancer la précédente commande dans le dossier ou vous avez créé le fichier Dockerfile.
+
+![exemple build](./ressources/build.png)
 
 ## Image Docker pour l’application TODO
