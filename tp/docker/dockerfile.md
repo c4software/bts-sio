@@ -7,7 +7,8 @@
     - [Pourquoi faire des Dockerfile](#pourquoi-faire-des-dockerfile)
     - [Créer un Dockerfile](#créer-un-dockerfile)
     - [Builder votre image](#builder-votre-image)
-    - [Image Docker pour l’application TODO](#image-docker-pour-lapplication-todo)
+    - [Image Docker pour l’application "TODO"](#image-docker-pour-lapplication-todo)
+        - [1. Écriture du Dockerfile](#1-écriture-du-dockerfile)
 
 <!-- /TOC -->
 
@@ -57,4 +58,18 @@ Lancer la précédente commande dans le dossier ou vous avez créé le fichier D
 
 ![exemple build](./ressources/build.png)
 
-## Image Docker pour l’application TODO
+## Image Docker pour l’application "TODO"
+
+Faire un test c’est bien! Mais maintenant que l’on connais les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à ce soucier de l’environnement sur lequel vous allez lancer « votre applications / site web »
+
+### 1. Écriture du Dockerfile
+
+Pour écrire notre Dockerfile nous allons avoir besoin de connaitre les technologies nécéssaire au bon fonctionnement de notre application. Dans notre cas, il faut le langue de programmation de la partie serveur :
+
+- […] (À vous de trouver…)
+
+Une fois que ça est fait il faut trouver une image de base qui nous servira de référence. Dans notre cas … PHP. Une image officiel existe : [Docker Hub PHP](https://hub.docker.com/_/php/)
+
+- Qu’elle version choisisez-vous ?
+- Pourquoi ?
+
