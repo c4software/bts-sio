@@ -73,3 +73,11 @@ Une fois que ça est fait il faut trouver une image de base qui nous servira de 
 - Qu’elle version choisisez-vous ?
 - Pourquoi ?
 
+Pour continuer nous allons utiliser l’image PHP 7 Apache. Voilà le début de notre Dockerfile :
+
+```
+FROM php:7-apache
+MAINTAINER Valentin Brosseau "c4software@gmail.com"
+```
+
+La base de votre Dockerfile est terminée. Nous allons voir comment ajouter le code source dans l’image.
