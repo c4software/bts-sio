@@ -9,6 +9,7 @@
     - [Builder votre image](#builder-votre-image)
     - [Image Docker pour l’application "TODO"](#image-docker-pour-lapplication-todo)
         - [1. Écriture du Dockerfile](#1-écriture-du-dockerfile)
+        - [2. Ajout des sources dans l’images](#2-ajout-des-sources-dans-limages)
 
 <!-- /TOC -->
 
@@ -81,3 +82,22 @@ MAINTAINER Valentin Brosseau "c4software@gmail.com"
 ```
 
 La base de votre Dockerfile est terminée. Nous allons voir comment ajouter le code source dans l’image.
+
+### 2. Ajout des sources dans l’images
+
+Nous avons vu dans le premier TP qu’il était possible de faire un « montage ». C’est pratique pour ajouter de la données temporaire, mais dans le cas présent ce que l’on veux c’est faire une image statique qui sera transportable nous allons donc utiliser la commande ```COPY```.
+
+La commande ```COPY``` permet de copier des fichiers (dossiers, fichiers, etc…) directement dans l’image qui sera construite. Une fois « builder » les données seront persitantes et les modifications seront éffacés à chaque redémarrage de l’image (intéréssant d’un point de vue sécurité).
+
+La commande ```COPY``` prend deux arguments le fichiers « sources » et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande ```COPY``` suivante :
+
+```
+FROM php:7-apache
+MAINTAINER Valentin Brosseau "c4software@gmail.com"
+
+COPY src/ /var/www/html/
+```
+
+Le premier dossier c’est vos sources, sur votre machine dans le même dossier que le fichier Dockerfile créer un dossier nommé ```src``` avec à l’interieur les sources de votre projet ```todo-vuejs```.
+
+Et voilà! C’est terminé. Votre image est prête à être « build ».
