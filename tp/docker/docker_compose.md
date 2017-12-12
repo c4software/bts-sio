@@ -20,8 +20,13 @@ C’est dans des cas comme celui-ci que nous allons utiliser Docker-Compose. Ave
 - Autonome (car prête à être « mise en place » partout, quelques soit la plateforme cible).
 - Pré-paramètré (tout est dans le fichier ```docker-compose.yml```).
 - Isolé (tout les services ne sont pas forcément accessible du public, mais sont accessibles par vos autres applications).
+- Administrable simplement grace au cli (```docker-compose up/down/start/stop```)
 
 ## Installer Docker Compose
+
+Docker Compose est fourni directement par les developpeur de Docker, cependant sous Linux il n’est pas inclus dans l’installation de base des paquets. Pour l’installer rendez-vous sur la [documentation de Docker](https://docs.docker.com/compose/install/#install-compose)
+
+Sous Windows et OSX pas de soucis Docker Compose est **inclus** dans l’installation de base.
 
 ## Structure d’un Docker Compose
 
