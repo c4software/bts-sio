@@ -57,5 +57,5 @@ Support de cours &amp; TP pour le BTS SIO
 ## [WIP] Intégration continue avec GitLab-CI
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/gitlabci/) ([Les sources](cours/gitlabci))
-- [Utiliser Gitlab Pages]()
-- [Utiliser Gitlab-CI pour construire une application hybride]()
+- [Utiliser Gitlab Pages](./tp/ci/pages.md)
+- [Utiliser Gitlab-CI pour construire une application hybride](./tp/ci/ci-hybride.md)
