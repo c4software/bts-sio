@@ -109,7 +109,6 @@ composer global require "laravel/installer"
 
 ✋ Vérifier que la commande laravel fonctionne
 
-
 ## Créer le premier Projet
 
 Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un nouveau projet grace à la commande :
@@ -261,7 +260,7 @@ Créer un nouveau fichier ```resources/views/layouts/base.blade.php``` avec le c
 </html>
 ```
 
-✋ Mais d’où vient ce contenu ? C’est tout simplement un découpage en « layout » du template de base de démonstration. 
+✋ Mais d’où vient ce contenu ? C’est tout simplement un découpage en « layout » du template de base de démonstration.
 
 ### Utiliser le layout dans welcome.blade.php
 
@@ -283,7 +282,7 @@ Maintenant que nous avons notre template de base nous allons l’utiliser dans l
         <a href="https://laravel-news.com">News</a>
         <a href="https://forge.laravel.com">Forge</a>
         <a href="https://github.com/laravel/laravel">GitHub</a>
-    </div> 
+    </div>
 @endsection
 ```
 
