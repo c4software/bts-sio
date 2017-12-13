@@ -63,19 +63,19 @@ lumen new api-todo
 Contrairement à un projet Laravel, les dépendances ```composer``` ne sont pas installées par défaut. Il faut donc les installer via la ligne de commande en faisant :
 
 ```shell
-$ composer install
+composer install
 ```
 
 Le projet n’étant pas initialisé nous allons devoir jouer quelques commandes pour terminer l’installation :
 
 ```shell
-$ mv .env.example .env
+mv .env.example .env
 ```
 
 Contrairement à Laravel, Lumen ne contient pas l’outils permettant d’initialiser la « secret key » nécéssaire à la sécurisation de votre application. Je pous propose par exemple de passer via la commande suivante :
 
 ```shell
-$ openssl rand -base64 24
+openssl rand -base64 24
 ```
 
 (Vous pouvez également faire du monkey typing… et saisir une chaine de caractère aléatoire avec votre clavier…)
@@ -89,7 +89,7 @@ $ openssl rand -base64 24
 Pour tester votre application avec Lumen sur votre poste, c’est un peu plus « complexe » qu’avec Laravel. Vous devez saisir la commande suivante :
 
 ```shell
-$ php -S localhost:8000 -t ./public
+php -S localhost:8000 -t ./public
 ```
 
 Une fois lancé vous avez un serveur Web qui écoute sur [le port 8000](http://localhost:8000)
@@ -119,11 +119,11 @@ QUEUE_DRIVER=sync
 
 Par défaut la configuration de base de SQLite dans Lumen est l’utilisation d’une base de données nommée ```database.sqlite``` il faut donc créer un fichier vide qui recevra les données :
 
-```
+```shell
 touch database/database.sqlite
 ```
 
-C’est parti ! Tout est prêt, nous pouvons commencer à écrire du code. 
+C’est parti ! Tout est prêt, nous pouvons commencer à écrire du code.
 
 ### Le script de création / migration
 
@@ -131,7 +131,7 @@ Contrairement à la première version de notre application, nous allons stocker 
 
 > Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
 
-Pour rappel, le but de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données. 
+Pour rappel, le but de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données.
 
 L’option ```--create=todos``` permet d’indiquer le nom de la table à créer
 
@@ -184,7 +184,7 @@ class CreateTodosTable extends Migration
 Maintenant que le script est terminé, nous pouvons lancer la commande de migration :
 
 ```shell
-$ php artisan migration
+php artisan migration
 ```
 
 Une fois cette commande lancée, Lumen va créer la structure de base de votre base de données.
@@ -341,7 +341,7 @@ $app->withEloquent();
 Pour tester votre application il suffit de lancer la commande suivante :
 
 ```shell
-$ php -S localhost:8000 -t ./public
+php -S localhost:8000 -t ./public
 ```
 
 Pour tester vous pouvez utiliser PostMan.
