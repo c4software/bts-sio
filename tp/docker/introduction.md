@@ -112,11 +112,13 @@ Bon c’est bien, mais si on donnais accès à un stockage persistant à notre i
 Pour monter un volume il suffit d’ajouter un ```-v``` à la commande de lancement, exemple pour avoir le dossier courant :
 
 Sous Windows :
+
 ```shell
 docker run -v %cd%:/mnt/ -it ubuntu bash
 ```
 
 Sous Unix :
+
 ```shell
 docker run -v $(pwd):/mnt/ -it ubuntu bash
 ```
@@ -130,11 +132,13 @@ Lancer la commande ```ls /mnt``` vous devriez vour vos fichiers.
 Comme je le disais dans l’introduction avec docker il est possible de rendre accessible le dossier, mais également les fichiers. Pour les fichiers la commande est la même sauf qu’au lieu de spécifier un dossier on spécifie le chemin d’un fichier. Exemple :
 
 Windows :
+
 ```shell
 docker run -v %cd%/mon_fichier:/mnt/mon_fichier -it ubuntu bash
 ```
 
 Unix :
+
 ```shell
 docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier -it ubuntu bash
 ```

@@ -4,7 +4,6 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
 
 ![MVVM](./MVVMPattern.png)
 
-
 <!-- TOC -->
 
 - [Réaliser une application avec VueJS](#réaliser-une-application-avec-vuejs)
@@ -86,7 +85,7 @@ Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à 
 Dans un terminal lancer la commande suivante dans le ```Node.js Command Prompt``` :
 
 ```shell
-$ npm install -g vue-cli
+npm install -g vue-cli
 ```
 
 Maintenant que vue-cli est installé, vous avez à votre disposition sur votre ordinateur une nouvelle commande, la commande ```vue```
@@ -105,7 +104,7 @@ Pour notre exemple nous allons prendre le Webpack, il contient tous les élémen
 Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante  dans le ```Node.js Command Prompt```
 
 ```shell
-$ vue init webpack cliff-height-timer
+vue init webpack cliff-height-timer
 ```
 
 ⚠️ Attention, la commande crée le projet dans le dossier courant ! ⚠️
@@ -131,7 +130,7 @@ npm install
 
 Dans mon cas :
 
-```
+```shell
 added 1070 packages in 49.404s
 ```
 
@@ -144,7 +143,7 @@ Une fois terminé votre projet est prêt à être lancé.
 Les librairies étant maintenant disponible, nous allons pouvoir lancer l’exemple fourni par Vue-Cli, pour ça rien de plus simple
 
 ```shell
-$ npm run dev
+npm run dev
 ```
 
 une fois cette commande lancée, votre navigateur va s’ouvrir sur un nouvel onglet contenant « l’application » de démonstration fournie par le template
@@ -195,7 +194,7 @@ Nous allons commencer notre projet en intégrant [VuetifyJS](https://vuetifyjs.c
 Comme vue en cours VueJS repose sur NodeJS, nous avons donc la possibilité de gérer nos dépendances avec npm. La première étape est donc d’ajouter la dépendance à notre projet :
 
 ```shell
-$ npm add vuetify
+npm add vuetify
 ```
 
 PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu’il existe des « templates » VuetifyJS pour VueCLI. Dans ce TP découverte j’ai volontairement fait le choix de ne pas les utiliser pour que vous découvriez un peu plus en détails la construction d’une application VueJS.
@@ -225,6 +224,7 @@ Un petit détail, pour que tout soit parfait ajouter le code suivant dans le ```
 ```html
 <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
 ```
+
 Cette CSS est la déclaration de la « font » Roboto (font par défaut) d’Android.
 
 ### Activer le Responsive
@@ -303,12 +303,12 @@ export default {
 Voilà, vous avez atteint la première étape. Vous pouvez lancer votre application en faisant :
 
 ```shell
-$ npm run dev
+npm run dev
 ```
 
 ## Organisation
 
-Nous allons légèrement modifier l’arborescence pour rendre le projet « plus simple », créer un dossier ```src/views```. Celui-ci contiendra « nos vues » c’est à dire les différentes pages de notre application. 
+Nous allons légèrement modifier l’arborescence pour rendre le projet « plus simple », créer un dossier ```src/views```. Celui-ci contiendra « nos vues » c’est à dire les différentes pages de notre application.
 
 Déplacer le fichier ```src/components/HelloWorld.vue``` dans ```src/views/HelloWorld.vue```. Une fois fait vous pouvez éditer le fichier ```src/router/index.js``` pour y mettre le contenu suivant :
 
@@ -328,7 +328,7 @@ export default new Router({
     }
   ]
 })
-``` 
+```
 
 ## Le Routeur
 
@@ -446,7 +446,7 @@ Notre internationalisation est maintenant prête à être utilisée. Nous allons
 Vérifier en relançant votre application que le titre à bien été modifié :
 
 ```shell
-$ npm run dev
+npm run dev
 ```
 
 ## Les .vues
@@ -456,7 +456,7 @@ Maintenant que nous avons la base de notre projet, nous allons commencer à cré
 Contrairement à l’exemple par défaut, nous allons mettre nos fichiers ```.vue``` dans un nouveau dossier ```src/views```. Première étape créer le dossier :
 
 ```shell
-$ mkdir src/views/
+mkdir src/views/
 ```
 
 Profitons en également pour supprimer le fichier ```src/components/HelloWorld.vue``` qui est maintenant inutile.
@@ -702,7 +702,7 @@ export default {
 - Tester votre application :
 
 ```shell
-$ npm run dev
+npm run dev
 ```
 
 ### La page : Historique
@@ -720,7 +720,7 @@ Pour réaliser la vue Historique nous allons devoir sauvegarder les différents 
 
 > La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session navigateur prend fin — donc quand on ferme le navigateur.
 
-Source: https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage
+Source: [https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
 
 ⚠️ Petite subtilitée, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
 
@@ -754,7 +754,7 @@ Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus néc�
 Voilà votre application est maintenant terminée bravo 👏👏. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour ça rien de plus simple il vous suffit de faire
 
 ```shell
-$ npm run build
+npm run build
 ```
 
 Cette commande va compiler votre application et vous fournir une version que vous allez pouvoir héberger comme n’importe quel site Internet (sur un serveur Apache par exemple).
@@ -773,7 +773,7 @@ Pour ça nous allons utiliser deux site :
 - [Un générateur d’icône](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html)
 
 > Le manifest d'une application web fournit des informations concernant celle-ci (comme son nom, son auteur, une icône et une description) dans un document texte JSON. Le but du manifeste est d'installer des applications sur l'écran d'accueil d'un appareil, offrant aux utilisateurs un accès plus rapide et une expérience plus riche.
-
+>
 > Les manifests font partie d'un ensemble de technologies appellées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion internet et sont capables de recevoir des notifications push.
 
 Source: Mozilla.org
@@ -789,7 +789,7 @@ Source: Mozilla.org
 - Vous pouvez builder votre application et la mettre à jour sur votre serveur Web.
 
 ```shell
-$ npm run build
+npm run build
 ```
 
 - Tester l’application depuis votre Téléphone Android.

@@ -68,7 +68,7 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ```
 
-Ajouter dans votre PATH la home de composer, exemple : 
+Ajouter dans votre PATH la home de composer, exemple :
 
 ```shell
 export COMPOSER_HOME="$HOME/.composer/vendor/bin"
