@@ -8,7 +8,6 @@
     - [Structure d’un Docker Compose](#structure-dun-docker-compose)
     - [Monter une application grace Docker Compose](#monter-une-application-grace-docker-compose)
         - [Remarques](#remarques)
-    - [Créer un Docker Compose pour l’application Todo](#créer-un-docker-compose-pour-lapplication-todo)
 
 <!-- /TOC -->
 
@@ -100,5 +99,3 @@ Rendez-vous sur [localhost:8080](http://localhost:8080) pour admirer votre trava
 
 - Vous n'avez pas eu à rédiger le moindre Dockerfile, pourquoi ?
 - Vous n'avez aucune persistance de donnée
-
-## Créer un Docker Compose pour l’application Todo
