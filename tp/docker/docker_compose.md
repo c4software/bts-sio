@@ -6,8 +6,9 @@
     - [Introduction](#introduction)
     - [Installer Docker Compose](#installer-docker-compose)
     - [Structure d’un Docker Compose](#structure-dun-docker-compose)
-    - [Créer un Docker Compose pour l’application Todo](#créer-un-docker-compose-pour-lapplication-todo)
     - [Monter une application grace Docker Compose](#monter-une-application-grace-docker-compose)
+        - [Remarques](#remarques)
+    - [Créer un Docker Compose pour l’application Todo](#créer-un-docker-compose-pour-lapplication-todo)
 
 <!-- /TOC -->
 
@@ -58,12 +59,46 @@ services:
     image: "redis:alpine"
 ```
 
-Dans ce fichier nous définisons 2 services. 
+Dans ce fichier nous définisons 2 services.
 
 Le premier nommé Web fait référence à un fichier DockerFile présent dans le même dossier que le ```docker-compose.yml```. Le service en question expose au client final le port ```5000```.
 
 Le second service est un service nommé redis, il fait référence au une image disponible sur https://hub.docker.com. Cette image n’expose aucun port au public mais sera accessible pour ```web```
 
-## Créer un Docker Compose pour l’application Todo
-
 ## Monter une application grace Docker Compose
+
+Dans cet exemple vous allez voir comment il est possible de monter rapidement une application grace à Docker. Nous allons en quelques ligne monté un blog (Wordpress) ainsi que la base de données.
+
+Pour ça dans un nouveau dossier créer le fichier ```docker-compose.yml``` avec le contenu suivant :
+
+```yaml
+version: '3.1'
+
+services:
+    wordpress:
+        image: wordpress
+        ports:
+            - 8080:80
+        environment:
+            WORDPRESS_DB_PASSWORD: example
+
+    mysql:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: example
+```
+
+Et voilà, c’est tout! votre stack Wordpress est prête il vous suffit de la lancer avec la commande suivante :
+
+```shell
+docker-compose up
+```
+
+Rendez-vous sur [localhost:8080](http://localhost:8080) pour admirer votre travail.
+
+### Remarques
+
+- Vous n'avez pas eu à rédiger le moindre Dockerfile, pourquoi ?
+- Vous n'avez aucune persistance de donnée
+
+## Créer un Docker Compose pour l’application Todo
