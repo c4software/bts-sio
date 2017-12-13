@@ -14,7 +14,6 @@ Support de cours &amp; TP pour le BTS SIO
 - [TP](https://github.com/c4software/bts/blob/master/tp/gitlab/README.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
 
-
 ## Programmation sécurisée avec OWASP (4h + TP)
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
