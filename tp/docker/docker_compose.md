@@ -99,3 +99,7 @@ Rendez-vous sur [localhost:8080](http://localhost:8080) pour admirer votre trava
 
 - Vous n'avez pas eu à rédiger le moindre Dockerfile, pourquoi ?
 - Vous n'avez aucune persistance de donnée
+
+## Aller plus loin
+
+Pour aller plus loin vous pouvez regarder les vidéos sur le site [Play-With-Docker](http://training.play-with-docker.com/dev-landing/).
