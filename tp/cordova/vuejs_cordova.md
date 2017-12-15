@@ -40,7 +40,7 @@ Nous allons réaliser une application qui teste plusieurs plugins Cordova. Cette
 
 ![Exemple](https://github.com/c4software/vuejs-cordova-sample/raw/master/demo.png)
 
-Cette application sera très simple. Mais va permettre de tester la puissance de Cordova, nous allons utiliser les plugins suivants 
+Cette application sera très simple. Mais va permettre de tester la puissance de Cordova, nous allons utiliser les plugins suivants :
 
 - cordova-plugin-dialogs
 - cordova-plugin-vibration
@@ -71,7 +71,7 @@ Le projet étant « non compilé » / « non installé », nous allons devoir da
 
 ```shell
 npm install .
-``` 
+```
 
 Les dépendances « VueJS » s’installent, l’installation peut prendre quelques minutes. Une fois installé tester le fonctionnement avec la commande :
 
@@ -107,7 +107,7 @@ npm run build
 - ```build/build.js```
 - ```config/index.js```
 
-Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normal. Notamment la partie concernant le file://, cordova utilise l’URI ```file://``` pour servir les ressources dans l’APK, par défaut les développeurs de VueCLI ont mis des liens avec ```/``` en dur ce qui pose des soucis. J’ai donc remplacé le ```/``` par ```./``` ce qui corrige le soucis. 
+Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normal. Notamment la partie concernant le file://, cordova utilise l’URI ```file://``` pour servir les ressources dans l’APK, par défaut les développeurs de VueCLI ont mis des liens avec ```/``` en dur ce qui pose des soucis. J’ai donc remplacé le ```/``` par ```./``` ce qui corrige le soucis.
 
 Maintenant que le « build » est terminé nous pouvons réaliser le lancement sur le mobile via les commandes suivantes :
 
@@ -260,9 +260,9 @@ npm run dev
 - Recompiler l’application et lancer la sur votre téléphone :
 
 ```shell
-$ npm run build
-$ cd cordova_app
-$ cordova run android
+npm run build
+cd cordova_app
+cordova run android
 ```
 
 ## Ajouter la vue Vibration
@@ -304,7 +304,6 @@ Le projet étant déjà réalisé le plugin est déjà installé, il nous suffit
   }
 </script>
 ```
-
 
 ### 2. La route
 
