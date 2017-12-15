@@ -110,7 +110,17 @@
 					<p>Les « runners » utilise Docker. (ou autre on y reviendra)</p>
 				</section>
 
-				<!-- TODO Suite -->
+				<section>
+					<h3>Un fichier le « .gitlab-ci.yml »</h3>
+					<h5>Exemple :</h5>
+					<pre><code data-trim>
+nodejs_test:
+	stage: test
+	script: 
+		- npm install
+		- npm test
+</code></pre>
+				</section>
 
 				<section>
 					<h3>Cas d’usages</h3>
