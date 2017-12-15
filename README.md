@@ -26,7 +26,7 @@ Support de cours &amp; TP pour le BTS SIO
 - [TP2: Réaliser une application avec VueJS](tp/vuejs/tp2.md)
 - [Aide Mémoire](https://github.com/c4software/cheatsheet/blob/master/vuejs/README.md)
 
-## Cordova + VueJS
+## Cordova + VueJS (4h + TP)
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/cordova/) ([Les sources](cours/cordova))
 - [TP Découverte](./tp/cordova/decouverte.md)
@@ -40,12 +40,12 @@ Support de cours &amp; TP pour le BTS SIO
 - [Installation de Laravel](./tp/laravel/introduction.md)
 - [Réécriture des API de la TODO List avec Laravel](./tp/laravel/creation_api.md)
 
-## [WIP] Découverte de Docker
+## Découverte de Docker
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/docker/) ([Les sources](cours/docker))
-- [Première approche Docker](./tp/docker/introduction.md)
-- [Créer un Dockerfile](./tp/docker/dockerfile.md)
-- [Créer un DockerCompose](./tp/docker/docker_compose.md)
+- [WIP] [Première approche Docker](./tp/docker/introduction.md)
+- [WIP] [Créer un Dockerfile](./tp/docker/dockerfile.md)
+- [WIP] [Créer un DockerCompose](./tp/docker/docker_compose.md)
 
 ## [WIP] Intégration continue avec GitLab-CI
 
