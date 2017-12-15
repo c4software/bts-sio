@@ -194,7 +194,7 @@ Nous allons commencer notre projet en intégrant [VuetifyJS](https://vuetifyjs.c
 Comme vue en cours VueJS repose sur NodeJS, nous avons donc la possibilité de gérer nos dépendances avec npm. La première étape est donc d’ajouter la dépendance à notre projet :
 
 ```shell
-npm add vuetify@0.14.11
+npm add vuetify
 ```
 
 PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu’il existe des « templates » VuetifyJS pour VueCLI. Dans ce TP découverte j’ai volontairement fait le choix de ne pas les utiliser pour que vous découvriez un peu plus en détails la construction d’une application VueJS.
