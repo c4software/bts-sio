@@ -455,7 +455,7 @@ Pour la caméra, nous allons « juste » faire une simple vue qui permet de lanc
       // Use the camera plugin to capture image
       takePicture() {
         if (navigator.camera) {
-          navigator.camera.getPicture(this.setPicture, {}, {});
+          navigator.camera.getPicture(this.setPicture, this.error, {});
         }else{
           // If the navigator.camera is not available display generic error to the user.
           this.error();
