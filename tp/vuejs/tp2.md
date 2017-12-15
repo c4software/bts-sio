@@ -247,17 +247,16 @@ Pour débuter nous allons remplacer le contenu du fichier ```App.vue``` pour dé
 <template>
   <v-app toolbar fill-height>
     <myToolbar />
-    <main>
-      <v-container fluid pa-0>
+    <v-content>
+      <v-container pa-0 fill-height>
         <router-view></router-view>
       </v-container>
-    </main>
+    </v-content>
   </v-app>
 </template>
 
 <script>
 import myToolbar from '@/components/MyToolbar'
-
 export default {
   name: 'app',
   components: {myToolbar}
@@ -274,9 +273,9 @@ Créer un nouveau fichier nommé ```MyToolbar.vue``` dans le dossier ```componen
 ```javascript
 <template>
   <div>
-    <v-toolbar class="primary deep-purple" fixed >
+    <v-toolbar class="deep-purple" clipped-left app>
       <v-toolbar-side-icon dark @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title @click="goHome" class="white--text">Cliff height timer</v-toolbar-title>
+      <v-toolbar-title @click="goHome" class="white--text">{{ $t("title") }}</v-toolbar-title>
     </v-toolbar>
   </div>
 </template>
@@ -425,7 +424,7 @@ Pour ajouter :
 import {i18n} from './i18n' // <== Ajouter l’import en haut du fichier.
 […]
   router,
-  i18n, // <== Ajouter i18n entre router et templates déj présent dans votre code.
+  i18n, // <== Ajouter i18n entre router et templates déjà présent dans votre code.
   template: '<App/>',
 […]
 ```
@@ -581,13 +580,16 @@ export default {
 ```javascript
 […]
 import Home from '@/views/Home'
+
 […]
+  // Code existant
+  },
   {
     path: '/',
     name: 'Home',
     component: Home
   }
-[…]
+]
 ```
 
 - Tester votre code :
@@ -641,7 +643,7 @@ Création :
 ```javascript
 <template>
   <div>
-    <v-toolbar class="primary deep-purple" />
+    <v-toolbar class="deep-purple" />
     <v-list dense>
       <template v-for="(item, i) in items">
         <v-divider dark v-if="item.divider" :key="i"></v-divider>
@@ -662,14 +664,15 @@ Création :
 
 <script>
 export default {
-  name: "drawer",
+  name: 'drawer',
   data: function () {
     return {
       items: [
-        { icon: 'home', text: this.$t("drawer.home"), action: '#/' }
-        { icon: 'help', text: this.$t("drawer.about"), action: '#/about' },
+        { icon: 'home', text: this.$t('drawer.home'), action: '#/' },
+        { icon: 'history', text: this.$t('drawer.history'), action: '#/history' },
+        { icon: 'help', text: this.$t('drawer.about'), action: '#/about' },
         { divider: true },
-        { icon: 'pets', text: this.$t('see_on_github'), action: '#' }
+        { icon: 'pets', text: this.$t('see_on_github'), action: 'https://github.com/c4software/Cliff-Height-Timer-VueJS' }
       ]
     }
   }
@@ -685,17 +688,19 @@ Maintenant que notre composant est terminé, nous devons l’utiliser. Nous allo
 <template>
   <div>
     // Nouveau
-    <v-navigation-drawer v-model="drawer" temporary>
+    <v-navigation-drawer v-model="drawer" clipped fixed app>
       <myContentDrawer />
     </v-navigation-drawer>
+
     // Reste du code déjà présent
-[…]
+</template>
+
 <script>
-import myContentDrawer from "@/components/Drawer" // <== Nouveau
+import myContentDrawer from "@/components/Drawer" // <== Ajouter l’import
 
 export default {
   name: "myToolbar",
-  components: {myContentDrawer}, // <== Nouveau
+  components: {myContentDrawer}, // <== Ajouter la déclaration du composant
 […]
 ```
 
@@ -740,6 +745,7 @@ JSON.parse(localStorage.getItem("history"))
 
 - Adapter le code de ```Home.vue``` pour sauvegarder le résultat dans un tableau d’historique à chaque fois que l’utilisateur enregistre une nouvelle chute.
 - Écrire le code de la page ```History.vue``` pour afficher les valeurs enregistrées.
+  - Utiliser les variables computed de VueJS pour retourner la liste de l’historique ([exemple](https://vuejs.org/v2/guide/computed.html#Basic-Example)).
 
 Ressources utiles :
 
