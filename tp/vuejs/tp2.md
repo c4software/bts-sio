@@ -481,7 +481,7 @@ Pour faire cette vue, vous allez avoir besoin des éléments suivants :
 
 ```javascript
 <template>
-  <v-container class="middle-centered deep-purple lighten-1">
+  <v-container fill-height class="middle-centered deep-purple lighten-1">
     <div class="home">
       <h1>{{ time }} s</h1>
       <h3>{{ m }} m</h3>
@@ -489,7 +489,7 @@ Pour faire cette vue, vous allez avoir besoin des éléments suivants :
     </div>
 
     <v-btn v-on:click="action" v-bind:class="state_class" dark fixed bottom right fab>
-        <v-icon>{{ state_icon }}</v-icon>
+      <v-icon>{{ state_icon }}</v-icon>
     </v-btn>
   </v-container>
 </template>
