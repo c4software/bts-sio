@@ -56,13 +56,12 @@ Dans le TP, vous allez devoir compiler pour la plateforme Android. Vérifier que
 - Android-Studio
 - SDK seul
 
-Une fois installé, vérifié que les différents éléments sont bien dans vos variables d’environments :
+Je vous conseil de prendre l’installation via Android Studio, c’est la solution la plus simple est certainement la plus rapide. Une fois installé ajouter les variables d’environmments suivantes :
 
-- Set the JAVA_HOME environment variable to the location of your JDK installation
-- Set the ANDROID_HOME environment variable to the location of your Android SDK installation
-- Android SDK's ```tools```, ```tools/bin```, and ```platform-tools``` directories to your PATH
+- Set the ANDROID_HOME environment variable to the location of your Android SDK installation (normalement avec Android Studio c’est automatique).
+- Android SDK's ```tools```, ```tools/bin```, and ```platform-tools``` directories to your PATH (Le chemin est différents en fonctions des ordinateurs, si vous avez un doute demandé moi).
 
-Une fois correctement défini le mieux est de redémarrer votre ordinateur pour que l’ensemble des paramètres soit bien pris en compte.
+Une fois correctement défini redémarrer la console NodeJS pour prendre en compte les modifications.
 
 ## Création du projet « démo »
 
