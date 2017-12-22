@@ -11,6 +11,8 @@ Dans ce TP vous aller découvrir la ligne de commande Cordova et créer votre pr
     - [Création du projet « démo »](#création-du-projet-«-démo-»)
     - [Ajout d’une plateforme](#ajout-dune-plateforme)
     - [Ajouter une seconde plateforme](#ajouter-une-seconde-plateforme)
+    - [Lancer l’application](#lancer-lapplication)
+    - [Installation de Genymotion](#installation-de-genymotion)
     - [Lancer l’application sur votre téléphone](#lancer-lapplication-sur-votre-téléphone)
         - [1. Activer le mode développeur](#1-activer-le-mode-développeur)
         - [2. Installer le driver adb pour l’ordinateur](#2-installer-le-driver-adb-pour-lordinateur)
@@ -120,6 +122,19 @@ cordova platform add android
 Une fois ajouter nous allons pouvoir « lancer » / « compiler » des applications pour Android.
 
 ⚠️ Attention, à cette étape nous avons besoin d’un poste correctement équipé pour compiler de l’Android
+
+## Lancer l’application
+
+Pour lancer l’application vous avez deux solutions :
+
+- Votre téléphone.
+- Un émulateur (Celui du SDK, Bluestack, Genymotion).
+
+## Installation de Genymotion
+
+Sous Windows vous avez la possiblité d’installer l’émulateur Genymotion, pour installer celui-ci rendez-vous sur [le site officiel](https://www.genymotion.com/#!/).
+
+Sur l’émulateur le débogage est déjà activer.
 
 ## Lancer l’application sur votre téléphone
 
