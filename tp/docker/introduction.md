@@ -14,6 +14,9 @@ Dans ce TP nous allons voir l’installation de Docker et les premiers test de v
         - [Avoir accès au fichier de votre machine](#avoir-accès-au-fichier-de-votre-machine)
             - [Monter un dossier](#monter-un-dossier)
             - [Monter un fichier](#monter-un-fichier)
+    - [Compilation Cordova](#compilation-cordova)
+        - [Unix (Linux, Osx)](#unix-linux-osx)
+        - [Windows](#windows)
 
 <!-- /TOC -->
 
@@ -150,3 +153,23 @@ docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier:ro -it ubuntu bash
 ```
 
 Et c’est la que l’on voit la puissance, on verra qu’il sera possible par la suite de créer de vrai « stack » applicative qui définiront l’ensemble des paramètres de notre environnement (cloisonné) et gérant finement les droits d’accès à la configuration par exemple! Un régal !
+
+## Compilation Cordova
+
+Je pense que vous vous souvenez que paramètrer l’environnement de compilation Android sur Windows n’était pas vraiment simple (JDK, SDK, etc… ), avec Docker c’est beaucoup plus simple ! Vraiment beaucoup plus simple. Pour compiler un projet Cordova avec Docker j’ai préparé une petite image Docker qui possede l’ensemble des éléments nécéssaires, pour l’utiliser :
+
+### Unix (Linux, Osx)
+
+```sh
+cd mon_projet_cordova/
+docker run -it --entrypoint /bin/bash -v $(pwd):/Sources/ c4software/cordova-light:latest
+# Vous pouvez  maintenant lancer, par exemple : cordova build
+```
+
+### Windows
+
+```sh
+cd mon_projet_cordova/
+docker run -it --entrypoint /bin/bash -v %cd%:/Sources/ c4software/cordova-light:latest
+# Vous pouvez  maintenant lancer, par exemple : cordova build
+```
