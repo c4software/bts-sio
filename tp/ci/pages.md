@@ -90,7 +90,29 @@ Comme toujours, il y a plusieurs choix pour faire des sites static, voici 3 exem
 
 Télécharger le projet suivante [Exemple de site avec Hugo](https://gitlab.com/pages/hugo), créer un nouveau projet dans votre compte GitLab et envoyer les sources.
 
-- Regarder le contenu du ```.gitlab-ci.yml```
+- Regarder le contenu du ```.gitlab-ci.yml``` :
+
+```yml
+# All available Hugo versions are listed here: https://gitlab.com/pages/hugo/container_registry
+image: registry.gitlab.com/pages/hugo:latest
+
+test:
+  script:
+    - hugo
+  except:
+    - master
+
+pages:
+  script:
+    - hugo
+  artifacts:
+    paths:
+        - public
+  only:
+    - master
+```
+
+Celui-ci est très proches du notre, et c’est normal ! Avec Gitlab-CI c’est toujours très simple à mettre en place.
 
 ### Exemple avec Jekyll
 
