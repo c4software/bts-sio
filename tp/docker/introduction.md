@@ -56,7 +56,7 @@ Maintenant que nous avons lancé notre première « vrai » machine intérésson
 
 Surprise ! On retrouve des plateformes (amd64, i686, armXX). Et c’est normal, Docker est multiplateforme et dans le cas de notre exemple l’executable « hello » est codé en C il est donc logique de retrouver l’executable pour les différentes plateformes ou l’image doit fonctionner.
 
-Maintenant que nous avons vu le projet, entrons plus en détail allons vour la définition de notre image le [fichier Dockerfile](https://github.com/docker-library/hello-world/blob/master/i386/hello-world/Dockerfile)
+Maintenant que nous avons vu le projet, entrons plus en détail allons voir la définition de notre image le [fichier Dockerfile.](https://github.com/docker-library/hello-world/blob/master/i386/hello-world/Dockerfile)
 
 ![Hello World 2](./ressources/hello-world2.png)
 
