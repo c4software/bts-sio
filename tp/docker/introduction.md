@@ -119,13 +119,13 @@ Pour monter un volume il suffit d’ajouter un ```-v``` à la commande de lancem
 Sous Windows :
 
 ```shell
-docker run -v %cd%:/mnt/ -it ubuntu bash
+docker run -v %cd%:/mnt/ -it ubuntu bash # Monte le dossier courant dans le /mnt du Docker.
 ```
 
 Sous Unix :
 
 ```shell
-docker run -v $(pwd):/mnt/ -it ubuntu bash
+docker run -v $(pwd):/mnt/ -it ubuntu bash # Monte le dossier courant dans le /mnt du Docker.
 ```
 
 Lancer la commande ```ls /mnt``` vous devriez vour vos fichiers.
