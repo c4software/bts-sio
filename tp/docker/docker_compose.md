@@ -6,25 +6,26 @@
     - [Introduction](#introduction)
     - [Installer Docker Compose](#installer-docker-compose)
     - [Structure d’un Docker Compose](#structure-dun-docker-compose)
-    - [Monter une application grace Docker Compose](#monter-une-application-grace-docker-compose)
+    - [Monter une application grâce Docker Compose](#monter-une-application-grâce-docker-compose)
         - [Remarques](#remarques)
+    - [Aller plus loin](#aller-plus-loin)
 
 <!-- /TOC -->
 
 ## Introduction
 
-Dans ce TP nous allons voir comment créer une vrai arborescence de service avec Docker. Dans une application réel il n’est pas rare d’avoir plusieurs technologie (ou plusieurs « services ») pour assurer le bon fonctionnement d’un sytème dans son ensemble (Exemple pour faire fonctionner mon application j’ai besoin de MySQL, PHP, et d’un serveur Web pour l’interface client)
+Dans ce TP nous allons voir comment créer une vrai arborescence de service avec Docker. Dans une application réelle il n’est pas rare d’avoir plusieurs technologies (ou plusieurs « services ») pour assurer le bon fonctionnement d’un sytème dans son ensemble (Exemple pour faire fonctionner mon application j’ai besoin de MySQL, PHP, et d’un serveur Web pour l’interface client).
 
-C’est dans des cas comme celui-ci que nous allons utiliser Docker-Compose. Avec Docker compose nous allons créer une architecture multi-conteneur que l’on peu appeler « stack ». Cette Stack sera :
+C’est dans des cas comme celui-ci que nous allons utiliser Docker-Compose. Avec Docker compose nous allons créer une architecture multi-conteneur que l’on peut appeler « stack ». Cette Stack sera :
 
 - Autonome (car prête à être « mise en place » partout, quelques soit la plateforme cible).
-- Pré-paramètré (tout est dans le fichier ```docker-compose.yml```).
-- Isolé (tout les services ne sont pas forcément accessible du public, mais sont accessibles par vos autres applications).
-- Administrable simplement grace au cli (```docker-compose up/down/start/stop```)
+- Pré-paramètrée (tout est dans le fichier ```docker-compose.yml```).
+- Isolé (tous les services ne sont pas forcément accessible du public, mais sont accessibles par vos autres applications).
+- Administrable simplement grâce au cli (```docker-compose up/down/start/stop```).
 
 ## Installer Docker Compose
 
-Docker Compose est fourni directement par les developpeur de Docker, cependant sous Linux il n’est pas inclus dans l’installation de base des paquets. Pour l’installer rendez-vous sur la [documentation de Docker](https://docs.docker.com/compose/install/#install-compose)
+Docker Compose est fourni directement par les developpeurs de Docker, cependant sous Linux il n’est pas inclus dans l’installation de base des paquets. Pour l’installer rendez-vous sur la [documentation de Docker](https://docs.docker.com/compose/install/#install-compose).
 
 Sous Windows et OSX pas de soucis Docker Compose est **inclus** dans l’installation de base.
 
@@ -62,13 +63,13 @@ Dans ce fichier nous définisons 2 services.
 
 Le premier nommé Web fait référence à un fichier DockerFile présent dans le même dossier que le ```docker-compose.yml```. Le service en question expose au client final le port ```5000```.
 
-Le second service est un service nommé redis, il fait référence au une image disponible sur https://hub.docker.com. Cette image n’expose aucun port au public mais sera accessible pour ```web```
+Le second service est un service nommé redis, il fait référence à une image disponible sur https://hub.docker.com. Cette image n’expose aucun port au public mais sera accessible pour ```web```.
 
-## Monter une application grace Docker Compose
+## Monter une application grâce Docker Compose
 
-Dans cet exemple vous allez voir comment il est possible de monter rapidement une application grace à Docker. Nous allons en quelques ligne monté un blog (Wordpress) ainsi que la base de données.
+Dans cet exemple vous allez voir comment il est possible de monter rapidement une application grâce à Docker. Nous allons en quelques ligne monter un blog (Wordpress) ainsi que la base de données.
 
-Pour ça dans un nouveau dossier créer le fichier ```docker-compose.yml``` avec le contenu suivant :
+Pour ça dans un nouveau dossier, créez le fichier ```docker-compose.yml``` avec le contenu suivant :
 
 ```yaml
 version: '3.1'
@@ -87,7 +88,7 @@ services:
             MYSQL_ROOT_PASSWORD: example
 ```
 
-Et voilà, c’est tout! votre stack Wordpress est prête il vous suffit de la lancer avec la commande suivante :
+Et voilà, c’est tout ! Votre stack Wordpress est prête il vous suffit de la lancer avec la commande suivante :
 
 ```shell
 docker-compose up
@@ -98,7 +99,7 @@ Rendez-vous sur [localhost:8080](http://localhost:8080) pour admirer votre trava
 ### Remarques
 
 - Vous n'avez pas eu à rédiger le moindre Dockerfile, pourquoi ?
-- Vous n'avez aucune persistance de donnée
+- Vous n'avez aucune persistance de données.
 
 ## Aller plus loin
 
