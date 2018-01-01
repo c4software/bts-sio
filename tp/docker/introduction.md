@@ -154,7 +154,7 @@ Le fichier est maintenant accessible dans votre image Docker. Il est également 
 docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier:ro -it ubuntu bash
 ```
 
-Et c’est la que l’on voit la puissance, on verra qu’il sera possible par la suite de créer de vrai « stack » applicative qui définiront l’ensemble des paramètres de notre environnement (cloisonné) et gérant finement les droits d’accès à la configuration par exemple! Un régal !
+Et c’est la que l’on voit la puissance, on verra qu’il sera possible par la suite de créer de vrai « stack » applicative qui définiront l’ensemble des paramètres de notre environnement (cloisonné) et gérant finement les droits d’accès à la configuration par exemple ! Un régal !
 
 ## Compilation Cordova
 
