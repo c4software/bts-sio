@@ -17,7 +17,7 @@
 
 ## Introduction
 
-Comme nous l’avons vu dans [le premier TP](introduction.md) chaque image Docker repose sur un fichier Docerfile. Pour l’instant nous n’avons pas écrit le notre, nous avons juste utilisé ceux fourni sur le DockerHub. Dans ce TP nous allons voir la structure d’un fichier Dockerfile et vous allez écrire votre premier Dockerfile il aurra pour but de définir l’ensemble de la « stack applicative » nécéssaire au bon fonctionnement de l’application TODO.
+Comme nous l’avons vu dans [le premier TP](introduction.md) chaque image Docker repose sur un fichier Dockerfile. Pour l’instant nous n’avons pas écrit le notre, nous avons juste utilisé ceux fournis sur le DockerHub. Dans ce TP nous allons voir la structure d’un fichier Dockerfile et vous allez écrire votre premier Dockerfile il aurra pour but de définir l’ensemble de la « stack applicative » nécéssaire au bon fonctionnement de l’application « TODO ».
 
 ## Pourquoi faire des Dockerfile
 
