@@ -11,7 +11,7 @@ Dans ce TP nous allons voir l’installation de Docker et les premiers exemples 
     - [Les sources de l’image hello world](#les-sources-de-limage-hello-world)
     - [Pour aller plus loin](#pour-aller-plus-loin)
         - [Créer un fichier dans la machine](#créer-un-fichier-dans-la-machine)
-        - [Avoir accès au fichier de votre machine](#avoir-accès-au-fichier-de-votre-machine)
+        - [Avoir accès aux fichiers de votre machine](#avoir-accès-aux-fichiers-de-votre-machine)
             - [Monter un dossier](#monter-un-dossier)
             - [Monter un fichier](#monter-un-fichier)
     - [Compilation Cordova](#compilation-cordova)
@@ -106,11 +106,11 @@ Vérifier avec un ```ls``` que le fichier est bien présent. Quitter maintenant 
 docker run -it ubuntu bash
 ```
 
-Faites à nouveau un ```ls```, que constatez-vous? Et bien oui, le fichier n’est plus présent… C’est normal tous les fichiers créé dans l’image sont non persistant (c’est à dire qu’ils sont supprimés à chaque fois que l’image s’arrête).
+Faites à nouveau un ```ls```, que constatez-vous? Et bien oui, le fichier n’est plus présent… C’est normal tous les fichiers créés dans l’image sont non persistant (c’est à dire qu’ils sont supprimés à chaque fois que l’image s’arrête).
 
-### Avoir accès au fichier de votre machine
+### Avoir accès aux fichiers de votre machine
 
-Bon c’est bien, mais si on donnais accès à un stockage persistant à notre image. Sur votre machine le Stockage persistant c’est votre disque dur (HDD, SSD, etc). Avec docker (comme sous Linux d’ailleurs) on parle de monter « un volume », une fois monté ce volume sera accessible comme un dossier (ou un fichier, on y reviendra).
+Bon c’est bien, mais si on donnait accès à un stockage persistant à notre image. Sur votre machine le Stockage persistant c’est votre disque dur (HDD, SSD, etc). Avec docker (comme sous Linux d’ailleurs) on parle de monter « un volume », une fois monté ce volume sera accessible comme un dossier (ou un fichier, on y reviendra).
 
 #### Monter un dossier
 
