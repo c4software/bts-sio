@@ -64,7 +64,7 @@ Peu d’informations, 3 lignes :
 
 - ```FROM scratch``` (Image de base, celle utilisée comme référence, elle aussi posséde un DockerFile).
 - ```COPY hello /``` (Ajoute le fichier hello à la racine de votre « machine »).
-- ```CMD ["/hello"]``` (Commande lancé au démarrage de votre image)
+- ```CMD ["/hello"]``` (Commande lancée au démarrage de votre image).
 
 PS: Pas d’inquietude on créera un DockerFile dans le 2nd TP.
 
