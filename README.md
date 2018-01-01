@@ -49,11 +49,11 @@ Miroir disponible : [GitLab](https://gitlab.com/bts-sio-chevrollier/slam5)
 - [Créer un Dockerfile](./tp/docker/dockerfile.md)
 - [Créer un Docker Compose](./tp/docker/docker_compose.md)
 
-## [WIP] Intégration continue avec GitLab-CI
+## Intégration continue avec GitLab-CI
 
-- [Slides](https://rawgit.com/c4software/bts/master/cours/gitlabci/) ([Les sources](cours/gitlabci))
-- [Utiliser Gitlab Pages](./tp/ci/pages.md)
-- [Utiliser Gitlab-CI pour construire une application hybride](./tp/ci/ci-hybride.md)
+- [WIP] [Slides](https://rawgit.com/c4software/bts/master/cours/gitlabci/) ([Les sources](cours/gitlabci))
+- [WIP] [Utiliser Gitlab Pages](./tp/ci/pages.md)
+- [WIP] [Utiliser Gitlab-CI pour construire une application hybride](./tp/ci/ci-hybride.md)
 
 ## [WIP] Framework Python : Flask
 
