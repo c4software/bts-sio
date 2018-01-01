@@ -116,6 +116,8 @@ Bon c’est bien, mais si on donnait accès à un stockage persistant à notre i
 
 Pour monter un volume il suffit d’ajouter un ```-v``` à la commande de lancement, exemple pour avoir le dossier courant :
 
+⚠️⚠️ Attention! L’accès est en lecture ET en écriture sur **VOTRE MACHINE** donc attention.
+
 Sous Windows :
 
 ```shell
@@ -128,9 +130,7 @@ Sous Unix :
 docker run -v $(pwd):/mnt/ -it ubuntu bash # Monte le dossier courant dans le /mnt du Docker.
 ```
 
-Lancer la commande ```ls /mnt``` vous devriez vour vos fichiers.
-
-⚠️⚠️ Attention! L’accès est en lecture ET en écriture donc attention.
+Lancer la commande ```ls /mnt``` vous devriez voir vos fichiers.
 
 #### Monter un fichier
 
