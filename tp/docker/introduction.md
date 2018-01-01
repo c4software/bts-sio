@@ -148,7 +148,7 @@ Unix :
 docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier -it ubuntu bash
 ```
 
-Le fichier est maintenant accessible dans votre image Docker. Il est également possible de limiter l’accès à votre fichier en le montant par exemple en « lecture seulement » :
+Le fichier est maintenant accessible dans votre image Docker. Il est également possible de limiter l’accès à votre fichier en le montant par exemple en « RO » en français « lecture seulement » :
 
 ```shell
 docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier:ro -it ubuntu bash
