@@ -22,7 +22,7 @@ Dans ce TP nous allons voir l’installation de Docker et les premiers exemples 
 
 ## Installation de Docker sous Windows
 
-Pour installer Docker rien de plus simple, il suffit d’utiliser l’installeur officiel en le téléchargant sur ![le site de Docker](https://www.docker.com/docker-windows)
+Pour installer Docker rien de plus simple, il suffit d’utiliser l’installeur officiel en le téléchargant sur [le site de Docker.](https://www.docker.com/docker-windows)
 
 ## Premier test
 
