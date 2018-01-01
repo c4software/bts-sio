@@ -70,7 +70,7 @@ PS: Pas d’inquietude on créera un DockerFile dans le 2nd TP.
 
 ## Pour aller plus loin
 
-Bon un texte à l’écran c’est bien… Mais si on lancais un système entier… Ubuntu par exemple. Pour ça rien de plus simple, dans la console lancé :
+Bon un texte à l’écran c’est bien… Mais si on lancait un système entier? Ubuntu par exemple. Pour ça rien de plus simple, dans la console lancé :
 
 ```shell
 docker run -it ubuntu bash
@@ -82,10 +82,12 @@ Et voilà vous avez un Linux complètement opérationnel en quelques minutes sur
 
 Utiliser un peu le shell de votre « nouveau Linux », exemple de commande :
 
-- ```uname -a```
-- ```whoami```
-- ```top```
+- ```uname -a``` : Affiche la version du noyau.
+- ```whoami``` : Qui suis-je ? (root normalement, d’ailleurs est-ce normal?).
+- ```top``` : Affiche les processus en cours.
 - ```ls /```
+
+Questions :
 
 - D’ailleurs, pourquoi le top ne retourne que deux processus ?
 - Aucune trace de vos fichiers… c’est normal, de base rien n’est accessible.
