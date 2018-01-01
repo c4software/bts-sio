@@ -165,7 +165,7 @@ Je pense que vous vous souvenez que paramètrer l’environnement de compilation
 ```sh
 cd mon_projet_cordova/
 docker run -it --entrypoint /bin/bash -v $(pwd):/Sources/ c4software/cordova-light:latest
-# Vous pouvez  maintenant lancer, par exemple : cordova build
+# Vous pouvez maintenant lancer, par exemple : cordova build
 ```
 
 ### Windows
