@@ -9,7 +9,7 @@
     - [Builder votre image](#builder-votre-image)
     - [Image Docker pour l’application "TODO"](#image-docker-pour-lapplication-todo)
         - [1. Écriture du Dockerfile](#1-écriture-du-dockerfile)
-        - [2. Ajout des sources dans l’images](#2-ajout-des-sources-dans-limages)
+        - [2. Ajout des sources dans l’image](#2-ajout-des-sources-dans-limage)
         - [3. Build de l’image](#3-build-de-limage)
         - [4. Lancer votre application](#4-lancer-votre-application)
 
@@ -21,13 +21,13 @@ Comme nous l’avons vu dans [le premier TP](introduction.md) chaque image Docke
 
 ## Pourquoi faire des Dockerfile
 
-Comme vous avez pu le voir sur le DockerHub il existe énormément d’image déjà prête, elles nous seront bien évidement utiles dans nos images Docker, mais tels qu’elles elle n’ont que « peu d’intérêts ». Nous allons donc écrire un fichier Dockefile qui va permettre de créer toutes la définition pour le bon fonctionnement de l’application Todo que vous avez écrit dans un autre TP.
+Comme vous avez pu le voir sur le DockerHub il existe énormément d’image déjà prête, elles nous seront bien évidement utiles dans nos images Docker, mais tels quelles elles n’ont que « peu d’intérêts ». Nous allons donc écrire un fichier Dockefile qui va permettre de créer toute la définition pour le bon fonctionnement de l’application « TODO » que vous avez écrit dans un autre TP.
 
-Une fois le fichier Dockerfile écrit votre applications sera fonctionnelle sur toutes les plateforme supportées par Docker (Windows, Linux, OSX, Raspberry Pi…), fonctionelle oui, mais surtout fonctionnelle en quelques secondes !
+Une fois le fichier Dockerfile écrit, votre application sera fonctionnelle sur toutes les plateformes supportées par Docker (Windows, Linux, OSX, Raspberry Pi…), fonctionelle oui, mais surtout fonctionnelle en quelques secondes !
 
 ## Créer un Dockerfile
 
-Les « Dockerfile » sont des simple fichier texte mais avec un formalisme précis. Par exemple :
+Les « Dockerfile » sont des simples fichiers textes mais avec un formalisme précis. Par exemple :
 
 ```conf
 FROM alpine:latest
@@ -37,9 +37,9 @@ ENTRYPOINT ["echo", "Mon premier Dockerfile"]
 
 Avant de « builder » cette première image, arretons nous sur les différentes lignes :
 
-- « FROM alpine:latest », c’est l’image de référence, dans le cas présent une image très légère (un linux avec très peu de dépendance).
+- « FROM alpine:latest », c’est l’image de référence, dans le cas présent une image très légère (un linux avec très peu de dépendances).
 - « MAINTAINER Valentin Brosseau "c4software@gmail.com" », Le mainteneur de l’image (purement indicatif).
-- « ENTRYPOINT ["echo", "Mon premier Dockerfile"] », La commande qui sera lancé au **démarrage** de votre image.
+- « ENTRYPOINT ["echo", "'Mon premier Dockerfile'"] », La commande qui sera lancée au **démarrage** de votre image.
 
 Pour finir enregistrer la définition précédente dans un fichier nommé « Dockerfile ».
 
@@ -54,7 +54,7 @@ docker build --tag "docker-hello:latest" .
 Avant de lancer cette commande, regardons les différents éléments :
 
 - « --tag "docker-hello" », c’est le nom de votre image.
-- « …:latest », c’est en quelques sorte la version de votre image. Latest indique la version la plus récente.
+- « …:latest », c’est la version de votre image. Latest indique la version la plus récente.
 - « . » indique à Docker que le fichier Dockerfile est dans le dossier courant.
 
 Lancer la précédente commande dans le dossier ou vous avez créé le fichier Dockerfile.
@@ -63,15 +63,15 @@ Lancer la précédente commande dans le dossier ou vous avez créé le fichier D
 
 ## Image Docker pour l’application "TODO"
 
-Faire un test c’est bien! Mais maintenant que l’on connais les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à ce soucier de l’environnement sur lequel vous allez lancer « votre applications / site web »
+Faire un test c’est bien! Mais maintenant que l’on connait les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à se soucier de l’environnement sur lequel vous allez lancer « votre applications / site web ».
 
 ### 1. Écriture du Dockerfile
 
-Pour écrire notre Dockerfile nous allons avoir besoin de connaitre les technologies nécéssaire au bon fonctionnement de notre application. Dans notre cas, il faut le langue de programmation de la partie serveur :
+Pour écrire notre Dockerfile nous allons avoir besoin de connaitre les technologies nécéssaire au bon fonctionnement de notre application. Dans notre cas, il faut le language de programmation de la partie serveur :
 
 - […] (À vous de trouver…)
 
-Une fois que ça est fait il faut trouver une image de base qui nous servira de référence. Dans notre cas … PHP. Une image officiel existe : [Docker Hub PHP](https://hub.docker.com/_/php/)
+Une fois que c’est fait il faut trouver une image de base qui nous servira de référence. Dans notre cas … PHP. Une image officielle existe : [Docker Hub PHP](https://hub.docker.com/_/php/).
 
 - Qu’elle version choisisez-vous ?
 - Pourquoi ?
@@ -85,7 +85,7 @@ MAINTAINER Valentin Brosseau "c4software@gmail.com"
 
 La base de votre Dockerfile est terminée. Nous allons voir comment ajouter le code source dans l’image.
 
-### 2. Ajout des sources dans l’images
+### 2. Ajout des sources dans l’image
 
 Nous avons vu dans le premier TP qu’il était possible de faire un « montage ». C’est pratique pour ajouter de la données temporaire, mais dans le cas présent ce que l’on veux c’est faire une image statique qui sera transportable nous allons donc utiliser la commande ```COPY```.
 
