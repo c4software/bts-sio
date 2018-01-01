@@ -54,7 +54,7 @@ docker run hello-world
 
 Maintenant que nous avons lancé notre première « vrai » machine intéréssons-nous à son fonctionnement. Vous avez du constater le terme « Pulling From » c’est l’image ou les morceaux d’image utile au fonctionnement de votre service. Celui-ci est téléchargé directement depuis le « Docker Hub » (il est également possible d’avoir un Hub Privé). Vous pouvez voir « les sources » de l’image en question : [ici](https://github.com/docker-library/hello-world), comme beaucoup de projet libre l’image est disponible sur Github.
 
-Surprise ! On retrouve des plateformes (amd64, i686, armXX). Et c’est normal, Docker est multiplateforme et dans le cas de notre exemple l’executable est du « hello » est codé en C il est donc logique de retrouver l’executable pour les différentes plateformes ou l’image doit fonctionner.
+Surprise ! On retrouve des plateformes (amd64, i686, armXX). Et c’est normal, Docker est multiplateforme et dans le cas de notre exemple l’executable « hello » est codé en C il est donc logique de retrouver l’executable pour les différentes plateformes ou l’image doit fonctionner.
 
 Maintenant que nous avons vu le projet, entrons plus en détail allons vour la définition de notre image le [fichier Dockerfile](https://github.com/docker-library/hello-world/blob/master/i386/hello-world/Dockerfile)
 
