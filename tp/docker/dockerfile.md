@@ -87,9 +87,9 @@ La base de votre Dockerfile est terminée. Nous allons voir comment ajouter le c
 
 ### 2. Ajout des sources dans l’image
 
-Nous avons vu dans le premier TP qu’il était possible de faire un « montage ». C’est pratique pour ajouter de la données temporaire, mais dans le cas présent ce que l’on veux c’est faire une image statique qui sera transportable nous allons donc utiliser la commande ```COPY```.
+Nous avons vu dans le premier TP qu’il était possible de faire un « montage ». C’est pratique pour ajouter de la donnée temporaire, mais dans le cas présent ce que l’on veut c’est faire une image statique qui sera transportable nous allons donc utiliser la commande ```COPY```.
 
-La commande ```COPY``` permet de copier des fichiers (dossiers, fichiers, etc…) directement dans l’image qui sera construite. Une fois « builder » les données seront persitantes et les modifications seront éffacés à chaque redémarrage de l’image (intéréssant d’un point de vue sécurité).
+La commande ```COPY``` permet de copier des fichiers (dossiers, fichiers, etc…) directement dans l’image qui sera construite. Une fois « builder » les données seront persitantes et les modifications seront éffacées à chaque redémarrage de l’image (intéréssant d’un point de vue sécurité).
 
 La commande ```COPY``` prend deux arguments le fichiers « sources » et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande ```COPY``` suivante :
 
@@ -100,7 +100,7 @@ MAINTAINER Valentin Brosseau "c4software@gmail.com"
 COPY src/ /var/www/html/
 ```
 
-Le premier dossier c’est vos sources, sur votre machine dans le même dossier que le fichier Dockerfile créer un dossier nommé ```src``` avec à l’interieur les sources de votre projet ```todo-vuejs```.
+Le premier dossier c’est vos sources, sur votre machine dans le même dossier que le fichier Dockerfile, créez un dossier nommé ```src``` avec à l’interieur les sources de votre projet ```todo-vuejs```.
 
 Et voilà! C’est terminé. Votre image est prête à être « build ».
 
@@ -122,4 +122,4 @@ Votre application étant buildée pour la lancer il suffit de faire :
 docker run -p 8888:80 vuejs-todo:latest
 ```
 
-Votre application est maintenant [disponnible ici](http://localhost:8080)
+Votre application est maintenant [disponnible ici](http://localhost:8080).
