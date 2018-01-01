@@ -43,7 +43,7 @@ Support de cours &amp; TP pour le BTS SIO
 ## Découverte de Docker
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/docker/) ([Les sources](cours/docker))
-- [WIP] [Première approche Docker](./tp/docker/introduction.md)
+- [Première approche Docker](./tp/docker/introduction.md)
 - [WIP] [Créer un Dockerfile](./tp/docker/dockerfile.md)
 - [WIP] [Créer un DockerCompose](./tp/docker/docker_compose.md)
 
