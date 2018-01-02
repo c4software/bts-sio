@@ -4,6 +4,8 @@ Support de cours &amp; TP pour le BTS SIO
 
 Miroir disponible : [GitLab](https://gitlab.com/bts-sio-chevrollier/slam5)
 
+[Consulter les cours](https://c4software.github.io/bts-sio/)
+
 ## Initiation à GIT (~4h + TP)
 
 - [Slides](https://rawgit.com/c4software/bts/master/cours/git/) ([Les sources](cours/git))
