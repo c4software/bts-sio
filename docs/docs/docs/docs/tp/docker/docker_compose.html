@@ -1,0 +1,657 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Docker Compose · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="dockerfile.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Aides mémoires
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../cheatsheets/git/">
+            
+                <a href="../../cheatsheets/git/">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../cheatsheets/cordova/">
+            
+                <a href="../../cheatsheets/cordova/">
+            
+                    
+                    Cordova
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../cheatsheets/docker/">
+            
+                <a href="../../cheatsheets/docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../cheatsheets/vuejs/">
+            
+                <a href="../../cheatsheets/vuejs/">
+            
+                    
+                    VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../git_initiation/">
+            
+                <a href="../git_initiation/">
+            
+                    
+                    Initiation à Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../gitlab/">
+            
+                <a href="../gitlab/">
+            
+                    
+                    Git en groupe + GitLab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../securite/">
+            
+                <a href="../securite/">
+            
+                    
+                    Programmation sécurisée avec OWASP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../vuejs/tp1.html">
+            
+                <a href="../vuejs/tp1.html">
+            
+                    
+                    Ajouter VueJS dans un site existant
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../vuejs/tp2.html">
+            
+                <a href="../vuejs/tp2.html">
+            
+                    
+                    Réaliser une application avec VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Cordova + VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../cordova/decouverte.html">
+            
+                <a href="../cordova/decouverte.html">
+            
+                    
+                    Découverte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../cordova/vuejs_cordova.html">
+            
+                <a href="../cordova/vuejs_cordova.html">
+            
+                    
+                    Application avec Cordova + VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Laravel
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../laravel/introduction.html">
+            
+                <a href="../laravel/introduction.html">
+            
+                    
+                    Installation de Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../laravel/creation_api.html">
+            
+                <a href="../laravel/creation_api.html">
+            
+                    
+                    Réécriture des API de la TODO List avec Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Docker
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Première approche
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="dockerfile.html">
+            
+                <a href="dockerfile.html">
+            
+                    
+                    Dockerfile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.9.3" data-path="docker_compose.html">
+            
+                <a href="docker_compose.html">
+            
+                    
+                    Docker Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    GitLab-CI
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../ci/pages.html">
+            
+                <a href="../ci/pages.html">
+            
+                    
+                    Utiliser Gitlab Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../ci/ci-hybride.html">
+            
+                <a href="../ci/ci-hybride.html">
+            
+                    
+                    Appliaction Hybride et Gitlab-CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Docker Compose</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="le-docker-compose">Le Docker Compose</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#le-docker-compose">Le Docker Compose</a><ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installer-docker-compose">Installer Docker Compose</a></li>
+<li><a href="#structure-dun-docker-compose">Structure d&#x2019;un Docker Compose</a></li>
+<li><a href="#monter-une-application-gr&#xE2;ce-docker-compose">Monter une application gr&#xE2;ce Docker Compose</a><ul>
+<li><a href="#remarques">Remarques</a></li>
+</ul>
+</li>
+<li><a href="#aller-plus-loin">Aller plus loin</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="introduction">Introduction</h2>
+<p>Dans ce TP nous allons voir comment cr&#xE9;er une vrai arborescence de service avec Docker. Dans une application r&#xE9;elle il n&#x2019;est pas rare d&#x2019;avoir plusieurs technologies (ou plusieurs &#xAB; services &#xBB;) pour assurer le bon fonctionnement d&#x2019;un syt&#xE8;me dans son ensemble (Exemple pour faire fonctionner mon application j&#x2019;ai besoin de MySQL, PHP, et d&#x2019;un serveur Web pour l&#x2019;interface client).</p>
+<p>C&#x2019;est dans des cas comme celui-ci que nous allons utiliser Docker-Compose. Avec Docker compose nous allons cr&#xE9;er une architecture multi-conteneur que l&#x2019;on peut appeler &#xAB; stack &#xBB;. Cette Stack sera :</p>
+<ul>
+<li>Autonome (car pr&#xEA;te &#xE0; &#xEA;tre &#xAB; mise en place &#xBB; partout, quelques soit la plateforme cible).</li>
+<li>Pr&#xE9;-param&#xE8;tr&#xE9;e (tout est dans le fichier <code>docker-compose.yml</code>).</li>
+<li>Isol&#xE9; (tous les services ne sont pas forc&#xE9;ment accessible du public, mais sont accessibles par vos autres applications).</li>
+<li>Administrable simplement gr&#xE2;ce au cli (<code>docker-compose up/down/start/stop</code>).</li>
+</ul>
+<h2 id="installer-docker-compose">Installer Docker Compose</h2>
+<p>Docker Compose est fourni directement par les developpeurs de Docker, cependant sous Linux il n&#x2019;est pas inclus dans l&#x2019;installation de base des paquets. Pour l&#x2019;installer rendez-vous sur la <a href="https://docs.docker.com/compose/install/#install-compose" target="_blank">documentation de Docker</a>.</p>
+<p>Sous Windows et OSX pas de soucis Docker Compose est <strong>inclus</strong> dans l&#x2019;installation de base.</p>
+<h2 id="structure-dun-docker-compose">Structure d&#x2019;un Docker Compose</h2>
+<p>Un fichier <code>docker-compose.yml</code> utilise la synthaxe yaml. Pour rappel un fichier Yaml c&#x2019;est :</p>
+<blockquote>
+<p>La syntaxe du flux YAML est relativement simple, efficace, moins verbeuse que du XML, moins compacte cependant que du CSV. Elle a &#xE9;t&#xE9; &#xE9;tablie pour &#xEA;tre le plus lisible possible par des humains, tout en pouvant &#xEA;tre mise en correspondance facilement avec les types de donn&#xE9;es pr&#xE9;cit&#xE9;s, communs dans les langages de haut niveau. &#xC0; ces langages il emprunte certaines notations.</p>
+<ul>
+<li>Les commentaires sont signal&#xE9;s par le signe di&#xE8;se (#) et se prolongent sur toute la ligne. Si par contre le di&#xE8;se apparait dans une chaine, il signifie alors un nombre litt&#xE9;ral.</li>
+<li>Une valeur nulle s&apos;&#xE9;crit avec le caract&#xE8;re tilde (~)
+Il est possible d&apos;inclure une syntaxe JSON dans une syntaxe YAML.</li>
+<li>Les &#xE9;l&#xE9;ments de listes sont d&#xE9;not&#xE9;s par le tiret (-), suivi d&apos;une espace, &#xE0; raison d&apos;un &#xE9;l&#xE9;ment par ligne.
+Les tableaux sont de la forme cl&#xE9;: valeur, &#xE0; raison d&apos;un couple par ligne.</li>
+<li>Les scalaires peuvent &#xEA;tre entour&#xE9;s de guillemets doubles (&quot;), ou simples (&apos;), sachant qu&apos;un guillemet s&apos;&#xE9;chappe avec un antislash (), alors qu&apos;un apostrophe s&apos;&#xE9;chappe avec un autre apostrophe4. Ils peuvent de plus &#xEA;tre repr&#xE9;sent&#xE9;s par un bloc indent&#xE9; avec des modificateurs facultatifs pour conserver (|) ou &#xE9;liminer (&gt;) les retours &#xE0; la ligne.</li>
+<li>Plusieurs documents rassembl&#xE9;s dans un seul fichier sont s&#xE9;par&#xE9;s par trois traits d&apos;union (---) ; trois points (...) optionnels marquent la fin d&apos;un document dans un fichier.</li>
+<li>Les n&#x153;uds r&#xE9;p&#xE9;t&#xE9;s sont initialement signal&#xE9;s par une esperluette (&amp;) puis sont r&#xE9;f&#xE9;renc&#xE9;s avec un ast&#xE9;risque (*) ; JSON, un langage concurrent de YAML, est compatible avec la syntaxe de JavaScript mais ne supporte pas cette notion de r&#xE9;f&#xE9;rence.</li>
+<li>L&apos;indentation, par des espaces, manifeste une arborescence.</li>
+</ul>
+</blockquote>
+<p>Source: Wikipedia</p>
+<p>Voil&#xE0; un exemple de Docker Compose :</p>
+<pre><code>version: &apos;3&apos;
+services:
+  web:
+    build: .
+    ports:
+     - &quot;5000:5000&quot;
+  redis:
+    image: &quot;redis:alpine&quot;
+</code></pre><p>Dans ce fichier nous d&#xE9;finisons 2 services.</p>
+<p>Le premier nomm&#xE9; Web fait r&#xE9;f&#xE9;rence &#xE0; un fichier DockerFile pr&#xE9;sent dans le m&#xEA;me dossier que le <code>docker-compose.yml</code>. Le service en question expose au client final le port <code>5000</code>.</p>
+<p>Le second service est un service nomm&#xE9; redis, il fait r&#xE9;f&#xE9;rence &#xE0; une image disponible sur <a href="https://hub.docker.com" target="_blank">https://hub.docker.com</a>. Cette image n&#x2019;expose aucun port au public mais sera accessible pour <code>web</code>.</p>
+<h2 id="monter-une-application-gr&#xE2;ce-docker-compose">Monter une application gr&#xE2;ce Docker Compose</h2>
+<p>Dans cet exemple vous allez voir comment il est possible de monter rapidement une application gr&#xE2;ce &#xE0; Docker. Nous allons en quelques ligne monter un blog (Wordpress) ainsi que la base de donn&#xE9;es.</p>
+<p>Pour &#xE7;a dans un nouveau dossier, cr&#xE9;ez le fichier <code>docker-compose.yml</code> avec le contenu suivant :</p>
+<pre><code class="lang-yaml"><span class="hljs-attr">version:</span> <span class="hljs-string">&apos;3.1&apos;</span>
+
+<span class="hljs-attr">services:</span>
+<span class="hljs-attr">    wordpress:</span>
+<span class="hljs-attr">        image:</span> wordpress
+<span class="hljs-attr">        ports:</span>
+<span class="hljs-bullet">            -</span> <span class="hljs-number">8080</span>:<span class="hljs-number">80</span>
+<span class="hljs-attr">        environment:</span>
+<span class="hljs-attr">            WORDPRESS_DB_PASSWORD:</span> example
+
+<span class="hljs-attr">    mysql:</span>
+<span class="hljs-attr">        image:</span> mysql:<span class="hljs-number">5.7</span>
+<span class="hljs-attr">        environment:</span>
+<span class="hljs-attr">            MYSQL_ROOT_PASSWORD:</span> example
+</code></pre>
+<p>Et voil&#xE0;, c&#x2019;est tout ! Votre stack Wordpress est pr&#xEA;te il vous suffit de la lancer avec la commande suivante :</p>
+<pre><code class="lang-shell">docker-compose up
+</code></pre>
+<p>Rendez-vous sur <a href="http://localhost:8080" target="_blank">localhost:8080</a> pour admirer votre travail.</p>
+<h3 id="remarques">Remarques</h3>
+<ul>
+<li>Vous n&apos;avez pas eu &#xE0; r&#xE9;diger le moindre Dockerfile, pourquoi ?</li>
+<li>Vous n&apos;avez aucune persistance de donn&#xE9;es.</li>
+</ul>
+<h2 id="aller-plus-loin">Aller plus loin</h2>
+<p>Pour aller plus loin vous pouvez regarder les vid&#xE9;os sur le site <a href="http://training.play-with-docker.com/dev-landing/" target="_blank">Play-With-Docker</a>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="dockerfile.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Dockerfile">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Docker Compose","level":"1.9.3","depth":2,"next":{"title":"GitLab-CI","level":"1.10","depth":1,"ref":"","articles":[{"title":"Utiliser Gitlab Pages","level":"1.10.1","depth":2,"path":"tp/ci/pages.md","ref":"tp/ci/pages.md","articles":[]},{"title":"Appliaction Hybride et Gitlab-CI","level":"1.10.2","depth":2,"path":"tp/ci/ci-hybride.md","ref":"tp/ci/ci-hybride.md","articles":[]}]},"previous":{"title":"Dockerfile","level":"1.9.2","depth":2,"path":"tp/docker/dockerfile.md","ref":"tp/docker/dockerfile.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tp/docker/docker_compose.md","mtime":"2018-01-01T19:12:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T14:34:18.287Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

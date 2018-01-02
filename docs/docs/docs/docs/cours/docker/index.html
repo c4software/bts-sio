@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Docker</title>
+
+		<meta name="description" content="Du Web 1.0 à l'application mobile">
+		<meta name="author" content="Valentin Brosseau">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style>
+			.reveal p{
+				margin-bottom: 40px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>Docker</h1>
+					<h3>Le Conteneur d’application</h3>
+					<p>
+						<small>Par <a href="https://github.com/c4software">Valentin Brosseau</a> / <a href="http://twitter.com/c4software">@c4software</a></small>
+					</p>
+				</section>
+
+				<section>
+					<img src="./img/logo.png">
+				</section>
+
+				<section>
+					<h3>Évolution du paysage de l’IT</h3>
+					<img src="./img/it_evolution.png">
+				</section>
+				
+				<section>
+					<h3>Mouvement vers le cloud, Pourquoi ?</h3>
+					<ul>
+						<li>Migrer la puissance dans le Cloud</li>
+						<li>Changement d’environnement simplifié</li>
+						<li>Pas de « Bloquage / Fermeture » d’un constructeur</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Le Cloud pour vous c’est quoi ?</h3>
+				</section>
+
+				<section>
+					<h3>Une évolution de l’informatique</h3>
+				</section>
+
+				<section>
+					<h3>Avant</h3>
+					<ul>
+						<li>Monolitique</li>
+						<li>Mise à jour lente</li>
+						<li>Gros serveurs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Maintenant</h3>
+					<ul>
+						<li>Plein de petit services assemblés (externes et indépendants les uns des autres)</li>
+						<li>Mise à jours rapide</li>
+						<li>Petite machine, multitude de serveur, etc</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Mouvement global de découpage en </h3>
+					<h3>« micro services »</h3>
+				</section>
+
+				<section>
+					<img src="./img/simplification.png">
+				</section>
+
+				<section>
+					<h3>Les problèmes « d’avant »</h3>
+					<ul>
+						<li>Un changement mineur impose de recompiler toute l’application.</li>
+						<li>L’application est centrale au fonctionnement.</li>
+						<li>Adaptation au changement difficile.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>La solution les « micro services »</h3>
+					<ul>
+						<li>Découper l’application en fonctionnalités indépendantes</li>
+						<li>Rend l’application indépendante des autres</li>
+						<li>Capable de « multiplier » l’application sur plein de serveurs pour absorber une hausse de la demande.</li>
+						<li>Une conception qui rend l’application hautement disponible</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Un autre mouvement… L’intégration continue / Livraison continue</h3>
+					<ul>
+						<li>Tests en continues</li>
+						<li>Validation du fonctionnement en continue</li>
+						<li>Mise en production continue</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Et donc, Docker?</h3>
+					<img src="./img/yeah.gif">
+				</section>
+
+				<section>
+					<h3>L’histoire de Docker</h3>
+					<img src="./img/histoire.png">
+				</section>
+	
+				<section>
+					<h3>Quelques chiffres</h3>
+					<ul>
+						<li>14 millions de « machines »</li>
+						<li>900 000 images Docker</li>
+						<li>12 milliard d’images téléchargées</li>
+						<li>3300 contributeurs au projet</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Car Oui… Docker est OPEN SOURCE</h3>
+				</section>
+
+				<section>
+					<h3>Bon c’est bien, mais comment ça fonctionne ?</h3>
+					<img src="./img/listen.gif">
+				</section>
+
+				<section>
+					<h3>Un peu d’histoire…</h3>
+				</section>
+
+				<section>
+					<h3>Au début…</h3>
+					<h4>Une application sur … UN serveur</h4>
+					<img src="./img/un_serveur.png">
+					<p>Quelles sont les limitations à votre avis ?</p>
+				</section>
+
+				<section>
+					<h3>Les hyperviseurs, la virtualisation</h3>
+					<img src="./img/hyperviseur.png">
+					<ul>
+						<li>Un serveur plusieurs applications</li>
+						<li>Chaque application fonctionne dans une machine virtuelle</li>
+					</ul>
+					<p>Votre avis sur cette solution ?</p>
+				</section>
+
+				<section>
+					<h3>Les limitations des machines virtuelles</h3>
+					<ul>
+						<li>Des ressources allouées pour chaque machine (CPU, Disque, Ram)</li>
+						<li>Un OS complet sur chaque machine (virtuelle)</li>
+						<li>Plus il y a de machine plus il faut de puissance (ressources perdues)</li>
+						<li>Ressources perdues par… des parties de l’OS virtualisée pour rien</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Docker… Les Containers / Conteneurs à la rescousse</h3>
+					<h4>Un conteneur c’est…</h4>
+					<ul>
+						<li>Un moyen standardiser de packager l’applications</li>
+						<li>Un moyen d’isolé les application entres elles</li>
+						<li>Un partage du noyau avec la machine physique</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="./img/conteneurs.png">
+				</section>
+
+				<section>
+					<h3>VM vs Conteneur</h3>
+					<img src="./img/vm_vs_conteneur.png">
+				</section>
+
+				<section>
+					<h3>À votre avis, est-ce la fin des VM ?</h3>
+					<img src="./img/vm_and_conteneur.png" class="fragment">
+				</section>
+
+				<section>
+					<h3>La terminologie</h3>
+					<ul>
+						<li><em>Image</em> Les fichiers, le contenu de votre « système »</li>
+						<li><em>Container</em> L’image quand elle est en fonctionnement.</li>
+						<li><em>Engine</em> Ce qui fait fonctionner votre « container ». Les volumes et le réseau font partie de « l’engine ».</li>
+						<li><em>Registry</em> Entrepôt d’image à télécharger (fourni par d’autre, ou construite par vous). <a href="https://hub.docker.com/">https://hub.docker.com/</a></li>
+						<li><em>Volume</em>, les « montages » / ressources, emplacement (réseau ou non) disponible dans votre Container.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Pour résumer Docker c’est : </h3>
+					<ul>
+						<li>Un projet open-source qui a pour but d’automatiser le déploiement d’applications dans un « container »</li>
+						<li>Le container une sorte « d’archive » qui contient tout ce qu’il faut pour faire fonctionner un logiciel : Code, Librairies pour l’éxecution, outils système, et librairies système. (autonome)</li>
+						<li>Ça garantie que le code fonctionnera toujours de la même façon quelques soit l’environnement.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Le Docker Engine :</h3>
+					<ul>
+						<li>La sécurité</li>
+						<li>Le réseau</li>
+						<li>Les volumes</li>
+						<li>L’orchestration</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="./img/engine.png" />
+				</section>
+
+				<section>
+					<h3>Mais surtout l’engine…</h3>
+					<h4>Est portable, ça fonctionne sur </h4>
+					<ul>
+						<li>Linux</li>
+						<li>OSX</li>
+						<li>Windows</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Registry</h3>
+					<ul>
+						<li>Docker Hub</li>
+						<li>Communautaire</li>
+						<li>Images certifiées</li>
+						<li>Énormémement d’images</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Les images</h3>
+					<ul>
+						<li>C’est un « template »</li>
+						<li>Lecture seule</li>
+						<li>Exemple: Ubuntu avec un Apache et GLPI déjà installés</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Pour le développeur c’est </h3>
+					<ul>
+						<li>Une façon simple de distribuer vos applications</li>
+						<li>Pas de risque d’oubli de dépendances lors de l’installation (un environnement maitrisé)</li>
+						<li>Fonctionnement isolé, tests simplifiés de nouvelles librairies, ou de dépendances</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Cas d’usage 1</h3>
+					<h5>Wordpress</h5>
+					<ul>
+						<li>Image officielle</li>
+						<li>Créer un Blog Wordpress en 2 minutes</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Cas d’usage 2</h3>
+					<h5>Tomcat</h5>
+					<ul>
+						<li>Plusieurs version en parallèle</li>
+						<li>Plusieurs version de Java</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Cas d’usage 3</h3>
+					<h5>PHP</h5>
+					<ul>
+						<li>Plusieurs version en parallèle</li>
+						<li>Tester simplement son code sur d’autre versions de PHP (5, 7, …)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Mais concrètement…</h3>
+					<h4>Créer la définition d’un container</h4>
+				</section>
+
+				<section>
+					<h3>Le Docker File</h3>
+					<ul>
+						<li>Utilisé par Docker pour créer des container à partir de la définition, le fichier « Dockerfile »</li>
+						<li>C’est un fichier texte, qui contient toutes les commandes que l’utilisateur va faire pour assembler l’image</li>
+						<li>Construit via la commande « docker build »</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Le Docker File</h3>
+					<pre><code data-trim>
+FROM ubuntu:16.04
+MAINTAINER Valentin Brosseau
+
+RUN apt-get update
+RUN apt-get install -y python python-pip wget
+RUN pip install Flask
+
+ADD hello.py /home/hello.py
+
+WORKDIR /home									
+</code></pre>
+				</section>
+
+				<section>
+					<h3>La construction </h3>
+					<pre><code data-trim>
+$ docker build -t "flask:demo" .
+</code></pre>
+				</section>
+
+				<section>
+					<h3>Lancement</h3>
+					<pre><code data-trim>
+$ docker run -p 5000:5000 flask:demo python hello.py
+</code></pre>
+				</section>				
+
+				<section>
+					<h3>Mais…</h3>
+					<p>Le container est <em>éphémère</em> il ne sauvegarde rien, à chaque arrêt tout est supprimé.</p>
+				</section>
+
+				<section>
+					<h3>Mais ?</h3>
+					<p>Pour <em>sauvegarder</em> de la données il faut faire un volume.</p>
+				</section>
+
+				<section>
+					<h3>Un volume</h3>
+					<ul>
+						<li>Un dossier « partagé » entre votre machine et le container</li>
+						<li>Une sorte de point de montage</li>
+						<li>Persitant, la données est modifiée en temps réel et est sauvegardées</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Quelques commandes Docker</h3>
+					<ul>
+						<li>docker run</li>
+						<li>docker ps</li>
+						<li>docker stop|start|restart</li>
+						<li>docker build</li>
+						<li>docker rm</li>
+						<li>docker logs</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>DÉMO</h2>
+				</section>
+
+				<section>
+					<h3>Des stacks complètes</h3>
+					<h5 class="section">Souvent un produit c’est plusieurs applications</h5>
+				</section>
+
+				<section>
+					<h3>Place à L’orchestration</h3>
+					<img src="./img/orchestration.gif">
+				</section>
+
+				<section>
+					<h3>Docker Compose</h3>
+					<p>
+						Permet de composer une stack ou une infrastructure complète de conteneurs. Celui-ci permet de simplifier la création, l'interconnexion et la multiplication de conteneurs.
+					</p>
+				</section>
+
+				<section>
+					<h3>C’est un outil officiel - Fourni par Docker</h3>
+				</section>
+
+				<section>
+					<h3>Un fichier… le docker-compose.yml</h3>
+				</section>
+
+				<section>
+					<pre><code data-trim>
+redis:
+	image: redis
+	command: redis-server --appendonly yes
+	volumes:
+		- /root/rss2twitter/data:/data
+	ports:
+		- "6379:6379"
+
+rss2twitter:
+	build: app
+	links:
+		- redis						
+</code></pre>
+				</section>
+				
+				<section>
+					<h3>Utilisation</h3>
+					<ul>
+						<li>docker-compose up</li>
+						<li>docker-compose up -d</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Des questions ?</h3>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				//parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				//parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
