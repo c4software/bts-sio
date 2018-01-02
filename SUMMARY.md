@@ -14,7 +14,7 @@
 	* [Git en groupe + GitLab](tp/gitlab/README.md)
 * Programmation sécurisée avec OWASP
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
-	* [Tentative et injection](tp/securite/README.md)
+	* [Tentatives et injections](tp/securite/README.md)
 * VueJS
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/vuejs/)
 	* [Ajouter VueJS dans un site existant](tp/vuejs/tp1.md)
