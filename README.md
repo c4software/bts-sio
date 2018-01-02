@@ -12,6 +12,8 @@ Ce module aborde les savoirs et savoirs faire liés à la participation à des p
 solution applicative ainsi qu’aux activités de maintien en condition opérationnelle des services associés
 et de réponse aux besoins d’évolution.
 
+### Compétences
+
 - Justifier le choix d’une architecture applicative.
 - Participer à un processus de production d’une solution applicative.
 - Gérer les versions d’une solution applicative.
