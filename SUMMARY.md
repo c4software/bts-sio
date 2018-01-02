@@ -14,7 +14,7 @@
 	* [Git en groupe + GitLab](tp/gitlab/README.md)
 * Programmation sécurisée avec OWASP
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
-	* [Programmation sécurisée avec OWASP](tp/securite/README.md)
+	* [Tentative et injection](tp/securite/README.md)
 * VueJS
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/vuejs/)
 	* [Ajouter VueJS dans un site existant](tp/vuejs/tp1.md)
@@ -22,11 +22,11 @@
 * Cordova + VueJS
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/cordova/)
 	* [Découverte](tp/cordova/decouverte.md)
-	* [Application avec Cordova + VueJS](tp/cordova/vuejs_cordova.md)
+	* [Projet Cordova + VueJS](tp/cordova/vuejs_cordova.md)
 * Laravel
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/laravel/)
 	* [Installation de Laravel](tp/laravel/introduction.md)
-	* [Réécriture des API de la TODO List avec Laravel](tp/laravel/creation_api.md)
+	* [Réécriture des API de la TODO List](tp/laravel/creation_api.md)
 * Docker
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/docker/)
 	* [Première approche](tp/docker/introduction.md)
@@ -35,8 +35,8 @@
 * [WIP] GitLab-CI
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/gitlabci/)
 	* [Utiliser Gitlab Pages](tp/ci/pages.md)
-	* [Appliaction Hybride et Gitlab-CI](tp/ci/ci-hybride.md)
+	* [App Hybride et Gitlab-CI](tp/ci/ci-hybride.md)
 * [WIP] Framework Python : Flask
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/flask/)
-	* [Installation de Python + Flask](./tp/python/flask.md)
-	* [Réécriture des API de la TODO List avec Flask](./tp/python/flask_todolist_api.md)
+	* [Installation de Python et Flask](./tp/python/flask.md)
+	* [Réécriture des API de la TODO List](./tp/python/flask_todolist_api.md)
