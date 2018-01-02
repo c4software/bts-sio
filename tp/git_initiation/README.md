@@ -36,9 +36,9 @@ Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base d
 
 ## Ressources utiles
 
-* [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
-* [Google](https://www.google.fr)
-* [Livre Git en ligne](https://git-scm.com/book/fr/v2)
+- [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
+- [Google](https://www.google.fr)
+- [Livre Git en ligne](https://git-scm.com/book/fr/v2)
 
 ## Situation
 
@@ -46,11 +46,11 @@ Vous êtes en entreprise, vous avez un nouveau projet à réaliser. Le projet es
 
 ### Questions
 
-* Voyez vous d’autre questions à poser à votre chef de projet ?
-* Comment imaginez vous l’organisation de votre travail ?
-	* Un gestionnaire de version est-il utile ?
-	* Si oui, pourquoi ?
-	* Si non, pourquoi ?
+- Voyez vous d’autre questions à poser à votre chef de projet ?
+- Comment imaginez vous l’organisation de votre travail ?
+  - Un gestionnaire de version est-il utile ?
+  - Si oui, pourquoi ?
+  - Si non, pourquoi ?
 
 
 ## Initialisation
@@ -98,47 +98,47 @@ $ tree
 
 ### Question bonus
 
-* Comment avez-vous procédé ?
-	* Est-ce la technique utilisée en entreprise ?
-	* Est-ce pratique ?
-	* Comment faire autrement ?
+- Comment avez-vous procédé ?
+  - Est-ce la technique utilisée en entreprise ?
+  - Est-ce pratique ?
+  - Comment faire autrement ?
 
 
 Vérifier le statut de Git après avoir tout créé
 
-```
+```sh
 
 ```
 
 ### Questions
 
-* Que constatez-vous ?
-	* Quelle commandes, faut-il faire maintenant?
-	* Une autre commande serait-elle utile ?
+- Que constatez-vous ?
+  - Quelle commandes, faut-il faire maintenant?
+  - Une autre commande serait-elle utile ?
 
 
 Ajouter les changements
 
-```
+```sh
 
 ```
 
 Est-ce la seul façon de faire ? (Plusieurs réponses sont possibles)
 
-```
+```sh
 
 ```
 
 ### Questions
 
-* Qu’avez vous fait ?
-* Qu’elles sont différences entre les deux commandes?
-* Dans quel état est votre dépôt (repository) ?
-* À quoi sert la commande ```git status``` ?
-	* Une autre commande permettrait t’elle d’avoir une information similaire ?
-* Le commentaire que vous avez mis est-il correcte ?
-	* Est-il possible de l’améliorer ?
-	* Si oui, comment ?
+- Qu’avez vous fait ?
+- Qu’elles sont différences entre les deux commandes?
+- Dans quel état est votre dépôt (repository) ?
+- À quoi sert la commande ```git status``` ?
+  - Une autre commande permettrait t’elle d’avoir une information similaire ?
+- Le commentaire que vous avez mis est-il correcte ?
+  - Est-il possible de l’améliorer ?
+  - Si oui, comment ?
 
 ## Ajout / Modification de fichiers
 
@@ -150,7 +150,7 @@ $ vim source/index.html
 
 Vérifier que vos modifications sont présentes dans GIT
 
-```
+```sh
 $
 $ # Ou
 $
@@ -158,18 +158,18 @@ $
 
 Ajouter vos modifications dans Git
 
-```
+```sh
 $
 ```
 
 ### Questions
 
-* À quoi sert les commentaires ?
-	* Est-ce que pour vous ?
-* Y’a t’il plusieurs façon de faire ?
-* Comment vérifier que vos modifications ont bien été prise en compte ?
+- À quoi sert les commentaires ?
+  - Est-ce que pour vous ?
+- Y’a t’il plusieurs façon de faire ?
+- Comment vérifier que vos modifications ont bien été prise en compte ?
 
-```
+```sh
 $
 ```
 
@@ -177,37 +177,37 @@ $
 
 Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit, modifier le en utilisant [Un template de message de commit](https://github.com/c4software/cheatsheet/blob/master/git/commit_template.md)
 
-```
+```sh
 $
 ```
 
 ### Questions
 
-* Pourquoi votre responsable vous a t’il demandé de le modifier?
-* Pourquoi le commentaire est-il aussi important ?
+- Pourquoi votre responsable vous a t’il demandé de le modifier?
+- Pourquoi le commentaire est-il aussi important ?
 
 ## Ajout d’une évolution dans le précédent fichier
 
-```
+```sh
 $
 ```
 
 Sauvegarder les modifications après avoir vérifié que celle-ci sont bien présentes
 
-```
+```sh
 $
 $
 ```
 
 ### Question
 
-* À votre avis, comment déterminer la fréquence des « commits »?
+- À votre avis, comment déterminer la fréquence des « commits »?
 
 ## Un coup d’oeil dans le rétroviseur
 
 Vérifier l’historique de votre projet
 
-```
+```sh
 $
 $ # ou pour avoir une vue « compact »
 $
@@ -215,11 +215,11 @@ $
 
 ### Questions
 
-* Que constatez-vous ?
-* À quoi sert l’identifiant de chaque commit ? (Hash SHA)
-* Comment vérifiez-vous l’historique pour un fichier précis ?
-* Comment voir l’ensemble des modifications en détail pour le fichier ```source/index.html```
-* Est-ce judicieux de travailler toujours sur la branche ```master``` ?
+- Que constatez-vous ?
+- À quoi sert l’identifiant de chaque commit ? (Hash SHA)
+- Comment vérifiez-vous l’historique pour un fichier précis ?
+- Comment voir l’ensemble des modifications en détail pour le fichier ```source/index.html```
+- Est-ce judicieux de travailler toujours sur la branche ```master``` ?
 
 ## Une autre évolution
 
@@ -227,7 +227,7 @@ Votre première version est maintenant disponible pour les utilisateurs, votre r
 
 Comment procédez-vous ?
 
-```
+```sh
 $
 $
 ```
@@ -236,47 +236,49 @@ Faites des modifications dans les fichiers que vous voulez.
 
 ### Questions
 
-* Vérifier l’état de votre dépôt Git
-* Quel est l’avantage de travailler dans une branch ?
-* À votre avis qu’elles sont les prochaines étapes ?
+- Vérifier l’état de votre dépôt Git
+- Quel est l’avantage de travailler dans une branch ?
+- À votre avis qu’elles sont les prochaines étapes ?
 
 ## Fusion / Merge de la fonctionnalité
 
 Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre branch master :
 
-```
+```sh
 $
 $
 ```
 
 ### Questions
 
-* À votre avis, en entreprise « merge / fusionne » t-on directement sur la master ?
-* Une autre personne peut-elle / doit-elle être impliquée dans cette étape ?
+- À votre avis, en entreprise « merge / fusionne » t-on directement sur la master ?
+- Une autre personne peut-elle / doit-elle être impliquée dans cette étape ?
 
 ## Annulation, retour arrière
 
 Faite des évolutions dans votre branche master (2 ou 3), ajouter les via ```git add```. Votre responsable vous demande finalement de les annuler car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
 
-```
+```sh
 $
 ```
 
 ### Questions
 
-* Que vient-il de se produire ?
-* Est-il possible de récupérer vos modifications ?
+- Que vient-il de se produire ?
+- Est-il possible de récupérer vos modifications ?
 
 ## Finalisation
 
 Voilà, votre projet a atteint une première étape. Que pouvez-vous faire pour « marquer » cette première version ?
 
-```
+```sh
 $
 ```
 
 ### Questions
 
-* Que vient-il de se produire?
-* À votre avis, quel est l’intérêt de « taguer » une version ?
-* Quel sont les avantages de réaliser un tag ?
+- Que vient-il de se produire?
+- À votre avis, quel est l’intérêt de « taguer » une version ?
+- Quel sont les avantages de réaliser un tag ?
+
+[Voir la solution](./solution/README.md)
