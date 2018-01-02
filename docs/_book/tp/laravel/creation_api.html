@@ -1,0 +1,826 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Réécriture des API de la TODO List avec Laravel · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="introduction.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Aides mémoires
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../cheatsheets/git/">
+            
+                <a href="../../cheatsheets/git/">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../cheatsheets/cordova/">
+            
+                <a href="../../cheatsheets/cordova/">
+            
+                    
+                    Cordova
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../cheatsheets/docker/">
+            
+                <a href="../../cheatsheets/docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../cheatsheets/vuejs/">
+            
+                <a href="../../cheatsheets/vuejs/">
+            
+                    
+                    VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../git_initiation/">
+            
+                <a href="../git_initiation/">
+            
+                    
+                    Initiation à Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../gitlab/">
+            
+                <a href="../gitlab/">
+            
+                    
+                    Git en groupe + GitLab
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../securite/">
+            
+                <a href="../securite/">
+            
+                    
+                    Programmation sécurisée avec OWASP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../vuejs/tp1.html">
+            
+                <a href="../vuejs/tp1.html">
+            
+                    
+                    Ajouter VueJS dans un site existant
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../vuejs/tp2.html">
+            
+                <a href="../vuejs/tp2.html">
+            
+                    
+                    Réaliser une application avec VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Cordova + VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../cordova/decouverte.html">
+            
+                <a href="../cordova/decouverte.html">
+            
+                    
+                    Découverte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../cordova/vuejs_cordova.html">
+            
+                <a href="../cordova/vuejs_cordova.html">
+            
+                    
+                    Application avec Cordova + VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Laravel
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Installation de Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.2" data-path="creation_api.html">
+            
+                <a href="creation_api.html">
+            
+                    
+                    Réécriture des API de la TODO List avec Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Docker
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../docker/introduction.html">
+            
+                <a href="../docker/introduction.html">
+            
+                    
+                    Première approche
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../docker/dockerfile.html">
+            
+                <a href="../docker/dockerfile.html">
+            
+                    
+                    Dockerfile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../docker/docker_compose.html">
+            
+                <a href="../docker/docker_compose.html">
+            
+                    
+                    Docker Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    GitLab-CI
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../ci/pages.html">
+            
+                <a href="../ci/pages.html">
+            
+                    
+                    Utiliser Gitlab Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../ci/ci-hybride.html">
+            
+                <a href="../ci/ci-hybride.html">
+            
+                    
+                    Appliaction Hybride et Gitlab-CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Réécriture des API de la TODO List avec Laravel</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="todolist--r&#xE9;-&#xE9;crire-les-api-du-projet">TodoList : (R&#xE9;-)&#xE9;crire les API du projet</h1>
+<p>Le but de notre application est de cr&#xE9;er des API Rest qui vont exposer la gestion de nos <code>todos</code> d&#xE9;fini en base de donn&#xE9;es</p>
+<!-- TOC -->
+<ul>
+<li><a href="#todolist--r&#xE9;-&#xE9;crire-les-api-du-projet">TodoList : (R&#xE9;-)&#xE9;crire les API du projet</a><ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#cr&#xE9;ation-du-projet">Cr&#xE9;ation du projet</a></li>
+<li><a href="#installer-lumen">Installer Lumen</a></li>
+<li><a href="#cr&#xE9;er-le-nouveau-projet">Cr&#xE9;er le nouveau Projet</a></li>
+<li><a href="#initialisation">Initialisation</a></li>
+<li><a href="#tester-votre-application">Tester votre application</a></li>
+<li><a href="#gestion-de-la-base-de-donn&#xE9;es">Gestion de la base de donn&#xE9;es</a><ul>
+<li><a href="#le-script-de-cr&#xE9;ation--migration">Le script de cr&#xE9;ation / migration</a></li>
+<li><a href="#le-mod&#xE8;le">Le mod&#xE8;le</a></li>
+</ul>
+</li>
+<li><a href="#le-controller">Le controller</a><ul>
+<li><a href="#liste">Liste</a></li>
+<li><a href="#cr&#xE9;ation">Cr&#xE9;ation</a></li>
+<li><a href="#cr&#xE9;ation-version-alternative">Cr&#xE9;ation, version alternative</a></li>
+<li><a href="#terminer">Terminer</a></li>
+<li><a href="#suppression">Suppression</a></li>
+</ul>
+</li>
+<li><a href="#d&#xE9;clarer-les-routes">D&#xE9;clarer les routes</a></li>
+<li><a href="#activer-le-support-deloquent">Activer le support d&#x2019;Eloquent</a></li>
+<li><a href="#tester">Tester</a></li>
+<li><a href="#changer-les-api-dans-votre-application-vuejs">Changer les API dans votre application VueJS</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="introduction">Introduction</h2>
+<p>Dans ce TP nous allons voir la cr&#xE9;ation d&#x2019;API pour le projet &#xAB; TodoList &#xBB;. Nous allons donc cr&#xE9;er un nouveau projet avec Laravel pour cr&#xE9;er des API qui permettront de :</p>
+<ul>
+<li>Lister les &#xE9;l&#xE9;ments dans la TodoList.</li>
+<li>Cr&#xE9;er un nouvel &#xE9;l&#xE9;ment dans la TodoList.</li>
+<li>Marquer un &#xE9;l&#xE9;ment comme <code>terminer</code>.</li>
+<li>Supprimer un &#xE9;l&#xE9;ment.</li>
+</ul>
+<h2 id="cr&#xE9;ation-du-projet">Cr&#xE9;ation du projet</h2>
+<p>Pour cr&#xE9;er des API, Laravel est un peu &#xAB; lourd &#xBB; (dans notre cas bien &#xE9;videmment, dans certains cas te choix est compl&#xE8;tement justifi&#xE9;). Nous allons donc utiliser son petit fr&#xE8;re Lumen. Lumen est un micro-framework reprenant les concepts de Laravel (et les m&#xEA;me briques), mais en beaucoup plus petit et donc plus adapt&#xE9; &#xE0; des micro-projets comme celui-ci.</p>
+<h2 id="installer-lumen">Installer Lumen</h2>
+<p>L&#x2019;installation de Lumen est similaire &#xE0; celle de Laravel</p>
+<pre><code class="lang-shell">composer global require &quot;laravel/lumen-installer&quot;
+</code></pre>
+<h2 id="cr&#xE9;er-le-nouveau-projet">Cr&#xE9;er le nouveau Projet</h2>
+<p>Maintenant que vous avez install&#xE9; Lumen nous allons pouvoir utiliser la ligne de commande pour cr&#xE9;er un nouveau projet :</p>
+<pre><code class="lang-shell">lumen new api-todo
+</code></pre>
+<p>&#x270B; Attention, le projet va &#xEA;tre cr&#xE9;&#xE9; dans le dossier api-todo dans le dossier courant.</p>
+<h2 id="initialisation">Initialisation</h2>
+<p>Contrairement &#xE0; un projet Laravel, les d&#xE9;pendances <code>composer</code> ne sont pas install&#xE9;es par d&#xE9;faut. Il faut donc les installer via la ligne de commande en faisant :</p>
+<pre><code class="lang-shell">composer install
+</code></pre>
+<p>Le projet n&#x2019;&#xE9;tant pas initialis&#xE9; nous allons devoir jouer quelques commandes pour terminer l&#x2019;installation :</p>
+<pre><code class="lang-shell">mv .env.example .env
+</code></pre>
+<p>Contrairement &#xE0; Laravel, Lumen ne contient pas l&#x2019;outils permettant d&#x2019;initialiser la &#xAB; secret key &#xBB; n&#xE9;c&#xE9;ssaire &#xE0; la s&#xE9;curisation de votre application. Je pous propose par exemple de passer via la commande suivante :</p>
+<pre><code class="lang-shell">openssl rand -base64 24
+</code></pre>
+<p>(Vous pouvez &#xE9;galement faire du monkey typing&#x2026; et saisir une chaine de caract&#xE8;re al&#xE9;atoire avec votre clavier&#x2026;)</p>
+<p>&#xE9;diter le fichier <code>.env</code> pour y renseigner la valeur obtenue :</p>
+<ul>
+<li><code>APP_KEY</code> (exemple <code>APP_KEY=&quot;I82xtis8Tsur2&quot;</code>)</li>
+</ul>
+<h2 id="tester-votre-application">Tester votre application</h2>
+<p>Pour tester votre application avec Lumen sur votre poste, c&#x2019;est un peu plus &#xAB; complexe &#xBB; qu&#x2019;avec Laravel. Vous devez saisir la commande suivante :</p>
+<pre><code class="lang-shell">php -S localhost:8000 -t ./public
+</code></pre>
+<p>Une fois lanc&#xE9; vous avez un serveur Web qui &#xE9;coute sur <a href="http://localhost:8000" target="_blank">le port 8000</a></p>
+<p>&#x1F914; Pourquoi Lumen n&#x2019;int&#xE8;gre pas la commande <code>php artisan serve</code> ? La raison est plut&#xF4;t logique, Lumen &#xE9;tant un <code>micro framework</code> il n&#x2019;embarque pas toutes les options de base de Laravel. Options qui peuvent d&#x2019;ailleurs simplement &#xEA;tre remplac&#xE9;e.</p>
+<h2 id="gestion-de-la-base-de-donn&#xE9;es">Gestion de la base de donn&#xE9;es</h2>
+<p>Pour la d&#xE9;monstration nous allons utiliser SQLite au lieux de MySQL. Pour &#xE7;a rien de plus simple, Lumen utilise PDO il suffit donc de changer la configuration par d&#xE9;faut dans le fichier <code>.env</code>. Modifier le fichier pour qu&#x2019;il ressemble &#xE0; celui-ci</p>
+<pre><code class="lang-conf">APP_ENV=local
+APP_DEBUG=true
+APP_KEY=&quot;CHANGEME&quot;
+APP_TIMEZONE=UTC
+
+DB_CONNECTION=sqlite
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=homestead
+# DB_USERNAME=homestead
+# DB_PASSWORD=secret
+
+CACHE_DRIVER=file
+QUEUE_DRIVER=sync
+</code></pre>
+<p>Par d&#xE9;faut la configuration de base de SQLite dans Lumen est l&#x2019;utilisation d&#x2019;une base de donn&#xE9;es nomm&#xE9;e <code>database.sqlite</code> il faut donc cr&#xE9;er un fichier vide qui recevra les donn&#xE9;es :</p>
+<pre><code class="lang-shell">touch database/database.sqlite
+</code></pre>
+<p>C&#x2019;est parti ! Tout est pr&#xEA;t, nous pouvons commencer &#xE0; &#xE9;crire du code.</p>
+<h3 id="le-script-de-cr&#xE9;ation--migration">Le script de cr&#xE9;ation / migration</h3>
+<p>Contrairement &#xE0; la premi&#xE8;re version de notre application, nous allons stocker les donn&#xE9;es dans une base de donn&#xE9;es. Qui dit base de donn&#xE9;es dit &#xAB; ORM &#xBB; et donc mapping objet. Pour rappel un ORM :</p>
+<blockquote>
+<p>Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui cr&#xE9;e l&apos;illusion d&apos;une base de donn&#xE9;es orient&#xE9;e objet &#xE0; partir d&apos;une base de donn&#xE9;es relationnelle en d&#xE9;finissant des correspondances entre cette base de donn&#xE9;es et les objets du langage utilis&#xE9;.</p>
+</blockquote>
+<p>Pour rappel, le but de notre application est de cr&#xE9;er des API Rest qui vont exposer la gestion de nos <code>todos</code> d&#xE9;fini en base de donn&#xE9;es. La premi&#xE8;re &#xE9;tape est de cr&#xE9;er via la ligne de commande le &#xAB; script &#xBB; qui initialisera la structure de votre base de donn&#xE9;es.</p>
+<p>L&#x2019;option <code>--create=todos</code> permet d&#x2019;indiquer le nom de la table &#xE0; cr&#xE9;er</p>
+<pre><code class="lang-shell">php artisan make:migration create_todos_table --create=todos
+</code></pre>
+<p>&#x270B; Le contenu du fichier est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative &#xE0; notre base de donn&#xE9;es.</p>
+<p>La commande a cr&#xE9;&#xE9; un nouveau fichier (dans mon cas) : <code>database/migration/2017_11_02_205700_create_todos_table.php</code></p>
+<p>Dans le fichier cr&#xE9;&#xE9; nous allons d&#xE9;finir notre sch&#xE9;ma (&#xE0; savoir la d&#xE9;finition de la table) pour ajouter les 2 colonnes qui nous serons utiles <code>texte</code> et <code>termine</code>. Le fichier apr&#xE8;s modification doit ressembler &#xE0; :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Schema</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Schema</span>\<span class="hljs-title">Blueprint</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Migrations</span>\<span class="hljs-title">Migration</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateTodosTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-comment">/**
+     * Run the migrations.
+     *
+     * <span class="hljs-doctag">@return</span> void
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::create(<span class="hljs-string">&apos;todos&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Blueprint $table)</span> </span>{
+            $table-&gt;increments(<span class="hljs-string">&apos;id&apos;</span>);
+            $table-&gt;string(<span class="hljs-string">&apos;texte&apos;</span>);
+            $table-&gt;boolean(<span class="hljs-string">&apos;termine&apos;</span>);
+            $table-&gt;timestamps();
+        });
+    }
+
+    <span class="hljs-comment">/**
+     * Reverse the migrations.
+     *
+     * <span class="hljs-doctag">@return</span> void
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::dropIfExists(<span class="hljs-string">&apos;todos&apos;</span>);
+    }
+}
+</code></pre>
+<p>Maintenant que le script est termin&#xE9;, nous pouvons lancer la commande de migration :</p>
+<pre><code class="lang-shell">php artisan migration
+</code></pre>
+<p>Une fois cette commande lanc&#xE9;e, Lumen va cr&#xE9;er la structure de base de votre base de donn&#xE9;es.</p>
+<h3 id="le-mod&#xE8;le">Le mod&#xE8;le</h3>
+<p>Maintenant que nous avons fait le script de cr&#xE9;ation / migration, nous allons d&#xE9;finir notre mod&#xE8;le. Pour &#xE7;a cr&#xE9;ez un fichier <code>Todos.php</code> dans le dossier <code>app/</code> avec le contenu suivant :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Todos</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">protected</span> $fillable = [<span class="hljs-string">&apos;texte&apos;</span>, <span class="hljs-string">&apos;termine&apos;</span>];
+}
+</code></pre>
+<p>le <code>$fillable</code> d&#xE9;finie les propri&#xE9;t&#xE9;s qui doivent &#xEA;tres automatiquement remplis par Eloquent (l&#x2019;ORM) lors de l&#x2019;execution du code.</p>
+<h2 id="le-controller">Le controller</h2>
+<p>Maintenant que nous avons notre base de donn&#xE9;es, nous allons cr&#xE9;er le controller. Pour rappel le controller va faire &#xAB; le lien &#xBB; entre la base de donn&#xE9;es et les appels HTTP. C&#x2019;est ici que nous allons mettre la logique m&#xE9;tier de nos API.</p>
+<p>Pour commencer nous allons cr&#xE9;er &#xAB; la structure de base &#xBB; de notre controller. Pour &#xE7;a cr&#xE9;ez le fichier <code>TodosController.php</code> dans le chemin suivant <code>app/Http/Controllers/</code> et mettez y le contenu suivant :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Todos</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Controller</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Request</span>;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodosController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span></span>{
+    <span class="hljs-comment">// C&#x2019;est ici que seront nos m&#xE9;thodes</span>
+}
+</code></pre>
+<p>Bien ! Notre code est maintenant pr&#xEA;t. Nous allons cr&#xE9;er les m&#xE9;thodes permettant la manipulation de notre base de donn&#xE9;es tout en r&#xE9;pondant &#xE0; nos API bien &#xE9;videment (liste, creation, terminer, suppression).</p>
+<p>Nous allons maintenant &#xE9;crire une m&#xE9;thode pour chaque actions. Avec les diff&#xE9;rentes conditions n&#xE9;c&#xE9;ssaires au bon fonctionnement de votre application.</p>
+<h3 id="liste">Liste</h3>
+<p>La m&#xE9;thode <code>liste</code> est certainement la plus simple, nous allons simplement faire appel &#xE0; la m&#xE9;thode <code>all()</code> de Eloquent (ORM pour l&#x2019;acc&#xE8;s &#xE0; la base de donn&#xE9;es). Pour &#xE7;a cr&#xE9;ez une nouvelle m&#xE9;thode dans la Class <code>TodoController</code> avec le code suivant :</p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">list</span><span class="hljs-params">()</span></span>{
+    $todos  = Todos::all();
+    <span class="hljs-keyword">return</span> response()-&gt;json($todos);
+}
+</code></pre>
+<p>Rien de bien compliqu&#xE9;, comme vous pouvez le voir le <code>response()-&gt;json(&#x2026;)</code> permet de cr&#xE9;er une r&#xE9;ponse au format JSON pour votre API (que l&#x2019;on utilisera plus tard au moment de la mise en place des routes).</p>
+<h3 id="cr&#xE9;ation">Cr&#xE9;ation</h3>
+<p>Pour la partie cr&#xE9;ation, nous allons faire un mapping automatique entre la requette HTTP et le mod&#xE8;le <code>Todos</code></p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">saveTodo</span><span class="hljs-params">(Request $request)</span></span>{
+    $todo = Todos::create($request-&gt;all());
+    <span class="hljs-keyword">return</span> response()-&gt;json($todo);
+}
+</code></pre>
+<p>Que va t&#x2019;il se passer lors de l&#x2019;appel ? L&#x2019;objet <code>$request</code> contient tous les param&#xE8;tres de l&#x2019;appel HTTP, la m&#xE9;thode <code>all()</code> permet de les r&#xE9;cup&#xE9;rer. L&#x2019;objet <code>Todos</code> poss&#xE8;de une m&#xE9;thode permettant de cr&#xE9;er un nouvel enregistrement en base de donn&#xE9;es. Les valeurs pass&#xE9;es en param&#xE8;tre de <code>create()</code> permette de renseigner automatiquement les champs en base de donn&#xE9;es.</p>
+<h3 id="cr&#xE9;ation-version-alternative">Cr&#xE9;ation, version alternative</h3>
+<p>La premi&#xE8;re approche est la plus rapide mais elle sous entend que tous les param&#xE8;tres soient bien initialis&#xE9;s dans &#xAB; l&#x2019;input &#xBB; HTTP. Dans cette version la m&#xE9;thode est plus compl&#xE8;te et g&#xE8;re la cr&#xE9;ation de l&#x2019;objet Todo manuellement en r&#xE9;cup&#xE9;rant les diff&#xE9;rents &#xE9;l&#xE9;ments dans la requette HTTP</p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">saveTodo</span><span class="hljs-params">(Request $request)</span></span>{
+    $texte = $request-&gt;input(<span class="hljs-string">&apos;texte&apos;</span>);
+
+    <span class="hljs-keyword">if</span>($texte){
+      $todo = <span class="hljs-keyword">new</span> Todos;
+      $todo-&gt;texte = $texte;
+      $todo-&gt;termine = <span class="hljs-number">0</span>;
+      $todo-&gt;save();
+      <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-string">&quot;success&quot;</span>);
+    }<span class="hljs-keyword">else</span>{
+      <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-string">&quot;error&quot;</span>);
+    }
+  }
+</code></pre>
+<h3 id="terminer">Terminer</h3>
+<p>Pour l&#x2019;action terminer nous allons devoir updater un enregistrement en base de donn&#xE9;es, pour &#xE7;a nous allons le r&#xE9;cup&#xE9;rer puis mettre le <code>boolean</code> termine &#xE0; 1.</p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">markAsDone</span><span class="hljs-params">($id)</span></span>{
+        $todo  = Todos::find($id);
+        <span class="hljs-keyword">if</span>($todo){
+            $todo-&gt;termine = <span class="hljs-number">1</span>;
+            $todo-&gt;save();
+            <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-string">&quot;success&quot;</span>);
+        }<span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-string">&quot;error&quot;</span>);
+        }
+    }
+</code></pre>
+<h3 id="suppression">Suppression</h3>
+<p>Pour la partie suppression, nous allons devoir dans un premier temps r&#xE9;cup&#xE9;rer la todo par son ID. Seul les <code>Todos</code> marqu&#xE9;s comme termin&#xE9;s peuvent &#xEA;tre supprim&#xE9;, il faudra donc controller l&#x2019;&#xE9;tat avant de faire le <code>delete()</code></p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteTodo</span><span class="hljs-params">($id)</span></span>{
+        $todo  = Todos::find($id);
+        <span class="hljs-keyword">if</span>($todo &amp;&amp; $todo-&gt;termine){
+            $todo-&gt;delete();
+            <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-string">&apos;success&apos;</span>);
+        }<span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-string">&apos;error&apos;</span>);
+        }
+}
+</code></pre>
+<h2 id="d&#xE9;clarer-les-routes">D&#xE9;clarer les routes</h2>
+<p>Maintenant que le mapping avec la base de donn&#xE9;es est cr&#xE9;&#xE9;, et que notre controller est disponible nous allons pouvoir d&#xE9;clarer les diff&#xE9;rentes &#xAB; routes &#xBB; (c&#x2019;est &#xE0; dire les chemins d&#x2019;acc&#xE8;s &#xE0; votre API). Dans notre applicaton nous avons 4 routes :</p>
+<ul>
+<li>Liste (/liste)</li>
+<li>Cr&#xE9;ation (/creation)</li>
+<li>Terminer (/terminer)</li>
+<li>Suppression (/suppression)</li>
+</ul>
+<p>Nous allons &#xAB; mapper &#xBB; / &#xAB; connecter &#xBB; les routes avec les diff&#xE9;rentes actions de notre controller. Avec un framework c&#x2019;est tr&#xE8;s simple il suffit d&#x2019;ajouter dans le fichier <code>routes/web.php</code> le code suivant :</p>
+<pre><code class="lang-php">$router-&gt;get(<span class="hljs-string">&apos;api/todo&apos;</span>,<span class="hljs-string">&apos;TodosController@list&apos;</span>);
+$router-&gt;post(<span class="hljs-string">&apos;api/todo&apos;</span>,<span class="hljs-string">&apos;TodosController@saveTodo&apos;</span>);
+$router-&gt;post(<span class="hljs-string">&apos;api/todo/done/{id}&apos;</span>,<span class="hljs-string">&apos;TodosController@markAsDone&apos;</span>);
+$router-&gt;delete(<span class="hljs-string">&apos;api/todo/delete/{id}&apos;</span>,<span class="hljs-string">&apos;TodosController@deleteTodo&apos;</span>);
+</code></pre>
+<h2 id="activer-le-support-deloquent">Activer le support d&#x2019;Eloquent</h2>
+<p>Avant de pouvoir tester votre application vous devez &#xE9;diter le fichier <code>bootstrap/app.php</code> pour d&#xE9;commenter la ligne :</p>
+<pre><code class="lang-php">$app-&gt;withEloquent();
+</code></pre>
+<h2 id="tester">Tester</h2>
+<p>Pour tester votre application il suffit de lancer la commande suivante :</p>
+<pre><code class="lang-shell">php -S localhost:8000 -t ./public
+</code></pre>
+<p>Pour tester vous pouvez utiliser PostMan.</p>
+<h2 id="changer-les-api-dans-votre-application-vuejs">Changer les API dans votre application VueJS</h2>
+<p>Maintenant que vos nouvelles API sont termin&#xE9;es nous allons pouvoir les utiliser dans VueJS. Pour &#xE7;a &#xE9;diter le code Javascript de votre projet VueJS pour pointer vers votre serveur Lumen.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="introduction.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Installation de Laravel">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List avec Laravel","level":"1.8.2","depth":2,"next":{"title":"Docker","level":"1.9","depth":1,"ref":"","articles":[{"title":"Première approche","level":"1.9.1","depth":2,"path":"tp/docker/introduction.md","ref":"tp/docker/introduction.md","articles":[]},{"title":"Dockerfile","level":"1.9.2","depth":2,"path":"tp/docker/dockerfile.md","ref":"tp/docker/dockerfile.md","articles":[]},{"title":"Docker Compose","level":"1.9.3","depth":2,"path":"tp/docker/docker_compose.md","ref":"tp/docker/docker_compose.md","articles":[]}]},"previous":{"title":"Installation de Laravel","level":"1.8.1","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tp/laravel/creation_api.md","mtime":"2017-12-13T20:57:05.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T14:26:54.726Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
