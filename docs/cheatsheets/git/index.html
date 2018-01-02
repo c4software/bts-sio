@@ -715,110 +715,153 @@
                                 <h2 id="aide-m&#xE9;moire-git">Aide m&#xE9;moire GIT</h2>
 <h3 id="personnaliser">Personnaliser</h3>
 <p>D&#xE9;finir son identit&#xE9; :</p>
-<pre><code>$ git config --global user.email &quot;email@example.com&quot;
-$ git config --global user.name &quot;Valentin Brosseau&quot;
-</code></pre><p>Voir la configuration :</p>
-<pre><code>git config --list
-</code></pre><h3 id="cr&#xE9;er">Cr&#xE9;er</h3>
+<pre><code class="lang-sh">git config --global user.email <span class="hljs-string">&quot;email@example.com&quot;</span>
+git config --global user.name <span class="hljs-string">&quot;Valentin Brosseau&quot;</span>
+</code></pre>
+<p>Voir la configuration :</p>
+<pre><code class="lang-sh">git config --list
+</code></pre>
+<h3 id="cr&#xE9;er">Cr&#xE9;er</h3>
 <p>Cr&#xE9;er un nouveau d&#xE9;p&#xF4;t local (dans le dossier courant) :</p>
-<pre><code>$ git init
-</code></pre><p>Cloner un d&#xE9;pot existant :</p>
-<pre><code>$ git clone ssh://user@domain.com/repo.git
-</code></pre><p>Cr&#xE9;er un fichier &#xAB; .gitignore &#xBB; pour OSX:</p>
-<pre><code>$ curl -s https://www.gitignore.io/api/osx &gt; .gitignore
-</code></pre><h3 id="modifications-locales">Modifications locales</h3>
+<pre><code class="lang-sh">git init
+</code></pre>
+<p>Cloner un d&#xE9;pot existant :</p>
+<pre><code class="lang-sh">git <span class="hljs-built_in">clone</span> ssh://user@domain.com/repo.git
+</code></pre>
+<p>Cr&#xE9;er un fichier &#xAB; .gitignore &#xBB; pour OSX:</p>
+<pre><code class="lang-sh">curl <span class="hljs-_">-s</span> https://www.gitignore.io/api/osx &gt; .gitignore
+</code></pre>
+<h3 id="modifications-locales">Modifications locales</h3>
 <p>Fichiers modifi&#xE9;s dans votre r&#xE9;pertoire de travail :</p>
-<pre><code>$ git status
-</code></pre><p>Modifications sur les fichiers suivis :</p>
-<pre><code>$ git diff
-</code></pre><p>Ajouter tous les changements actuels au prochain commit :</p>
-<pre><code>$ git add
-</code></pre><p>Ajouter tous les changements de toute l&#x2019;arborescence :</p>
-<pre><code>$ git add --all
-</code></pre><p>Commiter tous les changements locaux des fichiers suivis :</p>
-<pre><code>$ git commit -a
-</code></pre><p>Commiter les modifications en attente :</p>
-<pre><code>$ git commit -m &apos;Votre message&apos;
-</code></pre><p>Modifier le commit pr&#xE9;c&#xE9;dent :</p>
-<pre><code>$ git commit --amend
-</code></pre><h3 id="historique-de-commit">Historique de Commit</h3>
+<pre><code class="lang-sh">git status
+</code></pre>
+<p>Modifications sur les fichiers suivis :</p>
+<pre><code class="lang-sh">git diff
+</code></pre>
+<p>Ajouter tous les changements actuels au prochain commit :</p>
+<pre><code class="lang-sh">git add
+</code></pre>
+<p>Ajouter tous les changements de toute l&#x2019;arborescence :</p>
+<pre><code class="lang-sh">git add --all
+</code></pre>
+<p>Commiter tous les changements locaux des fichiers suivis :</p>
+<pre><code class="lang-sh">git commit <span class="hljs-_">-a</span>
+</code></pre>
+<p>Commiter les modifications en attente :</p>
+<pre><code class="lang-sh">git commit -m <span class="hljs-string">&apos;Votre message&apos;</span>
+</code></pre>
+<p>Modifier le commit pr&#xE9;c&#xE9;dent :</p>
+<pre><code class="lang-sh">git commit --amend
+</code></pre>
+<h3 id="historique-de-commit">Historique de Commit</h3>
 <p>Afficher tous les commits :</p>
-<pre><code>$ git log
-</code></pre><p>Afficher tous les commits (uniquement l&#x2019;identifiant et le texte) :</p>
-<pre><code>$ git log --oneline
-</code></pre><p>Afficher l&#x2019;historique d&#x2019;un utilisateur uniquement :</p>
-<pre><code>$ git log --author=&quot;utilisateur&quot;
-</code></pre><p>Afficher l&#x2019;historique des modifications pour un fichier uniquement :</p>
-<pre><code>$ git log -p &lt;fichier&gt;
-</code></pre><p>Affiche les changements (en d&#xE9;tails) dans le fichier :</p>
-<pre><code>$ git blame &lt;file&gt;
-</code></pre><h3 id="branches--tags">Branches &amp; Tags</h3>
+<pre><code class="lang-sh">git <span class="hljs-built_in">log</span>
+</code></pre>
+<p>Afficher tous les commits (uniquement l&#x2019;identifiant et le texte) :</p>
+<pre><code class="lang-sh">git <span class="hljs-built_in">log</span> --oneline
+</code></pre>
+<p>Afficher l&#x2019;historique d&#x2019;un utilisateur uniquement :</p>
+<pre><code class="lang-sh">git <span class="hljs-built_in">log</span> --author=<span class="hljs-string">&quot;utilisateur&quot;</span>
+</code></pre>
+<p>Afficher l&#x2019;historique des modifications pour un fichier uniquement :</p>
+<pre><code class="lang-sh">git <span class="hljs-built_in">log</span> -p &lt;fichier&gt;
+</code></pre>
+<p>Affiche les changements (en d&#xE9;tails) dans le fichier :</p>
+<pre><code class="lang-sh">git blame &lt;file&gt;
+</code></pre>
+<h3 id="branches--tags">Branches &amp; Tags</h3>
 <p>Lister toutes les branches :</p>
-<pre><code>$ git branch
-</code></pre><p>Changer de branche :</p>
-<pre><code>$ git checkout &lt;votre-branche&gt;
-</code></pre><p>Cr&#xE9;er une nouvelle branche en se basant sur le HEAD :</p>
-<pre><code>$ git branch &lt;votre-branche&gt;
-</code></pre><p>Cr&#xE9;er une nouvelle branche de suivi, bas&#xE9;e sur une branche distante :</p>
-<pre><code>$ git branch --track &lt;nouvelle-branche&gt; &lt;branche-distante&gt;
-</code></pre><p>Supprimer une branche :</p>
-<pre><code>$ git branch -d &lt;votre-branche&gt;
-</code></pre><p>Marquer le commit courant avec un tag :</p>
-<pre><code>$ git tag &lt;non-du-tag&gt;
-</code></pre><h3 id="merge--rebase">Merge &amp; Rebase</h3>
-<p>Fusionner la branche <votre-branche> avec la master :</votre-branche></p>
-<pre><code>$ git checkout master
-$ git merge &lt;votre-branche&gt;
-</code></pre><h4 id="&#x26A0;&#xFE0F;-attention-&#x26A0;&#xFE0F;">&#x26A0;&#xFE0F; Attention &#x26A0;&#xFE0F;</h4>
+<pre><code class="lang-sh">git branch
+</code></pre>
+<p>Changer de branche :</p>
+<pre><code class="lang-sh">git checkout &lt;votre-branche&gt;
+</code></pre>
+<p>Cr&#xE9;er une nouvelle branche en se basant sur le HEAD :</p>
+<pre><code class="lang-sh">git branch &lt;votre-branche&gt;
+</code></pre>
+<p>Cr&#xE9;er une nouvelle branche de suivi, bas&#xE9;e sur une branche distante :</p>
+<pre><code class="lang-sh">git branch --track &lt;nouvelle-branche&gt; &lt;branche-distante&gt;
+</code></pre>
+<p>Supprimer une branche :</p>
+<pre><code class="lang-sh">git branch <span class="hljs-_">-d</span> &lt;votre-branche&gt;
+</code></pre>
+<p>Marquer le commit courant avec un tag :</p>
+<pre><code class="lang-sh">git tag &lt;non-du-tag&gt;
+</code></pre>
+<h3 id="merge--rebase">Merge &amp; Rebase</h3>
+<p>Fusionner la branche <code>&lt;votre-branche&gt;</code> avec la master :</p>
+<pre><code class="lang-sh">git checkout master
+git merge &lt;votre-branche&gt;
+</code></pre>
+<h4 id="&#x26A0;&#xFE0F;-attention-&#x26A0;&#xFE0F;">&#x26A0;&#xFE0F; Attention &#x26A0;&#xFE0F;</h4>
 <p>Jouer avec l&#x2019;historique est toujours dangereux surtout si vous travaillez &#xE0; plusieurs !</p>
 <p>Mettre &#xE0; jour votre branche avec le code de la master :</p>
-<pre><code>$ git checkout &lt;votre-branch&gt;
-$ git rebase master
-</code></pre><p>Annuler un rebase en cours :</p>
-<pre><code>$ git rebase --abort
-</code></pre><p>Continuer un rebase apr&#xE8;s avoir r&#xE9;solu des conflits :</p>
-<pre><code>$ git rebase --continue
-</code></pre><h3 id="travailler-avec-un-d&#xE9;pots-distant">Travailler avec un d&#xE9;pots distant</h3>
-<p>Lister tous les d&#xE9;p&#xF4;ts distants configur&#xE9;s :</p>
-<pre><code>$ git remote -v
-</code></pre><p>Monter les informations d&apos;un d&#xE9;p&#xF4;t distant :</p>
-<pre><code>$ git remote show origin
-</code></pre><p>Ajouter un nouveau d&#xE9;p&#xF4;t distant, nomm&#xE9; &lt;remote&gt; :</p>
-<pre><code>$ git remote add &lt;remote&gt; &lt;url&gt;
-</code></pre><p>Synchroniser la branche &#xAB; origin &#xBB; avec la master. Et indiquer origin comme le d&#xE9;p&#xF4;t distant par d&#xE9;faut.</p>
-<pre><code>$ git push -u origin master
-</code></pre><p>T&#xE9;l&#xE9;charger toutes les modifications d&apos;un d&#xE9;p&#xF4;t distant nomm&#xE9; &lt;remote&gt;, sans les fusionner :</p>
-<pre><code>$ git fetch &lt;remote&gt;
-</code></pre><p>T&#xE9;l&#xE9;charger les modifications et les fusionner directement dans le HEAD :</p>
-<pre><code>$ git remote pull &lt;remote&gt; &lt;url&gt;
-</code></pre><p>Fusionner les modifications de la <code>master</code> distante sur la branche courante :</p>
-<pre><code>$ git pull origin master
-</code></pre><p>R&#xE9;cup&#xE9;rer toutes les modifications du HEAD dans le d&#xE9;p&#xF4;t local :</p>
-<pre><code>$ git pull
-$ # ou
-$ git pull origin master
-</code></pre><p>Publier les modifications locales sur un d&#xE9;p&#xF4;t distant :</p>
-<pre><code>$ git push
-$ ou
-$ git push remote &lt;remote&gt; &lt;branch&gt;
-</code></pre><p>Publier les tags :</p>
-<pre><code>$ git push --tags
-</code></pre><h3 id="annulation">Annulation</h3>
-<p>Annuler le dernier <code>git add</code> :</p>
-<pre><code>$ git reset HEAD
-</code></pre><p>Annuler les modifications locales d&apos;un fichier sp&#xE9;cifique :</p>
-<pre><code>$ git checkout HEAD &lt;file&gt;
-</code></pre><p>Annuler un commit (cr&#xE9;ation d&#x2019;un commit avec les modifications inverses)  :</p>
-<pre><code>$ git revert &lt;commit&gt;
-</code></pre><p>Placer le pointeur du HEAD sur un commit pr&#xE9;c&#xE9;dent.
-Conserve toutes les modifications effectu&#xE9;es depuis :</p>
-<pre><code>$ git reset &lt;commit&gt;
-</code></pre><p>&#x26A0;&#xFE0F; Annuler toutes les modifications dans le r&#xE9;pertoire de travail :</p>
-<pre><code>$ git reset --hard HEAD
-</code></pre><p>&#x26A0;&#xFE0F; Placer le pointeur du HEAD sur un commit pr&#xE9;c&#xE9;dent.
-Annule toutes les modifications effectu&#xE9;es depuis :</p>
-<pre><code>$ git reset --hard &lt;commit&gt;
+<pre><code class="lang-sh">git checkout &lt;votre-branch&gt;
+git rebase master
 </code></pre>
+<p>Annuler un rebase en cours :</p>
+<pre><code class="lang-sh">git rebase --abort
+</code></pre>
+<p>Continuer un rebase apr&#xE8;s avoir r&#xE9;solu des conflits :</p>
+<pre><code class="lang-sh">git rebase --continue
+</code></pre>
+<h3 id="travailler-avec-un-d&#xE9;pots-distant">Travailler avec un d&#xE9;pots distant</h3>
+<p>Lister tous les d&#xE9;p&#xF4;ts distants configur&#xE9;s :</p>
+<pre><code class="lang-sh">git remote -v
+</code></pre>
+<p>Monter les informations d&apos;un d&#xE9;p&#xF4;t distant :</p>
+<pre><code class="lang-sh">git remote show origin
+</code></pre>
+<p>Ajouter un nouveau d&#xE9;p&#xF4;t distant, nomm&#xE9; &lt;remote&gt; :</p>
+<pre><code class="lang-sh">git remote add &lt;remote&gt; &lt;url&gt;
+</code></pre>
+<p>Synchroniser la branche &#xAB; origin &#xBB; avec la master. Et indiquer origin comme le d&#xE9;p&#xF4;t distant par d&#xE9;faut.</p>
+<pre><code class="lang-sh">git push -u origin master
+</code></pre>
+<p>T&#xE9;l&#xE9;charger toutes les modifications d&apos;un d&#xE9;p&#xF4;t distant nomm&#xE9; &lt;remote&gt;, sans les fusionner :</p>
+<pre><code class="lang-sh">git fetch &lt;remote&gt;
+</code></pre>
+<p>T&#xE9;l&#xE9;charger les modifications et les fusionner directement dans le HEAD :</p>
+<pre><code class="lang-sh">git remote pull &lt;remote&gt; &lt;url&gt;
+</code></pre>
+<p>Fusionner les modifications de la <code>master</code> distante sur la branche courante :</p>
+<pre><code class="lang-sh">git pull origin master
+</code></pre>
+<p>R&#xE9;cup&#xE9;rer toutes les modifications du HEAD dans le d&#xE9;p&#xF4;t local :</p>
+<pre><code class="lang-sh">git pull
+<span class="hljs-comment"># ou</span>
+git pull origin master
+</code></pre>
+<p>Publier les modifications locales sur un d&#xE9;p&#xF4;t distant :</p>
+<pre><code class="lang-sh">git push
+ou
+git push remote &lt;remote&gt; &lt;branch&gt;
+</code></pre>
+<p>Publier les tags :</p>
+<pre><code class="lang-sh">git push --tags
+</code></pre>
+<h3 id="annulation">Annulation</h3>
+<p>Annuler le dernier <code>git add</code> :</p>
+<pre><code class="lang-sh">git reset HEAD
+</code></pre>
+<p>Annuler les modifications locales d&apos;un fichier sp&#xE9;cifique :</p>
+<pre><code class="lang-sh">git checkout HEAD &lt;file&gt;
+</code></pre>
+<p>Annuler un commit (cr&#xE9;ation d&#x2019;un commit avec les modifications inverses)  :</p>
+<pre><code class="lang-sh">git revert &lt;commit&gt;
+</code></pre>
+<p>Placer le pointeur du HEAD sur un commit pr&#xE9;c&#xE9;dent.
+Conserve toutes les modifications effectu&#xE9;es depuis :</p>
+<pre><code class="lang-sh">git reset &lt;commit&gt;
+</code></pre>
+<p>&#x26A0;&#xFE0F; Annuler toutes les modifications dans le r&#xE9;pertoire de travail :</p>
+<pre><code class="lang-sh">git reset --hard HEAD
+</code></pre>
+<p>&#x26A0;&#xFE0F; Placer le pointeur du HEAD sur un commit pr&#xE9;c&#xE9;dent.
+Annule toutes les modifications effectu&#xE9;es depuis :</p>
+<pre><code class="lang-sh">git reset --hard &lt;commit&gt;
+</code></pre>
+
                                 
                                 </section>
                             
@@ -857,7 +900,7 @@ Annule toutes les modifications effectu&#xE9;es depuis :</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Git","level":"1.2.1","depth":2,"next":{"title":"Cordova","level":"1.2.2","depth":2,"path":"cheatsheets/cordova/README.md","ref":"cheatsheets/cordova/README.md","articles":[]},"previous":{"title":"Aides mémoires","level":"1.2","depth":1,"ref":"","articles":[{"title":"Git","level":"1.2.1","depth":2,"path":"cheatsheets/git/README.md","ref":"cheatsheets/git/README.md","articles":[]},{"title":"Cordova","level":"1.2.2","depth":2,"path":"cheatsheets/cordova/README.md","ref":"cheatsheets/cordova/README.md","articles":[]},{"title":"Docker","level":"1.2.3","depth":2,"path":"cheatsheets/docker/README.md","ref":"cheatsheets/docker/README.md","articles":[]},{"title":"VueJS","level":"1.2.4","depth":2,"path":"cheatsheets/vuejs/README.md","ref":"cheatsheets/vuejs/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"cheatsheets/git/README.md","mtime":"2017-09-18T13:07:14.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T21:26:21.578Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Git","level":"1.2.1","depth":2,"next":{"title":"Cordova","level":"1.2.2","depth":2,"path":"cheatsheets/cordova/README.md","ref":"cheatsheets/cordova/README.md","articles":[]},"previous":{"title":"Aides mémoires","level":"1.2","depth":1,"ref":"","articles":[{"title":"Git","level":"1.2.1","depth":2,"path":"cheatsheets/git/README.md","ref":"cheatsheets/git/README.md","articles":[]},{"title":"Cordova","level":"1.2.2","depth":2,"path":"cheatsheets/cordova/README.md","ref":"cheatsheets/cordova/README.md","articles":[]},{"title":"Docker","level":"1.2.3","depth":2,"path":"cheatsheets/docker/README.md","ref":"cheatsheets/docker/README.md","articles":[]},{"title":"VueJS","level":"1.2.4","depth":2,"path":"cheatsheets/vuejs/README.md","ref":"cheatsheets/vuejs/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"cheatsheets/git/README.md","mtime":"2018-01-02T21:36:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T21:36:42.383Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
