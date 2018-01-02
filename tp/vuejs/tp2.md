@@ -435,10 +435,10 @@ J’ai volontairement ellipsé le code source… Je ne vais pas tout vous dire�
 
 Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier  ```/components/MyToolbar```
 
-- Remplacer la chaine ```Cliff height timer``` par => ```{{ $t("title") }}```
+- Remplacer la chaine ```Cliff height timer``` par => {% raw %}```{{$t("title")}}```{% endraw %}
 - Le titre doit maintenant s’afficher. Et c’est normal la clef « title » est déjà présente dans le fichier : ```i18n/index.js```, modifier le titre pour la langue « fr ».
 
-ℹ️ $t est un objet qui permet d’accéder aux textes actuellement chargés pour la langue de l’utilisateur.
+ℹ️ ```$t``` est un objet qui permet d’accéder aux textes actuellement chargés pour la langue de l’utilisateur.
 
 ### Tester
 
