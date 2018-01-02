@@ -1,6 +1,8 @@
+# Slam 5 - BTS SIO
+
 [Consulter les cours](https://c4software.github.io/bts-sio/)
 
-## Slam 5 - BTS SIO
+## Introduction
 
 Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.
 
