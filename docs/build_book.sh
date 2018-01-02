@@ -1,5 +1,5 @@
 #!/bin/bash
 
-gitbook build . docs
-git add docs/ 
+gitbook build . docs # Build le dossier courant vers un output dans ./docs/
+git add docs/
 git commit -am "Rebuild du GitBook"
