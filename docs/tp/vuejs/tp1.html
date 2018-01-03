@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -715,58 +719,6 @@
                                 <h1 id="ajouter-vuejs-dans-une-application-existante">Ajouter VueJS dans une application existante</h1>
 <p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer &#xE9;tait r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
 <p>L&#x2019;application existante est une &#xAB; todo liste &#xBB; cod&#xE9;e en PHP + HTML.</p>
-<!-- TOC -->
-<ul>
-<li><a href="#ajouter-vuejs-dans-une-application-existante">Ajouter VueJS dans une application existante</a><ul>
-<li><a href="#r&#xE9;cup&#xE9;ration-et-installation-des-sources">R&#xE9;cup&#xE9;ration et installation des sources</a></li>
-<li><a href="#liste-des-fonctionnalit&#xE9;s">Liste des fonctionnalit&#xE9;s</a></li>
-<li><a href="#stockage">Stockage</a></li>
-<li><a href="#moderniser-avec-vuejs">Moderniser avec VueJS</a></li>
-<li><a href="#cr&#xE9;ation-des-api">Cr&#xE9;ation des API</a><ul>
-<li><a href="#les-api">Les API</a></li>
-<li><a href="#lapi-pour-lister-les-t&#xE2;ches--listephp">L&#x2019;API pour lister les t&#xE2;ches : liste.php</a></li>
-<li><a href="#comment-proc&#xE9;der-pour-les-prochaines-api">Comment proc&#xE9;der pour les prochaines API</a></li>
-<li><a href="#lapi-de-cr&#xE9;ation-creationphp">L&#x2019;API de cr&#xE9;ation: creation.php</a></li>
-<li><a href="#lapi-pour-marquer-une-t&#xE2;che-comme-termin&#xE9;e--terminerphp">L&#x2019;API pour marquer une t&#xE2;che comme termin&#xE9;e : terminer.php</a></li>
-<li><a href="#lapi-de-suppression--suppressionphp">L&#x2019;API de suppression : suppression.php</a></li>
-<li><a href="#valider-le-fonctionnement--postman">Valider le fonctionnement : Postman</a><ul>
-<li><a href="#pour-lapi-cr&#xE9;ation">Pour l&#x2019;API cr&#xE9;ation</a></li>
-<li><a href="#pour-les-autres-api">Pour les autres API</a></li>
-</ul>
-</li>
-<li><a href="#optimisation-du-code">Optimisation du code</a></li>
-</ul>
-</li>
-<li><a href="#int&#xE9;gration-de-vuejs">Int&#xE9;gration de VueJS</a><ul>
-<li><a href="#cr&#xE9;ation-de-la-structure-de-&#xAB;-futur-&#xBB;-projet">Cr&#xE9;ation de la structure de &#xAB; futur &#xBB; projet</a></li>
-<li><a href="#conversion-du-template-existant">Conversion du template existant</a></li>
-<li><a href="#ajout-de-la-librairie-vuejs">Ajout de la librairie VueJS</a><ul>
-<li><a href="#ajouter-un-script-pour-le-js">Ajouter un script pour le JS</a></li>
-<li><a href="#d&#xE9;clarer-votre-premier-composant">D&#xE9;clarer votre premier composant</a></li>
-</ul>
-</li>
-<li><a href="#migration-des-fonctionnalit&#xE9;s">Migration des fonctionnalit&#xE9;s</a><ul>
-<li><a href="#d&#xE9;couverte-de-fetch">D&#xE9;couverte de Fetch</a></li>
-<li><a href="#liste-des-t&#xE2;ches">Liste des t&#xE2;ches</a></li>
-<li><a href="#optimisation">Optimisation.</a></li>
-<li><a href="#ajout-dune-t&#xE2;che">Ajout d&#x2019;une t&#xE2;che</a></li>
-<li><a href="#marquer-une-t&#xE2;che-comme-termin&#xE9;e">Marquer une t&#xE2;che comme termin&#xE9;e</a></li>
-<li><a href="#suppression-dune-t&#xE2;che">Suppression d&#x2019;une t&#xE2;che</a></li>
-<li><a href="#optimisation">Optimisation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#allez-plus-loin">Allez plus loin</a><ul>
-<li><a href="#ajouter-des-confirmations">Ajouter des confirmations</a></li>
-<li><a href="#ajouter-des-r&#xE8;gles-de-r&#xE9;&#xE9;criture">Ajouter des r&#xE8;gles de r&#xE9;&#xE9;criture</a></li>
-<li><a href="#partager-les-todos-au-monde-">Partager les TODOS au monde !</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
 <h2 id="r&#xE9;cup&#xE9;ration-et-installation-des-sources">R&#xE9;cup&#xE9;ration et installation des sources</h2>
 <p>Avant de commencer &#xE0; travailler, il faut r&#xE9;cup&#xE9;rer le code source de l&#x2019;application &#xE9;xistante. Celui-ci est disponible sur le groupe &#xAB; Gitlab &#xBB; du BTS-SIO. Le projet est disponible sur Github : <a href="https://github.com/c4software/php-todo/archive/v1.1.zip" target="_blank">T&#xE9;l&#xE9;charger les sources</a></p>
 <ul>
@@ -1316,7 +1268,7 @@ methods:{
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans un site existant","level":"1.6.2","depth":2,"next":{"title":"Réaliser une application avec VueJS","level":"1.6.3","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]},"previous":{"title":"Slides","level":"1.6.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/vuejs/","ref":"https://rawgit.com/c4software/bts/master/cours/vuejs/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1.md","mtime":"2017-11-17T16:25:03.213Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T21:36:42.383Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans un site existant","level":"1.6.2","depth":2,"next":{"title":"Réaliser une application avec VueJS","level":"1.6.3","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]},"previous":{"title":"Slides","level":"1.6.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/vuejs/","ref":"https://rawgit.com/c4software/bts/master/cours/vuejs/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1.md","mtime":"2018-01-03T21:06:57.668Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-03T21:07:48.444Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1324,6 +1276,14 @@ methods:{
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>

@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -713,24 +717,6 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="utiliser-gitlab-pages">Utiliser GitLab Pages</h1>
-<!-- TOC -->
-<ul>
-<li><a href="#utiliser-gitlab-pages">Utiliser GitLab Pages</a><ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#cr&#xE9;ation-dun-nouveau-projet-sur-gitlab">Cr&#xE9;ation d&#x2019;un nouveau projet sur Gitlab</a></li>
-<li><a href="#cr&#xE9;ation-dun-site-static">Cr&#xE9;ation d&#x2019;un site static</a></li>
-<li><a href="#activation-de-gitlab-ci">Activation de GitLab-CI</a></li>
-<li><a href="#push-de-votre-code">Push de votre code</a></li>
-<li><a href="#allez-plus-loin">Allez plus loin</a><ul>
-<li><a href="#les-moteurs-de-site-static">Les moteurs de site static</a></li>
-<li><a href="#exemple-avec-hugo">Exemple avec Hugo</a></li>
-<li><a href="#exemple-avec-jekyll">Exemple avec Jekyll</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
 <h2 id="introduction">Introduction</h2>
 <p>Danc ce TP vous allez mettre en place grace &#xE0; Gitlab-CI un site web static h&#xE9;berg&#xE9; par Gitlab Pages. Dans le TP d&#x2019;introduction au travail collaboratif vous avez travaill&#xE9; &#xE0; plusieurs avec une visualisation quasi temps r&#xE9;el des modifications apr&#xE8;s les commits, c&#x2019;&#xE9;tait r&#xE9;alis&#xE9; grace &#xE0; GitLab-CI et GitLab Pages. Avec un fichier et quelques configuration vous allez &#xEA;tre capable de r&#xE9;aliser la m&#xEA;me chose dans vos projets.</p>
 <h2 id="cr&#xE9;ation-dun-nouveau-projet-sur-gitlab">Cr&#xE9;ation d&#x2019;un nouveau projet sur Gitlab</h2>
@@ -847,7 +833,7 @@ git commit -am <span class="hljs-string">&quot;Premier Commit&quot;</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Utiliser Gitlab Pages","level":"1.10.2","depth":2,"next":{"title":"App Hybride et Gitlab-CI","level":"1.10.3","depth":2,"path":"tp/ci/ci-hybride.md","ref":"tp/ci/ci-hybride.md","articles":[]},"previous":{"title":"Slides","level":"1.10.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/gitlabci/","ref":"https://rawgit.com/c4software/bts/master/cours/gitlabci/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/ci/pages.md","mtime":"2017-12-31T14:24:32.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T21:36:42.383Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Utiliser Gitlab Pages","level":"1.10.2","depth":2,"next":{"title":"App Hybride et Gitlab-CI","level":"1.10.3","depth":2,"path":"tp/ci/ci-hybride.md","ref":"tp/ci/ci-hybride.md","articles":[]},"previous":{"title":"Slides","level":"1.10.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/gitlabci/","ref":"https://rawgit.com/c4software/bts/master/cours/gitlabci/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/ci/pages.md","mtime":"2018-01-03T21:03:37.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-03T21:07:48.444Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -855,6 +841,14 @@ git commit -am <span class="hljs-string">&quot;Premier Commit&quot;</span>
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>

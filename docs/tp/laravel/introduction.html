@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -715,40 +719,6 @@
                                 <h1 id="introduction-&#xE0;-laravel">Introduction &#xE0; Laravel</h1>
 <p><img src="ressources/logo.png" alt="Laravel"></p>
 <p>Dans ce TP nous allons couvrir l&#x2019;installation, la configuration et la cr&#xE9;ation d&#x2019;un premier projet &#xAB; d&#xE9;mo &#xBB; &#xE0; base de Laravel</p>
-<!-- TOC -->
-<ul>
-<li><a href="#introduction-&#xE0;-laravel">Introduction &#xE0; Laravel</a><ul>
-<li><a href="#introduction">Introduction</a><ul>
-<li><a href="#windows">Windows</a><ul>
-<li><a href="#installer-composer">Installer Composer</a></li>
-<li><a href="#installer-laravel">Installer Laravel</a></li>
-</ul>
-</li>
-<li><a href="#linux">Linux</a><ul>
-<li><a href="#installer-laravel-1">Installer Laravel</a></li>
-</ul>
-</li>
-<li><a href="#macos-high-sierra">MacOS (High Sierra)</a><ul>
-<li><a href="#installer-laravel-2">Installer Laravel</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#cr&#xE9;er-le-premier-projet">Cr&#xE9;er le premier Projet</a></li>
-<li><a href="#initialisation">Initialisation</a></li>
-<li><a href="#lancer-le-projet-dexemple">Lancer le projet d&#x2019;exemple</a></li>
-<li><a href="#modification-du-template-par-d&#xE9;faut">Modification du template par d&#xE9;faut</a></li>
-<li><a href="#ajouter-une-nouvelle-route">Ajouter une nouvelle Route</a></li>
-<li><a href="#ajouter-une-nouvelle-vue">Ajouter une nouvelle vue</a><ul>
-<li><a href="#cr&#xE9;er-le-layout">Cr&#xE9;er le layout</a></li>
-<li><a href="#utiliser-le-layout-dans-welcomebladephp">Utiliser le layout dans welcome.blade.php</a></li>
-<li><a href="#utiliser-le-layout-dans-la-route-pong">Utiliser le layout dans la route Pong</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
 <h2 id="introduction">Introduction</h2>
 <p>Pour pouvoir utiliser Laravel nous allons avoir besoin de diff&#xE9;rents outils :</p>
 <ul>
@@ -990,7 +960,7 @@ export PATH=&quot;$PATH:$COMPOSER_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platfor
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation de Laravel","level":"1.8.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.8.3","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Slides","level":"1.8.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/laravel/","ref":"https://rawgit.com/c4software/bts/master/cours/laravel/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/introduction.md","mtime":"2017-12-13T21:02:08.866Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T21:36:42.383Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation de Laravel","level":"1.8.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.8.3","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Slides","level":"1.8.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/laravel/","ref":"https://rawgit.com/c4software/bts/master/cours/laravel/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/introduction.md","mtime":"2018-01-03T21:06:19.324Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-03T21:07:48.444Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -998,6 +968,14 @@ export PATH=&quot;$PATH:$COMPOSER_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platfor
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>

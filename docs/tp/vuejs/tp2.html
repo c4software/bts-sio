@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -715,60 +719,6 @@
                                 <h1 id="r&#xE9;aliser-une-application-avec-vuejs">R&#xE9;aliser une application avec VueJS</h1>
 <p>Dans ce TP nous allons voir une autre fa&#xE7;on d&#x2019;utiliser VueJS, une fa&#xE7;on plus moderne, celle qui utilise &#xE0; 100% le mod&#xE8;le MVVM (Mod&#xE8;le Vue, Vue-Mod&#xE8;le) ainsi que la puissance de VueJS (<code>.vue</code>, VueCli, ES5).</p>
 <p><img src="MVVMPattern.png" alt="MVVM"></p>
-<!-- TOC -->
-<ul>
-<li><a href="#r&#xE9;aliser-une-application-avec-vuejs">R&#xE9;aliser une application avec VueJS</a><ul>
-<li><a href="#mvvm-en-quelques-mots">MVVM en quelques mots</a></li>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#initialisation-du-projet">Initialisation du projet</a><ul>
-<li><a href="#nodejs">NodeJS</a></li>
-<li><a href="#vue-cli">Vue-cli</a></li>
-</ul>
-</li>
-<li><a href="#installation-des-librairies-du-projet">Installation des librairies (du projet)</a></li>
-<li><a href="#premier-lancement-lexemple">Premier lancement (l&#x2019;exemple)</a></li>
-<li><a href="#le-serveur-de-d&#xE9;veloppement">Le serveur de d&#xE9;veloppement</a></li>
-<li><a href="#le-code-source">Le code source</a><ul>
-<li><a href="#lide">L&#x2019;IDE</a></li>
-<li><a href="#&#xE9;diter-le-hellowordvue">&#xC9;diter le HelloWord.vue</a></li>
-</ul>
-</li>
-<li><a href="#ajout-de-vuetifyjs-dans-le-projet">Ajout de VuetifyJS dans le projet</a><ul>
-<li><a href="#ajout-de-la-d&#xE9;pendance">Ajout de la d&#xE9;pendance</a></li>
-<li><a href="#d&#xE9;clarer-et-utiliser-vuetifyjs">D&#xE9;clarer et utiliser VuetifyJS</a></li>
-<li><a href="#activer-le-responsive">Activer le Responsive</a></li>
-<li><a href="#transformer-le-template-de-base">Transformer le template de base</a></li>
-<li><a href="#cr&#xE9;ation-de-mytoolbar">Cr&#xE9;ation de myToolbar</a></li>
-<li><a href="#voir-le-changement">Voir le changement</a></li>
-</ul>
-</li>
-<li><a href="#organisation">Organisation</a></li>
-<li><a href="#le-routeur">Le Routeur</a></li>
-<li><a href="#ajout-du-multilangues-i18n">Ajout du multilangues (i18n)</a><ul>
-<li><a href="#ajout-du-fichier-de-langue">Ajout du fichier de langue</a></li>
-<li><a href="#d&#xE9;clarer-&#xE0;-notre-application-la-pr&#xE9;sence-du-i18n">D&#xE9;clarer &#xE0; notre application la pr&#xE9;sence du i18n</a></li>
-<li><a href="#d&#xE9;clarer-un-nouveau-texte">D&#xE9;clarer un nouveau texte</a></li>
-<li><a href="#tester">Tester</a></li>
-</ul>
-</li>
-<li><a href="#les-vues">Les .vues</a><ul>
-<li><a href="#la-page--accueil">La page : Accueil</a></li>
-<li><a href="#la-page--&#xE0;-propos">La page : &#xC0; Propos</a></li>
-<li><a href="#ajout-du--drawer">Ajout du : Drawer</a></li>
-<li><a href="#la-page--historique">La page : Historique</a><ul>
-<li><a href="#sauvegarder-un-&#xE9;l&#xE9;ment-dans-le-localstorage">Sauvegarder un &#xE9;l&#xE9;ment dans le localStorage</a></li>
-<li><a href="#lire-un-&#xE9;l&#xE9;ment-dans-le-localstorage">Lire un &#xE9;l&#xE9;ment dans le localStorage</a></li>
-<li><a href="#d&#xE9;marche">D&#xE9;marche</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#distribuer-vos-sources">Distribuer vos sources</a></li>
-<li><a href="#ajouter-un-manifest">Ajouter un manifest</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
 <h2 id="mvvm-en-quelques-mots">MVVM en quelques mots</h2>
 <p>Non mais moi je connais que MVC, C&#x2019;est quoi MVVM ?</p>
 <p>MVVM est un design pattern, souvent utilis&#xE9; par les biblioth&#xE8;ques Javascript moderne (Ionic, VueJS, ReactJS). A l&#x2019;origine, MVVM a &#xE9;t&#xE9; introduit par Microsoft.</p>
@@ -1393,7 +1343,7 @@ export default {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réaliser une application avec VueJS","level":"1.6.3","depth":2,"next":{"title":"Cordova + VueJS","level":"1.7","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.7.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/cordova/","ref":"https://rawgit.com/c4software/bts/master/cours/cordova/","articles":[]},{"title":"Découverte","level":"1.7.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},{"title":"Projet Cordova + VueJS","level":"1.7.3","depth":2,"path":"tp/cordova/vuejs_cordova.md","ref":"tp/cordova/vuejs_cordova.md","articles":[]}]},"previous":{"title":"Ajouter VueJS dans un site existant","level":"1.6.2","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp2.md","mtime":"2018-01-02T14:00:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T21:36:42.383Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réaliser une application avec VueJS","level":"1.6.3","depth":2,"next":{"title":"Cordova + VueJS","level":"1.7","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.7.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/cordova/","ref":"https://rawgit.com/c4software/bts/master/cours/cordova/","articles":[]},{"title":"Découverte","level":"1.7.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},{"title":"Projet Cordova + VueJS","level":"1.7.3","depth":2,"path":"tp/cordova/vuejs_cordova.md","ref":"tp/cordova/vuejs_cordova.md","articles":[]}]},"previous":{"title":"Ajouter VueJS dans un site existant","level":"1.6.2","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp2.md","mtime":"2018-01-03T21:07:08.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-03T21:07:48.444Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1401,6 +1351,14 @@ export default {
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>

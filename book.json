@@ -2,5 +2,5 @@
     "title": "Cours BTS SIO Slam 5",
     "description": "Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
     "language": "fr",
-    "plugins": ["-sharing"]
+    "plugins": ["-sharing", "page-toc"]
 }

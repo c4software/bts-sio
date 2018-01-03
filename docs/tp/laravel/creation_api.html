@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -714,36 +718,6 @@
                                 
                                 <h1 id="todolist--r&#xE9;-&#xE9;crire-les-api-du-projet">TodoList : (R&#xE9;-)&#xE9;crire les API du projet</h1>
 <p>Le but de notre application est de cr&#xE9;er des API Rest qui vont exposer la gestion de nos <code>todos</code> d&#xE9;fini en base de donn&#xE9;es</p>
-<!-- TOC -->
-<ul>
-<li><a href="#todolist--r&#xE9;-&#xE9;crire-les-api-du-projet">TodoList : (R&#xE9;-)&#xE9;crire les API du projet</a><ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#cr&#xE9;ation-du-projet">Cr&#xE9;ation du projet</a></li>
-<li><a href="#installer-lumen">Installer Lumen</a></li>
-<li><a href="#cr&#xE9;er-le-nouveau-projet">Cr&#xE9;er le nouveau Projet</a></li>
-<li><a href="#initialisation">Initialisation</a></li>
-<li><a href="#tester-votre-application">Tester votre application</a></li>
-<li><a href="#gestion-de-la-base-de-donn&#xE9;es">Gestion de la base de donn&#xE9;es</a><ul>
-<li><a href="#le-script-de-cr&#xE9;ation--migration">Le script de cr&#xE9;ation / migration</a></li>
-<li><a href="#le-mod&#xE8;le">Le mod&#xE8;le</a></li>
-</ul>
-</li>
-<li><a href="#le-controller">Le controller</a><ul>
-<li><a href="#liste">Liste</a></li>
-<li><a href="#cr&#xE9;ation">Cr&#xE9;ation</a></li>
-<li><a href="#cr&#xE9;ation-version-alternative">Cr&#xE9;ation, version alternative</a></li>
-<li><a href="#terminer">Terminer</a></li>
-<li><a href="#suppression">Suppression</a></li>
-</ul>
-</li>
-<li><a href="#d&#xE9;clarer-les-routes">D&#xE9;clarer les routes</a></li>
-<li><a href="#activer-le-support-deloquent">Activer le support d&#x2019;Eloquent</a></li>
-<li><a href="#tester">Tester</a></li>
-<li><a href="#changer-les-api-dans-votre-application-vuejs">Changer les API dans votre application VueJS</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
 <h2 id="introduction">Introduction</h2>
 <p>Dans ce TP nous allons voir la cr&#xE9;ation d&#x2019;API pour le projet &#xAB; TodoList &#xBB;. Nous allons donc cr&#xE9;er un nouveau projet avec Laravel pour cr&#xE9;er des API qui permettront de :</p>
 <ul>
@@ -1006,7 +980,7 @@ $router-&gt;delete(<span class="hljs-string">&apos;api/todo/delete/{id}&apos;</s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.8.3","depth":2,"next":{"title":"Docker","level":"1.9","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.9.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/docker/","ref":"https://rawgit.com/c4software/bts/master/cours/docker/","articles":[]},{"title":"Première approche","level":"1.9.2","depth":2,"path":"tp/docker/introduction.md","ref":"tp/docker/introduction.md","articles":[]},{"title":"Dockerfile","level":"1.9.3","depth":2,"path":"tp/docker/dockerfile.md","ref":"tp/docker/dockerfile.md","articles":[]},{"title":"Docker Compose","level":"1.9.4","depth":2,"path":"tp/docker/docker_compose.md","ref":"tp/docker/docker_compose.md","articles":[]}]},"previous":{"title":"Installation de Laravel","level":"1.8.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/creation_api.md","mtime":"2017-12-13T20:57:05.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-02T21:36:42.383Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.8.3","depth":2,"next":{"title":"Docker","level":"1.9","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.9.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/docker/","ref":"https://rawgit.com/c4software/bts/master/cours/docker/","articles":[]},{"title":"Première approche","level":"1.9.2","depth":2,"path":"tp/docker/introduction.md","ref":"tp/docker/introduction.md","articles":[]},{"title":"Dockerfile","level":"1.9.3","depth":2,"path":"tp/docker/dockerfile.md","ref":"tp/docker/dockerfile.md","articles":[]},{"title":"Docker Compose","level":"1.9.4","depth":2,"path":"tp/docker/docker_compose.md","ref":"tp/docker/docker_compose.md","articles":[]}]},"previous":{"title":"Installation de Laravel","level":"1.8.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/creation_api.md","mtime":"2018-01-03T21:06:12.564Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-03T21:07:48.444Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1014,6 +988,14 @@ $router-&gt;delete(<span class="hljs-string">&apos;api/todo/delete/{id}&apos;</s
         
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
     
         
         <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
