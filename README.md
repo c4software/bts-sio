@@ -1,6 +1,6 @@
 # Slam 5 - BTS SIO
 
-[Consulter les cours](https://c4software.github.io/bts-sio/)
+[Consulter les cours](https://c4software.github.io/bts-sio/) - [Consulter les cours sur GitLab Pages](https://bts-sio-chevrollier.gitlab.io/slam5/)
 
 ## Introduction
 
@@ -24,7 +24,7 @@ et de réponse aux besoins d’évolution.
 
 ## Miroir
 
-L’ensemble des sources est également [disponible sur GitLab](https://gitlab.com/bts-sio-chevrollier/slam5)
+L’ensemble des sources est également [disponible sur GitLab](https://gitlab.com/bts-sio-chevrollier/slam5) ainsi qu’une version en ligne du GitBook [Consulter les cours sur GitLab Pages](https://bts-sio-chevrollier.gitlab.io/slam5/)
 
 ## LICENSE
 
