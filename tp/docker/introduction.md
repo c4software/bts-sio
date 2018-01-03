@@ -2,24 +2,6 @@
 
 Dans ce TP nous allons voir l’installation de Docker et les premiers exemples d’utilisations de votre nouvel environnement.
 
-<!-- TOC -->
-
-- [Introduction à Docker](#introduction-à-docker)
-    - [Installation de Docker sous Windows](#installation-de-docker-sous-windows)
-    - [Premier test](#premier-test)
-    - [Second test](#second-test)
-    - [Les sources de l’image hello world](#les-sources-de-limage-hello-world)
-    - [Pour aller plus loin](#pour-aller-plus-loin)
-        - [Créer un fichier dans la machine](#créer-un-fichier-dans-la-machine)
-        - [Avoir accès aux fichiers de votre machine](#avoir-accès-aux-fichiers-de-votre-machine)
-            - [Monter un dossier](#monter-un-dossier)
-            - [Monter un fichier](#monter-un-fichier)
-    - [Compilation Cordova](#compilation-cordova)
-        - [Unix (Linux, Osx)](#unix-linux-osx)
-        - [Windows](#windows)
-
-<!-- /TOC -->
-
 ## Installation de Docker sous Windows
 
 Pour installer Docker rien de plus simple, il suffit d’utiliser l’installeur officiel en le téléchargant sur [le site de Docker.](https://www.docker.com/docker-windows)

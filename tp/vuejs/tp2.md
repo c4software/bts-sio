@@ -4,47 +4,6 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
 
 ![MVVM](./MVVMPattern.png)
 
-<!-- TOC -->
-
-- [Réaliser une application avec VueJS](#réaliser-une-application-avec-vuejs)
-    - [MVVM en quelques mots](#mvvm-en-quelques-mots)
-    - [Introduction](#introduction)
-    - [Initialisation du projet](#initialisation-du-projet)
-        - [NodeJS](#nodejs)
-        - [Vue-cli](#vue-cli)
-    - [Installation des librairies (du projet)](#installation-des-librairies-du-projet)
-    - [Premier lancement (l’exemple)](#premier-lancement-lexemple)
-    - [Le serveur de développement](#le-serveur-de-développement)
-    - [Le code source](#le-code-source)
-        - [L’IDE](#lide)
-        - [Éditer le HelloWord.vue](#éditer-le-hellowordvue)
-    - [Ajout de VuetifyJS dans le projet](#ajout-de-vuetifyjs-dans-le-projet)
-        - [Ajout de la dépendance](#ajout-de-la-dépendance)
-        - [Déclarer et utiliser VuetifyJS](#déclarer-et-utiliser-vuetifyjs)
-        - [Activer le Responsive](#activer-le-responsive)
-        - [Transformer le template de base](#transformer-le-template-de-base)
-        - [Création de myToolbar](#création-de-mytoolbar)
-        - [Voir le changement](#voir-le-changement)
-    - [Organisation](#organisation)
-    - [Le Routeur](#le-routeur)
-    - [Ajout du multilangues (i18n)](#ajout-du-multilangues-i18n)
-        - [Ajout du fichier de langue](#ajout-du-fichier-de-langue)
-        - [Déclarer à notre application la présence du i18n](#déclarer-à-notre-application-la-présence-du-i18n)
-        - [Déclarer un nouveau texte](#déclarer-un-nouveau-texte)
-        - [Tester](#tester)
-    - [Les .vues](#les-vues)
-        - [La page : Accueil](#la-page--accueil)
-        - [La page : À Propos](#la-page--à-propos)
-        - [Ajout du : Drawer](#ajout-du--drawer)
-        - [La page : Historique](#la-page--historique)
-            - [Sauvegarder un élément dans le localStorage](#sauvegarder-un-élément-dans-le-localstorage)
-            - [Lire un élément dans le localStorage](#lire-un-élément-dans-le-localstorage)
-            - [Démarche](#démarche)
-    - [Distribuer vos sources](#distribuer-vos-sources)
-    - [Ajouter un manifest](#ajouter-un-manifest)
-
-<!-- /TOC -->
-
 ## MVVM en quelques mots
 
 Non mais moi je connais que MVC, C’est quoi MVVM ?

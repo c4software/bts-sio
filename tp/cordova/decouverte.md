@@ -2,33 +2,6 @@
 
 Dans ce TP vous aller découvrir la ligne de commande Cordova et créer votre premier TP. Comme les autres TP, utiliser l’aide mémoire Cordova pour trouver les bonnes commandes à chaque étape.
 
-<!-- TOC -->
-
-- [Découverte de Cordova](#découverte-de-cordova)
-    - [Ressources](#ressources)
-    - [Installation de Cordova](#installation-de-cordova)
-    - [Android](#android)
-    - [Création du projet « démo »](#création-du-projet-«-démo-»)
-    - [Ajout d’une plateforme](#ajout-dune-plateforme)
-    - [Ajouter une seconde plateforme](#ajouter-une-seconde-plateforme)
-    - [Lancer l’application](#lancer-lapplication)
-    - [Installation de Genymotion](#installation-de-genymotion)
-    - [Lancer l’application sur votre téléphone](#lancer-lapplication-sur-votre-téléphone)
-        - [1. Activer le mode développeur](#1-activer-le-mode-développeur)
-        - [2. Installer le driver adb pour l’ordinateur](#2-installer-le-driver-adb-pour-lordinateur)
-        - [3. Lancer l’application sur votre mobile](#3-lancer-lapplication-sur-votre-mobile)
-        - [4. Voir / Débugger le code de l’application sur votre mobile](#4-voir--débugger-le-code-de-lapplication-sur-votre-mobile)
-    - [Ajouter un premier plugin](#ajouter-un-premier-plugin)
-        - [1. Ajouter un plugin](#1-ajouter-un-plugin)
-        - [2. Utiliser le plugin](#2-utiliser-le-plugin)
-        - [3. Modifier le code de démo](#3-modifier-le-code-de-démo)
-    - [Ajouter un second plugin](#ajouter-un-second-plugin)
-        - [1. Ajouter le plugin](#1-ajouter-le-plugin)
-        - [2. Ajouter la configuration du plugin](#2-ajouter-la-configuration-du-plugin)
-        - [3. Lancer l’application pour voir le changement](#3-lancer-lapplication-pour-voir-le-changement)
-
-<!-- /TOC -->
-
 ## Ressources
 
 - [Le site Cordova](https://cordova.apache.org)

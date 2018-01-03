@@ -4,29 +4,6 @@
 
 Dans ce TP nous allons couvrir l’installation, la configuration et la création d’un premier projet « démo » à base de Laravel
 
-<!-- TOC -->
-
-- [Introduction à Laravel](#introduction-à-laravel)
-    - [Introduction](#introduction)
-        - [Windows](#windows)
-            - [Installer Composer](#installer-composer)
-            - [Installer Laravel](#installer-laravel)
-        - [Linux](#linux)
-            - [Installer Laravel](#installer-laravel-1)
-        - [MacOS (High Sierra)](#macos-high-sierra)
-            - [Installer Laravel](#installer-laravel-2)
-    - [Créer le premier Projet](#créer-le-premier-projet)
-    - [Initialisation](#initialisation)
-    - [Lancer le projet d’exemple](#lancer-le-projet-dexemple)
-    - [Modification du template par défaut](#modification-du-template-par-défaut)
-    - [Ajouter une nouvelle Route](#ajouter-une-nouvelle-route)
-    - [Ajouter une nouvelle vue](#ajouter-une-nouvelle-vue)
-        - [Créer le layout](#créer-le-layout)
-        - [Utiliser le layout dans welcome.blade.php](#utiliser-le-layout-dans-welcomebladephp)
-        - [Utiliser le layout dans la route Pong](#utiliser-le-layout-dans-la-route-pong)
-
-<!-- /TOC -->
-
 ## Introduction
 
 Pour pouvoir utiliser Laravel nous allons avoir besoin de différents outils :

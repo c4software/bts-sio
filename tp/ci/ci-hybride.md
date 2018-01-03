@@ -1,20 +1,5 @@
 # Compiler une application Hybride avec Gitlab-CI
 
-<!-- TOC -->
-
-- [Compiler une application Hybride avec Gitlab-CI](#compiler-une-application-hybride-avec-gitlab-ci)
-    - [Introduction](#introduction)
-    - [Création du projet sur GitLab](#création-du-projet-sur-gitlab)
-    - [Commiter et Pusher vos sources](#commiter-et-pusher-vos-sources)
-    - [Activer GitLab-CI](#activer-gitlab-ci)
-    - [Lancement d’un « Build »](#lancement-dun-«-build-»)
-    - [Test et analyse](#test-et-analyse)
-    - [Signer l’application](#signer-lapplication)
-        - [Création du keystore](#création-du-keystore)
-        - [Lancement d’un build](#lancement-dun-build)
-
-<!-- /TOC -->
-
 ## Introduction
 
 Dans ce TP vous allez mettre en place l’intégration continue sur votre Projet d’application Hybride. Fini la prise de tête pour la compilation de votre application. Vous allez utiliser « une image Docker » au travers de GitLab-CI l’image docker en question est [https://hub.docker.com/r/c4software/cordova-light/](Cordova-Light).

@@ -1,20 +1,5 @@
 # Utiliser GitLab Pages
 
-<!-- TOC -->
-
-- [Utiliser GitLab Pages](#utiliser-gitlab-pages)
-    - [Introduction](#introduction)
-    - [Création d’un nouveau projet sur Gitlab](#création-dun-nouveau-projet-sur-gitlab)
-    - [Création d’un site static](#création-dun-site-static)
-    - [Activation de GitLab-CI](#activation-de-gitlab-ci)
-    - [Push de votre code](#push-de-votre-code)
-    - [Allez plus loin](#allez-plus-loin)
-        - [Les moteurs de site static](#les-moteurs-de-site-static)
-        - [Exemple avec Hugo](#exemple-avec-hugo)
-        - [Exemple avec Jekyll](#exemple-avec-jekyll)
-
-<!-- /TOC -->
-
 ## Introduction
 
 Danc ce TP vous allez mettre en place grace à Gitlab-CI un site web static hébergé par Gitlab Pages. Dans le TP d’introduction au travail collaboratif vous avez travaillé à plusieurs avec une visualisation quasi temps réel des modifications après les commits, c’était réalisé grace à GitLab-CI et GitLab Pages. Avec un fichier et quelques configuration vous allez être capable de réaliser la même chose dans vos projets.

@@ -9,31 +9,6 @@ Maintenant que nous avons vu les bases de Cordova (Création, Plateforme, plugin
 
 Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
 
-<!-- TOC -->
-
-- [VueJS et Cordova](#vuejs-et-cordova)
-    - [Le projet](#le-projet)
-    - [Le code](#le-code)
-    - [Utiliser le code fourni](#utiliser-le-code-fourni)
-        - [1. Compiler une première fois le code](#1-compiler-une-première-fois-le-code)
-        - [2. Ajouter la plateforme](#2-ajouter-la-plateforme)
-        - [3. Lancer sur votre mobile](#3-lancer-sur-votre-mobile)
-    - [Ajouter la vue Localisation](#ajouter-la-vue-localisation)
-    - [Ajouter la vue Vibration](#ajouter-la-vue-vibration)
-        - [1. Le code](#1-le-code)
-        - [2. La route](#2-la-route)
-    - [Ajouter la vue Flash](#ajouter-la-vue-flash)
-        - [1. Le code](#1-le-code-1)
-        - [2. La route](#2-la-route-1)
-    - [Ajouter la vue Camera](#ajouter-la-vue-camera)
-        - [1. Le code](#1-le-code-2)
-        - [2. La route](#2-la-route-2)
-    - [Un peu plus? Oui! Le NFC](#un-peu-plus-oui-le-nfc)
-        - [1. Le code](#1-le-code-3)
-        - [2. La route](#2-la-route-3)
-
-<!-- /TOC -->
-
 ## Le projet
 
 Nous allons réaliser une application qui teste plusieurs plugins Cordova. Cette application utilisera VueJS et VuetifyJS

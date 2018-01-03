@@ -1,17 +1,5 @@
 # Le Docker Compose
 
-<!-- TOC -->
-
-- [Le Docker Compose](#le-docker-compose)
-    - [Introduction](#introduction)
-    - [Installer Docker Compose](#installer-docker-compose)
-    - [Structure d’un Docker Compose](#structure-dun-docker-compose)
-    - [Monter une application grâce Docker Compose](#monter-une-application-grâce-docker-compose)
-        - [Remarques](#remarques)
-    - [Aller plus loin](#aller-plus-loin)
-
-<!-- /TOC -->
-
 ## Introduction
 
 Dans ce TP nous allons voir comment créer une vrai arborescence de service avec Docker. Dans une application réelle il n’est pas rare d’avoir plusieurs technologies (ou plusieurs « services ») pour assurer le bon fonctionnement d’un sytème dans son ensemble (Exemple pour faire fonctionner mon application j’ai besoin de MySQL, PHP, et d’un serveur Web pour l’interface client).

@@ -2,31 +2,6 @@
 
 Le but de notre application est de créer des API Rest qui vont exposer la gestion de nos ```todos``` défini en base de données
 
-<!-- TOC -->
-
-- [TodoList : (Ré-)écrire les API du projet](#todolist--ré-écrire-les-api-du-projet)
-    - [Introduction](#introduction)
-    - [Création du projet](#création-du-projet)
-    - [Installer Lumen](#installer-lumen)
-    - [Créer le nouveau Projet](#créer-le-nouveau-projet)
-    - [Initialisation](#initialisation)
-    - [Tester votre application](#tester-votre-application)
-    - [Gestion de la base de données](#gestion-de-la-base-de-données)
-        - [Le script de création / migration](#le-script-de-création--migration)
-        - [Le modèle](#le-modèle)
-    - [Le controller](#le-controller)
-        - [Liste](#liste)
-        - [Création](#création)
-        - [Création, version alternative](#création-version-alternative)
-        - [Terminer](#terminer)
-        - [Suppression](#suppression)
-    - [Déclarer les routes](#déclarer-les-routes)
-    - [Activer le support d’Eloquent](#activer-le-support-deloquent)
-    - [Tester](#tester)
-    - [Changer les API dans votre application VueJS](#changer-les-api-dans-votre-application-vuejs)
-
-<!-- /TOC -->
-
 ## Introduction
 
 Dans ce TP nous allons voir la création d’API pour le projet « TodoList ». Nous allons donc créer un nouveau projet avec Laravel pour créer des API qui permettront de :
