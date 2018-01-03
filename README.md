@@ -1,6 +1,6 @@
 # Slam 5 - BTS SIO
 
-[Consulter les cours](https://c4software.github.io/bts-sio/) - [Consulter les cours sur GitLab Pages](https://bts-sio-chevrollier.gitlab.io/slam5/)
+[Consulter les cours sur Github Pages](https://c4software.github.io/bts-sio/) - [Consulter les cours sur GitLab Pages](https://bts-sio-chevrollier.gitlab.io/slam5/)
 
 ## Introduction
 
