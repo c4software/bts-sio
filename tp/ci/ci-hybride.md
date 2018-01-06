@@ -8,9 +8,9 @@ Pourquoi Light ? Car l’image n’embarque pas Chrome Headless, et donc ne perm
 
 ## Création du projet sur GitLab
 
-Avec votre compte GitLab vous pouvez créer un nombre illimités de projets. La première étape est donc de créer un projet sur votre  [compte Gitlab](https://gitlab.com/projects/new)
+Avec votre compte GitLab vous pouvez créer un nombre illimités de projets. La première étape est donc de créer un projet sur votre  [compte Gitlab](https://gitlab.com/projects/new).
 
-⚠️ Je vous conseil de mettre votre projet en mode « Private ».
+⚠️ Je vous conseille de mettre votre projet en mode « Private ».
 
 ## Commiter et Pusher vos sources
 
@@ -45,14 +45,14 @@ android_debug:
       - platforms/android/build/outputs/apk/
 ```
 
-Et c’est tout, avec se simple fichier votre application est prête et sera compilée en automatique.
+Et c’est tout, avec ce simple fichier votre application est prête et sera compilée en automatique.
 
 Commiter et Pusher la modification.
 
-- Regarder les fichier :
-    - À quoi correspond le ```when: manual```?
-    - À quoi sert le cache ?
-    - À quoi correspond le ```artifacts``` ?
+- Regarder les fichiers :
+  - À quoi correspond le ```when: manual```?
+  - À quoi sert le cache ?
+  - À quoi correspond le ```artifacts``` ?
 
 ## Lancement d’un « Build »
 
@@ -82,7 +82,7 @@ Désactiver le « cache » dans le fichier Gitlab-ci. Tester de compiler plusieu
 
 Faire du Debug c’est bien ! Mais si on faisait une application prête pour le Store ? C’est possible et tout aussi simplement.
 
-⚠️ Je vous déconseille fortement de le faire sur un runners public de Gitlab-CI. Pourquoi ? Simplement car nous allons mettre une clef de signature sur votre APK, clef qui doit rester PRIVÉE! C’est ce qui garantie la sécurité de votre application, si celle-ci se retrouve en ligne le jeu est fini pour vous n’importe qui peux usurper votre identitée.
+⚠️ Je vous déconseille fortement de le faire sur un « runner » public de Gitlab-CI. Pourquoi ? Simplement car nous allons mettre une clef de signature sur votre APK, clef qui doit rester **PRIVÉE** ! C’est ce qui garantie la sécurité de votre application, si celle-ci se retrouve en ligne le jeu est fini pour vous n’importe qui peux usurper votre identitée.
 
 Ajouter dans le fichier ```.gitlab-ci.yml```
 
@@ -102,9 +102,9 @@ Comme vous pouvez le constater la partie script fait référence à un nouveau f
 
 ### Création du keystore
 
-Le Keystore est une notion d’Android, rien à votre avec Cordova. Il faut donc utiliser Android-Studio (pour les intéréssés il est également possible de le faire avec la ligne de commande) :
+Le Keystore est une notion d’Android, rien à voir avec Cordova. Il faut donc utiliser Android-Studio (pour les intéréssés il est également possible de le faire avec la ligne de commande).
 
-Exemple :
+Avec Android Studio :
 
 ![store](./ressources/SjcOa.png)
 
