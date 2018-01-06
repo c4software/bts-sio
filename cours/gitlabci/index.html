@@ -62,7 +62,7 @@
 
 				<section>
 					<h3>L’intégration continue ?</h3>
-					<ul>
+					<ul class="fragment">
 						<li>Test immédiat des modifications</li>
 						<li>Notification rapide en cas de code incompatible ou manquant</li>
 						<li>Les problèmes d'intégration sont détectés et réparés de façon continue, évitant les problèmes de dernière minute </li>
@@ -107,13 +107,15 @@
 
 				<section>
 					<h3>Isolé</h3>
-					<p>Les « runners » utilise Docker. (ou autre on y reviendra)</p>
+					<p>Les « runners » utilisent Docker (ou autre on y reviendra)</p>
 				</section>
 
 				<section>
 					<h3>Un fichier le « .gitlab-ci.yml »</h3>
 					<h5>Exemple :</h5>
 					<pre><code data-trim>
+image: node:9.3.0
+						
 nodejs_test:
 	stage: test
 	script: 
