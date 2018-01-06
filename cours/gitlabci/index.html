@@ -144,6 +144,78 @@ nodejs_test:
 				</section>
 
 				<section>
+					<h3>Les directives du « .gitlab-ci.yml »</h3>
+					<ul>
+						<li>image</li>
+						<li>before_script</li>
+						<li>after_script</li>
+						<li>stages (test/build/deploy)</li>
+						<li>variables</li>
+						<li>cache</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Les jobs</h3>
+					<p>Les actions à faire pour notre test/compilation/déploiement</p>
+				</section>
+
+				<section>
+					<ul>
+						<li>script</li>
+						<li>image</li>
+						<li>stage (test/build/depoy)</li>
+						<li>type</li>
+						<li>variables</li>
+						<li>only (master par exemple)</li>
+						<li>except (master par exemple ;))</li>
+						<li>tags (lancement uniquement sur les runners avec le même tag)</li>
+						<li>allow_failure</li>
+						<li>when (manuel, tag, etc)</li>
+						<li>dependencies</li>
+						<li>artifacts</li>
+						<li>cache</li>
+						<li>before_script</li>
+						<li>after_script</li>
+						<li>environment</li>
+						<li>coverage</li>
+						<li>retry</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Gestion du cache</h3>
+					<p>Gagner du temps (et économiser des ressources), dans la définition :</p>
+					<pre><code data-trim>
+cache:
+	untracked: true
+	key: "$CI_PROJECT_ID"
+	paths:
+		- nodes_modules/
+		- plugins/
+					</code></pre>
+				</section>
+	
+				<section>
+					<h3>Les artifacts</h3>
+					<p>La force de Gitlab-CI</p>
+					<ul>
+						<li>Sauvegarde du résultat de l’intégration continue</li>
+						<li>Attaché au build</li>
+						<li>Intégré à l’interface de Gitlab</li>
+					</ul>
+				</section>
+	
+				<section>
+					<h5>Dans une « stage »</h5>
+					<pre><code data-trim>
+artifacts:
+paths:
+	- platforms/android/build/outputs/apk/
+</code></pre>			
+				</section>
+
+				<section>
 					<h3>Cas d’usages</h3>
 					<ul>
 						<li>Tests unitaires</li>
@@ -175,8 +247,8 @@ android_debug:
 		- cordova platform add android
 		- cordova build android
 	artifacts:
-	paths:
-		- platforms/android/build/outputs/apk/					
+		paths:
+			- platforms/android/build/outputs/apk/					
 </code></pre>
 				</section>
 

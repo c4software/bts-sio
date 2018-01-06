@@ -32,7 +32,7 @@
 	* [Première approche](tp/docker/introduction.md)
 	* [Dockerfile](tp/docker/dockerfile.md)
 	* [Docker Compose](tp/docker/docker_compose.md)
-* [WIP] GitLab-CI
+* GitLab-CI
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/gitlabci/)
 	* [Utiliser Gitlab Pages](tp/ci/pages.md)
 	* [App Hybride et Gitlab-CI](tp/ci/ci-hybride.md)
