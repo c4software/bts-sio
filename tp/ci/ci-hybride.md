@@ -2,13 +2,13 @@
 
 ## Introduction
 
-Dans ce TP vous allez mettre en place l’intégration continue sur votre Projet d’application Hybride. Fini la prise de tête pour la compilation de votre application. Vous allez utiliser « une image Docker » au travers de GitLab-CI l’image docker en question est [https://hub.docker.com/r/c4software/cordova-light/](Cordova-Light).
+Dans ce TP vous allez mettre en place l’intégration continue sur votre Projet d’application Hybride. Fini la prise de tête pour la compilation de votre application. Vous allez utiliser « une image Docker » au travers de GitLab-CI l’image docker en question est [Cordova light](https://hub.docker.com/r/c4software/cordova-light/).
 
 Pourquoi Light ? Car l’image n’embarque pas Chrome Headless, et donc ne permet pas de faire de test unitaire de votre application.
 
 ## Création du projet sur GitLab
 
-Avec votre compte GitLab vous pouvez créer un nombre illimités de projets. La première étape est donc de créer un projet sur votre (https://gitlab.com/projects/new)[compte Gitlab]
+Avec votre compte GitLab vous pouvez créer un nombre illimités de projets. La première étape est donc de créer un projet sur votre  [compte Gitlab](https://gitlab.com/projects/new)
 
 ⚠️ Je vous conseil de mettre votre projet en mode « Private ».
 
