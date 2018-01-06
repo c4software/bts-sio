@@ -170,8 +170,6 @@ cache:
 
 android_debug:
 	stage: deploy
-	tags:
-		- vlan-si
 	when: manual
 	script:
 		- cordova platform add android
@@ -215,7 +213,7 @@ pages:
 					<ul>
 						<li>Mettre en cache certains dossiers (exemple node_modules).</li>
 						<li>GitLab-CI c’est de l’automatisation des taches (refait à l’identique à chaque fois).</li>
-						<li>Vous pouvez interdir l’execution du gitlab-ci en mettant [ci skip] dans le message de commit.</li>
+						<li>Vous pouvez interdir l’execution du gitlab-ci en mettant « [ci skip] » dans le message de commit.</li>
 					</ul>
 				</section>
 
