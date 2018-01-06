@@ -2,23 +2,26 @@
 
 ## Introduction
 
-Danc ce TP vous allez mettre en place grace à Gitlab-CI un site web static hébergé par Gitlab Pages. Dans le TP d’introduction au travail collaboratif vous avez travaillé à plusieurs avec une visualisation quasi temps réel des modifications après les commits, c’était réalisé grace à GitLab-CI et GitLab Pages. Avec un fichier et quelques configuration vous allez être capable de réaliser la même chose dans vos projets.
+Danc ce TP vous allez mettre en place grace à Gitlab-CI un site web static hébergé par Gitlab Pages. Dans le TP d’introduction au travail collaboratif vous avez travaillé à plusieurs avec une visualisation quasi temps réel des modifications après les commits, c’était réalisé grace à GitLab-CI et GitLab Pages. Avec un fichier et quelques configurations, vous allez être capable de réaliser la même chose dans vos projets.
 
 ## Création d’un nouveau projet sur Gitlab
 
-Pour commencer créer (https://gitlab.com/projects/new)[un nouveau projet sur votre compte Gitlab]. Vous pouvez le nommer comme vous voulez.
+Pour commencer créez [un nouveau projet sur votre compte Gitlab](https://gitlab.com/projects/new). Nommer le comme vous voulez, c’est votre projet après tout…
 
-C’est tout.
+Voilà nous pouvons continuer
 
 ## Création d’un site static
 
-Créer rapidement sur votre machine un site static, une simple page web html est suffisante (vous pouvez également partir [d’un template disponnible ici](https://startbootstrap.com/template-categories/all/)).
+Créez rapidement sur votre machine un site static, une simple page web html est suffisante (vous pouvez également partir [d’un template disponnible ici](https://startbootstrap.com/template-categories/all/)).
 
-Une fois votre page prête, commité et pusher votre travail sur GitLab.
+Une fois votre page prête, commitez et pushez votre travail sur GitLab (dans le projet que vous avez créé)
+
+Rappel :
 
 ```sh
 git add -A
 git commit -am "Premier Commit"
+git push
 ```
 
 ⚠️ Pour pusher votre code il faut avoir ajouter la remote, pour ça vous pouvez suivre les instuctions données par GitLab lors de la création du projet.
@@ -45,27 +48,27 @@ pages:
 
 ## Push de votre code
 
-Pusher votre code sur GitLab, votre projet va maintenant « ce compiler » dans la partie CI. Attendez quelques secondes votre site web est maintenant en ligne.
+Pushez votre code sur GitLab, votre projet va maintenant « se compiler » dans la partie CI. Attendez quelques secondes votre site web est maintenant en ligne.
 
 ## Allez plus loin
 
-Écrire du code c’est bien, mais le faire en automatique c’est mieux. C’est pour ça que GitLab-CI et GitLab Pages existe, écrire du HTML pour une page c’est possible, mais quand il s’agit d’un site entier, c’est pas forcément adapté. C’est pour ça que l’on utilise régulièrement des CMS (écrit en PHP, Python, Ruby, …), mais ce n’est pas la seul façon de faire.
+Écrire du code c’est bien, mais le faire en automatique c’est mieux. C’est pour ça que GitLab-CI et GitLab Pages existent, écrire du HTML pour une page c’est possible, mais quand il s’agit d’un site entier, ce n’est pas forcément adapté. C’est pour ça que l’on utilise régulièrement des CMS (écrit en PHP, Python, Ruby, …), mais ce n’est pas la seul façon de faire.
 
-On trouve aussi régulièrement des « générateurs de site static », un générateur c’est un « logiciel » qui va « compiler » votre site pour générer toutes les pagse de votre site web (sans avoir à tous les écrires).
+On trouve aussi régulièrement des « générateurs de sites statics », un générateur c’est un « logiciel » qui va « compiler » votre site pour générer toutes les pages de votre site web (sans avoir à tous les écrire).
 
 Plusieurs avantages :
 
-- Cout d’hébergement réduit (pas de PHP, juste du HTML).
+- Coût d’hébergement réduit (pas de PHP, juste du HTML).
 - Sauvegarde simple (c’est juste des fichiers).
 - Rapide ! (Oui, pas de PHP).
 
 Inconvénients :
 
-- À votre avis ? 
+- À votre avis ?
 
 ### Les moteurs de site static
 
-Comme toujours, il y a plusieurs choix pour faire des sites static, voici 3 exemples :
+Comme toujours, il y a plusieurs choix pour faire des sites statics, voici 3 exemples :
 
 - [Jekyll](https://jekyllrb.com/)
 - [Hugo](http://gohugo.io/)
@@ -73,7 +76,7 @@ Comme toujours, il y a plusieurs choix pour faire des sites static, voici 3 exem
 
 ### Exemple avec Hugo
 
-Télécharger le projet suivante [Exemple de site avec Hugo](https://gitlab.com/pages/hugo), créer un nouveau projet dans votre compte GitLab et envoyer les sources.
+Téléchargez le projet suivant [Exemple de site avec Hugo](https://gitlab.com/pages/hugo), créez un nouveau projet dans votre compte GitLab et envoyez les sources.
 
 - Regarder le contenu du ```.gitlab-ci.yml``` :
 
