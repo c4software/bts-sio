@@ -552,7 +552,7 @@
                 <span>
             
                     
-                    [WIP] GitLab-CI
+                    GitLab-CI
             
                 </span>
             
@@ -713,8 +713,8 @@
 <p>Dans ce TP vous allez mettre en place l&#x2019;int&#xE9;gration continue sur votre Projet d&#x2019;application Hybride. Fini la prise de t&#xEA;te pour la compilation de votre application. Vous allez utiliser &#xAB; une image Docker &#xBB; au travers de GitLab-CI l&#x2019;image docker en question est <a href="https://hub.docker.com/r/c4software/cordova-light/" target="_blank">Cordova light</a>.</p>
 <p>Pourquoi Light ? Car l&#x2019;image n&#x2019;embarque pas Chrome Headless, et donc ne permet pas de faire de test unitaire de votre application.</p>
 <h2 id="cr&#xE9;ation-du-projet-sur-gitlab">Cr&#xE9;ation du projet sur GitLab</h2>
-<p>Avec votre compte GitLab vous pouvez cr&#xE9;er un nombre illimit&#xE9;s de projets. La premi&#xE8;re &#xE9;tape est donc de cr&#xE9;er un projet sur votre  <a href="https://gitlab.com/projects/new" target="_blank">compte Gitlab</a></p>
-<p>&#x26A0;&#xFE0F; Je vous conseil de mettre votre projet en mode &#xAB; Private &#xBB;.</p>
+<p>Avec votre compte GitLab vous pouvez cr&#xE9;er un nombre illimit&#xE9;s de projets. La premi&#xE8;re &#xE9;tape est donc de cr&#xE9;er un projet sur votre  <a href="https://gitlab.com/projects/new" target="_blank">compte Gitlab</a>.</p>
+<p>&#x26A0;&#xFE0F; Je vous conseille de mettre votre projet en mode &#xAB; Private &#xBB;.</p>
 <h2 id="commiter-et-pusher-vos-sources">Commiter et Pusher vos sources</h2>
 <p>Si ce n&#x2019;est pas d&#xE9;j&#xE0; fait, commiter les sources de votre application Cordova. Attention &#xE0; bien mettre un <code>.gitignore</code> pour ignorer le dossier <code>nodes_modules/</code>.</p>
 <p>Vous pouvez pusher vos sources.</p>
@@ -741,10 +741,10 @@
 <span class="hljs-attr">    paths:</span>
 <span class="hljs-bullet">      -</span> platforms/android/build/outputs/apk/
 </code></pre>
-<p>Et c&#x2019;est tout, avec se simple fichier votre application est pr&#xEA;te et sera compil&#xE9;e en automatique.</p>
+<p>Et c&#x2019;est tout, avec ce simple fichier votre application est pr&#xEA;te et sera compil&#xE9;e en automatique.</p>
 <p>Commiter et Pusher la modification.</p>
 <ul>
-<li>Regarder les fichier :<ul>
+<li>Regarder les fichiers :<ul>
 <li>&#xC0; quoi correspond le <code>when: manual</code>?</li>
 <li>&#xC0; quoi sert le cache ?</li>
 <li>&#xC0; quoi correspond le <code>artifacts</code> ?</li>
@@ -765,7 +765,7 @@
 <p>D&#xE9;sactiver le &#xAB; cache &#xBB; dans le fichier Gitlab-ci. Tester de compiler plusieurs fois votre application. &#xC0; votre avis le cache est-il utile ?</p>
 <h2 id="signer-lapplication">Signer l&#x2019;application</h2>
 <p>Faire du Debug c&#x2019;est bien ! Mais si on faisait une application pr&#xEA;te pour le Store ? C&#x2019;est possible et tout aussi simplement.</p>
-<p>&#x26A0;&#xFE0F; Je vous d&#xE9;conseille fortement de le faire sur un runners public de Gitlab-CI. Pourquoi ? Simplement car nous allons mettre une clef de signature sur votre APK, clef qui doit rester PRIV&#xC9;E! C&#x2019;est ce qui garantie la s&#xE9;curit&#xE9; de votre application, si celle-ci se retrouve en ligne le jeu est fini pour vous n&#x2019;importe qui peux usurper votre identit&#xE9;e.</p>
+<p>&#x26A0;&#xFE0F; Je vous d&#xE9;conseille fortement de le faire sur un &#xAB; runner &#xBB; public de Gitlab-CI. Pourquoi ? Simplement car nous allons mettre une clef de signature sur votre APK, clef qui doit rester <strong>PRIV&#xC9;E</strong> ! C&#x2019;est ce qui garantie la s&#xE9;curit&#xE9; de votre application, si celle-ci se retrouve en ligne le jeu est fini pour vous n&#x2019;importe qui peux usurper votre identit&#xE9;e.</p>
 <p>Ajouter dans le fichier <code>.gitlab-ci.yml</code></p>
 <pre><code class="lang-yml"><span class="hljs-attr">android:</span>
 <span class="hljs-attr">  stage:</span> deploy
@@ -779,8 +779,8 @@
 </code></pre>
 <p>Comme vous pouvez le constater la partie script fait r&#xE9;f&#xE9;rence &#xE0; un nouveau fichier le <code>keystore/keyfile</code>. Pour que la commande fonctionne nous allons donc devoir &#xAB; le cr&#xE9;er &#xBB;.</p>
 <h3 id="cr&#xE9;ation-du-keystore">Cr&#xE9;ation du keystore</h3>
-<p>Le Keystore est une notion d&#x2019;Android, rien &#xE0; votre avec Cordova. Il faut donc utiliser Android-Studio (pour les int&#xE9;r&#xE9;ss&#xE9;s il est &#xE9;galement possible de le faire avec la ligne de commande) :</p>
-<p>Exemple :</p>
+<p>Le Keystore est une notion d&#x2019;Android, rien &#xE0; voir avec Cordova. Il faut donc utiliser Android-Studio (pour les int&#xE9;r&#xE9;ss&#xE9;s il est &#xE9;galement possible de le faire avec la ligne de commande).</p>
+<p>Avec Android Studio :</p>
 <p><img src="ressources/SjcOa.png" alt="store"></p>
 <p>Une fois cr&#xE9;&#xE9; :</p>
 <pre><code class="lang-sh">git add -A
@@ -828,7 +828,7 @@ git push
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"App Hybride et Gitlab-CI","level":"1.10.3","depth":2,"next":{"title":"[WIP] Framework Python : Flask","level":"1.11","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/flask/","ref":"https://rawgit.com/c4software/bts/master/cours/flask/","articles":[]},{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]}]},"previous":{"title":"Utiliser Gitlab Pages","level":"1.10.2","depth":2,"path":"tp/ci/pages.md","ref":"tp/ci/pages.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/ci/ci-hybride.md","mtime":"2018-01-06T09:43:46.070Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-06T09:44:12.426Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"App Hybride et Gitlab-CI","level":"1.10.3","depth":2,"next":{"title":"[WIP] Framework Python : Flask","level":"1.11","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/flask/","ref":"https://rawgit.com/c4software/bts/master/cours/flask/","articles":[]},{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]}]},"previous":{"title":"Utiliser Gitlab Pages","level":"1.10.2","depth":2,"path":"tp/ci/pages.md","ref":"tp/ci/pages.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/ci/ci-hybride.md","mtime":"2018-01-06T09:48:55.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-06T10:04:04.896Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
