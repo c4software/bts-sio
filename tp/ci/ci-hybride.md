@@ -78,6 +78,32 @@ Grace à l’artifact votre application est même téléchargeable :
 
 Désactiver le « cache » dans le fichier Gitlab-ci. Tester de compiler plusieurs fois votre application. À votre avis le cache est-il utile ?
 
+## Déclarer un runner GitLab
+
+Comme nous l’avons vu tout repose sur les runners, de base Gitlab fourni des runners partagés. C’est runners sont pratique car ils sont instantanément disponible dans vos projets, cependant vu qu’ils sont partagés avec d’autre utilisateurs il peu rapidement y avoir des questions de sécurités et surtout de performances. 
+
+Pour être plus autonome (et plus performant) même dans la version cloud il est possible de déclarer un runners « à nous ». Ce runner va être dédié à votre compte car il sera déclaré sur votre machine.
+
+### Installation
+
+Pour déclarer un runner c’est très simple, il faut juste le lancer / l’installer sur votre machine. La documentation de GitLab étant très bien fait rendez vous [ici pour Windows](https://docs.gitlab.com/runner/install/windows.html) et [la pour Linux](https://docs.gitlab.com/runner/install/linux-repository.html)
+
+## Enregistrer le runner
+
+Maintenant que le runner est installé sur votre machine, nous allons devoir l’enregistrer. L’enregistrement consiste à déclarer à Gitlab.com que votre machine est prête à éxécuter des tâches. Vous dédiez en quelques sortes un peu de vos ressources à GitLab au travers de votre Runner.
+
+L’enregistrement du runners est relativement simple, il faut dans un premier temps allez dans « les Paramètres CI/CD du projet que vous avez créé » exemple ```https://gitlab.com/bts-sio-chevrollier/slam5/settings/ci_cd``` cliquez sur « Expand » de la catégorie « Runners settings ». Vous devez avoir quelques chose comme :
+
+![Register Runner](./ressources/runner.png)
+
+Dans une console administrateur :
+
+```sh
+./gitlab-runner.exe register
+```
+
+✋ STOP ! Une fois rendu à cette étape appeler moi ! Nous allons terminer la procédure ensemble. Pour les plus téméraire vous pouvez suivre [la documentation](https://docs.gitlab.com/runner/register/index.html#windows) (Attention à bien choisir Docker)
+
 ## Signer l’application
 
 Faire du Debug c’est bien ! Mais si on faisait une application prête pour le Store ? C’est possible et tout aussi simplement.
