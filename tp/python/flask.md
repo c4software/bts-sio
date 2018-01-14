@@ -110,4 +110,6 @@ Cette commande va installer Flask ainsi que les dépendances nécéssaires à so
 
 ### Le code
 
+Maintenant que Flask est installé nous allons pouvoir l’utiliser, notre exemple sera tout simple tout sera contenu dans **un seul fichier**, lancer un éditeur de texte (pyCharn, Visual Studio Code, etc), et commencer par créer le fichier suivante ```main.py```
+
 ### Le test
