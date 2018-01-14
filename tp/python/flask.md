@@ -86,6 +86,11 @@ Lancer le via la commande :
 python test.py
 ```
 
+Question :
+
+- Modifier le script pour afficher 4x le hello world. (Plusieurs solutions…)
+- Modifier le texte affiché.
+
 ## Le Hello Word++
 
 Maintenant que l’on sait que notre environement d’execution est correctement installé nous allons tester la partie Flask. Avec la commande ```pip``` installer flask **mais** avant pensez à activer votre environnement cloisonés précédement créé
@@ -106,4 +111,3 @@ Cette commande va installer Flask ainsi que les dépendances nécéssaires à so
 ### Le code
 
 ### Le test
-
