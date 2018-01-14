@@ -715,7 +715,44 @@
 <h2 id="installation-de-python">Installation de python</h2>
 <p>L&#x2019;installation de Python sous Windows se fait via <a href="https://www.python.org/downloads/" target="_blank">l&#x2019;installer officiel</a>, nous allons prendre la version 3.</p>
 <p>Sous Linux (et MacOS) Python est normalement <strong>inclus</strong>.</p>
-<h2 id="installation-de-pip">Installation de PIP</h2>
+<h2 id="installation-de-pip-python-2">Installation de PIP (Python 2)</h2>
+<p>Pip est &#xAB; le gestionnaire de paquets &#xBB; de Python. PIP (Pip Installs Packages) va nous permetter d&#x2019;installer les diff&#xE9;rentes librairies que nous allons avoir besoin (virtualenv, flask, &#x2026;).</p>
+<h3 id="python-3">Python 3</h3>
+<p>Bonne nouvelle ! Depuis python 3.4 pip est maintenant int&#xE9;gr&#xE9; &#xE0; l&#x2019;installation de python. Rien &#xE0; installer de plus.</p>
+<h3 id="python-2">Python 2</h3>
+<p>Normalement vous avez installer python3 donc vous n&#x2019;avez pas &#xE0; faire ceci, cependant dans votre vie vous rencontrerez peut-&#xEA;tre des environnement Python 2. La proc&#xE9;dure d&#x2019;installation est donc la suivante :</p>
+<ul>
+<li>T&#xE9;l&#xE9;charger sur votre machine le <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank">script suivant</a></li>
+<li>Lancer dans une console administrateur : <code>python get-pip.py</code></li>
+</ul>
+<p>Et voil&#xE0; ! pip est install&#xE9; sur votre machine !</p>
+<p>Question :</p>
+<ul>
+<li>Avez-vous ouvert le fichier avant de l&#x2019;utiliser ?</li>
+</ul>
+<h2 id="cr&#xE9;ation-du-virtualenv">Cr&#xE9;ation du virtualenv</h2>
+<p>VirtualEnv ? K&#xE9;zako ! C&#x2019;est l&#x2019;un des petits trucs g&#xE9;nial avec Python! VirtualEnv vous permets d&#x2019;avoir des environnements cloison&#xE9;s pour chacun de vos projets. &#xC7;a va pour permettre par exemple d&#x2019;installer une version diff&#xE9;rentes de Flask pour des projets diff&#xE9;rents, ou avoir des librairies A uniquement dans votre projet A. Bref &#xE7;a permet de faire les choses proprements.</p>
+<p>Vu que c&#x2019;est la premi&#xE8;re fois que vous configurez votre environnement nous allons installer virtualenv, dans <strong>une console administrateur</strong> lancez la commande suivante :</p>
+<pre><code class="lang-sh">python -m pip install virtualenv
+</code></pre>
+<p>Maintenant que pip est install&#xE9; vous allez pouvoir cr&#xE9;er votre virtualenv :</p>
+<pre><code class="lang-sh">$ virtualenv -p python3 flask
+Running virtualenv with interpreter /usr/<span class="hljs-built_in">local</span>/bin/python3
+Using base prefix <span class="hljs-string">&apos;/usr/local/Cellar/python3/3.6.4_1/Frameworks/Python.framework/Versions/3.6&apos;</span>
+New python executable <span class="hljs-keyword">in</span> /private/tmp/flask/bin/python3.6
+Also creating executable <span class="hljs-keyword">in</span> /private/tmp/flask/bin/python
+Installing setuptools, pip, wheel...done.
+</code></pre>
+<p>Voil&#xE0; notre environnement cloison&#xE9; est pr&#xEA;t, mais pour l&#x2019;instant il n&#x2019;est pas actif, il faut lancer une commande pour &#xAB; entrer &#xBB; dedans :</p>
+<p>Sous Windows :</p>
+<pre><code class="lang-sh">$ flask\Scripts\activate
+(flask) C:\Users\user\Documents&gt;
+</code></pre>
+<p>Sous Unix :</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">source</span> flask\Scripts\activate
+(flask) /tmp
+</code></pre>
+<p>Le <code>(flask)</code> entre parenth&#xE8;ses vous indique que vous &#xEA;tes actuellement dans un environnement cloison&#xE9;, &#xE0; partir de maintenant si vous installez des paquets via pip ils s&#x2019;installeront non pas dans votre syst&#xE8;me mais dans votre environnement &#xAB; cloison&#xE9; &#xBB;.</p>
 <h2 id="le-fameux-hello-world">Le fameux Hello World</h2>
 <p>Testons notre installation en r&#xE9;alisant un simple Hello World. Cr&#xE9;ez un fichier <code>test.py</code> avec le contenu suivant :</p>
 <pre><code class="lang-python"><span class="hljs-keyword">print</span> (<span class="hljs-string">&quot;Hello World&quot;</span>)
@@ -724,6 +761,16 @@
 <pre><code class="lang-sh">python test.py
 </code></pre>
 <h2 id="le-hello-word">Le Hello Word++</h2>
+<p>Maintenant que l&#x2019;on sait que notre environement d&#x2019;execution est correctement install&#xE9; nous allons tester la partie Flask. Avec la commande <code>pip</code> installer flask <strong>mais</strong> avant pensez &#xE0; activer votre environnement cloison&#xE9;s pr&#xE9;c&#xE9;dement cr&#xE9;&#xE9;</p>
+<pre><code class="lang-sh">flask\Scripts\activate <span class="hljs-comment"># Sous Windows</span>
+<span class="hljs-built_in">source</span> flask\Scripts\activate <span class="hljs-comment"># Sous Unix</span>
+</code></pre>
+<p>Installation de Flask :</p>
+<pre><code class="lang-sh">python -m pip install flask
+</code></pre>
+<p>Cette commande va installer Flask ainsi que les d&#xE9;pendances n&#xE9;c&#xE9;ssaires &#xE0; son fonctionnement.</p>
+<h3 id="le-code">Le code</h3>
+<h3 id="le-test">Le test</h3>
 
                                 
                                 </section>
@@ -763,7 +810,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]},"previous":{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/flask/","ref":"https://rawgit.com/c4software/bts/master/cours/flask/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask.md","mtime":"2018-01-12T21:56:32.338Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-12T21:57:00.249Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]},"previous":{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/flask/","ref":"https://rawgit.com/c4software/bts/master/cours/flask/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask.md","mtime":"2018-01-14T08:52:23.899Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-14T08:52:49.342Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
