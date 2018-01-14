@@ -12,7 +12,65 @@ L’installation de Python sous Windows se fait via [l’installer officiel](htt
 
 Sous Linux (et MacOS) Python est normalement **inclus**.
 
-## Installation de PIP
+## Installation de PIP (Python 2)
+
+Pip est « le gestionnaire de paquets » de Python. PIP (Pip Installs Packages) va nous permetter d’installer les différentes librairies que nous allons avoir besoin (virtualenv, flask, …).
+
+### Python 3
+
+Bonne nouvelle ! Depuis python 3.4 pip est maintenant intégré à l’installation de python. Rien à installer de plus.
+
+### Python 2
+
+Normalement vous avez installer python3 donc vous n’avez pas à faire ceci, cependant dans votre vie vous rencontrerez peut-être des environnement Python 2. La procédure d’installation est donc la suivante :
+
+- Télécharger sur votre machine le [script suivant](https://bootstrap.pypa.io/get-pip.py)
+- Lancer dans une console administrateur : ```python get-pip.py```
+
+Et voilà ! pip est installé sur votre machine !
+
+Question :
+
+- Avez-vous ouvert le fichier avant de l’utiliser ?
+
+## Création du virtualenv
+
+VirtualEnv ? Kézako ! C’est l’un des petits trucs génial avec Python! VirtualEnv vous permets d’avoir des environnements cloisonés pour chacun de vos projets. Ça va pour permettre par exemple d’installer une version différentes de Flask pour des projets différents, ou avoir des librairies A uniquement dans votre projet A. Bref ça permet de faire les choses proprements.
+
+Vu que c’est la première fois que vous configurez votre environnement nous allons installer virtualenv, dans **une console administrateur** lancez la commande suivante :
+
+```sh
+python -m pip install virtualenv
+```
+
+Maintenant que pip est installé vous allez pouvoir créer votre virtualenv :
+
+```sh
+$ virtualenv -p python3 flask
+Running virtualenv with interpreter /usr/local/bin/python3
+Using base prefix '/usr/local/Cellar/python3/3.6.4_1/Frameworks/Python.framework/Versions/3.6'
+New python executable in /private/tmp/flask/bin/python3.6
+Also creating executable in /private/tmp/flask/bin/python
+Installing setuptools, pip, wheel...done.
+```
+
+Voilà notre environnement cloisoné est prêt, mais pour l’instant il n’est pas actif, il faut lancer une commande pour « entrer » dedans :
+
+Sous Windows :
+
+```sh
+$ flask\Scripts\activate
+(flask) C:\Users\user\Documents>
+```
+
+Sous Unix :
+
+```sh
+$ source flask\Scripts\activate
+(flask) /tmp
+```
+
+Le ```(flask)``` entre parenthèses vous indique que vous êtes actuellement dans un environnement cloisoné, à partir de maintenant si vous installez des paquets via pip ils s’installeront non pas dans votre système mais dans votre environnement « cloisoné ».
 
 ## Le fameux Hello World
 
@@ -29,3 +87,23 @@ python test.py
 ```
 
 ## Le Hello Word++
+
+Maintenant que l’on sait que notre environement d’execution est correctement installé nous allons tester la partie Flask. Avec la commande ```pip``` installer flask **mais** avant pensez à activer votre environnement cloisonés précédement créé
+
+```sh
+flask\Scripts\activate # Sous Windows
+source flask\Scripts\activate # Sous Unix
+```
+
+Installation de Flask :
+
+```sh
+python -m pip install flask
+```
+
+Cette commande va installer Flask ainsi que les dépendances nécéssaires à son fonctionnement.
+
+### Le code
+
+### Le test
+
