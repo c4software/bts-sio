@@ -143,6 +143,11 @@ def hello_world():
 @app.route("/hello/<name>")
 def hello(name):
     return "Bonjour {}".format(name)
+
+# Lancement de l'application
+if __name__ == '__main__':
+    app.debug == True
+    app.run()
 ```
 
 ### Le test
