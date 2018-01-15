@@ -112,4 +112,23 @@ Cette commande va installer Flask ainsi que les dépendances nécéssaires à so
 
 Maintenant que Flask est installé nous allons pouvoir l’utiliser, notre exemple sera tout simple tout sera contenu dans **un seul fichier**, lancer un éditeur de texte (pyCharn, Visual Studio Code, etc), et commencer par créer le fichier suivante ```main.py```
 
+Le fichier ```main.py``` va être le fichier principal de notre application, l’ensemble du code sera dedans. C’est bien pour une démo, bien évidément dans une vrai application on évitera.
+
+### But de notre code
+
+Dans ce second exemple appelé ```Hello World++``` nous allons créer deux fonctions Python :
+
+- La première ```hello_world()``` qui affichera ```Bonjour Monde```.
+- Et la seconde ```hello(name)``` qui affichera ```Bonjour <nom>```.
+
+### Fonctionnement
+
+Rappel sur le fonctionnement de Flask, comme vu pendant le cours Flask permet de « mapper » (faire correspondre) des URL et des fonctions Python. Nous devons donc définir des URL d’accès à ```hello_world``` et ```hello``` je vous propose :
+
+- ```/``` ==> ```hello_world()```.
+- ```/hello/<name>``` ==> ```hello(name)```.
+
+### Le code
+
+
 ### Le test
