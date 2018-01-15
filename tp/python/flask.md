@@ -130,5 +130,19 @@ Rappel sur le fonctionnement de Flask, comme vu pendant le cours Flask permet de
 
 ### Le code
 
+Maintenant que nous avons défini dans notre tête la structure de notre application écrivont le code :
+
+```python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "Bonjour Monde!"
+
+@app.route("/hello/<name>")
+def hello(name):
+    return "Bonjour {}".format(name)
+```
 
 ### Le test
