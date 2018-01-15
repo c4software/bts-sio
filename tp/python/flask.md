@@ -167,3 +167,18 @@ Normalement votre code est maintenant accessible, tester le fonctionnement :
 Question :
 
 - Changer le paramètre observer le résultat.
+
+### Évolution
+
+Maintenant que vous avez tout compris, je vous propose de mettre en place une nouvelle fonctionnalitée :
+
+> Ajouter une fonction à votre application qui va éffectuer une addition par rapport à deux chiffres passé en paramètre.
+
+Étapes :
+
+- Définir l’URL.
+- Définir le nom de la fonction.
+- Écrire le code.
+- Tester.
+
+C’est à vous !
