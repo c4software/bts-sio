@@ -151,3 +151,19 @@ if __name__ == '__main__':
 ```
 
 ### Le test
+
+Tester votre application en lancant votre application. Pour ça vous devez activer le virtualEnv puis lancer :
+
+```sh
+(flask)  tp1 ツ python main.py
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+```
+
+Normalement votre code est maintenant accessible, tester le fonctionnement :
+
+- [L’index](http://127.0.0.1:5000/)
+- [Hello Yolo](http://127.0.0.1:5000/hello/Yolo)
+
+Question :
+
+- Changer le paramètre observer le résultat.
