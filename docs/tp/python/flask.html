@@ -775,7 +775,65 @@ Installing setuptools, pip, wheel...done.
 </code></pre>
 <p>Cette commande va installer Flask ainsi que les d&#xE9;pendances n&#xE9;c&#xE9;ssaires &#xE0; son fonctionnement.</p>
 <h3 id="le-code">Le code</h3>
+<p>Maintenant que Flask est install&#xE9; nous allons pouvoir l&#x2019;utiliser, notre exemple sera tout simple tout sera contenu dans <strong>un seul fichier</strong>, lancer un &#xE9;diteur de texte (pyCharn, Visual Studio Code, etc), et commencer par cr&#xE9;er le fichier suivante <code>main.py</code></p>
+<p>Le fichier <code>main.py</code> va &#xEA;tre le fichier principal de notre application, l&#x2019;ensemble du code sera dedans. C&#x2019;est bien pour une d&#xE9;mo, bien &#xE9;vid&#xE9;ment dans une vrai application on &#xE9;vitera.</p>
+<h3 id="but-de-notre-code">But de notre code</h3>
+<p>Dans ce second exemple appel&#xE9; <code>Hello World++</code> nous allons cr&#xE9;er deux fonctions Python :</p>
+<ul>
+<li>La premi&#xE8;re <code>hello_world()</code> qui affichera <code>Bonjour Monde</code>.</li>
+<li>Et la seconde <code>hello(name)</code> qui affichera <code>Bonjour &lt;nom&gt;</code>.</li>
+</ul>
+<h3 id="fonctionnement">Fonctionnement</h3>
+<p>Rappel sur le fonctionnement de Flask, comme vu pendant le cours Flask permet de &#xAB; mapper &#xBB; (faire correspondre) des URL et des fonctions Python. Nous devons donc d&#xE9;finir des URL d&#x2019;acc&#xE8;s &#xE0; <code>hello_world</code> et <code>hello</code> je vous propose :</p>
+<ul>
+<li><code>/</code> ==&gt; <code>hello_world()</code>.</li>
+<li><code>/hello/&lt;name&gt;</code> ==&gt; <code>hello(name)</code>.</li>
+</ul>
+<h3 id="le-code">Le code</h3>
+<p>Maintenant que nous avons d&#xE9;fini dans notre t&#xEA;te la structure de notre application &#xE9;crivont le code :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route(&quot;/&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello_world</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Bonjour Monde!&quot;</span>
+
+<span class="hljs-meta">@app.route(&quot;/hello/&lt;name&gt;&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(name)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Bonjour {}&quot;</span>.format(name)
+
+<span class="hljs-comment"># Lancement de l&apos;application</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    app.debug == <span class="hljs-keyword">True</span>
+    app.run()
+</code></pre>
 <h3 id="le-test">Le test</h3>
+<p>Tester votre application en lancant votre application. Pour &#xE7;a vous devez activer le virtualEnv puis lancer :</p>
+<pre><code class="lang-sh">(flask)  tp1 &#x30C4; python main.py
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+</code></pre>
+<p>Normalement votre code est maintenant accessible, tester le fonctionnement :</p>
+<ul>
+<li><a href="http://127.0.0.1:5000/" target="_blank">L&#x2019;index</a></li>
+<li><a href="http://127.0.0.1:5000/hello/Yolo" target="_blank">Hello Yolo</a></li>
+</ul>
+<p>Question :</p>
+<ul>
+<li>Changer le param&#xE8;tre observer le r&#xE9;sultat.</li>
+</ul>
+<h3 id="&#xE9;volution">&#xC9;volution</h3>
+<p>Maintenant que vous avez tout compris, je vous propose de mettre en place une nouvelle fonctionnalit&#xE9;e :</p>
+<blockquote>
+<p>Ajouter une fonction &#xE0; votre application qui va &#xE9;ffectuer une addition par rapport &#xE0; deux chiffres pass&#xE9; en param&#xE8;tre.</p>
+</blockquote>
+<p>&#xC9;tapes :</p>
+<ul>
+<li>D&#xE9;finir l&#x2019;URL.</li>
+<li>D&#xE9;finir le nom de la fonction.</li>
+<li>&#xC9;crire le code.</li>
+<li>Tester.</li>
+</ul>
+<p>C&#x2019;est &#xE0; vous !</p>
 
                                 
                                 </section>
@@ -815,7 +873,7 @@ Installing setuptools, pip, wheel...done.
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]},"previous":{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/flask/","ref":"https://rawgit.com/c4software/bts/master/cours/flask/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask.md","mtime":"2018-01-14T08:54:55.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-14T08:55:15.636Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]},"previous":{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/flask/","ref":"https://rawgit.com/c4software/bts/master/cours/flask/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask.md","mtime":"2018-01-15T21:04:45.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T21:05:16.946Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
