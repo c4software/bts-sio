@@ -17,7 +17,23 @@ Comme dans le premier TP, avant de commencer à coder nous allons déterminer le
 | Marquer comme terminé |        |          |
 | Supprimer             |        |          |
 
-C’est à vous, Avant de continuer un papier un crayon !
+Question :
+
+- C’est à vous, Avant de continuer un papier un crayon !
+
+### Solution possible
+
+| Description           | Chemin           | Fonction      |
+|-----------------------|------------------|---------------|
+| Liste                 | /api/liste       | liste()       |
+| Création              | /api/creer       | creer()       |
+| Marquer comme terminé | /api/terminer    | terminer()    |
+| Supprimer             | /api/suppression | suppression() |
+
+Question :
+
+- À votre avis pourquoi est-ce important de fair ce travail ?
+- Quel sont les autres solutions pour répondre à ce genre de soucis ?
 
 ### Liste
 
