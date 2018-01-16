@@ -23,6 +23,8 @@ Question :
 
 ### Solution possible
 
+L’une des solutions est la suivante :
+
 | Description           | Chemin           | Fonction      |
 |-----------------------|------------------|---------------|
 | Liste                 | /api/liste       | liste()       |
