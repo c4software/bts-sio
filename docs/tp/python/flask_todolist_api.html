@@ -712,6 +712,80 @@
 <h2 id="introduction">Introduction</h2>
 <p>Dans ce TP nous allons cr&#xE9;er des API &#xE0; l&#x2019;aide de Flask pour notre site web TodoList. Nous allons bien &#xE9;videment utiliser l&#x2019;interface que vous avez d&#xE9;velopp&#xE9; dans le TP 1 VueJS. Ici nous allons recoder la partie &#xAB; serveur &#xBB; en python gr&#xE2;ce au micro framework Flask.</p>
 <h2 id="le-mainpy">Le main.py</h2>
+<p>Comme dans le premier TP notre code sera int&#xE9;gralement dans un fichier nomm&#xE9; &#xAB; main.py &#xBB;. Le fichier va contenir les diff&#xE9;rentes fonctions pour r&#xE9;pondre aux diff&#xE9;rentes requ&#xEA;tes des clients.</p>
+<p>Comme dans le premier TP, avant de commencer &#xE0; coder nous allons d&#xE9;terminer le nom des fonctions ainsi que le chemin :</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Chemin</th>
+<th>Fonction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Liste</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Cr&#xE9;ation</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Marquer comme termin&#xE9;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Supprimer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Question :</p>
+<ul>
+<li>C&#x2019;est &#xE0; vous, Avant de continuer un papier un crayon !</li>
+</ul>
+<h3 id="solution-possible">Solution possible</h3>
+<p>L&#x2019;une des solutions est la suivante :</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Chemin</th>
+<th>Fonction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Liste</td>
+<td>/api/liste</td>
+<td>liste()</td>
+</tr>
+<tr>
+<td>Cr&#xE9;ation</td>
+<td>/api/creer</td>
+<td>creer()</td>
+</tr>
+<tr>
+<td>Marquer comme termin&#xE9;</td>
+<td>/api/terminer</td>
+<td>terminer()</td>
+</tr>
+<tr>
+<td>Supprimer</td>
+<td>/api/suppression</td>
+<td>suppression()</td>
+</tr>
+</tbody>
+</table>
+<p>Question :</p>
+<ul>
+<li>&#xC0; votre avis pourquoi est-ce important de fair ce travail ?</li>
+<li>Quel sont les autres solutions pour r&#xE9;pondre &#xE0; ce genre de soucis ?</li>
+</ul>
 <h3 id="liste">Liste</h3>
 <h3 id="cr&#xE9;ation">Cr&#xE9;ation</h3>
 <h3 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h3>
@@ -755,7 +829,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-01-12T21:50:24.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T21:05:16.946Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-01-16T20:32:09.028Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-16T20:32:20.205Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
