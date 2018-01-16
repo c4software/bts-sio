@@ -21,7 +21,19 @@ Question :
 
 - C’est à vous, Avant de continuer un papier un crayon !
 
-### Solution possible
+Voir une des [solutions possible](#solution-possible-structure)
+
+### Liste
+
+### Création
+
+### Marquer comme terminé
+
+### Suppression
+
+#### Notes
+
+### Solution possible structure
 
 L’une des solutions est la suivante :
 
@@ -36,11 +48,3 @@ Question :
 
 - À votre avis pourquoi est-ce important de fair ce travail ?
 - Quel sont les autres solutions pour répondre à ce genre de soucis ?
-
-### Liste
-
-### Création
-
-### Marquer comme terminé
-
-### Suppression
