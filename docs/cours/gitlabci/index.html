@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>GitLab-CI</title>
+
+		<meta name="description" content="Du Web 1.0 à l'application mobile">
+		<meta name="author" content="Valentin Brosseau">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style>
+			.reveal p, .reveal ul{
+				margin-bottom: 40px;
+			}
+			strong{
+				color: #f4645f;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h1>GitLab-CI</h1>
+					<h3>L’intégration continue</h3>
+					<p>
+						<small>Par <a href="https://github.com/c4software">Valentin Brosseau</a> / <a href="http://twitter.com/c4software">@c4software</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h3>L’intégration continue ?</h3>
+					<ul class="fragment">
+						<li>Test immédiat des modifications</li>
+						<li>Notification rapide en cas de code incompatible ou manquant</li>
+						<li>Les problèmes d'intégration sont détectés et réparés de façon continue, évitant les problèmes de dernière minute </li>
+						<li>Une version est toujours disponible pour un test, une démonstration ou une distribution.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Un outil? Non des outils !</h3>
+					<ul>
+						<li>GitLab-CI</li>
+						<li>Jenkins</li>
+						<li>SonarQube</li>
+						<li>Travis-CI</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Pourquoi Gitlab-CI</h3>
+					<ul>
+						<li>Intégration</li>
+						<li>Démarrage simple</li>
+						<li>Évolutif</li>
+						<li>Isolé</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Intégration</h3>
+					<p>Disponible dans l’interface de GitLab (même dans la version Cloud)</p>
+				</section>
+
+				<section>
+					<h3>Démarrage Simple</h3>
+					<p>Un simple fichier yml permet de commencer à faire de l’intégration continue</p>
+				</section>
+
+				<section>
+					<h3>Évolutif</h3>
+					<p>Plusieurs serveurs (Runners). Lancement conditionné (tags, branch, etc)</p>
+				</section>
+
+				<section>
+					<h3>Isolé</h3>
+					<p>Les « runners » utilisent Docker (ou autre on y reviendra)</p>
+				</section>
+
+				<section>
+					<h3>Un fichier le « .gitlab-ci.yml »</h3>
+					<h5>Exemple :</h5>
+					<pre><code data-trim>
+image: node:9.3.0
+						
+nodejs_test:
+	stage: test
+	script: 
+		- npm install
+		- npm test
+</code></pre>
+				</section>
+
+				<section>
+					<h3>Les runners</h3>
+					<ul>
+						<li>Démon sur une machine</li>
+						<li>Piloté par Gitlab-ci (Ordre)</li>
+						<li>Taggé (lancement conditionné, OS, tag, etc…)</li>
+						<li>Plusieurs mode de fonctionnement : « Executor »</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Les executors</h3>
+					<ul>
+						<li>Shell (local)</li>
+						<li>Docker</li>
+						<li>SSH</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Les directives du « .gitlab-ci.yml »</h3>
+					<ul>
+						<li>image</li>
+						<li>before_script</li>
+						<li>after_script</li>
+						<li>stages (test/build/deploy)</li>
+						<li>variables</li>
+						<li>cache</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Les jobs</h3>
+					<p>Les actions à faire pour notre test/compilation/déploiement</p>
+				</section>
+
+				<section>
+					<ul>
+						<li>script</li>
+						<li>image</li>
+						<li>stage (test/build/depoy)</li>
+						<li>type</li>
+						<li>variables</li>
+						<li>only (master par exemple)</li>
+						<li>except (master par exemple ;))</li>
+						<li>tags (lancement uniquement sur les runners avec le même tag)</li>
+						<li>allow_failure</li>
+						<li>when (manuel, tag, etc)</li>
+						<li>dependencies</li>
+						<li>artifacts</li>
+						<li>cache</li>
+						<li>before_script</li>
+						<li>after_script</li>
+						<li>environment</li>
+						<li>coverage</li>
+						<li>retry</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Gestion du cache</h3>
+					<p>Gagner du temps (et économiser des ressources), dans la définition :</p>
+					<pre><code data-trim>
+cache:
+	untracked: true
+	key: "$CI_PROJECT_ID"
+	paths:
+		- nodes_modules/
+		- plugins/
+					</code></pre>
+				</section>
+	
+				<section>
+					<h3>Les artifacts</h3>
+					<p>La force de Gitlab-CI</p>
+					<ul>
+						<li>Sauvegarde du résultat de l’intégration continue</li>
+						<li>Attaché au build</li>
+						<li>Intégré à l’interface de Gitlab</li>
+					</ul>
+				</section>
+	
+				<section>
+					<h5>Dans une « stage »</h5>
+					<pre><code data-trim>
+artifacts:
+paths:
+	- platforms/android/build/outputs/apk/
+</code></pre>			
+				</section>
+
+				<section>
+					<h3>Cas d’usages</h3>
+					<ul>
+						<li>Tests unitaires</li>
+						<li>Compilation d’application (Android, iOs)</li>
+						<li>« Compilation » de site statique</li>
+						<li>Hébergement de « page » directement dans GitLab</li>
+						<li>Etc…</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Exemple 1: Cordova</h3>
+					<pre><code data-trim>
+image: c4software/cordova-light
+
+stages:
+	- deploy
+
+cache:
+	untracked: true
+	key: "$CI_PROJECT_ID"
+	paths:
+		- plugins/
+
+android_debug:
+	stage: deploy
+	when: manual
+	script:
+		- cordova platform add android
+		- cordova build android
+	artifacts:
+		paths:
+			- platforms/android/build/outputs/apk/					
+</code></pre>
+				</section>
+
+				<section>
+					<h3>C’est tout ! </h3>
+					<h4>GitLab-CI c’est aussi simple que ça !</h4>
+				</section>
+
+				<section>
+					<h3>Allez plus loin… </h3>
+					<h4>Héberger des pages « web » sur GitLab</h4>
+				</section>
+
+				<section>
+					<h3>Exemple 2: GitLab Page</h3>
+					<pre><code data-trim>
+image: yasb:latest 
+
+stages:
+	- deploy
+
+pages:
+	stage: deploy
+	script:
+		- make full && git add --all && git commit -am "Build" && mv output public
+	artifacts:
+		paths:
+			- public
+</code></pre>
+				</section>
+
+				<section>
+					<h3>Quelques astuces / remarques ?</h3>
+					<ul>
+						<li>Mettre en cache certains dossiers (exemple node_modules).</li>
+						<li>GitLab-CI c’est de l’automatisation des taches (refait à l’identique à chaque fois).</li>
+						<li>Vous pouvez interdir l’execution du gitlab-ci en mettant « [ci skip] » dans le message de commit.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Des questions ?</h3>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				//parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				//parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

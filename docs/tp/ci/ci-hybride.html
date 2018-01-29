@@ -1,0 +1,887 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>App Hybride et Gitlab-CI · Cours BTS SIO Slam 5</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="pages.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Aides mémoires
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../cheatsheets/git/">
+            
+                <a href="../../cheatsheets/git/">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../cheatsheets/cordova/">
+            
+                <a href="../../cheatsheets/cordova/">
+            
+                    
+                    Cordova
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../cheatsheets/docker/">
+            
+                <a href="../../cheatsheets/docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../cheatsheets/vuejs/">
+            
+                <a href="../../cheatsheets/vuejs/">
+            
+                    
+                    VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Initiation à Git
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/git/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../git_initiation/">
+            
+                <a href="../git_initiation/">
+            
+                    
+                    TP
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Git en groupe + GitLab
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/gitlab/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../gitlab/">
+            
+                <a href="../gitlab/">
+            
+                    
+                    Git en groupe + GitLab
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Programmation sécurisée avec OWASP
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/securite_applications_web/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../securite/">
+            
+                <a href="../securite/">
+            
+                    
+                    Tentatives et injections
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/vuejs/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../vuejs/tp1.html">
+            
+                <a href="../vuejs/tp1.html">
+            
+                    
+                    Ajouter VueJS dans un site existant
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../vuejs/tp2.html">
+            
+                <a href="../vuejs/tp2.html">
+            
+                    
+                    Réaliser une application avec VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Cordova + VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/cordova/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../cordova/decouverte.html">
+            
+                <a href="../cordova/decouverte.html">
+            
+                    
+                    Découverte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../cordova/vuejs_cordova.html">
+            
+                <a href="../cordova/vuejs_cordova.html">
+            
+                    
+                    Projet Cordova + VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Laravel
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/laravel/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../laravel/introduction.html">
+            
+                <a href="../laravel/introduction.html">
+            
+                    
+                    Installation de Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../laravel/creation_api.html">
+            
+                <a href="../laravel/creation_api.html">
+            
+                    
+                    Réécriture des API de la TODO List
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Docker
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/docker/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../docker/introduction.html">
+            
+                <a href="../docker/introduction.html">
+            
+                    
+                    Première approche
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../docker/dockerfile.html">
+            
+                <a href="../docker/dockerfile.html">
+            
+                    
+                    Dockerfile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../docker/docker_compose.html">
+            
+                <a href="../docker/docker_compose.html">
+            
+                    
+                    Docker Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    GitLab-CI
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/gitlabci/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="pages.html">
+            
+                <a href="pages.html">
+            
+                    
+                    Utiliser Gitlab Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.10.3" data-path="ci-hybride.html">
+            
+                <a href="ci-hybride.html">
+            
+                    
+                    App Hybride et Gitlab-CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    [WIP] Framework Python : Flask
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/flask/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../python/flask.html">
+            
+                <a href="../python/flask.html">
+            
+                    
+                    Installation de Python et Flask
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../python/flask_todolist_api.html">
+            
+                <a href="../python/flask_todolist_api.html">
+            
+                    
+                    Réécriture des API de la TODO List
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >App Hybride et Gitlab-CI</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p><em>Last modified: Sat Jan 06 2018 11:22:07 GMT+0100 (CET)</em></p>
+</blockquote>
+<h1 id="compiler-une-application-hybride-avec-gitlab-ci">Compiler une application Hybride avec Gitlab-CI</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Dans ce TP vous allez mettre en place l&#x2019;int&#xE9;gration continue sur votre Projet d&#x2019;application Hybride. Fini la prise de t&#xEA;te pour la compilation de votre application. Vous allez utiliser &#xAB; une image Docker &#xBB; au travers de GitLab-CI l&#x2019;image docker en question est <a href="https://hub.docker.com/r/c4software/cordova-light/" target="_blank">Cordova light</a>.</p>
+<p>Pourquoi Light ? Car l&#x2019;image n&#x2019;embarque pas Chrome Headless, et donc ne permet pas de faire de test unitaire de votre application.</p>
+<h2 id="cr&#xE9;ation-du-projet-sur-gitlab">Cr&#xE9;ation du projet sur GitLab</h2>
+<p>Avec votre compte GitLab vous pouvez cr&#xE9;er un nombre illimit&#xE9;s de projets. La premi&#xE8;re &#xE9;tape est donc de cr&#xE9;er un projet sur votre  <a href="https://gitlab.com/projects/new" target="_blank">compte Gitlab</a>.</p>
+<p>&#x26A0;&#xFE0F; Je vous conseille de mettre votre projet en mode &#xAB; Private &#xBB;.</p>
+<h2 id="commiter-et-pusher-vos-sources">Commiter et Pusher vos sources</h2>
+<p>Si ce n&#x2019;est pas d&#xE9;j&#xE0; fait, commiter les sources de votre application Cordova. Attention &#xE0; bien mettre un <code>.gitignore</code> pour ignorer le dossier <code>nodes_modules/</code>.</p>
+<p>Vous pouvez pusher vos sources.</p>
+<h2 id="activer-gitlab-ci">Activer GitLab-CI</h2>
+<p>Maintenant que votre projet est sur GitLab, nous allons activer Gitlab-CI. Pour &#xE7;a cr&#xE9;er un fichier <code>.gitlab-ci.yml</code>, c&#x2019;est le fichier qui va activer l&#x2019;int&#xE9;gration continue sur votre projet. Voil&#xE0; le contenu du fichier :</p>
+<pre><code class="lang-yml"><span class="hljs-attr">image:</span> c4software/cordova-light
+
+<span class="hljs-attr">stages:</span>
+<span class="hljs-bullet">  -</span> deploy
+
+<span class="hljs-attr">cache:</span>
+<span class="hljs-attr">  untracked:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">  key:</span> <span class="hljs-string">&quot;$CI_PROJECT_ID&quot;</span>
+<span class="hljs-attr">  paths:</span>
+<span class="hljs-bullet">    -</span> plugins/
+
+<span class="hljs-attr">android_debug:</span>
+<span class="hljs-attr">  stage:</span> deploy
+<span class="hljs-attr">  when:</span> manual
+<span class="hljs-attr">  script:</span>
+<span class="hljs-bullet">    -</span> cordova platform add android
+<span class="hljs-bullet">    -</span> cordova build android
+<span class="hljs-attr">  artifacts:</span>
+<span class="hljs-attr">    paths:</span>
+<span class="hljs-bullet">      -</span> platforms/android/build/outputs/apk/
+</code></pre>
+<p>Et c&#x2019;est tout, avec ce simple fichier votre application est pr&#xEA;te et sera compil&#xE9;e en automatique.</p>
+<p>Commiter et Pusher la modification.</p>
+<ul>
+<li>Regarder les fichiers :<ul>
+<li>&#xC0; quoi correspond le <code>when: manual</code>?</li>
+<li>&#xC0; quoi sert le cache ?</li>
+<li>&#xC0; quoi correspond le <code>artifacts</code> ?</li>
+</ul>
+</li>
+</ul>
+<h2 id="lancement-dun-&#xAB;-build-&#xBB;">Lancement d&#x2019;un &#xAB; Build &#xBB;</h2>
+<p>Pour lancer un build rendez-vous dans la partie &#xAB; CI/CD &#xBB; de votre Projet GitLab.</p>
+<p><img src="ressources/hybrid-ci.png" alt="ci"></p>
+<p>Et lancer le build :</p>
+<p><img src="ressources/run.png" alt="ci"></p>
+<p>Au bout de quelques minutes votre application est pr&#xEA;te :</p>
+<p><img src="ressources/resultat.png" alt="resultat"></p>
+<p>Bonus !</p>
+<p>Grace &#xE0; l&#x2019;artifact votre application est m&#xEA;me t&#xE9;l&#xE9;chargeable :</p>
+<p><img src="ressources/telechargement.png" alt="dl"></p>
+<h2 id="test-et-analyse">Test et analyse</h2>
+<p>D&#xE9;sactiver le &#xAB; cache &#xBB; dans le fichier Gitlab-ci. Tester de compiler plusieurs fois votre application. &#xC0; votre avis le cache est-il utile ?</p>
+<h2 id="d&#xE9;clarer-un-runner-gitlab">D&#xE9;clarer un runner GitLab</h2>
+<p>Comme nous l&#x2019;avons vu tout repose sur les runners, de base Gitlab fourni des runners partag&#xE9;s. C&#x2019;est runners sont pratique car ils sont instantan&#xE9;ment disponible dans vos projets, cependant vu qu&#x2019;ils sont partag&#xE9;s avec d&#x2019;autre utilisateurs il peu rapidement y avoir des questions de s&#xE9;curit&#xE9;s et surtout de performances. </p>
+<p>Pour &#xEA;tre plus autonome (et plus performant) m&#xEA;me dans la version cloud il est possible de d&#xE9;clarer un runners &#xAB; &#xE0; nous &#xBB;. Ce runner va &#xEA;tre d&#xE9;di&#xE9; &#xE0; votre compte car il sera d&#xE9;clar&#xE9; sur votre machine.</p>
+<h3 id="installation">Installation</h3>
+<p>Pour d&#xE9;clarer un runner c&#x2019;est tr&#xE8;s simple, il faut juste le lancer / l&#x2019;installer sur votre machine. La documentation de GitLab &#xE9;tant tr&#xE8;s bien fait rendez vous <a href="https://docs.gitlab.com/runner/install/windows.html" target="_blank">ici pour Windows</a> et <a href="https://docs.gitlab.com/runner/install/linux-repository.html" target="_blank">la pour Linux</a></p>
+<h2 id="enregistrer-le-runner">Enregistrer le runner</h2>
+<p>Maintenant que le runner est install&#xE9; sur votre machine, nous allons devoir l&#x2019;enregistrer. L&#x2019;enregistrement consiste &#xE0; d&#xE9;clarer &#xE0; Gitlab.com que votre machine est pr&#xEA;te &#xE0; &#xE9;x&#xE9;cuter des t&#xE2;ches. Vous d&#xE9;diez en quelques sortes un peu de vos ressources &#xE0; GitLab au travers de votre Runner.</p>
+<p>L&#x2019;enregistrement du runners est relativement simple, il faut dans un premier temps allez dans &#xAB; les Param&#xE8;tres CI/CD du projet que vous avez cr&#xE9;&#xE9; &#xBB; exemple <code>https://gitlab.com/bts-sio-chevrollier/slam5/settings/ci_cd</code> cliquez sur &#xAB; Expand &#xBB; de la cat&#xE9;gorie &#xAB; Runners settings &#xBB;. Vous devez avoir quelques chose comme :</p>
+<p><img src="ressources/runner.png" alt="Register Runner"></p>
+<p>Dans une console administrateur :</p>
+<pre><code class="lang-sh">./gitlab-runner.exe register
+</code></pre>
+<p>&#x270B; STOP ! Une fois rendu &#xE0; cette &#xE9;tape appeler moi ! Nous allons terminer la proc&#xE9;dure ensemble. Pour les plus t&#xE9;m&#xE9;raire vous pouvez suivre <a href="https://docs.gitlab.com/runner/register/index.html#windows" target="_blank">la documentation</a> (Attention &#xE0; bien choisir Docker)</p>
+<h2 id="signer-lapplication">Signer l&#x2019;application</h2>
+<p>Faire du Debug c&#x2019;est bien ! Mais si on faisait une application pr&#xEA;te pour le Store ? C&#x2019;est possible et tout aussi simplement.</p>
+<p>&#x26A0;&#xFE0F; Je vous d&#xE9;conseille fortement de le faire sur un &#xAB; runner &#xBB; public de Gitlab-CI. Pourquoi ? Simplement car nous allons mettre une clef de signature sur votre APK, clef qui doit rester <strong>PRIV&#xC9;E</strong> ! C&#x2019;est ce qui garantie la s&#xE9;curit&#xE9; de votre application, si celle-ci se retrouve en ligne le jeu est fini pour vous n&#x2019;importe qui peux usurper votre identit&#xE9;e.</p>
+<p>Ajouter dans le fichier <code>.gitlab-ci.yml</code></p>
+<pre><code class="lang-yml"><span class="hljs-attr">android:</span>
+<span class="hljs-attr">  stage:</span> deploy
+<span class="hljs-attr">  when:</span> manual
+<span class="hljs-attr">  script:</span>
+<span class="hljs-bullet">    -</span> cordova platform add android
+<span class="hljs-bullet">    -</span> cordova build android --release -- --keystore=<span class="hljs-string">&quot;keystore/keyfile&quot;</span> --keystoreType jks --password=<span class="hljs-string">&quot;MOT_DE_PASSE&quot;</span> --storePassword=<span class="hljs-string">&quot;MOT_DE_PASSE&quot;</span> --alias=<span class="hljs-string">&quot;demo&quot;</span>
+<span class="hljs-attr">  artifacts:</span>
+<span class="hljs-attr">    paths:</span>
+<span class="hljs-bullet">      -</span> platforms/android/build/outputs/apk/
+</code></pre>
+<p>Comme vous pouvez le constater la partie script fait r&#xE9;f&#xE9;rence &#xE0; un nouveau fichier le <code>keystore/keyfile</code>. Pour que la commande fonctionne nous allons donc devoir &#xAB; le cr&#xE9;er &#xBB;.</p>
+<h3 id="cr&#xE9;ation-du-keystore">Cr&#xE9;ation du keystore</h3>
+<p>Le Keystore est une notion d&#x2019;Android, rien &#xE0; voir avec Cordova. Il faut donc utiliser Android-Studio (pour les int&#xE9;r&#xE9;ss&#xE9;s il est &#xE9;galement possible de le faire avec la ligne de commande).</p>
+<p>Avec Android Studio :</p>
+<p><img src="ressources/SjcOa.png" alt="store"></p>
+<p>Une fois cr&#xE9;&#xE9; :</p>
+<pre><code class="lang-sh">git add -A
+git commit -am <span class="hljs-string">&quot;Ajout signature&quot;</span>
+git push
+</code></pre>
+<h3 id="lancement-dun-build">Lancement d&#x2019;un build</h3>
+<p>Relancer un build, mais en s&#xE9;l&#xE9;ctionnant le stage &#xAB; android &#xBB;. Au bout de quelques minutes vous devez obtenir une application sign&#xE9;e.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="pages.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Utiliser Gitlab Pages">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"App Hybride et Gitlab-CI","level":"1.10.3","depth":2,"next":{"title":"[WIP] Framework Python : Flask","level":"1.11","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/flask/","ref":"https://rawgit.com/c4software/bts/master/cours/flask/","articles":[]},{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]}]},"previous":{"title":"Utiliser Gitlab Pages","level":"1.10.2","depth":2,"path":"tp/ci/pages.md","ref":"tp/ci/pages.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/ci/ci-hybride.md","mtime":"2018-01-06T10:22:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-29T11:59:22.865Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
