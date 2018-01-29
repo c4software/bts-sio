@@ -11,3 +11,14 @@
 .page-toc:hover{
     max-height: initial;
 }
+
+.markdown-section blockquote:first-of-type {
+    padding: 0;
+    border: none;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+.markdown-section blockquote:first-of-type em {
+    font-style: normal !important;
+}
