@@ -25,8 +25,47 @@ Question :
 
 Voir une des [solutions possible](#solution-possible-structure)
 
-### Liste
+### Structure de base
 
+Créer un fichier ```main.py``` c’est ce fichier qui va contenir l’ensemble de votre code, comme dans la version PHP, nous allons utiliser le JSON pour communiquer.
+
+Le minimum pour notre TP fonctionne est la déclaration des imports suivants :
+
+```python
+import uuid
+from flask import Flask, jsonify, request, session
+```
+
+Pour l’instant l’objet Flask n’est pas initialisé votre code n’est donc pas fonctionnel. Avant de continuer, regardons l’utilité des imports :
+
+- [uuid](https://docs.python.org/3/library/uuid.html)
+- [Flask](http://flask.pocoo.org/)
+- [jsonify](http://flask.pocoo.org/docs/0.12/api/#flask.json.jsonify)
+- [request](http://flask.pocoo.org/docs/0.12/api/#flask.request)
+- [session](http://flask.pocoo.org/docs/0.12/api/#sessions)
+
+### La partie Flask
+
+Maintenant que vous avez compris l’usage des différents imports, nous allons initialiser Flask. Ajouter **à la fin** du fichier :
+
+```python
+app = Flask(__name__)
+
+if __name__ == '__main__':
+    app.secret_key = 'YOLO_EXAMPLE_CHANGEME'
+    app.run()
+```
+
+Vous pouvez maintenant lancer votre application, via :
+
+```sh
+python main.pys
+```
+
+- À quoi sert ```app.secret_key``` ?
+- Comment changer le port d’écoute ? (La réponse est là… [sur la documentation officiel](http://flask.pocoo.org/)… quelques part…)
+
+### Liste
 
 
 ### Création
