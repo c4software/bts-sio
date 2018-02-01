@@ -10,14 +10,14 @@ Pour ne pas compliquer le TP je vais faire abstraction de la base de données, n
 
 Comme dans le premier TP notre code sera intégralement dans un fichier nommé « main.py ». Le fichier va contenir les différentes fonctions pour répondre aux différentes requêtes des clients.
 
-Comme dans le premier TP, avant de commencer à coder nous allons déterminer le nom des fonctions ainsi que le chemin :
+Comme dans le premier TP, avant de commencer à coder nous allons déterminer le nom des fonctions ainsi que le chemin et les méthodes (POST, GET, DELETE, …):
 
-| Description           | Chemin | Fonction |
-|-----------------------|--------|----------|
-| Liste                 |        |          |
-| Création              |        |          |
-| Marquer comme terminé |        |          |
-| Supprimer             |        |          |
+| Description           | Chemin | Methode | Fonction |
+|-----------------------|--------|---------|-----------
+| Liste                 |        |         |          |
+| Création              |        |         |          |
+| Marquer comme terminé |        |         |          |
+| Supprimer             |        |         |          |
 
 Question :
 
@@ -26,6 +26,8 @@ Question :
 Voir une des [solutions possible](#solution-possible-structure)
 
 ### Liste
+
+
 
 ### Création
 
@@ -39,12 +41,12 @@ Voir une des [solutions possible](#solution-possible-structure)
 
 L’une des solutions est la suivante :
 
-| Description           | Chemin           | Fonction      |
-|-----------------------|------------------|---------------|
-| Liste                 | /api/liste       | liste()       |
-| Création              | /api/creer       | creer()       |
-| Marquer comme terminé | /api/terminer    | terminer()    |
-| Supprimer             | /api/suppression | suppression() |
+| Description           | Chemin           | Methode | Fonction      |
+|-----------------------|------------------|---------|---------------|
+| Liste                 | /api/liste       | GET     | liste()       |
+| Création              | /api/creer       | POST    | creer()       |
+| Marquer comme terminé | /api/terminer    | POST    | terminer()    |
+| Supprimer             | /api/suppression | DELETE  | suppression() |
 
 Question :
 

@@ -128,6 +128,22 @@ Rappel sur le fonctionnement de Flask, comme vu pendant le cours Flask permet de
 - ```/``` ==> ```hello_world()```.
 - ```/hello/<name>``` ==> ```hello(name)```.
 
+### Associer un lien et une fonction
+
+En python, on utilise beaucoup de « décorateur », un décorateur est un « morceau de code » qui sera appelé avant, après, ou à l’initialisation de votre code.
+
+Flask apport un décorateur ```@app.route``` celui-ci nous permet de déclarer des nouveaux chemin (route) pour accéder à nos API. Exemple :
+
+```python
+[…]
+@app.route("/")
+def hello_world():
+    pass
+[…]
+```
+
+Ce morceau de code déclare donc une url ```/``` et appelera la fonction ```hello_world()``` à chaque fois qu’une personne y accedera.
+
 ### Le code
 
 Maintenant que nous avons défini dans notre tête la structure de notre application écrivont le code :
