@@ -69,6 +69,28 @@ python main.pys
 
 Comme dans le premier TP, l’API ```list``` ne va faire que retourner la liste des taches actuellement dans la session.
 
+Avec Flask ça va être **très** simple ! Il suffit de faire :
+
+```python
+return jsonify(session["todo"])
+```
+
+Très bien, mais on fait ça où ? Dans une fonction, il faut donc créer une fonction dans le fichier ```main.py``` pour le nom de la fonction je vous laisse vous reporter [à votre tableau](#le-mainpy), pour le premier je vous aide :
+
+```python
+@app.route("/api/liste")
+def get_list():
+    """ Retourne la liste des todo dans la session """
+    return jsonify(session["todo"])
+```
+
+🕵️‍♀️ Notez le commentaire dans la fonction… J’espère que vous en mettre vous aussi…
+
+Question :
+
+- Comment être sur que la session est bien initialisé ?
+
+### Votre décorateur
 
 ### Création
 
