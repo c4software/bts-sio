@@ -141,7 +141,7 @@ def liste():
 
 ### Suppression
 
-#### Notes
+## Notes
 
 ### Solution possible structure
 
