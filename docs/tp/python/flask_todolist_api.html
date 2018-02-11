@@ -709,7 +709,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Thu Feb 01 2018 22:06:04 GMT+0100 (CET)</em></p>
+<p><em>Last modified: Sun Feb 11 2018 18:09:56 GMT+0100 (CET)</em></p>
 </blockquote>
 <h1 id="&#xE9;crire-des-api-avec-flask">&#xC9;crire des API avec Flask</h1>
 <h2 id="introduction">Introduction</h2>
@@ -788,6 +788,52 @@
 <li>Comment changer le port d&#x2019;&#xE9;coute ? (La r&#xE9;ponse est l&#xE0;&#x2026; <a href="http://flask.pocoo.org/" target="_blank">sur la documentation officiel</a>&#x2026; quelques part&#x2026;)</li>
 </ul>
 <h3 id="liste">Liste</h3>
+<p>Comme dans le premier TP, l&#x2019;API <code>list</code> ne va faire que retourner la liste des taches actuellement dans la session.</p>
+<p>Avec Flask &#xE7;a va &#xEA;tre <strong>tr&#xE8;s</strong> simple ! Il suffit de faire :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">return</span> jsonify(session[<span class="hljs-string">&quot;todo&quot;</span>])
+</code></pre>
+<p>Tr&#xE8;s bien, mais on fait &#xE7;a o&#xF9; ? Dans une fonction, il faut donc cr&#xE9;er une fonction dans le fichier <code>main.py</code> pour le nom de la fonction je vous laisse vous reporter <a href="#le-mainpy">&#xE0; votre tableau</a>, pour le premier je vous aide :</p>
+<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/liste&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">liste</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot; Retourne la liste des todo dans la session &quot;&quot;&quot;</span>
+    <span class="hljs-keyword">return</span> jsonify(session[<span class="hljs-string">&quot;todo&quot;</span>])
+</code></pre>
+<p>&#x1F575;&#xFE0F;&#x200D;&#x2640;&#xFE0F; Notez le commentaire dans la fonction&#x2026; J&#x2019;esp&#xE8;re que vous en mettre vous aussi&#x2026;</p>
+<p>Question :</p>
+<ul>
+<li>Comment &#xEA;tre sur que la session est bien initialis&#xE9; ?</li>
+</ul>
+<h3 id="votre-d&#xE9;corateur">Votre d&#xE9;corateur</h3>
+<p>Et voil&#xE0;, c&#x2019;est le moment&#x2026; Le moment ou vous allez &#xE9;crire votre propre d&#xE9;corateur ! (Si c&#x2019;est certains ont oubli&#xE9; ce que c&#x2019;&#xE9;tait un d&#xE9;corateur <a href="flask.html#associer-un-lien-et-une-fonction">rendez-vous ici</a>)</p>
+<p>Tr&#xE8;s bien, maintenant que vous avez la m&#xE9;moire fra&#xEE;che, voil&#xE0; votre d&#xE9;corateur :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> wraps
+<span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> session
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">init_session</span><span class="hljs-params">(fn)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot; Decorateur qui init la session &quot;&quot;&quot;</span>
+<span class="hljs-meta">    @wraps(fn)</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrap</span><span class="hljs-params">(*args, **kwargs)</span>:</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;todo&quot;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> session:
+            session[<span class="hljs-string">&quot;todo&quot;</span>] = {}
+        <span class="hljs-keyword">return</span> fn(*args, **kwargs)
+    <span class="hljs-keyword">return</span> wrap
+</code></pre>
+<p>O&#xF9; mettre le code ?</p>
+<ul>
+<li>Choix 1 : Directement dans le main.py</li>
+<li>Choix 2 : Dans un autre fichier (exemple helper.py)</li>
+</ul>
+<p>Vous avez le choix&#x2026; Si vous faite le choix de mettre le fichier dans un autre fichier il faudra importer <code>init_session</code> dans le main.py :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> helper <span class="hljs-keyword">import</span> init_session
+</code></pre>
+<p>PS: Je vous conseil de le mettre dans un fichier <code>helper.py</code>.</p>
+<h3 id="modification-de-la-liste">Modification de la liste</h3>
+<p>Maintenant que votre d&#xE9;corateur est termin&#xE9; nous allons l&#x2019;utiliser. Avant la fonction <code>liste()</code> ajouter <code>@init_session()</code> exemple :</p>
+<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/liste&quot;)</span>
+<span class="hljs-meta">@init_session() # &lt;-- Voil&#xE0; ICI, ajouter l&#x2019;appel au d&#xE9;corateur.</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">liste</span><span class="hljs-params">()</span>:</span>
+    [&#x2026;]
+</code></pre>
+<p>&#x1F393; Le d&#xE9;corateur va &#xEA;tre appel&#xE9; avant chaque requ&#xEA;te, votre session sera toujours bien cr&#xE9;&#xE9;e, pratique non ?</p>
 <h3 id="cr&#xE9;ation">Cr&#xE9;ation</h3>
 <h3 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h3>
 <h3 id="suppression">Suppression</h3>
@@ -874,7 +920,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-01T21:06:04.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-01T21:07:30.075Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-11T17:09:56.953Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-11T17:14:36.804Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
