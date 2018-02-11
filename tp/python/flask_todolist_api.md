@@ -67,6 +67,8 @@ python main.pys
 
 ### Liste
 
+Comme dans le premier TP, l’API ```list``` ne va faire que retourner la liste des taches actuellement dans la session.
+
 
 ### Création
 
