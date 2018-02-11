@@ -10,6 +10,9 @@ serve:
 version:
 	git add docs/ && git commit -am "Rebuild du GitBook"
 
+publish:
+	git push && git push gitlab
+
 help:
 	@echo '                '
 	@echo 'Usage:          '
@@ -22,4 +25,4 @@ help:
 
 full: build version
 
-.PHONY: build install_plugins serve version help full
+.PHONY: build publish install_plugins serve version help full
