@@ -79,7 +79,7 @@ Très bien, mais on fait ça où ? Dans une fonction, il faut donc créer une fo
 
 ```python
 @app.route("/api/liste")
-def get_list():
+def liste():
     """ Retourne la liste des todo dans la session """
     return jsonify(session["todo"])
 ```
@@ -91,6 +91,49 @@ Question :
 - Comment être sur que la session est bien initialisé ?
 
 ### Votre décorateur
+
+Et voilà, c’est le moment… Le moment ou vous allez écrire votre propre décorateur ! (Si c’est certains ont oublié ce que c’était un décorateur [rendez-vous ici](flask.html#associer-un-lien-et-une-fonction))
+
+Très bien, maintenant que vous avez la mémoire fraîche, voilà votre décorateur :
+
+```python
+from functools import wraps
+from flask import session
+def init_session(fn):
+    """ Decorateur qui init la session """
+    @wraps(fn)
+    def wrap(*args, **kwargs):
+        if "todo" not in session:
+            session["todo"] = {}
+        return fn(*args, **kwargs)
+    return wrap
+```
+
+Où mettre le code ?
+
+- Choix 1 : Directement dans le main.py
+- Choix 2 : Dans un autre fichier (exemple helper.py)
+
+Vous avez le choix… Si vous faite le choix de mettre le fichier dans un autre fichier il faudra importer ```init_session``` dans le main.py :
+
+```python
+from helper import init_session
+```
+
+PS: Je vous conseil de le mettre dans un fichier ```helper.py```.
+
+### Modification de la liste
+
+Maintenant que votre décorateur est terminé nous allons l’utiliser. Avant la fonction ```liste()``` ajouter ```@init_session()``` exemple :
+
+```python
+@app.route("/api/liste")
+@init_session() # <-- Voilà ICI, ajouter l’appel au décorateur.
+def liste():
+    […]
+```
+
+🎓 Le décorateur va être appelé avant chaque requête, votre session sera toujours bien créée, pratique non ?
 
 ### Création
 
