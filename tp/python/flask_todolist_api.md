@@ -78,7 +78,7 @@ return jsonify(session["todo"])
 Très bien, mais on fait ça où ? Dans une fonction, il faut donc créer une fonction dans le fichier ```main.py``` pour le nom de la fonction je vous laisse vous reporter [à votre tableau](#le-mainpy), pour le premier je vous aide :
 
 ```python
-@app.route("/api/liste")
+@app.route("/api/todo")
 def liste():
     """ Retourne la liste des todo dans la session """
     return jsonify(session["todo"])
@@ -137,6 +137,51 @@ def liste():
 
 ### Création
 
+Comme dans le premier TP la partie création doit comporter un test :
+
+- Est-ce que « text » est dans data ?
+
+Ce test s’écrit en Python :
+
+```python
+[…]
+if "texte" in data:
+    pass
+else:
+    pass
+[…]
+```
+
+- L’autre élément important, c’est l’unicité d’une tâche dans la session, en python ça se fait avec :
+
+```python
+import uuid
+[…]
+uniq_id = str(uuid.uuid4())
+```
+
+Comme pour la liste, vous pouvez vous reporter à votre tableau contenant « le mapping » entre le chemin et la méthode, voilà ce que ça donne dans mon cas :
+
+```python
+@app.route("/api/creer", methods=['POST'])
+@init_session
+def save():
+    """ Save a new element in the session["todo"] """
+    data = request.form
+    if "texte" in data:
+        session["todo"][str(uuid.uuid4())] = {"texte": data["texte"], "termine": False}
+        session.modified = True
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False})
+```
+
+Questions :
+
+- Réaliser la methode dans votre code par rapport au tableau de définition que vous avez écrit.
+- À quoi sert request.form ? (Voir la doc de Flask)
+- Pourquoi est-je fait « session.modified = True » ? À votre avis ?
+
 ### Marquer comme terminé
 
 ### Suppression
@@ -147,12 +192,12 @@ def liste():
 
 L’une des solutions est la suivante :
 
-| Description           | Chemin           | Methode | Fonction      |
-|-----------------------|------------------|---------|---------------|
-| Liste                 | /api/liste       | GET     | liste()       |
-| Création              | /api/creer       | POST    | creer()       |
-| Marquer comme terminé | /api/terminer    | POST    | terminer()    |
-| Supprimer             | /api/suppression | DELETE  | suppression() |
+| Description           | Chemin                         | Methode | Fonction      |
+|-----------------------|--------------------------------|---------|---------------|
+| Liste                 | /api/todo                      | GET     | liste()       |
+| Création              | /api/todo                      | POST    | creer()       |
+| Marquer comme terminé | /api/todo/done/<current_id>    | POST    | terminer()    |
+| Supprimer             | /api/todo/delete/<current_id>  | DELETE  | suppression() |
 
 Question :
 
