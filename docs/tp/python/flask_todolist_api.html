@@ -709,7 +709,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Feb 14 2018 19:45:30 GMT+0100 (CET)</em></p>
+<p><em>Last modified: Wed Feb 14 2018 23:40:37 GMT+0100 (CET)</em></p>
 </blockquote>
 <h1 id="&#xE9;crire-des-api-avec-flask">&#xC9;crire des API avec Flask</h1>
 <h2 id="introduction">Introduction</h2>
@@ -828,7 +828,7 @@
 <p>PS: Je vous conseil de le mettre dans un fichier <code>helper.py</code>.</p>
 <h3 id="modification-de-la-liste">Modification de la liste</h3>
 <p>Maintenant que votre d&#xE9;corateur est termin&#xE9; nous allons l&#x2019;utiliser. Avant la fonction <code>liste()</code> ajouter <code>@init_session()</code> exemple :</p>
-<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/liste&quot;)</span>
+<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/todo&quot;)</span>
 <span class="hljs-meta">@init_session() # &lt;-- Voil&#xE0; ICI, ajouter l&#x2019;appel au d&#xE9;corateur.</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">liste</span><span class="hljs-params">()</span>:</span>
     [&#x2026;]
@@ -855,7 +855,7 @@
 uniq_id = str(uuid.uuid4())
 </code></pre>
 <p>Comme pour la liste, vous pouvez vous reporter &#xE0; votre tableau contenant &#xAB; le mapping &#xBB; entre le chemin et la m&#xE9;thode, voil&#xE0; ce que &#xE7;a donne dans mon cas :</p>
-<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/creer&quot;, methods=[&apos;POST&apos;])</span>
+<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/todo&quot;, methods=[&apos;POST&apos;])</span>
 <span class="hljs-meta">@init_session</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">save</span><span class="hljs-params">()</span>:</span>
     <span class="hljs-string">&quot;&quot;&quot; Save a new element in the session[&quot;todo&quot;] &quot;&quot;&quot;</span>
@@ -958,7 +958,7 @@ uniq_id = str(uuid.uuid4())
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-14T18:45:30.745Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-14T18:46:22.813Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-14T22:40:37.679Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-14T22:41:01.877Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
