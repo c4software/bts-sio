@@ -127,7 +127,7 @@ PS: Je vous conseil de le mettre dans un fichier ```helper.py```.
 Maintenant que votre décorateur est terminé nous allons l’utiliser. Avant la fonction ```liste()``` ajouter ```@init_session()``` exemple :
 
 ```python
-@app.route("/api/liste")
+@app.route("/api/todo")
 @init_session() # <-- Voilà ICI, ajouter l’appel au décorateur.
 def liste():
     […]
@@ -163,7 +163,7 @@ uniq_id = str(uuid.uuid4())
 Comme pour la liste, vous pouvez vous reporter à votre tableau contenant « le mapping » entre le chemin et la méthode, voilà ce que ça donne dans mon cas :
 
 ```python
-@app.route("/api/creer", methods=['POST'])
+@app.route("/api/todo", methods=['POST'])
 @init_session
 def save():
     """ Save a new element in the session["todo"] """
