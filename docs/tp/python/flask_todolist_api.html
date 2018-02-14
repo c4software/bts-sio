@@ -709,7 +709,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Sun Feb 11 2018 18:20:41 GMT+0100 (CET)</em></p>
+<p><em>Last modified: Wed Feb 14 2018 19:45:30 GMT+0100 (CET)</em></p>
 </blockquote>
 <h1 id="&#xE9;crire-des-api-avec-flask">&#xC9;crire des API avec Flask</h1>
 <h2 id="introduction">Introduction</h2>
@@ -793,7 +793,7 @@
 <pre><code class="lang-python"><span class="hljs-keyword">return</span> jsonify(session[<span class="hljs-string">&quot;todo&quot;</span>])
 </code></pre>
 <p>Tr&#xE8;s bien, mais on fait &#xE7;a o&#xF9; ? Dans une fonction, il faut donc cr&#xE9;er une fonction dans le fichier <code>main.py</code> pour le nom de la fonction je vous laisse vous reporter <a href="#le-mainpy">&#xE0; votre tableau</a>, pour le premier je vous aide :</p>
-<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/liste&quot;)</span>
+<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/todo&quot;)</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">liste</span><span class="hljs-params">()</span>:</span>
     <span class="hljs-string">&quot;&quot;&quot; Retourne la liste des todo dans la session &quot;&quot;&quot;</span>
     <span class="hljs-keyword">return</span> jsonify(session[<span class="hljs-string">&quot;todo&quot;</span>])
@@ -835,6 +835,44 @@
 </code></pre>
 <p>&#x1F393; Le d&#xE9;corateur va &#xEA;tre appel&#xE9; avant chaque requ&#xEA;te, votre session sera toujours bien cr&#xE9;&#xE9;e, pratique non ?</p>
 <h3 id="cr&#xE9;ation">Cr&#xE9;ation</h3>
+<p>Comme dans le premier TP la partie cr&#xE9;ation doit comporter un test :</p>
+<ul>
+<li>Est-ce que &#xAB; text &#xBB; est dans data ?</li>
+</ul>
+<p>Ce test s&#x2019;&#xE9;crit en Python :</p>
+<pre><code class="lang-python">[&#x2026;]
+<span class="hljs-keyword">if</span> <span class="hljs-string">&quot;texte&quot;</span> <span class="hljs-keyword">in</span> data:
+    <span class="hljs-keyword">pass</span>
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">pass</span>
+[&#x2026;]
+</code></pre>
+<ul>
+<li>L&#x2019;autre &#xE9;l&#xE9;ment important, c&#x2019;est l&#x2019;unicit&#xE9; d&#x2019;une t&#xE2;che dans la session, en python &#xE7;a se fait avec :</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> uuid
+[&#x2026;]
+uniq_id = str(uuid.uuid4())
+</code></pre>
+<p>Comme pour la liste, vous pouvez vous reporter &#xE0; votre tableau contenant &#xAB; le mapping &#xBB; entre le chemin et la m&#xE9;thode, voil&#xE0; ce que &#xE7;a donne dans mon cas :</p>
+<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/creer&quot;, methods=[&apos;POST&apos;])</span>
+<span class="hljs-meta">@init_session</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">save</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot; Save a new element in the session[&quot;todo&quot;] &quot;&quot;&quot;</span>
+    data = request.form
+    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;texte&quot;</span> <span class="hljs-keyword">in</span> data:
+        session[<span class="hljs-string">&quot;todo&quot;</span>][str(uuid.uuid4())] = {<span class="hljs-string">&quot;texte&quot;</span>: data[<span class="hljs-string">&quot;texte&quot;</span>], <span class="hljs-string">&quot;termine&quot;</span>: <span class="hljs-keyword">False</span>}
+        session.modified = <span class="hljs-keyword">True</span>
+        <span class="hljs-keyword">return</span> jsonify({<span class="hljs-string">&quot;success&quot;</span>: <span class="hljs-keyword">True</span>})
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">return</span> jsonify({<span class="hljs-string">&quot;success&quot;</span>: <span class="hljs-keyword">False</span>})
+</code></pre>
+<p>Questions :</p>
+<ul>
+<li>R&#xE9;aliser la methode dans votre code par rapport au tableau de d&#xE9;finition que vous avez &#xE9;crit.</li>
+<li>&#xC0; quoi sert request.form ? (Voir la doc de Flask)</li>
+<li>Pourquoi est-je fait &#xAB; session.modified = True &#xBB; ? &#xC0; votre avis ?</li>
+</ul>
 <h3 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h3>
 <h3 id="suppression">Suppression</h3>
 <h2 id="notes">Notes</h2>
@@ -852,25 +890,25 @@
 <tbody>
 <tr>
 <td>Liste</td>
-<td>/api/liste</td>
+<td>/api/todo</td>
 <td>GET</td>
 <td>liste()</td>
 </tr>
 <tr>
 <td>Cr&#xE9;ation</td>
-<td>/api/creer</td>
+<td>/api/todo</td>
 <td>POST</td>
 <td>creer()</td>
 </tr>
 <tr>
 <td>Marquer comme termin&#xE9;</td>
-<td>/api/terminer</td>
+<td>/api/todo/done/<current_id></current_id></td>
 <td>POST</td>
 <td>terminer()</td>
 </tr>
 <tr>
 <td>Supprimer</td>
-<td>/api/suppression</td>
+<td>/api/todo/delete/<current_id></current_id></td>
 <td>DELETE</td>
 <td>suppression()</td>
 </tr>
@@ -920,7 +958,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-11T17:20:41.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-11T17:20:50.869Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-14T18:45:30.745Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-14T18:46:22.813Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
