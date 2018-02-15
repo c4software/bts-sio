@@ -128,7 +128,7 @@ Maintenant que votre décorateur est terminé nous allons l’utiliser. Avant la
 
 ```python
 @app.route("/api/todo")
-@init_session() # <-- Voilà ICI, ajouter l’appel au décorateur.
+@init_session # <-- Voilà ICI, ajouter l’appel au décorateur.
 def liste():
     […]
 ```
@@ -184,7 +184,39 @@ Questions :
 
 ### Marquer comme terminé
 
+Marquer comme terminé une tache, c’est changer le status de « termine » à ```true```.
+
+```python
+@app.route("/api/todo/done/<current_id>", methods=["POST"])
+@init_session
+def terminer(current_id):
+    """ Marquer une Todo comme terminee """
+    # L'id est terminee
+    if current_id in session["todo"]:
+        current = session["todo"][current_id]
+        current["termine"] = True # Mark As done
+        session["todo"][current_id] = current # and Save
+        session.modified = True
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False})
+```
+
 ### Suppression
+
+```python
+@app.route("/api/todo/delete/<current_id>", methods=['DELETE'])
+@init_session
+def suppression(current_id):
+    """ Suppression d'un element de la session["todo"] """
+    # current_id exist and mark as done ?
+    if current_id in session["todo"] and session["todo"][current_id]["termine"]:
+        del session["todo"][current_id] # Remove the data
+        session.modified = True
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False})
+```
 
 ## Notes
 
