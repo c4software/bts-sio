@@ -184,7 +184,19 @@ Questions :
 
 ### Marquer comme terminé
 
-Marquer comme terminé une tache, c’est changer le status de « termine » à ```true```.
+Marquer comme terminé une tache c’est changer le status de « termine » à ```true```.
+
+- Vérifier que la tâche existe dans la session. (En python ```if current_id in session["todo"]:```)
+- Récupérer la tâche dan la session.
+- Changer ```current['termine'] = True```.
+- Sauvegarder à nouveau la tache dans la session.
+
+Questions :
+
+- Écrire l’algorithme (en Français), du code à obtenir.
+- Le re-transcrire en Python.
+
+Dans mon cas voilà le code obtenu :
 
 ```python
 @app.route("/api/todo/done/<current_id>", methods=["POST"])
@@ -203,6 +215,8 @@ def terminer(current_id):
 ```
 
 ### Suppression
+
+TODO
 
 ```python
 @app.route("/api/todo/delete/<current_id>", methods=['DELETE'])
