@@ -265,7 +265,7 @@ Question :
 
 ## Utilisation des API
 
-Mettre à jour le code de [votre TP VueJS](tp/vuejs/tp1.md) pour utiliser c’est nouvelles API.
+Mettre à jour le code de [votre TP VueJS](/bts-sio/tp/vuejs/tp2.html) pour utiliser c’est nouvelles API.
 
 ## Notes
 
