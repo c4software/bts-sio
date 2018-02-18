@@ -263,6 +263,10 @@ Question :
 
 - Valider le bon fonctionnement de votre application grace au jeu de test.
 
+## Utilisation des API
+
+Mettre à jour le code de [votre TP VueJS](vuejs/tp1.html) pour utiliser c’est nouvelles API.
+
 ## Notes
 
 ### Solution possible structure
