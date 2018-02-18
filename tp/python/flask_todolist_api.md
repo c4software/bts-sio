@@ -255,6 +255,14 @@ def suppression(current_id):
 
 ## Tests
 
+Maintenant que l’ensemble de votre code est terminé (et commenté 🕵🏻), nous allons pouvoir le tester, pour tester les API c’est plutôt simple. Il suffit d’utiliser des outils tels que [Postman](https://www.getpostman.com/), l’idée c’est de se construire un « cahier » de test vous permettant de valider le fonctionnement de votre application rapidement (comprendre dès que vous modifiez le code). C’est dans ce but que je vous ai préparé une collection de « tests » qui devrais vous permettre de valider rapidement le bon fonctionnement de vos API.
+
+[Télécharger la collection de tests](https://raw.githubusercontent.com/c4software/api-todo-flask/master/test/TODO%20API%20Test.postman_collection.json)
+
+Question :
+
+- Valider le bon fonctionnement de votre application grace au jeu de test.
+
 ## Notes
 
 ### Solution possible structure
