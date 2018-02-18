@@ -186,6 +186,7 @@ Questions :
 
 Marquer comme terminé une tache c’est changer le status de « termine » à ```true```.
 
+- Utiliser le décorateur d’initialisation de la session.
 - Vérifier que la tâche existe dans la session. (En python ```if current_id in session["todo"]:```)
 - Récupérer la tâche dan la session.
 - Changer ```current['termine'] = True```.
@@ -195,6 +196,7 @@ Questions :
 
 - Écrire l’algorithme (en Français), du code à obtenir.
 - Le re-transcrire en Python.
+- L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
 Dans mon cas voilà le code obtenu :
 
@@ -216,7 +218,26 @@ def terminer(current_id):
 
 ### Suppression
 
-TODO
+Supprimer une tâche, c’est tout simplement l’action de la retirer de la session, pour faire ça le mot clef et python c’est ```del```. Cependant votre code doit bloquer certaines actions car toute les tâches ne peuvent pas être supprimés :
+
+- Limiter l’action seulement aux « identifiants » reconnu dans la session.
+- La tâche doit avoir le booléen « termine » à vrai pour permettre la suppression.
+
+Votre algorithme doit donc suivre :
+
+- Utiliser le décorateur qui initialise la session.
+- Vérifier que la tâche existe dans la session. (En Python ```if current_id in session["todo"]:```)
+- Vérifier que la tâche à bien le statut ```termine == True```. (en Python ```session["todo"][current_id]["termine"]```)
+- Suppression de la tâche (```del …```).
+- Sauvegarder à nouveau la tache dans la session.
+
+Questions :
+
+- Écrire l’algorithme (en Français) du code à obtenir.
+- Le re-transcrire en Python
+- L’implémenter dans votre fichier main.py (en respectant le tableau établi)
+
+Dans mon cas le code python obtenu est le suivant:
 
 ```python
 @app.route("/api/todo/delete/<current_id>", methods=['DELETE'])
@@ -231,6 +252,8 @@ def suppression(current_id):
     else:
         return jsonify({"success": False})
 ```
+
+## Tests
 
 ## Notes
 
