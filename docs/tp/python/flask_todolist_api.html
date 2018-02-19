@@ -713,7 +713,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Mon Feb 19 2018 23:20:46 GMT+0100 (CET)</em></p>
+<p><em>Last modified: Mon Feb 19 2018 23:36:50 GMT+0100 (CET)</em></p>
 </blockquote>
 <h1 id="&#xE9;crire-des-api-avec-flask">&#xC9;crire des API avec Flask</h1>
 <h2 id="introduction">Introduction</h2>
@@ -761,7 +761,49 @@
 <ul>
 <li>C&#x2019;est &#xE0; vous, Avant de continuer un papier un crayon !</li>
 </ul>
-<p>Voir une des <a href="#solution-possible-structure">solutions possible</a></p>
+<div class="click_reveal"><span> Voir l&#x2019;une des solutions possible </span><div><table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Chemin</th>
+<th>Methode</th>
+<th>Fonction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Liste</td>
+<td>/api/todo</td>
+<td>GET</td>
+<td>liste()</td>
+</tr>
+<tr>
+<td>Cr&#xE9;ation</td>
+<td>/api/todo</td>
+<td>POST</td>
+<td>creer()</td>
+</tr>
+<tr>
+<td>Marquer comme termin&#xE9;</td>
+<td>/api/todo/done/<current_id></current_id></td>
+<td>POST</td>
+<td>terminer()</td>
+</tr>
+<tr>
+<td>Supprimer</td>
+<td>/api/todo/delete/<current_id></current_id></td>
+<td>DELETE</td>
+<td>suppression()</td>
+</tr>
+</tbody>
+</table>
+<p>Question :</p>
+<ul>
+<li>&#xC0; votre avis pourquoi est-ce important de fair ce travail ?</li>
+<li>Quel sont les autres solutions pour r&#xE9;pondre &#xE0; ce genre de soucis ?</li>
+</ul>
+</div></div>
+
 <h3 id="structure-de-base">Structure de base</h3>
 <p>Cr&#xE9;er un fichier <code>main.py</code> c&#x2019;est ce fichier qui va contenir l&#x2019;ensemble de votre code, comme dans la version PHP, nous allons utiliser le JSON pour communiquer.</p>
 <p>Le minimum pour notre TP fonctionne est la d&#xE9;claration des imports suivants :</p>
@@ -953,50 +995,6 @@ uniq_id = str(uuid.uuid4())
 </ul>
 <h2 id="utilisation-des-api">Utilisation des API</h2>
 <p>Mettre &#xE0; jour le code de votre TP &#xAB; Ajouter VueJS dans un site existant &#xBB; pour utiliser c&#x2019;est nouvelles API.</p>
-<h2 id="notes">Notes</h2>
-<h3 id="solution-possible-structure">Solution possible structure</h3>
-<p>L&#x2019;une des solutions est la suivante :</p>
-<table>
-<thead>
-<tr>
-<th>Description</th>
-<th>Chemin</th>
-<th>Methode</th>
-<th>Fonction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Liste</td>
-<td>/api/todo</td>
-<td>GET</td>
-<td>liste()</td>
-</tr>
-<tr>
-<td>Cr&#xE9;ation</td>
-<td>/api/todo</td>
-<td>POST</td>
-<td>creer()</td>
-</tr>
-<tr>
-<td>Marquer comme termin&#xE9;</td>
-<td>/api/todo/done/<current_id></current_id></td>
-<td>POST</td>
-<td>terminer()</td>
-</tr>
-<tr>
-<td>Supprimer</td>
-<td>/api/todo/delete/<current_id></current_id></td>
-<td>DELETE</td>
-<td>suppression()</td>
-</tr>
-</tbody>
-</table>
-<p>Question :</p>
-<ul>
-<li>&#xC0; votre avis pourquoi est-ce important de fair ce travail ?</li>
-<li>Quel sont les autres solutions pour r&#xE9;pondre &#xE0; ce genre de soucis ?</li>
-</ul>
 
                                 
                                 </section>
@@ -1036,7 +1034,7 @@ uniq_id = str(uuid.uuid4())
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-19T22:20:46.890Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-19T22:34:14.525Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-19T22:36:50.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-19T22:36:56.569Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

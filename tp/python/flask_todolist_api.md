@@ -23,7 +23,21 @@ Question :
 
 - C’est à vous, Avant de continuer un papier un crayon !
 
-Voir une des [solutions possible](#solution-possible-structure)
+{% reveal text="Voir l’une des solutions possible" %}
+
+| Description           | Chemin                         | Methode | Fonction      |
+|-----------------------|--------------------------------|---------|---------------|
+| Liste                 | /api/todo                      | GET     | liste()       |
+| Création              | /api/todo                      | POST    | creer()       |
+| Marquer comme terminé | /api/todo/done/<current_id>    | POST    | terminer()    |
+| Supprimer             | /api/todo/delete/<current_id>  | DELETE  | suppression() |
+
+Question :
+
+- À votre avis pourquoi est-ce important de fair ce travail ?
+- Quel sont les autres solutions pour répondre à ce genre de soucis ?
+
+{% endreveal %}
 
 ### Structure de base
 
@@ -274,21 +288,3 @@ Question :
 ## Utilisation des API
 
 Mettre à jour le code de votre TP « Ajouter VueJS dans un site existant » pour utiliser c’est nouvelles API.
-
-## Notes
-
-### Solution possible structure
-
-L’une des solutions est la suivante :
-
-| Description           | Chemin                         | Methode | Fonction      |
-|-----------------------|--------------------------------|---------|---------------|
-| Liste                 | /api/todo                      | GET     | liste()       |
-| Création              | /api/todo                      | POST    | creer()       |
-| Marquer comme terminé | /api/todo/done/<current_id>    | POST    | terminer()    |
-| Supprimer             | /api/todo/delete/<current_id>  | DELETE  | suppression() |
-
-Question :
-
-- À votre avis pourquoi est-ce important de fair ce travail ?
-- Quel sont les autres solutions pour répondre à ce genre de soucis ?
