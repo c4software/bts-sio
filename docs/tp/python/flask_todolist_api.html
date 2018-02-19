@@ -21,6 +21,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -709,7 +713,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Sun Feb 18 2018 10:09:22 GMT+0100 (CET)</em></p>
+<p><em>Last modified: Mon Feb 19 2018 23:19:26 GMT+0100 (CET)</em></p>
 </blockquote>
 <h1 id="&#xE9;crire-des-api-avec-flask">&#xC9;crire des API avec Flask</h1>
 <h2 id="introduction">Introduction</h2>
@@ -923,8 +927,7 @@ uniq_id = str(uuid.uuid4())
 <li>Le re-transcrire en Python</li>
 <li>L&#x2019;impl&#xE9;menter dans votre fichier main.py (en respectant le tableau &#xE9;tabli)</li>
 </ul>
-<p>Dans mon cas le code python obtenu est le suivant:</p>
-<pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/todo/delete/&lt;current_id&gt;&quot;, methods=[&apos;DELETE&apos;])</span>
+<div class="click_reveal"><span> Cliquer pour afficher une r&#xE9;ponse possible </span><div><pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/todo/delete/&lt;current_id&gt;&quot;, methods=[&apos;DELETE&apos;])</span>
 <span class="hljs-meta">@init_session</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">suppression</span><span class="hljs-params">(current_id)</span>:</span>
     <span class="hljs-string">&quot;&quot;&quot; Suppression d&apos;un element de la session[&quot;todo&quot;] &quot;&quot;&quot;</span>
@@ -936,6 +939,8 @@ uniq_id = str(uuid.uuid4())
     <span class="hljs-keyword">else</span>:
         <span class="hljs-keyword">return</span> jsonify({<span class="hljs-string">&quot;success&quot;</span>: <span class="hljs-keyword">False</span>})
 </code></pre>
+</div></div>
+
 <h2 id="tests">Tests</h2>
 <p>Maintenant que l&#x2019;ensemble de votre code est termin&#xE9; (et comment&#xE9; &#x1F575;&#x1F3FB;), nous allons pouvoir le tester, pour tester les API c&#x2019;est plut&#xF4;t simple. Il suffit d&#x2019;utiliser des outils tels que <a href="https://www.getpostman.com/" target="_blank">Postman</a>, l&#x2019;id&#xE9;e c&#x2019;est de se construire un &#xAB; cahier &#xBB; de test vous permettant de valider le fonctionnement de votre application rapidement (comprendre d&#xE8;s que vous modifiez le code). C&#x2019;est dans ce but que je vous ai pr&#xE9;par&#xE9; une collection de &#xAB; tests &#xBB; qui devrais vous permettre de valider rapidement le bon fonctionnement de vos API.</p>
 <p><a href="https://raw.githubusercontent.com/c4software/api-todo-flask/master/test/TODO%20API%20Test.postman_collection.json" target="_blank">T&#xE9;l&#xE9;charger la collection de tests</a></p>
@@ -1028,7 +1033,7 @@ uniq_id = str(uuid.uuid4())
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-18T09:09:22.528Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-18T09:09:42.971Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-19T22:19:26.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-19T22:19:38.700Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1043,6 +1048,10 @@ uniq_id = str(uuid.uuid4())
     
         
         <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
         
     
         

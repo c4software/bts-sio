@@ -162,6 +162,8 @@ uniq_id = str(uuid.uuid4())
 
 Comme pour la liste, vous pouvez vous reporter à votre tableau contenant « le mapping » entre le chemin et la méthode, voilà ce que ça donne dans mon cas :
 
+{% reveal text='Cliquer pour afficher une réponse possible' %}
+
 ```python
 @app.route("/api/todo", methods=['POST'])
 @init_session
@@ -175,6 +177,8 @@ def save():
     else:
         return jsonify({"success": False})
 ```
+
+{% endreveal %}
 
 Questions :
 
@@ -198,7 +202,7 @@ Questions :
 - Le re-transcrire en Python.
 - L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
-Dans mon cas voilà le code obtenu :
+{% reveal text='Cliquer pour afficher une réponse possible' %}
 
 ```python
 @app.route("/api/todo/done/<current_id>", methods=["POST"])
@@ -215,6 +219,8 @@ def terminer(current_id):
     else:
         return jsonify({"success": False})
 ```
+
+{% endreveal %}
 
 ### Suppression
 
@@ -237,7 +243,7 @@ Questions :
 - Le re-transcrire en Python
 - L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
-Dans mon cas le code python obtenu est le suivant:
+{% reveal text='Cliquer pour afficher une réponse possible' %}
 
 ```python
 @app.route("/api/todo/delete/<current_id>", methods=['DELETE'])
@@ -252,6 +258,8 @@ def suppression(current_id):
     else:
         return jsonify({"success": False})
 ```
+
+{% endreveal %}
 
 ## Tests
 
