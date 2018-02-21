@@ -1,6 +1,4 @@
-$(function(){
-    $(".click_reveal > span").bind("click", function() {
-        $(this).parent().children("div").show();
-        $(this).remove();
-    });
+$("body").on("click", ".click_reveal > span",function() {
+    $(this).parent().children("div").show();
+    $(this).remove();
 });
