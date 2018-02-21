@@ -198,3 +198,12 @@ Maintenant que vous avez tout compris, je vous propose de mettre en place une no
 - Tester.
 
 C’est à vous !
+
+{% reveal text="Voir l’une des solutions possible" %}
+```python
+@app.route("/calcul/<int:a>/<int:b>")
+def calcul(a, b):
+    return "{}".format(a + b)
+```
+Psss : Maintenant que tu as vu la solution. Modifier la consigne pour effectuer une division plutôt…
+{% endreveal %}
