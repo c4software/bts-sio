@@ -144,7 +144,7 @@ def hello_world():
 
 Ce morceau de code déclare donc une url ```/``` et appelera la fonction ```hello_world()``` à chaque fois qu’une personne y accedera.
 
-### Le code
+### l’application
 
 Maintenant que nous avons défini dans notre tête la structure de notre application écrivont le code :
 
