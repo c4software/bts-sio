@@ -141,6 +141,141 @@
 					</ul>
 				</section>
 
+				<section>
+					<h3>Quelques exemples</h3>
+				</section>
+
+				<section>
+					<code><pre data-trim>
+>>> variable = "demo"
+>>> print (variable)
+1
+</pre></code>					
+				</section>
+
+				<section>
+					<code><pre data-trim>
+>>> variable = 3 * 4
+>>> variable
+12
+>>> variable == 13
+False
+>>> print ("Le résultat est {}".format(variable))
+Le résultat est 12
+</pre></code>					
+				</section>
+
+				<section>
+					<h3>Les listes</h3>
+					<code><pre data-trim>
+>>> ma_liste = [1, 4, 2]
+>>> ma_liste
+[1, 4, 2]
+>>> ma_liste.sort()
+>>> ma_liste
+[1, 2, 4]
+>>> len(ma_liste)
+3
+</pre></code>					
+				</section>
+
+
+				<section>
+					<h3>Manipuler les listes</h3>
+					<code><pre data-trim>
+>>> ma_liste = [1, 4, 2]
+>>> 3 in ma_liste
+False
+>>> ma_liste.append(3)
+>>> 3 in ma_liste
+True
+>>> len(ma_liste)
+3
+</pre></code>					
+				</section>
+
+
+				<section>
+					<h3>Manipuler les listes (suite)</h3>
+					<code><pre data-trim>
+>>> x = range(5)
+>>> x 
+range(0, 5)
+>>> list(x)
+[0, 1, 2, 3, 4, 5]
+>>> for i in x:
+...		print (i)
+...
+0
+1
+2
+3
+4
+5
+</pre></code>					
+				</section>
+
+				<section>
+					<h3>Les fonctions</h3>
+					<code><pre data-trim>
+>>> def bonjour():
+...		print ("Bonjour Monde")
+...	
+>>> bonjour()
+Bonjour Monde
+</pre></code>					
+				</section>
+
+				<section>
+						<h3>Batteries « Inclus »</h3>
+						<code><pre data-trim>
+>>> from random import choice
+>>> def lettre():
+...		choice("abcdefghijklmnopqrstuvwxyz")
+...	
+>>> lettre()
+v
+>>> lettre()
+a
+</pre></code>					
+				</section>
+
+
+				<section>
+					<h3>Les conditions</h3>
+					<code><pre data-trim>
+>>> if "test" in "valentin":
+...		print ("IF")
+...	else:
+...		print ("ELSE")						
+</pre></code>						
+				</section>
+
+				<section>
+						<h3>Les conditions</h3>
+						<code><pre data-trim>
+>>> if a == 1 and b == 2:
+...		print ("IF")
+...	else:
+...		print ("ELSE")						
+	</pre></code>			
+				</section>
+	
+
+				<section>
+					<h3>Avancés</h3>
+					<code><pre data-trim>
+>>> liste = range(20)
+>>> liste2 = [x for x in liste if x % 2]		
+</pre></code>
+					<h4>À Votre avis ?</h4>
+					<code class="fragment"><pre data-trim>
+>>> print (liste2)
+[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+</pre></code>
+				</section>
+	
+
 			</div>
 		</div>
 
