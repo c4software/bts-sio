@@ -36,7 +36,7 @@
 	* [Slides](https://rawgit.com/c4software/bts/master/cours/gitlabci/)
 	* [Utiliser Gitlab Pages](tp/ci/pages.md)
 	* [App Hybride et Gitlab-CI](tp/ci/ci-hybride.md)
-* [WIP] Framework Python : Flask
-	* [Slides](https://rawgit.com/c4software/bts/master/cours/flask/)
+* [WIP] Python : Framework Flask
+	* [Slides](https://rawgit.com/c4software/bts/master/cours/python/)
 	* [Installation de Python et Flask](./tp/python/flask.md)
 	* [Réécriture des API de la TODO List](./tp/python/flask_todolist_api.md)
