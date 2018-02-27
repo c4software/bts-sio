@@ -1,3 +1,6 @@
+ci:
+	gitbook build . public	
+
 build:
 	gitbook build . docs	
 
