@@ -176,7 +176,7 @@ uniq_id = str(uuid.uuid4())
 
 Comme pour la liste, vous pouvez vous reporter à votre tableau contenant « le mapping » entre le chemin et la méthode, voilà ce que ça donne dans mon cas :
 
-{% reveal text='Cliquer pour afficher une réponse possible' %}
+{% reveal text='Cliquer pour afficher une solution possible' %}
 
 ```python
 @app.route("/api/todo", methods=['POST'])
@@ -216,7 +216,7 @@ Questions :
 - Le re-transcrire en Python.
 - L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
-{% reveal text='Cliquer pour afficher une réponse possible' %}
+{% reveal text='Cliquer pour afficher une solution possible' %}
 
 ```python
 @app.route("/api/todo/done/<current_id>", methods=["POST"])
@@ -257,7 +257,7 @@ Questions :
 - Le re-transcrire en Python
 - L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
-{% reveal text='Cliquer pour afficher une réponse possible' %}
+{% reveal text='Cliquer pour afficher une solution possible' %}
 
 ```python
 @app.route("/api/todo/delete/<current_id>", methods=['DELETE'])
