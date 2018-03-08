@@ -106,7 +106,7 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
 // Require Cordova Plugin : cordova-plugin-geolocation
 
 <template>
-  <div>
+  <v-container fill-height fluid>
     <div id="map"></div>
     <div v-if="isLoading" class="loading elevation-2">
       <div>
@@ -115,14 +115,13 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
         <div>{{$t("getPosition")}}</div>
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
   import 'leaflet/dist/leaflet.css';
   import L from 'leaflet';
   import {nativeAlert} from "../libs/";
-
   // Fix for icon problem with webpack
   // See https://github.com/PaulLeCam/react-leaflet/issues/255#issuecomment-261904061
   delete L.Icon.Default.prototype._getIconUrl;
@@ -131,7 +130,6 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
   });
-
   export default {
     name: 'localisation',
     data() {
@@ -164,7 +162,6 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
             // Pssst, look at the position object there is a lot of more information
             let user_position = [position.coords.latitude, position.coords.longitude];
             L.marker(user_position).addTo(this.map);
-
             // Set the view on the user position at a correct zoom level
             this.map.setView(user_position, 18);
             this.stopLoading();
@@ -184,11 +181,14 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
 </script>
 
 <style scoped>
+  .container{
+    padding: 0;
+  }
   #map{
-    height: calc(100vh - 64px);
+    height: calc(100vh - 50px);
+    width: 100%;
     z-index: 1;
   }
-
   .loading {
     position: absolute;
     width: 150px;
@@ -258,9 +258,9 @@ Le projet étant déjà réalisé le plugin est déjà installé, il nous suffit
 // Require Cordova plugin : cordova-plugin-vibration
 
 <template>
-  <div class="middle-centered">
+  <v-container text-center>
     <v-btn v-on:click="doVibrate">{{$t("startVibration")}}</v-btn>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -318,9 +318,9 @@ Voici la structure de code. Je vous laisse la compléter
 
 ```js
 <template>
-  <div class="middle-centered">
+  <v-container text-center>
     <v-btn v-on:click="toggle">{{ btnTitle }}</v-btn>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -407,14 +407,15 @@ L’écriture va se dérouler en 3 étapes :
 Pour la caméra, nous allons « juste » faire une simple vue qui permet de lancer l’appareil photo et on affichera l’image prise dans l’application (Tester différentes options pour regarder le fonctionnement du plugin). Voici la structure de code :
 
 ```js
+// Require Cordova plugin : cordova-plugin-camera
+
 <template>
-  <div class="middle-centered">
-    <div class="text-center">
-      <img v-if='imagePath !== ""' v-bind:src="imagePath">
-      <v-btn v-on:click="takePicture">{{$t("takePhoto")}}</v-btn>
-    </div>
-  </div>
+  <v-container text-center>
+    <img v-if='imagePath !== ""' v-bind:src="imagePath">
+    <v-btn v-on:click="takePicture">{{$t("takePhoto")}}</v-btn>
+  </v-container>
 </template>
+
 <script>
   import {nativeAlert} from "../libs/index";
 
@@ -492,7 +493,7 @@ Le code de la partie NFC est un peu plus complexe. Pour la démo, j’ai mis un 
 ```js
 // Require Cordova plugin : phonegap-nfc
 <template>
-  <div class="middle-centered">
+  <v-container text-center>
       <span v-if="compatible">
         {{$t("nfcText.waitingTag")}}
         <br>
@@ -522,7 +523,7 @@ Le code de la partie NFC est un peu plus complexe. Pour la démo, j’ai mis un 
       </span>
       <v-btn v-on:click="showSettings" v-else-if="nfc_disabled">{{$t("nfcText.showSettings")}}</v-btn>
       <span v-else>{{$t("nfcText.notAvailable")}}</span>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -626,3 +627,7 @@ import Vibration from '@/views/Nfc'
     component: Nfc
 }
 ```
+
+### Fin
+
+Vous pouvez maintenant compiler votre application et admirer le résultat sur votre téléphone.
