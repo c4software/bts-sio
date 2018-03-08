@@ -713,7 +713,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Jan 03 2018 22:04:49 GMT+0100 (CET)</em></p>
+<p><em>Last modified: Thu Mar 08 2018 21:48:37 GMT+0100 (CET)</em></p>
 </blockquote>
 <h1 id="vuejs-et-cordova">VueJS et Cordova</h1>
 <p>Maintenant que nous avons vu les bases de Cordova (Cr&#xE9;ation, Plateforme, plugin). Int&#xE9;r&#xE9;ssons nous &#xE0; la cr&#xE9;ation d&#x2019;une vrai application. Dans le monde de cordova il existe plusieurs fa&#xE7;on de faire :</p>
@@ -790,7 +790,7 @@ cordova run android
 <pre><code class="lang-js"><span class="hljs-comment">// Require Cordova Plugin : cordova-plugin-geolocation</span>
 
 &lt;template&gt;
-  &lt;div&gt;
+  &lt;v-container fill-height fluid&gt;
     &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
     &lt;div v-if=&quot;isLoading&quot; class=&quot;loading elevation-2&quot;&gt;
       &lt;div&gt;
@@ -799,14 +799,13 @@ cordova run android
         &lt;div&gt;{{$t(&quot;getPosition&quot;)}}&lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
+  &lt;/v-container&gt;
 &lt;/template&gt;
 
 &lt;script&gt;
   import &apos;leaflet/dist/leaflet.css&apos;;
   import L from &apos;leaflet&apos;;
   import {nativeAlert} from &quot;../libs/&quot;;
-
   // Fix for icon problem with webpack
   // See https://github.com/PaulLeCam/react-leaflet/issues/255#issuecomment-261904061
   delete L.Icon.Default.prototype._getIconUrl;
@@ -815,7 +814,6 @@ cordova run android
     iconUrl: require(&apos;leaflet/dist/images/marker-icon.png&apos;),
     shadowUrl: require(&apos;leaflet/dist/images/marker-shadow.png&apos;),
   });
-
   export default {
     name: &apos;localisation&apos;,
     data() {
@@ -848,7 +846,6 @@ cordova run android
             // Pssst, look at the position object there is a lot of more information
             let user_position = [position.coords.latitude, position.coords.longitude];
             L.marker(user_position).addTo(this.map);
-
             // Set the view on the user position at a correct zoom level
             this.map.setView(user_position, 18);
             this.stopLoading();
@@ -868,11 +865,14 @@ cordova run android
 &lt;/script&gt;
 
 &lt;style scoped&gt;
+  .container{
+    padding: 0;
+  }
   #map{
-    height: calc(100vh - 64px);
+    height: calc(100vh - 50px);
+    width: 100%;
     z-index: 1;
   }
-
   .loading {
     position: absolute;
     width: 150px;
@@ -929,30 +929,30 @@ cordova run android
 </ul>
 <h3 id="1-le-code">1. Le code</h3>
 <p>Le projet &#xE9;tant d&#xE9;j&#xE0; r&#xE9;alis&#xE9; le plugin est d&#xE9;j&#xE0; install&#xE9;, il nous suffit donc d&#x2019;&#xE9;crire le code de la vue. Je vous laisse la base du code, je vous laisse &#xE9;crire le code permettant la vibration :</p>
-<pre><code class="lang-js">// Require Cordova plugin : cordova-plugin-vibration
+<pre><code class="lang-js"><span class="hljs-comment">// Require Cordova plugin : cordova-plugin-vibration</span>
 
 &lt;template&gt;
-  &lt;div class=&quot;middle-centered&quot;&gt;
-    &lt;v-btn v-on:click=&quot;doVibrate&quot;&gt;{{$t(&quot;startVibration&quot;)}}&lt;/v-btn&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">v-container</span> <span class="hljs-attr">text-center</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">v-btn</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&quot;doVibrate&quot;</span>&gt;</span>{{$t(&quot;startVibration&quot;)}}<span class="hljs-tag">&lt;/<span class="hljs-name">v-btn</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">v-container</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-&lt;script&gt;
-  export default {
-    name: &apos;vibration&apos;,
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    name: <span class="hljs-string">&apos;vibration&apos;</span>,
     methods: {
       doVibrate () {
-        // Test si la vibration est disponible
-        if (navigator.vibrate){
-            // Code ICI (utiliser la documentation bien &#xE9;videment&#x2026;)
-        }else{
-          console.error(&quot;[cordova-plugin-vibration] Is required to use this function&quot;);
+        <span class="hljs-comment">// Test si la vibration est disponible</span>
+        <span class="hljs-keyword">if</span> (navigator.vibrate){
+            <span class="hljs-comment">// Code ICI (utiliser la documentation bien &#xE9;videment&#x2026;)</span>
+        }<span class="hljs-keyword">else</span>{
+          <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;[cordova-plugin-vibration] Is required to use this function&quot;</span>);
         }
       }
     }
   }
-&lt;/script&gt;
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
 <h3 id="2-la-route">2. La route</h3>
 <ul>
 <li>Ajouter l&#x2019;import dans <code>router/index.js</code> :</li>
@@ -981,61 +981,61 @@ cordova run android
 <p>Voici la structure de code. Je vous laisse la compl&#xE9;ter</p>
 <p>&#x270B; N&#x2019;oublier pas de g&#xE9;rer le <code>beforeDestroy</code> pour stoper le flash en changeant de &#xAB; page &#xBB;</p>
 <pre><code class="lang-js">&lt;template&gt;
-  &lt;div class=&quot;middle-centered&quot;&gt;
-    &lt;v-btn v-on:click=&quot;toggle&quot;&gt;{{ btnTitle }}&lt;/v-btn&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">v-container</span> <span class="hljs-attr">text-center</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">v-btn</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&quot;toggle&quot;</span>&gt;</span>{{ btnTitle }}<span class="hljs-tag">&lt;/<span class="hljs-name">v-btn</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">v-container</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-&lt;script&gt;
-  export default {
-    name: &apos;flash&apos;,
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+    name: <span class="hljs-string">&apos;flash&apos;</span>,
     mounted(){
-      // Set the ButtonTitle according the plugin state
-      this.setBtnTitle();
+      <span class="hljs-comment">// Set the ButtonTitle according the plugin state</span>
+      <span class="hljs-keyword">this</span>.setBtnTitle();
     },
     beforeDestroy(){
-      // When the view is destroyed turnoff the flashlight
-      // TODO
+      <span class="hljs-comment">// When the view is destroyed turnoff the flashlight</span>
+      <span class="hljs-comment">// TODO</span>
     },
     data: () =&gt; {
-      return {
-        btnTitle: &quot;&quot;
+      <span class="hljs-keyword">return</span> {
+        btnTitle: <span class="hljs-string">&quot;&quot;</span>
       }
     },
     methods: {
       pluginInstalled() {
-        // Check if the cordova Flashlight is available
-        return (typeof(plugins) !== &quot;undefined&quot; &amp;&amp; typeof(window.plugins.flashlight) !== &quot;undefined&quot;);
+        <span class="hljs-comment">// Check if the cordova Flashlight is available</span>
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">typeof</span>(plugins) !== <span class="hljs-string">&quot;undefined&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span>(<span class="hljs-built_in">window</span>.plugins.flashlight) !== <span class="hljs-string">&quot;undefined&quot;</span>);
       },
       toggle() {
-        if (this.pluginInstalled()){
-          // Toggle the flashlight state
-          // TODO Call The plugin
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.pluginInstalled()){
+          <span class="hljs-comment">// Toggle the flashlight state</span>
+          <span class="hljs-comment">// TODO Call The plugin</span>
         }
       },
       switchOff() {
-        if (this.pluginInstalled()){
-          // Turn off the flashlight led
-          // TODO Call The plugin
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.pluginInstalled()){
+          <span class="hljs-comment">// Turn off the flashlight led</span>
+          <span class="hljs-comment">// TODO Call The plugin</span>
         }
       },
       setBtnTitle() {
-        // Manage the button title state
-        if (this.pluginInstalled()){
-          // Test if flashlight is On ?
-          if (window.plugins.flashlight.isSwitchedOn()){
-            this.btnTitle = this.$t(&quot;flashlight.stop&quot;);
-          }else{
-            this.btnTitle = this.$t(&quot;flashlight.start&quot;);
+        <span class="hljs-comment">// Manage the button title state</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.pluginInstalled()){
+          <span class="hljs-comment">// Test if flashlight is On ?</span>
+          <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.plugins.flashlight.isSwitchedOn()){
+            <span class="hljs-keyword">this</span>.btnTitle = <span class="hljs-keyword">this</span>.$t(<span class="hljs-string">&quot;flashlight.stop&quot;</span>);
+          }<span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">this</span>.btnTitle = <span class="hljs-keyword">this</span>.$t(<span class="hljs-string">&quot;flashlight.start&quot;</span>);
           }
-        }else{
-          this.btnTitle = this.$t(&quot;flashlight.notAvailable&quot;);
+        }<span class="hljs-keyword">else</span>{
+          <span class="hljs-keyword">this</span>.btnTitle = <span class="hljs-keyword">this</span>.$t(<span class="hljs-string">&quot;flashlight.notAvailable&quot;</span>);
         }
       }
     }
   }
-&lt;/script&gt;
-</code></pre>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
 <h3 id="2-la-route">2. La route</h3>
 <ul>
 <li>Ajouter l&#x2019;import dans <code>router/index.js</code> :</li>
@@ -1061,54 +1061,55 @@ cordova run android
 </ul>
 <h3 id="1-le-code">1. Le code</h3>
 <p>Pour la cam&#xE9;ra, nous allons &#xAB; juste &#xBB; faire une simple vue qui permet de lancer l&#x2019;appareil photo et on affichera l&#x2019;image prise dans l&#x2019;application (Tester diff&#xE9;rentes options pour regarder le fonctionnement du plugin). Voici la structure de code :</p>
-<pre><code class="lang-js">&lt;template&gt;
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;middle-centered&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&apos;imagePath !== &quot;&quot;&apos;</span> <span class="hljs-attr">v-bind:src</span>=<span class="hljs-string">&quot;imagePath&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">v-btn</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&quot;takePicture&quot;</span>&gt;</span>{{$t(&quot;takePhoto&quot;)}}<span class="hljs-tag">&lt;/<span class="hljs-name">v-btn</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-  <span class="hljs-keyword">import</span> {nativeAlert} <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../libs/index&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-comment">// Require Cordova plugin : cordova-plugin-camera</span>
 
-  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    name: <span class="hljs-string">&apos;camera&apos;</span>,
+&lt;template&gt;
+  &lt;v-container text-center&gt;
+    &lt;img v-if=&apos;imagePath !== &quot;&quot;&apos; v-bind:src=&quot;imagePath&quot;&gt;
+    &lt;v-btn v-on:click=&quot;takePicture&quot;&gt;{{$t(&quot;takePhoto&quot;)}}&lt;/v-btn&gt;
+  &lt;/v-container&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  import {nativeAlert} from &quot;../libs/index&quot;;
+
+  export default {
+    name: &apos;camera&apos;,
     data() {
-      <span class="hljs-keyword">return</span> {
-        imagePath: <span class="hljs-string">&quot;&quot;</span>
+      return {
+        imagePath: &quot;&quot;
       }
     },
     methods: {
-      <span class="hljs-comment">// Use the camera plugin to capture image</span>
+      // Use the camera plugin to capture image
       takePicture() {
-        <span class="hljs-keyword">if</span> (navigator.camera) {
-          navigator.camera.getPicture(<span class="hljs-keyword">this</span>.setPicture, <span class="hljs-keyword">this</span>.error, {});
-        }<span class="hljs-keyword">else</span>{
-          <span class="hljs-comment">// If the navigator.camera is not available display generic error to the user.</span>
-          <span class="hljs-keyword">this</span>.error();
+        if (navigator.camera) {
+          navigator.camera.getPicture(this.setPicture, this.error, {});
+        }else{
+          // If the navigator.camera is not available display generic error to the user.
+          this.error();
         }
       },
-      <span class="hljs-comment">// Set the picture path in the data of the vue</span>
-      <span class="hljs-comment">// this action will automatically update the view.</span>
+      // Set the picture path in the data of the vue
+      // this action will automatically update the view.
       setPicture(imagePath){
-        <span class="hljs-keyword">this</span>.imagePath = imagePath;
+        this.imagePath = imagePath;
       },
       error(){
-        nativeAlert(<span class="hljs-keyword">this</span>.$t(<span class="hljs-string">&quot;error&quot;</span>));
+        nativeAlert(this.$t(&quot;error&quot;));
       }
     }
   }
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+&lt;/script&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css">
-  <span class="hljs-selector-tag">img</span>{
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">50%</span>;
-    <span class="hljs-attribute">display</span>: block;
-    <span class="hljs-attribute">margin</span>: auto;
+&lt;style scoped&gt;
+  img{
+    width: 50%;
+    display: block;
+    margin: auto;
   }
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-</span></code></pre>
+&lt;/style&gt;
+</code></pre>
 <h3 id="2-la-route">2. La route</h3>
 <ul>
 <li>Ajouter l&#x2019;import dans <code>router/index.js</code> :</li>
@@ -1136,7 +1137,7 @@ cordova run android
 <p>Le code de la partie NFC est un peu plus complexe. Pour la d&#xE9;mo, j&#x2019;ai mis un exemple de lecture du &#xAB; num&#xE9;ro de s&#xE9;rie &#xBB; d&#x2019;un tag NFC (avec historique)</p>
 <pre><code class="lang-js"><span class="hljs-comment">// Require Cordova plugin : phonegap-nfc</span>
 &lt;template&gt;
-  &lt;div class=&quot;middle-centered&quot;&gt;
+  &lt;v-container text-center&gt;
       &lt;span v-if=&quot;compatible&quot;&gt;
         {{$t(&quot;nfcText.waitingTag&quot;)}}
         &lt;br&gt;
@@ -1166,7 +1167,7 @@ cordova run android
       &lt;/span&gt;
       &lt;v-btn v-on:click=&quot;showSettings&quot; v-else-if=&quot;nfc_disabled&quot;&gt;{{$t(&quot;nfcText.showSettings&quot;)}}&lt;/v-btn&gt;
       &lt;span v-else&gt;{{$t(&quot;nfcText.notAvailable&quot;)}}&lt;/span&gt;
-  &lt;/div&gt;
+  &lt;/v-container&gt;
 &lt;/template&gt;
 
 &lt;script&gt;
@@ -1267,6 +1268,8 @@ cordova run android
     component: Nfc
 }
 </code></pre>
+<h3 id="fin">Fin</h3>
+<p>Vous pouvez maintenant compiler votre application et admirer le r&#xE9;sultat sur votre t&#xE9;l&#xE9;phone.</p>
 
                                 
                                 </section>
@@ -1306,7 +1309,7 @@ cordova run android
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Projet Cordova + VueJS","level":"1.7.3","depth":2,"next":{"title":"Laravel","level":"1.8","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.8.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/laravel/","ref":"https://rawgit.com/c4software/bts/master/cours/laravel/","articles":[]},{"title":"Installation de Laravel","level":"1.8.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},{"title":"Réécriture des API de la TODO List","level":"1.8.3","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]}]},"previous":{"title":"Découverte","level":"1.7.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/cordova/vuejs_cordova.md","mtime":"2018-01-03T21:04:49.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-02-27T19:14:06.803Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Projet Cordova + VueJS","level":"1.7.3","depth":2,"next":{"title":"Laravel","level":"1.8","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.8.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/laravel/","ref":"https://rawgit.com/c4software/bts/master/cours/laravel/","articles":[]},{"title":"Installation de Laravel","level":"1.8.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},{"title":"Réécriture des API de la TODO List","level":"1.8.3","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]}]},"previous":{"title":"Découverte","level":"1.7.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/cordova/vuejs_cordova.md","mtime":"2018-03-08T20:48:37.877Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-08T20:49:10.617Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
