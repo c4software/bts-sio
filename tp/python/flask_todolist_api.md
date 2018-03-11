@@ -21,7 +21,7 @@ Comme dans le premier TP, avant de commencer à coder nous allons déterminer le
 
 Question :
 
-- C’est à vous, Avant de continuer un papier un crayon !
+- C’est à vous, avant de continuer un papier un crayon ! Remplisser le tableau.
 
 {% reveal text="Voir l’une des solutions possible" %}
 
@@ -98,15 +98,15 @@ def liste():
     return jsonify(session["todo"])
 ```
 
-🕵️‍♀️ Notez le commentaire dans la fonction… J’espère que vous en mettre vous aussi…
+🕵️‍♀️ Notez le commentaire dans la fonction… J’espère que vous allez en mettre vous aussi…
 
 Question :
 
-- Comment être sur que la session est bien initialisé ?
+- Comment être sur que la session est bien initialisée ?
 
 ### Votre décorateur
 
-Et voilà, c’est le moment… Le moment ou vous allez écrire votre propre décorateur ! (Si c’est certains ont oublié ce que c’était un décorateur [rendez-vous ici](flask.html#associer-un-lien-et-une-fonction))
+Et voilà, c’est le moment… Le moment ou vous allez écrire votre propre décorateur ! (Si certains ont oublié ce que c’était un décorateur [rendez-vous ici](flask.html#associer-un-lien-et-une-fonction))
 
 Très bien, maintenant que vous avez la mémoire fraîche, voilà votre décorateur :
 
@@ -128,13 +128,13 @@ Où mettre le code ?
 - Choix 1 : Directement dans le main.py
 - Choix 2 : Dans un autre fichier (exemple helper.py)
 
-Vous avez le choix… Si vous faite le choix de mettre le fichier dans un autre fichier il faudra importer ```init_session``` dans le main.py :
+Vous avez le choix… Si vous faites le choix de mettre le fichier dans un autre fichier il faudra importer ```init_session``` dans le main.py :
 
 ```python
 from helper import init_session
 ```
 
-PS: Je vous conseil de le mettre dans un fichier ```helper.py```.
+PS: Je vous conseille de le mettre dans un fichier ```helper.py```.
 
 ### Modification de la liste
 
@@ -153,7 +153,7 @@ def liste():
 
 Comme dans le premier TP la partie création doit comporter un test :
 
-- Est-ce que « text » est dans data ?
+- Est-ce que ```texte``` est dans data ?
 
 Ce test s’écrit en Python :
 
@@ -198,7 +198,7 @@ Questions :
 
 - Réaliser la methode dans votre code par rapport au tableau de définition que vous avez écrit.
 - À quoi sert request.form ? (Voir la doc de Flask)
-- Pourquoi est-je fait « session.modified = True » ? À votre avis ?
+- Pourquoi ai-je fait « session.modified = True » ? À votre avis ? (La réponse est dans la documentation de Flask)
 
 ### Marquer comme terminé
 
@@ -206,7 +206,7 @@ Marquer comme terminé une tache c’est changer le status de « termine » à `
 
 - Utiliser le décorateur d’initialisation de la session.
 - Vérifier que la tâche existe dans la session. (En python ```if current_id in session["todo"]:```)
-- Récupérer la tâche dan la session.
+- Récupérer la tâche dans la session.
 - Changer ```current['termine'] = True```.
 - Sauvegarder à nouveau la tache dans la session.
 
@@ -222,8 +222,8 @@ Questions :
 @app.route("/api/todo/done/<current_id>", methods=["POST"])
 @init_session
 def terminer(current_id):
-    """ Marquer une Todo comme terminee """
-    # L'id est terminee
+    """ Marquer une Todo comme termine """
+    # L'id est termine, et present dans la session
     if current_id in session["todo"]:
         current = session["todo"][current_id]
         current["termine"] = True # Mark As done
@@ -238,9 +238,9 @@ def terminer(current_id):
 
 ### Suppression
 
-Supprimer une tâche, c’est tout simplement l’action de la retirer de la session, pour faire ça le mot clef et python c’est ```del```. Cependant votre code doit bloquer certaines actions car toute les tâches ne peuvent pas être supprimés :
+Supprimer une tâche, c’est tout simplement l’action de la retirer de la session, pour faire ça le mot clef et python c’est ```del```. Cependant votre code doit bloquer certaines actions car toutes les tâches ne peuvent pas être supprimées :
 
-- Limiter l’action seulement aux « identifiants » reconnu dans la session.
+- Limiter l’action seulement aux « identifiants » reconnus dans la session.
 - La tâche doit avoir le booléen « termine » à vrai pour permettre la suppression.
 
 Votre algorithme doit donc suivre :
@@ -277,7 +277,7 @@ def suppression(current_id):
 
 ## Tests
 
-Maintenant que l’ensemble de votre code est terminé (et commenté 🕵🏻), nous allons pouvoir le tester, pour tester les API c’est plutôt simple. Il suffit d’utiliser des outils tels que [Postman](https://www.getpostman.com/), l’idée c’est de se construire un « cahier » de test vous permettant de valider le fonctionnement de votre application rapidement (comprendre dès que vous modifiez le code). C’est dans ce but que je vous ai préparé une collection de « tests » qui devrais vous permettre de valider rapidement le bon fonctionnement de vos API.
+Maintenant que l’ensemble de votre code est terminé (et commenté 🕵🏻), nous allons pouvoir le tester, pour tester les API c’est plutôt simple. Il suffit d’utiliser des outils tels que [Postman](https://www.getpostman.com/), l’idée c’est de se construire un « cahier » de test vous permettant de valider le fonctionnement de votre application rapidement (comprendre dès que vous modifiez le code). C’est dans ce but que je vous ai préparé une collection de « tests » qui devrait vous permettre de valider rapidement le bon fonctionnement de vos API.
 
 [Télécharger la collection de tests](https://raw.githubusercontent.com/c4software/api-todo-flask/master/test/TODO%20API%20Test.postman_collection.json)
 
@@ -287,4 +287,4 @@ Question :
 
 ## Utilisation des API
 
-Mettre à jour le code de votre TP « Ajouter VueJS dans un site existant » pour utiliser c’est nouvelles API.
+Mettre à jour le code de votre TP « Ajouter VueJS dans un site existant » pour utiliser ces nouvelles API.
