@@ -713,10 +713,10 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Sat Feb 24 2018 22:02:45 GMT+0100 (CET)</em></p>
+<p><em>Last modified: Sun Mar 11 2018 15:02:56 GMT+0100 (CET)</em></p>
 </blockquote>
 <h1 id="d&#xE9;couvrir-flask">D&#xE9;couvrir Flask</h1>
-<p>Dans ce TP nous allons d&#xE9;couvrire Flask (l&#x2019;installation et un premier test).</p>
+<p>Dans ce TP nous allons d&#xE9;couvrir Flask (l&#x2019;installation et un premier test).</p>
 <h2 id="introduction">Introduction</h2>
 <p>Flask est un framework open-source de d&#xE9;veloppement web en Python. Son but principal est d&apos;&#xEA;tre l&#xE9;ger, afin de garder la souplesse de la programmation Python, associ&#xE9; &#xE0; un syst&#xE8;me de templates.</p>
 <h2 id="installation-de-python">Installation de python</h2>
@@ -727,7 +727,7 @@
 <h3 id="python-3">Python 3</h3>
 <p>Bonne nouvelle ! Depuis python 3.4 pip est maintenant int&#xE9;gr&#xE9; &#xE0; l&#x2019;installation de python. Rien &#xE0; installer de plus.</p>
 <h3 id="python-2">Python 2</h3>
-<p>Normalement vous avez installer python3 donc vous n&#x2019;avez pas &#xE0; faire ceci, cependant dans votre vie vous rencontrerez peut-&#xEA;tre des environnement Python 2. La proc&#xE9;dure d&#x2019;installation est donc la suivante :</p>
+<p>Normalement vous avez install&#xE9; python3 donc vous n&#x2019;avez pas &#xE0; faire ceci, cependant dans votre vie vous rencontrerez peut-&#xEA;tre des environnements Python 2. La proc&#xE9;dure d&#x2019;installation est donc la suivante :</p>
 <ul>
 <li>T&#xE9;l&#xE9;charger sur votre machine le <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank">script suivant</a></li>
 <li>Lancer dans une console administrateur : <code>python get-pip.py</code></li>
@@ -738,7 +738,7 @@
 <li>Avez-vous ouvert le fichier avant de l&#x2019;utiliser ?</li>
 </ul>
 <h2 id="cr&#xE9;ation-du-virtualenv">Cr&#xE9;ation du virtualenv</h2>
-<p>VirtualEnv ? K&#xE9;zako ! C&#x2019;est l&#x2019;un des petits trucs g&#xE9;nial avec Python! VirtualEnv vous permets d&#x2019;avoir des environnements cloison&#xE9;s pour chacun de vos projets. &#xC7;a va pour permettre par exemple d&#x2019;installer une version diff&#xE9;rentes de Flask pour des projets diff&#xE9;rents, ou avoir des librairies A uniquement dans votre projet A. Bref &#xE7;a permet de faire les choses proprements.</p>
+<p>VirtualEnv ? K&#xE9;zako ! C&#x2019;est l&#x2019;un des petits trucs g&#xE9;nial avec Python! VirtualEnv vous permet d&#x2019;avoir des environnements cloison&#xE9;s pour chacun de vos projets. &#xC7;a va pour permettre par exemple d&#x2019;installer une version diff&#xE9;rente de Flask pour des projets diff&#xE9;rents, ou avoir des librairies &#xAB; A &#xBB; uniquement dans votre projet &#xAB; A &#xBB;. Bref &#xE7;a permet de faire les choses proprements.</p>
 <p>Vu que c&#x2019;est la premi&#xE8;re fois que vous configurez votre environnement nous allons installer virtualenv, dans <strong>une console administrateur</strong> lancez la commande suivante :</p>
 <pre><code class="lang-sh">python -m pip install virtualenv
 </code></pre>
@@ -798,7 +798,7 @@ Installing setuptools, pip, wheel...done.
 </ul>
 <h3 id="associer-un-lien-et-une-fonction">Associer un lien et une fonction</h3>
 <p>En python, on utilise beaucoup de &#xAB; d&#xE9;corateur &#xBB;, un d&#xE9;corateur est un &#xAB; morceau de code &#xBB; qui sera appel&#xE9; avant, apr&#xE8;s, ou &#xE0; l&#x2019;initialisation de votre code.</p>
-<p>Flask apport un d&#xE9;corateur <code>@app.route</code> celui-ci nous permet de d&#xE9;clarer des nouveaux chemin (route) pour acc&#xE9;der &#xE0; nos API. Exemple :</p>
+<p>Flask apporte un d&#xE9;corateur <code>@app.route</code> celui-ci nous permet de d&#xE9;clarer des nouveaux chemins (routes) pour acc&#xE9;der &#xE0; nos API. Exemple :</p>
 <pre><code class="lang-python">[&#x2026;]
 <span class="hljs-meta">@app.route(&quot;/&quot;)</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello_world</span><span class="hljs-params">()</span>:</span>
@@ -806,7 +806,7 @@ Installing setuptools, pip, wheel...done.
 [&#x2026;]
 </code></pre>
 <p>Ce morceau de code d&#xE9;clare donc une url <code>/</code> et appelera la fonction <code>hello_world()</code> &#xE0; chaque fois qu&#x2019;une personne y accedera.</p>
-<h3 id="lapplication">l&#x2019;application</h3>
+<h3 id="lapplication">L&#x2019;application</h3>
 <p>Maintenant que nous avons d&#xE9;fini dans notre t&#xEA;te la structure de notre application &#xE9;crivont le code :</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
 app = Flask(__name__)
@@ -841,7 +841,7 @@ app = Flask(__name__)
 <h3 id="&#xE9;volution">&#xC9;volution</h3>
 <p>Maintenant que vous avez tout compris, je vous propose de mettre en place une nouvelle fonctionnalit&#xE9;e :</p>
 <blockquote>
-<p>Ajouter une fonction &#xE0; votre application qui va &#xE9;ffectuer une addition par rapport &#xE0; deux chiffres pass&#xE9; en param&#xE8;tre.</p>
+<p>Ajouter une fonction &#xE0; votre application qui va &#xE9;ffectuer une addition par rapport &#xE0; deux chiffres pass&#xE9;s en param&#xE8;tre.</p>
 </blockquote>
 <p>&#xC9;tapes :</p>
 <ul>
@@ -896,7 +896,7 @@ app = Flask(__name__)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]},"previous":{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/python/","ref":"https://rawgit.com/c4software/bts/master/cours/python/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask.md","mtime":"2018-02-24T21:02:45.948Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-08T20:49:10.617Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]},"previous":{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/python/","ref":"https://rawgit.com/c4software/bts/master/cours/python/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask.md","mtime":"2018-03-11T14:02:56.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-11T14:14:17.659Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

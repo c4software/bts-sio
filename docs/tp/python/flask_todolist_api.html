@@ -713,7 +713,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Tue Feb 27 2018 20:10:25 GMT+0100 (CET)</em></p>
+<p><em>Last modified: Sun Mar 11 2018 15:13:29 GMT+0100 (CET)</em></p>
 </blockquote>
 <h1 id="&#xE9;crire-des-api-avec-flask">&#xC9;crire des API avec Flask</h1>
 <h2 id="introduction">Introduction</h2>
@@ -759,7 +759,7 @@
 </table>
 <p>Question :</p>
 <ul>
-<li>C&#x2019;est &#xE0; vous, Avant de continuer un papier un crayon !</li>
+<li>C&#x2019;est &#xE0; vous, avant de continuer un papier un crayon ! Remplisser le tableau.</li>
 </ul>
 <div class="click_reveal"><span> Voir l&#x2019;une des solutions possible </span><div><table>
 <thead>
@@ -844,13 +844,13 @@
     <span class="hljs-string">&quot;&quot;&quot; Retourne la liste des todo dans la session &quot;&quot;&quot;</span>
     <span class="hljs-keyword">return</span> jsonify(session[<span class="hljs-string">&quot;todo&quot;</span>])
 </code></pre>
-<p>&#x1F575;&#xFE0F;&#x200D;&#x2640;&#xFE0F; Notez le commentaire dans la fonction&#x2026; J&#x2019;esp&#xE8;re que vous en mettre vous aussi&#x2026;</p>
+<p>&#x1F575;&#xFE0F;&#x200D;&#x2640;&#xFE0F; Notez le commentaire dans la fonction&#x2026; J&#x2019;esp&#xE8;re que vous allez en mettre vous aussi&#x2026;</p>
 <p>Question :</p>
 <ul>
-<li>Comment &#xEA;tre sur que la session est bien initialis&#xE9; ?</li>
+<li>Comment &#xEA;tre sur que la session est bien initialis&#xE9;e ?</li>
 </ul>
 <h3 id="votre-d&#xE9;corateur">Votre d&#xE9;corateur</h3>
-<p>Et voil&#xE0;, c&#x2019;est le moment&#x2026; Le moment ou vous allez &#xE9;crire votre propre d&#xE9;corateur ! (Si c&#x2019;est certains ont oubli&#xE9; ce que c&#x2019;&#xE9;tait un d&#xE9;corateur <a href="flask.html#associer-un-lien-et-une-fonction">rendez-vous ici</a>)</p>
+<p>Et voil&#xE0;, c&#x2019;est le moment&#x2026; Le moment ou vous allez &#xE9;crire votre propre d&#xE9;corateur ! (Si certains ont oubli&#xE9; ce que c&#x2019;&#xE9;tait un d&#xE9;corateur <a href="flask.html#associer-un-lien-et-une-fonction">rendez-vous ici</a>)</p>
 <p>Tr&#xE8;s bien, maintenant que vous avez la m&#xE9;moire fra&#xEE;che, voil&#xE0; votre d&#xE9;corateur :</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> functools <span class="hljs-keyword">import</span> wraps
 <span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> session
@@ -868,10 +868,10 @@
 <li>Choix 1 : Directement dans le main.py</li>
 <li>Choix 2 : Dans un autre fichier (exemple helper.py)</li>
 </ul>
-<p>Vous avez le choix&#x2026; Si vous faite le choix de mettre le fichier dans un autre fichier il faudra importer <code>init_session</code> dans le main.py :</p>
+<p>Vous avez le choix&#x2026; Si vous faites le choix de mettre le fichier dans un autre fichier il faudra importer <code>init_session</code> dans le main.py :</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> helper <span class="hljs-keyword">import</span> init_session
 </code></pre>
-<p>PS: Je vous conseil de le mettre dans un fichier <code>helper.py</code>.</p>
+<p>PS: Je vous conseille de le mettre dans un fichier <code>helper.py</code>.</p>
 <h3 id="modification-de-la-liste">Modification de la liste</h3>
 <p>Maintenant que votre d&#xE9;corateur est termin&#xE9; nous allons l&#x2019;utiliser. Avant la fonction <code>liste()</code> ajouter <code>@init_session()</code> exemple :</p>
 <pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/todo&quot;)</span>
@@ -883,7 +883,7 @@
 <h3 id="cr&#xE9;ation">Cr&#xE9;ation</h3>
 <p>Comme dans le premier TP la partie cr&#xE9;ation doit comporter un test :</p>
 <ul>
-<li>Est-ce que &#xAB; text &#xBB; est dans data ?</li>
+<li>Est-ce que <code>texte</code> est dans data ?</li>
 </ul>
 <p>Ce test s&#x2019;&#xE9;crit en Python :</p>
 <pre><code class="lang-python">[&#x2026;]
@@ -919,14 +919,14 @@ uniq_id = str(uuid.uuid4())
 <ul>
 <li>R&#xE9;aliser la methode dans votre code par rapport au tableau de d&#xE9;finition que vous avez &#xE9;crit.</li>
 <li>&#xC0; quoi sert request.form ? (Voir la doc de Flask)</li>
-<li>Pourquoi est-je fait &#xAB; session.modified = True &#xBB; ? &#xC0; votre avis ?</li>
+<li>Pourquoi ai-je fait &#xAB; session.modified = True &#xBB; ? &#xC0; votre avis ? (La r&#xE9;ponse est dans la documentation de Flask)</li>
 </ul>
 <h3 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h3>
 <p>Marquer comme termin&#xE9; une tache c&#x2019;est changer le status de &#xAB; termine &#xBB; &#xE0; <code>true</code>.</p>
 <ul>
 <li>Utiliser le d&#xE9;corateur d&#x2019;initialisation de la session.</li>
 <li>V&#xE9;rifier que la t&#xE2;che existe dans la session. (En python <code>if current_id in session[&quot;todo&quot;]:</code>)</li>
-<li>R&#xE9;cup&#xE9;rer la t&#xE2;che dan la session.</li>
+<li>R&#xE9;cup&#xE9;rer la t&#xE2;che dans la session.</li>
 <li>Changer <code>current[&apos;termine&apos;] = True</code>.</li>
 <li>Sauvegarder &#xE0; nouveau la tache dans la session.</li>
 </ul>
@@ -939,8 +939,8 @@ uniq_id = str(uuid.uuid4())
 <div class="click_reveal"><span> Cliquer pour afficher une solution possible </span><div><pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/api/todo/done/&lt;current_id&gt;&quot;, methods=[&quot;POST&quot;])</span>
 <span class="hljs-meta">@init_session</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">terminer</span><span class="hljs-params">(current_id)</span>:</span>
-    <span class="hljs-string">&quot;&quot;&quot; Marquer une Todo comme terminee &quot;&quot;&quot;</span>
-    <span class="hljs-comment"># L&apos;id est terminee</span>
+    <span class="hljs-string">&quot;&quot;&quot; Marquer une Todo comme termine &quot;&quot;&quot;</span>
+    <span class="hljs-comment"># L&apos;id est termine, et present dans la session</span>
     <span class="hljs-keyword">if</span> current_id <span class="hljs-keyword">in</span> session[<span class="hljs-string">&quot;todo&quot;</span>]:
         current = session[<span class="hljs-string">&quot;todo&quot;</span>][current_id]
         current[<span class="hljs-string">&quot;termine&quot;</span>] = <span class="hljs-keyword">True</span> <span class="hljs-comment"># Mark As done</span>
@@ -953,9 +953,9 @@ uniq_id = str(uuid.uuid4())
 </div></div>
 
 <h3 id="suppression">Suppression</h3>
-<p>Supprimer une t&#xE2;che, c&#x2019;est tout simplement l&#x2019;action de la retirer de la session, pour faire &#xE7;a le mot clef et python c&#x2019;est <code>del</code>. Cependant votre code doit bloquer certaines actions car toute les t&#xE2;ches ne peuvent pas &#xEA;tre supprim&#xE9;s :</p>
+<p>Supprimer une t&#xE2;che, c&#x2019;est tout simplement l&#x2019;action de la retirer de la session, pour faire &#xE7;a le mot clef et python c&#x2019;est <code>del</code>. Cependant votre code doit bloquer certaines actions car toutes les t&#xE2;ches ne peuvent pas &#xEA;tre supprim&#xE9;es :</p>
 <ul>
-<li>Limiter l&#x2019;action seulement aux &#xAB; identifiants &#xBB; reconnu dans la session.</li>
+<li>Limiter l&#x2019;action seulement aux &#xAB; identifiants &#xBB; reconnus dans la session.</li>
 <li>La t&#xE2;che doit avoir le bool&#xE9;en &#xAB; termine &#xBB; &#xE0; vrai pour permettre la suppression.</li>
 </ul>
 <p>Votre algorithme doit donc suivre :</p>
@@ -987,14 +987,14 @@ uniq_id = str(uuid.uuid4())
 </div></div>
 
 <h2 id="tests">Tests</h2>
-<p>Maintenant que l&#x2019;ensemble de votre code est termin&#xE9; (et comment&#xE9; &#x1F575;&#x1F3FB;), nous allons pouvoir le tester, pour tester les API c&#x2019;est plut&#xF4;t simple. Il suffit d&#x2019;utiliser des outils tels que <a href="https://www.getpostman.com/" target="_blank">Postman</a>, l&#x2019;id&#xE9;e c&#x2019;est de se construire un &#xAB; cahier &#xBB; de test vous permettant de valider le fonctionnement de votre application rapidement (comprendre d&#xE8;s que vous modifiez le code). C&#x2019;est dans ce but que je vous ai pr&#xE9;par&#xE9; une collection de &#xAB; tests &#xBB; qui devrais vous permettre de valider rapidement le bon fonctionnement de vos API.</p>
+<p>Maintenant que l&#x2019;ensemble de votre code est termin&#xE9; (et comment&#xE9; &#x1F575;&#x1F3FB;), nous allons pouvoir le tester, pour tester les API c&#x2019;est plut&#xF4;t simple. Il suffit d&#x2019;utiliser des outils tels que <a href="https://www.getpostman.com/" target="_blank">Postman</a>, l&#x2019;id&#xE9;e c&#x2019;est de se construire un &#xAB; cahier &#xBB; de test vous permettant de valider le fonctionnement de votre application rapidement (comprendre d&#xE8;s que vous modifiez le code). C&#x2019;est dans ce but que je vous ai pr&#xE9;par&#xE9; une collection de &#xAB; tests &#xBB; qui devrait vous permettre de valider rapidement le bon fonctionnement de vos API.</p>
 <p><a href="https://raw.githubusercontent.com/c4software/api-todo-flask/master/test/TODO%20API%20Test.postman_collection.json" target="_blank">T&#xE9;l&#xE9;charger la collection de tests</a></p>
 <p>Question :</p>
 <ul>
 <li>Valider le bon fonctionnement de votre application grace au jeu de test.</li>
 </ul>
 <h2 id="utilisation-des-api">Utilisation des API</h2>
-<p>Mettre &#xE0; jour le code de votre TP &#xAB; Ajouter VueJS dans un site existant &#xBB; pour utiliser c&#x2019;est nouvelles API.</p>
+<p>Mettre &#xE0; jour le code de votre TP &#xAB; Ajouter VueJS dans un site existant &#xBB; pour utiliser ces nouvelles API.</p>
 
                                 
                                 </section>
@@ -1034,7 +1034,7 @@ uniq_id = str(uuid.uuid4())
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-02-27T19:10:25.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-08T20:49:10.617Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"previous":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask_todolist_api.md","mtime":"2018-03-11T14:13:29.601Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-11T14:14:17.659Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
