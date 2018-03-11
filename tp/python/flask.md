@@ -1,6 +1,6 @@
 # Découvrir Flask
 
-Dans ce TP nous allons découvrire Flask (l’installation et un premier test).
+Dans ce TP nous allons découvrir Flask (l’installation et un premier test).
 
 ## Introduction
 
@@ -22,7 +22,7 @@ Bonne nouvelle ! Depuis python 3.4 pip est maintenant intégré à l’installat
 
 ### Python 2
 
-Normalement vous avez installer python3 donc vous n’avez pas à faire ceci, cependant dans votre vie vous rencontrerez peut-être des environnement Python 2. La procédure d’installation est donc la suivante :
+Normalement vous avez installé python3 donc vous n’avez pas à faire ceci, cependant dans votre vie vous rencontrerez peut-être des environnements Python 2. La procédure d’installation est donc la suivante :
 
 - Télécharger sur votre machine le [script suivant](https://bootstrap.pypa.io/get-pip.py)
 - Lancer dans une console administrateur : ```python get-pip.py```
@@ -35,7 +35,7 @@ Question :
 
 ## Création du virtualenv
 
-VirtualEnv ? Kézako ! C’est l’un des petits trucs génial avec Python! VirtualEnv vous permets d’avoir des environnements cloisonés pour chacun de vos projets. Ça va pour permettre par exemple d’installer une version différentes de Flask pour des projets différents, ou avoir des librairies A uniquement dans votre projet A. Bref ça permet de faire les choses proprements.
+VirtualEnv ? Kézako ! C’est l’un des petits trucs génial avec Python! VirtualEnv vous permet d’avoir des environnements cloisonés pour chacun de vos projets. Ça va pour permettre par exemple d’installer une version différente de Flask pour des projets différents, ou avoir des librairies « A » uniquement dans votre projet « A ». Bref ça permet de faire les choses proprements.
 
 Vu que c’est la première fois que vous configurez votre environnement nous allons installer virtualenv, dans **une console administrateur** lancez la commande suivante :
 
@@ -132,7 +132,7 @@ Rappel sur le fonctionnement de Flask, comme vu pendant le cours Flask permet de
 
 En python, on utilise beaucoup de « décorateur », un décorateur est un « morceau de code » qui sera appelé avant, après, ou à l’initialisation de votre code.
 
-Flask apport un décorateur ```@app.route``` celui-ci nous permet de déclarer des nouveaux chemin (route) pour accéder à nos API. Exemple :
+Flask apporte un décorateur ```@app.route``` celui-ci nous permet de déclarer des nouveaux chemins (routes) pour accéder à nos API. Exemple :
 
 ```python
 […]
@@ -144,7 +144,7 @@ def hello_world():
 
 Ce morceau de code déclare donc une url ```/``` et appelera la fonction ```hello_world()``` à chaque fois qu’une personne y accedera.
 
-### l’application
+### L’application
 
 Maintenant que nous avons défini dans notre tête la structure de notre application écrivont le code :
 
@@ -188,7 +188,7 @@ Question :
 
 Maintenant que vous avez tout compris, je vous propose de mettre en place une nouvelle fonctionnalitée :
 
-> Ajouter une fonction à votre application qui va éffectuer une addition par rapport à deux chiffres passé en paramètre.
+> Ajouter une fonction à votre application qui va éffectuer une addition par rapport à deux chiffres passés en paramètre.
 
 Étapes :
 
