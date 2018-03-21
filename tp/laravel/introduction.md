@@ -62,7 +62,7 @@ export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 Fermer et rouvrir le terminal.
 
-#### Installer Laravel
+## Installer Laravel
 
 ```shell
 composer global require "laravel/installer"
