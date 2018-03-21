@@ -311,6 +311,8 @@ Avant de pouvoir tester votre application vous devez éditer le fichier ```boots
 $app->withEloquent();
 ```
 
+Eloquent ? [Un peu de documentation sur le Framework d'accès à la base de données](https://laravel.com/docs/5.6/eloquent) (oui… On ne fera pas de requête !)
+
 ## Tester
 
 Pour tester votre application il suffit de lancer la commande suivante :
