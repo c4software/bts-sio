@@ -66,8 +66,11 @@ Ajouter la plateforme Android au projet :
 
 ```shell
 cd cordova_app/
+mkdir www
 cordova platform add android
 ```
+
+✋ Attention à bien créer le dossier ```www``` pour que l'outil Cordova détècte bien le projet comme étant un projet Cordova.
 
 ### 3. Lancer sur votre mobile
 
