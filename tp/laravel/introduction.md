@@ -26,15 +26,6 @@ Pour « installer » Laravel sous Windows vous devez dans un premier temps insta
 - [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de séléctionner l’éxecutable PHP. ```ATTENTION:``` Bien séléctionner la version 7 de PHP dans le dossier ```C:\wamp\bin\php\php\7.X.X\bin\php.exe``` <= Attention à prendre la bonne version
 - Vérifier que la commande est bien disponible en tappant ```composer``` dans un terminal
 
-#### Installer Laravel
-
-```shell
-composer global require "laravel/installer"
-```
-
-✋ Vérifier que la commande laravel fonctionne. Comment faire ?
-Pour vérifier que la commande ```laravel``` fonctionne il suffit dans un terminal de tapper 
-
 ### Linux
 
 Pour Linux c’est plus simple, il suffit d’installer PHP 7 sur votre machine (regarder la documentation de votre distribution). Une fois que PHP est installé il suffit de faire :
@@ -49,8 +40,7 @@ mv composer.phar /usr/local/bin/composer
 Ajouter dans votre PATH la home de composer, exemple :
 
 ```shell
-export COMPOSER_HOME="$HOME/.composer/vendor/bin"
-export PATH="$PATH:$COMPOSER_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 ```
 
 ### MacOS (High Sierra)
@@ -67,9 +57,21 @@ mv composer.phar /usr/local/bin/composer
 Ajouter dans votre PATH la home de composer, exemple :
 
 ```shell
-export COMPOSER_HOME="$HOME/.composer/vendor/bin"
-export PATH="$PATH:$COMPOSER_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$HOME/.composer/vendor/bin"
 ```
+
+Fermer et rouvrir le terminal.
+
+#### Installer Laravel
+
+```shell
+composer global require "laravel/installer"
+```
+
+✋ Vérifier que la commande laravel fonctionne. Comment faire ?
+Pour vérifier que la commande ```laravel``` fonctionne il suffit de faire dans une console ```laravel -h```
+
+![Laravel](./ressources/laravelcli.png)
 
 ## Créer le premier Projet
 
@@ -81,9 +83,16 @@ Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un n
 laravel new mon-premier-projet
 ```
 
+La commande va télécharger l'ensemble des dépendances nécéssaire et va créer un dossier ```mon-premier-projet``` avec les sources.
+
 ## Initialisation
 
-Votre nouveau projet contient un fichier ```.env``` ouvrez le et modifiez le contenu pour y mettre la bonne configuration.
+Votre nouveau projet contient un fichier ```.env``` ouvrez le, et éditer par exemple le nom du projet.
+
+Questions :
+
+- Le fichier est plutôt complet, à quoi servent les différents paramètres ?
+- Dans les cours je vous ai parlé de la APP_KEY, celle-ci est déjà remplis, à votre avis pourquoi ?
 
 ## Lancer le projet d’exemple
 
@@ -95,12 +104,13 @@ php artisan serve
 
 Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir le site de démonstration fourni par Laravel.
 
+![Sample Laravel](./ressources/sample_laravel.png)
+
 ## Modification du template par défaut
 
-Éditer le fichier ```resources/views/welcome.blade.php```.
+Éditer le fichier ```resources/views/welcome.blade.php```, ajouter la variable ```$titre```. La synthaxe « blade » est la suivante ```{{ $titre }}```. À la ligne 82 ajouter après Laravel ```{{ $titre }}```. Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelques choses s'affiche :
 
-- Ajouter une variable, par exemple ```{{ $titre }}```
-- Modifier ```routes/web.php```, transformer :
+Éditer le fichier  ```routes/web.php```, transformer :
 
 ```php
 return view('welcome');
@@ -112,15 +122,19 @@ en
 return view('welcome', ['titre' => 'Mon premier exemple.']);
 ```
 
-💡 Vous pouvez également appeler des fonctions dans les templates, exemple ```{{ time() }}```. Tester cette fonction en ajoutant par exemple :
+💡 Vous pouvez également appeler des fonctions dans les templates, exemple ```{{ time() }}```. Tester cette fonction en ajoutant :
 
 ```html
 <p>Le Timestamp est {{ time() }}</p>
 ```
 
+Questions :
+
+- À votre avis est-il possible d'appeler d'autre fonctions ?
+
 ## Ajouter une nouvelle Route
 
-Pour tester le fonctionnement nous allons ajouter une nouvelle ```Route``` dans le projet de démonstration. Nous allons donc ajouter dans le fichier ```routes/web.php``` :
+Pour tester le fonctionnement nous allons ajouter une nouvelle ```Route``` dans le projet de démonstration. Nous allons donc ```ajouter``` dans le fichier ```routes/web.php``` :
 
 ```php
 Route::get('/ping', function () {
@@ -130,6 +144,20 @@ Route::get('/ping', function () {
 
 Tester la modification en [accédant à votre site](http://localhost:8000/ping)
 
+{% reveal text="Voir l’une des solutions possible" %}
+
+```php
+Route::get('/', function () {
+    return view('welcome', ['titre' => 'Mon premier exemple.']);
+});
+
+Route::get('/ping', function () {
+    return "pong";
+});
+```
+
+{% endreveal %}
+
 ## Ajouter une nouvelle vue
 
 Maintenant que nous avons déclaré une nouvelle route, nous allons revoir légèrement les templates pour :
@@ -137,6 +165,10 @@ Maintenant que nous avons déclaré une nouvelle route, nous allons revoir lég�
 - Déclarer un template principal (aussi appelé : layout).
 - Modifier le welcome.blade.php pour y faire référence.
 - Utiliser le layout pour répondre ```pong```.
+
+Question :
+
+- À votre avis pourquoi un tel découpage ?
 
 ### Créer le layout
 
@@ -224,12 +256,16 @@ Créer un nouveau fichier ```resources/views/layouts/base.blade.php``` avec le c
 
 ✋ Mais d’où vient ce contenu ? C’est tout simplement un découpage en « layout » du template de base de démonstration.
 
+Question :
+
+- À votre avis, à quoi sert le mot clef ```@yield``` ?
+
 ### Utiliser le layout dans welcome.blade.php
 
 Maintenant que nous avons notre template de base nous allons l’utiliser dans le template « Welcome ». Remplacer le contenu de ```resources/views/welcome.blade.php``` par :
 
 ```html
-@extends('base.app')
+@extends('base')
 
 @section('title', 'Bienvenue')
 
@@ -252,8 +288,22 @@ Maintenant que nous avons notre template de base nous allons l’utiliser dans l
 
 Bon, maintenant que nous avons déclaré un layout utilisons le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créé tout à l’heure. Pour cette dernière action je ne vous donne pas de code, mais uniquement les étapes :
 
-- Créer une Vue par exemple ```ping.blade.php```
-- Utiliser ```@extends``` pour « hériter » de votre layout.
+- Créer une Vue par exemple ```ping.blade.php``` (Dans le dossiers ```layouts```)
+- Utiliser ```@extends('base')``` pour « hériter » de votre layout principal.
 - Modifier ```web.php``` pour répondre avec la fonction ```view``` comme dans l’autre route.
 
 Avec c’est quelques expliquations vous allez pouvoir atteindre l’objectif. Bon courage.
+
+{% reveal text="Voir l’une des solutions possible pour ping.blade.php" %}
+
+```php
+@extends('base')
+
+@section('title', 'Bienvenue')
+
+@section('content')
+   <h1>PONG</h1>
+@endsection
+```
+
+{% endreveal %}
