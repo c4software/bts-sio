@@ -32,7 +32,8 @@ Pour « installer » Laravel sous Windows vous devez dans un premier temps insta
 composer global require "laravel/installer"
 ```
 
-✋ Vérifier que la commande laravel fonctionne
+✋ Vérifier que la commande laravel fonctionne. Comment faire ?
+Pour vérifier que la commande ```laravel``` fonctionne il suffit dans un terminal de tapper 
 
 ### Linux
 
@@ -52,14 +53,6 @@ export COMPOSER_HOME="$HOME/.composer/vendor/bin"
 export PATH="$PATH:$COMPOSER_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 ```
 
-#### Installer Laravel
-
-```shell
-composer global require "laravel/installer"
-```
-
-✋ Vérifier que la commande laravel fonctionne
-
 ### MacOS (High Sierra)
 
 Sur les dernières version de MacOS, PHP est déjà disponible en version 7. Il suffit donc d’installer ```Composer```, pour l’installer il suffit :
@@ -77,14 +70,6 @@ Ajouter dans votre PATH la home de composer, exemple :
 export COMPOSER_HOME="$HOME/.composer/vendor/bin"
 export PATH="$PATH:$COMPOSER_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 ```
-
-#### Installer Laravel
-
-```shell
-composer global require "laravel/installer"
-```
-
-✋ Vérifier que la commande laravel fonctionne
 
 ## Créer le premier Projet
 
