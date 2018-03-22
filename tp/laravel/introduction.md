@@ -87,7 +87,7 @@ La commande va télécharger l'ensemble des dépendances nécéssaire et va cré
 
 ## Initialisation
 
-Votre nouveau projet contient un fichier ```.env``` ouvrez le, et éditer par exemple le nom du projet.
+Votre nouveau projet contient un fichier ```.env``` ouvrez le, et éditez par exemple le nom du projet.
 
 Questions :
 
@@ -108,7 +108,7 @@ Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir 
 
 ## Modification du template par défaut
 
-Éditer le fichier ```resources/views/welcome.blade.php```, ajouter la variable ```$titre```. La synthaxe « blade » est la suivante ```{{ $titre }}```. À la ligne 82 ajouter après Laravel ```{{ $titre }}```. Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelques choses s'affiche :
+Éditer le fichier ```resources/views/welcome.blade.php```, ajouter la variable ```$titre```. La synthaxe « blade » est la suivante ```{{ $titre }}```. À la ligne 82 ajouter après Laravel « ```{{ $titre }}``` ». Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelques choses s'affiche :
 
 Éditer le fichier  ```routes/web.php```, transformer :
 
@@ -286,13 +286,13 @@ Maintenant que nous avons notre template de base nous allons l’utiliser dans l
 
 ### Utiliser le layout dans la route Pong
 
-Bon, maintenant que nous avons déclaré un layout utilisons le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créé tout à l’heure. Pour cette dernière action je ne vous donne pas de code, mais uniquement les étapes :
+Bon, maintenant que nous avons déclaré un layout utilisons-le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créé tout à l’heure. Pour cette dernière action je ne vous donne pas de code, mais uniquement les étapes :
 
-- Créer une Vue par exemple ```ping.blade.php``` (Dans le dossiers ```layouts```)
-- Utiliser ```@extends('base')``` pour « hériter » de votre layout principal.
-- Modifier ```web.php``` pour répondre avec la fonction ```view``` comme dans l’autre route.
+- Créez une Vue par exemple ```ping.blade.php``` (Dans le dossiers ```layouts```)
+- Utilisez ```@extends('base')``` pour « hériter » de votre layout principal.
+- Modifiez ```web.php``` pour répondre avec la fonction ```view``` comme dans l’autre route.
 
-Avec c’est quelques expliquations vous allez pouvoir atteindre l’objectif. Bon courage.
+Avec ces quelques expliquations vous allez pouvoir atteindre l’objectif. Bon courage.
 
 {% reveal text="Voir l’une des solutions possible pour ping.blade.php" %}
 
