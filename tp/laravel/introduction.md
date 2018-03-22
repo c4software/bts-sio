@@ -2,7 +2,7 @@
 
 ![Laravel](./ressources/logo.png)
 
-Dans ce TP nous allons couvrir l’installation, la configuration et la création d’un premier projet « démo » à base de Laravel
+Dans ce TP nous allons couvrir l’installation, la configuration et la création d’un premier projet « démo » à base de Laravel.
 
 ## Introduction
 
@@ -11,7 +11,7 @@ Pour pouvoir utiliser Laravel nous allons avoir besoin de différents outils :
 - PHP7
 - Composer
 
-Il y a bien plus de dépendances, mais celle-ci seront récupérés automatiquement par ```Composer```
+Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiquement par ```Composer```
 
 ### Windows
 
@@ -45,7 +45,7 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 ### MacOS (High Sierra)
 
-Sur les dernières version de MacOS, PHP est déjà disponible en version 7. Il suffit donc d’installer ```Composer```, pour l’installer il suffit :
+Sur la dernière version de MacOS, PHP est déjà disponible en version 7. Il suffit donc d’installer ```Composer```, pour l’installer il suffit :
 
 ```shell
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
