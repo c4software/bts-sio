@@ -265,7 +265,7 @@ Question :
 Maintenant que nous avons notre template de base nous allons l’utiliser dans le template « Welcome ». Remplacer le contenu de ```resources/views/welcome.blade.php``` par :
 
 ```html
-@extends('base')
+@extends('layouts.base')
 
 @section('title', 'Bienvenue')
 
