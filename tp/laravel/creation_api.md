@@ -103,7 +103,7 @@ QUEUE_DRIVER=sync
 Par défaut la configuration de base de SQLite dans Lumen est l’utilisation d’une base de données nommée ```database.sqlite``` il faut donc créer un fichier vide qui recevra les données :
 
 ```shell
-echo > database/database.sqlite
+touch database/database.sqlite
 ```
 
 C’est parti ! Tout est prêt, nous pouvons commencer à écrire du code.
@@ -167,7 +167,7 @@ class CreateTodosTable extends Migration
 Maintenant que le script est terminé, nous pouvons lancer la commande de migration :
 
 ```shell
-php artisan migration
+php artisan migrate
 ```
 
 Une fois cette commande lancée, Lumen va créer la structure de base de votre base de données.
