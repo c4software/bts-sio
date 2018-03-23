@@ -106,6 +106,8 @@ Par défaut la configuration de base de SQLite dans Lumen est l’utilisation d�
 touch database/database.sqlite
 ```
 
+Sous Windows la commande ```touch``` n'existe pas. Il faut créer un fichier ```vide (sans retour à la ligne)``` dans votre IDE / éditeur de texte.
+
 C’est parti ! Tout est prêt, nous pouvons commencer à écrire du code.
 
 ### Le script de création / migration
