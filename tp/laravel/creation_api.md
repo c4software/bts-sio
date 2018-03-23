@@ -47,7 +47,15 @@ Le projet n’étant pas initialisé nous allons devoir jouer quelques commandes
 mv .env.example .env
 ```
 
+PS: Sous Windows c'est :
+
+```shell
+move .env.example .env
+```
+
 Contrairement à Laravel, Lumen ne contient pas l’outils permettant d’initialiser la « secret key » nécéssaire à la sécurisation de votre application. Je pous propose par exemple de passer via la commande suivante :
+
+PS: Sous Windows la commande ne fonctionnera pas.
 
 ```shell
 openssl rand -base64 24
