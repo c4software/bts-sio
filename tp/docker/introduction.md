@@ -6,6 +6,10 @@ Dans ce TP nous allons voir l’installation de Docker et les premiers exemples 
 
 Pour installer Docker rien de plus simple, il suffit d’utiliser l’installeur officiel en le téléchargant sur [le site de Docker.](https://www.docker.com/docker-windows)
 
+## Lancer Docker
+
+Lancer Docker en tant qu'administrateur (et autoriser Hyper-V si il vous le demande).
+
 ## Premier test
 
 Maintenant qu’il est installé sur votre poste rien de plus simple. Dans une console entrez la commande suivante :
