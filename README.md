@@ -6,6 +6,15 @@
 
 Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.
 
+## Programme de l'année
+
+- Git.
+- Gitlab et travail collaboratif.
+- Laravel, PHP & Framework <3.
+- VueJS.
+- Introduction au développement sécurisé.
+- Découverte du developpement hybride.
+
 ## Contenu
 
 Ce module aborde les savoirs et savoirs faire liés à la participation à des projets de conception d’une
