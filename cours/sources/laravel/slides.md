@@ -17,10 +17,10 @@ Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une a
 
 ## Pourquoi ?
 
-* Simplification <!-- .element: class="fragment" data-fragment-index="1" -->
-* Standardisation <!-- .element: class="fragment" data-fragment-index="1" -->
-* Homogénéité <!-- .element: class="fragment" data-fragment-index="1" -->
-* **Sécurité** <!-- .element: class="fragment" data-fragment-index="1" -->
+* Simplification <!-- .element: class="fragment" -->
+* Standardisation <!-- .element: class="fragment" -->
+* Homogénéité <!-- .element: class="fragment" -->
+* **Sécurité** <!-- .element: class="fragment" -->
 
 ---
 
@@ -557,6 +557,27 @@ Pour des API ils ont conçu **Lumen**
 ---
 
 * Voyez-vous des cas où choisir Lumen ?
+
+---
+
+## Les micro-services vous connaissez ?
+
+---
+
+* Les services individuels sont simples à remplacer
+* Les services sont conçus pour leur utilité spécifique (par exemple la facturation, la chaîne logistique, l'interface...)
+* L'architecture est plus symétrique que hiérarchique (passage d'une architecture client-serveur à une architecture de plusieurs entités communicantes)
+* L'architecture facilite le déploiement continu du code
+
+---
+
+* Les services sont petits, et conçus pour remplir une seule fonction.
+* L'organisation du projet doit prendre en compte l'automatisation, le déploiement et les tests.
+* Chaque service est élastique, résilient, composable, minimal et complet.
+
+---
+
+* Et pour vous ?
 
 ---
 
