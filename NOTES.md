@@ -5,7 +5,8 @@
 - Programmation sécurisée avec OWASP (4h + TP)
 - VueJS (5h + TP)
 - Cordova + VueJS (4h + TP)
-- Framework PHP : Laravel
-- Découverte de Docker
-- Intégration continue avec GitLab-CI
-- [WIP] Framework Python : Flask
+- Algo (2h, échange et discution, débat)
+- Framework PHP : Laravel (3h + TP)
+- Découverte de Docker (2h + TP)
+- Intégration continue avec GitLab-CI (2h + TP)
+- Framework Python : Flask (2h + TP)
