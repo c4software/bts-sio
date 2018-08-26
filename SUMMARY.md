@@ -7,7 +7,7 @@
   * [Docker](cheatsheets/docker/README.md)
   * [VueJS](cheatsheets/vuejs/README.md)
 * Initiation à Git
-  * [Slides](/cours/sources/revealjs/index.html?source=git)
+  * [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=git)
   * [TP](tp/git_initiation/README.md)
 * Git en groupe + GitLab
   * [Slides](https://rawgit.com/c4software/bts/master/cours/gitlab/)

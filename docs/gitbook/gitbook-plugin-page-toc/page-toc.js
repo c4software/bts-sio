@@ -2,6 +2,7 @@ require(['gitbook'], function(gitbook) {
 
     var selector;
     var position;
+    var showByDefault;
 
     anchors.options = {
         placement: 'left'
@@ -10,6 +11,7 @@ require(['gitbook'], function(gitbook) {
     gitbook.events.bind('start', function(e, config) {
         selector = config['page-toc'].selector;
         position = config['page-toc'].position;
+        showByDefault = config['page-toc'].showByDefault;
     });
 
     gitbook.events.bind('page.change', function() {
@@ -48,7 +50,9 @@ require(['gitbook'], function(gitbook) {
         anchors.removeAll();
         anchors.add(selector);
 
-        if (anchors.elements.length > 1) {
+        var showToc = gitbook.state.page.showToc;
+
+        if (anchors.elements.length > 1 && (showByDefault || showToc) && showToc != false) {
             var text, href, currentLevel;
             var prevLevel = 0;
             var nav = document.createElement('nav');
@@ -75,4 +79,3 @@ require(['gitbook'], function(gitbook) {
     })
 
 });
-
