@@ -1,0 +1,943 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Installation de Python et Flask · Cours BTS SIO Slam 5</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="flask_todolist_api.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Aides mémoires
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../cheatsheets/git/">
+            
+                <a href="../../cheatsheets/git/">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../cheatsheets/cordova/">
+            
+                <a href="../../cheatsheets/cordova/">
+            
+                    
+                    Cordova
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../cheatsheets/docker/">
+            
+                <a href="../../cheatsheets/docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../cheatsheets/vuejs/">
+            
+                <a href="../../cheatsheets/vuejs/">
+            
+                    
+                    VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Initiation à Git
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/git/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../git_initiation/">
+            
+                <a href="../git_initiation/">
+            
+                    
+                    TP
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Git en groupe + GitLab
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/gitlab/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../gitlab/">
+            
+                <a href="../gitlab/">
+            
+                    
+                    Git en groupe + GitLab
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Programmation sécurisée avec OWASP
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/securite_applications_web/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../securite/">
+            
+                <a href="../securite/">
+            
+                    
+                    Tentatives et injections
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/vuejs/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../vuejs/tp1.html">
+            
+                <a href="../vuejs/tp1.html">
+            
+                    
+                    Ajouter VueJS dans un site existant
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../vuejs/tp2.html">
+            
+                <a href="../vuejs/tp2.html">
+            
+                    
+                    Réaliser une application avec VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    Cordova + VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/cordova/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../cordova/decouverte.html">
+            
+                <a href="../cordova/decouverte.html">
+            
+                    
+                    Découverte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../cordova/vuejs_cordova.html">
+            
+                <a href="../cordova/vuejs_cordova.html">
+            
+                    
+                    Projet Cordova + VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Laravel
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/laravel/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../laravel/introduction.html">
+            
+                <a href="../laravel/introduction.html">
+            
+                    
+                    Installation de Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../laravel/creation_api.html">
+            
+                <a href="../laravel/creation_api.html">
+            
+                    
+                    Réécriture des API de la TODO List
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Docker
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/docker/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../docker/introduction.html">
+            
+                <a href="../docker/introduction.html">
+            
+                    
+                    Première approche
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../docker/dockerfile.html">
+            
+                <a href="../docker/dockerfile.html">
+            
+                    
+                    Dockerfile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../docker/docker_compose.html">
+            
+                <a href="../docker/docker_compose.html">
+            
+                    
+                    Docker Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    GitLab-CI
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/gitlabci/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../ci/pages.html">
+            
+                <a href="../ci/pages.html">
+            
+                    
+                    Utiliser Gitlab Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../ci/ci-hybride.html">
+            
+                <a href="../ci/ci-hybride.html">
+            
+                    
+                    App Hybride et Gitlab-CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Python : Framework Flask
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/python/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.11.2" data-path="flask.html">
+            
+                <a href="flask.html">
+            
+                    
+                    Installation de Python et Flask
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="flask_todolist_api.html">
+            
+                <a href="flask_todolist_api.html">
+            
+                    
+                    Réécriture des API de la TODO List
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Installation de Python et Flask</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p><em>Last modified: Sun Mar 11 2018 15:02:56 GMT+0100 (CET)</em></p>
+</blockquote>
+<h1 id="d&#xE9;couvrir-flask">D&#xE9;couvrir Flask</h1>
+<p>Dans ce TP nous allons d&#xE9;couvrir Flask (l&#x2019;installation et un premier test).</p>
+<h2 id="introduction">Introduction</h2>
+<p>Flask est un framework open-source de d&#xE9;veloppement web en Python. Son but principal est d&apos;&#xEA;tre l&#xE9;ger, afin de garder la souplesse de la programmation Python, associ&#xE9; &#xE0; un syst&#xE8;me de templates.</p>
+<h2 id="installation-de-python">Installation de python</h2>
+<p>L&#x2019;installation de Python sous Windows se fait via <a href="https://www.python.org/downloads/" target="_blank">l&#x2019;installer officiel</a>, nous allons prendre la version 3.</p>
+<p>Sous Linux (et MacOS) Python est normalement <strong>inclus</strong>.</p>
+<h2 id="installation-de-pip-python-2">Installation de PIP (Python 2)</h2>
+<p>Pip est &#xAB; le gestionnaire de paquets &#xBB; de Python. PIP (Pip Installs Packages) va nous permetter d&#x2019;installer les diff&#xE9;rentes librairies que nous allons avoir besoin (virtualenv, flask, &#x2026;).</p>
+<h3 id="python-3">Python 3</h3>
+<p>Bonne nouvelle ! Depuis python 3.4 pip est maintenant int&#xE9;gr&#xE9; &#xE0; l&#x2019;installation de python. Rien &#xE0; installer de plus.</p>
+<h3 id="python-2">Python 2</h3>
+<p>Normalement vous avez install&#xE9; python3 donc vous n&#x2019;avez pas &#xE0; faire ceci, cependant dans votre vie vous rencontrerez peut-&#xEA;tre des environnements Python 2. La proc&#xE9;dure d&#x2019;installation est donc la suivante :</p>
+<ul>
+<li>T&#xE9;l&#xE9;charger sur votre machine le <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank">script suivant</a></li>
+<li>Lancer dans une console administrateur : <code>python get-pip.py</code></li>
+</ul>
+<p>Et voil&#xE0; ! pip est install&#xE9; sur votre machine !</p>
+<p>Question :</p>
+<ul>
+<li>Avez-vous ouvert le fichier avant de l&#x2019;utiliser ?</li>
+</ul>
+<h2 id="cr&#xE9;ation-du-virtualenv">Cr&#xE9;ation du virtualenv</h2>
+<p>VirtualEnv ? K&#xE9;zako ! C&#x2019;est l&#x2019;un des petits trucs g&#xE9;nial avec Python! VirtualEnv vous permet d&#x2019;avoir des environnements cloison&#xE9;s pour chacun de vos projets. &#xC7;a va pour permettre par exemple d&#x2019;installer une version diff&#xE9;rente de Flask pour des projets diff&#xE9;rents, ou avoir des librairies &#xAB; A &#xBB; uniquement dans votre projet &#xAB; A &#xBB;. Bref &#xE7;a permet de faire les choses proprements.</p>
+<p>Vu que c&#x2019;est la premi&#xE8;re fois que vous configurez votre environnement nous allons installer virtualenv, dans <strong>une console administrateur</strong> lancez la commande suivante :</p>
+<pre><code class="lang-sh">python -m pip install virtualenv
+</code></pre>
+<p>Maintenant que pip est install&#xE9; vous allez pouvoir cr&#xE9;er votre virtualenv :</p>
+<pre><code class="lang-sh">$ virtualenv -p python3 flask
+Running virtualenv with interpreter /usr/<span class="hljs-built_in">local</span>/bin/python3
+Using base prefix <span class="hljs-string">&apos;/usr/local/Cellar/python3/3.6.4_1/Frameworks/Python.framework/Versions/3.6&apos;</span>
+New python executable <span class="hljs-keyword">in</span> /private/tmp/flask/bin/python3.6
+Also creating executable <span class="hljs-keyword">in</span> /private/tmp/flask/bin/python
+Installing setuptools, pip, wheel...done.
+</code></pre>
+<p>Voil&#xE0; notre environnement cloison&#xE9; est pr&#xEA;t, mais pour l&#x2019;instant il n&#x2019;est pas actif, il faut lancer une commande pour &#xAB; entrer &#xBB; dedans :</p>
+<p>Sous Windows :</p>
+<pre><code class="lang-sh">$ flask\Scripts\activate
+(flask) C:\Users\user\Documents&gt;
+</code></pre>
+<p>Sous Unix :</p>
+<pre><code class="lang-sh">$ <span class="hljs-built_in">source</span> flask\Scripts\activate
+(flask) /tmp
+</code></pre>
+<p>Le <code>(flask)</code> entre parenth&#xE8;ses vous indique que vous &#xEA;tes actuellement dans un environnement cloison&#xE9;, &#xE0; partir de maintenant si vous installez des paquets via pip ils s&#x2019;installeront non pas dans votre syst&#xE8;me mais dans votre environnement &#xAB; cloison&#xE9; &#xBB;.</p>
+<h2 id="le-fameux-hello-world">Le fameux Hello World</h2>
+<p>Testons notre installation en r&#xE9;alisant un simple Hello World. Cr&#xE9;ez un fichier <code>test.py</code> avec le contenu suivant :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">print</span> (<span class="hljs-string">&quot;Hello World&quot;</span>)
+</code></pre>
+<p>Lancer le via la commande :</p>
+<pre><code class="lang-sh">python test.py
+</code></pre>
+<p>Question :</p>
+<ul>
+<li>Modifier le script pour afficher 4x le hello world. (Plusieurs solutions&#x2026;)</li>
+<li>Modifier le texte affich&#xE9;.</li>
+</ul>
+<h2 id="le-hello-word">Le Hello Word++</h2>
+<p>Maintenant que l&#x2019;on sait que notre environement d&#x2019;execution est correctement install&#xE9; nous allons tester la partie Flask. Avec la commande <code>pip</code> installer flask <strong>mais</strong> avant pensez &#xE0; activer votre environnement cloison&#xE9;s pr&#xE9;c&#xE9;dement cr&#xE9;&#xE9;</p>
+<pre><code class="lang-sh">flask\Scripts\activate <span class="hljs-comment"># Sous Windows</span>
+<span class="hljs-built_in">source</span> flask\Scripts\activate <span class="hljs-comment"># Sous Unix</span>
+</code></pre>
+<p>Installation de Flask :</p>
+<pre><code class="lang-sh">python -m pip install flask
+</code></pre>
+<p>Cette commande va installer Flask ainsi que les d&#xE9;pendances n&#xE9;c&#xE9;ssaires &#xE0; son fonctionnement.</p>
+<h3 id="le-code">Le code</h3>
+<p>Maintenant que Flask est install&#xE9; nous allons pouvoir l&#x2019;utiliser, notre exemple sera tout simple tout sera contenu dans <strong>un seul fichier</strong>, lancer un &#xE9;diteur de texte (pyCharn, Visual Studio Code, etc), et commencer par cr&#xE9;er le fichier suivante <code>main.py</code></p>
+<p>Le fichier <code>main.py</code> va &#xEA;tre le fichier principal de notre application, l&#x2019;ensemble du code sera dedans. C&#x2019;est bien pour une d&#xE9;mo, bien &#xE9;vid&#xE9;ment dans une vrai application on &#xE9;vitera.</p>
+<h3 id="but-de-notre-code">But de notre code</h3>
+<p>Dans ce second exemple appel&#xE9; <code>Hello World++</code> nous allons cr&#xE9;er deux fonctions Python :</p>
+<ul>
+<li>La premi&#xE8;re <code>hello_world()</code> qui affichera <code>Bonjour Monde</code>.</li>
+<li>Et la seconde <code>hello(name)</code> qui affichera <code>Bonjour &lt;nom&gt;</code>.</li>
+</ul>
+<h3 id="fonctionnement">Fonctionnement</h3>
+<p>Rappel sur le fonctionnement de Flask, comme vu pendant le cours Flask permet de &#xAB; mapper &#xBB; (faire correspondre) des URL et des fonctions Python. Nous devons donc d&#xE9;finir des URL d&#x2019;acc&#xE8;s &#xE0; <code>hello_world</code> et <code>hello</code> je vous propose :</p>
+<ul>
+<li><code>/</code> ==&gt; <code>hello_world()</code>.</li>
+<li><code>/hello/&lt;name&gt;</code> ==&gt; <code>hello(name)</code>.</li>
+</ul>
+<h3 id="associer-un-lien-et-une-fonction">Associer un lien et une fonction</h3>
+<p>En python, on utilise beaucoup de &#xAB; d&#xE9;corateur &#xBB;, un d&#xE9;corateur est un &#xAB; morceau de code &#xBB; qui sera appel&#xE9; avant, apr&#xE8;s, ou &#xE0; l&#x2019;initialisation de votre code.</p>
+<p>Flask apporte un d&#xE9;corateur <code>@app.route</code> celui-ci nous permet de d&#xE9;clarer des nouveaux chemins (routes) pour acc&#xE9;der &#xE0; nos API. Exemple :</p>
+<pre><code class="lang-python">[&#x2026;]
+<span class="hljs-meta">@app.route(&quot;/&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello_world</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span>
+[&#x2026;]
+</code></pre>
+<p>Ce morceau de code d&#xE9;clare donc une url <code>/</code> et appelera la fonction <code>hello_world()</code> &#xE0; chaque fois qu&#x2019;une personne y accedera.</p>
+<h3 id="lapplication">L&#x2019;application</h3>
+<p>Maintenant que nous avons d&#xE9;fini dans notre t&#xEA;te la structure de notre application &#xE9;crivont le code :</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
+app = Flask(__name__)
+
+<span class="hljs-meta">@app.route(&quot;/&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello_world</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Bonjour Monde!&quot;</span>
+
+<span class="hljs-meta">@app.route(&quot;/hello/&lt;name&gt;&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(name)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Bonjour {}&quot;</span>.format(name)
+
+<span class="hljs-comment"># Lancement de l&apos;application</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    app.debug == <span class="hljs-keyword">True</span>
+    app.run()
+</code></pre>
+<h3 id="le-test">Le test</h3>
+<p>Tester votre application en lancant votre application. Pour &#xE7;a vous devez activer le virtualEnv puis lancer :</p>
+<pre><code class="lang-sh">(flask)  tp1 &#x30C4; python main.py
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+</code></pre>
+<p>Normalement votre code est maintenant accessible, tester le fonctionnement :</p>
+<ul>
+<li><a href="http://127.0.0.1:5000/" target="_blank">L&#x2019;index</a></li>
+<li><a href="http://127.0.0.1:5000/hello/Yolo" target="_blank">Hello Yolo</a></li>
+</ul>
+<p>Question :</p>
+<ul>
+<li>Changer le param&#xE8;tre observer le r&#xE9;sultat.</li>
+</ul>
+<h3 id="&#xE9;volution">&#xC9;volution</h3>
+<p>Maintenant que vous avez tout compris, je vous propose de mettre en place une nouvelle fonctionnalit&#xE9;e :</p>
+<blockquote>
+<p>Ajouter une fonction &#xE0; votre application qui va &#xE9;ffectuer une addition par rapport &#xE0; deux chiffres pass&#xE9;s en param&#xE8;tre.</p>
+</blockquote>
+<p>&#xC9;tapes :</p>
+<ul>
+<li>D&#xE9;finir l&#x2019;URL.</li>
+<li>D&#xE9;finir le nom de la fonction.</li>
+<li>&#xC9;crire le code.</li>
+<li>Tester.</li>
+</ul>
+<p>C&#x2019;est &#xE0; vous !</p>
+<div class="click_reveal"><span> Voir l&#x2019;une des solutions possible </span><div><pre><code class="lang-python"><span class="hljs-meta">@app.route(&quot;/calcul/&lt;int:a&gt;/&lt;int:b&gt;&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">calcul</span><span class="hljs-params">(a, b)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;{}&quot;</span>.format(a + b)
+</code></pre>
+<p>Psss : Maintenant que tu as vu la solution. Modifier la consigne pour effectuer une division plut&#xF4;t&#x2026;</p>
+</div></div>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="flask_todolist_api.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Réécriture des API de la TODO List">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"next":{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]},"previous":{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/python/","ref":"https://rawgit.com/c4software/bts/master/cours/python/","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4"},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/python/flask.md","mtime":"2018-03-11T14:02:56.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-30T12:27:02.885Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
