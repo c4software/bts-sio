@@ -151,8 +151,8 @@ Mais? Y'a t'il des équivalents ?
 
 - Indisponibilité <!-- .element: class="fragment" -->
 - Lenteur <!-- .element: class="fragment" -->
-- Dépend de votre connexion Internet <!-- .element: class="fragment" -->
-- Dépend de **LEUR** connexion Internet <!-- .element: class="fragment" -->
+- Dépend de VOTRE connexion Internet <!-- .element: class="fragment" -->
+- Dépend de LEUR connexion Internet <!-- .element: class="fragment" -->
 - Sécurité <!-- .element: class="fragment" -->
 - Faille <!-- .element: class="fragment" -->
 
