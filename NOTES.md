@@ -2,7 +2,7 @@
 
 - Initiation à GIT (~4h + TP)
 - Git en groupe + GitLab (~2h + TP)
-- Programmation sécurisée avec OWASP (4h + TP)
+- Programmation sécurisée avec OWASP (2h + TP)
 - VueJS (5h + TP)
 - Cordova + VueJS (4h + TP)
 - Algo (2h, échange et discution, débat)
