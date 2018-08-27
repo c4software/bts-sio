@@ -13,7 +13,7 @@
   * [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlab)
   * [Git en groupe + GitLab](tp/gitlab/README.md)
 * Programmation sécurisée avec OWASP
-  * [Slides](https://rawgit.com/c4software/bts/master/cours/securite_applications_web/) ([Les sources](cours/securite_applications_web))
+  * [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications)
   * [Tentatives et injections](tp/securite/README.md)
 * Laravel
   * [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel)
