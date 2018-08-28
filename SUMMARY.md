@@ -18,7 +18,7 @@
 * Laravel
   * [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel)
   * [Installation de Laravel](tp/laravel/introduction.md)
-  * [Réécriture des API de la TODO List](tp/laravel/creation_api.md)
+  * [Transformer la Todo List en API](tp/laravel/creation_api.md)
 * VueJS
   * [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs)
   * [Ajouter VueJS dans un site existant](tp/vuejs/tp1.md)
