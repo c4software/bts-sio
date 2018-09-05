@@ -463,9 +463,10 @@ $ git branch -d evolution1
 ## Les différentes façons d’utiliser Git
 
 - Individuel/localement
-- Collectif : Avec dépôt de références
-- Collectif : Avec dépôt de références et Manager(s) d’intégration(s
-- Collectif : Avec dépôt de références et Propriétaire(s) du dépot (GitLab, Github, …
+- Individuel avec un dépôt de référence
+- Collectif : Avec dépôt de référence
+- Collectif : Avec dépôt de référence et Manager(s) d’intégration(s)
+- Collectif : Avec dépôt de référence et Propriétaire(s) du dépot (GitLab, Github, …)
 
 ---
 
@@ -543,4 +544,4 @@ $ git checkout --
 
 ## GitLab
 
-![Logo Gitlab](./img/gitlab.png")
+![Logo Gitlab](./img/gitlab.png)
