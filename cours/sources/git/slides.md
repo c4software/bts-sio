@@ -69,7 +69,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-- Linux Torvald n'aime pas les outils éxistant
+- Linux Torvald n'aime pas les outils existants
 - Il programme donc le sien
 
 ## GIT <!-- .element: class="fragment" -->
@@ -121,13 +121,13 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ### Repository
 
-Vos sources + plus un dossier « caché » le « .git ».
+Vos sources + un dossier « caché » le « .git ».
 
 Le .git, est le dossier qui contient **l'historique de votre projet.** (et plus encore)
 
 ---
 
-### Diff ou Patch
+### Diff (ou patch)
 
 Différences entre 2 versions d'un fichier.
 
@@ -145,14 +145,13 @@ Le résultat d'une action de commit, représenté par un hash SHA-1.
 
 ### Branche
 
-Une lignée de développement. Par défaut tout le développement se fait dans la branche nommé « master ». 
-
+Une lignée de développement. Par défaut tout le développement se fait dans la branche nommée « master ».
 
 ---
 
 ### tag
 
-Un identifiant symbolique pour un commit. 
+Un identifiant symbolique pour un commit.
 
 « C'est une étiquette ou un raccourci vers une version »
 
@@ -179,7 +178,7 @@ Nombre de commits par semain chez Facebook ?
 ## Exemple
 ### Vous allez voir c'est simple…
 
-(Enfin presque…, mais c'est puissante !) <!-- .element: class="fragment" -->
+(Enfin presque…, mais c'est puissant !) <!-- .element: class="fragment" -->
 
 ![I've got power](./img/power.gif) <!-- .element: class="fragment" -->
 
@@ -255,7 +254,7 @@ $ git commit -m "Mon 2nd commit"
 ```
 <!-- .element: class="fragment" -->
 
-![2nd commit](./img/git_commit1.png)
+![2nd commit](./img/git_commit2.png) <!-- .element: class="fragment" -->
 
 ---
 
