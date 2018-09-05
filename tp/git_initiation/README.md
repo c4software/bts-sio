@@ -249,4 +249,4 @@ $
 - À votre avis, quel est l’intérêt de « taguer » une version ?
 - Quel sont les avantages de réaliser un tag ?
 
-[Voir la solution](./solution/README.md)
+[Voir la solution](/tp/git_initiation/solution/README.md)
