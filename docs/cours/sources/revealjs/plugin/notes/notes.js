@@ -14,8 +14,8 @@ var RevealNotes = (function() {
 	function openNotes( notesFilePath ) {
 
 		if( !notesFilePath ) {
-			var jsFileLocation = document.querySelector('script[src$="notes.js"]').src;  // this js file path
-			jsFileLocation = jsFileLocation.replace(/notes\.js(\?.*)?$/, '');   // the js folder path
+			var jsFileLocation = window.location.origin + window.location.pathname;  // this js file path
+			jsFileLocation = jsFileLocation.replace(/index.html/, '');   // the js folder path
 			notesFilePath = jsFileLocation + 'notes.html';
 		}
 
