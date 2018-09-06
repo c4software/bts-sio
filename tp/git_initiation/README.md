@@ -39,7 +39,7 @@ Votre choix est fait, vous devez maintenant initialiser votre espace de travail,
 
 ## Début du code
 
-Maintenant que votre projet est initialisé, il faut maintenant créer les fichiers de base. créer la structure suivante :
+Maintenant que votre projet est initialisé, il faut maintenant créer les fichiers de base. Créer la structure suivante :
 
 ```
 $ tree
@@ -100,7 +100,7 @@ Est-ce la seul façon de faire ? (Plusieurs réponses sont possibles)
 ### Questions
 
 - Qu’avez vous fait ?
-- Qu’elles sont différences entre les deux commandes?
+- Qu’elles sont différences entre les deux commandes ?
 - Dans quel état est votre dépôt (repository) ?
 - À quoi sert la commande ```git status``` ?
   - Une autre commande permettrait t’elle d’avoir une information similaire ?
@@ -151,7 +151,7 @@ $
 
 ### Questions
 
-- Pourquoi votre responsable vous a t’il demandé de le modifier?
+- Pourquoi votre responsable vous a t’il demandé de le modifier ?
 - Pourquoi le commentaire est-il aussi important ?
 
 ## Ajout d’une évolution dans le précédent fichier
@@ -169,7 +169,7 @@ $
 
 ### Question
 
-- À votre avis, comment déterminer la fréquence des « commits »?
+- À votre avis, comment déterminer la fréquence des « commits » ?
 
 ## Un coup d’oeil dans le rétroviseur
 
@@ -186,7 +186,7 @@ $
 - Que constatez-vous ?
 - À quoi sert l’identifiant de chaque commit ? (Hash SHA)
 - Comment vérifiez-vous l’historique pour un fichier précis ?
-- Comment voir l’ensemble des modifications en détail pour le fichier ```source/index.html```
+- Comment voir l’ensemble des modifications en détail pour le fichier ```source/index.html``` ?
 - Est-ce judicieux de travailler toujours sur la branche ```master``` ?
 
 ## Une autre évolution
@@ -205,12 +205,12 @@ Faites des modifications dans les fichiers que vous voulez.
 ### Questions
 
 - Vérifier l’état de votre dépôt Git
-- Quel est l’avantage de travailler dans une branch ?
+- Quel est l’avantage de travailler dans « une branch » ?
 - À votre avis qu’elles sont les prochaines étapes ?
 
 ## Fusion / Merge de la fonctionnalité
 
-Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre branch master :
+Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre « branch master » :
 
 ```sh
 $
@@ -245,7 +245,7 @@ $
 
 ### Questions
 
-- Que vient-il de se produire?
+- Que vient-il de se produire ?
 - À votre avis, quel est l’intérêt de « taguer » une version ?
 - Quel sont les avantages de réaliser un tag ?
 
