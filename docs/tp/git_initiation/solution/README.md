@@ -26,15 +26,15 @@ Vous êtes en entreprise, vous avez un nouveau projet à réaliser. Le projet es
 Votre choix est fait, vous devez maintenant initialiser votre espace de travail, comment procédez vous?
 
 ### Définir votre identité dans GIT
-```
+
+```sh
 $ git config --global user.email "email@example.com"
 $ git config --global user.name "Valentin Brosseau"
 ```
 
-
 ### Initialiser votre projet
 
-```
+```sh
 $ git init
 Initialized empty Git repository in /private/tmp/mon_projet/.git/
 ```
@@ -76,7 +76,7 @@ $ tree
 
 Vérifier le statut de Git après avoir tout créé
 
-```
+```sh
 git status
 On branch master
 
@@ -98,13 +98,13 @@ nothing added to commit but untracked files present (use "git add" to track)
 ### Questions
 
 * Que constatez-vous ?
-	* Quelle commandes, faut-il faire maintenant?
+	* Quelles commandes, faut-il faire maintenant ?
 	* Une autre commande serait-elle utile ?
 
 
 Ajouter les changements
 
-```
+```sh
 $ git add .
 $ git commit -am "Initialisation"
 [master (root-commit) 2804593] Initialisation
@@ -125,14 +125,14 @@ $ git status
 
 Est-ce la seul façon de faire ? (Plusieurs réponses sont possibles)
 
-```
+```sh
 $ git add --all
 ```
 
 ### Questions
 
 * Qu’avez vous fait ?
-* Qu’elles sont différences entre les deux commandes?
+* Qu’elles sont différences entre les deux commandes ?
 * Dans quel état est votre dépôt (repository) ?
 * À quoi sert la commande ```git status``` ?
 	* Une autre commande permettrait t’elle d’avoir une information similaire ?
@@ -144,13 +144,13 @@ $ git add --all
 
 Modifier le fichier ```source/index.html```, ajouter du contenu dedans (par exemple, une page html fictive)
 
-```
+```sh
 $ vim source/index.html
 ```
 
 Vérifier que vos modifications sont présentes dans GIT
 
-```
+```sh
 $ git status
 $ # Ou
 $ git diff
@@ -167,9 +167,9 @@ $ git commit -am "Ajout du code pour l’index.html"
 * À quoi sert les commentaires ?
 	* Est-ce que pour vous ?
 * Y’a t’il plusieurs façon de faire ?
-* Comment vérifier que vos modifications ont bien été prise en compte ?
+* Comment vérifier que vos modifications ont bien été prises en compte ?
 
-```
+```sh
 $ git log
 ```
 
@@ -177,37 +177,37 @@ $ git log
 
 Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit, modifier le en utilisant [Un template de message de commit](https://github.com/c4software/cheatsheet/blob/master/git/commit_template.md)
 
-```
+```sh
 $ git commit --amend
 ```
 
 ### Questions
 
-* Pourquoi votre responsable vous a t’il demandé de le modifier?
+* Pourquoi votre responsable vous a t’il demandé de le modifier ?
 * Pourquoi le commentaire est-il aussi important ?
 
 ## Ajout d’une évolution dans le précédent fichier
 
-```
+```sh
 $ vim source/index.html
 ```
 
 Sauvegarder les modifications après avoir vérifié que celle-ci sont bien présentes
 
-```
+```sh
 $ git diff
 $ git commit -a
 ```
 
 ### Question
 
-* À votre avis, comment déterminer la fréquence des « commits »?
+* À votre avis, comment déterminer la fréquence des « commits » ?
 
 ## Un coup d’oeil dans le rétroviseur
 
 Vérifier l’historique de votre projet
 
-```
+```sh
 $ git log
 $ # ou
 $ git log --oneline
@@ -218,7 +218,7 @@ $ git log --oneline
 * Que constatez-vous ?
 * À quoi sert l’identifiant de chaque commit ? (Hash SHA)
 * Comment vérifiez-vous l’historique pour un fichier précis ?
-* Comment voir l’ensemble des modifications en détail pour le fichier ```source/index.html```
+* Comment voir l’ensemble des modifications en détail pour le fichier ```source/index.html``` ?
 * Est-ce judicieux de travailler toujours sur la branche ```master``` ?
 
 ## Une autre évolution
@@ -227,7 +227,7 @@ Votre première version est maintenant disponible pour les utilisateurs, votre r
 
 Comment procédez-vous ?
 
-```
+```sh
 $ git branch evolution1
 $ git checkout evolution1
 ```
@@ -237,14 +237,14 @@ Faites des modifications dans les fichiers que vous voulez.
 ### Questions
 
 * Vérifier l’état de votre dépôt Git
-* Quel est l’avantage de travailler dans une branch ?
+* Quel est l’avantage de travailler dans « une branch » ?
 * À votre avis qu’elles sont les prochaines étapes ?
 
 ## Fusion / Merge de la fonctionnalité
 
-Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre branch master :
+Votre code est finalisé, il faut maintenant fusionner vos modifications avec « votre branch master » :
 
-```
+```sh
 $ git checkout master
 $ git merge evolution1
 ```
@@ -258,7 +258,7 @@ $ git merge evolution1
 
 Faite des évolutions dans votre branche master (2 ou 3), ajouter les via ```git add```. Votre responsable vous demande finalement de les annuler car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
 
-```
+```sh
 $ git reset HEAD
 ```
 
@@ -271,12 +271,12 @@ $ git reset HEAD
 
 Voilà, votre projet a atteint une première étape. Que pouvez-vous faire pour « marquer » cette première version ?
 
-```
+```sh
 $ git tag "V1"
 ```
 
 ### Questions
 
-* Que vient-il de se produire?
+* Que vient-il de se produire ?
 * À votre avis, quel est l’intérêt de « taguer » une version ?
 * Quel sont les avantages de réaliser un tag ?
