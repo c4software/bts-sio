@@ -81,7 +81,7 @@ Vérifier le statut de Git après avoir tout créé
 ### Questions
 
 - Que constatez-vous ?
-  - Quelle commandes, faut-il faire maintenant?
+  - Quelles commandes, faut-il faire maintenant?
   - Une autre commande serait-elle utile ?
 
 
@@ -135,7 +135,7 @@ $
 - À quoi sert les commentaires ?
   - Est-ce que pour vous ?
 - Y’a t’il plusieurs façon de faire ?
-- Comment vérifier que vos modifications ont bien été prise en compte ?
+- Comment vérifier que vos modifications ont bien été prises en compte ?
 
 ```sh
 $
