@@ -168,7 +168,7 @@ Un identifiant symbolique pour un commit.
 
 ## Quelques chiffres
 
-Nombre de commits par semain chez Facebook ?
+Nombre de commits par semaine chez Facebook ?
 
 - ~10 000 <!-- .element: class="fragment" -->
 
