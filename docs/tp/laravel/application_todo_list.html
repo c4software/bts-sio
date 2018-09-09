@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>App Hybride et Gitlab-CI · Cours BTS SIO Slam 5</title>
+        <title>Application/Site web Todo List · Cours BTS SIO Slam 5</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="creation_api.html" />
     
-    <link rel="prev" href="pages.html" />
+    
+    <link rel="prev" href="introduction.html" />
     
 
     </head>
@@ -333,9 +335,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="../laravel/introduction.html">
+        <li class="chapter " data-level="1.6.2" data-path="introduction.html">
             
-                <a href="../laravel/introduction.html">
+                <a href="introduction.html">
             
                     
                     Installation de Laravel
@@ -346,9 +348,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="../laravel/application_todo_list.html">
+        <li class="chapter active" data-level="1.6.3" data-path="application_todo_list.html">
             
-                <a href="../laravel/application_todo_list.html">
+                <a href="application_todo_list.html">
             
                     
                     Application/Site web Todo List
@@ -359,9 +361,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.4" data-path="../laravel/creation_api.html">
+        <li class="chapter " data-level="1.6.4" data-path="creation_api.html">
             
-                <a href="../laravel/creation_api.html">
+                <a href="creation_api.html">
             
                     
                     Transformer la Todo List en API
@@ -591,9 +593,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10.2" data-path="pages.html">
+        <li class="chapter " data-level="1.10.2" data-path="../ci/pages.html">
             
-                <a href="pages.html">
+                <a href="../ci/pages.html">
             
                     
                     Utiliser Gitlab Pages
@@ -604,9 +606,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.10.3" data-path="ci-hybride.html">
+        <li class="chapter " data-level="1.10.3" data-path="../ci/ci-hybride.html">
             
-                <a href="ci-hybride.html">
+                <a href="../ci/ci-hybride.html">
             
                     
                     App Hybride et Gitlab-CI
@@ -710,7 +712,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >App Hybride et Gitlab-CI</a>
+        <a href="../.." >Application/Site web Todo List</a>
     </h1>
 </div>
 
@@ -726,102 +728,155 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Sat Jan 06 2018 11:22:07 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Sep 09 2018 17:18:36 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
-<h1 id="compiler-une-application-hybride-avec-gitlab-ci">Compiler une application Hybride avec Gitlab-CI</h1>
+<h1 id="quick-note">Quick Note</h1>
 <h2 id="introduction">Introduction</h2>
-<p>Dans ce TP vous allez mettre en place l&#x2019;int&#xE9;gration continue sur votre Projet d&#x2019;application Hybride. Fini la prise de t&#xEA;te pour la compilation de votre application. Vous allez utiliser &#xAB; une image Docker &#xBB; au travers de GitLab-CI l&#x2019;image docker en question est <a href="https://hub.docker.com/r/c4software/cordova-light/" target="_blank">Cordova light</a>.</p>
-<p>Pourquoi Light ? Car l&#x2019;image n&#x2019;embarque pas Chrome Headless, et donc ne permet pas de faire de test unitaire de votre application.</p>
-<h2 id="cr&#xE9;ation-du-projet-sur-gitlab">Cr&#xE9;ation du projet sur GitLab</h2>
-<p>Avec votre compte GitLab vous pouvez cr&#xE9;er un nombre illimit&#xE9;s de projets. La premi&#xE8;re &#xE9;tape est donc de cr&#xE9;er un projet sur votre  <a href="https://gitlab.com/projects/new" target="_blank">compte Gitlab</a>.</p>
-<p>&#x26A0;&#xFE0F; Je vous conseille de mettre votre projet en mode &#xAB; Private &#xBB;.</p>
-<h2 id="commiter-et-pusher-vos-sources">Commiter et Pusher vos sources</h2>
-<p>Si ce n&#x2019;est pas d&#xE9;j&#xE0; fait, commiter les sources de votre application Cordova. Attention &#xE0; bien mettre un <code>.gitignore</code> pour ignorer le dossier <code>nodes_modules/</code>.</p>
-<p>Vous pouvez pusher vos sources.</p>
-<h2 id="activer-gitlab-ci">Activer GitLab-CI</h2>
-<p>Maintenant que votre projet est sur GitLab, nous allons activer Gitlab-CI. Pour &#xE7;a cr&#xE9;er un fichier <code>.gitlab-ci.yml</code>, c&#x2019;est le fichier qui va activer l&#x2019;int&#xE9;gration continue sur votre projet. Voil&#xE0; le contenu du fichier :</p>
-<pre><code class="lang-yml"><span class="hljs-attr">image:</span> c4software/cordova-light
-
-<span class="hljs-attr">stages:</span>
-<span class="hljs-bullet">  -</span> deploy
-
-<span class="hljs-attr">cache:</span>
-<span class="hljs-attr">  untracked:</span> <span class="hljs-literal">true</span>
-<span class="hljs-attr">  key:</span> <span class="hljs-string">&quot;$CI_PROJECT_ID&quot;</span>
-<span class="hljs-attr">  paths:</span>
-<span class="hljs-bullet">    -</span> plugins/
-
-<span class="hljs-attr">android_debug:</span>
-<span class="hljs-attr">  stage:</span> deploy
-<span class="hljs-attr">  when:</span> manual
-<span class="hljs-attr">  script:</span>
-<span class="hljs-bullet">    -</span> cordova platform add android
-<span class="hljs-bullet">    -</span> cordova build android
-<span class="hljs-attr">  artifacts:</span>
-<span class="hljs-attr">    paths:</span>
-<span class="hljs-bullet">      -</span> platforms/android/build/outputs/apk/
-</code></pre>
-<p>Et c&#x2019;est tout, avec ce simple fichier votre application est pr&#xEA;te et sera compil&#xE9;e en automatique.</p>
-<p>Commiter et Pusher la modification.</p>
+<p>Dans ce TP nous allons r&#xE9;aliser une application / site web, le but de cette application / site web est de faire de la prise de note de &#xAB; TODO &#xBB; ou aussi appel&#xE9; liste de t&#xE2;ches.</p>
+<p>Une TODO List est un proc&#xE9;d&#xE9; qui se veut simple et efficace pour g&#xE9;rer les t&#xE2;ches d&apos;un projet. Ces t&#xE2;ches peuvent &#xEA;tre ind&#xE9;pendantes ou devoir, au contraire, &#xEA;tre accomplies dans un certain ordre.</p>
+<h2 id="note-cr&#xE9;ation">Note cr&#xE9;ation</h2>
+<p>(&#xC0; reformuler) Dans ce TP blah blah blah</p>
 <ul>
-<li>Regarder les fichiers :<ul>
-<li>&#xC0; quoi correspond le <code>when: manual</code>?</li>
-<li>&#xC0; quoi sert le cache ?</li>
-<li>&#xC0; quoi correspond le <code>artifacts</code> ?</li>
+<li>Installation Laravel (Premier TP).</li>
+<li>Cr&#xE9;ation projet <code>laravel new laravel-todo</code></li>
+<li>Configuration du <code>.env</code></li>
 </ul>
-</li>
+<h2 id="technologie">Technologie</h2>
+<p>Dans ce TP nous allons utiliser deux technologies :</p>
+<ul>
+<li>Laravel (Framework PHP)</li>
+<li>Bootstrap (Framework HTML / CSS / JS)</li>
 </ul>
-<h2 id="lancement-dun-&#xAB;-build-&#xBB;">Lancement d&#x2019;un &#xAB; Build &#xBB;</h2>
-<p>Pour lancer un build rendez-vous dans la partie &#xAB; CI/CD &#xBB; de votre Projet GitLab.</p>
-<p><img src="ressources/hybrid-ci.png" alt="ci"></p>
-<p>Et lancer le build :</p>
-<p><img src="ressources/run.png" alt="ci"></p>
-<p>Au bout de quelques minutes votre application est pr&#xEA;te :</p>
-<p><img src="ressources/resultat.png" alt="resultat"></p>
-<p>Bonus !</p>
-<p>Grace &#xE0; l&#x2019;artifact votre application est m&#xEA;me t&#xE9;l&#xE9;chargeable :</p>
-<p><img src="ressources/telechargement.png" alt="dl"></p>
-<h2 id="test-et-analyse">Test et analyse</h2>
-<p>D&#xE9;sactiver le &#xAB; cache &#xBB; dans le fichier Gitlab-ci. Tester de compiler plusieurs fois votre application. &#xC0; votre avis le cache est-il utile ?</p>
-<h2 id="d&#xE9;clarer-un-runner-gitlab">D&#xE9;clarer un runner GitLab</h2>
-<p>Comme nous l&#x2019;avons vu tout repose sur les runners, de base Gitlab fourni des runners partag&#xE9;s. C&#x2019;est runners sont pratique car ils sont instantan&#xE9;ment disponible dans vos projets, cependant vu qu&#x2019;ils sont partag&#xE9;s avec d&#x2019;autre utilisateurs il peu rapidement y avoir des questions de s&#xE9;curit&#xE9;s et surtout de performances. </p>
-<p>Pour &#xEA;tre plus autonome (et plus performant) m&#xEA;me dans la version cloud il est possible de d&#xE9;clarer un runners &#xAB; &#xE0; nous &#xBB;. Ce runner va &#xEA;tre d&#xE9;di&#xE9; &#xE0; votre compte car il sera d&#xE9;clar&#xE9; sur votre machine.</p>
-<h3 id="installation">Installation</h3>
-<p>Pour d&#xE9;clarer un runner c&#x2019;est tr&#xE8;s simple, il faut juste le lancer / l&#x2019;installer sur votre machine. La documentation de GitLab &#xE9;tant tr&#xE8;s bien fait rendez vous <a href="https://docs.gitlab.com/runner/install/windows.html" target="_blank">ici pour Windows</a> et <a href="https://docs.gitlab.com/runner/install/linux-repository.html" target="_blank">la pour Linux</a></p>
-<h2 id="enregistrer-le-runner">Enregistrer le runner</h2>
-<p>Maintenant que le runner est install&#xE9; sur votre machine, nous allons devoir l&#x2019;enregistrer. L&#x2019;enregistrement consiste &#xE0; d&#xE9;clarer &#xE0; Gitlab.com que votre machine est pr&#xEA;te &#xE0; &#xE9;x&#xE9;cuter des t&#xE2;ches. Vous d&#xE9;diez en quelques sortes un peu de vos ressources &#xE0; GitLab au travers de votre Runner.</p>
-<p>L&#x2019;enregistrement du runners est relativement simple, il faut dans un premier temps allez dans &#xAB; les Param&#xE8;tres CI/CD du projet que vous avez cr&#xE9;&#xE9; &#xBB; exemple <code>https://gitlab.com/bts-sio-chevrollier/slam5/settings/ci_cd</code> cliquez sur &#xAB; Expand &#xBB; de la cat&#xE9;gorie &#xAB; Runners settings &#xBB;. Vous devez avoir quelques chose comme :</p>
-<p><img src="ressources/runner.png" alt="Register Runner"></p>
-<p>Dans une console administrateur :</p>
-<pre><code class="lang-sh">./gitlab-runner.exe register
+<h2 id="&#xE9;tape-1--initialiser-le-projet">&#xC9;tape 1 : Initialiser le projet</h2>
+<p>La premi&#xE8;re &#xE9;tape lors d&apos;un projet Laravel est la cr&#xE9;ation du projet avec une simple ligne de commande, dans notre cas :</p>
+<pre><code class="lang-sh">$ laravel new laravel-todo
+Crafting application...
+Loading composer repositories with package information
+Installing dependencies (including require-dev) from lock file
+[&#x2026;]
 </code></pre>
-<p>&#x270B; STOP ! Une fois rendu &#xE0; cette &#xE9;tape appeler moi ! Nous allons terminer la proc&#xE9;dure ensemble. Pour les plus t&#xE9;m&#xE9;raire vous pouvez suivre <a href="https://docs.gitlab.com/runner/register/index.html#windows" target="_blank">la documentation</a> (Attention &#xE0; bien choisir Docker)</p>
-<h2 id="signer-lapplication">Signer l&#x2019;application</h2>
-<p>Faire du Debug c&#x2019;est bien ! Mais si on faisait une application pr&#xEA;te pour le Store ? C&#x2019;est possible et tout aussi simplement.</p>
-<p>&#x26A0;&#xFE0F; Je vous d&#xE9;conseille fortement de le faire sur un &#xAB; runner &#xBB; public de Gitlab-CI. Pourquoi ? Simplement car nous allons mettre une clef de signature sur votre APK, clef qui doit rester <strong>PRIV&#xC9;E</strong> ! C&#x2019;est ce qui garantie la s&#xE9;curit&#xE9; de votre application, si celle-ci se retrouve en ligne le jeu est fini pour vous n&#x2019;importe qui peux usurper votre identit&#xE9;e.</p>
-<p>Ajouter dans le fichier <code>.gitlab-ci.yml</code></p>
-<pre><code class="lang-yml"><span class="hljs-attr">android:</span>
-<span class="hljs-attr">  stage:</span> deploy
-<span class="hljs-attr">  when:</span> manual
-<span class="hljs-attr">  script:</span>
-<span class="hljs-bullet">    -</span> cordova platform add android
-<span class="hljs-bullet">    -</span> cordova build android --release -- --keystore=<span class="hljs-string">&quot;keystore/keyfile&quot;</span> --keystoreType jks --password=<span class="hljs-string">&quot;MOT_DE_PASSE&quot;</span> --storePassword=<span class="hljs-string">&quot;MOT_DE_PASSE&quot;</span> --alias=<span class="hljs-string">&quot;demo&quot;</span>
-<span class="hljs-attr">  artifacts:</span>
-<span class="hljs-attr">    paths:</span>
-<span class="hljs-bullet">      -</span> platforms/android/build/outputs/apk/
+<p>La cr&#xE9;ation prend environ 1 minute, un certain nombre de librairie sont t&#xE9;l&#xE9;charg&#xE9;s. Une fois termin&#xE9; prenez quelques instants pour regarder les fichiers qui ont &#xE9;t&#xE9; cr&#xE9;&#xE9;.</p>
+<h3 id="questions">Questions</h3>
+<ul>
+<li>O&#xF9; sont les librairies ?</li>
+<li>Quel est l&apos;int&#xE9;r&#xEA;t &#xE0; votre avis d&apos;utiliser un outil pour initialiser un projet ?</li>
+</ul>
+<h2 id="&#xE9;tape-2--configurer-le-projet-le-env">&#xC9;tape 2 : Configurer le projet, le .env</h2>
+<p>Le projet qui viens d&apos;&#xEA;tre cr&#xE9;&#xE9; est &#xAB; g&#xE9;n&#xE9;rique &#xBB; c&apos;est &#xE0; dire qu&apos;il ne poss&#xE8;de aucune personnalisation et peu donc servir de base quelques soit votre d&#xE9;veloppement.</p>
+<p>La premi&#xE8;re &#xE9;tape est donc d&apos;&#xE9;diter le fichier <code>.env</code> pour configurer les options de base de votre projet :</p>
+<ul>
+<li>Le nom</li>
+<li>Le type de base de donn&#xE9;es</li>
+<li>&#x2026;</li>
+</ul>
+<h3 id="nom-de-lapplication">Nom de l&apos;application</h3>
+<ul>
+<li>TODO List Laravel - SLAM 5</li>
+</ul>
+<h3 id="base-de-donn&#xE9;es">Base de donn&#xE9;es</h3>
+<p>Pour ne pas avoir &#xE0; installer un serveur MySQL nous allons utiliser une base donn&#xE9;es &#xAB; local &#xBB;.</p>
+<p>Connaissez vous le nom d&apos;un type de base de donn&#xE9;es permettant de travailler en &#xAB; local &#xBB; ?</p>
+<div class="click_reveal"><span> Voir la solution </span><div><p>La r&#xE9;ponse est SQLite, SQLite est une base de donn&#xE9;es de type SQL mais ne n&#xE9;c&#xE9;ssitant pas de serveur, l&apos;ensemble des donn&#xE9;es est contenu dans un fichier &#xAB; local &#xBB;. Pour la cr&#xE9;er rien de plus simple il suffit de cr&#xE9;er un fichier vide dans le dossier de votre projet faite :</p>
+<pre><code class="lang-sh">$ touch database/database.sqlite
 </code></pre>
-<p>Comme vous pouvez le constater la partie script fait r&#xE9;f&#xE9;rence &#xE0; un nouveau fichier le <code>keystore/keyfile</code>. Pour que la commande fonctionne nous allons donc devoir &#xAB; le cr&#xE9;er &#xBB;.</p>
-<h3 id="cr&#xE9;ation-du-keystore">Cr&#xE9;ation du keystore</h3>
-<p>Le Keystore est une notion d&#x2019;Android, rien &#xE0; voir avec Cordova. Il faut donc utiliser Android-Studio (pour les int&#xE9;r&#xE9;ss&#xE9;s il est &#xE9;galement possible de le faire avec la ligne de commande).</p>
-<p>Avec Android Studio :</p>
-<p><img src="ressources/SjcOa.png" alt="store"></p>
-<p>Une fois cr&#xE9;&#xE9; :</p>
-<pre><code class="lang-sh">git add -A
-git commit -am <span class="hljs-string">&quot;Ajout signature&quot;</span>
-git push
+<p>Maintenant que le fichier &#xE0; &#xE9;t&#xE9; cr&#xE9;&#xE9; nous allons indiquer &#xE0; Laravel qu&apos;il faut l&apos;utiliser pour &#xE7;a &#xE9;diter le fichier <code>.env</code> et modifier la ligne :</p>
+<pre><code class="lang-conf">DB_CONNECTION=mysql
 </code></pre>
-<h3 id="lancement-dun-build">Lancement d&#x2019;un build</h3>
-<p>Relancer un build, mais en s&#xE9;l&#xE9;ctionnant le stage &#xAB; android &#xBB;. Au bout de quelques minutes vous devez obtenir une application sign&#xE9;e.</p>
+<p>par  :</p>
+<pre><code class="lang-conf">DB_CONNECTION=sqlite
+DB_DATABASE=databases/exemple.db
+</code></pre>
+<h4 id="questions">Questions</h4>
+<ul>
+<li>&#xC0; Votre avis, comment repasse ton en Mysql ?</li>
+<li>Est-il possible d&apos;utiliser les deux types de base de donn&#xE9;es (par exemple en production MySQL est en developpement sqlite) ?</li>
+<li>SQLite est-il toujours pertinant ?</li>
+</ul>
+</div></div>
+
+<h3 id="le-reste-du-fichier-env">Le reste du fichier .env</h3>
+<p>Nous n&apos;allons pas toucher aux autres param&#xE8;tres mais certains sont tout de m&#xEA;me int&#xE9;r&#xE9;ssant. Je vous laisse donc consulter la documentation en ligne de laravel :</p>
+<p><img src="https://laravel.com/docs/5.6/configuration" alt="Consulter en ligne"></p>
+<h2 id="conception-base-de-donn&#xE9;es">Conception base de donn&#xE9;es</h2>
+<p>Voil&#xE0; &#xE0; quoi va ressembler notre base de donn&#xE9;es :</p>
+<p><a href="ressources/todos.png">MCD Simple</a></p>
+<p>&#x1F913; C&#x2019;est parti ! Tout est pr&#xEA;t, nous pouvons commencer &#xE0; &#xE9;crire du code.</p>
+<h2 id="cr&#xE9;ation-model">Cr&#xE9;ation Model</h2>
+<p>Laravel utilise un ORM pour manipuler la base de donn&#xE9;es. Pour rappel un ORM est</p>
+<blockquote>
+<p>Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui cr&#xE9;e l&apos;illusion d&apos;une base de donn&#xE9;es orient&#xE9;e objet &#xE0; partir d&apos;une base de donn&#xE9;es relationnelle en d&#xE9;finissant des correspondances entre cette base de donn&#xE9;es et les objets du langage utilis&#xE9;.</p>
+</blockquote>
+<p>L&apos;ORM utilis&#xE9; par Laravel est Eloquent, il est &#xE0; la fois puissant et relativement simple. Autrement dit avec un ORM dans la plus part des cas vous n&apos;&#xE9;crivez plus de requ&#xEA;te SQL mais vous manipuler des objets repr&#xE9;sentant la base de donn&#xE9;es.</p>
+<p>Comme pour la cr&#xE9;ation du projet, la cr&#xE9;ation de la table &#xAB; todos &#xBB; va se faire via une requ&#xEA;te dans votre terminal :</p>
+<pre><code class="lang-shell">php artisan make:migration create_todos_table --create=todos
+</code></pre>
+<p>L&#x2019;option <code>--create=todos</code> permet d&#x2019;indiquer le nom de la table &#xE0; cr&#xE9;er</p>
+<p>&#x270B; Le contenu du fichier cr&#xE9;&#xE9; est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative &#xE0; notre table.</p>
+<p>La commande viens de cr&#xE9;er un nouveau fichier dans le dossier <code>database/migration</code>. Dans mon cas :</p>
+<pre><code>Created Migration: 2018_09_09_150442_create_todos_table
+</code></pre><p>Nous allons d&#xE9;finir notre sch&#xE9;ma (&#xE0; savoir la d&#xE9;finition de la table) pour ajouter les 2 colonnes qui nous serons utiles <code>texte</code> et <code>termine</code>. L&apos;ORM &#xE9;tant un librairie objet la d&#xE9;finition de nouveau champs ce fait via une m&#xE9;thode, exemple :</p>
+<pre><code class="lang-php">    $table-&gt;string(<span class="hljs-string">&apos;texte&apos;</span>);
+    $table-&gt;boolean(<span class="hljs-string">&apos;termine&apos;</span>);
+</code></pre>
+<p>C&apos;est &#xE0; vous ajouter les deux champs dans la m&#xE9;thode <code>up</code> du fichier.</p>
+<div class="click_reveal"><span> Voir le fichier avec les nouveaux champs </span><div><pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Support</span>\<span class="hljs-title">Facades</span>\<span class="hljs-title">Schema</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Schema</span>\<span class="hljs-title">Blueprint</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Migrations</span>\<span class="hljs-title">Migration</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateTodosTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Migration</span>
+</span>{
+    <span class="hljs-comment">/**
+     * Run the migrations.
+     *
+     * <span class="hljs-doctag">@return</span> void
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">up</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::create(<span class="hljs-string">&apos;todos&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Blueprint $table)</span> </span>{
+            $table-&gt;increments(<span class="hljs-string">&apos;id&apos;</span>);
+            $table-&gt;string(<span class="hljs-string">&apos;texte&apos;</span>);
+            $table-&gt;boolean(<span class="hljs-string">&apos;termine&apos;</span>);
+            $table-&gt;timestamps();
+        });
+    }
+
+    <span class="hljs-comment">/**
+     * Reverse the migrations.
+     *
+     * <span class="hljs-doctag">@return</span> void
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">down</span><span class="hljs-params">()</span>
+    </span>{
+        Schema::dropIfExists(<span class="hljs-string">&apos;todos&apos;</span>);
+    }
+}
+</code></pre>
+</div></div>
+
+<h3 id="questions">Questions</h3>
+<ul>
+<li>&#xC0; quoi correspond la m&#xE9;thode <code>up</code> et <code>down</code></li>
+<li>L&apos;ordre des champs est-il important ?</li>
+</ul>
+<h2 id="cr&#xE9;ation-en-base">Cr&#xE9;ation en base</h2>
+<p>Maintenant que le script est termin&#xE9;, nous allons indiquer &#xE0; Laravel d&apos;&#xE9;ffectuer &#xAB; la migration &#xBB; c&apos;est-&#xE0;-dire de transformer votre d&#xE9;finition PHP en inscruction SQL pour cr&#xE9;er r&#xE9;ellement la base de donn&#xE9;es. Pour &#xE7;a retour dans la ligne de commande :</p>
+<pre><code class="lang-sh">$ php artisan migrate
+[&#x2026;]
+Migrating: 2018_09_09_150442_create_todos_table
+Migrated:  2018_09_09_150442_create_todos_table
+</code></pre>
+<p>Votre base de donn&#xE9;es est maintenant pr&#xEA;te &#xE0; &#xEA;tre utilis&#xE9;. Vous pouvez aller voir le contenu grace &#xE0; PHPStorm qui est capable (une fois configur&#xE9;) de requ&#xEA;ter une base SQLite.</p>
+<p><a href="ressources/sqlite-phpstorm.png">sqlite</a>
+<a href="ressources/sqlite1.png">sqlite1</a>
+<a href="ressources/sqlite2.png">sqlite2</a>
+<a href="ressources/sqlite3.png">sqlite3</a></p>
+<h2 id="cr&#xE9;ation-des-templates">Cr&#xE9;ation des templates</h2>
+<h2 id="cr&#xE9;ation-des-routes">Cr&#xE9;ation des routes</h2>
+<h2 id="affichage-de-la-liste">Affichage de la liste</h2>
+<h2 id="action-dajout">Action d&apos;ajout</h2>
+<h2 id="action-de-suppression">Action de suppression</h2>
 
                                 
                                 </section>
@@ -849,10 +904,14 @@ git push
 
             
                 
-                <a href="pages.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Utiliser Gitlab Pages">
+                <a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page: Installation de Laravel">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="creation_api.html" class="navigation navigation-next " aria-label="Next page: Transformer la Todo List en API">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -861,7 +920,7 @@ git push
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"App Hybride et Gitlab-CI","level":"1.10.3","depth":2,"next":{"title":"Python : Framework Flask","level":"1.11","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.11.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/python/","ref":"https://rawgit.com/c4software/bts/master/cours/python/","articles":[]},{"title":"Installation de Python et Flask","level":"1.11.2","depth":2,"path":"tp/python/flask.md","ref":"./tp/python/flask.md","articles":[]},{"title":"Réécriture des API de la TODO List","level":"1.11.3","depth":2,"path":"tp/python/flask_todolist_api.md","ref":"./tp/python/flask_todolist_api.md","articles":[]}]},"previous":{"title":"Utiliser Gitlab Pages","level":"1.10.2","depth":2,"path":"tp/ci/pages.md","ref":"tp/ci/pages.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/ci/ci-hybride.md","mtime":"2018-01-06T10:22:07.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-09T15:20:10.568Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-09T15:18:36.364Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-09T15:20:10.568Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

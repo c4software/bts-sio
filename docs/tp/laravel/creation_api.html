@@ -58,7 +58,7 @@
 
     
     
-    <link rel="prev" href="introduction.html" />
+    <link rel="prev" href="application_todo_list.html" />
     
 
     </head>
@@ -346,7 +346,20 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6.3" data-path="creation_api.html">
+        <li class="chapter " data-level="1.6.3" data-path="application_todo_list.html">
+            
+                <a href="application_todo_list.html">
+            
+                    
+                    Application/Site web Todo List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.4" data-path="creation_api.html">
             
                 <a href="creation_api.html">
             
@@ -713,7 +726,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Fri Mar 23 2018 15:38:43 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Sep 09 2018 17:00:17 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="todolist--r&#xE9;-&#xE9;crire-les-api-du-projet">TodoList : (R&#xE9;-)&#xE9;crire les API du projet</h1>
 <p>Le but de notre application est de cr&#xE9;er des API Rest qui vont exposer la gestion de nos <code>todos</code> d&#xE9;fini en base de donn&#xE9;es</p>
@@ -792,7 +805,7 @@ QUEUE_DRIVER=sync
 <p>L&#x2019;option <code>--create=todos</code> permet d&#x2019;indiquer le nom de la table &#xE0; cr&#xE9;er</p>
 <pre><code class="lang-shell">php artisan make:migration create_todos_table --create=todos
 </code></pre>
-<p>&#x270B; Le contenu du fichier est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative &#xE0; notre base de donn&#xE9;es.</p>
+<p>&#x270B; Le contenu du fichier est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative &#xE0; notre table.</p>
 <p>La commande a cr&#xE9;&#xE9; un nouveau fichier (dans mon cas) : <code>database/migration/2017_11_02_205700_create_todos_table.php</code></p>
 <p>Dans le fichier cr&#xE9;&#xE9; nous allons d&#xE9;finir notre sch&#xE9;ma (&#xE0; savoir la d&#xE9;finition de la table) pour ajouter les 2 colonnes qui nous serons utiles <code>texte</code> et <code>termine</code>. Le fichier apr&#xE8;s modification doit ressembler &#xE0; :</p>
 <pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
@@ -973,7 +986,7 @@ $router-&gt;delete(<span class="hljs-string">&apos;api/todo/delete/{id}&apos;</s
 
             
                 
-                <a href="introduction.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Installation de Laravel">
+                <a href="application_todo_list.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Application/Site web Todo List">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -985,7 +998,7 @@ $router-&gt;delete(<span class="hljs-string">&apos;api/todo/delete/{id}&apos;</s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Transformer la Todo List en API","level":"1.6.3","depth":2,"next":{"title":"VueJS","level":"1.7","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},{"title":"Ajouter VueJS dans un site existant","level":"1.7.2","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},{"title":"Réaliser une application avec VueJS","level":"1.7.3","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]}]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/creation_api.md","mtime":"2018-03-23T14:38:43.295Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-09T14:50:43.900Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"next":{"title":"VueJS","level":"1.7","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},{"title":"Ajouter VueJS dans un site existant","level":"1.7.2","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},{"title":"Réaliser une application avec VueJS","level":"1.7.3","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]}]},"previous":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"path":"tp/laravel/application_todo_list.md","ref":"tp/laravel/application_todo_list.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/creation_api.md","mtime":"2018-09-09T15:00:17.890Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-09T15:20:10.568Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
