@@ -124,7 +124,7 @@ L’option ```--create=todos``` permet d’indiquer le nom de la table à créer
 php artisan make:migration create_todos_table --create=todos
 ```
 
-✋ Le contenu du fichier est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre base de données.
+✋ Le contenu du fichier est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre table.
 
 La commande a créé un nouveau fichier (dans mon cas) : ```database/migration/2017_11_02_205700_create_todos_table.php```
 

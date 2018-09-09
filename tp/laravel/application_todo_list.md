@@ -105,6 +105,81 @@ Voilà à quoi va ressembler notre base de données :
 
 ## Création Model
 
+Laravel utilise un ORM pour manipuler la base de données. Pour rappel un ORM est
+
+> Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
+
+L'ORM utilisé par Laravel est Eloquent, il est à la fois puissant et relativement simple. Autrement dit avec un ORM dans la plus part des cas vous n'écrivez plus de requête SQL mais vous manipuler des objets représentant la base de données.
+
+Comme pour la création du projet, la création de la table « todos » va se faire via une requête dans votre terminal :
+
+```shell
+php artisan make:migration create_todos_table --create=todos
+```
+
+L’option ```--create=todos``` permet d’indiquer le nom de la table à créer
+
+✋ Le contenu du fichier créé est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre table.
+
+La commande viens de créer un nouveau fichier dans le dossier ```database/migration```. Dans mon cas :
+
+```
+Created Migration: 2018_09_09_150442_create_todos_table
+```
+
+Nous allons définir notre schéma (à savoir la définition de la table) pour ajouter les 2 colonnes qui nous serons utiles ```texte``` et ```termine```. L'ORM étant un librairie objet la définition de nouveau champs ce fait via une méthode, exemple :
+
+```php
+    $table->string('texte');
+    $table->boolean('termine');
+```
+
+C'est à vous ajouter les deux champs dans la méthode ```up``` du fichier.
+
+{% reveal text="Voir le fichier avec les nouveaux champs" %}
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateTodosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('todos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('texte');
+            $table->boolean('termine');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('todos');
+    }
+}
+
+```
+{% endreveal %}
+
+### Questions
+
+- À quoi correspond la méthode ```up``` et ```down```
+- L'ordre des champs est-il important ?
+
 ## Créatino des routes
 
 ## Création des templates
