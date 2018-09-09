@@ -93,13 +93,13 @@ DB_DATABASE=databases/exemple.db
 
 Nous n'allons pas toucher aux autres paramètres mais certains sont tout de même intéréssant. Je vous laisse donc consulter la documentation en ligne de laravel :
 
-![Consulter en ligne](https://laravel.com/docs/5.6/configuration)
+[Consulter en ligne](https://laravel.com/docs/5.6/configuration)
 
 ## Conception base de données
 
 Voilà à quoi va ressembler notre base de données :
 
-[MCD Simple](./ressources/todos.png)
+![MCD Simple](./ressources/todos.png)
 
 🤓 C’est parti ! Tout est prêt, nous pouvons commencer à écrire du code.
 
@@ -193,10 +193,10 @@ Migrated:  2018_09_09_150442_create_todos_table
 
 Votre base de données est maintenant prête à être utilisé. Vous pouvez aller voir le contenu grace à PHPStorm qui est capable (une fois configuré) de requêter une base SQLite.
 
-[sqlite](./ressources/sqlite-phpstorm.png)
-[sqlite1](./ressources/sqlite1.png)
-[sqlite2](./ressources/sqlite2.png)
-[sqlite3](./ressources/sqlite3.png)
+![sqlite](./ressources/sqlite-phpstorm.png)
+![sqlite1](./ressources/sqlite1.png)
+![sqlite2](./ressources/sqlite2.png)
+![sqlite3](./ressources/sqlite3.png)
 
 ## Création des templates
 
