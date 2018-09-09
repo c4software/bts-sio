@@ -180,9 +180,27 @@ class CreateTodosTable extends Migration
 - À quoi correspond la méthode ```up``` et ```down```
 - L'ordre des champs est-il important ?
 
-## Créatino des routes
+## Création en base
+
+Maintenant que le script est terminé, nous allons indiquer à Laravel d'éffectuer « la migration » c'est-à-dire de transformer votre définition PHP en inscruction SQL pour créer réellement la base de données. Pour ça retour dans la ligne de commande :
+
+```sh
+$ php artisan migrate
+[…]
+Migrating: 2018_09_09_150442_create_todos_table
+Migrated:  2018_09_09_150442_create_todos_table
+```
+
+Votre base de données est maintenant prête à être utilisé. Vous pouvez aller voir le contenu grace à PHPStorm qui est capable (une fois configuré) de requêter une base SQLite.
+
+[sqlite](./ressources/sqlite-phpstorm.png)
+[sqlite1](./ressources/sqlite1.png)
+[sqlite2](./ressources/sqlite2.png)
+[sqlite3](./ressources/sqlite3.png)
 
 ## Création des templates
+
+## Création des routes
 
 ## Affichage de la liste
 
