@@ -28,7 +28,7 @@ Installing dependencies (including require-dev) from lock file
 
 La création prend environ 1 minute, un certain nombre de librairie sont téléchargés. Une fois terminé prenez quelques instants pour regarder les fichiers qui ont été créé.
 
-### Questions
+### 🤓 Questions
 
 - Où sont les librairies ?
 - Quel est l'intérêt à votre avis d'utiliser un outil pour initialiser un projet ?
@@ -74,7 +74,7 @@ DB_CONNECTION=sqlite
 DB_DATABASE=databases/exemple.db
 ```
 
-#### Questions
+#### 🤓 Questions
 
 - À Votre avis, comment repasse ton en Mysql ?
 - Est-il possible d'utiliser les deux types de base de données (par exemple en production MySQL est en developpement sqlite) ?
@@ -168,7 +168,7 @@ class CreateTodosTable extends Migration
 ```
 {% endreveal %}
 
-### Questions
+### 🤓 Questions
 
 - À quoi correspond la méthode ```up``` et ```down```
 - L'ordre des champs est-il important ?
@@ -203,7 +203,8 @@ La structure de base de Laravel n'intègre pas Boostrap, par contre elle intègr
 $  php artisan preset none
 $  php artisan preset bootstrap
 ```
-Patientez quelques instant, Boostrap est maintenant disponible pour votre projet. Mais pour qu'il soit accessible pour vos templates nous devons « le compiler ».
+
+⏱ Patientez quelques instant, Boostrap est maintenant disponible pour votre projet. Mais pour qu'il soit accessible pour vos templates nous devons « le compiler ».
 
 ### Préparation des « Assets » boostrap …
 
@@ -220,9 +221,9 @@ $ npm install
 $ npm run production
 ```
 
-[Plus d'informations Webpack.mix.js](https://laravel.com/docs/5.6/mix)
+🔎 [Plus d'informations Webpack.mix.js](https://laravel.com/docs/5.6/mix)
 
-### Questions
+### 🤓 Questions
 
 - Que contient le fichier webpack.mix.js ?
 - Le fichier webpack.mix.js fait référence à des fichiers dans ```ressources/js/*``` et ```ressources/sass/*```, allez y jeter un coup d'oeil. (même si dans se projet nous n'allons rien modifier).
@@ -243,7 +244,7 @@ Notre vue va être découpée en 3 partie :
 
 ![Structure](ressources/3partie.png)
 
-- Pourquoi le découpage en « 3 templates » est-elle importante / Qu'elle est le plus pour le développeur ?
+- ✋ Pourquoi le découpage en « 3 templates » est-elle importante / Qu'elle est le plus pour le développeur ?
 
 ### Head
 
