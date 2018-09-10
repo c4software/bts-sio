@@ -218,7 +218,7 @@ Laravel inclus une configuration « webpack.mix.js », celle-ci permet de fusion
 
 Sans entrer dans le détail (nous détaillerons le fonctionnement dans un prochain cour), la compilations des ressources (assets) est réalisé avec Webpack. Webpack est un outils NodeJS très puissant mais qui peut-être complexe, nous allons donc uniqumement l'utiliser.
 
-- Installer ![NodeJS version current](https://nodejs.org/en/download/current/)
+- Installer [NodeJS version current](https://nodejs.org/en/download/current/)
 
 Une fois installer dans le dossier de votre projet fait les commandes suivantes :
 
@@ -227,7 +227,7 @@ $ npm install
 $ npm run production
 ```
 
-![Plus d'informations Webpack.mix.js](https://laravel.com/docs/5.6/mix)
+[Plus d'informations Webpack.mix.js](https://laravel.com/docs/5.6/mix)
 
 ### Questions
 
@@ -248,7 +248,7 @@ Nous allons donc pouvoir commencer la création des templates. L'organisation du
 
 Notre vue va être découpée en 3 partie :
 
-[Structure](ressources/3partie.png)
+![Structure](ressources/3partie.png)
 
 - Pourquoi le découpage en « 3 templates » est-elle importante / Qu'elle est le plus pour le développeur ?
 
