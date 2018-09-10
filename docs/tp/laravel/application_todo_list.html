@@ -728,7 +728,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Mon Sep 10 2018 23:29:11 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Mon Sep 10 2018 23:33:21 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="quick-note">Quick Note</h1>
 <h2 id="introduction">Introduction</h2>
@@ -750,7 +750,7 @@ Installing dependencies (including require-dev) from lock file
 [&#x2026;]
 </code></pre>
 <p>La cr&#xE9;ation prend environ 1 minute, un certain nombre de librairie sont t&#xE9;l&#xE9;charg&#xE9;s. Une fois termin&#xE9; prenez quelques instants pour regarder les fichiers qui ont &#xE9;t&#xE9; cr&#xE9;&#xE9;.</p>
-<h3 id="questions">Questions</h3>
+<h3 id="&#x1F913;-questions">&#x1F913; Questions</h3>
 <ul>
 <li>O&#xF9; sont les librairies ?</li>
 <li>Quel est l&apos;int&#xE9;r&#xEA;t &#xE0; votre avis d&apos;utiliser un outil pour initialiser un projet ?</li>
@@ -780,7 +780,7 @@ Installing dependencies (including require-dev) from lock file
 <pre><code class="lang-conf">DB_CONNECTION=sqlite
 DB_DATABASE=databases/exemple.db
 </code></pre>
-<h4 id="questions">Questions</h4>
+<h4 id="&#x1F913;-questions">&#x1F913; Questions</h4>
 <ul>
 <li>&#xC0; Votre avis, comment repasse ton en Mysql ?</li>
 <li>Est-il possible d&apos;utiliser les deux types de base de donn&#xE9;es (par exemple en production MySQL est en developpement sqlite) ?</li>
@@ -849,7 +849,7 @@ DB_DATABASE=databases/exemple.db
 </code></pre>
 </div></div>
 
-<h3 id="questions">Questions</h3>
+<h3 id="&#x1F913;-questions">&#x1F913; Questions</h3>
 <ul>
 <li>&#xC0; quoi correspond la m&#xE9;thode <code>up</code> et <code>down</code></li>
 <li>L&apos;ordre des champs est-il important ?</li>
@@ -873,7 +873,7 @@ Migrated:  2018_09_09_150442_create_todos_table
 <pre><code class="lang-sh">$  php artisan preset none
 $  php artisan preset bootstrap
 </code></pre>
-<p>Patientez quelques instant, Boostrap est maintenant disponible pour votre projet. Mais pour qu&apos;il soit accessible pour vos templates nous devons &#xAB; le compiler &#xBB;.</p>
+<p>&#x23F1; Patientez quelques instant, Boostrap est maintenant disponible pour votre projet. Mais pour qu&apos;il soit accessible pour vos templates nous devons &#xAB; le compiler &#xBB;.</p>
 <h3 id="pr&#xE9;paration-des-&#xAB;-assets-&#xBB;-boostrap-">Pr&#xE9;paration des &#xAB; Assets &#xBB; boostrap &#x2026;</h3>
 <p>Laravel inclus une configuration &#xAB; webpack.mix.js &#xBB;, celle-ci permet de fusionner l&apos;ensemble des JS et CSS en un seul fichier pour gagner en performance.</p>
 <p>Sans entrer dans le d&#xE9;tail (nous d&#xE9;taillerons le fonctionnement dans un prochain cour), la compilations des ressources (assets) est r&#xE9;alis&#xE9; avec Webpack. Webpack est un outils NodeJS tr&#xE8;s puissant mais qui peut-&#xEA;tre complexe, nous allons donc uniqumement l&apos;utiliser.</p>
@@ -883,8 +883,8 @@ $  php artisan preset bootstrap
 <p>Une fois install&#xE9; retourner dans le dossier de votre projet fait les commandes suivantes :</p>
 <pre><code>$ npm install
 $ npm run production
-</code></pre><p><a href="https://laravel.com/docs/5.6/mix" target="_blank">Plus d&apos;informations Webpack.mix.js</a></p>
-<h3 id="questions">Questions</h3>
+</code></pre><p>&#x1F50E; <a href="https://laravel.com/docs/5.6/mix" target="_blank">Plus d&apos;informations Webpack.mix.js</a></p>
+<h3 id="&#x1F913;-questions">&#x1F913; Questions</h3>
 <ul>
 <li>Que contient le fichier webpack.mix.js ?</li>
 <li>Le fichier webpack.mix.js fait r&#xE9;f&#xE9;rence &#xE0; des fichiers dans <code>ressources/js/*</code> et <code>ressources/sass/*</code>, allez y jeter un coup d&apos;oeil. (m&#xEA;me si dans se projet nous n&apos;allons rien modifier).</li>
@@ -902,7 +902,7 @@ $ npm run production
 <p>Notre vue va &#xEA;tre d&#xE9;coup&#xE9;e en 3 partie :</p>
 <p><img src="ressources/3partie.png" alt="Structure"></p>
 <ul>
-<li>Pourquoi le d&#xE9;coupage en &#xAB; 3 templates &#xBB; est-elle importante / Qu&apos;elle est le plus pour le d&#xE9;veloppeur ?</li>
+<li>&#x270B; Pourquoi le d&#xE9;coupage en &#xAB; 3 templates &#xBB; est-elle importante / Qu&apos;elle est le plus pour le d&#xE9;veloppeur ?</li>
 </ul>
 <h3 id="head">Head</h3>
 <h3 id="footer">Footer</h3>
@@ -954,7 +954,7 @@ $ npm run production
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-10T21:29:11.665Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-10T21:29:17.362Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-10T21:33:21.823Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-10T21:33:34.162Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
