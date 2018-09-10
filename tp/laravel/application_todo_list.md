@@ -14,7 +14,7 @@ Dans ce TP nous allons utiliser deux technologies :
 - Bootstrap 4 (Framework HTML / CSS / JS)
 - NodeJS (Utilisation de Webpack)
 
-## Étape 1 : Initialiser le projet
+## Initialiser le projet
 
 La première étape lors d'un projet Laravel est la création du projet avec une simple ligne de commande, dans notre cas :
 
@@ -33,7 +33,7 @@ La création prend environ 1 minute, un certain nombre de librairie sont téléc
 - Où sont les librairies ?
 - Quel est l'intérêt à votre avis d'utiliser un outil pour initialiser un projet ?
 
-## Étape 2 : Configurer le projet, le .env
+## Configurer le projet, le .env
 
 Le projet qui viens d'être créé est « générique » c'est à dire qu'il ne possède aucune personnalisation et peu donc servir de base quelques soit votre développement.
 
