@@ -225,6 +225,7 @@ $ npm run production
 
 ### 🤓 Questions
 
+- Quels fichiers ont été créé ?
 - Que contient le fichier webpack.mix.js ?
 - Le fichier webpack.mix.js fait référence à des fichiers dans ```ressources/js/*``` et ```ressources/sass/*```, allez y jeter un coup d'oeil. (même si dans se projet nous n'allons rien modifier).
 - Pourquoi les dépendances sont-elles géré Web par un autre gestionnaire de dépendances ?
