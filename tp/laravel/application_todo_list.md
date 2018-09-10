@@ -8,7 +8,7 @@ Une TODO List est un procédé qui se veut simple et efficace pour gérer les t�
 
 ## Technologie
 
-Dans ce TP nous allons utiliser deux technologies :
+Dans ce TP nous allons utiliser les technologies suivantes :
 
 - Laravel (Framework PHP)
 - Bootstrap 4 (Framework HTML / CSS / JS)
