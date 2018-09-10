@@ -728,7 +728,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Mon Sep 10 2018 23:42:34 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Mon Sep 10 2018 23:44:25 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="quick-note">Quick Note</h1>
 <h2 id="introduction">Introduction</h2>
@@ -870,8 +870,8 @@ Migrated:  2018_09_09_150442_create_todos_table
 <p>Maintenant que la partie base de donn&#xE9;es est pr&#xEA;te, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser Boostrap pour g&#xE9;rer le probl&#xE9;matique d&apos;affichage et de responsive.</p>
 <h3 id="ajouter-bootsrap-4">Ajouter Bootsrap 4</h3>
 <p>La structure de base de Laravel n&apos;int&#xE8;gre pas Boostrap, par contre elle int&#xE8;gre un syst&#xE8;me de gestion de d&#xE9;pendances. Nous allons nous servir de cette gestion de d&#xE9;pendance pour ajouter Boostrap (version 4). Pour &#xE7;a retour dans la ligne de commande :</p>
-<pre><code class="lang-sh">$  php artisan preset none
-$  php artisan preset bootstrap
+<pre><code class="lang-sh">$ php artisan preset none
+$ php artisan preset bootstrap
 </code></pre>
 <p>&#x23F1; Patientez quelques instant, Boostrap est maintenant disponible pour votre projet. Mais pour qu&apos;il soit accessible pour vos templates nous devons &#xAB; le compiler &#xBB;.</p>
 <h3 id="pr&#xE9;paration-des-&#xAB;-assets-&#xBB;-boostrap-">Pr&#xE9;paration des &#xAB; Assets &#xBB; boostrap &#x2026;</h3>
@@ -881,9 +881,10 @@ $  php artisan preset bootstrap
 <li>Installer <a href="https://nodejs.org/en/download/current/" target="_blank">NodeJS version current</a></li>
 </ul>
 <p>Une fois install&#xE9; retourner dans le dossier de votre projet fait les commandes suivantes :</p>
-<pre><code>$ npm install
+<pre><code class="lang-sh">$ npm install
 $ npm run production
-</code></pre><p>&#x1F50E; <a href="https://laravel.com/docs/5.6/mix" target="_blank">Plus d&apos;informations Webpack.mix.js</a></p>
+</code></pre>
+<p>&#x1F50E; <a href="https://laravel.com/docs/5.6/mix" target="_blank">Plus d&apos;informations Webpack.mix.js</a></p>
 <h3 id="&#x1F913;-questions">&#x1F913; Questions</h3>
 <ul>
 <li>Quels fichiers ont &#xE9;t&#xE9; cr&#xE9;&#xE9; ?</li>
@@ -955,7 +956,7 @@ $ npm run production
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-10T21:42:34.196Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-10T21:42:40.043Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-10T21:44:25.439Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-10T21:44:31.773Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

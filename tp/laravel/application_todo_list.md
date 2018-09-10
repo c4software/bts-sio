@@ -200,8 +200,8 @@ Maintenant que la partie base de données est prête, nous allons nous occuper d
 La structure de base de Laravel n'intègre pas Boostrap, par contre elle intègre un système de gestion de dépendances. Nous allons nous servir de cette gestion de dépendance pour ajouter Boostrap (version 4). Pour ça retour dans la ligne de commande :
 
 ```sh
-$  php artisan preset none
-$  php artisan preset bootstrap
+$ php artisan preset none
+$ php artisan preset bootstrap
 ```
 
 ⏱ Patientez quelques instant, Boostrap est maintenant disponible pour votre projet. Mais pour qu'il soit accessible pour vos templates nous devons « le compiler ».
@@ -216,7 +216,7 @@ Sans entrer dans le détail (nous détaillerons le fonctionnement dans un procha
 
 Une fois installé retourner dans le dossier de votre projet fait les commandes suivantes :
 
-```
+```sh
 $ npm install
 $ npm run production
 ```
