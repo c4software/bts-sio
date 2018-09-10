@@ -19,7 +19,7 @@ Une TODO List est un procédé qui se veut simple et efficace pour gérer les t�
 Dans ce TP nous allons utiliser deux technologies :
 
 - Laravel (Framework PHP)
-- Bootstrap (Framework HTML / CSS / JS)
+- Bootstrap 4 (Framework HTML / CSS / JS)
 
 ## Étape 1 : Initialiser le projet
 
@@ -198,7 +198,65 @@ Votre base de données est maintenant prête à être utilisé. Vous pouvez alle
 ![sqlite2](./ressources/sqlite2.png)
 ![sqlite3](./ressources/sqlite3.png)
 
-## Création des templates
+## Installation des dépendances client
+
+Maintenant que la partie base de données est prête, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser Boostrap pour gérer le problématique d'affichage et de responsive.
+
+### Ajouter Bootsrap 4
+
+La structure de base de Laravel n'intègre pas Boostrap, par contre elle intègre un système de gestion de dépendances. Nous allons nous servir de cette gestion de dépendance pour ajouter Boostrap (version 4). Pour ça retour dans la ligne de commande :
+
+```sh
+$  php artisan preset none
+$  php artisan preset bootstrap
+```
+Patientez quelques instant, Boostrap est maintenant disponible pour votre projet. Mais pour qu'il soit accessible pour vos templates nous devons « le compiler ».
+
+### Préparation des « Assets » boostrap …
+
+Laravel inclus une configuration « webpack.mix.js », celle-ci permet de fusionner l'ensemble des JS et CSS en un seul fichier pour gagner en performance.
+
+Sans entrer dans le détail (nous détaillerons le fonctionnement dans un prochain cour), la compilations des ressources (assets) est réalisé avec Webpack. Webpack est un outils NodeJS très puissant mais qui peut-être complexe, nous allons donc uniqumement l'utiliser.
+
+- Installer ![NodeJS version current](https://nodejs.org/en/download/current/)
+
+Une fois installer dans le dossier de votre projet fait les commandes suivantes :
+
+```
+$ npm install
+$ npm run production
+```
+
+![Plus d'informations Webpack.mix.js](https://laravel.com/docs/5.6/mix)
+
+### Questions
+
+- Que contient le fichier webpack.mix.js ?
+- Le fichier webpack.mix.js fait référence à des fichiers dans ```ressources/js/*``` et ```ressources/sass/*```, allez y jeter un coup d'oeil. (même si dans se projet nous n'allons rien modifier).
+- Pourquoi les dépendances sont-elles géré Web par un autre gestionnaire de dépendances ?
+- Pourquoi la fusion / compilation des ressources est-elle si importante ?
+
+## Créer les templates
+
+Nous avons donc maintenant :
+
+- La structure Laravel.
+- La définition de notre base de données.
+- Les dépendances clients (Boostrap 4…)
+
+Nous allons donc pouvoir commencer la création des templates. L'organisation du code est quelques choses d'important,elle n'est pas à négliger un code organisé est un code agréable à rédiger.
+
+Notre vue va être découpée en 3 partie :
+
+[Structure](ressources/3partie.png)
+
+- Pourquoi le découpage en « 3 templates » est-elle importante / Qu'elle est le plus pour le développeur ?
+
+### Head
+
+### Footer
+
+### Liste des todos
 
 ## Création des routes
 
