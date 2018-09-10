@@ -53,7 +53,7 @@ Pour ne pas avoir à installer un serveur MySQL nous allons utiliser une base do
 
 Connaissez vous le nom d'un type de base de données permettant de travailler en « local » ?
 
-{% reveal text="Voir la solution" %}
+{% reveal text="Voir la suite du TP" %}
 
 La réponse est SQLite, SQLite est une base de données de type SQL mais ne nécéssitant pas de serveur, l'ensemble des données est contenu dans un fichier « local ». Pour la créer rien de plus simple il suffit de créer un fichier vide dans le dossier de votre projet faite :
 
