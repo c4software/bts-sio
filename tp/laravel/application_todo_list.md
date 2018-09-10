@@ -6,20 +6,13 @@ Dans ce TP nous allons réaliser une application / site web, le but de cette app
 
 Une TODO List est un procédé qui se veut simple et efficace pour gérer les tâches d'un projet. Ces tâches peuvent être indépendantes ou devoir, au contraire, être accomplies dans un certain ordre.
 
-## Note création
-
-(À reformuler) Dans ce TP blah blah blah
-
-- Installation Laravel (Premier TP).
-- Création projet `laravel new laravel-todo`
-- Configuration du `.env`
-
 ## Technologie
 
 Dans ce TP nous allons utiliser deux technologies :
 
 - Laravel (Framework PHP)
 - Bootstrap 4 (Framework HTML / CSS / JS)
+- NodeJS (Utilisation de Webpack)
 
 ## Étape 1 : Initialiser le projet
 
