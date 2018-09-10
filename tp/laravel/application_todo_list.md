@@ -220,7 +220,7 @@ Sans entrer dans le détail (nous détaillerons le fonctionnement dans un procha
 
 - Installer [NodeJS version current](https://nodejs.org/en/download/current/)
 
-Une fois installer dans le dossier de votre projet fait les commandes suivantes :
+Une fois installé retourner dans le dossier de votre projet fait les commandes suivantes :
 
 ```
 $ npm install
