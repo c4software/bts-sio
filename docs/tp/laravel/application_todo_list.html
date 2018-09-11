@@ -728,7 +728,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Mon Sep 10 2018 23:44:25 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Tue Sep 11 2018 22:45:56 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="quick-note">Quick Note</h1>
 <h2 id="introduction">Introduction</h2>
@@ -765,7 +765,7 @@ Installing dependencies (including require-dev) from lock file
 </ul>
 <h3 id="nom-de-lapplication">Nom de l&apos;application</h3>
 <ul>
-<li>TODO List Laravel - SLAM 5</li>
+<li>Todolist</li>
 </ul>
 <h3 id="base-de-donn&#xE9;es">Base de donn&#xE9;es</h3>
 <p>Pour ne pas avoir &#xE0; installer un serveur MySQL nous allons utiliser une base donn&#xE9;es &#xAB; local &#xBB;.</p>
@@ -779,6 +779,10 @@ Installing dependencies (including require-dev) from lock file
 <p>par  :</p>
 <pre><code class="lang-conf">DB_CONNECTION=sqlite
 DB_DATABASE=databases/exemple.db
+</code></pre>
+<h4 id="tester">Tester</h4>
+<p>Vous pouvez maintenant tester votre application / site web. Comme vu en cours, Laravel int&#xE8;gre un serveur de d&#xE9;veloppement ce qui permet de tester rapidement votre d&#xE9;veloppement. Le lancement est simple :</p>
+<pre><code class="lang-sh">$ php artisan serve
 </code></pre>
 <h4 id="&#x1F913;-questions">&#x1F913; Questions</h4>
 <ul>
@@ -907,6 +911,39 @@ $ npm run production
 <li>&#x270B; Pourquoi le d&#xE9;coupage en &#xAB; 3 templates &#xBB; est-elle importante / Qu&apos;elle est le plus pour le d&#xE9;veloppeur ?</li>
 </ul>
 <h3 id="head">Head</h3>
+<p>Nous allons commencer par d&#xE9;finir le header de notre site &#xAB; c&apos;est &#xE0; dire la partie haute &#xBB;. Cette partie haute va contenir le header et le haut du site.</p>
+<p>C&apos;est la partie qui sera identique sur l&apos;ensemble de nos pages :</p>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;{{ app()-&gt;getLocale() }}&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;csrf-token&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;{{ csrf_token() }}&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Ma Todo Liste<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;{{ asset(&apos;css/app.css&apos;) }}&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;{{ asset(&apos;js/app.js&apos;) }}&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+</code></pre>
+<p>Maintenant que nous avons le contenu, nous devons cr&#xE9;er un nouveau fichier. Ce fichier va contenir la zone header <strong>et uniquement la zone header</strong></p>
+<ul>
+<li>Cr&#xE9;er un nouveau fichier <code>resources/views/header.blade.php</code></li>
+<li>Copiez-Coller le html dans le fichier.</li>
+</ul>
+<p>&#x1F44F;&#x1F44F; Bravo, vous venez de cr&#xE9;er votre premier template.</p>
+<h4 id="&#x1F913;-questions">&#x1F913; Questions</h4>
+<ul>
+<li>Pourquoi le fichier est-il nomm&#xE9; &#xAB; &#x2026;.blade.php &#xBB; ?</li>
+<li>&#xC0; quoi correspond  ```{{ asset(&apos;&#x2026;&apos;) }} ?</li>
+<li>Est-il possible de d&#xE9;finir une &#xAB; zone &#xBB; ou d&apos;autre ressources seront ins&#xE9;r&#xE9; lors de l&apos;ex&#xE9;cution ? <img src="https://laravel.com/docs/5.6/blade#stacks" alt="Voir la documentation"></li>
+<li>Maintenant que vous avez la r&#xE9;ponse, ajouter une &#xAB; stack &#xBB; pour le script et le style dans l&apos;ent&#xEA;te.</li>
+</ul>
+<div class="click_reveal"><span> Voir la solution </span><div><pre><code>@stack(&apos;scripts&apos;)
+@stack(&apos;styles&apos;)
+</code></pre></div></div>
+
 <h3 id="footer">Footer</h3>
 <h3 id="liste-des-todos">Liste des todos</h3>
 <h2 id="cr&#xE9;ation-des-routes">Cr&#xE9;ation des routes</h2>
@@ -956,7 +993,7 @@ $ npm run production
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-10T21:44:25.439Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-10T21:44:31.773Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-11T20:45:56.297Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-11T20:46:12.711Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -262,20 +262,19 @@ Nous allons commencer par définir le header de notre site « c'est à dire la p
 C'est la partie qui sera identique sur l'ensemble de nos pages :
 
 ```html
-    <!doctype html>
-    <html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Ma Todo Liste</title>
+    <title>Ma Todo Liste</title>
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-
-    </head>
-    <body>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+</head>
+<body>
 ```
 
 Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. Ce fichier va contenir la zone header **et uniquement la zone header**
@@ -288,7 +287,7 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. Ce 
 #### 🤓 Questions
 
 - Pourquoi le fichier est-il nommé « ….blade.php » ?
-- À quoi correspond ```{{ asset('…') }} ?
+- À quoi correspond {% raw %} ```{{ asset('…') }} {% endraw %}?
 - Est-il possible de définir une « zone » ou d'autre ressources seront inséré lors de l'exécution ? ![Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
 - Maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
 
