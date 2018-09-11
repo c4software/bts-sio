@@ -287,6 +287,7 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. Ce 
 
 #### 🤓 Questions
 
+- Pourquoi le fichier est-il nommé « ….blade.php » ?
 - À quoi correspond ```{{ asset('…') }} ?
 - Est-il possible de définir une « zone » ou d'autre ressources seront inséré lors de l'exécution ? ![Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
 - Maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
