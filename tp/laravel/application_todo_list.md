@@ -298,6 +298,10 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. Ce 
 
 ### Footer
 
+Pour le footer l'exercice est le même. Le minimum est ```</body></html>```, comme pour le « head » ce template va être utilisé sur l'ensemble de nos page. Je vous laisse être créatif… La seul contrainte créer un fichier nommé ```resources/views/footer.blade.php```
+
+C'est à vous 😁 !
+
 ### Liste des todos
 
 ## Création des routes
