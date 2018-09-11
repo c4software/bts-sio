@@ -45,7 +45,7 @@ La première étape est donc d'éditer le fichier ```.env``` pour configurer les
 
 ### Nom de l'application
 
-- TODO List Laravel - SLAM 5
+- Todolist
 
 ### Base de données
 
@@ -72,6 +72,14 @@ par  :
 ```conf
 DB_CONNECTION=sqlite
 DB_DATABASE=databases/exemple.db
+```
+
+#### Tester
+
+Vous pouvez maintenant tester votre application / site web. Comme vu en cours, Laravel intègre un serveur de développement ce qui permet de tester rapidement votre développement. Le lancement est simple :
+
+```sh
+$ php artisan serve
 ```
 
 #### 🤓 Questions
@@ -248,6 +256,45 @@ Notre vue va être découpée en 3 partie :
 - ✋ Pourquoi le découpage en « 3 templates » est-elle importante / Qu'elle est le plus pour le développeur ?
 
 ### Head
+
+Nous allons commencer par définir le header de notre site « c'est à dire la partie haute ». Cette partie haute va contenir le header et le haut du site.
+
+C'est la partie qui sera identique sur l'ensemble de nos pages :
+
+```html
+    <!doctype html>
+    <html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>Ma Todo Liste</title>
+
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+    </head>
+    <body>
+```
+
+Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. Ce fichier va contenir la zone header **et uniquement la zone header**
+
+- Créer un nouveau fichier ```resources/views/header.blade.php```
+- Copiez-Coller le html dans le fichier.
+
+👏👏 Bravo, vous venez de créer votre premier template.
+
+#### 🤓 Questions
+
+- À quoi correspond ```{{ asset('…') }} ?
+- Est-il possible de définir une « zone » ou d'autre ressources seront inséré lors de l'exécution ? ![Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
+- Maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
+
+{% reveal text="Voir la solution" %}
+    @stack('scripts')
+    @stack('styles')
+{% endreveal %}
 
 ### Footer
 
