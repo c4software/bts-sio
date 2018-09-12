@@ -504,7 +504,7 @@ Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur n
 
 - Éditer le fichier ```resources/views/home.blade.php```.
 - Ajouter la bonne url sur l'actions de votre formulaire.
-- Ajouter sur chaque ligne deux liens qui vont « suprimer » et « terminer ».
+- Ajouter sur chaque ligne deux liens qui vont « suprimer » et « terminer ». (Aide : ```@todo->id```)
 
 ## 2nd page
 
