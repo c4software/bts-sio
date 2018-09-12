@@ -307,6 +307,24 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
 
 ### Liste des todos
 
+Maintenant que nous avons défini notre template de base nous allons pouvoir définir notre page principal, la page « liste des todos ». Une fois terminée celle-ci va ressembler à :
+
+![liste](./ressources/liste.png)
+
+Avant de commencer la réalisation de ce template regardont ce que l'on peux y voir :
+
+- Un formulaire « form »
+- Une « liste »
+
+Nous allons donc avoir besoin de composant bootstrap. Première étape regarder [la documentation de bootsrap !](https://getbootstrap.com/docs/4.0/components/alerts/)
+
+#### 🤓 Questions
+
+- Quels composants (components) allons nous avoir besoins ?
+- Est-ce les seuls ?
+
+## Création du contrôleur
+
 ## Création des routes
 
 ## Affichage de la liste
@@ -314,3 +332,7 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
 ## Action d'ajout
 
 ## Action de suppression
+
+## Bonus
+
+Page à propos
