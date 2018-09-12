@@ -6,6 +6,13 @@ Dans ce TP nous allons réaliser une application / site web, le but de cette app
 
 Une TODO List est un procédé qui se veut simple et efficace pour gérer les tâches d'un projet. Ces tâches peuvent être indépendantes ou devoir, au contraire, être accomplies dans un certain ordre.
 
+Voilà la liste des fonctionnalités de l’application que l'on va créér :
+
+- Lister les tâches.
+- Ajouter une tâche.
+- Marquer comme terminé une tâche.
+- Suppression d'une tâche.
+
 ## Technologie
 
 Dans ce TP nous allons utiliser les technologies suivantes :
