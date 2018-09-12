@@ -78,7 +78,7 @@ par  :
 
 ```conf
 DB_CONNECTION=sqlite
-DB_DATABASE=databases/exemple.db
+DB_DATABASE=../database/exemple.db
 ```
 
 #### Tester
@@ -131,7 +131,7 @@ L’option ```--create=todos``` permet d’indiquer le nom de la table à créer
 
 La commande viens de créer un nouveau fichier dans le dossier ```database/migration```. Dans mon cas :
 
-```
+```log
 Created Migration: 2018_09_09_150442_create_todos_table
 ```
 
@@ -205,6 +205,66 @@ Votre base de données est maintenant prête à être utilisé. Vous pouvez alle
 ![sqlite1](./ressources/sqlite1.png)
 ![sqlite2](./ressources/sqlite2.png)
 ![sqlite3](./ressources/sqlite3.png)
+
+### Le modèle
+
+Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle. Pour ça créez un fichier ```Todos.php``` dans le dossier ```app/``` avec le contenu suivant :
+
+```php
+<?php namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Todos extends Model
+{
+    protected $fillable = ['texte', 'termine'];
+}
+```
+
+le ```$fillable``` définie les propriétés qui doivent êtres automatiquement remplis par Eloquent (l’ORM) lors de l’execution du code.
+
+Au passage la propriété inverse existe, vous pouvez la voir dans le fichier ```User.php```.
+
+## Le controller
+
+Maintenant que nous avons la migration et le models de notre « base de données », nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de notre application.
+
+Pour commencer nous allons créer « la structure de base » de notre controller. Pour ça créez le fichier ```TodosController.php``` dans le chemin suivant ```app/Http/Controllers/``` et mettez y le contenu suivant :
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Todos;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+
+class TodosController extends Controller{
+    // C’est ici que seront nos méthodes
+}
+```
+
+Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression).
+
+Nous allons maintenant écrire une méthode pour chaque actions. Avec les différentes conditions nécéssaires au bon fonctionnement de votre application.
+
+### La méthode « Liste »
+
+La méthode ```liste``` est certainement la plus simple, nous allons simplement faire appel à la méthode ```all()``` de Eloquent (ORM pour l’accès à la base de données). Pour ça créez une nouvelle méthode dans la Class ```TodoController``` avec le code suivant :
+
+```php
+public function liste(){
+    return Todos::all();
+}
+```
+
+Rien de bien compliqué, comme vous pouvez le voir.
+
+### Les autres suivantes
+
+✋ Pour l'instant nous allons nous arrêter la pour la partie code PHP. Cette méthode est suffisante pour « tester » le premier template que nous allons écrire.
 
 ## Installation des dépendances client
 
@@ -288,6 +348,7 @@ Nous allons commencer par définir notre « Template principal » celui-ci va co
         </nav>
 
         @yield('content')
+
     </body>
 </html>
 ```
@@ -312,6 +373,20 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
     @stack('styles')
 {% endreveal %}
 
+### Tester
+
+Pour lancer votre application il suffit de lancer dans un terminal :
+
+```sh
+$ php artisan serve
+```
+
+Une fois lancer [Rendez vous sur http://127.0.0.1:8080](http://127.0.0.1:8080).
+
+{% reveal text="Un soucis non ?" %}
+Rien à changé ? C'est normal… Continuons!
+{% endreveal %} 
+
 ### Liste des todos
 
 Maintenant que nous avons défini notre template de base nous allons pouvoir définir notre page principal, la page « liste des todos ». Une fois terminée celle-ci va ressembler à :
@@ -330,7 +405,58 @@ Nous allons donc avoir besoin de composant bootstrap. Première étape regarder 
 - Quels composants (components) allons nous avoir besoins ?
 - Est-ce les seuls ?
 
-## Création du contrôleur
+#### Définition du template « Liste » / « Home »
+
+Nous allons créer un 2nd template celui qui va être charger d'afficher la liste des todos. Créér un nouveau fichier ```resources/views/home.blade.php``` et y mettre le contenu suivante :
+
+```html
+@extends("template")
+
+@section("title", "Ma Todo List")
+
+@section("content")
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <!-- Action -->
+                <form action="/actions/add" method="post" class="add">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><span class="oi oi-pencil"></span></span>
+                        <input id="texte" name="texte" type="text" class="form-control" placeholder="Prendre une note…" aria-label="My new idea" aria-describedby="basic-addon1">
+                    </div>
+                </form>
+
+                <!-- Liste -->
+                <ul class="list-group">
+                    @forelse ($todos as $todo)
+                        <li class="list-group-item">
+                            <span>{{ $todo->texte }}</span>
+                        </li>
+                    @empty
+                        <li class="list-group-item text-center">C'est vide !</li>
+                    @endforelse
+                </ul>
+            </div>
+        </div>
+    </div>
+@endsection
+```
+
+### 🤓 Questions
+
+- ```@extends``` ? À quoi sert cette directive, pourquoi « template »?
+- Modifier le titre afficher dans la barre.  
+- À quoi correspond le ```@forelse … @empty … @endforelse```
+
+## Et maintenant ?
+
+Bien… récupitulons ! Nous avons :
+
+- Le model
+- Le controlleur
+- Les templates (template et home)
+
+Il faut maintenant assembler l'ensemble pour que votre page s'affiche lors d'une requête.
 
 ## Création des routes
 
