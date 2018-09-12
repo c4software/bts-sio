@@ -255,31 +255,39 @@ Notre vue va être découpée en 3 partie :
 
 - ✋ Pourquoi le découpage en « 3 templates » est-elle importante / Qu'elle est le plus pour le développeur ?
 
-### Head
+### Le template principal
 
-Nous allons commencer par définir le header de notre site « c'est à dire la partie haute ». Cette partie haute va contenir le header et le haut du site.
+Nous allons commencer par définir notre « Template principal » celui-ci va contenir l'ensemble des élement partagé sur toutes no page à savoir :
 
-C'est la partie qui sera identique sur l'ensemble de nos pages :
+- Les JS
+- Les CSS
+- La structure commune
 
 ```html
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Ma Todo Liste</title>
+        <title>@yield('title')</title>
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-</head>
-<body>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="#">Ma Todo List</a>
+        </nav>
+
+        @yield('content')
+    </body>
+</html>
 ```
 
-Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. Ce fichier va contenir la zone header **et uniquement la zone header**
+Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. 
 
-- Créer un nouveau fichier ```resources/views/header.blade.php```
+- Créer un nouveau fichier ```resources/views/template.blade.php```
 - Copiez-Coller le html dans le fichier.
 
 👏👏 Bravo, vous venez de créer votre premier template.
@@ -288,19 +296,14 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. Ce 
 
 - Pourquoi le fichier est-il nommé « ….blade.php » ?
 - À quoi correspond {% raw %} ```{{ asset('…') }} {% endraw %}?
-- Est-il possible de définir une « zone » ou d'autre ressources seront inséré lors de l'exécution ? ![Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
+- À quoi correspond la directive « yield »? En quoi est-ce très important
+- Est-il possible de définir une « zone » ou d'autre ressources JS / CSS seront inséré lors de l'exécution ? ![Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
 - Maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
 
 {% reveal text="Voir la solution" %}
     @stack('scripts')
     @stack('styles')
 {% endreveal %}
-
-### Footer
-
-Pour le footer l'exercice est le même. Le minimum est ```</body></html>```, comme pour le « head » ce template va être utilisé sur l'ensemble de nos page. Je vous laisse être créatif… La seul contrainte créer un fichier nommé ```resources/views/footer.blade.php```
-
-C'est à vous 😁 !
 
 ### Liste des todos
 
