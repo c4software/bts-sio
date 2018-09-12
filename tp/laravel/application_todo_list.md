@@ -494,8 +494,29 @@ Raffraichissez la page, vous devez maintenant voir votre texte 😎.
 
 ## Action d'ajout
 
+## Action marquer comme terminer
+
 ## Action de suppression
 
-## Bonus
+## Ajouter les actions dans le template
 
-Page à propos
+Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur nous allons les utiliser dans notre template « home » voici les étapes
+
+- Éditer le fichier ```resources/views/home.blade.php```.
+- Ajouter la bonne url sur l'actions de votre formulaire.
+- Ajouter sur chaque ligne deux liens qui vont « suprimer » et « terminer ». (Aide : ```{{ @todo->id }}```)
+
+## À Propos
+
+Ajouter une nouvelle page dans votre site web cette page sera la page « À propos », aucune aide autre que
+
+- Route.
+- Méthode dans le contrôleur.
+- Template qui « @extends » du gabarit de base.
+
+## Bonus 2
+
+Seul les tâches « Terminées » peuvent-être supprimer :
+
+- Modifier le contrôleur pour ajouter la règle de gestion
+- Ajouter la directive ```@if``` dans le template afficher uniquement les bonnes actions en fonction de l'état de la todo.
