@@ -728,7 +728,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Sep 12 2018 09:11:59 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Wed Sep 12 2018 23:21:09 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="quick-note">Quick Note</h1>
 <h2 id="introduction">Introduction</h2>
@@ -785,7 +785,7 @@ Installing dependencies (including require-dev) from lock file
 </code></pre>
 <p>par  :</p>
 <pre><code class="lang-conf">DB_CONNECTION=sqlite
-DB_DATABASE=databases/exemple.db
+DB_DATABASE=../database/exemple.db
 </code></pre>
 <h4 id="tester">Tester</h4>
 <p>Vous pouvez maintenant tester votre application / site web. Comme vu en cours, Laravel int&#xE8;gre un serveur de d&#xE9;veloppement ce qui permet de tester rapidement votre d&#xE9;veloppement. Le lancement est simple :</p>
@@ -818,8 +818,9 @@ DB_DATABASE=databases/exemple.db
 <p>L&#x2019;option <code>--create=todos</code> permet d&#x2019;indiquer le nom de la table &#xE0; cr&#xE9;er</p>
 <p>&#x270B; Le contenu du fichier cr&#xE9;&#xE9; est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative &#xE0; notre table.</p>
 <p>La commande viens de cr&#xE9;er un nouveau fichier dans le dossier <code>database/migration</code>. Dans mon cas :</p>
-<pre><code>Created Migration: 2018_09_09_150442_create_todos_table
-</code></pre><p>Nous allons d&#xE9;finir notre sch&#xE9;ma (&#xE0; savoir la d&#xE9;finition de la table) pour ajouter les 2 colonnes qui nous serons utiles <code>texte</code> et <code>termine</code>. L&apos;ORM &#xE9;tant un librairie objet la d&#xE9;finition de nouveau champs ce fait via une m&#xE9;thode, exemple :</p>
+<pre><code class="lang-log">Created Migration: 2018_09_09_150442_create_todos_table
+</code></pre>
+<p>Nous allons d&#xE9;finir notre sch&#xE9;ma (&#xE0; savoir la d&#xE9;finition de la table) pour ajouter les 2 colonnes qui nous serons utiles <code>texte</code> et <code>termine</code>. L&apos;ORM &#xE9;tant un librairie objet la d&#xE9;finition de nouveau champs ce fait via une m&#xE9;thode, exemple :</p>
 <pre><code class="lang-php">    $table-&gt;string(<span class="hljs-string">&apos;texte&apos;</span>);
     $table-&gt;boolean(<span class="hljs-string">&apos;termine&apos;</span>);
 </code></pre>
@@ -877,6 +878,46 @@ Migrated:  2018_09_09_150442_create_todos_table
 <img src="ressources/sqlite1.png" alt="sqlite1">
 <img src="ressources/sqlite2.png" alt="sqlite2">
 <img src="ressources/sqlite3.png" alt="sqlite3"></p>
+<h3 id="le-mod&#xE8;le">Le mod&#xE8;le</h3>
+<p>Maintenant que nous avons fait le script de cr&#xE9;ation / migration, nous allons d&#xE9;finir notre mod&#xE8;le. Pour &#xE7;a cr&#xE9;ez un fichier <code>Todos.php</code> dans le dossier <code>app/</code> avec le contenu suivant :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Database</span>\<span class="hljs-title">Eloquent</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Todos</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">protected</span> $fillable = [<span class="hljs-string">&apos;texte&apos;</span>, <span class="hljs-string">&apos;termine&apos;</span>];
+}
+</code></pre>
+<p>le <code>$fillable</code> d&#xE9;finie les propri&#xE9;t&#xE9;s qui doivent &#xEA;tres automatiquement remplis par Eloquent (l&#x2019;ORM) lors de l&#x2019;execution du code.</p>
+<p>Au passage la propri&#xE9;t&#xE9; inverse existe, vous pouvez la voir dans le fichier <code>User.php</code>.</p>
+<h2 id="le-controller">Le controller</h2>
+<p>Maintenant que nous avons la migration et le models de notre &#xAB; base de donn&#xE9;es &#xBB;, nous allons cr&#xE9;er le controller. Pour rappel le controller va faire &#xAB; le lien &#xBB; entre la base de donn&#xE9;es et les appels HTTP. C&#x2019;est ici que nous allons mettre la logique m&#xE9;tier de notre application.</p>
+<p>Pour commencer nous allons cr&#xE9;er &#xAB; la structure de base &#xBB; de notre controller. Pour &#xE7;a cr&#xE9;ez le fichier <code>TodosController.php</code> dans le chemin suivant <code>app/Http/Controllers/</code> et mettez y le contenu suivant :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Todos</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>\<span class="hljs-title">Controller</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Request</span>;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodosController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span></span>{
+    <span class="hljs-comment">// C&#x2019;est ici que seront nos m&#xE9;thodes</span>
+}
+</code></pre>
+<p>Bien ! Notre code est maintenant pr&#xEA;t. Nous allons cr&#xE9;er les m&#xE9;thodes permettant la manipulation de notre base de donn&#xE9;es tout en r&#xE9;pondant &#xE0; nos API bien &#xE9;videment (liste, creation, terminer, suppression).</p>
+<p>Nous allons maintenant &#xE9;crire une m&#xE9;thode pour chaque actions. Avec les diff&#xE9;rentes conditions n&#xE9;c&#xE9;ssaires au bon fonctionnement de votre application.</p>
+<h3 id="la-m&#xE9;thode-&#xAB;-liste-&#xBB;">La m&#xE9;thode &#xAB; Liste &#xBB;</h3>
+<p>La m&#xE9;thode <code>liste</code> est certainement la plus simple, nous allons simplement faire appel &#xE0; la m&#xE9;thode <code>all()</code> de Eloquent (ORM pour l&#x2019;acc&#xE8;s &#xE0; la base de donn&#xE9;es). Pour &#xE7;a cr&#xE9;ez une nouvelle m&#xE9;thode dans la Class <code>TodoController</code> avec le code suivant :</p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">liste</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Liste&quot;</span>;
+}
+</code></pre>
+<p>Rien de bien compliqu&#xE9;, comme vous pouvez le voir.</p>
+<h3 id="les-autres-suivantes">Les autres suivantes</h3>
+<p>&#x270B; Pour l&apos;instant nous allons nous arr&#xEA;ter la pour la partie code PHP. Cette m&#xE9;thode est suffisante pour &#xAB; tester &#xBB; le premier template que nous allons &#xE9;crire.</p>
 <h2 id="installation-des-d&#xE9;pendances-client">Installation des d&#xE9;pendances client</h2>
 <p>Maintenant que la partie base de donn&#xE9;es est pr&#xEA;te, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser Boostrap pour g&#xE9;rer le probl&#xE9;matique d&apos;affichage et de responsive.</p>
 <h3 id="ajouter-bootsrap-4">Ajouter Bootsrap 4</h3>
@@ -941,6 +982,7 @@ $ npm run production
         <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
 
         @yield(&apos;content&apos;)
+
     <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
@@ -962,6 +1004,14 @@ $ npm run production
 @stack(&apos;styles&apos;)
 </code></pre></div></div>
 
+<h3 id="tester">Tester</h3>
+<p>Pour lancer votre application il suffit de lancer dans un terminal :</p>
+<pre><code class="lang-sh">$ php artisan serve
+</code></pre>
+<p>Une fois lancer <a href="http://127.0.0.1:8080" target="_blank">Rendez vous sur http://127.0.0.1:8080</a>.</p>
+<div class="click_reveal"><span> Un soucis non ? </span><div><p>Rien &#xE0; chang&#xE9; ? C&apos;est normal&#x2026; Continuons!</p>
+</div></div> 
+
 <h3 id="liste-des-todos">Liste des todos</h3>
 <p>Maintenant que nous avons d&#xE9;fini notre template de base nous allons pouvoir d&#xE9;finir notre page principal, la page &#xAB; liste des todos &#xBB;. Une fois termin&#xE9;e celle-ci va ressembler &#xE0; :</p>
 <p><img src="ressources/liste.png" alt="liste"></p>
@@ -976,9 +1026,74 @@ $ npm run production
 <li>Quels composants (components) allons nous avoir besoins ?</li>
 <li>Est-ce les seuls ?</li>
 </ul>
-<h2 id="cr&#xE9;ation-du-contr&#xF4;leur">Cr&#xE9;ation du contr&#xF4;leur</h2>
+<h4 id="d&#xE9;finition-du-template-&#xAB;-liste-&#xBB;--&#xAB;-home-&#xBB;">D&#xE9;finition du template &#xAB; Liste &#xBB; / &#xAB; Home &#xBB;</h4>
+<p>Nous allons cr&#xE9;er un 2nd template celui qui va &#xEA;tre charger d&apos;afficher la liste des todos. Cr&#xE9;&#xE9;r un nouveau fichier <code>resources/views/home.blade.php</code> et y mettre le contenu suivante :</p>
+<pre><code class="lang-html">@extends(&quot;template&quot;)
+
+@section(&quot;title&quot;, &quot;Ma Todo List&quot;)
+
+@section(&quot;content&quot;)
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card-body&quot;</span>&gt;</span>
+                <span class="hljs-comment">&lt;!-- Action --&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/actions/add&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;add&quot;</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input-group&quot;</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input-group-addon&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;basic-addon1&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;oi oi-pencil&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;texte&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;texte&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-control&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Prendre une note&#x2026;&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;My new idea&quot;</span> <span class="hljs-attr">aria-describedby</span>=<span class="hljs-string">&quot;basic-addon1&quot;</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+                <span class="hljs-comment">&lt;!-- Liste --&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group&quot;</span>&gt;</span>
+                    @forelse ($todos as $todo)
+                        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item&quot;</span>&gt;</span>
+                            <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{{ $todo-&gt;texte }}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+                    @empty
+                        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item text-center&quot;</span>&gt;</span>C&apos;est vide !<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+                    @endforelse
+                <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+@endsection
+</code></pre>
+<h3 id="&#x1F913;-questions">&#x1F913; Questions</h3>
+<ul>
+<li><code>@extends</code> ? &#xC0; quoi sert cette directive, pourquoi &#xAB; template &#xBB;?</li>
+<li>Modifier le titre afficher dans la barre.  </li>
+<li>&#xC0; quoi correspond le <code>@forelse &#x2026; @empty &#x2026; @endforelse</code></li>
+</ul>
+<h2 id="et-maintenant-">Et maintenant ?</h2>
+<p>Bien&#x2026; r&#xE9;cupitulons ! Nous avons :</p>
+<ul>
+<li>Le model</li>
+<li>Le controlleur</li>
+<li>Les templates (template et home)</li>
+</ul>
+<p>Il faut maintenant assembler l&apos;ensemble pour que votre page s&apos;affiche lors d&apos;une requ&#xEA;te.</p>
 <h2 id="cr&#xE9;ation-des-routes">Cr&#xE9;ation des routes</h2>
+<p>La d&#xE9;finition des routes ce fait dans le fichier <code>routes/web.php</code> pour l&apos;instant vous devez avoir qu&apos;une seule route de d&#xE9;fini.</p>
+<p>Supprimer celle d&#xE9;j&#xE0; d&#xE9;fini, et ajouter :</p>
+<pre><code class="lang-php">Route::get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-string">&quot;TodosController@liste&quot;</span>);
+</code></pre>
+<h3 id="&#x1F913;-question">&#x1F913; Question</h3>
+<ul>
+<li>&#xC0; quoi correspond la notation &quot;TodosController@liste&quot; ?</li>
+</ul>
+<h2 id="tester">Tester</h2>
+<p>Vous voyez &#xAB; Liste &#xBB; ? C&apos;est OK !</p>
 <h2 id="affichage-de-la-liste">Affichage de la liste</h2>
+<p>Bon afficher &#xAB; Liste &#xBB; c&apos;est un bon d&#xE9;but&#x2026; Modifier la m&#xE9;thode &#xAB; liste() &#xBB; pour qu&apos;elle ressemble &#xE0; :</p>
+<pre><code class="lang-php">    <span class="hljs-keyword">return</span> view(<span class="hljs-string">&quot;home&quot;</span>, [<span class="hljs-string">&quot;todos&quot;</span> =&gt; Todo::all()]);
+</code></pre>
+<h2 id="tester">Tester</h2>
+<p>La page s&apos;affiche ? Super !</p>
+<ul>
+<li>Ajouter une entr&#xE9;e &#xAB; &#xE0; la main &#xBB; gra&#xE7;e &#xE0; l&apos;explorateur de base de donn&#xE9;es de PHPStorm</li>
+</ul>
+<p>Raffraichissez la page, vous devez maintenant voir votre texte &#x1F60E;.</p>
 <h2 id="action-dajout">Action d&apos;ajout</h2>
 <h2 id="action-de-suppression">Action de suppression</h2>
 <h2 id="bonus">Bonus</h2>
@@ -1026,7 +1141,7 @@ $ npm run production
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-12T07:11:59.157Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-12T07:12:37.723Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-12T21:21:09.105Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-12T21:21:15.582Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

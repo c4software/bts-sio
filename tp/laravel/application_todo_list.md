@@ -256,7 +256,7 @@ La méthode ```liste``` est certainement la plus simple, nous allons simplement 
 
 ```php
 public function liste(){
-    return Todos::all();
+    return "Liste";
 }
 ```
 
@@ -460,7 +460,37 @@ Il faut maintenant assembler l'ensemble pour que votre page s'affiche lors d'une
 
 ## Création des routes
 
+La définition des routes ce fait dans le fichier ```routes/web.php``` pour l'instant vous devez avoir qu'une seule route de défini.
+
+Supprimer celle déjà défini, et ajouter :
+
+```php
+Route::get('/', "TodosController@liste");
+```
+
+### 🤓 Question
+
+- À quoi correspond la notation "TodosController@liste" ?
+
+## Tester
+
+Vous voyez « Liste » ? C'est OK !
+
 ## Affichage de la liste
+
+Bon afficher « Liste » c'est un bon début… Modifier la méthode « liste() » pour qu'elle ressemble à :
+
+```php
+    return view("home", ["todos" => Todo::all()]);
+```
+
+## Tester
+
+La page s'affiche ? Super !
+
+- Ajouter une entrée « à la main » graçe à l'explorateur de base de données de PHPStorm
+
+Raffraichissez la page, vous devez maintenant voir votre texte 😎.
 
 ## Action d'ajout
 
