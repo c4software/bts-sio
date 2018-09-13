@@ -494,9 +494,105 @@ Raffraichissez la page, vous devez maintenant voir votre texte 😎.
 
 ## Action d'ajout
 
+Maintenant que nous avons implémenté la liste, nous allons pouvoir faire le code pour la partie « ajout d'une tâche ». La méthodologie sera la même que pour la liste à savoir :
+
+- Ajout du code dans le contrôleur.
+- Ajout de la route.
+- Modification du template pour implémenter la fonctionnalité
+
+### Le contrôleur
+
+Nous allons faire un mapping automatique entre la requette HTTP et le modèle ```Todos```
+
+```php
+public function saveTodo(Request $request){
+    Todos::create($request->all());
+    return redirect()->action('TodosController@liste');
+}
+```
+
+Que va t’il se passer lors de l’appel ? L’objet ```$request``` contient tous les paramètres de l’appel HTTP, la méthode ```all()``` permet de les récupérer. L’objet ```Todos``` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de ```create()``` permette de renseigner automatiquement les champs en base de données.
+
+- À votre avis est-ce une manière sécuriser de procéder ?
+
+{% reveal text="Ajouter une todo version alternative" %}
+La première approche est la plus rapide mais elle sous entend que tous les paramètres soient bien initialisés dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todo manuellement en récupérant les différents éléments dans la requette HTTP
+
+```php
+public function saveTodo(Request $request){
+    $texte = $request->input('texte');
+
+    if($texte){
+      $todo = new Todos();
+      $todo->texte = $texte;
+      $todo->termine = 0;
+      $todo->save();
+    }
+
+    return redirect()->action('TodosController@liste');
+}
+```
+
+{% endreveal %}
+
+Et c'est tout ! Simple non ?
+
+### La Route
+
+Pour la route modifier le fichier ```routes/web.php```
+
+```php
+Route::post('/', "TodosController@saveTodo");
+```
+
+#### 🤓 Questions
+
+- À quoi correspond le mot clef « post » ?
+- Que ce passe-t-il si on fait un appel de type GET (ou PUT, …)
+
 ## Action marquer comme terminer
 
+Pour l’action terminer nous allons devoir updater un enregistrement en base de données, pour ça nous allons le récupérer puis mettre le ```boolean``` termine à 1.
+
+```php
+public function markAsDone($id){
+    $todo  = Todos::find($id);
+    if($todo){
+        $todo->termine = 1;
+        $todo->save();
+    }
+    return redirect()->action('TodosController@liste');
+}
+```
+
+### Route
+
+Ajouter une route de type ```get``` dans le fichier ```routes/web.php```.
+
 ## Action de suppression
+
+Pour la partie suppression, nous allons devoir dans un premier temps récupérer la todo par son ID.
+
+```php
+public function deleteTodo($id){
+        $todo  = Todos::find($id);
+        if($todo){
+            $todo->delete();
+        }
+
+        return redirect()->action('TodosController@liste');
+}
+```
+
+### Route
+
+Ajouter une route de type ```get``` dans le fichier ```routes/web.php```.
+
+#### Questions
+
+- Un delete de type get est-ce normal ?
+- Quel est l'autre solution ?
+- Pourquoi dans notre cas c'est « la seul solution » ?
 
 ## Ajouter les actions dans le template
 
@@ -514,9 +610,9 @@ Ajouter une nouvelle page dans votre site web cette page sera la page « À prop
 - Méthode dans le contrôleur.
 - Template qui « @extends » du gabarit de base.
 
-## Bonus 2
+## Évolution souhaitée
 
-Seul les tâches « Terminées » peuvent-être supprimer :
+ Seul les ```Todos``` marqués comme terminés peuvent être supprimé, il faudra donc controller l’état avant de faire le ```delete()``` en base de données
 
-- Modifier le contrôleur pour ajouter la règle de gestion
+- Modifier la méthode ```deleteTodo``` contrôleur pour ajouter la règle de gestion (Indice ```$todo->termine```)
 - Ajouter la directive ```@if``` dans le template afficher uniquement les bonnes actions en fonction de l'état de la todo.

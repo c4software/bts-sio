@@ -251,7 +251,7 @@ public function saveTodo(Request $request){
     $texte = $request->input('texte');
 
     if($texte){
-      $todo = new Todos;
+      $todo = new Todos();
       $todo->texte = $texte;
       $todo->termine = 0;
       $todo->save();
