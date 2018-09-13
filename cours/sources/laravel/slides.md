@@ -20,7 +20,7 @@ Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une a
 * Simplification <!-- .element: class="fragment" -->
 * Standardisation <!-- .element: class="fragment" -->
 * Homogénéité <!-- .element: class="fragment" -->
-* **Sécurité** <!-- .element: class="fragment" -->
+* Sécurité <!-- .element: class="fragment" -->
 
 ---
 
