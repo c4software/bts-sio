@@ -728,7 +728,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Sep 12 2018 23:51:20 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Thu Sep 13 2018 22:27:34 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="application-todo-liste">Application Todo Liste</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1095,8 +1095,81 @@ $ npm run production
 </ul>
 <p>Raffraichissez la page, vous devez maintenant voir votre texte &#x1F60E;.</p>
 <h2 id="action-dajout">Action d&apos;ajout</h2>
+<p>Maintenant que nous avons impl&#xE9;ment&#xE9; la liste, nous allons pouvoir faire le code pour la partie &#xAB; ajout d&apos;une t&#xE2;che &#xBB;. La m&#xE9;thodologie sera la m&#xEA;me que pour la liste &#xE0; savoir :</p>
+<ul>
+<li>Ajout du code dans le contr&#xF4;leur.</li>
+<li>Ajout de la route.</li>
+<li>Modification du template pour impl&#xE9;menter la fonctionnalit&#xE9;</li>
+</ul>
+<h3 id="le-contr&#xF4;leur">Le contr&#xF4;leur</h3>
+<p>Nous allons faire un mapping automatique entre la requette HTTP et le mod&#xE8;le <code>Todos</code></p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">saveTodo</span><span class="hljs-params">(Request $request)</span></span>{
+    Todos::create($request-&gt;all());
+    <span class="hljs-keyword">return</span> redirect()-&gt;action(<span class="hljs-string">&apos;TodosController@liste&apos;</span>);
+}
+</code></pre>
+<p>Que va t&#x2019;il se passer lors de l&#x2019;appel ? L&#x2019;objet <code>$request</code> contient tous les param&#xE8;tres de l&#x2019;appel HTTP, la m&#xE9;thode <code>all()</code> permet de les r&#xE9;cup&#xE9;rer. L&#x2019;objet <code>Todos</code> poss&#xE8;de une m&#xE9;thode permettant de cr&#xE9;er un nouvel enregistrement en base de donn&#xE9;es. Les valeurs pass&#xE9;es en param&#xE8;tre de <code>create()</code> permette de renseigner automatiquement les champs en base de donn&#xE9;es.</p>
+<ul>
+<li>&#xC0; votre avis est-ce une mani&#xE8;re s&#xE9;curiser de proc&#xE9;der ?</li>
+</ul>
+<div class="click_reveal"><span> Ajouter une todo version alternative </span><div><p>La premi&#xE8;re approche est la plus rapide mais elle sous entend que tous les param&#xE8;tres soient bien initialis&#xE9;s dans &#xAB; l&#x2019;input &#xBB; HTTP. Dans cette version la m&#xE9;thode est plus compl&#xE8;te et g&#xE8;re la cr&#xE9;ation de l&#x2019;objet Todo manuellement en r&#xE9;cup&#xE9;rant les diff&#xE9;rents &#xE9;l&#xE9;ments dans la requette HTTP</p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">saveTodo</span><span class="hljs-params">(Request $request)</span></span>{
+    $texte = $request-&gt;input(<span class="hljs-string">&apos;texte&apos;</span>);
+
+    <span class="hljs-keyword">if</span>($texte){
+      $todo = <span class="hljs-keyword">new</span> Todos();
+      $todo-&gt;texte = $texte;
+      $todo-&gt;termine = <span class="hljs-number">0</span>;
+      $todo-&gt;save();
+    }
+
+    <span class="hljs-keyword">return</span> redirect()-&gt;action(<span class="hljs-string">&apos;TodosController@liste&apos;</span>);
+}
+</code></pre>
+</div></div>
+
+<p>Et c&apos;est tout ! Simple non ?</p>
+<h3 id="la-route">La Route</h3>
+<p>Pour la route modifier le fichier <code>routes/web.php</code></p>
+<pre><code class="lang-php">Route::post(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-string">&quot;TodosController@saveTodo&quot;</span>);
+</code></pre>
+<h4 id="&#x1F913;-questions">&#x1F913; Questions</h4>
+<ul>
+<li>&#xC0; quoi correspond le mot clef &#xAB; post &#xBB; ?</li>
+<li>Que ce passe-t-il si on fait un appel de type GET (ou PUT, &#x2026;)</li>
+</ul>
 <h2 id="action-marquer-comme-terminer">Action marquer comme terminer</h2>
+<p>Pour l&#x2019;action terminer nous allons devoir updater un enregistrement en base de donn&#xE9;es, pour &#xE7;a nous allons le r&#xE9;cup&#xE9;rer puis mettre le <code>boolean</code> termine &#xE0; 1.</p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">markAsDone</span><span class="hljs-params">($id)</span></span>{
+    $todo  = Todos::find($id);
+    <span class="hljs-keyword">if</span>($todo){
+        $todo-&gt;termine = <span class="hljs-number">1</span>;
+        $todo-&gt;save();
+    }
+    <span class="hljs-keyword">return</span> redirect()-&gt;action(<span class="hljs-string">&apos;TodosController@liste&apos;</span>);
+}
+</code></pre>
+<h3 id="route">Route</h3>
+<p>Ajouter une route de type <code>get</code> dans le fichier <code>routes/web.php</code>.</p>
 <h2 id="action-de-suppression">Action de suppression</h2>
+<p>Pour la partie suppression, nous allons devoir dans un premier temps r&#xE9;cup&#xE9;rer la todo par son ID.</p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deleteTodo</span><span class="hljs-params">($id)</span></span>{
+        $todo  = Todos::find($id);
+        <span class="hljs-keyword">if</span>($todo){
+            $todo-&gt;delete();
+        }
+
+        <span class="hljs-keyword">return</span> redirect()-&gt;action(<span class="hljs-string">&apos;TodosController@liste&apos;</span>);
+}
+</code></pre>
+<h3 id="route">Route</h3>
+<p>Ajouter une route de type <code>get</code> dans le fichier <code>routes/web.php</code>.</p>
+<h4 id="questions">Questions</h4>
+<ul>
+<li>Un delete de type get est-ce normal ?</li>
+<li>Quel est l&apos;autre solution ?</li>
+<li>Pourquoi dans notre cas c&apos;est &#xAB; la seul solution &#xBB; ?</li>
+</ul>
 <h2 id="ajouter-les-actions-dans-le-template">Ajouter les actions dans le template</h2>
 <p>Maintenant que nous avons d&#xE9;clar&#xE9; nos &#xAB; 3 actions &#xBB; dans notre contr&#xF4;leur nous allons les utiliser dans notre template &#xAB; home &#xBB; voici les &#xE9;tapes</p>
 <ul>
@@ -1111,10 +1184,10 @@ $ npm run production
 <li>M&#xE9;thode dans le contr&#xF4;leur.</li>
 <li>Template qui &#xAB; @extends &#xBB; du gabarit de base.</li>
 </ul>
-<h2 id="bonus-2">Bonus 2</h2>
-<p>Seul les t&#xE2;ches &#xAB; Termin&#xE9;es &#xBB; peuvent-&#xEA;tre supprimer :</p>
+<h2 id="&#xE9;volution-souhait&#xE9;e">&#xC9;volution souhait&#xE9;e</h2>
+<p> Seul les <code>Todos</code> marqu&#xE9;s comme termin&#xE9;s peuvent &#xEA;tre supprim&#xE9;, il faudra donc controller l&#x2019;&#xE9;tat avant de faire le <code>delete()</code> en base de donn&#xE9;es</p>
 <ul>
-<li>Modifier le contr&#xF4;leur pour ajouter la r&#xE8;gle de gestion</li>
+<li>Modifier la m&#xE9;thode <code>deleteTodo</code> contr&#xF4;leur pour ajouter la r&#xE8;gle de gestion (Indice <code>$todo-&gt;termine</code>)</li>
 <li>Ajouter la directive <code>@if</code> dans le template afficher uniquement les bonnes actions en fonction de l&apos;&#xE9;tat de la todo.</li>
 </ul>
 
@@ -1160,7 +1233,7 @@ $ npm run production
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-12T21:51:20.915Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-12T21:51:30.898Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-13T20:27:34.751Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-13T20:29:24.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
