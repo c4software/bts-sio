@@ -47,7 +47,7 @@ $ git push
 
 ---
 
-## Des outils / interface existent
+## Des outils / interfaces existent
 
 ## GitLab
 
@@ -87,7 +87,7 @@ $ git push
 
 ## STOP
 
-Mais? Y'a t'il des équivalents ?
+Mais !? Y'a t'il des équivalents ?
 
 ---
 
@@ -128,7 +128,7 @@ Mais? Y'a t'il des équivalents ?
 - Wiki
 - Issues
 - Minimaliste
-- Gratuit / Open Sources
+- Gratuit / Open Source
 
 ---
 
@@ -143,7 +143,7 @@ Mais? Y'a t'il des équivalents ?
 - Issues
 - Branches privées
 - Intégration continue (Integré : Gitlab-CI)
-- Hébergement interne (Intégré, simple RPM)
+- Hébergement interne (Intégré, simple .rpm / .deb)
 
 ---
 
@@ -232,7 +232,7 @@ Une API pour tout piloter ;)
 
 Des morceaux de code que l’on partage.
 
-- Quelqu'un connais un équivalent ? <!-- .element: class="fragment" -->
+- Quelqu'un connait un équivalent ? <!-- .element: class="fragment" -->
 
 ---
 
@@ -252,14 +252,18 @@ On en reparlera…
 
 ### Authentification
 
-- Via mot de passe (Site)
+- Via mot de passe (site)
 - Via Clef SSH (client git)
 
 ---
 
 ### Démo
 
+---
+
 ### Le workflow GitLab (début)
+
+---
 
 #### (Flux de travail)
 
