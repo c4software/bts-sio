@@ -419,7 +419,7 @@ Nous allons créer un 2nd template celui qui va être charger d'afficher la list
         <div class="card">
             <div class="card-body">
                 <!-- Action -->
-                <form action="/actions/add" method="post" class="add">
+                <form action="/action/add" method="post" class="add">
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1"><span class="oi oi-pencil"></span></span>
                         <input id="texte" name="texte" type="text" class="form-control" placeholder="Prendre une note…" aria-label="My new idea" aria-describedby="basic-addon1">
@@ -431,6 +431,7 @@ Nous allons créer un 2nd template celui qui va être charger d'afficher la list
                     @forelse ($todos as $todo)
                         <li class="list-group-item">
                             <span>{{ $todo->texte }}</span>
+                            <!-- Action à ajouter pour Terminer et supprimer -->
                         </li>
                     @empty
                         <li class="list-group-item text-center">C'est vide !</li>
@@ -542,7 +543,7 @@ Et c'est tout ! Simple non ?
 Pour la route modifier le fichier ```routes/web.php```
 
 ```php
-Route::post('/', "TodosController@saveTodo");
+Route::post('/action/add', "TodosController@saveTodo");
 ```
 
 #### 🤓 Questions
