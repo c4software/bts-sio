@@ -570,7 +570,7 @@ public function markAsDone($id){
 Ajouter une route de type ```get``` avec un paramètre nommé ```{id}``` dans le fichier ```routes/web.php```.
 
 ```php
-Route::get('/{id}', "TodosController@markAsDone");
+Route::get('/action/done/{id}', "TodosController@markAsDone");
 ```
 
 ## Action de suppression
@@ -593,7 +593,7 @@ public function deleteTodo($id){
 Ajouter une route de type ```get``` avec un paramètre nommé ```{id}``` dans le fichier ```routes/web.php```.
 
 ```php
-Route::get('/{id}', "TodosController@markAsDone");
+Route::get('/action/delete/{id}', "TodosController@deleteTodo");
 ```
 
 #### Questions
