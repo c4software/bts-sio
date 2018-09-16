@@ -661,7 +661,7 @@ Comme vous l'avez constaté, nous utilisons les routes comme une simple URL. Ave
 ```php
 <?php
 
-Route::get('/', "TodosController@liste");
+Route::get('/', "TodosController@liste")->name("todo.list");
 Route::post('/action/add', "TodosController@saveTodo")->name('todo.save');
 Route::get('/action/done/{id}', "TodosController@markAsDone")->name('todo.done');
 Route::get('/action/delete/{id}', "TodosController@deleteTodo")->name('todo.delete');
@@ -684,6 +684,16 @@ Maintenant que nous avons édités nos routes, il faut les utiliser dans le temp
 ```
 
 - Avez vous vu la différence ?
+
+### Utilisation dans le controleur
+
+Il est également de les utiliser dans le contrôleur via la directive :
+
+```php
+    return redirect()->route('todo.list');
+```
+
+Modifier votre code pour l'utiliser.
 
 ### 🤓 Question
 
