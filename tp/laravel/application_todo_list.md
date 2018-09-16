@@ -567,7 +567,11 @@ public function markAsDone($id){
 
 ### Route
 
-Ajouter une route de type ```get``` dans le fichier ```routes/web.php```.
+Ajouter une route de type ```get``` avec un paramètre nommé ```{id}``` dans le fichier ```routes/web.php```.
+
+```php
+Route::get('/{id}', "TodosController@markAsDone");
+```
 
 ## Action de suppression
 
@@ -586,7 +590,11 @@ public function deleteTodo($id){
 
 ### Route
 
-Ajouter une route de type ```get``` dans le fichier ```routes/web.php```.
+Ajouter une route de type ```get``` avec un paramètre nommé ```{id}``` dans le fichier ```routes/web.php```.
+
+```php
+Route::get('/{id}', "TodosController@markAsDone");
+```
 
 #### Questions
 
@@ -596,7 +604,7 @@ Ajouter une route de type ```get``` dans le fichier ```routes/web.php```.
 
 ## Ajouter les actions dans le template
 
-Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur nous allons les utiliser dans notre template « home » voici les étapes
+Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur (et dans le fichier de route) nous allons les utiliser dans notre template « home » voici les étapes
 
 - Éditer le fichier ```resources/views/home.blade.php```.
 - Ajouter la bonne url sur l'actions de votre formulaire.
@@ -610,9 +618,29 @@ Ajouter une nouvelle page dans votre site web cette page sera la page « À prop
 - Méthode dans le contrôleur.
 - Template qui « @extends » du gabarit de base.
 
-## Évolution souhaitée
+## Évolution souhaitée : Ajout de contrôle
 
  Seul les ```Todos``` marqués comme terminés peuvent être supprimé, il faudra donc controller l’état avant de faire le ```delete()``` en base de données
 
 - Modifier la méthode ```deleteTodo``` contrôleur pour ajouter la règle de gestion (Indice ```$todo->termine```)
 - Ajouter la directive ```@if``` dans le template afficher uniquement les bonnes actions en fonction de l'état de la todo.
+
+## Évolution souhaitée : Message en cas d'erreur
+
+Avertir l'utilisateur en cas d'erreur est important! Comme vous l'avez constaté aucune gestion de message d'erreur n'est présente dans le contrôleur. Implémenté des messages (basique) grace à l'aide suivante :
+
+### Ajouter un message à afficher
+
+```php
+[…]
+Session::flash('message', "Message d'erreur de traitement à définir.");
+[…]
+```
+
+### Afficher le message dans votre template
+
+```html
+@if(Session::has('message'))
+    <p class="alert alert-danger">{{ Session::get('message') }}</p>
+@endif
+```
