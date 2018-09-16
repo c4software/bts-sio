@@ -644,3 +644,5 @@ Session::flash('message', "Message d'erreur de traitement à définir.");
     <p class="alert alert-danger">{{ Session::get('message') }}</p>
 @endif
 ```
+
+![Explication sur le Flash](https://laravel.com/docs/5.6/session#flash-data)
