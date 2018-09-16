@@ -657,6 +657,11 @@ Ajouter une nouvelle page dans votre site web cette page sera la page « À prop
 
 - Modifier la méthode ```deleteTodo``` contrôleur pour ajouter la règle de gestion (Indice ```$todo->termine```)
 - Ajouter la directive ```@if``` dans le template afficher uniquement les bonnes actions en fonction de l'état de la todo.
+- Pour les boutons d'actions utiliser des icones :
+    - Exemple [fontawesome](https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css)
+    - Choisir [une icône](https://fontawesome.com/icons?d=gallery)
+    - Utilisation : ```<i class="fas fa-stroopwafel"></i>```
+- « Encapsuler » votre icône autour d'un ```<a>``` exemple ```<a href="/actions/done/{{$todo->id}}" class="btn btn-success"><i class="fas fa-check"></i></a>```
 
 ## Évolution souhaitée : Message en cas d'erreur
 
