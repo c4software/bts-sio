@@ -31,7 +31,7 @@ Maintenant que vous avez installé Lumen nous allons pouvoir utiliser la ligne d
 lumen new api-todo
 ```
 
-✋ Attention, le projet va être créé dans le dossier api-todo dans le dossier courant.
+✋ Attention, le projet va être créé dans le dossier ```api-todo``` dans le dossier courant.
 
 ## Initialisation
 

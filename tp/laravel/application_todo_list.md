@@ -33,6 +33,8 @@ Installing dependencies (including require-dev) from lock file
 […]
 ```
 
+✋ Attention, le projet va être créé dans le dossier ```laravel-todo``` dans le dossier courant.
+
 La création prend environ 1 minute, un certain nombre de librairie sont téléchargés. Une fois terminé prenez quelques instants pour regarder les fichiers qui ont été créé.
 
 ### 🤓 Questions
