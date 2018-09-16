@@ -651,6 +651,44 @@ Ajouter une nouvelle page dans votre site web cette page sera la page « À prop
 - Méthode dans le contrôleur.
 - Template qui « @extends » du gabarit de base.
 
+## Évolution souhaitée : Nommer les routes
+
+Comme vous l'avez constaté, nous utilisons les routes comme une simple URL. Avec Laravel il est possible de faire mieux que ça ! Il est possible de nommer les routes (exemple ```todo.save```) pour les utiliser directement dans notre template. Ça va permettre d'améliorer votre code (changement de contrôleur plus simple par exemple) et surtout de le rendre plus lisible.
+
+### Modifier le fichier route
+
+Éditer le fichier ```routes/web.php``` pour remplacer le contenu par :
+```php
+<?php
+
+Route::get('/', "TodosController@liste");
+Route::post('/action/add', "TodosController@saveTodo")->name('todo.save');
+Route::get('/action/done/{id}', "TodosController@markAsDone")->name('todo.done');
+Route::get('/action/delete/{id}', "TodosController@deleteTodo")->name('todo.delete');
+
+```
+
+- Avez-vous vu la différence ? Et oui un ```->name("…")``` est en plus, vos routes sont maintenant nommés
+
+### Éditer votre template « home »
+
+Maintenant que nous avons édités nos routes, il faut les utiliser dans le template pour ça modifier les différent lien (dans le form et dans les ```<a>``` d'action)
+
+```html
+[…]
+    <form action="{{ route('todo.save') }}" method="post" class="add">
+[…]
+
+<a href="{{ route('todo.done', ['id' => $todo->id]) }}">[…]</a>
+<a href="{{ route('todo.delete', ['id' => $todo->id]) }}">[…]</a>
+```
+
+- Avez vous vu la différence ?
+
+### 🤓 Question
+
+- Quel est l'avantage d'utiliser les routes nommés ?
+
 ## Évolution souhaitée : Ajout de contrôle
 
  Seul les ```Todos``` marqués comme terminés peuvent être supprimé, il faudra donc controller l’état avant de faire le ```delete()``` en base de données
