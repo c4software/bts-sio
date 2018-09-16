@@ -551,6 +551,38 @@ Route::post('/action/add', "TodosController@saveTodo");
 - À quoi correspond le mot clef « post » ?
 - Que ce passe-t-il si on fait un appel de type GET (ou PUT, …)
 
+#### Tester
+
+Maintenant que nous avons notre action d'ajout, nous allons pouvoir tester notre Todo List réellement.
+
+- Démarrer votre serveur de test (```php artisan serve```).
+- Ajouter une nouvelle todo dans l'interface.
+- Vous devez avoir une erreur 419. À quoi correspond-t-elle ?
+
+#### Correction de l'erreur 419
+
+L'erreur 419 indique que votre Token ```CSRF``` (anti-rejeux) est expiré, ou plutôt dans notre cas que vous ne l'avez pas fourni. C'est une sécurité intégré à Laravel pour l'ensemble des requêtes POST qui arrive dans votre code.
+
+Nous devons donc ajouter un input « caché » dans notre formulaire pour envoyer en plus du texte une valeur dite de sécurité.
+
+Modifier le template ```home.blade.php``` pour ajouter le code suivant dans la partie ```<form>``` :
+
+```
+<form […]>
+@csrf <!-- << L'annotation ici ! -->
+[…]
+</form>
+```
+
+🤓 Oui, oui, c'est juste ça.
+
+#### Re-tester
+
+Normalement c'est ok !
+
+![Vide](./ressources/vide.png)
+![Avec message 1](./ressources/message1.png)
+
 ## Action marquer comme terminer
 
 Pour l’action terminer nous allons devoir updater un enregistrement en base de données, pour ça nous allons le récupérer puis mettre le ```boolean``` termine à 1.
@@ -646,4 +678,4 @@ Session::flash('message', "Message d'erreur de traitement à définir.");
 @endif
 ```
 
-![Explication sur le Flash](https://laravel.com/docs/5.6/session#flash-data)
+[Explication sur le Flash](https://laravel.com/docs/5.6/session#flash-data)

@@ -728,7 +728,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Sun Sep 16 2018 18:45:30 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Sep 16 2018 18:55:50 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="application-todo-liste">Application Todo Liste</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1139,6 +1139,26 @@ $ npm run production
 <li>&#xC0; quoi correspond le mot clef &#xAB; post &#xBB; ?</li>
 <li>Que ce passe-t-il si on fait un appel de type GET (ou PUT, &#x2026;)</li>
 </ul>
+<h4 id="tester">Tester</h4>
+<p>Maintenant que nous avons notre action d&apos;ajout, nous allons pouvoir tester notre Todo List r&#xE9;ellement.</p>
+<ul>
+<li>D&#xE9;marrer votre serveur de test (<code>php artisan serve</code>).</li>
+<li>Ajouter une nouvelle todo dans l&apos;interface.</li>
+<li>Vous devez avoir une erreur 419. &#xC0; quoi correspond-t-elle ?</li>
+</ul>
+<h4 id="correction-de-lerreur-419">Correction de l&apos;erreur 419</h4>
+<p>L&apos;erreur 419 indique que votre Token <code>CSRF</code> (anti-rejeux) est expir&#xE9;, ou plut&#xF4;t dans notre cas que vous ne l&apos;avez pas fourni. C&apos;est une s&#xE9;curit&#xE9; int&#xE9;gr&#xE9; &#xE0; Laravel pour l&apos;ensemble des requ&#xEA;tes POST qui arrive dans votre code.</p>
+<p>Nous devons donc ajouter un input &#xAB; cach&#xE9; &#xBB; dans notre formulaire pour envoyer en plus du texte une valeur dite de s&#xE9;curit&#xE9;.</p>
+<p>Modifier le template <code>home.blade.php</code> pour ajouter le code suivant dans la partie <code>&lt;form&gt;</code> :</p>
+<pre><code>&lt;form [&#x2026;]&gt;
+@csrf &lt;!-- &lt;&lt; L&apos;annotation ici ! --&gt;
+[&#x2026;]
+&lt;/form&gt;
+</code></pre><p>&#x1F913; Oui, oui, c&apos;est juste &#xE7;a.</p>
+<h4 id="re-tester">Re-tester</h4>
+<p>Normalement c&apos;est ok !</p>
+<p><img src="ressources/vide.png" alt="Vide">
+<img src="ressources/message1.png" alt="Avec message 1"></p>
 <h2 id="action-marquer-comme-terminer">Action marquer comme terminer</h2>
 <p>Pour l&#x2019;action terminer nous allons devoir updater un enregistrement en base de donn&#xE9;es, pour &#xE7;a nous allons le r&#xE9;cup&#xE9;rer puis mettre le <code>boolean</code> termine &#xE0; 1.</p>
 <pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">markAsDone</span><span class="hljs-params">($id)</span></span>{
@@ -1207,7 +1227,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;alert alert-danger&quot;</span>&gt;</span>{{ Session::get(&apos;message&apos;) }}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 @endif
 </code></pre>
-<p><img src="https://laravel.com/docs/5.6/session#flash-data" alt="Explication sur le Flash"></p>
+<p><a href="https://laravel.com/docs/5.6/session#flash-data" target="_blank">Explication sur le Flash</a></p>
 
                                 
                                 </section>
@@ -1251,7 +1271,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-16T16:45:30.918Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-16T16:45:36.525Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-16T16:55:50.425Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-16T16:55:59.084Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
