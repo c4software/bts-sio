@@ -184,6 +184,7 @@ Options:
 ## Les « routes »
 
 * Gestion des URL de l’application
+* Assemble l'ensemble (Le controler et la vue)
 
 ### 3 fichiers
 
