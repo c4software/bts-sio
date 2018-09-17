@@ -23,7 +23,7 @@ Dans ce TP nous allons utiliser les technologies suivantes :
 
 ## Initialiser le projet
 
-La première étape lors d'un projet Laravel est la création du projet avec une simple ligne de commande, dans notre cas :
+La première étape lors d'un projet Laravel est la création de la structure avec une simple ligne de commande, dans notre cas :
 
 ```sh
 $ laravel new laravel-todo
@@ -35,7 +35,7 @@ Installing dependencies (including require-dev) from lock file
 
 ✋ Attention, le projet va être créé dans le dossier ```laravel-todo``` dans le dossier courant.
 
-La création prend environ 1 minute, un certain nombre de librairie sont téléchargés. Une fois terminé prenez quelques instants pour regarder les fichiers qui ont été créé.
+La création prend environ 1 minute, un certains nombres de librairies sont téléchargées. Une fois terminé prenez quelques instants pour regarder les fichiers qui ont été créés.
 
 ### 🤓 Questions
 
@@ -44,9 +44,9 @@ La création prend environ 1 minute, un certain nombre de librairie sont téléc
 
 ## Configurer le projet, le .env
 
-Le projet qui viens d'être créé est « générique » c'est à dire qu'il ne possède aucune personnalisation et peu donc servir de base quelques soit votre développement.
+Le projet qui vient d'être créé est « générique » c'est à dire qu'il ne possède aucune personnalisation et peut donc servir de base quelques soit votre développement.
 
-La première étape est donc d'éditer le fichier ```.env``` pour configurer les options de base de votre projet :
+La première étape est donc d'éditer le fichier ```.env``` pour configurer les options de base de votre projet tel que :
 
 - Le nom
 - Le type de base de données
@@ -58,19 +58,19 @@ La première étape est donc d'éditer le fichier ```.env``` pour configurer les
 
 ### Base de données
 
-Pour ne pas avoir à installer un serveur MySQL nous allons utiliser une base données « local ».
+Pour ne pas avoir à installer un serveur MySQL nous allons utiliser une base de données « local ».
 
-Connaissez vous le nom d'un type de base de données permettant de travailler en « local » ?
+Connaissez-vous le nom d'un type de base de données permettant de travailler en « local » c'est à dire sans serveur ?
 
 {% reveal text="Voir la suite du TP" %}
 
-La réponse est SQLite, SQLite est une base de données de type SQL mais ne nécéssitant pas de serveur, l'ensemble des données est contenu dans un fichier « local ». Pour la créer rien de plus simple il suffit de créer un fichier vide dans le dossier de votre projet faite :
+La réponse est SQLite. SQLite est une base de données de type SQL mais ne nécéssitant pas de serveur, l'ensemble des données est contenu dans un fichier « local ». Pour la créer rien de plus simple il suffit de créer un fichier vide dans le dossier de votre projet faites :
 
 ```sh
 $ touch database/database.sqlite
 ```
 
-Maintenant que le fichier à été créé nous allons indiquer à Laravel qu'il faut l'utiliser pour ça éditer le fichier ```.env``` et modifier la ligne :
+Maintenant que le fichier a été créé nous allons indiquer à Laravel qu'il faut l'utiliser pour cela, éditer le fichier ```.env``` et modifier la ligne :
 
 ```conf
 DB_CONNECTION=mysql
@@ -85,7 +85,7 @@ DB_DATABASE=../database/exemple.db
 
 #### Tester
 
-Vous pouvez maintenant tester votre application / site web. Comme vu en cours, Laravel intègre un serveur de développement ce qui permet de tester rapidement votre développement. Le lancement est simple :
+Vous pouvez maintenant tester votre application / site web. Comme vu en cours, Laravel intègre un serveur de développement ce qui permet de le tester rapidement. Le lancement se fait via la commande suivante :
 
 ```sh
 $ php artisan serve
@@ -93,8 +93,8 @@ $ php artisan serve
 
 #### 🤓 Questions
 
-- À Votre avis, comment repasse ton en Mysql ?
-- Est-il possible d'utiliser les deux types de base de données (par exemple en production MySQL est en developpement sqlite) ?
+- À votre avis, comment revenir avec une base de données type Mysql ?
+- Est-il possible d'utiliser les deux types de base de données (par exemple en production MySQL et en developpement SQLite) ?
 - SQLite est-il toujours pertinant ?
 
 {% endreveal %}
@@ -105,7 +105,7 @@ Nous n'allons pas toucher aux autres paramètres mais certains sont tout de mêm
 
 [Consulter en ligne](https://laravel.com/docs/5.6/configuration)
 
-## Conception base de données
+## Conception de la base de données
 
 Voilà à quoi va ressembler notre base de données :
 
@@ -113,38 +113,38 @@ Voilà à quoi va ressembler notre base de données :
 
 🤓 C’est parti ! Tout est prêt, nous pouvons commencer à écrire du code.
 
-## Création Model
+## Création de la « migration »
 
 Laravel utilise un ORM pour manipuler la base de données. Pour rappel un ORM est
 
 > Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
 
-L'ORM utilisé par Laravel est Eloquent, il est à la fois puissant et relativement simple. Autrement dit avec un ORM dans la plus part des cas vous n'écrivez plus de requête SQL mais vous manipuler des objets représentant la base de données.
+L'ORM utilisé par Laravel est Eloquent, il est à la fois puissant et relativement simple. Autrement dit avec un ORM dans la plus part des cas vous n'écrivez plus de requête SQL mais vous manipulez des objets représentant la base de données.
 
-Comme pour la création du projet, la création de la table « todos » va se faire via une requête dans votre terminal :
+Comme pour la création du projet, la création de la définition de la table « todos » va se faire via une requête dans votre terminal :
 
 ```shell
 php artisan make:migration create_todos_table --create=todos
 ```
 
-L’option ```--create=todos``` permet d’indiquer le nom de la table à créer
+L’option ```--create=todos``` permet d’indiquer le nom du modèle de la table à créer.
 
-✋ Le contenu du fichier créé est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre table.
+✋ Le contenu du fichier créé est fictif, il est là pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relatives à notre table.
 
-La commande viens de créer un nouveau fichier dans le dossier ```database/migration```. Dans mon cas :
+La commande vient de créer un nouveau fichier dans le dossier ```database/migration```. Dans mon cas le fichier se nomme :
 
 ```log
-Created Migration: 2018_09_09_150442_create_todos_table
+2018_09_09_150442_create_todos_table.php
 ```
 
-Nous allons définir notre schéma (à savoir la définition de la table) pour ajouter les 2 colonnes qui nous serons utiles ```texte``` et ```termine```. L'ORM étant un librairie objet la définition de nouveau champs ce fait via une méthode, exemple :
+Nous allons définir notre schéma (à savoir la définition de la table) pour y ajouter les 2 colonnes qui nous serons utiles ```texte``` et ```termine```. L'ORM étant une librairie objet, la définition de nouveaux champs se fait via une méthode, dans notre cas :
 
 ```php
     $table->string('texte');
     $table->boolean('termine');
 ```
 
-C'est à vous ajouter les deux champs dans la méthode ```up``` du fichier.
+Vous pouvez ajouter les deux champs dans la méthode ```up``` du fichier.
 
 {% reveal text="Voir le fichier avec les nouveaux champs" %}
 ```php
@@ -187,12 +187,12 @@ class CreateTodosTable extends Migration
 
 ### 🤓 Questions
 
-- À quoi correspond la méthode ```up``` et ```down```
+- À quoi correspond la méthode ```up``` et ```down``` ?
 - L'ordre des champs est-il important ?
 
 ## Création en base
 
-Maintenant que le script est terminé, nous allons indiquer à Laravel d'éffectuer « la migration » c'est-à-dire de transformer votre définition PHP en inscruction SQL pour créer réellement la base de données. Pour ça retour dans la ligne de commande :
+Maintenant que le script est terminé, nous allons indiquer à Laravel d'éffectuer « la migration » c'est-à-dire de transformer votre définition PHP en instruction SQL pour créer réellement la base de données. Retour dans la ligne de commande :
 
 ```sh
 $ php artisan migrate
@@ -201,7 +201,7 @@ Migrating: 2018_09_09_150442_create_todos_table
 Migrated:  2018_09_09_150442_create_todos_table
 ```
 
-Votre base de données est maintenant prête à être utilisé. Vous pouvez aller voir le contenu grace à PHPStorm qui est capable (une fois configuré) de requêter une base SQLite.
+Votre base de données est maintenant prête à être utilisée. Vous pouvez aller voir le contenu grâce à PHPStorm qui est capable (une fois configuré) de requêter une base SQLite.
 
 ![sqlite](./ressources/sqlite-phpstorm.png)
 ![sqlite1](./ressources/sqlite1.png)
@@ -223,15 +223,15 @@ class Todos extends Model
 }
 ```
 
-le ```$fillable``` définie les propriétés qui doivent êtres automatiquement remplis par Eloquent (l’ORM) lors de l’execution du code.
+La variable ```$fillable``` définie les propriétés qui doivent être automatiquement remplies par Eloquent (l’ORM) lors de l’execution du code.
 
 Au passage la propriété inverse existe, vous pouvez la voir dans le fichier ```User.php```.
 
 ## Le controller
 
-Maintenant que nous avons la migration et le models de notre « base de données », nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de notre application.
+Maintenant que nous avons la migration et le modele de notre base de données, nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de notre application.
 
-Pour commencer nous allons créer « la structure de base » de notre controller. Pour ça créez le fichier ```TodosController.php``` dans le chemin suivant ```app/Http/Controllers/``` et mettez y le contenu suivant :
+Pour commencer nous allons créer « la structure de base » de notre controller. Pour ça créez le fichier ```TodosController.php``` dans le chemin suivant ```app/Http/Controllers/``` et mettez y le contenu :
 
 ```php
 <?php
@@ -248,13 +248,15 @@ class TodosController extends Controller{
 }
 ```
 
-Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression).
+Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos problématique d'interface (liste, creation, terminer, suppression).
 
-Nous allons maintenant écrire une méthode pour chaque actions. Avec les différentes conditions nécéssaires au bon fonctionnement de votre application.
+Nous allons maintenant écrire une méthode pour chaque action. Avec les différentes conditions nécéssaires au bon fonctionnement de l'application.
 
 ### La méthode « Liste »
 
-La méthode ```liste``` est certainement la plus simple, nous allons simplement faire appel à la méthode ```all()``` de Eloquent (ORM pour l’accès à la base de données). Pour ça créez une nouvelle méthode dans la Class ```TodoController``` avec le code suivant :
+La méthode ```liste``` est certainement la plus simple, nous allons faire appel à la méthode ```all()``` de Eloquent (ORM pour l’accès à la base de données). Pour ça créez une nouvelle méthode dans la Class ```TodoController``` avec le code suivant.
+
+Pour l'instant nous n'allons pas intégrer Éloquent, mais uniqumeent définir notre méthode.
 
 ```php
 public function liste(){
@@ -270,28 +272,28 @@ Rien de bien compliqué, comme vous pouvez le voir.
 
 ## Installation des dépendances client
 
-Maintenant que la partie base de données est prête, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser Boostrap pour gérer le problématique d'affichage et de responsive.
+Maintenant que la partie base de données est prête, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser bootstrap pour gérer la problématique d'affichage et de responsive.
 
 ### Ajouter Bootsrap 4
 
-La structure de base de Laravel n'intègre pas Boostrap, par contre elle intègre un système de gestion de dépendances. Nous allons nous servir de cette gestion de dépendance pour ajouter Boostrap (version 4). Pour ça retour dans la ligne de commande :
+La structure de base de Laravel n'intègre pas Bootsrap, par contre elle intègre un système de gestion de dépendances. Nous allons nous servir de cette gestion de dépendance pour ajouter bootstrap (version 4). Dans la ligne de commande :
 
 ```sh
 $ php artisan preset none
 $ php artisan preset bootstrap
 ```
 
-⏱ Patientez quelques instant, Boostrap est maintenant disponible pour votre projet. Mais pour qu'il soit accessible pour vos templates nous devons « le compiler ».
+⏱ Patientez quelques instants… bootstrap est maintenant disponible pour votre projet. Mais pour qu'il soit accessible pour vos templates nous devons « le compiler ».
 
-### Préparation des « Assets » boostrap …
+### Préparation des « Assets » bootsrap …
 
-Laravel inclus une configuration « webpack.mix.js », celle-ci permet de fusionner l'ensemble des JS et CSS en un seul fichier pour gagner en performance.
+Laravel inclut une configuration « webpack.mix.js », celle-ci permet de fusionner l'ensemble des JS et CSS en un seul fichier pour gagner en performance.
 
-Sans entrer dans le détail (nous détaillerons le fonctionnement dans un prochain cour), la compilations des ressources (assets) est réalisé avec Webpack. Webpack est un outils NodeJS très puissant mais qui peut-être complexe, nous allons donc uniqumement l'utiliser.
+Sans entrer dans le détail (nous détaillerons le fonctionnement dans un prochain cours), la compilation des ressources (assets) est réalisée avec Webpack. Webpack est un outils NodeJS très puissant mais qui peut-être complexe, nous allons donc uniqumement l'utiliser.
 
 - Installer [NodeJS version current](https://nodejs.org/en/download/current/)
 
-Une fois installé retourner dans le dossier de votre projet fait les commandes suivantes :
+Une fois installé retourner dans le dossier de votre projet faites les commandes suivantes :
 
 ```sh
 $ npm install
@@ -302,10 +304,9 @@ $ npm run production
 
 ### 🤓 Questions
 
-- Quels fichiers ont été créé ?
-- Que contient le fichier webpack.mix.js ?
-- Le fichier webpack.mix.js fait référence à des fichiers dans ```ressources/js/*``` et ```ressources/sass/*```, allez y jeter un coup d'oeil. (même si dans se projet nous n'allons rien modifier).
-- Pourquoi les dépendances sont-elles géré Web par un autre gestionnaire de dépendances ?
+- Quels fichiers ont été créés ?
+- Que contient le fichier ```webpack.mix.js``` ?
+- ```webpack.mix.js``` fait référence à des fichiers dans ```ressources/js/*``` et ```ressources/sass/*```, allez y jeter un coup d'oeil (même si dans ce projet nous n'allons rien modifier).
 - Pourquoi la fusion / compilation des ressources est-elle si importante ?
 
 ## Créer les templates
@@ -314,19 +315,20 @@ Nous avons donc maintenant :
 
 - La structure Laravel.
 - La définition de notre base de données.
-- Les dépendances clients (Boostrap 4…)
+- Les dépendances clients (bootstrap 4…)
 
-Nous allons donc pouvoir commencer la création des templates. L'organisation du code est quelques choses d'important,elle n'est pas à négliger un code organisé est un code agréable à rédiger.
+Nous allons donc pouvoir commencer la création des templates. L'organisation du code est quelques choses d'important, elle n'est pas à négliger. Un code organisé est un code agréable à rédiger.
 
 Notre vue va être découpée en 3 partie :
 
 ![Structure](ressources/3partie.png)
 
-- ✋ Pourquoi le découpage en « 3 templates » est-elle importante / Qu'elle est le plus pour le développeur ?
+- ✋ Pourquoi le découpage en « 3 templates » est-il important ?
+- Quelle est l'avantage pour le développeur ?
 
 ### Le template principal
 
-Nous allons commencer par définir notre « Template principal » celui-ci va contenir l'ensemble des élement partagé sur toutes no page à savoir :
+Nous allons commencer par définir notre « Template principal » celui-ci va contenir l'ensemble des élement partagés sur toutes nos pages à savoir :
 
 - Les JS
 - Les CSS
@@ -355,29 +357,33 @@ Nous allons commencer par définir notre « Template principal » celui-ci va co
 </html>
 ```
 
-Maintenant que nous avons le contenu, nous devons créer un nouveau fichier. 
+Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
 
 - Créer un nouveau fichier ```resources/views/template.blade.php```
-- Copiez-Coller le html dans le fichier.
+- Copier-Coller le html dans le fichier.
 
 👏👏 Bravo, vous venez de créer votre premier template.
 
 #### 🤓 Questions
 
-- Pourquoi le fichier est-il nommé « ….blade.php » ?
-- À quoi correspond {% raw %} ```{{ asset('…') }} {% endraw %}?
-- À quoi correspond la directive « yield »? En quoi est-ce très important
-- Est-il possible de définir une « zone » ou d'autre ressources JS / CSS seront inséré lors de l'exécution ? ![Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
+- Pourquoi le fichier est-il nommé ```….blade.php``` ?
+- À quoi correspond {% raw %} ```{{ asset('…') }}``` {% endraw %}?
+- À quoi correspond la directive « yield »? En quoi est-ce très important ?
+- Est-il possible de définir une « zone » ou d'autre ressources JS / CSS seront insérées lors de l'exécution ? [Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
 - Maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
 
 {% reveal text="Voir la solution" %}
+
+```php
     @stack('scripts')
     @stack('styles')
+```
+
 {% endreveal %}
 
 ### Tester
 
-Pour lancer votre application il suffit de lancer dans un terminal :
+Pour lancer votre application, c'est dans le terminal que ça se passe :
 
 ```sh
 $ php artisan serve
@@ -391,11 +397,11 @@ Rien à changé ? C'est normal… Continuons!
 
 ### Liste des todos
 
-Maintenant que nous avons défini notre template de base nous allons pouvoir définir notre page principal, la page « liste des todos ». Une fois terminée celle-ci va ressembler à :
+Maintenant que nous avons défini notre template de base nous allons pouvoir définir notre page principale, la page « liste des todos ». Une fois terminée celle-ci va ressembler à :
 
 ![liste](./ressources/liste.png)
 
-Avant de commencer la réalisation de ce template regardont ce que l'on peux y voir :
+Avant de commencer la réalisation de ce template regardons ce que l'on peux y voir :
 
 - Un formulaire « form »
 - Une « liste »
