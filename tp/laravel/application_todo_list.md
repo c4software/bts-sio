@@ -401,7 +401,7 @@ Maintenant que nous avons défini notre template de base nous allons pouvoir dé
 
 ![liste](./ressources/liste.png)
 
-Avant de commencer la réalisation de ce template regardons ce que l'on peux y voir :
+Avant de commencer la réalisation de ce template regardons ce que l'on peut y voir :
 
 - Un formulaire « form »
 - Une « liste »
@@ -415,7 +415,7 @@ Nous allons donc avoir besoin de composant bootstrap. Première étape regarder 
 
 #### Définition du template « Liste » / « Home »
 
-Nous allons créer un 2nd template celui qui va être charger d'afficher la liste des todos. Créér un nouveau fichier ```resources/views/home.blade.php``` et y mettre le contenu suivante :
+Nous allons créer un 2nd template celui qui va être charger d'afficher la liste des todos. Créér un nouveau fichier ```resources/views/home.blade.php``` et y mettre le contenu suivant :
 
 ```html
 @extends("template")
@@ -454,24 +454,24 @@ Nous allons créer un 2nd template celui qui va être charger d'afficher la list
 ### 🤓 Questions
 
 - ```@extends``` ? À quoi sert cette directive, pourquoi « template »?
-- Modifier le titre afficher dans la barre.  
-- À quoi correspond le ```@forelse … @empty … @endforelse```
+- Modifier le titre afficher dans la barre. 
+- À quoi correspond le ```@forelse … @empty … @endforelse```?
 
 ## Et maintenant ?
 
 Bien… récupitulons ! Nous avons :
 
-- Le model
-- Le controlleur
-- Les templates (template et home)
+- Le modele.
+- Le contrôleur.
+- Les templates (template et home).
 
 Il faut maintenant assembler l'ensemble pour que votre page s'affiche lors d'une requête.
 
 ## Création des routes
 
-La définition des routes ce fait dans le fichier ```routes/web.php``` pour l'instant vous devez avoir qu'une seule route de défini.
+La définition des routes se fait dans le fichier ```routes/web.php``` pour l'instant vous devez avoir qu'une seule route de définie.
 
-Supprimer celle déjà défini, et ajouter :
+Supprimer là, et ajouter :
 
 ```php
 Route::get('/', "TodosController@liste");
@@ -479,7 +479,7 @@ Route::get('/', "TodosController@liste");
 
 ### 🤓 Question
 
-- À quoi correspond la notation "TodosController@liste" ?
+- À quoi correspond la notation ```TodosController@liste``` ?
 
 ## Tester
 
@@ -487,7 +487,7 @@ Vous voyez « Liste » ? C'est OK !
 
 ## Affichage de la liste
 
-Bon afficher « Liste » c'est un bon début… Modifier la méthode « liste() » pour qu'elle ressemble à :
+Bon afficher « Liste » c'est un bon début… Modifier la méthode ```liste()``` pour qu'elle ressemble à :
 
 ```php
     return view("home", ["todos" => Todo::all()]);
@@ -497,7 +497,7 @@ Bon afficher « Liste » c'est un bon début… Modifier la méthode « liste() 
 
 La page s'affiche ? Super !
 
-- Ajouter une entrée « à la main » graçe à l'explorateur de base de données de PHPStorm
+- Ajouter une entrée « à la main » grâce à l'explorateur de base de données de PHPStorm.
 
 Raffraichissez la page, vous devez maintenant voir votre texte 😎.
 
@@ -507,11 +507,11 @@ Maintenant que nous avons implémenté la liste, nous allons pouvoir faire le co
 
 - Ajout du code dans le contrôleur.
 - Ajout de la route.
-- Modification du template pour implémenter la fonctionnalité
+- Modification du template pour implémenter la fonctionnalité.
 
 ### Le contrôleur
 
-Nous allons faire un mapping automatique entre la requette HTTP et le modèle ```Todos```
+Nous allons faire un mapping automatique entre la requête HTTP et le modèle ```Todos```
 
 ```php
 public function saveTodo(Request $request){
@@ -525,7 +525,7 @@ Que va t’il se passer lors de l’appel ? L’objet ```$request``` contient to
 - À votre avis est-ce une manière sécuriser de procéder ?
 
 {% reveal text="Ajouter une todo version alternative" %}
-La première approche est la plus rapide mais elle sous entend que tous les paramètres soient bien initialisés dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todo manuellement en récupérant les différents éléments dans la requette HTTP
+La première approche est la plus rapide mais elle sous entend que tous les paramètres soient bien initialisées dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todos manuellement, en récupérant les différents éléments dans la requette HTTP.
 
 ```php
 public function saveTodo(Request $request){
@@ -544,11 +544,12 @@ public function saveTodo(Request $request){
 
 {% endreveal %}
 
+
 Et c'est tout ! Simple non ?
 
 ### La Route
 
-Pour la route modifier le fichier ```routes/web.php```
+Pour la route modifier le fichier ```routes/web.php``` :
 
 ```php
 Route::post('/action/add', "TodosController@saveTodo");
@@ -557,7 +558,7 @@ Route::post('/action/add', "TodosController@saveTodo");
 #### 🤓 Questions
 
 - À quoi correspond le mot clef « post » ?
-- Que ce passe-t-il si on fait un appel de type GET (ou PUT, …)
+- Que se passe-t-il si on fait un appel de type GET (ou PUT, …) ?
 
 #### Tester
 
@@ -569,7 +570,7 @@ Maintenant que nous avons notre action d'ajout, nous allons pouvoir tester notre
 
 #### Correction de l'erreur 419
 
-L'erreur 419 indique que votre Token ```CSRF``` (anti-rejeux) est expiré, ou plutôt dans notre cas que vous ne l'avez pas fourni. C'est une sécurité intégré à Laravel pour l'ensemble des requêtes POST qui arrive dans votre code.
+L'erreur 419 indique que votre Token ```CSRF``` (anti-rejeu) est expiré, ou plutôt dans notre cas que vous ne l'avez pas fourni. C'est une sécurité intégrée à Laravel pour l'ensemble des requêtes POST qui arrive dans votre code.
 
 Nous devons donc ajouter un input « caché » dans notre formulaire pour envoyer en plus du texte une valeur dite de sécurité.
 
@@ -591,9 +592,9 @@ Normalement c'est ok !
 ![Vide](./ressources/vide.png)
 ![Avec message 1](./ressources/message1.png)
 
-## Action marquer comme terminer
+## Action : marquer comme termin
 
-Pour l’action terminer nous allons devoir updater un enregistrement en base de données, pour ça nous allons le récupérer puis mettre le ```boolean``` termine à 1.
+Pour l’action terminé nous allons devoir updater un enregistrement en base de données, pour ça nous allons le récupérer puis mettre le ```boolean``` ```termine``` à 1.
 
 ```php
 public function markAsDone($id){
@@ -639,25 +640,25 @@ Route::get('/action/delete/{id}', "TodosController@deleteTodo");
 
 #### Questions
 
-- Un delete de type get est-ce normal ?
-- Quel est l'autre solution ?
+- Un ```delete``` de type ```get``` est-ce normal ?
+- Quelle est l'autre solution ?
 - Pourquoi dans notre cas c'est « la seul solution » ?
 
 ## Ajouter les actions dans le template
 
-Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur (et dans le fichier de route) nous allons les utiliser dans notre template « home » voici les étapes
+Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur (et dans le fichier de route) nous allons les utiliser dans notre template « home » voici les étapes :
 
 - Éditer le fichier ```resources/views/home.blade.php```.
-- Ajouter la bonne url sur l'actions de votre formulaire.
+- Ajouter la bonne url sur l'action de votre formulaire.
 - Ajouter sur chaque ligne deux liens qui vont « suprimer » et « terminer ». (Aide : ```@todo->id```)
 
 ## 2nd page
 
-Ajouter une nouvelle page dans votre site web cette page sera la page « À propos », aucune aide autre que
+Ajouter une nouvelle page dans votre site web cette page sera la page « À propos », aucune aide autre que :
 
 - Route.
 - Méthode dans le contrôleur.
-- Template qui « @extends » du gabarit de base.
+- Template qui « @extends » du gabarit / template de base.
 
 ## Évolution souhaitée : Nommer les routes
 
@@ -676,11 +677,11 @@ Route::get('/action/delete/{id}', "TodosController@deleteTodo")->name('todo.dele
 
 ```
 
-- Avez-vous vu la différence ? Et oui un ```->name("…")``` est en plus, vos routes sont maintenant nommés
+- Avez-vous vu la différence ? Des ```->name("…")``` sont en plus, vos routes sont maintenant nommées
 
 ### Éditer votre template « home »
 
-Maintenant que nous avons édités nos routes, il faut les utiliser dans le template pour ça modifier les différent lien (dans le form et dans les ```<a>``` d'action)
+Maintenant que nous avons édité nos routes, il faut les utiliser dans le template pour ça modifier les différents liens (dans le form et dans les ```<a>``` d'action) :
 
 ```html
 […]
@@ -693,9 +694,9 @@ Maintenant que nous avons édités nos routes, il faut les utiliser dans le temp
 
 - Avez vous vu la différence ?
 
-### Utilisation dans le controleur
+### Utilisation dans le contrôleur
 
-Il est également de les utiliser dans le contrôleur via la directive :
+Il est également poussible de les utiliser dans le contrôleur via la directive :
 
 ```php
     return redirect()->route('todo.list');
@@ -705,11 +706,11 @@ Modifier votre code pour l'utiliser.
 
 ### 🤓 Question
 
-- Quel est l'avantage d'utiliser les routes nommés ?
+- Quel est l'avantage d'utiliser les routes nommées ?
 
 ## Évolution souhaitée : Ajout de contrôle
 
- Seul les ```Todos``` marqués comme terminés peuvent être supprimé, il faudra donc controller l’état avant de faire le ```delete()``` en base de données
+ Seul les ```Todos``` marqués comme terminé peuvent être supprimés, il faudra donc contrôler l’état avant de faire le ```delete()``` en base de données.
 
 - Modifier la méthode ```deleteTodo``` contrôleur pour ajouter la règle de gestion (Indice ```$todo->termine```)
 - Ajouter la directive ```@if``` dans le template afficher uniquement les bonnes actions en fonction de l'état de la todo. [Voir la documentation du if avec blade](https://laravel.com/docs/5.7/blade#if-statements)
@@ -721,7 +722,7 @@ Modifier votre code pour l'utiliser.
 
 ## Évolution souhaitée : Message en cas d'erreur
 
-Avertir l'utilisateur en cas d'erreur est important! Comme vous l'avez constaté aucune gestion de message d'erreur n'est présente dans le contrôleur. Implémenté des messages (basique) grace à l'aide suivante :
+Avertir l'utilisateur en cas d'erreur est important! Comme vous l'avez constaté aucune gestion de message d'erreur n'est présente dans le contrôleur. Implémenter des messages (basique) grace à l'aide suivante :
 
 ### Ajouter un message à afficher
 
@@ -739,4 +740,4 @@ Session::flash('message', "Message d'erreur de traitement à définir.");
 @endif
 ```
 
-[Explication sur le Flash](https://laravel.com/docs/5.6/session#flash-data)
+[Explication sur la méthode Flash](https://laravel.com/docs/5.6/session#flash-data)
