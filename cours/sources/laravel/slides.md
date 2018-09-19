@@ -253,7 +253,7 @@ class DemoController extends Controller
 
 ## Les modeles
 
-La représentation en objet de la base de données
+La représentation objet de la base de données
 
 ---
 
