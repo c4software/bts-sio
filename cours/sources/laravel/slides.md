@@ -186,7 +186,13 @@ Options:
 * Gestion des URL de l’application
 * Assemble l'ensemble (Le controler et la vue)
 
-### 3 fichiers
+---
+
+## Connaissez-vous un équivalent ?
+
+---
+
+## Dans Laravel : 3 fichiers
 
 * **web.php**: Gestion des urls pour le « web »
 * **api.php**: Gestion des urls pour les API.
@@ -202,7 +208,7 @@ Route::get('/', function () {
 
 ---
 
-### Avec des paramètres
+## Avec des paramètres
 
 ```php
 Route::get('/demo/{id}', "DemoController@voir");
@@ -212,11 +218,15 @@ Consulter la page **/demo/3** chargera automatiquement le bon controller et la b
 
 ---
 
-### Et pour le POST ?
+## Et pour le POST ?
 
 ```php
 Route::post('/demo/ajout', "DemoController@ajout");
 ```
+
+---
+
+## Autre que le POST ?
 
 ---
 
@@ -279,11 +289,13 @@ class TodoList extends Model
 
 ---
 
-## Initialiser la base de données
+## « Initialiser » la base de données
 
 ```bash
 $ php artisan migrate:make create_todoList_table --create=todoList
 ```
+
+Création d'un script PHP qui représente la définition de la base de données.
 
 ---
 
@@ -303,7 +315,7 @@ Schema::create('todoList', function(Blueprint $table)
 
 ---
 
-## On lance la création
+## Lancement de la création
 
 ```bash
 $ php artisan migrate
