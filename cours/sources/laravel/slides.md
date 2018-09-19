@@ -440,7 +440,7 @@ Route::get('/', function () {
 ## Le template principal
 
 ```html
-<!-- Stored in resources/views/layouts/app.blade.php -->
+<!-- Sauvegardé dans resources/views/layouts/app.blade.php -->
 <html>
     <head>
         <title>Site Exemple - @yield('titre')</title>
@@ -462,7 +462,7 @@ Route::get('/', function () {
 ## Le template « enfant »
 
 ```php
-<!-- Stored in resources/views/child.blade.php -->
+<!-- Sauvegardé dans resources/views/child.blade.php -->
 
 @extends('layouts.app')
 
@@ -482,30 +482,41 @@ Route::get('/', function () {
 
 ## Les directives « Blade »
 
+---
+
+## Les conditions
+
 * **@if**, **@elseif**, **@else** et **@endif**
 * **@switch**, **@case**, **@break**, **@default** et **@endswitch**
+
+---
+
+## Les boucles
+
 * **@for**, **@endfor**
 * **@foreach**, **@endforeach**
 * **@forelse**, **@empty**, **@endforelse** <= Permet d’afficher autre chose si pas de données dans la boucle
+
+---
+
+## L'héritage
+
 * **@include**('view.name') <= Inclusion d’une autre vue
 * **@include**When($boolean, 'view.name') <= Inclusion conditionnelle
-* **@auth**, **@guest** <= Gestion des droits d’accès
 
 ---
 
-## **@stack** : Afficher du texte à un autre endroit
+## Gestion des droits d’accès
 
-Exemple, injecter une librairie JS dans le header de votre site
+* **@auth**, **@guest**
 
 ---
 
-### Dans la vue enfant
+## **@stack**
 
-```php
-@push('scripts')
-    <script src="/demo.js"></script>
-@endpush
-```
+Zone dans le code ou il sera possible « d'injecter » ulterieurement du code.
+
+Exemple, zone dans le header pour injecter des script JS utile que dans certaines page.
 
 ---
 
@@ -516,6 +527,16 @@ Exemple, injecter une librairie JS dans le header de votre site
     <!-- Head Contents -->
     @stack('scripts')
 </head>
+```
+
+---
+
+### Dans la vue enfant
+
+```php
+@push('scripts')
+    <script src="/demo.js"></script>
+@endpush
 ```
 
 ---
