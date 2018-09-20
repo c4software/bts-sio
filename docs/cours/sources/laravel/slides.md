@@ -102,7 +102,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire… (maintenant)
 
-* 5.5: Version actuelle (Support de PHP 7)
+* 5.7: Version actuelle (Support de PHP 7)
 
 ---
 
@@ -169,7 +169,7 @@ Application ready! Build something amazing.
 
 ```bash
 $ php artisan
-Laravel Framework 5.5.19
+Laravel Framework 5.X.YZ
 
 Usage:
 command [options] [arguments]
@@ -562,7 +562,7 @@ La vérification côté serveur est **automatique**
 
 Intégré dans Laravel, s’initialise simplement en suivant la documentation
 
-[En savoir plus](https://laravel.com/docs/5.5/authentication)
+[En savoir plus](https://laravel.com/docs/5.7/authentication)
 
 ---
 
