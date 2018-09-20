@@ -43,7 +43,7 @@ Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une a
 
 ---
 
-## Revenont sur le quand…
+## Revenons sur le quand…
 
 Le choix du framework dépend du projet en question… Et parfois pas de framework dutout…
 
@@ -66,7 +66,7 @@ Le choix du framework dépend du projet en question… Et parfois pas de framewo
 * 2011: Création
 * 2016: Projet PHP le mieux noté sur GitHub
 
-La communautée c’est rapidement formée autour du projet. C’est bon signe!
+La communauté c’est rapidement formée autour du projet. C’est bon signe!
 
 ---
 
@@ -183,10 +183,16 @@ Options:
 
 ## Les « routes »
 
-* Gestion des URL de l’application
+* Gestion des URL's de l’application
 * Assemble l'ensemble (Le controler et la vue)
 
-### 3 fichiers
+---
+
+## Connaissez-vous un équivalent ?
+
+---
+
+## Dans Laravel : 3 fichiers
 
 * **web.php**: Gestion des urls pour le « web »
 * **api.php**: Gestion des urls pour les API.
@@ -202,7 +208,7 @@ Route::get('/', function () {
 
 ---
 
-### Avec des paramètres
+## Avec des paramètres
 
 ```php
 Route::get('/demo/{id}', "DemoController@voir");
@@ -212,11 +218,15 @@ Consulter la page **/demo/3** chargera automatiquement le bon controller et la b
 
 ---
 
-### Et pour le POST ?
+## Et pour le POST ?
 
 ```php
 Route::post('/demo/ajout', "DemoController@ajout");
 ```
+
+---
+
+## Autre que le POST ?
 
 ---
 
@@ -253,7 +263,7 @@ class DemoController extends Controller
 
 ## Les modeles
 
-La représentation en objet de la base de données
+La représentation objet de la base de données
 
 ---
 
@@ -279,11 +289,13 @@ class TodoList extends Model
 
 ---
 
-## Initialiser la base de données
+## « Initialiser » la base de données
 
 ```bash
 $ php artisan migrate:make create_todoList_table --create=todoList
 ```
+
+Création d'un script PHP qui représente la définition de la base de données.
 
 ---
 
@@ -303,7 +315,7 @@ Schema::create('todoList', function(Blueprint $table)
 
 ---
 
-## On lance la création
+## Lancement de la création
 
 ```bash
 $ php artisan migrate
@@ -428,7 +440,7 @@ Route::get('/', function () {
 ## Le template principal
 
 ```html
-<!-- Stored in resources/views/layouts/app.blade.php -->
+<!-- Sauvegardé dans resources/views/layouts/app.blade.php -->
 <html>
     <head>
         <title>Site Exemple - @yield('titre')</title>
@@ -450,7 +462,7 @@ Route::get('/', function () {
 ## Le template « enfant »
 
 ```php
-<!-- Stored in resources/views/child.blade.php -->
+<!-- Sauvegardé dans resources/views/child.blade.php -->
 
 @extends('layouts.app')
 
@@ -470,30 +482,41 @@ Route::get('/', function () {
 
 ## Les directives « Blade »
 
+---
+
+## Les conditions
+
 * **@if**, **@elseif**, **@else** et **@endif**
 * **@switch**, **@case**, **@break**, **@default** et **@endswitch**
+
+---
+
+## Les boucles
+
 * **@for**, **@endfor**
 * **@foreach**, **@endforeach**
 * **@forelse**, **@empty**, **@endforelse** <= Permet d’afficher autre chose si pas de données dans la boucle
+
+---
+
+## L'héritage
+
 * **@include**('view.name') <= Inclusion d’une autre vue
 * **@include**When($boolean, 'view.name') <= Inclusion conditionnelle
-* **@auth**, **@guest** <= Gestion des droits d’accès
 
 ---
 
-## **@stack** : Afficher du texte à un autre endroit
+## Gestion des droits d’accès
 
-Exemple, injecter une librairie JS dans le header de votre site
+* **@auth**, **@guest**
 
 ---
 
-### Dans la vue enfant
+## **@stack**
 
-```php
-@push('scripts')
-    <script src="/demo.js"></script>
-@endpush
-```
+Zone dans le code ou il sera possible « d'injecter » ulterieurement du code.
+
+Exemple, zone dans le header pour injecter des script JS utile que dans certaines page.
 
 ---
 
@@ -504,6 +527,16 @@ Exemple, injecter une librairie JS dans le header de votre site
     <!-- Head Contents -->
     @stack('scripts')
 </head>
+```
+
+---
+
+### Dans la vue enfant
+
+```php
+@push('scripts')
+    <script src="/demo.js"></script>
+@endpush
 ```
 
 ---

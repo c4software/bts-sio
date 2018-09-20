@@ -43,7 +43,7 @@ Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une a
 
 ---
 
-## Revenont sur le quand…
+## Revenons sur le quand…
 
 Le choix du framework dépend du projet en question… Et parfois pas de framework dutout…
 
@@ -66,7 +66,7 @@ Le choix du framework dépend du projet en question… Et parfois pas de framewo
 * 2011: Création
 * 2016: Projet PHP le mieux noté sur GitHub
 
-La communautée c’est rapidement formée autour du projet. C’est bon signe!
+La communauté c’est rapidement formée autour du projet. C’est bon signe!
 
 ---
 
@@ -183,7 +183,7 @@ Options:
 
 ## Les « routes »
 
-* Gestion des URL de l’application
+* Gestion des URL's de l’application
 * Assemble l'ensemble (Le controler et la vue)
 
 ---
