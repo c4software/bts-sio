@@ -356,7 +356,9 @@ $users = DB::table('users')->paginate(15);
 $users = User::where('votes', '>', 100)->paginate(15);
 ```
 
-- Quel est l'avantage à votre avis de faire ce genre de requêtes ?
+Quel est l'avantage à votre avis de faire ce genre de requêtes ?
+
+---
 
 ## Eloquent : Créer un enregistrement
 
@@ -514,9 +516,9 @@ Route::get('/', function () {
 
 ## **@stack**
 
-Zone dans le code ou il sera possible « d'injecter » ulterieurement du code.
+Zone dans le code où il sera possible « d'injecter » ultérieurement du code.
 
-Exemple, zone dans le header pour injecter des script JS utile que dans certaines page.
+Exemple, zone dans le header pour injecter des scripts JS utile que dans certaines pages.
 
 ---
 
@@ -524,8 +526,9 @@ Exemple, zone dans le header pour injecter des script JS utile que dans certaine
 
 ```html
 <head>
-    <!-- Head Contents -->
+    […]
     @stack('scripts')
+    […]
 </head>
 ```
 
