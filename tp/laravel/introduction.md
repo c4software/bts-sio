@@ -75,7 +75,7 @@ Pour vérifier que la commande ```laravel``` fonctionne il suffit de faire dans 
 
 ## Créer le premier Projet
 
-Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un nouveau projet grace à la commande :
+Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un nouveau projet grâce à la commande :
 
 ✋ Attention, le projet sera créé dans le dossier courant.
 
