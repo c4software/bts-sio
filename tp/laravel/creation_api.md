@@ -8,7 +8,7 @@ Dans ce TP nous allons voir la création d’API pour le projet « TodoList ». 
 
 - Lister les éléments dans la TodoList.
 - Créer un nouvel élément dans la TodoList.
-- Marquer un élément comme ```terminer```.
+- Marquer un élément comme terminé.
 - Supprimer un élément.
 
 ## Création du projet
