@@ -29,7 +29,6 @@ Lors de votre étude du code, vous avez du vous rendre compte que l’applicatio
 
 La SESSION étant non persistante, dans du vrai code il ne faut en ```aucun cas``` stocker des données comme des tâches dedans (au risque de tout perdre…).
 
-
 🔎 Au passage, regarder le fonctionnement de la SESSION en utilisant plusieurs navigateurs.
 
 ## Moderniser avec VueJS
