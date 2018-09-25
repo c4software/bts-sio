@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>TP · Cours BTS SIO Slam 5</title>
+        <title>Ajouter VueJS dans votre site Laravel · Cours BTS SIO Slam 5</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -56,6 +56,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
+    
+    <link rel="next" href="tp1.html" />
     
     
 
@@ -196,9 +198,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.2" data-path="./">
+        <li class="chapter " data-level="1.3.2" data-path="../git_initiation/">
             
-                <a href="./">
+                <a href="../git_initiation/">
             
                     
                     TP
@@ -402,9 +404,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.2" data-path="../vuejs/tp1-laravel.html">
+        <li class="chapter active" data-level="1.7.2" data-path="tp1-laravel.html">
             
-                <a href="../vuejs/tp1-laravel.html">
+                <a href="tp1-laravel.html">
             
                     
                     Ajouter VueJS dans votre site Laravel
@@ -415,9 +417,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.3" data-path="../vuejs/tp1.html">
+        <li class="chapter " data-level="1.7.3" data-path="tp1.html">
             
-                <a href="../vuejs/tp1.html">
+                <a href="tp1.html">
             
                     
                     Ajouter VueJS dans un site existant
@@ -428,9 +430,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.4" data-path="../vuejs/tp2.html">
+        <li class="chapter " data-level="1.7.4" data-path="tp2.html">
             
-                <a href="../vuejs/tp2.html">
+                <a href="tp2.html">
             
                     
                     Réaliser une application avec VueJS
@@ -721,7 +723,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >TP</a>
+        <a href="../.." >Ajouter VueJS dans votre site Laravel</a>
     </h1>
 </div>
 
@@ -737,201 +739,36 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Thu Sep 06 2018 21:03:43 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Tue Sep 25 2018 22:47:29 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
-<h1 id="initiation-git">Initiation GIT</h1>
-<p>Vous d&#xE9;butez avec GIT, le TP suivant vous fera parcourir les concepts de base de la ligne de commande Git.</p>
-<h2 id="ressources-utiles">Ressources utiles</h2>
+<h1 id="ajouter-vuejs-dans-un-site-existant">Ajouter VueJS dans un site existant</h1>
+<p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer &#xE9;tait r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
+<p>L&#x2019;application existante est une &#xAB; TodoList &#xBB; cod&#xE9;e avec le Framework Laravel.</p>
+<h1 id="cr&#xE9;ation-des-api">Cr&#xE9;ation des API</h1>
+<p>Dans ce TP nous allons transformer &#xAB; enti&#xE8;rement &#xBB; votre ancien site cod&#xE9; en Laravel par &#xAB; un &#xE9;quivalent &#xBB; qui va fonctionner avec des API.</p>
+<p>&#x1F913; Nous n&apos;allons donc plus utiliser la puissance de Blade, mais celle de VueJS &#x1F680;.</p>
+<h2 id="cr&#xE9;ation-des-api">Cr&#xE9;ation des API</h2>
+<p>La &#xAB; nouvelle version &#xBB; de notre page, va utiliser des API (et de l&apos;ajax), &#xE7;a va fondamentalement changer le fonctionnement de votre application. Il faut donc dans un premier temps cr&#xE9;er les API qui seront n&#xE9;cessaire au bon fonctionnement (asynchrone) de votre page Web.</p>
 <ul>
-<li><a href="https://github.com/c4software/cheatsheet/blob/master/git/README.md" target="_blank">Aide m&#xE9;moire</a></li>
-<li><a href="https://www.google.fr" target="_blank">Google</a></li>
-<li><a href="https://git-scm.com/book/fr/v2" target="_blank">Livre Git en ligne</a></li>
+<li>Lister les &#xE9;l&#xE9;ments dans la TodoList.</li>
+<li>Ajouter un nouvel &#xE9;l&#xE9;ment dans la TodoList.</li>
+<li>Marquer un &#xE9;l&#xE9;ment comme termin&#xE9;.</li>
+<li>Supprimer un &#xE9;l&#xE9;ment.</li>
 </ul>
-<h2 id="situation">Situation</h2>
-<p>Vous &#xEA;tes en entreprise, vous avez un nouveau projet &#xE0; r&#xE9;aliser. Le projet est plut&#xF4;t cons&#xE9;quent (plusieurs semaines de travail), votre responsable vous indique que vous serez le seul d&#xE9;veloppeur sur le code.</p>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>Voyez vous d&#x2019;autre questions &#xE0; poser &#xE0; votre chef de projet ?</li>
-<li>Comment imaginez vous l&#x2019;organisation de votre travail ?<ul>
-<li>Un gestionnaire de version est-il utile ?</li>
-<li>Si oui, pourquoi ?</li>
-<li>Si non, pourquoi ?</li>
-</ul>
-</li>
-</ul>
-<h2 id="initialisation">Initialisation</h2>
-<p>Votre choix est fait, vous devez maintenant initialiser votre espace de travail, comment proc&#xE9;dez vous?</p>
-<h3 id="d&#xE9;finir-votre-identit&#xE9;-dans-git">D&#xE9;finir votre identit&#xE9; dans GIT</h3>
-<pre><code>
-
-</code></pre><h3 id="initialiser-votre-projet">Initialiser votre projet</h3>
-<pre><code>
-
-</code></pre><h2 id="d&#xE9;but-du-code">D&#xE9;but du code</h2>
-<p>Maintenant que votre projet est initialis&#xE9;, il faut maintenant cr&#xE9;er les fichiers de base. Cr&#xE9;er la structure suivante :</p>
-<pre><code>$ tree
-.
-&#x251C;&#x2500;&#x2500; Makefile
-&#x251C;&#x2500;&#x2500; documentations
-&#x2502;   &#x2514;&#x2500;&#x2500; README.md
-&#x251C;&#x2500;&#x2500; libs
-&#x2502;   &#x251C;&#x2500;&#x2500; HTMLPurifier.php
-&#x2502;   &#x2514;&#x2500;&#x2500; fonction.php
-&#x251C;&#x2500;&#x2500; public
-&#x2502;   &#x251C;&#x2500;&#x2500; index.jpg
-&#x2502;   &#x2514;&#x2500;&#x2500; index.js
-&#x251C;&#x2500;&#x2500; source
-&#x2502;   &#x251C;&#x2500;&#x2500; index.html
-&#x2502;   &#x251C;&#x2500;&#x2500; index.js
-&#x2502;   &#x2514;&#x2500;&#x2500; index.php
-&#x2514;&#x2500;&#x2500; tests
-    &#x251C;&#x2500;&#x2500; test.js
-    &#x2514;&#x2500;&#x2500; test.php
-
-5 directories, 11 files
-</code></pre><h3 id="question-bonus">Question bonus</h3>
-<ul>
-<li>Comment avez-vous proc&#xE9;d&#xE9; ?<ul>
-<li>Est-ce la technique utilis&#xE9;e en entreprise ?</li>
-<li>Est-ce pratique ?</li>
-<li>Comment faire autrement ?</li>
-</ul>
-</li>
-</ul>
-<p>V&#xE9;rifier le statut de Git apr&#xE8;s avoir tout cr&#xE9;&#xE9;</p>
-<pre><code class="lang-sh">
-
-</code></pre>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>Que constatez-vous ?<ul>
-<li>Quelles commandes, faut-il faire maintenant?</li>
-<li>Une autre commande serait-elle utile ?</li>
-</ul>
-</li>
-</ul>
-<p>Ajouter les changements</p>
-<pre><code class="lang-sh">
-
-</code></pre>
-<p>Est-ce la seul fa&#xE7;on de faire ? (Plusieurs r&#xE9;ponses sont possibles)</p>
-<pre><code class="lang-sh">
-
-</code></pre>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>Qu&#x2019;avez vous fait ?</li>
-<li>Qu&#x2019;elles sont diff&#xE9;rences entre les deux commandes ?</li>
-<li>Dans quel &#xE9;tat est votre d&#xE9;p&#xF4;t (repository) ?</li>
-<li>&#xC0; quoi sert la commande <code>git status</code> ?<ul>
-<li>Une autre commande permettrait t&#x2019;elle d&#x2019;avoir une information similaire ?</li>
-</ul>
-</li>
-<li>Le commentaire que vous avez mis est-il correcte ?<ul>
-<li>Est-il possible de l&#x2019;am&#xE9;liorer ?</li>
-<li>Si oui, comment ?</li>
-</ul>
-</li>
-</ul>
-<h2 id="ajout--modification-de-fichiers">Ajout / Modification de fichiers</h2>
-<p>Modifier le fichier <code>source/index.html</code>, ajouter du contenu dedans (par exemple, une page html fictive)</p>
-<pre><code>$ vim source/index.html
-</code></pre><p>V&#xE9;rifier que vos modifications sont pr&#xE9;sentes dans GIT</p>
-<pre><code class="lang-sh">$
-$ <span class="hljs-comment"># Ou</span>
-$
-</code></pre>
-<p>Ajouter vos modifications dans Git</p>
-<pre><code class="lang-sh">$
-</code></pre>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>&#xC0; quoi sert les commentaires ?<ul>
-<li>Est-ce que pour vous ?</li>
-</ul>
-</li>
-<li>Y&#x2019;a t&#x2019;il plusieurs fa&#xE7;on de faire ?</li>
-<li>Comment v&#xE9;rifier que vos modifications ont bien &#xE9;t&#xE9; prises en compte ?</li>
-</ul>
-<pre><code class="lang-sh">$
-</code></pre>
-<h2 id="modifier-le-message-du-pr&#xE9;c&#xE9;dent-commit">Modifier le message du pr&#xE9;c&#xE9;dent commit</h2>
-<p>Votre responsable n&#x2019;est pas satisfait de la qualit&#xE9; du message de votre dernier commit, modifier le en utilisant <a href="https://github.com/c4software/cheatsheet/blob/master/git/commit_template.md" target="_blank">Un template de message de commit</a></p>
-<pre><code class="lang-sh">$
-</code></pre>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>Pourquoi votre responsable vous a t&#x2019;il demand&#xE9; de le modifier ?</li>
-<li>Pourquoi le commentaire est-il aussi important ?</li>
-</ul>
-<h2 id="ajout-dune-&#xE9;volution-dans-le-pr&#xE9;c&#xE9;dent-fichier">Ajout d&#x2019;une &#xE9;volution dans le pr&#xE9;c&#xE9;dent fichier</h2>
-<pre><code class="lang-sh">$
-</code></pre>
-<p>Sauvegarder les modifications apr&#xE8;s avoir v&#xE9;rifi&#xE9; que celle-ci sont bien pr&#xE9;sentes</p>
-<pre><code class="lang-sh">$
-$
-</code></pre>
-<h3 id="question">Question</h3>
-<ul>
-<li>&#xC0; votre avis, comment d&#xE9;terminer la fr&#xE9;quence des &#xAB; commits &#xBB; ?</li>
-</ul>
-<h2 id="un-coup-doeil-dans-le-r&#xE9;troviseur">Un coup d&#x2019;oeil dans le r&#xE9;troviseur</h2>
-<p>V&#xE9;rifier l&#x2019;historique de votre projet</p>
-<pre><code class="lang-sh">$
-$ <span class="hljs-comment"># ou pour avoir une vue &#xAB; compact &#xBB;</span>
-$
-</code></pre>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>Que constatez-vous ?</li>
-<li>&#xC0; quoi sert l&#x2019;identifiant de chaque commit ? (Hash SHA)</li>
-<li>Comment v&#xE9;rifiez-vous l&#x2019;historique pour un fichier pr&#xE9;cis ?</li>
-<li>Comment voir l&#x2019;ensemble des modifications en d&#xE9;tail pour le fichier <code>source/index.html</code> ?</li>
-<li>Est-ce judicieux de travailler toujours sur la branche <code>master</code> ?</li>
-</ul>
-<h2 id="une-autre-&#xE9;volution">Une autre &#xE9;volution</h2>
-<p>Votre premi&#xE8;re version est maintenant disponible pour les utilisateurs, votre responsable vous demande une &#xE9;volution importante du code, celle-ci est majeur et changera compl&#xE8;tement le comportement de votre application. Vous ne pouvez pas travailler directement sur la master.</p>
-<p>Comment proc&#xE9;dez-vous ?</p>
-<pre><code class="lang-sh">$
-$
-</code></pre>
-<p>Faites des modifications dans les fichiers que vous voulez.</p>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>V&#xE9;rifier l&#x2019;&#xE9;tat de votre d&#xE9;p&#xF4;t Git</li>
-<li>Quel est l&#x2019;avantage de travailler dans &#xAB; une branch &#xBB; ?</li>
-<li>&#xC0; votre avis qu&#x2019;elles sont les prochaines &#xE9;tapes ?</li>
-</ul>
-<h2 id="fusion--merge-de-la-fonctionnalit&#xE9;">Fusion / Merge de la fonctionnalit&#xE9;</h2>
-<p>Votre code est finalis&#xE9;, il faut maintenant fusionner vos modifications avec votre &#xAB; branch master &#xBB; :</p>
-<pre><code class="lang-sh">$
-$
-</code></pre>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>&#xC0; votre avis, en entreprise &#xAB; merge / fusionne &#xBB; t-on directement sur la master ?</li>
-<li>Une autre personne peut-elle / doit-elle &#xEA;tre impliqu&#xE9;e dans cette &#xE9;tape ?</li>
-</ul>
-<h2 id="annulation-retour-arri&#xE8;re">Annulation, retour arri&#xE8;re</h2>
-<p>Faite des &#xE9;volutions dans votre branche master (2 ou 3), ajouter les via <code>git add</code>. Votre responsable vous demande finalement de les annuler car il ne souhaite pas garder la fonctionnalit&#xE9;. Comment proc&#xE9;dez-vous ?</p>
-<pre><code class="lang-sh">$
-</code></pre>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>Que vient-il de se produire ?</li>
-<li>Est-il possible de r&#xE9;cup&#xE9;rer vos modifications ?</li>
-</ul>
-<h2 id="finalisation">Finalisation</h2>
-<p>Voil&#xE0;, votre projet a atteint une premi&#xE8;re &#xE9;tape. Que pouvez-vous faire pour &#xAB; marquer &#xBB; cette premi&#xE8;re version ?</p>
-<pre><code class="lang-sh">$
-</code></pre>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>Que vient-il de se produire ?</li>
-<li>&#xC0; votre avis, quel est l&#x2019;int&#xE9;r&#xEA;t de &#xAB; taguer &#xBB; une version ?</li>
-<li>Quel sont les avantages de r&#xE9;aliser un tag ?</li>
-</ul>
-<p><a href="https://github.com/c4software/bts-sio/blob/master/tp/git_initiation/solution/README.md" target="_blank">Voir la solution</a></p>
+<h3 id="cr&#xE9;ation-du-contr&#xF4;leur-pour-les-api">Cr&#xE9;ation du contr&#xF4;leur pour les API</h3>
+<p>&#x2026; Ajout fichier, Route, retour json &#x2026;</p>
+<h3 id="la-liste">La liste</h3>
+<h3 id="lajout">L&apos;ajout</h3>
+<h3 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h3>
+<h3 id="suppression">Suppression</h3>
+<h3 id="validation-des-api">Validation des API</h3>
+<p>Valider que vos API fonctionne correctement gr&#xE2;ce &#xE0; l&apos;outil <a href="https://www.getpostman.com/" target="_blank">Postman</a>.</p>
+<h2 id="ajouter-vuejs-dans-votre-projet">Ajouter VueJS dans votre projet</h2>
+<p>&#x2026; Import librairie &#x2026;</p>
+<h3 id="cr&#xE9;ation-dun-nouveau-template">Cr&#xE9;ation d&apos;un nouveau template</h3>
+<p>&#x2026; Sans blade &#x2026;</p>
+<h3 id="remplacer-la-route-de-base">Remplacer la route de base</h3>
+<h2 id="suite-">Suite &#x2026;</h2>
 
                                 
                                 </section>
@@ -960,6 +797,10 @@ $
             
                 
                 
+                <a href="tp1.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Ajouter VueJS dans un site existant">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
             
         
     </div>
@@ -967,7 +808,7 @@ $
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"TP","level":"1.3.2","depth":2,"next":{"title":"Git en groupe + GitLab","level":"1.4","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.4.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlab","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlab","articles":[]},{"title":"Git en groupe + GitLab","level":"1.4.2","depth":2,"path":"tp/gitlab/README.md","ref":"tp/gitlab/README.md","articles":[]}]},"previous":{"title":"Slides","level":"1.3.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=git","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=git","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/git_initiation/README.md","mtime":"2018-09-06T19:03:43.857Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-25T20:48:42.064Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-laravel.md","mtime":"2018-09-25T20:47:29.236Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-25T20:48:42.064Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
