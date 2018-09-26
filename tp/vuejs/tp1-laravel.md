@@ -45,4 +45,6 @@ Valider que vos API fonctionne correctement grâce à l'outil [Postman](https://
 
 ### Remplacer la route de base
 
-## Suite …
+… Édition …
+
+### Comprendre l'Ajax
