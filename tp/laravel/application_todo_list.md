@@ -544,7 +544,6 @@ public function saveTodo(Request $request){
 
 {% endreveal %}
 
-
 Et c'est tout ! Simple non ?
 
 ### La Route
@@ -611,9 +610,7 @@ public function markAsDone($id){
 
 Ajouter une route de type ```get``` avec un paramètre nommé ```{id}``` dans le fichier ```routes/web.php```.
 
-```php
-Route::get('/action/done/{id}', "TodosController@markAsDone");
-```
+Le lien doit-être : ```/action/done/{id}``` et la méthode dans le contrôleur ```TodosController@markAsDone``` en vous inspirant des exemples précédent ajouter la bonne instruction dans le fichier ```routes/web.php```.
 
 ## Action de suppression
 
@@ -634,9 +631,7 @@ public function deleteTodo($id){
 
 Ajouter une route de type ```get``` avec un paramètre nommé ```{id}``` dans le fichier ```routes/web.php```.
 
-```php
-Route::get('/action/delete/{id}', "TodosController@deleteTodo");
-```
+Le lien doit-être : ```/action/delete/{id}``` et la méthode dans le contrôleur ```TodosController@deleteTodo``` en vous inspirant des exemples précédent ajouter la bonne instruction dans le fichier ```routes/web.php```.
 
 #### Questions
 

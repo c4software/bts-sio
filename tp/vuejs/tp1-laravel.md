@@ -19,6 +19,13 @@ La « nouvelle version » de notre page, va utiliser des API (et de l'ajax), ça
 - Marquer un élément comme terminé.
 - Supprimer un élément.
 
+✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, nous allons utiliser le même code que le controlleur actuel…
+
+Les seules différence seront :
+
+- ```view([…], […]Todo::all()[…])``` remplacé par ```return response()->json(Todo::all());```
+- Et pour une simple réponse de réussite (exemple remove ou done) ```return response()->json("success")```
+
 ### Création du contrôleur pour les API
 
 … Ajout fichier, Route, retour json …
@@ -47,4 +54,71 @@ Valider que vos API fonctionne correctement grâce à l'outil [Postman](https://
 
 … Édition …
 
-### Comprendre l'Ajax
+### Asynchrone?
+
+L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter quelques appels en Ajax. Pour faire nos appels nous utiliserons l’API « Fetch » des navigateurs, celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflexe est quand même d’allez voir le support de Fetch sur  ([Can i use](https://caniuse.com/#search=fetch)).
+
+### Découverte de Fetch
+
+L'API Fetch fournit une interface JavaScript pour l'accès et la manipulation des parties de la pipeline HTTP, comme les requêtes et les réponses. Cela fournit aussi une méthode globale fetch() qui procure un moyen facile et logique de récupérer des ressources à travers le réseau de manière asynchrone.
+
+Ce genre de fonctionnalité était auparavant réalisé avec XMLHttpRequest. Fetch fournit une meilleure alternative qui peut être utilisée facilement par d’autres technologies comme Service Workers. Fetch fournit aussi un endroit unique et logique pour la définition d'autres concepts liés à HTTP comme CORS et les extensions d'HTTP.
+
+(Source: MDM)
+
+Le support de l'API Fetch peut être détecté en vérifiant l'existance de Headers, Request, Response ou fetch() sur la portée de Window ou de Worker.
+Par exemple, vous pouvez faire cela dans votre script:
+
+```javascript
+if(self.fetch) {
+  // Le support de Fetch est présent
+}else{
+  // Gérer le cas du non support de fetch.
+  // Pour réduire le nombre de cas possible vous pouvez ajouter : https://github.github.io/fetch/ à votre projet
+}
+```
+
+### Tester Fetch
+
+Avant d'intégrer Fetch dans notre code client (le site web Javascript), nous allons le **TESTER** dans notre navigateur, voici un exemple de code :
+
+```javascript
+fetch('api/liste', {method: "GET", credentials: 'same-origin'})
+.then(function(response){
+  // On décode le JSON, et on continue
+  return response.json();
+})
+.then(function(response) {
+  // Votre retour est ICI
+  console.log(response);
+})
+.catch(function(error) {
+  console.log('Récupération impossible: ' + error.message);
+});
+```
+
+⚠️ Que veux dire ```credentials: 'same-origin'```?
+
+Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant ```credentials: 'same-origin'```. Si vous ne le faites pas vos ```$_SESSION``` ne seront pas sauvegardées ⚠️
+
+#### Comment tester ?
+
+Pour valider le bon fonctionnement nous allons utiliser la « Console développeur » de votre navigateur.
+
+Fetch est une librairie très complète, pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
+
+## Le code javascript
+
+Maintenant que nos API sont terminés et que notre appels via Fetch fonctionne nous allons écrire le code Javascript (VueJS) qui va gèrer notre application.
+
+Nous allons utiliser massivement la gestion d'évènement de VueJS, Pour rappel n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
+
+### La liste
+
+La liste des tâches va être la première chose que nous allons charger. Cette « liste » sera chargé lors de l'événement ```beforeMount```.
+
+### Les actions
+
+Les actions (markAsDone, delete, …) seront appelés lors de la vie de notre application, elle vont être déclaré dans la partie ```methods``` de l'objet VueJS et seront appelé via des ```v-on:…``` de votre code HTML.
+
+Complexe ? Pas tant que ça… Vous allez voir que c'est beaucoup plus simple que du code Javascript classique.
