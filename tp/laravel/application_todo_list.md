@@ -297,6 +297,49 @@ Sans entrer dans le détail (nous détaillerons le fonctionnement dans un procha
 
 Une fois installé retourner dans le dossier de votre projet faites les commandes suivantes :
 
+### Modifier la CSS
+
+Remplacer le fichier ```ressources/app/scss``` par :
+
+```css
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+body{
+  padding-top: 5rem;
+}
+
+form.add{
+  padding-bottom: 10px;
+}
+
+.pull-right{
+  float: right;
+}
+
+.action > .btn{
+  padding: 1px 7px 1px;
+}
+
+.oi{
+  font-size: small;
+}
+```
+
+### Compiler
+
 ```sh
 $ npm install
 $ npm run production
