@@ -245,6 +245,24 @@ Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permett
 
 Nous allons maintenant écrire une méthode pour chaque action. Avec les différentes conditions nécéssaires au bon fonctionnement de l'application.
 
+### Corriger le chemin de la database
+
+Bizarrerie de Laravel… Il faut maintenant changer le chemin de la base de données pour faire réference au fichier ```database.sqlite``` pendant l'execution de votre code.
+
+Éditer à nouveau le fichier ```.env``` pour remplacer :
+
+```conf
+DB_DATABASE=database/database.sqlite
+```
+
+par
+
+```conf
+DB_DATABASE=../database/database.sqlite
+```
+
+PS: Avec une base de données MySQL ce genre de soucis n'existe pas.
+
 ### La méthode « Liste »
 
 La méthode ```liste``` est certainement la plus simple, nous allons faire appel à la méthode ```all()``` de Eloquent (ORM pour l’accès à la base de données). Pour ça créez une nouvelle méthode dans la Class ```TodoController``` avec le code suivant.
