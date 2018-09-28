@@ -272,6 +272,16 @@ Rien de bien compliqué, comme vous pouvez le voir.
 
 ✋ Pour l'instant nous allons nous arrêter la pour la partie code PHP. Cette méthode est suffisante pour « tester » le premier template que nous allons écrire.
 
+### Ajout route /
+
+Nous allons tester la route ```/```, pour ça nous allons remplacer le contenu du fichier ```routes/web.php``` par :
+
+```php
+Route::get('/', "TodosController@liste");
+```
+
+Vous pouvez relancer votre serveur de test, vous devez maintenant voir « Liste ».
+
 ## Installation des dépendances client
 
 Maintenant que la partie base de données est prête, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser bootstrap pour gérer la problématique d'affichage et de responsive.
