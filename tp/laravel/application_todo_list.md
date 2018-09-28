@@ -70,6 +70,8 @@ La réponse est SQLite. SQLite est une base de données de type SQL mais ne néc
 $ touch database/database.sqlite
 ```
 
+Attention: Utiliser git-bash pour avoir la commande ```touch```
+
 Maintenant que le fichier a été créé nous allons indiquer à Laravel qu'il faut l'utiliser pour cela, éditer le fichier ```.env``` et modifier la ligne :
 
 ```conf
@@ -80,7 +82,7 @@ par  :
 
 ```conf
 DB_CONNECTION=sqlite
-DB_DATABASE=../database/exemple.db
+DB_DATABASE=../database/database.sqlite
 ```
 
 #### Tester

@@ -122,3 +122,7 @@ La liste des tâches va être la première chose que nous allons charger. Cette 
 Les actions (markAsDone, delete, …) seront appelés lors de la vie de notre application, elle vont être déclaré dans la partie ```methods``` de l'objet VueJS et seront appelé via des ```v-on:…``` de votre code HTML.
 
 Complexe ? Pas tant que ça… Vous allez voir que c'est beaucoup plus simple que du code Javascript classique.
+
+## Structure de base
+
+Créer un nouveau fichier nommé ```main.js```
