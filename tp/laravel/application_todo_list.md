@@ -233,22 +233,13 @@ Au passage la propriété inverse existe, vous pouvez la voir dans le fichier ``
 
 Maintenant que nous avons la migration et le modele de notre base de données, nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de notre application.
 
-Pour commencer nous allons créer « la structure de base » de notre controller. Pour ça créez le fichier ```TodosController.php``` dans le chemin suivant ```app/Http/Controllers/``` et mettez y le contenu :
+Pour commencer nous allons créer « la structure de base » de notre controller. 
 
-```php
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Todos;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-
-class TodosController extends Controller{
-    // C’est ici que seront nos méthodes
-}
+```sh
+$ php artisan make:controller TodosController
 ```
+
+Le fichier ```TodosController.php``` viens d'être créé dans le chemin suivant ```app/Http/Controllers/```.
 
 Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos problématique d'interface (liste, creation, terminer, suppression).
 
