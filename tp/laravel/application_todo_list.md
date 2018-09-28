@@ -82,7 +82,7 @@ par  :
 
 ```conf
 DB_CONNECTION=sqlite
-DB_DATABASE=../database/database.sqlite
+DB_DATABASE=database/database.sqlite
 ```
 
 #### Tester
