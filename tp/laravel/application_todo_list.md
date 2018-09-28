@@ -226,7 +226,7 @@ Ajouter dans la class :
     protected $fillable = ['texte', 'termine'];
 ```
 
-Cette propriété est optionnelle, elle permet vous autorisera plus tard à faire du « mass-assignment » c'est à dire à créer un objet « Todos » depuis par exemple le POST HTTP. 
+⚠️ Cette propriété est optionnelle, elle permet vous autorisera plus tard à faire du « mass-assignment » c'est à dire à créer un objet « Todos » depuis par exemple le POST HTTP.
 
 ## Le controller
 
