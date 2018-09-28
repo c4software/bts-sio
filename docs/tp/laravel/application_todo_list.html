@@ -741,7 +741,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Fri Sep 28 2018 19:59:58 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Fri Sep 28 2018 20:10:29 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="application-todo-liste">Application Todo Liste</h1>
 <h2 id="introduction">Introduction</h2>
@@ -914,6 +914,15 @@ Migrated:  2018_09_09_150442_create_todos_table
 <p>Le fichier <code>TodosController.php</code> viens d&apos;&#xEA;tre cr&#xE9;&#xE9; dans le chemin suivant <code>app/Http/Controllers/</code>.</p>
 <p>Bien ! Notre code est maintenant pr&#xEA;t. Nous allons cr&#xE9;er les m&#xE9;thodes permettant la manipulation de notre base de donn&#xE9;es tout en r&#xE9;pondant &#xE0; nos probl&#xE9;matique d&apos;interface (liste, creation, terminer, suppression).</p>
 <p>Nous allons maintenant &#xE9;crire une m&#xE9;thode pour chaque action. Avec les diff&#xE9;rentes conditions n&#xE9;c&#xE9;ssaires au bon fonctionnement de l&apos;application.</p>
+<h3 id="corriger-le-chemin-de-la-database">Corriger le chemin de la database</h3>
+<p>Bizarrerie de Laravel&#x2026; Il faut maintenant changer le chemin de la base de donn&#xE9;es pour faire r&#xE9;ference au fichier <code>database.sqlite</code> pendant l&apos;execution de votre code.</p>
+<p>&#xC9;diter &#xE0; nouveau le fichier <code>.env</code> pour remplacer :</p>
+<pre><code class="lang-conf">DB_DATABASE=database/database.sqlite
+</code></pre>
+<p>par</p>
+<pre><code class="lang-conf">DB_DATABASE=../database/database.sqlite
+</code></pre>
+<p>PS: Avec une base de donn&#xE9;es MySQL ce genre de soucis n&apos;existe pas.</p>
 <h3 id="la-m&#xE9;thode-&#xAB;-liste-&#xBB;">La m&#xE9;thode &#xAB; Liste &#xBB;</h3>
 <p>La m&#xE9;thode <code>liste</code> est certainement la plus simple, nous allons faire appel &#xE0; la m&#xE9;thode <code>all()</code> de Eloquent (ORM pour l&#x2019;acc&#xE8;s &#xE0; la base de donn&#xE9;es). Pour &#xE7;a cr&#xE9;ez une nouvelle m&#xE9;thode dans la Class <code>TodoController</code> avec le code suivant.</p>
 <p>Pour l&apos;instant nous n&apos;allons pas int&#xE9;grer &#xC9;loquent, mais uniqumeent d&#xE9;finir notre m&#xE9;thode.</p>
@@ -1360,7 +1369,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-28T17:59:58.983Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-28T18:00:24.730Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-28T18:10:29.254Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-28T18:10:51.174Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
