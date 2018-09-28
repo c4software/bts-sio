@@ -212,22 +212,21 @@ Votre base de données est maintenant prête à être utilisée. Vous pouvez all
 
 ### Le modèle
 
-Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle. Pour ça créez un fichier ```Todos.php``` dans le dossier ```app/``` avec le contenu suivant :
+Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle.
 
-```php
-<?php namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Todos extends Model
-{
-    protected $fillable = ['texte', 'termine'];
-}
+```sh
+$ php artisan make:model Todos
 ```
 
-La variable ```$fillable``` définie les propriétés qui doivent être automatiquement remplies par Eloquent (l’ORM) lors de l’execution du code.
+La commande va créer le fichier ```Todos.php``` dans le dossier ```app/```.
 
-Au passage la propriété inverse existe, vous pouvez la voir dans le fichier ```User.php```.
+Ajouter dans la class :
+
+```php
+    protected $fillable = ['texte', 'termine'];
+```
+
+Cette propriété est optionnelle, elle permet vous autorisera plus tard à faire du « mass-assignment » c'est à dire à créer un objet « Todos » depuis par exemple le POST HTTP. 
 
 ## Le controller
 
