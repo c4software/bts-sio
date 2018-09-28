@@ -741,7 +741,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Fri Sep 28 2018 15:12:04 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Fri Sep 28 2018 15:47:33 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="application-todo-liste">Application Todo Liste</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1104,7 +1104,7 @@ $ npm run production
 <p>Vous voyez &#xAB; Liste &#xBB; ? C&apos;est OK !</p>
 <h2 id="affichage-de-la-liste">Affichage de la liste</h2>
 <p>Bon afficher &#xAB; Liste &#xBB; c&apos;est un bon d&#xE9;but&#x2026; Modifier la m&#xE9;thode <code>liste()</code> pour qu&apos;elle ressemble &#xE0; :</p>
-<pre><code class="lang-php">    <span class="hljs-keyword">return</span> view(<span class="hljs-string">&quot;home&quot;</span>, [<span class="hljs-string">&quot;todos&quot;</span> =&gt; Todo::all()]);
+<pre><code class="lang-php">    <span class="hljs-keyword">return</span> view(<span class="hljs-string">&quot;home&quot;</span>, [<span class="hljs-string">&quot;todos&quot;</span> =&gt; Todos::all()]);
 </code></pre>
 <h2 id="tester">Tester</h2>
 <p>La page s&apos;affiche ? Super !</p>
@@ -1328,7 +1328,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-28T13:12:04.525Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-28T13:12:47.184Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-28T13:47:33.578Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-28T13:47:37.902Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

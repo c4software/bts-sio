@@ -492,7 +492,7 @@ Vous voyez « Liste » ? C'est OK !
 Bon afficher « Liste » c'est un bon début… Modifier la méthode ```liste()``` pour qu'elle ressemble à :
 
 ```php
-    return view("home", ["todos" => Todo::all()]);
+    return view("home", ["todos" => Todos::all()]);
 ```
 
 ## Tester
