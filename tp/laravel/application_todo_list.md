@@ -268,7 +268,7 @@ public function liste(){
 
 Rien de bien compliqué, comme vous pouvez le voir.
 
-### Les autres suivantes
+### Les autres méthodes
 
 ✋ Pour l'instant nous allons nous arrêter la pour la partie code PHP. Cette méthode est suffisante pour « tester » le premier template que nous allons écrire.
 
@@ -297,12 +297,11 @@ Sans entrer dans le détail (nous détaillerons le fonctionnement dans un procha
 
 Une fois installé retourner dans le dossier de votre projet faites les commandes suivantes :
 
-### Modifier la CSS
+### Modifier le SCSS
 
 Remplacer le fichier ```ressources/app/scss``` par :
 
-```css
-
+```scss
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
