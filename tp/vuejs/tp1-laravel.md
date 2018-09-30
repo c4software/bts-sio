@@ -30,15 +30,19 @@ Les seules différence seront :
 
 … Ajout fichier, Route, retour json …
 
-#### La liste
+#### Création d'un nouveau controleur
 
-#### L'ajout
+TODO
 
-#### Marquer comme terminé
+##### La liste
 
-#### Suppression
+##### L'ajout
 
-#### Validation des API
+##### Marquer comme terminé
+
+##### Suppression
+
+##### Validation des API
 
 Valider que vos API fonctionne correctement grâce à l'outil [Postman](https://www.getpostman.com/).
 
