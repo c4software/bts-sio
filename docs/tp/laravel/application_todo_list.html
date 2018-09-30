@@ -741,7 +741,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Fri Sep 28 2018 20:19:13 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Sep 30 2018 10:49:36 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="application-todo-liste">Application Todo Liste</h1>
 <h2 id="introduction">Introduction</h2>
@@ -949,6 +949,25 @@ $ php artisan preset bootstrap
 <li>Installer <a href="https://nodejs.org/en/download/current/" target="_blank">NodeJS version current</a></li>
 </ul>
 <p>Une fois install&#xE9; retourner dans le dossier de votre projet faites les commandes suivantes :</p>
+<h4 id="laravel-mix-">laravel-mix ?</h4>
+<p>laravel-mix est un outil fourni de base dans Laravel qui g&#xE8;rent la partie libraries clientes. La configuration de celui-ci se fait dans le fichier <code>webpack.mix.js</code></p>
+<p>Le contenu initial est :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> mix = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;laravel-mix&apos;</span>);
+
+<span class="hljs-comment">/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for the application as well as bundling up all the JS files.
+ |
+ */</span>
+
+mix.js(<span class="hljs-string">&apos;resources/js/app.js&apos;</span>, <span class="hljs-string">&apos;public/js&apos;</span>)
+   .sass(<span class="hljs-string">&apos;resources/sass/app.scss&apos;</span>, <span class="hljs-string">&apos;public/css&apos;</span>);
+</code></pre>
 <h3 id="modifier-le-scss">Modifier le SCSS</h3>
 <p>Remplacer le fichier <code>ressources/app/scss</code> par :</p>
 <pre><code class="lang-scss"><span class="hljs-comment">// Fonts</span>
@@ -1365,7 +1384,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-28T18:19:13.779Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-28T18:19:18.423Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-30T08:49:36.053Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-30T09:04:25.977Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
