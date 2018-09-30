@@ -1,0 +1,902 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Dockerfile · Cours BTS SIO Slam 5</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="docker_compose.html" />
+    
+    
+    <link rel="prev" href="introduction.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Aides mémoires
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../cheatsheets/git/">
+            
+                <a href="../../cheatsheets/git/">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../cheatsheets/cordova/">
+            
+                <a href="../../cheatsheets/cordova/">
+            
+                    
+                    Cordova
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../cheatsheets/docker/">
+            
+                <a href="../../cheatsheets/docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../cheatsheets/vuejs/">
+            
+                <a href="../../cheatsheets/vuejs/">
+            
+                    
+                    VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Initiation à Git
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=git">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../git_initiation/">
+            
+                <a href="../git_initiation/">
+            
+                    
+                    TP
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Git en groupe + GitLab
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlab">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../gitlab/">
+            
+                <a href="../gitlab/">
+            
+                    
+                    Git en groupe + GitLab
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Programmation sécurisée avec OWASP
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../securite/">
+            
+                <a href="../securite/">
+            
+                    
+                    Tentatives et injections
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Laravel
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../laravel/introduction.html">
+            
+                <a href="../laravel/introduction.html">
+            
+                    
+                    Installation de Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../laravel/application_todo_list.html">
+            
+                <a href="../laravel/application_todo_list.html">
+            
+                    
+                    Application/Site web Todo List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../laravel/creation_api.html">
+            
+                <a href="../laravel/creation_api.html">
+            
+                    
+                    Transformer la Todo List en API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../vuejs/tp1-laravel.html">
+            
+                <a href="../vuejs/tp1-laravel.html">
+            
+                    
+                    Ajouter VueJS dans votre site Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../vuejs/tp1.html">
+            
+                <a href="../vuejs/tp1.html">
+            
+                    
+                    Ajouter VueJS dans un site existant
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../vuejs/tp2.html">
+            
+                <a href="../vuejs/tp2.html">
+            
+                    
+                    Réaliser une application avec VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Cordova + VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/cordova/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../cordova/decouverte.html">
+            
+                <a href="../cordova/decouverte.html">
+            
+                    
+                    Découverte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../cordova/vuejs_cordova.html">
+            
+                <a href="../cordova/vuejs_cordova.html">
+            
+                    
+                    Projet Cordova + VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Docker
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/docker/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="introduction.html">
+            
+                <a href="introduction.html">
+            
+                    
+                    Première approche
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.9.3" data-path="dockerfile.html">
+            
+                <a href="dockerfile.html">
+            
+                    
+                    Dockerfile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="docker_compose.html">
+            
+                <a href="docker_compose.html">
+            
+                    
+                    Docker Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    GitLab-CI
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlabci">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../ci/pages.html">
+            
+                <a href="../ci/pages.html">
+            
+                    
+                    Utiliser Gitlab Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../ci/ci-hybride.html">
+            
+                <a href="../ci/ci-hybride.html">
+            
+                    
+                    App Hybride et Gitlab-CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Python : Framework Flask
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/python/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../python/flask.html">
+            
+                <a href="../python/flask.html">
+            
+                    
+                    Installation de Python et Flask
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../python/flask_todolist_api.html">
+            
+                <a href="../python/flask_todolist_api.html">
+            
+                    
+                    Réécriture des API de la TODO List
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Dockerfile</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p><em>Last modified: Wed Jan 03 2018 22:05:10 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+</blockquote>
+<h1 id="les-dockerfiles">Les Dockerfile&#x2019;s</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Comme nous l&#x2019;avons vu dans <a href="introduction.html">le premier TP</a> chaque image Docker repose sur un fichier Dockerfile. Pour l&#x2019;instant nous n&#x2019;avons pas &#xE9;crit le notre, nous avons juste utilis&#xE9; ceux fournis sur le DockerHub. Dans ce TP nous allons voir la structure d&#x2019;un fichier Dockerfile et vous allez &#xE9;crire votre premier Dockerfile il aurra pour but de d&#xE9;finir l&#x2019;ensemble de la &#xAB; stack applicative &#xBB; n&#xE9;c&#xE9;ssaire au bon fonctionnement de l&#x2019;application &#xAB; TODO &#xBB;.</p>
+<h2 id="pourquoi-faire-des-dockerfile">Pourquoi faire des Dockerfile</h2>
+<p>Comme vous avez pu le voir sur le DockerHub il existe &#xE9;norm&#xE9;ment d&#x2019;image d&#xE9;j&#xE0; pr&#xEA;te, elles nous seront bien &#xE9;videment utiles dans nos images Docker, mais tels quelles elles n&#x2019;ont que &#xAB; peu d&#x2019;int&#xE9;r&#xEA;ts &#xBB;. Nous allons donc &#xE9;crire un fichier Dockefile qui va permettre de cr&#xE9;er toute la d&#xE9;finition pour le bon fonctionnement de l&#x2019;application &#xAB; TODO &#xBB; que vous avez &#xE9;crit dans un autre TP.</p>
+<p>Une fois le fichier Dockerfile &#xE9;crit, votre application sera fonctionnelle sur toutes les plateformes support&#xE9;es par Docker (Windows, Linux, OSX, Raspberry Pi&#x2026;), fonctionelle oui, mais surtout fonctionnelle en quelques secondes !</p>
+<h2 id="cr&#xE9;er-un-dockerfile">Cr&#xE9;er un Dockerfile</h2>
+<p>Les &#xAB; Dockerfile &#xBB; sont des simples fichiers textes mais avec un formalisme pr&#xE9;cis. Par exemple :</p>
+<pre><code class="lang-conf">FROM alpine:latest
+MAINTAINER Valentin Brosseau &quot;c4software@gmail.com&quot;
+ENTRYPOINT [&quot;echo&quot;, &quot;Mon premier Dockerfile&quot;]
+</code></pre>
+<p>Avant de &#xAB; builder &#xBB; cette premi&#xE8;re image, arretons nous sur les diff&#xE9;rentes lignes :</p>
+<ul>
+<li>&#xAB; FROM alpine:latest &#xBB;, c&#x2019;est l&#x2019;image de r&#xE9;f&#xE9;rence, dans le cas pr&#xE9;sent une image tr&#xE8;s l&#xE9;g&#xE8;re (un linux avec tr&#xE8;s peu de d&#xE9;pendances).</li>
+<li>&#xAB; MAINTAINER Valentin Brosseau &quot;c4software@gmail.com&quot; &#xBB;, Le mainteneur de l&#x2019;image (purement indicatif).</li>
+<li>&#xAB; ENTRYPOINT [&quot;echo&quot;, &quot;&apos;Mon premier Dockerfile&apos;&quot;] &#xBB;, La commande qui sera lanc&#xE9;e au <strong>d&#xE9;marrage</strong> de votre image.</li>
+</ul>
+<p>Pour finir enregistrer la d&#xE9;finition pr&#xE9;c&#xE9;dente dans un fichier nomm&#xE9; &#xAB; Dockerfile &#xBB;.</p>
+<h2 id="builder-votre-image">Builder votre image</h2>
+<p>Pour builder votre image il suffit de lancer la commande suivante :</p>
+<pre><code class="lang-shell">docker build --tag &quot;docker-hello:latest&quot; .
+</code></pre>
+<p>Avant de lancer cette commande, regardons les diff&#xE9;rents &#xE9;l&#xE9;ments :</p>
+<ul>
+<li>&#xAB; --tag &quot;docker-hello&quot; &#xBB;, c&#x2019;est le nom de votre image.</li>
+<li>&#xAB; &#x2026;:latest &#xBB;, c&#x2019;est la version de votre image. Latest indique la version la plus r&#xE9;cente.</li>
+<li>&#xAB; . &#xBB; indique &#xE0; Docker que le fichier Dockerfile est dans le dossier courant.</li>
+</ul>
+<p>Lancer la pr&#xE9;c&#xE9;dente commande dans le dossier ou vous avez cr&#xE9;&#xE9; le fichier Dockerfile.</p>
+<p><img src="ressources/build.png" alt="exemple build"></p>
+<h2 id="image-docker-pour-lapplication-todo">Image Docker pour l&#x2019;application &quot;TODO&quot;</h2>
+<p>Faire un test c&#x2019;est bien! Mais maintenant que l&#x2019;on connait les bases d&#x2019;une image Docker, nous allons cr&#xE9;er une image Docker qui va nous permettre de lancer rapidement (et tr&#xE8;s simplement) l&#x2019;application sans avoir &#xE0; se soucier de l&#x2019;environnement sur lequel vous allez lancer &#xAB; votre applications / site web &#xBB;.</p>
+<h3 id="1-&#xE9;criture-du-dockerfile">1. &#xC9;criture du Dockerfile</h3>
+<p>Pour &#xE9;crire notre Dockerfile nous allons avoir besoin de connaitre les technologies n&#xE9;c&#xE9;ssaire au bon fonctionnement de notre application. Dans notre cas, il faut le language de programmation de la partie serveur :</p>
+<ul>
+<li>[&#x2026;] (&#xC0; vous de trouver&#x2026;)</li>
+</ul>
+<p>Une fois que c&#x2019;est fait il faut trouver une image de base qui nous servira de r&#xE9;f&#xE9;rence. Dans notre cas &#x2026; PHP. Une image officielle existe : <a href="https://hub.docker.com/_/php/" target="_blank">Docker Hub PHP</a>.</p>
+<ul>
+<li>Qu&#x2019;elle version choisisez-vous ?</li>
+<li>Pourquoi ?</li>
+</ul>
+<p>Pour continuer nous allons utiliser l&#x2019;image PHP 7 Apache. Voil&#xE0; le d&#xE9;but de notre Dockerfile :</p>
+<pre><code class="lang-conf">FROM php:7-apache
+MAINTAINER Valentin Brosseau &quot;c4software@gmail.com&quot;
+</code></pre>
+<p>La base de votre Dockerfile est termin&#xE9;e. Nous allons voir comment ajouter le code source dans l&#x2019;image.</p>
+<h3 id="2-ajout-des-sources-dans-limage">2. Ajout des sources dans l&#x2019;image</h3>
+<p>Nous avons vu dans le premier TP qu&#x2019;il &#xE9;tait possible de faire un &#xAB; montage &#xBB;. C&#x2019;est pratique pour ajouter de la donn&#xE9;e temporaire, mais dans le cas pr&#xE9;sent ce que l&#x2019;on veut c&#x2019;est faire une image statique qui sera transportable nous allons donc utiliser la commande <code>COPY</code>.</p>
+<p>La commande <code>COPY</code> permet de copier des fichiers (dossiers, fichiers, etc&#x2026;) directement dans l&#x2019;image qui sera construite. Une fois &#xAB; builder &#xBB; les donn&#xE9;es seront persitantes et les modifications seront &#xE9;ffac&#xE9;es &#xE0; chaque red&#xE9;marrage de l&#x2019;image (int&#xE9;r&#xE9;ssant d&#x2019;un point de vue s&#xE9;curit&#xE9;).</p>
+<p>La commande <code>COPY</code> prend deux arguments le fichiers &#xAB; sources &#xBB; et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande <code>COPY</code> suivante :</p>
+<pre><code class="lang-conf">FROM php:7-apache
+MAINTAINER Valentin Brosseau &quot;c4software@gmail.com&quot;
+
+COPY src/ /var/www/html/
+</code></pre>
+<p>Le premier dossier c&#x2019;est vos sources, sur votre machine dans le m&#xEA;me dossier que le fichier Dockerfile, cr&#xE9;ez un dossier nomm&#xE9; <code>src</code> avec &#xE0; l&#x2019;interieur les sources de votre projet <code>todo-vuejs</code>.</p>
+<p>Et voil&#xE0;! C&#x2019;est termin&#xE9;. Votre image est pr&#xEA;te &#xE0; &#xEA;tre &#xAB; build &#xBB;.</p>
+<h3 id="3-build-de-limage">3. Build de l&#x2019;image</h3>
+<p>Maintenant que notre image est pr&#xEA;te nous allons pouvoir builder l&#x2019;image :</p>
+<pre><code class="lang-shell">docker build --tag &quot;vuejs-todo:latest&quot; .
+</code></pre>
+<p>Ding ! C&#x2019;est pr&#xEA;t.</p>
+<h3 id="4-lancer-votre-application">4. Lancer votre application</h3>
+<p>Votre application &#xE9;tant build&#xE9;e pour la lancer il suffit de faire :</p>
+<pre><code class="lang-shell">docker run -p 8888:80 vuejs-todo:latest
+</code></pre>
+<p>Votre application est maintenant <a href="http://localhost:8080" target="_blank">disponnible ici</a>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page: Première approche">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="docker_compose.html" class="navigation navigation-next " aria-label="Next page: Docker Compose">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Dockerfile","level":"1.9.3","depth":2,"next":{"title":"Docker Compose","level":"1.9.4","depth":2,"path":"tp/docker/docker_compose.md","ref":"tp/docker/docker_compose.md","articles":[]},"previous":{"title":"Première approche","level":"1.9.2","depth":2,"path":"tp/docker/introduction.md","ref":"tp/docker/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/docker/dockerfile.md","mtime":"2018-01-03T21:05:10.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-28T18:19:18.423Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

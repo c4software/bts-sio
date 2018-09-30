@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Cordova</title>
+
+		<meta name="description" content="Du Web 1.0 à l'application mobile">
+		<meta name="author" content="Valentin Brosseau">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a default -->
+			<div class="slides">
+				<section>
+					<h1>Cordova</h1>
+					<h3>Réaliser des applications mobile grace au Javascript.</h3>
+					<p>
+						<small>Par <a href="https://github.com/c4software">Valentin Brosseau</a> / <a href="http://twitter.com/c4software">@c4software</a></small>
+					</p>
+				</section>
+
+				<section>
+					<img src="img/google_99.png" alt="">
+					<img src="img/google_2014.png" alt="">
+				</section>
+
+				<section>
+					<h2>Historique</h2>
+					<ul>
+						<li>PhoneGap (2009)</li>
+						<li>Cordova (Apache 2011)</li>
+						<li>Ionic (Framework, 2013)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Pourquoi Cordova ?</h2>
+					<ul>
+						<li class="fragment">Simple</li>
+						<li class="fragment">Respect des standards</li>
+						<li class="fragment">
+							Les partenaires
+							<ul>
+								<li>Adobe</li>
+								<li>IBM</li>
+								<li>Microsoft</li>
+								<li>RIM</li>
+								<li>Nokia</li>
+								<li>Google</li>
+							</ul>
+						</li>
+						<li class="fragment">Et surtout… GRATUIT</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>La Philosophie − Le multi-plateforme</h2>
+					<ul>
+						<li>iOS</li>
+						<li>Android</li>
+						<li>BlackBerry</li>
+						<li>Windows Phone</li>
+						<li>Samsung Bada (TV, Smarthone)</li>
+						<li>MacOS</li>
+						<li>Windows 10</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Fonctionnement</h2>
+					<ul>
+						<li>Webview</li>
+						<li>Encapsulation dans une application native</li>
+						<li>Code local</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="img/cordovaapparchitecture.png" />
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<ul>
+						<li>Normes W3C (HTML5)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>La clef : La CSS</h2>
+					<img src="img/css_fail.gif" />
+				</section>
+
+				<section>
+					<h1>Mais rien n’est impossible</h1>
+				</section>
+
+				<section>
+					<img src="img/android.png" />
+				</section>
+
+				<section>
+					<img src="img/ios.png" />
+				</section>
+
+				<section>
+					<img src="img/wp8.png" />
+				</section>
+
+				<section>
+					<h2>Une pincée de natif</h2>
+					<ul>
+						<li>
+							Accès aux périphériques du mobile
+							<ul>
+								<li>Caméra</li>
+								<li>Accéléromètre</li>
+								<li>GPS</li>
+								<li>Contact</li>
+								<li>Stockage</li>
+								<li>Réseau</li>
+								<li>NFC</li>
+								<li>…</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Les plugins</h2>
+					<h3>http://plugins.cordova.io/</h3>
+					<ul>
+						<li>Normalisé</li>
+						<li>
+							Officiel
+							<ul>
+								<li>Adobe</li>
+								<li>Cordova</li>
+							</ul>
+						</li>
+						<li>
+							Non-Officiel
+							<ul>
+								<li>Communauté</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Quelques exemples</h2>
+					<ul>
+						<li>Scan de QRCode</li>
+						<li>Prise de photos</li>
+						<li>Lecture de tag NFC</li>
+						<li>…</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Natif ou Web</h2>
+					<h3>Avec cordova le web c'est aussi du natif.</h3>
+					<img src="img/party-animal.jpg">
+				</section>
+
+				<section>
+					<h2>Pour être honnête…</h2>
+					<ul>
+						<li class="fragment">L'integration</li>
+						<li class="fragment">Performances 3D</li>
+						<li class="fragment">Les navigateurs (Internet Explorer…)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Cordova</h2>
+					<ul>
+						<li>NodeJS</li>
+						<li>La structure des dossiers (<a target="_blank" href="https://cordova.apache.org/docs/en/latest/reference/cordova-cli/#directory-structure">Voir</a>)</li>
+						<li>Les plateformes (<a target="_blank" href="https://cordova.apache.org/docs/en/latest/guide/support/index.html">Voir</a>)</li>
+						<li>Les évènements (<a target="_blank" href="http://cordova.apache.org/docs/en/latest/cordova/events/events.html#page-toc-source">Voir</a>)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Les plugins</h2>
+					<ul>
+						<li>Différents pour chaque plateforme</li>
+						<li>Code Natif + Js</li>
+						<li>Aucune limite</li>
+						<li>Presque tout est déjà disponible ;)</li>
+						<li><a target="_blank" href="http://cordova.apache.org/docs/fr/7.x/guide/hybrid/plugins/index.html">Documentation</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Installation</h2>
+					<h3>Pré-requis</h3>
+					<ul>
+						<li>NodeJS</li>
+						<li>npm</li>
+						<li>Le SDK de la plateforme voulu (Android, iOs, …)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Installation</h2>
+					<h3>Cordova</h3>
+					<pre><code>$ npm install -g cordova</code></pre>
+				</section>
+
+				<section>
+					<h2>Cordova</h2>
+					<h3>Créer un projet</h3>
+					<pre><code>$ cordova create exemple com.vbrosseau.demo Exemple</code></pre>
+				</section>
+
+				<section>
+					<h2>Cordova</h2>
+					<h3>Ajouter la plateforme</h3>
+					<pre><code>$ cd exemple/</code></pre>
+					<pre><code>$ cordova platform add android</code></pre>
+				</section>
+
+				<section>
+					<h2>Cordova</h2>
+					<h3>Lancer le projet</h3>
+					<pre><code>$ cordova run</code></pre>
+				</section>
+
+				<section>
+					<h2>Cordova</h2>
+					<h3>Ajouter un plugin</h3>
+					<pre><code>$ cordova plugin add cordova-plugin-camera
+Fetching plugin "cordova-plugin-camera@~2.1.0" via npm
+Installing "cordova-plugin-camera" for android</code></pre>
+				</section>
+
+				<section>
+					<h2>Les frameworks JS</h2>
+					<ul>
+						<li class="fragment">Ionic (Angular)</li>
+						<li class="fragment">ReactJS (+ MaterialUI)</li>
+						<li class="fragment">VueJS (+ Vuetify)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Ionic</h2>
+					<ul>
+						<li>UI multiplateforme (iOs et Android)</li>
+						<li>Typescript</li>
+						<li>Structure complexe (?)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>ReactJS + MaterialUI</h2>
+					<ul>
+						<li>UI uniquement Material Design</li>
+						<li>ES2016</li>
+						<li>Facebook (pérennité ?)</li>
+						<li>Complexe de prise en main</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>VueJS + Vuetify</h2>
+					<ul>
+						<li>UI uniquement Material Design</li>
+						<li>ES2015</li>
+						<li>Communauté</li>
+						<li>Structure simple, approche simple</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Aucun framework</h2>
+					<ul>
+						<li>Possible</li>
+						<li>Application rapidement non maintenable</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Mon choix de 2017</h2>
+					<ul>
+						<li>VueJS + vuetify</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>VueJS</h2>
+					<ul>
+						<li>Simple</li>
+						<li>Minimaliste & Flexible</li>
+						<li>Performant (ShadowDOM, seulement 20kb)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Les « .vue »</h2>
+					<ul>
+						<li>Un fichier</li>
+						<li>CSS « scoppé »</li>
+						<li>Gestion des évènements</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Les templates</h2>
+					<ul>
+						<li>Complet</li>
+						<li>Boucles</li>
+						<li>Conditions</li>
+						<li>Étendable (exemple i18n ou filtre)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Les composants</h2>
+					<ul>
+						<li>Réutilisable</li>
+						<li>Cycle de vie (componentDidMount, Mounted, …)</li>
+						<li><a href="https://fr.vuejs.org/v2/guide/instance.html">Suite</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Le router</h2>
+					<ul>
+						<li>Simple</li>
+						<li>Gestions des paramètres</li>
+						<li><a href="https://router.vuejs.org/fr/">Suite</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Le projet démo</h2>
+					<pre><code>$ git clone https://github.com/c4software/vuejs-cordova-sample.git</code></pre>
+				</section>
+
+				<section>
+					<pre><code>$ cd vuejs-cordova-sample/</code></pre>
+				</section>
+
+				<section>
+					<h2>Installation des dépendances « VueJS »</h2>
+					<pre><code>$ npm install</code></pre>
+				</section>
+
+				<section>
+					<h2>Tester la partie Web</h2>
+					<pre><code>$ npm run dev</code></pre>
+				</section>
+
+				<section>
+					<h2>Ajouter la plateforme Android</h2>
+					<pre><code>$ cd cordova_app/</code></pre>
+					<pre><code>$ cordova platform add android</code></pre>
+				</section>
+
+				<section>
+					<h2>« Compiler » la version Web</h2>
+					<pre><code>$ npm run build # à la racine de projet</code></pre>
+					<pre><code>$ cd cordova_app/ && cordova run</code></pre>
+				</section>
+
+				<section>
+					<h1>Des questions ?</h1>
+					<h3>Place au code !</h3>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+					transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				keyboard: {
+					40: 'prev',
+					38: 'next',
+					9: function() {Reveal.toggleOverview()}
+				},
+
+				// Parallax scrolling
+				//parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				//parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
