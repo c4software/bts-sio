@@ -475,7 +475,7 @@ Pour lancer votre application, c'est dans le terminal que ça se passe :
 $ php artisan serve
 ```
 
-Une fois lancer [Rendez vous sur http://127.0.0.1:8080](http://127.0.0.1:8080).
+Une fois lancer [Rendez vous sur http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 {% reveal text="Un soucis non ?" %}
 Rien à changé ? C'est normal… Continuons!

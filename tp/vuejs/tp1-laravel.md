@@ -42,6 +42,10 @@ TODO
 
 ##### Suppression
 
+##### Les routes
+
+Maintenant que nous avons créé l'ensemble 
+
 ##### Validation des API
 
 Valider que vos API fonctionne correctement grâce à l'outil [Postman](https://www.getpostman.com/).
@@ -100,13 +104,85 @@ En téléchargant la librairie :
 
 ### Création d'un nouveau template
 
-… Sans blade …
+Pour la démonstration nous allons créer un nouveau template, il utilisera le fichier ```template.blade.php``` que vous avez précédement créé.
 
-### Remplacer la route de base
+Créér un nouveau fichier ```resources/views/homevue.blade.php``` et y mettre le contenu suivant :
 
-… Édition …
+```html
+@extends("template")
 
-### Asynchrone?
+@section("title", "Todo List - Version VueJS")
+
+@section("content")
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <!-- Action -->
+        <div class="add">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Prendre une note…" />
+          </div>
+        </div>
+
+        <!-- Liste des Todo -->
+
+      </div>
+    </div>
+  </div>
+@endsection
+```
+
+Le code précédent contient quelques élément de VueJS, lequels ?
+
+### Ajout d'une route
+
+Maintenant que notre template est créé, nous allons pouvoir l'utiliser. Pour l'utiliser il faut créer **2 choses**
+
+- Une méthode dans le contrôleur ```TodosController.php```.
+
+{% reveal text="Un doute sur le code de la méthode ?" %}
+
+Le code de la méthode est :
+
+```php
+public function homevue(){
+  return view("homevue")
+}
+```
+
+{% endreveal %}
+
+- Une route (exemple ```/vue```) dans le fichier ```routes/web.php```.
+
+🔥 Maintenant que votre code est prêt tester votre application :
+
+- Démarrer votre serveur de test (```php artisan serve```).
+- Accéder à la page [http://127.0.0.1:8000/vue](http://127.0.0.1:8000/vue)
+- Normalement le formulaire d'ajout s'affiche… Rien dans la liste? Pas de panique le code n'est pas encore présent.
+
+### Liste des todos
+
+Même si pour l'instant nous n'avons pas encore fait le code pour appeler les API ajouter le code HTML suivant après ```<!-- Liste des todos -->``` :
+
+```html
+<!-- Liste des todo -->
+  <ul class="list-group">
+    <li class="list-group-item" v-for="todo in todos">
+      <span>{{ todo.texte }}</span>
+      <div class="pull-right action">
+        <span v-if="todo.termine" class="btn btn-success"><i class="fas fa-check"></i></span>
+        <span v-else class="btn btn-danger"><i class="fas fa-trash"></i></span>
+      </div>
+    </li>
+    <li v-else class="list-group-item text-center">C'est vide !</li>
+  </ul>
+```
+
+- Quels sont les éléments spécific à VueJS?
+
+🔥 Tester à nouveau, votre liste doit s'afficher… Mais pas de la façon attendu… C'est normal, nous devons maintenant écrire le code VueJS correspondant à votre application (à savoir Liste, Ajout, Marquer comme terminé, et supprimer)
+
+### Asynchrone
 
 L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter quelques appels en Ajax. Pour faire nos appels nous utiliserons l’API « Fetch » des navigateurs, celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflexe est quand même d’allez voir le support de Fetch sur  ([Can i use](https://caniuse.com/#search=fetch)).
 
@@ -171,10 +247,49 @@ La liste des tâches va être la première chose que nous allons charger. Cette 
 
 ### Les actions
 
-Les actions (markAsDone, delete, …) seront appelés lors de la vie de notre application, elle vont être déclaré dans la partie ```methods``` de l'objet VueJS et seront appelé via des ```v-on:…``` de votre code HTML.
+Les actions (markAsDone, remove, addTodo) seront appelés lors de la vie de notre application, elle vont être déclaré dans la partie ```methods``` de l'objet VueJS et seront appelé via des ```v-on:…``` de votre code HTML.
 
 Complexe ? Pas tant que ça… Vous allez voir que c'est beaucoup plus simple que du code Javascript classique.
 
 ## Structure de base
 
-Créer un nouveau fichier nommé ```main.js```
+Créer un nouveau fichier nommé ```main.js```. Ce fichier doit être créé dans ```resources/js```. Une fois créer nous allons y ajouter le minimum pour que votre application fonctionne :
+
+```js
+var app = new Vue({
+  el: '.container',
+  created: function () {
+    // Code appelé à la création de votre application
+    console.log("Démarrage TODO-APP");
+  },
+  beforeMount: function() {
+    // Code appelé juste avant l'affichage de votre application
+    // On appelera ici une méthode qui va charger les TODO
+  },
+  methods: {
+    // Vos méthodes (liste, ajout, etc)
+  }
+})
+```
+
+Une fois ce code ajouté, il faut undiquer à Laravel qu'il fait partie de votre application. Pour ça ajouter à la fin de ```resources/js/app.js``` :
+
+```js
+require("./main");
+```
+
+Une fois fait, relancer la commande :
+
+```sh
+npm run production
+```
+
+🤓 Pour rappel cette commande « compile » l'ensemble de vos fichiers en un seul.
+
+Tester d'accéder à nouveau à votre site web, vous devez maintenant voir dans ```la console de développeur``` de votre navigateur le texte suivant :
+
+```log
+[…]
+Démarrage TODO-APP
+[…]
+```
