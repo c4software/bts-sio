@@ -739,7 +739,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Sun Sep 30 2018 11:05:56 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Sep 30 2018 23:04:28 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="ajouter-vuejs-dans-un-site-existant">Ajouter VueJS dans un site existant</h1>
 <p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer &#xE9;tait r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
@@ -769,6 +769,8 @@
 <h5 id="lajout">L&apos;ajout</h5>
 <h5 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h5>
 <h5 id="suppression">Suppression</h5>
+<h5 id="les-routes">Les routes</h5>
+<p>Maintenant que nous avons cr&#xE9;&#xE9; l&apos;ensemble </p>
 <h5 id="validation-des-api">Validation des API</h5>
 <p>Valider que vos API fonctionne correctement gr&#xE2;ce &#xE0; l&apos;outil <a href="https://www.getpostman.com/" target="_blank">Postman</a>.</p>
 <h2 id="ajout-de-vuejs">Ajout de VueJS</h2>
@@ -802,10 +804,71 @@ DONE  Compiled successfully <span class="hljs-keyword">in</span> 17210ms
 <li>Quel sont les dangers du CDN ?</li>
 </ul>
 <h3 id="cr&#xE9;ation-dun-nouveau-template">Cr&#xE9;ation d&apos;un nouveau template</h3>
-<p>&#x2026; Sans blade &#x2026;</p>
-<h3 id="remplacer-la-route-de-base">Remplacer la route de base</h3>
-<p>&#x2026; &#xC9;dition &#x2026;</p>
-<h3 id="asynchrone">Asynchrone?</h3>
+<p>Pour la d&#xE9;monstration nous allons cr&#xE9;er un nouveau template, il utilisera le fichier <code>template.blade.php</code> que vous avez pr&#xE9;c&#xE9;dement cr&#xE9;&#xE9;.</p>
+<p>Cr&#xE9;&#xE9;r un nouveau fichier <code>resources/views/homevue.blade.php</code> et y mettre le contenu suivant :</p>
+<pre><code class="lang-html">@extends(&quot;template&quot;)
+
+@section(&quot;title&quot;, &quot;Todo List - Version VueJS&quot;)
+
+@section(&quot;content&quot;)
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card-body&quot;</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- Action --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;add&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input-group&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-control&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Prendre une note&#x2026;&quot;</span> /&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+        <span class="hljs-comment">&lt;!-- Liste des Todo --&gt;</span>
+
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+@endsection
+</code></pre>
+<p>Le code pr&#xE9;c&#xE9;dent contient quelques &#xE9;l&#xE9;ment de VueJS, lequels ?</p>
+<h3 id="ajout-dune-route">Ajout d&apos;une route</h3>
+<p>Maintenant que notre template est cr&#xE9;&#xE9;, nous allons pouvoir l&apos;utiliser. Pour l&apos;utiliser il faut cr&#xE9;er <strong>2 choses</strong></p>
+<ul>
+<li>Une m&#xE9;thode dans le contr&#xF4;leur <code>TodosController.php</code>.</li>
+</ul>
+<div class="click_reveal"><span> Un doute sur le code de la m&#xE9;thode ? </span><div><p>Le code de la m&#xE9;thode est :</p>
+<pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">homevue</span><span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">return</span> view(<span class="hljs-string">&quot;homevue&quot;</span>)
+}
+</code></pre>
+</div></div>
+
+<ul>
+<li>Une route (exemple <code>/vue</code>) dans le fichier <code>routes/web.php</code>.</li>
+</ul>
+<p>&#x1F525; Maintenant que votre code est pr&#xEA;t tester votre application :</p>
+<ul>
+<li>D&#xE9;marrer votre serveur de test (<code>php artisan serve</code>).</li>
+<li>Acc&#xE9;der &#xE0; la page <a href="http://127.0.0.1:8000/vue" target="_blank">http://127.0.0.1:8000/vue</a></li>
+<li>Normalement le formulaire d&apos;ajout s&apos;affiche&#x2026; Rien dans la liste? Pas de panique le code n&apos;est pas encore pr&#xE9;sent.</li>
+</ul>
+<h3 id="liste-des-todos">Liste des todos</h3>
+<p>M&#xEA;me si pour l&apos;instant nous n&apos;avons pas encore fait le code pour appeler les API ajouter le code HTML suivant apr&#xE8;s <code>&lt;!-- Liste des todos --&gt;</code> :</p>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- Liste des todo --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item&quot;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;todo in todos&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{{ todo.texte }}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pull-right action&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;todo.termine&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-success&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas fa-check&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-else</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-danger&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas fa-trash&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-else</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item text-center&quot;</span>&gt;</span>C&apos;est vide !<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</code></pre>
+<ul>
+<li>Quels sont les &#xE9;l&#xE9;ments sp&#xE9;cific &#xE0; VueJS?</li>
+</ul>
+<p>&#x1F525; Tester &#xE0; nouveau, votre liste doit s&apos;afficher&#x2026; Mais pas de la fa&#xE7;on attendu&#x2026; C&apos;est normal, nous devons maintenant &#xE9;crire le code VueJS correspondant &#xE0; votre application (&#xE0; savoir Liste, Ajout, Marquer comme termin&#xE9;, et supprimer)</p>
+<h3 id="asynchrone">Asynchrone</h3>
 <p>L&#x2019;ensemble de l&#x2019;application va devenir &#xAB; asynchrone &#xBB;, vous allez vite vous rendre compte que la migration va n&#xE9;cessiter quelques appels en Ajax. Pour faire nos appels nous utiliserons l&#x2019;API &#xAB; Fetch &#xBB; des navigateurs, celle-ci est int&#xE9;gr&#xE9;e dans l&#x2019;ensemble des navigateurs r&#xE9;cents, le bon r&#xE9;flexe est quand m&#xEA;me d&#x2019;allez voir le support de Fetch sur  (<a href="https://caniuse.com/#search=fetch" target="_blank">Can i use</a>).</p>
 <h3 id="d&#xE9;couverte-de-fetch">D&#xE9;couverte de Fetch</h3>
 <p>L&apos;API Fetch fournit une interface JavaScript pour l&apos;acc&#xE8;s et la manipulation des parties de la pipeline HTTP, comme les requ&#xEA;tes et les r&#xE9;ponses. Cela fournit aussi une m&#xE9;thode globale fetch() qui procure un moyen facile et logique de r&#xE9;cup&#xE9;rer des ressources &#xE0; travers le r&#xE9;seau de mani&#xE8;re asynchrone.</p>
@@ -846,10 +909,37 @@ Par exemple, vous pouvez faire cela dans votre script:</p>
 <h3 id="la-liste">La liste</h3>
 <p>La liste des t&#xE2;ches va &#xEA;tre la premi&#xE8;re chose que nous allons charger. Cette &#xAB; liste &#xBB; sera charg&#xE9; lors de l&apos;&#xE9;v&#xE9;nement <code>beforeMount</code>.</p>
 <h3 id="les-actions">Les actions</h3>
-<p>Les actions (markAsDone, delete, &#x2026;) seront appel&#xE9;s lors de la vie de notre application, elle vont &#xEA;tre d&#xE9;clar&#xE9; dans la partie <code>methods</code> de l&apos;objet VueJS et seront appel&#xE9; via des <code>v-on:&#x2026;</code> de votre code HTML.</p>
+<p>Les actions (markAsDone, remove, addTodo) seront appel&#xE9;s lors de la vie de notre application, elle vont &#xEA;tre d&#xE9;clar&#xE9; dans la partie <code>methods</code> de l&apos;objet VueJS et seront appel&#xE9; via des <code>v-on:&#x2026;</code> de votre code HTML.</p>
 <p>Complexe ? Pas tant que &#xE7;a&#x2026; Vous allez voir que c&apos;est beaucoup plus simple que du code Javascript classique.</p>
 <h2 id="structure-de-base">Structure de base</h2>
-<p>Cr&#xE9;er un nouveau fichier nomm&#xE9; <code>main.js</code></p>
+<p>Cr&#xE9;er un nouveau fichier nomm&#xE9; <code>main.js</code>. Ce fichier doit &#xEA;tre cr&#xE9;&#xE9; dans <code>resources/js</code>. Une fois cr&#xE9;er nous allons y ajouter le minimum pour que votre application fonctionne :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Code appel&#xE9; &#xE0; la cr&#xE9;ation de votre application</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;D&#xE9;marrage TODO-APP&quot;</span>);
+  },
+  beforeMount: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// Code appel&#xE9; juste avant l&apos;affichage de votre application</span>
+    <span class="hljs-comment">// On appelera ici une m&#xE9;thode qui va charger les TODO</span>
+  },
+  methods: {
+    <span class="hljs-comment">// Vos m&#xE9;thodes (liste, ajout, etc)</span>
+  }
+})
+</code></pre>
+<p>Une fois ce code ajout&#xE9;, il faut undiquer &#xE0; Laravel qu&apos;il fait partie de votre application. Pour &#xE7;a ajouter &#xE0; la fin de <code>resources/js/app.js</code> :</p>
+<pre><code class="lang-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./main&quot;</span>);
+</code></pre>
+<p>Une fois fait, relancer la commande :</p>
+<pre><code class="lang-sh">npm run production
+</code></pre>
+<p>&#x1F913; Pour rappel cette commande &#xAB; compile &#xBB; l&apos;ensemble de vos fichiers en un seul.</p>
+<p>Tester d&apos;acc&#xE9;der &#xE0; nouveau &#xE0; votre site web, vous devez maintenant voir dans <code>la console de d&#xE9;veloppeur</code> de votre navigateur le texte suivant :</p>
+<pre><code class="lang-log">[&#x2026;]
+D&#xE9;marrage TODO-APP
+[&#x2026;]
+</code></pre>
 
                                 
                                 </section>
@@ -889,7 +979,7 @@ Par exemple, vous pouvez faire cela dans votre script:</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-laravel.md","mtime":"2018-09-30T09:05:56.058Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-30T09:06:05.993Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-laravel.md","mtime":"2018-09-30T21:04:28.036Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-30T21:05:04.383Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
