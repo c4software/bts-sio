@@ -315,6 +315,30 @@ Sans entrer dans le détail (nous détaillerons le fonctionnement dans un procha
 
 Une fois installé retourner dans le dossier de votre projet faites les commandes suivantes :
 
+#### laravel-mix ?
+
+laravel-mix est un outil fourni de base dans Laravel qui gèrent la partie libraries clientes. La configuration de celui-ci se fait dans le fichier ```webpack.mix.js```
+
+Le contenu initial est :
+
+```js
+const mix = require('laravel-mix');
+
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for the application as well as bundling up all the JS files.
+ |
+ */
+
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.scss', 'public/css');
+```
+
 ### Modifier le SCSS
 
 Remplacer le fichier ```ressources/app/scss``` par :

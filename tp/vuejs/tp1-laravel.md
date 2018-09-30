@@ -4,13 +4,13 @@ Dans le cadre du TP, vous allez devoir « moderniser » une application simple. 
 
 L’application existante est une « TodoList » codée avec le Framework Laravel.
 
-# Création des API
+## Les API
 
 Dans ce TP nous allons transformer « entièrement » votre ancien site codé en Laravel par « un équivalent » qui va fonctionner avec des API.
 
 🤓 Nous n'allons donc plus utiliser la puissance de Blade, mais celle de VueJS 🚀.
 
-## Création des API
+### Création des API
 
 La « nouvelle version » de notre page, va utiliser des API (et de l'ajax), ça va fondamentalement changer le fonctionnement de votre application. Il faut donc dans un premier temps créer les API qui seront nécessaire au bon fonctionnement (asynchrone) de votre page Web.
 
@@ -26,25 +26,73 @@ Les seules différence seront :
 - ```view([…], […]Todo::all()[…])``` remplacé par ```return response()->json(Todo::all());```
 - Et pour une simple réponse de réussite (exemple remove ou done) ```return response()->json("success")```
 
-### Création du contrôleur pour les API
+#### Création du contrôleur pour les API
 
 … Ajout fichier, Route, retour json …
 
-### La liste
+#### La liste
 
-### L'ajout
+#### L'ajout
 
-### Marquer comme terminé
+#### Marquer comme terminé
 
-### Suppression
+#### Suppression
 
-### Validation des API
+#### Validation des API
 
 Valider que vos API fonctionne correctement grâce à l'outil [Postman](https://www.getpostman.com/).
 
-## Ajouter VueJS dans votre projet
+## Ajout de VueJS
 
-… Import librairie …
+VueJS étant une librairie (comme jquery par exemple), il faut l'importer pour l'utiliser dans votre projet.
+
+Laravel intègre un gestionnaire de dépendances « client » nommé ```npm``` (normalement celui-ci est déjà installé sur votre poste, si ce n'est pas le cas [rendez-vous ici](https://nodejs.org/en/download/current/)).
+
+La première étape est donc d'indiquer que nous souhaitons avoir ```VueJS``` dans notre projet. Ça se fait via la ligne de commande (ou via l'édition manuel du fichier ```package.json```).
+
+```sh
+npm install --save vue
+```
+
+Patientez quelques instant la dépendance est maintenant ajoutée.
+
+✋ Votre dépendance est installée oui ! Mais celle-ci n'est pas inclus pour votre client.
+
+Ajouter VueJS dans le fichier ```resources/js/app.js``` ajouter à la fin de celui-ci :
+
+```js
+require("vue/dist/vue");
+```
+
+Maintenant que votre Librairie est ajouté, il faut indiquer à ```Laravel-mix``` que votre fichier à changé pour ça :
+
+```sh
+$ npm run production
+DONE  Compiled successfully in 17210ms
+…
+```
+
+Voilà ! VueJS est maintenant disponible dans votre projet.
+
+### Ajouter VueJS (version alternative)
+
+NPM n'est pas la seul solution d'installer VueJS, si votre projet n'avais pas eu ```npm``` de configuré vous auriez pu simplement ajouter dans le header de votre site via une balise script :
+
+Via un CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+```
+
+En téléchargant la librairie :
+
+[Disponible ici](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include)
+
+### Questions
+
+- À votre avis, qu'elle solution est la meilleur ?
+- Pourquoi dans notre cas, j'ai privilégié ```npm``` ?
+- Quel sont les dangers du CDN ?
 
 ### Création d'un nouveau template
 
