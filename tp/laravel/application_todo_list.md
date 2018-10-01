@@ -294,6 +294,60 @@ Vous pouvez relancer votre serveur de test, vous devez maintenant voir « Liste 
 
 Maintenant que la partie base de données est prête, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser bootstrap pour gérer la problématique d'affichage et de responsive.
 
+### Ajout des libraries
+
+La structure de base de Laravel n'intègre pas Bootsrap, par contre il est possible de l'installer dans votre projet.
+
+La façon la plus rapide est d'intégrer directement dans le ```<head>``` de votre projet les librairies suivante :
+
+Éditer le fichier ```template.blade.php``` pour ajouter (dans le ```<head>```):
+
+```html
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+```
+
+Vous venez d'ajouter Jquery, Bootstrap, et l'ensemble des éléments nécéssaire à son bon fonctionnement. Notre site à également besoin d'une CSS spécifique. Celle-ci doit être ajouté manuellement.
+
+Créer un fichier ```main.css``` dans ```public/css```. Mettre le contenu suivant :
+
+```css
+body{
+    padding-top: 5rem;
+  }
+
+form.add{
+    padding-bottom: 10px;
+  }
+
+.pull-right{
+    float: right;
+  }
+
+.action > .btn{
+    padding: 1px 7px 1px;
+  }
+
+.oi{
+    font-size: small;
+}
+```
+
+Ajouter à nouveau cette CSS dans le ```<head>``` de votre site :
+
+```html
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
+```
+
+Cette solution n'est pas la meilleur, malheureseument un bug sur les PC du lycée nous empêche d'utiliser NodeJS + npm.
+
+{% reveal text="Vous avez votre propre machine ? Installation de Bootsrap 4 via NodeJS + NPM" %}
+
+✋ Si vous lisez ceci c'est que vous êtes sur votre machine, si c'est le cas, sachez que c'est la meilleur façon de faire. **Attention** à ne pas avoir les librairies en HTTP et Via NodeJS. 
+
 ### Ajouter Bootsrap 4
 
 La structure de base de Laravel n'intègre pas Bootsrap, par contre elle intègre un système de gestion de dépendances. Nous allons nous servir de cette gestion de dépendance pour ajouter bootstrap (version 4). Dans la ligne de commande :
@@ -379,7 +433,7 @@ form.add{
 }
 ```
 
-### Compiler
+### Transpiler
 
 ```sh
 $ npm install
@@ -394,6 +448,8 @@ $ npm run production
 - Que contient le fichier ```webpack.mix.js``` ?
 - ```webpack.mix.js``` fait référence à des fichiers dans ```ressources/js/*``` et ```ressources/sass/*```, allez y jeter un coup d'oeil (même si dans ce projet nous n'allons rien modifier).
 - Pourquoi la fusion / compilation des ressources est-elle si importante ?
+
+{% endreveal %}
 
 ## Créer les templates
 
@@ -467,6 +523,19 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
 
 {% endreveal %}
 
+#### Modifications demandés
+
+✋ Cette modification n'est nécéssaire que dans le cas ou vous n'utiliser **pas** NodeJS + NPM.
+
+Comme vous l'avez vu avec le fichier ```main.css``` il est possible d'avoir un CSS / JS en local dans le dossier public.
+
+- Télécharger l'ensemble de librairies http / https (css + js) dans le dossier public (attention à bien les ranger) et les utiliser dans votre head.
+
+### Question
+
+- Pourquoi est-ce plus sécurisé ?
+- Pourquoi la solution des CDN n'est finalement pas si « non sécurisé » ?
+
 ### Tester
 
 Pour lancer votre application, c'est dans le terminal que ça se passe :
@@ -479,7 +548,7 @@ Une fois lancer [Rendez vous sur http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 {% reveal text="Un soucis non ?" %}
 Rien à changé ? C'est normal… Continuons!
-{% endreveal %} 
+{% endreveal %}
 
 ### Liste des todos
 

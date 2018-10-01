@@ -272,7 +272,19 @@ var app = new Vue({
 })
 ```
 
-Une fois ce code ajouté, il faut undiquer à Laravel qu'il fait partie de votre application. Pour ça ajouter à la fin de ```resources/js/app.js``` :
+### Ajouter votre script
+
+Pour ajouter votre script nous allons faire simple, nous allons « juste » l'ajouter dans le template principal de votre site. Éditer le fichier ```template.blade.php``` pour y ajouter la balise ```script``` suivante :
+
+```html
+// TODO
+```
+
+{% reveal text="Voir une autre façon de faire l'ajout ?" %}
+
+### Ajouter votre script (version alternative)
+
+Avec Laravel vous pouvez « compiler vos ressources client », cette compilation va regrouper tout vos JS en un seul. Pour ça il faut indiquer à Laravel qu'il fait partie de votre application. Ajouter à la fin de ```resources/js/app.js``` :
 
 ```js
 require("./main");
@@ -293,3 +305,5 @@ Tester d'accéder à nouveau à votre site web, vous devez maintenant voir dans 
 Démarrage TODO-APP
 […]
 ```
+
+{% endreveal %}
