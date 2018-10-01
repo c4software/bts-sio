@@ -32,7 +32,13 @@ Les seules différence seront :
 
 #### Création d'un nouveau controleur
 
-TODO
+La première étape est de pouvoir « répondre » au demande client, il faut donc créer un nouveau contrôleur que l'on va dédier à la partie API. Dans votre terminal :
+
+```sh
+php artisan make:controller TodosApiController
+```
+
+Un nouveau contrôleur vide vient d'être créé, il faut maintenant déclarer l'ensemble de nos méthodes. 
 
 ##### La liste
 
@@ -44,7 +50,18 @@ TODO
 
 ##### Les routes
 
-Maintenant que nous avons créé l'ensemble 
+Le code étant « finalisé ». Il faut maintenant indiquer à Laravel les routes d'accès aux différentes méthodes.
+
+Dans le fichier ```routes/api.php``` ajouter le contenu suivant :
+
+```php
+Route::get('api/todo','TodosApiController@list');
+Route::post('api/todo','TodosApiController@saveTodo');
+Route::post('api/todo/done/{id}','TodosApiController@markAsDone');
+Route::delete('api/todo/delete/{id}','TodosApiController@deleteTodo');
+```
+
+Vous API sont maintenant accessible.
 
 ##### Validation des API
 
@@ -277,26 +294,8 @@ var app = new Vue({
 Pour ajouter votre script nous allons faire simple, nous allons « juste » l'ajouter dans le template principal de votre site. Éditer le fichier ```template.blade.php``` pour y ajouter la balise ```script``` suivante :
 
 ```html
-// TODO
+<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 ```
-
-{% reveal text="Voir une autre façon de faire l'ajout ?" %}
-
-### Ajouter votre script (version alternative)
-
-Avec Laravel vous pouvez « compiler vos ressources client », cette compilation va regrouper tout vos JS en un seul. Pour ça il faut indiquer à Laravel qu'il fait partie de votre application. Ajouter à la fin de ```resources/js/app.js``` :
-
-```js
-require("./main");
-```
-
-Une fois fait, relancer la commande :
-
-```sh
-npm run production
-```
-
-🤓 Pour rappel cette commande « compile » l'ensemble de vos fichiers en un seul.
 
 Tester d'accéder à nouveau à votre site web, vous devez maintenant voir dans ```la console de développeur``` de votre navigateur le texte suivant :
 
@@ -306,4 +305,7 @@ Démarrage TODO-APP
 […]
 ```
 
-{% endreveal %}
+#### Questions
+
+- À quoi correspond ```asset``` ?
+- À quoi correspond ```el: '.container',``` pourquoi est-ce très important ?
