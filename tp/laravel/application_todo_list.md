@@ -303,11 +303,11 @@ La façon la plus rapide est d'intégrer directement dans le ```<head>``` de vot
 Éditer le fichier ```template.blade.php``` pour ajouter (dans le ```<head>```):
 
 ```html
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 ```
 
 Vous venez d'ajouter Jquery, Bootstrap, et l'ensemble des éléments nécéssaire à son bon fonctionnement. Notre site à également besoin d'une CSS spécifique. Celle-ci doit être ajouté manuellement.
@@ -451,6 +451,19 @@ $ npm run production
 
 {% endreveal %}
 
+#### Modifications demandés
+
+✋ Cette modification n'est nécéssaire que dans le cas ou vous n'utiliser **pas** NodeJS + NPM.
+
+Comme vous l'avez vu avec le fichier ```main.css``` il est possible d'avoir un CSS / JS en local dans le dossier public.
+
+- Télécharger l'ensemble de librairies http / https (css + js) dans le dossier public (attention à bien les ranger) et les utiliser dans votre head.
+
+### Question
+
+- Pourquoi est-ce plus sécurisé ?
+- Pourquoi la solution des CDN n'est finalement pas si « non sécurisé » ?
+
 ## Créer les templates
 
 Nous avons donc maintenant :
@@ -522,19 +535,6 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
 ```
 
 {% endreveal %}
-
-#### Modifications demandés
-
-✋ Cette modification n'est nécéssaire que dans le cas ou vous n'utiliser **pas** NodeJS + NPM.
-
-Comme vous l'avez vu avec le fichier ```main.css``` il est possible d'avoir un CSS / JS en local dans le dossier public.
-
-- Télécharger l'ensemble de librairies http / https (css + js) dans le dossier public (attention à bien les ranger) et les utiliser dans votre head.
-
-### Question
-
-- Pourquoi est-ce plus sécurisé ?
-- Pourquoi la solution des CDN n'est finalement pas si « non sécurisé » ?
 
 ### Tester
 
