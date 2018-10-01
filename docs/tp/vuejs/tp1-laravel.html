@@ -739,7 +739,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Mon Oct 01 2018 14:04:04 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Mon Oct 01 2018 22:26:31 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="ajouter-vuejs-dans-un-site-existant">Ajouter VueJS dans un site existant</h1>
 <p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer &#xE9;tait r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
@@ -764,13 +764,23 @@
 <h4 id="cr&#xE9;ation-du-contr&#xF4;leur-pour-les-api">Cr&#xE9;ation du contr&#xF4;leur pour les API</h4>
 <p>&#x2026; Ajout fichier, Route, retour json &#x2026;</p>
 <h4 id="cr&#xE9;ation-dun-nouveau-controleur">Cr&#xE9;ation d&apos;un nouveau controleur</h4>
-<p>TODO</p>
+<p>La premi&#xE8;re &#xE9;tape est de pouvoir &#xAB; r&#xE9;pondre &#xBB; au demande client, il faut donc cr&#xE9;er un nouveau contr&#xF4;leur que l&apos;on va d&#xE9;dier &#xE0; la partie API. Dans votre terminal :</p>
+<pre><code class="lang-sh">php artisan make:controller TodosApiController
+</code></pre>
+<p>Un nouveau contr&#xF4;leur vide vient d&apos;&#xEA;tre cr&#xE9;&#xE9;, il faut maintenant d&#xE9;clarer l&apos;ensemble de nos m&#xE9;thodes. </p>
 <h5 id="la-liste">La liste</h5>
 <h5 id="lajout">L&apos;ajout</h5>
 <h5 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h5>
 <h5 id="suppression">Suppression</h5>
 <h5 id="les-routes">Les routes</h5>
-<p>Maintenant que nous avons cr&#xE9;&#xE9; l&apos;ensemble </p>
+<p>Le code &#xE9;tant &#xAB; finalis&#xE9; &#xBB;. Il faut maintenant indiquer &#xE0; Laravel les routes d&apos;acc&#xE8;s aux diff&#xE9;rentes m&#xE9;thodes.</p>
+<p>Dans le fichier <code>routes/api.php</code> ajouter le contenu suivant :</p>
+<pre><code class="lang-php">Route::get(<span class="hljs-string">&apos;api/todo&apos;</span>,<span class="hljs-string">&apos;TodosApiController@list&apos;</span>);
+Route::post(<span class="hljs-string">&apos;api/todo&apos;</span>,<span class="hljs-string">&apos;TodosApiController@saveTodo&apos;</span>);
+Route::post(<span class="hljs-string">&apos;api/todo/done/{id}&apos;</span>,<span class="hljs-string">&apos;TodosApiController@markAsDone&apos;</span>);
+Route::delete(<span class="hljs-string">&apos;api/todo/delete/{id}&apos;</span>,<span class="hljs-string">&apos;TodosApiController@deleteTodo&apos;</span>);
+</code></pre>
+<p>Vous API sont maintenant accessible.</p>
 <h5 id="validation-des-api">Validation des API</h5>
 <p>Valider que vos API fonctionne correctement gr&#xE2;ce &#xE0; l&apos;outil <a href="https://www.getpostman.com/" target="_blank">Postman</a>.</p>
 <h2 id="ajout-de-vuejs">Ajout de VueJS</h2>
@@ -930,22 +940,19 @@ Par exemple, vous pouvez faire cela dans votre script:</p>
 </code></pre>
 <h3 id="ajouter-votre-script">Ajouter votre script</h3>
 <p>Pour ajouter votre script nous allons faire simple, nous allons &#xAB; juste &#xBB; l&apos;ajouter dans le template principal de votre site. &#xC9;diter le fichier <code>template.blade.php</code> pour y ajouter la balise <code>script</code> suivante :</p>
-<pre><code class="lang-html">// TODO
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;{{ asset(&apos;js/main.js&apos;) }}&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<div class="click_reveal"><span> Voir une autre fa&#xE7;on de faire l&apos;ajout ? </span><div><h3 id="ajouter-votre-script-version-alternative">Ajouter votre script (version alternative)</h3>
-<p>Avec Laravel vous pouvez &#xAB; compiler vos ressources client &#xBB;, cette compilation va regrouper tout vos JS en un seul. Pour &#xE7;a il faut indiquer &#xE0; Laravel qu&apos;il fait partie de votre application. Ajouter &#xE0; la fin de <code>resources/js/app.js</code> :</p>
-<pre><code class="lang-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./main&quot;</span>);
-</code></pre>
-<p>Une fois fait, relancer la commande :</p>
-<pre><code class="lang-sh">npm run production
-</code></pre>
-<p>&#x1F913; Pour rappel cette commande &#xAB; compile &#xBB; l&apos;ensemble de vos fichiers en un seul.</p>
 <p>Tester d&apos;acc&#xE9;der &#xE0; nouveau &#xE0; votre site web, vous devez maintenant voir dans <code>la console de d&#xE9;veloppeur</code> de votre navigateur le texte suivant :</p>
 <pre><code class="lang-log">[&#x2026;]
 D&#xE9;marrage TODO-APP
 [&#x2026;]
 </code></pre>
-</div></div>
+<h4 id="questions">Questions</h4>
+<ul>
+<li>&#xC0; quoi correspond <code>asset</code> ?</li>
+<li>&#xC0; quoi correspond <code>el: &apos;.container&apos;,</code> pourquoi est-ce tr&#xE8;s important ?</li>
+</ul>
+
                                 
                                 </section>
                             
@@ -984,7 +991,7 @@ D&#xE9;marrage TODO-APP
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-laravel.md","mtime":"2018-10-01T12:04:04.741Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-01T20:17:26.102Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-laravel.md","mtime":"2018-10-01T20:26:31.890Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-01T20:27:09.949Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
