@@ -246,7 +246,7 @@ Nous allons maintenant écrire une méthode pour chaque action. Avec les différ
 
 ### Corriger le chemin de la database
 
-Bizarrerie de Laravel… Il faut maintenant changer le chemin de la base de données pour faire réference au fichier ```database.sqlite``` pendant l'execution de votre code.
+Bizarrerie de Laravel… Il faut maintenant changer le chemin de la base de données pour faire correctement réference au fichier ```database.sqlite``` (pour que ça fonctionne depuis votre browser).
 
 Éditer à nouveau le fichier ```.env``` pour remplacer :
 
@@ -278,7 +278,7 @@ Rien de bien compliqué, comme vous pouvez le voir.
 
 ### Les autres méthodes
 
-✋ Pour l'instant nous allons nous arrêter la pour la partie code PHP. Cette méthode est suffisante pour « tester » le premier template que nous allons écrire.
+✋ Pour l'instant nous allons nous arrêter là pour la partie code PHP. Cette méthode est suffisante pour « tester » le premier template que nous allons écrire.
 
 ### Ajout route /
 
@@ -860,7 +860,7 @@ Modifier votre code pour l'utiliser.
 
 ## Évolution souhaitée : Ajout de contrôle
 
- Seul les ```Todos``` marqués comme terminé peuvent être supprimés, il faudra donc contrôler l’état avant de faire le ```delete()``` en base de données.
+ Seul les ```Todos``` marqués comme terminée peuvent être supprimées, il faudra donc contrôler l’état avant de faire le ```delete()``` en base de données.
 
 - Modifier la méthode ```deleteTodo``` contrôleur pour ajouter la règle de gestion (Indice ```$todo->termine```)
 - Ajouter la directive ```@if``` dans le template afficher uniquement les bonnes actions en fonction de l'état de la todo. [Voir la documentation du if avec blade](https://laravel.com/docs/5.7/blade#if-statements)

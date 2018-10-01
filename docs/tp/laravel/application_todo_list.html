@@ -741,7 +741,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Mon Oct 01 2018 22:17:14 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Mon Oct 01 2018 22:32:55 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="application-todo-liste">Application Todo Liste</h1>
 <h2 id="introduction">Introduction</h2>
@@ -911,7 +911,7 @@ Migrated:  2018_09_09_150442_create_todos_table
 <p>Bien ! Notre code est maintenant pr&#xEA;t. Nous allons cr&#xE9;er les m&#xE9;thodes permettant la manipulation de notre base de donn&#xE9;es tout en r&#xE9;pondant &#xE0; nos probl&#xE9;matique d&apos;interface (liste, creation, terminer, suppression).</p>
 <p>Nous allons maintenant &#xE9;crire une m&#xE9;thode pour chaque action. Avec les diff&#xE9;rentes conditions n&#xE9;c&#xE9;ssaires au bon fonctionnement de l&apos;application.</p>
 <h3 id="corriger-le-chemin-de-la-database">Corriger le chemin de la database</h3>
-<p>Bizarrerie de Laravel&#x2026; Il faut maintenant changer le chemin de la base de donn&#xE9;es pour faire r&#xE9;ference au fichier <code>database.sqlite</code> pendant l&apos;execution de votre code.</p>
+<p>Bizarrerie de Laravel&#x2026; Il faut maintenant changer le chemin de la base de donn&#xE9;es pour faire correctement r&#xE9;ference au fichier <code>database.sqlite</code> (pour que &#xE7;a fonctionne depuis votre browser).</p>
 <p>&#xC9;diter &#xE0; nouveau le fichier <code>.env</code> pour remplacer :</p>
 <pre><code class="lang-conf">DB_DATABASE=database/database.sqlite
 </code></pre>
@@ -928,7 +928,7 @@ Migrated:  2018_09_09_150442_create_todos_table
 </code></pre>
 <p>Rien de bien compliqu&#xE9;, comme vous pouvez le voir.</p>
 <h3 id="les-autres-m&#xE9;thodes">Les autres m&#xE9;thodes</h3>
-<p>&#x270B; Pour l&apos;instant nous allons nous arr&#xEA;ter la pour la partie code PHP. Cette m&#xE9;thode est suffisante pour &#xAB; tester &#xBB; le premier template que nous allons &#xE9;crire.</p>
+<p>&#x270B; Pour l&apos;instant nous allons nous arr&#xEA;ter l&#xE0; pour la partie code PHP. Cette m&#xE9;thode est suffisante pour &#xAB; tester &#xBB; le premier template que nous allons &#xE9;crire.</p>
 <h3 id="ajout-route-">Ajout route /</h3>
 <p>Nous allons tester la route <code>/</code>, pour &#xE7;a nous allons remplacer le contenu du fichier <code>routes/web.php</code> par :</p>
 <pre><code class="lang-php">Route::get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-string">&quot;TodosController@liste&quot;</span>);
@@ -1366,7 +1366,7 @@ Route::get(<span class="hljs-string">&apos;/action/delete/{id}&apos;</span>, <sp
 <li>Quel est l&apos;avantage d&apos;utiliser les routes nomm&#xE9;es ?</li>
 </ul>
 <h2 id="&#xE9;volution-souhait&#xE9;e--ajout-de-contr&#xF4;le">&#xC9;volution souhait&#xE9;e : Ajout de contr&#xF4;le</h2>
-<p> Seul les <code>Todos</code> marqu&#xE9;s comme termin&#xE9; peuvent &#xEA;tre supprim&#xE9;s, il faudra donc contr&#xF4;ler l&#x2019;&#xE9;tat avant de faire le <code>delete()</code> en base de donn&#xE9;es.</p>
+<p> Seul les <code>Todos</code> marqu&#xE9;s comme termin&#xE9;e peuvent &#xEA;tre supprim&#xE9;es, il faudra donc contr&#xF4;ler l&#x2019;&#xE9;tat avant de faire le <code>delete()</code> en base de donn&#xE9;es.</p>
 <ul>
 <li>Modifier la m&#xE9;thode <code>deleteTodo</code> contr&#xF4;leur pour ajouter la r&#xE8;gle de gestion (Indice <code>$todo-&gt;termine</code>)</li>
 <li>Ajouter la directive <code>@if</code> dans le template afficher uniquement les bonnes actions en fonction de l&apos;&#xE9;tat de la todo. <a href="https://laravel.com/docs/5.7/blade#if-statements" target="_blank">Voir la documentation du if avec blade</a></li>
@@ -1434,7 +1434,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-10-01T20:17:14.063Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-01T20:27:09.949Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-10-01T20:32:55.088Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-01T20:32:59.770Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
