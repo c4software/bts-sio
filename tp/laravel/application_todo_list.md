@@ -747,7 +747,7 @@ Normalement c'est ok !
 ![Vide](./ressources/vide.png)
 ![Avec message 1](./ressources/message1.png)
 
-## Action : marquer comme termin
+## Action : marquer comme terminé
 
 Pour l’action terminé nous allons devoir updater un enregistrement en base de données, pour ça nous allons le récupérer puis mettre le ```boolean``` ```termine``` à 1.
 
@@ -801,7 +801,7 @@ Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur (
 
 - Éditer le fichier ```resources/views/home.blade.php```.
 - Ajouter la bonne url sur l'action de votre formulaire.
-- Ajouter sur chaque ligne deux liens qui vont « suprimer » et « terminer ». (Aide : ```@todo->id```)
+- Ajouter sur chaque ligne deux liens qui vont « suprimer » et « terminer ». (Aide : ```$todo->id```)
 
 ## 2nd page
 
