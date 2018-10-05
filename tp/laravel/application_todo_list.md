@@ -290,6 +290,93 @@ Route::get('/', "TodosController@liste");
 
 Vous pouvez relancer votre serveur de test, vous devez maintenant voir « Liste ».
 
+## Créer les templates
+
+Nous avons donc maintenant :
+
+- La structure Laravel.
+- La définition de notre base de données.
+- Les dépendances clients (bootstrap 4…)
+
+Nous allons donc pouvoir commencer la création des templates. L'organisation du code est quelques choses d'important, elle n'est pas à négliger. Un code organisé est un code agréable à rédiger.
+
+Notre vue va être découpée en 3 partie :
+
+![Structure](ressources/3partie.png)
+
+- ✋ Pourquoi le découpage en « 3 templates » est-il important ?
+- Quelle est l'avantage pour le développeur ?
+
+### Le template principal
+
+Nous allons commencer par définir notre « Template principal » celui-ci va contenir l'ensemble des élement partagés sur toutes nos pages à savoir :
+
+- Les JS
+- Les CSS
+- La structure commune
+
+```html
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>@yield('title')</title>
+
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="#">Ma Todo List</a>
+        </nav>
+
+        @yield('content')
+
+    </body>
+</html>
+```
+
+Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
+
+- Créer un nouveau fichier ```resources/views/template.blade.php```
+- Copier-Coller le html dans le fichier.
+
+👏👏 Bravo, vous venez de créer votre premier template.
+
+#### 🤓 Questions
+
+- Pourquoi le fichier est-il nommé ```….blade.php``` ?
+- À quoi correspond {% raw %} ```{{ asset('…') }}``` {% endraw %}?
+- À quoi correspond la directive « yield »? En quoi est-ce très important ?
+- Est-il possible de définir une « zone » ou d'autre ressources JS / CSS seront insérées lors de l'exécution ? [Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
+- Maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
+
+{% reveal text="Voir la solution" %}
+
+```php
+    @stack('scripts')
+    @stack('styles')
+```
+
+{% endreveal %}
+
+### Tester
+
+Pour lancer votre application, c'est dans le terminal que ça se passe :
+
+```sh
+$ php artisan serve
+```
+
+Une fois lancer [Rendez vous sur http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+{% reveal text="Un soucis non ?" %}
+Rien à changé ? C'est normal… Continuons!
+{% endreveal %}
+
+
 ## Installation des dépendances client
 
 Maintenant que la partie base de données est prête, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser bootstrap pour gérer la problématique d'affichage et de responsive.
@@ -463,92 +550,6 @@ Comme vous l'avez vu avec le fichier ```main.css``` il est possible d'avoir un C
 
 - Pourquoi est-ce plus sécurisé ?
 - Pourquoi la solution des CDN n'est finalement pas si « non sécurisé » ?
-
-## Créer les templates
-
-Nous avons donc maintenant :
-
-- La structure Laravel.
-- La définition de notre base de données.
-- Les dépendances clients (bootstrap 4…)
-
-Nous allons donc pouvoir commencer la création des templates. L'organisation du code est quelques choses d'important, elle n'est pas à négliger. Un code organisé est un code agréable à rédiger.
-
-Notre vue va être découpée en 3 partie :
-
-![Structure](ressources/3partie.png)
-
-- ✋ Pourquoi le découpage en « 3 templates » est-il important ?
-- Quelle est l'avantage pour le développeur ?
-
-### Le template principal
-
-Nous allons commencer par définir notre « Template principal » celui-ci va contenir l'ensemble des élement partagés sur toutes nos pages à savoir :
-
-- Les JS
-- Les CSS
-- La structure commune
-
-```html
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>@yield('title')</title>
-
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="#">Ma Todo List</a>
-        </nav>
-
-        @yield('content')
-
-    </body>
-</html>
-```
-
-Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
-
-- Créer un nouveau fichier ```resources/views/template.blade.php```
-- Copier-Coller le html dans le fichier.
-
-👏👏 Bravo, vous venez de créer votre premier template.
-
-#### 🤓 Questions
-
-- Pourquoi le fichier est-il nommé ```….blade.php``` ?
-- À quoi correspond {% raw %} ```{{ asset('…') }}``` {% endraw %}?
-- À quoi correspond la directive « yield »? En quoi est-ce très important ?
-- Est-il possible de définir une « zone » ou d'autre ressources JS / CSS seront insérées lors de l'exécution ? [Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
-- Maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
-
-{% reveal text="Voir la solution" %}
-
-```php
-    @stack('scripts')
-    @stack('styles')
-```
-
-{% endreveal %}
-
-### Tester
-
-Pour lancer votre application, c'est dans le terminal que ça se passe :
-
-```sh
-$ php artisan serve
-```
-
-Une fois lancer [Rendez vous sur http://127.0.0.1:8000](http://127.0.0.1:8000).
-
-{% reveal text="Un soucis non ?" %}
-Rien à changé ? C'est normal… Continuons!
-{% endreveal %}
 
 ### Liste des todos
 
