@@ -19,34 +19,112 @@ La « nouvelle version » de notre page, va utiliser des API (et de l'ajax), ça
 - Marquer un élément comme terminé.
 - Supprimer un élément.
 
-✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, nous allons utiliser le même code que le controlleur actuel…
+✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, nous allons utiliser le même code que le controlleur actuel !
 
 Les seules différence seront :
 
 - ```view([…], […]Todo::all()[…])``` remplacé par ```return response()->json(Todo::all());```
-- Et pour une simple réponse de réussite (exemple remove ou done) ```return response()->json("success")```
+- Et pour une simple réponse de réussite (exemple remove ou done) ```return response()->json(array("status" => 1))```
 
 #### Création du contrôleur pour les API
 
-… Ajout fichier, Route, retour json …
+Nous allons donc créer un nouveau controleur qui va gérer la partie API de notre application (les appels « client »). Nous allons simplement l'appeler « api ».
 
-#### Création d'un nouveau controleur
+Pour le créer il faut utiliser la commande ```make:controller```
 
-La première étape est de pouvoir « répondre » au demande client, il faut donc créer un nouveau contrôleur que l'on va dédier à la partie API. Dans votre terminal :
-
+{% reveal text="Voir la solution" %}
 ```sh
-php artisan make:controller TodosApiController
+php artisan make:controller api
 ```
+{% endreveal %}
 
-Un nouveau contrôleur vide vient d'être créé, il faut maintenant déclarer l'ensemble de nos méthodes. 
+Un nouveau contrôleur vide vient d'être créé, il faut maintenant déclarer l'ensemble de nos méthodes.
+
+##### Définition des méthodes nécéssaire
+
+Avant de commencer la partie code, voilà la liste des ```Routes``` -> ```Méthode``` nécéssaire au bon fonctionnement de notre API :
+
+| Route           | Méthode               | Paramêtre     | Type   |
+| --------------- |:---------------------:|:-------------:| ------:|
+| /api/           | list()                |               | GET    |
+| /api/add        | add(Request $request) | Request       | POST   |
+| /api/done/{id}  | done($id)             | id            | PATCH  |
+| /api/delete/{id}| delete($id)           | id            | DELETE |
+
+🔥 Pour la suite vous référez à ce tableau pour les nom de méthode ainsi que les paramètres 🔥
 
 ##### La liste
 
+Dans le fichier ```app/Http/Controllers/api.php``` ajouter une méthode méthode ```list```. Celle-ci doit contenir le code suivant :
+
+```php
+    return response()->json(Todos::all());
+```
+
+⚠️ Bien évidement je vous laisse écrire le reste du code. Vous pouvez vous inspirer du code du premier TP.
+
 ##### L'ajout
+
+Pour l'ajout, le code va être **identique** à celui de premier TP, la seul différence c'est que celui-ci doit retourner 1 ou 0 en fonction de la réussite ou non :
+
+```php
+  return response()->json(array("status" => "1"));
+```
+
+⚠️ Je vous laisse écrire le reste du code !
 
 ##### Marquer comme terminé
 
+Comme pour l'ajout, le code va être identique au TP précédent à l'exception du retour :
+
+```php
+  return response()->json(array("status" => "1"));
+  // Ou en en cas échec
+  return response()->json(array("status" => "0"));
+```
+
 ##### Suppression
+
+Comme pour l'ajout, le code va être identique au TP précédent à l'exception du retour :
+
+```php
+  return response()->json(array("status" => "1"));
+  // Ou en en cas échec
+  return response()->json(array("status" => "0"));
+```
+
+##### Perdu ?
+
+Normalement vous avez l'ensembles des informations pour y arriver seul, si vous bloquez voila :
+
+{% reveal text="Voir la définition des méthodes" %}
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Todos;
+use Illuminate\Http\Request;
+
+class api extends Controller
+{
+    public function list(){
+    }
+
+    public function add(Request $request){
+    }
+
+    public function done($id){
+    }
+
+    public function delete($id){
+    }
+}
+```
+{% endreveal %}
+
+✋ Je vous laisse écrire le code des méthodes seul, rappel il est presque identique à celui du premier TP.
 
 ##### Les routes
 
@@ -55,18 +133,24 @@ Le code étant « finalisé ». Il faut maintenant indiquer à Laravel les route
 Dans le fichier ```routes/api.php``` ajouter le contenu suivant :
 
 ```php
-Route::get('api/todo','TodosApiController@list');
-Route::post('api/todo','TodosApiController@saveTodo');
-Route::post('api/todo/done/{id}','TodosApiController@markAsDone');
-Route::delete('api/todo/delete/{id}','TodosApiController@deleteTodo');
+Route::get('/', "api@list")->name("api.list");
+Route::post('/add', "api@save")->name('api.save');
+Route::patch('/done/{id}', "api@done")->name('api.done');
+Route::delete('/delete/{id}', "api@delete")->name('api.delete');
 ```
 
-Vous API sont maintenant accessible.
+✋ Comme vous pouvez le voir le ```/api/…``` n'est pas spécifié… Pourquoi ? Simplement avec Laravel toutes les routes dans le fichier ```routes/api.php``` sont automatiquement préfixé par ```/api/```
+
+Vous API sont maintenant accessibles.
 
 ##### Validation des API
 
 Valider que vos API fonctionne correctement grâce à l'outil [Postman](https://www.getpostman.com/).
 
+🤓 Commencez par la plus simple, par exemple ```/api/``` qui doit normalement lister votre actuelle TodoList.
+✋ Tester l'ensemble de vos API avant de continuer.
+
+{% reveal text="Ajout via NPM - Uniquement si vous êtes sur votre machine" %}
 ## Ajout de VueJS
 
 VueJS étant une librairie (comme jquery par exemple), il faut l'importer pour l'utiliser dans votre projet.
@@ -99,7 +183,11 @@ DONE  Compiled successfully in 17210ms
 
 Voilà ! VueJS est maintenant disponible dans votre projet.
 
-### Ajouter VueJS (version alternative)
+{% endreveal %}
+
+{% reveal text="Ajout **SANS** NPM %}
+
+### Ajouter VueJS sans NPM
 
 NPM n'est pas la seul solution d'installer VueJS, si votre projet n'avais pas eu ```npm``` de configuré vous auriez pu simplement ajouter dans le header de votre site via une balise script :
 
@@ -119,9 +207,11 @@ En téléchargant la librairie :
 - Pourquoi dans notre cas, j'ai privilégié ```npm``` ?
 - Quel sont les dangers du CDN ?
 
+{% endreveal %}
+
 ### Création d'un nouveau template
 
-Pour la démonstration nous allons créer un nouveau template, il utilisera le fichier ```template.blade.php``` que vous avez précédement créé.
+Pour la démonstration nous allons créer un nouveau template, il sera ```@extends``` de ```template.blade.php``` que vous avez précédement créé.
 
 Créér un nouveau fichier ```resources/views/homevue.blade.php``` et y mettre le contenu suivant :
 
