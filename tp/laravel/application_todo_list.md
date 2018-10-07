@@ -678,9 +678,11 @@ public function saveTodo(Request $request){
 
 Que va t’il se passer lors de l’appel ? L’objet ```$request``` contient tous les paramètres de l’appel HTTP, la méthode ```all()``` permet de les récupérer. L’objet ```Todos``` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de ```create()``` permette de renseigner automatiquement les champs en base de données.
 
-- À votre avis est-ce une manière sécuriser de procéder ?
+✋ Tester l'ajout. Normalement ça ne doit pas fonctionner… Pourquoi ? Tout simplement car nous ne spécifions pas l'ensemble des champs nécessaire à la création de notre objet.
 
-{% reveal text="Ajouter une todo version alternative" %}
+- Quel est l'autre solution possible ?  
+
+{% reveal text="Voir la solution" %}
 La première approche est la plus rapide mais elle sous entend que tous les paramètres soient bien initialisées dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todos manuellement, en récupérant les différents éléments dans la requette HTTP.
 
 ```php
