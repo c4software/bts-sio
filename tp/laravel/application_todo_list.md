@@ -800,16 +800,23 @@ Le lien doit-être : ```/action/delete/{id}``` et la méthode dans le contrôleu
 Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur (et dans le fichier de route) nous allons les utiliser dans notre template « home » voici les étapes :
 
 - Éditer le fichier ```resources/views/home.blade.php```.
-- Ajouter la bonne url sur l'action de votre formulaire.
-- Ajouter sur chaque ligne deux liens qui vont « suprimer » et « terminer ». (Aide : ```$todo->id```)
+- Ajouter la bonne url sur l'action de votre formulaire. (```« /add »```)
+- Ajouter sur chaque ligne de la boucle « foreach » deux liens qui vont « suprimer » et « terminer ». 
 
-## 2nd page
+Aide :
+
+Pour accéder à une variable exemple ```id``` : ```$todo->id```.
+
+Exemple {% raw %}```<a href="lien{{ $todo->id }}">Terminer</a>``` {% endraw %}
+
+## Ajout d'une 2nd page
 
 Ajouter une nouvelle page dans votre site web cette page sera la page « À propos », aucune aide autre que :
 
 - Route.
 - Méthode dans le contrôleur.
 - Template qui « @extends » du gabarit / template de base.
+- Ajouter un lien pour accèder à cette page dans le header du site.
 
 ## Évolution souhaitée : Nommer les routes
 

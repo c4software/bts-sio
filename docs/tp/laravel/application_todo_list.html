@@ -741,7 +741,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Fri Oct 05 2018 15:43:56 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Oct 07 2018 21:12:20 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="application-todo-liste">Application Todo Liste</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1321,15 +1321,19 @@ $ npm run production
 <p>Maintenant que nous avons d&#xE9;clar&#xE9; nos &#xAB; 3 actions &#xBB; dans notre contr&#xF4;leur (et dans le fichier de route) nous allons les utiliser dans notre template &#xAB; home &#xBB; voici les &#xE9;tapes :</p>
 <ul>
 <li>&#xC9;diter le fichier <code>resources/views/home.blade.php</code>.</li>
-<li>Ajouter la bonne url sur l&apos;action de votre formulaire.</li>
-<li>Ajouter sur chaque ligne deux liens qui vont &#xAB; suprimer &#xBB; et &#xAB; terminer &#xBB;. (Aide : <code>$todo-&gt;id</code>)</li>
+<li>Ajouter la bonne url sur l&apos;action de votre formulaire. (<code>&#xAB; /add &#xBB;</code>)</li>
+<li>Ajouter sur chaque ligne de la boucle &#xAB; foreach &#xBB; deux liens qui vont &#xAB; suprimer &#xBB; et &#xAB; terminer &#xBB;. </li>
 </ul>
-<h2 id="2nd-page">2nd page</h2>
+<p>Aide :</p>
+<p>Pour acc&#xE9;der &#xE0; une variable exemple <code>id</code> : <code>$todo-&gt;id</code>.</p>
+<p>Exemple <code>&lt;a href=&quot;lien{{ $todo-&gt;id }}&quot;&gt;Terminer&lt;/a&gt;</code> </p>
+<h2 id="ajout-dune-2nd-page">Ajout d&apos;une 2nd page</h2>
 <p>Ajouter une nouvelle page dans votre site web cette page sera la page &#xAB; &#xC0; propos &#xBB;, aucune aide autre que :</p>
 <ul>
 <li>Route.</li>
 <li>M&#xE9;thode dans le contr&#xF4;leur.</li>
 <li>Template qui &#xAB; @extends &#xBB; du gabarit / template de base.</li>
+<li>Ajouter un lien pour acc&#xE8;der &#xE0; cette page dans le header du site.</li>
 </ul>
 <h2 id="&#xE9;volution-souhait&#xE9;e--nommer-les-routes">&#xC9;volution souhait&#xE9;e : Nommer les routes</h2>
 <p>Comme vous l&apos;avez constat&#xE9;, nous utilisons les routes comme une simple URL. Avec Laravel il est possible de faire mieux que &#xE7;a ! Il est possible de nommer les routes (exemple <code>todo.save</code>) pour les utiliser directement dans notre template. &#xC7;a va permettre d&apos;am&#xE9;liorer votre code (changement de contr&#xF4;leur plus simple par exemple) et surtout de le rendre plus lisible.</p>
@@ -1435,7 +1439,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-10-05T13:43:56.431Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-05T13:44:37.049Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-10-07T19:12:20.832Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T19:12:24.612Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
