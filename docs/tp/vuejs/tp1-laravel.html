@@ -739,7 +739,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Mon Oct 01 2018 22:26:31 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Oct 07 2018 22:17:20 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="ajouter-vuejs-dans-un-site-existant">Ajouter VueJS dans un site existant</h1>
 <p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer &#xE9;tait r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
@@ -755,35 +755,123 @@
 <li>Marquer un &#xE9;l&#xE9;ment comme termin&#xE9;.</li>
 <li>Supprimer un &#xE9;l&#xE9;ment.</li>
 </ul>
-<p>&#x270B; En tant que d&#xE9;veloppeur vous devez &#xEA;tre malin (et f&#xE9;n&#xE9;ant&#x2026;). Pour &#xE9;crire les autres API ne tenter pas de r&#xE9;inventer la poudre, nous allons utiliser le m&#xEA;me code que le controlleur actuel&#x2026;</p>
+<p>&#x270B; En tant que d&#xE9;veloppeur vous devez &#xEA;tre malin (et f&#xE9;n&#xE9;ant&#x2026;). Pour &#xE9;crire les autres API ne tenter pas de r&#xE9;inventer la poudre, nous allons utiliser le m&#xEA;me code que le controlleur actuel !</p>
 <p>Les seules diff&#xE9;rence seront :</p>
 <ul>
 <li><code>view([&#x2026;], [&#x2026;]Todo::all()[&#x2026;])</code> remplac&#xE9; par <code>return response()-&gt;json(Todo::all());</code></li>
-<li>Et pour une simple r&#xE9;ponse de r&#xE9;ussite (exemple remove ou done) <code>return response()-&gt;json(&quot;success&quot;)</code></li>
+<li>Et pour une simple r&#xE9;ponse de r&#xE9;ussite (exemple remove ou done) <code>return response()-&gt;json(array(&quot;status&quot; =&gt; 1))</code></li>
 </ul>
 <h4 id="cr&#xE9;ation-du-contr&#xF4;leur-pour-les-api">Cr&#xE9;ation du contr&#xF4;leur pour les API</h4>
-<p>&#x2026; Ajout fichier, Route, retour json &#x2026;</p>
-<h4 id="cr&#xE9;ation-dun-nouveau-controleur">Cr&#xE9;ation d&apos;un nouveau controleur</h4>
-<p>La premi&#xE8;re &#xE9;tape est de pouvoir &#xAB; r&#xE9;pondre &#xBB; au demande client, il faut donc cr&#xE9;er un nouveau contr&#xF4;leur que l&apos;on va d&#xE9;dier &#xE0; la partie API. Dans votre terminal :</p>
-<pre><code class="lang-sh">php artisan make:controller TodosApiController
+<p>Nous allons donc cr&#xE9;er un nouveau controleur qui va g&#xE9;rer la partie API de notre application (les appels &#xAB; client &#xBB;). Nous allons simplement l&apos;appeler &#xAB; api &#xBB;.</p>
+<p>Pour le cr&#xE9;er il faut utiliser la commande <code>make:controller</code></p>
+<div class="click_reveal"><span> Voir la solution </span><div><pre><code class="lang-sh">php artisan make:controller api
 </code></pre>
-<p>Un nouveau contr&#xF4;leur vide vient d&apos;&#xEA;tre cr&#xE9;&#xE9;, il faut maintenant d&#xE9;clarer l&apos;ensemble de nos m&#xE9;thodes. </p>
+</div></div>
+
+<p>Un nouveau contr&#xF4;leur vide vient d&apos;&#xEA;tre cr&#xE9;&#xE9;, il faut maintenant d&#xE9;clarer l&apos;ensemble de nos m&#xE9;thodes.</p>
+<h5 id="d&#xE9;finition-des-m&#xE9;thodes-n&#xE9;c&#xE9;ssaire">D&#xE9;finition des m&#xE9;thodes n&#xE9;c&#xE9;ssaire</h5>
+<p>Avant de commencer la partie code, voil&#xE0; la liste des <code>Routes</code> -&gt; <code>M&#xE9;thode</code> n&#xE9;c&#xE9;ssaire au bon fonctionnement de notre API :</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th style="text-align:center">M&#xE9;thode</th>
+<th style="text-align:center">Param&#xEA;tre</th>
+<th style="text-align:right">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/api/</td>
+<td style="text-align:center">list()</td>
+<td style="text-align:center"></td>
+<td style="text-align:right">GET</td>
+</tr>
+<tr>
+<td>/api/add</td>
+<td style="text-align:center">add(Request $request)</td>
+<td style="text-align:center">Request</td>
+<td style="text-align:right">POST</td>
+</tr>
+<tr>
+<td>/api/done/{id}</td>
+<td style="text-align:center">done($id)</td>
+<td style="text-align:center">id</td>
+<td style="text-align:right">PATCH</td>
+</tr>
+<tr>
+<td>/api/delete/{id}</td>
+<td style="text-align:center">delete($id)</td>
+<td style="text-align:center">id</td>
+<td style="text-align:right">DELETE</td>
+</tr>
+</tbody>
+</table>
+<p>&#x1F525; Pour la suite vous r&#xE9;f&#xE9;rez &#xE0; ce tableau pour les nom de m&#xE9;thode ainsi que les param&#xE8;tres &#x1F525;</p>
 <h5 id="la-liste">La liste</h5>
+<p>Dans le fichier <code>app/Http/Controllers/api.php</code> ajouter une m&#xE9;thode m&#xE9;thode <code>list</code>. Celle-ci doit contenir le code suivant :</p>
+<pre><code class="lang-php">    <span class="hljs-keyword">return</span> response()-&gt;json(Todos::all());
+</code></pre>
+<p>&#x26A0;&#xFE0F; Bien &#xE9;videment je vous laisse &#xE9;crire le reste du code. Vous pouvez vous inspirer du code du premier TP.</p>
 <h5 id="lajout">L&apos;ajout</h5>
+<p>Pour l&apos;ajout, le code va &#xEA;tre <strong>identique</strong> &#xE0; celui de premier TP, la seul diff&#xE9;rence c&apos;est que celui-ci doit retourner 1 ou 0 en fonction de la r&#xE9;ussite ou non :</p>
+<pre><code class="lang-php">  <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;status&quot;</span> =&gt; <span class="hljs-string">&quot;1&quot;</span>));
+</code></pre>
+<p>&#x26A0;&#xFE0F; Je vous laisse &#xE9;crire le reste du code !</p>
 <h5 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h5>
+<p>Comme pour l&apos;ajout, le code va &#xEA;tre identique au TP pr&#xE9;c&#xE9;dent &#xE0; l&apos;exception du retour :</p>
+<pre><code class="lang-php">  <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;status&quot;</span> =&gt; <span class="hljs-string">&quot;1&quot;</span>));
+  <span class="hljs-comment">// Ou en en cas &#xE9;chec</span>
+  <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;status&quot;</span> =&gt; <span class="hljs-string">&quot;0&quot;</span>));
+</code></pre>
 <h5 id="suppression">Suppression</h5>
+<p>Comme pour l&apos;ajout, le code va &#xEA;tre identique au TP pr&#xE9;c&#xE9;dent &#xE0; l&apos;exception du retour :</p>
+<pre><code class="lang-php">  <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;status&quot;</span> =&gt; <span class="hljs-string">&quot;1&quot;</span>));
+  <span class="hljs-comment">// Ou en en cas &#xE9;chec</span>
+  <span class="hljs-keyword">return</span> response()-&gt;json(<span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;status&quot;</span> =&gt; <span class="hljs-string">&quot;0&quot;</span>));
+</code></pre>
+<h5 id="perdu-">Perdu ?</h5>
+<p>Normalement vous avez l&apos;ensembles des informations pour y arriver seul, si vous bloquez voila :</p>
+<div class="click_reveal"><span> Voir la d&#xE9;finition des m&#xE9;thodes </span><div><pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">App</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">App</span>\<span class="hljs-title">Todos</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Http</span>\<span class="hljs-title">Request</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">api</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">list</span><span class="hljs-params">()</span></span>{
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span><span class="hljs-params">(Request $request)</span></span>{
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">done</span><span class="hljs-params">($id)</span></span>{
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">delete</span><span class="hljs-params">($id)</span></span>{
+    }
+}
+</code></pre>
+</div></div>
+
+<p>&#x270B; Je vous laisse &#xE9;crire le code des m&#xE9;thodes seul, rappel il est presque identique &#xE0; celui du premier TP.</p>
 <h5 id="les-routes">Les routes</h5>
 <p>Le code &#xE9;tant &#xAB; finalis&#xE9; &#xBB;. Il faut maintenant indiquer &#xE0; Laravel les routes d&apos;acc&#xE8;s aux diff&#xE9;rentes m&#xE9;thodes.</p>
 <p>Dans le fichier <code>routes/api.php</code> ajouter le contenu suivant :</p>
-<pre><code class="lang-php">Route::get(<span class="hljs-string">&apos;api/todo&apos;</span>,<span class="hljs-string">&apos;TodosApiController@list&apos;</span>);
-Route::post(<span class="hljs-string">&apos;api/todo&apos;</span>,<span class="hljs-string">&apos;TodosApiController@saveTodo&apos;</span>);
-Route::post(<span class="hljs-string">&apos;api/todo/done/{id}&apos;</span>,<span class="hljs-string">&apos;TodosApiController@markAsDone&apos;</span>);
-Route::delete(<span class="hljs-string">&apos;api/todo/delete/{id}&apos;</span>,<span class="hljs-string">&apos;TodosApiController@deleteTodo&apos;</span>);
+<pre><code class="lang-php">Route::get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-string">&quot;api@list&quot;</span>)-&gt;name(<span class="hljs-string">&quot;api.list&quot;</span>);
+Route::post(<span class="hljs-string">&apos;/add&apos;</span>, <span class="hljs-string">&quot;api@save&quot;</span>)-&gt;name(<span class="hljs-string">&apos;api.save&apos;</span>);
+Route::patch(<span class="hljs-string">&apos;/done/{id}&apos;</span>, <span class="hljs-string">&quot;api@done&quot;</span>)-&gt;name(<span class="hljs-string">&apos;api.done&apos;</span>);
+Route::delete(<span class="hljs-string">&apos;/delete/{id}&apos;</span>, <span class="hljs-string">&quot;api@delete&quot;</span>)-&gt;name(<span class="hljs-string">&apos;api.delete&apos;</span>);
 </code></pre>
-<p>Vous API sont maintenant accessible.</p>
+<p>&#x270B; Comme vous pouvez le voir le <code>/api/&#x2026;</code> n&apos;est pas sp&#xE9;cifi&#xE9;&#x2026; Pourquoi ? Simplement avec Laravel toutes les routes dans le fichier <code>routes/api.php</code> sont automatiquement pr&#xE9;fix&#xE9; par <code>/api/</code></p>
+<p>Vous API sont maintenant accessibles.</p>
 <h5 id="validation-des-api">Validation des API</h5>
 <p>Valider que vos API fonctionne correctement gr&#xE2;ce &#xE0; l&apos;outil <a href="https://www.getpostman.com/" target="_blank">Postman</a>.</p>
-<h2 id="ajout-de-vuejs">Ajout de VueJS</h2>
+<p>&#x1F913; Commencez par la plus simple, par exemple <code>/api/</code> qui doit normalement lister votre actuelle TodoList.
+&#x270B; Tester l&apos;ensemble de vos API avant de continuer.</p>
+<div class="click_reveal"><span> Ajout via NPM - Uniquement si vous &#xEA;tes sur votre machine </span><div><h2 id="ajout-de-vuejs">Ajout de VueJS</h2>
 <p>VueJS &#xE9;tant une librairie (comme jquery par exemple), il faut l&apos;importer pour l&apos;utiliser dans votre projet.</p>
 <p>Laravel int&#xE8;gre un gestionnaire de d&#xE9;pendances &#xAB; client &#xBB; nomm&#xE9; <code>npm</code> (normalement celui-ci est d&#xE9;j&#xE0; install&#xE9; sur votre poste, si ce n&apos;est pas le cas <a href="https://nodejs.org/en/download/current/" target="_blank">rendez-vous ici</a>).</p>
 <p>La premi&#xE8;re &#xE9;tape est donc d&apos;indiquer que nous souhaitons avoir <code>VueJS</code> dans notre projet. &#xC7;a se fait via la ligne de commande (ou via l&apos;&#xE9;dition manuel du fichier <code>package.json</code>).</p>
@@ -800,21 +888,10 @@ DONE  Compiled successfully <span class="hljs-keyword">in</span> 17210ms
 &#x2026;
 </code></pre>
 <p>Voil&#xE0; ! VueJS est maintenant disponible dans votre projet.</p>
-<h3 id="ajouter-vuejs-version-alternative">Ajouter VueJS (version alternative)</h3>
-<p>NPM n&apos;est pas la seul solution d&apos;installer VueJS, si votre projet n&apos;avais pas eu <code>npm</code> de configur&#xE9; vous auriez pu simplement ajouter dans le header de votre site via une balise script :</p>
-<p>Via un CDN</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
-<p>En t&#xE9;l&#xE9;chargant la librairie :</p>
-<p><a href="https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include" target="_blank">Disponible ici</a></p>
-<h3 id="questions">Questions</h3>
-<ul>
-<li>&#xC0; votre avis, qu&apos;elle solution est la meilleur ?</li>
-<li>Pourquoi dans notre cas, j&apos;ai privil&#xE9;gi&#xE9; <code>npm</code> ?</li>
-<li>Quel sont les dangers du CDN ?</li>
-</ul>
+</div></div>
+
 <h3 id="cr&#xE9;ation-dun-nouveau-template">Cr&#xE9;ation d&apos;un nouveau template</h3>
-<p>Pour la d&#xE9;monstration nous allons cr&#xE9;er un nouveau template, il utilisera le fichier <code>template.blade.php</code> que vous avez pr&#xE9;c&#xE9;dement cr&#xE9;&#xE9;.</p>
+<p>Pour la d&#xE9;monstration nous allons cr&#xE9;er un nouveau template, il sera <code>@extends</code> de <code>template.blade.php</code> que vous avez pr&#xE9;c&#xE9;dement cr&#xE9;&#xE9;.</p>
 <p>Cr&#xE9;&#xE9;r un nouveau fichier <code>resources/views/homevue.blade.php</code> et y mettre le contenu suivant :</p>
 <pre><code class="lang-html">@extends(&quot;template&quot;)
 
@@ -991,7 +1068,7 @@ D&#xE9;marrage TODO-APP
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-laravel.md","mtime":"2018-10-01T20:26:31.890Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T19:12:24.612Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-laravel.md","mtime":"2018-10-07T20:17:20.596Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-07T20:17:23.840Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
