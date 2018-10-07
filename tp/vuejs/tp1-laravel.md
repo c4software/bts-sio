@@ -194,7 +194,7 @@ NPM n'est pas la seul solution d'installer VueJS, si votre projet n'avais pas eu
 Via un CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 ```
 
 En téléchargant la librairie :
@@ -227,11 +227,11 @@ Créér un nouveau fichier ```resources/views/homevue.blade.php``` et y mettre l
         <!-- Action -->
         <div class="add">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Prendre une note…" />
+            <input type="text" class="form-control" placeholder="Prendre une note…" v-model="text" />
           </div>
         </div>
 
-        <!-- Liste des Todo -->
+        <!-- Liste des Todos -->
 
       </div>
     </div>
@@ -241,9 +241,11 @@ Créér un nouveau fichier ```resources/views/homevue.blade.php``` et y mettre l
 
 Le code précédent contient quelques élément de VueJS, lequels ?
 
-### Ajout d'une route
+### Accéder à la page
 
-Maintenant que notre template est créé, nous allons pouvoir l'utiliser. Pour l'utiliser il faut créer **2 choses**
+Maintenant que notre template est créé, nous allons pouvoir l'utiliser.
+
+Pour l'utiliser il faut créer **2 choses**
 
 - Une méthode dans le contrôleur ```TodosController.php```.
 
@@ -253,7 +255,7 @@ Le code de la méthode est :
 
 ```php
 public function homevue(){
-  return view("homevue")
+  return view("homevue");
 }
 ```
 
@@ -269,10 +271,9 @@ public function homevue(){
 
 ### Liste des todos
 
-Même si pour l'instant nous n'avons pas encore fait le code pour appeler les API ajouter le code HTML suivant après ```<!-- Liste des todos -->``` :
+Même si pour l'instant nous n'avons pas encore fait le code pour appeler les API, ajouter le code HTML suivant après ```<!-- Liste des todos -->``` présent dans le fichier ```homevue.blade.php```:
 
 ```html
-<!-- Liste des todo -->
   <ul class="list-group">
     <li class="list-group-item" v-for="todo in todos">
       <span>{{ todo.texte }}</span>
@@ -334,15 +335,17 @@ fetch('api/liste', {method: "GET", credentials: 'same-origin'})
 
 ⚠️ Que veux dire ```credentials: 'same-origin'```?
 
-Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant ```credentials: 'same-origin'```. Si vous ne le faites pas vos ```$_SESSION``` ne seront pas sauvegardées ⚠️
+Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant ```credentials: 'same-origin'```. Si vous ne le faites pas votre ```$_SESSION``` ne sera pas sauvegardées ⚠️
 
-#### Comment tester ?
+#### Comment tester
 
 Pour valider le bon fonctionnement nous allons utiliser la « Console développeur » de votre navigateur.
 
 Fetch est une librairie très complète, pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
 
-## Le code javascript
+Tester de récupérer vos « todos » depuis votre console.
+
+## La structure du code javascript
 
 Maintenant que nos API sont terminés et que notre appels via Fetch fonctionne nous allons écrire le code Javascript (VueJS) qui va gèrer notre application.
 
@@ -354,46 +357,58 @@ La liste des tâches va être la première chose que nous allons charger. Cette 
 
 ### Les actions
 
-Les actions (markAsDone, remove, addTodo) seront appelés lors de la vie de notre application, elle vont être déclaré dans la partie ```methods``` de l'objet VueJS et seront appelé via des ```v-on:…``` de votre code HTML.
+Les actions (done, remove, add) seront appelés lors de la vie de notre application, elle vont être déclaré dans la partie ```methods``` de l'objet VueJS et seront appelé via des ```v-on:…``` de votre code HTML.
 
 Complexe ? Pas tant que ça… Vous allez voir que c'est beaucoup plus simple que du code Javascript classique.
 
 ## Structure de base
 
-Créer un nouveau fichier nommé ```main.js```. Ce fichier doit être créé dans ```resources/js```. Une fois créer nous allons y ajouter le minimum pour que votre application fonctionne :
+Créer un nouveau fichier nommé ```main.js```. Ce fichier doit être créé dans ```public/js``` (ou ```ressources/js``` pour ceux utilisant NPM). Une fois créé nous allons y ajouter le minimum pour que votre application fonctionne :
 
 ```js
 var app = new Vue({
-  el: '.container',
-  created: function () {
-    // Code appelé à la création de votre application
-    console.log("Démarrage TODO-APP");
-  },
-  beforeMount: function() {
-    // Code appelé juste avant l'affichage de votre application
-    // On appelera ici une méthode qui va charger les TODO
-  },
-  methods: {
-    // Vos méthodes (liste, ajout, etc)
-  }
+    el: '.container',
+    created: function () {
+        // Code appelé à la création de votre application
+        console.log("Démarrage TODO-APP");
+    },
+    data: function() {
+        return {
+            todo: [],
+            text: "",
+        }
+    },
+    beforeMount: function() {
+        // Code appelé juste avant l'affichage de votre application
+        this.list();
+    },
+    methods: {
+        list: function(){
+            // Récupération des Todos
+            console.log("Récupération Todo depuis le serveur");
+        },
+        add: function(){},
+        done: function(){},
+        delete: function(){},
+    }
 })
 ```
 
+Voilà la base de notre objet VueJS.
+
 ### Ajouter votre script
 
-Pour ajouter votre script nous allons faire simple, nous allons « juste » l'ajouter dans le template principal de votre site. Éditer le fichier ```template.blade.php``` pour y ajouter la balise ```script``` suivante :
+Pour ajouter votre script nous allons faire simple, nous allons « juste » l'ajouter à la fin de notre template ```homevue```. Éditer le fichier ```homevue.blade.php``` pour y ajouter la balise ```script``` suivante juste avant ```@endsection``` :
 
 ```html
 <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 ```
 
+✋ Pour ceux utilisant NPM ce n'est pas nécéssaire.
+
 Tester d'accéder à nouveau à votre site web, vous devez maintenant voir dans ```la console de développeur``` de votre navigateur le texte suivant :
 
-```log
-[…]
-Démarrage TODO-APP
-[…]
-```
+![VueJS Console](./ressources/vuejs-console.png)
 
 #### Questions
 
