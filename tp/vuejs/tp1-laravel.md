@@ -410,7 +410,17 @@ Tester d'accéder à nouveau à votre site web, vous devez maintenant voir dans 
 
 ![VueJS Console](./ressources/vuejs-console.png)
 
+Pas de liste de todo dans votre page ? C'est normal ! Nous allons maintenant ajouter l'appel « Fetch ».
+
 #### Questions
 
 - À quoi correspond ```asset``` ?
 - À quoi correspond ```el: '.container',``` pourquoi est-ce très important ?
+
+### Récupérer les Todos
+
+Maintenant que nous avons la base de notre application, nous allons pouvoir compléter les « trous ». La première méthode à faire est la récupération de la liste.
+
+Cette méthode est ```list()```, pour l'instant elle ne comporte qu'un console.log. Nous allons la complèter pour ajouter un appel Ajax avec la méthode Fetch comme vu précédement.
+
+// Todo Ajouter suite TP.
