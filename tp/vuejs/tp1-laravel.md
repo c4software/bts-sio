@@ -185,6 +185,30 @@ Voilà ! VueJS est maintenant disponible dans votre projet.
 
 {% endreveal %}
 
+{% reveal text="Ajout **SANS** NPM" %}
+
+### Ajouter VueJS sans NPM
+
+NPM n'est pas la seul solution d'installer VueJS, si votre projet n'avais pas eu ```npm``` de configuré vous auriez pu simplement ajouter dans le header de votre site via une balise script :
+
+Via un CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+```
+
+En téléchargant la librairie :
+
+[Disponible ici](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include)
+
+### Questions
+
+- À votre avis, qu'elle solution est la meilleur ?
+- Pourquoi dans notre cas, j'ai privilégié ```npm``` ?
+- Quel sont les dangers du CDN ?
+
+{% endreveal %}
+
 ### Création d'un nouveau template
 
 Pour la démonstration nous allons créer un nouveau template, il sera ```@extends``` de ```template.blade.php``` que vous avez précédement créé.
