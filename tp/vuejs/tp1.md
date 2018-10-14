@@ -561,7 +561,7 @@ Quelques pistes pour allez plus loin dans le code :
 
 ### Ajouter des confirmations
 
- Ajout des confirmations avant les actions « marquer comme terminée » et l’action suppression.
+ Ajout des confirmations avant les actions « marquer comme terminé » et l’action suppression.
 
 ### Ajouter des règles de réécriture
 

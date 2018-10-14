@@ -599,3 +599,62 @@ let app = new Vue({
 });
 ```
 {% endreveal %}
+
+### Amelioration 1
+
+Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple [VueJS Dialog](https://godofbrowser.github.io/vuejs-dialog/).
+
+### Amélioration 2
+
+Re-formater le code pour créer une fonction permettant d'utiliser Fetch (et donc de ne pas avoir plusieurs fois la partie ```Fetch(…)``` dans votre code).
+
+### Amélioraton 3
+
+Afficher des messages d'erreurs en cas de ```catch``` lors des appels réseau.
+
+### Partager les TODOS au monde !
+
+Depuis quelques jours Chrome propose une nouvelle API nommée « Web Share Api », Cette API  permet de déclencher « le Partage » d’une informations en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
+
+```javascript
+if(navigator.share){}
+```
+
+[Voir le support de Share](https://caniuse.com/#search=Web%20Share%20Api)
+
+Mais comme nous sommes avec VueJS nous allons gérer ça avec le MVVM (Modèle Vue, Vue-Modèle), ça va nous permettre d’injecter une variable à la création de l’objet ```app``` pour connaitre si le partage est disponible. Exemple :
+
+```javascript
+var app = new Vue({
+  el: '.container',
+  created: function () {
+    console.log("Démarrage TODO-APP");
+  },
+  data: {
+      taches: [],
+      isShare: navigator.share?true:false
+  },
+  […]
+```
+
+Une fois fait, vous avez une variable ```isShare``` qui sera ```True``` Ou ```False``` en fonction du support du navigateur. Maintenant que le booléen est disponible vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
+
+```javascript
+[…]
+methods:{
+    share: function(todo){
+      navigator.share({
+        title: 'VueJS-Todo',
+        text: todo.text,
+        url: ""})
+        .then(function(){
+          // Afficher une confirmation
+        })
+        .catch(function(){
+          // Afficher une confirmation
+        })
+    },
+[…]
+```
+
+C’est à vous !
