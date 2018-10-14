@@ -49,7 +49,7 @@ Avant de commencer la partie code, voilà la liste des ```Routes``` -> ```Métho
 | /api/           | list()                |               | GET    |
 | /api/add        | add(Request $request) | Request       | POST   |
 | /api/done/{id}  | done($id)             | id            | PATCH  |
-| /api/delete/{id}| delete($id)           | id            | DELETE |
+| /api/delete/{id}| remove($id)           | id            | DELETE |
 
 🔥 Pour la suite vous référez à ce tableau pour les nom de méthode ainsi que les paramètres 🔥
 
@@ -118,7 +118,7 @@ class api extends Controller
     public function done($id){
     }
 
-    public function delete($id){
+    public function remove($id){
     }
 }
 ```
@@ -278,7 +278,7 @@ Même si pour l'instant nous n'avons pas encore fait le code pour appeler les AP
     <li class="list-group-item" v-for="todo in todos">
         <span>@{{ todo.texte }}</span>
         <div class="pull-right action">
-            <span v-if="todo.termine" class="btn btn-success"><i class="fas fa-check"></i></span>
+            <span v-if="todo.termine !== '1'" class="btn btn-success"><i class="fas fa-check"></i></span>
             <span v-else class="btn btn-danger"><i class="fas fa-trash"></i></span>
         </div>
     </li>
@@ -394,8 +394,8 @@ var app = new Vue({
             console.log("Récupération Todo depuis le serveur");
         },
         add: function(){},
-        done: function(){},
-        delete: function(){},
+        done: function(todo){},
+        delete: function(todo){},
     }
 })
 ```
@@ -490,3 +490,112 @@ Quelques explications :
 - Le code dans le ```then``` va :
   - Vider la saisie utilisateur.
   - Raffraichir la liste.
+
+🤓 Valider votre code en testant l'ajout d'une nouvelle TODO.
+
+### Marquer comme terminé
+
+Maintenant que nous pouvons ajouter, il faut pouvoir marquer comme « Terminer ». Nous allons donc devoir complèter le code de la méthode ```done(todo)```. Pour ça :
+
+- Ajouter une action ```v-on:click="done(todo)"``` sur le bon élément HTML.
+- Compléter le code de ```done(todo)``` avec le bon Appel Fetch
+
+#### Aide
+
+Votre API attend un appel de type ```PATCH``` :
+
+```js
+fetch('…', {method: "PATCH"})
+```
+
+Votre API attend le paramètre ```ID``` directement dans l'URL :
+
+```js
+fetch('api/done/' + todo.id, {method: "PATCH"})
+```
+
+Pensez à bien rafraichir la liste dans le ```then```.
+
+🔥 Prendre exemple sur le code précédent pour compléter la méthode ```done```
+
+### Suppression
+
+La logique pour la partie suppression va être identique à la partie ```done```. Je vous laisse la réaliser seul.
+
+#### Aide
+
+Votre API attend un appel de type ```PATCH``` :
+
+```js
+fetch('…', {method: "DELETE"})
+```
+
+Votre API attend le paramètre ```ID``` directement dans l'URL :
+
+```js
+fetch('api/delete/' + todo.id, {method: "DELETE"})
+```
+
+Pensez à bien rafraichir la liste dans le ```then```.
+
+### Et voilà !
+
+Vous avez fait le tour de la migration de votre version Laravel.
+
+{% reveal text="Voir le code complet" %}
+```js
+let app = new Vue({
+    el: '.container',
+    created: function () {
+        // Code appelé à la création de votre application
+        console.log("Démarrage TODO-APP");
+    },
+    data: function() {
+        return {
+            todos: [],
+            text: "",
+        }
+    },
+    beforeMount: function() {
+        // Code appelé juste avant l'affichage de votre application
+        this.list();
+    },
+    methods: {
+        list: function(){
+            fetch('api/', {method: "GET"})
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(response) {
+                    app.todos = response;
+                })
+                .catch(function(error) {
+                    console.log('Récupération impossible: ' + error.message);
+                });
+        },
+        add: function() {
+            let formData = new FormData();
+            formData.append("texte", app.text);
+
+            fetch('api/add', {method: "POST", body: formData})
+                .then(function () {
+                    app.text = ""; // On remet à Zéro l'input utilisateur
+                    app.list(); // On raffraîchit la liste.
+                });
+        },
+        done: function(todo){
+            fetch(`api/done/${todo.id}`, {method: "PATCH"})
+                .then(function(){
+                    app.list();
+                })
+        },
+        remove: function(todo){
+            fetch(`api/delete/${todo.id}`, {method: "DELETE"})
+                .then(function(){
+                    app.list();
+                })
+        },
+    }
+});
+```
+{% endreveal %}
