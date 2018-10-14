@@ -134,7 +134,7 @@ Dans le fichier ```routes/api.php``` ajouter le contenu suivant :
 
 ```php
 Route::get('/', "api@list")->name("api.list");
-Route::post('/add', "api@save")->name('api.save');
+Route::post('/add', "api@add")->name('api.add');
 Route::patch('/done/{id}', "api@done")->name('api.done');
 Route::delete('/delete/{id}', "api@delete")->name('api.delete');
 ```
@@ -274,21 +274,27 @@ public function homevue(){
 Même si pour l'instant nous n'avons pas encore fait le code pour appeler les API, ajouter le code HTML suivant après ```<!-- Liste des todos -->``` présent dans le fichier ```homevue.blade.php```:
 
 ```html
-  <ul class="list-group">
+<ul class="list-group pt-3">
     <li class="list-group-item" v-for="todo in todos">
-      <span>{{ todo.texte }}</span>
-      <div class="pull-right action">
-        <span v-if="todo.termine" class="btn btn-success"><i class="fas fa-check"></i></span>
-        <span v-else class="btn btn-danger"><i class="fas fa-trash"></i></span>
-      </div>
+        <span>@{{ todo.texte }}</span>
+        <div class="pull-right action">
+            <span v-if="todo.termine" class="btn btn-success"><i class="fas fa-check"></i></span>
+            <span v-else class="btn btn-danger"><i class="fas fa-trash"></i></span>
+        </div>
     </li>
-    <li v-else class="list-group-item text-center">C'est vide !</li>
-  </ul>
+    <li v-if="todos.length === 0" class="list-group-item text-center">C'est vide !</li>
+</ul>
 ```
 
 - Quels sont les éléments spécific à VueJS?
 
 🔥 Tester à nouveau, votre liste doit s'afficher… Mais pas de la façon attendu… C'est normal, nous devons maintenant écrire le code VueJS correspondant à votre application (à savoir Liste, Ajout, Marquer comme terminé, et supprimer)
+
+### @ ? Hey ! 
+
+- ```@``` À quoi correspond le ```@``` ?
+- Tenter de le retirer pour voir ce qui ce passe ?
+- Pourquoi ça ne fonctionne plus?
 
 ### Asynchrone
 
@@ -319,7 +325,7 @@ if(self.fetch) {
 Avant d'intégrer Fetch dans notre code client (le site web Javascript), nous allons le **TESTER** dans notre navigateur, voici un exemple de code :
 
 ```javascript
-fetch('api/liste', {method: "GET", credentials: 'same-origin'})
+fetch('api/', {method: "GET", credentials: 'same-origin'})
 .then(function(response){
   // On décode le JSON, et on continue
   return response.json();
@@ -374,7 +380,7 @@ var app = new Vue({
     },
     data: function() {
         return {
-            todo: [],
+            todos: [],
             text: "",
         }
     },
@@ -423,4 +429,64 @@ Maintenant que nous avons la base de notre application, nous allons pouvoir comp
 
 Cette méthode est ```list()```, pour l'instant elle ne comporte qu'un console.log. Nous allons la complèter pour ajouter un appel Ajax avec la méthode Fetch comme vu précédement.
 
-// Todo Ajouter suite TP.
+Les étapes vont être les suivantes :
+
+- Construction de l'appel réseau (ajax) via Fetch.
+- Mise en place de code à la place du ```console.log``` dans la méthode liste.
+- Tester
+
+1/ Appel réseau
+
+Nous allons donc devoir faire un appel réseau vers l'url ```api/```. L'appel est le même que le code précédement testé, pour rappel :
+
+```js
+fetch('api/', {method: "GET", credentials: 'same-origin'})
+.then(function(response){
+  return response.json();
+})
+.then(function(response) {
+  app.todos = response;
+})
+.catch(function(error) {
+  console.log('Récupération impossible: ' + error.message);
+});
+```
+
+2/ Remplacer le code de la méthode ```list``` par l'appel réseau
+3/ Recharger la page.
+4/ Valider le bon fonctionnement sur votre Page Web.
+
+#### Questions
+
+- À quoi fait référence ```app``` dans le code ```app.todos``` ?
+- Pourquoi plusieurs ```then``` ?
+- Dans quel cas pouvons nous passer dans le ```catch```?
+
+### Ajout d'une TODO
+
+Maintenant que notre liste est correctement construite, nous allons pouvoir faire la partie Ajout. Pour l'ajout la procédure va être la suivante :
+
+- Ajout de l'attribut ```v-on:keyup.enter="add"``` sur l'élément HTML ```class="form-control"``` du fichier ```resources/views/homevue.blade.php```.
+- Ajout d'un ```console.log(app.text)``` dans la méthode ```add``` du JS pour valider le bon fonctionnement.
+
+![Console.log Ajout](./ressources/consolelog.ajout.png)
+
+Bien ! Maintenant que votre ```console.log``` s'affiche nous allons pouvoir faire la partie appel Ajax. Pour rappel votre appel doit être du type ```POST```, nous allons donc devoir écrire un appel Ajax / Fetch également de type POST :
+
+```js
+let formData = new FormData();
+formData.append("texte", app.text);
+
+fetch('api/add', {method: "POST", body: formData})
+    .then(function () {
+        app.text = ""; // On remet à Zéro l'input utilisateur
+        app.list(); // On raffraîchit la liste.
+    });
+```
+
+Quelques explications :
+
+- Le formData va permettre d'envoyer des valeurs en ```POST``` à notre API.
+- Le code dans le ```then``` va :
+  - Vider la saisie utilisateur.
+  - Raffraichir la liste.
