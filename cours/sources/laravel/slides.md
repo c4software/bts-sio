@@ -108,6 +108,12 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## Architecture
 
+![MVC](./img/mvc-diagram.png)
+
+---
+
+## Architecture
+
 * **Model**: La base de données (ORM: Eloquent).
 * **Vue**: Gestion du HTML (Moteur de template : Blade).
 * **Controller**: Gestion des requêtes et génère le contenu.
