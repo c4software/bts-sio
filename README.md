@@ -31,10 +31,6 @@ et de réponse aux besoins d’évolution.
 - Répondre à une demande d’assistance.
 - Résoudre un incident.
 
-## Miroir
-
-L’ensemble des sources est également [disponible sur GitLab](https://gitlab.com/bts-sio-chevrollier/slam5).
-
 ## LICENSE
 
 Tous les fichiers sont sous license MIT.
