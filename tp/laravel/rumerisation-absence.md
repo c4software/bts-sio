@@ -72,15 +72,30 @@ Maintenant que vos migrations sont prêtes les complèter avec les champs vu ens
 🔥 Attention à bien définir les clefs étrangère.
 
 [Un peu de documentation…](https://laravel.com/docs/5.7/migrations)
-[Et les foreign keys](https://laravel.com/docs/5.7/migrations#foreign-key-constraints)
+[Et les foreigns keys](https://laravel.com/docs/5.7/migrations#foreign-key-constraints)
 
 ## Créer les routes
+
+Notre application va avoir différentes « route » ou lien :
+
+Public (sans authorisation) :
+
+- / => Le formulaire d'ajout (public)
+
+Admin (après connexion) :
+
+- /absences => Liste des absences.
+- /absence/{id}/confirmation => Confirmation qu'une absence est valide.
+
+Déclarer les routes dans le fichier ```web.php``` en les faisants pointer vers les bons contrôleur@methode
 
 ### Sécurité des routes
 
 ## Créer les contrôleur
 
 ## Créer les templates
+
+### Ajouter Bootstrap
 
 ### Le formulaire
 
