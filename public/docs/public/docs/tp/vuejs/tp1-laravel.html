@@ -1,0 +1,906 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Ajouter VueJS dans votre site Laravel · Cours BTS SIO Slam 5</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="tp1.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Aides mémoires
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../cheatsheets/git/">
+            
+                <a href="../../cheatsheets/git/">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../cheatsheets/cordova/">
+            
+                <a href="../../cheatsheets/cordova/">
+            
+                    
+                    Cordova
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../cheatsheets/docker/">
+            
+                <a href="../../cheatsheets/docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../cheatsheets/vuejs/">
+            
+                <a href="../../cheatsheets/vuejs/">
+            
+                    
+                    VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Initiation à Git
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=git">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../git_initiation/">
+            
+                <a href="../git_initiation/">
+            
+                    
+                    TP
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Git en groupe + GitLab
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlab">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../gitlab/">
+            
+                <a href="../gitlab/">
+            
+                    
+                    Git en groupe + GitLab
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Programmation sécurisée avec OWASP
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../securite/">
+            
+                <a href="../securite/">
+            
+                    
+                    Tentatives et injections
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Laravel
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../laravel/introduction.html">
+            
+                <a href="../laravel/introduction.html">
+            
+                    
+                    Installation de Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../laravel/application_todo_list.html">
+            
+                <a href="../laravel/application_todo_list.html">
+            
+                    
+                    Application/Site web Todo List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../laravel/creation_api.html">
+            
+                <a href="../laravel/creation_api.html">
+            
+                    
+                    Transformer la Todo List en API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.2" data-path="tp1-laravel.html">
+            
+                <a href="tp1-laravel.html">
+            
+                    
+                    Ajouter VueJS dans votre site Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="tp1.html">
+            
+                <a href="tp1.html">
+            
+                    
+                    Ajouter VueJS dans un site existant
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="tp2.html">
+            
+                <a href="tp2.html">
+            
+                    
+                    Réaliser une application avec VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Cordova + VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/cordova/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../cordova/decouverte.html">
+            
+                <a href="../cordova/decouverte.html">
+            
+                    
+                    Découverte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../cordova/vuejs_cordova.html">
+            
+                <a href="../cordova/vuejs_cordova.html">
+            
+                    
+                    Projet Cordova + VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Docker
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/docker/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../docker/introduction.html">
+            
+                <a href="../docker/introduction.html">
+            
+                    
+                    Première approche
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../docker/dockerfile.html">
+            
+                <a href="../docker/dockerfile.html">
+            
+                    
+                    Dockerfile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../docker/docker_compose.html">
+            
+                <a href="../docker/docker_compose.html">
+            
+                    
+                    Docker Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    GitLab-CI
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlabci">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../ci/pages.html">
+            
+                <a href="../ci/pages.html">
+            
+                    
+                    Utiliser Gitlab Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../ci/ci-hybride.html">
+            
+                <a href="../ci/ci-hybride.html">
+            
+                    
+                    App Hybride et Gitlab-CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Python : Framework Flask
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/python/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../python/flask.html">
+            
+                <a href="../python/flask.html">
+            
+                    
+                    Installation de Python et Flask
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../python/flask_todolist_api.html">
+            
+                <a href="../python/flask_todolist_api.html">
+            
+                    
+                    Réécriture des API de la TODO List
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Ajouter VueJS dans votre site Laravel</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p><em>Last modified: Thu Sep 27 2018 09:04:40 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+</blockquote>
+<h1 id="ajouter-vuejs-dans-un-site-existant">Ajouter VueJS dans un site existant</h1>
+<p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer &#xE9;tait r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
+<p>L&#x2019;application existante est une &#xAB; TodoList &#xBB; cod&#xE9;e avec le Framework Laravel.</p>
+<h1 id="cr&#xE9;ation-des-api">Cr&#xE9;ation des API</h1>
+<p>Dans ce TP nous allons transformer &#xAB; enti&#xE8;rement &#xBB; votre ancien site cod&#xE9; en Laravel par &#xAB; un &#xE9;quivalent &#xBB; qui va fonctionner avec des API.</p>
+<p>&#x1F913; Nous n&apos;allons donc plus utiliser la puissance de Blade, mais celle de VueJS &#x1F680;.</p>
+<h2 id="cr&#xE9;ation-des-api">Cr&#xE9;ation des API</h2>
+<p>La &#xAB; nouvelle version &#xBB; de notre page, va utiliser des API (et de l&apos;ajax), &#xE7;a va fondamentalement changer le fonctionnement de votre application. Il faut donc dans un premier temps cr&#xE9;er les API qui seront n&#xE9;cessaire au bon fonctionnement (asynchrone) de votre page Web.</p>
+<ul>
+<li>Lister les &#xE9;l&#xE9;ments dans la TodoList.</li>
+<li>Ajouter un nouvel &#xE9;l&#xE9;ment dans la TodoList.</li>
+<li>Marquer un &#xE9;l&#xE9;ment comme termin&#xE9;.</li>
+<li>Supprimer un &#xE9;l&#xE9;ment.</li>
+</ul>
+<p>&#x270B; En tant que d&#xE9;veloppeur vous devez &#xEA;tre malin (et f&#xE9;n&#xE9;ant&#x2026;). Pour &#xE9;crire les autres API ne tenter pas de r&#xE9;inventer la poudre, nous allons utiliser le m&#xEA;me code que le controlleur actuel&#x2026;</p>
+<p>Les seules diff&#xE9;rence seront :</p>
+<ul>
+<li><code>view([&#x2026;], [&#x2026;]Todo::all()[&#x2026;])</code> remplac&#xE9; par <code>return response()-&gt;json(Todo::all());</code></li>
+<li>Et pour une simple r&#xE9;ponse de r&#xE9;ussite (exemple remove ou done) <code>return response()-&gt;json(&quot;success&quot;)</code></li>
+</ul>
+<h3 id="cr&#xE9;ation-du-contr&#xF4;leur-pour-les-api">Cr&#xE9;ation du contr&#xF4;leur pour les API</h3>
+<p>&#x2026; Ajout fichier, Route, retour json &#x2026;</p>
+<h3 id="la-liste">La liste</h3>
+<h3 id="lajout">L&apos;ajout</h3>
+<h3 id="marquer-comme-termin&#xE9;">Marquer comme termin&#xE9;</h3>
+<h3 id="suppression">Suppression</h3>
+<h3 id="validation-des-api">Validation des API</h3>
+<p>Valider que vos API fonctionne correctement gr&#xE2;ce &#xE0; l&apos;outil <a href="https://www.getpostman.com/" target="_blank">Postman</a>.</p>
+<h2 id="ajouter-vuejs-dans-votre-projet">Ajouter VueJS dans votre projet</h2>
+<p>&#x2026; Import librairie &#x2026;</p>
+<h3 id="cr&#xE9;ation-dun-nouveau-template">Cr&#xE9;ation d&apos;un nouveau template</h3>
+<p>&#x2026; Sans blade &#x2026;</p>
+<h3 id="remplacer-la-route-de-base">Remplacer la route de base</h3>
+<p>&#x2026; &#xC9;dition &#x2026;</p>
+<h3 id="asynchrone">Asynchrone?</h3>
+<p>L&#x2019;ensemble de l&#x2019;application va devenir &#xAB; asynchrone &#xBB;, vous allez vite vous rendre compte que la migration va n&#xE9;cessiter quelques appels en Ajax. Pour faire nos appels nous utiliserons l&#x2019;API &#xAB; Fetch &#xBB; des navigateurs, celle-ci est int&#xE9;gr&#xE9;e dans l&#x2019;ensemble des navigateurs r&#xE9;cents, le bon r&#xE9;flexe est quand m&#xEA;me d&#x2019;allez voir le support de Fetch sur  (<a href="https://caniuse.com/#search=fetch" target="_blank">Can i use</a>).</p>
+<h3 id="d&#xE9;couverte-de-fetch">D&#xE9;couverte de Fetch</h3>
+<p>L&apos;API Fetch fournit une interface JavaScript pour l&apos;acc&#xE8;s et la manipulation des parties de la pipeline HTTP, comme les requ&#xEA;tes et les r&#xE9;ponses. Cela fournit aussi une m&#xE9;thode globale fetch() qui procure un moyen facile et logique de r&#xE9;cup&#xE9;rer des ressources &#xE0; travers le r&#xE9;seau de mani&#xE8;re asynchrone.</p>
+<p>Ce genre de fonctionnalit&#xE9; &#xE9;tait auparavant r&#xE9;alis&#xE9; avec XMLHttpRequest. Fetch fournit une meilleure alternative qui peut &#xEA;tre utilis&#xE9;e facilement par d&#x2019;autres technologies comme Service Workers. Fetch fournit aussi un endroit unique et logique pour la d&#xE9;finition d&apos;autres concepts li&#xE9;s &#xE0; HTTP comme CORS et les extensions d&apos;HTTP.</p>
+<p>(Source: MDM)</p>
+<p>Le support de l&apos;API Fetch peut &#xEA;tre d&#xE9;tect&#xE9; en v&#xE9;rifiant l&apos;existance de Headers, Request, Response ou fetch() sur la port&#xE9;e de Window ou de Worker.
+Par exemple, vous pouvez faire cela dans votre script:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span>(self.fetch) {
+  <span class="hljs-comment">// Le support de Fetch est pr&#xE9;sent</span>
+}<span class="hljs-keyword">else</span>{
+  <span class="hljs-comment">// G&#xE9;rer le cas du non support de fetch.</span>
+  <span class="hljs-comment">// Pour r&#xE9;duire le nombre de cas possible vous pouvez ajouter : https://github.github.io/fetch/ &#xE0; votre projet</span>
+}
+</code></pre>
+<h3 id="tester-fetch">Tester Fetch</h3>
+<p>Avant d&apos;int&#xE9;grer Fetch dans notre code client (le site web Javascript), nous allons le <strong>TESTER</strong> dans notre navigateur, voici un exemple de code :</p>
+<pre><code class="lang-javascript">fetch(<span class="hljs-string">&apos;api/liste&apos;</span>, {method: <span class="hljs-string">&quot;GET&quot;</span>, credentials: <span class="hljs-string">&apos;same-origin&apos;</span>})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-comment">// On d&#xE9;code le JSON, et on continue</span>
+  <span class="hljs-keyword">return</span> response.json();
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  <span class="hljs-comment">// Votre retour est ICI</span>
+  <span class="hljs-built_in">console</span>.log(response);
+})
+.catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;R&#xE9;cup&#xE9;ration impossible: &apos;</span> + error.message);
+});
+</code></pre>
+<p>&#x26A0;&#xFE0F; Que veux dire <code>credentials: &apos;same-origin&apos;</code>?</p>
+<p>Par d&#xE9;faut, Fetch n&#x2019;utilise pas les Cookies, vous pouvez forcer l&#x2019;utilisation des cookies en indiquant <code>credentials: &apos;same-origin&apos;</code>. Si vous ne le faites pas vos <code>$_SESSION</code> ne seront pas sauvegard&#xE9;es &#x26A0;&#xFE0F;</p>
+<h4 id="comment-tester-">Comment tester ?</h4>
+<p>Pour valider le bon fonctionnement nous allons utiliser la &#xAB; Console d&#xE9;veloppeur &#xBB; de votre navigateur.</p>
+<p>Fetch est une librairie tr&#xE8;s compl&#xE8;te, pour aller plus loin dans l&#x2019;utilisation de Fetch, je vous recommande la lecture de <a href="https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">la documentation compl&#xE8;te (gestion des headers, param&#xE8;tres, mode, etc)</a></p>
+<h2 id="le-code-javascript">Le code javascript</h2>
+<p>Maintenant que nos API sont termin&#xE9;s et que notre appels via Fetch fonctionne nous allons &#xE9;crire le code Javascript (VueJS) qui va g&#xE8;rer notre application.</p>
+<p>Nous allons utiliser massivement la gestion d&apos;&#xE9;v&#xE8;nement de VueJS, Pour rappel n&#x2019;h&#xE9;sitez pas &#xE0; consulter le <a href="https://vuejs.org/images/lifecycle.png" target="_blank">cycle de vie des composants</a>)</p>
+<h3 id="la-liste">La liste</h3>
+<p>La liste des t&#xE2;ches va &#xEA;tre la premi&#xE8;re chose que nous allons charger. Cette &#xAB; liste &#xBB; sera charg&#xE9; lors de l&apos;&#xE9;v&#xE9;nement <code>beforeMount</code>.</p>
+<h3 id="les-actions">Les actions</h3>
+<p>Les actions (markAsDone, delete, &#x2026;) seront appel&#xE9;s lors de la vie de notre application, elle vont &#xEA;tre d&#xE9;clar&#xE9; dans la partie <code>methods</code> de l&apos;objet VueJS et seront appel&#xE9; via des <code>v-on:&#x2026;</code> de votre code HTML.</p>
+<p>Complexe ? Pas tant que &#xE7;a&#x2026; Vous allez voir que c&apos;est beaucoup plus simple que du code Javascript classique.</p>
+<h2 id="structure-de-base">Structure de base</h2>
+<p>Cr&#xE9;er un nouveau fichier nomm&#xE9; <code>main.js</code></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="tp1.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Ajouter VueJS dans un site existant">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-laravel.md","mtime":"2018-09-27T07:04:40.260Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-28T18:19:18.423Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
