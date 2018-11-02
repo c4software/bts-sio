@@ -1,0 +1,1346 @@
+
+<!DOCTYPE HTML>
+<html lang="fr" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Ajouter VueJS dans un site existant · Cours BTS SIO Slam 5</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-click-reveal/click_reveal.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="tp2.html" />
+    
+    
+    <link rel="prev" href="tp1-laravel.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Tapez pour rechercher" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Aides mémoires
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../cheatsheets/git/">
+            
+                <a href="../../cheatsheets/git/">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../cheatsheets/cordova/">
+            
+                <a href="../../cheatsheets/cordova/">
+            
+                    
+                    Cordova
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../cheatsheets/docker/">
+            
+                <a href="../../cheatsheets/docker/">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../cheatsheets/vuejs/">
+            
+                <a href="../../cheatsheets/vuejs/">
+            
+                    
+                    VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Initiation à Git
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=git">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../git_initiation/">
+            
+                <a href="../git_initiation/">
+            
+                    
+                    TP
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    Git en groupe + GitLab
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlab">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../gitlab/">
+            
+                <a href="../gitlab/">
+            
+                    
+                    Git en groupe + GitLab
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    Programmation sécurisée avec OWASP
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../securite/">
+            
+                <a href="../securite/">
+            
+                    
+                    Tentatives et injections
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    Laravel
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../laravel/introduction.html">
+            
+                <a href="../laravel/introduction.html">
+            
+                    
+                    Installation de Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../laravel/application_todo_list.html">
+            
+                <a href="../laravel/application_todo_list.html">
+            
+                    
+                    Application/Site web Todo List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../laravel/creation_api.html">
+            
+                <a href="../laravel/creation_api.html">
+            
+                    
+                    Transformer la Todo List en API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="tp1-laravel.html">
+            
+                <a href="tp1-laravel.html">
+            
+                    
+                    Ajouter VueJS dans votre site Laravel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.3" data-path="tp1.html">
+            
+                <a href="tp1.html">
+            
+                    
+                    Ajouter VueJS dans un site existant
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="tp2.html">
+            
+                <a href="tp2.html">
+            
+                    
+                    Réaliser une application avec VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    Cordova + VueJS
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/cordova/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../cordova/decouverte.html">
+            
+                <a href="../cordova/decouverte.html">
+            
+                    
+                    Découverte
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../cordova/vuejs_cordova.html">
+            
+                <a href="../cordova/vuejs_cordova.html">
+            
+                    
+                    Projet Cordova + VueJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    Docker
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/docker/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../docker/introduction.html">
+            
+                <a href="../docker/introduction.html">
+            
+                    
+                    Première approche
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../docker/dockerfile.html">
+            
+                <a href="../docker/dockerfile.html">
+            
+                    
+                    Dockerfile
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../docker/docker_compose.html">
+            
+                <a href="../docker/docker_compose.html">
+            
+                    
+                    Docker Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    GitLab-CI
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" >
+            
+                <a target="_blank" href="https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlabci">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../ci/pages.html">
+            
+                <a href="../ci/pages.html">
+            
+                    
+                    Utiliser Gitlab Pages
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../ci/ci-hybride.html">
+            
+                <a href="../ci/ci-hybride.html">
+            
+                    
+                    App Hybride et Gitlab-CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    Python : Framework Flask
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" >
+            
+                <a target="_blank" href="https://rawgit.com/c4software/bts/master/cours/python/">
+            
+                    
+                    Slides
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../python/flask.html">
+            
+                <a href="../python/flask.html">
+            
+                    
+                    Installation de Python et Flask
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../python/flask_todolist_api.html">
+            
+                <a href="../python/flask_todolist_api.html">
+            
+                    
+                    Réécriture des API de la TODO List
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Publié avec GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Ajouter VueJS dans un site existant</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p><em>Last modified: Tue Sep 25 2018 22:13:12 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+</blockquote>
+<h1 id="ajouter-vuejs-dans-une-application-existante">Ajouter VueJS dans une application existante</h1>
+<p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer &#xE9;tait r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
+<p>L&#x2019;application existante est une &#xAB; todo liste &#xBB; cod&#xE9;e en PHP + HTML.</p>
+<h2 id="r&#xE9;cup&#xE9;ration-et-installation-des-sources">R&#xE9;cup&#xE9;ration et installation des sources</h2>
+<p>Avant de commencer &#xE0; travailler, il faut r&#xE9;cup&#xE9;rer le code source de l&#x2019;application &#xE9;xistante. Celui-ci est disponible sur le groupe &#xAB; Gitlab &#xBB; du BTS-SIO. Le projet est disponible sur Github : <a href="https://github.com/c4software/php-todo/archive/v1.1.zip" target="_blank">T&#xE9;l&#xE9;charger les sources</a></p>
+<ul>
+<li>Faire &#xAB; fonctionner &#xBB; l&#x2019;application en locale, une fois install&#xE9;e, celle-ci doit ressembler &#xE0; :</li>
+</ul>
+<p><img src="https://github.com/c4software/php-todo/raw/master/sample.png" alt="Exemple"></p>
+<ul>
+<li>&#xC9;tudier le fonctionnement du code source actuel. (cr&#xE9;er des t&#xE2;ches, etc&#x2026;)</li>
+</ul>
+<h2 id="liste-des-fonctionnalit&#xE9;s">Liste des fonctionnalit&#xE9;s</h2>
+<p>Voil&#xE0; la liste des fonctionnalit&#xE9;s de l&#x2019;application existante :</p>
+<ul>
+<li>Liste des t&#xE2;ches.</li>
+<li>Ajout de t&#xE2;che.</li>
+<li>Suppression de t&#xE2;che.</li>
+<li>Marquer comme termin&#xE9; une t&#xE2;che.</li>
+</ul>
+<h2 id="stockage">Stockage</h2>
+<p>Lors de votre &#xE9;tude du code, vous avez du vous rendre compte que l&#x2019;application utilisait la variable <code>$_SESSION</code> pour stocker les &#xAB; t&#xE2;ches &#xBB;.</p>
+<p>La SESSION &#xE9;tant non persistante, dans du vrai code il ne faut en <code>aucun cas</code> stocker des donn&#xE9;es comme des t&#xE2;ches dedans (au risque de tout perdre&#x2026;).</p>
+<p>&#x1F50E; Au passage, regarder le fonctionnement de la SESSION en utilisant plusieurs navigateurs.</p>
+<h2 id="moderniser-avec-vuejs">Moderniser avec VueJS</h2>
+<p>Dans ce TP nous allons parcourir les diff&#xE9;rentes &#xE9;tapes de la migration de l&#x2019;application (site web) &#xAB; classique &#xBB; en version &#xAB; moderne &#xBB; &#xE0; savoir avec VueJS</p>
+<h2 id="cr&#xE9;ation-des-api">Cr&#xE9;ation des API</h2>
+<p>Quand on r&#xE9;alise une application &#xAB; moderne &#xBB;, il est tr&#xE8;s difficile d&#x2019;&#xE9;chapper au client-serveur. Dans notre cas la partie serveur va-&#xEA;tre r&#xE9;alis&#xE9;e en PHP, mais il est possible de la faire dans n&#x2019;importe quel language. En entreprise vous serez souvent confront&#xE9; &#xE0; du PHP/Java/Python/RoR. Mais la liste est infinie. Il est m&#xEA;me possible de faire des API en Bash&#x2026; Bref le choix est infini.</p>
+<h3 id="les-api">Les API</h3>
+<p>Notre cas &#xE9;tant simple, chaque API sera en r&#xE9;alit&#xE9; un fichier PHP qui se chargera de faire l&#x2019;action voulue. Exemple :</p>
+<ul>
+<li>liste.php</li>
+<li>creation.php</li>
+<li>suppression.php</li>
+<li>terminer.php</li>
+</ul>
+<p>Dans un nouveau dossier (version VueJS du site Web), ajouter un dossier <code>api</code> puis cr&#xE9;er les <code>4</code> fichiers dans le dossier, nous les completerons dans la suite du TP.</p>
+<h3 id="lapi-pour-lister-les-t&#xE2;ches--listephp">L&#x2019;API pour lister les t&#xE2;ches : liste.php</h3>
+<p>L&#x2019;API &#xAB; liste &#xBB;, doit retourn&#xE9; un JSON. Le JSON retourn&#xE9; est une repr&#xE9;sentation au format texte des valeurs contenues dans la variable <code>$_SESSION[&quot;todos&quot;]</code>.</p>
+<p>Exemple de retour :</p>
+<pre><code class="lang-JSON">[
+  {<span class="hljs-string">&quot;contenu&quot;</span>: <span class="hljs-string">&quot;D&#xE9;mo&quot;</span>, <span class="hljs-string">&quot;termine&quot;</span>: <span class="hljs-literal">true</span>},
+  {<span class="hljs-string">&quot;contenu&quot;</span>: <span class="hljs-string">&quot;Exemple&quot;</span>, <span class="hljs-string">&quot;termine&quot;</span>: <span class="hljs-literal">false</span>}
+]
+</code></pre>
+<p>Voil&#xE0; un exemple de code pour r&#xE9;aliser un fichier JSON en PHP :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+  session_start();
+  header(<span class="hljs-string">&quot;content-type: application/json&quot;</span>);
+  <span class="hljs-comment">// V&#xE9;rifier si en $_SESSION[&quot;todos&quot;] est bien un tableau</span>
+  <span class="hljs-keyword">if</span>(is_array($_SESSION[<span class="hljs-string">&quot;todos&quot;</span>])){
+    <span class="hljs-keyword">echo</span> json_encode($_SESSION[<span class="hljs-string">&quot;todos&quot;</span>]);
+  }<span class="hljs-keyword">else</span>{
+    <span class="hljs-keyword">echo</span> json_encode(<span class="hljs-keyword">array</span>());
+  }
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+<p>Rappel: Avant de pouvoir utiliser la session vous devez faire un <code>session_start();</code></p>
+<p>C&#x2019;est &#xE0; vous, r&#xE9;aliser votre premi&#xE8;re API.</p>
+<h3 id="comment-proc&#xE9;der-pour-les-prochaines-api">Comment proc&#xE9;der pour les prochaines API</h3>
+<p>&#x270B; En tant que d&#xE9;veloppeur vous devez &#xEA;tre malin (et f&#xE9;n&#xE9;ant&#x2026;). Pour &#xE9;crire les autres API ne tenter pas de r&#xE9;inventer la poudre, utiliser les exemples fourni dans le code actuel (dans le dossier <code>actions</code> par exemple).</p>
+<h3 id="lapi-de-cr&#xE9;ation-creationphp">L&#x2019;API de cr&#xE9;ation: creation.php</h3>
+<p>L&#x2019;API &#xAB; creation.php &#xBB;, va permettre la cr&#xE9;ation de nouvelles &#xAB; t&#xE2;ches &#xBB;, une fois l&#x2019;ajout r&#xE9;alis&#xE9;, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement s&#x2019;est bien pass&#xE9;. Cette API ne doit fonctionner qu&#x2019;en POST.</p>
+<p>Param&#xE8;tre d&#x2019;entr&#xE9; :</p>
+<table>
+<thead>
+<tr>
+<th>Nom</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:right">M&#xE9;thod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>texte</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">POST</td>
+</tr>
+</tbody>
+</table>
+<p>Voici un exemple de code PHP :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+session_start();
+header(<span class="hljs-string">&quot;content-type: application/json&quot;</span>);
+
+<span class="hljs-comment">// Dans le cadre du traitement, v&#xE9;rifier si $_SESSION[&quot;todos&quot;] est bien un tableau (is_array&#x2026;)</span>
+<span class="hljs-keyword">if</span>(!<span class="hljs-keyword">isset</span>($_SESSION[<span class="hljs-string">&quot;todos&quot;</span>]) || !is_array($_SESSION[<span class="hljs-string">&quot;todos&quot;</span>])){
+  $_SESSION[<span class="hljs-string">&quot;todos&quot;</span>] = <span class="hljs-keyword">array</span>();
+}
+
+<span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>($_POST[<span class="hljs-string">&quot;texte&quot;</span>]) &amp;&amp; $_POST[<span class="hljs-string">&quot;texte&quot;</span>] != <span class="hljs-string">&quot;&quot;</span>){
+  $todo = <span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;id&quot;</span> =&gt; uniqid(), <span class="hljs-string">&quot;texte&quot;</span> =&gt; $_POST[<span class="hljs-string">&quot;texte&quot;</span>], <span class="hljs-string">&quot;date&quot;</span> =&gt; time(), <span class="hljs-string">&quot;termine&quot;</span> =&gt; <span class="hljs-keyword">false</span>);
+  <span class="hljs-comment">// Sauvegarder dans la Session.</span>
+  $_SESSION[<span class="hljs-string">&quot;todos&quot;</span>][$todo[<span class="hljs-string">&quot;id&quot;</span>]] = $todo;
+  <span class="hljs-comment">// Afficher un JSON</span>
+  <span class="hljs-keyword">echo</span> json_encode(<span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;success&quot;</span> =&gt; <span class="hljs-keyword">true</span>));
+}<span class="hljs-keyword">else</span>{
+  <span class="hljs-keyword">echo</span> json_encode(<span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;success&quot;</span> =&gt; <span class="hljs-keyword">false</span>));
+}
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+<p>Retour :</p>
+<p>Par exemple :</p>
+<pre><code class="lang-json">{<span class="hljs-string">&quot;success&quot;</span>: <span class="hljs-literal">true</span>}
+</code></pre>
+<p>Vous pouvez &#xE9;galement utiliser les codes de retour HTTP pour indique l&#x2019;&#xE9;tat du r&#xE9;sultat. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" target="_blank">Documentation</a></p>
+<h3 id="lapi-pour-marquer-une-t&#xE2;che-comme-termin&#xE9;e--terminerphp">L&#x2019;API pour marquer une t&#xE2;che comme termin&#xE9;e : terminer.php</h3>
+<p>L&#x2019;API &#xAB; terminer.php &#xBB; va changer l&#x2019;&#xE9;tat du flag &#xAB; termine &#xBB;. Vous devez retourner un JSON permettant &#xE0; votre future application de s&#x2019;avoir si le traitement c&#x2019;est bien d&#xE9;roul&#xE9;.</p>
+<p>Param&#xE8;tre d&#x2019;entr&#xE9; :</p>
+<table>
+<thead>
+<tr>
+<th>Nom</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:right">M&#xE9;thod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">GET</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lapi-de-suppression--suppressionphp">L&#x2019;API de suppression : suppression.php</h3>
+<p>L&#x2019;API &#xAB; suppression &#xBB; va permettre la suppression de la &#xAB; t&#xE2;che &#xBB; pass&#xE9;e en param&#xE8;tre, <strong><em>uniquement</em></strong> les t&#xE2;ches dont le parametre <code>termine == true</code> peuvent &#xEA;tre termin&#xE9;e, dans tous les cas l&#x2019;API doit retourner un JSON permettant de savoir dans votre application si le traitement c&#x2019;est bien pass&#xE9;. L&#x2019;API doit fonctionner en GET et en POST.</p>
+<p>Contraintes :</p>
+<ul>
+<li>L&#x2019;API doit fonctionner en GET et en POST.</li>
+<li>Il est impossible de supprimer une t&#xE2;che non termin&#xE9;e. <code>termine == true</code></li>
+</ul>
+<p>Param&#xE8;tre d&#x2019;entr&#xE9; :</p>
+<table>
+<thead>
+<tr>
+<th>Nom</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:right">M&#xE9;thod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td style="text-align:center">string</td>
+<td style="text-align:right">GET</td>
+</tr>
+</tbody>
+</table>
+<p>Par exemple :</p>
+<pre><code class="lang-json">{<span class="hljs-string">&quot;success&quot;</span>: <span class="hljs-literal">true</span>}
+</code></pre>
+<h3 id="valider-le-fonctionnement--postman">Valider le fonctionnement : Postman</h3>
+<p>Pour tester vos traitements, vous avez la possibilit&#xE9; d&#x2019;utiliser le logiciel PostMan. PostMan va vous permettre de tester vos API simplement avec une interface Graphique.</p>
+<p>T&#xE9;l&#xE9;charger le <a href="https://www.getpostman.com/" target="_blank">ici</a></p>
+<p>Une fois install&#xE9;, tester les appels &#xE0; vos APIs pour valider le bon fonctionnements</p>
+<ul>
+<li>Valider le fonctionnement &#xE0; chaque &#xE9;tape (Cr&#xE9;ation, liste, terminer, suppression).</li>
+</ul>
+<h4 id="pour-lapi-cr&#xE9;ation">Pour l&#x2019;API cr&#xE9;ation</h4>
+<p>Petite subtilit&#xE9;, pour l&#x2019;API de cr&#xE9;ation vous devez faire une requ&#xEA;te en POST. Vous devez donc r&#xE9;gler PostMan comme &#xE7;a :</p>
+<p><img src="ressources/postman.png" alt="PostMan D&#xE9;mo configuration Post"></p>
+<h4 id="pour-les-autres-api">Pour les autres API</h4>
+<p>Pour les autres API (sauf liste), vous allez devoir envoyer un <code>id</code> en param&#xE8;tre, avec PostMan c&#x2019;est simple, voil&#xE0; la configuration que vous allez devoir faire :</p>
+<p><img src="ressources/postman_get.png" alt="Postman Demo GET"></p>
+<h3 id="optimisation-du-code">Optimisation du code</h3>
+<p>Apr&#xE8;s avoir r&#xE9;alis&#xE9; vos 4 API, vous devez certainement avoir du code &#xAB; dupliqu&#xE9; &#xBB;. Modifier vos API pour cr&#xE9;er des fonctions &#xAB; utilitaires &#xBB; permettant de r&#xE9;duire la duplication de code.</p>
+<ul>
+<li>Comment proc&#xE9;dez-vous ?</li>
+<li>Tester le fonctionnement &#xE0; nouveau.</li>
+</ul>
+<h2 id="int&#xE9;gration-de-vuejs">Int&#xE9;gration de VueJS</h2>
+<p>Maintenant que nous avons cr&#xE9;&#xE9; les API nous allons pouvoir nous int&#xE9;r&#xE9;sser &#xE0; la partie &#xAB; J&#x2019;int&#xE9;gre VueJS &#xBB;.</p>
+<p>Le d&#xE9;roulement des prochainse &#xE9;tapes va &#xEA;tre le suivant :</p>
+<ul>
+<li>Int&#xE9;grer la librairie VueJS dans le code existant.</li>
+<li>Cr&#xE9;er &#xAB; un composant / objet &#xBB; global qui va gerer l&#x2019;application.</li>
+<li>&#xAB; Convertir &#xBB; le code existant en code &#xAB; VueJS &#xBB; (le Foreach par exemple).</li>
+</ul>
+<p>Ne vous inquietez pas, tout est d&#xE9;taill&#xE9; dans les prochaines &#xE9;tapes :</p>
+<p>Pour r&#xE9;aliser la suite du TP, nous allons avoir besoin des ressources suivantes :</p>
+<ul>
+<li><a href="https://vuejs.org" target="_blank">VueJS</a></li>
+<li><a href="https://caniuse.com" target="_blank">CanIUse</a></li>
+</ul>
+<h3 id="cr&#xE9;ation-de-la-structure-de-&#xAB;-futur-&#xBB;-projet">Cr&#xE9;ation de la structure de &#xAB; futur &#xBB; projet</h3>
+<p>Maintenant que nous avons les API nous allons pouvoir cr&#xE9;er la structure de la &#xAB; V2 &#xBB;. La suite du TP va d&#xE9;tailler le processus mais voil&#xE0; le rendu du projet que vous allez obtenir:</p>
+<p><img src="ressources/projet_migration.png" alt="Structure"></p>
+<p>Vous pouvez d&#xE8;s &#xE0; pr&#xE9;sent d&#xE9;placer les diff&#xE9;rents fichiers, pour obtenir la m&#xEA;me chose (surtout pour le dossier <code>public</code>)</p>
+<h3 id="conversion-du-template-existant">Conversion du template existant</h3>
+<p>La premi&#xE8;re &#xE9;tape est de convertir le fichier <code>index.php</code>. Notre application 2.0, ne sera plus une application PHP classique, mais une application reposant sur un mod&#xE8;le Client &lt;-&gt; Serveur. Pour &#xE7;a vous devez proc&#xE9;der &#xE0; quelques ajustement dans le site Internet :</p>
+<ul>
+<li>Supprimer le fichier index.php (il n&#x2019;est plus n&#xE9;c&#xE9;ssaire).</li>
+<li>D&#xE9;placer le template (dans le dossier template &#xE0; la racine).</li>
+<li>Renommer le template que vous avez d&#xE9;plac&#xE9; en &#xAB; index.html &#xBB;, &#xE7;a va &#xEA;tre la base de notre application.</li>
+</ul>
+<h3 id="ajout-de-la-librairie-vuejs">Ajout de la librairie VueJS</h3>
+<p>L&#x2019;ajout de la librairie VueJS est simple, il suffit d&#x2019;ajouter dans le &#xAB; head &#xBB; du index.html :</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://unpkg.com/vue&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>Valider le fonctionnement gr&#xE2;ce &#xE0; la &#xAB; Console de D&#xE9;veloppement &#xBB; de votre Navigateur (Touche F12 en g&#xE9;n&#xE9;ral).</p>
+<p>&#x26A0;&#xFE0F; Dans une optique d&#xE9;veloppement s&#xE9;curis&#xE9;, il est pr&#xE9;f&#xE9;rable d&#x2019;int&#xE9;grer VueJS dans vos sources plut&#xF4;t que de &#xAB; linker &#xBB; directement depuis Internet.</p>
+<ul>
+<li>Comment validez-vous le fonctionnement ?</li>
+<li>Changer les sources, pour int&#xE9;grer la librairie en local.</li>
+</ul>
+<h4 id="ajouter-un-script-pour-le-js">Ajouter un script pour le JS</h4>
+<p>Ajouter avant la balise <code>&lt;/body&gt;</code> de l&#x2019;index.html un nouveau script <code>main.js</code>, il contiendra le code n&#xE9;c&#xE9;ssaire au fonctionnement de notre site Web.</p>
+<h4 id="d&#xE9;clarer-votre-premier-composant">D&#xE9;clarer votre premier composant</h4>
+<p>Pour d&#xE9;clarer votre premier composant / objet VueJS, c&#x2019;est simple il suffit de mettre dans le fichier <code>main.js</code> le code suivant :</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;D&#xE9;marrage TODO-APP&quot;</span>);
+  }
+})
+</code></pre>
+<ul>
+<li>V&#xE9;rifier le bon fonctionnement en regardant la &#xAB; Console de D&#xE9;veloppement &#xBB;. Le &#xAB; log &#xBB; est-il visible ?</li>
+</ul>
+<h3 id="migration-des-fonctionnalit&#xE9;s">Migration des fonctionnalit&#xE9;s</h3>
+<p>Maintenant que nous avons notre base, nous allons pouvoir convertir l&#x2019;application pour cela nous allons proc&#xE9;der par &#xE9;tape, chaque &#xE9;tape est directement li&#xE9;e aux diff&#xE9;rentes API que vous avez pu pr&#xE9;c&#xE9;demment &#xE9;crite.</p>
+<p>L&#x2019;ensemble de l&#x2019;application va devenir &#xAB; asynchrone &#xBB;, vous allez vite vous rendre compte que la migration va n&#xE9;cessiter beaucoup d&#x2019;Ajax. Pour faire nos appels nous utiliserons l&#x2019;API &#xAB; Fetch &#xBB;, celle-ci est int&#xE9;gr&#xE9;e dans l&#x2019;ensemble des navigateurs r&#xE9;cents, le bon r&#xE9;flexe est quand m&#xEA;me d&#x2019;allez voir le support de Fetch sur  (<a href="https://caniuse.com/#search=fetch" target="_blank">Can i use</a>).</p>
+<h4 id="d&#xE9;couverte-de-fetch">D&#xE9;couverte de Fetch</h4>
+<p>L&apos;API Fetch fournit une interface JavaScript pour l&apos;acc&#xE8;s et la manipulation des parties de la pipeline HTTP, comme les requ&#xEA;tes et les r&#xE9;ponses. Cela fournit aussi une m&#xE9;thode globale fetch() qui procure un moyen facile et logique de r&#xE9;cup&#xE9;rer des ressources &#xE0; travers le r&#xE9;seau de mani&#xE8;re asynchrone.</p>
+<p>Ce genre de fonctionnalit&#xE9; &#xE9;tait auparavant r&#xE9;alis&#xE9; avec XMLHttpRequest. Fetch fournit une meilleure alternative qui peut &#xEA;tre utilis&#xE9;e facilement par d&#x2019;autres technologies comme Service Workers. Fetch fournit aussi un endroit unique et logique pour la d&#xE9;finition d&apos;autres concepts li&#xE9;s &#xE0; HTTP comme CORS et les extensions d&apos;HTTP.</p>
+<p>(Source: MDM)</p>
+<p>Le support de l&apos;API Fetch peut &#xEA;tre d&#xE9;tect&#xE9; en v&#xE9;rifiant l&apos;existance de Headers, Request, Response ou fetch() sur la port&#xE9;e de Window ou de Worker.
+Par exemple, vous pouvez faire cela dans votre script:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span>(self.fetch) {
+  <span class="hljs-comment">// Le support de Fetch est pr&#xE9;sent</span>
+}<span class="hljs-keyword">else</span>{
+  <span class="hljs-comment">// G&#xE9;rer le cas du non support de fetch.</span>
+  <span class="hljs-comment">// Pour r&#xE9;duire le nombre de cas possible vous pouvez ajouter : https://github.github.io/fetch/ &#xE0; votre projet</span>
+}
+</code></pre>
+<p>Voici un EXEMPLE d&#x2019;utilisation de Fetch :</p>
+<pre><code class="lang-javascript">fetch(<span class="hljs-string">&apos;api/liste.php&apos;</span>, {method: <span class="hljs-string">&quot;GET&quot;</span>, credentials: <span class="hljs-string">&apos;same-origin&apos;</span>})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-comment">// On d&#xE9;code le JSON, et on continue</span>
+  <span class="hljs-keyword">return</span> response.json();
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  <span class="hljs-comment">// Votre retour est ICI</span>
+  <span class="hljs-built_in">console</span>.log(response);
+})
+.catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;R&#xE9;cup&#xE9;ration impossible: &apos;</span> + error.message);
+});
+</code></pre>
+<p>&#x26A0;&#xFE0F; Que veux dire <code>credentials: &apos;same-origin&apos;</code>? Par d&#xE9;faut, Fetch n&#x2019;utilise pas les Cookies, vous pouvez forcer l&#x2019;utilisation des cookies en indiquant <code>credentials: &apos;same-origin&apos;</code>. Si vous ne le faites pas vos <code>$_SESSION</code> ne seront pas sauvegard&#xE9;es &#x26A0;&#xFE0F;</p>
+<p>Tester le code pr&#xE9;c&#xE9;dent dans :</p>
+<ul>
+<li>Tester d&#xE8;s &#xE0; pr&#xE9;sent cet appel dans la &#xAB; Console d&#xE9;veloppeur &#xBB;</li>
+</ul>
+<p>Pour aller plus loin dans l&#x2019;utilisation de Fetch, je vous recommande la lecture de <a href="https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">la documentation compl&#xE8;te (gestion des headers, param&#xE8;tres, mode, etc)</a></p>
+<h4 id="liste-des-t&#xE2;ches">Liste des t&#xE2;ches</h4>
+<p>La liste des t&#xE2;ches est charg&#xE9;e d&#xE8;s l&#x2019;arriv&#xE9;e sur la page &#xAB; principale &#xBB;. Vous devez donc &#xE9;crire du code dans l&#x2019;&#xE9;v&#xE8;nement &#xAB; beforeMount &#xBB; (pour rappel n&#x2019;h&#xE9;sitez pas &#xE0; consulter le <a href="https://vuejs.org/images/lifecycle.png" target="_blank">cycle de vie des composants</a>)</p>
+<ul>
+<li>Dans le fichier main.js, ajouter &#xE0; l&#x2019;objet Vue <code>beforeMount</code></li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;D&#xE9;marrage TODO-APP&quot;</span>);
+  },
+  beforeMount: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// C&#x2019;est ici que le traitement doit &#xEA;tre fait</span>
+  }
+})
+</code></pre>
+<ul>
+<li>Ajouter le code suivant dans la partie <code>beforeMount</code></li>
+</ul>
+<pre><code class="lang-javascript">fetch(<span class="hljs-string">&apos;api/liste.php&apos;</span>, {method: <span class="hljs-string">&quot;GET&quot;</span>, credentials: <span class="hljs-string">&apos;same-origin&apos;</span>})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-keyword">return</span> response.json();
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  app.taches = response;
+})
+.catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;R&#xE9;cup&#xE9;ration impossible: &apos;</span> + error.message);
+});
+</code></pre>
+<ul>
+<li>Initialiser la variable taches dans l&#x2019;objet VueJS, Exemple :</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  data: {
+      taches: []
+  }
+  [&#x2026;]
+</code></pre>
+<ul>
+<li>Ajouter l&#x2019;affichage dans le &#xAB; template &#xBB;. Dans la page HTML vous allez devoir utiliser l&#x2019;attribut <code>v-for</code>. Exemple :</li>
+</ul>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;tache in taches&quot;</span>&gt;</span>{{tache.texte}}<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+</code></pre>
+<p>Adapter l&#x2019;exemple pr&#xE9;c&#xE9;dant pour afficher les t&#xE2;ches comme ils l&#x2019;&#xE9;taient dans la page en version PHP.</p>
+<p><a href="https://fr.vuejs.org/v2/guide/list.html" target="_blank">Plus de d&#xE9;tail sur la partie &#xAB; rendu des listes &#xBB;</a></p>
+<ul>
+<li>L&#x2019;affichage est-il le m&#xEA;me ?</li>
+<li>Comment g&#xE9;rer le cas du chargement ? (dans le monde r&#xE9;el Internet peut-&#xEA;tre lent&#x2026;)</li>
+<li>Comment g&#xE9;rer le cas de la liste vide ?</li>
+</ul>
+<h4 id="optimisation">Optimisation.</h4>
+<p>D&#xE9;placer le code actellement dans <code>beforeMount</code> dans une nouvelle methode appel&#xE9;e <code>recupererListe</code> :</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  [&#x2026;]
+  methods: {
+    recupererListe: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-comment">// &#x2026;</span>
+    }
+  }
+</code></pre>
+<p>Remplacer le code dans le <code>beforeMount</code> pour appeler la m&#xE9;thode <code>recupererListe</code>.</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;D&#xE9;marrage TODO-APP&quot;</span>);
+  },
+  beforeMount: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    app.recupererListe();
+  }
+})
+</code></pre>
+<h4 id="ajout-dune-t&#xE2;che">Ajout d&#x2019;une t&#xE2;che</h4>
+<p>Maintenant que la liste est affich&#xE9;e, vous allez pouvoir g&#xE9;rer le cas de l&#x2019;ajout d&#x2019;une nouvelle t&#xE2;che. L&#x2019;ajout va &#xE9;galement &#xEA;tre faite via un appel Ajax.</p>
+<ul>
+<li><p>Cr&#xE9;er une m&#xE9;thode Javascript, r&#xE9;alisant l&#x2019;appel de l&#x2019;API.</p>
+<p>&#x26A0;&#xFE0F; Attention: L&#x2019;utilisateur devant &#xEA;tre pr&#xE9;venu de l&#x2019;aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contr&#xF4;le de saisie, et/ou via <a href="https://sweetalert.js.org/" target="_blank">librairie Sweetalert</a>) &#x26A0;&#xFE0F;</p>
+</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  [&#x2026;]
+  methods: {
+    ajout: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> contenu = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;texte&quot;</span>).value;
+      <span class="hljs-keyword">if</span>(contenu == <span class="hljs-string">&quot;&quot;</span>){
+        swal(<span class="hljs-string">&quot;Oops&quot;</span>,<span class="hljs-string">&quot;Vous devez sp&#xE9;cifier du texte&#x2026;&quot;</span> , <span class="hljs-string">&quot;error&quot;</span> );
+      }<span class="hljs-keyword">else</span>{
+        <span class="hljs-comment">// Appel de l&#x2019;API avec Fetch (Ajax)</span>
+      }
+    }
+  }
+  [&#x2026;]
+</code></pre>
+<ul>
+<li>Cr&#xE9;er l&#x2019;appel &#xE0; l&#x2019;API</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> form = <span class="hljs-keyword">new</span> FormData();
+form.append(<span class="hljs-string">&apos;texte&apos;</span>, contenu);
+fetch(<span class="hljs-string">&quot;api/creation.php&quot;</span>, {
+  method: <span class="hljs-string">&quot;POST&quot;</span>,
+  body: form,
+  credentials: <span class="hljs-string">&apos;same-origin&apos;</span>
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)</span>{
+  <span class="hljs-keyword">return</span> response.json();
+})
+.then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+  <span class="hljs-keyword">if</span>(response.success){
+    app.recupererListe();
+  }<span class="hljs-keyword">else</span>{
+    <span class="hljs-comment">// Sweetalert pour l&#x2019;utilisateur.</span>
+  }
+})
+.catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;R&#xE9;cup&#xE9;ration impossible: &apos;</span> + error.message);
+});
+</code></pre>
+<ul>
+<li>Rafraichir la liste des t&#xE2;ches, pour &#xE7;a vous allez cr&#xE9;er une 2nd m&#xE9;thode qui r&#xE9;alise l&#x2019;appel Ajax de r&#xE9;cup&#xE9;ration de la liste. Une fois cette m&#xE9;thode faite, appeler la dans la partie <code>// traiter le retour</code>.</li>
+<li>Optimiser votre code en rempla&#xE7;ant le code dans le <code>beforeMount</code> par un appel &#xE0; la m&#xE9;thode que vous avez cr&#xE9;&#xE9;.</li>
+</ul>
+<p>Votre objet VueJS, doit ressembler &#xE0; quelques chose comme &#xE7;a :</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;D&#xE9;marrage TODO-APP&quot;</span>);
+  },
+  data: {
+      taches: []
+  },
+  beforeMount: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.recupererListe();
+  },
+  methods:{
+    ajout: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{},
+    recupererListe: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{}
+  }
+})
+</code></pre>
+<ul>
+<li>Appel de votre code dans le template. Maintenant que votre code est pr&#xEA;t, vous allez pouvoir l&#x2019;appeler depuis votre template. Pour faire &#xE7;a, vous allez utiliser <a href="https://vuejs.org/v2/guide/events.html" target="_blank">la gestion des &#xE9;v&#xE9;nements de VueJS</a> Exemple :</li>
+</ul>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">v-on:submit.prevent</span>=<span class="hljs-string">&quot;ajout()&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre>
+<ul>
+<li>Tester votre code.</li>
+<li>Tester l&#x2019;ajout de t&#xE2;che.</li>
+<li>Tenter d&#x2019;injecter du code. Que se passe-t-il ?</li>
+</ul>
+<h4 id="marquer-une-t&#xE2;che-comme-termin&#xE9;e">Marquer une t&#xE2;che comme termin&#xE9;e</h4>
+<p>Pour marquer une t&#xE2;che comme termin&#xE9;e, vous allez devoir appeler l&#x2019;api &#xAB; terminer.php &#xBB;. Cette API doit &#xEA;tre appel&#xE9;e lors du clique sur l&#x2019;ic&#xF4;ne qui &#xE0; comme class &#xAB; oi oi-check &#xBB;.</p>
+<ul>
+<li>Utiliser le <a href="https://fr.vuejs.org/v2/guide/events.html" target="_blank">v-on:click</a></li>
+<li>Remplacer :</li>
+</ul>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./actions/done.php?id={id}&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-success&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;oi oi-check&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>Par</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;oi oi-check&quot;</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&quot;terminer(todo.id)&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre>
+<ul>
+<li>D&#xE9;clarer la m&#xE9;thode &#xAB; terminer &#xBB; dans votre objet VueJS. Faite l&#x2019;appel &#xE0; votre API.</li>
+<li>L&#x2019;objet VueJS doit maintenant ressemble &#xE0; quelques choses comme &#xE7;a :</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;D&#xE9;marrage TODO-APP&quot;</span>);
+  },
+  data: {
+      taches: []
+  },
+  beforeMount: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.recupererListe();
+  },
+  methods:{
+    ajout: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{},
+    recupererListe: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{},
+    terminer: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">id</span>)</span>{}
+  }
+})
+</code></pre>
+<ul>
+<li>Ajouter le <a href="https://fr.vuejs.org/v2/guide/conditional.html" target="_blank">v-if</a> n&#xE9;c&#xE9;ssaire &#xE0; la r&#xE8;gle suivante &#xAB; uniquement les t&#xE2;ches non termin&#xE9;es peuvent &#xEA;tre marqu&#xE9;es comme termin&#xE9;es &#xBB;</li>
+<li>Tester le fonctionnement.</li>
+<li>Valider que seulement les t&#xE2;ches marqu&#xE9;es comme &#xAB; non termin&#xE9;es &#xBB; peuvent &#xEA;tre termin&#xE9;es.</li>
+</ul>
+<h4 id="suppression-dune-t&#xE2;che">Suppression d&#x2019;une t&#xE2;che</h4>
+<p>La suppression d&#x2019;une t&#xE2;che est tr&#xE8;s similaire &#xE0; l&#x2019;action &#xAB; terminer.php &#xBB;. Je vous laisse appliquer la m&#xE9;thodologie pr&#xE9;c&#xE9;dente.</p>
+<p>Ne pas oublier la r&#xE8;gle de gestion : &#xAB; Une t&#xE2;che non marqu&#xE9;e comme termin&#xE9;e ne peut &#xEA;tre supprim&#xE9;e. &#xBB;</p>
+<p>L&#x2019;objet doit maintenant ressembler &#xE0; :</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;D&#xE9;marrage TODO-APP&quot;</span>);
+  },
+  data: {
+      taches: []
+  },
+  beforeMount: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.recupererListe();
+  },
+  methods:{
+    ajout: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{},
+    recupererListe: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{},
+    terminer: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">id</span>)</span>{},
+    supprimer: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">id</span>)</span>{}
+  }
+})
+</code></pre>
+<h4 id="optimisation">Optimisation</h4>
+<p>Comme vous l&#x2019;avez certainement constat&#xE9; les deux derni&#xE8;res actions sont tr&#xE8;s similaire. Faites fusionner les deux actions en ajoutant par exemple un param&#xE8;tre &#xAB; action &#xBB;. Ce param&#xE8;tre vous permettra de s&#x2019;avoir dans quel cas vous vous trouvez, je vous laisse &#xE9;crire le code.</p>
+<h2 id="allez-plus-loin">Allez plus loin</h2>
+<p>Quelques pistes pour allez plus loin dans le code :</p>
+<h3 id="ajouter-des-confirmations">Ajouter des confirmations</h3>
+<p> Ajout des confirmations avant les actions &#xAB; marquer comme termin&#xE9;e &#xBB; et l&#x2019;action suppression.</p>
+<h3 id="ajouter-des-r&#xE8;gles-de-r&#xE9;&#xE9;criture">Ajouter des r&#xE8;gles de r&#xE9;&#xE9;criture</h3>
+<p>Ajouter des r&#xE8;gles de r&#xE9;&#xE9;criture via un fichier .htaccess</p>
+<p>Le fichier <code>.htaccess</code> exemple :</p>
+<pre><code class="lang-apacheconf"><span class="hljs-attribute"><span class="hljs-nomarkup">RewriteEngine</span></span> <span class="hljs-literal">On</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteRule</span></span>    ^api/ajouter$    api/ajouter.php   <span class="hljs-meta"> [L,QSA]</span>
+</code></pre>
+<p>Une fois les r&#xE8;gles de r&#xE9;&#xE9;criture faite, modifier les diff&#xE9;rents chemin (appel d&#x2019;API) dans votre fichier Javascript.</p>
+<h3 id="partager-les-todos-au-monde-">Partager les TODOS au monde !</h3>
+<p>Depuis quelques jours Chrome propose une nouvelle API nomm&#xE9;e &#xAB; Web Share Api &#xBB;, Cette API  permet de d&#xE9;clencher &#xAB; le Partage &#xBB; d&#x2019;une informations en utilisant les possibilit&#xE9;s native du T&#xE9;l&#xE9;phone. Comme cette API n&#x2019;est disponible que sur un t&#xE9;l&#xE9;phone et uniquement en HTTPS vous devez tester si celle-ci est pr&#xE9;sente avec</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">if</span>(navigator.share){}
+</code></pre>
+<p><a href="https://caniuse.com/#search=Web%20Share%20Api" target="_blank">Voir le support de Share</a></p>
+<p>Mais comme nous sommes avec VueJS nous allons g&#xE9;rer &#xE7;a avec le MVVM (Mod&#xE8;le Vue, Vue-Mod&#xE8;le), &#xE7;a va nous permettre d&#x2019;injecter une variable &#xE0; la cr&#xE9;ation de l&#x2019;objet <code>app</code> pour connaitre si le partage est disponible. Exemple :</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Vue({
+  el: <span class="hljs-string">&apos;.container&apos;</span>,
+  created: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;D&#xE9;marrage TODO-APP&quot;</span>);
+  },
+  data: {
+      taches: [],
+      isShare: navigator.share?<span class="hljs-literal">true</span>:<span class="hljs-literal">false</span>
+  },
+  [&#x2026;]
+</code></pre>
+<p>Une fois fait, vous avez une variable <code>isShare</code> qui sera <code>True</code> Ou <code>False</code> en fonction du support du navigateur. Maintenant que le bool&#xE9;en est disponible vous pouvez ajouter un &#xE9;l&#xE9;ment cliquable pour d&#xE9;clencher l&#x2019;action (prendre exemple sur la suppression ou le marquer comme termin&#xE9;). Exemple de code pour d&#xE9;clencher le partage :</p>
+<pre><code class="lang-javascript">[&#x2026;]
+methods:{
+    share: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">texte</span>)</span>{
+      navigator.share({
+        title: <span class="hljs-string">&apos;VueJS-Todo&apos;</span>,
+        text: texte,
+        url: <span class="hljs-string">&quot;&quot;</span>})
+        .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{})
+        .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{})
+    },
+[&#x2026;]
+</code></pre>
+<p>C&#x2019;est &#xE0; vous !</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="tp1-laravel.html" class="navigation navigation-prev " aria-label="Previous page: Ajouter VueJS dans votre site Laravel">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="tp2.html" class="navigation navigation-next " aria-label="Next page: Réaliser une application avec VueJS">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"next":{"title":"Réaliser une application avec VueJS","level":"1.7.4","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]},"previous":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"path":"tp/vuejs/tp1-laravel.md","ref":"tp/vuejs/tp1-laravel.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1.md","mtime":"2018-09-25T20:13:12.058Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-30T09:04:13.499Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-click-reveal/click_reveal.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
