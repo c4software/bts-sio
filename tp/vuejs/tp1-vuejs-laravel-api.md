@@ -12,7 +12,7 @@ Dans ce TP nous allons transformer « entièrement » votre ancien site codé en
 
 ### Création des API
 
-La « nouvelle version » de notre page, va utiliser des API (et de l'ajax), ça va fondamentalement changer le fonctionnement de votre application. Il faut donc dans un premier temps créer les API qui seront nécessaire au bon fonctionnement (asynchrone) de votre page Web.
+La « nouvelle version » de notre page, va utiliser des API (et de l'ajax), ça va fondamentalement changer le fonctionnement de votre application. Il faut donc dans un premier temps créer les API qui seront nécessaires au bon fonctionnement (asynchrone) de votre page Web.
 
 - Lister les éléments dans la TodoList.
 - Ajouter un nouvel élément dans la TodoList.
@@ -21,7 +21,7 @@ La « nouvelle version » de notre page, va utiliser des API (et de l'ajax), ça
 
 ✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, nous allons utiliser le même code que le controlleur actuel !
 
-Les seules différence seront :
+Les seules différences seront :
 
 - ```view([…], […]Todo::all()[…])``` remplacé par ```return response()->json(Todo::all());```
 - Et pour une simple réponse de réussite (exemple remove ou done) ```return response()->json(array("status" => 1))```
@@ -40,9 +40,9 @@ php artisan make:controller api
 
 Un nouveau contrôleur vide vient d'être créé, il faut maintenant déclarer l'ensemble de nos méthodes.
 
-##### Définition des méthodes nécéssaire
+##### Définition des méthodes nécéssaires
 
-Avant de commencer la partie code, voilà la liste des ```Routes``` -> ```Méthode``` nécéssaire au bon fonctionnement de notre API :
+Avant de commencer la partie code, voilà la liste des ```Routes``` -> ```Méthode``` nécéssaires au bon fonctionnement de notre API :
 
 | Route           | Méthode               | Paramêtre     | Type   |
 | --------------- |:---------------------:|:-------------:| ------:|
