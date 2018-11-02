@@ -366,7 +366,20 @@
                 <a href="creation_api.html">
             
                     
-                    Transformer la Todo List en API
+                    Lumen pour écrire des API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="creation_api.html">
+            
+                <a href="creation_api.html">
+            
+                    
+                    Gestion des absences
             
                 </a>
             
@@ -406,9 +419,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.2" data-path="../vuejs/tp1-laravel.html">
+        <li class="chapter " data-level="1.7.2" data-path="../vuejs/tp1-vuejs-laravel-api">
             
-                <a href="../vuejs/tp1-laravel.html">
+                <span>
             
                     
                     Ajouter VueJS dans votre site Laravel
@@ -741,7 +754,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Fri Sep 28 2018 20:19:13 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Oct 07 2018 21:40:55 GMT+0200 (heure d&#x2019;&#xE9;t&#xE9; d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="application-todo-liste">Application Todo Liste</h1>
 <h2 id="introduction">Introduction</h2>
@@ -911,7 +924,7 @@ Migrated:  2018_09_09_150442_create_todos_table
 <p>Bien ! Notre code est maintenant pr&#xEA;t. Nous allons cr&#xE9;er les m&#xE9;thodes permettant la manipulation de notre base de donn&#xE9;es tout en r&#xE9;pondant &#xE0; nos probl&#xE9;matique d&apos;interface (liste, creation, terminer, suppression).</p>
 <p>Nous allons maintenant &#xE9;crire une m&#xE9;thode pour chaque action. Avec les diff&#xE9;rentes conditions n&#xE9;c&#xE9;ssaires au bon fonctionnement de l&apos;application.</p>
 <h3 id="corriger-le-chemin-de-la-database">Corriger le chemin de la database</h3>
-<p>Bizarrerie de Laravel&#x2026; Il faut maintenant changer le chemin de la base de donn&#xE9;es pour faire r&#xE9;ference au fichier <code>database.sqlite</code> pendant l&apos;execution de votre code.</p>
+<p>Bizarrerie de Laravel&#x2026; Il faut maintenant changer le chemin de la base de donn&#xE9;es pour faire correctement r&#xE9;ference au fichier <code>database.sqlite</code> (pour que &#xE7;a fonctionne depuis votre browser).</p>
 <p>&#xC9;diter &#xE0; nouveau le fichier <code>.env</code> pour remplacer :</p>
 <pre><code class="lang-conf">DB_DATABASE=database/database.sqlite
 </code></pre>
@@ -928,75 +941,12 @@ Migrated:  2018_09_09_150442_create_todos_table
 </code></pre>
 <p>Rien de bien compliqu&#xE9;, comme vous pouvez le voir.</p>
 <h3 id="les-autres-m&#xE9;thodes">Les autres m&#xE9;thodes</h3>
-<p>&#x270B; Pour l&apos;instant nous allons nous arr&#xEA;ter la pour la partie code PHP. Cette m&#xE9;thode est suffisante pour &#xAB; tester &#xBB; le premier template que nous allons &#xE9;crire.</p>
+<p>&#x270B; Pour l&apos;instant nous allons nous arr&#xEA;ter l&#xE0; pour la partie code PHP. Cette m&#xE9;thode est suffisante pour &#xAB; tester &#xBB; le premier template que nous allons &#xE9;crire.</p>
 <h3 id="ajout-route-">Ajout route /</h3>
 <p>Nous allons tester la route <code>/</code>, pour &#xE7;a nous allons remplacer le contenu du fichier <code>routes/web.php</code> par :</p>
 <pre><code class="lang-php">Route::get(<span class="hljs-string">&apos;/&apos;</span>, <span class="hljs-string">&quot;TodosController@liste&quot;</span>);
 </code></pre>
 <p>Vous pouvez relancer votre serveur de test, vous devez maintenant voir &#xAB; Liste &#xBB;.</p>
-<h2 id="installation-des-d&#xE9;pendances-client">Installation des d&#xE9;pendances client</h2>
-<p>Maintenant que la partie base de donn&#xE9;es est pr&#xEA;te, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser bootstrap pour g&#xE9;rer la probl&#xE9;matique d&apos;affichage et de responsive.</p>
-<h3 id="ajouter-bootsrap-4">Ajouter Bootsrap 4</h3>
-<p>La structure de base de Laravel n&apos;int&#xE8;gre pas Bootsrap, par contre elle int&#xE8;gre un syst&#xE8;me de gestion de d&#xE9;pendances. Nous allons nous servir de cette gestion de d&#xE9;pendance pour ajouter bootstrap (version 4). Dans la ligne de commande :</p>
-<pre><code class="lang-sh">$ php artisan preset none
-$ php artisan preset bootstrap
-</code></pre>
-<p>&#x23F1; Patientez quelques instants&#x2026; bootstrap est maintenant disponible pour votre projet. Mais pour qu&apos;il soit accessible pour vos templates nous devons &#xAB; le compiler &#xBB;.</p>
-<h3 id="pr&#xE9;paration-des-&#xAB;-assets-&#xBB;-bootsrap-">Pr&#xE9;paration des &#xAB; Assets &#xBB; bootsrap &#x2026;</h3>
-<p>Laravel inclut une configuration &#xAB; webpack.mix.js &#xBB;, celle-ci permet de fusionner l&apos;ensemble des JS et CSS en un seul fichier pour gagner en performance.</p>
-<p>Sans entrer dans le d&#xE9;tail (nous d&#xE9;taillerons le fonctionnement dans un prochain cours), la compilation des ressources (assets) est r&#xE9;alis&#xE9;e avec Webpack. Webpack est un outils NodeJS tr&#xE8;s puissant mais qui peut-&#xEA;tre complexe, nous allons donc uniqumement l&apos;utiliser.</p>
-<ul>
-<li>Installer <a href="https://nodejs.org/en/download/current/" target="_blank">NodeJS version current</a></li>
-</ul>
-<p>Une fois install&#xE9; retourner dans le dossier de votre projet faites les commandes suivantes :</p>
-<h3 id="modifier-le-scss">Modifier le SCSS</h3>
-<p>Remplacer le fichier <code>ressources/app/scss</code> par :</p>
-<pre><code class="lang-scss"><span class="hljs-comment">// Fonts</span>
-@<span class="hljs-keyword">import</span> url(<span class="hljs-string">&apos;https://fonts.googleapis.com/css?family=Nunito&apos;</span>);
-
-<span class="hljs-comment">// Variables</span>
-@<span class="hljs-keyword">import</span> <span class="hljs-string">&apos;variables&apos;</span>;
-
-<span class="hljs-comment">// Bootstrap</span>
-@<span class="hljs-keyword">import</span> <span class="hljs-string">&apos;~bootstrap/scss/bootstrap&apos;</span>;
-
-<span class="hljs-selector-class">.navbar-laravel</span> {
-  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#fff</span>;
-  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">2px</span> <span class="hljs-number">4px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.04</span>);
-}
-
-<span class="hljs-selector-tag">body</span>{
-  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">5rem</span>;
-}
-
-<span class="hljs-selector-tag">form</span><span class="hljs-selector-class">.add</span>{
-  <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">10px</span>;
-}
-
-<span class="hljs-selector-class">.pull-right</span>{
-  <span class="hljs-attribute">float</span>: right;
-}
-
-<span class="hljs-selector-class">.action</span> &gt; <span class="hljs-selector-class">.btn</span>{
-  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">7px</span> <span class="hljs-number">1px</span>;
-}
-
-<span class="hljs-selector-class">.oi</span>{
-  <span class="hljs-attribute">font-size</span>: small;
-}
-</code></pre>
-<h3 id="compiler">Compiler</h3>
-<pre><code class="lang-sh">$ npm install
-$ npm run production
-</code></pre>
-<p>&#x1F50E; <a href="https://laravel.com/docs/5.6/mix" target="_blank">Plus d&apos;informations Webpack.mix.js</a></p>
-<h3 id="&#x1F913;-questions">&#x1F913; Questions</h3>
-<ul>
-<li>Quels fichiers ont &#xE9;t&#xE9; cr&#xE9;&#xE9;s ?</li>
-<li>Que contient le fichier <code>webpack.mix.js</code> ?</li>
-<li><code>webpack.mix.js</code> fait r&#xE9;f&#xE9;rence &#xE0; des fichiers dans <code>ressources/js/*</code> et <code>ressources/sass/*</code>, allez y jeter un coup d&apos;oeil (m&#xEA;me si dans ce projet nous n&apos;allons rien modifier).</li>
-<li>Pourquoi la fusion / compilation des ressources est-elle si importante ?</li>
-</ul>
 <h2 id="cr&#xE9;er-les-templates">Cr&#xE9;er les templates</h2>
 <p>Nous avons donc maintenant :</p>
 <ul>
@@ -1062,10 +1012,143 @@ $ npm run production
 <p>Pour lancer votre application, c&apos;est dans le terminal que &#xE7;a se passe :</p>
 <pre><code class="lang-sh">$ php artisan serve
 </code></pre>
-<p>Une fois lancer <a href="http://127.0.0.1:8080" target="_blank">Rendez vous sur http://127.0.0.1:8080</a>.</p>
+<p>Une fois lancer <a href="http://127.0.0.1:8000" target="_blank">Rendez vous sur http://127.0.0.1:8000</a>.</p>
 <div class="click_reveal"><span> Un soucis non ? </span><div><p>Rien &#xE0; chang&#xE9; ? C&apos;est normal&#x2026; Continuons!</p>
-</div></div> 
+</div></div>
 
+
+<h2 id="installation-des-d&#xE9;pendances-client">Installation des d&#xE9;pendances client</h2>
+<p>Maintenant que la partie base de donn&#xE9;es est pr&#xEA;te, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser bootstrap pour g&#xE9;rer la probl&#xE9;matique d&apos;affichage et de responsive.</p>
+<h3 id="ajout-des-libraries">Ajout des libraries</h3>
+<p>La structure de base de Laravel n&apos;int&#xE8;gre pas Bootsrap, par contre il est possible de l&apos;installer dans votre projet.</p>
+<p>La fa&#xE7;on la plus rapide est d&apos;int&#xE9;grer directement dans le <code>&lt;head&gt;</code> de votre projet les librairies suivante :</p>
+<p>&#xC9;diter le fichier <code>template.blade.php</code> pour ajouter (dans le <code>&lt;head&gt;</code>):</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://code.jquery.com/jquery-3.3.1.slim.min.js&quot;</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">&quot;sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js&quot;</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">&quot;sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css&quot;</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">&quot;sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js&quot;</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">&quot;sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>Vous venez d&apos;ajouter Jquery, Bootstrap, et l&apos;ensemble des &#xE9;l&#xE9;ments n&#xE9;c&#xE9;ssaire &#xE0; son bon fonctionnement. Notre site &#xE0; &#xE9;galement besoin d&apos;une CSS sp&#xE9;cifique. Celle-ci doit &#xEA;tre ajout&#xE9; manuellement.</p>
+<p>Cr&#xE9;er un fichier <code>main.css</code> dans <code>public/css</code>. Mettre le contenu suivant :</p>
+<pre><code class="lang-css"><span class="hljs-selector-tag">body</span>{
+    <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">5rem</span>;
+  }
+
+<span class="hljs-selector-tag">form</span><span class="hljs-selector-class">.add</span>{
+    <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">10px</span>;
+  }
+
+<span class="hljs-selector-class">.pull-right</span>{
+    <span class="hljs-attribute">float</span>: right;
+  }
+
+<span class="hljs-selector-class">.action</span> &gt; <span class="hljs-selector-class">.btn</span>{
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">7px</span> <span class="hljs-number">1px</span>;
+  }
+
+<span class="hljs-selector-class">.oi</span>{
+    <span class="hljs-attribute">font-size</span>: small;
+}
+</code></pre>
+<p>Ajouter &#xE0; nouveau cette CSS dans le <code>&lt;head&gt;</code> de votre site :</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;{{ asset(&apos;css/main.css&apos;) }}&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>&gt;</span>
+</code></pre>
+<p>Cette solution n&apos;est pas la meilleur, malheureseument un bug sur les PC du lyc&#xE9;e nous emp&#xEA;che d&apos;utiliser NodeJS + npm.</p>
+<div class="click_reveal"><span> Vous avez votre propre machine ? Installation de Bootsrap 4 via NodeJS + NPM </span><div><p>&#x270B; Si vous lisez ceci c&apos;est que vous &#xEA;tes sur votre machine, si c&apos;est le cas, sachez que c&apos;est la meilleur fa&#xE7;on de faire. <strong>Attention</strong> &#xE0; ne pas avoir les librairies en HTTP et Via NodeJS. </p>
+<h3 id="ajouter-bootsrap-4">Ajouter Bootsrap 4</h3>
+<p>La structure de base de Laravel n&apos;int&#xE8;gre pas Bootsrap, par contre elle int&#xE8;gre un syst&#xE8;me de gestion de d&#xE9;pendances. Nous allons nous servir de cette gestion de d&#xE9;pendance pour ajouter bootstrap (version 4). Dans la ligne de commande :</p>
+<pre><code class="lang-sh">$ php artisan preset none
+$ php artisan preset bootstrap
+</code></pre>
+<p>&#x23F1; Patientez quelques instants&#x2026; bootstrap est maintenant disponible pour votre projet. Mais pour qu&apos;il soit accessible pour vos templates nous devons &#xAB; le compiler &#xBB;.</p>
+<h3 id="pr&#xE9;paration-des-&#xAB;-assets-&#xBB;-bootsrap-">Pr&#xE9;paration des &#xAB; Assets &#xBB; bootsrap &#x2026;</h3>
+<p>Laravel inclut une configuration &#xAB; webpack.mix.js &#xBB;, celle-ci permet de fusionner l&apos;ensemble des JS et CSS en un seul fichier pour gagner en performance.</p>
+<p>Sans entrer dans le d&#xE9;tail (nous d&#xE9;taillerons le fonctionnement dans un prochain cours), la compilation des ressources (assets) est r&#xE9;alis&#xE9;e avec Webpack. Webpack est un outils NodeJS tr&#xE8;s puissant mais qui peut-&#xEA;tre complexe, nous allons donc uniqumement l&apos;utiliser.</p>
+<ul>
+<li>Installer <a href="https://nodejs.org/en/download/current/" target="_blank">NodeJS version current</a></li>
+</ul>
+<p>Une fois install&#xE9; retourner dans le dossier de votre projet faites les commandes suivantes :</p>
+<h4 id="laravel-mix-">laravel-mix ?</h4>
+<p>laravel-mix est un outil fourni de base dans Laravel qui g&#xE8;rent la partie libraries clientes. La configuration de celui-ci se fait dans le fichier <code>webpack.mix.js</code></p>
+<p>Le contenu initial est :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> mix = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;laravel-mix&apos;</span>);
+
+<span class="hljs-comment">/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for the application as well as bundling up all the JS files.
+ |
+ */</span>
+
+mix.js(<span class="hljs-string">&apos;resources/js/app.js&apos;</span>, <span class="hljs-string">&apos;public/js&apos;</span>)
+   .sass(<span class="hljs-string">&apos;resources/sass/app.scss&apos;</span>, <span class="hljs-string">&apos;public/css&apos;</span>);
+</code></pre>
+<h3 id="modifier-le-scss">Modifier le SCSS</h3>
+<p>Remplacer le fichier <code>ressources/app/scss</code> par :</p>
+<pre><code class="lang-scss"><span class="hljs-comment">// Fonts</span>
+@<span class="hljs-keyword">import</span> url(<span class="hljs-string">&apos;https://fonts.googleapis.com/css?family=Nunito&apos;</span>);
+
+<span class="hljs-comment">// Variables</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">&apos;variables&apos;</span>;
+
+<span class="hljs-comment">// Bootstrap</span>
+@<span class="hljs-keyword">import</span> <span class="hljs-string">&apos;~bootstrap/scss/bootstrap&apos;</span>;
+
+<span class="hljs-selector-class">.navbar-laravel</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#fff</span>;
+  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">2px</span> <span class="hljs-number">4px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.04</span>);
+}
+
+<span class="hljs-selector-tag">body</span>{
+  <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">5rem</span>;
+}
+
+<span class="hljs-selector-tag">form</span><span class="hljs-selector-class">.add</span>{
+  <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">10px</span>;
+}
+
+<span class="hljs-selector-class">.pull-right</span>{
+  <span class="hljs-attribute">float</span>: right;
+}
+
+<span class="hljs-selector-class">.action</span> &gt; <span class="hljs-selector-class">.btn</span>{
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">7px</span> <span class="hljs-number">1px</span>;
+}
+
+<span class="hljs-selector-class">.oi</span>{
+  <span class="hljs-attribute">font-size</span>: small;
+}
+</code></pre>
+<h3 id="transpiler">Transpiler</h3>
+<pre><code class="lang-sh">$ npm install
+$ npm run production
+</code></pre>
+<p>&#x1F50E; <a href="https://laravel.com/docs/5.6/mix" target="_blank">Plus d&apos;informations Webpack.mix.js</a></p>
+<h3 id="&#x1F913;-questions">&#x1F913; Questions</h3>
+<ul>
+<li>Quels fichiers ont &#xE9;t&#xE9; cr&#xE9;&#xE9;s ?</li>
+<li>Que contient le fichier <code>webpack.mix.js</code> ?</li>
+<li><code>webpack.mix.js</code> fait r&#xE9;f&#xE9;rence &#xE0; des fichiers dans <code>ressources/js/*</code> et <code>ressources/sass/*</code>, allez y jeter un coup d&apos;oeil (m&#xEA;me si dans ce projet nous n&apos;allons rien modifier).</li>
+<li>Pourquoi la fusion / compilation des ressources est-elle si importante ?</li>
+</ul>
+</div></div>
+
+<h4 id="modifications-demand&#xE9;s">Modifications demand&#xE9;s</h4>
+<p>&#x270B; Cette modification n&apos;est n&#xE9;c&#xE9;ssaire que dans le cas ou vous n&apos;utiliser <strong>pas</strong> NodeJS + NPM.</p>
+<p>Comme vous l&apos;avez vu avec le fichier <code>main.css</code> il est possible d&apos;avoir un CSS / JS en local dans le dossier public.</p>
+<ul>
+<li>T&#xE9;l&#xE9;charger l&apos;ensemble de librairies http / https (css + js) dans le dossier public (attention &#xE0; bien les ranger) et les utiliser dans votre head.</li>
+</ul>
+<h3 id="question">Question</h3>
+<ul>
+<li>Pourquoi est-ce plus s&#xE9;curis&#xE9; ?</li>
+<li>Pourquoi la solution des CDN n&apos;est finalement pas si &#xAB; non s&#xE9;curis&#xE9; &#xBB; ?</li>
+</ul>
 <h3 id="liste-des-todos">Liste des todos</h3>
 <p>Maintenant que nous avons d&#xE9;fini notre template de base nous allons pouvoir d&#xE9;finir notre page principale, la page &#xAB; liste des todos &#xBB;. Une fois termin&#xE9;e celle-ci va ressembler &#xE0; :</p>
 <p><img src="ressources/liste.png" alt="liste"></p>
@@ -1164,10 +1247,11 @@ $ npm run production
 }
 </code></pre>
 <p>Que va t&#x2019;il se passer lors de l&#x2019;appel ? L&#x2019;objet <code>$request</code> contient tous les param&#xE8;tres de l&#x2019;appel HTTP, la m&#xE9;thode <code>all()</code> permet de les r&#xE9;cup&#xE9;rer. L&#x2019;objet <code>Todos</code> poss&#xE8;de une m&#xE9;thode permettant de cr&#xE9;er un nouvel enregistrement en base de donn&#xE9;es. Les valeurs pass&#xE9;es en param&#xE8;tre de <code>create()</code> permette de renseigner automatiquement les champs en base de donn&#xE9;es.</p>
+<p>&#x270B; Tester l&apos;ajout. Normalement &#xE7;a ne doit pas fonctionner&#x2026; Pourquoi ? Tout simplement car nous ne sp&#xE9;cifions pas l&apos;ensemble des champs n&#xE9;cessaire &#xE0; la cr&#xE9;ation de notre objet.</p>
 <ul>
-<li>&#xC0; votre avis est-ce une mani&#xE8;re s&#xE9;curiser de proc&#xE9;der ?</li>
+<li>Quel est l&apos;autre solution possible ?  </li>
 </ul>
-<div class="click_reveal"><span> Ajouter une todo version alternative </span><div><p>La premi&#xE8;re approche est la plus rapide mais elle sous entend que tous les param&#xE8;tres soient bien initialis&#xE9;es dans &#xAB; l&#x2019;input &#xBB; HTTP. Dans cette version la m&#xE9;thode est plus compl&#xE8;te et g&#xE8;re la cr&#xE9;ation de l&#x2019;objet Todos manuellement, en r&#xE9;cup&#xE9;rant les diff&#xE9;rents &#xE9;l&#xE9;ments dans la requette HTTP.</p>
+<div class="click_reveal"><span> Voir la solution </span><div><p>La premi&#xE8;re approche est la plus rapide mais elle sous entend que tous les param&#xE8;tres soient bien initialis&#xE9;es dans &#xAB; l&#x2019;input &#xBB; HTTP. Dans cette version la m&#xE9;thode est plus compl&#xE8;te et g&#xE8;re la cr&#xE9;ation de l&#x2019;objet Todos manuellement, en r&#xE9;cup&#xE9;rant les diff&#xE9;rents &#xE9;l&#xE9;ments dans la requette HTTP.</p>
 <pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">saveTodo</span><span class="hljs-params">(Request $request)</span></span>{
     $texte = $request-&gt;input(<span class="hljs-string">&apos;texte&apos;</span>);
 
@@ -1213,7 +1297,7 @@ $ npm run production
 <p>Normalement c&apos;est ok !</p>
 <p><img src="ressources/vide.png" alt="Vide">
 <img src="ressources/message1.png" alt="Avec message 1"></p>
-<h2 id="action--marquer-comme-termin">Action : marquer comme termin</h2>
+<h2 id="action--marquer-comme-termin&#xE9;">Action : marquer comme termin&#xE9;</h2>
 <p>Pour l&#x2019;action termin&#xE9; nous allons devoir updater un enregistrement en base de donn&#xE9;es, pour &#xE7;a nous allons le r&#xE9;cup&#xE9;rer puis mettre le <code>boolean</code> <code>termine</code> &#xE0; 1.</p>
 <pre><code class="lang-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">markAsDone</span><span class="hljs-params">($id)</span></span>{
     $todo  = Todos::find($id);
@@ -1251,15 +1335,19 @@ $ npm run production
 <p>Maintenant que nous avons d&#xE9;clar&#xE9; nos &#xAB; 3 actions &#xBB; dans notre contr&#xF4;leur (et dans le fichier de route) nous allons les utiliser dans notre template &#xAB; home &#xBB; voici les &#xE9;tapes :</p>
 <ul>
 <li>&#xC9;diter le fichier <code>resources/views/home.blade.php</code>.</li>
-<li>Ajouter la bonne url sur l&apos;action de votre formulaire.</li>
-<li>Ajouter sur chaque ligne deux liens qui vont &#xAB; suprimer &#xBB; et &#xAB; terminer &#xBB;. (Aide : <code>@todo-&gt;id</code>)</li>
+<li>Ajouter la bonne url sur l&apos;action de votre formulaire. (<code>&#xAB; /add &#xBB;</code>)</li>
+<li>Ajouter sur chaque ligne de la boucle &#xAB; foreach &#xBB; deux liens qui vont &#xAB; suprimer &#xBB; et &#xAB; terminer &#xBB;. </li>
 </ul>
-<h2 id="2nd-page">2nd page</h2>
+<p>Aide :</p>
+<p>Pour acc&#xE9;der &#xE0; une variable exemple <code>id</code> : <code>$todo-&gt;id</code>.</p>
+<p>Exemple <code>&lt;a href=&quot;lien{{ $todo-&gt;id }}&quot;&gt;Terminer&lt;/a&gt;</code> </p>
+<h2 id="ajout-dune-2nd-page">Ajout d&apos;une 2nd page</h2>
 <p>Ajouter une nouvelle page dans votre site web cette page sera la page &#xAB; &#xC0; propos &#xBB;, aucune aide autre que :</p>
 <ul>
 <li>Route.</li>
 <li>M&#xE9;thode dans le contr&#xF4;leur.</li>
 <li>Template qui &#xAB; @extends &#xBB; du gabarit / template de base.</li>
+<li>Ajouter un lien pour acc&#xE8;der &#xE0; cette page dans le header du site.</li>
 </ul>
 <h2 id="&#xE9;volution-souhait&#xE9;e--nommer-les-routes">&#xC9;volution souhait&#xE9;e : Nommer les routes</h2>
 <p>Comme vous l&apos;avez constat&#xE9;, nous utilisons les routes comme une simple URL. Avec Laravel il est possible de faire mieux que &#xE7;a ! Il est possible de nommer les routes (exemple <code>todo.save</code>) pour les utiliser directement dans notre template. &#xC7;a va permettre d&apos;am&#xE9;liorer votre code (changement de contr&#xF4;leur plus simple par exemple) et surtout de le rendre plus lisible.</p>
@@ -1297,7 +1385,7 @@ Route::get(<span class="hljs-string">&apos;/action/delete/{id}&apos;</span>, <sp
 <li>Quel est l&apos;avantage d&apos;utiliser les routes nomm&#xE9;es ?</li>
 </ul>
 <h2 id="&#xE9;volution-souhait&#xE9;e--ajout-de-contr&#xF4;le">&#xC9;volution souhait&#xE9;e : Ajout de contr&#xF4;le</h2>
-<p> Seul les <code>Todos</code> marqu&#xE9;s comme termin&#xE9; peuvent &#xEA;tre supprim&#xE9;s, il faudra donc contr&#xF4;ler l&#x2019;&#xE9;tat avant de faire le <code>delete()</code> en base de donn&#xE9;es.</p>
+<p> Seul les <code>Todos</code> marqu&#xE9;s comme termin&#xE9;e peuvent &#xEA;tre supprim&#xE9;es, il faudra donc contr&#xF4;ler l&#x2019;&#xE9;tat avant de faire le <code>delete()</code> en base de donn&#xE9;es.</p>
 <ul>
 <li>Modifier la m&#xE9;thode <code>deleteTodo</code> contr&#xF4;leur pour ajouter la r&#xE8;gle de gestion (Indice <code>$todo-&gt;termine</code>)</li>
 <li>Ajouter la directive <code>@if</code> dans le template afficher uniquement les bonnes actions en fonction de l&apos;&#xE9;tat de la todo. <a href="https://laravel.com/docs/5.7/blade#if-statements" target="_blank">Voir la documentation du if avec blade</a></li>
@@ -1354,7 +1442,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
                 </a>
                 
                 
-                <a href="creation_api.html" class="navigation navigation-next " aria-label="Next page: Transformer la Todo List en API">
+                <a href="creation_api.html" class="navigation navigation-next " aria-label="Next page: Lumen pour écrire des API">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1365,7 +1453,7 @@ Session::flash(<span class="hljs-string">&apos;message&apos;</span>, <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Transformer la Todo List en API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-09-28T18:19:13.779Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-09-28T18:19:18.423Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Application/Site web Todo List","level":"1.6.3","depth":2,"next":{"title":"Lumen pour écrire des API","level":"1.6.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]},"previous":{"title":"Installation de Laravel","level":"1.6.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"last-modified":{},"click-reveal":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/application_todo_list.md","mtime":"2018-10-07T19:40:55.852Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-02T22:17:03.097Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

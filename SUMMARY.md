@@ -23,7 +23,7 @@
   * [Gestion des absences](tp/laravel/creation_api.md)
 * VueJS
   * [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs)
-  * [Ajouter VueJS dans votre site Laravel](tp/vuejs/tp1-vuejs-laravel-api)
+  * [Ajouter VueJS dans votre site Laravel](tp/vuejs/tp1-vuejs-laravel-api.md)
   * [Ajouter VueJS dans un site existant](tp/vuejs/tp1.md)
   * [Réaliser une application avec VueJS](tp/vuejs/tp2.md)
 * Cordova + VueJS
