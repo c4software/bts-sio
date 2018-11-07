@@ -1,6 +1,6 @@
 # Ajouter VueJS dans un site existant
 
-Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer était réalisée dans le cadre de la démonstration.
+Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration.
 
 L’application existante est une « TodoList » codée avec le Framework Laravel.
 
@@ -19,7 +19,7 @@ La « nouvelle version » de notre page, va utiliser des API (et de l'ajax), ça
 - Marquer un élément comme terminé.
 - Supprimer un élément.
 
-✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, nous allons utiliser le même code que le controlleur actuel !
+✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la roue, nous allons utiliser le même code que le contrôleur actuel !
 
 Les seules différences seront :
 
@@ -53,11 +53,11 @@ Avant de commencer la partie code, voilà la liste des `Routes` -> `Méthode` n�
 | /api/done/{id}   |       done($id)       |    id     |  PATCH |
 | /api/delete/{id} |      remove($id)      |    id     | DELETE |
 
-🔥 Pour la suite vous référez à ce tableau pour les noms de méthode ainsi que les paramètres 🔥
+🔥 Pour la suite référez-vous à ce tableau pour les noms de méthode ainsi que les paramètres 🔥
 
 ##### La liste
 
-Dans le fichier `app/Http/Controllers/api.php` ajouter une méthode méthode `list`. Celle-ci doit contenir le code suivant :
+Dans le fichier `app/Http/Controllers/api.php` ajouter une méthode nommée `list`. Celle-ci doit contenir le code suivant :
 
 ```php
     return response()->json(Todos::all());
@@ -91,11 +91,14 @@ Comme pour l'ajout, le code va être identique au TP précédent à l'exception 
 
 ```php
   return response()->json(array("status" => "1"));
-  // Ou en en cas échec
+
+  // Ou en en cas échec d'ajout il faudra retourner
   return response()->json(array("status" => "0"));
 ```
 
-##### Perdu ?
+⚠️ Attention à faire correctement le test !
+
+##### Perdu
 
 Normalement vous avez l'ensemble des informations pour y arriver seul, si vous bloquez voila :
 
@@ -131,7 +134,7 @@ class api extends Controller
 
 ##### Les routes
 
-Le code étant « finalisé ». Il faut maintenant indiquer à Laravel les routes d'accès aux différentes méthodes.
+Le code étant « finalisé ». Il faut maintenant indiquer à Laravel les routes (chemin / url) d'accès aux différentes méthodes.
 
 Dans le fichier `routes/api.php` ajouter le contenu suivant :
 
@@ -142,7 +145,9 @@ Route::patch('/done/{id}', "api@done")->name('api.done');
 Route::delete('/delete/{id}', "api@delete")->name('api.delete');
 ```
 
-✋ Comme vous pouvez le voir le `/api/…` n'est pas spécifié… Pourquoi ? Simplement avec Laravel toutes les routes dans le fichier `routes/api.php` sont automatiquement préfixés par `/api/`
+✋ Comme vous pouvez le voir le `/api/…` n'est pas spécifié… Pourquoi ?
+
+Simplement avec Laravel toutes les routes dans le fichier `routes/api.php` sont automatiquement préfixées par `/api/`. 🤯
 
 Vous API sont maintenant accessibles.
 
@@ -150,68 +155,35 @@ Vous API sont maintenant accessibles.
 
 Valider que vos API fonctionnent correctement grâce à l'outil [Postman](https://www.getpostman.com/).
 
+(Pssst! La création de compte **n'est pas obligatoire**) <-- ⚠️⚠️
+
 🤓 Commencez par la plus simple, par exemple `/api/` qui doit normalement lister votre actuelle TodoList.
+
 ✋ Tester l'ensemble de vos API avant de continuer.
 
-{% reveal text="Ajout via NPM - Uniquement si vous êtes sur votre machine" %}
+### Utiliser NodeJS sans NPM
 
-## Ajout de VueJS
+`npm` n'est pas la seule solution pour installer VueJS, si votre projet n'utilise pas `npm` vous pouvez l'utiliser simplement en l'ajoutant dans le header de votre site via une balise script :
 
-VueJS étant une librairie (comme jquery par exemple), il faut l'importer pour l'utiliser dans votre projet.
-
-Laravel intègre un gestionnaire de dépendances « client » nommé `npm` (normalement celui-ci est déjà installé sur votre poste, si ce n'est pas le cas [rendez-vous ici](https://nodejs.org/en/download/current/)).
-
-La première étape est donc d'indiquer que nous souhaitons avoir `VueJS` dans notre projet. Ça se fait via la ligne de commande (ou via l'édition manuel du fichier `package.json`).
-
-```sh
-npm install --save vue
-```
-
-Patientez quelques instants la dépendance est maintenant ajoutée.
-
-✋ Votre dépendance est installée oui ! Mais celle-ci n'est pas incluse pour votre client.
-
-Ajouter VueJS dans le fichier `resources/js/app.js` ajouter à la fin de celui-ci :
-
-```js
-require("vue/dist/vue");
-```
-
-Maintenant que votre Librairie est ajouté, il faut indiquer à `Laravel-mix` que votre fichier a changé pour ça :
-
-```sh
-$ npm run production
-DONE  Compiled successfully in 17210ms
-…
-```
-
-Voilà ! VueJS est maintenant disponible dans votre projet.
-
-{% endreveal %}
-
-{% reveal text="Ajout **SANS** NPM" %}
-
-### Ajouter VueJS sans NPM
-
-NPM n'est pas la seule solution d'installer VueJS, si votre projet n'avait pas eu `npm` de configurer vous auriez pu simplement ajouter dans le header de votre site via une balise script :
-
-Via un CDN
+Via un CDN :
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 ```
 
-En téléchargant la librairie :
+ou en téléchargant la librairie :
 
 [Disponible ici](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include)
 
+```html
+<script src="CHEMIN_PUBLIC_A_VOUS/vue.js"></script>
+```
+
 ### Questions
 
-- À votre avis, quelle solution est la meilleure ?
-- Pourquoi dans notre cas, j'ai privilégié `npm` ?
+- Qu'est-ce qu'un CDN ?
+- À votre avis pourquoi n'avons nous pas utilisé npm et la gestion des dépendances de Laravel ?
 - Quels sont les dangers du CDN ?
-
-{% endreveal %}
 
 ### Création d'un nouveau template
 
@@ -243,15 +215,16 @@ Créér un nouveau fichier `resources/views/homevue.blade.php` et y mettre le co
 @endsection
 ```
 
-Le code précédent contient quelques éléments de VueJS, lequels ?
+- Le code précédent contient quelques éléments de VueJS, lequels ?
 
 ### Accéder à la page
 
 Maintenant que notre template est créé, nous allons pouvoir l'utiliser.
 
-Pour l'utiliser il faut créer **2 choses**
+Pour l'utiliser il faut créer **2 choses** :
 
 - Une méthode dans le contrôleur `TodosController.php`.
+- Une route (exemple `/vue`) dans le fichier `routes/web.php`.
 
 {% reveal text="Un doute sur le code de la méthode ?" %}
 
@@ -265,13 +238,11 @@ public function homevue(){
 
 {% endreveal %}
 
-- Une route (exemple `/vue`) dans le fichier `routes/web.php`.
-
-🔥 Maintenant que votre code est prêt tester votre application :
+🔥 Maintenant que votre code est prêt, tester votre application :
 
 - Démarrer votre serveur de test (`php artisan serve`).
 - Accéder à la page [http://127.0.0.1:8000/vue](http://127.0.0.1:8000/vue)
-- Normalement le formulaire d'ajout s'affiche… Rien dans la liste? Pas de panique le code n'est pas encore présent.
+- Normalement le formulaire d'ajout s'affiche… Rien dans la liste ? Pas de panique le code n'est pas encore présent.
 
 ### Liste des todos
 
@@ -290,13 +261,13 @@ Même si pour l'instant nous n'avons pas encore fait le code pour appeler les AP
 </ul>
 ```
 
-- Quels sont les éléments spécifiques à VueJS?
+- Quels sont les éléments spécifiques à VueJS ?
 
-🔥 Tester à nouveau, votre liste doit s'afficher… Mais pas de la façon attendu… C'est normal, nous devons maintenant écrire le code VueJS correspondant à votre application (à savoir Liste, Ajout, Marquer comme terminé, et supprimer)
+🔥 Tester à nouveau, votre liste doit s'afficher… Mais pas de la façon attendu… C'est normal, nous devons maintenant écrire le code VueJS correspondant à votre application (à savoir Liste, Ajout, Marquer comme terminé, et Supprimer).
 
 ### @ ? Hey !
 
-- `@` À quoi correspond le `@` ?
+- `@` À quoi correspond le `@` ? (Pssst, c'est en lien avec Laravel)
 - Tenter de le retirer pour voir ce qui se passe ?
 - Pourquoi ça ne fonctionne plus?
 
@@ -320,13 +291,13 @@ if (self.fetch) {
   // Le support de Fetch est présent
 } else {
   // Gérer le cas du non support de fetch.
-  // Pour réduire le nombre de cas possible vous pouvez ajouter : https://github.github.io/fetch/ à votre projet
+  // Pour réduire le nombre de cas possible vous pouvez ajouter : https://github.github.io/fetch/ à votre projet (Yeah fini l'ajax compliqué 😎)
 }
 ```
 
 ### Tester Fetch
 
-Avant d'intégrer Fetch dans notre code client (le site web Javascript), nous allons le **TESTER** dans notre navigateur, voici un exemple de code :
+Avant d'intégrer Fetch dans notre code client (le site web VueJS), nous allons le **TESTER** dans notre navigateur, voici un exemple de code :
 
 ```javascript
 fetch("api/", { method: "GET", credentials: "same-origin" })
@@ -351,15 +322,17 @@ Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisati
 
 Pour valider le bon fonctionnement nous allons utiliser la « Console développeur » de votre navigateur.
 
-Fetch est une librairie très complète, pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
+Fetch est une librairie très complète, pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch).
 
 Tester de récupérer vos « todos » depuis votre console.
 
 ## La structure du code javascript
 
-Maintenant que nos API sont terminés et que notre appel via Fetch fonctionne nous allons écrire le code Javascript (VueJS) qui va gérer notre application.
+Maintenant que nos API sont terminées et que notre appel via Fetch fonctionne nous allons écrire le code Javascript (VueJS) qui va gérer notre application.
 
-Nous allons utiliser massivement la gestion d'évènement de VueJS, Pour rappel n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png))
+Nous allons utiliser massivement la gestion d'évènement de VueJS.
+
+Pour rappel n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png)).
 
 ### La liste
 
@@ -367,13 +340,13 @@ La liste des tâches va être la première chose que nous allons charger. Cette 
 
 ### Les actions
 
-Les actions (done, remove, add) seront appelés lors de la vie de notre application, elles vont être déclaré dans la partie `methods` de l'objet VueJS et seront appelé via des `v-on:…` de votre code HTML.
+Les actions (done, remove, add) seront appelées lors de la vie de notre application, elles vont être déclarées dans la partie `methods` de l'objet VueJS et seront appelées via des attributs spéciaux préfixé par `v-on:…` de votre code HTML.
 
 Complexe ? Pas tant que ça… Vous allez voir que c'est beaucoup plus simple que du code Javascript classique.
 
 ## Structure de base
 
-Créer un nouveau fichier nommé `main.js`. Ce fichier doit être créé dans `public/js` (ou `ressources/js` pour ceux utilisant NPM). Une fois créé nous allons y ajouter le minimum pour que votre application fonctionne :
+Créer un nouveau fichier nommé `main.js`. Ce fichier doit être créé dans `public/js`. Une fois créé nous allons y ajouter le minimum pour que votre application fonctionne :
 
 ```js
 var app = new Vue({
@@ -413,8 +386,6 @@ Pour ajouter votre script nous allons faire simple, nous allons « juste » l'aj
 ```html
 <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 ```
-
-✋ Pour ceux utilisant NPM ce n'est pas nécessaire.
 
 Tester d'accéder à nouveau à votre site web, vous devez maintenant voir dans `la console de développeur` de votre navigateur le texte suivant :
 
@@ -498,10 +469,10 @@ Quelques explications :
 
 ### Marquer comme terminé
 
-Maintenant que nous pouvons ajouter, il faut pouvoir marquer comme « Terminer ». Nous allons donc devoir compléter le code de la méthode `done(todo)`. Pour ça :
+Maintenant que nous pouvons ajouter, il faut pouvoir « Marquer comme terminé ». Nous allons donc devoir compléter le code de la méthode `done(todo)`. Pour ça :
 
 - Ajouter une action `v-on:click="done(todo)"` sur le bon élément HTML.
-- Compléter le code de `done(todo)` avec le bon Appel Fetch
+- Compléter le code de `done(todo)` avec le bon appel Fetch.
 
 #### Aide
 
@@ -515,6 +486,9 @@ Votre API attend le paramètre `ID` directement dans l'URL :
 
 ```js
 fetch("api/done/" + todo.id, { method: "PATCH" });
+
+// ou encore mieux les Strings Templates
+fetch(`api/done/${todo.id}`, { method: "PATCH" });
 ```
 
 Pensez à bien rafraichir la liste dans le `then`.
@@ -537,13 +511,16 @@ Votre API attend le paramètre `ID` directement dans l'URL :
 
 ```js
 fetch("api/delete/" + todo.id, { method: "DELETE" });
+
+// ou encore mieux les Strings Templates
+fetch(`api/delete/${todo.id}`, { method: "DELETE" });
 ```
 
 Pensez à bien rafraichir la liste dans le `then`.
 
 ### Et voilà !
 
-Vous avez fait le tour de la migration de votre version Laravel.
+Vous avez fait le tour de la conversion de votre site « version Laravel » en site « version VueJS ».
 
 {% reveal text="Voir le code complet" %}
 
@@ -610,13 +587,15 @@ Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple [
 
 Reformater le code pour créer une fonction permettant d'utiliser Fetch (et donc de ne pas avoir plusieurs fois la partie `Fetch(…)` dans votre code).
 
+Aide : Créer une librairie (`utils.js`) qui contiendra le code nécéssaire.
+
 ### Amélioration 3
 
 Afficher des messages d'erreurs en cas de `catch` lors des appels réseau.
 
 ### Partager les TODOS au monde !
 
-Depuis quelques jours Chrome propose une nouvelle API nommée « Web Share Api », Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
+Depuis quelques jours Chrome propose une nouvelle API nommée « Web Share Api ». Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est disponible via :
 
 ```javascript
 if (navigator.share) {
@@ -634,13 +613,13 @@ var app = new Vue({
     console.log("Démarrage TODO-APP");
   },
   data: {
-      taches: [],
+      todos: [],
       isShare: navigator.share?true:false
   },
   […]
 ```
 
-Une fois fait, vous avez une variable `isShare` qui sera `True` Ou `False` en fonction du support du navigateur. Maintenant que le booléen est disponible vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
+Une fois fait, vous avez une variable `isShare` qui sera `true` Ou `false` en fonction du support du navigateur. Maintenant que le booléen est disponible vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
 
 ```javascript
 […]
@@ -649,12 +628,13 @@ methods:{
       navigator.share({
         title: 'VueJS-Todo',
         text: todo.text,
-        url: ""})
+        url: ""
+        })
         .then(function(){
-          // Afficher une confirmation
+          // Afficher une confirmation.
         })
         .catch(function(){
-          // Afficher une confirmation
+          // Afficher un message d'erreur à votre utilisateur.
         })
     },
 […]
