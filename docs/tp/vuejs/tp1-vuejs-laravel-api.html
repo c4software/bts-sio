@@ -760,7 +760,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Nov 07 2018 20:01:56 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Fri Nov 23 2018 15:00:36 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="ajouter-vuejs-dans-un-site-existant">Ajouter VueJS dans un site existant</h1>
 <p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer a &#xE9;t&#xE9; r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
@@ -896,7 +896,7 @@ Route::delete(<span class="hljs-string">&apos;/delete/{id}&apos;</span>, <span c
 <p>(Pssst! La cr&#xE9;ation de compte <strong>n&apos;est pas obligatoire</strong>) &lt;-- &#x26A0;&#xFE0F;&#x26A0;&#xFE0F;</p>
 <p>&#x1F913; Commencez par la plus simple, par exemple <code>/api/</code> qui doit normalement lister votre actuelle TodoList.</p>
 <p>&#x270B; Tester l&apos;ensemble de vos API avant de continuer.</p>
-<h3 id="utiliser-nodejs-sans-npm">Utiliser NodeJS sans NPM</h3>
+<h3 id="utiliser-vuejs-sans-npm">Utiliser VueJS sans NPM</h3>
 <p><code>npm</code> n&apos;est pas la seule solution pour installer VueJS, si votre projet n&apos;utilise pas <code>npm</code> vous pouvez l&apos;utiliser simplement en l&apos;ajoutant dans le header de votre site via une balise script :</p>
 <p>Via un CDN :</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -914,26 +914,27 @@ Route::delete(<span class="hljs-string">&apos;/delete/{id}&apos;</span>, <span c
 <h3 id="cr&#xE9;ation-dun-nouveau-template">Cr&#xE9;ation d&apos;un nouveau template</h3>
 <p>Pour la d&#xE9;monstration nous allons cr&#xE9;er un nouveau template, il sera <code>@extends</code> de <code>template.blade.php</code> que vous avez pr&#xE9;c&#xE9;dement cr&#xE9;&#xE9;.</p>
 <p>Cr&#xE9;&#xE9;r un nouveau fichier <code>resources/views/homevue.blade.php</code> et y mettre le contenu suivant :</p>
-<pre><code class="lang-html">@extends(&quot;template&quot;)
-
-@section(&quot;title&quot;, &quot;Todo List - Version VueJS&quot;)
-
+<pre><code class="lang-html">@extends(&quot;template&quot;) @section(&quot;title&quot;, &quot;Todo List - Version VueJS&quot;)
 @section(&quot;content&quot;)
-  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card-body&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- Action --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;add&quot;</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input-group&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-control&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Prendre une note&#x2026;&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card-body&quot;</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- Action --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;add&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;input-group&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+            <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>
+            <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-control&quot;</span>
+            <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Prendre une note&#x2026;&quot;</span>
+            <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;text&quot;</span>
+          /&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-
-        <span class="hljs-comment">&lt;!-- Liste des Todos --&gt;</span>
-
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+      <span class="hljs-comment">&lt;!-- Liste des Todos --&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 @endsection
 </code></pre>
 <ul>
@@ -962,14 +963,18 @@ Route::delete(<span class="hljs-string">&apos;/delete/{id}&apos;</span>, <span c
 <h3 id="liste-des-todos">Liste des todos</h3>
 <p>M&#xEA;me si pour l&apos;instant nous n&apos;avons pas encore fait le code pour appeler les API, ajouter le code HTML suivant apr&#xE8;s <code>&lt;!-- Liste des todos --&gt;</code> pr&#xE9;sent dans le fichier <code>homevue.blade.php</code>:</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group pt-3&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item&quot;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;todo in todos&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>@{{ todo.texte }}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pull-right action&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;todo.termine !== &apos;1&apos;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-success&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas fa-check&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-else</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-danger&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas fa-trash&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;todos.length === 0&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item text-center&quot;</span>&gt;</span>C&apos;est vide !<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item&quot;</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;todo in todos&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>@{{ todo.texte }}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pull-right action&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;todo.termine !== &apos;1&apos;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-success&quot;</span>
+        &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas fa-check&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>
+      &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-else</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-danger&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fas fa-trash&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;todos.length === 0&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-group-item text-center&quot;</span>&gt;</span>
+    C&apos;est vide !
+  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 </code></pre>
 <ul>
@@ -1295,7 +1300,7 @@ methods:{
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-vuejs-laravel-api.md","mtime":"2018-11-07T19:01:56.781Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-23T08:35:56.080Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-vuejs-laravel-api.md","mtime":"2018-11-23T14:00:36.350Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-23T14:00:41.765Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

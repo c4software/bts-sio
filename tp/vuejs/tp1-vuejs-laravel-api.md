@@ -46,12 +46,12 @@ Un nouveau contrôleur vide vient d'être créé, il faut maintenant déclarer l
 
 Avant de commencer la partie code, voilà la liste des `Routes` -> `Méthode` nécessaires au bon fonctionnement de notre API :
 
-| Route            |        Méthode        | Paramètre |   Type |
-| ---------------- | :-------------------: | :-------: | -----: |
-| /api/            |        list()         |           |    GET |
-| /api/add         | add(Request $request) |  Request  |   POST |
-| /api/done/{id}   |       done($id)       |    id     |  PATCH |
-| /api/delete/{id} |      remove($id)      |    id     | DELETE |
+| Route            |        Méthode         | Paramètre |   Type |
+| ---------------- | :--------------------: | :-------: | -----: |
+| /api/            |         list()         |           |    GET |
+| /api/add         | add(Request \$request) |  Request  |   POST |
+| /api/done/{id}   |       done(\$id)       |    id     |  PATCH |
+| /api/delete/{id} |      remove(\$id)      |    id     | DELETE |
 
 🔥 Pour la suite référez-vous à ce tableau pour les noms de méthode ainsi que les paramètres 🔥
 
@@ -161,7 +161,7 @@ Valider que vos API fonctionnent correctement grâce à l'outil [Postman](https:
 
 ✋ Tester l'ensemble de vos API avant de continuer.
 
-### Utiliser NodeJS sans NPM
+### Utiliser VueJS sans NPM
 
 `npm` n'est pas la seule solution pour installer VueJS, si votre projet n'utilise pas `npm` vous pouvez l'utiliser simplement en l'ajoutant dans le header de votre site via une balise script :
 
@@ -192,26 +192,27 @@ Pour la démonstration nous allons créer un nouveau template, il sera `@extends
 Créér un nouveau fichier `resources/views/homevue.blade.php` et y mettre le contenu suivant :
 
 ```html
-@extends("template")
-
-@section("title", "Todo List - Version VueJS")
-
+@extends("template") @section("title", "Todo List - Version VueJS")
 @section("content")
-  <div class="container">
-    <div class="card">
-      <div class="card-body">
-        <!-- Action -->
-        <div class="add">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Prendre une note…" v-model="text" />
-          </div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <!-- Action -->
+      <div class="add">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Prendre une note…"
+            v-model="text"
+          />
         </div>
-
-        <!-- Liste des Todos -->
-
       </div>
+
+      <!-- Liste des Todos -->
     </div>
   </div>
+</div>
 @endsection
 ```
 
@@ -250,14 +251,18 @@ Même si pour l'instant nous n'avons pas encore fait le code pour appeler les AP
 
 ```html
 <ul class="list-group pt-3">
-    <li class="list-group-item" v-for="todo in todos">
-        <span>@{{ todo.texte }}</span>
-        <div class="pull-right action">
-            <span v-if="todo.termine !== '1'" class="btn btn-success"><i class="fas fa-check"></i></span>
-            <span v-else class="btn btn-danger"><i class="fas fa-trash"></i></span>
-        </div>
-    </li>
-    <li v-if="todos.length === 0" class="list-group-item text-center">C'est vide !</li>
+  <li class="list-group-item" v-for="todo in todos">
+    <span>@{{ todo.texte }}</span>
+    <div class="pull-right action">
+      <span v-if="todo.termine !== '1'" class="btn btn-success"
+        ><i class="fas fa-check"></i
+      ></span>
+      <span v-else class="btn btn-danger"><i class="fas fa-trash"></i></span>
+    </div>
+  </li>
+  <li v-if="todos.length === 0" class="list-group-item text-center">
+    C'est vide !
+  </li>
 </ul>
 ```
 
