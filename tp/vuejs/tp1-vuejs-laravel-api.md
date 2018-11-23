@@ -377,7 +377,7 @@ var app = new Vue({
     },
     add: function() {},
     done: function(todo) {},
-    delete: function(todo) {}
+    remove: function(todo) {}
   }
 });
 ```
