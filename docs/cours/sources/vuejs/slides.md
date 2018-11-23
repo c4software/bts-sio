@@ -28,13 +28,17 @@ Progressive Web Apps
 
 ![Twitter PWA](./img/twitter.png)
 
-Bluffant n’est-ce pas ? (psst c’est du ReactJS) <!-- .element: class="fragment" -->
+---
+
+Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 
 ---
 
 ### Concretement une PWA c’est quoi ?
 
 ![](./img/question.gif)
+
+---
 
 - Pour tous, quelques soit le navigateur
 - Responsive
