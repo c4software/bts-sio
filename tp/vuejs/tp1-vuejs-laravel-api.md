@@ -586,7 +586,9 @@ let app = new Vue({
 
 ### Amélioration 1
 
-Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple [VueJS Dialog](https://godofbrowser.github.io/vuejs-dialog/).
+Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple [VueJS Modal](https://github.com/euvl/vue-js-modal/blob/master/README.md).
+
+✋ Attention, nous n'utilisons pas NPM dans le projet. Vous devez importer manuellement les librairies.
 
 ### Amélioration 2
 
@@ -646,3 +648,13 @@ methods:{
 ```
 
 C’est à vous !
+
+### Migrer vers Bootstrap VueJS
+
+Dans les exemples précédent nous avons utilisé VueJS pour « améliorer » l'interface de notre site web existant. Mais avec VueJS il est possible d'aller beaucoup plus loin. Il est possible de réécrire l'ensemble pour utiliser des composants fournis par la communauté.
+
+Je vous propose donc de réécrire la page que vous avez ajouteé en utilisant [Bootsrap VueJS](https://bootstrap-vue.js.org/)
+
+- Réécrire l'interface.
+- Utiliser les composants pour les boutons.
+- Utiliser « le composant » alert.
