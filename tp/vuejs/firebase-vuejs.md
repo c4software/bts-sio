@@ -82,3 +82,35 @@ npm install vuefire --save
 Voilà ! Notre projet est maintenant prêt, il faut maintenant adapter la structure de base fourni par Vue-Cli pour y inclure les librairie que nous avons précédement installé.
 
 TODO
+
+### Création du projet sur Firebase
+
+Maintenant que nos dépendances sont installés et que notre projet est initialisé, nous allons configurer le projet sur Firebase :
+
+Première étape [créer le projet sur le site de Firebase](https://console.firebase.google.com/u/0/)
+
+![Création Firebase](./ressources/creation-firebase.png)
+
+Maintenant que le projet est créé, nous allons récupérer la configuration :
+
+![Configuration Web](./ressources/configuration-web.png)
+
+Nous allons récupérer une partie du code fourni… Nous allons prendre la configuration (dans mon cas)
+
+```js
+// Initialize Firebase
+var config = {
+  apiKey: "✋-CHANGE-CHANGE-CHANGE-CHANGE-✋",
+  authDomain: "reatlime-maps.firebaseapp.com",
+  databaseURL: "https://reatlime-maps.firebaseio.com",
+  projectId: "reatlime-maps",
+  storageBucket: "reatlime-maps.appspot.com",
+  messagingSenderId: "✋✋✋✋✋✋✋✋"
+};
+
+export default config;
+```
+
+Nous allons mettre le code dans le fichier `config/firebase.js`
+
+⚠️ ✋ Attention à bien changer la valeur de `apiKey` et `messagingSenderId`.
