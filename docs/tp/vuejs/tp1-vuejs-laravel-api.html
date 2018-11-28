@@ -760,7 +760,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Fri Nov 23 2018 15:48:34 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Wed Nov 28 2018 13:55:35 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="ajouter-vuejs-dans-un-site-existant">Ajouter VueJS dans un site existant</h1>
 <p>Dans le cadre du TP, vous allez devoir &#xAB; moderniser &#xBB; une application simple. L&#x2019;application &#xE0; migrer a &#xE9;t&#xE9; r&#xE9;alis&#xE9;e dans le cadre de la d&#xE9;monstration.</p>
@@ -1218,7 +1218,8 @@ fetch(<span class="hljs-string">`api/delete/<span class="hljs-subst">${todo.id}<
 </div></div>
 
 <h3 id="am&#xE9;lioration-1">Am&#xE9;lioration 1</h3>
-<p>Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple <a href="https://godofbrowser.github.io/vuejs-dialog/" target="_blank">VueJS Dialog</a>.</p>
+<p>Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple <a href="https://github.com/euvl/vue-js-modal/blob/master/README.md" target="_blank">VueJS Modal</a>.</p>
+<p>&#x270B; Attention, nous n&apos;utilisons pas NPM dans le projet. Vous devez importer manuellement les librairies.</p>
 <h3 id="am&#xE9;lioration-2">Am&#xE9;lioration 2</h3>
 <p>Reformater le code pour cr&#xE9;er une fonction permettant d&apos;utiliser Fetch (et donc de ne pas avoir plusieurs fois la partie <code>Fetch(&#x2026;)</code> dans votre code).</p>
 <p>Aide : Cr&#xE9;er une librairie (<code>utils.js</code>) qui contiendra le code n&#xE9;c&#xE9;ssaire.</p>
@@ -1261,6 +1262,14 @@ methods:{
 [&#x2026;]
 </code></pre>
 <p>C&#x2019;est &#xE0; vous !</p>
+<h3 id="migrer-vers-bootstrap-vuejs">Migrer vers Bootstrap VueJS</h3>
+<p>Dans les exemples pr&#xE9;c&#xE9;dent nous avons utilis&#xE9; VueJS pour &#xAB; am&#xE9;liorer &#xBB; l&apos;interface de notre site web existant. Mais avec VueJS il est possible d&apos;aller beaucoup plus loin. Il est possible de r&#xE9;&#xE9;crire l&apos;ensemble pour utiliser des composants fournis par la communaut&#xE9;.</p>
+<p>Je vous propose donc de r&#xE9;&#xE9;crire la page que vous avez ajoute&#xE9; en utilisant <a href="https://bootstrap-vue.js.org/" target="_blank">Bootsrap VueJS</a></p>
+<ul>
+<li>R&#xE9;&#xE9;crire l&apos;interface.</li>
+<li>Utiliser les composants pour les boutons.</li>
+<li>Utiliser &#xAB; le composant &#xBB; alert.</li>
+</ul>
 
                                 
                                 </section>
@@ -1300,7 +1309,7 @@ methods:{
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-vuejs-laravel-api.md","mtime":"2018-11-23T14:48:34.751Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-23T14:49:09.460Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ajouter VueJS dans votre site Laravel","level":"1.7.2","depth":2,"next":{"title":"Ajouter VueJS dans un site existant","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp1-vuejs-laravel-api.md","mtime":"2018-11-28T12:55:35.335Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-11-28T12:57:54.104Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
