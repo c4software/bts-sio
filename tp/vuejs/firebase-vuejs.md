@@ -111,6 +111,17 @@ var config = {
 export default config;
 ```
 
-Nous allons mettre le code dans le fichier `config/firebase.js`
+Nous allons mettre le code dans le fichier `config/firebase.js` ⬅️
 
-⚠️ ✋ Attention à bien changer la valeur de `apiKey` et `messagingSenderId`.
+⚠️ ✋ Attention à bien changer la valeur de `apiKey` et `messagingSenderId`. ✋ ⚠️
+
+BRAVO ! Votre projet est maintenant capable de parler avec Firebase !
+
+#### Questions
+
+- Et la sécurité ? À votre avis comment ça fonctionne ?
+- Est-il possible de faire autrement ?
+
+### Création de la première vue
+
+TODO
