@@ -49,21 +49,10 @@ npm install -g @vue/cli
 
 Maintenant que vue-cli est installé, vous avez à votre disposition sur votre ordinateur une nouvelle commande, la commande `vue`
 
-Vue-Cli intègre plusieurs templates :
-
-- webpack : A full-featured Webpack + vue-loader setup with hot reload, linting, testing & css extraction.
-- webpack-simple : A simple Webpack + vue-loader setup for quick prototyping.
-- browserify : A full-featured Browserify + vueify setup with hot-reload, linting & unit testing.
-- browserify-simple : A simple Browserify + vueify setup for quick prototyping.
-- pwa : PWA template for vue-cli based on the webpack template
-- simple : The simplest possible Vue setup in a single HTML file
-
-Pour notre exemple nous allons prendre le Webpack, il contient tous les éléments qui seront intéressant pour réaliser notre application.
-
 Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante dans le `Node.js Command Prompt`
 
 ```shell
-vue init webpack cliff-height-timer
+vue create cliff-height-timer
 ```
 
 ⚠️ Attention, la commande crée le projet dans le dossier courant ! ⚠️
@@ -76,7 +65,9 @@ Voilà notre projet est maintenant prêt. Place à la suite.
 
 ## Installation des librairies (du projet)
 
-Le projet que vous avez initialisé est « vide », c’est-à-dire que dans l’état il n’est pas fonctionnel. Avant de pouvoir l’afficher vous allez devoir installer les librairies (VueJS, WebPack, …). Cette étape n’est à faire qu’une seul fois sur votre poste, en effet en général on ne commit pas les fichiers « librairies » qui sont présents dans le future dossier `node_module` pour la simple et bonne raison que celui-ci est gros et rempli de pleins de petits fichiers (et qu’en plus ça se re-télécharge facilement depuis Internet).
+Le projet que vous avez initialisé est « prêt pour être utilisé ».
+
+Si vous changez d'ordinateur il faudra réinstaller les librairies NodeJS. Cette étape n’est à faire qu’une seul fois sur votre poste, en effet en général on ne commit pas les fichiers « librairies » qui sont présents dans le future dossier `node_module` pour la simple et bonne raison que celui-ci est gros et rempli de pleins de petits fichiers (et qu’en plus ça se re-télécharge facilement depuis Internet).
 
 Pour l’installation la procédure est la suivante :
 
@@ -95,7 +86,7 @@ added 1070 packages in 49.404s
 
 Une fois terminé votre projet est prêt à être lancé.
 
-⚠️ Ajouter le dossier `node_module` dans le `.gitignore`
+⚠️ Vous pouvez vérifier que le dossier `node_module` dans le `.gitignore`.
 
 ## Premier lancement (l’exemple)
 
@@ -107,7 +98,7 @@ npm run dev
 
 une fois cette commande lancée, votre navigateur va s’ouvrir sur un nouvel onglet contenant « l’application » de démonstration fournie par le template
 
-![sample application](./vuecli-template.png)
+![sample application](./ressources/vuejs-init.png)
 
 ## Le serveur de développement
 
@@ -124,11 +115,11 @@ Et si vous avez les outils sur votre machine il peut également :
 
 ## Le code source
 
-Les sources de l’application sont dans le dossier `src/` il contient l’ensemble du code source de votre application. Pour l’instant nous avons le code fourni par VueJS, au fur et à mesure des futures étapes nous allons le modifier pour le transformer dans l’application « cliff height timer ». Avant de « presque » tout remplacer nous allons modifier celui fourni pour nous familiariser avec « le serveur de dévoloppement ».
+Les sources de l’application sont dans le dossier `src/` il contient l’ensemble du code source de votre application. Pour l’instant nous avons le code fourni par VueJS, au fur et à mesure des futures étapes nous allons le modifier pour le transformer dans l’application « Cliff Height Timer ». Avant de « presque » tout remplacer nous allons modifier celui fourni pour nous familiariser avec « le serveur de développement ».
 
 ### L’IDE
 
-Pour faire du VueJS le mieux c’est d’avoir un bon IDE. Au revoir Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit).
+Pour faire du VueJS le mieux c’est d’avoir un bon IDE. Au revoir Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit 💰).
 
 Pour ceux qui n’ont pas de licence je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plugin `Vetur` pour pouvoir éditer les `.vue` dans de bonne condition.
 
