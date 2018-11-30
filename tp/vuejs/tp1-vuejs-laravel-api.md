@@ -586,7 +586,7 @@ let app = new Vue({
 
 ### Amélioration 1
 
-Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple [VueJS Modal](https://github.com/euvl/vue-js-modal/blob/master/README.md).
+Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple [VueJS Dialog](https://github.com/Godofbrowser/vuejs-dialog).
 
 ✋ Attention, nous n'utilisons pas NPM dans le projet. Vous devez importer manuellement les librairies.
 
