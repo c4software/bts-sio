@@ -195,7 +195,13 @@ Maintenant que nous avons ajouté la configuration, nous devons la déclarer dan
 ```js
 import firebaseConfig from "../config/firebase";
 import firebase from "firebase/app";
-firebase.initializeApp(firebaseConfig);
+import "firebase/database";
+import Vue from "vue";
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.database();
+
+Vue.prototype.$db = db;
 ```
 
 Comme pour leaflet, ajouter un import dans le fichier `main.js` pour référrencer notre « configuration de plugin » :
@@ -208,6 +214,7 @@ import "./plugins/firebase";
 
 - Que fait le code ?
 - Comment connaitre les autres options ?
+- Vue.prototype ? Kézako ? On en parle !
 
 ## Testons
 
@@ -358,7 +365,7 @@ import "./plugins/vuefire";
 
 {% endreveal %}
 
-## TODO SUITE FIREBASE
+## Gestion du click sur la carte
 
 ## Amélioration 1 : centrer la carte sur votre position
 
