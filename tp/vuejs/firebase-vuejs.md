@@ -6,7 +6,7 @@ Dans ce TP nous allons découvrir Firebase RealtimeDB (base de données temps r�
 
 Dans ce TP nous allons mettre en place une carte temps réel qui utilise comme base de données la Realtime Database de firebase.
 
-TODO IMAGE
+![Carte Marker fin](./ressources/carte_marker.png)
 
 ## La mise en place
 
@@ -365,7 +365,112 @@ import "./plugins/vuefire";
 
 {% endreveal %}
 
-## Gestion du click sur la carte
+## Connecter firebase à notre vue
+
+Grace à au plugin l'intégration de Firebase va être très simplifié. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grace au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça modifier le fichier `maps.vue` pour ajouter (après name) :
+
+```js
+firebase: function() {
+    return {
+      markerList: this.$db.ref("/markerList/")
+    };
+  },
+```
+
+### Questions :
+
+- D'où vient `this.$db` ?
+- À quoi correspond le `/markerList/` ?
+
+Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable de disponible `markerList` celle-ci est synchronisé avec votre base de données temps réel (Firebase RealtimeDB).
+
+## Ajouter un marker
+
+Pour ajouter un marker sur la carte nous allons utiliser la directive `@stop` sur l'objet `l-map` :
+
+- Ajouter sur l'objet `<l-map>` la directive suivante `@click="addMarker"`.
+- Ajouter la méthode `addMarker` dans votre objet VueJS `addMarker(marker){…}` .
+- À votre avis à quoi dois ressembler le code ?
+  - Ajouter un `console.log(marker)` avez-vous une propriété latlng ?
+
+{% reveal text="Voir la solution" %}
+
+```js
+addMarker(position) {
+  this.$firebaseRefs.markerList.push([
+    position.latlng.lat,
+    position.latlng.lng
+  ]);
+},
+```
+
+{% endreveal %}
+
+## Tester
+
+- Ouvrer la ![console de Firebase](https://firebase.google.com) rendez-vous dans la partie `Database`.
+- Lancer votre projet local `npm run serve`
+- Cliquer sur la carte
+- Que constatez-vous ?
+
+## Afficher les markers
+
+Les markers ne s'affiche pas ? C'est normal! Pour l'instant nous n'avons pas mis le code permettant de les affichers. C'est l'étape à laquelle nous sommes.
+
+La logique va être simpliste, nous devons afficher TOUT les éléments contenu dans la variable `markerList` déclaré précédement.
+
+Les étapes :
+
+- Utilisation de [l-marker](https://korigan.github.io/Vue2Leaflet/#/components/l-marker/)
+- Le mettre en place dans le `l-map` en suivant la documentation.
+- Mise en place d'une boucle v-for.
+- et… c'est tout
+- Essayer sans regarder la solution.
+
+{% reveal text="Voir la solution" %}
+
+Le marker est à mettre dans le `l-map`.
+
+```html
+<l-marker
+  v-for="marker in markerList"
+  :key="marker['.key']"
+  :lat-lng="marker['.value']"
+>
+</l-marker>
+```
+
+{% endreveal %}
+
+## Tester
+
+`npm run serve` normalement des markers doivent s'afficher. Tenter d'en ajouter d'autre.
+
+## Supprimer un marker
+
+Bon maintenant qu'il y a plein de marker partout nous allons mettre en place le code pour les supprimer ! Voilà la procédure à suivre :
+
+- Ajout d'une méthode `removeMarker`
+
+```js
+removeMarker(markerKey) {
+  this.$firebaseRefs.markerList.child(markerKey).remove();
+},
+```
+
+- Ajouter la directive sur `l-marker` :
+
+```html
+@click="() => removeMarker(marker['.key'])"
+```
+
+## Tester
+
+`npm run serve` tenter de supprimer un marker en cliquant dessus.
+
+## Tester à plusieurs
+
+Accéder à plusieurs au même projet (via votre IP) pour tester la synchronisation.
 
 ## Amélioration 1 : centrer la carte sur votre position
 
