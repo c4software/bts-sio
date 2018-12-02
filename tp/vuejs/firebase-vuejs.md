@@ -377,9 +377,7 @@ template :
 Dans le `l-map`
 
 ```html
-<l-control position="bottomleft">
-  <button @click="getUserLocation">Localiser moi</button>
-</l-control>
+<l-control> <button @click="getUserLocation">Localiser moi</button> </l-control>
 ```
 
 methods :
