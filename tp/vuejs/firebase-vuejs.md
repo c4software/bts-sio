@@ -408,7 +408,7 @@ addMarker(position) {
 
 ## Tester
 
-- Ouvrer la ![console de Firebase](https://firebase.google.com) rendez-vous dans la partie `Database`.
+- Ouvrer la [console de Firebase](https://firebase.google.com) rendez-vous dans la partie `Database`.
 - Lancer votre projet local `npm run serve`
 - Cliquer sur la carte
 - Que constatez-vous ?
