@@ -49,18 +49,18 @@ vue-cli create firebase-vuejs
 
 Choisir l'option « Default ».
 
-⚠️ Le projet est créé dans le dossier courant. Veuillez à saisir la commande dans un dossier vide.
+⚠️ Le projet est créé dans le dossier courant. Veillez à saisir la commande dans un dossier vide.
 
 🤓 git est déjà initialisé, vous pouvez en profiter pour pusher votre code sur Github.
 
 ### Questions
 
 - Pourquoi git est déjà analysé ?
-- Allez jeter un coup d'oeil au fichier `.gitignore`
+- Allez jeter un coup d'œil au fichier `.gitignore`
 
 ## Tester
 
-Le projet initialisé par `vue-cli` est imédiatement fonctionnel. Tester le en saisissant :
+Le projet initialisé par `vue-cli` est imédiatement fonctionnel. Testez-le en saisissant :
 
 ```js
 npm run serve
@@ -75,11 +75,11 @@ Maintenant que notre projet est « initialisé », nous allons avoir besoin de q
 - firebase
 - leaflet
 
-Firebase comme vous le savez va nous servir de système de base de données. [Leaflet](http://leafletjs.com/) quand à lui est une librairie qui vas nous permettre d'afficher très rapidement une carte sur notre site internet.
+Firebase comme vous le savez va nous servir de système de base de données. [Leaflet](http://leafletjs.com/) quant à lui est une librairie qui va nous permettre d'afficher très rapidement une carte sur notre site internet.
 
 ### Ajouter les dépendances
 
-Les deux outils / librairie que nous allons utiliser sont disponible via NPM, nous allons donc les installer / ajouter au projet via les commandes suivantes :
+Les deux outils / librairie que nous allons utiliser sont disponibles via NPM, nous allons donc les installer / ajouter au projet via les commandes suivantes :
 
 ```bash
 npm install firebase vue2-leaflet --save
@@ -87,7 +87,7 @@ npm install firebase vue2-leaflet --save
 
 ### Configuration de la dépendance carte
 
-Certains plugins nécéssitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase), comme vous je ne connais pas la configuration de l'ensemble des dépnedances existante. Première étape :
+Certains plugins nécessitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase), comme vous je ne connais pas la configuration de l'ensemble des dépendances existante. Première étape :
 
 - [Lire la documentation sur le site de Vue2-Leaflet](https://korigan.github.io/Vue2Leaflet/#/quickstart.md)
 
@@ -126,7 +126,7 @@ ajouter l'import :
 import "./plugins/vue2-leaflet";
 ```
 
-🤓 Avec les autres import déjà existant.
+🤓 Avec les autres imports déjà existant.
 
 ### Questions
 
@@ -135,9 +135,9 @@ import "./plugins/vue2-leaflet";
 
 ### Dépendance supplémentaire
 
-Le gros avantage de NPM (et NodeJS) c'est la quantitié de librairie disponible pour répondre à un besoin, nous allons donc profiter de celle-ci pour gagner du temps dans notre réalisation.
+Le gros avantage de NPM (et NodeJS) c'est la quantité de librairie disponible pour répondre à un besoin, nous allons donc profiter de celle-ci pour gagner du temps dans notre réalisation.
 
-Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intégre pas directement avec le « state » d'un composant VueJS! Mais grace à d'excellent développeur c'est maintenant possible et très simplement. Pour ça nous allons utiliser :
+Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre pas directement avec le « state » d'un composant VueJS! Mais grâce à d'excellent développeur c'est maintenant possible et très simplement. Pour ça nous allons utiliser :
 
 - [Vuefire](https://github.com/vuejs/vuefire/tree/v1)
 
@@ -151,7 +151,7 @@ npm install vuefire --save
 
 ## Création du projet sur Firebase
 
-Maintenant que nos dépendances sont installés et que notre projet est initialisé, nous allons configurer le projet sur Firebase :
+Maintenant que nos dépendances sont installées et que notre projet est initialisé, nous allons configurer le projet sur Firebase :
 
 Première étape [créer le projet sur le site de Firebase](https://console.firebase.google.com/u/0/)
 
@@ -190,7 +190,7 @@ BRAVO ! Votre projet est maintenant capable de « se connecter » avec Firebase 
 
 ## Modification du code pour inclure la configuration Firebase
 
-Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plugins » dans le dossiers `src/plugins/` ajouter un fichié nommé `firebase.js` avec le contenu suivant
+Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plugin » dans le dossier `src/plugins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant
 
 ```js
 import firebaseConfig from "../config/firebase";
@@ -204,7 +204,7 @@ const db = firebaseApp.database();
 Vue.prototype.$db = db;
 ```
 
-Comme pour leaflet, ajouter un import dans le fichier `main.js` pour référrencer notre « configuration de plugin » :
+Comme pour leaflet, ajouter un import dans le fichier `main.js` pour référencer notre « configuration de plugin » :
 
 ```js
 import "./plugins/firebase";
@@ -234,11 +234,11 @@ Et dans votre navigateur toujours la même chose à savoir :
 
 ## Création de notre première vue / composant.
 
-Notre projet est maintenant prêt à recevoir son premier `.vue` bien à vous. Toujours dans le but d'organiser sont travail nous allons commencer par créer un dossier :
+Notre projet est maintenant prêt à recevoir son premier `.vue` bien à vous. Toujours dans le but d'organiser son travail nous allons commencer par créer un dossier :
 
 - `src/views/`
 
-Ce dossier nous servira à ranger l'ensemble de nos vues, pour l'instant nous allons créer une vue nommé `map.vue` ce fichier contiendra le code source de notre carte.
+Ce dossier nous servira à ranger l'ensemble de nos vues, pour l'instant nous allons créer une vue nommée `map.vue` ce fichier contiendra le code source de notre carte.
 
 Créer le fichier `src/views/map.vue` avec le contenu suivant :
 
@@ -281,12 +281,12 @@ export default {
 
 ✋ D'où vient le code ? Tout simplement une adaptation du [code de démonstration fourni par Vue2-Leaflet](https://korigan.github.io/Vue2Leaflet/#/components/l-map/)
 
-## Utiliser notre premiere vue
+## Utiliser notre première vue
 
 Créer la vue ne déclenche rien, il faut maintenant l'importer. Comme vu en cours, la « base » de notre application est réparti entre deux fichiers :
 
 - l'main.js : qui contient les imports de base et la déclaration de notre objet `.vue`.
-- l'App.vue : qui contient la « racine » de notre HTML (c'est dans celui-ci que nous allons référencé notre nouvelle vue / composant)
+- l'App.vue : qui contient la « racine » de notre HTML (c'est dans celui-ci que nous allons référencer notre nouvelle vue / composant)
 
 Modifier le `App.vue` par :
 
@@ -319,7 +319,7 @@ body {
 
 ### Questions
 
-- Quels sont les différences ?
+- Quelles sont les différences ?
 - Pourquoi le CSS n'est pas `scoped` ?
 - À quoi correspond `components` ?
 
@@ -338,7 +338,7 @@ npm run serve
 Comme pour Vue2-Leaflet et firebase, vuefire nécéssite une déclaration pour être utilisé dans le projet.
 
 - [Lire la documentation](https://github.com/vuejs/vuefire/tree/v1).
-- Créer le fichier dans le dossiers `plugins`.
+- Créer le fichier dans le dossier `plugins`.
 - Réaliser l'import dans le fichier `main.js`.
 
 🤓 C'est la 3ème fois de ce TP que vous le faite, vous devez être capable de le faire de vous même.
@@ -382,7 +382,7 @@ firebase: function() {
 - D'où vient `this.$db` ?
 - À quoi correspond le `/markerList/` ?
 
-Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable de disponible `markerList` celle-ci est synchronisé avec votre base de données temps réel (Firebase RealtimeDB).
+Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable de disponible `markerList` celle-ci est synchronisée avec votre base de données temps réel (Firebase RealtimeDB).
 
 ## Ajouter un marker
 
@@ -408,7 +408,7 @@ addMarker(position) {
 
 ## Tester
 
-- Ouvrer la [console de Firebase](https://firebase.google.com) rendez-vous dans la partie `Database`.
+- Ouvrez-la [console de Firebase](https://firebase.google.com) rendez-vous dans la partie `Database`.
 - Lancer votre projet local `npm run serve`
 - Cliquer sur la carte
 - Que constatez-vous ?
@@ -417,7 +417,7 @@ addMarker(position) {
 
 Les markers ne s'affiche pas ? C'est normal! Pour l'instant nous n'avons pas mis le code permettant de les affichers. C'est l'étape à laquelle nous sommes.
 
-La logique va être simpliste, nous devons afficher TOUT les éléments contenu dans la variable `markerList` déclaré précédement.
+La logique va être simpliste, nous devons afficher TOUS les éléments contenus dans la variable `markerList` déclaré précédemment.
 
 Les étapes :
 
@@ -474,7 +474,7 @@ Accéder à plusieurs au même projet (via votre IP) pour tester la synchronisat
 
 ## Amélioration 1 : centrer la carte sur votre position
 
-Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notre carte. Actuellement la carte est centrée sur Angers… C'est pratique… Si on ce trouve à Angers… dans tous les autres cas c'est pas forcément adapté. Nous allons donc utiliser l'API `geolocation` de notre navigateur.
+Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notre carte. Actuellement la carte est centrée sur Angers… C'est pratique… Si on se trouve à Angers… dans tous les autres cas c'est pas forcément adapté. Nous allons donc utiliser l'API `geolocation` de notre navigateur.
 
 Celle-ci permet de localiser une personne en fonction de sa connexion internet (ou GPS / Réseau téléphonique si disponible)
 
@@ -489,7 +489,7 @@ template :
 Dans le `l-map`
 
 ```html
-<l-control> <button @click="getUserLocation">Localiser moi</button> </l-control>
+<l-control> <button @click="getUserLocation">Localisez-moi</button> </l-control>
 ```
 
 methods :
