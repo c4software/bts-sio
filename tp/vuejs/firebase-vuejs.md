@@ -4,7 +4,7 @@ Dans ce TP nous allons découvrir Firebase RealtimeDB (base de données temps r�
 
 ## Introduction
 
-Dans ce TP nous allons mettre en place une carte temps réel qui utilise comme base de données la Realtime Database de firebase.
+Dans ce TP nous allons mettre en place une carte du monde qui affiche en temps réel l'emplacement des utilisateurs présent sur votre site.
 
 ![Carte Marker fin](./ressources/carte_marker.png)
 
@@ -51,7 +51,7 @@ Choisir l'option « Default ».
 
 ⚠️ Le projet est créé dans le dossier courant. Veillez à saisir la commande dans un dossier vide.
 
-🤓 git est déjà initialisé, vous pouvez en profiter pour pusher votre code sur Github.
+🤓 git est déjà initialisé, vous pouvez en profiter pour pusher votre code sur Github / Gitlab.
 
 ### Questions
 
@@ -91,7 +91,7 @@ Certains plugins nécessitent de la configuration supplémentaire, ça sera le c
 
 - [Lire la documentation sur le site de Vue2-Leaflet](https://korigan.github.io/Vue2Leaflet/#/quickstart.md)
 
-Maintenant que nous avons vu comment s'intègre le projet, refléchissons comment intégrer ça dans notre projet :
+Maintenant que nous avons vu comment s'intègre le Leaflet, refléchissons comment intégrer ça dans notre projet :
 
 - À l'arrache dans le fichier `main.js` ? ✋ => NON
 - Dans un dossier `plugins` => 👍 Oui
@@ -116,13 +116,15 @@ L.Icon.Default.mergeOptions({
 });
 ```
 
+- D'où vient le code ?
+
 ### Déclarer le plugin
 
-Maintenant que la configuration du « plugin » est effective nous devons le déclarer dans notre fichier `main.js` pour ça rien de compliquer :
+Maintenant que la configuration du « plugin » est effective nous devons le déclarer dans notre fichier `main.js` pour ça rien de compliquer.
 
-ajouter l'import :
+Ajouter l'import :
 
-```
+```js
 import "./plugins/vue2-leaflet";
 ```
 
@@ -130,14 +132,15 @@ import "./plugins/vue2-leaflet";
 
 ### Questions
 
+- Pourquoi l'import est-il nécéssaire ?
 - Pourquoi vue2-leaflet et pas juste leaflet ?
 - Quel est l'avantage ?
 
 ### Dépendance supplémentaire
 
-Le gros avantage de NPM (et NodeJS) c'est la quantité de librairie disponible pour répondre à un besoin, nous allons donc profiter de celle-ci pour gagner du temps dans notre réalisation.
+Le gros avantage de NPM (et NodeJS) c'est la quantité de librairies disponibles pour répondre à un besoin, nous allons donc en profiter pour gagner du temps dans notre réalisation.
 
-Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre pas directement avec le « state » d'un composant VueJS! Mais grâce à d'excellent développeur c'est maintenant possible et très simplement. Pour ça nous allons utiliser :
+Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre pas directement avec le « state » d'un composant VueJS! Mais grâce à d'excellents développeurs c'est maintenant possible et très simplement. Pour ça nous allons utiliser :
 
 - [Vuefire](https://github.com/vuejs/vuefire/tree/v1)
 
@@ -187,6 +190,10 @@ BRAVO ! Votre projet est maintenant capable de « se connecter » avec Firebase 
 
 - Et la sécurité ? À votre avis comment ça fonctionne ?
 - Est-il possible de faire autrement ?
+
+## Activer la Realtime DB
+
+Dans l'interface de Firebase activer la Realtime DB.
 
 ## Modification du code pour inclure la configuration Firebase
 
