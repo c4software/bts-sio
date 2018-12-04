@@ -773,12 +773,12 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Tue Dec 04 2018 21:41:36 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Tue Dec 04 2018 22:00:57 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="firebase--vuejs">Firebase + Vuejs</h1>
 <p>Dans ce TP nous allons d&#xE9;couvrir Firebase RealtimeDB (base de donn&#xE9;es temps r&#xE9;el). Nous allons coupler cette base de donn&#xE9;es temps r&#xE9;el &#xE0; la puissance de VueJS pour obtenir en un rien de temps une WebApplication surpuissante.</p>
 <h2 id="introduction">Introduction</h2>
-<p>Dans ce TP nous allons mettre en place une carte temps r&#xE9;el qui utilise comme base de donn&#xE9;es la Realtime Database de firebase.</p>
+<p>Dans ce TP nous allons mettre en place une carte du monde qui affiche en temps r&#xE9;el l&apos;emplacement des utilisateurs pr&#xE9;sent sur votre site.</p>
 <p><img src="ressources/carte_marker.png" alt="Carte Marker fin"></p>
 <h2 id="la-mise-en-place">La mise en place</h2>
 <p>Nous allons utiliser VueCLI pour initialiser le projet, premi&#xE8;re &#xE9;tape l&apos;installation</p>
@@ -804,7 +804,7 @@
 </code></pre>
 <p>Choisir l&apos;option &#xAB; Default &#xBB;.</p>
 <p>&#x26A0;&#xFE0F; Le projet est cr&#xE9;&#xE9; dans le dossier courant. Veillez &#xE0; saisir la commande dans un dossier vide.</p>
-<p>&#x1F913; git est d&#xE9;j&#xE0; initialis&#xE9;, vous pouvez en profiter pour pusher votre code sur Github.</p>
+<p>&#x1F913; git est d&#xE9;j&#xE0; initialis&#xE9;, vous pouvez en profiter pour pusher votre code sur Github / Gitlab.</p>
 <h3 id="questions">Questions</h3>
 <ul>
 <li>Pourquoi git est d&#xE9;j&#xE0; analys&#xE9; ?</li>
@@ -831,7 +831,7 @@
 <ul>
 <li><a href="https://korigan.github.io/Vue2Leaflet/#/quickstart.md" target="_blank">Lire la documentation sur le site de Vue2-Leaflet</a></li>
 </ul>
-<p>Maintenant que nous avons vu comment s&apos;int&#xE8;gre le projet, refl&#xE9;chissons comment int&#xE9;grer &#xE7;a dans notre projet :</p>
+<p>Maintenant que nous avons vu comment s&apos;int&#xE8;gre le Leaflet, refl&#xE9;chissons comment int&#xE9;grer &#xE7;a dans notre projet :</p>
 <ul>
 <li>&#xC0; l&apos;arrache dans le fichier <code>main.js</code> ? &#x270B; =&gt; NON</li>
 <li>Dans un dossier <code>plugins</code> =&gt; &#x1F44D; Oui</li>
@@ -851,19 +851,24 @@ L.Icon.Default.mergeOptions({
   shadowUrl: <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;leaflet/dist/images/marker-shadow.png&quot;</span>)
 });
 </code></pre>
+<ul>
+<li>D&apos;o&#xF9; vient le code ?</li>
+</ul>
 <h3 id="d&#xE9;clarer-le-plugin">D&#xE9;clarer le plugin</h3>
-<p>Maintenant que la configuration du &#xAB; plugin &#xBB; est effective nous devons le d&#xE9;clarer dans notre fichier <code>main.js</code> pour &#xE7;a rien de compliquer :</p>
-<p>ajouter l&apos;import :</p>
-<pre><code>import &quot;./plugins/vue2-leaflet&quot;;
-</code></pre><p>&#x1F913; Avec les autres imports d&#xE9;j&#xE0; existant.</p>
+<p>Maintenant que la configuration du &#xAB; plugin &#xBB; est effective nous devons le d&#xE9;clarer dans notre fichier <code>main.js</code> pour &#xE7;a rien de compliquer.</p>
+<p>Ajouter l&apos;import :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./plugins/vue2-leaflet&quot;</span>;
+</code></pre>
+<p>&#x1F913; Avec les autres imports d&#xE9;j&#xE0; existant.</p>
 <h3 id="questions">Questions</h3>
 <ul>
+<li>Pourquoi l&apos;import est-il n&#xE9;c&#xE9;ssaire ?</li>
 <li>Pourquoi vue2-leaflet et pas juste leaflet ?</li>
 <li>Quel est l&apos;avantage ?</li>
 </ul>
 <h3 id="d&#xE9;pendance-suppl&#xE9;mentaire">D&#xE9;pendance suppl&#xE9;mentaire</h3>
-<p>Le gros avantage de NPM (et NodeJS) c&apos;est la quantit&#xE9; de librairie disponible pour r&#xE9;pondre &#xE0; un besoin, nous allons donc profiter de celle-ci pour gagner du temps dans notre r&#xE9;alisation.</p>
-<p>Firebase est plut&#xF4;t simple &#xE0; utiliser, mais nativement celle-ci ne s&apos;int&#xE8;gre pas directement avec le &#xAB; state &#xBB; d&apos;un composant VueJS! Mais gr&#xE2;ce &#xE0; d&apos;excellent d&#xE9;veloppeur c&apos;est maintenant possible et tr&#xE8;s simplement. Pour &#xE7;a nous allons utiliser :</p>
+<p>Le gros avantage de NPM (et NodeJS) c&apos;est la quantit&#xE9; de librairies disponibles pour r&#xE9;pondre &#xE0; un besoin, nous allons donc en profiter pour gagner du temps dans notre r&#xE9;alisation.</p>
+<p>Firebase est plut&#xF4;t simple &#xE0; utiliser, mais nativement celle-ci ne s&apos;int&#xE8;gre pas directement avec le &#xAB; state &#xBB; d&apos;un composant VueJS! Mais gr&#xE2;ce &#xE0; d&apos;excellents d&#xE9;veloppeurs c&apos;est maintenant possible et tr&#xE8;s simplement. Pour &#xE7;a nous allons utiliser :</p>
 <ul>
 <li><a href="https://github.com/vuejs/vuefire/tree/v1" target="_blank">Vuefire</a></li>
 </ul>
@@ -898,6 +903,8 @@ L.Icon.Default.mergeOptions({
 <li>Et la s&#xE9;curit&#xE9; ? &#xC0; votre avis comment &#xE7;a fonctionne ?</li>
 <li>Est-il possible de faire autrement ?</li>
 </ul>
+<h2 id="activer-la-realtime-db">Activer la Realtime DB</h2>
+<p>Dans l&apos;interface de Firebase activer la Realtime DB.</p>
 <h2 id="modification-du-code-pour-inclure-la-configuration-firebase">Modification du code pour inclure la configuration Firebase</h2>
 <p>Maintenant que nous avons ajout&#xE9; la configuration, nous devons la d&#xE9;clarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de &#xAB; configuration du plugin &#xBB; dans le dossier <code>src/plugins/</code> ajouter un fichier nomm&#xE9; <code>firebase.js</code> avec le contenu suivant</p>
 <pre><code class="lang-js"><span class="hljs-keyword">import</span> firebaseConfig <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../config/firebase&quot;</span>;
@@ -1183,7 +1190,7 @@ Dans le <code>l-map</code></p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"VueJS + Firebase","level":"1.7.5","depth":2,"next":{"title":"Cordova + VueJS","level":"1.8","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.8.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/cordova/","ref":"https://rawgit.com/c4software/bts/master/cours/cordova/","articles":[]},{"title":"Découverte","level":"1.8.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},{"title":"Projet Cordova + VueJS","level":"1.8.3","depth":2,"path":"tp/cordova/vuejs_cordova.md","ref":"tp/cordova/vuejs_cordova.md","articles":[]}]},"previous":{"title":"Réaliser une application avec VueJS","level":"1.7.4","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/firebase-vuejs.md","mtime":"2018-12-04T20:41:36.199Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-04T20:42:10.856Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"VueJS + Firebase","level":"1.7.5","depth":2,"next":{"title":"Cordova + VueJS","level":"1.8","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.8.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/cordova/","ref":"https://rawgit.com/c4software/bts/master/cours/cordova/","articles":[]},{"title":"Découverte","level":"1.8.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},{"title":"Projet Cordova + VueJS","level":"1.8.3","depth":2,"path":"tp/cordova/vuejs_cordova.md","ref":"tp/cordova/vuejs_cordova.md","articles":[]}]},"previous":{"title":"Réaliser une application avec VueJS","level":"1.7.4","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/firebase-vuejs.md","mtime":"2018-12-04T21:00:57.680Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-04T21:02:16.162Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
