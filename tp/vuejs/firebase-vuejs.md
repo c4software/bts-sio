@@ -10,24 +10,24 @@ Dans ce TP nous allons mettre en place une carte du monde qui affiche en temps r
 
 ## La mise en place
 
-Nous allons utiliser VueCLI pour initialiser le projet, première étape l'installation
+Nous allons utiliser VueCLI pour initialiser le projet, première étape l'installation.
 
 ## Installer NodeJS + VueCLI
 
 Avant de commencer nous allons avoir besoin de plusieurs outils :
 
 - NodeJS
-- Vue-cli
+- VueCli
 
 ## NodeJS
 
 La première étape va être l’installation de NodeJS, la démarche est différente en fonction de votre environnement, mais pour résumer [sous Windows c’est ici](https://nodejs.org/en/download/) prendre la version CURRENT, sous OSX le plus simple c’est via Brew `brew install nodejs`, et sous Linux c’est via le gestionnaire de paquet `apt install nodejs`
 
-Une fois installé, vous êtes prêt, votre PC est prêt à accueillir l’outil VueCLI
+Une fois installé, vous êtes prêt, votre PC est prêt à accueillir l’outil Vue-Cli.
 
-## Vue-cli
+## Vue-Cli
 
-Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
+Vue-Cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
 
 Dans un terminal lancer la commande suivante dans le `Node.js Command Prompt` :
 
@@ -35,9 +35,9 @@ Dans un terminal lancer la commande suivante dans le `Node.js Command Prompt` :
 npm install -g @vue/cli
 ```
 
-Maintenant que vue-cli est installé, vous avez à votre disposition sur votre ordinateur une nouvelle commande, la commande `vue`
+Maintenant que vue-cli est installé, vous avez à votre disposition sur votre ordinateur une nouvelle commande, la commande `vue`.
 
-Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante dans le `Node.js Command Prompt`
+Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante dans le `Node.js Command Prompt`.
 
 ## Initialiser le projet
 
@@ -60,7 +60,7 @@ Choisir l'option « Default ».
 
 ## Tester
 
-Le projet initialisé par `vue-cli` est imédiatement fonctionnel. Testez-le en saisissant :
+Le projet initialisé par `Vue-Cli` est imédiatement fonctionnel. Testez-le en saisissant :
 
 ```js
 npm run serve
@@ -79,7 +79,7 @@ Firebase comme vous le savez va nous servir de système de base de données. [Le
 
 ### Ajouter les dépendances
 
-Les deux outils / librairie que nous allons utiliser sont disponibles via NPM, nous allons donc les installer / ajouter au projet via les commandes suivantes :
+Les deux outils / librairies que nous allons utiliser sont disponibles via NPM, nous allons donc les installer / ajouter au projet via les commandes suivantes :
 
 ```bash
 npm install firebase vue2-leaflet --save
@@ -87,7 +87,7 @@ npm install firebase vue2-leaflet --save
 
 ### Configuration de la dépendance carte
 
-Certains plugins nécessitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase), comme vous je ne connais pas la configuration de l'ensemble des dépendances existante. Première étape :
+Certains plugins nécessitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase). Comme vous, je ne connais pas la configuration de l'ensemble des dépendances existantes. Première étape :
 
 - [Lire la documentation sur le site de Vue2-Leaflet](https://korigan.github.io/Vue2Leaflet/#/quickstart.md)
 
@@ -164,7 +164,7 @@ Maintenant que le projet est créé, nous allons récupérer la configuration :
 
 ![Configuration Web](./ressources/configuration-web.png)
 
-Nous allons récupérer une partie du code fourni… Nous allons prendre la configuration (dans mon cas)
+Nous allons récupérer une partie du code fourni… Nous allons prendre la configuration (dans mon cas) :
 
 ```js
 // Initialize Firebase
@@ -197,7 +197,7 @@ Dans l'interface de Firebase activer la Realtime DB.
 
 ## Modification du code pour inclure la configuration Firebase
 
-Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plugin » dans le dossier `src/plugins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant
+Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plugin » dans le dossier `src/plugins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant :
 
 ```js
 import firebaseConfig from "../config/firebase";
