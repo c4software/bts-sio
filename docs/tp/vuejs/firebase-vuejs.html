@@ -773,7 +773,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Dec 05 2018 20:23:10 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Wed Dec 05 2018 20:33:38 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="firebase--vuejs">Firebase + Vuejs</h1>
 <p>Dans ce TP nous allons d&#xE9;couvrir Firebase RealtimeDB (base de donn&#xE9;es temps r&#xE9;el). Nous allons coupler cette base de donn&#xE9;es temps r&#xE9;el &#xE0; la puissance de VueJS pour obtenir en un rien de temps une WebApplication surpuissante.</p>
@@ -978,10 +978,10 @@ export default {
 </code></pre>
 <p>&#x270B; D&apos;o&#xF9; vient le code ? Tout simplement une adaptation du <a href="https://korigan.github.io/Vue2Leaflet/#/components/l-map/" target="_blank">code de d&#xE9;monstration fourni par Vue2-Leaflet</a></p>
 <h2 id="utiliser-notre-premi&#xE8;re-vue">Utiliser notre premi&#xE8;re vue</h2>
-<p>Cr&#xE9;er la vue ne d&#xE9;clenche rien, il faut maintenant l&apos;importer. Comme vu en cours, la &#xAB; base &#xBB; de notre application est r&#xE9;parti entre deux fichiers :</p>
+<p>Cr&#xE9;er la vue ne d&#xE9;clenche rien, il faut maintenant l&apos;importer. Comme vu en cours, la &#xAB; base &#xBB; de notre application est r&#xE9;partie entre deux fichiers :</p>
 <ul>
-<li>l&apos;main.js : qui contient les imports de base et la d&#xE9;claration de notre objet <code>.vue</code>.</li>
-<li>l&apos;App.vue : qui contient la &#xAB; racine &#xBB; de notre HTML (c&apos;est dans celui-ci que nous allons r&#xE9;f&#xE9;rencer notre nouvelle vue / composant)</li>
+<li>le main.js : qui contient les imports de base et la d&#xE9;claration de notre objet <code>.vue</code>.</li>
+<li>l&apos;App.vue : qui contient la &#xAB; racine &#xBB; de notre HTML (c&apos;est dans celui-ci que nous allons r&#xE9;f&#xE9;rencer notre nouvelle vue / composant).</li>
 </ul>
 <p>Modifier le <code>App.vue</code> par :</p>
 <pre><code class="lang-vue">&lt;template&gt;
@@ -1027,7 +1027,7 @@ body {
 <li>Cr&#xE9;er le fichier dans le dossier <code>plugins</code>.</li>
 <li>R&#xE9;aliser l&apos;import dans le fichier <code>main.js</code>.</li>
 </ul>
-<p>&#x1F913; C&apos;est la 3&#xE8;me fois de ce TP que vous le faite, vous devez &#xEA;tre capable de le faire de vous m&#xEA;me.</p>
+<p>&#x1F913; C&apos;est la 3&#xE8;me fois de ce TP que vous le faites, vous devez &#xEA;tre capable de le faire de vous m&#xEA;me.</p>
 <div class="click_reveal"><span> Voir la solution </span><div><p><code>src/plugins/vuefire.js</code></p>
 <pre><code class="lang-js"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
 <span class="hljs-keyword">import</span> VueFire <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vuefire&quot;</span>;
@@ -1043,7 +1043,7 @@ Vue.use(VueFire);
 </div></div>
 
 <h2 id="connecter-firebase-&#xE0;-notre-vue">Connecter firebase &#xE0; notre vue</h2>
-<p>Grace &#xE0; au plugin l&apos;int&#xE9;gration de Firebase va &#xEA;tre tr&#xE8;s simplifi&#xE9;. D&#xE9;j&#xE0; vous avez mis en place Firebase et injecter le connecteur de base de donn&#xE9;es grace au &#xAB; plugin &#xBB; et &#xAB; Vue.prototype &#xBB;, nous allons devoir l&apos;utiliser. Pour &#xE7;a modifier le fichier <code>maps.vue</code> pour ajouter (apr&#xE8;s name) :</p>
+<p>Grace au plugin l&apos;int&#xE9;gration de Firebase va &#xEA;tre tr&#xE8;s simplifi&#xE9;. D&#xE9;j&#xE0; vous avez mis en place Firebase et injecter le connecteur de base de donn&#xE9;es grace au &#xAB; plugin &#xBB; et &#xAB; Vue.prototype &#xBB;, nous allons devoir l&apos;utiliser. Pour &#xE7;a modifier le fichier <code>maps.vue</code> pour ajouter (apr&#xE8;s name) :</p>
 <pre><code class="lang-js">firebase: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> {
       markerList: <span class="hljs-keyword">this</span>.$db.ref(<span class="hljs-string">&quot;/markerList/&quot;</span>)
@@ -1061,8 +1061,8 @@ Vue.use(VueFire);
 <ul>
 <li>Ajouter sur l&apos;objet <code>&lt;l-map&gt;</code> la directive suivante <code>@click=&quot;addMarker&quot;</code>.</li>
 <li>Ajouter la m&#xE9;thode <code>addMarker</code> dans votre objet VueJS <code>addMarker(marker){&#x2026;}</code> .</li>
-<li>&#xC0; votre avis &#xE0; quoi dois ressembler le code ?<ul>
-<li>Ajouter un <code>console.log(marker)</code> avez-vous une propri&#xE9;t&#xE9; latlng ?</li>
+<li>&#xC0; votre avis &#xE0; quoi doit ressembler le code ?<ul>
+<li>Ajouter un <code>console.log(marker)</code> avez-vous une propri&#xE9;t&#xE9; <code>latlng</code> ?</li>
 </ul>
 </li>
 </ul>
@@ -1077,14 +1077,14 @@ Vue.use(VueFire);
 
 <h2 id="tester">Tester</h2>
 <ul>
-<li>Ouvrez-la <a href="https://firebase.google.com" target="_blank">console de Firebase</a> rendez-vous dans la partie <code>Database</code>.</li>
-<li>Lancer votre projet local <code>npm run serve</code></li>
-<li>Cliquer sur la carte</li>
+<li>Ouvrer la <a href="https://firebase.google.com" target="_blank">console de Firebase</a> rendez-vous dans la partie <code>Database</code>.</li>
+<li>Lancer votre projet local <code>npm run serve</code>.</li>
+<li>Cliquer sur la carte.</li>
 <li>Que constatez-vous ?</li>
 </ul>
 <h2 id="afficher-les-markers">Afficher les markers</h2>
-<p>Les markers ne s&apos;affiche pas ? C&apos;est normal! Pour l&apos;instant nous n&apos;avons pas mis le code permettant de les affichers. C&apos;est l&apos;&#xE9;tape &#xE0; laquelle nous sommes.</p>
-<p>La logique va &#xEA;tre simpliste, nous devons afficher TOUS les &#xE9;l&#xE9;ments contenus dans la variable <code>markerList</code> d&#xE9;clar&#xE9; pr&#xE9;c&#xE9;demment.</p>
+<p>Les markers ne s&apos;affichent pas ? C&apos;est normal! Pour l&apos;instant nous n&apos;avons pas mis le code permettant de les afficher. C&apos;est l&apos;&#xE9;tape &#xE0; laquelle nous sommes.</p>
+<p>La logique va &#xEA;tre simpliste, nous devons afficher TOUS les &#xE9;l&#xE9;ments contenus dans la variable <code>markerList</code> d&#xE9;clar&#xE9;e pr&#xE9;c&#xE9;demment.</p>
 <p>Les &#xE9;tapes :</p>
 <ul>
 <li>Utilisation de <a href="https://korigan.github.io/Vue2Leaflet/#/components/l-marker/" target="_blank">l-marker</a></li>
@@ -1105,7 +1105,7 @@ Vue.use(VueFire);
 
 <h2 id="tester">Tester</h2>
 <p><code>npm run serve</code> normalement des markers doivent s&apos;afficher. Tenter d&apos;en ajouter d&apos;autre.</p>
-<h2 id="supprimer-un-marker">Supprimer un marker</h2>
+<h2 id="suppression-dun-marker">Suppression d&apos;un marker</h2>
 <p>Bon maintenant qu&apos;il y a plein de marker partout nous allons mettre en place le code pour les supprimer ! Voil&#xE0; la proc&#xE9;dure &#xE0; suivre :</p>
 <ul>
 <li>Ajout d&apos;une m&#xE9;thode <code>removeMarker</code></li>
@@ -1128,9 +1128,9 @@ Vue.use(VueFire);
 <p>Celle-ci permet de localiser une personne en fonction de sa connexion internet (ou GPS / R&#xE9;seau t&#xE9;l&#xE9;phonique si disponible)</p>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API" target="_blank">Documentation de l&apos;API geolocation</a>.</li>
-<li>Ajouter une m&#xE9;thode dasns le code dans le composant <code>map.vue</code>.</li>
+<li>Ajouter une m&#xE9;thode dans le code dans le composant <code>map.vue</code>.</li>
 <li>La m&#xE9;thode doit mettre &#xE0; jour le <code>this.center = [lat, lng]</code>.</li>
-<li>La m&#xE9;thode doit &#xEA;tre appel&#xE9; via un click utilisateur <a href="https://korigan.github.io/Vue2Leaflet/#/components/l-control/" target="_blank">Documentation de LControl</a></li>
+<li>La m&#xE9;thode doit &#xEA;tre appel&#xE9; via un clique utilisateur <a href="https://korigan.github.io/Vue2Leaflet/#/components/l-control/" target="_blank">Documentation de LControl</a></li>
 </ul>
 <div class="click_reveal"><span> Voir la solution </span><div><p>template :
 Dans le <code>l-map</code></p>
@@ -1190,7 +1190,7 @@ Dans le <code>l-map</code></p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"VueJS + Firebase","level":"1.7.5","depth":2,"next":{"title":"Cordova + VueJS","level":"1.8","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.8.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/cordova/","ref":"https://rawgit.com/c4software/bts/master/cours/cordova/","articles":[]},{"title":"Découverte","level":"1.8.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},{"title":"Projet Cordova + VueJS","level":"1.8.3","depth":2,"path":"tp/cordova/vuejs_cordova.md","ref":"tp/cordova/vuejs_cordova.md","articles":[]}]},"previous":{"title":"Réaliser une application avec VueJS","level":"1.7.4","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/firebase-vuejs.md","mtime":"2018-12-05T19:23:10.204Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-05T19:23:59.050Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"VueJS + Firebase","level":"1.7.5","depth":2,"next":{"title":"Cordova + VueJS","level":"1.8","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.8.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/cordova/","ref":"https://rawgit.com/c4software/bts/master/cours/cordova/","articles":[]},{"title":"Découverte","level":"1.8.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},{"title":"Projet Cordova + VueJS","level":"1.8.3","depth":2,"path":"tp/cordova/vuejs_cordova.md","ref":"tp/cordova/vuejs_cordova.md","articles":[]}]},"previous":{"title":"Réaliser une application avec VueJS","level":"1.7.4","depth":2,"path":"tp/vuejs/tp2.md","ref":"tp/vuejs/tp2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/firebase-vuejs.md","mtime":"2018-12-05T19:33:38.109Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-05T19:33:48.537Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

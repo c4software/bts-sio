@@ -290,10 +290,10 @@ export default {
 
 ## Utiliser notre première vue
 
-Créer la vue ne déclenche rien, il faut maintenant l'importer. Comme vu en cours, la « base » de notre application est réparti entre deux fichiers :
+Créer la vue ne déclenche rien, il faut maintenant l'importer. Comme vu en cours, la « base » de notre application est répartie entre deux fichiers :
 
-- l'main.js : qui contient les imports de base et la déclaration de notre objet `.vue`.
-- l'App.vue : qui contient la « racine » de notre HTML (c'est dans celui-ci que nous allons référencer notre nouvelle vue / composant)
+- le main.js : qui contient les imports de base et la déclaration de notre objet `.vue`.
+- l'App.vue : qui contient la « racine » de notre HTML (c'est dans celui-ci que nous allons référencer notre nouvelle vue / composant).
 
 Modifier le `App.vue` par :
 
@@ -348,7 +348,7 @@ Comme pour Vue2-Leaflet et firebase, vuefire nécéssite une déclaration pour �
 - Créer le fichier dans le dossier `plugins`.
 - Réaliser l'import dans le fichier `main.js`.
 
-🤓 C'est la 3ème fois de ce TP que vous le faite, vous devez être capable de le faire de vous même.
+🤓 C'est la 3ème fois de ce TP que vous le faites, vous devez être capable de le faire de vous même.
 
 {% reveal text="Voir la solution" %}
 
@@ -374,7 +374,7 @@ import "./plugins/vuefire";
 
 ## Connecter firebase à notre vue
 
-Grace à au plugin l'intégration de Firebase va être très simplifié. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grace au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça modifier le fichier `maps.vue` pour ajouter (après name) :
+Grace au plugin l'intégration de Firebase va être très simplifié. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grace au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça modifier le fichier `maps.vue` pour ajouter (après name) :
 
 ```js
 firebase: function() {
@@ -397,8 +397,8 @@ Pour ajouter un marker sur la carte nous allons utiliser la directive `@stop` su
 
 - Ajouter sur l'objet `<l-map>` la directive suivante `@click="addMarker"`.
 - Ajouter la méthode `addMarker` dans votre objet VueJS `addMarker(marker){…}` .
-- À votre avis à quoi dois ressembler le code ?
-  - Ajouter un `console.log(marker)` avez-vous une propriété latlng ?
+- À votre avis à quoi doit ressembler le code ?
+  - Ajouter un `console.log(marker)` avez-vous une propriété `latlng` ?
 
 {% reveal text="Voir la solution" %}
 
@@ -415,16 +415,16 @@ addMarker(position) {
 
 ## Tester
 
-- Ouvrez-la [console de Firebase](https://firebase.google.com) rendez-vous dans la partie `Database`.
-- Lancer votre projet local `npm run serve`
-- Cliquer sur la carte
+- Ouvrer la [console de Firebase](https://firebase.google.com) rendez-vous dans la partie `Database`.
+- Lancer votre projet local `npm run serve`.
+- Cliquer sur la carte.
 - Que constatez-vous ?
 
 ## Afficher les markers
 
-Les markers ne s'affiche pas ? C'est normal! Pour l'instant nous n'avons pas mis le code permettant de les affichers. C'est l'étape à laquelle nous sommes.
+Les markers ne s'affichent pas ? C'est normal! Pour l'instant nous n'avons pas mis le code permettant de les afficher. C'est l'étape à laquelle nous sommes.
 
-La logique va être simpliste, nous devons afficher TOUS les éléments contenus dans la variable `markerList` déclaré précédemment.
+La logique va être simpliste, nous devons afficher TOUS les éléments contenus dans la variable `markerList` déclarée précédemment.
 
 Les étapes :
 
@@ -453,7 +453,7 @@ Le marker est à mettre dans le `l-map`.
 
 `npm run serve` normalement des markers doivent s'afficher. Tenter d'en ajouter d'autre.
 
-## Supprimer un marker
+## Suppression d'un marker
 
 Bon maintenant qu'il y a plein de marker partout nous allons mettre en place le code pour les supprimer ! Voilà la procédure à suivre :
 
@@ -486,9 +486,9 @@ Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notr
 Celle-ci permet de localiser une personne en fonction de sa connexion internet (ou GPS / Réseau téléphonique si disponible)
 
 - [Documentation de l'API geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
-- Ajouter une méthode dasns le code dans le composant `map.vue`.
+- Ajouter une méthode dans le code dans le composant `map.vue`.
 - La méthode doit mettre à jour le `this.center = [lat, lng]`.
-- La méthode doit être appelé via un click utilisateur [Documentation de LControl](https://korigan.github.io/Vue2Leaflet/#/components/l-control/)
+- La méthode doit être appelé via un clique utilisateur [Documentation de LControl](https://korigan.github.io/Vue2Leaflet/#/components/l-control/)
 
 {% reveal text="Voir la solution" %}
 
