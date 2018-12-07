@@ -44,7 +44,7 @@ Pour créer un nouveau projet, c’est simple il suffit de lancer la commande su
 La création d'un nouveau projet est très simple. Il suffit de rentrer la commande suivante :
 
 ```js
-vue-cli create firebase-vuejs
+vue create firebase-vuejs
 ```
 
 Choisir l'option « Default ».
