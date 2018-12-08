@@ -78,25 +78,17 @@ npm install
 
 ⚠️ L’installation risque de prendre plusieurs secondes (enfin 1 ou 2 minutes).
 
-Dans mon cas :
-
-```shell
-added 1070 packages in 49.404s
-```
-
-Une fois terminé votre projet est prêt à être lancé.
-
-⚠️ Vous pouvez vérifier que le dossier `node_module` dans le `.gitignore`.
+Une fois terminé votre projet est prêt à être lancé. Au passage vous pouvez vérifier que le dossier `node_module` dans le `.gitignore`.
 
 ## Premier lancement (l’exemple)
 
 Les librairies étant maintenant disponible, nous allons pouvoir lancer l’exemple fourni par Vue-Cli, pour ça rien de plus simple
 
 ```shell
-npm run dev
+npm run serve
 ```
 
-une fois cette commande lancée, votre navigateur va s’ouvrir sur un nouvel onglet contenant « l’application » de démonstration fournie par le template
+Une fois cette commande lancée vous pouvez ouvrir un onglet dans votre navigateur `http://127.0.0.1:8080`
 
 ![sample application](./ressources/vuejs-init.png)
 
@@ -123,72 +115,113 @@ Pour faire du VueJS le mieux c’est d’avoir un bon IDE. Au revoir Notepad++, 
 
 Pour ceux qui n’ont pas de licence je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plugin `Vetur` pour pouvoir éditer les `.vue` dans de bonne condition.
 
-### Éditer le HelloWord.vue
+### Installation des plugins
 
-Pour commencer simple nous allons éditer le fichier `components/HelloWord.vue`, ce fichier est la « page d’accueil » de l’application fourni (nous allons voir comment dans les prochaines étapes).
+Comme vu en cours l'avantage de Vue-Cli c'est qu'il intégre un système de plugin, nous allons nous en servir pour ajouter :
 
-Apporter des modifications dans le fichier :
+- vue-i18n
+- vue-router
+- vuetify
 
-- Modifier le code HTML de la page, par exemple le `h2`
-- Modifier le contenu de la variable (dans la partie data)
-- Modifier la CSS en bas du `.vue`, par exemple la couleur pour les `a`
+Certains plugins modifie plus ou moins votre projet. Vuetify par exemple altere de manière importante votre projet. Nous allons donc l'ajouter en premier. Dans un terminal
 
-## Ajout de VuetifyJS dans le projet
+```sh
+$ vue add vuetify
 
-Nous allons commencer notre projet en intégrant [VuetifyJS](https://vuetifyjs.com/). Pour rappel VuetifyJS est un ensemble de composants respectant les guidelines Material Design.
+📦  Installing vue-cli-plugin-vuetify...
 
-![VuetifyJS](./vuetify.png)
++ vue-cli-plugin-vuetify@0.4.6
+added 1 package from 1 contributor and audited 15083 packages in 8.485s
+found 0 vulnerabilities
 
-### Ajout de la dépendance
+✔  Successfully installed plugin: vue-cli-plugin-vuetify
 
-Comme vue en cours VueJS repose sur NodeJS, nous avons donc la possibilité de gérer nos dépendances avec npm. La première étape est donc d’ajouter la dépendance à notre projet :
+? Choose a preset: Default (recommended)
 
-```shell
-npm add vuetify@0.17.5 --save
+🚀  Invoking generator for vue-cli-plugin-vuetify...
+📦  Installing additional dependencies...
+
+added 11 packages from 49 contributors and audited 15119 packages in 9.41s
+found 0 vulnerabilities
+
+⚓  Running completion hooks...
+
+✔  Successfully invoked generator for plugin: vue-cli-plugin-vuetify
 ```
 
-PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu’il existe des « templates » VuetifyJS pour VueCLI. Dans ce TP découverte j’ai volontairement fait le choix de ne pas les utiliser pour que vous découvriez un peu plus en détails la construction d’une application VueJS.
+Maintenant que Vuetify est présent, ajoutons Vue-Router :
 
-### Déclarer et utiliser VuetifyJS
+```sh
+$ vue add router
 
-Maintenant que la dépendance est installée nous allons pouvoir l’utiliser.
+? Use history mode for router? (Requires proper server setup for index fallback in production) Yes
 
-Première étape modifier le fichier `src/main.js` pour ajouter le code suivant :
+🚀  Invoking generator for core:router...
+📦  Installing additional dependencies...
 
-```javascript
-import Vuetify from "vuetify";
-require("vuetify/dist/vuetify.min.css");
-Vue.use(Vuetify);
+added 1 package from 1 contributor and audited 15120 packages in 9.021s
+found 0 vulnerabilities
+
+✔  Successfully invoked generator for plugin: core:router
 ```
 
-⚠️ Ajouter le code **avant** :
+Et maintenant Vue-i18n (pour l'internationnalisation) :
 
-```javascript
-Vue.config.productionTip = false;
+```sh
+$ vue add i18n
+
+📦  Installing vue-cli-plugin-i18n...
+
++ vue-cli-plugin-i18n@0.5.1
+added 7 packages from 7 contributors and audited 15129 packages in 8.638s
+found 0 vulnerabilities
+
+✔  Successfully installed plugin: vue-cli-plugin-i18n
+
+? The locale of project localization. fr
+? The fallback locale of project localization. en
+? The directory where store localization messages of project. Stored under src directory. locales
+? Enable locale messages in Single file components ? No
+
+🚀  Invoking generator for vue-cli-plugin-i18n...
+📦  Installing additional dependencies...
+
+audited 15130 packages in 7.792s
+found 0 vulnerabilities
+
+⚓  Running completion hooks...
+
+✔  Successfully invoked generator for plugin: vue-cli-plugin-i18n
+   The following files have been updated / added:
 ```
 
-Voilà ! Votre application utilise maintenant VuetifyJS. Cependant, aucune de vos `.vue` n’utilisent de composants fourni par VuetifyJS, pour l’instant aucune différences donc ;). Pour l’instant…
+Voilà les plugins sont maintenant installés, de base ils ne sont pas configurés. Nous allons faire ça dans les prochaines étapes.
 
-Un petit détail, pour que tout soit parfait ajouter le code suivant dans le `head` du fichier `index.html` à la racine:
+### La structure
 
-```html
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
-  rel="stylesheet"
-/>
+L'ensemble du code que vous devez écrire va se trouver dans `src`
+
+- `assets/` : Les images / ressources static.
+- `components/` : Les composants réutilisable.
+- `locales/` : Vos textes rangés par langes.
+- `plugins/` : La configuration de vos plugins.
+- `views/` : Les pages de votre site.
+- `App.vue` : Le template / base / point d'entrée de vos vue.
+- `i18n.js` : La configuration de Vue-i18n
+- `main.js` : Le point d'entrée Javascript de votre projet
+- `router.js` : La configuration de vos routes.
+
+⚠️ Je vous invite à regarder le contenu de l'ensemble des fichiers et dossier avant de continuer.
+
+### Lancer le projet
+
+Le projet est actuellement non fonctionnel, principalement à cause de Vuetify et Vue Router qui de base configure le projet différement.
+
+Pour regarder le soucis lancer le projet et tester le :
+
+```sh
+npm run serve
 ```
-
-Cette CSS est la déclaration de la « font » Roboto (font par défaut) d’Android.
-
-### Activer le Responsive
-
-Pour que le responsive fonctionne correctement, il faut ajouter le bon viewport grace à la `meta` suivante :
-
-```html
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-```
-
-Ajouter le dans le `head` du fichier `index.html`.
 
 ### Transformer le template de base
 
@@ -198,13 +231,15 @@ Pour débuter nous allons remplacer le contenu du fichier `App.vue` pour déclar
 
 ```html
 <template>
-  <v-app toolbar fill-height>
-    <myToolbar />
+  <v-app>
+    <myToolbar/>
+
     <v-content>
-      <v-container pa-0 fill-height>
-        <router-view></router-view>
-      </v-container>
+      <v-slide-y-transition mode="out-in">
+        <router-view/>
+      </v-slide-y-transition>
     </v-content>
+
   </v-app>
 </template>
 
@@ -217,11 +252,11 @@ export default {
 </script>
 ```
 
-⚠️ Pour l’instant le code que vous avez remplacé n’est pas fonctionnel, pour la simple et bonne raison qu’il fait référence à un composant que vous n’avez pas encore écrit : `myToolbar`
+⚠️ Pour l’instant le code que vous avez remplacé ne compile plus, pour la simple et bonne raison qu’il fait référence à un composant que vous n’avez pas encore écrit : `myToolbar`
 
 ### Création de myToolbar
 
-Créer un nouveau fichier nommé `MyToolbar.vue` dans le dossier `components`
+Créer un nouveau fichier nommé `MyToolbar.vue` dans le dossier `components` :
 
 ```javascript
 <template>
@@ -243,150 +278,95 @@ export default {
   },
   methods: {
     goHome () {
-      window.location.hash = '/'
+      this.$router.replace('/')
     }
   }
 }
 </script>
 ```
 
+### Modifier la home
+
+Avant d'aller plus loin, modifier le fichier `src/views/Home.vue` remplacer le contenu par ce que vous souhaitez.
+
+N'oublier pas de retirer l'import existant dans le fichier `src/views/Home.vue`
+
 ### Voir le changement
 
 Voilà, vous avez atteint la première étape. Vous pouvez lancer votre application en faisant :
 
 ```shell
-npm run dev
-```
-
-## Organisation
-
-Nous allons légèrement modifier l’arborescence pour rendre le projet « plus simple », créer un dossier `src/views`. Celui-ci contiendra « nos vues » c’est à dire les différentes pages de notre application.
-
-Déplacer le fichier `src/components/HelloWorld.vue` dans `src/views/HelloWorld.vue`. Une fois fait vous pouvez éditer le fichier `src/router/index.js` pour y mettre le contenu suivant :
-
-```javascript
-import Vue from "vue";
-import Router from "vue-router";
-import HelloWorld from "@/views/HelloWorld";
-
-Vue.use(Router);
-
-export default new Router({
-  routes: [
-    {
-      path: "/",
-      name: "HelloWorld",
-      component: HelloWorld
-    }
-  ]
-});
+npm run serve
 ```
 
 ## Le Routeur
 
-Votre application est maintenant fonctionnelle cependant comme vous le constatez, vous avez pour l’instant qu’une « seule page », le fichier ressemble à quelques chose comme ça :
+Votre application est maintenant fonctionnelle cependant comme vous le constatez, vous avez pour l’instant qu’une « seule page »… Enfin qu'une seule d'accessible !
 
-```javascript
+Allons faire un tour dans le fichier `router.js`. Celui-ci contient déjà quelques routes :
+
+```js
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "@/views/Home";
+import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
+  base: process.env.BASE_URL,
   routes: [
     {
       path: "/",
-      name: "Home",
+      name: "home",
       component: Home
+    },
+    {
+      path: "/about",
+      name: "about",
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/About.vue")
     }
   ]
 });
 ```
 
-⚠️ Ne copiez pas le contenu garder le votre ⚠️
+Modifier le pour **retirer** tout la partie `/about` :
 
-C’est dans le tableau « routes » que vous allez ajouter les différents « chemin » qui conduiront à vos différentes pages. Pour l’instant la seule qui existe c’est la « home ».
-
-## Ajout du multilangues (i18n)
-
-Quand on conçoit une application il est important de gérer certains points dès le début, le multilangues est l’un de ces points. Dans le développement le multilangues s’appelle « l’internationalisation » abrégé en i18n, où 18 représente le nombre de caractères entre le i et le n dans « internationalisation »
-
-Pour gérer l’internationalisation VueJS propose une librairie appelée `vue-i18n`, avant de pouvoir l’utiliser il faut l’installer via :
-
-```shell
-npm add vue-i18n --save
-```
-
-Une fois installé, nous allons pouvoir gérer nos textes en plusieurs langues (et sans se prendre la tête).
-
-### Ajout du fichier de langue
-
-Nous allons maintenant ajouter notre code qui gèrera le i18n. Pour ça nous allons créer un dossier `i18n` dans le dossier `src`
-
-```shell
-mkdir src/i18n
-```
-
-Puis dans le dossier, nous allons ajouter le fichier `index.js` suivant :
-
-```javascript
-import VueI18n from "vue-i18n";
-import Vue from "vue";
-Vue.use(VueI18n);
-
-const messages = {
-  en: {
-    title: "Cliff Height Timer"
-  },
-  fr: {
-    title: "Cliff Height Timer"
-  }
-};
-
-export const i18n = new VueI18n({
-  locale: getLanguage(),
-  fallbackLocale: "en",
-  messages
-});
-
-function getLanguage() {
-  try {
-    let l = navigator.language.split("-");
-    return l[0];
-  } catch (err) {
-    return navigator.language;
-  }
+```js
+{
+  path: "/about",
+  name: "about",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "about" */ "./views/About.vue")
 }
 ```
 
-ℹ️ Étudier le code précédent :
+### Déclarer du texte dans Vue-i18n
 
-- `messages` contiendra vos prochains textes dans les différentes langues.
-- `getLanguage` est une fonction qui retourne la langue actuellement définie pour le poste de client.
-- `i18n` est l’objet représentant la fonctionnalité i18n.
+Au début du TP nous avons installé Vue-i18n, nous allons maintenant configurer nos premiers texte. Dans le dossier `src/locales/` vous avez deux fichiers `json` :
 
-### Déclarer à notre application la présence du i18n
+- `en.json` : Les texte Anglais.
+- `fr.json` : Les textes Français.
 
-Maintenant que nous avons créé notre « module » i18n, nous devons indiquer à notre application qu’elle doit s’en servir. Pour ça nous allons éditer le fichier `src/main.js`
+**Ajouter** dans les deux fichiers JSON une nouvelle clef :
 
-Pour ajouter :
-
-```javascript
-[…]
-import {i18n} from './i18n' // <== Ajouter l’import en haut du fichier.
-[…]
-  router,
-  i18n, // <== Ajouter i18n entre router et templates déjà présent dans votre code.
-  template: '<App/>',
-[…]
+```json
+{
+  "…": "",
+  "title": "Cliff Height Timer"
+}
 ```
-
-J’ai volontairement ellipsé le code source… Je ne vais pas tout vous dire…
 
 ### Déclarer un nouveau texte
 
-Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier `/components/MyToolbar`
+Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier `/components/MyToolbar.vue`
 
 - Remplacer la chaine `Cliff height timer` par => {% raw %}`{{$t("title")}}`{% endraw %}
 - Le titre doit maintenant s’afficher. Et c’est normal la clef « title » est déjà présente dans le fichier : `i18n/index.js`, modifier le titre pour la langue « fr ».
@@ -398,20 +378,14 @@ Notre internationalisation est maintenant prête à être utilisée. Nous allons
 Vérifier en relançant votre application que le titre à bien été modifié :
 
 ```shell
-npm run dev
+npm run serve
 ```
 
 ## Les .vues
 
 Maintenant que nous avons la base de notre projet, nous allons commencer à créer les différents fichiers Vue’s.
 
-Contrairement à l’exemple par défaut, nous allons mettre nos fichiers `.vue` dans un nouveau dossier `src/views`. Première étape créer le dossier :
-
-```shell
-mkdir src/views/
-```
-
-Profitons en également pour supprimer le fichier `src/components/HelloWorld.vue` qui est maintenant inutile.
+✋ Un peu de ménage s'impose. Avant de continuer, supprimer le fichier `About.vue`, celui-ci ne nous sera pas utile.
 
 ### La page : Accueil
 
@@ -429,12 +403,12 @@ Pour faire cette vue, vous allez avoir besoin des éléments suivants :
 
 Étape de la création :
 
-- Créer le fichier `Home.vue` dans le dossier `src/views/`
-- Créer la structure de votre Vue :
+- Modifier le fichier `Home.vue` dans le dossier `src/views/`
+- Le contenu de la Vue sera la suivante :
 
 ```javascript
 <template>
-  <v-container fill-height class="middle-centered deep-purple lighten-1">
+  <v-container fluid fill-height class="d-flex deep-purple lighten-1">
     <div class="home">
       <h1>{{ time }} s</h1>
       <h3>{{ m }} m</h3>
@@ -525,10 +499,9 @@ export default {
     color: white;
   }
 </style>
-
 ```
 
-- Déclarer la vue dans votre `router/index.js`. Retirer la vue `/` existante pour y mettre la votre. Exemple :
+- Vérifier la déclaration de votre Vue dans `router.js`. Un code similaire à celui-ci doit être présent :
 
 ```javascript
 […]
@@ -548,7 +521,7 @@ import Home from '@/views/Home'
 - Tester votre code :
 
 ```shell
-$npm run dev
+npm run serve
 ```
 
 ### La page : À Propos
@@ -573,9 +546,9 @@ Voilà le rendu de « la page » que vous devez réaliser :
 </script>
 ```
 
-⚠️ N’oubliez pas tous les textes doivent-être dans le fichier `i18n/index.js` et être utilisés avec par exemple `{{$t("label")}}`
+⚠️ N’oubliez pas tous les textes doivent-être dans le fichier `locales/fr.json` et dans `locales/en.json` et être utilisés avec par exemple `{{$t("label")}}`
 
-- Ajouter dans `router/index.js` le code pour pouvoir accèder à votre Vue.
+- Ajouter dans `router.js` le code pour pouvoir accèder à votre Vue.
 
 ✋ Vous avez ajouté votre nouveau fichier, mais pour l’instant votre application ne contient pas de menu. Nous allons en ajouter un pour pouvoir naviguer entre les pages.
 
@@ -633,7 +606,7 @@ export default {
 </script>
 ```
 
-- Déclarer les différents textes dans le fichier `i18n/index.js`
+- Déclarer les différents textes dans les fichiers `fr.json` et `en.json`.
 
 Maintenant que notre composant est terminé, nous devons l’utiliser. Nous allons l’utiliser dans le premier composant que nous avons écrit `src/components/MyToolbar.vue`, modifier le pour intégrer les modifications suivantes :
 
@@ -657,10 +630,12 @@ export default {
 […]
 ```
 
+🤓 Nous venons de déclarer un nouveau components dans notre Vue. Simple non ? Il suffit d'importer le composant et de l'ajouter dans l'attribut `components` de notre objet.
+
 - Tester votre application :
 
 ```shell
-npm run dev
+npm run serve
 ```
 
 ### La page : Historique
@@ -698,7 +673,7 @@ JSON.parse(localStorage.getItem("history"));
 
 - Adapter le code de `Home.vue` pour sauvegarder le résultat dans un tableau d’historique à chaque fois que l’utilisateur enregistre une nouvelle chute.
 - Écrire le code de la page `History.vue` pour afficher les valeurs enregistrées.
-  - Utiliser les variables computed de VueJS pour retourner la liste de l’historique ([exemple](https://vuejs.org/v2/guide/computed.html#Basic-Example)).
+- Utiliser les variables computed de VueJS pour retourner la liste de l’historique ([exemple](https://vuejs.org/v2/guide/computed.html#Basic-Example)).
 
 Ressources utiles :
 
@@ -707,6 +682,17 @@ Ressources utiles :
 - [Tester si tableau](https://www.w3schools.com/jsref/jsref_isarray.asp)
 
 Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus nécéssaire que je vous fournisse du code.
+
+## Ajouter une page À propos
+
+Ajouter une nouvelle page « À propos » dans le projet.
+
+### Démarche
+
+- Ajout du `.vue` de la page à Propos.
+- Ajout des texte dans les fichiers `locales`.
+- Ajouter le lien dans le `Drawer.vue`.
+- Ajouter la route.
 
 ## Distribuer vos sources
 
