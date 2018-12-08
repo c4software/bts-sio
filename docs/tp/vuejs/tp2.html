@@ -775,7 +775,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Thu Nov 29 2018 22:49:31 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sat Dec 08 2018 23:00:42 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="r&#xE9;aliser-une-application-avec-vuejs">R&#xE9;aliser une application avec VueJS</h1>
 <p>Dans ce TP nous allons voir une autre fa&#xE7;on d&#x2019;utiliser VueJS, une fa&#xE7;on plus moderne, celle qui utilise &#xE0; 100% le mod&#xE8;le MVVM (Mod&#xE8;le Vue, Vue-Mod&#xE8;le) ainsi que la puissance de VueJS (<code>.vue</code>, VueCli, ES5).</p>
@@ -823,16 +823,12 @@
 npm install
 </code></pre>
 <p>&#x26A0;&#xFE0F; L&#x2019;installation risque de prendre plusieurs secondes (enfin 1 ou 2 minutes).</p>
-<p>Dans mon cas :</p>
-<pre><code class="lang-shell">added 1070 packages in 49.404s
-</code></pre>
-<p>Une fois termin&#xE9; votre projet est pr&#xEA;t &#xE0; &#xEA;tre lanc&#xE9;.</p>
-<p>&#x26A0;&#xFE0F; Vous pouvez v&#xE9;rifier que le dossier <code>node_module</code> dans le <code>.gitignore</code>.</p>
+<p>Une fois termin&#xE9; votre projet est pr&#xEA;t &#xE0; &#xEA;tre lanc&#xE9;. Au passage vous pouvez v&#xE9;rifier que le dossier <code>node_module</code> dans le <code>.gitignore</code>.</p>
 <h2 id="premier-lancement-lexemple">Premier lancement (l&#x2019;exemple)</h2>
 <p>Les librairies &#xE9;tant maintenant disponible, nous allons pouvoir lancer l&#x2019;exemple fourni par Vue-Cli, pour &#xE7;a rien de plus simple</p>
-<pre><code class="lang-shell">npm run dev
+<pre><code class="lang-shell">npm run serve
 </code></pre>
-<p>une fois cette commande lanc&#xE9;e, votre navigateur va s&#x2019;ouvrir sur un nouvel onglet contenant &#xAB; l&#x2019;application &#xBB; de d&#xE9;monstration fournie par le template</p>
+<p>Une fois cette commande lanc&#xE9;e vous pouvez ouvrir un onglet dans votre navigateur <code>http://127.0.0.1:8080</code></p>
 <p><img src="ressources/vuejs-init.png" alt="sample application"></p>
 <h2 id="le-serveur-de-d&#xE9;veloppement">Le serveur de d&#xE9;veloppement</h2>
 <p>Comme vous avez pu le constater dans votre invite de commande (terminal), vous avez un serveur qui tourne. Ce serveur est un peu particuli&#xE9;, il n&#x2019;est utilis&#xE9; que dans la phase de d&#xE9;veloppement il incorpore plusieurs outils permettant de simplifier la cr&#xE9;ation d&#x2019;application Javascript :</p>
@@ -851,56 +847,109 @@ npm install
 <h3 id="lide">L&#x2019;IDE</h3>
 <p>Pour faire du VueJS le mieux c&#x2019;est d&#x2019;avoir un bon IDE. Au revoir Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les &#xE9;tudiants c&#x2019;est gratuit &#x1F4B0;).</p>
 <p>Pour ceux qui n&#x2019;ont pas de licence je vous propose d&#x2019;utiliser <a href="https://code.visualstudio.com" target="_blank">Visual Studio Code</a> et d&#x2019;ajouter le plugin <code>Vetur</code> pour pouvoir &#xE9;diter les <code>.vue</code> dans de bonne condition.</p>
-<h3 id="&#xE9;diter-le-hellowordvue">&#xC9;diter le HelloWord.vue</h3>
-<p>Pour commencer simple nous allons &#xE9;diter le fichier <code>components/HelloWord.vue</code>, ce fichier est la &#xAB; page d&#x2019;accueil &#xBB; de l&#x2019;application fourni (nous allons voir comment dans les prochaines &#xE9;tapes).</p>
-<p>Apporter des modifications dans le fichier :</p>
+<h3 id="installation-des-plugins">Installation des plugins</h3>
+<p>Comme vu en cours l&apos;avantage de Vue-Cli c&apos;est qu&apos;il int&#xE9;gre un syst&#xE8;me de plugin, nous allons nous en servir pour ajouter :</p>
 <ul>
-<li>Modifier le code HTML de la page, par exemple le <code>h2</code></li>
-<li>Modifier le contenu de la variable (dans la partie data)</li>
-<li>Modifier la CSS en bas du <code>.vue</code>, par exemple la couleur pour les <code>a</code></li>
+<li>vue-i18n</li>
+<li>vue-router</li>
+<li>vuetify</li>
 </ul>
-<h2 id="ajout-de-vuetifyjs-dans-le-projet">Ajout de VuetifyJS dans le projet</h2>
-<p>Nous allons commencer notre projet en int&#xE9;grant <a href="https://vuetifyjs.com/" target="_blank">VuetifyJS</a>. Pour rappel VuetifyJS est un ensemble de composants respectant les guidelines Material Design.</p>
-<p><img src="vuetify.png" alt="VuetifyJS"></p>
-<h3 id="ajout-de-la-d&#xE9;pendance">Ajout de la d&#xE9;pendance</h3>
-<p>Comme vue en cours VueJS repose sur NodeJS, nous avons donc la possibilit&#xE9; de g&#xE9;rer nos d&#xE9;pendances avec npm. La premi&#xE8;re &#xE9;tape est donc d&#x2019;ajouter la d&#xE9;pendance &#xE0; notre projet :</p>
-<pre><code class="lang-shell">npm add vuetify@0.17.5 --save
+<p>Certains plugins modifie plus ou moins votre projet. Vuetify par exemple altere de mani&#xE8;re importante votre projet. Nous allons donc l&apos;ajouter en premier. Dans un terminal</p>
+<pre><code class="lang-sh">$ vue add vuetify
+
+&#x1F4E6;  Installing vue-cli-plugin-vuetify...
+
++ vue-cli-plugin-vuetify@0.4.6
+added 1 package from 1 contributor and audited 15083 packages <span class="hljs-keyword">in</span> 8.485s
+found 0 vulnerabilities
+
+&#x2714;  Successfully installed plugin: vue-cli-plugin-vuetify
+
+? Choose a preset: Default (recommended)
+
+&#x1F680;  Invoking generator <span class="hljs-keyword">for</span> vue-cli-plugin-vuetify...
+&#x1F4E6;  Installing additional dependencies...
+
+added 11 packages from 49 contributors and audited 15119 packages <span class="hljs-keyword">in</span> 9.41s
+found 0 vulnerabilities
+
+&#x2693;  Running completion hooks...
+
+&#x2714;  Successfully invoked generator <span class="hljs-keyword">for</span> plugin: vue-cli-plugin-vuetify
 </code></pre>
-<p>PS: Si vous allez voir un peu le site de VuetifyJS vous allez rapidement voir qu&#x2019;il existe des &#xAB; templates &#xBB; VuetifyJS pour VueCLI. Dans ce TP d&#xE9;couverte j&#x2019;ai volontairement fait le choix de ne pas les utiliser pour que vous d&#xE9;couvriez un peu plus en d&#xE9;tails la construction d&#x2019;une application VueJS.</p>
-<h3 id="d&#xE9;clarer-et-utiliser-vuetifyjs">D&#xE9;clarer et utiliser VuetifyJS</h3>
-<p>Maintenant que la d&#xE9;pendance est install&#xE9;e nous allons pouvoir l&#x2019;utiliser.</p>
-<p>Premi&#xE8;re &#xE9;tape modifier le fichier <code>src/main.js</code> pour ajouter le code suivant :</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> Vuetify <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vuetify&quot;</span>;
-<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;vuetify/dist/vuetify.min.css&quot;</span>);
-Vue.use(Vuetify);
+<p>Maintenant que Vuetify est pr&#xE9;sent, ajoutons Vue-Router :</p>
+<pre><code class="lang-sh">$ vue add router
+
+? Use <span class="hljs-built_in">history</span> mode <span class="hljs-keyword">for</span> router? (Requires proper server setup <span class="hljs-keyword">for</span> index fallback <span class="hljs-keyword">in</span> production) Yes
+
+&#x1F680;  Invoking generator <span class="hljs-keyword">for</span> core:router...
+&#x1F4E6;  Installing additional dependencies...
+
+added 1 package from 1 contributor and audited 15120 packages <span class="hljs-keyword">in</span> 9.021s
+found 0 vulnerabilities
+
+&#x2714;  Successfully invoked generator <span class="hljs-keyword">for</span> plugin: core:router
 </code></pre>
-<p>&#x26A0;&#xFE0F; Ajouter le code <strong>avant</strong> :</p>
-<pre><code class="lang-javascript">Vue.config.productionTip = <span class="hljs-literal">false</span>;
+<p>Et maintenant Vue-i18n (pour l&apos;internationnalisation) :</p>
+<pre><code class="lang-sh">$ vue add i18n
+
+&#x1F4E6;  Installing vue-cli-plugin-i18n...
+
++ vue-cli-plugin-i18n@0.5.1
+added 7 packages from 7 contributors and audited 15129 packages <span class="hljs-keyword">in</span> 8.638s
+found 0 vulnerabilities
+
+&#x2714;  Successfully installed plugin: vue-cli-plugin-i18n
+
+? The locale of project localization. fr
+? The fallback locale of project localization. en
+? The directory <span class="hljs-built_in">where</span> store localization messages of project. Stored under src directory. locales
+? Enable locale messages <span class="hljs-keyword">in</span> Single file components ? No
+
+&#x1F680;  Invoking generator <span class="hljs-keyword">for</span> vue-cli-plugin-i18n...
+&#x1F4E6;  Installing additional dependencies...
+
+audited 15130 packages <span class="hljs-keyword">in</span> 7.792s
+found 0 vulnerabilities
+
+&#x2693;  Running completion hooks...
+
+&#x2714;  Successfully invoked generator <span class="hljs-keyword">for</span> plugin: vue-cli-plugin-i18n
+   The following files have been updated / added:
 </code></pre>
-<p>Voil&#xE0; ! Votre application utilise maintenant VuetifyJS. Cependant, aucune de vos <code>.vue</code> n&#x2019;utilisent de composants fourni par VuetifyJS, pour l&#x2019;instant aucune diff&#xE9;rences donc ;). Pour l&#x2019;instant&#x2026;</p>
-<p>Un petit d&#xE9;tail, pour que tout soit parfait ajouter le code suivant dans le <code>head</code> du fichier <code>index.html</code> &#xE0; la racine:</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span>
-  <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons&quot;</span>
-  <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>
-/&gt;</span>
+<p>Voil&#xE0; les plugins sont maintenant install&#xE9;s, de base ils ne sont pas configur&#xE9;s. Nous allons faire &#xE7;a dans les prochaines &#xE9;tapes.</p>
+<h3 id="la-structure">La structure</h3>
+<p>L&apos;ensemble du code que vous devez &#xE9;crire va se trouver dans <code>src</code></p>
+<ul>
+<li><code>assets/</code> : Les images / ressources static.</li>
+<li><code>components/</code> : Les composants r&#xE9;utilisable.</li>
+<li><code>locales/</code> : Vos textes rang&#xE9;s par langes.</li>
+<li><code>plugins/</code> : La configuration de vos plugins.</li>
+<li><code>views/</code> : Les pages de votre site.</li>
+<li><code>App.vue</code> : Le template / base / point d&apos;entr&#xE9;e de vos vue.</li>
+<li><code>i18n.js</code> : La configuration de Vue-i18n</li>
+<li><code>main.js</code> : Le point d&apos;entr&#xE9;e Javascript de votre projet</li>
+<li><code>router.js</code> : La configuration de vos routes.</li>
+</ul>
+<p>&#x26A0;&#xFE0F; Je vous invite &#xE0; regarder le contenu de l&apos;ensemble des fichiers et dossier avant de continuer.</p>
+<h3 id="lancer-le-projet">Lancer le projet</h3>
+<p>Le projet est actuellement non fonctionnel, principalement &#xE0; cause de Vuetify et Vue Router qui de base configure le projet diff&#xE9;rement.</p>
+<p>Pour regarder le soucis lancer le projet et tester le :</p>
+<pre><code class="lang-sh">npm run serve
 </code></pre>
-<p>Cette CSS est la d&#xE9;claration de la &#xAB; font &#xBB; Roboto (font par d&#xE9;faut) d&#x2019;Android.</p>
-<h3 id="activer-le-responsive">Activer le Responsive</h3>
-<p>Pour que le responsive fonctionne correctement, il faut ajouter le bon viewport grace &#xE0; la <code>meta</code> suivante :</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span> /&gt;</span>
-</code></pre>
-<p>Ajouter le dans le <code>head</code> du fichier <code>index.html</code>.</p>
 <h3 id="transformer-le-template-de-base">Transformer le template de base</h3>
 <p>Maintenant que VuetifyJS est compl&#xE8;tement disponible vous allez pouvoir utiliser vos premiers composants.</p>
 <p>Pour d&#xE9;buter nous allons remplacer le contenu du fichier <code>App.vue</code> pour d&#xE9;clarer le gabarit principal de l&#x2019;application :</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">v-app</span> <span class="hljs-attr">toolbar</span> <span class="hljs-attr">fill-height</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">myToolbar</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">v-app</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">myToolbar</span>/&gt;</span>
+
     <span class="hljs-tag">&lt;<span class="hljs-name">v-content</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">v-container</span> <span class="hljs-attr">pa-0</span> <span class="hljs-attr">fill-height</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">v-container</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">v-slide-y-transition</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">&quot;out-in&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>/&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">v-slide-y-transition</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">v-content</span>&gt;</span>
+
   <span class="hljs-tag">&lt;/<span class="hljs-name">v-app</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
@@ -912,9 +961,9 @@ Vue.use(Vuetify);
 }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>&#x26A0;&#xFE0F; Pour l&#x2019;instant le code que vous avez remplac&#xE9; n&#x2019;est pas fonctionnel, pour la simple et bonne raison qu&#x2019;il fait r&#xE9;f&#xE9;rence &#xE0; un composant que vous n&#x2019;avez pas encore &#xE9;crit : <code>myToolbar</code></p>
+<p>&#x26A0;&#xFE0F; Pour l&#x2019;instant le code que vous avez remplac&#xE9; ne compile plus, pour la simple et bonne raison qu&#x2019;il fait r&#xE9;f&#xE9;rence &#xE0; un composant que vous n&#x2019;avez pas encore &#xE9;crit : <code>myToolbar</code></p>
 <h3 id="cr&#xE9;ation-de-mytoolbar">Cr&#xE9;ation de myToolbar</h3>
-<p>Cr&#xE9;er un nouveau fichier nomm&#xE9; <code>MyToolbar.vue</code> dans le dossier <code>components</code></p>
+<p>Cr&#xE9;er un nouveau fichier nomm&#xE9; <code>MyToolbar.vue</code> dans le dossier <code>components</code> :</p>
 <pre><code class="lang-javascript">&lt;template&gt;
   &lt;div&gt;
     &lt;v-toolbar class=&quot;deep-purple&quot; clipped-left app&gt;
@@ -934,114 +983,74 @@ export default {
   },
   methods: {
     goHome () {
-      window.location.hash = &apos;/&apos;
+      this.$router.replace(&apos;/&apos;)
     }
   }
 }
 &lt;/script&gt;
 </code></pre>
+<h3 id="modifier-la-home">Modifier la home</h3>
+<p>Avant d&apos;aller plus loin, modifier le fichier <code>src/views/Home.vue</code> remplacer le contenu par ce que vous souhaitez.</p>
+<p>N&apos;oublier pas de retirer l&apos;import existant dans le fichier <code>src/views/Home.vue</code></p>
 <h3 id="voir-le-changement">Voir le changement</h3>
 <p>Voil&#xE0;, vous avez atteint la premi&#xE8;re &#xE9;tape. Vous pouvez lancer votre application en faisant :</p>
-<pre><code class="lang-shell">npm run dev
-</code></pre>
-<h2 id="organisation">Organisation</h2>
-<p>Nous allons l&#xE9;g&#xE8;rement modifier l&#x2019;arborescence pour rendre le projet &#xAB; plus simple &#xBB;, cr&#xE9;er un dossier <code>src/views</code>. Celui-ci contiendra &#xAB; nos vues &#xBB; c&#x2019;est &#xE0; dire les diff&#xE9;rentes pages de notre application.</p>
-<p>D&#xE9;placer le fichier <code>src/components/HelloWorld.vue</code> dans <code>src/views/HelloWorld.vue</code>. Une fois fait vous pouvez &#xE9;diter le fichier <code>src/router/index.js</code> pour y mettre le contenu suivant :</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
-<span class="hljs-keyword">import</span> Router <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue-router&quot;</span>;
-<span class="hljs-keyword">import</span> HelloWorld <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@/views/HelloWorld&quot;</span>;
-
-Vue.use(Router);
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router({
-  routes: [
-    {
-      path: <span class="hljs-string">&quot;/&quot;</span>,
-      name: <span class="hljs-string">&quot;HelloWorld&quot;</span>,
-      component: HelloWorld
-    }
-  ]
-});
+<pre><code class="lang-shell">npm run serve
 </code></pre>
 <h2 id="le-routeur">Le Routeur</h2>
-<p>Votre application est maintenant fonctionnelle cependant comme vous le constatez, vous avez pour l&#x2019;instant qu&#x2019;une &#xAB; seule page &#xBB;, le fichier ressemble &#xE0; quelques chose comme &#xE7;a :</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
+<p>Votre application est maintenant fonctionnelle cependant comme vous le constatez, vous avez pour l&#x2019;instant qu&#x2019;une &#xAB; seule page &#xBB;&#x2026; Enfin qu&apos;une seule d&apos;accessible !</p>
+<p>Allons faire un tour dans le fichier <code>router.js</code>. Celui-ci contient d&#xE9;j&#xE0; quelques routes :</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
 <span class="hljs-keyword">import</span> Router <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue-router&quot;</span>;
-<span class="hljs-keyword">import</span> Home <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@/views/Home&quot;</span>;
+<span class="hljs-keyword">import</span> Home <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./views/Home.vue&quot;</span>;
 
 Vue.use(Router);
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> Router({
+  mode: <span class="hljs-string">&quot;history&quot;</span>,
+  base: process.env.BASE_URL,
   routes: [
     {
       path: <span class="hljs-string">&quot;/&quot;</span>,
-      name: <span class="hljs-string">&quot;Home&quot;</span>,
+      name: <span class="hljs-string">&quot;home&quot;</span>,
       component: Home
+    },
+    {
+      path: <span class="hljs-string">&quot;/about&quot;</span>,
+      name: <span class="hljs-string">&quot;about&quot;</span>,
+      <span class="hljs-comment">// route level code-splitting</span>
+      <span class="hljs-comment">// this generates a separate chunk (about.[hash].js) for this route</span>
+      <span class="hljs-comment">// which is lazy-loaded when the route is visited.</span>
+      component: () =&gt;
+        <span class="hljs-keyword">import</span>(<span class="hljs-comment">/* webpackChunkName: &quot;about&quot; */</span> <span class="hljs-string">&quot;./views/About.vue&quot;</span>)
     }
   ]
 });
 </code></pre>
-<p>&#x26A0;&#xFE0F; Ne copiez pas le contenu garder le votre &#x26A0;&#xFE0F;</p>
-<p>C&#x2019;est dans le tableau &#xAB; routes &#xBB; que vous allez ajouter les diff&#xE9;rents &#xAB; chemin &#xBB; qui conduiront &#xE0; vos diff&#xE9;rentes pages. Pour l&#x2019;instant la seule qui existe c&#x2019;est la &#xAB; home &#xBB;.</p>
-<h2 id="ajout-du-multilangues-i18n">Ajout du multilangues (i18n)</h2>
-<p>Quand on con&#xE7;oit une application il est important de g&#xE9;rer certains points d&#xE8;s le d&#xE9;but, le multilangues est l&#x2019;un de ces points. Dans le d&#xE9;veloppement le multilangues s&#x2019;appelle &#xAB; l&#x2019;internationalisation &#xBB; abr&#xE9;g&#xE9; en i18n, o&#xF9; 18 repr&#xE9;sente le nombre de caract&#xE8;res entre le i et le n dans &#xAB; internationalisation &#xBB;</p>
-<p>Pour g&#xE9;rer l&#x2019;internationalisation VueJS propose une librairie appel&#xE9;e <code>vue-i18n</code>, avant de pouvoir l&#x2019;utiliser il faut l&#x2019;installer via :</p>
-<pre><code class="lang-shell">npm add vue-i18n --save
-</code></pre>
-<p>Une fois install&#xE9;, nous allons pouvoir g&#xE9;rer nos textes en plusieurs langues (et sans se prendre la t&#xEA;te).</p>
-<h3 id="ajout-du-fichier-de-langue">Ajout du fichier de langue</h3>
-<p>Nous allons maintenant ajouter notre code qui g&#xE8;rera le i18n. Pour &#xE7;a nous allons cr&#xE9;er un dossier <code>i18n</code> dans le dossier <code>src</code></p>
-<pre><code class="lang-shell">mkdir src/i18n
-</code></pre>
-<p>Puis dans le dossier, nous allons ajouter le fichier <code>index.js</code> suivant :</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> VueI18n <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue-i18n&quot;</span>;
-<span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
-Vue.use(VueI18n);
-
-<span class="hljs-keyword">const</span> messages = {
-  en: {
-    title: <span class="hljs-string">&quot;Cliff Height Timer&quot;</span>
-  },
-  fr: {
-    title: <span class="hljs-string">&quot;Cliff Height Timer&quot;</span>
-  }
-};
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> i18n = <span class="hljs-keyword">new</span> VueI18n({
-  locale: getLanguage(),
-  fallbackLocale: <span class="hljs-string">&quot;en&quot;</span>,
-  messages
-});
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getLanguage</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">let</span> l = navigator.language.split(<span class="hljs-string">&quot;-&quot;</span>);
-    <span class="hljs-keyword">return</span> l[<span class="hljs-number">0</span>];
-  } <span class="hljs-keyword">catch</span> (err) {
-    <span class="hljs-keyword">return</span> navigator.language;
-  }
+<p>Modifier le pour <strong>retirer</strong> tout la partie <code>/about</code> :</p>
+<pre><code class="lang-js">{
+  path: <span class="hljs-string">&quot;/about&quot;</span>,
+  name: <span class="hljs-string">&quot;about&quot;</span>,
+  <span class="hljs-comment">// route level code-splitting</span>
+  <span class="hljs-comment">// this generates a separate chunk (about.[hash].js) for this route</span>
+  <span class="hljs-comment">// which is lazy-loaded when the route is visited.</span>
+  component: () =&gt;
+    <span class="hljs-keyword">import</span>(<span class="hljs-comment">/* webpackChunkName: &quot;about&quot; */</span> <span class="hljs-string">&quot;./views/About.vue&quot;</span>)
 }
 </code></pre>
-<p>&#x2139;&#xFE0F; &#xC9;tudier le code pr&#xE9;c&#xE9;dent :</p>
+<h3 id="d&#xE9;clarer-du-texte-dans-vue-i18n">D&#xE9;clarer du texte dans Vue-i18n</h3>
+<p>Au d&#xE9;but du TP nous avons install&#xE9; Vue-i18n, nous allons maintenant configurer nos premiers texte. Dans le dossier <code>src/locales/</code> vous avez deux fichiers <code>json</code> :</p>
 <ul>
-<li><code>messages</code> contiendra vos prochains textes dans les diff&#xE9;rentes langues.</li>
-<li><code>getLanguage</code> est une fonction qui retourne la langue actuellement d&#xE9;finie pour le poste de client.</li>
-<li><code>i18n</code> est l&#x2019;objet repr&#xE9;sentant la fonctionnalit&#xE9; i18n.</li>
+<li><code>en.json</code> : Les texte Anglais.</li>
+<li><code>fr.json</code> : Les textes Fran&#xE7;ais.</li>
 </ul>
-<h3 id="d&#xE9;clarer-&#xE0;-notre-application-la-pr&#xE9;sence-du-i18n">D&#xE9;clarer &#xE0; notre application la pr&#xE9;sence du i18n</h3>
-<p>Maintenant que nous avons cr&#xE9;&#xE9; notre &#xAB; module &#xBB; i18n, nous devons indiquer &#xE0; notre application qu&#x2019;elle doit s&#x2019;en servir. Pour &#xE7;a nous allons &#xE9;diter le fichier <code>src/main.js</code></p>
-<p>Pour ajouter :</p>
-<pre><code class="lang-javascript">[&#x2026;]
-<span class="hljs-keyword">import</span> {i18n} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./i18n&apos;</span> <span class="hljs-comment">// &lt;== Ajouter l&#x2019;import en haut du fichier.</span>
-[&#x2026;]
-  router,
-  i18n, <span class="hljs-comment">// &lt;== Ajouter i18n entre router et templates d&#xE9;j&#xE0; pr&#xE9;sent dans votre code.</span>
-  template: <span class="hljs-string">&apos;&lt;App/&gt;&apos;</span>,
-[&#x2026;]
+<p><strong>Ajouter</strong> dans les deux fichiers JSON une nouvelle clef :</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;&#x2026;&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+  <span class="hljs-string">&quot;title&quot;</span>: <span class="hljs-string">&quot;Cliff Height Timer&quot;</span>
+}
 </code></pre>
-<p>J&#x2019;ai volontairement ellips&#xE9; le code source&#x2026; Je ne vais pas tout vous dire&#x2026;</p>
 <h3 id="d&#xE9;clarer-un-nouveau-texte">D&#xE9;clarer un nouveau texte</h3>
-<p>Notre internationalisation est maintenant pr&#xEA;te &#xE0; &#xEA;tre utilis&#xE9;e. Nous allons l&#x2019;utiliser d&#xE8;s maintenant dans le fichier <code>/components/MyToolbar</code></p>
+<p>Notre internationalisation est maintenant pr&#xEA;te &#xE0; &#xEA;tre utilis&#xE9;e. Nous allons l&#x2019;utiliser d&#xE8;s maintenant dans le fichier <code>/components/MyToolbar.vue</code></p>
 <ul>
 <li>Remplacer la chaine <code>Cliff height timer</code> par =&gt; <code>{{$t(&quot;title&quot;)}}</code></li>
 <li>Le titre doit maintenant s&#x2019;afficher. Et c&#x2019;est normal la clef &#xAB; title &#xBB; est d&#xE9;j&#xE0; pr&#xE9;sente dans le fichier : <code>i18n/index.js</code>, modifier le titre pour la langue &#xAB; fr &#xBB;.</li>
@@ -1049,14 +1058,11 @@ Vue.use(VueI18n);
 <p>&#x2139;&#xFE0F; <code>$t</code> est un objet qui permet d&#x2019;acc&#xE9;der aux textes actuellement charg&#xE9;s pour la langue de l&#x2019;utilisateur.</p>
 <h3 id="tester">Tester</h3>
 <p>V&#xE9;rifier en relan&#xE7;ant votre application que le titre &#xE0; bien &#xE9;t&#xE9; modifi&#xE9; :</p>
-<pre><code class="lang-shell">npm run dev
+<pre><code class="lang-shell">npm run serve
 </code></pre>
 <h2 id="les-vues">Les .vues</h2>
 <p>Maintenant que nous avons la base de notre projet, nous allons commencer &#xE0; cr&#xE9;er les diff&#xE9;rents fichiers Vue&#x2019;s.</p>
-<p>Contrairement &#xE0; l&#x2019;exemple par d&#xE9;faut, nous allons mettre nos fichiers <code>.vue</code> dans un nouveau dossier <code>src/views</code>. Premi&#xE8;re &#xE9;tape cr&#xE9;er le dossier :</p>
-<pre><code class="lang-shell">mkdir src/views/
-</code></pre>
-<p>Profitons en &#xE9;galement pour supprimer le fichier <code>src/components/HelloWorld.vue</code> qui est maintenant inutile.</p>
+<p>&#x270B; Un peu de m&#xE9;nage s&apos;impose. Avant de continuer, supprimer le fichier <code>About.vue</code>, celui-ci ne nous sera pas utile.</p>
 <h3 id="la-page--accueil">La page : Accueil</h3>
 <p>Nous allons commencer par la page d&#x2019;accueil, celle-ci doit ressembler &#xE0; :</p>
 <p><img src="ressources/accueil.png" alt="Accueil"></p>
@@ -1070,11 +1076,11 @@ Vue.use(VueI18n);
 </ul>
 <p>&#xC9;tape de la cr&#xE9;ation :</p>
 <ul>
-<li>Cr&#xE9;er le fichier <code>Home.vue</code> dans le dossier <code>src/views/</code></li>
-<li>Cr&#xE9;er la structure de votre Vue :</li>
+<li>Modifier le fichier <code>Home.vue</code> dans le dossier <code>src/views/</code></li>
+<li>Le contenu de la Vue sera la suivante :</li>
 </ul>
 <pre><code class="lang-javascript">&lt;template&gt;
-  &lt;v-container fill-height class=&quot;middle-centered deep-purple lighten-1&quot;&gt;
+  &lt;v-container fluid fill-height class=&quot;d-flex deep-purple lighten-1&quot;&gt;
     &lt;div class=&quot;home&quot;&gt;
       &lt;h1&gt;{{ time }} s&lt;/h1&gt;
       &lt;h3&gt;{{ m }} m&lt;/h3&gt;
@@ -1167,7 +1173,7 @@ export default {
 &lt;/style&gt;
 </code></pre>
 <ul>
-<li>D&#xE9;clarer la vue dans votre <code>router/index.js</code>. Retirer la vue <code>/</code> existante pour y mettre la votre. Exemple :</li>
+<li>V&#xE9;rifier la d&#xE9;claration de votre Vue dans <code>router.js</code>. Un code similaire &#xE0; celui-ci doit &#xEA;tre pr&#xE9;sent :</li>
 </ul>
 <pre><code class="lang-javascript">[&#x2026;]
 <span class="hljs-keyword">import</span> Home <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@/views/Home&apos;</span>
@@ -1185,7 +1191,7 @@ export default {
 <ul>
 <li>Tester votre code :</li>
 </ul>
-<pre><code class="lang-shell">$npm run dev
+<pre><code class="lang-shell">npm run serve
 </code></pre>
 <h3 id="la-page--&#xE0;-propos">La page : &#xC0; Propos</h3>
 <p>Voil&#xE0; le rendu de &#xAB; la page &#xBB; que vous devez r&#xE9;aliser :</p>
@@ -1205,9 +1211,9 @@ export default {
   }
 &lt;/script&gt;
 </code></pre>
-<p>&#x26A0;&#xFE0F; N&#x2019;oubliez pas tous les textes doivent-&#xEA;tre dans le fichier <code>i18n/index.js</code> et &#xEA;tre utilis&#xE9;s avec par exemple <code>{{$t(&quot;label&quot;)}}</code></p>
+<p>&#x26A0;&#xFE0F; N&#x2019;oubliez pas tous les textes doivent-&#xEA;tre dans le fichier <code>locales/fr.json</code> et dans <code>locales/en.json</code> et &#xEA;tre utilis&#xE9;s avec par exemple <code>{{$t(&quot;label&quot;)}}</code></p>
 <ul>
-<li>Ajouter dans <code>router/index.js</code> le code pour pouvoir acc&#xE8;der &#xE0; votre Vue.</li>
+<li>Ajouter dans <code>router.js</code> le code pour pouvoir acc&#xE8;der &#xE0; votre Vue.</li>
 </ul>
 <p>&#x270B; Vous avez ajout&#xE9; votre nouveau fichier, mais pour l&#x2019;instant votre application ne contient pas de menu. Nous allons en ajouter un pour pouvoir naviguer entre les pages.</p>
 <h3 id="ajout-du--drawer">Ajout du : Drawer</h3>
@@ -1261,7 +1267,7 @@ export default {
 &lt;/script&gt;
 </code></pre>
 <ul>
-<li>D&#xE9;clarer les diff&#xE9;rents textes dans le fichier <code>i18n/index.js</code></li>
+<li>D&#xE9;clarer les diff&#xE9;rents textes dans les fichiers <code>fr.json</code> et <code>en.json</code>.</li>
 </ul>
 <p>Maintenant que notre composant est termin&#xE9;, nous devons l&#x2019;utiliser. Nous allons l&#x2019;utiliser dans le premier composant que nous avons &#xE9;crit <code>src/components/MyToolbar.vue</code>, modifier le pour int&#xE9;grer les modifications suivantes :</p>
 <pre><code class="lang-javascript">&lt;template&gt;
@@ -1282,10 +1288,11 @@ export default {
   components: {myContentDrawer}, // &lt;== Ajouter la d&#xE9;claration du composant
 [&#x2026;]
 </code></pre>
+<p>&#x1F913; Nous venons de d&#xE9;clarer un nouveau components dans notre Vue. Simple non ? Il suffit d&apos;importer le composant et de l&apos;ajouter dans l&apos;attribut <code>components</code> de notre objet.</p>
 <ul>
 <li>Tester votre application :</li>
 </ul>
-<pre><code class="lang-shell">npm run dev
+<pre><code class="lang-shell">npm run serve
 </code></pre>
 <h3 id="la-page--historique">La page : Historique</h3>
 <p>Notre application est maintenant fonctionnelle. Nous avons la capacit&#xE9; de calculer des chutes, d&#x2019;afficher les informations sur l&#x2019;application, et bonus dans plusieurs langues !</p>
@@ -1311,10 +1318,8 @@ export default {
 <h4 id="d&#xE9;marche">D&#xE9;marche</h4>
 <ul>
 <li>Adapter le code de <code>Home.vue</code> pour sauvegarder le r&#xE9;sultat dans un tableau d&#x2019;historique &#xE0; chaque fois que l&#x2019;utilisateur enregistre une nouvelle chute.</li>
-<li>&#xC9;crire le code de la page <code>History.vue</code> pour afficher les valeurs enregistr&#xE9;es.<ul>
+<li>&#xC9;crire le code de la page <code>History.vue</code> pour afficher les valeurs enregistr&#xE9;es.</li>
 <li>Utiliser les variables computed de VueJS pour retourner la liste de l&#x2019;historique (<a href="https://vuejs.org/v2/guide/computed.html#Basic-Example" target="_blank">exemple</a>).</li>
-</ul>
-</li>
 </ul>
 <p>Ressources utiles :</p>
 <ul>
@@ -1323,6 +1328,15 @@ export default {
 <li><a href="https://www.w3schools.com/jsref/jsref_isarray.asp" target="_blank">Tester si tableau</a></li>
 </ul>
 <p>Vu que c&#x2019;est la 3&#xE8;me vue que vous faites, je pense qu&#x2019;il n&#x2019;est plus n&#xE9;c&#xE9;ssaire que je vous fournisse du code.</p>
+<h2 id="ajouter-une-page-&#xE0;-propos">Ajouter une page &#xC0; propos</h2>
+<p>Ajouter une nouvelle page &#xAB; &#xC0; propos &#xBB; dans le projet.</p>
+<h3 id="d&#xE9;marche">D&#xE9;marche</h3>
+<ul>
+<li>Ajout du <code>.vue</code> de la page &#xE0; Propos.</li>
+<li>Ajout des texte dans les fichiers <code>locales</code>.</li>
+<li>Ajouter le lien dans le <code>Drawer.vue</code>.</li>
+<li>Ajouter la route.</li>
+</ul>
 <h2 id="distribuer-vos-sources">Distribuer vos sources</h2>
 <p>Voil&#xE0; votre application est maintenant termin&#xE9;e bravo &#x1F44F;&#x1F44F;. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour &#xE7;a rien de plus simple il vous suffit de faire</p>
 <pre><code class="lang-shell">npm run build
@@ -1402,7 +1416,7 @@ export default {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Réaliser une application avec VueJS","level":"1.7.4","depth":2,"next":{"title":"VueJS + Firebase","level":"1.7.5","depth":2,"path":"tp/vuejs/firebase-vuejs.md","ref":"tp/vuejs/firebase-vuejs.md","articles":[]},"previous":{"title":"VueJS + Legacy Web","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp2.md","mtime":"2018-11-29T21:49:31.208Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-07T13:16:22.905Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Réaliser une application avec VueJS","level":"1.7.4","depth":2,"next":{"title":"VueJS + Firebase","level":"1.7.5","depth":2,"path":"tp/vuejs/firebase-vuejs.md","ref":"tp/vuejs/firebase-vuejs.md","articles":[]},"previous":{"title":"VueJS + Legacy Web","level":"1.7.3","depth":2,"path":"tp/vuejs/tp1.md","ref":"tp/vuejs/tp1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/vuejs/tp2.md","mtime":"2018-12-08T22:00:42.537Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-08T22:01:00.238Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
