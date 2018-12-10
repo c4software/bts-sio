@@ -71,9 +71,23 @@ Intégré dans Android.
 
 ---
 
+## Les langages
+
+### Code
+
+- Java (historique)
+- Kotlin (Nouveau)
+
+### Ressources
+
+- xml (drawables)
+- png / jpeg / 9.png (images)
+
+---
+
 ## Android Studio
 
-- Java (ou Kotlin)
+- Java
 - Version spécial de Intelij
 
 ---
@@ -112,7 +126,21 @@ Intégré dans Android.
 
 ## Structure du projet
 
-TODO (détail dossier, image structure)
+---
+
+![Structure dossiers](./img/folders_projects.png)
+
+---
+
+- **src** : Vos source Java (ou Kotlin).
+- **res** : XML, fichiers de configurations, images
+  - layout, strings, drawable…
+- **R.java.class** :
+  - Généré automatiquement.
+  - Contient les références de tous les id.
+  - Permet l'accès aux ressources depuis votre code :
+    - `getString(R.string.title)`
+    - `setContentView(R.layout.activity_main)`
 
 ---
 
