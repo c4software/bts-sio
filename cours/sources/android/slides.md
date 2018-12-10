@@ -114,6 +114,10 @@ Intégré dans Android.
 
 ---
 
+## C'est à vous
+
+---
+
 ## Structure du projet
 
 TODO (détail dossier, image structure)
@@ -122,13 +126,17 @@ TODO (détail dossier, image structure)
 
 ## Debugger
 
-TODO
+- Point d'arrêt possible.
+- Log.
+- Log affiché dans le Logcat.
 
 ---
 
 ## Gradle
 
-TODO
+- Open-source.
+- Script de compilation de votre projet.
+- Complètement intégré dans Android Studio (complétion, etc…)
 
 ---
 
