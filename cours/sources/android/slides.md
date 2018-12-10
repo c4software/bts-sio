@@ -55,7 +55,7 @@ Construit autour du noyau Linux mais … C'est tout
 
 ## La sécurité
 
-- Chaque application à sont propre Utilisateur Linux
+- Chaque application a son propre utilisateur Linux
 - Les applications sont sandboxé
 - Chaque application tourne dans sa propre VM.
 - Chaque application à son cycle de vie.
