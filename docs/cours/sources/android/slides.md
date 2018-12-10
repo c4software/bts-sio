@@ -78,21 +78,13 @@ Intégré dans Android.
 
 ---
 
-## L'interface
-
 ![Interface](./img/interface.png)
 
 ---
 
 ## Toolbar
 
-![Interface](./img/interface.png)
-
----
-
-## Logcat
-
-![Interface](./img/logcat.png)
+![Interface](./img/toolbar.png)
 
 ---
 
@@ -129,6 +121,12 @@ TODO (détail dossier, image structure)
 - Point d'arrêt possible.
 - Log.
 - Log affiché dans le Logcat.
+
+---
+
+## Logcat
+
+![Interface](./img/logcat.png)
 
 ---
 
