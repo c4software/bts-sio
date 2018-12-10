@@ -33,7 +33,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ## L'architecture
 
-![Architecture](./img/android_architecture.png)
+![Architecture](./img/android_architecture.jpg)
 
 ---
 
