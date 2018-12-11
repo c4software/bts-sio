@@ -45,7 +45,7 @@ Linux ?
 
 ## Android is not Linux
 
-Construit autour du noyau Linux mais … C'est tout
+Construit autour du noyau Linux mais … c'est tout
 
 - Noyau Linux : Drivers, Batterie, Ram.
 - Runtime Android : Fait tourner les applications Android.
@@ -55,16 +55,16 @@ Construit autour du noyau Linux mais … C'est tout
 
 ## La sécurité
 
-- Chaque application a son propre utilisateur Linux
-- Les applications sont sandboxé
+- Chaque application a son propre utilisateur Linux.
+- Les applications sont sandboxées.
 - Chaque application tourne dans sa propre VM.
-- Chaque application à son cycle de vie.
+- Chaque application a son cycle de vie.
 
 ---
 
 ## Les API
 
-Intégré dans Android.
+Intégrées dans Android.
 
 - SDK Android : Évolue lors des mises à jour de système.
 - Play Service : Évolue automatiquement indépendamment de la version de l'OS (presque).
@@ -88,7 +88,7 @@ Intégré dans Android.
 ## Android Studio
 
 - Java
-- Version spéciale de Intelij
+- Version spéciale de Intellij
 
 ---
 
@@ -104,8 +104,8 @@ Intégré dans Android.
 
 ## Créer un émulateur
 
-- Intégrer dans Android Studio.
-- Performance suffisante pour tester.
+- Intégré dans Android Studio.
+- Performances suffisantes pour tester.
 - BLE / Bluetooth non disponible.
 
 ---
@@ -134,21 +134,27 @@ Intégré dans Android.
 
 - **src** : Vos sources Java (ou Kotlin).
 - **res** : XML, fichiers de configurations, images
-  - layout, strings, drawable…
-- **R.java.class** :
-  - Généré automatiquement.
-  - Contiens les références de tous les id.
-  - Permet l'accès aux ressources depuis votre code :
-    - `getString(R.string.title)`
-    - `setContentView(R.layout.activity_main)`
+  - layout
+  - strings
+  - drawable…
+
+---
+
+### **R.java.class**
+
+- Généré automatiquement.
+- Contient les références de tous les id.
+- Permet l'accès aux ressources depuis votre code :
+  - `getString(R.string.title)`
+  - `setContentView(R.layout.activity_main)`
 
 ---
 
 ## Debugger
 
-- Point d'arrêt possible.
-- Log.
-- Log affiché dans le Logcat.
+- Points d'arrêts possible.
+- Logs.
+- Logs affichés dans le Logcat.
 
 ---
 
@@ -161,7 +167,7 @@ Intégré dans Android.
 ## Gradle
 
 - Open-source.
-- Script de compilation de votre projet.
+- Règles / scripts de compilation de votre projet.
 - Complètement intégré dans Android Studio (complétion, etc…)
 
 ---
@@ -169,8 +175,8 @@ Intégré dans Android.
 ## Votre première application
 
 - Activity
-- Création d'un Layout associé
-- Déclaration dans le Manifest
+- Un Layout associé
+- Déclaré dans le « Manifest »
 
 ---
 
@@ -192,11 +198,11 @@ Intégré dans Android.
 ---
 
 - L'ensemble de vos activity hérite d'une super **Activity**.
-- Override des méthodes de base (au début uniquement onCreate)
+- Override des méthodes de base (au début uniquement onCreate).
 
 ---
 
-## Un détail qui compte… Les layout
+## Un détail qui compte… les layout
 
 - Constraint Layout
 - Linear Layout
@@ -207,7 +213,7 @@ Intégré dans Android.
 
 ## Constraint Layout
 
-- Contraint par rapport au « TOP, BOTTOM, START, END ».
+- Contraint par rapport au « TOP, BOTTOM, START, END » des autres éléments.
 - La nouvelle façon de faire.
 
 ---
@@ -224,7 +230,7 @@ Intégré dans Android.
 
 ## C'est à vous
 
-Ajouter un bouton dans l'interface et une ImageView
+Ajouter un bouton dans l'interface et une ImageView.
 
 ---
 
@@ -309,17 +315,19 @@ Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-m
 
 ## C'est à vous
 
-Ajouter un toast dans votre interface
+Ajouter un Toast dans votre interface
 
 ```java
 Toast.makeText(this, "Bonjour à tous", Toast.LENGTH_SHORT).show();
 ```
 
+⚠️ Avec la complétion d'Android Studio
+
 ---
 
 ### Les Dialog
 
-Interaction complexe (avec choix)
+Interaction complexe avec l'utilisateur (Choix…)
 
 ![dialog.png](./img/dialog.png)
 
@@ -373,7 +381,6 @@ Android supporte Java 1.8 (dont les lambdas)
 ## Les lambda's
 
 ```java
-tvHello = findViewById(R.id.tvHello);
 tvHello.setOnClickListener(l -> {
     Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
 });
@@ -391,6 +398,7 @@ tvHello.setOnClickListener(l -> {
 
 - **adapter** : Gère les données pour les afficher dans la vue.
 - L'adapter est associé à la liste.
+- Un Datasource est attaché à l'Adapter.
 - Les données sont ajoutées dans la Datasource.
 
 ---
@@ -403,7 +411,7 @@ tvHello.setOnClickListener(l -> {
 
 ---
 
-## C'est complexe… Mais des librairies existent
+## C'est complexe… mais des librairies existent
 
 [FlexibleAdapter](https://github.com/davideas/FlexibleAdapter)
 
@@ -412,4 +420,4 @@ tvHello.setOnClickListener(l -> {
 ## Le futur
 
 - Migration vers AndroidX.
-- Passer de Java à Kotlin
+- Passer de Java à Kotlin.
