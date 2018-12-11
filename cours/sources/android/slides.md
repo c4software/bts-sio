@@ -387,4 +387,15 @@ tvHello.setOnClickListener(l -> {
 
 ## Les ListView
 
-TODO
+---
+
+- **adapter** : Gère les données pour les afficher dans la vue.
+- L'adapter est associé à la liste.
+- Les données sont ajoutés dans l'adapter.
+
+---
+
+## Le futur
+
+- Migration vers AndroidX.
+- Passer de Java à Kotlin
