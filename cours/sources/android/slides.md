@@ -312,7 +312,7 @@ Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-m
 Ajouter un toast dans votre interface
 
 ```java
-    Toast.makeText(this, "Bonjour à tous", Toast.LENGTH_SHORT).show();
+Toast.makeText(this, "Bonjour à tous", Toast.LENGTH_SHORT).show();
 ```
 
 ---
@@ -329,7 +329,7 @@ Interaction complexe (avec choix)
 
 Ajouter une Dialog dans votre interface. Nous allons utiliser une library.
 
-![Material Dialog](https://github.com/afollestad/material-dialogs)
+[Material Dialog](https://github.com/afollestad/material-dialogs)
 
 ---
 
@@ -346,12 +346,12 @@ Ajouter une Dialog dans votre interface. Nous allons utiliser une library.
 ## Le listner
 
 ```java
-    tvHello.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(MainActivity.this, "Bonus point", Toast.LENGTH_SHORT).show();
-        }
-    });
+tvHello.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(MainActivity.this, "Bonus point", Toast.LENGTH_SHORT).show();
+    }
+});
 ```
 
 ---
@@ -386,3 +386,5 @@ tvHello.setOnClickListener(l -> {
 ---
 
 ## Les ListView
+
+TODO
