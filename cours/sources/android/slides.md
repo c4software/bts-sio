@@ -198,7 +198,33 @@ Intégré dans Android.
 
 ## Un détail qui compte… Les layout
 
-TODO
+- Constraint Layout
+- Linear Layout
+- Relative Layout
+- Grid Layout
+
+---
+
+## Constraint Layout
+
+- Contraint par rapport au « TOP, BOTTOM, START, END ».
+- La nouvelle façon de faire.
+
+---
+
+## Les éléments du Layout
+
+- TextView
+- Button
+- ListView
+- ImageView
+- …
+
+---
+
+## C'est à vous
+
+Ajouter un bouton dans l'interface et une ImageView
 
 ---
 
@@ -219,4 +245,144 @@ TODO
 
 ---
 
-TODO
+## Contenu d'un Manifest
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.playmoweb.demo.dmocourseseo">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
+```
+
+---
+
+## Le dossier `res` en détail
+
+- **anim** : Définition des propriétés d'animation (`R.anim.…`)
+- **drawable** : Vos images (png, xml, 9.png, …) (`R.drawable.…`)
+- **layout** : Vos interface un fichier par vue (`R.layout.…`)
+- **menu** : Contenu de vos menus (Options Menu, Sub Menu, …)
+- **values** : « Constantes » de votre application (String, Int, Color, etc)
+- **mipmap** : Icônes de votre application.
+
+---
+
+## Le dossier `res` en détail 2
+
+### AKA Les ressources alternative
+
+Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-mdpi`, `-xxhdpi`, …)
+
+---
+
+![Wow](./img/wow.gif)
+
+---
+
+## Interagir avec l'utilisateur
+
+---
+
+### Les toasts
+
+![Toast](./img/toast.png)
+
+---
+
+## C'est à vous
+
+Ajouter un toast dans votre interface
+
+```java
+    Toast.makeText(this, "Bonjour à tous", Toast.LENGTH_SHORT).show();
+```
+
+---
+
+### Les Dialog
+
+Interaction complexe (avec choix)
+
+![dialog.png](./img/dialog.png)
+
+---
+
+## C'est à vous
+
+Ajouter une Dialog dans votre interface. Nous allons utiliser une library.
+
+![Material Dialog](https://github.com/afollestad/material-dialogs)
+
+---
+
+## Interagir avec l'utilisateur
+
+### 3 étapes
+
+- Le layout
+- Le `findViewById` (dans la méthode `onCreate`)
+- Le `setOnClickListener(…)`
+
+---
+
+## Le listner
+
+```java
+    tvHello.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(MainActivity.this, "Bonus point", Toast.LENGTH_SHORT).show();
+        }
+    });
+```
+
+---
+
+## C'est verbeux …
+
+### mais …
+
+![rageQuit](./img/raqeQuit.gif)
+
+---
+
+## Migrer en Java 1.8
+
+Android supporte Java 1.8 (dont les lambdas)
+
+---
+
+## Les lambda's
+
+```java
+tvHello = findViewById(R.id.tvHello);
+tvHello.setOnClickListener(l -> {
+    Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
+});
+```
+
+---
+
+![Migration](./img/migrate_java_1_8.png)
+
+---
+
+## Les ListView
