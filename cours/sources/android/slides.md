@@ -421,3 +421,10 @@ tvHello.setOnClickListener(l -> {
 
 - Migration vers AndroidX.
 - Passer de Java à Kotlin.
+
+---
+
+## Organisation du code
+
+- MVP
+- MVVM
