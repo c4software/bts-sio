@@ -385,13 +385,27 @@ tvHello.setOnClickListener(l -> {
 
 ---
 
-## Les ListView
+## Les ListView (AdapterView)
 
 ---
 
 - **adapter** : Gère les données pour les afficher dans la vue.
 - L'adapter est associé à la liste.
-- Les données sont ajoutés dans l'adapter.
+- Les données sont ajoutés dans la Datasource.
+
+---
+
+![Adater](./img/adapter.jpg)
+
+---
+
+[Guide](https://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
+
+---
+
+## C'est complexe… Mais des librairies existe
+
+[FlexibleAdapter](https://github.com/davideas/FlexibleAdapter)
 
 ---
 
