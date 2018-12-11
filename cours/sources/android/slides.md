@@ -67,7 +67,7 @@ Construit autour du noyau Linux mais … C'est tout
 Intégré dans Android.
 
 - SDK Android : Évolue lors des mises à jour de système.
-- Play Service : Évolue automatiquement indépendemment de la version de l'OS (presque).
+- Play Service : Évolue automatiquement indépendamment de la version de l'OS (presque).
 
 ---
 
@@ -88,7 +88,7 @@ Intégré dans Android.
 ## Android Studio
 
 - Java
-- Version spécial de Intelij
+- Version spéciale de Intelij
 
 ---
 
@@ -132,12 +132,12 @@ Intégré dans Android.
 
 ---
 
-- **src** : Vos source Java (ou Kotlin).
+- **src** : Vos sources Java (ou Kotlin).
 - **res** : XML, fichiers de configurations, images
   - layout, strings, drawable…
 - **R.java.class** :
   - Généré automatiquement.
-  - Contient les références de tous les id.
+  - Contiens les références de tous les id.
   - Permet l'accès aux ressources depuis votre code :
     - `getString(R.string.title)`
     - `setContentView(R.layout.activity_main)`
@@ -178,7 +178,7 @@ Intégré dans Android.
 
 - Représente un seul écran.
 - Gère tout ce qu'il y a dans l'écran.
-- Gère la logique des intéractions utilisateurs.
+- Gère la logique des interactions utilisateurs.
 - Possède son propre **cycle de vie**.
 
 ---
@@ -192,7 +192,7 @@ Intégré dans Android.
 ---
 
 - L'ensemble de vos activity hérite d'une super **Activity**.
-- Override des méthode de base (au début uniquement onCreate)
+- Override des méthodes de base (au début uniquement onCreate)
 
 ---
 
@@ -277,9 +277,9 @@ Ajouter un bouton dans l'interface et une ImageView
 ## Le dossier `res` en détail
 
 - **anim** : Définition des propriétés d'animation (`R.anim.…`)
-- **drawable** : Vos images (png, xml, 9.png, …) (`R.drawable.…`)
-- **layout** : Vos interface un fichier par vue (`R.layout.…`)
-- **menu** : Contenu de vos menus (Options Menu, Sub Menu, …)
+- **drawable** : Vos images (png, xml, 9.png…) (`R.drawable.…`)
+- **layout** : Vos interfaces un fichier par vue (`R.layout.…`)
+- **menu** : Contenu de vos menus (Options Menu, Sub Menu…)
 - **values** : « Constantes » de votre application (String, Int, Color, etc)
 - **mipmap** : Icônes de votre application.
 
@@ -287,7 +287,7 @@ Ajouter un bouton dans l'interface et une ImageView
 
 ## Le dossier `res` en détail 2
 
-### AKA Les ressources alternative
+### AKA Les ressources alternatives
 
 Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-mdpi`, `-xxhdpi`, …)
 
@@ -391,7 +391,7 @@ tvHello.setOnClickListener(l -> {
 
 - **adapter** : Gère les données pour les afficher dans la vue.
 - L'adapter est associé à la liste.
-- Les données sont ajoutés dans la Datasource.
+- Les données sont ajoutées dans la Datasource.
 
 ---
 
@@ -403,7 +403,7 @@ tvHello.setOnClickListener(l -> {
 
 ---
 
-## C'est complexe… Mais des librairies existe
+## C'est complexe… Mais des librairies existent
 
 [FlexibleAdapter](https://github.com/davideas/FlexibleAdapter)
 
