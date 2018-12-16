@@ -73,10 +73,14 @@ Intégrées dans Android.
 
 ## Les langages
 
+---
+
 ### Code
 
 - Java (historique)
 - Kotlin (Nouveau)
+
+---
 
 ### Ressources
 
@@ -428,3 +432,80 @@ tvHello.setOnClickListener(l -> {
 
 - MVP
 - MVVM
+
+---
+
+## Au minimum quelques packages
+
+---
+
+Android c'est très ouvert… Il faut s'imposer une organisation
+
+---
+
+## Quelques packages
+
+- ui (pour l'interface)
+- data (pour les données)
+- remote (pour la partie accès au API http)
+
+---
+
+Bien évidement c'est un exemple
+
+(Vous pouvez faire autrement…)
+
+---
+
+### Zoom sur le package ui
+
+- Organisation par « vue ».
+- On regroupe les fonctionnalités par « vue » (exemple les adapters)
+
+---
+
+### C'est à vous
+
+Réorganisation de votre projet initial.
+
+---
+
+![Package](./img/packages.png)
+
+---
+
+## Pourquoi est-ce important
+
+- Partage de code
+- Reprise du code
+- Maintenance
+- …
+
+---
+
+## Le Bluetooth et Android
+
+- Les permissions
+- Différent en fonction d'Android ( > Lolipop )
+
+---
+
+## Deux solutions
+
+- Le coder.
+- Utiliser une librairie.
+
+---
+
+## La librairie
+
+- Plus simple (la partie multi-version est masqué)
+- Requiert RxJava
+
+---
+
+## Rx ?
+
+![what](./img/what.webp)
+
+---
