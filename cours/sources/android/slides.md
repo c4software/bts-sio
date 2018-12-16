@@ -788,6 +788,12 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
 ---
 
+## Modification de l'Adapter
+
+Nous avions un Device… Remplacer le par un BluetoothDevice.
+
+---
+
 ## Le BluetoothLEManager
 
 ```java
