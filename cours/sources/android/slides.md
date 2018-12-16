@@ -372,7 +372,7 @@ tvHello.setOnClickListener(new View.OnClickListener() {
 
 ### mais …
 
-![rageQuit](./img/raqeQuit.gif)
+![rageQuit](./img/rageQuit.gif)
 
 ---
 
@@ -483,6 +483,59 @@ Réorganisation de votre projet initial.
 
 ---
 
+## Démarer une autre activitées
+
+Une astuce…
+
+---
+
+### Dans la class UI ajouter
+
+```java
+public static Intent getStartIntent(final Context ctx) {
+    return new Intent(ctx, ClassEnCoursDeDemo.class);
+}
+```
+
+---
+
+### Et quand on souhaite afficher la vue
+
+```java
+startActivity(ClassEnCoursDeDemo.getStartIntent(this));
+```
+
+---
+
+![wow](./img/wow.gif)
+
+---
+
+## La home
+
+- Design du layout.
+- Les contraintes :
+  - Le bouton actions ne doit pas être actif si pas de périphérique sélectionné.
+  - Afficher le logo de L'ESEO.
+
+---
+
+## Le scan
+
+- Design du layout
+- Les contraintes
+  - Avoir une liste (`listView`)
+
+---
+
+## C'est à vous
+
+- Créer deux Activity :
+  - Celle existante qui sera notre page de home.
+  - Une nouvelle qui sera la page de scan.
+
+---
+
 ## Le Bluetooth et Android
 
 - Les permissions
@@ -509,3 +562,265 @@ Réorganisation de votre projet initial.
 ![what](./img/what.webp)
 
 ---
+
+- Multithread
+- Asynchrone
+
+---
+
+## Asynchrone is hard
+
+(non pas de gif)
+
+---
+
+- Les données sont des streams
+- Les traitements sont fait d'autre thread que l'UI
+- Simplifie le multi-thread
+
+---
+
+![RxJava](./img/reactivex.png)
+[Le site](http://reactivex.io/)
+
+---
+
+## La librairie (suite)
+
+- [RxAndroidBLE](https://github.com/Polidea/RxAndroidBle)
+- Gère le Bluetooth
+- Les permissions (presque)
+- L'état de Bluetooth
+- …
+
+---
+
+## La version code
+
+- Demander les permissions (Manifest + Code)
+- Détecter la version d'Android
+- Démarrer le Scan
+- Ajouter des filtres (ou pas)
+
+---
+
+## Les permissions
+
+- Localisation ?
+- Est-ce que le Bluetooth est actif ?
+- Le Manifest
+- [Exemple](https://gitlab.com/playmoweb/eseo-course-android-app/blob/part-3-setup-ble/app/src/main/java/fr/eseo/course/ui/devices/DevicesActivity.java)
+
+---
+
+## Vérifier les permissions
+
+```java
+private void checkPermissions() {
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_CODE);
+    } else {
+        checkForLocationEnabled();
+    }
+}
+```
+
+## Après l'acceptation utilisateur
+
+```java
+@Override
+public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
+    if (requestCode == REQUEST_LOCATION_CODE) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            checkForLocationEnabled();
+        } else {
+            checkPermissions(); // force permission
+        }
+    }
+}
+```
+
+---
+
+## Vérifier si localisation est active
+
+```java
+private void checkForLocationEnabled() {
+    final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+    if (lm != null) {
+        final boolean gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        final boolean network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        if (!gps_enabled || !network_enabled) {
+            startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), REQUEST_ENABLED_LOCATION_CODE);
+        } else {
+            setupBLE();
+        }
+    } else {
+        startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), REQUEST_ENABLED_LOCATION_CODE);
+    }
+}
+```
+
+---
+
+## Et finalement …
+
+---
+
+## Le BLE
+
+```java
+private void setupBLE() {
+    final BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+    if (bluetoothManager != null) {
+        bluetoothAdapter = bluetoothManager.getAdapter();
+    }
+
+    if (bluetoothManager == null || !bluetoothAdapter.isEnabled()) { // bluetooth is off
+        startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), REQUEST_ENABLE_BLE);
+    } else {
+        scanNearbyDevices(); // start scanning by default
+    }
+}
+```
+
+---
+
+## Le ble : Le scan
+
+```java
+private void scanNearbyDevices() {
+    if (isScanning) {
+        return;
+    }
+
+    isScanning = true;
+    scanningHandler.postDelayed(scanDevicesRunnable, SCAN_DURATION_MS);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { // for recent version of android
+        final ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
+        final List<ScanFilter> scanFilters = new ArrayList<>();
+
+        // Create ScanFilters
+        // for (final UUID uuid : BluetoothLEManager.SERVICES_TO_FILTER) {
+        //    scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(uuid)).build()); // add service filters
+        // }
+
+        bluetoothAdapter.getBluetoothLeScanner().startScan(scanFilters, settings, bleLollipopScanCallback);
+    } else {
+        bluetoothAdapter.startLeScan(BluetoothLEManager.SERVICES_TO_FILTER, bleScanCallback);
+    }
+}
+
+// À votre avis ?
+private final Runnable scanDevicesRunnable = new Runnable() {
+    @Override
+    public void run() {
+        stopScan();
+    }
+};
+```
+
+---
+
+## Ble : Le Scan avant Lolipop
+
+```java
+private final BluetoothAdapter.LeScanCallback bleScanCallback = new BluetoothAdapter.LeScanCallback() {
+    @Override
+    public void onLeScan(final BluetoothDevice bluetoothDevice, final int i, final byte[] bytes) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // bluetoothDevice est notre objet après le scan
+                // C'est ici qu'il faut l'ajouter à l'Adapter
+            }
+        });
+    }
+};
+```
+
+---
+
+## Ble : Le Scan après Lolipop
+
+```java
+private final ScanCallback bleLollipopScanCallback = new ScanCallback() {
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onScanResult(final int callbackType, final ScanResult result) {
+        super.onScanResult(callbackType, result);
+        bluetoothDevice = result.getDevice();
+        // C'est ici qu'il faut l'ajouter à l'adapter
+    }
+
+    @Override
+    public void onScanFailed(final int errorCode) {
+        super.onScanFailed(errorCode);
+        Toast.makeText(DevicesActivity.this, getString(R.string.ble_scan_error, errorCode), Toast.LENGTH_SHORT).show();
+    }
+};
+```
+
+---
+
+## Ble : Stopper le scan
+
+```java
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    bluetoothAdapter.getBluetoothLeScanner().stopScan(bleLollipopScanCallback);
+} else {
+    bluetoothAdapter.stopLeScan(bleScanCallback);
+}
+```
+
+---
+
+## Quand / Ou appeler le stop ?
+
+---
+
+## Sélectionner un périphérique…
+
+- OnClickListener sur l'apdater
+- Sauvegarder (de manière `static`) le périphérique
+- Changer de vue
+
+## Le BluetoothLEManager
+
+```java
+public class BluetoothLEManager {
+    public static final BluetoothLEManager INSTANCE = new BluetoothLEManager();
+
+    public static BluetoothLEManager getInstance() {
+        return INSTANCE;
+    }
+
+    public BluetoothDevice currentBluetoothDevice = null;
+
+    private BluetoothLEManager() {
+    }
+
+    public void setCurrentDevice(final BluetoothDevice device) {
+        currentBluetoothDevice = device;
+    }
+
+    public BluetoothDevice getCurrentDevice() {
+        return currentBluetoothDevice;
+    }
+}
+```
+
+---
+
+## Organisation
+
+- Ranger le `BLuetoothLEManager` dans le package `data.manager`
+
+---
+
+## Design de la vue Action
+
+- Bouton action « Connexion ».
+- Affiche le status de la connexion.
+- Permet la configuration de l'objet connecté (GPIO Bouton et GPIO Led)
