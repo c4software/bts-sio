@@ -563,7 +563,7 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 
 ---
 
-- Multithread
+- Multi-thread
 - Asynchrone
 
 ---
@@ -785,6 +785,14 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 - OnClickListener sur l'apdater
 - Sauvegarder (de manière `static`) le périphérique
 - Changer de vue
+
+---
+
+## Modification de l'Adapter
+
+Nous avions un Device… Remplacer le par un BluetoothDevice.
+
+---
 
 ## Le BluetoothLEManager
 
