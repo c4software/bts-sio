@@ -520,6 +520,12 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 
 ---
 
+## Exemple
+
+![Layout](./img/layout.png)
+
+---
+
 ## Le scan
 
 - Design du layout
@@ -610,6 +616,19 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 - Est-ce que le Bluetooth est actif ?
 - Le Manifest
 - [Exemple](https://gitlab.com/playmoweb/eseo-course-android-app/blob/part-3-setup-ble/app/src/main/java/fr/eseo/course/ui/devices/DevicesActivity.java)
+
+---
+
+## Les permissions : Le manifest
+
+```xml
+<uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+<uses-feature android:name="android.hardware.location.gps"/>
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.BLUETOOTH"/>
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+```
 
 ---
 
