@@ -483,7 +483,7 @@ Réorganisation de votre projet initial.
 
 ---
 
-## Démarer une autre activitées
+## Démarrer une autre activitée
 
 Une astuce…
 
@@ -515,15 +515,21 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 
 - Design du layout.
 - Les contraintes :
-  - Le bouton actions ne doit pas être actif si pas de périphérique sélectionné.
+  - Le bouton « actions » ne doit pas être actif si pas de périphérique sélectionné.
   - Afficher le logo de L'ESEO.
+
+---
+
+## Exemple
+
+![Layout](./img/layout.png)
 
 ---
 
 ## Le scan
 
 - Design du layout
-- Les contraintes
+- Contrainte
   - Avoir une liste (`listView`)
 
 ---
@@ -552,7 +558,7 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 
 ## La librairie
 
-- Plus simple (la partie multi-version est masqué)
+- Plus simple (la partie multi-version est masquée)
 - Requiert RxJava
 
 ---
@@ -575,7 +581,7 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 ---
 
 - Les données sont des streams
-- Les traitements sont fait d'autre thread que l'UI
+- Les traitements sont fait dans d'autre thread que l'UI
 - Simplifie le multi-thread
 
 ---
@@ -590,7 +596,7 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 - [RxAndroidBLE](https://github.com/Polidea/RxAndroidBle)
 - Gère le Bluetooth
 - Les permissions (presque)
-- L'état de Bluetooth
+- L'état du Bluetooth
 - …
 
 ---
@@ -610,6 +616,19 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 - Est-ce que le Bluetooth est actif ?
 - Le Manifest
 - [Exemple](https://gitlab.com/playmoweb/eseo-course-android-app/blob/part-3-setup-ble/app/src/main/java/fr/eseo/course/ui/devices/DevicesActivity.java)
+
+---
+
+## Les permissions : Le manifest
+
+```xml
+<uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
+<uses-feature android:name="android.hardware.location.gps"/>
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.BLUETOOTH"/>
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+```
 
 ---
 
@@ -642,7 +661,7 @@ public void onRequestPermissionsResult(final int requestCode, @NonNull final Str
 
 ---
 
-## Vérifier si localisation est active
+## Vérifier si la localisation est active
 
 ```java
 private void checkForLocationEnabled() {
@@ -723,7 +742,7 @@ private final Runnable scanDevicesRunnable = new Runnable() {
 
 ---
 
-## Ble : Le Scan avant Lolipop
+## Le Ble : Le Scan avant Lolipop
 
 ```java
 private final BluetoothAdapter.LeScanCallback bleScanCallback = new BluetoothAdapter.LeScanCallback() {
@@ -742,7 +761,7 @@ private final BluetoothAdapter.LeScanCallback bleScanCallback = new BluetoothAda
 
 ---
 
-## Ble : Le Scan après Lolipop
+## Le Ble : Le Scan après Lolipop
 
 ```java
 private final ScanCallback bleLollipopScanCallback = new ScanCallback() {
@@ -764,7 +783,7 @@ private final ScanCallback bleLollipopScanCallback = new ScanCallback() {
 
 ---
 
-## Ble : Stopper le scan
+## Le Ble : Stopper le scan
 
 ```java
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -790,11 +809,12 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
 ## Modification de l'Adapter
 
-Nous avions un Device… Remplacer le par un BluetoothDevice.
+Nous avions un Device…
+Remplacer le par un BluetoothDevice.
 
 ---
 
-## Le BluetoothLEManager
+Le BluetoothLEManager
 
 ```java
 public class BluetoothLEManager {
@@ -823,12 +843,13 @@ public class BluetoothLEManager {
 
 ## Organisation
 
-- Ranger le `BLuetoothLEManager` dans le package `data.manager`
+- Ranger le `BluetoothLEManager` dans le package `data.manager`
 
 ---
 
-## Design de la vue Action
+## Design de la vue configuration
 
-- Bouton action « Connexion ».
 - Affiche le status de la connexion.
 - Permet la configuration de l'objet connecté (GPIO Bouton et GPIO Led)
+  - Deux EditText (Pour envoyer les valeurs).
+  - Afficher un toast en après la réussite
