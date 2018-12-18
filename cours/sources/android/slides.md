@@ -802,9 +802,30 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
 ## Sélectionner un périphérique…
 
-- OnClickListener sur l'apdater
+- setOnItemClickListener sur la listView
 - Sauvegarder (de manière `static`) le périphérique
 - Changer de vue
+
+---
+
+## Obtenir l'element sélectionné
+
+```java
+protected void onCreate(Bundle savedInstanceState) {
+    // …………
+
+    deviceAdapter = new DeviceAdapter(this, deviceArrayList);
+    ListView listView = findViewById(R.id.rvDevices);
+    listView.setAdapter(deviceAdapter);
+    listView.setClickable(true);
+    listView.setOnItemClickListener(listClick);
+}
+
+private AdapterView.OnItemClickListener listClick = (parent, view, position, id) -> {
+    final Device item = deviceAdapter.getItem(position);
+    // TODO
+};
+```
 
 ---
 
