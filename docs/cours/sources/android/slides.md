@@ -732,12 +732,7 @@ private void scanNearbyDevices() {
 }
 
 // À votre avis ?
-private final Runnable scanDevicesRunnable = new Runnable() {
-    @Override
-    public void run() {
-        stopScan();
-    }
-};
+private final Runnable scanDevicesRunnable = () -> stopScan();
 ```
 
 ---
@@ -769,14 +764,14 @@ private final ScanCallback bleLollipopScanCallback = new ScanCallback() {
     @Override
     public void onScanResult(final int callbackType, final ScanResult result) {
         super.onScanResult(callbackType, result);
-        bluetoothDevice = result.getDevice();
+        BluetoothDevice bluetoothDevice = result.getDevice();
         // C'est ici qu'il faut l'ajouter à l'adapter
     }
 
     @Override
     public void onScanFailed(final int errorCode) {
         super.onScanFailed(errorCode);
-        Toast.makeText(DevicesActivity.this, getString(R.string.ble_scan_error, errorCode), Toast.LENGTH_SHORT).show();
+        Toast.makeText(ScanActivity.this, getString(R.string.ble_scan_error, errorCode), Toast.LENGTH_SHORT).show();
     }
 };
 ```
@@ -796,6 +791,12 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 ---
 
 ## Quand / Ou appeler le stop ?
+
+---
+
+## Quelle est la méthode à appeler
+
+### Pour lancer le scan
 
 ---
 
