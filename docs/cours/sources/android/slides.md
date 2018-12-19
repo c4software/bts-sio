@@ -781,10 +781,12 @@ private final ScanCallback bleLollipopScanCallback = new ScanCallback() {
 ## Le Ble : Stopper le scan
 
 ```java
-if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-    bluetoothAdapter.getBluetoothLeScanner().stopScan(bleLollipopScanCallback);
-} else {
-    bluetoothAdapter.stopLeScan(bleScanCallback);
+private void stopScan(){
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        bluetoothAdapter.getBluetoothLeScanner().stopScan(bleLollipopScanCallback);
+    } else {
+        bluetoothAdapter.stopLeScan(bleScanCallback);
+    }
 }
 ```
 
