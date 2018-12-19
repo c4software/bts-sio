@@ -792,13 +792,48 @@ private void stopScan(){
 
 ---
 
-## Quand / Ou appeler le stop ?
+## Quelques variable en plus
+
+Dans la class ScanActivity
+
+```java
+// REQUEST Code de gestion
+private static final int REQUEST_LOCATION_CODE = 1235;
+private static final int REQUEST_ENABLED_LOCATION_CODE = 1236;
+private static final long SCAN_DURATION_MS = 10_000L;
+private static final int REQUEST_ENABLE_BLE = 999;
+
+// Gestion du bluetooth
+private BluetoothAdapter bluetoothAdapter;
+private BluetoothGatt currentBluetoothGatt = null; // Connexion actuelle
+private boolean isScanning = false;
+private final Handler scanningHandler = new Handler();
+
+// Partie adapter
+private DeviceAdapter deviceAdapter;
+private ArrayList<BluetoothDevice> deviceArrayList = new ArrayList<>();
+```
 
 ---
 
 ## Quelle est la méthode à appeler
 
 ### Pour lancer le scan
+
+---
+
+## Activer le fitre par Service UUID
+
+Oui car c'est vrai on détecte trop de périphérique incompatible !
+
+```java
+private void scanNearbyDevices() {
+    // …
+    // Limite la recherche a l'UUID de notre service du Pi
+    scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(BluetoothLEManager.DEVICE_UUID)).build());
+    // …
+}
+```
 
 ---
 
@@ -824,8 +859,10 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 private AdapterView.OnItemClickListener listClick = (parent, view, position, id) -> {
-    final Device item = deviceAdapter.getItem(position);
-    // TODO
+    final BluetoothDevice item = deviceAdapter.getItem(position);
+    BluetoothLEManager.getInstance().setCurrentDevice(item);
+    // C'est ici que l'on va se connecter à notre périphérique
+    // Dans un second temps…
 };
 ```
 
@@ -836,17 +873,25 @@ private AdapterView.OnItemClickListener listClick = (parent, view, position, id)
 Nous avions un Device…
 Remplacer le par un BluetoothDevice.
 
+- Éditer l'Adapter.
+- Et son utilisation.
+
 ---
 
-Le BluetoothLEManager
+## Le BluetoothLEManager
 
 ```java
 public class BluetoothLEManager {
     public static final BluetoothLEManager INSTANCE = new BluetoothLEManager();
 
+    // Device service UUID
     public static UUID DEVICE_UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c");
+
+    // Send GPIO Configuration UUID
     public static UUID CHARACTERISTIC_LED_PIN_UUID = UUID.fromString("31517c58-66bf-470c-b662-e352a6c80cba");
     public static UUID CHARACTERISTIC_BUTTON_PIN_UUID = UUID.fromString("0b89d2d4-0ea6-4141-86bb-0c5fb91ab14a");
+
+    // Toggle LED UUID
     public static UUID CHARACTERISTIC_TOGGLE_LED_UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b");
 
     public static BluetoothLEManager getInstance() {
@@ -876,9 +921,110 @@ public class BluetoothLEManager {
 
 ---
 
-## Design de la vue configuration
+## Connexion a un périphérique
 
-- Affiche le status de la connexion.
-- Permet la configuration de l'objet connecté (GPIO Bouton et GPIO Led)
-  - Deux EditText (Pour envoyer les valeurs).
-  - Afficher un toast en après la réussite
+```java
+private void connectToCurrentDevice() {
+    final BluetoothDevice device = BluetoothLEManager.getInstance().getCurrentDevice();
+    if (device != null) {
+        Toast.makeText(this, "Connexion à " + device.getName(), Toast.LENGTH_SHORT).show();
+        currentBluetoothGatt = device.connectGatt(this, false, gattCallback);
+    } else {
+        Toast.makeText(this, "Vous devez sélectionner un device", Toast.LENGTH_SHORT).show();
+    }
+}
+```
+
+---
+
+## gattCallBack
+
+![what](what.gif)
+
+---
+
+```java
+private final BluetoothGattCallback gattCallback = new BluetoothGattCallback() {
+    @Override
+    public void onServicesDiscovered(final BluetoothGatt gatt, final int status) {
+        super.onServicesDiscovered(gatt, status);
+        runOnUiThread(() -> {
+            Toast.makeText(ScanActivity.this, "Services discovered with success", Toast.LENGTH_SHORT).show();
+            toggleLed();
+            disconnectBtn.setVisibility(View.VISIBLE);
+        });
+    }
+
+    @Override
+    public void onConnectionStateChange(final BluetoothGatt gatt, final int status, final int newState) {
+        super.onConnectionStateChange(gatt, status, newState);
+
+        runOnUiThread(() -> {
+            final BluetoothDevice device = BluetoothLEManager.getInstance().getCurrentDevice();
+
+            switch (newState){
+                case BluetoothGatt.STATE_CONNECTED:
+                    currentBluetoothGatt.discoverServices(); // start services
+                    break;
+                case BluetoothProfile.STATE_DISCONNECTED:
+                    gatt.close();
+                    disconnectBtn.setVisibility(View.GONE);
+                    break;
+            }
+
+        });
+    }
+
+    @Override
+    public void onCharacteristicWrite(final BluetoothGatt gatt, final BluetoothGattCharacteristic characteristic, final int status) {
+        super.onCharacteristicWrite(gatt, characteristic, status);
+    }
+};
+```
+
+---
+
+## Déconnexion du périhérique
+
+```java
+private void discconnectFromCurrentDevice() {
+    if(currentBluetoothGatt != null) {
+        currentBluetoothGatt.disconnect();
+    } else {
+        Toast.makeText(this, "Actuellement non connecté", Toast.LENGTH_SHORT).show();
+    }
+}
+```
+
+---
+
+## Et allumer / éteindre la led ?
+
+---
+
+```java
+private void toggleLed() {
+    if (currentBluetoothGatt == null) {
+        Toast.makeText(this, "Non Connecté", Toast.LENGTH_SHORT).show();
+        return;
+    }
+
+    Toast.makeText(this, "Toggle de la LED d'état", Toast.LENGTH_SHORT).show();
+
+    final BluetoothGattService service = currentBluetoothGatt.getService(BluetoothLEManager.DEVICE_UUID);
+    if (service == null) {
+        Toast.makeText(this, "UUID Introuvable", Toast.LENGTH_SHORT).show();
+        return;
+    }
+
+    final BluetoothGattCharacteristic toggleLed = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_TOGGLE_LED_UUID);
+    toggleLed.setValue("1");
+    currentBluetoothGatt.writeCharacteristic(toggleLed);
+}
+```
+
+---
+
+## C'est à vous !
+
+---
