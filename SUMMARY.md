@@ -28,7 +28,7 @@
   - [Réaliser une application avec VueJS](tp/vuejs/tp2.md)
   - [VueJS + Firebase](tp/vuejs/firebase-vuejs.md)
 - Cordova + VueJS
-  - [Slides](https://rawgit.com/c4software/bts/master/cours/cordova/)
+  - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=cordova)
   - [Découverte](tp/cordova/decouverte.md)
   - [Projet Cordova + VueJS](tp/cordova/vuejs_cordova.md)
 - Docker
