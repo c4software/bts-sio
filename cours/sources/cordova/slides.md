@@ -39,7 +39,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - Android
 - BlackBerry
 - Windows Phone
-- Samsung Bada (TV, Smarthone)
+- Samsung Bada (TV, Smartphone)
 - MacOS
 - Windows 10
 
