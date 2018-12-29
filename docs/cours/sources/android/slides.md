@@ -632,6 +632,12 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 
 ---
 
+## BLE
+
+### Le Scan
+
+---
+
 ## Vérifier les permissions
 
 ```java
@@ -687,7 +693,7 @@ private void checkForLocationEnabled() {
 
 ---
 
-## Le BLE
+## Le Bluetooth
 
 ```java
 private void setupBLE() {
@@ -822,6 +828,10 @@ private ArrayList<BluetoothDevice> deviceArrayList = new ArrayList<>();
 
 ---
 
+### Beaucoup de périphérique non ?
+
+---
+
 ## Activer le fitre par Service UUID
 
 Oui car c'est vrai on détecte trop de périphérique incompatible !
@@ -837,9 +847,19 @@ private void scanNearbyDevices() {
 
 ---
 
+## C'est à vous !
+
+### Implémenter le scan et mettre les résultats dans le RecyclerView
+
+---
+
+## Maintenant que l'on à la liste…
+
+---
+
 ## Sélectionner un périphérique…
 
-- setOnItemClickListener sur la listView
+- setOnItemClickListener sur le ListView
 - Sauvegarder (de manière `static`) le périphérique
 - Changer de vue
 
@@ -854,13 +874,20 @@ protected void onCreate(Bundle savedInstanceState) {
     deviceAdapter = new DeviceAdapter(this, deviceArrayList);
     ListView listView = findViewById(R.id.rvDevices);
     listView.setAdapter(deviceAdapter);
+
+    // Active la sélection d'éléments dans la ListView
     listView.setClickable(true);
     listView.setOnItemClickListener(listClick);
 }
+```
 
+---
+
+```java
 private AdapterView.OnItemClickListener listClick = (parent, view, position, id) -> {
     final BluetoothDevice item = deviceAdapter.getItem(position);
     BluetoothLEManager.getInstance().setCurrentDevice(item);
+
     // C'est ici que l'on va se connecter à notre périphérique
     // Dans un second temps…
 };
@@ -875,6 +902,16 @@ Remplacer le par un BluetoothDevice.
 
 - Éditer l'Adapter.
 - Et son utilisation.
+
+---
+
+## Sauvegarder la sélection dans la liste
+
+### La class : BluetoothLEManager
+
+```java
+BluetoothLEManager.getInstance().setCurrentDevice(item);
+```
 
 ---
 
@@ -917,11 +954,13 @@ public class BluetoothLEManager {
 
 ## Organisation
 
-- Ranger le `BluetoothLEManager` dans le package `data.manager`
+- « Ranger » le `BluetoothLEManager` dans le package `….data.manager`
 
 ---
 
 ## Connexion a un périphérique
+
+---
 
 ```java
 private void connectToCurrentDevice() {
@@ -1026,5 +1065,15 @@ private void toggleLed() {
 ---
 
 ## C'est à vous !
+
+---
+
+## Android et le réseau
+
+---
+
+## La permissions
+
+// TODO FIXME
 
 ---
