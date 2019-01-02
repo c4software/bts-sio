@@ -1074,6 +1074,35 @@ private void toggleLed() {
 
 ## La permissions
 
-// TODO FIXME
+- `<uses-permission android:name="android.permission.INTERNET"/>`
+
+---
+
+Depuis Android > 6, c'est **automatique** (plus nécessaire)
+
+---
+
+## Les appels réseaux
+
+---
+
+### Mais avant…
+
+## Les Threads
+
+---
+
+- Les appels ne doivent **pas** être fait dans le Thread UI.
+- Le traitement de l'affichage doit être fait sur le Thread UI.
+
+---
+
+![what](./img/what.webp)
+
+---
+
+## La solution
+
+![ReactiveX](./img/reactivex.png)
 
 ---
