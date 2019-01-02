@@ -41,7 +41,7 @@
   - [Utiliser Gitlab Pages](tp/ci/pages.md)
   - [App Hybride et Gitlab-CI](tp/ci/ci-hybride.md)
 - Python : Framework Flask
-  - [Slides](https://rawgit.com/c4software/bts/master/cours/python/)
+  - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=python)
   - [Installation de Python et Flask](./tp/python/flask.md)
   - [Réécriture des API de la TODO List](./tp/python/flask_todolist_api.md)
 - Android
