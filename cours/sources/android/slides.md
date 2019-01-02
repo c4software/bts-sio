@@ -1105,4 +1105,43 @@ Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ![ReactiveX](./img/reactivex.png)
 
+(Mais pas dans le cadre de notre application)
+
 ---
+
+## Les librairies
+
+- OkHttp
+- GSON
+- Retrofit
+
+---
+
+## OkHttp (3)
+
+// TODO
+
+---
+
+## GSON
+
+// TODO
+
+---
+
+## Retrofit
+
+// TODO
+
+---
+
+## Bon… Et maintenant !
+
+---
+
+## Un fichier !
+
+### Deux méthodes
+
+- ReadStatus
+- WriteStatus
