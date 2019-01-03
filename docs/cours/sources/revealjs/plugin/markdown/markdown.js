@@ -347,8 +347,8 @@
 		for( var i = 0, len = sections.length; i < len; i++ ) {
 
 			var section = sections[i];
-			if(section.getAttribute("id") == "section"){
-				section.setAttribute("id", i);	
+			if(section.getAttribute("id") === "section"){
+				section.setAttribute("id", "page_" + i);	
 			}
 
 			// Only parse the same slide once
