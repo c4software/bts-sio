@@ -1103,9 +1103,7 @@ Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ## La solution
 
-![ReactiveX](./img/reactivex.png)
-
-(Mais pas dans le cadre de notre application)
+![ReactiveX](./img/2qbh0g.jpg)
 
 ---
 
@@ -1119,19 +1117,60 @@ Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ## OkHttp (3)
 
-// TODO
+- RestClient
+- Http2
+- Gestion du cache
+- Intercepteur de requête
+
+---
+
+```conf
+implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+```
 
 ---
 
 ## GSON
 
-// TODO
+- Serialisation / Deserialisation automatique entre un JSON et un Objet Java / Kotlin
+
+---
+
+```conf
+implementation 'com.google.code.gson:gson:2.8.5'
+```
 
 ---
 
 ## Retrofit
 
-// TODO
+- Une API Http qui s'utilise comme une « Interface Java ».
+- Conversion de données (mapping automatique des objets 🚀).
+- Utilise des anotations (@GET, @POST, @PUT, @DELETE, @HEAD, …)
+- Synchrone **ou** Asynchrone
+
+---
+
+```conf
+implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+```
+
+---
+
+## Exemple : L'interface Java
+
+```
+@GET("/status")
+Call<LedStatus> readStatus(@Query("identifier") final String identifier);
+
+@POST("/status")
+Call<LedStatus> writeStatus(@Body final LedStatus status);
+
+@POST("/status/{id}")
+Call<LedStatus> writeStatus(@Path("id") int ledId);
+```
 
 ---
 
@@ -1139,9 +1178,29 @@ Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ---
 
-## Un fichier !
+## Deux fichiers
+
+- L'interface (et le builder).
+- La classe `LedStatus`
+
+---
+
+## L'interface (et le builder)
 
 ### Deux méthodes
 
 - ReadStatus
 - WriteStatus
+
+---
+
+## L'objet de retour et d'action
+
+`Call<LedStatus>`
+
+## LedStatus
+
+---
+
+- Construit par vous pour intéragir.
+- Construit automatiquement par GSON pour avoir le Status.
