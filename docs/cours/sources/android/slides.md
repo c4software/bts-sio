@@ -978,7 +978,7 @@ private void connectToCurrentDevice() {
 
 ## gattCallBack
 
-![what](what.gif)
+![what](./img/what.gif)
 
 ---
 
