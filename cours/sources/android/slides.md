@@ -1204,3 +1204,7 @@ Call<LedStatus> writeStatus(@Path("id") int ledId);
 
 - Construit par vous pour intéragir.
 - Construit automatiquement par GSON pour avoir le Status.
+
+---
+
+// TODO
