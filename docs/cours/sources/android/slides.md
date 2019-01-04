@@ -1180,7 +1180,7 @@ Call<LedStatus> writeStatus(@Path("id") int ledId);
 
 ## Deux fichiers
 
-- L'interface (et le builder).
+- Le `ApiService.class` (l'interface et le builder pour la partie HTTP)
 - La classe `LedStatus`
 
 ---
@@ -1198,7 +1198,9 @@ Call<LedStatus> writeStatus(@Path("id") int ledId);
 
 `Call<LedStatus>`
 
-## LedStatus
+---
+
+## Le model : LedStatus
 
 ---
 
@@ -1207,4 +1209,51 @@ Call<LedStatus> writeStatus(@Path("id") int ledId);
 
 ---
 
-// TODO
+[Télécharger le fichier LedStatus.java](https://gist.github.com/c4software/330cbf0c747ab3e60f0c5d944c58e77e)
+(À ranger dans le package `….data.remote`)
+
+---
+
+## Le ApiService
+
+---
+
+- Définition du « connecteur » HTTP.
+- Définition des méthodes.
+
+---
+
+[Télécharge le fichier ApiService.java](https://gist.github.com/c4software/9f5305a1c37f2bbaef276144fbb7a9d8)
+(À ranger dans le package `….data.service`)
+
+---
+
+BuildConfig.URI_REMOTE_SERVER ?
+
+---
+
+## Externaliser la conf c'est bien !
+
+![Niiice](./img/nice.webp)
+
+---
+
+```conf
+defaultConfig {
+    buildConfigField "String", "URI_REMOTE_SERVER", "\"https://us-central1-eseo-course.cloudfunctions.net\""
+…
+}
+```
+
+--- 
+
+## C'est à vous
+### Récupérer et configurer votre projet
+
+---
+
+## Faire un appel réseau
+
+---
+
+// TODO Exemple de code
