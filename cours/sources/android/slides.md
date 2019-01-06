@@ -1438,3 +1438,46 @@ public static Intent getStartIntent(final Context ctx) {
 ## Exemple de Layout
 
 ![Action Layout](./img/action_layout.png)
+
+---
+
+## L'ActionActivity
+
+### En quelques lignes…
+
+```java
+public static Intent getStartIntent(final Context ctx) {
+    return new Intent(ctx, ActionActivity.class);
+}
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_action);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    final String currentSelectedDevice = LocalPreferences.getInstance(this).getCurrentSelectedDevice();
+    if (currentSelectedDevice == null) {
+        Toast.makeText(this, "Aucun périphérique connu", Toast.LENGTH_SHORT).show();
+        finish();
+    } else {
+        ledStatus.setIdentifier(currentSelectedDevice);
+
+        refresh = findViewById(R.id.refresh);
+        status = findViewById(R.id.ledStatus);
+        btnNetwork = findViewById(R.id.btnNetwork);
+
+        refresh.setOnClickListener(v -> refreshLedState());
+        btnNetwork.setOnClickListener(v -> toggleWithNetwork());
+    }
+}
+
+@Override
+protected void onResume() {
+    super.onResume();
+    refreshLedState();
+}
+
+// …
+```
