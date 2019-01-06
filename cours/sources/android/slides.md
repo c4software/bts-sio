@@ -887,9 +887,12 @@ protected void onCreate(Bundle savedInstanceState) {
 private AdapterView.OnItemClickListener listClick = (parent, view, position, id) -> {
     final BluetoothDevice item = deviceAdapter.getItem(position);
     BluetoothLEManager.getInstance().setCurrentDevice(item);
+    selectedDevice = item;
+    LocalPreferences.getInstance(this).saveCurrentSelectedDevice(item.getName());
 
     // C'est ici que l'on va se connecter à notre périphérique
     // Dans un second temps…
+    connectToCurrentDevice();
 };
 ```
 
@@ -907,10 +910,11 @@ Remplacer le par un BluetoothDevice.
 
 ## Sauvegarder la sélection dans la liste
 
-### La class : BluetoothLEManager
+### selectedDevice && LocalPreferences
 
 ```java
-BluetoothLEManager.getInstance().setCurrentDevice(item);
+selectedDevice = item;
+LocalPreferences.getInstance(this).saveCurrentSelectedDevice(item.getName());
 ```
 
 ---
@@ -958,18 +962,54 @@ public class BluetoothLEManager {
 
 ---
 
+## LocalPreferences
+
+- Sauvegarde d'information dans les préférences de l'application
+
+---
+
+```java
+import android.content.Context;
+import android.content.SharedPreferences;
+
+public class LocalPreferences {
+
+    private SharedPreferences sharedPreferences;
+    private static LocalPreferences INSTANCE;
+
+    public static LocalPreferences getInstance(Context context) {
+        if (INSTANCE == null) {
+            INSTANCE = new LocalPreferences(context);
+        }
+        return INSTANCE;
+    }
+
+    private LocalPreferences(Context context) {
+        sharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+    }
+
+    public void saveCurrentSelectedDevice(String deviceName) {
+        sharedPreferences.edit().putString("selectedDevice", deviceName).apply();
+    }
+
+    public String getCurrentSelectedDevice() {
+        return sharedPreferences.getString("selectedDevice", null);
+    }
+
+}
+```
+
+---
+
 ## Connexion a un périphérique
 
 ---
 
 ```java
 private void connectToCurrentDevice() {
-    final BluetoothDevice device = BluetoothLEManager.getInstance().getCurrentDevice();
-    if (device != null) {
-        Toast.makeText(this, "Connexion à " + device.getName(), Toast.LENGTH_SHORT).show();
-        currentBluetoothGatt = device.connectGatt(this, false, gattCallback);
-    } else {
-        Toast.makeText(this, "Vous devez sélectionner un device", Toast.LENGTH_SHORT).show();
+    if (selectedDevice != null) {
+        Toast.makeText(this, "Connexion en cours…", Toast.LENGTH_SHORT).show();
+        currentBluetoothGatt = selectedDevice.connectGatt(this, false, gattCallback);
     }
 }
 ```
@@ -989,8 +1029,7 @@ private final BluetoothGattCallback gattCallback = new BluetoothGattCallback() {
         super.onServicesDiscovered(gatt, status);
         runOnUiThread(() -> {
             Toast.makeText(ScanActivity.this, "Services discovered with success", Toast.LENGTH_SHORT).show();
-            toggleLed();
-            disconnectBtn.setVisibility(View.VISIBLE);
+            setUiMode(true);
         });
     }
 
@@ -999,15 +1038,13 @@ private final BluetoothGattCallback gattCallback = new BluetoothGattCallback() {
         super.onConnectionStateChange(gatt, status, newState);
 
         runOnUiThread(() -> {
-            final BluetoothDevice device = BluetoothLEManager.getInstance().getCurrentDevice();
-
-            switch (newState){
+            switch (newState) {
                 case BluetoothGatt.STATE_CONNECTED:
                     currentBluetoothGatt.discoverServices(); // start services
                     break;
                 case BluetoothProfile.STATE_DISCONNECTED:
                     gatt.close();
-                    disconnectBtn.setVisibility(View.GONE);
+                    setUiMode(false);
                     break;
             }
 
@@ -1029,8 +1066,38 @@ private final BluetoothGattCallback gattCallback = new BluetoothGattCallback() {
 private void discconnectFromCurrentDevice() {
     if(currentBluetoothGatt != null) {
         currentBluetoothGatt.disconnect();
+    } 
+}
+```
+
+---
+
+## SetUiMode
+
+Méthode permettant de changer l'état de l'interface en fonction de la connexion.
+
+---
+
+```java
+private void setUiMode(boolean isConnected) {
+    if (isConnected) {
+        // Connecté à un périphérique, passage en node action BLE
+        deviceAdapter.clear();
+        rvDevices.setVisibility(View.GONE);
+        scanBtn.setVisibility(View.GONE);
+
+        tvCurrentConnexion.setVisibility(View.VISIBLE);
+        tvCurrentConnexion.setText(String.format("Connecté à : %s", selectedDevice.getName()));
+        disconnectBtn.setVisibility(View.VISIBLE);
+        toggleLed.setVisibility(View.VISIBLE);
     } else {
-        Toast.makeText(this, "Actuellement non connecté", Toast.LENGTH_SHORT).show();
+        // Non connecté, reset de la vue.
+        rvDevices.setVisibility(View.VISIBLE);
+        scanBtn.setVisibility(View.VISIBLE);
+
+        tvCurrentConnexion.setVisibility(View.GONE);
+        disconnectBtn.setVisibility(View.GONE);
+        toggleLed.setVisibility(View.GONE);
     }
 }
 ```
@@ -1048,8 +1115,6 @@ private void toggleLed() {
         return;
     }
 
-    Toast.makeText(this, "Toggle de la LED d'état", Toast.LENGTH_SHORT).show();
-
     final BluetoothGattService service = currentBluetoothGatt.getService(BluetoothLEManager.DEVICE_UUID);
     if (service == null) {
         Toast.makeText(this, "UUID Introuvable", Toast.LENGTH_SHORT).show();
@@ -1064,7 +1129,62 @@ private void toggleLed() {
 
 ---
 
+## Les variables de la vue
+
+Voilà mon `onCreate`
+
+```java
+Button scanBtn;
+Button disconnectBtn;
+Button toggleLed;
+TextView tvCurrentConnexion;
+ListView rvDevices;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_scan);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    // Lancement du scan
+    scanBtn = findViewById(R.id.startScan);
+    scanBtn.setOnClickListener(v -> checkPermissions());
+
+    // Bouton pour la deconnexion
+    disconnectBtn = findViewById(R.id.disconnect);
+    disconnectBtn.setOnClickListener(v -> discconnectFromCurrentDevice());
+
+    // Bouton pour change l'état de la led
+    toggleLed = findViewById(R.id.toggleLed);
+    toggleLed.setOnClickListener(v -> toggleLed());
+
+    // TextView d'affichage
+    tvCurrentConnexion = findViewById(R.id.currentConnexion);
+
+    deviceAdapter = new DeviceAdapter(this, deviceArrayList);
+    rvDevices = findViewById(R.id.rvDevices);
+    rvDevices.setAdapter(deviceAdapter);
+    rvDevices.setClickable(true);
+    rvDevices.setOnItemClickListener(listClick);
+
+    setUiMode(false);
+}
+```
+
+---
+
 ## C'est à vous !
+
+---
+
+## Exemple de Layout
+
+![scan layout](./img/scan_layout.png)
+
+---
+
+## Intéragir avec le RaspberryPi via Internet
 
 ---
 
@@ -1248,7 +1368,7 @@ defaultConfig {
 --- 
 
 ## C'est à vous
-### Récupérer et configurer votre projet
+### Configurer votre projet
 
 ---
 
@@ -1259,7 +1379,7 @@ defaultConfig {
 ### 1 - Obtenir l'APIService
 
 ```java
-    private final ApiService apiService = ApiService.Builder.getInstance();
+private final ApiService apiService = ApiService.Builder.getInstance();
 ```
 
 ---
