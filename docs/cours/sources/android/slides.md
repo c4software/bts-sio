@@ -1159,7 +1159,7 @@ implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 ---
 
-## Exemple : L'interface Java
+## Les annotations
 
 ```
 @GET("/status")
@@ -1210,7 +1210,7 @@ Call<LedStatus> writeStatus(@Path("id") int ledId);
 ---
 
 [Télécharger le fichier LedStatus.java](https://gist.github.com/c4software/330cbf0c747ab3e60f0c5d944c58e77e)
-(À ranger dans le package `….data.remote`)
+(À ranger dans le package `….data.remote` - qui n'existe pas pour l'instant)
 
 ---
 
@@ -1256,4 +1256,65 @@ defaultConfig {
 
 ---
 
-// TODO Exemple de code
+### 1 - Obtenir l'APIService
+
+```java
+    private final ApiService apiService = ApiService.Builder.getInstance();
+```
+
+---
+
+### 2 - L'appel réseau
+
+```java
+apiService.readStatus(ledStatus.getIdentifier()).enqueue(new Callback<LedStatus>() {
+    @Override
+    public void onResponse(Call<LedStatus> call, Response<LedStatus> ledStatusResponse) {
+        runOnUiThread(() -> {
+            if (ledStatusResponse.body() != null) {
+                newStatus = ledStatusResponse.body() // LedStatus
+            }
+        });
+    }
+
+    @Override
+    public void onFailure(Call<LedStatus> call, Throwable t) {
+        t.printStackTrace();
+        runOnUiThread(() -> {
+            Toast.makeText(ActionActivity.this, "Erreur de connexion au serveur", Toast.LENGTH_SHORT).show();
+        });
+    }
+});
+```
+
+---
+
+### 3 - Profit !
+
+---
+
+## C'est à vous !
+
+- Création d'une nouvelle activity (`ActionActivity.java`)
+- Création du Layout `activity_action.xml`
+- Implémentation des méthodes sur les boutons.
+
+--- 
+
+## ActionActivity
+
+Ne pas oublier la méthode static !
+
+```java
+public static Intent getStartIntent(final Context ctx) {
+    return new Intent(ctx, ActionActivity.class);
+}
+```
+
+⚠️ Utiliser la méthode depuis la `MainActivity.java`
+
+---
+
+## Exemple de Layout
+
+![Action Layout](./img/action_layout.png)
