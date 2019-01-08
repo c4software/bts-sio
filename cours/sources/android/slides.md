@@ -147,7 +147,7 @@ Intégrées dans Android.
 ### **R.java.class**
 
 - Généré automatiquement.
-- Contient les références de tous les id.
+- Contiens les références de tous les id.
 - Permet l'accès aux ressources depuis votre code :
   - `getString(R.string.title)`
   - `setContentView(R.layout.activity_main)`
@@ -299,7 +299,7 @@ Ajouter un bouton dans l'interface et une ImageView.
 
 ### AKA Les ressources alternatives
 
-Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-mdpi`, `-xxhdpi`, …)
+Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-mdpi`, `-xxhdpi`…)
 
 ---
 
@@ -559,7 +559,7 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 ## La librairie
 
 - Plus simple (la partie multi-version est masquée)
-- Requiert RxJava
+- Requiers RxJava
 
 ---
 
@@ -581,7 +581,7 @@ startActivity(ClassEnCoursDeDemo.getStartIntent(this));
 ---
 
 - Les données sont des streams
-- Les traitements sont fait dans d'autre thread que l'UI
+- Les traitements sont faits dans d'autre thread que l'UI
 - Simplifie le multi-thread
 
 ---
@@ -650,7 +650,7 @@ private void checkPermissions() {
 }
 ```
 
-## Après l'acceptation utilisateur
+## Après l'acceptation de l'utilisateur
 
 ```java
 @Override
@@ -798,7 +798,7 @@ private void stopScan(){
 
 ---
 
-## Quelques variable en plus
+## Quelques variables en plus
 
 Dans la class ScanActivity
 
@@ -832,7 +832,7 @@ private ArrayList<BluetoothDevice> deviceArrayList = new ArrayList<>();
 
 ---
 
-## Activer le fitre par Service UUID
+## Activer le filtre par Service UUID
 
 Oui car c'est vrai on détecte trop de périphérique incompatible !
 
@@ -853,7 +853,7 @@ private void scanNearbyDevices() {
 
 ---
 
-## Maintenant que l'on à la liste…
+## Maintenant que l'on a la liste…
 
 ---
 
@@ -901,7 +901,7 @@ private AdapterView.OnItemClickListener listClick = (parent, view, position, id)
 ## Modification de l'Adapter
 
 Nous avions un Device…
-Remplacer le par un BluetoothDevice.
+Remplacez-le par un BluetoothDevice.
 
 - Éditer l'Adapter.
 - Et son utilisation.
@@ -1184,7 +1184,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ---
 
-## Intéragir avec le RaspberryPi via Internet
+## Interagir avec le RaspberryPi via Internet
 
 ---
 
@@ -1253,7 +1253,7 @@ implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
 ## GSON
 
-- Serialisation / Deserialisation automatique entre un JSON et un Objet Java / Kotlin
+- Sérialisation / Deserialisation automatique entre un JSON et un Objet Java / Kotlin
 
 ---
 
@@ -1267,7 +1267,7 @@ implementation 'com.google.code.gson:gson:2.8.5'
 
 - Une API Http qui s'utilise comme une « Interface Java ».
 - Conversion de données (mapping automatique des objets 🚀).
-- Utilise des anotations (@GET, @POST, @PUT, @DELETE, @HEAD, …)
+- Utilise des annotations (@GET, @POST, @PUT, @DELETE, @HEAD, …)
 - Synchrone **ou** Asynchrone
 
 ---
