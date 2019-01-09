@@ -793,6 +793,7 @@ private void stopScan(){
     } else {
         bluetoothAdapter.stopLeScan(bleScanCallback);
     }
+    isScanning=false;
 }
 ```
 
