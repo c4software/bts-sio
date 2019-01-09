@@ -884,14 +884,11 @@ protected void onCreate(Bundle savedInstanceState) {
 ---
 
 ```java
+private BluetoothDevice selectedDevice;
 private AdapterView.OnItemClickListener listClick = (parent, view, position, id) -> {
     final BluetoothDevice item = deviceAdapter.getItem(position);
-    BluetoothLEManager.getInstance().setCurrentDevice(item);
     selectedDevice = item;
     LocalPreferences.getInstance(this).saveCurrentSelectedDevice(item.getName());
-
-    // C'est ici que l'on va se connecter à notre périphérique
-    // Dans un second temps…
     connectToCurrentDevice();
 };
 ```
