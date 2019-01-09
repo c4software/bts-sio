@@ -1363,7 +1363,7 @@ defaultConfig {
 }
 ```
 
---- 
+---
 
 ## C'est à vous
 ### Configurer votre projet
@@ -1417,7 +1417,7 @@ apiService.readStatus(ledStatus.getIdentifier()).enqueue(new Callback<LedStatus>
 - Création du Layout `activity_action.xml`
 - Implémentation des méthodes sur les boutons.
 
---- 
+---
 
 ## ActionActivity
 
