@@ -1479,3 +1479,69 @@ protected void onResume() {
 
 // …
 ```
+
+---
+
+## Passer des paramètres
+### Entre deux activity
+
+---
+
+- À votre avis ?
+
+---
+
+## Problème simple… solution (presque) complexe.
+
+---
+
+- Modifier le `getStartIntent`.
+- Ajouter des `putExtra` à l'`intent`
+- Lors de l'exécution les récupérer via `getIntent().getExtras()`
+
+---
+
+![Easy](./img/simple.gif)
+
+---
+
+## Un exemple ?
+
+---
+
+### Modification du getStartIntent
+
+---
+
+```java
+private static final String IDENTIFIANT_ID = "IDENTIFIANT_ID";
+public static Intent getStartIntent(final Context ctx, final String identifiant) {
+    final Intent myIntent = new Intent(ctx, ActionActivity.class);
+    myIntent.putExtra(ActionActivity.IDENTIFIANT_ID, identifiant);
+    return myIntent;
+}
+```
+
+---
+
+### Récupérer « le paramètre »
+
+---
+
+```java
+String getRequestedId() {
+    final Bundle b = getIntent().getExtras();
+    return b != null ? b.getString(ActionActivity.IDENTIFIANT_ID, "") : "";
+}
+```
+
+---
+
+## C'est à vous
+### Modifier votre projet pour intégrer le passage du paramètre
+
+---
+
+- Modifier l'`ActionActivity`.
+- Passage l'id en paramètre lors de l'appel depuis le `MainActivity`.
+- Désactiver le bouton si pas d'ID sur le `MainActivity`.
