@@ -1529,9 +1529,9 @@ public static Intent getStartIntent(final Context ctx, final String identifiant)
 ---
 
 ```java
-String getRequestedId() {
+String getIdentifiant() {
     final Bundle b = getIntent().getExtras();
-    return b != null ? b.getString(ActionActivity.IDENTIFIANT_ID, "") : "";
+    return b != null ? b.getString(ActionActivity.IDENTIFIANT_ID, null) : null;
 }
 ```
 
@@ -1544,4 +1544,28 @@ String getRequestedId() {
 
 - Modifier l'`ActionActivity`.
 - Passage l'id en paramètre lors de l'appel depuis le `MainActivity`.
+
+---
+
+- `override` du OnResume (Pourquoi à votre avis ?)
 - Désactiver le bouton si pas d'ID sur le `MainActivity`.
+
+
+---
+
+```java
+@Override
+protected void onResume() {
+    super.onResume();
+
+    // Bouton d'action HTTP
+    final Button actionBtn = findViewById(R.id.action);
+    final String currentSelectedDevice = LocalPreferences.getInstance(this).getCurrentSelectedDevice();
+    if (currentSelectedDevice != null) {
+        actionBtn.setEnabled(true);
+        actionBtn.setOnClickListener(v -> startActivity(ActionActivity.getStartIntent(this, currentSelectedDevice)));
+    } else {
+        actionBtn.setEnabled(false);
+    }
+}
+```
