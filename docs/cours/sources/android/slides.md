@@ -1483,7 +1483,7 @@ protected void onResume() {
 ---
 
 ## Passer des paramètres
-### Entre deux activity
+### Entre deux « Activity »
 
 ---
 
