@@ -51,7 +51,7 @@ npm install .
 Les dépendances « VueJS » s’installent, l’installation peut prendre quelques minutes. Une fois installé tester le fonctionnement avec la commande :
 
 ```shell
-npm run dev
+npm run serve
 ```
 
 Ouvrez un navigateur et accédez à l’url suivante [http://localhost:8080/](http://localhost:8080/) vous devez voir :
@@ -231,7 +231,7 @@ import Localisation from "@/views/Localisation";
 - Lancer le serveur des developpement :
 
 ```shell
-npm run dev
+npm run serve
 ```
 
 - Tester l’ajout.
