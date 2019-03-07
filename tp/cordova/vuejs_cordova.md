@@ -13,7 +13,7 @@ Pour ce TP nous allons faire une application en utilisant Cordova + VueJS.
 
 Nous allons réaliser une application qui teste plusieurs plugins Cordova. Cette application utilisera VueJS et VuetifyJS
 
-![Exemple](https://github.com/c4software/vuejs-cordova-sample/raw/master/demo.png)
+![Sample](./ressources/sample.png)
 
 Cette application sera très simple. Mais va permettre de tester la puissance de Cordova, nous allons utiliser les plugins suivants :
 
@@ -32,7 +32,7 @@ Le projet étant assez conséquent je vous propose de partir d’une base déjà
 
 - L’accueil
 - Les scripts pour compiler la partie Cordova
-- Les plugins « pré-configurés » / déclaré dans le fichier ```config.xml```.
+- Les plugins « pré-configurés » / déclaré dans le fichier `config.xml`.
 
 Le code est [téléchargeable ici](sources/vuejs-cordova-sample.zip)
 
@@ -42,7 +42,7 @@ Maintenant que vous avez récupéré le code. Nous allons le rendre fonctionnel 
 
 ### 1. Compiler une première fois le code
 
-Le projet étant « non compilé » / « non installé », nous allons devoir dans un premier temps installer les dépendances nécéssaires à notre projet. Pour se faire nous allons utiliser ```npm``` avec la commande ```install```. Dans le dossier du projet :
+Le projet étant « non compilé » / « non installé », nous allons devoir dans un premier temps installer les dépendances nécéssaires à notre projet. Pour se faire nous allons utiliser `npm` avec la commande `install`. Dans le dossier du projet :
 
 ```shell
 npm install .
@@ -70,7 +70,7 @@ mkdir www
 cordova platform add android
 ```
 
-✋ Attention à bien créer le dossier ```www``` pour que l'outil Cordova détècte bien le projet comme étant un projet Cordova.
+✋ Attention à bien créer le dossier `www` pour que l'outil Cordova détècte bien le projet comme étant un projet Cordova.
 
 ### 3. Lancer sur votre mobile
 
@@ -82,10 +82,10 @@ npm run build
 
 ✋ La configuration de base d’un projet VueJS créé par VueCLI n’est pas forcément le plus adapté pour Cordova. J’ai donc édité les fichiers :
 
-- ```build/build.js```
-- ```config/index.js```
+- `build/build.js`
+- `config/index.js`
 
-Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normal. Notamment la partie concernant le file://, cordova utilise l’URI ```file://``` pour servir les ressources dans l’APK, par défaut les développeurs de VueCLI ont mis des liens avec ```/``` en dur ce qui pose des soucis. J’ai donc remplacé le ```/``` par ```./``` ce qui corrige le soucis.
+Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normal. Notamment la partie concernant le file://, cordova utilise l’URI `file://` pour servir les ressources dans l’APK, par défaut les développeurs de VueCLI ont mis des liens avec `/` en dur ce qui pose des soucis. J’ai donc remplacé le `/` par `./` ce qui corrige le soucis.
 
 Maintenant que le « build » est terminé nous pouvons réaliser le lancement sur le mobile via les commandes suivantes :
 
@@ -102,7 +102,7 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
 
 ![Localisation](./ressources/localisation.png)
 
-- Créer un fichier ```Localisation.vue``` dans le dossier ```views/```
+- Créer un fichier `Localisation.vue` dans le dossier `views/`
 - Ajouter le contenu suivant :
 
 ```js
@@ -212,13 +212,13 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
 </style>
 ```
 
-- Ajouter l’import dans ```router/index.js``` :
+- Ajouter l’import dans `router/index.js` :
 
 ```js
-import Localisation from '@/views/Localisation'
+import Localisation from "@/views/Localisation";
 ```
 
-- Ajouter l’élément ***au bon endroit*** suivant dans ```router/index.js``` :
+- Ajouter l’élément **_au bon endroit_** suivant dans `router/index.js` :
 
 ```js
 {
@@ -249,7 +249,7 @@ Cette vue est très simple, elle a pour but d’utiliser le plugin vibration. Av
 
 L’écriture de la fonctionnalitée va se dérouler en 3 étapes :
 
-- Création de ```Vibration.vue``` dans ```views```.
+- Création de `Vibration.vue` dans `views`.
 - Écriture de code de la vue.
 - Déclaration de la route.
 
@@ -285,13 +285,13 @@ Le projet étant déjà réalisé le plugin est déjà installé, il nous suffit
 
 ### 2. La route
 
-- Ajouter l’import dans ```router/index.js``` :
+- Ajouter l’import dans `router/index.js` :
 
 ```js
-import Vibration from '@/views/Vibration'
+import Vibration from "@/views/Vibration";
 ```
 
-- Ajouter l’élément ***au bon endroit*** suivant dans ```router/index.js``` :
+- Ajouter l’élément **_au bon endroit_** suivant dans `router/index.js` :
 
 ```js
 {
@@ -303,21 +303,21 @@ import Vibration from '@/views/Vibration'
 
 ## Ajouter la vue Flash
 
-Une lampe torche c’est fun non ? Et bien nous allons réaliser une nouvelle page qui aura pour simple but d’allumer (ou éteindre) le flash de votre téléphone. Pour ça nous allons utiliser le plugin ```cordova-plugin-flashlight```, avant d’écrire le code nous allons lire la documentation à [l’adresse suivante](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin). C’est fait ? Passons au code.
+Une lampe torche c’est fun non ? Et bien nous allons réaliser une nouvelle page qui aura pour simple but d’allumer (ou éteindre) le flash de votre téléphone. Pour ça nous allons utiliser le plugin `cordova-plugin-flashlight`, avant d’écrire le code nous allons lire la documentation à [l’adresse suivante](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin). C’est fait ? Passons au code.
 
 L’écriture va se dérouler en 3 étapes :
 
-- Création de ```Flash.vue``` dans ```views```.
+- Création de `Flash.vue` dans `views`.
 - Écriture de code de la vue.
 - Déclaration de la route.
 
-✋ Petite subtilité! N’oubliez pas, VueJS propose une gestion du cycle de vie. Dans cette vue ça va nous servir, nous allons utiliser le ```beforeDestroy``` pour éteindre la lampe si celle si est allumée.
+✋ Petite subtilité! N’oubliez pas, VueJS propose une gestion du cycle de vie. Dans cette vue ça va nous servir, nous allons utiliser le `beforeDestroy` pour éteindre la lampe si celle si est allumée.
 
 ### 1. Le code
 
 Voici la structure de code. Je vous laisse la compléter
 
-✋ N’oublier pas de gérer le ```beforeDestroy``` pour stoper le flash en changeant de « page »
+✋ N’oublier pas de gérer le `beforeDestroy` pour stoper le flash en changeant de « page »
 
 ```js
 <template>
@@ -379,13 +379,13 @@ Voici la structure de code. Je vous laisse la compléter
 
 ### 2. La route
 
-- Ajouter l’import dans ```router/index.js``` :
+- Ajouter l’import dans `router/index.js` :
 
 ```js
-import Flash from '@/views/Flash'
+import Flash from "@/views/Flash";
 ```
 
-- Ajouter l’élément ***au bon endroit*** suivant dans ```router/index.js``` :
+- Ajouter l’élément **_au bon endroit_** suivant dans `router/index.js` :
 
 ```js
 {
@@ -397,11 +397,11 @@ import Flash from '@/views/Flash'
 
 ## Ajouter la vue Camera
 
-Après le flash, pourquoi ne pas prendre une photo? Et bien avec Cordova c’est très simple. En quelques bout de code Javascript vous allez pouvoir utiliser l’appareil photo du téléphone. Nous allons utiliser le plugin ```cordova-plugin-camera```, avant d’attaquer le code regardez la documentation [disponible ici](https://github.com/apache/cordova-plugin-camera#api-reference-).
+Après le flash, pourquoi ne pas prendre une photo? Et bien avec Cordova c’est très simple. En quelques bout de code Javascript vous allez pouvoir utiliser l’appareil photo du téléphone. Nous allons utiliser le plugin `cordova-plugin-camera`, avant d’attaquer le code regardez la documentation [disponible ici](https://github.com/apache/cordova-plugin-camera#api-reference-).
 
 L’écriture va se dérouler en 3 étapes :
 
-- Création de ```Camera.vue``` dans ```views```.
+- Création de `Camera.vue` dans `views`.
 - Écriture de code de la vue.
 - Déclaration de la route.
 
@@ -462,13 +462,13 @@ Pour la caméra, nous allons « juste » faire une simple vue qui permet de lanc
 
 ### 2. La route
 
-- Ajouter l’import dans ```router/index.js``` :
+- Ajouter l’import dans `router/index.js` :
 
 ```js
-import Vibration from '@/views/Camera'
+import Vibration from "@/views/Camera";
 ```
 
-- Ajouter l’élément ***au bon endroit*** suivant dans ```router/index.js``` :
+- Ajouter l’élément **_au bon endroit_** suivant dans `router/index.js` :
 
 ```js
 {
@@ -478,14 +478,13 @@ import Vibration from '@/views/Camera'
 }
 ```
 
-
 ## Un peu plus? Oui! Le NFC
 
-Il est également possible d’intéragir avec la « puce » NFC de votre mobile (si équipé bien sur). Comme toujours ça passe par un plugin ```phonegap-nfc``` le plugin est plus complet, mais par contre la lecture du serial number est plutôt simple. C’est ce que l’on va voir dans cette partie.
+Il est également possible d’intéragir avec la « puce » NFC de votre mobile (si équipé bien sur). Comme toujours ça passe par un plugin `phonegap-nfc` le plugin est plus complet, mais par contre la lecture du serial number est plutôt simple. C’est ce que l’on va voir dans cette partie.
 
 L’écriture va se dérouler en 3 étapes :
 
-- Création de ```Nfc.vue``` dans ```views```.
+- Création de `Nfc.vue` dans `views`.
 - Écriture de code de la vue.
 - Déclaration de la route.
 
@@ -615,13 +614,13 @@ Le code de la partie NFC est un peu plus complexe. Pour la démo, j’ai mis un 
 
 ### 2. La route
 
-- Ajouter l’import dans ```router/index.js``` :
+- Ajouter l’import dans `router/index.js` :
 
 ```js
-import Vibration from '@/views/Nfc'
+import Vibration from "@/views/Nfc";
 ```
 
-- Ajouter l’élément ***au bon endroit*** suivant dans ```router/index.js``` :
+- Ajouter l’élément **_au bon endroit_** suivant dans `router/index.js` :
 
 ```js
 {
