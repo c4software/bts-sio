@@ -630,6 +630,31 @@ import Vibration from "@/views/Nfc";
 }
 ```
 
+### Évolution 1
+
+Le code de la vue précédente est plutôt… complexe ! Remplacer le `v-list` de la vue précédente par un tableau `v-datatable`.
+
+### VueJS, le réseau, et une led
+
+Au travers des différents exemples précédent nous avons utiliser que des fonctionnalités « locales » à votre téléphone.
+
+Dans la vraie vie en plus d'utiliser les capteurs du téléphone nous utilisons souvent des API.
+
+L'API que je vous propose permet de « simuler » une lampe connectée. En fonction de votre appel vous allez pouvoir allumer (ou éteindre) une ampoule fictive (qui sera affichée sur le vidéo projecteur).
+
+#### La démarche
+
+- Ajout « une page » avec un bouton + une icône `v-icone`.
+- Un modèle permettant de lire le retour de l'API.
+- Un DAO permettant d'appeler l'API.
+- Ajouter la route.
+- Ajouter l'entrée dans le menu permettant d'afficher la page.
+- Go !
+
+#### Le fonctionnement
+
+Dans la vue attacher une action permettant d'appeler le DAO retournera un objet avec le status actuel en retour de l'API.
+
 ### Fin
 
 Vous pouvez maintenant compiler votre application et admirer le résultat sur votre téléphone.
