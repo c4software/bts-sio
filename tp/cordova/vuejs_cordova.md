@@ -655,6 +655,24 @@ L'API que je vous propose permet de « simuler » une lampe connectée. En fonct
 
 Dans la vue attacher une action permettant d'appeler le DAO retournera un objet avec le status actuel en retour de l'API.
 
-### Fin
+#### Le modèle
 
-Vous pouvez maintenant compiler votre application et admirer le résultat sur votre téléphone.
+Pour réaliser cette partie du TP vous allez devoir construire un modèle. Cette partie peut-être assimilé à de la documentation je vous fourni donc la structure :
+
+```json
+{
+  "name": "Salon",
+  "status": true,
+  "update": "Tue, 19 Mar 2019 12:31:36 GMT"
+}
+```
+
+⚠️ Maintenant que vous avez la structure vous pouvez écrire le modèle.
+
+#### Le DAO
+
+C'est à vous de jouer !
+
+#### La partie UI
+
+C'est à vous de jouer !

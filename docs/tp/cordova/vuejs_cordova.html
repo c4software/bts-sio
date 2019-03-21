@@ -805,7 +805,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Mar 20 2019 22:25:52 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Thu Mar 21 2019 14:19:22 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="vuejs-et-cordova">VueJS et Cordova</h1>
 <p>Maintenant que nous avons vu les bases de Cordova (Cr&#xE9;ation, Plateforme, plugin). Int&#xE9;r&#xE9;ssons nous &#xE0; la cr&#xE9;ation d&#x2019;une vrai application. Dans le monde de cordova il existe plusieurs fa&#xE7;on de faire :</p>
@@ -1379,8 +1379,19 @@ cordova run android
 </ul>
 <h4 id="le-fonctionnement">Le fonctionnement</h4>
 <p>Dans la vue attacher une action permettant d&apos;appeler le DAO retournera un objet avec le status actuel en retour de l&apos;API.</p>
-<h3 id="fin">Fin</h3>
-<p>Vous pouvez maintenant compiler votre application et admirer le r&#xE9;sultat sur votre t&#xE9;l&#xE9;phone.</p>
+<h4 id="le-mod&#xE8;le">Le mod&#xE8;le</h4>
+<p>Pour r&#xE9;aliser cette partie du TP vous allez devoir construire un mod&#xE8;le. Cette partie peut-&#xEA;tre assimil&#xE9; &#xE0; de la documentation je vous fourni donc la structure :</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Salon&quot;</span>,
+  <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-string">&quot;update&quot;</span>: <span class="hljs-string">&quot;Tue, 19 Mar 2019 12:31:36 GMT&quot;</span>
+}
+</code></pre>
+<p>&#x26A0;&#xFE0F; Maintenant que vous avez la structure vous pouvez &#xE9;crire le mod&#xE8;le.</p>
+<h4 id="le-dao">Le DAO</h4>
+<p>C&apos;est &#xE0; vous de jouer !</p>
+<h4 id="la-partie-ui">La partie UI</h4>
+<p>C&apos;est &#xE0; vous de jouer !</p>
 
                                 
                                 </section>
@@ -1420,7 +1431,7 @@ cordova run android
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Projet Cordova + VueJS","level":"1.8.3","depth":2,"next":{"title":"Docker","level":"1.9","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.9.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/docker/","ref":"https://rawgit.com/c4software/bts/master/cours/docker/","articles":[]},{"title":"Première approche","level":"1.9.2","depth":2,"path":"tp/docker/introduction.md","ref":"tp/docker/introduction.md","articles":[]},{"title":"Dockerfile","level":"1.9.3","depth":2,"path":"tp/docker/dockerfile.md","ref":"tp/docker/dockerfile.md","articles":[]},{"title":"Docker Compose","level":"1.9.4","depth":2,"path":"tp/docker/docker_compose.md","ref":"tp/docker/docker_compose.md","articles":[]}]},"previous":{"title":"Découverte","level":"1.8.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/cordova/vuejs_cordova.md","mtime":"2019-03-20T21:25:52.076Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-20T21:26:08.207Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Projet Cordova + VueJS","level":"1.8.3","depth":2,"next":{"title":"Docker","level":"1.9","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.9.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/docker/","ref":"https://rawgit.com/c4software/bts/master/cours/docker/","articles":[]},{"title":"Première approche","level":"1.9.2","depth":2,"path":"tp/docker/introduction.md","ref":"tp/docker/introduction.md","articles":[]},{"title":"Dockerfile","level":"1.9.3","depth":2,"path":"tp/docker/dockerfile.md","ref":"tp/docker/dockerfile.md","articles":[]},{"title":"Docker Compose","level":"1.9.4","depth":2,"path":"tp/docker/docker_compose.md","ref":"tp/docker/docker_compose.md","articles":[]}]},"previous":{"title":"Découverte","level":"1.8.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/cordova/vuejs_cordova.md","mtime":"2019-03-21T13:19:22.287Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T13:19:27.047Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
