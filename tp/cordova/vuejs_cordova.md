@@ -735,4 +735,4 @@ L'API possède également une méthode `getAll` permettant de récupérer l'ense
 
 ![Led status](./ressources/led_status_example.png)
 
-- Au @click changer le status de la led
+- Au `@click` changer le status de la led
