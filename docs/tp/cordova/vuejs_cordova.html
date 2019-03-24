@@ -805,7 +805,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Thu Mar 21 2019 14:19:22 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
+<p><em>Last modified: Sun Mar 24 2019 22:32:13 GMT+0100 (heure normale d&#x2019;Europe centrale)</em></p>
 </blockquote>
 <h1 id="vuejs-et-cordova">VueJS et Cordova</h1>
 <p>Maintenant que nous avons vu les bases de Cordova (Cr&#xE9;ation, Plateforme, plugin). Int&#xE9;r&#xE9;ssons nous &#xE0; la cr&#xE9;ation d&#x2019;une vrai application. Dans le monde de cordova il existe plusieurs fa&#xE7;on de faire :</p>
@@ -1362,8 +1362,20 @@ cordova run android
     component: Nfc
 }
 </code></pre>
+<h3 id="&#xE9;volution-0">&#xC9;volution 0</h3>
+<p>L&apos;ensemble de vos boutons d&apos;action ne sont pas centr&#xE9;s&#x2026; Plut&#xF4;t moche n&apos;est-ce pas ! Regarder la documentation de Vuetify (par <a href="https://vuetifyjs.com/en/framework/alignment" target="_blank">ici est une bonne piste</a>) et trouver une solution pour aligner les diff&#xE9;rents boutons.</p>
 <h3 id="&#xE9;volution-1">&#xC9;volution 1</h3>
-<p>Le code de la vue pr&#xE9;c&#xE9;dente est plut&#xF4;t&#x2026; complexe ! Remplacer le <code>v-list</code> de la vue pr&#xE9;c&#xE9;dente par un tableau <code>v-datatable</code>.</p>
+<p>Le code de la vue NFC est plut&#xF4;t&#x2026; complexe ! Remplacer le <code>v-list</code> de la vue pr&#xE9;c&#xE9;dente par un tableau <code>v-datatable</code>, attention &#xE0; bien regarder la documentation.</p>
+<h3 id="&#xE9;volution-2">&#xC9;volution 2</h3>
+<p>L&apos;ouverture du menu est actuellement possible, mais uniquement en appuyant sur le bouton, c&apos;est bien, mais c&apos;est pas vraiment ce que l&apos;on attend d&apos;une application mobile, heureusement Vuetify propose nativement une options pour effectuer une action via un &#xAB; swipe &#xBB;.</p>
+<ul>
+<li>Pour &#xE7;a il faut ajouter la directive <a href="https://vuetifyjs.com/en/directives/touch-support#touch-support" target="_blank">v-touch</a>.</li>
+<li>&#xC9;diter le fichier <code>App.vue</code> ajouter le <code>v-touch</code> sur le <code>v-content</code> comme sp&#xE9;cifi&#xE9; dans la documentation.</li>
+<li>Sur la direction voulu ajouter l&apos;appel &#xE0; une <code>methods</code> qui ex&#xE9;cute le code :</li>
+</ul>
+<pre><code class="lang-js"><span class="hljs-built_in">document</span>.dispatchEvent(<span class="hljs-keyword">new</span> CustomEvent(<span class="hljs-string">&quot;toggleDrawer&quot;</span>, {}));
+</code></pre>
+<p>&#x26A0;&#xFE0F; Arriv&#xE9; ici ? Appeler moi ! On debrief.</p>
 <h3 id="vuejs-le-r&#xE9;seau-et-une-led">VueJS, le r&#xE9;seau, et une led</h3>
 <p>Au travers des diff&#xE9;rents exemples pr&#xE9;c&#xE9;dent nous avons utiliser que des fonctionnalit&#xE9;s &#xAB; locales &#xBB; &#xE0; votre t&#xE9;l&#xE9;phone.</p>
 <p>Dans la vraie vie en plus d&apos;utiliser les capteurs du t&#xE9;l&#xE9;phone nous utilisons souvent des API.</p>
@@ -1378,7 +1390,12 @@ cordova run android
 <li>Go !</li>
 </ul>
 <h4 id="le-fonctionnement">Le fonctionnement</h4>
-<p>Dans la vue attacher une action permettant d&apos;appeler le DAO retournera un objet avec le status actuel en retour de l&apos;API.</p>
+<ul>
+<li>Trouver un nom &#xE0; votre &#xAB; leds &#xBB;.</li>
+<li>Dans la vue &#xAB; led &#xBB; ajouter un bouton qui <code>@click</code> appel la m&#xE9;thode de votre choix.</li>
+<li>Dans la m&#xE9;thode en question ajouter l&apos;appel au DAO que vous avez cr&#xE9;&#xE9;.</li>
+<li>En fonction du retour ajuster la vue.</li>
+</ul>
 <h4 id="le-mod&#xE8;le">Le mod&#xE8;le</h4>
 <p>Pour r&#xE9;aliser cette partie du TP vous allez devoir construire un mod&#xE8;le. Cette partie peut-&#xEA;tre assimil&#xE9; &#xE0; de la documentation je vous fourni donc la structure :</p>
 <pre><code class="lang-json">{
@@ -1389,9 +1406,47 @@ cordova run android
 </code></pre>
 <p>&#x26A0;&#xFE0F; Maintenant que vous avez la structure vous pouvez &#xE9;crire le mod&#xE8;le.</p>
 <h4 id="le-dao">Le DAO</h4>
+<ul>
+<li>Cr&#xE9;er le fichier</li>
+<li>Impl&#xE9;menter la m&#xE9;thode <code>getStatus</code></li>
+<li>Impl&#xE9;menter la m&#xE9;thode <code>setStatus</code></li>
+</ul>
 <p>C&apos;est &#xE0; vous de jouer !</p>
 <h4 id="la-partie-ui">La partie UI</h4>
-<p>C&apos;est &#xE0; vous de jouer !</p>
+<ul>
+<li>Importer le DAO.</li>
+<li>Ajouter une ic&#xF4;ne (flash_on / flash_off en fonction du status).</li>
+<li>Ajouter une action au <code>@click</code> permettant appelant le DAO <code>setStatus</code>.</li>
+</ul>
+<p>C&apos;est &#xE0; vous de jouer ! (pour de vrai)</p>
+<h3 id="&#xE9;volution-de-lapi-1--ajout-de-la-position">&#xC9;volution de l&apos;API 1 : Ajout de la position</h3>
+<p>L&apos;API en question poss&#xE8;de deux autres param&#xE8;tres <code>lat</code> et <code>lng</code>&#x2026; Les deux param&#xE8;tres sont la position de votre mobile.</p>
+<ul>
+<li>Ajouter dans le DAO les deux param&#xE8;tres.</li>
+<li>Modifier le mod&#xE8;le pour le faire correspondre &#xE0; :</li>
+</ul>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Salon&quot;</span>,
+  <span class="hljs-string">&quot;status&quot;</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-string">&quot;update&quot;</span>: <span class="hljs-string">&quot;Tue, 19 Mar 2019 12:31:36 GMT&quot;</span>,
+  <span class="hljs-string">&quot;position&quot;</span>: { <span class="hljs-string">&quot;lat&quot;</span>: <span class="hljs-number">0</span>, <span class="hljs-string">&quot;lng&quot;</span>: <span class="hljs-number">-0</span> }
+}
+</code></pre>
+<ul>
+<li>Ajouter le code javascript permettant de <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API" target="_blank">r&#xE9;cuperer la position de votre mobile</a></li>
+<li>Tester</li>
+</ul>
+<h3 id="&#xE9;volution-de-lapi-2--ajouter-un-dashboard">&#xC9;volution de l&apos;API 2 : ajouter un Dashboard</h3>
+<p>L&apos;API poss&#xE8;de &#xE9;galement une m&#xE9;thode <code>getAll</code> permettant de r&#xE9;cup&#xE9;rer l&apos;ensemble des leds actuellement connu par le syst&#xE8;me.</p>
+<ul>
+<li>Ajouter l&apos;appel de la m&#xE9;thode dans le DAO.</li>
+<li>Ajouter une nouvelle page &#xE0; l&apos;application <code>listant</code> l&apos;ensemble des &#xAB; Leds &#xBB;. En utilisant une <code>v-list</code>.</li>
+<li>Pour chaque ligne faire en sorte d&apos;afficher le status de la &#xAB; Led &#xBB;. Exemple :</li>
+</ul>
+<p><img src="ressources/led_status_example.png" alt="Led status"></p>
+<ul>
+<li>Au @click changer le status de la led</li>
+</ul>
 
                                 
                                 </section>
@@ -1431,7 +1486,7 @@ cordova run android
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Projet Cordova + VueJS","level":"1.8.3","depth":2,"next":{"title":"Docker","level":"1.9","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.9.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/docker/","ref":"https://rawgit.com/c4software/bts/master/cours/docker/","articles":[]},{"title":"Première approche","level":"1.9.2","depth":2,"path":"tp/docker/introduction.md","ref":"tp/docker/introduction.md","articles":[]},{"title":"Dockerfile","level":"1.9.3","depth":2,"path":"tp/docker/dockerfile.md","ref":"tp/docker/dockerfile.md","articles":[]},{"title":"Docker Compose","level":"1.9.4","depth":2,"path":"tp/docker/docker_compose.md","ref":"tp/docker/docker_compose.md","articles":[]}]},"previous":{"title":"Découverte","level":"1.8.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/cordova/vuejs_cordova.md","mtime":"2019-03-21T13:19:22.287Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-21T13:19:27.047Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Projet Cordova + VueJS","level":"1.8.3","depth":2,"next":{"title":"Docker","level":"1.9","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.9.1","depth":2,"url":"https://rawgit.com/c4software/bts/master/cours/docker/","ref":"https://rawgit.com/c4software/bts/master/cours/docker/","articles":[]},{"title":"Première approche","level":"1.9.2","depth":2,"path":"tp/docker/introduction.md","ref":"tp/docker/introduction.md","articles":[]},{"title":"Dockerfile","level":"1.9.3","depth":2,"path":"tp/docker/dockerfile.md","ref":"tp/docker/dockerfile.md","articles":[]},{"title":"Docker Compose","level":"1.9.4","depth":2,"path":"tp/docker/docker_compose.md","ref":"tp/docker/docker_compose.md","articles":[]}]},"previous":{"title":"Découverte","level":"1.8.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/cordova/vuejs_cordova.md","mtime":"2019-03-24T21:32:13.197Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-03-24T21:32:23.554Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

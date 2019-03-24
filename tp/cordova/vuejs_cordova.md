@@ -630,9 +630,27 @@ import Vibration from "@/views/Nfc";
 }
 ```
 
+### Évolution 0
+
+L'ensemble de vos boutons d'action ne sont pas centrés… Plutôt moche n'est-ce pas ! Regarder la documentation de Vuetify (par [ici est une bonne piste](https://vuetifyjs.com/en/framework/alignment)) et trouver une solution pour aligner les différents boutons.
+
 ### Évolution 1
 
-Le code de la vue précédente est plutôt… complexe ! Remplacer le `v-list` de la vue précédente par un tableau `v-datatable`.
+Le code de la vue NFC est plutôt… complexe ! Remplacer le `v-list` de la vue précédente par un tableau `v-datatable`, attention à bien regarder la documentation.
+
+### Évolution 2
+
+L'ouverture du menu est actuellement possible, mais uniquement en appuyant sur le bouton, c'est bien, mais c'est pas vraiment ce que l'on attend d'une application mobile, heureusement Vuetify propose nativement une options pour effectuer une action via un « swipe ».
+
+- Pour ça il faut ajouter la directive [v-touch](https://vuetifyjs.com/en/directives/touch-support#touch-support).
+- Éditer le fichier `App.vue` ajouter le `v-touch` sur le `v-content` comme spécifié dans la documentation.
+- Sur la direction voulu ajouter l'appel à une `methods` qui exécute le code :
+
+```js
+document.dispatchEvent(new CustomEvent("toggleDrawer", {}));
+```
+
+⚠️ Arrivé ici ? Appeler moi ! On debrief.
 
 ### VueJS, le réseau, et une led
 
@@ -653,7 +671,10 @@ L'API que je vous propose permet de « simuler » une lampe connectée. En fonct
 
 #### Le fonctionnement
 
-Dans la vue attacher une action permettant d'appeler le DAO retournera un objet avec le status actuel en retour de l'API.
+- Trouver un nom à votre « leds ».
+- Dans la vue « led » ajouter un bouton qui `@click` appel la méthode de votre choix.
+- Dans la méthode en question ajouter l'appel au DAO que vous avez créé.
+- En fonction du retour ajuster la vue.
 
 #### Le modèle
 
@@ -671,8 +692,47 @@ Pour réaliser cette partie du TP vous allez devoir construire un modèle. Cette
 
 #### Le DAO
 
+- Créer le fichier
+- Implémenter la méthode `getStatus`
+- Implémenter la méthode `setStatus`
+
 C'est à vous de jouer !
 
 #### La partie UI
 
-C'est à vous de jouer !
+- Importer le DAO.
+- Ajouter une icône (flash_on / flash_off en fonction du status).
+- Ajouter une action au `@click` permettant appelant le DAO `setStatus`.
+
+C'est à vous de jouer ! (pour de vrai)
+
+### Évolution de l'API 1 : Ajout de la position
+
+L'API en question possède deux autres paramètres `lat` et `lng`… Les deux paramètres sont la position de votre mobile.
+
+- Ajouter dans le DAO les deux paramètres.
+- Modifier le modèle pour le faire correspondre à :
+
+```json
+{
+  "name": "Salon",
+  "status": true,
+  "update": "Tue, 19 Mar 2019 12:31:36 GMT",
+  "position": { "lat": 0, "lng": -0 }
+}
+```
+
+- Ajouter le code javascript permettant de [récuperer la position de votre mobile](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+- Tester
+
+### Évolution de l'API 2 : ajouter un Dashboard
+
+L'API possède également une méthode `getAll` permettant de récupérer l'ensemble des leds actuellement connu par le système.
+
+- Ajouter l'appel de la méthode dans le DAO.
+- Ajouter une nouvelle page à l'application `listant` l'ensemble des « Leds ». En utilisant une `v-list`.
+- Pour chaque ligne faire en sorte d'afficher le status de la « Led ». Exemple :
+
+![Led status](./ressources/led_status_example.png)
+
+- Au @click changer le status de la led
