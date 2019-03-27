@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Exemple + / -</title>
+    <style>
+      body,
+      html,
+      #app {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      * {
+        user-select: none;
+      }
+      [v-cloak] {
+        display: none !important;
+      }
+
+      #app {
+        transition: background-color 1s;
+        font-size: 5em;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+      }
+      h1 {
+        display: inline-block;
+        font-size: 2em;
+      }
+      span {
+        font-size: 15rem;
+        padding: 50px;
+        display: inline-block;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" :style="`background-color: ${hexBackground}`" v-cloak>
+      <span @click="count = count - (60 * 1000)">-</span>
+      <h1>{{ getTimesFormatted }}</h1>
+      <span @click="count = count + (60 * 1000)">+</span>
+    </div>
+
+    <script type="module">
+      import "https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.min.js";
+      Vue.config.devtools = true;
+
+      new Vue({
+        el: "#app",
+        computed: {
+          hexBackground() {
+            return this.colorToHex(this.count);
+          },
+          getTimesFormatted() {
+            let date = new Date(this.count);
+            return String(date.getHours()).padStart(2, "0") + ":" + String(date.getMinutes()).padStart(2, "0");
+          }
+        },
+        watch: {
+          count(value) {
+            if (value < 0) {
+              this.count = 0;
+            }
+          }
+        },
+        data() {
+          return {
+            count: Date.now()
+          };
+        },
+        methods: {
+          colorToHex(i) {
+            var bbggrr = ("000000" + i.toString(16)).slice(-6);
+            var rrggbb = bbggrr.substr(4, 2) + bbggrr.substr(2, 2) + bbggrr.substr(0, 2);
+            return "#" + rrggbb;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
