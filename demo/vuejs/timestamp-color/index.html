@@ -36,8 +36,8 @@
         },
         methods: {
           colorToHex(i) {
-            var bbggrr = ("000000" + i.toString(16)).slice(-6);
-            var rrggbb = bbggrr.substr(4, 2) + bbggrr.substr(2, 2) + bbggrr.substr(0, 2);
+            let bbggrr = ("000000" + i.toString(16)).slice(-6);
+            let rrggbb = bbggrr.substr(4, 2) + bbggrr.substr(2, 2) + bbggrr.substr(0, 2);
             return "#" + rrggbb;
           }
         }
