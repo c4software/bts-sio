@@ -698,6 +698,12 @@ Pour réaliser cette partie du TP vous allez devoir construire un modèle. Cette
 
 C'est à vous de jouer !
 
+#### Pour vous aidez …
+
+Pour vous aidez, voici un exemple de Modèle et de DAO
+
+[Consulter l'exemple](https://gist.github.com/c4software/30947f2a86eb0ab065d26a6ed0edb3e9)
+
 #### La partie UI
 
 - Importer le DAO.
