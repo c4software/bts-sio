@@ -31,6 +31,12 @@
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=cordova)
   - [Découverte](tp/cordova/decouverte.md)
   - [Projet Cordova + VueJS](tp/cordova/vuejs_cordova.md)
+- VueJS exemple
+  - [Démo 1](https://c4software.github.io/bts-sio/demo/vuejs/demo1/index.html)
+  - [Compteur](https://c4software.github.io/bts-sio/demo/vuejs/counter/index.html)
+  - [Horloge](https://c4software.github.io/bts-sio/demo/vuejs/clock/index.html)
+  - [Timestamp + Couleur](https://c4software.github.io/bts-sio/demo/vuejs/timestamp-color/index.html)
+  - [Sonomètre](https://c4software.github.io/bts-sio/demo/vuejs/sound/index.html)
 - Docker
   - [Slides](https://rawgit.com/c4software/bts/master/cours/docker/)
   - [Première approche](tp/docker/introduction.md)
