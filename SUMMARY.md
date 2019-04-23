@@ -37,6 +37,7 @@
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=cordova)
   - [Découverte](tp/cordova/decouverte.md)
   - [Projet Cordova + VueJS](tp/cordova/vuejs_cordova.md)
+  - [Documentation API « Led »](tp/api/doc_api_led.md)
 - Docker
   - [Slides](https://rawgit.com/c4software/bts/master/cours/docker/)
   - [Première approche](tp/docker/introduction.md)
