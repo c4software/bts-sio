@@ -67,6 +67,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - Linux : Inclus
 - OSX : Inclus
 - Windows : Installation sur python.org
+- Windows 10 : Fais parti de WSL 🎉
 - Intégré sur les cartes type Raspberry Pi, Banana Pi…
 
 ---
@@ -81,8 +82,15 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ### Batteries « inclus »
 
-- Librairie de base très complète
-- Énormément de librairies tierces
+Librairie de base très complète
+
+- async.io, os, sys, re, …
+
+---
+
+Énormément de librairies tierces
+
+- Flask, PIL, …
 
 ---
 
@@ -197,9 +205,9 @@ demo
 
 ```python
 if "test" in "valentin":
-    print ("IF")
+    print ("Oui")
 else:
-    print ("ELSE")
+    print ("Non")
 ```
 
 ---
@@ -208,9 +216,9 @@ else:
 
 ```python
 if a == 1 and b == 2:
-    print ("IF")
+    print ("Oui")
 else:
-    print ("ELSE")
+    print ("Non")
 ```
 
 ---
@@ -219,7 +227,6 @@ else:
 
 ```python
 >>> liste = range(20)
-
 >>> liste2 = [x for x in liste if x % 2]
 ```
 
@@ -253,10 +260,13 @@ else:
 - Minimaliste
 - Parfait pour des API ou des petits projets
 - Des « extensions » dispo (User auth, Database, …)
+- Gestion des templates 👩‍🎨
 
 ---
 
-### Installer Flask
+### Installer Flask ?
+
+C'est très simple
 
 ```sh
 pip install flask
@@ -283,6 +293,57 @@ pip install flask
 ---
 
 [Exemple de code](https://gist.github.com/c4software/02d822d008190fa3d83ffcab11875d7e)
+
+---
+
+### Les routes
+
+```python
+@app.route('/file/<filename>')
+def get_file(filename = None):
+```
+
+---
+
+### GET
+
+```python
+@app.route('/file/<filename>')
+```
+
+---
+
+### POST
+
+```python
+@app.route('/file/<filename>', methods=["POST"])
+```
+
+---
+
+### 🙃
+
+---
+
+### Les templates
+
+[http://flask.pocoo.org/docs/1.0/quickstart/#rendering-templates](La documentation)
+
+---
+
+### Oui, bon et maintenant, le but ?
+
+Créer simplement & rapidement des backends. Pratique en cas de prototypage rapide
+
+---
+
+#### L'hebergement
+
+- Firebase 🔥
+- Docker image 👍 (OpenFaaS)
+- Heroku
+- Clever Cloud
+- …
 
 ---
 

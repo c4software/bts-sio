@@ -337,4 +337,14 @@ Créer simplement & rapidement des backends. Pratique en cas de prototypage rapi
 
 ---
 
+#### L'hebergement
+
+- Firebase 🔥
+- Docker image 👍 (OpenFaaS)
+- Heroku
+- Clever Cloud
+- …
+
+---
+
 ### Des questions ?
