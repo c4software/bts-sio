@@ -176,8 +176,7 @@ demo
 
 ```python
 >>> def bonjour():
-... print ("Bonjour Monde")
-...
+>>> ... print ("Bonjour Monde")
 
 >>> bonjour()
 >>> Bonjour Monde
@@ -192,7 +191,7 @@ demo
 
 >>> def lettre():
 >>> ... choice("abcdefghijklmnopqrstuvwxyz")
->>> ...
+>>>
 >>> lettre()
 >>> v
 >>> lettre()
@@ -239,6 +238,18 @@ else:
 ```python
 >>> print (liste2)
 [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+```
+
+### Avancés 3
+
+```python
+>>> [x * 2 for x in range(20) if x in [2, 3]]
+```
+
+---
+
+```python
+[4, 6]
 ```
 
 ---
