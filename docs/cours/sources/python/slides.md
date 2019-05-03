@@ -240,7 +240,9 @@ else:
 [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 ```
 
-### Avancés 3
+---
+
+### Avancés 2
 
 ```python
 >>> [x * 2 for x in range(20) if x in [2, 3]]
