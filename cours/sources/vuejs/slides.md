@@ -20,10 +20,10 @@ Progressive Web Apps
 
 #### Exemple de PWA
 
-- https://appsco.pe/ (Liste d'exemples)
-- https://pwa.rocks/ (Liste d’exemples)
-- https://mobile.twitter.com
-- https://m.facebook.com (volontairement bridé)
+- <https://appsco.pe/> (Liste d'exemples)
+- <https://pwa.rocks/> (Liste d’exemples)
+- <https://mobile.twitter.com>
+- <https://m.facebook.com> (volontairement bridé)
 
 ---
 
@@ -35,9 +35,9 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 
 ---
 
-### Concretement une PWA c’est quoi ?
+### Concretement une PWA c’est quoi
 
-![](./img/question.gif)
+![Question](./img/question.gif)
 
 ---
 
@@ -79,7 +79,7 @@ Attention au support des Navigateurs
 
 ---
 
-### VueJS
+### VueJS, pourquoi faire…
 
 Faire des PWA simplement (il y en a d'autres bien évidement, en connaissez-vous ?)
 
@@ -102,7 +102,7 @@ Faire des PWA simplement (il y en a d'autres bien évidement, en connaissez-vous
 
 ---
 
-### Pourquoi VueJS ?
+### Pourquoi VueJS
 
 Et pas ReactJS ou Angular…
 
@@ -128,7 +128,7 @@ Et pas ReactJS ou Angular…
 
 ---
 
-### Qui utilise VueJS ?
+### Qui utilise VueJS
 
 - GitLab
 - Weex (Alibaba)
@@ -137,16 +137,16 @@ Et pas ReactJS ou Angular…
 
 ---
 
-## Comment VueJS fonctionne ?
+## Comment VueJS fonctionne
 
 - Virtual DOM (ne « re-dessine » que les zones modifiées)
 - Fonctionnement en composant
 - Des « .Vue » / Monofichier important tout le composant
 - Un cycle de vie complet pour chaque composant
 
-![](./img/flow.png)
+![Flow](./img/flow.png)
 
-![](./img/fonctionnement.png)
+![Fonctionnement](./img/fonctionnement.png)
 
 ---
 
@@ -164,7 +164,7 @@ var vm = new Vue({
 
 ---
 
-[![](./img/component-lifecycle.png)](./img/component-lifecycle.png)
+[![Cycle de vie](./img/component-lifecycle.png)](./img/component-lifecycle.png)
 
 ```js
 var vm = new Vue({
@@ -334,12 +334,12 @@ On est vraiment loin d’une page Web dans la conception
 
 ---
 
-### Mais c’est quoi ?
+### Mais c’est quoi
 
 - Un élément réutilisable
 - Code générique
 
-![](./img/barcharts_composants.png)
+![Composant](./img/barcharts_composants.png)
 
 ---
 
@@ -369,13 +369,13 @@ C'est possible grace à la puissance de **webpack**
 
 ---
 
-## Webpack ?
+## Webpack
 
-![](./img/questions.gif)
+![Des questions](./img/questions.gif)
 
 ---
 
-## Webpack
+## Webpack…
 
 C'est deux éléments important
 
@@ -399,9 +399,9 @@ C'est deux éléments important
 
 ---
 
-### Et pour VueJS?
+### Et pour VueJS
 
-![](./img/confused.gif)
+![Confused](./img/confused.gif)
 
 ---
 
@@ -411,7 +411,7 @@ C'est deux éléments important
 
 ## Un fichier
 
-![](./img/composants_composition.png)
+![Composition](./img/composants_composition.png)
 
 - Le template
 - Une CSS « scopée » / qui ne s’applique que pour le module
@@ -424,7 +424,7 @@ C'est deux éléments important
 - Rechargement automatique
 - Sans perdre le contexte grâce au « Hot Reload »
 
-![](./img/composant.png)
+![Composant](./img/composant.png)
 
 ---
 
@@ -462,18 +462,19 @@ export default {
 
 ---
 
-### Sorcellerie !
+### Sorcellerie
 
-![](./img/way_you_think.gif)
+![Sorcellerie](./img/way_you_think.gif)
 
 ---
 
-### Comment fait-on ?
+### Comment fait-on
 
 ---
 
 ```sh
 $ npm install -g @vue/cli
+… Installation …
 ```
 
 ---
@@ -484,7 +485,7 @@ vue create demonstration
 
 ---
 
-![](./img/init_vuejs.png)
+![init vueJS](./img/init_vuejs.png)
 
 ---
 
@@ -494,13 +495,13 @@ Psss: Chez VueJS ils sont sympa ils ont init le projet git pour vous.
 
 ---
 
-### Et c'est tout !
+### Et c'est tout
 
 ---
 
 ### Vue UI. Une GUI de gestion
 
-![](https://cli.vuejs.org/ui-new-project.png)
+![Vue UI](https://cli.vuejs.org/ui-new-project.png)
 
 ---
 
@@ -514,19 +515,22 @@ C’est toujours mieux en vrai…
 
 ```sh
 $ npm run dev
+… Lancement du serveur intégré …
 ```
 
-![](./img/demo_vuejs.png)
+![Démo 1](./img/demo_vuejs.png)
 
-![](./img/demo_app_vuejs.png)
+![Démo 2](./img/demo_app_vuejs.png)
 
 ---
 
-### La force de VueCLI c'est une gestion des plugins :
+### La force de VueCLI c'est une gestion des plugins
 
 ```sh
 $ vue add router
+… Modification AUTOMATIQUE du projet …
 $ vue add vuex
+… Modification AUTOMATIQUE du projet …
 ```
 
 ---
@@ -552,7 +556,7 @@ $ vue add vuex
 
 ### Démo Dev Tools
 
-![](./img/devtools.png) [Démo](https://rawgit.com/c4software/bts/master/demo/vuejs/demo1/index.html)
+![Dev tools](./img/devtools.png) [Démo](https://rawgit.com/c4software/bts/master/demo/vuejs/demo1/index.html)
 
 ---
 
@@ -564,9 +568,9 @@ $ vue add vuex
 
 ---
 
-### Le « store » ?
+### Le « store »
 
-![](./img/confused.gif)
+![Confused](./img/confused.gif)
 
 ---
 
@@ -582,11 +586,11 @@ $ vue add vuex
 
 ### Fonctionnement
 
-![](./img/vuex.png)
+![VueX](./img/vuex.png)
 
 ---
 
-### Quand utiliser un « store » ?
+### Quand utiliser un « store »
 
 - Application multi-vues
 - Besoin de synchronisation entre les vues
@@ -602,9 +606,9 @@ $ vue add vuex
 
 ### L’affichage
 
-### Mais je ne suis pas un graphiste !
+### Mais je ne suis pas un graphiste
 
-![](./img/sad.gif)
+![Triste](./img/sad.gif)
 
 ---
 
@@ -615,13 +619,13 @@ $ vue add vuex
 - Responsive
 - Générique
 
-![](./img/vuetify.png)
+![VueTify](./img/vuetify.png)
 
 ---
 
-### Mais c’est génial !
+### Mais c’est génial
 
-![](./img/yeah.gif)
+![WOW MAIS C'EST GENIAL](./img/yeah.gif)
 
 [La documentation](https://vuetifyjs.com/)
 
@@ -629,6 +633,6 @@ $ vue add vuex
 
 ---
 
-### Des questions ?
+### Des questions
 
 (Il doit y en avoir beaucoup)
