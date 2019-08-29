@@ -20,11 +20,10 @@
   - [Installation de Laravel](tp/laravel/introduction.md)
   - [Application/Site web Todo List](tp/laravel/application_todo_list.md)
   - [Lumen pour écrire des API](tp/laravel/creation_api.md)
-  - [Gestion des absences](tp/laravel/creation_api.md)
 - VueJS
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs)
-  - [VueJS + Legacy Laravel](tp/vuejs/tp1-vuejs-laravel-api.md)
-  - [VueJS + Legacy Web](tp/vuejs/tp1.md)
+  - [Librairie VueJS + Laravel](tp/vuejs/tp1-vuejs-laravel-api.md)
+  - [Librairie VueJS + Web Php](tp/vuejs/tp1.md)
   - [Réaliser une application avec VueJS](tp/vuejs/tp2.md)
   - [VueJS + Firebase](tp/vuejs/firebase-vuejs.md)
 - VueJS exemple
