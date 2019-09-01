@@ -17,10 +17,6 @@
 - Javascript avancé (À venir)
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés)
   - [Modification de code existant]()
-- NodeJS  (À venir)
-  - [Slides]()
-  - [Réaliser des API en Javascript]()
-  - [Hébergement dans le cloud]()
 - Programmation sécurisée avec OWASP
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications)
   - [Tentatives et injections](tp/securite/README.md)
@@ -29,6 +25,10 @@
   - [Installation de Laravel](tp/laravel/introduction.md)
   - [Application/Site web Todo List](tp/laravel/application_todo_list.md)
   - [Lumen pour écrire des API](tp/laravel/creation_api.md)
+- NodeJS  (À venir)
+  - [Slides]()
+  - [Réaliser des API en Javascript]()
+  - [Hébergement dans le cloud]()
 - VueJS
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=vuejs)
   - [Librairie VueJS + Laravel](tp/vuejs/tp1-vuejs-laravel-api.md)
