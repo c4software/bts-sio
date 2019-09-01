@@ -36,9 +36,9 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-- Améliorer la lisibilité.
-- Simplifier votre travail.
-- Réduire votre charge mentale.
+- Améliorer la lisibilité. <!-- .element: class="fragment" -->
+- Simplifier votre travail. <!-- .element: class="fragment" -->
+- Réduire votre charge mentale. <!-- .element: class="fragment" -->
 
 ---
 
@@ -46,10 +46,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-- S'améliorer.
-- Pouvoir tester. <- 🤔
-- Pouvoir faire évoluer son code.
-- Avoir une meilleure note…
+- S'améliorer. <!-- .element: class="fragment" -->
+- Pouvoir tester. <- 🤔 <!-- .element: class="fragment" -->
+- Pouvoir faire évoluer son code. <!-- .element: class="fragment" -->
+- Avoir une meilleure note… <!-- .element: class="fragment" -->
 
 ---
 
@@ -110,10 +110,10 @@ Pourquoi dans le cadre d'un developpement en mode API c'est encore plus importan
 
 ---
 
-- Centralise la logique métier.
-- Permet les évolutions simplifiés.
-- Évite le codes dupliqués.
-- Normalise votre code
+- Centralise la logique métier. <!-- .element: class="fragment" -->
+- Permet les évolutions simplifiés. <!-- .element: class="fragment" -->
+- Évite le codes dupliqués. <!-- .element: class="fragment" -->
+- Normalise votre code. <!-- .element: class="fragment" -->
 
 ---
 
@@ -128,11 +128,11 @@ Pourquoi dans le cadre d'un developpement en mode API c'est encore plus importan
 
 ---
 
-- Permet de tester
-- Permet de changer la source de données
-- Centralise votre code
-- Simplifie les modifications (À votre avis ?)
-- Facilite le partage de code
+- Permet de tester. <!-- .element: class="fragment" -->
+- Permet de changer la source de données. <!-- .element: class="fragment" -->
+- Centralise votre code. <!-- .element: class="fragment" -->
+- Simplifie les modifications. (À votre avis ?) <!-- .element: class="fragment" -->
+- Facilite le partage de code. <!-- .element: class="fragment" -->
 
 ---
 
@@ -164,11 +164,11 @@ Alors ?
 
 ---
 
-- Simplifie la lecture du code.
-- Centralise les éléments « sensible ».
-- Évite le code dubliqués.
-- Réduit la charge mentale. (évite la panique !)
-- Être quelqu'un de bien.
+- Simplifie la lecture du code. <!-- .element: class="fragment" -->
+- Centralise les éléments « sensible ». <!-- .element: class="fragment" -->
+- Évite le code dubliqués. <!-- .element: class="fragment" -->
+- Réduit la charge mentale. (évite la panique !) <!-- .element: class="fragment" -->
+- Être quelqu'un de bien. <!-- .element: class="fragment" -->
 
 ---
 
@@ -190,9 +190,9 @@ Alors ?
 
 ### Être prêt pour les modifications de
 
-- L'examen !
-- Du Stage !
-- De la vie !
+- L'examen ! <!-- .element: class="fragment" -->
+- Du stage ! <!-- .element: class="fragment" -->
+- De la vie ! <!-- .element: class="fragment" -->
 - …
 
 ---

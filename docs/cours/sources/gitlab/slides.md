@@ -106,7 +106,6 @@ Mais !? Y'a t'il des équivalents ?
 
 ### Service dans le Cloud
 
-
 - Avril 2008
 - Dépot public gratuit, payant pour des privés
 - Revue de code

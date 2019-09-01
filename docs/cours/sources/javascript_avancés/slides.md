@@ -14,11 +14,15 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## La javascript est partout
+## Désolé, mais le javascript est partout
 
 ---
 
-## Javascript -> ECMAScript
+## Bonne nouvelle ! C'est pas que du web
+
+---
+
+## Javascript -> ECMAScript (201X, 2016, 2017, …)
 
 ---
 
@@ -40,6 +44,11 @@ Objet :
 - Object.values()
 - Object.entries()
 
+L'Ajax :
+- fetch
+- wretch (lib)
+- …
+
 Les promesses (Promises)
 - Concept
 - then
@@ -52,3 +61,9 @@ Async / Await
 
 Manipulation 
 - Spread (`const demo = {...objet1, ...objet2}`)
+
+Webpack
+- Intro
+
+PikaPKG
+- Intro
