@@ -12,6 +12,15 @@
 - Git en groupe + GitLab
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=gitlab)
   - [Git en groupe + GitLab](tp/gitlab/README.md)
+- Organisation du code (À venir)
+  - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations)
+- Javascript avancé (À venir)
+  - [Slides](#todo)
+  - [Modification de code existant](#todo)
+- NodeJS  (À venir)
+  - [Slides] (#todo)
+  - [Réaliser des API en Javascript](#todo)
+  - [Hébergement dans le cloud](#todo)
 - Programmation sécurisée avec OWASP
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications)
   - [Tentatives et injections](tp/securite/README.md)
