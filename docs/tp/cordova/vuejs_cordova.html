@@ -891,7 +891,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Sat Apr 06 2019 17:48:57 GMT+0200 (GMT+02:00)</em></p>
+<p><em>Last modified: Sun Sep 01 2019 12:49:41 GMT+0200 (GMT+02:00)</em></p>
 </blockquote>
 <h1 id="vuejs-et-cordova">VueJS et Cordova</h1>
 <p>Maintenant que nous avons vu les bases de Cordova (Cr&#xE9;ation, Plateforme, plugin). Int&#xE9;r&#xE9;ssons nous &#xE0; la cr&#xE9;ation d&#x2019;une vrai application. Dans le monde de cordova il existe plusieurs fa&#xE7;on de faire :</p>
@@ -926,7 +926,7 @@
 <p>Le code est <a href="sources/vuejs-cordova-sample.zip">t&#xE9;l&#xE9;chargeable ici</a></p>
 <h2 id="utiliser-le-code-fourni">Utiliser le code fourni</h2>
 <p>Maintenant que vous avez r&#xE9;cup&#xE9;r&#xE9; le code. Nous allons le rendre fonctionnel pour votre ordinateur.</p>
-<h3 id="1-compiler-une-premi&#xE8;re-fois-le-code">1. Compiler une premi&#xE8;re fois le code</h3>
+<h3 id="1-compiler-une-premi&#xE8;re-fois-le-code-vuejs">1. Compiler une premi&#xE8;re fois le code (VueJS)</h3>
 <p>Le projet &#xE9;tant &#xAB; non compil&#xE9; &#xBB; / &#xAB; non install&#xE9; &#xBB;, nous allons devoir dans un premier temps installer les d&#xE9;pendances n&#xE9;c&#xE9;ssaires &#xE0; notre projet. Pour se faire nous allons utiliser <code>npm</code> avec la commande <code>install</code>. Dans le dossier du projet :</p>
 <pre><code class="lang-shell">npm install .
 </code></pre>
@@ -938,14 +938,14 @@
 <ul>
 <li>Passer en mode &#xAB; simulation de mobile &#xBB; pour &#xEA;tre proche de la compilation final.</li>
 </ul>
-<h3 id="2-ajouter-la-plateforme">2. Ajouter la plateforme</h3>
+<h3 id="2-ajouter-la-plateforme-cordova">2. Ajouter la plateforme (Cordova)</h3>
 <p>Ajouter la plateforme Android au projet :</p>
 <pre><code class="lang-shell">cd cordova_app/
 mkdir www
 cordova platform add android
 </code></pre>
 <p>&#x270B; Attention &#xE0; bien cr&#xE9;er le dossier <code>www</code> pour que l&apos;outil Cordova d&#xE9;t&#xE8;cte bien le projet comme &#xE9;tant un projet Cordova.</p>
-<h3 id="3-lancer-sur-votre-mobile">3. Lancer sur votre mobile</h3>
+<h3 id="3-lancer-sur-votre-mobile-ou-&#xE9;mulateur">3. Lancer sur votre mobile (ou &#xE9;mulateur)</h3>
 <p>Maintenant que la plateforme est pr&#xEA;te et que notre code est disponible, nous allons compiler l&#x2019;application pour la lancer sur votre t&#xE9;l&#xE9;phone. La premi&#xE8;re &#xE9;tape est de &#xAB; builder &#xBB; l&#x2019;application VueJS en version distribuable :</p>
 <pre><code class="lang-shell">npm run build
 </code></pre>
@@ -972,13 +972,13 @@ cordova run android
 &lt;template&gt;
   &lt;v-container fill-height fluid&gt;
     &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
-    &lt;div v-if=&quot;isLoading&quot; class=&quot;loading elevation-2&quot;&gt;
-      &lt;div&gt;
-        &lt;v-progress-circular indeterminate class=&quot;primary--text&quot;&gt;&lt;/v-progress-circular&gt;
-        &lt;br&gt;&lt;br&gt;
-        &lt;div&gt;{{$t(&quot;getPosition&quot;)}}&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+    &lt;v-dialog value=&quot;isLoading&quot; persistent max-width=&quot;200&quot;&gt;
+      &lt;v-card&gt;
+        &lt;v-card-text class=&quot;text-center pa-10&quot;&gt;
+          &lt;v-progress-circular :size=&quot;70&quot; indeterminate class=&quot;primary--text&quot;/&gt;
+        &lt;/v-card-text&gt;
+      &lt;/v-card&gt;
+    &lt;/v-dialog&gt;
   &lt;/v-container&gt;
 &lt;/template&gt;
 
@@ -1322,25 +1322,24 @@ cordova run android
         {{$t(&quot;nfcText.waitingTag&quot;)}}
         &lt;br&gt;
         &lt;v-dialog v-model=&quot;dialog&quot; scrollable&gt;
-          &lt;v-btn slot=&quot;activator&quot;&gt;{{$t(&quot;nfcText.history&quot;)}}&lt;/v-btn&gt;
+          &lt;template v-slot:activator=&quot;{ on }&quot;&gt;
+            &lt;v-btn v-on=&quot;on&quot;&gt;{{$t(&quot;nfcText.history&quot;)}}&lt;/v-btn&gt;
+          &lt;/template&gt;
+
           &lt;v-card&gt;
             &lt;v-card-title&gt;{{$t(&quot;nfcText.history&quot;)}}&lt;/v-card-title&gt;
             &lt;v-divider&gt;&lt;/v-divider&gt;
             &lt;v-card-text style=&quot;height: 300px;&quot;&gt;
-              &lt;v-list v-if=&quot;items.length &gt; 0&quot;&gt;
-                &lt;v-list-tile v-for=&quot;item in items&quot; v-bind:key=&quot;item&quot;&gt;
-                  &lt;v-list-tile-content&gt;
-                    &lt;v-list-tile-title v-text=&quot;item&quot;&gt;&lt;/v-list-tile-title&gt;
-                  &lt;/v-list-tile-content&gt;
-                &lt;/v-list-tile&gt;
-              &lt;/v-list&gt;
-              &lt;v-list v-else&gt;
-                &lt;v-list-tile&gt;
-                  &lt;v-list-tile-content&gt;
-                    &lt;v-list-tile-title v-text=&quot;$t(&apos;nfcText.noHistory&apos;)&quot; class=&quot;text-xs-center&quot;&gt;&lt;/v-list-tile-title&gt;
-                  &lt;/v-list-tile-content&gt;
-                &lt;/v-list-tile&gt;
-              &lt;/v-list&gt;
+                &lt;v-list-item v-for=&quot;item in items&quot; v-bind:key=&quot;item&quot;&gt;
+                  &lt;v-list-item-content&gt;
+                    &lt;v-list-item-title v-text=&quot;item&quot;&gt;&lt;/v-list-item-title&gt;
+                  &lt;/v-list-item-content&gt;
+                &lt;/v-list-item&gt;
+                &lt;v-list-item v-if=&quot;items.length === 0&quot;&gt;
+                  &lt;v-list-item-content&gt;
+                    &lt;v-list-item-title v-text=&quot;$t(&apos;nfcText.noHistory&apos;)&quot; class=&quot;text-center&quot;&gt;&lt;/v-list-item-title&gt;
+                  &lt;/v-list-item-content&gt;
+                &lt;/v-list-item&gt;
             &lt;/v-card-text&gt;
           &lt;/v-card&gt;
         &lt;/v-dialog&gt;
@@ -1579,7 +1578,7 @@ cordova run android
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Projet Cordova + VueJS","level":"1.9.3","depth":2,"next":{"title":"Documentation API « Led »","level":"1.9.4","depth":2,"path":"tp/api/doc_api_led.md","ref":"tp/api/doc_api_led.md","articles":[]},"previous":{"title":"Découverte","level":"1.9.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/cordova/vuejs_cordova.md","mtime":"2019-04-06T15:48:57.405Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-29T21:02:31.946Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Projet Cordova + VueJS","level":"1.9.3","depth":2,"next":{"title":"Documentation API « Led »","level":"1.9.4","depth":2,"path":"tp/api/doc_api_led.md","ref":"tp/api/doc_api_led.md","articles":[]},"previous":{"title":"Découverte","level":"1.9.2","depth":2,"path":"tp/cordova/decouverte.md","ref":"tp/cordova/decouverte.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/cordova/vuejs_cordova.md","mtime":"2019-09-01T10:49:41.895Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-01T10:50:04.095Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

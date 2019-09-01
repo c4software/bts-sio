@@ -34,13 +34,13 @@ Le projet étant assez conséquent je vous propose de partir d’une base déjà
 - Les scripts pour compiler la partie Cordova
 - Les plugins « pré-configurés » / déclaré dans le fichier `config.xml`.
 
-Le code est [téléchargeable ici](sources/vuejs-cordova-sample.zip)
+Le code est [téléchargeable ici](./sources/vuejs-cordova-sample.zip)
 
 ## Utiliser le code fourni
 
 Maintenant que vous avez récupéré le code. Nous allons le rendre fonctionnel pour votre ordinateur.
 
-### 1. Compiler une première fois le code
+### 1. Compiler une première fois le code (VueJS)
 
 Le projet étant « non compilé » / « non installé », nous allons devoir dans un premier temps installer les dépendances nécéssaires à notre projet. Pour se faire nous allons utiliser `npm` avec la commande `install`. Dans le dossier du projet :
 
@@ -60,7 +60,7 @@ Ouvrez un navigateur et accédez à l’url suivante [http://localhost:8080/](ht
 
 - Passer en mode « simulation de mobile » pour être proche de la compilation final.
 
-### 2. Ajouter la plateforme
+### 2. Ajouter la plateforme (Cordova)
 
 Ajouter la plateforme Android au projet :
 
@@ -72,7 +72,7 @@ cordova platform add android
 
 ✋ Attention à bien créer le dossier `www` pour que l'outil Cordova détècte bien le projet comme étant un projet Cordova.
 
-### 3. Lancer sur votre mobile
+### 3. Lancer sur votre mobile (ou émulateur)
 
 Maintenant que la plateforme est prête et que notre code est disponible, nous allons compiler l’application pour la lancer sur votre téléphone. La première étape est de « builder » l’application VueJS en version distribuable :
 
@@ -111,13 +111,13 @@ Pour commencer nous allons ajouter la vue « Localisation ». C’est certaineme
 <template>
   <v-container fill-height fluid>
     <div id="map"></div>
-    <div v-if="isLoading" class="loading elevation-2">
-      <div>
-        <v-progress-circular indeterminate class="primary--text"></v-progress-circular>
-        <br><br>
-        <div>{{$t("getPosition")}}</div>
-      </div>
-    </div>
+    <v-dialog value="isLoading" persistent max-width="200">
+      <v-card>
+        <v-card-text class="text-center pa-10">
+          <v-progress-circular :size="70" indeterminate class="primary--text"/>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -500,25 +500,24 @@ Le code de la partie NFC est un peu plus complexe. Pour la démo, j’ai mis un 
         {{$t("nfcText.waitingTag")}}
         <br>
         <v-dialog v-model="dialog" scrollable>
-          <v-btn slot="activator">{{$t("nfcText.history")}}</v-btn>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on">{{$t("nfcText.history")}}</v-btn>
+          </template>
+
           <v-card>
             <v-card-title>{{$t("nfcText.history")}}</v-card-title>
             <v-divider></v-divider>
             <v-card-text style="height: 300px;">
-              <v-list v-if="items.length > 0">
-                <v-list-tile v-for="item in items" v-bind:key="item">
-                  <v-list-tile-content>
-                    <v-list-tile-title v-text="item"></v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-              <v-list v-else>
-                <v-list-tile>
-                  <v-list-tile-content>
-                    <v-list-tile-title v-text="$t('nfcText.noHistory')" class="text-xs-center"></v-list-tile-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </v-list>
+                <v-list-item v-for="item in items" v-bind:key="item">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item"></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item v-if="items.length === 0">
+                  <v-list-item-content>
+                    <v-list-item-title v-text="$t('nfcText.noHistory')" class="text-center"></v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
             </v-card-text>
           </v-card>
         </v-dialog>
