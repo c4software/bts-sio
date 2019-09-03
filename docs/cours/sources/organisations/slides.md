@@ -96,7 +96,7 @@ C'est quoi ?
 
 ---
 
-Représente votre objet. Intégre les méthodes qui s'implifie sa manipulation.
+Représente votre objet. Intègre les méthodes qui simplifie sa manipulation.
 
 - Des exemples ?
 
@@ -106,21 +106,21 @@ Représente votre objet. Intégre les méthodes qui s'implifie sa manipulation.
 
 ---
 
-Pourquoi dans le cadre d'un developpement en mode API c'est encore plus important ?
+Pourquoi dans le cadre d'un développement en mode API c'est encore plus important ?
 
 ---
 
 - Centralise la logique métier. <!-- .element: class="fragment" -->
-- Permet les évolutions simplifiés. <!-- .element: class="fragment" -->
-- Évite le codes dupliqués. <!-- .element: class="fragment" -->
+- Permet les évolutions simplifiées. <!-- .element: class="fragment" -->
+- Évite le code dupliqué. <!-- .element: class="fragment" -->
 - Normalise votre code. <!-- .element: class="fragment" -->
 
 ---
 
 ### DAO
 
-- Défini les méthodes qui accède à la données
-- Retourne un objet « typé » (un modèle)
+- Défini les méthodes qui accèdent à la donnée
+- Retourne un objet « typé. » (un modèle)
 
 ---
 
@@ -165,8 +165,8 @@ Alors ?
 ---
 
 - Simplifie la lecture du code. <!-- .element: class="fragment" -->
-- Centralise les éléments « sensible ». <!-- .element: class="fragment" -->
-- Évite le code dubliqués. <!-- .element: class="fragment" -->
+- Centralise les éléments « sensibles ». <!-- .element: class="fragment" -->
+- Évite le code dupliqués. <!-- .element: class="fragment" -->
 - Réduit la charge mentale. (évite la panique !) <!-- .element: class="fragment" -->
 - Être quelqu'un de bien. <!-- .element: class="fragment" -->
 
@@ -219,4 +219,31 @@ Alors ?
 
 ---
 
+## Bonus : Le code compliqué
+
+---
+
+Est-ce que ça vous semble valide ?
+
+```javascript
+function conditionPermis(age, heureConduite){
+    if(age >= 18){
+        if(heureConduite >= 120){
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+permis = conditionsPermis(person.age, lecon.nbHeure);
+```
+
+Est-ce simplifiable ?
+
+---
+
 # Des questions ?
+

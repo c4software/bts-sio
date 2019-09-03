@@ -161,6 +161,14 @@ Comme les tableaux, les objets sont maintenant manipulables plus simplement.
 
 ---
 
+### Rappel
+
+- Le mot clef `new` existe.
+- Vous pouvez créer des `class`.
+- Vous pouvez créer des `méthods`.
+
+---
+
 ### Object.keys()
 
 ![object_keys](./img/object_keys.png)
