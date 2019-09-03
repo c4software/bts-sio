@@ -79,7 +79,7 @@ Ajouter une méthode dans l'objet `Person` qui retourne `true` si la personne es
 
 ### Question 6
 
-En utilisant `filter° filtrer le tableau résultat pour ne garder que les personnes majeur.
+En utilisant `filter` filtrer le tableau résultat pour ne garder que les personnes majeur.
 
 ### Question 7
 
@@ -120,3 +120,9 @@ Via un filter, filtrer l'ensemble des Todo qui sont pour l'utilisateur 2 *et* no
     "userId": 2,
     "completed": true
 ```
+
+### Question 11
+
+Lister l'ensemble des valeurs de l'ensemble de la liste des Todo créé précédement.
+
+Tips: `Object.values(…)`
