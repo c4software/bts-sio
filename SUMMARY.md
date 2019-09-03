@@ -16,7 +16,7 @@
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations)
 - Javascript avancé (À venir)
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés)
-  - [Modification de code existant]()
+  - [Prise en main « Javascript avancés »](tp/javascript_avancés/introduction.md)
 - Programmation sécurisée avec OWASP
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications)
   - [Tentatives et injections](tp/securite/README.md)
