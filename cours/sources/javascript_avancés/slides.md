@@ -213,6 +213,10 @@ L'objet Promise (pour « promesse ») est utilisé pour réaliser des traitement
 
 ---
 
+Pour faire « simple », ça remplasse les `callback` et évite les `callback hell`.
+
+---
+
 [Exemple](https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Utiliser_les_promesses)
 
 ---
@@ -287,7 +291,4 @@ Mais en 2019, nous avons [Pikapkg](https://pikapkg.com) 🎉
 
 ---
 
-
 ## Des questions ?
-
----
