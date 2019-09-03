@@ -1,6 +1,6 @@
 # Le Javascript
 
-## Au dela de IE6 😅
+## Au delà de IE6 😅
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
@@ -92,7 +92,7 @@ Le but : Rendre le code plus lisible.
 
 ### « Activer » les exports dans le navigateur
 
-« De base » cette notation est ignoré par le navigateur, mais l'activation est simple.
+« De base » cette notation est ignorée par le navigateur, mais l'activation est simple.
 
 ---
 
@@ -104,7 +104,7 @@ Le but : Rendre le code plus lisible.
 
 ---
 
-La manipulation des tableaux est maintenant simplifié et performante.
+La manipulation des tableaux est maintenant simplifiée et performante.
 
 ---
 
@@ -122,7 +122,7 @@ Est-ce valide ?
 
 ### NON !
 
-Pour ça on utilise un `forEach`
+Pour ça, on utilise un `forEach`
 
 ---
 
@@ -177,7 +177,7 @@ Comme les tableaux, les objets sont maintenant manipulables plus simplement.
 
 ---
 
-Une « interface » simple permettant de faire de l'ajax intéegrée
+Une « interface » simple permettant de faire de l'ajax intégrée
 
 ---
 
@@ -265,7 +265,7 @@ Appelée dans tous les cas de terminaison.
 Async / Await permet de rendre « synchrone » du code asynchrone.
 
 - Attendre le retour d'une requête ajax avant de continuer.
-- À votre avis quel sont les risques ?
+- À votre avis, quels sont les risques ?
 - Catch <!-- .element: class="fragment" -->
 - Bloquage de l'interface <!-- .element: class="fragment" -->
 
