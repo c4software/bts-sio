@@ -38,14 +38,42 @@ Beaucoup de différences, mais attention au support
 
 ---
 
+## Rappel sur l'asynchrone
+
+Pouvez vous me dire à quoi ça correspond ?
+
+---
+
+```javascript
+
+var resultat = "";
+
+ajax("http://api/getRandom", (randomValue) => {
+    resultat = randomValue
+});
+
+console.log(resultat);
+```
+
+- Pouvez-vous me dire ce que va afficher le `console.log()` ?
+
+---
+
 ## Les nouveautés
 
+- Votre navigateur / la console
 - Global
 - Les Arrays (Tableau)
 - Les Objets
 - L'Ajax
 - Les Promises (Promesses)
 - Async / Await
+
+---
+
+### Votre navigateur
+
+Votre navigateur est puissant ! Découvrons quelques-unes des fonctionnalités.
 
 ---
 
