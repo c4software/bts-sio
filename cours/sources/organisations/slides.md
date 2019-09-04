@@ -246,4 +246,3 @@ Est-ce simplifiable ?
 ---
 
 # Des questions ?
-
