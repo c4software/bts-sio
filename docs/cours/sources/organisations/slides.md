@@ -211,9 +211,9 @@ Alors ?
 
 ## Vous utilisez git !
 
-### Le je garde au cas où
-
 ---
+
+## Le je garde au cas où
 
 ![nah](./img/nah.gif)
 
