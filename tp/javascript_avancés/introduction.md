@@ -43,7 +43,7 @@ Réécrire le code suivante en utilisant les `fonctions flechés` et les `string
     hello(nom);
 ```
 
-## Question 3 
+## Question 3
 
 En utilisant la méthode `filter` d'un tableau filtrer l'ensembles des éléments `non pair` du tableau suivant (indice `% 2`)
 
