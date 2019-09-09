@@ -10,3 +10,17 @@
 - Découverte de Docker (2h + TP)
 - Intégration continue avec GitLab-CI (2h + TP)
 - Framework Python : Flask (2h + TP)
+
+
+## 2019
+
+- Initiation à GIT.
+- Git en groupe.
+- Organisation du code. Algo
+- Laravel
+- Programmation sécurisée
+- Javascript avancés
+- VueJS
+- Cordova
+- Gitlab-CI : Intégration continue
+- Python : Flask
