@@ -82,21 +82,19 @@ Car au final, le but c'est de ne pas être noyé dans son propre code
 
 ### Penser fonctionnalités pas finalités
 
----
-
 Avez vous des exemples ?
 
 ---
 
 ### Modèle
 
-C'est quoi ?
+Pour vous c'est quoi ?
 
 ---
 
 Représente votre objet. Intègre les méthodes qui simplifie sa manipulation.
 
-- Des exemples ?
+- Avez-vous un exemple ?
 
 ---
 
@@ -104,11 +102,11 @@ Représente votre objet. Intègre les méthodes qui simplifie sa manipulation.
 
 ---
 
-Pourquoi dans le cadre d'un développement en mode API c'est encore plus important ?
+Et quand on utilise des API, pourquoi est-ce également très important ?
 
 ---
 
-- Centralise la logique métier. <!-- .element: class="fragment" -->
+- Centralise la logique/code métier. <!-- .element: class="fragment" -->
 - Permet les évolutions simplifiées. <!-- .element: class="fragment" -->
 - Évite le code dupliqué. <!-- .element: class="fragment" -->
 - Normalise votre code. <!-- .element: class="fragment" -->
@@ -117,6 +115,11 @@ Pourquoi dans le cadre d'un développement en mode API c'est encore plus importa
 
 ### DAO
 
+Pour vous c'est quoi ?
+
+---
+
+- DAO : « Data Access Object »
 - Défini les méthodes qui accèdent à la donnée
 - Retourne un objet « typé. » (un modèle)
 
@@ -124,9 +127,7 @@ Pourquoi dans le cadre d'un développement en mode API c'est encore plus importa
 
 ## Pourquoi est-ce important ?
 
----
-
-- Permet de tester. <!-- .element: class="fragment" -->
+- Permet de tester votre code.
 - Permet de changer la source de données. <!-- .element: class="fragment" -->
 - Centralise votre code. <!-- .element: class="fragment" -->
 - Simplifie les modifications. (À votre avis ?) <!-- .element: class="fragment" -->
@@ -138,10 +139,7 @@ Pourquoi dans le cadre d'un développement en mode API c'est encore plus importa
 
 ---
 
-### Définir
-
----
-
+## Définir (configurations, constantes)
 ### Fichier regroupant la configuration
 
 À votre avis, que doit-il contenir ?
@@ -203,7 +201,8 @@ Alors, qu'en pensez-vous ?
 
 ---
 
-## Un code commenté, c'est du code supprimé
+## Un code en commentaire…
+### …c'est du code supprimé
 
 ---
 
@@ -213,7 +212,7 @@ Alors, qu'en pensez-vous ?
 
 ---
 
-## Bonus : Le code compliqué
+## Le code compliqué
 
 ---
 
@@ -240,3 +239,4 @@ Est-ce simplifiable ?
 ---
 
 # Des questions ?
+
