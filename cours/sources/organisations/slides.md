@@ -26,8 +26,6 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-### Petit apparté
-
 ![moi](./img/code_quality.jpg)
 
 ---
