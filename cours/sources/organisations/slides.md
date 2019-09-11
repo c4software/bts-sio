@@ -154,17 +154,17 @@ Pourquoi dans le cadre d'un développement en mode API c'est encore plus importa
 
 - Utilité ?
 
---- 
+---
 
 [Un exemple](https://gist.github.com/c4software/8b5122405b38f4c933d6a4490f45e1ad)
 
 ---
 
-Alors ?
+Alors, qu'en pensez-vous ?
 
 ---
 
-- Simplifie la lecture du code. <!-- .element: class="fragment" -->
+- Simplifie la lecture du code.
 - Centralise les éléments « sensibles ». <!-- .element: class="fragment" -->
 - Évite le code dupliqués. <!-- .element: class="fragment" -->
 - Réduit la charge mentale. (évite la panique !) <!-- .element: class="fragment" -->
@@ -190,10 +190,10 @@ Alors ?
 
 ### Être prêt pour les modifications de
 
-- L'examen ! <!-- .element: class="fragment" -->
+- L'examen !
 - Du stage ! <!-- .element: class="fragment" -->
 - De la vie ! <!-- .element: class="fragment" -->
-- …
+- … <!-- .element: class="fragment" -->
 
 ---
 
@@ -201,15 +201,11 @@ Alors ?
 
 ---
 
-### Point bonus
+### Allons plus loin
 
 ---
 
 ## Un code commenté, c'est du code supprimé
-
----
-
-## Vous utilisez git !
 
 ---
 
