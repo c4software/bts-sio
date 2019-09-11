@@ -85,6 +85,10 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
+![princpe](./img/git_principe.jpeg)
+
+---
+
 ## RAPIDE
 
 ![Rapide](./img/rapide.gif)
@@ -155,14 +159,21 @@ Un identifiant symbolique pour un commit.
 
 « C'est une étiquette ou un raccourci vers une version »
 
+---
+
+![princpe](./img/git_principe2.jpeg)
 
 ---
 
 ## Les branches
-### Et le merge <!-- .element: class="fragment" -->
 
-![branches](./img/branch.png)
+![branches](./img/git_branch.jpeg)
 
+---
+
+## Le Merge
+
+![branches](./img/git_merge.jpeg)
 
 ---
 
@@ -171,7 +182,6 @@ Un identifiant symbolique pour un commit.
 Nombre de commits par semaine chez Facebook ?
 
 - ~10 000 <!-- .element: class="fragment" -->
-
 
 ---
 
@@ -471,6 +481,10 @@ $ git branch -d evolution1
 ---
 
 ## En résumé
+
+---
+
+![princpe](./img/git_principe3.jpeg)
 
 ---
 
