@@ -1035,7 +1035,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Tue Sep 17 2019 22:47:45 GMT+0200 (GMT+02:00)</em></p>
+<p><em>Last modified: Tue Sep 17 2019 22:55:40 GMT+0200 (GMT+02:00)</em></p>
 </blockquote>
 <h1 id="r&#xE9;organiser-mon-code">(R&#xE9;)organiser mon code</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1062,6 +1062,7 @@
 - L&apos;acc&#xE8;s &#xE0; la donn&#xE9;es n&apos;est pas centralis&#xE9; (les fichiers JSON sont ouvert directement depuis la page).
 - Il n&apos;y a pas de DAO.
 - Il n&apos;y a aucun mod&#xE8;le de donn&#xE9;es.
+- Pas de configuration centralis&#xE9;e.
 </code></pre>
 </div></div>
 
@@ -1074,6 +1075,23 @@
 <li>L&apos;interface est responsive.</li>
 <li>Il est possible d&apos;ajouter des &#xE9;l&#xE9;ments via l&apos;interface web.</li>
 </ul>
+<h2 id="d&#xE9;but-des-modifications">D&#xE9;but des modifications</h2>
+<p>Comme vous l&apos;avez constat&#xE9; l&apos;application comporte de nombreux d&#xE9;faut (plus ou moins important). Nous allons les prendres dans l&apos;ordre :</p>
+<ul>
+<li>Le d&#xE9;coupage (pour &#xE9;viter la duplication du code HTML).</li>
+<li>R&#xE9;&#xE9;crire la page d&apos;accueil pour ne plus avoir 3x le m&#xEA;me code &#xE0; la suite.</li>
+<li>Cr&#xE9;er un mod&#xE8;le qui repr&#xE9;sente un &#xAB; lien &#xBB;.</li>
+<li>Cr&#xE9;er un DAO pour l&apos;acc&#xE8;s &#xE0; la donn&#xE9;es (Lecture, Ajout).</li>
+<li>Cr&#xE9;er un fichier PHP &#xAB; avec les param&#xE8;tres / constantes &#xBB; de l&apos;application.</li>
+</ul>
+<h2 id="le-d&#xE9;coupage-du-code-html">Le d&#xE9;coupage du code HTML</h2>
+<h2 id="lorganisation-du-code-php">L&apos;organisation du code PHP</h2>
+<h2 id="le-mod&#xE8;le-de-la-donn&#xE9;es">Le mod&#xE8;le de la donn&#xE9;es</h2>
+<h2 id="le-dao">Le DAO</h2>
+<h2 id="les-param&#xE8;tres">Les param&#xE8;tres</h2>
+<h2 id="en-plus--migration-vers-mysql">En plus : Migration vers MySQL</h2>
+<h2 id="en-plus--autorisation-dacc&#xE8;s">En plus : Autorisation d&apos;acc&#xE8;s</h2>
+<h2 id="en-plus--ne-pas-autoriser-plusieurs-lien-identique">En plus : Ne pas autoriser plusieurs lien identique</h2>
 
                                 
                                 </section>
@@ -1109,7 +1127,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"(Ré)organisation d'un code","level":"1.5.2","depth":2,"next":{"title":"Javascript avancé (À venir)","level":"1.6","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.6.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","articles":[]},{"title":"Prise en main « Javascript avancés »","level":"1.6.2","depth":2,"path":"tp/javascript_avancés/introduction.md","ref":"tp/javascript_avancés/introduction.md","articles":[]}]},"previous":{"title":"Slides","level":"1.5.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/organisation/introduction.md","mtime":"2019-09-17T20:47:45.297Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-17T20:47:43.035Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"(Ré)organisation d'un code","level":"1.5.2","depth":2,"next":{"title":"Javascript avancé (À venir)","level":"1.6","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.6.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","articles":[]},{"title":"Prise en main « Javascript avancés »","level":"1.6.2","depth":2,"path":"tp/javascript_avancés/introduction.md","ref":"tp/javascript_avancés/introduction.md","articles":[]}]},"previous":{"title":"Slides","level":"1.5.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/organisation/introduction.md","mtime":"2019-09-17T20:55:40.849Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-17T20:55:54.613Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
