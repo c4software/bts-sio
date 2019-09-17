@@ -14,6 +14,7 @@
   - [Git en groupe + GitLab](tp/gitlab/README.md)
 - Organisation du code (À relire)
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations)
+  - [(Ré)organisation d'un code](tp/organisation/introduction.md)
 - Javascript avancé (À venir)
   - [Slides](https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés)
   - [Prise en main « Javascript avancés »](tp/javascript_avancés/introduction.md)
