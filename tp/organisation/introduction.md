@@ -40,6 +40,7 @@ PS: Cette première analyse est importante !
 - L'accès à la données n'est pas centralisé (les fichiers JSON sont ouvert directement depuis la page).
 - Il n'y a pas de DAO.
 - Il n'y a aucun modèle de données.
+- Pas de configuration centralisée.
 ```
 
 {% endreveal %}
@@ -53,3 +54,30 @@ Avant de commencer à modifier le code il faut « lister » / « détailler » l
 - Les données sont stockés dans des fichiers JSON.
 - L'interface est responsive.
 - Il est possible d'ajouter des éléments via l'interface web.
+
+## Début des modifications
+
+Comme vous l'avez constaté l'application comporte de nombreux défaut (plus ou moins important). Nous allons les prendres dans l'ordre :
+
+- Le découpage (pour éviter la duplication du code HTML).
+- Réécrire la page d'accueil pour ne plus avoir 3x le même code à la suite.
+- Créer un modèle qui représente un « lien ».
+- Créer un DAO pour l'accès à la données (Lecture, Ajout).
+- Créer un fichier PHP « avec les paramètres / constantes » de l'application.
+
+## Le découpage du code HTML
+
+## L'organisation du code PHP
+
+## Le modèle de la données
+
+## Le DAO
+
+## Les paramètres
+
+## En plus : Migration vers MySQL
+
+## En plus : Autorisation d'accès
+
+## En plus : Ne pas autoriser plusieurs lien identique
+
