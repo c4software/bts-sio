@@ -53,4 +53,3 @@ Avant de commencer à modifier le code il faut « lister » / « détailler » l
 - Les données sont stockés dans des fichiers JSON.
 - L'interface est responsive.
 - Il est possible d'ajouter des éléments via l'interface web.
-
