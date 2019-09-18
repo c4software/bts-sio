@@ -205,6 +205,10 @@ foreach($elements as $el){
 
 {% endreveal %}
 
+### Page detail.php
+
+Utilisez vos nouvelles fonctions dans la page `detail.php`. Cette fois-ci pas d'aide.
+
 ## L'organisation du code PHP
 
 ## Le modèle de la données
