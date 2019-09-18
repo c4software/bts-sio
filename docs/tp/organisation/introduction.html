@@ -1035,7 +1035,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Tue Sep 17 2019 22:55:40 GMT+0200 (GMT+02:00)</em></p>
+<p><em>Last modified: Wed Sep 18 2019 22:07:46 GMT+0200 (GMT+02:00)</em></p>
 </blockquote>
 <h1 id="r&#xE9;organiser-mon-code">(R&#xE9;)organiser mon code</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1057,8 +1057,9 @@
 </code></pre>
 <p>PS: Cette premi&#xE8;re analyse est importante !</p>
 <div class="click_reveal"><span> Cliquer pour voir ma &#xAB; solution &#xBB; </span><div><pre><code class="lang-text">- Non utilisation de template.
-- Le code est r&#xE9;pet&#xE9; (sans utilisation de fonction).
-- Le code HTML est dupliqu&#xE9; entre les deux pages.
+- Le code des liste est r&#xE9;pet&#xE9; (sans utilisation de fonction).
+- Le Header et le Footer HTML est dupliqu&#xE9; entre les deux pages.
+- Le &#xAB; Widget &#xBB; HTML des liste est r&#xE9;p&#xE9;t&#xE9; 3x
 - L&apos;acc&#xE8;s &#xE0; la donn&#xE9;es n&apos;est pas centralis&#xE9; (les fichiers JSON sont ouvert directement depuis la page).
 - Il n&apos;y a pas de DAO.
 - Il n&apos;y a aucun mod&#xE8;le de donn&#xE9;es.
@@ -1085,6 +1086,112 @@
 <li>Cr&#xE9;er un fichier PHP &#xAB; avec les param&#xE8;tres / constantes &#xBB; de l&apos;application.</li>
 </ul>
 <h2 id="le-d&#xE9;coupage-du-code-html">Le d&#xE9;coupage du code HTML</h2>
+<h3 id="header--footer">Header &amp; Footer</h3>
+<p>La premi&#xE8;re &#xE9;tape est de d&#xE9;couper le HTML pour &#xE9;viter la duplication de code HTML.</p>
+<ul>
+<li>Sortir le Header dans une fonction avec param&#xE8;tre pour le titre.</li>
+<li>Sortir le Footer dans une fonction.</li>
+</ul>
+<p>Pour l&apos;organisation je vous propose d&apos;&#xE9;crire un fichier PHP <code>index.php</code>. Bien &#xE9;videment, nous n&apos;allons pas le mettre &#xE0; la racine. Mais dans un dossier nomm&#xE9;e (par exemple) <code>fonctions</code>.</p>
+<p>C&apos;est &#xE0; vous :</p>
+<ul>
+<li>Cr&#xE9;er le dossier.</li>
+<li>Cr&#xE9;er un fichier <code>index.php</code> &#xE0; l&apos;interieur de celui-ci.</li>
+</ul>
+<p>La structure de vos sources dois ressembler &#xE0; quelques chose comme :</p>
+<pre><code class="lang-shell">&#x251C;&#x2500;&#x2500; data
+&#x2502;   &#x251C;&#x2500;&#x2500; reddit.json
+&#x2502;   &#x251C;&#x2500;&#x2500; search.json
+&#x2502;   &#x2514;&#x2500;&#x2500; twitter.json
+&#x251C;&#x2500;&#x2500; detail.php
+&#x251C;&#x2500;&#x2500; fonctions
+&#x2502;   &#x2514;&#x2500;&#x2500; index.php
+&#x251C;&#x2500;&#x2500; index.php
+&#x2514;&#x2500;&#x2500; public
+    &#x2514;&#x2500;&#x2500; main.css
+</code></pre>
+<p>Pour vous aidez dans votre missions voil&#xE0; la structure du fichier :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">header</span><span class="hljs-params">($titre)</span> </span>{
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&#x2026;&quot;</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">footer</span><span class="hljs-params">($titre)</span> </span>{
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&#x2026;&quot;</span>;
+}
+</code></pre>
+<p>C&apos;est &#xE0; vous, dans la page <code>index.php</code> actuelle isoler le code relatif au <code>header</code> et au <code>footer</code> et mettez le dans les bonnes fonctions.</p>
+<p>Utilisez maintenant les fonctions dans votre code.</p>
+<blockquote>
+<p>Rappel: En PHP vous devez <code>include</code> les fichiers pour rendre le code accessible dans la page. Exemple :</p>
+</blockquote>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span> 
+    <span class="hljs-keyword">include</span>(<span class="hljs-string">&quot;fonctions/index.php);
+
+    header();
+</span></code></pre>
+<h3 id="testez">Testez</h3>
+<p>Valider le bon fonctionnement de votre modification avant d&apos;allez plus loin.</p>
+<h3 id="reflechissons-ensemble">Reflechissons ensemble</h3>
+<p>C&apos;est bien, mais ! Est-il possible de faire autrement ? Pouvons nous utilisez un objet plut&#xF4;t que deux fonctions ?</p>
+<ul>
+<li>Est-ce int&#xE9;ressant ?</li>
+<li>Quel est l&apos;avantage ?</li>
+</ul>
+<h3 id="r&#xE9;&#xE9;criture-des-listes-de-lien">R&#xE9;&#xE9;criture des listes de lien</h3>
+<p>Comme vous l&apos;avez constat&#xE9;, les liste de lien (ainsi que le code PHP) est r&#xE9;p&#xE9;t&#xE9; 3x. Proc&#xE9;der ainsi est &#xE0; la fois in&#xE9;ficace et inutile. Prendre du temps pour &#xE9;viter ce genre de choses est primordiale et vous &#xE9;vitera bien des tracas en cas de mise &#xE0; jour de votre code (ou de celui d&apos;un coll&#xE8;gue).</p>
+<p>Pour rappel les listes de liens ressemble &#xE0; :</p>
+<p><img src="img/liste_lien.png" alt="lien"></p>
+<p>Regardons ensemble le code source de cet &#xE9;l&#xE9;ment :</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card mb-4 shadow-sm&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card-header&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;nolink&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;detail.php?c=search&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-0 font-weight-normal&quot;</span>&gt;</span>Recherche <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;material-icons&quot;</span>&gt;</span>edit<span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card-body&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;list-unstyled mt-3 mb-4&quot;</span>&gt;</span>
+        <span class="php"><span class="hljs-meta">&lt;?php</span>
+        $data = json_decode(file_get_contents(<span class="hljs-string">&quot;./data/search.json&quot;</span>));
+        <span class="hljs-keyword">foreach</span>($data <span class="hljs-keyword">as</span> $d){
+            <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;li&gt;&lt;a rel=&apos;nofollow&apos; target=&apos;_blank&apos; href=&apos;&quot;</span> . $d-&gt;lien . <span class="hljs-string">&quot;&apos;&gt;&quot;</span> . $d-&gt;name . <span class="hljs-string">&quot;&lt;/a&gt;&lt;/li&gt;&quot;</span>;
+        }
+        <span class="hljs-meta">?&gt;</span></span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<ul>
+<li>Quels &#xE9;l&#xE9;ments sont variables ?</li>
+<li>Comment reformater le code pour le transformer en fonction ?</li>
+</ul>
+<h3 id="place-au-code">Place au code</h3>
+<p>Je suis sympa je vous aide, dans <code>fonctions/index.php</code> ajouter une fonction nomm&#xE9;e <code>genereListe</code>.</p>
+<pre><code class="lang-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">genereListe</span><span class="hljs-params">($title, $file)</span></span>{
+    <span class="hljs-comment">// Votre code ici.</span>
+}
+</code></pre>
+<p>Remplacer le code dupliqu&#xE9;, par l&apos;appel &#xE0; votre fonction.</p>
+<h3 id="testez">Testez</h3>
+<p>Valider le bon fonctionnement de votre modification avant d&apos;allez plus loin.</p>
+<h3 id="allez-plus-loin">Allez plus loin</h3>
+<p>Comme vous devez le constater, nous n&apos;avons pas retirer le code dupliqu&#xE9;&#x2026; nous l&apos;avons simplifi&#xE9;, mais pas supprim&#xE9;.</p>
+<p>&#xC0; votre avis comment proc&#xE9;der ?</p>
+<div class="click_reveal"><span> Cliquer pour voir ma &#xAB; solution &#xBB; </span><div><pre><code class="lang-php">$elements = [
+    [<span class="hljs-string">&quot;file&quot;</span> =&gt; <span class="hljs-string">&quot;search&quot;</span>, <span class="hljs-string">&quot;title&quot;</span> =&gt; <span class="hljs-string">&quot;Rechercher&quot;</span>],
+    [<span class="hljs-string">&quot;file&quot;</span> =&gt; <span class="hljs-string">&quot;reddit&quot;</span>, <span class="hljs-string">&quot;title&quot;</span> =&gt; <span class="hljs-string">&quot;Reddit&quot;</span>],
+    [<span class="hljs-string">&quot;file&quot;</span> =&gt; <span class="hljs-string">&quot;twitter&quot;</span>, <span class="hljs-string">&quot;title&quot;</span> =&gt; <span class="hljs-string">&quot;Twitter&quot;</span>],
+];
+
+<span class="hljs-keyword">foreach</span>($elements <span class="hljs-keyword">as</span> $el){
+    genereListe($el[<span class="hljs-string">&apos;title&apos;</span>], $el[<span class="hljs-string">&apos;file&apos;</span>]);
+}
+</code></pre>
+<ul>
+<li>Quel est l&apos;avantage de ma solution ?</li>
+<li>Est-ce meilleur que la votre ?</li>
+</ul>
+</div></div>
+
 <h2 id="lorganisation-du-code-php">L&apos;organisation du code PHP</h2>
 <h2 id="le-mod&#xE8;le-de-la-donn&#xE9;es">Le mod&#xE8;le de la donn&#xE9;es</h2>
 <h2 id="le-dao">Le DAO</h2>
@@ -1127,7 +1234,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"(Ré)organisation d'un code","level":"1.5.2","depth":2,"next":{"title":"Javascript avancé (À venir)","level":"1.6","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.6.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","articles":[]},{"title":"Prise en main « Javascript avancés »","level":"1.6.2","depth":2,"path":"tp/javascript_avancés/introduction.md","ref":"tp/javascript_avancés/introduction.md","articles":[]}]},"previous":{"title":"Slides","level":"1.5.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/organisation/introduction.md","mtime":"2019-09-17T20:55:40.849Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-17T20:55:54.613Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"(Ré)organisation d'un code","level":"1.5.2","depth":2,"next":{"title":"Javascript avancé (À venir)","level":"1.6","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.6.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","articles":[]},{"title":"Prise en main « Javascript avancés »","level":"1.6.2","depth":2,"path":"tp/javascript_avancés/introduction.md","ref":"tp/javascript_avancés/introduction.md","articles":[]}]},"previous":{"title":"Slides","level":"1.5.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/organisation/introduction.md","mtime":"2019-09-18T20:07:46.828Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-18T20:08:06.024Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
