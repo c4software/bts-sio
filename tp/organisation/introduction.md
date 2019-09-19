@@ -181,7 +181,11 @@ Remplacer le code dupliqué, par l'appel à votre fonction.
 
 Valider le bon fonctionnement de votre modification avant d'allez plus loin.
 
-### Allez plus loin
+### Page detail.php
+
+Utilisez vos nouvelles fonctions dans la page `detail.php`. Cette fois-ci pas d'aide.
+
+## L'organisation du code PHP
 
 Comme vous devez le constater, nous n'avons pas retirer le code dupliqué… nous l'avons simplifié, mais pas supprimé.
 
@@ -205,15 +209,147 @@ foreach($elements as $el){
 
 {% endreveal %}
 
-### Page detail.php
-
-Utilisez vos nouvelles fonctions dans la page `detail.php`. Cette fois-ci pas d'aide.
-
-## L'organisation du code PHP
-
 ## Le modèle de la données
 
+Lors de l'analyse du code, vous avez remarqué qu'il était possible d'ajouter des liens dans les fichiers JSON. 
+
+L'ajout est fait « à l'arrache », oui ça fonctionne… Mais c'est clairement pas optimale.
+
+Nous allons donc commencer par créer un modèle, le modèle va permettre de « normaliser » notre dévolppement et va simplifier la réutilisation du code.
+
+Par formalisme nous allons appeler notre dossier `modeles` avec dedans un fichier `lien.php`.
+
+C'est à vous créé le dossier et le fichier.
+
+Votre aborescence dois maintenant ressembler à :
+
+```shell
+├── data
+│   ├── reddit.json
+│   ├── search.json
+│   └── twitter.json
+├── detail.php
+├── fonctions
+│   └── index.php
+├── index.php
+├── modeles
+│   └── lien.php
+└── public
+    └── main.cs
+```
+
+### La class PhP
+
+Pour vous aidez, voilà la classe Lien :
+
+```php
+<?php
+class Lien {
+    public $lien = "";
+    public $name = "";
+
+    function __construct($lien, $name)
+    {
+        $this->lien = $lien;
+        $this->name = $name;
+    }
+}
+```
+
+### Utiliser la class
+
+Maintenant que nous avons défini la classe utilisons la !
+
+Dans le fichier `detail.php` modifier :
+
+- Trouver l'endroit où ce trouve l'ajout (`array_push`…)
+- Remplacer le Tableau par l'utilisation de l'objet.
+
+### Testez
+
+Valider que le site fonctionne toujours.
+
+### Faire évoluer la class
+
+Le gros plus d'avoir un modèle, c'est la possibilité d'ajouter des méthodes. Je vous propose d'ajouter une méthode permettant de valider que le lien est bien un lien.
+
+Créer une méthode avec le code suivant :
+
+```php
+$url = filter_var($this->link, FILTER_SANITIZE_URL);
+return filter_var($url, FILTER_VALIDATE_URL) !== false;
+```
+
+⏩ Utiliser la méthode dans votre code pour n'ajouter le lien que si celui-ci est valide.
+
+### Testez
+
+Valider que le site fonctionne toujours.
+
 ## Le DAO
+
+Le DAO, est également un élément important. Cette classe vas nous centraliser le code pour tout ce qui est l'accès à la données (ajout, suppression, liste).
+
+Comme vu en cours, l'une des possibilités pour un DAO est de créer une classe avec des méthodes `static` (c'est à dire accessible sans créer l'objet). C'est cette solution que je vous propose de faire.
+
+Dans le code nous avons 2 actions possible :
+
+- Avoir le contenu (liste).
+- Ajouter du contenu.
+
+### L'organisation
+
+La première étape est de créer les dossiers, par convention nous allons « ranger » notre `DAO` dans un dossier nommée dao et dans un fichier qui regroupe les actions similaires (ou qui font références à la même chose). Dans notre cas :
+
+- Créer un dossier nommée `dao`
+- Créer un fichier dedans nommée `liens.php`
+
+Votre arborescence dois maintenant ressembler à :
+
+```shell
+.
+├── dao
+│   └── liens.php
+├── data
+│   ├── reddit.json
+│   ├── search.json
+│   └── twitter.json
+├── detail.php
+├── fonctions
+│   └── index.php
+├── index.php
+├── modeles
+│   └── lien.php
+└── public
+    └── main.css
+```
+
+### Base du code PHP
+
+Pour vous aidez voilà la base du code :
+
+```php
+<?php
+class LienDao {
+    static function get($fichier){
+        // Votre code ici
+        // return [];
+    }
+    static function put($fichier, $lien, $name){
+        // Votre code ici
+        // return ???;
+    }
+}
+```
+
+- Complèter les méthodes avec le code précédement réalisé, en ne gardant bien évidement que le code PHP…
+- Utiliser le DAO dans votre code PHP (index.php et detail.php)
+
+⚠️ Rappel les méthode static en PHP sont appelés comme ça `LienDao::get("")`.
+
+### Testez
+
+Valider que le site fonctionne toujours.
 
 ## Les paramètres
 
@@ -222,4 +358,3 @@ Utilisez vos nouvelles fonctions dans la page `detail.php`. Cette fois-ci pas d'
 ## En plus : Autorisation d'accès
 
 ## En plus : Ne pas autoriser plusieurs lien identique
-
