@@ -1035,7 +1035,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Sep 18 2019 22:34:41 GMT+0200 (GMT+02:00)</em></p>
+<p><em>Last modified: Thu Sep 19 2019 22:19:30 GMT+0200 (GMT+02:00)</em></p>
 </blockquote>
 <h1 id="r&#xE9;organiser-mon-code">(R&#xE9;)organiser mon code</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1173,7 +1173,9 @@
 <p>Remplacer le code dupliqu&#xE9;, par l&apos;appel &#xE0; votre fonction.</p>
 <h3 id="testez">Testez</h3>
 <p>Valider le bon fonctionnement de votre modification avant d&apos;allez plus loin.</p>
-<h3 id="allez-plus-loin">Allez plus loin</h3>
+<h3 id="page-detailphp">Page detail.php</h3>
+<p>Utilisez vos nouvelles fonctions dans la page <code>detail.php</code>. Cette fois-ci pas d&apos;aide.</p>
+<h2 id="lorganisation-du-code-php">L&apos;organisation du code PHP</h2>
 <p>Comme vous devez le constater, nous n&apos;avons pas retirer le code dupliqu&#xE9;&#x2026; nous l&apos;avons simplifi&#xE9;, mais pas supprim&#xE9;.</p>
 <p>&#xC0; votre avis comment proc&#xE9;der ?</p>
 <div class="click_reveal"><span> Cliquer pour voir ma &#xAB; solution &#xBB; </span><div><pre><code class="lang-php">$elements = [
@@ -1192,11 +1194,110 @@
 </ul>
 </div></div>
 
-<h3 id="page-detailphp">Page detail.php</h3>
-<p>Utilisez vos nouvelles fonctions dans la page <code>detail.php</code>. Cette fois-ci pas d&apos;aide.</p>
-<h2 id="lorganisation-du-code-php">L&apos;organisation du code PHP</h2>
 <h2 id="le-mod&#xE8;le-de-la-donn&#xE9;es">Le mod&#xE8;le de la donn&#xE9;es</h2>
+<p>Lors de l&apos;analyse du code, vous avez remarqu&#xE9; qu&apos;il &#xE9;tait possible d&apos;ajouter des liens dans les fichiers JSON. </p>
+<p>L&apos;ajout est fait &#xAB; &#xE0; l&apos;arrache &#xBB;, oui &#xE7;a fonctionne&#x2026; Mais c&apos;est clairement pas optimale.</p>
+<p>Nous allons donc commencer par cr&#xE9;er un mod&#xE8;le, le mod&#xE8;le va permettre de &#xAB; normaliser &#xBB; notre d&#xE9;volppement et va simplifier la r&#xE9;utilisation du code.</p>
+<p>Par formalisme nous allons appeler notre dossier <code>modeles</code> avec dedans un fichier <code>lien.php</code>.</p>
+<p>C&apos;est &#xE0; vous cr&#xE9;&#xE9; le dossier et le fichier.</p>
+<p>Votre aborescence dois maintenant ressembler &#xE0; :</p>
+<pre><code class="lang-shell">&#x251C;&#x2500;&#x2500; data
+&#x2502;   &#x251C;&#x2500;&#x2500; reddit.json
+&#x2502;   &#x251C;&#x2500;&#x2500; search.json
+&#x2502;   &#x2514;&#x2500;&#x2500; twitter.json
+&#x251C;&#x2500;&#x2500; detail.php
+&#x251C;&#x2500;&#x2500; fonctions
+&#x2502;   &#x2514;&#x2500;&#x2500; index.php
+&#x251C;&#x2500;&#x2500; index.php
+&#x251C;&#x2500;&#x2500; modeles
+&#x2502;   &#x2514;&#x2500;&#x2500; lien.php
+&#x2514;&#x2500;&#x2500; public
+    &#x2514;&#x2500;&#x2500; main.cs
+</code></pre>
+<h3 id="la-class-php">La class PhP</h3>
+<p>Pour vous aidez, voil&#xE0; la classe Lien :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Lien</span> </span>{
+    <span class="hljs-keyword">public</span> $lien = <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-keyword">public</span> $name = <span class="hljs-string">&quot;&quot;</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">($lien, $name)</span>
+    </span>{
+        $this-&gt;lien = $lien;
+        $this-&gt;name = $name;
+    }
+}
+</code></pre>
+<h3 id="utiliser-la-class">Utiliser la class</h3>
+<p>Maintenant que nous avons d&#xE9;fini la classe utilisons la !</p>
+<p>Dans le fichier <code>detail.php</code> modifier :</p>
+<ul>
+<li>Trouver l&apos;endroit o&#xF9; ce trouve l&apos;ajout (<code>array_push</code>&#x2026;)</li>
+<li>Remplacer le Tableau par l&apos;utilisation de l&apos;objet.</li>
+</ul>
+<h3 id="testez">Testez</h3>
+<p>Valider que le site fonctionne toujours.</p>
+<h3 id="faire-&#xE9;voluer-la-class">Faire &#xE9;voluer la class</h3>
+<p>Le gros plus d&apos;avoir un mod&#xE8;le, c&apos;est la possibilit&#xE9; d&apos;ajouter des m&#xE9;thodes. Je vous propose d&apos;ajouter une m&#xE9;thode permettant de valider que le lien est bien un lien.</p>
+<p>Cr&#xE9;er une m&#xE9;thode avec le code suivant :</p>
+<pre><code class="lang-php">$url = filter_var($this-&gt;link, FILTER_SANITIZE_URL);
+<span class="hljs-keyword">return</span> filter_var($url, FILTER_VALIDATE_URL) !== <span class="hljs-keyword">false</span>;
+</code></pre>
+<p>&#x23E9; Utiliser la m&#xE9;thode dans votre code pour n&apos;ajouter le lien que si celui-ci est valide.</p>
+<h3 id="testez">Testez</h3>
+<p>Valider que le site fonctionne toujours.</p>
 <h2 id="le-dao">Le DAO</h2>
+<p>Le DAO, est &#xE9;galement un &#xE9;l&#xE9;ment important. Cette classe vas nous centraliser le code pour tout ce qui est l&apos;acc&#xE8;s &#xE0; la donn&#xE9;es (ajout, suppression, liste).</p>
+<p>Comme vu en cours, l&apos;une des possibilit&#xE9;s pour un DAO est de cr&#xE9;er une classe avec des m&#xE9;thodes <code>static</code> (c&apos;est &#xE0; dire accessible sans cr&#xE9;er l&apos;objet). C&apos;est cette solution que je vous propose de faire.</p>
+<p>Dans le code nous avons 2 actions possible :</p>
+<ul>
+<li>Avoir le contenu (liste).</li>
+<li>Ajouter du contenu.</li>
+</ul>
+<h3 id="lorganisation">L&apos;organisation</h3>
+<p>La premi&#xE8;re &#xE9;tape est de cr&#xE9;er les dossiers, par convention nous allons &#xAB; ranger &#xBB; notre <code>DAO</code> dans un dossier nomm&#xE9;e dao et dans un fichier qui regroupe les actions similaires (ou qui font r&#xE9;f&#xE9;rences &#xE0; la m&#xEA;me chose). Dans notre cas :</p>
+<ul>
+<li>Cr&#xE9;er un dossier nomm&#xE9;e <code>dao</code></li>
+<li>Cr&#xE9;er un fichier dedans nomm&#xE9;e <code>liens.php</code></li>
+</ul>
+<p>Votre arborescence dois maintenant ressembler &#xE0; :</p>
+<pre><code class="lang-shell">.
+&#x251C;&#x2500;&#x2500; dao
+&#x2502;   &#x2514;&#x2500;&#x2500; liens.php
+&#x251C;&#x2500;&#x2500; data
+&#x2502;   &#x251C;&#x2500;&#x2500; reddit.json
+&#x2502;   &#x251C;&#x2500;&#x2500; search.json
+&#x2502;   &#x2514;&#x2500;&#x2500; twitter.json
+&#x251C;&#x2500;&#x2500; detail.php
+&#x251C;&#x2500;&#x2500; fonctions
+&#x2502;   &#x2514;&#x2500;&#x2500; index.php
+&#x251C;&#x2500;&#x2500; index.php
+&#x251C;&#x2500;&#x2500; modeles
+&#x2502;   &#x2514;&#x2500;&#x2500; lien.php
+&#x2514;&#x2500;&#x2500; public
+    &#x2514;&#x2500;&#x2500; main.css
+</code></pre>
+<h3 id="base-du-code-php">Base du code PHP</h3>
+<p>Pour vous aidez voil&#xE0; la base du code :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LienDao</span> </span>{
+    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get</span><span class="hljs-params">($fichier)</span></span>{
+        <span class="hljs-comment">// Votre code ici</span>
+        <span class="hljs-comment">// return [];</span>
+    }
+    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">put</span><span class="hljs-params">($fichier, $lien, $name)</span></span>{
+        <span class="hljs-comment">// Votre code ici</span>
+        <span class="hljs-comment">// return ???;</span>
+    }
+}
+</code></pre>
+<ul>
+<li>Compl&#xE8;ter les m&#xE9;thodes avec le code pr&#xE9;c&#xE9;dement r&#xE9;alis&#xE9;, en ne gardant bien &#xE9;videment que le code PHP&#x2026;</li>
+<li>Utiliser le DAO dans votre code PHP (index.php et detail.php)</li>
+</ul>
+<p>&#x26A0;&#xFE0F; Rappel les m&#xE9;thode static en PHP sont appel&#xE9;s comme &#xE7;a <code>LienDao::get(&quot;&quot;)</code>.</p>
+<h3 id="testez">Testez</h3>
+<p>Valider que le site fonctionne toujours.</p>
 <h2 id="les-param&#xE8;tres">Les param&#xE8;tres</h2>
 <h2 id="en-plus--migration-vers-mysql">En plus : Migration vers MySQL</h2>
 <h2 id="en-plus--autorisation-dacc&#xE8;s">En plus : Autorisation d&apos;acc&#xE8;s</h2>
@@ -1236,7 +1337,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"(Ré)organisation d'un code","level":"1.5.2","depth":2,"next":{"title":"Javascript avancé (À venir)","level":"1.6","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.6.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","articles":[]},{"title":"Prise en main « Javascript avancés »","level":"1.6.2","depth":2,"path":"tp/javascript_avancés/introduction.md","ref":"tp/javascript_avancés/introduction.md","articles":[]}]},"previous":{"title":"Slides","level":"1.5.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/organisation/introduction.md","mtime":"2019-09-18T20:34:41.161Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-18T20:35:39.886Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"(Ré)organisation d'un code","level":"1.5.2","depth":2,"next":{"title":"Javascript avancé (À venir)","level":"1.6","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.6.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","articles":[]},{"title":"Prise en main « Javascript avancés »","level":"1.6.2","depth":2,"path":"tp/javascript_avancés/introduction.md","ref":"tp/javascript_avancés/introduction.md","articles":[]}]},"previous":{"title":"Slides","level":"1.5.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/organisation/introduction.md","mtime":"2019-09-19T20:19:30.570Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-19T20:19:51.617Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
