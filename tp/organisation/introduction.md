@@ -177,6 +177,7 @@ function genereListe($title, $file){
 ```
 
 Remplacer le code dupliqué, par l'appel à votre fonction.
+
 ### Testez
 
 Valider le bon fonctionnement de votre modification avant d'allez plus loin.
@@ -307,7 +308,6 @@ La première étape est de créer les dossiers, par convention nous allons « ra
 Votre arborescence dois maintenant ressembler à :
 
 ```shell
-.
 ├── dao
 │   └── liens.php
 ├── data
@@ -353,8 +353,83 @@ Valider que le site fonctionne toujours.
 
 ## Les paramètres
 
-## En plus : Migration vers MySQL
+Nous avons maintenant mis en place la structure. Mais comme vous pouvez le constater nous avons encore à un certains nombre d'endroit « des éléments en dur ».
 
-## En plus : Autorisation d'accès
+Par exemple le tableau « $elements », celui contient des valeurs static « twitter », « search », etc…. Si vous souhaitez ajouter une nouvelle catégorie vous allez devoir ajouter un éléments dans le tableau (et surtout vous souvenir à quel endroit celui-ci est défini).
+
+De la même façon, le chemin vers les « data » est également écrit en dur dans votre DAO.
+
+Également le nom de votre site est également écrit en dur.
+
+Les 3 points que j'ai évoqué ne gène évidement en rien le bon fonctionnement de votre site web. Cependant ça rend votre code très « opaque » au changement. Une bonne habitude est donc de sortir dans « un fichier de paramètre » ce qui vous semble pouvoir varier / changer un jour.
+
+### Modification du code
+
+Nous allons donc créer un dossier « parametre » et un fichier « parametres.php »
+
+- Créer un dossier `parametre`.
+- Créer un fichier `parametres.php`.
+
+Votre structure dois maintenant ressembler à quelques choses comme :
+
+```bash
+├── dao
+│   └── liens.php
+├── data
+│   ├── reddit.json
+│   ├── search.json
+│   └── twitter.json
+├── detail.php
+├── fonctions
+│   └── index.php
+├── index.php
+├── modeles
+│   └── lien.php
+├── parametre
+│   └── parametres.php
+└── public
+    └── main.css
+```
+
+### Le fichier parametres.php
+
+Le fichier `parametres.php` vas contenir l'ensemble des élément susceptible de changer dans « la vie » de votre application.
+
+C'est ce que l'on va appeler des constantes.
+
+Voici un exemple de contenu :
+
+```php
+<?php
+
+$_SITE_TITLE = "Shitty Application";
+$_ELEMENTS = [
+    ["file" => "search", "title" => "Rechercher"],
+    ["file" => "reddit", "title" => "Reddit"],
+    ["file" => "twitter", "title" => "Twitter"],
+];
+$_DATA_PATH = "../data/";
+
+```
+
+Placer ce contenu dans le fichier `parametres.php`.
+
+### Utiliser les « constantes »
+
+Modifier vos différentes page PHP pour utiliser les constantes nouvellement définis.
 
 ## En plus : Ne pas autoriser plusieurs lien identique
+
+Pour l'instant il est possible d'inserer plusieurs fois le même lien dans la base de données.
+
+- Modifier la méthodes `put` du DAO pour qu'elle n'autorise plus ce genre de choses.
+
+## En plus : Migration vers MySQL
+
+Nosu allons profitier de la mise en place d'un DAO pour migrer notre code ! Les JSON c'est pratique pour tester mais pas forcément pérenne dans le temps.
+
+- Concevez une petite base de données simple.
+- Modifier votre DAO pour utiliser votre base de données.
+- N'oubliez pas de mettres dans le fichier `parametres.php` la configuration de votre connexion. (️⚠️ Surtout ne l'écriviez pas dans le DAO ⚠️)
+
+⚠️ Vous avez vu l'avantage ! Nous avonse modifier **un seul fichier** et l'ensemble de votre code utilise maintenant MySQL comme système de base de données.

@@ -1035,7 +1035,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Thu Sep 19 2019 22:19:30 GMT+0200 (GMT+02:00)</em></p>
+<p><em>Last modified: Sun Sep 22 2019 12:05:22 GMT+0200 (GMT+02:00)</em></p>
 </blockquote>
 <h1 id="r&#xE9;organiser-mon-code">(R&#xE9;)organiser mon code</h1>
 <h2 id="introduction">Introduction</h2>
@@ -1261,8 +1261,7 @@
 <li>Cr&#xE9;er un fichier dedans nomm&#xE9;e <code>liens.php</code></li>
 </ul>
 <p>Votre arborescence dois maintenant ressembler &#xE0; :</p>
-<pre><code class="lang-shell">.
-&#x251C;&#x2500;&#x2500; dao
+<pre><code class="lang-shell">&#x251C;&#x2500;&#x2500; dao
 &#x2502;   &#x2514;&#x2500;&#x2500; liens.php
 &#x251C;&#x2500;&#x2500; data
 &#x2502;   &#x251C;&#x2500;&#x2500; reddit.json
@@ -1299,9 +1298,65 @@
 <h3 id="testez">Testez</h3>
 <p>Valider que le site fonctionne toujours.</p>
 <h2 id="les-param&#xE8;tres">Les param&#xE8;tres</h2>
-<h2 id="en-plus--migration-vers-mysql">En plus : Migration vers MySQL</h2>
-<h2 id="en-plus--autorisation-dacc&#xE8;s">En plus : Autorisation d&apos;acc&#xE8;s</h2>
+<p>Nous avons maintenant mis en place la structure. Mais comme vous pouvez le constater nous avons encore &#xE0; un certains nombre d&apos;endroit &#xAB; des &#xE9;l&#xE9;ments en dur &#xBB;.</p>
+<p>Par exemple le tableau &#xAB; $elements &#xBB;, celui contient des valeurs static &#xAB; twitter &#xBB;, &#xAB; search &#xBB;, etc&#x2026;. Si vous souhaitez ajouter une nouvelle cat&#xE9;gorie vous allez devoir ajouter un &#xE9;l&#xE9;ments dans le tableau (et surtout vous souvenir &#xE0; quel endroit celui-ci est d&#xE9;fini).</p>
+<p>De la m&#xEA;me fa&#xE7;on, le chemin vers les &#xAB; data &#xBB; est &#xE9;galement &#xE9;crit en dur dans votre DAO.</p>
+<p>&#xC9;galement le nom de votre site est &#xE9;galement &#xE9;crit en dur.</p>
+<p>Les 3 points que j&apos;ai &#xE9;voqu&#xE9; ne g&#xE8;ne &#xE9;videment en rien le bon fonctionnement de votre site web. Cependant &#xE7;a rend votre code tr&#xE8;s &#xAB; opaque &#xBB; au changement. Une bonne habitude est donc de sortir dans &#xAB; un fichier de param&#xE8;tre &#xBB; ce qui vous semble pouvoir varier / changer un jour.</p>
+<h3 id="modification-du-code">Modification du code</h3>
+<p>Nous allons donc cr&#xE9;er un dossier &#xAB; parametre &#xBB; et un fichier &#xAB; parametres.php &#xBB;</p>
+<ul>
+<li>Cr&#xE9;er un dossier <code>parametre</code>.</li>
+<li>Cr&#xE9;er un fichier <code>parametres.php</code>.</li>
+</ul>
+<p>Votre structure dois maintenant ressembler &#xE0; quelques choses comme :</p>
+<pre><code class="lang-bash">&#x251C;&#x2500;&#x2500; dao
+&#x2502;   &#x2514;&#x2500;&#x2500; liens.php
+&#x251C;&#x2500;&#x2500; data
+&#x2502;   &#x251C;&#x2500;&#x2500; reddit.json
+&#x2502;   &#x251C;&#x2500;&#x2500; search.json
+&#x2502;   &#x2514;&#x2500;&#x2500; twitter.json
+&#x251C;&#x2500;&#x2500; detail.php
+&#x251C;&#x2500;&#x2500; fonctions
+&#x2502;   &#x2514;&#x2500;&#x2500; index.php
+&#x251C;&#x2500;&#x2500; index.php
+&#x251C;&#x2500;&#x2500; modeles
+&#x2502;   &#x2514;&#x2500;&#x2500; lien.php
+&#x251C;&#x2500;&#x2500; parametre
+&#x2502;   &#x2514;&#x2500;&#x2500; parametres.php
+&#x2514;&#x2500;&#x2500; public
+    &#x2514;&#x2500;&#x2500; main.css
+</code></pre>
+<h3 id="le-fichier-parametresphp">Le fichier parametres.php</h3>
+<p>Le fichier <code>parametres.php</code> vas contenir l&apos;ensemble des &#xE9;l&#xE9;ment susceptible de changer dans &#xAB; la vie &#xBB; de votre application.</p>
+<p>C&apos;est ce que l&apos;on va appeler des constantes.</p>
+<p>Voici un exemple de contenu :</p>
+<pre><code class="lang-php"><span class="hljs-meta">&lt;?php</span>
+
+$_SITE_TITLE = <span class="hljs-string">&quot;Shitty Application&quot;</span>;
+$_ELEMENTS = [
+    [<span class="hljs-string">&quot;file&quot;</span> =&gt; <span class="hljs-string">&quot;search&quot;</span>, <span class="hljs-string">&quot;title&quot;</span> =&gt; <span class="hljs-string">&quot;Rechercher&quot;</span>],
+    [<span class="hljs-string">&quot;file&quot;</span> =&gt; <span class="hljs-string">&quot;reddit&quot;</span>, <span class="hljs-string">&quot;title&quot;</span> =&gt; <span class="hljs-string">&quot;Reddit&quot;</span>],
+    [<span class="hljs-string">&quot;file&quot;</span> =&gt; <span class="hljs-string">&quot;twitter&quot;</span>, <span class="hljs-string">&quot;title&quot;</span> =&gt; <span class="hljs-string">&quot;Twitter&quot;</span>],
+];
+$_DATA_PATH = <span class="hljs-string">&quot;../data/&quot;</span>;
+</code></pre>
+<p>Placer ce contenu dans le fichier <code>parametres.php</code>.</p>
+<h3 id="utiliser-les-&#xAB;-constantes-&#xBB;">Utiliser les &#xAB; constantes &#xBB;</h3>
+<p>Modifier vos diff&#xE9;rentes page PHP pour utiliser les constantes nouvellement d&#xE9;finis.</p>
 <h2 id="en-plus--ne-pas-autoriser-plusieurs-lien-identique">En plus : Ne pas autoriser plusieurs lien identique</h2>
+<p>Pour l&apos;instant il est possible d&apos;inserer plusieurs fois le m&#xEA;me lien dans la base de donn&#xE9;es.</p>
+<ul>
+<li>Modifier la m&#xE9;thodes <code>put</code> du DAO pour qu&apos;elle n&apos;autorise plus ce genre de choses.</li>
+</ul>
+<h2 id="en-plus--migration-vers-mysql">En plus : Migration vers MySQL</h2>
+<p>Nosu allons profitier de la mise en place d&apos;un DAO pour migrer notre code ! Les JSON c&apos;est pratique pour tester mais pas forc&#xE9;ment p&#xE9;renne dans le temps.</p>
+<ul>
+<li>Concevez une petite base de donn&#xE9;es simple.</li>
+<li>Modifier votre DAO pour utiliser votre base de donn&#xE9;es.</li>
+<li>N&apos;oubliez pas de mettres dans le fichier <code>parametres.php</code> la configuration de votre connexion. (&#xFE0F;&#x26A0;&#xFE0F; Surtout ne l&apos;&#xE9;criviez pas dans le DAO &#x26A0;&#xFE0F;)</li>
+</ul>
+<p>&#x26A0;&#xFE0F; Vous avez vu l&apos;avantage ! Nous avonse modifier <strong>un seul fichier</strong> et l&apos;ensemble de votre code utilise maintenant MySQL comme syst&#xE8;me de base de donn&#xE9;es.</p>
 
                                 
                                 </section>
@@ -1337,7 +1392,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"(Ré)organisation d'un code","level":"1.5.2","depth":2,"next":{"title":"Javascript avancé (À venir)","level":"1.6","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.6.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","articles":[]},{"title":"Prise en main « Javascript avancés »","level":"1.6.2","depth":2,"path":"tp/javascript_avancés/introduction.md","ref":"tp/javascript_avancés/introduction.md","articles":[]}]},"previous":{"title":"Slides","level":"1.5.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/organisation/introduction.md","mtime":"2019-09-19T20:19:30.570Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-19T20:19:51.617Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"(Ré)organisation d'un code","level":"1.5.2","depth":2,"next":{"title":"Javascript avancé (À venir)","level":"1.6","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.6.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=javascript_avancés","articles":[]},{"title":"Prise en main « Javascript avancés »","level":"1.6.2","depth":2,"path":"tp/javascript_avancés/introduction.md","ref":"tp/javascript_avancés/introduction.md","articles":[]}]},"previous":{"title":"Slides","level":"1.5.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=organisations","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/organisation/introduction.md","mtime":"2019-09-22T10:05:22.632Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-22T10:05:28.873Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
