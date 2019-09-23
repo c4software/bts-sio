@@ -34,9 +34,9 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-- Améliorer la lisibilité. <!-- .element: class="fragment" -->
-- Simplifier votre travail. <!-- .element: class="fragment" -->
-- Réduire votre charge mentale. <!-- .element: class="fragment" -->
+- Améliorer la lisibilité.
+- Simplifier votre travail.
+- Réduire votre charge mentale.
 
 ---
 
@@ -44,14 +44,14 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-- S'améliorer. <!-- .element: class="fragment" -->
-- Pouvoir tester. <- 🤔 <!-- .element: class="fragment" -->
-- Pouvoir faire évoluer son code. <!-- .element: class="fragment" -->
-- Avoir une meilleure note… <!-- .element: class="fragment" -->
+- S'améliorer.
+- Pouvoir tester. <- 🤔
+- Pouvoir faire évoluer son code.
+- Avoir une meilleure note…
 
 ---
 
-Car au final, le but c'est de ne pas être noyé dans son propre code
+Car au final, le but, c'est de ne pas être noyé dans son propre code
 
 ---
 
@@ -82,17 +82,17 @@ Car au final, le but c'est de ne pas être noyé dans son propre code
 
 ### Penser fonctionnalités pas finalités
 
-Avez vous des exemples ?
+Avez-vous des exemples ?
 
 ---
 
 ### Modèle
 
-Pour vous c'est quoi ?
+Pour vous, c'est quoi ?
 
 ---
 
-Représente votre objet. Intègre les méthodes qui simplifie sa manipulation.
+Représente votre objet. Intègre les méthodes qui simplifient sa manipulation.
 
 - Avez-vous un exemple ?
 
@@ -102,20 +102,20 @@ Représente votre objet. Intègre les méthodes qui simplifie sa manipulation.
 
 ---
 
-Et quand on utilise des API, pourquoi est-ce également très important ?
+- Centralise la logique/code métier.
+- Simplifie les évolutions.
+- Évite le code dupliqué.
+- Normalise votre code.
 
 ---
 
-- Centralise la logique/code métier. <!-- .element: class="fragment" -->
-- Permet les évolutions simplifiées. <!-- .element: class="fragment" -->
-- Évite le code dupliqué. <!-- .element: class="fragment" -->
-- Normalise votre code. <!-- .element: class="fragment" -->
+Et quand on utilise des API, pourquoi est-ce également très important ?
 
 ---
 
 ### DAO
 
-Pour vous c'est quoi ?
+Pour vous, c'est quoi ?
 
 ---
 
@@ -127,15 +127,17 @@ Pour vous c'est quoi ?
 
 ## Pourquoi est-ce important ?
 
+---
+
 - Permet de tester votre code.
-- Permet de changer la source de données. <!-- .element: class="fragment" -->
-- Centralise votre code. <!-- .element: class="fragment" -->
-- Simplifie les modifications. (À votre avis ?) <!-- .element: class="fragment" -->
-- Facilite le partage de code. <!-- .element: class="fragment" -->
+- Permet de changer la source de données.
+- Centralise votre code.
+- Simplifie les modifications. (à votre avis ?)
+- Facilite le partage de code.
 
 ---
 
-[Un exemple](https://gist.github.com/c4software/30947f2a86eb0ab065d26a6ed0edb3e9)
+[Mieux que des mots, un exemple](https://gist.github.com/c4software/30947f2a86eb0ab065d26a6ed0edb3e9)
 
 ---
 
@@ -162,7 +164,7 @@ Alors, qu'en pensez-vous ?
 
 - Simplifie la lecture du code.
 - Centralise les éléments « sensibles ». <!-- .element: class="fragment" -->
-- Évite le code dupliqués. <!-- .element: class="fragment" -->
+- Évite le code dupliqué. <!-- .element: class="fragment" -->
 - Réduit la charge mentale. (évite la panique !) <!-- .element: class="fragment" -->
 - Être quelqu'un de bien. <!-- .element: class="fragment" -->
 
@@ -172,7 +174,7 @@ Alors, qu'en pensez-vous ?
 
 - Savoir faire des librairies.
 - Savoir faire des fichiers « d'aide ».
-- Partager les définitions de méthodes entre client-serveur.
+- Partager les définitions de méthodes entre le code client et le code serveur.
 
 ---
 
@@ -239,4 +241,3 @@ Est-ce simplifiable ?
 ---
 
 # Des questions ?
-
