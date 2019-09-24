@@ -80,7 +80,7 @@ C'est à vous :
 - Créer le dossier.
 - Créer un fichier `index.php` à l'interieur de celui-ci.
 
-La structure de vos sources doit ressembler à quelques choses comme :
+Votre arborescence doit maintenant ressembler à :
 
 ```shell
 ├── data
@@ -166,7 +166,7 @@ Regardons ensemble le code source de cet élément :
 
 ### Place au code
 
-Je suis sympa, je vous aide, dans `fonctions/index.php` ajouter une fonction nommée `genereListe`.
+Cette fois-ci pas ou peu d'expliquation… Dans `fonctions/index.php` ajouter une fonction nommée `genereListe`. Pour la suite, je vous laisse chercher.
 
 ```php
 function genereListe($title, $file){
