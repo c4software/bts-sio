@@ -21,7 +21,7 @@ L'application doit ressembler à :
 
 ## Première analyse du code
 
-Maintenant que vous avez pris en main le code source, quels sont les remarques sur le code pouvez-vous émettre :
+Maintenant que vous avez pris en main le code source, quelles sont les remarques sur le code pouvez-vous émettre :
 
 ```text
 Vos remarques
@@ -35,7 +35,7 @@ PS : cette première analyse est importante !
 
 - Non-utilisation de template.
 - Le code des listes est répété (sans utilisation de fonction).
-- Le Header et le Footer HTML est dupliqué entre les deux pages.
+- Le Header et le Footer HTML sont dupliqués entre les deux pages.
 - Le « Widget » HTML des listes est répété 3x.
 - L'accès à la donnée n'est pas centralisé. (les fichiers JSON sont ouverts directement depuis la page.)
 - Il n'y a pas de DAO.
@@ -109,7 +109,7 @@ function footer($titre) {
 }
 ```
 
-C'est à vous, dans la page `index.php` actuelle isolée le code relatif au `header` et au `footer` et mettez le dans les bonnes fonctions.
+C'est à vous, dans la page `index.php` actuelle isolez le code relatif au `header` et au `footer` et mettez le dans les bonnes fonctions.
 
 Utilisez maintenant les fonctions dans votre code.
 
@@ -135,7 +135,7 @@ C'est bien, mais est-il possible de faire autrement ? Pouvons-nous utiliser un o
 
 ### Réécriture des listes de lien
 
-Comme vous l'avez constaté, les listes de lien (ainsi que le code PHP) est répété 3x. Procéder ainsi est à la fois inefficace et inutile. Prendre du temps pour éviter ce genre de choses est primordiale et vous évitera bien des tracas en cas de mise à jour de votre code (ou de celui d'un collègue).
+Comme vous l'avez constaté, les listes de lien (ainsi que le code PHP) sont répétés 3x. Procéder ainsi est à la fois inefficace et inutile. Prendre du temps pour éviter ce genre de choses est primordiale et vous évitera bien des tracas en cas de mise à jour de votre code (ou de celui d'un collègue).
 
 Pour rappel, les listes de liens ressemblent à :
 
@@ -208,7 +208,7 @@ foreach($elements as $el){
 
 {% endreveal %}
 
-## Le modèle de la données
+## Le modèle de la donnée
 
 Lors de l'analyse du code, vous avez remarqué qu'il était possible d'ajouter des liens dans les fichiers JSON. 
 
@@ -259,16 +259,16 @@ class Lien {
 
 Maintenant que nous avons défini la classe utilisons là !
 
-Dans le fichier `detail.php` modifier :
+Dans le fichier `detail.php` :
 
-- Trouver l'endroit où se trouve l'ajout (`array_push`…)
-- Remplacer le Tableau par l'utilisation de l'objet.
+- Trouvez l'endroit où se trouve l'ajout (`array_push`…)
+- Remplacez le Tableau par l'utilisation de l'objet.
 
 ### Tester
 
 Valider que le site fonctionne toujours.
 
-### Faire évoluer la class
+### Faire évoluer la classe
 
 Le gros plus d'avoir un modèle, c'est la possibilité d'ajouter des méthodes. Je vous propose d'ajouter une méthode permettant de valider que le lien est bien un lien.
 
@@ -287,9 +287,9 @@ Valider que le site fonctionne toujours.
 
 ## Le DAO
 
-Le DAO, est également un élément important. Cette classe vas nous centraliser le code pour tout ce qui est l'accès à la donnée (ajout, suppression, liste).
+Le DAO, est également un élément important. Cette classe va nous centraliser le code pour tout ce qui est l'accès à la donnée (ajout, suppression, liste).
 
-Comme vue en cours, l'une des possibilités pour un DAO est de créer une classe avec des méthodes `static` (c'est-à-dire accessible sans créer l'objet). C'est cette solution que je vous propose de faire.
+Comme vu en cours, l'une des possibilités pour un DAO est de créer une classe avec des méthodes `static` (c'est-à-dire accessible sans créer l'objet). C'est cette solution que je vous propose de faire.
 
 Dans le code, nous avons deux actions possibles :
 
@@ -343,7 +343,7 @@ class LienDao {
 - Compléter les méthodes avec le code précédemment réalisé, en ne gardant bien évidemment que le code PHP…
 - Utiliser le DAO dans votre code PHP (`index.php` et `detail.php`)
 
-⚠️ Rappel les méthode `static` en PHP sont appelés comme ça `LienDao::get("")`.
+⚠️ Rappel les méthodes `static` en PHP sont appelées comme ça `LienDao::get("")`.
 
 ### Tester
 
@@ -414,13 +414,13 @@ Placer ce contenu dans le fichier `parametres.php`.
 
 ### Utiliser les « constantes »
 
-Modifier vos différentes pages PHP pour utiliser les constantes nouvellement définis.
+Modifier vos différentes pages PHP pour utiliser les constantes nouvellement définies.
 
 ## En plus : Ne pas autoriser plusieurs lien identique
 
 Pour l'instant, il est possible d'insérer plusieurs fois le même lien dans la base de données.
 
-- Modifier la méthodes `put` du DAO pour qu'elle n'autorise plus ce genre de choses.
+- Modifier la méthode `put` du DAO pour qu'elle n'autorise plus ce genre de choses.
 
 ## En plus : Migration vers MySQL
 
@@ -428,6 +428,6 @@ Nous allons profiter de la mise en place d'un DAO pour migrer notre code ! Les J
 
 - Concevez une petite base de données simple.
 - Modifier votre DAO pour utiliser votre base de données.
-- N'oubliez pas de mettre dans le fichier `parametres.php` la configuration de votre connexion. (️⚠️ Surtout ne l'écriviez pas dans le DAO ⚠️).
+- N'oubliez pas de mettre dans le fichier `parametres.php` la configuration de votre connexion. (️⚠️ Surtout ne l'écrivez pas dans le DAO ⚠️).
 
 ⚠️ Vous avez vu l'avantage ! Nous avons modifier **un seul fichier** et l'ensemble de votre code utilise maintenant MySQL comme système de base de données.
