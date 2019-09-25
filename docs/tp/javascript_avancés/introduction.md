@@ -1,12 +1,12 @@
 # Prise en main « Javascript avancés »
 
-Vous avez déjà fait du Javascript, mais certainement avec jquery et surrement sans utiliser les fonctions « moderne » de celui-ci.
+Vous avez déjà fait du Javascript, mais certainement avec jquery et surement sans utiliser les fonctions « modernes » de celui-ci.
 
-Dans ce TP et au travers de quelques exemples nous allons découvrir en pratique les nouveautés.
+Dans ce TP et au travers de quelques exemples, nous allons découvrir en pratique les nouveautés.
 
 ## Question 0
 
-Pourquoi est-ce important d'utiliser le fonctionnalité moderne du Javascript ? En quoi est-ce primordiale ?
+Pourquoi est-ce important d'utiliser les fonctionnalités modernes du Javascript ? En quoi est-ce primordial ?
 
 ## Question 1
 
@@ -31,21 +31,20 @@ for (c in capacites){
 
 ## Question 2
 
-Réécrire le code suivante en utilisant les `fonctions flechés` et les `string templates`.
+Réécrire le code suivant en utilisant les `fonctions flechés` et les `string templates`.
 
 ```javascript
-    function hello(nom){
-        console.log("Bonjoun « " + nom + " » ");
-    }
+function hello(nom){
+    console.log("Bonjoun « " + nom + " » ");
+}
 
-
-    var nom = prompt("Votre nom");
-    hello(nom);
+var nom = prompt("Votre nom");
+hello(nom);
 ```
 
 ## Question 3
 
-En utilisant la méthode `filter` d'un tableau filtrer l'ensembles des éléments `non pair` du tableau suivant (indice `% 2`)
+En utilisant la méthode `filter` d'un tableau filtrer l'ensemble des éléments `non paire` du tableau suivant (indice `% 2`)
 
 ```javascript
 const valeurs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -53,19 +52,19 @@ const valeurs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 ## Question 4
 
-Manipuler un `objet` avec des méthodes c'est toujours plus simple que de manipuler un simple Object.
+Manipuler un `objet` avec des méthodes, c'est toujours plus simple que de manipuler un simple Object.
 
-En utilisant le code fourni, remaper grace à la fonction `map` l'ensemble des `objects` en `Person`
+En utilisant le code fourni, remaper grâce à la fonction `map` l'ensemble des `objects` en `Person`
 
 ```javascript
-class Person {  
-  constructor(data = {}){
-    this.name = data.name;
-  }
+class Person {
+    constructor(data = {}){
+        this.name = data.name;
+    }
 
-  static map(data){
-    return new Person(data);
-  }
+    static map(data){
+        return new Person(data);
+    }
 }
 
 const clients = [{name: "Valentin", age: 15}, {name: "Thomas", age: 20}, {name: "John", age: 38}];
@@ -79,7 +78,7 @@ Ajouter une méthode dans l'objet `Person` qui retourne `true` si la personne es
 
 ### Question 6
 
-En utilisant `filter` filtrer le tableau résultat pour ne garder que les personnes majeur.
+En utilisant `filter` filtrer le tableau résultat pour ne garder que les personnes majeures.
 
 ### Question 7
 
@@ -106,7 +105,7 @@ req.send(null);
 
 ### Question 8
 
-Même question mais en utilisant [Wretch](https://elbywan.github.io/wretch/)
+Même question, mais en utilisant [Wretch](https://elbywan.github.io/wretch/)
 
 ### Question 9
 
@@ -117,12 +116,12 @@ Créer une classe pour la liste des `Todos`, puis en utilisant le `chainage` (th
 Via un filter, filtrer l'ensemble des Todo qui sont pour l'utilisateur 2 *et* non completed.
 
 ```javascript
-    "userId": 2,
-    "completed": true
+"userId": 2,
+"completed": true
 ```
 
 ### Question 11
 
-Lister l'ensemble des valeurs de l'ensemble de la liste des Todo créé précédement.
+Lister l'ensemble des valeurs de l'ensemble de la liste des Todo créé précédemment.
 
 Tips: `Object.values(…)`

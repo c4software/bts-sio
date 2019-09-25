@@ -122,7 +122,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## ORM ?
 
-![](./img/what.gif)
+![what](./img/what.gif)
 
 Technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets.
 
@@ -236,7 +236,7 @@ Route::post('/demo/ajout', "DemoController@ajout");
 
 ---
 
-# Simple non ?
+## Simple non ?
 
 ![Nice](./img/not_bad.gif)
 
@@ -595,7 +595,7 @@ Pour des API ils ont conçu **Lumen**
 
 ---
 
-![](./img/done.gif)
+![Done](./img/done.gif)
 
 ---
 
