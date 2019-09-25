@@ -11,11 +11,10 @@
 - Intégration continue avec GitLab-CI (2h + TP)
 - Framework Python : Flask (2h + TP)
 
-
 ## 2019
 
-- Initiation à GIT.
-- Git en groupe.
+- Initiation à GIT. (4h + TP)
+- Git en groupe. (2h + TP)
 - Organisation du code. Algo
 - Laravel
 - Programmation sécurisée
