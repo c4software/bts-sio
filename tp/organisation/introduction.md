@@ -116,7 +116,7 @@ Utilisez maintenant les fonctions dans votre code.
 > Rappel : en PHP vous devez `include` les fichiers pour rendre le code accessible dans la page. Exemple :
 
 ```php
-<?php 
+<?php
     include("fonctions/index.php);
 
     header();
@@ -191,6 +191,7 @@ Comme vous devez le constater, nous n'avons pas retiré le code dupliqué… Nou
 À votre avis, comment procéder ?
 
 {% reveal text='Cliquer pour voir ma « solution »' %}
+
 ```php
 $elements = [
     ["file" => "search", "title" => "Rechercher"],
@@ -210,7 +211,7 @@ foreach($elements as $el){
 
 ## Le modèle de la donnée
 
-Lors de l'analyse du code, vous avez remarqué qu'il était possible d'ajouter des liens dans les fichiers JSON. 
+Lors de l'analyse du code, vous avez remarqué qu'il était possible d'ajouter des liens dans les fichiers JSON.
 
 L'ajout est fait « à l'arrache », oui ça fonctionne… Mais ce n'est clairement pas optimal.
 
@@ -272,7 +273,7 @@ Valider que le site fonctionne toujours.
 
 Le gros plus d'avoir un modèle, c'est la possibilité d'ajouter des méthodes. Je vous propose d'ajouter une méthode permettant de valider que le lien est bien un lien.
 
-Créer une méthode avec le code suivant : 
+Créer une méthode avec le code suivant :
 
 ```php
 $url = filter_var($this->link, FILTER_SANITIZE_URL);
