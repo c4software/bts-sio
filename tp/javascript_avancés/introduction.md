@@ -57,7 +57,7 @@ Manipuler un `objet` avec des méthodes, c'est toujours plus simple que de manip
 En utilisant le code fourni, remaper grâce à la fonction `map` l'ensemble des `objects` en `Person`
 
 ```javascript
-class Person { 
+class Person {
     constructor(data = {}){
         this.name = data.name;
     }
