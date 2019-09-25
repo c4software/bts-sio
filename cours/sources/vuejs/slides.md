@@ -1,6 +1,6 @@
 # VueJS
 
-### Progressive JavaScript framework
+## Progressive JavaScript framework
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
@@ -141,7 +141,7 @@ Et pas ReactJS ou Angular…
 
 - Virtual DOM (ne « re-dessine » que les zones modifiées)
 - Fonctionnement en composant
-- Des « .Vue » / Monofichier important tout le composant
+- Des « .Vue » / Monofichier
 - Un cycle de vie complet pour chaque composant
 
 ![Flow](./img/flow.png)
@@ -630,6 +630,14 @@ $ vue add vuex
 [La documentation](https://vuetifyjs.com/)
 
 [Démo](https://github.com/c4software/Cliff-Height-Timer-VueJS)
+
+---
+
+### Un aperçu du futur
+
+- Pourquoi utiliser un bundler (Webpack) ?
+- Et pourquoi ne plus utiliser de bundler ?
+- La solution PikaPKG.
 
 ---
 
