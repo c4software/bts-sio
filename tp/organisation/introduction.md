@@ -117,7 +117,7 @@ Utilisez maintenant les fonctions dans votre code.
 
 ```php
 <?php
-    include("fonctions/index.php);
+    include("fonctions/index.php");
 
     head();
 ```
