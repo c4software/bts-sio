@@ -100,11 +100,11 @@ Pour vous aider dans votre mission voilà la structure du fichier :
 ```php
 <?php
 
-function header($titre) {
+function head($titre) {
     echo "…";
 }
 
-function footer($titre) {
+function foot($titre) {
     echo "…";
 }
 ```
@@ -119,7 +119,7 @@ Utilisez maintenant les fonctions dans votre code.
 <?php
     include("fonctions/index.php);
 
-    header();
+    head();
 ```
 
 ### Tester
