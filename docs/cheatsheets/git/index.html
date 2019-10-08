@@ -1069,7 +1069,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Mon Sep 10 2018 22:06:45 GMT+0200 (GMT+02:00)</em></p>
+<p><em>Last modified: Tue Oct 08 2019 09:38:07 GMT+0200 (GMT+02:00)</em></p>
 </blockquote>
 <h2 id="aide-m&#xE9;moire-git">Aide m&#xE9;moire GIT</h2>
 <h3 id="personnaliser">Personnaliser</h3>
@@ -1087,8 +1087,22 @@ git config --global user.name <span class="hljs-string">&quot;Valentin Brosseau&
 <p>Cloner un d&#xE9;pot existant :</p>
 <pre><code class="lang-sh">git <span class="hljs-built_in">clone</span> ssh://user@domain.com/repo.git
 </code></pre>
-<p>Cr&#xE9;er un fichier &#xAB; .gitignore &#xBB; pour OSX:</p>
+<p>Cr&#xE9;er un fichier &#xAB; .gitignore &#xBB; :</p>
+<pre><code class="lang-sh"><span class="hljs-comment"># Cr&#xE9;ation du fichier</span>
+vim .gitignore
+<span class="hljs-comment"># &#x2026;</span>
+git add .gitignore
+git commit -m <span class="hljs-string">&quot;Ajout gitignore&quot;</span>
+</code></pre>
+<p>Cr&#xE9;er un fichier &#xAB; .gitignore &#xBB; en utilisant un template &#xAB; Windows &#xBB;:</p>
+<pre><code class="lang-sh">curl <span class="hljs-_">-s</span> https://www.gitignore.io/api/windows &gt; .gitignore
+git add .gitignore
+git commit -m <span class="hljs-string">&quot;Ajout gitignore&quot;</span>
+</code></pre>
+<p>Cr&#xE9;er un fichier &#xAB; .gitignore &#xBB; en utilisant un template &#xAB; MacOS &#xBB;:</p>
 <pre><code class="lang-sh">curl <span class="hljs-_">-s</span> https://www.gitignore.io/api/osx &gt; .gitignore
+git add .gitignore
+git commit -m <span class="hljs-string">&quot;Ajout gitignore&quot;</span>
 </code></pre>
 <h3 id="modifications-locales">Modifications locales</h3>
 <p>Fichiers modifi&#xE9;s dans votre r&#xE9;pertoire de travail :</p>
@@ -1111,6 +1125,8 @@ git config --global user.name <span class="hljs-string">&quot;Valentin Brosseau&
 </code></pre>
 <p>Modifier le commit pr&#xE9;c&#xE9;dent :</p>
 <pre><code class="lang-sh">git commit --amend
+<span class="hljs-comment"># ou</span>
+git commit --am
 </code></pre>
 <h3 id="historique-de-commit">Historique de Commit</h3>
 <p>Afficher tous les commits :</p>
@@ -1259,7 +1275,7 @@ Annule toutes les modifications effectu&#xE9;es depuis :</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Git","level":"1.2.1","depth":2,"next":{"title":"Cordova","level":"1.2.2","depth":2,"path":"cheatsheets/cordova/README.md","ref":"cheatsheets/cordova/README.md","articles":[]},"previous":{"title":"Aides mémoires","level":"1.2","depth":1,"ref":"","articles":[{"title":"Git","level":"1.2.1","depth":2,"path":"cheatsheets/git/README.md","ref":"cheatsheets/git/README.md","articles":[]},{"title":"Cordova","level":"1.2.2","depth":2,"path":"cheatsheets/cordova/README.md","ref":"cheatsheets/cordova/README.md","articles":[]},{"title":"Docker","level":"1.2.3","depth":2,"path":"cheatsheets/docker/README.md","ref":"cheatsheets/docker/README.md","articles":[]},{"title":"VueJS","level":"1.2.4","depth":2,"path":"cheatsheets/vuejs/README.md","ref":"cheatsheets/vuejs/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"cheatsheets/git/README.md","mtime":"2018-09-10T20:06:45.682Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-27T13:39:55.899Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Git","level":"1.2.1","depth":2,"next":{"title":"Cordova","level":"1.2.2","depth":2,"path":"cheatsheets/cordova/README.md","ref":"cheatsheets/cordova/README.md","articles":[]},"previous":{"title":"Aides mémoires","level":"1.2","depth":1,"ref":"","articles":[{"title":"Git","level":"1.2.1","depth":2,"path":"cheatsheets/git/README.md","ref":"cheatsheets/git/README.md","articles":[]},{"title":"Cordova","level":"1.2.2","depth":2,"path":"cheatsheets/cordova/README.md","ref":"cheatsheets/cordova/README.md","articles":[]},{"title":"Docker","level":"1.2.3","depth":2,"path":"cheatsheets/docker/README.md","ref":"cheatsheets/docker/README.md","articles":[]},{"title":"VueJS","level":"1.2.4","depth":2,"path":"cheatsheets/vuejs/README.md","ref":"cheatsheets/vuejs/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"cheatsheets/git/README.md","mtime":"2019-10-08T07:38:07.918Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-08T07:40:39.872Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
