@@ -1067,7 +1067,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Wed Jan 03 2018 22:06:41 GMT+0100 (GMT+01:00)</em></p>
+<p><em>Last modified: Mon Oct 14 2019 19:44:37 GMT+0200 (GMT+02:00)</em></p>
 </blockquote>
 <h1 id="s&#xE9;curit&#xE9;-des-d&#xE9;veloppements">S&#xE9;curit&#xE9; des d&#xE9;veloppements</h1>
 <p>Le meilleur moyen de comprendre la s&#xE9;curisation d&#x2019;une application / site Internet, c&#x2019;est de &#x2026;</p>
@@ -1077,7 +1077,15 @@
 <li>Passer des heures &#xE0; tenter des intrusions ?</li>
 <li>La r&#xE9;ponse D ?</li>
 </ul>
-<h2 id="partie-1--webgoat">Partie 1 : WebGoat</h2>
+<h2 id="partie-1--les-injections-sql">Partie 1 : Les injections SQL</h2>
+<p>Avant d&apos;utiliser WebGoat, nous allons nous focaliser sur la partie Injection SQL, pour &#xE7;a nous allons utiliser le site <a href="https://free.codebashing.com/free-content/php/sql_injection" target="_blank">Code Bashing</a>.</p>
+<p>Celui-ci contient un bon &#xAB; tutoriel &#xBB; interactif permettant de tester et de se former au principe d&#x2019;injections SQL.</p>
+<p>Vous allez &#xEA;tre invit&#xE9; &#xE0; mettre des informations pour continuer (entreprise, nom, pr&#xE9;nom, etc). Vous pouvez indiquer n&apos;importer quoi.</p>
+<h2 id="partie-2--les-xss">Partie 2 : Les XSS</h2>
+<p>Pour mieux comprendre l&apos;aspect dangereux d&apos;une XSS nous allons utiliser Code Bashing, pour &#xE7;a rendez-vous sur <a href="https://free.codebashing.com/courses/php/lessons/stored_persistent_xss" target="_blank">Code Bashing</a></p>
+<p>Celui-ci contient un bon &#xAB; tutoriel &#xBB; interactif permettant de tester et de se former au principe de XSS.</p>
+<p>Vous allez &#xEA;tre invit&#xE9; &#xE0; mettre des informations pour continuer (entreprise, nom, pr&#xE9;nom, etc). Vous pouvez indiquer n&apos;importer quoi.</p>
+<h2 id="partie-2--webgoat">Partie 2 : WebGoat</h2>
 <p><img src="webgoat.png" alt="Superbe Logo"></p>
 <p>WebGoat est un outils didactique aux dimensions p&#xE9;dagogiques propos&#xE9; par le groupe OWASP. Il s&apos;ag&#xEE;t d&apos;une application WEB J2EE d&#xE9;velopp&#xE9;e en Java et destin&#xE9;e &#xE0; l&apos;enseignement de mani&#xE8;re interractive.</p>
 <p>Elle vise &#xE0; familiariser l&apos;utilisateur aux technologies WEB (E.g: protocole HTTP, Encoding, AJAX), aux m&#xE9;canismes du protocole HTTP et aux vuln&#xE9;rabilit&#xE9;s qui peuvent en d&#xE9;couler. Cet enseignement se fait au travers de diff&#xE9;rentes le&#xE7;ons, chacune abordant un concept particulier, d&#xE9;taillant un probl&#xE8;me de s&#xE9;curit&#xE9; donn&#xE9; avant de soumettre l&apos;utilisateur &#xE0; une mise en pratique imm&#xE9;diate. Chaque le&#xE7;on (JSP) pr&#xE9;sente sur l&apos;application comporte une vuln&#xE9;rabilit&#xE9; que l&apos;utilisateur peut identifier et tenter d&apos;exploiter (E.g: Injection SQL permettant de retrouver de fausses informations comme des num&#xE9;ros de cartes de cr&#xE9;dit).</p>
@@ -1103,8 +1111,9 @@
 <p>Nous allons choisir le jar :</p>
 <p><a href="https://github.com/WebGoat/WebGoat/releases/download/7.1/webgoat-container-7.1-exec.jar" target="_blank">T&#xE9;l&#xE9;charger WebGoat</a></p>
 <h2 id="lancement">Lancement</h2>
-<pre><code>java -jar webgoat-container-7.1-exec.jar
-</code></pre><p>C&#x2019;est parti, vous pouvez maintenant aller sur <a href="http://localhost:8080/WebGoat" target="_blank">http://localhost:8080/WebGoat</a></p>
+<pre><code class="lang-sh">java -jar webgoat-container-7.1-exec.jar
+</code></pre>
+<p>C&#x2019;est parti, vous pouvez maintenant aller sur <a href="http://localhost:8080/WebGoat" target="_blank">http://localhost:8080/WebGoat</a></p>
 <p>&#x26A0;&#xFE0F; Nous allons utiliser un outil int&#xE9;grant des failles&#x2026; Pour &#xE9;viter tout risque pour votre machine le mieux est de couper l&#x2019;acc&#xE8;s au r&#xE9;seau de votre ordinateur. &#x26A0;&#xFE0F;</p>
 <h2 id="&#xE0;-faire">&#xC0; faire</h2>
 <ul>
@@ -1130,8 +1139,6 @@
 </ul>
 </li>
 </ul>
-<h1 id="partie-2--les-injections-sql">Partie 2 : Les injections SQL</h1>
-<p>Maintenant que nous avons jou&#xE9; un peu avec l&#x2019;application WebGoat, nous allons nous focaliser sur la partie Injection SQL, pour &#xE7;a nous allons utiliser le site <a href="https://www.codebashing.com/sql_demo" target="_blank">Code Bashing</a>. Celui-ci contient un bon &#xAB; tutoriel &#xBB; interactif permettant de tester et de se former au principe d&#x2019;injections SQL.</p>
 
                                 
                                 </section>
@@ -1167,7 +1174,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Tentatives et injections","level":"1.7.2","depth":2,"next":{"title":"Laravel","level":"1.8","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.8.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel","articles":[]},{"title":"Installation de Laravel","level":"1.8.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},{"title":"Application/Site web Todo List","level":"1.8.3","depth":2,"path":"tp/laravel/application_todo_list.md","ref":"tp/laravel/application_todo_list.md","articles":[]},{"title":"Lumen pour écrire des API","level":"1.8.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]}]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/securite/README.md","mtime":"2018-01-03T21:06:41.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-08T07:40:39.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Tentatives et injections","level":"1.7.2","depth":2,"next":{"title":"Laravel","level":"1.8","depth":1,"ref":"","articles":[{"title":"Slides","level":"1.8.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=laravel","articles":[]},{"title":"Installation de Laravel","level":"1.8.2","depth":2,"path":"tp/laravel/introduction.md","ref":"tp/laravel/introduction.md","articles":[]},{"title":"Application/Site web Todo List","level":"1.8.3","depth":2,"path":"tp/laravel/application_todo_list.md","ref":"tp/laravel/application_todo_list.md","articles":[]},{"title":"Lumen pour écrire des API","level":"1.8.4","depth":2,"path":"tp/laravel/creation_api.md","ref":"tp/laravel/creation_api.md","articles":[]}]},"previous":{"title":"Slides","level":"1.7.1","depth":2,"url":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications","ref":"https://c4software.github.io/bts-sio/cours/sources/revealjs/index.html?source=securite_applications","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours BTS SIO Slam 5","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/securite/README.md","mtime":"2019-10-14T17:44:37.773Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-14T17:44:48.107Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

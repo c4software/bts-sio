@@ -7,7 +7,23 @@ Le meilleur moyen de comprendre la sécurisation d’une application / site Inte
 * Passer des heures à tenter des intrusions ?
 * La réponse D ?
 
-## Partie 1 : WebGoat
+## Partie 1 : Les injections SQL
+
+Avant d'utiliser WebGoat, nous allons nous focaliser sur la partie Injection SQL, pour ça nous allons utiliser le site [Code Bashing](https://free.codebashing.com/free-content/php/sql_injection).
+
+Celui-ci contient un bon « tutoriel » interactif permettant de tester et de se former au principe d’injections SQL.
+
+Vous allez être invité à mettre des informations pour continuer (entreprise, nom, prénom, etc). Vous pouvez indiquer n'importer quoi.
+
+## Partie 2 : Les XSS
+
+Pour mieux comprendre l'aspect dangereux d'une XSS nous allons utiliser Code Bashing, pour ça rendez-vous sur [Code Bashing](https://free.codebashing.com/courses/php/lessons/stored_persistent_xss)
+
+Celui-ci contient un bon « tutoriel » interactif permettant de tester et de se former au principe de XSS.
+
+Vous allez être invité à mettre des informations pour continuer (entreprise, nom, prénom, etc). Vous pouvez indiquer n'importer quoi.
+
+## Partie 2 : WebGoat
 
 ![Superbe Logo](./webgoat.png)
 
@@ -43,7 +59,7 @@ Nous allons choisir le jar :
 
 ## Lancement
 
-```
+```sh
 java -jar webgoat-container-7.1-exec.jar
 ```
 
@@ -53,20 +69,16 @@ C’est parti, vous pouvez maintenant aller sur [http://localhost:8080/WebGoat](
 
 ## À faire
 
-- AJAX Security
-  - LAB: Client Side Filtering
-  - LAB: DOM-Based cross-site scripting
-  - Dangerous Use of Eval
-- Concurrency
-  - Thread Safety Problems
-  - Shopping Cart Concurrency Flaw
-- Injection Flaws
-  - Command Injection (Si vous souhaitez faire du MITM - Man In The Middle -)
-  - Numeric SQL Injection
-  - String SQL Injection
-- Parameter Tampering
-  - Exploit Hidden Fields
-
-# Partie 2 : Les injections SQL
-
-Maintenant que nous avons joué un peu avec l’application WebGoat, nous allons nous focaliser sur la partie Injection SQL, pour ça nous allons utiliser le site [Code Bashing](https://www.codebashing.com/sql_demo). Celui-ci contient un bon « tutoriel » interactif permettant de tester et de se former au principe d’injections SQL.
+* AJAX Security
+  * LAB: Client Side Filtering
+  * LAB: DOM-Based cross-site scripting
+  * Dangerous Use of Eval
+* Concurrency
+  * Thread Safety Problems
+  * Shopping Cart Concurrency Flaw
+* Injection Flaws
+  * Command Injection (Si vous souhaitez faire du MITM - Man In The Middle -)
+  * Numeric SQL Injection
+  * String SQL Injection
+* Parameter Tampering
+  * Exploit Hidden Fields
