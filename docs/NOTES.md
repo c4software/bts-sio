@@ -15,9 +15,9 @@
 
 - Initiation à GIT. (4h + TP)
 - Git en groupe. (2h + TP)
-- Organisation du code. Algo
+- Organisation du code. Algo (4h + TP)
+- Programmation sécurisée (3h + TP)
 - Laravel
-- Programmation sécurisée
 - Javascript avancés
 - VueJS
 - Cordova
