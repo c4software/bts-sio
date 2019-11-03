@@ -1,6 +1,6 @@
 # Slam 5 - BTS SIO
 
-[Consulter les Cours & TP sur Github Pages](https://c4software.github.io/bts-sio/)
+[Consulter les Cours & TP sur Github Pages](https://cours.brosseau.ovh/)
 
 ## Introduction
 
