@@ -10,13 +10,13 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 - Développé par Google
 - Créé en 2008
-- Actuellement en version 9.0 (Android Pie)
+- Actuellement en version 10 (Android Q)
 
 ---
 
 ## Pourquoi Android
 
-- Multi marques (Google, Samsung, Xiaomi, HTC, …)
+- Multi marques (Google, Samsung, Xiaomi, Microsoft, …)
 - Part de marché
 - Ouvert
 - Personnalisable
