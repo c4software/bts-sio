@@ -417,7 +417,8 @@ tvHello.setOnClickListener(l -> {
 
 ## C'est complexe… mais des librairies existent
 
-[FlexibleAdapter](https://github.com/davideas/FlexibleAdapter)
+- [FlexibleAdapter](https://github.com/davideas/FlexibleAdapter)
+- [Recyclical](https://github.com/afollestad/recyclical) (Kotlin)
 
 ---
 
@@ -493,7 +494,7 @@ Une astuce…
 
 ```java
 public static Intent getStartIntent(final Context ctx) {
-    return new Intent(ctx, ClassEnCoursDeDemo.class);
+    return new Intent(ctx, MaClass.class);
 }
 ```
 
@@ -502,7 +503,7 @@ public static Intent getStartIntent(final Context ctx) {
 ### Et quand on souhaite afficher la vue
 
 ```java
-startActivity(ClassEnCoursDeDemo.getStartIntent(this));
+startActivity(MaClass.getStartIntent(this));
 ```
 
 ---
@@ -726,7 +727,7 @@ private void scanNearbyDevices() {
         final ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
         final List<ScanFilter> scanFilters = new ArrayList<>();
 
-        // Create ScanFilters
+        // Filtre sur le scan
         // for (final UUID uuid : BluetoothLEManager.SERVICES_TO_FILTER) {
         //    scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(uuid)).build()); // add service filters
         // }
@@ -1538,6 +1539,7 @@ String getIdentifiant() {
 ---
 
 ## C'est à vous
+
 ### Modifier votre projet pour intégrer le passage du paramètre
 
 ---
@@ -1547,9 +1549,8 @@ String getIdentifiant() {
 
 ---
 
-- `override` du OnResume (Pourquoi à votre avis ?)
+- `override` du OnResume. À votre avis pourqoi ?
 - Désactiver le bouton si pas d'ID sur le `MainActivity`.
-
 
 ---
 
