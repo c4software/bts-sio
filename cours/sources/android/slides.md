@@ -411,7 +411,8 @@ tvHello.setOnClickListener(l -> {
 
 ---
 
-[Guide](https://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
+- [En 3 fichiers](https://gist.github.com/c4software/6687dc4bb1d858bb81a79313f0e81fd9)
+- [Guide complet](https://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
 
 ---
 
