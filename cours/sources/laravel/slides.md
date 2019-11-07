@@ -76,6 +76,8 @@ Taylor Otwell, était un utilisateur de CodeIgniter. **Mais** il le trouvait tro
 
 Il a donc voulu quelques chose de plus **souple**, **simple** et **simple à apprendre**
 
+---
+
 Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ---
