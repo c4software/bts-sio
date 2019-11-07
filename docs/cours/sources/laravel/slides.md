@@ -104,7 +104,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire… (maintenant)
 
-* 5.7: Version actuelle (Support de PHP 7)
+* 6.X: Version actuelle
 
 ---
 
@@ -177,7 +177,7 @@ Application ready! Build something amazing.
 
 ```bash
 $ php artisan
-Laravel Framework 5.X.YZ
+Laravel Framework 6.X.YZ
 
 Usage:
 command [options] [arguments]
