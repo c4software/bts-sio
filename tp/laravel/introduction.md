@@ -289,7 +289,7 @@ Maintenant que nous avons notre template de base nous allons l’utiliser dans l
 Bon, maintenant que nous avons déclaré un layout utilisons-le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créé tout à l’heure. Pour cette dernière action je ne vous donne pas de code, mais uniquement les étapes :
 
 - Créez une Vue par exemple ```ping.blade.php``` (Dans le dossiers ```views```)
-- Utilisez ```@extends('base')``` pour « hériter » de votre layout principal.
+- Utilisez ```@extends('layouts.base')``` pour « hériter » de votre layout principal.
 - Modifiez ```web.php``` pour répondre avec la fonction ```view``` comme dans l’autre route.
 
 Avec ces quelques expliquations vous allez pouvoir atteindre l’objectif. Bon courage.
@@ -297,7 +297,7 @@ Avec ces quelques expliquations vous allez pouvoir atteindre l’objectif. Bon c
 {% reveal text="Voir l’une des solutions possible pour ping.blade.php" %}
 
 ```php
-@extends('base')
+@extends('layouts.base')
 
 @section('title', 'Bienvenue')
 

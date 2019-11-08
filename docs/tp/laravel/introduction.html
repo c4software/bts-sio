@@ -1069,7 +1069,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <blockquote>
-<p><em>Last modified: Thu Sep 20 2018 22:04:23 GMT+0200 (Central European Summer Time)</em></p>
+<p><em>Last modified: Fri Nov 08 2019 15:48:09 GMT+0100 (GMT+01:00)</em></p>
 </blockquote>
 <h1 id="introduction-&#xE0;-laravel">Introduction &#xE0; Laravel</h1>
 <p><img src="ressources/logo.png" alt="Laravel"></p>
@@ -1291,11 +1291,11 @@ Route::get(<span class="hljs-string">&apos;/ping&apos;</span>, <span class="hljs
 <p>Bon, maintenant que nous avons d&#xE9;clar&#xE9; un layout utilisons-le dans la 2nd route (<a href="http://localhost:8000/ping" target="_blank">/ping</a>) que nous avons cr&#xE9;&#xE9; tout &#xE0; l&#x2019;heure. Pour cette derni&#xE8;re action je ne vous donne pas de code, mais uniquement les &#xE9;tapes :</p>
 <ul>
 <li>Cr&#xE9;ez une Vue par exemple <code>ping.blade.php</code> (Dans le dossiers <code>views</code>)</li>
-<li>Utilisez <code>@extends(&apos;base&apos;)</code> pour &#xAB; h&#xE9;riter &#xBB; de votre layout principal.</li>
+<li>Utilisez <code>@extends(&apos;layouts.base&apos;)</code> pour &#xAB; h&#xE9;riter &#xBB; de votre layout principal.</li>
 <li>Modifiez <code>web.php</code> pour r&#xE9;pondre avec la fonction <code>view</code> comme dans l&#x2019;autre route.</li>
 </ul>
 <p>Avec ces quelques expliquations vous allez pouvoir atteindre l&#x2019;objectif. Bon courage.</p>
-<div class="click_reveal"><span> Voir l&#x2019;une des solutions possible pour ping.blade.php </span><div><pre><code class="lang-php">@extends(<span class="hljs-string">&apos;base&apos;</span>)
+<div class="click_reveal"><span> Voir l&#x2019;une des solutions possible pour ping.blade.php </span><div><pre><code class="lang-php">@extends(<span class="hljs-string">&apos;layouts.base&apos;</span>)
 
 @section(<span class="hljs-string">&apos;title&apos;</span>, <span class="hljs-string">&apos;Bienvenue&apos;</span>)
 
@@ -1342,7 +1342,7 @@ Route::get(<span class="hljs-string">&apos;/ping&apos;</span>, <span class="hljs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation de Laravel","level":"1.8.2","depth":2,"next":{"title":"Application/Site web Todo List","level":"1.8.3","depth":2,"path":"tp/laravel/application_todo_list.md","ref":"tp/laravel/application_todo_list.md","articles":[]},"previous":{"title":"Slides","level":"1.8.1","depth":2,"url":"https://cours.brosseau.ovh/cours/sources/revealjs/index.html?source=laravel","ref":"https://cours.brosseau.ovh/cours/sources/revealjs/index.html?source=laravel","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/introduction.md","mtime":"2018-09-20T20:04:23.058Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-07T21:16:24.240Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation de Laravel","level":"1.8.2","depth":2,"next":{"title":"Application/Site web Todo List","level":"1.8.3","depth":2,"path":"tp/laravel/application_todo_list.md","ref":"tp/laravel/application_todo_list.md","articles":[]},"previous":{"title":"Slides","level":"1.8.1","depth":2,"url":"https://cours.brosseau.ovh/cours/sources/revealjs/index.html?source=laravel","ref":"https://cours.brosseau.ovh/cours/sources/revealjs/index.html?source=laravel","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","page-toc","last-modified","click-reveal","expandable-chapters","code"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"last-modified":{},"search":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"click-reveal":{},"highlight":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Cours","language":"fr","gitbook":"*","description":"Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP."},"file":{"path":"tp/laravel/introduction.md","mtime":"2019-11-08T14:48:09.372Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-08T14:48:20.075Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
