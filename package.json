@@ -1,0 +1,29 @@
+{
+  "name": "cours",
+  "version": "1.0.0",
+  "description": "Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "gitbook-plugin-click-reveal": "^1.0.0",
+    "gitbook-plugin-code": "^0.1.0",
+    "gitbook-plugin-page-toc": "^1.1.0",
+    "gitbook-plugin-expandable-chapters": "^0.2.0",
+    "gitbook-plugin-last-modified": "^1.0.0"
+  },
+  "devDependencies": {
+    "gitbook-cli": "2.3.2"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c4software/bts-sio.git"
+  },
+  "author": "Valentin Brosseau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/c4software/bts-sio/issues"
+  },
+  "homepage": "https://github.com/c4software/bts-sio#readme"
+}
