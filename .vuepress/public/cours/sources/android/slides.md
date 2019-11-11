@@ -567,7 +567,7 @@ startActivity(MaClass.getStartIntent(this));
 
 ## Rx ?
 
-![what](./img/what.webp)
+![what](./img/what2.gif)
 
 ---
 
@@ -1066,7 +1066,7 @@ private final BluetoothGattCallback gattCallback = new BluetoothGattCallback() {
 private void discconnectFromCurrentDevice() {
     if(currentBluetoothGatt != null) {
         currentBluetoothGatt.disconnect();
-    } 
+    }
 }
 ```
 
@@ -1217,7 +1217,7 @@ Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ---
 
-![what](./img/what.webp)
+![what](./img/what2.gif)
 
 ---
 
@@ -1244,7 +1244,7 @@ Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ---
 
-```conf
+```apacheconf
 implementation 'com.squareup.okhttp3:okhttp:3.8.0'
 implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 ```
@@ -1257,7 +1257,7 @@ implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
 ---
 
-```conf
+```apacheconf
 implementation 'com.google.code.gson:gson:2.8.5'
 ```
 
@@ -1272,7 +1272,7 @@ implementation 'com.google.code.gson:gson:2.8.5'
 
 ---
 
-```conf
+```apacheconf
 implementation 'com.squareup.retrofit2:retrofit:2.3.0'
 implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 ```
@@ -1354,11 +1354,11 @@ BuildConfig.URI_REMOTE_SERVER ?
 
 ## Externaliser la conf c'est bien !
 
-![Niiice](./img/nice.webp)
+![Niiice](./img/nice.gif)
 
 ---
 
-```conf
+```apacheconf
 defaultConfig {
     buildConfigField "String", "URI_REMOTE_SERVER", "\"https://us-central1-eseo-course.cloudfunctions.net\""
 …
@@ -1368,6 +1368,7 @@ defaultConfig {
 ---
 
 ## C'est à vous
+
 ### Configurer votre projet
 
 ---
@@ -1485,6 +1486,7 @@ protected void onResume() {
 ---
 
 ## Passer des paramètres
+
 ### Entre deux « Activity »
 
 ---

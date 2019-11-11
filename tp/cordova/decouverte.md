@@ -14,7 +14,7 @@ Pour pouvoir utiliser Cordova, vous allez devoir installer le ```cordova-cli```.
 
 (Normalement NodeJS est déjà installé sur votre poste).
 
-```shell
+```bash
 npm install -g cordova
 ```
 
@@ -40,7 +40,7 @@ Une fois correctement défini redémarrer la console NodeJS pour prendre en comp
 
 La ligne de commande cordova fourni l’ensemble des éléments pour créer un nouveau projet. Le projet que vous allez créer contient une première « page Web » permettant d’avoir un projet Cordova directement fonctionnel.
 
-```shell
+```bash
 cordova create demo com.chevrollier.demo Demo
 ```
 
@@ -57,7 +57,7 @@ Votre projet est maintenant prêt vous allez pouvoir ajout une plateforme. Pour 
 
 Pour commencer nous allons ajouter la plateforme « générique » à savoir browser, celle-ci nous permettra de tester simplement notre configuration.
 
-```shell
+```bash
 cordova platform add browser
 
 Using cordova-fetch for cordova-browser@~4.1.0
@@ -73,7 +73,7 @@ Saving browser@~4.1.0 into config.xml file ...
 
 La plateforme étant maintenant ajouté nous pouvons « démarrer » Cordova en utilisant la commande :
 
-```shell
+```bash
 cordova run browser
 ```
 
@@ -87,7 +87,7 @@ Bon l’intérêt de Cordova c’est vraiment le mobile, l’utilisation de la p
 
 Pour ajouter la plateforme Android la commande est la suivante :
 
-```shell
+```bash
 cordova platform add android
 ```
 
@@ -133,7 +133,7 @@ Votre téléphone est un périphérique usb comment un autre, pour dialoguer ave
 
 Maintenant que votre mobile est reconnu (il faut peut-être débrancher et rebrancher votre mobile pour que ça fonctionne à 100%), nous allons lancer l’application sur votre mobile, pour ça c’est très simple il suffit de faire sur votre ordinateur :
 
-```shell
+```bash
 cordova run android
 ```
 
@@ -173,13 +173,13 @@ Comme toujours, il est possible de trouver des plugins (non officel) sur Gitub p
 
 Pour ajouter un plugin il suffit de faire :
 
-```shell
+```bash
 cordova plugin add <monPlugin>
 ```
 
 Pour l’exemple nous allons ajouter le plugin ```cordova-plugin-camera```
 
-```shell
+```bash
 cordova plugin add cordova-plugin-camera
 ```
 
@@ -191,7 +191,7 @@ Pour le test nous allons utiliser la console pour tester le plugin :
 
 - Lancer/Compiler l’application à nouveau sur votre mobile :
 
-```shell
+```bash
 cordova run android
 ```
 
@@ -231,13 +231,13 @@ Les sources du plugin sont [disponibles ici](https://github.com/tomloprod/cordov
 
 ### 1. Ajouter le plugin
 
-```shell
+```bash
 cordova plugin add cordova-plugin-headercolor
 ```
 
 ### 2. Ajouter la configuration du plugin
 
-Ajouter dans le fichier ```config.xml``` l’élément suivant :
+Ajouter dans le fichier ```apacheconfig.xml``` l’élément suivant :
 
 ```xml
 <preference name="HeaderColor" value="#2959cb" />
@@ -245,6 +245,6 @@ Ajouter dans le fichier ```config.xml``` l’élément suivant :
 
 ### 3. Lancer l’application pour voir le changement
 
-```shell
+```bash
 cordova run android
 ```

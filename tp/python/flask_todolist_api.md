@@ -13,7 +13,7 @@ Comme dans le premier TP notre code sera intégralement dans un fichier nommé �
 Comme dans le premier TP, avant de commencer à coder nous allons déterminer le nom des fonctions ainsi que le chemin et les méthodes (POST, GET, DELETE, …):
 
 | Description           | Chemin | Methode | Fonction |
-|-----------------------|--------|---------|-----------
+| --------------------- | ------ | ------- | -------- |
 | Liste                 |        |         |          |
 | Création              |        |         |          |
 | Marquer comme terminé |        |         |          |
@@ -23,25 +23,25 @@ Question :
 
 - C’est à vous, avant de continuer un papier un crayon ! Remplisser le tableau.
 
-{% reveal text="Voir l’une des solutions possible" %}
+<Reveal text="Voir l’une des solutions possible">
 
-| Description           | Chemin                         | Methode | Fonction      |
-|-----------------------|--------------------------------|---------|---------------|
-| Liste                 | /api/todo                      | GET     | liste()       |
-| Création              | /api/todo                      | POST    | creer()       |
-| Marquer comme terminé | /api/todo/done/<current_id>    | POST    | terminer()    |
-| Supprimer             | /api/todo/delete/<current_id>  | DELETE  | suppression() |
+| Description           | Chemin                        | Methode | Fonction      |
+| --------------------- | ----------------------------- | ------- | ------------- |
+| Liste                 | /api/todo                     | GET     | liste()       |
+| Création              | /api/todo                     | POST    | creer()       |
+| Marquer comme terminé | /api/todo/done/<current_id>   | POST    | terminer()    |
+| Supprimer             | /api/todo/delete/<current_id> | DELETE  | suppression() |
 
 Question :
 
 - À votre avis pourquoi est-ce important de fair ce travail ?
 - Quel sont les autres solutions pour répondre à ce genre de soucis ?
 
-{% endreveal %}
+</Reveal>
 
 ### Structure de base
 
-Créer un fichier ```main.py``` c’est ce fichier qui va contenir l’ensemble de votre code, comme dans la version PHP, nous allons utiliser le JSON pour communiquer.
+Créer un fichier `main.py` c’est ce fichier qui va contenir l’ensemble de votre code, comme dans la version PHP, nous allons utiliser le JSON pour communiquer.
 
 Le minimum pour notre TP fonctionne est la déclaration des imports suivants :
 
@@ -76,12 +76,12 @@ Vous pouvez maintenant lancer votre application, via :
 python main.pys
 ```
 
-- À quoi sert ```app.secret_key``` ?
+- À quoi sert `app.secret_key` ?
 - Comment changer le port d’écoute ? (La réponse est là… [sur la documentation officiel](http://flask.pocoo.org/)… quelques part…)
 
 ### Liste
 
-Comme dans le premier TP, l’API ```list``` ne va faire que retourner la liste des taches actuellement dans la session.
+Comme dans le premier TP, l’API `list` ne va faire que retourner la liste des taches actuellement dans la session.
 
 Avec Flask ça va être **très** simple ! Il suffit de faire :
 
@@ -89,7 +89,7 @@ Avec Flask ça va être **très** simple ! Il suffit de faire :
 return jsonify(session["todo"])
 ```
 
-Très bien, mais on fait ça où ? Dans une fonction, il faut donc créer une fonction dans le fichier ```main.py``` pour le nom de la fonction je vous laisse vous reporter [à votre tableau](#le-mainpy), pour le premier je vous aide :
+Très bien, mais on fait ça où ? Dans une fonction, il faut donc créer une fonction dans le fichier `main.py` pour le nom de la fonction je vous laisse vous reporter [à votre tableau](#le-mainpy), pour le premier je vous aide :
 
 ```python
 @app.route("/api/todo")
@@ -128,17 +128,17 @@ Où mettre le code ?
 - Choix 1 : Directement dans le main.py
 - Choix 2 : Dans un autre fichier (exemple helper.py)
 
-Vous avez le choix… Si vous faites le choix de mettre le fichier dans un autre fichier il faudra importer ```init_session``` dans le main.py :
+Vous avez le choix… Si vous faites le choix de mettre le fichier dans un autre fichier il faudra importer `init_session` dans le main.py :
 
 ```python
 from helper import init_session
 ```
 
-PS: Je vous conseille de le mettre dans un fichier ```helper.py```.
+PS: Je vous conseille de le mettre dans un fichier `helper.py`.
 
 ### Modification de la liste
 
-Maintenant que votre décorateur est terminé nous allons l’utiliser. Avant la fonction ```liste()``` ajouter ```@init_session()``` exemple :
+Maintenant que votre décorateur est terminé nous allons l’utiliser. Avant la fonction `liste()` ajouter `@init_session()` exemple :
 
 ```python
 @app.route("/api/todo")
@@ -153,7 +153,7 @@ def liste():
 
 Comme dans le premier TP la partie création doit comporter un test :
 
-- Est-ce que ```texte``` est dans data ?
+- Est-ce que `e` est dans data ?
 
 Ce test s’écrit en Python :
 
@@ -176,7 +176,7 @@ uniq_id = str(uuid.uuid4())
 
 Comme pour la liste, vous pouvez vous reporter à votre tableau contenant « le mapping » entre le chemin et la méthode, voilà ce que ça donne dans mon cas :
 
-{% reveal text='Cliquer pour afficher une solution possible' %}
+<Reveal text="Cliquer pour afficher une solution possible">
 
 ```python
 @app.route("/api/todo", methods=['POST'])
@@ -192,7 +192,7 @@ def save():
         return jsonify({"success": False})
 ```
 
-{% endreveal %}
+</Reveal>
 
 Questions :
 
@@ -202,12 +202,12 @@ Questions :
 
 ### Marquer comme terminé
 
-Marquer comme terminé une tache c’est changer le status de « termine » à ```true```.
+Marquer comme terminé une tache c’est changer le status de « termine » à `true`.
 
 - Utiliser le décorateur d’initialisation de la session.
-- Vérifier que la tâche existe dans la session. (En python ```if current_id in session["todo"]:```)
+- Vérifier que la tâche existe dans la session. (En python `if current_id in session["todo"]:`)
 - Récupérer la tâche dans la session.
-- Changer ```current['termine'] = True```.
+- Changer `current['termine'] = True`.
 - Sauvegarder à nouveau la tache dans la session.
 
 Questions :
@@ -216,7 +216,7 @@ Questions :
 - Le re-transcrire en Python.
 - L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
-{% reveal text='Cliquer pour afficher une solution possible' %}
+<Reveal text="Cliquer pour afficher une solution possible">
 
 ```python
 @app.route("/api/todo/done/<current_id>", methods=["POST"])
@@ -234,11 +234,11 @@ def terminer(current_id):
         return jsonify({"success": False})
 ```
 
-{% endreveal %}
+</Reveal>
 
 ### Suppression
 
-Supprimer une tâche, c’est tout simplement l’action de la retirer de la session, pour faire ça le mot clef et python c’est ```del```. Cependant votre code doit bloquer certaines actions car toutes les tâches ne peuvent pas être supprimées :
+Supprimer une tâche, c’est tout simplement l’action de la retirer de la session, pour faire ça le mot clef et python c’est `del`. Cependant votre code doit bloquer certaines actions car toutes les tâches ne peuvent pas être supprimées :
 
 - Limiter l’action seulement aux « identifiants » reconnus dans la session.
 - La tâche doit avoir le booléen « termine » à vrai pour permettre la suppression.
@@ -246,9 +246,9 @@ Supprimer une tâche, c’est tout simplement l’action de la retirer de la ses
 Votre algorithme doit donc suivre :
 
 - Utiliser le décorateur qui initialise la session.
-- Vérifier que la tâche existe dans la session. (En Python ```if current_id in session["todo"]:```)
-- Vérifier que la tâche à bien le statut ```termine == True```. (en Python ```session["todo"][current_id]["termine"]```)
-- Suppression de la tâche (```del …```).
+- Vérifier que la tâche existe dans la session. (En Python `if current_id in session["todo"]:`)
+- Vérifier que la tâche à bien le statut `termine == True`. (en Python `session["todo"][current_id]["termine"]`)
+- Suppression de la tâche (`del …`).
 - Sauvegarder à nouveau la tache dans la session.
 
 Questions :
@@ -257,7 +257,7 @@ Questions :
 - Le re-transcrire en Python
 - L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
-{% reveal text='Cliquer pour afficher une solution possible' %}
+<Reveal text="Cliquer pour afficher une solution possible">
 
 ```python
 @app.route("/api/todo/delete/<current_id>", methods=['DELETE'])
@@ -273,7 +273,7 @@ def suppression(current_id):
         return jsonify({"success": False})
 ```
 
-{% endreveal %}
+</Reveal>
 
 ## Tests
 

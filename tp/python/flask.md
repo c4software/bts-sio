@@ -25,7 +25,7 @@ Bonne nouvelle ! Depuis python 3.4 pip est maintenant intégré à l’installat
 Normalement vous avez installé python3 donc vous n’avez pas à faire ceci, cependant dans votre vie vous rencontrerez peut-être des environnements Python 2. La procédure d’installation est donc la suivante :
 
 - Télécharger sur votre machine le [script suivant](https://bootstrap.pypa.io/get-pip.py)
-- Lancer dans une console administrateur : ```python get-pip.py```
+- Lancer dans une console administrateur : `python get-pip.py`
 
 Et voilà ! pip est installé sur votre machine !
 
@@ -70,11 +70,11 @@ $ source flask\Scripts\activate
 (flask) /tmp
 ```
 
-Le ```(flask)``` entre parenthèses vous indique que vous êtes actuellement dans un environnement cloisoné, à partir de maintenant si vous installez des paquets via pip ils s’installeront non pas dans votre système mais dans votre environnement « cloisoné ».
+Le `(flask)` entre parenthèses vous indique que vous êtes actuellement dans un environnement cloisoné, à partir de maintenant si vous installez des paquets via pip ils s’installeront non pas dans votre système mais dans votre environnement « cloisoné ».
 
 ## Le fameux Hello World
 
-Testons notre installation en réalisant un simple Hello World. Créez un fichier ```test.py``` avec le contenu suivant :
+Testons notre installation en réalisant un simple Hello World. Créez un fichier `test.py` avec le contenu suivant :
 
 ```python
 print ("Hello World")
@@ -93,7 +93,7 @@ Question :
 
 ## Le Hello Word++
 
-Maintenant que l’on sait que notre environement d’execution est correctement installé nous allons tester la partie Flask. Avec la commande ```pip``` installer flask **mais** avant pensez à activer votre environnement cloisonés précédement créé
+Maintenant que l’on sait que notre environement d’execution est correctement installé nous allons tester la partie Flask. Avec la commande `pip` installer flask **mais** avant pensez à activer votre environnement cloisonés précédement créé
 
 ```sh
 flask\Scripts\activate # Sous Windows
@@ -110,29 +110,29 @@ Cette commande va installer Flask ainsi que les dépendances nécéssaires à so
 
 ### Le code
 
-Maintenant que Flask est installé nous allons pouvoir l’utiliser, notre exemple sera tout simple tout sera contenu dans **un seul fichier**, lancer un éditeur de texte (pyCharn, Visual Studio Code, etc), et commencer par créer le fichier suivante ```main.py```
+Maintenant que Flask est installé nous allons pouvoir l’utiliser, notre exemple sera tout simple tout sera contenu dans **un seul fichier**, lancer un éditeur de texte (pyCharn, Visual Studio Code, etc), et commencer par créer le fichier suivante `main.py`
 
-Le fichier ```main.py``` va être le fichier principal de notre application, l’ensemble du code sera dedans. C’est bien pour une démo, bien évidément dans une vrai application on évitera.
+Le fichier `main.py` va être le fichier principal de notre application, l’ensemble du code sera dedans. C’est bien pour une démo, bien évidément dans une vrai application on évitera.
 
 ### But de notre code
 
-Dans ce second exemple appelé ```Hello World++``` nous allons créer deux fonctions Python :
+Dans ce second exemple appelé `Hello World++` nous allons créer deux fonctions Python :
 
-- La première ```hello_world()``` qui affichera ```Bonjour Monde```.
-- Et la seconde ```hello(name)``` qui affichera ```Bonjour <nom>```.
+- La première `hello_world()` qui affichera `Bonjour Monde`.
+- Et la seconde `hello(name)` qui affichera `Bonjour <nom>`.
 
 ### Fonctionnement
 
-Rappel sur le fonctionnement de Flask, comme vu pendant le cours Flask permet de « mapper » (faire correspondre) des URL et des fonctions Python. Nous devons donc définir des URL d’accès à ```hello_world``` et ```hello``` je vous propose :
+Rappel sur le fonctionnement de Flask, comme vu pendant le cours Flask permet de « mapper » (faire correspondre) des URL et des fonctions Python. Nous devons donc définir des URL d’accès à `hello_world` et `hello` je vous propose :
 
-- ```/``` ==> ```hello_world()```.
-- ```/hello/<name>``` ==> ```hello(name)```.
+- `/` ==> `hello_world()`.
+- `/hello/<name>` ==> `hello(name)`.
 
 ### Associer un lien et une fonction
 
 En python, on utilise beaucoup de « décorateur », un décorateur est un « morceau de code » qui sera appelé avant, après, ou à l’initialisation de votre code.
 
-Flask apporte un décorateur ```@app.route``` celui-ci nous permet de déclarer des nouveaux chemins (routes) pour accéder à nos API. Exemple :
+Flask apporte un décorateur `@app.route` celui-ci nous permet de déclarer des nouveaux chemins (routes) pour accéder à nos API. Exemple :
 
 ```python
 […]
@@ -142,7 +142,7 @@ def hello_world():
 […]
 ```
 
-Ce morceau de code déclare donc une url ```/``` et appelera la fonction ```hello_world()``` à chaque fois qu’une personne y accedera.
+Ce morceau de code déclare donc une url `/` et appelera la fonction `hello_world()` à chaque fois qu’une personne y accedera.
 
 ### L’application
 
@@ -199,7 +199,7 @@ Maintenant que vous avez tout compris, je vous propose de mettre en place une no
 
 C’est à vous !
 
-{% reveal text="Voir l’une des solutions possible" %}
+<Reveal text="Voir l’une des solutions possible">
 
 ```python
 @app.route("/calcul/<int:a>/<int:b>")
@@ -208,4 +208,5 @@ def calcul(a, b):
 ```
 
 Psss : Maintenant que tu as vu la solution. Modifier la consigne pour effectuer une division plutôt…
-{% endreveal %}
+
+</Reveal>

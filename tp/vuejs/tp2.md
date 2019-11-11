@@ -43,7 +43,7 @@ Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à 
 
 Dans un terminal lancer la commande suivante dans le `Node.js Command Prompt` :
 
-```shell
+```bash
 npm install -g @vue/cli
 ```
 
@@ -51,7 +51,7 @@ Maintenant que vue-cli est installé, vous avez à votre disposition sur votre o
 
 Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante dans le `Node.js Command Prompt`
 
-```shell
+```bash
 vue create cliff-height-timer
 ```
 
@@ -84,7 +84,7 @@ Une fois terminé votre projet est prêt à être lancé. Au passage vous pouvez
 
 Les librairies étant maintenant disponible, nous allons pouvoir lancer l’exemple fourni par Vue-Cli, pour ça rien de plus simple
 
-```shell
+```bash
 npm run serve
 ```
 
@@ -232,23 +232,22 @@ Pour débuter nous allons remplacer le contenu du fichier `App.vue` pour déclar
 ```html
 <template>
   <v-app>
-    <myToolbar/>
+    <myToolbar />
 
     <v-content>
       <v-slide-y-transition mode="out-in">
-        <router-view/>
+        <router-view />
       </v-slide-y-transition>
     </v-content>
-
   </v-app>
 </template>
 
 <script>
-import myToolbar from '@/components/MyToolbar'
-export default {
-  name: 'app',
-  components: {myToolbar}
-}
+  import myToolbar from "@/components/MyToolbar";
+  export default {
+    name: "app",
+    components: { myToolbar }
+  };
 </script>
 ```
 
@@ -295,7 +294,7 @@ N'oublier pas de retirer l'import existant dans le fichier `src/views/Home.vue`
 
 Voilà, vous avez atteint la première étape. Vous pouvez lancer votre application en faisant :
 
-```shell
+```bash
 npm run serve
 ```
 
@@ -327,8 +326,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+      component: () => import(/* webpackChunkName: "about" */ "./views/About.vue")
     }
   ]
 });
@@ -368,8 +366,13 @@ Au début du TP nous avons installé Vue-i18n, nous allons maintenant configurer
 
 Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier `/components/MyToolbar.vue`
 
-- Remplacer la chaine `Cliff height timer` par => {% raw %}`{{$t("title")}}`{% endraw %}
-- Le titre doit maintenant s’afficher. Et c’est normal la clef « title » est déjà présente dans le fichier : `i18n/index.js`, modifier le titre pour la langue « fr ».
+Remplacer la chaine `Cliff height timer` par :
+
+::: v-pre
+`{{$t("title")}}`
+:::
+
+Le titre doit maintenant s’afficher. Et c’est normal la clef « title » est déjà présente dans le fichier : `i18n/index.js`, modifier le titre pour la langue « fr ».
 
 ℹ️ `$t` est un objet qui permet d’accéder aux textes actuellement chargés pour la langue de l’utilisateur.
 
@@ -377,7 +380,7 @@ Notre internationalisation est maintenant prête à être utilisée. Nous allons
 
 Vérifier en relançant votre application que le titre à bien été modifié :
 
-```shell
+```bash
 npm run serve
 ```
 
@@ -520,7 +523,7 @@ import Home from '@/views/Home'
 
 - Tester votre code :
 
-```shell
+```bash
 npm run serve
 ```
 
@@ -546,7 +549,11 @@ Voilà le rendu de « la page » que vous devez réaliser :
 </script>
 ```
 
-⚠️ N’oubliez pas tous les textes doivent-être dans le fichier `locales/fr.json` et dans `locales/en.json` et être utilisés avec par exemple `{{$t("label")}}`
+⚠️ N’oubliez pas tous les textes doivent-être dans le fichier `locales/fr.json` et dans `locales/en.json` et être utilisés avec par exemple :
+
+::: v-pre
+{{ $t("label") }}
+:::
 
 - Ajouter dans `router.js` le code pour pouvoir accèder à votre Vue.
 
@@ -632,7 +639,7 @@ export default {
 
 - Tester votre application :
 
-```shell
+```bash
 npm run serve
 ```
 
@@ -696,7 +703,7 @@ Ajouter une nouvelle page « À propos » dans le projet.
 
 Voilà votre application est maintenant terminée bravo 👏👏. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour ça rien de plus simple il vous suffit de faire
 
-```shell
+```bash
 npm run build
 ```
 
@@ -731,7 +738,7 @@ Source: Mozilla.org
 
 - Vous pouvez builder votre application et la mettre à jour sur votre serveur Web.
 
-```shell
+```bash
 npm run build
 ```
 

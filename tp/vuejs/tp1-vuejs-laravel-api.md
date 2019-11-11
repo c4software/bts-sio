@@ -32,13 +32,13 @@ Nous allons donc créer un nouveau contrôleur qui va gérer la partie API de no
 
 Pour le créer il faut utiliser la commande `make:controller`
 
-{% reveal text="Voir la solution" %}
+<Reveal text="Voir la solution">
 
 ```sh
 php artisan make:controller api
 ```
 
-{% endreveal %}
+</Reveal>
 
 Un nouveau contrôleur vide vient d'être créé, il faut maintenant déclarer l'ensemble de nos méthodes.
 
@@ -102,7 +102,7 @@ Comme pour l'ajout, le code va être identique au TP précédent à l'exception 
 
 Normalement vous avez l'ensemble des informations pour y arriver seul, si vous bloquez voila :
 
-{% reveal text="Voir la définition des méthodes" %}
+<Reveal text="Voir la définition des méthodes">
 
 ```php
 <?php
@@ -128,7 +128,7 @@ class api extends Controller
 }
 ```
 
-{% endreveal %}
+</Reveal>
 
 ✋ Je vous laisse écrire le code des méthodes seul, rappel il est presque identique à celui du premier TP.
 
@@ -227,7 +227,7 @@ Pour l'utiliser il faut créer **2 choses** :
 - Une méthode dans le contrôleur `TodosController.php`.
 - Une route (exemple `/vue`) dans le fichier `routes/web.php`.
 
-{% reveal text="Un doute sur le code de la méthode ?" %}
+<Reveal text="Un doute sur le code de la méthode ?">
 
 Le code de la méthode est :
 
@@ -237,7 +237,7 @@ public function homevue(){
 }
 ```
 
-{% endreveal %}
+</Reveal>
 
 🔥 Maintenant que votre code est prêt, tester votre application :
 
@@ -527,7 +527,7 @@ Pensez à bien rafraichir la liste dans le `then`.
 
 Vous avez fait le tour de la conversion de votre site « version Laravel » en site « version VueJS ».
 
-{% reveal text="Voir le code complet" %}
+<Reveal text="Voir le code complet">
 
 ```js
 let app = new Vue({
@@ -582,7 +582,7 @@ let app = new Vue({
 });
 ```
 
-{% endreveal %}
+</Reveal>
 
 ### Amélioration 1
 

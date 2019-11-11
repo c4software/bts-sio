@@ -384,7 +384,7 @@ $ git branch evolution1
 
 ---
 
-```shell
+```bash
 $ git checkout evolution1
 Switched to branch 'evolution1'
 ```

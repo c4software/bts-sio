@@ -78,7 +78,7 @@ services:
 
 Et voilà, c’est tout ! Votre stack Wordpress est prête il vous suffit de la lancer avec la commande suivante :
 
-```shell
+```bash
 docker-compose up
 ```
 

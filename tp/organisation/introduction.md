@@ -4,7 +4,9 @@
 
 Dans ce TP, nous allons voir comment « ré-organiser » du code pour le rendre plus facilement maintenable.
 
-⚠️ Le code original fourni est clairement de mauvaise qualité. Il ne doit pas être pris comme référence. ⚠️
+::: danger
+Le code original fourni est clairement de mauvaise qualité. Il ne doit pas être pris comme référence.
+:::
 
 ## Code
 
@@ -23,7 +25,7 @@ L'application doit ressembler à :
 
 Maintenant que vous avez pris en main le code source, quelles sont les remarques sur le code pouvez-vous émettre :
 
-```text
+```
 Vos remarques
 
 
@@ -31,7 +33,7 @@ Vos remarques
 
 PS : cette première analyse est importante !
 
-{% reveal text='Cliquer pour voir ma « solution »' %}
+<Reveal text="Cliquer pour voir ma « solution »">
 
 - Non-utilisation de template.
 - Le code des listes est répété (sans utilisation de fonction).
@@ -42,7 +44,7 @@ PS : cette première analyse est importante !
 - Il n'y a aucun modèle de données.
 - Pas de configuration centralisée.
 
-{% endreveal %}
+</Reveal>
 
 ## Détail des fonctionnalités
 
@@ -82,7 +84,7 @@ C'est à vous :
 
 Votre arborescence doit maintenant ressembler à :
 
-```shell
+```bash
 ├── data
 │   ├── reddit.json
 │   ├── search.json
@@ -190,7 +192,7 @@ Comme vous devez le constater, nous n'avons pas retiré le code dupliqué… Nou
 
 À votre avis, comment procéder ?
 
-{% reveal text='Cliquer pour voir ma « solution »' %}
+<Reveal text="Cliquer pour voir ma « solution »">
 
 ```php
 $elements = [
@@ -207,7 +209,7 @@ foreach($elements as $el){
 - Quel est l'avantage de ma solution ?
 - Est-ce meilleur que la vôtre ?
 
-{% endreveal %}
+</Reveal>
 
 ## Le modèle de la donnée
 
@@ -223,7 +225,7 @@ C'est à vous créer le dossier et le fichier.
 
 Votre arborescence doit maintenant ressembler à :
 
-```shell
+```bash
 ├── data
 │   ├── reddit.json
 │   ├── search.json
@@ -306,7 +308,7 @@ La première étape est de créer les dossiers, par convention, nous allons « r
 
 Votre arborescence doit maintenant ressembler à :
 
-```shell
+```bash
 ├── dao
 │   └── liens.php
 ├── data
@@ -354,7 +356,7 @@ Valider que le site fonctionne toujours.
 
 Nous avons maintenant mis en place la structure. Mais comme vous pouvez le constater nous avons encore à un certains nombre d'endroit « des éléments en dur ».
 
-Par exemple le tableau « $elements », celui-ci contient des valeurs static « twitter », « search », etc. Si vous souhaitez ajouter une nouvelle catégorie, vous allez devoir ajouter un élément dans le tableau (et surtout vous souvenir à quel endroit celui-ci est défini).
+Par exemple le tableau « \$elements », celui-ci contient des valeurs static « twitter », « search », etc. Si vous souhaitez ajouter une nouvelle catégorie, vous allez devoir ajouter un élément dans le tableau (et surtout vous souvenir à quel endroit celui-ci est défini).
 
 De la même façon, le chemin vers les « data » est également écrit en dur dans votre DAO.
 

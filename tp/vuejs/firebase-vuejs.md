@@ -31,7 +31,7 @@ Vue-Cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à 
 
 Dans un terminal lancer la commande suivante dans le `Node.js Command Prompt` :
 
-```shell
+```bash
 npm install -g @vue/cli
 ```
 
@@ -350,7 +350,7 @@ Comme pour Vue2-Leaflet et firebase, vuefire nécéssite une déclaration pour �
 
 🤓 C'est la 3ème fois de ce TP que vous le faites, vous devez être capable de le faire de vous même.
 
-{% reveal text="Voir la solution" %}
+<Reveal text="Voir la solution">
 
 `src/plugins/vuefire.js`
 
@@ -370,7 +370,7 @@ import "./plugins/vuefire";
 // […]
 ```
 
-{% endreveal %}
+</Reveal>
 
 ## Connecter firebase à notre vue
 
@@ -400,7 +400,7 @@ Pour ajouter un marker sur la carte nous allons utiliser la directive `@stop` su
 - À votre avis à quoi doit ressembler le code ?
   - Ajouter un `console.log(marker)` avez-vous une propriété `latlng` ?
 
-{% reveal text="Voir la solution" %}
+<Reveal text="Voir la solution">
 
 ```js
 addMarker(position) {
@@ -411,7 +411,7 @@ addMarker(position) {
 },
 ```
 
-{% endreveal %}
+</Reveal>
 
 ## Tester
 
@@ -434,7 +434,7 @@ Les étapes :
 - et… c'est tout
 - Essayer sans regarder la solution.
 
-{% reveal text="Voir la solution" %}
+<Reveal text="Voir la solution">
 
 Le marker est à mettre dans le `l-map`.
 
@@ -447,7 +447,7 @@ Le marker est à mettre dans le `l-map`.
 </l-marker>
 ```
 
-{% endreveal %}
+</Reveal>
 
 ## Tester
 
@@ -490,7 +490,7 @@ Celle-ci permet de localiser une personne en fonction de sa connexion internet (
 - La méthode doit mettre à jour le `this.center = [lat, lng]`.
 - La méthode doit être appelé via un clique utilisateur [Documentation de LControl](https://korigan.github.io/Vue2Leaflet/#/components/l-control/)
 
-{% reveal text="Voir la solution" %}
+<Reveal text="Voir la solution">
 
 template :
 Dans le `l-map`
@@ -516,4 +516,4 @@ getUserLocation() {
     }
 ```
 
-{% endreveal %}
+</Reveal>

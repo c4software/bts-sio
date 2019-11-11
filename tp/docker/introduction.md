@@ -14,7 +14,7 @@ Lancer Docker en tant qu'administrateur (et autoriser Hyper-V si il vous le dema
 
 Maintenant qu’il est installé sur votre poste rien de plus simple. Dans une console entrez la commande suivante :
 
-```shell
+```bash
 docker version
 ```
 
@@ -27,7 +27,7 @@ Vous devez voir la version de Docker.
 
 Maintenant que nous savons que Docker est correctement installé, testons avec une « machine » fourni par Docker. L’image se nomme ```hello-world``` et celle-ci ne fait qu’afficher un message de bienvenue. De nouveau dans la console entrez la commande suivante :
 
-```shell
+```bash
 docker run hello-world
 ```
 
@@ -58,7 +58,7 @@ PS: Pas d’inquietude on créera un DockerFile dans le 2nd TP.
 
 Bon un texte à l’écran c’est bien… Mais si on lancait un système entier? Ubuntu par exemple. Pour ça rien de plus simple, dans la console lancé :
 
-```shell
+```bash
 docker run -it ubuntu bash
 ```
 
@@ -82,13 +82,13 @@ Questions :
 
 Créer un fichier vide avec la commande :
 
-```shell
+```bash
 touch fichier_test
 ```
 
 Vérifier avec un ```ls``` que le fichier est bien présent. Quitter maintenant votre l’image en tappant ```exit```. Relancer de nouveau l’image avec la commande :
 
-```shell
+```bash
 docker run -it ubuntu bash
 ```
 
@@ -106,13 +106,13 @@ Pour monter un volume il suffit d’ajouter un ```-v``` à la commande de lancem
 
 Sous Windows :
 
-```shell
+```bash
 docker run -v %cd%:/mnt/ -it ubuntu bash # Monte le dossier courant dans le /mnt du Docker.
 ```
 
 Sous Unix :
 
-```shell
+```bash
 docker run -v $(pwd):/mnt/ -it ubuntu bash # Monte le dossier courant dans le /mnt du Docker.
 ```
 
@@ -124,19 +124,19 @@ Comme je le disais dans l’introduction avec docker il est possible de rendre a
 
 Windows :
 
-```shell
+```bash
 docker run -v %cd%/mon_fichier:/mnt/mon_fichier -it ubuntu bash
 ```
 
 Unix :
 
-```shell
+```bash
 docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier -it ubuntu bash
 ```
 
 Le fichier est maintenant accessible dans votre image Docker. Il est également possible de limiter l’accès à votre fichier en le montant par exemple en « RO » en français « lecture seulement » :
 
-```shell
+```bash
 docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier:ro -it ubuntu bash
 ```
 

@@ -14,7 +14,7 @@ Une fois le fichier Dockerfile écrit, votre application sera fonctionnelle sur 
 
 Les « Dockerfile » sont des simples fichiers textes mais avec un formalisme précis. Par exemple :
 
-```conf
+```apacheconf
 FROM alpine:latest
 MAINTAINER Valentin Brosseau "c4software@gmail.com"
 ENTRYPOINT ["echo", "Mon premier Dockerfile"]
@@ -32,7 +32,7 @@ Pour finir enregistrer la définition précédente dans un fichier nommé « Doc
 
 Pour builder votre image il suffit de lancer la commande suivante :
 
-```shell
+```bash
 docker build --tag "docker-hello:latest" .
 ```
 
@@ -63,7 +63,7 @@ Une fois que c’est fait il faut trouver une image de base qui nous servira de 
 
 Pour continuer nous allons utiliser l’image PHP 7 Apache. Voilà le début de notre Dockerfile :
 
-```conf
+```apacheconf
 FROM php:7-apache
 MAINTAINER Valentin Brosseau "c4software@gmail.com"
 ```
@@ -78,7 +78,7 @@ La commande ```COPY``` permet de copier des fichiers (dossiers, fichiers, etc…
 
 La commande ```COPY``` prend deux arguments le fichiers « sources » et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande ```COPY``` suivante :
 
-```conf
+```apacheconf
 FROM php:7-apache
 MAINTAINER Valentin Brosseau "c4software@gmail.com"
 
@@ -93,7 +93,7 @@ Et voilà! C’est terminé. Votre image est prête à être « build ».
 
 Maintenant que notre image est prête nous allons pouvoir builder l’image :
 
-```shell
+```bash
 docker build --tag "vuejs-todo:latest" .
 ```
 
@@ -103,7 +103,7 @@ Ding ! C’est prêt.
 
 Votre application étant buildée pour la lancer il suffit de faire :
 
-```shell
+```bash
 docker run -p 8888:80 vuejs-todo:latest
 ```
 

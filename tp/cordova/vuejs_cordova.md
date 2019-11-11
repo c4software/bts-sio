@@ -44,13 +44,13 @@ Maintenant que vous avez récupéré le code. Nous allons le rendre fonctionnel 
 
 Le projet étant « non compilé » / « non installé », nous allons devoir dans un premier temps installer les dépendances nécéssaires à notre projet. Pour se faire nous allons utiliser `npm` avec la commande `install`. Dans le dossier du projet :
 
-```shell
+```bash
 npm install .
 ```
 
 Les dépendances « VueJS » s’installent, l’installation peut prendre quelques minutes. Une fois installé tester le fonctionnement avec la commande :
 
-```shell
+```bash
 npm run serve
 ```
 
@@ -64,7 +64,7 @@ Ouvrez un navigateur et accédez à l’url suivante [http://localhost:8080/](ht
 
 Ajouter la plateforme Android au projet :
 
-```shell
+```bash
 cd cordova_app/
 mkdir www
 cordova platform add android
@@ -76,7 +76,7 @@ cordova platform add android
 
 Maintenant que la plateforme est prête et que notre code est disponible, nous allons compiler l’application pour la lancer sur votre téléphone. La première étape est de « builder » l’application VueJS en version distribuable :
 
-```shell
+```bash
 npm run build
 ```
 
@@ -89,7 +89,7 @@ Vous pouvez jeter un coup d’oeil pour voir les différences avec la version no
 
 Maintenant que le « build » est terminé nous pouvons réaliser le lancement sur le mobile via les commandes suivantes :
 
-```shell
+```bash
 cd cordova_app/
 cordova run android
 ```
@@ -230,14 +230,14 @@ import Localisation from "@/views/Localisation";
 
 - Lancer le serveur des developpement :
 
-```shell
+```bash
 npm run serve
 ```
 
 - Tester l’ajout.
 - Recompiler l’application et lancer la sur votre téléphone :
 
-```shell
+```bash
 npm run build
 cd cordova_app
 cordova run android
