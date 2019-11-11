@@ -6,7 +6,7 @@ module.exports = {
   dest: "docs",
   themeConfig: {
     displayAllHeaders: true,
-    sidebarDepth: 0,
+    sidebarDepth: 1,
     sidebar: [
       ["/", "Introduction"],
       { title: "Aides mémoires", children: [["cheatsheets/git/", "Git"], ["cheatsheets/cordova/", "Cordova"], ["cheatsheets/docker/", "VueJS"], ["cheatsheets/vuejs/", "Docker"]] },
