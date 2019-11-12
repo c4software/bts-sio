@@ -1,5 +1,7 @@
 # Slam 5 - BTS SIO
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e35f4f3f-c4c2-454d-b00a-ccf7be8d524d/deploy-status)](https://app.netlify.com/sites/unruffled-sinoussi-ff7de3/deploys)
+
 [Consulter les Cours & TP sur Github Pages](https://cours.brosseau.ovh/)
 
 ## Introduction

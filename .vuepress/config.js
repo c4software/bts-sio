@@ -4,6 +4,10 @@ module.exports = {
   plugins: ["@vuepress/last-updated", ["vuepress-plugin-code-copy", true]],
   lang: "fr-FR",
   dest: "docs",
+  docsBranch: 'master',
+  editLinks: true,
+  nextLinks: false,
+  prevLinks: false,
   themeConfig: {
     displayAllHeaders: true,
     sidebarDepth: 0,
