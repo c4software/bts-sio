@@ -28,7 +28,7 @@ module.exports = {
         title: "VueJS exemple",
         children: [["https://cours.brosseau.ovh/demo/vuejs/demo1/index.html", "Demo 1"], ["https://cours.brosseau.ovh/demo/vuejs/counter/index.html", "Compteur 1"], ["https://cours.brosseau.ovh/demo/vuejs/clock/index.html", "Horloge"], ["https://cours.brosseau.ovh/demo/vuejs/timestamp-color/index.html", "Horloge 2"], ["https://cours.brosseau.ovh/demo/vuejs/sound/index.html", "Sonomètre"]]
       },
-      { collapsable: false, title: "Cordova + VueJS", children: [["https://cours.brosseau.ovh/cours/sources/revealjs/index.html?source=cordova", "Slides"], "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/api/doc_api_led"] },
+      { collapsable: false, title: "Cordova + VueJS", children: [["https://cours.brosseau.ovh/cours/sources/revealjs/index.html?source=cordova", "Slides"], "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] },
       { collapsable: false, title: "Docker", children: [["https://rawgit.com/c4software/bts/master/cours/docker/", "Slides"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
       { collapsable: false, title: "GitLab-CI", children: [["https://cours.brosseau.ovh/cours/sources/revealjs/index.html?source=gitlabci", "Slides"], "/tp/ci/pages", "/tp/ci/ci-hybride"] },
       { collapsable: false, title: "Python : Framework Flask", children: [["https://cours.brosseau.ovh/cours/sources/revealjs/index.html?source=python", "Slides"], "/tp/python/flask", "/tp/python/flask_todolist_api"] },
