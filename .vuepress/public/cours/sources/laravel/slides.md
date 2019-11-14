@@ -10,36 +10,36 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une application.
 
-* Pourquoi ?
-* Quand ?
+- Pourquoi ?
+- Quand ?
 
 ---
 
 ## Pourquoi ?
 
-* Simplification <!-- .element: class="fragment" -->
-* Standardisation <!-- .element: class="fragment" -->
-* Homogénéité <!-- .element: class="fragment" -->
-* Sécurité <!-- .element: class="fragment" -->
+- Simplification <!-- .element: class="fragment" -->
+- Standardisation <!-- .element: class="fragment" -->
+- Homogénéité <!-- .element: class="fragment" -->
+- Sécurité <!-- .element: class="fragment" -->
 
 ---
 
 ## Quand ?
 
-* En entreprise
-* En groupe
-* Le plus souvent…
+- En entreprise
+- En groupe
+- Le plus souvent…
 
 ---
 
 ## Quelques frameworks
 
-* Laravel
-* Symfony
-* CodeIgniter
-* CakePHP
-* Zend Framework
-* Fat-Free Framework
+- Laravel
+- Symfony
+- CodeIgniter
+- CakePHP
+- Zend Framework
+- Fat-Free Framework
 
 ---
 
@@ -51,20 +51,20 @@ Le choix du framework dépend du projet en question… Et parfois pas de framewo
 
 ## Laravel c’est ?
 
-* Un framework
-* Gratuit et Open-Source
-* Utilise le PHP de façon moderne
-* Démarrage simple et rapide
-* Développement objet
-* Approche MVC (Mais…)
+- Un framework
+- Gratuit et Open-Source
+- Utilise le PHP de façon moderne
+- Démarrage simple et rapide
+- Développement objet
+- Approche MVC (Mais…)
 
 ---
 
 ## Historique
 
-* Taylor Otwell
-* 2011: Création
-* 2016: Projet PHP le mieux noté sur GitHub
+- Taylor Otwell
+- 2011: Création
+- 2016: Projet PHP le mieux noté sur GitHub
 
 La communauté c’est rapidement formée autour du projet. C’est bon signe!
 
@@ -84,9 +84,9 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire
 
-* V1, V2: Le début, les versions sont rapidement disponibles. Système de routes, et controller MVC très simple.
-* V3: Février 2012, Boom de la popularité.
-* V4: Mai 2013, réécriture complète du Framework. Intégration du gestionnaire de paquets « Composer »
+- V1, V2: Le début, les versions sont rapidement disponibles. Système de routes, et controller MVC très simple.
+- V3: Février 2012, Boom de la popularité.
+- V4: Mai 2013, réécriture complète du Framework. Intégration du gestionnaire de paquets « Composer »
 
 ---
 
@@ -96,15 +96,15 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## Zoom sur Composer
 
-* Partage simple des dépendances
-* Multi-plateforme
-* Partage simplifié d’un projet
+- Partage simple des dépendances
+- Multi-plateforme
+- Partage simplifié d’un projet
 
 ---
 
 ## L’histoire… (maintenant)
 
-* 6.X: Version actuelle
+- 6.X: Version actuelle
 
 ---
 
@@ -116,9 +116,9 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## Architecture
 
-* **Model**: La base de données (ORM: Eloquent).
-* **Vue**: Gestion du HTML (Moteur de template : Blade).
-* **Controller**: Gestion des requêtes et génère le contenu.
+- **Model**: La base de données (ORM: Eloquent).
+- **Vue**: Gestion du HTML (Moteur de template : Blade).
+- **Controller**: Gestion des requêtes et génère le contenu.
 
 ---
 
@@ -132,8 +132,8 @@ Technique de programmation informatique qui crée l'illusion d'une base de donn�
 
 ## Du PHP Objet ?
 
-* Logique découpé dans des classes avec des comportements et des fonctionnements propres.
-* Plus simple, plus maintenante, plus facilement **TESTABLE**
+- Logique découpé dans des classes avec des comportements et des fonctionnements propres.
+- Plus simple, plus maintenante, plus facilement **TESTABLE**
 
 ---
 
@@ -191,8 +191,8 @@ Options:
 
 ## Les « routes »
 
-* Gestion des URL's de l’application
-* Assemble l'ensemble (Le controler et la vue)
+- Gestion des URL's de l’application
+- Assemble l'ensemble (Le controler et la vue)
 
 ---
 
@@ -202,11 +202,13 @@ Options:
 
 ## Dans Laravel : 3 fichiers
 
-* **web.php**: Gestion des urls pour le « web »
-* **api.php**: Gestion des urls pour les API.
-* **console.php**: Gestion des commandes pour la console Laravel
+- **web.php**: Gestion des urls pour le « web »
+- **api.php**: Gestion des urls pour les API.
+- **console.php**: Gestion des commandes pour la console Laravel
 
-## Un exemple
+---
+
+## Un exemple simple
 
 ```php
 Route::get('/', function () {
@@ -260,11 +262,21 @@ use App\Http\Controllers\Controller;
 
 class DemoController extends Controller
 {
-    public function voir($id)
+    public function voir(Request $request, $id)
     {
         return "Identifiant => ".$id;
     }
 }
+```
+
+---
+
+## Le « mapping » des paramètres
+
+```php
+    // […]
+    public function voir(Request $request, $id)
+    // […]
 ```
 
 ---
@@ -329,7 +341,7 @@ Schema::create('todoList', function(Blueprint $table)
 $ php artisan migrate
 ```
 
-* À votre avis que va-t-il se passer ?
+- À votre avis que va-t-il se passer ?
 
 ---
 
@@ -419,11 +431,11 @@ App\TodoList::where('termine', '==', 1)->delete();
 
 ## La Vue : Blade
 
-* Moteur de template
-* Performant
-* Héritage et re-définition
-* Les fichiers Blade sont des fichiers PHP
-* Contrairement à beaucoup d’autre moteur de template, le mix PHP + HTML est possible (Mais personnellement je ne trouve pas que ça soit une bonne idée…)
+- Moteur de template
+- Performant
+- Héritage et re-définition
+- Les fichiers Blade sont des fichiers PHP
+- Contrairement à beaucoup d’autre moteur de template, le mix PHP + HTML est possible (Mais personnellement je ne trouve pas que ça soit une bonne idée…)
 
 ---
 
@@ -441,9 +453,9 @@ Route::get('/', function () {
 
 ## Organiser les templates
 
-* Pourquoi ?
-* Comment ?
-* À votre avis pourquoi est-ce très important ?
+- Pourquoi ?
+- Comment ?
+- À votre avis pourquoi est-ce très important ?
 
 ---
 
@@ -452,18 +464,16 @@ Route::get('/', function () {
 ```html
 <!-- Sauvegardé dans resources/views/layouts/app.blade.php -->
 <html>
-    <head>
-        <title>Site Exemple - @yield('titre')</title>
-    </head>
-    <body>
-        @section('sidebar')
-            « Section » Sidebard principal
-        @show
+  <head>
+    <title>Site Exemple - @yield('titre')</title>
+  </head>
+  <body>
+    @section('sidebar') « Section » Sidebard principal @show
 
-        <div class="container">
-            @yield('content')
-        </div>
-    </body>
+    <div class="container">
+      @yield('content')
+    </div>
+  </body>
 </html>
 ```
 
@@ -496,29 +506,29 @@ Route::get('/', function () {
 
 ## Les conditions
 
-* **@if**, **@elseif**, **@else** et **@endif**
-* **@switch**, **@case**, **@break**, **@default** et **@endswitch**
+- **@if**, **@elseif**, **@else** et **@endif**
+- **@switch**, **@case**, **@break**, **@default** et **@endswitch**
 
 ---
 
 ## Les boucles
 
-* **@for**, **@endfor**
-* **@foreach**, **@endforeach**
-* **@forelse**, **@empty**, **@endforelse** <= Permet d’afficher autre chose si pas de données dans la boucle
+- **@for**, **@endfor**
+- **@foreach**, **@endforeach**
+- **@forelse**, **@empty**, **@endforelse** <= Permet d’afficher autre chose si pas de données dans la boucle
 
 ---
 
 ## L'héritage
 
-* **@include**('view.name') <= Inclusion d’une autre vue
-* **@include**When($boolean, 'view.name') <= Inclusion conditionnelle
+- **@include**('view.name') <= Inclusion d’une autre vue
+- **@include**When(\$boolean, 'view.name') <= Inclusion conditionnelle
 
 ---
 
 ## Gestion des droits d’accès
 
-* **@auth**, **@guest**
+- **@auth**, **@guest**
 
 ---
 
@@ -534,9 +544,7 @@ Exemple, zone dans le header pour injecter des scripts JS utile que dans certain
 
 ```html
 <head>
-    […]
-    @stack('scripts')
-    […]
+  […] @stack('scripts') […]
 </head>
 ```
 
@@ -557,9 +565,7 @@ Exemple, zone dans le header pour injecter des scripts JS utile que dans certain
 Exemple le CSRF
 
 ```html
-    […]
-    {{ csrf_field() }}
-    […]
+[…] {{ csrf_field() }} […]
 ```
 
 La vérification côté serveur est **automatique**
@@ -590,10 +596,10 @@ Pour des API ils ont conçu **Lumen**
 
 ## Lumen
 
-* Plus léger
-* Micro framework
-* Dédié au Micro-Services
-* Reprend les modules/fonctionnement de Laravel
+- Plus léger
+- Micro framework
+- Dédié au Micro-Services
+- Reprend les modules/fonctionnement de Laravel
 
 ---
 
@@ -601,7 +607,7 @@ Pour des API ils ont conçu **Lumen**
 
 ---
 
-* Voyez-vous des cas où choisir Lumen ?
+- Voyez-vous des cas où choisir Lumen ?
 
 ---
 
@@ -609,20 +615,20 @@ Pour des API ils ont conçu **Lumen**
 
 ---
 
-* Les services individuels sont simples à remplacer
-* Les services sont conçus pour leur utilité spécifique (par exemple la facturation, la chaîne logistique, l'interface...)
-* L'architecture est plus symétrique que hiérarchique (passage d'une architecture client-serveur à une architecture de plusieurs entités communicantes)
-* L'architecture facilite le déploiement continu du code
+- Les services individuels sont simples à remplacer
+- Les services sont conçus pour leur utilité spécifique (par exemple la facturation, la chaîne logistique, l'interface...)
+- L'architecture est plus symétrique que hiérarchique (passage d'une architecture client-serveur à une architecture de plusieurs entités communicantes)
+- L'architecture facilite le déploiement continu du code
 
 ---
 
-* Les services sont petits, et conçus pour remplir une seule fonction.
-* L'organisation du projet doit prendre en compte l'automatisation, le déploiement et les tests.
-* Chaque service est élastique, résilient, composable, minimal et complet.
+- Les services sont petits, et conçus pour remplir une seule fonction.
+- L'organisation du projet doit prendre en compte l'automatisation, le déploiement et les tests.
+- Chaque service est élastique, résilient, composable, minimal et complet.
 
 ---
 
-* Et pour vous ?
+- Et pour vous ?
 
 ---
 
