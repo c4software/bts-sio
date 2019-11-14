@@ -46,11 +46,13 @@ La création prend environ 1 minute, un certains nombres de librairies sont tél
 
 Le projet qui vient d'être créé est « générique » c'est à dire qu'il ne possède aucune personnalisation et peut donc servir de base quelques soit votre développement.
 
-La première étape est donc d'éditer le fichier `.env` pour configurer les options de base de votre projet tel que :
+La première étape va donc être d'éditer le fichier `.env` pour configurer les options de base de votre projet tel que :
 
 - Le nom
 - Le type de base de données
 - …
+
+C'est parti !
 
 ### Nom de l'application
 
@@ -136,7 +138,7 @@ L’option `--create=todos` permet d’indiquer le nom du modèle de la table à
 La commande vient de créer un nouveau fichier dans le dossier `database/migration`. Dans mon cas le fichier se nomme :
 
 ```bash
-2018_09_09_150442_create_todos_table.php
+2019_11_09_150442_create_todos_table.php
 ```
 
 Nous allons définir notre schéma (à savoir la définition de la table) pour y ajouter les 2 colonnes qui nous serons utiles `texte` et `termine`. L'ORM étant une librairie objet, la définition de nouveaux champs se fait via une méthode, dans notre cas :
@@ -392,11 +394,28 @@ La façon la plus rapide est d'intégrer directement dans le `<head>` de votre p
 Éditer le fichier `template.blade.php` pour ajouter (dans le `<head>`):
 
 ```html
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"
+></script>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"
+></script>
 ```
 
 Vous venez d'ajouter Jquery, Bootstrap, et l'ensemble des éléments nécéssaire à son bon fonctionnement. Notre site à également besoin d'une CSS spécifique. Celle-ci doit être ajouté manuellement.
@@ -478,7 +497,9 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/app.js", "public/js").sass("resources/sass/app.scss", "public/css");
+mix
+  .js("resources/js/app.js", "public/js")
+  .sass("resources/sass/app.scss", "public/css");
 ```
 
 ### Modifier le SCSS
@@ -582,8 +603,18 @@ Nous allons créer un 2nd template celui qui va être charger d'afficher la list
       <!-- Action -->
       <form action="/action/add" method="post" class="add">
         <div class="input-group">
-          <span class="input-group-addon" id="basic-addon1"><span class="oi oi-pencil"></span></span>
-          <input id="texte" name="texte" type="text" class="form-control" placeholder="Prendre une note…" aria-label="My new idea" aria-describedby="basic-addon1" />
+          <span class="input-group-addon" id="basic-addon1"
+            ><span class="oi oi-pencil"></span
+          ></span>
+          <input
+            id="texte"
+            name="texte"
+            type="text"
+            class="form-control"
+            placeholder="Prendre une note…"
+            aria-label="My new idea"
+            aria-describedby="basic-addon1"
+          />
         </div>
       </form>
 
