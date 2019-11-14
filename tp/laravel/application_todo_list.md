@@ -264,7 +264,9 @@ par
 DB_DATABASE=../database/database.sqlite
 ```
 
-PS: Avec une base de données MySQL ce genre de soucis n'existe pas.
+::: tip PS
+Avec une base de données MySQL ce genre de soucis n'existe pas.
+:::
 
 ### La méthode « Liste »
 
