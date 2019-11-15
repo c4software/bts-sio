@@ -308,7 +308,7 @@ Nous allons donc pouvoir commencer la création des templates. L'organisation du
 
 Notre vue va être découpée en 3 partie :
 
-![Structure](ressources/3partie.png)
+![Structure](./ressources/parties.png)
 
 - ✋ Pourquoi le découpage en « 3 templates » est-il important ?
 - Quelle est l'avantage pour le développeur ?
