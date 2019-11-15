@@ -454,114 +454,6 @@ Ajouter à nouveau cette CSS dans le `<head>` de votre site :
 
 Cette solution n'est pas la meilleur, malheureseument un bug sur les PC du lycée nous empêche d'utiliser NodeJS + npm.
 
-<Reveal text="Vous avez votre propre machine ? Installation de Bootsrap 4 via NodeJS + NPM">
-
-✋ Si vous lisez ceci c'est que vous êtes sur votre machine, si c'est le cas, sachez que c'est la meilleur façon de faire. **Attention** à ne pas avoir les librairies en HTTP et Via NodeJS.
-
-### Ajouter Bootsrap 4
-
-La structure de base de Laravel n'intègre pas Bootsrap, par contre elle intègre un système de gestion de dépendances. Nous allons nous servir de cette gestion de dépendance pour ajouter bootstrap (version 4). Dans la ligne de commande :
-
-```sh
-$ php artisan preset none
-$ php artisan preset bootstrap
-```
-
-⏱ Patientez quelques instants… bootstrap est maintenant disponible pour votre projet. Mais pour qu'il soit accessible pour vos templates nous devons « le compiler ».
-
-### Préparation des « Assets » bootsrap …
-
-Laravel inclut une configuration « webpack.mix.js », celle-ci permet de fusionner l'ensemble des JS et CSS en un seul fichier pour gagner en performance.
-
-Sans entrer dans le détail (nous détaillerons le fonctionnement dans un prochain cours), la compilation des ressources (assets) est réalisée avec Webpack. Webpack est un outils NodeJS très puissant mais qui peut-être complexe, nous allons donc uniqumement l'utiliser.
-
-- Installer [NodeJS version current](https://nodejs.org/en/download/current/)
-
-Une fois installé retourner dans le dossier de votre projet faites les commandes suivantes :
-
-#### laravel-mix ?
-
-laravel-mix est un outil fourni de base dans Laravel qui gèrent la partie libraries clientes. La configuration de celui-ci se fait dans le fichier `webpack.mix.js`
-
-Le contenu initial est :
-
-```js
-const mix = require("laravel-mix");
-
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
-
-mix
-  .js("resources/js/app.js", "public/js")
-  .sass("resources/sass/app.scss", "public/css");
-```
-
-### Modifier le SCSS
-
-Remplacer le fichier `ressources/app/scss` par :
-
-```scss
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Nunito");
-
-// Variables
-@import "variables";
-
-// Bootstrap
-@import "~bootstrap/scss/bootstrap";
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-body {
-  padding-top: 5rem;
-}
-
-form.add {
-  padding-bottom: 10px;
-}
-
-.pull-right {
-  float: right;
-}
-
-.action > .btn {
-  padding: 1px 7px 1px;
-}
-
-.oi {
-  font-size: small;
-}
-```
-
-### Transpiler
-
-```sh
-$ npm install
-$ npm run production
-```
-
-🔎 [Plus d'informations Webpack.mix.js](https://laravel.com/docs/5.6/mix)
-
-### 🤓 Questions
-
-- Quels fichiers ont été créés ?
-- Que contient le fichier `webpack.mix.js` ?
-- `webpack.mix.js` fait référence à des fichiers dans `ressources/js/*` et `ressources/sass/*`, allez y jeter un coup d'oeil (même si dans ce projet nous n'allons rien modifier).
-- Pourquoi la fusion / compilation des ressources est-elle si importante ?
-
-</Reveal>
-
 #### Modifications demandés
 
 ✋ Cette modification n'est nécéssaire que dans le cas ou vous n'utiliser **pas** NodeJS + NPM.
@@ -894,7 +786,7 @@ Il est également poussible de les utiliser dans le contrôleur via la directive
     return redirect()->route('todo.list');
 ```
 
-Modifier votre code pour l'utiliser.
+Modifier votre code pour les utiliser.
 
 ### 🤓 Question
 
@@ -933,3 +825,50 @@ Session::flash('message', "Message d'erreur de traitement à définir.");
 ```
 
 [Explication sur la méthode Flash](https://laravel.com/docs/5.6/session#flash-data)
+
+### Ajout des catégories
+
+Actuellement votre liste de Todo n'est pas catégorisé. Nous allons donc ajouter :
+
+- Un nouveau `model` nommé `Categorie`. (`id`, `nom`)
+- Ajouter une relation entre `Todos` et `Categories`. [De Type One To One](https://laravel.com/docs/5.8/eloquent-relationships#one-to-one)
+
+En modifiant Model `Todos` pour y ajouter :
+
+```php
+  // …
+  public function categorie()
+  {
+      return $this->hasOne('App\Categorie');
+  }
+  // …
+```
+
+- Modifier votre base de données (grace à une nouvelle migration) pour ajoute une clef étrangère vers une table catégorie
+
+⚠️ Éloquent détermine automatiquement la clef étrangère en fonction du nom. Dans la migration vous DEVEZ nommer la clef étrangère `categorie_id`.
+
+Vous devez donc écrire une migration avec :
+
+```php
+Schema::table('todos', function (Blueprint $table) {
+  $table->unsignedBigInteger('categorie_id');
+  $table->foreign('categorie_id')->references('id')->on('todos');
+}
+```
+
+- Créer une nouvelle table dans une autre migration pour y ajouter la définition de la table Categorie (`id`, `nom`, `timestamps()`)
+
+[Pour plus d'information](https://laravel.com/docs/5.8/migrations#foreign-key-constraints)
+
+### Ajouter une page pour créer des catégories
+
+Ajouter un nouveau contrôleur pour gérer la partie catégorie (Liste + Ajout)
+
+### Séléction de la catégorie
+
+Ajouter dans la page principale (`/`) une liste des catégories présente en base de données. Cette liste doit être à côté du champs de saisie.
+
+### Migration vers MySQL / MariaDB
+
+Maintenant que nous avons tester SQlite, nous allons migrer vers un « vrai système de base de données ». Modifier la configuration de votre site internet pour utiliser MySQL.
