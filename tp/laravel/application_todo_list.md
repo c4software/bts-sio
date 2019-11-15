@@ -545,20 +545,6 @@ Bien… récupitulons ! Nous avons :
 
 Il faut maintenant assembler l'ensemble pour que votre page s'affiche lors d'une requête.
 
-## Création des routes
-
-La définition des routes se fait dans le fichier `routes/web.php` pour l'instant vous devez avoir qu'une seule route de définie.
-
-Supprimer là, et ajouter :
-
-```php
-Route::get('/', "TodosController@liste");
-```
-
-### 🤓 Question
-
-- À quoi correspond la notation `TodosController@liste` ?
-
 ## Tester
 
 Vous voyez « Liste » ? C'est OK !
