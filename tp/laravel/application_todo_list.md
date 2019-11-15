@@ -13,7 +13,7 @@ Voilà la liste des fonctionnalités de l’application que l'on va créér :
 - Marquer comme terminé une tâche.
 - Suppression d'une tâche.
 
-## Technologie
+## Technologies
 
 Dans ce TP nous allons utiliser les technologies suivantes :
 
