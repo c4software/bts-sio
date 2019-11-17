@@ -1,6 +1,6 @@
 module.exports = {
   title: "Cours",
-  description: "Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
+  description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également l'ESEO), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
   plugins: ["@vuepress/last-updated", ["vuepress-plugin-code-copy", true]],
   lang: "fr-FR",
   dest: "docs",

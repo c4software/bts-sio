@@ -1,4 +1,4 @@
-# Slam 5 - BTS SIO
+# Support Cours & TP
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e35f4f3f-c4c2-454d-b00a-ccf7be8d524d/deploy-status)](https://app.netlify.com/sites/unruffled-sinoussi-ff7de3/deploys)
 
@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Cette documentation est faite pour la matière Slam 5 du BTS SIO, vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.
+Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également l'ESEO), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.
 
 ## Programme de l'année
 
