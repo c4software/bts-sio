@@ -124,4 +124,6 @@ Via un filter, filtrer l'ensemble des Todo qui sont pour l'utilisateur 2 *et* no
 
 Lister l'ensemble des valeurs de l'ensemble de la liste des Todo créé précédemment.
 
-Tips: `Object.values(…)`
+::: tips
+`Object.values(…)`
+:::
