@@ -349,13 +349,13 @@ Ajouter une Dialog dans votre interface. Nous allons utiliser une library.
 
 ### 3 étapes
 
-- Le layout
-- Le `findViewById` (dans la méthode `onCreate`)
+- Le layout (Ajouter un `id`)
+- La méthode `findViewById` (dans le code Java)
 - Le `setOnClickListener(…)`
 
 ---
 
-## Le listner
+## Le listener
 
 ```java
 tvHello.setOnClickListener(new View.OnClickListener() {
@@ -368,15 +368,7 @@ tvHello.setOnClickListener(new View.OnClickListener() {
 
 ---
 
-## C'est verbeux …
-
-### mais …
-
-![rageQuit](./img/rageQuit.gif)
-
----
-
-## Migrer en Java 1.8
+## Le Listener en version « courte »
 
 Android supporte Java 1.8 (dont les lambdas)
 
@@ -400,6 +392,10 @@ tvHello.setOnClickListener(l -> {
 
 ---
 
+![Adater](./img/adapter.jpg)
+
+---
+
 - **adapter** : Gère les données pour les afficher dans la vue.
 - L'adapter est associé à la liste.
 - Un Datasource est attaché à l'Adapter.
@@ -407,12 +403,17 @@ tvHello.setOnClickListener(l -> {
 
 ---
 
-![Adater](./img/adapter.jpg)
+- [En 3 fichiers](https://gist.github.com/c4software/6687dc4bb1d858bb81a79313f0e81fd9)
 
 ---
 
-- [En 3 fichiers](https://gist.github.com/c4software/6687dc4bb1d858bb81a79313f0e81fd9)
 - [Guide complet](https://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
+
+---
+
+## C'est à vous !
+
+### Ajoutons une RecyclerView « simple de type String »
 
 ---
 
@@ -423,21 +424,19 @@ tvHello.setOnClickListener(l -> {
 
 ---
 
-## Le futur
-
-- Migration vers AndroidX.
-- Passer de Java à Kotlin.
+## Réorganisons notre code
 
 ---
 
 ## Organisation du code
 
 - MVP
-- MVVM
+- ViewModel
 
 ---
 
-## Au minimum quelques packages
+## Mais simplement …
+### Au minimum quelques packages
 
 ---
 
@@ -462,7 +461,7 @@ Bien évidement c'est un exemple
 ### Zoom sur le package ui
 
 - Organisation par « vue ».
-- On regroupe les fonctionnalités par « vue » (exemple les adapters)
+- On regroupe les fonctionnalités par « vue » (exemple les `Adapters`)
 
 ---
 
@@ -485,13 +484,17 @@ Réorganisation de votre projet initial.
 
 ---
 
-## Démarrer une autre activitée
+## Ajout d'une seconde `activity`
+
+---
+
+## Démarrer une autre `activity`
 
 Une astuce…
 
 ---
 
-### Dans la class UI ajouter
+### Dans la nouvelle classe ajouter
 
 ```java
 public static Intent getStartIntent(final Context ctx) {
@@ -506,10 +509,6 @@ public static Intent getStartIntent(final Context ctx) {
 ```java
 startActivity(MaClass.getStartIntent(this));
 ```
-
----
-
-![wow](./img/wow.gif)
 
 ---
 
