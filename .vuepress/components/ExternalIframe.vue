@@ -1,7 +1,7 @@
 <template>
   <div>
-    <iframe :src="this.src" frameborder="0" ref='iframe' />
-    <button @click="requestFullscreen">Plein écran</button>
+    <iframe :src="this.src" @load="loaded = true" frameborder="0" ref='iframe' />
+    <button @click="requestFullscreen" v-if="loaded">Afficher en plein écran</button>
   </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
     props: {
         src: {
             required: true
+        }
+    },
+    data(){
+        return {
+            loaded: false,
         }
     },
     methods: {
