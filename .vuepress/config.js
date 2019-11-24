@@ -32,7 +32,7 @@ module.exports = {
       { collapsable: false, title: "Docker", children: [["https://rawgit.com/c4software/bts/master/cours/docker/", "Slides"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
       { collapsable: false, title: "GitLab-CI", children: ["cours/gitlabci", "/tp/ci/pages", "/tp/ci/ci-hybride"] },
       { collapsable: false, title: "Python : Framework Flask", children: ["cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
-      { collapsable: false, title: "Android", children: ["cours/android"] }
+      { collapsable: false, title: "Android", children: ["cours/android", "/tp/android/app-ble-network"] }
     ]
   }
 };
