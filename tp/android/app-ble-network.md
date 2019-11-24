@@ -395,6 +395,15 @@ public class LedStatus {
 }
 ```
 
+### Nouvelle dépendances Gradle 
+
+```groovy
+implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+implementation 'com.squareup.okhttp3:okhttp:3.8.0'
+implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+```
+
 ### la classe APIService
 
 ```java
