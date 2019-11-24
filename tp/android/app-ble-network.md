@@ -332,4 +332,99 @@ private void toggleLed() {
 }
 ```
 
-### Et via Internet maintenant
+### Ajout des actions aux cliques sur l'interface
+
+Nous avons nos méthodes, mais elle ne sont actuellement pas appelé par une action utilisateur. Pour vous guider dans la mission, vous devez dans le `OnCreate` ajouter des lignes de code similaire à :
+
+```java
+// Lancement du scan
+scanBtn = findViewById(R.id.startScan);
+scanBtn.setOnClickListener(v -> checkPermissions());
+// Bouton pour la deconnexion
+// TODO
+
+// Bouton pour change l'état de la led
+// TODO
+```
+
+## Télécommande via Internet
+
+Nécéssite le « nom » du périphérique (donc d'un scan précédent).
+
+- Modifier la vue de la home pour que nous ne puissions pas cliquer sur le bouton.
+- L'activité ne dois pas être accessible. (elle dois `finish()` si pas de `getCurrentSelectedDevice() == null`)
+
+### la classe APIService
+
+```java
+package com.playmoweb.demo.dmocourseseo.data.service;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.playmoweb.demo.dmocourseseo.BuildConfig;
+import com.playmoweb.demo.dmocourseseo.data.model.LedStatus;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+
+/**
+ * ApiService
+ */
+public interface ApiService {
+
+    @GET("/status")
+    Call<LedStatus> readStatus(@Query("identifier") final String identifier);
+
+    @POST("/status")
+    Call<LedStatus> writeStatus(@Body final LedStatus status);
+
+    class Builder {
+        /**
+         * Create a singleton only for simplicity. Should be done through a DI system instead.
+         */
+        private static final ApiService instance = build();
+
+        public static ApiService getInstance() {
+            return instance;
+        }
+
+        private Builder() {
+        }
+
+        /**
+         * Build an ApiService instance
+         */
+        private static ApiService build() {
+            final Gson gson = new GsonBuilder().create(); // JSON deserializer/serializer
+
+            // Create the OkHttp Instance
+            final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .addInterceptor(new HttpLoggingInterceptor().setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE))
+                    .addInterceptor(chain -> {
+                        final Request request = chain.request().newBuilder().addHeader("Accept", "application/json").build();
+                        return chain.proceed(request);
+                    })
+                    .build();
+
+            return new Retrofit.Builder()
+                    .baseUrl(BuildConfig.URI_REMOTE_SERVER)
+                    .client(okHttpClient)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build()
+                    .create(ApiService.class);
+        }
+    }
+}
+```
