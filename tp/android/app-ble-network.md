@@ -353,12 +353,51 @@ Nécéssite le « nom » du périphérique (donc d'un scan précédent).
 
 - Modifier la vue de la home pour que nous ne puissions pas cliquer sur le bouton.
 - L'activité ne dois pas être accessible. (elle dois `finish()` si pas de `getCurrentSelectedDevice() == null`)
+- Créer un nouveau model `LedStatus`
+
+### La classe LedStatus
+
+```java
+
+/**
+ * LedStatus model
+ */
+public class LedStatus {
+    private String identifier;
+    private boolean status;
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public LedStatus setIdentifier(final String identifier) {
+        this.identifier = identifier;
+        return this;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public LedStatus setStatus(final boolean status) {
+        this.status = status;
+        return this;
+    }
+
+    public LedStatus reverseStatus() {
+        return setStatus(!status);
+    }
+
+    @Override
+    public LedStatus clone() {
+        return new LedStatus().setIdentifier(getIdentifier()).setStatus(getStatus());
+    }
+}
+```
 
 ### la classe APIService
 
 ```java
-package com.playmoweb.demo.dmocourseseo.data.service;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.playmoweb.demo.dmocourseseo.BuildConfig;
@@ -426,5 +465,33 @@ public interface ApiService {
                     .create(ApiService.class);
         }
     }
+}
+```
+
+### Exemple d'utilisation
+
+```java
+void refreshLedState() {
+    apiService.readStatus(ledStatus.getIdentifier()).enqueue(new Callback<LedStatus>() {
+        @Override
+        public void onResponse(Call<LedStatus> call, Response<LedStatus> ledStatusResponse) {
+            runOnUiThread(() -> {
+                boolean newStatus = ledStatus.getStatus();
+                if (ledStatusResponse.body() != null) {
+                    newStatus = ledStatusResponse.body().getStatus();
+                }
+
+                setLedState(newStatus);
+            });
+        }
+
+        @Override
+        public void onFailure(Call<LedStatus> call, Throwable t) {
+            t.printStackTrace();
+            runOnUiThread(() -> {
+                Toast.makeText(ActionActivity.this, "Erreur de connexion au serveur", Toast.LENGTH_SHORT).show();
+            });
+        }
+    });
 }
 ```
