@@ -407,24 +407,6 @@ implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 ### la classe APIService
 
 ```java
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.playmoweb.demo.dmocourseseo.BuildConfig;
-import com.playmoweb.demo.dmocourseseo.data.model.LedStatus;
-
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-
 /**
  * ApiService
  */
