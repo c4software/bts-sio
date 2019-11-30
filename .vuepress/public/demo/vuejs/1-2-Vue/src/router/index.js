@@ -4,7 +4,7 @@ import VueRouter from "../../web_modules/vue-router/dist/vue-router.esm.browser.
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/", component: () => import("/src/views/tapotap.js") }
+  { path: "/", component: () => import("../views/tapotap.js") }
 ];
 
 const router = new VueRouter({
