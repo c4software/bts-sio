@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1-2 Vue</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app" v-cloak>
+        <router-view></router-view>
+    </div>
+    <script src="./src/main.js" type="module"></script>
+  </body>
 </html>
