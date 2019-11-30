@@ -710,8 +710,8 @@ Le lien doit-être : `/action/delete/{id}` et la méthode dans le contrôleur `T
 Maintenant que nous avons déclaré nos « 3 actions » dans notre contrôleur (et dans le fichier de route) nous allons les utiliser dans notre template « home » voici les étapes :
 
 - Éditer le fichier `resources/views/home.blade.php`.
-- Ajouter la bonne url sur l'action de votre formulaire. (`« /add »`)
-- Ajouter sur chaque ligne de la boucle « foreach » deux liens qui vont « suprimer » et « terminer ».
+- Vérifier l'URL de l'action de votre formulaire. (`« /add »`)
+- Ajouter sur chaque ligne de la boucle « foreach » deux liens qui vont « supprimer » et « terminer ».
 
 Aide :
 
@@ -799,6 +799,8 @@ Avertir l'utilisateur en cas d'erreur est important! Comme vous l'avez constaté
 ```php
 […]
 Session::flash('message', "Message d'erreur de traitement à définir.");
+// Ou
+$request->session()->flash('message', "Message d'erreur de traitement à définir.");
 […]
 ```
 
@@ -838,7 +840,7 @@ Vous devez donc écrire une migration avec :
 
 ```php
 Schema::table('todos', function (Blueprint $table) {
-  $table->unsignedBigInteger('categorie_id');
+  $table->unsignedBigInteger('categorie_id')->nullable()->unsigned();
   $table->foreign('categorie_id')->references('id')->on('todos');
 }
 ```
