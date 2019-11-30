@@ -14,6 +14,7 @@ En utilisant :
 
 - let / const
 - String template
+- forEach
 
 Moderniser le code ci-dessous :
 
@@ -54,7 +55,7 @@ const valeurs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 Manipuler un `objet` avec des méthodes, c'est toujours plus simple que de manipuler un simple Object.
 
-En utilisant le code fourni, remaper grâce à la fonction `map` l'ensemble des `objects` en `Person`
+En utilisant le code fourni, « remaper » grâce à la fonction `map` l'ensemble des `objects` en `Person`
 
 ```javascript
 class Person {
@@ -82,9 +83,17 @@ En utilisant `filter` filtrer le tableau résultat pour ne garder que les person
 
 ### Question 7
 
+Ajouter une méthode retournant `nom` et `age` en utilisant String template.
+
+### Question 8
+
+Utiliser la méthode précédement créé pour faire un `console.log` pour chaque (`forEach`) élément `filtré`.
+
+### Question 9
+
 Avant le javascript « moderne » il était courant d'utiliser l'objet `xmlhttprequest` pour faire des appels réseaux.
 
-Réécrire le code suivant en utilisant fetch :
+Réécrire le code suivant en utilisant `Fetch` :
 
 ```javascript
 const req = new XMLHttpRequest();
@@ -103,24 +112,24 @@ req.open('GET', 'https://jsonplaceholder.typicode.com/todos/', true);
 req.send(null);
 ```
 
-### Question 8
+### Question 10
 
 Même question, mais en utilisant [Wretch](https://elbywan.github.io/wretch/)
 
-### Question 9
+### Question 11
 
 Créer une classe pour la liste des `Todos`, puis en utilisant le `chainage` (then) des `Promises` et la méthode map d'un tableau transformer l'ensemble des Todos du retour en objet de type `Todo`
 
-### Question 10
+### Question 12
 
-Via un filter, filtrer l'ensemble des Todo qui sont pour l'utilisateur 2 *et* non completed.
+Via un filter, filtrer l'ensemble des Todos qui sont pour l'utilisateur 2 *et* non completed.
 
 ```javascript
 "userId": 2,
 "completed": true
 ```
 
-### Question 11
+### Question 13
 
 Lister l'ensemble des valeurs de l'ensemble de la liste des Todo créé précédemment.
 
