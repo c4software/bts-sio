@@ -1,3 +1,3 @@
 # Compteur
 
-<ExternalIframe src="/demo/vuejs/clock/index.html"></ExternalIframe>
+<ExternalIframe src="/demo/vuejs/counter/index.html"></ExternalIframe>
