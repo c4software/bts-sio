@@ -184,17 +184,18 @@ private static UUID CHARACTERISTIC_TOGGLE_LED_UUID = UUID.fromString("59b6bf7f-4
 ### Intéragir avec le ReyclerView
 
 ```java
-listView.setClickable(true);
-listView.setOnItemClickListener(listClick);
+rvList.setAdapter(deviceAdapter);
+rvList.setOnItemClickListener(this::listClick);
 ```
 
 ```java
-// Dans la méthode listClick
-
-final Device item = deviceAdapter.getItem(position);
-selectedDevice = item;
-LocalPreferences.getInstance(this).saveCurrentSelectedDevice(item.getName());
-connectToCurrentDevice();
+// Méthode listClick
+private void listClick(AdapterView<?> adapterView, View view, int position, long l) {
+    final Device item = deviceAdapter.getItem(position);
+    selectedDevice = item;
+    LocalPreferences.getInstance(this).saveCurrentSelectedDevice(item.getName());
+    connectToCurrentDevice();
+}
 ```
 
 ### LocalPreferences ?
