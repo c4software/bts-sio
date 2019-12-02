@@ -179,6 +179,8 @@ private ArrayList<BluetoothDevice> deviceArrayList = new ArrayList<>();
 private static UUID DEVICE_UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c");
 private static UUID CHARACTERISTIC_TOGGLE_LED_UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b");
 
+private BluetoothDevice;
+
 ```
 
 ### Intéragir avec le ReyclerView
@@ -293,8 +295,9 @@ Méthode permettant de changer l'état de l'interface en fonction de la connexio
 ```java
 private void setUiMode(boolean isConnected) {
     if(isConnected){
-        // On vide l'adapter
-        // On cache le RecyclerView
+        // On vide deviceArrayList (deviceArrayList.clear())
+        // On Notifie le changement (deviceAdapter.notifyDatasetChange())
+        // On cache le RecyclerView (rvList.setVisiblity = View.GONE)
         // On cache le bouton scan (….setVisibility = View.GONE)
 
         // On affiche le TextView qui indique le device sur lequel on est connecté
@@ -305,6 +308,7 @@ private void setUiMode(boolean isConnected) {
         // On oublie pas de stopper le scan
     } else {
         // À vous de trouver les bonnes actions
+        // Dans l'idée on passe dans le mode « Je suis prêt à scanner »
     }
 
 }
