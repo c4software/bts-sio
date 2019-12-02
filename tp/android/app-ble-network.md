@@ -189,6 +189,8 @@ listView.setOnItemClickListener(listClick);
 ```
 
 ```java
+// Dans la méthode listClick
+
 final Device item = deviceAdapter.getItem(position);
 selectedDevice = item;
 LocalPreferences.getInstance(this).saveCurrentSelectedDevice(item.getName());
