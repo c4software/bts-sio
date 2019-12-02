@@ -292,14 +292,14 @@ Méthode permettant de changer l'état de l'interface en fonction de la connexio
 ```java
 private void setUiMode(boolean isConnected) {
     if(isConnected){
-        // On vide l'apapter
+        // On vide l'adapter
         // On cache le RecyclerView
-        // On cache le bouton scan
+        // On cache le bouton scan (….setVisibility = View.GONE)
 
         // On affiche le TextView qui indique le device sur lequel on est connecté
         // On set la bonne valeur au TextView
-        // On affiche le bouton déconnexion
-        // On affiche le bouton permettant de changer l'état de la led
+        // On affiche le bouton déconnexion (setVisibility = View.VISIBLE)
+        // On affiche le bouton permettant de changer l'état de la led (setVisibility = View.VISIBLE)
 
         // On oublie pas de stopper le scan
     } else {
