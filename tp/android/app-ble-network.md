@@ -113,8 +113,6 @@ private void scanNearbyDevices() {
         // scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(DEVICE_UUID)).build()); // add service filters
 
         bluetoothAdapter.getBluetoothLeScanner().startScan(scanFilters, settings, bleLollipopScanCallback);
-    } else {
-        bluetoothAdapter.startLeScan(DEVICE_UUID, bleScanCallback);
     }
 }
 
@@ -153,8 +151,6 @@ private final ScanCallback bleLollipopScanCallback = new ScanCallback() {
 private void stopScan(){
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         bluetoothAdapter.getBluetoothLeScanner().stopScan(bleLollipopScanCallback);
-    } else {
-        bluetoothAdapter.stopLeScan(bleScanCallback);
     }
     isScanning=false;
 }
