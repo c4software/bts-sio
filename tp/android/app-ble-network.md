@@ -132,9 +132,10 @@ private final ScanCallback bleLollipopScanCallback = new ScanCallback() {
         // C'est ici que nous allons créer notre « device » et l'ajouter dans le RecyclerView (Datasource)
         // Et surtout notifier du changement
 
-        // todo créer un Device
-        // l'ajouter
-        // notifier
+        // if(!deviceArrayList.contains(bluetoothDevice)){
+        // deviceArrayList.add(bluetoothDevice);
+        // deviceAdapter.notifyDatasetChanged();
+        // }
     }
 
     @Override
@@ -179,7 +180,7 @@ private ArrayList<BluetoothDevice> deviceArrayList = new ArrayList<>();
 private static UUID DEVICE_UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c");
 private static UUID CHARACTERISTIC_TOGGLE_LED_UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b");
 
-private BluetoothDevice;
+private BluetoothDevice selectedDevice;
 
 ```
 
@@ -200,9 +201,11 @@ private void listClick(AdapterView<?> adapterView, View view, int position, long
 }
 ```
 
-### LocalPreferences ?
+### La classe LocalPreferences ?
 
-Sauvegarde de manière « persistant » de paramètres.
+Cette classe va nous permettre de sauvegarder de manière « persistant » des paramètres.
+
+Pour l'instant nous allons sauvegarder le nom raspberryPi, ça nous sera utile lors de la prochaine étape (connexion HTTP)
 
 ```java
 import android.content.Context;
@@ -290,7 +293,9 @@ private void discconnectFromCurrentDevice() {
 
 ### setUiMode ?
 
-Méthode permettant de changer l'état de l'interface en fonction de la connexion. Je vous laisse écrire la méthode mais petite aide :
+Cette méthode permet de changer l'état de l'interface en fonction de la connexion.
+
+Je vous laisse écrire la méthode mais petite aide :
 
 ```java
 private void setUiMode(boolean isConnected) {
