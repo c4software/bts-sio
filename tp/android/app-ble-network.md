@@ -179,20 +179,25 @@ private ArrayList<BluetoothDevice> deviceArrayList = new ArrayList<>();
 private static UUID DEVICE_UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c");
 private static UUID CHARACTERISTIC_TOGGLE_LED_UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b");
 
+private BluetoothDevice;
+
 ```
 
 ### Intéragir avec le ReyclerView
 
 ```java
-listView.setClickable(true);
-listView.setOnItemClickListener(listClick);
+rvList.setAdapter(deviceAdapter);
+rvList.setOnItemClickListener(this::listClick);
 ```
 
 ```java
-final Device item = deviceAdapter.getItem(position);
-selectedDevice = item;
-LocalPreferences.getInstance(this).saveCurrentSelectedDevice(item.getName());
-connectToCurrentDevice();
+// Méthode listClick
+private void listClick(AdapterView<?> adapterView, View view, int position, long l) {
+    final Device item = deviceAdapter.getItem(position);
+    selectedDevice = item;
+    LocalPreferences.getInstance(this).saveCurrentSelectedDevice(item.getName());
+    connectToCurrentDevice();
+}
 ```
 
 ### LocalPreferences ?
@@ -290,18 +295,20 @@ Méthode permettant de changer l'état de l'interface en fonction de la connexio
 ```java
 private void setUiMode(boolean isConnected) {
     if(isConnected){
-        // On vide l'apapter
-        // On cache le RecyclerView
-        // On cache le bouton scan
+        // On vide deviceArrayList (deviceArrayList.clear())
+        // On Notifie le changement (deviceAdapter.notifyDatasetChange())
+        // On cache le RecyclerView (rvList.setVisiblity = View.GONE)
+        // On cache le bouton scan (….setVisibility = View.GONE)
 
         // On affiche le TextView qui indique le device sur lequel on est connecté
         // On set la bonne valeur au TextView
-        // On affiche le bouton déconnexion
-        // On affiche le bouton permettant de changer l'état de la led
+        // On affiche le bouton déconnexion (setVisibility = View.VISIBLE)
+        // On affiche le bouton permettant de changer l'état de la led (setVisibility = View.VISIBLE)
 
         // On oublie pas de stopper le scan
     } else {
         // À vous de trouver les bonnes actions
+        // Dans l'idée on passe dans le mode « Je suis prêt à scanner »
     }
 
 }
