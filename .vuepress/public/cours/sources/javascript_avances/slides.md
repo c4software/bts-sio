@@ -148,9 +148,9 @@ Est-ce valide ?
 
 ---
 
-### NON !
+### NON… Enfin Oui…
 
-Pour ça, on utilise un `forEach`
+Mais non, le mieux pour ça, on utilise un `forEach`
 
 ---
 
