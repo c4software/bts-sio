@@ -1,6 +1,6 @@
 # Le Javascript
 
-## Au delà de IE6 😅
+## Au-delà de IE6 😅
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
@@ -14,15 +14,15 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Désolé, mais le javascript est partout
+## Désolé, mais le JavaScript est partout
 
 ---
 
-## Bonne nouvelle ! C'est pas que du web
+## Bonne nouvelle ! Ce n'est pas que pour le web
 
 ---
 
-## Javascript -> ECMAScript (201X, 2016, 2017, …)
+## JavaScript -> ECMAScript (201X, 2016, 2017, …)
 
 ---
 
@@ -40,7 +40,7 @@ Beaucoup de différences, mais attention au support
 
 ## Rappel sur l'asynchrone
 
-Pouvez vous me dire à quoi ça correspond ?
+Pouvez-vous me dire à quoi ça correspond ?
 
 ---
 
@@ -120,7 +120,7 @@ Le but : Rendre le code plus lisible.
 
 ### « Activer » les exports dans le navigateur
 
-« De base » cette notation est ignorée par le navigateur, mais l'activation est simple.
+« De base », cette notation est ignorée par le navigateur, mais l'activation est simple.
 
 ---
 
