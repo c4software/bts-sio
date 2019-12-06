@@ -249,7 +249,7 @@ L'objet Promise (pour « promesse ») est utilisé pour réaliser des traitement
 
 ---
 
-Pour faire « simple », ça remplasse les `callback` et évite les `callback hell`.
+Pour faire « simple », ça remplace les `callback` et évite les `callback hell`.
 
 ---
 
