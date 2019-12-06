@@ -36,7 +36,7 @@ Réécrire le code suivant en utilisant les `fonctions flechés` et les `string 
 
 ```javascript
 function hello(nom){
-    console.log("Bonjoun « " + nom + " » ");
+    console.log("Bonjour « " + nom + " » ");
 }
 
 var nom = prompt("Votre nom");
