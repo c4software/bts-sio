@@ -22,7 +22,7 @@ Moderniser le code ci-dessous :
 nom = "Valentin";
 capacites = ["Javascript", "Android", "Web", "CSS"];
 
-console.log(nom + " connais " + capacites.length + " les technologies ");
+console.log(nom + " connait les " + capacites.length + " technologies ");
 console.log("Voilà la liste");
 
 for (c in capacites){
