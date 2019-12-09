@@ -47,6 +47,10 @@ a:visited {
   cursor: pointer;
 }
 
+.pad50{
+  padding: 50px
+}
+
 .tapotap{
     display: flex;
     flex-direction: column;
@@ -70,7 +74,7 @@ a:visited {
 .tapotap > .red {
     background-color: red;
     height: 50vh;
-    width: 100vw;    
+    width: 100vw;
     transition: all 200ms;
 }
 
