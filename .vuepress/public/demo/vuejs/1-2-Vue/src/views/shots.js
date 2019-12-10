@@ -4,8 +4,6 @@ export default {
   // language=Vue
   template: `
       <div class="pad50">
-          <script src="https://webrtc.github.io/adapter/adapter-latest.js"/>
-
           <div class="grid">
               <div>
                   <h1>Offer</h1>
@@ -15,10 +13,10 @@ export default {
                   </div>
                   <div>
                       <textarea @keyup.enter="setRemoteOffer" type='text' v-model="remoteOffer"/>
-                      <button @click="setRemoteOffer">Set remote Offer</button>
+                      <button @click="setRemoteOffer">Set remote</button>
                   </div>
               </div>
-              
+
               <div>
                   <h1>Answer</h1>
                   <textarea type='text' readonly v-model="answer"/>
@@ -76,7 +74,8 @@ export default {
     },
     setRemoteOffer() {
       let remoteOfferParsed = JSON.parse(this.remoteOffer);
-      const desc = new RTCSessionDescription({type: "offer", sdp: remoteOfferParsed.sdp});
+      const desc = new RTCSessionDescription({type: remoteOfferParsed.type, sdp: remoteOfferParsed.sdp});
+
       this.pc
         .setRemoteDescription(desc)
         .then(() => this.pc.createAnswer())
