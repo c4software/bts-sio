@@ -51,6 +51,11 @@ a:visited {
   padding: 50px
 }
 
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr
+}
+
 .tapotap{
     display: flex;
     flex-direction: column;
