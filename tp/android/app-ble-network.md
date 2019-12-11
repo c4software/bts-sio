@@ -494,3 +494,50 @@ void refreshLedState() {
     });
 }
 ```
+
+### Notification BLE
+
+La Raspberry Pi dispose également d'un service de « Notification ». Les notifications sont envoyés à chaque changement d'état de la led (local ou via le réseau). Cette notification est envoyée sur l'UUID `d75167c8-e6f9-4f0b-b688-09d96e195f00`.
+
+L'ajouter dans votre activité scan :
+
+```public static UUID CHARACTERISTIC_NOTIFY_STATE = UUID.fromString("d75167c8-e6f9-4f0b-b688-09d96e195f00");```
+
+Nous allons devoir indiquer à notre `GattClient` que le service en qestion est de type « Notification :
+
+```java
+private void enableListenBleNotify() {
+    if (currentBluetoothGatt == null) {
+        Toast.makeText(this, "Non Connecté", Toast.LENGTH_SHORT).show();
+        return null;
+    }
+
+    final BluetoothGattService service = currentBluetoothGatt.getService(BluetoothLEManager.DEVICE_UUID);
+    if (service == null) {
+        Toast.makeText(this, "UUID Introuvable", Toast.LENGTH_SHORT).show();
+        return null;
+    }
+
+    Toast.makeText(this, "Activation des notifications BLE", Toast.LENGTH_SHORT).show();
+    final BluetoothGattCharacteristic notification = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE); // Indique que le GATT Client va écouter les notifications sur le charactérisque
+    currentBluetoothGatt.setCharacteristicNotification(notification, true);
+}
+```
+
+- Appeler la méthode au bon endroit dans votre code (certainement après la connexion ;)
+
+#### Récéption et valeur
+
+La notification en question est de type « String » elle va prendre deux valeurs différentes `ON` ou `OFF`. Pour réagir aux notifications vous devez implémenter la méthode `onCharacteristicChanged` dans `BluetoothGattCallback`. Cette méthode à deux paramètres :
+
+```java
+public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+```
+
+Celui qui nous intéresse est celui du type `BluetoothGattCharacteristic`, pour lire la valeur :
+
+```characteristic.getStringValue(0)```
+
+- Ajouter dans votre layout un indicateur de l'état de la led (ImageView).
+- Le faire apparaitre lors de la connexion en bluetooth.
+- Le mettre à jour à chaque notifications. (ON / OFF)
