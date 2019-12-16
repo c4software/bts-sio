@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: "/", component: () => import("../views/tapotap.js") },
-  { path: "/shots", component: () => import("../views/shots.js") }
+  { path: "/shots", component: () => import("../views/shots/shots.js") }
 ];
 
 const router = new VueRouter({

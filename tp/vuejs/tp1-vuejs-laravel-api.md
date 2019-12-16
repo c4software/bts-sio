@@ -142,7 +142,7 @@ Dans le fichier `routes/api.php` ajouter le contenu suivant :
 Route::get('/', "api@list")->name("api.list");
 Route::post('/add', "api@add")->name('api.add');
 Route::patch('/done/{id}', "api@done")->name('api.done');
-Route::delete('/delete/{id}', "api@delete")->name('api.delete');
+Route::delete('/delete/{id}', "api@remove")->name('api.remove');
 ```
 
 ✋ Comme vous pouvez le voir le `/api/…` n'est pas spécifié… Pourquoi ?
@@ -299,15 +299,15 @@ Avant d'intégrer Fetch dans notre code client (le site web VueJS), nous allons 
 
 ```javascript
 fetch("api/", { method: "GET", credentials: "same-origin" })
-  .then(function(response) {
+  .then((response) => {
     // On décode le JSON, et on continue
     return response.json();
   })
-  .then(function(response) {
+  .then((response) => {
     // Votre retour est ICI
     console.log(response);
   })
-  .catch(function(error) {
+  .catch((error) => {
     console.log("Récupération impossible: " + error.message);
   });
 ```
@@ -349,28 +349,28 @@ Créer un nouveau fichier nommé `main.js`. Ce fichier doit être créé dans `p
 ```js
 var app = new Vue({
   el: ".container",
-  created: function() {
+  created() {
     // Code appelé à la création de votre application
     console.log("Démarrage TODO-APP");
   },
-  data: function() {
+  data() {
     return {
       todos: [],
       text: ""
     };
   },
-  beforeMount: function() {
+  beforeMount() {
     // Code appelé juste avant l'affichage de votre application
     this.list();
   },
   methods: {
-    list: function() {
+    list() {
       // Récupération des Todos
       console.log("Récupération Todo depuis le serveur");
     },
-    add: function() {},
-    done: function(todo) {},
-    remove: function(todo) {}
+    add() {},
+    done(todo) {},
+    remove(todo) {}
   }
 });
 ```
@@ -414,13 +414,13 @@ Nous allons donc devoir faire un appel réseau vers l'url `api/`. L'appel est le
 
 ```js
 fetch("api/", { method: "GET", credentials: "same-origin" })
-  .then(function(response) {
+  .then((response) => {
     return response.json();
   })
-  .then(function(response) {
+  .then((response) => {
     app.todos = response;
   })
-  .catch(function(error) {
+  .catch((error) => {
     console.log("Récupération impossible: " + error.message);
   });
 ```
@@ -450,7 +450,7 @@ Bien ! Maintenant que votre `console.log` s'affiche nous allons pouvoir faire la
 let formData = new FormData();
 formData.append("texte", app.text);
 
-fetch("api/add", { method: "POST", body: formData }).then(function() {
+fetch("api/add", { method: "POST", body: formData }).then(() => {
   app.text = ""; // On remet à Zéro l'input utilisateur
   app.list(); // On raffraîchit la liste.
 });
@@ -525,49 +525,49 @@ Vous avez fait le tour de la conversion de votre site « version Laravel » en s
 ```js
 let app = new Vue({
   el: ".container",
-  created: function() {
+  created() {
     // Code appelé à la création de votre application
     console.log("Démarrage TODO-APP");
   },
-  data: function() {
+  data() {
     return {
       todos: [],
       text: ""
     };
   },
-  beforeMount: function() {
+  beforeMount() {
     // Code appelé juste avant l'affichage de votre application
     this.list();
   },
   methods: {
-    list: function() {
+    list() {
       fetch("api/", { method: "GET" })
-        .then(function(response) {
+        .then((response) => {
           return response.json();
         })
-        .then(function(response) {
+        .then((response) => {
           app.todos = response;
         })
-        .catch(function(error) {
+        .catch((error) => {
           console.log("Récupération impossible: " + error.message);
         });
     },
-    add: function() {
+    add() {
       let formData = new FormData();
       formData.append("texte", app.text);
 
-      fetch("api/add", { method: "POST", body: formData }).then(function() {
+      fetch("api/add", { method: "POST", body: formData }).then(() => {
         app.text = ""; // On remet à Zéro l'input utilisateur
         app.list(); // On rafraichit la liste.
       });
     },
-    done: function(todo) {
-      fetch(`api/done/${todo.id}`, { method: "PATCH" }).then(function() {
+    done(todo) {
+      fetch(`api/done/${todo.id}`, { method: "PATCH" }).then(() => {
         app.list();
       });
     },
-    remove: function(todo) {
-      fetch(`api/delete/${todo.id}`, { method: "DELETE" }).then(function() {
+    remove(todo) {
+      fetch(`api/delete/${todo.id}`, { method: "DELETE" }).then(() => {
         app.list();
       });
     }
@@ -609,7 +609,7 @@ Mais comme nous sommes avec VueJS nous allons gérer ça avec le MVVM (Modèle V
 ```javascript
 var app = new Vue({
   el: '.container',
-  created: function () {
+  created() {
     console.log("Démarrage TODO-APP");
   },
   data: {
@@ -630,10 +630,10 @@ methods:{
         text: todo.text,
         url: ""
         })
-        .then(function(){
+        .then(() => {
           // Afficher une confirmation.
         })
-        .catch(function(){
+        .catch(() => {
           // Afficher un message d'erreur à votre utilisateur.
         })
     },
