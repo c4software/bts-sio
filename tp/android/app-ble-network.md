@@ -512,14 +512,14 @@ private void enableListenBleNotify() {
         return null;
     }
 
-    final BluetoothGattService service = currentBluetoothGatt.getService(BluetoothLEManager.DEVICE_UUID);
+    final BluetoothGattService service = currentBluetoothGatt.getService(DEVICE_UUID);
     if (service == null) {
         Toast.makeText(this, "UUID Introuvable", Toast.LENGTH_SHORT).show();
         return null;
     }
 
     Toast.makeText(this, "Activation des notifications BLE", Toast.LENGTH_SHORT).show();
-    final BluetoothGattCharacteristic notification = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE); // Indique que le GATT Client va écouter les notifications sur le charactérisque
+    final BluetoothGattCharacteristic notification = service.getCharacteristic(CHARACTERISTIC_NOTIFY_STATE); // Indique que le GATT Client va écouter les notifications sur le charactérisque
     currentBluetoothGatt.setCharacteristicNotification(notification, true);
 }
 ```

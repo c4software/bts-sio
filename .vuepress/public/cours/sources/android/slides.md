@@ -933,6 +933,7 @@ public class BluetoothLEManager {
 
     // Toggle LED UUID
     public static UUID CHARACTERISTIC_TOGGLE_LED_UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b");
+    public static UUID CHARACTERISTIC_NOTIFY_STATE = UUID.fromString("d75167c8-e6f9-4f0b-b688-09d96e195f00");
 
     public static BluetoothLEManager getInstance() {
         return INSTANCE;
@@ -1286,9 +1287,6 @@ Call<LedStatus> readStatus(@Query("identifier") final String identifier);
 
 @POST("/status")
 Call<LedStatus> writeStatus(@Body final LedStatus status);
-
-@POST("/status/{id}")
-Call<LedStatus> writeStatus(@Path("id") int ledId);
 ```
 
 ---
@@ -1392,7 +1390,8 @@ apiService.readStatus(ledStatus.getIdentifier()).enqueue(new Callback<LedStatus>
     public void onResponse(Call<LedStatus> call, Response<LedStatus> ledStatusResponse) {
         runOnUiThread(() -> {
             if (ledStatusResponse.body() != null) {
-                newStatus = ledStatusResponse.body() // LedStatus
+                ledStatus = ledStatusResponse.body() // Objet de type LedStatus
+                // Modifier la vue pour correspondre au nouvel état.
             }
         });
     }
