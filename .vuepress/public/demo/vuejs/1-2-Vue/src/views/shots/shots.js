@@ -6,7 +6,7 @@ export default {
   name: "shots",
   data() {
     return {
-      type: "server",
+      type: "client",
       pc: undefined,
       channel: undefined,
       myOffer: "",
@@ -24,6 +24,13 @@ export default {
     },
     isServer() {
       return this.type === 'server';
+    }
+  },
+  watch: {
+    isServer(is){
+      if(is){
+        this.createMyOffer();
+      }
     }
   },
   mounted() {

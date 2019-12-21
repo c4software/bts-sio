@@ -9,7 +9,6 @@ export default `
             <h1>Offer</h1>
             <div v-if="isServer">
                 <textarea readonly v-html="myOffer"/>
-                <button @click="createMyOffer">Create my offer</button>
             </div>
             <div>
                 <textarea v-model="remoteOffer"/>
