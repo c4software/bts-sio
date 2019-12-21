@@ -6,6 +6,7 @@ export default {
   name: "shots",
   data() {
     return {
+      type: "server",
       pc: undefined,
       channel: undefined,
       myOffer: "",
@@ -17,13 +18,36 @@ export default {
       myMessage: "",
     }
   },
+  computed: {
+    isClient() {
+      return this.type === 'client';
+    },
+    isServer() {
+      return this.type === 'server';
+    }
+  },
   mounted() {
     this.pc = new RTCPeerConnection(stunConfig);
-    this.initChannel();
+
+    this.pc.oniceconnectionstatechange = (e) => {
+      console.log("ICE CHANGE", this.pc.iceConnectionState);
+      this.connected = this.pc.iceConnectionState === 'connected';
+    };
+
+    this.pc.onicecandidate = (e) => {
+      if (e.candidate) return;
+      this.myOffer = JSON.stringify(this.pc.localDescription);
+    };
+
+    this.pc.ondatachannel = (e) => {
+      if (this.isClient) {
+        this.channel = e.channel;
+        this.initChannel();
+      }
+    }
   },
   methods: {
     initChannel() {
-      this.channel = this.pc.createDataChannel("chat");
       this.channel.onopen = (e) => {
         this.connected = true;
         this.messages.push("Connected");
@@ -38,27 +62,27 @@ export default {
       this.channel.onmessage = (e) => this.messages.push(`Remote: ${e.data}`);
     },
     createMyOffer() {
+      this.channel = this.pc.createDataChannel("chat");
+
       this.pc
         .createOffer()
-        .then((offer) => {
-          this.myOffer = JSON.stringify(offer);
-          return this.pc.setLocalDescription(offer);
-        });
+        .then((offer) => this.pc.setLocalDescription(offer));
+
+      this.initChannel();
     },
     setRemoteOffer() {
       let remoteOfferParsed = JSON.parse(this.remoteOffer);
       const desc = new RTCSessionDescription({type: remoteOfferParsed.type, sdp: remoteOfferParsed.sdp});
+      const ops = this.pc.setRemoteDescription(desc);
 
-      this.pc
-        .setRemoteDescription(desc)
-        .then(() => this.pc.createAnswer())
-        .then(d => this.pc.setLocalDescription(d))
-        .then(value => {
-          this.answer = JSON.stringify(this.pc.localDescription);
-        })
-        .catch(err => {
-          alert(err);
-        })
+      if (this.isServer) {
+        ops.catch(err => alert(err))
+      } else {
+        ops.then(() => this.pc.createAnswer())
+          .then(d => this.pc.setLocalDescription(d))
+          .then(value => this.answer = JSON.stringify(this.pc.localDescription))
+          .catch(err => alert(err))
+      }
     },
     triggerSendMessage() {
       try {
@@ -66,7 +90,7 @@ export default {
         this.messages.push(`You: ${this.myMessage}`);
         this.myMessage = "";
       } catch (e) {
-
+        console.log(e);
       }
     }
   }

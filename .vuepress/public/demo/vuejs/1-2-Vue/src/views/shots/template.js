@@ -1,21 +1,25 @@
 export default `
 <div class="pad50">
+    <select v-model="type">
+        <option value="server">Server</option>
+        <option value="client">Client</option>
+    </select>
     <div class="grid">
         <div>
             <h1>Offer</h1>
-            <div>
-                <textarea readonly @keyup.enter="createMyOffer" v-html="myOffer"/>
+            <div v-if="isServer">
+                <textarea readonly v-html="myOffer"/>
                 <button @click="createMyOffer">Create my offer</button>
             </div>
             <div>
-                <textarea @keyup.enter="setRemoteOffer" type='text' v-model="remoteOffer"/>
+                <textarea v-model="remoteOffer"/>
                 <button @click="setRemoteOffer">Set remote</button>
             </div>
         </div>
 
-        <div>
+        <div v-if="isClient">
             <h1>Answer</h1>
-            <textarea type='text' readonly v-model="answer"/>
+            <textarea readonly v-model="answer"/>
         </div>
     </div>
 
@@ -26,4 +30,6 @@ export default `
         </div>
         <input type="text" v-model="myMessage" @keyup.enter="triggerSendMessage">
     </div>
+    
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 </div>`;
