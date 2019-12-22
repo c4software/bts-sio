@@ -1,34 +1,42 @@
 export default `
 <div class="pad50">
-    <select v-model="type">
-        <option value="server">Server</option>
-        <option value="client">Client</option>
-    </select>
-    <div class="grid">
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+    <div v-if="!connected">
+        <select v-model="type">
+            <option value="server">Server</option>
+            <option value="client">Client</option>
+        </select>
         <div>
-            <h1>Offer</h1>
             <div v-if="isServer">
-                <textarea readonly v-html="myOffer"/>
+                <h1>Your offer</h1>
+                <textarea readonly v-model="myOffer"/>
             </div>
+            
             <div>
+                <h1>Remote offer</h1>
                 <textarea v-model="remoteOffer"/>
+                <br>
                 <button @click="setRemoteOffer">Set remote</button>
             </div>
-        </div>
-
-        <div v-if="isClient">
-            <h1>Answer</h1>
-            <textarea readonly v-model="answer"/>
+            
+            <div v-if="isClient">
+                <h1>Your answer</h1>
+                <textarea readonly v-model="answer"/>
+            </div>
         </div>
     </div>
 
     <div v-if="connected">
         <h1>Chat !</h1>
-        <div>
-            <p v-for="m in messages">{{m}}</p>
+        <div class="chat" v-if="messages.length > 0">
+            <div v-for="m in messages" :party="m.party">    
+                <p :party="m.party">{{m.message}}</p>
+                <span v-if="m.party === 'local'">You</span>
+                <span v-if="m.party === 'remote'">Stranger</span>
+            </div>
         </div>
-        <input type="text" v-model="myMessage" @keyup.enter="triggerSendMessage">
-    </div>
-    
-    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <br><br>
+        <input type="text" placeholder="Your message" v-model="myMessage" @keyup.enter="triggerSendMessage">
+    </div>    
 </div>`;

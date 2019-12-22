@@ -27,46 +27,56 @@ export default {
     }
   },
   watch: {
-    isServer(is){
-      if(is){
+    isServer() {
+      if (this.isServer) {
         this.createMyOffer();
+      }
+    },
+    isClient() {
+      if(this.isClient){
+        this.init();
       }
     }
   },
   mounted() {
-    this.pc = new RTCPeerConnection(stunConfig);
-
-    this.pc.oniceconnectionstatechange = (e) => {
-      console.log("ICE CHANGE", this.pc.iceConnectionState);
-      this.connected = this.pc.iceConnectionState === 'connected';
-    };
-
-    this.pc.onicecandidate = (e) => {
-      if (e.candidate) return;
-      this.myOffer = JSON.stringify(this.pc.localDescription);
-    };
-
-    this.pc.ondatachannel = (e) => {
-      if (this.isClient) {
-        this.channel = e.channel;
-        this.initChannel();
-      }
-    }
+    this.init();
   },
   methods: {
+    init() {
+      this.pc = new RTCPeerConnection(stunConfig);
+
+      this.pc.oniceconnectionstatechange = (e) => {
+        console.log("ICE CHANGE", this.pc.iceConnectionState);
+        if (this.pc.iceConnectionState === 'disconnected') {
+          this.connected = false;
+        }
+      };
+
+      this.pc.onicecandidate = (e) => {
+        if (e.candidate) return;
+        this.myOffer = JSON.stringify(this.pc.localDescription);
+      };
+
+      this.pc.ondatachannel = (e) => {
+        if (this.isClient) {
+          this.channel = e.channel;
+          this.initChannel();
+        }
+      }
+    },
     initChannel() {
       this.channel.onopen = (e) => {
         this.connected = true;
-        this.messages.push("Connected");
+        this.messages.push({message: "Connected", party: 'system'})
       };
 
       this.channel.onclose = (e) => {
         this.connected = false;
-        this.messages.push("Disconnected");
+        this.messages.push({message: "Disconnected", party: 'system'})
       };
 
-      this.channel.onerror = (e) => this.messages.push("An error occured");
-      this.channel.onmessage = (e) => this.messages.push(`Remote: ${e.data}`);
+      this.channel.onerror = (e) => this.messages.push({message: "An error occured", party: 'system'});
+      this.channel.onmessage = (e) => this.messages.push({message: e.data, party: 'remote'});
     },
     createMyOffer() {
       this.channel = this.pc.createDataChannel("chat");
@@ -94,7 +104,7 @@ export default {
     triggerSendMessage() {
       try {
         this.channel.send(this.myMessage);
-        this.messages.push(`You: ${this.myMessage}`);
+        this.messages.push({message: this.myMessage, party: 'local'});
         this.myMessage = "";
       } catch (e) {
         console.log(e);

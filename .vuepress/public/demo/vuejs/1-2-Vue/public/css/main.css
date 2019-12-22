@@ -89,3 +89,63 @@ a:visited {
     width: 100vw;
     transition: all 200ms;
 }
+
+textarea {
+  width: 100%;
+  height: 80px;
+  display: block;
+}
+
+.chat {
+  overflow: auto;
+  background: white;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.chat > div {
+  clear: both;
+}
+
+.chat > div[party="remote"] {
+  float: right;
+}
+
+.chat > div[party="local"] {
+  float: left;
+}
+
+.chat > div > p {
+  border-radius: .4em;
+  padding: 10px;
+  display: block;
+  width: fit-content;
+  margin-bottom: 0;
+}
+
+.chat > div > p[party='local'] {
+  background: yellowgreen;
+  color: white;
+}
+
+.chat > div > p[party='system'] {
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.chat > div > p[party='remote'] {
+  background: dodgerblue;
+  color: white;
+}
+
+.chat > div > span {
+  padding: 0 3px;
+  margin-bottom: 5px;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+}
