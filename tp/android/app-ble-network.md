@@ -9,6 +9,16 @@ Concevoir une application qui va :
 - Connexion à notre « Équipement ».
 - Commander la led / afficher l'état.
 
+## Constraintes
+
+- Gérer correctement les messages d'erreurs (permissions, liste périphérique vides, etc).
+- Gérer correctement la non accès au réseau (pour la partie télécommande via Internet).
+- Ranger / organiser « correctement le code source » dans des packages comme vu précédement.
+- Ne scanner que les Raspberry Pi.
+- Vider la liste après une connexion (et ne pas avoir de doublons dans la liste).
+- Personnaliser l'icône de l'application (Mettre le logo de l'école + ampoule).
+- L'ensemble des textes **doivent-être** dans le ```strings.xml```
+
 ## Les activités
 
 ![Home](./ressources/main.png)
