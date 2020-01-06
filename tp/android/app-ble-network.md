@@ -19,6 +19,7 @@ Concevoir une application qui va :
 - Personnaliser l'icône de l'application (Mettre le logo de l'école + ampoule).
 - L'ensemble des textes **doivent-être** dans le ```strings.xml```.
 - Empêcher la rotation de l'ensemble des activity (```manifest.xml```).
+- Empêcher l'accès à la partie HTTP si la téléphone est en mode avion ou n'a pas accès à Internet. 
 - Bonus : Implémenter la partie notification.
 - Bonus : Commander en HTTP un équipement sur lequel nous ne nous sommes jamais connecter (Intégrer un scan Bluetooth dans un dialog de type liste).
 
