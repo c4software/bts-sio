@@ -9,7 +9,7 @@ Concevoir une application qui va :
 - Connexion à notre « Équipement ».
 - Commander la led / afficher l'état.
 
-## Constraintes
+## Projet final
 
 - Gérer correctement les messages d'erreurs (permissions, liste périphérique vides, etc).
 - Gérer correctement la non accès au réseau (pour la partie télécommande via Internet).
@@ -17,7 +17,10 @@ Concevoir une application qui va :
 - Ne scanner que les Raspberry Pi.
 - Vider la liste après une connexion (et ne pas avoir de doublons dans la liste).
 - Personnaliser l'icône de l'application (Mettre le logo de l'école + ampoule).
-- L'ensemble des textes **doivent-être** dans le ```strings.xml```
+- L'ensemble des textes **doivent-être** dans le ```strings.xml```.
+- Empêcher la rotation de l'ensemble des activity (```manifest.xml```).
+- Bonus : Implémenter la partie notification.
+- Bonus : Commander en HTTP un équipement sur lequel nous ne nous sommes jamais connecter (Intégrer un scan Bluetooth dans un dialog de type liste).
 
 ## Les activités
 
@@ -413,7 +416,7 @@ public class LedStatus {
 }
 ```
 
-### Nouvelle dépendances Gradle 
+### Nouvelle dépendances Gradle
 
 ```groovy
 implementation 'com.squareup.retrofit2:retrofit:2.3.0'
