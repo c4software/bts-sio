@@ -82,7 +82,7 @@ Firebase comme vous le savez va nous servir de système de base de données. [Le
 Les deux outils / librairies que nous allons utiliser sont disponibles via NPM, nous allons donc les installer / ajouter au projet via les commandes suivantes :
 
 ```bash
-npm install firebase vue2-leaflet --save
+npm install firebase leaflet vue2-leaflet --save
 ```
 
 ### Configuration de la dépendance carte
@@ -103,16 +103,16 @@ Maintenant que nous avons vu comment s'intègre le Leaflet, refléchissons comme
 Créer le fichier `src/plugins/vue2-leaflet.js` y mettre dedans :
 
 ```js
-import { L } from "vue2-leaflet";
+import { Icon } from 'leaflet'
 import "leaflet/dist/leaflet.css";
 
 // this part resolve an issue where the markers would not appear
-delete L.Icon.Default.prototype._getIconUrl;
+delete Icon.Default.prototype._getIconUrl;
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 ```
 
@@ -142,7 +142,7 @@ Le gros avantage de NPM (et NodeJS) c'est la quantité de librairies disponibles
 
 Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre pas directement avec le « state » d'un composant VueJS! Mais grâce à d'excellents développeurs c'est maintenant possible et très simplement. Pour ça nous allons utiliser :
 
-- [Vuefire](https://github.com/vuejs/vuefire/tree/v1)
+- [Vuefire](https://github.com/vuejs/vuefire/tree/master)
 
 ```bash
 npm install vuefire --save
@@ -344,11 +344,9 @@ npm run serve
 
 Comme pour Vue2-Leaflet et firebase, vuefire nécéssite une déclaration pour être utilisé dans le projet.
 
-- [Lire la documentation](https://github.com/vuejs/vuefire/tree/v1).
+- [Lire la documentation](https://vuefire.vuejs.org/).
 - Créer le fichier dans le dossier `plugins`.
 - Réaliser l'import dans le fichier `main.js`.
-
-🤓 C'est la 3ème fois de ce TP que vous le faites, vous devez être capable de le faire de vous même.
 
 <Reveal text="Voir la solution">
 
@@ -356,7 +354,7 @@ Comme pour Vue2-Leaflet et firebase, vuefire nécéssite une déclaration pour �
 
 ```js
 import Vue from "vue";
-import VueFire from "vuefire";
+import { rtdbPlugin as VueFire } from 'vuefire'
 
 Vue.use(VueFire);
 ```
@@ -377,7 +375,7 @@ import "./plugins/vuefire";
 Grace au plugin l'intégration de Firebase va être très simplifié. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grace au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça modifier le fichier `maps.vue` pour ajouter (après name) :
 
 ```js
-firebase: function() {
+firebase() {
     return {
       markerList: this.$db.ref("/markerList/")
     };
@@ -398,7 +396,7 @@ Pour ajouter un marker sur la carte nous allons utiliser la directive `@stop` su
 - Ajouter sur l'objet `<l-map>` la directive suivante `@click="addMarker"`.
 - Ajouter la méthode `addMarker` dans votre objet VueJS `addMarker(marker){…}` .
 - À votre avis à quoi doit ressembler le code ?
-  - Ajouter un `console.log(marker)` avez-vous une propriété `latlng` ?
+- Ajouter un `console.log(marker)` avez-vous une propriété `latlng` ?
 
 <Reveal text="Voir la solution">
 
@@ -439,12 +437,7 @@ Les étapes :
 Le marker est à mettre dans le `l-map`.
 
 ```html
-<l-marker
-  v-for="marker in markerList"
-  :key="marker['.key']"
-  :lat-lng="marker['.value']"
->
-</l-marker>
+<l-marker v-for="(marker,i) in markerList" :key="i" :lat-lng="marker"></l-marker>
 ```
 
 </Reveal>

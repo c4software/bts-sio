@@ -260,10 +260,10 @@ Créer un nouveau fichier nommé `MyToolbar.vue` dans le dossier `components` :
 ```javascript
 <template>
   <div>
-    <v-toolbar class="deep-purple" clipped-left app>
-      <v-toolbar-side-icon dark @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+    <v-app-bar dark color="deep-purple" clipped-left app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title @click="goHome" class="white--text">{{ $t("title") }}</v-toolbar-title>
-    </v-toolbar>
+    </v-app-bar>
   </div>
 </template>
 
@@ -496,6 +496,7 @@ export default {
 
 <style scoped>
   .home{
+    margin: auto;
     text-align: center;
   }
   .home > h1, .home > h2, .home > h3 {
@@ -580,16 +581,14 @@ Création :
     <v-list dense>
       <template v-for="(item, i) in items">
         <v-divider dark v-if="item.divider" :key="i"></v-divider>
-        <v-list-tile :to="item.action" :key="i" v-else>
-          <v-list-tile-action>
+        <v-list-item ripple :to="item.action" :key="i" v-else>
+          <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>
-              {{ item.text }}
-            </v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title class="body-2">{{ item.text }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </template>
     </v-list>
   </div>
