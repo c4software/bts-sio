@@ -384,7 +384,7 @@ firebase() {
 
 Ajouter également dans les `data` de votre composant une variable nommée `markerList` avec comme valeurs `[]`.
 
-```json
+```
 markerList: []
 ```
 
