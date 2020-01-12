@@ -284,11 +284,11 @@ export default {
 </script>
 ```
 
-### Modifier la home
+### Modifier la « home »
 
 Avant d'aller plus loin, modifier le fichier `src/views/Home.vue` remplacer le contenu par ce que vous souhaitez.
 
-N'oublier pas de retirer l'import existant dans le fichier `src/views/Home.vue`
+N'oublier pas de retirer l'import qui est maintenant inutile dans le fichier `src/views/Home.vue`
 
 ### Voir le changement
 
@@ -332,7 +332,7 @@ export default new Router({
 });
 ```
 
-Modifier le pour **retirer** tout la partie `/about` :
+Modifier le, et **retirer** tout la partie `/about` :
 
 ```js
 {
@@ -357,7 +357,6 @@ Au début du TP nous avons installé Vue-i18n, nous allons maintenant configurer
 
 ```json
 {
-  "…": "",
   "title": "Cliff Height Timer"
 }
 ```
@@ -366,7 +365,7 @@ Au début du TP nous avons installé Vue-i18n, nous allons maintenant configurer
 
 Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier `/components/MyToolbar.vue`
 
-Remplacer la chaine `Cliff height timer` par :
+Remplacer le texte `Cliff height timer` par :
 
 ::: v-pre
 `{{$t("title")}}`
@@ -550,7 +549,7 @@ Voilà le rendu de « la page » que vous devez réaliser :
 </script>
 ```
 
-⚠️ N’oubliez pas tous les textes doivent-être dans le fichier `locales/fr.json` et dans `locales/en.json` et être utilisés avec par exemple :
+⚠️ N’oubliez pas que **l'ensemble** les textes doivent-être dans le fichier `locales/fr.json` et dans `locales/en.json` et être utilisés avec par exemple :
 
 ::: v-pre
 {{ $t("label") }}
@@ -741,4 +740,15 @@ Source: Mozilla.org
 npm run build
 ```
 
-- Tester l’application depuis votre Téléphone Android.
+- Tester l’application depuis votre Téléphone Android / iOs.
+
+### Ajouter Firebase
+
+Dans le précédent TP nous avons ajouté Firebase pour synchroniser les éléments sur une carte. C'était un exemple très visuel, mais il est évidement possible de faire bien plus.
+
+Nous allons nous servir de Firebase dans ce projet pour synchroniser « l'historique » avec l'ensemble des utilisateurs. Je vous propose donc de vous inspirez du précédent TP, et d'ajouter les dépendances :
+
+- Vuefire.
+- Firebase.
+
+L'affichage doit être identique à la version actuelle de votre application.
