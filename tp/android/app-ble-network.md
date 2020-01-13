@@ -559,4 +559,4 @@ Celui qui nous intéresse est celui du type `BluetoothGattCharacteristic`, pour 
 
 ### Fourniture des sources
 
-[Partager du projet](https://docs.google.com/forms/d/e/1FAIpQLScZ5WflYVlnNzQlwYwdJsCc9izqthZJT9zVQK6HWsypgb06Bg/viewform)
+[Partage du projet](https://docs.google.com/forms/d/e/1FAIpQLScZ5WflYVlnNzQlwYwdJsCc9izqthZJT9zVQK6HWsypgb06Bg/viewform)
