@@ -555,3 +555,8 @@ Celui qui nous intéresse est celui du type `BluetoothGattCharacteristic`, pour 
 - Ajouter dans votre layout un indicateur de l'état de la led (ImageView).
 - Le faire apparaitre lors de la connexion en bluetooth.
 - Le mettre à jour à chaque notifications. (ON / OFF).
+
+
+### Fourniture des sources
+
+[Partager du projet](https://docs.google.com/forms/d/e/1FAIpQLScZ5WflYVlnNzQlwYwdJsCc9izqthZJT9zVQK6HWsypgb06Bg/viewform)
