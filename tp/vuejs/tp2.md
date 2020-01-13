@@ -728,7 +728,7 @@ Source: Mozilla.org
 
 - Générer les icones ainsi que le fichier Manifest
 - Télécharger le manifest.json et le mettre dans le dossier `static/` faire la même chose pour les icones.
-- Éditer le fichien `index.html` pour ajouter :
+- Éditer le fichien `index.html` du dossier public pour y ajouter :
 
 ```html
 <link rel="manifest" href="./static/manifest.json" />
