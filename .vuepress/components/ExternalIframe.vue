@@ -16,6 +16,7 @@ export default {
     methods: {
         requestFullscreen(){
             this.$refs['iframe'].requestFullscreen();
+            this.$refs['iframe'].focus();
         }
     }
 }
