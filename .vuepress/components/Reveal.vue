@@ -1,6 +1,6 @@
 <template>
   <div class="click_reveal">
-    <span @click="visible = true" v-if="!visible">{{text}}</span>
+    <span @click="requestReveal" v-if="!visible">{{text}}</span>
     <div v-if="visible">
       <slot />
     </div>
@@ -18,6 +18,14 @@ export default {
   props: {
     text: {
       default: "Click to reveal"
+    }
+  },
+  methods: {
+    requestReveal(){
+      this.visible = true;
+      try{
+        ga('send', 'event', 'requestReveal', window.location);
+      } catch(err){}
     }
   }
 };

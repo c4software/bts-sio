@@ -17,6 +17,10 @@ export default {
         requestFullscreen(){
             this.$refs['iframe'].requestFullscreen();
             this.$refs['iframe'].focus();
+
+            try{
+                ga('send', 'event', 'requestFullscreen', this.src);
+            } catch(err){}
         }
     }
 }
