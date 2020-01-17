@@ -262,7 +262,7 @@ Créer un nouveau fichier nommé `MyToolbar.vue` dans le dossier `components` :
   <div>
     <v-app-bar dark color="deep-purple" clipped-left app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title @click="goHome" class="white--text">{{ $t("title") }}</v-toolbar-title>
+      <v-toolbar-title @click="goHome" class="white--text">Cliff height timer</v-toolbar-title>
     </v-app-bar>
   </div>
 </template>
@@ -302,7 +302,7 @@ npm run serve
 
 Votre application est maintenant fonctionnelle cependant comme vous le constatez, vous avez pour l’instant qu’une « seule page »… Enfin qu'une seule d'accessible !
 
-Allons faire un tour dans le fichier `router.js`. Celui-ci contient déjà quelques routes :
+Allons faire un tour dans le fichier `router/index.js`. Celui-ci contient déjà quelques routes :
 
 ```js
 import Vue from "vue";
@@ -686,14 +686,14 @@ Ressources utiles :
 
 Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus nécéssaire que je vous fournisse du code.
 
-## Ajouter une page À propos
+## Ajouter une page permettant un ajout manuel
 
-Ajouter une nouvelle page « À propos » dans le projet.
+Ajouter une nouvelle page, celle-ci permettra d'ajouter une entrée manuellement dans l'historique.
 
 ### Démarche
 
-- Ajout du `.vue` de la page à Propos.
-- Ajout des texte dans les fichiers `locales`.
+- Création du `.vue`.
+- Créer un formulaire (v-form).
 - Ajouter le lien dans le `Drawer.vue`.
 - Ajouter la route.
 
@@ -709,7 +709,7 @@ Cette commande va compiler votre application et vous fournir une version que vou
 
 Le résultat de la compilation est dans le dossier `dist/`
 
-- Héberger le résultat sur un serveur Apache.
+- Héberger le résultat sur un serveur Apache (wamp).
 
 ## Ajouter un manifest
 
