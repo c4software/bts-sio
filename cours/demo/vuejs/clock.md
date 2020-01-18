@@ -1,3 +1,3 @@
 # Horloge
 
-<ExternalIframe src="/demo/vuejs/clock/index.html"></ExternalIframe>
+<Sample src="vuejs/clock" />
