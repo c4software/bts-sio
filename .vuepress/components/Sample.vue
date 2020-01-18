@@ -20,9 +20,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-    iframe {
-        background: white;
-    }
-</style>

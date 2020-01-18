@@ -30,6 +30,7 @@ export default {
     iframe{
         width: 100%;
         height: 50vh;
+        background: white;
     }
 
     button{
