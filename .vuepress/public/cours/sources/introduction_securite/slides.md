@@ -100,12 +100,12 @@ Source: Cost Of Data Breach - Symantec
 
 ### Intégrer la sécurité à toutes les étapes
 
-La sécurité c’est un état d’esprit à intégrer.
+La sécurité, c’est un état d’esprit à intégrer.
 
 C’est le métier des :
 
-- Réseau
-- Développeur
+- Admin Réseau / Système.
+- Développeur.
 
 ---
 
@@ -253,18 +253,18 @@ Insufficient logging and monitoring, coupled with missing or ineffective integra
 
 ---
 
-![](./img/securite.png)
+![Niveaux](./img/securite.png)
 
 ---
 
-- IDS (Intrusion Detection Systeme)
-- IPS (Intrusion Prevension Systeme)
+- IDS (Intrusion Detection System)
+- IPS (Intrusion Prevension System)
 
 ---
 
 ### IPS
 
-- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 % ils peuvent donc bloquer malencontreusement des applications ou des trafics légitimes.
+- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 %, ils peuvent donc bloquer malencontreusement des applications ou des trafics légitimes.
 - Ils laissent parfois passer certaines attaques sans les repérer.
 - Peu discrets et peuvent être découverts lors de l'attaque d'un pirate qui une fois qu'il aura découvert l'IPS s'empressera de trouver une faille dans ce dernier pour le détourner et arriver à son but.
 
@@ -284,20 +284,20 @@ Un système de détection d'intrusion (Intrusion Detection System) est un mécan
 
 - Sensibilisations / Formations.
 - Revue de code (GIT).
-- Tests d’intrusions (Audit).
+- Tests d’intrusions (audit).
 - Sécurité lors du recrutement.
 - Sécurité dès la conception du projet.
 - Suivi des bonnes pratiques (ex: OWASP).
 
 ---
 
-### Pourquoi il faut se battre (en interne) ?
+### Pourquoi il faut se battre en entreprise ?
 
 - Résistance au changement.
 - ERP / CMS.
-- La sécurité est vue comme un frein, pas une fonctionnalitée.
+- La sécurité est vue comme un frein, pas une fonctionnalité.
 - Déni de la réalité.
-- Developpement externe (prestations, stagiaires, …)
+- Développement externe (prestations, stagiaires, …)
 
 ---
 
@@ -307,7 +307,7 @@ Un système de détection d'intrusion (Intrusion Detection System) est un mécan
 
 - Conférence physique ou en ligne.
 - Internet
-- Appliquer les bonnes pratiques tout le temps!
+- Appliquer les bonnes pratiques tout le temps !
 
 ---
 
