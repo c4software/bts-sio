@@ -8,7 +8,7 @@ L'API que je vous propose permet de « simuler » une lampe connectée. En fonct
 
 ## La démarche
 
-- Ajout « une page » avec un bouton + une icône `v-icone`.
+- Ajout « une page » avec un bouton + une icône `v-icon`.
 - Un modèle permettant de lire le retour de l'API.
 - Un DAO permettant d'appeler l'API.
 - Ajouter la route.
@@ -17,8 +17,8 @@ L'API que je vous propose permet de « simuler » une lampe connectée. En fonct
 
 ## Le fonctionnement
 
-- Trouver un nom à votre « leds ».
-- Dans la vue « led » ajouter un bouton qui `@click` appel la méthode de votre choix.
+- Trouver un nom à votre « leds ». (C'est votre led à vous, nommé la comme _vous_ le souhaitez)
+- Dans la vue « led » ajouter un bouton qui lors du `@click` appel la méthode de votre choix.
 - Dans la méthode en question ajouter l'appel au DAO que vous avez créé.
 - En fonction du retour ajuster la vue.
 
@@ -38,15 +38,15 @@ Pour réaliser cette partie du TP vous allez devoir construire un modèle. Cette
 
 ## Le DAO
 
+Pour le DAO, je vous aide voilà la démarche 
+
 - Créer le fichier
 - Implémenter la méthode `getStatus`
 - Implémenter la méthode `setStatus`
 
-C'est à vous de jouer !
+### Pour vous aidez …
 
-## Pour vous aidez …
-
-Pour vous aidez, voici un exemple de Modèle et de DAO
+Voici un exemple de Modèle et de DAO
 
 [Consulter l'exemple](https://gist.github.com/c4software/30947f2a86eb0ab065d26a6ed0edb3e9)
 
