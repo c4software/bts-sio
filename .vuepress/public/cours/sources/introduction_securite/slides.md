@@ -311,4 +311,10 @@ Un système de détection d'intrusion (Intrusion Detection System) est un mécan
 
 ---
 
+### Se proteger
+
+![Yubikey](./img/yubikey.png)
+
+---
+
 ### Des questions ?
