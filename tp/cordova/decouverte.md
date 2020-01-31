@@ -10,7 +10,7 @@ Dans ce TP vous aller découvrir la ligne de commande Cordova et créer votre pr
 
 ## Installation de Cordova
 
-Pour pouvoir utiliser Cordova, vous allez devoir installer le ```cordova-cli```. La ligne de commande Cordova utilise NodeJS pour fonctionner.
+Pour pouvoir utiliser Cordova, vous allez devoir installer le `cordova-cli`. La ligne de commande Cordova utilise NodeJS pour fonctionner.
 
 (Normalement NodeJS est déjà installé sur votre poste).
 
@@ -24,17 +24,9 @@ L’installation prend quelques minutes, un certains nombre de dépendances Node
 
 ## Android
 
-Dans le TP, vous allez devoir compiler pour la plateforme Android. Vérifier que celle-ci est bien installer, deux installation sont possibles :
+Dans le TP, vous allez devoir compiler pour la plateforme Android. Vérifier que celle-ci est bien installer en le lançant une première fois.
 
-- Android-Studio
-- SDK seul
-
-Je vous conseil de prendre l’installation via Android Studio, c’est la solution la plus simple est certainement la plus rapide. Une fois installé ajouter les variables d’environmments suivantes :
-
-- Set the ANDROID_HOME environment variable to the location of your Android SDK installation (normalement avec Android Studio c’est automatique).
-- Android SDK's ```tools```, ```tools/bin```, and ```platform-tools``` directories to your PATH (Le chemin est différents en fonctions des ordinateurs, si vous avez un doute demandé moi).
-
-Une fois correctement défini redémarrer la console NodeJS pour prendre en compte les modifications.
+- Installer la dernière version du SDK & la version 28.
 
 ## Création du projet « démo »
 
@@ -177,13 +169,13 @@ Pour ajouter un plugin il suffit de faire :
 cordova plugin add <monPlugin>
 ```
 
-Pour l’exemple nous allons ajouter le plugin ```cordova-plugin-camera```
+Pour l’exemple nous allons ajouter le plugin `cordova-plugin-camera`
 
 ```bash
 cordova plugin add cordova-plugin-camera
 ```
 
-Quelques secondes plus tard votre application est ```capable``` d’utiliser la Caméra de votre téléphone 🎉🎉
+Quelques secondes plus tard votre application est `capable` d’utiliser la Caméra de votre téléphone 🎉🎉
 
 ### 2. Utiliser le plugin
 
@@ -199,17 +191,17 @@ cordova run android
 - Dans la console qui vient de s’ouvrir faite :
 
 ```javascript
-function cameraSuccess(i){
-    console.log(i);
+function cameraSuccess(i) {
+  console.log(i);
 }
 
-function cameraError(e){
-    console.log(e)
+function cameraError(e) {
+  console.log(e);
 }
 navigator.camera.getPicture(cameraSuccess, cameraError, {});
 ```
 
-Le ```{}``` est la liste des options, tester quelques options [disponible ici](https://www.npmjs.com/package/cordova-plugin-camera#module_camera.CameraOptions)
+Le `{}` est la liste des options, tester quelques options [disponible ici](https://www.npmjs.com/package/cordova-plugin-camera#module_camera.CameraOptions)
 
 ### 3. Modifier le code de démo
 
@@ -217,11 +209,11 @@ Modifier le code de démonstration pour utiliser le plugin de manière permanent
 
 - Ajouter un bouton.
 - Ajouter un fonction javascript pour déclencher la caméra
-- Ajouter un événement ```onClick``` sur le bouton que vous avez créé
+- Ajouter un événement `onClick` sur le bouton que vous avez créé
 
 ## Ajouter un second plugin
 
-Pour le second plugin nous allons ajouter un plugin qui n’as pas comme vocation direct d’éxposer un bridge en Javascript. Nous allons ajouter un plugin qui intégre encore un peu plus une application hybride dans le système Android  ```cordova-plugin-headercolor```
+Pour le second plugin nous allons ajouter un plugin qui n’as pas comme vocation direct d’éxposer un bridge en Javascript. Nous allons ajouter un plugin qui intégre encore un peu plus une application hybride dans le système Android `cordova-plugin-headercolor`
 
 Le plugin permet de :
 
@@ -237,7 +229,7 @@ cordova plugin add cordova-plugin-headercolor
 
 ### 2. Ajouter la configuration du plugin
 
-Ajouter dans le fichier ```apacheconfig.xml``` l’élément suivant :
+Ajouter dans le fichier `config.xml` l’élément suivant :
 
 ```xml
 <preference name="HeaderColor" value="#2959cb" />
