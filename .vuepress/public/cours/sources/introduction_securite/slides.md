@@ -68,7 +68,7 @@
 
 ---
 
-### L’insécurité à également un coût
+### L’insécurité a également un coût
 
 ## 2.86 Millions d’euros
 
@@ -134,7 +134,7 @@ Injection flaws, such as SQL, NoSQL, OS, and LDAP injection, occur when untruste
 SELECT * FROM client WHERE id='" . $_GET["id"] . "'
 ```
 
-```
+```raw
 http://exemple.com/liste?id='or '1'='1
 ```
 
@@ -148,7 +148,7 @@ Application functions related to authentication and session management are often
 
 ### Broken Authentication
 
-```
+```raw
 http://exemple.com/?jsessionid=A2938298D293
 ```
 
