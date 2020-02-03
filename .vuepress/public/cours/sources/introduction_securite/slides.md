@@ -263,7 +263,7 @@ Une journalisation et une surveillance insuffisantes, couplées à une réponse 
 
 ### IPS
 
-- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 % (peux bloquer du trafics légitimes).
+- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 % (risque de bloquer du trafic légitime).
 - Ils laissent parfois passer certaines attaques sans les repérer.
 - Peu discrets. Lors d'une attaque, l'attaquant s'empressera de trouver une faille dans ce dernier pour le contourner et arriver à son but.
 
