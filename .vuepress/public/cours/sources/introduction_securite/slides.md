@@ -124,7 +124,7 @@ C’est le métier des :
 
 ### The Injection
 
-Correspond au risque d’injection de commande (Système, SQL, Shellcode, ...). In
+Correspond au risque d’injection de commande (Système, SQL, Shellcode, ...).
 
 ---
 
@@ -169,8 +169,7 @@ Correspond aux failles de sécurité exposant des données sensibles comme les m
 
 ### XML External Entities (XXE)
 
-Many older or poorly configured XML processors evaluate external entity references within XML documents. External entities can be used to disclose internal files using the file URI handler, internal file shares, internal port scanning, remote code execution, and denial of service attacks.
-Broken Access Control. Restrictions on what authenticated users are allowed to do are often not properly enforced. Attackers can exploit these flaws to access unauthorized functionality and/or data, such as access other users' accounts, view sensitive files, modify other users' data, change access rights, etc.
+Utilisation de processeurs XML anciens ou mal configurés évaluent les références d’entités externes dans les documents XML. Permet d'extraire des fichiers interne à l'infrastructure, ainsi qu'accéder à des ressources normalement inaccessible.
 
 ---
 
