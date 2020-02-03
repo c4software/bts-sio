@@ -256,8 +256,8 @@ Une journalisation et une surveillance insuffisantes, couplées à une réponse 
 
 ---
 
-- IDS (Intrusion Detection System)
 - IPS (Intrusion Prevension System)
+- IDS (Intrusion Detection System)
 
 ---
 
