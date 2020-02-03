@@ -182,7 +182,7 @@ Correspond aux failles liées à une mauvaise configuration des serveurs Web, ap
 ### Security Misconfiguration
 
 - Console d’administration disponible sans authentification en ligne
-- Listage des repertoires ([Exemple](https://www.google.fr/search?dcr=0&q=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A))
+- Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A))
 - Exemples de code non supprimés
 
 ---
@@ -237,7 +237,7 @@ Une journalisation et une surveillance insuffisantes, couplées à une réponse 
 
 - WebGoat (Formation)
 - WebScarab (Audit)
-- OWASP Testing Guide (Guide pour voir le niveau de sécu)
+- OWASP Testing Guide (Guide pour voir le niveau de sécurité)
 - OWASP Code Review Guide (Méthode d’audit)
 
 ---
@@ -263,9 +263,9 @@ Une journalisation et une surveillance insuffisantes, couplées à une réponse 
 
 ### IPS
 
-- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 %, ils peuvent donc bloquer malencontreusement des applications ou des trafics légitimes.
+- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 % (peux bloquer du trafics légitimes).
 - Ils laissent parfois passer certaines attaques sans les repérer.
-- Peu discrets et peuvent être découverts lors de l'attaque d'un pirate qui une fois qu'il aura découvert l'IPS s'empressera de trouver une faille dans ce dernier pour le détourner et arriver à son but.
+- Peu discrets. Lors d'une attaque, l'attaquant s'empressera de trouver une faille dans ce dernier pour le contourner et arriver à son but.
 
 ---
 
@@ -274,6 +274,8 @@ Une journalisation et une surveillance insuffisantes, couplées à une réponse 
 Un système de détection d'intrusion (Intrusion Detection System) est un mécanisme destiné à repérer des activités anormales ou suspectes sur la cible analysée
 
 ![IDS](./img/nids.png)
+
+(Sans bloquer)
 
 ---
 
