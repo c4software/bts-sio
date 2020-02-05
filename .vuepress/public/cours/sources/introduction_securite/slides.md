@@ -34,7 +34,7 @@
 
 ### Comment se tenir à jour ?
 
-#### Prévenir plutôt que guérir…
+Prévenir plutôt que guérir…
 
 ---
 
@@ -47,8 +47,6 @@
 - Next INpact (~Payant)
 
 ---
-
-### Les impacts liés à la sécurité
 
 #### La sécurité informatique dans une application c’est un « équilibre »
 
