@@ -1,9 +1,25 @@
 module.exports = {
   title: "Cours",
   description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également l'ESEO), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
-  plugins: ["@vuepress/last-updated", ["vuepress-plugin-code-copy", true], ['@vuepress/google-analytics', {'ga': 'UA-2107503-8'}]],
+  plugins: [
+    "@vuepress/last-updated", 
+    ["vuepress-plugin-code-copy", true], 
+    ['@vuepress/pwa', {serviceWorker: true, updatePopup: true}], 
+    ['@vuepress/google-analytics', {'ga': 'UA-2107503-8'}]
+  ],
   lang: "fr-FR",
   dest: "docs",
+  head: [
+    ['link', { rel: 'icon', href: '/icons/icon-72x72.png' }],
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
+    ['meta', { name: 'theme-color', content: '#3e80af' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['link', { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon-152x152.png' }],
+    ['link', { rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#3e80af' }],
+    ['meta', { name: 'msapplication-TileImage', content: '/icons/icon-144x144.png' }],
+    ['meta', { name: 'msapplication-TileColor', content: '#3e80af' }]
+  ],
   themeConfig: {
     docsBranch: 'master',
     editLinks: true,
