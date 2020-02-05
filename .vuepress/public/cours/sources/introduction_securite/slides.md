@@ -85,7 +85,7 @@ Source: Cost Of Data Breach - Symantec
 
 - L’humain (Social Engineering)
 - Applicatif (Hack)
-- L’argent (Jusqu’à quel montant une personne donne l’information ?)
+- L’argent (À partir de combien une personne donne l’information ?)
 
 ---
 
