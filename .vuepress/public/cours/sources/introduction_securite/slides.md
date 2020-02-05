@@ -180,7 +180,7 @@ Correspond aux failles liées à une mauvaise configuration des serveurs Web, ap
 ### Security Misconfiguration
 
 - Console d’administration disponible sans authentification en ligne
-- Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=-inurl%3A%28htm%7Chtml%7Cphp%29+intitle%3A))
+- Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
 - Exemples de code non supprimés
 
 ---
