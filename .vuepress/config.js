@@ -4,7 +4,7 @@ module.exports = {
   plugins: [
     "@vuepress/last-updated", 
     ["vuepress-plugin-code-copy", true], 
-    ['@vuepress/pwa', {serviceWorker: true, updatePopup: true}], 
+    ['@vuepress/pwa', {serviceWorker: false, updatePopup: false}], 
     ['@vuepress/google-analytics', {'ga': 'UA-2107503-8'}]
   ],
   lang: "fr-FR",
