@@ -120,13 +120,13 @@ C’est le métier des :
 
 ---
 
-### The Injection
+### 1. The Injection
 
 Correspond au risque d’injection de commande (Système, SQL, Shellcode, ...).
 
 ---
 
-### The Injection
+### 1. The Injection
 
 ```sql
 SELECT * FROM client WHERE id='" . $_GET["id"] . "'
@@ -138,13 +138,13 @@ http://exemple.com/liste?id='or '1'='1
 
 ---
 
-### Broken Authentication
+### 2. Broken Authentication
 
 Correspond au risque de casser ou de contourner la gestion de l’authentification et de la session. Comprend notamment le vol de session ou la récupération de mots de passe.
 
 ---
 
-### Broken Authentication
+### 2. Broken Authentication
 
 ```raw
 http://exemple.com/?jsessionid=A2938298D293
@@ -152,32 +152,32 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ---
 
-### Sensitive Data Exposure
+### 3. Sensitive Data Exposure
 
 Correspond aux failles de sécurité exposant des données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 ---
 
-### Sensitive Data Exposure
+### 3. Sensitive Data Exposure
 
 - Espace client sans SSL
 - Mot de passe en clair (ou en MD5) dans la base de données
 
 ---
 
-### XML External Entities (XXE)
+### 4. XML External Entities (XXE)
 
 Utilisation de processeurs XML anciens ou mal configurés évaluent les références d’entités externes dans les documents XML. Permet d'extraire des fichiers interne à l'infrastructure, ainsi qu'accéder à des ressources normalement inaccessible.
 
 ---
 
-### Security Misconfiguration
+### 5. Security Misconfiguration
 
 Correspond aux failles liées à une mauvaise configuration des serveurs Web, applications, base de données ou framework.
 
 ---
 
-### Security Misconfiguration
+### 5. Security Misconfiguration
 
 - Console d’administration disponible sans authentification en ligne
 - Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
@@ -185,13 +185,13 @@ Correspond aux failles liées à une mauvaise configuration des serveurs Web, ap
 
 ---
 
-### Cross-Site Scripting XSS
+### 6. Cross-Site Scripting XSS
 
 Correspond à la non validation d'une entrée saisie par l'utilisateur. Permet notamment le vol de session.
 
 ---
 
-### Cross-Site Scripting XSS
+### 6. Cross-Site Scripting XSS
 
 Éxecution de code Javascript sans validation
 
@@ -205,19 +205,19 @@ alert("Bonjour " + $_POST["nom"]);
 
 ---
 
-### Insecure Deserialization
+### 7. Insecure Deserialization
 
 Correspond à une désérialisation non sécurisée, elle conduit souvent à l’exécution de code à distance.
 
 ---
 
-### Using Components with Known Vulnerabilities
+### 8. Using Components with Known Vulnerabilities
 
 Correspond aux failles liées à l’utilisation de composants tiers vulnérables.
 
 ---
 
-### Using Components with Known Vulnerabilities
+### 8. Using Components with Known Vulnerabilities
 
 - CMS non à jour.
 - Apache / Tomcat non patchés.
@@ -225,7 +225,7 @@ Correspond aux failles liées à l’utilisation de composants tiers vulnérable
 
 ---
 
-### Insufficient Logging & Monitoring
+### 9. Insufficient Logging & Monitoring
 
 Une journalisation et une surveillance insuffisantes, couplées à une réponse inefficace aux incidents, permettent aux attaquants d’attaquer davantage les systèmes.
 
