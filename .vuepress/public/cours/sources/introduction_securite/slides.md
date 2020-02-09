@@ -233,7 +233,8 @@ Une journalisation et une surveillance insuffisantes, couplées à une réponse 
 
 ### Les outils autour d’OWASP
 
-- WebGoat (Formation)
+- ![OWASP Juice Shop (Formation, Javascript)](https://owasp.org/www-project-juice-shop/)
+- WebGoat (Formation, Java)
 - WebScarab (Audit)
 - OWASP Testing Guide (Guide pour voir le niveau de sécurité)
 - OWASP Code Review Guide (Méthode d’audit)

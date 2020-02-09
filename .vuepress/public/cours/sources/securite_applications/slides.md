@@ -55,6 +55,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 ---
 
 ### Des sites à surveiller
+
 #### Vous êtes la première ligne d’informations
 
 - [US CERT (LA SOURCE)](https://www.us-cert.gov/)
@@ -209,7 +210,8 @@ Failles liées aux redirects et forwards génériques des applications.
 
 ### Les outils autour d’OWASP
 
-- WebGoat (Formation)
+- ![OWASP Juice Shop (Formation, Javascript)](https://owasp.org/www-project-juice-shop/)
+- WebGoat (Formation, Java)
 - WebScarab (Audit)
 - OWASP Testing Guide (Guide pour voir le niveau de sécu)
 - OWASP Code Review Guide (Méthode d’audit)
@@ -294,7 +296,6 @@ http://exemple.com/?jsessionid=A2938298D293
 ---
 
 ### XSS
-
 
 Éxecution de code Javascript sans validation
 
