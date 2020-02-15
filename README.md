@@ -34,6 +34,6 @@ et de réponse aux besoins d’évolution.
 - Répondre à une demande d’assistance.
 - Résoudre un incident.
 
-## LICENCE
+## Licence
 
 Tous les fichiers sont sous licence MIT.
