@@ -5,7 +5,7 @@
 ### Windows
 
 ```
-https://download.docker.com/win/stable/InstallDocker.msi
+https://www.docker.com/products/docker-desktop
 ```
 
 ### MacOS
