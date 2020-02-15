@@ -1,8 +1,8 @@
-# Support Cours & TP
+# Support de Cours & TP
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e35f4f3f-c4c2-454d-b00a-ccf7be8d524d/deploy-status)](https://app.netlify.com/sites/unruffled-sinoussi-ff7de3/deploys)
 
-[Consulter les Cours & TP sur Github Pages](https://cours.brosseau.ovh/)
+[Consulter les cours & TP sur Github Pages](https://cours.brosseau.ovh/)
 
 ## Introduction
 
@@ -16,11 +16,11 @@ Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM
 - Introduction au développement sécurisé.
 - Laravel, PHP & Framework.
 - VueJS.
-- Découverte du developpement hybride.
+- Découverte du développement hybride.
 
 ## Contenu
 
-Ce module aborde les savoirs et savoirs faire liés à la participation à des projets de conception d’une
+Ce module aborde les savoirs et savoir-faire liés à la participation à des projets de conception d’une
 solution applicative ainsi qu’aux activités de maintien en condition opérationnelle des services associés
 et de réponse aux besoins d’évolution.
 
@@ -34,6 +34,6 @@ et de réponse aux besoins d’évolution.
 - Répondre à une demande d’assistance.
 - Résoudre un incident.
 
-## LICENSE
+## LICENCE
 
-Tous les fichiers sont sous license MIT.
+Tous les fichiers sont sous licence MIT.
