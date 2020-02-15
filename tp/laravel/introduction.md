@@ -6,7 +6,7 @@ Dans ce TP nous allons couvrir l’installation, la configuration et la créatio
 
 ## Introduction
 
-Pour pouvoir utiliser Laravel nous allons avoir besoin de différents outils :
+Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
 
 - PHP7
 - Composer
@@ -15,7 +15,7 @@ Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiqu
 
 ### Windows
 
-Pour « installer » Laravel sous Windows vous devez dans un premier temps installer PHP7 sur votre machine. Dans un premier temps installer Wamp + PHP7 :
+Pour « installer » Laravel sous Windows, vous devez dans un premier temps installer PHP7 sur votre machine. Dans un premier temps, installer Wamp + PHP7 :
 
 - [Installation de Wamp.](http://www.wampserver.com/fr/#download-wrapper)
 - Installer Wamp, et vérifier que celui-ci fonctionne correctement.
@@ -23,8 +23,8 @@ Pour « installer » Laravel sous Windows vous devez dans un premier temps insta
 
 #### Installer Composer
 
-- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de séléctionner l’éxecutable PHP. `ATTENTION:` Bien séléctionner la version 7.1 minimum de PHP dans le dossier `C:\wamp\bin\php\php\7.1.X\bin\php.exe` <= Attention à prendre la bonne version
-- Vérifier que la commande est bien disponible en tappant `composer` dans un terminal
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’éxecutable PHP. `ATTENTION:` Bien sélectionner la version 7.1 minimum de PHP dans le dossier `C:\wamp\bin\php\php\7.1.X\bin\php.exe` <= Attention à prendre la bonne version
+- vérifier que la commande est bien disponible en tapant `composer` dans un terminal
 
 ### Linux
 
@@ -83,7 +83,7 @@ Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un n
 laravel new mon-premier-projet
 ```
 
-La commande va télécharger l'ensemble des dépendances nécéssaire et va créer un dossier `mon-premier-projet` avec les sources.
+La commande va télécharger l'ensemble des dépendances nécessaire et va créer un dossier `mon-premier-projet` avec les sources.
 
 ## Initialisation
 
@@ -92,11 +92,11 @@ Votre nouveau projet contient un fichier `.env` ouvrez le, et éditez par exempl
 Questions :
 
 - Le fichier est plutôt complet, à quoi servent les différents paramètres ?
-- Dans les cours je vous ai parlé de la APP_KEY, celle-ci est déjà remplis, à votre avis pourquoi ?
+- Dans les cours je vous ai parlé de la APP_KEY, celle-ci est déjà remplie, à votre avis pourquoi ?
 
 ## Lancer le projet d’exemple
 
-Laravel intègre un serveur de test permettant de valider son développement avec rien d’autre que PHP sur sa machine. Pour ça dans le dossier du projet (`cd mon-premier-projet`) vous pouvez faire la commande suivante :
+Laravel intègre un serveur de test permettant de valider son développement avec rien d’autre que PHP sur sa machine. Pour ça, dans le dossier du projet (`cd mon-premier-projet`) vous pouvez faire la commande suivante :
 
 ```bash
 php artisan serve
@@ -108,7 +108,7 @@ Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir 
 
 ## Modification du template par défaut
 
-Éditer le fichier `resources/views/welcome.blade.php`, ajouter la variable `$titre`. La synthaxe « blade » est la suivante <span v-pre>`{{ $titre }}`</span>. À la ligne 82 ajouter après Laravel « <span v-pre>`{{ $titre }}`</span> ». Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelques choses s'affiche :
+Éditer le fichier `resources/views/welcome.blade.php`, ajouter la variable `$titre`. La synthaxe « blade » est la suivante <span v-pre>`{{ $titre }}`</span>. À la ligne 82, ajouter après Laravel « <span v-pre>`{{ $titre }}`</span> ». Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelque chose s'affiche :
 
 Éditer le fichier `routes/web.php`, transformer :
 
@@ -130,11 +130,11 @@ return view('welcome', ['titre' => 'Mon premier exemple.']);
 
 Questions :
 
-- À votre avis est-il possible d'appeler d'autre fonctions ?
+- À votre avis est-il possible d'appeler d'autres fonctions ?
 
 ## Ajouter une nouvelle Route
 
-Pour tester le fonctionnement nous allons ajouter une nouvelle `Route` dans le projet de démonstration. Nous allons donc `ajouter` dans le fichier `routes/web.php` :
+Pour tester le fonctionnement, nous allons ajouter une nouvelle `Route` dans le projet de démonstration. Nous allons donc `ajouter` dans le fichier `routes/web.php` :
 
 ```php
 Route::get('/ping', function () {
@@ -259,7 +259,7 @@ Créer un nouveau fichier `resources/views/layouts/base.blade.php` avec le conte
 
 Question :
 
-- À votre avis, à quoi sert le mot clef `@yield` ?
+- À votre avis, à quoi sert le mot-clé `@yield` ?
 
 ### Utiliser le layout dans welcome.blade.php
 
@@ -289,7 +289,7 @@ Bon, maintenant que nous avons déclaré un layout utilisons-le dans la 2nd rout
 - Utilisez `@extends('layouts.base')` pour « hériter » de votre layout principal.
 - Modifiez `web.php` pour répondre avec la fonction `view` comme dans l’autre route.
 
-Avec ces quelques expliquations vous allez pouvoir atteindre l’objectif. Bon courage.
+Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon courage.
 
 <Reveal text="Voir l’une des solutions possible pour ping.blade.php">
 

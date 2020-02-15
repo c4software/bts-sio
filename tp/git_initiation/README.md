@@ -14,16 +14,16 @@ Vous êtes en entreprise, vous avez un nouveau projet à réaliser. Le projet es
 
 ### Questions
 
-- Voyez vous d’autre questions à poser à votre chef de projet ?
-- Comment imaginez vous l’organisation de votre travail ?
-  - Un gestionnaire de version est-il utile ?
-  - Si oui, pourquoi ?
-  - Si non, pourquoi ?
+- Voyez-vous d’autres questions à poser à votre chef de projet ?
+- Comment imaginez-vous l’organisation de votre travail ?
+- Un gestionnaire de version est-il utile ?
+- Si oui, pourquoi ?
+- Si non, pourquoi ?
 
 
 ## Initialisation
 
-Votre choix est fait, vous devez maintenant initialiser votre espace de travail, comment procédez vous?
+Votre choix est fait, vous devez maintenant initialiser votre espace de travail. Comment procédez-vous?
 
 ### Définir votre identité dans GIT
 ```
@@ -91,7 +91,7 @@ Ajouter les changements
 
 ```
 
-Est-ce la seul façon de faire ? (Plusieurs réponses sont possibles)
+Est-ce la seule façon de faire ? (Plusieurs réponses sont possibles)
 
 ```sh
 
@@ -99,12 +99,12 @@ Est-ce la seul façon de faire ? (Plusieurs réponses sont possibles)
 
 ### Questions
 
-- Qu’avez vous fait ?
+- Qu’avez-vous fait ?
 - Qu’elles sont différences entre les deux commandes ?
 - Dans quel état est votre dépôt (repository) ?
 - À quoi sert la commande ```git status``` ?
-  - Une autre commande permettrait t’elle d’avoir une information similaire ?
-- Le commentaire que vous avez mis est-il correcte ?
+  - Une autre commande permettrait-elle d’avoir une information similaire ?
+- Le commentaire que vous avez mis est-il correct ?
   - Est-il possible de l’améliorer ?
   - Si oui, comment ?
 
@@ -132,9 +132,9 @@ $
 
 ### Questions
 
-- À quoi sert les commentaires ?
-  - Est-ce que pour vous ?
-- Y’a t’il plusieurs façon de faire ?
+- À quoi servent les commentaires ?
+- Sont ils utilent que pour pour vous ?
+- Y’a-t-il plusieurs façon de faire ?
 - Comment vérifier que vos modifications ont bien été prises en compte ?
 
 ```sh
@@ -143,7 +143,7 @@ $
 
 ## Modifier le message du précédent commit
 
-Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit, modifier le en utilisant [Un template de message de commit](https://github.com/c4software/cheatsheet/blob/master/git/commit_template.md)
+Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit. Modifier le en utilisant [un template de message de commit](https://github.com/c4software/cheatsheet/blob/master/git/commit_template.md)
 
 ```sh
 $
@@ -151,7 +151,7 @@ $
 
 ### Questions
 
-- Pourquoi votre responsable vous a t’il demandé de le modifier ?
+- Pourquoi votre responsable vous a-t-il demandé de le modifier ?
 - Pourquoi le commentaire est-il aussi important ?
 
 ## Ajout d’une évolution dans le précédent fichier
@@ -160,7 +160,7 @@ $
 $
 ```
 
-Sauvegarder les modifications après avoir vérifié que celle-ci sont bien présentes
+Sauvegarder l'ensemble des modifications après avoir vérifié que celle-ci sont bien présentes
 
 ```sh
 $
@@ -191,7 +191,7 @@ $
 
 ## Une autre évolution
 
-Votre première version est maintenant disponible pour les utilisateurs, votre responsable vous demande une évolution importante du code, celle-ci est majeur et changera complètement le comportement de votre application. Vous ne pouvez pas travailler directement sur la master.
+Votre première version est maintenant disponible pour les utilisateurs, votre responsable vous demande une évolution importante du code, celle-ci est majeure et changera complètement le comportement de votre application. Vous ne pouvez pas travailler directement sur la master.
 
 Comment procédez-vous ?
 
@@ -224,7 +224,7 @@ $
 
 ## Annulation, retour arrière
 
-Faite des évolutions dans votre branche master (2 ou 3), ajouter les via ```git add```. Votre responsable vous demande finalement de les annuler car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
+Faite des évolutions dans votre branche master (2 ou 3), ajouter les via ```git add```. Votre responsable vous demande finalement de les annuler, car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
 
 ```sh
 $
@@ -247,6 +247,6 @@ $
 
 - Que vient-il de se produire ?
 - À votre avis, quel est l’intérêt de « taguer » une version ?
-- Quel sont les avantages de réaliser un tag ?
+- Quels sont les avantages de réaliser un tag ?
 
 [Voir la solution](https://github.com/c4software/bts-sio/blob/master/tp/git_initiation/solution/README.md)

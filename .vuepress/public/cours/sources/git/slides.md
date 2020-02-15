@@ -7,9 +7,9 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Historique
 
-- FTP (À votre avis?) <!-- .element: class="fragment" -->
+- FTP (à votre avis?) <!-- .element: class="fragment" -->
 - Index1, Index2, … (À votre avis?) <!-- .element: class="fragment" -->
-- Email (À votre avis?) <!-- .element:  class="fragment" -->
+- Email (à votre avis?) <!-- .element:  class="fragment" -->
 - CVS <!-- .element: class="fragment" -->
 - SVN <!-- .element: class="fragment" -->
 - Git <!-- .element: class="fragment" -->
@@ -48,7 +48,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 ### Noyau Linux
 
 - 150Mo de source
-- Des milliers de developpeurs
+- Des milliers de développeurs
 - Stable
 
 ---
@@ -85,7 +85,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-![princpe](./img/git_principe.jpeg)
+![principe](./img/git_principe.jpeg)
 
 ---
 
@@ -104,13 +104,13 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ## Connaissez-vous d'autres systèmes utilisant le même principe ?
 
-- Quel sont les autres avantages de fonctionner avec des « diffs »?
+- Quels sont les autres avantages de fonctionner avec des « diffs »?
 
 ---
 
 ## Les points clés
 
-- Tracabilité
+- Traçabilité
 - La gestion des branches <!-- .element: class="fragment" -->
 - La fusion de code efficace (Merge) <!-- .element: class="fragment" -->
 - Rapidité <!-- .element: class="fragment" -->
@@ -161,7 +161,7 @@ Un identifiant symbolique pour un commit.
 
 ---
 
-![princpe](./img/git_principe2.jpeg)
+![principe](./img/git_principe2.jpeg)
 
 ---
 
@@ -342,7 +342,7 @@ git tag V1.0
 
 Filtrer les données sensibles (ou inutiles)
 
-- Les mots de passes
+- Les mots de passe
 - Les fichiers générés
 - …
 
@@ -463,7 +463,7 @@ $ git branch -d evolution1
 
 ---
 
-## Aucun soucis !
+## Aucun souci !
 
 - Les branches <!-- .element: class="fragment" data-fragment-index="1" -->
 - Git Stash <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -484,13 +484,13 @@ $ git branch -d evolution1
 
 ---
 
-![princpe](./img/git_principe3.jpeg)
+![principe](./img/git_principe3.jpeg)
 
 ---
 
 ## La zone de staging
 
-Afficher le status
+Afficher le statut
 
 ```sh
 $ git status
@@ -516,7 +516,7 @@ $ git checkout --
 
 ### La routine Git
 
-![La routinge Git](./img/lifecycle.png)
+![La routine Git](./img/lifecycle.png)
 
 ---
 
@@ -535,7 +535,7 @@ $ git checkout --
 
 ---
 
-## C'est bien mais moi je ne suis pas seul
+## C'est bien, mais moi je ne suis pas seul
 
 ---
 
@@ -554,7 +554,7 @@ $ git checkout --
 
 ---
 
-### Git à Plusieurs
+### Git à plusieurs
 
 ## GitLab
 

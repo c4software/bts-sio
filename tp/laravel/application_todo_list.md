@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Dans ce TP nous allons réaliser une application / site web, le but de cette application / site web est de faire de la prise de note de « TODO » ou aussi appelé liste de tâches.
+Dans ce TP nous allons réaliser une application / site web, le but de cette application / site web est de faire de la prise de note de « TODO » ou aussi appelée liste de tâches.
 
 Une TODO List est un procédé qui se veut simple et efficace pour gérer les tâches d'un projet. Ces tâches peuvent être indépendantes ou devoir, au contraire, être accomplies dans un certain ordre.
 
-Voilà la liste des fonctionnalités de l’application que l'on va créér :
+Voilà la liste des fonctionnalités de l’application que l'on va créer :
 
 - Lister les tâches.
 - Ajouter une tâche.
@@ -44,7 +44,7 @@ La création prend environ 1 minute, un certains nombres de librairies sont tél
 
 ## Configurer le projet, le .env
 
-Le projet qui vient d'être créé est « générique » c'est à dire qu'il ne possède aucune personnalisation et peut donc servir de base quelques soit votre développement.
+Le projet qui vient d'être créé est « générique » c'est-à-dire qu'il ne possède aucune personnalisation et peut donc servir de base, quel que soit votre développement.
 
 La première étape va donc être d'éditer le fichier `.env` pour configurer les options de base de votre projet tel que :
 
@@ -62,11 +62,11 @@ C'est parti !
 
 Pour ne pas avoir à installer un serveur MySQL nous allons utiliser une base de données « local ».
 
-Connaissez-vous le nom d'un type de base de données permettant de travailler en « local » c'est à dire sans serveur ?
+Connaissez-vous le nom d'un type de base de données permettant de travailler en « local » c'est-à-dire sans serveur ?
 
 <Reveal text="Voir la suite du TP">
 
-La réponse est SQLite. SQLite est une base de données de type SQL mais ne nécéssitant pas de serveur, l'ensemble des données est contenu dans un fichier « local ». Pour la créer rien de plus simple il suffit de créer un fichier vide dans le dossier de votre projet faites :
+La réponse est SQLite. SQLite est une base de données de type SQL, mais ne nécessitant pas de serveur, l'ensemble des données est contenu dans un fichier « local ». Pour la créer rien de plus simple il suffit de créer un fichier vide dans le dossier de votre projet fait :
 
 ```sh
 $ touch database/database.sqlite
@@ -105,7 +105,7 @@ $ php artisan serve
 
 ### Le reste du fichier .env
 
-Nous n'allons pas toucher aux autres paramètres mais certains sont tout de même intéréssant. Je vous laisse donc consulter la documentation en ligne de laravel :
+Nous n'allons pas toucher aux autres paramètres, mais certains sont tout de même intéressants. Je vous laisse donc consulter la documentation en ligne de laravel :
 
 [Consulter en ligne](https://laravel.com/docs/5.6/configuration)
 
@@ -123,7 +123,7 @@ Laravel utilise un ORM pour manipuler la base de données. Pour rappel un ORM es
 
 > Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
 
-L'ORM utilisé par Laravel est Eloquent, il est à la fois puissant et relativement simple. Autrement dit avec un ORM dans la plus part des cas vous n'écrivez plus de requête SQL mais vous manipulez des objets représentant la base de données.
+L'ORM utilisé par Laravel est Eloquent, il est à la fois puissant et relativement simple. Autrement dit avec un ORM dans la plus part des cas vous n'écrivez plus de requête SQL, mais vous manipulez des objets représentant la base de données.
 
 Comme pour la création du projet, la création de la définition de la table « todos » va se faire via une requête dans votre terminal :
 
@@ -141,7 +141,7 @@ La commande vient de créer un nouveau fichier dans le dossier `database/migrati
 2019_11_09_150442_create_todos_table.php
 ```
 
-Nous allons définir notre schéma (à savoir la définition de la table) pour y ajouter les 2 colonnes qui nous serons utiles `texte` et `termine`. L'ORM étant une librairie objet, la définition de nouveaux champs se fait via une méthode, dans notre cas :
+Nous allons définir notre schéma (à savoir la définition de la table) pour y ajouter les 2 colonnes qui nous seront utiles `texte` et `termine`. L'ORM étant une librairie objet, la définition de nouveaux champs se fait via une méthode, dans notre cas :
 
 ```php
     $table->string('texte');
@@ -198,7 +198,7 @@ class CreateTodosTable extends Migration
 
 ## Création en base
 
-Maintenant que le script est terminé, nous allons indiquer à Laravel d'éffectuer « la migration » c'est-à-dire de transformer votre définition PHP en instruction SQL pour créer réellement la base de données. Retour dans la ligne de commande :
+Maintenant que le script est terminé, nous allons indiquer à Laravel d'effectuer « la migration » c'est-à-dire de transformer votre définition PHP en instruction SQL pour créer réellement la base de données. Retour dans la ligne de commande :
 
 ```sh
 $ php artisan migrate
@@ -219,7 +219,7 @@ Votre base de données est maintenant prête à être utilisée. Vous pouvez all
 Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle.
 
 ```sh
-$ php artisan make:model Todos
+$ php artisan make:modèle Todos
 ```
 
 La commande va créer le fichier `Todos.php` dans le dossier `app/`.
@@ -230,7 +230,7 @@ Ajouter dans la class :
     protected $fillable = ['texte', 'termine'];
 ```
 
-⚠️ Cette propriété est optionnelle, elle permet vous autorisera plus tard à faire du « mass-assignment » c'est à dire à créer un objet « Todos » depuis par exemple le POST HTTP.
+⚠️ Cette propriété est optionnelle, elle permet vous autorisera plus tard à faire du « mass-assignment » c'est-à-dire à créer un objet « Todos » depuis par exemple le POST HTTP.
 
 ## Le controller
 
@@ -242,15 +242,15 @@ Pour commencer nous allons créer « la structure de base » de notre controller
 $ php artisan make:controller TodosController
 ```
 
-Le fichier `TodosController.php` viens d'être créé dans le chemin suivant `app/Http/Controllers/`.
+Le fichier `TodosController.php` vient d'être créé dans le chemin suivant `app/Http/Controllers/`.
 
-Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos problématique d'interface (liste, creation, terminer, suppression).
+Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos problématiques d'interface (liste, création, terminer, suppression).
 
-Nous allons maintenant écrire une méthode pour chaque action. Avec les différentes conditions nécéssaires au bon fonctionnement de l'application.
+Nous allons maintenant écrire une méthode pour chaque action. Avec les différentes conditions nécessaires au bon fonctionnement de l'application.
 
 ### Corriger le chemin de la database
 
-Bizarrerie de Laravel… Il faut maintenant changer le chemin de la base de données pour faire correctement réference au fichier `database.sqlite` (pour que ça fonctionne depuis votre browser).
+Bizarrerie de Laravel… Il faut maintenant changer le chemin de la base de données pour faire correctement référence au fichier `database.sqlite` (pour que ça fonctionne depuis votre browser).
 
 Éditer à nouveau le fichier `.env` pour remplacer :
 
@@ -315,7 +315,7 @@ Notre vue va être découpée en 3 partie :
 
 ### Le template principal
 
-Nous allons commencer par définir notre « Template principal » celui-ci va contenir l'ensemble des élement partagés sur toutes nos pages à savoir :
+Nous allons commencer par définir notre « Template principal » celui-ci va contenir l'ensemble des éléments partagés sur toutes nos pages à savoir :
 
 - Les JS
 - Les CSS
@@ -355,8 +355,8 @@ Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
 - Pourquoi le fichier est-il nommé `….blade.php` ?
 - À quoi correspond <span v-pre> `{{ asset('…') }}` </span>?
 - À quoi correspond la directive « yield »? En quoi est-ce très important ?
-- Est-il possible de définir une « zone » ou d'autre ressources JS / CSS seront insérées lors de l'exécution ? [Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
-- Maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
+- Est-il possible de définir une « zone » ou d'autres ressources JS / CSS seront insérées lors de l'exécution ? [Voir la documentation](https://laravel.com/docs/5.6/blade#stacks)
+- maintenant que vous avez la réponse, ajouter une « stack » pour le script et le style dans l'entête.
 
 <Reveal text="Voir la solution">
 
@@ -387,11 +387,11 @@ Rien à changé ? C'est normal… Continuons!
 
 Maintenant que la partie base de données est prête, nous allons nous occuper de la partie visualisation de notre application / site web. Nous allons utiliser bootstrap pour gérer la problématique d'affichage et de responsive.
 
-### Ajout des libraries
+### Ajout des libraires
 
 La structure de base de Laravel n'intègre pas Bootsrap, par contre il est possible de l'installer dans votre projet.
 
-La façon la plus rapide est d'intégrer directement dans le `<head>` de votre projet les librairies suivante :
+La façon la plus rapide est d'intégrer directement dans le `<head>` de votre projet les librairies suivantes :
 
 Éditer le fichier `template.blade.php` pour ajouter (dans le `<head>`):
 
@@ -452,11 +452,11 @@ Ajouter à nouveau cette CSS dans le `<head>` de votre site :
 <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
 ```
 
-Cette solution n'est pas la meilleur, malheureseument un bug sur les PC du lycée nous empêche d'utiliser NodeJS + npm.
+Cette solution n'est pas la meilleure, malheureusement un bug sur les PC du lycée nous empêche d'utiliser NodeJS + npm.
 
-#### Modifications demandés
+#### Modifications demandées
 
-✋ Cette modification n'est nécéssaire que dans le cas ou vous n'utiliser **pas** NodeJS + NPM.
+✋ Cette modification n'est nécessaire que dans le cas ou vous n'utilisez **pas** NodeJS + NPM.
 
 Comme vous l'avez vu avec le fichier `main.css` il est possible d'avoir un CSS / JS en local dans le dossier public.
 
@@ -465,15 +465,15 @@ Comme vous l'avez vu avec le fichier `main.css` il est possible d'avoir un CSS /
 ### Question
 
 - Pourquoi est-ce plus sécurisé ?
-- Pourquoi la solution des CDN n'est finalement pas si « non sécurisé » ?
+- Pourquoi la solution des CDN n'est finalement pas si « non sécurisée » ?
 
 ### Liste des todos
 
-Maintenant que nous avons défini notre template de base nous allons pouvoir définir notre page principale, la page « liste des todos ». Une fois terminée celle-ci va ressembler à :
+Maintenant que nous avons défini notre template de base, nous allons pouvoir définir notre page principale, la page « liste des todos ». Celle-ci va ressembler à :
 
 ![liste](./ressources/liste.png)
 
-Avant de commencer la réalisation de ce template regardons ce que l'on peut y voir :
+Avant de commencer la réalisation de ce template, regardons ce que l'on peut y voir :
 
 - Un formulaire « form »
 - Une « liste »
@@ -482,12 +482,12 @@ Nous allons donc avoir besoin de composant bootstrap. Première étape regarder 
 
 #### 🤓 Questions
 
-- Quels composants (components) allons nous avoir besoins ?
+- Quels composants (components) allons nous avoir besoin ?
 - Est-ce les seuls ?
 
 #### Définition du template « Liste » / « Home »
 
-Nous allons créer un 2nd template celui qui va être charger d'afficher la liste des todos. Créér un nouveau fichier `resources/views/home.blade.php` et y mettre le contenu suivant :
+Nous allons créer un 2nd template celui qui va être chargé d'afficher la liste des todos. Créér un nouveau fichier `resources/views/home.blade.php` et y mettre le contenu suivant :
 
 ```html
 @extends("template") @section("title", "Ma Todo List") @section("content")
@@ -584,14 +584,14 @@ public function saveTodo(Request $request){
 }
 ```
 
-Que va t’il se passer lors de l’appel ? L’objet `$request` contient tous les paramètres de l’appel HTTP, la méthode `all()` permet de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permette de renseigner automatiquement les champs en base de données.
+Que va-t-il se passer lors de l’appel ? L’objet `$request` contient tous les paramètres de l’appel HTTP, la méthode `all()` permet de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permette de renseigner automatiquement les champs en base de données.
 
-✋ Tester l'ajout. Normalement ça ne doit pas fonctionner… Pourquoi ? Tout simplement car nous ne spécifions pas l'ensemble des champs nécessaire à la création de notre objet.
+✋ Tester l'ajout. Normalement ça ne doit pas fonctionner… Pourquoi ? Tout simplement, car nous ne spécifions pas l'ensemble des champs nécessaire à la création de notre objet.
 
-- Quel est l'autre solution possible ?
+- Quelle est l'autre solution possible ?
 
 <Reveal text="Voir la solution">
-La première approche est la plus rapide mais elle sous entend que tous les paramètres soient bien initialisées dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todos manuellement, en récupérant les différents éléments dans la requette HTTP.
+La première approche est la plus rapide, mais elle sous-entend que tous les paramètres soient bien initialisés dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todos manuellement, en récupérant les différents éléments dans la requête HTTP.
 
 ```php
 public function saveTodo(Request $request){
@@ -622,7 +622,7 @@ Route::post('/action/add', "TodosController@saveTodo");
 
 #### 🤓 Questions
 
-- À quoi correspond le mot clef « post » ?
+- À quoi correspond le mot-clé « post » ?
 - Que se passe-t-il si on fait un appel de type GET (ou PUT, …) ?
 
 #### Tester
@@ -635,7 +635,7 @@ Maintenant que nous avons notre action d'ajout, nous allons pouvoir tester notre
 
 #### Correction de l'erreur 419
 
-L'erreur 419 indique que votre Token `CSRF` (anti-rejeu) est expiré, ou plutôt dans notre cas que vous ne l'avez pas fourni. C'est une sécurité intégrée à Laravel pour l'ensemble des requêtes POST qui arrive dans votre code.
+L'erreur 419 indique que votre Token `CSRF` (antirejeu) est expiré, ou plutôt dans notre cas que vous ne l'avez pas fourni. C'est une sécurité intégrée à Laravel pour l'ensemble des requêtes POST qui arrive dans votre code.
 
 Nous devons donc ajouter un input « caché » dans notre formulaire pour envoyer en plus du texte une valeur dite de sécurité.
 
@@ -659,7 +659,7 @@ Normalement c'est ok !
 
 ## Action : marquer comme terminé
 
-Pour l’action terminé nous allons devoir updater un enregistrement en base de données, pour ça nous allons le récupérer puis mettre le `boolean` `termine` à 1.
+Pour l’action terminée, nous allons devoir updater un enregistrement en base de données, pour ça nous allons le récupérer puis mettre le `boolean` `termine` à 1.
 
 ```php
 public function markAsDone($id){
@@ -697,13 +697,13 @@ public function deleteTodo($id){
 
 Ajouter une route de type `get` avec un paramètre nommé `{id}` dans le fichier `routes/web.php`.
 
-Le lien doit-être : `/action/delete/{id}` et la méthode dans le contrôleur `TodosController@deleteTodo` en vous inspirant des exemples précédent ajouter la bonne instruction dans le fichier `routes/web.php`.
+Le lien doit-être : `/action/delete/{id}` et la méthode dans le contrôleur `TodosController@deleteTodo` en vous inspirant des exemples précédents ajouter la bonne instruction dans le fichier `routes/web.php`.
 
 #### Questions
 
 - Un `delete` de type `get` est-ce normal ?
 - Quelle est l'autre solution ?
-- Pourquoi dans notre cas c'est « la seul solution » ?
+- Pourquoi dans notre cas c'est « la seule solution » ?
 
 ## Ajouter les actions dans le template
 
@@ -726,7 +726,7 @@ Ajouter une nouvelle page dans votre site web cette page sera la page « À prop
 - Route.
 - Méthode dans le contrôleur.
 - Template qui « @extends » du gabarit / template de base.
-- Ajouter un lien pour accèder à cette page dans le header du site.
+- Ajouter un lien pour accéder à cette page dans le header du site.
 
 ## Évolution souhaitée : Nommer les routes
 
@@ -780,11 +780,11 @@ Modifier votre code pour les utiliser.
 
 ## Évolution souhaitée : Ajout de contrôle
 
-Seul les `Todos` marqués comme terminée peuvent être supprimées, il faudra donc contrôler l’état avant de faire le `delete()` en base de données.
+Seuls les `Todos` marqués comme terminer peuvent être supprimés, il faudra donc contrôler l’état avant de faire le `delete()` en base de données.
 
 - Modifier la méthode `deleteTodo` contrôleur pour ajouter la règle de gestion (Indice `$todo->termine`)
-- Ajouter la directive `@if` dans le template afficher uniquement les bonnes actions en fonction de l'état de la todo. [Voir la documentation du if avec blade](https://laravel.com/docs/5.7/blade#if-statements)
-- Pour les boutons d'actions utiliser des icones :
+- Ajouter la directive `@if` dans le template afficher uniquement les bonnes actions en fonction de l'état du todo. [Voir la documentation du if avec blade](https://laravel.com/docs/5.7/blade#if-statements)
+- Pour les boutons d'actions, utilisez des icônes :
   - Exemple [fontawesome](https://fontawesome.com/how-to-use/on-the-web/setup/getting-started?using=web-fonts-with-css)
   - Choisir [une icône](https://fontawesome.com/icons?d=gallery)
   - Utilisation : `<i class="fas fa-stroopwafel"></i>`
@@ -792,7 +792,7 @@ Seul les `Todos` marqués comme terminée peuvent être supprimées, il faudra d
 
 ## Évolution souhaitée : Message en cas d'erreur
 
-Avertir l'utilisateur en cas d'erreur est important! Comme vous l'avez constaté aucune gestion de message d'erreur n'est présente dans le contrôleur. Implémenter des messages (basique) grace à l'aide suivante :
+Avertir l'utilisateur en cas d'erreur est important! Comme vous l'avez constaté, aucune gestion de message d'erreur n'est présente dans le contrôleur. Implémenter des messages (basique) grâce à l'aide suivante :
 
 ### Ajouter un message à afficher
 
@@ -816,9 +816,9 @@ $request->session()->flash('message', "Message d'erreur de traitement à défini
 
 ### Ajout des catégories
 
-Actuellement votre liste de Todo n'est pas catégorisé. Nous allons donc ajouter :
+Actuellement votre liste de Todo n'est pas catégorisée. Nous allons donc ajouter :
 
-- Un nouveau `model` nommé `Categorie`. (`id`, `nom`)
+- Un nouveau `modèle` nommé `Categorie`. (`id`, `nom`)
 - Ajouter une relation entre `Todos` et `Categories`. [De Type One To One](https://laravel.com/docs/5.8/eloquent-relationships#one-to-one)
 
 En modifiant Model `Todos` pour y ajouter :
@@ -832,9 +832,9 @@ En modifiant Model `Todos` pour y ajouter :
   // …
 ```
 
-- Modifier votre base de données (grace à une nouvelle migration) pour ajoute une clef étrangère vers une table catégorie
+- Modifier votre base de données (grâce à une nouvelle migration) pour ajoute une clé étrangère vers une table catégorie
 
-⚠️ Éloquent détermine automatiquement la clef étrangère en fonction du nom. Dans la migration vous DEVEZ nommer la clef étrangère `categorie_id`.
+⚠️ Éloquent détermine automatiquement la clé étrangère en fonction du nom. Dans la migration vous DEVEZ nommer la clé étrangère `categorie_id`.
 
 Vous devez donc écrire une migration avec :
 
@@ -853,10 +853,10 @@ Schema::table('todos', function (Blueprint $table) {
 
 Ajouter un nouveau contrôleur pour gérer la partie catégorie (Liste + Ajout)
 
-### Séléction de la catégorie
+### Sélection de la catégorie
 
-Ajouter dans la page principale (`/`) une liste des catégories présente en base de données. Cette liste doit être à côté du champs de saisie.
+Ajouter dans la page principale (`/`) une liste des catégories présente en base de données. Cette liste doit être à côté du champ de saisie.
 
 ### Migration vers MySQL / MariaDB
 
-Maintenant que nous avons tester SQlite, nous allons migrer vers un « vrai système de base de données ». Modifier la configuration de votre site internet pour utiliser MySQL.
+Maintenant que nous avons testé SQlite, nous allons migrer vers un « vrai système de base de données ». Modifier la configuration de votre site internet pour utiliser MySQL.

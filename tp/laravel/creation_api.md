@@ -1,6 +1,6 @@
 # TodoList : (Ré-)écrire les API du projet
 
-Le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` défini en base de données
+Le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` définie en base de données
 
 ## Introduction
 
@@ -13,7 +13,7 @@ Dans ce TP nous allons voir la création d’API pour le projet « TodoList ». 
 
 ## Création du projet
 
-Pour créer des API, Laravel est un peu « lourd » (dans notre cas bien évidemment, dans certains cas te choix est complètement justifié). Nous allons donc utiliser son petit frère Lumen. Lumen est un micro-framework reprenant les concepts de Laravel (et les même briques), mais en beaucoup plus petit et donc plus adapté à des micro-projets comme celui-ci.
+Pour créer des API, Laravel est un peu « lourd » (dans notre cas bien évidemment, dans certains cas te choix est complètement justifié). Nous allons donc utiliser son petit frère Lumen. Lumen est un micro-framework reprenant les concepts de Laravel (et les mêmes briques), mais en beaucoup plus petit et donc plus adapté à des micro-projets comme celui-ci.
 
 ## Installer Lumen
 
@@ -47,15 +47,15 @@ Le projet n’étant pas initialisé nous allons devoir jouer quelques commandes
 mv .env.example .env
 ```
 
-PS: Sous Windows c'est :
+PS Sous Windows c'est :
 
 ```bash
 move .env.example .env
 ```
 
-Contrairement à Laravel, Lumen ne contient pas l’outils permettant d’initialiser la « secret key » nécéssaire à la sécurisation de votre application. Je pous propose par exemple de passer via la commande suivante :
+Contrairement à Laravel, Lumen ne contient pas l’outil permettant d’initialiser la « secret key » nécessaire à la sécurisation de votre application. Je vous propose par exemple de passer via la commande suivante :
 
-PS: Sous Windows la commande ne fonctionnera pas.
+PS Sous Windows la commande ne fonctionnera pas.
 
 ```bash
 openssl rand -base64 24
@@ -77,11 +77,11 @@ php -S localhost:8000 -t ./public
 
 Une fois lancé vous avez un serveur Web qui écoute sur [le port 8000](http://localhost:8000)
 
-🤔 Pourquoi Lumen n’intègre pas la commande `php artisan serve` ? La raison est plutôt logique, Lumen étant un `micro framework` il n’embarque pas toutes les options de base de Laravel. Options qui peuvent d’ailleurs simplement être remplacée.
+🤔 Pourquoi Lumen n’intègre pas la commande `php artisan serve` ? La raison est plutôt logique, Lumen étant un `micro framework` il n’embarque pas toutes les options de base de Laravel. Options qui peuvent d’ailleurs simplement être remplacées.
 
 ## Gestion de la base de données
 
-Pour la démonstration nous allons utiliser SQLite au lieux de MySQL. Pour ça rien de plus simple, Lumen utilise PDO il suffit donc de changer la configuration par défaut dans le fichier `.env`. Modifier le fichier pour qu’il ressemble à celui-ci
+Pour la démonstration nous allons utiliser SQLite au lieu de MySQL. Pour ça rien de plus simple, Lumen utilise PDO il suffit donc de changer la configuration par défaut dans le fichier `.env`. Modifier le fichier pour qu’il ressemble à celui-ci.
 
 ```apacheconf
 APP_ENV=local
@@ -100,7 +100,7 @@ CACHE_DRIVER=file
 QUEUE_DRIVER=sync
 ```
 
-Par défaut la configuration de base de SQLite dans Lumen est l’utilisation d’une base de données nommée `database.sqlite` il faut donc créer un fichier vide qui recevra les données :
+Par défaut, la configuration de base de SQLite dans Lumen est l’utilisation d’une base de données nommée `database.sqlite` il faut donc créer un fichier vide qui recevra les données :
 
 ```bash
 touch database/database.sqlite
@@ -116,7 +116,7 @@ Contrairement à la première version de notre application, nous allons stocker 
 
 > Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
 
-Pour rappel, le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` défini en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données.
+Pour rappel, le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` définie en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données.
 
 L’option `--create=todos` permet d’indiquer le nom de la table à créer
 
@@ -128,7 +128,7 @@ php artisan make:migration create_todos_table --create=todos
 
 La commande a créé un nouveau fichier (dans mon cas) : `database/migration/2017_11_02_205700_create_todos_table.php`
 
-Dans le fichier créé nous allons définir notre schéma (à savoir la définition de la table) pour ajouter les 2 colonnes qui nous serons utiles `texte` et `termine`. Le fichier après modification doit ressembler à :
+Dans le fichier créé nous allons définir notre schéma (à savoir la définition de la table) pour ajouter les 2 colonnes qui nous seront utiles `texte` et `termine`. Le fichier après modification doit ressembler à :
 
 ```php
 <?php
@@ -189,13 +189,13 @@ class Todos extends Model
 }
 ```
 
-le `$fillable` définie les propriétés qui doivent êtres automatiquement remplis par Eloquent (l’ORM) lors de l’execution du code.
+le `$fillable` définie les propriétés qui doivent êtres automatiquement remplis par Eloquent (l’ORM) lors de l’exécution du code.
 
 ## Le controller
 
-Maintenant que nous avons notre base de données, nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de nos API.
+Maintenant que nous avons notre base de données, nous allons créer le contrôleur. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de nos API.
 
-Pour commencer nous allons créer « la structure de base » de notre controller. Pour ça créez le fichier `TodosController.php` dans le chemin suivant `app/Http/Controllers/` et mettez y le contenu suivant :
+Pour commencer, nous allons créer « la structure de base » de notre contrôleur. Pour ça créez le fichier `TodosController.php` dans le chemin suivant `app/Http/Controllers/` et mettez y le contenu suivant :
 
 ```php
 <?php
@@ -212,9 +212,9 @@ class TodosController extends Controller{
 }
 ```
 
-Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidement (liste, creation, terminer, suppression).
+Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidemment (liste, création, terminer, suppression).
 
-Nous allons maintenant écrire une méthode pour chaque actions. Avec les différentes conditions nécéssaires au bon fonctionnement de votre application.
+Nous allons maintenant écrire une méthode pour chaque action. Avec les différentes conditions nécessaires au bon fonctionnement de votre application.
 
 ### Liste
 
@@ -231,7 +231,7 @@ Rien de bien compliqué, comme vous pouvez le voir le `response()->json(…)` pe
 
 ### Création
 
-Pour la partie création, nous allons faire un mapping automatique entre la requette HTTP et le modèle `Todos`
+Pour la partie création, nous allons faire un mapping automatique entre la requête HTTP et le modèle `Todos`
 
 ```php
 public function saveTodo(Request $request){
@@ -240,11 +240,11 @@ public function saveTodo(Request $request){
 }
 ```
 
-Que va t’il se passer lors de l’appel ? L’objet `$request` contient tous les paramètres de l’appel HTTP, la méthode `all()` permet de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permette de renseigner automatiquement les champs en base de données.
+Que va-t-il se passer lors de l’appel ? L’objet `$request` contient tous les paramètres de l’appel HTTP, la méthode `all()` permet de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permette de renseigner automatiquement les champs en base de données.
 
 ### Création, version alternative
 
-La première approche est la plus rapide mais elle sous entend que tous les paramètres soient bien initialisés dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todo manuellement en récupérant les différents éléments dans la requette HTTP
+La première approche est la plus rapide, mais elle sous-entend que tous les paramètres soient bien initialisés dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Todo manuellement en récupérant les différents éléments dans la requête HTTP
 
 ```php
 public function saveTodo(Request $request){
@@ -281,7 +281,7 @@ public function markAsDone($id){
 
 ### Suppression
 
-Pour la partie suppression, nous allons devoir dans un premier temps récupérer la todo par son ID. Seul les `Todos` marqués comme terminés peuvent être supprimé, il faudra donc controller l’état avant de faire le `delete()`
+Pour la partie suppression, nous allons devoir dans un premier temps récupérer la todo par son ID. Seuls les `Todos` marqués comme terminés peuvent être supprimés, il faudra donc controller l’état avant de faire le `delete()`
 
 ```php
 public function deleteTodo($id){
@@ -297,14 +297,14 @@ public function deleteTodo($id){
 
 ## Déclarer les routes
 
-Maintenant que le mapping avec la base de données est créé, et que notre controller est disponible nous allons pouvoir déclarer les différentes « routes » (c’est à dire les chemins d’accès à votre API). Dans notre applicaton nous avons 4 routes :
+Maintenant que le mapping avec la base de données est créé, et que notre contrôleur est disponible, nous allons pouvoir déclarer les différentes « routes » (c’est-à-dire les chemins d’accès à votre API). Dans notre application nous avons 4 routes :
 
 - Liste (/liste)
 - Création (/creation)
 - Terminer (/terminer)
 - Suppression (/suppression)
 
-Nous allons « mapper » / « connecter » les routes avec les différentes actions de notre controller. Avec un framework c’est très simple il suffit d’ajouter dans le fichier `routes/web.php` le code suivant :
+Nous allons « mapper » / « connecter » les routes avec les différentes actions de notre contrôleur. Avec un framework c’est très simple il suffit d’ajouter dans le fichier `routes/web.php` le code suivant :
 
 ```php
 $router->get('api/todo','TodosController@list');
@@ -325,14 +325,14 @@ Eloquent ? [Un peu de documentation sur le Framework d'accès à la base de donn
 
 ## Tester
 
-Pour tester votre application il suffit de lancer la commande suivante :
+Pour tester votre application, il suffit de lancer la commande suivante :
 
 ```bash
 php -S localhost:8000 -t ./public
 ```
 
-Pour tester vous pouvez utiliser PostMan.
+Pour tester, vous pouvez utiliser PostMan.
 
 ## Changer les API dans votre application VueJS
 
-Maintenant que vos nouvelles API sont terminées nous allons pouvoir les utiliser dans VueJS. Pour ça éditer le code Javascript de votre projet VueJS pour pointer vers votre serveur Lumen.
+Maintenant que vos nouvelles API sont terminées, nous allons pouvoir les utiliser dans VueJS. Pour ça éditer le code JavaScript de votre projet VueJS pour pointer vers votre serveur Lumen.
