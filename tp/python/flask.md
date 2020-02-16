@@ -4,21 +4,21 @@ Dans ce TP nous allons découvrir Flask (l’installation et un premier test).
 
 ## Introduction
 
-Flask est un framework open-source de développement web en Python. Son but principal est d'être léger, afin de garder la souplesse de la programmation Python, associé à un système de templates.
+Flask est un framework open-source de développement web en Python. Son but principal est d'être léger, afin de garder la souplesse de la programmation Python, associée à un système de templates.
 
 ## Installation de python
 
 L’installation de Python sous Windows se fait via [l’installer officiel](https://www.python.org/downloads/), nous allons prendre la version 3.
 
-Sous Linux (et MacOS) Python est normalement **inclus**.
+Sous Linux (et macOS) Python est normalement **inclus**.
 
 ## Installation de PIP (Python 2)
 
-Pip est « le gestionnaire de paquets » de Python. PIP (Pip Installs Packages) va nous permetter d’installer les différentes librairies que nous allons avoir besoin (virtualenv, flask, …).
+Pip est « le gestionnaire de paquets » de Python. PIP (Pip Installs Packages) va nous permettre d’installer les différentes librairies dont nous allons avoir besoin (virtualenv, flask, …).
 
 ### Python 3
 
-Bonne nouvelle ! Depuis python 3.4 pip est maintenant intégré à l’installation de python. Rien à installer de plus.
+Bonne nouvelle ! Depuis python 3.4 pip est maintenant intégrés à l’installation de python. Rien à installer de plus.
 
 ### Python 2
 
@@ -35,7 +35,7 @@ Question :
 
 ## Création du virtualenv
 
-VirtualEnv ? Kézako ! C’est l’un des petits trucs génial avec Python! VirtualEnv vous permet d’avoir des environnements cloisonés pour chacun de vos projets. Ça va pour permettre par exemple d’installer une version différente de Flask pour des projets différents, ou avoir des librairies « A » uniquement dans votre projet « A ». Bref ça permet de faire les choses proprements.
+VirtualEnv ? Kézako ! C’est l’un des petits trucs géniaux avec Python! VirtualEnv vous permet d’avoir des environnements cloisonnés pour chacun de vos projets. Ça va pour permettre par exemple d’installer une version différente de Flask pour des projets différents, ou avoir des librairies « A » uniquement dans votre projet « A ». Bref ça permet de faire les choses proprement.
 
 Vu que c’est la première fois que vous configurez votre environnement nous allons installer virtualenv, dans **une console administrateur** lancez la commande suivante :
 
@@ -54,7 +54,7 @@ Also creating executable in /private/tmp/flask/bin/python
 Installing setuptools, pip, wheel...done.
 ```
 
-Voilà notre environnement cloisoné est prêt, mais pour l’instant il n’est pas actif, il faut lancer une commande pour « entrer » dedans :
+Voilà notre environnement cloisonné est prêt, mais pour l’instant il n’est pas actif, il faut lancer une commande pour « entrer » dedans :
 
 Sous Windows :
 
@@ -70,7 +70,7 @@ $ source flask\Scripts\activate
 (flask) /tmp
 ```
 
-Le `(flask)` entre parenthèses vous indique que vous êtes actuellement dans un environnement cloisoné, à partir de maintenant si vous installez des paquets via pip ils s’installeront non pas dans votre système mais dans votre environnement « cloisoné ».
+Le `(flask)` entre parenthèses vous indique que vous êtes actuellement dans un environnement cloisonné, à partir de maintenant si vous installez des paquets via pip ils s’installeront non pas dans votre système, mais dans votre environnement « cloisoné ».
 
 ## Le fameux Hello World
 
@@ -80,7 +80,7 @@ Testons notre installation en réalisant un simple Hello World. Créez un fichie
 print ("Hello World")
 ```
 
-Lancer le via la commande :
+Lancez-le via la commande :
 
 ```sh
 python test.py
@@ -93,10 +93,10 @@ Question :
 
 ## Le Hello Word++
 
-Maintenant que l’on sait que notre environement d’execution est correctement installé nous allons tester la partie Flask. Avec la commande `pip` installer flask **mais** avant pensez à activer votre environnement cloisonés précédement créé
+Maintenant que l’on sait que notre environnement d’exécution est correctement installé, nous allons tester la partie Flask. Avec la commande `pip` installer flask **,mais** avant pensez à activer votre environnement cloisonné précédemment créé
 
 ```sh
-flask\Scripts\activate # Sous Windows
+flask\Scripts\activate # sous Windows
 source flask\Scripts\activate # Sous Unix
 ```
 
@@ -106,13 +106,13 @@ Installation de Flask :
 python -m pip install flask
 ```
 
-Cette commande va installer Flask ainsi que les dépendances nécéssaires à son fonctionnement.
+Cette commande va installer Flask ainsi que les dépendances nécessaires à son fonctionnement.
 
 ### Le code
 
-Maintenant que Flask est installé nous allons pouvoir l’utiliser, notre exemple sera tout simple tout sera contenu dans **un seul fichier**, lancer un éditeur de texte (pyCharn, Visual Studio Code, etc), et commencer par créer le fichier suivante `main.py`
+Maintenant que Flask est installé nous allons pouvoir l’utiliser, notre exemple sera tout simple tout sera contenu dans **un seul fichier**, lancer un éditeur de texte (pyCharn, Visual Studio Code, etc), et commencer par créer le fichier suivant `main.py`
 
-Le fichier `main.py` va être le fichier principal de notre application, l’ensemble du code sera dedans. C’est bien pour une démo, bien évidément dans une vrai application on évitera.
+Le fichier `main.py` va être le fichier principal de notre application, l’ensemble du code sera dedans. C’est bien pour une démo, bien évidement dans une vraie application on évitera.
 
 ### But de notre code
 
@@ -142,11 +142,11 @@ def hello_world():
 […]
 ```
 
-Ce morceau de code déclare donc une url `/` et appelera la fonction `hello_world()` à chaque fois qu’une personne y accedera.
+Ce morceau de code déclare donc une url `/` et appellera la fonction `hello_world()` à chaque fois qu’une personne y accèdera.
 
 ### L’application
 
-Maintenant que nous avons défini dans notre tête la structure de notre application écrivont le code :
+Maintenant que nous avons défini dans notre tête la structure de notre application, écrivons le code :
 
 ```python
 from flask import Flask
@@ -168,14 +168,14 @@ if __name__ == '__main__':
 
 ### Le test
 
-Tester votre application en lancant votre application. Pour ça vous devez activer le virtualEnv puis lancer :
+Tester votre application en lançant votre application. Pour ça vous devez activer le virtualEnv puis lancer :
 
 ```sh
 (flask)  tp1 ツ python main.py
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
 
-Normalement votre code est maintenant accessible, tester le fonctionnement :
+Normalement votre code est maintenant accessible, testez le fonctionnement :
 
 - [L’index](http://127.0.0.1:5000/)
 - [Hello Yolo](http://127.0.0.1:5000/hello/Yolo)
@@ -186,9 +186,9 @@ Question :
 
 ### Évolution
 
-Maintenant que vous avez tout compris, je vous propose de mettre en place une nouvelle fonctionnalitée :
+Maintenant que vous avez tout compris, je vous propose de mettre en place une nouvelle fonctionnalité :
 
-> Ajouter une fonction à votre application qui va éffectuer une addition par rapport à deux chiffres passés en paramètre.
+> Ajouter une fonction à votre application qui va effectuer une addition par rapport à deux chiffres passés en paramètre.
 
 Étapes :
 
@@ -199,7 +199,7 @@ Maintenant que vous avez tout compris, je vous propose de mettre en place une no
 
 C’est à vous !
 
-<Reveal text="Voir l’une des solutions possible">
+<Reveal text="Voir l’une des solutions possibles">
 
 ```python
 @app.route("/calcul/<int:a>/<int:b>")

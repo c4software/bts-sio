@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Dans ce TP nous allons créer des API à l’aide de Flask pour notre site web TodoList. Nous allons bien évidement utiliser l’interface que vous avez développé dans le TP 1 VueJS. Ici nous allons recoder la partie « serveur » en python grâce au micro framework Flask.
+Dans ce TP nous allons créer des API à l’aide de Flask pour notre site web TodoList. Nous allons bien évidemment utiliser l’interface que vous avez développée dans le TP 1 VueJS. Ici nous allons recoder la partie « serveur » en python grâce au micro framework Flask.
 
 Pour ne pas compliquer le TP je vais faire abstraction de la base de données, nous allons utiliser la session comme la première version de l’application.
 
@@ -12,7 +12,7 @@ Comme dans le premier TP notre code sera intégralement dans un fichier nommé �
 
 Comme dans le premier TP, avant de commencer à coder nous allons déterminer le nom des fonctions ainsi que le chemin et les méthodes (POST, GET, DELETE, …):
 
-| Description           | Chemin | Methode | Fonction |
+| Description           | Chemin | Méthode | Fonction |
 | --------------------- | ------ | ------- | -------- |
 | Liste                 |        |         |          |
 | Création              |        |         |          |
@@ -21,11 +21,11 @@ Comme dans le premier TP, avant de commencer à coder nous allons déterminer le
 
 Question :
 
-- C’est à vous, avant de continuer un papier un crayon ! Remplisser le tableau.
+- C’est à vous, avant de continuer un papier un crayon ! Remplissez le tableau.
 
-<Reveal text="Voir l’une des solutions possible">
+<Reveal text="Voir l’une des solutions possibles">
 
-| Description           | Chemin                        | Methode | Fonction      |
+| Description           | Chemin                        | Méthode | Fonction      |
 | --------------------- | ----------------------------- | ------- | ------------- |
 | Liste                 | /api/todo                     | GET     | liste()       |
 | Création              | /api/todo                     | POST    | creer()       |
@@ -34,8 +34,8 @@ Question :
 
 Question :
 
-- À votre avis pourquoi est-ce important de fair ce travail ?
-- Quel sont les autres solutions pour répondre à ce genre de soucis ?
+- À votre avis pourquoi est-ce important de faire ce travail ?
+- Quelles sont les autres solutions pour répondre à ce genre de soucis ?
 
 </Reveal>
 
@@ -77,11 +77,11 @@ python main.pys
 ```
 
 - À quoi sert `app.secret_key` ?
-- Comment changer le port d’écoute ? (La réponse est là… [sur la documentation officiel](http://flask.pocoo.org/)… quelques part…)
+- Comment changer le port d’écoute ? (La réponse est là… [sur la documentation officielle](http://flask.pocoo.org/)… quelques part…)
 
 ### Liste
 
-Comme dans le premier TP, l’API `list` ne va faire que retourner la liste des taches actuellement dans la session.
+Comme dans le premier TP, l’API `list` ne va faire que retourner la liste des tâches actuellement dans la session.
 
 Avec Flask ça va être **très** simple ! Il suffit de faire :
 
@@ -102,19 +102,19 @@ def liste():
 
 Question :
 
-- Comment être sur que la session est bien initialisée ?
+- Comment être sure que la session est bien initialisée ?
 
 ### Votre décorateur
 
 Et voilà, c’est le moment… Le moment ou vous allez écrire votre propre décorateur ! (Si certains ont oublié ce que c’était un décorateur [rendez-vous ici](flask.html#associer-un-lien-et-une-fonction))
 
-Très bien, maintenant que vous avez la mémoire fraîche, voilà votre décorateur :
+Très bien, maintenant que vous avez la mémoire fraiche, voilà votre décorateur :
 
 ```python
 from functools import wraps
 from flask import session
 def init_session(fn):
-    """ Decorateur qui init la session """
+    """ Décorateur qui init la session """
     @wraps(fn)
     def wrap(*args, **kwargs):
         if "todo" not in session:
@@ -128,17 +128,17 @@ Où mettre le code ?
 - Choix 1 : Directement dans le main.py
 - Choix 2 : Dans un autre fichier (exemple helper.py)
 
-Vous avez le choix… Si vous faites le choix de mettre le fichier dans un autre fichier il faudra importer `init_session` dans le main.py :
+Vous avez le choix… Si vous faites le choix de mettre le fichier dans un autre fichier, il faudra importer `init_session` dans le main.py :
 
 ```python
 from helper import init_session
 ```
 
-PS: Je vous conseille de le mettre dans un fichier `helper.py`.
+PS Je vous conseille de le mettre dans un fichier `helper.py`.
 
 ### Modification de la liste
 
-Maintenant que votre décorateur est terminé nous allons l’utiliser. Avant la fonction `liste()` ajouter `@init_session()` exemple :
+Maintenant que votre décorateur est terminé, nous allons l’utiliser. Avant la fonction `liste()` ajouter `@init_session()` exemple :
 
 ```python
 @app.route("/api/todo")
@@ -202,7 +202,7 @@ Questions :
 
 ### Marquer comme terminé
 
-Marquer comme terminé une tache c’est changer le status de « termine » à `true`.
+Marquer comme terminé une tache c’est changer le statut de « termine » à `true`.
 
 - Utiliser le décorateur d’initialisation de la session.
 - Vérifier que la tâche existe dans la session. (En python `if current_id in session["todo"]:`)
@@ -213,7 +213,7 @@ Marquer comme terminé une tache c’est changer le status de « termine » à `
 Questions :
 
 - Écrire l’algorithme (en Français), du code à obtenir.
-- Le re-transcrire en Python.
+- Le retranscrire en Python.
 - L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
 <Reveal text="Cliquer pour afficher une solution possible">
@@ -238,7 +238,7 @@ def terminer(current_id):
 
 ### Suppression
 
-Supprimer une tâche, c’est tout simplement l’action de la retirer de la session, pour faire ça le mot clef et python c’est `del`. Cependant votre code doit bloquer certaines actions car toutes les tâches ne peuvent pas être supprimées :
+Supprimer une tâche, c’est tout simplement l’action de la retirer de la session, pour faire ça le mot-clé et python c’est `del`. Cependant votre code doit bloquer certaines actions, car toutes les tâches ne peuvent pas être supprimées :
 
 - Limiter l’action seulement aux « identifiants » reconnus dans la session.
 - La tâche doit avoir le booléen « termine » à vrai pour permettre la suppression.
@@ -254,7 +254,7 @@ Votre algorithme doit donc suivre :
 Questions :
 
 - Écrire l’algorithme (en Français) du code à obtenir.
-- Le re-transcrire en Python
+- Le retranscrire en Python
 - L’implémenter dans votre fichier main.py (en respectant le tableau établi)
 
 <Reveal text="Cliquer pour afficher une solution possible">
@@ -283,7 +283,7 @@ Maintenant que l’ensemble de votre code est terminé (et commenté 🕵🏻), 
 
 Question :
 
-- Valider le bon fonctionnement de votre application grace au jeu de test.
+- Valider le bon fonctionnement de votre application grâce au jeu de test.
 
 ## Utilisation des API
 

@@ -6,9 +6,9 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
 
 ## MVVM en quelques mots
 
-Non mais moi je connais que MVC, C’est quoi MVVM ?
+Non, mais moi je connais que MVC, c’est quoi MVVM ?
 
-MVVM est un design pattern, souvent utilisé par les bibliothèques Javascript moderne (Ionic, VueJS, ReactJS). A l’origine, MVVM a été introduit par Microsoft.
+MVVM est un design pattern, souvent utilisé par les bibliothèques JavaScript modernes (Ionic, VueJS, ReactJS). À l’origine, MVVM a été introduit par Microsoft.
 
 Ce pattern a spécialement été conçu pour améliorer la séparation entre les données et la vue qui les affichent. Le lien entre la vue et le modèle de données est fait par des mécanismes de binding. Le binding est un mécanisme qui permet de faire des liaisons entre des données de manière dynamiques. Ce qui veut dire que si A et B sont liés, le fait de modifier A va être répercuté sur B et inversement.
 
@@ -67,7 +67,7 @@ Voilà notre projet est maintenant prêt. Place à la suite.
 
 Le projet que vous avez initialisé est « prêt pour être utilisé ».
 
-Si vous changez d'ordinateur il faudra réinstaller les librairies NodeJS. Cette étape n’est à faire qu’une seul fois sur votre poste, en effet en général on ne commit pas les fichiers « librairies » qui sont présents dans le future dossier `node_module` pour la simple et bonne raison que celui-ci est gros et rempli de pleins de petits fichiers (et qu’en plus ça se re-télécharge facilement depuis Internet).
+Si vous changez d'ordinateur, il faudra réinstaller les librairies NodeJS. Cette étape n’est à faire qu’une seule fois sur votre poste, en effet en général on ne commit pas les fichiers « librairies » qui sont présents dans le futur dossier `node_module` pour la simple et bonne raison que celui-ci est gros et rempli de pleins de petits fichiers (et qu’en plus ça se retélécharge facilement depuis Internet).
 
 Pour l’installation la procédure est la suivante :
 
@@ -94,36 +94,36 @@ Une fois cette commande lancée vous pouvez ouvrir un onglet dans votre navigate
 
 ## Le serveur de développement
 
-Comme vous avez pu le constater dans votre invite de commande (terminal), vous avez un serveur qui tourne. Ce serveur est un peu particulié, il n’est utilisé que dans la phase de développement il incorpore plusieurs outils permettant de simplifier la création d’application Javascript :
+Comme vous avez pu le constater dans votre invite de commande (terminal), vous avez un serveur qui tourne. Ce serveur est un peu particulier, il n’est utilisé que dans la phase de développement il incorpore plusieurs outils permettant de simplifier la création d’application JavaScript :
 
 - Redémarrage à chaud, comprendre ici, qu’il va « patcher » votre code pour intégrer vos dernières modifications sans que vous n’ayez rien à faire (GÉNIAL !)
-- Lint, analyse du code pour vous remonter les erreurs avant l’execution.
+- Lint, analyse du code pour vous remonter les erreurs avant l’exécution.
 - Gestion des .vue (avec vue-loader)
 
 Et si vous avez les outils sur votre machine il peut également :
 
 - Créer la CSS à partir du SCSS présent dans le .vue
-- Et plein d’autres usages car Webpack c’est un outil qui permet l’assemblage de différent outils
+- Et plein d’autres usages car Webpack c’est un outil qui permet l’assemblage de différents outils
 
 ## Le code source
 
-Les sources de l’application sont dans le dossier `src/` il contient l’ensemble du code source de votre application. Pour l’instant nous avons le code fourni par VueJS, au fur et à mesure des futures étapes nous allons le modifier pour le transformer dans l’application « Cliff Height Timer ». Avant de « presque » tout remplacer nous allons modifier celui fourni pour nous familiariser avec « le serveur de développement ».
+Les sources de l’application sont dans le dossier `src/` il contient l’ensemble du code source de votre application. Pour l’instant nous avons le code fourni par VueJS, au fur et à mesure des futures étapes nous allons le modifier pour le transformer dans l’application « Cliff Height Timer ». Avant de « presque » tout remplacer, nous allons modifier celui fourni pour nous familiariser avec « le serveur de développement ».
 
 ### L’IDE
 
-Pour faire du VueJS le mieux c’est d’avoir un bon IDE. Au revoir Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit 💰).
+Pour faire du VueJS le mieux, c’est d’avoir un bon IDE. Au revoir, Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit 💰).
 
-Pour ceux qui n’ont pas de licence je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plugin `Vetur` pour pouvoir éditer les `.vue` dans de bonne condition.
+Pour ceux qui n’ont pas de licence je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plug-in `Vetur` pour pouvoir éditer les `.vue` dans de bonnes conditions.
 
-### Installation des plugins
+### Installation des plug-ins
 
-Comme vu en cours l'avantage de Vue-Cli c'est qu'il intégre un système de plugin, nous allons nous en servir pour ajouter :
+Comme vu en cours l'avantage de Vue-Cli c'est qu'il intègre un système de plug-in, nous allons nous en servir pour ajouter :
 
 - vue-i18n
 - vue-router
 - vuetify
 
-Certains plugins modifie plus ou moins votre projet. Vuetify par exemple altere de manière importante votre projet. Nous allons donc l'ajouter en premier. Dans un terminal
+Certains plug-ins modifient plus ou moins votre projet. Vuetify par exemple altère de manière importante votre projet. Nous allons donc l'ajouter en premier. Dans un terminal
 
 ```sh
 $ vue add vuetify
@@ -165,7 +165,7 @@ found 0 vulnerabilities
 ✔  Successfully invoked generator for plugin: core:router
 ```
 
-Et maintenant Vue-i18n (pour l'internationnalisation) :
+Et maintenant Vue-i18n (pour l'internationalisation) :
 
 ```sh
 $ vue add i18n
@@ -195,7 +195,7 @@ found 0 vulnerabilities
    The following files have been updated / added:
 ```
 
-Voilà les plugins sont maintenant installés, de base ils ne sont pas configurés. Nous allons faire ça dans les prochaines étapes.
+Voilà les plug-ins sont maintenant installés, de base ils ne sont pas configurés. Nous allons faire ça dans les prochaines étapes.
 
 ### La structure
 
@@ -204,20 +204,20 @@ L'ensemble du code que vous devez écrire va se trouver dans `src`
 - `assets/` : Les images / ressources static.
 - `components/` : Les composants réutilisable.
 - `locales/` : Vos textes rangés par langes.
-- `plugins/` : La configuration de vos plugins.
+- `plug-ins/` : La configuration de vos plug-ins.
 - `views/` : Les pages de votre site.
 - `App.vue` : Le template / base / point d'entrée de vos vue.
 - `i18n.js` : La configuration de Vue-i18n
-- `main.js` : Le point d'entrée Javascript de votre projet
+- `main.js` : Le point d'entrée JavaScript de votre projet
 - `router.js` : La configuration de vos routes.
 
 ⚠️ Je vous invite à regarder le contenu de l'ensemble des fichiers et dossier avant de continuer.
 
 ### Lancer le projet
 
-Le projet est actuellement non fonctionnel, principalement à cause de Vuetify et Vue Router qui de base configure le projet différement.
+Le projet est actuellement non fonctionnel, principalement à cause de Vuetify et Vue Router qui de base configure le projet différemment.
 
-Pour regarder le soucis lancer le projet et tester le :
+Pour regarder le souci, lancer le projet et testez-le :
 
 ```sh
 npm run serve
@@ -225,9 +225,9 @@ npm run serve
 
 ### Transformer le template de base
 
-Maintenant que VuetifyJS est complètement disponible vous allez pouvoir utiliser vos premiers composants.
+Maintenant que VuetifyJS est complètement disponible, vous allez pouvoir utiliser vos premiers composants.
 
-Pour débuter nous allons remplacer le contenu du fichier `App.vue` pour déclarer le gabarit principal de l’application :
+Pour débuter, nous allons remplacer le contenu du fichier `App.vue` pour déclarer le gabarit principal de l’application :
 
 ```html
 <template>
@@ -348,12 +348,12 @@ Modifier le, et **retirer** tout la partie `/about` :
 
 ### Déclarer du texte dans Vue-i18n
 
-Au début du TP nous avons installé Vue-i18n, nous allons maintenant configurer nos premiers texte. Dans le dossier `src/locales/` vous avez deux fichiers `json` :
+Au début du TP nous avons installé Vue-i18n, nous allons maintenant configurer nos premiers textes. Dans le dossier `src/locales/` vous avez deux fichiers `json` :
 
-- `en.json` : Les texte Anglais.
-- `fr.json` : Les textes Français.
+- `en.json` : Les textes anglais.
+- `fr.json` : Les textes français.
 
-**Ajouter** dans les deux fichiers JSON une nouvelle clef :
+**Ajouter** dans les deux fichiers JSON une nouvelle clé :
 
 ```json
 {
@@ -371,7 +371,7 @@ Remplacer le texte `Cliff height timer` par :
 `{{$t("title")}}`
 :::
 
-Le titre doit maintenant s’afficher. Et c’est normal la clef « title » est déjà présente dans le fichier : `i18n/index.js`, modifier le titre pour la langue « fr ».
+Le titre doit maintenant s’afficher. Et c’est normal la clé « title » est déjà présente dans le fichier : `i18n/index.js`, modifier le titre pour la langue « fr ».
 
 ℹ️ `$t` est un objet qui permet d’accéder aux textes actuellement chargés pour la langue de l’utilisateur.
 
@@ -555,7 +555,7 @@ Voilà le rendu de « la page » que vous devez réaliser :
 {{ $t("label") }}
 :::
 
-- Ajouter dans `router.js` le code pour pouvoir accèder à votre Vue.
+- Ajouter dans `router.js` le code pour pouvoir accéder à votre Vue.
 
 ✋ Vous avez ajouté votre nouveau fichier, mais pour l’instant votre application ne contient pas de menu. Nous allons en ajouter un pour pouvoir naviguer entre les pages.
 
@@ -654,11 +654,11 @@ Mais je pense qu’une application n’est jamais vraiment complète sans une no
 
 Pour réaliser la vue Historique nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le `Localstorage`, avant d’allez plus loin je vous propose un peu de lecture sur le localStorage :
 
-> La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session navigateur prend fin — donc quand on ferme le navigateur.
+> La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session du navigateur prend fin — donc quand on ferme le navigateur.
 
 Source: [https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
 
-⚠️ Petite subtilitée, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
+⚠️ Petite subtilité, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
 
 #### Sauvegarder un élément dans le localStorage
 
@@ -684,7 +684,7 @@ Ressources utiles :
 - [JSON](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/JSON)
 - [Tester si tableau](https://www.w3schools.com/jsref/jsref_isarray.asp)
 
-Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus nécéssaire que je vous fournisse du code.
+Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus nécessaire que je vous fournisse du code.
 
 ## Ajouter une page permettant un ajout manuel
 
@@ -713,22 +713,22 @@ Le résultat de la compilation est dans le dossier `dist/`
 
 ## Ajouter un manifest
 
-Nous allons maintenant ajouter la dernière pierre à notre édifice, le fichier Manifest. Ce fichier décrit le fonctionnement du site Web en tant « qu’application », une fois que ce fichier est en place votre navigateur le lira et adaptera son fonctionnement poru qu’il se rapproche d’une application (Comme une APK).
+Nous allons maintenant ajouter la dernière pierre à notre édifice, le fichier Manifest. Ce fichier décrit le fonctionnement du site Web en tant « qu’application », une fois que ce fichier est en place votre navigateur le lira et adaptera son fonctionnement pour qu’il se rapproche d’une application (comme une APK).
 
-Pour ça nous allons utiliser deux site :
+Pour ça nous allons utiliser deux sites :
 
 - [Un générateur de fichier Manifest](https://app-manifest.firebaseapp.com/)
 - [Un générateur d’icône](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html)
 
 > Le manifest d'une application web fournit des informations concernant celle-ci (comme son nom, son auteur, une icône et une description) dans un document texte JSON. Le but du manifeste est d'installer des applications sur l'écran d'accueil d'un appareil, offrant aux utilisateurs un accès plus rapide et une expérience plus riche.
 >
-> Les manifests font partie d'un ensemble de technologies appellées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion internet et sont capables de recevoir des notifications push.
+> Les manifests font partie d'un ensemble de technologies appelées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion internet et sont capables de recevoir des notifications push.
 
 Source: Mozilla.org
 
-- Générer les icones ainsi que le fichier Manifest
-- Télécharger le manifest.json et le mettre dans le dossier `static/` faire la même chose pour les icones.
-- Éditer le fichien `index.html` du dossier public pour y ajouter :
+- Générer les icônes ainsi que le fichier Manifest
+- Télécharger le manifest.json et le mettre dans le dossier `static/` faire la même chose pour les icônes.
+- Éditer le fichier `index.html` du dossier public pour y ajouter :
 
 ```html
 <link rel="manifest" href="./static/manifest.json" />
@@ -744,9 +744,9 @@ npm run build
 
 ### Ajouter Firebase
 
-Dans le précédent TP nous avons ajouté Firebase pour synchroniser les éléments sur une carte. C'était un exemple très visuel, mais il est évidement possible de faire bien plus.
+Dans le précédent TP nous avons ajouté Firebase pour synchroniser les éléments sur une carte. C'était un exemple très visuel, mais il est évidemment possible de faire bien plus.
 
-Nous allons nous servir de Firebase dans ce projet pour synchroniser « l'historique » avec l'ensemble des utilisateurs. Je vous propose donc de vous inspirez du précédent TP, et d'ajouter les dépendances :
+Nous allons nous servir de Firebase dans ce projet pour synchroniser « l'historique » avec l'ensemble des utilisateurs. Je vous propose donc de vous inspirer du précédent TP, et d'ajouter les dépendances :
 
 - Vuefire.
 - Firebase.

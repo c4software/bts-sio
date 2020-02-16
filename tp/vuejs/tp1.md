@@ -6,13 +6,13 @@ L’application existante est une « todo liste » codée en PHP + HTML.
 
 ## Récupération et installation des sources
 
-Avant de commencer à travailler, il faut récupérer le code source de l’application éxistante. Celui-ci est disponible sur le groupe « Gitlab » du BTS-SIO. Le projet est disponible sur Github : [Télécharger les sources](https://github.com/c4software/php-todo/archive/v1.1.zip)
+Avant de commencer à travailler, il faut récupérer le code source de l’application existante. Celui-ci est disponible sur le groupe « Gitlab » du BTS-SIO. Le projet est disponible sur Github : [télécharger les sources](https://github.com/c4software/php-todo/archive/v1.1.zip)
 
-- Faire « fonctionner » l’application en locale, une fois installée, celle-ci doit ressembler à :
+- Faire « fonctionner » l’application en local, une fois installée, celle-ci doit ressembler à :
 
 ![Exemple](https://github.com/c4software/php-todo/raw/master/sample.png)
 
-- Étudier le fonctionnement du code source actuel. (créer des tâches, etc…)
+- Étudier le fonctionnement du code source actuel. (créer des tâches, etc.)
 
 ## Liste des fonctionnalités
 
@@ -25,7 +25,7 @@ Voilà la liste des fonctionnalités de l’application existante :
 
 ## Stockage
 
-Lors de votre étude du code, vous avez du vous rendre compte que l’application utilisait la variable ```$_SESSION``` pour stocker les « tâches ».
+Lors de votre étude du code, vous avez dû vous rendre compte que l’application utilisait la variable ```$_SESSION``` pour stocker les « tâches ».
 
 La SESSION étant non persistante, dans du vrai code il ne faut en ```aucun cas``` stocker des données comme des tâches dedans (au risque de tout perdre…).
 
@@ -37,7 +37,7 @@ Dans ce TP nous allons parcourir les différentes étapes de la migration de l�
 
 ## Création des API
 
-Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur va-être réalisée en PHP, mais il est possible de la faire dans n’importe quel language. En entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
+Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur va-être réalisée en PHP, mais il est possible de la faire dans n’importe quel langage. En entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
 
 ### Les API
 
@@ -48,11 +48,11 @@ Notre cas étant simple, chaque API sera en réalité un fichier PHP qui se char
 - suppression.php
 - terminer.php
 
-Dans un nouveau dossier (version VueJS du site Web), ajouter un dossier ```api``` puis créer les ```4``` fichiers dans le dossier, nous les completerons dans la suite du TP.
+Dans un nouveau dossier (version VueJS du site Web), ajouter un dossier ```api``` puis créer les ```4``` fichiers dans le dossier, nous les complèterons dans la suite du TP.
 
 ### L’API pour lister les tâches : liste.php
 
-L’API « liste », doit retourné un JSON. Le JSON retourné est une représentation au format texte des valeurs contenues dans la variable ```$_SESSION["todos"]```.
+L’API « liste » doit retourner un JSON. Le JSON retourné est une représentation au format texte des valeurs contenues dans la variable ```$_SESSION["todos"]```.
 
 Exemple de retour :
 ```JSON
@@ -83,13 +83,13 @@ C’est à vous, réaliser votre première API.
 
 ### Comment procéder pour les prochaines API
 
-✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la poudre, utiliser les exemples fourni dans le code actuel (dans le dossier ```actions``` par exemple).
+✋ En tant que développeur vous devez être malin (et fainéants…). Pour écrire les autres API ne tenter pas de réinventer la poudre, utiliser les exemples fournis dans le code actuel (dans le dossier ```actions``` par exemple).
 
 ### L’API de création: creation.php
 
-L’API « creation.php », va permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement s’est bien passé. Cette API ne doit fonctionner qu’en POST.
+L’API « creation.php » va permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement s’est bien passé. Cette API ne doit fonctionner qu’en POST.
 
-Paramètre d’entré :
+Paramètre d’entrée :
 
 | Nom           | Type          | Méthod|
 | ------------- |:-------------:| -----:|
@@ -134,7 +134,7 @@ Vous pouvez également utiliser les codes de retour HTTP pour indique l’état 
 
 L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
 
-Paramètre d’entré :
+Paramètre d’entrée :
 
 | Nom           | Type          | Méthod|
 | ------------- |:-------------:| -----:|
@@ -149,7 +149,7 @@ Contraintes :
 - L’API doit fonctionner en GET et en POST.
 - Il est impossible de supprimer une tâche non terminée. ```termine == true```
 
-Paramètre d’entré :
+Paramètre d’entrée :
 
 | Nom           | Type          | Méthod|
 | ------------- |:-------------:| -----:|
@@ -162,11 +162,11 @@ Par exemple :
 
 ### Valider le fonctionnement : Postman
 
-Pour tester vos traitements, vous avez la possibilité d’utiliser le logiciel PostMan. PostMan va vous permettre de tester vos API simplement avec une interface Graphique.
+Pour tester vos traitements, vous avez la possibilité d’utiliser le logiciel PostMan. PostMan va vous permettre de tester vos API simplement avec une interface graphique.
 
 Télécharger le [ici](https://www.getpostman.com/)
 
-Une fois installé, tester les appels à vos APIs pour valider le bon fonctionnements
+Une fois installé, tester les appels à vos APIs pour valider le bon fonctionnement
 
 - Valider le fonctionnement à chaque étape (Création, liste, terminer, suppression).
 
@@ -191,15 +191,15 @@ Après avoir réalisé vos 4 API, vous devez certainement avoir du code « dupli
 
 ## Intégration de VueJS
 
-Maintenant que nous avons créé les API nous allons pouvoir nous intérésser à la partie « J’intégre VueJS ».
+Maintenant que nous avons créé les API nous allons pouvoir nous intéresser à la partie « J’intègre VueJS ».
 
-Le déroulement des prochainse étapes va être le suivant :
+Le déroulement des prochaines étapes va être le suivant :
 
 - Intégrer la librairie VueJS dans le code existant.
-- Créer « un composant / objet » global qui va gerer l’application.
+- Créer « un composant / objet » global qui va gérer l’application.
 - « Convertir » le code existant en code « VueJS » (le Foreach par exemple).
 
-Ne vous inquietez pas, tout est détaillé dans les prochaines étapes :
+Ne vous inquiétez pas, tout est détaillé dans les prochaines étapes :
 
 Pour réaliser la suite du TP, nous allons avoir besoin des ressources suivantes :
 
@@ -208,7 +208,7 @@ Pour réaliser la suite du TP, nous allons avoir besoin des ressources suivantes
 
 ### Création de la structure de « futur » projet
 
-Maintenant que nous avons les API nous allons pouvoir créer la structure de la « V2 ». La suite du TP va détailler le processus mais voilà le rendu du projet que vous allez obtenir:
+Maintenant que nous avons les API, nous allons pouvoir créer la structure de la « V2 ». La suite du TP va détailler le processus, mais voilà le rendu du projet que vous allez obtenir:
 
 ![Structure](./ressources/projet_migration.png)
 
@@ -216,9 +216,9 @@ Vous pouvez dès à présent déplacer les différents fichiers, pour obtenir la
 
 ### Conversion du template existant
 
-La première étape est de convertir le fichier ```index.php```. Notre application 2.0, ne sera plus une application PHP classique, mais une application reposant sur un modèle Client <-> Serveur. Pour ça vous devez procéder à quelques ajustement dans le site Internet :
+La première étape est de convertir le fichier ```index.php```. Notre application 2.0, ne sera plus une application PHP classique, mais une application reposant sur un modèle Client <-> Serveur. Pour ça vous devez procéder à quelques ajustements dans le site Internet :
 
-- Supprimer le fichier index.php (il n’est plus nécéssaire).
+- Supprimer le fichier index.php (il n’est plus nécessaire).
 - Déplacer le template (dans le dossier template à la racine).
 - Renommer le template que vous avez déplacé en « index.html », ça va être la base de notre application.
 
@@ -230,7 +230,7 @@ L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « hea
 <script src="https://unpkg.com/vue"></script>
 ```
 
-Valider le fonctionnement grâce à la « Console de Développement » de votre Navigateur (Touche F12 en général).
+Valider le fonctionnement grâce à la « Console de Développement » de votre Navigateur (touche F12 en général).
 
 ⚠️ Dans une optique développement sécurisé, il est préférable d’intégrer VueJS dans vos sources plutôt que de « linker » directement depuis Internet.
 
@@ -239,7 +239,7 @@ Valider le fonctionnement grâce à la « Console de Développement » de votre 
 
 #### Ajouter un script pour le JS
 
-Ajouter avant la balise ```</body>``` de l’index.html un nouveau script ```main.js```, il contiendra le code nécéssaire au fonctionnement de notre site Web.
+Ajouter avant la balise ```</body>``` de l’index.html un nouveau script ```main.js```, il contiendra le code nécessaire au fonctionnement de notre site Web.
 
 #### Déclarer votre premier composant
 
@@ -260,11 +260,11 @@ var app = new Vue({
 
 Maintenant que nous avons notre base, nous allons pouvoir convertir l’application pour cela nous allons procéder par étape, chaque étape est directement liée aux différentes API que vous avez pu précédemment écrite.
 
-L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter beaucoup d’Ajax. Pour faire nos appels nous utiliserons l’API « Fetch », celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflexe est quand même d’allez voir le support de Fetch sur  ([Can i use](https://caniuse.com/#search=fetch)).
+L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter beaucoup d’Ajax. Pour faire nos appels, nous utiliserons l’API « Fetch », celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflexe est quand même d’aller voir le support de Fetch sur  ([Can i use](https://caniuse.com/#search=fetch)).
 
 #### Découverte de Fetch
 
-L'API Fetch fournit une interface JavaScript pour l'accès et la manipulation des parties de la pipeline HTTP, comme les requêtes et les réponses. Cela fournit aussi une méthode globale fetch() qui procure un moyen facile et logique de récupérer des ressources à travers le réseau de manière asynchrone.
+L'API Fetch fournit une interface JavaScript pour l'accès et la manipulation des parties du pipeline HTTP, comme les requêtes et les réponses. Cela fournit aussi une méthode globale fetch() qui procure un moyen facile et logique de récupérer des ressources à travers le réseau de manière asynchrone.
 
 Ce genre de fonctionnalité était auparavant réalisé avec XMLHttpRequest. Fetch fournit une meilleure alternative qui peut être utilisée facilement par d’autres technologies comme Service Workers. Fetch fournit aussi un endroit unique et logique pour la définition d'autres concepts liés à HTTP comme CORS et les extensions d'HTTP.
 
@@ -370,7 +370,7 @@ Adapter l’exemple précédant pour afficher les tâches comme ils l’étaient
 
 #### Optimisation.
 
-Déplacer le code actellement dans ```beforeMount``` dans une nouvelle methode appelée ```recupererListe``` :
+Déplacer le code actuellement dans ```beforeMount``` dans une nouvelle méthode appelée ```recupererListe``` :
 
 ```javascript
 var app = new Vue({
@@ -398,9 +398,9 @@ var app = new Vue({
 
 #### Ajout d’une tâche
 
-Maintenant que la liste est affichée, vous allez pouvoir gérer le cas de l’ajout d’une nouvelle tâche. L’ajout va également être faite via un appel Ajax.
+Maintenant que la liste est affichée, vous allez pouvoir gérer le cas de l’ajout d’une nouvelle tâche. L’ajout va également être fait via un appel Ajax.
 
-- Créer une méthode Javascript, réalisant l’appel de l’API.
+- Créer une méthode JavaScript, réalisant l’appel de l’API.
 
  ⚠️ Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, et/ou via [librairie Sweetalert](https://sweetalert.js.org/)) ⚠️
 
@@ -446,9 +446,9 @@ fetch("api/creation.php", {
 ```
 
 - Rafraichir la liste des tâches, pour ça vous allez créer une 2nd méthode qui réalise l’appel Ajax de récupération de la liste. Une fois cette méthode faite, appeler la dans la partie ```// traiter le retour```.
-- Optimiser votre code en remplaçant le code dans le ```beforeMount``` par un appel à la méthode que vous avez créé.
+- Optimiser votre code en remplaçant le code dans le ```beforeMount``` par un appel à la méthode que vous avez créée.
 
-Votre objet VueJS, doit ressembler à quelques chose comme ça :
+Votre objet VueJS doit ressembler à quelque chose comme ça :
 
 ```javascript
 var app = new Vue({
@@ -469,7 +469,7 @@ var app = new Vue({
 })
 ```
 
-- Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des événements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
+- Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des évènements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
 
 ```html
 <form v-on:submit.prevent="ajout()"></form>
@@ -481,9 +481,9 @@ var app = new Vue({
 
 #### Marquer une tâche comme terminée
 
-Pour marquer une tâche comme terminée, vous allez devoir appeler l’api « terminer.php ». Cette API doit être appelée lors du clique sur l’icône qui à comme class « oi oi-check ».
+Pour marquer une tâche comme terminée, vous allez devoir appeler l’api « terminer.php ». Cette API doit être appelée lors du clic sur l’icône qui a comme class « oi oi-check ».
 
-- Utiliser le [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
+- Utilisez-le [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
 - Remplacer :
 
 ```html
@@ -495,8 +495,8 @@ Par
 <span class="oi oi-check" v-on:click="terminer(todo.id)"></span>
 ```
 
-- Déclarer la méthode « terminer » dans votre objet VueJS. Faite l’appel à votre API.
-- L’objet VueJS doit maintenant ressemble à quelques choses comme ça :
+- Déclarer la méthode « terminer » dans votre objet VueJS. Faites l’appel à votre API.
+- L’objet VueJS doit maintenant ressemble à quelque chose comme ça :
 
 ```javascript
 var app = new Vue({
@@ -518,7 +518,7 @@ var app = new Vue({
 })
 ```
 
-- Ajouter le [v-if](https://fr.vuejs.org/v2/guide/conditional.html) nécéssaire à la règle suivante « uniquement les tâches non terminées peuvent être marquées comme terminées »
+- Ajouter le [v-if](https://fr.vuejs.org/v2/guide/conditional.html) nécessaire à la règle suivante « uniquement les tâches non terminées peuvent être marquées comme terminées »
 - Tester le fonctionnement.
 - Valider que seulement les tâches marquées comme « non terminées » peuvent être terminées.
 
@@ -553,11 +553,11 @@ var app = new Vue({
 
 #### Optimisation
 
-Comme vous l’avez certainement constaté les deux dernières actions sont très similaire. Faites fusionner les deux actions en ajoutant par exemple un paramètre « action ». Ce paramètre vous permettra de s’avoir dans quel cas vous vous trouvez, je vous laisse écrire le code.
+Comme vous l’avez certainement constaté, les deux dernières actions sont très similaires. Faites fusionner les deux actions en ajoutant par exemple un paramètre « action ». Ce paramètre vous permettra de savoir dans quel cas vous vous trouvez, je vous laisse écrire le code.
 
 ## Allez plus loin
 
-Quelques pistes pour allez plus loin dans le code :
+Quelques pistes pour aller plus loin dans le code :
 
 ### Ajouter des confirmations
 
@@ -574,11 +574,11 @@ RewriteEngine On
 RewriteRule	^api/ajouter$	api/ajouter.php	[L,QSA]
 ```
 
-Une fois les règles de réécriture faite, modifier les différents chemin (appel d’API) dans votre fichier Javascript.
+Une fois les règles de réécriture faites, modifier les différents chemins (appel d’API) dans votre fichier JavaScript.
 
 ### Partager les TODOS au monde !
 
-Depuis quelques jours Chrome propose une nouvelle API nommée « Web Share Api », Cette API  permet de déclencher « le Partage » d’une informations en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
+Depuis quelques jours Chrome propose une nouvelle API nommée « Web Share Api », Cette API  permet de déclencher « le Partage » d’une information en utilisant les possibilités natives du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
 
 ```javascript
 if(navigator.share){}

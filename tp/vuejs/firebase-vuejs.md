@@ -14,7 +14,7 @@ Nous allons utiliser VueCLI pour initialiser le projet, première étape l'insta
 
 ## Installer NodeJS + VueCLI
 
-Avant de commencer nous allons avoir besoin de plusieurs outils :
+Avant de commencer, nous allons avoir besoin de plusieurs outils :
 
 - NodeJS
 - VueCli
@@ -60,7 +60,7 @@ Choisir l'option « Default ».
 
 ## Tester
 
-Le projet initialisé par `Vue-Cli` est imédiatement fonctionnel. Testez-le en saisissant :
+Le projet initialisé par `Vue-Cli` est immédiatement fonctionnel. Testez-le en saisissant :
 
 ```js
 npm run serve
@@ -87,20 +87,20 @@ npm install firebase leaflet vue2-leaflet --save
 
 ### Configuration de la dépendance carte
 
-Certains plugins nécessitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase). Comme vous, je ne connais pas la configuration de l'ensemble des dépendances existantes. Première étape :
+Certains plug-ins nécessitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase). Comme vous, je ne connais pas la configuration de l'ensemble des dépendances existantes. Première étape :
 
 - [Lire la documentation sur le site de Vue2-Leaflet](https://korigan.github.io/Vue2Leaflet/#/quickstart.md)
 
-Maintenant que nous avons vu comment s'intègre le Leaflet, refléchissons comment intégrer ça dans notre projet :
+Maintenant que nous avons vu comment s'intègre le Leaflet, réfléchissons comment intégrer ça dans notre projet :
 
 - À l'arrache dans le fichier `main.js` ? ✋ => NON
-- Dans un dossier `plugins` => 👍 Oui
+- Dans un dossier `plug-ins` => 👍 Oui
 
 À votre avis pourquoi ?
 
-### Création de la partie plugin
+### Création de la partie plug-in
 
-Créer le fichier `src/plugins/vue2-leaflet.js` y mettre dedans :
+Créer le fichier `src/plug-ins/vue2-leaflet.js` y mettre dedans :
 
 ```js
 import { Icon } from 'leaflet'
@@ -118,21 +118,21 @@ Icon.Default.mergeOptions({
 
 - D'où vient le code ?
 
-### Déclarer le plugin
+### Déclarer le plug-in
 
 Maintenant que la configuration du « plugin » est effective nous devons le déclarer dans notre fichier `main.js` pour ça rien de compliquer.
 
 Ajouter l'import :
 
 ```js
-import "./plugins/vue2-leaflet";
+import "./plug-ins/vue2-leaflet";
 ```
 
-🤓 Avec les autres imports déjà existant.
+🤓 Avec les autres imports déjà existants.
 
 ### Questions
 
-- Pourquoi l'import est-il nécéssaire ?
+- Pourquoi l'import est-il nécessaire ?
 - Pourquoi vue2-leaflet et pas juste leaflet ?
 - Quel est l'avantage ?
 
@@ -148,7 +148,7 @@ Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre 
 npm install vuefire --save
 ```
 
-⚠️ Dans une prochaine étape nous allons configurer vuefire. Pour l'instant le package est disponible mais non actif.
+⚠️ Dans une prochaine étape nous allons configurer vuefire. Pour l'instant le package est disponible, mais non actif.
 
 🤓 Je vous invite quand même à aller voir [la documentation](https://github.com/vuejs/vuefire/tree/v1) de VueFire pour voir de quoi il en retourne !
 
@@ -193,11 +193,11 @@ BRAVO ! Votre projet est maintenant capable de « se connecter » avec Firebase 
 
 ## Activer la Realtime DB
 
-Dans l'interface de Firebase activer la Realtime DB.
+Dans l'interface de Firebase activez la Realtime DB.
 
 ## Modification du code pour inclure la configuration Firebase
 
-Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plugin » dans le dossier `src/plugins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant :
+Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plug-in » dans le dossier `src/plug-ins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant :
 
 ```js
 import firebaseConfig from "../config/firebase";
@@ -211,10 +211,10 @@ const db = firebaseApp.database();
 Vue.prototype.$db = db;
 ```
 
-Comme pour leaflet, ajouter un import dans le fichier `main.js` pour référencer notre « configuration de plugin » :
+Comme pour leaflet, ajouter un import dans le fichier `main.js` pour référencer notre « configuration de plug-in » :
 
 ```js
-import "./plugins/firebase";
+import "./plug-ins/firebase";
 ```
 
 ### Questions
@@ -345,12 +345,12 @@ npm run serve
 Comme pour Vue2-Leaflet et firebase, vuefire nécéssite une déclaration pour être utilisé dans le projet.
 
 - [Lire la documentation](https://vuefire.vuejs.org/).
-- Créer le fichier dans le dossier `plugins`.
+- Créer le fichier dans le dossier `plug-ins`.
 - Réaliser l'import dans le fichier `main.js`.
 
 <Reveal text="Voir la solution">
 
-`src/plugins/vuefire.js`
+`src/plug-ins/vuefire.js`
 
 ```js
 import Vue from "vue";
@@ -372,7 +372,7 @@ import "./plugins/vuefire";
 
 ## Connecter firebase à notre vue
 
-Grace au plugin l'intégration de Firebase va être très simplifié. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grace au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça modifier le fichier `maps.vue` pour ajouter (après name) :
+Grâce au plug-in l'intégration de Firebase va être très simplifiée. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grâce au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça, modifiez le fichier `maps.vue` pour ajouter (après name) :
 
 ```js
 firebase() {
@@ -450,7 +450,7 @@ Le marker est à mettre dans le `l-map`.
 
 ## Tester
 
-`npm run serve` normalement des markers doivent s'afficher. Tenter d'en ajouter d'autre.
+`npm run serve` normalement des markers doivent s'afficher. Tenter d'en ajouter d'autres.
 
 ## Suppression d'un marker
 
@@ -480,14 +480,14 @@ Accéder à plusieurs au même projet (via votre IP) pour tester la synchronisat
 
 ## Amélioration 1 : centrer la carte sur votre position
 
-Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notre carte. Actuellement la carte est centrée sur Angers… C'est pratique… Si on se trouve à Angers… dans tous les autres cas c'est pas forcément adapté. Nous allons donc utiliser l'API `geolocation` de notre navigateur.
+Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notre carte. Actuellement la carte est centrée sur Angers… C'est pratique… Si on se trouve à Angers… dans tous les autres cas, ce n’est pas forcément adapté. Nous allons donc utiliser l'API `geolocation` de notre navigateur.
 
 Celle-ci permet de localiser une personne en fonction de sa connexion internet (ou GPS / Réseau téléphonique si disponible)
 
 - [Documentation de l'API geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 - Ajouter une méthode dans le code dans le composant `map.vue`.
 - La méthode doit mettre à jour le `this.center = [lat, lng]`.
-- La méthode doit être appelé via un clique utilisateur [Documentation de LControl](https://korigan.github.io/Vue2Leaflet/#/components/l-control/)
+- La méthode doit être appelée via un clique utilisateur [Documentation de LControl](https://korigan.github.io/Vue2Leaflet/#/components/l-control/)
 
 <Reveal text="Voir la solution">
 

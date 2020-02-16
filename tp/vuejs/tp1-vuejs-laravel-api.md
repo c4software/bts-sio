@@ -12,14 +12,14 @@ Dans ce TP nous allons transformer « entièrement » votre ancien site codé en
 
 ### Création des API
 
-La « nouvelle version » de notre page, va utiliser des API (et de l'ajax), ça va fondamentalement changer le fonctionnement de votre application. Il faut donc dans un premier temps créer les API qui seront nécessaires au bon fonctionnement (asynchrone) de votre page Web.
+La « nouvelle version » de notre page va utiliser des API (et de l'Ajax), ça va fondamentalement changer le fonctionnement de votre application. Il faut donc dans un premier temps créer les API qui seront nécessaires au bon fonctionnement (asynchrone) de votre page Web.
 
 - Lister les éléments dans la TodoList.
 - Ajouter un nouvel élément dans la TodoList.
 - Marquer un élément comme terminé.
 - Supprimer un élément.
 
-✋ En tant que développeur vous devez être malin (et fénéant…). Pour écrire les autres API ne tenter pas de réinventer la roue, nous allons utiliser le même code que le contrôleur actuel !
+✋ En tant que développeur vous devez être malin (et fainéants…). Pour écrire les autres API ne tenter pas de réinventer la roue, nous allons utiliser le même code que le contrôleur actuel !
 
 Les seules différences seront :
 
@@ -30,7 +30,7 @@ Les seules différences seront :
 
 Nous allons donc créer un nouveau contrôleur qui va gérer la partie API de notre application (les appels « client »). Nous allons simplement l'appeler « api ».
 
-Pour le créer il faut utiliser la commande `make:controller`
+Pour le créer, il faut utiliser la commande `make:controller`
 
 <Reveal text="Voir la solution">
 
@@ -63,7 +63,7 @@ Dans le fichier `app/Http/Controllers/api.php` ajouter une méthode nommée `lis
     return response()->json(Todos::all());
 ```
 
-⚠️ Bien évidement je vous laisse écrire le reste du code. Vous pouvez vous inspirer du code du premier TP.
+⚠️ Bien évidemment je vous laisse écrire le reste du code. Vous pouvez vous inspirer du code du premier TP.
 
 ##### L'ajout
 
@@ -100,7 +100,7 @@ Comme pour l'ajout, le code va être identique au TP précédent à l'exception 
 
 ##### Perdu
 
-Normalement vous avez l'ensemble des informations pour y arriver seul, si vous bloquez voila :
+Normalement vous avez l'ensemble des informations pour y arriver seul, si vous bloquez voilà :
 
 <Reveal text="Voir la définition des méthodes">
 
@@ -155,7 +155,7 @@ Vous API sont maintenant accessibles.
 
 Valider que vos API fonctionnent correctement grâce à l'outil [Postman](https://www.getpostman.com/).
 
-(Pssst! La création de compte **n'est pas obligatoire**) <-- ⚠️⚠️
+(Pssst! La création de comptes **n'est pas obligatoire**) <-- ⚠️⚠️
 
 🤓 Commencez par la plus simple, par exemple `/api/` qui doit normalement lister votre actuelle TodoList.
 
@@ -171,7 +171,7 @@ Via un CDN :
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 ```
 
-ou en téléchargant la librairie :
+ou en téléchargeant la librairie :
 
 [Disponible ici](https://vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include)
 
@@ -187,9 +187,9 @@ ou en téléchargant la librairie :
 
 ### Création d'un nouveau template
 
-Pour la démonstration nous allons créer un nouveau template, il sera `@extends` de `template.blade.php` que vous avez précédement créé.
+Pour la démonstration nous allons créer un nouveau template, il sera `@extends` de `template.blade.php` que vous avez précédemment créé.
 
-Créér un nouveau fichier `resources/views/homevue.blade.php` et y mettre le contenu suivant :
+Créer un nouveau fichier `resources/views/homevue.blade.php` et y mettre le contenu suivant :
 
 ```html
 @extends("template") @section("title", "Todo List - Version VueJS")
@@ -217,7 +217,7 @@ Créér un nouveau fichier `resources/views/homevue.blade.php` et y mettre le co
 
 Maintenant que notre template est créé, nous allons pouvoir l'utiliser.
 
-Pour l'utiliser il faut créer **2 choses** :
+Pour l'utiliser, il faut créer **2 choses** :
 
 - Une méthode dans le contrôleur `TodosController.php`.
 - Une route (exemple `/vue`) dans le fichier `routes/web.php`.
@@ -242,7 +242,7 @@ public function homevue(){
 
 ### Liste des todos
 
-Même si pour l'instant nous n'avons pas encore fait le code pour appeler les API, ajouter le code HTML suivant après `<!-- Liste des todos -->` présent dans le fichier `homevue.blade.php`:
+Même si pour l'instant nous n'avons pas encore fait le code pour appeler les API, ajouter le code HTML suivant après `<!-- Liste des todos -->` présente dans le fichier `homevue.blade.php`:
 
 ```html
 <ul class="list-group pt-3">
@@ -261,7 +261,7 @@ Même si pour l'instant nous n'avons pas encore fait le code pour appeler les AP
 
 - Quels sont les éléments spécifiques à VueJS ?
 
-🔥 Tester à nouveau, votre liste doit s'afficher… Mais pas de la façon attendu… C'est normal, nous devons maintenant écrire le code VueJS correspondant à votre application (à savoir Liste, Ajout, Marquer comme terminé, et Supprimer).
+🔥 Tester à nouveau, votre liste doit s'afficher… Mais pas de la façon attendue… C'est normal, nous devons maintenant écrire le code VueJS correspondant à votre application (à savoir Liste, Ajout, Marquer comme terminé, et Supprimer).
 
 ### @ ? Hey !
 
@@ -271,11 +271,11 @@ Même si pour l'instant nous n'avons pas encore fait le code pour appeler les AP
 
 ### Asynchrone
 
-L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter quelques appels en Ajax. Pour faire nos appels nous utiliserons l’API « Fetch » des navigateurs, celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflexe est quand même d’aller voir le support de Fetch sur ([Can i use](https://caniuse.com/#search=fetch)).
+L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter quelques appels en Ajax. Pour faire nos appels, nous utiliserons l’API « Fetch » des navigateurs, celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflexe est quand même d’aller voir le support de Fetch sur ([Can i use](https://caniuse.com/#search=fetch)).
 
 ### Découverte de Fetch
 
-L'API Fetch fournit une interface JavaScript pour l'accès et la manipulation des parties de la pipeline HTTP, comme les requêtes et les réponses. Cela fournit aussi une méthode globale fetch() qui procure un moyen facile et logique de récupérer des ressources à travers le réseau de manière asynchrone.
+L'API Fetch fournit une interface JavaScript pour l'accès et la manipulation des parties du pipeline HTTP, comme les requêtes et les réponses. Cela fournit aussi une méthode globale fetch() qui procure un moyen facile et logique de récupérer des ressources à travers le réseau de manière asynchrone.
 
 Ce genre de fonctionnalité était auparavant réalisé avec XMLHttpRequest. Fetch fournit une meilleure alternative qui peut être utilisée facilement par d’autres technologies comme Service Workers. Fetch fournit aussi un endroit unique et logique pour la définition d'autres concepts liés à HTTP comme CORS et les extensions d'HTTP.
 
@@ -289,7 +289,7 @@ if (self.fetch) {
   // Le support de Fetch est présent
 } else {
   // Gérer le cas du non support de fetch.
-  // Pour réduire le nombre de cas possible vous pouvez ajouter : https://github.github.io/fetch/ à votre projet (Yeah fini l'ajax compliqué 😎)
+  // Pour réduire le nombre de cas possible vous pouvez ajouter : https://github.github.io/fetch/ à votre projet (Yeah finit l'Ajax compliqué 😎)
 }
 ```
 
@@ -314,19 +314,19 @@ fetch("api/", { method: "GET", credentials: "same-origin" })
 
 ⚠️ Que veut dire `credentials: 'same-origin'`?
 
-Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant `credentials: 'same-origin'`. Si vous ne le faites pas votre `$_SESSION` ne sera pas sauvegardée ⚠️
+Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant `credentials: 'same-origin'`. Si vous ne le faites pas, votre `$_SESSION` ne sera pas sauvegardée ⚠️
 
 #### Comment tester
 
-Pour valider le bon fonctionnement nous allons utiliser la « Console développeur » de votre navigateur.
+Pour valider le bon fonctionnement, nous allons utiliser la « Console développeur » de votre navigateur.
 
 Fetch est une librairie très complète, pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch).
 
 Tester de récupérer vos « todos » depuis votre console.
 
-## La structure du code javascript
+## La structure du code JavaScript
 
-Maintenant que nos API sont terminées et que notre appel via Fetch fonctionne nous allons écrire le code Javascript (VueJS) qui va gérer notre application.
+Maintenant que nos API sont terminées et que notre appel via Fetch fonctionne, nous allons écrire le code JavaScript (VueJS) qui va gérer notre application.
 
 Nous allons utiliser massivement la gestion d'évènement de VueJS.
 
@@ -334,13 +334,13 @@ Pour rappel n’hésitez pas à consulter le [cycle de vie des composants](https
 
 ### La liste
 
-La liste des tâches va être la première chose que nous allons charger. Cette « liste » sera chargée lors de l'événement `beforeMount`.
+La liste des tâches va être la première chose que nous allons charger. Cette « liste » sera chargée lors de l'évènement `beforeMount`.
 
 ### Les actions
 
-Les actions (done, remove, add) seront appelées lors de la vie de notre application, elles vont être déclarées dans la partie `methods` de l'objet VueJS et seront appelées via des attributs spéciaux préfixé par `v-on:…` de votre code HTML.
+Les actions (done, remove, add) seront appelées lors de la vie de notre application, elles vont être déclarées dans la partie `methods` de l'objet VueJS et seront appelées via des attributs spéciaux préfixés par `v-on:…` de votre code HTML.
 
-Complexe ? Pas tant que ça… Vous allez voir que c'est beaucoup plus simple que du code Javascript classique.
+Complexe ? Pas tant que ça… Vous allez voir que c'est beaucoup plus simple que du code JavaScript classique.
 
 ## Structure de base
 
@@ -382,7 +382,7 @@ Voilà la base de notre objet VueJS.
 Pour ajouter votre script nous allons faire simple, nous allons « juste » l'ajouter à la fin de notre template `homevue`. Éditer le fichier `homevue.blade.php` pour y ajouter la balise `script` suivante juste avant `@endsection` :
 
 ```html
-<script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+<script type="text/JavaScript" src="{{ asset('js/main.js') }}"></script>
 ```
 
 Tester d'accéder à nouveau à votre site web, vous devez maintenant voir dans `la console de développeur` de votre navigateur le texte suivant :
@@ -404,7 +404,7 @@ Cette méthode est `list()`, pour l'instant elle ne comporte qu'un console.log. 
 
 Les étapes vont être les suivantes :
 
-- Construction de l'appel réseau (ajax) via Fetch.
+- Construction de l'appel réseau (Ajax) via Fetch.
 - Mise en place de code à la place du `console.log` dans la méthode liste.
 - Tester
 
@@ -433,7 +433,7 @@ fetch("api/", { method: "GET", credentials: "same-origin" })
 
 - À quoi fait référence `app` dans le code `app.todos` ?
 - Pourquoi plusieurs `then` ?
-- Dans quel cas pouvons nous passer dans le `catch`?
+- Dans quel cas pouvons-nous passer dans le `catch`?
 
 ### Ajout d'une TODO
 
@@ -452,7 +452,7 @@ formData.append("texte", app.text);
 
 fetch("api/add", { method: "POST", body: formData }).then(() => {
   app.text = ""; // On remet à Zéro l'input utilisateur
-  app.list(); // On raffraîchit la liste.
+  app.list(); // on rafraichit la liste.
 });
 ```
 
@@ -461,7 +461,7 @@ Quelques explications :
 - Le formData va permettre d'envoyer des valeurs en `POST` à notre API.
 - Le code dans le `then` va :
   - Vider la saisie utilisateur.
-  - Raffraichir la liste.
+  - Rafraichir la liste.
 
 🤓 Valider votre code en testant l'ajout d'une nouvelle TODO.
 
@@ -495,7 +495,7 @@ Pensez à bien rafraichir la liste dans le `then`.
 
 ### Suppression
 
-La logique pour la partie suppression va être identique à la partie `done`. Je vous laisse-la réaliser seul.
+La logique pour la partie suppression va être identique à la partie `done`. Je vous laisse la réaliser seul.
 
 #### Aide
 
@@ -587,7 +587,7 @@ Ajouter une confirmation avant de supprimer une TODO. En utilisant par exemple [
 
 Reformater le code pour créer une fonction permettant d'utiliser Fetch (et donc de ne pas avoir plusieurs fois la partie `Fetch(…)` dans votre code).
 
-Aide : Créer une librairie (`utils.js`) qui contiendra le code nécéssaire.
+Aide : Créer une librairie (`utils.js`) qui contiendra le code nécessaire.
 
 ### Amélioration 3
 
@@ -597,7 +597,7 @@ Afficher des messages d'erreurs en cas de `catch` lors des appels réseau.
 
 Depuis quelques jours Chrome propose une nouvelle API nommée « Web Share Api ». Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est disponible via :
 
-```javascript
+```JavaScript
 if (navigator.share) {
 }
 ```
@@ -619,7 +619,7 @@ var app = new Vue({
   […]
 ```
 
-Une fois fait, vous avez une variable `isShare` qui sera `true` Ou `false` en fonction du support du navigateur. Maintenant que le booléen est disponible vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
+Une fois fait, vous avez une variable `isShare` qui sera `true` Ou `false` en fonction du support du navigateur. Maintenant que le booléen est disponible, vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
 
 ```javascript
 […]
@@ -644,9 +644,9 @@ C’est à vous !
 
 ### Migrer vers Bootstrap VueJS
 
-Dans les exemples précédent nous avons utilisé VueJS pour « améliorer » l'interface de notre site web existant. Mais avec VueJS il est possible d'aller beaucoup plus loin. Il est possible de réécrire l'ensemble pour utiliser des composants fournis par la communauté.
+Dans les exemples précédents, nous avons utilisé VueJS pour « améliorer » l'interface de notre site web existant. Mais avec VueJS il est possible d'aller beaucoup plus loin. Il est possible de réécrire l'ensemble pour utiliser des composants fournis par la communauté.
 
-Je vous propose donc de réécrire la page que vous avez ajouteé en utilisant [Bootsrap VueJS](https://bootstrap-vue.js.org/)
+Je vous propose donc de réécrire la page que vous avez ajoutée en utilisant [Bootsrap VueJS](https://bootstrap-vue.js.org/)
 
 - Réécrire l'interface.
 - Utiliser les composants pour les boutons.
