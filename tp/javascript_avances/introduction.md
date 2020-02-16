@@ -1,12 +1,12 @@
-# Prise en main « Javascript avancés »
+# Prise en main « JavaScript avancé »
 
-Vous avez déjà fait du Javascript, mais certainement avec jquery et surement sans utiliser les fonctions « modernes » de celui-ci.
+Vous avez déjà fait du JavaScript, mais certainement avec jquery et surement sans utiliser les fonctions « modernes » de celui-ci.
 
 Dans ce TP et au travers de quelques exemples, nous allons découvrir en pratique les nouveautés.
 
 ## Question 0
 
-Pourquoi est-ce important d'utiliser les fonctionnalités modernes du Javascript ? En quoi est-ce primordial ?
+Pourquoi est-ce important d'utiliser les fonctionnalités modernes du JavaScript ? En quoi est-ce primordial ?
 
 ## Question 1
 
@@ -18,7 +18,7 @@ En utilisant :
 
 Moderniser le code ci-dessous :
 
-```javascript
+```JavaScript
 nom = "Valentin";
 capacites = ["Javascript", "Android", "Web", "CSS"];
 
@@ -47,7 +47,7 @@ hello(nom);
 
 En utilisant la méthode `filter` d'un tableau filtrer l'ensemble des éléments `non paire` du tableau suivant (indice `% 2`)
 
-```javascript
+```JavaScript
 const valeurs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 ```
 
@@ -73,25 +73,25 @@ const clients = [{name: "Valentin", age: 15}, {name: "Thomas", age: 20}, {name: 
 
 ### Question 5
 
-Ajouter une méthode dans l'objet `Person` qui retourne `true` si la personne est majeur.
+Ajouter une méthode dans l'objet `Person` qui retourne `true` si la personne est majeure.
 
-⚠️ Ne pas oublier d'ajouter l'age dans le constructeur comme `name`.
+⚠️ Ne pas oublier d'ajouter l'âge dans le constructeur comme `name`.
 
 ### Question 6
 
-En utilisant `filter` filtrer le tableau résultat pour ne garder que les personnes majeures.
+En utilisant l'instruction `filter`, filtrer le tableau résultat pour ne garder que les personnes majeures.
 
 ### Question 7
 
-Ajouter une méthode retournant `nom` et `age` en utilisant String template.
+Ajouter une méthode dans l'objet. Celle-ci doit retourner une string contenant le `nom` et `âge` en utilisant String template.
 
 ### Question 8
 
-Utiliser la méthode précédement créé pour faire un `console.log` pour chaque (`forEach`) élément `filtré`.
+Utiliser la méthode précédemment créée pour faire un `console.log` pour chaque (`forEach`) élément `filtré`.
 
 ### Question 9
 
-Avant le javascript « moderne » il était courant d'utiliser l'objet `xmlhttprequest` pour faire des appels réseaux.
+Avant le JavaScript « moderne » il était courant d'utiliser l'objet `xmlhttprequest` pour faire des appels réseau.
 
 Réécrire le code suivant en utilisant `Fetch` :
 
@@ -122,9 +122,9 @@ Créer une classe pour la liste des `Todos`, puis en utilisant le `chainage` (th
 
 ### Question 12
 
-Via un filter, filtrer l'ensemble des Todos qui sont pour l'utilisateur 2 *et* non completed.
+Via un l'instruction filter, filtrer l'ensemble des Todos qui sont pour l'utilisateur 2 *et* non completed.
 
-```javascript
+```JavaScript
 "userId": 2,
 "completed": true
 ```

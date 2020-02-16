@@ -124,7 +124,7 @@ L’option `--create=todos` permet d’indiquer le nom de la table à créer
 php artisan make:migration create_todos_table --create=todos
 ```
 
-✋ Le contenu du fichier est fictif, il est la pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relative à notre table.
+✋ Le contenu du fichier est fictif, il est là pour illustrer comment travailler. Nous allons le modifier pour mettre les informations relatives à notre table.
 
 La commande a créé un nouveau fichier (dans mon cas) : `database/migration/2017_11_02_205700_create_todos_table.php`
 
@@ -240,7 +240,7 @@ public function saveTodo(Request $request){
 }
 ```
 
-Que va-t-il se passer lors de l’appel ? L’objet `$request` contient tous les paramètres de l’appel HTTP, la méthode `all()` permet de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permette de renseigner automatiquement les champs en base de données.
+Que va-t-il se passer lors de l’appel ? L’objet `$request` contiens tous les paramètres de l’appel HTTP, la méthode `all()` permets de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permettre de renseigner automatiquement les champs en base de données.
 
 ### Création, version alternative
 

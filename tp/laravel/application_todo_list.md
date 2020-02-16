@@ -35,7 +35,7 @@ Installing dependencies (including require-dev) from lock file
 
 ✋ Attention, le projet va être créé dans le dossier `laravel-todo` dans le dossier courant.
 
-La création prend environ 1 minute, un certains nombres de librairies sont téléchargées. Une fois terminé prenez quelques instants pour regarder les fichiers qui ont été créés.
+La création prend environ 1 minute, un certain nombre de librairies sont téléchargées. Une fois terminé, prenez quelques instants pour regarder les fichiers qui ont été créés.
 
 ### 🤓 Questions
 
@@ -100,12 +100,12 @@ $ php artisan serve
 #### 🤓 Questions
 
 - À votre avis, comment revenir avec une base de données type Mysql ?
-- Est-il possible d'utiliser les deux types de base de données (par exemple en production MySQL et en developpement SQLite) ?
-- SQLite est-il toujours pertinant ?
+- Est-il possible d'utiliser les deux types de bases de données (par exemple en production MySQL et en developpement SQLite) ?
+- SQLite est-il toujours pertinent ?
 
 ### Le reste du fichier .env
 
-Nous n'allons pas toucher aux autres paramètres, mais certains sont tout de même intéressants. Je vous laisse donc consulter la documentation en ligne de laravel :
+Nous n'allons pas toucher aux autres paramètres, mais certains sont tout de même intéressants. Je vous laisse donc consulter la documentation en ligne de Laravel :
 
 [Consulter en ligne](https://laravel.com/docs/5.6/configuration)
 
@@ -123,7 +123,7 @@ Laravel utilise un ORM pour manipuler la base de données. Pour rappel un ORM es
 
 > Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
 
-L'ORM utilisé par Laravel est Eloquent, il est à la fois puissant et relativement simple. Autrement dit avec un ORM dans la plus part des cas vous n'écrivez plus de requête SQL, mais vous manipulez des objets représentant la base de données.
+L'ORM utilisé par Laravel est Eloquent, il est à la fois puissant et relativement simple. Autrement dit avec un ORM dans la plupart des cas vous n'écrivez plus de requête SQL, mais vous manipulez des objets représentant la base de données.
 
 Comme pour la création du projet, la création de la définition de la table « todos » va se faire via une requête dans votre terminal :
 
@@ -234,9 +234,9 @@ Ajouter dans la class :
 
 ## Le controller
 
-Maintenant que nous avons la migration et le modele de notre base de données, nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de notre application.
+Maintenant que nous avons la migration et le modèle de notre base de données, nous allons créer le controller. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de notre application.
 
-Pour commencer nous allons créer « la structure de base » de notre controller.
+Pour commencer, nous allons créer « la structure de base » de notre controller.
 
 ```sh
 $ php artisan make:controller TodosController
@@ -272,7 +272,7 @@ Avec une base de données MySQL ce genre de soucis n'existe pas.
 
 La méthode `liste` est certainement la plus simple, nous allons faire appel à la méthode `all()` de Eloquent (ORM pour l’accès à la base de données). Pour ça créez une nouvelle méthode dans la Class `TodoController` avec le code suivant.
 
-Pour l'instant nous n'allons pas intégrer Éloquent, mais uniqumeent définir notre méthode.
+Pour l'instant nous n'allons pas intégrer Éloquent, mais uniquement définir notre méthode.
 
 ```php
 public function liste(){
@@ -304,9 +304,9 @@ Nous avons donc maintenant :
 - La définition de notre base de données.
 - Les dépendances clients (bootstrap 4…)
 
-Nous allons donc pouvoir commencer la création des templates. L'organisation du code est quelques choses d'important, elle n'est pas à négliger. Un code organisé est un code agréable à rédiger.
+Nous allons donc pouvoir commencer la création des templates. L'organisation du code est quelque chose d'important, elle n'est pas à négliger. Un code organisé est un code agréable à rédiger.
 
-Notre vue va être découpée en 3 partie :
+Notre vue va être découpée en 3 parties :
 
 ![Structure](./ressources/parties.png)
 
@@ -340,13 +340,13 @@ Nous allons commencer par définir notre « Template principal » celui-ci va co
 
     @yield('content')
   </body>
-</html>
+</HTML>
 ```
 
 Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
 
 - Créer un nouveau fichier `resources/views/template.blade.php`
-- Copier-Coller le html dans le fichier.
+- Copier-Coller le HTML dans le fichier.
 
 👏👏 Bravo, vous venez de créer votre premier template.
 
@@ -375,11 +375,11 @@ Pour lancer votre application, c'est dans le terminal que ça se passe :
 $ php artisan serve
 ```
 
-Une fois lancer [Rendez vous sur http://127.0.0.1:8000](http://127.0.0.1:8000).
+Une fois lancer [rendez-vous sur http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 <Reveal text="Un soucis non ?">
 
-Rien à changé ? C'est normal… Continuons!
+Rien n’a changé ? C'est normal… Continuons!
 
 </Reveal>
 
@@ -448,7 +448,7 @@ form.add {
 
 Ajouter à nouveau cette CSS dans le `<head>` de votre site :
 
-```html
+```HTML
 <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
 ```
 
@@ -489,7 +489,7 @@ Nous allons donc avoir besoin de composant bootstrap. Première étape regarder 
 
 Nous allons créer un 2nd template celui qui va être chargé d'afficher la liste des todos. Créér un nouveau fichier `resources/views/home.blade.php` et y mettre le contenu suivant :
 
-```html
+```HTML
 @extends("template") @section("title", "Ma Todo List") @section("content")
 <div class="container">
   <div class="card">
@@ -539,7 +539,7 @@ Nous allons créer un 2nd template celui qui va être chargé d'afficher la list
 
 Bien… récupitulons ! Nous avons :
 
-- Le modele.
+- Le modèle.
 - Le contrôleur.
 - Les templates (template et home).
 
@@ -563,7 +563,7 @@ La page s'affiche ? Super !
 
 - Ajouter une entrée « à la main » grâce à l'explorateur de base de données de PHPStorm.
 
-Raffraichissez la page, vous devez maintenant voir votre texte 😎.
+Rafraichissez la page, vous devez maintenant voir votre texte 😎.
 
 ## Action d'ajout
 
@@ -584,9 +584,9 @@ public function saveTodo(Request $request){
 }
 ```
 
-Que va-t-il se passer lors de l’appel ? L’objet `$request` contient tous les paramètres de l’appel HTTP, la méthode `all()` permet de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permette de renseigner automatiquement les champs en base de données.
+Que va-t-il se passer lors de l’appel ? L’objet `$request` contiens tous les paramètres de l’appel HTTP, la méthode `all()` permets de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permettre de renseigner automatiquement les champs en base de données.
 
-✋ Tester l'ajout. Normalement ça ne doit pas fonctionner… Pourquoi ? Tout simplement, car nous ne spécifions pas l'ensemble des champs nécessaire à la création de notre objet.
+✋ Tester l'ajout. Normalement, ça ne doit pas fonctionner… Pourquoi ? Tout simplement, car nous ne spécifions pas l'ensemble des champs nécessaire à la création de notre objet.
 
 - Quelle est l'autre solution possible ?
 
@@ -631,7 +631,7 @@ Maintenant que nous avons notre action d'ajout, nous allons pouvoir tester notre
 
 - Démarrer votre serveur de test (`php artisan serve`).
 - Ajouter une nouvelle todo dans l'interface.
-- Vous devez avoir une erreur 419. À quoi correspond-t-elle ?
+- Vous devez avoir une erreur 419. À quoi correspond-elle ?
 
 #### Correction de l'erreur 419
 
@@ -650,12 +650,12 @@ Modifier le template `home.blade.php` pour ajouter le code suivant dans la parti
 
 🤓 Oui, oui, c'est juste ça.
 
-#### Re-tester
+#### Retesté
 
 Normalement c'est ok !
 
 ![Vide](./ressources/vide.png)
-![Avec message 1](./ressources/message1.png)
+![avec message 1](./ressources/message1.png)
 
 ## Action : marquer comme terminé
 
@@ -676,7 +676,7 @@ public function markAsDone($id){
 
 Ajouter une route de type `get` avec un paramètre nommé `{id}` dans le fichier `routes/web.php`.
 
-Le lien doit-être : `/action/done/{id}` et la méthode dans le contrôleur `TodosController@markAsDone` en vous inspirant des exemples précédent ajouter la bonne instruction dans le fichier `routes/web.php`.
+Le lien doit-être : `/action/done/{id}` et la méthode dans le contrôleur `TodosController@markAsDone` en vous inspirant des exemples précédents ajouter la bonne instruction dans le fichier `routes/web.php`.
 
 ## Action de suppression
 
@@ -746,7 +746,7 @@ Route::get('/action/delete/{id}', "TodosController@deleteTodo")->name('todo.dele
 
 ```
 
-- Avez-vous vu la différence ? Des `->name("…")` sont en plus, vos routes sont maintenant nommées
+- Avez-vous vu la différence ? Des `->name("…")` sont en plus, vos routes sont maintenant nommées.
 
 ### Éditer votre template « home »
 
@@ -762,11 +762,11 @@ Maintenant que nous avons édité nos routes, il faut les utiliser dans le templ
 </form>
 ```
 
-- Avez vous vu la différence ?
+- Avez-vous vu la différence ?
 
 ### Utilisation dans le contrôleur
 
-Il est également poussible de les utiliser dans le contrôleur via la directive :
+Il est également possible de les utiliser dans le contrôleur via la directive :
 
 ```php
     return redirect()->route('todo.list');
