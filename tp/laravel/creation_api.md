@@ -13,7 +13,7 @@ Dans ce TP nous allons voir la création d’API pour le projet « TodoList ». 
 
 ## Création du projet
 
-Pour créer des API, Laravel est un peu « lourd » (dans notre cas bien évidemment, dans certains cas te choix est complètement justifié). Nous allons donc utiliser son petit frère Lumen. Lumen est un micro-framework reprenant les concepts de Laravel (et les mêmes briques), mais en beaucoup plus petit et donc plus adapté à des micro-projets comme celui-ci.
+Pour créer des API, Laravel est un peu « lourd » (dans notre cas bien évidemment, dans certains cas le choix est complètement justifié). Nous allons donc utiliser son petit frère Lumen. Lumen est un microframework reprenant les concepts de Laravel (et les mêmes briques), mais en beaucoup plus petit et donc plus adapté à des micro-projets comme celui-ci.
 
 ## Installer Lumen
 

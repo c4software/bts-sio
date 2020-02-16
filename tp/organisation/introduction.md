@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Dans ce TP, nous allons voir comment « ré-organiser » du code pour le rendre plus facilement maintenable.
+Dans ce TP, nous allons voir comment « réorganiser » du code pour le rendre plus facilement maintenable.
 
 ::: danger
 Le code original fourni est clairement de mauvaise qualité. Il ne doit pas être pris comme référence.
@@ -31,7 +31,7 @@ Vos remarques
 
 ```
 
-PS : cette première analyse est importante !
+PS Cette première analyse est importante !
 
 <Reveal text="Cliquer pour voir ma « solution »">
 
@@ -48,7 +48,7 @@ PS : cette première analyse est importante !
 
 ## Détail des fonctionnalités
 
-Avant de commencer à modifier le code, il faut « lister / détailler » les différentes fonctionnalités de l'application. Pour moi voilà les points clef
+Avant de commencer à modifier le code, il faut « lister / détailler » les différentes fonctionnalités de l'application. Pour moi, voilà les points clés.
 
 - Deux pages. (une complète, l'autre de détail.)
 - Utilisation de bootstrap.
@@ -58,7 +58,7 @@ Avant de commencer à modifier le code, il faut « lister / détailler » les di
 
 ## Début des modifications
 
-Comme vous l'avez constaté l'application comporte de nombreux défauts (plus ou moins important). Nous allons les prendre dans l'ordre :
+Comme vous l'avez constaté, l'application comporte de nombreux défauts (plus ou moins important). Nous allons les prendre dans l'ordre :
 
 - Le découpage (pour éviter la duplication du code HTML).
 - Réécrire la page d'accueil pour ne plus avoir 3x le même code à la suite.
@@ -80,7 +80,7 @@ Pour l'organisation, je vous propose d'écrire un fichier PHP `index.php`. Bien 
 C'est à vous :
 
 - Créer le dossier.
-- Créer un fichier `index.php` à l'interieur de celui-ci.
+- Créer un fichier `index.php` à l'intérieur de celui-ci.
 
 Votre arborescence doit maintenant ressembler à :
 
@@ -111,7 +111,7 @@ function foot($titre) {
 }
 ```
 
-C'est à vous, dans la page `index.php` actuelle isolez le code relatif au `header` et au `footer` et mettez le dans les bonnes fonctions.
+C'est à vous, dans la page `index.php` actuelle isolez le code relatif au `header` et au `footer` et mettez-le dans les bonnes fonctions.
 
 Utilisez maintenant les fonctions dans votre code.
 
@@ -128,7 +128,7 @@ Utilisez maintenant les fonctions dans votre code.
 
 Valider le bon fonctionnement de votre modification avant d'aller plus loin.
 
-### Reflechissons ensemble
+### Réfléchissons ensemble
 
 C'est bien, mais est-il possible de faire autrement ? Pouvons-nous utiliser un objet plutôt que deux fonctions ?
 
@@ -137,7 +137,7 @@ C'est bien, mais est-il possible de faire autrement ? Pouvons-nous utiliser un o
 
 ### Réécriture des listes de lien
 
-Comme vous l'avez constaté, les listes de lien (ainsi que le code PHP) sont répétés 3x. Procéder ainsi est à la fois inefficace et inutile. Prendre du temps pour éviter ce genre de choses est primordiale et vous évitera bien des tracas en cas de mise à jour de votre code (ou de celui d'un collègue).
+Comme vous l'avez constaté, les listes de lien (ainsi que le code PHP) sont répétés 3x. Procéder ainsi est à la fois inefficace et inutile. Prendre du temps pour éviter ce genre de choses est primordial et vous évitera bien des tracas en cas de mise à jour de votre code (ou de celui d'un collègue).
 
 Pour rappel, les listes de liens ressemblent à :
 
@@ -164,11 +164,11 @@ Regardons ensemble le code source de cet élément :
 ```
 
 - Quels éléments sont variables ?
-- Comment re-formater le code pour le transformer en fonction ?
+- Comment reformater le code pour le transformer en fonction ?
 
 ### Place au code
 
-Cette fois-ci pas ou peu d'expliquation… Dans `fonctions/index.php` ajouter une fonction nommée `genereListe`. Pour la suite, je vous laisse chercher.
+Cette fois-ci pas ou peu d'explication… Dans `fonctions/index.php` ajouter une fonction nommée `genereListe`. Pour la suite, je vous laisse chercher.
 
 ```php
 function genereListe($title, $file){
@@ -301,7 +301,7 @@ Dans le code, nous avons deux actions possibles :
 
 ### L'organisation
 
-La première étape est de créer les dossiers, par convention, nous allons « ranger » notre `DAO` dans un dossier nommée dao et dans un fichier qui regroupe les actions similaires (ou qui font référence à la même chose). Dans notre cas :
+La première étape est de créer les dossiers, par convention, nous allons « ranger » notre `DAO` dans un dossier nommé dao et dans un fichier qui regroupe les actions similaires (ou qui font référence à la même chose). Dans notre cas :
 
 - Créer un dossier nommé `dao`
 - Créer un fichier dedans nommé `liens.php`
@@ -327,7 +327,7 @@ Votre arborescence doit maintenant ressembler à :
 
 ### Base du code PHP
 
-Pour vous aider voilà la base du code :
+Pour vous aider, voilà la base du code :
 
 ```php
 <?php
@@ -354,7 +354,7 @@ Valider que le site fonctionne toujours.
 
 ## Les paramètres
 
-Nous avons maintenant mis en place la structure. Mais comme vous pouvez le constater nous avons encore à un certains nombre d'endroit « des éléments en dur ».
+Nous avons maintenant mis en place la structure. Mais comme vous pouvez le constater, nous avons encore à un certain nombre d'endroits « des éléments en dur ».
 
 Par exemple le tableau « \$elements », celui-ci contient des valeurs static « twitter », « search », etc. Si vous souhaitez ajouter une nouvelle catégorie, vous allez devoir ajouter un élément dans le tableau (et surtout vous souvenir à quel endroit celui-ci est défini).
 
@@ -371,7 +371,7 @@ Nous allons donc créer un dossier « paramètre » et un fichier « parametres.
 - Créer un dossier `parametre`.
 - Créer un fichier `parametres.php`.
 
-Votre structure doit maintenant ressembler à quelques choses comme :
+Votre structure doit maintenant ressembler à quelque chose comme :
 
 ```bash
 ├── dao
@@ -394,7 +394,7 @@ Votre structure doit maintenant ressembler à quelques choses comme :
 
 ### Le fichier parametres.php
 
-Le fichier `parametres.php` va contenir l'ensemble des éléments susceptible de changer dans « la vie » de votre application.
+Le fichier `parametres.php` va contenir l'ensemble des éléments susceptibles de changer dans « la vie » de votre application.
 
 C'est ce que l'on va appeler des constantes.
 
@@ -419,7 +419,7 @@ Placer ce contenu dans le fichier `parametres.php`.
 
 Modifier vos différentes pages PHP pour utiliser les constantes nouvellement définies.
 
-## En plus : Ne pas autoriser plusieurs lien identique
+## En plus : Ne pas autoriser plusieurs liens identiques
 
 Pour l'instant, il est possible d'insérer plusieurs fois le même lien dans la base de données.
 
@@ -431,6 +431,6 @@ Nous allons profiter de la mise en place d'un DAO pour migrer notre code ! Les J
 
 - Concevez une petite base de données simple.
 - Modifier votre DAO pour utiliser votre base de données.
-- N'oubliez pas de mettre dans le fichier `parametres.php` la configuration de votre connexion. (️⚠️ Surtout ne l'écrivez pas dans le DAO ⚠️).
+- N'oubliez pas de mettre dans le fichier `parametres.php` la configuration de votre connexion. (️⚠️ Surtout, ne l'écrivez pas dans le DAO ⚠️).
 
-⚠️ Vous avez vu l'avantage ! Nous avons modifier **un seul fichier** et l'ensemble de votre code utilise maintenant MySQL comme système de base de données.
+⚠️ Vous avez vu l'avantage ! Nous avons modifié **un seul fichier** et l'ensemble de votre code utilise maintenant MySQL comme système de base de données.
