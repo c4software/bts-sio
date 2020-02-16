@@ -7,27 +7,27 @@ Concevoir une application qui va :
 - Avoir 3 activités.
 - Scanner les périphériques Bluetooth.
 - Connexion à notre « Équipement ».
-- Commander la led / afficher l'état.
+- Commander la LED / afficher l'état.
 
 ## Projet final
 
-- Gérer correctement les messages d'erreurs (permissions, liste périphérique vides, etc).
-- Gérer correctement la non accès au réseau (pour la partie télécommande via Internet).
-- Ranger / organiser « correctement le code source » dans des packages comme vu précédement.
+- Gérer correctement les messages d'erreurs (permissions, liste périphérique vide, etc.).
+- Gérer correctement la non-accès au réseau (pour la partie, télécommande via Internet).
+- Ranger / organiser « correctement le code source » dans des packages comme vus précédemment.
 - Ne scanner que les Raspberry Pi.
 - Vider la liste après une connexion (et ne pas avoir de doublons dans la liste).
-- Personnaliser l'icône de l'application (Mettre le logo de l'école + ampoule).
+- Personnaliser l'icône de l'application (mettre le logo de l'école + ampoule).
 - L'ensemble des textes **doivent-être** dans le ```strings.xml```.
 - Empêcher la rotation de l'ensemble des activity (```manifest.xml```).
-- Empêcher l'accès à la partie HTTP si la téléphone est en mode avion ou n'a pas accès à Internet. 
+- Empêcher l'accès à la partie HTTP si le téléphone est en mode avion ou n'a pas accès à Internet. 
 - Bonus : Implémenter la partie notification.
-- Bonus : Commander en HTTP un équipement sur lequel nous ne nous sommes jamais connecter (Intégrer un scan Bluetooth dans un dialog de type liste).
+- Bonus : Commander en HTTP un équipement sur lequel nous ne nous sommes jamais connectés (intégrer un scan Bluetooth dans un dialog de type liste).
 
 ## Les activités
 
 ![Home](./ressources/main.png)
 ![Scan](./ressources/scan.png)
-![Réseau et led](./ressources/led.png)
+![Réseau et LED](./ressources/led.png)
 
 ## Le scan
 
@@ -37,7 +37,7 @@ Concevoir une application qui va :
 - Ajout des permissions.
 - Ajout du code « de scan Bluetooth ».
 - Pour chaque périphérique « Ajout d'un device » dans la `Datasource`.
-- Notifier le recycler view à des nouveaux éléments.
+- Notifier le recycler view à de nouveaux éléments.
 
 ### Les permissions
 
@@ -123,14 +123,14 @@ private void scanNearbyDevices() {
         final ScanSettings settings = new ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build();
         final List<ScanFilter> scanFilters = new ArrayList<>();
 
-        // Filtre sur le scan
+        // filtre sur le scan
         // scanFilters.add(new ScanFilter.Builder().setServiceUuid(new ParcelUuid(DEVICE_UUID)).build()); // add service filters
 
         bluetoothAdapter.getBluetoothLeScanner().startScan(scanFilters, settings, bleLollipopScanCallback);
     }
 }
 
-// À votre avis ?
+// à votre avis ?
 private final Runnable scanDevicesRunnable = () -> stopScan();
 ```
 
@@ -144,7 +144,7 @@ private final ScanCallback bleLollipopScanCallback = new ScanCallback() {
         super.onScanResult(callbackType, result);
         BluetoothDevice bluetoothDevice = result.getDevice();
         // C'est ici que nous allons créer notre « device » et l'ajouter dans le RecyclerView (Datasource)
-        // Et surtout notifier du changement
+        // et surtout notifier du changement
 
         // if(!deviceArrayList.contains(bluetoothDevice)){
         // deviceArrayList.add(bluetoothDevice);
@@ -180,7 +180,7 @@ private static final int REQUEST_ENABLED_LOCATION_CODE = 1236;
 private static final long SCAN_DURATION_MS = 10_000L;
 private static final int REQUEST_ENABLE_BLE = 999;
 
-// Gestion du bluetooth
+// Gestion du Bluetooth
 private BluetoothAdapter bluetoothAdapter;
 private BluetoothGatt currentBluetoothGatt = null; // Connexion actuelle
 private boolean isScanning = false;
@@ -198,7 +198,7 @@ private BluetoothDevice selectedDevice;
 
 ```
 
-### Intéragir avec le ReyclerView
+### Interagir avec le ReyclerView
 
 ```java
 rvList.setAdapter(deviceAdapter);
@@ -322,7 +322,7 @@ private void setUiMode(boolean isConnected) {
         // On affiche le TextView qui indique le device sur lequel on est connecté
         // On set la bonne valeur au TextView
         // On affiche le bouton déconnexion (setVisibility = View.VISIBLE)
-        // On affiche le bouton permettant de changer l'état de la led (setVisibility = View.VISIBLE)
+        // On affiche le bouton permettant de changer l'état de la LED (setVisibility = View.VISIBLE)
 
         // On oublie pas de stopper le scan
     } else {
@@ -333,7 +333,7 @@ private void setUiMode(boolean isConnected) {
 }
 ```
 
-### Intéragir avec la led
+### Interagir avec la LED
 
 ```java
 private void toggleLed() {
@@ -365,16 +365,16 @@ scanBtn.setOnClickListener(v -> checkPermissions());
 // Bouton pour la deconnexion
 // TODO
 
-// Bouton pour change l'état de la led
+// Bouton pour change l'état de la LED
 // TODO
 ```
 
 ## Télécommande via Internet
 
-Nécéssite le « nom » du périphérique (donc d'un scan précédent).
+Nécessite le « nom » du périphérique (donc d'un scan précédent).
 
 - Modifier la vue de la home pour que nous ne puissions pas cliquer sur le bouton.
-- L'activité ne dois pas être accessible. (elle dois `finish()` si pas de `getCurrentSelectedDevice() == null`)
+- L'activité ne doit pas être accessible. (elle doit `finish()` si pas de `getCurrentSelectedDevice() == null`)
 - Créer un nouveau model `LedStatus`
 
 ### La classe LedStatus
@@ -511,13 +511,13 @@ void refreshLedState() {
 
 ### Notification BLE
 
-La Raspberry Pi dispose également d'un service de « Notification ». Les notifications sont envoyés à chaque changement d'état de la led (local ou via le réseau). Cette notification est envoyée sur l'UUID `d75167c8-e6f9-4f0b-b688-09d96e195f00`.
+La Raspberry Pi dispose également d'un service de « Notification ». Les notifications sont envoyées à chaque changement d'état de la LED (local ou via le réseau). Cette notification est envoyée sur l'UUID `d75167c8-e6f9-4f0b-b688-09d96e195f00`.
 
 L'ajouter dans votre activité scan :
 
 ```public static UUID CHARACTERISTIC_NOTIFY_STATE = UUID.fromString("d75167c8-e6f9-4f0b-b688-09d96e195f00");```
 
-Nous allons devoir indiquer à notre `GattClient` que le service en qestion est de type « Notification :
+Nous allons devoir indiquer à notre `GattClient` que le service en question est de type « Notification :
 
 ```java
 private void enableListenBleNotify() {
@@ -540,9 +540,9 @@ private void enableListenBleNotify() {
 
 - Appeler la méthode au bon endroit dans votre code (certainement après la connexion ;)
 
-#### Récéption et valeur
+#### Réception et valeur
 
-La notification en question est de type « String » elle va prendre deux valeurs différentes `ON` ou `OFF`. Pour réagir aux notifications vous devez implémenter la méthode `onCharacteristicChanged` dans `BluetoothGattCallback`. Cette méthode à deux paramètres :
+La notification en question est de type « String » elle va prendre deux valeurs différentes `ON` ou `OFF`. Pour réagir aux notifications, vous devez implémenter la méthode `onCharacteristicChanged` dans `BluetoothGattCallback`. Cette méthode à deux paramètres :
 
 ```java
 public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
@@ -552,9 +552,9 @@ Celui qui nous intéresse est celui du type `BluetoothGattCharacteristic`, pour 
 
 ```characteristic.getStringValue(0)```
 
-- Ajouter dans votre layout un indicateur de l'état de la led (ImageView).
-- Le faire apparaitre lors de la connexion en bluetooth.
-- Le mettre à jour à chaque notifications. (ON / OFF).
+- Ajouter dans votre layout un indicateur de l'état de la LED (ImageView).
+- Le faire apparaitre lors de la connexion en Bluetooth.
+- Le mettre à jour à chaque notification. (ON / OFF).
 
 ### Fourniture des sources
 
