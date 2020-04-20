@@ -69,6 +69,10 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
+![Mouais](./img/mouais.jpeg)
+
+---
+
 - Linux Torvald n'aime pas les outils existants
 - Il programme donc le sien
 
