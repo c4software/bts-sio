@@ -41,6 +41,7 @@ module.exports = {
       { collapsable: false, title: "NodeJS  (À venir)", children: ["cours/nodejs", "/tp/nodejs/api", "/tp/nodejs/firebase"] },
       { collapsable: false, title: "VueJS", children: ["cours/vuejs", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs"] },
       { collapsable: false, title: "VueJS exemple", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"]},
+      { collapsable: false, title: "GraphQL (À venir)", children: ["cours/graphql"] },
       { collapsable: false, title: "Cordova + VueJS", children: ["cours/cordova", "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] },
       { collapsable: false, title: "Docker", children: [["https://rawgit.com/c4software/bts/master/.vuepress/public/cours/docker/", "Slides"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
       { collapsable: false, title: "GitLab-CI", children: ["cours/gitlabci", "/tp/ci/pages", "/tp/ci/ci-hybride"] },
