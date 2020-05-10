@@ -4,7 +4,7 @@ Ce document n'est pas un TP, mais une explication de la structure « Android Boi
 
 - [Android Boilerplate Koin - Rx - OkHttp](https://github.com/c4software/Android-Boilerplate-Koin-Rx-OkHTTP)
 
-Ce document vous donnera les clés afin de comprendre le fonctionnement afin de vous approprier le code fourni.
+Ce document vous donnera les clés afin de comprendre le fonctionnement et de vous l'approprier.
 
 ## But de code
 
