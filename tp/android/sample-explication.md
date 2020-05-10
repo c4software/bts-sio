@@ -32,16 +32,16 @@ Ceci étant annoncé, passons au détail du fonctionnement.
 
 ## RemoteRepository ?
 
-## Ajouter une nouvelle « méthode distante » / route d'API distance
+## Ajouter une nouvelle route d'API distance
 
-### Déclarer la structure de votre appel HTTP dans « SampleRemoteDataSource.kt »
+### Déclarer l'appel HTTP dans SampleRemoteDataSource
 
-### Déclarer votre méthode dans « SampleRemoteRepository.kt »
+### Déclarer la méthode dans SampleRemoteRepository
 
 ### L'appeler depuis le code
 
 ## Ajouter une nouvelle méthode « locale »
 
-### Déclarer la méthode dans « SampleLocalRepository.kt »
+### Déclarer la méthode dans SampleLocalRepository
 
 ## Ajouter une nouvelle Vue / Layout
