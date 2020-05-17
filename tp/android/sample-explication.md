@@ -23,6 +23,12 @@ Pour récupérer le code source vous avez deux possibilités :
 
 ## Lancer le projet une première fois
 
+Avant de d'effectuer des modifications dans le pojet nous allons le lancer une première fois. Pour ça il suffit d'ouvrire le projet avec Android Studio.
+
+![Ouvrir le projet](./ressources/open_project.png)
+
+Une fois l'indexation terminé, vous devez pouvoir lancer le projet sur un émulateur ou sur votre téléphone.
+
 ## La structure des dossiers
 
 ## MVVM ? Kézako !?
