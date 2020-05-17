@@ -2,7 +2,7 @@
 
 Ce document n'est pas un TP, mais une explication de la structure « Android Boilerplate » disponible à l'adresse suivante :
 
-- [Android Boilerplate Koin - Rx - OkHttp](https://github.com/c4software/Android-Boilerplate-Koin-Rx-OkHTTP)
+- [Android Boilerplate Koin - Rx - OkHttp](https://github.com/c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP)
 
 Ce document vous donnera les clés afin de comprendre le fonctionnement et de vous l'approprier.
 
