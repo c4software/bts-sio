@@ -14,6 +14,13 @@ Ceci étant annoncé, passons au détail du fonctionnement.
 
 ## Récupérer le code
 
+Pour récupérer le code source vous avez deux possibilités :
+
+- Le fichier zip en provenance de Github : [À télécharger ici](https://github.com/c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP/archive/master.zip)
+- En clonant le repository : `git clone git@github.com:c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP.git`
+
+⚠️ Attention, si vous avez choisi de cloner le repository. Pensez bien à supprimer le dossier `.git` à la racine des sources afin de ne pas garder l'historique de mon projet. ⚠️
+
 ## Lancer le projet une première fois
 
 ## La structure des dossiers
