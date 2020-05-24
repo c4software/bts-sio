@@ -23,17 +23,101 @@ Pour récupérer le code source vous avez deux possibilités :
 
 ## Lancer le projet une première fois
 
-Avant de d'effectuer des modifications dans le pojet nous allons le lancer une première fois. Pour ça il suffit d'ouvrire le projet avec Android Studio.
+Avant d'effectuer des modifications dans le projet, nous allons le lancer une première fois. Pour ça, il suffit d'ouvrir le projet avec Android Studio.
 
 ![Ouvrir le projet](./ressources/open_project.png)
 
-Une fois l'indexation terminé, vous devez pouvoir lancer le projet sur un émulateur ou sur votre téléphone.
+Une fois l'indexation terminée, vous devez pouvoir lancer le projet sur un émulateur ou sur votre téléphone. Ce qui devrait donner quelque chose comme :
+
+![Demo](https://github.com/c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP/blob/master/capture.png)
 
 ## La structure des dossiers
 
-## MVVM ? Kézako !?
+Afin de simplifier l'entrée dans le code, j'ai volontairement limité l'organisation des dossiers au strict minimum. Attention, ça ne veut pas dire que vous ne pouvez pas en créer d'autres pour organiser votre code au mieux.
 
-## DI ? Injection de dépendances, Koin un peu d'explication
+![structure dossier](./ressources/structures.png)
+
+- `data` : Contiens la définition (interface) de vos sources de données (exemple la définition des appels réseau).
+- `di` : La définition des éléments qui sont « injectés ».
+- `domain` : Votre code métier, celui qui fait le traitement (soit local, ou alors les appels aux APIs HTTP par exemple)
+- `utils` : L'ensemble de vos « helpers » / fonctions que vous vous servez à plusieurs endroits dans votre code.
+- `view` : Vos « vues », c'est-à-dire vos différents écrans de votre application.
+
+## MVVM ? Kézako !?
+L’acronyme MVVM signifie Modèle Vue Vue-Modèle (Model–view–viewmodel). L'architecture MVVM est « plutôt récente » elle date de 2004, elle est inventée à la base par Microsoft afin de simplifier les problématiques de gestion de l'interface (en utilisant des mécaniques d'évènement)
+
+Elle a récemment été popularisée par certains frameworks JavaScript, car elle permet d'implémenter « simplement » des interfaces avec une réactivité importante.
+
+![MVVM Pattern](./ressources/MVVMPattern.png)
+
+Cette méthode permet, tel le modèle MVC (modèle-vue-contrôleur), de séparer la vue de la logique et de l'accès aux données en accentuant les principes de liaison et d’évènement.
+
+Il faut donc distinguer *3 parties* :
+
+- Le modèle : Les données au sens pures (de la data sous forme d'objet), elles peuvent provenir d'API, de base de données, de sources locales.
+- La vue : L'affichage utilisé utilisateur, la gestion des clicks… Et _uniquement_ ça, la logique associée à la donnée est effectuée dans le `Vue-Modèle` (via « le bus des évènements »)
+- Le Vue-Modèle : Intéragie avec la couche `modèle` et envoi les nouveaux états résultat à la vue (via le « bus des évènements »).
+
+Nous allons, donc devoir définir « des » bus de communication entre le Vue-Modèle et la Vue afin de permettre l'actualisation des données. Cette organisation vous nous permettre une fois en place de ne manipuler essentiellement plus que de la donnée. La vue sera donc « automatiquement » mise à jour, et ce en fonction de l'état de la donnée (exemple les loaders / les mises à jour de liste, etc.)
+
+📖Pour ceux ayant déjà fait du VueJS (ou autre framework JavaScript récent), le découpage est très proche, vous ne serez pas perdu.
+
+## DI ? Injection de dépendances, Koin quelques explications
+
+En introduction j'ai indiqué que mon « Boilerplate » était le strict minimum viable pour un projet… Et bien je vous ai menti ! Mais garder confiance c'est pour votre bien…
+
+Alors, l'injection des dépendances petite définition Wikipedia :
+
+> Il consiste à créer dynamiquement (injecter) les dépendances entre les différents objets en s'appuyant sur une description (fichier de configuration ou métadonnées) ou de manière programmatique. Ainsi les dépendances entre composants logiciels ne sont plus exprimées dans le code de manière statique, mais déterminées dynamiquement à l'exécution.
+
+Pour faire simple, le but est de ne plus avoir à créer des objets dans votre code. Tout est géré « plus haut » afin de centraliser la configuration, la manière dont l'objet est créé, etc.
+
+Quelques avantages à utiliser de l'injection :
+
+- Réduction du code (les créations d'objets sont effectuées qu'une seule fois et injectées automatiquement grâce au typage).
+- Réduction de la mémoire, logique moins d'instance d'objet identique créer à plusieurs endroits dans votre code.
+- Isolation entre la logique de l'objet et votre code, vous n'êtes qu'un consommateur de fonctionnalités la logique peut-être carrément écrite par quelqu'un d'autre, voir dans certains cas externalisés dans des librairies externes (Kotlin Native par exemple).
+- Etc.
+
+### Koin
+
+Dans notre nous allons utiliser la librairie Koin, elle est complètement écrite en Kotlin, elle a comme avantage d'être simple à utiliser avec très peut de code à écrire (et donc à comprendre).
+
+### Concrètement ça ressemble à quoi
+
+```kotlin
+val appModule = module {
+    // Inject dependencies for the MainViewModel (the only UI in this boilerplate)
+    viewModel { MainViewModel(get(), get()) }
+
+    // Sample Remote Data Repository
+    single<SampleRemoteRepository>(createdAtStart = true) { SampleRemoteRemoteRepositoryImpl(get()) }
+
+    // Sample Local Data Repository
+    single<SampleLocalRepository>(createdAtStart = true) { SampleLocalRepositoryImpl() }
+}
+
+val remoteDataSourceModule = module {
+    // provided web components
+    single { createOkHttpClient() }
+
+    // Fill property
+    single { createWebService<SampleRemoteDataSource>(get(), BuildConfig.REMOTE_URI) }
+}
+
+val moduleApp = listOf(appModule, remoteDataSourceModule)
+```
+L'ensemble est, je pense, relativement parlant, mais regardons en détail le `get()`, comme vous pouvez le voir celui-ci est présent un peu partout dans la déclaration de nos éléments à injecter. Ce mot-clé est _magique_ il permet à [Koin](https://insert-koin.io/) de détecter le type de paramètre attendu et d'injecter automatiquement le bon objet.
+
+Par exemple nous indiquons que `createWebService(client: OkHttpClient, url: String)`, automatiquement Koin va chercher dans les objets qu'il connait ceux correspondant à la signature (dans notre cas `single { createOkHttpClient() }`) et `BuildConfig.REMOTE_URI` étant la String attendu.
+
+Dans le cas d'un objet de notre vue, nous avons dans le même principe : 
+
+`viewModel { MainViewModel(get(), get()) }` qui représente le View-Modele de notre Vue qui attend deux paramètres :
+
+`MainViewModel(sampleRemoteRepository: SampleRemoteRepository, sampleLocalRepository: SampleLocalRepository)`.
+
+Compliqué ? Pas tellement, avec la pratique ça vous semblera automatique. 😊
 
 ## Modifier le package « sample »
 
@@ -57,4 +141,8 @@ Une fois l'indexation terminé, vous devez pouvoir lancer le projet sur un émul
 
 ### Déclarer la méthode dans SampleLocalRepository
 
-## Ajouter une nouvelle Vue / Layout
+## Ajouter une nouvelle Vue
+
+### Layout
+
+### Code
