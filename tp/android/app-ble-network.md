@@ -78,15 +78,22 @@ public void onRequestPermissionsResult(final int requestCode, @NonNull final Str
 
 ```java
 private void checkForLocationEnabled() {
+    boolean isEnabled = false;
+    
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
         // This is new method provided in API 28
         LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        return lm != null && lm.isLocationEnabled();
+        isEnabled = lm != null && lm.isLocationEnabled();
     } else {
         // This is Deprecated in API 28
         int mode = Settings.Secure.getInt(this.getContentResolver(), Settings.Secure.LOCATION_MODE, Settings.Secure.LOCATION_MODE_OFF);
-        return (mode != Settings.Secure.LOCATION_MODE_OFF);
+        isEnabled = (mode != Settings.Secure.LOCATION_MODE_OFF);
+    }
 
+    if(isEnabled){
+        setupBLE();
+    } else {
+        startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), REQUEST_ENABLED_LOCATION_CODE);
     }
 }
 ```
