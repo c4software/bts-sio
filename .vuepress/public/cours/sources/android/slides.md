@@ -628,7 +628,8 @@ startActivity(MaClass.getStartIntent(this));
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.BLUETOOTH"/>
 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permisssion.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permisssion.ACCESS_COARSE_LOCATION" />
 ```
 
 ---
@@ -672,18 +673,15 @@ public void onRequestPermissionsResult(final int requestCode, @NonNull final Str
 
 ```java
 private void checkForLocationEnabled() {
-    final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-    if (lm != null) {
-        final boolean gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        final boolean network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-        if (!gps_enabled || !network_enabled) {
-            startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), REQUEST_ENABLED_LOCATION_CODE);
-        } else {
-            setupBLE();
-        }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        // This is new method provided in API 28
+        LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        return lm != null && lm.isLocationEnabled();
     } else {
-        startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), REQUEST_ENABLED_LOCATION_CODE);
+        // This is Deprecated in API 28
+        int mode = Settings.Secure.getInt(this.getContentResolver(), Settings.Secure.LOCATION_MODE, Settings.Secure.LOCATION_MODE_OFF);
+        return (mode != Settings.Secure.LOCATION_MODE_OFF);
+
     }
 }
 ```
