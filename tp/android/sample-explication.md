@@ -121,6 +121,10 @@ Compliqué ? Pas tellement, avec la pratique ça vous semblera automatique. 😊
 
 ## Modifier le package « sample »
 
+Comme vous le savez, sur Android les applications doivent être uniques « de manière cryptographique » et via leur package. Nous allons donc faire en sorte de personnaliser le package afin de le rendre unique pour vous et votre téléphone.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3tULbe0wPmU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Changer le nom de l'application
 
 ## Changer la configuration de l'API
