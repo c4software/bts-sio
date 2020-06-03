@@ -7,6 +7,13 @@ module.exports = {
     ['@vuepress/pwa', {serviceWorker: false, updatePopup: false}], 
     ['@vuepress/google-analytics', {'ga': 'UA-2107503-8'}]
   ],
+  locales: {
+    '/': {
+      lang: 'fr-FR',
+      title: "Cours",
+      description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également l'ESEO), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
+    }
+  },
   lang: "fr-FR",
   dest: "docs",
   head: [
