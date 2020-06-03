@@ -150,3 +150,5 @@ Comme vous le savez, sur Android les applications doivent être uniques « de ma
 ### Layout
 
 ### Code
+
+#### getStartIntent ? 
