@@ -127,6 +127,10 @@ Comme vous le savez, sur Android les applications doivent être uniques « de ma
 
 ## Changer le nom de l'application
 
+Si vous regardez dans votre liste d'application vous allez trouver une application nommée `Boilerplate - Koin - Retrofit`. Pour le changer, c'est simple, il suffit d'éditer le fichier `strings.xml`.
+
+⚠️ En parlant de ce fichier, celui-ci *doit* contenir l'ensemble de vos textes (et évidemment pas uniquement le nom de votre application).
+
 ## Changer la configuration de l'API
 
 ## LocalRepository ?
