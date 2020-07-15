@@ -29,7 +29,7 @@ Avant d'effectuer des modifications dans le projet, nous allons le lancer une pr
 
 Une fois l'indexation terminée, vous devez pouvoir lancer le projet sur un émulateur ou sur votre téléphone. Ce qui devrait donner quelque chose comme :
 
-![Demo](https://github.com/c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP/blob/master/capture.png)
+![Demo](https://github.com/c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP/blob/master/capture.png?raw=true)
 
 ## La structure des dossiers
 
