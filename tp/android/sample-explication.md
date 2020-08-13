@@ -140,11 +140,29 @@ Si vous regardez le fichier en question, vous allez trouver `buildConfigField` c
 
 J'ai donc initialisé dans mon petit Boilerplate `REMOTE_URI` qui sera dans votre code Kotlin l'URL de votre serveur distant.
 
-## LocalRepository ?
+## Repository ? Kézako !?
 
-## RemoteRepository ?
+Contiens la logique autour de vos données. Elle expose au reste de l'application une API (Interne) permettant de gérer la mise à jour des données.
+
+Cette « brique de code » va permettre d'agréger les différentes sources de données afin d'être utilisable simplement dans vos VueModel (ViewModel).
+
+🛑 N'hésitez pas à découper autant qu'il le faut votre logique dans différents repository 🙏
+
+### LocalRepository ?
+
+Dans le code fourni en exemple, le `Local Repository` « simule » un repository qui accèderait à des données « local » c'est-à-dire dans votre téléphone (mémoire interne par exemple).
+
+### RemoteRepository ?
+
+Dans le code fourni en exemple, le `Remote Repository` « simule » une interaction avec « l'extérieur » de votre téléphone c'est-à-dire dans notre cas `Internet` via un appel d'API via le protocole HTTP.
 
 ## Ajouter une nouvelle route d'API distance
+
+Ajouter une nouvelle route d'API à notre projet va se résumer à la modification de quelques fichiers. À premier vu ça peut sembler fastidieux, mais vous allez rapidement voir que ce découpage va nous permettre d'organiser le code au mieux afin de le rendre maintenant dans la durée. Et finalement n'est-ce pas le plus important ?
+
+Je vais prendre un exemple simple, le souhaite ajouter une nouvelle route disponible sur `https://rest.ensembl.org/` dans mon projet. Au hasard la route `/info/rest?content-type=application/json`.
+
+🤔Je rappel au passage que la finalité est de « Récupérer l'information » du serveur, le faire transiter dans votre code, pour au final l'afficher quelques part dans votre application.
 
 ### Déclarer l'appel HTTP dans SampleRemoteDataSource
 
@@ -152,14 +170,16 @@ J'ai donc initialisé dans mon petit Boilerplate `REMOTE_URI` qui sera dans votr
 
 ### L'appeler depuis le code
 
-## Ajouter une nouvelle méthode « locale »
+Pour tester (et uniquement pour tester), nous allons appeler la nouvelle méthode depuis la vue principale.
 
-### Déclarer la méthode dans SampleLocalRepository
+// TODO
 
 ## Ajouter une nouvelle Vue
+
+Maintenant que nous avons validé que notre code fonctionne, nous allons pouvoir ajouter une nouvelle vue. Nous avons une nouvelle route `infoRest` qui pour l'instant est inutilisée, nous allons créer une vue et le code associé afin d'afficher l'information reçue du serveur.
 
 ### Layout
 
 ### Code
 
-#### getStartIntent ? 
+#### getStartIntent ?
