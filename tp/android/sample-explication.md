@@ -222,6 +222,88 @@ Maintenant que nous avons validé que notre code fonctionne, nous allons pouvoir
 
 ### Layout
 
+La première étape va être la création de la vue. Pour ça créer un Layout XML comme nous avons déjà pu le voir ensemble.
+
 ### Code
 
+TODO (Exemple de classe)
+
 #### getStartIntent ?
+
+Cette méthode a pour but de simplifier la lecture (et la navigation) entre les vues. Cette méthode est statique, elle sera appelée que vous souhaiterez appeler votre `activity` depuis une autre `vue` / `activity`. Elle retourne une `Intent` qui nous servira à démarrer l'activity souhaitée.
+
+_Exemple :_
+
+```kotlin
+    startActivity(MainActivity.getStartIntent(this))
+```
+
+Le but également de créer des `getStartIntent` est de simplifier la gestion du passage des paramètres. En effet, sur Android passer des paramètres à une activité se résume à les attacher à l'Intent. Centraliser la déclaration, permet également de centraliser cette logique.
+
+_Exemple :_
+
+```kotlin
+companion object {
+    const val AGE_DU_CAPITPAINE = "AGE_DU_CAPITPAINE"
+    fun getStartIntent(ctx: Context, ageDuCapitaine: Int): Intent {
+        return Intent(ctx, MainActivity::class.java).apply {
+            putExtra(FROM_HOME, ageDuCapitaine)
+        }
+    }
+}
+
+// Pour récupérer cette valeur.
+private fun ageDuCapitaine(): Int = intent.getBooleanExtra(AGE_DU_CAPITPAINE, 33)
+```
+
+## Rendre accessible cette vue / activity
+
+Maintenant que cette activity est créée, nous allons devoir la rendre « visible » par Android. Cette étape est relativement simple. Il suffit de laisser faire votre IDE pour lui faire autodéclarer le bon XML dans le fichier `AndroidManifest.xml`.
+
+Si vous souhaitez réaliser cette action à la main. Il suffit d'ajouter « dans / sous » l'élément application :
+
+```xml
+    <activity android:name="com.boilerplate.app.view.main.MainActivity">
+```
+
+⚠️ Mais sérieusement, ne l'ajouter pas à la main. Faite plutôt alt entrée sur le nom de votre class dans l'IDE l'action vous sera proposée.
+
+![ajouter au manifeste](./ressources/add_manifest.png)
+
+### Créer une home
+
+En suivant le même principe que précédemment, créez une Home avec deux boutons permettant d'accéder à la `MainActivity` et à `InfoRestActivity`.
+
+Petit rappel, pour « attacher » une action de clique sur un bouton :
+
+```kotlin
+btnMain.setOnClickListener {
+    startActivity(MainActivity.getStartIntent(this))
+}
+
+btnInfosRest.setOnClickListener {
+    startActivity(InfoRestActivity.getStartIntent(this))
+}
+```
+
+### Déclarer cette home comme activity principale de votre application
+
+TODO (Éditer le AndroidManifest.xml)
+
+### Connecter le tout
+
+Votre application contient maintenant 3 activités :
+
+- Une home.
+- L'activité permettant de connaitre la version du serveur. `infoRest`
+- Une activité permettant de « réaliser des pings ».
+
+Appeler les différends `getStartIntent()` depuis les bonnes vues.
+
+Exemple :
+
+```kotlin
+fun startMainActivity(){
+    startActivity(MainActivity.getStartIntent(this))
+}
+```
