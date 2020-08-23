@@ -14,7 +14,7 @@ Ceci étant annoncé, passons au détail du fonctionnement.
 
 ## Récupérer le code
 
-Pour récupérer le code source vous avez deux possibilités :
+Pour récupérer le code source, vous avez deux possibilités :
 
 - Le fichier zip en provenance de Github : [À télécharger ici](https://github.com/c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP/archive/master.zip)
 - En clonant le repository : `git clone git@github.com:c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP.git`
@@ -44,6 +44,7 @@ Afin de simplifier l'entrée dans le code, j'ai volontairement limité l'organis
 - `view` : Vos « vues », c'est-à-dire vos différents écrans de votre application.
 
 ## MVVM ? Kézako !?
+
 L’acronyme MVVM signifie Modèle Vue Vue-Modèle (Model–view–viewmodel). L'architecture MVVM est « plutôt récente » elle date de 2004, elle est inventée à la base par Microsoft afin de simplifier les problématiques de gestion de l'interface (en utilisant des mécaniques d'évènement)
 
 Elle a récemment été popularisée par certains frameworks JavaScript, car elle permet d'implémenter « simplement » des interfaces avec une réactivité importante.
@@ -52,7 +53,7 @@ Elle a récemment été popularisée par certains frameworks JavaScript, car ell
 
 Cette méthode permet, tel le modèle MVC (modèle-vue-contrôleur), de séparer la vue de la logique et de l'accès aux données en accentuant les principes de liaison et d’évènement.
 
-Il faut donc distinguer *3 parties* :
+Il faut donc distinguer _3 parties_ :
 
 - Le modèle : Les données au sens pures (de la data sous forme d'objet), elles peuvent provenir d'API, de base de données, de sources locales.
 - La vue : L'affichage utilisé utilisateur, la gestion des clicks… Et _uniquement_ ça, la logique associée à la donnée est effectuée dans le `Vue-Modèle` (via « le bus des évènements »)
@@ -112,7 +113,7 @@ L'ensemble est, je pense, relativement parlant, mais regardons en détail le `ge
 
 Par exemple nous indiquons que `createWebService(client: OkHttpClient, url: String)`, automatiquement Koin va chercher dans les objets qu'il connait ceux correspondant à la signature (dans notre cas `single { createOkHttpClient() }`) et `BuildConfig.REMOTE_URI` étant la String attendu.
 
-Dans le cas d'un objet de notre vue, nous avons dans le même principe : 
+Dans le cas d'un objet de notre vue, nous avons dans le même principe :
 
 `viewModel { MainViewModel(get(), get()) }` qui représente le View-Modele de notre Vue qui attend deux paramètres :
 
@@ -130,11 +131,11 @@ Comme vous le savez, sur Android les applications doivent être uniques « de ma
 
 Si vous regardez dans votre liste d'application vous allez trouver une application nommée `Boilerplate - Koin - Retrofit`. Pour le changer, c'est simple, il suffit d'éditer le fichier `strings.xml`.
 
-⚠️ En parlant de ce fichier, celui-ci *doit* contenir l'ensemble de vos textes (et évidemment pas uniquement le nom de votre application).
+⚠️ En parlant de ce fichier, celui-ci _doit_ contenir l'ensemble de vos textes (et évidemment pas uniquement le nom de votre application).
 
 ## Changer la configuration de l'API
 
-Centraliser la configuration dans une application est *essentiel* au-delà de l'organisation du code, c'est essentiel pour que vous puissiez travailler en équipe, mais également pour reprendre votre code sereinement dans quelques années (eh oui…). Dans notre application la configuration sera centralisée dans le fichier `build.gradle`.
+Centraliser la configuration dans une application est _essentiel_ au-delà de l'organisation du code, c'est essentiel pour que vous puissiez travailler en équipe, mais également pour reprendre votre code sereinement dans quelques années (eh oui…). Dans notre application la configuration sera centralisée dans le fichier `build.gradle`.
 
 Si vous regardez le fichier en question, vous allez trouver `buildConfigField` cette instruction nous permettra de définir de la configuration propre à l'environnement (Prod, Dev, Staging, etc.). Bref c'est génial !
 
@@ -162,17 +163,58 @@ Ajouter une nouvelle route d'API à notre projet va se résumer à la modificati
 
 Je vais prendre un exemple simple, le souhaite ajouter une nouvelle route disponible sur `https://rest.ensembl.org/` dans mon projet. Au hasard la route `/info/rest?content-type=application/json`.
 
-🤔Je rappel au passage que la finalité est de « Récupérer l'information » du serveur, le faire transiter dans votre code, pour au final l'afficher quelques part dans votre application.
+🤔Je rappelle au passage que la finalité est de « Récupérer l'information » du serveur, le faire transiter dans votre code, pour au final l'afficher quelque part dans votre application.
 
 ### Déclarer l'appel HTTP dans SampleRemoteDataSource
 
+Déclarer une méthode dans le fichier `sampleRemoteDataSource.kt`, ce fichier est une Interface, qui va « déclarer » l'ensemble des méthodes HTTP appelable dans le code. La déclaration de celles-ci est effectuée via des annotations (symbolisé avec `@`). Dans notre cas le fichier contient actuellement :
+
+```kotlin
+@GET("info/ping?content-type=application/json")
+@Headers("Content-type: application/json")
+suspend fun ping(): PingResult
+```
+
+Nous déclarons donc une méthode de type `GET` qui consommera un retour en JSON.
+
+Nous allons ajouter la seconde méthode de la même façon
+
+```kotlin
+@GET("info/rest?content-type=application/json")
+@Headers("Content-type: application/json")
+suspend fun restInfo(): RestResult
+```
+
+Vous allez devoir créer une Data Class `RestResult` qui servira à déserialser le retour de l'API. Elle va ressembler à :
+
+```kotlin
+data class RestResult(val release: String) {}
+```
+
+👀Attention 👀 ranger le fichier dans le bon dossier ! À savoir `data/models/RestResult`.
+
+#### Comment ça fonctionne en deux mots ?
+
+Déclarer une méthode dans une Interface pour permettre d'appeler un WebService !? C'est magique ? En réalité tout ça est possible grace à OkHTTP2, Retrofit, et l'injection de dépendance. Pour les curieux, toute la logique est ici `src/main/java/com/boilerplate/app/di/remote_datasource_model.kt`
+
 ### Déclarer la méthode dans SampleRemoteRepository
+
+La première étape était la déclaration dans l'interface, c'est chose faite. Maintenant nous allons déclarer notre méthode dans le `Repository`, donc dans la brique qui va appeler la source de données.
+
+Nous allons donc tout simplement :
+
+- Ajouter la déclaration de la méthode dans l'interface `SampleRemoteRepository` nommée infoRest.
+- Implémenter la méthode `infoRest` dans `SampleLocalRepositoryImpl` afin de pouvoir appeler l'API.
 
 ### L'appeler depuis le code
 
-Pour tester (et uniquement pour tester), nous allons appeler la nouvelle méthode depuis la vue principale.
+Pour tester (et uniquement pour tester), nous allons appeler la nouvelle méthode depuis la vue principale. La procédure va être relativement simple :
 
-// TODO
+- Ajout d'une méthode dans `MainViewModel.kt`
+  - La méthode doit implémenter les states. (Chargement, et retour de la « string reçu »)
+- Appeler la méthode déclarée dans le MainViewModel depuis l'activity. (ex `myViewModel.getRestInfomations()`).
+
+Dans l'implémentation actuelle, vous allez avoir `un Toast`.
 
 ## Ajouter une nouvelle Vue
 
