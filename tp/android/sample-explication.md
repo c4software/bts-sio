@@ -226,7 +226,30 @@ La première étape va être la création de la vue. Pour ça créer un Layout X
 
 ### Code
 
-TODO (Exemple de classe)
+Le minimum de code pour que votre activity fonctionne est le suivant :
+
+```kotlin
+class YourActivity : AppCompatActivity() {
+    companion object {
+        fun getStartIntent(ctx: Context): Intent {
+            return Intent(ctx, YourActivity::class.java)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+}
+```
+
+👀 Comme toujours l'organisation du code est une chose très importante, ne placez pas votre classe n'importe où. Mais dans un package dans `view` :
+
+![create package](./ressources/create_package.png)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M1RJ1kQg7Hg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Si vous souhaitez plus de détail, inspirer du code présent dans le `MainActivity.kt` ou dans les exemples que nous avons évoqués pendant le cours.
 
 #### getStartIntent ?
 
@@ -288,7 +311,16 @@ btnInfosRest.setOnClickListener {
 
 ### Déclarer cette home comme activity principale de votre application
 
-TODO (Éditer le AndroidManifest.xml)
+Un certain nombre de paramètres autour des intent est modifiable directement dans `AndroidManifest.xml`, la déclaration de `l'intent` à lancer au démarrage de l'application est faite via :
+
+```xml
+<intent-filter>
+    <action android:name="android.intent.action.MAIN" />
+    <category android:name="android.intent.category.LAUNCHER" />
+</intent-filter>
+```
+
+Déplacer `l'intent filter` dans bloc correspondant à votre activity.
 
 ### Connecter le tout
 
