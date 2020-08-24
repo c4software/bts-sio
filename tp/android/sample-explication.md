@@ -191,7 +191,7 @@ Vous allez devoir créer une Data Class `RestResult` qui servira à déserialser
 data class RestResult(val release: String) {}
 ```
 
-👀Attention 👀 ranger le fichier dans le bon dossier ! À savoir `data/models/RestResult`.
+👀Attention 👀 ranger le fichier dans le bon dossier/package ! À savoir `data/models/RestResult`.
 
 #### Comment ça fonctionne en deux mots ?
 
