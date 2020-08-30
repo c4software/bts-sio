@@ -99,6 +99,7 @@ Faire des PWA simplement (il y en a d'autres bien évidement, en connaissez-vous
 - Première version « stable » **Fevrier 2014**
 - **V1.0** Octobre 2015
 - Actuellement version **2**
+- Très prochainement la version **3**
 
 ---
 
@@ -637,7 +638,8 @@ $ vue add vuex
 
 - Pourquoi utiliser un bundler (Webpack) ?
 - Et pourquoi ne plus utiliser de bundler ?
-- La solution PikaPKG.
+- La solution PikaPKG / Snowpack
+- [Une autre solution par le créateur de vue : « Vite »](https://github.com/vitejs/vite)
 
 ---
 
