@@ -6,7 +6,7 @@ L’application existante est une « todo liste » codée en PHP + HTML.
 
 ## Récupération et installation des sources
 
-Avant de commencer à travailler, il faut récupérer le code source de l’application existante. Celui-ci est disponible sur le groupe « Gitlab » du BTS-SIO. Le projet est disponible sur Github : [télécharger les sources](https://github.com/c4software/php-todo/archive/v1.1.zip)
+Avant de commencer à travailler, il faut récupérer le code source de l’application existante. Le projet est disponible sur Github : [télécharger les sources](https://github.com/c4software/php-todo/archive/v1.1.zip)
 
 - Faire « fonctionner » l’application en local, une fois installée, celle-ci doit ressembler à :
 

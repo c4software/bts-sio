@@ -47,6 +47,7 @@ module.exports = {
       { collapsable: false, title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/application_todo_list", "/tp/laravel/creation_api"] },
       { collapsable: false, title: "VueJS", children: ["cours/vuejs", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs"] },
       { collapsable: false, title: "VueJS exemple", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"]},
+      { collapsable: false, title: "Framework Javascript", children: ["cours/framework_javascript"] },
       { collapsable: false, title: "Typescript (À venir)", children: ["cours/typescript", "tp/typescript/vuejs"] },
       { collapsable: false, title: "NodeJS  (À venir)", children: ["cours/nodejs", "/tp/nodejs/api", "/tp/nodejs/firebase"] },
       { collapsable: false, title: "GraphQL (À venir)", children: ["cours/graphql", "tp/graphql/hasura"] },
