@@ -4,7 +4,11 @@
 
 <SlidesDeck src="framework_javascript" />
 
+---
+
 <SlidesDeck src="javascript_avances" />
+
+---
 
 <SlidesDeck src="vuejs" />
 
