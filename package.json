@@ -3,10 +3,10 @@
   "version": "2.0.0",
   "description": "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également l'ESEO), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
   "devDependencies": {
-    "vuepress": "1.5.0",
+    "vuepress": "1.5.4",
     "vuepress-plugin-code-copy": "1.0.6",
-    "@vuepress/plugin-google-analytics": "1.5.0",
-    "@vuepress/plugin-pwa": "1.5.0"
+    "@vuepress/plugin-google-analytics": "1.5.4",
+    "@vuepress/plugin-pwa": "1.5.4"
   },
   "scripts": {
     "dev": "vuepress dev",

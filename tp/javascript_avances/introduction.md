@@ -45,14 +45,14 @@ hello(nom);
 
 ## Question 3
 
-En utilisant la méthode `filter` d'un tableau filtrer l'ensemble des éléments `non paire` du tableau suivant :
+En utilisant la méthode `filter` d'un tableau filtrer l'ensemble des éléments `non pairs` du tableau suivant :
 
 ```JavaScript
 const valeurs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 ```
 
 ::: tip
-Les nombre non paire ce trouve via un `% 2`
+Les nombres non pairs se trouvent via un `% 2`.
 :::
 
 ## Question 4
