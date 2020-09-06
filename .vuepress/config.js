@@ -40,6 +40,8 @@ module.exports = {
       ["/", "Introduction"],
       { collapsable: false, title: "Aides mémoires", children: [["cheatsheets/git/", "Git"], ["cheatsheets/cordova/", "Cordova"], ["cheatsheets/docker/", "Docker"], ["cheatsheets/vuejs/", "VueJS"]] },
       { collapsable: false, title: "Initiation à Git", children: ["cours/git", "/tp/git_initiation/"] },
+      { collapsable: false, title: "Introduction HTML", children: ["cours/introduction_html"] },
+      { collapsable: false, title: "Introduction JavaScript", children: ["cours/introduction_javascript"] },
       { collapsable: false, title: "Git en groupe + GitLab", children: ["cours/gitlab", "/tp/gitlab/"] },
       { collapsable: false, title: "Organisation du code", children: ["cours/organisations", "/tp/organisation/introduction"] },
       { collapsable: false, title: "Javascript avancé", children: ["cours/javascript_avances", "tp/javascript_avances/introduction"] },
