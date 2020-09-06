@@ -18,7 +18,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - ReactJS
 - Angular
 - Ionic
-- Svelte **
+- Svelte \*\*
 
 ---
 
@@ -30,7 +30,7 @@ Notion importante.
 
 ## Réutilisation
 
---- 
+---
 
 ## Javascript ?
 
@@ -46,12 +46,13 @@ Oui… Mais pas que… Et surtout pas que !
 
 - Librairie client.
 - Application client.
-- Javascript *ou* Typescript.
+- Javascript _ou_ Typescript.
 - Découpage en composant.
 - Réactivité.
 
 ---
 
-## Du JavaScript oui
+## Du JavaScript / Typescript oui
 
-Pas du jQuery… Du JS « avancés »
+Mais pas du jQuery…
+Du « pure » JS. Mais avec des notions « avancés »
