@@ -1,24 +1,24 @@
 module.exports = {
   title: "Cours",
-  description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également l'ESEO), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
+  description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également dans divers cours et interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
   plugins: [
-    "@vuepress/last-updated", 
-    ["vuepress-plugin-code-copy", true], 
-    ['@vuepress/pwa', {serviceWorker: false, updatePopup: false}], 
-    ['@vuepress/google-analytics', {'ga': 'UA-2107503-8'}]
+    "@vuepress/last-updated",
+    ["vuepress-plugin-code-copy", true],
+    ['@vuepress/pwa', { serviceWorker: false, updatePopup: false }],
+    ['@vuepress/google-analytics', { 'ga': 'UA-2107503-8' }]
   ],
   locales: {
     '/': {
       lang: 'fr-FR',
       title: "Cours",
-      description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également l'ESEO), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
+      description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également dans divers cours et interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
     }
   },
   lang: "fr-FR",
   dest: "docs",
   head: [
-		['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-		['link', { rel: 'icon', href: '/icons/icon-72x72.png' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
+    ['link', { rel: 'icon', href: '/icons/icon-72x72.png' }],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
     ['meta', { name: 'theme-color', content: '#3e80af' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
@@ -46,7 +46,7 @@ module.exports = {
       { collapsable: false, title: "Programmation sécurisée avec OWASP", children: ["cours/securite_applications", "cours/introduction_securite", "tp/securite/"] },
       { collapsable: false, title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/application_todo_list", "/tp/laravel/creation_api"] },
       { collapsable: false, title: "VueJS", children: ["cours/vuejs", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs"] },
-      { collapsable: false, title: "VueJS exemple", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"]},
+      { collapsable: false, title: "VueJS exemple", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"] },
       { collapsable: false, title: "Framework Javascript", children: ["cours/framework_javascript"] },
       { collapsable: false, title: "Typescript (À venir)", children: ["cours/typescript", "tp/typescript/vuejs"] },
       { collapsable: false, title: "NodeJS  (À venir)", children: ["cours/nodejs", "/tp/nodejs/api", "/tp/nodejs/firebase"] },
