@@ -87,45 +87,45 @@ npm install firebase leaflet vue2-leaflet --save
 
 ### Configuration de la dépendance carte
 
-Certains plug-ins nécessitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase). Comme vous, je ne connais pas la configuration de l'ensemble des dépendances existantes. Première étape :
+Certains plugins nécessitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase). Comme vous, je ne connais pas la configuration de l'ensemble des dépendances existantes. Première étape :
 
 - [Lire la documentation sur le site de Vue2-Leaflet](https://korigan.github.io/Vue2Leaflet/#/quickstart.md)
 
 Maintenant que nous avons vu comment s'intègre le Leaflet, réfléchissons comment intégrer ça dans notre projet :
 
 - À l'arrache dans le fichier `main.js` ? ✋ => NON
-- Dans un dossier `plug-ins` => 👍 Oui
+- Dans un dossier `plugins` => 👍 Oui
 
 À votre avis pourquoi ?
 
-### Création de la partie plug-in
+### Création de la partie plugin
 
-Créer le fichier `src/plug-ins/vue2-leaflet.js` y mettre dedans :
+Créer le fichier `src/plugins/vue2-leaflet.js` y mettre dedans :
 
 ```js
-import { Icon } from 'leaflet'
+import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 // this part resolve an issue where the markers would not appear
 delete Icon.Default.prototype._getIconUrl;
 
 Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 ```
 
 - D'où vient le code ?
 
-### Déclarer le plug-in
+### Déclarer le plugin
 
 Maintenant que la configuration du « plugin » est effective nous devons le déclarer dans notre fichier `main.js` pour ça rien de compliquer.
 
 Ajouter l'import :
 
 ```js
-import "./plug-ins/vue2-leaflet";
+import "./plugins/vue2-leaflet";
 ```
 
 🤓 Avec les autres imports déjà existants.
@@ -174,7 +174,7 @@ var config = {
   databaseURL: "https://reatlime-maps.firebaseio.com",
   projectId: "reatlime-maps",
   storageBucket: "reatlime-maps.appspot.com",
-  messagingSenderId: "✋✋✋✋✋✋✋✋"
+  messagingSenderId: "✋✋✋✋✋✋✋✋",
 };
 
 export default config;
@@ -197,7 +197,7 @@ Dans l'interface de Firebase activez la Realtime DB.
 
 ## Modification du code pour inclure la configuration Firebase
 
-Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plug-in » dans le dossier `src/plug-ins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant :
+Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plugin » dans le dossier `src/plugins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant :
 
 ```js
 import firebaseConfig from "../config/firebase";
@@ -211,10 +211,10 @@ const db = firebaseApp.database();
 Vue.prototype.$db = db;
 ```
 
-Comme pour leaflet, ajouter un import dans le fichier `main.js` pour référencer notre « configuration de plug-in » :
+Comme pour leaflet, ajouter un import dans le fichier `main.js` pour référencer notre « configuration de plugin » :
 
 ```js
-import "./plug-ins/firebase";
+import "./plugins/firebase";
 ```
 
 ### Questions
@@ -265,16 +265,16 @@ export default {
     return {
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       zoom: 13,
-      center: [47.472092, -0.550589]
+      center: [47.472092, -0.550589],
     };
   },
   components: {
     LMap,
     LTileLayer,
     LMarker,
-    LControl
+    LControl,
   },
-  methods: {}
+  methods: {},
 };
 </script>
 
@@ -308,8 +308,8 @@ import myMap from "./view/map.vue";
 export default {
   name: "app",
   components: {
-    myMap
-  }
+    myMap,
+  },
 };
 </script>
 
@@ -342,21 +342,21 @@ npm run serve
 
 ## Configurer VueFire
 
-Comme pour Vue2-Leaflet et firebase, vuefire nécéssite une déclaration pour être utilisé dans le projet.
+Comme pour Vue2-Leaflet et firebase, VueFire nécéssite une déclaration pour être utilisé dans le projet.
 
 - [Lire la documentation](https://vuefire.vuejs.org/).
-- Créer le fichier dans le dossier `plug-ins`.
+- Créer le fichier dans le dossier `plugins`.
 - Réaliser l'import dans le fichier `main.js`.
 
 <Reveal text="Voir la solution">
 
-`src/plug-ins/vuefire.js`
+`src/plugins/vuefire.js`
 
 ```js
 import Vue from "vue";
-import { rtdbPlugin as VueFire } from 'vuefire'
+import { rtdbPlugin } from "vuefire";
 
-Vue.use(VueFire);
+Vue.use(rtdbPlugin);
 ```
 
 `main.js`
@@ -368,11 +368,15 @@ import "./plugins/vuefire";
 // […]
 ```
 
+::: tip
+Et voilà ! Votre base firestore est accessible !
+:::
+
 </Reveal>
 
 ## Connecter firebase à notre vue
 
-Grâce au plug-in l'intégration de Firebase va être très simplifiée. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grâce au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça, modifiez le fichier `maps.vue` pour ajouter (après name) :
+Grâce au plugin l'intégration de Firebase va être très simplifiée. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grâce au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça, modifiez le fichier `maps.vue` pour ajouter (après name) :
 
 ```js
 firebase() {
@@ -394,6 +398,32 @@ markerList: []
 - À quoi correspond le `/markerList/` ?
 
 Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable de disponible `markerList` celle-ci est synchronisée avec votre base de données temps réel (Firebase RealtimeDB).
+
+## Manipuler la base Firestore
+
+La manipulation de la base firestore va se faire via `this.$firebaseRefs`.
+
+### Par exemple pour ajouter une nouvelle entrée :
+
+```js
+this.$firebaseRefs.markerList.push(/*…*/);
+```
+
+### Modifier une entrée :
+
+```js
+this.$firebaseRefs.markerList[0].update(/*...*/).then(() => {
+  console.log("Marker updated!");
+});
+```
+
+### Supprimer une entrée :
+
+```js
+this.$firebaseRefs.markerList.child(clef).remove();
+```
+
+[Plus de détail ici sur la documentation](https://vuefire.vuejs.org/vuefire/writing-data.html#updates-to-collection-and-documents)
 
 ## Ajouter un marker
 
@@ -443,7 +473,11 @@ Les étapes :
 Le marker est à mettre dans le `l-map`.
 
 ```html
-<l-marker v-for="(marker,i) in markerList" :key="i" :lat-lng="marker"></l-marker>
+<l-marker
+  v-for="(marker,i) in markerList"
+  :key="i"
+  :lat-lng="marker"
+></l-marker>
 ```
 
 </Reveal>
@@ -516,3 +550,13 @@ getUserLocation() {
 ```
 
 </Reveal>
+
+### Amélioration 2 : ajouter Vuetify
+
+Le design de l'application est très simpliste. Et si nous y ajoutions une UI un peu plus moderne avec par exemple Vuetify.
+
+En reprenant le fonctionnement et l'organisation du code précédemment, ajoutez la librairie Vuetify. Les étapes seront les suivantes :
+
+- Ajout de la librairie dans les dépendances.
+- Déclaré la librairie dans « le dossier plugin » en suivant la documentation officielle.
+- Modifier l'interface pour utiliser des composants de Vuetify pour commencer, une [AppBars](https://vuetifyjs.com/en/components/app-bars/#app-bars).
