@@ -6,7 +6,7 @@ Ce document n'est pas un TP, mais une explication de la structure « Android Boi
 
 Ce document vous donnera les clés afin de comprendre le fonctionnement et de vous l'approprier.
 
-## But de code
+## But du code
 
 Le but du code fourni sur Github est de simplifier la mise en place d'une base applicative Android « moderne ». Il ne contient aucun code (presque). Il est donc clonnable / téléchargeable et utilisable tel quel, l'idée étant vraiment d'avoir presque un template d'application réutilisable à volonté.
 
