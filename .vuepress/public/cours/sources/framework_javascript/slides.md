@@ -10,9 +10,15 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## En 2020
+## Et pour vous c'est quoi ?
 
 ---
+
+![Listen](./listen.webp)
+
+---
+
+## En 2020
 
 - VueJS
 - ReactJS
@@ -24,7 +30,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Composants
 
-Notion importante.
+⚠️ Attention important ⚠️
 
 ---
 
@@ -32,7 +38,7 @@ Notion importante.
 
 ---
 
-## Javascript ?
+## JavaScript ?
 
 Oui… Mais pas que… Et surtout pas que !
 
@@ -46,13 +52,13 @@ Oui… Mais pas que… Et surtout pas que !
 
 - Librairie client.
 - Application client.
-- Javascript _ou_ Typescript.
+- JavaScript _ou_ Typescript.
 - Découpage en composant.
 - Réactivité.
 
 ---
 
-## Du JavaScript / Typescript oui
+## Du JavaScript (ou du TypeScript)
 
 Mais pas du jQuery…
 Du « pure » JS. Mais avec des notions « avancés »
