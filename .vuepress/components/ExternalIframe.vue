@@ -2,7 +2,7 @@
   <div>
     <iframe :src="this.src" frameborder="0" ref="iframe" />
     <button @click="requestFullscreen">
-      <img src="/fullscreen.svg" />
+      <img src="/icons/fullscreen.svg" />
     </button>
   </div>
 </template>
