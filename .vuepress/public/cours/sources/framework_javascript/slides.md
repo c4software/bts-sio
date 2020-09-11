@@ -61,10 +61,10 @@ Oui… Mais pas que… Et surtout pas que !
 ## Du JavaScript (ou du TypeScript)
 
 Mais pas du jQuery…
-Du « pure » JS. Mais avec des notions « avancés »
+Du « pure » JS. Mais avec des notions « avancées »
 
 ---
 
-## Avancés ?
+## Avancées ?
 
 ![Ha](./ha.webp)

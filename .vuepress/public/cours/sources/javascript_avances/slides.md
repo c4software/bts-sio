@@ -6,7 +6,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Mais j'aime pas le web moi
+## Mais je n’aime pas le web moi
 
 ---
 
@@ -18,15 +18,15 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Bonne nouvelle ! Ce n'est pas que pour le web
+## Bonne nouvelle ! Ce n'est pas que pour le web.
 
 ---
 
-## JavaScript -> ECMAScript (201X, 2016, 2017, …)
+## JavaScript -> ECMAScript (201X, 2016, 2017 …)
 
 ---
 
-## Votre navigateur vie, évolue
+## Votre navigateur bouge, évolue
 
 ---
 
@@ -45,11 +45,10 @@ Pouvez-vous me dire à quoi ça correspond ?
 ---
 
 ```javascript
-
 var resultat = "";
 
 ajax("http://api/getRandom", (randomValue) => {
-    resultat = randomValue
+  resultat = randomValue;
 });
 
 console.log(resultat);
@@ -81,7 +80,7 @@ Votre navigateur est puissant ! Découvrons quelques-unes des fonctionnalités.
 
 ---
 
-- Fonctions anonymes (λ) / flêchés
+- Fonctions anonymes (λ) / fléchées
 - let / const
 - string template
 - export
@@ -191,9 +190,9 @@ Comme les tableaux, les objets sont maintenant manipulables plus simplement.
 
 ### Rappel
 
-- Le mot clef `new` existe.
+- Le mot-clé `new` existe.
 - Vous pouvez créer des `class`.
-- Vous pouvez créer des `méthods`.
+- Vous pouvez créer des `méthodes`.
 
 ---
 
@@ -213,7 +212,7 @@ Comme les tableaux, les objets sont maintenant manipulables plus simplement.
 
 ---
 
-Une « interface » simple permettant de faire de l'ajax intégrée
+Une « interface » simple permettant de faire de l'Ajax intégrée
 
 ---
 
@@ -237,7 +236,7 @@ Une « interface » simple permettant de faire de l'ajax intégrée
 
 ---
 
-# Hey!  `then`?
+# Hey! `then`?
 
 ![fetch_simple](./img/what.gif)
 
@@ -292,7 +291,7 @@ Appelée dans tous les cas de terminaison.
 
 ### Async / Await
 
- Le but des fonctions async/await est de simplifier l'utilisation synchrone des promesses et d'opérer sur des groupes de promesses. De la même façon que les promesses sont semblables à des callbacks structurés, async/await est semblable à la combinaison des générateurs et des promesses.
+Le but des fonctions async/await est de simplifier l'utilisation synchrone des promesses et d'opérer sur des groupes de promesses. De la même façon que les promesses sont semblables à des callbacks structurés, async/await est semblable à la combinaison des générateurs et des promesses.
 
 ---
 
@@ -300,7 +299,7 @@ Appelée dans tous les cas de terminaison.
 
 Async / Await permet de rendre « synchrone » du code asynchrone.
 
-- Attendre le retour d'une requête ajax avant de continuer.
+- Attendre le retour d'une requête Ajax avant de continuer.
 - À votre avis, quels sont les risques ?
 - Catch <!-- .element: class="fragment" -->
 - Bloquage de l'interface <!-- .element: class="fragment" -->
@@ -319,7 +318,11 @@ Async / Await permet de rendre « synchrone » du code asynchrone.
 
 ---
 
-Mais en 2019, nous avons [Pikapkg](https://pikapkg.com) 🎉
+Mais maintenant… nous avons [Pikapkg](https://pikapkg.com) 🎉
+
+---
+
+Mais également… [Vue Vite](https://github.com/vitejs/vite) 😲
 
 ---
 
