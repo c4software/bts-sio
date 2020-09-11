@@ -36,18 +36,22 @@ iframe {
 }
 
 button {
-  padding: 5px;
   background-color: #22232387;
   color: white;
   cursor: pointer;
   user-select: none;
 
+  background-color: rgba(34, 35, 35, 0.5);
+  color: #fff;
   display: block;
-  font-size: 1.1em;
   border: none;
   border-radius: 5px;
   position: relative;
   top: -52px;
   right: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
 }
 </style>
