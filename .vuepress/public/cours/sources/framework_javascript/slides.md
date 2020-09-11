@@ -62,3 +62,9 @@ Oui… Mais pas que… Et surtout pas que !
 
 Mais pas du jQuery…
 Du « pure » JS. Mais avec des notions « avancés »
+
+---
+
+## Avancés ?
+
+![Ha](./ha.webp)
