@@ -171,10 +171,9 @@ Marquer le commit courant avec un tag :
 git tag <non-du-tag>
 ```
 
-
 ### Merge & Rebase
 
-Fusionner la branche ```<votre-branche>``` avec la master :
+Fusionner la branche `<votre-branche>` avec la master :
 
 ```sh
 git checkout master
@@ -242,7 +241,7 @@ Télécharger les modifications et les fusionner directement dans le HEAD :
 git remote pull <remote> <url>
 ```
 
-Fusionner les modifications de la ```master``` distante sur la branche courante :
+Fusionner les modifications de la `master` distante sur la branche courante :
 
 ```sh
 git pull origin master
@@ -253,7 +252,7 @@ Récupérer toutes les modifications du HEAD dans le dépôt local :
 ```sh
 git pull
 # ou
-git pull origin master
+git pull origin
 ```
 
 Publier les modifications locales sur un dépôt distant :
@@ -284,7 +283,7 @@ Annuler les modifications locales d'un fichier spécifique :
 git checkout HEAD <file>
 ```
 
-Annuler un commit (création d’un commit avec les modifications inverses)  :
+Annuler un commit (création d’un commit avec les modifications inverses) :
 
 ```sh
 git revert <commit>
