@@ -47,7 +47,8 @@ button {
   border: none;
   border-radius: 5px;
   position: relative;
-  top: -52px;
+  top: -50px;
+  margin-bottom: -40px;
   right: -20px;
   display: flex;
   align-items: center;
