@@ -243,6 +243,8 @@ Valider le fonctionnement grâce à la « Console de Développement » de votre 
 
 Ajouter avant la balise `</body>` de l’index.html un nouveau script `main.js`, il contiendra le code nécessaire au fonctionnement de notre site Web.
 
+😅 Vous devez bien évidement créer le fichier `main.js`.
+
 #### Déclarer votre premier composant
 
 Pour déclarer votre premier composant / objet VueJS, c’est simple il suffit de mettre dans le fichier `main.js` le code suivant :
@@ -322,7 +324,7 @@ var app = new Vue({
     console.log("Démarrage TODO-APP");
   },
   beforeMount() {
-    // C’est ici que le traitement doit être fait
+    // Pour l'instant nous allons mettre le code ici
   },
 });
 ```
@@ -369,7 +371,7 @@ Adapter l’exemple précédant pour afficher les tâches comme ils l’étaient
 - Comment gérer le cas du chargement ? (dans le monde réel Internet peut-être lent…)
 - Comment gérer le cas de la liste vide ?
 
-#### Optimisation.
+#### Organisation du code
 
 Déplacer le code actuellement dans `beforeMount` dans une nouvelle méthode appelée `recupererListe` :
 
@@ -403,7 +405,7 @@ Maintenant que la liste est affichée, vous allez pouvoir gérer le cas de l’a
 
 - Créer une méthode JavaScript, réalisant l’appel de l’API.
 
-⚠️ Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, et/ou via [librairie Sweetalert](https://sweetalert.js.org/)) ⚠️
+⚠️ Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, et/ou via [librairie Sweetalert](https://sweetalert.js.org/guides/#cdn)) ⚠️
 
 ```javascript
 var app = new Vue({
@@ -464,8 +466,12 @@ var app = new Vue({
     app.recupererListe();
   },
   methods: {
-    ajout() {},
-    recupererListe() {},
+    ajout() {
+      // Votre code
+    },
+    recupererListe() {
+      // Votre code
+    },
   },
 });
 ```
@@ -515,9 +521,15 @@ var app = new Vue({
     app.recupererListe();
   },
   methods: {
-    ajout() {},
-    recupererListe() {},
-    terminer(id) {},
+    ajout() {
+      // Votre code
+    },
+    recupererListe() {
+      // Votre code
+    },
+    terminer(id) {
+      // Votre code
+    },
   },
 });
 ```
@@ -547,10 +559,18 @@ var app = new Vue({
     app.recupererListe();
   },
   methods: {
-    ajout() {},
-    recupererListe() {},
-    terminer(id) {},
-    supprimer(id) {},
+    ajout() {
+      // Votre code
+    },
+    recupererListe() {
+      // Votre code
+    },
+    terminer(id) {
+      // Votre code
+    },
+    supprimer(id) {
+      // Votre code
+    },
   },
 });
 ```
@@ -588,7 +608,7 @@ var app = new Vue({
   },
   data: {
       taches: [],
-      isShare: navigator.share?true:false
+      isShare: navigator.share ? true : false
   },
   […]
 ```

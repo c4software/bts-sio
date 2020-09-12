@@ -26,7 +26,7 @@ Maintenant que vous savez ce que c’est le MVVM, nous allons attaquer le TP pou
 
 ## Initialisation du projet
 
-Avant de commencer nous allons avoir besoin de plusieurs outils :
+Avant de commencer, nous allons avoir besoin de plusieurs outils :
 
 - NodeJS
 - Vue-cli
@@ -103,7 +103,7 @@ Comme vous avez pu le constater dans votre invite de commande (terminal), vous a
 Et si vous avez les outils sur votre machine il peut également :
 
 - Créer la CSS à partir du SCSS présent dans le .vue
-- Et plein d’autres usages car Webpack c’est un outil qui permet l’assemblage de différents outils
+- Et plein d’autres usages, car Webpack c’est un outil qui permet l’assemblage de différents outils
 
 ## Le code source
 
@@ -202,7 +202,7 @@ Voilà les plug-ins sont maintenant installés, de base ils ne sont pas configur
 L'ensemble du code que vous devez écrire va se trouver dans `src`
 
 - `assets/` : Les images / ressources static.
-- `components/` : Les composants réutilisable.
+- `components/` : Les composants réutilisables.
 - `locales/` : Vos textes rangés par langes.
 - `plug-ins/` : La configuration de vos plug-ins.
 - `views/` : Les pages de votre site.
@@ -217,7 +217,7 @@ L'ensemble du code que vous devez écrire va se trouver dans `src`
 
 Le projet est actuellement non fonctionnel, principalement à cause de Vuetify et Vue Router qui de base configure le projet différemment.
 
-Pour regarder le souci, lancer le projet et testez-le :
+Pour regarder le souci, lancez le projet et testez-le :
 
 ```sh
 npm run serve
@@ -234,11 +234,11 @@ Pour débuter, nous allons remplacer le contenu du fichier `App.vue` pour décla
   <v-app>
     <myToolbar />
 
-    <v-content>
+    <v-main>
       <v-slide-y-transition mode="out-in">
         <router-view />
       </v-slide-y-transition>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -246,7 +246,7 @@ Pour débuter, nous allons remplacer le contenu du fichier `App.vue` pour décla
   import myToolbar from "@/components/MyToolbar";
   export default {
     name: "app",
-    components: { myToolbar }
+    components: { myToolbar },
   };
 </script>
 ```
@@ -318,17 +318,15 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
     },
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ "./views/About.vue")
-    }
-  ]
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/About.vue"),
+    },
+  ],
 });
 ```
 
@@ -338,9 +336,6 @@ Modifier le, et **retirer** tout la partie `/about` :
 {
   path: "/about",
   name: "about",
-  // route level code-splitting
-  // this generates a separate chunk (about.[hash].js) for this route
-  // which is lazy-loaded when the route is visited.
   component: () =>
     import(/* webpackChunkName: "about" */ "./views/About.vue")
 }
@@ -652,7 +647,7 @@ Mais je pense qu’une application n’est jamais vraiment complète sans une no
 - N’oubliez pas également d’ajouter l’élément dans le menu Drawer.
 - Les textes doivent également être mis dans la partie i18n
 
-Pour réaliser la vue Historique nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le `Localstorage`, avant d’allez plus loin je vous propose un peu de lecture sur le localStorage :
+Pour réaliser la vue historique, nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le `Localstorage`, avant d’allez plus loin je vous propose un peu de lecture sur le localStorage :
 
 > La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session du navigateur prend fin — donc quand on ferme le navigateur.
 
