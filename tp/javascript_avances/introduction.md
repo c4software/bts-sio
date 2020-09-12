@@ -134,7 +134,7 @@ Créer une classe pour la liste des `Todos`, puis en utilisant le `chainage` (th
 
 ### Question 12
 
-Via un l'instruction filter, filtrer l'ensemble des Todos qui sont pour l'utilisateur 2 _et_ non completed.
+Via l'instruction `filter`, filtrer l'ensemble des Todos qui sont pour l'utilisateur 2 _et_ non completed.
 
 ```JavaScript
 "userId": 2,

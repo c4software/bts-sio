@@ -33,7 +33,7 @@ La SESSION étant non persistante, dans du vrai code il ne faut en `aucun cas` s
 
 ## Moderniser avec VueJS
 
-Dans ce TP nous allons parcourir les différentes étapes de la migration de l’application (site web) « classique » en version « moderne » à savoir avec VueJS
+Dans ce TP nous allons parcourir les différentes étapes de la migration de l’application (site web) « classique » en version « moderne » à savoir avec VueJS.
 
 ## Création des API
 
@@ -84,7 +84,7 @@ C’est à vous, réaliser votre première API.
 
 ### Comment procéder pour les prochaines API
 
-✋ En tant que développeur vous devez être malin (et fainéants…). Pour écrire les autres API, ne tentez pas de réinventer la poudre, utiliser les exemples fournis dans le code actuel (dans le dossier `actions` par exemple).
+✋ En tant que développeur vous devez être malin (et fainéants…). Pour écrire les autres API, ne tentez pas de réinventer la roue, utiliser les exemples fournis dans le code actuel (dans le dossier `actions` par exemple).
 
 ### L’API de création: creation.php
 
@@ -210,11 +210,11 @@ Pour réaliser la suite du TP, nous allons avoir besoin des ressources suivantes
 
 ### Création de la structure de « futur » projet
 
-Maintenant que nous avons les API, nous allons pouvoir créer la structure de la « V2 ». La suite du TP va détailler le processus, mais voilà le rendu du projet que vous allez obtenir:
+Maintenant que nous avons les API, nous allons pouvoir créer la structure de la « V2 ». La suite du TP va détailler le processus, mais voilà le rendu du projet que vous allez obtenir :
 
 ![Structure](./ressources/projet_migration.png)
 
-Vous pouvez dès à présent déplacer les différents fichiers, pour obtenir la même chose (surtout pour le dossier `public`)
+Vous pouvez dès à présent déplacer les différents fichiers, pour obtenir la même chose (surtout pour le dossier `public`).
 
 ### Conversion du template existant
 
@@ -262,7 +262,7 @@ var app = new Vue({
 
 ### Migration des fonctionnalités
 
-Maintenant que nous avons notre base, nous allons pouvoir convertir l’application pour cela nous allons procéder par étape, chaque étape est directement liée aux différentes API que vous avez pu précédemment écrite.
+Maintenant que nous avons notre base, nous allons pouvoir convertir l’application. Pour cela nous allons procéder par étape, chaque étape est directement liée aux différentes API que vous avez pu précédemment écrire.
 
 L’ensemble de l’application va devenir « asynchrone », vous allez vite vous rendre compte que la migration va nécessiter beaucoup d’Ajax. Pour faire nos appels, nous utiliserons l’API « Fetch », celle-ci est intégrée dans l’ensemble des navigateurs récents, le bon réflexe est quand même d’aller voir le support de Fetch sur ([Can i use](https://caniuse.com/#search=fetch)).
 
