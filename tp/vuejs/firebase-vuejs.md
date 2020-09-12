@@ -1,10 +1,10 @@
 # Firebase + Vuejs
 
-Dans ce TP nous allons découvrir Firebase RealtimeDB (base de données temps réel). Nous allons coupler cette base de données temps réel à la puissance de VueJS pour obtenir en un rien de temps une WebApplication surpuissante.
+Dans ce TP nous allons découvrir Firebase RealtimeDB (base de données temps réel). Nous allons coupler cette base de données temps réel à la puissance de VueJS pour obtenir en un rien de temps une application web surpuissante.
 
 ## Introduction
 
-Dans ce TP nous allons mettre en place une carte du monde qui affiche en temps réel l'emplacement des utilisateurs présent sur votre site.
+Nous allons mettre en place une carte du monde qui affiche en temps réel l'emplacement des utilisateurs qui interagissent avec la carte. Mais nous pourrions également afficher les personnes présentes sur votre site.
 
 ![Carte Marker fin](./ressources/carte_marker.png)
 
@@ -142,13 +142,13 @@ Le gros avantage de NPM (et NodeJS) c'est la quantité de librairies disponibles
 
 Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre pas directement avec le « state » d'un composant VueJS! Mais grâce à d'excellents développeurs c'est maintenant possible et très simplement. Pour ça nous allons utiliser :
 
-- [Vuefire](https://github.com/vuejs/vuefire/tree/master)
+- [Vuefire](https://vuefire.vuejs.org/)
 
 ```bash
 npm install vuefire --save
 ```
 
-⚠️ Dans une prochaine étape nous allons configurer vuefire. Pour l'instant le package est disponible, mais non actif.
+⚠️ Dans une prochaine étape, nous allons configurer Vuefire. Pour l'instant le package est disponible, mais non actif.
 
 🤓 Je vous invite quand même à aller voir [la documentation](https://github.com/vuejs/vuefire/tree/v1) de VueFire pour voir de quoi il en retourne !
 
@@ -374,16 +374,14 @@ Et voilà ! Votre base firestore est accessible !
 
 </Reveal>
 
-## Connecter firebase à notre vue
+## Connecter Firebase à notre vue
 
 Grâce au plugin l'intégration de Firebase va être très simplifiée. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grâce au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça, modifiez le fichier `maps.vue` pour ajouter (après name) :
 
 ```js
-firebase() {
-    return {
-      markerList: this.$db.ref("/markerList/")
-    };
-  },
+firestore: {
+  markerList: this.$db.ref("/markerList/")
+},
 ```
 
 Ajouter également dans les `data` de votre composant une variable nommée `markerList` avec comme valeurs `[]`.
@@ -449,7 +447,7 @@ addMarker(position) {
 
 ## Tester
 
-- Ouvrer la [console de Firebase](https://firebase.google.com) rendez-vous dans la partie `Database`.
+- Ouvrer la [console de Firebase](https://console.firebase.google.com/) rendez-vous dans la partie `Database`.
 - Lancer votre projet local `npm run serve`.
 - Cliquer sur la carte.
 - Que constatez-vous ?
@@ -551,7 +549,7 @@ getUserLocation() {
 
 </Reveal>
 
-### Amélioration 2 : ajouter Vuetify
+### Amélioration 2 : Ajouter Vuetify
 
 Le design de l'application est très simpliste. Et si nous y ajoutions une UI un peu plus moderne avec par exemple Vuetify.
 
@@ -560,3 +558,10 @@ En reprenant le fonctionnement et l'organisation du code précédemment, ajoutez
 - Ajout de la librairie dans les dépendances.
 - Déclaré la librairie dans « le dossier plugin » en suivant la documentation officielle.
 - Modifier l'interface pour utiliser des composants de Vuetify pour commencer, une [AppBars](https://vuetifyjs.com/en/components/app-bars/#app-bars).
+
+### Amélioration 3 : Personalisation du Marker
+
+La carte est basique… beaucoup trop ! Et si nous placions des markers différents en fonction du navigateur de l'utilisateur. Je vous laisse réfléchir à comment nous pouvons faire ça :
+
+- Dans le code.
+- Dans la base.
