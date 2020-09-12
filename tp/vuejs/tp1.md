@@ -567,20 +567,7 @@ Quelques pistes pour aller plus loin dans le code :
 
 Ajout des confirmations avant les actions « marquer comme terminé » et l’action suppression.
 
-### Ajouter des règles de réécriture
-
-Ajouter des règles de réécriture via un fichier .htaccess
-
-Le fichier `.htaccess` exemple :
-
-```apacheconf
-RewriteEngine On
-RewriteRule ^api/ajouter$ api/ajouter.php [L,QSA]
-```
-
-Une fois les règles de réécriture faites, modifier les différents chemins (appel d’API) dans votre fichier JavaScript.
-
-### Partager les TODOS au monde !
+### Utiliser l'API de partage
 
 Depuis quelques mois Chrom(e|ium) propose une nouvelle API nommée « Web Share Api », Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités natives du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
 
@@ -627,3 +614,16 @@ methods:{
 ```
 
 C’est à vous !
+
+### Ajouter des règles de réécriture
+
+Ajouter des règles de réécriture via un fichier .htaccess
+
+Le fichier `.htaccess` exemple :
+
+```apacheconf
+RewriteEngine On
+RewriteRule ^api/ajouter$ api/ajouter.php [L,QSA]
+```
+
+Une fois les règles de réécriture faites, modifier les différents chemins (appel d’API) dans votre fichier JavaScript.
