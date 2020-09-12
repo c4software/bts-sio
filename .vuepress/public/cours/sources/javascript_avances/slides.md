@@ -212,7 +212,7 @@ Comme les tableaux, les objets sont maintenant manipulables plus simplement.
 
 ---
 
-Une « interface » simple permettant de faire de l'Ajax intégrée
+Une « librairie / fonction / méthode » simple permettant de faire de l'Ajax intégrée
 
 ---
 
@@ -258,13 +258,13 @@ Pour faire « simple », ça remplace les `callback` et évite les `callback hel
 
 ### then
 
-Appelé en cas de réussite.
+Éxécuté en cas de réussite.
 
 ---
 
 ### catch
 
-appelé en cas d'échec.
+Éxécuté en cas d'échec (Erreur, Throw, …).
 
 ---
 
@@ -273,10 +273,11 @@ appelé en cas d'échec.
 Promise.all() outil de composition qui permet de mener des opérations asynchrones en parallèle.
 
 ```javascript
-Promise.all([promesse1(), promesse2(), promesse3()])
-.then(([resultat1, resultat2, resultat3] => {
-    // Code
-})
+Promise
+    .all([promesse1(), promesse2(), promesse3()])
+    .then(([resultat1, resultat2, resultat3] => {
+        // Code
+    });
 ```
 
 ---
