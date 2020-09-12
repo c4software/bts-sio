@@ -72,7 +72,7 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 
 ### Repose sur le HTML5
 
-Attention au support des Navigateurs
+Attention au support des navigateurs
 
 - [Can I Use : Connaitre le support d’une fonctionnalitée](https://caniuse.com)
 - [MDM Webdoc](https://developer.mozilla.org/)
@@ -171,9 +171,9 @@ var vm = new Vue({
 var vm = new Vue({
   el: "#demo",
   data: { demo: 1 },
-  created: function() {
+  created: function () {
     console.log("demo est: " + this.a);
-  }
+  },
 });
 ```
 
@@ -254,7 +254,7 @@ Les directives sont des attributs html propre à VueJS
 items = [
   { message: "Message 1" },
   { message: "Message 2" },
-  { message: "Message 3" }
+  { message: "Message 3" },
 ];
 ```
 
@@ -282,7 +282,7 @@ items = [
 
 ## Etc…
 
-VueJS c'est simple et très complet. La suite en TP et sur [le site de VueJS](https://vuejs.org/v2/guide/)
+VueJS c'est simple et très complet. La suite en pratique et sur [le site de VueJS](https://vuejs.org/v2/guide/)
 
 ---
 
@@ -349,13 +349,11 @@ On est vraiment loin d’une page Web dans la conception
 Un composant ce n'est pas que du javascript.
 
 ```html
-<template>
-  […]
-</template>
+<template> […] </template>
 
 <script>
   export default {
-    name: "exemple"
+    name: "exemple",
   };
 </script>
 
@@ -434,7 +432,7 @@ C'est deux éléments important
 ```js
 var vm = new Vue({
   el: "#demo",
-  data: { demo: 1 }
+  data: { demo: 1 },
 });
 ```
 
@@ -442,7 +440,7 @@ var vm = new Vue({
 export default {
   data: () => {
     return { demo: 1 };
-  }
+  },
 };
 ```
 
@@ -469,7 +467,7 @@ export default {
 
 ---
 
-### Comment fait-on
+### Comment fait-on ?
 
 ---
 
@@ -557,7 +555,9 @@ $ vue add vuex
 
 ### Démo Dev Tools
 
-![Dev tools](./img/devtools.png) [Démo](https://rawgit.com/c4software/bts/master/demo/vuejs/demo1/index.html)
+![Dev tools](./img/devtools.png)
+
+[Démo](https://cours.brosseau.ovh/cours/demo/vuejs/demo1.html)
 
 ---
 

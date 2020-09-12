@@ -1,4 +1,4 @@
-# Les framework JavaScript
+# Framework JavaScript
 
 ## État des lieux
 

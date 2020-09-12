@@ -22,7 +22,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## JavaScript -> ECMAScript (201X, 2016, 2017 …)
+## JavaScript -> ECMAScript (201X, 2017, 2020, …)
 
 ---
 
@@ -296,7 +296,7 @@ Le but des fonctions async/await est de simplifier l'utilisation synchrone des p
 
 ---
 
-### Simplification
+### Simplifier… Mais…
 
 Async / Await permet de rendre « synchrone » du code asynchrone.
 
