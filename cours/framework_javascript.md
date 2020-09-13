@@ -1,4 +1,4 @@
-# Framework JavaScript
+# Slides Framework JavaScript
 
 ## Support
 

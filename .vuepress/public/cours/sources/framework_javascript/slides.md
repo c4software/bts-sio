@@ -18,19 +18,34 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## En 2020
+## Pour moi
+
+- Règle et bonne pratique partagées (dossiers, organisation …) <!-- .element: class="fragment" -->
+- Réutilisable <!-- .element: class="fragment" -->
+- Documenté <!-- .element: class="fragment" -->
+- Composable / Étendable <!-- .element: class="fragment" -->
+- Open Source 🤔 <!-- .element: class="fragment" -->
+
+---
+
+## Les frameworks en 2020
+
+Vous en connaissez ?
+
+---
 
 - VueJS
 - ReactJS
 - Angular
-- Ionic
 - Svelte \*\*
+- Ionic
 
 ---
 
-## Composants
+## Leurs points communs ?
 
-⚠️ Attention important ⚠️
+- Fonctionnement en composants (⚠️ attention important ⚠️)
+- « Réactivité » / « Observations temps réel »
 
 ---
 
@@ -51,7 +66,7 @@ Oui… Mais pas que… Et surtout pas que !
 ## Zoom sur VueJS
 
 - Librairie client.
-- Application client.
+- _ou_ Application client.
 - JavaScript _ou_ Typescript.
 - Découpage en composant.
 - Réactivité.

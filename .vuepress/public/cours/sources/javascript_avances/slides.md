@@ -18,6 +18,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+![spacex](./img/spacex.jpg)
+
+---
+
 ## Bonne nouvelle ! Ce n'est pas que pour le web.
 
 ---
@@ -30,7 +34,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-Beaucoup de différences, mais attention au support
+Beaucoup de différences… Donc attention au support !
 
 ---
 
@@ -60,7 +64,7 @@ console.log(resultat);
 
 ## Les nouveautés
 
-- Votre navigateur / la console
+- Votre navigateur / la console / `les dev tools`
 - Global
 - Les Arrays (Tableau)
 - Les Objets
