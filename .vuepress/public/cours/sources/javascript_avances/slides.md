@@ -18,11 +18,11 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-![spacex](./img/spacex.jpg)
+## Bonne nouvelle ! Ce n'est pas que pour le web.
 
 ---
 
-## Bonne nouvelle ! Ce n'est pas que pour le web.
+![spacex](./img/spacex.jpg)
 
 ---
 
