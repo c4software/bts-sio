@@ -323,7 +323,7 @@ Async / Await permet de rendre « synchrone » du code asynchrone.
 
 ---
 
-Mais maintenant… nous avons [Pikapkg](https://pikapkg.com) 🎉
+Mais maintenant… nous avons [Snowpack](https://www.snowpack.dev/) 🎉
 
 ---
 
