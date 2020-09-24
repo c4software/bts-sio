@@ -24,7 +24,7 @@
     </div>
 
     <script>
-      var App = {
+      var App = new Vue({
         el: "#app",
         data() {
           return {
@@ -43,9 +43,7 @@
             this.nbClick = 0;
           },
         },
-      };
-
-      Vue.createApp(App).mount("#app");
+      });
     </script>
   </body>
 </html>
