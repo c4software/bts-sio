@@ -98,8 +98,8 @@ Faire des PWA simplement (il y en a d'autres bien évidement, en connaissez-vous
 - Création : **2013**
 - Première version « stable » **Fevrier 2014**
 - **V1.0** Octobre 2015
-- Actuellement version **2**
-- Très prochainement la version **3**
+- Actuellement en version **3**. (tout récent)
+- La version **2** est toujours très présente.
 
 ---
 
@@ -181,7 +181,7 @@ var vm = new Vue({
 
 ## Un « vrai » exemple
 
-[Démo](https://rawgit.com/c4software/bts/master/demo/vuejs/demo1/index.html)
+[Démo](https://cours.brosseau.ovh/cours/demo/vuejs/demo1.html)
 
 ---
 
