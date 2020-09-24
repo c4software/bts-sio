@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Démo VueJS 1</title>
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
       #app {
         text-align: center;
@@ -24,11 +24,13 @@
     </div>
 
     <script>
-      var app = new Vue({
+      var App = {
         el: "#app",
-        data: {
-          message: "Hello Vue!",
-          nbClick: 0,
+        data() {
+          return {
+            message: "Hello Vue!",
+            nbClick: 0,
+          };
         },
         methods: {
           reverseTitle: function () {
@@ -41,7 +43,9 @@
             this.nbClick = 0;
           },
         },
-      });
+      };
+
+      Vue.createApp(App).mount("#app");
     </script>
   </body>
 </html>
