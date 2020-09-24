@@ -98,8 +98,8 @@ Faire des PWA simplement (il y en a d'autres bien évidement, en connaissez-vous
 - Création : **2013**
 - Première version « stable » **Fevrier 2014**
 - **V1.0** Octobre 2015
-- Actuellement en version **3**. (tout récent)
-- La version **2** est toujours très présente.
+- Actuellement en version **3**. (Nouveau)
+- La version **2** est toujours très présente (comme sur les CDN).
 
 ---
 
@@ -170,7 +170,9 @@ var vm = new Vue({
 ```js
 var vm = new Vue({
   el: "#demo",
-  data: { demo: 1 },
+  data() {
+    return { demo: 1 };
+  },
   created: function () {
     console.log("demo est: " + this.a);
   },
@@ -205,7 +207,9 @@ Les directives sont des attributs html propre à VueJS
 ```js
     var vm = new Vue({
         el: "#demo"
-        data: { compteur: 0 },
+        data(){
+          return { compteur: 0 }
+        },
         methods: {
             message: function(message){
                 alert(message)
@@ -432,7 +436,6 @@ C'est deux éléments important
 ```js
 var vm = new Vue({
   el: "#demo",
-  data: { demo: 1 },
 });
 ```
 
