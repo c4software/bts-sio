@@ -98,8 +98,8 @@ Faire des PWA simplement (il y en a d'autres bien évidement, en connaissez-vous
 - Création : **2013**
 - Première version « stable » **Fevrier 2014**
 - **V1.0** Octobre 2015
-- Actuellement en version **3**. (Nouveau)
-- La version **2** est toujours très présente (comme sur les CDN).
+- La version **3** arrive. Stable mais reste en version `@next`.
+- La version **2** toujours distribué sur les CDN.
 
 ---
 
