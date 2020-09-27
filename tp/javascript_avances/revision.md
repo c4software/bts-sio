@@ -13,7 +13,7 @@ console.log("Bonjour " + valentin + ", ceci est la première question.");
 
 Avec Fetch, appeler le lien `https://jsonplaceholder.typicode.com/todos/` et afficher le résultat.
 
-::: tips
+::: tip
 Vous devez utiliser Fetch.
 :::
 
@@ -53,7 +53,7 @@ let objet = {
 };
 ```
 
-::: tips
+::: tip
 Vous devez utiliser `Object.keys(…)`.
 :::
 
@@ -61,6 +61,6 @@ Vous devez utiliser `Object.keys(…)`.
 
 Même question, mais cette fois-ci afficher l'ensemble des valeurs.
 
-::: tips
+::: tip
 Vous devez utiliser `Object.values(…)`.
 :::
