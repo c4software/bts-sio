@@ -15,5 +15,6 @@
 ## TP
 
 - [JavaScript Avancé − Prise en main](/tp/javascript_avances/introduction.md)
+- [JavaScript Avancé − Questions complémentaires](/tp/javascript_avances/revision.md)
 - [VueJS - Moderniser une application](/tp/vuejs/tp1.md)
 - [Firebase + VueJS](/tp/vuejs/firebase-vuejs.md)
