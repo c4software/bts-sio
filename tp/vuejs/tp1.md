@@ -337,7 +337,7 @@ fetch("api/liste.php", { method: "GET", credentials: "same-origin" })
     return response.json();
   })
   .then((response) => {
-    app.taches = response;
+    this.taches = response;
   })
   .catch((error) => {
     console.log("Récupération impossible: " + error.message);
@@ -394,7 +394,7 @@ var app = new Vue({
     console.log("Démarrage TODO-APP");
   },
   beforeMount() {
-    app.recupererListe();
+    this.recupererListe();
   },
 });
 ```
@@ -438,7 +438,7 @@ fetch("api/creation.php", {
   })
   .then((response) => {
     if (response.success) {
-      app.recupererListe();
+      this.recupererListe();
     } else {
       // Gérer le cas d'erreur. Par exemple, afficher une Sweetalert pour le client.
     }
@@ -463,7 +463,7 @@ var app = new Vue({
     taches: [],
   },
   beforeMount() {
-    app.recupererListe();
+    this.recupererListe();
   },
   methods: {
     ajout() {
@@ -479,7 +479,7 @@ var app = new Vue({
 - Appel de votre code dans le template. Maintenant que votre code est prêt, vous allez pouvoir l’appeler depuis votre template. Pour faire ça, vous allez utiliser [la gestion des évènements de VueJS](https://vuejs.org/v2/guide/events.html) Exemple :
 
 ```html
-<form v-on:submit.prevent="ajout()"></form>
+<form @submit.prevent="ajout()"></form>
 ```
 
 - Tester votre code.
@@ -518,7 +518,7 @@ var app = new Vue({
     taches: [],
   },
   beforeMount() {
-    app.recupererListe();
+    this.recupererListe();
   },
   methods: {
     ajout() {
@@ -556,7 +556,7 @@ var app = new Vue({
     taches: [],
   },
   beforeMount() {
-    app.recupererListe();
+    this.recupererListe();
   },
   methods: {
     ajout() {
