@@ -349,9 +349,9 @@ fetch("api/liste.php", { method: "GET", credentials: "same-origin" })
 ```javascript
 var app = new Vue({
   el: '.container',
-  data: {
-      taches: []
-  }
+  data() {
+    return { taches: [] }
+  },
   […]
 ```
 
