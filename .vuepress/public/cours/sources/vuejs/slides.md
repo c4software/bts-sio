@@ -147,6 +147,8 @@ Et pas ReactJS ou Angular…
 
 ![Flow](./img/flow.png)
 
+---
+
 ![Fonctionnement](./img/fonctionnement.png)
 
 ---
@@ -167,14 +169,16 @@ var vm = new Vue({
 
 [![Cycle de vie](./img/component-lifecycle.png)](./img/component-lifecycle.png)
 
+---
+
 ```js
 var vm = new Vue({
   el: "#demo",
   data() {
-    return { demo: 1 };
+    return { compteur: 1 };
   },
-  created: function () {
-    console.log("demo est: " + this.a);
+  created() {
+    console.log("Le compteur est : " + this.compteur);
   },
 });
 ```
@@ -187,7 +191,7 @@ var vm = new Vue({
 
 ---
 
-### Les directives
+### Les directives (Dans le template)
 
 Les directives sont des attributs html propre à VueJS
 
@@ -202,6 +206,36 @@ Les directives sont des attributs html propre à VueJS
 
 ---
 
+### Les méthodes
+
+Code utilisable dans votre objets. « Votre code », accessible par :
+
+```js
+this.message();
+```
+
+---
+
+### Les « Watchers »
+
+Observation des « Data », pour réagir en code aux modifications de l'état de votre objet.
+
+```js
+var vm = new Vue({
+  el: "#demo",
+  data() {
+    return { compteur: 1 };
+  },
+  watch: {
+    compteur() {
+      console.log(`La valeur est maintenant de ${this.compteur}`);
+    },
+  },
+});
+```
+
+---
+
 ### Gestion des évènements
 
 ```js
@@ -211,7 +245,7 @@ Les directives sont des attributs html propre à VueJS
           return { compteur: 0 }
         },
         methods: {
-            message: function(message){
+            message(message){
                 alert(message)
             }
         }
@@ -244,13 +278,13 @@ Les directives sont des attributs html propre à VueJS
 
 ```html
 <ul>
-  <li v-for="(items, index) in items">items.message</li>
+  <li v-for="(item, index) in items">{{item.message}}</li>
 </ul>
 ```
 
 ---
 
-### À votre avis comment doit-être la structure da la données
+### À votre avis comment doit-être la structure da la données ?
 
 ---
 
