@@ -412,6 +412,7 @@ var app = new Vue({
   […]
   methods: {
     ajout() {
+      // Pourquoi pas une variable dans « data », tout simplement pour simplifier « le TP ».
       var contenu = document.getElementById("texte").value;
       if(contenu == ""){
         swal("Oops","Vous devez spécifier du texte…" , "error" );
