@@ -584,6 +584,15 @@ Comme vous l’avez certainement constaté, les deux dernières actions sont tr�
 
 Quelques pistes pour aller plus loin dans le code :
 
+### Mettre en Place les « alertes »
+
+Vous n'avez certainement pas mis les messages en cas « d'erreur » :
+
+- Pas de texte et validation du formulaire.
+- Erreur de récupération des API.
+
+Pour ça vous pouvez utiliser [librairie Sweetalert](https://sweetalert.js.org/guides/#cdn).
+
 ### Ajouter des confirmations
 
 Ajout des confirmations avant les actions « marquer comme terminé » et l’action suppression.
