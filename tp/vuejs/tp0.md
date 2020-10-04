@@ -8,7 +8,7 @@ Ajouter VueJS dans un projet est aussi simple que d'ajouter une librairie. Premi
 
 ::: tip
 Si vous utilisez Visual Studio Code, vous pouvez faire html:5<kbd>Tab</kbd> une structure HTML sera automatiquement écrite.
-::
+:::
 
 ```html
 <!DOCTYPE html>
