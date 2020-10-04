@@ -584,12 +584,12 @@ Comme vous l’avez certainement constaté, les deux dernières actions sont tr�
 
 Quelques pistes pour aller plus loin dans le code :
 
-### Mettre en Place les « alertes »
+### Mettre en place des « alertes »
 
-Vous n'avez certainement pas mis les messages en cas « d'erreur » :
+Vous n'avez certainement pas mis les messages en cas « d'erreur » comme indiqué aux différentes étapes, comme par exemple :
 
-- Pas de texte et validation du formulaire.
-- Erreur de récupération des API.
+- En cas d'absence de texte au moment de la validation du formulaire.
+- En cas d'erreur de récupération des TODO par l'API.
 
 Pour ça vous pouvez utiliser [librairie Sweetalert](https://sweetalert.js.org/guides/#cdn).
 

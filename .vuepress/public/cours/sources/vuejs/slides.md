@@ -161,8 +161,10 @@ var vm = new Vue({
 });
 ```
 
+---
+
 - Constructeur de l’objet
-- Propriétés et méthodes
+- Propriétés et méthodes (mounted, et _VOS_ méthodes)
 - Cycle de vie
 
 ---
@@ -177,7 +179,7 @@ var vm = new Vue({
   data() {
     return { compteur: 1 };
   },
-  created() {
+  mounted() {
     console.log("Le compteur est : " + this.compteur);
   },
 });
@@ -208,7 +210,23 @@ Les directives sont des attributs html propre à VueJS
 
 ### Les méthodes
 
-Code utilisable dans votre objets. « Votre code », accessible par :
+Code utilisable dans votre objets. « Votre code », accessible via le `this` :
+
+```js
+var vm = new Vue({
+  el: "#demo",
+  data() {
+    return { compteur: 1 };
+  },
+  methods: {
+    message() {
+      alert(`La valeur du compteur est ${this.compteur}`);
+    },
+  },
+});
+```
+
+---
 
 ```js
 this.message();
@@ -251,6 +269,8 @@ var vm = new Vue({
         }
     });
 ```
+
+---
 
 ```html
 <div id="demo">
