@@ -369,7 +369,7 @@ import "./plugins/vuefire";
 ```
 
 ::: tip
-Et voilà ! Votre base firestore est accessible !
+Et voilà ! Votre base RealtimeDB est accessible !
 :::
 
 </Reveal>
@@ -379,15 +379,15 @@ Et voilà ! Votre base firestore est accessible !
 Grâce au plugin l'intégration de Firebase va être très simplifiée. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grâce au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça, modifiez le fichier `maps.vue` pour ajouter (après name) :
 
 ```js
-firestore: {
+firebase: {
   markerList: this.$db.ref("/markerList/")
 },
 ```
 
 Ajouter également dans les `data` de votre composant une variable nommée `markerList` avec comme valeurs `[]`.
 
-```
-markerList: []
+```js
+markerList: [];
 ```
 
 ### Questions :
@@ -397,9 +397,9 @@ markerList: []
 
 Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable de disponible `markerList` celle-ci est synchronisée avec votre base de données temps réel (Firebase RealtimeDB).
 
-## Manipuler la base Firestore
+## Manipuler la base RealtimeDB
 
-La manipulation de la base firestore va se faire via `this.$firebaseRefs`.
+La manipulation de la base RealtimeDB va se faire via `this.$firebaseRefs`.
 
 ### Par exemple pour ajouter une nouvelle entrée :
 
@@ -510,6 +510,16 @@ removeMarker(markerKey) {
 
 Accéder à plusieurs au même projet (via votre IP) pour tester la synchronisation.
 
+### Ajouter Vuetify
+
+Le design de l'application est très simpliste. Et si nous y ajoutions une UI un peu plus moderne avec par exemple Vuetify.
+
+En reprenant le fonctionnement et l'organisation du code précédemment, ajoutez la librairie Vuetify. Les étapes seront les suivantes :
+
+- Ajout de la librairie dans les dépendances.
+- Déclaré la librairie dans « le dossier plugin » en suivant la documentation officielle.
+- Modifier l'interface pour utiliser des composants de Vuetify pour commencer, une [AppBars](https://vuetifyjs.com/en/components/app-bars/#app-bars).
+
 ## Amélioration 1 : centrer la carte sur votre position
 
 Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notre carte. Actuellement la carte est centrée sur Angers… C'est pratique… Si on se trouve à Angers… dans tous les autres cas, ce n’est pas forcément adapté. Nous allons donc utiliser l'API `geolocation` de notre navigateur.
@@ -534,30 +544,20 @@ methods :
 
 ```js
 getUserLocation() {
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          position => {
-            this.center = [position.coords.latitude, position.coords.longitude];
-          },
-          error => {
-            console.error(error);
-          }
-        );
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.center = [position.coords.latitude, position.coords.longitude];
+      },
+      error => {
+        console.error(error);
       }
-    }
+    );
+  }
+}
 ```
 
 </Reveal>
-
-### Amélioration 2 : Ajouter Vuetify
-
-Le design de l'application est très simpliste. Et si nous y ajoutions une UI un peu plus moderne avec par exemple Vuetify.
-
-En reprenant le fonctionnement et l'organisation du code précédemment, ajoutez la librairie Vuetify. Les étapes seront les suivantes :
-
-- Ajout de la librairie dans les dépendances.
-- Déclaré la librairie dans « le dossier plugin » en suivant la documentation officielle.
-- Modifier l'interface pour utiliser des composants de Vuetify pour commencer, une [AppBars](https://vuetifyjs.com/en/components/app-bars/#app-bars).
 
 ### Amélioration 3 : Personalisation du Marker
 
