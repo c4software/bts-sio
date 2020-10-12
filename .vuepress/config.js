@@ -45,7 +45,7 @@ module.exports = {
       { collapsable: false, title: "Git en groupe + GitLab", children: ["cours/gitlab", "/tp/gitlab/"] },
       { collapsable: false, title: "Organisation du code", children: ["cours/organisations", "/tp/organisation/introduction"] },
       { collapsable: false, title: "Javascript avancé", children: ["cours/javascript_avances", "tp/javascript_avances/introduction", "tp/javascript_avances/revision"] },
-      { collapsable: false, title: "Framework Javascript", children: ["cours/framework_javascript", "/tp/javascript_avances/introduction.md", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1.md", "/tp/vuejs/firebase-vuejs.md"] },
+      { collapsable: false, title: "Framework Javascript", children: ["cours/framework_javascript", "/tp/javascript_avances/introduction.md", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1.md", "/tp/vuejs/vuetify-vuejs.md", "/tp/vuejs/firebase-vuejs.md"] },
       { collapsable: false, title: "Programmation sécurisée avec OWASP", children: ["cours/securite_applications", "cours/introduction_securite", "tp/securite/"] },
       { collapsable: false, title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/application_todo_list", "/tp/laravel/creation_api"] },
       { collapsable: false, title: "VueJS", children: ["cours/vuejs", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs"] },
