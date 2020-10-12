@@ -561,9 +561,25 @@ getUserLocation() {
 
 </Reveal>
 
-### Amélioration 1 : Personalisation du Marker
+### Intégrer Bootsrap
+
+En utilisant la documentation fournie sur le site de [Vue-Bootsrap](https://bootstrap-vue.org/docs)
+
+Modifier l'affichage du `button` précédemment ajouté pour lui donner un style plus propre.
+
+### Ajouter une confirmation
+
+Actuellement la suppression d'un Marker est faite sans confirmation. En utilisant le composant [Dialog de VueBootsrap](https://bootstrap-vue.org/docs/components/modal#confirm-message-box) ajoutez une confirmation de suppression.
+
+```js
+this.$bvModal.msgBoxConfirm("Are you sure?").then((confirmation) => {
+  // Confirmation peut-être true ou false en fonction du choix de l'utilisateur.
+});
+```
+
+### Amélioration 2 : Personalisation du Marker
 
 La carte est basique… beaucoup trop ! Et si nous placions des markers différents en fonction du navigateur de l'utilisateur. Je vous laisse réfléchir à comment nous pouvons faire ça :
 
-- Dans le code.
-- Dans la base.
+- À la fois dans le code.
+- À la fois dans la base de données.
