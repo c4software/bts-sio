@@ -49,8 +49,6 @@ vue create firebase-vuejs
 
 Choisir l'option « Default ».
 
-⚠️ Le projet est créé dans le dossier courant. Veillez à saisir la commande dans un dossier vide.
-
 🤓 git est déjà initialisé, vous pouvez en profiter pour pusher votre code sur Github / Gitlab.
 
 ### Questions
@@ -299,7 +297,9 @@ Modifier le `App.vue` par :
 
 ```vue
 <template>
-  <myMap />
+  <div class="container">
+    <myMap />
+  </div>
 </template>
 
 <script>
@@ -315,7 +315,8 @@ export default {
 
 <style>
 html,
-body {
+body,
+#container {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -399,9 +400,9 @@ Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable 
 
 ## Manipuler la base RealtimeDB
 
-La manipulation de la base RealtimeDB va se faire via `this.$firebaseRefs`.
+La manipulation de la base RealtimeDB va se faire via l'objet `this.$firebaseRefs`. Voilà l'ensemble des actions possible :
 
-### Par exemple pour ajouter une nouvelle entrée :
+### Ajouter une nouvelle entrée :
 
 ```js
 this.$firebaseRefs.markerList.push(/*…*/);
@@ -415,11 +416,22 @@ this.$firebaseRefs.markerList[0].update(/*...*/).then(() => {
 });
 ```
 
-### Supprimer une entrée :
+::: tip
+
+- `0` étant l'index de l'élément à modifier.
+- `/* ... */` étant le nouveau contenu, par exemple `[0, 0]`
+
+:::
+
+### Supprimer un élément :
 
 ```js
-this.$firebaseRefs.markerList.child(clef).remove();
+this.$firebaseRefs.markerList.child(identifiant).remove();
 ```
+
+::: tip
+`identifiant` étant la clef unique représentant votre élément en base.
+:::
 
 [Plus de détail ici sur la documentation](https://vuefire.vuejs.org/vuefire/writing-data.html#updates-to-collection-and-documents)
 
@@ -428,7 +440,7 @@ this.$firebaseRefs.markerList.child(clef).remove();
 Pour ajouter un marker sur la carte nous allons utiliser la directive `@stop` sur l'objet `l-map` :
 
 - Ajouter sur l'objet `<l-map>` la directive suivante `@click="addMarker"`.
-- Ajouter la méthode `addMarker` dans votre objet VueJS `addMarker(marker){…}` .
+- Ajouter la méthode `addMarker` dans les méthodes de votre objet VueJS `addMarker(position){…}` .
 - À votre avis à quoi doit ressembler le code ?
 - Ajouter un `console.log(marker)` avez-vous une propriété `latlng` ?
 
@@ -482,7 +494,7 @@ Le marker est à mettre dans le `l-map`.
 
 ## Tester
 
-`npm run serve` normalement des markers doivent s'afficher. Tenter d'en ajouter d'autres.
+Toujours avec `npm run serve`, normalement des markers doivent s'afficher. Tenter d'en ajouter d'autres.
 
 ## Suppression d'un marker
 
@@ -504,23 +516,13 @@ removeMarker(markerKey) {
 
 ## Tester
 
-`npm run serve` tenter de supprimer un marker en cliquant dessus.
+Tenter de supprimer un marker en cliquant dessus.
 
 ## Tester à plusieurs
 
 Accéder à plusieurs au même projet (via votre IP) pour tester la synchronisation.
 
-### Ajouter Vuetify
-
-Le design de l'application est très simpliste. Et si nous y ajoutions une UI un peu plus moderne avec par exemple Vuetify.
-
-En reprenant le fonctionnement et l'organisation du code précédemment, ajoutez la librairie Vuetify. Les étapes seront les suivantes :
-
-- Ajout de la librairie dans les dépendances.
-- Déclaré la librairie dans « le dossier plugin » en suivant la documentation officielle.
-- Modifier l'interface pour utiliser des composants de Vuetify pour commencer, une [AppBars](https://vuetifyjs.com/en/components/app-bars/#app-bars).
-
-## Amélioration 1 : centrer la carte sur votre position
+## Centrer la carte sur votre position
 
 Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notre carte. Actuellement la carte est centrée sur Angers… C'est pratique… Si on se trouve à Angers… dans tous les autres cas, ce n’est pas forcément adapté. Nous allons donc utiliser l'API `geolocation` de notre navigateur.
 
@@ -559,7 +561,7 @@ getUserLocation() {
 
 </Reveal>
 
-### Amélioration 3 : Personalisation du Marker
+### Amélioration 1 : Personalisation du Marker
 
 La carte est basique… beaucoup trop ! Et si nous placions des markers différents en fonction du navigateur de l'utilisateur. Je vous laisse réfléchir à comment nous pouvons faire ça :
 
