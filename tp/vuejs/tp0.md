@@ -219,3 +219,12 @@ data(){
 
 - `v-model` permet de connecter la variable saisie à votre input.
 - `@keyup.enter` permet de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
+
+## L'input n'est pas vidé ?
+
+Comme vous l'avez très certainement remarqué, le champ n'est pas vidé après une saisie… Vous avez deux solutions pour faire ça:
+
+- Modifier le code dans le `@keyup.enter` pour effacer la variable `saisie`. (Via la création d'une nouvelle méthode dans votre objet).
+- Autre solution via un watcher sur la variable `saisie`.
+
+C'est à vous implémenté la première solution, puis la seconde.

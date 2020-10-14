@@ -117,9 +117,9 @@ Votre projet est maintenant différent, il doit ressembler à
 
 ![vuetify-init](./ressources/vuetify-init.png)
 
-🤔 Sacré différence n'est-ce pas ?
+🤔 Sacrée différence n'est-ce pas ?
 
-## Simplifer le code fourni
+## Simplifier le code fourni
 
 Le but de ce TP est de découvrir le fonctionnement de VueJS et de Vuetify, nous allons simplifier le code dès à présent pour n'en garder que l'essentiel.
 
