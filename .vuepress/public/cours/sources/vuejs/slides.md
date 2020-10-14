@@ -234,27 +234,9 @@ this.message();
 
 ---
 
-### Les « Watchers »
-
-Observation des « Data », pour réagir en code aux modifications de l'état de votre objet.
-
-```js
-var vm = new Vue({
-  el: "#demo",
-  data() {
-    return { compteur: 1 };
-  },
-  watch: {
-    compteur() {
-      console.log(`La valeur est maintenant de ${this.compteur}`);
-    },
-  },
-});
-```
-
----
-
 ### Gestion des évènements
+
+Exemple d'objet :
 
 ```js
     var vm = new Vue({
@@ -338,6 +320,26 @@ items = [
 
 ---
 
+### Les « Watchers »
+
+Observation des « Data », pour réagir en code aux modifications de l'état de votre objet.
+
+```js
+var vm = new Vue({
+  el: "#demo",
+  data() {
+    return { compteur: 1 };
+  },
+  watch: {
+    compteur() {
+      console.log(`La valeur est maintenant de ${this.compteur}`);
+    },
+  },
+});
+```
+
+---
+
 ## Etc…
 
 VueJS c'est simple et très complet. La suite en pratique et sur [le site de VueJS](https://vuejs.org/v2/guide/)
@@ -357,6 +359,10 @@ VueJS c'est simple et très complet. La suite en pratique et sur [le site de Vue
 - S'utilise un peu comme jquery.
 - Le but rendre « réactif » un développement basique
 - C'est puissant, et très simple. Un exemple.
+
+---
+
+### Cas pratique
 
 ---
 
@@ -422,7 +428,7 @@ Un composant ce n'est pas que du javascript.
 
 ---
 
-C'est possible grace à la puissance de **webpack**
+C'est possible grace à la puissance de **webpack**.
 
 ---
 
