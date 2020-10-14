@@ -17,9 +17,9 @@ La première étape va être l’installation de NodeJS, la démarche est diffé
 
 - [sous Windows c’est ici](https://nodejs.org/en/download/) prendre la version CURRENT.
 - Sous OSX le plus simple c’est via [Brew](https://brew.sh) `brew install nodejs`.
-- et sous Linux c’est via le gestionnaire de paquet `apt install nodejs`.
+- Sous Linux c’est via le gestionnaire de paquet `apt install nodejs`.
 
-Une fois installé, vous êtes prêt, votre PC est prêt à accueillir l’outil VueCLI
+Une fois installé, vous êtes prêt, vous allez pouvoir installer l’outil VueCLI.
 
 ### Vue-cli
 
@@ -93,10 +93,10 @@ Vous devez voir quelque chose qui ressemble à
 
 ## Ajouter Vuetify
 
-Maintenant que votre code fonctionne, nous allons le faire évoluer pour ajoute Vuetify. Avec Vue-Cli c'est très simple. Il suffit de saisir une commande.
+Maintenant que votre code fonctionne, nous allons le faire évoluer pour ajouter Vuetify. Avec Vue-Cli c'est très simple. Il suffit de saisir une commande.
 
-::: danger
-ATTENTION, la commande va modifier en profondeur votre projet. Il ne faut pas la faire à n'importe quel moment. Il est préférable de faire celle-ci _au début de la création de votre projet_.
+::: danger ATTENTION
+la commande va modifier en profondeur votre projet. Il ne faut pas la faire à n'importe quel moment. Il est préférable de faire celle-ci _au début de la création de votre projet_.
 :::
 
 Dans le dossier de votre projet :
@@ -153,15 +153,15 @@ _Remplacer_ le contenu du fichier `App.vue` par le code code suivante :
 
 Tester à nouveau votre application.
 
-## Test & Évolution
+## Test & Évolutions
 
 Afin de tester les possibilités de Vuetify, nous allons ajouter des éléments dans l'interface. _En vous servant de la documentation_.
 
 Dans la balise `v-main` nous allons ajouter :
 
-- Un bouton.
-- Une Card.
-- Une Liste
+- Un bouton
+- Une card
+- Une liste
 
 ### Le bouton
 
@@ -202,9 +202,9 @@ Vérifier que votre `card` s'affiche correctement.
 
 Le composant « Liste » va nous permettre d'afficher du contenu « sous forme de liste »… Incroyable non ?
 
-Comme dans les précédents exemples pour réaliser le code _vous devez_ [utiliser la documentation]()
+Comme dans les précédents exemples pour réaliser le code _vous devez_ [utiliser la documentation](https://vuetifyjs.com/en/components/lists/#usage).
 
-Ajouter dans la `v-card-text` le code suivant :
+Ajouter _dans_ la balise `v-card-text` le code suivant :
 
 ```html
 <v-list-item>
@@ -216,8 +216,8 @@ Ajouter dans la `v-card-text` le code suivant :
 
 À faire :
 
-- Déclarer une liste dans les `data` votre objet. `list: ["A", "B", "C"]`.
-- Afficher autant de `v-list-item-content` qu'il y a d'éléments dans la liste.
+- Déclarer une liste dans les `data` de votre objet. _Exemple :_ `list: ["A", "B", "C"]`.
+- Répéter la balise `v-list-item-content` autant de fois qu'il y a d'éléments dans la liste (_en utilisant un `v-for`_)
 
 ## Créer un composant
 
@@ -227,7 +227,7 @@ Nous allons donc remédier à ça en créant votre premier composant.
 
 ### Création du composant
 
-Première étape créer le `.vue` de _votre_ composant.
+Première étape créer le fichier `.vue` de _votre_ composant.
 
 - Créer un nouveau fichier nommé `Home.vue` dans le dossier `components`.
 
@@ -280,4 +280,6 @@ Voilà un exemple :
 </script>
 ```
 
-À faire, adapter le code fourni pour l'utiliser dans votre projet.
+À faire:
+
+- Adapter le code fourni pour l'utiliser dans votre projet.
