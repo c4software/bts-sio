@@ -221,7 +221,7 @@ Ajouter _dans_ la balise `v-card-text` le code suivant :
 
 ## Créer un composant
 
-Le principe même de VueJS c'est la création de composants. Pour l'instant nous avons tout mis dans « le App.vue », ça fonctionne… mais clairement pas idéale.
+Le principe même de VueJS c'est la création de composants. Pour l'instant nous avons tout mis dans « le App.vue », ça fonctionne… mais clairement pas idéal.
 
 Nous allons donc remédier à ça en créant votre premier composant.
 
