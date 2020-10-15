@@ -283,3 +283,50 @@ Voilà un exemple :
 À faire:
 
 - Adapter le code fourni pour l'utiliser dans votre projet.
+
+## Ajouter « un router »
+
+Le Router vas nous permettre de créer plusieurs page dans notre site / application. « Avant » vous aviez l'habitude de simplement créer un fichier PHP / HTML et celui-ci était automatiquement disponible.
+
+Avec _VueJS en mode application_ ça sera un peu différent, nous allons devoir ajouter un router qui nous permettra de faire correspondre « Un lien » et « une page ».
+
+### Ajout du plugin
+
+La première étape est l'ajout du plugin. Avec `vue cli` il nous suffit de faire _dans le bon dossier_.
+
+::: danger ATTENTION
+Comme l'installation de Vuetify cette étape va reconfigurer « de manière » important votre projet. Ça veux dire que votre fichier `App.vue` va être remplacé par une nouvelle version qui contiendra le nécéssaire au bon fonctionnement du VueRouter.
+:::
+
+### Regarder les modifications
+
+En quelques mots :
+
+- Le fichier `App.vue` est différent.
+- Le dossier `router`.
+- Le dossier `view`.
+
+Arrêtons nous ensemble pour regarder les modifications en détail.
+
+### Création d'une nouvelle vue
+
+Ajouter un nouveau fichier `vue` dans le dossier `view`. Nommé le comme bon vous semble c'est votre page 🥰.
+
+### Et pour le contenu ?
+
+Pour le contenu, je vous laisse réutiliser le composant que vous avez précédement créé.
+
+### Ajout d'une AppBar
+
+Nous avons maintenant plusieurs page, nous allons donc remettre notre AppBar. [En utilisant la documentation](https://vuetifyjs.com/en/components/app-bars/#dense) remettre la bar dans le fichier `App.vue`.
+
+À faire :
+
+- Ajouter un titre.
+- Ajouter au bout 3 boutons nous permettant de naviguer entre les pages.
+
+### Aller plus loin ?
+
+Dans le monde du mobile, les menus de navigation son appelé des `Navigations Drawers`. Ce composant existe également chez Vuetify.
+
+[En utilisant la documentation](https://vuetifyjs.com/en/components/navigation-drawers/#props) implémenté le Navigation drawer dans votre application.
