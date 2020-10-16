@@ -286,7 +286,7 @@ Voilà un exemple :
 
 ## Ajouter « un router »
 
-Le Router vas nous permettre de créer plusieurs page dans notre site / application. « Avant » vous aviez l'habitude de simplement créer un fichier PHP / HTML et celui-ci était automatiquement disponible.
+Le Router va nous permettre de créer plusieurs pages dans notre site / application. « Avant » vous aviez l'habitude de simplement créer un fichier PHP / HTML et celui-ci était automatiquement disponible.
 
 Avec _VueJS en mode application_ ça sera un peu différent, nous allons devoir ajouter un router qui nous permettra de faire correspondre « Un lien » et « une page ».
 
@@ -295,7 +295,7 @@ Avec _VueJS en mode application_ ça sera un peu différent, nous allons devoir 
 La première étape est l'ajout du plugin. Avec `vue cli` il nous suffit de faire _dans le bon dossier_.
 
 ::: danger ATTENTION
-Comme l'installation de Vuetify cette étape va reconfigurer « de manière » important votre projet. Ça veux dire que votre fichier `App.vue` va être remplacé par une nouvelle version qui contiendra le nécéssaire au bon fonctionnement du VueRouter.
+Comme l'installation de Vuetify cette étape va reconfigurer « de manière » importante votre projet. Ça veut dire que votre fichier `App.vue` va être remplacé par une nouvelle version qui contiendra le nécessaire au bon fonctionnement du VueRouter.
 :::
 
 ### Regarder les modifications
@@ -306,7 +306,7 @@ En quelques mots :
 - Le dossier `router`.
 - Le dossier `view`.
 
-Arrêtons nous ensemble pour regarder les modifications en détail.
+Arrêtons-nous ensemble pour regarder les modifications en détail.
 
 ### Création d'une nouvelle vue
 
@@ -314,11 +314,11 @@ Ajouter un nouveau fichier `vue` dans le dossier `view`. Nommé le comme bon vou
 
 ### Et pour le contenu ?
 
-Pour le contenu, je vous laisse réutiliser le composant que vous avez précédement créé.
+Pour le contenu, je vous laisse réutiliser le composant que vous avez précédemment créé.
 
 ### Ajout d'une AppBar
 
-Nous avons maintenant plusieurs page, nous allons donc remettre notre AppBar. [En utilisant la documentation](https://vuetifyjs.com/en/components/app-bars/#dense) remettre la bar dans le fichier `App.vue`.
+Nous avons maintenant plusieurs pages, nous allons donc remettre notre AppBar. [En utilisant la documentation](https://vuetifyjs.com/en/components/app-bars/#dense) remettre la AppBar dans le fichier `App.vue`.
 
 À faire :
 
@@ -327,6 +327,6 @@ Nous avons maintenant plusieurs page, nous allons donc remettre notre AppBar. [E
 
 ### Aller plus loin ?
 
-Dans le monde du mobile, les menus de navigation son appelé des `Navigations Drawers`. Ce composant existe également chez Vuetify.
+Dans le monde du mobile, les menus de navigation sont appelés des `Navigations Drawers`. Ce composant existe également chez Vuetify.
 
-[En utilisant la documentation](https://vuetifyjs.com/en/components/navigation-drawers/#props) implémenté le Navigation drawer dans votre application.
+[En utilisant la documentation](https://vuetifyjs.com/en/components/navigation-drawers/#props) implémenté un `Navigation Drawer` dans votre application.
