@@ -298,6 +298,10 @@ La première étape est l'ajout du plugin. Avec `vue cli` il nous suffit de fair
 Comme l'installation de Vuetify cette étape va reconfigurer « de manière » importante votre projet. Ça veut dire que votre fichier `App.vue` va être remplacé par une nouvelle version qui contiendra le nécessaire au bon fonctionnement du VueRouter.
 :::
 
+```sh
+vue add router
+```
+
 ### Regarder les modifications
 
 En quelques mots :
