@@ -25,8 +25,9 @@
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
 		<style>
-			img{
-				max-height: 60vh !important;
+			img, video, iframe {
+				height: 65vh;
+				max-width: 80vw;
 			}
 
 			code.lang-sh {
@@ -86,7 +87,10 @@
 				},
 				dependencies: [
 					{ src: './plugin/markdown/marked.js' },
-					{ src: './plugin/markdown/markdown.js' },
+					{ src: './plugin/markdown/markdown.js', callback: function() {
+						Array.from(document.getElementsByTagName("img")).forEach(it => it.loading = "lazy");
+						Array.from(document.getElementsByTagName("a")).forEach(it => it.target = "_blank");
+					} },
 					{ src: './plugin/highlight/highlight.js', callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: './plugin/zoom-js/zoom.js', condition: function() { return !!document.body.classList; } },
 					{ src: './plugin/notes/notes.js', condition: function() { return !!document.body.classList; } }
