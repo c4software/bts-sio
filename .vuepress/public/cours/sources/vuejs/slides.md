@@ -145,6 +145,8 @@ Et pas ReactJS ou Angular…
 - Des « .Vue » / Monofichier
 - Un cycle de vie complet pour chaque composant
 
+---
+
 ![Flow](./img/flow.png)
 
 ---
