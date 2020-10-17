@@ -10,7 +10,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 - Développé par Google
 - Créé en 2008
-- Actuellement en version 10 (Android Q)
+- Actuellement en version 11 (Android R)
 
 ---
 
@@ -436,6 +436,7 @@ tvHello.setOnClickListener(l -> {
 ---
 
 ## Mais simplement …
+
 ### Au minimum quelques packages
 
 ---
