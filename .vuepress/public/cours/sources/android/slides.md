@@ -45,10 +45,10 @@ Linux ?
 
 ## Android is not Linux
 
-Construit autour du noyau Linux mais … c'est tout
+Construis autour du noyau Linux mais … c'est tout
 
 - Noyau Linux : Drivers, Batterie, Ram.
-- Runtime Android : Fait tourner les applications Android.
+- Runtime Android : Fais tourner les applications Android.
 - App Framework : Android Framework (Android API).
 
 ---
@@ -149,7 +149,7 @@ Deux types :
 
 - Généré automatiquement.
 - Contiens les références de tous les id.
-- Permet l'accès aux ressources depuis votre code :
+- Permets l'accès aux ressources depuis votre code :
   - `getString(R.string.title)`
   - `setContentView(R.layout.activity_main)`
   - …
@@ -173,13 +173,13 @@ Deux types :
 
 ---
 
-## Que se passe t'il lors de la compilation ?
+## Que se passe-t-il lors de la compilation ?
 
 ### Avez-vous regardé ?
 
 ---
 
-## Un logiciel à été lancé « Gradle »
+## Un logiciel a été lancé « Gradle »
 
 - Compilation
 - Test
@@ -192,7 +192,7 @@ Deux types :
 
 - Open-source.
 - Règles / scripts de compilation de votre projet.
-- Complètement intégré dans Android Studio (complétion, etc…)
+- Complètement intégré dans Android Studio (complétion, etc.)
 
 ---
 
@@ -279,7 +279,7 @@ Ajouter un bouton dans l'interface et une ImageView.
 
 ---
 
-## « Exemple »Contenu d'un Manifest
+## « Exemple » contenu d'un Manifest
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -321,7 +321,7 @@ Ajouter un bouton dans l'interface et une ImageView.
 
 ## Le dossier `res` en détail 2
 
-### AKA Les ressources alternatives
+### AKA les ressources alternative
 
 Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-mdpi`, `-xxhdpi`…)
 
@@ -331,7 +331,7 @@ Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-m
 
 ---
 
-## Mais c'est pas tout !
+## Mais ce n’est pas tout !
 
 Chaque dossier peut-être redéfini en fonction… De la langue, de la configuration du « mobile », du thème sombre…
 
@@ -381,7 +381,7 @@ Ajouter une Dialog dans votre interface. Nous allons utiliser une library.
 
 ## Sans librairie
 
-Grace à [`Material.io`](https://material.io/develop/android/docs/getting-started)
+Grâce à [`Material.io`](https://material.io/develop/android/docs/getting-started)
 
 ---
 
@@ -407,7 +407,7 @@ Ensemble « de règles » / de bonne pratique pour avoir des interfaces de quali
 
 ### 3 étapes
 
-- Le layout (Ajouter un `id`)
+- Le layout (ajouter un `id`)
 - La méthode `findViewById` (dans le code)
 - Le `setOnClickListener(…)`
 
@@ -498,7 +498,7 @@ plugins {
 
 ---
 
-- **adapter** : Gère les données pour les afficher dans la vue.
+- **adapter** : gère les données pour les afficher dans la vue.
 - L'adapter est associé à la liste.
 - Un Datasource est attaché à l'Adapter.
 - Les données sont ajoutées dans la Datasource.
@@ -562,7 +562,7 @@ Android c'est très ouvert… Il faut s'imposer une organisation
 
 ---
 
-Bien évidement c'est un exemple
+Bien évidemment c'est un exemple
 
 (Vous pouvez faire autrement…)
 
@@ -716,8 +716,8 @@ startActivity(MaClass.getStartIntent(this));
 ---
 
 - Les données sont des streams
-- Les traitements sont faits dans d'autre thread que l'UI
-- Simplifie le multi-thread
+- Les traitements sont faits dans d'autres thread que l'UI
+- Simplifie le multithread
 
 ---
 
@@ -732,7 +732,7 @@ startActivity(MaClass.getStartIntent(this));
 - Proposé par … Nordic.
 - Assez mal-docummentée.
 - Très rapide « simple d'utilisation ».
-- Un entre deux « Code / Librairie ».
+- Un entredeux « Code / Librairie ».
 
 ---
 
@@ -742,7 +742,7 @@ startActivity(MaClass.getStartIntent(this));
 - Vérifier si le BLE est disponible
 - Filtrer les résultats (ou pas)
 - Démarrer le Scan
-- Connection au `BluetoothDevice`
+- Connexion au `BluetoothDevice`
 
 ---
 
@@ -813,7 +813,7 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
             setupBLE()
         } else {
             // Permission KO => Gérer le cas.
-            // Vous devez ici modifier le code pour gérer le cas d'erreur (permission refusé)
+            // Vous devez ici modifier le code pour gérer le cas d'erreur (permission refusée)
             // Avec par exemple une Dialog
         }
     }
@@ -868,7 +868,7 @@ private fun scanLeDevice(scanPeriod: Long = 10000) {
     if (!mScanning) {
         bluetoothLeScanner = bluetoothAdapter?.bluetoothLeScanner
 
-        // On vide la liste qui contient les devices actuellement trouvés
+        // On vide la liste qui contient les devices actuellement trouvées
         bleDevicesFoundList.clear()
 
         mScanning = true
@@ -1034,13 +1034,13 @@ rvDevices.setup {
 
 ---
 
-### Beaucoup de périphérique non ?
+### Beaucoup de périphériques non ?
 
 ---
 
 ## Activer le filtre par Service UUID
 
-Oui car c'est vrai on détecte trop de périphérique incompatible !
+Oui, car c'est vrai on détecte trop de périphériques incompatibles !
 
 Remplacer dans votre code `scanFilters` par :
 
@@ -1155,7 +1155,7 @@ LocalPreferences.getInstance(this).saveCurrentSelectedDevice("MON_DEVICE_SELECTE
 
 ---
 
-## Connexion a un périphérique
+## Connexion à un périphérique
 
 ---
 
@@ -1204,7 +1204,7 @@ open class GattCallback(
     ) : BluetoothGattCallback() {
 
         /**
-         * Méthode appelé au moment ou les « services » ont été découvert
+         * Méthode appelée au moment où les « services » ont été découverts
          */
         override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
             super.onServicesDiscovered(gatt, status)
@@ -1216,7 +1216,7 @@ open class GattCallback(
         }
 
         /**
-         * Méthode appelé au moment du changement d'état de la stack BLE
+         * Méthode appelée au moment du changement d'état de la stack BLE
          */
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
             super.onConnectionStateChange(gatt, status, newState)
@@ -1227,7 +1227,7 @@ open class GattCallback(
         }
 
         /**
-         * Méthodes appelée à chaque notifications BLE (en cas de changement de la led)
+         * Méthodes appelées à chaque notification BLE (en cas de changement de la led)
          */
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
             super.onCharacteristicChanged(gatt, characteristic)
@@ -1242,7 +1242,7 @@ open class GattCallback(
 
 ## Comment ça fonctionne ?
 
-- Callback à Implémenter dans votre code:
+- Callback a implémenté dans votre code:
   - onConnect
   - onDisconnect
   - onNotify
@@ -1289,11 +1289,11 @@ device.connectGatt(
 
 ## Attend quoi ?
 
-- Quelques expliquations !
+- Quelques explications !
 
 ---
 
-## Déconnexion du périhérique
+## Déconnexion du périphérique
 
 ```kotlin
     currentBluetoothGatt?.disconnect()
@@ -1307,7 +1307,7 @@ device.connectGatt(
 
 ```kotlin
 /**
-* Méthode appelé à chaque notification du Device, la notification contient le nouvel
+* Méthode appelée à chaque notification du Device, la notification contient le nouvel
 * état de la led
 */
 private fun handleToggleLedNotificationUpdate(characteristic: BluetoothGattCharacteristic) {
@@ -1358,7 +1358,7 @@ private fun setUiMode(isConnected: Boolean) {
 
 ## Et allumer / éteindre la led ?
 
-### L'intéraction va fonctionner avec un Service (déclarer via un UUID)
+### L'interaction va fonctionner avec un Service (déclarer via un UUID)
 
 ---
 
@@ -1419,7 +1419,7 @@ private fun toggleLed() {
 
 ---
 
-## La permissions
+## La permission
 
 - `<uses-permission android:name="android.permission.INTERNET"/>`
 
@@ -1429,7 +1429,7 @@ Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ---
 
-## Les appels réseaux
+## Les appels réseau
 
 ---
 
@@ -1562,7 +1562,7 @@ suspend fun writeStatus(@Body status: LedStatus): LedStatus
 
 ---
 
-- Construit par vous pour intéragir.
+- Construit par vous pour interagir.
 - Construit automatiquement par GSON pour avoir le Status.
 
 ---
@@ -1699,7 +1699,7 @@ private fun getIdentifiant(): String? {
 
 - Vous devez obtenir l'état de la led en arrivant dans la Vue (OnResume).
 - Vous devez modifier l'état de la led avec le bouton.
-- Vous devez pouvoir obtenir l'état de la led au clique sur le symbole « refresh ».
+- Vous devez pouvoir obtenir l'état de la led aux cliques sur le symbole « refresh ».
 
 ---
 
