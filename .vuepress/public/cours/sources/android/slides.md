@@ -464,7 +464,7 @@ Beaucoup moins « verbeux ».
 
 ---
 
-```java
+```kotlin
 tvHello.setOnClickListener {
     Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
 };
@@ -473,6 +473,26 @@ tvHello.setOnClickListener {
 ---
 
 Pas de déclaration de `tvHello` ? Bien sur que si, mais ça sera automatique avec `kotlin-android-extension`
+
+---
+
+## Paramètre et le Scope `{ … }`
+
+Petite subtilité du Kotlin. Dans un Scope :
+
+```kotlin
+monBtn.setOnClickListener {
+    // ICI une variable « it » est accessible. Elle contient la vue.
+}
+```
+
+Où encore :
+
+```kotlin
+listOf<Device>().forEach {
+    // « it » dans le cas présent est la valeur _courante_ de l'itération
+ }
+```
 
 ---
 
