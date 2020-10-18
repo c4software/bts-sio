@@ -1,11 +1,35 @@
 .reveal h1 {
-    font-size: 2em; }
-  
-  .reveal h2 {
-    font-size: 1.3em; }
-  
-  .reveal h3 {
-    font-size: 1.1em; }
-  
-  .reveal h4 {
-    font-size: 1em; }
+  font-size: 2em;
+}
+
+.reveal h2 {
+  font-size: 1.3em;
+}
+
+.reveal h3 {
+  font-size: 1.1em;
+}
+
+.reveal h4 {
+  font-size: 1em;
+}
+
+img,
+video,
+iframe {
+  max-height: 65vh !important;
+  max-width: 80vw !important;
+}
+
+code.lang-sh {
+  padding: 10px !important;
+  border-radius: 5px;
+  padding-top: 10px !important;
+  box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
+}
+
+code.lang-sh::before {
+  content: url("img/icon.svg");
+  display: block;
+  padding-bottom: 10px;
+}
