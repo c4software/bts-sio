@@ -1468,12 +1468,6 @@ Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ---
 
-## La solution
-
-![ReactiveX](./img/2qbh0g.jpg)
-
----
-
 ## Les librairies
 
 - OkHttp
