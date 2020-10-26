@@ -53,7 +53,7 @@ Choisir l'option « Default ».
 
 ### Questions
 
-- Pourquoi git est déjà analysé ?
+- Pourquoi git est déjà initialisé ?
 - Allez jeter un coup d'œil au fichier `.gitignore`
 
 ## Tester
@@ -132,11 +132,10 @@ import "./plugins/vue2-leaflet";
 
 - Pourquoi l'import est-il nécessaire ?
 - Pourquoi vue2-leaflet et pas juste leaflet ?
-- Quel est l'avantage ?
 
 ### Dépendance supplémentaire
 
-Le gros avantage de NPM (et NodeJS) c'est la quantité de librairies disponibles pour répondre à un besoin, nous allons donc en profiter pour gagner du temps dans notre réalisation.
+Le gros avantage de NPM (et de NodeJS) c'est la quantité de librairies disponibles pour répondre à un besoin, nous allons donc en profiter pour gagner du temps dans notre réalisation.
 
 Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre pas directement avec le « state » d'un composant VueJS! Mais grâce à d'excellents développeurs c'est maintenant possible et très simplement. Pour ça nous allons utiliser :
 
@@ -510,9 +509,13 @@ removeMarker(markerKey) {
 
 - Ajouter la directive sur `l-marker` :
 
+<Reveal text="Voir la solution">
+
 ```html
 @click="() => removeMarker(marker['.key'])"
 ```
+
+</Reveal>
 
 ## Tester
 
@@ -530,7 +533,7 @@ Celle-ci permet de localiser une personne en fonction de sa connexion internet (
 
 - [Documentation de l'API geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 - Ajouter une méthode dans le code dans le composant `map.vue`.
-- La méthode doit mettre à jour le `this.center = [lat, lng]`.
+- La méthode doit mettre à jour la Data `this.center = [lat, lng]`.
 - La méthode doit être appelée via un clique utilisateur [Documentation de LControl](https://korigan.github.io/Vue2Leaflet/#/components/l-control/)
 
 <Reveal text="Voir la solution">
@@ -577,9 +580,16 @@ this.$bvModal.msgBoxConfirm("Are you sure?").then((confirmation) => {
 });
 ```
 
-### Amélioration 2 : Personalisation du Marker
+### Personalisation du Marker
 
 La carte est basique… beaucoup trop ! Et si nous placions des markers différents en fonction du navigateur de l'utilisateur. Je vous laisse réfléchir à comment nous pouvons faire ça :
 
 - À la fois dans le code.
 - À la fois dans la base de données.
+
+### Modification du Marker
+
+En utilisant « Une Dialog » de Bootstrap ajouter le code nécéssaire à la modification du Marker :
+
+- Un clique sur un Marker permet de choisis une nouvelle icône.
+- Un bouton valider enregistre la modification.
