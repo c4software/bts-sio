@@ -399,7 +399,7 @@ Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable 
 
 ## Manipuler la base RealtimeDB
 
-La manipulation de la base RealtimeDB va se faire via l'objet `this.$firebaseRefs`. Voilà l'ensemble des actions possible :
+La manipulation de la base RealtimeDB va se faire via l'objet `this.$firebaseRefs`. Voilà l'ensemble des actions possibles :
 
 ### Ajouter une nouvelle entrée :
 
@@ -429,7 +429,7 @@ this.$firebaseRefs.markerList.child(identifiant).remove();
 ```
 
 ::: tip
-`identifiant` étant la clef unique représentant votre élément en base.
+`identifiant` étant la clé unique représentant votre élément en base.
 :::
 
 [Plus de détail ici sur la documentation](https://vuefire.vuejs.org/vuefire/writing-data.html#updates-to-collection-and-documents)
@@ -591,5 +591,5 @@ La carte est basique… beaucoup trop ! Et si nous placions des markers différe
 
 En utilisant « Une Dialog » de Bootstrap ajouter le code nécéssaire à la modification du Marker :
 
-- Un clique sur un Marker permet de choisis une nouvelle icône.
-- Un bouton valider enregistre la modification.
+- Un click sur un Marker permet de choisis une nouvelle icône.
+- Un bouton « valider » enregistre la modification.
