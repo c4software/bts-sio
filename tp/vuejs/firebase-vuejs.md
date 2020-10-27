@@ -383,9 +383,11 @@ Et voilà ! Votre base RealtimeDB est accessible !
 Grâce au plugin l'intégration de Firebase va être très simplifiée. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grâce au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça, modifiez le fichier `maps.vue` pour ajouter (après name) :
 
 ```js
-firebase: {
-  markerList: this.$db.ref("/markerList/")
-},
+firebase() {
+  return {
+    markerList: this.$db.ref("/markerList/")
+  };
+}
 ```
 
 Ajouter également dans les `data` de votre composant une variable nommée `markerList` avec comme valeurs `[]`.
