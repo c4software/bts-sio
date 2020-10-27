@@ -87,7 +87,7 @@ npm install firebase leaflet vue2-leaflet --save
 
 Certains plugins nécessitent de la configuration supplémentaire, ça sera le cas pour Vue2-Leaflet (et Firebase). Comme vous, je ne connais pas la configuration de l'ensemble des dépendances existantes. Première étape :
 
-- [Lire la documentation sur le site de Vue2-Leaflet](https://korigan.github.io/Vue2Leaflet/#/quickstart.md)
+- [Lire la documentation sur le site de Vue2-Leaflet](https://vue2-leaflet.netlify.app/quickstart/)
 
 Maintenant que nous avons vu comment s'intègre le Leaflet, réfléchissons comment intégrer ça dans notre projet :
 
