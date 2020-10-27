@@ -447,7 +447,8 @@ Pour ajouter un marker sur la carte nous allons utiliser la directive `@click` s
 - Ajouter sur l'objet `<l-map>` la directive suivante `@click="addMarker"`.
 - Ajouter la méthode `addMarker` dans les méthodes de votre objet VueJS `addMarker(position){…}` .
 - À votre avis à quoi doit ressembler le code ?
-- Ajouter un `console.log(marker)` avez-vous une propriété `latlng` ?
+- Ajouter un `console.log(position)` avez-vous une propriété `latlng` ?
+- Remplacer le `console.log` par le bon push pour ajouter dans la base de données la position.
 
 <Reveal text="Voir la solution">
 
@@ -477,7 +478,7 @@ La logique va être simpliste, nous devons afficher TOUS les éléments contenus
 
 Les étapes :
 
-- Utilisation de [l-marker](https://korigan.github.io/Vue2Leaflet/#/components/l-marker/)
+- Utilisation de [l-marker](https://vue2-leaflet.netlify.app/components/LMarker.html)
 - Le mettre en place dans le `l-map` en suivant la documentation.
 - Mise en place d'une boucle v-for.
 - et… c'est tout
