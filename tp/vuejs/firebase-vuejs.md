@@ -155,6 +155,10 @@ Maintenant que nos dépendances sont installées et que notre projet est initial
 
 Première étape [créer le projet sur le site de Firebase](https://console.firebase.google.com/u/0/)
 
+![Init Firebase](./ressources/init_firebase.png)
+
+![Security Firebase](./ressources/security_firebase.png)
+
 ![Création Firebase](./ressources/creation-firebase.png)
 
 Maintenant que le projet est créé, nous allons récupérer la configuration :
