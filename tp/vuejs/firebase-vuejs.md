@@ -287,7 +287,7 @@ export default {
 </style>
 ```
 
-✋ D'où vient le code ? Tout simplement une adaptation du [code de démonstration fourni par Vue2-Leaflet](https://korigan.github.io/Vue2Leaflet/#/components/l-map/)
+✋ D'où vient le code ? Tout simplement une adaptation du [code de démonstration fourni par Vue2-Leaflet](https://vue2-leaflet.netlify.app/components/LMap.html)
 
 ## Utiliser notre première vue
 
