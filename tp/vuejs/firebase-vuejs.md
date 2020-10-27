@@ -442,7 +442,7 @@ this.$firebaseRefs.markerList.child(identifiant).remove();
 
 ## Ajouter un marker
 
-Pour ajouter un marker sur la carte nous allons utiliser la directive `@click.stop` sur l'objet `l-map` :
+Pour ajouter un marker sur la carte nous allons utiliser la directive `@click` sur l'objet `l-map` :
 
 - Ajouter sur l'objet `<l-map>` la directive suivante `@click="addMarker"`.
 - Ajouter la méthode `addMarker` dans les méthodes de votre objet VueJS `addMarker(position){…}` .
