@@ -1,5 +1,7 @@
 <template>
-  <ExternalIframe :src="samplePath"></ExternalIframe>
+  <div>
+    <ExternalIframe :src="samplePath"></ExternalIframe>
+  </div>
 </template>
 
 <script>
