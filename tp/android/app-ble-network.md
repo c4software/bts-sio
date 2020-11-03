@@ -12,7 +12,7 @@ Concevoir une application qui va :
 ## Projet final
 
 - Gérer correctement les messages d'erreurs (permissions, liste périphérique vide, etc.).
-- Gérer correctement la non-accès au réseau (pour la partie, télécommande via Internet).
+- Gérer correctement le non-accès au réseau (pour la partie, télécommande via Internet).
 - Ranger / organiser « correctement le code source » dans des packages comme vus précédemment.
 - Ne scanner que les Raspberry Pi.
 - Vider la liste après une connexion (et ne pas avoir de doublons dans la liste).
@@ -20,8 +20,8 @@ Concevoir une application qui va :
 - L'ensemble des textes **doivent-être** dans le `strings.xml`.
 - Empêcher la rotation de l'ensemble des activity (`manifest.xml`).
 - Empêcher l'accès à la partie HTTP si le téléphone est en mode avion ou n'a pas accès à Internet.
-- Bonus : Implémenter la partie notification.
-- Bonus : Commander en HTTP un équipement sur lequel nous ne nous sommes jamais connectés (intégrer un scan Bluetooth dans un dialog de type liste).
+- Bonus : Implémenter la partie notification BLE.
+- Bonus : Commander en HTTP un équipement sur lequel nous ne nous sommes jamais connectés (intégrer un scan Bluetooth dans un dialog de type liste, en ne dupliquant pas le code).
 
 ## Les activités
 
@@ -53,7 +53,7 @@ Concevoir une application qui va :
 ```kotlin
 /**
      * Gère l'action après la demande de permission.
-     * 2 cas possible :
+     * 2 cas possibles :
      * - Réussite 🎉.
      * - Échec (refus utilisateur).
      */
@@ -304,7 +304,7 @@ private fun connectToCurrentDevice() {
                     runOnUiThread {
                         // Nous sommes connecté au device, on active les notifications pour être notifié si la LED change d'état.
 
-                        // À IMPLEMENTER
+                        // À IMPLÉMENTER
                         // Vous devez appeler la méthode qui active les notifications BLE
                         // enableListenBleNotify()
 
@@ -314,7 +314,7 @@ private fun connectToCurrentDevice() {
                         // On sauvegarde dans les « LocalPréférence » de l'application le nom du dernier préphérique
                         // sur lequel nous nous sommes connecté
 
-                        // À IMPLEMENTER EN FONCTION DE CE QUE NOUS AVONS DIT ENSEMBLE
+                        // À IMPLÉMENTER EN FONCTION DE CE QUE NOUS AVONS DIT ENSEMBLE
                     }
                 },
                 onNotify = { runOnUiThread {
@@ -461,7 +461,7 @@ private fun toggleLed() {
 
 ### Ajout des actions aux cliques sur l'interface
 
-Nous avons nos méthodes, mais elle ne sont actuellement pas appelé par une action utilisateur. Pour vous guider dans la mission, vous devez dans le `OnCreate` ajouter des lignes de code similaire à :
+Nous avons nos méthodes, mais elles ne sont actuellement pas appelées par une action utilisateur. Pour vous guider dans la mission, vous devez dans le `OnCreate` ajouter des lignes de code similaire à :
 
 ```kotlin
 startScan.setOnClickListener { askForPermission() }
@@ -510,7 +510,7 @@ data class LedStatus(var identifier: String = "", var status: Boolean = false) {
 }
 ```
 
-### Nouvelle dépendances Gradle
+### Nouvelles dépendances Gradle
 
 ```groovy
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
