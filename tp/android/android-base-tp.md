@@ -12,7 +12,7 @@ Lors de la création, Android Studio va nous poser plusieurs questions, nous all
 
 Je vous laisse suivre les étapes de création d'un nouveau projet.
 
-::: warning Mais quelques petites remarques :
+::: warning, Mais quelques petites remarques :
 
 - Le choix du package est très important. Comme nous avons vu ensemble en cours, le « Package » doit être unique. En effet deux applications ne peuvent pas avoir le même.
 - Choisir un min SDK qui correspond aux cibles des mobiles souhaités. (Si vous êtes en France ou dans un autre pays, il conviendra de faire le bon choix).
@@ -44,7 +44,7 @@ L'ensemble des textes de votre application _doit être_ dans le fichier `values/
 
 ## Découverte des dossiers
 
-En complément de ce dont je vous ai parlé en cours je vous laisse quelques minutes découvrir l'ensemble des dossiers. Je vous laisse regarder plus en détail le dossier `res` mais également les fichiers `gradle`.
+En complément de ce dont je vous ai parlé en cours, je vous laisse quelques minutes découvrir l'ensemble des dossiers. Je vous laisse regarder plus en détail le dossier `res`, mais également les fichiers `gradle`.
 
 Quelques points d'attentions :
 
@@ -75,13 +75,13 @@ Petit raccourci pratique d'Android Studio. Si vous appuyez deux fois sur la touc
 
 ## Personnalisation de votre application
 
-Changer l'icône de l'application en utilisatnt les outils fourni par Google dans Android Studio « Image asset » :
+Changer l'icône de l'application en utilisant les outils fournis par Google dans Android Studio « Image asset » :
 
 ![Change Icon](./ressources/change_icon.png)
 
-Une fois fais regarder les modifications dans votre projet. Notament :
+Une fois font regarder les modifications dans votre projet. Notamment :
 
-- Le fichier `AndroidManifest.xml` est-ce que celui-ci à été modifié ?
+- Le fichier `AndroidManifest.xml` est-ce que celui-ci a été modifié ?
 - Si non, pouvez-vous me dire pourquoi ?
 
 ## Les layouts
@@ -89,7 +89,7 @@ Une fois fais regarder les modifications dans votre projet. Notament :
 Si vous avez ouvert le fichier `activity_main.xml` vous avez certainement constaté que celui-ci était très simple. Nous allons donc le modifier un petit peu.
 
 ::: tip
-Android Studio vous propose un éditeur graphique de l'interface, c'est pratique mais pour apprendre ce n'est pas idéal. Je vous propose de changer de mode d'édition afin de passer en mode XML via la vue `Split`. Qui nous affichera à la fois le graphique ainsi que le XML.
+Android Studio vous propose un éditeur graphique de l'interface, c'est pratique, mais pour apprendre ce n'est pas idéal. Je vous propose de changer de mode d'édition afin de passer en mode XML via la vue `Split`. Qui nous affichera à la fois le graphique ainsi que le XML.
 
 ![SPLIT](./ressources/split.png)
 
@@ -103,9 +103,9 @@ Android Studio vous propose un éditeur graphique de l'interface, c'est pratique
 
 ### Les dimensions et contraintes
 
-Vous avez donc ajouté deux nouveaux éléments dans votre layout, mais ils n'ont n'y taille ni « positions ». En effet comme vu ensemble en cours, nous utilisons un layout de type « ConstraintLayout » c'est à dire que vos éléments doivent être contraints les uns par rapport aux autres.
+Vous avez donc ajouté deux nouveaux éléments dans votre layout, mais ils n'ont n'y taille ni « positions ». En effet comme vu ensemble en cours, nous utilisons un layout de type « ConstraintLayout » c'est-à-dire que vos éléments doivent être contraints les uns par rapport aux autres.
 
-Vous allez donc devoir ajouter les attributs suivants sur vos deux nouveaux éléménts :
+Vous allez donc devoir ajouter les attributs suivants sur vos deux nouveaux éléments :
 
 ```xml
 <VotreElement
@@ -119,14 +119,14 @@ Vous allez donc devoir ajouter les attributs suivants sur vos deux nouveaux él�
 />
 ```
 
-_Un peu d'expliquation :_
+_Un peu d'explication :_
 
 - `android:id` permet de rendre l'élément accessible depuis le code, ou tout simplement depuis un autre élément afin de définir une contrainte.
-- `android:layout_width` et `android:layout_height` définisse la taille de votre élément. `wrap_content` indique que la taille doit être celle du contenu. Je vous laisse découvrir les autres propriété avec `alt + entrée` sur `wrap_content`.
-- `app:layout_constraint…` définissent les contraintes entre l'élément et les autres élément de layout. Dans notre cas « parent » signifie que les contraintes seront avec le parent, c'est à dire la fenetre dans le cas présent.
+- `android:layout_width` et `android:layout_height` définisse la taille de votre élément. `wrap_content` indique que la taille doit être celle du contenu. Je vous laisse découvrir les autres propriétés avec `alt + entrée` sur `wrap_content`.
+- `app:layout_constraint…` définissent les contraintes entre l'élément et les autres éléments de layout. Dans notre cas « parent » signifie que les contraintes seront avec le parent, c'est-à-dire la fenêtre dans le cas présent.
 
 ::: tip
-Si vous souhaitez contraindre un élément avec un autre, la synthaxe sera la même, mais vous allez devoir indiquer une contrainte du type `"@id/imageView"`.
+Si vous souhaitez contraindre un élément avec un autre, la syntaxe sera la même, mais vous allez devoir indiquer une contrainte du type `"@id/imageView"`.
 :::
 
 ### À faire :
@@ -135,17 +135,17 @@ Je vous laisse réaliser l'ensemble des contraintes afin que votre layout ressem
 
 ![Constrainte](./ressources/constrainte.png)
 
-:warning: Vous noterez l'icône de l'ESEO, je vous laisse l'ajouter dans le dossier `drawable` de votre projet. Le fichier doit être au format `png` ou `jpeg`. Une fois celle-ci ajouté modifier l'ImageView pour l'utiliser dans l'`ImageView` avec par exemple `app:srcCompat="@drawable/eseo"`.
+:warning: Vous noterez l'icône de l'ESEO, je vous laisse l'ajouter dans le dossier `drawable` de votre projet. Le fichier doit être au format `png` ou `jpeg`. Une fois celle-ci ajoutée modifier l'ImageView pour l'utiliser dans l'`ImageView` avec par exemple `app:srcCompat="@drawable/eseo"`.
 
 :hand: Relancer l'application et tester que celle-ci fonctionne.
 
 ## L'activity
 
-Nous avons une activity qui pour l'instant ne fait pas grand choses. Celle-ci est relativement vide. Je vous propose de la modifier, en premier lieu nous allons ajouter un message au lancement de celle-ci.
+Nous avons une activity qui pour l'instant ne fait pas grand-chose. Celle-ci est relativement vide. Je vous propose de la modifier, en premier lieu nous allons ajouter un message au lancement de celle-ci.
 
 Un message simple sur Android s'appelle un Toast. Ajouter celui-ci dans la méthode `onCreate` de votre `MainActivity`.
 
-Vous pouvez utiliser la completion de votre IDE, `toast` puis <kbd>tab</kbd>.
+Vous pouvez utiliser la complétion de votre IDE, `toast` puis <kbd>tab</kbd>.
 
 ### À faire :
 
@@ -157,7 +157,7 @@ Vous pouvez utiliser la completion de votre IDE, `toast` puis <kbd>tab</kbd>.
 
 ### Rendre un élément clickable
 
-Pour rendre un élément cliquable sur Android, nous avons plusieurs façon de faire. La première c'est dans le code via son id et la méthode `findViewById`.
+Pour rendre un élément cliquable sur Android, nous avons plusieurs façons de faire. La première c'est dans le code via son id et la méthode `findViewById`.
 
 Ajouter dans votre méthode `onCreate` le code suivant :
 
@@ -192,15 +192,15 @@ plugins {
 
 ![ide sync](./ressources/sync.png)
 
-Maintentant vous pouvez simplement faire `myButton.setOnClickListener…` pour rendre l'élément cliquable.
+Maintenant vous pouvez simplement faire `myButton.setOnClickListener…` pour rendre l'élément cliquable.
 
 #### À faire
 
-Modifier le code précédent pour utiliser la nouvelle façon vu précédement.
+Modifier le code précédent pour utiliser la nouvelle façon vue précédemment.
 
 ### Créer une autre activity
 
-Nous allons ajouter une nouvelle activity, celle-ci sera un « Splash Screen », elle sera donc affiché au lancement de l'application.
+Nous allons ajouter une nouvelle activity, celle-ci sera un « Splash Screen », elle sera donc affichée au lancement de l'application.
 
 #### Étape 1 : Créer l'activity
 
@@ -221,7 +221,7 @@ Pour créer une activity Android Studio nous propose dans les menus une action q
 
 #### Étape 2 : Voir / Modifier le fichier AndroidManifest.xml
 
-L'activity est maintenant créé. Sauf que… nous avons deux activity qui se lance au démarrage. Modifier le AndroidManifest pour retirer :
+L'activity est maintenant créée. Sauf que… nous avons deux activity qui se lancent au démarrage. Modifier le AndroidManifest pour retirer :
 
 ```xml
 <intent-filter>
@@ -236,7 +236,7 @@ Modifier également le thème de la SplashActivity afin de lui spécifier un th�
 
 `android:theme="@style/Theme.AppCompat.NoActionBar"`
 
-:hand: Lancer l'application. Vous devez-être bloqué sur un « vue blanche ».
+:hand: Lancer l'application. Vous devez être bloqué sur une « vue blanche ».
 
 #### Étape 3 : Modifier le layout
 
@@ -246,13 +246,13 @@ Je vous laisse modifier le layout pour que celui-ci ressemble à :
 
 #### Étape 4 : Lancer une activity
 
-Maintenant que notre Splash s'affiche nous allons lancé pouvoir lancer l'autre activity après un legé délais.
+Maintenant que notre Splash s'affiche nous allons lancé pouvoir lancer l'autre activity après un délai.
 
 #### Étape 4.1 : Méthode « static »
 
-Lancer une activity sur Android est aussi simple que d'appeler la méthode `startActivity` au moment voulu. Pour « simplifier l'écriture » et éviter le code spagetti, nous allons ajouter dans le code de la MainActivity une méthode qui sera en charge de « retourner les informations » nécéssaire au lancement de celle-ci.
+Lancer une activity sur Android est aussi simple que d'appeler la méthode `startActivity` au moment voulu. Pour « simplifier l'écriture » et éviter le code spaghetti, nous allons ajouter dans le code de la MainActivity une méthode qui sera en charge de « retourner les informations » nécessaires au lancement de celle-ci.
 
-Nous allons donc ajouter « un companion » dans notre class. Un companion Object vas nous permettre de créer une méthode « static » qui sera accessible directement sans instancier la class.
+Nous allons donc ajouter « un compagnon » dans notre class. Un compagnon Object va nous permettre de créer une méthode « static » qui sera accessible directement sans instancier là class.
 
 À faire :
 
@@ -266,7 +266,7 @@ companion object {
 }
 ```
 
-#### Étape 4.2 : Appeler la méthode
+#### Étape 4.2 : Appelez-la méthode
 
 Dans le code de la _SplashActivity_ nous allons lancer après quelques secondes le code permettant de lancer la _MainActivity_. Pour ça ajouter le code suivant dans le `onCreate` de votre `SplashActivity`.
 
@@ -278,7 +278,7 @@ Dans le code de la _SplashActivity_ nous allons lancer après quelques secondes 
 ```
 
 ::: tip
-Le lancement de l'activity s'éffectue via le code suivant `startActivity(MainActivity.getStartIntent(this))`. Et oui c'est aussi simple que ça.
+Le lancement de l'activity s'effectue via le code suivant `startActivity(MainActivity.getStartIntent(this))`. Et oui c'est aussi simple que ça.
 :::
 
 - À quoi sert le `finish()` ?
@@ -293,10 +293,10 @@ Nous allons faire cette étape ensemble.
 
 Mais dans les grandes lignes :
 
-- Ajouter une nouvelle activités.
+- Ajouter une nouvelle activité.
 - Ajout d'un bouton sur la home permettant de la lancer.
 - Dans la nouvelle activity, un RecyclerView « avec des éléments de type Strings ».
-- Chaque élément de la liste doit ressembler à (je vous laisse créer le fichier nommée `item_list.xml` dans les layouts).
+- Chaque élément de la liste doit ressembler à (je vous laisse créer le fichier nommé `item_list.xml` dans les layouts).
 
 ![List Item Layout](./ressources/layout_list_item.png)
 
@@ -309,8 +309,8 @@ Comme vu en cours, je vous laisse ajouter les librairies :
 
 ### Dialog
 
-Ajouter une dialog dans votre projet. Avec la librairie MaterialDialog. Celle-ci doit s'afficher lors du clique sur le bouton de la home.
+Ajouter une dialog dans votre projet. Avec la librairie MaterialDialog. Celle-ci doit s'afficher lors du clic sur le bouton de la home.
 
 ### Recyclical
 
-Ré-implémenter le code précédement écrit (ou créé une autre activités) avec Recyclical.
+Réimplémenter le code précédemment écrit (ou créer une autre activité) avec Recyclical.
