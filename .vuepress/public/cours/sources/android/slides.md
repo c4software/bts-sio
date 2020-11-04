@@ -380,11 +380,19 @@ Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-m
 
 ## Mais ce n’est pas tout !
 
-Chaque dossier peut-être redéfini en fonction… De la langue, de la configuration du « mobile », du thème sombre…
+Chaque dossier peut-être redéfini en fonction… De la langue (`values-fr/strings.xml`), de la configuration du « mobile », du thème sombre…
 
 ---
 
 ![Wow 2](./img/wow2.gif)
+
+---
+
+![New Resources](./img/resources.png)
+
+---
+
+![Resources Langue](./img/resources_langue.png)
 
 ---
 
@@ -557,7 +565,7 @@ plugins {
 
 ---
 
-## Les ListView (AdapterView)
+## Les RecyclerView (AdapterView)
 
 ---
 
@@ -716,7 +724,7 @@ startActivity(MaClass.getStartIntent(this));
 
 - Design du layout
 - Contrainte
-  - Avoir une liste (`listView`)
+  - Avoir une liste (`RecyclerView`)
 
 ---
 
