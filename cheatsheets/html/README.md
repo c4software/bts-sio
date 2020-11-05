@@ -2,7 +2,7 @@
 
 Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensembles, mais également les balises qui me semble importantes de connaitre.
 
-::: tip à savoir
+::: tip À savoir
 Cet aide mémoire ne contient pas l'ensemble des balises, par contre vous retrouverez (en Français) une liste complète de l'ensemble des balises sur le site de la MDM Web Docs [à consulter ici](https://developer.mozilla.org/fr/docs/Web/HTML/Element)
 :::
 

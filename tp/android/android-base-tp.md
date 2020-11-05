@@ -220,11 +220,11 @@ Pour créer une activity Android Studio nous propose dans les menus une action q
 - Création du layout
 - Modification du AndroidManifest.xml
 
-- Créer la nouvelle activity
+Créer la nouvelle activity :
 
 ![create_activity](./ressources/create_activity.png)
 
-- Puis :
+Puis :
 
 ![create_activity](./ressources/create_activity2.png)
 
