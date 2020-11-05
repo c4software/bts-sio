@@ -39,9 +39,9 @@ module.exports = {
     sidebarDepth: 0,
     sidebar: [
       ["/", "Introduction"],
-      { collapsable: true, title: "Aides mémoires", children: [["cheatsheets/git/", "Git"], ["cheatsheets/cordova/", "Cordova"], ["cheatsheets/docker/", "Docker"], ["cheatsheets/vuejs/", "VueJS"]] },
+      { collapsable: true, title: "Aides mémoires", children: [["cheatsheets/git/", "Git"], ["cheatsheets/html/", "Html"], ["cheatsheets/cordova/", "Cordova"], ["cheatsheets/docker/", "Docker"], ["cheatsheets/vuejs/", "VueJS"]] },
       { collapsable: true, title: "Initiation à Git", children: ["cours/git", "/tp/git_initiation/"] },
-      { collapsable: true, title: "Introduction HTML + CSS", children: ["cours/introduction_html_css"] },
+      { collapsable: true, title: "Introduction HTML + CSS", children: ["cours/introduction_html_css", "cheatsheets/html/"] },
       { collapsable: true, title: "Introduction JavaScript", children: ["cours/introduction_javascript"] },
       { collapsable: true, title: "Git en groupe + GitLab", children: ["cours/gitlab", "/tp/gitlab/"] },
       { collapsable: true, title: "Organisation du code", children: ["cours/organisations", "/tp/organisation/introduction"] },
