@@ -3,6 +3,7 @@ module.exports = {
   description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également dans divers cours et interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
   plugins: [
     "@vuepress/last-updated",
+    '@vuepress/medium-zoom',
     ["vuepress-plugin-code-copy", true],
     ['@vuepress/pwa', { serviceWorker: false, updatePopup: false }],
     ['@vuepress/google-analytics', { 'ga': 'UA-2107503-8' }]

@@ -12,7 +12,7 @@ Lors de la création, Android Studio va nous poser plusieurs questions, nous all
 
 Je vous laisse suivre les étapes de création d'un nouveau projet.
 
-::: warning, Mais quelques petites remarques :
+::: warning Mais quelques petites remarques :
 
 - Le choix du package est très important. Comme nous avons vu ensemble en cours, le « Package » doit être unique. En effet deux applications ne peuvent pas avoir le même.
 - Choisir un min SDK qui correspond aux cibles des mobiles souhaités. (Si vous êtes en France ou dans un autre pays, il conviendra de faire le bon choix).
@@ -40,7 +40,7 @@ Maintenant que votre émulateur est créé, nous allons pouvoir lancer l'applica
 
 Android est une plateforme « ouverte » et nativement prévue pour fonctionner dans le monde entier (Android pour tous). Il est donc logique que le i18n (internationalisation) soit intégré et ~même recommandé~ obligatoire pour tout bon développeur.
 
-L'ensemble des textes de votre application _doit être_ dans le fichier `values/strings.xml`. Allez y jeter un petit coup d'œil :eyes:
+L'ensemble des textes de votre application _doit être_ dans le fichier `values/strings.xml`. Je vous laisse y jeter un petit coup d'œil :eyes:
 
 ## Découverte des dossiers
 
@@ -123,7 +123,7 @@ Vous allez donc devoir ajouter les attributs suivants sur vos deux nouveaux él�
 _Un peu d'explication :_
 
 - `android:id` permet de rendre l'élément accessible depuis le code, ou tout simplement depuis un autre élément afin de définir une contrainte.
-- `android:layout_width` et `android:layout_height` définisse la taille de votre élément. `wrap_content` indique que la taille doit être celle du contenu. Je vous laisse découvrir les autres propriétés avec `alt + entrée` sur `wrap_content`.
+- `android:layout_width` et `android:layout_height` définisse la taille de votre élément. `wrap_content` indique que la taille doit être celle du contenu. Je vous laisse découvrir les autres propriétés avec <kbd>alt</kbd> + <kbd>entrée</kbd> sur `wrap_content`.
 - `app:layout_constraint…` définissent les contraintes entre l'élément et les autres éléments de layout. Dans notre cas « parent » signifie que les contraintes seront avec le parent, c'est-à-dire la fenêtre dans le cas présent.
 
 ::: tip
@@ -142,11 +142,19 @@ Je vous laisse réaliser l'ensemble des contraintes afin que votre layout ressem
 
 ## L'activity
 
-Nous avons une activity qui pour l'instant ne fait pas grand-chose. Celle-ci est relativement vide. Je vous propose de la modifier, en premier lieu nous allons ajouter un message au lancement de celle-ci.
+Nous avons une activity qui pour l'instant ne fait pas grand-chose. Si vous regardez le code celui-ci est presque vide. Je vous propose de la modifier, en premier lieu nous allons ajouter un message au lancement de celle-ci.
 
-Un message simple sur Android s'appelle un Toast. Ajouter celui-ci dans la méthode `onCreate` de votre `MainActivity`.
+Un message simple sur Android s'appelle un Toast :
+
+![Ceci est un toast](./ressources/toast.png)
+
+Ajouter celui-ci dans la méthode `onCreate` de votre `MainActivity.kt`.
 
 Vous pouvez utiliser la complétion de votre IDE, `toast` puis <kbd>tab</kbd>.
+
+::: tip
+Les toasts sont rapides et simples à mettre en place. Cependant, ils ne sont pas très beaux. C'est pour ça que nous les utiliserons principalement que pour « les informations de tests ou sans grandes importances ».
+:::
 
 ### À faire :
 
@@ -156,7 +164,7 @@ Vous pouvez utiliser la complétion de votre IDE, `toast` puis <kbd>tab</kbd>.
 
 :hand: Tester votre modification.
 
-### Rendre un élément clickable
+## Rendre un élément clickable
 
 Pour rendre un élément cliquable sur Android, nous avons plusieurs façons de faire. La première c'est dans le code via son id et la méthode `findViewById`.
 
@@ -170,14 +178,14 @@ Ajouter dans votre méthode `onCreate` le code suivant :
 
 Et voilà… Votre bouton est cliquable.
 
-#### À faire
+### À faire
 
 - Rendre votre bouton clickable.
 - Afficher un Toast sur le OnClick.
 
 :warning: Attention à bien référencer le bon `R.id.myButton` par rapport à votre layout.
 
-### Rendre un élément clickable 2
+## Rendre un élément clickable 2
 
 La seconde façon (moins longue) d'accéder à un élément est via « les Kotlin-Android-Extensions ». Les extensions sont à ajouter dans votre `build.gradle` (app). Ajouter
 
@@ -195,7 +203,7 @@ plugins {
 
 Maintenant vous pouvez simplement faire `myButton.setOnClickListener…` pour rendre l'élément cliquable.
 
-#### À faire
+### À faire
 
 Modifier le code précédent pour utiliser la nouvelle façon vue précédemment.
 
@@ -247,13 +255,17 @@ Je vous laisse modifier le layout pour que celui-ci ressemble à :
 
 #### Étape 4 : Lancer une activity
 
-Maintenant que notre Splash s'affiche nous allons lancé pouvoir lancer l'autre activity après un délai.
+Maintenant que notre Splash s'affiche nous allons lancé pouvoir lancer l'autre activity après un délai. Dans cette partie, nous allons voir comment lancer une activité, et plus précisement comment nous pouvons « simplifier » / « uniformiser » le lancement via une méthode static.
+
+::: tip
+:nerd_face: Si vous avez déjà fait du developpement Android, rien de nouveau, je vous propose simplement juste **une autre façon** de vous organiser.
+:::
 
 #### Étape 4.1 : Méthode « static »
 
-Lancer une activity sur Android est aussi simple que d'appeler la méthode `startActivity` au moment voulu. Pour « simplifier l'écriture » et éviter le code spaghetti, nous allons ajouter dans le code de la MainActivity une méthode qui sera en charge de « retourner les informations » nécessaires au lancement de celle-ci.
+Lancer une activity sur Android est aussi simple que d'appeler la méthode `startActivity` au moment voulu. Pour « simplifier l'écriture » et éviter le code spaghetti, nous allons ajouter dans le code de la MainActivity une méthode qui sera en charge de « retourner les informations (appelée une `Intent`) » nécessaires au lancement de celle-ci.
 
-Nous allons donc ajouter « un compagnon » dans notre class. Un compagnon Object va nous permettre de créer une méthode « static » qui sera accessible directement sans instancier là class.
+En Kotlin les méthodes static **doivent être mise** dans `companion object`. Nous allons donc ajouter « un compagnon » dans notre class. Un compagnon Object va nous permettre de créer une méthode « static » qui sera accessible directement sans instancier là class.
 
 À faire :
 
@@ -278,13 +290,82 @@ Dans le code de la _SplashActivity_ nous allons lancer après quelques secondes 
     }, 1000)
 ```
 
-::: tip
-Le lancement de l'activity s'effectue via le code suivant `startActivity(MainActivity.getStartIntent(this))`. Et oui c'est aussi simple que ça.
+::: tip Analyse du code
+Le code à proprement dit qui lance l'activity est le suivant :
+
+```kotlin
+    startActivity(MainActivity.getStartIntent(this))
+```
+
+Et oui c'est aussi simple que ça!
 :::
 
+- À quoi correspond le `this` ?
 - À quoi sert le `finish()` ?
 - Que se passe-t-il si vous ne le mettez pas ?
 - Pouvez-vous changer le temps d'attente ?
+
+## Thème et Drawable
+
+Le grand chalenge d'une application mobile c'est « le côté visuel ». Bien évidement je sais que vous n'êtes pas des experts UI/UX, Google le sais également. C'est pour ça qu'ils ont intégré dans Android Studio un catalogue d'icône nous permettant nous developpeurs de travailler avec des éléments propre et de qualité.
+
+Pour rappel les images dans Android s'appel des `Drawables` et sont dans le dossier `Res`. Android Studio intégre un catalogue nommée « Vector Asset », celui-ci est disponible dans les menus :
+
+![Vector Asset](./ressources/vector_asset.png)
+
+Pour choisir une icône :
+
+![Vector Asset choix](./ressources/vector_asset2.png)
+
+### À faire
+
+- Ajouter un nouveau drawable dans votre projet.
+- Que constatez-vous comme changement dans les Drawable ?
+- Utilisé l'image choisi dans votre layout « Splash ». L'image choisi doit-être en bas à droite.
+
+## Les Intent Externes / Tierces
+
+Dans le système Android nous avons à notre disposition en plus des Intents que vous déclarez la possibilité d'appeler ceux du système. La liste est très grande :
+
+- Lancer les paramètres.
+- Ouvrir un lien.
+- Ouvrir une Carte Google Maps.
+- …
+
+### Ouvrir les paramètres Bluetooth
+
+```kotlin
+val targetIntent = Intent().apply {
+    action = android.provider.Settings.ACTION_BLUETOOTH_SETTINGS
+}
+
+startActivity(targetIntent);
+```
+
+### Ouvrir un lien web
+
+```kotlin
+startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://cours.brosseau.ovh")));
+```
+
+### Ouvrir Google Maps
+
+```kotlin
+startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("geo:47.472822,-0.5621756")));
+```
+
+### À faire
+
+Maintenant que vous savez comment ouvrir une intent Externe :
+
+- Ajouter sur la `MainActivity` une icône en haut à droite type « Settings ».
+- Celle-ci doit être cliquable et doit permettre d'ouvrire les paramètres (`ACTION_SETTINGS`).
+- Ajouter sour le bouton « En bas de l'activité » un texte cliquable `TextView` permettant d'ouvrir le site de l'ESEO.
+- Ajoute à Côté du `TextView` un second `TextView` qui ouvre l'adresse / la position GPS de l'ESEO dans Google Maps.
+
+Exemple :
+
+![Sample UI TEST](./ressources/sample_ui_test.png)
 
 ## Les Recyclerview
 
@@ -296,7 +377,7 @@ Mais dans les grandes lignes :
 
 - Ajouter une nouvelle activité.
 - Ajout d'un bouton sur la home permettant de la lancer.
-- Dans la nouvelle activity, un RecyclerView « avec des éléments de type Strings ».
+- Dans la nouvelle activity, un RecyclerView qui contiendra « des éléments de type Strings ».
 - Chaque élément de la liste doit ressembler à (je vous laisse créer le fichier nommé `item_list.xml` dans les layouts).
 
 ![List Item Layout](./ressources/layout_list_item.png)
@@ -308,10 +389,49 @@ Comme vu en cours, je vous laisse ajouter les librairies :
 - MaterialDialog.
 - Recyclical dans votre projet.
 
-### Dialog
+### Les Dialogs
 
-Ajouter une dialog dans votre projet. Avec la librairie MaterialDialog. Celle-ci doit s'afficher lors du clic sur le bouton de la home.
+#### Avec MaterialDialog
+
+Ajouter une dialog dans votre projet. Avec la librairie [MaterialDialog](https://github.com/afollestad/material-dialogs/blob/main/documentation/CORE.md). Celle-ci doit s'afficher lors du clic sur le bouton de la home.
+
+### Avec le Material Design de Google
+
+Ajouter une dialog dans votre projet. Avec la librairie [Material Design de Google](https://material.io/develop/android/docs/getting-started). Celle-ci doit s'afficher lors du clic sur le bouton de la home.
 
 ### Recyclical
 
-Réimplémenter le code précédemment écrit (ou créer une autre activité) avec Recyclical.
+Réimplémenter le code précédemment écrit (ou créer une autre activité) avec [Recyclical](https://github.com/afollestad/recyclical).
+
+## Activité « Paramètres »
+
+Je vous laisse créer une nouvelle activité, Celle-ci **doit être** constitué :
+
+- Une Toolbar avec un bouton Retour et un titre « Paramètres ».
+- Une suite de TextView Cliquable (vous pouvez utiliser un LinearLayout _ou_ un RecyclerView) :
+  - Paramètres Bluetooth -> Ouvre les paramètres du téléphone.
+  - Informations -> Ouvre une activity (ou une dialogue avec un message texte).
+  - Un lien vers le site de l'ESEO.
+  - Un lien vers le Google Maps de l'ESEO.
+
+::: tip La toolbar
+Pour activer la Toolbar dans une activity. Ajouter le code suivant dans le `OnCreate` :
+
+```kotlin
+supportActionBar?.apply {
+    setTitle(R.string.whatever)
+    setDisplayHomeAsUpEnabled(true)
+    setDisplayShowHomeEnabled(true)
+}
+```
+
+Puis vous devez override la méthode `onSupportNavigateUp` qui est appelé lors de l'appui sur le « l'icone retour »:
+
+```kotlin
+override fun onSupportNavigateUp(): Boolean {
+    finish()
+    return true
+}
+```
+
+:::
