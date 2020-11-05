@@ -8,7 +8,7 @@ Cet aide mémoire ne contient pas l'ensemble des balises, par contre vous retrou
 
 ## La structure d'une page
 
-Les balises formant la structure de base sont restées identiques depuis la création des pages internet. Celle-ci est obligatoire et est le minimum à mettre dans toutes vos pages.
+Les balises formant la structure de base sont restées identiques depuis la création des pages Internet. Celle-ci est obligatoire et est le minimum à mettre dans toutes vos pages.
 
 | Balise   | Utilité           |
 | -------- | ----------------- |
@@ -35,7 +35,7 @@ Les balises formant la structure de base sont restées identiques depuis la cré
 
 | Balise     | Utilité                                                       |
 | ---------- | ------------------------------------------------------------- |
-| `<title>`  | Permets de donner un titre à la page                          |
+| `<title>`  | Titre à la page                                               |
 | `<style>`  | CSS (Style) de la page                                        |
 | `<script>` | JavaScript (Code dynamique)                                   |
 | `<link>`   | CSS Externe (Lien)                                            |
@@ -43,7 +43,7 @@ Les balises formant la structure de base sont restées identiques depuis la cré
 
 ### Le corps : body
 
-Dans le `<body>` nous allons retrouver l'ensemble des éléments qui seront affichés dans la page. Nous parlons donc du corps de la page Internet. Les éléments peuvent être rangés dans plusieurs grandes catégories.
+Dans la balise `<body>` nous allons retrouver l'ensemble des éléments qui seront affichés dans la page. Nous parlons donc du corps de la page Internet. Les éléments peuvent être rangés dans plusieurs grandes catégories.
 
 #### Structures
 
@@ -54,9 +54,11 @@ Dans le `<body>` nous allons retrouver l'ensemble des éléments qui seront affi
 | `<em>`     | Élément notable                            |
 | `<small>`  | Petit texte                                |
 | `<i>`      | Élément différent                          |
-| `<img>`    | Une image                                  |
+| `<img />`  | Une image                                  |
 | `<audio>`  | Un son                                     |
+| `<br>`     | Un saut de ligne                           |
 | `<video>`  | Une video                                  |
+| `<hr />`   | Séparateur horizontal                      |
 | `<iframe>` | Affiche une autre page dans la page        |
 
 Les balises `<div></div>` ou `<span></span>` ne sont utile que d'un point de vue organisation de votre code. Elles n'ont aucun autre but que de grouper, organiser, permettre la personnalisation CSS de votre page. Il convient donc de leur adjoindre des attributs de type `class`, `id` ou `style`.
@@ -68,6 +70,14 @@ Les balises `<div></div>` ou `<span></span>` ne sont utile que d'un point de vue
 | `<ul>` | Liste simple                        |
 | `<ol>` | Liste ordonnée (numéro)             |
 | `<li>` | Un élément de la liste (le contenu) |
+
+```html
+<ul>
+  <li>Élément 1</li>
+  <li>Élément 2</li>
+  <li>Élément 3</li>
+</ul>
+```
 
 #### Le texte
 
@@ -91,7 +101,7 @@ Les balises `<div></div>` ou `<span></span>` ne sont utile que d'un point de vue
 | ------------ | ----------------------------- |
 | `<form>`     | Un formulaire                 |
 | `<input>`    | Champs du formulaire          |
-| `<select>`   | Énumération d'élément (Liste) |
+| `<select>`   | Énumération d'élément (liste) |
 | `<option>`   | Élément de la liste           |
 | `<label>`    | Libellé d'un champ            |
 | `<optgroup>` | Groupe d'élément              |
@@ -99,15 +109,15 @@ Les balises `<div></div>` ou `<span></span>` ne sont utile que d'un point de vue
 
 #### Les tableaux
 
-| Balise    | Utilité             |
-| --------- | ------------------- |
-| `<table>` | Racine du tableau   |
-| `<thead>` | Section de l'entête |
-| `<tbody>` | Section du corps    |
-| `<tfoot>` | Section pied        |
-| `<tr>`    | Ligne du tableau    |
-| `<th>`    | Cellule d'entête    |
-| `<td>`    | Celulle             |
+| Balise    | Utilité                  |
+| --------- | ------------------------ |
+| `<table>` | Racine du tableau        |
+| `<thead>` | Section de l'entête      |
+| `<tbody>` | Section du corps         |
+| `<tfoot>` | Section pied             |
+| `<tr>`    | Ligne du tableau         |
+| `<th>`    | Cellule de type d'entête |
+| `<td>`    | Cellule de contenu       |
 
 ```html
 <table>
