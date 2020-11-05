@@ -255,10 +255,10 @@ Je vous laisse modifier le layout pour que celui-ci ressemble à :
 
 #### Étape 4 : Lancer une activity
 
-Maintenant que notre Splash s'affiche nous allons lancé pouvoir lancer l'autre activity après un délai. Dans cette partie, nous allons voir comment lancer une activité, et plus précisement comment nous pouvons « simplifier » / « uniformiser » le lancement via une méthode static.
+Maintenant que notre Splash s'affiche nous allons lancé pouvoir lancer l'autre activity après un délai. Dans cette partie, nous allons voir comment lancer une activité, et plus précisément comment nous pouvons « simplifier » / « uniformiser » le lancement via une méthode static.
 
 ::: tip
-:nerd_face: Si vous avez déjà fait du developpement Android, rien de nouveau, je vous propose simplement juste **une autre façon** de vous organiser.
+:nerd_face: Si vous avez déjà fait du développement Android, rien de nouveau, je vous propose simplement juste **une autre façon** de vous organiser.
 :::
 
 #### Étape 4.1 : Méthode « static »
@@ -307,9 +307,9 @@ Et oui c'est aussi simple que ça!
 
 ## Thème et Drawable
 
-Le grand chalenge d'une application mobile c'est « le côté visuel ». Bien évidement je sais que vous n'êtes pas des experts UI/UX, Google le sais également. C'est pour ça qu'ils ont intégré dans Android Studio un catalogue d'icône nous permettant nous developpeurs de travailler avec des éléments propre et de qualité.
+Le grand chalenge d'une application mobile c'est « le côté visuel ». Bien évidemment je sais que vous n'êtes pas des experts UI/UX, Google le sait également. C'est pour ça qu'ils ont intégré dans Android Studio un catalogue d'icône nous permettant nous développeurs de travailler avec des éléments propres et de qualité.
 
-Pour rappel les images dans Android s'appel des `Drawables` et sont dans le dossier `Res`. Android Studio intégre un catalogue nommée « Vector Asset », celui-ci est disponible dans les menus :
+Pour rappel les images dans Android s'appelle des `Drawables` et sont dans le dossier `Res`. Android Studio intègre un catalogue nommé « Vector Asset », celui-ci est disponible dans les menus :
 
 ![Vector Asset](./ressources/vector_asset.png)
 
@@ -321,11 +321,11 @@ Pour choisir une icône :
 
 - Ajouter un nouveau drawable dans votre projet.
 - Que constatez-vous comme changement dans les Drawable ?
-- Utilisé l'image choisi dans votre layout « Splash ». L'image choisi doit-être en bas à droite.
+- Utiliser l'image choisie dans votre layout « Splash ». L'image choisie doit-être en bas à droite.
 
-## Les Intent Externes / Tierces
+## Les Intent externes / tierces
 
-Dans le système Android nous avons à notre disposition en plus des Intents que vous déclarez la possibilité d'appeler ceux du système. La liste est très grande :
+Dans le système Android, nous avons à notre disposition en plus des Intents que vous déclarez la possibilité d'appeler ceux du système. La liste est très grande :
 
 - Lancer les paramètres.
 - Ouvrir un lien.
@@ -360,8 +360,8 @@ Maintenant que vous savez comment ouvrir une intent Externe :
 
 - Ajouter sur la `MainActivity` une icône en haut à droite type « Settings ».
 - Celle-ci doit être cliquable et doit permettre d'ouvrire les paramètres (`ACTION_SETTINGS`).
-- Ajouter sour le bouton « En bas de l'activité » un texte cliquable `TextView` permettant d'ouvrir le site de l'ESEO.
-- Ajoute à Côté du `TextView` un second `TextView` qui ouvre l'adresse / la position GPS de l'ESEO dans Google Maps.
+- Ajouter sous le bouton « En bas de l'activité » un texte cliquable `TextView` permettant d'ouvrir le site de l'ESEO.
+- Ajoute à côté du `TextView` un second `TextView` qui ouvre l'adresse / la position GPS de l'ESEO dans Google Maps.
 
 Exemple :
 
