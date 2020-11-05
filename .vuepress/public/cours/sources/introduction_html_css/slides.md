@@ -17,18 +17,18 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-1989-1990 : Création du « concept »
-1993: HTML 1.0
-1995: HTML 2.0
+- 1989-1990 : Création du « concept »
+- 1993: HTML 1.0
+- 1995: HTML 2.0
 
 ---
 
-1997: HTML 4.0 (Création de la W3C)
-2000: XHTML
+- 1997: HTML 4.0 (Création de la W3C)
+- 2000: XHTML
 
 ---
 
-2007 - Le renouveau
+- 2007: Le renouveau
 
 ---
 
@@ -52,11 +52,17 @@ Que se passe-t-il ? Ce qu'il faut savoir !
 
 ---
 
+### 🤓
+
 ### Regardons ensemble
 
 ---
 
 ## Et les robots de Google ?
+
+```sh
+$ curl https://www.google.com
+```
 
 ---
 
@@ -68,7 +74,7 @@ Avoir un code « compréhensible » par une machine. Le plus simplement possible
 
 ---
 
-## Petit apparté sur le référencement
+## Petit aparté sur le référencement
 
 (très rapide)
 
