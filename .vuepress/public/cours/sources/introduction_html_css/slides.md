@@ -4,6 +4,15 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+- Partie 0 - Un peu d'histoire
+- Partie 1 - Le HTML
+- Partie 2 - Le CSS
+- Partie 3 - La sémantique
+- Partie 4 - La CSS avancée
+- Partie 5 - L'Hébergement
+
+---
+
 ## Partie 0 - Un peu d'histoire
 
 ---
