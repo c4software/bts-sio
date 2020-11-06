@@ -14,6 +14,14 @@ const isAuth = () => {
     }
 }
 
+const askForPass = () => {
+    try {
+        return prompt()
+    } catch (err) {
+        return ""
+    }
+}
+
 export default ({
     Vue, // the version of Vue being used in the VuePress app
     options, // the options for the root Vue instance
@@ -23,7 +31,7 @@ export default ({
 }) => {
     router.beforeEach((to, from, next) => {
         if (siteData.themeConfig.protected.paths.includes(to.path)) {
-            if (isAuth() || prompt() == siteData.themeConfig.protected.pass) {
+            if (isAuth() || askForPass() === siteData.themeConfig.protected.pass) {
                 setAuth()
                 next()
             } else {
