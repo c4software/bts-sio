@@ -1,16 +1,16 @@
 const AUTH_KEY = 'auth_client_side'
 
 const setAuth = () => {
-    if (sessionStorage) {
+    try {
         sessionStorage.setItem(AUTH_KEY, '1');
-    }
+    } catch (err) { }
 }
 
 const isAuth = () => {
-    if (sessionStorage) {
+    try {
         return sessionStorage.getItem(AUTH_KEY) === '1';
-    } else {
-        return false;
+    } catch (err) {
+        return false
     }
 }
 
