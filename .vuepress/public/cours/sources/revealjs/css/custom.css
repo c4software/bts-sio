@@ -29,7 +29,7 @@ code.lang-sh {
 }
 
 code.lang-sh::before {
-  content: url("img/icon.svg");
+  content: url("../img/icon.svg");
   display: block;
   padding-bottom: 10px;
 }
