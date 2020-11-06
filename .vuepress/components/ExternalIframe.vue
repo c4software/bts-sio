@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{bordered}">
     <iframe :src="this.src" frameborder="0" ref="iframe" />
     <button @click="requestFullscreen">
       <img src="/icons/fullscreen.svg" />
@@ -14,6 +14,10 @@ export default {
     src: {
       required: true,
     },
+    bordered: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     requestFullscreen() {
@@ -29,10 +33,16 @@ export default {
 </script>
 
 <style scoped>
+
 iframe {
   width: 100%;
   height: 50vh;
   background: white;
+}
+
+.bordered > iframe {
+  border: 1px solid #a7a7a7;
+  border-radius: 5px;
 }
 
 button {

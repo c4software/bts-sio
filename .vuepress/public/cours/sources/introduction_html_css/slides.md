@@ -86,6 +86,241 @@ La structure
 
 ---
 
+## Le HTML c'est du XML
+
+### Avec au minimum 4 éléments
+
+---
+
+```html
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body></body>
+</html>
+```
+
+---
+
+- Le doctype
+- <html> en tout début et en toute fin de document.
+- <head> Informations servant au navigateur, mais non affichées (Méta, CSS, JS, etc.).
+- <body> Corps de votre page (ce que vous allez afficher)
+
+---
+
+## Le principe
+
+### Une balise « ouvrante » une balise « fermante »
+
+```html
+<html>
+  …
+</html>
+```
+
+---
+
+## Le principe
+
+### Ou… une balise auto-fermante
+
+```html
+<img />
+```
+
+---
+
+![stop](./res/stop.gif)
+
+---
+
+## Toute balise ouverte
+
+## <ins>_doit être fermée_</ins>
+
+---
+
+## Un exemple
+
+```html
+<p>Ceci est un exemple de texte</p>
+```
+
+Nous avons donc, un texte entouré d'une balise :
+<br /><br />
+**ouvrante `<p>`** et d'une balise **fermante `</p>`**
+
+---
+
+![Structure](./res/structure.png)
+
+---
+
+## Chaque élément peut avoir des « attributs »
+
+![Structure attribut](./res/structure_attribut.png)
+
+---
+
+## Chaque balise peut-être imbriquée
+
+```html
+<p>Le HTML c'est <strong>très</strong> simple !</p>
+```
+
+### Ce qui donnera :
+
+<p>Le HTML c'est <strong>très</strong> simple !</p>
+
+---
+
+## Ça forme ce que nous appellerons « un arbre »
+
+### Le DOM
+
+![arbre - dom](./res/arbre.png)
+
+---
+
+## Les balises
+
+### Il y en a beaucoup ? À votre avis ?
+
+[Mémo HTML](/cheatsheets/html/)
+
+---
+
+## Les commentaires
+
+En informatique _ils est importants_, et peut prendre plusieurs formes.
+
+### En HTML c'est :
+
+```html
+<!-- Mon commentaire -->
+```
+
+---
+
+## Quelques exemples
+
+---
+
+### Une image
+
+```html
+<img src="images/coucou.png" alt="Coucou 👋" />
+```
+
+- Combien j'ai d'attributs ?
+- À votre avis à quoi sert le `alt` ?
+
+---
+
+### Les titres
+
+```html
+<h1>Titre principal</h1>
+<h2>Titre de section</h2>
+<h3>Sous-titre</h3>
+<h4>Sous-sous-titre</h4>
+```
+
+---
+
+### Les listes
+
+Le web est construit avec des données _structurées_ nous avons donc un ensemble d'éléments pour les afficher.
+
+```html
+<ul>
+  <li>Élément 1</li>
+  <li>Élément 2</li>
+  <li>Élément 3</li>
+</ul>
+```
+
+---
+
+### Les liens
+
+La toile, Le Web…
+
+```html
+<a href="https://cours.brosseau.ovh">Consulter le cours</a>
+```
+
+---
+
+## Mise en pratique
+
+### Mais avant …
+
+---
+
+## Comment / où « coder » en HTML ?
+
+### À votre avis ?
+
+---
+
+- VScode <!-- .element: class="fragment" -->
+- WebStorm <!-- .element: class="fragment" -->
+- … <!-- .element: class="fragment" -->
+
+---
+
+## C'est parti
+
+### Je vous laisse tenter de réaliser la page suivante :
+
+[Exemple](/demo/html/)
+
+---
+
+## Comment analyser le code source ?
+
+### À votre avis ?
+
+(Code source de la page, Inspecteur d'éléments) <!-- .element: class="fragment" -->
+
+---
+
+## Créer une seconde page:
+
+- Ajouter un titre. (`<h1>` + `<title>`)
+- Ajouter une balise vidéo. `<audio>`
+- Ajouter une balise audio. `<video>`
+
+---
+
+## Comment allez-vous procéder
+
+### Les ressources en ligne
+
+- Google
+- Stackoverflow
+- [MDM](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
+
+---
+
+## Créer une troisième page
+
+- Ajouter un titre. (`<h1>` + `<title>`)
+- Créer un tableau. (`table`). Celui-ci doit contenir.
+  - 3 colonnes
+  - 20 lignes
+  - Un entête et un pied de tableau
+
+---
+
+## Ajouter dans votre première page un « menu »
+
+Comment faire ?
+
+---
+
 ## Partie 2 - Le CSS
 
 La mise en forme
