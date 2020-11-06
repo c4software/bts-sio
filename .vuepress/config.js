@@ -31,6 +31,15 @@ module.exports = {
     ['meta', { name: 'google-site-verification', content: 'IpzGtrtih2KT0f0XkFOsx0qHPBihE6JADKtXpO-KN-4' }]
   ],
   themeConfig: {
+    /** Objectif: dissuasion rien de plus… */
+    protected: {
+      pass: 'eseo',
+      paths: [
+        "/cours/android.html",
+        "/tp/android/android-base-tp.html",
+        "/tp/android/app-ble-network.html"
+      ]
+    },
     docsBranch: 'master',
     editLinks: true,
     nextLinks: false,
