@@ -1,25 +1,30 @@
-const AUTH_KEY = 'auth_client_side'
+const AUTH_KEY = 'auth_client_side';
+const UUID = '53ac15ea-e430-4ea1-8db5-fcfa63bf2844';
 
-const setAuth = () => {
+const saveAuth = () => {
     try {
-        sessionStorage.setItem(AUTH_KEY, '1');
+        sessionStorage.setItem(AUTH_KEY, UUID);
     } catch (err) { }
 }
 
 const isAuth = () => {
     try {
-        return sessionStorage.getItem(AUTH_KEY) === '1';
+        return sessionStorage.getItem(AUTH_KEY) === UUID;
     } catch (err) {
         return false
     }
 }
 
-const askForPass = () => {
+const askForPass = (siteData) => {
     try {
-        return prompt()
+        return prompt() === siteData.themeConfig.protected.pass
     } catch (err) {
         return ""
     }
+}
+
+const shouldAskPass = (siteData, path) => {
+    return siteData.themeConfig.protected.paths.includes(path)
 }
 
 export default ({
@@ -30,9 +35,9 @@ export default ({
     isServer // is this enhancement applied in server-rendering or client
 }) => {
     router.beforeEach((to, from, next) => {
-        if (siteData.themeConfig.protected.paths.includes(to.path)) {
-            if (isAuth() || askForPass() === siteData.themeConfig.protected.pass) {
-                setAuth()
+        if (shouldAskPass(siteData, to.path)) {
+            if (isAuth() || askForPass(siteData)) {
+                saveAuth()
                 next()
             } else {
                 next("/")
