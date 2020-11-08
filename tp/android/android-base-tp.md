@@ -371,7 +371,7 @@ Exemple :
 
 ## Les Recyclerview
 
-:halt: Parlons-en 👋
+:hand: Parlons-en 👋
 
 Nous allons faire cette étape ensemble.
 
@@ -407,7 +407,7 @@ Réimplémenter le code précédemment écrit (ou créer une autre activité) av
 
 ## Activité « Paramètres »
 
-Je vous laisse créer une nouvelle activité, Celle-ci **doit être** constitué :
+Je vous laisse créer une nouvelle activité. Celle-ci **doit être** constitué :
 
 - Une Toolbar avec un bouton Retour et un titre « Paramètres ».
 - Une suite de TextView Cliquable (vous pouvez utiliser un LinearLayout _ou_ un RecyclerView) :
