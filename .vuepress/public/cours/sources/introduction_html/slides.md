@@ -6,10 +6,8 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 - Partie 0 - Un peu d'histoire
 - Partie 1 - Le HTML
-- Partie 2 - Le CSS
-- Partie 3 - La sémantique
-- Partie 4 - La CSS avancée
-- Partie 5 - L'Hébergement
+- Partie 2 - La sémantique
+- Partie 3 - L'Hébergement
 
 ---
 
@@ -321,24 +319,47 @@ Comment faire ?
 
 ---
 
-## Partie 2 - Le CSS
-
-La mise en forme
-
----
-
-## Partie 3 - La sémantique
+## Partie 2 - La sémantique
 
 L'Organisation de la structure de mon HTML
 
 ---
 
-## Partie 4 - La CSS avancée
+## Nous avons vu la base
 
-Flexbox, Grid …
+### Maintenant quelques détails
 
 ---
 
-## Partie 5 - L'Hébergement
+| Balise      | Utilité                            |
+| ----------- | ---------------------------------- |
+| `<header>`  | Entête d'un contenu                |
+| `<nav>`     | Lien de navigation                 |
+| `<section>` | Partie du contenu                  |
+| `<footer>`  | Pied du contenu                    |
+| `<article>` | Un article (comme dans un journal) |
+| `<aside>`   | Contenu complémentaire             |
 
-Rendre mon site public
+---
+
+## Partie 3 - L'Hébergement
+
+Rendre mon site visible au public
+
+---
+
+## Plusieurs options
+
+- Un serveur dédié (💰)
+- Chez vous (bonne idée à votre avis ?)
+- Le cloud
+  - Netlify (JamStack)
+  - Firebase
+  - OVH
+  - …
+
+---
+
+## Comment choisir ?
+
+### À votre avis ?

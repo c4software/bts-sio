@@ -79,7 +79,9 @@ Changer l'icône de l'application en utilisant les outils fournis par Google dan
 
 ![Change Icon](./ressources/change_icon.png)
 
-Une fois font regarder les modifications dans votre projet. Notamment :
+Une fois fait, regarder les modifications dans votre projet.
+
+_Notamment :_
 
 - Le fichier `AndroidManifest.xml` est-ce que celui-ci a été modifié ?
 - Si oui, quel(s) élément(s) sont différents ?
@@ -213,7 +215,7 @@ Nous allons ajouter une nouvelle activity, celle-ci sera un « Splash Screen »,
 
 #### Étape 1 : Créer l'activity
 
-Pour créer une activity Android Studio nous propose dans les menus une action qui automatise l'ensemble du processus à savoir :
+Pour créer une activity, Android Studio nous propose dans les menus une action qui automatise l'ensemble du processus à savoir :
 
 - Création du package
 - Création de la class
@@ -255,7 +257,7 @@ Je vous laisse modifier le layout pour que celui-ci ressemble à :
 
 #### Étape 4 : Lancer une activity
 
-Maintenant que notre Splash s'affiche nous allons lancé pouvoir lancer l'autre activity après un délai. Dans cette partie, nous allons voir comment lancer une activité, et plus précisément comment nous pouvons « simplifier » / « uniformiser » le lancement via une méthode static.
+Maintenant que notre « Splash » s'affiche nous allons pouvoir lancer l'autre activity après _un délai_. Dans cette partie, nous allons voir comment lancer une activité, et plus précisément comment nous pouvons « simplifier » / « uniformiser » le lancement via une méthode static.
 
 ::: tip
 :nerd_face: Si vous avez déjà fait du développement Android, rien de nouveau, je vous propose simplement juste **une autre façon** de vous organiser.

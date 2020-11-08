@@ -39,3 +39,16 @@ Vous avez un exemple de tableau dans le [Mémo HTML](/cheatsheets/html).
 
 :hand: _Petite astuce_, votre IDE propose une mode « emmet » nous allons découvrir son fonctionnement ensemble. :hand:
 :::
+
+## Ajouter un Menu
+
+Nous avons maintenant 3 pages, nous allons donc devoir ajouter un menu. En utilisant les balises que nous avons vu ensemble (au autres).
+
+Je vous laisse écrire et mettre en place le menu dans l'ensemble des pages de votre site.
+
+::: tip
+
+- Comment procédez vous ?
+- À votre avis pouvons nous faire autrement? Afin d'éviter de mettre plusieurs fois la même chose dans plusieurs fichiers
+
+:::
