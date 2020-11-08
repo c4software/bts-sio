@@ -1,6 +1,8 @@
 const AUTH_KEY = 'auth_client_side';
 const UUID = '53ac15ea-e430-4ea1-8db5-fcfa63bf2844';
 
+const isPrerender = () => prompt === undefined
+
 const saveAuth = () => {
     try {
         sessionStorage.setItem(AUTH_KEY, UUID);
@@ -24,7 +26,7 @@ const askForPass = (siteData) => {
 }
 
 const shouldAskPass = (siteData, path) => {
-    return siteData.themeConfig.protected.paths.includes(path)
+    return !isPrerender() && siteData.themeConfig.protected.paths.includes(path)
 }
 
 export default ({
