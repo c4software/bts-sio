@@ -333,8 +333,8 @@ Je vous propose de les modifier. Première étape ajouter vos couleurs dans le f
 
 ### À faire
 
-- Ajouter une couleur.
-- L'utiliser dans le thème.
+- Ajouter une couleur (`colors.xml`). Par exemple, ajouter une « mainPrimaryColor ».
+- L'utiliser dans le thème (`themes.xml`) en modifiant par le `colorPrimary` pour utiliser votre nouvelle couleur.
 
 ## Les Intent externes / tierces
 
