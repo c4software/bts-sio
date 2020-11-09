@@ -325,6 +325,17 @@ Pour choisir une icône :
 - Que constatez-vous comme changement dans les Drawable ?
 - Utiliser l'image choisie dans votre layout « Splash ». L'image choisie doit-être en bas à droite.
 
+## Thème de couleurs
+
+Comme vous avez pu le constater, les couleurs de votre application sont « principalement » violettes. Les couleurs en question sont définies dans le thème de votre application.
+
+Je vous propose de les modifier. Première étape ajouter vos couleurs dans le fichier `colors.xml`. Une fois fait modifier le fichier `themes.xml` et plus particulièrement le `colorPrimary` pour utiliser la couleur que vous avez ajoutée.
+
+### À faire
+
+- Ajouter une couleur.
+- L'utiliser dans le thème.
+
 ## Les Intent externes / tierces
 
 Dans le système Android, nous avons à notre disposition en plus des Intents que vous déclarez la possibilité d'appeler ceux du système. La liste est très grande :

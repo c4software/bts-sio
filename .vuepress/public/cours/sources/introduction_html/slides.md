@@ -11,6 +11,22 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+## HTML signifie
+
+- **`H`** => Hyper
+- **`T`** => Text
+- **`M`** => Markup
+- **`L`** => Language
+
+---
+
+- Décrit la structure d'une page Internet.
+- Une série d'éléments
+- Indique à votre navigateur comment afficher le contenu
+- Structure chaque élément (Titre, paragraphe, …)
+
+---
+
 ## Partie 0 - Un peu d'histoire
 
 ---

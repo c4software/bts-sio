@@ -33,3 +33,17 @@ code.lang-sh::before {
   display: block;
   padding-bottom: 10px;
 }
+
+.colContainer {
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+
+iframe {
+  margin: 15px 0px !important;
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #657b83 !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}

@@ -46,7 +46,7 @@ Nous avons maintenant 3 pages, nous allons donc devoir ajouter un menu. En utili
 
 Je vous laisse écrire et mettre en place le menu dans l'ensemble des pages de votre site.
 
-::: tip
+::: tip Comment s'organiser ?
 
 - Comment procédez vous ?
 - À votre avis pouvons nous faire autrement? Afin d'éviter de mettre plusieurs fois la même chose dans plusieurs fichiers
