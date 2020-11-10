@@ -1,4 +1,4 @@
-# Slides HTML + CSS
+# Slides HTML et CSS
 
 ## Le HTML
 

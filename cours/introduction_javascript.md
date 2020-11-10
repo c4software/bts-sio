@@ -1,3 +1,3 @@
-# Introduction Javascript
+# Slides Javascript
 
 <SlidesDeck src="introduction_javascript" />
