@@ -202,11 +202,154 @@ color: red !important;
 
 ## Fond et couleurs
 
-TODO
+Bien évidement en CSS nous pouvons personnaliser les fonds (couleurs et images)
 
-- Les images. (Repeat, etc)
-- Les couleurs.
-- Le principe RGB, HEX
+---
+
+## Les couleurs
+
+### 3 notations
+
+---
+
+## En anglais
+
+- blue
+- red
+- …
+
+Assez rapidement limité. [Seulement 140 couleurs](https://www.w3schools.com/cssref/css_colors.asp)
+
+---
+
+## En hexadecimal
+
+![Hex Reading](./res/hex-reading.png)
+
+Notation connu et utilisé partout.
+
+---
+
+## RGB
+
+```css
+rgb(246, 243, 242);
+```
+
+Identique à la notation en hexadecimal.
+
+---
+
+## Comment choisir ?
+
+![Color Picker](./res/picker.png)
+
+---
+
+- Gimp
+- Photoshop
+- [Ou en ligne](https://www.webfx.com/web-design/color-picker/)
+- [Directement sur Google](https://www.google.com/search?q=colorpicker&oq=colorpicker)
+
+---
+
+## Utilisation
+
+- Couleur du texte.
+- Couleur du fond.
+- Les bordures
+- …
+
+---
+
+```css
+.maClass {
+  /* Couleur de fond */
+  background-color: #fafafa;
+}
+
+.maClass {
+  /* Couleur du texte */
+  color: #fafafa;
+}
+
+.maClass {
+  /* Couleur du bordure */
+  border: 1px solid #fafafa;
+}
+```
+
+---
+
+```css
+body {
+  background: black;
+  color: white;
+}
+```
+
+Que va-t-il s'afficher ?
+
+---
+
+## Les images
+
+Les images ne sont pas limité à la balise `<img>`
+
+---
+
+## C'est possible en CSS
+
+### Et partout
+
+```css
+body {
+  background-image: url("greta.png");
+}
+```
+
+---
+
+![Logo Repeat](./res/logo_repeat.png)
+
+---
+
+## C'est moche hein ?
+
+---
+
+## Vous pouvez compléter avec :
+
+| Propriété             | Valeurs                                      |
+| --------------------- | -------------------------------------------- |
+| background-repeat     | fixed, scroll                                |
+| background-attachment | no-repeat, repeat-x, repeat-y, repeat        |
+| background-position   | en pixel, ou top, bottom, left, right center |
+
+---
+
+```css
+body {
+  background-image: url("greta.png");
+  background-attachment: fixed; /* Le Logo sera fixe */
+  background-repeat: no-repeat; /* Le logo ne sera pas répété */
+  background-position: center; /* Le logo sera centré */
+}
+```
+
+---
+
+![Center](./res/logo_center.png)
+
+---
+
+## Le propriété background est « combinable »
+
+### Ce qui donne
+
+```css
+background: url("greta.png") fixed no-repeat center;
+```
 
 ---
 
@@ -223,11 +366,15 @@ TODO
 
 ## Placer les éléments
 
+TODO
+
 - Float
 
 ---
 
 ## Décoration / Mise en forme
+
+TODO
 
 - Border
 - Shadow
