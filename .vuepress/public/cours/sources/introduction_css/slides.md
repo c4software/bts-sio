@@ -200,6 +200,69 @@ color: red !important;
 
 ---
 
+## Fond et couleurs
+
+TODO
+
+- Les images. (Repeat, etc)
+- Les couleurs.
+- Le principe RGB, HEX
+
+---
+
+## Formater du texte
+
+TODO
+
+- Gras, Italc, Souligné
+- Font-Style
+- Taille du texte (em, rem, les unités etc)
+- Les alignements
+
+---
+
+## Placer les éléments
+
+- Float
+
+---
+
+## Décoration / Mise en forme
+
+- Border
+- Shadow
+
+---
+
+## Interactivité
+
+Les pseudo-formats.
+
+- :hover
+- :active
+- :visited
+
+---
+
+## Les ressources d'exemples
+
+- CodePen
+- Parler de l'inspiration
+
+---
+
+## Analyser / Copier
+
+- Parler de l'inspecteur.
+
+---
+
+## Mise en pratique
+
+[Mise en pratique](/tp/html_css/tp3.html)
+
+---
+
 ## Partie 2 - La CSS avancée
 
 Flexbox, Grid …
