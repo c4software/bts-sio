@@ -30,6 +30,7 @@ module.exports = {
     ['meta', { name: 'msapplication-TileColor', content: '#3e80af' }],
     ['meta', { name: 'google-site-verification', content: 'IpzGtrtih2KT0f0XkFOsx0qHPBihE6JADKtXpO-KN-4' }]
   ],
+  evergreen: true,
   themeConfig: {
     /** Objectif: dissuasion rien de plus… */
     protected: {

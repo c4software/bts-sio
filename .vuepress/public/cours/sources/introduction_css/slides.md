@@ -6,7 +6,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## La CSS
 
-Décrit la présentation de vos pages Internet
+Décris la présentation de vos pages Internet
 
 ---
 
@@ -22,11 +22,11 @@ _En français :_ Une feuille de style
 
 - CSS1 1996
 - CSS2 1998 (amélioration de CSS1)
-- CSS3 la version courant (amélioration et fonction type bord arrondi, animation, etc)
+- CSS3 la version courant (amélioration et fonction type bord arrondi, animation, etc.)
 
 ---
 
-CSS à donc été développé par « niveaux ».
+CSS a donc été développé par « niveaux ».
 
 ---
 
@@ -40,11 +40,11 @@ CSS1 est développé pour être un sous-ensemble de CSS2, qui est lui-même dév
 
 ---
 
-## Oui… et Concrêtement ? 🤔
+## Oui… et concrètement ? 🤔
 
-## Plus le navigateurs est ancien…
+## Plus le navigateur est ancien…
 
-# moins ils ne connais de propriétés CSS
+# moins ils ne connaissent de propriétés CSS
 
 ---
 
@@ -62,8 +62,8 @@ Nous devons donc vérifier le support.
 
 ### 2 parties
 
-- Le selecteur : L'élément à viser « `table`, `div`, `#id`, `.class` ».
-- La déclaration : Le style en lui même. Écrit sous la forme de `propriété: valeur`.
+- Le sélecteur : L'élément à viser « `table`, `div`, `#id`, `.class` ».
+- La déclaration : Le style en lui-même. Écrit sous la forme de `propriété: valeur`.
 
 ---
 
@@ -86,13 +86,13 @@ Comment le lire ?
 
 ---
 
-## Les selecteurs
+## Les sélecteurs
 
-![Les selecteurs](./res/selector.png)
+![Les sélecteurs](./res/selector.png)
 
 ---
 
-## Les selecteurs
+## Les sélecteurs
 
 ```html
 <p>Exemple <i>suite…</i> !</p>
@@ -110,7 +110,7 @@ Comment le lire ?
 
 ---
 
-## Les selecteurs
+## Les sélecteurs
 
 ```html
 <h1>Titre</h1>
@@ -126,6 +126,39 @@ Comment le lire ?
 
 ---
 
+## Les sélecteurs
+
+```html
+<p id="contenu">Exemple <span class="suite">suite…</span> !</p>
+
+<style>
+  #contenu {
+    background: red;
+  }
+
+  .suite {
+    background: white;
+  }
+</style>
+```
+
+---
+
+## En résumé
+
+| Selecteur | Cible                               |
+| --------- | ----------------------------------- |
+| #item     | Élément avec id `item`              |
+| .item     | Élément(s) avec class `item`        |
+| p         | Élément(s) de type `p`              |
+| div, p    | Élément(s) de type `div`, `p`       |
+| p > i     | Élément(s) de type `i` dans `p`     |
+| .item > i | Élément(s) de type `i` dans `.item` |
+
+Consulter [une liste plus complète ici](https://www.w3.org/Style/css3-selectors-updates/WD-css3-selectors-20010126.fr.html#selectors)
+
+---
+
 ## Ou déclarer la feuille de style ?
 
 - Dans un fichier externe `monfichier.css`. (👍)
@@ -136,11 +169,11 @@ Comment le lire ?
 
 ## Pourquoi choisir la CSS Externe ?
 
-### Permet de partager la CSS entre plusieurs pages.
+### Permets de partager la CSS entre plusieurs pages.
 
 ---
 
-## Cascading ? Vous vous souvener ?
+## Cascading ? Vous vous souvenez ?
 
 Il y a donc un ordre d'application de la CSS
 
@@ -153,7 +186,7 @@ Il y a donc un ordre d'application de la CSS
 
 ## Mais
 
-Si il le faut…
+S’il le faut…
 
 ```css
 color: red !important;

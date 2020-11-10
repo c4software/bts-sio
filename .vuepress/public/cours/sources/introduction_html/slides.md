@@ -358,6 +358,32 @@ L'Organisation de la structure de mon HTML
 
 ---
 
+## Partie 3 - « L'Hébergement » en local
+
+Tester mon site… Le faire tester « en local »
+
+---
+
+## Local ?
+
+C'est à dire « sur votre ordinateur »
+
+---
+
+- Tester pendant le developpement
+- Faire tester à vos proches
+
+---
+
+## Des outils
+
+- Wamp (Windows)
+- Xampp (Windows)
+- Mamp (Mac OS)
+- Lamp (Linux)
+
+---
+
 ## Partie 3 - L'Hébergement
 
 Rendre mon site visible au public
@@ -379,3 +405,7 @@ Rendre mon site visible au public
 ## Comment choisir ?
 
 ### À votre avis ?
+
+---
+
+## Des questions ?

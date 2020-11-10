@@ -23,7 +23,7 @@ Votre carrière sera faite de balise / problème inconnue, le bon réflexe c'est
 
 - [Google](https://www.google.com)
 - [Stackoverflow](https://stackoverflow.com/)
-- [MDM](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
   :::
 
 ## Créer une troisième page
