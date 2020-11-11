@@ -88,6 +88,7 @@ module.exports = {
         title: "Le versionning",
         initialOpenGroupIndex: -1,
         children: [
+          ["cheatsheets/git/", "En + du cours"],
           { title: "Initiation à Git", children: ["cours/git", "/tp/git_initiation/"] },
           { title: "Git en groupe + GitLab", children: ["cours/gitlab", "/tp/gitlab/"] },
         ]
@@ -105,6 +106,7 @@ module.exports = {
         title: "VueJS",
         initialOpenGroupIndex: -1,
         children: [
+          ["cheatsheets/vuejs/", "En + du cours"],
           { title: "Les bases", children: ["cours/vuejs", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs", "/tp/vuejs/vuetify-vuejs.md"] },
           { title: "Exemples", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"] },
         ]
@@ -114,7 +116,7 @@ module.exports = {
         title: "Le mobile",
         initialOpenGroupIndex: -1,
         children: [
-          { title: "Cordova", children: ["cours/cordova", "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] },
+          { title: "Cordova", children: ["cours/cordova", ["cheatsheets/cordova/", "En + du cours"], "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] },
           { title: "Android", children: ["cours/android", "/tp/android/android-base-tp", "/tp/android/app-ble-network", "/tp/android/sample-explication"] }
         ]
       },
@@ -124,7 +126,7 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "GitLab-CI", children: ["cours/gitlabci", "/tp/ci/pages", "/tp/ci/ci-hybride"] },
-          { title: "Docker", children: [["https://rawgit.com/c4software/bts/master/.vuepress/public/cours/docker/", "Slides"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
+          { title: "Docker", children: [["https://rawgit.com/c4software/bts/master/.vuepress/public/cours/docker/", "Slides"], ["cheatsheets/docker/", "En + du cours"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
         ]
       },
 
