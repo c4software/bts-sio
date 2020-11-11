@@ -50,24 +50,94 @@ module.exports = {
     sidebar: [
       ["/", "Introduction"],
       { collapsable: true, title: "Aides mémoires", children: [["cheatsheets/git/", "Git"], ["cheatsheets/html/", "Html"], ["cheatsheets/cordova/", "Cordova"], ["cheatsheets/docker/", "Docker"], ["cheatsheets/vuejs/", "VueJS"]] },
-      { collapsable: true, title: "Initiation à Git", children: ["cours/git", "/tp/git_initiation/"] },
-      { collapsable: true, title: "Introduction HTML + CSS", children: ["cours/introduction_html_css", "cheatsheets/html/", "tp/html_css/support.md", "tp/html_css/tp1.md", "tp/html_css/tp2.md", "tp/html_css/bootstrap.md", "tp/html_css/tailwind.md"] },
-      { collapsable: true, title: "Introduction JavaScript", children: ["cours/introduction_javascript"] },
-      { collapsable: true, title: "Introduction PHP", children: ["cours/introduction_php"] },
-      { collapsable: true, title: "Git en groupe + GitLab", children: ["cours/gitlab", "/tp/gitlab/"] },
-      { collapsable: true, title: "Organisation du code", children: ["cours/organisations", "/tp/organisation/introduction"] },
-      { collapsable: true, title: "Javascript avancé", children: ["cours/javascript_avances", "tp/javascript_avances/introduction", "tp/javascript_avances/revision"] },
-      { collapsable: true, title: "Framework Javascript", children: ["cours/framework_javascript", "/tp/javascript_avances/introduction.md", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1.md", "/tp/vuejs/vuetify-vuejs.md", "/tp/vuejs/firebase-vuejs.md"] },
-      { collapsable: true, title: "Programmation sécurisée", children: ["cours/securite_applications", "cours/introduction_securite", "tp/securite/"] },
-      { collapsable: true, title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/application_todo_list", "/tp/laravel/creation_api"] },
-      { collapsable: true, title: "VueJS", children: ["cours/vuejs", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs", "/tp/vuejs/vuetify-vuejs.md"] },
-      { collapsable: true, title: "VueJS exemple", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"] },
-      { collapsable: true, title: "Typescript (À venir)", children: ["cours/typescript", "tp/typescript/vuejs"] },
-      { collapsable: true, title: "Cordova + VueJS", children: ["cours/cordova", "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] },
-      { collapsable: true, title: "Docker", children: [["https://rawgit.com/c4software/bts/master/.vuepress/public/cours/docker/", "Slides"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
-      { collapsable: true, title: "GitLab-CI", children: ["cours/gitlabci", "/tp/ci/pages", "/tp/ci/ci-hybride"] },
-      { collapsable: true, title: "Python : Framework Flask", children: ["cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
-      { collapsable: true, title: "Android", children: ["cours/android", "/tp/android/android-base-tp", "/tp/android/app-ble-network", "/tp/android/sample-explication"] }
+
+      {
+        title: "Les bases Web",
+        initialOpenGroupIndex: -1,
+        children: [
+          { title: "En + du cours", children: ["cheatsheets/html/", "tp/html_css/support.md"] },
+          { title: "HTML + CSS", children: ["cours/introduction_html_css", "tp/html_css/tp1.md", "tp/html_css/tp2.md"] },
+          { title: "Javascript", children: ["cours/introduction_javascript"] },
+          { title: "PHP", children: ["cours/introduction_php"] },
+          { title: "Librairies", children: ["tp/html_css/bootstrap.md", "tp/html_css/tailwind.md"] }
+        ]
+      },
+
+      {
+        title: "Le PHP",
+        initialOpenGroupIndex: -1,
+        children: [
+          { title: "Les bases", children: ["cours/introduction_php"] },
+          { title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/application_todo_list", "/tp/laravel/creation_api"] }
+        ]
+      },
+
+      {
+        title: "Le JavaScript",
+        initialOpenGroupIndex: -1,
+        children: [
+          { title: "Les bases", children: ["cours/introduction_javascript"] },
+          { title: "Javascript avancé", children: ["cours/javascript_avances", "tp/javascript_avances/introduction", "tp/javascript_avances/revision"] },
+          { title: "Les frameworks", children: ["cours/framework_javascript", "/tp/javascript_avances/introduction.md", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1.md", "/tp/vuejs/vuetify-vuejs.md", "/tp/vuejs/firebase-vuejs.md"] },
+          { title: "Organisation du code", children: ["cours/organisations", "/tp/organisation/introduction"] },
+
+        ]
+      },
+
+      {
+        title: "Le versionning",
+        initialOpenGroupIndex: -1,
+        children: [
+          { title: "Initiation à Git", children: ["cours/git", "/tp/git_initiation/"] },
+          { title: "Git en groupe + GitLab", children: ["cours/gitlab", "/tp/gitlab/"] },
+        ]
+      },
+
+      {
+        title: "Sécurité du code",
+        children: [
+          { title: "Introduction OWASP", children: ["cours/introduction_securite"] },
+          { title: "Sur le WEB", children: ["cours/securite_applications", "tp/securite/"] }
+        ]
+      },
+
+      {
+        title: "VueJS",
+        initialOpenGroupIndex: -1,
+        children: [
+          { title: "Les bases", children: ["cours/vuejs", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs", "/tp/vuejs/vuetify-vuejs.md"] },
+          { title: "Exemples", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"] },
+        ]
+      },
+
+      {
+        title: "Le mobile",
+        initialOpenGroupIndex: -1,
+        children: [
+          { title: "Cordova", children: ["cours/cordova", "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] },
+          { title: "Android", children: ["cours/android", "/tp/android/android-base-tp", "/tp/android/app-ble-network", "/tp/android/sample-explication"] }
+        ]
+      },
+
+      {
+        title: "Full-Stack",
+        initialOpenGroupIndex: -1,
+        children: [
+          { title: "GitLab-CI", children: ["cours/gitlabci", "/tp/ci/pages", "/tp/ci/ci-hybride"] },
+          { title: "Docker", children: [["https://rawgit.com/c4software/bts/master/.vuepress/public/cours/docker/", "Slides"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
+        ]
+      },
+
+      {
+        title: "Les API",
+        initialOpenGroupIndex: -1,
+        children: [
+          { title: "Framework Flask (Python)", children: ["cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
+          { title: "Typescript (prochainement)", children: ["cours/typescript", "tp/typescript/vuejs"] },
+          { title: "NodeJS (prochainement)", children: ["cours/nodejs"] },
+        ]
+      }
+
     ]
   }
 };
