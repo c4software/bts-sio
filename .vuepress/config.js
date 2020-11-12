@@ -56,7 +56,7 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "En + du cours", children: ["cheatsheets/html/", "tp/html_css/support.md"] },
-          { title: "HTML + CSS", children: ["cours/introduction_html_css", "tp/html_css/tp1.md", "tp/html_css/tp2.md"] },
+          { title: "HTML + CSS", children: ["cours/introduction_html_css", "tp/html_css/tp1.md", "tp/html_css/tp2.md", "tp/html_css/tp3.md"] },
           { title: "Javascript", children: ["cours/introduction_javascript"] },
           { title: "PHP", children: ["cours/introduction_php"] },
           { title: "Librairies", children: ["tp/html_css/bootstrap.md", "tp/html_css/tailwind.md"] }

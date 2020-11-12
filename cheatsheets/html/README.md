@@ -195,3 +195,11 @@ Sémantiquement il est possible d'organiser encore plus votre HTML. Pour ça nou
 | `<footer>`  | Pied du contenu                    |
 | `<article>` | Un article (comme dans un journal) |
 | `<aside>`   | Contenu complémentaire             |
+
+### Activer le responsive
+
+De base votre navigateur « n'est pas responsive ». Si vous souhaitez que celui-ci ajuste sont contenu à la taille de l'écran il faut ajouter la méta suivante :
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+```

@@ -429,9 +429,3 @@ Les pseudo-formats.
 ## Mise en pratique
 
 [Mise en pratique](/tp/html_css/tp3.html)
-
----
-
-## Partie 2 - La CSS avancée
-
-Flexbox, Grid …
