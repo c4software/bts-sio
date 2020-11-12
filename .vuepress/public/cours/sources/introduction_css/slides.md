@@ -322,8 +322,8 @@ body {
 
 | Propriété             | Valeurs                                      |
 | --------------------- | -------------------------------------------- |
-| background-repeat     | fixed, scroll                                |
-| background-attachment | no-repeat, repeat-x, repeat-y, repeat        |
+| background-attachment | fixed, scroll                                |
+| background-repeat     | no-repeat, repeat-x, repeat-y, repeat        |
 | background-position   | en pixel, ou top, bottom, left, right center |
 
 ---
