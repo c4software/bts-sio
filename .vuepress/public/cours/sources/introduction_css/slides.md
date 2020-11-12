@@ -196,7 +196,7 @@ color: red !important;
 
 ## Mise en pratique
 
-[Découverte de la CSS](/tp/html_css/tp2.html)
+[Découverte de la CSS](./tp2.html)
 
 ---
 
@@ -208,13 +208,13 @@ color: red !important;
 
 ## Padding
 
-Espacement à l'iterieure de l'élément
+Espacement à l'intérieur de l'élément
 
 ---
 
 ## Margin
 
-Espacement à l'exterieure de l'élément
+Espacement à l'extérieure de l'élément
 
 ---
 
@@ -224,7 +224,7 @@ Espacement à l'exterieure de l'élément
 
 ## Fond et couleurs
 
-Bien évidement en CSS nous pouvons personnaliser les fonds (couleurs et images)
+Bien évidemment en CSS nous pouvons personnaliser les fonds (couleurs et images)
 
 ---
 
@@ -244,11 +244,11 @@ Assez rapidement limité. [Seulement 140 couleurs](https://www.w3schools.com/css
 
 ---
 
-## En hexadecimal
+## En hexadécimal
 
 ![Hex Reading](./res/hex-reading.png)
 
-Notation connu et utilisé partout.
+Notation connue et utilisée partout.
 
 ---
 
@@ -258,7 +258,7 @@ Notation connu et utilisé partout.
 rgb(246, 243, 242);
 ```
 
-Identique à la notation en hexadecimal.
+Identique à la notation en hexadécimal.
 
 ---
 
@@ -316,7 +316,7 @@ Que va-t-il s'afficher ?
 
 ## Les images
 
-Les images ne sont pas limité à la balise `<img>`
+Les images ne sont pas limitées à la balise `<img>`
 
 ---
 
@@ -377,36 +377,117 @@ background: url("greta.png") fixed no-repeat center;
 
 ## Formater du texte
 
-TODO
-
-- font
-- Gras, Italc, Souligné
+- Gras, Italic, Souligné
 - Font-Style
-- Taille du texte (em, rem, les unités etc)
-- Les alignements
+- Font-Family
+- Taille du texte (em, rem, px)
+- Les alignements (lef, right, center)
+
+---
+
+[Voir le support de cours](/tp/html_css/support.html)
 
 ---
 
 ## Placer les éléments
 
-TODO
+- Absolute ?
+- Relative ?
+- Flottant ?
 
-- Float
+---
+
+## Absolute
+
+### Point d'origine « la fenêtre entière »
+
+![Position Absolute](./res/absolute.png)
+
+---
+
+## Relative
+
+### Point d'origine le parent
+
+![Position relative](./res/relative.png)
+
+---
+
+## Flotant
+
+```html
+<html>
+  <body>
+    <h1>Mon titre</h1>
+    <p>
+      <img
+        class="float"
+        src="https://www.greta-cfa-paysdelaloire.fr/wp-content/themes/kookline/static/img/logo-cfa.png"
+      />
+      L’accueil de tous les publics : les formations du GRETA-CFA 49 concernent
+      les salariés d’entreprises, les jeunes en insertion professionnelle et les
+      demandeurs d’emploi, mais aussi toute personne qui souhaite se former à
+      titre individuel.
+    </p>
+
+    <style>
+      .float {
+        float: left;
+      }
+    </style>
+  </body>
+</html>
+```
+
+---
+
+## Flotant
+
+![Position Absolute](./res/float-left.png)
+![Position Absolute](./res/float-right.png)
 
 ---
 
 ## Décoration / Mise en forme
 
-TODO
+### Se passer des images pour le style
 
-- Border
-- Shadow
+---
+
+- Box-shadow
+- border
+- border-radius
+
+---
+
+![Border et Shadow](./res/border_shadow.png)
+
+---
+
+```css
+box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+```
+
+[Générateur en ligne](https://cssgenerator.org/box-shadow-css-generator.html)
+
+---
+
+```css
+border: 1px solid red;
+border-radius: 10px;
+```
 
 ---
 
 ## Interactivité
 
-Les pseudo-formats.
+### Les pseudo-classes
+
+---
+
+Les pseudo-classes permettent d'appliquer un style à un élément non seulement en fonction de son contenu dans l'arbre du document, mais aussi en fonction de facteurs externes (l'historique de navigation par exemple avec :visited ; le statut du contenu avec :checked ; la position de la souris :hover).
+
+---
 
 - :hover
 - :active
@@ -414,19 +495,41 @@ Les pseudo-formats.
 
 ---
 
+<iframe src="/demo/css/survol/index.html" />
+
+---
+
 ## Les ressources d'exemples
 
 - CodePen
-- Parler de l'inspiration
+- S'inspirer c'est « progresser »
 
 ---
 
 ## Analyser / Copier
 
-- Parler de l'inspecteur.
+- Vous avez pour ça « l'inspecteur d'élément ».
+- Aide & Code source
+
+---
+
+![Inspecteur d'éléments](./res/inspecteur_elements.png)
+
+---
+
+## Le CSS « avancés »
+
+- Les variables CSS
+- Les animations
+- Le responsive
+- Grid & Flex
+
+---
+
+[Voir le support de cours](/tp/html_css/support.html#le-css-«-plus-plus-»)
 
 ---
 
 ## Mise en pratique
 
-[Mise en pratique](/tp/html_css/tp3.html)
+[Mise en pratique](./tp3.html)
