@@ -207,6 +207,7 @@ Dans notre « traitement de texte » sans interface, nous avons également la po
 
 ::: tip Astuce de pro
 Votre navigateur vous propose une interface de développement puissante vous permettant de voir les valeurs possibles pour chaque propriété. C'est disponible dans votre inspecteur d'éléments.
+
 ![Inspecteur d'éléments](./res/inspect.png)
 :::
 
