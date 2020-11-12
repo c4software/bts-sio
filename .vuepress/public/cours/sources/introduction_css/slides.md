@@ -379,6 +379,7 @@ background: url("greta.png") fixed no-repeat center;
 
 TODO
 
+- font
 - Gras, Italc, Souligné
 - Font-Style
 - Taille du texte (em, rem, les unités etc)

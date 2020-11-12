@@ -2,16 +2,18 @@ html,
 body {
   padding: 0;
   margin: 0;
+  font-family: "Open Sans", sans-serif;
+  background-color: #e8e8e8;
 }
 
 header {
-  background-color: #212121;
+  background-image: url("double-bubble-dark.png");
   color: #fafafa;
 }
 
 header > h1 {
   text-align: center;
-  padding: 50px;
+  padding: 70px;
   margin: 0;
 }
 
@@ -35,4 +37,59 @@ nav > ul > li {
 nav > ul > li > a {
   color: white;
   text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+  text-decoration: underline;
+}
+
+section {
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin: 20px;
+  padding: 10px;
+}
+
+section > h2 {
+  margin: 0;
+}
+
+section > h2::before {
+  content: " ➡ ";
+}
+
+.article_col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.article_col > article {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  width: 400px;
+  text-align: center;
+  transition: box-shadow 1s;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+
+.article_col > article:hover {
+  box-shadow: 0px 0px 50px 0px rgb(71, 168, 168);
+  color: rgb(71, 168, 168);
+  background: url("double-bubble-outline.png");
+}
+
+article > h3 {
+  font-size: 2rem;
+  margin: 10px;
+}
+
+footer {
+  font-size: smaller;
+  padding: 10px;
+  text-align: center;
 }
