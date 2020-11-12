@@ -200,6 +200,28 @@ color: red !important;
 
 ---
 
+## Espacement
+
+### Reproduire un design
+
+---
+
+## Padding
+
+Espacement à l'iterieure de l'élément
+
+---
+
+## Margin
+
+Espacement à l'exterieure de l'élément
+
+---
+
+![Padding et Margin](./res/margin_padding.png)
+
+---
+
 ## Fond et couleurs
 
 Bien évidement en CSS nous pouvons personnaliser les fonds (couleurs et images)
