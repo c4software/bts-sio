@@ -161,6 +161,44 @@ Comme je vous le disais précédemment, votre navigateur est un vrai « Word »,
 | font-size       | Défini la taille de votre texte    | Taille absolue _ou_ relative (px, em ou anglais)              |
 | color           | La couleur de votre texte          | Couleur en hexa, Anglais ou RGB (comme les fond donc)         |
 | text-align      | Position de votre texte            | Positionnement de votre texte (left, right, center, justify…) |
+| font-family     | Police à utiliser                  | Nom d'une police « présent sur le navigateur de la personne » |
+
+### Choisir la police
+
+Voilà un point épineux… La police, par defaut vous n'avez accès qu'au police présent sur l'ordinateur de la personne. C'est rapidement problématique, on nous demande que rarement d'installer la font X Y Z pour accéder à un site Internet.
+
+Le CSS intègre un système nous permettant d'afficher la police de notre choix. Pour son utilisation c'est simple il faut utiliser `font-family` et spécifier ensuite le nom de la font souhaité par exemple :
+
+```css
+.monElement {
+  font-family: Verdana;
+}
+```
+
+Vous n'avez pas d'idée sur les fonts ? Vous pouvez utiliser un site comme [Google Fonts](https://fonts.google.com/). Il « vous offre » un CDN qui se chargera d'ajouter la font pour qu'elle puisse être affichée sur votre page Web.
+
+Exemple :
+
+```html
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Votre contenu -->
+  </body>
+</html>
+```
 
 ### Taille du texte (absolue ou relative ?)
 
