@@ -584,6 +584,18 @@ body {
 }
 ```
 
+Il existe une autre façon de faire, il est possible de conditionner directement le chargement de la CSS en fonction de la taille de l'écran de la personne.
+
+```html
+<link rel="stylesheet" media="screen and (max-width: 960px)" href="small.css" />
+```
+
+::: tip Pas de solution universel
+
+Que vous choisissiez la première ou la seconde façon de faire il n'y a pas de solution « miracle », j'aurais personnellement tendance à choisir la première solution par habitude. Mais le `<link>` conditionné est également valide.
+
+:::
+
 ## La propriété display
 
 Nous avons plusieurs types d'affichage possible en CSS, de base les éléments sont soient :

@@ -17,8 +17,11 @@
 img,
 video,
 iframe {
-  max-height: 65vh !important;
-  max-width: 80vw !important;
+  /*max-height: 65vh !important;
+  max-width: 80vw !important;*/
+  max-height: 70% !important;
+  max-width: 80% !important;
+  margin: auto !important;
 }
 
 code.lang-sh {
