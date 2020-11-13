@@ -560,7 +560,11 @@ Le responsive ? Le responsive, c'est le nom que l'on donne à un site web qui s'
 
 Ce que vous pouvez retenir c'est de manière générale le responsive est exprimé en colonnes, généralement 12. Nous allons donc déterminer combien de colonnes doivent s'afficher en fonction de la taille de l'écran (large, medium, small). C'est donc une langue commune entre le designer et le développeur.
 
-Pour l'instant ce qu'il faut retenir c'est que si vous souhaitez faire du Responsive utiliser un Framework CSS type [Bootstrap](https://getbootstrap.com/) ou [Tailwind](https://tailwindcss.com/) ils vous permettront de gérer simplement ce système de colonne.
+::: warning Un instant
+
+Pour l'instant, ce qu'il faut retenir, c'est que si vous souhaitez faire du « Responsive » le plus simple est d'utiliser un « Framework CSS » type [Bootstrap](https://getbootstrap.com/) ou [Tailwind](https://tailwindcss.com/) ils vous permettront de gérer simplement ce système de colonne.
+
+:::
 
 Pour nous développeur CSS, comment ça fonctionne ? Tailwind, Bootstrap et autre framework fonctionnent tous de la même façon, il définisse des règles d'affichage en fonction de la taille d'écran. Pour faire ça en CSS nous, utilisons-les `media queries`. Les médias guéris c'est une notation particulière qui nous permet décrire des sélecteurs CSS en fonction de paramètres du navigateur du client (la larguer, la hauteur, etc.)
 
@@ -596,13 +600,64 @@ Que vous choisissiez la première ou la seconde façon de faire il n'y a pas de 
 
 :::
 
+### Quelques exemple de Media Queries
+
+```css
+/** Largeur min 400px AND paysage **/
+@media screen and (min-width: 400px) and (orientation: landscape) {
+  body {
+    color: blue;
+  }
+}
+
+/** Largeur min 400px OU paysage **/
+@media screen and (min-width: 400px), screen and (orientation: landscape) {
+  body {
+    color: blue;
+  }
+}
+```
+
+[Pour plus d'exemple](https://developer.mozilla.org/fr/docs/Apprendre/CSS/CSS_layout/Media_queries)
+
+## Les tailles d'affichage
+
+| Mobile  | Taille d'affichage (par defaut) |
+| ------- | ------------------------------- |
+| iPhone  | 980 px                          |
+| Android | 800px                           |
+
+## Des « Breakpoints générique » ?
+
+```css
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  /* Votre CSS pour cette résolution */
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  /* Votre CSS pour cette résolution */
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  /* Votre CSS pour cette résolution */
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  /* Votre CSS pour cette résolution */
+}
+```
+
 ## La propriété display
 
 Nous avons plusieurs types d'affichage possible en CSS, de base les éléments sont soient :
 
-- inline (en ligne, les éléments côte à côte).
-- block (les un après les autres, à la ligne)
-- table (spécifique aux `<table></table>`)
+- `inline` (en ligne, les éléments côte à côte).
+- `block` (les un après les autres, à la ligne)
+- `table` (spécifique aux `<table></table>`)
 
 Il y'a d'autres types d'affichage, mais c'est grossièrement les principales façons d'affiche le contenu.
 
