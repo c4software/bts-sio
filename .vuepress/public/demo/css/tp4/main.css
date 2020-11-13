@@ -1,0 +1,95 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  background-color: #e8e8e8;
+}
+
+header {
+  background-image: url("double-bubble-dark.png");
+  color: #fafafa;
+}
+
+header > h1 {
+  text-align: center;
+  padding: 70px;
+  margin: 0;
+  transition: padding 0.3s;
+}
+
+nav {
+  background-color: #161616;
+  text-align: center;
+  padding: 30px;
+}
+
+nav > ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+nav > ul > li {
+  display: inline;
+  padding: 10px;
+}
+
+nav > ul > li > a {
+  color: white;
+  text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+  text-decoration: underline;
+}
+
+section {
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin: 20px;
+  padding: 10px;
+}
+
+section > h2 {
+  margin: 0;
+}
+
+section > h2::before {
+  content: " ➡ ";
+}
+
+article > h3 {
+  font-size: 2rem;
+  margin: 10px;
+}
+
+footer {
+  font-size: smaller;
+  padding: 10px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 960px) {
+  /* Changement de ligne à colone */
+  main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  /* Seulement 2 éléments par ligne */
+  main > section {
+    flex: 1 0 44%;
+  }
+}
+
+@media only screen and (max-width: 959px) {
+  header > h1 {
+    padding: 30px;
+  }
+
+  nav {
+    padding: 10px;
+  }
+}
