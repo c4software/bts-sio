@@ -47,6 +47,10 @@ module.exports = {
     prevLinks: false,
     displayAllHeaders: true,
     sidebarDepth: 0,
+    nav: [
+      { text: 'Accueil', link: '/' },
+      { text: 'Contact', link: '/pages/contact.md' },
+    ],
     sidebar: [
       ["/", "Introduction"],
       { collapsable: true, title: "Aides mémoires", children: [["cheatsheets/git/", "Git"], ["cheatsheets/html/", "Html"], ["cheatsheets/cordova/", "Cordova"], ["cheatsheets/docker/", "Docker"], ["cheatsheets/vuejs/", "VueJS"]] },
