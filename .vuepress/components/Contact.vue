@@ -14,7 +14,7 @@
       <input type="hidden" name="form-name" value="contact" />
       <div class="container">
         <div class="col">
-          <input v-model="name" class="form-control" type="text" name="Nom" placeholder="Nom *" required/>
+          <input v-model="lastname" class="form-control" type="text" name="Nom" placeholder="Nom *" required/>
         </div>
         <div class="col">
           <input v-model="firstname" class="form-control" type="text" name="Prénom" placeholder="Prénom *" required  />
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       submited: false,
-      name: "",
+      lastname: "",
       firstname: "",
       email: "",
       message: "",
@@ -63,7 +63,7 @@ export default {
       fetch("/contact", {
         body: this.encode({
           "form-name": "contact",
-          name: this.name,
+          lastname: this.lastname,
           firstname: this.firstname,
           email: this.email,
           message: this.message,
@@ -79,7 +79,7 @@ export default {
 
       this.submited = true;
 
-      this.name = "";
+      this.lastname = "";
       this.firstname = "";
       this.email = "";
       this.message = "";
