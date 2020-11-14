@@ -63,10 +63,10 @@ export default {
       fetch("/contact", {
         body: this.encode({
           "form-name": "contact",
-          lastname: this.lastname,
-          firstname: this.firstname,
-          email: this.email,
-          message: this.message,
+          "Nom": this.lastname,
+          "Prénom": this.firstname,
+          "Email": this.email,
+          "Message": this.message,
         }),
         cache: "no-cache",
         method: "POST",
