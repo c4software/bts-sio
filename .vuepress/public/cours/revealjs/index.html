@@ -50,7 +50,7 @@
 			// Load custom slides from uri.
 			var url = new URL(window.location);
 			var source = url.searchParams.get("source");
-			document.querySelector("#section").setAttribute("data-markdown", "../" + source + "/slides.md");
+			document.querySelector("#section").setAttribute("data-markdown", "/cours/sources/" + source + "/slides.md");
 
 			// Initialize the Reveal presentation
 			Reveal.initialize({
@@ -78,7 +78,7 @@
 			});
 
 			// Change base to the « source » base, to make image, and other link correctly working
-			document.querySelector("head").insertAdjacentHTML("beforeend", "<base href='../"+source+"/'>");
+			document.querySelector("head").insertAdjacentHTML("beforeend", "<base href='/cours/sources/"+source+"/'>");
 
 		</script>
 	</body>

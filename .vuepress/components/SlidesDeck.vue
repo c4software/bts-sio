@@ -15,7 +15,7 @@ export default {
   },
   computed: {
       deckPath(){
-          return `/cours/sources/revealjs/index.html?source=${this.src}`;
+          return `/cours/revealjs/index.html?source=${this.src}`;
       }
   }
 };
