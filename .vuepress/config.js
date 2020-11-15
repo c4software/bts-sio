@@ -49,7 +49,7 @@ module.exports = {
     sidebarDepth: 0,
     nav: [
       { text: 'Accueil', link: '/' },
-      { text: 'Contact', link: '/pages/contact.md' },
+      { text: 'Une question ?', link: '/pages/contact.md' },
     ],
     sidebar: [
       ["/", "Introduction"],

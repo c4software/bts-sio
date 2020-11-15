@@ -4,6 +4,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+## Séparer le fond et la forme avec HTML et CSS
+
+---
+
 ## La CSS
 
 Décris la présentation de vos pages Internet
@@ -15,6 +19,8 @@ Décris la présentation de vos pages Internet
 - **`C`** => Cascading
 - **`S`** => Style
 - **`S`** => Sheet
+
+---
 
 _En français :_ Une feuille de style
 
