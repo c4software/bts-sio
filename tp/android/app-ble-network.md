@@ -51,7 +51,7 @@ Concevoir une application qui va :
 ### Vérifier les permissions
 
 ```kotlin
-/**
+    /**
      * Gère l'action après la demande de permission.
      * 2 cas possibles :
      * - Réussite 🎉.
@@ -607,6 +607,37 @@ private fun handleToggleLedNotificationUpdate(characteristic: BluetoothGattChara
         ledStatus.setImageResource(R.drawable.led_on)
     } else {
         ledStatus.setImageResource(R.drawable.led_off)
+    }
+}
+```
+
+### Gérer la compatibilité du mobile
+
+Dans le code de **l'activity BLE**, si vous souhaitez gérer l'ensembles des cas d'erreurs :
+
+- Équipement non compatible BLE.
+- Vérifications des permissions.
+- Vérification du service de localisation.
+
+```kotlin
+override fun onResume() {
+    super.onResume()
+
+    if (!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+        // Test si le téléphone est compatible BLE, si c'est pas le cas, on finish() l'activity
+        Toast.makeText(this, getString(R.string.not_compatible), Toast.LENGTH_SHORT).show()
+        finish()
+    } else if (hasPermission() && locationServiceEnabled()) {
+        // Lancer suite => Activation BLE + Lancer Scan
+        setupBLE()
+    } else if(!hasPermission()) {
+        // On demande la permission
+        askForPermission()
+    } else {
+        // On demande d'activer la localisation
+        // Idéalement on demande avec un activité.
+        // À vous de me proposer mieux (Une activité, une dialog, etc)
+        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
     }
 }
 ```
