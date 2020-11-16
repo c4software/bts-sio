@@ -390,10 +390,20 @@ Mais dans les grandes lignes :
 
 - Ajouter une nouvelle activité.
 - Ajout d'un bouton sur la home permettant de la lancer.
-- Dans la nouvelle activity, un RecyclerView qui contiendra « des éléments de type Strings ».
+- Dans la nouvelle activity, un RecyclerView qui contiendra « des éléments de type Strings ». (`<androidx.recyclerview.widget.RecyclerView android:layout_width="wrap_content"android:layout_height="wrap_content" … `)
 - Chaque élément de la liste doit ressembler à (je vous laisse créer le fichier nommé `item_list.xml` dans les layouts).
 
 ![List Item Layout](./ressources/layout_list_item.png)
+
+::: tip Les RecyclerView c'est important
+
+Comme je le disais en cours, les RecyclerView c'est un concept important. Il faut prendre du temps pour bien comprendre le fonctionnement et les « limites ». En vous inspirant de [l'exemple ici](https://gist.github.com/c4software/95e51417890c68078c14555b2f1d9a03)
+
+Je vous laisse implémenter votre propre RecyclerView.
+
+:hand: **Attention**, dans notre cas le RecyclerView sera du type String et non pas **Device**
+
+:::
 
 ## Les « Plugins » / Librairies
 
