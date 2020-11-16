@@ -113,7 +113,7 @@ private fun locationServiceEnabled(): Boolean {
 private fun setupBLE() {
     (getSystemService(BLUETOOTH_SERVICE) as BluetoothManager?)?.let { bluetoothManager ->
         bluetoothAdapter = bluetoothManager.adapter
-        if (bluetoothAdapter != null && bluetoothManager.adapter.isEnabled) {
+        if (bluetoothAdapter != null && !bluetoothManager.adapter.isEnabled) {
             startActivityForResult(Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), REQUEST_ENABLE_BLE)
         } else {
             scanLeDevice()
