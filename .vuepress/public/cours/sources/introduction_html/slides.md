@@ -409,3 +409,9 @@ Rendre mon site visible au public
 ---
 
 ## Des questions ?
+
+---
+
+## Votre CV.
+
+### C'est à vous.

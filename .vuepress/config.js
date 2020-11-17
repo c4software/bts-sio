@@ -60,9 +60,9 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "En + du cours", children: ["cheatsheets/html/", "tp/html_css/support.md"] },
-          { title: "HTML + CSS", children: ["cours/introduction_html_css", "tp/html_css/tp1.md", "tp/html_css/tp2.md", "tp/html_css/tp3.md", "tp/html_css/tp4.md"] },
+          { title: "HTML + CSS", children: ["cours/introduction_html_css", "tp/html_css/tp1.md", "tp/html_css/tp2.md", "tp/html_css/tp3.md", "tp/html_css/tp4.md", "tp/html_css/tp5.md"] },
           { title: "Javascript", children: ["cours/introduction_javascript"] },
-          { title: "PHP", children: ["cours/introduction_php"] },
+          { title: "PHP", children: ["cours/introduction_php", "tp/php/support.md", "tp/php/tp1.md", "tp/php/tp2.md", "tp/php/tp3.md", "tp/php/tp4.md", "tp/php/tp5.md"] },
           { title: "Librairies", children: ["tp/html_css/bootstrap.md", "tp/html_css/tailwind.md"] }
         ]
       },
@@ -72,6 +72,7 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "Les bases", children: ["cours/introduction_php"] },
+          { title: "En + du cours", children: ["tp/php/support.md"] },
           { title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/application_todo_list", "/tp/laravel/creation_api"] }
         ]
       },
