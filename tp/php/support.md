@@ -74,10 +74,12 @@ Un petit exemple ?
 </head>
 <body>
     <h1>Bonjour vous</h1>
-    <p>Nous sommes le <?php echo date() ?></p>
+    <p>Nous sommes le <?php echo date("d/m/Y") ?></p>
 </body>
 </html>
 ```
+
+![Exemple de base PHP](./res/php_base.png)
 
 ::: tip En aparté
 
@@ -114,13 +116,25 @@ En fonction de la plateforme, le logiciel sera différent, mais il contiendra **
 
 Les différents logiciels sont juste des raccourcis pour vous simplifier la création « d'un serveur PHP » en local. Ils incluent donc l'ensemble de la configuration nécessaire au bon fonctionnement de PHP.
 
+::: details À l'aise avec la ligne de commande ?
+Si oui, il existe depuis PHP 7 une autre façon de tester rapidement un script PHP. Elle passe par la ligne commande et ne nécéssite que l'installation de PHP
+
+```sh
+php -S localhost:9000
+```
+
+Cette commande lance un serveur PHP dans le dossier courrant. Pratique !
+:::
+
 ::: tip Et sur un serveur « de prod » ?
-
 Et bien, sur un serveur de Prod**(uction)** c'est la même chose sauf qu’habituellement c'est du Linux. Mais les briques de bases restent les mêmes.
-
 :::
 
 ## Votre première page
+
+Maintenant que vous avez votre architecture pour travailler, je vous propose de créer votre première page PHP. Avant d'aller plus loin, il faut voir les bases d'un script PHP.
+
+[=> La suite dans le TP 1](./tp1.md)
 
 ## Les bases de PHP
 
