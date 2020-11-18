@@ -166,7 +166,11 @@ Ce que nous allons voir maintenant est générique. C'est ce que nous appelons d
 
 ### La session
 
-### Organiser son code
+## Organiser son code
+
+### La structure
+
+### Plusieurs pages ?
 
 ## Les formulaires
 
