@@ -202,7 +202,7 @@ color: red !important;
 
 ## Mise en pratique
 
-[Découverte de la CSS](./tp2.html)
+[Découverte de la CSS](/tp/html_css/tp2.html)
 
 ---
 
@@ -538,4 +538,23 @@ Les pseudo-classes permettent d'appliquer un style à un élément non seulement
 
 ## Mise en pratique
 
-[Mise en pratique](./tp3.html)
+[Mise en pratique](/tp/html_css/tp3.html)
+
+---
+
+## L'organisation de la CSS
+
+### Les Designs Patterns
+
+- [BEM - BEM - Block Element Modifier](http://getbem.com/)
+- [Atomic Design](https://atomicdesign.bradfrost.com/)
+
+---
+
+## Écrire moins… Pour gagner plus !
+
+![Sass Logo](./res/sass.png)
+
+- [Sass / Scss](https://sass-lang.com/)
+- [Less](http://lesscss.org/)
+- [Post CSS](https://postcss.org/)

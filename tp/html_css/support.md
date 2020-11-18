@@ -697,3 +697,97 @@ grid: auto-flow dense / 40px 40px 1fr;
 ::: danger Attention au support
 Le système de grid est plutôt « récent » l'ensemble des navigateurs n'intègre pas encore toute la spécification. N'hésitez pas à aller voir [Can I Use](https://caniuse.com/?search=grid)
 :::
+
+## L'organisation de la CSS
+
+L'organisation / la structure est un élément important en développement. Le monde du développement est régi pas un certain nombre de designs patterns, ils sont là pour vous assurer que votre « code » sera compris par tous, et que vous pourrez le maintenir pendant longtemps.
+
+### Les Designs Patterns
+
+- [BEM - BEM - Block Element Modifier](http://getbem.com/)
+- [Atomic Design](https://atomicdesign.bradfrost.com/)
+
+### Écrire moins… Pour gagner plus !
+
+Vous l'avez remarqué (si ce n’est pas le cas, vous allez rapidement le voir), la CSS est rapidement très « verbeux » c'est-à-dire que nous avons à écrire beaucoup de choses pour faire ce que l'on souhaite. (Les sélecteurs, les propriétés, etc.)
+
+Nous avons maintenant un certain nombre d'outils qui ont pour but de nous faire écrire moins, le plus utilisé pour l'instant est Sass / Scss. Mais il existe des alternatives :
+
+- [Sass / Scss](https://sass-lang.com/)
+- [Less](http://lesscss.org/)
+- [Post CSS](https://postcss.org/)
+
+C'est un vaste sujet, mais voilà quelques exemples :
+
+```scss
+a {
+  text-decoration: none;
+
+  &:hover {
+    color: red;
+  }
+
+  &:visited {
+    color: green;
+  }
+}
+```
+
+est l'équivalent de :
+
+```css
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}
+
+a:visited {
+  color: green;
+}
+```
+
+Autre exemple :
+
+```scss
+div {
+  color: green;
+
+  &.important {
+    background-color: red;
+  }
+
+  > p {
+    > strong {
+      color: red;
+    }
+
+    &:hover {
+      background-color: #fafafa;
+      border: 1px solid red;
+      border-radius: 10px;
+    }
+  }
+}
+```
+
+Est l'équivalent de :
+
+```css
+div {
+  color: green;
+}
+div.important {
+  background-color: red;
+}
+div > p > strong {
+  color: red;
+}
+div > p:hover {
+  background-color: #fafafa;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+```
