@@ -711,13 +711,13 @@ L'organisation / la structure est un élément important en développement. Le m
 
 Vous l'avez remarqué (si ce n’est pas le cas, vous allez rapidement le voir), la CSS est rapidement très « verbeux » c'est-à-dire que nous avons à écrire beaucoup de choses pour faire ce que l'on souhaite. (Les sélecteurs, les propriétés, etc.)
 
-Nous avons maintenant un certain nombre d'outils qui ont pour but de nous faire écrire moins, le plus utilisé pour l'instant est Sass / Scss. Mais il existe des alternatives :
+Nous avons maintenant un certain nombre d'outils appelés « Pré-Processeurs CSS » qui ont pour but de nous faire écrire moins (ou mieux), le plus utilisé pour l'instant est Sass / Scss. Mais il existe des alternatives :
 
 - [Sass / Scss](https://sass-lang.com/)
 - [Less](http://lesscss.org/)
 - [Post CSS](https://postcss.org/)
 
-C'est un vaste sujet, mais voilà quelques exemples :
+C'est un vaste sujet, ce qu'il faut retenir c'est que votre navigateur ne comprend **que la CSS**, la SCSS (ou autre) est écrite par vous et transformé par un outil en CSS pour que votre navigateur puisse le comprendre. Voilà quelques exemples :
 
 ```scss
 a {
