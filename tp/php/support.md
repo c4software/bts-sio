@@ -138,9 +138,21 @@ Maintenant que vous avez votre architecture pour travailler, je vous propose de 
 
 ## Les bases de PHP
 
-### Les paramètres « GET, POST »
+Dans le premier TP nous avons vu la base de la création d'un fichier PHP. Nous avons vu :
+
+- Que le PHP et le HTML fonctionnaient ensemble.
+- Que seules les parties entourées de `<?php ?>` étaient exécuté par notre serveur.
+- La syntaxe est importante (ne jamais oublier le `;`).
+
+Nous allons aller plus loin. Si le PHP était limité à simplement la fonction `echo`ça serait bien triste !
+
+::: tip Algorithmes ?
+Ce que nous allons voir maintenant est générique. C'est ce que nous appelons des algorithmes. Ils sont une suite d'instruction compréhensible par un moteur. Dans notre cas c'est de la syntaxe PHP. Mais nous retrouverons **exactement les mêmes notions, quel que soit le langage utilisé**. La syntaxe sera différente, mais le fonctionnement restera identique !
+:::
 
 ### Les variables simples
+
+### Les variables HTTP « GET, POST »
 
 ### Les conditions
 

@@ -159,6 +159,10 @@ Nous avons donc un code HTML et du code PHP entremêlé. Il possible de mettre d
 
 :hand: Réservé vos balises PHP pour du code dynamique.
 
+::: tip Astuce de pro
+Votre code PHP ne sera jamais envoyé au client. Il est exécuté sur le serveur, seul le résultat est reçu par votre client.
+:::
+
 ### C'est à vous
 
 Je vous laisse tester le code précédent. Modifiez-le pour y mettre vos informations.
