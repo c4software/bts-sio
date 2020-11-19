@@ -150,7 +150,7 @@ Nous allons aller plus loin. Si le PHP était limité à simplement la fonction 
 Ce que nous allons voir maintenant est générique. C'est ce que nous appelons des algorithmes. Ils sont une suite d'instruction compréhensible par un moteur. Dans notre cas c'est de la syntaxe PHP. Mais nous retrouverons **exactement les mêmes notions, quel que soit le langage utilisé**. La syntaxe sera différente, mais le fonctionnement restera identique !
 :::
 
-### Les variables simples
+## Les variables simples
 
 Une variable va nous permettre de stocker temporairement un résultat. Le résultat en question peut-être variable c'est-à-dire qu'il va pouvoir être « écrasé » / « remplacé » pendant la vie de votre programme.
 
@@ -188,7 +188,7 @@ Pour l'afficher, il suffit de faire :
 echo $nom;
 ```
 
-#### Les types de variables
+### Les types de variables
 
 En PHP (mais également dans les autres langages), les variables possèdent un type. En fonction du type, les opérations possibles sur une variable seront différentes. (calcul, concaténation, opération binaire, etc.)
 
@@ -205,13 +205,13 @@ Nous écrirons le code au maximum en Anglais ! Ça veut dire que vos noms de var
 `abcdefghijklmnopqrstuvwxyz1234567890_-`
 :::
 
-#### À faire
+### À faire
 
 En reprenant le TP 1. Ajouter la déclaration d'une variable ainsi que l'utilisation de celle-ci.
 
-#### Les opérations
+## Les opérations
 
-##### String
+### String
 
 Nous avons la possibilité de concaténer les chaines de caractères avec le symbole `.`.
 
@@ -224,11 +224,11 @@ echo $nom . " " . $prenom;
 
 Affichera : `valentin brosseau`.
 
-##### Int Ou Float
+### Int Ou Float
 
 Comme en mathématique nous avons la possibilité de faire des opérations mathématiques comme un calculatrice, `+`, `-`, `/`, `*`, `%`…
 
-### Les variables HTTP « GET, POST, … »
+## Les variables HTTP « GET, POST, … »
 
 Vos variables vous appartiennent. Mais en PHP nous avons également quelques variables « automatiquement remplies », et ça dès le début de votre script.
 
@@ -260,7 +260,7 @@ Je vous laisse créer une page pour tester. Vous devriez avoir un résultat simi
 ![Résultat $_SERVER](./res/print_r.png)
 :::
 
-### Les tableaux
+## Les tableaux
 
 Les tableaux sont une notion importante. Ils vont nous servir pour stocker des « listes de valeurs ». Ces listes sont diverses, nous allons pouvoir stocker par exemple :
 
@@ -270,7 +270,7 @@ Les tableaux sont une notion importante. Ils vont nous servir pour stocker des �
 
 Ce qu'il faut retenir d'un tableau c'est que c'est un `conteneur`, il nous servira à stocker d'autres éléments. Ces conteneurs sont appelés `Array` ils peuvent-être de deux types :
 
-#### Numérotés
+### Numérotés
 
 Les tableaux numérotés sont les plus simples. Ils permettent de stocker des valeurs derrière un identifiant numérique, l'identifiant est automatique et **il commence à zéro** :
 
@@ -305,7 +305,7 @@ $valeurs[2] = 'élément 3';
 Pour éviter toute confusion. Nommées vos tableaux avec un nom qui ce termine par un `s` comme ça aucun doute sur son type à la lecture de votre code.
 :::
 
-#### Associatifs
+### Associatifs
 
 Les tableaux associatifs fonctionnent comme un tableau numéroté. La seule différence c'est que la clé ne sera pas un « chiffre », mais un « string » (chaine de caractère).
 
@@ -346,24 +346,285 @@ $students = array(
 ```
 
 Nous rencontrerons plus tard ce genre de « format » lors de nos requêtes à la base de données.
+:::
+
+::: tip Astuce de Pro 2
+L'avantage de PHP ? Les fonctions fournies de bases. Pour manipuler les tableaux, nous avons énormément de possibilités. Il y a certainement la réponse à tous vos problèmes dans la documentation.
+
+[À consulter ici](https://www.php.net/manual/en/ref.array.php)
+:::
+
+### À faire
+
+Je vous laisse créer un tableau dans votre code d'exemple. :hand: Une fois créé tenter de l'afficher un peu comme ce que nous avons pu faire avec notre variable `$_SERVER`.
+
+## Les conditions
+
+En informatiques les conditions sont le coeur d'un programme informatique. Une condition va nous permettre d'exécuter certaines parties du code en fonction de la valeur des variables (vous savez celle du début).
+
+La structure d'une condition est toujours la même :
+
+- IF (en français SI)
+- IF / ELSE (en Français SI / SINON)
+- IF / ELSE-IF / ELSE (en Français SI / ALORS-SI / SINON)
+
+Ce qu'il faut retenir de ceci, c'est que nous posons une condition (question) à l'ordinateur, cette question l'ordinateur va y répondre en fonction des valeurs de vos variables.
+
+Les questions que nous allons poser ne vont pas dépendre directement du type de la variable, cependant nous allons voir que le `boolean` est un cas particulier.
+
+### Bon et pose la question comment ?
+
+La question va être « mathématique », elle va utiliser les éléments suivants :
+
+| Symbole | Signification                |
+| :-----: | ---------------------------- |
+|   ==    | Est égale à                  |
+|   !=    | Est différent de             |
+|    >    | Est strictement supérieure à |
+|    <    | Est strictement inférieure à |
+|   >=    | Est supérieure ou égale à    |
+|   <=    | Est inférieure ou égale à    |
+
+Nous allons nous en servir un peu partout dans notre code. C'est un élément primordial de la programmation.
+
+### Concrètement ça donne quoi ?
+
+La théorie, c'est bien… La pratique c'est mieux ! Voilà quelques exemples de conditions.
+
+### Une condition IF
+
+```php
+$age = 22;
+
+if($age >= 18) {
+    echo "Vous pouvez passer le permis";
+}
+```
+
+### Une condition IF/ELSE
+
+```php
+$age = 22;
+
+if($age >= 18) {
+    echo "Vous pouvez passer le permis";
+} else {
+    echo "Encore un peu de patience… Pour le permis c'est à 18ans";
+}
+```
+
+### Une condition IF/ELSE/ELSE IF
+
+```php
+$age = 22;
+
+if($age >= 14) {
+    echo "Vous pouvez passer le permis 2 roues.";
+} else if (age >= 18) {
+    echo "Vous pouvez passer le permis voiture";
+} else {
+    echo "Encore un peu de patience… Pour le permis 2 roues c'est à 14ans";
+}
+```
+
+### Les conditions « Boolean »
+
+Les variables de type `boolean` sont un peu particulières, il n'y a que deux cas possibles `true` ou `false` (vrai ou faux), nous allons à notre possibilité que deux conditions `==` ou `!=`.
+
+```php
+<?php
+$estMajeur = true;
+if($estMajeur == true) {
+    echo "Vous pouvez passer le permis";
+}
+```
+
+Cette condition est cependant simplifiable :
+
+```php
+<?php
+$estMajeur = true;
+if($estMajeur) {
+    echo "Vous pouvez passer le permis";
+}
+```
+
+:hand: Le reste est inchangé. (`if`, `if/else`, `if/else if/else`).
+
+### Une autre façon de conditionner
+
+La base de la condition c'est `if / else`, mais en cas de choix encore plus important, il possible d'écrire la condition autrement. Le but est d'améliorer la lisibilité. Exemple si nous avons :
+
+```php
+$temp = 10;
+if($temp == 0){
+    echo 'Très froid';
+} else if ($temp == 1){
+    echo 'Très froid, mais moins';
+} else if ($temp == 2){
+    echo 'Froid mais ça va';
+} else if ($temp == 3){
+    echo 'Froid mais ça passe';
+} else if ($temp == 4){
+    echo 'Froid';
+} else {
+    echo 'Chaud';
+}
+```
+
+```php
+$temp = 10;
+switch ($temp) {
+    case 0:
+        echo 'Très froid';
+        break;
+    case 1:
+        echo 'Très froid, mais moins';
+        break;
+    case 2:
+        echo 'Froid mais ça va';
+        break;
+    case 3:
+        echo 'Froid mais ça passe';
+        break;
+    case 4:
+        echo 'Froid';
+        break;
+    default:
+        echo 'Chaud';
+        break;
+}
+```
+
+::: danger Attention
+Vous avez vu le mot **break** ? Celui-ci est hyper important. Si vous ne l'indiquez pas ? Le PHP exécutera les deux instructions à la suite sans s'arrêter.
+:::
+
+### Allons plus loin
+
+::: tip Astuce de pro
+
+Il est possible en PHP d'écrire une condition dite « Ternaire », c'est une condition sur une seule ligne. Pratique, car elle prend moins de place.
+
+```php
+$age = 22;
+echo ($age >= 18) ? 'Vous pouvez passer le permis' : 'Encore un peu de patience !';
+
+// ou
+$estMajeur = true;
+echo $estMajeur ? 'Vous pouvez passer le permis' : 'Encore un peu de patience !';
+```
+
+:hand: Attention à ne pas en abuser, ça peut rapidement être illisible.
 
 :::
 
-### Les conditions
+### À faire
 
-### Les boucles
+Le plus simple pour comprendre le fonctionnement. C'est de pratiquer. Je vous laisse écrire des conditions dans votre fichier PHP de test.
 
-### Les fonctions
+- Une condition simple.
+- Une condition avec plusieurs if / else-if / else.
+- Une ternaire
+- Un Switch
 
-### Les includes
+## Les boucles
 
-### La session
+Dans le même esprit que les conditions, les boucles ! C'est la base de l'informatique, la répétition votre ordinateur est capable de faire un nombre très important d'opérations à la seconde… Alors les boucles clairement il est fait pour ça !
 
-## Organiser son code
+Vous vous souvenez très clairement de Bart devant son tableau ? Celui-ou il doit recopier 100× une phrase…
 
-### La structure
+![Bart](./res/bart.jpg)
+
+Et bien en PHP… Ce n’est vraiment pas un problème ! Nous avons deux types de boucles le `while` et le `for`.
+
+### Le While
+
+La boucle `while` est la plus simple de tout, elle ne s'arrête que quand la condition de sortie est `false`. Oui oui, comme le `if` vu précédemment.
+
+![while](./res/while-loop-diagram.svg)
+
+Tant que la condition est vraie, la boucle est exécutée.
+
+```php
+$var = true;
+while ($var == true)
+{
+    // Bravo, ceci est votre première boucle infinie 🎉
+}
+```
+
+Si on reprend l'exemple d'avant (celui de Bart). Si Bart à une punition, écrire 1000× « Je n'utiliserai plus un algorithme pour faire mes punitions »
+
+```php
+$ligne_a_ecrire = 1000;
+$ecrite = 0;
+
+while($ecrite < $ligne_a_ecrire){
+    echo "Je n'utiliserai plus un algorithme pour faire mes punitions";
+    $ecrite = $ecrite + 1; // ou $ecrite++;
+}
+```
+
+### Le For
+
+La boucle `for` fonctionne _comme_ le while sauf qu'elle repose sur des données que l'on spécifie en entrée :
+
+```php
+$ligne_a_ecrire = 1000;
+
+for ($ecrite = 0; $ecrite <= $ligne_a_ecrire; $ecrite++){
+    echo "Je n'utiliserai plus un algorithme pour faire mes punitions";
+}
+```
+
+Et voilà c'est tout… En réalité la boucle for est plus adaptés pour naviguer dans les tableaux :
+
+```php
+$etudiants = array(
+    array('nom' => 'Brosseau'),
+    array('nom' => 'Doe')
+);
+
+for($i = 0; $i < count($etudiants); ++$i) {
+    echo $people[$i]['nom'];
+}
+```
+
+### Le ForEach
+
+Les temps évoluent, les pratiques aussi ! Maintenant pour manipuler les tableaux de données, nous avons un autre type de boucle le `forEach`. Celle-ci va simplifier notre code (un peu comme le `switch` avec le `if`).
+
+```php
+$etudiants = array(
+    array('nom' => 'Brosseau'),
+    array('nom' => 'Doe')
+);
+
+foreach ($etudiants as $etudiant) {
+    echo $etudiant['nom'];
+}
+```
+
+:eye: Beaucoup plus lisible non ?
+
+### Un peu de pratique
+
+Les boucles sont un gros morceau, je pense qu'il est venu le temps de pratiquer un peu.
+
+[La suite dans le TP 1.1](./tp1.1.md)
+
+## Les fonctions
+
+## Les includes
+
+## La session
+
+## La structure
 
 ### Plusieurs pages ?
+
+### Organiser son code
 
 ## Les formulaires
 

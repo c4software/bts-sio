@@ -7,6 +7,7 @@ $student = array(
     "age" => 33,
 );
 
+
 echo "<pre>" . print_r($student, true) . "</pre>";
 
 
