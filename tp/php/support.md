@@ -152,7 +152,204 @@ Ce que nous allons voir maintenant est générique. C'est ce que nous appelons d
 
 ### Les variables simples
 
-### Les variables HTTP « GET, POST »
+Une variable va nous permettre de stocker temporairement un résultat. Le résultat en question peut-être variable c'est-à-dire qu'il va pouvoir être « écrasé » / « remplacé » pendant la vie de votre programme.
+
+::: danger Attention !
+Les variables sont **des stockages temporaires** ils seront effacés à chaque rechargement de votre page.
+:::
+
+La logique d'une variable est la suivante : C'est une étiquette (un nom) dans lequel vous _assignez_ une valeur.
+
+En PHP les variables sont **toujours** préfixées par le caractère `$`.
+
+Ce qui nous donnera par exemple :
+
+```php
+$nom = "valentin";
+```
+
+Nous venons de faire une _assignation_ de variable. La variable `$nom` contient maintenant la valeur `"valentin"`. Cette variable est maintenant utilisable ou vous le souhaitez dans votre code.
+
+Nous pouvons maintenant utiliser cette variable ou bon nous semble :
+
+- Pour l'affichage
+- Pour des conditions
+- …
+
+Si nous souhaitons l'utiliser dans un texte :
+
+```php
+echo "Bonjour je suis $nom";
+```
+
+Pour l'afficher, il suffit de faire :
+
+```php
+echo $nom;
+```
+
+#### Les types de variables
+
+En PHP (mais également dans les autres langages), les variables possèdent un type. En fonction du type, les opérations possibles sur une variable seront différentes. (calcul, concaténation, opération binaire, etc.)
+
+| Type      | Contenu                   | Type d'opération                | Usage                                                                                                               |
+| --------- | ------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `string`  | "Une chaine de caractère" | Gestion du texte, concaténation | Permets de stocker du texte (saisie utilisateur par exemple). La valeur doit être entourée de « `"` » ou de « `'` » |
+| `int`     | 42                        | Opération mathématique          | Comme en mathématique                                                                                               |
+| `boolean` | `True` ou `False`         | Opération logique               | Permets de faire des actions logiques. C'est un type très important en informatique                                 |
+| `float`   | 10.3                      | Opération mathématique          | Comme en mathématique. Attention la notation du chiffre à virgule est avec un `.`.                                  |
+| `array`   | ["a", "b", "c"]           |                                 | Contiens des listes de « quelques choses »                                                                          |
+
+::: tip Le formalisme c'est important
+Nous écrirons le code au maximum en Anglais ! Ça veut dire que vos noms de variables doivent rester simples. Donc pas d'accent, de caractères « étranges ». Limité vous à la liste suivante :
+`abcdefghijklmnopqrstuvwxyz1234567890_-`
+:::
+
+#### À faire
+
+En reprenant le TP 1. Ajouter la déclaration d'une variable ainsi que l'utilisation de celle-ci.
+
+#### Les opérations
+
+##### String
+
+Nous avons la possibilité de concaténer les chaines de caractères avec le symbole `.`.
+
+```php
+$prenom = "valentin";
+$nom = "brosseau";
+
+echo $nom . " " . $prenom;
+```
+
+Affichera : `valentin brosseau`.
+
+##### Int Ou Float
+
+Comme en mathématique nous avons la possibilité de faire des opérations mathématiques comme un calculatrice, `+`, `-`, `/`, `*`, `%`…
+
+### Les variables HTTP « GET, POST, … »
+
+Vos variables vous appartiennent. Mais en PHP nous avons également quelques variables « automatiquement remplies », et ça dès le début de votre script.
+
+Ces variables sont appelées des `superglobales` elles contiennent des informations relatives aux contextes de votre utilisateur. Je vous invite vivement à [consulter la documentation](https://www.php.net/manual/en/language.variables.superglobals.php)
+
+Les variables en question ont toutes un usage particulier, pour l'instant je vais me concentrer sur :
+
+| Variables  | Usage                                                                                                           |
+| ---------- | --------------------------------------------------------------------------------------------------------------- |
+| `$_SERVER` | Contiens les informations « technique » de la connexion. Adresse IP du client, etc.                             |
+| `$_GET`    | Contiens les paramètres envoyés dans l'URL.                                                                     |
+|            | `index.php?prenom=valentin`, `prenom` est donc un paramètre et `valentin` la valeur.                            |
+|            | Vous pouvez avoir plusieurs paramètres avec le caractère `&`. <br> Ex. `index.php?nom=brosseau&prenom=valentin` |
+| `$_POST`   | Contiens les paramètres envoyés dans le corps de la requête (on y reviendra)                                    |
+| `$_FILES`  | Contiens les fichiers envoyés à votre serveur (nous y reviendrons)                                              |
+
+Ces variables en question sont toutes des « tableaux ».
+
+::: tip Je vous laisse tester
+
+En PHP il est possible de voir le contenu d'un tableau avec le code suivant :
+
+```php
+<?php
+
+echo "<pre>".print_r($_SERVER, true)."</pre>";
+```
+
+Je vous laisse créer une page pour tester. Vous devriez avoir un résultat similaire à :
+
+![Résultat $_SERVER](./res/print_r.png)
+:::
+
+### Les tableaux
+
+Les tableaux sont une notion importante. Ils vont nous servir pour stocker des « listes de valeurs ». Ces listes sont diverses, nous allons pouvoir stocker par exemple :
+
+- Des listes de `string` (Exemple une liste d'utilisateurs)
+- Des listes de `int` (Exemple une liste d'âge)
+- …
+
+Ce qu'il faut retenir d'un tableau c'est que c'est un `conteneur`, il nous servira à stocker d'autres éléments. Ces conteneurs sont appelés `Array` ils peuvent-être de deux types :
+
+#### Numérotés
+
+Les tableaux numérotés sont les plus simples. Ils permettent de stocker des valeurs derrière un identifiant numérique, l'identifiant est automatique et **il commence à zéro** :
+
+| Indice (clé) | valeurs   |
+| -----------: | --------- |
+|            0 | Élément 1 |
+|            1 | Élément 1 |
+|            2 | Élément 2 |
+|            3 | Élément 3 |
+|            4 | Élément 4 |
+|            5 | Élément 5 |
+
+Les tableaux numérotés sont très simples à créer :
+
+```php
+$valeurs = array('élément 1', 'élément 2', 'élément 3');
+
+// ou via un ajout automatique à la fin du tableau
+
+$valeur[] = 'élément 1';
+$valeur[] = 'élément 2';
+$valeur[] = 'élément 3';
+
+// ou via un ajout à une position donnée
+
+$valeurs[0] = 'élément 1';
+$valeurs[1] = 'élément 2';
+$valeurs[2] = 'élément 3';
+```
+
+::: tip Un peu de formalisme
+Pour éviter toute confusion. Nommées vos tableaux avec un nom qui ce termine par un `s` comme ça aucun doute sur son type à la lecture de votre code.
+:::
+
+#### Associatifs
+
+Les tableaux associatifs fonctionnent comme un tableau numéroté. La seule différence c'est que la clé ne sera pas un « chiffre », mais un « string » (chaine de caractère).
+
+Le but d'un tel tableau est de gagner en clarté dans l'organisation des données, en effet avec des clés numérotées compliqué de retrouver à quoi correspond l'information.
+
+Avec un exemple concret, ça donne :
+
+```php
+$student = array(
+    "nom" => "Brosseau",
+    "prenom" => "Valentin",
+    "ordinateur" => true,
+    "age" => 33,
+);
+```
+
+Beaucoup plus lisible non ? Vous noterez au passage que le tableau associatif est également un conteneur. Nous avons donc dedans plusieurs types de données.
+
+::: tip Astuce de pro
+
+Nous avons vu la base des tableaux, avec des exemples concrets irons évidement bien plus loin. Mais à noter qu'il est évidemment possible de mélanger les deux types de tableaux. Par exemple si vous souhaitez créer une `liste d'étudiants` :
+
+```php
+$students = array(
+    array(
+        "nom" => "Brosseau",
+        "prenom" => "Valentin",
+        "ordinateur" => true,
+        "age" => 33,
+    ),
+    array(
+        "nom" => "Doe",
+        "prenom" => "John",
+        "ordinateur" => false,
+        "age" => 87,
+    )
+)
+```
+
+Nous rencontrerons plus tard ce genre de « format » lors de nos requêtes à la base de données.
+
+:::
 
 ### Les conditions
 
@@ -161,8 +358,6 @@ Ce que nous allons voir maintenant est générique. C'est ce que nous appelons d
 ### Les fonctions
 
 ### Les includes
-
-### Les tableaux
 
 ### La session
 
