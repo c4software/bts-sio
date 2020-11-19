@@ -2,8 +2,6 @@
 
 Le meilleur moyen de comprendre les boucles. C'est d'en écrire par soi-même. Je vous propose de créer votre propre générateur de Bart.
 
-![Générateur de Bart](./res/bart-generator.png)
-
 ## Introduction
 
 Nous allons mettre en application les boucles en PHP. Bon je ne vais pas vous demander de recopier 100× une phrase au tableau… Mais je vais demander à votre ordinateur de le faire avec une boucle `while` ou `for`.
