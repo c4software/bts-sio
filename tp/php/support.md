@@ -616,6 +616,121 @@ Les boucles sont un gros morceau, je pense qu'il est venu le temps de pratiquer 
 
 ## Les fonctions
 
+Un autre élément important dans le développement c'est l'usage de fonction, une fonction est une manière de rendre du code « reproductible ». C'est-à-dire éviter le copier-coller.
+
+Je vais prendre un exemple. Imaginons que vous ayez envie de faire un gâteau. Vous avez une super recette, celle du gâteau au chocolat de mamie Hughette la recette est la suivante :
+
+> - 3 Oeufs.
+> - 100g de sucre.
+> - 50g de farines.
+> - 100g de beurre.
+> - 200g de chocolat.
+>   On mélange et on enfourne 20 minutes.
+
+Si on transforme la recette en algorithme, nous aurions :
+
+```php
+$oeuf = 3;
+$sucre = 100;
+$farine = 50;
+$beurre = 100;
+$chocolat = 200;
+
+$melange = $oeuf + $sucre + $farine + $beurre+ $chocolat;
+echo "Cuire 20minutes le mélange de $melange gramme.";
+```
+
+Ce code est bien pratique, vous voudriez l'utiliser tout le temps ! Mais ça fait quand même pas mal de ligne. Et le copier / coller tout le temps ce n’est pas vraiment une bonne idée (erreur de recopie, place utilisée, etc.). En code nous avons un moyen de gérer ça ! Ce moyen s'appelle une fonction.
+
+Une fonction c'est une boite noire (un peu comme mamie Huguette), quand vous étiez petit, vous demandiez juste « Hey, Mamie, tu me fais le gâteau ? » et quelques minutes plus tard c'était bon… Et bien la fonction c'est pareil ! Vous l'appeler et elle vous donne le résultat et ça sans forcément que vous sachiez comment elle fonctionne à l'intérieur, celle-ci peut contenir une ou plusieurs instructions aucune différence pour vous.
+
+### Le fonctionnement
+
+Une fonction c'est donc une boite noire. Votre fonction va prendre un `nom` et peut-être un ou des `paramètre(s)`. Dans notre exemple la fonction s'appelle :
+
+```php
+echo gateauHugette();
+```
+
+Si on appel la fonction `gateauHugette()` celle-ci va vous répondre :
+
+```text
+Cuire 20minutes le mélange => 453 grammes.
+```
+
+Cette fonction est donc votre mamie Huguette, mais en version informatique. Partout dans votre code vous allez pouvoir l'appeler, et dans tous les cas vous aurez votre gâteau au chocolat.
+
+### Les paramètres
+
+Notre fonction était toute simple. Et si nous ajoutions un paramètre, par exemple le temps de cuisson. Les paramètres sont des valeurs à mettre entre les parenthèses :
+
+```php
+// Moelleux
+echo gateauHugette(15);
+
+// ou trop cuit
+echo gateauHugette(30);
+```
+
+La valeur de la cuisson est maintenant variable :
+
+```text
+Cuire 15minutes le mélange => 453 grammes.
+```
+
+### Écrire sa propre fonction
+
+Nous avons vu comment utiliser une fonction, et si nous regardions **comment écrire une fonction** ! Vous allez voir c'est très simple :
+
+```php
+function gateauHugette($duree){
+    $oeuf = 3;
+    $sucre = 100;
+    $farine = 50;
+    $beurre = 100;
+    $chocolat = 200;
+
+    $melange = $oeuf + $sucre + $farine + $beurre+ $chocolat;
+
+    return "Cuire $duree minutes le mélange de $melange gramme.";
+}
+```
+
+Et c'est tout !
+
+::: tip Astuce de pro
+Une fonction c'est une instruction comme une autre… Vous pouvez donc très bien écrire :
+
+```php
+
+// La variable $mon_gateau contiendra le résultat de la fonction.
+$mon_gateau = gateauHugette(20);
+
+// Des gateaux à l'infinie
+while(true){
+    echo gateauHugette(20);
+}
+```
+
+:::
+
+### Les fonctions intégrées
+
+La force d'un langage se mesure avec « les fonctions intégrées », en python on dit « Battery Included » ! Le PHP n'est pas en reste, il intègre une collection de fonctions de bases nous permettant de faire plein d'opérations sans avoir à les écrire.
+
+L'ensemble de ces fonctions sont écrites dans la documentation officielle. [À voir ici](http://fr.php.net/manual/fr/funcref.php)
+
+La liste est très longue, mais ça passe de :
+
+- L'envoi d'email.
+- Afficher la date (comme au début vous vous rappelez ?).
+- La manipulation des tableaux.
+- La transformation d'images…
+
+### À faire
+
+Maintenant que nous savons faire une fonction… Je vous propose de transformer le code de « Bart » pour mettre la partie `while` (ou `for`) dans une fonction afin de l'utiliser là où vous souhaitez afficher vos phrases.
+
 ## Les includes
 
 ## La session
