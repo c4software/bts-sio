@@ -252,8 +252,6 @@ Ces variables en question sont toutes des « tableaux ».
 En PHP il est possible de voir le contenu d'un tableau avec le code suivant :
 
 ```php
-<?php
-
 echo "<pre>".print_r($_SERVER, true)."</pre>";
 ```
 
