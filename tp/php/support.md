@@ -729,7 +729,7 @@ La liste est très longue, mais ça passe de :
 
 ### À faire
 
-Maintenant que nous savons faire une fonction… Je vous propose de transformer le code de « Bart » pour mettre la partie `while` (ou `for`) dans une fonction afin de l'utiliser là où vous souhaitez afficher vos phrases.
+Maintenant que nous savons faire une fonction… Je vous propose de transformer [le code de « Bart » (TP 1.1)](./tp1.1.md) pour mettre la partie `while` (ou `for`) dans une fonction afin de l'utiliser là où vous souhaitez afficher vos phrases.
 
 ## Les includes
 
