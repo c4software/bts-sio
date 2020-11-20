@@ -47,3 +47,10 @@ Voilà… Nous avons vu les éléments nécessaires… C'est à vous. Je vous la
 ::: tip N'oubliez pas
 Votre IDE vous aide. N'oubliez pas de le configurer pour automatiser certaines de vos actions.
 :::
+
+## La suite
+
+Nous reviendrons sur cette base de TP plus tard pour y ajouter :
+
+- Une fonction.
+- Des includes.
