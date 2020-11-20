@@ -1038,6 +1038,12 @@ Exemple :
 **Attention**, c'est donc juste un confort d'usage pas une source de sécurité.
 :::
 
+## Un peu de pratique
+
+Nous avons vu beaucoup de nouvelle choses. Nous allons les mettre en pratique avec le TP 2
+
+[La suite ici](./tp2.md)
+
 ## La session
 
 ## La structure
