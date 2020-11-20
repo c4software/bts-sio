@@ -260,6 +260,22 @@ Je vous laisse créer une page pour tester. Vous devriez avoir un résultat simi
 ![Résultat $_SERVER](./res/print_r.png)
 :::
 
+### Le GET
+
+En GET vous pouvez passer les paramètres comme bon vous semble. Nous allons nous servir de cette mécanique pour personnaliser la page. Plus tard nous verrons ensemble les formulaires, mais pour l'instant je vous laisse tenter une petite expérience :
+
+Ajouter dans votre fichier PHP la ligne de code suivante :
+
+```php
+echo "Bonjour " . $_GET['nom'];
+```
+
+Appeler la page en question en ajoutant dans le lien : `?nom=Valentin`
+
+::: danger ATTENTION
+Petit aparté sur la sécurité informatique. Nous verrons plus tard les failles de sécurités, ce que vous venez de faire **en est une** (c'est une XSS).
+:::
+
 ## Les tableaux
 
 Les tableaux sont une notion importante. Ils vont nous servir pour stocker des « listes de valeurs ». Ces listes sont diverses, nous allons pouvoir stocker par exemple :
@@ -733,6 +749,295 @@ Maintenant que nous savons faire une fonction… Je vous propose de transformer 
 
 ## Les includes
 
+Depuis le début nous ajoutons du code dans la « même page » sans vraiment mettre d'organisation. Pour l'instant ça ne pose pas vraiment de problème, car notre code est « temporaire » il ne servira que pour « le test ». Mais rapidement nous allons mettre en place de vrai petit projet, ou l'organisation sera importante afin que vous ne vous vous perdiez pas dans votre propre code. Les includes (inclusion de code) vont nous servir dans deux cas :
+
+- L'organisation de la page.
+- Le découpage du code, afin par exemple de sortir les fonctions.
+
+### Organisation de la page
+
+Quand nous avons débuté le HTML, nous avons vu que la sémantique était importante, nous avions un `header`, un `footer`, un `nav` etc… Cependant, quand vous avez créé un petit site avec plusieurs pages, je vous ai demandé de dupliquer ces éléments dans différentes pages. D'un point de vue organisation, c'est clairement un problème pour plusieurs raisons :
+
+- Duplication de code.
+- Modifications compliquées.
+- Correction plus longue, car à faire dans plusieurs pages.
+
+Donc pas vraiment idéal. Les sites Internet ont toujours des zones « identiques » partagées entre les pages :
+
+![Organisation d'une page](./res/organisation.png)
+
+Comme vous pouvez le voir, la structure de site a clairement des éléments qui peuvent être partagés entre différentes pages. Dit autrement certaines parties de votre page peuvent être inclus :
+
+- Le Header
+- Le Footer
+- Le Nav
+- Le « Contenu » est la partie courant de votre page, il ne sera pas inclus mais bien présent dans la page en question.
+
+::: tip À venir
+Pour l'instant nous regardons comment éviter de copier / coller du contenu identique entre différentes pages. Plus tard nous parlerons également de « l'organisation du code », à ce moment-là qu'il sera possible également de rendre « dynamique cette partie » via un include.
+:::
+
+Maintenant que nous avons visualisé les éléments réutilisables, il faut maintenant comprendre comment fonctionne l'instruction `include`.
+
+L'instruction `include` est très simple, c'est une fonction qui prend en paramètres le nom d'un autre fichier PHP. Au moment de l'exécution de votre page, le PHP va prendre le contenu de chaque fichier PHP et mettra le contenu à l'endroit ou vous l'avez inclus. Un exemple ?
+
+```php
+include(`monfichier.php`);
+```
+
+![Organisation avec include](./res/organisation_include.png)
+
+### Le code
+
+Maintenant que nous avons vu la théorie, concrètement ça donne quoi ? Nous avons donc besoin de 4 fichiers :
+
+- `header.php` => L'entête de votre site.
+- `footer.php` => Le pied de page de votre site.
+- `nav.php` => Le menu de votre site.
+- `index.php` => Votre page courante. (Celle qui va inclure les autres)
+
+#### Index.php
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Page avec des includes</title>
+    <link rel="stylesheet" href="./public/main.css">
+</head>
+
+<body>
+    <?php include('./common/header.php'); ?>
+
+    <?php include('./common/nav.php'); ?>
+
+    <section>
+        <h1>Contenu réel de votre page</h1>
+        <img src="https://picsum.photos/800/300" />
+    </section>
+
+    <?php include('./common/footer.php'); ?>
+</body>
+
+</html>
+```
+
+### common/header.php
+
+```html
+<header>Votre Header</header>
+```
+
+::: warning Hey !? Un instant !
+
+- Vous: Mais il n'y a pas de PHP ici ?
+- Moi: Hé non, pas de PHP. Nous nous servons du système d'`include` de PHP pour organiser notre code rien de plus.
+- Vous: Ah ouais! :handshake:
+
+:::
+
+### common/nav.php
+
+```html
+<nav>Lien 1 | Lien 2 | …</nav>
+```
+
+### common/footer.php
+
+```php
+<footer>
+    <?php echo date("Y") ?> − Valentin Brosseau
+</footer>
+```
+
+### Le résultat
+
+Je vous passe le fichier CSS, voilà le résultat final de ma page. :point_down:
+
+![Résultat des includes](./res/include_result.png)
+
+::: danger Parlons de vos fichiers
+Comme vous l'avez peut-être remarqué, je n’ai pas déposé les fichiers « à l'arrache » dans mon dossier. Même si c'est du code « de test » n'oubliez pas le rangement, c'est une vraie bonne habitude
+:::
+
+### Les Includes pour organiser votre code PHP
+
+Bon le HTML c'est une partie du problème. Vous vous souvenez de la recette de Mamie Huguette ? Elle est bien dans votre fichier PHP principal, mais ça serait mieux de l'avoir partout non ?
+
+Pour la rendre disponible partout, nous allons la mettre dans un fichier que nous allons inclure dans nos pages :
+
+### common/functions.php
+
+```php
+<?php
+
+function gateauHugette($duree){
+    $oeuf = 3;
+    $sucre = 100;
+    $farine = 50;
+    $beurre = 100;
+    $chocolat = 200;
+
+    $melange = $oeuf + $sucre + $farine + $beurre+ $chocolat;
+
+    return "Cuire $duree minutes le mélange de $melange gramme.";
+}
+
+// Vos autres fonctions …
+// …
+```
+
+::: tip
+Vous avez déclaré le fichier qui fera de vous un **super développeur** ! Les développeurs qui réussissent sont ceux qui _sont organisés_.
+
+Le fichier en question est ce que l'on appelle une librairie, cette page en elle-même ne fait rien. Elle ne fait qu'ajouter une fonction qui sera disponible par la suite dans votre code.
+:::
+
+### index.php
+
+```php
+<?php include('common/functions.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Page avec des includes</title>
+    <link rel="stylesheet" href="./public/main.css">
+</head>
+
+<body>
+    <?php echo gateauHugette(40); ?>
+    # … Etc
+</body>
+```
+
+### À faire
+
+Maintenant que nous savons découper notre code. Je vous laisse retourner dans [le TP Bart](./tp1.1.md) afin de :
+
+- Sortir votre fonction dans un autre fichier.
+- `include` le fichier.
+
+## Les formulaires
+
+Quand nous avons vu le HTML il y a un élément dont nous n’avons pas parlé… Les formulaires ! Pas besoin de détaillé, vous avez déjà croisé les formulaires sur Internet.
+
+![Formulaire de contact](./res/contact.png)
+
+Côté code un formulaire va être l'une des manières de faire communiquer votre **client** et votre **serveur**. Nous allons pouvoir échanger du texte, mais également des fichiers, le tout de **deux manières différentes** :
+
+- GET (`$_GET` en PHP)
+- POST (`$_POST` en PHP)
+
+Ce qu'il faut retenir pour l'instant, c'est qu’en GET vos paramètres seront visibles (exemple: **?nom=valentin**). En POST, ils seront visibles aussi… Mais beaucoup moins facilement pour les modifier il faudra jouer avec l'inspecteur d'éléments (moins simple pour Mamie Huguette).
+
+::: tip
+Quand il s'agit d'un formulaire, je vous conseille vivement de **toujours** passer par un POST.
+:::
+
+### Écrire un formulaire
+
+Un formulaire, c'est une balise `HTML` comme le `p` ou la `div`. Celui-ci fonctionne de la même manière à ceci près qu'il est « invisible » pour l'utilisateur. Votre navigateur ne l'affiche pas, il sait juste « qu'ici dans le code » les données saisies dans les `input` doivent être envoyées au serveur au moment du `submit` celle-ci sera soumise vers la page (php) défini dans l'attribut `action`.
+
+L'opération va se dérouler en 3 temps :
+
+![Formulaire](./res/formulaire.png)
+
+### Le code HTML
+
+C'est simple vous allez voir. Le formulaire en HTML c'est une balise… `form` :
+
+```html
+<form method="post" action="destination.php">
+  <input type="text" name="nom" placeholder="Votre Nom" value="" />
+  <input type="text" name="prenom" placeholder="Votre Prenom" value="" />
+  <input type="submit" value="Envoyer" />
+</form>
+```
+
+| Attribut | Role                                                                                 |
+| -------- | ------------------------------------------------------------------------------------ |
+| method   | Indique le type du formulaire (`get`, `post`)                                        |
+| action   | Page de destination vers lequel l'utilisateur sera emmené au moment du `submit` form |
+
+La saisie comme vous le savez ce fait via un champ input. Le champ input possède un attribut type, attention à bien le choisir (`text` pour du texte, `password` pour un mot de passe, etc).
+
+L'ensemble de vos `input` (visible ou non) sera transmis à la page « destination.php». En fonction du type de votre requête, ils seront disponibles dans les variables :
+
+- `$_GET`
+- `$_POST`
+
+Ces variables sont des `tableaux associatifs` ils fonctionnent donc en mode `clé` => `valeur`. La clé sera le nom de votre `input` (dans mon cas `nom` et `prénom`) la value sera celle saisie par l'utilisateur.
+
+Notre page de `destination.php` réalise le traitement nécessaire avec les valeurs reçu, par exemple :
+
+```php
+<h1>Bonjour <?php echo $_POST['nom']; ?></h1>
+<a href="index.php">Retour au formulaire</a>
+```
+
+::: tip
+Comme la première fois… Petit rappel sur la sécurité. Vous avez à nouveau une XSS dans votre code. Nous en parlerons plus tard plus en détail.
+
+**Mais attention**, si vous affichez la saisie d'un utilisateur directement, il lui sera possible de faire exécuter du code à distance.
+
+![XSS ATTENTION A VOS FESSES](./res/xss.png)
+:::
+
+### Les input possibles
+
+Notre formulaire est un élément « capsule », c'est-à-dire qu'il envoie les saisies utilisateur à votre serveur. En HTML, nous avons un certain nombre d'éléments permettant la saisie :
+
+| Éléments         | Fonctions                                   | Usages                                                                      |
+| ---------------- | ------------------------------------------- | --------------------------------------------------------------------------- |
+| `input:text`     | Saisie monoligne                            | Saisie simple utilisateur                                                   |
+| `input:checkbox` | Case à cocher (choix multiple)              | Permets de faire un choix multiple                                          |
+| `input:radio`    | Élément à cocher (un seul choix)            | Permets de faire un choix non multiple                                      |
+| `input:hidden`   | Champs cachés                               | Transport de données non visible par le client (exemple `token` antirejeux) |
+| `input:file`     | Envoi de fichier au serveur                 | Envoi de fichier au serveur                                                 |
+| `textarea`       | Saisie multilignes                          | Envoi de texte (exemple commentaire)                                        |
+| `select`         | Sélection dans une liste déroulante définie | Sélection multiple ou non dans une liste de valeur                          |
+| `input:submit`   | Valider le formulaire                       | Envoie les données du formulaire au serveur                                 |
+
+Exemple :
+
+```html
+<form action="test.php" method="post">
+  <input type="text" name="text" />
+  <input type="password" name="password" />
+  <input type="file" name="file" />
+  <input type="hidden" name="hidden" />
+
+  <span>
+    <input type="checkbox" name="checkbox" />
+    <label for="checkbox">Case à cocher</label>
+  </span>
+
+  <span>
+    <input type="radio" name="radio" />
+    <label for="radio">Sélection radio</label>
+  </span>
+
+  <textarea name="textarea" cols="20" rows="8" />
+
+  <select name="select">
+    <option value="select1">Select 1</option>
+    <option value="select2">Select 4</option>
+  </select>
+
+  <input type="submit" value="Envoyer" />
+</form>
+```
+
+::: danger Attention
+`input:hidden` ne veux pas dire que la valeur est cachée pour tous. Si vous inspectez le code HTML, vous allez voir que celui-ci est visible. Voire même éditable.
+
+**Attention**, c'est donc juste un confort d'usage pas une source de sécurité.
+:::
+
 ## La session
 
 ## La structure
@@ -740,8 +1045,6 @@ Maintenant que nous savons faire une fonction… Je vous propose de transformer 
 ### Plusieurs pages ?
 
 ### Organiser son code
-
-## Les formulaires
 
 ## PHP et les bases de données
 
