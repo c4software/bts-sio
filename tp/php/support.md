@@ -236,14 +236,16 @@ Ces variables sont appelées des `superglobales` elles contiennent des informati
 
 Les variables en question ont toutes un usage particulier, pour l'instant je vais me concentrer sur :
 
-| Variables  | Usage                                                                                                           |
-| ---------- | --------------------------------------------------------------------------------------------------------------- |
-| `$_SERVER` | Contiens les informations « technique » de la connexion. Adresse IP du client, etc.                             |
-| `$_GET`    | Contiens les paramètres envoyés dans l'URL.                                                                     |
-|            | `index.php?prenom=valentin`, `prenom` est donc un paramètre et `valentin` la valeur.                            |
-|            | Vous pouvez avoir plusieurs paramètres avec le caractère `&`. <br> Ex. `index.php?nom=brosseau&prenom=valentin` |
-| `$_POST`   | Contiens les paramètres envoyés dans le corps de la requête (on y reviendra)                                    |
-| `$_FILES`  | Contiens les fichiers envoyés à votre serveur (nous y reviendrons)                                              |
+| Variables   | Usage                                                                                                              |
+| ----------- | ------------------------------------------------------------------------------------------------------------------ |
+| `$_SERVER`  | Contiens les informations « technique » de la connexion. Adresse IP du client, etc.                                |
+| `$_GET`     | Contiens les paramètres envoyés dans l'URL.                                                                        |
+|             | `index.php?prenom=valentin`, `prenom` est donc un paramètre et `valentin` la valeur.                               |
+|             | Vous pouvez avoir plusieurs paramètres avec le caractère `&`. <br> Ex. `index.php?nom=brosseau&prenom=valentin`    |
+| `$_POST`    | Contiens les paramètres envoyés dans le corps de la requête (on y reviendra)                                       |
+| `$_FILES`   | Contiens les fichiers envoyés à votre serveur (nous y reviendrons)                                                 |
+| `$_SESSION` | Permet de sauvegarder des valeurs pour quelques minutes des valeurs le temps de la navigation (nous y reviendrons) |
+| `$_COOKIES` | Permet de sauvegarder des valeurs pour un temps plus long (mais pas illimité, nous y reviendrons)                  |
 
 Ces variables en question sont toutes des « tableaux ».
 
@@ -1044,7 +1046,18 @@ Nous avons vu beaucoup de nouvelle choses. Nous allons les mettre en pratique av
 
 [La suite ici](./tp2.md)
 
-## La session
+## La persistance
+
+Nous avons vu que les variables étaient temporaires, leurs états étant remis à zéro à chaque fois que votre page charge. Mais il est possible quand même de sauvegarder des « variables » pour un client donné. En PHP, nous avons deux types façons de persister des valeurs :
+
+- La session, sont pour des valeurs persisté pour un temps limité, et le temps d'une session de navigation.
+- Les cookies, sont pour des valeurs persisté jusqu'a une date fixée par vous ou à l'effacement par le client. (**Attention**, sauvegardée sur le poste du client, donc « modifiables »)
+
+Nous, nous servirons de ces variables principalement pour gérer des problématiques d'authentification, ou de profil client / utilisateur.
+
+### La session
+
+### Les cookies
 
 ## La structure
 
