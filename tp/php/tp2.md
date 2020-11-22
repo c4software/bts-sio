@@ -28,7 +28,9 @@ Nous allons bien évidemment structurer nos dossiers et notre architecture comme
 
 ## La structure
 
-TODO Screenshots du projet final
+Le projet final va ressembler à :
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3OydDaemW-0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## La page avec le formulaire (index.php)
 
@@ -39,7 +41,7 @@ La page `index.php` va afficher le formulaire, celui-ci permettra à l'utilisate
 
 Voilà à quoi celle-ci doit ressembler :
 
-TODO IMAGE
+![Étape 1](./res/bart_form_step1.png)
 
 ### Le formulaire
 
@@ -65,7 +67,7 @@ La page `bart.php` va contenir la logique d'affichage de votre projet, elle va s
 2 - Afficher les valeurs reçues sur le tableau de Bart (de manière identique à précédemment).
 3 - Permettre à l'utilisateur de revenir sur la page d'accueil via la `toolbar`.
 
-TODO Screenshot
+![Étape 2](./res/bart_form_step2.png)
 
 ### Affichage
 
@@ -105,6 +107,7 @@ Votre page est maintenant fonctionnelle. BRAVO ! Cependant… Si vous accédez d
 Je vous propose de modifier ça avec des conditions (`if`). Voilà un exemple de condition :
 
 ```php
+<?php
 $phrase = "Je ne copie pas le code de valentin";
 
 if(isset($_POST['phrase'])){
@@ -119,3 +122,13 @@ echo $phrase;
 :::
 
 Avec cet exemple de code et les informations que nous avons vus ensemble. Je pense que vous serez capable d'écrire seule le code permettant d'afficher la page `bart.php` même sans les données du formulaire.
+
+### Allons plus loin
+
+Vous n'aimez pas Bart ? Je vous propose d'ajouter la sélection du type de personnage sur le formulaire :
+
+- Ajouter un `select` avec dedans (bart, leela, lisa, ou autre…).
+- Trouver les images pour l'affichage.
+- Utiliser la valeur obtenue dans le `$_POST` pour afficher la bonne personne.
+
+:hand: Je ne vous donne pas plus d'information! Avec ce que nous avons vu ensemble vous pouvez y arriver seule.
