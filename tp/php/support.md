@@ -1198,7 +1198,7 @@ include('common/footer.php');
 
 Voilà, nous avons le code de base de notre « entry-point ». Avant d'aller plus loin un peu de détail, nous avons quelques éléments importants :
 
-- Le dossier `common` contiendront les éléments communs à l'ensemble de nos pages. (header, footer, fonctions, etc).
+- Le dossier `common` contiendra les éléments communs à l'ensemble de nos pages. (header, footer, fonctions, etc).
 - Les pages sont maintenant rangées dans le dossier `pages`.
 - La page incluse n'est pas libre ! Afin de sécuriser le code nous limitons l'include uniquement aux pages autorisées.
   - Si aucune page n'est fournie ou si celle-ci n'est pas autorisée, nous chargeons la page `home.php`
