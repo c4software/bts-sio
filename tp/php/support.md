@@ -1057,13 +1057,170 @@ Nous, nous servirons de ces variables principalement pour gérer des problémati
 
 ### La session
 
+La session est une variable `super-globale` qui permet de stocker **temporairement** des valeurs. Ces valeurs n'expireront qu'à la fin de la SESSION utilisateur. La durée de cette session dépend de :
+
+- La configuration du serveur.
+- L'activité de l'utilisateur.
+
+Pourquoi ? La durée de la session est remise à zéro à chaque fois que l'utilisateur charge une page. La session peut-être utilisée pour sauvegarder toutes les données que vous souhaitez, il n'y a pas vraiment de limite.
+
+_Point important :_ La session est commune à l'ensemble des pages de votre site (en réalité à l'ensemble des pages de votre domaine).
+
+_Point important 2 :_ Les données de la session sont propres à chaque utilisateur. Idéal donc pour sauvegarder par exemple le fait qu'un utilisateur soit connecté à votre site.
+
+La variable de session en PHP est nommée `$_SESSION` celle-ci est **vide** par défaut.
+
+_Concrètement comme ça fonctionne :_
+
+En PHP la session n'est pas défaut **pas démarré**, la première étape est donc de la démarrer :
+
+```php
+<?php
+session_start();
+?>
+```
+
+::: danger
+La fonction `session_start()` doit-être la première ligne de votre fichier.
+:::
+
+Puis pour enregistrer au sauvegardé une valeur, il suffit de :
+
+```php
+<?php
+// Enregistrer la variable
+$_SESSION["ma_variable"] = "ceci est une valeur de session";
+
+
+// La lire
+echo $_SESSION["ma_variable"];
+?>
+```
+
+Et… C'est tout !
+
 ### Les cookies
+
+Les cookies sont similaires à la session, c'est également une `super-globales`, mais ils sont « moins temporaires ». Vous avez déjà vu les bandeaux sur les cookies je ne vous fait pas un dessin…
+
+![Cookies](./res/cookies.png)
+
+Si nous lisons le message, on voit que le Cookie est stocké sur **votre ordinateur**, c'est donc des valeurs que vous allez sauvegarder depuis votre code, mais qui seront enregistrées sur le poste du client. L'avantage ? La persistance, les données en question resteront :
+
+- Le temps que vous avez choisi (de quelques secondes jusqu'à plusieurs années).
+- Jusqu'à ce que l'utilisateur les supprime.
+
+::: danger Qui dit poste client…
+Dis danger ! Par défaut les valeurs enregistrées dans le cookie sont éditables par le client, donc il n'y a aucune garantie de ce que vous allez récupérer. Attention au XSS donc.
+:::
+
+Les cookies peuvent être utilisés pour plein d'usage, mais **je vous conseille de les réserver** pour des données **non sensibles** :
+
+- Paramètre d'affichage.
+- Sauvegarde « de choix utilisateur ».
+- Tracker un utilisateur (c'est ce que fait Google ou Facebook par exemple)
+
+_Concretement comment ça fonctionne_ :
+
+```php
+
+// Enregistre une valeur
+$value = 'Valeur de test';
+setcookie("monCookie", $value);
+setcookie("monCookie", $value, time()+3600);  /* expire dans 1 heure */
+
+// Récupération d'un cookie
+echo $_COOKIE["monCookie"];
+
+```
 
 ## La structure
 
-### Plusieurs pages ?
+Je pense vraiment que l'organisation du code est aussi importante que le code en lui-même. Organiser son code permet d'y voir clair et ainsi permettre de se focaliser sur l'important le code (CSS, PHP, JavaScript, etc.)
 
-### Organiser son code
+Actuellement, nous n'avons pas fait beaucoup de sites multipages, mais rapidement dans vos projets, ou dans votre vie professionnelle nous aurons 2, 3, 10 pages pour un même et unique site.
+
+### L'include notre sauveur
+
+Nous avons en PHP un outil surpuissant pour gérer ce genre de problème, nous l'avons déjà utilisé, c'est le `include`. la fonction `include` va nous permettre de découper notre logique dans différents fichiers. C'est une logique que nous allons retrouver dans beaucoup de langage serveur. C'est important de prendre quelques minutes afin de comprendre son fonctionnement pour la mettre en place **tout le temps**.
+
+Cette logique repose sur un point d'entrée unique pour l'ensemble des demandes pages. Dans ce point d'entrée, nous gèrerons les éléments communs à toutes les pages :
+
+- La session / cookie.
+- Le login utilisateur.
+- Connexion à la base de données
+- Le routeur.
+- Et bien plus encore.
+
+::: tip
+Cette logique est utilisée par l'ensemble des CMS modernes, elle permet de créer des pages dynamiques ou la mise en place très simple de mécanique de plug-in c'est donc l'ideal.
+:::
+
+Fonctionnellement, nous allons « juste » découper un peu plus votre travail. Et nous allons ajouter « un nouveau fichier », que l'on appellera à partir de maintenant le point d'entrée (entry point).
+
+| ![Entry Point](./res/organisation_structure.png) |
+| :----------------------------------------------: |
+|    Représentation visuelle de l'organisation     |
+
+::: tip Un instant
+J'ai volontairement représenté le PHP et la CSS. Les deux parties sont importantes. Dans une organisation classique, on essaie de mettre la partie CSS dans un dossier par exemple nommée `public`. Nous aurons dans ce dossier toutes les ressources distribuées directement à votre navigateur (css, image, font, etc)
+:::
+
+### Le point d'entrée (`entry-point`)
+
+Le point d'entrée sera un fichier PHP, mais il agira comme un `routeur`. Le routeur est un morceau de code informatique qui vous permette l'affichage de la bonne page au bon moment.
+
+Le code de l'entry point sera quelque chose de très simple :
+
+```php
+<?php
+// Démarrage de la session
+session_start();
+
+// Affichage « de la partie haute » de votre site, commun à l'ensemble de votre site
+include('common/header.php');
+
+// Pages autorisées (configuration à sortir dans un autre fichier PHP)
+$whitelist = array('home','bart');
+
+// Gestion de l'affichage de la page demandée
+if(in_array($_GET['page'], $whitelist)) {
+  include("pages/" . $_GET['page'] . '.php');
+} else {
+  include('pages/home.php');
+}
+
+// Affichage de la partie basse de votre site, commun à l'ensemble de votre site.
+include('common/footer.php');
+
+?>
+```
+
+Voilà, nous avons le code de base de notre « entry-point ». Avant d'aller plus loin un peu de détail, nous avons quelques éléments importants :
+
+- Le dossier `common` contiendront les éléments communs à l'ensemble de nos pages. (header, footer, fonctions, etc).
+- Les pages sont maintenant rangées dans le dossier `pages`.
+- La page incluse n'est pas libre ! Afin de sécuriser le code nous limitons l'include uniquement aux pages autorisées.
+  - Si aucune page n'est fournie ou si celle-ci n'est pas autorisée, nous chargeons la page `home.php`
+  - Les liens entre vous pages seront différents. Ils seront sous la forme : `index.php?page=bart`, `index.php?page=page1`…
+
+:hand: Vous pouvez aussi remarquer que nous n'avons pas de HTML dans notre `entry-point`. Celui-ci est complètement générique.
+
+Exemple de structure :
+
+![Organisation d'un point de vue dossier](./res/organisation_structure_dossier.png)
+
+::: tip
+Plus tard nous utiliserons un Framework en PHP qui gèrera c'est problématique pour nous. En attendant, cette façon de s'organiser fonctionne très bien.
+:::
+
+### Assez parlé !
+
+L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 4](./tp3.md).
+
+### Mise en pratique de la Session / Cookie
+
+Nous avons maintenant organisé notre code afin que celui-ci soit moins « brouillon », je vous propose de [pratiquer un peu la partie session](./tp4.md)
 
 ## PHP et les bases de données
 
