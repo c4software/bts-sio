@@ -150,7 +150,7 @@ Cette façon de s'organiser est une première étape vers ce que nous appelleron
 
 ## Allons plus loin.
 
-Maintenant que nous avons la nouvelle structure, je vous laisse ajouter une nouvelle page « à propos » dans votre site :
+Maintenant que nous avons notre nouvelle structure en place, je vous laisse ajouter une nouvelle page « à propos » dans votre site :
 
 - Créer la page.
 - Y mettre un contenu.
