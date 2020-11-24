@@ -2,6 +2,8 @@
 
 Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
 
+[[toc]]
+
 ## Boite à outils
 
 Le PHP est présent depuis de nombreuses années sur Internet, il faut donc être très vigilant aux codes que nous trouvons ! En effet le PHP a énormément évolué et ne fonctionne plus vraiment comme avant. Dans un cas comme celui-ci, je vous conseille la documentation officielle en priorité :
