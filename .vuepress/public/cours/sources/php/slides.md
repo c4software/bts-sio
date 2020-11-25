@@ -4,7 +4,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Rendre dynamique votre code static
+## Rendre dynamique votre code statique
 
 ---
 
@@ -31,13 +31,13 @@ _Maintenant PHP_ => **H**ypertext **P**reprocessor
 
 - Vous écrivez des fichiers `.php`
 - Le fichier pourra contenir : du PHP, mais également HTML, CSS, JS.
-- Le code est traité sur le serveur : Seule le résultat arrive sur votre navigateur.
+- Le code est traité sur le serveur : **uniquement** le résultat arrive sur votre navigateur.
 
 ---
 
 ## Nous avons donc _2 acteurs_
 
-- Un Client (Un navigateur, Un téléphone, …)
+- Un Client (un navigateur, un téléphone …)
 - Un Serveur (Linux, Windows, Raspberry Pi…)
 
 ---
@@ -59,13 +59,13 @@ Internet ≠ Chrome
 
 ---
 
-## L'entre deux existe aussi
+## L'entredeux existe aussi
 
-Le dynamique statique
+Le statique dynamique
 
 =
 
-Le site généré
+Le site généré en cas de changement
 
 ---
 
@@ -73,11 +73,11 @@ Le site généré
 
 ---
 
-- Génère des pages dynamique. (À trou)
-- Collectes des données / saisie utilisateurs (formulaire).
+- Génère des pages dynamiques. (À trou)
+- Collecte des données / saisie utilisateurs (formulaire).
 - Lire, écrire, modifier des données « côté serveur ».
 - Gestion de session de connexion (SESSION & Cookie).
-- Accès à des base de données.
+- Accès à des bases de données.
 
 ---
 
@@ -88,12 +88,12 @@ Le site généré
 - Très bien documentés ([php.net](https://php.net)).
 - Simple à apprendre.
 - Largement utilisé.
-- Accès au base de données « intégré »
+- Accès aux bases de données « intégré »
 - Installable en dev' simplement
 
 ---
 
-## Les outils du developpeur
+## Les outils du développeur
 
 Wamp, Mamp, Xampp
 
@@ -107,9 +107,9 @@ Toujours la même « base »
 
 ---
 
-## Les base de PHP
+## Les bases de PHP
 
-Votre HTML est un texte à trou. Le PHP peut-être mis n'importe où.
+Votre HTML est un texte à trou. Le PHP _inséré_ n'importe où.
 
 - Le script PHP commence par `<?php`
 - Et ce termine par `?>`
@@ -124,7 +124,7 @@ Votre HTML est un texte à trou. Le PHP peut-être mis n'importe où.
 ?>
 ```
 
-⚠️ Ne fonctionne que dans les fichier de type `.php` ⚠️
+⚠️ Ne fonctionne que dans les fichiers de type `.php` ⚠️
 
 ---
 
@@ -148,7 +148,7 @@ Votre HTML est un texte à trou. Le PHP peut-être mis n'importe où.
 
 ## C'est à vous
 
-Installons ensemble votre environnement de developpement.
+Installons ensemble votre environnement de développement.
 
 ---
 
