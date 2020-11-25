@@ -180,7 +180,7 @@ Installons ensemble votre environnement de développement.
 
 ---
 
-##Les conditions
+## Les conditions
 
 ---
 

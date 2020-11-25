@@ -393,6 +393,8 @@ On est vraiment loin d’une page Web dans la conception
 - Gestion fine des versions (très important, pourquoi ?)
 - Les dépendances ont également des dépendances, etc!
 
+---
+
 ## Un composant
 
 ---
