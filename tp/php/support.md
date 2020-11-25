@@ -674,7 +674,7 @@ echo gateauHugette();
 
 Si on appel la fonction `gateauHugette()` celle-ci va vous répondre :
 
-```text
+```
 Cuire 20minutes le mélange => 453 grammes.
 ```
 
@@ -694,7 +694,7 @@ echo gateauHugette(30);
 
 La valeur de la cuisson est maintenant variable :
 
-```text
+```
 Cuire 15minutes le mélange => 453 grammes.
 ```
 
@@ -800,7 +800,7 @@ Maintenant que nous avons vu la théorie, concrètement ça donne quoi ? Nous av
 - `nav.php` => Le menu de votre site.
 - `index.php` => Votre page courante. (Celle qui va inclure les autres)
 
-#### Index.php
+_Index.php_ :
 
 ```php
 <!DOCTYPE html>
@@ -828,7 +828,7 @@ Maintenant que nous avons vu la théorie, concrètement ça donne quoi ? Nous av
 </html>
 ```
 
-### common/header.php
+_common/header.php :_
 
 ```html
 <header>Votre Header</header>
@@ -842,13 +842,13 @@ Maintenant que nous avons vu la théorie, concrètement ça donne quoi ? Nous av
 
 :::
 
-### common/nav.php
+_common/nav.php :_
 
 ```html
 <nav>Lien 1 | Lien 2 | …</nav>
 ```
 
-### common/footer.php
+_common/footer.php :_
 
 ```php
 <footer>
@@ -872,7 +872,7 @@ Bon le HTML c'est une partie du problème. Vous vous souvenez de la recette de M
 
 Pour la rendre disponible partout, nous allons la mettre dans un fichier que nous allons inclure dans nos pages :
 
-### common/functions.php
+_common/functions.php :_
 
 ```php
 <?php
@@ -899,7 +899,7 @@ Vous avez déclaré le fichier qui fera de vous un **super développeur** ! Les 
 Le fichier en question est ce que l'on appelle une librairie, cette page en elle-même ne fait rien. Elle ne fait qu'ajouter une fonction qui sera disponible par la suite dans votre code.
 :::
 
-### index.php
+_index.php :_
 
 ```php
 <?php include('common/functions.php') ?>
@@ -1220,7 +1220,7 @@ Plus tard nous utiliserons un Framework en PHP qui gèrera c'est problématique 
 
 L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 4](./tp3.md).
 
-### Mise en pratique de la Session / Cookie
+## Mise en pratique de la Session / Cookie
 
 Nous avons maintenant organisé notre code afin que celui-ci soit moins « brouillon », je vous propose de [pratiquer un peu la partie session](./tp4.md)
 

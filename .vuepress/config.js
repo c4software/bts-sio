@@ -80,7 +80,7 @@ module.exports = {
         title: "Le PHP",
         initialOpenGroupIndex: -1,
         children: [
-          { title: "Les bases", children: ["cours/introduction_php"] },
+          { title: "Les bases", children: ["cours/introduction_php", "tp/php/support.md"] },
           { title: "Les TP basiques", children: ["tp/php/tp1.md", "tp/php/tp1.1.md", "tp/php/tp2.md", "tp/php/tp3.md", "tp/php/tp4.md", "tp/php/tp5.md"] },
           { title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/application_todo_list", "/tp/laravel/creation_api"] }
         ]

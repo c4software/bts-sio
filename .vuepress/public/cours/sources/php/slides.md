@@ -155,3 +155,71 @@ Installons ensemble votre environnement de développement.
 ## C'est à vous
 
 [Votre première page PHP](/tp/php/tp1.html)
+
+---
+
+## Les bases du PHP
+
+---
+
+## Les variables
+
+---
+
+## Les opérations
+
+---
+
+## Les « Super-Globales »
+
+---
+
+## Les tableaux
+
+### Array
+
+---
+
+##Les conditions
+
+---
+
+## Les boucles
+
+---
+
+## Les fonctions
+
+---
+
+## Les includes
+
+---
+
+## Les formulaires
+
+---
+
+## Mise en pratique 2
+
+---
+
+## La persistance
+
+---
+
+## La structure
+
+### J'organise mon code
+
+---
+
+## Mise en pratique 3
+
+### Organiser son code
+
+---
+
+## Mise en pratique 4
+
+### Pratiquer les SESSIONS & Cookies
