@@ -230,7 +230,14 @@ Affichera : `valentin brosseau`.
 
 Comme en mathématique nous avons la possibilité de faire des opérations mathématiques comme un calculatrice, `+`, `-`, `/`, `*`, `%`…
 
-## Les variables HTTP « GET, POST, … »
+### Boolean
+
+Sur les variables de types `Boolean` nous pourrons faire uniquement des opérations logique. (Base de l'informatique)
+
+![AND](./res/et.png)
+![OR](./res/ou.png)
+
+## Les Super Globales
 
 Vos variables vous appartiennent. Mais en PHP nous avons également quelques variables « automatiquement remplies », et ça dès le début de votre script.
 
@@ -433,14 +440,14 @@ if($age >= 18) {
 }
 ```
 
-### Une condition IF/ELSE/ELSE IF
+### Une condition IF/ELSE IF/ELSE
 
 ```php
 $age = 22;
 
 if($age >= 14) {
     echo "Vous pouvez passer le permis 2 roues.";
-} else if (age >= 18) {
+} else if ($age >= 18) {
     echo "Vous pouvez passer le permis voiture";
 } else {
     echo "Encore un peu de patience… Pour le permis 2 roues c'est à 14ans";
@@ -545,8 +552,8 @@ Le plus simple pour comprendre le fonctionnement. C'est de pratiquer. Je vous la
 
 - Une condition simple.
 - Une condition avec plusieurs if / else-if / else.
-- Une ternaire
-- Un Switch
+- Une ternaire.
+- Un Switch.
 
 ## Les boucles
 
