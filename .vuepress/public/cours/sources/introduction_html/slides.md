@@ -232,6 +232,12 @@ En informatique _ils est importants_, et peut prendre plusieurs formes.
 
 ---
 
+### Un autre attribut très important
+
+[Lazy Loading](https://web.dev/browser-level-image-lazy-loading/)
+
+---
+
 ### Les titres
 
 ```html
