@@ -379,3 +379,7 @@ Comme en PHP les variables possèdent des types « implicitement déterminés »
 | `object`  | `{nom: "Brosseau", prenom: "Valentin"}` |                                 | Structure de données                                                                |
 
 En JS, nous n'avons pas de « Tableaux associatifs », nous avons à la place un type `object`, il nous permettra de structurer au mieux nos données.
+
+### À faire
+
+Nous avons vu comment déclarer des variables, [je vous propose de les manipuler un peu avec le TP 1.1](./tp1.1.md)
