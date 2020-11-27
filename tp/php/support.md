@@ -1238,3 +1238,7 @@ Nous avons maintenant organisé notre code afin que celui-ci soit moins « broui
 ### Les autres
 
 ### PhpMyAdmin
+
+## Le PHP Objet
+
+Nous aborderons [le PHP objet avec Laravel](/cours/laravel.html)

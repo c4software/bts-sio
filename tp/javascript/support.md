@@ -88,36 +88,6 @@ Le moteur a pour but de :
 - Simple d'apprentissage et dans la manipulation.
 - Actif par défaut, et supporté par l'ensemble des navigateurs.
 
-## Les outils du développeur
-
-Le JavaScript ne déroge pas à la règle, pour bien travailler il nous faut de bonnes ressources. Pour le JS je vous propose :
-
-- [https://developer.mozilla.org/](https://developer.mozilla.org/)
-- [https://caniuse.com/](https://caniuse.com/)
-- [https://web.dev/](https://web.dev/)
-
-::: tip Un instant
-Bien évidemment cette liste peut-être bien plus grande. N'hésitez pas à vous inspirer :
-
-- De certains projets Github.
-- De compte Twitter
-- …
-  :::
-
-## Librairies or not ?
-
-C'est là grande question ! En JS nous avons la possibilité de nous passer complètement de librairie afin d'utiliser uniquement ce que propose le navigateur, c'est ce que l'on appelle `VanillaJS`. En 2020 ça fonctionne très bien! C'est même ce que j'aurais tendance à conseiller… Mais (oui il y a toujours un mais) la réalité est qu’en agence vous allez rencontrer des projets qui utiliseront [jQuery](https://jquery.com/).
-
-Au vu du temps que nous allons avoir à consacrer au JS ça me semble important de vous parler un peu de `jQuery` mais également des équivalents `VanillaJS`.
-
-Je ne dis pas que `jQuery` est un mauvais choix… Je pense par contre que celui-ci n'est plus forcément un « obligatoire » à partir de maintenant.
-
-::: tip Et les Frameworks alors ?
-Ah en voilà une bonne question ! Les frameworks JS sont un sujet aussi vaste que le JS en lui-même, nous aurons le plaisir de les pratiquer ultérieurement. Dans tous les cas, ce que nous allons voir ensemble « dans les bases du JS » nous resservira avec les frameworks.
-
-_Sachez juste qu'il est possible de tout faire avec un framework JS (type `VueJS`), mais ce n'est pas forcément la réponse à toutes les questions._
-:::
-
 ## Les navigateurs
 
 L'autre gros sujet du JS est le support… Vous êtes certainement jeunes, vous n'avez connu _que Google Chrome_, la réalité est plus complexe que ça (surtout en entreprise). Dans votre carrière vous allez rencontrer des blocages et obligations de support. Même en 2020 nous avons des navigateurs différents (pourvu que ça dure) :
@@ -133,6 +103,20 @@ L'autre gros sujet du JS est le support… Vous êtes certainement jeunes, vous 
 
 Nous allons donc avoir besoin de [_librairies_ (appelé polyfill)](https://polyfill.io/v3/), ces librairies ont pour but d'ajouter le support de fonctionnalité moderne sur d’anciens navigateurs. Le support n'est évidemment pas total, et souvent les performances sont un peu moins bonnes. Mais cette solution est souvent la meilleure pour supporter les anciens navigateurs.
 
+## Librairies or not ?
+
+C'est là grande question ! En JS nous avons la possibilité de nous passer complètement de librairie afin d'utiliser uniquement ce que propose le navigateur, c'est ce que l'on appelle `VanillaJS`. En 2020 ça fonctionne très bien! C'est même ce que j'aurais tendance à conseiller… Mais (oui il y a toujours un mais) la réalité est qu’en agence vous allez rencontrer des projets qui utiliseront [jQuery](https://jquery.com/).
+
+Au vu du temps que nous allons avoir à consacrer au JS ça me semble important de vous parler un peu de `jQuery` mais également des équivalents `VanillaJS`.
+
+Je ne dis pas que `jQuery` est un mauvais choix… Je pense par contre que celui-ci n'est plus forcément un « obligatoire » à partir de maintenant.
+
+::: tip Et les Frameworks alors ?
+Ah en voilà une bonne question ! Les frameworks JS sont un sujet aussi vaste que le JS en lui-même, nous aurons le plaisir de les pratiquer ultérieurement. Dans tous les cas, ce que nous allons voir ensemble « dans les bases du JS » nous resservira avec les frameworks.
+
+_Sachez juste qu'il est possible de tout faire avec un framework JS (type `VueJS`), mais ce n'est pas forcément la réponse à toutes les questions._
+:::
+
 ## Les animations
 
 Attention à ne pas tomber dans le piège du tout JavaScript. Il peut-être tentant de tout faire un JavaScript, il fut un temps ou c'était une solution acceptable. Maintenant que nos navigateurs sont très puissants, cette solution devient même imaginable…
@@ -145,3 +129,253 @@ Mais **il ne faut pas le faire** ! Si vous souhaitez animer votre page **privil�
 ::: tip Vous vous souvenez des boucles ?
 Les animations en JS sont faites de boucles « infinies » ou très longues. C'est donc très peu optimisé. **Méfiance donc !**
 :::
+
+## JavaScript do you speak JavaScript ?
+
+Nous allons voir plus tard que le JavaScript à certains defaut. Nous ne l'évoquerons pas vraiment dans ce cours, mais il est possible d'écrire du JavaScript dans d'autres langages qui seront ensuite « transpilé » (converti lors d'une étape de compilation) en du JavaScript :
+
+- CoffeeScript, syntaxe plus concise très utilisée par les utilisateurs de Ruby.
+- TypeScript, très populaire, il permet principalement de typer « fortement les données. Il permet de créer du code propre même dans le cas de gros projets complexes. Il est développé par Microsoft. (Très intéressant).
+- Kotlin, Kotlin le langage utilisé par la plateforme Android de Google. Le compilateur permet de créer également du code JS à partir de fichier `.kt`.
+
+Il y a encore beaucoup d'exemples, le langage n'étant que « Transpilé » il est important de comprendre le JavaScript pour l'utiliser efficacement.
+
+## Les outils du développeur
+
+Le JavaScript ne déroge pas à la règle, pour bien travailler il nous faut de bonnes ressources. Pour le JS je vous propose :
+
+- [https://developer.mozilla.org/](https://developer.mozilla.org/)
+- [https://caniuse.com/](https://caniuse.com/)
+- [https://web.dev/](https://web.dev/)
+- [https://kangax.github.io/compat-table/es6/](https://kangax.github.io/compat-table/es6/)
+
+::: tip Un instant
+Bien évidemment cette liste peut-être bien plus grande. N'hésitez pas à vous inspirer :
+
+- De certains projets Github.
+- De compte Twitter
+- …
+
+:::
+
+### Les IDE
+
+L'IDE est aussi important que les idées. Pour éditer du JavaScript, vous pouvez utiliser un simple éditeur de texte (type Notepad). Cependant, je vous déconseille vraiment de le faire, écrire du JavaScript peut parfois être complexe, et il faut bien l'avouer un peu d'aide de la part d'un IDE peut-être **très très intéressant**, vous avez beaucoup de possibilités :
+
+- WebStorm (Payant, mais très bon).
+- VisualStudio Code (Gratuit, bon aussi).
+- Atom (je ne le conseille plus).
+- Vim (pour les experts seulement).
+
+::: tip Astuce du pro
+Quel que soit l'éditeur choisi, il faut savoir l'exploiter. N'hésitez pas à l'apprivoiser pour connaitre les options et donc devenir efficace avec.
+:::
+
+### La console
+
+Nous avons déjà utilisé « La console » de votre navigateur quand nous faisions du HTML. Celle-ci sera encore plus utile avec le JS, elle nous permettra :
+
+- De voir les Erreurs et Warnings.
+- Faire des points d'arrêt.
+- Afficher des logs.
+
+Cette console existe sur l'ensemble des navigateurs modernes. Elle contient des informations **très précieuse** à partir de maintenant, j'aimerais que celle-ci soit toujours ouverte lors de vos developpement.
+
+::: tip Cas concret
+
+![Cas concret](./res/console.png)
+
+La ligne `Uncaught ReferenceError: test is not defined at index.html:11`, nous indique, que notre page `index.html` contient une erreur à la ligne 11.
+
+Vous pouvez, vous aussi tester [cette page en cliquant ici](/demo/js/index.html)
+
+:::
+
+## Votre premier Hello World
+
+Concentrons-nous maintenant sur le code en lui-même. Nous allons travailler exclusivement dans notre navigateur. Un peu comme la balise `form` la balise `script` peut-être mise n'importe où dans le code HTML. Cette balise peut fonctionner de deux façons différentes :
+
+- Code JavaScript directement dans le code
+- Code JavaScript chargé depuis un fichier externe.
+
+_Directement dans le code :_
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Titre de la bage</title>
+  </head>
+  <body>
+    <p>Lorem Ipsum</p>
+
+    <script>
+      alert("Bonjour à tous");
+    </script>
+
+    <p>Lorem Ipsum suite</p>
+  </body>
+</html>
+```
+
+_Via un script externe :_
+
+```html
+<script src="/public/js/votre_script.js"></script>
+```
+
+::: tip Astuce de Pro
+Vous pouvez bien évidemment mettre **plusieurs** balises script. Un peu comme le PHP l'organisation est importante, n'hésitez pas à découper votre code (encore, et encore, et encore).
+
+```html
+<script src="/public/js/votre_script1.js"></script>
+<script src="/public/js/votre_script2.js"></script>
+<script src="/public/js/votre_script3.js"></script>
+```
+
+Vous pouvez également charger des scripts « externe » :
+
+```html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+```
+
+:::
+
+::: warning
+Attention à la sécurité dans le cas du chargement via un CDN. Vous charger du contenu « non sure depuis Internet ». C'est à mon sens un très gros risque.
+:::
+
+### Mise en pratique
+
+Maintenant que vous avez vu les bases… Place à la pratique avec [le TP1](/tp/javascript/tp1.md)
+
+Rien de bien compliqué dans le TP, il s'agit juste de mettre en pratique.
+
+## Plusieurs lignes ?
+
+Pour l'instant nous avons écrit du code très simple. Nous allons plus tard avoir bien évidemment des fonctions, des conditions des boucles, bref plusieurs lignes de code. En JavaScript chaque ligne de code **doivent se terminer par un `;`**.
+
+```javascript
+console.log("Ceci est un message dans la console");
+alert("Bloqué");
+```
+
+## Les commentaires
+
+Commenter son code c'est important (pour vous). Il faut le faire dès que cela est nécessaire :
+
+```js
+/**
+ * Commentaire multignes
+ * Par exemple en début de fichier pour détailler le contenu
+ */
+
+// Commenter une ligne.
+console.log("Ceci est un exemple");
+
+console.log("Ceci est un exemple 2"); // Peux également être placé en fin de ligne.
+```
+
+::: tip Astuce d'ancien !
+Commenté, commenté, commente votre code. Il n'y a jamais trop de commentaires dans du code. Et par pitié :pray: utilisé les raccourcis clavier de votre éditeur pour commenter :+1:
+:::
+
+## Les variables
+
+Comme en PHP (ou d'autres langages), il est possible d'écrire des variables en JavaScript. Les variables fonctionnent de la même façon qu'en PHP, celle-ci sont « temporaire » leur contenu est remis à zéro à chaque lancement de votre script.
+
+Nous avons deux types de variables en PHP :
+
+- Les variables, fonctionnement classique.
+- Les constantes, variable qui ne peut-être écrite qu'une seule fois. Si vous tentez de « l'écraser » votre navigateur produira une erreur.
+
+### Les variables
+
+Les variables s'utilisent de la même façon que ce que vous avez déjà vu à savoir :
+
+- Une déclaration
+- Des assignations
+- Des « manipulations » (conditions, boucles, fonctions, etc.)
+
+La déclaration d'une variable doit-être faite avec le mot-clé `let`, par exemple :
+
+```javascript
+let nom;
+nom = "Brosseau";
+alert(nom);
+
+// Ou alors en une seule ligne.
+let nom = "Brosesau";
+alert(nom);
+```
+
+::: tip Un peu d'historiques
+L'usage du mot-clé `let` est plutôt récent en JavaScript. Historiquement nous utilisions plus le mot `var`. Il n'y a pas vraiment de différence entre les deux. Sachez juste que maintenant vous devez utiliser `let` plutôt que `var`.
+:::
+
+::: warning Attention
+
+Contrairement au PHP, une variable déclarée ne peut-être redéclarée, si vous tenter de le faire votre navigateur produira une erreur dans la console. :
+
+```javascript
+let nom = "Valentin";
+nom = "Thomas"; // Pas de problème
+
+let nom = "Romain"; // Erreur.
+// VM1498:4 Uncaught SyntaxError: Identifier 'nom' has already been declared
+```
+
+:::
+
+### Les constantes
+
+Une constante s'utilise comme une variable classique, sauf que celle-ci ne peut-être écrasé. Nous utiliserons ce type de variable pour « empêcher » que certaines valeurs puissent être perdues via une mauvaise ligne de code.
+
+```javascript
+const age_du_capitaine = 84;
+age_du_capitaine = 33;
+// VM1583:2 Uncaught TypeError: Assignment to constant variable.
+```
+
+Un exemple d'usage ? Par exemple, un lien « vers une API », ou encore la couleur principale de votre site web. Où plus simplement mémoriser sous « une étiquette » des valeurs plus longue :
+
+```javascript
+const IN_PROGRESS = "200";
+const DONE = "400";
+const FAILED = "1000";
+```
+
+Il est en effet plus simple de lire un ligne :
+
+```javascript
+if (order.status == DONE) {
+  alert("Commande finalisée");
+}
+```
+
+Que mémoriser que 400 == Done :
+
+```javascript
+if (order.status == 400) {
+  alert("Commande finalisée");
+}
+```
+
+::: tip Astuce de pro
+Je vous conseille de nommer vos constantes avec un nom en majuscule. Ça vous permettra de toutes de suite les reconnaitre
+:::
+
+### Les types
+
+Comme en PHP les variables possèdent des types « implicitement déterminés » :
+
+| Type      | Contenu                                 | Type d'opération                | Usage                                                                               |
+| --------- | --------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------- |
+| `string`  | "Une chaine de caractère"               | Gestion du texte, concaténation | Permets de stocker du texte (saisie utilisateur par exemple).                       |
+| `int`     | 42                                      | Opération mathématique          | Comme en mathématique                                                               |
+| `boolean` | `True` ou `False`                       | Opération logique               | Permets de faire des actions logiques. C'est un type très important en informatique |
+| `float`   | 10.3                                    | Opération mathématique          | Comme en mathématique. Attention la notation du chiffre à virgule est avec un `.`.  |
+| `array`   | ["a", "b", "c"]                         |                                 | Contiens des listes de « quelques choses »                                          |
+| `object`  | `{nom: "Brosseau", prenom: "Valentin"}` |                                 | Structure de données                                                                |
+
+En JS, nous n'avons pas de « Tableaux associatifs », nous avons à la place un type `object`, il nous permettra de structurer au mieux nos données.
