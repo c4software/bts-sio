@@ -383,3 +383,50 @@ En JS, nous n'avons pas de « Tableaux associatifs », nous avons à la place un
 ### À faire
 
 Nous avons vu comment déclarer des variables, [je vous propose de les manipuler un peu avec le TP 1.1](./tp1.1.md)
+
+## Manipuler les données
+
+Un langage de programmation est prévu pour manipuler des données. Pour le JavaScript c'est là même chose, toutes les opérations vu en PHP fonctionneront de la même façon en JS, la synthaxe sera très proche voir identique. Voici quelques exemples.
+
+### Les conditions
+
+Aucune différence par rapport à ce que nous avons précédemment vu ensemble :
+
+```javascript
+if (true) {
+  // Condition toujours vrai
+}
+
+let i = 1;
+if (i > 10) {
+  // Condition toujours fausse
+}
+```
+
+### Les boucles
+
+```javascript
+while (true) {
+  console.log("Votre première boucle infinie");
+}
+
+for (let i = 0; i < 3; i++) {
+  alert(i);
+}
+```
+
+### Les fonctions
+
+Nous pouvons déclarer des fonctions en JS :
+
+```js
+function maFonction() {
+  return Math.random();
+}
+```
+
+Elle fonctionne et s'utilise comme ce que nous avons précédemment vu.
+
+### À faire
+
+Tester en JavaScript l'usage de c'est Fonction, Condition, et Boucle. (Nous utiliserons plus en détail c'est élément après avoir vu comment manipuler le DOM)

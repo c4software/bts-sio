@@ -58,3 +58,7 @@ Maintenant que vous savez poser des questions et afficher des valeurs. Je vous p
 - Réaliser l'opération `variable1 + variable2` et afficher le résultat à l'utilisateur (dans la console ou dans une alerte).
 
 C'est à vous :)
+
+::: tip Astuce
+Il est possible en JavaSscript de « changer le type d'une variable ». [Je vous laisse tester](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
+:::
