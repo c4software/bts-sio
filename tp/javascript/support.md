@@ -430,3 +430,50 @@ Elle fonctionne et s'utilise comme ce que nous avons précédemment vu.
 ### À faire
 
 Tester en JavaScript l'usage de c'est Fonction, Condition, et Boucle. (Nous utiliserons plus en détail c'est élément après avoir vu comment manipuler le DOM)
+
+## Manipuler le HTML et la CSS
+
+TODO INTRODUCTION
+
+### Créer des éléments dans la page
+
+### Les selecteurs
+
+### Les selecteurs et jQuery
+
+### Mis en pratique
+
+TP Bart version JS
+
+### Jouer sur la visibilité
+
+### Changer le styles (et les classes)
+
+## Les événements
+
+Intéragir avec l'utilisateur.
+
+- onclick
+- onsubmit
+- …
+
+## Ajouter des contrôles de saisie sur le TP Bart (version PHP)
+
+### Sans Lib
+
+### Avec une Lib
+
+## L'Ajax
+
+### L'asynchrone c'est quoi ?
+
+### Charger du contenu « à la demande »
+
+### Les usages « avancés »
+
+## Se Balader dans le DOM
+
+- Parent
+- etc…
+
+### Les sélécteur jQuery « avancés »
