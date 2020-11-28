@@ -14,9 +14,9 @@ En s'inspirant de l'exemple suivant, je vous laisse créer une page équivalente
 
 ## Créer une seconde page:
 
-- Ajouter un titre. (`<h1>` + `<title>`)
-- Ajouter une balise vidéo. `<audio>`
-- Ajouter une balise audio. `<video>`
+- Ajouter un titre (`<h1>` + `<title>`)
+- Ajouter une balise audio `<audio>`
+- Ajouter une balise video `<video>`
 
 ::: tip Comment procéder ?
 Votre carrière sera faite de balise / problème inconnue, le bon réflexe c'est une boite à outils de documentation par exemple:
@@ -28,8 +28,8 @@ Votre carrière sera faite de balise / problème inconnue, le bon réflexe c'est
 
 ## Créer une troisième page
 
-- Ajouter un titre. (`<h1>` + `<title>`)
-- Créer un tableau. (`table`). Celui-ci doit contenir.
+- Ajouter un titre (`<h1>` + `<title>`)
+- Créer un tableau (`table`). Celui-ci doit contenir :
   - 3 colonnes
   - 20 lignes
   - Un entête et un pied de tableau
