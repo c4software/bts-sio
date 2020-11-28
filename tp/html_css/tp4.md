@@ -12,12 +12,12 @@ Voilà le rendu de ce que nous allons devoir obtenir :
 
 Avant d'aller plus loin, je vous laisse regarder la vidéo, l'analyser, afin de voir les modifications qui interviennent en fonction de la taille de l'écran.
 
-=> Première étape [télécharger les sources](/demo/css/tp4/init_projet.zip).
-=> Puis valider le fonctionnement sur votre ordinateur.
+- Première étape [télécharger les sources](/demo/css/tp4/init_projet.zip).
+- Puis valider le fonctionnement sur votre ordinateur.
 
 ## Activation du responsive
 
-En cours je vous « ai de deux parlé d'étape » pour activer le responsive. La première est la mise en place de la `meta` indiquant à votre navigateur le contenu doit prendre la largeur de l'écran. Pour ça ajouter la `meta` suivante dans votre projet.
+En cours je vous ai parlé de « deux d'étapes » pour activer le responsive. La première est la mise en place de la `meta` indiquant à votre navigateur le contenu doit prendre la largeur de l'écran. Pour ça ajouter la `meta` suivante dans votre projet.
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -96,7 +96,7 @@ main > section {
 
 ### Sortir les règles de « Responsive »
 
-Dans le cours nous avons parlé deux façons d'écrire les règles de responsive. Je vous laisse modifier votre code source, afin de « sortir » les règles de CSS relatif à la partie responsive.
+Dans le cours nous avons parlé de deux façons d'écrire les règles de responsive. Je vous laisse modifier votre code source, afin de « sortir » les règles de CSS relatif à la partie responsive.
 
 ::: tip Astuce du chef
 N'oubliez pas de retirer les « media-queries » de la CSS, elles ne sont pas nécessaires du fait que vous avez conditionné le chargement entier de la feuille de style.

@@ -117,7 +117,7 @@ La structure
 ---
 
 - Le doctype
-- <html> en tout début et en toute fin de document.
+- <html> En tout début et en toute fin de document.
 - <head> Informations servant au navigateur, mais non affichées (Méta, CSS, JS, etc.).
 - <body> Corps de votre page (ce que vous allez afficher)
 
@@ -207,7 +207,7 @@ Nous avons donc, un texte entouré d'une balise :
 
 ## Les commentaires
 
-En informatique _ils est importants_, et peut prendre plusieurs formes.
+En informatique _ils sont importants_, et peut prendre plusieurs formes.
 
 ### En HTML c'est :
 
@@ -285,7 +285,7 @@ La toile, Le Web…
 
 ---
 
-- VScode <!-- .element: class="fragment" -->
+- VScode
 - WebStorm <!-- .element: class="fragment" -->
 - … <!-- .element: class="fragment" -->
 
@@ -309,9 +309,9 @@ La toile, Le Web…
 
 ## Créer une seconde page:
 
-- Ajouter un titre. (`<h1>` + `<title>`)
-- Ajouter une balise vidéo. `<audio>`
-- Ajouter une balise audio. `<video>`
+- Ajouter un titre (`<h1>` + `<title>`)
+- Ajouter une balise audio `<audio>`
+- Ajouter une balise video `<video>`
 
 ---
 
@@ -327,8 +327,8 @@ La toile, Le Web…
 
 ## Créer une troisième page
 
-- Ajouter un titre. (`<h1>` + `<title>`)
-- Créer un tableau. (`table`). Celui-ci doit contenir.
+- Ajouter un titre (`<h1>` + `<title>`)
+- Créer un tableau (`table`). Celui-ci doit contenir.
   - 3 colonnes
   - 20 lignes
   - Un entête et un pied de tableau

@@ -10,7 +10,7 @@ Bien évidemment la CSS est un domaine très large, il sera difficile de couvrir
 
 ### Boite à outils
 
-En tant que développeur vous devez avoir une boite à outils de site web de référence. L'un d'entre eux est [Can I Use](https://caniuse.com/), pour rappel Can I Use est un site qui nous permettre de vérifier si ce que l'on souhaite utiliser est compatible avec le navigateur que nous ciblons.
+En tant que développeur vous devez avoir une boite à outils de site web de référence. L'un d'entre eux est [Can I Use](https://caniuse.com/), pour rappel Can I Use est un site qui va nous permettre de vérifier si ce que l'on souhaite utiliser est compatible avec le navigateur que nous ciblons.
 
 ![Can I Use](./res/can_i_use.png)
 
@@ -136,25 +136,25 @@ Avant de continuer petit rappel vis-à-vis du cours :
 
 ![Règle CSS](/cours/sources/introduction_css/res/css-ruleset.png)
 
-Votre fichier CSS sera constitué de règles CSS. Pour l'instant vous n'en avez qu'une seule. Celle-ci indique que le texte toutes les balises `<p>` doit être rouge.
+Votre fichier CSS sera constitué de règles CSS (sélécteur). Pour l'instant vous n'en avez qu'une seule. Celle-ci indique que le texte de toutes les balises `<p>` doit être rouge.
 
 ## Styliser les titres
 
 Je vous propose maintenant de changer le style des titres. Je vous propose donc de changer le style des deux titres :
 
-- Augmenter la taille de la police. `font-size: 4em`.
+- Augmenter la taille de la police `font-size: 4em`.
 - Mettre les textes en bleu `color: #1D2D3A`.
 
 Je vous laisse écrire le sélecteur CSS nécessaire. Celui-ci devrait ressembler à :
 
 ```css
-votrSselecteurDeTitre {
+votreSelecteurDeTitre {
     font-size: 4em;
     … la suite
 }
 ```
 
-::: détails voir un indice
+::: details Voir un indice
 Je vous rappelle que vous pouvez écrire un sélecteur multiple, et plusieurs lignes comme style.
 
 ```css
@@ -197,7 +197,7 @@ Il est difficile de faire un « mémo » sur la CSS. Cependant, vous pouvez rete
 | #item     | Élément avec id `item`              |
 | .item     | Élément(s) avec class `item`        |
 | p         | Élément(s) de type `p`              |
-| div, p    | Élément(s) de type `div`, `p`       |
+| div, p    | Élément(s) de type `div` ou `p`     |
 | p > i     | Élément(s) de type `i` dans `p`     |
 | .item > i | Élément(s) de type `i` dans `.item` |
 

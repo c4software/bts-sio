@@ -19,7 +19,7 @@ En s'inspirant de l'exemple suivant, je vous laisse créer une page équivalente
 - Ajouter une balise video `<video>`
 
 ::: tip Comment procéder ?
-Votre carrière sera faite de balise / problème inconnue, le bon réflexe c'est une boite à outils de documentation par exemple:
+Votre carrière sera faite de balises / problèmes inconnue, le bon réflexe c'est une boite à outils de documentation par exemple:
 
 - [Google](https://www.google.com)
 - [Stackoverflow](https://stackoverflow.com/)
