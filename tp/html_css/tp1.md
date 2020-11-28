@@ -37,7 +37,7 @@ Votre carrière sera faite de balise / problème inconnue, le bon réflexe c'est
 ::: tip Comment procéder ?
 Vous avez un exemple de tableau dans le [Mémo HTML](/cheatsheets/html).
 
-:hand: _Petite astuce_, votre IDE propose une mode « emmet » nous allons découvrir son fonctionnement ensemble. :hand:
+:hand: _Petite astuce_, votre IDE propose un mode « emmet » nous allons découvrir son fonctionnement ensemble. :hand:
 :::
 
 ## Ajouter un Menu
