@@ -477,13 +477,92 @@ L'Arbre du DOM peut-être très gros, nous allons plus tard parler de ShadowDow 
 
 ### Exemple de création d'éléments
 
-TODO
+La logique est toujours la même :
+
+```javascript
+var h = document.createElement("h1"); // Création de l'élément h1
+h.innerHTML = "Ceci est un titre"; // Ajout du texte dans le h1
+h.className = "titleClass"; // Définition d'un titre pour l'élément
+
+// Ajout du titre dans le body de la page courante.
+document.body.appendChild(h);
+```
+
+Dans une page ça peut donner :
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ma page</title>
+  </head>
+  <body>
+    <script>
+      var h = document.createElement("h1"); // Création de l'élément h1
+      h.innerHTML = "Ceci est un titre"; // Ajout du texte dans le h1
+      h.className = "titleClass"; // Définition d'un titre pour l'élément
+
+      // Ajout du titre dans la page en cours
+      document.body.appendChild(h);
+    </script>
+  </body>
+</html>
+```
+
+::: tip appendChild ?
+
+Dans le précédent exemple, nous avons ajouté l'élément « à la fin » du body. Mais d'autres options existent :
+
+- `node.append(nodes ou strings)` – ajoute « nodes ou strings » à la fin,
+- `node.prepend(nodes ou strings)` – ajoute « nodes ou strings » au début,
+- `node.before(nodes ou strings)` –- ajoute « nodes ou strings » avant le node,
+- `node.after(nodes ou strings)` –- ajoute « nodes ou strings » après le node,
+- `node.replaceWith(nodes ou strings)` –- remplace le node par l'élément fourni « nodes or strings ».
+
+:warning Nous allons voir qu'il est possible de choisir le `node` via un selecteur.
+:::
+
+#### À faire
+
+Je vous laisse tester dans votre navigateur.
+
+### Exemple de création d'éléments version alternative
+
+Nous pouvons également insérer « une chaine de caractère », celle-ci sera transformée automatiquement en code HTML valide par votre navigateur :
+
+```javascript
+// Ajout du titre dans le body de la page courante.
+document.body.insertAdjacentHTML(
+  "afterend",
+  "<h1 class='titleClass'>Ceci est un titre</h1>"
+);
+```
+
+::: tip afterend ?
+Comme dans l'exemple précédent, c'est la position de l'élément que vous souhaitez insérer. Les valeurs possibles sont les suivantes :
+
+- `beforebegin` : Avant l'élément lui-même.
+- `afterbegin` : Juste à l'intérieur de l'élément , avant son premier enfant.
+- `beforeend` : Juste à l'intérieur de l'élément , après son dernier enfant.
+- `afterend` : Après élément lui-même.
+
+:::
+
+::: danger Attention
+Cette solution peut sembler tentante… Mais attention, si la valeur ajoutée contient une saisie utilisateur, vous risquez une XSS sur votre site Internet.
+
+Donc méfiance.
+:::
 
 ### Les sélecteurs
 
+TODO
+
 ### Les sélecteurs et jQuery
 
-### Mis en pratique
+### Mise en pratique
 
 TP Bart version JS
 
