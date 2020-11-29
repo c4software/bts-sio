@@ -570,9 +570,19 @@ Donc méfiance.
 
 ### Les sélecteurs
 
+Vous vous doutez que nous allons pas tout gérer avec un simple `document.body`. Le JS nous offre beaucoup de possibilité, et nous offre surtout une « interface » très puissante pour choisir l'endroit où nous allons insérer un élément (très très puissante vous allez voir)
+
 TODO
 
 ### Les sélecteurs et jQuery
+
+TODO
+
+### Des sélécteurs « à la sauce jQuery »
+
+Sachez qu'il est possible maintenant de faire des selecteurs similaire à jQuery, mais sans jQuery.
+
+TODO
 
 ### Mise en pratique
 
