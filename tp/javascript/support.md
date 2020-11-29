@@ -548,6 +548,18 @@ Comme dans l'exemple précédent, c'est la position de l'élément que vous souh
 - `beforeend` : Juste à l'intérieur de l'élément , après son dernier enfant.
 - `afterend` : Après élément lui-même.
 
+L'exemple de la W3School est très explicite :
+
+```html
+<!-- beforebegin -->
+<p>
+  <!-- afterbegin -->
+  foo
+  <!-- beforeend -->
+</p>
+<!-- afterend -->
+```
+
 :::
 
 ::: danger Attention
