@@ -433,13 +433,55 @@ Tester en JavaScript l'usage de c'est Fonction, Condition, et Boucle. (Nous util
 
 ## Manipuler le HTML et la CSS
 
-TODO INTRODUCTION
+Comme je disais précédemment, le JavaScript et le HTML sont « entièrement » compatible, vous pouvez créer, supprimer, modifier n'import quels éléments présent dans votre page. Il est donc possible de créer entièrement une page HTML via du JS. Il est également possible de modifier le style de chacun des éléments présents dans votre page Internet.
+
+Cette interaction entre les deux, nous permettra plus tard de créer « de vraies expériences » 100% en JavaScript.
+
+::: danger Une limite…
+Manipuler votre page aucun problème. Par contre attention, impossible de modifier du code « qui ne vous appartient pas », c'est-à-dire dans une `iframe` ou dans un autre onglet que la page actuelle.
+:::
 
 ### Créer des éléments dans la page
 
-### Les selecteurs
+Je ne pense pas qu'il soit très important de connaitre ce genre de manipulation, mais je constate qu'en entreprise certains d'entre vous seront confrontés à ce genre de problématique. Vous avez la possibilité de créer n'importe quel type d'élément directement depuis votre code JS.
 
-### Les selecteurs et jQuery
+Votre navigateur ne fera aucune distinction entre un élément créé « normalement » et un élément créé via le JavaScript. La création d'un élément se passera en deux temps :
+
+- Le créer l'élément, le personnaliser (contenu, texte, css).
+- L'ajouter dans votre page
+
+### Le DOM
+
+Avant d'écrire du code, un peu de théorie ! Votre navigateur n'est pas magique, il repose sur une logique qui est toujours la même depuis le début. Celui-ci repose sur ce qu’on l'arbre du DOM (**D**ocument **O**bject **M**odel). Nous parlerons donc d'un Arbre HTML, prenont un exemple :
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Title</title>
+  </head>
+  <body>
+    <h1>A heading</h1>
+    <a href="http://…">Link text<a>
+  </body>
+</html>
+```
+
+Peut être représenté comme ça :
+
+![Dom graph](./res/dom-sample.png)
+
+::: tip Remarque
+L'Arbre du DOM peut-être très gros, nous allons plus tard parler de ShadowDow / Dom Virtuel. Même si vous ne manipulez pas cette notion il est important de voir que celle-ci existe. Elle est pour l'instant la pierre angulaire des Frameworks JS moderne.
+:::
+
+### Exemple de création d'éléments
+
+TODO
+
+### Les sélecteurs
+
+### Les sélecteurs et jQuery
 
 ### Mis en pratique
 
@@ -447,11 +489,11 @@ TP Bart version JS
 
 ### Jouer sur la visibilité
 
-### Changer le styles (et les classes)
+### Changer le style (et les classes)
 
-## Les événements
+## Les évènements
 
-Intéragir avec l'utilisateur.
+Interagir avec l'utilisateur.
 
 - onclick
 - onsubmit
@@ -471,9 +513,9 @@ Intéragir avec l'utilisateur.
 
 ### Les usages « avancés »
 
-## Se Balader dans le DOM
+## Se « balader » dans le DOM
 
 - Parent
-- etc…
+- etc.
 
 ### Les sélécteur jQuery « avancés »
