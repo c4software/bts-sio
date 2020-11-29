@@ -90,7 +90,15 @@ Avoir un code « compréhensible » par une machine. Le plus simplement possible
 
 ## Petit aparté sur le référencement
 
-(très rapide)
+(très rapide, ce n'est pas l'objectif)
+
+---
+
+- Mot clef.
+- Structure du site.
+- Liens.
+- Vitesse et qualité du code.
+- Rendre l'invisible visible / compréhensible
 
 ---
 
