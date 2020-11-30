@@ -521,7 +521,7 @@ Dans le précédent exemple, nous avons ajouté l'élément « à la fin » du b
 - `node.after(nodes ou strings)` –- ajoute « nodes ou strings » après le node,
 - `node.replaceWith(nodes ou strings)` –- remplace le node par l'élément fourni « nodes or strings ».
 
-:warning Nous allons voir qu'il est possible de choisir le `node` via un selecteur.
+:warning Nous allons voir qu'il est possible de choisir le `node` via un sélecteur.
 :::
 
 #### À faire
@@ -570,17 +570,68 @@ Donc méfiance.
 
 ### Les sélecteurs
 
-Vous vous doutez que nous allons pas tout gérer avec un simple `document.body`. Le JS nous offre beaucoup de possibilité, et nous offre surtout une « interface » très puissante pour choisir l'endroit où nous allons insérer un élément (très très puissante vous allez voir)
+Vous vous doutez que nous allons pas tout gérer avec un simple `document.body`. Le JS nous offre beaucoup de possibilité, et nous offre surtout une « interface » très puissante pour choisir l'endroit où nous allons insérer un élément (très très puissante vous allez voir).
 
-TODO
+Vous vous souvenez des sélecteurs en CSS ? Et bien, nous avons la même chose en JavaScript. Nous avons de **base sans rien ajouter** une méthode permettant de « trouver » un élément dans le DOM
+
+```javascript
+// Retourne la liste (array) des éléments
+document.querySelectorAll("#elementId");
+document.querySelectorAll(".maClass");
+document.querySelectorAll("div");
+
+// Retourn le premier élément trouvé
+document.querySelector("#elementId");
+document.querySelector(".maClass");
+document.querySelector("div");
+```
+
+::: tip C'est « neuf »
+Ces API (Méthodes) sont très peu utilisés (voir même connues), elles sont pourtant très puissantes. Elles sont à choisir si vous souhaitez faire du code moderne.
+
+Sur Internet (voir dans du code existant), vous trouverez l'ancienne version à savoir :
+
+```javascript
+document.getElementById("elementId");
+document.getElementsByClassName("maClass");
+
+document.getElementsByTagName("div");
+```
+
+Aucun changement dans le fonctionnement.
+
+:::
 
 ### Les sélecteurs et jQuery
 
-TODO
+À plusieurs reprises je vous ai parlé de jQuery sans vraiment vous expliquer pourquoi celui-ci était aussi populaire. jQuery est populaire, car il va nous permettre des raccourcis. Si on reprend l'exemple du sélecteur, jQuery va nous permettre d'unifier la manière dont ont trouve / manipule un élément.
 
-### Des sélécteurs « à la sauce jQuery »
+Dès lors que vous ajoutez jQuery dans votre code, nous allons avoir à notre disposition un nouvelle « objet » nommé tout simplement `$` (rien à voir avec les variables en PHP), cet objet va nous permettre plein de choses (vraiment plein). Si on reprend la recherche d'un élément :
 
-Sachez qu'il est possible maintenant de faire des selecteurs similaire à jQuery, mais sans jQuery.
+```javascript
+$("#elementId");
+$(".maClass");
+$("div");
+```
+
+Je ne vais pas m'étaler sur le sujet, mais si on souhaite masquer tous les éléments trouvés avec jQuery, et bien c'est _très_ simple…
+
+```javascript
+$("div").hide();
+```
+
+::: tip Ajouter jQuery ?
+C'est super simple, il suffit « juste » d'ajouter dans votre page :
+
+```html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+```
+
+:::
+
+Pourquoi ne pas toujours utiliser jQuery alors ? Tout simplement que maintenant il est possible d'écrire « sensiblement la même chose » directement en JavaScript sans « dépendance à une librairie ». (Comme nous l'avons vu par exemple avec `querySelectorAll` et `querySelector`).
+
+### Utiliser le résultat d'un sélecteur
 
 TODO
 
