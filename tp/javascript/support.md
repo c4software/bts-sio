@@ -633,15 +633,86 @@ Pourquoi ne pas toujours utiliser jQuery alors ? Tout simplement que maintenant 
 
 ### Utiliser le résultat d'un sélecteur
 
-TODO
+Nous avons vu qu'il était possible de « sélectionner » un élément en JavaScript. Cette variable est un accès direct à l'élément présent dans votre page.
 
-### Mise en pratique
+Ça veut dire que nous allons pouvoir « le manipuler », afin de modifier l'apparence d'un élément précis via le JS :
 
-TP Bart version JS
+```javascript
+let element = document.getElementById("monId");
+element.style.display = "none";
+
+element.insertAdjacentHTML(
+  "beforebegin",
+  "<h1 class='titleClass'>Ceci est un titre dans l'élément</h1>"
+);
+```
 
 ### Jouer sur la visibilité
 
-### Changer le style (et les classes)
+Maintenant que vous savez « obtenir un élément » via le JavaScript, nous allons jouer sur la visibilité. Vous allez voir c'est très simple.
+
+_Cacher un élément :_
+
+```javascript
+let element = document.getElementById("monId");
+element.style.display = "none";
+```
+
+::: tip Style ? Vous avez dit Style ?
+Et oui, nous avons accès à l'ensemble du style. Amusez-vous, il est possible de tout changer directement via le JS.
+:::
+
+_Ajouter une classe ?:_
+
+Vous n'aimez pas manipuler directement le style ? Moi non plus… Ajouter une classe est également possible !
+
+```javascript
+let element = document.getElementById("monId");
+element.classList.add("maClass");
+```
+
+::: warning Hey ! classList ?
+Oui… Il est possible de mettre « plusieurs classes », donc nous avons ici un tableau `array`. Un tableau se manipule avec des méthodes comme vues précédemment. Il faut donc utiliser la méthode `add` pour ajouter une classe.
+:::
+
+### Une petite mise en pratique simple
+
+Nous allons créer une page fictive afin de tester un peu le fonctionnement :
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="monId">
+      <!-- Ajouter un titre ici en JavaScript -->
+    </div>
+
+    <!-- Cacher la div suivante via le JS -->
+    <div id="cacheMoi">lorem ipsum…</div>
+
+    <!-- Je souhaite que le texte soit rouge -->
+    <div id="redText">Le texte présent ici doit-être rouge</div>
+
+    <!-- Ajouter ici un paragraphe (p) en JavaScript-->
+
+    <script>
+      // Vous devez écrire votre code JavaScript ici.
+    </script>
+  </body>
+</html>
+```
+
+::: tip Hou hou
+Les consignes sont présentes dans les commentaires du code fourni. Je vous laisse regarder, et tenter de faire les actions demandées.
+:::
+
+### Mise en pratique
+
+TODO
+TP Bart version JS
 
 ## Les évènements
 
