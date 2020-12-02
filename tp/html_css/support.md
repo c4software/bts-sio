@@ -700,6 +700,8 @@ grid: auto-flow dense / 40px 40px 1fr;
 Le système de grid est plutôt « récent » l'ensemble des navigateurs n'intègre pas encore toute la spécification. N'hésitez pas à aller voir [Can I Use](https://caniuse.com/?search=grid)
 :::
 
+![Chrome Guide Grid](./res/grid_help_chrome.png)
+
 ## L'organisation de la CSS
 
 L'organisation / la structure est un élément important en développement. Le monde du développement est régi pas un certain nombre de designs patterns, ils sont là pour vous assurer que votre « code » sera compris par tous, et que vous pourrez le maintenir pendant longtemps.
