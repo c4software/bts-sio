@@ -513,6 +513,8 @@ right: 0;
 
 [Voir le support de cours](/tp/html_css/support.html#le-placement-simplifie)
 
+(Et surtout mettre en pratique)
+
 ---
 
 ## Décoration / Mise en forme
