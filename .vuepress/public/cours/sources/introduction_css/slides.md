@@ -433,11 +433,38 @@ background: url("greta.png") fixed no-repeat center;
 
 ---
 
+```css
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+```
+
+---
+
 ## Relative
 
 ### Point d'origine le parent
 
 ![Position relative](./res/relative.png)
+
+---
+
+```css
+position: relative;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+```
+
+---
+
+## Flotant
+
+![Float left](./res/float-left.png)
+![Float right](./res/float-right.png)
 
 ---
 
@@ -469,10 +496,22 @@ background: url("greta.png") fixed no-repeat center;
 
 ---
 
-## Flotant
+## Le placement simplifié
 
-![Position Absolute](./res/float-left.png)
-![Position Absolute](./res/float-right.png)
+### avec `Flex`
+
+---
+
+## `Flexbox`
+
+- Placer vos éléments en colonnes, en X, en Y.
+- Gérer en colonne et en ligne.
+- Gérer l'ordre d'affichage.
+- Gérer le centrage.
+
+---
+
+[Voir le support de cours](/tp/html_css/support.html#le-placement-simplifie)
 
 ---
 
