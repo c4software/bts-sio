@@ -465,7 +465,7 @@ _Nous allons simplement écrire :_
 
 ### S'entrainer avec les flexbox
 
-Pratiquer c'est apprendre… Je vous propose donc [de pratiquer avec un outil en ligne](https://flexboxfroggy.com/#fr)
+Pratiquer c'est apprendre… Je vous propose donc [de pratiquer avec un outil en ligne « flexboxfroggy »](https://flexboxfroggy.com/#fr)
 
 ## Décoration / Mise en forme
 
