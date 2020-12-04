@@ -411,6 +411,62 @@ Tout ce qui va suivre sera automatiquement flottant. Si vous voulez arrêter « 
 
 :::
 
+## Le placement simplifié
+
+Nous avons maintenant un moyen plus simple pour placer des éléments en CSS, le `flex`. Le `display: flex` vas nous permettre de placer relativement finement les éléments. Le `flex` propose pas mal d'options, mais nous pouvons l'utiliser « simplement » et rapidement en ne connaissant que la base.
+
+_Le Flex repose sur quatre règles :_
+
+- La direction de l'affichage : colonne ou ligne. (`flex-direction`)
+- Le comportement si la place nécessaire pour l'affichage est insuffisante. (`flex-wrap`)
+- Un placement X. (`justify-content`)
+- Un placement Y. (`align-items`)
+- L'alignement des éléments « dans le design ». (`align-content`)
+
+Testons interactivement [les différentes propriétés en cliquant ici](http://flexbox.help/)
+
+::: tip Flexbox permet encore plus
+Ces propriétés sont « la base », mais il est possible d'aller bien plus loin. Nous avons par exemple la possibilité de choisir quel(s) élément(s) s'agrandissent (`grow`) et lesquels se réduisent (`shrink`).
+
+Nous allons également pouvoir ordonner les éléments les uns par rapport aux autres. Cette fonctionnalité va nous permettre d'agencer comme nous le souhaitons notre interface.
+
+[En savoir plus](https://developer.mozilla.org/fr/docs/Apprendre/CSS/CSS_layout/Flexbox)
+:::
+
+_Par exemple, pour afficher deux éléments « côte à côte » :_
+
+<ExternalIframe src="/demo/css/flexbox/" />
+
+_Nous allons simplement écrire :_
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <img src="greta.png" alt="Logo du Greta" />
+      <h1>Ceci est un titre</h1>
+    </div>
+  </body>
+</html>
+```
+
+### S'entrainer avec les flexbox
+
+Pratiquer c'est apprendre… Je vous propose donc [de pratiquer avec un outil en ligne](https://flexboxfroggy.com/#fr)
+
 ## Décoration / Mise en forme
 
 La CSS vous permet aussi de mettre en forme votre contenu de manière riche sans forcément utiliser d'image. Il y a quelques années, il fallait absolument passer par des images pour créer des bordures ou des ombres.
