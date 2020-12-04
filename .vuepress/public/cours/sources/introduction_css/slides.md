@@ -77,6 +77,28 @@ Nous devons donc vérifier le support.
 
 ---
 
+## Id ou Class ?
+
+| Selecteur | Usage                                         |
+| --------- | --------------------------------------------- |
+| #item     | Élément unique dans votre page                |
+| .rouge    | Class réutilisable (multiple) dans votre code |
+| p         | L'ensemble des balises de type `<p>`          |
+
+- `class="rouge"` => `.rouge`
+- `id="monId"` => `#monId`
+
+---
+
+## On résume
+
+- `id=` => `#`
+- `class=` => `.`
+
+C'est une notation universelle qui sera également valable en JavaScript
+
+---
+
 ## Un exemple
 
 Comment le lire ?

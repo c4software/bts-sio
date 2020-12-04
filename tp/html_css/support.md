@@ -15,6 +15,25 @@ Je ne le répèterai jamais assez, mais vous devez avoir une boite à outils de 
 
 Cette liste est bien évidemment non exhaustive.
 
+## Id ou Class ?
+
+| Sélecteur | Usage                                         |
+| --------- | --------------------------------------------- |
+| #item     | Élément unique dans votre page                |
+| .rouge    | Class réutilisable (multiple) dans votre code |
+| p         | L'ensemble des balises de type `<p>`          |
+
+- `class="rouge"` => `.rouge`
+- `id="monId"` => `#monId`
+
+::: tip Petite aide mnémotechnique
+
+- `id=` => `#`
+- `class=` => `.`
+
+C'est une notation universelle qui sera également valable en JavaScript
+:::
+
 ## Les espacements
 
 Actuellement vos éléments sont tous « collés » aux autres. C'est normal vous n'avez aucun espacement de défini. En CSS vous avez la possibilité de choisir deux types d'espacements :

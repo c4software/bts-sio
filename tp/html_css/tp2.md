@@ -203,6 +203,25 @@ Il est difficile de faire un « mémo » sur la CSS. Cependant, vous pouvez rete
 
 Cette liste est « non-exhaustive ». Consulter [une liste plus complète ici](https://www.w3.org/Style/css3-selectors-updates/WD-css3-selectors-20010126.fr.html#selectors)
 
+## Id ou Class ?
+
+| Sélecteur | Usage                                         |
+| --------- | --------------------------------------------- |
+| #item     | Élément unique dans votre page                |
+| .rouge    | Class réutilisable (multiple) dans votre code |
+| p         | L'ensemble des balises de type `<p>`          |
+
+- `class="rouge"` => `.rouge`
+- `id="monId"` => `#monId`
+
+::: tip Petite aide mnémotechnique
+
+- `id=` => `#`
+- `class=` => `.`
+
+C'est une notation universelle qui sera également valable en JavaScript
+:::
+
 ### À faire
 
 - Ajouter dans votre page un nouveau paragraphe `p`. Avec comme class `text`. (`<p class='text'>Votre texte</p>`)
