@@ -4,7 +4,7 @@ Dans ce TP nous allons créer votre première page PHP. Rassurez-vous, elle sera
 
 ## Introduction
 
-Je vous disais [tout à l'heure](./support.html#et-le-php-dans-tout-ca) que nous avions un texte « à trou », c'est littéralement le cas. Nous allons pouvoir mettre du PHP **partout** dans notre page pour rendre certaines parties **dynamique**
+Je vous disais [tout à l'heure](./support.md#et-le-php-dans-tout-ca) que nous avions un texte « à trou », c'est littéralement le cas. Nous allons pouvoir mettre du PHP **partout** dans notre page pour rendre certaines parties **dynamique**
 
 Exemple avec le script de démo (le même que tout à l'heure):
 

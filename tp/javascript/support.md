@@ -709,10 +709,13 @@ Nous allons créer une page fictive afin de tester un peu le fonctionnement :
 Les consignes sont présentes dans les commentaires du code fourni. Je vous laisse regarder, et tenter de faire les actions demandées.
 :::
 
+(Vous pouvez retrouver [cette introduction dans le TP1.2](./tp1.2.md))
+
 ### Mise en pratique
 
-TODO
-TP Bart version JS
+J'ai encore beaucoup parlé! Place à une mise en pratique. Je vous propose de mettre en pratique les sélecteurs [dans un TP regroupant CSS, HTML & JS](./tp2.md)
+
+[Pour la suite c'est par ici](./tp2.md)
 
 ## Les évènements
 

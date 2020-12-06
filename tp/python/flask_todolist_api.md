@@ -106,7 +106,7 @@ Question :
 
 ### Votre décorateur
 
-Et voilà, c’est le moment… Le moment ou vous allez écrire votre propre décorateur ! (Si certains ont oublié ce que c’était un décorateur [rendez-vous ici](flask.html#associer-un-lien-et-une-fonction))
+Et voilà, c’est le moment… Le moment ou vous allez écrire votre propre décorateur ! (Si certains ont oublié ce que c’était un décorateur [rendez-vous ici](flask.md#associer-un-lien-et-une-fonction))
 
 Très bien, maintenant que vous avez la mémoire fraiche, voilà votre décorateur :
 

@@ -92,7 +92,7 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "Les bases", children: ["cours/introduction_javascript"] },
-          { title: "Les TP basiques", children: ["tp/javascript/tp1.md", "tp/javascript/tp1.1.md"] },
+          { title: "Les TP basiques", children: ["tp/javascript/tp1.md", "tp/javascript/tp1.1.md", "tp/javascript/tp1.2.md", "tp/javascript/tp2.md"] },
           { title: "Javascript avancé", children: ["cours/javascript_avances", "tp/javascript_avances/introduction", "tp/javascript_avances/revision"] },
           { title: "Les frameworks", children: ["cours/framework_javascript", "/tp/javascript_avances/introduction.md", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1.md", "/tp/vuejs/vuetify-vuejs.md", "/tp/vuejs/firebase-vuejs.md"] },
           { title: "Organisation du code", children: ["cours/organisations", "/tp/organisation/introduction"] },

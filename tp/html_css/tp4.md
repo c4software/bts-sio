@@ -30,7 +30,7 @@ En cours je vous ai parlé de « deux d'étapes » pour activer le responsive. L
 
 Nous avons activé le responsive, mais pour l'instant nous n'avons pas indiqué les règles « à appliquer en fonction de la taille de l'écran ». Pour ça nous allons utiliser les `media-query`. Pour gérer le responsive, nous avons plusieurs façons de faire écrire des règles « pour l'ensemble des éléments », ou alors écrire quelque chose de très générique en utilisant par exemple le `display: flex`.
 
-C'est la solution `display: flex` que je vous propose de mettre en place ([rappel sur le Flex](/tp/html_css/support.html#la-revolution-des-flex)). Ajouter la CSS suivante **à la fin**
+C'est la solution `display: flex` que je vous propose de mettre en place ([rappel sur le Flex](/tp/html_css/support.md#la-revolution-des-flex)). Ajouter la CSS suivante **à la fin**
 
 ```css
 @media only screen and (min-width: 960px) {

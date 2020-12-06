@@ -4,7 +4,7 @@ Vous avez écrit du code oui… Mais il n'était pas forcément « bien organis�
 
 ## Introduction
 
-Comme [je l'indiquai dans le cours](./support.html#la-structure) la structuration du code est un point **très important** voir même je pense central dans votre future métier de développeur informatique. C'est pour ça qui me semble important de créer un TP dédié à cette problématique.
+Comme [je l'indiquai dans le cours](./support.md#la-structure) la structuration du code est un point **très important** voir même je pense central dans votre future métier de développeur informatique. C'est pour ça qui me semble important de créer un TP dédié à cette problématique.
 
 ::: tip
 La structure que je vais vous proposer dans ce TP n'est évidement pas la réponse universelle. Elle répond à une problématique à un moment donné, il faut l'utiliser et la prendre avec du recule.
