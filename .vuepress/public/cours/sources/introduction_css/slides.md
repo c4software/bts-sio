@@ -461,6 +461,10 @@ right: 0;
 
 ---
 
+[Jouer avec les positions](https://www.w3schools.com/cssref/playit.asp?filename=playcss_position)
+
+---
+
 ## Flotant
 
 ![Float left](./res/float-left.png)
