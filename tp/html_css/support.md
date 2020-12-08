@@ -687,11 +687,12 @@ Que vous choisissiez la première ou la seconde façon de faire il n'y a pas de 
   }
 }
 
-/** Largeur min 400px OU paysage **/
-@media screen and (min-width: 400px), screen and (orientation: landscape) {
-  body {
-    color: blue;
-  }
+@media (prefers-color-scheme: dark) {
+  /** Thème sombre de votre mobile / ordinateur **/
+}
+
+@media (prefers-color-scheme: light) {
+  /** Thème clair de votre mobile / ordinateur **/
 }
 ```
 
