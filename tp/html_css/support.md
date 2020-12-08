@@ -643,7 +643,7 @@ Pour l'instant, ce qu'il faut retenir, c'est que si vous souhaitez faire du « R
 
 :::
 
-Pour nous développeur CSS, comment ça fonctionne ? Tailwind, Bootstrap et autre framework fonctionnent tous de la même façon, il définisse des règles d'affichage en fonction de la taille d'écran. Pour faire ça en CSS nous, utilisons-les `media queries`. Les médias guéris c'est une notation particulière qui nous permet décrire des sélecteurs CSS en fonction de paramètres du navigateur du client (la larguer, la hauteur, etc.)
+Pour nous développeur CSS, comment ça fonctionne ? Tailwind, Bootstrap et autre framework fonctionnent tous de la même façon, il définisse des règles d'affichage en fonction de la taille d'écran. Pour faire ça en CSS nous, utilisons-les `media queries`. Les médias queries c'est une notation particulière qui nous permet décrire des sélecteurs CSS en fonction de paramètres du navigateur du client (la larguer, la hauteur, etc.)
 
 [En savoir plus sur MDN](https://developer.mozilla.org/fr/docs/Web/CSS/Requ%C3%AAtes_m%C3%A9dia/Utiliser_les_Media_queries#Am%C3%A9liorations_syntaxiques_avec_la_sp%C3%A9cification_de_niveau_4)
 
