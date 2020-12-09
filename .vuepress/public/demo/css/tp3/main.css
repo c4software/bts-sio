@@ -1,14 +1,21 @@
+:root {
+  --background: #e8e8e8;
+  --white: white;
+  --color-alt: #fafafa;
+  --background-dark: #161616;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  background-color: #e8e8e8;
+  background-color: var(--background);
 }
 
 header {
   background-image: url("double-bubble-dark.png");
-  color: #fafafa;
+  color: var(--color-alt);
 }
 
 header > h1 {
@@ -35,7 +42,7 @@ nav > ul > li {
 }
 
 nav > ul > li > a {
-  color: white;
+  color: var(--white);
   text-decoration: none;
 }
 
@@ -45,7 +52,7 @@ nav > ul > li > a:hover {
 
 section {
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: var(--white);
   margin: 20px;
   padding: 10px;
 }
@@ -69,11 +76,11 @@ section > h2::before {
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
-  background-color: white;
+  background-color: var(--white);
   width: 400px;
   text-align: center;
   transition: box-shadow 1s;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 20px 0px var(--background-dark);
   cursor: pointer;
 }
 
@@ -92,4 +99,18 @@ footer {
   font-size: smaller;
   padding: 10px;
   text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  /** Thème sombre de votre mobile / ordinateur **/
+  :root {
+    --background: #000000;
+    --white: rgb(0, 0, 0);
+    --color-alt: #373737;
+    --background-dark: #9d9d9d;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  /** Thème clair de votre mobile / ordinateur **/
 }

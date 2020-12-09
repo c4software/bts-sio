@@ -733,6 +733,7 @@ Que vous choisissiez la première ou la seconde façon de faire il n'y a pas de 
 
 Nous avons plusieurs types d'affichage possible en CSS, de base les éléments sont soient :
 
+- `none` (cache l'élément)
 - `inline` (en ligne, les éléments côte à côte).
 - `block` (les un après les autres, à la ligne)
 - `table` (spécifique aux `<table></table>`)
