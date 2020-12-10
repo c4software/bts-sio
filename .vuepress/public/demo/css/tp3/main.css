@@ -114,3 +114,10 @@ footer {
 @media (prefers-color-scheme: light) {
   /** Thème clair de votre mobile / ordinateur **/
 }
+
+@media print {
+  body::before {
+    display: block;
+    content: "Document imprimé depuis le site…";
+  }
+}

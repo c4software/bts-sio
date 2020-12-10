@@ -43,7 +43,7 @@ Maintenant que nous avons une page vide disposant de Bootstrap, je vous propose 
 
 C'est templates [sont disponibles dans le menu de la documentation](https://getbootstrap.com/docs/4.5/examples/).
 
-Faite votre choix, une fois que vous avez choisis regarder le code par exemple avec [du starter Template](view-source:https://getbootstrap.com/docs/4.5/examples/starter-template/)
+Faite votre choix, une fois que vous avez choisis regarder le code par exemple avec [du starter Template](https://getbootstrap.com/docs/4.5/examples/starter-template/)
 
 ## Mise en place d'une NavBar
 
