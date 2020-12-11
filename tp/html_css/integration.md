@@ -8,10 +8,10 @@ Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez 
 
 Vous aurez certainement besoin de ressources, voilà une liste d'élément pouvant vous servir :
 
-- https://codepen.io/
-- https://material.io/color/#!/?view.left=0&view.right=0&primary.color=F06292&secondary.color=E91E63
-- https://materialdesignicons.com/
-- https://dribbble.com/
+- [https://codepen.io/](CodePen.io)
+- [https://material.io/color/#!/?view.left=0&view.right=0&primary.color=F06292&secondary.color=E91E63](material.io)
+- [https://materialdesignicons.com/](materialdesignicons)
+- [https://dribbble.com/](dribbble.com)
 
 ## Single Page Website
 
