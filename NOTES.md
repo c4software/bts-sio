@@ -23,3 +23,7 @@
 - Cordova
 - Gitlab-CI : Intégration continue
 - Python : Flask
+
+## 2020
+
+- HTML + CSS (+ Responsive, Bootstrap) 15J
