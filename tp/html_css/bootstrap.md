@@ -86,6 +86,12 @@ Un autre incontournable dans le développement est l'affichage de « Card » afi
 
 - En vous inspirant [du code fourni sur la page](https://getbootstrap.com/docs/4.5/components/card/), mettre en place sur votre page une Card.
 
+## Le responsive
+
+Nous avons vu ensemble que Bootstrap était un framework permettant de gérer le responsive. En utilisant le système [de grid](https://getbootstrap.com/docs/4.5/layout/grid/) nous allons mettre sur notre site une grille de **3 colonnes**.
+
+Nous allons bien évidemment le faire ensemble.
+
 ## Mise en place d'un formulaire
 
 L'autre gros avantage de Bootstrap c'est l'aspect « propre » des formulaires. De bases sans que vous n'ayez aucune CSS vos formulaires seront « propre », pour ça rien de spécial à faire il suffit d'utiliser le code d'exemple fourni sur la documentation :
