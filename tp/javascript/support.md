@@ -334,6 +334,8 @@ Une constante s'utilise comme une variable classique, sauf que celle-ci ne peut-
 ```javascript
 const age_du_capitaine = 84;
 age_du_capitaine = 33;
+
+// !! ERREUR !!
 // VM1583:2 Uncaught TypeError: Assignment to constant variable.
 ```
 
@@ -353,7 +355,7 @@ if (order.status == DONE) {
 }
 ```
 
-Que mémoriser que 400 == Done :
+Que mémoriser que `400 == Done` :
 
 ```javascript
 if (order.status == 400) {
@@ -719,17 +721,49 @@ J'ai encore beaucoup parlé! Place à une mise en pratique. Je vous propose de m
 
 ## Les évènements
 
-Interagir avec l'utilisateur.
+Nous avons vu pour l'instant du JS très simple, il ressemble beaucoup à du code PHP c'est-à-dire sans grande interaction avec l'utilisateur.
+
+Le but du JavaScript est vraiment d'interagir avec l'utilisateur, pour améliorer l'interactivité de votre site Internet afin par exemple de valider une saisie « côté client ».
+
+Pour ça nous allons avoir à notre disposition des évènements, ces évènements nous permettront de réagir « instantanément » aux demandes de l'utilisateur. La construction des évènements est toujours la même à savoir « **on**quelque chose », par exemple :
 
 - onclick
 - onsubmit
+- onresize
 - …
 
-## Ajouter des contrôles de saisie sur le TP Bart (version PHP)
+Nous avons deux façons d'attacher les évènements :
 
-### Sans Lib
+- Dans le DOM.
+- En JavaScript.
 
-### Avec une Lib
+### Dans le DOM
+
+```html
+<input type="button" onclick="maFonction" value="Click ! " />
+```
+
+### En JavaScript
+
+```html
+<input type="button" id="btn" value="Click ! " />
+
+<script>
+  // Pure JS
+  document.getElementById("btn").addEventListener("click", maFonction, true);
+
+  // jQuery
+  $("#btn").click(maFonction);
+</script>
+```
+
+::: tip
+Simple ? Compliqué ? En réalité, comme beaucoup de choses du WEB la pratique vous donnera l'habitude de manipuler le JS. Il deviendra pour vous une véritable seconde nature :tada:.
+:::
+
+## Mise en pratique
+
+Cette partie est importante. Trêve de bavardage ! [Place à la pratique](./tp3.md)
 
 ## L'Ajax
 
