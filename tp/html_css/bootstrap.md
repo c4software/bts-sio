@@ -154,7 +154,7 @@ Le principe repose sur un ensemble de class. Ça passe du tableau « thème somb
 
 ### À faire
 
-- Dans la page de votre choix, mettre en place un tableau et le personnaliser avec les classes de Bootstrap.
+- Dans une nouvelle page, mettre en place un tableau et le personnaliser avec les classes de Bootstrap (couleurs, apparence, etc).
 
 ## Votre page d'accueil
 
@@ -171,3 +171,7 @@ Le plus simple c'est d'aller sur [picsum.photos](https://picsum.photos/), ce sit
 Autre solution [Unsplash](https://unsplash.com/), ce site propose des images _libre de droits_ utilisable dans vos projets.
 
 :::
+
+### Experimenter !
+
+Le but de ce TP est l'expérimentation. N'hésitez pas à modifier, personnaliser, tester des idées. Donc, un fond de type « image », une toolbar avec une marge ou de couleur; rien ne sera assez fou !
