@@ -26,6 +26,11 @@ _Icones :_
 - [Flat Icon](https://www.flaticon.com/)
 - [Font Awesome](https://fontawesome.com/)
 
+_Couleurs :_
+
+- [Color Picker & Choix de couleur](https://www.webfx.com/web-design/color-picker/)
+- [Couleurs RAL](http://couleursral.fr/)
+
 ## Single Page Website
 
 ![Cas 1](./integration/cas1.png)
