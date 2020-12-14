@@ -16,6 +16,16 @@ Vous aurez certainement besoin de ressources, voilà une liste d'élément pouva
 - [Bootstrap](https://getbootstrap.com/)
 - [Tailwind](https://tailwindcss.com/)
 
+_Prototypage :_
+
+- [Figma](https://www.figma.com/)
+
+_Icones :_
+
+- [Material Design Icons](https://materialdesignicons.com/)
+- [Flat Icon](https://www.flaticon.com/)
+- [Font Awesome](https://fontawesome.com/)
+
 ## Single Page Website
 
 ![Cas 1](./integration/cas1.png)
