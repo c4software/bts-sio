@@ -70,7 +70,7 @@ module.exports = {
         children: [
           { title: "En + du cours", children: ["cheatsheets/html/", "tp/html_css/support.md", "tp/php/support.md", "tp/javascript/support.md"] },
           { title: "HTML + CSS", children: ["cours/introduction_html_css", "tp/html_css/tp1.md", "tp/html_css/tp2.md", "tp/html_css/tp3.md", "tp/html_css/tp4.md", "tp/html_css/tp5.md"] },
-          { title: "PHP", children: ["cours/introduction_php", "tp/php/tp1.md", "tp/php/tp1.1.md", "tp/php/tp2.md", "tp/php/tp3.md", "tp/php/tp4.md", "tp/php/tp5.md"] },
+          { title: "PHP", children: ["cours/introduction_php", "tp/php/tp1.md", "tp/php/tp-param.md", "tp/php/tp1.1.md", "tp/php/tp2.md", "tp/php/tp3.md", "tp/php/tp4.md", "tp/php/tp5.md"] },
           { title: "Javascript", children: ["cours/introduction_javascript"] },
           { title: "Librairies", children: ["tp/html_css/bootstrap.md", "tp/html_css/tailwind.md"] },
           { title: "Intégrations", children: ["tp/html_css/integration.md"] }
@@ -82,7 +82,7 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "Les bases", children: ["cours/introduction_php", "tp/php/support.md"] },
-          { title: "Les TP basiques", children: ["tp/php/tp1.md", "tp/php/tp1.1.md", "tp/php/tp2.md", "tp/php/tp3.md", "tp/php/tp4.md", "tp/php/tp5.md"] },
+          { title: "Les TP basiques", children: ["tp/php/tp1.md", "tp/php/tp-param.md", "tp/php/tp1.1.md", "tp/php/tp2.md", "tp/php/tp3.md", "tp/php/tp4.md", "tp/php/tp5.md"] },
           { title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/application_todo_list", "/tp/laravel/creation_api"] }
         ]
       },
