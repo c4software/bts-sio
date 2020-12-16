@@ -46,7 +46,7 @@ Dans le [TP3](./tp3.md), je vous ai fait créer un « entry-point », le point d
 <?php
 // Écrire dedans
 $phrase = 'Je ne copie pas le code de valentin.';
-$_SESSION['phase'] = $phrase;
+$_SESSION['phrase'] = $phrase;
 ?>
 
 <!-- Ou la lire, par exemple -->
