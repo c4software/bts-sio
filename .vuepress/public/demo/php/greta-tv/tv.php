@@ -22,6 +22,7 @@
             overflow: hidden;
             border-radius: 10px;
             box-shadow: 1px 0px 20px 0px black;
+            /*animation: rainbow 20s infinite;*/
         }
 
         .stand {
@@ -36,6 +37,16 @@
             margin-top: 0px;
         }
 
+
+        @keyframes rainbow {
+            from, to { box-shadow: 0px 0px 20px 0px red }
+            16% { box-shadow: 0px 0px 30px 10px  yellow }
+            32% { box-shadow: 0px 0px 40px 15px  green }
+            48% { box-shadow: 0px 0px 30px 20px  aqua }
+            64% { box-shadow: 0px 0px 20px 15px  blue }
+            80% { box-shadow: 0px 0px 30px 10px  fuchsia }
+        }
+
     </style>
 </head>
 <body>
@@ -46,7 +57,7 @@
     </nav>
 
     <div class="frame">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $_GET['id'] ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $_GET['id']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="stand">Greta TV</div>
 </body>
