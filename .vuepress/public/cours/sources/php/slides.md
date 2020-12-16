@@ -303,13 +303,29 @@ Ajouter dans votre code :
 
 ```php
 echo "Bonjour " . $_GET['nom'];
+echo "Bonjour " . $_GET['prenom'];
 ```
 
 Appeler la page en ajoutant dans le lien :
 
-`?nom=Valentin`
+`?nom=Brosseau&prenom=Valentin`
 
 <iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+---
+
+```php
+// Exemple $_GET Contiendra
+array(
+    "prenom" => "valentin",
+    "nom" => "brosseau",
+);
+
+echo $_GET['nom']; // Affichera brosseau
+echo $_GET['prenom']; // Affichera valentin
+
+echo $_GET['nom'] . " " . $_GET['prenom']; // Affichera brosseau valentin
+```
 
 ---
 

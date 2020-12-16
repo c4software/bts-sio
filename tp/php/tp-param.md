@@ -9,3 +9,24 @@ Nous allons produire le code qui va nous permettre de réaliser la page suivante
 - Deux pages
 - Responsive
 - Un paramètre
+
+## Rappel sur les paramètres
+
+| Variables | Usage                                                                                                           |
+| --------- | --------------------------------------------------------------------------------------------------------------- |
+| `$_GET`   | Contiens les paramètres envoyés dans l'URL.                                                                     |
+|           | `index.php?prenom=valentin`, `prenom` est donc un paramètre et `valentin` la valeur.                            |
+|           | Vous pouvez avoir plusieurs paramètres avec le caractère `&`. <br> Ex. `index.php?nom=brosseau&prenom=valentin` |
+
+```php
+// Exemple $_GET Contiendra
+array(
+    "prenom" => "valentin",
+    "nom" => "brosseau",
+);
+
+echo $_GET['nom']; // Affichera brosseau
+echo $_GET['prenom']; // Affichera valentin
+
+echo $_GET['nom'] . " " . $_GET['prenom']; // Affichera brosseau valentin
+```
