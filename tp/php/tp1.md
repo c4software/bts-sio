@@ -57,7 +57,7 @@ Vous allez donc pouvoir mettre dans votre code :
 ou encore
 
 ```php
-<?PHP
+<?php
 /**
  * Votre code ICI
  *

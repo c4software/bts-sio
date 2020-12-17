@@ -65,6 +65,11 @@ C'est effectivement aussi simple que ça. N'oubliez pas, 50% de votre travail re
 
 Je vous laisse faire de même pour la partie `head` de votre site.
 
+::: tip Bon ok…
+Un petit indice pour la suite, votre structure de dossier ressemblera à :
+![Structure GRETA TV](./res/gretatv_struct.png)
+:::
+
 ## Évolution 1
 
 Je vous propose comme évolution d'ajouter un paramètre. Celui-ci devra nous permettre la personnalisation du thème de la page `tv.php` (celle affichant les vidéos). Pour ça nous allons :
