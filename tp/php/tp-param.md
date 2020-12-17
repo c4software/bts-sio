@@ -42,4 +42,10 @@ Je vous propose comme évolution d'ajouter un paramètre. Celui-ci devra nous pe
 
 ## Évolution 2
 
+### Cas 1
+
 Ajouter une CSS qui s'affichera uniquement aujourd'hui. Celle-ci doit modifier l'apparence de votre site Internet.
+
+### Cas 2
+
+Afficher une sélection de vidéo (card) en fonction de la periode de l'année. Par exemple 4 vidéos sur le thème de noel pendant la periode de noel.
