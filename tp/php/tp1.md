@@ -51,7 +51,7 @@ Les balises PHP ont pour but d'indiquer « au moteur PHP » les endroits qu'il d
 Vous allez donc pouvoir mettre dans votre code :
 
 ```php
-<?PHP ?>
+<?php ?>
 ```
 
 ou encore
