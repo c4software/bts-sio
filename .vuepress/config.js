@@ -11,6 +11,7 @@ module.exports = {
       }
     }],
     '@vuepress/medium-zoom',
+    ['autometa', {}],
     ["vuepress-plugin-code-copy", true],
     ['@vuepress/pwa', { serviceWorker: false, updatePopup: false }],
     ['@vuepress/google-analytics', { 'ga': 'UA-2107503-8' }]

@@ -3,6 +3,7 @@ devDependencies:
   '@vuepress/plugin-medium-zoom': 1.7.1
   '@vuepress/plugin-pwa': 1.7.1
   vuepress: 1.7.1
+  vuepress-plugin-autometa: 0.1.13
   vuepress-plugin-code-copy: 1.0.6
 lockfileVersion: 5.2
 packages:
@@ -4783,6 +4784,18 @@ packages:
     dev: true
     resolution:
       integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+  /lodash.defaultsdeep/4.6.1:
+    dev: true
+    resolution:
+      integrity: sha512-3j8wdDzYuWO3lM3Reg03MuQR957t287Rpcxp1njpEa8oDrikb+FwGdW3n+FELh/A6qib6yPit0j/pv9G/yeAqA==
+  /lodash.findindex/4.6.0:
+    dev: true
+    resolution:
+      integrity: sha1-oyRd7mH7m24GJLU1ElYku2nBEQY=
+  /lodash.isempty/4.4.0:
+    dev: true
+    resolution:
+      integrity: sha1-b4bL7di+TsmHvpqvM8loTbGzHn4=
   /lodash.kebabcase/4.1.1:
     dev: true
     resolution:
@@ -4804,6 +4817,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==
+  /lodash.trimend/4.5.1:
+    dev: true
+    resolution:
+      integrity: sha1-EoBENyhrmMrYmWt5QU4RMAEUCC8=
+  /lodash.trimstart/4.5.1:
+    dev: true
+    resolution:
+      integrity: sha1-j/TexTLYJIavWVc8OURZFOlEp/E=
   /lodash.uniq/4.5.0:
     dev: true
     resolution:
@@ -6523,6 +6544,10 @@ packages:
       node: '>= 0.10'
     resolution:
       integrity: sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+  /remove-markdown/0.3.0:
+    dev: true
+    resolution:
+      integrity: sha1-XktmdJOpNXlyjz1S7MHbnKUF3Jg=
   /remove-trailing-separator/1.1.0:
     dev: true
     resolution:
@@ -7238,6 +7263,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-PFMZQukIwml8DsNEhYwobHygpgo=
+  /striptags/3.1.1:
+    dev: true
+    resolution:
+      integrity: sha1-yMPn/db7S7OjKjt1LltePjgJPr0=
   /stylehacks/4.0.3:
     dependencies:
       browserslist: 4.12.0
@@ -7855,6 +7884,20 @@ packages:
       webpack: ^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
     resolution:
       integrity: sha512-BebAEl1BmWlro3+VyDhIOCY6Gef2MCBllEVAP3NUAtMguiyOwo/dClbwJ167WYmcxHJKLl7b0Chr9H7fpn1d0A==
+  /vuepress-plugin-autometa/0.1.13:
+    dependencies:
+      lodash.defaultsdeep: 4.6.1
+      lodash.findindex: 4.6.0
+      lodash.isempty: 4.4.0
+      lodash.trimend: 4.5.1
+      lodash.trimstart: 4.5.1
+      remove-markdown: 0.3.0
+      striptags: 3.1.1
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-yhd8smLhbCO0+gc3FRNjOyffdGl12gUkv60UqdtEUCojEy4s7APDJ2pt85cSLASMdnWaY7EcMibMRkqeUOVAKg==
   /vuepress-plugin-code-copy/1.0.6:
     dev: true
     resolution:
@@ -8299,4 +8342,5 @@ specifiers:
   '@vuepress/plugin-medium-zoom': 1.7.1
   '@vuepress/plugin-pwa': 1.7.1
   vuepress: 1.7.1
+  vuepress-plugin-autometa: 0.1.13
   vuepress-plugin-code-copy: 1.0.6

@@ -1,4 +1,4 @@
-# Créer ma première page web
+# Créer ma première page PHP
 
 Dans ce TP nous allons créer votre première page PHP. Rassurez-vous, elle sera très simple, pas très jolie… Mais elle nous permettra de voir les concepts de bases.
 
@@ -10,7 +10,7 @@ Exemple avec le script de démo (le même que tout à l'heure):
 
 ```php
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <title>Exemple PHP</title>
 </head>
