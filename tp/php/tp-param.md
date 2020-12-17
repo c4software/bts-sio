@@ -33,6 +33,38 @@ echo $_GET['prenom']; // Affichera valentin
 echo $_GET['nom'] . " " . $_GET['prenom']; // Affichera brosseau valentin
 ```
 
+## Évolution 0
+
+Nous allons nous servir des `includes` pour « organiser » notre code. L'idée derrière cette organisation est simple, évitée de multiplier le code identique entre différentes pages. Si vous regardez votre code, vous allez rapidement remarquer que certains éléments sont identiques sur les deux pages :
+
+- le `<nav>`
+- le `<head>`
+
+Nous avons en PHP la possibilité de « sortir » les éléments en question pour les inclure ou ça est nécessaire. Par exemple, pour le `<nav>` je vous propose de créer un fichier `nav.php` dans un dossier nommé `components`. Dans mon cas le fichier contiendra **uniquement**:
+
+```php
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">GRETA TV</a>
+    </div>
+</nav>
+```
+
+Puis pour l'utiliser, il vous suffira de le mettre à l'endroit où vous souhaitez l'afficher :
+
+```php
+<body>
+    <?php include("./components/nav.php"); ?>
+
+<!-- La suite de votre code -->
+```
+
+::: tip Hé oui !
+C'est effectivement aussi simple que ça. N'oubliez pas, 50% de votre travail repose sur votre bonne organisation !
+:::
+
+Je vous laisse faire de même pour la partie `head` de votre site.
+
 ## Évolution 1
 
 Je vous propose comme évolution d'ajouter un paramètre. Celui-ci devra nous permettre la personnalisation du thème de la page `tv.php` (celle affichant les vidéos). Pour ça nous allons :
@@ -48,7 +80,7 @@ Ajouter une CSS qui s'affichera uniquement aujourd'hui. Celle-ci doit modifier l
 
 ### Cas 2
 
-Afficher une sélection de vidéo (card) en fonction de la période de l'année. Par exemple 4 vidéos sur le thème de Noël pendant la période de Noël.
+Afficher une sélection de vidéo (`card`) en fonction de la période de l'année. Par exemple 4 vidéos sur le thème de Noël pendant la période de Noël.
 
 ## Évolution 3
 
