@@ -32,3 +32,10 @@ echo $_GET['prenom']; // Affichera valentin
 
 echo $_GET['nom'] . " " . $_GET['prenom']; // Affichera brosseau valentin
 ```
+
+## Évolution
+
+Je vous propose comme évolution d'ajouter un paramètre. Celui-ci devra nous permettre la personalisation du thème de la page `tv.php` (celle affichant les vidéos). Pour ça nous allons :
+
+- Ajouter un paramètre `&bg=noel` ou `&bg=brick`, etc…
+- Utiliser le paramètre pour personnaliser le thème de la page. (Le paramètres doit être utilisé en tant que `class`).
