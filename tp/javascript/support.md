@@ -781,17 +781,46 @@ Bref, vous allez le voir, l'Ajax deviendra très rapidement une pierre angulaire
 
 ### L'asynchrone c'est quoi ?
 
-Avant d'aller plus loin, détaillons un peu ce que veut dire Asynchrone. TODO
+Avant d'aller plus loin, détaillons un peu ce que veut dire Asynchrone. L'objectif de L'Ajax est de charger / recharger une partie de votre page sans l'intervention de l'utilisateur et surtout sans que celui-ci ne recharge « L'ensemble du site ». C'est donc une opération transparente pour lui, mais vous allez le voir cette opération ne sera pas transparent pour vous. 
+
+Qui dit asynchrone dit « avec un délai », vous aviez l'habitude jusqu'à présent d'avoir l'information instantanément disponible, quand vous faites un sélecteur à la ligne 1, et bien à la ligne 2 vous avez une réponse… Avec l'Ajax ça va être légèrement différent. Vous allez faire votre demande à la ligne 1… mais en fonction de différents paramètres (vitesse d'internet, vitesse de l'ordinateur, etc.) votre contenu pourra être disponible plus tard. Combien de temps plus tard ? Et bien vous ne le savez pas pour l'instant. 
+
+Nous allons donc introduire la notion de « callback » (et plus tard de promise). Un callback est une fonction, rien de bien différent des précédentes, la seule différence est que celle-ci sera appelée **non pas par vous** mais **automatiquement par le navigateur** quand le contenu sera disponible.
+
+::: tip Ça parait simple ? 
+Écrite comme ça, cela peu paraitre simple. Dans les faits, ce n’est pas vraiment complexe, mais par contre je vous le garantit, au début vous allez vous faire avoir en pensant « comme avant » et en imaginant que votre contenu est immédiatement disponible.
+:::
+
+TODO ICI METTRE UN SCHEMA SUR l'AJAX
 
 ### Charger du contenu « à la demande »
 
-TODO
+Nous allons donc charger du contenu « à la demande », le contenu peut-être ce que vous souhaitez, du HTML par exemple, mais également du JSON (un format de données d'échange). Il sera chargé au moment d'une interaction utilisateurs, ou alors automatiquement, par exemple dans le cas de Gmail toutes les X minutes afin d'offrir à votre utilisateur un rafraichissement régulier de contenu de votre page.
+
+Comme précédemment notre contenu sera chargé depuis un serveur, mais celui-ci sera partiel. Il ne contiendra « que le coeur » de ce que vous souhaitez afficher (exit donc le chargement d'une page entière en Ajax, ça n’aurait à mon sens aucun intérêt).
+
+Comme précédemment nous allons voir deux façons de procéder. La première est sans librairie en utilisant uniquement ce que nous propose notre navigateur :
+
+TODO 
+
+- Fetch
+- Selecteur
+
+La seconde façon va être en utilisant jQuery :
+
+- $.get
+- $.post
+
+::: danger Comment choisir ? 
+J'ai toujours tendance à préférer la version « Native ». MAIS, si vous avez déjà jQuery dans votre site? N'hésitez pas à utiliser la version jQuery.
+:::
+
 
 ### Mettre en pratique l'Ajax
 
 L'Ajax c'est un gros morceau, tellement gros, qui serait possible d'y passer des heures et des heures tellement le sujet est vaste. Nous allons donc réaliser une première expérimentation.
 
-La suite c'est par ici
+[La suite c'est par ici]()
 
 ## Allons un peu plus loin
 
