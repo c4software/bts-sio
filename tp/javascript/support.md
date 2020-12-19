@@ -767,15 +767,37 @@ Cette partie est importante. Trêve de bavardage ! [Place à la pratique](./tp3.
 
 ## L'Ajax
 
+Difficile de parler du JavaScript sans parler de l'Ajax. L'Ajax est la base du web tel que nous le connaissons aujourd'hui, pour l'instant nous avons vu des pages basiques… Les pages chargent « et ne change que quand l'utilisateur interagit » ! Avec l'Ajax nous pouvons faire bien plus ! Beaucoup plus ! Vous l'avez remarqué votre Gmail, Facebook, etc. change sans que vous rechargiez la page. Et bien cette fonctionnalité est possible uniquement grâce à l'Ajax !
+
+L'Ajax c'est donc du contenu que nous allons charger de manière asynchrone, c'est-à-dire après le chargement complet de la page ; cela va nous permettre de vraies interactions modernes pour réaliser des sites web / applications web tels que :
+
+- Chat.
+- Progressive Web App (PWA).
+- Client Web / Alernative à une application
+
+L'Ajax en 2020 va donc nous permettre de créer de vraies applications. Ces applications consommeront de la donnée, cette donnée pourra provenir d'un serveur qui vous appartient ou depuis des serveurs tiers. Nous allons donc créer des sites web Client / Serveur avec des API pour interconnecter l'ensemble. Le Web deviendra donc une plateforme comme une autre.
+
+Bref, vous allez le voir, l'Ajax deviendra très rapidement une pierre angulaire de vos développements, et nous le verrons plus tard avec des frameworks web (comme VueJS) il serra possible de créer des applications « dynamique » sans avoir à écrire une seule ligne de PHP (ou autre langage serveur).
+
 ### L'asynchrone c'est quoi ?
+
+Avant d'aller plus loin, détaillons un peu ce que veut dire Asynchrone. TODO
 
 ### Charger du contenu « à la demande »
 
-### Les usages « avancés »
+TODO
 
-## Se « balader » dans le DOM
+### Mettre en pratique l'Ajax
+
+L'Ajax c'est un gros morceau, tellement gros, qui serait possible d'y passer des heures et des heures tellement le sujet est vaste. Nous allons donc réaliser une première expérimentation.
+
+La suite c'est par ici
+
+## Allons un peu plus loin
+
+### Se « balader » dans le DOM
 
 - Parent
 - etc.
 
-### Les sélécteur jQuery « avancés »
+### Les sélecteurs jQuery « avancés »
