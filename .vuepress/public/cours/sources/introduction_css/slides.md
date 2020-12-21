@@ -500,6 +500,16 @@ right: 0;
 
 ---
 
+## Centrer en CSS
+
+- `text-align: center`
+- `margin: auto`
+- `display: flex`
+- `display: grid`
+- […](https://web.dev/centering-in-css/)
+
+---
+
 ## Le placement simplifié
 
 ### avec `Flex`
