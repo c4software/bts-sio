@@ -413,7 +413,7 @@ Tout ce qui va suivre sera automatiquement flottant. Si vous voulez arrêter « 
 
 ## Centrer en CSS
 
-À froid comme ça, cette notion peu paraitre simple… En réalité c'est un problème complèxe en CSS. Nous avons à notre disposition un certains nombres de façon de centrer en CSS. Nous allons voir ensemble que chaqu'une des solutions apportent une réponse différente pour une résultat identique :
+À froid comme ça, cette notion peut paraitre simple… En réalité c'est un problème complexe en CSS. Nous avons à notre disposition un certain nombre de façons de centrer en CSS. Nous allons voir ensemble que chacune des solutions apporte une réponse différente pour un résultat identique :
 
 - `text-align: center`
 - `margin: auto`
@@ -421,8 +421,8 @@ Tout ce qui va suivre sera automatiquement flottant. Si vous voulez arrêter « 
 - `display: grid`
 - […](https://web.dev/centering-in-css/)
 
-::: tip La pratique est la clef
-C'est seulement avec la pratique et la mise en situation que vous aller réussir à centrer vos différents en CSS. Sachez juste que, le **display: flex** n'est pas la solution ultime à tout les centrages. Dans beaucoup de cas un simple `text-align: center` voir un `margin: auto` sera suffisant.
+::: tip La pratique est la clé
+C'est seulement avec la pratique et la mise en situation que vous allez réussir à centrer vos différends en CSS. Sachez juste que, le **display: flex** n'est pas la solution ultime à tous les centrages. Dans beaucoup de cas, un simple `text-align: center` voir un `margin: auto` sera suffisant.
 :::
 
 ## Le placement simplifié
