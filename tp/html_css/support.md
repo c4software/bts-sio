@@ -777,6 +777,10 @@ grid: auto-flow dense / 40px 40px 1fr;
 Le système de grid est plutôt « récent » l'ensemble des navigateurs n'intègre pas encore toute la spécification. N'hésitez pas à aller voir [Can I Use](https://caniuse.com/?search=grid)
 :::
 
+#### S'entrainer avec le Grid
+
+Comme pour le flex, voilà une solution en ligne afin de vous entrainer à utiliser le flex [CSS Grid Garden](https://cssgridgarden.com/#fr)
+
 ![Chrome Guide Grid](./res/grid_help_chrome.png)
 
 ## L'organisation de la CSS
