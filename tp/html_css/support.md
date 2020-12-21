@@ -411,6 +411,20 @@ Tout ce qui va suivre sera automatiquement flottant. Si vous voulez arrêter « 
 
 :::
 
+## Centrer en CSS
+
+À froid comme ça, cette notion peu paraitre simple… En réalité c'est un problème complèxe en CSS. Nous avons à notre disposition un certains nombres de façon de centrer en CSS. Nous allons voir ensemble que chaqu'une des solutions apportent une réponse différente pour une résultat identique :
+
+- `text-align: center`
+- `margin: auto`
+- `display: flex`
+- `display: grid`
+- […](https://web.dev/centering-in-css/)
+
+::: tip La pratique est la clef
+C'est seulement avec la pratique et la mise en situation que vous aller réussir à centrer vos différents en CSS. Sachez juste que, le **display: flex** n'est pas la solution ultime à tout les centrages. Dans beaucoup de cas un simple `text-align: center` voir un `margin: auto` sera suffisant.
+:::
+
 ## Le placement simplifié
 
 Nous avons maintenant un moyen plus simple pour placer des éléments en CSS, le `flex`. Le `display: flex` vas nous permettre de placer relativement finement les éléments. Le `flex` propose pas mal d'options, mais nous pouvons l'utiliser « simplement » et rapidement en ne connaissant que la base.
