@@ -13,8 +13,8 @@ Vous aurez certainement besoin de ressources, voilà une liste d'élément pouva
 - [Material.io](https://material.io/color/#!/?view.left=0&view.right=0&primary.color=F06292&secondary.color=E91E63)
 - [Materialdesignicons](https://materialdesignicons.com/)
 - [Dribble.com](https://dribbble.com/)
-- [Bootstrap](https://getbootstrap.com/)
-- [Tailwind](https://tailwindcss.com/)
+- [Bootstrap](https://getbootstrap.com/) <- Un standard
+- [Tailwind](https://tailwindcss.com/) <- À creuser
 
 _Prototypage :_
 
@@ -51,6 +51,10 @@ _Couleurs :_
 
 ![Cas 5](./integration/cas5.png)
 
-## Une interface Mobile / Responsive
+## Interfaces Mobiles / Responsives
 
 ![Cas 6](./integration/cas6.jpeg)
+
+---
+
+![Cas 7](./integration/cas7.jpg)
