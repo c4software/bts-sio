@@ -1,0 +1,85 @@
+# Pratiquer l'Ajax
+
+Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux exemples.
+
+## Introduction
+
+L'ajax est vraiment le coeur de nos sites Internet moderne. On le retrouve dans des simples chats comme dans des applications « complexes ». Avec l'avènement des PWA nous utilisons maintenant l'Ajax comme nous pouvons utiliser une API dans une application classique.
+
+Nous allons utiliser à nouveau la Greta TV comme base de code. Nous allons rendre dynamique la page d'accueil pour que celle-ci puisse être chargée via un appel réseau asynchrone (Ajax).
+
+## Cas 1 : Le serveur génère toujours la page (mais pas entière)
+
+Dans cette première version, nous allons « juste » découper la logique de génération de notre page. Celle-ci va être construite en deux temps, lors du chargement nous allons avoir la structure principale de notre page. Puis dans un second temps notre page va télécharger le contenu manquant via un appel réseau.
+
+Le contenu en question sera généré comme « avant » via du PHP (ou autre langage serveur), mais il se limitera à la partie donnée. Avant d'attaquer, utilisons un exemple simple qui permettra d'illustrer la logique de construction asynchrone.
+
+_Page index.html_ :
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ceci est une page dynamique</title>
+  </head>
+  <body>
+    <h1>Voilà ma page</h1>
+
+    <div id="contenuAsynchrone">
+      <!-- Vide au chargement -->
+      …Chargement en cours…
+    </div>
+
+    <script>
+      setTimeout(() => {
+        fetch("./monContenuAsynchrone.php")
+          .then((response) => response.html())
+          .then((content) =>
+            document.getElementById("#contenuAsynchrone").html(content)
+          );
+      }, 5000);
+    </script>
+  </body>
+</html>
+```
+
+_Contenu dynamique_ `monContenuAsynchrone.php` :
+
+```php
+<ul>
+<?php
+    for ($i = 1; $i <= 10; $i++) {
+        echo "Valeur $i";
+    }
+?>
+</ul>
+```
+
+Je vous laisse mettre en place le code suivant sur votre machine.
+
+- Que va-t-il se passer ?
+- À quoi sert la fonction `setTimeout`, pourquoi est-ce inutile ? Mais dans notre cas utile ?
+- À quoi correspond le `then` ?
+- Seriez-vous capable de le faire seule ?
+
+### Adaptons le code pour « la Greta TV »
+
+TODO
+
+::: warning ATTENTION
+Vous vous souvenez des XSS ? Faites très attention avec cette façon de faire… Car nous avons ici un XSS puissance 10000. Vous insérez dans votre page du code provenant d'Internet. Et ça sans aucune validation.
+
+C'est TRÈS TRÈS TRÈS RISQUÉ. Très clairement, le risque est très important. Je vous conseille vivement de choisir une solution « sans HTML », comme nous allons faire dans le cas 2.
+:::
+
+## Cas 2 : Le serveur génère juste la donnée (au format JSON)
+
+Nous allons ici faire travailler à la fois votre navigateur et le serveur. Le serveur va nous produire de la donnée « au format brut », c'est-à-dire un format compréhensible par un ordinateur. Votre JavaScript construira le code HTML par rapport à cette donnée.
+
+C'est la façon que moi je préfère, on verra plus tard avec VueJS que cette solution nous permettra de réaliser rapidement, et sans écrire énormément de code des interfaces web réactivent.
+
+## Allons plus loin
+
+Mise en place d'un thème en fonction de l'ID sur la page `tv`.
