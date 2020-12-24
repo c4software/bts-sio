@@ -80,6 +80,74 @@ Nous allons ici faire travailler à la fois votre navigateur et le serveur. Le s
 
 C'est la façon que moi je préfère, on verra plus tard avec VueJS que cette solution nous permettra de réaliser rapidement, et sans écrire énormément de code des interfaces web réactivent.
 
+Avant d'allez plus loin, voyons un exemple simple ensemble :
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ceci est une page dynamique</title>
+  </head>
+  <body>
+    <h1>Voilà ma page</h1>
+
+    <div id="contenuAsynchrone">
+      <!-- Vide au chargement -->
+      …Chargement en cours…
+    </div>
+
+    <script>
+      setTimeout(() => {
+        fetch("./monContenuAsynchrone.php")
+          .then((response) => response.json())
+          .then((datas) => {
+            datas.forEach((el) => {
+              document
+                .getElementById("#contenuAsynchrone")
+                .insertAdjacentHTML("beforeend", "<li>" + el + "</li>");
+            });
+          });
+      }, 5000);
+    </script>
+  </body>
+</html>
+```
+
+_Contenu dynamique_ `monContenuAsynchrone.php` :
+
+```php
+<?php
+    header('Content-Type: application/json');
+
+    $data = [];
+    for ($i = 1; $i <= 10; $i++) {
+        $data[] = "Valeur $i";
+    }
+
+    echo json_encode($data);
+?>
+```
+
+Je vous laisse mettre en place le code sur votre ordinateur.
+
+- Quels différence notez vous par rapport au précédent exemple ?
+- À quoi correspond le `header` ?
+- json_encode ? À quoi sert cette fonction ?
+
+::: tip API ?
+Ce que vous venez de créer est une API. Une API, est le coeur de beaucoup de système moderne. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
+
+Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser si vous le souhaitez différent client pour la même données (exemple Twitter avec des clients multiplateformes)
+:::
+
+### Mettre en place une « API » dans la « Greta TV »
+
+TODO
+
 ## Allons plus loin
 
 Mise en place d'un thème en fonction de l'ID sur la page `tv`.
+
+TODO
