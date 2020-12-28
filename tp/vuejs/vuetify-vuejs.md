@@ -1,4 +1,4 @@
-# Vuetify + VueJS
+# Vuetify + VueJS 2.0
 
 Dans ce TP nous allons voir dans un premier temps comment créer une application VueJS avec VueCLI. Puis à partir de ce projet, nous allons y ajouter la librairie Vuetify afin de manipuler des composants fournis par un développeur tiers.
 

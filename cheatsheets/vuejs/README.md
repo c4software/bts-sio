@@ -3,7 +3,7 @@
 ::: danger Remarque Décembre 2020
 Nous sommes actuellement à une periode charnière de VueJS. La version 3.0 bien que stable n'est pas encore la version « par defaut ».
 
-Le document présent ainsi que les supports de cours et TP sont actuellement écrits pour VueJS2
+Le document présent ainsi que les supports de cours et TP sont actuellement écrits pour VueJS 2.0
 :::
 
 [Débuter en Français](https://fr.vuejs.org/v2/guide/index.html)
