@@ -1,4 +1,10 @@
-# Aide mémoire VueJS 2
+# Aide mémoire VueJS 2.0
+
+::: danger Remarque Décembre 2020
+Nous sommes actuellement à une periode charnière de VueJS. La version 3.0 bien que stable n'est pas encore la version « par defaut ».
+
+Le document présent ainsi que les supports de cours et TP sont actuellement écrits pour VueJS2
+:::
 
 [Débuter en Français](https://fr.vuejs.org/v2/guide/index.html)
 
@@ -37,21 +43,16 @@ Exemple de HTML existant dans la page :
 Code Javascript à ajouter :
 
 ```html
-var app = new Vue({
-  el: '#monMessage',
-  data: {
-    message: 'Bonjour Monde'
-  }
-})
+var app = new Vue({ el: '#monMessage', data: { message: 'Bonjour Monde' } })
 ```
 
-## Les événements
+## Les évènements
 
 - v-on:click.stop (stop la propagation du click)
 - v-on:click.prevent (Exemple : v-on:submit.prevent="onSubmit")
-- v-on:click.capture (Évenement interne, appelé avant)
-- v-on:click.self (Événement uniquement si lui même)
-- v-on:click.once (Événement déclenché une seule fois)
+- v-on:click.capture (Évènement interne, appelé avant)
+- v-on:click.self (Évènement uniquement si lui-même)
+- v-on:click.once (Évènement déclenché une seule fois)
 
 ## Cycle de vie
 
@@ -68,7 +69,7 @@ var app = new Vue({
 
 ## Les directives
 
-Les directives sont des attributs html propre à VueJS
+Les directives sont des attributs html propres à VueJS
 
 - v-text
 - v-html

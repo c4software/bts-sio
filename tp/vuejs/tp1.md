@@ -1,4 +1,4 @@
-# Ajouter VueJS dans une application existante
+# Ajouter VueJS 2.0 dans une application existante
 
 Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration _uniquement_.
 
@@ -229,7 +229,7 @@ La première étape est de convertir le fichier `index.php`. Notre application 2
 L’ajout de la librairie VueJS est simple, il suffit d’ajouter dans le « head » du index.html :
 
 ```html
-<script src="https://unpkg.com/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 ```
 
 Valider le fonctionnement grâce à la « Console de Développement » de votre Navigateur (touche F12 en général).

@@ -1,4 +1,4 @@
-# Prise en main de VueJS
+# Prise en main de VueJS 2.0
 
 Dans ce TP nous allons découvrir l'utilisation de VueJS.
 
@@ -27,7 +27,7 @@ Si vous utilisez Visual Studio Code, vous pouvez faire html:5<kbd>Tab</kbd> une 
 Pour ajouter VueJS dans la page ? Il faut juste ajouter la balise script suivante dans le « head » de votre page :
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 ```
 
 Et voilà !

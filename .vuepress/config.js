@@ -122,7 +122,7 @@ module.exports = {
       },
 
       {
-        title: "VueJS",
+        title: "VueJS 2.0",
         initialOpenGroupIndex: -1,
         children: [
           ["cheatsheets/vuejs/", "En + du cours"],
