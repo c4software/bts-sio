@@ -4,20 +4,20 @@ Vous aviez une session… Et bien maintenant, nous allons mettre en place une ba
 
 ## Première étape définir le besoin
 
-Dans notre application nous souhaitons **enregistrer** les phrases saisie par les utilisateur. Nous devons donc déterminer :
+Dans notre application nous souhaitons **enregistrer** les phrases saisies par les utilisateurs. Nous devons donc déterminer :
 
 - Ce que nous allons sauvegarder (table)
 - Les données que nous allons enregistrer (colonnes)
 - Sous quel format (type de données)
-- Les informations rattaché à « la phrase enregistré ». (relation)
+- Les informations rattachées à « la phrase enregistré ». (relation)
 
 ::: tip C'est un métier la base de données
-Concevoir une base de données est une chose qui peut-être complexe en fonction du projet. Il faut donc y passer du temps idéalement hors du code, voir même sur une feuille pour avoir les idées bien clair.
+Concevoir une base de données est une chose qui peut-être complexe en fonction du projet. Il faut donc y passer du temps idéalement hors du code, voir même sur une feuille pour avoir les idées bien claires.
 :::
 
 ## Concevoir le MCD
 
-La première étape d'un developpement avec une base de données est la conception d'un MCD. Le MCD va nous permettre de nous représenter visuellement l'ensemble des données ainsi que les relations entre les différentes tables.
+La première étape d'un développement avec une base de données est la conception d'un MCD. Le MCD va nous permettre de nous représenter visuellement l'ensemble des données ainsi que les relations entre les différentes tables.
 
 ## Transformer le MCD en Base de données
 
@@ -33,10 +33,10 @@ Via PhpMyAdmin
 
 ### Écrire les requêtes
 
-Avant d'attaquer la partie « PHP », je vous propose d'écrire dans un premier temps les différentes requetes…
+Avant d'attaquer la partie « PHP », je vous propose d'écrire dans un premier temps les différentes requêtes…
 
-- Le select (obtenir l'ensemble de données).
-- l'insert (ajouter une données)
+- Le SELECT (obtenir l'ensemble de données).
+- l'INSERT (ajouter des données)
 
 ## Accéder à la BDD depuis le PHP
 
