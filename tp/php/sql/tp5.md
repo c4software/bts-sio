@@ -113,6 +113,10 @@ Et voilà, votre table est maintenant créée nous allons pouvoir ajouter des do
 
 ![Exemple de la Table](./res/phrases_table.png)
 
+::: danger Je vous invite…
+Je vous invite à chaque fois à regarder les requêtes générées par phpMyAdmin se sont les mêmes que vous pouvez écrire vous-même.
+:::
+
 ### Ajouter des données de tests
 
 Nous allons faire les premières insertions de données via PhpMyAdmin, comme je le disais en introduction l'ensemble des actions possibles sont regroupées dans le menu en haut :
@@ -120,6 +124,10 @@ Nous allons faire les premières insertions de données via PhpMyAdmin, comme je
 ![Actions possibles sur la table](./res/actions_table.png)
 
 Je vous laisse créer vous les premières données (menu « Insérer »). Une fois créée celle-ci seront disponible dans le menu « Parcourir ».
+
+::: danger Je vous invite…
+Je vous invite à chaque fois à regarder les requêtes générées par phpMyAdmin se sont les mêmes que vous pouvez écrire vous-même, et que nous devrons écrire dans notre code PHP.
+:::
 
 **C'est à vous** !
 
@@ -129,6 +137,10 @@ Avant d'attaquer la partie « PHP », je vous propose d'écrire dans un premier 
 
 - Le SELECT (obtenir l'ensemble de données).
 - l'INSERT (ajouter des données)
+
+::: tip Rappels
+Le SQL est un langage très puissant, il permet de faire énormément de choses. Nous sommes ici dans une introduction nous allons donc faire quelques requêtes simples seulement. L'idée étant « juste » de mettre en pratique.
+:::
 
 ## Accéder à la BDD depuis le PHP
 
