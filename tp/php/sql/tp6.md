@@ -5,4 +5,4 @@ Dans ce TP nous allons mettre en pratique nos connaissances autour de la base de
 - La liste des vidéos.
 - Le thème en fonction de la vidéo.
 
-## Première étape le MCD
+## Première étape définir le besoin

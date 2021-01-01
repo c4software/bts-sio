@@ -12,6 +12,7 @@
   },
   "scripts": {
     "dev": "vuepress dev",
+    "serve": "vuepress dev",
     "build": "vuepress build"
   },
   "repository": {

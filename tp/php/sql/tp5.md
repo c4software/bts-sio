@@ -142,18 +142,142 @@ Avant d'attaquer la partie « PHP », je vous propose d'écrire dans un premier 
 Le SQL est un langage très puissant, il permet de faire énormément de choses. Nous sommes ici dans une introduction nous allons donc faire quelques requêtes simples seulement. L'idée étant « juste » de mettre en pratique.
 :::
 
+::: details En manque d'idée ?
+
+### Le SELECT
+
+```sql
+SELECT * FROM phrases;
+```
+
+### L'INSERT
+
+```sql
+INSERT INTO phrases (phrase, nombre, date, ip) values('Ceci est ma phrase', 1000, 1609533688, '217.23.34.49');
+```
+
+:::
+
 ## Accéder à la BDD depuis le PHP
 
-C'est la partie qui nous intéresse…
+C'est la partie qui nous intéresse… Nous allons maintenant écrire le code qui va nous permettre d'accéder à la base de données. En PHP, nous avons à notre disposition plusieurs connecteurs SQL (API).
 
-### db.php
+- mysql\_\* (déprécié, n'existe plus, mais vous trouverez encore peut-être des exemples en ligne **à éviter**)
+- MySQLi (le remplacement de mysql\_\*)
+- PDO (PDO_MySQL)
 
-Se connecter à la base de données.
+Nous avons donc deux possibilités, la différence entre les deux ? Il y en a plusieurs, mais PDO à un grand avantage c'est qu'il permet de changer simplement de base de données (via des connecteurs pour MariaDB, Oracle, …). À mon avis en 2021 **PDO** est doit-être votre choix par défaut dans le cas d'un nouveau projet.
+
+![PDO vs MySQL](./res/pdo_mysqli.jpg)
+
+Nous allons travailler intelligemment, nous allons utiliser les includes et les variables pour éviter de mettre le code de la connexion à la base de données dans chaque page de notre site.
+
+Nous allons également « sortir » / « mettre » en variables les informations de connexion à notre base de données à savoir :
+
+- l'IP du serveur de base de données.
+- Le login.
+- Le mot de passe.
+- Le nom de la base de données
+
+:fire: L'organisation est très importante ! Cette étape de « découpage » peut paraitre superflue, mais c'est là où se jouera votre réussite.
+
+### utils/db.php
+
+Nous allons écrire dans ce fichier le code nous permettant de nous connecter à la base de données. Cette partie du code est fournie directement dans la documentation PHP… Comme je suis sympa, je vous fournis directement le code :
+
+```php
+// Cette partie est à customiser
+$server = "localhost";
+$db = "bart";
+$user = "root";
+$passwd = "";
+// Fin de la partie customisable
+
+// Cette partie est générique à l'ensemble de vos projets utilisant une base de données.
+$dsn = "mysql:host=$server;dbname=$db";
+$pdo = new PDO($dsn, $user, $passwd);
+```
+
+:fire: Et c'est tout ! Voilà, si vous utilisez un `include` du fichier `utils/db.php` votre code sera connecté à la base de données et vous pourrez réaliser des requêtes SQL.
+
+::: tip Nous avons écrit une `lib`
+Ce que vous venez d'écrire est une « librairie », vous allez pouvoir réutiliser ce code autant de fois que vous le souhaitez. Il est générique, vous n'avez plus qu'à le « copier / coller » dans vos différents projets nécessitant une base de données.
+:::
+
+C'est à vous, je vous laisse écrire le code dans votre projet.
 
 ### index.php
 
-Récupérer les données
+Dans votre page d'accueil, vous avez actuellement un formulaire, nous allons ajouter « en plus », une liste des phrases précédemment écrite par les utilisateurs. Nous allons donc utiliser la requête de type `SELECT` qui nous retourne l'ensemble des informations présentes dans la base de données.
+
+Avec PDO, faire ce genre d'opération va se résumer à 3 lignes de code :
+
+```php
+// ATTENTION ATTENTION : Cette ligne ne doit être mise qu'une seule fois.
+include('./utils/db.php');
+
+// Requêtes SQL que nous souhaitons jouer.
+$sth = $pdo->prepare("SELECT * FROM phrases");
+$sth->execute(); // Lancement de la requête sur le serveur de base de données.
+
+// Récupération des résultats sous le format d'un Tableau associatifs.
+$results = $sth->fetchAll(\PDO::FETCH_ASSOC);
+```
+
+::: tip `$results`
+La variable `$results` va contenir une structure semblable à :
+
+```text
+Array
+(
+    [0] => Array
+        (
+            [phrase] => "Ceci est ma phrase"
+            [nombre] => 1000
+            [date] => 1609536464
+            [ip] => "127.0.0.1"
+        )
+)
+```
+
+:::
+
+Je vous laisse mettre en place le code dans votre projet plus précisément dans le fichier `index.php`. Nous allons procéder avec logique :
+
+- Mettre le code tel quel dans la page.
+- Afficher le contenu de la variable `$results` avec un `print_r($results);` (**POUR TESTER SEULEMENT**).
+- Parcourir les résultats et les afficher dans un `<select></select>` dans la page en utilisant une boucle de type `foreach`.
+
+C'est à vous.
 
 ### bart.php
 
-Ajouter les données
+Dans la page `bart.php` celle qui affiche le tableau, nous allons mettre en place le code nous permettant d'ajouter des données dans la base de données. Je vous donne le code vous permettant d'ajouter une entrée en base de données.
+
+::: tip
+Nous allons utiliser une requête de type « préparé ». Cette requête est particulier, elle est « sécurisée », c'est-à-dire que normalement il n'est pas possible de « forcer » l'ordinateur à exécuter autre chose que ce que vous aviez prévu.
+:::
+
+Attention, je ne vous donne que ça. Je vous laisse écrire le code au bon endroit :
+
+```php
+
+// ATTENTION ATTENTION : Cette ligne ne doit être mise qu'une seule fois.
+include('./utils/db.php');
+
+$sql = "INSERT INTO phrases (phrase, nombre, date, ip) values(?, ?, ?, ?);";
+$stmt= $pdo->prepare($sql);
+$stmt->execute([$phrase, $nombre, time(), $_SERVER['REMOTE_ADDR']]);
+```
+
+:fire: Je vous laisse écrire le code au bon endroit. C'est à vous.
+
+## Évolution
+
+Ajouter une nouvelle page dans votre site. Celle-ci doit :
+
+- Respecter le design actuel.
+- Afficher les valeurs actuellement en base à l'aide d'un tableau.
+- Votre tableau doit être paginé (LIMIT, OFFSET) via la requête SQL.
+
+C'est à vous.
