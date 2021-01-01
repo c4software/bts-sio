@@ -1233,9 +1233,38 @@ Nous avons maintenant organisé notre code afin que celui-ci soit moins « broui
 
 ## PHP et les bases de données
 
-### MySQL
+Nous allons maintenant voir la base de données via le PHP. La base de données est un élément important des systèmes d'information moderne. Une base de données va être en charge de sauvegarder et d'organiser les données pour qu'il soit utilisable. Nous avons actuellement deux types de bases de données :
 
-### Les autres
+- Relationnelle
+- Non Relationnelle
+
+Les bases de données relationnelles, est celle que l'on rencontre pour l'instant le plus, mais ça change petit à petit et vous rencontrerez très certainement (et très rapidement des BDD non relationnelles).
+
+Pour faire simple, une base de données « Relationnelle », indique que la structure et les règles de validations de vos données seront portées par votre **moteur de base de données**.
+
+Une base de données relationnelle sera plus ouverte. Elle stocke de l'information sans forcément avoir de structure forte. Votre logique de données et la validation des éléments en base seront traitées par **votre code**.
+
+Dans le cours PHP, nous utiliserons des bases de données relationnelles, plus tard avec le JavaScript nous utiliserons des bases de données non relationnelles.
+
+Il existe plusieurs systèmes de base de données (MySQL, Oracle, MariaDB, Postgresql, …). PHP est compatible avec presque tous les systèmes de base de données « connu » et ça par défaut ! Il intègre une API qui s'appelle [PDO](https://www.php.net/manual/fr/book.pdo.php), cette API est de base avec PHP, il suffit juste de l'utiliser.
+
+::: tip Petite note
+PHP est un langage vivant précédemment les accès aux BDD était effectué par d'autres API. Celle-ci est pour la plupart « obsolète ». Je vous conseille vivement de regarder la documentation officielle au maximum plutôt qu'une recherche Google.
+:::
+
+![PDO & MYSQLi](./sql/res/pdo_mysqli.jpg)
+
+MySQL étant intégré à XAMPP / WAMP je vais l'utiliser dans la suite de mon cours. Mais rien ne vous empêche d'utiliser d'autre système tels que PostgreSQL.
+
+### Le langage SQL
+
+#### Obtenir des données
+
+#### Ajouter des données
+
+#### Modifier des données
+
+#### La structure
 
 ### PhpMyAdmin
 
