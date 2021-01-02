@@ -1258,7 +1258,53 @@ MySQL étant intégré à XAMPP / WAMP je vais l'utiliser dans la suite de mon c
 
 ### Le langage SQL
 
+Nous allons maintenant voir un gros sujet. Nous avons vu qu'il était possible de stocker des données dans des bases de données. Ces entrepôts de données sont le coeur de nos programmes modernes, tous les programmes que vous allez réaliser existent toujours pour afficher, traiter, emmagasiner de l'information ; cette donnée est le coeur de votre métier encore plus sur Internet.
+
+Nous allons donc prendre un peu de temps, pour voir comment :
+
+- Modéliser.
+- Sauvegarder.
+- Requêter.
+
+Nous allons donc modéliser les bases de données grâce à des MCD et nous récupèrerons / modifierons les données avec le langage SQL (le mot langage est important).
+
 #### Modéliser la base de données
+
+Modéliser une base de données est une étape très importante, elle fait partie intégrante de la phase de conception et **elle ne doit surtout pas être négligé**.
+
+Cette étape de modélisation doit être faite avant chaque création d'une base de données, mais également lors de la modification de celle-ci, je pense qu'il est intéressant de faire ça en dehors d'un ordinateur avec une simple feuille de papier; vous pouvez bien évidemment utiliser un outil en ligne pour créer votre modélisation.
+
+Cette modélisation s'appelle un **MCD** (Modèle Conceptuel de Données), ce MCD va regrouper l'ensemble de la structure de notre base de données (nom des tables, nom des colonnes, types de données), mais également les contraintes **relationnelles**, c'est-à-dire les contraintes entre les données (nombre maximum, jointures, etc.)
+
+Pour réaliser le MCD nous avons plusieurs solutions :
+
+- Avec un papier et un crayon.
+- [En ligne](https://dbdiagram.io/home)
+
+Avant d'aller plus loin, nous allons modéliser ensemble une première base de données très simple. Cette base de données sera la suivante :
+
+- Des Utilisateurs (Identifiant, Nom, Prénom, Date de naissance, Sexe, Code Pays).
+- Des pays (Code Pays, Nom)
+
+Un MCD repose toujours sur le même principe, c'est un ensemble de « rectangle » relié ensemble par des traits.
+
+![Base d'un MCD](./sql/res/base.png)
+
+_Nous avons donc :_
+
+- Un rectangle.
+- En titre le nom de la table.
+- En dessous la liste des champs avec le type de la donnée.
+
+Maintenant que nous avons posée la base, réflichissons à notre problématique « Utilisateurs et Pays ».
+
+::: details Voilà à quoi ça peu ressembler
+![Exemple de MCD](./sql/res/exemple_mcd.png)
+:::
+
+::: tip
+Ne vous inquiétez pas, nous allons nous entrainer de multiple fois.
+:::
 
 #### Obtenir des données
 
