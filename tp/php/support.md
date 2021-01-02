@@ -1306,6 +1306,18 @@ Maintenant que nous avons posée la base, réflichissons à notre problématique
 Ne vous inquiétez pas, nous allons nous entrainer de multiple fois.
 :::
 
+#### Le langage de requêtage
+
+Nous avons un langage « universel » pour accéder / manipuler une base de données. Ce langage est découpé en 4 grandes catégories.
+
+| Catégorie                | Mot-clé                               | Usage                                      |
+| ------------------------ | ------------------------------------- | ------------------------------------------ |
+| Définition d'une base    | create, alter, truncate, drop, rename | Structure de la base                       |
+| Manipulation des données | insert, update, delete, merge         | Gestion des données en base                |
+| Transaction              | commit, rollback                      | Groupement d'opérations                    |
+| Contrôle d'accès         | grant, revoke                         | Droit d'accès aux données                  |
+| Accès aux données        | select                                | Récupération d'enregistrements de table(s) |
+
 #### Obtenir des données
 
 #### Ajouter des données
