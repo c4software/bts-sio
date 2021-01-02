@@ -1258,6 +1258,8 @@ MySQL étant intégré à XAMPP / WAMP je vais l'utiliser dans la suite de mon c
 
 ### Le langage SQL
 
+#### Modéliser la base de données
+
 #### Obtenir des données
 
 #### Ajouter des données
