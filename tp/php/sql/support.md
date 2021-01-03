@@ -1,5 +1,7 @@
 # Complément Cours Base de données
 
+Nous allons maintenant voir la base de données via le PHP. La base de données est un élément important des systèmes d'information moderne.
+
 ::: details Table des matières
 [[toc]]
 :::
@@ -8,7 +10,9 @@
 La base de données est un vaste sujet. Nous avons ici une introduction à ce qu'il faut connaitre au minimum pour avancer dans nos différents projets.
 :::
 
-Nous allons maintenant voir la base de données via le PHP. La base de données est un élément important des systèmes d'information moderne. Une base de données va être en charge de sauvegarder et d'organiser les données pour qu'il soit utilisable. Nous avons actuellement deux types de bases de données :
+## Introduction
+
+Une base de données va être en charge de sauvegarder et d'organiser les données pour qu'il soit utilisable. Nous avons actuellement deux types de bases de données :
 
 - Relationnelle
 - Non Relationnelle
@@ -20,6 +24,8 @@ Pour faire simple, une base de données « Relationnelle », indique que la stru
 Une base de données relationnelle sera plus ouverte. Elle stocke de l'information sans forcément avoir de structure forte. Votre logique de données et la validation des éléments en base seront traitées par **votre code**.
 
 ![Serveur de base de données](./res/server_bdd.png)
+
+## PHP et les base de données
 
 Dans le cours PHP, nous utiliserons des bases de données relationnelles, plus tard avec le JavaScript nous utiliserons des bases de données non relationnelles.
 
@@ -51,7 +57,7 @@ Modéliser une base de données est une étape très importante, elle fait parti
 
 Cette étape de modélisation doit être faite avant chaque création d'une base de données, mais également lors de la modification de celle-ci, je pense qu'il est intéressant de faire ça en dehors d'un ordinateur avec une simple feuille de papier; vous pouvez bien évidemment utiliser un outil en ligne pour créer votre modélisation.
 
-Cette modélisation s'appelle un **MCD** (Modèle Conceptuel de Données), ce MCD va regrouper l'ensemble de la structure de notre base de données (nom des tables, nom des colonnes, types de données), mais également les contraintes **relationnelles**, c'est-à-dire les contraintes entre les données (nombre maximum, jointures, etc.)
+Cette modélisation s'appelle un **MCD** (Modèle Conceptuel de Données), ce MCD va regrouper l'ensemble de la structure de notre base de données (nom des tables, nom des colonnes, types de données), mais également les contraintes **relationnelles**, c'est-à-dire les contraintes entre les tables (nombre maximum, jointures, etc.)
 
 Pour réaliser le MCD nous avons plusieurs solutions :
 
