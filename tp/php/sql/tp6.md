@@ -6,3 +6,13 @@ Dans ce TP nous allons mettre en pratique nos connaissances autour de la base de
 - Le thème en fonction de la vidéo.
 
 ## Première étape définir le besoin
+
+## Créer le MCD
+
+## Créer la base de données
+
+## Créer la page « d'administration ».
+
+## Modifier la page d'accueil pour utiliser la base de données
+
+## Modifier la page `tv.php` pour utiliser la base de données
