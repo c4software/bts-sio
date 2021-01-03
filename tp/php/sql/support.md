@@ -124,17 +124,17 @@ Avant d'aller plus loin, nous allons faire le tour ensemble de l'interface de ph
 D'ailleurs, je vous propose de tester DBeaver si ça vous dit.
 :::
 
-## Le langage de requêtage
+## SQL : Le langage de requêtage
 
 Nous avons un langage « universel » pour accéder / manipuler une base de données. Ce langage est découpé en 4 grandes catégories.
 
-| Catégorie                | Mot-clé                               | Usage                                      |
-| ------------------------ | ------------------------------------- | ------------------------------------------ |
-| Définition d'une base    | create, alter, truncate, drop, rename | Structure de la base                       |
-| Manipulation des données | insert, update, delete, merge         | Gestion des données en base                |
-| Transaction              | commit, rollback                      | Groupement d'opérations                    |
-| Contrôle d'accès         | grant, revoke                         | Droit d'accès aux données                  |
-| Accès aux données        | select                                | Récupération d'enregistrements de table(s) |
+| Catégorie                | Mot-clé                                         | Usage                                      |
+| ------------------------ | ----------------------------------------------- | ------------------------------------------ |
+| Définition d'une base    | `CREATE`, `ALTER`, `TRUNCATE`, `DROP`, `RENAME` | Structure de la base                       |
+| Manipulation des données | `INSERT`, `UPDATE`, `DELETE`, `MERGE`           | Gestion des données en base                |
+| Transaction              | `COMMIT`, `ROLLBACK`                            | Groupement d'opérations                    |
+| Contrôle d'accès         | `GRANT`, `REVOKE`                               | Droit d'accès aux données                  |
+| Accès aux données        | `SELECT`                                        | Récupération d'enregistrements de table(s) |
 
 ## Obtenir des données
 
@@ -150,7 +150,7 @@ La commande `SELECT` permet d'obtenir des données. Cette requête est très sim
 SELECT quoi FROM votreTable WHERE condition(s);
 ```
 
-- `quoi` : Ce que vous souhaitez obtenir, `*` pour l'ensemble, sinon `le_nom_de_votre_colonne` séparé par des virgules.
+- `quoi` : Ce que vous souhaitez obtenir, `*` pour l'ensemble, sinon `nom_colonne` séparé par des virgules.
 - `table` : La table que vous souhaitez requêter.
 - `condition(s)` : La ou les condition(s) que vous souhaitez appliquer à votre récupération de données.
 
@@ -273,8 +273,8 @@ INSERT INTO utilisateurs VALUES (99,'Test','Insert',12, 'IT');
 Ce type de requête s'appelle un `UPDATE`, c'est également disponible directement dans PHPMyAdmin mais comme l'`INSERT` nous serons amené à le faire directement dans le code.
 
 ```sql
-update utilisateurs set name = 'valentin' where name = 'Valentin-Update';
-update utilisateurs set name = 'Valentine' where id = 1;
+UPDATE utilisateurs SET name = 'valentin' WHERE name = 'Valentin-Update';
+UPDATE utilisateurs SET name = 'Valentine' WHERE id = 1;
 ```
 
 ## Supprimer une donnée
@@ -282,7 +282,7 @@ update utilisateurs set name = 'Valentine' where id = 1;
 Pour supprimer une donnée il suffit de
 
 ```sql
-delete from utilisateurs WHERE id = 1;
+DELETE FROM utilisateurs WHERE id = 1;
 ```
 
 ::: danger ATTENTION
@@ -334,3 +334,10 @@ $pdo = new PDO($dsn, $user, $passwd);
 ::: tip Nous venons d'écrire une `librairie`
 Ce que vous venez d'écrire est une « librairie », vous allez pouvoir réutiliser ce code autant de fois que vous le souhaitez. Il est générique, vous n'avez plus qu'à le « copier / coller » dans vos différents projets nécessitant une base de données.
 :::
+
+## Pratiquer
+
+Nous allons maintenant mettre en pratique avec deux projets :
+
+- [Persister Bart en Base de données](/tp/php/sql/tp5.md)
+- [Greta TV personnalisable](/tp/php/sql/tp6.md)
