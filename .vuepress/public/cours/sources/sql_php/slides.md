@@ -8,7 +8,7 @@ La base de données est un vaste sujet. Nous avons ici une introduction à ce qu
 
 ---
 
-Les première base de données (en anglais database) sont apparu en **1960**
+Les premières bases de données (en Anglais database) sont apparues en **1960**
 
 ---
 
@@ -16,7 +16,7 @@ Les première base de données (en anglais database) sont apparu en **1960**
 
 ---
 
-## On stock de plus en plus d'informations.
+## On stocke de plus en plus d'informations.
 
 Chaque jour, **2,5 quintillions de bytes** de données sont générés.
 
@@ -32,7 +32,7 @@ Objet de toutes les convoitises
 
 ---
 
-## Plusieurs types de base de données
+## Plusieurs types de bases de données
 
 - Relationnelles: SQL (MariaDB, MySQL, Postgresql, Oracle…)
 - Non Relationnelles: NoSQL (MongoDB, Firestore, Redis… )
@@ -44,16 +44,16 @@ Objet de toutes les convoitises
 - SQL
 - Intégré à Xampp, Wamp, … (MariaDB)
 - Ensemble cohérent de données, avec des relations, contraintes entre les données
-- Absence de redondances (découpage, clef, etc)
+- Absence de redondances (découpage, clé, etc.)
 
 ---
 
 ## Non Relationnelles
 
 - NoSQL (Not Only SQL)
-- Gère des très gros volumes
+- Gère de très gros volumes
 - Ensemble de documents sans forcément avoir de structure identique.
-- Redondances possible (voir encouragés)
+- Redondances possibles (voire encouragés)
 
 ---
 
@@ -62,9 +62,9 @@ Objet de toutes les convoitises
 ---
 
 - Ensemble de tables
-- Qui contiendrons des données structurés :
+- Qui contiendra des données structurées :
   - Type de données
-  - Organisé en colonnes (nom, prénom, …)
+  - Organisé en colonnes (nom, prénom …)
   - Avec des relations entre les tables (contraintes)
 
 ---
@@ -103,9 +103,9 @@ Technique pour représenter une base de données.
 
 ---
 
-## Concrêtement un MCD c'est :
+## Concrètement un MCD c'est :
 
-- Des rectangles avec des noms
+- Des rectangles avec des noms en haut
 - Des traits entre les rectangles
 
 ---
