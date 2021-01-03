@@ -110,13 +110,29 @@ Technique pour représenter une base de données.
 
 ---
 
-![MCD](./res/mcd/mcd.png)
+| Table                     |
+| ------------------------- |
+| <u>#identifiant (int)</u> |
+| nom (varchar)             |
+| prénom (int)              |
 
 - Un rectangle.
 - En titre le nom de la table.
 - En dessous la liste des champs avec le type de la donnée.
+  - L'élément souligné est une clé (également préfixé par un `#`)
 
---
+---
+
+## Une clé ?
+
+- Presque obligatoire.
+- Représente une valeur unique dans la base.
+- Effectuer des opérations sur la table (UPDATE, DELETE, …).
+- Permettre la jointure entre les tables.
+
+⚠️ Vous devez **toujours** avoir une clé ⚠️
+
+---
 
 ## Votre premier MCD
 
