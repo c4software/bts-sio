@@ -1,4 +1,4 @@
-# Introduction aux bases de données avec PHP
+# Slides introduction aux BDD avec PHP
 
 <SlidesDeck src="sql_php" />
 
