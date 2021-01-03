@@ -2,7 +2,9 @@
 
 Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
 
+::: details Table des matières
 [[toc]]
+:::
 
 ## Boite à outils
 
@@ -1231,102 +1233,9 @@ L'organisation étant un point important, je vous propose de la mettre [en prati
 
 Nous avons maintenant organisé notre code afin que celui-ci soit moins « brouillon », je vous propose de [pratiquer un peu la partie session](./tp4.md)
 
-## PHP et les bases de données
+## PHP et Base de données
 
-Nous allons maintenant voir la base de données via le PHP. La base de données est un élément important des systèmes d'information moderne. Une base de données va être en charge de sauvegarder et d'organiser les données pour qu'il soit utilisable. Nous avons actuellement deux types de bases de données :
-
-- Relationnelle
-- Non Relationnelle
-
-Les bases de données relationnelles, est celle que l'on rencontre pour l'instant le plus, mais ça change petit à petit et vous rencontrerez très certainement (et très rapidement des BDD non relationnelles).
-
-Pour faire simple, une base de données « Relationnelle », indique que la structure et les règles de validations de vos données seront portées par votre **moteur de base de données**.
-
-Une base de données relationnelle sera plus ouverte. Elle stocke de l'information sans forcément avoir de structure forte. Votre logique de données et la validation des éléments en base seront traitées par **votre code**.
-
-Dans le cours PHP, nous utiliserons des bases de données relationnelles, plus tard avec le JavaScript nous utiliserons des bases de données non relationnelles.
-
-Il existe plusieurs systèmes de base de données (MySQL, Oracle, MariaDB, Postgresql, …). PHP est compatible avec presque tous les systèmes de base de données « connu » et ça par défaut ! Il intègre une API qui s'appelle [PDO](https://www.php.net/manual/fr/book.pdo.php), cette API est de base avec PHP, il suffit juste de l'utiliser.
-
-::: tip Petite note
-PHP est un langage vivant précédemment les accès aux BDD était effectué par d'autres API. Celle-ci est pour la plupart « obsolète ». Je vous conseille vivement de regarder la documentation officielle au maximum plutôt qu'une recherche Google.
-:::
-
-![PDO & MYSQLi](./sql/res/pdo_mysqli.jpg)
-
-MySQL étant intégré à XAMPP / WAMP je vais l'utiliser dans la suite de mon cours. Mais rien ne vous empêche d'utiliser d'autre système tels que PostgreSQL.
-
-### Le langage SQL
-
-Nous allons maintenant voir un gros sujet. Nous avons vu qu'il était possible de stocker des données dans des bases de données. Ces entrepôts de données sont le coeur de nos programmes modernes, tous les programmes que vous allez réaliser existent toujours pour afficher, traiter, emmagasiner de l'information ; cette donnée est le coeur de votre métier encore plus sur Internet.
-
-Nous allons donc prendre un peu de temps, pour voir comment :
-
-- Modéliser.
-- Sauvegarder.
-- Requêter.
-
-Nous allons donc modéliser les bases de données grâce à des MCD et nous récupèrerons / modifierons les données avec le langage SQL (le mot langage est important).
-
-#### Modéliser la base de données
-
-Modéliser une base de données est une étape très importante, elle fait partie intégrante de la phase de conception et **elle ne doit surtout pas être négligé**.
-
-Cette étape de modélisation doit être faite avant chaque création d'une base de données, mais également lors de la modification de celle-ci, je pense qu'il est intéressant de faire ça en dehors d'un ordinateur avec une simple feuille de papier; vous pouvez bien évidemment utiliser un outil en ligne pour créer votre modélisation.
-
-Cette modélisation s'appelle un **MCD** (Modèle Conceptuel de Données), ce MCD va regrouper l'ensemble de la structure de notre base de données (nom des tables, nom des colonnes, types de données), mais également les contraintes **relationnelles**, c'est-à-dire les contraintes entre les données (nombre maximum, jointures, etc.)
-
-Pour réaliser le MCD nous avons plusieurs solutions :
-
-- Avec un papier et un crayon.
-- [En ligne](https://dbdiagram.io/home)
-
-Avant d'aller plus loin, nous allons modéliser ensemble une première base de données très simple. Cette base de données sera la suivante :
-
-- Des Utilisateurs (Identifiant, Nom, Prénom, Date de naissance, Sexe, Code Pays).
-- Des pays (Code Pays, Nom)
-
-Un MCD repose toujours sur le même principe, c'est un ensemble de « rectangle » relié ensemble par des traits.
-
-![Base d'un MCD](./sql/res/base.png)
-
-_Nous avons donc :_
-
-- Un rectangle.
-- En titre le nom de la table.
-- En dessous la liste des champs avec le type de la donnée.
-
-Maintenant que nous avons posée la base, réflichissons à notre problématique « Utilisateurs et Pays ».
-
-::: details Voilà à quoi ça peu ressembler
-![Exemple de MCD](./sql/res/exemple_mcd.png)
-:::
-
-::: tip
-Ne vous inquiétez pas, nous allons nous entrainer de multiple fois.
-:::
-
-#### Le langage de requêtage
-
-Nous avons un langage « universel » pour accéder / manipuler une base de données. Ce langage est découpé en 4 grandes catégories.
-
-| Catégorie                | Mot-clé                               | Usage                                      |
-| ------------------------ | ------------------------------------- | ------------------------------------------ |
-| Définition d'une base    | create, alter, truncate, drop, rename | Structure de la base                       |
-| Manipulation des données | insert, update, delete, merge         | Gestion des données en base                |
-| Transaction              | commit, rollback                      | Groupement d'opérations                    |
-| Contrôle d'accès         | grant, revoke                         | Droit d'accès aux données                  |
-| Accès aux données        | select                                | Récupération d'enregistrements de table(s) |
-
-#### Obtenir des données
-
-#### Ajouter des données
-
-#### Modifier des données
-
-#### La structure
-
-### PhpMyAdmin
+Cette partie est disponible ici : [Introduction à la base de données avec PHP](./sql/support.md)
 
 ## Le PHP Objet
 

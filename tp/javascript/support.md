@@ -2,7 +2,9 @@
 
 Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
 
+::: details Table des matières
 [[toc]]
+:::
 
 ## Introduction
 

@@ -22,7 +22,8 @@ La première étape d'un développement avec une base de données est la concept
 Pour réaliser le MCD nous avons plusieurs solutions :
 
 - Avec un papier et un crayon.
-- [En ligne](https://dbdiagram.io/home)
+- [DBDiagram](https://dbdiagram.io/home)
+- [draw.io](http://draw.io/)
 
 Pour moi, dans notre cas nous allons avoir :
 
@@ -166,7 +167,7 @@ C'est la partie qui nous intéresse… Nous allons maintenant écrire le code qu
 - MySQLi (le remplacement de mysql\_\*)
 - PDO (PDO_MySQL)
 
-Nous avons donc deux possibilités, la différence entre les deux ? Il y en a plusieurs, mais PDO à un grand avantage c'est qu'il permet de changer simplement de base de données (via des connecteurs pour MariaDB, Oracle, …). À mon avis en 2021 **PDO** est doit-être votre choix par défaut dans le cas d'un nouveau projet.
+Nous avons donc deux possibilités, la différence entre les deux ? Il y en a plusieurs, mais PDO à un grand avantage c'est qu'il permet de changer simplement de base de données (via des connecteurs pour MariaDB, Oracle, …). À mon avis **PDO** est doit-être votre choix par défaut dans le cas d'un nouveau projet.
 
 ![PDO vs MySQL](./res/pdo_mysqli.jpg)
 

@@ -2,7 +2,9 @@
 
 Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples. La CSS est un vaste sujet il serait difficile de tout couvrir dans un simple document.
 
+::: details Table des matières
 [[toc]]
+:::
 
 ## Boite à outils
 
