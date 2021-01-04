@@ -48,6 +48,30 @@ Voilà… Nous avons vu les éléments nécessaires… C'est à vous. Je vous la
 Votre IDE vous aide. N'oubliez pas de le configurer pour automatiser certaines de vos actions.
 :::
 
+## Évolution
+
+Passer en paramètre `GET` le nombre de ligne à écrire dans la page :
+
+_Exemple :_
+
+Pour la page avec un lien comme : `http://localhost/bart/index.php?nb=1000`
+
+```php
+$nombre = $_GET['nb'];
+```
+
+::: danger Attention
+Ne pas oublier de gérer le cas si pas de paramètre (avec un IF).
+
+```php
+$nombre = 100;
+if(isset($_GET['nb'])){
+    $nombre = $_GET['nb'];
+}
+```
+
+:::
+
 ## La suite
 
 Nous reviendrons sur cette base de TP plus tard pour y ajouter :
