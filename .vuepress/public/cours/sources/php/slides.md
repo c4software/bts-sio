@@ -694,7 +694,7 @@ Les tableaux sont un gros morceau.
 
 ## Un exemple ?
 
-Le gateau au chocolat de Mamie Hughette
+Le gateau au chocolat de Mamie Huguette
 
 ---
 
@@ -737,7 +737,7 @@ Vous n'avez pas besoin de connaitre le fonctionnement.
 ---
 
 ```php
-echo gateauHugette();
+echo gateauHuguette();
 ```
 
 Si nous exécutons le code :
