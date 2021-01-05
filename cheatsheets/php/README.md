@@ -18,6 +18,8 @@ Pour être exécuté votre code doit-être dans un fichier nommé `quelqueschose
 
 ## Passer des paramètres à la page
 
+![url paramters](./url-parameter-elements.png)
+
 Pour envoyer le paramètre `param` à la page `index.php` :
 
 - `http://localhost/index.php?param=abc`
