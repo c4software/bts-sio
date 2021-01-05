@@ -1,7 +1,16 @@
 <?php
-$lignes = 50;
-$phrase = "Je ne recopierai pas l'exemple de Valentin";
-$count = 0;
+    function punition($lignes, $phrase){
+        $count = 0;
+
+        while ($count < $lignes) {
+            echo $phrase . '<br />';
+            $count++;
+        }
+    }
+
+    $lignes = 50;
+    $phrase = "Je ne recopierai pas l'exemple de Valentin";
+    $count = 0;
 ?>
 
 <!DOCTYPE html>

@@ -873,7 +873,9 @@ Certaines parties sont présentes sur l'ensemble des pages
 La puissance de PHP la fonction `include`. Elle va nous permettre d'insérer le contenu d'un autre fichier.
 
 ```php
-include(`monfichier.php`);
+<?php
+include('monfichier.php');
+?>
 ```
 
 ---

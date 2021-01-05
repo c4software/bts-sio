@@ -28,6 +28,14 @@ Pour envoyer le paramètre `param` & `nb` à la page `index.php` :
 
 - `http://localhost/index.php?param=abc&nb=10`
 
+## Inclure un fichier dans un autre
+
+```php
+<?php
+    include('monfichier.php');
+?>
+```
+
 ## Les variables
 
 ```php
