@@ -63,7 +63,7 @@ module.exports = {
     ],
     sidebar: [
       ["/", "Introduction"],
-      { collapsable: true, title: "Aides mémoires", children: [["cheatsheets/git/", "Git"], ["cheatsheets/html/", "Html"], ["cheatsheets/cordova/", "Cordova"], ["cheatsheets/docker/", "Docker"], ["cheatsheets/vuejs/", "VueJS"]] },
+      { collapsable: true, title: "Aides mémoires", children: [["cheatsheets/git/", "Git"], ["cheatsheets/html/", "Html"], ["cheatsheets/php/", "PHP"], ["cheatsheets/cordova/", "Cordova"], ["cheatsheets/docker/", "Docker"], ["cheatsheets/vuejs/", "VueJS"]] },
 
       {
         title: "Les bases Web",
