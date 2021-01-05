@@ -6,7 +6,7 @@ Nous avons vu dans le cours qu'il était possible grace à la fonction PHP `incl
 
 Je vous laisse créer un nouveau projet. Ce projet sera constitué pour l'instant de :
 
-- Une page (nommé `index.php`).
+- Une page (nommée `index.php`).
 - La librairie Bootstrap. [Disponible ici](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 - Un header avec dedans une [NavBar](https://getbootstrap.com/docs/5.0/components/navbar/).
 - Un Footer (avec l'année actuelle `<?php echo date('Y'); ?>`)
@@ -72,4 +72,4 @@ Voilà à quoi ça va ressembler :
 
 ## Utiliser les includes pour l'organisation
 
-En reprenant [les propositions faites dans le cours](/tp/php/support.md#le-code) réorganisez votre code pour le séparé dans différents fichiers.
+En reprenant [les propositions faites dans le cours](/tp/php/support.md#le-code) réorganisez votre code pour le séparer dans différents fichiers.
