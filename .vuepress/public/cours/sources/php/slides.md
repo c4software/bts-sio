@@ -902,6 +902,14 @@ Nous découpons donc notre HTML dans X fichiers PHP.
 
 ## À faire
 
+Maintenant que nous savons découper notre code. Je vous propose de réaliser le [TP suivant](/tp/php/tp1.2.html)
+
+<iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+---
+
+## À faire
+
 Maintenant que nous savons découper notre code. Je vous laisse retourner dans le [TP Bart](/tp/php/tp1.1.html) afin de :
 
 - Sortir votre fonction dans un autre fichier.
