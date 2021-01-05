@@ -1,4 +1,4 @@
-# Utiliser une librairie
+# Utiliser des includes et une librairie
 
 Nous avons vu dans le cours qu'il était possible grace à la fonction PHP `include` d'inclure une page dans une autre. Cette fonction nous permet également d'utiliser des librairies en les incluant dans les différentes pages ou ça est nécessaire.
 
