@@ -929,6 +929,10 @@ _index.php :_
 
 ### À faire
 
+Mettre en pratique le découpage avec des `include` avec le [TP suivant](./tp1.2.md)
+
+### À faire bis
+
 Maintenant que nous savons découper notre code. Je vous laisse retourner dans [le TP Bart](./tp1.1.md) afin de :
 
 - Sortir votre fonction dans un autre fichier.
