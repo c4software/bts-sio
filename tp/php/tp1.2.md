@@ -11,6 +11,10 @@ Je vous laisse créer un nouveau projet. Ce projet sera constitué pour l'instan
 - Un header avec dedans une [NavBar](https://getbootstrap.com/docs/5.0/components/navbar/).
 - Un Footer (avec l'année actuelle `<?php echo date('Y'); ?>`)
 
+## Utiliser les includes pour l'organisation
+
+En reprenant [les propositions faites dans le cours](/tp/php/support.md#le-code) réorganisez votre code pour le séparer dans différents fichiers.
+
 ## La librairie
 
 J'ai travaillé pour vous ! Je vous propose une super librairie. Celle-ci intègre quelques fonctions (utile ou non) que nous allons pouvoir utiliser dans notre page.
@@ -69,7 +73,3 @@ Voilà à quoi ça va ressembler :
 
 ![Sans le paramètre](./res/lib_screen1.png)
 ![Avec le paramètre](./res/lib_screen2.png)
-
-## Utiliser les includes pour l'organisation
-
-En reprenant [les propositions faites dans le cours](/tp/php/support.md#le-code) réorganisez votre code pour le séparer dans différents fichiers.
