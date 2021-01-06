@@ -4,14 +4,16 @@
  * Test si nous sommes le jour de noel
  *
  * Voici un exemple d'utilisation
+ * 
+ * 
  * <code>
- * <?php
  * if(isChristmas()){
  *  echo "Joyeux noel";
  * }
- * ?>
- * @return bool
  * </code>
+ * 
+ * 
+ * @return bool
  */
 function isChristmas() {
     return date("d-m") === "25-12";
@@ -21,11 +23,13 @@ function isChristmas() {
  * Retourne le nombre de jour avant noel
  *
  * Voici un exemple d'utilisation
+ * 
+ * 
  * <code>
- * <?php
  * echo "Il reste encore " . daysBeforeChristmas() . "jour avant noel";
- * ?>
  * </code>
+ * 
+ * 
  * @return int
  */
 function daysBeforeChristmas() {
@@ -37,13 +41,15 @@ function daysBeforeChristmas() {
  * Retourne si nous sommes le mois de décembre
  *
  * Voici un exemple d'utilisation
+ * 
+ * 
  * <code>
- * <?php
  * if(isDecember()){
  *  echo "Nous sommes au mois de décembre";
  * }
- * ?>
  * </code>
+ * 
+ * 
  * @return boolean
  */
 function isDecember() {
@@ -55,12 +61,18 @@ function isDecember() {
  * ou une valeur par défaut
  *
  * Voici un exemple d'utilisation
+ * 
+ * 
  * <code>
- * <?php
+ * 
+ * 
  * // index.php?name=Thomas
+ * 
+ * 
  * echo getOrDefault('name', 'Valentin Brosseau');
- * ?>
  * </code>
+ * 
+ * 
  * @param string $key Clé à récupérer dans le $_GET
  * @param mixed $default Valeur par défaut si la clé n'existe pas
  * @return mixed
@@ -74,11 +86,13 @@ function getOrDefault($key, $default){
  * ou une valeur par défaut
  *
  * Voici un exemple d'utilisation
+ * 
+ * 
  * <code>
- * <?php
  * echo postOrDefault('name', 'Valentin Brosseau');
- * ?>
  * </code>
+ * 
+ * 
  * @param string $key Clé à récupérer dans le $_POST
  * @param mixed $default Valeur par défaut si la clé n'existe pas
  * @return mixed
@@ -92,10 +106,19 @@ function postOrDefault($key, $default){
  * Le second paramètre est l'année de naissance de la personne
  *
  * Voici un exemple d'utilisation
- * <code>
- * <?php
+ * 
+ * 
+ * <code> 
  * echo formatIdentity('Valentin', 1987);
- * ?>
+ * 
+ * 
+ * // ou
+ * 
+ * 
+ * echo formatIdentity('Valentin');
+ * </code>
+ * 
+ * 
  * @param string $name Nom de la personne
  * @param int $year Année de naissance
  * @return string
@@ -114,11 +137,13 @@ function formatIdentity($name, $year){
  * et format un texte en résultat
  *
  * Voici un exemple d'utilisation
+ * 
+ * 
  * <code>
- * <?php
- * echo formatIdentity('Valentin', 1987);
- * ?>
+ * echo mailCountFormat(10);
  * </code>
+ * 
+ * 
  * @param int $nombre nombre d'email
  * @return string 
  */

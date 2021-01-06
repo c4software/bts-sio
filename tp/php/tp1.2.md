@@ -56,7 +56,7 @@ Pour connaitre les fonctions, il n'y a pas de miracle. Il faut lire la documenta
 Afin de tester les différentes fonctionnalités, je vous propose de réaliser les éléments suivants :
 
 - À gauche de la dans la Toolbar, afficher votre identité (fonction `formatIdentity`).
-- À droite de la Toolbar, afficher un nombre d'emails (fonction `wailCountFormat`).
+- À droite de la Toolbar, afficher un nombre d'emails (fonction `mailCountFormat`).
 - Dans votre page, afficher dans une card le nombre de jours avant Noël (fonction `daysBeforeChristmas`).
 - Votre page doit afficher un fond « sapin de Noël » si nous sommes au mois de décembre.
 - Votre page doit afficher un fond « père Noël » si nous sommes le jour de Noël.
