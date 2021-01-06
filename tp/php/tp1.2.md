@@ -62,6 +62,7 @@ Afin de tester les différentes fonctionnalités, je vous propose de réaliser l
 - À gauche de la dans la Toolbar, afficher votre identité (fonction `formatIdentity`).
 - À droite de la Toolbar, afficher un nombre d'emails (fonction `mailCountFormat`).
 - Dans votre page, afficher dans une card le nombre de jours avant Noël (fonction `daysBeforeChristmas`).
+- Le décompte du nombre de jours ne doit **pas être visible** si nous sommes le jour de Noël
 - Votre page doit afficher un fond « sapin de Noël » si nous sommes au mois de décembre.
 - Votre page doit afficher un fond « père Noël » si nous sommes le jour de Noël.
 - Au **milieu de votre page** afficher une `,card`, le contenu de cette, `card` doit-être :
