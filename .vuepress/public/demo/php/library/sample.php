@@ -53,7 +53,7 @@ function daysBeforeChristmas() {
  * @return boolean
  */
 function isDecember() {
-    return date("m") == "01";
+    return date("m") == "12";
 }
 
 /**
