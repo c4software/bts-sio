@@ -19,10 +19,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         .card{
             width: 500px;
+            margin: 10px;
         }
     </style>
 </head>
@@ -45,6 +47,12 @@
         <div class="card">
             <div class="card-body text-center">
                 <h1>Hello <?= getOrDefault('name', 'World'); ?></h1>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body text-center">
+                <h1>Plus que <?= daysBeforeChristmas(); ?>j avant noel</h1>
             </div>
         </div>
     </section>
