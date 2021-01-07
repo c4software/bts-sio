@@ -102,6 +102,12 @@ module.exports = {
       },
 
       {
+        title: "Les CMS",
+        initialOpenGroupIndex: -1,
+        children: ["tp/cms/wordpress.md"]
+      },
+
+      {
         title: "Le versionning",
         initialOpenGroupIndex: -1,
         children: [

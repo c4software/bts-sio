@@ -1,7 +1,7 @@
 <?php
-$lignes = isset($_POST['count']) ? $_POST['count'] : 3;
-$phrase = isset($_POST['sentence']) ? $_POST['sentence'] : "Ceci est une phrase d'exemple";
-$count = 0;
+    $lignes = isset($_POST['count']) ? $_POST['count'] : 3;
+    $phrase = isset($_POST['sentence']) ? $_POST['sentence'] : "Ceci est une phrase d'exemple";
+    $count = 0;
 ?>
 
 <!DOCTYPE html>
