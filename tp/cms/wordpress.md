@@ -121,5 +121,5 @@ Maintenir un CMS est très important ! En effet un CMS est un développement « 
 C'est dans cet objectif que Wordpress intègre un système automatique et simplifié de mise à jour, il suffit de cliquer sur le bon menu dans l'interface.
 
 ::: tip La sécurité avant tout
-S'il y a des mises à jour, ce n’est pas pour **vous embêter** mais pour vous protéger !
+S'il y a des mises à jour, ce **n’est pas pour vous embêter** mais pour **vous protéger !**
 :::
