@@ -61,11 +61,11 @@ N'oubliez pas de regarder ma proposition de design. Le choix du nombre de phrase
 
 ## La page « résultat » (bart.php)
 
-La page `bart.php` va contenir la logique d'affichage de votre projet, elle va se charger :
+La page `bart.php` va contenir la logique d'affichage de votre projet, elle va se charger, voilà comment nous allons procéder :
 
-1 - Prendre les valeurs en provenance du `$_POST`.
-2 - Afficher les valeurs reçues sur le tableau de Bart (de manière identique à précédemment).
-3 - Permettre à l'utilisateur de revenir sur la page d'accueil via la `toolbar`.
+- Prendre les valeurs en provenance du `$_POST`.
+- Afficher les valeurs reçues sur le tableau de Bart (de manière identique à précédemment).
+- Permettre à l'utilisateur de revenir sur la page d'accueil via la `toolbar`.
 
 ![Étape 2](./res/bart_form_step2.png)
 
