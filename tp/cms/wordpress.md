@@ -45,7 +45,7 @@ Nous avons créé une base de données nommée `wordpress`, nous allons donc ind
 
 ![Base de données Wordpress](./res/bdd_wp.png)
 
-Si tout ce passe bien, vous devez avoir :
+Si tout se passe bien, vous devez avoir :
 
 ![Installation réussie](./res/bdd_wp2.png)
 
@@ -69,6 +69,7 @@ Votre Wordpress est maintenant installé, il nous reste maintenant à spécifier
 Une fois installé vous serez redirigé vers la partie d'admin de Wordpress.
 
 ::: tip Et voilà !
+
 Et oui c'est tout ! Votre CMS est maintenant installé. 🥳
 
 ![Wordpress c'est ça](./res/wp_main_admin.png)
@@ -80,6 +81,12 @@ Et oui c'est tout ! Votre CMS est maintenant installé. 🥳
 Wordpress intègre un système permettant de télécharger en quelques clics un thème. Vous trouverez ça dans le menu « Apparence »
 
 Vous pouvez personnaliser le thème dans le menu « Apparence > Personaliser »
+
+Testons ensemble, nous allons installer un Thème nommé « Nouveau Blog ».
+
+::: tip Un instant
+Chaque thème propose des personnalisations différentes. Donc le choix du thème de départ est plutôt important.
+:::
 
 ## Installer des plug-ins
 
@@ -95,9 +102,7 @@ Un site sans page ce n’est pas un site non ? Avec Wordpress, vous pouvez crée
 
 L'éditeur est ce que l'on appelle un WYSIWYG, il vous permettra de rédiger visuellement votre contenu (texte, mais également intégration de contenu provenant d'autre site). Vous souhaitez ajouter une image ? Un simple Drag&Drop est suffisant. Puissant hein !
 
-Vous pouvez également personnaliser l'affichage des pages avec quelques options « plus globales ».
-
-![Arrangement de l'UI](./res/arrangement.png)
+✋ Au passage, le thème « Nouveau blog » que nous avons choisi tout à l'heure, nous permet de mettre une « page » en « page d'accueil » cette option est disponible dans « Apparence > Personaliser ».
 
 ::: tip et le responsive ?
 Chez Wordpress ils ont également pensé à tout ça. Vous avez la possibilité de « Prévisualiser » votre page sous différents formats.
