@@ -94,6 +94,8 @@ Votre Wordpress est maintenant configuré et est prêt à être personnalisé pl
 
 Les extensions sont disponibles dans le menu « Extensions »
 
+Je vous propose d'installer un plug-in « très commun en ce moment » : `Cookie Notice`
+
 ## Créer une page
 
 Un site sans page ce n’est pas un site non ? Avec Wordpress, vous pouvez créer très simplement des pages. La création de pages est complètement graphique et vous permet **sans écrire de code** la création de pages simple :
