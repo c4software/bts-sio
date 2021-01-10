@@ -16,6 +16,23 @@ Pour être exécuté votre code doit-être dans un fichier nommé `quelqueschose
 ?>
 ```
 
+## Afficher des données
+
+```php
+<h1><?php echo "Ceci est un titre"; ?></h1>
+
+// Ou
+
+<?php echo "Ceci est un <i>titre</i>"; ?>
+
+// Ou
+
+<?php
+    $test = "Ceci est une variable";
+    echo "Vous allez voir le contenu de la variable : $test";
+?>
+```
+
 ## Passer des paramètres à la page
 
 ![url paramters](./url-parameter-elements.png)
