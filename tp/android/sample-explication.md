@@ -115,7 +115,7 @@ Par exemple nous indiquons que `createWebService(client: OkHttpClient, url: Stri
 
 Dans le cas d'un objet de notre vue, nous avons dans le même principe :
 
-`viewModel { MainViewModel(get(), get()) }` qui représente le View-Modele de notre Vue qui attend deux paramètres :
+`viewModel { MainViewModel(get(), get()) }` qui représente le View-Modele de notre Activity qui attend deux paramètres :
 
 `MainViewModel(sampleRemoteRepository: SampleRemoteRepository, sampleLocalRepository: SampleLocalRepository)`.
 
@@ -214,9 +214,9 @@ Pour tester (et uniquement pour tester), nous allons appeler la nouvelle méthod
   - La méthode doit implémenter les states. (Chargement, et retour de la « string reçu »)
 - Appeler la méthode déclarée dans le MainViewModel depuis l'activity. (ex `myViewModel.getRestInfomations()`).
 
-Dans l'implémentation actuelle, vous allez avoir `un Toast`.
+Dans l'implémentation actuelle, je vous propose d'afficher un `un Toast` lors de la réception de la donnée.
 
-## Ajouter une nouvelle Vue
+## Ajouter une nouvelle Activity
 
 Maintenant que nous avons validé que notre code fonctionne, nous allons pouvoir ajouter une nouvelle vue. Nous avons une nouvelle route `infoRest` qui pour l'instant est inutilisée, nous allons créer une vue et le code associé afin d'afficher l'information reçue du serveur.
 
@@ -289,7 +289,7 @@ Si vous souhaitez réaliser cette action à la main. Il suffit d'ajouter « dans
     <activity android:name="com.boilerplate.app.view.main.MainActivity">
 ```
 
-⚠️ Mais sérieusement, ne l'ajouter pas à la main. Faite plutôt alt entrée sur le nom de votre class dans l'IDE l'action vous sera proposée.
+⚠️ Mais sérieusement, ne l'ajoutez pas à la main. Faite plutôt alt entrée sur le nom de votre class dans l'IDE l'action vous sera proposée.
 
 ![ajouter au manifeste](./ressources/add_manifest.png)
 
@@ -339,3 +339,67 @@ fun startMainActivity(){
     startActivity(MainActivity.getStartIntent(this))
 }
 ```
+
+## Utiliser un Repository depuis une nouvelle activity
+
+Comme indiqué précédemment, nous n'allons pas directement appeler notre `Repository` directement depuis notre `Activity`.
+
+::: tip Petit rappel
+
+Nous allons découper notre logique en différentes parties :
+
+- La logique de la vue va rester dans l'Activity.
+- La logique des données de la vue va être mise dans la partie `ViewModel`.
+- La logique « de récupération » des données va être mise dans un `Repository`.
+
+:::
+
+Créer un ViewModel pour une `Activity` va se résumer à trois opérations :
+
+- Créer une Class `YourActivityViewModel` et qui extend de `BaseViewModel()`
+- Déclarer votre `YourActivityViewModel` dans l'activity en spécifiant que celui-ci sera automatiquement injecté.
+- Le déclarer dans l'injecteur de dépendances.
+
+### Création de votre `YourActivityViewModel`
+
+Cette étape est la première, nous allons créer une Class qui contiendra la « logique » des données de la vue, le minimum que doit contenir cette classe est :
+
+```kotlin
+
+class YourActivityViewModel() : BaseViewModel() {
+    val states = MutableLiveData<ViewModelState>()
+
+    // Vous déclarerez ici vos méthodes et variables nécessaires
+    // au bon fonctionnement de votre application.
+}
+```
+
+::: tip Vous voulez un exemple « plus grand » ?
+
+Vous avez dans le projet un exemple de `ViewModel` un peu plus complet, c'est le fichier `MainViewModel.kt` il est également [accessible ici](https://raw.githubusercontent.com/c4software/Android-Boilerplate-Koin-CoRoutines-OkHTTP/master/app/src/main/java/com/boilerplate/app/view/main/MainViewModel.kt)
+
+:::
+
+### Déclarer votre ViewModel dans l'activity
+
+Pour ça rien de bien compliqué, il suffit d'ajouter le code suivant :
+
+```kotlin
+    private val myViewModel: YourActivityViewModel by viewModel()
+```
+
+::: danger Attention
+Ne pas mettre le code n'importe où. Nous avons ici un **attribut de class**.
+:::
+
+### Déclaration dans l'injecteur de dépendance
+
+Si vous souhaitez que ça fonctionne, vous devez dire à votre code comment le `by viewModel()` va être résolu. Pour ça nous devons indiquer à notre injecteur de dépendance comment créer cette dépendance, cette déclaration est à faire dans le fichier `app_module.kt` (il se trouve dans le package `.di`).
+
+Vous devez donc ajouter dans le `appModule` le code suivante :
+
+```kotlin
+    viewModel { YourActivityViewModel() }
+```
+
+🤓 Bien évidemment, vous ajoutez le code à la suite du `viewModel` déjà présent 🤓
