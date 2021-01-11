@@ -218,11 +218,7 @@ Avec PDO, faire ce genre d'opération va se résumer à 3 lignes de code :
 include('./utils/db.php');
 
 // Requêtes SQL que nous souhaitons jouer.
-$sth = $pdo->prepare("SELECT * FROM phrases");
-$sth->execute(); // Lancement de la requête sur le serveur de base de données.
-
-// Récupération des résultats sous le format d'un Tableau associatifs.
-$results = $sth->fetchAll(\PDO::FETCH_ASSOC);
+$results = $pdo->query("SELECT * FROM phrases")->fetchAll(\PDO::FETCH_ASSOC);
 ```
 
 ::: tip `$results`

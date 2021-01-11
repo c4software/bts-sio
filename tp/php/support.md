@@ -1223,7 +1223,7 @@ Cette logique repose sur un point d'entrée unique pour l'ensemble des demandes 
 - Et bien plus encore.
 
 ::: tip
-Cette logique est utilisée par l'ensemble des CMS modernes, elle permet de créer des pages dynamiques ou la mise en place très simple de mécanique de plug-in c'est donc l'ideal.
+Cette logique est utilisée par l'ensemble des CMS modernes, elle permet de créer des pages dynamiques ou la mise en place très simple de mécanique de plug-in c'est donc l'idéal.
 :::
 
 Fonctionnellement, nous allons « juste » découper un peu plus votre travail. Et nous allons ajouter « un nouveau fichier », que l'on appellera à partir de maintenant le point d'entrée (entry point).

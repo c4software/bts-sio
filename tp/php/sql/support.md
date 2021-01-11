@@ -353,6 +353,30 @@ $pdo = new PDO($dsn, $user, $passwd);
 Ce que vous venez d'écrire est une « librairie », vous allez pouvoir réutiliser ce code autant de fois que vous le souhaitez. Il est générique, vous n'avez plus qu'à le « copier / coller » dans vos différents projets nécessitant une base de données.
 :::
 
+## Requête préparé ou requête normal ?
+
+Nous avons deux façons d'écrire les requêtes avec PDO :
+
+- Les requêtes « classique ».
+- Et les requêtes préparées.
+
+Dans quel cas utiliser l'un, et dans quel cas utiliser l'autre ? C'est simple, vous avez des valeurs variables (paramètres, saisie utilisateur, etc.) ?
+
+- **OUI** : Requête préparée.
+- **NON** : Requête classique.
+
+```php
+// Requête préparée :
+$results = $pdo->query()->fetchAll(\PDO::FETCH_ASSOC);
+$stmt= $pdo->prepare("SELECT * FROM phrases WHERE id = ?");
+$stmt->execute([22]); // Paramètre qui va remplacer le « ? ».
+$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+// Requête classique
+$results = $pdo->query("SELECT * FROM phrases")->fetchAll(\PDO::FETCH_ASSOC);
+
+```
+
 ## Pratiquer
 
 Nous allons maintenant mettre en pratique avec deux projets :
