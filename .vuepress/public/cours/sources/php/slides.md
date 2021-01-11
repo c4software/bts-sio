@@ -1085,6 +1085,12 @@ Fini les projets « en bordel ».
 
 ---
 
+---
+
+[Gérer une authentification](/tp/php/support.html#utiliser-la-session-pour-gerer-un-espace-d-administration)
+
+---
+
 ## Mise en pratique 4
 
 ### Organiser son code

@@ -1149,6 +1149,61 @@ echo $_COOKIE["monCookie"];
 
 ```
 
+## Utiliser la SESSION pour gérer un espace d'administration
+
+En PHP, il est possible assez simplement de gérer des espaces d'administrations. Les espaces d'administrations sont « des simples pages web », elles sont juste protégées par un login et un mot de passe avant d'entrer sur la page souhaitée.
+
+### Nous pouvons représenter notre problématique tels que :
+
+![UML représentant la tentative d'accès d'un utilisateur](./res/uml-connexion.png)
+
+### Et le code ?
+
+Le code pour écrire une telle problématique est simple, **il se résume à tester une variable de SESSION**.
+
+**Page à protéger**:
+
+```php
+<?php
+    // Vérification si l'utilisateur est connecté
+    if(!isset($_SESSION['user']) || $_SESSION['user'] == ''){
+        // La personne n'est pas connectée, redirection vers la page de connexion
+        header('location: index.php?page=connexion');
+        die();
+    }
+?>
+
+<!-- Le reste de votre page -->
+```
+
+**Page de connexion**:
+
+```php
+<?php
+    if(isset($_POST['login']) && isset($_POST['password'])){
+        // Gestion du login utilisateur
+        // Ici vous implémenter votre logique de connexion (par exemple vérification en base de données, ou un simple test, etc…)
+
+        // Bien évidement c'est un exemple.
+        // UTILISER UNE BASE DE DONNÉES À LA PLACE !!
+        if($_POST['login'] == 'admin' && $_POST['password'] == "SPHHIBGjXKqkTubwIY1JZv6hukaMBH3"){
+            // Si les informations saisies par l'utilisateur corresponds, celui-ci est maintenant connecté
+            $_SESSION['user'] = 'admin';
+            header('location: index.php?page=home'); // Redirection de l'utilisateur car correctement connecté.
+            die();
+        } else {
+            unset($_SESSION['user']);
+        }
+    }
+?>
+
+<form action="index.php?page=connexion" method="post">
+    <input type="text" name="login" placeholder="Votre Login" />
+    <input type="password" name="password" placeholder="Votre mot de passe" />
+    <input type="submit" value="Me connecter">
+</form>
+```
+
 ## La structure
 
 Je pense vraiment que l'organisation du code est aussi importante que le code en lui-même. Organiser son code permet d'y voir clair et ainsi permettre de se focaliser sur l'important le code (CSS, PHP, JavaScript, etc.)

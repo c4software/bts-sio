@@ -193,6 +193,28 @@ echo gateauHugette(50);
 // Je vais afficher à l'écran "Cuire 50 minutes le mélange de 453 gramme.";
 ```
 
+## Redirection d'un utilisateur
+
+```php
+    <?php
+        // Redirection vers Google
+        header('location: https://www.google.com');
+        die();
+    ?>
+
+    <?php
+        // Redirection vers une page de votre site
+        header('location: ./connexion.php');
+        die();
+    ?>
+
+    <?php
+        // Redirection vers une page de votre site avec des paramètres.
+        header('location: index.php?page=connexion');
+        die();
+    ?>
+```
+
 ## Exemple simple
 
 Exemple de fichier PHP avec traitement, accessible via un lien du type :
@@ -223,4 +245,59 @@ while($phrase < $nb_lignes){
     echo "<p>" . $a_ecrire . "</p>";
     $phrase = $phrase + 1; // équivalent à $phrase++;
 }
+```
+
+## Gestion basique d'une authentification
+
+En PHP, il est possible assez simplement de gérer des espaces d'administrations. Les espaces d'administrations sont « des simples pages web », elles sont juste protégées par un login et un mot de passe avant d'entrer sur la page souhaitée.
+
+### Nous pouvons représenter notre problématique tels que :
+
+![UML représentant la tentative d'accès d'un utilisateur](./uml-connexion.png)
+
+### Et le code ?
+
+Le code pour écrire une telle problématique est simple, **il se résume à tester une variable de SESSION**.
+
+**Page à protéger**:
+
+```php
+<?php
+    // Vérification si l'utilisateur est connecté
+    if(!isset($_SESSION['user']) || $_SESSION['user'] == ''){
+        // La personne n'est pas connectée, redirection vers la page de connexion
+        header('location: index.php?page=connexion');
+        die();
+    }
+?>
+
+<!-- Le reste de votre page -->
+```
+
+**Page de connexion**:
+
+```php
+<?php
+    if(isset($_POST['login']) && isset($_POST['password'])){
+        // Gestion du login utilisateur
+        // Ici vous implémenter votre logique de connexion (par exemple vérification en base de données, ou un simple test, etc…)
+
+        // Bien évidement c'est un exemple.
+        // UTILISER UNE BASE DE DONNÉES À LA PLACE !!
+        if($_POST['login'] == 'admin' && $_POST['password'] == "SPHHIBGjXKqkTubwIY1JZv6hukaMBH3"){
+            // Si les informations saisies par l'utilisateur corresponds, celui-ci est maintenant connecté
+            $_SESSION['user'] = 'admin';
+            header('location: index.php?page=home'); // Redirection de l'utilisateur car correctement connecté.
+            die();
+        } else {
+            unset($_SESSION['user']);
+        }
+    }
+?>
+
+<form action="index.php?page=connexion" method="post">
+    <input type="text" name="login" placeholder="Votre Login" />
+    <input type="password" name="password" placeholder="Votre mot de passe" />
+    <input type="submit" value="Me connecter">
+</form>
 ```
