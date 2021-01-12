@@ -8,6 +8,8 @@ Nous allons maintenant voir la base de données via le PHP. La base de données 
 
 ::: warning Un instant
 La base de données est un vaste sujet. Nous avons ici une introduction à ce qu'il faut connaitre au minimum pour avancer dans nos différents projets.
+
+[Voir l'aide mémoire SQL](/cheatsheets/sql/)
 :::
 
 ## Introduction

@@ -63,6 +63,7 @@ SELECT COUNT(id), age FROM t GROUP BY age HAVING age > 18;
 ## Obtenir des données depuis _plusieurs tables_
 
 ![SQL Join](./sql_join.png)
+git
 
 ```sql
 -- Left join t1 and t2
