@@ -195,6 +195,8 @@ echo gateauHugette(50);
 
 ## Redirection d'un utilisateur
 
+En PHP vous pouvez rediriger l'utilisateur d'une page à l'autre assez simplement.
+
 ```php
     <?php
         // Redirection vers Google
@@ -214,6 +216,10 @@ echo gateauHugette(50);
         die();
     ?>
 ```
+
+::: tip die ?
+La fonction `die()` permet d'arrête l'exécution de la suite du script. Dans le cadre d'une redirection ça permet d'être certains que la suite du code ne sera pas exécutée.
+:::
 
 ## Exemple simple
 

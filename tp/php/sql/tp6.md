@@ -121,8 +121,9 @@ Pour cette étape vous avez deux solutions :
     $res = $stmt->execute([$_GET['id']]);
     $videos = $res->fetchAll(\PDO::FETCH_ASSOC);
 
+    // La vidéo demandé n'existe pas.
     if(!$videos){
-        // Aucune vidéo trouvée
+        // On redirige l'utilisateur vers la home
         header('location: ./');
         die();
     }
