@@ -314,6 +314,8 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
 
 ## Le PHP et la base de données
 
+Si vous souhaitez l'aide mémoire pour [la partie SQL c'est par ici](/cheatsheets/sql/)
+
 ### Le code de connexion
 
 Ce code est à mettre dans un fichier `utils/db.php`, il suffira de l'inclure dans les pages où vous souhaiter faire des requêtes.
