@@ -6,6 +6,10 @@ Aide mémoire sur les structures PHP. Vous retrouverez dans cet aide mémoire le
 Cet aide mémoire n'est pas exhaustif, elle ne contient que le minimum à connaitre pour débuter sereinement.  
 :::
 
+::: details Table des matières
+[[toc]]
+:::
+
 ## Structure
 
 Pour être exécuté votre code doit-être dans un fichier nommé `quelqueschoses.php` et doit être mis tel que :
@@ -253,7 +257,7 @@ while($phrase < $nb_lignes){
 }
 ```
 
-## Gestion basique d'une authentification
+## Gestion basique d'une authentification « Simple »
 
 En PHP, il est possible assez simplement de gérer des espaces d'administrations. Les espaces d'administrations sont « des simples pages web », elles sont juste protégées par un login et un mot de passe avant d'entrer sur la page souhaitée.
 
@@ -307,3 +311,52 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
     <input type="submit" value="Me connecter">
 </form>
 ```
+
+## Le PHP et la base de données
+
+### Le code de connexion
+
+Ce code est à mettre dans un fichier `utils/db.php`, il suffira de l'inclure dans les pages où vous souhaiter faire des requêtes.
+
+```php
+// Cette partie est à customiser
+$server = "localhost";
+$db = "VOTRE-BDD";
+$user = "utilisateur";
+$passwd = "mot-de-passe";
+// Fin de la partie customisable
+
+// Cette partie est générique à l'ensemble de vos projets utilisant une base de données.
+$dsn = "mysql:host=$server;dbname=$db";
+$pdo = new PDO($dsn, $user, $passwd);
+```
+
+### Faire une requête SIMPLE (sans paramètre(s))
+
+```php
+// ATTENTION ATTENTION : Cette ligne ne doit être mise qu'une seule fois.
+include('./utils/db.php');
+
+// Requêtes SQL que nous souhaitons jouer.
+$results = $pdo->query("SELECT * FROM votreTable")->fetchAll(\PDO::FETCH_ASSOC);
+```
+
+### Faire une requête préparée (avec des paramètres)
+
+```php
+// ATTENTION ATTENTION : Cette ligne ne doit être mise qu'une seule fois.
+include('./utils/db.php');
+
+// Requête préparée :
+$results = $pdo->query()->fetchAll(\PDO::FETCH_ASSOC);
+$stmt= $pdo->prepare("SELECT * FROM phrases WHERE id = ?");
+$stmt->execute([22]); // Paramètre qui va remplacer le « ? ».
+$results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+```
+
+::: tip
+Dans quel cas utiliser l'un, et dans quel cas utiliser l'autre ? C'est simple, vous avez des valeurs variables (paramètres, saisie utilisateur, etc.) ?
+
+- **OUI** : Requête préparée.
+- **NON** : Requête classique.
+  :::

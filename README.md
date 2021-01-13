@@ -14,7 +14,6 @@ Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM
 - Introduction au développement sécurisé.
 - Laravel, PHP & Framework.
 - VueJS.
-- Découverte du développement hybride.
 
 ## Contenu
 
