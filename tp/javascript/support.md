@@ -763,6 +763,15 @@ Nous avons deux façons d'attacher les évènements :
 Simple ? Compliqué ? En réalité, comme beaucoup de choses du WEB la pratique vous donnera l'habitude de manipuler le JS. Il deviendra pour vous une véritable seconde nature :tada:.
 :::
 
+Nous avons vu ici comment utiliser l'évènement `click`, mais la liste des possibilités [est bien plus longue](https://developer.mozilla.org/fr/docs/Web/Events), sans rentrer dans le détail, nous avons :
+
+- dblclick
+- mousemove, mouseup
+- keyup, keydown, …
+- userproximity
+
+La liste est vraiment « très très » longue.
+
 ## Mise en pratique
 
 Cette partie est importante. Trêve de bavardage ! [Place à la pratique](./tp3.md)
@@ -816,7 +825,7 @@ La seconde façon va être en utilisant jQuery :
 - $.post
 
 ::: danger Comment choisir ?
-J'ai toujours tendance à préférer la version « Native ». MAIS, si vous avez déjà jQuery dans votre site? N'hésitez pas à utiliser la version jQuery.
+J'ai toujours tendance à préférer la version « Native ». **MAIS**, si vous avez déjà jQuery dans votre site? N'hésitez pas à utiliser la version jQuery.
 :::
 
 ### Mettre en pratique l'Ajax
@@ -827,9 +836,74 @@ L'Ajax c'est un gros morceau, tellement gros, qui serait possible d'y passer des
 
 ## Allons un peu plus loin
 
+Le JavaScript comme le PHP est un langage avec énormément de possibilités. Nous avons ici effleuré ce qui était possible de faire, il faut savoir que le JavaScript est un langage un peu particulier il permet de faire ce que l'on appelle dans le monde du développement du « Full-Stack ». Le JS est un langage à la fois Serveur et Client (web), vous pouvez donc réaliser :
+
+- Des sites web (JavaScript)
+- Des applications Web (VueJS, ReactJS, progressive Web App)
+- Des applications d'ordinateur (Electron)
+- Mais également du code serveur (API, scripts, etc)
+
+Et tout ça avec un seul langage !
+
 ### Se « balader » dans le DOM
 
-- Parent
-- etc.
+Revenons à ce qui nous intéresse le JavaScript dans un navigateur, vous avez la possibilité de naviguer dans le DOM HTML grace au JavaScript. Nous allons pouvoir écrire des choses comme :
+
+```html
+<section id="section1">
+  <h1 id="titre">Ceci est un titre</h1>
+  <p>Et voilà un texte</p>
+</section>
+
+<section>
+  <h1 id="titre2">Ceci est un titre 2</h1>
+  <p>Et voilà un texte</p>
+</section>
+
+<script>
+  let titre1 = document.getElementById("titre1");
+  titre1.parentElement; // Va retourner l'élément section parent
+
+  let section1 = document.getElementById("section1");
+  section1.firstChild; // Va retourner le premier enfant de la section1, soit le h1
+</script>
+```
+
+Nous avons vu qu'un exemple en fonction des cas, et surtout grâce à la documentation vous serez capable de naviguer les yeux fermés dans le DOM de votre HTML.
 
 ### Les sélecteurs jQuery « avancés »
+
+jQuery permet également de naviguer rapidement dans le DOM avec des sélecteurs complexe (comme ceux utilisé en CSS) :
+
+```html
+<section id="section1">
+  <h1 id="titre">Ceci est un titre</h1>
+  <p>Et voilà un texte</p>
+</section>
+
+<section>
+  <h1 id="titre2">Ceci est un titre 2</h1>
+  <p>Et voilà un texte</p>
+</section>
+
+<script>
+  let h1 = $("#section1 > h1"); // Retourne le H1 présent dans la section1
+
+  let h1bis = $("section > h1"); // Retourne l'ensemble des H1 présent dans les éléments section (c'est donc un tableau)
+
+  let h1ter = $("#section1:first-child"); // Retourne le premier enfant dans l'élément avec comme id section1, soit le titre
+</script>
+```
+
+Nous avons vu qu'un exemple en fonction des cas, et surtout grâce à la documentation vous serez capable de naviguer les yeux fermés dans le DOM de votre HTML.
+
+### L'inspecteur d'éléments
+
+Votre inspecteur d'éléments (Chrome, Firefox, Safari) est très performant. Il vous permet de rapidement débugguer / écrire vos scripts JavaScript :
+
+- La console permet de voir les erreurs.
+- La console permet également d'écrire du code JS.
+- Si vous sélectionnez un élément dans le HTML. Vous avez une variable `$0` dans la console qui va contenir l'élément courant. Pratique!
+- Le code est autocomplété avec le même raccourci que votre IDE (ctrl+espace)
+
+Testons ensemble.
