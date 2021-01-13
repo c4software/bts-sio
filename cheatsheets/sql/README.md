@@ -126,3 +126,7 @@ DELETE FROM utilisateurs WHERE id = 1;
 ::: danger ATTENTION
 Attention !!! Si vous oubliez le **WHERE** vous allez vider l'ensemble de la table. (Et aucun retour en arrière possible)
 :::
+
+## SQL et PHP ?
+
+PHP intègre nativement le connecteur permettant d'attaquer les bases de données les plus connues, vous avez des exemples [d'utilisations disponibles ici](/cheatsheets/php/#le-php-et-la-base-de-donnees)

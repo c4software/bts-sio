@@ -376,7 +376,6 @@ $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 // Requête classique
 $results = $pdo->query("SELECT * FROM phrases")->fetchAll(\PDO::FETCH_ASSOC);
-
 ```
 
 ## Pratiquer
