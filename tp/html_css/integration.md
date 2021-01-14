@@ -15,12 +15,16 @@ Vous aurez certainement besoin de ressources, voilà une liste d'élément pouva
 - [Material.io](https://material.io/color/#!/?view.left=0&view.right=0&primary.color=F06292&secondary.color=E91E63)
 - [Materialdesignicons](https://materialdesignicons.com/)
 - [Dribble.com](https://dribbble.com/)
+- [unsplash](https://unsplash.com/) <- Des images libres de droits
+- [Des illustrations](https://icons8.com/illustrations?ref=lapaninja)
+- [Rappel sur design](https://atlassian.design/)
 - [Bootstrap](https://getbootstrap.com/) <- Un standard
 - [Tailwind](https://tailwindcss.com/) <- À creuser
 
 _Prototypage :_
 
 - [Figma](https://www.figma.com/)
+- [Rappel sur le centrage en CSS](https://web.dev/centering-in-css/)
 
 _Icones :_
 
