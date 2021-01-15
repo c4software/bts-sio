@@ -43,6 +43,16 @@ Maintenant que nous avons une page vide disposant de Bootstrap, je vous propose 
 
 C'est templates [sont disponibles dans le menu de la documentation](https://getbootstrap.com/docs/4.5/examples/).
 
+::: tip Pourquoi ? Quand ?
+« Copier ≠ ne pas travailler » nous en avons parlé, mais c'est toujours un rappel important. Dans notre cas, Bootstrap nous propose des templates / gabarit déjà faits. Ils sont là pour :
+
+- Vous faire gagner du temps.
+- Améliorer la qualité de vos sites Internet.
+- Vous montrer comment intégrer les éléments de Boostrap.
+
+N'hésitez pas à vous en servir dans vos développements. Ils sont [disponible ici](https://getbootstrap.com/docs/4.5/examples)
+:::
+
 Faite votre choix, une fois que vous avez choisis regarder le code par exemple avec [du starter Template](https://getbootstrap.com/docs/4.5/examples/starter-template/)
 
 ## Mise en place d'une NavBar

@@ -768,9 +768,25 @@ Le principe de fonctionnement repose sur un système de colonne(s) _ou_ de ligne
 
 [Plus de détail](https://developer.mozilla.org/fr/docs/Apprendre/CSS/CSS_layout/Flexbox)
 
+### Mettre en pratique un « Framework »
+
+À partir de maintenant nous avons vu les bases de la CSS, je vous propose d'utiliser un framework qu'énormément de développeurs Web utilisent à savoir « Boostrap »
+
+[Réaliser un site avec Bootstrap](./bootstrap.md)
+
+::: tip Pourquoi ? Quand ?
+« Copier ≠ ne pas travailler » nous en avons parlé, mais c'est toujours un rappel important. Dans notre cas, Bootstrap nous propose des templates / gabarit déjà faits. Ils sont là pour :
+
+- Vous faire gagner du temps.
+- Améliorer la qualité de vos sites Internet.
+- Vous montrer comment intégrer les éléments de Boostrap.
+
+N'hésitez pas à vous en servir dans vos développements. Ils sont [disponible ici](https://getbootstrap.com/docs/4.5/examples)
+:::
+
 ### La révolution du grid
 
-Le flex répond à beaucoup de problématique… Mais pas à toutes ! Il y a des cas où nous voulons faire un layout complexe, ou les éléments sont agencés en ligne et en colonnes en même temps.
+Le flex répond à beaucoup de problématique… Mais pas à toutes ! Il y a des cas où nous voulons faire un layout complexe, où les éléments sont agencés en ligne et en colonnes en même temps.
 
 ![Grid](./res/grid.png)
 
