@@ -135,7 +135,9 @@ Je vous laisse mettre en place le code sur votre ordinateur.
 ::: tip API ?
 Ce que vous venez de créer est une API. Une API, est le coeur de beaucoup de système moderne. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
 
-Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser si vous le souhaitez différent client pour la même données (exemple Twitter avec des clients multiplateformes)
+Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser si vous le souhaitez différent client pour la même données (exemple Twitter avec des clients multiplateformes).
+
+Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simplement, car l'API va être universelle; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif.
 :::
 
 ### Regardons d'autres site.
