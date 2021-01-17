@@ -790,6 +790,12 @@ L'Ajax en 2020 va donc nous permettre de créer de vraies applications. Ces appl
 
 Bref, vous allez le voir, l'Ajax deviendra très rapidement une pierre angulaire de vos développements, et nous le verrons plus tard avec des frameworks web (comme VueJS) il serra possible de créer des applications « dynamique » sans avoir à écrire une seule ligne de PHP (ou autre langage serveur).
 
+::: tip Un INSTANT !
+Une API ? What ? Alors, une API dans le fond c'est « comme un site web ». Mais, cette page web ne produit pas du HTML et n'a pas pour vocation d'être lue par un humain.
+
+C'est donc du code (PHP ou autre) qui va permettre de faire parler deux ordinateurs (le client et le serveur) dans un langage spécifique (XML, JSON, …)
+:::
+
 ### L'asynchrone c'est quoi ?
 
 Avant d'aller plus loin, détaillons un peu ce que veut dire Asynchrone. L'objectif de L'Ajax est de charger / recharger une partie de votre page sans l'intervention de l'utilisateur et surtout sans que celui-ci ne recharge « L'ensemble du site ». C'est donc une opération transparente pour lui, mais vous allez le voir cette opération ne sera pas transparent pour vous.

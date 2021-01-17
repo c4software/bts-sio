@@ -158,7 +158,7 @@ Nous avons créé deux cas « de tests », je vous propose de le mettre en place
 - Une page `tv.php` ayant pour but l'affichage de la vidéo souhaité.
 
 ::: tip Vous n'avez pas le code source ?
-Celui-ci est [disponible ici](TODO). Il pourra vous servir de base de travail.
+Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure.zip). Il pourra vous servir de base de travail.
 :::
 
 ### La page `home.php`
@@ -180,8 +180,15 @@ L'avantage de découper le traitement comme ça. C'est que nous pourrions très 
 Comment allons-nous procéder ?
 
 - Dans un premier temps, nous allons regarder le fonctionnement du site actuel.
-- Puis, nous allons supprimer la partie « qui affiche les vidéos » en PHP. Nous allons tester que notre code fonctionne toujours, mais en n’affichant aucune vidéo.
-- TODO LA SUITE
+- Puis, nous allons supprimer la partie « qui affiche les vidéos » en PHP. Nous testerons que notre code fonctionne toujours, mais en n’affichant aucune vidéo.
+- Nous allons par la suite créer deux API. Leur but ? Retourner uniquement le contenu (au format JSON bien entendu)
+- Puis nous appellerons nos API en Ajax grâce à Fetch depuis nos pages.
+
+::: tip Un INSTANT !
+Une API ? What ? Alors, une API dans le fond c'est « comme un site web ». Mais, cette page web ne produit pas du HTML et n'a pas pour vocation d'être lue par un humain.
+
+C'est donc du code (PHP ou autre) qui va permettre de faire parler deux ordinateurs (le client et le serveur) dans un langage spécifique (XML, JSON …)
+:::
 
 ## Allons plus loin
 

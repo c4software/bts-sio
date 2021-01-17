@@ -1254,7 +1254,7 @@ include('common/header.php');
 $whitelist = array('home','bart');
 
 // Gestion de l'affichage de la page demandée
-if(in_array($_GET['page'], $whitelist)) {
+if(isset($_GET['page']) && in_array($_GET['page'], $whitelist)) {
   include("pages/" . $_GET['page'] . '.php');
 } else {
   include('pages/home.php');
