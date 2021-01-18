@@ -28,3 +28,8 @@ Plan à détailler :
   - RecyclerView.
   - Android Material Design.
   - …
+- Les animations
+  - Automatique `animationLayoutChange`
+  - Les nouvelles animations (Motion Layout, https://developer.android.com/studio/write/motion-editor)
+  - Les gifs
+  - Les « transitions » : `DropImage.animate() .translationYBy(450F) .setDuration(1500) .start();`
