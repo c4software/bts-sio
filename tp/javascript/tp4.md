@@ -4,7 +4,7 @@ Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux exemples.
 
 ## Introduction
 
-L'ajax est vraiment le coeur de nos sites Internet moderne. On le retrouve dans des simples chats comme dans des applications « complexes ». Avec l'avènement des PWA nous utilisons maintenant l'Ajax comme nous pouvons utiliser une API dans une application classique.
+L'Ajax est vraiment le coeur de nos sites Internet moderne. On le retrouve dans de simples chats comme dans des applications « complexes ». Avec l'avènement des PWA, nous utilisons maintenant l'Ajax comme nous pouvons utiliser une API dans une application classique.
 
 Nous allons utiliser à nouveau la Greta TV comme base de code. Nous allons rendre dynamique la page d'accueil pour que celle-ci puisse être chargée via un appel réseau asynchrone (Ajax).
 
@@ -128,72 +128,30 @@ _Contenu dynamique_ `monContenuAsynchrone.php` :
 
 Je vous laisse mettre en place le code sur votre ordinateur.
 
-- Quels différence notez vous par rapport au précédent exemple ?
+- Quelles différences notez-vous par rapport au précédent exemple ?
 - À quoi correspond le `header` ?
 - `json_encode` ? À quoi sert cette fonction ?
 
 ::: tip API ?
-Ce que vous venez de créer est une API. Une API, est le coeur de beaucoup de système moderne. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
+Ce que vous venez de créer est une API. Une API est le coeur de beaucoup de systèmes moderne. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
 
-Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser si vous le souhaitez différent client pour la même données (exemple Twitter avec des clients multiplateformes).
+Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser si vous le souhaitez différent client pour la même donnée (exemple Twitter avec des clients multiplateformes).
 
 Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simplement, car l'API va être universelle; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif.
 :::
 
-### Regardons d'autres site.
+### Regardons d'autres sites.
 
-Nous avons vu qu'il était possible assez simplement de charger de contenu de manière asynchrone. Ce chargement asynchrone est la base du web que vous pratiquez tous les jours (sans vous en rendre compte). Maintenant que vous savez ça je vous propose une petite expérimentation :
+Nous avons vu qu'il était possible assez simplement de charger de contenu de manière asynchrone. Ce chargement asynchrone est la base du web que vous pratiquez tous les jours (sans vous en rendre compte). Maintenant que vous savez ça, je vous propose une petite expérimentation :
 
-- Rendez-vous sur GMAIL, constatez que le chargement est fait « de manière asynchrone », et que seul l'intérieure change.
+- Rendez-vous sur GMAIL, constatez que le chargement est fait « de manière asynchrone », et que seul l'intérieur change.
 - Idem sur Facebook (ou instagram Web)
 - Idem sur Twitter
 
-Nous allons maintenant regarder ce qu'il se passe « à l'intérieure » (dans le code), grâce à `l'inspecteur d'éléments` vous allez pouvoir entrevoir ce qu'il se passe. Rendez-vous sur par exemple `Facebook`, puis ouvrez l'inspecteur :
+Nous allons maintenant regarder ce qu'il se passe « à l'intérieur » (dans le code), grâce à `l'inspecteur d'éléments` vous allez pouvoir entrevoir ce qu'il se passe. Rendez-vous sur par exemple `Facebook`, puis ouvrez l'inspecteur :
 
 ![Inspecteur sur Facebook](./res/inspecteur_fb.png)
 
-## Adaptons le code pour « la Greta TV »
+## Concrètement dans un site existant
 
-Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant. Nous avons réalisé un site la GRETA TV, ce site comportait **«deux pages** :
-
-- Une page d'accueil `home.php`, qui affiche la liste des vidéos.
-- Une page `tv.php` ayant pour but l'affichage de la vidéo souhaité.
-
-::: tip Vous n'avez pas le code source ?
-Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure.zip). Il pourra vous servir de base de travail.
-:::
-
-### La page `home.php`
-
-Nous allons rendre dynamique la page d'accueil `home.php`, dans le sens où :
-
-- Notre serveur va générer une page « Vide » (c'est-à-dire sans la liste de vidéos).
-- Notre navigateur va, via un appel Ajax charger la liste des vidéos, et se charger en JavaScript de l'affichage de la liste.
-
-::: tip Pourquoi faire ça ?
-L'avantage de découper le traitement comme ça. C'est que nous pourrions très simplement créer un client « Mobile », et ça sans toucher au code de notre serveur. Pleins d'avantages :
-
-- Code unique pour le Web et les autres plateformes
-- Centralisation de la logique dans un code dédié à la récupération « du contenu » (les vidéos en l'occurrence).
-- Approche microservices, nous pouvons donc héberger notre site Internet sur une autre plateforme que l'API.
-
-:::
-
-Comment allons-nous procéder ?
-
-- Dans un premier temps, nous allons regarder le fonctionnement du site actuel.
-- Puis, nous allons supprimer la partie « qui affiche les vidéos » en PHP. Nous testerons que notre code fonctionne toujours, mais en n’affichant aucune vidéo.
-- Nous allons par la suite créer deux API. Leur but ? Retourner uniquement le contenu (au format JSON bien entendu)
-- Puis nous appellerons nos API en Ajax grâce à Fetch depuis nos pages.
-
-::: tip Un INSTANT !
-Une API ? What ? Alors, une API dans le fond c'est « comme un site web ». Mais, cette page web ne produit pas du HTML et n'a pas pour vocation d'être lue par un humain.
-
-C'est donc du code (PHP ou autre) qui va permettre de faire parler deux ordinateurs (le client et le serveur) dans un langage spécifique (XML, JSON …)
-:::
-
-## Allons plus loin
-
-Mise en place d'un thème en fonction de l'ID sur la page `tv`.
-
-TODO
+Nous avons fait deux pages de tests, je vous propose de faire la même chose, mais dans un code plus complet [→ La suite est par ici ←](./tp4.1.md)

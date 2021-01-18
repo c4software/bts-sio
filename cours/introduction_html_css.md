@@ -19,7 +19,11 @@
 
 <SlidesDeck src="responsive" />
 
-- [Bootstrap, test & mise en pratique](/tp/html_css/tp4.md)
+- [Mise en pratique responsive](/tp/html_css/tp4.md)
+- [Maquetter un site Internet](/tp/html_css/figma.md)
+- [Bootstrap](/tp/html_css/bootstrap.md)
+- [Integration](/tp/html_css/integration.md)
+- [Projet de fond, mon CV](/tp/html_css/tp5.md)
 
 <!-- <Qcm title='QCM avec titre' :data='{
     "Question 1": ["Réponse 1", "Réponse 2"],

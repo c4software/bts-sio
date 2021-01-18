@@ -82,12 +82,20 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "En + du cours", children: ["cheatsheets/html/", "tp/html_css/support.md", "tp/php/support.md", "tp/php/sql/support.md", "tp/javascript/support.md"] },
-          { title: "HTML + CSS", children: ["cours/introduction_html_css", "tp/html_css/tp1.md", "tp/html_css/tp2.md", "tp/html_css/tp3.md", "tp/html_css/tp4.md", "tp/html_css/tp5.md"] },
+          { title: "HTML + CSS", children: ["cours/introduction_html_css", "tp/html_css/maquette.md"] },
           { title: "PHP", children: ["cours/introduction_php"] },
           { title: "PHP & SQL", children: ["cours/introduction_sql_php"] },
           { title: "Javascript", children: ["cours/introduction_javascript"] },
-          { title: "Librairies", children: ["tp/html_css/bootstrap.md", "tp/html_css/tailwind.md"] },
-          { title: "Intégrations", children: ["tp/html_css/integration.md"] }
+        ]
+      },
+
+      {
+        title: "Le HTML + CSS",
+        initialOpenGroupIndex: -1,
+        children: [
+          { initialOpenGroupIndex: -1, title: "Les TP", children: ["tp/html_css/tp1.md", "tp/html_css/tp2.md", "tp/html_css/tp3.md", "tp/html_css/tp4.md", "tp/html_css/tp5.md"] },
+          { initialOpenGroupIndex: -1, title: "Librairies", children: ["tp/html_css/bootstrap.md", "tp/html_css/tailwind.md"] },
+          { initialOpenGroupIndex: -1, title: "Ressources & Intégrations", children: ["tp/html_css/integration.md"] }
         ]
       },
 
@@ -107,7 +115,7 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "Les bases", children: ["cours/introduction_javascript", "tp/javascript/support.md"] },
-          { title: "Les TP basiques", children: ["tp/javascript/tp1.md", "tp/javascript/tp1.1.md", "tp/javascript/tp1.2.md", "tp/javascript/tp2.md", "tp/javascript/tp3.md", "tp/javascript/tp4.md"] },
+          { title: "Les TP basiques", children: ["tp/javascript/tp1.md", "tp/javascript/tp1.1.md", "tp/javascript/tp1.2.md", "tp/javascript/tp2.md", "tp/javascript/tp3.md", "tp/javascript/tp4.md", "tp/javascript/tp4.1.md"] },
           { title: "Javascript avancé", children: ["cours/javascript_avances", "tp/javascript_avances/introduction", "tp/javascript_avances/revision"] },
           { title: "Les frameworks", children: ["cours/framework_javascript", "/tp/javascript_avances/introduction.md", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1.md", "/tp/vuejs/vuetify-vuejs.md", "/tp/vuejs/firebase-vuejs.md"] }
         ]
