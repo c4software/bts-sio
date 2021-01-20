@@ -1,5 +1,7 @@
 # Introduction JavaScript
 
+## Côté Client
+
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
 ---
@@ -14,4 +16,4 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Oui !
 
-### Mais cette fois côté client
+### Mais cette fois-ci directement dans le navigateur

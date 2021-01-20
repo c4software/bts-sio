@@ -140,6 +140,23 @@ Une API va nous permettre de séparer la logique entre client et serveur afin de
 Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simplement, car l'API va être universelle; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif.
 :::
 
+### Et avec jQuery ?
+
+Nous avons vu la version VanillaJS, voilà la version jQuery :
+
+```js
+setTimeout(() => {
+  $.get("./monContenuAsynchrone.php", (data) => {
+    $("#contenuAsynchrone").html(content);
+  });
+}, 5000);
+```
+
+C'est à vous, je vous laisse :
+
+- Mettre jQuery.
+- Ajouter le code au bon endroit.
+
 ### Regardons d'autres sites.
 
 Nous avons vu qu'il était possible assez simplement de charger de contenu de manière asynchrone. Ce chargement asynchrone est la base du web que vous pratiquez tous les jours (sans vous en rendre compte). Maintenant que vous savez ça, je vous propose une petite expérimentation :

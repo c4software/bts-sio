@@ -71,6 +71,7 @@ module.exports = {
           ["cheatsheets/html/", "Html"],
           ["cheatsheets/php/", "PHP"],
           ["cheatsheets/sql/", "SQL"],
+          ["cheatsheets/javascript/", "JavaScript"],
           ["cheatsheets/cordova/", "Cordova"],
           ["cheatsheets/docker/", "Docker"],
           ["cheatsheets/vuejs/", "VueJS"]

@@ -397,13 +397,24 @@ Un langage de programmation est prévu pour manipuler des données. Pour le Java
 Aucune différence par rapport à ce que nous avons précédemment vu ensemble :
 
 ```javascript
-if (true) {
-  // Condition toujours vrai
+// Exemple 1
+let age = 18;
+if (age > 18) {
+  alert("Coucou je suis une alerte");
 }
 
-let i = 1;
-if (i > 10) {
-  // Condition toujours fausse
+// Exemple 2
+let estMajeur = true;
+if (estMajeur) {
+  // Est équivalent à estMajeur == true
+  alert("La personne est majeur");
+}
+
+// Exemple 3
+if (maFonctionDeTest() == true) {
+  alert(
+    "la fonction est appelé, et si celle-ci « return » true l'alert est affiché"
+  );
 }
 ```
 
@@ -417,6 +428,20 @@ while (true) {
 for (let i = 0; i < 3; i++) {
   alert(i);
 }
+
+const arr = [1, 2, 3, 4];
+
+// Parcours l'ensemble du tableau
+arr.forEach((i) => {
+  alert(i);
+});
+
+// Transforme le tableau
+arrModif = arr.map((i) => {
+  return i * 2;
+});
+
+// arrModif contiendra => [2, 4, 6, 8];
 ```
 
 ### Les fonctions
@@ -424,9 +449,24 @@ for (let i = 0; i < 3; i++) {
 Nous pouvons déclarer des fonctions en JS :
 
 ```js
+// Déclarer / Créer une fonction
 function maFonction() {
-  return Math.random();
+  alert("test");
 }
+
+// Déclarer / Créer une fonction
+function maFonctionQuiRetourne42() {
+  return 42;
+}
+
+function addition(a, b) {
+  return a + b;
+}
+
+// L'appeler
+maFonction();
+console.log(maFonctionQuiRetourne42()); // Affiche dans la console 42
+alert(addition(40, 2)); // Affiche une alert avec le résultat de l'addition 40 + 2 => 42
 ```
 
 Elle fonctionne et s'utilise comme ce que nous avons précédemment vu.
@@ -649,6 +689,12 @@ element.insertAdjacentHTML(
   "beforebegin",
   "<h1 class='titleClass'>Ceci est un titre dans l'élément</h1>"
 );
+
+// Exemples d'utilisations
+document.querySelector("#elementId").innerHTML = "Voilà valeur";
+document.querySelectorAll("div").forEach((it) => {
+  it.innerHTML = "Parcours chaque div et remplace le contenu par <=";
+});
 ```
 
 ### Jouer sur la visibilité
