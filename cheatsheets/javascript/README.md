@@ -38,7 +38,7 @@ Je vous invite vraiment à externaliser vos scripts, pourquoi ? Tout simplement 
 
 ## Les librairies
 
-Deux écoles :
+Trois écoles :
 
 - VanillaJS (c'est-à-dire sans aucune librairie)
 - Avec [jQuery](https://jquery.com/)
