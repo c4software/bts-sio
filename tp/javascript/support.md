@@ -763,7 +763,7 @@ Les consignes sont présentes dans les commentaires du code fourni. Je vous lais
 
 ### Mise en pratique
 
-J'ai encore beaucoup parlé! Place à une mise en pratique. Je vous propose de mettre en pratique les sélecteurs [dans un TP regroupant CSS, HTML & JS](./tp2.md)
+J'ai encore beaucoup parlé! Place à une mise en pratique. Je vous propose de mettre en pratique tous que nous avons vu précédement [dans un TP regroupant CSS, HTML & JS](./tp2.md)
 
 [Pour la suite c'est par ici](./tp2.md)
 
@@ -866,10 +866,9 @@ Comme précédemment notre contenu sera chargé depuis un serveur, mais celui-ci
 
 Comme précédemment nous allons voir deux façons de procéder. La première est sans librairie en utilisant uniquement ce que nous propose notre navigateur :
 
-TODO
-
 - Fetch
 - Selecteur
+- Les Promises
 
 La seconde façon va être en utilisant jQuery :
 
@@ -951,7 +950,7 @@ Nous avons vu qu'un exemple en fonction des cas, et surtout grâce à la documen
 
 ### L'inspecteur d'éléments
 
-Votre inspecteur d'éléments (Chrome, Firefox, Safari) est très performant. Il vous permet de rapidement débugguer / écrire vos scripts JavaScript :
+Votre inspecteur d'éléments (Chrome, Firefox, Safari) est très performant. Il vous permet de rapidement déboguer / écrire vos scripts JavaScript :
 
 - La console permet de voir les erreurs.
 - La console permet également d'écrire du code JS.

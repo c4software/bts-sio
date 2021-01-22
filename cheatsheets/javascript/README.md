@@ -154,6 +154,14 @@ Plusieurs façons de faire :
 </script>
 ```
 
+## Filtrer rapidement un tablau
+
+```js
+const arr = [1, 2, 3, 4];
+
+arr.filter((curr) => curr > 2); // --> Retourne un tableau avec seulement les valeurs supérieures à 2
+```
+
 ## Les évènements
 
 | Évènement   | Détail                              |
