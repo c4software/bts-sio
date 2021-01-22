@@ -496,9 +496,13 @@ arr.filter((curr) => curr > 2); // --> Retourne un tableau avec seulement les va
 
 ---
 
-Repose sur ce qu’on l'arbre du DOM (**D**ocument **O**bject **M**odel). Nous parlerons donc d'un Arbre HTML.
+Repose sur un arbre appelé
 
-[La console](/tp/javascript/support.html#le-dom)
+DOM (**D**ocument **O**bject **M**odel).
+
+Nous parlerons donc d'un Arbre HTML.
+
+[La DOM](/tp/javascript/support.html#le-dom)
 
 ---
 
@@ -767,5 +771,11 @@ L'Ajax c'est un gros morceau, tellement gros, qui serait possible d'y passer des
 Nous allons donc réaliser [une première expérimentation](./tp4.md)
 
 ---
+
+## Allons plus loin
+
+- VueJS
+- ReactJS
+- Svelte
 
 [Allons plus loin](/tp/javascript/support.html#allons-un-peu-plus-loin)
