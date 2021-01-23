@@ -723,7 +723,7 @@ C'était un simple exemple… [La liste des évènements possibles bien plus lon
 
 ---
 
-## Incontournable
+# Incontournable
 
 ---
 
@@ -747,7 +747,7 @@ console.log(resultat);
 
 ---
 
-| ![Principe Ajax](./res/ajax.svg) |
+| ![Principe Ajax](./img/ajax.svg) |
 | :------------------------------: |
 |         Source Wikipédia         |
 

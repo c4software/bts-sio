@@ -24,7 +24,7 @@ Si vous ne l'avez pas déjà fait. Je vous conseille vivement d'aller regarder l
 
 :::
 
-Le PHP est un langage serveur permettant la génération de code HTML. Nous entrerons plus en détail ultérieurement sur ces différentes notions.
+Le PHP est un langage serveur permettant notamment la génération de code HTML. Nous entrerons plus en détail ultérieurement sur ces différentes notions.
 
 ## Le fonctionnement
 
@@ -54,7 +54,7 @@ Il y'a deux écoles !
 - Des sites dynamiques types Wordpress.
 - Des forums.
 - Des espaces d'administrations.
-- Des Blogs types Wordpress.
+- Des Blogs (avec là encore des solution comme par exemple Wordpress).
 
 ::: tip Le monde est ni blanc, ni noir…
 
@@ -401,7 +401,7 @@ Ce qu'il faut retenir de ceci, c'est que nous posons une condition (question) à
 
 Les questions que nous allons poser ne vont pas dépendre directement du type de la variable, cependant nous allons voir que le `boolean` est un cas particulier.
 
-### Bon et pose la question comment ?
+### Bon et on pose la question comment ?
 
 La question va être « mathématique », elle va utiliser les éléments suivants :
 

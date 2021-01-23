@@ -23,7 +23,7 @@ Les bases de données relationnelles, est celle que l'on rencontre pour l'instan
 
 Pour faire simple, une base de données « Relationnelle », indique que la structure et les règles de validations de vos données seront portées par votre **moteur de base de données**.
 
-Une base de données relationnelle sera plus ouverte. Elle stocke de l'information sans forcément avoir de structure forte. Votre logique de données et la validation des éléments en base seront traitées par **votre code**.
+Une base de données non relationnelle sera plus ouverte. Elle stocke de l'information sans forcément avoir de structure forte. Votre logique de données et la validation des éléments en base seront traitées par **votre code**.
 
 ![Serveur de base de données](./res/server_bdd.png)
 
@@ -34,7 +34,9 @@ Dans le cours PHP, nous utiliserons des bases de données relationnelles, plus t
 Il existe plusieurs systèmes de base de données (MySQL, Oracle, MariaDB, Postgresql, …). PHP est compatible avec presque tous les systèmes de base de données « connu » et ça par défaut ! Il intègre une API qui s'appelle [PDO](https://www.php.net/manual/fr/book.pdo.php), cette API est de base avec PHP, il suffit juste de l'utiliser.
 
 ::: tip Petite note
-PHP est un langage vivant précédemment les accès aux BDD était effectué par d'autres API. Celle-ci est pour la plupart « obsolète ». Je vous conseille vivement de regarder la documentation officielle au maximum plutôt qu'une recherche Google.
+Après avoir longtemps « stagné » le PHP, depuis quelques années change, s'adapte, se modernise. Les bonnes pratiques en PHP pour l'accès aux Bases de données (BDD) ont changé pour que celle-ci soit plus sécurisée.
+
+Les exemples que vous pourriez trouver en ligne peuvent être pour la plupart « obsolète ». Je vous conseille vivement de regarder la documentation officielle, plutôt qu'une simple recherche Google.
 :::
 
 ![PDO & MYSQLi](./res/pdo_mysqli.jpg)
