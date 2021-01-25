@@ -8,9 +8,8 @@
 
 Dans cette page nous allons détailler la mise en place d'un serveur web « Multi-utilisateur » / « Multi-Projets ». Ce serveur reposera sur une plateforme connue du type Raspberry Pi et sur le système de container Docker. La solution final ressemblera à :
 
-![Version 1](./res/version1.jpg)
-
-![Version 2](./res/version2.jpg)
+| ![Version 1](./res/version1.jpg) | ![Version 2](./res/version2.jpg) |
+| -------------------------------- | -------------------------------- |
 
 ![Dashboard](https://github.com/c4software/rpi-docker-lamp-stack/blob/main/home.png?raw=true)
 
