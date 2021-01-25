@@ -44,7 +44,8 @@ module.exports = {
     protected: {
       pass: 'eseo',
       paths: [
-        "/cours/android.html",
+        "/cours/android_ble.html",
+        "/cours/android_base.html",
         "/tp/android/android-base-tp.html",
         "/tp/android/app-ble-network.html"
       ]
@@ -167,7 +168,16 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "Cordova", children: ["cours/cordova", ["cheatsheets/cordova/", "En + du cours"], "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] },
-          { title: "Android", children: ["cours/android", "/tp/android/android-base-tp", "/tp/android/app-ble-network", "/tp/android/sample-explication"] }
+          {
+            title: "Android",
+            children: [
+              "cours/android_base",
+              "cours/android_ble",
+              { title: "Les bases", children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp"] },
+              { title: "Le BLE", children: ["/tp/android/app-ble-network"] },
+              { title: "L'organisation", children: ["/tp/android/sample-explication"] }
+            ]
+          }
         ]
       },
 

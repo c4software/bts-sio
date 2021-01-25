@@ -1,5 +1,9 @@
 # Découverte des bases d'Android
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Créer un projet
 
 La première étape est la création d'un projet. Pour ça nous allons utiliser « Android Studio » qui est l'IDE à utiliser pour créer une application Android.
