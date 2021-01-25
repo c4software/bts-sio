@@ -22,7 +22,7 @@ L'autre raison est le FTP, celui-ci est volontairement ouvert à toutes les conn
 
 Ce que nous allons installé s'appelle une stack LAMP (Linux, Apache, MySQL, PHP) elle ne diffère pas de celle que vous pouvez installer sur votre ordinateur avec des logiciels tels que (XAMPP ou WAMP ou autres). La seule différence c'est que nous allons dédier une machine pour ça.
 
-[![Vidéo](https://github.com/c4software/rpi-docker-lamp-stack/blob/main/preview.jpg?raw=true)](https://www.youtube.com/watch?v=y7HzFidjKjs)
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/y7HzFidjKjs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Flasher / installer le Raspberry Pi
 
