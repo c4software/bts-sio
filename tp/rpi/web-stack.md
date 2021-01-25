@@ -1,6 +1,6 @@
 # Transformer un Raspberry Pi en server Web
 
-::: details sommaire
+::: details Sommaire
 [[toc]]
 :::
 
