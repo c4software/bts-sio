@@ -84,7 +84,9 @@ sudo apt-get -y install libffi-dev libssl-dev python3-dev python3 python3-pip
 sudo pip3 -v install docker-compose
 ```
 
-À partir de maintenant vous avez l'ensemble des outils permettant de lancer notre serveur LAMP.
+::: tip
+À partir de maintenant vous avez l'ensemble des outils permettant de lancer notre serveur LAMP. D'ailleurs ce que nous avons installé nous permettra de faire bien plus. Il sera possible de lancer n'importe quelle image Docker (pratique ;))
+:::
 
 ## Installer la stack LAMP
 
