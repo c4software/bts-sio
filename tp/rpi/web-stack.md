@@ -31,6 +31,8 @@ La première étape va être d'installer le système d'exploitation de votre Ras
 
 - [Raspberry Pi Imager](https://www.raspberrypi.org/software/)
 
+![Rpi imager](./res/rpi-imager.png)
+
 Pour le choix de la version du système, je vous propose de partir sur celui le plus light possible à savoir « Raspberry Pi OS Lite ».
 
 ::: tip Pas de bureau
