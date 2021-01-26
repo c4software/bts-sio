@@ -41,7 +41,50 @@ La version Lite ne contient aucun environnement de bureau. Il faudra donc active
 
 ### Activer le SSH
 
+Avant de redémarrer le Raspberry Pi avec la carte SD inséré, nous allons activer le SSH sur le « mini-ordinateur ». Pour ça rien de bien compliqué il suffit de créer un fichier nommé `ssh` sur la partition de boot de la carte SD.
+
+```sh
+# Exemple sous mac
+touch /Volumes/boot/ssh
+```
+
+Une fois le fichier créé vous pouvez retirer la Carte SD et l'insérer dans votre Raspberry Pi
+
 ## Installer Docker
+
+Docker n'est pas disponible de base sur l'OS fourni par la fondation. Par contre il est très simple de l'installer grace au système de paquet intégré à Raspbian (pardon Raspberry Pi OS).
+
+```sh
+# Étape 1 : Mettre à jour l'OS
+sudo apt-get update && sudo apt-get upgrade
+
+# Étape 2 : Télécharger et lancer le script d'installation de Docker
+curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+
+# Étape 3 : Autoriser l'utilisateur pi (celui par defaut) à lancer la commande docker
+sudo usermod -aG docker Pi
+```
+
+::: warning Attention danger
+De manière générale lancer **en root** un script téléchargé depuis Internet est une **très mauvaise pratique**.
+:::
+
+## Installer Docker-Compose
+
+Docker compose est un ajout intéressant à Docker, il va nous permettre de définir des « stacks applicatives » à base de différent container Docker. Dans notre cas, ça va être très intéressant en effet un serveur LAMP est en réalité constitué de différents logiciels :
+
+- Apache + PHP.
+- MySQL.
+- Un serveur FTP.
+
+Pour l'installer, il suffit de faire :
+
+```sh
+sudo apt-get -y install libffi-dev libssl-dev python3-dev python3 python3-pip
+sudo pip3 -v install docker-compose
+```
+
+À partir de maintenant vous avez l'ensemble des outils permettant de lancer notre serveur LAMP.
 
 ## Installer la stack LAMP
 
