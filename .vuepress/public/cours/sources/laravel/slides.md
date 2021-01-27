@@ -221,7 +221,7 @@ Route::get('/', function () {
 ## Avec des paramètres
 
 ```php
-Route::get('/demo/{id}', "DemoController@voir");
+Route::get('/demo/{id}', [DemoController::class, "voir"]);
 ```
 
 Consulter la page **/demo/3** chargera automatiquement le bon controller et la bonne méthode en passant le paramètre **3**
@@ -231,7 +231,7 @@ Consulter la page **/demo/3** chargera automatiquement le bon controller et la b
 ## Et pour le POST ?
 
 ```php
-Route::post('/demo/ajout', "DemoController@ajout");
+Route::post('/demo/ajout', [DemoController::class, "ajout");
 ```
 
 ---
