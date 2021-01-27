@@ -219,10 +219,10 @@ Votre base de données est maintenant prête à être utilisée. Vous pouvez all
 Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle.
 
 ```sh
-$ php artisan make:modèle Todos
+$ php artisan make:modl Todos
 ```
 
-La commande va créer le fichier `Todos.php` dans le dossier `app/`.
+La commande va créer le fichier `Todos.php` dans le dossier `app/Models`.
 
 Ajouter dans la class :
 
@@ -340,7 +340,7 @@ Nous allons commencer par définir notre « Template principal » celui-ci va co
 
     @yield('content')
   </body>
-</HTML>
+</html>
 ```
 
 Maintenant que nous avons le contenu, nous devons créer un nouveau fichier.
@@ -580,7 +580,7 @@ Nous allons faire un mapping automatique entre la requête HTTP et le modèle `T
 ```php
 public function saveTodo(Request $request){
     Todos::create($request->all());
-    return redirect()->action('TodosController@liste');
+    return redirect("/");
 }
 ```
 
@@ -604,7 +604,7 @@ public function saveTodo(Request $request){
       $todo->save();
     }
 
-    return redirect()->action('TodosController@liste');
+    return redirect("/");
 }
 ```
 
@@ -617,7 +617,9 @@ Et c'est tout ! Simple non ?
 Pour la route modifier le fichier `routes/web.php` :
 
 ```php
-Route::post('/action/add', "TodosController@saveTodo");
+use App\Http\Controllers\TodosController;
+
+Route::post('/action/add', [TodosController::class, "saveTodo"]);
 ```
 
 #### 🤓 Questions
@@ -668,7 +670,7 @@ public function markAsDone($id){
         $todo->termine = 1;
         $todo->save();
     }
-    return redirect()->action('TodosController@liste');
+    return redirect("/");
 }
 ```
 
@@ -689,7 +691,7 @@ public function deleteTodo($id){
             $todo->delete();
         }
 
-        return redirect()->action('TodosController@liste');
+        return redirect("/");
 }
 ```
 
@@ -738,11 +740,13 @@ Comme vous l'avez constaté, nous utilisons les routes comme une simple URL. Ave
 
 ```php
 <?php
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TodosController;
 
-Route::get('/', "TodosController@liste")->name("todo.list");
-Route::post('/action/add', "TodosController@saveTodo")->name('todo.save');
-Route::get('/action/done/{id}', "TodosController@markAsDone")->name('todo.done');
-Route::get('/action/delete/{id}', "TodosController@deleteTodo")->name('todo.delete');
+Route::get('/', [TodosController::class, "liste"])->name("todo.list");
+Route::post('/action/add', [TodosController::class, "saveTodo"])->name('todo.save');
+Route::get('/action/done/{id}', [TodosController::class, "markAsDone"])->name('todo.done');
+Route::get('/action/delete/{id}', [TodosController::class, "deleteTodo"])->name('todo.delete');
 
 ```
 
