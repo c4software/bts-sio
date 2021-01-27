@@ -43,7 +43,7 @@ Ajouter dans votre PATH la home de composer, exemple :
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 ```
 
-### MacOS (High Sierra)
+### MacOS
 
 Sur la dernière version de MacOS, PHP est déjà disponible en version 7. Il suffit donc d’installer `Composer`, pour l’installer il suffit :
 
@@ -108,7 +108,9 @@ Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir 
 
 ## Modification du template par défaut
 
-Éditer le fichier `resources/views/welcome.blade.php`, ajouter la variable `$titre`. La synthaxe « blade » est la suivante <span v-pre>`{{ $titre }}`</span>. À la ligne 82, ajouter après Laravel « <span v-pre>`{{ $titre }}`</span> ». Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelque chose s'affiche :
+Éditer le fichier `resources/views/welcome.blade.php`, ajouter la variable `$titre`. La synthaxe « blade » est la suivante <span v-pre>`{{ $titre }}`</span>.
+
+Localiser dans le code l'endroit ou le logo de Laravel est affiché. Ajouter en dessous « <span v-pre>`{{ $titre }}`</span> ». Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelque chose s'affiche :
 
 Éditer le fichier `routes/web.php`, transformer :
 
@@ -185,7 +187,11 @@ Créer un nouveau fichier `resources/views/layouts/base.blade.php` avec le conte
     <title>Laravel - @yield('title')</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:100,600"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Styles -->
     <style>
@@ -247,9 +253,7 @@ Créer un nouveau fichier `resources/views/layouts/base.blade.php` avec le conte
       </div>
       @endif
 
-      <div class="content">
-        @yield('content')
-      </div>
+      <div class="content">@yield('content')</div>
     </div>
   </body>
 </html>
@@ -267,9 +271,7 @@ Maintenant que nous avons notre template de base nous allons l’utiliser dans l
 
 ```html
 @extends('layouts.base') @section('title', 'Bienvenue') @section('content')
-<div class="title m-b-md">
-  Laravel
-</div>
+<div class="title m-b-md">Laravel</div>
 
 <div class="links">
   <a href="https://laravel.com/docs">Documentation</a>

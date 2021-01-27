@@ -177,7 +177,7 @@ Application ready! Build something amazing.
 
 ```bash
 $ php artisan
-Laravel Framework 6.X.YZ
+Laravel Framework X.Y.Z
 
 Usage:
 command [options] [arguments]
@@ -470,9 +470,7 @@ Route::get('/', function () {
   <body>
     @section('sidebar') « Section » Sidebard principal @show
 
-    <div class="container">
-      @yield('content')
-    </div>
+    <div class="container">@yield('content')</div>
   </body>
 </html>
 ```
