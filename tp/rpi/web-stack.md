@@ -64,7 +64,7 @@ sudo apt-get update && sudo apt-get upgrade
 curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
 
 # Étape 3 : Autoriser l'utilisateur pi (celui par défaut) à lancer la commande docker
-sudo usermod -aG docker Pi
+sudo usermod -aG docker pi
 ```
 
 ::: warning Attention danger
