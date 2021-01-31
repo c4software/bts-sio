@@ -154,14 +154,22 @@ module.exports = {
       },
 
       {
-        title: "VueJS 2.0",
+        title: "VueJS",
         initialOpenGroupIndex: -1,
         children: [
-          ["cheatsheets/vuejs/", "En + du cours"],
-          { title: "Les bases", children: ["cours/vuejs", "/tp/vuejs/tp0.md", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs", "/tp/vuejs/vuetify-vuejs.md"] },
+          ["cheatsheets/vuejs/", "cours/vuejs", "En + du cours"],
           { title: "Exemples", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"] },
+          {
+            title: "Version 2.0",
+            children: ["/tp/vuejs/tp0.md", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs", "/tp/vuejs/vuetify-vuejs.md"]
+          },
+          {
+            title: "Version 3.0",
+            children: ["tp/vuejs3/vite.md"]
+          }
         ]
       },
+
 
       {
         title: "Le mobile",
