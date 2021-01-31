@@ -793,6 +793,7 @@ export default {
 - Permets la création de projets
 - Rapide
 - Simple
+- Ne fonctionnera que sur les navigateurs « récents »
 
 ---
 

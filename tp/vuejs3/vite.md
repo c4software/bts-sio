@@ -13,6 +13,12 @@ ViteJS est une des nouvelles façons de créer un projet « moderne » avec VueJ
 
 L'ensemble du fonctionnement est détaillé sur [la documentation officielle](https://vitejs.dev/)
 
+::: danger ViteJS est rapide oui…
+Vite est très rapide… mais contrairement à `vue-cli`, `ViteJS` n'a pas pour objectif de faire du code compatible avec les vieux navigateurs (avant ES2015) ; dans la plupart des cas, ça ne pose vraiment aucun problème…
+
+Cependant attention, si vous souhaitez supporter d'ancien navigateur (au hasard IE11), `ViteJS` ne sera pas le bon outil.
+:::
+
 ## Installation / Création du projet
 
 Contrairement aux anciens outils fonctionnement avec VueJS, ViteJS ne nécessite rien d'autre que d'avoir sur votre ordinateur `NodeJS` (minimum 12) et `NPM`. Si c'est le cas pour vous, il vous suffit de saisir dans votre terminal :
