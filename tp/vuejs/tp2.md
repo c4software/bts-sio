@@ -4,6 +4,10 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
 
 ![MVVM](./MVVMPattern.png)
 
+::: details Table des matières
+[[toc]]
+:::
+
 ## MVVM en quelques mots
 
 Non, mais moi je connais que MVC, c’est quoi MVVM ?

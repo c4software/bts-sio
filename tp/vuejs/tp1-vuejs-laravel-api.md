@@ -1,6 +1,10 @@
-# Ajouter VueJS dans un site existant
+# Ajouter VueJS 2.0 dans un site existant
 
 Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration.
+
+::: details Table des matières
+[[toc]]
+:::
 
 L’application existante est une « TodoList » codée avec le Framework Laravel.
 
@@ -200,7 +204,12 @@ Créer un nouveau fichier `resources/views/homevue.blade.php` et y mettre le con
       <!-- Action -->
       <div class="add">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Prendre une note…" v-model="text" />
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Prendre une note…"
+            v-model="text"
+          />
         </div>
       </div>
 
@@ -249,7 +258,9 @@ Même si pour l'instant nous n'avons pas encore fait le code pour appeler les AP
   <li class="list-group-item" v-for="todo in todos">
     <span>@{{ todo.texte }}</span>
     <div class="pull-right action">
-      <span v-if="todo.termine !== '1'" class="btn btn-success"><i class="fas fa-check"></i></span>
+      <span v-if="todo.termine !== '1'" class="btn btn-success"
+        ><i class="fas fa-check"></i
+      ></span>
       <span v-else class="btn btn-danger"><i class="fas fa-trash"></i></span>
     </div>
   </li>
@@ -356,7 +367,7 @@ var app = new Vue({
   data() {
     return {
       todos: [],
-      text: ""
+      text: "",
     };
   },
   beforeMount() {
@@ -370,8 +381,8 @@ var app = new Vue({
     },
     add() {},
     done(todo) {},
-    remove(todo) {}
-  }
+    remove(todo) {},
+  },
 });
 ```
 
@@ -532,7 +543,7 @@ let app = new Vue({
   data() {
     return {
       todos: [],
-      text: ""
+      text: "",
     };
   },
   beforeMount() {
@@ -570,8 +581,8 @@ let app = new Vue({
       fetch(`api/delete/${todo.id}`, { method: "DELETE" }).then(() => {
         app.list();
       });
-    }
-  }
+    },
+  },
 });
 ```
 

@@ -1,6 +1,8 @@
 # Découverte de VueJS 3.0 (avec ViteJS)
 
+::: details Table des matières
 [[toc]]
+:::
 
 ## Introduction
 

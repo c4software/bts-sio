@@ -2,6 +2,10 @@
 
 Dans ce TP nous allons découvrir l'utilisation de VueJS.
 
+::: details Table des matières
+[[toc]]
+:::
+
 ## Initialisation
 
 Ajouter VueJS dans un projet est aussi simple que d'ajouter une librairie. Première étape, créer un fichier `index.html` puis insérer à l'intérieur « une structure HTML 5 »
