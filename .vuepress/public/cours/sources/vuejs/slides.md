@@ -701,12 +701,104 @@ $ vue add vuex
 
 ---
 
-### Un aperçu du futur
+## Un aperçu du futur
 
 - Pourquoi utiliser un bundler (Webpack) ?
 - Et pourquoi ne plus utiliser de bundler ?
 - La solution PikaPKG / Snowpack
 - [Une autre solution par le créateur de vue : « Vite »](https://github.com/vitejs/vite)
+
+---
+
+## VueJS 3.0
+
+- Réécriture.
+- Fonctionnement très similaire.
+- TypeScript intégré.
+- Simplifier l'écriture de « gros composants ».
+
+---
+
+## Gros changement l'observation des données
+
+- La méthode `data()` (à l'ancienne)
+- La méthode `setup()` (nouveau)
+
+---
+
+## L'API de composition
+
+- Définition des données à observer
+- Partager du code « d'initialisation » / « d'observation »
+
+---
+
+### Deux exemples
+
+---
+
+```typescript
+setup: () => {
+  // Déclaration d'une variable « observé » de type Int
+  const count = ref(0);
+
+  // Déclaration d'une seconde variable « observé » de type String
+  const title = ref("Ceci est un titre");
+
+  // Ne pas oublier de retourner les observations afin que VueJS réagisse au changement des variables en question.
+  return { count, title };
+};
+```
+
+---
+
+_En utilisant [vueuse](https://github.com/vueuse/vueuse)_
+
+```typescript
+import { useMouse, usePreferredDark, useLocalStorage } from '@vueuse/core'
+
+export default {
+  setup() {
+    // tracks mouse position
+    const { x, y } = useMouse()
+
+    // is user prefers dark theme
+    const isDark = usePreferredDark()
+
+    // persist state in localStorage
+    const store = useLocalStorage(
+      'my-storage',
+      {
+        name: 'Apple',
+        color: 'red',
+      },
+    )
+
+    return { x, y, isDark, store }
+  }
+})
+```
+
+---
+
+## TypeScript ?
+
+- Permets de typer nos variables.
+- Complètement optionnel (mais je vous le conseille).
+
+---
+
+## ViteJS
+
+- Permets la création de projets
+- Rapide
+- Simple
+
+---
+
+## Mettre en pratique
+
+[VueJS 3.0 + Vite](/tp/vuejs3/vite.md)
 
 ---
 
