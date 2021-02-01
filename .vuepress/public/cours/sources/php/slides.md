@@ -1084,8 +1084,8 @@ Fini les projets « en bordel ».
 ---
 
 - Fonctionner avec un « Entry Point unique ».
-- Utiliser un Routeur.
-- Éviter de plus en plus le mélange HTML / PHP.
+- Utiliser un Routeur / liste blanche
+- Objectif réduire le mélange HTML / PHP.
 
 ---
 
