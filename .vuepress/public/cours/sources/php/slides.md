@@ -1063,6 +1063,14 @@ echo $_COOKIE["monCookie"];
 
 ---
 
+## Mise en pratique
+
+### Pratiquer les SESSIONS & Cookies
+
+[je vous propose de pratiquer un peu la partie session](/tp/php/tp4.html)
+
+---
+
 ## La structure
 
 ### J'organise mon code
@@ -1089,16 +1097,10 @@ Fini les projets « en bordel ».
 
 ---
 
-## Mise en pratique 4
+## Mise en pratique
 
 ### Organiser son code
 
-L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 4](/tp/php/tp3.html).
+L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 3](/tp/php/tp3.html).
 
 ---
-
-## Mise en pratique 4
-
-### Pratiquer les SESSIONS & Cookies
-
-Nous avons maintenant organisé notre code afin que celui-ci soit moins « brouillon », [je vous propose de pratiquer un peu la partie session](/tp/php/tp4.html)
