@@ -728,8 +728,9 @@ $ vue add vuex
 
 ## L'API de composition
 
-- Définition des données à observer
-- Partager du code « d'initialisation » / « d'observation »
+- Définition des données à observer.
+- Partager du code « d'initialisation » / « d'observation ».
+- Partager des méthodes « à ajouter a votre objet Vue ».
 
 ---
 

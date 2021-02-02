@@ -74,7 +74,7 @@ Les deux façons sont **toutes aussi valides l'une que l'autre**. C'est à vous 
 
 ### setup()
 
-Le code de la méthode `setup()` est semblable à n'importe quelles méthodes. Vous écrivez **votre code**, **votre logique** la seule subtilité est que vous allez devoir indiquer à VueJS les variables qu'il va devoir observer.
+Le code de la méthode `setup()` est semblable à n'importe quelles méthodes. Vous écrivez **votre code**, **votre logique** la seule subtilité est que vous allez devoir indiquer à VueJS les variables qu'il va devoir observer ainsi que des méthodes « à ajouter à l'instance ».
 
 Cette déclaration sera aussi simple que d'écrire `ref()`. La fonction / méthodes `ref()` prend un paramètre, celui-ci est la valeur par d'initialisation de la variable.
 
