@@ -362,3 +362,28 @@ Dans quel cas utiliser l'un, et dans quel cas utiliser l'autre ? C'est simple, v
 - **OUI** : Requête préparée.
 - **NON** : Requête classique.
   :::
+
+## Réécriture de lien
+
+Pour ça, il faut créer un fichier `.htaccess` avec comme contenu:
+
+```htaccess
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !index.php
+RewriteRule (.*).html index.php?page=$1 [L,QSA]
+```
+
+Nous pouvons donc maintenant écrire :
+
+- home.html (`index.php?page=home`)
+- bart.html (`index.php?page=bart`)
+- about.html (`index.php?page=about`)
+
+::: tip Comment ça fonctionne ?
+
+Nous avons donc une règle qui indique :
+
+`(.*).html` => `index.php?page=$1 [L,QSA]`
+
+Le `(.*).html` veut dire n'importe quel texte saisi avant le `.html` sera transformé en `index.php?page=$1`. `$1` étant « le n'importe quoi saisi avant le `.html`.
+:::
