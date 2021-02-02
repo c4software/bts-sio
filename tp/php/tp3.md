@@ -166,7 +166,7 @@ Pour ça, il faut créer un fichier `.htaccess` avec comme contenu:
 ```htaccess
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !index.php
-RewriteRule (.*).html index.php?page=$1
+RewriteRule (.*).html index.php?page=$1 [L,QSA]
 ```
 
 Nous pouvons donc maintenant écrire :
