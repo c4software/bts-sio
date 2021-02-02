@@ -156,3 +156,20 @@ Maintenant que nous avons notre nouvelle structure en place, je vous laisse ajou
 - Y mettre un contenu.
 - Ajouter un lien dans le pied de page.
 - Faire en sorte de pouvoir accéder à la page.
+
+## Réécrire les URL
+
+Nous avons vu que les liens ne sont pas très beau. Avec Apache, il est possible de réécrire les liens pour rendre transparent l'opération.
+
+Pour ça, il faut créer un fichier `.htaccess` avec comme contenu:
+
+```htaccess
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !index.php
+RewriteRule (.*).html index.php?page=$1
+```
+
+Nous pouvons donc maintenant écrire :
+
+- home.html (`index.php?page=home`)
+- bart.html (`index.php?page=bart`)
