@@ -159,7 +159,7 @@ Maintenant que nous avons notre nouvelle structure en place, je vous laisse ajou
 
 ## Réécrire les URL
 
-Nous avons vu que les liens ne sont pas très beau. Avec Apache, il est possible de réécrire les liens pour rendre transparent l'opération.
+Nous avons vu que les liens ne sont pas très beaux. Avec Apache, il est possible de réécrire les liens pour rendre transparente l'opération.
 
 Pour ça, il faut créer un fichier `.htaccess` avec comme contenu:
 
@@ -174,3 +174,12 @@ Nous pouvons donc maintenant écrire :
 - home.html (`index.php?page=home`)
 - bart.html (`index.php?page=bart`)
 - about.html (`index.php?page=about`)
+
+::: tip Comment ça fonctionne ?
+
+Nous avons donc une règle qui indique :
+
+`(.*).html` => `index.php?page=$1 [L,QSA]`
+
+Le `(.*).html` veut dire n'importe quel texte saisi avant le `.html` sera transformé en `index.php?page=$1`. `$1` étant « le n'importe quoi saisi avant le `.html`.
+:::
