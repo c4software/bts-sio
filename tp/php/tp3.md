@@ -173,3 +173,4 @@ Nous pouvons donc maintenant écrire :
 
 - home.html (`index.php?page=home`)
 - bart.html (`index.php?page=bart`)
+- about.html (`index.php?page=about`)
