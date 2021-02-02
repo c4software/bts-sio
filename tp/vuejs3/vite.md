@@ -149,14 +149,126 @@ Nous pourrions très bien utiliser uniquement le JavaScript même avec VueJS 3.0
 ## Testons une modification
 
 - Tester la modification de valeur avec l'inspecteur.
-- Proposer l'ajout d'une `ref`.
+- Ajouter une `ref` dans le code.
 - Ajouter du code « interactif » (simple, ref + actions)
-- Utiliser exemple position de la souris [vueuse](https://github.com/vueuse/vueuse)
+- Utiliser par exemple, le tracking de la position de la souris en utilisant [vueuse](https://github.com/vueuse/vueuse)
 
-## Créer un composant « 2.0 » dans une structure « 3.0 »
+## Créer un composant au format « 2.0 » dans une structure « 3.0 »
 
-TODO
+Comme je l'indiquais précédemment… Vous n'êtes pas obligé d'utiliser l'API de composition pour créer un composant avec VueJS 3.0. Vous pouvez tout à fait écrire un composant « à l'ancienne » par exemple :
 
-## Ajouter Vue-Bootstrap
+```vue
+<template>
+  <h1>Ceci est un composant</h1>
+</template>
 
-TODO
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  data() {
+    return {};
+  },
+});
+</script>
+
+<style scoped>
+h1 {
+  color: red;
+}
+</style>
+```
+
+En utilisant le template ☝️. Je vous laisse écrire un composant « à l'ancienne ». Celui-ci doit contenir :
+
+- Un titre.
+- Un bouton.
+- L'action du bouton doit permettre d'incrémenter un compteur à chaque clique.
+
+::: tip Rappel
+Pour ajouter une action sur un bouton, vous pouvez procéder de la manière suivante :
+
+```html
+<input type="button" @click="counter + 1" value="Click ici" />
+```
+
+✋ C'est un exemple bien entendu…
+:::
+
+## Et Vuetify ou VueBootstrap ?
+
+C'est là que le bas blesse… Actuellement pas de Vuetify disponible ni de VueBootstrap pour VueJS 3.0… Mais rien n'est impossible ! Bien au contraire !
+
+Ce que nous n'avons pas de disponible c'est « Les jeux de composants », par contre, aucun problème pour installer / utiliser Bootstrap tel que nous le ferions dans un développement classique.
+
+Je vous propose d'ailleurs de tester… Ajoutons Bootsrap dans notre projet.
+
+::: danger La situation est particulière
+Le texte que vous lisez a été écrit fin 2020, début 2021. Le monde du JS va très vite. Au moment où vous lisez ces lignes. Vuetify, VueBootstrap (ou autre) est peut-être maintenant disponible pour VueJS 3.0
+:::
+
+### Installer bootstrap
+
+Installer Bootstrap, ce n’est pas bien compliqué. Vous avez deux solutions :
+
+- Utiliser le CDN.
+- Installer la dépendance `npm`.
+
+```sh
+npm install bootstrap
+```
+
+::: tip Astuce d'ancien
+Les deux formules sont valides. Je vous propose dans notre cas d'utiliser plutôt `npm`. Pourquoi ? Simplement, car notre projet n'aura comme ça pas de dépendance à Internet pour fonctionner.
+:::
+
+### Déclarer Bootstrap
+
+Nous avons installé bootstrap! Mais celui-ci n'est pas encore actif. Pour l'activer dans notre projet. Il suffit… de l'importer ! Ajouter dans votre fichier `main.ts` la ligne suivante :
+
+```ts
+import "bootstrap/dist/css/bootstrap.css";
+```
+
+Et voilà. Votre projet inclut maintenant Bootstrap 🚀
+
+### Utiliser Bootstrap
+
+Pour l'utilisation de bootstrap il faut se référer à la documentation (vous le saviez déjà, mais je préfère le rappeler). Vue que nous n'avons pas de composant de disponible je vous propose de créer les nôtres :
+
+- Un composant `button`. (Avec comme `props` le `label` et la `color`)
+- Un composant `,card`.
+- Un composant `navbar`.
+
+Pour la `,card` je vais vous aider, nous allons avoir besoin du système de [slot](https://v3.vuejs.org/guide/component-slots.html#slot-content) de VueJS. Notre composant va donc ressembler à :
+
+`card.vue` :
+
+```vue
+<template>
+  <div class=",card">
+    <div class=",card-body">
+      <!-- Notation particulière à VueJS -->
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+export default defineComponent({
+  name: "card",
+});
+</script>
+```
+
+`Utilisation` :
+
+```vue
+<template>
+  <,card> Contenu de ma Card </,card>
+</template>
+```
+
+::: tip C'est à vous
+Je vous laisse créer les 3 composants.
+:::
