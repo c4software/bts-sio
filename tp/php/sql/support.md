@@ -80,7 +80,7 @@ Un MCD repose toujours sur le même principe, c'est un ensemble de « rectangle 
 | ------------------------- |
 | <u>#identifiant (int)</u> |
 | nom (varchar)             |
-| prénom (int)              |
+| prénom (varchar)          |
 
 _Nous avons donc :_
 
