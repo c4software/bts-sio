@@ -4,6 +4,10 @@
 [[toc]]
 :::
 
+::: tip C'est Open-Source
+La solution présentée dans cette page décrit l'installation de la solution Open-Source développée par Valentin Brosseau [disponible sur GitHub](https://github.com/c4software/rpi-docker-lamp-stack)
+:::
+
 ## Introduction
 
 Dans cette page nous allons détailler la mise en place d'un serveur web « Multi-utilisateur » / « Multi-Projets ». Ce serveur reposera sur une plateforme connue du type Raspberry Pi et sur le système de container Docker.
@@ -156,11 +160,22 @@ password: MARIADB|secret
 
 ## Fonctionnement du FTP intégré
 
+Le FTP possède deux modes de fonctionnement :
+
+- Un mode « ouvert à tous » avec des mots de passe autogénérés acceptant l'ensemble des utilisateurs présentant le bon format de mot de passe.
+- Un mode classique reposant sur une liste de comptes « préalablement fournie ».
+
+Nous avons donc un serveur FTP, celui-ci est disponible sur le port 20121 (pourquoi pas sur le port 21 ? Tout simplement pour _réduire_ un piratage…). Il fonctionne comme un FTP classique, vous devez donc utiliser un logiciel du type [Filezilla](https://filezilla-project.org/), [Cyberduck](https://cyberduck.io/).
+
+::: danger À noter
+Les deux modes sont exclusifs, si vous fournissez une liste d'utilisateurs (mode classique) celui-ci remplacera le mode automatique.
+:::
+
+### Mode 1 : Ouvert à tous.
+
 ::: tip IMPORTANT
 Le FTP intégré est un peu particulier. Il est volontairement ouvert à tous, qu'est-ce que ça veut dire concrètement ?
 :::
-
-Nous avons donc un serveur FTP, celui-ci est disponible sur le port 20121 (pourquoi pas sur le port 21 ? Tout simplement pour _réduire_ un piratage…). Il fonctionne comme un FTP classique, vous devez donc utiliser un logiciel du type [Filezilla](https://filezilla-project.org/), [Cyberduck](https://cyberduck.io/).
 
 Pour le fonctionnement, celui-ci accepte n'import quel nom d'utilisateur du moment que le mot de passe fourni respecte le formalisme suivant :
 
@@ -185,6 +200,17 @@ password: RPI|anythingyouwant|LAMP
 ```
 
 Le compte de l'utilisateur est automatiquement créé lors de la première connexion. Dès l'instant que le FTP fonctionne, la partie WEB fonctionnera également 🚀.
+
+### Mode 2 : Le mode classique
+
+Dans le mode classique, vous devez spécifier la liste des utilisateurs ayant accès au FTP. Cette liste est au format `JSON`, le fichier est dans `ftp/users/users.json`. La liste doit-être au format JSON par exemple :
+
+```json
+{
+  "votreUtilisateur": "votreMotDePasse",
+  "votreUtilisateur2": "votreMotDePasse2"
+}
+```
 
 ## Accéder au site web
 
