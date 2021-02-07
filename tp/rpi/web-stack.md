@@ -212,7 +212,7 @@ Dans le mode classique, vous devez spécifier la liste des utilisateurs ayant ac
 }
 ```
 
-## Accéder au site web
+## Accéder à votre Raspberry Pi
 
 Maintenant que vous avez envoyé votre code source sur le serveur FTP celui-ci est accessible via le lien :
 
