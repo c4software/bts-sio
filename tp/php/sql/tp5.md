@@ -214,9 +214,11 @@ Dans votre page d'accueil, vous avez actuellement un formulaire, nous allons ajo
 Avec PDO, faire ce genre d'opération va se résumer à 3 lignes de code :
 
 ```php
+// DANS l'index.php
 // ATTENTION ATTENTION : Cette ligne ne doit être mise qu'une seule fois.
 include('./utils/db.php');
 
+// Dans home.php
 // Requêtes SQL que nous souhaitons jouer.
 $results = $pdo->query("SELECT * FROM phrases")->fetchAll(\PDO::FETCH_ASSOC);
 ```
