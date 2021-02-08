@@ -53,6 +53,9 @@ SELECT * FROM t ORDER BY c1 LIMIT 10 OFFSET 0; -- 10 premiers résultats
 SELECT * FROM t ORDER BY c1 LIMIT 10 OFFSET 10; -- 10 suivants etc
 SELECT * FROM t ORDER BY c1 LIMIT 10 OFFSET 20; -- etc
 
+-- Retourne la liste des dédoublonner des pays présent dans t.
+SELECT distinct(pays) FROM t;
+
 -- Compter et Grouper, Affiche la répartition des utilisateurs par age.
 SELECT COUNT(id), age FROM t GROUP BY age;
 

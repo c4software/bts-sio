@@ -207,7 +207,7 @@ Ce que vous venez d'écrire est une « librairie », vous allez pouvoir réutili
 
 C'est à vous, je vous laisse écrire le code dans votre projet.
 
-### index.php
+### home.php
 
 Dans votre page d'accueil, vous avez actuellement un formulaire, nous allons ajouter « en plus », une liste des phrases précédemment écrite par les utilisateurs. Nous allons donc utiliser la requête de type `SELECT` qui nous retourne l'ensemble des informations présentes dans la base de données.
 
