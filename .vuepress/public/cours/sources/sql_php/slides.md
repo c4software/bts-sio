@@ -314,7 +314,7 @@ SELECT nom, prenom FROM utilisateurs;
 | ---------------------------------- | ------------------------------------------------- |
 | BETWEEN                            | Entre deux valeurs `WHERE age BETWEEN 30 AND 50;` |
 | LIKE                               | Recherche `WHERE nom LIKE 'val%';`                |
-| IN                                 | Plusieurs valeurs `WHERE IN pays ('FRA','USA');`  |
+| IN                                 | Plusieurs valeurs `WHERE pays IN ('FRA','USA');`  |
 
 ---
 
