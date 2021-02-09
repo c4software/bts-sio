@@ -241,9 +241,10 @@ Array
 
 :::
 
-Je vous laisse mettre en place le code dans votre projet plus précisément dans le fichier `index.php`. Nous allons procéder avec logique :
+Je vous laisse mettre en place le code dans votre projet plus précisément dans le fichier `home.php`. Nous allons procéder avec logique :
 
-- Mettre le code tel quel dans la page.
+- Inclure le code de connexion à la base de données `utils/db.php` dans votre `index.php`.
+- Mettre le code permettant de faire une requête tel quel dans la page.
 - Afficher le contenu de la variable `$results` avec un `print_r($results);` (**POUR TESTER SEULEMENT**).
 - Parcourir les résultats et les afficher dans un `<select></select>` dans la page en utilisant une boucle de type `foreach`.
 
