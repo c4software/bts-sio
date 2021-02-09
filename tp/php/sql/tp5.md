@@ -268,7 +268,7 @@ include('./utils/db.php');
 
 $sql = "INSERT INTO phrases (phrase, nombre, date, ip) values(?, ?, ?, ?);";
 $stmt= $pdo->prepare($sql);
-$stmt->execute([$phrase, $nombre, time(), $_SERVER['REMOTE_ADDR']]);
+$stmt->execute([$phrase, $nombre, date("Y-m-d H:i:s"), $_SERVER['REMOTE_ADDR']]);
 ```
 
 :fire: Je vous laisse écrire le code au bon endroit. C'est à vous.
