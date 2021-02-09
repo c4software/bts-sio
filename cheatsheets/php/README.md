@@ -398,7 +398,29 @@ Dans quel cas utiliser l'un, et dans quel cas utiliser l'autre ? C'est simple, v
 
 - **OUI** : Requête préparée.
 - **NON** : Requête classique.
-  :::
+
+:::
+
+### Faire une requête préparée avec des paramètres typé
+
+```php
+// ATTENTION ATTENTION : Cette ligne ne doit être mise qu'une seule fois.
+include('./utils/db.php');
+
+$nbParPage = 2; // Nombre d'élément par page
+$page = 0; // Page actuellement affiché
+
+$stmt= $pdo->prepare("SELECT * FROM phrases LIMIT ? OFFSET ?");
+
+$stmt->bindValue(1, $nbParPage, PDO::PARAM_INT); // Paramètre qui va remplacer le 1er « ? »
+$stmt->bindValue(2, $limit * $page, PDO::PARAM_INT); // Paramètre qui va remplacer le 2nd « ? ».
+
+// On lance la requête sur le server de BDD
+$stmt->execute();
+
+// Récupération des résultats dans la variable $results.
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+```
 
 ## Réécriture de lien
 
