@@ -53,7 +53,7 @@ La page devant être protégée, vous devez mettre en place une mécanique comme
 
 ### Étape 1 : Création de la page de connexion
 
-En vous inspirant de [l'aide mémoire PHP](/cheatsheets/php/#gestion-basique-d-une-authentification), je vous laisse écrire le code permettant :
+En vous inspirant de [l'aide mémoire PHP](/cheatsheets/php/#gestion-basique-d-une-authentification-«-simple-»), je vous laisse écrire le code permettant :
 
 - D'afficher le formulaire de saisie des informations.
 - Vérifier que les édentant saisie sont correctes.
