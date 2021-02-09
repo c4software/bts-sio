@@ -263,6 +263,7 @@ Attention, je ne vous donne que ça. Je vous laisse écrire le code au bon endro
 ```php
 
 // ATTENTION ATTENTION : Cette ligne ne doit être mise qu'une seule fois.
+// Dans notre cas elle est déjà dans l'index.php
 include('./utils/db.php');
 
 $sql = "INSERT INTO phrases (phrase, nombre, date, ip) values(?, ?, ?, ?);";
