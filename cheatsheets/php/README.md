@@ -172,6 +172,44 @@ foreach ($etudiants as $current) {
 }
 ```
 
+## Boucle for pour afficher des données
+
+### Solution 1 : Via un echo
+
+```php
+<?php
+foreach ($elements as $element){
+    echo "
+        <tr>
+            <td> " . $element["id"] . "</td>
+            <td> " . $element["phrase"] . "</td>
+            <td> " . $element["nombre"] . "</td>
+            <td> " . $element["date"] . "</td>
+            <td> " . $element["ip"] . "</td>
+        </tr>
+    ";
+}
+?>
+```
+
+### Solution 2 : Sans echo
+
+```php
+<?php
+foreach ($elements as $element){
+?>
+    <tr>
+        <td><?php echo $element["id"] ?></td>
+        <td><?php echo $element["phrase"] ?></td>
+        <td><?php echo $element["nombre"] ?></td>
+        <td><?php echo $element["date"] ?></td>
+        <td><?php echo $element["ip"] ?></td>
+    </tr>
+<?php
+}
+?>
+```
+
 ## Les fonctions
 
 Déclarer une fonction
@@ -350,7 +388,6 @@ $results = $pdo->query("SELECT * FROM votreTable")->fetchAll(\PDO::FETCH_ASSOC);
 include('./utils/db.php');
 
 // Requête préparée :
-$results = $pdo->query()->fetchAll(\PDO::FETCH_ASSOC);
 $stmt= $pdo->prepare("SELECT * FROM phrases WHERE id = ?");
 $stmt->execute([22]); // Paramètre qui va remplacer le « ? ».
 $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
