@@ -7,15 +7,15 @@ Dans ce TP nous allons mettre en pratique nos connaissances autour de la base de
 
 ## Première étape définir le besoin
 
-La première étape dans tous les projets est la définition du besoin. Vous devez avec la personne qui vous demande une mission comprendre ce qu'il attend (moi en l'occurence dans ce projet). Je souhaite donc rendre administrable l'applicaton Greta TV.
+La première étape dans tous les projets est la définition du besoin. Vous devez avec la personne qui vous demande une mission comprendre ce qu'il attend (moi en l'occurence dans ce projet). Je souhaite donc rendre administrable l'application Greta TV.
 
-En effet, la première version de l'application est static, nous avons utilisé le PHP pour intégrer des vidéos dans une page nommée `tv.php`. Cette page prend en paramètre un identifiant de vidéo, et potentiellement un thème si vous aviez intégré cette fonctionnalitée.
+En effet, la première version de l'application est statique, nous avons utilisé le PHP pour intégrer des vidéos dans une page nommée `tv.php`. Cette page prend en paramètre un identifiant de vidéo, et potentiellement un thème si vous aviez intégré cette fonctionnalité.
 
-Je souhaite, que nous allions plus loin ! Notre application doit maintenant être administrable afin de rendre la liste des vidéos sur la page `index.php` dynamique en fonction **de données présentes en base de données**. En plus de cette interface dynamique, je souhaite que vous ajoutiez une page d'administration permettant l'ajout de lien dans la base de données.
+Je souhaite que nous allions plus loin ! Notre application doit maintenant être administrable afin de rendre la liste des vidéos sur la page `index.php` dynamique en fonction **de données présentes en base de données**. En plus de cette interface dynamique, je souhaite que vous ajoutiez une page d'administration permettant l'ajout de lien dans la base de données.
 
 Je résume voilà le besoin à intégrer :
 
-- Création d'une base de donnée avec la liste des liens à afficher.
+- Création d'une base de données avec la liste des liens à afficher.
 - Utilisation de la base de données sur la page d'accueil.
 - Utilisation de la base de données sur la page `tv.php` pour ne plus utiliser l'ID Google, mais l'identifiant interne de la vidéo à voir.
 - Création d'une page « d'admin » permettant l'ajout de vidéo. (Cette page ne sera pas accessible à tous)
@@ -25,7 +25,7 @@ Je résume voilà le besoin à intégrer :
 La première étape avant de commencer la création de la base de données est la réalisation du MCD. Je vous laisse travailler sur le sujet. Pour ma part j'ai défini **deux tables**.
 
 ::: tip N'oubliez pas
-N'oubliez pas les clés ! Un enregistrement de base de données **doit posséder un clé unique** (idéalement autogénéré comme vu ensemble).
+N'oubliez pas les clés ! Un enregistrement de base de données **doit posséder une clé unique** (idéalement autogénéré comme vu ensemble).
 :::
 
 C'est à vous ! Je vous laisse travailler le sujet.
@@ -102,7 +102,7 @@ Modifier la page d'accueil de votre site afin de réaliser la requête SQL perme
     include('./utils/db.php');
     $results = $pdo->query("SELECT * FROM videos")->fetchAll(\PDO::FETCH_ASSOC);
 
-    // $results contient maintenant l'ensemble de vos vidéos présent en base de données. Pour l'afficher il vous suffit de faire une boucle.
+    // $results contient maintenant l'ensemble de vos vidéos présent en base de données. Pour l'afficher, il vous suffit de faire une boucle.
 ?>
 ```
 
@@ -112,7 +112,7 @@ Modifier la page d'accueil de votre site afin de réaliser la requête SQL perme
 
 Pour cette étape vous avez deux solutions :
 
-- Ne rien modifier, et continuer à utiliser l'ID de Youtube comme identifiant (**ATTENTION**, votre code est donc vulnérable à l'injection de paramètres !!).
+- Ne rien modifier, et continuer à utiliser l'ID de YouTube comme identifiant (**ATTENTION**, votre code est donc vulnérable à l'injection de paramètres !!).
 - Modifier, pour passer l'identifiant **interne** de la vidéo que vous souhaitez afficher. Cet identifiant vous permettra de faire une requête du type :
 
 ```php
