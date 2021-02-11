@@ -43,6 +43,31 @@ Je vous laisse travailler. Je vous rappelle que **vous devez mettre des clés** 
 Pour valider votre base de données, je vous laisse créer des données fictives. Réaliser cette opération directement via phpMyAdmin (ou dbeaver).
 :::
 
+## Insérer un jeu de test
+
+Pour commencer nous allons insérer des données.
+
+::: danger LES MOT NE DOIVENT PAS ÊTRE EN CLAIR
+Vous ne devez **JAMAIS** avoir un mot de passe en clair en base de données.
+
+Vous pouvez par exemple utiliser la fonction SQL `SHA2("VotreMotDePasse-SALT-SECRET", 512)`. Cela génèrera un mot de passe « hasher » équivalent au mot de passe.
+
+Exemple d'insertion :
+
+```sql
+INSERT INTO table ('user', 'password') VALUES ("valentin", SHA2("VotreMotDePasse-SALT-SECRET", 512));
+```
+
+Exemple de vérification si l'utilisateur existe :
+
+```sql
+SELECT * FROM table WHERE user = "valentin" AND password = SHA2("VotreMotDePasse-SALT-SECRET", 512);
+```
+
+S’il y a un résultat, c'est que votre utilisateur existe et a fourni le bon mot de passe.
+
+:::
+
 ## Créer la page « d'administration ».
 
 Afin de créer cette page d'administration, nous allons avoir besoin d'une page de connexion. En effet l'administration du site ne doit pas être ouverte à tous, seuls les gens possédant un compte peuvent administrer la liste des vidéos.

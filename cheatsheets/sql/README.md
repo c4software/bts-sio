@@ -130,6 +130,29 @@ DELETE FROM utilisateurs WHERE id = 1;
 Attention !!! Si vous oubliez le **WHERE** vous allez vider l'ensemble de la table. (Et aucun retour en arrière possible)
 :::
 
+## Mot de passe & Sécurité
+
+::: danger LES MOT NE DOIVENT PAS ÊTRE EN CLAIR
+Vous ne devez **JAMAIS** avoir un mot de passe en clair en base de données.
+
+Vous pouvez par exemple utiliser la fonction SQL `SHA2("VotreMotDePasse-SALT-SECRET", 512)`. Cela génèrera un mot de passe « hasher » équivalent au mot de passe.
+
+Exemple d'insertion :
+
+```sql
+INSERT INTO table ('user', 'password') VALUES ("valentin", SHA2("VotreMotDePasse-SALT-SECRET", 512));
+```
+
+Exemple de vérification si l'utilisateur existe :
+
+```sql
+SELECT * FROM table WHERE user = "valentin" AND password = SHA2("VotreMotDePasse-SALT-SECRET", 512);
+```
+
+S’il y a un résultat, c'est que votre utilisateur existe et a fourni le bon mot de passe.
+
+:::
+
 ## SQL et PHP ?
 
 PHP intègre nativement le connecteur permettant d'attaquer les bases de données les plus connues, vous avez des exemples [d'utilisations disponibles ici](/cheatsheets/php/#le-php-et-la-base-de-donnees)
