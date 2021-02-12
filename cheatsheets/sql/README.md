@@ -66,7 +66,6 @@ SELECT COUNT(id), age FROM t GROUP BY age HAVING age > 18;
 ## Obtenir des données depuis _plusieurs tables_
 
 ![SQL Join](./sql_join.png)
-git
 
 ```sql
 -- Left join t1 and t2
@@ -93,6 +92,23 @@ FROM t1
 FULL OUTER JOIN t2
 ON t1.id = t2.id;
 ```
+
+::: tip LEFT, RIGHT, INNER ?
+
+Dans 90% du temps vous cherchez à faire un LEFT JOIN.
+
+_Exemple :_
+
+```sql
+SELECT *
+FROM videos
+LEFT JOIN users
+ON videos.userId = users.id; -- Join la clé étrangère userId avec la clé primaire id de la table users.
+```
+
+**Vous obtiendrez avec cette requête les données de la table vidéos avec en plus les informations de l'utilisateur associé.**
+
+:::
 
 ## Gestion des données
 
