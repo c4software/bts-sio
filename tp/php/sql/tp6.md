@@ -92,16 +92,19 @@ Pour valider l'authentification, vous devez écrire quelque chose comme :
 
 ```php
 <?php
-    include('./utils/db.php');
-
     // Vérification si l'utilisateur existe
-    $stmt= $pdo->prepare("SELECT count(*) FROM users WHERE login='?' AND password='?'");
+    $stmt= $pdo->prepare("SELECT * FROM users WHERE login=? AND password=SHA2(?, 512)");
     $res = $stmt->execute([$_POST['login'], $_POST['password']]);
-    $count = $res->fetchColumn($res); // Retourne le nombre d'enregistrements
+    $users = $res->fetchAll(\PDO::FETCH_ASSOC);
 
     // La personne existe en base de données (nous allons donc la connecter)
-    if($count == 1){
-        $_SESSION['user'] = $_POST['login'];
+    if(count($users) == 1){
+        // Réussite de la connexion, on sauvegarde dans la SESSION les informations.
+        $_SESSION['user'] = $users[0]; // Sauvegarde le premier utilisateur
+        header("location: / ");
+        die();
+    } else {
+        // Action en cas d'echec de connexion
     }
 ?>
 ```

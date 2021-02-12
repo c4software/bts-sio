@@ -350,6 +350,34 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
 </form>
 ```
 
+**Page de connexion avec base de données**:
+
+```php
+<?php
+    if(isset($_POST['login']) && isset($_POST['password'])){
+        // Vérification si l'utilisateur existe
+        $stmt= $pdo->prepare("SELECT * FROM users WHERE login=? AND password=SHA2(?, 512)");
+        $res = $stmt->execute([$_POST['login'], $_POST['password']]);
+        $user = $res->fetchAll(\PDO::FETCH_ASSOC);
+
+        // La personne existe en base de données (nous allons donc la connecter)
+        if(count($user) == 1){
+            // Réussite de la connexion, on sauvegarde dans la SESSION les informations.
+            $_SESSION['user'] = $user[0];
+            header("location: / ");
+            die();
+        } else {
+            // Action en cas d'echec de connexion
+        }
+    }
+
+<form action="index.php?page=connexion" method="post">
+    <input type="text" name="login" placeholder="Votre Login" />
+    <input type="password" name="password" placeholder="Votre mot de passe" />
+    <input type="submit" value="Me connecter">
+</form>
+```
+
 ## Le PHP et la base de données
 
 Si vous souhaitez l'aide mémoire pour [la partie SQL c'est par ici](/cheatsheets/sql/)
