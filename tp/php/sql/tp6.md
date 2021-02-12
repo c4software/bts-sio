@@ -156,11 +156,11 @@ Pour cette étape vous avez deux solutions :
         die();
     }
 
-    // VOTRE CODE d'AFFICHAGE DE LA VIDÉO
-
     // $current contient les informations de la vidéo à afficher
-    $current = $video[0];
+    $current = $videos[0];
 ?>
+
+<!-- La suite de votre page, celle qui affiche la vidéo -->
 ```
 
 C'est à vous !
