@@ -145,8 +145,9 @@ Pour cette étape vous avez deux solutions :
 
 ```php
 <?php
+    // L'utilisateur accede à =>  http://localhost/index.php?page=tv&id=1
     $stmt= $pdo->prepare("SELECT * FROM videos WHERE id = ?");
-    $stmt->execute([$_GET['id']]);
+    $stmt->execute([$_GET['id']]); // ID reçu en paramètre
     $videos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     // La vidéo demandé n'existe pas.
@@ -156,8 +157,8 @@ Pour cette étape vous avez deux solutions :
         die();
     }
 
-    // $current contient les informations de la vidéo à afficher
-    $current = $videos[0];
+    // $video contient les informations de la vidéo à afficher
+    $video = $videos[0];
 ?>
 
 <!-- La suite de votre page, celle qui affiche la vidéo -->
