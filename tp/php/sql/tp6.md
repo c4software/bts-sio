@@ -94,8 +94,8 @@ Pour valider l'authentification, vous devez écrire quelque chose comme :
 <?php
     // Vérification si l'utilisateur existe
     $stmt= $pdo->prepare("SELECT * FROM users WHERE login=? AND password=SHA2(?, 512)");
-    $res = $stmt->execute([$_POST['login'], $_POST['password']]);
-    $users = $res->fetchAll(\PDO::FETCH_ASSOC);
+    $stmt->execute([$_POST['login'], $_POST['password']]);
+    $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     // La personne existe en base de données (nous allons donc la connecter)
     if(count($users) == 1){
@@ -146,8 +146,8 @@ Pour cette étape vous avez deux solutions :
 ```php
 <?php
     $stmt= $pdo->prepare("SELECT * FROM videos WHERE id = ?");
-    $res = $stmt->execute([$_GET['id']]);
-    $videos = $res->fetchAll(\PDO::FETCH_ASSOC);
+    $stmt->execute([$_GET['id']]);
+    $videos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     // La vidéo demandé n'existe pas.
     if(!$videos){

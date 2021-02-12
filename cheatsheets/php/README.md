@@ -357,8 +357,8 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
     if(isset($_POST['login']) && isset($_POST['password'])){
         // Vérification si l'utilisateur existe
         $stmt= $pdo->prepare("SELECT * FROM users WHERE login=? AND password=SHA2(?, 512)");
-        $res = $stmt->execute([$_POST['login'], $_POST['password']]);
-        $user = $res->fetchAll(\PDO::FETCH_ASSOC);
+        $stmt->execute([$_POST['login'], $_POST['password']]);
+        $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         // La personne existe en base de données (nous allons donc la connecter)
         if(count($user) == 1){
