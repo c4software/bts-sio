@@ -37,6 +37,10 @@ _Couleurs :_
 - [Color Picker & Choix de couleur](https://www.webfx.com/web-design/color-picker/)
 - [Couleurs RAL](http://couleursral.fr/)
 
+_Bonne pratique :_
+
+- [Quelques règles de base (en 4 minutes)](https://jgthms.com/web-design-in-4-minutes/)
+
 ## Single Page Website
 
 ![Cas 1](./integration/cas1.png)
