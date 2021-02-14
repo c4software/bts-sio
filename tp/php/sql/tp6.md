@@ -13,12 +13,13 @@ En effet, la première version de l'application est statique, nous avons utilis�
 
 Je souhaite que nous allions plus loin ! Notre application doit maintenant être administrable afin de rendre la liste des vidéos sur la page `index.php` dynamique en fonction **de données présentes en base de données**. En plus de cette interface dynamique, je souhaite que vous ajoutiez une page d'administration permettant l'ajout de lien dans la base de données.
 
-Je résume voilà le besoin à intégrer :
+Je résume le besoin à intégrer :
 
 - Création d'une base de données avec la liste des liens à afficher.
 - Utilisation de la base de données sur la page d'accueil.
 - Utilisation de la base de données sur la page `tv.php` pour ne plus utiliser l'ID Google, mais l'identifiant interne de la vidéo à voir.
-- Création d'une page « d'admin » permettant l'ajout de vidéo. (Cette page ne sera pas accessible à tous)
+- Création d'une page « d'admin » permettant l'ajout de vidéo. (Cette page ne sera pas accessible à tous).
+- Les vidéos **doivent être** lié à l'utilisateur actuellement connecté. (ça veux dire une clé étrangère).
 
 ## Créer le MCD
 
@@ -81,10 +82,17 @@ La page devant être protégée, vous devez mettre en place une mécanique comme
 En vous inspirant de [l'aide mémoire PHP](/cheatsheets/php/#gestion-basique-d-une-authentification-«-simple-»), je vous laisse écrire le code permettant :
 
 - D'afficher le formulaire de saisie des informations.
-- Vérifier que les édentant saisie sont correctes.
+- Vérifier que les valeurs saisie (en POST) sont correctes.
 - Redirigé vers la page de gestion de vidéos (`header('location: …');`)
 
 👹 N'oubliez pas l'organisation 👹 (nous allons ici créer que la `page` faisant le traitement).
+
+::: tip Deux solutions sont possibles
+Pour gérer les droits d'accès vous avez deux solutions :
+
+- Gérer les droits dans l'`index.php` pour avoir une `$whiteliste` différentes en fonction des droits. (c'est ma solution favorite).
+- Gérer les droits dans chaque page. (Risqué à mon sens).
+  :::
 
 ::: details Vous séchez pour la partie requête SQL ?
 
@@ -145,7 +153,7 @@ Pour cette étape vous avez deux solutions :
 
 ```php
 <?php
-    // L'utilisateur accede à =>  http://localhost/index.php?page=tv&id=1
+    // L'utilisateur accède à =>  http://localhost/index.php?page=tv&id=1
     $stmt= $pdo->prepare("SELECT * FROM videos WHERE id = ?");
     $stmt->execute([$_GET['id']]); // ID reçu en paramètre
     $videos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
