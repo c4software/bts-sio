@@ -1,4 +1,6 @@
 <?php
+include("utils/users.php");
+
 // Affichage « de la partie haute » de votre site, commun à l'ensemble de votre site
 include('common/header.php');
 

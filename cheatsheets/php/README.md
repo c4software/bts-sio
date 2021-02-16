@@ -235,6 +235,30 @@ echo gateauHugette(50);
 // Je vais afficher à l'écran "Cuire 50 minutes le mélange de 453 gramme.";
 ```
 
+## La SESSION
+
+En PHP, nous avons la possibilité de sauvegarder « simplement » des données côté serveur. En PHP la SESSION n'est pas démarrée automatiquement, il faut pour ça :
+
+```php
+session_start();
+```
+
+À partir de maintenant vous pouvez écrire dans votre SESSION, par exemple :
+
+```php
+$_SESSION["groupe"] = "admin";
+// Cette valeur est maintenant persisté sur le serveur, votre utilisateur sera admin jusqu'à ce que la SESSION soit détruite.
+```
+
+::: danger Et pour détruire les données ?
+Si vous souhaitez détruire la SESSION **et l'ensemble des valeurs présentes dedans**, vous devez détruire la SESSION:
+
+```php
+session_destroy();
+```
+
+:::
+
 ## Redirection d'un utilisateur
 
 En PHP vous pouvez rediriger l'utilisateur d'une page à l'autre assez simplement.

@@ -121,7 +121,40 @@ Pour valider l'authentification, vous devez écrire quelque chose comme :
 
 :::
 
-### Étape 2 : Crééer la page de gestion des vidéos
+### Ajouter les boutons dans la barre
+
+Maintenant que nous avons la connexion d'effective. Nous allons ajouter dans la barre (navbar) deux boutons :
+
+- Connexion
+- Déconnexion
+
+Les deux boutons doivent être affiché si l'utilisateur est connecté ou non, nous allons donc écrire :
+
+```php
+if(isset($_SESSION["user"])){
+    // La session existe, nous sommes donc connecté
+    echo "<a href='index.php?page=logout'>Déconnexion</a>";
+} else {
+    // Non connecté
+    echo "<a href='index.php?page=login'>Connexion</a>";
+}
+```
+
+:::tip Où mettre le code ?
+Je veux que les boutons s'affiche dans la NavBar. Donc le code doit-être… Dans la NavBar!
+:::
+
+### Étape 3 : Page de déconnexion
+
+La page de déconnexion va avoir comme role de « supprimer la session ». Il faut donc créer une page, celle-ci contiendra au minimum le code suivant :
+
+```php
+session_destroy();
+```
+
+👀 Je vous laisse écrire la suite
+
+### Étape 4 : Crééer la page de gestion des vidéos
 
 Pour la page de gestion des vidéos, je vous propose de réaliser une page ressemblant à ceci :
 
