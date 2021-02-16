@@ -370,6 +370,7 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
             // Action en cas d'echec de connexion
         }
     }
+?>
 
 <form action="index.php?page=connexion" method="post">
     <input type="text" name="login" placeholder="Votre Login" />
