@@ -361,7 +361,7 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
         $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         // La personne existe en base de données (nous allons donc la connecter)
-        if(count($user) == 1){
+        if(count($users) == 1){
             // Réussite de la connexion, on sauvegarde dans la SESSION les informations.
             $_SESSION['user'] = $user[0];
             header("location: / ");
