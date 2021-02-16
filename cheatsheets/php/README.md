@@ -295,6 +295,28 @@ while($phrase < $nb_lignes){
 }
 ```
 
+## Page de traitement
+
+Une page de traitement est une page « avec un traitement côté serveur », la structure de celle-ci est toujours là même :
+
+```php
+<?php
+    if(isset($_POST['input'])){
+        // Traitement, c'est ici que vous devez écrire votre code
+        // Il correspond à l'action que vous souhaitez faire avec les données reçues.
+
+        // - Insertion en BDD
+        // - Authentification
+        // - Etc
+    }
+?>
+
+<form action="" method="POST">
+    <input type="text" name="input" placeholder="Votre Input" />
+    <input type="submit" value="Ajouter">
+</form>
+```
+
 ## Gestion basique d'une authentification « Simple »
 
 En PHP, il est possible assez simplement de gérer des espaces d'administrations. Les espaces d'administrations sont « des simples pages web », elles sont juste protégées par un login et un mot de passe avant d'entrer sur la page souhaitée.
