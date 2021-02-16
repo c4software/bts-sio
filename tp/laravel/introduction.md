@@ -43,6 +43,18 @@ Ajouter dans votre PATH la home de composer, exemple :
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 ```
 
+::: tip Vous allez avoir besoin de paquets en plus
+
+Si vous utilisez Ubuntu / Debian / Pop_OS! etc :
+
+```sh
+sudo apt install libapache2-mod-php php-common php-xml php-gd php-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip php-sqlite
+```
+
+Sans les paquets, vous ne pourrez pas continuer l'installation.
+
+:::
+
 ### MacOS
 
 Sur la dernière version de MacOS, PHP est déjà disponible en version 7. Il suffit donc d’installer `Composer`, pour l’installer il suffit :
