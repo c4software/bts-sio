@@ -201,6 +201,18 @@ found 0 vulnerabilities
 
 Voilà les plug-ins sont maintenant installés, de base ils ne sont pas configurés. Nous allons faire ça dans les prochaines étapes.
 
+::: danger Pas d'icônes ? Pas de fonts ? Pas de problème !
+Comme Bootstrap (ou d'autres) vuetify intègre un système permettant d'intégrer simplement des icônes. Malheureusement celui-ci ne fonctionne pas juste après l'installation du paquet.
+
+Pour le rendre fonctionnel, vous devez éditer votre `index.html` afin d'ajouter :
+
+```html
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+```
+
+:::
+
 ### La structure
 
 L'ensemble du code que vous devez écrire va se trouver dans `src`
