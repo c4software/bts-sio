@@ -1,6 +1,10 @@
-## Aide mémoire GIT
+# Aide mémoire GIT
 
-### Personnaliser
+::: details Table des matières
+[[toc]]
+:::
+
+## Personnaliser
 
 Définir son identité :
 
@@ -15,7 +19,7 @@ Voir la configuration :
 git config --list
 ```
 
-### Créer
+## Créer
 
 Créer un nouveau dépôt local (dans le dossier courant) :
 
@@ -55,7 +59,7 @@ git add .gitignore
 git commit -m "Ajout gitignore"
 ```
 
-### Modifications locales
+## Modifications locales
 
 Fichiers modifiés dans votre répertoire de travail :
 
@@ -101,7 +105,7 @@ git commit --amend
 git commit --am
 ```
 
-### Historique de Commit
+## Historique de Commit
 
 Afficher tous les commits :
 
@@ -133,7 +137,7 @@ Affiche les changements (en détails) dans le fichier :
 git blame <file>
 ```
 
-### Branches & Tags
+## Branches & Tags
 
 Lister toutes les branches :
 
@@ -171,7 +175,7 @@ Marquer le commit courant avec un tag :
 git tag <non-du-tag>
 ```
 
-### Merge & Rebase
+## Merge & Rebase
 
 Fusionner la branche `<votre-branche>` avec la master :
 
@@ -203,7 +207,7 @@ Continuer un rebase après avoir résolu des conflits :
 git rebase --continue
 ```
 
-### Travailler avec un dépots distant
+## Travailler avec un dépots distant
 
 Lister tous les dépôts distants configurés :
 
@@ -269,7 +273,7 @@ Publier les tags :
 git push --tags
 ```
 
-### Annulation
+## Annulation
 
 Annuler le dernier `git add` :
 
@@ -308,3 +312,13 @@ Annule toutes les modifications effectuées depuis :
 ```sh
 git reset --hard <commit>
 ```
+
+## HTTPS et Identifiant sauvegardé sous Windows
+
+Si vous avez cloné votre repository en HTTPS il se peut que vous rencontriez une erreur du type « error git remote ». Vous avez certainement du faire une erreur dans votre mot de passe (erreur de saisie ou autre). Malheureusement Windows sauvegarde l'information dans le système, cependant il est possible de corriger le problème via :
+
+> "Si vous travaillez avec le système d'exploitation Windows, il existe une autre solution pour changer les paramètres d'authentification. Il faut pour cela accéder au gestionnaire d'informations d'identification. Dans la zone de recherche de la barre des tâches, tapez "Gestionnaire d'informations d'identification". Ouvrez ensuite le menu "Informations d'identification Windows". Dépliez le menu consacré à Git et cliquez sur "Modifier" pour pouvoir changer le mot de passe."
+
+![Erreur Windows & HTTPS](./windows_error.png)
+
+[Plus de détail sur l'erreur](https://www.journaldunet.fr/web-tech/developpement/1441077-gitlab-comment-corriger-l-e[…]rreur-remote-http-basic-access-denied-fatal-authentication/)
