@@ -237,17 +237,17 @@ Et voilà. Votre projet inclut maintenant Bootstrap 🚀
 Pour l'utilisation de bootstrap il faut se référer à la documentation (vous le saviez déjà, mais je préfère le rappeler). Vue que nous n'avons pas de composant de disponible je vous propose de créer les nôtres :
 
 - Un composant `button`. (Avec comme `props` le `label` et la `color`)
-- Un composant `,card`.
+- Un composant `card`.
 - Un composant `navbar`.
 
-Pour la `,card` je vais vous aider, nous allons avoir besoin du système de [slot](https://v3.vuejs.org/guide/component-slots.html#slot-content) de VueJS. Notre composant va donc ressembler à :
+Pour la `card` je vais vous aider, nous allons avoir besoin du système de [slot](https://v3.vuejs.org/guide/component-slots.html#slot-content) de VueJS. Notre composant va donc ressembler à :
 
 `card.vue` :
 
 ```vue
 <template>
-  <div class=",card">
-    <div class=",card-body">
+  <div class="card">
+    <div class="card-body">
       <!-- Notation particulière à VueJS -->
       <slot></slot>
     </div>
@@ -265,7 +265,7 @@ export default defineComponent({
 
 ```vue
 <template>
-  <,card> Contenu de ma Card </,card>
+  <card> Contenu de ma Card </card>
 </template>
 ```
 
