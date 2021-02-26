@@ -1,4 +1,4 @@
-# Contrôle de saisie & intégractivité
+# Contrôle de saisie & intéractivité
 
 Le JavaScript, comme je l'indiquai en introduction, est partout. Pour l'instant, nous allons le limiter principalement aux interactions utilisateurs (contrôle de saisie, validation de formulaire, interactivité).
 

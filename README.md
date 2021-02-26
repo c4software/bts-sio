@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO - SLAM 5, mais également l'ESEO), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.
+Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA, et dans différentes interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.
 
 [Consulter les cours & TP sur Github Pages](https://cours.brosseau.ovh/)
 
