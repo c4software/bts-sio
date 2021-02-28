@@ -251,3 +251,9 @@ Actuellement en Alpha
 ---
 
 ## Le Boilerplate
+
+---
+
+## SharedPreferences ?
+
+[Sauvegarder des données entre chaque lancement](/tp/android/android-base2-tp.html#la-classe-localpreferences)

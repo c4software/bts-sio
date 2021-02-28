@@ -322,3 +322,39 @@ De la magie ? Non, Google a tout simplement écrit le code pour vous. Quelques p
 - Vous devez nommper vos id dans le `mobile_navigation.xml` de la même manière que dans votre `bottom_navigation_menu`.
 
 :::
+
+### La classe LocalPreferences
+
+Cette classe va nous permettre de sauvegarder de manière « persistant » des paramètres.
+
+```kotlin
+
+import android.content.Context
+import android.content.SharedPreferences
+
+class LocalPreferences private constructor(context: Context) {
+    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+
+    fun saveStringValue(yourValue: String?) {
+        sharedPreferences.edit().putString("saveStringValue", deviceName).apply()
+    }
+
+    fun getSaveStringValue(): String? {
+        return sharedPreferences.getString("saveStringValue", null)
+    }
+
+    companion object {
+        private var INSTANCE: LocalPreferences? = null
+
+        fun getInstance(context: Context): LocalPreferences {
+            return INSTANCE?.let {
+                INSTANCE
+            } ?: run {
+                INSTANCE = LocalPreferences(context)
+                return INSTANCE!!
+            }
+        }
+    }
+
+}
+```
