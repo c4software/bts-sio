@@ -250,7 +250,7 @@ Implémentons ensemble le code. [Vous avez ici l'ensemble du code](https://gist.
 
 ### En utilisant le Navigation Graph
 
-Utiliser la Navigation Graph est j'ai envie de dire la bonne façon de faire en 2020. Dans cette solution la théorie des fragments **ne change pas**, vous avez toujours le même découpage et sensiblement la même organisation. Ce qui va changer par contre c'est que nous allons écrire « plus de XML déclaratif » et **beaucoup moins de code Kotlin**.
+Utiliser la Navigation Graph est j'ai envie de dire la bonne façon de faire en 2021. Dans cette solution la théorie des fragments **ne change pas**, vous avez toujours le même découpage et sensiblement la même organisation. Ce qui va changer par contre c'est que nous allons écrire « plus de XML déclaratif » et **beaucoup moins de code Kotlin**.
 
 Avantage du NavGraph :
 

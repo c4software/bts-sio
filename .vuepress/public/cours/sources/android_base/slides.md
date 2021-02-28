@@ -11,6 +11,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 - Développé par Google
 - Créé en 2008
 - Actuellement en version 11 (Android R)
+- Android 12 en beta (Android S)
 
 ---
 
@@ -45,6 +46,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 ![Linux ?](./img/linux.gif)
 
 Linux ?
+
+---
+
+<iframe src="https://giphy.com/embed/wcW0qeayf7bfW" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ---
 
@@ -89,8 +94,31 @@ Deux types :
 
 ### Les Ressources
 
-- xml (Drawables, Layout, Settings, Color, String)
+- XML (Drawables, Layout, Settings, Color, String)
 - png / jpeg / 9.png (Images)
+
+---
+
+### Évolutions permanentes
+
+- AndroidX
+- Jetpack
+- Compose
+
+---
+
+### Compose ?
+
+- Passer d'une Interface déclarative (XML).
+- À une Interface « Composable » écrite en code (Compose)
+
+---
+
+### Sans entrer dans le détail…
+
+<video autoplay controls loop class="block">
+    <source src="https://developer.android.com/jetpack/videos/jetpack-compose-preview.mp4" type="video/mp4">
+</video>
 
 ---
 
@@ -120,7 +148,7 @@ Deux types :
 
 ---
 
-# Première application
+## Première application
 
 ---
 
