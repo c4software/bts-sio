@@ -541,7 +541,7 @@ Celle-ci permet de localiser une personne en fonction de sa connexion internet (
 - [Documentation de l'API geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 - Ajouter une méthode dans le code dans le composant `map.vue`.
 - La méthode doit mettre à jour la Data `this.center = [lat, lng]`.
-- La méthode doit être appelée via un clique utilisateur [Documentation de LControl](https://korigan.github.io/Vue2Leaflet/#/components/l-control/)
+- La méthode doit être appelée via un clique utilisateur [Documentation de LControl](https://vue2-leaflet.netlify.app/examples/custom-control.html)
 
 <Reveal text="Voir la solution">
 
