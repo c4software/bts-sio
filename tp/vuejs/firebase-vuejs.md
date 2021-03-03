@@ -306,7 +306,7 @@ Modifier le `App.vue` par :
 </template>
 
 <script>
-import myMap from "./view/map.vue";
+import myMap from "./views/map.vue";
 
 export default {
   name: "app",
@@ -319,7 +319,7 @@ export default {
 <style>
 html,
 body,
-#container {
+.container {
   margin: 0;
   padding: 0;
   height: 100%;
