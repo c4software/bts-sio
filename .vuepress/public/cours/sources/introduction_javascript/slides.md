@@ -146,7 +146,7 @@ Trois écoles :
 
 ---
 
-Un conseil de vieux… Créer des lobs / externaliser vos JS.
+Un conseil de vieux… Créer des librairies / externaliser vos JS.
 
 ---
 
