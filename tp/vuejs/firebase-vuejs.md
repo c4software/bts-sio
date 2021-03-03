@@ -600,3 +600,23 @@ En utilisant « Une Dialog » de Bootstrap ajouter le code nécéssaire à la mo
 
 - Un click sur un Marker permet de choisis une nouvelle icône.
 - Un bouton « valider » enregistre la modification.
+
+### Ajouter une UI à votre projet
+
+Actuellement nous avons une carte pleine page qui s'affiche dès notre arrivée sur le site Internet. C'est pratique, mais finalement je souhaite avoir une interface plus classique avec une NavBar (comme celle de bootstrap).
+
+En utilisant mes talents de design, voilà l'interface que je souhaite obtenir. Vous noterez que j'ai en haut deux boutons me permettant d'accéder à deux fonctions de mon site (Carte & Liste).
+
+- La Vue carte, est similaire à celle actuelle, elle n’est par contre pas pleine page.
+- La Vue liste est une vision liste de l'ensemble des points présent en base de données.
+
+![Évolution](./ressources/evolution_carte.png)
+
+::: danger Vous allez avoir besoin de plug-in
+Je vous rappelle, que si vous souhaitez avoir plusieurs pages dans votre projet. Vous allez avoir besoin du plug-in Vue Router.
+
+Je vous laisse choisir la bonne façon de l'installer.
+
+[https://router.vuejs.org/installation.html#npm](Vue Router)
+
+:::
