@@ -559,7 +559,7 @@ getUserLocation() {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       position => {
-        this.$refs.myMap.mapObject.setView([coords.lat, coords.long], 22);
+        this.$refs.myMap.mapObject.setView([position.coords.lat, position.coords.long], 22);
       },
       error => {
         console.error(error);
@@ -617,6 +617,6 @@ Je vous rappelle, que si vous souhaitez avoir plusieurs pages dans votre projet.
 
 Je vous laisse choisir la bonne façon de l'installer.
 
-[https://router.vuejs.org/installation.html#npm](Vue Router)
+[Vue Router](https://router.vuejs.org/installation.html#npm)
 
 :::
