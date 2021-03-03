@@ -48,9 +48,9 @@ Le JavaScript vous connaissez ?
 
 ---
 
-- Un navigateur (Chrome, Firefox, Safari …)
+- Navigateur (Chrome, Firefox, Safari …)
 - Serveur (NodeJS)
-- Une application (Électron, Cordova …)
+- Application (Électron, Cordova …)
 
 ---
 
