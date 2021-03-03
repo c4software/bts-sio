@@ -571,15 +571,15 @@ getUserLocation() {
 
 </Reveal>
 
-### Intégrer Bootsrap
+### Intégrer Bootstrap
 
-En utilisant la documentation fournie sur le site de [Vue-Bootsrap](https://bootstrap-vue.org/docs)
+En utilisant la documentation fournie sur le site de [Vue-Bootstrap](https://bootstrap-vue.org/docs)
 
 Modifier l'affichage du `button` précédemment ajouté pour lui donner un style plus propre.
 
 ### Ajouter une confirmation
 
-Actuellement la suppression d'un Marker est faite sans confirmation. En utilisant le composant [Dialog de VueBootsrap](https://bootstrap-vue.org/docs/components/modal#confirm-message-box) ajoutez une confirmation de suppression.
+Actuellement la suppression d'un Marker est faite sans confirmation. En utilisant le composant [Dialog de VueBootstrap](https://bootstrap-vue.org/docs/components/modal#confirm-message-box) ajoutez une confirmation de suppression.
 
 ```js
 this.$bvModal.msgBoxConfirm("Are you sure?").then((confirmation) => {
