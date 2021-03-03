@@ -559,7 +559,7 @@ getUserLocation() {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       position => {
-        this.$refs.myMap.mapObject.setView([position.coords.lat, position.coords.long], 22);
+        this.$refs.myMap.mapObject.setView([position.coords.latitude, position.coords.longitude], 22);
       },
       error => {
         console.error(error);
