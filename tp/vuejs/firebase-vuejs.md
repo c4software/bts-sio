@@ -252,7 +252,7 @@ Créer le fichier `src/views/map.vue` avec le contenu suivant :
 
 ```vue
 <template>
-  <l-map id="map" :zoom="zoom" :center="center">
+  <l-map id="map" :zoom="zoom" :center="center" ref="myMap">
     <l-tile-layer :url="url"></l-tile-layer>
   </l-map>
 </template>
@@ -559,7 +559,7 @@ getUserLocation() {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       position => {
-        this.center = [position.coords.latitude, position.coords.longitude];
+        this.$refs.myMap.mapObject.setView([coords.lat, coords.long], 22);
       },
       error => {
         console.error(error);
