@@ -359,12 +359,19 @@ Ajouter un bouton dans l'interface et une ImageView.
 
 ---
 
+![Permissions](./img/flow_permissions.png)
+
+---
+
 ## « Exemple » contenu d'un Manifest
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.playmoweb.demo.dmocourseseo">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -429,6 +436,10 @@ Chaque dossier peut-être redéfini en fonction… De la langue (`values-fr/stri
 
 ---
 
+[Pratiquons ensemble](/tp/android/android-base-tp.html#les-ressources-alternatives)
+
+---
+
 ## Afficher un message à l'utilisateur
 
 ---
@@ -461,9 +472,9 @@ Interaction « complexe » avec l'utilisateur (Choix…)
 
 ## C'est à vous
 
-Ajouter une Dialog dans votre interface. Nous allons utiliser une library.
+Ajouter une Dialog dans votre interface. 
 
-[Material Dialog](https://github.com/afollestad/material-dialogs)
+Nous allons utiliser la librarie [Material Dialog](https://github.com/afollestad/material-dialogs)
 
 ---
 

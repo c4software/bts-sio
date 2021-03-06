@@ -108,6 +108,38 @@ Android Studio vous propose un éditeur graphique de l'interface, c'est pratique
 - Ajouter une balise ImageView.
 - Ajouter également une balise Button.
 
+### Les ressources alternatives
+
+Android intègre la gestion des ressources « alternative », c'est-à-dire la possibilité de charger automatiquement des ressources en fonction de conditions liées au téléphone du client type :
+
+- Taille de l'écran.
+- Langue.
+- Rotation de l'écran (Paysage / Portrait).
+- DPI
+- Thème sombre
+- Version d'Android
+- etc.
+
+Cette création de ressource est réalisable directement depuis Android Studio :
+
+![Create new resources](./ressources/create_new_resources.png)
+![Création de ressources alternatives](./ressources/resources.png)
+
+::: tip Vous pouvez tout redéfinir 
+L'ensemble des ressources (`res`) est re-définissable sans écrire de code. Par exemple si vous souhaitez redéfinir des `strings` dans différentes conditions il suffit de :
+
+![Popup de création](./ressources/resources_strings.png)
+![Ressources alternatives](./ressources/exemple_res_alt.png)
+:::
+
+### À faire :
+
+- Éditer le layout `activity_main.xml`.
+- Ajouter une balise TextView.
+- Dans le `android:text` utiliser une strings `android:text="@strings/monString"`.
+- Celle-ci doit être différente en fonction si l'utilisateur a son téléphone en paysage (`land`) ou en portrait.
+- Ajuster également la taille du logo pour que celui-ci soit plus petit si le téléphone est en portrait (`land`).
+
 ### Les dimensions et contraintes
 
 Vous avez donc ajouté deux nouveaux éléments dans votre layout, mais ils n'ont n'y taille ni « positions ». En effet comme vu ensemble en cours, nous utilisons un layout de type « ConstraintLayout » c'est-à-dire que vos éléments doivent être contraints les uns par rapport aux autres.
@@ -384,6 +416,131 @@ Exemple :
 
 ![Sample UI TEST](./ressources/sample_ui_test.png)
 
+## Les Permissions
+
+Nous avons vu ensemble que la gestion des permissions était un élément important de la plateforme. Nous allons donc voir la théorie, puis la mettre en pratique.
+
+![Les permissions](./ressources/flow_permissions.png)
+
+Voilà le plus simple pour expliquer la mécanique des permissions c'est « un schéma ». Je vous propose de mettre en pratique avec la permission « LOCALISATION ». Je vais volontairement vous donner le code à implémenter (celui-ci est disponible de toute manière dans la documentation d'Android).
+
+Pour réaliser cette fonctionnalité, nous allons ajouter une nouvelle activité (en utilisant les options de votre IDE). 
+Pour le layout je vous propose de réaliser un layout qui ressemble à :
+
+![Layout](./ressources/layout_locate_me.png)
+
+👋 C'est bien évidemment qu'une proposition… Vous pouvez faire autrement !
+
+Pour le code, c'est un poil plus compliqué, en reprenant le flow du graphique précédent, nous allons avoir besoin :
+
+### Permission acceptée ?
+
+```kotlin
+    private fun hasPermission(): Boolean {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+    }
+```
+
+### Demander la permission
+
+```kotlin
+private fun requestPermission() {
+    if (!hasPermission()) {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_LOCATION)
+    } else {
+        getLocation()
+    }
+}
+```
+
+### Méthode surchargée après l'acceptation
+
+```kotlin
+override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+    when (requestCode) {
+        PERMISSION_REQUEST_LOCATION -> {
+            // If request is cancelled, the result arrays are empty.
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                // Permission obtenue, Nous continuons la suite de la logique.
+                getLocation()
+            } else {
+                // TODO
+                // Permission non accepté, expliqué ici via une activité ou une dialog pourquoi nous avons besoin de la permission
+            }
+            return
+        }
+    }
+}
+```
+
+### Obtenir la localisation
+
+C'est le code « métier ». Les méthodes précédentes sont par contre génériques, et toujours présentes, quelle que soit la problématique.
+
+```kotlin
+private fun getLocation() {
+    if (hasPermission()) {
+        val locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager?
+        locationManager?.run {
+            locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)?.run {
+                geoCode(this)
+            }
+        }
+    }
+}
+```
+
+### BONUS ! Obtenir l'adresse par rapport au lat, long
+
+Latitude, Longitude c'est triste… Android intègre de base un Geocoder permettant d'obtenir une adresse textuelle en fonction d'une `lat,long`.
+
+```kotlin
+private fun geoCode(location: Location){
+    val geocoder = Geocoder(this, Locale.getDefault())
+    val results = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+
+    if (results.isNotEmpty()) {
+        locationText.text = results[0].getAddressLine(0)
+    }
+}
+```
+
+### À faire
+
+Je vous laisse implémenter le code… N'hésiter pas à reprendre le « graph » il vous sera utile pour déterminer qu'elle méthode appeler en premier lors de l'appui sur le bouton « Localiser Moi ». Un petit indice… on commence toujours par vérifier si l'application a le droit d'accéder « à la fonctionnalité ».
+
+::: tip La toolbar
+Pour activer l'action retour dans la Toolbar d'une activité. **Vous devez** ajouter le code suivant dans le `OnCreate` :
+
+```kotlin
+supportActionBar?.apply {
+    setTitle(R.string.whatever)
+    setDisplayHomeAsUpEnabled(true)
+    setDisplayShowHomeEnabled(true)
+}
+```
+
+Puis vous devez override la méthode `onSupportNavigateUp` qui est appelée lors de l'appui sur le « l'icône retour »:
+
+```kotlin
+override fun onSupportNavigateUp(): Boolean {
+    finish()
+    return true
+}
+```
+
+:::
+
+::: details Voir une solution complète
+
+Vous séchez ? __Je vous invite à me demander avant de regarder la solution…_ cependant, si vous souhaitez par contre vérifier votre solution.
+
+[Sachez que vous avez une version du code ici](https://gist.github.com/c4software/a3fa7f584a464a6308648b7fcce28add)
+
+:::
+
 ## Les Recyclerview
 
 :hand: Parlons-en 👋
@@ -442,7 +599,7 @@ Je vous laisse créer une nouvelle activité. Celle-ci **doit être** constitué
   - Un lien vers le Google Maps de l'ESEO.
 
 ::: tip La toolbar
-Pour activer la Toolbar dans une activity. Ajouter le code suivant dans le `OnCreate` :
+Pour activer l'action retour dans la Toolbar d'une activity. **Vous devez** ajouter le code suivant dans le `OnCreate` :
 
 ```kotlin
 supportActionBar?.apply {
