@@ -353,16 +353,6 @@ Ajouter un bouton dans l'interface et une ImageView.
 
 ---
 
-## Permissions ?
-
-![Permissions](./img/permissions.gif)
-
----
-
-![Permissions](./img/flow_permissions.png)
-
----
-
 ## « Exemple » contenu d'un Manifest
 
 ```xml
@@ -606,6 +596,65 @@ plugins {
     id 'kotlin-android-extensions' // <- Cette ligne.
 }
 ```
+
+---
+
+## Créer une activity
+
+- Intégré dans Android Studio
+- Une activity (Kotlin), Un Layout (XML), Une entrée dans le Manifest (XML)
+
+---
+
+![Create Activity](./img/create_activity.png)
+
+---
+
+![Create Activity suite](./img/create_activity2.png)
+
+---
+
+## L'astuce… 
+
+Lancer une activity peut-être parfois « complexe »… Je vous propose une petite organisation !
+
+```kotlin
+companion object {
+        fun getStartIntent(context: Context): Intent {
+            return Intent(context, VotreActivityQueVousAvezCree::class.java)
+        }
+    }
+```
+
+---
+
+## L'astuce
+
+Et pour la lancer !
+
+```kotlin
+button.setOnClickListener {
+    startActivity(VotreActivityQueVousAvezCree.getStartIntent(this))
+}
+```
+
+---
+
+[Mettre en pratique avec la création d'un SplashScreen](/tp/android/android-base-tp.html#creer-une-autre-activity)
+
+---
+
+## Bon et les permissions ?
+
+![Permissions](./img/permissions.gif)
+
+---
+
+![Flow Permissions](./img/flow_permissions.png)
+
+---
+
+[La théorie c'est bien… La pratique c'est mieux](/tp/android/android-base-tp.html#les-permissions)
 
 ---
 
