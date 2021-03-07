@@ -633,7 +633,7 @@ class LocalPreferences private constructor(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
 
     fun saveStringValue(yourValue: String?) {
-        sharedPreferences.edit().putString("saveStringValue", deviceName).apply()
+        sharedPreferences.edit().putString("saveStringValue", yourValue).apply()
     }
 
     fun getSaveStringValue(): String? {
@@ -655,3 +655,52 @@ class LocalPreferences private constructor(context: Context) {
 
 }
 ```
+
+Et pour l'utiliser dans vos activity :
+
+```kotlin
+
+// … Reste de votre code
+
+// Exemple sauvegarde d'information à chaque click.
+button.setOnClickListener {
+    LocalPreferences.getInstance(this).saveStringValue("Votre valeur")
+}
+
+// Exemple de récupération
+if(LocalPreferences.getInstance(this).getSaveStringValue() != null){
+    Toast.makeText(this, LocalPreferences.getInstance(this).getSaveStringValue(), Toast.LENGTH_SHORT).show()
+}
+
+// … Suite de votre code
+
+```
+
+#### À faire
+
+Cette classe est générique, il vous suffit d'implémenter les bonnes méthodes.
+
+J'aimerais que nous puissions sauvegarder l'ensemble des positions de l'utilisateur :
+
+- Créer la class SharedPreferences.
+- Implémenter les méthodes permettant la sauvegarde des données. (nous allons avoir besoin de `putStringSet` et de `getStringSet` deux méthodes des SharedPreferences permettant de sauvegarder des listes de données).
+
+::: details Voir une solution (comme à chaque fois cherchez par vous-même en vous inspirant de mon exemple)
+
+```kotlin
+    fun addToHistory(newEntry: String){
+        val history = this.getHistory()
+        history?.add(newEntry)
+        sharedPreferences.edit().putStringSet("histories", history).apply()
+    }
+
+    fun getHistory(): MutableSet<String>? {
+        return sharedPreferences.getStringSet("histories", emptySet())
+    }
+```
+
+:::
+
+- Modifier votre activity « Localisation » pour sauvegarder chaque position « détecté ».
+- Créer une nouvelle `activity` qui va afficher l'ensemble des données présent dans votre historique (via un `RecyclerView`).
+- Rendre cette nouvelle activity accessible depuis « la home de votre application ». (uniquement si il y a des données)
