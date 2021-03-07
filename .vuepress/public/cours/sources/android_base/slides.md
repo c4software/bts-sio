@@ -606,39 +606,49 @@ plugins {
 
 ---
 
+
+## Démarrer une autre `activity`
+
+Une astuce…
+
+---
+
+### Dans l'activity à démarrer ajouter
+
+```kotlin
+companion object {
+    fun getStartIntent(context: Context): Intent {
+        return Intent(context, MaClass::class.java)
+    }
+}
+```
+
+---
+
+### Et quand on souhaite afficher la vue
+
+```java
+startActivity(MaClass.getStartIntent(this));
+```
+
+---
+
 ![Create Activity](./img/create_activity.png)
 
 ---
 
 ![Create Activity suite](./img/create_activity2.png)
 
----
-
-## L'astuce… 
-
-Lancer une activity peut-être parfois « complexe »… Je vous propose une petite organisation !
-
-```kotlin
-companion object {
-        fun getStartIntent(context: Context): Intent {
-            return Intent(context, VotreActivityQueVousAvezCree::class.java)
-        }
-    }
-```
 
 ---
 
-## L'astuce
+## Testons ensembles
 
-Et pour la lancer !
-
-```kotlin
-button.setOnClickListener {
-    startActivity(VotreActivityQueVousAvezCree.getStartIntent(this))
-}
-```
+- Création « d'un Splash ».
+- Démarrage après un délai « simulant un petit chargement » la Home.
 
 ---
+
 
 [Mettre en pratique avec la création d'un SplashScreen](/tp/android/android-base-tp.html#creer-une-autre-activity)
 
@@ -762,43 +772,20 @@ Réorganisation de votre projet initial.
 
 ---
 
-## Ajout d'une seconde `activity`
+## Sauvegarder des paramètres
+
+- SharedPreferences
+- SQLite (via `Room` par exemple)
 
 ---
 
-## Démarrer une autre `activity`
+## SharedPreferences
 
-Une astuce…
-
----
-
-### Dans l'activity à démarrer ajouter
-
-```java
-public static Intent getStartIntent(final Context ctx) {
-    return new Intent(ctx, MaClass.class);
-}
-```
-
-```kotlin
-companion object {
-    fun getStartIntent(context: Context): Intent {
-        return Intent(context, MaClass::class.java)
-    }
-}
-```
+- Simple
+- Type natif **exclusivement**(`int`, `string`, …)
+- Persistant
+- Supprimé à chaque réinstallation
 
 ---
 
-### Et quand on souhaite afficher la vue
-
-```java
-startActivity(MaClass.getStartIntent(this));
-```
-
----
-
-## Testons ensembles
-
-- Création « d'un Splash ».
-- Démarrage après un délai « simulant un petit chargement » la Home.
+[Voir dans le support un exemple](/tp/android/android-base-tp.html)
