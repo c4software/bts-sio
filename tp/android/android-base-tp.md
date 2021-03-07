@@ -701,6 +701,6 @@ J'aimerais que nous puissions sauvegarder l'ensemble des positions de l'utilisat
 
 :::
 
-- Modifier votre activity « Localisation » pour sauvegarder chaque position « détecté ».
+- Modifier votre activity « Localisation » pour sauvegarder chaque position « détecté ». (vous pouvez valider la bonne insertion de votre donnée via un point d'arrêt dans votre code)
 - Créer une nouvelle `activity` qui va afficher l'ensemble des données présent dans votre historique (via un `RecyclerView`).
-- Rendre cette nouvelle activity accessible depuis « la home de votre application ». (uniquement si il y a des données)
+- Rendre cette nouvelle activity accessible depuis « la home de votre application ». (uniquement si il y a des données).
