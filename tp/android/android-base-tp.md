@@ -682,8 +682,8 @@ Cette classe est générique, il vous suffit d'implémenter les bonnes méthodes
 
 J'aimerais que nous puissions sauvegarder l'ensemble des positions de l'utilisateur :
 
-- Créer la class SharedPreferences.
-- Implémenter les méthodes permettant la sauvegarde des données. (nous allons avoir besoin de `putStringSet` et de `getStringSet` deux méthodes des SharedPreferences permettant de sauvegarder des listes de données).
+- Créer la class `LocalPreferences`. (attention dans le bon package)
+- Ajouter les deux méthodes permettant la sauvegarde des données dans la class `LocalPreferences`. (nous allons avoir besoin de `putStringSet` et de `getStringSet` deux méthodes fourni par `SharedPreferences`, permettant de sauvegarder des listes de données).
 
 ::: details Voir une solution (comme à chaque fois cherchez par vous-même en vous inspirant de mon exemple)
 
