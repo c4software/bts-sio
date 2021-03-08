@@ -281,7 +281,11 @@ De la `MainActivity`.
 
 Modifier également le thème de la SplashActivity afin de lui spécifier un thème sans « ActionBar ». Pour ça il vous suffit d'ajouter dans les attributs celui-ci :
 
-`android:theme="@style/Theme.AppCompat.NoActionBar"`
+`android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"` 
+
+Exemple :
+
+`<activity android:name=".SplashActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">`
 
 :hand: Lancer l'application. Vous devez être bloqué sur une « vue blanche ».
 
