@@ -543,13 +543,7 @@ tvHello.setOnClickListener(l -> {
 
 Beaucoup moins « verbeux ».
 
----
-
-### 3 étapes
-
-- Le layout (Ajouter un `id`)
-- La méthode `findViewById` (dans le code)
-- Le `setOnClickListener(…)`
+**Dommage pour nous cette version est maintenant dépréciée**
 
 ---
 
@@ -558,10 +552,61 @@ tvHello.setOnClickListener {
     Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
 };
 ```
+Pas de déclaration de `tvHello` ? Bien sur que si, mais ça sera automatique avec `kotlin-android-extension`
 
 ---
 
-Pas de déclaration de `tvHello` ? Bien sur que si, mais ça sera automatique avec `kotlin-android-extension`
+## ViewBinding
+
+La nouvelle façon de faire :
+
+- Gère le typage.
+- NullSafety.
+- Plus complexe que le `kotlin-android-extension`.
+
+---
+
+## Dans le Build.gradle
+
+Activer le « ViewBinding », dans le block Android déjà présent ajouter :
+
+```gladle
+buildFeatures {
+    viewBinding true
+}
+```
+
+---
+
+![Dans Mon Cas](./img/viewBinding.png)
+
+---
+
+Dans vos class, modifier le code pour :
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding // <-- Référence à notre ViewBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // --> Indique que l'on utilise le ViewBinding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // L'ensemble de nos références sont disponibles directement dans « binding.LE_NOM_DE_L_ELEMENT »
+        binding.button.setOnClickListener {
+            // Click sur le Button nommé « Button » dans notre Layout.
+        }
+    }
+}
+```
+
+---
+
+[Voir dans le support](/tp/android/android-base-tp.html#rendre-un-element-clickable-2)
 
 ---
 

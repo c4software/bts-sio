@@ -225,7 +225,64 @@ Et voilà… Votre bouton est cliquable.
 
 ## Rendre un élément clickable 2
 
-La seconde façon (moins longue) d'accéder à un élément est via « les Kotlin-Android-Extensions ». Les extensions sont à ajouter dans votre `build.gradle` (app). Ajouter
+Le `ViewBinding` est maintenant la nouvelle façon moderne de gérer « les références à la vue depuis le code Kotlin ». Ça fonctionne un peu comme le `findViewById` sauf que le Binding est automatique et surtout celui-ci gère automatiquement le typage !
+
+Première étape il faut activer dans votre build.gradle le « ViewBinding », dans le block Android déjà présent ajouter :
+
+```gladle
+buildFeatures {
+    viewBinding true
+}
+```
+
+Exemple dans mon cas :
+
+![viewBinding](./ressources/viewBinding.png)
+
+:hand: N'oubliez pas de resync l'IDE
+
+![ide sync](./ressources/sync.png)
+
+Maintenant nous avons maintenant un Binding automatique entre « La vue et le Code Kotlin », cependant pour que celui-ci soit accessible de l'ensemble de notre classe, nous allons devoir modifier légèrement notre `class`.
+
+Exemple de modification dans la `MainActivity` :
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding // <-- Référence à notre ViewBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // --> Indique que l'on utilise le ViewBinding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // L'ensemble de nos références sont disponibles directement dans « binding »
+        binding.button.setOnClickListener {
+            // Click sur le Button nommé « Button » dans notre Layout.
+        }
+    }
+}
+```
+
+[En savoir plus dans la documentation](https://developer.android.com/topic/libraries/view-binding)
+
+### À faire
+
+Modifier le code précédent pour utiliser la nouvelle façon vue précédemment.
+
+### Les Kotlin Android Extension
+
+::: warning Cette méthode est maintenant dépréciée
+Bien que pratique cette méthode n'est maintenant plus « la bonne façon de faire.
+
+La seconde façon (moins longue) d'accéder à un élément est via « les Kotlin-Android-Extensions ».
+
+::: details Je prends le risque je regarde
+
+Les extensions sont à ajouter dans votre `build.gradle` (app). Ajouter
 
 ```gradle
 plugins {
@@ -241,9 +298,7 @@ plugins {
 
 Maintenant vous pouvez simplement faire `myButton.setOnClickListener…` pour rendre l'élément cliquable.
 
-### À faire
-
-Modifier le code précédent pour utiliser la nouvelle façon vue précédemment.
+:::
 
 ### Créer une autre activity
 
