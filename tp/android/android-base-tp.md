@@ -596,10 +596,11 @@ private fun getLastLocationNewMethod() {
     if (hasPermission()) {
         val mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         mFusedLocationClient.lastLocation
-            .addOnSuccessListener { geoCode(it)
+            .addOnSuccessListener { 
+                geoCode(it)
             }
             .addOnFailureListener { e ->
-                e.printStackTrace()
+                Toast.makeText(this, "Localisation impossible", Toast.LENGTH_SHORT).show()
             }
     }
 }
