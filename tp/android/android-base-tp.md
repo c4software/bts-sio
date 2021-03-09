@@ -553,6 +553,8 @@ Je vous laisse écrire le code afin d'envoyer l'utilisateur vers les paramètres
 
 C'est le code « métier ». Les méthodes précédentes sont par contre génériques, et toujours présentes, quelle que soit la problématique.
 
+_Obtenir la location : Via « la dernière connue »:_
+
 ```kotlin
 private fun getLocation() {
     if (hasPermission()) {
@@ -566,7 +568,7 @@ private fun getLocation() {
 }
 ```
 
-Obtenir la localisation 2 pour avoir la position réel (pas la dernière obtenue par le système):
+_Obtenir la localisation 2 pour avoir la position réel (pas la dernière obtenue par le système):_
 
 ```kotlin
 private fun getLocation() {
@@ -578,6 +580,34 @@ private fun getLocation() {
     }
 }
 ```
+
+_Obtenir la localisation 3 : Via les Play Services_
+
+```kotlin
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        // --> Ajouter ça dans votre onCreate
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+    }
+
+private fun getLastLocationNewMethod() {
+    if (hasPermission()) {
+        val mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        mFusedLocationClient.lastLocation
+            .addOnSuccessListener { geoCode(it)
+            }
+            .addOnFailureListener { e ->
+                e.printStackTrace()
+            }
+    }
+}
+```
+
+::: danger Vous devez choisir une façon de faire
+Nous avons donc trois façon de fair, si votre téléphone a les Play Services la dernière solution sera la bonne.
+:::
 
 ### BONUS ! Obtenir l'adresse par rapport au lat, long
 
