@@ -543,6 +543,12 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
 }
 ```
 
+::: danger Gestion de la permission refusé de manière permanente
+L'utilisateur a le choix de refuser de manière permanente la localisation. Dans ce cas vous devez gérer l'erreur avec `shouldShowRequestPermissionRationale()` qui retournera `true` / `false` en fonction.
+
+Je vous laisse écrire le code afin d'envoyer l'utilisateur vers les paramètres de son téléphone si cela doit être le cas.
+:::
+
 ### Obtenir la localisation
 
 C'est le code « métier ». Les méthodes précédentes sont par contre génériques, et toujours présentes, quelle que soit la problématique.
