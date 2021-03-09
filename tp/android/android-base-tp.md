@@ -594,7 +594,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
     fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 }
 
-private fun getLastLocationNewMethod() {
+private fun getLocation() {
     if (hasPermission()) {
         fusedLocationClient.lastLocation
             .addOnSuccessListener {
