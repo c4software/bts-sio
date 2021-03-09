@@ -492,6 +492,15 @@ Pour le layout je vous propose de réaliser un layout qui ressemble à :
 
 Pour le code, c'est un poil plus compliqué, en reprenant le flow du graphique précédent, nous allons avoir besoin :
 
+## Déclaration des permissions
+
+Dans le fichier Manifest ajouter :
+
+```xml
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
+
 ### Permission acceptée ?
 
 ```kotlin
