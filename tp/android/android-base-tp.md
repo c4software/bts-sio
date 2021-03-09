@@ -596,9 +596,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 private fun getLastLocationNewMethod() {
     if (hasPermission()) {
-        val mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocationClient.lastLocation
-            .addOnSuccessListener { 
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener {
                 geoCode(it)
             }
             .addOnFailureListener { e ->
