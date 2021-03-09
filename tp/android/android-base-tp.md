@@ -584,13 +584,15 @@ private fun getLocation() {
 _Obtenir la localisation 3 : Via les Play Services_
 
 ```kotlin
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+// -> Propriété a ajouter dans votre class
+private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-        // --> Ajouter ça dans votre onCreate
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-    }
+override fun onCreate(savedInstanceState: Bundle?) {
+    // EN PLUS DE VOTRE CODE EXISTANT
+    // --> Ajouter ça dans votre onCreate
+    fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+}
 
 private fun getLastLocationNewMethod() {
     if (hasPermission()) {
