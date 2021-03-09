@@ -566,6 +566,19 @@ private fun getLocation() {
 }
 ```
 
+Obtenir la localisation 2 pour avoir la position réel (pas la dernière obtenue par le système):
+
+```kotlin
+private fun getLocation() {
+    if (hasPermission()) {
+        val locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager?
+        locationManager?.run {
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10000F, LocationListener { geoCode(it) });
+        }
+    }
+}
+```
+
 ### BONUS ! Obtenir l'adresse par rapport au lat, long
 
 Latitude, Longitude c'est triste… Android intègre de base un Geocoder permettant d'obtenir une adresse textuelle en fonction d'une `lat,long`.
