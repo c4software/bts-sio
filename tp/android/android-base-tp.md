@@ -504,9 +504,9 @@ Dans le fichier Manifest ajouter :
 ### Permission acceptée ?
 
 ```kotlin
-    private fun hasPermission(): Boolean {
-        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-    }
+private fun hasPermission(): Boolean {
+    return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+}
 ```
 
 ### Demander la permission
