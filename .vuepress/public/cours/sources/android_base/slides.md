@@ -509,7 +509,7 @@ Ensemble « de règles » / de bonne pratique pour avoir des interfaces de quali
 ## Le listener
 
 ```java
-tvHello.setOnClickListener(new View.OnClickListener() {
+findViewById<R.id.myButton>.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         Toast.makeText(MainActivity.this, "Bonus point", Toast.LENGTH_SHORT).show();
@@ -528,7 +528,7 @@ Android supporte Java 1.8 (dont les lambdas)
 ## Les lambda's
 
 ```java
-tvHello.setOnClickListener(l -> {
+findViewById<R.id.myButton>.setOnClickListener(l -> {
     Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
 });
 ```
