@@ -584,25 +584,15 @@ private fun getLocation() {
 _Obtenir la localisation 3 : Via les Play Services_
 
 ```kotlin
-
-// -> Propriété a ajouter dans votre class
-private lateinit var fusedLocationClient: FusedLocationProviderClient
-
-override fun onCreate(savedInstanceState: Bundle?) {
-    // EN PLUS DE VOTRE CODE EXISTANT
-    // --> Ajouter ça dans votre onCreate
-    fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-}
-
 private fun getLocation() {
     if (hasPermission()) {
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener {
-                geoCode(it)
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Localisation impossible", Toast.LENGTH_SHORT).show()
-            }
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY, CancellationTokenSource().token)
+                .addOnSuccessListener { geoCode(it) }
+                .addOnFailureListener {
+                    // Remplacer par un vrai bon message
+                    Toast.makeText(this, "Localisation impossible", Toast.LENGTH_SHORT).show()
+                }
     }
 }
 ```
