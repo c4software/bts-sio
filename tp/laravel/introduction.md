@@ -2,6 +2,10 @@
 
 ![Laravel](./ressources/logo.png)
 
+::: details Sommaire
+[[toc]]
+:::
+
 Dans ce TP nous allons couvrir l’installation, la configuration et la création d’un premier projet « démo » à base de Laravel.
 
 ## Introduction
