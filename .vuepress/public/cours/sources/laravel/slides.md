@@ -87,7 +87,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 - V1, V2: Le début, les versions sont rapidement disponibles. Système de routes, et controller MVC très simple.
 - V3: Février 2012, Boom de la popularité.
 - V4: Mai 2013, réécriture complète du Framework. Intégration du gestionnaire de paquets « Composer »
-
+- …
 ---
 
 ### À votre avis pourquoi, est-ce important (le gestionnaire de paquets) ?
@@ -104,7 +104,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire… (maintenant)
 
-- 6.X: Version actuelle
+- 8.X: Version actuelle
 
 ---
 
