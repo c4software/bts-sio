@@ -301,7 +301,7 @@ Bon, maintenant que nous avons déclaré un layout utilisons-le dans la 2nd rout
 
 - Créez une Vue par exemple `ping.blade.php` (Dans le dossiers `views`)
 - Utilisez `@extends('layouts.base')` pour « hériter » de votre layout principal.
-- Modifiez `web.php` pour répondre avec la fonction `view` comme dans l’autre route.
+- Modifiez `web.php` pour répondre avec la fonction `view` comme dans l’autre route. (en vous inspirant de l'autre déjà présente)
 
 Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon courage.
 
@@ -318,3 +318,60 @@ Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon c
 ```
 
 </Reveal>
+
+## Le contrôleur
+
+La force de Laravel est ça structure nous avons vu ensemble que celui-ci propose un découpage « précis » et clair des couches « MVC » (Modèle, Vue, Controlleur). Nous allons donc organiser notre code pour utiliser un Contrôleur (qui je le rappelle à pour but de répondre aux requêtes HTTP des clients).
+
+### Le Contrôleur:
+
+C'est la première étape, un tour dans la console / terminal pour créer notre premier contrôleur.
+
+```sh
+php artisan make:controller PingPongControleur
+```
+
+Laravel, viens donc de créer un nouveau fichier dans votre projet, pour l'instant celui-ci est vide (aucune méthode).
+
+::: tip C'est dans le terminal / console
+Oui, c'est encore dans le terminal / console … Mais, nous gagnons du temps. Qui maitrise son clavier maitrise son ordinateur 👀.
+:::
+
+Notre contrôleur va contenir `deux méthodes`, ces deux méthodes vont représenter les deux `routes` de notre application :
+
+|  Route  | Méthode  |
+| :-----: | :------: |
+| `/ping` | `ping()` |
+| `/pong` | `pong()` |
+
+Nous allons donc devoir ajouter dans notre `contrôleur` les deux routes. Je vous laisse ouvrir le `PingPongControleur` pour y ajouter les méthodes suivantes :
+
+```php
+    public function ping()
+    {
+        return view('ping', []);
+    }
+
+    public function pong()
+    {
+        return view('pong', []);
+    }
+```
+
+::: warning [] ?
+Vous avez oublié la signification des `[]` ? C'est « simplement » les données que nous pourrions envoyer à notre vue. Pratique !
+:::
+
+### Les routes
+
+Nous allons maintenant ajouter les routes, pour rappel les routes sont ce qui permet aux utilisateurs d'accéder à vos contrôleurs. L'ensemble des routes sont à déclarer dans le fichier `routes/web.php`, éditer le pour y ajouter vos routes :
+
+```php
+Route::get('/ping', ['App\Http\Controllers\PingPongControleur', 'ping']);
+```
+
+Je vous laisse écrire la seconde `route` en fonction de ce que je vous ai fourni.
+
+### Les vues
+
+Vous l'avez réalisé précédemment, je vous laisse écrire les deux `vue` / `layout`. Attention à bien hériter de votre « Layout de base » (`@extends('layouts.base')`) comme dans la précédente vue.
