@@ -323,7 +323,7 @@ Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon c
 
 </Reveal>
 
-## Le contrôleur
+## Utiliser un contrôleur
 
 La force de Laravel est ça structure nous avons vu ensemble que celui-ci propose un découpage « précis » et clair des couches « MVC » (Modèle, Vue, Controlleur). Nous allons donc organiser notre code pour utiliser un Contrôleur (qui je le rappelle à pour but de répondre aux requêtes HTTP des clients).
 
@@ -376,6 +376,161 @@ Route::get('/ping', ['App\Http\Controllers\PingPongControleur', 'ping']);
 
 Je vous laisse écrire la seconde `route` en fonction de ce que je vous ai fourni.
 
+::: tip Une astuce ?
+
+Vous pouvez simplement vérifier que votre route est bien prise en compte via la commande :
+
+```sh
+php artisan route:list
+```
+
+:::
+
 ### Les vues
 
 Vous l'avez réalisé précédemment, je vous laisse écrire les deux `vue` / `layout`. Attention à bien hériter de votre « Layout de base » (`@extends('layouts.base')`) comme dans la précédente vue.
+
+## La base de données
+
+L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique ou tout est a « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite. Comme pour la création du contrôleur la première étape va passer par de la ligne de commande.
+
+```sh
+php artisan make:model Demo --migration
+```
+
+Cette commande va créer « la définition du modèle » (le modèle la représentation objet de notre table), mais également la migration. La migration est le fichier qui va définir la structure de notre `Table`. Vous avez maintenant dans votre projet, deux nouveaux fichiers :
+
+- `app/Models/Demo.php`
+- `database/migrations/YEAR_MONTH_DAY_TIME_create_demos_table.php`
+
+### Définir la migration (structure de la table)
+
+Le fichier de migration défini la structure de la table que vous allez créer, actuellement vous avec un « format type », votre table va contenir de base quelques colonnes (id, et dates). Nous allons ajouter dans la méthode `up()` nos colonnes :
+
+```php
+$table->string('texte');
+```
+
+Je vous laisse l'ajouter avec les autres champs.
+
+::: details Vous avez un doute sur comment faire ? (je vous invite vraiment à le faire sans regarder la solution)
+
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateDemosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('demos', function (Blueprint $table) {
+            $table->id();
+            $table->string('texte');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('demos');
+    }
+}
+```
+
+:::
+
+### Définition du modèle
+
+Vous vous en doutez, si nous avons ajouté un champ dans notre « migration » / « table », nous allons devoir l'ajouter également dans notre modèle ! Pour ça je vous laisse éditer le fichier `app/Models/Demo.php` pour y ajouter :
+
+```php
+    protected $fillable = ['texte'];
+```
+
+Avec cet ajout, nous indiquons à Laravel que nous allons avoir un champ `texte` qui pourra être assigné en automatique lors de la création d'une entrée en base de données.
+
+::: tip optionnel, mais intéressant !
+Cette propriété est optionnelle, elle vous autorisera plus tard à faire du « mass-assignment » c'est-à-dire à créer un objet « Demos » depuis par exemple le POST HTTP.
+:::
+
+### Créer réellement vos tables
+
+Maintenant que le script est terminé, nous allons indiquer à Laravel d'effectuer « la migration » c'est-à-dire de transformer votre définition PHP en instruction SQL pour créer réellement la base de données.
+
+Retour dans la ligne de commande :
+
+```sh
+$ php artisan migrate
+[…]
+Migrating: YEAR_MONTH_DAY_TIME_create_demos_table
+Migrated:  YEAR_MONTH_DAY_TIME_create_demos_table
+```
+
+::: warning Un instant
+Je vous laisse configurer votre `.env` mais également vérifier si votre base de données fonctionne correctement (création etc).
+:::
+
+### Requêter votre table
+
+Pour vous montrer la simplicité de Eloquent, je vous laisse juste avec les appels de méthodes (nous avons vu ça ensemble lors du cours)
+
+::: danger Liste non exhaustive
+Vous avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère plutôt [la documentation officielle](https://laravel.com/docs/8.x/eloquent)
+:::
+
+#### Obtenir toutes les données
+
+```php
+Demos::all()
+```
+
+#### Obtenir toutes les données avec filtre
+
+```php
+Demo::where('texte', "YOLO")->orderBy('id')->take(10)
+```
+
+#### Utiliser les données depuis votre « vue »
+
+Et c'est tellement simple que si vous souhaitez tout récupérer pour utiliser les données il vous suffit de faire :
+
+```php
+public function listDemo(Request $request){
+  return view("monLayout", ["demos" => Demos::all()]);
+}
+```
+
+#### Créer des données depuis un formulaire en POST
+
+```php
+public function addDemo(Request $request){
+    Demos::create($request->all());
+    return redirect("/demo");
+}
+```
+
+### Finaliser
+
+À partir de maintenant vous avez tout ce qu'il faut pour interroger votre base de données… Et oui c'est aussi simple que ça ! Pour la suite je vous laisse écrire le code par vous-même, mais la procédure va être la suivante :
+
+- Créer un contrôleur « Demo ».
+- Créer la `Vue` (template blade) associée à votre contrôleur.
+- Ajouter une méthode qui va afficher l'ensemble des entrées présent dans votre base de données (affichage dans une `table` html).
+- Ajouter un formulaire dans votre `Vue` permettant d'ajouter des données dans la table.
+
+::: danger N'oubliez pas
+Utilisez `@extends('layouts.base')` pour « hériter » de votre layout principal.
+:::

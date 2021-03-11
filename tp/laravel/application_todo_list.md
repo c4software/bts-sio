@@ -219,7 +219,7 @@ Votre base de données est maintenant prête à être utilisée. Vous pouvez all
 Maintenant que nous avons fait le script de création / migration, nous allons définir notre modèle.
 
 ```sh
-$ php artisan make:modl Todos
+$ php artisan make:model Todos
 ```
 
 La commande va créer le fichier `Todos.php` dans le dossier `app/Models`.
