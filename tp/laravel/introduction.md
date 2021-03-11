@@ -329,7 +329,7 @@ Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon c
 
 ## Utiliser un contrôleur
 
-La force de Laravel est ça structure nous avons vu ensemble que celui-ci propose un découpage « précis » et clair des couches « MVC » (Modèle, Vue, Controlleur). Nous allons donc organiser notre code pour utiliser un Contrôleur (qui je le rappelle à pour but de répondre aux requêtes HTTP des clients).
+La force de Laravel est sa structure nous avons vu ensemble que celui-ci propose un découpage « précis » et clair des couches « MVC » (Modèle, Vue, Controlleur). Nous allons donc organiser notre code pour utiliser un Contrôleur (qui je le rappelle à pour but de répondre aux requêtes HTTP des clients).
 
 ### Le Contrôleur:
 
