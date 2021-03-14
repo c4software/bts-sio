@@ -88,6 +88,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 - V3: Février 2012, Boom de la popularité.
 - V4: Mai 2013, réécriture complète du Framework. Intégration du gestionnaire de paquets « Composer »
 - …
+
 ---
 
 ### À votre avis pourquoi, est-ce important (le gestionnaire de paquets) ?
@@ -495,6 +496,20 @@ Route::get('/', function () {
   <p>Contenu de la page enfant.</p>
 @endsection
 ```
+
+---
+
+## Les composants
+
+Blade intégre également un système de composant « permettant » de découper son travail.
+
+[https://laravel.com/docs/8.x/blade#components](Documentation composant)
+
+---
+
+## Les composants pour le layout
+
+[https://laravel.com/docs/8.x/blade#layouts-using-components](La documentation)
 
 ---
 
