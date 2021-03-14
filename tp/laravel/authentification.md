@@ -48,11 +48,11 @@ composer require laravel/breeze --dev
 Une fois ajoutée, nous allons devoir installer breeze pour que celui-ci active l'ensemble des fonctionnalités :
 
 ```sh
-php artisant migrate
+php artisan migrate
 
 php artisan breeze:install
 
-php artisant migrate
+php artisan migrate
 ```
 
 ::: tip Que c'est il passé ?
@@ -154,7 +154,7 @@ L'organisation est tout aussi important que le code, tu peux copier coller du co
 
 Prendre du temps pour utiliser le système de layout tels proposé par Laravel est un vrai gain de temps ! Le toi du futur te remercies d'avance.
 
-Promis, ça va bien ce passer !
+Promis, ça va bien se passer !
 
 :::
 

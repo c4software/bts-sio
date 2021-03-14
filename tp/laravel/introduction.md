@@ -199,7 +199,7 @@ Nous avons écrit un peu de code. Vous avez pensé à GIT ? Git est en effet pr�
 - `.env`
 - Le dossier `vendor` etc…
 
-Vous pouvez donc comité sans problème vos sources.
+Vous pouvez donc commiter sans problème vos sources.
 
 :::
 
@@ -349,6 +349,24 @@ Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon c
 ```
 
 </Reveal>
+
+## Les composants
+
+Au passage, nous avons maintenant (en Laravel 8) une autre façon de définir des templates / « morceaux de codes réutilisables ». C'est via un composant, nous détaillerons cette pratique un peu plus tard.
+
+Le principe est très proche de l'héritage des templates vu précédemment. À la différence que nous allons avoir à notre disposition des balises personnalisées comme par exemple `<x-layout-base>` ou `<x-card></x-card>` ; c'est balise font référence à du code placé dans le dossier `resources/views/components/`.
+
+Cette notation est très récente et n'est disponible qu'à partir de **Laravel 8**.
+
+Nous utiliserons les composants dans le TP Authentification.
+
+[Pour les plus curieux, la documentation officielle est disponible ici](https://laravel.com/docs/8.x/blade#components)
+
+::: tip Un composant
+L'organisation en composant est très populaire en ce moment, elle est la base de beaucoup de frameworks moderne. Vous devriez vivement vous y intéresser.
+
+C'est par exemple la base du fonctionnement de VueJS 👌.
+:::
 
 ## Utiliser un contrôleur
 
