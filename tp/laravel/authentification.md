@@ -165,6 +165,8 @@ Avec le Scaffolding de Breeze nous avons à notre disposition **deux templates**
 
 Nous allons donc migré notre page d'accueil pour utiliser le nouveau système de composant. Pour ça rien de plus simple, il nous suffit d'utiliser `<x-guest-layout>` dans le template `welcome.blade.php`, je vous laisse le faire celui-ci va remplacer l'ensemble du haut de notre html jusqu'au `<body>` ce qui va donner :
 
+::: details Afficher le code du `welcome.blade.php`
+
 ```html
 <x-guest-layout>
   <div
@@ -430,6 +432,8 @@ Nous allons donc migré notre page d'accueil pour utiliser le nouveau système d
   </div>
 </x-guest-layout>
 ```
+
+:::
 
 ⚠️ Je vous laisse constater la différence.
 
