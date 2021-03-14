@@ -140,7 +140,7 @@ Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir 
 
 ## Modification du template par défaut
 
-Éditer le fichier `resources/views/welcome.blade.php`, ajouter la variable `$titre`. La synthaxe « blade » est la suivante <span v-pre>`{{ $titre }}`</span>.
+Éditer le fichier `resources/views/welcome.blade.php`, ajouter la variable `$titre`. La syntaxe « blade » est la suivante <span v-pre>`{{ $titre }}`</span>.
 
 Localiser dans le code l'endroit ou le logo de Laravel est affiché. Ajouter en dessous « <span v-pre>`{{ $titre }}`</span> ». Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelque chose s'affiche :
 
