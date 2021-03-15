@@ -698,14 +698,54 @@ Réimplémenter le code précédemment écrit (ou créer une autre activité) av
 
 ## Activité « Paramètres »
 
-Je vous laisse créer une nouvelle activité. Celle-ci **doit être** constitué :
+Je vous laisse créer une nouvelle activité. Celle-ci **doit être** constituée :
 
 - Une Toolbar avec un bouton Retour et un titre « Paramètres ».
-- Une suite de TextView Cliquable (vous pouvez utiliser un LinearLayout _ou_ un RecyclerView) :
-  - Paramètres Bluetooth -> Ouvre les paramètres du téléphone.
-  - Informations -> Ouvre une activity (ou une dialogue avec un message texte).
+- un RecyclerView qui va contenir :
+  - Paramètres Bluetooth -> ouvre les paramètres du téléphone.
+  - Informations -> ouvre une activité (ou un dialogue avec un message texte).
+  - Un élément ouvrant « les paramètres de l'application »
   - Un lien vers le site de l'ESEO.
   - Un lien vers le Google Maps de l'ESEO.
+
+::: danger Votre RecyclerView
+Votre RecyclerView va contenir des objets du type SettingsItem (class a créé). Chaque élément va ressembler à :
+
+_Exemple d'un élément de liste :_
+
+![ressources list_item_sample.png](./ressources/list_item_sample.png)
+
+![ressources list_item_sample.png](./ressources/rv_sample_settings.png)
+
+_Les objet de type `SettingsItem.kt`_:
+
+```kotlin
+// Définition de la Class qui sera dans notre RecyclerView
+data class SettingsItem(val name: String, val icon: Int, private val onClick: (() -> Unit)? = null)
+
+// Exemple de déclaration dans la datasource (à déclarer dans votre Activity)
+arrayOf(
+    SettingsItem("Paramètre Bluetooth", R.drawable.bluetooth) {
+        // Action au clique
+    },
+    SettingsItem("Informations", R.drawable.info) {
+        // Action au clique
+    },
+    SettingsItem("Paramètres", R.drawable.settings) {
+        // Action au clique
+    },
+    SettingsItem("Site de l'ESEO", R.drawable.logo_eseo) {
+        // Action au clique
+    }
+)
+
+// Je vous laisse implémenter votre ViewHolder, pour référencer dans votre vue (via des findViewById comme vu ensemble)
+// -> name
+// -> icon
+// -> l'action au clique
+```
+
+:::
 
 ::: tip La toolbar
 Pour activer l'action retour dans la Toolbar d'une activity. **Vous devez** ajouter le code suivant dans le `OnCreate` :
