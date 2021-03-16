@@ -722,7 +722,9 @@ _Les objet de type `SettingsItem.kt`_:
 ```kotlin
 // Définition de la Class qui sera dans notre RecyclerView
 data class SettingsItem(val name: String, val icon: Int, val onClick: (() -> Unit)? = null)
+```
 
+```kotlin
 // Exemple de déclaration dans la datasource (à déclarer dans votre Activity)
 arrayOf(
     SettingsItem("Paramètre Bluetooth", R.drawable.bluetooth) {
