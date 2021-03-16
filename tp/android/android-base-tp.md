@@ -709,7 +709,7 @@ Je vous laisse créer une nouvelle activité. Celle-ci **doit être** constitué
   - Un lien vers le Google Maps de l'ESEO.
 
 ::: danger Votre RecyclerView
-Votre RecyclerView va contenir des objets du type SettingsItem (class a créé). Chaque élément va ressembler à :
+Votre RecyclerView va contenir des objets du type SettingsItem (class a créer). Chaque élément va ressembler à :
 
 _Exemple d'un élément de liste :_
 
