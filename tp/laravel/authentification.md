@@ -64,7 +64,7 @@ Pour le reste c'est dans les dossiers que vous connaissez déjà.
 
 ### L'UI
 
-Si vous lancer dès maintenant votre projet via la commande `php artisan serve` vous allez voir que votre page d'accueil intègre maintenant deux nouveaux liens :
+Si vous lancez dès maintenant votre projet via la commande `php artisan serve` vous allez voir que votre page d'accueil intègre maintenant deux nouveaux liens :
 
 ![Laravel Breeze](./ressources/laravel_auth_breeze.png)
 
@@ -163,7 +163,7 @@ Avec le Scaffolding de Breeze nous avons à notre disposition **deux templates**
 - `app.blade.php` pour les clients **connectés**. Accessible dans votre template via `<x-app-layout>`
 - `guest.blade.php` pour les clients **non connectés**. Accessible dans votre template via `<x-guest-layout>`
 
-Nous allons donc migré notre page d'accueil pour utiliser le nouveau système de composant. Pour ça rien de plus simple, il nous suffit d'utiliser `<x-guest-layout>` dans le template `welcome.blade.php`, je vous laisse le faire celui-ci va remplacer l'ensemble du haut de notre html jusqu'au `<body>` ce qui va donner :
+Nous allons donc migrer notre page d'accueil pour utiliser le nouveau système de composant. Pour ça rien de plus simple, il nous suffit d'utiliser `<x-guest-layout>` dans le template `welcome.blade.php`, je vous laisse le faire celui-ci va remplacer l'ensemble du haut de notre html jusqu'au `<body>` ce qui va donner :
 
 ::: details Afficher le code du `welcome.blade.php`
 
