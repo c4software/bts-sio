@@ -76,7 +76,7 @@ interface Deplacement{
 
 class Personne implements Deplacement {
     public function seDeplacer($vers){
-        // Logique a écrire
+        // Logique à écrire
     }
 }
 
