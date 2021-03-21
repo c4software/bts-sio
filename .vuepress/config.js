@@ -80,7 +80,7 @@ module.exports = {
       },
 
       {
-        title: "Les bases Web",
+        title: "Les bases",
         initialOpenGroupIndex: -1,
         children: [
           { title: "En + du cours", children: ["cheatsheets/html/", "tp/html_css/support.md", "tp/php/support.md", "tp/php/sql/support.md", "tp/javascript/support.md"] },
@@ -88,6 +88,7 @@ module.exports = {
           { title: "PHP", children: ["cours/introduction_php"] },
           { title: "PHP & SQL", children: ["cours/introduction_sql_php"] },
           { title: "Javascript", children: ["cours/introduction_javascript"] },
+          { title: "La POO", children: ["cours/les_interfaces"] },
         ]
       },
 
@@ -182,6 +183,7 @@ module.exports = {
               "cours/android_base",
               "cours/android_ble",
               { title: "Les bases", children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp"] },
+              { title: "Les appels d'API", children: ["cours/android_http", "/tp/android/network"] },
               { title: "Le BLE", children: ["/tp/android/app-ble-network"] },
               { title: "L'organisation", children: ["/tp/android/sample-explication"] }
             ]
