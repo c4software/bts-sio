@@ -1,6 +1,6 @@
 # Appeler une API simplement
 
-Appeler une API peut-être intimidant, par le passée il était « en effet compliqué » de faire des appels réseau. En effet afin de s'assurer que votre application soit de qualité quelques règles étaient imposées par la plateforme Android :
+Appeler une API peut-être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles étaient imposées par la plateforme Android :
 
 - Pas d'appel réseau depuis le `UIThread`.
 - Pas de manipulation de l'interface depuis le `IOThread`.
@@ -26,7 +26,7 @@ C'est pour l'ensemble de ces raisons que le code qui repose sur un appel réseau
 
 ## Travailler intelligemment
 
-Nous allons travailler avec de la logique, nous sommes dans un langage-objet, nous allons utiliser la puissance de l'objet, et des techniques modernes pour faire des appels réseau sans nous prendre la tête :
+Nous allons travailler avec de la logique, nous sommes dans un langage-objet, nous allons utiliser la puissance de l'objet, et des techniques modernes pour faire des appels réseaux sans nous prendre la tête :
 
 - Les interfaces pour définir nos « endpoints » d'API (comprendre les liens que nous allons devoir appeler).
 - L'utilisation d'objet pour « décoder » les réponses du serveur (au format JSON)
@@ -75,7 +75,7 @@ Cette librairie va nous permettre la Sérialisation / Deserialisation automatiqu
 
 ### Retrofit
 
-Surchouche à OkHttp permettant de simplifier toute la partie appel réseau :
+Surcouche à OkHttp permettant de simplifier toute la partie des appels réseaux :
 
 - Une API Http qui s'utilise comme une « Interface ».
 - Conversion de données (mapping automatique des objets 🚀).
@@ -210,7 +210,7 @@ interface ApiService {
 ::: tip Oui c'est tout
 Cette Interface contient l'ensemble de la logique nécessaire. Le reste, ça va être votre code « permettant d'utiliser l'API ». Et c'est là le grand avantage de cette stack applicative.
 
-Vous allez consommer de la données dans des types « natifs » comme si vos données était en locale, le tout typer. La Rolls donc 👌
+Vous allez donc consommer de la donnée dans des types « natifs » comme si vos données étaient en locale, le tout typer. La Rolls donc 👌
 :::
 
 ::: danger N'oubliez pas la structure
