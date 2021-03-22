@@ -530,6 +530,9 @@ h.className = "titleClass"; // Définition d'un titre pour l'élément
 
 // Ajout du titre dans le body de la page courante.
 document.body.appendChild(h);
+
+// Ou a un endroit précis
+document.getElementById("monId").appendChild(h);
 ```
 
 Dans une page ça peut donner :
@@ -695,6 +698,9 @@ document.querySelector("#elementId").innerHTML = "Voilà valeur";
 document.querySelectorAll("div").forEach((it) => {
   it.innerHTML = "Parcours chaque div et remplace le contenu par <=";
 });
+
+// jQuery
+$("#elementId").html("<h1>Mon Titre</h1>");
 ```
 
 ### Jouer sur la visibilité
@@ -872,8 +878,8 @@ Comme précédemment nous allons voir deux façons de procéder. La première es
 
 La seconde façon va être en utilisant jQuery :
 
-- $.get
-- $.post
+- \$.get
+- \$.post
 
 ::: danger Comment choisir ?
 J'ai toujours tendance à préférer la version « Native ». **MAIS**, si vous avez déjà jQuery dans votre site? N'hésitez pas à utiliser la version jQuery.
