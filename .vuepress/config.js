@@ -88,7 +88,12 @@ module.exports = {
           { title: "PHP", children: ["cours/introduction_php"] },
           { title: "PHP & SQL", children: ["cours/introduction_sql_php"] },
           { title: "Javascript", children: ["cours/introduction_javascript"] },
-          { title: "La POO", children: ["cours/les_interfaces"] },
+          {
+            title: "La POO",
+            children: [
+              { title: "Les Interfaces", children: ["cours/les_interfaces", "tp/poo/interface"] }
+            ]
+          },
         ]
       },
 

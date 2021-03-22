@@ -18,11 +18,11 @@ Elles ne sont donc pas **instantiables**
 
 ---
 
-Une `class` abstraite :
+Une `class` abstraite qui va :
 
 - Va d'écrire un comportement.
 - Définir les signatures des méthodes et propriétés
-- Garantir à la `class` qui fait l'appel que la méthode existe.
+- Garantir au code qui fait l'appel que la méthode existera.
 
 ---
 
@@ -106,6 +106,42 @@ La partie importante est « **implements** »
 ✋ Une classe peu implémenter plusieurs Interfaces évidement
 
 <iframe src="https://giphy.com/embed/KfO2j3bhYTXNYORzX4" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+---
+
+```php
+interface DeplacementInterface{
+    public function seDeplacer();
+    public function recharger();
+}
+
+interface SpeciesInterface{
+    public function getName();
+    public function getAge();
+}
+```
+
+---
+
+```php
+class Cheval implements SpeciesInterface, DeplacementInterface{
+    public function getName(){
+        echo "Epona";
+    }
+
+    public function getAge(){
+        echo 10;
+    }
+
+    public function seDeplacer(){
+        echo "Galoper";
+    }
+
+    public function recharger(){
+        echo "Manger";
+    }
+}
+```
 
 ---
 
