@@ -391,7 +391,9 @@ if (order.status == 400) {
   // Exemple 1
   let age = 18;
   if (age > 18) {
-    alert("Coucou je suis une alerte");
+    alert("Je suis majeur");
+  } else {
+    alert("Je suis mineur");
   }
 
   // Exemple 2
