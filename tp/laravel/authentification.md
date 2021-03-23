@@ -18,7 +18,7 @@ Vous l'avez compris, la liste est longue… Vous pouvez évidemment tout coder v
 
 ## Créer votre projet
 
-Pour cette étape, je vous laisse suivre [le précédent TP](./introduction.md).
+Pour cette étape, je vous laisse suivre le début du [précédent TP](./introduction.md).
 
 **Attention** a bien installer au moins la version >8 de Laravel.
 

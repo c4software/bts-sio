@@ -98,15 +98,18 @@ class Square implements IISurface{
 En utilisant le code suivant, je vous laisse valider le fonctionnement :
 
 ```php
+function calculateSurfaceOf($arr){
+    foreach ($arr as $a){
+            if($a instanceof IISurface) {
+                echo "La surface est de {$a->surface()}<br />";
+            } else {
+                echo "La class n'implémente pas l'interface « Surface »";
+            }
+    }
+}
+
 calculateSurfaceOf([new Circle(10), new Square(10)]);
 
-foreach ($arr as $a){
-        if($a instanceof IISurface) {
-            echo "La surface est de {$a->surface()}<br />";
-        } else {
-            echo "La class n'implémente pas l'interface « Surface »";
-        }
-    }
 ```
 
 - Utiliser ce code dans un nouveau fichier `index.php`.
