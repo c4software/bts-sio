@@ -154,7 +154,7 @@ Plusieurs façons de faire :
 </script>
 ```
 
-## Filtrer rapidement un tablau
+## Filtrer rapidement un tableau
 
 ```js
 const arr = [1, 2, 3, 4];
