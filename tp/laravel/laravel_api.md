@@ -17,3 +17,15 @@ Pour cette étape, je vous laisse suivre le début du [précédent TP](./introdu
 **Attention** a bien installer au moins la version >8 de Laravel.
 
 ## Création de la base de données
+
+La première étape comme toujours est d'ajouter dans votre projet « une nouvelle migration » afin de créer la base de données relative à notre problématique.
+
+Dans notre cas, voilà la table que nous souhaitons créer :
+
+![Table Concert](./ressources/concert_db.png)
+
+Je vous laisse créer :
+
+- La migration et le modèle `php artisan make:model Concert --migration`
+- Définir les champs dans la migration mais également dans le `$fillable`.
+- Lancer la migration `php artisan migrate`

@@ -198,6 +198,9 @@ h.className = "titleClass"; // Définition d'un titre pour l'élément
 
 // Ajout du titre dans le body de la page courante.
 document.body.appendChild(h);
+
+// Ajout du titre dans l'élément qui nommé id
+document.getElementById("monId").appendChild(h);
 ```
 
 Dans une page ça peut donner :
