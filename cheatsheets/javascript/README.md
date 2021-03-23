@@ -316,7 +316,7 @@ $("div");
 ```
 
 ```javascript
-// Cacher toute les vides
+// Cacher toute les divs
 $("div").hide();
 ```
 
