@@ -88,6 +88,7 @@ module.exports = {
           { title: "PHP", children: ["cours/introduction_php"] },
           { title: "PHP & SQL", children: ["cours/introduction_sql_php"] },
           { title: "Javascript", children: ["cours/introduction_javascript"] },
+          { title: "Les API", children: ["cours/introduction_api"] },
           {
             title: "La POO",
             children: [
@@ -163,7 +164,7 @@ module.exports = {
         title: "VueJS",
         initialOpenGroupIndex: -1,
         children: [
-          ["cheatsheets/vuejs/", "cours/vuejs", "En + du cours"],
+          { title: "Cours Vue 2.0", children: ["cheatsheets/vuejs/", "cours/vuejs"] },
           { title: "Exemples", children: ["cours/demo/vuejs/demo1", "cours/demo/vuejs/counter", "cours/demo/vuejs/clock", "cours/demo/vuejs/timestamp-color", "cours/demo/vuejs/sound", "cours/demo/vuejs/12vue"] },
           {
             title: "Version 2.0",
