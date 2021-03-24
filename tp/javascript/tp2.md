@@ -103,7 +103,7 @@ $(function () {
 ```
 
 ::: tip Une petite remarque
-Comme vous pouvez le constater jQuery est bien plus concis, on verra qu'avez VueJS ça sera encore plus simple.
+Comme vous pouvez le constater jQuery est bien plus concis, on verra qu'avec VueJS ça sera encore plus simple.
 :::
 
 Je vous laisse écrire le code nécessaire au bon fonctionnement de votre site.
