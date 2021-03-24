@@ -557,6 +557,8 @@ document.getElementById("elementId");
 document.getElementsByClassName("maClass");
 
 document.getElementsByTagName("div");
+
+document.body;
 ```
 
 ---

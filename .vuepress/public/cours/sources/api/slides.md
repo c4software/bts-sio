@@ -207,6 +207,39 @@ Vous avez déjà entendu parler ?
 
 ---
 
+## Un tableau
+
+```json
+["a", "b"]
+```
+
+---
+
+## Un Dictionnaire
+
+```json
+{
+  "cle1": "valeur",
+  "cle2": "valeur"
+}
+```
+
+---
+
+## Un Dictionnaire ?
+
+![Question](./img/questions.gif)
+
+---
+
+## Le principe
+
+- Structure similaire à un objet
+- Structuré
+- Valeur accessible par des clés.
+
+---
+
 https://json.org/example.html
 
 ---
