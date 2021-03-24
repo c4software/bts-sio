@@ -650,6 +650,22 @@ $("div").addClass("maClass");
 
 ---
 
+## Obtenir les valeurs saisie dans la page
+
+```html
+<input type="text" id="monInput" />
+```
+
+```javascript
+// VanillaJS
+document.getElementById("monInput").value;
+
+// En jQuery
+$("#monInput").val();
+```
+
+---
+
 ## Un peu de CSS, de HTML… Et de JavaScript
 
 [TP − Le Générateur de punition](/tp/javascript/tp2.html)

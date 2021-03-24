@@ -355,12 +355,30 @@ element.classList.add("maClass");
 Oui… Il est possible de mettre « plusieurs classes », donc nous avons ici un tableau `array`. Un tableau se manipule avec des méthodes comme vues précédemment. Il faut donc utiliser la méthode `add` pour ajouter une classe.
 :::
 
+## Obtenir la valeur d'un input
+
+```html
+<input type="text" id="monInput" />
+```
+
+```javascript
+// VanillaJS
+document.getElementById("monInput").value;
+
+// En jQuery
+$("#monInput").val();
+```
+
 ## Les évènements
 
 ### Dans le DOM
 
 ```html
 <input type="button" onclick="maFonction()" value="Click ! " />
+```
+
+```html
+<form id="form" onsubmit="maFonction()" ">
 ```
 
 ### En JavaScript
@@ -372,8 +390,12 @@ Oui… Il est possible de mettre « plusieurs classes », donc nous avons ici un
   // Pure JS
   document.getElementById("btn").addEventListener("click", maFonction, true);
 
+  // Pure JS
+  document.getElementById("form").addEventListener("submit", maFonction, true);
+
   // jQuery
   $("#btn").click(maFonction);
+  $("#form").submit(maFonction);
 </script>
 ```
 

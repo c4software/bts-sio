@@ -773,6 +773,22 @@ J'ai encore beaucoup parlé! Place à une mise en pratique. Je vous propose de m
 
 [Pour la suite c'est par ici](./tp2.md)
 
+## Obtenir les valeurs d'un input
+
+Nous avons vu qu'il était possible de récupérer les éléments dans la page pour les modifier visuellement. Mais il est également possible d'obtenir les valeurs actuellement saisie dans la page :
+
+```html
+<input type="text" id="monInput" />
+```
+
+```javascript
+// VanillaJS
+document.getElementById("monInput").value;
+
+// En jQuery
+$("#monInput").val();
+```
+
 ## Les évènements
 
 Nous avons vu pour l'instant du JS très simple, il ressemble beaucoup à du code PHP c'est-à-dire sans grande interaction avec l'utilisateur.
