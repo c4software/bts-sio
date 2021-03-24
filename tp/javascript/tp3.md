@@ -78,7 +78,7 @@ Heureusement des gens ont déjà pensé à ce genre de problématique pour vous�
 - [jQuery Validation](https://github.com/jquery-validation/jquery-validation)
 
 ::: warning C'est un plug-in parmi tant d'autres
-Ce plug-in est juste « un permis d'autre », comme toujours utilisé celui le plus adapté à votre problématique.
+Ce plug-in est juste « un parmis tant d'autre », comme toujours utilisez celui le plus adapté à votre problématique.
 
 Par exemple quand nous ferons du VueJS, **il ne faudra plus utiliser jQuery** !
 :::
