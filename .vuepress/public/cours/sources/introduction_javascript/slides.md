@@ -602,7 +602,7 @@ $("div");
 
 ## Créer des éléments dans la page (bis)
 
-[Encore pus simple](/tp/javascript/support.html#exemple-de-creation-d-elements-version-alternative)
+[Encore plus simple](/tp/javascript/support.html#exemple-de-creation-d-elements-version-alternative)
 
 ---
 
