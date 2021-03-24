@@ -360,7 +360,7 @@ Oui… Il est possible de mettre « plusieurs classes », donc nous avons ici un
 ### Dans le DOM
 
 ```html
-<input type="button" onclick="maFonction" value="Click ! " />
+<input type="button" onclick="maFonction()" value="Click ! " />
 ```
 
 ### En JavaScript

@@ -683,7 +683,7 @@ $("div").addClass("maClass");
 
 ## Dans le DOM
 
-<input type="button" onclick="maFonction" value="Click ! " />
+<input type="button" onclick="maFonction()" value="Click ! " />
 
 ---
 
