@@ -32,8 +32,8 @@ En pratique ça va donner :
 
 ```javascript
 function validateForm() {
-  const name = document.getElementById("name");
-  const password = document.getElementById("password");
+  const name = document.getElementById("name").value;
+  const password = document.getElementById("password").value;
 
   if (name == null || name == "") {
     alert("Name can't be blank");
@@ -44,11 +44,18 @@ function validateForm() {
   }
 
   // Cas de réussite
+
+  return false;
 }
 
+// Attacher l'évènement en JS
 document
   .getElementById("monForm")
   .addEventListener("submit", validateForm, true);
+
+// Vous pouvez également attacher l'événement directement dans le HTML avec
+// <form onsubmit="validateForm()">
+// …
 ```
 
 ::: tip Un Instant !
@@ -58,7 +65,7 @@ document
 ### À faire
 
 - Je vous laisse le mettre en place dans votre code.
-- Rendre la page interactive avec les données saisies.
+- Rendre la page interactive avec les données saisies (via un `onsubmit` en HTML ou, `submit` via les events)
 - Je vous laisse écrire la même chose avec jQuery.
 
 ## Avec une Librairie
