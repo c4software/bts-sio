@@ -371,6 +371,10 @@ $("#monInput").val();
 
 ## Les évènements
 
+![Event_click](./event_click.png)
+
+Fonction appelé seulement au moment du clique utilisateur
+
 ### Dans le DOM
 
 ```html

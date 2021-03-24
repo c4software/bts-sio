@@ -807,6 +807,12 @@ Nous avons deux façons d'attacher les évènements :
 - Dans le DOM.
 - En JavaScript.
 
+---
+
+![Event click](./res/event_click.png)
+
+(Appelé au moment du clique par l'utilisateur utilisateur)
+
 ### Dans le DOM
 
 ```html

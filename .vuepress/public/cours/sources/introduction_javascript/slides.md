@@ -719,6 +719,12 @@ $("#monInput").val();
 
 ---
 
+![Event click](./img/event_click.png)
+
+(Appelé au moment du clique par l'utilisateur utilisateur)
+
+---
+
 Simple ? Compliqué ?
 
 En réalité, comme beaucoup de choses du WEB la pratique vous donnera l'habitude de manipuler le JS. Il deviendra pour vous une véritable seconde nature.
