@@ -31,21 +31,22 @@ Ajouter des contrôles, finalement c'est simple. Il « faut juste » :
 En pratique ça va donner :
 
 ```javascript
-function validateForm() {
+function validateForm(evt) {
   const name = document.getElementById("name").value;
   const password = document.getElementById("password").value;
 
   if (name == null || name == "") {
     alert("Name can't be blank");
-    return false;
+    evt.preventDefault();
   } else if (password.length < 6) {
     alert("Password must be at least 6 characters long.");
-    return false;
+    evt.preventDefault();
   }
 
   // Cas de réussite
 
-  return false;
+  // Empêche le submit du formulaire
+  evt.preventDefault();
 }
 
 // Attacher l'évènement en JS
