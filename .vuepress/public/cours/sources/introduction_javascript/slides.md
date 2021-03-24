@@ -652,7 +652,7 @@ $("div").addClass("maClass");
 
 ## Un peu de CSS, de HTML… Et de JavaScript
 
-[TP − Le Générateur de punition](/tp/javascript/tp1.2.html)
+[TP − Le Générateur de punition](/tp/javascript/tp2.html)
 
 ---
 
