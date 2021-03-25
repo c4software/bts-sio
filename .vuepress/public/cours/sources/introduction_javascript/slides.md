@@ -741,6 +741,12 @@ C'était un simple exemple… [La liste des évènements possibles bien plus lon
 
 ---
 
+## Mise en pratique 2
+
+[Mettre en pratique la gestion d'évènements](/tp/javascript/tp3.1.html)
+
+---
+
 ## L'Ajax
 
 ---
