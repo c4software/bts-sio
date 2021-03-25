@@ -30,6 +30,16 @@ Je vous laisse plancher sur le sujet. N'oubliez pas :
 - [L'aide mémoire](/cheatsheets/javascript/)
 - [Le support de cours](/tp/javascript/support.md)
 
+::: danger STOP
+
+⚠️ Un appel important ⚠️
+
+En JavaScript votre code est appelé au moment de l'interaction, **Il doit donc toujours être dans une fonction** :
+
+![Événement](./res/event_click.png)
+
+:::
+
 ::: details Quelques éléments en vrac pour aider
 
 ### Obtenir la valeur d'un input
