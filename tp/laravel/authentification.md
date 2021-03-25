@@ -150,7 +150,7 @@ Le nouveau système de template est très très sympa, il permet de découper so
 
 ::: tip Hey toi lecteur ! Stop !
 
-L'organisation est tout aussi important que le code, tu peux copier coller du code entre tout t'es templates oui… Mais sache que c'est pas efficace, que tu perds du temps et que si on te demande un modification **tu perdras du temps** !
+L'organisation est tout aussi importante que le code, tu peux copier-coller du code entre tous les templates oui… Mais sache que c'est pas efficace, que tu perds du temps et que si on te demande une modification **tu perdras du temps** !
 
 Prendre du temps pour utiliser le système de layout tels proposé par Laravel est un vrai gain de temps ! Le toi du futur te remercies d'avance.
 
@@ -486,7 +486,7 @@ Je vous aide pour la partie méthode :
 Nous avons le temps, n'hésitez pas à :
 
 - Créer des composants si nécessaire.
-- Utiliser les class de Tailwind (vous avez même de la completion dans PhpStorm).
+- Utiliser les class de Tailwind (vous avez même de la complétion dans PhpStorm).
 
 Pour ma part voilà mon rendu :
 
@@ -515,7 +515,7 @@ Je vous laisse coder votre version.
 Pour la partie privée, je vous laisse gérer l'ensemble de la base :
 
 - Création de la méthode.
-- Création du template. Attention cette fois-ci nous allons utiliser le composant `<x-app-layout>` qui contient toute la logique de la partie « information de connexion » (menu, etc).
+- Création du template. Attention cette fois-ci nous allons utiliser le composant `<x-app-layout>` qui contient toute la logique de la partie « information de connexion » (menu, etc.).
 
 #### Le Layout
 
