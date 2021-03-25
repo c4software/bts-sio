@@ -23,7 +23,7 @@ Pour réaliser cette page, je vous propose d'utiliser :
 
 - Bootstrap (ou tailwind).
 - jQuery (ou du VanillaJS).
-- Datatable pour avoir une table interactive.
+- Datatable pour avoir une table interactive. (en option, plus complexe)
 
 Je vous laisse plancher sur le sujet. N'oubliez pas :
 
@@ -71,6 +71,18 @@ function deleteRow(elem) {
     .closest("tr")
     .remove();
 }
+```
+
+### Rafraichir la table
+
+C'est du test, nous sommes en mode sauvage.
+
+```js
+$("#myTable")
+  .DataTable()
+  .destroy();
+
+$("#myTable").DataTable();
 ```
 
 :::
