@@ -81,6 +81,12 @@ function deleteRow(elem) {
     .closest("tr")
     .remove();
 }
+
+// Avec du JS
+function deleteRow(btn) {
+  var d = btn.parentNode.parentNode.rowIndex;
+  document.getElementById("myTable").deleteRow(d);
+}
 ```
 
 ### Rafraichir la table

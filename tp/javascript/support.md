@@ -816,8 +816,18 @@ Nous avons deux façons d'attacher les évènements :
 ### Dans le DOM
 
 ```html
-<input type="button" onclick="maFonction" value="Click ! " />
+<input type="button" onclick="maFonction(this)" value="Click ! " />
+
+<script>
+  function maFonction(elem) {
+    // elem => est le bouton sur lequel vous avez cliqué
+  }
+</script>
 ```
+
+::: warning this ?
+Le `this` corresponds à l'élément sur lequel vous avez cliqué.
+:::
 
 ### En JavaScript
 

@@ -719,6 +719,20 @@ $("#monInput").val();
 
 ---
 
+```html
+<input type="button" onclick="maFonction(this)" value="Click ! " />
+
+<script>
+  function maFonction(elem) {
+    // elem => est le bouton sur lequel vous avez cliqué
+  }
+</script>
+```
+
+Le `this` corresponds à l'élément sur lequel vous avez cliqué.
+
+---
+
 ![Event click](./img/event_click.png)
 
 (Appelé au moment du clique par l'utilisateur utilisateur)
