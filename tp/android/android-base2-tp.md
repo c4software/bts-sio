@@ -376,24 +376,24 @@ Cette étape n'est pas très complexe, la voilà résumée en vidéo :
 #### Lancer le fragment en passant des paramètres
 
 ```kotlin
-    findNavController().navigate(
-        HomeFragmentDirections.goToNotificationWithParam(42)
-    )
+findNavController().navigate(
+    HomeFragmentDirections.goToNotificationWithParam(42)
+)
 ```
 
 #### Récupérer le paramètre
 
-Vous avez de la chance avec Kotlin cette partie est très simple. Si vous souhaitez récupérer le paramètres il suffit d'ajouter dans le fragement de destination le code suivant :
+Vous avez de la chance avec Kotlin cette partie est très simple. Si vous souhaitez récupérer le paramètres il suffit d'ajouter une propriété dans la class du fragement de destination, le code à ajouter est le suivant :
 
 ```kotlin
-    val args: VotreClassFragmentArgs by navArgs()
+val args: VotreClassFragmentArgs by navArgs()
 ```
 
 ::: tip by NavArgs ?
 Kotlin vous aide (comme souvent), les développeurs ont codé le fonctionnement qui va injecter ici automatiquement la référence vers « le bundle » contenant la/les donnée(s) passée(s) en paramètre(s)
 :::
 
-Et pour utiliser la donnée ? C'est simple, par exemple pour « rafraichir les données à chaque affichage du Fragment » :
+Et pour utiliser la donnée ? C'est simple, voici un exemple pour « rafraichir les données à chaque affichage du Fragment » :
 
 ```kotlin
     override fun onResume() {
