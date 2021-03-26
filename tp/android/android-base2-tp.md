@@ -230,7 +230,6 @@ Avant de voir la façon « tout automatique », nous allons implémenter ensembl
 
       }
 
-
       private fun showFragment(fragment: Fragment) {
           supportFragmentManager.commit {
               setReorderingAllowed(true)
@@ -239,12 +238,12 @@ Avant de voir la façon « tout automatique », nous allons implémenter ensembl
       }
   ```
 
-  ::: tip qu'avons-nous ici ?
+::: tip qu'avons-nous ici ?
 
-  - Nous avons ajouté dans notre activity 1 méthode, et deux variables qui seront « les fragments » (page1 et page2).
-  - Nous avons « ensuite connecté » les cliques sur la `BottomNavigationView` aux actions permettant d'afficher le fragment dans le frame.
+- Nous avons ajouté dans notre activity 1 méthode, et deux variables qui seront « les fragments » (page1 et page2).
+- Nous avons « ensuite connecté » les cliques sur la `BottomNavigationView` aux actions permettant d'afficher le fragment dans le frame.
 
-  :::
+:::
 
 Implémentons ensemble le code. [Vous avez ici l'ensemble du code](https://gist.github.com/c4software/aebb8f467c229e186d88a04b13a3f406)
 
@@ -264,23 +263,23 @@ Je vous passe la création des activités et des Fragments. Ce que nous allons a
 
 - Le graph de navigation `res/navigation/mobile_navigation.xml` :
 
-  ```xml
-  <?xml version="1.0" encoding="utf-8"?>
-  <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation.xml"
-      app:startDestination="@id/page_1">
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation.xml"
+    app:startDestination="@id/page_1">
 
-      <fragment
-          android:id="@+id/page_1"
-          android:name="com.eseo.myapplication2.ui.bottom.fragment.Page1"
-          android:label="Page1" />
-      <fragment
-          android:id="@+id/page_2"
-          android:name="com.eseo.myapplication2.ui.bottom.fragment.Page2"
-          android:label="Page2" />
+    <fragment
+        android:id="@+id/page_1"
+        android:name="com.eseo.myapplication2.ui.bottom.fragment.Page1"
+        android:label="Page1" />
+    <fragment
+        android:id="@+id/page_2"
+        android:name="com.eseo.myapplication2.ui.bottom.fragment.Page2"
+        android:label="Page2" />
 
-  </navigation>
-  ```
+</navigation>
+```
 
 - Ajuster le layout XML de votre activity pour y ajouter le navGraph :
 
@@ -319,6 +318,91 @@ Je vous laisse implémenter le code dans votre projet. [Voilà un exemple comple
 De la magie ? Non, Google a tout simplement écrit le code pour vous. Quelques petites remarques pour que ça fonctionne :
 
 - N'oubliez pas : `android:name="androidx.navigation.fragment.NavHostFragment"`.
-- Vous devez nommper vos id dans le `mobile_navigation.xml` de la même manière que dans votre `bottom_navigation_menu`.
+- Vous devez nommer vos id dans le `mobile_navigation.xml` de la même manière que dans votre `bottom_navigation_menu`.
 
 :::
+
+#### Changer de fragment manuellement
+
+Votre `BottomNavigationView` gère la navigation, c'est pratique, mais nous pouvons aller plus loin. Si vous souhaitez charger un Fragment manuellement il suffit d'écrire :
+
+```kotlin
+// Depuis une activité
+findViewById<Button>(R.id.test).setOnClickListener {
+    findNavController(R.id.nav_host_fragment).navigate(R.id.navigation_dashboard)
+}
+
+// Depuis un fragment
+root.findViewById<Button>(R.id.test).setOnClickListener {
+    findNavController().navigate(R.id.navigation_notifications)
+}
+```
+
+#### Le passage de paramètre
+
+Pour gérer le passage de paramètre, nous allons devoir ajouter quelques librairies dans notre projet :
+
+Dans votre `build.gradle` (projet) ajouter dans les `dependencies`:
+
+```
+classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0"
+```
+
+Dans votre `build.gradle` (app) ajouter :
+
+```
+plugins {
+    id 'androidx.navigation.safeargs.kotlin'  // <-- Cette ligne
+}
+```
+
+Nous avons ajouté un plug-in permettant de générer le code « du passage de paramètre ». Il faut donc maintenant configurer « la partie Navigation Graph ». Nous allons procéder en deux étapes :
+
+- Ajouter le paramètre dans le fragment « de destination ».
+- Ajouter le lien entre les deux fragments **importants, sans ça rien ne fonctionnera**.
+
+Cette étape n'est pas très complexe, la voilà résumée en vidéo :
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iUe8KrkacUU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+![Étape 1](./ressources/create_parameter1.png)
+![Étape 2](./ressources/create_parameter2.png)
+![Étape 3](./ressources/create_parameter3.png)
+![Étape 4](./ressources/create_parameter4.png)
+![Étape 5](./ressources/create_parameter5.png)
+
+[Plus d'informations dans la documentation](https://developer.android.com/guide/navigation/navigation-pass-data)
+
+#### Récupérer le paramètre
+
+Vous avez de la chance avec Kotlin cette partie est très simple. Si vous souhaitez récupérer le paramètres il suffit d'ajouter dans le fragement de destination le code suivant :
+
+```kotlin
+    val args: VotreClassFragmentArgs by navArgs()
+```
+
+::: tip by NavArgs ?
+Kotlin vous aide (comme souvent), les développeurs ont codé le fonctionnement qui va injecter ici automatiquement la référence vers « le bundle » contenant la/les donnée(s) passée(s) en paramètre(s)
+:::
+
+Et pour utiliser la donnée ? C'est simple, par exemple pour « rafraichir les données à chaque affichage du Fragment » :
+
+```kotlin
+    override fun onResume() {
+        super.onResume()
+
+        // view est la référence à notre Layout.
+        // args est le paramètre injecté par Kotlin.
+        // args.monElement est mon paramètre.
+        view?.findViewById<TextView>(R.id.text_notifications)?.text = args.monElement.toString()
+    }
+```
+
+### Drawer Layout
+
+En vous servant de l'outil intégré à Android Studio créé une Interface intégrant :
+
+- Un Drawer
+- Un BottomNavigationView
+
+Les deux éléments doivent interagir avec le même FragmentContainerView.
