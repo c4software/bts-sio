@@ -363,15 +363,23 @@ Nous avons ajouté un plug-in permettant de générer le code « du passage de p
 
 Cette étape n'est pas très complexe, la voilà résumée en vidéo :
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/iUe8KrkacUU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/iUe8KrkacUU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
 
-![Étape 1](./ressources/create_parameter1.png)
-![Étape 2](./ressources/create_parameter2.png)
-![Étape 3](./ressources/create_parameter3.png)
-![Étape 4](./ressources/create_parameter4.png)
-![Étape 5](./ressources/create_parameter5.png)
+|                                                |                                                |
+| :--------------------------------------------: | :--------------------------------------------: |
+| ![Étape 1](./ressources/create_parameter1.png) |                                                |
+| ![Étape 2](./ressources/create_parameter2.png) | ![Étape 3](./ressources/create_parameter3.png) |
+| ![Étape 4](./ressources/create_parameter4.png) | ![Étape 5](./ressources/create_parameter5.png) |
 
-[Plus d'informations dans la documentation](https://developer.android.com/guide/navigation/navigation-pass-data)
+[Plus d'informations dans la documentation sur l'ensemble du fonctionnement](https://developer.android.com/guide/navigation/navigation-pass-data)
+
+#### Lancer le fragment en passant des paramètres
+
+```kotlin
+    findNavController().navigate(
+        HomeFragmentDirections.goToNotificationWithParam(42)
+    )
+```
 
 #### Récupérer le paramètre
 

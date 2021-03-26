@@ -24,7 +24,7 @@ const isAuth = () => {
 
 const askForPass = (siteData) => {
     try {
-        return prompt() === siteData.themeConfig.protected.pass
+        return prompt("Merci de saisir le code") === siteData.themeConfig.protected.pass
     } catch (err) {
         return ""
     }

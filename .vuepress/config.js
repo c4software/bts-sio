@@ -47,6 +47,7 @@ module.exports = {
         "/cours/android_ble.html",
         "/cours/android_base.html",
         "/tp/android/android-base-tp.html",
+        "/tp/android/android-base2-tp.html",
         "/tp/android/app-ble-network.html"
       ]
     },
