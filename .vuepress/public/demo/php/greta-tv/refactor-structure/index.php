@@ -5,7 +5,7 @@ include("utils/users.php");
 include('common/header.php');
 
 // Pages autorisées (configuration à sortir dans un autre fichier PHP)
-$whitelist = array('home','tv');
+$whitelist = array('home','tv', "login");
 
 // Gestion de l'affichage de la page demandée
 if(isset($_GET['page']) && in_array($_GET['page'], $whitelist)) {
@@ -16,4 +16,4 @@ if(isset($_GET['page']) && in_array($_GET['page'], $whitelist)) {
 
 // Affichage de la partie basse de votre site, commun à l'ensemble de votre site.
 include('common/footer.php');
-?>
+

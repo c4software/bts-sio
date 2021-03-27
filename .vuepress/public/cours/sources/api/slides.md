@@ -101,6 +101,10 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 
 ---
 
+## La question au serveur
+
+---
+
 ## L'API spécifie comment communiquer
 
 - Lien
@@ -150,10 +154,10 @@ Vous connaissez des méthodes « HTTP » ?
 ---
 
 ```
-GET /hello.htm HTTP/1.1
-User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
-Host: www.tutorialspoint.com
-Accept-Language: en-us
+GET /api.html HTTP/1.1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Chrome/90.0.4430.30
+Host: cours.brosseau.ovh
+Accept-Language: fr-fr
 Accept-Encoding: gzip, deflate
 Connection: Keep-Alive
 ```
@@ -170,13 +174,14 @@ Connection: Keep-Alive
 
 ---
 
-- 200 – OK
+- 200 OK
 - 201 Created
 - 301 Moved Permanently
 - 400 Bad Request
 - 403 Forbidden
 - 404 Not Found
-- 500 Internal Server Error ● 503 Service Unavailable
+- 500 Internal Server Error
+- 503 Service Unavailable
 
 http://www.restapitutorial.com/httpstatuscodes.html
 
@@ -244,7 +249,17 @@ https://json.org/example.html
 
 ---
 
+## Écrivons ensemble le JSON :
+
+- Une liste d'utilisateur (id, nom, age).
+- Une liste de `string`.
+- Un objet représentant **un** restaurant (id, nom, adresse (latitude, longitude), contact)
+
+---
+
 ## Les clients
+
+---
 
 - Web (Ajax)
 - Mobile (Client HTTP)
@@ -258,3 +273,7 @@ https://json.org/example.html
   - Fetch
   - jQuery
   - …
+
+---
+
+## Des questions ?
