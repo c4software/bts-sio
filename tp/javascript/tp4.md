@@ -71,6 +71,13 @@ Vous vous souvenez des XSS ? Faites très attention avec cette façon de faire�
 C'est TRÈS TRÈS TRÈS RISQUÉ. Très clairement, le risque est très important. Je vous conseille vivement de choisir une solution « sans HTML », comme nous allons faire dans le cas 2.
 :::
 
+### Évolution 1
+
+En utilisant les compétences vues précédemment, je vous laisse mettre en place :
+
+- Un bouton dans votre page.
+- Le bouton doit déclencher sur l'action `onclick` l'obtention des données (vous allez devoir créer une fonction avec dedans l'appel fetch).
+
 ## Cas 2 : Le serveur génère juste la donnée (au format JSON)
 
 Nous allons ici faire travailler à la fois votre navigateur et le serveur. Le serveur va nous produire de la donnée « au format brut », c'est-à-dire un format compréhensible par un ordinateur. Votre JavaScript construira le code HTML par rapport à cette donnée.
