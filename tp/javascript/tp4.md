@@ -78,6 +78,23 @@ En utilisant les compétences vues précédemment, je vous laisse mettre en plac
 - Un bouton dans votre page.
 - Le bouton doit déclencher sur l'action `onclick` l'obtention des données (vous allez devoir créer une fonction avec dedans l'appel fetch).
 
+### Et avec jQuery ?
+
+Nous avons vu la version VanillaJS, voilà la version jQuery :
+
+```js
+setTimeout(() => {
+  $.get("./monContenuAsynchrone.php", (data) => {
+    $("#contenuAsynchrone").html(data);
+  });
+}, 5000);
+```
+
+C'est à vous, je vous laisse :
+
+- Mettre jQuery.
+- Ajouter le code au bon endroit.
+
 ## Cas 2 : Le serveur génère juste la donnée (au format JSON)
 
 Nous allons ici faire travailler à la fois votre navigateur et le serveur. Le serveur va nous produire de la donnée « au format brut », c'est-à-dire un format compréhensible par un ordinateur. Votre JavaScript construira le code HTML par rapport à cette donnée.
@@ -107,6 +124,8 @@ Avant d'allez plus loin, voyons un exemple simple ensemble :
         fetch("./monContenuAsynchrone.php")
           .then((response) => response.json())
           .then((datas) => {
+            document.getElementById("contenuAsynchrone").innerHTML = "";
+
             datas.forEach((el) => {
               document
                 .getElementById("contenuAsynchrone")
@@ -147,23 +166,6 @@ Une API va nous permettre de séparer la logique entre client et serveur afin de
 
 Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simplement, car l'API va être universelle; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif.
 :::
-
-### Et avec jQuery ?
-
-Nous avons vu la version VanillaJS, voilà la version jQuery :
-
-```js
-setTimeout(() => {
-  $.get("./monContenuAsynchrone.php", (data) => {
-    $("#contenuAsynchrone").html(content);
-  });
-}, 5000);
-```
-
-C'est à vous, je vous laisse :
-
-- Mettre jQuery.
-- Ajouter le code au bon endroit.
 
 ### Regardons d'autres sites.
 
