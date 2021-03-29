@@ -814,7 +814,7 @@ Les promises
 
 L'Ajax c'est un gros morceau, tellement gros, qui serait possible d'y passer des heures et des heures tellement le sujet est vaste.
 
-Nous allons donc réaliser [une première expérimentation](./tp4.md)
+Nous allons donc réaliser [une première expérimentation](/tp/javascript/tp4.html)
 
 ---
 
