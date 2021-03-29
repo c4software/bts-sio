@@ -52,7 +52,7 @@ _Contenu dynamique_ `monContenuAsynchrone.php` :
 <ul>
 <?php
     for ($i = 1; $i <= 10; $i++) {
-        echo "Valeur $i";
+        echo "<li>Valeur $i</li>";
     }
 ?>
 </ul>
