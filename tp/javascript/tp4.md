@@ -35,9 +35,10 @@ _Page index.html_ :
     <script>
       setTimeout(() => {
         fetch("./monContenuAsynchrone.php")
-          .then((response) => response.html())
-          .then((content) =>
-            document.getElementById("#contenuAsynchrone").html(content)
+          .then((response) => response.text())
+          .then(
+            (content) =>
+              (document.getElementById("contenuAsynchrone").innerHTML = content)
           );
       }, 5000);
     </script>
@@ -101,7 +102,7 @@ Avant d'allez plus loin, voyons un exemple simple ensemble :
           .then((datas) => {
             datas.forEach((el) => {
               document
-                .getElementById("#contenuAsynchrone")
+                .getElementById("contenuAsynchrone")
                 .insertAdjacentHTML("beforeend", "<li>" + el + "</li>");
             });
           });
