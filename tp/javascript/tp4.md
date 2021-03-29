@@ -95,6 +95,15 @@ C'est à vous, je vous laisse :
 - Mettre jQuery.
 - Ajouter le code au bon endroit.
 
+#### Évolution 2
+
+Je vous laisse maintenant utiliser la fonction `$.post` en utilisant la documentation du jQuery, je vous laisse écrire l'appel en POST vers votre serveur.
+
+Le but envoyer un nombre dynamique de résultats en retour de l'API. Vous allez donc devoir :
+
+- Ajouter un paramètre de type POST dans votre script PHP (et l'utiliser dans la boucle).
+- L'envoyer dans le POST de votre appel Ajax.
+
 ## Cas 2 : Le serveur génère juste la donnée (au format JSON)
 
 Nous allons ici faire travailler à la fois votre navigateur et le serveur. Le serveur va nous produire de la donnée « au format brut », c'est-à-dire un format compréhensible par un ordinateur. Votre JavaScript construira le code HTML par rapport à cette donnée.
