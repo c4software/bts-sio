@@ -422,10 +422,17 @@ Le `this` corresponds à l'élément sur lequel vous avez cliqué.
 Pure JS :
 
 ```js
+// Réponse type inconnu
 fetch("./monContenuAsynchrone.php")
-  .then((response) => response.html())
+  .then((response) => response.text())
   .then((content) => {
-    document.getElementById("result").innerHTML = data;
+    document.getElementById("result").innerHTML = content;
+  });
+
+// Réponse type JSON
+fetch("./monContenuAsynchrone.php")
+  .then((response) => response.json())
+  .then((content) => {
     console.log(content);
   });
 ```
