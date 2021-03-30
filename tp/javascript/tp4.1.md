@@ -212,6 +212,14 @@ datas.forEach((el) => {
 
 🤓 Je vous laisse travailler à la mise en place du code en question. Tester ensuite que la page s'affiche comme précédemment.
 
+### Étape 4 : Évolution de la page
+
+Ajouter un bouton rafraichir dans la page. Le bouton rafraichir doit permettre de récupérer à nouveau la liste des vidéos pour les mettre à jour dans la page.
+
+- Ajouter une icône à droite dans l'interface.
+- Utiliser les icônes fournies par bootstrap.
+- Ajouter une action `onClick` permettant de déclencher l'action (`function`) permettant d'obtenir les vidéos.
+
 ## Allons plus loin
 
 Nous avons fait la page `home.php` ensemble. Actuellement, nous avons un fond « brick » sur la page TV (`tv.php`) ; je vous propose de changer cette page ! Pour ça vous allez devoir procéder à différents ajustements :
