@@ -6,7 +6,7 @@
 
 .frame {
   height: 320px;
-  width: fit-content;
+  width: max-content;
   margin: auto;
   margin-top: 80px;
   border: 5px solid #000000;
