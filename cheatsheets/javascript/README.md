@@ -419,7 +419,9 @@ Le `this` corresponds à l'élément sur lequel vous avez cliqué.
 
 ## L'ajax
 
-Pure JS :
+### Pure JS :
+
+Les GET
 
 ```js
 // Réponse type inconnu
@@ -437,7 +439,45 @@ fetch("./monContenuAsynchrone.php")
   });
 ```
 
-Via jQuery :
+Les POST
+
+```js
+// Format JSON
+let data = { cle: "valeur" };
+
+fetch("./monContenuAsynchrone.php", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+
+// Format POST Data
+let data = new URLSearchParams();
+data.append(`key`, `value`);
+data.append(`anotherKey`, `another value`);
+
+fetch("./monContenuAsynchrone.php", { method: "POST", body: data })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+```
+
+Fetch permet de faire beaucoup de choses, vous trouverez [l'ensemble de la documentation ici](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
+
+### Via jQuery :
 
 ```js
 $.get("./monContenuAsynchrone.php", (data) => {
