@@ -220,6 +220,10 @@ Ajouter un bouton rafraichir dans la page. Le bouton rafraichir doit permettre d
 - Utiliser les icônes fournies par bootstrap.
 - Ajouter une action `onClick` permettant de déclencher l'action (`function`) permettant d'obtenir les vidéos.
 
+Voilà la maquette :
+
+![Maquette rendu](./res/maquette.png)
+
 ## Allons plus loin
 
 Nous avons fait la page `home.php` ensemble. Actuellement, nous avons un fond « brick » sur la page TV (`tv.php`) ; je vous propose de changer cette page ! Pour ça vous allez devoir procéder à différents ajustements :
