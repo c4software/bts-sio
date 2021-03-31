@@ -192,7 +192,7 @@ NON ? Vous n'allez pas tricher comme ça… Non pas vous ?
 // À mettre dans le then
 let i = 0;
 datas.forEach((el) => {
-    document.getElementById("#content").insertAdjacentHTML(
+    document.getElementById("content").insertAdjacentHTML(
     "beforeend",
     `
     <div class="col-sm-12 col-md-3 p-3">
