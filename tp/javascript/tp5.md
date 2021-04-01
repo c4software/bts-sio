@@ -83,7 +83,7 @@ N'oubliez pas… Votre IDE va vous aider… Il contient `emmet` !
 
 Vous pouvez donc écrire :
 
-`table>(thead>tr>th*5>lorem1)+(tbody>tr*100>td*5>lorem)` puis `tab`.
+`table#myTable>(thead>tr>th*5>lorem1)+(tbody>tr*100>td*5>lorem)` puis `tab`.
 
 </center>
 
