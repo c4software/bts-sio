@@ -17,15 +17,13 @@ Première étape, nous allons créer une page vide, elle nous servira de base de
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body></body>
 </html>
 ```
 
@@ -42,7 +40,7 @@ Notre page est vide ! Profitons-en pour ajouter jQuery, vous avez deux choix pos
 
 Il n'y a pas de réponse magique, l'un comme l'autre ça va fonctionner. Cependant, ayez en tête que si vous choisissez de passer par un CDN **vous devrez avoir Internet** pour que votre site fonctionne.
 
-::: danger Et la sécu ? 
+::: danger Et la sécu ?
 Autre point important, jQuery « c'est que du JavaScript », en utilisant un CDN vous téléchargez du code depuis Internet sans savoir ce qui est dedans. **Pire** le contenu peut-être différent, voir modifié par un tiers plus tard dans la vie de votre site Internet.
 
 **Donc attention**
@@ -56,12 +54,15 @@ Dans, notre cas, il suffit d'ajouter avant la fermeture de `</body>` :
 
 ## Votre première librairie : Datatable
 
-C'est chiant les tableaux non ? La pagination vous n'aimez pas ça non ? Trier le données ne vous intéresse pas ? Et bien, rassurez-vous ! Globalement personne n'aime ça ! Les développeurs étant globalement fainéants… Ils ont créé des librairies permettant de ne plus écrire le code « chiant ». La gestion des tableaux en faisant partie je vous propose de mettre en place dans votre site Internet l'excellente librairie [Datatable](https://datatables.net/).
+C'est chiant les tableaux non ? La pagination vous n'aimez pas ça non ? Trier les données ne vous intéresse pas ? Et bien, rassurez-vous ! Globalement personne n'aime ça ! Les développeurs étant globalement fainéants… Ils ont créé des librairies permettant de ne plus écrire le code « chiant ». La gestion des tableaux en faisant partie je vous propose de mettre en place dans votre site Internet l'excellente librairie [Datatable](https://datatables.net/).
 
 Comme pour jQuery vous avez deux choix, le CDN ou la version téléchargés. Dans ce TP je vous propose d'utiliser la version CDN (par simplicité), nous allons donc ajouter dans notre code :
 
 ```html
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"
+/>
 <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 ```
 
@@ -91,9 +92,9 @@ Vous pouvez donc écrire :
 Nous avons maintenant une page, un tableau… Et un truc pas vraiment sexy. C'est là ou Datatable va entrer en jeu. Avec un simple petit ajoute de JavaScript dans votre page, nous allons transformer ce simple tableau en SUPER TABLEAU.
 
 ```js
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+$(document).ready(function() {
+  $("#myTable").DataTable();
+});
 ```
 
 Je vous laisse mettre le code.
@@ -105,16 +106,19 @@ Dans le même genre, nous avons également FullCalendar. [FullCalendar](https://
 Je vous propose d'installer FullCalendar [dans votre site](https://fullcalendar.io/docs/initialize-globals):
 
 ```html
-<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js'></script>
+<link
+  href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+  document.addEventListener("DOMContentLoaded", function() {
+    var calendarEl = document.getElementById("calendar");
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth'
+      initialView: "dayGridMonth",
     });
     calendar.render();
-    });
+  });
 </script>
 
 <div id="calendar"></div>
@@ -131,25 +135,32 @@ Grâce à [Leaflet](https://leafletjs.com/) réaliser des cartes c'est très sim
 - Dans votre head :
 
 ```html
- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""
+/>
+<script
+  src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""
+></script>
 
- <style>
-     #mapid { height: 180px; }
- </style>
+<style>
+  #mapid {
+    height: 180px;
+  }
+</style>
 ```
 
 - Dans le body, à l'endroit où vous souhaiterez avoir la carte :
 
 ```html
- <div id="mapid"></div>
- <script>
-     var mymap = L.map('mapid').setView([47.4661788,-0.5560418], 13);
- </script>
+<div id="mapid"></div>
+<script>
+  var mymap = L.map("mapid").setView([47.4661788, -0.5560418], 13);
+</script>
 ```
 
 Et c'est TOUT ! Votre carte est maintenant disponible.
@@ -159,7 +170,7 @@ Je vous laisse intégrer ce code.
 ### Ajouter un marker dans la carte
 
 ```javascript
-var marker = L.marker([47.4661788,-0.5560418]).addTo(mymap);
+var marker = L.marker([47.4661788, -0.5560418]).addTo(mymap);
 ```
 
 C'est à vous, je vous laisse ajouter le code.
@@ -180,22 +191,22 @@ Vous allez voir c'est très simple, mais alors très simple.
 
 ```html
 <div id="app">
-    <h1>{{message}}</h1>
-    <input type="button" value="Click" @click="clickMe" />
+  <h1>{{message}}</h1>
+  <input type="button" value="Click" @click="clickMe" />
 </div>
 
 <script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Bonjour 👋!'
-        },
-        methods: {
-            clickMe(){
-                alert("Click YES");
-            }
-        }
-    });
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: "Bonjour 👋!",
+    },
+    methods: {
+      clickMe() {
+        alert("Click YES");
+      },
+    },
+  });
 </script>
 ```
 
