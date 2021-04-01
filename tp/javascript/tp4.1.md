@@ -218,7 +218,7 @@ Ajouter un bouton rafraichir dans la page. Le bouton rafraichir doit permettre d
 
 - Ajouter une icône à droite dans l'interface.
 - Utiliser les icônes fournies par bootstrap.
-- Ajouter une action `onClick` permettant de déclencher l'action (`function`) permettant d'obtenir les vidéos.
+- Ajouter une action `onClick` permettant de déclencher l'action (`function`) permettant d'obtenir les vidéos en Ajax (c'est le code que vous avez déjà écrit)
 
 Voilà la maquette :
 
@@ -231,6 +231,22 @@ Nous avons fait la page `home.php` ensemble. Actuellement, nous avons un fond «
 - Ajouter dans la structure de données la notion de thème. (un thème différent par vidéo)
 - Retourner dans l'API (`getVideo`), les informations nécessaires au bon affichage du thème.
 - Utiliser le retour dans votre page.
+
+::: details Quelques éléments en plus pour vous aider
+
+- Vous allez avoir besoin évidemment de `fetch` (ou de jQuery) afin de faire l'appel Ajax.
+- Votre API doit retourner la class CSS à appliquer au `body`.
+- Vous pouvez appliquer la class CSS via : `document.body.classList.add("votreClass")`.
+
+Comme dans la premier exemple, vous devez utiliser le résultat de votre API, cette fois-ci le JSON n'est pas obligatoire, voilà une piste de réponse :
+
+```javascript
+fetch("lurldevotreapi")
+  .then((r) => r.text())
+  .then((resultat) => document.body.classList.add(resultat));
+```
+
+:::
 
 Voilà quelques exemples du résultat :
 
