@@ -291,7 +291,7 @@ function createNewConcert(name, date) {
 Ce n'est pas le but de ce TP, mais si vous souhaitez supprimer un élément via une action en Ajax il vous suffit de faire en JavaScript :
 
 ```javascript
-function createNewConcert(id) {
+function deleteNewConcert(id) {
   fetch("/api/deleteConcert" + id, { method: "DELETE" })
     .then((res) => res.json())
     .then((res) => console.log(res));
