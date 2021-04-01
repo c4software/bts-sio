@@ -139,10 +139,14 @@ document.addEventListener("DOMContentLoaded", function() {
     initialView: "dayGridMonth",
     events: [
       {
-        // this object will be "parsed" into an Event Object
-        title: "The Title", // a property!
-        start: "2021-01-01", // a property!
-        end: "2021-12-25", // a property! ** see important note below about 'end' **
+        title: "New Year",
+        start: "2021-01-01",
+        end: "2021-01-01",
+      },
+      {
+        title: "Valentin Brosseau",
+        start: "2021-28-02",
+        end: "2021-28-02",
       },
     ],
   });
