@@ -48,12 +48,40 @@ Nous avons donc maintenant une base de données de test. Avant d'aller plus loin
 Vous avez deux façons de faire ça :
 
 - Directement en base « manuellement ».
-- [Via en seeder de Laravel](https://laravel.com/docs/8.x/seeding)
+- [Via Une Factories + Un Seeder de Laravel](https://laravel.com/docs/8.x/seeding)
 
-L'avantage du seeder ? Il va permettre de créer beaucoup de données en un rien de temps ! 50 utilisateurs ? Aucun problème il suffit de faire :
+L'avantage du seeder ? Il va permettre de créer beaucoup de données en un rien de temps ! 50 Concerts ? Aucun problème il suffit de faire :
 
 ```php
-User::factory()->count(50)->hasPosts(1)->create();
+Concert::factory()->count(50)->create();
+```
+
+Pour l'implémentation nous allons le faire ensemble, mais ça se résume à :
+
+```shell
+php artisan make:factory ConcertFactory
+```
+
+Je vous laisse configurer la factory (`/database/factories/ConcertFactory.php`) en prenant exemple sur celle de la partie User. Mais dans les grandes ligne il faut ajouter
+
+```php
+public function definition(){
+  return [
+      'name' => $this->faker->name,
+      'date' => $this->faker->date(),
+  ];
+}
+```
+
+Éditer maintenant le DatabaseSeeder pour ajouter dans le run() :
+
+```php
+Concert::factory()->count(50)->create();
+```
+
+```shell
+php artisan db:seed
+# Vous avez maintenant 50 concerts dans votre table
 ```
 
 Pratique !
@@ -313,7 +341,3 @@ En reprenant le la démarche précédente, je vous laisse implémenter la même 
 - Création des API.
 - Création des routes.
 - Création du code permettant l'affichage des données.
-
-```
-
-```
