@@ -135,17 +135,17 @@ La première approche est la plus rapide, mais elle sous-entend que tous les par
 
 ```php
 public function createApi(Request $request){
-    $texte = $request->input('name');
+    $name = $request->input('name');
     $date = $request->input('date');
 
-    if($texte){
+    if($name){
       $concert = new Concert();
       $concert->name = $name;
       $concert->date = $date;
       $concert->save();
-      return response()->json({"status" => "success"});
+      return response()->json(["status" => "success"]);
     }else{
-      return response()->json({"status" => "error"});
+      return response()->json(["status" => "error"]);
     }
   }
 ```
@@ -159,9 +159,9 @@ public function deleteApi($id){
     $concert = Concert::find($id);
     if($concert){
         $concert->delete();
-        return response()->json({"status" => "success"});
+        return response()->json(["status" => "success"]);
     }else{
-        return response()->json({"status" => "error"});
+        return response()->json(["status" => "error"]);
     }
 }
 ```
