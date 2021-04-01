@@ -177,7 +177,7 @@ Votre code est maintenant prêt, il faut le « brancher » dans votre `Router` p
 
 `api.php` Je vous donne le code à ajouter, mais celui-ci est classique, c'est juste des liens tels que nous le faisons dans la partie `web.php` :
 
-````details Je pense que vous savez faire… Mais si vous avez oublié …
+::: details Je pense que vous savez faire… Mais si vous avez oublié …
 
 Je sais que vous avez cliqué sans vraiment chercher…
 
@@ -313,4 +313,7 @@ En reprenant le la démarche précédente, je vous laisse implémenter la même 
 - Création des API.
 - Création des routes.
 - Création du code permettant l'affichage des données.
-````
+
+```
+
+```
