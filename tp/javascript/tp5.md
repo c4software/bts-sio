@@ -188,6 +188,13 @@ Grâce à [Leaflet](https://leafletjs.com/) réaliser des cartes c'est très sim
 <div id="mapid"></div>
 <script>
   var mymap = L.map("mapid").setView([47.4661788, -0.5560418], 13);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors",
+    id: "mapbox/streets-v11",
+    tileSize: 512,
+    zoomOffset: -1,
+  }).addTo(mymap);
 </script>
 ```
 
