@@ -126,6 +126,30 @@ Je vous propose d'installer FullCalendar [dans votre site](https://fullcalendar.
 
 ✋ Hey ! Mais il n'y a pas de jQuery ici ? Effectivement… Pas de jQuery ici, FullCalendar n'a pas de dépendance à jQuery.
 
+### Ajouter des événements
+
+Pour ajouter des évenements, [il suffit de suivre la documentation par exemple](https://fullcalendar.io/docs/event-parsing)
+
+Exemple :
+
+```js
+document.addEventListener("DOMContentLoaded", function() {
+  var calendarEl = document.getElementById("calendar");
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: "dayGridMonth",
+    events: [
+      {
+        // this object will be "parsed" into an Event Object
+        title: "The Title", // a property!
+        start: "2021-01-01", // a property!
+        end: "2021-12-25", // a property! ** see important note below about 'end' **
+      },
+    ],
+  });
+  calendar.render();
+});
+```
+
 ## Et si nous voulons une carte ?
 
 Google Maps c'est pratique ? Si vous souhaitez un Google Maps intégrable et manipulable en code directement dans votre code, c'est possible ; et c'est plutôt simple…
