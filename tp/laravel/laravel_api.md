@@ -185,7 +185,7 @@ Je sais que vous avez cliqué sans vraiment chercher…
 Route::get('/concert', ['App\Http\Controllers\ApiControler', 'listApi']);
 Route::post('/concert', ['App\Http\Controllers\ApiControler', 'createApi']);
 Route::delete('/concert/{id}', ['App\Http\Controllers\ApiControler', 'deleteApi']);
-````
+```
 
 :::
 
@@ -304,12 +304,13 @@ Vous pouvez par exemple [l'implémenter en utilisant](http://tabulator.info/exam
 
 En reprenant le la démarche précédente, je vous laisse implémenter la même logique pour créer l'API utilisateur
 
-| Méthode | Chemin             | Fonctionnalité                                                               |
-| ------- | ------------------ | ---------------------------------------------------------------------------- |
-| GET     | `/api/client`      | Liste de l'ensemble des clients / utilisateurs                               |
-| POST    | `/api/client`      | Ajout d'un nouveau utilisateur / client (en fournissant les données en POST) |
-| DELETE  | `/api/client/{id}` | Suppression d'un utilisateur spécifié en paramètre `id`                      |
+| Méthode | Chemin             | Fonctionnalité                                                              |
+| ------- | ------------------ | --------------------------------------------------------------------------- |
+| GET     | `/api/client`      | Liste de l'ensemble des clients / utilisateurs                              |
+| POST    | `/api/client`      | Ajout d'un nouvel utilisateur / client (en fournissant les données en POST) |
+| DELETE  | `/api/client/{id}` | Suppression d'un utilisateur spécifié en paramètre `id`                     |
 
 - Création des API.
 - Création des routes.
 - Création du code permettant l'affichage des données.
+````
