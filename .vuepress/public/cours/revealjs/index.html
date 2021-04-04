@@ -46,11 +46,27 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
-
 			// Load custom slides from uri.
 			var url = new URL(window.location);
 			var source = url.searchParams.get("source");
 			document.querySelector("#section").setAttribute("data-markdown", "/cours/sources/" + source + "/slides.md");
+			const SAVE_ITEM_STORAGE_KEY = `saved_slides_position_${source}`;
+			
+			function savePosition(page){
+				try{
+					localStorage.setItem(SAVE_ITEM_STORAGE_KEY, event.indexh);
+				} catch(err){}
+			}
+
+			function restorePosition() {
+				try {
+					const page = localStorage.getItem(SAVE_ITEM_STORAGE_KEY);
+					console.log("Last page loaded was => ", page);
+					if(page){
+						Reveal.slide(page);
+					}
+				} catch (err) { }
+			}
 
 			// Initialize the Reveal presentation
 			Reveal.initialize({
@@ -65,6 +81,7 @@
 					38: 'next',
 					9: function() {Reveal.toggleOverview()}
 				},
+				
 				dependencies: [
 					{ src: './plugin/markdown/marked.js' },
 					{ src: './plugin/markdown/markdown.js', callback: function() {
@@ -77,9 +94,16 @@
 				]
 			});
 
+			Reveal.addEventListener('ready', () => {
+				restorePosition();				
+
+				Reveal.addEventListener('slidechanged', (event) => {
+					savePosition(event.indexh);
+				});
+			});
+
 			// Change base to the « source » base, to make image, and other link correctly working
 			document.querySelector("head").insertAdjacentHTML("beforeend", "<base href='/cours/sources/"+source+"/'>");
-
 		</script>
 	</body>
 </html>
