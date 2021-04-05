@@ -1,6 +1,6 @@
 # Projet final
 
-L'objectif de cette application est de valider votre maitrise /connaissances des éléments vus ensemble. Dans « ce cahier des charges » vous avez les éléments **minimums** à fournir, **cependant** je vous invite vivement à vous appropriez le sujet pour proposer une application originale et qui vous ressemble.
+L'objectif de cette application est de valider votre maitrise /connaissances des éléments vus ensemble. Dans « ce cahier des charges » vous avez les éléments **minimums** à fournir, **cependant** je vous invite vivement à vous approprier le sujet pour proposer une application originale et qui vous ressemble.
 
 Au dela du rendu et de l'aspect fonctionnel de votre application, je vous invite également à soigner :
 
@@ -24,9 +24,9 @@ L'application à fournir doit contenir **au minimum** les éléments suivants :
     - Paramétrages
 - Une activity Localisation permettant de :
   - Localiser la personne (via le GPS ou le Réseau au choix).
-  - Une fois la localisation obtenue, la distance entre l'ESEO et sa position doit être affichée **kilomètre**.
-  - À chaque localisation à l'aide des **SharedPreferences** enregistrer la demande pour la lister dans la vue « historique ».
-  - Vous devez gérer correctement le flow permission comme vue ensemble.
+  - Une fois la localisation obtenue, la distance entre l'ESEO et sa position doit être affichée en **kilomètre**.
+  - À chaque localisation, à l'aide des **SharedPreferences**, enregistrez la demande pour la lister dans la vue « historique ».
+  - Vous devez gérer correctement le flow permission comme vue ensemble (avec gestion des erreurs)
 - Une activity Historique :
   - Utilisation d'un **Recyclerview**.
   - Affiche l'historique des positions enregistrées.
@@ -47,7 +47,7 @@ L'application à fournir doit contenir **au minimum** les éléments suivants :
 ![Wireframe](./ressources/app-base-wireframe.png)
 
 ::: danger C'est votre application !
-Les wireframes ne sont que « la base » / « les fils de fer » de l'application. Je vous laisse être inspiré / imaginatif pour le rendu final.
+Les wireframes ne sont que « la base » / « les fils de fer » de l'application. Je vous laisse être imaginatif pour le rendu final.
 
 N'hésitez pas à mettre des icônes, des textes, des images.
 :::
