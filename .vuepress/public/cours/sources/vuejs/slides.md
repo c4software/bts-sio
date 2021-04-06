@@ -199,8 +199,9 @@ var vm = new Vue({
 
 Les directives sont des attributs html propre à VueJS
 
-- v-on
+- v-on (ou plus simplement `@`)
 - v-bind
+- v-model
 - v-html
 - v-show (masque un élément avec la propriété display: css)
 - v-if
@@ -288,16 +289,20 @@ Exemple d'objet :
 
 ---
 
-### À votre avis comment doit-être la structure da la données ?
+### À votre avis comment doit-être la structure de la données ?
 
 ---
 
 ```js
-items = [
-  { message: "Message 1" },
-  { message: "Message 2" },
-  { message: "Message 3" },
-];
+data() {
+  return {
+    items: [
+      { message: "Message 1" },
+      { message: "Message 2" },
+      { message: "Message 3" },
+    ]
+  }
+}
 ```
 
 ---

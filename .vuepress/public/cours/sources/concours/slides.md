@@ -7,3 +7,8 @@ Par Valentin Brosseau
 ## Sommaire
 
 ---
+
+Important =>
+
+- Global : Compétence & Savoir
+- Sécurité : Anticipation, Prévention, Réaction
