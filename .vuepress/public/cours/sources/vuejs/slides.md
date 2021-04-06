@@ -428,7 +428,7 @@ Un composant ce n'est pas que du javascript.
   };
 </script>
 
-<style scopped>
+<style scoped>
   […]
 </style>
 ```
