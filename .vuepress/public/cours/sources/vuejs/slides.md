@@ -294,14 +294,12 @@ Exemple d'objet :
 ---
 
 ```js
-data() {
-  return {
-    items: [
-      { message: "Message 1" },
-      { message: "Message 2" },
-      { message: "Message 3" },
-    ]
-  }
+data: {
+  items: [
+    { message: "Message 1" },
+    { message: "Message 2" },
+    { message: "Message 3" },
+  ];
 }
 ```
 
