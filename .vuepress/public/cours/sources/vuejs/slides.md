@@ -308,7 +308,7 @@ data: {
 ### Les évènements HTML / Les touches de modifications
 
 ```html
-<!-- Arrêt de la propagation de l’évènements -->
+<!-- Arrêt de la propagation de l’évènement -->
 <a @click.stop="clickEvent"></a>
 
 <!--
@@ -319,7 +319,7 @@ data: {
 <!-- Il est possible de les chainer -->
 <a @click.stop.prevent="clickMessage"></a>
 
-<!-- Également disponnible tab, delete, esc, space, ... -->
+<!-- Également disponible tab, delete, esc, space, ... -->
 <input @keyup.enter="submit" />
 ```
 
@@ -354,7 +354,7 @@ VueJS c'est simple et très complet. La suite en pratique et sur [le site de Vue
 ### VueJS « Deux modes » de fonctionnement
 
 - J’ajoute VueJS dans un développement (classique) existant (**sans** Webpack)
-- Je crée une « application » Javascript (**avec** Webpack)
+- Je crée une « application » JavaScript (**avec** Webpack)
 
 ---
 
@@ -392,9 +392,9 @@ On est vraiment loin d’une page Web dans la conception
 #### Le package.json
 
 - Des dépendances pour la phase de développement.
-- Des dépendances utile pendant le fonctionnement de l’application.
+- Des dépendances utiles pendant le fonctionnement de l’application.
 - Gestion fine des versions (très important, pourquoi ?)
-- Les dépendances ont également des dépendances, etc!
+- Les dépendances ont également des dépendances, etc.
 
 ---
 
@@ -435,7 +435,7 @@ Un composant ce n'est pas que du javascript.
 
 ---
 
-C'est possible grace à la puissance de **webpack**.
+C'est possible grâce à la puissance de **webpack**.
 
 ---
 
@@ -447,7 +447,7 @@ C'est possible grace à la puissance de **webpack**.
 
 ## Webpack…
 
-C'est deux éléments important
+C'est deux éléments importants
 
 ---
 
@@ -462,7 +462,7 @@ C'est deux éléments important
 
 ### Le « Module Bundler »
 
-- Assemble les « modules Javascript ».
+- Assemble les « modules JavaScript ».
 - Concatenation « intelligente »
 - Découpe les JS pour la distribution
 - Assemble aussi des modules « css » (jusqu’aux images incluses)
@@ -527,7 +527,7 @@ export default {
 - Template de projet.
 - Rapide.
 - Étendable (plugin).
-- Mise a jour simple.
+- Mise à jour simple.
 
 ---
 
@@ -560,7 +560,7 @@ vue create demonstration
 
 ### Le projet est « initialisé »
 
-Psss: Chez VueJS ils sont sympa ils ont init le projet git pour vous.
+Psss: Chez VueJS ils sont sympas ils ont init le projet git pour vous.
 
 ---
 
@@ -616,8 +616,8 @@ $ vue add vuex
 
 ### Les devs tools
 
-- Intégration dans le processus de developpement
-- Permet de voir les « vue »
+- Intégration dans le processus de développement
+- Permets de voir les « vue »
 - L’état de vue
 - Le « store »
 
