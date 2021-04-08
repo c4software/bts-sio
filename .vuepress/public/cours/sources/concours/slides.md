@@ -1,8 +1,8 @@
-# CAPET Interne 2021
+# CAPET Interne
 
 ## Cas AgroClic − BTS SIO (Choix 2)
 
-Par Valentin Brosseau
+Valentin Brosseau
 
 ---
 
@@ -28,7 +28,7 @@ Scalabilité (Cout à l'usage)
 
 Implication du choix d'Amazon AWS
 
-- Maitrise des couts (monitoring)
+- Maitrise des couts (surveillance)
 - Comment estimer l'évolution / l'avenir
 
 ---
@@ -127,9 +127,7 @@ Séance 1 (2h théorie)
 
 _Objectif :_ Poser les principes
 
-- Échange collectif / débat « Pour vous qu'est-ce qu'un framework »
-  - En Stage.
-  - Dans votre veille.
+- Échange collectif / débat « Pour vous qu'est-ce qu'un framework ? » (stage, veille)
 - Les frameworks en général
   - Front & Back
 - Comment choisir un Framework
@@ -141,8 +139,8 @@ Séance 2 (2h théorie)
 _Objectif :_ Zoom sur un framework « Laravel »
 
 - Les bases de Laravel
-- Principe, Historique, logique de fonctionnement.
-- Outillage
+  - Principe, historique, logique de fonctionnement
+- Outillages
 - Parallèle avec les enseignements précédents. (débat)
 
 ---
@@ -155,7 +153,7 @@ _Objectif :_ Pratiquer les bases
 - Création d'un projet de test.
 - Fair découvrir l'aspect simple.
   - Plugins / extensions
-- Évaluation formative « Est-ce que je suis capable de » ?
+- Évaluation formative « Est-ce que je suis capable de »
 
 ---
 
@@ -164,8 +162,8 @@ Séance 4 (2h théorie)
 _Objectif :_ L'ORM
 
 - Principe et fonctionnement d'un ORM (Object-Relational Mapping)
-  - Gain
-  - Avantage
+  - Gains
+  - Avantages
 - Zoom sur Eloquent (ORM de Laravel)
 
 ---
@@ -222,6 +220,6 @@ _Objectif :_ Évaluation
 - Conception d'API
 - Framework Client (VueJS, React, …)
 - Souligner l'importance d'une veille active
-  - Web
+  - Développement Web
   - Sécurité
-- Recherche de vulnérabilité
+- Recherche de vulnérabilités
