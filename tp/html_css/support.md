@@ -792,6 +792,7 @@ Le flex répond à beaucoup de problématique… Mais pas à toutes ! Il y a des
 
 Pour ça en CSS vous pouvez utiliser le système de grid. Le système de grid est relativement complexe à prendre en main, le mieux est de regarder des exemples pour comprendre son fonctionnement.
 
+- [Une bonne introduction en français](https://la-cascade.io/css-grid-layout-guide-complet/)
 - [Exemple](https://gridbyexample.com/examples/)
 - [Pattern déjà prêt](https://gridbyexample.com/patterns/)
 - [Un outil pour designer les grid](https://grid.layoutit.com/)
@@ -814,6 +815,8 @@ Le système de grid est plutôt « récent » l'ensemble des navigateurs n'intè
 Comme pour le flex, voilà une solution en ligne afin de vous entrainer à utiliser le flex [CSS Grid Garden](https://cssgridgarden.com/#fr)
 
 ![Chrome Guide Grid](./res/grid_help_chrome.png)
+
+- [Une bonne introduction en français](https://la-cascade.io/css-grid-layout-guide-complet/)
 
 ## L'organisation de la CSS
 

@@ -20,7 +20,7 @@ Valentin Brosseau
 ### Économiques
 
 - Scalabilité (cout à l'usage)
-- Pérennité de la solution choisie
+- Pérennité des solutions choisies
 
 ---
 
@@ -73,7 +73,7 @@ RGPD
 - Choix de Amazon (Privacy Shield)
 - Cartographie des données
 - Sécurisation des données
-  - Mot de passe en claire (Annexe 6)
+  - Mot de passe (Annexe 6)
     - Privacy By Design
   - Blockchain
 
