@@ -110,7 +110,7 @@ docker commit nginx
 #### Dockerfile
 
 ```sh
-FROM     debian:latest
+FROM debian:latest
 
 RUN apt-get update && apt-get install -y wget zip python-pip git
 
