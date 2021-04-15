@@ -101,3 +101,5 @@ Votre ordinateur est maintenant prêt, nous avons donc créé :
 - Une VM contenant open-faas (votre serveur).
 - Le CLI pour contrôler `open-faas`.
 - Connecter votre ordinateur à votre serveur.
+
+Source: https://github.com/openfaas/faasd/blob/master/docs/MULTIPASS.md
