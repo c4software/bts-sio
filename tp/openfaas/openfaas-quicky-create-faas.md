@@ -2,6 +2,10 @@
 
 Ce document s'intéresse uniquement à la partie création du projet openfaas et pas à la partie « [création de la stack inital openfaas](./openfaas-quicky-installation) ».
 
+::: danger WIP
+Ce document est en cours de rédaction
+:::
+
 ## Création dossier pour le projet
 
 ```sh
