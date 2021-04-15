@@ -1,6 +1,8 @@
-# Création stack OpenFaas local via Multipass
+# Création stack OpenFaas (faasd) local via Multipass
 
-Ce document s'intéresse uniquement à la partie création création de la stack inital openfaas dans Multipass. Le but de ce document est de monter rapidement / simplement une stack OpenFaas pour tester la solution.
+Ce document s'intéresse uniquement à la partie création création de la stack inital faasd qui nous permettra d'utiliser OpenFaas. Le but de ce document est de monter rapidement / simplement une stack OpenFaas pour tester la solution.
+
+Pour simplifier la création de l'environnement nous utiliserons [Faasd](https://github.com/openfaas/faasd/)
 
 ::: danger WIP
 Ce document est en cours de rédaction
