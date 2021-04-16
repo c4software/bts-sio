@@ -1,8 +1,8 @@
 # Création stack OpenFaas (faasd) local via Multipass
 
-Ce document s'intéresse uniquement à la partie création création de la stack inital faasd qui nous permettra d'utiliser OpenFaas. Le but de ce document est de monter rapidement / simplement une stack OpenFaas pour tester la solution.
+Ce document s'intéresse uniquement à la partie création de la stack initial faasd qui nous permettra d'utiliser OpenFaas. Le but de ce document est de monter rapidement / simplement une stack OpenFaas pour tester la solution.
 
-Pour simplifier la création de l'environnement nous utiliserons [Faasd](https://github.com/openfaas/faasd/)
+Pour simplifier, la création de l'environnement nous utiliserons [Faasd](https://github.com/openfaas/faasd/)
 
 ::: danger WIP
 Ce document est en cours de rédaction
@@ -39,7 +39,7 @@ $version = (Invoke-WebRequest "https://api.github.com/repos/openfaas/faas-cli/re
 
 ## Configuration Cloud-config
 
-Pour créer la machine nous allons utiliser `Cloud-config` ce fichier de configuration va initialiser la VM avec l'ensembles des dépendances nécéessaires au bon fonctionnement.
+Pour créer la machine nous allons utiliser `Cloud-config` ce fichier de configuration va initialiser la VM avec l'ensemble des dépendances nécessaires au bon fonctionnement.
 
 ```sh
 curl -sSLO https://raw.githubusercontent.com/openfaas/faasd/master/cloud-config.txt
@@ -67,7 +67,7 @@ Cette opération va prendre quelques minutes en fonction de votre machine. Votre
 
 ## Récupération de l'authentification
 
-Votre machine est maintenant créé. Pour pouvoir se connecter à Open-faas vous devez récupérer le fichier `basic-auth-password` pour ça nous allons :
+Votre machine est maintenant créée. Pour pouvoir se connecter à Open-faas vous devez récupérer le fichier `basic-auth-password` pour ça nous allons :
 
 - Avoir besoin de l'IP de votre VM
 - Récupéré via SSH le fichier d'auth

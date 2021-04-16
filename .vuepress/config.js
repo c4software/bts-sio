@@ -205,7 +205,7 @@ module.exports = {
           "tp/rpi/web-stack.md",
           { title: "GitLab-CI", children: ["cours/gitlabci", "/tp/ci/pages", "/tp/ci/ci-hybride"] },
           { title: "Docker", children: [["https://rawgit.com/c4software/bts/master/.vuepress/public/cours/docker/", "Slides"], ["cheatsheets/docker/", "En + du cours"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
-          { title: "OpenFaas", children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-create-faas"] },
+          { title: "OpenFaas", children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
         ]
       },
 

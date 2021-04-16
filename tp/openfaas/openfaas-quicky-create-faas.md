@@ -82,3 +82,17 @@ faas-cli up -f exempleValentin.yml
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0lODC-vSGHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Source : https://www.openfaas.com/blog/serverless-nodejs/
+
+## Créer une image pour ARM
+
+Dans le premier cas nous avons réalisé une image à destination de la même architecture, si vous souhaitez déployer sur une architecture de processeur différente il faut :
+
+```sh
+# Compiler
+faas-cli publish -f exempleValentin.yml --platforms linux/arm/v7 # ARM 32bits
+faas-cli publish -f exempleValentin.yml --platforms linux/arm64 # ARM 64Bits
+faas-cli publish -f exempleValentin.yml --platforms linux/arm64,linux/arm/v7,linux/amd64 # ARM 64Bits, 32Bts, x86
+
+# Déployer
+faas-cli deploy -f exempleValentin.yml
+```
