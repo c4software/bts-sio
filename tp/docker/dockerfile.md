@@ -14,16 +14,16 @@ Une fois le fichier Dockerfile écrit, votre application sera fonctionnelle sur 
 
 Les « Dockerfile » sont des simples fichiers textes, mais avec un formalisme précis. Par exemple :
 
-```apacheconf
+```dockerfile
 FROM alpine:latest
-MAINTAINER Valentin Brosseau "c4software@gmail.com"
+LABEL Valentin Brosseau "c4software@gmail.com"
 ENTRYPOINT ["echo", "Mon premier Dockerfile"]
 ```
 
 Avant de « builder » cette première image, arrêtons-nous sur les différentes lignes :
 
 - « FROM alpine:latest », c’est l’image de référence, dans le cas présent une image très légère (un linux avec très peu de dépendances).
-- « MAINTAINER Valentin Brosseau "c4software@gmail.com" », le mainteneur de l’image (purement indicatif).
+- « LABEL Valentin Brosseau "c4software@gmail.com" », le mainteneur de l’image (purement indicatif).
 - « ENTRYPOINT ["echo", "'Mon premier Dockerfile'"] », la commande qui sera lancée au **démarrage** de votre image.
 
 Pour finir, enregistrer la définition précédente dans un fichier nommé « Dockerfile ».
@@ -48,7 +48,7 @@ Lancer la précédente commande dans le dossier où vous avez créé le fichier 
 
 ## Image Docker pour l’application "TODO"
 
-Faire un test c’est bien! Mais maintenant que l’on connait les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à se soucier de l’environnement sur lequel vous allez lancer « votre applications / site web ».
+Faire un test c’est bien! Mais maintenant que l’on connait les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à se soucier de l’environnement sur lequel vous allez lancer « votre application / site web ».
 
 ### 1. Écriture du Dockerfile
 
@@ -63,7 +63,7 @@ Une fois que c’est fait, il faut trouver une image de base qui nous servira de
 
 Pour continuer nous allons utiliser l’image PHP 7 Apache. Voilà le début de notre Dockerfile :
 
-```apacheconf
+```dockerfile
 FROM php:7-apache
 MAINTAINER Valentin Brosseau "c4software@gmail.com"
 ```
@@ -72,20 +72,20 @@ La base de votre Dockerfile est terminée. Nous allons voir comment ajouter le c
 
 ### 2. Ajout des sources dans l’image
 
-Nous avons vu dans le premier TP qu’il était possible de faire un « montage ». C’est pratique, pour ajouter de la donnée temporaire, mais dans le cas présent ce que l’on veut c’est faire une image statique qui sera transportable nous allons donc utiliser la commande ```COPY```.
+Nous avons vu dans le premier TP qu’il était possible de faire un « montage ». C’est pratique, pour ajouter de la donnée temporaire, mais dans le cas présent ce que l’on veut c’est faire une image statique qui sera transportable nous allons donc utiliser la commande `COPY`.
 
-La commande ```COPY``` permet de copier des fichiers (dossiers, fichiers, etc.) directement dans l’image qui sera construite. Une fois « builder » les données seront persistantes et les modifications seront effacées à chaque redémarrage de l’image (intéressant d’un point de vue de la sécurité).
+La commande `COPY` permet de copier des fichiers (dossiers, fichiers, etc.) directement dans l’image qui sera construite. Une fois « builder » les données seront persistantes et les modifications seront effacées à chaque redémarrage de l’image (intéressant d’un point de vue de la sécurité).
 
-La commande ```COPY``` prend deux arguments le fichier « sources » et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande ```COPY``` suivante :
+La commande `COPY` prend deux arguments le fichier « sources » et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande `COPY` suivante :
 
-```apacheconf
+```dockerfile
 FROM php:7-apache
 MAINTAINER Valentin Brosseau "c4software@gmail.com"
 
 COPY src/ /var/www/html/
 ```
 
-Le premier dossier c’est vos sources, sur votre machine dans le même dossier que le fichier Dockerfile, créez un dossier nommé ```src``` avec à l’intérieur les sources de votre projet ```todo-vuejs```.
+Le premier dossier c’est vos sources, sur votre machine dans le même dossier que le fichier Dockerfile, créez un dossier nommé `src` avec à l’intérieur les sources de votre projet `todo-vuejs`.
 
 Et voilà! C’est terminé. Votre image est prête à être « build ».
 

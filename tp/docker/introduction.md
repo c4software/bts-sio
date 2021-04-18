@@ -25,7 +25,7 @@ Vous devez voir la version de Docker.
 
 ## Second test
 
-Maintenant que nous savons que Docker est correctement installé, testons avec une « machine » fournie par Docker. L’image se nomme ```hello-world```, celle-ci ne fait qu’afficher un message de bienvenue. De nouveau, dans la console entrez la commande suivante :
+Maintenant que nous savons que Docker est correctement installé, testons avec une « machine » fournie par Docker. L’image se nomme `hello-world`, celle-ci ne fait qu’afficher un message de bienvenue. De nouveau, dans la console entrez la commande suivante :
 
 ```bash
 docker run hello-world
@@ -48,9 +48,9 @@ Maintenant que nous avons vu le projet, entrons plus en détail, allons voir la 
 
 Peu d’informations, 3 lignes :
 
-- ```FROM scratch``` (Image de base, celle utilisée comme référence elle aussi possède un DockerFile).
-- ```COPY hello /``` (ajoute le fichier hello à la racine de votre « machine »).
-- ```CMD ["/hello"]``` (Commande lancée au démarrage de votre image).
+- `FROM scratch` (Image de base, celle utilisée comme référence elle aussi possède un DockerFile).
+- `COPY hello /` (ajoute le fichier hello à la racine de votre « machine »).
+- `CMD ["/hello"]` (Commande lancée au démarrage de votre image).
 
 PS On créera un DockerFile dans le 2nd TP.
 
@@ -68,10 +68,10 @@ Et voilà, vous avez un Linux complètement opérationnel en quelques minutes su
 
 Utiliser un peu le shell de votre « nouveau Linux », exemple de commande :
 
-- ```uname -a``` : Affiche la version du noyau.
-- ```whoami``` : Qui suis-je ? (normalement root, d’ailleurs est-ce normal ?).
-- ```top``` : Affiche les processus en cours.
-- ```ls /```
+- `uname -a` : Affiche la version du noyau.
+- `whoami` : Qui suis-je ? (normalement root, d’ailleurs est-ce normal ?).
+- `top` : Affiche les processus en cours.
+- `ls /`
 
 Questions :
 
@@ -86,13 +86,13 @@ Créer un fichier vide avec la commande :
 touch fichier_test
 ```
 
-Vérifier avec un ```ls``` que le fichier est bien présent. Vous pouvez quitter votre l’image en saisissant ```exit``` dans le terminal. Relancer de nouveau l’image avec la commande :
+Vérifier avec un `ls` que le fichier est bien présent. Vous pouvez quitter votre l’image en saisissant `exit` dans le terminal. Relancer de nouveau l’image avec la commande :
 
 ```bash
 docker run -it ubuntu bash
 ```
 
-Faites à nouveau un ```ls```, que constatez-vous ? Et bien oui, le fichier n’est plus présent… C’est normal, tous les fichiers créés dans l’image sont non persistants (c’est-à-dire qu’ils sont supprimés à chaque fois que l’image s’arrête).
+Faites à nouveau un `ls`, que constatez-vous ? Et bien oui, le fichier n’est plus présent… C’est normal, tous les fichiers créés dans l’image sont non persistants (c’est-à-dire qu’ils sont supprimés à chaque fois que l’image s’arrête).
 
 ### Avoir accès aux fichiers de votre machine
 
@@ -100,7 +100,7 @@ Bon, c’est bien, mais si l’on donnait accès à un stockage persistant à no
 
 #### Monter un dossier
 
-Pour monter un volume il suffit d’ajouter un ```-v``` à la commande de lancement, exemple pour avoir le dossier courant :
+Pour monter un volume il suffit d’ajouter un `-v` à la commande de lancement, exemple pour avoir le dossier courant :
 
 ⚠️⚠️ Attention ! L’accès est en lecture ET en écriture sur **VOTRE MACHINE** donc attention.
 
@@ -116,7 +116,7 @@ Sous Unix :
 docker run -v $(pwd):/mnt/ -it ubuntu bash # Monte le dossier courant dans le /mnt du Docker.
 ```
 
-Lancer la commande ```ls /mnt``` vous devriez voir vos fichiers.
+Lancer la commande `ls /mnt` vous devriez voir vos fichiers.
 
 #### Monter un fichier
 
