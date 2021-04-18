@@ -20,6 +20,7 @@ Vous aurez certainement besoin de ressources, voilà une liste d'élément pouva
 - [Rappel sur design](https://atlassian.design/)
 - [Bootstrap](https://getbootstrap.com/) <- Un standard
 - [Tailwind](https://tailwindcss.com/) <- À creuser
+- [Des templates réutilisable](https://startbootstrap.com/?showPro=false&showAngular=false)
 
 _Prototypage :_
 
