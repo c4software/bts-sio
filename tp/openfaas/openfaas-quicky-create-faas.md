@@ -2,10 +2,6 @@
 
 Ce document s'intéresse uniquement à la partie création du projet openfaas et pas à la partie « [création de la stack inital openfaas](./openfaas-quicky-installation) ».
 
-::: danger WIP
-Ce document est en cours de rédaction
-:::
-
 ## Création dossier pour le projet
 
 ```sh
@@ -14,17 +10,27 @@ mkdir exempleValentin && cd exempleValentin
 
 ## Création du projet
 
+Faas-cli intègre un système de template qui vas nous permettre d'initialiser simplement un projet. Dans notre cas, nous allons créer un projet de type « Docker ».
+
 ```sh
 faas-cli new --lang dockerfile --prefix c4software exempleValentin
 ```
 
-## Init projet express
+::: warning --prefix ?
+Le prefix vas nous permettre de faire une image privée sur le DockerHub, vous devez donc le remplacer par votre nom d'utilisateur Docker.
+:::
+
+**Et c'est tout !** Votre stack est maintenant prête, nous allons créer un petit projet NodeJS + Express pour constater la simplicité.
+
+## Init projet Express
 
 ```sh
 cd exempleValentin
 npm init -y
 pnpm i --save express
 ```
+
+Nous allons créer un projet, celui-ci va contenir notre code source JavaScript
 
 ## Création index.js
 

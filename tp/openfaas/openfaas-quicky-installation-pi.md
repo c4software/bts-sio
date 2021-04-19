@@ -4,11 +4,12 @@ Ce document s'intéresse uniquement à la partie création de la stack initial f
 
 Pour simplifier, la création de l'environnement nous utiliserons [Faasd](https://github.com/openfaas/faasd/)
 
-::: danger WIP
-Ce document est en cours de rédaction
-:::
-
 ## Installer faas-cli
+
+`faas-cli` est l'outil / client qui nous permettra de parler avec notre instance OpenFaas. Bien évidemment nous allons travailler dans un environnement client / server.
+
+- Votre machine sera le client (via faas-cli).
+- Notre « Raspberry Pi » sera le serveur faisant fonctionner notre stack OpenFaas.
 
 ### Linux et Mac
 
