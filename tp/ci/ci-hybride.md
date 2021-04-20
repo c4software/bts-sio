@@ -8,19 +8,19 @@ Pourquoi Light ? Car l’image n’embarque pas Chrome Headless, et donc ne perm
 
 ## Création du projet sur GitLab
 
-Avec votre compte GitLab vous pouvez créer un nombre illimité de projets. La première étape est donc de créer un projet sur votre  [compte Gitlab](https://gitlab.com/projects/new).
+Avec votre compte GitLab vous pouvez créer un nombre illimité de projets. La première étape est donc de créer un projet sur votre [compte Gitlab](https://gitlab.com/projects/new).
 
 ⚠️ Je vous conseille de mettre votre projet en mode « Private ».
 
 ## Commiter et Pusher vos sources
 
-Si ce n’est pas déjà fait, commiter les sources de votre application Cordova. Attention à bien mettre un ```.gitignore``` pour ignorer le dossier ```nodes_modules/```.
+Si ce n’est pas déjà fait, commiter les sources de votre application Cordova. Attention à bien mettre un `.gitignore` pour ignorer le dossier `nodes_modules/`.
 
 Vous pouvez pusher vos sources.
 
 ## Activer GitLab-CI
 
-Maintenant que votre projet est sur GitLab, nous allons activer Gitlab-CI. Pour ça créer un fichier ```.gitlab-ci.yml```, c’est le fichier qui va activer l’intégration continue sur votre projet. Voilà le contenu du fichier :
+Maintenant que votre projet est sur GitLab, nous allons activer Gitlab-CI. Pour ça créer un fichier `.gitlab-ci.yml`, c’est le fichier qui va activer l’intégration continue sur votre projet. Voilà le contenu du fichier :
 
 ```yml
 image: c4software/cordova-light
@@ -50,9 +50,9 @@ Et c’est tout, avec ce simple fichier votre application est prête et sera com
 Commiter et Pusher la modification.
 
 - Regarder les fichiers :
-  - À quoi correspond le ```when: manual```?
+  - À quoi correspond le `when: manual`?
   - À quoi sert le cache ?
-  - À quoi correspond le ```artifacts``` ?
+  - À quoi correspond le `artifacts` ?
 
 ## Lancement d’un « Build »
 
@@ -80,7 +80,7 @@ Désactiver le « cache » dans le fichier Gitlab-ci. Tester de compiler plusieu
 
 ## Déclarer un runner GitLab
 
-Comme nous l’avons vu tout repose sur les runners, de base Gitlab fournie des runners partagés. C’est runners sont pratique, car ils sont instantanément disponibles dans vos projets, cependant vu qu’ils sont partagés avec d’autres utilisateurs il peut rapidement y avoir des questions de sécurités et surtout de performances. 
+Comme nous l’avons vu tout repose sur les runners, de base Gitlab fournie des runners partagés. C’est runners sont pratique, car ils sont instantanément disponibles dans vos projets, cependant vu qu’ils sont partagés avec d’autres utilisateurs il peut rapidement y avoir des questions de sécurités et surtout de performances.
 
 Pour être plus autonome (et plus performant) même dans la version cloud il est possible de déclarer un runners « à nous ». Ce runner va être dédié à votre compte, car il sera déclaré sur votre machine.
 
@@ -92,7 +92,7 @@ Pour déclarer un runner c’est très simple, il faut juste le lancer / l’ins
 
 Maintenant que le runner est installer sur votre machine, nous allons devoir l’enregistrer. L’enregistrement consiste à déclarer à Gitlab.com que votre machine est prête à exécuter des tâches. Vous dédiez en quelques sortes un peu de vos ressources à GitLab au travers de votre Runner.
 
-L’enregistrement du runners est relativement simple, il faut dans un premier temps allez dans « les Paramètres CI/CD du projet que vous avez créé » exemple ```https://gitlab.com/bts-sio-chevrollier/slam5/settings/ci_cd``` cliquez sur « Expand » de la catégorie « Runners settings ». Vous devez avoir quelques chose comme :
+L’enregistrement du runners est relativement simple, il faut dans un premier temps allez dans « les Paramètres CI/CD du projet que vous avez créé » exemple `https://gitlab.com/bts-sio-chevrollier/slam5/settings/ci_cd` cliquez sur « Expand » de la catégorie « Runners settings ». Vous devez avoir quelques chose comme :
 
 ![Register Runner](./ressources/runner.png)
 
@@ -110,7 +110,7 @@ Faire du Debug c’est bien ! Mais si on faisait une application prête pour le 
 
 ⚠️ Je vous déconseille fortement de le faire sur un « runner » public de Gitlab-CI. Pourquoi ? Simplement, car nous allons mettre une clé de signature sur votre APK, clé qui doit rester **PRIVÉE** ! C’est ce qui garantit la sécurité de votre application, si celle-ci se retrouve en ligne le jeu est fini pour vous n’importe qui peut usurper votre identité.
 
-Ajouter dans le fichier ```.gitlab-ci.yml```
+Ajouter dans le fichier `.gitlab-ci.yml`
 
 ```yml
 android:
@@ -124,7 +124,7 @@ android:
       - platforms/android/build/outputs/apk/
 ```
 
-Comme vous pouvez le constater, la partie script fait référence à un nouveau fichier le ```keystore/keyfile```. Pour que la commande fonctionne, nous allons donc devoir « le créer ».
+Comme vous pouvez le constater, la partie script fait référence à un nouveau fichier le `keystore/keyfile`. Pour que la commande fonctionne, nous allons donc devoir « le créer ».
 
 ### Création du keystore
 

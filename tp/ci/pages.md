@@ -66,6 +66,50 @@ Inconvénients :
 
 - À votre avis ?
 
+### Déployer un site VueJS
+
+Nous l'avons vu avec Netlify déployer un site VueJS (ViteJS) est très simple. Le faire avec Gitlab-CI et Gitlab Pages est tout aussi simple ! Je vous laisse envoyer votre code source dans un nouveau projet `Gitlab`. Nous allons lui ajouter le fichie `gitlab-ci.yml` suivant :
+
+```yaml
+pages:
+  image: node:latest
+  stage: deploy
+  script:
+    - npm install
+    - npm run gitlab
+    - mv public public-vue
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+```
+
+#### npm run gitlab ?
+
+Nous avons ici une petite specificitée, avec Gitlab Pages les fichiers sont distribués dans un sous dossier. Il faut donc indiquer à ViteJS que la base de notre projet ne sera pas à la racine mais dans un sous dossier.
+
+Dans la documentation de ViteJS nous trouvons [donc la réponse ici](https://vitejs.dev/guide/build.html#public-base-path)
+
+Je vous propose donc d'ajouter dans votre fichier `package.json` la configuration suivante dans la partie script :
+
+```json
+"gitlab": "vite build --base=./",
+```
+
+::: tip Comprendre le fonctionnement
+Vous voyez ici que finalement l'important c'est de comprendre le fonctionnement pour l'adapteur à notre besoin. Dans le cadre du CI/CD, il faut souvent lire la documentation, adapter, réésayer, etc.
+
+Mais une fois configuré… La vie sera belle et votre travail en grande partie automatisée.
+:::
+
+#### Résultat
+
+![Gitlab-ci](./ressources/gitlabci-build.png)
+
+Une fois compilé votre site est accessible [pour moi](https://vbrosseau.gitlab.io/vitejs-sample/)
+
 ### Les moteurs de site static
 
 Comme toujours, il y a plusieurs choix pour faire des sites statiques, voici 3 exemples :
@@ -83,6 +127,9 @@ Téléchargez le projet suivant [Exemple de site avec Hugo](https://gitlab.com/p
 ```yml
 # All available Hugo versions are listed here: https://gitlab.com/pages/hugo/container_registry
 image: registry.gitlab.com/pages/hugo:latest
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
 
 test:
   script:
