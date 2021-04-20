@@ -203,7 +203,7 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           "tp/rpi/web-stack.md",
-          { title: "GitLab-CI", children: ["cours/gitlabci", "/tp/ci/pages", "/tp/ci/ci-hybride"] },
+          { title: "GitLab-CI", children: ["cours/gitlabci", "/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/ci-hybride"] },
           { title: "JamStack", children: ["/tp/ci/jamstack/netlify.md"] },
           { title: "Docker", children: [["cours/docker", "Slides"], ["cheatsheets/docker/", "En + du cours"], "/tp/docker/introduction", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
           { title: "OpenFaas", children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
