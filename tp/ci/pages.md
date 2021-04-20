@@ -151,4 +151,4 @@ Celui-ci est très proche du nôtre, et c’est normal ! Avec Gitlab-CI c’est 
 
 ### Exemple avec Jekyll
 
-C’est à vous… Inspirez-vous [du wiki de Gitlab](https://docs.gitlab.com/ee/user/project/pages/getting_started/pages_from_scratch.html)
+C’est à vous… Inspirez-vous [du wiki de Gitlab](https://docs.gitlab.com/ee/user/project/pages/getting_started/pages_from_scratch.html) et [des templates](https://docs.gitlab.com/ee/user/project/pages/getting_started/pages_ci_cd_template.html)
