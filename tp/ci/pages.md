@@ -110,6 +110,10 @@ Mais une fois configuré… La vie sera belle et votre travail en grande partie 
 
 Une fois compilé votre site est accessible [pour moi](https://vbrosseau.gitlab.io/vitejs-sample/)
 
+#### Je vous laisse modifier
+
+Je vous laisse modifier votre code source. Vous constaterez que comme Netlify votre site se met à jour automatiquement à chaque push.
+
 ### Les moteurs de site static
 
 Comme toujours, il y a plusieurs choix pour faire des sites statiques, voici 3 exemples :
