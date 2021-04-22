@@ -125,6 +125,8 @@ Technique pour représenter une base de données.
 
 ## Les Contraintes
 
+---
+
 La clé primaire sert à identifier une ligne de manière unique.
 
 ---
