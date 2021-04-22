@@ -161,3 +161,7 @@ cd mon_projet_cordova/
 docker run -it --entrypoint /bin/bash -v %cd%:/Sources/ c4software/cordova-light:latest
 # Vous pouvez maintenant lancer, par exemple : cordova build
 ```
+
+## Allons plus loin
+
+Nous avons ici des petites machines pour jouer… C'est rigolo… Mais Docker est bien plus puissant que ça [la suite c'est par ici](./creer_server_local.md)

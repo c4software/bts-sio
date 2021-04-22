@@ -99,7 +99,78 @@ docker-compose up
 
 Rendez-vous sur [localhost:8080](http://localhost:8080) pour admirer votre travail.
 
+::: tip La différence avec un simple Docker ?
+Ici nous avons Wordpress oui, mais également une base de données associées, nous avons donc l'ensemble de la « stack applicative » permettant de faire tourner Wordpress.
+:::
+
 ### Remarques
 
 - Vous n’avez pas eu à rédiger le moindre Dockerfile, pourquoi ?
 - Vous n’avez aucune persistance de données.
+
+## HomeAssistant ?
+
+Docker-Compose permet vraiment de tout faire, vous souhaitez mettre en place un petit serveur pour de la Domotique ? Pas de problème ! Vous pouvez monter très simplement un HomeAssistant :
+
+```yml
+version: "3"
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:stable
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    network_mode: host
+```
+
+Je vous laisse tester.
+
+## Allons plus loin ?
+
+Nous avons vu ici que nous pouvions montrer rapidement un ensemble d'image Docker pour créer une Stack Applicative. Docker-Compose permet également d'utiliser des images « local » (des Dockerfile comme vu précédement) pour les intégrer dans votre projet.
+
+Je vous propose que nous réfléchissions ensemble à une « Stack » que nous pourrions dockerisé, un exemple avant de démarrer voilà mon Dockerfile
+
+```yml
+version: "3.7"
+services:
+  web-server:
+    build:
+      dockerfile: Dockerfile
+      context: php/
+    restart: unless-stopped
+    volumes:
+      - "./html/:/var/www/html/"
+    ports:
+      - 80:80
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+```
+
+Voilà les autres fichiers nécéssaire, dans un dossier `php/` le fichier Dockerfile suivant :
+
+```dockerfile
+FROM php:7.4.14-apache
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN a2enmod userdir
+RUN a2enmod rewrite
+```
