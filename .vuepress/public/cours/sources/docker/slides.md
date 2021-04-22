@@ -255,6 +255,24 @@ Votre avis sur cette solution ?
 
 ---
 
+### Mais c'est également
+
+- Un moyen simple de créer un environement
+- Une solution crossplateforme
+- Un outil magique
+
+---
+
+### Cas d'usage 0
+
+#### Postgres
+
+```sh
+docker run -p 5432:5432 --name pgServer -e POSTGRES_USER=monUser -e POSTGRES_PASSWORD=monPassword -d postgres
+```
+
+---
+
 ### Cas d’usage 1
 
 #### Wordpress
