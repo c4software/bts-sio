@@ -1,7 +1,5 @@
 # GitLab-CI
 
-### L’intégration continue
-
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
 ---
@@ -62,14 +60,12 @@ Les « runners » utilisent Docker (ou autre on y reviendra)
 ##### Exemple :
 
 ```yaml
-
-image: node:9.3.0
+image: node:latest
 nodejs_test:
-    stage: test
-    script:
-        - npm install
-        - npm test
-
+  stage: test
+  script:
+    - npm install
+    - npm test
 ```
 
 ---
@@ -111,12 +107,18 @@ Les actions à faire pour notre test/compilation/déploiement
 - stage (test/build/depoy)
 - type
 - variables
+
+---
+
 - only (master par exemple)
 - except (master par exemple ;))
 - tags (lancement uniquement sur les runners avec le même tag)
 - allow_failure
 - when (manuel, tag, etc)
 - dependencies
+
+---
+
 - artifacts
 - cache
 - before_script
@@ -133,11 +135,11 @@ Gagner du temps (et économiser des ressources), dans la définition :
 
 ```yaml
 cache:
-    untracked: true
-    key: "$CI_PROJECT_ID"
-    paths:
-        - nodes_modules/
-        - plugins/
+  untracked: true
+  key: "$CI_PROJECT_ID"
+  paths:
+    - nodes_modules/
+    - plugins/
 ```
 
 ---
@@ -156,8 +158,8 @@ La force de Gitlab-CI
 
 ```yaml
 artifacts:
-    paths:
-        - platforms/android/build/outputs/apk/
+  paths:
+    - platforms/android/build/outputs/apk/
 ```
 
 ---
@@ -178,23 +180,23 @@ artifacts:
 image: c4software/cordova-light
 
 stages:
-    - deploy
+  - deploy
 
 cache:
-    untracked: true
-    key: "$CI_PROJECT_ID"
-    paths:
-        - plugins/
+  untracked: true
+  key: "$CI_PROJECT_ID"
+  paths:
+    - plugins/
 
 android_debug:
-    stage: deploy
-    when: manual
-    script:
-        - cordova platform add android
-        - cordova build android
-    artifacts:
-        paths:
-            - platforms/android/build/outputs/apk/
+  stage: deploy
+  when: manual
+  script:
+    - cordova platform add android
+    - cordova build android
+  artifacts:
+    paths:
+      - platforms/android/build/outputs/apk/
 ```
 
 ---
@@ -214,18 +216,18 @@ android_debug:
 ### Exemple 2: GitLab Page
 
 ```yaml
-image: yasb:latest 
+image: yasb:latest
 
 stages:
-    - deploy
+  - deploy
 
 pages:
-    stage: deploy
-    script:
-        - make full && git add --all && git commit -am "Build" && mv output public
-    artifacts:
-        paths:
-            - public
+  stage: deploy
+  script:
+    - make full && git add --all && git commit -am "Build" && mv output public
+  artifacts:
+    paths:
+      - public
 ```
 
 ---

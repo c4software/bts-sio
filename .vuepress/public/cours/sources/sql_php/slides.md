@@ -79,7 +79,7 @@ Objet de toutes les convoitises
 
 ---
 
-## MCD
+## MCD / MLD
 
 ### **M**odèle **C**onceptuel de **D**onnées
 
@@ -123,9 +123,23 @@ Technique pour représenter une base de données.
 
 ---
 
+## Les Contraintes
+
+La clé primaire sert à identifier une ligne de manière unique.
+
+---
+
+La clé étrangère permet de gérer des relations entre plusieurs tables, **et garantissent la cohérence des données.**
+
+---
+
+L'INDEX est utilisé pour accélérer les requêtes indispensable à la création de clés primaires et de clés étrangères.
+
+---
+
 ## Une clé ?
 
-- Presque obligatoire.
+- Obligatoire.
 - Représente une valeur unique dans la base.
 - Effectuer des opérations sur la table (UPDATE, DELETE, …).
 - Permettre la jointure entre les tables.
@@ -134,7 +148,20 @@ Technique pour représenter une base de données.
 
 ---
 
-## Votre premier MCD
+## Les cardinalités
+
+Les cardinalités seront les liens entre nos tables
+
+| Cardinalités |                  Usages                  |
+| :----------: | :--------------------------------------: |
+|     0..1     |          Aucune ou une instance          |
+|      1       |         Une instance exactement          |
+| 0..\* ou \*  |      Aucune ou plusieurs instances       |
+|    1..\*     | Une instance ou plusieurs (au moins une) |
+
+---
+
+## Votre premier MCD/MLD
 
 - Des Utilisateurs (Identifiant, Nom, Prénom, Date de naissance, Sexe, Code Pays).
 - Des pays (Code Pays, Nom).
@@ -143,7 +170,7 @@ Technique pour représenter une base de données.
 
 ## Comment faire ?
 
-Pour réaliser le MCD nous avons plusieurs solutions :
+Pour réaliser le MCD/MLD nous avons plusieurs solutions :
 
 - Avec un papier et un crayon.
 - [DBDiagram](https://dbdiagram.io/home)

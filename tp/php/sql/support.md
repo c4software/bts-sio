@@ -53,7 +53,7 @@ Nous allons donc prendre un peu de temps, pour voir comment :
 - Sauvegarder.
 - Requêter.
 
-Nous allons donc modéliser les bases de données grâce à des MCD et nous récupèrerons / modifierons les données avec le langage SQL (le mot langage est important).
+Nous allons donc modéliser les bases de données grâce à des MLD et nous récupèrerons / modifierons les données avec le langage SQL (le mot langage est important).
 
 ## Modéliser la base de données
 
@@ -61,9 +61,9 @@ Modéliser une base de données est une étape très importante, elle fait parti
 
 Cette étape de modélisation doit être faite avant chaque création d'une base de données, mais également lors de la modification de celle-ci, je pense qu'il est intéressant de faire ça en dehors d'un ordinateur avec une simple feuille de papier; vous pouvez bien évidemment utiliser un outil en ligne pour créer votre modélisation.
 
-Cette modélisation s'appelle un **MCD** (Modèle Conceptuel de Données), ce MCD va regrouper l'ensemble de la structure de notre base de données (nom des tables, nom des colonnes, types de données), mais également les contraintes **relationnelles**, c'est-à-dire les contraintes entre les tables (nombre maximum, jointures, etc.)
+Cette modélisation s'appelle un **MLD** (Modèle Conceptuel de Données), ce MLD va regrouper l'ensemble de la structure de notre base de données (nom des tables, nom des colonnes, types de données), mais également les contraintes **relationnelles**, c'est-à-dire les contraintes entre les tables (nombre maximum, jointures, etc.)
 
-Pour réaliser le MCD nous avons plusieurs solutions :
+Pour réaliser le MLD nous avons plusieurs solutions :
 
 - Avec un papier et un crayon.
 - [DBDiagram](https://dbdiagram.io/home)
@@ -74,7 +74,7 @@ Avant d'aller plus loin, nous allons modéliser ensemble une première base de d
 - Des Utilisateurs (Identifiant, Nom, Prénom, Date de naissance, Sexe, Code Pays).
 - Des pays (Code Pays, Nom)
 
-Un MCD repose toujours sur le même principe, c'est un ensemble de « rectangle » relié ensemble par des traits.
+Un MLD repose toujours sur le même principe, c'est un ensemble de « rectangle » relié ensemble par des traits.
 
 | Table                     |
 | ------------------------- |
@@ -93,7 +93,7 @@ _Nous avons donc :_
 
 Une clé ou un identifiant sont une colonne que l'on va « marquer » comme étant particulière. Cette colonne va être utilisée par le moteur de base de données pour :
 
-- Presque obligatoire.
+- Obligatoire.
 - Représente une valeur unique dans la base.
 - Effectuer des opérations sur la table (UPDATE, DELETE, …).
 - Permettre la jointure entre les tables.
@@ -105,12 +105,35 @@ Une clé ou un identifiant sont une colonne que l'on va « marquer » comme éta
 Maintenant que nous avons posé la base, réfléchissons à notre problématique « Utilisateurs et Pays ».
 
 ::: details Voilà à quoi ça peut ressembler
-![Exemple de MCD](./res/exemple_mcd.png)
+![Exemple de MLD](./res/exemple_MLD.png)
 :::
 
 ::: tip
 Ne vous inquiétez pas, nous allons nous entrainer de multiple fois.
 :::
+
+![MCD](./res/mcd.png)
+
+## Les Contraintes
+
+- La clé primaire sert à identifier une ligne de manière unique.
+- La clé étrangère permet de gérer des relations entre plusieurs tables, **et garantissent la cohérence des données.**
+- L'INDEX est utilisé pour accélérer les requêtes indispensable à la création de clés primaires et de clés étrangères.
+
+::: tip
+Ne vous inquiétez pas, nous allons nous entrainer de multiple fois.
+:::
+
+## Les cardinalités
+
+Les cardinalités seront les liens entre nos tables, elle vont dans les schémas relationnels en modélisation des données, sert à compter le nombre minimum et maximum de possibilités que chaque classe contient dans la relation liant deux ou plusieurs objets.
+
+| Cardinalités |                  Usages                  |
+| :----------: | :--------------------------------------: |
+|     0..1     |          Aucune ou une instance          |
+|      1       |         Une instance exactement          |
+| 0..\* ou \*  |      Aucune ou plusieurs instances       |
+|    1..\*     | Une instance ou plusieurs (au moins une) |
 
 ## PHPMyAdmin
 
@@ -201,16 +224,16 @@ SELECT nom, prenom FROM utilisateurs;
 ```
 
 | Liste des opérateurs de conditions |
-| ---------------------------------- | ------------------------------------------------- |
-| =                                  | Égal à                                            |
-| >                                  | Supérieur à                                       |
-| <                                  | Inférieur à                                       |
-| =>                                 | Strictement supérieur                             |
-| >=                                 | Strictement inférieur                             |
-| !=                                 | Différent de                                      |
+| ---------------------------------- |
+| =                                  | Égal à |
+| >                                  | Supérieur à |
+| <                                  | Inférieur à |
+| =>                                 | Strictement supérieur |
+| >=                                 | Strictement inférieur |
+| !=                                 | Différent de |
 | BETWEEN                            | Entre deux valeurs `WHERE age BETWEEN 30 AND 50;` |
-| LIKE                               | Recherche `WHERE nom LIKE 'val%';`                |
-| IN                                 | Plusieurs valeurs `WHERE IN pays ('FRA','USA');`  |
+| LIKE                               | Recherche `WHERE nom LIKE 'val%';` |
+| IN                                 | Plusieurs valeurs `WHERE IN pays ('FRA','USA');` |
 
 ::: tip C'est à vous
 
