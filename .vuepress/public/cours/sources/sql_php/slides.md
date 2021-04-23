@@ -110,11 +110,11 @@ Technique pour représenter une base de données.
 
 ---
 
-| Table                     |
-| ------------------------- |
-| <u>#identifiant (int)</u> |
-| nom (varchar)             |
-| prénom (int)              |
+| Table                 |
+| --------------------- |
+| <u>#idTable (int)</u> |
+| nom (varchar)         |
+| prénom (int)          |
 
 - Un rectangle.
 - En titre le nom de la table.
@@ -328,11 +328,11 @@ SELECT quoi FROM votreTable WHERE condition(s);
 
 Exemple de table
 
-| #id | nom      | prenom   | age | pays |
-| --- | -------- | -------- | --- | ---- |
-| 1   | Brosseau | Valentin | 33  | FR   |
-| 2   | Doe      | John     | 14  | US   |
-| 3   | Bernard  | Michel   | 56  | FR   |
+| #idTable | nom      | prenom   | age | pays |
+| -------- | -------- | -------- | --- | ---- |
+| 1        | Brosseau | Valentin | 33  | FR   |
+| 2        | Doe      | John     | 14  | US   |
+| 3        | Bernard  | Michel   | 56  | FR   |
 
 ---
 

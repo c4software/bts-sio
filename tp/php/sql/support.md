@@ -76,11 +76,11 @@ Avant d'aller plus loin, nous allons modéliser ensemble une première base de d
 
 Un MLD repose toujours sur le même principe, c'est un ensemble de « rectangle » relié ensemble par des traits.
 
-| Table                     |
-| ------------------------- |
-| <u>#identifiant (int)</u> |
-| nom (varchar)             |
-| prénom (varchar)          |
+| Table                 |
+| --------------------- |
+| <u>#idTable (int)</u> |
+| nom (varchar)         |
+| prénom (varchar)      |
 
 _Nous avons donc :_
 
@@ -97,6 +97,7 @@ Une clé ou un identifiant sont une colonne que l'on va « marquer » comme éta
 - Représente une valeur unique dans la base.
 - Effectuer des opérations sur la table (UPDATE, DELETE, …).
 - Permettre la jointure entre les tables.
+- Nommée correctement
 
 ⚠️ Vous devez **toujours** avoir une clé ⚠️
 
