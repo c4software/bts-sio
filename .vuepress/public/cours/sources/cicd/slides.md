@@ -216,4 +216,34 @@ Non !
 
 ---
 
+## Quels outils ?
+
+- Gratuit ?
+- Payant ?
+- Cloud / Interne
+
+---
+
+## Cloud : Gratuit / Payant
+
+- Gitlab-CI
+- CircleCI
+- Bitrise
+- Travis
+- …
+
+---
+
+## Interne : Gratuit / Payant
+
+- Gitlab-CI
+- Jenkins
+- …
+
+---
+
+[Une liste plus complète](https://github.com/ligurio/awesome-ci)
+
+---
+
 ## Des questions ?
