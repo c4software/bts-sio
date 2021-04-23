@@ -135,6 +135,28 @@ Les cardinalités seront les liens entre nos tables, elle vont dans les schémas
 | 0..\* ou \*  |      Aucune ou plusieurs instances       |
 |    1..\*     | Une instance ou plusieurs (au moins une) |
 
+## Clés étrangère et comportement
+
+Nous avons vu ensemble qu'il était possible de définir des liens entre les tables, c'est ce que l'on appelle des contraintes, les contraintes ont plusieurs comportements possibles en cas de modifications :
+
+- NO ACTION
+- CASCADE
+- SET NULL
+- SET DEFAULT
+
+Il est possible de combiner CASCADE, SET NULL, SET DEFAULT et NO ACTION pour des tables liées par des relations.
+
+Nous allons donc pouvoir définir le comportement que le moteur de base de données va avoir en cas de :
+
+- Suppression (ON DELETE)
+- De mise à jour (ON UPDATE)
+
+::: tip L'objectif est l'intégrité des données
+L'important dans une base de données relationnelle c'est de s'assurer que les données sont « cohérentes ». Le concept de comportement en cas de suppression est donc primordial.
+
+Le moteur de base de données sera en charge de s'assurer que la donnée reste logique et cohérente en fonction des règles que **vous** avez définies lors de la conception de la base de données.
+:::
+
 ## PHPMyAdmin
 
 PHPMyAdmin est un outil qui va nous permettre d'administrer notre serveur de base de données. Celui-ci est intégré à votre serveur XAMPP, vu que c'est un site Internet il sera directement accessible par votre navigateur :

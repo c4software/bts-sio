@@ -205,6 +205,30 @@ Compliqué? Pas d'inquiétude, nous allons en refaire plusieurs.
 
 ---
 
+## Clés étrangères et relations
+
+- NO ACTION
+- CASCADE
+- SET NULL
+- SET DEFAULT
+
+Combinaison possible CASCADE, SET NULL, SET DEFAULT et NO ACTION
+
+---
+
+## Quand ?
+
+- Suppression (ON DELETE)
+- De mise à jour (ON UPDATE)
+
+---
+
+## Comment ?
+
+- Moteur de base
+
+---
+
 ## Gérer la base de données
 
 ### PHPMyAdmin
