@@ -1,4 +1,4 @@
-# Complément du cours Full Stack
+# Complément du cours Dev Ops
 
 Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
 
@@ -18,7 +18,13 @@ Je vous propose de commencer notre pèlerinage par la découverte de Docker.
 
 ## Docker
 
+![Docker](./res/0_8joZxa9NhRqDjHva.png)
+
 ### Introduction
+
+Docker c'est « une petite révolution » ! Docker est une plateforme datant de 2013 permettant aux développeurs de déployer, mais également d'exécuter des applications avec **des conteneurs**. Docker permet de packager une application (ainsi que ses dépendances) dans un process isolé nommé conteneur. Ce conteneur peut ensuite être exécuté sur n'importe quelle machine (ARM, X86…), mais également sur n'importe quel système d'exploitation (Linux, Windows, macOS).
+
+Docker est une technologie française, mais celle-ci est utilisée mondialement ; elle est devenue un standard en très peu de temps ce qui en fait un incontournable à connaitre pour vous développeur. Et vous allez le voir, celle-ci va vous faire gagner un temps fou !
 
 ### Containers ou Machines virtuelles ?
 

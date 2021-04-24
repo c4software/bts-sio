@@ -202,7 +202,7 @@ module.exports = {
         title: "Full-Stack",
         initialOpenGroupIndex: -1,
         children: [
-          "tp/fullstack/support.md",
+          "tp/devops/support.md",
           "tp/rpi/web-stack.md",
           { title: "CI/CD", children: [["cours/docker", "Docker"], "cours/cicd", ["cours/gitlabci", "Gitlab CI"]] },
           { title: "GitLab-CI", children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/ci-hybride"] },
