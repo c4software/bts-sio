@@ -199,7 +199,7 @@ module.exports = {
       },
 
       {
-        title: "Full-Stack",
+        title: "DevOps",
         initialOpenGroupIndex: -1,
         children: [
           "tp/devops/support.md",
