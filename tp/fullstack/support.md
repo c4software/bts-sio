@@ -32,6 +32,16 @@ Je vous propose de commencer notre pèlerinage par la découverte de Docker.
 
 ### Une stack complète sur un Raspberry Pi
 
+Nous l'avons vu dans les différents exemples précédents, Docker est un vrai petit bijou pour la conception du « stack » applicative. C'est en partant de cette constatation que j'ai décidé de créer moi-même une « Stack » permettant de créer un serveur d'évaluation / de développement personnel basé sur du matériel « pas cher » à savoir un Raspberry Pi.
+
+Une solution qui dans mon cas ressemble à :
+
+| ![Version 1](../rpi/res/version1.jpg) | ![Version 2](../rpi/res/version2.jpg) |
+| ------------------------------------- | ------------------------------------- |
+
+
+[Lire la suite](../rpi/web-stack.md)
+
 ## CI / CD
 
 ### Introduction
