@@ -26,9 +26,142 @@ Docker c'est « une petite révolution » ! Docker est une plateforme datant de 
 
 Docker est une technologie française, mais celle-ci est utilisée mondialement ; elle est devenue un standard en très peu de temps ce qui en fait un incontournable à connaitre pour vous développeur. Et vous allez le voir, celle-ci va vous faire gagner un temps fou !
 
+::: tip Quelques chiffres autour de Docker
+
+- 14 millions de « machines »
+- 900 000 images Docker
+- 12 milliard d’images téléchargées
+- 3300 contributeurs au projet
+  :::
+
+Comme je disais cette technologie est au coeur de l'évolution du paysage informatique (IT)
+
+![It Évolution](./res/it_evolution.png)
+
+Cette révolution consiste globalement à migrer les infrastructures locales (serveurs) vers « Le cloud » et ce pour plusieurs raisons :
+
+- Migrer la puissance dans le Cloud
+- Changement d’environnement/plateforme simplifié
+- Pas de « Bloquage / Fermeture » d’un constructeur
+
+::: tip Un instant !
+Mais avant de continuer pour vous le cloud, c'est quoi ?
+:::
+
+Nous allons donc changer de paradigme, avant nous avions :
+
+- Monolitique
+- Mise à jour lente
+- Gros serveurs
+
+Et maintenant :
+
+- Plein de petits services assemblés (externes et indépendants les uns des autres)
+- Mise à jour rapide
+- Petites machines, multitude de serveurs, etc.
+
+**À votre avis** pourquoi nous migrons vers ce genre d'architecture ? Connaissez-vous le nom de ce genre d'organisation ?
+
+### Les microservices
+
+Et oui ! Le découpage actuelle / « la mode du moment », c'est de découper en microservices. C'est-à-dire de passer de :
+
+![Microservice](./res/simplification.png)
+
+Cette simplification est là pour répondre à plusieurs problématiques :
+
+- Réduire la taille des applications (et donc leur temps de compilation, exemple Linux ~2h, Firefox 40min)
+- L’application est centrale au fonctionnement.
+- Adaptation au changement difficile.
+
+Le découpage en microservices va donc nous permettre de répondre à l'ensemble des problématiques :
+
+- Découper l’application en fonctionnalités indépendantes
+- Rends l’application indépendante des autres
+- Capable de « multiplier » l’application sur plein de serveurs pour absorber une hausse de la demande.
+- Une conception qui rend l’application hautement disponible
+
+::: tip CI / CD
+Ce découpage permet également de rentrer dans un autre mouvement celui de la **livraison en continu** / **déploiement en continu**. Nous reviendrons plus en détail sur ce point ultérieurement dans le cours.
+:::
+
 ### Containers ou Machines virtuelles ?
 
+Alors là vous allez me dire, non, mais je connais ce que tu nous racontes là !? Embarquer une application dans un truc transportable quelques soit la machine je connais déjà ! C'est une machine virtuelle…
+
+Alors oui vous avez raison… Il y a quelques années nous avions **une application un serveur**, puis nous avons eu **un serveur => Un hyperviseur => Des machines**, mais nous allons voir qu'avec Docker plus d'hyperviseur nous avons « que notre applicatif dans un conteneur ».
+
+Un serveur :
+![Un serveur](./res/un_serveur.png)
+
+Un hyperviseur :
+![Un hyperviseur](./res/hyperviseur.png)
+
+Les machines virtuelles vous connaissez déjà, et vous savez que le but c'est de mutualiser la puissance du serveur pour y mettre **plusieurs machines** / **systèmes d'exploitation entiers**. Mais cette organisation à des limites :
+
+- Des ressources allouées pour chaque machine (CPU, Disque, Ram)
+- Un OS complet sur chaque machine (virtuelle)
+- Plus il y a de machines plus il faut de puissance (ressources perdues)
+- Ressources perdues par… des parties de l’OS virtualisées pour rien (les crons, mais également les I/O).
+
+Le conteneur va donc répondre à une problématique, éviter la multiplication des petites ressources perdue, le conteneur c'est donc :
+
+- Un moyen standardiser de packager l’application
+- Un moyen d’isoler les applications entres elles
+- Un partage du noyau avec la machine physique
+
+**Les conteneurs**
+![Les conteneurs](./res/conteneurs.png)
+
+**VM vs Conteneur :**
+![VM Vs Conteneur](./res/vm_vs_conteneur.png)
+
+::: tip, Mais est-ce la fin des VM ?
+Bien évidement non, les VM sont là pour rester elles sont une vraie réponse sur la mutualisation des machines ; mais également une vraie sécurité entre les machines. En effet l'hyperviseur est là pour nous garantir au maximum la séparation des processus entre « **Les VM** » et la machine physique.
+
+D'ailleurs il est complètement possible de faire :
+
+![VM Vs Conteneur](./res/vm_and_conteneur.png)
+
+:::
+
+### Pour résumer Docker c’est :
+
+- Un projet open source, qui a pour but d’automatiser le déploiement d’applications dans un « container »
+- Le container une sorte « d’archive » qui contient tout ce qu’il faut pour faire fonctionner un logiciel : Code, Librairies pour l’exécution, outils système, et librairies système. (autonome)
+- Ça garantit que le code fonctionnera toujours de la même façon, quel que soit l’environnement.
+
+![L'architecture de docker](./res/docker_architecture.png)
+
+Avec docker pas « d'hyperviseur », nous avons un morceau aux milieux qui s'appelle le « Docker Engine », il repose sur les technologies du noyau Linux, il est donc plus lège qu'un Hyperviseur entier (comme VMWare ou Dropbox) il aura en charge la gestion de :
+
+- La sécurité
+- Le réseau
+- Les volumes
+- L’orchestration
+
+![Le Docker Engine](./res/engine.png)
+
+Comme j'indiquai en introduction, l'angine de Docker est multiplateforme il fonctionne donc sans problème sur :
+
+- Linux
+- Windows
+- macOS
+
+Mais également quelques soit l'architecture de l'ordinateur :
+
+- Un raspberry Pi
+- Un processeur Intel
+- Un processeur AMD
+- Un M1 de Apple
+
+Docker **vous assure** que votre application tournera de la même façon quelques soit là ou vous souhaiter la faire fonctionner.
+
 ### Créer des machines simplement
+
+### La ligne de commande
+
+Docker c'est principalement une « interface » avec laquelle nous devons communiquer en ligne de commande. Il n'y a pas beaucoup de commandes à retenir et celle-ci est logique. Quoi qu’il en soit je vous ai résumé l'ensemble dans [le document ici](/cheatsheets/docker/).
 
 ### Le DockerFile
 
