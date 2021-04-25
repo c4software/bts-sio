@@ -159,6 +159,33 @@ Docker **vous assure** que votre application tournera de la même façon quelque
 
 ### Créer des machines simplement
 
+L'objectif de Docker c'est la simplicité, vous allez le voir après seulement 2 ou 3 machines vous aurez compris la base du fonctionnement, et vous serez pleinement capable de vous en servir pour plein de petites problématiques (c'est très certainement la raison de son succès).
+
+Avant d'aller plus loin, je vous propose de faire un point terminologie :
+
+- **Image** Les fichiers, le contenu de votre « système »
+- **Container** L’image quand elle est en fonctionnement.
+- **Engine** Ce qui fait fonctionner votre « container ». Les volumes et le réseau font partie de « l’engine ».
+- **Registry** Entrepôt d’image à télécharger (fourni par d’autres, ou construite par vous). https://hub.docker.com/
+- **Volume**, les « montages » / ressources, emplacement (réseau ou non) disponible dans votre Container.
+
+#### Registery
+
+- Docker Hub
+- Communautaire
+- Images certifiées
+- Énormément d’images (vraiment, vraiment beaucoup)
+
+#### Les Images
+
+C’est une sorte de « template », les images sont en lecture seule. Enfin pas vraiment en lecture seule, elles ont un état qui sera **remis à zéro à chaque lancement de votre container**. Il faut les voir comme les données de base de votre application.
+
+Exemple: Ubuntu avec un Apache et GLPI déjà installés.
+
+- Une façon simple de distribuer vos applications
+- Pas de risque d’oubli de dépendances lors de l’installation (un environnement maitrisé)
+- Fonctionnement isolé, tests simplifiés de nouvelles librairies, ou de dépendances
+
 ### La ligne de commande
 
 Docker c'est principalement une « interface » avec laquelle nous devons communiquer en ligne de commande. Il n'y a pas beaucoup de commandes à retenir et celle-ci est logique. Quoi qu’il en soit je vous ai résumé l'ensemble dans [le document ici](/cheatsheets/docker/).
