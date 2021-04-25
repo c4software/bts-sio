@@ -25,6 +25,8 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## CD ?
 
+### Deux aspects
+
 ---
 
 ## Déploiement continu

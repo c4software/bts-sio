@@ -465,6 +465,13 @@ Mais bien évidemment, il n'y a pas que le test dans la vie nous pourrons égale
 
 <center><iframe src="https://giphy.com/embed/chES7uKgwnloDZeS03" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></center>
 
+::: tip Tester quoi ?
+
+![Cout des tests](./res/cost_test_unit.jpeg)
+
+Nous pouvons tout tester avec le CI, mais à votre avis qu'allons-nous tester?
+:::
+
 #### Les indicateurs
 
 Je vous parlais d'indicateur au début, les indicateurs de réussite sont multibles nous aurons bien évidemment :
