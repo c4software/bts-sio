@@ -375,6 +375,10 @@ Quand je présente une solution, j'aime bien parler des alternatives. Vous vous 
 - LXC
 - Kubernetes (non, mais parlons-en d'ailleurs)
 
+::: tip Docker ou Kubernetes ?
+Différence fondamentale entre Kubernetes et Docker : Kubernetes est conçu pour s’exécuter sur un cluster, tandis que Docker s’exécute sur un nœud unique. Kubernetes est plus complet que Docker Swarm et est conçu pour coordonner des clusters de nœuds à grande échelle en production, efficacement. Les pods Kubernetes (unités de planification contenant un ou plusieurs conteneurs dans l’écosystème Kubernetes) sont répartis entre les nœuds pour offrir une haute disponibilité.
+:::
+
 ### Une stack complète sur un Raspberry Pi
 
 Nous l'avons vu dans les différents exemples précédents, Docker est un vrai petit bijou pour la conception du « stack » applicative. C'est en partant de cette constatation que j'ai décidé de créer moi-même une « Stack » permettant de créer un serveur d'évaluation / de développement personnel basé sur du matériel « pas cher » à savoir un Raspberry Pi.
