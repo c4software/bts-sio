@@ -62,6 +62,12 @@ Et maintenant :
 
 **À votre avis** pourquoi nous migrons vers ce genre d'architecture ? Connaissez-vous le nom de ce genre d'organisation ?
 
+::: warning Docker la solution ultime ?
+L'objectif ici est de voir les avantages de Docker, mais comme tout en informatique Docker n'est pas la solution ultime ; Docker répond à un problème précis de découpage en container. C'est-à-dire en « petit conteneur » permettant de faire fonctionner votre application.
+
+**Soyez critique, rester en veille.**
+:::
+
 ### Les microservices
 
 Et oui ! Le découpage actuelle / « la mode du moment », c'est de découper en microservices. C'est-à-dire de passer de :
