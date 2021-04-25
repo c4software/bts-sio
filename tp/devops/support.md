@@ -30,7 +30,7 @@ Docker est une technologie française, mais celle-ci est utilisée mondialement 
 
 - 14 millions de « machines »
 - 900 000 images Docker
-- 12 milliard d’images téléchargées
+- 12 milliards d’images téléchargées
 - 3300 contributeurs au projet
   :::
 
@@ -169,7 +169,7 @@ Avant d'aller plus loin, je vous propose de faire un point terminologie :
 - **Registry** Entrepôt d’image à télécharger (fourni par d’autres, ou construite par vous). https://hub.docker.com/
 - **Volume**, les « montages » / ressources, emplacement (réseau ou non) disponible dans votre Container.
 
-#### Registery
+#### Registry
 
 - Docker Hub
 - Communautaire
@@ -190,11 +190,184 @@ Exemple: Ubuntu avec un Apache et GLPI déjà installés.
 
 Docker c'est principalement une « interface » avec laquelle nous devons communiquer en ligne de commande. Il n'y a pas beaucoup de commandes à retenir et celle-ci est logique. Quoi qu’il en soit je vous ai résumé l'ensemble dans [le document ici](/cheatsheets/docker/).
 
+Mais pour résumer, voilà les éléments importants :
+
+- Démarre l’image ubuntu:latest
+- `--rm` supprime le container avant de le relancer.
+- Déclare le port `80` du conteneur sur le port 3000 de votre machine.
+- Monte le dossier courant dans le dossier `/data` du conteneur
+- Note: Sur Windows vous devez remplacer `-v ${PWD}:/data` par `-v "C:\Data":/data`
+
+```sh
+# *nix
+docker run --rm --name monConteneur -it -p 3000:80 -v ${PWD}:/data ubuntu:latest
+
+# Windows
+docker run --rm --name monConteneur -it -p 3000:80 -v %cd%:/data ubuntu:latest
+```
+
+## Quelques paramètres de la ligne de commande
+
+| Paramètre                        | action                                                                                  |
+| :------------------------------- | :-------------------------------------------------------------------------------------- |
+| -p portLocal:portContainer       | Permets de rendre visible un port dans le container sur votre machine (ex. -p 8080:80)  |
+| -v dossierLocal:dossierContainer | Permets d'exposer un dossier local à l'intérieur du container (ex -v ./vosSource:/data) |
+
+### Les volumes
+
+Comme je disais en introduction les Containers sont stateless ; ça veut dire qu'ils sont **remis à zéro** à chaque lancement, nous allons donc devoir mettre en place un volume entre celui-ci et votre machine, un volume c'est :
+
+- Un dossier « partagé » entre votre machine et le container
+- Une sorte de point de montage
+- Persistant, les données sont modifiées en temps réel et sont sauvegardées
+
+### Quelques cas d'usage
+
+#### Postgres
+
+```sh
+docker run -p 5432:5432 --name pgServer -e POSTGRES_USER=monUser -e POSTGRES_PASSWORD=monPassword -d postgres
+```
+
+---
+
+#### Wordpress
+
+- Image officielle
+- Créer un Blog Wordpress en 2 minutes
+
+---
+
+#### Tomcat
+
+- Plusieurs versions en parallèle
+- Plusieurs versions de Java
+
+---
+
+#### PHP
+
+- Plusieurs versions en parallèle
+- Tester simplement son code sur d’autres versions de PHP (5, 7, 8, …)
+
+### Mettre en pratique
+
+Je vous propose de mettre en pratique ce que nous avons vu de manière théorique. [La suite dans le TP suivant](/tp/docker/introduction.md) puis [dans le suivant](/tp/docker/creer_server_local.md)
+
 ### Le DockerFile
+
+Nous avons lancé des Containeurs qui repose sur des images, mais pour l'instant nous n'avons rien écrit « rien packagé ». La force de Docker c'est que tout le monde peut créer des images docker pour distribuer des applications, bien évidement il est possible de distribuer les applications sur le DockerHub, mais **rien d'obligatoire**, vous êtes en entreprise votre code est privée vous pouvez très bien créer votre image uniquement sur votre machine.
+
+::: tip Vous pouvez également utiliser un Registry privé
+Mais si vous le souhaitez, vous pouvez utiliser un Hub privé ; Gitlab par exemple, en propose un gratuitement pour vos projets. D'ailleurs avec le CI/CD il sera possible de Builder et de sauvegarder l'image Docker résultat directement dans le Registry interne à Gitlab.
+
+[Plus d'informations ici](https://docs.gitlab.com/ee/user/packages/container_registry/)
+:::
+
+Le DockerFile va donc être un fichier qui va déterminer la structure de votre image, vous allez définir :
+
+- L'image de base
+- Les dépendances nécessaires à votre application pour fonctionner (au sens Linux, exemple PHP X, GD pour les images …).
+- Les paramètres de votre système embarqué dans l'image.
+- Le port exposé, etc.
+- Le « point d'entrée »
+
+Concrètement c'est :
+
+- Utilisé par Docker pour créer des containers à partir de la définition, le fichier « Dockerfile »
+- C’est un fichier texte, qui contient toutes les commandes que l’utilisateur va faire pour assembler l’image
+- Construit via la commande « docker build »
+
+Voilà à quoi ça va ressembler, dans un fichier nommé `Dockerfile`
+
+```dockerfile
+FROM ubuntu:latest
+MAINTAINER Valentin Brosseau
+
+RUN apt-get update
+RUN apt-get install -y python python-pip wget
+RUN pip install Flask
+
+ADD hello.py /home/hello.py
+
+WORKDIR /home
+```
+
+Vous avez défini le squelette de votre application, si vous souhaitez créer l'image associée vous allez devoir lancer :
+
+```sh
+docker build -t "flask:demo" .
+```
+
+Et pour la lancer ?
+
+```sh
+docker run -p 5000:5000 flask:demo python hello.py
+```
 
 ### Le Docker Compose
 
+Nous avons utilisé des images, nous avons également créé nos propres images. Mais si vous avez suivi, vous avez dû remarquer un problème ! Nos images ne contiennent **que notre application** pas l'ensemble des briques qui font « notre service ». Par exemple dans le cas d'un serveur PHP nous avons :
+
+- Le PHP
+- La base de données
+- Le FTP
+- …
+
+Dans le monde de Docker, c'est ce que nous appellerons l'orchestration.
+
+<center><iframe src="https://giphy.com/embed/KYGDZKRWdBnFe" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
+
+L'orchestration, ça va être le fait de construire une « stack » applicative entière avec l'intégralité des serveurs nécessaires au bon fonctionnement de notre application (exemple PHP, BDD, FTP). Dans le monde de Docker, nous avons un outil qui permet de construire ça. Le `Docker Compose` permet de composer une stack ou une infrastructure complète de conteneurs ; Il permet de simplifier la création, l'interconnexion et la multiplication de conteneurs.
+
+[C'est un outil officiel fourni directement et maintenu par la société Docker](https://docs.docker.com/compose/) Il repose sur **un seul fichier** le `docker-compose.yml`, celui-ci énumèrera l'ensemble de votre infrastructure, les volumes, les ports, les images, etc. Bref tout ce que vous pouvez faire avec la ligne de commande vous aller être capable de le définir dans un fichier `docker-compose.yml`.
+
+Voilà un exemple très simple :
+
+```yml
+version: "3"
+services:
+  reverse-proxy:
+    restart: unless-stopped
+    network_mode: host
+    image: nginx
+    volumes:
+      - ../.acme.sh/:/,etc/letsencrypt/
+      - ./nginx.conf:/,etc/nginx/nginx.conf
+```
+
+Une fois créée vous pourrez lancer votre infra via :
+
+```sh
+# Lancement sans rendre la main
+docker-compose up
+
+# Lancement en passant la stack en arrière plan
+docker-compose up -d
+```
+
+La force de Docker Compose c'est :
+
+- Autonome (car prête à être « mise en place » partout, quelle que soit la plateforme cible).
+- Préparamètre (tout est dans le fichier docker-compose.yml).
+- Isolé (tous les services ne sont pas forcément accessibles du public, mais sont accessibles par vos autres applications).
+- Administrable simplement grâce au cli (docker-compose up/down/start/stop)
+
+::: danger L'astuce du chef !
+Nous avons vu précédemment qu'il était possible de builder nos propres images avec Docker. Quand nous utilisons docker compose cette option **sera bien évidemment encore disponible**.
+:::
+
+La meilleure façon de voir comment fonctionne l'orchestration c'est de la pratiquer. [Je vous ai préparé un TP ici](https://cours.brosseau.ovh/tp/docker/docker_compose.html)
+
 ### Les alternatives
+
+Quand je présente une solution, j'aime bien parler des alternatives. Vous vous doutez bien que Docker n'est pas la seule solution de container disponible sur le marché voilà une liste non exhaustive de « conccurent » :
+
+- containerd
+- podman
+- LXC
+- Kubernetes (non, mais parlons-en d'ailleurs)
 
 ### Une stack complète sur un Raspberry Pi
 
@@ -210,27 +383,181 @@ Une solution qui dans mon cas ressemble à :
 
 ## CI / CD
 
+![CI/CD Loop](./res/cicd-loop.jpg)
+
 ### Introduction
 
-### CI (Intégration Continue)
+Voilà un gros mot que vous avez très certainement vu / croisé lors de votre veille sur les technologies qui feront de vous un développeur complet. Le CI/CD c'est la capacité que vous allez avoir d'automatiser :
 
-### CD (Déploiement Continu / Livraison Continue)
+- Les tests.
+- Les déploiements / livraison.
+- Mesurer la qualité de votre code.
+
+Cette automatisation ne sera pas faite à n'importe quel moment ? Elle sera faite en **continue…** Et c'est bien là la force du CI / CD. Il faut voir le CI/CD comme une boite à outils qui vous permettra de dormir tranquille.
+
+![Flow](./res/flow.png)
+
+### CI (Intégration continue)
+
+Le premier point du CI/CD c'est le CI ; CI signifie « Continous Integration » en français Intégration Continu, c'est la mécanique qui vous permettra de vous assurer de la qualité de votre application au travers d'indicateurs. Si je dois résumer le CI avant de le détailler je dirais :
+
+- Validation en continu
+- Régulièrement
+- Workflow GIT
+- Automatique
+
+L'idée est donc comme je le disais en introduction de répéter un certain nombre d'automatisations à chaque **push** dans votre système de version. Ces actions **doivent être** répétables à l'infini, quelles que soient les évolutions dans votre application, par exemple :
+
+- Dans une image PHP
+- Installer votre application
+- Lancer l'installation des dépendances nécessaire au bon fonctionnement.
+- Lancer les tests
+
+::: danger L'échec est une possibilité
+L'important ici, c'est de voir qu'il est possible que votre suite d'actions échoue. Nous ne devons donc jamais rendre les erreurs silencieuses.
+
+L'important dans l'échec, c'est de comprendre la raison afin de la corriger avant que celle-ci ne se retrouve en production.
+:::
+
+Le CI c'est également un ensemble d'indicateurs nous permettant de valider que notre application est **de bonne qualité** via les résultats des tests, mais également avec le Lint ou l'analyse statique du code.
+
+### CD (Déploiement continu / Livraison continue)
+
+Le second point dans le CI/CD, c'est le CD ; CD signifie « Continous Delivery », en Français livraison continue. Il faut bien distinguer deux opérations différentes dans le CD, nous avons la livraison et le Déploiement ; cette nuance est importante je reviendrai dessus ultérieurement. L'objectif du CD c'est :
+
+- Si l'ensemble du CI est « OK »
+- Mise en ligne « régulière »
+  - Prod
+  - Staging
+
+Nous avons deux options dans le CD, La Livraison et le Déploiement fondamentalement les deux répondent à la même problématique, automatiser les tâches pour vous simplifier la vie et automatiser la mise à disposition de votre application à vos utilisateurs, le **plus souvent possibles** en vous assurant en permanence de la qualité de ce que vous livrez :
+
+- Automatiser au maximum (Code, Configuration, Environement …)
+  - Dev / Staging / Review
+  - Prod
+- S'assure de la qualité
+- Versionne la livraison (suivi, archivage, rollback)
+
+- Le déploiement en continu, est la finalité ultime elle consiste à mettre en ligne en continu votre applicatif sans intervention de votre part.
+- La livraison en continu est une étape intermédiaire, elle consiste à faire construire en automatique le livrable de votre application via un enchainement de scripts tournant dans un environnement distant.
+
+![Gitlab Worflow](./res/gitlab_workflow_example_extended_v12_3.png)
 
 #### Les tests
 
+Vous l'avez compris, le CI/CD repose sur **les tests**. Vous avez vu précédemment que les tests c'est très important… Mais comme beaucoup vous ne voyez pas vraiment pourquoi c'est important ! Et c'est bien normal, vous écrivez des tests, mais vous avez certainement appris à les lancer **uniquement** sur votre ordinateur. Et je suis bien d'accord à se compte là… l'intérêt est plutôt limité.
+
+Quand nous mettons en place un CI/CD nous allons rendre les tests visibles / utiles / intéressants en effet ils vont être lancé à chaque modification du code sources. Et ils vont vous assurer que la qualité de celui-ci n'est pas détériorée par une modification récente.
+
+- Simplification de leurs exécutions
+- Aussi simple qu'en « Local »
+- Libère du temps
+
+Libère du temps ? Et oui ! Nous n'allons plus perdre du temps « j'attends que les tests passent » non non. Nous allons demander à un serveur distant de le faire à notre place, et une fois terminée ils nous préviendra du résultat… Voire mieux si le CD est en place il livrera en automatique votre application sur le(s) serveurs.
+
+Mais bien évidemment, il n'y a pas que le test dans la vie nous pourrons également :
+
+- Vérifier le Lint
+- Analyse statique
+- Couverture du code
+- Qualité du code
+- Sécurité du code
+
+<center><iframe src="https://giphy.com/embed/chES7uKgwnloDZeS03" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></center>
+
+#### Les indicateurs
+
+Je vous parlais d'indicateur au début, les indicateurs de réussite sont multibles nous aurons bien évidemment :
+
+- Le résultat « vert de chaque test ».
+- Le Lint (analyse statique du code).
+- L'analyse statique de l'ensemble du code source avec par exemple SonarQube
+
+![SonarQube](./res/sonarqube.png)
+
 #### Les artifacts
+
+Je vous parlais du livrable en introduction. Dans le monde de l'intégration le livrable nous appellerons ça un « artifacts », c'est le résultat de cette automatisation de tâches. Il est le résultat du « Test & Build » cette opération sur ce que nous avons vu précédemment :
+
+- Docker pour isoler et être capable de répéter de manière stateless l'opération.
+- Répétable (à l'identique, quelques soit la modification).
+- Multidéveloppeur (identique pour tous les membres de l'équipe).
+
+![CI Flow](./res/ci_flow.png)
+
+L'artéfact est donc :
+
+- Toujours présent
+- Centralisé (sur le serveur de CI/CD)
+- Nommage cohérent (oui, car il repose sur **le commit** associés)
+
+Et pourquoi c'est très très intéressant ?
+
+- Réduction du risque d'erreurs
+- Automatisation (plus d'humain)
+- La sécurité
+
+::: tip La sécurité ?
+À votre avis ? Pourquoi automatiser sur un serveur distant la création du livrable est intéressant en termes de sécurité ?
+:::
 
 ## Gitlab CI
 
-### Introduction
+Et c'est ici que rentre en jeu les solutions cloud de CI/CD. Comme tout dans les outils il y a plusieurs solutions répondant aux mêmes problèmes. J'ai décidé de vous parler de Gitlab-CI, car il est gratuit et intégré de base dans Gitlab aucun compte supplémentaire de requis ! Et surtout il est très puissant… Car il repose sur **Docker**, et vous l'avez compris maintenant ça veut dire que nous serons capables de tout faire.
+
+![Résultat du pipeline](./res/pipelines_index_v13_0.png)
+
+Les fondations de Gitlab-CI sont :
+
+- Intégré dans le développement
+- Simplifie le test
+- Amélioration continue
+
+::: tip Amélioration continue ?
+Je ne suis pas dupe, je suis comme vous… Parfois je code à l'arrache ! Le CI/CD n'est pas là pour vous faire la morale. Nous l'avons vu avec SonarQube l'idée n'est pas de vous punir de la mauvaise qualité de votre développement ; l'idée est plutôt de vous faire progresser petit à petit en testant / analysant seulement les parties modifiées de votre code.
+
+Pourquoi est-ce important ? Tout simplement pour voir au fur et à mesure pourquoi les règles sont importantes.
+:::
+
+Et l'objectif est :
+
+- Tester souvent, tester tout le temps
+- Simplification de la livraison
+- Automatisation de la livraison
+- Déploiement plus fréquent
+
+::: danger Évidemment il y a des alternatives
+Je vous entends déjà, non, mais moi je n’utilise pas Gitlab, mais Github… Évidemment il y a des alternatives des options pour faire plaisir à tous. [Vous avez ici une liste complète à jour des alternatives disponibles](https://github.com/ligurio/awesome-ci)
+:::
 
 ### Gitlab Pages
 
+Le meilleur moyen pour mettre en place un CI/CD ces le déploiement « en automatique » d'un petit site web statique.
+
+[La suite ici](/tp/ci/pages.md)
+
 ### Tester en continu
+
+Vous l'avez vu dans l'exemple Gitlab-Pages il n'y avait pas de tests autre que ceux « de base » qui sont :
+
+- L'installation
+- Le Lint fait sur votre code source lors du build.
+
+Ici, je vous propose d'aller plus loin c'est-à-dire de mettre en place des tests qui seront exécutés à chaque push.
+
+[La suite ici](/tp/ci/ci-test/tests.md)
 
 ### Compilation d'application
 
+Les sites web c'est une problématique simple… Le CI/CD nous permet d'aller plus loin beaucoup beaucoup plus loin ! Nous allons utiliser le CI/CD pour builder une application mobile.
+
+Le tout sans intervention de votre part. Avant de continuer, appelez-moi, je vais vous illustrer avec des cas concrets via un outil nommé Bitrise-CI.
+
+[Mettre en place une compilation d'application avec Gitlab-CI](/tp/ci/ci-hybride.md)
+
 ## Netlify
+
+Netlify est une solution simple qui vous permettra d'héberger / déployer / automatiser la mise à disposition de votre site Internet. Ici nous ne parlons pas de site « classique » comme un WordPress, mais de site qui repose sur la Jamstack.
 
 ### La JamStack ?
 
@@ -242,10 +569,37 @@ Plein de mots qui font peur, mais ne vous inquiétez pas… C'est beaucoup plus 
 
 ### Déployer un site automatiquement
 
-Ici pas de blabla, Netlify est une solution pensée pour être simple ; je vous propose donc de directement mettre en application via [le TP suivant](../ci/jamstack/netlify.md)
+Ici pas de blabla, Netlify est une solution pensée pour être simple ; je vous propose donc de directement mettre en application via [le TP suivant](/tp/ci/jamstack/netlify.md)
 
-## OpenFaas
+### FaaS
 
-### Introduction
+Function As A Service, c'est le truc qui va fous faire passer dans une autre dimension. L'idée étant la suivante :
 
-### Déployer sur OpenFaas
+Le FaaS ou Function-as-a-Service est un type de service cloud permettant de déployer une fonction unique de logiciel en serverless. Découvrez tout ce que vous devez savoir à ce sujet.
+
+Le développement et le lancement d’une application peuvent être très difficiles. Il est nécessaire d’installer des serveurs, et de les maintenir au fil du temps. Ceci peut s’avérer pénible et couteux. Heureusement, le Cloud Computing offre une alternative au travers du FaaS.
+
+Source: https://www.lebigdata.fr/
+
+Le FaaS est donc en quelques sortes la finalité de tout ce que nous avons vu ! Il s'agit de découper votre code en petit morceau qui sera packagé dans des conteneurs et lancer à la demande « quand les utilisateurs auront besoin de la fonctionnalité ». Le but ?
+
+- Réduire les couts (les serveurs sont arrêtés très souvent).
+- Réduire l'empreinte carbone des applications.
+- Découper pour livrer souvent les modifications.
+
+Il y a beaucoup de fournisseurs de FaaS :
+
+- Amazon avec Lambda.
+- Google avec Firebase Function.
+- Google avec Cloud Run (lancement d'image Docker à la demande)
+- OpenFaas solution libre similaire au précédentes.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eOBq__h4OJ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/vr0Gfvp5v1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Pour simplifier nos tests, nous allons nous concentrer sur la dernière solution OpenFaas, car elle nous permettra sans dépenser d'argent de tester la puissance du FaaS
+
+- [Installation d'OpenFaas](/tp/openfaas/openfaas-quicky-installation.md)
+- [Installation d'OpenFaas sur un Raspberry Pi](/tp/openfaas/openfaas-quicky-installation-pi.md)
+- [Écrire du code pour OpenFaas](/tp/openfaas/openfaas-quicky-create-faas.md)

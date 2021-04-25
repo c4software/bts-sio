@@ -196,6 +196,7 @@ Non !
 
 ---
 
+- Tester souvent, tester tout le temps.
 - Simplification de la livraison
 - Automatisation de la livraison
 - Déploiement plus fréquent
