@@ -79,7 +79,7 @@ Automatiser pour simplifier et améliorer la qualité.
 - Tests réguliers
 - Découpage des actions (Instal, Tests …).
 - Répétable à l'infini (à chaque « Push » mais également localement).
-- Être prévenu rapidement en cas de problème.
+- Être prévenu rapidement en cas de problème (en continu).
 - L'échec est possible (pas d'erreur silencieuse).
 
 ---
