@@ -453,6 +453,22 @@ Nous avons deux options dans le CD, La Livraison et le Déploiement fondamentale
 
 ![Gitlab Worflow](./res/gitlab_workflow_example_extended_v12_3.png)
 
+#### La clé « L'automatisation »
+
+Votre CI/CD repose donc sur une brique logicielle (Cloud ou local) permettant l’automatisation de tâches :
+
+- Compilation
+- Tests unitaires et fonctionnels
+- Tests de performance…
+
+À chaque `push`, Le CI/CD va exécuter une des tâches et produire des résultats (résultat de tests, artifacts, …), que le développeur / chef de projet / testeur peut par la suite visualiser ou télécharger.
+
+#### Les prérequis
+
+- Versionning du code.
+- Commits régulier.
+- Application « testable ».
+
 #### Les tests
 
 Vous l'avez compris, le CI/CD repose sur **les tests**. Vous avez vu précédemment que les tests c'est très important… Mais comme beaucoup vous ne voyez pas vraiment pourquoi c'est important ! Et c'est bien normal, vous écrivez des tests, mais vous avez certainement appris à les lancer **uniquement** sur votre ordinateur. Et je suis bien d'accord à se compte là… l'intérêt est plutôt limité.

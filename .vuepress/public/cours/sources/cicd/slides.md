@@ -54,13 +54,33 @@ Automatiser pour simplifier et améliorer la qualité.
 
 ---
 
+## CI / CD même objectif
+
+### L'automatisation des tâches
+
+- Compilation.
+- Tests unitaires et fonctionnels.
+- Validation du produit.
+
+---
+
+## Les prérequis
+
+- Versionning du code.
+- Commits régulier.
+- Application « testable ».
+
+---
+
 ## Revenons au CI
 
 ---
 
+- Tests réguliers
 - Découpage des actions (Instal, Tests …).
 - Répétable à l'infini (à chaque « Push » mais également localement).
-- L'échec est possible (pas d'erreur silencieuse)
+- Être prévenu rapidement en cas de problème.
+- L'échec est possible (pas d'erreur silencieuse).
 
 ---
 
