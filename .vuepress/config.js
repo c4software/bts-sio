@@ -202,13 +202,12 @@ module.exports = {
         title: "DevOps",
         initialOpenGroupIndex: -1,
         children: [
-          "tp/devops/support.md",
-          "tp/rpi/web-stack.md",
-          { title: "CI/CD", children: [["cours/docker", "Docker"], "cours/cicd", ["cours/gitlabci", "Gitlab CI"]] },
+          { title: "Support de cours", children: ["tp/devops/support.md", ["cours/docker", "Docker"], "cours/cicd", ["cours/gitlabci", "Gitlab CI"]] },
           { title: "GitLab-CI", children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/ci-hybride"] },
           { title: "JamStack", children: ["/tp/ci/jamstack/netlify.md"] },
           { title: "Docker", children: [["cheatsheets/docker/", "En + du cours"], "/tp/docker/introduction", "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
           { title: "OpenFaas", children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
+          "tp/rpi/web-stack.md"
         ]
       },
 
