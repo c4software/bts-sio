@@ -269,4 +269,48 @@ Non !
 
 ---
 
+## Zoom sur Gitlab-CI
+
+- Gratuit (\*)
+- Intégré dans gitlab
+- Simple à utiliser
+
+---
+
+## Un seul fichier le gitlab-ci.yml
+
+---
+
+### Gitlab-ci.yml
+
+L'ensemble de la configuration de Gitlab-CI est dans un seul fichier, le `gitlab-ci.yml`, ce fichier va définir l'ensemble des règles qui serviront à valider le bon fonctionnement de votre application. Voilà un exemple :
+
+```yml
+image: node:4.2.2
+
+before_script:
+  - npm install
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+
+test_async:
+  stage: test
+  script:
+    - node ./specs/start.js ./specs/async.spec.js
+
+test_db:
+  stage: test
+  services:
+    - postgres:9.5.0
+  script:
+    - node ./specs/start.js ./specs/db-postgres.spec.js
+```
+
+---
+
 ## Des questions ?

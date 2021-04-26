@@ -563,6 +563,36 @@ Et l'objectif est :
 Je vous entends déjà, non, mais moi je n’utilise pas Gitlab, mais Github… Évidemment il y a des alternatives des options pour faire plaisir à tous. [Vous avez ici une liste complète à jour des alternatives disponibles](https://github.com/ligurio/awesome-ci)
 :::
 
+### Gitlab-ci.yml
+
+L'ensemble de la configuration de Gitlab-CI est dans un seul fichier, le `gitlab-ci.yml`, ce fichier va définir l'ensemble des règles qui serviront à valider le bon fonctionnement de votre application. Voilà un exemple :
+
+```yml
+image: node:4.2.2
+
+before_script:
+  - npm install
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+
+test_async:
+  stage: test
+  script:
+    - node ./specs/start.js ./specs/async.spec.js
+
+test_db:
+  stage: test
+  services:
+    - postgres:9.5.0
+  script:
+    - node ./specs/start.js ./specs/db-postgres.spec.js
+```
+
 ### Gitlab Pages
 
 Le meilleur moyen pour mettre en place un CI/CD ces le déploiement « en automatique » d'un petit site web statique.
