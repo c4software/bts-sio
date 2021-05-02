@@ -19,9 +19,14 @@ video,
 iframe {
   /*max-height: 65vh !important;
   max-width: 80vw !important;*/
-  max-height: 70% !important;
+  /*  max-height: 70% !important;
   max-width: 80% !important;
-  margin: auto !important;
+  margin: auto !important;*/
+  object-fit: scale-down;
+  max-height: 45vh !important;
+  width: auto;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 code:not(.hljs) {
@@ -59,7 +64,7 @@ code.lang-sh::before {
   flex: 1;
 }
 
-iframe {
+iframe:not(.giphy-embed) {
   margin: 15px 0px !important;
   background: rgba(255, 255, 255, 0.12);
   border: 4px solid #657b83 !important;

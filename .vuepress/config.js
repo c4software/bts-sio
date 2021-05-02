@@ -48,7 +48,9 @@ module.exports = {
         "/cours/android_base.html",
         "/tp/android/android-base-tp.html",
         "/tp/android/android-base2-tp.html",
-        "/tp/android/app-ble-network.html"
+        "/tp/android/app-ble-network.html",
+        "/tp/android/app-base-android.html",
+        "/tp/android/app-avance-android.html",
       ]
     },
     docsBranch: 'master',
@@ -191,8 +193,8 @@ module.exports = {
               "cours/android_ble",
               { title: "Les bases", children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp"] },
               { title: "Les appels d'API", children: ["cours/android_http", "/tp/android/network"] },
-              { title: "Le BLE", children: ["/tp/android/app-ble-network"] },
-              { title: "L'organisation", children: ["/tp/android/sample-explication"] }
+              { title: "L'organisation", children: ["/tp/android/sample-explication"] },
+              { title: "Les projets", children: ["/tp/android/app-base-android.md", "/tp/android/app-ble-network.md", "/tp/android/app-avance-android.md"] }
             ]
           }
         ]

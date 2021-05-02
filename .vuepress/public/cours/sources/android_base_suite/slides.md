@@ -88,7 +88,7 @@ Et bien ça dépend…
 
 ---
 
-### On teste ?
+### On test ?
 
 ---
 
@@ -105,7 +105,7 @@ L'objectif :
 
 ---
 
-- Une activité racine « contient les fragments » (hérite de)
+- Une activité racine « contient les fragments »
 - N fragments en fonctions des cas.
 
 ---
@@ -118,6 +118,8 @@ L'objectif :
 
 - Découpage
 - Réutilisation
+
+---
 
 ### Inconvénient
 
@@ -132,6 +134,8 @@ L'objectif :
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.2"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.2"
 ```
+
+<small>En réalité pas vraiment… mais parlons en !</small>
 
 ---
 
@@ -160,7 +164,9 @@ C'est là où l'organisation sera importante 🚀
 
 ---
 
-### La théorie « Simple » / Gestion à l'ancienne
+### La théorie « À la main »
+
+#### Gestion à l'ancienne
 
 ---
 
@@ -182,6 +188,10 @@ Comment ça fonctionne ?
 ## Voilà à quoi ça va ressembler
 
 ![Organisation](./img/objectif.png)
+
+---
+
+## On test ! C'est parti 🚀
 
 ---
 
@@ -246,7 +256,15 @@ Actuellement en Alpha
 
 ---
 
+[LES APPELS RÉSEAU](/cours/android_http.html)
+
+---
+
 ## Le MVVM
+
+---
+
+![MVVM](./img/android-mvvm-pattern.png)
 
 ---
 
