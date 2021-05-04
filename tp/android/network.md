@@ -302,3 +302,7 @@ Maintenant que nous avons vu la théorie, je vous laisse implémenter la consign
 - Vous devez définir des modèles correspondant au retour.
 - Vous devez organiser votre code en package.
 - Vous devez utiliser un RecyclerView (Natif, ou librairie type Recyclical)
+
+::: details En panne d'inspiration ?
+[Voilà un exemple de code pour répondre à la consigne](https://github.com/c4software/android-api-course-project)
+:::
