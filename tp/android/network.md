@@ -46,6 +46,14 @@ Les librairies en question sont à ajouter dans votre fichier `Gradle`, nous all
 
 ---
 
+### Les permissinos
+
+Pour accéder à Internet, il faut ajouter une permission, celle-ci autorisera à votre application l'accès à Internet. Aucune confirmation utilisateur ne sera demandée.
+
+```xml
+    <uses-permission android:name="android.permission.INTERNET" />
+```
+
 ### Les CoRoutines Kotlin
 
 - Gestion automatique des threads
