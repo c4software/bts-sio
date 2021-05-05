@@ -68,7 +68,7 @@ Inconvénients :
 
 ### Déployer un site VueJS
 
-Nous l'avons vu avec Netlify déployer un site VueJS (ViteJS) est très simple. Le faire avec Gitlab-CI et Gitlab Pages est tout aussi simple ! Je vous laisse envoyer votre code source dans un nouveau projet `Gitlab`. Nous allons lui ajouter le fichie `gitlab-ci.yml` suivant :
+Nous l'avons vu avec Netlify déployer un site VueJS (ViteJS) est très simple. Le faire avec Gitlab-CI et Gitlab Pages est tout aussi simple ! Je vous laisse envoyer votre code source dans un nouveau projet `Gitlab`. Nous allons lui ajouter le fichier `gitlab-ci.yml` suivant :
 
 ```yaml
 pages:
