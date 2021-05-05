@@ -209,7 +209,7 @@ module.exports = {
           { title: "JamStack", children: ["/tp/ci/jamstack/netlify.md"] },
           { title: "Docker", children: [["cheatsheets/docker/", "En + du cours"], "/tp/docker/introduction", "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
           { title: "OpenFaas", children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
-          { title: "Firebase", children: ["/tp/ci/firebase/functions.md"] }
+          { title: "Firebase", children: ["/tp/ci/firebase/functions.md"] },
           "tp/rpi/web-stack.md"
         ]
       },
