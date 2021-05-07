@@ -118,7 +118,7 @@ Dans mon cas :
 
 ```sh
 docker build -t vue:test .
-docker run -it -p 8080:80 --rm --name vue:test vue:test
+docker run -it -p 8080:80 --rm --name vuetest vue:test
 ```
 
 :::
