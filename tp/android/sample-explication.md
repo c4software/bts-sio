@@ -398,7 +398,7 @@ Ne pas mettre le code n'importe où. Nous avons ici un **attribut de class**.
 
 Si vous souhaitez que ça fonctionne, vous devez dire à votre code comment le `by viewModel()` va être résolu. Pour ça nous devons indiquer à notre injecteur de dépendance comment créer cette dépendance, cette déclaration est à faire dans le fichier `app_module.kt` (il se trouve dans le package `.di`).
 
-Vous devez donc ajouter dans le `appModule` le code suivante :
+Vous devez donc ajouter dans le `appModule` le code suivant :
 
 ```kotlin
     viewModel { YourActivityViewModel() }
