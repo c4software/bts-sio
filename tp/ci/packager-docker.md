@@ -104,7 +104,7 @@ La première étape est de `Dockeriser` votre application actuelle. L'idée est 
 
 ```dockerfile
 FROM nginx:stable-alpine
-COPY --from=build-stage /app/dist /usr/share/nginx/html
+COPY dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
