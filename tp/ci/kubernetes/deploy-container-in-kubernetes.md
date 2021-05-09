@@ -12,6 +12,8 @@ Nous avons vu précédemment qu'il était possible de compiler puis de packager 
 
 ### k3d
 
+#### Accès du cluster à distance
+
 ### Les solutions payantes
 
 ## L'application à déployer
