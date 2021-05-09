@@ -115,7 +115,9 @@ Par exemple nous indiquons que `createWebService(client: OkHttpClient, url: Stri
 
 Dans le cas d'un objet de notre vue, nous avons dans le même principe :
 
-`viewModel { MainViewModel(get(), get()) }` qui représente le View-Modele de notre Activity qui attend deux paramètres :
+`viewModel { MainViewModel(get(), get()) }` qui représente le View-Modele de notre Activity.
+
+Celui-ci attend deux paramètres :
 
 `MainViewModel(sampleRemoteRepository: SampleRemoteRepository, sampleLocalRepository: SampleLocalRepository)`.
 
