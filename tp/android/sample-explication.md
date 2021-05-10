@@ -206,7 +206,7 @@ La première étape était la déclaration dans l'interface, c'est chose faite. 
 Nous allons donc tout simplement :
 
 - Ajouter la déclaration de la méthode dans l'interface `SampleRemoteRepository` nommée infoRest.
-- Implémenter la méthode `infoRest` dans `SampleLocalRepositoryImpl` afin de pouvoir appeler l'API.
+- Implémenter la méthode `infoRest` dans `SampleRemoteRemoteRepositoryImpl` afin de pouvoir appeler l'API.
 
 ### L'appeler depuis le code
 
