@@ -207,3 +207,36 @@ Votre stack est maintenant prête, elle est jouable / rejouable à l'infinie. Je
 Votre compilation doit-être actuellement plutôt lente… C'est normal l'installation des dépendances prend un peu de temps. Dans gitlab-ci nous pouvons ajouter du cache, j'ai donné pas mal de pistes pour les autres étapes… Pour celle-ci je vous laisse chercher dans la documentation.
 
 [Gestion du cache](https://docs.gitlab.com/ee/ci/caching/)
+
+### Image multi-architectures ?
+
+Vous souhaitez créer une image qui fonctionnera sur un Raspberry Pi, mais également sur une machine X86? C'est possible, c'est ce que l'on appel le « Multi-architectures. Nous sommes plus dans quelques choses d'aussi simple qu'avec l'exemple précédent, mais vous pouvez le faire sans problème depuis Gitlab-CI ?
+
+```yaml
+dockerise:
+  image: docker:19.03.12
+  stage: deploy
+  dependencies:
+    - build
+  services:
+    - name: docker:19.03.12-dind
+      command: ["--experimental"]
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+    BUILDX_VERSION: v0.4.1
+  before_script:
+    - apk add curl
+    - mkdir -p ~/.docker/cli-plugins
+    - curl -sSLo ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/$BUILDX_VERSION/buildx-$BUILDX_VERSION.linux-amd64
+    - chmod +x ~/.docker/cli-plugins/docker-buildx
+    - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+    - docker info
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker buildx create --use
+    - docker buildx build --push --platform linux/arm/v8,linux/amd64 -t $IMAGE_TAG .
+  only:
+    - master
+```

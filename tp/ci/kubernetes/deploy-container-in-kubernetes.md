@@ -18,7 +18,7 @@ Nous avons vu précédemment qu'il était possible de compiler puis de packager 
 
 Alternative payante paas à k3d
 
-## L'application à déployer
+## Créer l'image Docker via Gitlab-CI
 
 ### Le projet
 
@@ -26,7 +26,7 @@ Alternative payante paas à k3d
 
 ### L'image Docker
 
-## Le déploiement
+## Déployer l'image sur le cluster Kubernetes
 
 ### Introduction
 
@@ -43,6 +43,8 @@ Alternative payante paas à k3d
 ### Votre code et la CI
 
 ### Modifier le deployment.yml
+
+Pourquoi ? le nom du tag… etc
 
 ## La suite ?
 
