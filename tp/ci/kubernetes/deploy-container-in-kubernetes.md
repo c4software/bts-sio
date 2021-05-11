@@ -16,6 +16,8 @@ Nous avons vu précédemment qu'il était possible de compiler puis de packager 
 
 ### Les solutions payantes
 
+Alternative payante paas à k3d
+
 ## L'application à déployer
 
 ### Le projet
@@ -44,4 +46,4 @@ Nous avons vu précédemment qu'il était possible de compiler puis de packager 
 
 ## La suite ?
 
-La suite de cette introduction ça va être le déploiement automatisé en cas de mise à jour du projet. La suite c'est par ici =>
+La suite de cette introduction ça va être le déploiement automatisé en cas de mise à jour du projet. [La suite c'est par ici =>](./cd-avec-kubernetes.md)
