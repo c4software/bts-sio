@@ -480,7 +480,7 @@ Pour la configuration des services et de l'ingress :
 
 ### Tester
 
-Votre application est maintenant disponible, si vous vous souvenez quand nous avons créé le cluster nous avons indiqué un port pour le load balancer. Si vous n'avez rien changé, c'est le `8080`. Rendez-vous à IP.DE.VOTRE.SERVEUR:8080 pour voir votre déploiement.
+Votre application est maintenant disponible, si vous vous souvenez quand nous avons créé le cluster nous avons indiqué un port pour le load balancer. Si vous n'avez rien changé, c'est le `8888`. Rendez-vous à `IP.DE.VOTRE.SERVEUR:8888` pour voir votre déploiement.
 
 Je vous laisse regarder à nouveau :
 
