@@ -155,6 +155,14 @@ La curiosité n'est pas un vilain défaut ! Regardons ensemble le contenu du fic
 
 Votre Cluster est maintenant pleinement fonctionnel. Il est pour l'instant vide, mais vous allez voir, nous allons très prochainement déployer votre application.
 
+### kubectl ?
+
+`kubectl` est l'outil officiel permettant de gérer votre cluster Kubernetes. [Pour l'installation je vous laisse suivre la documentation officielle](https://kubernetes.io/docs/tasks/tools/) :
+
+- [Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) (ou via votre gestionnaire de paquet)
+- [Windows](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
+- [MacOS](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/) (ou via brew)
+
 ### Les solutions payantes
 
 Bon, même si ce n’est pas le sujet de ce TP, il faut avoir en tête qu'il existe énormément de solutions pour monter un Cluster Kubernetes. Ici nous avons créé un cluster avec `k3s` (via `k3d`), aucun problème votre cluster va fonctionner comme attendu. **Cependant** cette solution est valide pour expérimenter Kubernetes ou pour déployer une application perso.
