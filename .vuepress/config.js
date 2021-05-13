@@ -208,6 +208,7 @@ module.exports = {
           { title: "GitLab-CI", children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride"] },
           { title: "JamStack", children: ["/tp/ci/jamstack/netlify.md"] },
           { title: "Docker", children: [["cheatsheets/docker/", "En + du cours"], "/tp/docker/introduction", "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
+          { title: "Kubernetes", children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md"] },
           { title: "OpenFaas", children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
           { title: "Firebase", children: ["/tp/ci/firebase/functions.md"] },
           "tp/rpi/web-stack.md"

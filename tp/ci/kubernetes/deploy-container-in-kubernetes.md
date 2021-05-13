@@ -243,28 +243,269 @@ docker run -it -p 8888:80 --rm --name vuepresstest vuepress:test
 
 ### La CI
 
+L'idée dans ce TP est de faire générer l'image Docker automatiquement par Gitlab-CI afin de la récupérer de manière privée dans notre cluster Kubernetes. Nous allons donc configurer la CI de Gitlab pour générer une nouvelle image Docker à chaque fois qu'un commit arrive dans la `master`.
+
+Cette image Docker sera taguée avec l'identifiant du commit en question. Cette étape est **identique** à ce que nous avons déjà fait précédemment dans le TP [Packager avec Docker](/tp/ci/packager-docker.md#packager).
+
+Je vous laisse regarder comment nous avions fait, afin de reprendre la même logique dans ce projet. En deux mots l'opération sera la suivante :
+
+- Créer un fichier `.gitlab-ci.yml` à la racine de votre projet.
+- Ajouter la configuration qui permettra de `builder le projet` puis de `builder l'image docker`.
+- Commiter et pusher votre projet pour que Gitlab-CI lance la compilation.
+
+**Attention**, dans le cas présent les étapes de compilation « JS » seront plus simples que dans l'exemple du TP dont vous vous inspirez, un simple `npm run build` sera certainement suffisant ;).
+
+::: warning Tester c'est douter ?
+Avant d'envoyer l'image dans notre cluster Kubernetes, je vous propose de tester que celle-ci fonctionne correctement. Après le build, tester de la récupérer pour la lancer sur votre Docker local.
+:::
+
+::: details En manque d'inspiration ?
+
+Avez-vous vraiment cherchez ? Si oui… Voilà un exemple de `.gitlab-ci.yml` qui fonctionne :
+
+```yml
+stages:
+  - build
+  - release
+
+build:
+  image: node:latest
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - src/.vuepress/dist
+  only:
+    - master
+
+release:
+  image: docker:19.03.12
+  stage: release
+  dependencies:
+    - build
+  services:
+    - docker:19.03.12-dind
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+  only:
+    - master
+```
+
+:::
+
 ### L'image Docker
+
+Si tout s'est bien passé, vous avez maintenant une première version de votre application dans votre Registry Privée, celle-ci contient une version de votre application.
+
+Le registry étant privé, nous allons devoir autoriser le cluster Kubernetes à communiquer avec celui-ci. Rien de bien compliqué rassurez-vous.
+
+![CI Success](./res/ci-success.png)
+![Registry Gitlab](./res/registry-image.png)
 
 ## Déployer l'image sur le cluster Kubernetes
 
+Nous attaquons maintenant la partie qui vous intéresse, j'imagine :smile:, comment déployer cette image dans notre cluster Kubernetes.
+
 ### Introduction
+
+Comme je disais en introduction nous allons devoir écrire quelques fichiers YAML. Ces fichiers ont chacun une fonction :
+
+- `deployment.yaml` va contenir l'ensemble des paramètres liés à votre déploiement (images à déployer, nombre de replicas, nom de votre projet, la référence à vos secrets de pull Docker).
+- `services.yaml` va indiquer le ou les ports disponibles à l'intérieur de votre/vos image(s).
+- `ingress.yaml` va indiquer comment le port ou les ports doivent-être exposé à vos clients (path, ou sur un domaine en particulié)
+
+Ces fichiers sont « presque » toujours identiques entre chaque déploiement, c'est pour ça que des solutions comme `helm` existent. Pour simplifier, dans notre cas je vais vous donner les fichiers.
+
+Cependant, si vous souhaitez vraiment maitriser ce que nous sommes entrain de voir, je vous invite vivement à regarder ce que vous indiquer dans les fichiers.
+
+::: tip Les paramètres importants ?
+Même si tous les paramètres sont importants deux doivent attirer votre attention :
+
+- le `name`, présent dans l'ensemble des fichiers, c'est le nom de votre projet à déployer.
+- le `image`, c'est le lien vers votre image Docker à déployer (privée ou publique). Si l'image est privée il faudra indiquer un `imagePullSecrets`.
+
+![Fichier deployment.yml](./res/deployment_yaml_file.png)
+:::
+
+### Le secret
+
+Nous l'avons vu tout à l'heure, pour communiquer avec votre Cluster il faut être authentifié. Attention si vous avez fermé le terminal depuis il faut exporter à nouveau la variable `$KUBECONFIG`.
+
+```sh
+export KUBECONFIG=~/emplacement/vers/le/secret/kubeconfig-monCluster.yaml
+```
 
 ### L'authentification avec le Registry Gitlab
 
-### Le deployment.yml
+Même si il est complètement possible d'utiliser le Docker Hub j'ai fait le choix de vous montrer directement comment utiliser une image sur un `Registry privé`. Pourquoi ? À mon sens, c'est très certainement la première problématique que vous rencontrerez. En effet dans le cadre du déploiement continu à part travailler sur un projet « Open Source » publique il y a fort à parier que votre entreprise ne souhaite pas vraiment avoir son code source disponible publiquement en ligne…
 
-### Le services.yml
+**C'est pour ça qu'il est important** de maitriser cet aspect. Kubernetes est complètement capable d'utiliser le Registry de Gitlab, il faut juste lui donner « vos identifiants ». Évidemment vous n'aller pas donner votre login et votre mot de passe.
 
-### Le ingress.yml
+| <iframe src="https://giphy.com/embed/gIfdqZA4ECvMVrRpSv" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> |
+| :---------------------------------------------------------------------------------------------------------------------------------------------: |
+|                            On est bien d'accord, vous ne DONNEZ JAMAIS VOTRE LOGIN ET VOTRE MOT DE PASSE. **JAMAIS**                            |
+
+Cette fois-ci pas de YAML, mais **une simple commande** :
+
+```sh
+kubectl create secret docker-registry gitlab-registry --docker-server="https://registry.gitlab.com" --docker-username="VOTRE_UTILISATEUR_GITLAB" --docker-password="TOKEN_OBTENU_PAR_GITLAB" --docker-email="VOTRE_EMAIL_GITLAB" -o yaml --dry-run=client | kubectl apply -f -
+```
+
+Pour générer le Token, il suffit de passer par les paramètres de votre profile :
+
+![Token création](./res/token.png)
+
+::: warning Be curious !
+Inspecter, regarder, questionner moi, l'important est de comprendre ce que vous êtes entrain de faire. Dans le cas présent tenter de jouer la commande sans la fin (`| kubectl apply -f -`), vous allez voir le contenu de la configuration envoyé à votre cluster Kubernetes.
+
+Et oui… C'est encore du YAML :cry:
+:::
+
+### La configuration
+
+Cette partie, je vous la donne « pour débuter ». Je vous laisse cependant ajuster les différents paramètres dans les différents fichiers.
+
+| ![Fichier deployment.yml](./res/deployment_yaml_file.png) |
+| :-------------------------------------------------------: |
+|              Exemple dans le deployment.yml               |
+
+::: tip On commit, ou on ne commit pas ?
+Gros débat… Dans un projet privé pas de problème, cette configuration peut accompagner le projet… dans le cas d'un projet « publique » attention à ne pas commiter un YAML qui ferait référence à des informations privées / non destinée aux publiques (IP, port, …)
+:::
+
+::: danger Par contre
+Ce qui est certain par contre, c'est que nous ne commiterons **jamais** le fichier `kubeconfig-monCluster.yaml` qui contient les secrets de votre cluster.
+:::
+
+#### Le deployment.yml
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vuepress-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vuepress-test
+  template:
+    metadata:
+      labels:
+        app: vuepress-test
+    spec:
+      containers:
+        - name: vuepress-test
+          image: registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:bb2d2d0b
+      imagePullSecrets:
+        - name: gitlab-registry
+```
+
+::: danger image
+N'oubliez pas de changer le lien de l'image vers **votre** image dans le registry gitlab.
+:::
+
+#### Le services.yml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: vuepress-test
+spec:
+  selector:
+    app: vuepress-test
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+```
+
+#### Le ingress.yml
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vuepress-test
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vuepress-test
+                port:
+                  number: 80
+```
+
+### Déployer votre application
+
+Pour le déploiement, c'est plutôt simple il suffit de communiquer avec votre serveur avec `kubectl` :
+
+```sh
+kubectl apply -f deployment.yaml
+kubectl apply -f services.yaml
+kubectl apply -f ingress.yaml
+```
+
+Le déploiement va prendre quelques minutes, vous pouvez le suivre avec les commandes suivante :
+
+--> Obtention de l'état du pod `kubectl describe pod vuepress-test`
+--> Vérification de déploiement `kubectl get deployments`
+--> Vérification des pod(s) qui tourn(ent) `kubectl get pods`
+
+Pour la configuration des services et de l'ingress :
+
+--> Vérification de l'application : `kubectl get services`
+--> Vérification de leur application : `kubectl get ingress`
+
+### Tester
+
+Votre application est maintenant disponible, si vous vous souvenez quand nous avons créé le cluster nous avons indiqué un port pour le load balancer. Si vous n'avez rien changé, c'est le `8080`. Rendez-vous à IP.DE.VOTRE.SERVEUR:8080 pour voir votre déploiement.
+
+Je vous laisse regarder à nouveau :
+
+- Le `docker ps`.
+- Le `kubectl get pods`.
 
 ## Déployer une mise à jour
 
-### Votre code et la CI
+Déployer une nouvelle version va être beaucoup plus simple **(c'est la force de toute cette construction)**. Je vous laisse procéder :
+
+- Modifier le code (page, thème, etc).
+- Créer un commit et pusher la modification.
+- Attendez que la nouvelle version de votre application soit dans le registry gitlab.
+
+::: tip À votre avis
+Selon vous, comment allons-nous déployer une nouvelle version de votre application dans le cluster ?
+
+- Quel fichier allons-nous modifier ?
+- Quelle commande allons-nous faire pour déployer une nouvelle version ?
+  :::
 
 ### Modifier le deployment.yml
 
-Pourquoi ? le nom du tag… etc
+Déployer une nouvelle version de notre application va être très très simple. Maintenant que nous avons une nouvelle version de notre application dans le registry, il suffit de :
+
+- Modifier l'image dans le fichier `deployment.yml`
+  - Dans mon cas`image: registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:LE_NOUVEAU_HASH`
+- Appliquer la nouvelle configuration sur le Cluster `kubectl apply -f deployment.yaml`
+
+Et c'est tout ! Patientez une ou deux minutes votre modification est en ligne !
 
 ## La suite ?
+
+Je pense que vous avez compris la suite ? C'est simple de redéployer, tellement simple que l'automatiser va être également très simple!
 
 La suite de cette introduction ça va être le déploiement automatisé en cas de mise à jour du projet. [La suite c'est par ici =>](./cd-avec-kubernetes.md)

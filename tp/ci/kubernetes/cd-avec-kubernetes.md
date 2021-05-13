@@ -23,8 +23,8 @@ Création d'une variable type file dans GITLAB (paramètre du projet) avec le co
 
 ## Configuration et variable dans la CI
 
--> Parler de sed pour le remplacement
--> Reparler de helm
+-> Parler de `sed` pour le remplacement
+-> Reparler de `helm`
 -> Reparler de l'auth Kubernetes -> Regitry Gitlab
 
 ### Commiter la configuration ?
