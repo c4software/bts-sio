@@ -1,0 +1,21 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ELIFECYCLE",
+    "errno": "ENOENT",
+    "syscall": "spawn",
+    "file": "sh",
+    "pkgid": "cours@2.0.0",
+    "stage": "serve",
+    "script": "vuepress dev",
+    "pkgname": "cours",
+    "err": {
+      "name": "Error",
+      "message": "cours@2.0.0 serve: `vuepress dev`\nspawn ENOENT",
+      "code": "ELIFECYCLE",
+      "stack": "Error: cours@2.0.0 serve: `vuepress dev`\nspawn ENOENT\n    at ChildProcess.<anonymous> (/Users/valentinbrosseau/.nvm/versions/node/v12.18.3/pnpm-global/5/node_modules/.pnpm/pnpm@6.3.0/node_modules/pnpm/dist/pnpm.cjs:89015:20)\n    at ChildProcess.emit (events.js:315:20)\n    at maybeClose (internal/child_process.js:1021:16)\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:286:5)"
+    }
+  }
+}
