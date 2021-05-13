@@ -242,10 +242,10 @@ Avant de pusher votre code, tester sur votre ordinateur le bon fonctionnement !
 
 ```sh
 docker build -t vuepress:test .
-docker run -it -p 8888:80 --rm --name vuepresstest vuepress:test
+docker run -it -p 9090:80 --rm --name vuepresstest vuepress:test
 ```
 
-« Votre site » doit-être accessible sur [le port 8888](http://localhost:8888)
+« Votre site » doit-être accessible sur [le port 9090](http://localhost:9090)
 
 :::
 
