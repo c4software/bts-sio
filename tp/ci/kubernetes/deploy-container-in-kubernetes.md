@@ -517,3 +517,5 @@ Et c'est tout ! Patientez une ou deux minutes votre modification est en ligne !
 Je pense que vous avez compris la suite ? C'est simple de redéployer, tellement simple que l'automatiser va être également très simple!
 
 La suite de cette introduction ça va être le déploiement automatisé en cas de mise à jour du projet. [La suite c'est par ici =>](./cd-avec-kubernetes.md)
+
+PS: Ne vous inquiétez pas… Vous avez clairement fait le plus difficile.
