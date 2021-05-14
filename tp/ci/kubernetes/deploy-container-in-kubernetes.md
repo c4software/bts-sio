@@ -520,3 +520,70 @@ Je pense que vous avez compris la suite ? C'est simple de redéployer, tellement
 La suite de cette introduction ça va être le déploiement automatisé en cas de mise à jour du projet. [La suite c'est par ici =>](./cd-avec-kubernetes.md)
 
 PS: Ne vous inquiétez pas… Vous avez clairement fait le plus difficile.
+
+## Un petit bonus : Gestion multidomaine
+
+Dans l'exemple précédent, nous avons déployé une seule application dans notre cluster ; même si d'un point segmentation c'est plus propre, dans les faits il est complètement possible de déployer plusieurs « applications » différentes dans un même cluster. C'est d'ailleurs le cas si votre application possède plusieurs services (API, Web et Base de données par exemple).
+
+L'idée ici, c'est d'indiquer comment le trafic doit être routé vers les containers. Cette configuration est spécifiée dans les fichiers `ingress.yaml` de vos différentes applications.
+
+Par exemple, si je souhaite :
+
+![Cluster multi](./res/cluster-multi.png)
+
+Je vais devoir indiquer dans mon YAML de configuration :
+
+### `ingress.yaml` vuepress-test
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vuepress-test
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - host: press.domain.tld
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vuepress-test
+                port:
+                  number: 80
+```
+
+### `ingress.yaml` vitejs-sample
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vitejs-sample
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vitejs-sample
+                port:
+                  number: 80
+```
+
+Ce qui donnera après application de la configuration :
+
+![Ingress multi result](./res/ingress-multi.png)
+
+::: tip Vous souhaitez tester ?
+Cet usage est un peu plus compliqué à mettre en place, mais c'est clairement possible. Si vous souhaitez tester, appelez-moi !
+
+PS: Nous allons devoir jouer avec votre fichier `hosts` si vous n'avez pas de nom de domaine. Mais vous allez voir c'est marrant.
+:::
