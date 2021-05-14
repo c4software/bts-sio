@@ -75,7 +75,7 @@ Dans mon cas, j'ai donc la version `4.4.3` de k3d.
 Pour l'instant nous n'avons pas initialisé de cluster, notre machine / serveur est toujours identique à avant l'installation. La création de clusters va se réaliser via la commande `k3d` récemment installés. Pour faire simple, si vous souhaitez créer un cluster il vous suffira de :
 
 ```sh
-k3d cluster create --api-port 20135 -p "8080:80@loadbalancer" --volume ./volume/:/data/ -s 1 -a 2 monCluster
+k3d cluster create --api-port 20135 -p "8080:80@loadbalancer" --volume $(pwd)/volume/:/data/ -s 1 -a 2 monCluster
 ```
 
 **Avant de jouer la commande comme un sauvage**, détaillons un peu ce que vous allez lancer sur votre machine :
@@ -469,14 +469,14 @@ kubectl apply -f ingress.yaml
 
 Le déploiement va prendre quelques minutes, vous pouvez le suivre avec les commandes suivante :
 
---> Obtention de l'état du pod `kubectl describe pod vuepress-test`
---> Vérification de déploiement `kubectl get deployments`
---> Vérification des pod(s) qui tourn(ent) `kubectl get pods`
+- Obtention de l'état du pod `kubectl describe pod vuepress-test`
+- Vérification de déploiement `kubectl get deployments`
+- Vérification des pod(s) qui tourn(ent) `kubectl get pods`
 
 Pour la configuration des services et de l'ingress :
 
---> Vérification de l'application : `kubectl get services`
---> Vérification de leur application : `kubectl get ingress`
+- Vérification de l'application : `kubectl get services`
+- Vérification de leur application : `kubectl get ingress`
 
 ### Tester
 
@@ -500,7 +500,8 @@ Selon vous, comment allons-nous déployer une nouvelle version de votre applicat
 
 - Quel fichier allons-nous modifier ?
 - Quelle commande allons-nous faire pour déployer une nouvelle version ?
-  :::
+
+:::
 
 ### Modifier le deployment.yml
 
