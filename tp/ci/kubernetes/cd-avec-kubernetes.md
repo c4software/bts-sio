@@ -1,9 +1,13 @@
-# Déploiement continu et Image Docker dans Kubernetes
+# Déploiement continu, Gitlab-CI + Kubernetes
 
 [Dans le précédent TP](./deploy-container-in-kubernetes.md) nous avons vu que nous pouvions deployer une image Docker produite par Gitlab-CI « directement » dans un cluster Kubernetes. Dans ce TP nous allons voir comment il est possible d'automatiser ce (re)déploiement.
 
 ::: details Sommaire
 [[toc]]
+:::
+
+::: warning
+Contenu en cours de rédaction.
 :::
 
 ## Introduction
