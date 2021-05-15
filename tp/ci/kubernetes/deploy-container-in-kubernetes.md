@@ -384,7 +384,7 @@ Cette partie, je vous la donne « pour débuter ». Je vous laisse cependant aju
 |              Exemple dans le deployment.yml               |
 
 ::: tip On commit, ou on ne commit pas ?
-Gros débat… Dans un projet privé pas de problème, cette configuration peut accompagner le projet… dans le cas d'un projet « publique » attention à ne pas commiter un YAML qui ferait référence à des informations privées / non destinée aux publiques (IP, port, …)
+Gros débat… Dans un projet privé pas de problème, cette configuration peut accompagner le projet… dans le cas d'un projet « public » attention à ne pas commiter un YAML qui ferait référence à des informations privées / non destinée aux publiques (IP, port, …)
 :::
 
 ::: danger Par contre

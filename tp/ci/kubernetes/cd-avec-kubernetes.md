@@ -1,4 +1,4 @@
-# Déploiement continue et Image Docker dans Kubernetes
+# Déploiement continu et Image Docker dans Kubernetes
 
 [Dans le précédent TP](./deploy-container-in-kubernetes.md) nous avons vu que nous pouvions deployer une image Docker produite par Gitlab-CI « directement » dans un cluster Kubernetes. Dans ce TP nous allons voir comment il est possible d'automatiser ce (re)déploiement.
 
@@ -7,6 +7,44 @@
 :::
 
 ## Introduction
+
+Vous avez remarqué dans [le TP d'initiation à Kubernetes](./deploy-container-in-kubernetes.md) qu'après la construction du cluster, les déploiements **étaient très simple** et que finalement il se résume à :
+
+```sh
+kubectl apply -f deployment.yaml
+```
+
+Nous allons voir que finalement le mettre dans d'un flow de CI/CD ça ne sera finalement pas si compliqué.
+
+::: warning Auto devops ?
+Quand on débute, l'option auto devops de Gitlab est tentante. Elle est en effet très intéressante, car elle est plutôt clef en main… **cependant**, je pense que pour un débutant c'est encore plus intéressant de comprendre comment ça fonctionne réellement.
+
+D'autant plus que vous allez le voir, pour un cas simple comme celui que nous avons construit la configuration à mettre est vraiment **très minimaliste**.
+:::
+
+## Le retour de la question « On commit la configuration ? »
+
+Gros débat… Dans un projet privé pas de problème, cette configuration peut accompagner le projet… dans le cas d'un projet « public » attention à ne pas commiter un YAML qui ferait référence à des informations privées / non destinée aux publiques (IP, port, …)
+
+Nous sommes dans le cadre d'un projet privé, nous allons commiter la configuration d'autant plus qu'il ne s'agira que des fichiers suivants :
+
+- `deployment.yaml`
+- `services.yaml`
+- `ingress.yaml`
+
+Un projet nommé `helm` existe également pour automatiser cette partie. Nous pourrions l'utiliser, mais mon objectif est de rester très simple dans l'approche.
+
+::: tip c'est à vous !
+Je vous laisse commiter la configuration dans un dossier `kubernetes` (par exemple) **dans le dossier docs**.
+
+Dans mon cas ça donne :
+
+![structure](./res/project_structure.png)
+:::
+
+::: danger ATTENTION PAS DE SECRET !
+Vous noterez que je ne commit pas la partie contenant les secrets. En effet celle-ci sera présente dans notre projet évidemment ! Mais elle prendra la forme **d'une variable secrète** dans la partie configuration de votre projet gitlab.
+:::
 
 ## Mise en place du CI
 
