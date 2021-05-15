@@ -50,6 +50,8 @@ Dans mon cas ça donne :
 Vous noterez que je ne commit pas la partie contenant les secrets. En effet celle-ci sera présente dans notre projet évidemment ! Mais elle prendra la forme **d'une variable secrète** dans la partie configuration de votre projet gitlab.
 :::
 
+::: details En cours de rédaction
+
 ## Mise en place du CI
 
 - Mettre les fichiers de configuration Kubernetes dans le projet (et parler de helm)
@@ -167,3 +169,5 @@ dockerise:
   only:
     - master
 ```
+
+:::
