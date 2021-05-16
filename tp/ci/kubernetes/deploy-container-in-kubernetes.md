@@ -587,3 +587,13 @@ Cet usage est un peu plus compliqué à mettre en place, mais c'est clairement p
 
 PS: Nous allons devoir jouer avec votre fichier `hosts` si vous n'avez pas de nom de domaine. Mais vous allez voir c'est marrant.
 :::
+
+## Accéder à un port sans le rendre public
+
+Utiliser Kubernetes même en temps que débutant ne veux pas dire configurer n'importe comment votre serveur, si vous avez un service « non public », mais que vous souhaitez quand même y accéder dans le cadre du test ou de la maintenance vous pouvez utiliser :
+
+```sh
+kubectl port-forward mariadb-75f59d57f4-4nd6q 3306:3306
+```
+
+Cette commande aura pour but de rendre accessible le port `3306` de la machine distante sur votre machine **et seulement sur votre machine**.
