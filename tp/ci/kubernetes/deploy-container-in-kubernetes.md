@@ -521,7 +521,11 @@ La suite de cette introduction ça va être le déploiement automatisé en cas d
 
 PS: Ne vous inquiétez pas… Vous avez clairement fait le plus difficile.
 
-## Un petit bonus : Gestion multidomaine
+## L'usage en plus
+
+Nous avons couvert un usage de base dans les premières étapes… C'est bien, mais nous pouvons aller plus loin pour utiliser toute la puissance de Kubernetes.
+
+### Gestion multidomaine
 
 Dans l'exemple précédent, nous avons déployé une seule application dans notre cluster ; même si d'un point segmentation c'est plus propre, dans les faits il est complètement possible de déployer plusieurs « applications » différentes dans un même cluster. C'est d'ailleurs le cas si votre application possède plusieurs services (API, Web et Base de données par exemple).
 
@@ -533,7 +537,7 @@ Par exemple, si je souhaite :
 
 Je vais devoir indiquer dans mon YAML de configuration :
 
-### `ingress.yaml` vuepress-test
+#### `ingress.yaml` vuepress-test
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -556,7 +560,7 @@ spec:
                   number: 80
 ```
 
-### `ingress.yaml` vitejs-sample
+#### `ingress.yaml` vitejs-sample
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -588,7 +592,7 @@ Cet usage est un peu plus compliqué à mettre en place, mais c'est clairement p
 PS: Nous allons devoir jouer avec votre fichier `hosts` si vous n'avez pas de nom de domaine. Mais vous allez voir c'est marrant.
 :::
 
-## Créer un pod MariaDB utilisant un volume (persistant)
+### Créer un pod MariaDB utilisant un volume (persistant)
 
 Les Pods que nous avons créés précédemment ne sauvegardai pas de données lors de leur exécution, si vous souhaitez sauvegarder des données et les rendre persistantes il faut créer un Volume (comme avec Docker). L'approche est relativement similaire, mais… avec beaucoup de YAML… Énormément de YAML.
 
@@ -672,9 +676,9 @@ spec:
             claimName: fa-mysql-pv-claim
 ```
 
-## Accéder à un port sans le rendre public
+### Accéder à un port sans le rendre public
 
-Utiliser Kubernetes même en temps que débutant ne veux pas dire configurer n'importe comment votre serveur, si vous avez un service « non public », mais que vous souhaitez quand même y accéder dans le cadre du test ou de la maintenance vous pouvez utiliser :
+Si vous avez créé le serveur MySQL du point précédent, vous souhaitez peut-être maintenant y accèder pour faire par exemple… des requêtes SQL ! Utiliser Kubernetes même en temps que débutant ne veux pas dire configurer n'importe comment votre serveur, si vous avez un service « non public », mais que vous souhaitez quand même y accéder dans le cadre du test ou de la maintenance vous pouvez utiliser :
 
 ```sh
 kubectl port-forward mariadb-75f59d57f4-4nd6q 3306:3306
