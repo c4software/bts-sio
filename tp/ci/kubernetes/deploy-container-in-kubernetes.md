@@ -588,6 +588,90 @@ Cet usage est un peu plus compliqué à mettre en place, mais c'est clairement p
 PS: Nous allons devoir jouer avec votre fichier `hosts` si vous n'avez pas de nom de domaine. Mais vous allez voir c'est marrant.
 :::
 
+## Créer un pod MariaDB utilisant un volume (persistant)
+
+Les Pods que nous avons créés précédemment ne sauvegardai pas de données lors de leur exécution, si vous souhaitez sauvegarder des données et les rendre persistantes il faut créer un Volume (comme avec Docker). L'approche est relativement similaire, mais… avec beaucoup de YAML… Énormément de YAML.
+
+Mais si vous voulez une base de travail, voilà un exemple de serveur MySQL utilisant un volume persistant pour sauvegarder les données de la base de données.
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fa-mysql
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: fa-mysql
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: fa-mysql-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fa-mysql-pv-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fa-mysql
+spec:
+  selector:
+    matchLabels:
+      app: fa-mysql
+  template:
+    metadata:
+      labels:
+        app: fa-mysql
+    spec:
+      containers:
+        - image: mariadb
+          name: fa-mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "VOTRE_MOT_DE_PASSE"
+          ports:
+            - containerPort: 3306
+              name: fa-mysql
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+            requests:
+              cpu: "500m"
+              memory: "256Mi"
+          volumeMounts:
+            - name: fa-mysql-persistent-storage
+              mountPath: /var/lib/mysql
+              subPath: mysql
+      volumes:
+        - name: fa-mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: fa-mysql-pv-claim
+```
+
 ## Accéder à un port sans le rendre public
 
 Utiliser Kubernetes même en temps que débutant ne veux pas dire configurer n'importe comment votre serveur, si vous avez un service « non public », mais que vous souhaitez quand même y accéder dans le cadre du test ou de la maintenance vous pouvez utiliser :
