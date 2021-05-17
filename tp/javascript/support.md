@@ -473,7 +473,7 @@ Elle fonctionne et s'utilise comme ce que nous avons précédemment vu.
 
 ### À faire
 
-Tester en JavaScript l'usage de c'est Fonction, Condition, et Boucle. (Nous utiliserons plus en détail c'est élément après avoir vu comment manipuler le DOM)
+Tester en JavaScript l'usage de Fonctions, Condition, et Boucle. (Nous utiliserons plus en détail c'est élément après avoir vu comment manipuler le DOM)
 
 ## Manipuler le HTML et la CSS
 
