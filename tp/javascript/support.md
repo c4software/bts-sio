@@ -52,9 +52,9 @@ La veille dans ce domaine est donc primordiale. Nous allons voir ici seulement l
 :::
 
 ::: warning
-Le JavaScript est puissant, tellement puissant que votre navigateur « vous bridera ». Afin que vous n'abusiez pas des fonctionnalités, certaines d'entres elles sont soumises à permission / validation. Comme votre mobile donc :
+Le JavaScript est puissant, tellement puissant que votre navigateur « vous bridera ». Afin que vous n'abusiez pas des fonctionnalités, certaines d'entre elles sont soumises à permission / validation. Comme votre mobile donc :
 
-![Permissions Chrome Exemple](./res/permissions.png)
+![Permissions chrome Exemple](./res/permissions.png)
 
 Autres limitations, votre code JavaScript ne peut pas accéder :
 
@@ -936,7 +936,7 @@ Et tout ça avec un seul langage !
 
 ### Se « balader » dans le DOM
 
-Revenons à ce qui nous intéresse le JavaScript dans un navigateur, vous avez la possibilité de naviguer dans le DOM HTML grace au JavaScript. Nous allons pouvoir écrire des choses comme :
+Revenons à ce qui nous intéresse le JavaScript dans un navigateur, vous avez la possibilité de naviguer dans le DOM HTML grâce au JavaScript. Nous allons pouvoir écrire des choses comme :
 
 ```html
 <section id="section1">
