@@ -198,6 +198,9 @@ Comme pour l'étape de compilation, et de `dockerise`, nous allons utiliser un s
 Avez-vous vraiment cherchez ? Si oui… Voilà **ma solution** à **ma problématique** :
 
 ```yaml
+# Nécessite une variable nommée KUBECONFIG de type file avec le contenu de votre « secret » Kubernetes (kubeconfig-monCluster.yaml)
+# Sous Mac le contenu peut-être obtenu via cat $KUBECONFIG | pbcopy -
+# Sous Linux le contenu peut-être obtenu via cat $KUBECONFIG | xclip -selection clipboard
 publish_to_prod:
   image:
     name: bitnami/kubectl:latest
@@ -253,6 +256,9 @@ dockerise:
   only:
     - master
 
+# Nécessite une variable nommée KUBECONFIG de type file avec le contenu de votre « secret » Kubernetes (kubeconfig-monCluster.yaml)
+# Sous Mac le contenu peut-être obtenu via cat $KUBECONFIG | pbcopy -
+# Sous Linux le contenu peut-être obtenu via cat $KUBECONFIG | xclip -selection clipboard
 publish_to_prod:
   image:
     name: bitnami/kubectl:latest
