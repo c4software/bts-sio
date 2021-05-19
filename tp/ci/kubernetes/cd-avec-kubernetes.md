@@ -6,10 +6,6 @@
 [[toc]]
 :::
 
-::: warning
-Contenu en cours de rédaction.
-:::
-
 ## Introduction
 
 Vous avez remarqué dans [le TP d'initiation à Kubernetes](./deploy-container-in-kubernetes.md) qu'après la construction du cluster, les déploiements **étaient très simple** et que finalement il se résume à :
