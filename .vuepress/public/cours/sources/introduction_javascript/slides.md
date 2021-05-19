@@ -504,7 +504,7 @@ DOM (**D**ocument **O**bject **M**odel).
 
 Nous parlerons donc d'un Arbre HTML.
 
-[La DOM](/tp/javascript/support.html#le-dom)
+[Le DOM](/tp/javascript/support.html#le-dom)
 
 ---
 
