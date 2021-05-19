@@ -1,6 +1,6 @@
 # Déploiement continu, Gitlab-CI + Kubernetes
 
-[Dans le précédent TP](./deploy-container-in-kubernetes.md) nous avons vu que nous pouvions deployer une image Docker produite par Gitlab-CI « directement » dans un cluster Kubernetes. Dans ce TP nous allons voir comment il est possible d'automatiser ce (re)déploiement.
+[Dans le précédent TP](./deploy-container-in-kubernetes.md) nous avons vu que nous pouvions déployer une image Docker produite par Gitlab-CI « directement » dans un cluster Kubernetes. Dans ce TP nous allons voir comment il est possible d'automatiser ce (re)déploiement.
 
 ::: details Sommaire
 [[toc]]
@@ -112,7 +112,7 @@ Cette étape de création de variables est l'équivalent du `export KUBECONFIG="
 
 ## Configuration et variable dans la CI
 
-Notre authentification est maintenant effective, Gitlab-CI est maintenant capable de dialoguer avec notre Cluster Kubernetes. L'étape suivante est la personalisation du YAML, pourquoi ? En effet, si vous vous souvenez du précédent TP, nous devions undiquer manuellement l'identifiant de l'image à déployer. Exemple :
+Notre authentification est maintenant effective, Gitlab-CI est maintenant capable de dialoguer avec notre Cluster Kubernetes. L'étape suivante est la personnalisation du YAML, pourquoi ? En effet, si vous vous souvenez du précédent TP, nous devions indiquer manuellement l'identifiant de l'image à déployer. Exemple :
 
 ```yaml
 # …
@@ -123,29 +123,101 @@ spec:
 # …
 ```
 
-Nous devons donc trouver un moyen de le changer **à chaque build** (c'est à dire commit donc). Gitlab-CI intégre un système de variable automatique avec pleins d'informations relative au contexte de votre Build ([Plus d'informations](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)). Dans cette énorme liste de variable nous avons une variable qui vas nous intéresser plus particulèrement `$CI_COMMIT_SHORT_SHA`. En effet si vous vous souvenez de votre fichier gitlab-ci c'est la variable que nous avons utilisé par tagguer l'image dans le Registry Gitlab.
+Nous devons donc trouver un moyen de le changer **à chaque build** (c'est à dire commit donc). Gitlab-CI intègre un système de variable automatique avec plein d'informations relatives au contexte de votre Build ([Plus d'informations](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)). Dans cette énorme liste de variable, nous avons une variable qui va nous intéresser plus particulièrement `$CI_COMMIT_SHORT_SHA`. En effet si vous vous souvenez de votre fichier gitlab-ci c'est la variable que nous avons utilisée par tagguer l'image dans le Registry Gitlab.
 
-Mais nous allons avoir un problème… En effet les fichiers `YAML` n'accepte pas les variables comme un simple script shell, nous allons devoir jouer d'une petite astuce pour pouvoir le changer dynamiquement.
+Mais nous allons avoir un problème… En effet les fichiers `YAML` n'acceptent pas les variables comme un simple script shell, nous allons devoir jouer d'une petite astuce pour pouvoir le changer dynamiquement.
 
 ::: danger Helm
-L'autre solution serait d'utiliser `Helm`, en effet `Helm` permet de gèrer ce genre de chose. **Cependant**, ici nous allons faire simple. Nous allons utiliser `sed`, ça sera suffisant pour faire notre livraison continu minimaliste.
+L'autre solution serait d'utiliser `Helm`, en effet `Helm` permet de gérer ce genre de chose. **Cependant**, ici nous allons faire simple. Nous allons utiliser `sed`, ça sera suffisant pour faire notre livraison continue minimaliste.
 :::
 
-Pardons de l'outil `sed`, TODO
+### Modifier le `deployment.yaml`
 
--> Parler de `sed` pour le remplacement
--> Reparler de `helm`
--> Reparler de l'auth Kubernetes -> Regitry Gitlab
+Parlons de l'outil `sed`, `sed` (éditeur de flux) est un programme permettant d'appliquer différentes transformations prédéfinies à un flux séquentiel de données textuelles. Concrètement, `sed` lit des données d'entrée ligne par ligne, modifie chaque ligne selon des règles spécifiées. Nous allons donc nous en servir pour modifier le fichier `deployment.yml` « à la volée » autrement dit, au moment où nous allons vouloir déployer.
 
-::: details En cours de rédaction
+Dans mon cas, j'ai décidé de modifier mon fichier `deployment.yml` pour retirer **l'identifiant** du build (hash) pour y mettre un texte que je vais remplacer via `sed`.
 
-### Ce n'est que de l'automatisation
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vuepress-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vuepress-test
+  template:
+    metadata:
+      labels:
+        app: vuepress-test
+    spec:
+      containers:
+        - name: vuepress-test
+          image: registry.gitlab.com/VALEUR-D-AVANT/LE-LIEN-QUE-VOUS-AVIEZ-AVANT:{{CI_COMMIT_SHORT_SHA}}
+      imagePullSecrets:
+        - name: gitlab-registry
+```
 
-### 3 étapes
+Nous avons donc maintenant un fichier YAML presque dynamique… En effet celui-ci contient maintenant une valeur (`{{CI_COMMIT_SHORT_SHA}}`) que nous allons remplacer via `sed` directement à chaque exécution de la step sur Gitlab-CI.
 
-### Un résultat possible
+::: tip C'est à vous
+Je vous laisse modifier votre fichier en fonction de votre cas.
+:::
 
-Exemple de configuration Pages + Docker + Kubernetes
+## 3 étapes
+
+::: tip Ce n'est que de l'automatisation
+Je me répète, mais c'est important à comprendre ! Le livraison continue n'est vraiment pas un système magique, il s'agit seulement d'automatiser les actions que **vous** faites habituellement pour livrer votre application. Rien de plus rien de moins
+:::
+
+### La commande sed
+
+L'idée va être la suivante : « utiliser `sed` pour lui faire remplacer `{{CI_COMMIT_SHORT_SHA}}` par la valeur de `$CI_COMMIT_SHORT_SHA`. Pour ça nous pouvons utiliser `sed` de la façon suivante :
+
+```sh
+cat ./kubernetes/deployment.yaml | sed "s/{{CI_COMMIT_SHORT_SHA}}/$CI_COMMIT_SHORT_SHA/g" | kubectl apply -f -
+```
+
+Cette commande va prendre le fichier de déploiement « type », remplacer
+
+### Déterminer les actions de déploiement
+
+Maintenant que nous savons comment rendre dynamique notre déploiement, il faut maintenant assembler les commandes nécéssaire au bon déploiement de notre application. Nous avons déterminé ensemble que lors du déploiement nous faisions :
+
+```sh
+cat ./kubernetes/deployment.yaml | sed "s/{{CI_COMMIT_SHORT_SHA}}/$CI_COMMIT_SHORT_SHA/g" | kubectl apply -f -
+kubectl apply -f ./kubernetes/services.yaml
+kubectl apply -f ./kubernetes/ingress.yaml
+```
+
+Comme pour l'étape de compilation, et de `dockerise`, nous allons utiliser un step Gitlab-CI. Cette étape aura besoin de la commande `kubectl`, je vous laisse chercher un peu, mais moi dans mon cas j'ai utilisé l'image `bitnami/kubectl:latest` qui dispose de l'ensemble des commandes dont j'ai besoin.
+
+::: details Vous séchez ? Vous souhaitez de l'aide ?
+
+Avez-vous vraiment cherchez ? Si oui… Voilà **ma solution** à **ma problématique** :
+
+```yaml
+publish_to_prod:
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
+  stage: publish
+  dependencies:
+    - dockerise
+  script:
+    - cat ./kubernetes/deployment.yaml | sed "s/{{CI_COMMIT_SHORT_SHA}}/$CI_COMMIT_SHORT_SHA/g" | kubectl apply -f -
+    - kubectl apply -f ./kubernetes/services.yaml
+    - kubectl apply -f ./kubernetes/ingress.yaml
+  only:
+    - master
+```
+
+:::
+
+## Un résultat possible
+
+Voilà l'un des résultats possibles, exemple de configuration Pages + Docker + Kubernetes
 
 ```yaml
 stages:
@@ -158,13 +230,10 @@ build:
   stage: build
   script:
     - npm install
-    - npm run gitlab
-    - mv public public-vue
-    - mv dist public
-    - find public -type f -regex '.*\.\(htm\|html\|txt\|text\|js\|css\)$' -exec gzip -f -k {} \;
+    - npm run build
   artifacts:
     paths:
-      - public
+      - src/.vuepress/dist
   only:
     - master
 
@@ -203,7 +272,7 @@ publish_to_prod:
 
 ### Image multi-architectures ?
 
-Vous souhaitez créer une image qui fonctionnera sur un Raspberry Pi, mais également sur une machine X86? C'est possible, c'est ce que l'on appel le « Multi-architectures. Nous sommes plus dans quelques choses d'aussi simple qu'avec l'exemple précédent, mais vous pouvez le faire sans problème depuis Gitlab-CI ?
+Vous souhaitez créer une image qui fonctionnera sur un Raspberry Pi, mais également sur une machine X86? C'est possible, c'est ce que l'on appelle les « Multi-architectures. Nous sommes plus dans quelque chose d'aussi simple qu'avec l'exemple précédent, mais vous pouvez le faire sans problème depuis Gitlab-CI ?
 
 ```yaml
 dockerise:
@@ -233,5 +302,3 @@ dockerise:
   only:
     - master
 ```
-
-:::
