@@ -47,33 +47,97 @@ Dans mon cas ça donne :
 :::
 
 ::: danger ATTENTION PAS DE SECRET !
-Vous noterez que je ne commit pas la partie contenant les secrets. En effet celle-ci sera présente dans notre projet évidemment ! Mais elle prendra la forme **d'une variable secrète** dans la partie configuration de votre projet gitlab.
+Vous noterez que je ne commit pas la partie contenant les secrets. En effet celle-ci sera présente dans notre projet évidemment ! Mais elle prendra la forme **d'une variable de type file secrète** dans la partie configuration de votre projet gitlab.
 :::
 
-::: details En cours de rédaction
+## Mise en place du CI/CD
 
-## Mise en place du CI
+Dans le TP précédent nous avons déjà initialisé dans notre projet la partie CI, en effet l'image du projet est construite automatiquement, cette image est sauvegardée automatiquement dans le Registry Docker interne à Gitlab. Nous allons nous concentrer sur la partie qui nous intéresse à savoir :
 
-- Mettre les fichiers de configuration Kubernetes dans le projet (et parler de helm)
-- Parler que le CI **ne vas pas initialiser la stack**, elle sera fait précédemment une première fois.
-  - Reparler du secret gitlab et de la ligne commentée
-  - Parler que l'on pourrais gérer l'init
+- Quel(s) opération(s) nous devons faire lors de la mise à jour de notre Cluster ?
+- Quel(s) information(s) nous avons besoin pour échanger avec notre cluster (authentification, secret, registry, …) ?
+- Quel(s) commande(s) nous devons utiliser pour déployer notre application ?
+
+::: warning C'est à vous
+Cette étape est importante dans le cadre de la mise en place d'un déploiement continue. En effet, le déploiement continu est « juste » une automatisation des actions de livraison. Si vous savez comment livrer, vous saurez comment livrer en continu.
+
+Avant de continuer… Je vous laisse donc réfléchir ! Je vous attends pour échanger sur votre réflexion.
+:::
+
+::: danger Une note importante
+Dans notre `CI/CD`, et plus particulièrement dans la partie `CD` il s'agit que de la partie déploiement / livraison. **Nous partons du principe** que le cluster est déjà en place et déjà fonctionnel, pour éviter de surcharger notre flow de CD.
+
+Donc normalement :
+
+- Votre cluster existe et est fonctionnel.
+- Votre cluster est capable de dialoguer avec votre Registry. (à discuter ensemble)
+- Il possède déjà une version de votre application complètement fonctionnelle.
+
+:::
 
 ## Authentification (aka comment se connecter à votre serveur depuis la CI)
 
-Création d'une variable type file dans GITLAB (paramètre du projet) avec le contenu du fichier `kubeconfig` obtenu lors de la configuration du projet
+Nous l'avons vu dens le point précédent, la première étape est d'autoriser le dialogue entre Gitlab et votre Cluster Kubernetes.
 
--> À faire dans gitlab (mettre image)
+Dans le précédent TP nous avons vu que l'authentification était réaliser via un fichier `yaml` obtenu depuis le serveur qui contient le cluster. Nous devrons donc procéder de la même façon depuis GITLAB, le problème est que je vous ai dit que ce fichier **devait rester privé** vous ne devez jamais le commiter dans votre projet.
+
+Les développeurs (Open-Source) de Gitlab ont pensé à tout. Vous avez dans les paramètres de votre projet la possibilité de mettre des variables, ces variables peuvent-être de deux types :
+
+- `string`, pour une variable simple type token, configuration, etc (Ex `$SERVER="https://url-de-staging.devotreprojet.fr"`)
+- `file`, représente le contenu de votre fichier, lors de l'étape de CI/CD Gitlab va créer un fichier avec le contenu et déclarera une variable avec comme contenu le chemin vers le fichier en question. (Ex. `$KUBECONFIG="/private/mon_fichie_yaml_RANDOMID.yml"`)
+
+La force des variables c'est qu'en plus d'être souple (de par le type) elles sont également (re)définissables en fonction de l'environnement. Pratique !
+
+Pour configurer une variable, rendez-vous dans "Settings > CICD" puis "Variables".
+
+![Settings CI/CD](./res/settings_cicd.png)
+
+Puis
+
+![Variables CI/CD](./res/settings_cicd_variables.png)
+
+### Création de la variable
+
+Nous allons créer une variable de type `file` avec comme nom la variable attendue par `kubectl` à savoir `KUBECONFIG` :
+
+![Création de variables](./res/create_variable.png)
+
+Pour le contenu, je vous laisse prendre le contenu du fichier `YAML` (celui qui contient les secrets) sous **mac** c'est aussi simple que `cat $KUBECONFIG | pbcopy -`.
+
+![Variable créée](./res/variable_created.png)
+
+::: tip Et c'est tout !
+Cette étape de création de variables est l'équivalent du `export KUBECONFIG="emplacement/de/votre/vosSecret.yaml"`. Ça veut dire que dans notre flow de CI/CD nous n'aurons rien de spécial à faire. En effet, comme précisé la variable de type `file` expose une variable avec l'emplacement du fichier.
+:::
 
 ## Configuration et variable dans la CI
+
+Notre authentification est maintenant effective, Gitlab-CI est maintenant capable de dialoguer avec notre Cluster Kubernetes. L'étape suivante est la personalisation du YAML, pourquoi ? En effet, si vous vous souvenez du précédent TP, nous devions undiquer manuellement l'identifiant de l'image à déployer. Exemple :
+
+```yaml
+# …
+spec:
+  containers:
+    - name: vuepress-test
+      image: registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:bb2d2d0b # <- Identifiant du build à déployer
+# …
+```
+
+Nous devons donc trouver un moyen de le changer **à chaque build** (c'est à dire commit donc). Gitlab-CI intégre un système de variable automatique avec pleins d'informations relative au contexte de votre Build ([Plus d'informations](https://docs.gitlab.com/ee/ci/variables/predefined_variables.html)). Dans cette énorme liste de variable nous avons une variable qui vas nous intéresser plus particulèrement `$CI_COMMIT_SHORT_SHA`. En effet si vous vous souvenez de votre fichier gitlab-ci c'est la variable que nous avons utilisé par tagguer l'image dans le Registry Gitlab.
+
+Mais nous allons avoir un problème… En effet les fichiers `YAML` n'accepte pas les variables comme un simple script shell, nous allons devoir jouer d'une petite astuce pour pouvoir le changer dynamiquement.
+
+::: danger Helm
+L'autre solution serait d'utiliser `Helm`, en effet `Helm` permet de gèrer ce genre de chose. **Cependant**, ici nous allons faire simple. Nous allons utiliser `sed`, ça sera suffisant pour faire notre livraison continu minimaliste.
+:::
+
+Pardons de l'outil `sed`, TODO
 
 -> Parler de `sed` pour le remplacement
 -> Reparler de `helm`
 -> Reparler de l'auth Kubernetes -> Regitry Gitlab
 
-### Commiter la configuration ?
-
-## Configuration du .gitlab-ci
+::: details En cours de rédaction
 
 ### Ce n'est que de l'automatisation
 

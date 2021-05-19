@@ -523,7 +523,7 @@ PS: Ne vous inquiétez pas… Vous avez clairement fait le plus difficile.
 
 ## L'usage en plus
 
-Nous avons couvert un usage de base dans les premières étapes… C'est bien, mais nous pouvons aller plus loin pour utiliser toute la puissance de Kubernetes.
+Nous avons couvert un usage de base dans les premières étapes… C'est bien ! Mais nous pouvons aller plus loin pour utiliser toute la puissance de Kubernetes.
 
 ### Gestion multidomaine
 
