@@ -55,7 +55,7 @@ document
   .addEventListener("submit", validateForm, true);
 
 // Vous pouvez également attacher l'événement directement dans le HTML avec
-// <form onsubmit="validateForm()">
+// <form onsubmit="validateForm(this)">
 // …
 ```
 
