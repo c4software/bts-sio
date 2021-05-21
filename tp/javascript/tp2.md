@@ -86,12 +86,12 @@ Concrètement il faut écrire :
 _En pure JS :_
 
 ```js
-document.addEventListener('DOMContentLoaded', function () {
-    // Votre code ici
-    for (let index = 0; index < 10000000; index++) {
-        console.log("Je m'affiche quand la page est chargée entièrement.");
-    }
-}
+document.addEventListener("DOMContentLoaded", function () {
+  // Votre code ici
+  for (let index = 0; index < 10000000; index++) {
+    console.log("Je m'affiche quand la page est chargée entièrement.");
+  }
+});
 ```
 
 _Avec jQuery :_
