@@ -69,6 +69,27 @@ document
 - Rendre la page interactive avec les données saisies (via un `onsubmit` en HTML ou, `submit` via les events)
 - Je vous laisse écrire la même chose avec jQuery.
 
+## Faire l'action souhaitée
+
+Maintenant que nos informations sont validées, il faut les utiliser dans la page. En reprenant [le code du TP précédent](./tp2.md), je vous laisse intégrer la logique suivante :
+
+- Le tableau ne doit pas être visible au chargement de la page.
+- Une fois, la validation du formulaire effective (saisie correcte), le tableau doit s'afficher avec dedans la phrase choisie par l'utilisateur (ainsi que le nombre).
+- Le formulaire ne doit plus être visible (ainsi que la `card` dans lequel celui-ci est).
+- « Une action » recommencer la saisie doit permettre de :
+  - Masquer le tableau
+  - Afficher le formulaire à nouveau
+
+::: tip Rappels
+
+Je vous rappels que vous avez [l'aide mémoire](/cheatsheets/javascript/) ainsi que le [support du cours](/tp/javascript/support.md) pour vous aider. Mais l'ensemble va reposer sur :
+
+- Des sélecteurs, exemple `document.getElementById('tableau')`.
+- L'obtention de valeur, exemple `document.getElementById('monInputText').value`.
+- Masquer / afficher des éléments, exemple `document.getElementById('monInputText').className='hidden'`.
+
+:::
+
 ## Avec une Librairie
 
 Nous avons vu la façon manuelle de valider les formulaires. Je pense que sans vous faire un dessin… vous vous rendez compte que si nous avons 200 champs; ça va être plus compliqué ! D'autant plus que plus notre formulaire sera complexe plus celui-ci aura des règles complexes.
