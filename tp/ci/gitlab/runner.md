@@ -167,3 +167,9 @@ Votre runner va être sollicité pour compiler. Vous pouvez suivre les opératio
 
 ![Docker PS quand ça build](./res/ps_on_build.png)
 :::
+
+Quelques questions :
+
+- Comment s'assurer que notre runner s'exécute que dans certains cas ?
+- Comment utiliser par exemple les Shared Runner pour la partie « Construction de l'image Docker », mais pas dans les autres cas ?
+- Comment utiliser notre runner que pour la partie « livraison continue » par exemple ?
