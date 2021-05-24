@@ -63,7 +63,7 @@ Le token est une sorte « d'alias » permettant d'autoriser l'accès à votre co
 ![Génération du Token](./res/token_generation.png)
 
 ::: danger C'est secret !
-Votre token est personnel, vous devez le garder **secret** sous peine d'introduire une faille de sécuritée.
+Votre token est personnel, vous devez le garder **secret** sous peine d'introduire une faille de sécurité.
 :::
 
 ### Gitlab-CI

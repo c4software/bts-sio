@@ -4,7 +4,7 @@ Dans ce TP nous allons voir comment installer un Runner Gitlab-CI sur votre mach
 
 ## Introduction
 
-Nous avons vu que Gitlab-CI « offrait » des runners pour compiler / exécuter vos opérations de CI. C'est runners sont partagé avec l'ensemble des utilisateurs de la plateforme Gitlab. Même s’ils sont globalement très réactifs et très peu souvent en « panne », je vous propose ici d'installer votre (ou vos) propre(s) runner afin de maitriser entièrement votre processus de CI.
+Nous avons vu que Gitlab-CI « offrait » des runners pour compiler / exécuter vos opérations de CI. Ces runners sont partagés avec l'ensemble des utilisateurs de la plateforme Gitlab. Même s’ils sont globalement très réactifs et très peu souvent en « panne », je vous propose ici d'installer votre (ou vos) propre(s) runner afin de maitriser entièrement votre processus de CI.
 
 - À votre avis, pourquoi est-ce important ? Quels « problèmes » voyez-vous à l'utilisateur des runners partagé ?
 
@@ -15,7 +15,7 @@ Le runner Gitlab-CI est un petit logiciel qui va être connecté aux serveurs de
 
 ![Runner LOOP](./res/runner_loop.png)
 
-## L'executeur
+## L'exécuteur
 
 Un Runner Gitlab-CI est un simple démon qui attend les Jobs comme vus dans le diagramme précédent. Une fois un Job reçu celui-ci va demander à « un exécuteur » de traiter la demande. Les exécuteurs sont des sous-processus qui vont se charger de faire les commandes (`scripts`) que vous avez définies dans votre gitlab-ci. Gitlab-CI est capable de fonctionner de différente manière :
 
