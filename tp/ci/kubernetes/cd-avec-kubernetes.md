@@ -272,7 +272,7 @@ publish_to_prod:
     - master
 ```
 
-### Image multi-architectures ?
+## Image multi-architectures ?
 
 Vous souhaitez créer une image qui fonctionnera sur un Raspberry Pi, mais également sur une machine X86? C'est possible, c'est ce que l'on appelle les « Multi-architectures. Nous sommes plus dans quelque chose d'aussi simple qu'avec l'exemple précédent, mais vous pouvez le faire sans problème depuis Gitlab-CI ?
 
@@ -304,3 +304,14 @@ dockerise:
   only:
     - master
 ```
+
+## Déployer dans un cluster « privés »
+
+Nous avons vu avec les précédents exemples qu'il était relativement simple de déployer en continu un cluster Kubernetes du moment que celui-ci est accessible via Internet. C'est un peu plus compliqué quand il s'agit d'un cluster « interne » / « privé », non forcément exposé sur Internet.
+
+Pour répondre à cette problématique, vous pouvez utiliser le système de [runner privé de Gitlab-CI](/tp/ci/gitlab/runner.md). Pourquoi à votre avis ?
+
+- Pour terminer ce TP, je vous propose de monter sur votre machine :
+  - Un cluster Kubernetes
+  - Un Runner Gitlab
+  - Un déploiement continue depuis gitlab.com
