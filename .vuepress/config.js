@@ -205,7 +205,7 @@ module.exports = {
         initialOpenGroupIndex: -1,
         children: [
           { title: "Support de cours", children: ["tp/devops/support.md", ["cours/docker", "Docker"], "cours/cicd", ["cours/gitlabci", "Gitlab CI"]] },
-          { title: "GitLab-CI", children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md"] },
+          { title: "GitLab-CI", children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md"] },
           { title: "JamStack", children: ["/tp/ci/jamstack/netlify.md"] },
           { title: "Docker", children: [["cheatsheets/docker/", "En + du cours"], "/tp/docker/introduction", "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose"] },
           { title: "Kubernetes", children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
