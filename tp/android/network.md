@@ -9,7 +9,7 @@ Appeler une API peut-être intimidant, par le passé il était « en effet compl
 Un thread ou fil (d'exécution) ou tâche (terme et définition normalisée par ISO/CEI 2382-7:2000 ; autres appellations connues : processus léger, fil d'instruction, processus allégé, exétron, voire unité d'exécution1 ou unité de traitement2,3[réf. nécessaire]) est similaire à un processus, car tous deux représentent l'exécution d'un ensemble d'instructions du langage machine d'un processeur. Du point de vue de l'utilisateur, ces exécutions semblent se dérouler en parallèle.
 :::
 
-::: details Sommaires
+::: details Sommaire
 [[toc]]
 :::
 

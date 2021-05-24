@@ -2,7 +2,7 @@
 
 Nous avons vu précédemment qu'il était possible de compiler puis de packager une application grâce à Gitlab-CI, dans ce TP nous allons voir comment déployer cette image (**présente dans un registry privée**) dans un cluster Kubernetes
 
-::: details Sommaires
+::: details Sommaire
 [[toc]]
 :::
 
