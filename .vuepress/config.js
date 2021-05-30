@@ -211,7 +211,8 @@ module.exports = {
           { title: "Kubernetes", children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
           { title: "OpenFaas", children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
           { title: "Firebase", children: ["/tp/ci/firebase/functions.md"] },
-          "tp/rpi/web-stack.md"
+          "tp/rpi/web-stack.md",
+          "/tp/devops/alpine-vm.md"
         ]
       },
 

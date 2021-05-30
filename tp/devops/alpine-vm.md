@@ -1,6 +1,6 @@
-# VM Express : Alpine Linux & Docker
+# VM Express : Alpine Linux, K3d & Docker
 
-Un petit TP rapide pour créer une VM légère et rapide afin d'héberger un cluster Kubernetes.
+Un petit TP/Guide rapide pour créer une VM légère et rapide afin d'héberger un cluster Kubernetes.
 
 ::: details Sommaire
 [[toc]]
@@ -92,7 +92,7 @@ reboot
 ::: tip Allez plus vite…
 Vous avez dû remarquer les valeurs entre crochets à la fin des questions. Il s’agit des valeurs « par défaut » (autrement dit celle recommandée), quand c'est comme ça il vous suffit de faire <key>entrer</key>. Ce qui donne dans mon cas en vidéo :
 
-ICI VIDEO YOUTBE
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1y2ztFyVGuo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 :::
 
@@ -103,16 +103,35 @@ Nous allons configurer notre système afin de lui installer les paquets nécessa
 - Docker
 - K3D
 
+À partir de maintenant vous pouvez utiliser le SSH.
+
+### Première étape : Les dépôts
+
+Pour activer le dépôt community il suffit de décommenter une ligne dans le fichier de configuration des APK.
+
 ::: tip Deux dépôts
 Les dépôts de Alpine Linux sont découpés en deux :
 
 - Le main (ceux actifs de base).
 - Le community (à activer dans un fichier).
-  :::
 
-### Première étape : Les dépôts
+:::
 
-Pour activer le dépôt community il suffit de :
+La première étape est d'installer l'éditeur de votre choix (**vim**, nano, etc) :
+
+```sh
+apk add vim
+```
+
+Puis il vous suffit de décommenter la **3ème ligne** du fichier `/etc/apk/repositories`. Vous pouvez le faire via :
+
+```sh
+vim /etc/apk/repositories
+```
+
+Ce qui donne chez moi :
+
+![Repo Community](./res/repo_community.png)
 
 ### Installer les paquets
 
@@ -134,4 +153,36 @@ apk add vim
 
 ## Docker
 
+Installer Docker sur Alpine Linux est rapide, il suffit de lancer la commande :
+
+```sh
+apk add docker # Install Docker
+rc-update add docker boot # Active Docker au démarrage de la machine
+service docker start # Démarre Docker dès maintenant
+```
+
+![Alpine Docker](./res/alpine_docker.png)
+
+::: tip Vous pouvez vérifier …
+Pour vérifier le bon fonctionnement, il suffit de saisir dans le terminal :
+
+```sh
+docker ps
+```
+
+:::
+
 ## K3D
+
+Maintenant que nous avons installé Docker, il faut ajouter K3D. Malheureusement pour l'instant celui-ci n'est pas disponible dans le repo. Pour l'installer il faut passer via la commande décrite dans [la documentation officielle](https://github.com/rancher/k3d#get)
+
+```sh
+wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | sh # Installation de la commande k3D
+sysctl -w net/netfilter/nf_conntrack_max=131072 # Permet la création des agents (spécifique à Alpine Linux)
+```
+
+Vous pouvez vérifier que celui-ci est bien installé via :
+
+```sh
+k3d --help
+```

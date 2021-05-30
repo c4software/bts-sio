@@ -75,23 +75,23 @@ Dans mon cas, j'ai donc la version `4.4.3` de k3d.
 Pour l'instant nous n'avons pas initialisé de cluster, notre machine / serveur est toujours identique à avant l'installation. La création de clusters va se réaliser via la commande `k3d` récemment installés. Pour faire simple, si vous souhaitez créer un cluster il vous suffira de :
 
 ```sh
-k3d cluster create --api-port 20135 -p "8080:80@loadbalancer" --volume $(pwd)/volume/:/data/ -s 1 -a 2 monCluster
+k3d cluster create --api-port IP_DE_VOTRE_SERVEUR:20135 -p "8080:80@loadbalancer" --volume $(pwd)/volume/:/data/ -s 1 -a 2 monCluster
 ```
 
 **Avant de jouer la commande comme un sauvage**, détaillons un peu ce que vous allez lancer sur votre machine :
 
 ![Infra](./res/infra.jpg)
 
-| Options                     | Usage                                                                                       |
-| --------------------------- | ------------------------------------------------------------------------------------------- |
-| `cluster`                   | Indique que nous souhaitons gérer la partie cluster                                         |
-| `create`                    | Indique que nous souhaitons créer un nouveau cluster                                        |
-| `--api-port 20125`          | Port d'écoute de la partie API **de management** du cluster                                 |
-| `-p "8888:80@loadbalancer"` | Expose le port `8888` sur votre machine, il permettra d'accéder à votre « service déployé » |
-| `--volume ./volume/:/data/` | Fournis un espace de stockage persistant à votre cluster                                    |
-| `-s 1`                      | Indique que vous souhaitez 1 serveur                                                        |
-| `-a 2`                      | Indique que vous souhaitez 2 agents                                                         |
-| `monCluster`                | Le nom du cluster que vous souhaitez créer                                                  |
+| Options                                 | Usage                                                                                       |
+| --------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `cluster`                               | Indique que nous souhaitons gérer la partie cluster                                         |
+| `create`                                | Indique que nous souhaitons créer un nouveau cluster                                        |
+| `--api-port IP_DE_VOTRE_SERVEUR::20125` | Port d'écoute de la partie API **de management** du cluster                                 |
+| `-p "8888:80@loadbalancer"`             | Expose le port `8888` sur votre machine, il permettra d'accéder à votre « service déployé » |
+| `--volume ./volume/:/data/`             | Fournis un espace de stockage persistant à votre cluster                                    |
+| `-s 1`                                  | Indique que vous souhaitez 1 serveur                                                        |
+| `-a 2`                                  | Indique que vous souhaitez 2 agents                                                         |
+| `monCluster`                            | Le nom du cluster que vous souhaitez créer                                                  |
 
 Vous pouvez maintenant lancer la commande. Dans quelques minutes / secondes en fonctions de votre machine vous aurez un cluster Kubernetes disponible.
 
