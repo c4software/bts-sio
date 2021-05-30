@@ -178,7 +178,7 @@ Maintenant que nous avons installé Docker, il faut ajouter K3D. Malheureusement
 
 ```sh
 wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | sh # Installation de la commande k3D
-sysctl -w net/netfilter/nf_conntrack_max=131072 # Permet la création des agents (spécifique à Alpine Linux)
+sysctl -w net/netfilter/nf_conntrack_max=131072 # Permet la création des agents (Un correctif est en cours de publication, bientôt plus nécéssaire)
 ```
 
 Vous pouvez vérifier que celui-ci est bien installé via :
