@@ -186,3 +186,9 @@ Vous pouvez vérifier que celui-ci est bien installé via :
 ```sh
 k3d --help
 ```
+
+::: tip À propos du sysctl
+C'est un contournement temporaire, le problème est récent et sera corrigé dans une prochaine version.
+
+https://github.com/rancher/k3d/issues/607
+:::
