@@ -176,6 +176,20 @@ Une API va nous permettre de séparer la logique entre client et serveur afin de
 Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simplement, car l'API va être universelle; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif.
 :::
 
+### Évolution 3 : Intégrer une API publique
+
+Nous avons utilisé pour l'instant une API que vous avez créée. Nous allons tenter l'utilisation d'une API (json) fournie par un autre développeur. En utilisant l'API suivante :
+
+```
+https://reqres.in/api/users
+```
+
+Modifier la page pour :
+
+- Afficher un tableau.
+- Qui contiendra autant de ligne que d'utilisateur présent dans la partie `data`.
+- Chaque ligne du tableau devra afficher l'email & l'avatar (dans une balise `<img>`).
+
 ### Regardons d'autres sites.
 
 Nous avons vu qu'il était possible assez simplement de charger de contenu de manière asynchrone. Ce chargement asynchrone est la base du web que vous pratiquez tous les jours (sans vous en rendre compte). Maintenant que vous savez ça, je vous propose une petite expérimentation :
