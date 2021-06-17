@@ -219,7 +219,7 @@ publish_to_prod:
 L'autre solution (merci [Kevin RIOU](https://kevin.riou.pro/)), est d'utiliser la commande :
 
 ```sh
-kubectl set image deployment/vuepress-test vuepress-test=registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:$IMAGE_TAG
+kubectl set image deployment/vuepress-test vuepress-test=registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:$CI_COMMIT_SHORT_SHA
 ```
 
 Celle-ci va remplacer l'image lors du (re)déploiement avec celle que nous avons actuellement buildé.
