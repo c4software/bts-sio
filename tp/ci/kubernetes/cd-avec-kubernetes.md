@@ -216,7 +216,7 @@ publish_to_prod:
 
 ### Solution alternative
 
-L'autre solution (merci Kevin RIOU), est d'utiliser la commande :
+L'autre solution (merci [Kevin RIOU](https://kevin.riou.pro/)), est d'utiliser la commande :
 
 ```sh
 kubectl set image deployment/vuepress-test vuepress-test=registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:$IMAGE_TAG
