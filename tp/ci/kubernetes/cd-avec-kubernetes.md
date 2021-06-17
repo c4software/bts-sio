@@ -80,7 +80,7 @@ Dans le précédent TP nous avons vu que l'authentification était réaliser via
 Les développeurs (Open-Source) de Gitlab ont pensé à tout. Vous avez dans les paramètres de votre projet la possibilité de mettre des variables, ces variables peuvent-être de deux types :
 
 - `string`, pour une variable simple type token, configuration, etc (Ex `$SERVER="https://url-de-staging.devotreprojet.fr"`)
-- `file`, représente le contenu de votre fichier, lors de l'étape de CI/CD Gitlab va créer un fichier avec le contenu et déclarera une variable avec comme contenu le chemin vers le fichier en question. (Ex. `$KUBECONFIG="/private/mon_fichie_yaml_RANDOMID.yml"`)
+- `file`, représente le contenu de votre fichier, lors de l'étape de CI/CD Gitlab va créer un fichier avec le contenu et déclarera une variable avec comme contenu le chemin vers le fichier en question. (Ex. `$KUBECONFIG="/private/mon_fichier_yaml_RANDOMID.yml"`)
 
 La force des variables c'est qu'en plus d'être souple (de par le type) elles sont également (re)définissables en fonction de l'environnement. Pratique !
 
@@ -213,6 +213,12 @@ publish_to_prod:
 ```
 
 :::
+
+### Solution alternative
+
+L'autre solution (merci Kevin RIOU), est d'utiliser la commande `kubectl set image deployment/app vuepress-test=registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:$IMAGE_TAG` celle-ci va remplacer l'image lors du (re)déploiement avec celle que nous avons actuellement buildé.
+
+Cette solution est préférable à celle du `sed` car elle permet d'avoir une configuration toujours fonctionnelle dans notre fichier `yaml`.
 
 ## Un résultat possible
 
