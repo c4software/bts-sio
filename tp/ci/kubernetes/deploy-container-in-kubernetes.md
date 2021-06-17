@@ -231,7 +231,7 @@ Je vous laisse créer le fichier `Dockerfile` dans le dossier `docs` avec le con
 
 ```yaml
 FROM nginx:stable-alpine
-COPY src/.vuepress/dist /usr/share/nginx/HTML
+COPY src/.vuepress/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
