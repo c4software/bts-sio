@@ -216,7 +216,13 @@ publish_to_prod:
 
 ### Solution alternative
 
-L'autre solution (merci Kevin RIOU), est d'utiliser la commande `kubectl set image deployment/app vuepress-test=registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:$IMAGE_TAG` celle-ci va remplacer l'image lors du (re)déploiement avec celle que nous avons actuellement buildé.
+L'autre solution (merci Kevin RIOU), est d'utiliser la commande :
+
+```sh
+kubectl set image deployment/vuepress-test vuepress-test=registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:$IMAGE_TAG
+```
+
+Celle-ci va remplacer l'image lors du (re)déploiement avec celle que nous avons actuellement buildé.
 
 Cette solution est préférable à celle du `sed` car elle permet d'avoir une configuration toujours fonctionnelle dans notre fichier `yaml`.
 
