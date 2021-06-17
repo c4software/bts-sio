@@ -227,7 +227,7 @@ pnpm run build
 
 Votre site static est généré dans le dossier `src/.vuepress/dist` c'est ce dossier que nous allons mettre dans notre image Docker.
 
-Je vous laisse créer le dossier `Dockerfile` dans le dossier `docs` avec le contenu suivant
+Je vous laisse créer le fichier `Dockerfile` dans le dossier `docs` avec le contenu suivant
 
 ```yaml
 FROM nginx:stable-alpine
