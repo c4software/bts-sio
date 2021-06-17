@@ -87,7 +87,7 @@ k3d cluster create --api-port IP_DE_VOTRE_SERVEUR:20135 -p "8080:80@loadbalancer
 | `cluster`                               | Indique que nous souhaitons gérer la partie cluster                                         |
 | `create`                                | Indique que nous souhaitons créer un nouveau cluster                                        |
 | `--api-port IP_DE_VOTRE_SERVEUR::20125` | Port d'écoute de la partie API **de management** du cluster                                 |
-| `-p "8888:80@loadbalancer"`             | Expose le port `8888` sur votre machine, il permettra d'accéder à votre « service déployé » |
+| `-p "8080:80@loadbalancer"`             | Expose le port `8080` sur votre machine, il permettra d'accéder à votre « service déployé » |
 | `--volume ./volume/:/data/`             | Fournis un espace de stockage persistant à votre cluster                                    |
 | `-s 1`                                  | Indique que vous souhaitez 1 serveur                                                        |
 | `-a 2`                                  | Indique que vous souhaitez 2 agents                                                         |
@@ -480,7 +480,7 @@ Pour la configuration des services et de l'ingress :
 
 ### Tester
 
-Votre application est maintenant disponible, si vous vous souvenez quand nous avons créé le cluster nous avons indiqué un port pour le load balancer. Si vous n'avez rien changé, c'est le `8888`. Rendez-vous à `IP.DE.VOTRE.SERVEUR:8888` pour voir votre déploiement.
+Votre application est maintenant disponible, si vous vous souvenez quand nous avons créé le cluster nous avons indiqué un port pour le load balancer. Si vous n'avez rien changé, c'est le `8080`. Rendez-vous à `IP.DE.VOTRE.SERVEUR:8080` pour voir votre déploiement.
 
 Je vous laisse regarder à nouveau :
 
