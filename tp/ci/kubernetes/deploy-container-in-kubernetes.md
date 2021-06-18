@@ -652,7 +652,6 @@ spec:
     - port: 3306
   selector:
     app: fa-mysql
-  clusterIP: None
 ---
 apiVersion: v1
 kind: PersistentVolume
