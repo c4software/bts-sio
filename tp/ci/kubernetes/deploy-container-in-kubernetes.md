@@ -525,6 +525,50 @@ PS: Ne vous inquiétez pas… Vous avez clairement fait le plus difficile.
 
 Nous avons couvert un usage de base dans les premières étapes… C'est bien ! Mais nous pouvons aller plus loin pour utiliser toute la puissance de Kubernetes.
 
+### Gestion multipaths
+
+Exemple, si vous souhaitez exposer **dans le même cluster** deux applications différentes, il est possible de spécifier un path via : 
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vitejs-sample
+  annotations:
+    traefik.ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vitejs-sample
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-sample
+  annotations:
+    traefik.ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-sample
+                port:
+                  number: 80
+```
+
 ### Gestion multidomaine
 
 Dans l'exemple précédent, nous avons déployé une seule application dans notre cluster ; même si d'un point segmentation c'est plus propre, dans les faits il est complètement possible de déployer plusieurs « applications » différentes dans un même cluster. C'est d'ailleurs le cas si votre application possède plusieurs services (API, Web et Base de données par exemple).
