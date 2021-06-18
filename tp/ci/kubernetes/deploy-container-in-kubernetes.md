@@ -457,6 +457,10 @@ spec:
                   number: 80
 ```
 
+::: tip À quoi ça sert ?
+Le fichier Ingress défini comment votre pod va être accessible. Nous avons donc ici la correspondance entre le chemin (path, ou domain) et le port du service défini plus haut.
+:::
+
 ### Déployer votre application
 
 Pour le déploiement, c'est plutôt simple il suffit de communiquer avec votre serveur avec `kubectl` :
@@ -525,9 +529,9 @@ PS: Ne vous inquiétez pas… Vous avez clairement fait le plus difficile.
 
 Nous avons couvert un usage de base dans les premières étapes… C'est bien ! Mais nous pouvons aller plus loin pour utiliser toute la puissance de Kubernetes.
 
-### Gestion multipaths
+### Gestion multi paths
 
-Exemple, si vous souhaitez exposer **dans le même cluster** deux applications différentes, il est possible de spécifier un path via : 
+Exemple, si vous souhaitez exposer **dans le même cluster** deux applications différentes, il est possible de spécifier un path pour chaque application. Voici un exemple des deux définitions.
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -568,6 +572,16 @@ spec:
                 port:
                   number: 80
 ```
+
+::: danger Évidemment il s'agit d'un exemple
+J'ai résumé ici la partie ingress seulement et avec des noms fictifs. Les éléments importants dans l'extrait précédent sont :
+
+- `traefik.ingress.kubernetes.io/rewrite-target: /`, ce paramètre permet de masquer au pod (container), que celui-ci est exposé sur un chemin différent que celui prévu.
+- `- path: /api` spécifie le path « personnalisé » associé au service
+
+:::
+
+C'est évidemment un exemple à adapter. Je vous conseille autant que possible de passer par un multidomaine si possible.
 
 ### Gestion multidomaine
 
