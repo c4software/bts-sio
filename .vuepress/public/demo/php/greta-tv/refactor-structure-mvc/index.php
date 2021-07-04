@@ -1,6 +1,5 @@
 <?php
 
-use routes\base\Route;
 use routes\Router;
 
 include("autoload.php");

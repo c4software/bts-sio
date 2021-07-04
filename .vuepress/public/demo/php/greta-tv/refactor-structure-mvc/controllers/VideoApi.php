@@ -4,6 +4,7 @@ namespace controllers;
 
 use controllers\base\Api;
 use models\DBVideo;
+use models\SampleVideo;
 
 class VideoApi extends Api
 {
@@ -11,10 +12,10 @@ class VideoApi extends Api
 
     function __construct()
     {
-        // Décommenter pour avoir des données fictives
-        //$this->videoModel = new SampleVideo();
+        $this->videoModel = new SampleVideo();
 
-        $this->videoModel = new DBVideo();
+        // Décommenter pour avoir des données depuis une base de données
+        //$this->videoModel = new DBVideo();
     }
 
     function sample()

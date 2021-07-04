@@ -2,7 +2,7 @@
 
 namespace models\base;
 
-class MySQL implements IDatabase
+class SQL implements IDatabase
 {
     protected $tableName = '';
     protected $primaryKey = '';

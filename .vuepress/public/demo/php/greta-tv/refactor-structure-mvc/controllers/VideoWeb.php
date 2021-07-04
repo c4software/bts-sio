@@ -4,6 +4,7 @@ namespace controllers;
 
 use controllers\base\Web;
 use models\DBVideo;
+use models\SampleVideo;
 
 class VideoWeb extends Web
 {
@@ -11,10 +12,10 @@ class VideoWeb extends Web
 
     function __construct()
     {
-        // Décommenter pour avoir des données fictives
-        //$this->videoModel = new SampleVideo();
-        
-        $this->videoModel = new DBVideo();
+        $this->videoModel = new SampleVideo();
+
+        // Décommenter pour avoir des données depuis une base de données
+        //$this->videoModel = new DBVideo();
     }
 
     function home()

@@ -2,9 +2,9 @@
 
 namespace models;
 
-use models\base\MySQL;
+use models\base\SQL;
 
-class DBVideo extends MySQL
+class DBVideo extends SQL
 {
     public function __construct()
     {
@@ -13,10 +13,11 @@ class DBVideo extends MySQL
 
     function getVideos()
     {
-       return $this->getAll();
+        return $this->getAll();
     }
 
-    function getByVideoId($videoId){
+    function getByVideoId($videoId)
+    {
         // Utilisation d'une query a la place d'un simple getOne car la requête
         // est réalisé sur un champs différent que l'ID de la table.
 
