@@ -8,7 +8,9 @@ Si vous souhaitez réaliser un développement d'envergure, je vous déconseille 
 Préférez plutôt l'utilisation d'un framework tel que Laravel
 :::
 
+::: details Sommaire
 [[toc]]
+:::
 
 ## Introduction
 
