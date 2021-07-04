@@ -4,6 +4,7 @@ namespace routes;
 
 use controllers\GlobalWeb;
 use controllers\VideoWeb;
+use routes\base\Route;
 
 class Web
 {

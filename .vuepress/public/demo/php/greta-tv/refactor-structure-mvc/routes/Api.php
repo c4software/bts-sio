@@ -3,6 +3,7 @@
 namespace routes;
 
 use controllers\VideoApi;
+use routes\base\Route;
 
 class Api
 {
