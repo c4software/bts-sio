@@ -38,7 +38,7 @@ fichiers proposés dans le code présenté en exemple.
 
 La structure de base en terme de dossier ressemble à :
 
-![Structure des dossiers](./res/structure_dossier.png)
+![Structure des dossiers](./res/structure_dossiers.png)
 
 ::: tip Pas d'inquiètude
 Compliqué ? Pas de stress, nous allons voir ensemble comment prendre en main le code.
