@@ -9,6 +9,14 @@ Nous avons créé deux cas « de tests », je vous propose de le mettre en place
 Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure.zip). Il pourra vous servir de base de travail. (c'est une version sans base de données, pour simplifier l'installation locale)
 :::
 
+::: tip Vous préférez une approche MVC ?
+La première version du code source fourni est très simple. En tant que développeur, on préfère une approche un peu plus complète que celle-ci. C'est pour ça que je vous propose plutôt d'utiliser la version MVC du projet.
+
+Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure-mvc.zip).
+
+**Attention**, la suite du TP repose sur la première version du code source. Les nommages sont différents, mais globalement le fonctionnement reste le même. Si vous voulez jouer, tentez la version MVC.
+:::
+
 Comment allons-nous procéder ?
 
 - Dans un premier temps, nous allons regarder le fonctionnement du site actuel.
