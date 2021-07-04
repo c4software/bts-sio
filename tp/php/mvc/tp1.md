@@ -29,8 +29,10 @@ Le projet proposé dépasse le simple MVC, il intègre en effet les bases pour u
   - La gestion de la SESSION.
 - Une organisation structurée permettant la réalisation de projet de taille moyenne / grande.
 
-**Point important**, la structure. Cette base de développement intègre une structure **qu'il faut respecter** pour
+::: tip Point important sur la structure.
+Cette base de développement intègre une structure **qu'il faut respecter** pour
 développer dans de bonnes conditions.
+:::
 
 ## Structure
 
@@ -42,8 +44,8 @@ La structure de base en terme de dossier ressemble à :
 
 ![Structure des dossiers](./res/structure_dossiers.png)
 
-::: tip Pas d'inquiètude
-Compliqué ? Pas de stress, nous allons voir ensemble comment prendre en main le code.
+::: tip Compliqué ?
+Pas d'inquiètude, pas de stress ! nous allons voir ensemble comment prendre en main le code.
 :::
 
 ### Globalement
@@ -168,7 +170,38 @@ Nous pouvons le représenter de cette façon-ci :
 
 #### L'héritage
 
+Les contrôleurs **doivent hériter** de l'une des deux interfaces `Web` ou `Api`. Ces deux classes définissent un comportement standardisé entre les différents contrôleurs que vous allez écrire.
+
+Les différentes relations peuvent être représentées avec l'UML suivant :
+
+![UML Relation](./res/uml_composition.png)
+
+Les méthodes `header()` et `footer()` ce charge de réaliser les imports nécéssaire (ou le code nécéssaire dans le cas de l'API) pour que vous pages s'affichent tels que vous le désirez.
+
+::: tip Be curious !
+Ne prenez pas automatiquement pour acquis ce que je vous écris. Allez voir le code source du projet afin de constater par vous-même ce que je viens de dire / écrire.
+:::
+
 ### Le dossier `views/`
+
+Le dossier `views/` va contenir l'ensemble des fichiers « d'interface » de votre application. Ces fichiers sont en réalités massivement des fichiers HTML classiques.
+
+Détail important, nous allons ici privilégier le découpage et la réutilisation. Il est donc important de constater que nous avons un dossier `views/common/` celui-ci contient l'ensemble des éléments commun à toutes vos pages comme vues précédemment. (haut de page et pied de page).
+
+Vos différentes pages **ne contiendront donc** que le contenu réel de la page exemple :
+
+```html
+<h1>Ceci est un titre</h1>
+<p>Et voici le contenu</p>
+```
+
+::: tip Pourquoi est-ce important ?
+Au-delà de tout ce que nous voyons ensemble, mon but est de vous rendre autonome pour que vous puissiez réaliser vos propres projets. Et quand il s'agit de projet, le plus important à retenir c'est l'organisation, mais également éviter toutes répétitions.
+
+L'une dès principales sources de répétition dans un site Web c'est le code présent dans le header et dans le footer de votre site. C'est pourquoi je vous propose de ne pas le mettre dans chaque page.
+
+<center><iframe src="https://giphy.com/embed/eBpiVHAzU8XXtvPCae" width="480" height="353" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></center>
+:::
 
 ### Le dossier `models/`
 
