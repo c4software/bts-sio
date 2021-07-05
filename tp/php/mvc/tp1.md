@@ -116,7 +116,11 @@ class Web
 }
 ```
 
-Je pense qu'ici pas de problème! Vous comprenez l'idée, une nouvelle page ? Une nouvelle route et une nouvelle méthode dans le contrôleur… Et c'est tout !
+Je pense qu'ici pas de problème! Vous comprenez l'idée, une nouvelle page ?
+
+- Une nouvelle route
+- Une nouvelle méthode dans le contrôleur…
+- Et c'est tout !
 
 ### Le dossier `controllers/`
 
