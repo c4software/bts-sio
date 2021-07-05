@@ -60,6 +60,14 @@ Le code présent utilise différents aspects du développement objet :
 
 Les éléments de `base` sont toujours dans un dossier nommé `base`. Vous retrouverez ce dossier pour les contrôleurs, les routes, les modèles.
 
+### La configuration
+
+Avant d'aller plus loin, intéressons-nous à la configuration. Dans un projet, il est évident qu'il ne faut pas mettre la configuration n'importe où. Vous l'avez vécu en entreprise, vous avez peut-être eu à votre disposition plusieurs serveurs / machines / ordinateurs.
+
+Votre code va fonctionner de manière identique entre chaque environnement, par contre ce qui va certainement changer c'est l'accès à la base de données. Cet accès, est dépendant d'une configuration (Utilisateur, Mot de passe, Serveur …) dans une structure MVC on essai de ne pas mettre cette configuration n'importe où !
+
+Dans l'organisation que je vous propose, cette configuration est centralisée dans le fichier `configs.php` à la racine du code source.
+
 ### L'entry Point (`index.php`)
 
 Le fichier `index.php` présent à la racine du projet est, ce que l'on appelle, un **entry point**. Ce point d'entrée en
@@ -211,9 +219,98 @@ L'une dès principales sources de répétition dans un site Web c'est le code pr
 
 ### Le dossier `models/`
 
+Le dossier `models/` contiens les classes qui vont représenter les tables en base de données. Ces classes vont faire « l'interface » entre votre contrôleur et votre base de données.
+
+Finis donc les requêtes SQL partout dans votre code. À partir de maintenant, vos requêtes sont **dans le modèle** et uniquement dans le modèle.
+
+::: warning Un instant
+Cette notion de modèle **est très importante**, en effet il s'agit ici d'être explicit et de ne pas faire une classe fourretout!
+:::
+
+Comme pour les contrôleurs, vous avez à votre disposition (dans le dossier, base) une classe générique vous permettant d'automatiser certaines requêtes (`getAll`, `getOne`, `deleteOne`, `updateOne`). Bien évidemment ce ne sont que des raccourcis, vous pouvez sans problème écrire les requêtes via PDO.
+
+Voici un exemple minimal de Modèle :
+
+```php
+<?php
+
+namespace models;
+
+use models\base\SQL;
+
+class DBVideo extends SQL
+{
+    public function __construct()
+    {
+        parent::__construct('LE_NOM_DE_VOTRE_TABLE');
+    }
+}
+```
+
+Voici un exemple plus complet :
+
+```php
+<?php
+
+namespace models;
+
+use models\base\SQL;
+
+class DBVideo extends SQL
+{
+    public function __construct()
+    {
+        parent::__construct('LE_NOM_DE_VOTRE_TABLE');
+    }
+
+    function getVideos()
+    {
+        return $this->getAll();
+    }
+
+    function getByVideoId($videoId)
+    {
+        // Utilisation d'une query à la place d'un simple getOne car la requête
+        // est réalisé sur un champ différent que l'ID de la table.
+
+        $stmt = $this->pdo->prepare("SELECT * FROM video WHERE videoId = ?");
+        $stmt->execute([$videoId]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+}
+```
+
+#### L'accès à la base de données
+
+Si vous avez été curieux… Vous avez certainement remarqué qu'à aucun moment nous n’avons parlé de la connexion à la base de données ! C'est aussi ça l'avantage d'une organisation structurée, je me suis occupé de cette partie-là pour vous.
+
+La connexion à la base de données est intégrée dans la classe `models/base/Database.php` qui est utilisé dans la classe fille `models/base/SQL.php`.
+
+Pour l'instant vous serez « utilisateur » de cette architecture. Mais, voilà le diagramme de classe de celle-ci :
+
+![UML BDD](./res/uml_bdd.png)
+
+::: tip Pourquoi faire une Interface ?
+
+Le diagramme de classe vous semble peut-être très compliqué au vu de la problématique… Mais c'est tout là l'intérêt de réaliser des Interfaces. En effet, je vous offre (c'est cadeau, c'est pour moi) la classe SQL ; mais peut-être que vous voulez faire du Oracle ? Ou bien du MongoDB ?
+
+Avec une Interface, aucun problème. Votre code restera inchangé, quelle que soit l'implémentation de votre connecteur. En effet, implémenter l'interface vous obligera l'écriture des 4 méthodes minimale au bon fonctionnement de votre code.
+
+Ne vous inquiétez pas! L'interface est une notion que nous reverrons ensemble plus tard… Sachez juste qu'elle est une des bases de la programmation orientée objet.
+
+:::
+
 ### Le dossier `public/`
 
+Le dossier `public/` va contenir l'ensemble des données « publics » de votre projet. Ces fichiers sont ceux distribués directement au navigateur de votre client.
+
+Ça semble un détail peut-être ? Pourtant c'est un élément important ! En effet pourquoi soliciter votre code PHP pour distribuer de la CSS ou des images en plus d'être inutile ça surcharge votre serveur inutilement.
+
 ### Le dossier `utils/`
+
+Le dossier `utils/` contient dans la structure de base uniquement une classe permettant de gérer la SESSION. Mais vous allez placer ici l'ensemble des **librairies PHP** nécessaire au bon fonctionnement de votre projet.
+
+Un morceau de code que vous avez trouvé sur StackOverflow ? Une librairie que vous avez conçue ? Pas de problème ! Rangez-les dans le dossier `utils/`
 
 ## Ajouter une page dans un contrôleur existant
 
