@@ -300,6 +300,10 @@ Ne vous inquiétez pas! L'interface est une notion que nous reverrons ensemble p
 
 :::
 
+::: tip Be curious (bis)
+Ne vous contentez pas de dire « ça marche », allez regarder ma classe `SQL`! Je pense qu'elle est intéressante, et que vous devriez la regarder.
+:::
+
 ### Le dossier `public/`
 
 Le dossier `public/` va contenir l'ensemble des données « publics » de votre projet. Ces fichiers sont ceux distribués directement au navigateur de votre client.
