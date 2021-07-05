@@ -183,3 +183,9 @@ Nous avons donc une règle qui indique :
 
 Le `(.*).html` veut dire n'importe quel texte saisi avant le `.html` sera transformé en `index.php?page=$1`. `$1` étant « le n'importe quoi saisi avant le `.html`.
 :::
+
+## Toujours plus loin
+
+Nous avons ici travaillé sur un format « minimaliste », une structure seulement des dossiers et une organisation saine des imbrications du code. Sachez qu'il est possible d'aller bien plus loin en mettant en place un design Patern connu et reconnu comme un standard en termes de développement.
+
+Ce n'est pas l'idée tout de suite, mais sachez que [celui-ci est détaillé ici](/php/mvc/tp1.md)
