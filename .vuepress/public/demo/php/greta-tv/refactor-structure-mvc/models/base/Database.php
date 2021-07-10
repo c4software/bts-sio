@@ -7,7 +7,15 @@ class Database
 {
     static function connect()
     {
-        include("configs.php");
-        return new \PDO ($DB_DSN, $DB_USER, $DB_PASSWORD);
+        $config = include("configs.php");
+        $pdo = new \PDO ($config->DB_DSN, $config->DB_USER, $config->DB_PASSWORD);
+
+        if($config->DEBUG){
+            // ACTIVER LE DEBUG DES REQUÊTES
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        }
+
+        return $pdo;
     }
 }
