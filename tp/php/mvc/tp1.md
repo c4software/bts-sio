@@ -69,9 +69,9 @@ Votre code va fonctionner de manière identique entre chaque environnement, par 
 Dans l'organisation que je vous propose, cette configuration est centralisée dans le fichier `configs.php` à la racine du code source.
 
 ::: tip La configuration c'est bien !
-C'est peut-être un détail pour vous… Mais pour moi ça veux dire beaucoup ! Actuellement vous avez un serveur, mais demain peut-être 20… Et pour votre projet final vous aurez à déployer rapidement votre application sur un autre serveur que celui sur lequel vous avez développé.
+C'est peut-être un détail pour vous… Mais pour moi ça veut dire beaucoup ! Actuellement vous avez un serveur, mais demain peut-être 20… Et pour votre projet final, vous aurez à déployer rapidement votre application sur un autre serveur que celui sur lequel vous avez développé.
 
-Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur, mot de passe de BDD, etc) dans le fichier `configs.php`. Dans l'architecture que je vous propose vous y trouverez le minimum nécéssaire au bon fonctionnement d'une application.
+Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur, mot de passe de BDD, etc.) dans le fichier `configs.php`. Dans l'architecture que je vous propose vous y trouverez le minimum nécessaire au bon fonctionnement d'une application.
 :::
 
 ::: details Voilà un exemple
@@ -218,7 +218,7 @@ Les différentes relations peuvent être représentées avec l'UML suivant :
 
 ![UML Relation](./res/uml_composition.png)
 
-Les méthodes `header()` et `footer()` ce charge de réaliser les imports nécéssaire (ou le code nécéssaire dans le cas de l'API) pour que vous pages s'affichent tels que vous le désirez.
+Les méthodes `header()` et `footer()` ce charge de réaliser les imports nécéssaire (ou le code nécessaire dans le cas de l'API) pour que vous pages s'affichent tels que vous le désirez.
 
 ::: tip Be curious !
 Ne prenez pas automatiquement pour acquis ce que je vous écris. Allez voir le code source du projet afin de constater par vous-même ce que je viens de dire / écrire.
