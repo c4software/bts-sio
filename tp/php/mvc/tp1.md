@@ -68,6 +68,34 @@ Votre code va fonctionner de manière identique entre chaque environnement, par 
 
 Dans l'organisation que je vous propose, cette configuration est centralisée dans le fichier `configs.php` à la racine du code source.
 
+::: tip La configuration c'est bien !
+C'est peut-être un détail pour vous… Mais pour moi ça veux dire beaucoup ! Actuellement vous avez un serveur, mais demain peut-être 20… Et pour votre projet final vous aurez à déployer rapidement votre application sur un autre serveur que celui sur lequel vous avez développé.
+
+Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur, mot de passe de BDD, etc) dans le fichier `configs.php`. Dans l'architecture que je vous propose vous y trouverez le minimum nécéssaire au bon fonctionnement d'une application.
+:::
+
+::: details Voilà un exemple
+
+```php
+<?php
+
+$DB_SERVER = "127.0.0.1";
+$DB_DATABASE = "VOTRE_BDD";
+
+return array(
+    "DB_USER" => "VOTRE_UTILISATEUR",
+    "DB_PASSWORD" => "ET_LE_MOT_DE_PASSE",
+    "DB_DSN" => "mysql:host=$DB_SERVER;dbname=$DB_DATABASE",
+    "DEBUG" => true
+);
+
+
+```
+
+:::
+
+- Debug ? Vous avez dit debug ? À quoi correspond cette variable à votre avis ? Comment faire pour. Est-ce important de la mettre à `true` ?
+
 ### L'entry Point (`index.php`)
 
 Le fichier `index.php` présent à la racine du projet est, ce que l'on appelle, un **entry point**. Ce point d'entrée en
