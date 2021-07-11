@@ -1,6 +1,7 @@
 <template>
   <div>
     <ExternalIframe :src="samplePath"></ExternalIframe>
+    <center><a target="_blank" :href="samplePath">Ouvrir</a></center>
   </div>
 </template>
 
@@ -22,3 +23,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+a {
+  display: inline-block;
+  margin: 10px;
+}
+</style>
