@@ -404,7 +404,7 @@ Ne vous contentez pas de dire « ça marche », allez regarder ma classe `SQL`! 
 
 Le dossier `public/` va contenir l'ensemble des données « publics » de votre projet. Ces fichiers sont ceux distribués directement au navigateur de votre client.
 
-Ça semble un détail peut-être ? Pourtant c'est un élément important ! En effet pourquoi soliciter votre code PHP pour distribuer de la CSS ou des images en plus d'être inutile ça surcharge votre serveur inutilement.
+Ça semble un détail peut-être ? Pourtant c'est un élément important ! En effet pourquoi solliciter votre code PHP pour distribuer de la CSS ou des images en plus d'être inutile ça surcharge votre serveur inutilement ?
 
 ### Le dossier `utils/`
 
@@ -422,9 +422,9 @@ Ajouter une nouvelle page dans un contrôleur se résumera à 3 opérations :
 - Ajouter la route permettant l'accès à la méthode.
 - Ajouter la vue (template) dans le dossier `view`.
 
-Par exemple, si vous souhaitez ajouter une page `/ping` faisant référence au controleur `Main`:
+Par exemple, si vous souhaitez ajouter une page `/ping` faisant référence au contrôleur `Main`:
 
-- Ajout dans les routeur `/routes/Web.php` :
+- Ajout dans les routeurs `/routes/Web.php` :
 
 ```php
     Route::Add('/ping', [$main, 'ping']);
@@ -447,6 +447,125 @@ Par exemple, si vous souhaitez ajouter une page `/ping` faisant référence au c
 <h1>PONG</h1>
 ```
 
+Je sais que vous aimez les videos… Voilà la même procédure résumée en vidéo :
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/HO7_O10S30o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Ajouter un modèle
 
+Pour rappel, le modèle est une classe qui va centraliser la partie communication avec la source de données (SQL ou autre). Dans la structure MVC **je vous encourage à créer autant de `modèles` que de table dans votre base de données**.
+
+Une classe modèle de type SQL (ce qui vous intéressera dans 99.9% des cas) possède toujours la même structure :
+
+```php
+<?php
+
+namespace models;
+
+use models\base\SQL;
+
+class VotreTable extends SQL
+{
+    public function __construct()
+    {
+        parent::__construct('votreTable');
+    }
+}
+```
+
+- Le `namespace models;` permet de structure votre code, et permettra via l'auto-loader l'import automatique de vos classes.
+- `class VotreTable extends SQL` indique que votre classe hérite de SQL. Elle possèdera donc automatiquement des méthodes (accessible via `$this`) :
+  - `getAll`
+  - `getOne`
+  - `deleteOne`
+  - `updateOne`
+- Le constructeur `__construct()` va permettre de créer le parent (Class SQL), le premier paramètre est le nom de votre table en **base de données**.
+
+::: danger On ne range pas le model n'importe où !
+Vos modèles doivent être obligatoirement dans le dossier `models/`
+:::
+
+::: tip Vous n'etes pas limité
+Le modèle va centraliser l'ensemble de vos requêtes, même si de base nous avons quelques méthodes de base, vous pouvez évidemment en ajouter autant que vous souhaitez.
+
+Exemple :
+
+```php
+<?php
+
+namespace models;
+
+use models\base\SQL;
+
+class Video extends SQL
+{
+    public function __construct()
+    {
+        parent::__construct('video');
+    }
+
+    function getPublicVideos()
+    {
+        // utilise la connexion BDD pour réaliser les requêtes vers les données
+        // ici retourne l'ensemble des vidéos de type accessibles à tous (public)
+
+        $stmt = $this->pdo->prepare("SELECT * FROM video WHERE public = 1");
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    function getByVideoId($videoId)
+    {
+        // Utilisation d'une query à la place d'un simple getOne car la requête
+        // est réalisé sur un champs différent que l'ID de la table.
+
+        $stmt = $this->pdo->prepare("SELECT * FROM video WHERE videoId = ?");
+        $stmt->execute([$videoId]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+}
+```
+
+:::
+
 ## Ajouter un nouveau contrôleur
+
+Le contrôleur est le morceau de code (classe) permettant de « relier » un lien et une fonctionnalité. Comme les modèles je vous encourage à découper votre code au maximum pour regrouper ensemble le code ayant une symbolique commune (exemple, gestion des vidéos dans contrôleur `Video`, gestion de l'utilisateur dans `Account`, etc.).
+
+Comme les modèles, les contrôleurs ont une structure de base. La différence est qu'il y a actuellement deux possibilités (Web et API). Dans 99.9% des cas, vous allez réaliser des contrôleurs de type Web :
+
+```php
+<?php
+
+namespace controllers;
+
+use controllers\base\Web;
+
+class VotreControleur extends Web
+{
+    function methodeDExemple()
+    {
+        $this->header();
+        include("views/votreVue.php");
+        $this->footer();
+    }
+}
+```
+
+- Le `namespace controllers;` permet de structure votre code, et permettra via l'auto-loader l'import automatique de vos classes.
+- `class VotreControleur extends Web` indique que votre classe hérite de Web (une page client). Elle possèdera donc automatiquement des méthodes (accessible via `$this`) :
+  - `header`
+  - `footer`
+  - `redirect`
+
+::: tip Et c'est tout !
+Créer un contrôleur est aussi simple que ça. C'est tellement simple que je vous encourage à en créer autant que nécessaire.
+
+Dans mon exemple il y a qu'une seule méthode `methodeDExemple()`, évidemment vous pouvez en créer autant que vous le souhaitez **(il n'y a pas de limite)**.
+:::
+
+## Utiliser un contrôleur récemment créé
+
+Nous avons créé un contrôleur, mais pour l'utiliser il faut le déclarer dans le routeur (par exemple dans le router Web). Mieux que des mots voilà une vidéo résumant comment procéder :
+
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=6oTe_fO0fVI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

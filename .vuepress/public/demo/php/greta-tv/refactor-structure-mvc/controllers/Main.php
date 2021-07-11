@@ -1,8 +1,6 @@
 <?php
 
-
 namespace controllers;
-
 
 use controllers\base\Web;
 
