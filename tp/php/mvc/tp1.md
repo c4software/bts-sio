@@ -416,6 +416,37 @@ Un morceau de code que vous avez trouvé sur StackOverflow ? Une librairie que v
 
 ## Ajouter une page dans un contrôleur existant
 
+Ajouter une nouvelle page dans un contrôleur se résumera à 3 opérations :
+
+- Ajouter la méthode dans le contrôleur.
+- Ajouter la route permettant l'accès à la méthode.
+- Ajouter la vue (template) dans le dossier `view`.
+
+Par exemple, si vous souhaitez ajouter une page `/ping` faisant référence au controleur `Main`:
+
+- Ajout dans les routeur `/routes/Web.php` :
+
+```php
+    Route::Add('/ping', [$main, 'ping']);
+```
+
+- Déclarer la méthode `ping()` dans le contrôleur :
+
+```php
+    function ping()
+    {
+        $this->header();
+        include("views/global/ping.php");
+        $this->footer();
+    }
+```
+
+- Créer la vue `views/global/ping.php` :
+
+```php
+<h1>PONG</h1>
+```
+
 ## Ajouter un modèle
 
 ## Ajouter un nouveau contrôleur
