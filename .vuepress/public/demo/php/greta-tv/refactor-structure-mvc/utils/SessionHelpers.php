@@ -21,6 +21,15 @@ class SessionHelpers
         unset($_SESSION['USER']);
     }
 
+    static function getConnected()
+    {
+        if (SessionHelpers::isLogin()) {
+            return $_SESSION['USER'];
+        } else {
+            return array();
+        }
+    }
+
     static function isLogin()
     {
         return isset($_SESSION['USER']);

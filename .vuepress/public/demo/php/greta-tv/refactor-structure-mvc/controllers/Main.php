@@ -6,7 +6,7 @@ namespace controllers;
 
 use controllers\base\Web;
 
-class GlobalWeb extends Web
+class Main extends Web
 {
     function about()
     {

@@ -24,7 +24,7 @@ La structure MVC présentée dans cet exemple est classique. Elle intègre les c
 
 Le projet proposé dépasse le simple MVC, il intègre en effet les bases pour un développement serein à savoir :
 
-- Un router : Correspondance entre un chemin (route) et une fonctionnalité (méthode d'un contrôleur).
+- Un routeur : Correspondance entre un chemin (route) et une fonctionnalité (méthode d'un contrôleur).
 - Un ensemble d'interfaces et class permettant
   - la réalisation d'API.
   - l'Accès à la base de données.
@@ -32,9 +32,12 @@ Le projet proposé dépasse le simple MVC, il intègre en effet les bases pour u
 - Une organisation structurée permettant la réalisation de projet de taille moyenne / grande.
 
 ::: tip Point important sur la structure.
-Cette base de développement intègre une structure **qu'il faut respecter** pour
-développer dans de bonnes conditions.
+Cette base de développement intègre une structure **qu'il faut respecter** pour développer dans de bonnes conditions.
 :::
+
+## Les sources
+
+Vous pouvez télécharger un code de démonstration [à l'adresse suivante en cliquant ici](/demo/php/greta-tv/refactor-structure-mvc.zip)
 
 ## Structure
 
@@ -42,12 +45,12 @@ Comme indiqué en introduction, la structuration d'un développement est aussi i
 lui-même. C'est pour ça qu'avant même de développer il est important de prendre en main la structure des dossiers et
 fichiers proposés dans le code présenté en exemple.
 
-La structure de base en terme de dossier ressemble à :
+La structure de base en termes de dossier ressemble à :
 
 ![Structure des dossiers](./res/structure_dossiers.png)
 
 ::: tip Compliqué ?
-Pas d'inquiètude, pas de stress ! nous allons voir ensemble comment prendre en main le code.
+Pas d'inquiétude, pas de stress ! nous allons voir ensemble comment prendre en main le code.
 :::
 
 ### Globalement
@@ -95,6 +98,14 @@ return array(
 :::
 
 - Debug ? Vous avez dit debug ? À quoi correspond cette variable à votre avis ? Comment faire pour. Est-ce important de la mettre à `true` ?
+
+::: details Non, mais un instant ? Mon code est différent.
+
+Et oui ! L'exemple que je vous communique plus haut est simpliste. Dans le code que vous avez récupéré, le fichier `configs.php` est légèrement différent. En effet, celui-ci prend un ensemble de variables depuis `les variables d'environnements` kézako !? Les variables d'environnement sont des variables définies au niveau du système qui nous permettra de changer la configuration sans modifier le code.
+
+Ce système de variables d'environnements est très intéressant, car il nous permettra avec l'intégration continue de personnaliser le programme au moment de l'exécution sans en changer le code source (Exemple PROD et DEV).
+
+:::
 
 ### L'entry Point (`index.php`)
 
@@ -158,6 +169,47 @@ Je pense qu'ici pas de problème! Vous comprenez l'idée, une nouvelle page ?
 - Une nouvelle méthode dans le contrôleur…
 - Et c'est tout !
 
+#### Gérer l'authentification ?
+
+Vous allez rapidement avoir besoin d'authentifier un utilisateur. Dans ce cas, évidemment vous n'allez pas ajouter / lister des routes non accessibles à tous **(pour des raisons évidentes de sécurité)**.
+
+Il conviendra donc de mettre un `if` autour des routes que vous souhaitez protéger. Par exemple :
+
+```php
+<?php
+
+namespace routes;
+
+use controllers\Account;
+use controllers\Main;
+use controllers\VideoWeb;
+use routes\base\Route;
+use utils\SessionHelpers;
+
+class Web
+{
+    function __construct()
+    {
+        $videoWeb = new VideoWeb();
+        $main = new Main();
+        $account = new Account();
+
+        Route::Add('/', [$videoWeb, 'home']);
+        Route::Add('/tv', [$videoWeb, 'tv']);
+        Route::Add('/about', [$main, 'about']);
+        Route::Add('/login', [$account, 'login']);
+
+        // Les liens /me et /logout ne seront disponibles que pour les utilisateurs ayant un compte.
+        if (SessionHelpers::isLogin()) {
+            Route::Add('/me', [$account, 'me']);
+            Route::Add('/logout', [$account, 'logout']);
+        }
+    }
+}
+
+
+```
+
 ### Le dossier `controllers/`
 
 Le dossier `controllers/` contiendra l'ensemble des contrôleurs de votre projet. Pour l'instant il y en a trois (`GlobalWeb.php`, `VideoApi.php`, `VideoWeb.php`) ils ont chacun un but différent propre à mon exemple.
@@ -210,6 +262,20 @@ Nous pouvons le représenter de cette façon-ci :
 
 ![Structure](./res/organisation.png)
 
+::: tip L'astuce du chef
+
+Si vous avez regarder un peu le code, vous avez certainement remarqué que les paramètres `$_GET` était automatiquement disponible en tant que paramétre de votre méthode. Exemple :
+
+```php
+// Si l'utilisateur accède à /home?nom=brosseau&prenom=valentin
+
+function home($nom, $prenom){
+    // $prenom contiendra ici "brosseau" et $prenom contiendra "valentin"
+}
+```
+
+:::
+
 #### L'héritage
 
 Les contrôleurs **doivent hériter** de l'une des deux interfaces `Web` ou `Api`. Ces deux classes définissent un comportement standardisé entre les différents contrôleurs que vous allez écrire.
@@ -218,7 +284,9 @@ Les différentes relations peuvent être représentées avec l'UML suivant :
 
 ![UML Relation](./res/uml_composition.png)
 
-Les méthodes `header()` et `footer()` ce charge de réaliser les imports nécéssaire (ou le code nécessaire dans le cas de l'API) pour que vous pages s'affichent tels que vous le désirez.
+Les méthodes `header()` et `footer()` ce charge de réaliser les imports nécessaires (ou le code nécessaire dans le cas de l'API) pour que vous pages s'affichent tels que vous le désirez.
+
+La méthode `redirectTo` permet de gérer la redirection vers une autre ressource. Rien de bien compliqué c'est un simple appel de la méthode `header` de PHP. Je vous laisse regarder le code dans `controller/base/web.php`.
 
 ::: tip Be curious !
 Ne prenez pas automatiquement pour acquis ce que je vous écris. Allez voir le code source du projet afin de constater par vous-même ce que je viens de dire / écrire.
@@ -226,7 +294,7 @@ Ne prenez pas automatiquement pour acquis ce que je vous écris. Allez voir le c
 
 ### Le dossier `views/`
 
-Le dossier `views/` va contenir l'ensemble des fichiers « d'interface » de votre application. Ces fichiers sont en réalités massivement des fichiers HTML classiques.
+Le dossier `views/` va contenir l'ensemble des fichiers « d'interface » de votre application. Ces fichiers sont en réalité massivement des fichiers HTML classiques.
 
 Détail important, nous allons ici privilégier le découpage et la réutilisation. Il est donc important de constater que nous avons un dossier `views/common/` celui-ci contient l'ensemble des éléments commun à toutes vos pages comme vues précédemment. (haut de page et pied de page).
 
@@ -340,7 +408,9 @@ Le dossier `public/` va contenir l'ensemble des données « publics » de votre 
 
 ### Le dossier `utils/`
 
-Le dossier `utils/` contient dans la structure de base uniquement une classe permettant de gérer la SESSION. Mais vous allez placer ici l'ensemble des **librairies PHP** nécessaire au bon fonctionnement de votre projet.
+Le dossier `utils/` contient dans la structure de base une classe permettant de gérer la SESSION et une classe permettant de générer une image [Gravatar](https://www.gravatar.com/).
+
+Mais vous allez placer ici l'ensemble des **librairies PHP** nécessaire au bon fonctionnement de votre projet.
 
 Un morceau de code que vous avez trouvé sur StackOverflow ? Une librairie que vous avez conçue ? Pas de problème ! Rangez-les dans le dossier `utils/`
 
