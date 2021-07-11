@@ -12,7 +12,7 @@ Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure.zip). Il pou
 ::: tip Vous préférez une approche MVC ?
 La première version du code source fourni est très simple. En tant que développeur, on préfère une approche un peu plus complète que celle-ci. C'est pour ça que je vous propose plutôt d'utiliser la version MVC du projet.
 
-Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure-mvc.zip).
+Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure-mvc.zip). La [documentation est disponible ici](/tp/php/mvc/tp1.md)
 
 **Attention**, la suite du TP repose sur la première version du code source. Les nommages sont différents, mais globalement le fonctionnement reste le même. Si vous voulez jouer, tentez la version MVC.
 :::
@@ -246,7 +246,7 @@ Nous avons fait la page `home.php` ensemble. Actuellement, nous avons un fond «
 - Votre API doit retourner la class CSS à appliquer au `body`.
 - Vous pouvez appliquer la class CSS via : `document.body.classList.add("votreClass")`.
 
-Comme dans la premier exemple, vous devez utiliser le résultat de votre API, cette fois-ci le JSON n'est pas obligatoire, voilà une piste de réponse :
+Comme dans le premier exemple, vous devez utiliser le résultat de votre API, cette fois-ci le JSON n'est pas obligatoire, voilà une piste de réponse :
 
 ```javascript
 fetch("lurldevotreapi")
@@ -262,3 +262,28 @@ Voilà quelques exemples du résultat :
 ![Space](./res/theme/space.png)
 ![Random](./res/theme/random.png)
 ![Bretagne](./res/theme/bretagne.png)
+
+## L'étape bonus
+
+Je vous ai indiqué en introduction que le but de créer des API était de permettre de créer simplement plusieurs clients avec comme source de données la même information. Je vous propose donc de mettre ça en pratique ! Nous allons donc créer un autre client web qui consommera nos données. Voilà les éléments que vous devrez réaliser :
+
+- Le client Web devra être hébergé sur [Netlify](https://www.netlify.com).
+- Avoir un visuel différent de votre page (home.php) actuelle. (Vous pouvez vous inspirer de YouTube par exemple ou Twitch).
+- Avoir une information indiquant chargement pendant la récupération de la liste des vidéos.
+
+::: warning Un instant !
+Lors de votre développement, vous allez rencontrer un problème de Cross Origin. Le Cross Origin Resource Sharing (CORS) est une protection intégrée dans votre navigateur qui vous empêche depuis le domaine A d'appeler une ressource sur le domaine B. La raison ? Elle est simple empêcher le partage non désiré d'information entre deux sites.
+
+En tant que développeur (si si), vous pouvez contrôler comment fonctionne cette protection. Vous pouvez dans vos API décider qui vous appellera (quel domaine), de manière fine ou de manière complètement ouverte (`*`). Pour rendre votre code le plus permissif possible vous pouvez ajouter dans votre API PHP le code suivant (tout en haut) :
+
+```php
+header('Access-Control-Allow-Origin: *');
+```
+
+Vous pouvez évidemment être plus précis, en indiquant un domaine spécifique :
+
+```php
+header('Access-Control-Allow-Origin: https://www.example.com');
+```
+
+:::
