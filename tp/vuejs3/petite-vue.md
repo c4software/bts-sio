@@ -1,8 +1,10 @@
 # Petite Vue : La réactivitée simplifiée
 
-Comme nous l'avons vu en cours, VueJS est un framework permettant deux utilisations différentes. La première est celle conçue et pensée pour les SPA (Single Page Application), dans cette approche vous avez l'ensemble de votre code en JavaScript et celui-ci grâce à un router (ou pas) gère l'ensemble des pages et également leur génération.
+Comme nous l'avons vu en cours, VueJS est un framework permettant deux utilisations différentes. La première est celle conçue et pensée pour les SPA (Single Page Application), dans cette approche vous avez l'ensemble de votre code en JavaScript et celui-ci grâce à un routeur (ou pas) gère l'ensemble des pages et également la génération du code HTML affiché dans le navigateur.
 
-La seconde approche, celle que nous allons voir maintenant est pensée amélioration progressive. VueJS permet déjà ce genre de fonctionnement (avec VueJS 2, mais également VueJS 3). Cependant VueJS est une grosse librairie permettant de faire beaucoup de choses, le créateur de VueJS Evan You a annoncé la création d'une microlibrairie dérivée de VueJS nommée « Petite Vue ». Cette microlibrairie offre les mêmes fonctionnalité que VueJS, mais en ce limitant à un usage « en tant que librairie », avec comme objectif des s'intégrer dans une application **déjà écrite** ne reposant pas forcément sur une génération complètement côté client.
+La seconde approche, celle que nous allons voir maintenant est pensée amélioration progressive. VueJS permet déjà ce genre de fonctionnement (avec VueJS 2, mais également VueJS 3). Cependant VueJS est une grosse librairie permettant de faire beaucoup de choses, le créateur de VueJS Evan You a annoncé la création d'une microlibrairie dérivée de VueJS nommée « Petite Vue ». 
+
+Cette microlibrairie offre les mêmes fonctionnalité que VueJS, mais en ce limitant à un usage « en tant que librairie », avec comme objectif de s'intégrer dans une application **déjà écrite** ; donc avec une application ne reposant pas sur une génération complètement côté client.
 
 ::: details Sommaire
 [[toc]]
@@ -12,7 +14,7 @@ La seconde approche, celle que nous allons voir maintenant est pensée améliora
 
 Alors, avant d'aller plus loin, je vous préviens ; [Petite Vue](https://github.com/vuejs/petite-vue#comparison-with-standard-vue) c'est vraiment tout neuf. Nous en avons parlé précédemment le monde du JavaScript va vite, les librairies intéressantes arrivent rapidement. C'est dans cette optique que je vous présente Petite Vue, c'est récent, mais très intéressant.
 
-Les présentations faites, je vous propose directement de rentrer dans le vive du sujet.
+Les présentations faites, je vous propose d'entrer directement dans le vive du sujet.
 
 ## Ce que nous allons obtenir
 
@@ -21,11 +23,11 @@ Voilà le rendu du projet final :
 <Sample src="petitevue"/>
 
 <center>
-    <b>👋 C'est interactif. Alors là vous vous dite, non, mais ça va être dur… Mais non non, vous allez voir c'est ultra simple.</b>
+    <b>👋 C'est interactif. Alors là vous vous dites, non, mais ça va être dur… Mais non non, vous allez voir c'est ultra simple.</b>
 </center>
 
 ::: tip Vous allez voir c'est magique
-Comme VueJS, Petite Vue est une librairie plutôt magique. Là où nous avons vu qu'il faut tout créer à la main en JS pour rendre une page interactive. Avec Petite Vue, nous allons avoir accès à une syntaxe particulière (nommée template) ; celle-ci permet de rendre dynamique une page, sans écrire une seule ligne de JavaScript 🧙.
+Comme VueJS, Petite Vue est une librairie plutôt magique. Là où pour avoir une page interactive nous devions créer tout les éléments à la main. Avec Petite Vue, nous allons avoir accès à une syntaxe particulière (nommée template) ; celle-ci permet de rendre dynamique une page, sans écrire une seule ligne de JavaScript 🧙.
 :::
 
 ## Le code d'exemple
@@ -78,7 +80,7 @@ Voilà le code de base de notre application. Pour l'instant rien à part le tabl
 
 L'ajout de Petite Vue va se faire en deux temps :
 
-- Ajouter la libraire et lui dire de se « monter ».
+- Ajouter la libraire et lui dire de se « monter » / « s'initialiser ».
 - Déclarer les variables nécessaires au bon fonctionnement de notre application.
 
 Dans notre cas, nous avons besoin de deux variables :
@@ -100,11 +102,11 @@ Ce qui donnera :
 
 - Je vous laisse ajouter le code dans votre page.
 
-**À cet instant**, votre navigateur va exécuter le code **,mais** évidemment ça ne fera rien… À votre avis pourquoi ?
+**À cet instant**, votre navigateur va exécuter le code, **mais** évidemment ça ne fera rien… À votre avis pourquoi ?
 
 ## Déclarer le template
 
-Et oui, comme avec VueJS classique, pas de magie nous devons déclarer où sera notre template. Cette déclaration ce fait par l'ajouter de l'attribut `v-scope` sur l'élément parent qui **contiendra** votre code HTML dynamique. Dans notre cas :
+Et oui, comme avec VueJS classique, pas de magie nous devons déclarer où sera notre template. Cette déclaration se fait par l'ajout de l'attribut `v-scope` sur l'élément **parent qui contiendra** votre code HTML dynamique. Dans notre cas :
 
 ```html
 <div v-scope v-cloak>
@@ -157,21 +159,21 @@ Je vous donne un exemple :
 </div>
 ```
 
-Ici, les inputs deviennent réactif grâce à `v-model="phrase"` qui permet de **connecter** l'input et la variable phrase **en temps réel**.
+Ici, les inputs deviennent réactifs grâce à `v-model="phrase"` qui permet de **connecter** l'input et la variable phrase **en temps réel**.
 
 ::: tip Et c'est tout…
 Et voilà, vous avez recréé le code de BartJS avec seulement 5 lignes de JavaScript. Et bonus c'est « temps réel » sans se prendre la tête.
 
-J'ai détaillé plus que nécessaire… En réalité il était possible de faire la même chose sans même écrire de JavaScript. mais pour le point suivant il était intéressant d'écrire un peu de JS.
+J'ai détaillé plus que nécessaire… En réalité il était possible de faire la même chose sans même écrire de JavaScript, mais pour le point suivant il était intéressant d'écrire un peu de JS.
 :::
 
 ## Allez plus loin, l'Ajax version simple !
 
-Nous avons réalisé un exemple plutôt simple, en réalité, utilisé Petite Vue va être très intéressant quant il s'agit de faire de l'Ajax.
+Nous avons réalisé un exemple plutôt simple, en réalité, utilisé Petite Vue va être très intéressant quand il s'agit de faire de l'Ajax.
 
 **Pourquoi ?** Tout simplement, car ça va nous permettre de rendre dynamique la page sans créer des éléments à la volée.
 
-**Comment ?** Tout simplement en créer un tableau et en répétant autant de fois que nécessaire l'information. 
+**Comment ?** Tout simplement en créer un tableau et en répétant autant de fois que nécessaire l'information.
 
 **Un exemple ?** Oui je pense que c'est nécessaire…
 
@@ -180,7 +182,6 @@ Nous avons réalisé un exemple plutôt simple, en réalité, utilisé Petite Vu
 Nous avons donc une page qui va récupérer du contenu depuis une API (`https://jsonplaceholder.typicode.com/todos/`). Nous avons précédemment réalisé cet exemple. Mais vous allez voir qu'ici il n'y aura vraiment pas beaucoup de code.
 
 Je vous donne le code. Nous allons en parler :
-
 
 ```html
 <!DOCTYPE html>
@@ -240,12 +241,12 @@ Je vous donne le code. Nous allons en parler :
 Comment procéder pour analyser le code :
 
 - Est-ce que vous avez des éléments connus ?
-- Que comprenez-vous du code `script` ? 
+- Que comprenez-vous du code `script` ?
 - Comment sont récupérés les TODOS ?
 
 ::: tip Je vous laisse regarder
 
-Je vous laisser regarder et tester le code **,mais également** modifier le code.
+Je vous laisse regarder et tester le code, **mais également** modifier le code.
 
 Parlons-en dès que vous avez fait le tour 🤓.
 
