@@ -39,6 +39,10 @@ Cette base de développement intègre une structure **qu'il faut respecter** pou
 
 Vous pouvez télécharger un code de démonstration [à l'adresse suivante en cliquant ici](/demo/php/greta-tv/refactor-structure-mvc.zip)
 
+Voilà le rendu :
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/rr4EMZQJhLg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Structure
 
 Comme indiqué en introduction, la structuration d'un développement est aussi importante que le développement en
