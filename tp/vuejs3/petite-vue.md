@@ -167,6 +167,67 @@ Et voilà, vous avez recréé le code de BartJS avec seulement 5 lignes de JavaS
 J'ai détaillé plus que nécessaire… En réalité il était possible de faire la même chose sans même écrire de JavaScript, mais pour le point suivant il était intéressant d'écrire un peu de JS.
 :::
 
+### Vous voulez voir la version sans écrire de JS ?
+
+Ça me semble important de vous montrer la version « sans écrire » de JavaScript. La voici :
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BartJS − Version Petite Vue</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <style>
+        #tableau {
+            background-color: #1e5518;
+            color: white;
+            border: 5px solid #5e3600;
+            padding: 10px;
+            max-width: 900px;
+            margin: auto;
+            height: 400px;
+            overflow: auto;
+            font-family: cursive;
+            font-size: x-large;
+        }
+
+        [v-cloak] { display: none; }
+    </style>
+</head>
+
+<body v-scope="{phrase: 'Je ne copie pas le code de valentin', count: 10}" v-cloak>
+    <div>
+        <div class="form-group">
+            <label>Phrase</label>
+            <input class="form-control" type="text" v-model="phrase" />
+        </div>
+
+        <div class="form-group mt-2">
+            <label>Nombre de phrase : {{count}}</label>
+            <input min="5" max="100" class="form-control" type="range" v-model.number="count">
+        </div>
+    </div>
+    
+    <div id="tableau">
+        <div v-for="i in count" :key="i">{{phrase}}</div>
+    </div>
+</body>
+
+</html>
+```
+
+Aucune différence en terme de fonctionnement 👌.
+
+::: tip « Sans JavaScript »
+
+Évidemment, le code n'est pas sans JavaScript. **Vous** n'avez pas écrit de JavaScript, celui-ci a été écrit par quelqu'un d'autre dans la librairie.
+
+:::
+
 ## Allez plus loin, l'Ajax version simple !
 
 Nous avons réalisé un exemple plutôt simple, en réalité, utilisé Petite Vue va être très intéressant quand il s'agit de faire de l'Ajax.
