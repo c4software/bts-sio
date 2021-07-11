@@ -1,4 +1,4 @@
-# Petite Vue : La réactivitée simplifiée
+# Petite Vue : La réactivité simplifiée
 
 Comme nous l'avons vu en cours, VueJS est un framework permettant deux utilisations différentes. La première est celle conçue et pensée pour les SPA (Single Page Application), dans cette approche vous avez l'ensemble de votre code en JavaScript et celui-ci grâce à un routeur (ou pas) gère l'ensemble des pages et également la génération du code HTML affiché dans le navigateur.
 
