@@ -2,7 +2,7 @@
 
 Comme nous l'avons vu en cours, VueJS est un framework permettant deux utilisations différentes. La première est celle conçue et pensée pour les SPA (Single Page Application), dans cette approche vous avez l'ensemble de votre code en JavaScript et celui-ci grâce à un routeur (ou pas) gère l'ensemble des pages et également la génération du code HTML affiché dans le navigateur.
 
-La seconde approche, celle que nous allons voir maintenant est pensée amélioration progressive. VueJS permet déjà ce genre de fonctionnement (avec VueJS 2, mais également VueJS 3). Cependant VueJS est une grosse librairie permettant de faire beaucoup de choses, le créateur de VueJS Evan You a annoncé la création d'une microlibrairie dérivée de VueJS nommée « Petite Vue ». 
+La seconde approche, celle que nous allons voir maintenant est pensée amélioration progressive. VueJS permet déjà ce genre de fonctionnement (avec VueJS 2, mais également VueJS 3). Cependant VueJS est une grosse librairie permettant de faire beaucoup de choses, le créateur de VueJS Evan You a annoncé la création d'une microlibrairie dérivée de VueJS nommée « Petite Vue ».
 
 Cette microlibrairie offre les mêmes fonctionnalité que VueJS, mais en ce limitant à un usage « en tant que librairie », avec comme objectif de s'intégrer dans une application **déjà écrite** ; donc avec une application ne reposant pas sur une génération complètement côté client.
 
