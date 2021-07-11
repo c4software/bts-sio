@@ -237,7 +237,7 @@ Voilà la maquette :
 Nous avons fait la page `home.php` ensemble. Actuellement, nous avons un fond « brick » sur la page TV (`tv.php`) ; je vous propose de changer cette page ! Pour ça vous allez devoir procéder à différents ajustements :
 
 - Ajouter dans la structure de données la notion de thème. (un thème différent par vidéo)
-- Retourner dans l'API (`getVideo`), les informations nécessaires au bon affichage du thème.
+- Retourner dans **une nouvelle** API (`getVideoDetails`), les informations nécessaires au bon affichage du thème.
 - Utiliser le retour dans votre page.
 
 ::: details Quelques éléments en plus pour vous aider
