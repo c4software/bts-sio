@@ -16,7 +16,8 @@ class Route
         if (isset($_GET['path'])) {
             $target = $_GET['path'] == '' ? '/' : $_GET['path'];
         } else {
-            $target = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            $target = str_replace(dirname($_SERVER['SCRIPT_NAME']), "", $_SERVER['REQUEST_URI']);
+            $target = parse_url($target, PHP_URL_PATH);
         }
 
         return htmlspecialchars($target, ENT_QUOTES, 'UTF-8');
