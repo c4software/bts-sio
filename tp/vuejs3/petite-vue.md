@@ -180,7 +180,8 @@ J'ai détaillé plus que nécessaire… En réalité il était possible de faire
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BartJS − Version Petite Vue</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <script src="https://unpkg.com/petite-vue" defer init></script>
+
     <style>
         #tableau {
             background-color: #1e5518;
