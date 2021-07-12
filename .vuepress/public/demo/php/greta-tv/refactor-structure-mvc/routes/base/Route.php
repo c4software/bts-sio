@@ -16,7 +16,13 @@ class Route
         if (isset($_GET['path'])) {
             $target = $_GET['path'] == '' ? '/' : $_GET['path'];
         } else {
-            $target = str_replace(dirname($_SERVER['SCRIPT_NAME']), "", $_SERVER['REQUEST_URI']);
+            /* Gestion des sous dossiers comme bath path */
+            if(dirname($_SERVER['SCRIPT_NAME']) != "/") {
+                $target = str_replace(dirname($_SERVER['SCRIPT_NAME']), "", $_SERVER['REQUEST_URI']);
+            } else {
+                $target = $_SERVER["REQUEST_URI"];
+            }
+
             $target = parse_url($target, PHP_URL_PATH);
         }
 
