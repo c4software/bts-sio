@@ -229,6 +229,7 @@ Aucune différence en terme de fonctionnement 👌.
 
 :::
 
+
 ## Allez plus loin, l'Ajax version simple !
 
 Nous avons réalisé un exemple plutôt simple, en réalité, utilisé Petite Vue va être très intéressant quand il s'agit de faire de l'Ajax.
@@ -313,3 +314,17 @@ Je vous laisse regarder et tester le code, **mais également** modifier le code.
 Parlons-en dès que vous avez fait le tour 🤓.
 
 :::
+
+## Charger les données au chargement de votre page
+
+Actuellement l'utilisateur doit cliquer sur un bouton pour déclencher le chargement du contenu. Dans la vraie vie, il est souvent préférable de charger une première fois les données. Avec Petite-Vue, pour répondre à cette problématique nous allons utiliser la directive `@mounted` qui sera déclenché au chargement de notre code.
+
+Cette directive est a ajouter directement dans le HTML au même endroit que v-scope. Dans mon exemple ça donne :
+
+```html
+<!-- … Reste du code … -->
+    <div @mounted="fetchData()" v-scope v-cloak>
+<!-- … Reste du code … -->
+```
+
+Comme vous pouvez le constater, il suffit de spécifier dans le `@mounted` la méthode à appeler. 
