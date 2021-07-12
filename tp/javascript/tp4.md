@@ -65,6 +65,21 @@ Je vous laisse mettre en place le code suivant sur votre machine.
 - À quoi correspond le `then` ?
 - Seriez-vous capable de le faire seule ?
 
+::: tip setTimeout ?
+
+Le `setTimeout` n'est pas obligatoire. Il permet juste de créer un faux délai afin de visualiser le côté asynchrone du chargement de la page. La partie de l'Ajax ce résume donc à :
+
+```js
+fetch("./monContenuAsynchrone.php")
+.then((response) => response.text())
+.then(
+  (content) =>
+    (document.getElementById("contenuAsynchrone").innerHTML = content)
+);
+```
+
+:::
+
 ::: warning ATTENTION
 Vous vous souvenez des XSS ? Faites très attention avec cette façon de faire… Car nous avons ici un XSS puissance 10000. Vous insérez dans votre page du code provenant d'Internet. Et ça sans aucune validation.
 
