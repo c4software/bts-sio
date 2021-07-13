@@ -317,9 +317,11 @@ Parlons-en dès que vous avez fait le tour 🤓.
 
 ## Charger les données au chargement de votre page
 
-Actuellement l'utilisateur doit cliquer sur un bouton pour déclencher le chargement du contenu. Dans la vraie vie, il est souvent préférable de charger une première fois les données. Avec Petite-Vue, pour répondre à cette problématique nous allons utiliser la directive `@mounted` qui sera déclenché au chargement de notre code.
+Actuellement, l'utilisateur doit cliquer sur un bouton pour déclencher le chargement du contenu. Dans la vraie vie, il est souvent préférable de charger une première fois les données. Avec Petite-Vue, pour répondre à cette problématique nous allons utiliser la directive `@mounted` qui sera déclenché au chargement de notre code.
 
-Cette directive est a ajouter directement dans le HTML au même endroit que v-scope. Dans mon exemple ça donne :
+Cette directive est a ajouter directement dans le HTML au même endroit que v-scope. 
+
+Dans mon exemple ça donne :
 
 ```html
 <!-- … Reste du code … -->
@@ -327,4 +329,4 @@ Cette directive est a ajouter directement dans le HTML au même endroit que v-sc
 <!-- … Reste du code … -->
 ```
 
-Comme vous pouvez le constater, il suffit de spécifier dans le `@mounted` la méthode à appeler. 
+Comme vous pouvez le constater, il suffit de spécifier dans le `@mounted` la méthode a appeler. 
