@@ -2,6 +2,8 @@
 
 namespace routes\base;
 
+use utils\CliUtils;
+
 class Route
 {
     static $routes = array();
@@ -11,7 +13,7 @@ class Route
         Route::$routes[$path] = $callback;
     }
 
-    static function GetCurrentPath()
+    static private function GetCurrentPath()
     {
         if (isset($_GET['path'])) {
             $target = $_GET['path'] == '' ? '/' : $_GET['path'];
@@ -29,20 +31,35 @@ class Route
         return htmlspecialchars($target, ENT_QUOTES, 'UTF-8');
     }
 
-    static function LoadRequestedPath($with404 = true)
+    static private function GetArgs()
     {
-        // Path à charger
-        $target = Route::GetCurrentPath();
+        global $argv, $argc;
+        if($argc > 1) {
+            return $argv[1];
+        } else {
+            return "";
+        }
+    }
+
+    static function LoadRequestedPath()
+    {
+        $isBrowser = CliUtils::isBrowser();
+
+        // Gestion de la requête source à charger.
+        $target = $isBrowser ? Route::GetCurrentPath() : Route::GetArgs();
+
 
         // Est-ce que la page demandée est autorisée.
         if (array_key_exists($target, Route::$routes)) {
             // Appel dynamique de la méthode souhaitée (déclaré dans les routes)
             // Les paramètres de la méthode sont automatiquement remplis avec les valeurs en provenence du GET
             call_user_func_array(Route::$routes[$target], $_GET);
-        } else if ($with404) {
+        } else if ($isBrowser) {
             // Non affichage d'une 404.
             http_response_code(404);
             include('views/common/404.php');
+        } else {
+            print "Unknown command.\r\n";
         }
     }
 }
