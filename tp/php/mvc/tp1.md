@@ -429,7 +429,7 @@ Le dossier `migrations/` contient l'ensemble des fichiers nécessaire à l'insta
 Pour l'utiliser, vous devez passer via la ligne de commande. En effet pour des raisons de sécurité, impossible de lancer les migrations depuis votre navigateur.
 
 ```php
-php cli.php db:migrate
+php index.php db:migrate
 ```
 
 ## Ajouter une page dans un contrôleur existant
