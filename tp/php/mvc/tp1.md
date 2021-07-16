@@ -418,6 +418,20 @@ Mais vous allez placer ici l'ensemble des **librairies PHP** nécessaire au bon 
 
 Un morceau de code que vous avez trouvé sur StackOverflow ? Une librairie que vous avez conçue ? Pas de problème ! Rangez-les dans le dossier `utils/`
 
+### Le dossier `migrations/`
+
+Le dossier `migrations/` contient l'ensemble des fichiers nécessaire à l'installation de votre base de données. Le fichier `RunMigration.php` **(à lancer depuis la console)** charge et exécute l'ensemble des fichiers `*.sql`. Cette fonctionnalité vous permettra :
+
+- De garder une trace de votre schéma.
+- Lancer simplement l'installation de votre base de données.
+- Historiser vos « migrations ». En effet le script va charger **l'ensemble** des fichiers SQL.
+
+Pour l'utiliser, vous devez passer via la ligne de commande. En effet pour des raisons de sécurité, impossible de lancer les migrations depuis votre navigateur.
+
+```php
+php cli.php db:migrate
+```
+
 ## Ajouter une page dans un contrôleur existant
 
 Ajouter une nouvelle page dans un contrôleur se résumera à 3 opérations :
