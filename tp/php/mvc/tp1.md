@@ -503,6 +503,16 @@ class VotreTable extends SQL
 Vos modèles doivent être obligatoirement dans le dossier `models/`
 :::
 
+::: warning Version alternative
+
+La structure de code intègre également quelques commandes accessibles en ligne de commande. Pour créer un nouveau modèle rapidement vous pouvez également faire :
+
+```sh
+php index.php model:create NomDeVotreModel
+```
+
+:::
+
 ::: tip Vous n'etes pas limité
 Le modèle va centraliser l'ensemble de vos requêtes, même si de base nous avons quelques méthodes de base, vous pouvez évidemment en ajouter autant que vous souhaitez.
 
@@ -580,6 +590,16 @@ class VotreControleur extends Web
 Créer un contrôleur est aussi simple que ça. C'est tellement simple que je vous encourage à en créer autant que nécessaire.
 
 Dans mon exemple il y a qu'une seule méthode `methodeDExemple()`, évidemment vous pouvez en créer autant que vous le souhaitez **(il n'y a pas de limite)**.
+:::
+
+::: warning Version alternative
+
+La structure de code intègre également quelques commandes accessibles en ligne de commande. Pour créer un nouveau contrôleur rapidement vous pouvez également faire :
+
+```sh
+php index.php controller:create NomDeVotreControleur
+```
+
 :::
 
 ## Utiliser un contrôleur récemment créé
