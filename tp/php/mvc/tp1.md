@@ -138,6 +138,7 @@ Cet élément repose sur le principe de la `WhiteList` (Liste blanche), nous avo
 
 - Web (`Web.php`) : Page Web classique, affichée dans un navigateur Web (Chrome, Firefox, etc.)
 - Api (`Api.php`) : Échange entre un client et le serveur (Ajax, Application, etc.)
+- Cli (`Cli.php`) : Définission d'actions accessibles uniquement via la ligne de commande (initialisation de Model, contrôleur, initialisation de la base de données)
 
 Nous avons un fichier `Router.php` qui comme l'entry-point est générique il initialise seulement le code (je vous laisse
 le regarder par curiosité).
