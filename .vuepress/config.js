@@ -95,7 +95,7 @@ module.exports = {
           {
             title: "La POO",
             children: [
-              { title: "Les Interfaces", children: ["cours/les_interfaces", "tp/poo/interface"] }
+              { title: "Les Interfaces", children: ["cours/les_interfaces", "tp/poo/interface"] },
             ]
           },
         ]
@@ -118,7 +118,14 @@ module.exports = {
           { title: "Les bases", children: ["cours/introduction_php", "cours/introduction_sql_php", "tp/php/support.md", "tp/php/sql/support.md"] },
           { title: "Les TP basiques", children: ["tp/php/tp1.md", "tp/php/tp-param.md", "tp/php/tp1.1.md", "tp/php/tp1.2.md", "tp/php/tp2.md", "tp/php/tp3.md", "tp/php/tp4.md"] },
           { title: "PHP & SQL", children: ["tp/php/sql/tp5.md", "tp/php/sql/tp6.md"] },
-          { title: "MVC", children: ["tp/php/mvc/tp1.md"] },
+          {
+            title: "MVC",
+            children: [
+              "tp/php/mvc/tp1.md",
+              "tp/php/mvc/tp1.1.md",
+              { title: "iOT Dashboard", children: ["tp/php/mvc/dashboard/tp0.md", "tp/php/mvc/dashboard/tp1.md"] }
+            ]
+          },
           { title: "Laravel", children: ["cours/laravel", "/tp/laravel/introduction", "/tp/laravel/authentification", "/tp/laravel/application_todo_list", "/tp/laravel/laravel_api", "/tp/laravel/creation_api"] }
         ]
       },
