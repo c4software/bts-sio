@@ -30,9 +30,9 @@ _Voilà ce que nous allons réaliser :_
 
 La structure de code MVC reprend les bases des frameworks modernes types Laravel. C'est-à-dire un découpage « MVC », le découpage MVC signifie :
 
-- Modèle
-- Vue
-- Contrôleur
+- **M**odèle
+- **V**ue
+- **C**ontrôleur
 
 ![MVC](./res/mvc.png)
 
@@ -122,6 +122,46 @@ L'idée ici était de rappeler les bases, si vous souhaitez plus de détail sur 
 
 ## Récupérer le code source d'exemple
 
+Un peu comme pour un projet Laravel, nous n'allons pas partir de 0 ! Vous allez partir d'un code initial qui vous servira de base de travail.
+
+Le code en question est « vide », il s'agit uniquement d'une structure que **vous devez** respecter. Un peu comme en entreprise vous vous intégrer dans une équipe, je vous propose ici de respecter quelques règles qui sont des standards du développement.
+
+Comme indiqué en introduction, la structuration d'un développement est aussi importante que le développement en
+lui-même. C'est pour ça qu'avant même de développer il est important de prendre en main la structure des dossiers et
+fichiers proposés dans le code présenté en exemple.
+
+La structure de base en termes de dossier ressemble à :
+
+![Structure des dossiers](./res/structure_dossiers.png)
+
+::: tip Compliqué ?
+Pas d'inquiétude, pas de stress ! nous allons voir ensemble comment prendre en main le code.
+:::
+
+### Globalement
+
+Le code présent utilise différents aspects du développement objet :
+
+- Des objets permettant d'encapsuler / organiser la logique autour de représentation.
+- De l'héritage afin d'organiser le code hiérarchiquement.
+- Des interfaces permettant de définir un comportement.
+
+Les éléments de `base` sont toujours dans un dossier nommé `base`. Vous retrouverez ce dossier pour les contrôleurs, les routes, les modèles.
+
+### La configuration
+
+Avant d'aller plus loin, intéressons-nous à la configuration. Dans un projet, il est évident qu'il ne faut pas mettre la configuration n'importe où. Vous l'avez vécu en entreprise, vous avez peut-être eu à votre disposition plusieurs serveurs / machines / ordinateurs.
+
+Votre code va fonctionner de manière identique entre chaque environnement, par contre ce qui va certainement changer c'est l'accès à la base de données. Cet accès, est dépendant d'une configuration (Utilisateur, Mot de passe, Serveur …) dans une structure MVC on essai de ne pas mettre cette configuration n'importe où !
+
+Dans l'organisation que je vous propose, cette configuration est centralisée dans le fichier `configs.php` à la racine du code source.
+
+::: tip La configuration c'est bien !
+C'est peut-être un détail pour vous… Mais pour moi ça veut dire beaucoup ! Actuellement vous avez un serveur, mais demain peut-être 20… Et pour votre projet final, vous aurez à déployer rapidement votre application sur un autre serveur que celui sur lequel vous avez développé.
+
+Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur, mot de passe de BDD, etc.) dans le fichier `configs.php`. Dans l'architecture que je vous propose vous y trouverez le minimum nécessaire au bon fonctionnement d'une application.
+:::
+
 ## Ma première page « La Home »
 
 ### Créer le contrôleur
@@ -132,7 +172,7 @@ L'idée ici était de rappeler les bases, si vous souhaitez plus de détail sur 
 
 ### Créer le modèle
 
-### Initialisé la base de données
+### Initialiser la base de données
 
 ### Créer le contrôleur
 
