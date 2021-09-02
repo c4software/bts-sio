@@ -270,7 +270,11 @@ Route::Add('/about', [$main, 'about']);
 - **Évidemment** c'est à ajouter après la route existante.
 - Le premier paramètre correspond au « Chemin / lien d'accès », le second étant la méthode à appeler dans le bon contrôleur.
 
+👋 Je vous laisse tester l'accès à votre page
+
 ## Place au projet « La TODO list »
+
+Maintenant que nous avons pris en main le code existant, je vous propose de réaliser une plus grosses modification, l'ajout d'une nouvelle fonctionnalitée « La TodoList », pour réaliser l'ensemble du code, je vais bien évidemment vous guider.
 
 ### Créer le contrôleur
 
