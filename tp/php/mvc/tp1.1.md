@@ -162,13 +162,117 @@ C'est peut-être un détail pour vous… Mais pour moi ça veut dire beaucoup ! 
 Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur, mot de passe de BDD, etc.) dans le fichier `configs.php`. Dans l'architecture que je vous propose vous y trouverez le minimum nécessaire au bon fonctionnement d'une application.
 :::
 
-## Ma première page « La Home »
+### Télécharger le code source
 
-### Créer le contrôleur
+Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/1.0.zip)
+
+::: tip C'est un projet vide
+Même si celui-ci contient à première vue « beaucoup de fichiers », le projet vous avez téléchargé est bien un projet vide.
+:::
+
+## Faire fonctionner le code
+
+La première étape est de faire fonctionner le code sur votre machine. Je vous laisse mettre en place le code fourni dans votre dossier `htdocs` ou `www` en fonction de l'outil que vous utilisez.
+
+**Attention au fichiers cachés**, dans l'archive il y a un fichier .htaccess ne l'oubliez pas !
+
+::: tip .htaccess ?
+Vous avez déjà entendu parlé de ce fichier ? C'est un fichier important, il va nous permettre de définir / redéfinir le comportement de votre serveur Web pour par exemple activer l'`URL REWRITING` (réécriture d'URL).
+
+La réécriture d'url va nous permettre d'avoir de beaux liens exemple `index.php?page=toto` deviendra seulement `toto.html`. Vous voulez en savoir plus ? Je suis là 👋, je vais vous donner un complément d'information.
+:::
+
+|                                                                               |
+| :---------------------------------------------------------------------------: |
+|                  ![Exemple qui fonctionne](./res/sample.png)                  |
+| Si tout fonctionne correctement, vous devriez avoir 👆 (superbe n'est-ce pas) |
+
+## Modifier la page « Home »
+
+Le meilleur moyen pour prendre en main un projet c'est de le modifier, je vous propose donc une première modification très simple :
+
+- Modifier la page d'accueil.
+
+Je vous propose de mettre en place sur la page d'accueil une photo / image (de votre choix) centrée via de la CSS.
+
+::: tip C'est à vous
+
+La bonne démarche à mon sens est là suivante :
+
+- Utiliser un IDE pertinent (exemple PHPStorm ou VSCode).
+- Repensé à l'introduction et la notion de MVC. Nous allons effectivement toucher le `Vue` (elle même appelé par le contrôleur), ça veut dire que vous allez trouver votre fichier dans le dossier `views`.
+- Pour trouver le bon fichier, je vous laisse un peu investiguer, mais sachez que regarder dans le contrôleur semble être une bonne idée…
+
+👋 Je suis là pour ceux qui sont perdus 🤕
+
+:::
+
+## Créer la page « About »
+
+Maintenant que vous avez réalisé votre modification, je vous propose de regarder « Comment ajouter une nouvelle page dans cette superbe architecture (que je trouve déjà géniale) ».
+
+J'imagine que pour l'instant vous avez peur :
+
+- Mais comment faire pour ajouter une page?
+- J'ai bien du HTML dans `views` mais comment je l'appelle?
+
+Et bien la réponse à vos questions est
+
+- Une **nouvelle** méthode dans le bon contrôleur.
+- Un fichier `about.php` dans `views`.
+- Une correspondance entre « Votre méthode » et une route dans le `routes/Web.php`.
+
+::: tip Nous l'avons vu ensemble
+
+Le routeur est un « composant » très important du web moderne. Il va nous permettre de piloter les ressources accessibles à notre client en les déclarant dans un fichier.
+
+- À votre avis, pourquoi est-ce important de travailler avec une `WHITELIST` plutôt qu'une `BLACKLIST` dans ce genre de situation ?
+
+:::
+
+Vu que c'est la première fois, nous allons le faire ensemble… N'hésitez pas à poser vos questions !
+
+### Créer la méthode
+
+Nous allons dans un premier temps créer une méthode dans le contrôleur `SampleWeb.php`, pour le contenu pas grand-chose pour l'instant. Vous pouvez vous inspirer du contenu de la méthode `home()`.
+
+```php
+function about()
+{
+    $this->header(); // Va afficher le header de la page (mais comment ? Avez-vous regardé ?)
+    include("views/global/about.php");
+    $this->footer(); // Va afficher le footer de la page (mais comment ? Avez-vous regardé ?)
+}
+```
+
+Pour l'instant aucun changement, si vous utilisez PHPStorm celui-ci va vous proposer de créer le fichier `about.php` directement en cliquant sur « la petite lampe jaune ».
+
+![Créer le fichier avec PHPStorm](./res/create_file_phpstorm.png)
 
 ### Créer la vue / page
 
+Si ce n'est pas déjà fait, créé le fichier `views/global/about.php`. Pour le contenu, je vous laisse libre. Je vous rappelle juste que nous sommes entrain de créer une page « À propos ».
+
+::: tip Rappel
+ici nous n'écrivons que le contenu, l'entête et le pied de page sont « automatiquement » ajoutés grâce au code présent dans la méthode home de votre contrôleur.
+:::
+
+### Créer la route
+
+Voilà nous avons maintenant l'ensemble du code, mais celui-ci n'est pas encore accessible. Pour le rendre accessible, vous devez le déclarer dans le routeur.
+
+Ici nous sommes entrain de faire une page `Web`, vous devez donc ajouter dans le routeur `Web.php` l'accès à votre page via l'ajout de la ligne suivante :
+
+```php
+Route::Add('/about', [$main, 'about']);
+```
+
+- **Évidemment** c'est à ajouter après la route existante.
+- Le premier paramètre correspond au « Chemin / lien d'accès », le second étant la méthode à appeler dans le bon contrôleur.
+
 ## Place au projet « La TODO list »
+
+### Créer le contrôleur
 
 ### Créer le modèle
 

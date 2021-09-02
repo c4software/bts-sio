@@ -1,8 +1,10 @@
 <?php
 
-namespace routes;
+namespace routes\base;
 
-use routes\base\Route;
+use routes\Api;
+use routes\Cli;
+use routes\Web;
 use utils\CliUtils;
 
 class Router extends Route

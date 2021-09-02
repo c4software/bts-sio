@@ -1,6 +1,6 @@
 <?php
 
-use routes\Router;
+use routes\base\Router;
 use utils\SessionHelpers;
 
 include("autoload.php");
