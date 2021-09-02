@@ -276,6 +276,22 @@ Route::Add('/about', [$main, 'about']);
 
 Maintenant que nous avons pris en main le code existant, je vous propose de réaliser une plus grosses modification, l'ajout d'une nouvelle fonctionnalitée « La TodoList », pour réaliser l'ensemble du code, je vais bien évidemment vous guider.
 
+Nous allons donc créer une TODO List. Une TODO List c'est toujours le même genre d'action :
+
+- Une Liste.
+- Un ajout dans la liste.
+- Un marquer comme terminer « une todo ».
+- Un supprimer qui supprime uniquement les taches « avec un status terminer ».
+
+Nous allons donc avoir 4 fonctionnalités dans notre applications. Chaque fonctionnalité je le rappel sera une méthode de notre contrôleur :
+
+|    Route     | Méthode dans le contrôleur |
+| :----------: | -------------------------: |
+|   `/list`    |                  `liste()` |
+|  `/ajouter`  |          `ajouter($texte)` |
+| `/terminer`  |            `terminer($id)` |
+| `/supprimer` |           `supprimer($id)` |
+
 ### Créer le contrôleur
 
 ### Créer le modèle
