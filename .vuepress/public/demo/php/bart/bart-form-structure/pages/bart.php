@@ -1,7 +1,10 @@
+<?php
+$count = 0;
+?>
 <div class="tableau">
     <?php
-    while ($count < $lignes) {
-        echo $phrase . '<br />';
+    while ($count < $_POST['count']) {
+        echo $_POST['phrase'] . '<br />';
         $count++;
     }
     ?>

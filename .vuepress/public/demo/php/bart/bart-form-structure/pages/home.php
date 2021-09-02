@@ -1,5 +1,5 @@
 <div class="card">
-    <form action="bart.php" method="post">
+    <form action="index.php?page=bart" method="post">
         <div class="form-group">
             <label for="count">Nombre de ligne :</label>
             <select name="count" class="form-control">
@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <label for="sentence">Phrase à écrire : </label>
-            <input type="text" class="form-control" name="sentence" value="Je ne copie pas le code de valentin">
+            <input type="text" class="form-control" name="phrase" value="Je ne copie pas le code de valentin">
         </div>
 
         <input type="submit" value="Générer la punition" class="btn btn-danger ma-auto">
