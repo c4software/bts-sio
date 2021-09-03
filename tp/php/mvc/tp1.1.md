@@ -292,6 +292,16 @@ Nous allons donc avoir 4 fonctionnalités dans notre applications. Chaque foncti
 | `/terminer`  |            `terminer($id)` |
 | `/supprimer` |           `supprimer($id)` |
 
+L'étape de définition des différentes actions est **primordiale**, ça va nous permettre de créer notre objet de manière efficace, l'autre bonne façon de représenter notre objet est via une modélisation UML.
+
+![Modélisation UML](./res/todoControler.png)
+
+::: tip Vous vous intégrez dans un framework
+Parlons un peu de la modélisation UML que je vous propose, comme vous pouvez le constater nous avons ici la définition de la class avec les différentes méthodes définies dans le tableau.
+
+Nous avons également une classe en plus ; cette classe est « la base » d'un contrôleur, elle définit les méthodes de bases communes à l'ensemble des contrôleurs du framework. Cette classe ne sera **jamais** instanciée directement, la flèche « extends » défini la notion d'héritage.
+:::
+
 ### Créer le contrôleur
 
 ### Créer le modèle
