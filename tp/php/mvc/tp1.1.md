@@ -65,7 +65,8 @@ Ce qu'il faut retenir c'est :
 
 - Autant d'objets que de tables.
 - Des méthodes spécifiques aux actions à faire dans la table.
-  :::
+
+:::
 
 ::: tip CRUD
 Ce genre d'objet s'appelle un CRUD (Create, Update, Delete). C'est une structure que nous retrouverons très souvent. Vous allez voir que c'est tellement courant qu'en général ils sont écrits automatiquement par le Framework.
@@ -77,7 +78,7 @@ Ce genre d'objet s'appelle un CRUD (Create, Update, Delete). C'est une structure
 
 La vue vous connaissez! Ici rien de nouveau. Le `V` de MVC c'est juste la représentation graphique de ce que vous souhaitez afficher (en HTML + CSS + JavaScript).
 
-Cependant par rapport à vos premiers développements nous allons découper au maximum le code HTML en différent fichier pour éviter le code dupliqué en utilisant une architecture qui ressemble à :
+Cependant par rapport à vos premiers développements nous allons découper au maximum le code HTML en différents fichiers ; Objectif éviter le code dupliqué en utilisant une organisation qui ressemblera à :
 
 ![Découpage](./res/parties.png)
 
