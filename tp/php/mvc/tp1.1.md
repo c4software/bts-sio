@@ -67,8 +67,8 @@ Ce qu'il faut retenir c'est :
 - Des méthodes spécifiques aux actions à faire dans la table.
   :::
 
-::: tip Crud
-Ce genre d'objet s'appelle un Crud (Create, Update, Delete). C'est une structure que nous retrouverons très souvent. Vous allez voir que c'est tellement courant qu'en général ils sont écrits automatiquement par le Framework.
+::: tip CRUD
+Ce genre d'objet s'appelle un CRUD (Create, Update, Delete). C'est une structure que nous retrouverons très souvent. Vous allez voir que c'est tellement courant qu'en général ils sont écrits automatiquement par le Framework.
 
 <iframe src="https://giphy.com/embed/11ISwbgCxEzMyY" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 :::
@@ -299,19 +299,172 @@ L'étape de définition des différentes actions est **primordiale**, ça va nou
 ::: tip Vous vous intégrez dans un framework
 Parlons un peu de la modélisation UML que je vous propose, comme vous pouvez le constater nous avons ici la définition de la class avec les différentes méthodes définies dans le tableau.
 
-Nous avons également une classe en plus ; cette classe est « la base » d'un contrôleur, elle définit les méthodes de bases communes à l'ensemble des contrôleurs du framework. Cette classe ne sera **jamais** instanciée directement, la flèche « extends » défini la notion d'héritage.
+Nous avons également une classe en plus ; cette classe est « la base » d'un contrôleur, elle définit les méthodes de bases communes à l'ensemble des contrôleurs du framework.
+
+🗣 Cette classe ne sera **jamais** instanciée directement, la flèche « extends » défini la notion d'héritage.
+:::
+
+### Modélisation de la base de données
+
+Avant de continuer, je vous propose de définir le format de la base de données. En effet, notre modèle reposera sur celle-ci il faut donc réfléchir à celle-ci. L'idée ici est de faire du code, j'ai donc réfléchi (un peu) à votre place. Le minimum pour que nous puissions réaliser notre « TodoList » est la création de la table suivante :
+
+![Modélisation table TODO](./res/todos.png)
+
+PS: Oui, oui je sais c'est impressionnant !
+
+### Créer le modèle
+
+Le modèle va être le moyen d'accéder à nos données, c'est ici que nous allons écrire nos requêtes SQL (**et uniquement ici**). Utiliser un framework signifie en général gagner du temps ! Pour l'instant, j'imagine que vous n'en avez pas l'impression, mais je vous assure quand vous maitrisez un framework et/ou une architecture vous gagnerez un temps fou. Ce gain de temps vient de deux éléments :
+
+- L'architecture des dossiers et du code propre et bien organisé.
+- Des outils pour créer les différents éléments.
+- Du code partagé, utilisé sans copier / collé.
+
+Le framework que je vous propose entre directement dans cette catégorie « Gagner du temps ». Pour créer notre modèle au lieu de copier / coller du code vous avez de base (intégrer dans le code) un outil en ligne de commande qui s'occupe de tout (si si). Pour créer votre modèle pour accéder au TodoList il vous suffit de :
+
+```sh
+php index.php model:create TodoModel
+```
+
+**Et c'est tout !** votre modèle pour accéder aux données est prêt 🤝. Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
+
+- Via les méthodes « de base » (comme vu en cours via l'héritage présent dans la classe).
+- Via **_vos méthodes_** directement écrite par vous.
+
+::: tip Pas de magie (jamais)
+Je vous invite à regarder comment fonctionne cette partie dans le code. Ce n’est pas bien compliqué. D'ailleurs, regardons ensemble !
+:::
+
+::: warning Vous avez du mal à voir ce que nous avons créé non ?
+
+Et oui, les commandes magiques c'est bien … mais voilà ce que nous avons créé :
+
+![TodoModel](./res/umlTodoModel.jpg)
+
+- SQL est « une classe de base », elle est intégrée dans le framework.
+- Votre classe `TodoModel` hérite de la classe SQL. (Vous pouvez m'en dire plus ?)
+- Votre classe `TodoModel` a été créée dans le dossier `models`. (Je vous laisse aller regarder)
+- Pourquoi notre classe ne possède-t-elle qu'une seule méthode ?
+
+:::
+
+### Modifier le constructeur
+
+Dans le constructeur de la classe, je vous laisse modifier les paramètres lors de la création du parent ; afin de spécifier le bon tableName et primmaryKey.
+
+Je vous redonne le schéma de la base de données :
+
+![Modélisation table TODO](./res/todos.png)
+
+### Créer la méthode « marquerCommeTermine() »
+
+Dans le diagramme UML j'indique la présence d'une méthode `marquerCommeTermine()`, si vous avez ouvert la classe créée vous allez voir que cette méthode n'est pas présente. Nous allons donc devoir la créer…
+
+- Pourquoi la méthode n'est pas présente ?
+- Pourquoi ne pas utiliser les méthodes fournies par le parent ?
+
+Cette méthode doit marquer comme terminé un enregistrement en base de données, nous allons donc avoir besoin
+
+- D'un `id` en paramètre de la méthode.
+- D'une requête d'update.
+- D'un connecteur PDO (pour parler à la base de données)
+
+Vu que c'est la première fois je vous donne du code, mais attention à bien comprendre ce que vous copié/collé :
+
+```php
+function marquerCommeTermine($id){
+    $stmt = $this->pdo->prepare("UPDATE todos SET termine = 1 WHERE id = ?");
+    $stmt->execute([$id]);
+}
+```
+
+::: details Besoin d'aide ?
+Votre classe doit maintenant ressembler à
+
+```php
+<?php
+namespace models;
+
+use models\base\SQL;
+
+class TodoModel extends SQL
+{
+    public function __construct()
+    {
+        parent::__construct('todos', 'id');
+    }
+
+    function marquerCommeTermine($id){
+        $stmt = $this->pdo->prepare("UPDATE todos SET termine = 1 WHERE id = ?");
+        $stmt->execute([$id]);
+    }
+}
+```
+
+:::
+
+Questions :
+
+- À votre avis est-ce la seule façon de faire ?
+- Avons-nous toutes les méthodes nécessaires pour réaliser notre application ?
+
+### Initialiser la base de données
+
+Votre projet avance petit à petit, nous avons déjà créé :
+
+- La base du projet (structure).
+- Le modèle pour accéder aux données.
+- Les méthodes permettant de modifier les données.
+
+C'est déjà pas mal, mais il manque maintenant la base de données en elle-même. Dans un framework cette partie-là est également automatisable (vous verrez avec Laravel c'est encore plus puissant). Dans un framework appliqué les modifications dans la base de données s'appelle réaliser une « migration », avec notre « mini framework » pour créer la base de données il suffit de créer **un fichier** dans le dossier `migrations` :
+
+- Créer le fichier `init.sql` dans le dossier Migration, y mettre le contenu suivant :
+
+```sql
+# TODO
+```
+
+- Installer la migration (appliquer les modifications sur votre base de données) via la commande :
+
+```sh
+php index.php db:migrate
+```
+
+Si tout vas bien vous devriez avoir le résultat suivant:
+
+```sh
+=> Start migration of « migrations/init.sql »
+=> End migration of « migrations/init.sql »
+```
+
+::: tip Point d'avancement
+
+- Ça ne fonctionne pas ? Avez-vous vérifié si vous avez configuré votre projet (`configs.php`).
+- Vérifier si la base a bien été créée dans votre PhpMyAdmin / DataGrip 👌
+- Mais c'est génial !
+
+<iframe src="https://giphy.com/embed/SACoDGYTvVNhZYNb5a" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
 :::
 
 ### Créer le contrôleur
 
-### Créer le modèle
+Notre base est prête… Et si nous écrivions vraiment le code ? Comme pour créer le modèle, le framework vous fait gagner du temps ! Ici aussi pas besoin de copier / coller du code, une simple ligne de commande va vous initialiser un Contrôleur « vide » :
 
-### Initialiser la base de données
+```sh
+php index.php controller:create TodoWeb
+```
 
-### Créer le contrôleur
+Cette commande va initialiser un contrôleur de type Web. Celui-ci est pour l'instant vide de méthode :
 
-## La Liste
+![Modélisation UML](./res/todoControler.png)
 
-## L'ajout
+#### La méthode `liste()`
 
-## La suppression
+#### Le template de la page liste
+
+#### La méthode `ajouter()`
+
+#### La méthode `terminer()`
+
+#### La méthode `supprimer()`
