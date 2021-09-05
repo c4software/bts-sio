@@ -534,7 +534,7 @@ Dans le fichier `routes/Web.php`, ajouter le lignes :
 - Où les ajouter ?
 - À quoi correspondent-t-elles ?
 
-#### Ajouter le constructeur `__construct()`
+### Ajouter le constructeur `__construct()`
 
 Je vous laisse chercher ! Sachez que votre IDE vous aide, n'hésitez pas à me demander.
 
@@ -561,7 +561,7 @@ class TodoWeb extends Web
 
 :::
 
-#### La méthode `liste()`
+### La méthode `liste()`
 
 La première méthode que nous allons créer est celle de la liste. Elle se nommera `liste()`, cette méthode sera automatiquement appelée via le `routeur` à **chaque visite d'un utilisateur**. L'objectif de cette méthode est :
 
@@ -607,7 +607,7 @@ Et c'est tout ! La puissance d'un Frawerork c'est aussi ça, écrire finalement 
 - Affiche la page.
 - Affiche le pied de page.
 
-#### Le template de la page liste
+### Le template de la page liste
 
 Votre IDE doit actuellement être moyen content… Effectivement, nous avons fait un `include` de `"views/todos/liste.php"` pourtant ce fichier n'existe pas.
 
@@ -667,7 +667,7 @@ Si vous accédez à votre page `todo/liste` vous devriez avoir le contenu suivan
 
 :::
 
-#### La méthode `ajouter($texte = '')`
+### La méthode `ajouter($texte = '')`
 
 Cette méthode sera automatiquement appelé quand vous aller appuyer sur la touche <key>Entrer</key> de votre clavier dans le champs de saisie sur la page `Liste`. L'objectif de cette méthode est de traiter l'action « J'ajoute un nouvelle enregistrement dans la base Todo ».
 
@@ -696,7 +696,7 @@ Dans mon cas voilà le résultat :
 
 ![Résultat Liste vide](./res/todo_resultat_ajouter.png)
 
-#### La méthode `terminer($id = '')`
+### La méthode `terminer($id = '')`
 
 Vous l'avez compris… Je vous donne de moins en moins de code ! La méthode `terminer` sera très proche de `ajouter` sauf que celle-ci va prendre en paramètre l'id de l'élément à marquer comme terminé :
 
@@ -721,7 +721,7 @@ _À faire_ :
 
 ![Résultat Liste vide](./res/todo_resultat_terminer.png)
 
-#### La méthode `supprimer($id = '')`
+### La méthode `supprimer($id = '')`
 
 En utilisant le code précédemment fourni, écrire :
 
