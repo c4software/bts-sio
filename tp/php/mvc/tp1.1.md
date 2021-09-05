@@ -731,6 +731,13 @@ En utilisant le code précédemment fourni, écrire :
 
 C'est à vous.
 
+### Évolution 0
+
+Ajouter dans la page d'accueil du site un lien permettant d'accéder à votre TodoList. Quelques consignes à respecter :
+
+- Le lien doit être centré dans la page.
+- Le lien doit avoir l'**apparence** d'un bouton. [Voir la documentation](https://getbootstrap.com/docs/5.0/components/buttons/)
+
 ### Évolution 1
 
 Je souhaite finalement masquer de l'affichage par défaut l'ensemble des enregistrements de la table `TODO` ayant `termine = 1`.
@@ -739,3 +746,12 @@ Je vous laisse modifier :
 
 - Le code du modèle afin d'y ajouter une méthode.
 - Appeler cette méthode depuis votre page à la place du `getAll()`.
+
+### Évolution 2
+
+La partie TODOList ne doit pas être accessible à tous. En utilisant les techniques vu avec la station, et en réfléchissant sur les impacts en termes de sécurité (protection dans le routeur par exemple). Limiter l'accès de la partie TODOList seulement aux personnes avec un compte sur la plateforme.
+
+- Quels impacts sont à prévoir dans le routeur ?
+- Est-ce nécessaire de créer un nouveau modèle ?
+- Est-ce nécessaire de créer un nouveau contrôleur ?
+- Combien de vue sera(ont) nécessaire(s) en plus de celles existantes ?
