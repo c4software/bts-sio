@@ -13,7 +13,7 @@ Comme précisé dans le cours et dans nos échanges, la structure « MVC » est 
 ::: tip C'est important
 Le point d'introduction est important. Savoir justifier d'une solution est tout aussi important que la solution en elle-même. Si vous décider décider d'utiliser ma structure dans d'autres développements vous devez le faire avec conviction et pas juste « parceque ».
 
-Ceci etant dit, nous pouvons continuer 🚀 !
+Ceci étant dit, nous pouvons continuer 🚀 !
 :::
 
 ## Le projet
@@ -125,7 +125,7 @@ L'idée ici était de rappeler les bases, si vous souhaitez plus de détail sur 
 
 Un peu comme pour un projet Laravel, nous n'allons pas partir de 0 ! Vous allez partir d'un code initial qui vous servira de base de travail.
 
-Le code en question est « vide », il s'agit uniquement d'une structure que **vous devez** respecter. Un peu comme en entreprise vous vous intégrer dans une équipe, je vous propose ici de respecter quelques règles qui sont des standards du développement.
+Le code en question est « vide », il s'agit uniquement d'une structure que **vous devez** respecter. Un peu comme en entreprise vous vous intégrez dans une équipe, je vous propose ici de respecter quelques règles qui sont des standards du développement.
 
 Comme indiqué en introduction, la structuration d'un développement est aussi importante que le développement en
 lui-même. C'est pour ça qu'avant même de développer il est important de prendre en main la structure des dossiers et
@@ -178,7 +178,7 @@ La première étape est de faire fonctionner le code sur votre machine. Je vous 
 **Attention au fichiers cachés**, dans l'archive il y a un fichier .htaccess ne l'oubliez pas !
 
 ::: tip .htaccess ?
-Vous avez déjà entendu parlé de ce fichier ? C'est un fichier important, il va nous permettre de définir / redéfinir le comportement de votre serveur Web pour par exemple activer l'`URL REWRITING` (réécriture d'URL).
+Vous avez déjà entendu parler de ce fichier ? C'est un fichier important, il va nous permettre de définir / redéfinir le comportement de votre serveur Web pour par exemple activer l'`URL REWRITING` (réécriture d'URL).
 
 La réécriture d'url va nous permettre d'avoir de beaux liens exemple `index.php?page=toto` deviendra seulement `toto.html`. Vous voulez en savoir plus ? Je suis là 👋, je vais vous donner un complément d'information.
 :::
@@ -275,16 +275,16 @@ Route::Add('/about', [$main, 'about']);
 
 ## Place au projet « La TODO list »
 
-Maintenant que nous avons pris en main le code existant, je vous propose de réaliser une plus grosses modification, l'ajout d'une nouvelle fonctionnalitée « La TodoList », pour réaliser l'ensemble du code, je vais bien évidemment vous guider.
+Maintenant que nous avons pris en main le code existant, je vous propose de réaliser une plus grosse modification, l'ajout d'une nouvelle fonctionnalité « La TodoList », pour réaliser l'ensemble du code, je vais bien évidemment vous guider.
 
 Nous allons donc créer une TODO List. Une TODO List c'est toujours le même genre d'action :
 
 - Une Liste.
 - Un ajout dans la liste.
-- Un marquer comme terminer « une todo ».
-- Un supprimer qui supprime uniquement les taches « avec un status terminer ».
+- Un marqué comme terminer « une todo ».
+- Un supprimé qui supprime uniquement les taches « avec comme statut, termine = 1 ».
 
-Nous allons donc avoir 4 fonctionnalités dans notre applications. Chaque fonctionnalité je le rappel sera une méthode de notre contrôleur :
+Nous allons donc avoir 4 fonctionnalités dans notre application. Chaque fonctionnalité je le rappelle sera une méthode de notre contrôleur :
 
 |    Route     | Méthode dans le contrôleur |
 | :----------: | -------------------------: |
@@ -304,6 +304,13 @@ Nous avons également une classe en plus ; cette classe est « la base » d'un c
 
 🗣 Cette classe ne sera **jamais** instanciée directement, la flèche « extends » défini la notion d'héritage.
 :::
+
+### Bootstrap
+
+Nous allons utiliser Bootstrap pour coder l'interface, n'hésitez donc pas à consulter la documentation :
+
+- [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+- [Bootstrap Icon](https://icons.getbootstrap.com/)
 
 ### Modélisation de la base de données
 
@@ -395,6 +402,13 @@ class TodoModel extends SQL
         parent::__construct('todos', 'id');
     }
 
+    function todoNonTermine()
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM todos WHERE termine = 1;");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     function marquerCommeTermine($id){
         $stmt = $this->pdo->prepare("UPDATE todos SET termine = 1 WHERE id = ?");
         $stmt->execute([$id]);
@@ -417,12 +431,46 @@ Votre projet avance petit à petit, nous avons déjà créé :
 - Le modèle pour accéder aux données.
 - Les méthodes permettant de modifier les données.
 
-C'est déjà pas mal, mais il manque maintenant la base de données en elle-même. Dans un framework cette partie-là est également automatisable (vous verrez avec Laravel c'est encore plus puissant). Dans un framework appliqué les modifications dans la base de données s'appelle réaliser une « migration », avec notre « mini framework » pour créer la base de données il suffit de créer **un fichier** dans le dossier `migrations` :
+C'est déjà pas mal, mais il manque maintenant la base de données en elle-même. Dans un framework cette partie-là est également automatisable (vous verrez avec Laravel c'est encore plus puissant). Dans un framework appliqué les modifications dans la base de données s'appellent réaliser une « migration », avec notre « mini framework » pour créer la base de données il suffit de créer **un fichier** dans le dossier `migrations` :
 
 - Créer le fichier `init.sql` dans le dossier Migration, y mettre le contenu suivant :
 
 ```sql
-# TODO
+--
+-- Structure de la table `todos`
+--
+
+CREATE TABLE `todos` (
+  `id` int(11) NOT NULL,
+  `texte` varchar(200) NOT NULL,
+  `termine` tinyint(1) NOT NULL DEFAULT 0,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `todos`
+--
+ALTER TABLE `todos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `todos`
+--
+ALTER TABLE `todos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 ```
 
 - Installer la migration (appliquer les modifications sur votre base de données) via la commande :
@@ -460,12 +508,234 @@ Cette commande va initialiser un contrôleur de type Web. Celui-ci est pour l'in
 
 ![Modélisation UML](./res/todoControler.png)
 
+Ce contrôleur est pour l'instant vide, nous allons dans un premier temps devoir lui créer un constructeur afin de créer le modèle permettant l'accès à la base de données.
+
+### Définir les routes dans le routeur
+
+Vous vous souvenez lors de la création de notre première page, nous avions dû ajouter une ligne dans le routeur afin de rendre accessibles les méthodes. Pour notre nouveau contrôleur, ça sera la même chose !
+
+|     Routes      | Contrôleur |   Méthodes    |
+| :-------------: | :--------: | :-----------: |
+|   /todo/liste   | `TodoWeb`  |   `liste()`   |
+|  /todo/ajouter  | `TodoWeb`  |  `ajouter()`  |
+| /todo/terminer  | `TodoWeb`  | `terminer()`  |
+| /todo/supprimer | `TodoWeb`  | `supprimer()` |
+
+Dans le fichier `routes/Web.php`, ajouter le lignes :
+
+```php
+  $todo = new TodoWeb();
+  Route::Add('/todo/liste', [$todo, 'liste']);
+  Route::Add('/todo/ajouter', [$todo, 'ajouter']);
+  Route::Add('/todo/terminer', [$todo, 'terminer']);
+  Route::Add('/todo/supprimer', [$todo, 'supprimer']);
+```
+
+- Où les ajouter ?
+- À quoi correspondent-t-elles ?
+
+#### Ajouter le constructeur `__construct()`
+
+Je vous laisse chercher ! Sachez que votre IDE vous aide, n'hésitez pas à me demander.
+
+::: details Une solution
+
+Avez-vous vraiment cherché ?
+
+```php
+<?php
+namespace controllers;
+
+use controllers\base\Web;
+use models\TodoModel;
+
+class TodoWeb extends Web
+{
+    private $todoModel;
+
+    function __construct(){
+        $this->todoModel = new TodoModel();
+    }
+}
+```
+
+:::
+
 #### La méthode `liste()`
+
+La première méthode que nous allons créer est celle de la liste. Elle se nommera `liste()`, cette méthode sera automatiquement appelée via le `routeur` à **chaque visite d'un utilisateur**. L'objectif de cette méthode est :
+
+- Afficher le header de la page (`$this->header()` méthode héritée du parent).
+- Récupérer l'ensemble des TODO (Array) actuellement en base via la méthode `getAll()` du TodoModel modèle.
+- Afficher votre `vue` via un include.
+- Afficher le footer de la page (`$this->footer()` méthode héritée du parent).
+
+::: tip Toujours la même forme
+
+Vous allez rapidement vous apercevoir que la structure de base est toujours la même. Nous allons toujours faire la même chose lors de la création d'une méthode dans un contrôleur à savoir :
+
+```php
+    function maMethodeQueJaiCopierColler()
+    {
+        // Pourquoi j'ai copier / coller ceci ? C'est un exemple seulement
+        $this->header();
+        include("views/global/home.php");
+        $this->footer();
+    }
+```
+
+**Pssst**, ne copier / coller pas le code précédent !! C'est un simple exemple.
+
+:::
+
+Dans notre cas, la méthode va ressembler à :
+
+```php
+function liste()
+    {
+        $this->header(); // Affichage de l'entête.
+        $todos = $this->todoModel->getAll(); // Récupération des TODOS présents en base.
+        include("views/todos/liste.php"); // Affichage de votre vue.
+        $this->footer(); // Affichage de votre pied de page.
+    }
+```
+
+Et c'est tout ! La puissance d'un Frawerork c'est aussi ça, écrire finalement pas énormement de ligne pour afficher une page. Pourtant cette page :
+
+- Affiche une entête.
+- Récupère en base de données les éléments.
+- Affiche la page.
+- Affiche le pied de page.
 
 #### Le template de la page liste
 
-#### La méthode `ajouter()`
+Votre IDE doit actuellement être moyen content… Effectivement, nous avons fait un `include` de `"views/todos/liste.php"` pourtant ce fichier n'existe pas.
 
-#### La méthode `terminer()`
+Vu qu'il s'agit ici d'un projet découvert, je vais vous en donner le contenu (si vous le souhaitez, vous pouvez également l'écrire) voilà le rendu :
 
-#### La méthode `supprimer()`
+![Interface TODO](./res/todoPreview.png)
+
+```php
+<div class="container p-3">
+    <div class="card">
+        <div class="card-body p-2">
+            <!-- Action -->
+            <form action="/todo/ajouter" method="post" class="add">
+                <div class="input-group">
+                    <input id="texte" name="texte" type="text" class="form-control" placeholder="Prendre une note…" aria-label="My new idea" aria-describedby="basic-addon1"/>
+                </div>
+            </form>
+
+            <!-- Liste -->
+            <ul class="list-group pt-3">
+                <?php
+                foreach ($todos as $todo) {
+                    ?>
+                    <li class="list-group-item">
+                        <div class="d-flex">
+                            <div class="flex-grow-1 align-self-center"><?= $todo['texte'] ?></div>
+                            <div>
+                                <a href="/todo/terminer?id=<?= $todo['id'] ?>" class="btn btn-outline-success">
+                                    <i class="bi bi-check"></i>
+                                </a>
+                                <!-- Action à ajouter pour Supprimer -->
+                            </div>
+                        </div>
+                    </li>
+                    <?php
+                }
+
+                if (sizeof($todos) == 0) {
+                    ?>
+                    <li class="list-group-item text-center">C'est vide !</li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
+</div>
+```
+
+Je vous laisse mettre le contenu dans votre fichier `views/todos/liste.php`.
+
+::: tip Valider le bon fonctionnement
+
+Si vous accédez à votre page `todo/liste` vous devriez avoir le contenu suivant :
+
+![Résultat Liste vide](./res/todo_resultat_liste.png)
+
+:::
+
+#### La méthode `ajouter($texte = '')`
+
+Cette méthode sera automatiquement appelé quand vous aller appuyer sur la touche <key>Entrer</key> de votre clavier dans le champs de saisie sur la page `Liste`. L'objectif de cette méthode est de traiter l'action « J'ajoute un nouvelle enregistrement dans la base Todo ».
+
+Pour le code, je vais vous aider un peu, voilà le code du contrôleur :
+
+```php
+function ajouter($texte = "")
+{
+    if($texte !=  ""){
+        $this->todoModel->ajouterTodo($texte);
+    }
+    $this->redirect("/todo/liste");
+}
+```
+
+- À quoi correspond la méthode `redirect(…)` ? D'où provient-elle ?
+
+_C'est à vous :_
+
+- Mettre en place le code dans le contrôleur.
+- Écrire la méthode ajouterTodo dans le modèle `TodoModel` (n'oubliez pas l'auto-completion).
+  - Écrire la requête `INSERT …`
+- Tester le bon fonctionnement
+
+Dans mon cas voilà le résultat :
+
+![Résultat Liste vide](./res/todo_resultat_ajouter.png)
+
+#### La méthode `terminer($id = '')`
+
+Vous l'avez compris… Je vous donne de moins en moins de code ! La méthode `terminer` sera très proche de `ajouter` sauf que celle-ci va prendre en paramètre l'id de l'élément à marquer comme terminé :
+
+```php
+function terminer($id = ''){
+    if($id != ""){
+        $this->todoModel->marquerCommeTermine($id);
+    }
+
+    $this->redirect("/todo/liste");
+}
+```
+
+- D'où arrive le paramètre `$id` ?
+- Pourquoi est-ce automatique ?
+
+_À faire_ :
+
+- Mettre en place le code, valider le bon fonctionnement avec PHPMyAdmin
+- Modifier la vue pour afficher le bouton vert **seulement si** la tache est non terminée
+- Ajouter un bouton supprimé visible **uniquement si** la tache est terminée
+
+![Résultat Liste vide](./res/todo_resultat_terminer.png)
+
+#### La méthode `supprimer($id = '')`
+
+En utilisant le code précédemment fourni, écrire :
+
+- La méthode dans le modèle permettant de supprimer un élément dans la base de données pour un id donné.
+- La méthode dans le contrôleur permettant de traiter l'action.
+- **Ne permettre la suppression** que des Todo ayant `termine = 1`. La vérification **ne doit pas être** présente que dans la vue.
+
+C'est à vous.
+
+### Évolution 1
+
+Je souhaite finalement masquer de l'affichage par défaut l'ensemble des enregistrements de la table `TODO` ayant `termine = 1`.
+
+Je vous laisse modifier :
+
+- Le code du modèle afin d'y ajouter une méthode.
+- Appeler cette méthode depuis votre page à la place du `getAll()`.

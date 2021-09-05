@@ -205,7 +205,7 @@ FIN SI
 ```
 
 ::: danger Non !
-Évidemment nous sommes d'accord c'est nul en termes de sécurité ! Vous ne devez jamais « écrire en dur » un login mot de passe dans votre code.
+Évidemment nous sommes d'accord **c'est nul** en termes de sécurité ! Vous ne devez JAMAIS « écrire en dur » un login mot de passe dans votre code.
 
 => À votre avis pourquoi ?
 :::
