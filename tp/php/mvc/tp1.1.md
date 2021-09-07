@@ -749,7 +749,7 @@ Je vous laisse modifier :
 
 ### Évolution 2
 
-La partie TODOList ne doit pas être accessible à tous. En utilisant les techniques vu avec la station, et en réfléchissant sur les impacts en termes de sécurité (protection dans le routeur par exemple). Limiter l'accès de la partie TODOList seulement aux personnes avec un compte sur la plateforme.
+La partie TODOList ne doit pas être accessible à tous. En utilisant les techniques vu avec la SESSION (`$_SESSION`) ainsi qu'en réfléchissant sur les impacts en termes de sécurité (protection dans le routeur par exemple). Limiter l'accès de la partie TODOList seulement aux personnes avec un compte sur la plateforme.
 
 - Quels impacts sont à prévoir dans le routeur ?
 - Est-ce nécessaire de créer un nouveau modèle ?
