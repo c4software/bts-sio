@@ -28,6 +28,11 @@ class Route
             $target = parse_url($target, PHP_URL_PATH);
         }
 
+        // Gestion si le path ne commence pas par /
+        if(strpos($target, "/") !== 0){
+            $target = "/" . $target;
+        }
+
         return htmlspecialchars($target, ENT_QUOTES, 'UTF-8');
     }
 
@@ -59,13 +64,13 @@ class Route
         $target = $isBrowser ? Route::GetCurrentPath() : Route::GetCommands();
 
         // Gestion des paramètres
-        $args = $isBrowser ? $_GET : Route::getArgs();
+        $args = $isBrowser ? $_REQUEST : Route::getArgs();
 
         // Est-ce que la page demandée est autorisée.
         if (array_key_exists($target, Route::$routes)) {
             // Appel dynamique de la méthode souhaitée (déclaré dans les routes)
             // Les paramètres de la méthode sont automatiquement remplis avec les valeurs en provenence du GET
-            call_user_func_array(Route::$routes[$target], $args);
+            call_user_func_array(Route::$routes[$target], array_values($args));
         } else if ($isBrowser) {
             // Non affichage d'une 404.
             http_response_code(404);
