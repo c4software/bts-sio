@@ -180,6 +180,12 @@ Vous en connaissez ?
 
 ---
 
+## Comment ça fonctionne ?
+
+### C'est parti une démo
+
+---
+
 Organiser notre code « autour de ces 3 couches.
 
-C'est là où la POO entre en jeu
+C'est là où la POO arrive.
