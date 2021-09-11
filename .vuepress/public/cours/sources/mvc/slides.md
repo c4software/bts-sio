@@ -1,4 +1,4 @@
-# MVC & POO
+# MVC
 
 ## Le développement organisé
 
