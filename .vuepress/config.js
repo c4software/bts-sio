@@ -96,6 +96,7 @@ module.exports = {
             title: "La POO",
             children: [
               { title: "Les Interfaces", children: ["cours/les_interfaces", "tp/poo/interface"] },
+              { title: "MVC", children: ["cours/mvc"] },
             ]
           },
         ]

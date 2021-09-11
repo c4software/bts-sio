@@ -26,6 +26,7 @@ _Prototypage :_
 
 - [Figma](https://www.figma.com/)
 - [Rappel sur le centrage en CSS](https://web.dev/centering-in-css/)
+- [Afficher du code](https://carbon.now.sh/)
 
 _Icones :_
 
