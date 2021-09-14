@@ -182,7 +182,7 @@ Vous en connaissez ?
 
 ## Comment ça fonctionne ?
 
-### C'est parti une démo
+### C'est parti pour une démo
 
 ---
 

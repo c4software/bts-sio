@@ -83,7 +83,7 @@ module.exports = {
       },
 
       {
-        title: "Les bases",
+        title: "Les cours",
         initialOpenGroupIndex: -1,
         children: [
           { title: "En + du cours", children: ["cheatsheets/html/", "tp/html_css/support.md", "tp/php/support.md", "tp/php/sql/support.md", "tp/javascript/support.md"] },
