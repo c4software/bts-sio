@@ -225,3 +225,14 @@ Il faudra donc :
 ### Gérer la déconnexion
 
 À votre avis, comment allons-nous gérer la déconnexion ?
+
+### Une sécurité bien gérée
+
+Pour tester, nous avons mis un login et un mot de passe en dur. Évidemment dans la vraie vie ce n'est pas comme ça que nous procèderons. Je vous laisse créer la base de données et la table permettant de sauvegarder un mot de passe **en intégrant les notions de sécurité**.
+
+- Le mot de passe ne doit pas être en clair.
+- Ajouter dans le projet la connexion à la base de données.
+  - Comment ?
+  - Où ?
+- Intégrer le code permettant de valider le mot de passe fourni par l'utilisateur.
+- Valider le bon fonctionnement avec un jeu d'essai.
