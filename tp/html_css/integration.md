@@ -23,6 +23,12 @@ Vous aurez certainement besoin de ressources, voilà une liste d'élément pouva
 - [Tailwind](https://tailwindcss.com/) <- À creuser
 - [Des templates réutilisable](https://startbootstrap.com/?showPro=false&showAngular=false)
 
+_Actualités :_
+
+- [dev.to](https://dev.to)
+- [medium.com](https://medium.com)
+- [Reddit /r/webdev](https://www.reddit.com/r/webdev/)
+
 _Prototypage :_
 
 - [Figma](https://www.figma.com/)
