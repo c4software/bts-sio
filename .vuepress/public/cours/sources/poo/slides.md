@@ -55,8 +55,7 @@ Représente une définition d'une problématique réelle.
 
 ---
 
-Serviront de moule pour créer des objets
-Notre travail reviendra donc à définir des classes qui permettront de créer des objets **pendant l'exécution**.
+Serviront de moule pour créer des objets.
 
 ---
 
@@ -67,29 +66,19 @@ Notre travail reviendra donc à définir des classes qui permettront de créer d
 
 ---
 
+### Les type de méthodes
+
+- Un constructeur.
+- Des méthodes d'actions.
+- Des méthodes accesseurs.
+
+---
+
 Une classe étant **une définition**, elle nous servira plus tard à créer **des objets**.
 
 ---
 
-### Les objets
-
-Chaque objet représente un objet du monde réel (exemple une personne, une voiture, etc.)
-
----
-
-Résultat de l'instanciation d'une classes.
-
-`new Objet();`
-
----
-
-### Un objet encapsule toute la logique fonctionnelle d'un problème
-
-Exemple : Une voiture peut accélérer, freiner, etc. Mais possède une vitesse, une année de construction, etc.
-
----
-
-### Nous avons donc deux types d'éléments dans l'objet
+### Nous avons donc deux types membres dans la classe
 
 - Des méthodes (des actions : accélérer, freiner, etc.) **avec une visibilité**
 - Des propriétés (Données de l'objet) **avec une visibilité**
@@ -110,10 +99,17 @@ Exemple : Une voiture peut accélérer, freiner, etc. Mais possède une vitesse,
 
 ### Les méthodes
 
-- Comme une fonction, mais **encapsulé** dans un objet.
+- Comme une fonction, mais **encapsulé** dans la classe.
 - Possède une visibilité.
 - Possède des paramètres.
-- Plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents. (surcharge)
+- Surcharge: plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et ordre).
+- Les ascesseurs
+
+---
+
+AJOUTER EXEMPLE DE CLASSE AVEC LES ÉLÉMENTS DE BASE
+
+⚠️
 
 ---
 
@@ -150,11 +146,32 @@ class SimpleClass
 
 ### Ce qu'il faut retenir
 
-- Les class sont instanciables (création d'objets, `new MonObjet(…)`).
-- Les propriétés sont les « variables » de l'objets.
-- Les méthodes sont les « actions » de l'objets.
+- Les classes sont instanciables (création d'objets, `new MonObjet(…)`).
+- Les propriétés sont les « variables » de l'objet.
+- Les méthodes sont les « actions » de l'objet.
 - Les méthodes **et** les propriétés _**ont des visiblités**_.
 - Les méthodes peuvent être surchargées.
+
+---
+
+### Les objets
+
+Chaque objet représente un objet du monde réel
+
+exemple :
+
+- une personne **précise**
+- une voiture **précise**
+- etc.
+
+---
+
+Résultat de l'instanciation d'une classe.
+
+```php
+$utilisateur1 = new Personne("Valentin", "Brosseau");
+$utilisateur2 = new Personne("John", "Doe");
+```
 
 ---
 
@@ -181,6 +198,10 @@ C'est à vous 🤓
 _Une solution possible_
 
 ![Visiblité d'un objet](./res/modelisationVoiture.jpg)
+
+---
+
+## Les collections d'objets
 
 ---
 
