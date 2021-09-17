@@ -1,4 +1,4 @@
-# Slides Javascript avancés
+# Le design pattern MVC
 
 <SlidesDeck src="mvc" />
 
