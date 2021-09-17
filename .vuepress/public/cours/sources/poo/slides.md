@@ -59,22 +59,14 @@ Serviront de moule pour créer des objets.
 
 ---
 
+Une classe étant **une définition**, elle nous servira plus tard à créer **des objets**.
+
+---
+
 ### Une classe est composée de :
 
-- D'attributs (variable d'instance ou attribut).
+- D'attributs (variable d'instance ou propriété).
 - De méthodes (actions / opération au niveau de la classe).
-
----
-
-### Les type de méthodes
-
-- Un constructeur.
-- Des méthodes d'actions.
-- Des méthodes accesseurs.
-
----
-
-Une classe étant **une définition**, elle nous servira plus tard à créer **des objets**.
 
 ---
 
@@ -102,14 +94,79 @@ Une classe étant **une définition**, elle nous servira plus tard à créer **d
 - Comme une fonction, mais **encapsulé** dans la classe.
 - Possède une visibilité.
 - Possède des paramètres.
-- Surcharge: plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et ordre).
-- Les ascesseurs
+- Surcharge: plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et/ou ordre).
 
 ---
 
-AJOUTER EXEMPLE DE CLASSE AVEC LES ÉLÉMENTS DE BASE
+### Les type de méthodes
 
-⚠️
+- Le constructeur.
+- Les méthodes d'actions.
+- Les méthodes accesseurs / mutateurs.
+
+---
+
+### Un exemple
+
+![Exemple modélisation](./res/modelisation-personne.png)
+
+---
+
+```php
+class Personne
+{
+
+    // Attribut
+    public $nom;
+    public $prenom;
+    private $dateNaissance;
+    private $salaire;
+    public $nbEnfant;
+
+
+    // Constructeur
+    function __construct($nom, $prenom, $dateNaissance, $nbEnfant = 0)
+    {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->dateNaissance = $dateNaissance;
+        $this->nbEnfant = $nbEnfant;
+    }
+
+    // Mutateurs
+    public function setSalaire($valeur)
+    {
+        $this->salaire = $valeur;
+    }
+
+    // Accesseur
+    public function getSalaire($valeur)
+    {
+        return $this->salaire;
+    }
+
+
+    // Méthode
+    public function identite(){
+        return $this->nom . " " . $this->prenom;
+    }
+
+    // Méthode
+    public function age()
+    {
+        $date = new DateTime($this->dateNaissance);
+        $now = new DateTime();
+        $interval = $now->diff($date);
+        return $interval->y;
+    }
+
+    // Méthode
+    public function argentPoche()
+    {
+        return $this->salaire / $this->nbEnfant;
+    }
+}
+```
 
 ---
 
@@ -123,6 +180,13 @@ class SimpleClass
     // déclaration d'une propriété
     public $var = 'une valeur par défaut';
     public $var2 = 'une valeur par défaut';
+
+    // Constructeur
+    function __construct($var, $var2)
+    {
+        $this->var = $var;
+        $this->var2 = $var2;
+    }
 
     // déclaration des méthodes
     public function displayVar() {
@@ -146,7 +210,7 @@ class SimpleClass
 
 ### Ce qu'il faut retenir
 
-- Les classes sont instanciables (création d'objets, `new MonObjet(…)`).
+- Les classes sont instanciables (création d'objets, `new Personne(…)`).
 - Les propriétés sont les « variables » de l'objet.
 - Les méthodes sont les « actions » de l'objet.
 - Les méthodes **et** les propriétés _**ont des visiblités**_.
@@ -161,23 +225,25 @@ Chaque objet représente un objet du monde réel
 exemple :
 
 - une personne **précise**
-- une voiture **précise**
-- etc.
+- une voiture **spécifique**
+- Un élément de menu.
 
 ---
 
-Résultat de l'instanciation d'une classe.
+Utiliser une classe
 
 ```php
-$utilisateur1 = new Personne("Valentin", "Brosseau");
-$utilisateur2 = new Personne("John", "Doe");
+$personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
+$personne2 = new Personne("John", "Doe", "01/01/1970", 12);
 ```
+
+👀 Créer un objet == Instancier 👀
 
 ---
 
 ### À faire
 
-Nous souhaitons modéliser la problématique d'un vendeur de voiture.
+Nous souhaitons modéliser la problématique d'un vendeur de voitures.
 
 ---
 
@@ -185,7 +251,7 @@ Supposons que chaque Voiture possède :
 
 - les « paramètres » suivant :
   - Une vitesse.
-  - Un nombre de Km.
+  - Un nombre de km.
   - Une année de fabrication.
 - Les actions suivantes :
   - Calcul du nombre de km moyen par an depuis la fabrication.
@@ -202,6 +268,93 @@ _Une solution possible_
 ---
 
 ## Les collections d'objets
+
+---
+
+Regrouper plusieurs objets « dans une liste »
+
+---
+
+Exemple, comment gérer le cas de :
+
+« Une entreprise contient des personnes »
+
+---
+
+![Exemple modélisation](./res/modelisation-personne.png)
+
+```php
+$personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
+$personne2 = new Personne("John", "Doe", "01/01/1970", 12);
+```
+
+---
+
+TODO SCHEMA UML
+
+---
+
+_Définition_ : Une collection est un ensemble d'objets qui sont
+regroupés ensemble sous un même nom.
+
+---
+
+PHP
+
+```php
+$lesPersonnes = [];
+```
+
+---
+
+### Ajouter en liste
+
+```php
+$unePersonne = new Personne("Doe", "John", "01/01/1970", 10);
+
+array_push($lesPersonnes, new Personne("Brosseau", "Valentin", "28/02/1987", 0));
+array_push($lesPersonnes, $unePersonne);
+```
+
+---
+
+### Vider la liste
+
+```php
+$lesPersonnes = [];
+```
+
+---
+
+### Mais également
+
+```php
+sizeof($lesPersonnes);
+```
+
+---
+
+### En résumé
+
+Un parallèle intéressant.
+
+---
+
+![Liste en PHP](./res/liste-php.png)
+PHP
+
+---
+
+![Liste en Java](./res/liste-java.png)
+Java
+
+---
+
+Exercice à définir pour utiliser les listes.
+
+---
+
+SUITE TODO
 
 ---
 
@@ -304,7 +457,3 @@ Classes abstraites et interfaces ont chacune une fonction bien distincte :
 
 - les classes abstraites servent à factoriser du code.
 - Tandis que les interfaces servent à définir des contrats de service.
-
----
-
-## Les dictionnaires
