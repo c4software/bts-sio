@@ -341,11 +341,13 @@ Un parallèle intéressant.
 ---
 
 ![Liste en PHP](./res/liste-php.png)
+
 PHP
 
 ---
 
 ![Liste en Java](./res/liste-java.png)
+
 Java
 
 ---
