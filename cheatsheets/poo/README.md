@@ -254,9 +254,8 @@ unePersonne.print(); // Je suis un mammifère.
 ## Les namespaces (organisation des classes)
 
 ```php
+namespace Mammifere\Primate ;
 
-```
-
-```java
-
+class Personne { // etc...
+}
 ```
