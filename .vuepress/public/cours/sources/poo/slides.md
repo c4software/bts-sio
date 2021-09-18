@@ -352,11 +352,13 @@ Java
 
 ---
 
+TODO
+
 Exercice à définir pour utiliser les listes.
 
 ---
 
-SUITE TODO
+LA SUITE N'EST PAS ENCORE ÉCRITE
 
 ---
 

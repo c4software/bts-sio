@@ -536,11 +536,19 @@ Dans le fichier `routes/Web.php`, ajouter le lignes :
 
 ### Ajouter le constructeur `__construct()`
 
-Je vous laisse chercher ! Sachez que votre IDE vous aide, n'hésitez pas à me demander.
+Le contrôleur aura pour but d'aller récupérer les Todo en base **via** le modèle. Il faut donc donner un accès au modèle depuis la classe. Nous allons donc écrire **le constructeur** de la méthode. En PHP, le constructeur s'écrit :
 
-::: details Une solution
+```php
+    private $todoModel;
 
-Avez-vous vraiment cherché ?
+    function __construct(){
+        $this->todoModel = new TodoModel();
+    }
+```
+
+Je vous laisse réfléchir sur l'endroit ou mettre le code en question.
+
+::: details Voir une solution
 
 ```php
 <?php
