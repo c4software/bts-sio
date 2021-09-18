@@ -78,7 +78,8 @@ module.exports = {
           ["cheatsheets/javascript/", "JavaScript"],
           ["cheatsheets/cordova/", "Cordova"],
           ["cheatsheets/docker/", "Docker"],
-          ["cheatsheets/vuejs/", "VueJS"]
+          ["cheatsheets/vuejs/", "VueJS"],
+          ["cheatsheets/poo/", "Programation Orientée Objet"],
         ]
       },
 

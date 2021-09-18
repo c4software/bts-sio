@@ -267,6 +267,12 @@ _Une solution possible_
 
 ---
 
+Aide mémoire écriture
+
+[Aide mémoire POO](/cheatsheets/poo/)
+
+---
+
 ## Les collections d'objets
 
 ---
@@ -349,6 +355,12 @@ PHP
 ![Liste en Java](./res/liste-java.png)
 
 Java
+
+---
+
+Aide mémoire écriture et comparaison
+
+[Aide mémoire POO](/cheatsheets/poo/)
 
 ---
 
