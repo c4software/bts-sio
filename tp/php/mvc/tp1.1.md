@@ -782,3 +782,7 @@ Maintenant que nous avons un système d'authentification, je vous propose de sau
   - Attention, comment allez-vous procéder pour récupérer la personne actuellement connectée ?
 - Ajouter **dans la vue**, l'affichage de l'identité de la personne.
   - Idéalement en groupant les TODO par nom d'utilisateur / email.
+
+### Évolution 4
+
+Modifier la page d'accueil de votre site afin que celle-ci présente votre projet.
