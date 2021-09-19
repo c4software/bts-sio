@@ -6,6 +6,148 @@ Ce document présente la synthaxe objet avec des exemples PHP & Java
 [[toc]]
 :::
 
+## Introduction
+
+### La POO c'est 3 concepts
+
+- **Concept de modélisation** à travers la notion de classe et d’instanciation de ces classes.
+- **Concept d’action** à travers la notion d’envoi de messages et de méthodes à l’intérieur des objets.
+- **Concept de construction** par réutilisation et amélioration par l’utilisation de la notion d’héritage.
+
+::: tip Mais surtout
+Ça permet de représenter **informatiquement** quelque chose du monde réel.
+:::
+
+### Deux notions
+
+- Les classes
+- Les objets
+
+### Les classes
+
+- Serviront de moule pour créer des objets.
+- Une classe étant **une définition**, elle nous servira plus tard à créer **des objets**.
+
+#### Une classe est composée de :
+
+- D'attributs (variable d'instance ou propriété).
+- De méthodes (actions / opération au niveau de la classe).
+
+#### Nous avons donc deux types membres dans la classe
+
+- Des **propriétés** (le données de l'objet) **avec une visibilité**
+- Des **méthodes** (les actions possibles : accélérer, freiner, etc.) **avec une visibilité**
+
+#### La visibilité ?
+
+- Privée : accessible que dans l'objet.
+- Public : accessible hors de l'objet.
+- Protected : **non accessible** aux enfants (héritage)
+
+#### Les méthodes
+
+- Comme une fonction, mais **encapsulé** dans la classe.
+- Possède une visibilité.
+- Possède des paramètres.
+- Surcharge: plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et/ou ordre).
+
+#### Les type de méthodes
+
+- Le constructeur.
+- Les méthodes d'actions.
+- Les méthodes accesseurs / mutateurs.
+
+### Exemple
+
+![Exemple modélisation](./res/modelisation-personne.png)
+
+```php
+class Personne
+{
+
+    // Attribut
+    public $nom;
+    public $prenom;
+    private $dateNaissance;
+    private $salaire;
+    public $nbEnfant;
+
+
+    // Constructeur
+    function __construct($nom, $prenom, $dateNaissance, $nbEnfant = 0)
+    {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->dateNaissance = $dateNaissance;
+        $this->nbEnfant = $nbEnfant;
+    }
+
+    // Mutateurs
+    public function setSalaire($valeur)
+    {
+        $this->salaire = $valeur;
+    }
+
+    // Accesseur
+    public function getSalaire($valeur)
+    {
+        return $this->salaire;
+    }
+
+
+    // Méthode
+    public function identite(){
+        return $this->nom . " " . $this->prenom;
+    }
+
+    // Méthode
+    public function age()
+    {
+        $date = new DateTime($this->dateNaissance);
+        $now = new DateTime();
+        $interval = $now->diff($date);
+        return $interval->y;
+    }
+
+    // Méthode
+    public function argentPoche()
+    {
+        return $this->salaire / $this->nbEnfant;
+    }
+}
+```
+
+::: danger Ce qu'il faut retenir
+
+- Les classes sont instanciables (création d'objets, `$unPersonne = new Personne(…)`).
+- Les propriétés sont les « variables » de l'objet.
+- Les méthodes sont les « actions » de l'objet.
+- Les méthodes **et** les propriétés _**ont des visiblités**_.
+- Les méthodes peuvent être surchargées.
+
+:::
+
+## Les objets
+
+Chaque objet représente un objet du monde réel
+
+### exemple :
+
+- une personne **précise**
+- une voiture **spécifique**
+- Un élément de menu.
+
+⚠️ Utilise les classes précédemment définies ⚠️
+
+```php
+$personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
+$personne2 = new Personne("John", "Doe", "01/01/1970", 12);
+```
+
+👀 Créer un objet == Instancier 👀
+
+---
+
 ## Définir une classe
 
 En PHP:

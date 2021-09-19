@@ -72,8 +72,8 @@ Une classe étant **une définition**, elle nous servira plus tard à créer **d
 
 ### Nous avons donc deux types membres dans la classe
 
-- Des méthodes (des actions : accélérer, freiner, etc.) **avec une visibilité**
-- Des propriétés (Données de l'objet) **avec une visibilité**
+- Des **propriétés** (le données de l'objet) **avec une visibilité**
+- Des **méthodes** (les actions possibles : accélérer, freiner, etc.) **avec une visibilité**
 
 ---
 
@@ -230,7 +230,7 @@ exemple :
 
 ---
 
-Utiliser une classe
+⚠️ Utilise les classes précédemment définies ⚠️
 
 ```php
 $personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
