@@ -1,9 +1,14 @@
 <template>
   <div :class="{bordered}">
     <iframe :src="this.src" frameborder="0" ref="iframe" />
-    <button @click="requestFullscreen">
-      <img src="/icons/fullscreen.svg" />
-    </button>
+    <div class="actions">
+      <button class="action" @click="requestFullscreen">
+        <img src="/icons/fullscreen.svg" />
+      </button>
+      <a class="action" :href="this.src" target="_blank" >
+        <img src="/icons/launch.svg" />
+      </a>
+    </div>
   </div>
 </template>
 
@@ -45,24 +50,33 @@ iframe {
   border-radius: 5px;
 }
 
-button {
-  background-color: #22232387;
-  color: white;
-  cursor: pointer;
-  user-select: none;
+.actions {
+    position: relative;
+    top: -60px;
+    margin-bottom: -40px;
+    right: -20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 
-  background-color: rgba(34, 35, 35, 0.5);
-  color: #fff;
-  display: block;
-  border: none;
-  border-radius: 5px;
-  position: relative;
-  top: -50px;
-  margin-bottom: -40px;
-  right: -20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
+.action {
+    padding: 4px;
+    background-color: #22232387;
+    color: white;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: block;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.action > img {
+  height: 24px;
+  width: 24px;
 }
 </style>

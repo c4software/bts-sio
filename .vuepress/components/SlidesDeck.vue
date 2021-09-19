@@ -1,5 +1,7 @@
 <template>
-  <ExternalIframe :src="deckPath"></ExternalIframe>
+  <div>
+    <ExternalIframe :src="deckPath"></ExternalIframe>
+  </div>
 </template>
 
 <script>
