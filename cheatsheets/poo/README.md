@@ -1,6 +1,6 @@
-# La synthaxe Objet
+# La syntaxe Objet
 
-Ce document présente la synthaxe objet avec des exemples PHP & Java
+Ce document présente la syntaxe objet avec des exemples PHP & Java
 
 ::: details Sommaire
 [[toc]]
@@ -51,7 +51,7 @@ Ce document présente la synthaxe objet avec des exemples PHP & Java
 - Possède des paramètres.
 - Surcharge: plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et/ou ordre).
 
-#### Les type de méthodes
+#### Les types de méthodes
 
 - Le constructeur.
 - Les méthodes d'actions.
