@@ -358,6 +358,39 @@ Java
 
 ---
 
+### Parcourir une collection
+
+---
+
+En PHP :
+
+```php
+foreach($lesPersonne as $laPersonne){
+    // $laPersonne contient « un pointeur » vers une des personne de la liste
+    // À chaque tour de boucle nous avons la personne suivante.
+}
+```
+
+---
+
+En Java :
+
+```java
+// Version moderne
+lesPersonnes.forEach(laPersonne -> {
+    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // À chaque tour de boucle nous avons la personne suivante.
+});
+
+// Version « à l'ancienne »
+for (Personne laPersonne : lesPersonnes) {
+    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // À chaque tour de boucle nous avons la personne suivante.
+}
+```
+
+---
+
 Aide mémoire écriture et comparaison
 
 [Aide mémoire POO](/cheatsheets/poo/)
@@ -366,7 +399,7 @@ Aide mémoire écriture et comparaison
 
 TODO
 
-Exercice à définir pour utiliser les listes.
+Exercice à définir pour créer et utiliseur des listes.
 
 ---
 
