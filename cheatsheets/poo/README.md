@@ -169,6 +169,33 @@ lesPersonnes.clear();
 int count2 = lesPersonnes.size(); // 0
 ```
 
+### Parcours de collection
+
+En PHP :
+
+```php
+foreach($lesPersonne as $laPersonne){
+    // $laPersonne contient « un pointeur » vers une des personne de la liste
+    // À chaque tour de boucle nous avons la personne suivante.
+}
+```
+
+En Java :
+
+```java
+// Version moderne
+lesPersonnes.forEach(laPersonne -> {
+    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // À chaque tour de boucle nous avons la personne suivante.
+});
+
+// Version « à l'ancienne »
+for (Personne laPersonne : lesPersonnes) {
+    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // À chaque tour de boucle nous avons la personne suivante.
+}
+```
+
 ## Les méthodes static
 
 En PHP:
