@@ -684,9 +684,7 @@ Pour le code, je vais vous aider un peu, voilà le code du contrôleur :
 ```php
 function ajouter($texte = "")
 {
-    if($texte !=  ""){
-        $this->todoModel->ajouterTodo($texte);
-    }
+    $this->todoModel->ajouterTodo($texte);
     $this->redirect("/todo/liste");
 }
 ```
@@ -703,6 +701,15 @@ _C'est à vous :_
 Dans mon cas voilà le résultat :
 
 ![Résultat Liste vide](./res/todo_resultat_ajouter.png)
+
+#### Ajouter une validation
+
+Actuellement dans le code que vous avez copiez il est possible d'ajouter des « TODO » sans texte. Je vous propose donc d'ajouter un contrôle de saisie **dans le PHP**.
+
+Le contrôle doit empêcher l'ajoute d'une TODO si `$texte == ''`.
+
+- Où placez vous le contrôle ?
+- Pourquoi ?
 
 ### La méthode `terminer($id = '')`
 
@@ -763,3 +770,13 @@ La partie TODOList ne doit pas être accessible à tous. En utilisant les techni
 - Est-ce nécessaire de créer un nouveau modèle ?
 - Est-ce nécessaire de créer un nouveau contrôleur ?
 - Combien de vue sera(ont) nécessaire(s) en plus de celles existantes ?
+
+### Évolution 3
+
+Maintenant que nous avons un système d'authentification, je vous propose de sauvegarder qui a créé la TODO pour ce faire :
+
+- Modifier la base de données afin d'ajouter « l'email / nom d'utilisateur » de la personne ayant créé la TODO
+- Modifier la méthode d'ajout dans le modèle pour enregistrer l'information
+  - Attention, comment allez-vous procéder pour récupérer la personne actuellement connectée ?
+- Ajouter **dans la vue**, l'affichage de l'identité de la personne.
+  - Idéalement en groupant les TODO par nom d'utilisateur / email.
