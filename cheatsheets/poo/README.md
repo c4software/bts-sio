@@ -103,16 +103,13 @@ class Personne
     // Méthode
     public function age()
     {
-        $date = new DateTime($this->dateNaissance);
-        $now = new DateTime();
-        $interval = $now->diff($date);
-        return $interval->y;
+        // Implémentation
     }
 
     // Méthode
     public function argentPoche()
     {
-        return $this->salaire / $this->nbEnfant;
+        // Implémentation
     }
 }
 ```
