@@ -397,20 +397,9 @@ Aide mémoire écriture et comparaison
 
 ---
 
-TODO
+### La modélisation
 
-Exercice à définir pour créer et utiliseur des listes.
-
----
-
-LA SUITE N'EST PAS ENCORE ÉCRITE
-
----
-
-## Les classes Static
-
-- Méthode & Propriété accessible **sans new**
-- Permets d'encapsuler une logique
+![Rappel modélisations](./res/collections-uml.png)
 
 ---
 
@@ -419,6 +408,13 @@ LA SUITE N'EST PAS ENCORE ÉCRITE
 - Extends
 - Hérite
 - Redéfinition (comme la surcharge, mais entre la fille et la mère)
+
+---
+
+## Les classes Static
+
+- Méthode & Propriété accessible **sans besoin d'un new**
+- Permets d'encapsuler une logique.
 
 ---
 
