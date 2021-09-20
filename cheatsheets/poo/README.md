@@ -257,6 +257,8 @@ L'accès au propriété ne fonctionnera que si la visibilité (`private`, `publi
 
 Permet de regrouper des listes d'objets.
 
+![Représentation UML](./res/collections-uml.png)
+
 ### Déclaration
 
 En PHP:
