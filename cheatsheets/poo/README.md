@@ -259,6 +259,14 @@ Permet de regrouper des listes d'objets.
 
 ![Représentation UML](./res/collections-uml.png)
 
+En modélisation, la fleche signife un lien entre les deux classes. En l'occurence, dans le cas des collections nous aurons :
+
+- Le nom « de la collection » qui va contenir les objets.
+- Le nombre minimum & maximum.
+- Exemple, **1** étudiant possède plusieurs devoir.
+
+Fonctionnellement, nous allons donc avoir dans l'étudiant collection d'objet du type devoirs. Celle-ci sera nommée **lesDevoirs**. **lesDevoirs** sera une propriété de la classe Étudiant.
+
 ### Déclaration
 
 En PHP:
