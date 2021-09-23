@@ -411,6 +411,35 @@ Aide mémoire écriture et comparaison
 
 ---
 
+```php
+class Mammifere {
+    private $vertebre = true;
+
+    public print() {
+        echo "Je suis un mammifère";
+    }
+}
+
+class Humain extends mammifere {
+    private $prenom = "";
+
+    function __construct($prenom)
+    {
+        parent::__construct();
+        this->$prenom = $prenom;
+    }
+}
+
+$unHumain = new Humain("Valentin");
+$unHumain->print(); // Je suis un mammifère.
+```
+
+---
+
+Mise en pratique
+
+---
+
 ## Les classes Static
 
 - Méthode & Propriété accessible **sans besoin d'un new**
@@ -449,7 +478,6 @@ class ConcreteClass1 extends AbstractClass
        return "{$prefix}ConcreteClass1";
     }
 }
-
 ```
 
 ---

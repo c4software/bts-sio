@@ -398,8 +398,8 @@ class Humain extends mammifere {
     }
 }
 
-$unePersonne = new Humain("Valentin");
-$unePersonne->print(); // Je suis un mammifère.
+$unHumain = new Humain("Valentin");
+$unHumain->print(); // Je suis un mammifère.
 ```
 
 En Java :
@@ -423,8 +423,8 @@ class Humain extends mammifere {
     }
 }
 
-Humain unePersonne = new Humain("Valentin");
-unePersonne.print(); // Je suis un mammifère.
+Humain unHumain = new Humain("Valentin");
+unHumain.print(); // Je suis un mammifère.
 ```
 
 ## Les namespaces (organisation des classes)
