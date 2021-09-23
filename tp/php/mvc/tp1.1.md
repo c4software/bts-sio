@@ -333,7 +333,11 @@ Le modèle va être le moyen d'accéder à nos données, c'est ici que nous allo
 Le framework que je vous propose entre directement dans cette catégorie « Gagner du temps ». Pour créer notre modèle au lieu de copier / coller du code vous avez de base (intégrer dans le code) un outil en ligne de commande qui s'occupe de tout (si si). Pour créer votre modèle pour accéder au TodoList il vous suffit de :
 
 ```sh
+# Hors Windows
 php index.php model:create TodoModel
+
+# Sous Windows
+C:/xampp/php/php index.php model:create TodoModel
 ```
 
 **Et c'est tout !** votre modèle pour accéder aux données est prêt 🤝. Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
@@ -478,7 +482,11 @@ COMMIT;
 - Installer la migration (appliquer les modifications sur votre base de données) via la commande :
 
 ```sh
+# Hors Windows
 php index.php db:migrate
+
+# Sous Windows
+C:/xampp/php/php index.php db:migrate
 ```
 
 Si tout vas bien vous devriez avoir le résultat suivant:
@@ -503,7 +511,11 @@ Si tout vas bien vous devriez avoir le résultat suivant:
 Notre base est prête… Et si nous écrivions vraiment le code ? Comme pour créer le modèle, le framework vous fait gagner du temps ! Ici aussi pas besoin de copier / coller du code, une simple ligne de commande va vous initialiser un Contrôleur « vide » :
 
 ```sh
+# Hors Windows
 php index.php controller:create TodoWeb
+
+# Sous Windows
+C:/xampp/php/php index.php controller:create TodoWeb
 ```
 
 Cette commande va initialiser un contrôleur de type Web. Celui-ci est pour l'instant vide de méthode :
