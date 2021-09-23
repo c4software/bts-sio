@@ -81,7 +81,7 @@ Une classe étant **une définition**, elle nous servira plus tard à créer **d
 
 - Privée : accessible que dans l'objet.
 - Public : accessible hors de l'objet.
-- Protected : **non accessible** aux enfants (héritage)
+- Protected : **accessible** aux enfants (héritage) mais **pas en dehors**.
 
 ---
 

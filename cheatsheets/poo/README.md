@@ -42,7 +42,7 @@ Ce document présente la syntaxe objet avec des exemples PHP & Java
 
 - Privée : accessible que dans l'objet.
 - Public : accessible hors de l'objet.
-- Protected : **non accessible** aux enfants (héritage)
+- Protected : **Accessible** aux enfants (héritage) mais pas hors de la classe.
 
 #### Les méthodes
 
