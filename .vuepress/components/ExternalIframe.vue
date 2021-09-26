@@ -2,7 +2,7 @@
   <div :class="{bordered}">
     <iframe :src="this.src" frameborder="0" ref="iframe" />
     <div class="actions">
-      <button class="action" @click="requestFullscreen">
+      <button class="action" @click="requestFullscreen" v-if="isFullScreenAvailable">
         <img src="/icons/fullscreen.svg" />
       </button>
       <a class="action" :href="this.src" target="_blank" >
@@ -24,9 +24,19 @@ export default {
       default: false
     }
   },
+  computed: {
+    isFullScreenAvailable(){
+      return document.webkitFullscreenEnabled || document.fullscreenEnabled 
+    }
+  },
   methods: {
     requestFullscreen() {
-      this.$refs["iframe"].requestFullscreen();
+      if(this.$refs["iframe"].webkitRequestFullScreen){
+        this.$refs["iframe"].webkitRequestFullScreen();
+      } else {
+        this.$refs["iframe"].requestFullscreen();
+      }
+      
       this.$refs["iframe"].focus();
 
       try {
