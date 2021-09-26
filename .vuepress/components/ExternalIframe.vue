@@ -2,7 +2,7 @@
   <div :class="{bordered}">
     <iframe :src="this.src" frameborder="0" ref="iframe" />
     <div class="actions">
-      <button class="action" @click="requestFullscreen" v-if="isFullScreenAvailable">
+      <button class="action" @click="() => requestFullscreen(this.$refs['iframe'])" v-if="isFullScreenAvailable">
         <img src="/icons/fullscreen.svg" />
       </button>
       <a class="action" :href="this.src" target="_blank" >
@@ -26,18 +26,20 @@ export default {
   },
   computed: {
     isFullScreenAvailable(){
-      return document.webkitFullscreenEnabled || document.fullscreenEnabled 
+      return document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
     }
   },
   methods: {
-    requestFullscreen() {
-      if(this.$refs["iframe"].webkitRequestFullScreen){
-        this.$refs["iframe"].webkitRequestFullScreen();
-      } else {
-        this.$refs["iframe"].requestFullscreen();
+    requestFullscreen(element){
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
       }
-      
-      this.$refs["iframe"].focus();
+
+      element.focus();
 
       try {
         ga("send", "event", "requestFullscreen", this.src);
