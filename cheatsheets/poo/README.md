@@ -255,9 +255,19 @@ L'accès au propriété ne fonctionnera que si la visibilité (`private`, `publi
 
 ## Les collections
 
+![Représentation UML](./res/collections_1.png)
+
+::: tip Le losange vide
+
+![Aggregation](./res/UML_Rel_aggregation.jpg)
+
+Ce symbole signifie la notion d'appartenance.
+
+:::
+
 Permet de regrouper des listes d'objets.
 
-![Représentation UML](./res/collections-uml.png)
+![Représentation UML](./res/collections_2.png)
 
 En modélisation, la fleche signife un lien entre les deux classes. En l'occurence, dans le cas des collections nous aurons :
 

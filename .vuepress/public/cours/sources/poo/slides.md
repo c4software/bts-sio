@@ -273,6 +273,15 @@ Aide mémoire écriture
 
 ---
 
+![Exemple modélisation](./res/modelisation-personne.png)
+
+```php
+$personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
+$personne2 = new Personne("John", "Doe", "01/01/1970", 12);
+```
+
+---
+
 ## Les collections d'objets
 
 ---
@@ -283,25 +292,20 @@ Regrouper plusieurs objets « dans une liste »
 
 Exemple, comment gérer le cas de :
 
-« Une entreprise contient des personnes »
+« Une entreprise contient des personnes (employés) »
 
 ---
 
-![Exemple modélisation](./res/modelisation-personne.png)
-
-```php
-$personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
-$personne2 = new Personne("John", "Doe", "01/01/1970", 12);
-```
-
----
-
-TODO SCHEMA UML
+![UML Basique](./res/collections_1.png)
 
 ---
 
 _Définition_ : Une collection est un ensemble d'objets qui sont
 regroupés ensemble sous un même nom.
+
+---
+
+![Aggregation](./res/UML_Rel_aggregation.jpg)
 
 ---
 
@@ -399,7 +403,7 @@ Aide mémoire écriture et comparaison
 
 ### La modélisation
 
-![Rappel modélisations](./res/collections-uml.png)
+![Rappel modélisations](./res/collections_2.png)
 
 ---
 
