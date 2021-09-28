@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     isFullScreenAvailable(){
-      return document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
+      return window.document.fullscreenEnabled || window.document.mozFullScreenEnabled || window.document.documentElement.webkitRequestFullScreen;
     }
   },
   methods: {
