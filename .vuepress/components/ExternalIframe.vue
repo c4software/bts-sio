@@ -26,9 +26,9 @@ export default {
   },
   computed: {
     isFullScreenAvailable(){
-      if(document){
+      try{
         return document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
-      } else {
+      } catch(err) {
         return false;
       }
     }
