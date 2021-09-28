@@ -26,7 +26,11 @@ export default {
   },
   computed: {
     isFullScreenAvailable(){
-      return window.document.fullscreenEnabled || window.document.mozFullScreenEnabled || window.document.documentElement.webkitRequestFullScreen;
+      if(document){
+        return document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
+      } else {
+        return false;
+      }
     }
   },
   methods: {
