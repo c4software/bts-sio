@@ -29,7 +29,7 @@ export default {
       try{
         return document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
       } catch(err) {
-        return false;
+        return true;
       }
     }
   },
