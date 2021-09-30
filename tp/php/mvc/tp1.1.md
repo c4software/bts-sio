@@ -638,7 +638,7 @@ Vu qu'il s'agit ici d'un projet découvert, je vais vous en donner le contenu (s
     <div class="card">
         <div class="card-body p-2">
             <!-- Action -->
-            <form action="/todo/ajouter" method="post" class="add">
+            <form action="ajouter" method="post" class="add">
                 <div class="input-group">
                     <input id="texte" name="texte" type="text" class="form-control" placeholder="Prendre une note…" aria-label="My new idea" aria-describedby="basic-addon1"/>
                 </div>
@@ -653,7 +653,7 @@ Vu qu'il s'agit ici d'un projet découvert, je vais vous en donner le contenu (s
                         <div class="d-flex">
                             <div class="flex-grow-1 align-self-center"><?= $todo['texte'] ?></div>
                             <div>
-                                <a href="/todo/terminer?id=<?= $todo['id'] ?>" class="btn btn-outline-success">
+                                <a href="terminer?id=<?= $todo['id'] ?>" class="btn btn-outline-success">
                                     <i class="bi bi-check"></i>
                                 </a>
                                 <!-- Action à ajouter pour Supprimer -->
@@ -695,7 +695,7 @@ Pour le code, je vais vous aider un peu, voilà le code du contrôleur :
 function ajouter($texte = "")
 {
     $this->todoModel->ajouterTodo($texte);
-    $this->redirect("/todo/liste");
+    $this->redirect("liste");
 }
 ```
 
@@ -731,7 +731,7 @@ function terminer($id = ''){
         $this->todoModel->marquerCommeTermine($id);
     }
 
-    $this->redirect("/todo/liste");
+    $this->redirect("liste");
 }
 ```
 
