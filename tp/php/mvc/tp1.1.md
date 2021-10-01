@@ -740,7 +740,7 @@ function terminer($id = ''){
 
 _À faire_ :
 
-- Mettre en place le code, valider le bon fonctionnement avec PHPMyAdmin
+- Mettre en place le code, valider le bon fonctionnement avec **PHPMyAdmin**
 - Modifier la vue pour afficher le bouton vert **seulement si** la tache est non terminée
 - Ajouter un bouton supprimé visible **uniquement si** la tache est terminée
 
