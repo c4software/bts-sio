@@ -73,9 +73,10 @@ iframe:not(.giphy-embed) {
 
 .custom-controls {
   position: absolute;
-  bottom: 10px;
+  right: 0;
   z-index: 200;
   color: var(--r-link-color);
+  top: 10px;
 }
 
 .custom-controls > i {
