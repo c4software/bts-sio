@@ -355,6 +355,84 @@ for (Personne laPersonne : lesPersonnes) {
 }
 ```
 
+## L'héritage
+
+L'héritage permet de généraliser le fonctionnement d'un objet. L'idée est de mettre dans un « objet parent » la logique de plusieurs objets qui fonctionne de la même façon. **Exemple**
+
+- Un **humain** et une baleine partage des propriété et fonctionnement commun. Nous allons donc créer une super classe **mammifère** celle-ci contiendra les méthodes et les propriétés commune.
+- Une **Voiture** et une **Moto** sont des véhicule. Nous pouvons donc créer une super classe « **Véhicule** ».
+- …
+
+En PHP:
+
+```php
+class Mammifere {
+    private $vertebre = true;
+
+    public function print() {
+        echo "Je suis un mammifère";
+    }
+
+    public function manger(){
+        echo "Je mange";
+    }
+}
+
+class Humain extends mammifere {
+    private $prenom = "";
+
+    function __construct($prenom)
+    {
+        parent::__construct();
+        this->$prenom = $prenom;
+    }
+
+    public function manger(){
+        echo "Je suis omnivore";
+    }
+}
+
+$unHumain = new Humain("Valentin");
+$unHumain->print(); // Je suis un mammifère.
+$unHumain->manger(); // Je suis omnivore
+```
+
+En Java :
+
+```java
+class Mammifere {
+    private Boolean vertebre = true;
+
+    public void print() {
+        System.out.println("Je suis un mammifère");
+    }
+
+    // Redéfinition de méthode
+    public String manger(){
+        System.out.println("Je mange");
+    }
+}
+
+class Humain extends mammifere {
+    private String prenom = "";
+
+    function Hunain(String prenom)
+    {
+        super();
+        this.prenom = prenom;
+    }
+
+    // Redéfinition de méthode
+    public String manger(){
+        System.out.println("Je suis omnivore");
+    }
+}
+
+Humain unHumain = new Humain("Valentin");
+unHumain.print(); // Je suis un mammifère.
+unHumain.manger(); // Je suis omnivore.
+```
+
 ## Les méthodes static
 
 En PHP:
@@ -383,58 +461,6 @@ class Personne {
 
 // Utilisation
 Personne.laReponseDeLunivers();
-```
-
-## L'héritage
-
-En PHP:
-
-```php
-class Mammifere {
-    private $vertebre = true;
-
-    public print() {
-        echo "Je suis un mammifère";
-    }
-}
-
-class Humain extends mammifere {
-    private $prenom = "";
-
-    function __construct($prenom)
-    {
-        parent::__construct();
-        this->$prenom = $prenom;
-    }
-}
-
-$unHumain = new Humain("Valentin");
-$unHumain->print(); // Je suis un mammifère.
-```
-
-En Java :
-
-```java
-class Mammifere {
-    private Boolean vertebre = true;
-
-    public void print() {
-        System.out.println("Je suis un mammifère");
-    }
-}
-
-class Humain extends mammifere {
-    private String prenom = "";
-
-    function Hunain(String prenom)
-    {
-        super();
-        this.prenom = prenom;
-    }
-}
-
-Humain unHumain = new Humain("Valentin");
-unHumain.print(); // Je suis un mammifère.
 ```
 
 ## Les namespaces (organisation des classes)
