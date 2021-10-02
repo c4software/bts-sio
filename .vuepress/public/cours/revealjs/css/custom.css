@@ -70,3 +70,15 @@ iframe:not(.giphy-embed) {
   border: 4px solid #657b83 !important;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
+
+.custom-controls {
+  position: absolute;
+  bottom: 10px;
+  z-index: 200;
+  color: var(--r-link-color);
+}
+
+.custom-controls > i {
+  margin: 0 10px;
+  cursor: pointer;
+}

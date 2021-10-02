@@ -6,47 +6,34 @@
 
 		<title>Présentation - Valentin Brosseau</title>
 
-		<link rel="icon" href="/icons/icon-72x72.png">
-		<link rel="manifest" href="/manifest.json">
-		<meta name="theme-color" content="#3e80af">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
-		<link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3e80af">
-		<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
-		<meta name="msapplication-TileColor" content="#3e80af">
-		
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/solarized.css">
-		
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/solarized.css">
 		<link rel="stylesheet" href="css/custom.css">
-
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="plugin/chalkboard/style.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-
 				<section data-markdown="" id="section"></section>
-
 			</div>
 		</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+		<div class="custom-controls">
+			<i class="fa fa-pencil-square fa-2x" onclick="RevealChalkboard.toggleChalkboard();"></i>
+			<i class="fa fa-pencil fa-2x" onclick="RevealChalkboard.toggleNotesCanvas();"></i>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/chalkboard/plugin.js"></script>
 
 		<script>
 			// Load custom slides from uri.
@@ -54,18 +41,18 @@
 			var source = url.searchParams.get("source");
 			document.querySelector("#section").setAttribute("data-markdown", "/cours/sources/" + source + "/slides.md");
 			const SAVE_ITEM_STORAGE_KEY = `saved_slides_position_${source}`;
-			
-			function savePosition(page){
-				try{
+
+			function savePosition(page) {
+				try {
 					localStorage.setItem(SAVE_ITEM_STORAGE_KEY, event.indexh);
-				} catch(err){}
+				} catch (err) { }
 			}
 
 			function restorePosition() {
 				try {
 					const page = localStorage.getItem(SAVE_ITEM_STORAGE_KEY);
 					console.log("Last page loaded was => ", page);
-					if(page){
+					if (page) {
 						Reveal.slide(page);
 					}
 				} catch (err) { }
@@ -78,27 +65,19 @@
 				center: true,
 				history: true,
 				fragmentInURL: true,
+				hash: true,
 
 				keyboard: {
 					40: 'prev',
 					38: 'next',
-					9: function() {Reveal.toggleOverview()}
+					9: function () { Reveal.toggleOverview() }
 				},
-				
-				dependencies: [
-					{ src: './plugin/markdown/marked.js' },
-					{ src: './plugin/markdown/markdown.js', callback: function() {
-						Array.from(document.getElementsByTagName("img")).forEach(it => it.loading = "lazy");
-						Array.from(document.getElementsByTagName("a")).forEach(it => it.target = "_blank");
-					} },
-					{ src: './plugin/highlight/highlight.js', callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: './plugin/zoom-js/zoom.js', condition: function() { return !!document.body.classList; } },
-					{ src: './plugin/notes/notes.js', condition: function() { return !!document.body.classList; } },
-				]
+
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealChalkboard],
 			});
 
 			Reveal.addEventListener('ready', () => {
-				restorePosition();				
+				restorePosition();
 
 				Reveal.addEventListener('slidechanged', (event) => {
 					savePosition(event.indexh);
@@ -106,7 +85,7 @@
 			});
 
 			// Change base to the « source » base, to make image, and other link correctly working
-			document.querySelector("head").insertAdjacentHTML("beforeend", "<base href='/cours/sources/"+source+"/'>");
+			document.querySelector("head").insertAdjacentHTML("beforeend", "<base href='/cours/sources/" + source + "/'>");
 		</script>
 	</body>
 </html>
