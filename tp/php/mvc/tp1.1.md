@@ -336,8 +336,11 @@ Le framework que je vous propose entre directement dans cette catégorie « Gagn
 # Hors Windows
 php index.php model:create TodoModel
 
-# Sous Windows
+# Sous Windows (avec XAMPP)
 C:/xampp/php/php index.php model:create TodoModel
+
+# Sous Windows (avec WAMP)
+C:/wamp64/bin/php/php7.4.9/php index.php model:create TodoModel
 ```
 
 **Et c'est tout !** votre modèle pour accéder aux données est prêt 🤝. Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
@@ -481,8 +484,11 @@ COMMIT;
 # Hors Windows
 php index.php db:migrate
 
-# Sous Windows
+# Sous Windows (avec XAMPP)
 C:/xampp/php/php index.php db:migrate
+
+# Sous Windows (avec WAMP)
+C:/wamp64/bin/php/php7.4.9/php index.php db:migrate
 ```
 
 Si tout vas bien vous devriez avoir le résultat suivant:
@@ -510,8 +516,11 @@ Notre base est prête… Et si nous écrivions vraiment le code ? Comme pour cr�
 # Hors Windows
 php index.php controller:create TodoWeb
 
-# Sous Windows
+# Sous Windows (avec XAMPP)
 C:/xampp/php/php index.php controller:create TodoWeb
+
+# Sous Windows (avec WAMP)
+C:/wamp64/bin/php/php7.4.9/php index.php controller:create TodoWeb
 ```
 
 Cette commande va initialiser un contrôleur de type Web. Celui-ci est pour l'instant vide de méthode :
