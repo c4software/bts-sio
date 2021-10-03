@@ -425,10 +425,15 @@ L’héritage permet, lors de la déclaration d’une nouvelle classe, d'y inclu
 
 ```php
 class Mammifere {
-    private $vertebre = true;
+    protected $vertebre = true;
+    protected $espece = "";
 
     public print() {
         echo "Je suis un mammifère";
+    }
+
+    public function manger(){
+        return "";
     }
 }
 
@@ -440,30 +445,59 @@ class Humain extends mammifere {
         parent::__construct();
         this->$prenom = $prenom;
     }
+
+    public function manger(){
+        return "Je suis omnivore";
+    }
 }
 
 $unHumain = new Humain("Valentin");
 $unHumain->print(); // Je suis un mammifère.
+$unHumain->manger(); // Je suis omnivore.
 ```
+
+---
+
+### La visibilité !
+
+- Privée : accessible que dans l'objet.
+- Public : accessible hors de l'objet.
+- Protected : **accessible** aux enfants (héritage) mais **pas en dehors**.
 
 ---
 
 [Héritage](./res/heritage_chat_animal.png)
 
+- Est-ce que le chien et le chat peuvent avoir un nom ?
+- Pourquoi l'héritage est intéressant ici ?
+- Écrire la définition de classe correspondant au diagrame UML.
+
+---
+
+[Héritage 2](./res/heritage_personne.png)
+
+- Que constatez-vous ?
+- Pourquoi avons-nous décidé de découper la logique comme ceci ?
+- Pourquoi l'héritage est intéressant ici ?
+- Écrire la définition de classe correspondant au diagrame UML.
+
 ---
 
 ## C'est à vous
 
-### Seul ou en groupe, trouvez des exemples d'héritages
+### Seul ou en groupe, trouvez des exemples d'héritages pertinents
 
 ---
 
 ## Synthèse
 
-- Un mot clé : Extends (En français « Hérite »).
-- Permet de généraliser un objet afin de partager des propriétés communes.
-- **mais** il est possible de spécialiser / redéfinir un objet
-  - Rédifinition, comme la surcharge, mais entre la classe fille et la classe mère).
+- La classe mère contient la logique **partagée**.
+- La classe fille contient la logique **spécifique**.
+- Un mot-clé Extends `class Humain extends Mammifere`.
+- **Vous devez** construire le parent dans le constructeur de l'enfant.
+- **Permets de généraliser un objet afin de partager des propriétés communes.**.
+- **mais** il est également possible de spécialiser / redéfinir un objet.
+  - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère).
 
 ---
 
