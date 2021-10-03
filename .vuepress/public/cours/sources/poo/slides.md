@@ -489,6 +489,18 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
+## Mais nous pratiquons un exemple déjà
+
+### La structure MVC
+
+---
+
+## Démo !
+
+### À vous de me dire là où se trouve l'héritage, et pourquoi c'est intéressant…
+
+---
+
 ## Synthèse
 
 - La classe mère contient la logique **partagée**.
