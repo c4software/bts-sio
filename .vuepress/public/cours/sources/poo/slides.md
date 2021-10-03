@@ -409,9 +409,17 @@ Aide mémoire écriture et comparaison
 
 ## L'héritage
 
-- Extends
-- Hérite
-- Redéfinition (comme la surcharge, mais entre la fille et la mère)
+Ça vous évoque quoi ?
+
+---
+
+L’héritage permet, lors de la déclaration d’une nouvelle classe, d'y inclure les caractéristiques d’une autre classe.
+
+---
+
+## On observe…
+
+### Que constatez-vous ?
 
 ---
 
@@ -437,6 +445,25 @@ class Humain extends mammifere {
 $unHumain = new Humain("Valentin");
 $unHumain->print(); // Je suis un mammifère.
 ```
+
+---
+
+[Héritage](./res/heritage_chat_animal.png)
+
+---
+
+## C'est à vous
+
+### Seul ou en groupe, trouvez des exemples d'héritages
+
+---
+
+## Synthèse
+
+- Un mot clé : Extends (En français « Hérite »).
+- Permet de généraliser un objet afin de partager des propriétés communes.
+- **mais** il est possible de spécialiser / redéfinir un objet
+  - Rédifinition, comme la surcharge, mais entre la classe fille et la classe mère).
 
 ---
 
