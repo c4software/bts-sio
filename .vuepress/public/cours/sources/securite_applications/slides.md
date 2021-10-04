@@ -20,6 +20,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+![](./img/facebook/facebook-leak.png)
+
+---
+
 ![](./img/faille1.png)
 
 ---
@@ -100,6 +104,24 @@ Vous en avez d’autres en tête ?
 Estimation des coûts pour une entreprise à chaque incident de vol de données en France
 
 source: Cost Of Data Breach \- Symantec
+
+---
+
+### Un exemple… Facebook
+
+---
+
+![](./img/facebook/facebook-resume.png)
+
+---
+
+![](./img/facebook/facebook-access-impossible.png)
+
+---
+
+### Un impact qui peut-être globalisé
+
+[https://twitter.com/awlnx/status/1445073290708533258?s=09](https://twitter.com/awlnx/status/1445073290708533258?s=09)
 
 ---
 
