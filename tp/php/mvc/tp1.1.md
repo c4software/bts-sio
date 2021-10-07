@@ -413,7 +413,7 @@ class TodoModel extends SQL
 
     function todoNonTermine()
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM todos WHERE termine = 1;");
+        $stmt = $this->pdo->prepare("SELECT * FROM todos WHERE termine = 0;");
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
