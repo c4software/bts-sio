@@ -765,6 +765,18 @@ En utilisant le code précédemment fourni, écrire :
 
 C'est à vous.
 
+### Un serveur de dev ?
+
+Si vous souhaitez tester votre code sans démarrer XAMPP c'est possible. PHP intégre un serveur Web de « développement », pour le lancer il suffit de :
+
+```sh
+# XAMPP
+c:\xampp\php\php -S localhost:9000
+
+# Linux / OSX
+php -S localhost:9000
+```
+
 ### Évolution 0
 
 Ajouter dans la page d'accueil du site un lien permettant d'accéder à votre TodoList. Quelques consignes à respecter :
