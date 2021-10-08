@@ -6,8 +6,6 @@ Ce document présente la syntaxe objet avec des exemples PHP & Java
 [[toc]]
 :::
 
-[Voir la version UML / Classe](/cheatsheets/poo-uml/)
-
 ## Introduction
 
 ### La POO c'est 3 concepts
@@ -24,6 +22,12 @@ Ce document présente la syntaxe objet avec des exemples PHP & Java
 
 - Les classes
 - Les objets
+
+### La modélisation
+
+Avant de parler des classes ou des objets, je vous propose de regarder le principe de la modélisation
+
+[Voir la version UML / Classe](/cheatsheets/poo-uml/)
 
 ### Les classes
 
