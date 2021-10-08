@@ -6,6 +6,8 @@ Ce document présente la syntaxe objet avec des exemples PHP & Java
 [[toc]]
 :::
 
+[Voir la version UML / Classe](/cheatsheets/poo-uml/)
+
 ## Introduction
 
 ### La POO c'est 3 concepts
