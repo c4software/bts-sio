@@ -79,7 +79,8 @@ module.exports = {
           ["cheatsheets/cordova/", "Cordova"],
           ["cheatsheets/docker/", "Docker"],
           ["cheatsheets/vuejs/", "VueJS"],
-          ["cheatsheets/poo/", "Programation Orientée Objet"],
+          ["cheatsheets/poo-uml/", "Représentation UML"],
+          ["cheatsheets/poo/", "Programation Orientée Objet"]
         ]
       },
 
