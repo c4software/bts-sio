@@ -145,7 +145,10 @@ C’est aussi votre métier
 - Réseau ?
 - Développeur ?
 - À votre avis ? Qui doit travailler la sécurité ?
-- Les deux! <!-- .element: class="fragment" -->
+
+---
+
+### Les deux!
 
 ---
 

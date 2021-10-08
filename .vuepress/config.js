@@ -81,6 +81,7 @@ module.exports = {
           ["cheatsheets/vuejs/", "VueJS"],
           ["cheatsheets/poo-uml/", "Représentation UML"],
           ["cheatsheets/poo/", "Programation Orientée Objet"]
+          ["cheatsheets/owasp/", "OWASP"]
         ]
       },
 
