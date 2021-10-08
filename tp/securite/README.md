@@ -1,29 +1,47 @@
-# Sécurité des développements
+# TP Sécurité
 
 Le meilleur moyen de comprendre la sécurisation d’une application / site Internet, c’est de …
 
-* Passer des heures sur de la théorie ?
-* Passer des heures sur du code à vous ?
-* Passer des heures à tenter des intrusions ?
-* La réponse D ?
+- Passer des heures sur de la théorie ?
+- Passer des heures sur du code à vous ?
+- Passer des heures à tenter des intrusions ?
+- La réponse D ?
 
 ## Partie 1 : Les injections SQL
 
-Avant d'utiliser WebGoat, nous allons nous focaliser sur la partie Injection SQL, pour ça nous allons utiliser le site [Code Bashing](https://free.codebashing.com/free-content/php/sql_injection).
+Avant d'utiliser WebGoat, nous allons nous focaliser sur la partie Injection SQL, pour ça nous allons utiliser le site [Hack Splaining](https://www.hacksplaining.com/exercises/sql-injection).
 
 Celui-ci contient un bon « tutoriel » interactif permettant de tester et de se former au principe d’injections SQL.
 
-Vous allez être invité à mettre des informations pour continuer (entreprise, nom, prénom, etc.). Vous pouvez indiquer n'importer quoi.
-
 ## Partie 2 : Les XSS
 
-Pour mieux comprendre l'aspect dangereux d'une XSS nous allons utiliser Code Bashing, pour ça rendez-vous sur [Code Bashing](https://free.codebashing.com/courses/php/lessons/stored_persistent_xss)
+Voilà un exemple simple de XSS via un input non filtré.
+
+<Sample src="xss" />
+
+::: danger Quoi faire ?
+
+Ici, l'idée, est de trouver comment éxécuter du code via un simple chargement d'image ! Pour ça il faut connaître un peu le HTML et le fonctionnement des balises classique.
+
+Une balise img, vous conaissez… Elle prend en paramètre un attribut `src`… ok ! Mais elle a également un autre attribut … nommé … `onLoad` cette attribut permet d'éxécuter du code quand la ressource (l'image) est chargé. Nous allons donc exploiter un code « mal écrit » pour charger du code JavaScript.
+
+Pour ça, dans le champs de saisie, je vous propose de mettre:
+
+```
+https://fakeimg.pl/300/" onload="alert('Coucou'); window.location='https://bit.ly/3Bpiela'"
+```
+
+Que-ce passe-t-il ? Pourquoi ? Regardons le code source ensemble !
+
+:::
+
+## Partie 2.1 : Les XSS
+
+Pour mieux comprendre l'aspect dangereux d'une XSS nous allons utiliser Hack Splaining, pour ça rendez-vous sur [Hack Splaining](https://www.hacksplaining.com/exercises/xss-stored)
 
 Celui-ci contient un bon « tutoriel » interactif permettant de tester et de se former au principe de XSS.
 
-Vous allez être invité à mettre des informations pour continuer (entreprise, nom, prénom, etc.). Vous pouvez indiquer n'importer quoi.
-
-## Partie 2 : WebGoat
+## Partie 3 : WebGoat
 
 ![Superbe Logo](./webgoat.png)
 
@@ -33,14 +51,14 @@ Elle vise à familiariser l'utilisateur aux technologies WEB (E.g: protocole HTT
 
 Voilà une liste des éléments que nous allons pouvoir « exploiter » dans WebGoat :
 
-* Flux des contrôles d'accès et authentification
-* Flux de gestion de session utilisateur
-* Cross-Site Scripting (XSS)
-* Injections
-* Parameter and Data Tampering
-* Buffer Overflows
-* Configuration et stockage de données (non sécurisée)
-* Sécurité AJAX
+- Flux des contrôles d'accès et authentification
+- Flux de gestion de session utilisateur
+- Cross-Site Scripting (XSS)
+- Injections
+- Parameter and Data Tampering
+- Buffer Overflows
+- Configuration et stockage de données (non sécurisée)
+- Sécurité AJAX
 
 Nous n’allons bien évidemment pas tous les faire, l’idée est d’en faire quelques-uns et si vous le souhaitez vous pourrez approfondir le sujet.
 
@@ -50,8 +68,8 @@ Nous n’allons bien évidemment pas tous les faire, l’idée est d’en faire 
 
 Deux versions existent :
 
-* Le jar
-* Un containeur Docker
+- Le jar
+- Un containeur Docker
 
 Nous allons choisir le jar :
 
@@ -69,16 +87,16 @@ C’est parti, vous pouvez maintenant aller sur [http://localhost:8080/WebGoat](
 
 ## À faire
 
-* AJAX Security
-  * LAB: Client Side Filtering
-  * LAB: DOM-Based cross-site scripting
-  * Dangerous Use of Eval
-* Concurrency
-  * Thread Safety Problems
-  * Shopping Cart Concurrency Flaw
-* Injection Flaws
-  * Command Injection (si vous souhaitez faire du MITM - Man In The Middle -)
-  * Numeric SQL Injection
-  * String SQL Injection
-* Parameter Tampering
-  * Exploit Hidden Fields
+- AJAX Security
+  - LAB: Client Side Filtering
+  - LAB: DOM-Based cross-site scripting
+  - Dangerous Use of Eval
+- Concurrency
+  - Thread Safety Problems
+  - Shopping Cart Concurrency Flaw
+- Injection Flaws
+  - Command Injection (si vous souhaitez faire du MITM - Man In The Middle -)
+  - Numeric SQL Injection
+  - String SQL Injection
+- Parameter Tampering
+  - Exploit Hidden Fields
