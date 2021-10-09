@@ -81,7 +81,6 @@ module.exports = {
           ["cheatsheets/vuejs/", "VueJS"],
           ["cheatsheets/poo-uml/", "Représentation UML"],
           ["cheatsheets/poo/", "Programation Orientée Objet"]
-          ["cheatsheets/owasp/", "OWASP"]
         ]
       },
 
@@ -172,7 +171,7 @@ module.exports = {
         title: "Sécurité du code",
         children: [
           { title: "Introduction OWASP", children: ["cours/introduction_securite"] },
-          { title: "Sur le WEB", children: ["cours/securite_applications", "tp/securite/"] }
+          { title: "OWASP", children: ["cours/securite_applications", ["cheatsheets/owasp/", "Synthèse du cours"], "tp/securite/"] }
         ]
       },
 
