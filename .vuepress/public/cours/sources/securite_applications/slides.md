@@ -445,4 +445,37 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 
 ---
 
+### Sécurité à tous les niveaux
+
+#### Vous… mais aussi le réseau
+
+---
+
+![Niveaux](./img/securite.png)
+
+---
+
+- IPS (Intrusion Prevension System)
+- IDS (Intrusion Detection System)
+
+---
+
+### IPS
+
+- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 % (risque de bloquer du trafic légitime).
+- Ils laissent parfois passer certaines attaques sans les repérer.
+- Peu discrets. Lors d'une attaque, l'attaquant s'empressera de trouver une faille dans ce dernier pour le contourner et arriver à son but.
+
+---
+
+### IDS
+
+Un système de détection d'intrusion (Intrusion Detection System) est un mécanisme destiné à repérer des activités anormales ou suspectes sur la cible analysée
+
+![IDS](./img/nids.png)
+
+(Sans bloquer)
+
+---
+
 ### Des questions ?

@@ -177,7 +177,6 @@ module.exports = {
       {
         title: "Sécurité du code",
         children: [
-          { title: "Introduction OWASP", children: ["cours/introduction_securite"] },
           { title: "OWASP", children: ["cours/securite_applications", ["cheatsheets/owasp/", "Synthèse du cours"], "tp/securite/"] }
         ]
       },

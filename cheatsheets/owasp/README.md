@@ -86,7 +86,7 @@ OWASP liste 10 grandes catégories de failles **à connaitre** :
 
 ## Comprendre les failles
 
-L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement…
+L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement… Et surtout avec OWASP on parle de **vulnérabilité, et non de risque**.
 
 ### Le classement évolue
 
