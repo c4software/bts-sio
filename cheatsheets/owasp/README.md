@@ -22,7 +22,7 @@ La sécurité informatique dans une application c’est un « équilibre »
 ## Le prix de la sécurité
 
 - Impact fonctionnel
-- Limitation de l’experience utilisateur (UX)
+- Limitation de l’expérience utilisateur (UX)
 - Impact financier
 
 ## Suis-je à risque ?
@@ -57,20 +57,20 @@ C’est **votre métier**
 
 [Site de Owasp](https://owasp.org/)
 
-OWASP liste 10 grandes catégorie de failles **à connaitre** :
+OWASP liste 10 grandes catégories de failles **à connaitre** :
 
 - **The Injection**
-  - Correspond au risque d’injection SQL, shell...
+  - Corresponds au risque d’injection SQL, shell...
 - **Broken Authentication and Session Management**
-  - Correspond au risque de casser la gestion de l’authentification et de la session. Comprend notamment le vol de session ou la récupération de mots de passe.
+  - Corresponds au risque de casser la gestion de l’authentification et de la session. Comprends notamment le vol de session ou la récupération de mots de passe.
 - **Cross-Site Scripting**
-  - Correspond au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
+  - Corresponds au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
 - **Insecure Direct Object References**
-  - Correspond aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
+  - Corresponds aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
 - **Security Misconfiguration**
-  - Correspond aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
+  - Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
 - **Sensitive Data Exposure**
-  - Correspond aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
+  - Corresponds aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 - **Missing Function Level Access Control**
   - Failles de sécurités liées aux accès de fonctionnalité.
 - **Cross-Site Request Forgery (CSRF)**
@@ -83,3 +83,99 @@ OWASP liste 10 grandes catégorie de failles **à connaitre** :
 ## Mais, une faille c’est quoi ?
 
 ![](./res/faille.png)
+
+## Comprendre les failles
+
+L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement…
+
+### L’injection
+
+Souvent la plus connu… (et la plus rencontrée)
+
+```sql
+SELECT * FROM client WHERE id='" . $_GET["id"] . "'
+```
+
+```
+http://exemple.com/liste?id='or '1'='1
+```
+
+### Violation de gestion d'authentification et de session
+
+Une session en paramètre GET == ⚠️. Si vous partagez le lien, n'importe qui pourra obtenir votre accès !
+
+```
+http://exemple.com/?jsessionid=A2938298D293
+```
+
+### XSS
+
+Exécution de code JavaScript sans validation. Le risque ici est qu'il est possible de changer le comportement initialement attendu pour en détourner le sens.
+
+```html
+Votre Nom : <input type="text" name="nom" value="" />
+```
+
+```js
+alert("Bonjour " + $_POST["nom"]);
+```
+
+### Référence directe non sécurisée à un objet
+
+C'est également quelque chose de très courant. Si vous attendez en paramètre un mode / un id, veillez à toujours contrôler si la ressource chargée correspond aux droits de l'utilisateur.
+
+Si je change client par … admin ?
+
+```
+http://exemple.com/liste?mode=client
+```
+
+```sql
+SELECT * FROM client where mode=?
+```
+
+```php
+$stmt->bindParam(1, $mode);
+```
+
+::: tip Requête préparée
+
+Vous noterez ici que nous avons une requête « préparé » ça n'empêche pas le danger…
+
+:::
+
+### Mauvaise configuration sécurisée
+
+- Console d’administration disponible sans authentification en ligne.
+- Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
+- Exemples de code non supprimés.
+
+### Exposition de données sensibles
+
+- Espace client sans SSL.
+- Mot de passe en claire (ou en MD5) dans la base de données.
+
+### Manque de contrôle d'accès au niveau fonctionnel
+
+- Page d’admin accessible avec un compte utilisateur.
+- Mode non filtré (similaire à l’exemple mode={client,admin}).
+
+### CSRF: Falsification des requêtes
+
+- Rejeu de requête déjà joué.
+
+::: tip Comment le bloquer ?
+
+Ajouter un identifiant/jeton dans la requête, unique et non réutilisable. Intégré de base dans Laravel.
+
+:::
+
+### Utilisation de composants avec des vulnérabilités connues
+
+- CMS non à jour
+- Apache / Tomcat non patchés
+- Librairies XYZ non à jour
+
+### Redirections et renvois non validés
+
+- Utilisation de votre site comme « masque » dans du phishing
