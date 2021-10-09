@@ -82,7 +82,7 @@ Vous en avez d’autres en tête ?
 ### Le prix de la sécurité
 
 - Impact fonctionnel
-- Limitation de l’experience utilisateur (UX)
+- Limitation de l’expérience utilisateur (UX)
 - Impact financier
 
 ---
@@ -175,37 +175,37 @@ C’est aussi votre métier
 
 ### The Injection
 
-Correspond au risque d’injection SQL, shell...
+Corresponds au risque d’injection SQL, Shell...
 
 ---
 
 ### Broken Authentication and Session Management
 
-Correspond au risque de casser la gestion de l’authentification et de la session. Comprend notamment le vol de session ou la récupération de mots de passe.
+Corresponds au risque de casser la gestion de l’authentification et de la session. Comprends notamment le vol de session ou la récupération de mots de passe.
 
 ---
 
 ### Cross-Site Scripting
 
-Correspond au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
+Corresponds au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
 
 ---
 
 ### Insecure Direct Object References
 
-Correspond aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
+Corresponds aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
 
 ---
 
 ### Security Misconfiguration
 
-Correspond aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
+Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
 
 ---
 
 ### Sensitive Data Exposure
 
-Correspond aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
+Corresponds aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 ---
 
@@ -235,11 +235,11 @@ Failles liées aux redirects et forwards génériques des applications.
 
 ### Les outils autour d’OWASP
 
-- ![OWASP Juice Shop (Formation, Javascript)](https://owasp.org/www-project-juice-shop/)
+- ![OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
 - WebGoat (Formation, Java)
 - WebScarab (Audit)
-- OWASP Testing Guide (Guide pour voir le niveau de sécu)
-- OWASP Code Review Guide (Méthode d’audit)
+- OWASP Testing guide (Guide pour voir le niveau de sécu)
+- OWASP Code Review guide (Méthode d’audit)
 
 ---
 
@@ -286,11 +286,18 @@ Un système de détection d'intrusion (Intrusion Detection System) est un mécan
 
 ---
 
-### Les type de failles
+### Les types de failles
 
 - L’humain (Social Engineering)
 - Applicatif (Hack)
-- L’argent (Jusqu’à quel montant une personne donne l’information ?)
+- L’argent (jusqu’à quel montant une personne donne l’information ?)
+
+---
+
+### OWASP un classement qui évolue
+
+![Mapping 2017 -> 2021](./res/mapping.png)
+[Source](https://owasp.org/www-project-top-ten/)
 
 ---
 
@@ -322,7 +329,7 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ### XSS
 
-Éxecution de code Javascript sans validation
+Exécution de code JavaScript sans validation
 
 ```html
 Votre Nom : <input type="text" name="nom" value="" />
@@ -419,10 +426,10 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 
 - Résistance au changement
 - ERP / CMS
-- La sécurité est vue comme un frein, pas une fonctionnalitée
+- La sécurité est vue comme un frein, pas une fonctionnalité
 - Déni de la réalité
 - Multitude de librairies
-- Developpement externe (presta, stagiaires, …)
+- Développement externe (presta, stagiaires …)
 
 ---
 

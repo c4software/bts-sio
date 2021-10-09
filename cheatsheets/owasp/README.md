@@ -88,6 +88,11 @@ OWASP liste 10 grandes catégories de failles **à connaitre** :
 
 L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement…
 
+### Le classement évolue
+
+![Mapping 2017 -> 2021](./res/mapping.png)
+[Source](https://owasp.org/www-project-top-ten/)
+
 ### L’injection
 
 Souvent la plus connu… (et la plus rencontrée)
@@ -179,3 +184,11 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable. Int�
 ### Redirections et renvois non validés
 
 - Utilisation de votre site comme « masque » dans du phishing
+
+## Les outils OWASP
+
+- ![OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
+- WebGoat (Formation, Java)
+- WebScarab (Audit)
+- OWASP Testing guide (Guide pour voir le niveau de sécu)
+- OWASP Code Review guide (Méthode d’audit)
