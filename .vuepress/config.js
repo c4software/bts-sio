@@ -79,6 +79,7 @@ module.exports = {
           ["cheatsheets/cordova/", "Cordova"],
           ["cheatsheets/docker/", "Docker"],
           ["cheatsheets/vuejs/", "VueJS"],
+          ["cheatsheets/owasp/", "OWASP"],
           ["cheatsheets/poo-uml/", "Représentation UML"],
           ["cheatsheets/poo/", "Programation Orientée Objet"]
         ]
@@ -100,6 +101,12 @@ module.exports = {
               { title: "POO", children: ["cours/poo"] },
               { title: "MVC", children: ["cours/mvc"] },
               { title: "Les Interfaces", children: ["cours/les_interfaces", "tp/poo/interface"] },
+              {
+                title: "Aide mémoire", children: [
+                  ["cheatsheets/poo-uml/", "Représentation UML"],
+                  ["cheatsheets/poo/", "Programation Orientée Objet"]
+                ]
+              }
             ]
           },
         ]
