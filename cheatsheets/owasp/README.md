@@ -187,7 +187,7 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable. Int�
 
 ## Les outils OWASP
 
-- ![OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
+- [OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
 - WebGoat (Formation, Java)
 - WebScarab (Audit)
 - OWASP Testing guide (Guide pour voir le niveau de sécu)
