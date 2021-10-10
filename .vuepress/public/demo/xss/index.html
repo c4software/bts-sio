@@ -19,17 +19,15 @@
 </head>
 <body>
     
-    <input onkeyup="onKeyUpAction()" type="text" id="input" value="https://fakeimg.pl/300/" placeholder="Entre un lien d'image">
+    <input onkeyup="triggerLoad()" type="text" id="input" value="https://fakeimg.pl/300/" placeholder="Entre un lien d'image">
 
     <div id="content">
     </div>
 
     <script>
-        function onKeyUpAction(){
+        function triggerLoad(){
             document.getElementById("content").innerHTML = '<img id="img" src="' + document.getElementById("input").value + '">';
         }
-
-        onKeyUpAction();
 
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
@@ -37,6 +35,8 @@
         if(params["uri"]){
             document.getElementById("input").value=params["uri"];
         }
+
+        triggerLoad();
     </script>
 </body>
 </html>
