@@ -35,6 +35,20 @@ Que-ce passe-t-il ? Pourquoi ? Regardons le code source ensemble !
 
 :::
 
+### 2.1 La même chose mais par lien…
+
+Vous l'avez peut-être remarqué, dans le code JavaScript il est également possible de spécifier une image. Par exemple il est possible d'écrire un lien :
+
+- [https://cours.brosseau.ovh/demo/xss/index.html?uri=https://fakeimg.pl/600/](https://cours.brosseau.ovh/demo/xss/index.html?uri=https://fakeimg.pl/600/)
+
+Ce lien est source **d'un très grand danger**, je vous propose de réfléchir à comment il serait possible d'exploiter « le paramètre uri » afin de lui donner de détourner le comportement du site.
+
+- Trouver un moyer de réaliser la même attaque que le code précédent (point 2.0).
+- Envoyer le lien à une autre personne.
+- Lire des données sur son ordinateur (nous allons le faire ensemble).
+
+C'est à vous (enfin à nous).
+
 ## Partie 2.1 : Les XSS
 
 Pour mieux comprendre l'aspect dangereux d'une XSS nous allons utiliser Hack Splaining, pour ça rendez-vous sur [Hack Splaining](https://www.hacksplaining.com/exercises/xss-stored)

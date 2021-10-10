@@ -30,6 +30,13 @@
         }
 
         onKeyUpAction();
+
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+
+        if(params["uri"]){
+            document.getElementById("input").value=params["uri"];
+        }
     </script>
 </body>
 </html>
