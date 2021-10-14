@@ -180,7 +180,7 @@ La première étape est de faire fonctionner le code sur votre machine. Je vous 
 **Attention au fichiers cachés**, dans l'archive il y a un fichier .htaccess ne l'oubliez pas !
 
 ::: tip .htaccess ?
-Vous avez déjà entendu parler de ce fichier ? C'est un fichier important, il va nous permettre de définir / redéfinir le comportement de votre serveur Web pour par exemple activer l'`URL REWRITING` (réécriture d'URL).
+Vous avez déjà entendu parler de ce fichier ? C'est un fichier important, il va nous permettre de définir / redéfinir le comportement de votre serveur Web pour par exemple activer l’URL REWRITING` (réécriture d'URL).
 
 La réécriture d'url va nous permettre d'avoir de beaux liens exemple `index.php?page=toto` deviendra seulement `toto.html`. Vous voulez en savoir plus ? Je suis là 👋, je vais vous donner un complément d'information.
 :::
@@ -491,7 +491,7 @@ C:/xampp/php/php index.php db:migrate
 C:/wamp64/bin/php/php7.4.9/php index.php db:migrate
 ```
 
-Si tout vas bien vous devriez avoir le résultat suivant:
+Si tout va bien vous devriez avoir le résultat suivant:
 
 ```sh
 => Start migration of « migrations/init.sql »
@@ -627,7 +627,7 @@ function liste()
     }
 ```
 
-Et c'est tout ! La puissance d'un Frawerork c'est aussi ça, écrire finalement pas énormement de ligne pour afficher une page. Pourtant cette page :
+Et c'est tout ! La puissance d'un Frawerork c'est aussi ça, écrire finalement pas énormément de ligne pour afficher une page. Pourtant cette page :
 
 - Affiche une entête.
 - Récupère en base de données les éléments.
@@ -696,7 +696,7 @@ Si vous accédez à votre page `todo/liste` vous devriez avoir le contenu suivan
 
 ### La méthode `ajouter($texte = '')`
 
-Cette méthode sera automatiquement appelé quand vous aller appuyer sur la touche <key>Entrer</key> de votre clavier dans le champs de saisie sur la page `Liste`. L'objectif de cette méthode est de traiter l'action « J'ajoute un nouvelle enregistrement dans la base Todo ».
+Cette méthode sera automatiquement appelé quand vous aller appuyer sur la touche <key>Entrer</key> de votre clavier dans le champ de saisie sur la page `Liste`. L'objectif de cette méthode est de traiter l'action « J'ajoute un nouvel enregistrement dans la base Todo ».
 
 Pour le code, je vais vous aider un peu, voilà le code du contrôleur :
 
@@ -713,7 +713,7 @@ function ajouter($texte = "")
 _C'est à vous :_
 
 - Mettre en place le code dans le contrôleur.
-- Écrire la méthode ajouterTodo dans le modèle `TodoModel` (n'oubliez pas l'auto-completion).
+- Écrire la méthode ajouterTodo dans le modèle `TodoModel` (n'oubliez pas l'autocomplétion).
   - Écrire la requête `INSERT …`
 - Tester le bon fonctionnement
 
@@ -723,11 +723,11 @@ Dans mon cas voilà le résultat :
 
 #### Ajouter une validation
 
-Actuellement dans le code que vous avez copiez il est possible d'ajouter des « TODO » sans texte. Je vous propose donc d'ajouter un contrôle de saisie **dans le PHP**.
+Actuellement dans le code que vous avez copié il est possible d'ajouter des « TODO » sans texte. Je vous propose donc d'ajouter un contrôle de saisie **dans le PHP**.
 
 Le contrôle doit empêcher l'ajoute d'une TODO si `$texte == ''`.
 
-- Où placez vous le contrôle ?
+- Où placez-vous le contrôle ?
 - Pourquoi ?
 
 ### La méthode `terminer($id = '')`
@@ -750,8 +750,8 @@ function terminer($id = ''){
 _À faire_ :
 
 - Mettre en place le code, valider le bon fonctionnement avec **PHPMyAdmin**
-- Modifier la vue pour afficher le bouton vert **seulement si** la tache est non terminée
-- Ajouter un bouton supprimé visible **uniquement si** la tache est terminée
+- Modifier la vue pour afficher le bouton vert **seulement si** la tâche est non terminée
+- Ajouter un bouton supprimé visible **uniquement si** la tâche est terminée
 
 ![Résultat Liste vide](./res/todo_resultat_terminer.png)
 
@@ -767,7 +767,7 @@ C'est à vous.
 
 ### Un serveur de dev ?
 
-Si vous souhaitez tester votre code sans démarrer XAMPP c'est possible. PHP intégre un serveur Web de « développement », pour le lancer il suffit de :
+Si vous souhaitez tester votre code sans démarrer XAMPP c'est possible. PHP intègre un serveur Web de « développement », pour le lancer il suffit de :
 
 ```sh
 # Windows (avec XAMPP)
