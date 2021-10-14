@@ -770,8 +770,11 @@ C'est à vous.
 Si vous souhaitez tester votre code sans démarrer XAMPP c'est possible. PHP intégre un serveur Web de « développement », pour le lancer il suffit de :
 
 ```sh
-# XAMPP
-c:\xampp\php\php -S localhost:9000
+# Windows (avec XAMPP)
+C:/xampp/php/php -S localhost:9000
+
+# Windows (avec WAMP)
+C:/wamp64/bin/php/php7.4.9/php -S localhost:9000
 
 # Linux / OSX
 php -S localhost:9000
