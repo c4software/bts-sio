@@ -509,7 +509,7 @@ $unHumain->manger(); // Je suis omnivore.
 - **Vous devez** construire le parent dans le constructeur de l'enfant.
 - **Permets de généraliser un objet afin de partager des propriétés communes.**.
 - **mais** il est également possible de spécialiser / redéfinir un objet.
-  - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère).
+  - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.
 
 ---
 
