@@ -439,6 +439,16 @@ unHumain.print(); // Je suis un mammifère.
 unHumain.manger(); // Je suis omnivore.
 ```
 
+## Synthèse héritage
+
+- La classe mère contient la logique **partagée**.
+- La classe fille contient la logique **spécifique**.
+- Un mot-clé Extends `class Humain extends Mammifere`.
+- **Vous devez** construire le parent dans le constructeur de l'enfant.
+- **Permets de généraliser un objet afin de partager des propriétés communes.**.
+- **mais** il est également possible de spécialiser / redéfinir un objet.
+  - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère).
+
 ## Les méthodes static
 
 En PHP:
