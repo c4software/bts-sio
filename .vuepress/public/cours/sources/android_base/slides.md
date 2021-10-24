@@ -43,13 +43,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ---
 
-![Linux ?](./img/linux.gif)
-
 Linux ?
-
----
-
-<iframe src="https://giphy.com/embed/wcW0qeayf7bfW" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ---
 
@@ -404,7 +398,9 @@ Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-m
 
 ---
 
-![Wow](./img/wow.gif)
+## Dingue non ?
+
+- Vous connaissez un équivalent dans d'autres environnement ?
 
 ---
 
@@ -462,7 +458,7 @@ Interaction « complexe » avec l'utilisateur (Choix…)
 
 ## C'est à vous
 
-Ajouter une Dialog dans votre interface. 
+Ajouter une Dialog dans votre interface.
 
 Nous allons utiliser la librarie [Material Dialog](https://github.com/afollestad/material-dialogs)
 
@@ -552,6 +548,7 @@ tvHello.setOnClickListener {
     Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
 };
 ```
+
 Pas de déclaration de `tvHello` ? Bien sur que si, mais ça sera automatique avec `kotlin-android-extension`
 
 ---
@@ -651,7 +648,6 @@ plugins {
 
 ---
 
-
 ## Démarrer une autre `activity`
 
 Une astuce…
@@ -684,7 +680,6 @@ startActivity(MaClass.getStartIntent(this));
 
 ![Create Activity suite](./img/create_activity2.png)
 
-
 ---
 
 ## Testons ensembles
@@ -694,14 +689,11 @@ startActivity(MaClass.getStartIntent(this));
 
 ---
 
-
 [Mettre en pratique avec la création d'un SplashScreen](/tp/android/android-base-tp.html#creer-une-autre-activity)
 
 ---
 
 ## Bon et les permissions ?
-
-![Permissions](./img/permissions.gif)
 
 ---
 
