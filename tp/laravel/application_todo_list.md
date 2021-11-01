@@ -138,7 +138,7 @@ L’option `--create=todos` permet d’indiquer le nom du modèle de la table à
 La commande vient de créer un nouveau fichier dans le dossier `database/migration`. Dans mon cas le fichier se nomme :
 
 ```bash
-2019_11_09_150442_create_todos_table.php
+YYYY_11_09_150442_create_todos_table.php
 ```
 
 Nous allons définir notre schéma (à savoir la définition de la table) pour y ajouter les 2 colonnes qui nous seront utiles `texte` et `termine`. L'ORM étant une librairie objet, la définition de nouveaux champs se fait via une méthode, dans notre cas :
@@ -203,8 +203,8 @@ Maintenant que le script est terminé, nous allons indiquer à Laravel d'effectu
 ```sh
 $ php artisan migrate
 […]
-Migrating: 2018_09_09_150442_create_todos_table
-Migrated:  2018_09_09_150442_create_todos_table
+Migrating: YYYY_09_09_150442_create_todos_table
+Migrated:  YYYY_09_09_150442_create_todos_table
 ```
 
 Votre base de données est maintenant prête à être utilisée. Vous pouvez aller voir le contenu grâce à PHPStorm qui est capable (une fois configuré) de requêter une base SQLite.
