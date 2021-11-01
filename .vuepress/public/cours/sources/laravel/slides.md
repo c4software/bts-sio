@@ -17,10 +17,12 @@ Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une a
 
 ## Pourquoi ?
 
-- Simplification <!-- .element: class="fragment" -->
-- Standardisation <!-- .element: class="fragment" -->
-- Homogénéité <!-- .element: class="fragment" -->
-- Sécurité <!-- .element: class="fragment" -->
+---
+
+- Simplification
+- Standardisation
+- Homogénéité
+- Sécurité
 
 ---
 
@@ -430,6 +432,88 @@ App\TodoList::where('termine', '==', 1)->delete();
 
 ---
 
+## Éloquent : Les jointures
+
+Quel type de jointure connaissez vous ?
+
+---
+
+### One To One
+
+```php
+class Todo extends Model {
+
+  // Dans le modele
+  public function categorie()
+  {
+      return $this->hasOne('App\Categorie');
+  }
+
+}
+```
+
+Éloquenent supposera que dans le modèle `Categorie` contiendra une colonne `todo_id`.
+
+---
+
+### One To Many
+
+```php
+class Post extends Model {
+
+  // Dans le modele
+  public function tags()
+  {
+      return $this->hasMany('App\Tag');
+  }
+
+}
+```
+
+Eloquent supposera que la colonne de clé étrangère sur le modèle `Tag` est `post_id`.
+
+---
+
+### Many To Many
+
+![Many To Many](./img/many-to-many.png)
+
+---
+
+```php
+class User extends Model
+{
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+}
+```
+
+---
+
+```php
+class Role extends Model
+{
+    /**
+     * The users that belong to the role.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+}
+```
+
+---
+
+[En savoir plus dans la documentation](https://laravel.com/docs/8.x/eloquent-relationships)
+
+---
+
 ## La Vue : Blade
 
 - Moteur de template
@@ -602,25 +686,6 @@ Dans quel cas par exemple ?
 ---
 
 ## Pour des API par exemple ?
-
-Pour des API ils ont conçu **Lumen**
-
----
-
-## Lumen
-
-- Plus léger
-- Micro framework
-- Dédié au Micro-Services
-- Reprend les modules/fonctionnement de Laravel
-
----
-
-![Done](./img/done.gif)
-
----
-
-- Voyez-vous des cas où choisir Lumen ?
 
 ---
 
