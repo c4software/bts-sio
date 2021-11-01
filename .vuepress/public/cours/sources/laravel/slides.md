@@ -446,7 +446,7 @@ class Todo extends Model {
   // Dans le modele
   public function categorie()
   {
-      return $this->hasOne('App\Categorie');
+      return $this->hasOne(Categorie::class);
   }
 
 }
@@ -462,15 +462,32 @@ class Todo extends Model {
 class Post extends Model {
 
   // Dans le modele
-  public function tags()
+  public function comments()
   {
-      return $this->hasMany('App\Tag');
+      return $this->hasMany(Comment::class);
   }
 
 }
 ```
 
-Eloquent supposera que la colonne de clé étrangère sur le modèle `Tag` est `post_id`.
+Eloquent supposera que la colonne de clé étrangère sur le modèle `Comment` est `post_id`.
+
+---
+
+### L'inverse le « Belong To »
+
+```php
+class Comment extends Model
+{
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+}
+```
+
+- Eloquent tentera de trouver un modèle `Post` dont l'identifiant correspond à la colonne `post_id` du modèle `Comment`.
+- Et supposera que la clé étrangère du modèle `Post` sur la table des commentaires est `post_id`.
 
 ---
 
