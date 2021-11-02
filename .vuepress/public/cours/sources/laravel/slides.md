@@ -58,7 +58,7 @@ Le choix du framework dépend du projet en question… Et parfois pas de framewo
 - Utilise le PHP de façon moderne
 - Démarrage simple et rapide
 - Développement objet
-- Approche MVC (Mais…)
+- Approche MVC (mais…)
 
 ---
 
@@ -68,15 +68,15 @@ Le choix du framework dépend du projet en question… Et parfois pas de framewo
 - 2011: Création
 - 2016: Projet PHP le mieux noté sur GitHub
 
-La communauté c’est rapidement formée autour du projet. C’est bon signe!
+La communauté s’est rapidement formée autour du projet. C’est bon signe!
 
 ---
 
 ## La vision…
 
-Taylor Otwell, était un utilisateur de CodeIgniter. **Mais** il le trouvait trop compliqué, trop lourd, et chaque modification était trop complexe…
+Taylor Otwell était un utilisateur de CodeIgniter. **Mais** il le trouvait trop compliqué, trop lourd, et chaque modification était trop complexe…
 
-Il a donc voulu quelques chose de plus **souple**, **simple** et **simple à apprendre**
+Il a donc voulu quelque chose de plus **souple**, **simple** et **simple à apprendre**
 
 ---
 
@@ -86,9 +86,9 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire
 
-- V1, V2: Le début, les versions sont rapidement disponibles. Système de routes, et controller MVC très simple.
-- V3: Février 2012, Boom de la popularité.
-- V4: Mai 2013, réécriture complète du Framework. Intégration du gestionnaire de paquets « Composer »
+- V1, V2: Le début, les versions sont rapidement disponibles. Système de routes, et contrôleurs MVC très simple.
+- V3: février 2012, Boom de la popularité.
+- V4: mai 2013, réécriture complète du Framework. Intégration du gestionnaire de paquets « Composer »
 - …
 
 ---
@@ -100,7 +100,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 ## Zoom sur Composer
 
 - Partage simple des dépendances
-- Multi-plateforme
+- Multiplateforme
 - Partage simplifié d’un projet
 
 ---
@@ -119,7 +119,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## Architecture
 
-- **Model**: La base de données (ORM: Eloquent).
+- **Model**: La base de données (ORM: Éloquent).
 - **Vue**: Gestion du HTML (Moteur de template : Blade).
 - **Controller**: Gestion des requêtes et génère le contenu.
 
@@ -135,8 +135,8 @@ Technique de programmation informatique qui crée l'illusion d'une base de donn�
 
 ## Du PHP Objet ?
 
-- Logique découpé dans des classes avec des comportements et des fonctionnements propres.
-- Plus simple, plus maintenante, plus facilement **TESTABLE**
+- Logique découpée dans des classes avec des comportements et des fonctionnements propres.
+- Plus simple, plus maintenable, plus facilement **TESTABLE**
 
 ---
 
@@ -195,7 +195,7 @@ Options:
 ## Les « routes »
 
 - Gestion des URL's de l’application
-- Assemble l'ensemble (Le controler et la vue)
+- Assemble l'ensemble (le contrôleur et la vue)
 
 ---
 
@@ -227,7 +227,7 @@ Route::get('/', function () {
 Route::get('/demo/{id}', [DemoController::class, "voir"]);
 ```
 
-Consulter la page **/demo/3** chargera automatiquement le bon controller et la bonne méthode en passant le paramètre **3**
+Consulter la page **/demo/3** chargera automatiquement le bon contrôleur et la bonne méthode en passant le paramètre **3**
 
 ---
 
@@ -249,7 +249,7 @@ Route::post('/demo/ajout', [DemoController::class, "ajout");
 
 ---
 
-## Les controllers
+## Les contrôleurs
 
 Gestion de la logique « metier » pour traiter chaque demande
 
@@ -348,7 +348,7 @@ $ php artisan migrate
 
 ---
 
-## Eloquent : Le « Query Builder »
+## Éloquent : Le « Query Builder »
 
 ```php
 use App\TodoList;
@@ -360,7 +360,7 @@ $todo = App\TodoList::find(42);
 
 ---
 
-## Eloquent : Le « Query Builder »
+## Éloquent : Le « Query Builder »
 
 ```php
     $flights = App\TodoList::where('temine', 1)
@@ -371,7 +371,7 @@ $todo = App\TodoList::find(42);
 
 ---
 
-## Eloquent : Le « Query Builder »
+## Éloquent : Le « Query Builder »
 
 ```php
 $users = DB::table('users')->paginate(15);
@@ -383,7 +383,7 @@ Quel est l'avantage à votre avis de faire ce genre de requêtes ?
 
 ---
 
-## Eloquent : Créer un enregistrement
+## Éloquent : Créer un enregistrement
 
 ```php
 // Créer une Todo
@@ -396,7 +396,7 @@ App\TodoList::create(array(
 
 ---
 
-## Eloquent : Mettre à jour un enregistrement
+## Éloquent : Mettre à jour un enregistrement
 
 ```php
 // Rechercher celui avec l’id 1
@@ -411,7 +411,7 @@ $todo->save();
 
 ---
 
-## Eloquent : Suppression d’un enregistrement
+## Éloquent : Suppression d’un enregistrement
 
 ```php
 // Rechercher celui avec l’id 1
@@ -434,16 +434,18 @@ App\TodoList::where('termine', '==', 1)->delete();
 
 ## Éloquent : Les jointures
 
-Quel type de jointure connaissez vous ?
+Quel type de jointure connaissez-vous ?
 
 ---
 
 ### One To One
 
+![One to One](./img/one-to-one.png)
+
 ```php
 class Todo extends Model {
 
-  // Dans le modele
+  // Dans le modèle
   public function categorie()
   {
       return $this->hasOne(Categorie::class);
@@ -452,16 +454,18 @@ class Todo extends Model {
 }
 ```
 
-Éloquenent supposera que dans le modèle `Categorie` contiendra une colonne `todo_id`.
+Éloquent supposera que dans le modèle `Categorie` contiendra une colonne `todo_id`.
 
 ---
 
 ### One To Many
 
+![One to One](./img/one-to-many.png)
+
 ```php
 class Post extends Model {
 
-  // Dans le modele
+  // Dans le modèle
   public function comments()
   {
       return $this->hasMany(Comment::class);
@@ -470,7 +474,7 @@ class Post extends Model {
 }
 ```
 
-Eloquent supposera que la colonne de clé étrangère sur le modèle `Comment` est `post_id`.
+Éloquent supposera que la colonne de clé étrangère sur le modèle `Comment` est `post_id`.
 
 ---
 
@@ -486,7 +490,7 @@ class Comment extends Model
 }
 ```
 
-- Eloquent tentera de trouver un modèle `Post` dont l'identifiant correspond à la colonne `post_id` du modèle `Comment`.
+- Éloquent tentera de trouver un modèle `Post` dont l'identifiant correspond à la colonne `post_id` du modèle `Comment`.
 - Et supposera que la clé étrangère du modèle `Post` sur la table des commentaires est `post_id`.
 
 ---
@@ -535,9 +539,9 @@ class Role extends Model
 
 - Moteur de template
 - Performant
-- Héritage et re-définition
+- Héritage et redéfinition
 - Les fichiers Blade sont des fichiers PHP
-- Contrairement à beaucoup d’autre moteur de template, le mix PHP + HTML est possible (Mais personnellement je ne trouve pas que ça soit une bonne idée…)
+- Contrairement à beaucoup d’autres moteurs de template, le mix PHP + HTML est possible (mais personnellement je ne trouve pas que ça soit une bonne idée…)
 
 ---
 
@@ -558,6 +562,10 @@ Route::get('/', function () {
 - Pourquoi ?
 - Comment ?
 - À votre avis pourquoi est-ce très important ?
+
+---
+
+![Parent enfant](./img/parent-enfant.png)
 
 ---
 
@@ -589,7 +597,7 @@ Route::get('/', function () {
 @section('titre', 'Page enfant')
 
 @section('sidebar')
-  @parent // <-- Hérite des donnés du parents
+  @parent // <-- Hérite des donnés du parent
   Données de l’enfant
 @endsection
 
@@ -602,15 +610,21 @@ Route::get('/', function () {
 
 ## Les composants
 
-Blade intégre également un système de composant « permettant » de découper son travail.
+Blade intègre également un système de composant permettant de découper son travail.
 
-[https://laravel.com/docs/8.x/blade#components](Documentation composant)
+```html
+<VotreComposant nom="Valentin"></VotreComposant>
+```
+
+---
+
+[Documentation composant](https://laravel.com/docs/8.x/blade#components)
 
 ---
 
 ## Les composants pour le layout
 
-[https://laravel.com/docs/8.x/blade#layouts-using-components](La documentation)
+[La documentation](https://laravel.com/docs/8.x/blade#layouts-using-components)
 
 ---
 
@@ -650,7 +664,7 @@ Blade intégre également un système de composant « permettant » de découper
 
 Zone dans le code où il sera possible « d'injecter » ultérieurement du code.
 
-Exemple, zone dans le header pour injecter des scripts JS utile que dans certaines pages.
+Exemple, zone dans le header pour injecter des scripts JS utiles que dans certaines pages.
 
 ---
 
@@ -706,7 +720,7 @@ Dans quel cas par exemple ?
 
 ---
 
-## Les micro-services vous connaissez ?
+## Les microservices vous connaissez ?
 
 ---
 
