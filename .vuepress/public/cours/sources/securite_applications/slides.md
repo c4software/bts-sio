@@ -313,7 +313,7 @@ Les gens sont souvent trop confiants.
 
 ### OWASP un classement qui évolue
 
-![Mapping 2017 -> 2021](./res/mapping.png)
+![Mapping 2017 -> 2021](./img/mapping.png)
 [Source](https://owasp.org/www-project-top-ten/)
 
 ---
