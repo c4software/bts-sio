@@ -297,8 +297,17 @@ Un système de détection d'intrusion (Intrusion Detection System) est un mécan
 ### Les types de failles
 
 - L’humain (Social Engineering)
+- D'accès (physique)
 - Applicatif (Hack)
 - L’argent (jusqu’à quel montant une personne donne l’information ?)
+
+---
+
+### Le Social Enineering
+
+Les gens sont souvent trop confiants.
+
+[Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE)
 
 ---
 
