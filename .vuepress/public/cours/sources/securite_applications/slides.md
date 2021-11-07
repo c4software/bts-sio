@@ -52,6 +52,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+[Top50 du nombre de vulnérabilités par le nombre de produits des marques](https://www.cvedetails.com/top-50-vendors.php)
+
+---
+
 ### Comment se tenir à jour ?
 
 #### Prévenir plutôt que guérir…
@@ -103,7 +107,7 @@ Vous en avez d’autres en tête ?
 
 Estimation des coûts pour une entreprise à chaque incident de vol de données en France
 
-source: Cost Of Data Breach \- Symantec
+Source: Cost Of Data Breach \- Symantec
 
 ---
 
