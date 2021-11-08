@@ -308,7 +308,7 @@ Un système de détection d'intrusion (Intrusion Detection System) est un mécan
 Les gens sont souvent trop confiants.
 
 [Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE)
-[Call Recreation (@5min)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw)
+[Call Recreation (@5min, @11min30)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw)
 
 ---
 

@@ -37,6 +37,20 @@ Dans la sécurité, il n'y a pas de hasard !
 
 ![Random](./res/random.png)
 
+### Les types de failles
+
+- L’humain (Social Engineering)
+- D'accès (physique)
+- Applicatif (Hack)
+- L’argent (jusqu’à quel montant une personne donne l’information ?)
+
+### Le Social Enineering
+
+Les gens sont souvent trop confiants. Il faut donc les former régulièrement à la sécurité.
+
+[Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE)
+[Call Recreation (@5min, @11min30)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw)
+
 ## Intégrer la sécurité à toutes les étapes
 
 La sécurité c’est un état d’esprit à intégrer.
