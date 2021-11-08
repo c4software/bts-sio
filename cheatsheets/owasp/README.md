@@ -48,8 +48,8 @@ Dans la sécurité, il n'y a pas de hasard !
 
 Les gens sont souvent trop confiants. Il faut donc les former régulièrement à la sécurité.
 
-[Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE)
-[Call Recreation (@5min, @11min30)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw)
+- [Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE)
+- [Call Recreation (@5min, @11min30)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw)
 
 ## Intégrer la sécurité à toutes les étapes
 
