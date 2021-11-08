@@ -23,7 +23,7 @@ Voilà un exemple simple de XSS via un input non filtré.
 
 Ici, l'idée, est de trouver comment éxécuter du code via un simple chargement d'image ! Pour ça il faut connaître un peu le HTML et le fonctionnement des balises classique.
 
-Une balise img, vous conaissez… Elle prend en paramètre un attribut `src`… ok ! Mais elle a également un autre attribut … nommé … `onLoad` cette attribut permet d'éxécuter du code quand la ressource (l'image) est chargé. Nous allons donc exploiter un code « mal écrit » pour charger du code JavaScript.
+Une balise img, vous conaissez… Elle prend en paramètre un attribut `src`… ok ! Mais elle a également un autre attribut … nommé … `onload` cette attribut permet d'éxécuter du code quand la ressource (l'image) est chargé. Nous allons donc exploiter un code « mal écrit » pour charger du code JavaScript.
 
 Pour ça, dans le champs de saisie, je vous propose de mettre:
 
@@ -34,6 +34,10 @@ https://fakeimg.pl/300/" onload="alert('Coucou'); window.location='https://bit.l
 Que-ce passe-t-il ? Pourquoi ? Regardons le code source ensemble !
 
 :::
+
+### 2.1 Exploiter la faille
+
+En partant du code précédent, afficher dans la page un formulaire en exploitant la faille `onload` du code fourni.
 
 ### 2.1 La même chose mais par lien…
 
