@@ -64,6 +64,14 @@ C’est **votre métier**
 
 ![Random](./res/toutes_les_etapes.png)
 
+## Assurer la qualité
+
+L'idée c'est de s'assurer une qualité continue du code avec :
+
+- Des règles à connaitre (OWASP).
+- Des tests unitaires.
+- Une analyse automatique du code (SonarQube).
+
 ## Open Web Application Security Project (OWASP)
 
 > Open Web Application Security Project (OWASP) est une communauté en ligne travaillant sur la sécurité des applications Web. Sa philosophie est d'être à la fois libre et ouverte à tous. Elle a pour vocation de publier des recommandations de sécurisation Web et de proposer aux internautes, administrateurs et entreprises des méthodes et outils de référence permettant de contrôler le niveau de sécurisation de ses applications Web.

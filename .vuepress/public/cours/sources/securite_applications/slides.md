@@ -171,6 +171,16 @@ C’est aussi votre métier
 
 ---
 
+## Assurer la qualité
+
+s'assurer une qualité continue du code
+
+- 10 règles à connaitre (OWASP).
+- Des tests unitaires.
+- Une analyse automatique du code (SonarQube).
+
+---
+
 ### Open Web Application Security Project (OWASP)
 
 #### Les dix risques par ordre de dangerosité
@@ -257,6 +267,30 @@ Failles liées aux redirects et forwards génériques des applications.
 
 ---
 
+### Mais, une faille c’est quoi ?
+
+![](./img/faille.png)
+
+---
+
+### Les types de failles
+
+- L’humain (Social Engineering)
+- D'accès (physique)
+- Applicatif (Hack)
+- L’argent (jusqu’à quel montant une personne donne l’information ?)
+
+---
+
+### Le Social Enineering
+
+Les gens sont souvent trop confiants.
+
+[Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE)
+[Call Recreation (@5min, @11min30)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw)
+
+---
+
 ### On connait les failles
 
 #### Comment on les corrige ?
@@ -285,30 +319,6 @@ Failles liées aux redirects et forwards génériques des applications.
 Un système de détection d'intrusion (Intrusion Detection System) est un mécanisme destiné à repérer des activités anormales ou suspectes sur la cible analysée
 
 ![](./img/nids.png)
-
----
-
-### Mais, une faille c’est quoi ?
-
-![](./img/faille.png)
-
----
-
-### Les types de failles
-
-- L’humain (Social Engineering)
-- D'accès (physique)
-- Applicatif (Hack)
-- L’argent (jusqu’à quel montant une personne donne l’information ?)
-
----
-
-### Le Social Enineering
-
-Les gens sont souvent trop confiants.
-
-[Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE)
-[Call Recreation (@5min, @11min30)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw)
 
 ---
 
