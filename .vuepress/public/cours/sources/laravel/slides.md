@@ -10,9 +10,6 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une application.
 
-- Pourquoi ?
-- Quand ?
-
 ---
 
 ## Pourquoi ?
@@ -28,9 +25,11 @@ Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une a
 
 ## Quand ?
 
+---
+
 - En entreprise
 - En groupe
-- Le plus souvent…
+- Le plus souvent possible…
 
 ---
 
@@ -284,7 +283,7 @@ class DemoController extends Controller
 
 ---
 
-## Les modeles
+## Les modèles
 
 La représentation objet de la base de données
 
