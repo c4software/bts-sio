@@ -23,11 +23,10 @@ La sécurité informatique dans une application c’est un « équilibre »
 - Limitation de l’expérience utilisateur (UX)
 - Impact financier
 
-![Exposition](./res/expositions.png)
-
 Dans la sécurité, il n'y a pas de hasard !
 
-![Random](./res/random.png)
+| <img src="./res/expositions.png" width="500px"> | <img src="./res/random.png" width="500px"> |
+| :---------------------------------------------: | :----------------------------------------: |
 
 ### Les types de failles
 
@@ -40,8 +39,11 @@ Dans la sécurité, il n'y a pas de hasard !
 
 Les gens sont souvent trop confiants. Il faut donc les former régulièrement à la sécurité.
 
-- [Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE)
-- [Call Recreation (@5min, @11min30)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw)
+Deux exemples en vidéo :
+
+|                      ![Exposition](./res/sectf.png)                      |                            ![Random](./res/call-recreation.png)                             |
+| :----------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: |
+| [Exemple SECTF à la DefCon](https://www.youtube.com/watch?v=-FSLaHKoCNE) | [Call Recreation (@5min, @11min30)](https://share.vidyard.com/watch/i46XF6N6rpR9KMaorihFQw) |
 
 ## Intégrer la sécurité à toutes les étapes
 
@@ -49,7 +51,7 @@ La sécurité c’est un état d’esprit à intégrer.
 
 C’est **votre métier**
 
-![Random](./res/toutes_les_etapes.png)
+<img src="./res/toutes_les_etapes.png" width="500px">
 
 ### Assurer la qualité
 
@@ -183,7 +185,7 @@ Failles liées aux redirects et forwards génériques des applications.
 
 ### Mais, une faille c’est quoi ?
 
-![](./res/faille.png)
+<img src="./res/faille.png" width="500px" />
 
 L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement… Et surtout avec OWASP on parle de **vulnérabilité, et non de risque**.
 
