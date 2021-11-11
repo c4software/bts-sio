@@ -75,7 +75,7 @@ L'idée c'est de s'assurer une qualité continue du code avec :
 
 OWASP liste 10 grandes catégories de failles **à connaitre** :
 
-### The Injection
+### A1 - Injection
 
 Corresponds au risque d’injection SQL, shell...
 
@@ -89,7 +89,7 @@ SELECT * FROM client WHERE id='" . $_GET["id"] . "'
 http://exemple.com/liste?id='or '1'='1
 ```
 
-### Broken Authentication and Session Management
+### A2 - Violation de Gestion d’Authentification et de Session
 
 Corresponds au risque de casser la gestion de l’authentification et de la session. Comprends notamment le vol de session ou la récupération de mots de passe.
 
@@ -99,7 +99,7 @@ Une session en paramètre GET == ⚠️. Si vous partagez le lien, n'importe qui
 http://exemple.com/?jsessionid=A2938298D293
 ```
 
-### Cross-Site Scripting
+### A3 - Cross-Site Scripting (XSS)
 
 Corresponds au **XSS** soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles **XSS** sont particulièrement répandues parmi les failles de sécurités Web.
 
@@ -113,7 +113,7 @@ Votre Nom : <input type="text" name="nom" value="" />
 alert("Bonjour " + $_POST["nom"]);
 ```
 
-### Insecure Direct Object References
+### A4 - Références directes non sécurisées à un objet
 
 Corresponds aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
 
@@ -139,7 +139,7 @@ Vous noterez ici que nous avons une requête « préparé » ça n'empêche pas 
 
 :::
 
-### Security Misconfiguration
+### A5 - Mauvaise configuration Sécurité
 
 Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
 
@@ -148,21 +148,22 @@ Corresponds aux failles de configuration liées aux serveurs Web, applications, 
 - Exemples de code non supprimés.
 - Application en debug.
 
-### Sensitive Data Exposure
+### A6 - Exposition de données sensibles
 
 Corresponds aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 - Espace client sans SSL.
 - Mot de passe en claire (ou en MD5) dans la base de données.
+- Sauvegarde de données inutiles.
 
-### Missing Function Level Access Control
+### A7 - Manque de contrôle d’accès au niveau fonctionnel
 
 Failles de sécurités liées aux accès de fonctionnalité.
 
 - Page d’admin accessible avec un compte utilisateur.
 - Mode non filtré (similaire à l’exemple mode={client,admin}).
 
-### Cross-Site Request Forgery (CSRF)
+### A8 - Falsification de requête intersite (CSRF)
 
 Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
 
@@ -174,7 +175,7 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable. Int�
 
 :::
 
-### Using Components with Known Vulnerabilities
+### A9 - Utilisation de composants avec des vulnérabilités connues
 
 Failles liées à l’utilisation de composants tiers.
 
@@ -182,7 +183,7 @@ Failles liées à l’utilisation de composants tiers.
 - Apache / Tomcat non patchés
 - Librairies XYZ non à jour
 
-### Unvalidated Redirects and Forwards
+### A10 - Redirections et Renvois Non Validés
 
 Failles liées aux redirects et forwards génériques des applications.
 
@@ -203,3 +204,9 @@ L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les
 - WebScarab (Audit)
 - OWASP Testing guide (Guide pour voir le niveau de sécu)
 - OWASP Code Review guide (Méthode d’audit)
+
+## Synthèse OWASP
+
+<center>
+  <img src="./res/tableau.png" width="100%" />
+</center>
