@@ -23,10 +23,10 @@ La sécurité informatique dans une application c’est un « équilibre »
 - Limitation de l’expérience utilisateur (UX)
 - Impact financier
 
-Dans la sécurité, il n'y a pas de hasard !
-
-| <img src="./res/expositions.png" width="500px"> | <img src="./res/random.png" width="500px"> |
-| :---------------------------------------------: | :----------------------------------------: |
+<center class="no-print">
+<img src="./res/expositions.png" width="500px" />
+<img src="./res/random.png" width="500px" />
+</center>
 
 ### Les types de failles
 
@@ -51,7 +51,9 @@ La sécurité c’est un état d’esprit à intégrer.
 
 C’est **votre métier**
 
+<center>
 <img src="./res/toutes_les_etapes.png" width="500px">
+</center>
 
 ### Assurer la qualité
 
@@ -64,13 +66,16 @@ L'idée c'est de s'assurer une qualité continue du code avec :
 ### Open Web Application Security Project (OWASP)
 
 > Open Web Application Security Project (OWASP) est une communauté en ligne travaillant sur la sécurité des applications Web. Sa philosophie est d'être à la fois libre et ouverte à tous. Elle a pour vocation de publier des recommandations de sécurisation Web et de proposer aux internautes, administrateurs et entreprises des méthodes et outils de référence permettant de contrôler le niveau de sécurisation de ses applications Web.
+
 > _Source: Wikipedia_
 
-[Site de Owasp](https://owasp.org/)
+<div class="no-print">
+  [Site de Owasp](https://owasp.org/)
+</div>
 
 OWASP liste 10 grandes catégories de failles **à connaitre** :
 
-### **The Injection**
+### The Injection
 
 Corresponds au risque d’injection SQL, shell...
 
@@ -84,7 +89,7 @@ SELECT * FROM client WHERE id='" . $_GET["id"] . "'
 http://exemple.com/liste?id='or '1'='1
 ```
 
-### **Broken Authentication and Session Management**
+### Broken Authentication and Session Management
 
 Corresponds au risque de casser la gestion de l’authentification et de la session. Comprends notamment le vol de session ou la récupération de mots de passe.
 
@@ -94,7 +99,7 @@ Une session en paramètre GET == ⚠️. Si vous partagez le lien, n'importe qui
 http://exemple.com/?jsessionid=A2938298D293
 ```
 
-### **Cross-Site Scripting**
+### Cross-Site Scripting
 
 Corresponds au **XSS** soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles **XSS** sont particulièrement répandues parmi les failles de sécurités Web.
 
@@ -108,7 +113,7 @@ Votre Nom : <input type="text" name="nom" value="" />
 alert("Bonjour " + $_POST["nom"]);
 ```
 
-### **Insecure Direct Object References**
+### Insecure Direct Object References
 
 Corresponds aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
 
@@ -185,7 +190,9 @@ Failles liées aux redirects et forwards génériques des applications.
 
 ### Mais, une faille c’est quoi ?
 
-<img src="./res/faille.png" width="500px" />
+<center>
+  <img src="./res/faille.png" width="500px" />
+</center>
 
 L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement… Et surtout avec OWASP on parle de **vulnérabilité, et non de risque**.
 

@@ -19,11 +19,41 @@
   }
 }
 
-@page {
-  margin: 10%;
-}
+@page { 
+  padding: 10mm;
+  width: 210mm;
+ }
 
 @media print {
+
+  footer{
+    display: none;
+  }
+
+  .no-print{
+    display: none;
+  }
+
+  .theme-default-content{
+    max-width: auto !important;
+    margin: 0 !important;
+    padding: 0!important;
+
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    page-break-after: always;
+  }
+
+  blockquote{
+    break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   .sidebar,
   .navbar,
   .code-copy,
