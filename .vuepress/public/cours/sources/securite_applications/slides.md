@@ -6,9 +6,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## En groupe
-
-### Pour vous, la sécurité c’est quoi ?
+## Pour vous, la sécurité c’est quoi ?
 
 ---
 
@@ -64,8 +62,6 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ### Des sites à surveiller
 
-#### Vous êtes la première ligne d’informations
-
 - [US CERT (LA SOURCE)](https://www.us-cert.gov/)
 - [The Hacker News](http://thehackernews.com/)
 - Zataz
@@ -77,9 +73,13 @@ Vous en avez d’autres en tête ?
 
 ---
 
-### Les impacts liés à la sécurité
+#### Vous êtes la première ligne d’informations
 
-#### La sécurité informatique dans une application c’est un « équilibre »
+Par deux, collecter une actualités récentes « sur un problème de sécurités ».
+
+![QRCode](./img/code.png)
+
+Lien : [https://forms.gle/zXBhF61uKxtHh6Ma7](https://forms.gle/zXBhF61uKxtHh6Ma7)
 
 ---
 
@@ -97,7 +97,11 @@ Vous en avez d’autres en tête ?
 
 ---
 
-### L’insécurité à également un coût
+#### La sécurité informatique dans une application c’est un « équilibre »
+
+---
+
+### L’insécurité à un coût
 
 À votre avis ?
 
@@ -191,61 +195,61 @@ s'assurer une qualité continue du code
 
 ---
 
-### The Injection
+### _The Injection_
 
 Corresponds au risque d’injection SQL, Shell...
 
 ---
 
-### Broken Authentication and Session Management
+### _Broken Authentication and Session Management_
 
 Corresponds au risque de casser la gestion de l’authentification et de la session. Comprends notamment le vol de session ou la récupération de mots de passe.
 
 ---
 
-### Cross-Site Scripting
+### _Cross-Site Scripting_
 
 Corresponds au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
 
 ---
 
-### Insecure Direct Object References
+### _Insecure Direct Object References_
 
 Corresponds aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
 
 ---
 
-### Security Misconfiguration
+### _Security Misconfiguration_
 
 Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
 
 ---
 
-### Sensitive Data Exposure
+### _Sensitive Data Exposure_
 
 Corresponds aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 ---
 
-### Missing Function Level Access Control
+### _Missing Function Level Access Control_
 
 Failles de sécurités liées aux accès de fonctionnalité.
 
 ---
 
-### Cross-Site Request Forgery (CSRF)
+### _Cross-Site Request Forgery (CSRF)_
 
 Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
 
 ---
 
-### Using Components with Known Vulnerabilities
+### _Using Components with Known Vulnerabilities_
 
 Failles liées à l’utilisation de composants tiers.
 
 ---
 
-### Unvalidated Redirects and Forwards
+### _Unvalidated Redirects and Forwards_
 
 Failles liées aux redirects et forwards génériques des applications.
 
@@ -254,7 +258,7 @@ Failles liées aux redirects et forwards génériques des applications.
 ### Les outils autour d’OWASP
 
 - ![OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
-- WebGoat (Formation, Java)
+- WebGoat (Formation, Java + Web)
 - WebScarab (Audit)
 - OWASP Testing guide (Guide pour voir le niveau de sécu)
 - OWASP Code Review guide (Méthode d’audit)
@@ -278,7 +282,7 @@ Failles liées aux redirects et forwards génériques des applications.
 - L’humain (Social Engineering)
 - D'accès (physique)
 - Applicatif (Hack)
-- L’argent (jusqu’à quel montant une personne donne l’information ?)
+- L’argent (À quel montant une personne vous donne l’information ?)
 
 ---
 
@@ -294,6 +298,10 @@ Les gens sont souvent trop confiants.
 ### On connait les failles
 
 #### Comment on les corrige ?
+
+---
+
+## Étape 1 : Le réseau
 
 ---
 
@@ -322,16 +330,7 @@ Un système de détection d'intrusion (Intrusion Detection System) est un mécan
 
 ---
 
-### OWASP un classement qui évolue
-
-![Mapping 2017 -> 2021](./img/mapping.png)
-[Source](https://owasp.org/www-project-top-ten/)
-
----
-
-#### Comprendre le TOP 10
-
-### Pour éviter d’être vulnérable
+## Étape 2 : Le Code
 
 ---
 
@@ -434,6 +433,13 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 ### Redirections et renvois non validés
 
 - Utilisation de votre site comme « masque » dans du phishing
+
+---
+
+### OWASP un classement qui évolue
+
+![Mapping 2017 -> 2021](./img/mapping.png)
+[Source](https://owasp.org/www-project-top-ten/)
 
 ---
 
