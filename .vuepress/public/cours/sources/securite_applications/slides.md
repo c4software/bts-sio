@@ -195,61 +195,61 @@ s'assurer une qualité continue du code
 
 ---
 
-### _The Injection_
+### A1 - Injection
 
 Corresponds au risque d’injection SQL, Shell...
 
 ---
 
-### _Broken Authentication and Session Management_
+### A2 - Violation de Gestion d’Authentification et de Session
 
 Corresponds au risque de casser la gestion de l’authentification et de la session. Comprends notamment le vol de session ou la récupération de mots de passe.
 
 ---
 
-### _Cross-Site Scripting_
+### A3 - Cross-Site Scripting (XSS)
 
 Corresponds au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
 
 ---
 
-### _Insecure Direct Object References_
+### A4 - Références directes non sécurisées à un objet
 
 Corresponds aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
 
 ---
 
-### _Security Misconfiguration_
+### A5 - Mauvaise configuration Sécurité
 
 Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
 
 ---
 
-### _Sensitive Data Exposure_
+### A6 - Exposition de données sensibles
 
 Corresponds aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 ---
 
-### _Missing Function Level Access Control_
+### A7 - Manque de contrôle d’accès au niveau fonctionnel
 
 Failles de sécurités liées aux accès de fonctionnalité.
 
 ---
 
-### _Cross-Site Request Forgery (CSRF)_
+### A8 - Falsification de requête intersite (CSRF)
 
 Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
 
 ---
 
-### _Using Components with Known Vulnerabilities_
+### A9 - Utilisation de composants avec des vulnérabilités connues
 
 Failles liées à l’utilisation de composants tiers.
 
 ---
 
-### _Unvalidated Redirects and Forwards_
+### A10 - Redirections et Renvois Non Validés
 
 Failles liées aux redirects et forwards génériques des applications.
 
@@ -334,7 +334,7 @@ Un système de détection d'intrusion (Intrusion Detection System) est un mécan
 
 ---
 
-### L’injection
+### A1 - Injection
 
 ```sql
 SELECT * FROM client WHERE id='" . $_GET["id"] . "'
@@ -346,7 +346,7 @@ http://exemple.com/liste?id='or '1'='1
 
 ---
 
-### Violation de gestion d'authentification et de session
+### A2 - Violation de Gestion d’Authentification et de Session
 
 ```
 http://exemple.com/?jsessionid=A2938298D293
@@ -354,7 +354,7 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ---
 
-### XSS
+### A3 - Cross-Site Scripting (XSS)
 
 Exécution de code JavaScript sans validation
 
@@ -368,7 +368,7 @@ alert("Bonjour " + $_POST["nom"]);
 
 ---
 
-### Référence directe non sécurisée à un objet
+### A4 - Références directes non sécurisées à un objet
 
 ```
 http://exemple.com/liste?mode=client
@@ -388,7 +388,7 @@ $stmt->bindParam(1, $mode);
 
 ---
 
-### Mauvaise configuration sécurisée
+### A5 - Mauvaise configuration Sécurité
 
 - Console d’administration disponible sans authentification en ligne
 - Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
@@ -396,21 +396,22 @@ $stmt->bindParam(1, $mode);
 
 ---
 
-### Exposition de données sensibles
+### A6 - Exposition de données sensibles
 
 - Espace client sans SSL
 - Mot de passe en claire (ou en MD5) dans la base de données
+- Sauvegarde de données inutiles
 
 ---
 
-### Manque de contrôle d'accès au niveau fonctionnel
+### A7 - Manque de contrôle d’accès au niveau fonctionnel
 
 - Page d’admin accessible avec un compte utilisateur
 - Mode non filtré (similaire à l’exemple mode={client,admin})
 
 ---
 
-### CSRF: Falsification des requêtes
+### A8 - Falsification de requête intersite (CSRF)
 
 - Rejeu de requête déjà joué
 
@@ -422,7 +423,7 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 
 ---
 
-### Utilisation de composants avec des vulnérabilités connues
+### A9 - Utilisation de composants avec des vulnérabilités connues
 
 - CMS non à jour
 - Apache / Tomcat non patchés
@@ -430,7 +431,7 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 
 ---
 
-### Redirections et renvois non validés
+### A10 - Redirections et Renvois Non Validés
 
 - Utilisation de votre site comme « masque » dans du phishing
 
