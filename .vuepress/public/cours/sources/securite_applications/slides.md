@@ -444,6 +444,10 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 
 ---
 
+![Tableau des failles](./img/tableau.png)
+
+---
+
 ### Comment réduire le risque ?
 
 ---
