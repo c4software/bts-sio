@@ -144,7 +144,7 @@ Source: Cost Of Data Breach \- Symantec
 
 ---
 
-### Une petite histoire…
+### Une petite histoire d'imprimante…
 
 ---
 
