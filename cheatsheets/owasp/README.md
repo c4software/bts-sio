@@ -101,7 +101,11 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ### A3 - Cross-Site Scripting (XSS)
 
-Corresponds au **XSS** soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles **XSS** sont particulièrement répandues parmi les failles de sécurités Web.
+Risque d'injection de contenu dans une page.
+
+Provoque des actions non désirées sur une page Web.
+
+Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
 
 Exécution de code JavaScript sans validation. Le risque ici est qu'il est possible de changer le comportement initialement attendu pour en détourner le sens.
 
@@ -115,7 +119,7 @@ alert("Bonjour " + $_POST["nom"]);
 
 ### A4 - Références directes non sécurisées à un objet
 
-Corresponds aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
+Accès à de la données en spécifiant un `id` directement par une URL.
 
 C'est également quelque chose de très courant. Si vous attendez en paramètre un mode / un id, veillez à toujours contrôler si la ressource chargée correspond aux droits de l'utilisateur.
 
@@ -158,7 +162,7 @@ Corresponds aux failles de sécurités liées aux données sensibles comme les m
 
 ### A7 - Manque de contrôle d’accès au niveau fonctionnel
 
-Failles de sécurités liées aux accès de fonctionnalité.
+Failles liées aux contrôle d'accès de fonctionnalité.
 
 - Page d’admin accessible avec un compte utilisateur.
 - Mode non filtré (similaire à l’exemple mode={client,admin}).
@@ -177,7 +181,7 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable. Int�
 
 ### A9 - Utilisation de composants avec des vulnérabilités connues
 
-Failles liées à l’utilisation de composants tiers.
+Failles liées à l’utilisation de composants tiers vulnérables.
 
 - CMS non à jour
 - Apache / Tomcat non patchés
@@ -185,7 +189,7 @@ Failles liées à l’utilisation de composants tiers.
 
 ### A10 - Redirections et Renvois Non Validés
 
-Failles liées aux redirects et forwards génériques des applications.
+Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante
 
 - Utilisation de votre site comme « masque » dans du phishing
 

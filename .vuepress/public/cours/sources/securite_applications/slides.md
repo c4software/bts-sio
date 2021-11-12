@@ -197,7 +197,7 @@ s'assurer une qualité continue du code
 
 ### A1 - Injection
 
-Corresponds au risque d’injection SQL, Shell...
+Risque d’injection SQL, Shell...
 
 ---
 
@@ -209,13 +209,17 @@ Corresponds au risque de casser la gestion de l’authentification et de la sess
 
 ### A3 - Cross-Site Scripting (XSS)
 
-Corresponds au XSS soit l’injection de contenu dans une page, ce qui provoque des actions non désirées sur une page Web. Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
+Risque d'injection de contenu dans une page.
+
+Provoque des actions non désirées sur une page Web.
+
+Les failles XSS sont particulièrement répandues.
 
 ---
 
 ### A4 - Références directes non sécurisées à un objet
 
-Corresponds aux failles de sécurités des ID de données visualisées. Nécessite de mettre en place un contrôle d’accès aux données.
+Accès à de la donnée en spécifiant un `id` directement par une URL.
 
 ---
 
@@ -233,7 +237,7 @@ Corresponds aux failles de sécurités liées aux données sensibles comme les m
 
 ### A7 - Manque de contrôle d’accès au niveau fonctionnel
 
-Failles de sécurités liées aux accès de fonctionnalité.
+Failles liées aux contrôles d'accès de fonctionnalité.
 
 ---
 
@@ -245,13 +249,13 @@ Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
 
 ### A9 - Utilisation de composants avec des vulnérabilités connues
 
-Failles liées à l’utilisation de composants tiers.
+Failles liées à l’utilisation de composants tiers vulnérables.
 
 ---
 
 ### A10 - Redirections et Renvois Non Validés
 
-Failles liées aux redirects et forwards génériques des applications.
+Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante
 
 ---
 
