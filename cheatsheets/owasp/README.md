@@ -8,7 +8,7 @@ Prévenir plutôt que guérir… Quelques sites à surveiller :
 - [The Hacker News](http://thehackernews.com/)
 - [Zataz](https://www.zataz.com/)
 - [Reddit NetSec](https://www.reddit.com/r/netsec/)
-- [Next INpact](https://www.nextinpact.com/) (~Payant)
+- [Next INpact](https://www.nextinpact.com/) (~payant)
 - Google Actu
 
 ::: tip Important
@@ -57,7 +57,7 @@ C’est **votre métier**
 
 ### Assurer la qualité
 
-L'idée c'est de s'assurer une qualité continue du code avec :
+S'assurer d'une qualité continue du code avec :
 
 - Des règles à connaitre (OWASP).
 - Des tests unitaires.
@@ -77,9 +77,9 @@ OWASP liste 10 grandes catégories de failles **à connaitre** :
 
 ### A1 - Injection
 
-Corresponds au risque d’injection SQL, shell...
+Injection SQL, Shell...
 
-Souvent la plus connu… (et la plus rencontrée)
+Souvent la plus connue et la plus rencontrée :
 
 ```sql
 SELECT * FROM client WHERE id='" . $_GET["id"] . "'
@@ -89,9 +89,24 @@ SELECT * FROM client WHERE id='" . $_GET["id"] . "'
 http://exemple.com/liste?id='or '1'='1
 ```
 
+::: tip C'est la base de la sécurité
+
+Vous trouverez cette exemple un peu partout. C'est le mauvais exemple en termes de sécurité !
+
+Au passage, si vous écrivez :
+
+```php
+$id = $_GET['id'];
+$maRequete = "SELECT * FROM client WHERE id='{$id}'"
+```
+
+⚠️ C'est aussi une faille, celle-ci est identique à la précédente.
+
+:::
+
 ### A2 - Violation de Gestion d’Authentification et de Session
 
-Corresponds au risque de casser la gestion de l’authentification et de la session. Comprends notamment le vol de session ou la récupération de mots de passe.
+Risque de casser / usurper une authentification ou une session. Comprends notamment le vol de session ou la récupération de mots de passe.
 
 Une session en paramètre GET == ⚠️. Si vous partagez le lien, n'importe qui pourra obtenir votre accès !
 
@@ -101,9 +116,7 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ### A3 - Cross-Site Scripting (XSS)
 
-Risque d'injection de contenu dans une page.
-
-Provoque des actions non désirées sur une page Web.
+Risque d'injection de contenu dans une page pour but de provoquer des actions non désirées dans celle-ci.
 
 Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
 
@@ -119,7 +132,7 @@ alert("Bonjour " + $_POST["nom"]);
 
 ### A4 - Références directes non sécurisées à un objet
 
-Accès à de la données en spécifiant un `id` directement par une URL.
+Accès à de la donnée en spécifiant un `id` directement par un paramètre non filtré.
 
 C'est également quelque chose de très courant. Si vous attendez en paramètre un mode / un id, veillez à toujours contrôler si la ressource chargée correspond aux droits de l'utilisateur.
 
@@ -154,7 +167,7 @@ Corresponds aux failles de configuration liées aux serveurs Web, applications, 
 
 ### A6 - Exposition de données sensibles
 
-Corresponds aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
+Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 - Espace client sans SSL.
 - Mot de passe en claire (ou en MD5) dans la base de données.
@@ -162,7 +175,7 @@ Corresponds aux failles de sécurités liées aux données sensibles comme les m
 
 ### A7 - Manque de contrôle d’accès au niveau fonctionnel
 
-Failles liées aux contrôle d'accès de fonctionnalité.
+Failles liées aux contrôles d'accès de fonctionnalité.
 
 - Page d’admin accessible avec un compte utilisateur.
 - Mode non filtré (similaire à l’exemple mode={client,admin}).
@@ -192,6 +205,12 @@ Failles liées à l’utilisation de composants tiers vulnérables.
 Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante
 
 - Utilisation de votre site comme « masque » dans du phishing
+
+_Exemple :_
+
+```
+http://www.shop-vdt.com/login.php?goto=evil.com/login
+```
 
 ### Mais, une faille c’est quoi ?
 

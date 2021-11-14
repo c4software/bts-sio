@@ -75,7 +75,7 @@ Vous en avez d’autres en tête ?
 
 #### Vous êtes la première ligne d’informations
 
-Par deux, collecter une actualités récentes « sur un problème de sécurités ».
+Par deux, collecter une actualité récente « sur un problème de sécurités ».
 
 ![QRCode](./img/code.png)
 
@@ -203,15 +203,15 @@ Risque d’injection SQL, Shell...
 
 ### A2 - Violation de Gestion d’Authentification et de Session
 
-Corresponds au risque de casser la gestion de l’authentification et de la session. Comprends notamment le vol de session ou la récupération de mots de passe.
+Risque de casser / usurper une authentification ou une session. Comprends notamment le vol de session ou la récupération de mots de passe.
+
+⚠️ Un exemple ?
 
 ---
 
 ### A3 - Cross-Site Scripting (XSS)
 
-Risque d'injection de contenu dans une page.
-
-Provoque des actions non désirées sur une page Web.
+Risque d'injection de contenu dans une page pour but de provoquer des actions non désirées dans celle-ci.
 
 Les failles XSS sont particulièrement répandues.
 
@@ -219,7 +219,7 @@ Les failles XSS sont particulièrement répandues.
 
 ### A4 - Références directes non sécurisées à un objet
 
-Accès à de la donnée en spécifiant un `id` directement par une URL.
+Accès à de la donnée en spécifiant un `id` directement par un paramètre non filtré.
 
 ---
 
@@ -231,7 +231,7 @@ Corresponds aux failles de configuration liées aux serveurs Web, applications, 
 
 ### A6 - Exposition de données sensibles
 
-Corresponds aux failles de sécurités liées aux données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
+Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 ---
 
@@ -243,13 +243,13 @@ Failles liées aux contrôles d'accès de fonctionnalité.
 
 ### A8 - Falsification de requête intersite (CSRF)
 
-Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
+Exécution de requêtes à l’insu de l’utilisateur.
 
 ---
 
 ### A9 - Utilisation de composants avec des vulnérabilités connues
 
-Failles liées à l’utilisation de composants tiers vulnérables.
+Utilisation de composants tiers vulnérables.
 
 ---
 
@@ -286,7 +286,7 @@ Les redirections et les renvois non validés sont une vulnérabilité profitant 
 - L’humain (Social Engineering)
 - D'accès (physique)
 - Applicatif (Hack)
-- L’argent (À quel montant une personne vous donne l’information ?)
+- L’argent (à quel montant une personne vous donne l’information ?)
 
 ---
 
@@ -320,7 +320,7 @@ Les gens sont souvent trop confiants.
 
 ### IPS
 
-- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiable à 100 % ils peuvent donc bloquer malencontreusement des applications ou des trafics légitimes.
+- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiables à 100 % ils peuvent donc bloquer malencontreusement des applications ou des trafics légitimes.
 - Ils laissent parfois passer certaines attaques sans les repérer.
 - Peu discrets et peuvent être découverts lors de l'attaque d'un pirate qui une fois qu'il aura découvert l'IPS s'empressera de trouver une faille dans ce dernier pour le détourner et arriver à son but.
 
@@ -402,8 +402,8 @@ $stmt->bindParam(1, $mode);
 
 ### A6 - Exposition de données sensibles
 
-- Espace client sans SSL
-- Mot de passe en claire (ou en MD5) dans la base de données
+- Espace client / admin sans SSL
+- Mot de passe en claire (**ou en MD5**) dans la base de données
 - Sauvegarde de données inutiles
 
 ---
@@ -419,18 +419,18 @@ $stmt->bindParam(1, $mode);
 
 - Rejeu de requête déjà joué
 
----
-
 #### Comment le bloquer ?
 
 Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
+
+⚠️ Parlons-en !
 
 ---
 
 ### A9 - Utilisation de composants avec des vulnérabilités connues
 
 - CMS non à jour
-- Apache / Tomcat non patchés
+- Apache non patchés
 - Librairies XYZ non à jour
 
 ---
@@ -438,6 +438,10 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 ### A10 - Redirections et Renvois Non Validés
 
 - Utilisation de votre site comme « masque » dans du phishing
+
+```
+http://www.shop-vdt.com/login.php?goto=evil.com/login
+```
 
 ---
 
@@ -461,7 +465,7 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 - Tests d’intrusions
 - Sécurité lors du recrutement
 - Sécurité dès la conception du projet
-- Suivi des bonnes pratiques (ex: OWASP)
+- Suivi des bonnes pratiques (ex. OWASP)
 
 ---
 
