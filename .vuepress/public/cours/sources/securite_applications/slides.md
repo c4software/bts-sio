@@ -443,6 +443,8 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 http://www.shop-vdt.com/login.php?goto=evil.com/login
 ```
 
+[En vidéo](https://www.youtube.com/watch?v=ibFs8FZxzu4)
+
 ---
 
 ### OWASP un classement qui évolue
