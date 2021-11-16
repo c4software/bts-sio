@@ -431,7 +431,7 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ---
 
-## Étape 1 : Le réseau
+## Étape 2 : Le réseau
 
 ---
 
@@ -485,11 +485,9 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 #### En continu
 
-- Nuit du Hack / Hack In Paris
+- [Le Hack](https://lehack.org/fr) / [Hack In Paris](https://hackinparis.com/)
 - Internet
 - Appliquer les bonnes pratiques tout le temps !
-
-![](./img/nuitduhack.png)
 
 ---
 
