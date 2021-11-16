@@ -313,22 +313,19 @@ Les gens sont souvent trop confiants.
 
 ---
 
-- IDS (Intrusion Detection Systeme)
-- IPS (Intrusion Prevension Systeme)
+### IPS (Intrusion Prevension Systeme)
+
+- Bloque **automatiquement** les attaques
+- Non fiable à 100%
+- Peu discret
 
 ---
 
-### IPS
+### IDS (Intrusion Detection Systeme)
 
-- Ils bloquent tout ce qui parait infectieux à leurs yeux, mais n'étant pas fiables à 100 % ils peuvent donc bloquer malencontreusement des applications ou des trafics légitimes.
-- Ils laissent parfois passer certaines attaques sans les repérer.
-- Peu discrets et peuvent être découverts lors de l'attaque d'un pirate qui une fois qu'il aura découvert l'IPS s'empressera de trouver une faille dans ce dernier pour le détourner et arriver à son but.
-
----
-
-### IDS
-
-Un système de détection d'intrusion (Intrusion Detection System) est un mécanisme destiné à repérer des activités anormales ou suspectes sur la cible analysée
+- Analyse
+- Repère
+- Averti
 
 ![](./img/nids.png)
 
