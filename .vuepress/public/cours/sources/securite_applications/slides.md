@@ -261,7 +261,7 @@ Les redirections et les renvois non validés sont une vulnérabilité profitant 
 
 ### Les outils autour d’OWASP
 
-- ![OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
+- [OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
 - WebGoat (Formation, Java + Web)
 - WebScarab (Audit)
 - OWASP Testing guide (Guide pour voir le niveau de sécu)
