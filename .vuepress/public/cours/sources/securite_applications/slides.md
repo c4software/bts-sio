@@ -416,6 +416,8 @@ $stmt->bindParam(1, $mode);
 
 - Rejeu de requête déjà joué
 
+---
+
 #### Comment le bloquer ?
 
 Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
