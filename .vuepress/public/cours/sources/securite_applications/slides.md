@@ -305,33 +305,7 @@ Les gens sont souvent trop confiants.
 
 ---
 
-## Étape 1 : Le réseau
-
----
-
-![](./img/securite.png)
-
----
-
-### IPS (Intrusion Prevension Systeme)
-
-- Bloque **automatiquement** les attaques
-- Non fiable à 100%
-- Peu discret
-
----
-
-### IDS (Intrusion Detection Systeme)
-
-- Analyse
-- Repère
-- Averti
-
-![](./img/nids.png)
-
----
-
-## Étape 2 : Le Code
+## Étape 1 : Le Code
 
 ---
 
@@ -454,6 +428,32 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 ---
 
 ![Tableau des failles](./img/tableau.png)
+
+---
+
+## Étape 1 : Le réseau
+
+---
+
+![](./img/securite.png)
+
+---
+
+### IPS (Intrusion Prevension Systeme)
+
+- Bloque **automatiquement** les attaques
+- Non fiable à 100%
+- Peu discret
+
+---
+
+### IDS (Intrusion Detection Systeme)
+
+- Analyse
+- Repère
+- Averti
+
+![](./img/nids.png)
 
 ---
 
