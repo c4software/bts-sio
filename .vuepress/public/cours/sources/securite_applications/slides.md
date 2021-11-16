@@ -259,6 +259,10 @@ Les redirections et les renvois non validés sont une vulnérabilité profitant 
 
 ---
 
+![Tableau des failles](./img/tableau.png)
+
+---
+
 ### Les outils autour d’OWASP
 
 - [OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
@@ -424,10 +428,6 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ![Mapping 2017 -> 2021](./img/mapping.png)
 [Source](https://owasp.org/www-project-top-ten/)
-
----
-
-![Tableau des failles](./img/tableau.png)
 
 ---
 
