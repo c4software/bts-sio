@@ -2,4 +2,4 @@
 
 <SlidesDeck src="securite_applications" />
 
-[La synthèse du cours]("cheatsheets/owasp/")
+[La synthèse du cours](/cheatsheets/owasp/)
