@@ -539,7 +539,7 @@ Vous avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l
 #### Obtenir toutes les données
 
 ```php
-Demos::all()
+Demo::all()
 ```
 
 #### Obtenir toutes les données avec filtre
@@ -554,7 +554,7 @@ Et c'est tellement simple que si vous souhaitez tout récupérer pour utiliser l
 
 ```php
 public function listDemo(Request $request){
-  return view("monLayout", ["demos" => Demos::all()]);
+  return view("monLayout", ["demos" => Demo::all()]);
 }
 ```
 
