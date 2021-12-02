@@ -100,7 +100,7 @@ laravel new mon-premier-projet
 
 # Ou
 
-composer create-project --prefer-dist laravel/laravel:^8.0 mon-premier-projet
+composer create-project --prefer-dist laravel/laravel mon-premier-projet
 ```
 
 La commande va télécharger l'ensemble des dépendances nécessaire et va créer un dossier `mon-premier-projet` avec les sources.
