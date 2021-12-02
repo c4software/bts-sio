@@ -27,7 +27,7 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 #### Installer Composer
 
-- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’éxecutable PHP. `ATTENTION:` Bien sélectionner la version 7.1 minimum de PHP dans le dossier `C:\wamp\bin\php\php\7.1.X\bin\php.exe` <= Attention à prendre la bonne version
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’éxecutable PHP. `ATTENTION:` Bien sélectionner la version 8.0 minimum de PHP dans le dossier `C:\wamp\bin\php\php\8.X.X\bin\php.exe` <= Attention à prendre la bonne version (ou via XAMPP)
 - vérifier que la commande est bien disponible en tapant `composer` dans un terminal
 
 ### Linux
