@@ -27,12 +27,12 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 #### Installer Composer
 
-- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’éxecutable PHP. `ATTENTION:` Bien sélectionner la version 8.0 minimum de PHP dans le dossier `C:\wamp\bin\php\php\8.X.X\bin\php.exe` <= Attention à prendre la bonne version (ou via XAMPP)
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.0 minimum de PHP dans le dossier `C:\wamp\bin\php\php\8.X.X\bin\php.exe` <= Attention à prendre la bonne version (ou via XAMPP)
 - vérifier que la commande est bien disponible en tapant `composer` dans un terminal
 
 ### Linux
 
-Pour Linux c’est plus simple, il suffit d’installer PHP 7 sur votre machine (regarder la documentation de votre distribution). Une fois que PHP est installé il suffit de faire :
+Pour Linux c’est plus simple, il suffit d’installer PHP 7 sur votre machine (regarder la documentation de votre distribution). Une fois que PHP est installé, il suffit de faire :
 
 ```bash
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -85,7 +85,7 @@ composer global require "laravel/installer"
 ```
 
 ✋ Vérifier que la commande laravel fonctionne. Comment faire ?
-Pour vérifier que la commande `laravel` fonctionne il suffit de faire dans une console `laravel -h`
+Pour vérifier que la commande `laravel` fonctionne, il suffit de faire dans une console `laravel -h`
 
 ![Laravel](./ressources/laravelcli.png)
 
@@ -119,12 +119,12 @@ composer install
 
 ## Initialisation
 
-Votre nouveau projet contient un fichier `.env` ouvrez le, et éditez par exemple le nom du projet.
+Votre nouveau projet contient un fichier `.env` ouvrez-le, et éditez par exemple le nom du projet.
 
 Questions :
 
 - Le fichier est plutôt complet, à quoi servent les différents paramètres ?
-- Dans les cours je vous ai parlé de la APP_KEY, celle-ci est déjà remplie, à votre avis pourquoi ?
+- Dans les cours, je vous ai parlé de la APP_KEY, celle-ci est déjà remplie, à votre avis pourquoi ?
 
 ## Lancer le projet d’exemple
 
@@ -178,7 +178,7 @@ Route::get('/ping', function () {
 
 Tester la modification en [accédant à votre site](http://localhost:8000/ping)
 
-<Reveal text="Voir l’une des solutions possible">
+<Reveal text="Voir l’une des solutions possibles">
 
 ```php
 Route::get('/', function () {
@@ -310,7 +310,7 @@ Question :
 
 ### Utiliser le layout dans welcome.blade.php
 
-Maintenant que nous avons notre template de base nous allons l’utiliser dans le template « Welcome ». Remplacer le contenu de `resources/views/welcome.blade.php` par :
+Maintenant que nous avons notre template de base, nous allons l’utiliser dans le template « Welcome ». Remplacer le contenu de `resources/views/welcome.blade.php` par :
 
 ```html
 @extends('layouts.base') @section('title', 'Bienvenue') @section('content')
@@ -336,7 +336,7 @@ Bon, maintenant que nous avons déclaré un layout utilisons-le dans la 2nd rout
 
 Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon courage.
 
-<Reveal text="Voir l’une des solutions possible pour ping.blade.php">
+<Reveal text="Voir l’une des solutions possibles pour ping.blade.php">
 
 ```php
 @extends('layouts.base')
@@ -370,7 +370,7 @@ C'est par exemple la base du fonctionnement de VueJS 👌.
 
 ## Utiliser un contrôleur
 
-La force de Laravel est sa structure nous avons vu ensemble que celui-ci propose un découpage « précis » et clair des couches « MVC » (Modèle, Vue, Controlleur). Nous allons donc organiser notre code pour utiliser un Contrôleur (qui je le rappelle à pour but de répondre aux requêtes HTTP des clients).
+La force de Laravel est sa structure, nous avons vu ensemble que celui-ci propose un découpage « précis » et clair des couches « MVC » (Modèle, Vue, Controlleur). Nous allons donc organiser notre code pour utiliser un Contrôleur (qui je le rappelle à pour but de répondre aux requêtes HTTP des clients).
 
 ### Le Contrôleur:
 
@@ -437,13 +437,13 @@ Vous l'avez réalisé précédemment, je vous laisse écrire les deux `vue` / `l
 
 ## La base de données
 
-L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique ou tout est a « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite. Comme pour la création du contrôleur la première étape va passer par de la ligne de commande.
+L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique où tout est a « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite. Comme pour la création du contrôleur, la première étape va passer par de la ligne de commande.
 
 ```sh
 php artisan make:model Demo --migration
 ```
 
-Cette commande va créer « la définition du modèle » (le modèle la représentation objet de notre table), mais également la migration. La migration est le fichier qui va définir la structure de notre `Table`. Vous avez maintenant dans votre projet, deux nouveaux fichiers :
+Cette commande va créer « la définition du modèle » (le modèle la représentation objet de notre table), mais également la migration. La migration est le fichier qui va définir la structure de notre `Table`. Vous avez maintenant, dans votre projet, deux nouveaux fichiers :
 
 - `app/Models/Demo.php`
 - `database/migrations/YEAR_MONTH_DAY_TIME_create_demos_table.php`
@@ -533,7 +533,7 @@ Je vous laisse configurer votre `.env` mais également vérifier si votre base d
 Pour vous montrer la simplicité de Eloquent, je vous laisse juste avec les appels de méthodes (nous avons vu ça ensemble lors du cours)
 
 ::: danger Liste non exhaustive
-Vous avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère plutôt [la documentation officielle](https://laravel.com/docs/8.x/eloquent)
+Vous n’avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère plutôt [la documentation officielle](https://laravel.com/docs/8.x/eloquent)
 :::
 
 #### Obtenir toutes les données
@@ -579,3 +579,31 @@ public function addDemo(Request $request){
 ::: danger N'oubliez pas
 Utilisez `@extends('layouts.base')` pour « hériter » de votre layout principal.
 :::
+
+::: danger N'oubliez pas le CSRF
+Je vous ai parlé de la sécurité non ? Laravel intègre directement la protection anti-rejeux. Pour pouvoir valider votre formulaire, vous allez devoir intégrer dans votre formulaire une petite annotation.
+
+`@csrf`
+
+Exemple :
+
+```html
+<form method="POST" action="/profile">@csrf</form>
+```
+
+PS: Je vous laisse constater l'impact dans le code.
+
+[Plus d'information](https://laravel.com/docs/8.x/csrf)
+
+:::
+
+### Évolution 1
+
+J'aimerais que notre petit site de démonstration intègre un formulaire de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
+
+- Le formulaire doit être en HTML.
+- Les demandes faites via le formulaire doivent être sauvegardées en base de données (table spécifique, avec un id, un titre, un texte, un email et les dates).
+- L'ajout doit être fait par un modèle.
+- Vous devez créer un contrôleur spécifique pour réaliser l'opération.
+
+C'est à vous ! Je suis là si besoin 🚀.
