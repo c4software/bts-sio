@@ -4,6 +4,12 @@
 [[toc]]
 :::
 
+::: danger XML ou Compose ?
+
+Nous sommes en 2021, le monde d'Android évolue… Pendant des années l'écriture des « layouts » (interface) n'était possible que via du XML. Il est maintenant possible d'écrire les layouts de manières bien plus modernes avec [JetPack Compose](https://developer.android.com/jetpack/compose). Le TP que vous suivez est toujours valide, mais repose sur l'utilisation de XML.
+
+:::
+
 ## Créer un projet
 
 La première étape est la création d'un projet. Pour ça nous allons utiliser « Android Studio » qui est l'IDE à utiliser pour créer une application Android.
@@ -125,7 +131,7 @@ Cette création de ressource est réalisable directement depuis Android Studio :
 ![Create new resources](./ressources/create_new_resources.png)
 ![Création de ressources alternatives](./ressources/resources.png)
 
-::: tip Vous pouvez tout redéfinir 
+::: tip Vous pouvez tout redéfinir
 L'ensemble des ressources (`res`) est re-définissable sans écrire de code. Par exemple si vous souhaitez redéfinir des `strings` dans différentes conditions il suffit de :
 
 ![Popup de création](./ressources/resources_strings.png)
@@ -336,7 +342,7 @@ De la `MainActivity`.
 
 Modifier également le thème de la SplashActivity afin de lui spécifier un thème sans « ActionBar ». Pour ça il vous suffit d'ajouter dans les attributs celui-ci :
 
-`android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"` 
+`android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"`
 
 Exemple :
 
@@ -483,7 +489,7 @@ Nous avons vu ensemble que la gestion des permissions était un élément import
 
 Voilà le plus simple pour expliquer la mécanique des permissions c'est « un schéma ». Je vous propose de mettre en pratique avec la permission « LOCALISATION ». Je vais volontairement vous donner le code à implémenter (celui-ci est disponible de toute manière dans la documentation d'Android).
 
-Pour réaliser cette fonctionnalité, nous allons ajouter une nouvelle activité (en utilisant les options de votre IDE). 
+Pour réaliser cette fonctionnalité, nous allons ajouter une nouvelle activité (en utilisant les options de votre IDE).
 Pour le layout je vous propose de réaliser un layout qui ressemble à :
 
 ![Layout](./ressources/layout_locate_me.png)
@@ -644,7 +650,7 @@ override fun onSupportNavigateUp(): Boolean {
 
 ::: details Voir une solution complète
 
-Vous séchez ? __Je vous invite à me demander avant de regarder la solution…_ cependant, si vous souhaitez par contre vérifier votre solution.
+Vous séchez ? \__Je vous invite à me demander avant de regarder la solution…_ cependant, si vous souhaitez par contre vérifier votre solution.
 
 [Sachez que vous avez une version du code ici](https://gist.github.com/c4software/a3fa7f584a464a6308648b7fcce28add)
 

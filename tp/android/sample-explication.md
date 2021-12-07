@@ -6,6 +6,12 @@ Ce document n'est pas un TP, mais une explication de la structure « Android Boi
 
 Ce document vous donnera les clés afin de comprendre le fonctionnement et de vous l'approprier.
 
+::: danger XML ou Compose ?
+
+Nous sommes en 2021, le monde d'Android évolue… Pendant des années l'écriture des « layouts » (interface) n'était possible que via du XML. Il est maintenant possible d'écrire les layouts de manières bien plus modernes avec [JetPack Compose](https://developer.android.com/jetpack/compose). Le TP que vous suivez est toujours valide, mais repose sur l'utilisation de XML.
+
+:::
+
 ## But du code
 
 Le but du code fourni sur Github est de simplifier la mise en place d'une base applicative Android « moderne ». Il ne contient aucun code (presque). Il est donc clonnable / téléchargeable et utilisable tel quel, l'idée étant vraiment d'avoir presque un template d'application réutilisable à volonté.
