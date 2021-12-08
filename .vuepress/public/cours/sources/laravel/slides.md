@@ -534,6 +534,20 @@ class Role extends Model
 
 ---
 
+```php
+class Utilisateur extends Model{}
+class Annonce extends Model{}
+class Categorie extends Model{}
+class Message extends Model{}
+```
+
+- Que constatez-vous ?
+- Combien il y a-t-il de table ?
+- Écrire le code permettant d'obtenir l'ensemble des utilisateurs.
+- Écrire le code permettant d'avoir l'ensemble des messages de l'utilisateur 4.
+
+---
+
 ## La Vue : Blade
 
 - Moteur de template
