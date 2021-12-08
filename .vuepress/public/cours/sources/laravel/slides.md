@@ -545,6 +545,8 @@ class Message extends Model{}
 - Combien il y a-t-il de table ?
 - Écrire le code permettant d'obtenir l'ensemble des utilisateurs.
 - Écrire le code permettant d'avoir l'ensemble des messages de l'utilisateur 4.
+- Écrire le code permettant de modifier le message 4.
+- Écrire le code permettant de supprimer l'ensemble des messages de l'utilisateur 10.
 
 ---
 
