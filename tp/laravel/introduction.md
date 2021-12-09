@@ -597,6 +597,60 @@ PS: Je vous laisse constater l'impact dans le code.
 
 :::
 
+### Changer l'état d'une TODO
+
+En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/8.x/eloquent) ajouter :
+
+- Une action permettant de marquer « comme terminer » une TODO.
+- Cette action doit être mise dans le bon contrôleur
+
+::: tip Rappel
+
+```php
+// Rechercher celui avec l’id 1
+$todo = App\TodoList::find("L'ID QUE VOUS SOUHAITEZ MODIFIER")->first();
+
+// Le passer à terminer
+$todo->termine = true;
+
+// Le sauvegarder en base de données
+$todo->save();
+```
+
+::::
+
+### Supprimer une TODO
+
+En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/8.x/eloquent) ajouter :
+
+- Une action permettant de marquer « supprimer » une TODO.
+- Cette action doit être mise dans le bon contrôleur
+
+::: tip Rappel
+
+```php
+// Façon 1
+// Rechercher celui avec l’id 1
+$todo = App\TodoList::find(1)->first();
+$todo->delete(); // Le supprimer
+
+// Façon 2
+// Le supprimer directement
+App\TodoList::destroy(1);
+
+// Façon 3
+// En supprimer plusieurs directement
+App\TodoList::destroy(1,2,3);
+
+// Façon 4
+// Supprimer avec une condition
+App\TodoList::where('termine', '==', 1)->delete();
+```
+
+**N'oubliez pas** la sécurité.
+
+:::
+
 ### Évolution 1
 
 J'aimerais que notre petit site de démonstration intègre un formulaire de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
