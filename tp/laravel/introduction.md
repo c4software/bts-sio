@@ -647,7 +647,7 @@ App\TodoList::destroy(1,2,3);
 App\TodoList::where('termine', '==', 1)->delete();
 ```
 
-**N'oubliez pas** la sécurité.
+N'oubliez pas la sécurité.
 
 :::
 
