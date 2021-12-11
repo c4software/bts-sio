@@ -538,15 +538,25 @@ Vous n’avez ici qu'une petite liste de ce qu'il est possible de faire. Pour vo
 
 #### Obtenir toutes les données
 
+Voilà un exemple de code pour obtenir l'ensemble des données dans la table `demo`.
+
 ```php
-Demo::all()
+$valeursEnBase = Demo::all()
 ```
 
 #### Obtenir toutes les données avec filtre
 
+Voilà un exemple de code pour obtenir 10 lignes de données avec un filtre et trié par `id`.
+
 ```php
-Demo::where('texte', "YOLO")->orderBy('id')->take(10)
+$valeursFiltre = Demo::where('texte', "YOLO")->orderBy('id')->take(10)
 ```
+
+::: danger Ce ne sont que des exemples
+
+Vous avez ici des exemples, ça ne sert à rien de les prendres maintenant. Nous allons les utiliser **dans votre contrôleurs**.
+
+:::
 
 #### Utiliser les données depuis votre « vue »
 
@@ -554,6 +564,8 @@ Et c'est tellement simple que si vous souhaitez tout récupérer pour utiliser l
 
 ```php
 public function listDemo(Request $request){
+  // Retourne à l'utilisateur le template nommés « monLayout » avec dedans une variable nommé `$demos` qui contiendra l'ensemble des éléments dans la table
+  // Votre template devra utiliser cette variable avec par exemple un @foreach($demos as $demo) … @endforeach
   return view("monLayout", ["demos" => Demo::all()]);
 }
 ```
