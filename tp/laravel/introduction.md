@@ -571,10 +571,27 @@ public function addDemo(Request $request){
 
 À partir de maintenant vous avez tout ce qu'il faut pour interroger votre base de données… Et oui c'est aussi simple que ça ! Pour la suite je vous laisse écrire le code par vous-même, mais la procédure va être la suivante :
 
-- Créer un contrôleur « Demo ».
+- Créer un contrôleur « DemoControleur ».
 - Créer la `Vue` (template blade) associée à votre contrôleur.
+- Ajouter la route qui permettra d'accéder à cette page.
 - Ajouter une méthode qui va afficher l'ensemble des entrées présent dans votre base de données (affichage dans une `table` html).
 - Ajouter un formulaire dans votre `Vue` permettant d'ajouter des données dans la table.
+
+::: tip Un instant
+
+Nous l'avons vu en cours, la syntaxe du moteur de template blade. Ici il faudra donc bien utiliser Blade pour générer **votre page**, et plus particulièrement [les directives de blades](/cheatsheets/laravel/#les-directives). Vous allez devoir utiliser la boucle `Foreach`, la notation est rappelée dans l'aide mémoire. Mais voilà une idée de ce qu'il faudra faire :
+
+```html
+<table>
+  @foreach($LaVariableAvecLesValeursEnBase as $unElement)
+  <tr>
+    <td>{{$unElement->texte}}</td>
+  </tr>
+  @endforeach
+</table>
+```
+
+:::
 
 ::: danger N'oubliez pas
 Utilisez `@extends('layouts.base')` pour « hériter » de votre layout principal.
@@ -588,10 +605,14 @@ Je vous ai parlé de la sécurité non ? Laravel intègre directement la protect
 Exemple :
 
 ```html
-<form method="POST" action="/profile">@csrf</form>
+<form method="POST" action="/VOTRE-ACTIO-DEFINI-DANS-LES-ROUTES">
+  @csrf
+
+  <!-- La suite de votre formulaire -->
+</form>
 ```
 
-PS: Je vous laisse constater l'impact dans le code.
+PS: Je vous laisse constater l'impact dans le code **en observant le code source via votre navigateur**.
 
 [Plus d'information](https://laravel.com/docs/8.x/csrf)
 
@@ -601,7 +622,7 @@ PS: Je vous laisse constater l'impact dans le code.
 
 En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/8.x/eloquent) ajouter :
 
-- Une action permettant de marquer « comme terminer » une TODO.
+- Une action permettant de marquer « comme terminer » une TODO. (l'action peut-être un lien, ou un bouton)
 - Cette action doit être mise dans le bon contrôleur
 
 ::: tip Rappel
@@ -618,6 +639,17 @@ $todo->save();
 ```
 
 ::::
+
+::: details Besoin d'aide ?
+
+Je ne vais pas vous donner le code. Mais plutôt la procédure vous devez :
+
+- Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type `/todo/terminer/{{$unElement->id}}`.
+- Ajout d'une route permettant de faire fonctionner le lien. Exemple : `Route::get('/todo/terminer/{id}', ['App\Http\Controllers\DemoControleur', 'markAsDone']);`.
+- Ajouter la méthode `markAsDone` dans votre contrôleur `public function markAsDone($id)`, celle-ci va réaliser l'action de marquer comme « terminer » pour la TODO `$id`
+- À la fin du traitement, vous devez rediriger la personne avec `return redirect("/demo");`
+
+:::
 
 ### Supprimer une TODO
 
@@ -648,6 +680,10 @@ App\TodoList::where('termine', '==', 1)->delete();
 ```
 
 N'oubliez pas la sécurité.
+
+::: details Besoin d'aide ?
+Ici pas de code, mais la procédure sera identique à celle de l'action terminer.
+:::
 
 :::
 
