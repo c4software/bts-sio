@@ -159,7 +159,7 @@ Ne reflichissez pas trop… C’est vraiment aussi simple que ça.
 
 :::
 
-## L’Éloquente l’ORM
+## Éloquent « l’ORM »
 
 ### La migration
 
