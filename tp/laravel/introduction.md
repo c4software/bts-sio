@@ -650,13 +650,13 @@ $todo->termine = true;
 $todo->save();
 ```
 
-::::
-
-::: details Besoin d'aide ?
+#### Besoin d'aide ?
 
 Je ne vais pas vous donner le code. Mais plutôt la procédure vous devez :
 
-- Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type `/todo/terminer/{{$unElement->id}}`.
+::: v-pre
+
+- Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type `/todo/terminer/{{ $unElement->id}}`.
 - Ajout d'une route permettant de faire fonctionner le lien. Exemple : `Route::get('/todo/terminer/{id}', ['App\Http\Controllers\DemoControleur', 'markAsDone']);`.
 - Ajouter la méthode `markAsDone` dans votre contrôleur `public function markAsDone($id)`, celle-ci va réaliser l'action de marquer comme « terminer » pour la TODO `$id`
 - À la fin du traitement, vous devez rediriger la personne avec `return redirect("/demo");`
