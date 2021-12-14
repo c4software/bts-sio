@@ -669,6 +669,16 @@ Blade intègre également un système de composant permettant de découper son t
 
 ---
 
+## Cas pratique
+
+![Sample](./img/sample.png)
+
+- Écrire le Blade / HTML permettant :
+  - D'afficher la barre « Bienvenue » **uniquement** si la personne est connectée.
+  - D'affiche la table de manière dynamique
+
+---
+
 ## Gestion des droits d’accès
 
 - **@auth**, **@guest**
