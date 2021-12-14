@@ -1,4 +1,4 @@
-# Laravel 8
+# Laravel 8
 
 Cet aide mémoire n’est pas exhaustif, elle contient les connaissances minimums pour réaliser un site avec Laravel.
 
@@ -31,6 +31,22 @@ composer create-project laravel/laravel le-nom-de-votre-projet
 
 ::: danger ATTENTION
 Le projet va être crée dans mon exemple dans un dossier nommé `le-nom-de-votre-projet` (dans le dossier courant). Attention à ne pas être n’importe où.
+:::
+
+## Réinstaller un projet
+
+Si vous changez de machine ou si vous récupérez le code source depuis Git il sera nécessaire de réinstaller les dépendances. Pour ça :
+
+```sh
+composer install
+```
+
+Après cette étape, il faudra remettre également en place le fichier `.env` de votre projet. Pour le contenu du fichier il faut reprendre le contenu du `.env.example`.
+
+::: tip Pourquoi le .env est perdu ?
+
+Le `.env` contient vos identifiants de connexion à la base de données **et les différentes clés secrètes**, c'est pour ça que celui-ci est présent de base dans le .gitignore.
+
 :::
 
 ## Gérer l’application
