@@ -2,4 +2,4 @@
 
 <SlidesDeck src="laravel" />
 
-- [Aide mémoire](cheatsheets/laravel/)
+- [Aide mémoire](/cheatsheets/laravel/)
