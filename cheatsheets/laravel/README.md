@@ -102,7 +102,7 @@ Route::get('/', function () {
 
 Nous déclarons ici **une route**, accessible sur le **`/`** (c’est-à-dire `http://localhost:8000/`), elle affichera `Bonjour Monde`.
 
-### Définir une route bi
+### Définir une route bis
 
 L’avantage d’un framework, c’est la simplicité. Si vous souhaitez déclarer une route `http://localhost:8000/demo/3` il suffira d'indiquer dans le `web.php` le contenu suivant :
 
