@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons voir comment créer une vraie arborescence de service avec Docker. Dans une application réelle, il n’est pas rare d’avoir plusieurs technologies (ou plusieurs « services ») pour assurer le bon fonctionnement d’un système dans son ensemble (Exemple pour faire fonctionner mon application j’ai besoin de MySQL, PHP, et d’un serveur Web pour l’interface client).
+---
+
 # Le Docker Compose
 
 ## Introduction

@@ -1,3 +1,7 @@
+---
+description: La solution présentée dans cette page décrit l'installation de la solution Open-Source développée par Valentin Brosseau disponible sur GitHub
+---
+
 # Transformer un Raspberry Pi en server Web
 
 ::: details Sommaire

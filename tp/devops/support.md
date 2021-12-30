@@ -1,3 +1,7 @@
+---
+description: Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
+---
+
 # Complément du cours Dev Ops
 
 Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
@@ -387,7 +391,6 @@ Une solution qui dans mon cas ressemble à :
 
 | ![Version 1](../rpi/res/version1.jpg) | ![Version 2](../rpi/res/version2.jpg) |
 | ------------------------------------- | ------------------------------------- |
-
 
 [Lire la suite](../rpi/web-stack.md)
 

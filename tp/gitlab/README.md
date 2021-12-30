@@ -1,3 +1,7 @@
+---
+description: Introduction au travail à plusieurs avec GIT.
+---
+
 # GitLab
 
 Introduction au travail à plusieurs avec GIT.

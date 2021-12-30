@@ -1,3 +1,7 @@
+---
+description: Ce document présente la syntaxe objet avec des exemples PHP & Java
+---
+
 # La syntaxe Objet
 
 Ce document présente la syntaxe objet avec des exemples PHP & Java

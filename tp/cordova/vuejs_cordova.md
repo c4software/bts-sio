@@ -1,3 +1,7 @@
+---
+description: Maintenant que nous avons vu les bases de Cordova (Création, Plateforme, plug-in). Intéressons-nous à la création d’une vraie application.
+---
+
 # VueJS et Cordova
 
 Maintenant que nous avons vu les bases de Cordova (Création, Plateforme, plug-in). Intéressons-nous à la création d’une vraie application. Dans le monde de Cordova il existe plusieurs façons de faire :

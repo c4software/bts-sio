@@ -1,3 +1,7 @@
+---
+description: La méthode OWASP ! Prévenir plutôt que guérir…
+---
+
 # La méthode OWASP
 
 ### Comment se tenir à jour ?
@@ -23,10 +27,8 @@ La sécurité informatique dans une application c’est un « équilibre »
 - Limitation de l’expérience utilisateur (UX)
 - Impact financier
 
-<center class="no-print">
-<img src="./res/expositions.png" width="500px" />
-<img src="./res/random.png" width="500px" />
-</center>
+![](./res/expositions.png)
+![](./res/random.png)
 
 ### Les types de failles
 
@@ -51,9 +53,7 @@ La sécurité c’est un état d’esprit à intégrer.
 
 C’est **votre métier**
 
-<center>
-<img src="./res/toutes_les_etapes.png" width="500px">
-</center>
+![](./res/toutes_les_etapes.png)
 
 ### Assurer la qualité
 
@@ -69,9 +69,7 @@ S'assurer d'une qualité continue du code avec :
 
 > _Source: Wikipedia_
 
-<div class="no-print">
-  [Site de Owasp](https://owasp.org/)
-</div>
+[Site de Owasp](https://owasp.org/)
 
 OWASP liste 10 grandes catégories de failles **à connaitre** :
 
@@ -214,9 +212,7 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ### Mais, une faille c’est quoi ?
 
-<center>
-  <img src="./res/faille.png" width="500px" />
-</center>
+![](./res/faille.png)
 
 L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement… Et surtout avec OWASP on parle de **vulnérabilité, et non de risque**.
 
@@ -230,6 +226,4 @@ L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les
 
 ## Synthèse OWASP
 
-<center>
-  <img src="./res/tableau.png" width="100%" />
-</center>
+![](./res/tableau.png)

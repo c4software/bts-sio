@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons découvrir l'utilisation de VueJS.
+---
+
 # Prise en main de VueJS 2.0
 
 Dans ce TP nous allons découvrir l'utilisation de VueJS.

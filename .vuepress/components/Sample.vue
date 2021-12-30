@@ -1,7 +1,7 @@
 <template>
   <div>
     <ExternalIframe :src="samplePath"></ExternalIframe>
-    <center><a target="_blank" :href="samplePath">Ouvrir</a></center>
+    <div class="center"><a target="_blank" :href="samplePath">Ouvrir</a></div>
   </div>
 </template>
 
@@ -28,5 +28,9 @@ export default {
 a {
   display: inline-block;
   margin: 10px;
+}
+
+div.center{
+  text-align: center;
 }
 </style>

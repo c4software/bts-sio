@@ -1,3 +1,7 @@
+---
+description: Ce document s'intéresse uniquement à la partie création du projet openfaas et pas à la partie « création de la stack inital openfaas
+---
+
 # Création d'un projet OpenFaas (Express)
 
 Ce document s'intéresse uniquement à la partie création du projet openfaas et pas à la partie « [création de la stack inital openfaas](./openfaas-quicky-installation) ».

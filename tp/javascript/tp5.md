@@ -1,3 +1,7 @@
+---
+description: Nous avons vu ensemble que jQuery était un vrai gain te temps et de ligne en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
+---
+
 # Les librairies pour vous sauvez
 
 Nous avons vu ensemble que jQuery était un vrai gain te temps et de ligne en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
@@ -92,7 +96,7 @@ Vous pouvez donc écrire :
 Nous avons maintenant une page, un tableau… Et un truc pas vraiment sexy. C'est là ou Datatable va entrer en jeu. Avec un simple petit ajoute de JavaScript dans votre page, nous allons transformer ce simple tableau en SUPER TABLEAU.
 
 ```js
-$(document).ready(function() {
+$(document).ready(function () {
   $("#myTable").DataTable();
 });
 ```
@@ -112,7 +116,7 @@ Je vous propose d'installer FullCalendar [dans votre site](https://fullcalendar.
 />
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     var calendarEl = document.getElementById("calendar");
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: "dayGridMonth",
@@ -133,7 +137,7 @@ Pour ajouter des évenements, [il suffit de suivre la documentation par exemple]
 Exemple :
 
 ```js
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",

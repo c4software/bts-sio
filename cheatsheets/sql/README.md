@@ -1,3 +1,7 @@
+---
+description: Aide mémoire sur le SQL. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.
+---
+
 # Aide mémoire SQL
 
 Aide mémoire sur le SQL. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.

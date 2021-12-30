@@ -1,3 +1,7 @@
+---
+description: Vous avez des questions ? Vous souhaitez plus d'informations sur un cours.
+---
+
 # Une question ?
 
 Vous avez des questions ? Vous souhaitez plus d'informations sur un cours.

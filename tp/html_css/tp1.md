@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons découvrir les bases de HTML à travers la création d'une première page Web.
+---
+
 # Découverte du HTML
 
 Dans ce TP nous allons découvrir les bases de HTML à travers la création d'une première page Web.

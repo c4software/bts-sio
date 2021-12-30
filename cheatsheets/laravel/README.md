@@ -1,3 +1,7 @@
+---
+description: Cet aide mémoire n’est pas exhaustif, elle contient les connaissances minimums pour réaliser un site avec Laravel.
+---
+
 # Laravel 8
 
 Cet aide mémoire n’est pas exhaustif, elle contient les connaissances minimums pour réaliser un site avec Laravel.
@@ -124,6 +128,27 @@ C’est simple :
 ```php
 Route::post('/demo/{id}', [DemoController::class, "voir"]);
 ```
+
+::: danger Un instant ✋
+
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `DemoController` soit accessible depuis le router il faudra :
+
+```php
+use App\Http\Controllers\DemoController;
+
+Route::post('/demo/{id}', [DemoController::class, "voir"]);
+```
+
+- ⚠️ Si vous utilisez **PHPStorm** cet import sera automatique.
+- ⚠️ Si vous utilisez **VSCode** il faudra passer par une extension [Disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
+
+Pour **PHPStorm**, **alt+entrée** permettra de déclencher l'ajout du use.
+
+Pour **VSCode** je vous laisse regarder l'usage de l'extension :
+
+![Namespace Resolver](./res/namespace_resolver.gif)
+
+:::
 
 ## Les contrôleurs
 
@@ -299,6 +324,25 @@ $todos = LeNomDeVotreTableEnBase::where('temine', 1)->orderBy('id', 'desc')->tak
 // Ou avec un where
 $users = User::where('votes', '>', 100)->get();
 ```
+
+::: danger Un instant ✋
+
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `LeNomDeVotreTableEnBase` soit accessible depuis le contrôleur il faudra :
+
+```php
+use App\Models\LeNomDeVotreTableEnBase;
+```
+
+- ⚠️ Si vous utilisez **PHPStorm** cet import sera automatique.
+- ⚠️ Si vous utilisez **VSCode** il faudra passer par une extension [Disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
+
+Pour **PHPStorm**, alt+entrée permettra de déclencher l'ajout du use.
+
+Pour **VSCode** je vous laisse regarder l'usage de l'extension :
+
+![Namespace Resolver](./res/namespace_resolver.gif)
+
+:::
 
 ### Créer un enregistrement
 

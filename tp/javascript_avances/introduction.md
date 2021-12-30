@@ -1,3 +1,7 @@
+---
+description: Vous avez déjà fait du JavaScript, mais certainement avec jQuery et surement sans utiliser les fonctions « modernes » de celui-ci.
+---
+
 # Prise en main « JavaScript avancé »
 
 Vous avez déjà fait du JavaScript, mais certainement avec jQuery et surement sans utiliser les fonctions « modernes » de celui-ci.

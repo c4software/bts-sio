@@ -1,3 +1,7 @@
+---
+description: Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des idées de page à reproduire le plus fidèlement possible.
+---
+
 # Idée d'intégration
 
 Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des idées de page à reproduire le plus fidèlement possible.

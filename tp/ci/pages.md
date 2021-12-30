@@ -1,3 +1,7 @@
+---
+description: Dans ce TP vous allez mettre en place grâce à Gitlab-CI un site web static hébergé par Gitlab Pages. Dans le TP d’introduction au travail collaboratif vous avez travaillé à plusieurs avec une visualisation quasi temps réel des modifications après les commits, c’était réalisé grâce à GitLab-CI et GitLab Pages. Avec un fichier et quelques configurations, vous allez être capable de réaliser la même chose dans vos projets.
+---
+
 # Utiliser GitLab Pages
 
 ## Introduction

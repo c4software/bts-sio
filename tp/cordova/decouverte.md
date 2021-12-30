@@ -1,3 +1,7 @@
+---
+description: Dans ce TP vous allez découvrir la ligne de commande Cordova et créer votre premier TP. Comme les autres TP, utiliser l’aide mémoire Cordova pour trouver les bonnes commandes à chaque étape.
+---
+
 # Découverte de Cordova
 
 Dans ce TP vous allez découvrir la ligne de commande Cordova et créer votre premier TP. Comme les autres TP, utiliser l’aide mémoire Cordova pour trouver les bonnes commandes à chaque étape.

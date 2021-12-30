@@ -1,3 +1,7 @@
+---
+description: Créer un site depuis zéro n'est pas la seule solution, en informatique nous avons également ce que nous appelons des CMS. Un CMS est un outil qui va nous fournir une base de code « Client & Administration »
+---
+
 # Installer & Configurer Wordpress
 
 Créer un site depuis zéro n'est pas la seule solution, en informatique nous avons également ce que nous appelons des CMS. Un CMS est un outil qui va nous fournir une base de code « Client & Administration » pour créer un site tel que :
@@ -12,9 +16,7 @@ Pour toutes ces situations, vous avez la possibilité d'installer, de configurer
 
 Dans ce document nous allons voir l'installation de Wordpress, sa configuration et sa personnalisation avec des plug-ins.
 
-<div style="text-align: center">
-    <img src="./res/logo.png" height="100px" />
-</div>
+![](./res/logo.png)
 
 ## Installer Wordpress
 

@@ -1,3 +1,7 @@
+---
+description: Nous avons vu que nous pouvions déployer une image Docker produite par Gitlab-CI « directement » dans un cluster Kubernetes. Dans ce TP nous allons voir comment il est possible d'automatiser ce (re)déploiement.
+---
+
 # Livraison continue, Gitlab-CI + Kubernetes
 
 [Dans le précédent TP](./deploy-container-in-kubernetes.md) nous avons vu que nous pouvions déployer une image Docker produite par Gitlab-CI « directement » dans un cluster Kubernetes. Dans ce TP nous allons voir comment il est possible d'automatiser ce (re)déploiement.

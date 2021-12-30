@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons découvrir Flask (l’installation et un premier test).
+---
+
 # Découvrir Flask
 
 Dans ce TP nous allons découvrir Flask (l’installation et un premier test).

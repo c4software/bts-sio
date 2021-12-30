@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons couvrir l’installation, la configuration et la création d’un premier projet « démo » à base de Laravel.
+---
+
 # Introduction à Laravel
 
 ![Laravel](./ressources/logo.png)
@@ -654,14 +658,10 @@ $todo->save();
 
 Je ne vais pas vous donner le code. Mais plutôt la procédure vous devez :
 
-::: v-pre
-
-- Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type `/todo/terminer/{{ $unElement->id}}`.
-- Ajout d'une route permettant de faire fonctionner le lien. Exemple : `Route::get('/todo/terminer/{id}', ['App\Http\Controllers\DemoControleur', 'markAsDone']);`.
+- Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type <code v-pre>`/todo/terminer/{{ $unElement->id}}`</code>.
+- Ajout d'une route permettant de faire fonctionner le lien. Exemple : <code v-pre>`Route::get('/todo/terminer/{id}', ['App\Http\Controllers\DemoControleur', 'markAsDone']);`</code>.
 - Ajouter la méthode `markAsDone` dans votre contrôleur `public function markAsDone($id)`, celle-ci va réaliser l'action de marquer comme « terminer » pour la TODO `$id`
 - À la fin du traitement, vous devez rediriger la personne avec `return redirect("/demo");`
-
-:::
 
 ### Supprimer une TODO
 

@@ -1,3 +1,7 @@
+---
+description: Nous avons vu dans le TP introduction qu'il était très simple de créer un petit site avec Laravel. L'autre problème que Laravel résout « simplement » c'est la partie authentification.
+---
+
 # Laravel & l'authentification
 
 Nous avons vu dans [le TP introduction](./introduction.md) qu'il était très simple de créer un petit site avec Laravel. L'autre problème que Laravel résout « simplement » c'est la partie authentification.
@@ -524,9 +528,7 @@ Pour le layout j'ai décidé de le nommer `privateView.blade.php` et de le mettr
 ```html
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      Hello
-    </h2>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">Hello</h2>
   </x-slot>
 
   <div class="p-5">

@@ -1,3 +1,7 @@
+---
+description: Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant.
+---
+
 # Pratiquer l'Ajax, adaptons un code existant
 
 Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant. Nous avons réalisé un site la GRETA TV, ce site comportait **«deux pages** :

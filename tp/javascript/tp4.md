@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux exemples.
+---
+
 # Pratiquer l'Ajax
 
 Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux exemples.
@@ -71,11 +75,11 @@ Le `setTimeout` n'est pas obligatoire. Il permet juste de créer un faux délai 
 
 ```js
 fetch("./monContenuAsynchrone.php")
-.then((response) => response.text())
-.then(
-  (content) =>
-    (document.getElementById("contenuAsynchrone").innerHTML = content)
-);
+  .then((response) => response.text())
+  .then(
+    (content) =>
+      (document.getElementById("contenuAsynchrone").innerHTML = content)
+  );
 ```
 
 :::

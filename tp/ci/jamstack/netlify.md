@@ -1,3 +1,7 @@
+---
+description: Dans ce document nous allons voir comment déployer une application simplement dans « le cloud » avec la plateforme Netlify.
+---
+
 # Build, Deploy avec Netlify
 
 Dans ce document nous allons voir comment déployer une application simplement dans « le cloud » avec la plateforme Netlify.

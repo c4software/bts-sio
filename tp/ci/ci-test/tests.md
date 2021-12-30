@@ -1,3 +1,7 @@
+---
+description: L'autre gros avantage d'une stack d'intégration continue c'est la partie « test en continu ». Actuellement il y a fort à parier que vous avez appris que vous pouviez tester vos projets pour garantir la bonne qualité du code que vous produisez, mais également vous assurer de la non-régression.
+---
+
 # Tester en continu
 
 L'autre gros avantage d'une stack d'intégration continue c'est la partie « test en continu ». Actuellement il y a fort à parier que vous avez appris que vous pouviez tester vos projets pour garantir la bonne qualité du code que vous produisez, mais également vous assurer de la non-régression.

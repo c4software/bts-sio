@@ -1,3 +1,7 @@
+---
+description: C'est un grand classique, nous allons faire notre premier Hello World.
+---
+
 # Hello World
 
 C'est un grand classique, nous allons faire notre premier Hello World.

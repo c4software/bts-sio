@@ -1,3 +1,7 @@
+---
+description: Dans le TP précédent nous avons, au travers des différents exemples utilisés que des fonctionnalités « locales » à votre téléphone.
+---
+
 # VueJS, le réseau, et une LED
 
 Dans le TP précédent nous avons, au travers des différents exemples utilisés que des fonctionnalités « locales » à votre téléphone.
@@ -38,7 +42,7 @@ Pour réaliser cette partie du TP vous allez devoir construire un modèle. Cette
 
 ## Le DAO
 
-Pour le DAO je vous aide, voilà la démarche 
+Pour le DAO je vous aide, voilà la démarche
 
 - Créer le fichier
 - Implémenter la méthode `getStatus`

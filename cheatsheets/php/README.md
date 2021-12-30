@@ -1,3 +1,7 @@
+---
+description: Aide mémoire sur les structures PHP. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.
+---
+
 # Aide mémoire PHP
 
 Aide mémoire sur les structures PHP. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.

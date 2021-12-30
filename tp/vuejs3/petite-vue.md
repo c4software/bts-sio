@@ -1,3 +1,7 @@
+---
+description: Comme nous l'avons vu en cours, VueJS est un framework permettant deux utilisations différentes. La première est celle conçue et pensée pour les SPA (Single Page Application), dans cette approche vous avez l'ensemble de votre code en JavaScript et celui-ci grâce à un routeur (ou pas) gère l'ensemble des pages et également la génération du code HTML affiché dans le navigateur.
+---
+
 # Petite Vue : La réactivité simplifiée
 
 Comme nous l'avons vu en cours, VueJS est un framework permettant deux utilisations différentes. La première est celle conçue et pensée pour les SPA (Single Page Application), dans cette approche vous avez l'ensemble de votre code en JavaScript et celui-ci grâce à un routeur (ou pas) gère l'ensemble des pages et également la génération du code HTML affiché dans le navigateur.
@@ -63,8 +67,10 @@ Voilà le code de base de notre application. Pour l'instant rien à part le tabl
         font-family: cursive;
         font-size: x-large;
       }
-    
-      [v-cloak] { display: none; }
+
+      [v-cloak] {
+        display: none;
+      }
     </style>
   </head>
 
@@ -110,9 +116,9 @@ Et oui, comme avec VueJS classique, pas de magie nous devons déclarer où sera 
 
 ```html
 <div v-scope v-cloak>
-    <div id="tableau">
-        <div v-for="i in count" :key="i">{{phrase}}</div>
-    </div>
+  <div id="tableau">
+    <div v-for="i in count" :key="i">{{phrase}}</div>
+  </div>
 </div>
 ```
 
@@ -141,21 +147,27 @@ Je vous donne un exemple :
 
 ```html
 <div v-scope>
-    <div>
-        <div class="form-group">
-            <label>Phrase</label>
-            <input class="form-control" type="text" v-model="phrase" />
-        </div>
+  <div>
+    <div class="form-group">
+      <label>Phrase</label>
+      <input class="form-control" type="text" v-model="phrase" />
+    </div>
 
-        <div class="form-group mt-2">
-            <label>Nombre de phrase : {{count}}</label>
-            <input min="5" max="100" class="form-control" type="range" v-model.number="count">
-        </div>
+    <div class="form-group mt-2">
+      <label>Nombre de phrase : {{count}}</label>
+      <input
+        min="5"
+        max="100"
+        class="form-control"
+        type="range"
+        v-model.number="count"
+      />
     </div>
-    
-    <div id="tableau">
-        <div v-for="i in count" :key="i">{{phrase}}</div>
-    </div>
+  </div>
+
+  <div id="tableau">
+    <div v-for="i in count" :key="i">{{phrase}}</div>
+  </div>
 </div>
 ```
 
@@ -174,50 +186,64 @@ J'ai détaillé plus que nécessaire… En réalité il était possible de faire
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BartJS − Version Petite Vue</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <script src="https://unpkg.com/petite-vue" defer init></script>
 
     <style>
-        #tableau {
-            background-color: #1e5518;
-            color: white;
-            border: 5px solid #5e3600;
-            padding: 10px;
-            max-width: 900px;
-            margin: auto;
-            height: 400px;
-            overflow: auto;
-            font-family: cursive;
-            font-size: x-large;
-        }
+      #tableau {
+        background-color: #1e5518;
+        color: white;
+        border: 5px solid #5e3600;
+        padding: 10px;
+        max-width: 900px;
+        margin: auto;
+        height: 400px;
+        overflow: auto;
+        font-family: cursive;
+        font-size: x-large;
+      }
 
-        [v-cloak] { display: none; }
+      [v-cloak] {
+        display: none;
+      }
     </style>
-</head>
+  </head>
 
-<body v-scope="{phrase: 'Je ne copie pas le code de valentin', count: 10}" v-cloak>
+  <body
+    v-scope="{phrase: 'Je ne copie pas le code de valentin', count: 10}"
+    v-cloak
+  >
     <div>
-        <div class="form-group">
-            <label>Phrase</label>
-            <input class="form-control" type="text" v-model="phrase" />
-        </div>
+      <div class="form-group">
+        <label>Phrase</label>
+        <input class="form-control" type="text" v-model="phrase" />
+      </div>
 
-        <div class="form-group mt-2">
-            <label>Nombre de phrase : {{count}}</label>
-            <input min="5" max="100" class="form-control" type="range" v-model.number="count">
-        </div>
+      <div class="form-group mt-2">
+        <label>Nombre de phrase : {{count}}</label>
+        <input
+          min="5"
+          max="100"
+          class="form-control"
+          type="range"
+          v-model.number="count"
+        />
+      </div>
     </div>
-    
+
     <div id="tableau">
-        <div v-for="i in count" :key="i">{{phrase}}</div>
+      <div v-for="i in count" :key="i">{{phrase}}</div>
     </div>
-</body>
-
+  </body>
 </html>
 ```
 
@@ -228,7 +254,6 @@ Aucune différence en terme de fonctionnement 👌.
 Évidemment, le code n'est pas sans JavaScript. **Vous** n'avez pas écrit de JavaScript, celui-ci a été écrit par quelqu'un d'autre dans la librairie.
 
 :::
-
 
 ## Allez plus loin, l'Ajax version simple !
 
@@ -249,55 +274,66 @@ Je vous donne le code. Nous allons en parler :
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fetch API − Version Petite Vue</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
     <style>
-        #tableau {
-            background-color: #1e5518;
-            color: white;
-            border: 5px solid #5e3600;
-            padding: 10px;
-            max-width: 900px;
-            margin: auto;
-            height: 400px;
-            overflow: auto;
-            font-family: cursive;
-            font-size: x-large;
-        }
+      #tableau {
+        background-color: #1e5518;
+        color: white;
+        border: 5px solid #5e3600;
+        padding: 10px;
+        max-width: 900px;
+        margin: auto;
+        height: 400px;
+        overflow: auto;
+        font-family: cursive;
+        font-size: x-large;
+      }
 
-        [v-cloak] { display: none; }
+      [v-cloak] {
+        display: none;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div v-scope v-cloak>
-        <button :disabled="datas.length > 0" type="button" class="my-5 mx-auto d-block btn btn-primary" @click="fetchData">Récupérer les TODOS</button>
-        <div id="tableau">
-            <ul>
-                <li v-for="element in datas">{{element['title']}}</li>
-            </ul>
-        </div>
+      <button
+        :disabled="datas.length > 0"
+        type="button"
+        class="my-5 mx-auto d-block btn btn-primary"
+        @click="fetchData"
+      >
+        Récupérer les TODOS
+      </button>
+      <div id="tableau">
+        <ul>
+          <li v-for="element in datas">{{element['title']}}</li>
+        </ul>
+      </div>
     </div>
 
-
     <script type="module">
-        import {createApp} from 'https://unpkg.com/petite-vue?module'
-        createApp({
-            datas: [], 
-            fetchData(){
-                fetch("https://jsonplaceholder.typicode.com/todos/")
-                .then(r => r.json())
-                .then(r => this.datas = r)
-            }
-        }).mount()
+      import { createApp } from "https://unpkg.com/petite-vue?module";
+      createApp({
+        datas: [],
+        fetchData() {
+          fetch("https://jsonplaceholder.typicode.com/todos/")
+            .then((r) => r.json())
+            .then((r) => (this.datas = r));
+        },
+      }).mount();
     </script>
-</body>
-
+  </body>
 </html>
 ```
 
@@ -319,14 +355,15 @@ Parlons-en dès que vous avez fait le tour 🤓.
 
 Actuellement, l'utilisateur doit cliquer sur un bouton pour déclencher le chargement du contenu. Dans la vraie vie, il est souvent préférable de charger une première fois les données. Avec Petite-Vue, pour répondre à cette problématique nous allons utiliser la directive `@mounted` qui sera déclenché au chargement de notre code.
 
-Cette directive est a ajouter directement dans le HTML au même endroit que v-scope. 
+Cette directive est a ajouter directement dans le HTML au même endroit que v-scope.
 
 Dans mon exemple ça donne :
 
 ```html
 <!-- … Reste du code … -->
-    <div @mounted="fetchData()" v-scope v-cloak>
-<!-- … Reste du code … -->
+<div @mounted="fetchData()" v-scope v-cloak>
+  <!-- … Reste du code … -->
+</div>
 ```
 
-Comme vous pouvez le constater, il suffit de spécifier dans le `@mounted` la méthode a appeler. 
+Comme vous pouvez le constater, il suffit de spécifier dans le `@mounted` la méthode a appeler.

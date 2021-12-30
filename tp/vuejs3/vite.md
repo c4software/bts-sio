@@ -1,3 +1,7 @@
+---
+description: ViteJS est une des nouvelles façons de créer un projet « moderne » avec VueJS (mais pas que). L'objectif est la création de projets « rapide » permettant au développeur de créer des projets avec une structure simple et moderne.
+---
+
 # Découverte de VueJS 3.0 (avec ViteJS)
 
 ::: details Table des matières

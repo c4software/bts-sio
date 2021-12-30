@@ -1,3 +1,7 @@
+---
+description: L'objectif de cette application est de valider votre maitrise /connaissances des éléments vus ensemble. Dans « ce cahier des charges » vous avez les éléments **minimums** à fournir, **cependant** je vous invite vivement à vous approprier le sujet pour proposer une application originale et qui vous ressemble.
+---
+
 # Android base : Projet final
 
 L'objectif de cette application est de valider votre maitrise /connaissances des éléments vus ensemble. Dans « ce cahier des charges » vous avez les éléments **minimums** à fournir, **cependant** je vous invite vivement à vous approprier le sujet pour proposer une application originale et qui vous ressemble.

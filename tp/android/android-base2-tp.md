@@ -1,3 +1,7 @@
+---
+description: Même si celle-ci n’est pas obligatoire dans une expérience mobile… Celle-ci peut changer radicalement l'expérience de vos utilisateurs. Sur Android (comme souvent) nous avons plusieurs façons de faire nos animations.
+---
+
 # Suite découverte des bases d'Android
 
 ::: details Sommaire

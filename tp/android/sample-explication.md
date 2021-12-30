@@ -1,3 +1,7 @@
+---
+description: Ce document n'est pas un TP, mais une explication de la structure « Android Boilerplate »
+---
+
 # Explication structure « Android Boilerplate »
 
 Ce document n'est pas un TP, mais une explication de la structure « Android Boilerplate » disponible à l'adresse suivante :

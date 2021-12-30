@@ -1,3 +1,7 @@
+---
+description: Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensembles, mais également les balises qui me semble importantes de connaitre.
+---
+
 # Aide mémoire HTML
 
 Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensembles, mais également les balises qui me semble importantes de connaitre.

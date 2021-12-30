@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons découvrir les bases du CSS à travers personnalisation d'une page web.
+---
+
 # Découverte de la CSS
 
 Dans ce TP nous allons découvrir les bases du CSS à travers personnalisation d'une page web.

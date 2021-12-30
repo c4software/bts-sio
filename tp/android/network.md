@@ -1,6 +1,10 @@
+---
+description: Appeler une API peut-être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles sont imposées par la plateforme Android
+---
+
 # Appeler une API simplement
 
-Appeler une API peut-être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles étaient imposées par la plateforme Android :
+Appeler une API peut-être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles sont imposées par la plateforme Android :
 
 - Pas d'appel réseau depuis le `UIThread`.
 - Pas de manipulation de l'interface depuis le `IOThread`.

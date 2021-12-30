@@ -1,3 +1,7 @@
+---
+description: Nous avons vu comment déclarer une balise `script`. Un code sans variable c'est un peu comme une pizza sans olives…
+---
+
 # Des variables en veux tu en voilà !
 
 Nous avons vu comment déclarer une balise `script`. Un code sans variable c'est un peu comme une pizza sans olives…

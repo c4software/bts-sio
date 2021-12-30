@@ -1,3 +1,7 @@
+---
+description: Nous avons créé dans l'exemple précédent une page avec un formulaire. Je vous propose un autre exemple très simple, nous allons créé une page interactive avec seulement du javascript.
+---
+
 # Interactivité
 
 Nous avons créé dans l'exemple précédent une page avec un formulaire. Je vous propose un autre exemple très simple, nous allons créé une page interactive avec seulement du javascript.
@@ -77,9 +81,7 @@ Date();
 ```js
 // Avec jQuery
 function deleteRow(elem) {
-  $(elem)
-    .closest("tr")
-    .remove();
+  $(elem).closest("tr").remove();
 }
 
 // Avec du JS
@@ -94,9 +96,7 @@ function deleteRow(btn) {
 C'est du test, nous sommes en mode sauvage.
 
 ```js
-$("#myTable")
-  .DataTable()
-  .destroy();
+$("#myTable").DataTable().destroy();
 
 $("#myTable").DataTable();
 ```

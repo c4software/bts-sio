@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus moderne, celle qui utilise à 100% le modèle MVVM (Modèle Vue, Vue-Modèle) ainsi que la puissance de VueJS
+---
+
 # Réaliser une application avec VueJS 2.0
 
 Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus moderne, celle qui utilise à 100% le modèle MVVM (Modèle Vue, Vue-Modèle) ainsi que la puissance de VueJS (`.vue`, VueCli, ES5).
@@ -207,8 +211,14 @@ Comme Bootstrap (ou d'autres) vuetify intègre un système permettant d'intégre
 Pour le rendre fonctionnel, vous devez éditer votre `index.html` afin d'ajouter :
 
 ```html
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css"
+  rel="stylesheet"
+/>
 ```
 
 :::
@@ -378,9 +388,7 @@ Notre internationalisation est maintenant prête à être utilisée. Nous allons
 
 Remplacer le texte `Cliff height timer` par :
 
-::: v-pre
-`{{$t("title")}}`
-:::
+<code v-pre>`{{$t("title")}}`</code>
 
 Le titre doit maintenant s’afficher. Et c’est normal la clé « title » est déjà présente dans le fichier : `i18n/index.js`, modifier le titre pour la langue « fr ».
 
@@ -562,9 +570,7 @@ Voilà le rendu de « la page » que vous devez réaliser :
 
 ⚠️ N’oubliez pas que **l'ensemble** les textes doivent-être dans le fichier `locales/fr.json` et dans `locales/en.json` et être utilisés avec par exemple :
 
-::: v-pre
-{{ $t("label") }}
-:::
+<code v-pre>{{ $t("label") }}</code>
 
 - Ajouter dans `router.js` le code pour pouvoir accéder à votre Vue.
 

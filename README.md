@@ -1,3 +1,9 @@
+---
+next:
+  text: GitHub
+  link: https://github.com/c4software/bts-sio
+---
+
 # Support de Cours & TP
 
 ## Introduction

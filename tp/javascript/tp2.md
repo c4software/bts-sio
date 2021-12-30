@@ -1,3 +1,7 @@
+---
+description: Vous vous souvenez du générateur de Bart écrit en PHP? Et bien cette fois-ci nous allons coder la version JavaScript du générateur de phrase.
+---
+
 # Le retour de Bart
 
 [Vous vous souvenez du générateur de Bart écrit en PHP?](/tp/php/tp1.1.md) Et bien cette fois-ci nous allons coder la version JavaScript du générateur de phrase.

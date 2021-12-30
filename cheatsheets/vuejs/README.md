@@ -1,3 +1,7 @@
+---
+description: Le document présent ainsi que les supports de cours et TP sont actuellement écrits pour VueJS 2.0
+---
+
 # Aide mémoire VueJS 2.0
 
 ::: danger Remarque Décembre 2020

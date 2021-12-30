@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons créer votre première page PHP. Rassurez-vous, elle sera très simple, pas très jolie… Mais elle nous permettra de voir les concepts de bases.
+---
+
 # Créer ma première page PHP
 
 Dans ce TP nous allons créer votre première page PHP. Rassurez-vous, elle sera très simple, pas très jolie… Mais elle nous permettra de voir les concepts de bases.

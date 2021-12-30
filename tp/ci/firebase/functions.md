@@ -1,3 +1,7 @@
+---
+description: Je vous propose de créer ici la configuration qui vous permettra de déployer en continue sur Firebase
+---
+
 # Déploiement continue d'un projet Firebase (function, web, …)
 
 Je vous propose de créer ici la configuration qui vous permettra de déployer en continue sur Firebase

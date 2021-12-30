@@ -1,3 +1,7 @@
+---
+description: Ce document présente l'équivalence entre une représentation UML et la syntaxe objet (PHP)
+---
+
 # La modélisation objet
 
 Ce document présente l'équivalence entre une représentation UML et la syntaxe objet (PHP)

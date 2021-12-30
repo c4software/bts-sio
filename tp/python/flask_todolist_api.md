@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons créer des API à l’aide de Flask pour notre site web TodoList. Nous allons bien évidemment utiliser l’interface que vous avez développée dans le TP 1 VueJS. Ici nous allons recoder la partie « serveur » en python grâce au micro framework Flask.
+---
+
 # Écrire des API avec Flask
 
 ## Introduction

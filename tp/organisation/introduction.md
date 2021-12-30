@@ -1,3 +1,7 @@
+---
+description: Dans ce TP, nous allons voir comment « réorganiser » du code pour le rendre plus facilement maintenable.
+---
+
 # (Ré)organiser mon code
 
 ## Introduction

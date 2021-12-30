@@ -1,3 +1,7 @@
+---
+description: Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base de la ligne de commande Git.
+---
+
 # Initiation GIT
 
 Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base de la ligne de commande Git.
@@ -20,16 +24,15 @@ Vous êtes en entreprise, vous avez un nouveau projet à réaliser. Le projet es
 - Si oui, pourquoi ?
 - Si non, pourquoi ?
 
-
 ## Initialisation
 
 Votre choix est fait, vous devez maintenant initialiser votre espace de travail. Comment procédez-vous?
 
 ### Définir votre identité dans GIT
-```
 
 ```
 
+```
 
 ### Initialiser votre projet
 
@@ -71,7 +74,6 @@ $ tree
   - Est-ce pratique ?
   - Comment faire autrement ?
 
-
 Vérifier le statut de Git après avoir tout créé
 
 ```sh
@@ -83,7 +85,6 @@ Vérifier le statut de Git après avoir tout créé
 - Que constatez-vous ?
   - Quelles commandes, faut-il faire maintenant?
   - Une autre commande serait-elle utile ?
-
 
 Ajouter les changements
 
@@ -102,7 +103,7 @@ Est-ce la seule façon de faire ? (Plusieurs réponses sont possibles)
 - Qu’avez-vous fait ?
 - Qu’elles sont différences entre les deux commandes ?
 - Dans quel état est votre dépôt (repository) ?
-- À quoi sert la commande ```git status``` ?
+- À quoi sert la commande `git status` ?
   - Une autre commande permettrait-elle d’avoir une information similaire ?
 - Le commentaire que vous avez mis est-il correct ?
   - Est-il possible de l’améliorer ?
@@ -110,7 +111,7 @@ Est-ce la seule façon de faire ? (Plusieurs réponses sont possibles)
 
 ## Ajout / Modification de fichiers
 
-Modifier le fichier ```source/index.html```, ajouter du contenu dedans (par exemple, une page html fictive)
+Modifier le fichier `source/index.html`, ajouter du contenu dedans (par exemple, une page html fictive)
 
 ```
 $ vim source/index.html
@@ -186,8 +187,8 @@ $
 - Que constatez-vous ?
 - À quoi sert l’identifiant de chaque commit ? (Hash SHA)
 - Comment vérifiez-vous l’historique pour un fichier précis ?
-- Comment voir l’ensemble des modifications en détail pour le fichier ```source/index.html``` ?
-- Est-ce judicieux de travailler toujours sur la branche ```master``` ?
+- Comment voir l’ensemble des modifications en détail pour le fichier `source/index.html` ?
+- Est-ce judicieux de travailler toujours sur la branche `master` ?
 
 ## Une autre évolution
 
@@ -224,7 +225,7 @@ $
 
 ## Annulation, retour arrière
 
-Faite des évolutions dans votre branche master (2 ou 3), ajouter les via ```git add```. Votre responsable vous demande finalement de les annuler, car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
+Faite des évolutions dans votre branche master (2 ou 3), ajouter les via `git add`. Votre responsable vous demande finalement de les annuler, car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
 
 ```sh
 $

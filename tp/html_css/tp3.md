@@ -1,3 +1,7 @@
+---
+description: Nous avons vu « beaucoup » d'élément de manière théorique, il faut maintenant pratiquer pour assimiler l'ensemble des concepts. Le plus simple, et surtout le plus efficace c'est de réaliser une vraie page Web.
+---
+
 # Mise en pratique CSS
 
 Nous avons vu « beaucoup » d'élément de manière théorique, il faut maintenant pratiquer pour assimiler l'ensemble des concepts. Le plus simple, et surtout le plus efficace c'est de réaliser une vraie page Web.

@@ -1,3 +1,7 @@
+---
+description: Nous allons créer une page fictive afin de tester un peu le fonctionnement des selecteurs.
+---
+
 # Une petite mise en bouche
 
 Nous allons créer une page fictive afin de tester un peu le fonctionnement des selecteurs.

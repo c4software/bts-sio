@@ -1,3 +1,7 @@
+---
+description: Nous avons vu précédemment qu'il était simple de créer des sites Web avec Laravel. Dans le monde du développement, il est très courant de ne pas échanger entre le client et le serveur directement en HTML, mais directement en JSON.
+---
+
 # Créer des API avec Laravel
 
 Nous avons vu précédemment qu'il était simple de créer des sites Web avec Laravel. Dans le monde du développement, il est très courant de ne pas échanger entre le client et le serveur directement en HTML, mais directement en JSON.

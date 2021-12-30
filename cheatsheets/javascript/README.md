@@ -1,3 +1,7 @@
+---
+description: Aide mémoire sur les structures JavaScript. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.
+---
+
 # Aide mémoire JavaScript
 
 Aide mémoire sur les structures JavaScript. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.

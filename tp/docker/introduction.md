@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons voir l’installation de Docker et les premiers exemples d’utilisations de votre nouvel environnement.
+---
+
 # Introduction à Docker
 
 Dans ce TP nous allons voir l’installation de Docker et les premiers exemples d’utilisations de votre nouvel environnement.
