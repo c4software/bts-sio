@@ -1,6 +1,8 @@
 _book/
 docs/
 .vuepress/dist/
+.vuepress/.temp/
+.vuepress/.cache/
 node_modules
 
 # Created by https://www.gitignore.io/api/osx
