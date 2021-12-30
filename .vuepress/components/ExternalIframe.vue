@@ -1,11 +1,11 @@
 <template>
   <div :class="{bordered}">
-    <iframe :src="this.src" frameborder="0" ref="iframe" />
+    <iframe :src="src" frameborder="0" ref="iframe" />
     <div class="actions">
-      <button class="action" @click="() => requestFullscreen(this.$refs['iframe'])" v-if="isFullScreenAvailable">
+      <button class="action" @click="() => requestFullscreen($refs['iframe'])" v-if="isFullScreenAvailable">
         <img src="/icons/fullscreen.svg" />
       </button>
-      <a class="action" :href="this.src" target="_blank" >
+      <a class="action" :href="src" target="_blank" >
         <img src="/icons/launch.svg" />
       </a>
     </div>

@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <ExternalIframe :src="samplePath"></ExternalIframe>
-    <div class="center"><a target="_blank" :href="samplePath">Ouvrir</a></div>
-  </div>
+    <div>
+      <ExternalIframe :src="samplePath"></ExternalIframe>
+      <div class="center"><a target="_blank" :href="samplePath">Ouvrir</a></div>
+    </div>
 </template>
 
 <script>

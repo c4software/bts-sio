@@ -85,7 +85,7 @@ Maintenant que votre projet est créé, GitLab doit vous donner les instructions
 
 #### Exemple :
 
-![Création d’un projet](gitlab.png)
+![Création d’un projet](./gitlab.png)
 
 Une fois que c’est fait. Regarder les différentes options que GitLab vous propose.
 

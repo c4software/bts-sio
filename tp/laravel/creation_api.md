@@ -1,3 +1,7 @@
+---
+description: Le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` définie en base de données
+---
+
 # TodoList : (Ré-)écrire les API du projet
 
 Le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` définie en base de données

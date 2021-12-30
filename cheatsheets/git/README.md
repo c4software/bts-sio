@@ -1,3 +1,7 @@
+---
+description: Aide mémoire GIT
+---
+
 # Aide mémoire GIT
 
 ::: details Table des matières

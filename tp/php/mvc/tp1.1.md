@@ -696,7 +696,7 @@ Si vous accédez à votre page `todo/liste` vous devriez avoir le contenu suivan
 
 ### La méthode `ajouter($texte = '')`
 
-Cette méthode sera automatiquement appelé quand vous aller appuyer sur la touche <key>Entrer</key> de votre clavier dans le champ de saisie sur la page `Liste`. L'objectif de cette méthode est de traiter l'action « J'ajoute un nouvel enregistrement dans la base Todo ».
+Cette méthode sera automatiquement appelé quand vous aller appuyer sur la touche **Entrer** de votre clavier dans le champ de saisie sur la page `Liste`. L'objectif de cette méthode est de traiter l'action « J'ajoute un nouvel enregistrement dans la base Todo ».
 
 Pour le code, je vais vous aider un peu, voilà le code du contrôleur :
 

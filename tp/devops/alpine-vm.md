@@ -94,7 +94,7 @@ reboot
 ```
 
 ::: tip Allez plus vite…
-Vous avez dû remarquer les valeurs entre crochets à la fin des questions. Il s’agit des valeurs « par défaut » (autrement dit celle recommandée), quand c'est comme ça il vous suffit de faire <key>entrer</key>. Ce qui donne dans mon cas en vidéo :
+Vous avez dû remarquer les valeurs entre crochets à la fin des questions. Il s’agit des valeurs « par défaut » (autrement dit celle recommandée), quand c'est comme ça il vous suffit de faire **entrer**. Ce qui donne dans mon cas en vidéo :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1y2ztFyVGuo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

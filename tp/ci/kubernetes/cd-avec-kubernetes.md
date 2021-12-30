@@ -159,7 +159,7 @@ spec:
         - name: gitlab-registry
 ```
 
-Nous avons donc maintenant un fichier YAML presque dynamique… En effet celui-ci contient maintenant une valeur (`{{CI_COMMIT_SHORT_SHA}}`) que nous allons remplacer via `sed` directement à chaque exécution de la step sur Gitlab-CI.
+Nous avons donc maintenant un fichier YAML presque dynamique… En effet celui-ci contient maintenant une valeur <code v-pre>(`{{CI_COMMIT_SHORT_SHA}}`)</code> que nous allons remplacer via `sed` directement à chaque exécution de la step sur Gitlab-CI.
 
 ::: tip C'est à vous
 Je vous laisse modifier votre fichier en fonction de votre cas.
@@ -173,7 +173,7 @@ Je me répète, mais c'est important à comprendre ! Le livraison continue n'est
 
 ### La commande sed
 
-L'idée va être la suivante : « utiliser `sed` pour lui faire remplacer `{{CI_COMMIT_SHORT_SHA}}` par la valeur de `$CI_COMMIT_SHORT_SHA`. Pour ça nous pouvons utiliser `sed` de la façon suivante :
+L'idée va être la suivante : « utiliser `sed` pour lui faire remplacer <code v-pre>`{{CI_COMMIT_SHORT_SHA}}`</code> par la valeur de `$CI_COMMIT_SHORT_SHA`. Pour ça nous pouvons utiliser `sed` de la façon suivante :
 
 ```sh
 cat ./kubernetes/deployment.yaml | sed "s/{{CI_COMMIT_SHORT_SHA}}/$CI_COMMIT_SHORT_SHA/g" | kubectl apply -f -

@@ -1,3 +1,7 @@
+---
+description: Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
+---
+
 # Complément du cours PHP
 
 Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.

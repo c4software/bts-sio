@@ -1,3 +1,7 @@
+---
+description: Dans ce TP nous allons découvrir le framework CSS Bootstrap.
+---
+
 # Découverte de Bootstrap
 
 Dans ce TP nous allons découvrir le framework CSS Bootstrap.

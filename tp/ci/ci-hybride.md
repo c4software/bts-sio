@@ -1,3 +1,7 @@
+---
+description: Dans ce TP vous allez mettre en place l’intégration continue sur votre Projet d’application hybride. Fini la prise de tête pour la compilation de votre application. Vous allez utiliser « une image Docker » au travers de GitLab-CI
+---
+
 # Compiler une application hybride avec Gitlab-CI
 
 ## Introduction

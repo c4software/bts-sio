@@ -8,6 +8,7 @@ import Qcm from './components/Qcm.vue'
 import Reveal from './components/Reveal.vue'
 import Sample from './components/Sample.vue'
 import SlidesDeck from './components/SlidesDeck.vue'
+import Center from './components/Center.vue'
 
 const AUTH_KEY = 'auth_client_side';
 const UUID = '53ac15ea-e430-4ea1-8db5-fcfa63bf2844';
@@ -54,6 +55,7 @@ export default defineClientAppEnhance(({ app, router, siteData }) => {
     app.component('Reveal', Reveal)
     app.component('Sample', Sample)
     app.component('SlidesDeck', SlidesDeck)
+    app.component('center', Center)
 
     router.beforeEach((to, from, next) => {
         if (shouldAskPass(to.path)) {

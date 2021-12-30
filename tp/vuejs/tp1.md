@@ -1,3 +1,7 @@
+---
+description: Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration _uniquement_.
+---
+
 # Ajouter VueJS 2.0 dans une application existante
 
 Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration _uniquement_.
