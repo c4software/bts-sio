@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "vuepress dev",
     "serve": "vuepress dev",
-    "build": "vuepress build --debug"
+    "build": "vuepress build"
   },
   "repository": {
     "type": "git",
