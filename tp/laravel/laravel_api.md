@@ -159,7 +159,7 @@ Pour **PHPStorm**, alt+entrée permettra de déclencher l'ajout du use.
 
 Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
-![Namespace Resolver](/cheatsheets/laravel/res/namespace_resolver.gif)
+![Namespace Resolver](../../cheatsheets/laravel/res/namespace_resolver.gif)
 
 :::
 
