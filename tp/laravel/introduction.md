@@ -574,6 +574,25 @@ public function listDemo(Request $request){
 }
 ```
 
+::: danger Un instant ✋
+
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `Demo` soit accessible depuis le contrôleur il faudra :
+
+```php
+use App\Models\Demo;
+```
+
+- ⚠️ Si vous utilisez **PHPStorm** cet import sera automatique.
+- ⚠️ Si vous utilisez **VSCode** il faudra passer par une extension [Disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
+
+Pour **PHPStorm**, alt+entrée permettra de déclencher l'ajout du use.
+
+Pour **VSCode** je vous laisse regarder l'usage de l'extension :
+
+![Namespace Resolver](/cheatsheets/laravel/res/namespace_resolver.gif)
+
+:::
+
 #### Créer des données depuis un formulaire en POST
 
 ```php
