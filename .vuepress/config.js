@@ -16,7 +16,7 @@ module.exports = {
         },
       },
     ],
-
+    require('./plugins/authors.ts'),
   ],
   locales: {
     '/': {
