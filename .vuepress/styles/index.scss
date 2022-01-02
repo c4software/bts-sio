@@ -1,0 +1,65 @@
+.collapsible {
+  cursor: pointer;
+}
+
+@page {
+  padding: 10mm;
+  width: 210mm;
+}
+
+@media print {
+  footer {
+    display: none;
+  }
+
+  .no-print {
+    display: none;
+  }
+
+  .theme-default-content {
+    max-width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    page-break-after: always;
+  }
+
+  blockquote {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .sidebar,
+  .navbar,
+  .code-copy,
+  .details {
+    display: none !important;
+  }
+
+  pre[class*="language-"] {
+    break-inside: avoid;
+    background-color: #fff !important;
+    border: 1px solid rgb(78, 78, 78);
+  }
+
+  pre[class*="language-"] > code {
+    color: #000 !important;
+  }
+
+  .page {
+    padding: 0 !important;
+    break-after: auto;
+  }
+}
