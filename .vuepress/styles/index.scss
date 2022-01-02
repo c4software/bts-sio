@@ -1,5 +1,9 @@
 .collapsible {
   cursor: pointer;
+
+  &:hover {
+    color: var(--c-text-accent);
+  }
 }
 
 @page {
