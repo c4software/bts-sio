@@ -11,40 +11,40 @@
         [v-cloak] { display: none; }
 
         .loader {
-        width: 55px;
-        height: 30px;
-        background-color: #f1f0f0;
-        margin: auto;
-        border-radius: 15px;
-        padding: 0 10px 8px;
-        display: flex;
-        justify-content: space-around;
-        align-items: flex-end;
+            width: 55px;
+            height: 30px;
+            background-color: #f1f0f0;
+            margin: auto;
+            border-radius: 15px;
+            padding: 0 10px 8px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
         }
         .loader .dot {
-        display: inline-block;
-        background-color: #90949c;
-        border-radius: 50%;
-        width: 7px;
-        height: 7px;
-        animation: jump 1.5s linear infinite;
+            display: inline-block;
+            background-color: #90949c;
+            border-radius: 50%;
+            width: 7px;
+            height: 7px;
+            animation: jump 1.5s linear infinite;
         }
         .loader .dot:nth-of-type(2) {
-        animation-delay: 0.1s;
+            animation-delay: 0.1s;
         }
         .loader .dot:nth-of-type(3) {
-        animation-delay: 0.2s;
+            animation-delay: 0.2s;
         }
         @keyframes jump {
-        0% {
-            transform: translateY(0);
-        }
-        18% {
-            transform: translateY(-7px);
-        }
-        36%, 100% {
-            transform: translateY(0px);
-        }
+            0% {
+                transform: translateY(0);
+            }
+            18% {
+                transform: translateY(-7px);
+            }
+            36%, 100% {
+                transform: translateY(0px);
+            }
         }
     </style>
 </head>
