@@ -1,3 +1,3 @@
 # Chat
 
-<Sample src="vuejs/api" />
+<Sample src="api/chat" />
