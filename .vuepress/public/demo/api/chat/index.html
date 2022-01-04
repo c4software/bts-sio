@@ -76,7 +76,7 @@
 
 
     <!--Container-->
-    <div class="container shadow-lg mx-auto bg-white mt-[8em] w-96 h-[20rem] overflow-auto p-8">
+    <div class="container shadow-lg mx-auto bg-white mt-[8em] w-96 h-[20rem] overflow-auto p-8 scroll-smooth" id="chat">
 
         <div class="chat-message" v-for="current in messages">
             <div class="flex items-end justify-end my-3"  v-if="current.user == 'valentin'">
@@ -86,7 +86,7 @@
                 <img :src="current.pic" title="Valentin" class="w-6 h-6 rounded-full order-2">
             </div>
 
-            <div class="flex items-end" v-else-if="current.user == 'kanye'">
+            <div class="flex items-end my-3" v-else-if="current.user == 'kanye'">
                 <div class="flex flex-col space-y-2 text-xs  max-w-[60%] mx-2 order-2 items-start">
                     <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">{{current.message}}</span></div>
                 </div>
@@ -128,9 +128,11 @@
                 this.messages.length;
             },
 
-            init(){
-                this.addKanye("Yo what's up bro ?!");
-                fetchKanye();
+            scrollBottom(){
+                this.$nextTick().then(() => {
+                    const chat = document.getElementById("chat");
+                    chat.scrollTop = chat.scrollHeight +  1000;
+                });
             },
 
             addMessage(){
@@ -139,20 +141,28 @@
 
                 this.fetching = true;
                 setTimeout(this.fetchKanye, 1000);
+                this.scrollBottom();
             },
 
             addKanye(message){
                 const pic = "https://images.rtl.fr/~c/770v513/rtl/www/1461751-kanye-west-s-est-rebaptise-ye-pour-des-motifs-personnels.jpg";
                 this.messages.push({ message, user: "kanye", pic })
+                this.scrollBottom();
             },
 
             fetchKanye() {
                 this.fetching = true;
+                
                 fetch("https://api.kanye.rest/")
                     .then((result) => result.json())
                     .then((res) => this.addKanye(res.quote))
                     .finally(() => this.fetching = false)
-            }
+            },
+
+            init() {
+                this.addKanye("Yo what's up bro ?!");
+                this.fetchKanye();
+            },
         }).mount()
     </script>
 
