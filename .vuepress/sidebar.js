@@ -124,7 +124,7 @@ module.exports = [
     collapsible: true,
     children: [
       { text: "Cours Vue 2.0", collapsible: true, children: ["/cheatsheets/vuejs/README.md", "/cours/vuejs"] },
-      { text: "Exemples", collapsible: true, children: ["/cours/demo/vuejs/demo1", "/cours/demo/vuejs/counter", "/cours/demo/vuejs/clock", "/cours/demo/vuejs/timestamp-color", "/cours/demo/vuejs/sound", "/cours/demo/vuejs/12vue"] },
+      { text: "Exemples", collapsible: true, children: ["/cours/demo/vuejs/demo1", "/cours/demo/vuejs/counter", "/cours/demo/vuejs/clock", "/cours/demo/vuejs/timestamp-color", "/cours/demo/vuejs/sound", "/cours/demo/vuejs/12vue", "/cours/demo/vuejs/chat"] },
       {
         text: "Version 2.0",
         collapsible: true,
