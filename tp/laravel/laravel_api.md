@@ -323,7 +323,7 @@ En suivant la documentation, je vous laisse ajouter **dans le précédent tablea
 
 ### Ajouter un élément via l'Ajax
 
-Ce n'est pas le but de ce TP, mais si vous souhaitez supprimer un élément via une action en Ajax il vous suffit de faire en JavaScript :
+Ce n'est pas le but de ce TP, mais si vous souhaitez ajouter un élément via une action en Ajax il vous suffit de faire en JavaScript :
 
 ```javascript
 function createNewConcert(name, date) {
@@ -365,3 +365,9 @@ En reprenant le la démarche précédente, je vous laisse implémenter la même 
 - Création des API.
 - Création des routes.
 - Création du code permettant l'affichage des données.
+
+::: tip N'oubliez pas !
+
+La partie API, c'est bien ! Mais je souhaite avoir en base de données un jeu d'essai conséquent.
+
+:::
