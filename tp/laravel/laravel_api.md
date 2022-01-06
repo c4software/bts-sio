@@ -299,6 +299,7 @@ Si nous suivons la documentation, nous voyons qu'il suffit d'ajouter dans votre 
   let myTable = new Tabulator("#data", {
     height: "311px",
     layout: "fitColumns",
+    ajaxURL: "/api/concert",
     placeholder: "Aucune données",
     columns: [
       { title: "Nom", field: "name", sorter: "string", width: 200 },
@@ -306,7 +307,7 @@ Si nous suivons la documentation, nous voyons qu'il suffit d'ajouter dans votre 
     ],
   });
 
-  myTable.setData("/api/concert");
+  // myTable.setData("/api/concert");
 </script>
 ```
 
