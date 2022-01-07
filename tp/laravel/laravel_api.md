@@ -303,7 +303,7 @@ Si nous suivons la documentation, nous voyons qu'il suffit d'ajouter dans votre 
     placeholder: "Aucune données",
     columns: [
       { title: "Nom", field: "name", sorter: "string", width: 200 },
-      { title: "Date du concert", sorter: "date" },
+      { title: "Date du concert", field: "date", sorter: "date" },
     ],
   });
 
@@ -331,10 +331,9 @@ function createNewConcert(name, date) {
   formData.append("name", name);
   formData.append("date", date);
 
-  return fetch("/api/concert", {
-    method: "POST",
-    body: formData,
-  }).then((response) => response.json());
+  return fetch("/api/concert", { method: "POST", body: formData }).then(
+    (response) => response.json()
+  );
 }
 ```
 
