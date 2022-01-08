@@ -34,7 +34,14 @@ module.exports = [
         children: [
           { text: "POO", collapsible: true, children: ["/cours/poo"] },
           { text: "MVC", collapsible: true, children: ["/cours/mvc"] },
-          { text: "Les Interfaces", collapsible: true, children: ["/cours/les_interfaces", "/tp/poo/interface"] },
+          {
+            text: "Interfaces & Abstractions", collapsible: true,
+            children: [
+              "/cours/exercices/poo/les-interfaces-1",
+              "/cours/exercices/poo/les-interfaces-2",
+              "/cours/exercices/poo/les-classes-abstraites.md"
+            ]
+          },
           {
             text: "Aide mémoire",
             collapsible: true,

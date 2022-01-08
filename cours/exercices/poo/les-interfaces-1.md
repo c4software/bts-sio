@@ -2,7 +2,7 @@
 description: Dans cette mise en pratique nous allons voir comment déclarer et utiliser des `Interfaces PHP`. Les interfaces sont un éléments importants de la programmation objet, pour rappel les Interfaces sont des class abstraites (instanciation impossible)
 ---
 
-# Le principe des interfaces
+# Interface : Mise en pratique 1
 
 Dans cette mise en pratique nous allons voir comment déclarer et utiliser des `Interfaces PHP`. Les interfaces sont un éléments importants de la programmation objet, pour rappel les Interfaces sont des class abstraites (instanciation impossible):
 
