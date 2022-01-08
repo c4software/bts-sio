@@ -528,34 +528,47 @@ Mise en pratique
 
 Classe dont l'implémentation n'est pas complète et qui **n'est pas instanciable**.
 
-- Elle sert de base à d'autres classes dérivées (héritées).
+- Sers de base à d'autres classes dérivées (héritées).
+- Ne peut pas être instanciée (pas de new).
+- Permets de factoriser du code.
+- Dois être héritée depuis une classe fille.
 
 ---
 
 ```php
-abstract class AbstractClass
+abstract class EtudiantAbstrait
 {
     // Force les classes filles à définir cette méthode
-    abstract protected function getValue();
-    abstract protected function prefixValue($prefix);
+    abstract protected function getBlahBlah();
+    abstract protected function demarrerUneDiscussion($sujet);
 
     // méthode commune
-    public function printOut() {
-        print $this->getValue();
-   }
+    public function parler() {
+        print $this->getValue() . "\n";
+    }
 }
 
-class ConcreteClass1 extends AbstractClass
+class EtudiantSIO extends AbstractClass
 {
-     protected function getValue() {
-       return "ConcreteClass1";
+     protected function getBlahBlah() {
+       return "L'informatique c'est cool";
      }
 
-     public function prefixValue($prefix) {
-       return "{$prefix}ConcreteClass1";
+     public function demarrerUneDiscussion($sujet) {
+       return "Je vais vous parler de « {$sujet} »";
     }
 }
 ```
+
+---
+
+## C'est à vous !
+
+Je souhaite créer **3 étudiants**, qui chacun parleront des sujets suivants :
+
+- La sécurité.
+- L'informatique.
+- L'environnement.
 
 ---
 
@@ -563,41 +576,59 @@ class ConcreteClass1 extends AbstractClass
 
 Une interface ressemble à une classe abstraite dans laquelle aucune méthode ne serait implémentée.
 
-- Les méthodes y sont seulement déclarées.
-- C'est **un contrat de service**. Oblige une implémentation spécifique.
-- Définition d'un attendu sans se soucier de l'implémentation.
+- Ne contiens que des méthodes publiques.
+- Ne contiens aucun code.
+- N'est pas instanciable.
+- Son « un contrat » que les classes filles devront **implémenter**.
 
 ---
 
 ```php
 // Declaration de l'interface 'Template'
-interface Template
+interface Compte
 {
-    public function setVariable($name, $var);
-    public function getHtml($template);
+    public function deposer($montant);
+    public function retirer($montant);
+    public function getBalance();
 }
 
-// Implémentation de l'interface
-// Ceci va fonctionner
-class WorkingTemplate implements Template
+class CompteEnLigne implements Compte
 {
-    private $vars = [];
+    private $montant = 0;
 
-    public function setVariable($name, $var)
-    {
-        $this->vars[$name] = $var;
+    public function deposer($montant){
+        $this->montant += $montant;
     }
 
-    public function getHtml($template)
-    {
-        foreach($this->vars as $name => $value) {
-            $template = str_replace('{' . $name . '}', $value, $template);
-        }
+    public function retirer($montant){
+        $this->montant -= $montant;
+    }
 
-        return $template;
+    public function getBalance() {
+        return $montant;
     }
 }
 ```
+
+---
+
+## C'est à vous !
+
+Je souhaite créer **1 compte**, et effectuer les opérations suivantes :
+
+- `$operations = [100, 2000, 5000, -100, -1000, 0, -300]`
+- Utiliser le tableau `$operations` via **une boucle** pour manipuler le compte.
+- Afficher à la fin le solde du compte.
+
+---
+
+## C'est à vous bis !
+
+Implémenter l'interface pour créer un compte de type **épargne** :
+
+- N'autoriser que les dépôts > 200€.
+- Avoir un constructeur avec une valeur de base du compte.
+- Ne pas autoriser un retrait si le compte ne possède pas > 1000€
 
 ---
 
@@ -605,5 +636,5 @@ class WorkingTemplate implements Template
 
 Classes abstraites et interfaces ont chacune une fonction bien distincte :
 
-- les classes abstraites servent à factoriser du code.
+- Les classes abstraites servent à factoriser du code.
 - Tandis que les interfaces servent à définir des contrats de service.
