@@ -528,6 +528,18 @@ Mise en pratique
 
 Classe dont l'implémentation n'est pas complète et qui **n'est pas instanciable**.
 
+---
+
+## STOP !
+
+Non instanciable ? Qu-est-ce que ça veux dire ?
+
+---
+
+## Donc pas de `new MonInterface()`
+
+---
+
 - Sers de base à d'autres classes dérivées (héritées).
 - Ne peut pas être instanciée (pas de new).
 - Permets de factoriser du code.
@@ -583,6 +595,10 @@ Une interface ressemble à une classe abstraite dans laquelle aucune méthode ne
 
 ---
 
+[Entrons dans le détail](/cours/revealjs/index.html?source=les_interfaces)
+
+---
+
 ```php
 // Declaration de l'interface 'Template'
 interface Compte
@@ -609,6 +625,12 @@ class CompteEnLigne implements Compte
     }
 }
 ```
+
+---
+
+Interfaces ≠ Héritage
+
+<iframe src="https://giphy.com/embed/WrgAGkGrh0MD1Z2gkO" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ---
 

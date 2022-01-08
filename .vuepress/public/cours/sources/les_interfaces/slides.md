@@ -18,7 +18,7 @@ Elles ne sont donc pas **instantiables**
 
 ---
 
-Une `class` abstraite qui va :
+Une `class` abstraite :
 
 - Va d'écrire un comportement.
 - Définir les signatures des méthodes et propriétés
@@ -26,7 +26,7 @@ Une `class` abstraite qui va :
 
 ---
 
-C'est donc un contrat que la `class` **doit respecter** si elle implémente l'interface.
+C'est donc **un contrat** que la `class` **doit respecter** si elle implémente l'interface.
 
 ---
 
@@ -36,7 +36,7 @@ Interfaces ≠ Héritage
 
 ---
 
-Une interface indique juste des signatures exemple :
+Une interface indique juste des signatures par exemple :
 
 - `seDeplacer()`
 
@@ -46,7 +46,7 @@ Une interface indique juste des signatures exemple :
 
 ---
 
-Deux objets de types très différents peuvent **l'implémenter** exemple :
+Deux objets de types très différents peuvent **l'implémenter** par exemple :
 
 - Une personne
 - Une voiture
@@ -103,7 +103,7 @@ La partie importante est « **implements** »
 
 ---
 
-✋ Une classe peu implémenter plusieurs Interfaces évidement
+✋ Une classe peu implémenter plusieurs Interfaces
 
 <iframe src="https://giphy.com/embed/KfO2j3bhYTXNYORzX4" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
