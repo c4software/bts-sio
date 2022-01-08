@@ -483,6 +483,118 @@ class Personne {
 Personne.laReponseDeLunivers();
 ```
 
+## Abstraction et Interface
+
+### Les classes abstraites
+
+Permets de définir des comportements (méthodes) dont l'implémentation (le code dans la méthode) se fait dans les classes filles.
+
+> Ainsi, on a l'assurance que les classes filles respecteront le contrat défini par la classe mère abstraite.
+
+Nous aurons donc deux types de classes :
+
+- Des classes abstraites (sans code, non instanciable).
+- Des classes concrètes (avec du code, et instanciable).
+
+Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'est-à-dire sans code). Si nécessaire, elle peut également avoir des méthodes **concrètes** (avec du code).
+
+Les classes abstraites :
+
+- Ne peuvent pas être instanciées (pas de new).
+- Sont des modèles pour d'autres classes.
+- Permettent de factoriser du code.
+- Doivent être héritée depuis une classe fille.
+
+```php
+abstract class EtudiantAbstrait
+{
+    // Force les classes filles à définir cette méthode
+    abstract protected function getBlahBlah();
+    abstract protected function demarrerUneDiscussion($sujet);
+
+    // méthode commune
+    public function parler() {
+        print $this->getValue() . "\n";
+    }
+}
+
+class EtudiantSIO extends AbstractClass
+{
+     protected function getBlahBlah() {
+       return "L'informatique c'est cool";
+     }
+
+     public function demarrerUneDiscussion($sujet) {
+       return "Je vais vous parler de « {$sujet} »";
+    }
+}
+
+$class1 = new EtudiantSIO();
+$class1->parler();
+echo $class1->demarrerUneDiscussion('La sécurité') ."\n";
+```
+
+### Les Interfaces
+
+Une Interface ressemble beaucoup à une classe abstraite. **Sauf que** celle-ci ne possède pas de code. Une Interface définit un comportement qui **devra être** implémenté par la classe fille.
+
+Les classes filles **implémentent** une interface, une classe fille peut **implémenter** plusieurs interfaces.
+
+Les interfaces :
+
+- Ne contiennent que des méthodes publiques.
+- Ne contiennent pas de code.
+- N'est pas instanciable.
+- Son « un contrat » que les classes filles devront **implémenter**.
+
+```php
+// Declaration de l'interface 'Template'
+interface Compte
+{
+    public function deposer($montant);
+    public function retirer($montant);
+    public function getBalance();
+}
+
+class CompteEnLigne implements Compte
+{
+    private $montant = 0;
+
+    public function deposer($montant){
+        $this->montant += $montant;
+    }
+
+    public function retirer($montant){
+        $this->montant -= $montant;
+    }
+
+    public function getBalance() {
+        return $montant;
+    }
+}
+
+
+$class1 = new CompteEnLigne();
+$class1->deposer(1400);
+$class1->getBalance(); // 1400
+
+$class1->retirer(400);
+$class1->getBalance(); // 1000
+```
+
+### Interfaces ou classes abstraites ?
+
+Les interfaces et les classes abstraites remplissent un rôle différent :
+
+- Les classes abstraites servent à factoriser du code.
+- Les interfaces servent à définir un contrat de service.
+
+::: tip Un instant !
+
+L'avantage d'une Interface est qu'il est possible pour une classe d'implémenter plusieurs « contrat » (Interface). Alors que dans la plupart des langages, il n'est pas possible d'hériter de plusieurs classes abstraites.
+
+:::
+
 ## Les namespaces (organisation des classes)
 
 ```php
