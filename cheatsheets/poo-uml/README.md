@@ -283,3 +283,75 @@ class Camion {
     }
 }
 ```
+
+## Les interfaces
+
+![Exemple Interface](./res/uml_interfaces.jpeg)
+
+```php
+interface Player{
+    public function play();
+    public function stop();
+    public function pause();
+    public function reverse();
+}
+
+interface Recorder{
+    public function record();
+}
+
+class DVDPlayer implements Player{
+
+    public function play() {
+        // Implémentation de la méthode
+    }
+
+    public function stop() {
+        // Implémentation de la méthode
+    }
+
+    public function pause() {
+        // Implémentation de la méthode
+    }
+
+    public function reverse() {
+        // Implémentation de la méthode
+    }
+}
+
+class DVDPlayer implements Player, Recorder{
+
+    public function record() {
+        // Implémentation de la méthode
+    }
+
+    public function play() {
+        // Implémentation de la méthode
+    }
+
+    public function stop() {
+        // Implémentation de la méthode
+    }
+
+    public function pause() {
+        // Implémentation de la méthode
+    }
+
+    public function reverse() {
+        // Implémentation de la méthode
+    }
+}
+
+
+class Studio{
+
+    // Player
+    private $player;
+
+    function __construct($player){
+        $this->player = $player;
+    }
+}
+
+
+```
