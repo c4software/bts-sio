@@ -157,7 +157,8 @@ $personne2 = new Personne("John", "Doe", "01/01/1970", 12);
 
 ## Définir une classe
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 class Personne
@@ -165,30 +166,42 @@ class Personne
 }
 ```
 
-En Java:
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 class Personne {
 }
 ```
 
+  </CodeGroupItem>
+</CodeGroup>
+
 ## Instanciation (Créer un objet)
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 $unePersonne = new Personne("Valentin", "Brosseau");
 ```
 
-En Java:
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 Personne unPersonne = new Personne("Valentin", "Brosseau");
 ```
 
+  </CodeGroupItem>
+</CodeGroup>
+
 ## Le constructeur
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 class Personne
@@ -205,7 +218,9 @@ class Personne
 }
 ```
 
-En Java:
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 class Personne {
@@ -219,37 +234,52 @@ class Personne {
 }
 ```
 
+  </CodeGroupItem>
+</CodeGroup>
+
 ## Accès à une méthode
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 $unePersonne = new Personne("Valentin", "Brosseau");
 $unPersonne->afficheIdentite();
 ```
 
-En Java :
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 Personne unPersonne = new Personne("Valentin", "Brosseau");
 unePersonne.afficheIdentite();
 ```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 ## Accès à une propriété
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 $unePersonne = new Personne("Valentin", "Brosseau");
 $unPersonne->afficheIdentite();
 ```
 
-En Java :
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 Personne unPersonne = new Personne("Valentin", "Brosseau");
 unePersonne.afficheIdentite();
 ```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 ::: tip Attention
 
@@ -289,21 +319,28 @@ Fonctionnellement, nous allons donc avoir dans l'étudiant collection d'objet du
 
 ### Déclaration
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 $lesPersonnes = [];
 ```
 
-En Java :
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 ArrayList<Personne> lesPersonnes = new ArrayList();
 ```
 
+  </CodeGroupItem>
+</CodeGroup>
+
 ### Utilisation
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 $lesPersonnes = [];
@@ -321,7 +358,9 @@ $lesPersonnes = [];
 $nombre = sizeof($lesPersonnes); // 0
 ```
 
-En Java :
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 ArrayList<Personne> lesPersonnes = new ArrayList<>();
@@ -338,9 +377,13 @@ lesPersonnes.clear();
 int count2 = lesPersonnes.size(); // 0
 ```
 
+  </CodeGroupItem>
+</CodeGroup>
+
 ### Parcours de collection
 
-En PHP :
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 foreach($lesPersonne as $laPersonne){
@@ -349,7 +392,9 @@ foreach($lesPersonne as $laPersonne){
 }
 ```
 
-En Java :
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 // Version moderne
@@ -365,6 +410,9 @@ for (Personne laPersonne : lesPersonnes) {
 }
 ```
 
+  </CodeGroupItem>
+</CodeGroup>
+
 ## L'héritage
 
 L'héritage permet de généraliser le fonctionnement d'un objet. L'idée est de mettre dans un « objet parent » la logique de plusieurs objets qui fonctionne de la même façon. **Exemple**
@@ -373,7 +421,8 @@ L'héritage permet de généraliser le fonctionnement d'un objet. L'idée est de
 - Une **Voiture** et une **Moto** sont des véhicule. Nous pouvons donc créer une super classe « **Véhicule** ».
 - …
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 class Mammifere {
@@ -407,7 +456,9 @@ $unHumain->print(); // Je suis un mammifère.
 $unHumain->manger(); // Je suis omnivore
 ```
 
-En Java :
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 class Mammifere {
@@ -443,6 +494,9 @@ unHumain.print(); // Je suis un mammifère.
 unHumain.manger(); // Je suis omnivore.
 ```
 
+  </CodeGroupItem>
+</CodeGroup>
+
 ## Synthèse héritage
 
 - La classe mère contient la logique **partagée**.
@@ -455,7 +509,8 @@ unHumain.manger(); // Je suis omnivore.
 
 ## Les méthodes static
 
-En PHP:
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 // Déclaration
@@ -469,7 +524,9 @@ class Personne {
 Personne::laReponseDeLunivers();
 ```
 
-En Java :
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
 
 ```java
 // Déclaration
@@ -482,6 +539,9 @@ class Personne {
 // Utilisation
 Personne.laReponseDeLunivers();
 ```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 ## Abstraction et Interface
 
