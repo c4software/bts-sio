@@ -779,6 +779,8 @@ Les classes abstraites :
 - Permettent de factoriser du code.
 - Doivent être héritée depuis une classe fille.
 
+![Abstract UML](./res/abstract_uml.png)
+
 ```php
 abstract class EtudiantAbstrait
 {
@@ -792,10 +794,25 @@ abstract class EtudiantAbstrait
     }
 }
 
-class EtudiantSIO extends AbstractClass
+class EtudiantSIO extends EtudiantAbstrait
 {
+    $option = "SLAM";
+
      protected function getBlahBlah() {
        return "L'informatique c'est cool";
+     }
+
+     public function demarrerUneDiscussion($sujet) {
+       return "Je vais vous parler de « {$sujet} »";
+    }
+}
+
+class EtudiantSEN extends EtudiantAbstrait
+{
+    $competences = "SOUDER";
+
+     protected function getBlahBlah() {
+       return "L'électronique c'est cool";
      }
 
      public function demarrerUneDiscussion($sujet) {
@@ -820,6 +837,8 @@ Les interfaces :
 - Ne contiennent pas de code.
 - N'est pas instanciable.
 - Son « un contrat » que les classes filles devront **implémenter**.
+
+![UML Interface](./res/interface_uml.png)
 
 ```php
 // Declaration de l'interface 'Template'
