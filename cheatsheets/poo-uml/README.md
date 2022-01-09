@@ -302,6 +302,10 @@ interface Recorder{
 
 class DVDPlayer implements Player{
 
+    // Vous avez ici des éléments propres à un
+    // Lecteur DVD. Mais l'implémentation
+    // FORCERA à déclarer au moins les 4 méthodes suivantes
+
     public function play() {
         // Implémentation de la méthode
     }
@@ -319,7 +323,12 @@ class DVDPlayer implements Player{
     }
 }
 
-class DVDPlayer implements Player, Recorder{
+class TapePlayer implements Player, Recorder{
+
+    // Vous avez ici des éléments propres à un
+    // lecteur cassette. Mais la DOUBLE implémentation
+    // FORCERA à déclarer au moins les 4 méthodes suivantes
+    // + La méthode record de l'interface REcorder
 
     public function record() {
         // Implémentation de la méthode
