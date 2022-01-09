@@ -284,6 +284,46 @@ class Camion {
 }
 ```
 
+## Classe Abstraite
+
+![Exemple Classe Abstraite](./res/uml_abstract.png)
+
+```php
+abstract class Personne
+{
+    private $nom = "";
+    private $prenom = "";
+
+    abstract protected function printInfo();
+
+    public function getNom() {
+        return $this->nom . "\n";
+    }
+
+    public function getPrenom() {
+        return $this->prenom . "\n";
+    }
+}
+
+class Enseignant extends Personne
+{
+    private $salaire = 0;
+
+    protected function printInfo() {
+        return $this->nom . " => " . $this->$salaire;
+    }
+}
+
+class Etudiant extends Personne
+{
+    private $INE = "";
+
+    protected function printInfo() {
+        return $this->INE . " => " . $this->$nom;
+    }
+}
+```
+
 ## Les interfaces
 
 ![Exemple Interface](./res/uml_interfaces.jpeg)
