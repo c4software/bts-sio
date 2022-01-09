@@ -71,6 +71,9 @@ Avant de parler des classes ou des objets, je vous propose de regarder le princi
 
 ![Exemple modélisation](./res/modelisation-personne.png)
 
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
+
 ```php
 class Personne
 {
@@ -99,7 +102,7 @@ class Personne
     }
 
     // Accesseur
-    public function getSalaire($valeur)
+    public function getSalaire()
     {
         return $this->salaire;
     }
@@ -123,6 +126,93 @@ class Personne
     }
 }
 ```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Java">
+
+```java
+import java.util.Date;
+
+class Personne
+{
+
+    // Attribut
+    public String nom;
+    public String prenom;
+    private Date dateNaissance;
+    private Integer salaire;
+    public Integer nbEnfant;
+
+
+    // Constructeur
+    public Personne(String nom, String prenom, Date dateNaissance, Integer nbEnfant = 0)
+    {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.nbEnfant = nbEnfant;
+    }
+
+    // Mutateurs
+    public void setSalaire(Integer valeur)
+    {
+        this.salaire = valeur;
+    }
+
+    // Accesseur
+    public Integer getSalaire()
+    {
+        return this.salaire;
+    }
+
+
+    // Méthode
+    public String identite(){
+        return this.nom + " " + this.prenom;
+    }
+
+    // Méthode
+    public void age()
+    {
+        // Implémentation
+    }
+
+    // Méthode
+    public void argentPoche()
+    {
+        // Implémentation
+    }
+}
+```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+import java.util.*
+
+internal class Personne(var nom: String, var prenom: String, private val dateNaissance: Date, var nbEnfant: Int) {
+    var salaire: Int? = null
+
+    // Méthode
+    fun identite(): String {
+        return "$nom $prenom"
+    }
+
+    // Méthode
+    fun age() {
+        // Implémentation
+    }
+
+    // Méthode
+    fun argentPoche() {
+        // Implémentation
+    }
+}
+```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 ::: danger Ce qu'il faut retenir
 
