@@ -772,7 +772,7 @@ Nous aurons donc deux types de classes :
 
 Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'est-à-dire sans code). Si nécessaire, elle peut également avoir des méthodes **concrètes** (avec du code).
 
-Les classes abstraites :
+#### Les classes abstraites :
 
 - Ne peuvent pas être instanciées (pas de new).
 - Sont des modèles pour d'autres classes.
@@ -831,7 +831,7 @@ Une Interface ressemble beaucoup à une classe abstraite. **Sauf que** celle-ci 
 
 Les classes filles **implémentent** une interface, une classe fille peut **implémenter** plusieurs interfaces.
 
-Les interfaces :
+#### Les interfaces :
 
 - Ne contiennent que des méthodes publiques.
 - Ne contiennent pas de code.

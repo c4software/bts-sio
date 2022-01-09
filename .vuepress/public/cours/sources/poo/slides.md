@@ -517,10 +517,44 @@ Mise en pratique
 
 ---
 
+## Surcharge & Redéfinition
+
+- Qui peut me rappeler la différence ?
+
+---
+
+![Surcharge](./res/surcharge.png)
+
+- Quel est l'intérêt ?
+- À vos crayons ! Est-ce optimisable ?
+
+---
+
+![Redéfinition](./res/redefinition.png)
+
+- Quel est l'intérêt ?
+
+---
+
 ## Les classes Static
 
 - Méthode & Propriété accessible **sans besoin d'un new**
 - Permets d'encapsuler une logique.
+
+---
+
+```php
+class Greeting {
+  public static function welcome() {
+    echo "Hello World!";
+  }
+}
+
+Greeting::welcome();
+```
+
+- Que constatez vous ?
+- Avez-vous des exemples d'usage en tête ?
 
 ---
 
@@ -544,6 +578,10 @@ Non instanciable ? Qu-est-ce que ça veux dire ?
 - Ne peut pas être instanciée (pas de new).
 - Permets de factoriser du code.
 - Dois être héritée depuis une classe fille.
+
+---
+
+![UML](./res/abstract_uml.png)
 
 ---
 
@@ -596,6 +634,10 @@ Une interface ressemble à une classe abstraite dans laquelle aucune méthode ne
 ---
 
 [Entrons dans le détail](/cours/revealjs/index.html?source=les_interfaces)
+
+---
+
+![UML](./res/interface_uml.png)
 
 ---
 
@@ -660,3 +702,7 @@ Classes abstraites et interfaces ont chacune une fonction bien distincte :
 
 - Les classes abstraites servent à factoriser du code.
 - Tandis que les interfaces servent à définir des contrats de service.
+
+---
+
+## Des questions ?
