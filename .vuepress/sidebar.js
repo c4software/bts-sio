@@ -14,7 +14,8 @@ module.exports = [
       { link: "/cheatsheets/owasp/README.md", text: "OWASP" },
       { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
       { link: "/cheatsheets/poo/README.md", text: "Programation Orientée Objet" },
-      { link: "/cheatsheets/laravel/README.md", text: "Laravel" }
+      { link: "/cheatsheets/laravel/README.md", text: "Laravel" },
+      { link: "/cheatsheets/api/README.md", text: "Les API" }
     ]
   },
 
