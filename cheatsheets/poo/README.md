@@ -163,6 +163,11 @@ $personne2 = new Personne("John", "Doe", "01/01/1970", 12);
 ```php
 class Personne
 {
+    function __construct($nom, $prenom)
+    {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+    }
 }
 ```
 
@@ -172,6 +177,23 @@ class Personne
 
 ```java
 class Personne {
+    String nom;
+    String prenom;
+
+    public Personne(String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+}
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+class Personne(val nom: String, val prenom: String) {
 }
 ```
 
@@ -193,6 +215,14 @@ $unePersonne = new Personne("Valentin", "Brosseau");
 
 ```java
 Personne unPersonne = new Personne("Valentin", "Brosseau");
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+unPersonne = Personne("Valentin", "Brosseau");
 ```
 
   </CodeGroupItem>
@@ -235,6 +265,14 @@ class Personne {
 ```
 
   </CodeGroupItem>
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+class Personne(val nom: String, val prenom: String) {
+}
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 ## Accès à une méthode
@@ -252,7 +290,15 @@ $unPersonne->afficheIdentite();
   <CodeGroupItem title="Java">
 
 ```java
-Personne unPersonne = new Personne("Valentin", "Brosseau");
+Personne unePersonne = new Personne("Valentin", "Brosseau");
+unePersonne.afficheIdentite();
+```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+unePersonne = Personne("Valentin", "Brosseau");
 unePersonne.afficheIdentite();
 ```
 
@@ -378,6 +424,24 @@ int count2 = lesPersonnes.size(); // 0
 ```
 
   </CodeGroupItem>
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+val lesPersonnes = ArrayList<Personne>()
+val carine = Personne("John", "Doe")
+
+lesPersonnes.add(Personne("Valentin", "Brosseau"))
+lesPersonnes.add(carine)
+val count = lesPersonnes.size // 2
+
+val laPersonne1 = lesPersonnes[0] // Valentin;
+val laPersonne2 = lesPersonnes[1] // Carine;
+
+lesPersonnes.clear()
+val count2 = lesPersonnes.size // 0
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 ### Parcours de collection
@@ -405,6 +469,20 @@ lesPersonnes.forEach(laPersonne -> {
 
 // Version « à l'ancienne »
 for (Personne laPersonne : lesPersonnes) {
+    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // À chaque tour de boucle nous avons la personne suivante.
+}
+```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+// Version moderne
+lesPersonnes.forEach { laPersonne -> }
+
+// Version « à l'ancienne »
+for (laPersonne in lesPersonnes) {
     // laPersonne contient « un pointeur » vers une des personne de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
@@ -474,10 +552,10 @@ class Mammifere {
     }
 }
 
-class Humain extends mammifere {
+class Humain extends Mammifere {
     private String prenom = "";
 
-    function Hunain(String prenom)
+    public Hunain(String prenom)
     {
         super();
         this.prenom = prenom;
@@ -490,6 +568,36 @@ class Humain extends mammifere {
 }
 
 Humain unHumain = new Humain("Valentin");
+unHumain.print(); // Je suis un mammifère.
+unHumain.manger(); // Je suis omnivore.
+```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+internal open class Mammifere {
+    private val vertebre = true
+    fun print() {
+        println("Je suis un mammifère")
+    }
+
+    // Redéfinition de méthode
+    open fun manger() {
+        println("Je mange")
+    }
+}
+
+internal class Humain(val prenom: String) : Mammifere() {
+    // Redéfinition de méthode
+    override fun manger() {
+        println("Je suis omnivore")
+    }
+
+    var unHumain = Humain("Valentin")
+}
+
+Humain unHumain = Humain("Valentin");
 unHumain.print(); // Je suis un mammifère.
 unHumain.manger(); // Je suis omnivore.
 ```
@@ -533,6 +641,22 @@ Personne::laReponseDeLunivers();
 class Personne {
     static int laReponseDeLunivers(){
         return 42;
+    }
+}
+
+// Utilisation
+Personne.laReponseDeLunivers();
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+// Déclaration
+internal object Personne {
+    fun laReponseDeLunivers(): Int {
+        return 42
     }
 }
 
