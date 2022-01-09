@@ -2,6 +2,7 @@ module.exports = [
   { link: "/README.md", text: "Introduction" },
   {
     text: "Aides mémoires",
+    collapsible: true,
     children: [
       { link: "/cheatsheets/git/README.md", text: "Git" },
       { link: "/cheatsheets/html/README.md", text: "Html" },
