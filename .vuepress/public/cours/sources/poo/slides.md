@@ -678,14 +678,6 @@ class CompteEnLigne implements Compte
 }
 ```
 
----
-
-Interfaces ≠ Héritage
-
-<iframe src="https://giphy.com/embed/WrgAGkGrh0MD1Z2gkO" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-
----
-
 ## C'est à vous !
 
 Je souhaite créer **1 compte**, et effectuer les opérations suivantes :
@@ -707,6 +699,12 @@ Implémenter l'interface pour créer un compte de type **épargne** :
 ---
 
 ## Classe abstraite ou Interface ?
+
+---
+
+- Quelle(s) différence(s) avez-vous constatez ?
+
+---
 
 Classes abstraites et interfaces ont chacune une fonction bien distincte :
 
