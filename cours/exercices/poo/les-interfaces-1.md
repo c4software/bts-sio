@@ -4,13 +4,13 @@ description: Dans cette mise en pratique nous allons voir comment déclarer et u
 
 # Interface : Mise en pratique 1
 
-Dans cette mise en pratique nous allons voir comment déclarer et utiliser des `Interfaces PHP`. Les interfaces sont un éléments importants de la programmation objet, pour rappel les Interfaces sont des class abstraites (instanciation impossible):
+Dans cette mise en pratique nous allons voir comment déclarer et utiliser des `Interfaces PHP`. Les interfaces sont un élément important de la programmation-objet, pour rappel les Interfaces sont des class abstraites (instanciation impossible):
 
 - Va d'écrire un comportement.
 - Définir les signatures des méthodes et propriétés
 - Garantir au code qui fait l'appel que la méthode existera.
 
-C'est donc un contrat que la `class` **doit respecter** si elle implémente l'interface, si celle-ci implémente une Interface elle devra forcément avoir l'ensemble des méthodes « décrite » dans l'interface.
+C'est donc un contrat que la `class` **doit respecter** si elle implémente l'interface, si celle-ci implémente une Interface, elle devra forcément avoir l'ensemble des méthodes « décrite » dans l'interface.
 
 ::: details Sommaire
 [[toc]]
@@ -39,9 +39,9 @@ interface IISurface{
 
 ### Créer la class Circle
 
-Nous avons maintenant notre Interface, celle-ci seule ne fait rien. Elle est abstraite il faut donc créer des `class` qui vont `implements` cette Interface. Notre class permet le calcul de la surface ; je vous propose donc de créer une première `class Circle` :
+Nous avons maintenant notre Interface, celle-ci seule ne fait rien. Elle est abstraite, il faut donc créer des `class` qui vont `implements` cette Interface. Notre class permet le calcul de la surface ; je vous propose donc de créer une première `class Circle` :
 
-- Première étape créer votre fichier php `Circle.class.php`.
+- Première étape, créer votre fichier PHP `Circle.class.php`.
 - Créer le code de votre class. **Votre class doit implements IISurface**
 
 Je vous aide voilà le début de la classe
@@ -85,7 +85,7 @@ class Circle implements IISurface
 
 En reprenant le principe de la class Circle, je vous laisse écrire le code de la class Square. Ici pas d'aide, mais comme dans le code précédent vous devez **implémenter l'interface IISurface**
 
-- Première étape créer votre fichier php `Square.class.php`.
+- Première étape, créer votre fichier PHP `Square.class.php`.
 - Créer le code de votre class. **Votre class doit implements IISurface**
 
 ```php
@@ -123,6 +123,6 @@ calculateSurfaceOf([new Circle(10), new Square(10)]);
 
 Même consigne que pour Circle et Square, je vous laisse travailler :
 
-- Première étape créer votre fichier php `Rectangle.class.php`.
+- Première étape, créer votre fichier PHP `Rectangle.class.php`.
 - Créer le code de votre class. **Votre class doit implements IISurface**
 - L'ajouter dans la page de test `index.php`.

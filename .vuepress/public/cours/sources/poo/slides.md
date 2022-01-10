@@ -558,6 +558,12 @@ Greeting::welcome();
 
 ---
 
+## Classes Abstraites & Interfaces
+
+### Touchons du doigt le véritable intérêt de la POO
+
+---
+
 ## Les classes abstraites
 
 Classe dont l'implémentation n'est pas complète et qui **n'est pas instanciable**.
@@ -570,7 +576,11 @@ Non instanciable ? Qu-est-ce que ça veux dire ?
 
 ---
 
-## Donc pas de `new MonInterface()`
+## Donc pas de `new MaClassAbstraite()`
+
+---
+
+<iframe src="https://giphy.com/embed/MZQkUm97KTI1gI8sUj" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ---
 
@@ -581,7 +591,11 @@ Non instanciable ? Qu-est-ce que ça veux dire ?
 
 ---
 
-![UML](./res/abstract_uml.png)
+Avez-vous déjà vu des classes asbtraites ?
+
+---
+
+[Mise en pratique](/cours/exercices/poo/les-classes-abstraites.md)
 
 ---
 
@@ -589,36 +603,32 @@ Non instanciable ? Qu-est-ce que ça veux dire ?
 abstract class EtudiantAbstrait
 {
     // Force les classes filles à définir cette méthode
-    abstract protected function getBlahBlah();
-    abstract protected function demarrerUneDiscussion($sujet);
+    abstract protected function getSpecificite();
+    abstract protected function setSpecificite($valeur);
 
     // méthode commune
     public function parler() {
-        print $this->getValue() . "\n";
+        print "Je suis " . $this->getSpecificite() . "\n";
     }
 }
 
 class EtudiantSIO extends AbstractClass
 {
-     protected function getBlahBlah() {
-       return "L'informatique c'est cool";
-     }
+    $option = "";
 
-     public function demarrerUneDiscussion($sujet) {
-       return "Je vais vous parler de « {$sujet} »";
+    function __construct($option){
+        $this->option = $option;
+    }
+
+    protected function getSpecificite() {
+       return $this->option;
+    }
+
+    protected function setSpecificite($valeur) {
+       $this->option = $valeur
     }
 }
 ```
-
----
-
-## C'est à vous !
-
-Je souhaite créer **3 étudiants**, qui chacun parleront des sujets suivants :
-
-- La sécurité.
-- L'informatique.
-- L'environnement.
 
 ---
 

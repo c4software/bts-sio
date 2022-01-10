@@ -1,10 +1,10 @@
 ---
-description: Ce document présente la syntaxe objet avec des exemples PHP & Java
+description: Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 ---
 
 # La syntaxe Objet
 
-Ce document présente la syntaxe objet avec des exemples PHP & Java
+Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 
 ::: details Sommaire
 [[toc]]

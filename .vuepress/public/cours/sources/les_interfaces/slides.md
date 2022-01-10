@@ -18,7 +18,7 @@ Elles ne sont donc pas **instantiables**
 
 ---
 
-Une `class` abstraite :
+Une Interface :
 
 - Va d'écrire un comportement.
 - Définir les signatures des méthodes et propriétés
