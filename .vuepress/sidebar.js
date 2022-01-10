@@ -34,7 +34,7 @@ module.exports = [
         text: "La POO",
         collapsible: true,
         children: [
-          { text: "POO", collapsible: true, children: ["/cours/poo"] },
+          { text: "POO", collapsible: true, children: ["/cours/poo", "/cours/les_interfaces"] },
           { text: "MVC", collapsible: true, children: ["/cours/mvc"] },
           {
             text: "Interfaces & Abstractions", collapsible: true,
