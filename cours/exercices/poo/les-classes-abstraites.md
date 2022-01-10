@@ -11,6 +11,16 @@ Dans cette mise en pratique, nous allons voir comment déclarer et utiliser des 
 - Permets de factoriser du code.
 - Dois être héritée depuis une classe fille.
 
+::: details Sommaire
+[[toc]]
+:::
+
+## Ressources disponibles :
+
+- [Aide mémoire POO](/cheatsheets/poo/README.md)
+- [Aide mémoire POO-UML](/cheatsheets/poo-uml/README.md)
+- [Cours POO](/cours/poo.md)
+
 ## Mise en situation
 
 ![UML](./res/abstract_uml.png)

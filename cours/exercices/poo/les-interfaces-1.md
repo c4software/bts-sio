@@ -16,6 +16,12 @@ C'est donc un contrat que la `class` **doit respecter** si elle implémente l'in
 [[toc]]
 :::
 
+## Ressources disponibles :
+
+- [Aide mémoire POO](/cheatsheets/poo/README.md)
+- [Aide mémoire POO-UML](/cheatsheets/poo-uml/README.md)
+- [Cours POO](/cours/poo.md)
+
 ## Cas concret : L'interface Surface
 
 Je vous propose d'illustrer les Interfaces avec le calcul d'une surface. Objectifs :
