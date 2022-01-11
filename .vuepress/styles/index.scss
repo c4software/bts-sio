@@ -56,12 +56,18 @@
     display: none !important;
   }
 
+  div[class*="language-"],
   pre[class*="language-"] {
     break-inside: avoid;
     background-color: #fff !important;
     border: 1px solid rgb(78, 78, 78);
   }
 
+  div[class*="language-"] {
+    border: 1px solid rgb(78, 78, 78);
+  }
+
+  div[class*="language-"] > code,
   pre[class*="language-"] > code {
     color: #000 !important;
   }
