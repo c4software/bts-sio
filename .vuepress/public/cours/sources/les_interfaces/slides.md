@@ -4,7 +4,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-Les Interfaces sont des sortes de `class`
+Les Interfaces sont des sortes de `classe`
 
 ---
 
@@ -26,7 +26,7 @@ Une Interface :
 
 ---
 
-C'est donc **un contrat** que la `class` **doit respecter** si elle implémente l'interface.
+C'est donc **un contrat** que la `classe` **doit respecter** si elle implémente l'interface.
 
 ---
 

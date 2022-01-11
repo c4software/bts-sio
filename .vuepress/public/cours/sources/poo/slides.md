@@ -595,7 +595,7 @@ Avez-vous déjà vu des classes asbtraites ?
 
 ---
 
-[Mise en pratique](/cours/exercices/poo/les-classes-abstraites.md)
+[Mise en pratique](/cours/exercices/poo/les-classes-abstraites.html)
 
 ---
 
@@ -647,54 +647,7 @@ Une interface ressemble à une classe abstraite dans laquelle aucune méthode ne
 
 ---
 
-![UML](./res/interface_uml.png)
-
----
-
-```php
-// Declaration de l'interface 'Template'
-interface Compte
-{
-    public function deposer($montant);
-    public function retirer($montant);
-    public function getBalance();
-}
-
-class CompteEnLigne implements Compte
-{
-    private $montant = 0;
-
-    public function deposer($montant){
-        $this->montant += $montant;
-    }
-
-    public function retirer($montant){
-        $this->montant -= $montant;
-    }
-
-    public function getBalance() {
-        return $montant;
-    }
-}
-```
-
-## C'est à vous !
-
-Je souhaite créer **1 compte**, et effectuer les opérations suivantes :
-
-- `$operations = [100, 2000, 5000, -100, -1000, 0, -300]`
-- Utiliser le tableau `$operations` via **une boucle** pour manipuler le compte.
-- Afficher à la fin le solde du compte.
-
----
-
-## C'est à vous bis !
-
-Implémenter l'interface pour créer un compte de type **épargne** :
-
-- N'autoriser que les dépôts > 200€.
-- Avoir un constructeur avec une valeur de base du compte.
-- Ne pas autoriser un retrait si le compte ne possède pas > 1000€
+[Mise en pratique](/cours/exercices/poo/les-interfaces-1.html)
 
 ---
 
