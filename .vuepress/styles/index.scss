@@ -12,6 +12,40 @@
 }
 
 @media print {
+  a {
+    page-break-inside: avoid;
+  }
+  blockquote {
+    page-break-inside: avoid;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  img {
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+  table,
+  pre {
+    page-break-inside: avoid;
+  }
+  ul,
+  ol,
+  dl {
+    page-break-before: avoid;
+  }
+
+  body,
+  html {
+    font-size: 12pt;
+  }
+
   footer {
     display: none;
   }
@@ -60,7 +94,6 @@
   pre[class*="language-"] {
     break-inside: avoid;
     background-color: #fff !important;
-    border: 1px solid rgb(78, 78, 78);
   }
 
   div[class*="language-"] {
