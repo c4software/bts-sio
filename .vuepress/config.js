@@ -17,6 +17,7 @@ module.exports = {
       },
     ],
     require('./plugins/authors.ts'),
+    require('./plugins/autometa.js'),
   ],
   locales: {
     '/': {
