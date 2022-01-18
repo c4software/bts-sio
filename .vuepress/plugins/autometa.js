@@ -357,7 +357,7 @@ PLUGIN.get_default_description = ($page, options) => {
 
                 // content without frontmatter - used with regex
 
-                const content = $page._strippedContent || '';
+                const content = $page.contentRendered || '';
 
                 if (content) {
                     const regex = PLUGIN.get_regex(source);
