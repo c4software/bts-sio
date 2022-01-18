@@ -46,6 +46,7 @@ abstract class EtudiantAbstrait
   - **Particularité 1 :**
   - **Particularité 2 :**
   - **Particularité 3 :**
+- D'un point de vue sécurité, qu'apporte cette organisation ? (Une piste, encapsulation…)
 - Selon vous, pourquoi la classe abstraite ne possède-t-elle pas de constructeur ?
 
 ::::
@@ -59,8 +60,8 @@ Pour utiliser une classe abstraite, nous allons devoir « **hériter** » de cel
 
 La différence avec un simple héritage, c'est que vous devrez « implémenter » / « écrire » les deux méthodes :
 
-- `getBlahBlah()`
-- `demarrerUneDiscussion()`
+- `getSpecificite()`
+- `setSpecificite($valeur)`
 
 Et la méthode parler ?
 

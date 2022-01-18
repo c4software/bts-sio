@@ -17,6 +17,7 @@ Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 - **Concept de modélisation** à travers la notion de classe et d’instanciation de ces classes.
 - **Concept d’action** à travers la notion d’envoi de messages et de méthodes à l’intérieur des objets.
 - **Concept de construction** par réutilisation et amélioration par l’utilisation de la notion d’héritage.
+- **Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter. (inaccessible de l'exterieur).
 
 ::: tip Mais surtout
 Ça permet de représenter **informatiquement** quelque chose du monde réel.
@@ -778,6 +779,7 @@ Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'e
 - Sont des modèles pour d'autres classes.
 - Permettent de factoriser du code.
 - Doivent être héritée depuis une classe fille.
+- Apporte une sécurité grâce à l'encapsulation.
 
 ![Abstract UML](./res/abstract_uml.png)
 

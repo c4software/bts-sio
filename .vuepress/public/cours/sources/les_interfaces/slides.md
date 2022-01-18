@@ -20,7 +20,7 @@ Elles ne sont donc pas **instantiables**
 
 Une Interface :
 
-- Va d'écrire un comportement.
+- Va décrire un comportement.
 - Définir les signatures des méthodes et propriétés
 - Garantir au code qui fait l'appel que la méthode existera.
 

@@ -588,6 +588,11 @@ Non instanciable ? Qu-est-ce que ça veux dire ?
 - Ne peut pas être instanciée (pas de new).
 - Permets de factoriser du code.
 - Dois être héritée depuis une classe fille.
+- Apporte une sécurité grâce à l'encapsulation
+
+---
+
+Encapsulation ? Pouvez-vous me redonner la définition.
 
 ---
 
