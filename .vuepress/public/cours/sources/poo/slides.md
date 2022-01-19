@@ -15,7 +15,7 @@ En groupe de 2 ou 3
 
 ---
 
-## La POO c'est 3 concepts
+## La POO c'est 4 concepts
 
 ---
 
@@ -28,6 +28,10 @@ En groupe de 2 ou 3
 ---
 
 **Concept de construction** par réutilisation et amélioration par l’utilisation de la notion d’héritage.
+
+---
+
+**Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter (inaccessible de l'exterieur de l'objet).
 
 ---
 
