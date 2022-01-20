@@ -4,19 +4,31 @@ module.exports = [
     text: "Aides mémoires",
     collapsible: true,
     children: [
+      {
+        text: "Web",
+        collapsible: true,
+        children: [
+          { link: "/cheatsheets/html/README.md", text: "Html" },
+          { link: "/cheatsheets/php/README.md", text: "PHP" },
+          { link: "/cheatsheets/javascript/README.md", text: "JavaScript" },
+          { link: "/cheatsheets/vuejs/README.md", text: "VueJS" },
+          { link: "/cheatsheets/laravel/README.md", text: "Laravel" },
+        ]
+      },
+      {
+        text: "POO",
+        collapsible: true,
+        children: [
+          { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
+          { link: "/cheatsheets/poo/README.md", text: "Programation Orientée Objet" },
+        ]
+      },
+      { link: "/cheatsheets/api/README.md", text: "Les API" },
       { link: "/cheatsheets/git/README.md", text: "Git" },
-      { link: "/cheatsheets/html/README.md", text: "Html" },
-      { link: "/cheatsheets/php/README.md", text: "PHP" },
       { link: "/cheatsheets/sql/README.md", text: "SQL" },
-      { link: "/cheatsheets/javascript/README.md", text: "JavaScript" },
       { link: "/cheatsheets/cordova/README.md", text: "Cordova" },
       { link: "/cheatsheets/docker/README.md", text: "Docker" },
-      { link: "/cheatsheets/vuejs/README.md", text: "VueJS" },
       { link: "/cheatsheets/owasp/README.md", text: "OWASP" },
-      { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
-      { link: "/cheatsheets/poo/README.md", text: "Programation Orientée Objet" },
-      { link: "/cheatsheets/laravel/README.md", text: "Laravel" },
-      { link: "/cheatsheets/api/README.md", text: "Les API" }
     ]
   },
 
