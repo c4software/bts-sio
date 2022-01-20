@@ -586,8 +586,8 @@ for (laPersonne in lesPersonnes) {
 
 L'héritage permet de généraliser le fonctionnement d'un objet. L'idée est de mettre dans un « objet parent » la logique de plusieurs objets qui fonctionne de la même façon. **Exemple**
 
-- Un **humain** et une baleine partage des propriété et fonctionnement commun. Nous allons donc créer une super classe **mammifère** celle-ci contiendra les méthodes et les propriétés commune.
-- Une **Voiture** et une **Moto** sont des véhicule. Nous pouvons donc créer une super classe « **Véhicule** ».
+- Un **humain** et une baleine partage des propriété et fonctionnement commun. Nous allons donc créer une super classe **mammifère,** celle-ci contiendra les méthodes et les propriétés communes.
+- Une **Voiture** et une **Moto** sont des véhicules. Nous pouvons donc créer une super classe « **Véhicule** ».
 - …
 
 <CodeGroup>
@@ -706,7 +706,21 @@ unHumain.manger(); // Je suis omnivore.
 - **mais** il est également possible de spécialiser / redéfinir un objet.
   - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.
 
-## Les méthodes static
+## Le polymorphisme
+
+Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la méthode qui correspond au type réel de l’objet
+
+## L'encapsulation
+
+Mécanisme consistant à rassembler les données et les méthodes au sein d'une structure en cachant l'implémentation de l'objet, c'est-à-dire en empêchant l'accès aux données par un autre moyen que les services proposés.
+
+::: tip Sécurité ?
+
+Vous avez ici un élément important, la notion de visibilité et de gestion de l'accès aux propriétés est **fondamentale**. L'encapsulation fait partie d'une des raisons pourquoi la POO est à favoriser pour réaliser un développement sécurisé.
+
+:::
+
+## Les méthodes statiques
 
 <CodeGroup>
   <CodeGroupItem title="PHP" active>
