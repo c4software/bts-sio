@@ -126,21 +126,27 @@ class Cheval implements SpeciesInterface, DeplacementInterface{
 
 ---
 
-## Autre exemple : l'interface countable
+<fieldset>
+    <legend>Autre exemple : l'interface countable</legend>
+    <p>Explication <a href="http://php.net/manual/fr/class.countable.php">class.countable.php</a></p>
+    <p>Utilisation <a href="http://php.net/manual/en/class.arrayobject.php">class.arrayobject.php</a></p>
+</fieldset>
 
-- Explication [class.countable.php](http://php.net/manual/fr/class.countable.php)
-- Utilisation [class.arrayobject.php](http://php.net/manual/en/class.arrayobject.php)
+<br>
 
-- Array Object implément combien d'interface ?
+- `Array Object` implément combien d'interface ?
 - Quel est l'impact ?
 - Quel est le but ?
 
 ---
 
-## Autre exemple : l'interface Serializable
+<fieldset>
+    <legend>Autre exemple : l'interface Serializable</legend>
+    <p>Explication <a href="https://www.php.net/manual/en/class.serializable.php">class.serializable.php</a></p>
+    <p>Utilisation <a href="http://php.net/manual/en/class.arrayobject.php">class.arrayobject.php</a></p>
+</fieldset>
 
-- Explication [class.serializable.php](https://www.php.net/manual/en/class.serializable.php)
-- Utilisation [class.arrayobject.php](http://php.net/manual/en/class.arrayobject.php)
+<br>
 
 - À quoi ça va servir ?
 
@@ -229,6 +235,10 @@ interface ApiService {
     }
 }
 ```
+
+---
+
+À votre avis, comment les interfaces simplifient les appels réseau ?
 
 ---
 
