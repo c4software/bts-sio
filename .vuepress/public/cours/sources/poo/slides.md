@@ -212,13 +212,14 @@ class SimpleClass
 
 ---
 
-### Ce qu'il faut retenir
-
-- Les classes sont instanciables (création d'objets, `new Personne(…)`).
-- Les propriétés sont les « variables » de l'objet.
-- Les méthodes sont les « actions » de l'objet.
-- Les méthodes **et** les propriétés _**ont des visiblités**_.
-- Les méthodes peuvent être surchargées.
+<fieldset>
+  <legend>Ce qu'il faut retenir</legend>
+    <li>Les classes sont instanciables (création d'objets, <code>new Personne(…)</code>).</li>
+    <li>Les propriétés sont les « variables » de l'objet.</li>
+    <li>Les méthodes sont les « actions » de l'objet.</li>
+    <li>Les méthodes <b>et</b> les propriétés <b>ont des visiblités</b>.</li>
+    <li>Les méthodes peuvent être surchargées.</li>
+</fieldset>
 
 ---
 
@@ -261,7 +262,7 @@ Supposons que chaque Voiture possède :
   - Calcul du nombre de km moyen par an depuis la fabrication.
   - Accélérer.
 
-C'est à vous 🤓
+C'est à vous 🤓. Concevez l'UML
 
 ---
 
@@ -462,11 +463,12 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
-### La visibilité !
-
-- Privée : accessible que dans l'objet.
-- Public : accessible hors de l'objet.
-- Protected : **accessible** aux enfants (héritage) mais **pas en dehors**.
+<fieldset>
+  <legend>La visibilité !</legend>
+    <li>Privée : accessible que dans l'objet.</li>
+    <li>Public : accessible hors de l'objet.</li>
+    <li>Protected : <b>accessible</b> aux enfants (héritage) mais <b>pas en dehors</b>.</li>
+</fieldset>
 
 ---
 
@@ -487,9 +489,17 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
+## L'héritage c'est donc
+
+### Un arbre
+
+[Arbre](./res/heritage.png)
+
+---
+
 ## C'est à vous
 
-### Seul ou en groupe, trouvez des exemples d'héritages pertinents
+### Seul ou en groupe, trouvez des exemples d'héritages
 
 ---
 
@@ -505,15 +515,16 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
-## Synthèse
-
-- La classe mère contient la logique **partagée**.
-- La classe fille contient la logique **spécifique**.
-- Un mot-clé Extends `class Humain extends Mammifere`.
-- **Vous devez** construire le parent dans le constructeur de l'enfant.
-- **Permets de généraliser un objet afin de partager des propriétés communes.**.
-- **mais** il est également possible de spécialiser / redéfinir un objet.
-  - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.
+<fieldset>
+  <legend>Synthèse</legend>
+    <li>La classe mère contient la logique <b>partagée</b>.</li>
+    <li>La classe fille contient la logique <b>spécifique</b>.</li>
+    <li>Un mot-clé Extends <code>class Humain extends Mammifere</code>.</li>
+    <li><b>Vous devez</b> construire le parent dans le constructeur de l'enfant.</li>
+    <li><b>Permets de généraliser un objet afin de partager des propriétés communes.</b>.</li>
+    <li><b>mais</b> il est également possible de spécialiser / redéfinir un objet.</li>
+    <li>Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.</li>
+</fieldset>
 
 ---
 
@@ -540,7 +551,7 @@ Mise en pratique
 
 ---
 
-## Les classes Static
+## Les classes Statiques
 
 - Méthode & Propriété accessible **sans besoin d'un new**
 - Permets d'encapsuler une logique.
@@ -588,11 +599,14 @@ Non instanciable ? Qu-est-ce que ça veux dire ?
 
 ---
 
-- Sers de base à d'autres classes dérivées (héritées).
-- Ne peut pas être instanciée (pas de new).
-- Permets de factoriser du code.
-- Dois être héritée depuis une classe fille.
-- Apporte une sécurité grâce à l'encapsulation
+<fieldset>
+  <legend>Définition</legend>
+    <li>Sers de base à d'autres classes dérivées (héritées).</li>
+    <li>Ne peut pas être instanciée (pas de new).</li>
+    <li>Permets de factoriser du code.</li>
+    <li>Dois être héritée depuis une classe fille.</li>
+    <li>Apporte une sécurité grâce à l'encapsulation.</li>
+</fieldset>
 
 ---
 
@@ -645,11 +659,13 @@ class EtudiantSIO extends AbstractClass
 
 Une interface ressemble à une classe abstraite dans laquelle aucune méthode ne serait implémentée.
 
-- Ne contiens que des méthodes publiques.
-- Ne contiens aucun code.
-- N'est pas instanciable.
-- Son « un contrat » que les classes filles devront **implémenter**.
-
+<fieldset>
+  <legend>Définition</legend>
+    <li>Ne contiens que des méthodes publiques.</li>
+    <li>Ne contiens aucun code.</li>
+    <li>N'est pas instanciable.</li>
+    <li>Son « un contrat » que les classes filles devront <b>implémenter</b>.</li>
+</fieldset>
 ---
 
 [Entrons dans le détail](/cours/revealjs/index.html?source=les_interfaces)

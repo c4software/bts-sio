@@ -83,3 +83,18 @@ iframe:not(.giphy-embed) {
   margin: 0 10px;
   cursor: pointer;
 }
+
+fieldset {
+  padding: 10px;
+  font-size: 2rem;
+  text-align: start;
+  border-radius: 5px;
+  border: 4px solid red;
+}
+
+fieldset > legend {
+  background: red;
+  color: white;
+  padding: 0 10px;
+  border-radius: 10px;
+}

@@ -18,11 +18,12 @@ Elles ne sont donc pas **instantiables**
 
 ---
 
-Une Interface :
-
-- Va décrire un comportement.
-- Définir les signatures des méthodes et propriétés
-- Garantir au code qui fait l'appel que la méthode existera.
+<fieldset>
+  <legend>Une Interface</legend>
+    <li>Va décrire un comportement.</li>
+    <li>Définir les signatures des méthodes et propriétés</li>
+    <li>Garantir au code qui fait l'appel que la méthode existera.</li>
+</fieldset>
 
 ---
 
@@ -36,31 +37,7 @@ Interfaces ≠ Héritage
 
 ---
 
-Une interface indique juste des signatures par exemple :
-
-- `seDeplacer()`
-
----
-
 ![Interface d'exemple](./img/interface.png)
-
----
-
-Deux objets de types très différents peuvent **l'implémenter** par exemple :
-
-- Une personne
-- Une voiture
-- Un animal
-
----
-
-**La différence sera :**
-
-- Dans le code écrit dans la classe (marcher, rouler, galoper)
-
-**Et non pas :**
-
-- Dans la signature des méthodes
 
 ---
 
@@ -92,6 +69,8 @@ class Animal implements Deplacement {
     }
 }
 ```
+
+- Que constatez-vous ?
 
 ---
 
@@ -143,6 +122,8 @@ class Cheval implements SpeciesInterface, DeplacementInterface{
 }
 ```
 
+- Que constatez-vous ?
+
 ---
 
 ## Autre exemple : l'interface countable
@@ -156,12 +137,6 @@ class Cheval implements SpeciesInterface, DeplacementInterface{
 
 - Explication [https://www.php.net/manual/en/class.serializable.php](class.serializable.php)
 - Utilisation [http://php.net/manual/en/class.arrayobject.php](class.arrayobject.php)
-
----
-
-Existe dans tous les langages-objets (c'est un des fondements)
-
-## La notation varie, mais la logique est là même
 
 ---
 
