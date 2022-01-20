@@ -20,7 +20,7 @@ module.exports = [
         collapsible: true,
         children: [
           { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
-          { link: "/cheatsheets/poo/README.md", text: "Programation Orientée Objet" },
+          { link: "/cheatsheets/poo/README.md", text: "Programmation Orientée Objet" },
         ]
       },
       { link: "/cheatsheets/api/README.md", text: "Les API" },
