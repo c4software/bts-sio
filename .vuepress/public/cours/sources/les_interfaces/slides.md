@@ -128,15 +128,21 @@ class Cheval implements SpeciesInterface, DeplacementInterface{
 
 ## Autre exemple : l'interface countable
 
-- Explication [http://php.net/manual/fr/class.countable.php](class.countable.php)
-- Utilisation [http://php.net/manual/en/class.arrayobject.php](class.arrayobject.php)
+- Explication [class.countable.php](http://php.net/manual/fr/class.countable.php)
+- Utilisation [class.arrayobject.php](http://php.net/manual/en/class.arrayobject.php)
+
+- Array Object implément combien d'interface ?
+- Quel est l'impact ?
+- Quel est le but ?
 
 ---
 
 ## Autre exemple : l'interface Serializable
 
-- Explication [https://www.php.net/manual/en/class.serializable.php](class.serializable.php)
-- Utilisation [http://php.net/manual/en/class.arrayobject.php](class.arrayobject.php)
+- Explication [class.serializable.php](https://www.php.net/manual/en/class.serializable.php)
+- Utilisation [class.arrayobject.php](http://php.net/manual/en/class.arrayobject.php)
+
+- À quoi ça va servir ?
 
 ---
 
