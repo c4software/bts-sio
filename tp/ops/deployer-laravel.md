@@ -75,6 +75,7 @@ curl -sS https://getcomposer.org/installer | php
 
 # Installation de composer pour qu'il soit accessible de partout.
 mv composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
 ```
 
 ::: tip Vous avez tout ce qu'il vous faut !
