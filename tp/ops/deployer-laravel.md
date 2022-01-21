@@ -31,12 +31,12 @@ Pour faire du Laravel vous devez avoir une version récente de PHP, de base Debi
 Pour ça nous allons avoir besoin d'un dépôt externe, celui-ci contiendra la dernière version de PHP.
 
 ```sh
-# Installation des dépendances nécéssaires à l'ajout d'un dépot
+# Installation des dépendances nécessaires à l'ajout d'un dépôt
 apt-get install apt-transport-https gnupg2 ca-certificates -y
 ```
 
 ```sh
-# Ajout du dépot Sury
+# Ajout du dépôt Sury
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 ```
@@ -46,11 +46,11 @@ sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/
 apt-get update -y
 apt-get install libapache2-mod-php php php-common php-xml php-gd php8.0-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip curl -y
 
-# Active la réécriture d'URL necessaire pour Laravel
+# Active la réécriture d'URL nécessaire pour Laravel
 /usr/sbin/a2enmod rewrite
 ```
 
-Et voilà, nous avons la base, votre serveur est prêt à recevoir votre code ! Avant de continuer vérifier avec la commande suivante que votre version de PHP est au moins égale à `8`.
+Et voilà, nous avons la base, votre serveur est prêt à recevoir votre code ! Avant de continuer, vérifiez avec la commande suivante que votre version de PHP est au moins égale à `8`.
 
 ```sh
 php -v
@@ -128,17 +128,17 @@ Dans le fichier en question vous devez :
 ### 1 - **Changer** / **Modifier** le `DocumentRoot` par :
 
 ```apacheconf
-# Change l'emplacement ou les sources seront chargé
-# Laravel possede un dossier public avec dedans un index.php qui
+# Change l'emplacement où les sources seront chargées
+# Laravel possède un dossier public avec dedans un index.php qui
 # contient la logique de chargement de VOTRE CODE SOURCE.
-# C'est l'equivalent du php artisan serve en quelque sorte
+# C'est l'équivalent du php artisan serve en quelque sorte
 DocumentRoot /var/www/html/votresite/public
 ```
 
 ### 2 - Ajouter **dans** la configuration du `VirtualHost` :
 
 ```apacheconf
-# Authorise l'execution des fichier .htaccess dans votre site.
+# Autorise l'exécution des fichiers .htaccess dans votre site.
 <Directory /var/www/html/votresite>
     AllowOverride All
 </Directory>
