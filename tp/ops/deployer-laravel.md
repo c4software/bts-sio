@@ -109,7 +109,7 @@ chmod -R 775 /var/www/html/votresite
 N'oubliez pas pour que votre site fonctionne correctement, vous **devez avoir un `.env`** correctement configuré avec :
 
 - Vos identifiants de la base de données (et le serveur).
-- Une clé permettant de protéger la SESSION `php artisan key:generate`.
+- Une clé permettant de protéger vos COOKIES `php artisan key:generate`.
 
 :::
 
