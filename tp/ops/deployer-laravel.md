@@ -1,3 +1,7 @@
+---
+description: Nous l'avons vu en cours, utiliser Laravel permet de gagner du temps lors de la création du site / solution. Déployer un site Laravel est assez similaire à ce que vous connaissez déjà, cependant il y aura quelques exceptions.
+---
+
 # Déployer un site Laravel
 
 Nous l'avons vu en cours, utiliser Laravel permet de gagner du temps lors de la création du site / solution. Déployer un site Laravel est assez similaire à ce que vous connaissez déjà, cependant il y aura quelques exceptions.
