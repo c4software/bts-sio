@@ -95,7 +95,17 @@ module.exports = [
           { text: "iOT Dashboard", children: ["/tp/php/mvc/dashboard/tp0.md", "/tp/php/mvc/dashboard/tp1.md"] }
         ]
       },
-      { text: "Laravel", collapsible: true, children: ["/cours/laravel", "/tp/laravel/introduction", "/tp/laravel/authentification", "/tp/laravel/application_todo_list", "/tp/laravel/laravel_api", "/tp/laravel/creation_api"] }
+      {
+        text: "Laravel", collapsible: true, children: [
+          "/cours/laravel",
+          "/tp/laravel/introduction",
+          "/tp/laravel/authentification",
+          "/tp/laravel/application_todo_list",
+          "/tp/laravel/laravel_api",
+          "/tp/laravel/creation_api",
+          "/tp/ops/deployer-laravel.md"
+        ]
+      }
     ]
   },
 
@@ -195,6 +205,7 @@ module.exports = [
           "/tp/docker/introduction",
           "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose"]
       },
+      "/tp/ops/deployer-laravel.md",
       { text: "Kubernetes", collapsible: true, children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
       { text: "OpenFaas", collapsible: true, children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
       { text: "Firebase", collapsible: true, children: ["/tp/ci/firebase/functions.md"] },
