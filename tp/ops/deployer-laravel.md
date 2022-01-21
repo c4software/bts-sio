@@ -10,7 +10,7 @@ Le TP est axé sur Debian, mais il devrait fonctionner avec la plupart des distr
 
 ::: details Sommaire
 [[toc]]
-::
+:::
 
 ## Apache
 
