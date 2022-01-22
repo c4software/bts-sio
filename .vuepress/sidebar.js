@@ -203,7 +203,7 @@ module.exports = [
         children: [
           { link: "/cheatsheets/docker/README.md", text: "En + du cours" },
           "/tp/docker/introduction",
-          "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose"]
+          "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose", "/tp/ops/deployer-laravel-docker.md"]
       },
       {
         text: "Laravel",
