@@ -82,7 +82,7 @@ RUN chown -R application:application .
 
 Ce fichier contient l'ensemble de la configuration pour que Laravel fonctionne correctement. Il est en quelque sorte **générique** et pourra servir, quel que soit votre projet.
 
-C'est donc un outil très très pratique surtout avec ce que l'on appelle des plateformes d'intégration continue comme par exemple **Gitlab-CI**.
+C'est donc un outil très très pratique surtout avec ce que l'on appelle des plateformes d'intégration continue avec par exemple **Gitlab-CI**.
 
 :::
 
@@ -119,7 +119,7 @@ Pourquoi ? Et bien l'objectif c'est que cette étape soit automatisée :
 
 Que fait cette commande ?
 
-Cette commande va créer votre image, c'est-à-dire que votre machine va créer un conteneur qui sera paramétré avec l'ensemble de la configuration que vous avez indiqué dans votre fichier `Dockerfile`.
+Cette commande va créer votre image, c'est-à-dire que votre machine va créer un conteneur qui sera paramétré avec l'ensemble de la configuration que vous avez indiquée dans votre fichier `Dockerfile`.
 
 C'est comme une sorte de template réutilisable.
 
@@ -128,19 +128,6 @@ PS: Je vous laisse observer ce que fait votre terminal !
 Sur ma machine :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/CB2l0cYkRJM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### Lancer votre projet en local pour tester
-
-Pour lancer notre projet en local, rien de plus simple :
-
-```sh
-docker run --rm -t -p 9000:80 test-laravel:latest
-```
-
-Cette commande va prendre l'image que vous venez de créer puis la lancer. Votre site sera accessible sur le port `9000` notez au passage que nous avons spécifié le nom de l'image à la fin `test-laravel:latest`.
-
-![Lancement Docker](./img/lancement-docker.png)
-![Lancement navigateur](./img/lancement-navigateur.png)
 
 ## Docker Compose : prêt à déployer sur votre serveur
 
@@ -171,16 +158,19 @@ Ce fichier indique que vous avez :
 Pour tester, c'est encore plus simple !
 
 ```sh
-docker-compose up -d
+docker-compose up
 ```
 
-Patientez quelques instants et votre site sera disponible sur le port `8080`.
+Patientez quelques instants et votre site sera disponible sur le port [http://localhost:8080](http://localhost:8080).
 
 ::: tip C'est ce fichier…
 
 Ce fichier est celui qui nous permettra de lancer facilement votre site sur votre serveur 👌
 
 :::
+
+![Lancement Docker](./img/lancement-docker.png)
+![Lancement navigateur](./img/lancement-navigateur.png)
 
 ## Installer Docker sur votre serveur Debian
 
