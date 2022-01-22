@@ -108,7 +108,7 @@ docker build -t test-laravel:latest .
 
 ::: danger C'est long ?
 
-Cette étape est un peu longue, c'est normal, votre machine créée en quelque sorte votre machine. Mais rassurez vous l'objectif final c'est que vous ne fassiez plus cette action.
+Cette étape est un peu longue, c'est normal, votre machine créer en quelque sorte votre machine. Mais rassurez vous l'objectif final c'est que vous ne fassiez plus cette action.
 
 Pourquoi ? Et bien l'objectif c'est que cette étape soit automatisée :
 
