@@ -153,6 +153,16 @@ Ce fichier indique que vous avez :
 - Qui expose un port le **8080**. (accessible sur `http://votre.ip:8080`)
 - Qui (re)démarrera automatiquement au démarrage de le votre serveur.
 
+::: tip Un instant ?
+
+À votre avis :
+
+- Quelles autres options avez vous à votre disposition pour le restart ? [C'est par ici](https://docs.docker.com/config/containers/start-containers-automatically/)
+- À quoi correspond "8080:80" ? Pourquoi avons-nous un `80` alors que le site est disponible sur le `8080` ?
+- Est-il possible de déclarer plusieurs services ? [C'est par ici](https://docs.docker.com/compose/compose-file/)
+
+:::
+
 ### Tester
 
 Pour tester, c'est encore plus simple !
@@ -200,6 +210,15 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 **Félicitation,** vous avez maintenant Docker sur votre Serveur.
 
+::: tip Un Instant !
+
+À votre avis :
+
+- D'où viennent ces commandes ? [Des informations](https://docs.docker.com/engine/install/debian/)
+- Pourquoi vous devez être vigilant quand vous copiez/collez des commandes ?
+
+:::
+
 ## Déployer votre site
 
 Pour déployer votre site, il vous suffit :
@@ -211,9 +230,12 @@ Pour déployer votre site, il vous suffit :
 docker-compose up -d
 ```
 
-::: tip En modifiant le docker-compose.yml
+::: tip Un instant !
 
-Vous pouvez évidemment modifier le port d'écoute en éditant le fichier `docker-compose.yml`
+À votre avis ?
+
+- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le `docker-compose.yml` mais comment ?)
+- Est-ce que votre service va démarrer automatiquement si vous redémarrez votre machine ?
 
 :::
 

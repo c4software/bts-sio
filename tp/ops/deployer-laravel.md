@@ -65,6 +65,13 @@ Zend Engine v4.0.10, Copyright (c) Zend Technologies
     with Zend OPcache v8.0.10, Copyright (c), by Zend Technologies
 ```
 
+::: tip Un instant !
+
+- D'où viennent ces commande ?
+- Devez-vous ? Pouvez-vous me faire confiance et les copiez-collez directement ?
+
+:::
+
 ## Composer
 
 Nous l'avons vu en cours, de base un projet Laravel arrive sans aucune dépendance, il faut les installer avec Composer. Votre serveur va donc également devoir avoir `Composer`. Pour l'installer :
@@ -83,7 +90,15 @@ Votre serveur est maintenant prêt ! Il ne nous reste plus qu'à :
 
 - Mettre les sources sur le serveur
 - Configurer Apache pour indiquer où son vos sources.
-  :::
+
+:::
+
+::: tip Un instant !
+
+- Pourquoi ai-je choisi de passer par l'installation hors de `apt-get` ?
+- Selon vous, pourquoi est-ce que ça pourrait-être une mauvaise idée ?
+
+:::
 
 ## Installer votre site
 
@@ -110,6 +125,13 @@ N'oubliez pas pour que votre site fonctionne correctement, vous **devez avoir un
 
 - Vos identifiants de la base de données (et le serveur).
 - Une clé permettant de protéger vos COOKIES `php artisan key:generate`.
+
+:::
+
+::: tip Un instant !
+
+- Avez-vous déjà cherché la différence entre FTP ou SFTP ?
+- Je pense qu'il serait plus intéressant de passer par GIT, pourquoi selon vous ?
 
 :::
 
@@ -154,15 +176,22 @@ Dans mon cas voilà le résultat :
     DocumentRoot /var/www/html/votresite/public
 
     <Directory /var/www/html/votresite>
-    Options Indexes MultiViews
-    AllowOverride None
-    Require all granted
+        AllowOverride all
     </Directory>
 
     ErrorLog ${APACHE_LOG_DIR}/error.log
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+
+:::
+
+::: tip Un Instant !
+
+Comprendre la configuration c'est important, c'est une partie importante de votre métier (et ça fait partie de la sécurité).
+
+- Comment comprendre ce que vous avez configuré ? [Vous avez de la chance la documentation est en Français](https://httpd.apache.org/docs/2.4/configuring.html)
+- Pourquoi vous devez faire attention à ce que vous copiez/collez ?
 
 :::
 
