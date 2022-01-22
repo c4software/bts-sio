@@ -206,6 +206,7 @@ module.exports = [
           "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose"]
       },
       "/tp/ops/deployer-laravel.md",
+      "/tp/ops/deployer-laravel-docker.md",
       { text: "Kubernetes", collapsible: true, children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
       { text: "OpenFaas", collapsible: true, children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
       { text: "Firebase", collapsible: true, children: ["/tp/ci/firebase/functions.md"] },

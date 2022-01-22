@@ -98,7 +98,7 @@ Une fois le code déposé sur le serveur :
 
 ```sh
 cd /var/www/html/votresite/
-composer install
+composer install --no-interaction --optimize-autoloader --no-dev
 
 chown -R www-data:www-data /var/www/html/votresite
 chmod -R 775 /var/www/html/votresite
