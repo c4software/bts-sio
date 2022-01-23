@@ -276,7 +276,7 @@ docker run -p "8080:80" registry.gitlab.com/vbrosseau/ci-packaging:master
 
 ![Docker RUN](./img/docker_run.png)
 
-::: Un Instant !
+::: tip Un Instant !
 
 - À quoi correspond le `docker pull`?
 - Où ai-je trouvé l'information après le run ?
