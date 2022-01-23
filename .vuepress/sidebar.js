@@ -195,7 +195,7 @@ module.exports = [
     collapsible: true,
     children: [
       { text: "Support de cours", collapsible: true, children: ["/tp/devops/support.md", { link: "/cours/docker", text: "Docker" }, "/cours/cicd", { link: "/cours/gitlabci", text: "Gitlab CI" }] },
-      { text: "GitLab-CI", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-docker-ci.md"] },
+      { text: "GitLab-CI", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-ci.md"] },
       { text: "JamStack", collapsible: true, children: ["/tp/ci/jamstack/netlify.md"] },
       {
         text: "Docker",
@@ -211,7 +211,7 @@ module.exports = [
         children: [
           "/tp/ops/deployer-laravel.md",
           "/tp/ops/deployer-laravel-docker.md",
-          "/tp/ops/deployer-laravel-docker-ci.md",
+          "/tp/ops/deployer-laravel-ci.md",
         ]
       },
       { text: "Kubernetes", collapsible: true, children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
