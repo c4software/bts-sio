@@ -62,18 +62,19 @@ ENV APP_ENV production
 WORKDIR /app
 COPY . .
 
+RUN cp -n .env.example .env
+
 # Installation et configuration de votre site pour la production
 # https://laravel.com/docs/8.x/deployment#optimizing-configuration-loading
 RUN composer install --no-interaction --optimize-autoloader --no-dev
+# Generate security key
+RUN php artisan key:generate
 # Optimizing Configuration loading
 RUN php artisan config:cache
 # Optimizing Route loading
 RUN php artisan route:cache
 # Optimizing View loading
 RUN php artisan view:cache
-
-RUN cp -n .env.example .env
-RUN php artisan key:generate
 
 RUN chown -R application:application .
 ```
@@ -249,3 +250,7 @@ Pour mettre à jour votre site, il vous suffit :
 ```sh
 docker-compose up --build -d
 ```
+
+## C'est à vous
+
+Je vous laisse ajouter une nouvelle page dans votre site. Une page avec les Conditions générales pas exemple. Une fois cette page ajoutée, je vous laisse la mettre en ligne sur votre serveur.
