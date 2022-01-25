@@ -294,7 +294,7 @@ abstract class Personne
     private $nom = "";
     private $prenom = "";
 
-    abstract protected function printInfo();
+    abstract public function printInfo();
 
     public function getNom() {
         return $this->nom . "\n";
@@ -309,7 +309,7 @@ class Enseignant extends Personne
 {
     private $salaire = 0;
 
-    protected function printInfo() {
+    public function printInfo() {
         return $this->nom . " => " . $this->$salaire;
     }
 }
@@ -318,7 +318,7 @@ class Etudiant extends Personne
 {
     private $INE = "";
 
-    protected function printInfo() {
+    public function printInfo() {
         return $this->INE . " => " . $this->$nom;
     }
 }
