@@ -798,40 +798,42 @@ Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'e
 ![Abstract UML](./res/abstract_uml.png)
 
 ```php
+<?php
+
 abstract class EtudiantAbstrait
 {
     // Force les classes filles à définir cette méthode
-    abstract protected function getBlahBlah();
-    abstract protected function demarrerUneDiscussion($sujet);
+    abstract public function getBlahBlah();
+    abstract public function demarrerUneDiscussion($sujet);
 
     // méthode commune
     public function parler() {
-        print $this->getValue() . "\n";
+        print $this->getBlahBlah() . "\n";
     }
 }
 
 class EtudiantSIO extends EtudiantAbstrait
 {
-    $option = "SLAM";
+    private $option = "SLAM";
 
-     protected function getBlahBlah() {
-       return "L'informatique c'est cool";
+     public function getBlahBlah() {
+       return "L'informatique c'est cool, je suis : {$this->option}";
      }
 
-     protected function demarrerUneDiscussion($sujet) {
+     public function demarrerUneDiscussion($sujet) {
        return "Je vais vous parler de « {$sujet} »";
     }
 }
 
 class EtudiantSEN extends EtudiantAbstrait
 {
-    $competences = "SOUDER";
+    private $competences = "SOUDER";
 
-     protected function getBlahBlah() {
-       return "L'électronique c'est cool";
+     public function getBlahBlah() {
+       return "L'électronique c'est cool, je connais comment {$this->competences}";
      }
 
-     protected function demarrerUneDiscussion($sujet) {
+     public function demarrerUneDiscussion($sujet) {
        return "Je vais vous parler de « {$sujet} »";
     }
 }
