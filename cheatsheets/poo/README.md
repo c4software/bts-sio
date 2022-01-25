@@ -818,7 +818,7 @@ class EtudiantSIO extends EtudiantAbstrait
        return "L'informatique c'est cool";
      }
 
-     public function demarrerUneDiscussion($sujet) {
+     protected function demarrerUneDiscussion($sujet) {
        return "Je vais vous parler de « {$sujet} »";
     }
 }
@@ -831,7 +831,7 @@ class EtudiantSEN extends EtudiantAbstrait
        return "L'électronique c'est cool";
      }
 
-     public function demarrerUneDiscussion($sujet) {
+     protected function demarrerUneDiscussion($sujet) {
        return "Je vais vous parler de « {$sujet} »";
     }
 }
