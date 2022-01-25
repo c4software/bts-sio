@@ -803,7 +803,7 @@ Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'e
 abstract class EtudiantAbstrait
 {
     // Force les classes filles à définir cette méthode
-    abstract public function getBlahBlah();
+    abstract protected function getBlahBlah();
     abstract public function demarrerUneDiscussion($sujet);
 
     // méthode commune
@@ -816,7 +816,7 @@ class EtudiantSIO extends EtudiantAbstrait
 {
     private $option = "SLAM";
 
-     public function getBlahBlah() {
+     protected function getBlahBlah() {
        return "L'informatique c'est cool, je suis : {$this->option}";
      }
 
@@ -829,7 +829,7 @@ class EtudiantSEN extends EtudiantAbstrait
 {
     private $competences = "SOUDER";
 
-     public function getBlahBlah() {
+     protected function getBlahBlah() {
        return "L'électronique c'est cool, je connais comment {$this->competences}";
      }
 
