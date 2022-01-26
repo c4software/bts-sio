@@ -1000,7 +1000,7 @@ $class1.getBalance(); // 1000
 ```
 
   </CodeGroupItem>
-</CodeGroupItem>
+</CodeGroup>
 
 ### Interfaces ou classes abstraites ?
 
