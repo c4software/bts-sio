@@ -868,12 +868,14 @@ class EtudiantSIO extends EtudiantAbstrait
 {
     private String option = "SLAM";
 
-     protected String getBlahBlah() {
-       return "L'informatique c'est cool, je suis : {$this->option}";
-     }
+    @Override
+    protected String getBlahBlah() {
+      return "L'informatique c'est cool, je suis : {$this->option}";
+    }
 
-     public String demarrerUneDiscussion(String sujet) {
-       return String.format("Moi en SIO, je vais vous parler de « {%s} »", sujet);
+    @Override
+    public String demarrerUneDiscussion(String sujet) {
+      return String.format("Moi en SIO, je vais vous parler de « {%s} »", sujet);
     }
 }
 
@@ -881,12 +883,14 @@ class EtudiantSEN extends EtudiantAbstrait
 {
     private String competences = "SOUDER";
 
-     protected String getBlahBlah() {
-       return "L'électronique c'est cool, je connais comment {$this->competences}";
-     }
+    @Override
+    protected String getBlahBlah() {
+      return "L'électronique c'est cool, je connais comment {$this->competences}";
+    }
 
-     public String demarrerUneDiscussion(String sujet) {
-       return String.format("Je vais vous parler de « {%s} »", sujet);
+    @Override
+    public String demarrerUneDiscussion(String sujet) {
+      return String.format("Je vais vous parler de « {%s} »", sujet);
     }
 }
 
@@ -968,14 +972,17 @@ class CompteEnLigne implements Compte
 {
     private BigInt montant = 0;
 
+    @Override
     public void deposer(BigInt montant){
         this.montant += $montant;
     }
 
+    @Override
     public void retirer(BigInt montant){
         this.montant -= $montant;
     }
 
+    @Override
     public BigInt getBalance() {
         return this.montant;
     }
