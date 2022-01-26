@@ -714,6 +714,8 @@ Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la m�
 
 Mécanisme consistant à rassembler les données et les méthodes au sein d'une structure en cachant l'implémentation de l'objet, c'est-à-dire en empêchant l'accès aux données par un autre moyen que les services proposés.
 
+![L'encapsulation](./res/niveau_encapsulation.jpg)
+
 ::: tip Sécurité ?
 
 Vous avez ici un élément important, la notion de visibilité et de gestion de l'accès aux propriétés est **fondamentale**. L'encapsulation fait partie d'une des raisons pourquoi la POO est à favoriser pour réaliser un développement sécurisé.
@@ -1010,6 +1012,108 @@ Les interfaces et les classes abstraites remplissent un rôle différent :
 ::: tip Un instant !
 
 L'avantage d'une Interface est qu'il est possible pour une classe d'implémenter plusieurs « contrat » (Interface). Alors que dans la plupart des langages, il n'est pas possible d'hériter de plusieurs classes abstraites.
+
+:::
+
+## Redéfinition (Remplacement de méthode)
+
+La redéfinition est la possibilité d’utiliser exactement la même signature pour définir une méthode dans une classe mère et dans une classe fille. Contrairement à la surcharge, la signature (nom et paramètre doivent **être identiques**).
+
+![Concept de redéfinition](./res/overriding_concept.png)
+
+La méthode `move()` remplace donc la définition de celle de la classe mère, et donc son comportement.
+
+::: tip Les méthodes spécialisées
+
+Il est également possible de **spécialiser une méthode**, dans ce cas nous ne remplacerons pas complètement la méthode, nous viendrons la compléter en appelant **la méthode mère** avant notre traitement. Exemple :
+
+```java
+
+class Animal{
+  // Reste de la classe
+  // …
+
+  protected void bruit(){
+    echo "BRUUUUIIIITTTT";
+  }
+
+  // Reste de la classe
+  // …
+}
+
+class Humain extends Animal {
+  // Reste de la classe
+  // …
+
+  @Override
+  protected void bruit(){
+    super.bruit()
+    echo " (Oui mais compréhensible)";
+  }
+
+  // Reste de la classe
+  // …
+
+}
+
+$humain = new Humain();
+$humain->bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
+```
+
+:::
+
+## Polymorphisme
+
+Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la méthode qui correspond au type réel de l’objet.
+
+- Si la classe B hérite de la classe A
+
+  - Classe B "EST-UN" Classe A
+  - Toutes les méthodes de la classe A peuvent donc être appelées sur la classe B.
+
+- Le polymorphisme nous permettra :
+  - Manipuler un objet sans en connaitre le type précis.
+  - Manipulation de liste sans connaître le type des objets.
+
+::: tip Pratique !
+
+Grâce au polymorphisme, nous allons pouvoir créer des `array` (liste, tableau …) avec des objets de types différents. Exemple :
+
+```java
+abstract class MachineVolante {
+    public void fly()
+}
+
+class Mig29 extends MachineVolante {
+    @Override
+    public void fly() {
+        out.println("Start, taxi, fly");
+    }
+
+    public void bombardment() {
+        out.println("Fire missile");
+    }
+}
+
+class Helicoptere extends MachineVolante {
+    @Override
+    public void fly() {
+        out.println("Start vertically, hover, fly");
+    }
+}
+
+// La liste est du type de la classe mère
+List<MachineVolante> machines = new ArrayList<MachineVolante>();
+machines.add(new MachineVolante());
+machines.add(new Mig29());
+machines.add(new Helicoptere());
+machines.add(new Mig29());
+
+// On boucle sans en connaitre le type
+for (MachineVolante m : machines) {
+    m.fly();
+}
+```
 
 :::
 
