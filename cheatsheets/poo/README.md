@@ -797,6 +797,9 @@ Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'e
 
 ![Abstract UML](./res/abstract_uml.png)
 
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
+
 ```php
 <?php
 
@@ -843,6 +846,59 @@ $class1->parler();
 echo $class1->demarrerUneDiscussion('La sécurité') ."\n";
 ```
 
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Java">
+
+```java
+
+abstract class EtudiantAbstrait
+{
+    // Force les classes filles à définir cette méthode
+    abstract protected String getBlahBlah();
+    abstract public String demarrerUneDiscussion(String sujet);
+
+    // méthode commune
+    public void parler() {
+        print this.getBlahBlah();
+    }
+}
+
+class EtudiantSIO extends EtudiantAbstrait
+{
+    private String option = "SLAM";
+
+     protected String getBlahBlah() {
+       return "L'informatique c'est cool, je suis : {$this->option}";
+     }
+
+     public String demarrerUneDiscussion(String sujet) {
+       return String.format("Moi en SIO, je vais vous parler de « {%s} »", sujet);
+    }
+}
+
+class EtudiantSEN extends EtudiantAbstrait
+{
+    private String competences = "SOUDER";
+
+     protected String getBlahBlah() {
+       return "L'électronique c'est cool, je connais comment {$this->competences}";
+     }
+
+     public String demarrerUneDiscussion(String sujet) {
+       return String.format("Je vais vous parler de « {%s} »", sujet);
+    }
+}
+
+EtudiantSIO class1 = new EtudiantSIO();
+class1.parler();
+$class1->demarrerUneDiscussion('La sécurité')
+```
+
+  </CodeGroupItem>
+
+</CodeGroup>
+
 ### Les Interfaces
 
 Une Interface ressemble beaucoup à une classe abstraite. **Sauf que** celle-ci ne possède pas de code. Une Interface définit un comportement qui **devra être** implémenté par la classe fille.
@@ -857,6 +913,9 @@ Les classes filles **implémentent** une interface, une classe fille peut **impl
 - Son « un contrat » que les classes filles devront **implémenter**.
 
 ![UML Interface](./res/interface_uml.png)
+
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
 
 ```php
 // Declaration de l'interface 'Template'
@@ -892,6 +951,47 @@ $class1->getBalance(); // 1400
 $class1->retirer(400);
 $class1->getBalance(); // 1000
 ```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="Java">
+
+```Java
+// Declaration de l'interface 'Template'
+interface Compte
+{
+    public void deposer($montant);
+    public void retirer($montant);
+    public BigInt getBalance();
+}
+
+class CompteEnLigne implements Compte
+{
+    private BigInt montant = 0;
+
+    public void deposer(BigInt montant){
+        this.montant += $montant;
+    }
+
+    public void retirer(BigInt montant){
+        this.montant -= $montant;
+    }
+
+    public BigInt getBalance() {
+        return this.montant;
+    }
+}
+
+
+CompteEnLigne class1 = new CompteEnLigne();
+class1.deposer(1400);
+class1.getBalance(); // 1400
+
+$class1.retirer(400);
+$class1.getBalance(); // 1000
+```
+
+  </CodeGroupItem>
+</CodeGroupItem>
 
 ### Interfaces ou classes abstraites ?
 
