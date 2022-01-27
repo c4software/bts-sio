@@ -206,14 +206,15 @@ Maintenant que nous avons ajouté la configuration, nous devons la déclarer dan
 
 ```js
 import firebaseConfig from "../config/firebase";
-import firebase from "firebase/app";
-import "firebase/database";
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 import Vue from "vue";
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.database();
-
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getDatabase();
 Vue.prototype.$db = db;
+
+export default firebaseApp;
 ```
 
 Comme pour leaflet, ajouter un import dans le fichier `main.js` pour référencer notre « configuration de plugin » :
