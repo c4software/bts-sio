@@ -84,8 +84,17 @@ Firebase comme vous le savez va nous servir de système de base de données. [Le
 Les deux outils / librairies que nous allons utiliser sont disponibles via NPM, nous allons donc les installer / ajouter au projet via les commandes suivantes :
 
 ```bash
-npm install firebase leaflet vue2-leaflet --save
+npm install firebase@7.24.0 leaflet vue2-leaflet --save
 ```
+
+::: danger Firebase 7.24 ?
+
+- Heu ? Nous n'installons pas la dernière version Mr ?
+- Et bien non ! Cette fois-ci nous allons volontairement choisir une version un peu plus ancienne…
+- Pourquoi ?
+- Et bien… À cause d'une librairie que nous utilisons ! Dans ce projet nous utilisons Vuefire 2.0 qui n'est compatible qu'avec Firebase 7.X.
+
+:::
 
 ### Configuration de la dépendance carte
 
@@ -146,7 +155,7 @@ Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre 
 - [Vuefire](https://vuefire.vuejs.org/)
 
 ```bash
-npm install vuefire --save
+npm install vuefire@2.2.5 --save
 ```
 
 ⚠️ Dans une prochaine étape, nous allons configurer Vuefire. Pour l'instant le package est disponible, mais non actif.
@@ -189,12 +198,12 @@ BRAVO ! Votre projet est maintenant capable de « se connecter » avec Firebase 
 
 ### Questions
 
-- Et la sécurité ? À votre avis comment ça fonctionne ?
+- Et la sécurité ? À votre avis, comment ça fonctionne ?
 - Est-il possible de faire autrement ?
 
 ## Activer la Realtime DB
 
-Dans l'interface de Firebase activez la Realtime DB.
+Dans l'interface de Firebase, activez la Realtime DB.
 
 ![Init Firebase](./ressources/init_firebase.png)
 
@@ -202,16 +211,17 @@ Dans l'interface de Firebase activez la Realtime DB.
 
 ## Modification du code pour inclure la configuration Firebase
 
-Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plugin » dans le dossier `src/plugins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant :
+Maintenant que nous avons ajouté la configuration, nous devons la déclarer dans notre code. Comme pour Vue2-Leaflet nous allons ajouter un fichier de « configuration du plugin » dans le dossier, `src/plugins/` ajouter un fichier nommé `firebase.js` avec le contenu suivant :
 
 ```js
 import firebaseConfig from "../config/firebase";
-import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import firebase from "firebase/app";
+import "firebase/database";
 import Vue from "vue";
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getDatabase();
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.database();
+
 Vue.prototype.$db = db;
 
 export default firebaseApp;
@@ -247,7 +257,7 @@ Et dans votre navigateur toujours la même chose à savoir :
 
 ## Création de notre première vue / composant.
 
-Notre projet est maintenant prêt à recevoir son premier `.vue` bien à vous. Toujours dans le but d'organiser son travail nous allons commencer par créer un dossier :
+Notre projet est maintenant prêt à recevoir son premier `.vue` bien à vous. Toujours dans le but d'organiser son travail, nous allons commencer par créer un dossier :
 
 - `src/views/`
 
@@ -298,7 +308,7 @@ export default {
 
 Créer la vue ne déclenche rien, il faut maintenant l'importer. Comme vu en cours, la « base » de notre application est répartie entre deux fichiers :
 
-- le main.js : qui contient les imports de base et la déclaration de notre objet `.vue`.
+- Le main.js : qui contient les imports de base et la déclaration de notre objet `.vue`.
 - l'App.vue : qui contient la « racine » de notre HTML (c'est dans celui-ci que nous allons référencer notre nouvelle vue / composant).
 
 Modifier le `App.vue` par :
@@ -351,7 +361,7 @@ npm run serve
 
 ## Configurer VueFire
 
-Comme pour Vue2-Leaflet et firebase, VueFire nécéssite une déclaration pour être utilisé dans le projet.
+Comme pour Vue2-Leaflet et firebase, VueFire nécessite une déclaration pour être utilisé dans le projet.
 
 - [Lire la documentation](https://vuefire.vuejs.org/).
 - Créer le fichier dans le dossier `plugins`.
@@ -406,7 +416,7 @@ markerList: [];
 - D'où vient `this.$db` ?
 - À quoi correspond le `/markerList/` ?
 
-Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable de disponible `markerList` celle-ci est synchronisée avec votre base de données temps réel (Firebase RealtimeDB).
+Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable de disponible, `markerList` celle-ci est synchronisée avec votre base de données temps réel (Firebase RealtimeDB).
 
 ## Manipuler la base RealtimeDB
 
@@ -447,13 +457,13 @@ this.$firebaseRefs.markerList.child(identifiant).remove();
 
 ## Ajouter un marker
 
-Pour ajouter un marker sur la carte nous allons utiliser la directive `@click` sur l'objet `l-map` :
+Pour ajouter un marker sur la carte, nous allons utiliser la directive `@click` sur l'objet `l-map` :
 
 - Ajouter sur l'objet `<l-map>` la directive suivante `@click="addMarker"`.
 - Ajouter la méthode `addMarker` dans les méthodes de votre objet VueJS `addMarker(position){…}` .
 - À votre avis à quoi doit ressembler le code ?
 - Ajouter un `console.log(position)` avez-vous une propriété `latlng` ?
-- Remplacer le `console.log` par le bon push pour ajouter dans la base de données la position.
+- Remplacez-le `console.log` par le bon push pour ajouter dans la base de données la position.
 
 <Reveal text="Voir la solution">
 
@@ -501,6 +511,16 @@ Le marker est à mettre dans le `l-map`.
 ></l-marker>
 ```
 
+::: tip Nous avons
+
+Nous avons donc ici :
+
+- Un élément que nous allons répéter autant de fois que nous avons d'enregistrement en base de données.
+- `:key` qui permet d'optimiser les affichages.
+- `:lat-lng` qui positionne le marker (le picto) à l'endroit du click.
+
+:::
+
 </Reveal>
 
 ## Tester
@@ -521,13 +541,17 @@ removeMarker(markerKey) {
 
 - Ajouter la directive sur `l-marker` :
 
-<Reveal text="Voir la solution">
-
 ```html
 @click="() => removeMarker(marker['.key'])"
 ```
 
-</Reveal>
+::: tip Qu'avons nous ici ?
+
+`() => removeMarker(marker['.key'])` Représente une fonction qui sera appelée au click. Cette fonction déclenchera la suppression du marker. Le `marker['.key']` est l'identifiant de l'élément que l'on souhaite supprimer.
+
+le `…['.key']` est automatiquement ajouté par la librairie `Vuefire`.
+
+:::
 
 ## Tester
 
@@ -541,7 +565,7 @@ Accéder à plusieurs au même projet (via votre IP) pour tester la synchronisat
 
 Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notre carte. Actuellement la carte est centrée sur Angers… C'est pratique… Si on se trouve à Angers… dans tous les autres cas, ce n’est pas forcément adapté. Nous allons donc utiliser l'API `geolocation` de notre navigateur.
 
-Celle-ci permet de localiser une personne en fonction de sa connexion internet (ou GPS / Réseau téléphonique si disponible)
+Celle-ci permet de localiser une personne en fonction de sa connexion Internet (ou GPS / Réseau téléphonique si disponible)
 
 - [Documentation de l'API geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 - Ajouter une méthode dans le code dans le composant `map.vue`.
@@ -601,7 +625,7 @@ La carte est basique… beaucoup trop ! Et si nous placions des markers différe
 
 ### Modification du Marker
 
-En utilisant « Une Dialog » de Bootstrap ajouter le code nécéssaire à la modification du Marker :
+En utilisant « Une Dialog » de Bootstrap ajouter le code nécessaire à la modification du Marker :
 
 - Un click sur un Marker permet de choisis une nouvelle icône.
 - Un bouton « valider » enregistre la modification.
