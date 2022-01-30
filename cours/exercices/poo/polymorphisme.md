@@ -1,5 +1,5 @@
 ---
-description: Dans cette mise en pratique, nous allons voir comment l'intérêt du Polymorphisme. Le polymorphisme est le fait qu'une classe mère peut prendre plusieurs formes (poly : plusieurs, morphisme : forme).
+description: Dans cette mise en pratique, nous allons voir comment l'intérêt du Polymorphisme. Le polymorphisme est le fait qu'une classe mère peut prendre plusieurs formes (poly = plusieurs, morphisme = forme).
 ---
 
 # Le Polymorphisme : Mise en pratique
