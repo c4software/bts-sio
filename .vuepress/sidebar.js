@@ -57,6 +57,13 @@ module.exports = [
             ]
           },
           {
+            text: "Redéfinition et Polymorphisme", collapsible: true,
+            children: [
+              "/cours/exercices/poo/redefinition",
+              "/cours/exercices/poo/polymorphisme"
+            ]
+          },
+          {
             text: "Aide mémoire",
             collapsible: true,
             children: [
