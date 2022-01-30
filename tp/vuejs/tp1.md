@@ -45,7 +45,7 @@ Dans ce TP nous allons parcourir les différentes étapes de la migration de l�
 
 ## Création des API
 
-Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur va être réalisée en PHP, mais il est possible de la faire dans n’importe quel langage. En entreprise vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
+Quand on réalise une application « moderne », il est très difficile d’échapper au client-serveur. Dans notre cas la partie serveur va être réalisée en PHP, mais il est possible de la faire dans n’importe quel langage. En entreprise, vous serez souvent confronté à du PHP/Java/Python/RoR. Mais la liste est infinie. Il est même possible de faire des API en Bash… Bref le choix est infini.
 
 ### Les API
 
@@ -151,7 +151,7 @@ Paramètre d’entrée :
 
 ### L’API de suppression : suppression.php
 
-L’API « suppression » va permettre la suppression de la « tâche » passée en paramètre, **_uniquement_** les tâches dont le paramètre `termine == true` peuvent être terminée, dans tous les cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
+L’API « suppression » va permettre la suppression de la « tâche » passée en paramètre, **_uniquement_** les tâches dont le paramètre `termine == true` peuvent être terminé, dans tous les cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
 
 Contraintes :
 
@@ -352,7 +352,7 @@ fetch("api/liste.php", { method: "GET", credentials: "same-origin" })
   });
 ```
 
-- Initialiser la variable taches dans l’objet VueJS, Exemple :
+- Initialisez la variable tâches dans l’objet VueJS, Exemple :
 
 ```javascript
 var app = new Vue({
@@ -599,11 +599,11 @@ Vous n'avez certainement pas mis les messages en cas « d'erreur » comme indiqu
 - En cas d'absence de texte au moment de la validation du formulaire.
 - En cas d'erreur de récupération des TODO par l'API.
 
-Pour ça vous pouvez utiliser [librairie Sweetalert](https://sweetalert.js.org/guides/#cdn).
+Pour ça vous pouvez utiliser [la librairie Sweetalert](https://sweetalert.js.org/guides/#cdn).
 
 ### Ajouter des confirmations
 
-Ajout des confirmations avant les actions « marquer comme terminé » et l’action suppression.
+Ajout des confirmations avant les actions « marquer comme terminé » et l’action de suppression.
 
 ### Utiliser l'API de partage
 
@@ -631,7 +631,7 @@ var app = new Vue({
   […]
 ```
 
-Une fois fait, vous avez une variable `isShare` qui sera `True` Ou `False` en fonction du support du navigateur. Maintenant que le booléen est disponible vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
+Une fois fait, vous avez une variable `isShare` qui sera `True` Ou `False` en fonction du support du navigateur. Maintenant que le booléen est disponible, vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
 
 ```javascript
 […]

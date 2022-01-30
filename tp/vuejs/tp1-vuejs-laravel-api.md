@@ -65,7 +65,7 @@ Avant de commencer la partie code, voilà la liste des `Routes` -> `Méthode` n�
 
 ##### La liste
 
-Dans le fichier `app/Http/Controllers/api.php` ajouter une méthode nommée `list`. Celle-ci doit contenir le code suivant :
+Dans le fichier, `app/Http/Controllers/api.php` ajoutez une méthode nommée `list`. Celle-ci doit contenir le code suivant :
 
 ```php
     return response()->json(Todos::all());
@@ -138,13 +138,13 @@ class api extends Controller
 
 </Reveal>
 
-✋ Je vous laisse écrire le code des méthodes seul, rappel il est presque identique à celui du premier TP.
+✋ Je vous laisse écrire le code des méthodes seul, rappel, il est presque identique à celui du premier TP.
 
 ##### Les routes
 
-Le code étant « finalisé ». Il faut maintenant indiquer à Laravel les routes (chemin / url) d'accès aux différentes méthodes.
+Le code étant « finalisé ». Il faut maintenant indiquer à Laravel les routes (chemin / URL) d'accès aux différentes méthodes.
 
-Dans le fichier `routes/api.php` ajouter le contenu suivant :
+Dans le fichier, `routes/api.php` ajoutez le contenu suivant :
 
 ```php
 Route::get('/', "api@list")->name("api.list");
@@ -190,7 +190,7 @@ ou en téléchargeant la librairie :
 ### Questions
 
 - Qu'est-ce qu'un CDN ?
-- À votre avis pourquoi n'avons nous pas utilisé npm et la gestion des dépendances de Laravel ?
+- À votre avis pourquoi n'avons-nous pas utilisé npm et la gestion des dépendances de Laravel ?
 - Quels sont les dangers du CDN ?
 
 ### Création d'un nouveau template
@@ -251,7 +251,7 @@ public function homevue(){
 
 - Démarrer votre serveur de test (`php artisan serve`).
 - Accéder à la page [http://127.0.0.1:8000/vue](http://127.0.0.1:8000/vue)
-- Normalement le formulaire d'ajout s'affiche… Rien dans la liste ? Pas de panique le code n'est pas encore présent.
+- Normalement le formulaire d'ajout s'affiche… Rien dans la liste ? Pas de panique, le code n'est pas encore présent.
 
 ### Liste des todos
 
@@ -276,7 +276,7 @@ Même si pour l'instant nous n'avons pas encore fait le code pour appeler les AP
 
 - Quels sont les éléments spécifiques à VueJS ?
 
-🔥 Tester à nouveau, votre liste doit s'afficher… Mais pas de la façon attendue… C'est normal, nous devons maintenant écrire le code VueJS correspondant à votre application (à savoir Liste, Ajout, Marquer comme terminé, et Supprimer).
+🔥 Tester à nouveau, votre liste doit s'afficher… Mais pas de la façon attendue… C'est normal, nous devons maintenant écrire le code VueJS correspondant à votre application (à savoir Liste, Ajout, marquer comme terminé, et supprimer).
 
 ### @ ? Hey !
 
@@ -329,13 +329,13 @@ fetch("api/", { method: "GET", credentials: "same-origin" })
 
 ⚠️ Que veut dire `credentials: 'same-origin'`?
 
-Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant `credentials: 'same-origin'`. Si vous ne le faites pas, votre `$_SESSION` ne sera pas sauvegardée ⚠️
+Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant `credentials: 'same-origin'`. Si vous ne le faites pas, votre `$_SESSION` ne sera pas sauvegardée ⚠️.
 
 #### Comment tester
 
 Pour valider le bon fonctionnement, nous allons utiliser la « Console développeur » de votre navigateur.
 
-Fetch est une librairie très complète, pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch).
+Fetch est une librairie très complète, pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc.)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch).
 
 Tester de récupérer vos « todos » depuis votre console.
 
@@ -345,7 +345,7 @@ Maintenant que nos API sont terminées et que notre appel via Fetch fonctionne, 
 
 Nous allons utiliser massivement la gestion d'évènement de VueJS.
 
-Pour rappel n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png)).
+Pour rappel, n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png)).
 
 ### La liste
 
@@ -359,7 +359,7 @@ Complexe ? Pas tant que ça… Vous allez voir que c'est beaucoup plus simple qu
 
 ## Structure de base
 
-Créer un nouveau fichier nommé `main.js`. Ce fichier doit être créé dans `public/js`. Une fois créé nous allons y ajouter le minimum pour que votre application fonctionne :
+Créer un nouveau fichier nommé `main.js`. Ce fichier doit être créé dans `public/js`. Une fois créé, nous allons y ajouter le minimum pour que votre application fonctionne :
 
 ```js
 var app = new Vue({
@@ -394,7 +394,7 @@ Voilà la base de notre objet VueJS.
 
 ### Ajouter votre script
 
-Pour ajouter votre script nous allons faire simple, nous allons « juste » l'ajouter à la fin de notre template `homevue`. Éditer le fichier `homevue.blade.php` pour y ajouter la balise `script` suivante juste avant `@endsection` :
+Pour ajouter votre script, nous allons faire simple, nous allons « juste » l'ajouter à la fin de notre template `homevue`. Éditer le fichier `homevue.blade.php` pour y ajouter la balise `script` suivante juste avant `@endsection` :
 
 ```html
 <script type="text/JavaScript" src="{{ asset('js/main.js') }}"></script>
@@ -415,7 +415,7 @@ Pas de liste de todo dans votre page ? C'est normal ! Nous allons maintenant ajo
 
 Maintenant que nous avons la base de notre application, nous allons pouvoir compléter les « trous ». La première méthode à faire est la récupération de la liste.
 
-Cette méthode est `list()`, pour l'instant elle ne comporte qu'un console.log. Nous allons la compléter pour ajouter un appel Ajax avec la méthode Fetch comme vu précédemment.
+Cette méthode est `list()`, pour l'instant, elle ne comporte qu'un console.log. Nous allons la compléter pour ajouter un appel Ajax avec la méthode Fetch comme vu précédemment.
 
 Les étapes vont être les suivantes :
 
@@ -425,7 +425,7 @@ Les étapes vont être les suivantes :
 
 1/ Appel réseau
 
-Nous allons donc devoir faire un appel réseau vers l'url `api/`. L'appel est le même que le code précédemment testé, pour rappel :
+Nous allons donc devoir faire un appel réseau vers l'URL `api/`. L'appel est le même que le code précédemment testé, pour rappel :
 
 ```js
 fetch("api/", { method: "GET", credentials: "same-origin" })
@@ -459,7 +459,7 @@ Maintenant que notre liste est correctement construite, nous allons pouvoir fair
 
 ![Console.log Ajout](./ressources/consolelog.ajout.png)
 
-Bien ! Maintenant que votre `console.log` s'affiche nous allons pouvoir faire la partie appel Ajax. Pour rappel votre appel doit être du type `POST`, nous allons donc devoir écrire un appel Ajax / Fetch également de type POST :
+Bien ! Maintenant que votre `console.log` s'affiche, nous allons pouvoir faire la partie appel Ajax. Pour rappel votre appel doit être du type `POST`, nous allons donc devoir écrire un appel Ajax / Fetch également de type POST :
 
 ```js
 let formData = new FormData();
@@ -610,7 +610,7 @@ Afficher des messages d'erreurs en cas de `catch` lors des appels réseau.
 
 ### Partager les TODOS au monde !
 
-Depuis quelques jours Chrome propose une nouvelle API nommée « Web Share Api ». Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités native du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est disponible via :
+Depuis quelques jours, Chrome propose une nouvelle API nommée « Web Share Api ». Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités natives du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est disponible via :
 
 ```JavaScript
 if (navigator.share) {
@@ -619,7 +619,7 @@ if (navigator.share) {
 
 [Voir le support de Share](https://caniuse.com/#search=Web%20Share%20Api)
 
-Mais comme nous sommes avec VueJS nous allons gérer ça avec le MVVM (Modèle Vue, Vue-Modèle), ça va nous permettre d’injecter une variable à la création de l’objet `app` pour connaitre si le partage est disponible. Exemple :
+Mais comme nous sommes avec VueJS, nous allons gérer ça avec le MVVM (Modèle Vue, Vue-Modèle), ça va nous permettre d’injecter une variable à la création de l’objet `app` pour connaitre si le partage est disponible. Exemple :
 
 ```javascript
 var app = new Vue({

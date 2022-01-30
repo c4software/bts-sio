@@ -89,7 +89,7 @@ new Vue({
 });
 ```
 
-Vous venez de déclarer une nouvelle méthode, celle-ci ce nomme `action`, celle-ci affiche « Bravo ». Il faut donc maintenant l'appeler…
+Vous venez de déclarer une nouvelle méthode, celle-ci se nomme `action`, celle-ci affiche « Bravo ». Il faut donc maintenant l'appeler…
 
 En VueJS, c'est simple ! Il vous suffit d'ajouter _dans_ `<div id="app"></div>` un bouton. Après modification votre code doit ressembler à :
 
@@ -105,9 +105,9 @@ En VueJS, c'est simple ! Il vous suffit d'ajouter _dans_ `<div id="app"></div>` 
 
 ## Afficher une liste
 
-Un bouton c'est bien, mais une liste c'est mieux non ? Vous allez voir qu'afficher une liste c'est aussi simple qu'un bonjour 👋. Comme vu ensemble en cours nous allons :
+Un bouton c'est bien, mais une liste c'est mieux non ? Vous allez voir qu'afficher une liste c'est aussi simple qu'un bonjour 👋. Comme vu ensemble en cours, nous allons :
 
-- Déclarer les `data`.
+- Déclarez-les `data`.
 - Faire un `v-for` dans le code.
 
 ### Les data
@@ -199,14 +199,14 @@ Un prompt c'est « pas très beau » non ? Passer par un input HTML serait quand
 
 ☝️ Quelques explications :
 
-- `@keyup.enter` permet de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
+- `@keyup.enter` Permets de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
 - `ref` permet de déclarer une référence vers l'élément HTML, celui-ci sera ensuite disponible par `$refs['input']`
 
 ## Et via un input 2 ?
 
 La première solution est pas trop mal, mais, utiliser les data est serait certainement une meilleure idée. Autre solution, mais tout aussi simple (et certainement bien meilleur).
 
-- Déclarer une nouvelle variable dans les `data`, exemple, dans mon cas la variable est `saisie` :
+- Déclarer une nouvelle variable dans les `data`, par exemple, dans mon cas la variable est `saisie` :
 
 ```js
 data(){
@@ -225,8 +225,8 @@ data(){
 
 ☝️ Quelques explications :
 
-- `v-model` permet de connecter la variable saisie à votre input.
-- `@keyup.enter` permet de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
+- `v-model` Permets de connecter la variable saisie à votre input.
+- `@keyup.enter` Permets de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
 
 ## L'input n'est pas vidé ?
 

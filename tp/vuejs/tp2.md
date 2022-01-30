@@ -49,7 +49,7 @@ Une fois installé, vous êtes prêt, votre PC est prêt à accueillir l’outil
 
 Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
 
-Dans un terminal lancer la commande suivante dans le `Node.js Command Prompt` :
+Dans un terminal, lancer la commande suivante dans le `Node.js Command Prompt` :
 
 ```bash
 npm install -g @vue/cli
@@ -65,17 +65,17 @@ vue create cliff-height-timer
 
 ⚠️ Attention, la commande crée le projet dans le dossier courant ! ⚠️
 
-Le Vue-Cli est interactif il va vous poser des questions permettant de configurer votre projet :
+Le Vue-Cli est interactif, il va vous poser des questions permettant de configurer votre projet :
 
 ![Question vue-cli](./vuecli-init.png)
 
-Voilà notre projet est maintenant prêt. Place à la suite.
+Voilà, notre projet est maintenant prêt. Place à la suite.
 
 ## Installation des librairies (du projet)
 
 Le projet que vous avez initialisé est « prêt pour être utilisé ».
 
-Si vous changez d'ordinateur, il faudra réinstaller les librairies NodeJS. Cette étape n’est à faire qu’une seule fois sur votre poste, en effet en général on ne commit pas les fichiers « librairies » qui sont présents dans le futur dossier `node_module` pour la simple et bonne raison que celui-ci est gros et rempli de pleins de petits fichiers (et qu’en plus ça se retélécharge facilement depuis Internet).
+Si vous changez d'ordinateur, il faudra réinstaller les librairies NodeJS. Cette étape n’est à faire qu’une seule fois sur votre poste, en effet en général on ne commit pas les fichiers « librairies » qui sont présents dans le futur dossier `node_module` pour la simple et bonne raison que celui-ci est gros et rempli de plein de petits fichiers (et qu’en plus ça se retélécharge facilement depuis Internet).
 
 Pour l’installation la procédure est la suivante :
 
@@ -102,7 +102,7 @@ Une fois cette commande lancée vous pouvez ouvrir un onglet dans votre navigate
 
 ## Le serveur de développement
 
-Comme vous avez pu le constater dans votre invite de commande (terminal), vous avez un serveur qui tourne. Ce serveur est un peu particulier, il n’est utilisé que dans la phase de développement il incorpore plusieurs outils permettant de simplifier la création d’application JavaScript :
+Comme vous avez pu le constater dans votre invite de commande (terminal), vous avez un serveur qui tourne. Ce serveur est un peu particulier, il n’est utilisé que dans la phase de développement, il incorpore plusieurs outils permettant de simplifier la création d’application JavaScript :
 
 - Redémarrage à chaud, comprendre ici, qu’il va « patcher » votre code pour intégrer vos dernières modifications sans que vous n’ayez rien à faire (GÉNIAL !)
 - Lint, analyse du code pour vous remonter les erreurs avant l’exécution.
@@ -115,13 +115,13 @@ Et si vous avez les outils sur votre machine il peut également :
 
 ## Le code source
 
-Les sources de l’application sont dans le dossier `src/` il contient l’ensemble du code source de votre application. Pour l’instant nous avons le code fourni par VueJS, au fur et à mesure des futures étapes nous allons le modifier pour le transformer dans l’application « Cliff Height Timer ». Avant de « presque » tout remplacer, nous allons modifier celui fourni pour nous familiariser avec « le serveur de développement ».
+Les sources de l’application sont dans le dossier `src/` il contient l’ensemble du code source de votre application. Pour l’instant nous avons le code fourni par VueJS, au fur et à mesure des futures étapes, nous allons le modifier pour le transformer dans l’application « Cliff Height Timer ». Avant de « presque » tout remplacer, nous allons modifier celui fourni pour nous familiariser avec « le serveur de développement ».
 
 ### L’IDE
 
 Pour faire du VueJS le mieux, c’est d’avoir un bon IDE. Au revoir, Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit 💰).
 
-Pour ceux qui n’ont pas de licence je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plug-in `Vetur` pour pouvoir éditer les `.vue` dans de bonnes conditions.
+Pour ceux qui n’ont pas de licence, je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plug-in `Vetur` pour pouvoir éditer les `.vue` dans de bonnes conditions.
 
 ### Installation des plug-ins
 
@@ -312,9 +312,9 @@ export default {
 
 ### Modifier la « home »
 
-Avant d'aller plus loin, modifier le fichier `src/views/Home.vue` remplacer le contenu par ce que vous souhaitez.
+Avant d'aller plus loin, modifier le fichier, `src/views/Home.vue` remplacez le contenu par ce que vous souhaitez.
 
-N'oublier pas de retirer l'import qui est maintenant inutile dans le fichier `src/views/Home.vue`
+N'oubliez pas de retirer l'import qui est maintenant inutile dans le fichier `src/views/Home.vue`
 
 ### Voir le changement
 
@@ -326,7 +326,7 @@ npm run serve
 
 ## Le Routeur
 
-Votre application est maintenant fonctionnelle cependant comme vous le constatez, vous avez pour l’instant qu’une « seule page »… Enfin qu'une seule d'accessible !
+Votre application est maintenant fonctionnelle cependant comme vous le constatez, vous n’avez pour l’instant qu’une « seule page »… Enfin qu'une seule d'accessible !
 
 Allons faire un tour dans le fichier `router/index.js`. Celui-ci contient déjà quelques routes :
 
@@ -356,7 +356,7 @@ export default new Router({
 });
 ```
 
-Modifier le, et **retirer** tout la partie `/about` :
+Modifiez-le, et **retirez** toute la partie `/about` :
 
 ```js
 {
@@ -369,7 +369,7 @@ Modifier le, et **retirer** tout la partie `/about` :
 
 ### Déclarer du texte dans Vue-i18n
 
-Au début du TP nous avons installé Vue-i18n, nous allons maintenant configurer nos premiers textes. Dans le dossier `src/locales/` vous avez deux fichiers `json` :
+Au début du TP, nous avons installé Vue-i18n, nous allons maintenant configurer nos premiers textes. Dans le dossier `src/locales/` vous avez deux fichiers `json` :
 
 - `en.json` : Les textes anglais.
 - `fr.json` : Les textes français.
@@ -384,7 +384,7 @@ Au début du TP nous avons installé Vue-i18n, nous allons maintenant configurer
 
 ### Déclarer un nouveau texte
 
-Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier `/components/MyToolbar.vue`
+Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier. `/components/MyToolbar.vue`
 
 Remplacer le texte `Cliff height timer` par :
 
@@ -396,7 +396,7 @@ Le titre doit maintenant s’afficher. Et c’est normal la clé « title » est
 
 ### Tester
 
-Vérifier en relançant votre application que le titre à bien été modifié :
+Vérifier en relançant votre application que le titre a bien été modifié :
 
 ```bash
 npm run serve
@@ -419,7 +419,7 @@ Pour faire cette vue, vous allez avoir besoin des éléments suivants :
 - [FAB](https://vuetifyjs.com/components/floating-action-buttons)
 - [Les variables computed](https://vuejs.org/v2/guide/computed.html)
 - [v-bind:class](https://vuejs.org/v2/guide/class-and-style.html)
-- [Afficher une variables](https://vuejs.org/v2/guide/syntax.html)
+- [Afficher une variable](https://vuejs.org/v2/guide/syntax.html)
 - [Centrer verticalement](https://gist.github.com/c4software/b9fe4cd06e99d3bff16a09260b03e149)
 
 Étape de la création :
@@ -550,7 +550,7 @@ npm run serve
 
 Voilà le rendu de « la page » que vous devez réaliser :
 
-![Vue À Propos](./ressources/apropos.png)
+![Vue à propos](./ressources/apropos.png)
 
 - Créer le fichier `src/views/About.vue`
 
@@ -628,7 +628,7 @@ export default {
 
 - Déclarer les différents textes dans les fichiers `fr.json` et `en.json`.
 
-Maintenant que notre composant est terminé, nous devons l’utiliser. Nous allons l’utiliser dans le premier composant que nous avons écrit `src/components/MyToolbar.vue`, modifier le pour intégrer les modifications suivantes :
+Maintenant que notre composant est terminé, nous devons l’utiliser. Nous allons l’utiliser dans le premier composant que nous avons écrit `src/components/MyToolbar.vue`, modifiez-le pour intégrer les modifications suivantes :
 
 ```javascript
 <template>
@@ -650,7 +650,7 @@ export default {
 […]
 ```
 
-🤓 Nous venons de déclarer un nouveau components dans notre Vue. Simple non ? Il suffit d'importer le composant et de l'ajouter dans l'attribut `components` de notre objet.
+🤓 Nous venons de déclarer un nouveau composant dans notre Vue. Simple, non ? Il suffit d'importer le composant et de l'ajouter dans l'attribut `components` de notre objet.
 
 - Tester votre application :
 
@@ -716,7 +716,7 @@ Ajouter une nouvelle page, celle-ci permettra d'ajouter une entrée manuellement
 
 ## Distribuer vos sources
 
-Voilà votre application est maintenant terminée bravo 👏👏. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour ça rien de plus simple il vous suffit de faire
+Voilà votre application est maintenant terminée, bravo 👏👏. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour ça rien de plus simple il vous suffit de faire
 
 ```bash
 npm run build
@@ -730,7 +730,7 @@ Le résultat de la compilation est dans le dossier `dist/`
 
 ## Ajouter un manifest
 
-Nous allons maintenant ajouter la dernière pierre à notre édifice, le fichier Manifest. Ce fichier décrit le fonctionnement du site Web en tant « qu’application », une fois que ce fichier est en place votre navigateur le lira et adaptera son fonctionnement pour qu’il se rapproche d’une application (comme une APK).
+Nous allons maintenant ajouter la dernière pierre à notre édifice, le fichier Manifest. Ce fichier décrit le fonctionnement du site Web en tant « qu’application », une fois que ce fichier est en place, votre navigateur le lira et adaptera son fonctionnement pour qu’il se rapproche d’une application (comme une APK).
 
 Pour ça nous allons utiliser deux sites :
 
@@ -761,7 +761,7 @@ npm run build
 
 ### Ajouter Firebase
 
-Dans le précédent TP nous avons ajouté Firebase pour synchroniser les éléments sur une carte. C'était un exemple très visuel, mais il est évidemment possible de faire bien plus.
+Dans le précédent TP, nous avons ajouté Firebase pour synchroniser les éléments sur une carte. C'était un exemple très visuel, mais il est évidemment possible de faire bien plus.
 
 Nous allons nous servir de Firebase dans ce projet pour synchroniser « l'historique » avec l'ensemble des utilisateurs. Je vous propose donc de vous inspirer du précédent TP, et d'ajouter les dépendances :
 

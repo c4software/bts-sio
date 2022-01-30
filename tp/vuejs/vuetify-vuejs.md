@@ -33,13 +33,13 @@ Une fois installé, vous êtes prêt, vous allez pouvoir installer l’outil Vue
 
 Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
 
-Pour ceux sous Windows lancer `Node.js Command Prompt` :
+Pour ceux sous Windows lancez `Node.js Command Prompt` :
 
 ```sh
 npm install -g @vue/cli
 ```
 
-Pour ceux sous Linux / OSX lancer dans un terminal :
+Pour ceux sous Linux / OSX, lancer dans un terminal :
 
 ```sh
 npm install -g @vue/cli
@@ -49,7 +49,7 @@ Vous venez d'installer vue-cli. Vous avez maintenant à votre disposition sur vo
 
 ## Création du projet
 
-Créer un nouveau projet est très simple il suffit de saisir la commande suivante :
+Créer un nouveau projet est très simple, il suffit de saisir la commande suivante :
 
 ```sh
 vue create le-nom-du-projet
@@ -65,9 +65,9 @@ Votre ordinateur va vous poser quelques questions :
 
 ![vuecli](./ressources/vuecli-create.png)
 
-Pour l'instant, nous allons rester sur VueJS 2.0 comme évoqué en cours. Valider votre choix avec la trouche entrée.
+Pour l'instant, nous allons rester sur VueJS 2.0 comme évoqué en cours. Valider votre choix avec la touche entrée.
 
-Vue-CLI est entrain d'installer l'ensemble des dépendances nécessaire au bon fonctionnement de votre application. Cette étape va prendre quelques secondes / minutes.
+VueCLI est en train d'installer l'ensemble des dépendances nécessaire au bon fonctionnement de votre application. Cette étape va prendre quelques secondes / minutes.
 
 ## Tester
 
@@ -133,7 +133,7 @@ Le but de ce TP est de découvrir le fonctionnement de VueJS et de Vuetify, nous
 
 ## Modifier le App.vue
 
-_Remplacer_ le contenu du fichier `App.vue` par le code code suivante :
+_Remplacer_ le contenu du fichier `App.vue` par le code suivant :
 
 ```html
 <template>
@@ -190,7 +190,7 @@ Dans la balise `v-main` nous allons ajouter :
 
 Le composant Card est un conteneur, il va nous permettre d'ajouter d'autres éléments dedans. Il est utile pour symboliser à votre utilisateur les éléments importants.
 
-[Toujours en utilisant la documentation](https://vuetifyjs.com/en/components/cards/#misc) ajouter le code suivant :
+[Toujours en utilisant la documentation,](https://vuetifyjs.com/en/components/cards/#misc) ajoutez le code suivant :
 
 ```html
 <v-card>
@@ -210,7 +210,7 @@ Vérifier que votre `card` s'affiche correctement.
 
 Le composant « Liste » va nous permettre d'afficher du contenu « sous forme de liste »… Incroyable non ?
 
-Comme dans les précédents exemples pour réaliser le code _vous devez_ [utiliser la documentation](https://vuetifyjs.com/en/components/lists/#usage).
+Comme dans les précédents exemples pour réaliser le code, _vous devez_ [utiliser la documentation](https://vuetifyjs.com/en/components/lists/#usage).
 
 Ajouter _dans_ la balise `v-card-text` le code suivant :
 
@@ -235,7 +235,7 @@ Nous allons donc remédier à ça en créant votre premier composant.
 
 ### Création du composant
 
-Première étape créer le fichier `.vue` de _votre_ composant.
+Première étape, créer le fichier `.vue` de _votre_ composant.
 
 - Créer un nouveau fichier nommé `Home.vue` dans le dossier `components`.
 
@@ -263,7 +263,7 @@ N'oubliez pas de prendre également les `data` associées à votre vue.
 
 ### Utiliser votre composant
 
-Pour utiliser un composant vous devez réaliser trois opérations :
+Pour utiliser un composant, vous devez réaliser trois opérations :
 
 - Le déclarer dans les imports.
 - Le déclarer dans la page où vous souhaitez l'utiliser.
