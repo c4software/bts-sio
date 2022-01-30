@@ -90,7 +90,8 @@ Identifiez dans l'UML le nombre de méthodes redéfini.
 - La méthode `Vendre` retourne :
   - Le prix - (age \* 100).
   - Pour un Mac ARM : Le prix - (age \* 50).
-    :::
+
+:::
 
 ::: tip Question 3
 
