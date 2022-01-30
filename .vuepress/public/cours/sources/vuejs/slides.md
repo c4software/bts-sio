@@ -35,7 +35,7 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 
 ---
 
-### Concretement une PWA c’est quoi
+### Concrètement une PWA c’est quoi
 
 ![Question](./img/question.gif)
 
@@ -48,7 +48,7 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 - Toujours à jour
 - Sûre (HTTPS)
 - Découvrable et identifié comme application grâce au fichier manifest
-- Notifications, envoyer de l’informations
+- Notifications, envoyer de l’information
 - Installable
 - Partageable (oui, c’est « juste » un lien)
 
@@ -74,14 +74,14 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 
 Attention au support des navigateurs
 
-- [Can I Use : Connaitre le support d’une fonctionnalitée](https://caniuse.com)
+- [Can I Use : Connaitre le support d’une fonctionnalité](https://caniuse.com)
 - [MDM Webdoc](https://developer.mozilla.org/)
 
 ---
 
-### VueJS, pourquoi faire…
+### VueJS, pour quoi faire…
 
-Faire des PWA simplement (il y en a d'autres bien évidement, en connaissez-vous ?)
+Faire des PWA simplement (il y en a d'autres bien évidemment, en connaissez-vous ?)
 
 ---
 
@@ -96,10 +96,10 @@ Faire des PWA simplement (il y en a d'autres bien évidement, en connaissez-vous
 ### Historique
 
 - Création : **2013**
-- Première version « stable » **Fevrier 2014**
+- Première version « stable » **février 2014**
 - **V1.0** Octobre 2015
-- La version **3** arrive. Stable mais reste en version `@next`.
-- La version **2** toujours distribué sur les CDN.
+- La version **3** arrive. Stable, mais reste en version `@next`.
+- La version **2** toujours distribuée sur les CDN.
 
 ---
 
@@ -109,8 +109,8 @@ Et pas ReactJS ou Angular…
 
 - VueJS est « plus simple »
 - Le site de VueJS est plus clair ?
-- La fondation Apache ne veut pas des projets ReactJS ([C’est un signe…](https://www.theregister.co.uk/2017/07/17/apache_says_no_to_facebook_code_libraries/))
-- Mais… Facebook à annoncer un changement dans les licences (très récemment)
+- La fondation Apache ne veut pas des projets ReactJS ([c’est un signe…](https://www.theregister.co.uk/2017/07/17/apache_says_no_to_facebook_code_libraries/))
+- Mais… Facebook a annoncé un changement dans les licences (très récemment)
 
 ---
 
@@ -195,9 +195,9 @@ var vm = new Vue({
 
 ---
 
-### Les directives (Dans le template)
+### Les directives (dans le template)
 
-Les directives sont des attributs html propre à VueJS
+Les directives sont des attributs HTML propres à VueJS
 
 - v-on (ou plus simplement `@`)
 - v-bind
@@ -213,7 +213,7 @@ Les directives sont des attributs html propre à VueJS
 
 ### Les méthodes
 
-Code utilisable dans votre objets. « Votre code », accessible via le `this` :
+Code utilisable dans votre objet. « Votre code », accessible via le `this` :
 
 ```js
 var vm = new Vue({
@@ -289,7 +289,7 @@ Exemple d'objet :
 
 ---
 
-### À votre avis comment doit-être la structure de la données ?
+### À votre avis, comment doit-être la structure de la donnée ?
 
 ---
 
@@ -305,7 +305,7 @@ data: {
 
 ---
 
-### Les évènements HTML / Les touches de modifications
+### Les évènements HTML / les touches de modifications
 
 ```html
 <!-- Arrêt de la propagation de l’évènement -->
@@ -345,7 +345,7 @@ var vm = new Vue({
 
 ---
 
-## Etc…
+## Etc.
 
 VueJS c'est simple et très complet. La suite en pratique et sur [le site de VueJS](https://vuejs.org/v2/guide/)
 
@@ -373,7 +373,7 @@ VueJS c'est simple et très complet. La suite en pratique et sur [le site de Vue
 
 ### Créer une page Web comme… une application
 
-- Pour vous, qu'est-ce que cela veux dire ?
+- Pour vous, qu'est-ce que cela veut dire ?
 
 ---
 
@@ -381,7 +381,7 @@ On est vraiment loin d’une page Web dans la conception
 
 - Gestion avec des imports
 - Gestion des dépendances
-- Similaire à une gestion classique (Comme Java, .Net…)
+- Similaire à une gestion classique (comme Java, .net…)
 
 ---
 
@@ -417,7 +417,7 @@ On est vraiment loin d’une page Web dans la conception
 
 ### Puissant car …
 
-Un composant ce n'est pas que du javascript.
+Un composant ce n'est pas que du JavaScript.
 
 ```html
 <template> […] </template>
@@ -454,7 +454,7 @@ C'est deux éléments importants
 ## Webpack-dev-server
 
 - Utilisé pendant la phase de développement.
-- Serveur integré
+- Serveur intégré
 - Surveille les changements (et recharge automatiquement)
 - Hot reload
 
@@ -463,7 +463,7 @@ C'est deux éléments importants
 ### Le « Module Bundler »
 
 - Assemble les « modules JavaScript ».
-- Concatenation « intelligente »
+- Concaténation « intelligente »
 - Découpe les JS pour la distribution
 - Assemble aussi des modules « css » (jusqu’aux images incluses)
 
@@ -485,7 +485,7 @@ C'est deux éléments importants
 
 - Le template
 - Une CSS « scopée » / qui ne s’applique que pour le module
-- Gestion des pré-processeur (Babel, Stylus, Sass, …)
+- Gestion des préprocesseurs (Babel, Stylus, Sass, …)
 
 ---
 
@@ -522,7 +522,7 @@ export default {
 
 ---
 
-### Chez VueJS ils ont créé vue-cli
+### Chez VueJS ils ont créé VueCLI
 
 - Template de projet.
 - Rapide.
@@ -560,7 +560,7 @@ vue create demonstration
 
 ### Le projet est « initialisé »
 
-Psss: Chez VueJS ils sont sympas ils ont init le projet git pour vous.
+Psss: Chez VueJS ils sont sympas, ils ont init le projet git pour vous.
 
 ---
 
@@ -633,7 +633,7 @@ $ vue add vuex
 
 ### Communication entre les .Vue
 
-- Événements natif
+- Événements natifs
 - Store
 - Des composants Fils
 
@@ -651,7 +651,7 @@ $ vue add vuex
 - Bibliothèque (optionel) à VueJS
 - Zone de stockage de données centralisée pour tous les composants dans une application
 - S'assurer que l'état reste « cohérent »
-- Visualisation de l’état grace au dev-tools
+- Visualisation de l’état grâce au dev-tools
 
 ---
 
@@ -663,9 +663,9 @@ $ vue add vuex
 
 ### Quand utiliser un « store »
 
-- Application multi-vues
+- Application multivue
 - Besoin de synchronisation entre les vues
-- Évènement globaux entre les vues
+- Évènement global entre les vues
 
 ---
 
@@ -733,7 +733,7 @@ $ vue add vuex
 
 - Définition des données à observer.
 - Partager du code « d'initialisation » / « d'observation ».
-- Partager des méthodes « à ajouter a votre objet Vue ».
+- Partager des méthodes « à ajouter à votre objet Vue ».
 
 ---
 
