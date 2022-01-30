@@ -7,7 +7,7 @@ description: Dans cette mise en pratique, nous allons voir comment fonctionne la
 Dans cette mise en pratique, nous allons voir comment fonctionne la redéfinition de méthodes. Aussi appelée « overriding » (en Anglais), consiste à définir le comportement d'une méthode selon le type de l'objet qui l'invoque. Autrement dit, elle consiste à donner une nouvelle implémentation à une méthode héritée **sans changer sa signature** :
 
 - Nom de méthode **identique**.
-- Paramètres de la méthode identique.
+- Paramètres de la méthode **identique**.
 - Type de retour **identique**.
 
 ::: warning Surcharge et redéfinition
