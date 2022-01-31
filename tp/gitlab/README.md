@@ -131,8 +131,8 @@ Maintenant que votre compte est actif, vous pouvez cloner le projet :
 
 ### Cloner le projet sur votre machine
 
-```
-$
+```sh
+$ git clone git@gitlab.com:bts-sio-chevrollier/decouverte-gitlab.git
 ```
 
 ## Traiter une des issues
@@ -147,20 +147,20 @@ Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab�
 
 ### Mettre à jour le code local.
 
-```
-$
+```sh
+$ git pull
 ```
 
-### Changer de branch
+### Changer de branche
 
-```
-$
+```sh
+$ git checkout <nom_branche>
 ```
 
 ### Envoyer vos modifications sur le serveurs GitLab
 
-```
-$
+```sh
+$ git push -u origin <nom_branche>
 ```
 
 ### Création d’une merge request
