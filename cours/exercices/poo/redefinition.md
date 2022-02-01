@@ -14,10 +14,8 @@ Dans cette mise en pratique, nous allons voir comment fonctionne la redéfinitio
 
 La redéfinition de méthode est un concept que l’on rencontre lors de la création de classe fille.
 
-Pour rappel :
-
-![Exemple surcharge](./res/exemple-surcharge.png)
-![Exemple Redéfinition](./res/exemple-redefinition.png)
+![Exemple surcharge](./res/exemple-surcharge.jpeg)
+![Exemple Redéfinition](./res/exemple-redefinition.jpeg)
 
 :::
 
