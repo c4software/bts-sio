@@ -1104,7 +1104,7 @@ $humain->bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
 ```
 
   </CodeGroupItem>
-<CodeGroup>
+</CodeGroup>
 
 :::
 
