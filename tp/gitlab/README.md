@@ -132,7 +132,7 @@ Maintenant que votre compte est actif, vous pouvez cloner le projet :
 ### Cloner le projet sur votre machine
 
 ```sh
-$ git clone git@gitlab.com:bts-sio-chevrollier/decouverte-gitlab.git
+$ 
 ```
 
 ## Traiter une des issues
@@ -148,24 +148,24 @@ Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab�
 ### Mettre à jour le code local.
 
 ```sh
-$ git pull
+$ 
 ```
 
 ### Créer une nouvelle branche
 ```sh
-$ git branch maNouvelleBranche
+$ 
 ```
 
 ### Changer de branche
 
 ```sh
-$ git checkout maNouvelleBranche
+$ 
 ```
 
 ### Envoyer vos modifications sur le serveurs GitLab
 
 ```sh
-$ git push -u origin maNouvelleBranche
+$ 
 ```
 
 ### Création d’une merge request
@@ -199,3 +199,7 @@ Vous venez (normalement) d’avoir au moins un « merge request » d’assig
 - Vous y voyez un intérêt ?
 - À votre avis, est-il possible d’améliorer la revue de code ?
 - En situation réelle, est-ce votre rôle de « merger le code » ?
+
+### Correction
+
+[Voir la correction](./correction.md)
