@@ -961,42 +961,78 @@ $class1->getBalance(); // 1000
   </CodeGroupItem>
   <CodeGroupItem title="Java">
 
-```Java
+```java
 // Declaration de l'interface 'Template'
 interface Compte
 {
-    public void deposer($montant);
-    public void retirer($montant);
-    public BigInt getBalance();
+    public void deposer(int montant );
+    public void retirer(int montant);
+    public int getBalance();
 }
 
 class CompteEnLigne implements Compte
 {
-    private BigInt montant = 0;
+    private int montant = 0;
 
     @Override
-    public void deposer(BigInt montant){
-        this.montant += $montant;
+    public void deposer(int montant){
+        this.montant += montant;
     }
 
     @Override
-    public void retirer(BigInt montant){
-        this.montant -= $montant;
+    public void retirer(int montant){
+        this.montant -= montant;
     }
 
     @Override
-    public BigInt getBalance() {
+    public int getBalance() {
         return this.montant;
     }
-}
+};
 
 
 CompteEnLigne class1 = new CompteEnLigne();
 class1.deposer(1400);
 class1.getBalance(); // 1400
 
-$class1.retirer(400);
-$class1.getBalance(); // 1000
+class1.retirer(400);
+class1.getBalance(); // 1000
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+// Declaration de l'interface 'Template'
+internal interface Compte {
+    fun deposer(montant: Int)
+    fun retirer(montant: Int)
+    fun getBalance(): Int
+}
+
+internal class CompteEnLigne(var contenu: Int = 0) : Compte {
+    override fun deposer(montant: Int) {
+        contenu += montant
+    }
+
+    override fun retirer(montant: Int) {
+        contenu -= montant
+    }
+
+    override fun balance(): Int {
+        return contenu
+    }
+}
+
+fun main(){
+    val class1 = CompteEnLigne();
+    class1.deposer(1400);
+    class1.getBalance(); // 1400
+
+    class1.retirer(400);
+    class1.getBalance(); // 1000
+}
 ```
 
   </CodeGroupItem>
