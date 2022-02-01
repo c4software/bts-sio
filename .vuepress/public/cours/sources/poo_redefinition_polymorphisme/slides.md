@@ -114,10 +114,6 @@ Surcharge **≠** Redéfinition
 
 ---
 
-[Exercice de mise en application](https://cours.brosseau.ovh/cours/exercices/poo/redefinition.html)
-
----
-
 <fieldset>
   <legend>En résumer, la redéfinition…</legend>
     <li>Ne s'applique que dans l'héritage.</li>
@@ -125,6 +121,10 @@ Surcharge **≠** Redéfinition
     <li>L'appel au parent est possible.</li>
     <li>Surcharge ≠ Redéfinition</li>
 </fieldset>
+
+---
+
+[Exercice de mise en application](https://cours.brosseau.ovh/cours/exercices/poo/redefinition.html)
 
 ---
 
