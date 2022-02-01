@@ -33,8 +33,8 @@ Avant d’utiliser GitLab nous allons dans un premier temps créer un site Inter
 - Ajouter une 2nd page dans votre site Internet, par exemple une page vous présentant.
 - Versionner cette 2nd page. (`git commit` et vérifier avec `git status` que c’est bien ok)
 - Ajouter un « formulaire de contact », ce formulaire devra contenir à minima 3 « input » :
-  _ Un champs email
-  _ Un champs sujet
+  - Un champs email
+  - Un champs sujet
   - Un champs message
 - Ajouter une page PHP qui enregistre les valeurs dans un fichier sur disque à chaque fois qu’un utilisateur valide le formulaire.
 - Versionner le formulaire de contact (attention, il serait intéressant de faire plusieurs `commit`, si vous avez ajouter plusieurs pages, vérifier avec `git status` que c’est bien ok)
