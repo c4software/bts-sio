@@ -1104,6 +1104,33 @@ $humain->bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
 ```
 
   </CodeGroupItem>
+  <CodeGroupItem title="Kotlin">
+
+```kotlin
+class Animal {
+    // Reste de la classe
+    // …
+    protected fun bruit() {
+        print("BRUUUUIIIITTTT")
+    }
+    // Reste de la classe
+    // …
+}
+
+class Humain : Animal() {
+    // Reste de la classe
+    // …
+    override fun bruit() {
+        super.bruit()
+        print(" (Oui mais compréhensible)")
+    }
+    // Reste de la classe
+    // …
+}
+
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 :::
