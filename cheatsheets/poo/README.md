@@ -1078,7 +1078,7 @@ class Animal{
   // Reste de la classe
   // …
 
-  protected void bruit(){
+  public void bruit(){
     System.out.print("BRUUUUIIIITTTT");
   }
 
@@ -1091,7 +1091,7 @@ class Humain extends Animal {
   // …
 
   @Override
-  protected void bruit(){
+  public void bruit(){
     super.bruit()
     System.out.print(" (Oui mais compréhensible)");
   }
@@ -1113,7 +1113,7 @@ class Animal{
   // Reste de la classe
   // …
 
-  protected bruit(){
+  public bruit(){
     echo "BRUUUUIIIITTTT";
   }
 
@@ -1125,7 +1125,7 @@ class Humain extends Animal {
   // Reste de la classe
   // …
 
-  protected bruit(){
+  public bruit(){
     parent::bruit()
     echo " (Oui mais compréhensible)";
   }
@@ -1146,7 +1146,7 @@ $humain->bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
 class Animal {
     // Reste de la classe
     // …
-    protected fun bruit() {
+    public fun bruit() {
         print("BRUUUUIIIITTTT")
     }
     // Reste de la classe
