@@ -1023,6 +1023,13 @@ La redéfinition est la possibilité d’utiliser exactement la même signature 
 
 La méthode `move()` remplace donc la définition de celle de la classe mère, et donc son comportement.
 
+::: danger Un instant !
+
+- Nous parlons de redéfinition uniquement dans **le cadre de l'héritage**.
+- Il ne faut pas confondre la redéfinition avec la surcharge de méthode au sein d'un objet.
+
+:::
+
 ::: tip Les méthodes spécialisées
 
 Il est également possible de **spécialiser une méthode**, dans ce cas nous ne remplacerons pas complètement la méthode, nous viendrons la compléter en appelant **la méthode mère** avant notre traitement. Exemple :
