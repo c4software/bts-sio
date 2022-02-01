@@ -1078,7 +1078,7 @@ class Animal{
   // Reste de la classe
   // …
 
-  protected void bruit(){
+  protected bruit(){
     echo "BRUUUUIIIITTTT";
   }
 
