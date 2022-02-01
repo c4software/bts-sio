@@ -4,6 +4,8 @@ description: Dans cette mise en pratique, nous allons voir comment l'intérêt d
 
 # Le Polymorphisme : Mise en pratique
 
+## Introduction
+
 Dans cette mise en pratique, nous allons voir comment l'intérêt du Polymorphisme. Le polymorphisme est le fait qu'une classe mère peut prendre plusieurs formes (**poly** : plusieurs, **morphisme** : forme). Avec le polymorphisme nous pouvons donc écrire sans que cela pose problème :
 
 ```java
@@ -18,6 +20,8 @@ C'est possible évidemment seulement si `Cercle` et `Rectangle` héritent de `Fo
 ![Exemple UML](./res/exemple_polymorphisme.png)
 
 :::
+
+## Exercice 1
 
 Écrire les classes nécessaires au fonctionnement du programme suivant, pour cet exercice vous ne fournirez seulement les les méthodes nécessaires au fonctionnement.
 
