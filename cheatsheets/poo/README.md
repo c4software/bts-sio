@@ -1064,7 +1064,7 @@ class Humain extends Animal {
 }
 
 $humain = new Humain();
-$humain->bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
+$humain.bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
 ```
 
 :::
