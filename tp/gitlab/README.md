@@ -151,16 +151,21 @@ Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab�
 $ git pull
 ```
 
+### Créer une nouvelle branche
+```sh
+$ git branch maNouvelleBranche
+```
+
 ### Changer de branche
 
 ```sh
-$ git checkout <nom_branche>
+$ git checkout maNouvelleBranche
 ```
 
 ### Envoyer vos modifications sur le serveurs GitLab
 
 ```sh
-$ git push -u origin <nom_branche>
+$ git push -u origin maNouvelleBranche
 ```
 
 ### Création d’une merge request
