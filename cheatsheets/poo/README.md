@@ -1033,11 +1033,11 @@ La méthode `move()` remplace donc la définition de celle de la classe mère, e
 ::: tip Les méthodes spécialisées
 
 Il est également possible de **spécialiser une méthode**, dans ce cas nous ne remplacerons pas complètement la méthode, nous viendrons la compléter en appelant **la méthode mère** avant notre traitement. Exemple :
+
 <CodeGroup>
-<CodeGroupItem title="Java" active>
+  <CodeGroupItem title="Java" active>
 
 ```java
-
 class Animal{
   // Reste de la classe
   // …
@@ -1072,8 +1072,7 @@ $humain.bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
   </CodeGroupItem>
   <CodeGroupItem title="PHP">
 
-```java
-
+```php
 class Animal{
   // Reste de la classe
   // …
@@ -1134,7 +1133,7 @@ abstract class MachineVolante {
 class Mig29 extends MachineVolante {
     @Override
     public void fly() {
-        out.println("Start, taxi, fly");
+        out.println("Start, fly");
     }
 
     public void bombardment() {
