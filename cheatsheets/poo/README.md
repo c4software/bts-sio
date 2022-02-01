@@ -1033,6 +1033,44 @@ La méthode `move()` remplace donc la définition de celle de la classe mère, e
 ::: tip Les méthodes spécialisées
 
 Il est également possible de **spécialiser une méthode**, dans ce cas nous ne remplacerons pas complètement la méthode, nous viendrons la compléter en appelant **la méthode mère** avant notre traitement. Exemple :
+<CodeGroup>
+<CodeGroupItem title="Java" active>
+
+```java
+
+class Animal{
+  // Reste de la classe
+  // …
+
+  protected void bruit(){
+    System.out.print("BRUUUUIIIITTTT");
+  }
+
+  // Reste de la classe
+  // …
+}
+
+class Humain extends Animal {
+  // Reste de la classe
+  // …
+
+  @Override
+  protected void bruit(){
+    super.bruit()
+    System.out.print(" (Oui mais compréhensible)");
+  }
+
+  // Reste de la classe
+  // …
+
+}
+
+$humain = new Humain();
+$humain.bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
+```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="PHP">
 
 ```java
 
@@ -1052,9 +1090,8 @@ class Humain extends Animal {
   // Reste de la classe
   // …
 
-  @Override
-  protected void bruit(){
-    super.bruit()
+  protected bruit(){
+    parent::bruit()
     echo " (Oui mais compréhensible)";
   }
 
@@ -1064,8 +1101,11 @@ class Humain extends Animal {
 }
 
 $humain = new Humain();
-$humain.bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
+$humain->bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
 ```
+
+  </CodeGroupItem>
+<CodeGroup>
 
 :::
 
