@@ -1128,6 +1128,9 @@ class Humain : Animal() {
     // …
 }
 
+humain = Humain()
+humaim.bruit() // BRUUUUIIIITTTT (Oui mais compréhensible)
+
 ```
 
   </CodeGroupItem>
