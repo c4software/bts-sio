@@ -49,7 +49,7 @@ class Dog extends Animal {
 
 ## Pratique! Mais…
 
-### Si on souhaite spécialiser et pas remplacer ?
+### Si l’on souhaite spécialiser et pas remplacer ?
 
 ---
 
@@ -115,7 +115,7 @@ Surcharge **≠** Redéfinition
 ---
 
 <fieldset>
-  <legend>En résumer, la redéfinition…</legend>
+  <legend>Pour résumer, la redéfinition…</legend>
     <li>Ne s'applique que dans l'héritage.</li>
     <li>La signature des méthodes <u>doit-être identique</u>.</li>
     <li>L'appel au parent est possible.</li>
