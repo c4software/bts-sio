@@ -4,7 +4,7 @@ description: La première étape est la création d'un projet. Pour ça nous all
 
 # Découverte des bases d'Android
 
-::: details Sommaire
+::: details Sommaires
 [[toc]]
 :::
 
@@ -136,7 +136,7 @@ Cette création de ressource est réalisable directement depuis Android Studio :
 ![Création de ressources alternatives](./ressources/resources.png)
 
 ::: tip Vous pouvez tout redéfinir
-L'ensemble des ressources (`res`) est re-définissable sans écrire de code. Par exemple si vous souhaitez redéfinir des `strings` dans différentes conditions il suffit de :
+L'ensemble des ressources (`res`) est redéfinissable sans écrire de code. Par exemple si vous souhaitez redéfinir des `strings` dans différentes conditions il suffit de :
 
 ![Popup de création](./ressources/resources_strings.png)
 ![Ressources alternatives](./ressources/exemple_res_alt.png)
@@ -152,7 +152,7 @@ L'ensemble des ressources (`res`) est re-définissable sans écrire de code. Par
 
 ### Les dimensions et contraintes
 
-Vous avez donc ajouté deux nouveaux éléments dans votre layout, mais ils n'ont n'y taille ni « positions ». En effet comme vu ensemble en cours, nous utilisons un layout de type « ConstraintLayout » c'est-à-dire que vos éléments doivent être contraints les uns par rapport aux autres.
+Vous avez donc ajouté deux nouveaux éléments dans votre layout, mais ils n'ont n'y taille ni « positions ». En effet, comme vu ensemble en cours, nous utilisons un layout de type « ConstraintLayout » c'est-à-dire que vos éléments doivent être contraints les uns par rapport aux autres.
 
 Vous allez donc devoir ajouter les attributs suivants sur vos deux nouveaux éléments :
 
@@ -190,7 +190,7 @@ Je vous laisse réaliser l'ensemble des contraintes afin que votre layout ressem
 
 ## L'activity
 
-Nous avons une activity qui pour l'instant ne fait pas grand-chose. Si vous regardez le code celui-ci est presque vide. Je vous propose de la modifier, en premier lieu nous allons ajouter un message au lancement de celle-ci.
+Nous avons une activity qui pour l'instant ne fait pas grand-chose. Si vous regardez le code, celui-ci est presque vide. Je vous propose de la modifier, en premier lieu nous allons ajouter un message au lancement de celle-ci.
 
 Un message simple sur Android s'appelle un Toast :
 
@@ -237,7 +237,7 @@ Et voilà… Votre bouton est cliquable.
 
 Le `ViewBinding` est maintenant la nouvelle façon moderne de gérer « les références à la vue depuis le code Kotlin ». Ça fonctionne un peu comme le `findViewById` sauf que le Binding est automatique et surtout celui-ci gère automatiquement le typage !
 
-Première étape il faut activer dans votre build.gradle le « ViewBinding », dans le block Android déjà présent ajouter :
+Première étape, il faut activer dans votre build.gradle le « ViewBinding », dans le block Android déjà présent ajouter :
 
 ```gladle
 buildFeatures {
@@ -362,7 +362,7 @@ Je vous laisse modifier le layout pour que celui-ci ressemble à :
 
 #### Étape 4 : Lancer une activity
 
-Maintenant que notre « Splash » s'affiche nous allons pouvoir lancer l'autre activity après _un délai_. Dans cette partie, nous allons voir comment lancer une activité, et plus précisément comment nous pouvons « simplifier » / « uniformiser » le lancement via une méthode static.
+Maintenant que notre « Splash » s'affiche, nous allons pouvoir lancer l'autre activity après _un délai_. Dans cette partie, nous allons voir comment lancer une activité, et plus précisément comment nous pouvons « simplifier » / « uniformiser » le lancement via une méthode static.
 
 ::: tip
 :nerd_face: Si vous avez déjà fait du développement Android, rien de nouveau, je vous propose simplement juste **une autre façon** de vous organiser.
@@ -386,7 +386,7 @@ companion object {
 }
 ```
 
-#### Étape 4.2 : Appelez-la méthode
+#### Étape 4.2 : Appeler la méthode
 
 Dans le code de la _SplashActivity_ nous allons lancer après quelques secondes le code permettant de lancer la _MainActivity_. Pour ça ajouter le code suivant dans le `onCreate` de votre `SplashActivity`.
 
@@ -412,11 +412,48 @@ Et oui c'est aussi simple que ça!
 - Que se passe-t-il si vous ne le mettez pas ?
 - Pouvez-vous changer le temps d'attente ?
 
+## Démarrer une activité avec des paramètres
+
+En reprenant le principe précédent, il est tout a fait possible de « passer des paramètres » à votre activity :
+
+### Dans l'activity à démarrer
+
+#### Le code pour démarrer l'activity :
+
+```kotlin
+companion object {
+    private const val IDENTIFIANT_ID = "IDENTIFIANT_ID"
+
+    fun getStartIntent(context: Context, identifiant: String?): Intent {
+        return Intent(context, RemoteActivity::class.java).apply {
+            putExtra(IDENTIFIANT_ID, identifiant)
+        }
+    }
+}
+```
+
+#### Le code pour récupérer le paramètre
+
+```kotlin
+// Retourne l'identifiant passé en paramètre à l'activité
+private fun getIdentifiant(): String? {
+    return intent.extras?.getString(IDENTIFIANT_ID, null)
+}
+```
+
+### Dans l'activity qui va lancer l'autre activity
+
+Et pour démarrer l'activity :
+
+```kotlin
+startActivity(VotreActivityADemarrer.getStartIntent(this, "CECI-EST-UN-IDENTIFIANT"));
+```
+
 ## Thème et Drawable
 
 Le grand chalenge d'une application mobile c'est « le côté visuel ». Bien évidemment je sais que vous n'êtes pas des experts UI/UX, Google le sait également. C'est pour ça qu'ils ont intégré dans Android Studio un catalogue d'icône nous permettant nous développeurs de travailler avec des éléments propres et de qualité.
 
-Pour rappel les images dans Android s'appelle des `Drawables` et sont dans le dossier `Res`. Android Studio intègre un catalogue nommé « Vector Asset », celui-ci est disponible dans les menus :
+Pour rappel, les images dans Android s'appellent des `Drawables` et sont dans le dossier `Res`. Android Studio intègre un catalogue nommé « Vector Asset », celui-ci est disponible dans les menus :
 
 ![Vector Asset](./ressources/vector_asset.png)
 
@@ -434,7 +471,7 @@ Pour choisir une icône :
 
 Comme vous avez pu le constater, les couleurs de votre application sont « principalement » violettes. Les couleurs en question sont définies dans le thème de votre application.
 
-Je vous propose de les modifier. Première étape ajouter vos couleurs dans le fichier `colors.xml`. Une fois fait modifier le fichier `themes.xml` et plus particulièrement le `colorPrimary` pour utiliser la couleur que vous avez ajoutée.
+Je vous propose de les modifier. Première étape, ajouter vos couleurs dans le fichier `colors.xml`. Une fois fait modifier le fichier `themes.xml` et plus particulièrement le `colorPrimary` pour utiliser la couleur que vous avez ajoutée.
 
 ### À faire
 
@@ -477,7 +514,7 @@ startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("geo:47.472822,-0.5621756")))
 Maintenant que vous savez comment ouvrir une intent Externe :
 
 - Ajouter sur la `MainActivity` une icône en haut à droite type « Settings ».
-- Celle-ci doit être cliquable et doit permettre d'ouvrire les paramètres (`ACTION_SETTINGS`).
+- Celle-ci doit être cliquable et doit permettre d'ouvrir les paramètres (`ACTION_SETTINGS`).
 - Ajouter sous le bouton « En bas de l'activité » un texte cliquable `TextView` permettant d'ouvrir le site de l'ESEO.
 - Ajoute à côté du `TextView` un second `TextView` qui ouvre l'adresse / la position GPS de l'ESEO dans Google Maps.
 
@@ -504,7 +541,7 @@ Pour le code, c'est un poil plus compliqué, en reprenant le flow du graphique p
 
 ## Déclaration des permissions
 
-Dans le fichier Manifest ajouter :
+Dans le fichier Manifest ajoutez :
 
 ```xml
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -553,7 +590,7 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
 }
 ```
 
-::: danger Gestion de la permission refusé de manière permanente
+::: danger Gestion de la permission refusée de manière permanente
 L'utilisateur a le choix de refuser de manière permanente la localisation. Dans ce cas vous devez gérer l'erreur avec `shouldShowRequestPermissionRationale()` qui retournera `true` / `false` en fonction.
 
 Je vous laisse écrire le code afin d'envoyer l'utilisateur vers les paramètres de son téléphone si cela doit être le cas.
@@ -578,7 +615,7 @@ private fun getLocation() {
 }
 ```
 
-_Obtenir la localisation 2 pour avoir la position réel (pas la dernière obtenue par le système):_
+_Obtenir la localisation 2 pour avoir la position réelle (pas la dernière obtenue par le système):_
 
 ```kotlin
 private fun getLocation() {
@@ -608,7 +645,7 @@ private fun getLocation() {
 ```
 
 ::: danger Vous devez choisir une façon de faire
-Nous avons donc trois façon de fair, si votre téléphone a les Play Services la dernière solution sera la bonne.
+Nous avons donc trois façons de faire, si votre téléphone a les Play Services la dernière solution sera la bonne.
 :::
 
 ### BONUS ! Obtenir l'adresse par rapport au lat, long
@@ -670,7 +707,7 @@ Mais dans les grandes lignes :
 
 - Ajouter une nouvelle activité.
 - Ajout d'un bouton sur la home permettant de la lancer.
-- Dans la nouvelle activity, un RecyclerView qui contiendra « des éléments de type Strings ». (`<androidx.recyclerview.widget.RecyclerView android:layout_width="wrap_content"android:layout_height="wrap_content" … `)
+- Dans la nouvelle activity, un RecyclerView qui contiendra « des éléments de type Strings ». (`<androidx.recyclerview.widget.RecyclerView android:layout_width="wrap_content"android:layout_height="wrap_content" …`)
 - Chaque élément de la liste doit ressembler à (je vous laisse créer le fichier nommé `item_list.xml` dans les layouts).
 
 ![List Item Layout](./ressources/layout_list_item.png)
@@ -719,7 +756,7 @@ Je vous laisse créer une nouvelle activité. Celle-ci **doit être** constitué
   - Un lien vers le Google Maps de l'ESEO.
 
 ::: danger Votre RecyclerView
-Votre RecyclerView va contenir des objets du type SettingsItem (class a créer). Chaque élément va ressembler à :
+Votre RecyclerView va contenir des objets du type SettingsItem (class a créé). Chaque élément va ressembler à :
 
 _Exemple d'un élément de liste :_
 
@@ -738,23 +775,23 @@ data class SettingsItem(val name: String, val icon: Int, val onClick: (() -> Uni
 // Exemple de déclaration dans la datasource (à déclarer dans votre Activity)
 arrayOf(
     SettingsItem("Paramètre Bluetooth", R.drawable.bluetooth) {
-        // Action au clique
+        // Action au cliques
     },
     SettingsItem("Informations", R.drawable.info) {
-        // Action au clique
+        // Action aux cliques
     },
     SettingsItem("Paramètres", R.drawable.settings) {
-        // Action au clique
+        // Action aux cliques
     },
     SettingsItem("Site de l'ESEO", R.drawable.logo_eseo) {
-        // Action au clique
+        // Action aux cliques
     }
 )
 
-// Je vous laisse implémenter votre ViewHolder, pour référencer dans votre vue (via des findViewById comme vu ensemble)
+// Je vous laisse implémenter votre ViewHolder, pour référencer dans votre vue (via des findViewById comme vus ensemble)
 // -> name
 // -> icon
-// -> l'action au clique
+// -> l'action aux cliques
 ```
 
 :::
@@ -770,7 +807,7 @@ supportActionBar?.apply {
 }
 ```
 
-Puis vous devez override la méthode `onSupportNavigateUp` qui est appelé lors de l'appui sur le « l'icone retour »:
+Puis vous devez override la méthode `onSupportNavigateUp` qui est appelée lors de l'appui sur le « l'icône retour »:
 
 ```kotlin
 override fun onSupportNavigateUp(): Boolean {
@@ -844,7 +881,7 @@ Cette classe est générique, il vous suffit d'implémenter les bonnes méthodes
 J'aimerais que nous puissions sauvegarder l'ensemble des positions de l'utilisateur :
 
 - Créer la class `LocalPreferences`. (attention dans le bon package)
-- Ajouter les deux méthodes permettant la sauvegarde des données dans la class `LocalPreferences`. (nous allons avoir besoin de `putStringSet` et de `getStringSet` deux méthodes fourni par `SharedPreferences`, permettant de sauvegarder des listes de données).
+- Ajouter les deux méthodes permettant la sauvegarde des données dans la class `LocalPreferences`. (nous allons avoir besoin de `putStringSet` et de `getStringSet` deux méthodes fournies par `SharedPreferences`, permettant de sauvegarder des listes de données).
 
 ::: details Voir une solution (comme à chaque fois cherchez par vous-même en vous inspirant de mon exemple)
 
@@ -864,4 +901,4 @@ J'aimerais que nous puissions sauvegarder l'ensemble des positions de l'utilisat
 
 - Modifier votre activity « Localisation » pour sauvegarder chaque position « détecté ». (vous pouvez valider la bonne insertion de votre donnée via un point d'arrêt dans votre code)
 - Créer une nouvelle `activity` qui va afficher l'ensemble des données présent dans votre historique (via un `RecyclerView`).
-- Rendre cette nouvelle activity accessible depuis « la home de votre application ». (uniquement si il y a des données).
+- Rendre cette nouvelle activity accessible depuis « la home de votre application ». (uniquement s’il y a des données).
