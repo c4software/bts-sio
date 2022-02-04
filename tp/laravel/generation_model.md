@@ -194,7 +194,6 @@ Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
 Si vous avez bien suivi, vous avez compris que nous allons devoir ajouter dans notre `OrdersController` une méthode `list`.
 
-
 Dans votre contrôleur, ajouter le code suivant :
 
 ```php
@@ -277,7 +276,12 @@ Vu que vous avez regardé le modèle `Order`, vous avez remarqué la méthode `o
 
 - Ajouter dans le données une nouvelle colonne.
 - Celle-ci doit contenir le nombre de produits commandés
-  - Un indice `({{sizeof($order->orderdetails)}})`
+
+Un indice
+
+```html
+({{sizeof($order->orderdetails)}})
+```
 
 C'est à vous !
 
