@@ -82,17 +82,6 @@ export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 Fermer et rouvrir le terminal.
 
-## Installer Laravel
-
-```bash
-composer global require "laravel/installer"
-```
-
-✋ Vérifier que la commande laravel fonctionne. Comment faire ?
-Pour vérifier que la commande `laravel` fonctionne, il suffit de faire dans une console `laravel -h`
-
-![Laravel](./ressources/laravelcli.png)
-
 ## Créer le premier Projet
 
 Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un nouveau projet grâce à la commande :

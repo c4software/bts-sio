@@ -107,6 +107,7 @@ module.exports = [
           "/cours/laravel",
           "/tp/laravel/introduction",
           "/tp/laravel/authentification",
+          "/tp/laravel/generation_model",
           "/tp/laravel/application_todo_list",
           "/tp/laravel/laravel_api",
           "/tp/laravel/creation_api",
