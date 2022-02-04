@@ -4,7 +4,7 @@ description: Dans ce TP nous allons voir comment générer le modèle Laravel à
 
 # Eloquent les modèles simplement
 
-::: details sommaires
+::: details Sommaires
 [[toc]]
 :::
 
