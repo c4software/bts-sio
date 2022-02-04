@@ -171,7 +171,7 @@ php artisan make:controller OrdersControler
 Route::get('/orders', [OrdersController::class, 'list']);
 ```
 
-:: danger Un instant ✋
+::: danger Un instant ✋
 
 En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `Demo` soit accessible depuis le contrôleur, il faudra :
 
