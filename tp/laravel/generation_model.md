@@ -26,10 +26,6 @@ Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un n
 ✋ Attention, le projet sera créé dans le dossier courant.
 
 ```bash
-laravel new mon-premier-projet
-
-# Ou
-
 composer create-project --prefer-dist laravel/laravel mon-premier-projet
 ```
 
