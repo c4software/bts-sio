@@ -2,7 +2,7 @@
 description: Dans ce TP nous allons voir comment générer le modèle Laravel à partir d'une base de données existante.
 ---
 
-# Introduction à Laravel
+# Eloquent les modèles simplement
 
 ::: details sommaires
 [[toc]]
