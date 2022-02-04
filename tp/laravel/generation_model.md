@@ -345,9 +345,8 @@ Notre base de données est assez volumineuse et permet de faire bien plus ! Je v
 
 - Liste des `Customer`.
 - Vue de détail d'un `Customer`.
-  - Le détail dû `Customer`.
+  - Le détail du `Customer`.
   - Dans la vue de détail, je veux voir la liste des commandes du `Customer`.
-
 
 Pour ça vous allez devoir :
 
