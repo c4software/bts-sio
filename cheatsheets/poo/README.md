@@ -452,10 +452,14 @@ class Personne(val nom: String, val prenom: String) {
    <CodeGroupItem title="C#">
 
 ```cs 
-public Personne(string nom, string prenom)
-{
-	this.nom = nom;
-	this.prenom = prenom;
+class Personne {
+  
+  // Le constructeur
+  public Personne(string nom, string prenom)
+  {
+    this.nom = nom;
+    this.prenom = prenom;
+  }
 }
 ```
 
