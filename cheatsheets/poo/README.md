@@ -213,6 +213,53 @@ internal class Personne(var nom: String, var prenom: String, private val dateNai
 ```
 
   </CodeGroupItem>
+  <CodeGroupItem title="C#">
+    
+```cs
+public class Personne
+{
+    
+  // Variable
+	public string nom, prenom;
+	public int nbEnfant;
+	private DateTime dateNaissance;
+	private int salaire;
+	
+	public Personne(string nom, string prenom, DateTime dateNaissance, int nbEnfant)
+	{
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+		this.nbEnfant = nbEnfant;
+	}
+
+	public void setSalaire(int value)
+	{
+		this.salaire = value;
+	}
+	
+	public int getSalaire()
+	{
+		return this.salaire;
+	}
+	
+	public string identite()
+	{
+		return this.nom + " " + this.prenom;
+	}
+	
+	public int age()
+	{
+		//Implémentation
+	}
+	
+	public void argentPoche(int value)
+	{
+		//Implémentation
+	}
+}
+```
+  </CodeGroupItem>
 </CodeGroup>
 
 ::: danger Ce qu'il faut retenir
@@ -237,10 +284,24 @@ Chaque objet représente un objet du monde réel
 
 ⚠️ Utilise les classes précédemment définies ⚠️
 
-```php
+<CodeGroup>
+  <CodeGroupItem title="PHP" active>
+    
+```php 
 $personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
-$personne2 = new Personne("John", "Doe", "01/01/1970", 12);
+$personne2 = new Personne("John", "Doe", "01/01/1970", 12); 
 ```
+
+</CodeGroupItem>  
+<CodeGroupItem title="C#">
+
+```cs 
+Personne personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
+Personne personne2 = new Personne("John", "Doe", "01/01/1970", 12);
+```
+    
+  </CodeGroupItem>  
+</CodeGroup>
 
 👀 Créer un objet == Instancier 👀
 
@@ -289,6 +350,21 @@ class Personne(val nom: String, val prenom: String) {
 ```
 
   </CodeGroupItem>
+  <CodeGroupItem title="C#">
+
+```cs
+class Personne {
+    private string nom;
+    private string prenom;
+
+    public Personne(string nom, string prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+}
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 ## Instanciation (Créer un objet)
@@ -314,6 +390,14 @@ Personne unPersonne = new Personne("Valentin", "Brosseau");
 
 ```kotlin
 unPersonne = Personne("Valentin", "Brosseau");
+```
+
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="C#">
+
+```cs
+Personne unePersonne = new Personne("Valentin", "Brosseau");
 ```
 
   </CodeGroupItem>
@@ -364,6 +448,18 @@ class Personne(val nom: String, val prenom: String) {
 ```
 
   </CodeGroupItem>
+  
+   <CodeGroupItem title="C#">
+
+```cs 
+public Personne(string nom, string prenom)
+{
+	this.nom = nom;
+	this.prenom = prenom;
+}
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 ## Accès à une méthode
@@ -391,6 +487,14 @@ unePersonne.afficheIdentite();
 ```kotlin
 unePersonne = Personne("Valentin", "Brosseau");
 unePersonne.afficheIdentite();
+```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="C#">
+
+```cs
+Personne unePersonne = new Personne("Valentin", "Brosseau");
+unePersonne.identite();
 ```
 
   </CodeGroupItem>
@@ -472,6 +576,13 @@ ArrayList<Personne> lesPersonnes = new ArrayList();
 ```
 
   </CodeGroupItem>
+  <CodeGroupItem title="C#">
+
+```cs
+List<Personne> lesPersonnes = new List<Personne>();
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 ### Utilisation
@@ -533,6 +644,24 @@ val count2 = lesPersonnes.size // 0
 ```
 
   </CodeGroupItem>
+      <CodeGroupItem title="C#">
+
+```cs
+List<Personne> lesPersonnes = new List<Personne>();
+Personne unePersonne = new Personne("Doe", "John");
+
+lesPersonnes.add(new Personne("Valentin", "Brosseau");
+lesPersonnes.add(unePersonne);
+
+Personne unePersonne1 = lesPersonnes[0];
+Personne unePersonne2 = lesPersonnes[1];
+
+List<Personne> lesPersonnes = new List<Personne>();
+
+int nombre = lesPersonnes.count(); // 0
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 ### Parcours de collection
@@ -541,7 +670,7 @@ val count2 = lesPersonnes.size // 0
   <CodeGroupItem title="PHP" active>
 
 ```php
-foreach($lesPersonne as $laPersonne){
+foreach ($lesPersonne as $laPersonne){
     // $laPersonne contient « un pointeur » vers une des personne de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
@@ -575,6 +704,17 @@ lesPersonnes.forEach { laPersonne -> }
 // Version « à l'ancienne »
 for (laPersonne in lesPersonnes) {
     // laPersonne contient « un pointeur » vers une des personne de la liste
+    // À chaque tour de boucle nous avons la personne suivante.
+}
+```
+
+  </CodeGroupItem>
+  
+  <CodeGroupItem title="C#">
+
+```cs
+foreach (Personne laPersonne in lesPersonnes){
+	// laPersonne contient « un pointeur » vers une des personne de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
 ```
@@ -694,6 +834,45 @@ unHumain.manger(); // Je suis omnivore.
 ```
 
   </CodeGroupItem>
+  
+  <CodeGroupItem>
+    
+```cs
+public class Mammifere {
+    
+    private Bool vertebre = true;
+
+    public void print() 
+    {
+        Console.WriteLine("Je suis un mammifère");
+    }
+
+    public void manger()
+    {
+        Console.WriteLine("Je mange");
+    }
+}
+
+public class Humain : Mammifere {
+    private string prenom = "";
+
+    public Humain(string prenom) : base()
+    {
+        this.prenom = prenom;
+    }
+
+    public string manger()
+    {
+        Console.WriteLine("Je suis omnivore");
+    }
+}
+
+Humain unHumain = new Humain("Valentin");
+unHumain.string(); // Je suis un mammifère
+unHumain.manger(); // Je suis omnivore
+```
+    
+  </CodeGroupItem>
 </CodeGroup>
 
 ## Synthèse héritage
@@ -772,6 +951,25 @@ Personne.laReponseDeLunivers();
 ```
 
   </CodeGroupItem>
+  <CodeGroupItem title="C#">
+
+```cs
+// Déclaration
+public class Personne {
+    
+    public static int laReponseDeLunivers(){
+        return 42;
+    }
+    
+}
+    
+// Utilisation
+Personne.laReponseDeLunivers();
+```
+
+  </CodeGroupItem>
+  
+  
 </CodeGroup>
 
 ## Abstraction et Interface
@@ -899,6 +1097,54 @@ class EtudiantSEN extends EtudiantAbstrait
 EtudiantSIO class1 = new EtudiantSIO();
 class1.parler();
 $class1->demarrerUneDiscussion('La sécurité')
+```
+
+  </CodeGroupItem>
+
+<CodeGroupItem title="C#">
+
+```cs
+abstract class EtudiantAbstrait
+{
+    // Force les classes filles à définir cette méthode
+    abstract protected string getBlahBlah();
+    abstract public string demarrerUneDiscussion(string sujet);
+
+    // méthode commune
+    public string parler() {
+        Console.WriteLine(this.getBlahBlah());
+    }
+}
+
+public class EtudiantSIO : EtudiantAbstrait
+{
+    private string option = "SLAM";
+
+     protected string getBlahBlah() {
+       Console.WriteLine("L'informatique c'est cool, je suis : " + option.toString();
+     }
+
+     public string demarrerUneDiscussion(string sujet) {
+       Console.WriteLine("Je vais vous parler de " + sujet.toString());
+    }
+}
+
+public class EtudiantSEN : EtudiantAbstrait
+{
+    private string competences = "SOUDER";
+
+     protected function getBlahBlah() {
+       Console.WriteLine("L'électronique c'est cool, je connais comment " + competences.toString());
+     }
+
+     public string demarrerUneDiscussion(string sujet) {
+       Console.WriteLine("Je vais vous parler de ' " + sujet.toString() + " ' ");
+    }
+}
+
+EtudiantSIO class1 = new EtudiantSIO();
+class1.parler(); // L'électronique c'est cool, je connais comment SOUDER
+class1.demarrerUneDiscussion('La sécurité'); // Je vais vous parler de ' La sécurité ' 
 ```
 
   </CodeGroupItem>
@@ -1036,6 +1282,44 @@ fun main(){
 ```
 
   </CodeGroupItem>
+<CodeGroupItem title="C#">
+
+```cs
+// Declaration de l'interface 'Template'
+interface Compte
+{
+    public void deposer(int montant);
+    public void retirer(int montant);
+    public int getBalance();
+}
+
+class CompteEnLigne : Compte
+{
+    private int montant = 0;
+
+    public void deposer(int montant){
+        this.montant += montant;
+    }
+
+    public void retirer(int montant){
+        this.montant -= montant;
+    }
+
+    public int getBalance() {
+        return this.montant;
+    }
+}
+
+
+CompteEnLigne class1 = new CompteEnLigne();
+class1.deposer(1400);
+class1.getBalance(); // 1400
+
+class1.retirer(400);
+class1.getBalance(); // 1000
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 ### Interfaces ou classes abstraites ?
@@ -1140,6 +1424,7 @@ $humain->bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
 ```
 
   </CodeGroupItem>
+
   <CodeGroupItem title="Kotlin">
 
 ```kotlin
@@ -1170,6 +1455,43 @@ humaim.bruit() // BRUUUUIIIITTTT (Oui mais compréhensible)
 ```
 
   </CodeGroupItem>
+<CodeGroupItem title="C#">
+
+```cs
+class Animal{
+
+  // Reste de la classe
+  // …
+
+  public void bruit(){
+    Console.WriteLine("BRUUUUIIIITTTT");
+  }
+
+  // Reste de la classe
+  // …
+  
+}
+
+class Humain extends Animal {
+
+  // Reste de la classe
+  // …
+
+  public override void bruit(){
+    base.bruit()
+    Console.WriteLine(" (Oui mais compréhensible)");
+  }
+
+  // Reste de la classe
+  // …
+
+}
+
+Humain humain = new Humain();
+humain.bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
+```
+
+  </CodeGroupItem>
 </CodeGroup>
 
 :::
@@ -1190,6 +1512,8 @@ Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la m�
 ::: tip Pratique !
 
 Grâce au polymorphisme, nous allons pouvoir créer des `array` (liste, tableau …) avec des objets de types différents. Exemple :
+<CodeGroup>
+  <CodeGroupItem title="Java" active>
 
 ```java
 abstract class MachineVolante {
@@ -1226,6 +1550,48 @@ for (MachineVolante m : machines) {
     m.fly();
 }
 ```
+
+  </CodeGroupItem>
+  <CodeGroupItem title="C#" >
+
+```cs
+abstract class MachineVolante {
+    public void fly()
+}
+
+class Mig29 : MachineVolante {
+    
+    public override	void fly() {
+        Console.WriteLine("Start, fly");
+    }
+
+    public void bombardment() {
+        Console.WriteLine("Fire missile");
+    }
+}
+
+class Helicoptere : MachineVolante {
+    
+    public override void fly() {
+        Console.WriteLine("Start vertically, hover, fly");
+    }
+}
+
+// La liste est du type de la classe mère
+List<MachineVolante> machines = new List<MachineVolante>();
+machines.add(new MachineVolante()); // Une erreur apparait ici
+machines.add(new Mig29());
+machines.add(new Helicoptere());
+machines.add(new Mig29());
+
+// On boucle sans en connaitre le type
+foreach (MachineVolante m in machines) {
+    m.fly();
+}
+```
+
+  </CodeGroupItem>
+</CodeGroup>
 
 :::
 
