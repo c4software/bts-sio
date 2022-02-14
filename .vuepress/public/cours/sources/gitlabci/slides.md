@@ -4,7 +4,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-### L’intégration continue ?
+## L’intégration continue ?
 
 - Test immédiat des modifications. <!-- .element: class="fragment" data-fragment-index="1" -->
 - Notification rapide en cas de code incompatible ou manquant. <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -57,7 +57,7 @@ Les « runners » utilisent Docker (ou autre on y reviendra)
 
 ### Un fichier le « .gitlab-ci.yml »
 
-##### Exemple :
+### Exemple :
 
 ```yaml
 image: node:latest

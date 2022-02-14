@@ -20,7 +20,7 @@ https://download.docker.com/mac/stable/Docker.dmg
 
 ### Linux
 
-```
+```sh
 curl -sSL https://get.docker.com/ | sh
 ```
 

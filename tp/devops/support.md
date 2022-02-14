@@ -176,7 +176,7 @@ Avant d'aller plus loin, je vous propose de faire un point terminologie :
 - **Image** Les fichiers, le contenu de votre « système »
 - **Container** L’image quand elle est en fonctionnement.
 - **Engine** Ce qui fait fonctionner votre « container ». Les volumes et le réseau font partie de « l’engine ».
-- **Registry** Entrepôt d’image à télécharger (fourni par d’autres, ou construite par vous). https://hub.docker.com/
+- **Registry** Entrepôt d’image à télécharger (fourni par d’autres, ou construite par vous). <https://hub.docker.com/>
 - **Volume**, les « montages » / ressources, emplacement (réseau ou non) disponible dans votre Container.
 
 #### Registry
@@ -652,7 +652,7 @@ Le FaaS ou Function-as-a-Service est un type de service cloud permettant de dép
 
 Le développement et le lancement d’une application peuvent être très difficiles. Il est nécessaire d’installer des serveurs, et de les maintenir au fil du temps. Ceci peut s’avérer pénible et couteux. Heureusement, le Cloud Computing offre une alternative au travers du FaaS.
 
-Source: https://www.lebigdata.fr/
+Source: <https://www.lebigdata.fr/>
 
 Le FaaS est donc en quelques sortes la finalité de tout ce que nous avons vu ! Il s'agit de découper votre code en petit morceau qui sera packagé dans des conteneurs et lancer à la demande « quand les utilisateurs auront besoin de la fonctionnalité ». Le but ?
 

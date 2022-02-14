@@ -1,4 +1,5 @@
 # Git en groupe
+
 ## Avec GitLab
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
@@ -43,7 +44,7 @@ $ git push
 
 ## Le « Workflow » Git
 
-![](./img/workflow_git.png)
+![Workfow Git](./img/workflow_git.png)
 
 ---
 
@@ -217,7 +218,7 @@ Intégration dans les issues, et dans le « workflow » de travail à plusieurs.
 
 ### Wiki
 
-![](img/docs.gif)
+![Chat qui lit](img/docs.gif)
 
 ---
 
@@ -239,7 +240,7 @@ Des morceaux de code que l’on partage.
 
 Des URL appelées lors d’action dans l’interface (Intégration slack par exemple)
 
-![](img/chat.gif)
+![Chat qui lit 2](img/chat.gif)
 
 ---
 
@@ -283,7 +284,7 @@ On en reparlera…
 
 ---
 
-![](./img/lifecycle.png)
+![Le cycle de vie](./img/lifecycle.png)
 
 ---
 
@@ -370,8 +371,8 @@ $ git push
 
 ## Le « Workflow » Git
 
-![](./img/workflow_git.png)
+![Le cycle de vie](./img/workflow_git.png)
 
 ---
 
-# Des questions ?
+## Des questions ?

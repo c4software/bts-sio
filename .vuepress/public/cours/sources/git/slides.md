@@ -1,4 +1,5 @@
 # Git
+
 ## Introduction à GIT
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
@@ -45,6 +46,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 ---
 
 ## Un peu d'histoire…
+
 ### Noyau Linux
 
 - 150Mo de source
@@ -63,7 +65,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ## Maintenu pendant des années par des patchs…
 
-# … par emails
+## … par emails
 
 ![Via EMAIL](./img/via_email.gif)
 
@@ -100,6 +102,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 ---
 
 ## Pourquoi
+
 ### Le principe des snapshots / et des diffs
 
 ![Snapshots](./img/git_snapshot.png) <!-- .element: class="fragment" -->
@@ -190,12 +193,12 @@ Nombre de commits par semaine chez Facebook ?
 ---
 
 ## Exemple
+
 ### Vous allez voir c'est simple…
 
 (Enfin presque…, mais c'est puissant !) <!-- .element: class="fragment" -->
 
 ![I've got power](./img/power.gif) <!-- .element: class="fragment" -->
-
 
 ---
 
@@ -257,7 +260,7 @@ $ git add fichier1.js fichier2.js
 
 ```sh
 $ git commit -m "Mon 2nd commit"
-``` 
+```
 <!-- .element: class="fragment" -->
 
 ```sh
@@ -291,9 +294,9 @@ $ git commit -am "Changement dans le fichier"
 
 ---
 
-# À tout moment
+## À tout moment
 
-## Vérifier le statut de mon dépôt Git
+### Vérifier le statut de mon dépôt Git
 
 ```sh
 $ git status
@@ -305,8 +308,8 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   index.html
-	modified:   ../gitlab/index.html
+  modified:   index.html
+  modified:   ../gitlab/index.html
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -403,10 +406,10 @@ $ vim fichier2.js
 
 ```sh
 $ git commit -am "Ajout de l’évolution"
-``` 
+```
 <!-- .element: class="fragment" -->
 
-```
+```sh
 [evolution1 54d9dde] Ajout de l’évolution
  1 files changed, 208 insertions(+), 10 deletions(-)
 ```
@@ -528,14 +531,13 @@ $ git checkout --
 
 ### Comment procédez-vous ?
 
-
 - Je le commente ? <!-- .element: class="fragment" data-fragment-index="1" -->
 - J'ajoute un « return false » <!-- .element: class="fragment" data-fragment-index="1" -->
 - Je le supprime il est dans Git… <!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
-# Je le supprime il est dans Git
+## Je le supprime il est dans Git
 
 ---
 

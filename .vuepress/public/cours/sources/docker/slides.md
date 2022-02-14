@@ -56,7 +56,7 @@ Des exemples en tête ?
 
 ---
 
-![](./img/simplification.png)
+![Simplification](./img/simplification.png)
 
 ---
 
@@ -64,7 +64,7 @@ Des exemples en tête ?
 
 Un changement mineur impose de recompiler toute l’application. (et ça peut être long…)
 
-![](./img/waiting.gif)
+![L'attente](./img/waiting.gif)
 
 Très très long… (Linux ~2h, Firefox 40min)
 
@@ -400,7 +400,7 @@ Pour _sauvegarder_ de la donnée, il faut faire un volume.
 
 ---
 
-![](./img/orchestration.gif)
+![Orchestration](./img/orchestration.gif)
 
 ---
 
