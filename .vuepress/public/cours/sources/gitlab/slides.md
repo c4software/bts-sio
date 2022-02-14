@@ -9,13 +9,13 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-### Récupération d’un projet du dépot distant
+### Récupération d’un projet du dépôt distant
 
 ```sh
 $ git clone URL_DU_PROJET
 ```
 
-- À votre avis ? Quel type de protocols sont possibles ? <!-- .element: class="fragment" -->
+- À votre avis ? Quel type de protocoles sont possibles ? <!-- .element: class="fragment" -->
 
 ---
 
@@ -53,8 +53,8 @@ $ git push
 
 - Interface Web pour Git
 - Ruby On Rails (+VueJS)
-- Gestion des dépots : Privé, Public, Interne
-- Gestionnaire de dépots GIT
+- Gestion des dépôts : Privé, Public, Interne
+- Gestionnaire de dépôts GIT
 - « Équivalent open source de GitHub »
 - Revue de Code
 - Gestion des tâches (issues)
@@ -64,10 +64,10 @@ $ git push
 
 ## Trois versions
 
-- CE (Gratuite)
-- EE (Payante)
-- Cloud (Gratuite)
-- Communautée, facilement contribuable
+- CE (gratuite)
+- EE (payante)
+- Cloud (gratuite)
+- Communauté, facilement contribuable
 
 ---
 
@@ -87,11 +87,11 @@ $ git push
 
 ## STOP
 
-Mais !? Y'a t'il des équivalents ?
+Mais !? Y'a-t-il des équivalents ?
 
 ---
 
-### GitLab est un choix parmis plusieurs outils
+### GitLab est un choix parmi plusieurs outils
 
 - Github
 - GitLab
@@ -107,13 +107,13 @@ Mais !? Y'a t'il des équivalents ?
 ### Service dans le Cloud
 
 - Avril 2008
-- Dépot public gratuit, payant pour des privés
+- Dépôt public gratuit, payant pour des privés
 - Revue de code
 - Wiki
 - Issues
-- Branches privées (Payant)
+- Branches privées (payant)
 - Intégration continue (Service tiers)
-- Hébergement interne (Payant)
+- Hébergement interne (payant)
 - Microsoft (Rachat en 2017, 7,5 milliards de $)
 
 ---
@@ -136,7 +136,7 @@ Mais !? Y'a t'il des équivalents ?
 ### Service dans le Cloud en Privé
 
 - Septembre 2011
-- Dépots publics et privés gratuits
+- Dépôts publics et privés gratuits
 - Revue de code
 - Wiki
 - Issues
@@ -168,7 +168,7 @@ Mais !? Y'a t'il des équivalents ?
 ## Dans le cloud
 
 - Gratuit
-- Dépots privés
+- Dépôts privés
 - Équivalent version payante (mais gratuite)
 
 ---
@@ -181,9 +181,9 @@ Mais !? Y'a t'il des équivalents ?
 
 ---
 
-### Dépots
+### Dépôts
 
-### Privés / Publics
+### Privés / publics
 
 ---
 
@@ -203,9 +203,9 @@ Mais !? Y'a t'il des équivalents ?
 
 ### Gestion de tableau de taches
 
-### Un peu comme trello
+### Un peu comme Trello
 
-Mais integré dans le développement (vous allez voir c’est genial)
+Mais intégré dans le développement (vous aller voir c’est génial)
 
 ---
 
@@ -289,7 +289,7 @@ On en reparlera…
 
 ### L’intégration continue
 
-- Valide le code en continue
+- Valide le code en continu
 - Analyser la qualité du code ([Sonar](https://www.sonarqube.org/))
 - Effectuer les tests (à chaque commit)
 - Réaliser les « livrables » en automatique
@@ -308,7 +308,7 @@ On en reparlera…
 - Important (pourquoi ?) <!-- .element: class="fragment" -->
 - Pour le chef du projet / responsable de projet (pour qui) <!-- .element: class="fragment" -->
 - Améliore la qualité (comment) <!-- .element: class="fragment" -->
-- Commentaires automatique dans les issues <!-- .element: class="fragment" -->
+- Commentaires automatiques dans les issues <!-- .element: class="fragment" -->
 - Recherche les vulnérabilités (le vrai pourquoi…) <!-- .element: class="fragment" -->
 
 ---
@@ -316,7 +316,7 @@ On en reparlera…
 ### Les tests unitaires
 
 - Permet de valider le fonctionnement <!-- .element: class="fragment" -->
-- Évite les régréssions <!-- .element: class="fragment" -->
+- Évite les régressions <!-- .element: class="fragment" -->
 - Façon de penser <!-- .element: class="fragment" -->
 
 ---
@@ -338,7 +338,7 @@ On en reparlera…
 
 ---
 
-### Récupération d’un projet du dépot distant
+### Récupération d’un projet du dépôt distant
 
 ```sh
 $ git clone URL_DU_PROJET

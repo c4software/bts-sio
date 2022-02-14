@@ -31,7 +31,7 @@ Créer un nouveau dépôt local (dans le dossier courant) :
 git init
 ```
 
-Cloner un dépot existant :
+Cloner un dépôt existant :
 
 ```sh
 git clone ssh://user@domain.com/repo.git
@@ -135,7 +135,7 @@ Afficher l’historique des modifications pour un fichier uniquement :
 git log -p <fichier>
 ```
 
-Affiche les changements (en détails) dans le fichier :
+Affiche les changements (en détail) dans le fichier :
 
 ```sh
 git blame <file>
@@ -211,7 +211,7 @@ Continuer un rebase après avoir résolu des conflits :
 git rebase --continue
 ```
 
-## Travailler avec un dépots distant
+## Travailler avec un dépôt distant
 
 Lister tous les dépôts distants configurés :
 

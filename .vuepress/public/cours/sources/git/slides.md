@@ -293,7 +293,7 @@ $ git commit -am "Changement dans le fichier"
 
 # À tout moment
 
-## Vérifier le statut de mon dépot Git
+## Vérifier le statut de mon dépôt Git
 
 ```sh
 $ git status
@@ -315,7 +315,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ## Via un Diff
 
-Afficher les changements dans votre dépot.
+Afficher les changements dans votre dépôt.
 
 ```sh
 $ git config --global diff.tool vimdiff
@@ -480,7 +480,7 @@ $ git branch -d evolution1
 - Individuel avec un dépôt de référence
 - Collectif : Avec dépôt de référence
 - Collectif : Avec dépôt de référence et Manager(s) d’intégration(s)
-- Collectif : Avec dépôt de référence et Propriétaire(s) du dépot (GitLab, Github, …)
+- Collectif : Avec dépôt de référence et Propriétaire(s) du dépôt (GitLab, Github, …)
 
 ---
 

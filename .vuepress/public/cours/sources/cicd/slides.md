@@ -14,7 +14,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Integration Continue
+## Intégration continue
 
 - Validation en continu
 - Régulièrement
@@ -178,7 +178,7 @@ Non !
 
 - Docker
 - Répétable
-- Multi-developpeur
+- Multi développeur
 
 ---
 
@@ -247,7 +247,7 @@ Non !
 
 ---
 
-## Cloud : Gratuit / Payant
+## Cloud : gratuit / payant
 
 - Gitlab-CI
 - CircleCI
@@ -257,7 +257,7 @@ Non !
 
 ---
 
-## Interne : Gratuit / Payant
+## Interne : gratuit / payant
 
 - Gitlab-CI
 - Jenkins

@@ -59,7 +59,7 @@ docker run --rm --name monConteneur -it -p 3000:80 -v %cd%:/data ubuntu:latest
 | Paramètre                        | action                                                                                 |
 | :------------------------------- | :------------------------------------------------------------------------------------- |
 | -p portLocal:portContainer       | Permet de rendre visible un port dans le container sur votre machine (ex. -p 8080:80)  |
-| -v dossierLocal:dossierContainer | Permet d'exposer un dossier local à l'interieur du container (ex -v ./vosSource:/data) |
+| -v dossierLocal:dossierContainer | Permet d'exposer un dossier local à l'intérieur du container (ex -v ./vosSource:/data) |
 
 ## Les Logs
 
@@ -101,7 +101,7 @@ docker port monConteneur
 docker diff monConteneur
 ```
 
-### Supprimer les images / container plus utilisé
+### Supprimer les images / container plus utilisées
 
 ```sh
 docker system prune

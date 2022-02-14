@@ -235,8 +235,8 @@ pages:
 ### Quelques astuces / remarques
 
 - Mettre en cache certains dossiers (exemple node_modules).
-- GitLab-CI c’est de l’automatisation des taches (refait à l’identique à chaque fois).
-- Vous pouvez interdir l’execution du gitlab-ci en mettant « [ci skip] » dans le message de commit.
+- GitLab-CI c’est de l’automatisation des tâches (refait à l’identique à chaque fois).
+- Vous pouvez interdire l’exécution du gitlab-ci en mettant « [ci skip] » dans le message de commit.
 
 ---
 

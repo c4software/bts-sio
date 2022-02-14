@@ -38,7 +38,7 @@ Docker est une technologie française, mais celle-ci est utilisée mondialement 
 - 3300 contributeurs au projet
   :::
 
-Comme je disais cette technologie est au coeur de l'évolution du paysage informatique (IT)
+Comme je disais cette technologie est au cœur de l'évolution du paysage informatique (IT)
 
 ![It Évolution](./res/it_evolution.png)
 
@@ -54,7 +54,7 @@ Mais avant de continuer pour vous le cloud, c'est quoi ?
 
 Nous allons donc changer de paradigme, avant nous avions :
 
-- Monolitique
+- Monolithique
 - Mise à jour lente
 - Gros serveurs
 
@@ -92,14 +92,14 @@ Le découpage en microservices va donc nous permettre de répondre à l'ensemble
 - Une conception qui rend l’application hautement disponible
 
 ::: tip CI / CD
-Ce découpage permet également de rentrer dans un autre mouvement celui de la **livraison en continu** / **déploiement en continu**. Nous reviendrons plus en détail sur ce point ultérieurement dans le cours.
+Ce découpage permet également de rentrer dans un autre mouvement, celui de la **livraison en continu** / **déploiement en continu**. Nous reviendrons plus en détail sur ce point ultérieurement dans le cours.
 :::
 
 ### Containers ou Machines virtuelles ?
 
-Alors là vous allez me dire, non, mais je connais ce que tu nous racontes là !? Embarquer une application dans un truc transportable quelques soit la machine je connais déjà ! C'est une machine virtuelle…
+Alors là vous allez me dire, non, mais je connais ce que tu nous racontes là !? Embarquez une application dans un truc transportable, quelle que soit la machine, je connais déjà ! C'est une machine virtuelle…
 
-Alors oui vous avez raison… Il y a quelques années nous avions **une application un serveur**, puis nous avons eu **un serveur => Un hyperviseur => Des machines**, mais nous allons voir qu'avec Docker plus d'hyperviseur nous avons « que notre applicatif dans un conteneur ».
+Alors oui vous avez raison… Il y a quelques années nous avions **une application == un serveur**, puis nous avons eu **un serveur => Un hyperviseur => Des machines**, mais nous allons voir qu'avec Docker plus d'hyperviseur nous avons « que notre applicatif dans un conteneur ».
 
 Un serveur :
 ![Un serveur](./res/un_serveur.png)
@@ -127,7 +127,7 @@ Le conteneur va donc répondre à une problématique, éviter la multiplication 
 ![VM Vs Conteneur](./res/vm_vs_conteneur.png)
 
 ::: tip, Mais est-ce la fin des VM ?
-Bien évidement non, les VM sont là pour rester elles sont une vraie réponse sur la mutualisation des machines ; mais également une vraie sécurité entre les machines. En effet l'hyperviseur est là pour nous garantir au maximum la séparation des processus entre « **Les VM** » et la machine physique.
+Bien évidemment non, les VM sont là pour rester, elles sont une vraie réponse sur la mutualisation des machines ; mais également une vraie sécurité entre les machines. En effet, l'hyperviseur est là pour nous garantir au maximum la séparation des processus entre « **Les VM** » et la machine physique.
 
 D'ailleurs il est complètement possible de faire :
 
@@ -152,7 +152,7 @@ Avec docker pas « d'hyperviseur », nous avons un morceau aux milieux qui s'app
 
 ![Le Docker Engine](./res/engine.png)
 
-Comme j'indiquai en introduction, l'angine de Docker est multiplateforme il fonctionne donc sans problème sur :
+Comme j'indiquai en introduction, l'angine de Docker est multiplateforme, il fonctionne donc sans problème sur :
 
 - Linux
 - Windows
@@ -203,7 +203,7 @@ Docker c'est principalement une « interface » avec laquelle nous devons commun
 Mais pour résumer, voilà les éléments importants :
 
 - Démarre l’image ubuntu:latest
-- `--rm` supprime le container avant de le relancer.
+- `--rm` Supprime le container avant de le relancer.
 - Déclare le port `80` du conteneur sur le port 3000 de votre machine.
 - Monte le dossier courant dans le dossier `/data` du conteneur
 - Note: Sur Windows vous devez remplacer `-v ${PWD}:/data` par `-v "C:\Data":/data`
@@ -221,11 +221,11 @@ docker run --rm --name monConteneur -it -p 3000:80 -v %cd%:/data ubuntu:latest
 | Paramètre                        | action                                                                                  |
 | :------------------------------- | :-------------------------------------------------------------------------------------- |
 | -p portLocal:portContainer       | Permets de rendre visible un port dans le container sur votre machine (ex. -p 8080:80)  |
-| -v dossierLocal:dossierContainer | Permets d'exposer un dossier local à l'intérieur du container (ex -v ./vosSource:/data) |
+| -v dossierLocal:dossierContainer | permet d'exposer un dossier local à l'intérieur du container (ex -v ./vosSource:/data) |
 
 ### Les volumes
 
-Comme je disais en introduction les Containers sont stateless ; ça veut dire qu'ils sont **remis à zéro** à chaque lancement, nous allons donc devoir mettre en place un volume entre celui-ci et votre machine, un volume c'est :
+Comme je disais en introduction, les Containers sont stateless ; ça veut dire qu'ils sont **remis à zéro** à chaque lancement, nous allons donc devoir mettre en place un volume entre celui-ci et votre machine, un volume c'est :
 
 - Un dossier « partagé » entre votre machine et le container
 - Une sorte de point de montage
@@ -329,9 +329,9 @@ Dans le monde de Docker, c'est ce que nous appellerons l'orchestration.
 <center><iframe src="https://giphy.com/embed/KYGDZKRWdBnFe" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 </center>
 
-L'orchestration, ça va être le fait de construire une « stack » applicative entière avec l'intégralité des serveurs nécessaires au bon fonctionnement de notre application (exemple PHP, BDD, FTP). Dans le monde de Docker, nous avons un outil qui permet de construire ça. Le `Docker Compose` permet de composer une stack ou une infrastructure complète de conteneurs ; Il permet de simplifier la création, l'interconnexion et la multiplication de conteneurs.
+L'orchestration, ça va être le fait de construire une « stack » applicative entière avec l'intégralité des serveurs nécessaires au bon fonctionnement de notre application (exemple PHP, BDD, FTP). Dans le monde de Docker, nous avons un outil qui permet de construire ça. Le `Docker Compose` permet de composer une stack ou une infrastructure complète de conteneurs ; il permet de simplifier la création, l'interconnexion et la multiplication de conteneurs.
 
-[C'est un outil officiel fourni directement et maintenu par la société Docker](https://docs.docker.com/compose/) Il repose sur **un seul fichier** le `docker-compose.yml`, celui-ci énumèrera l'ensemble de votre infrastructure, les volumes, les ports, les images, etc. Bref tout ce que vous pouvez faire avec la ligne de commande vous aller être capable de le définir dans un fichier `docker-compose.yml`.
+[C'est un outil officiel fourni directement et maintenu par la société Docker](https://docs.docker.com/compose/) il repose sur **un seul fichier** le `docker-compose.yml`, celui-ci énumèrera l'ensemble de votre infrastructure, les volumes, les ports, les images, etc. Bref tout ce que vous pouvez faire avec la ligne de commande vous aller être capable de le définir dans un fichier `docker-compose.yml`.
 
 Voilà un exemple très simple :
 
@@ -412,7 +412,7 @@ Cette automatisation ne sera pas faite à n'importe quel moment ? Elle sera fait
 
 ### CI (Intégration continue)
 
-Le premier point du CI/CD c'est le CI ; CI signifie « Continous Integration » en français Intégration Continu, c'est la mécanique qui vous permettra de vous assurer de la qualité de votre application au travers d'indicateurs. Si je dois résumer le CI avant de le détailler je dirais :
+Le premier point du CI/CD c'est le CI ; CI signifie « Continous Integration » en français Intégration Continu, c'est la mécanique qui vous permettra de vous assurer de la qualité de votre application au travers d'indicateurs. Si je dois résumer le CI avant de le détailler, je dirais :
 
 - Validation en continu
 - Régulièrement
@@ -503,7 +503,7 @@ Nous pouvons tout tester avec le CI, mais à votre avis qu'allons-nous tester?
 
 #### Les indicateurs
 
-Je vous parlais d'indicateur au début, les indicateurs de réussite sont multibles nous aurons bien évidemment :
+Je vous parlais d'indicateur au début, les indicateurs de réussite sont multiples, nous aurons bien évidemment :
 
 - Le résultat « vert de chaque test ».
 - Le Lint (analyse statique du code).
@@ -511,9 +511,9 @@ Je vous parlais d'indicateur au début, les indicateurs de réussite sont multib
 
 ![SonarQube](./res/sonarqube.png)
 
-#### Les artifacts
+#### Les artefacts
 
-Je vous parlais du livrable en introduction. Dans le monde de l'intégration le livrable nous appellerons ça un « artifacts », c'est le résultat de cette automatisation de tâches. Il est le résultat du « Test & Build » cette opération sur ce que nous avons vu précédemment :
+Je vous parlais du livrable en introduction. Dans le monde de l'intégration, le livrable nous appellerons ça un « artifacts », c'est le résultat de cette automatisation de tâches. Il est le résultat du « Test & Build » cette opération sur ce que nous avons vu précédemment :
 
 - Docker pour isoler et être capable de répéter de manière stateless l'opération.
 - Répétable (à l'identique, quelques soit la modification).
@@ -539,7 +539,7 @@ Et pourquoi c'est très très intéressant ?
 
 ## Gitlab CI
 
-Et c'est ici que rentre en jeu les solutions cloud de CI/CD. Comme tout dans les outils il y a plusieurs solutions répondant aux mêmes problèmes. J'ai décidé de vous parler de Gitlab-CI, car il est gratuit et intégré de base dans Gitlab aucun compte supplémentaire de requis ! Et surtout il est très puissant… Car il repose sur **Docker**, et vous l'avez compris maintenant ça veut dire que nous serons capables de tout faire.
+Et c'est ici que rentre en jeu les solutions cloud de CI/CD. Comme tout dans les outils, il y a plusieurs solutions répondant aux mêmes problèmes. J'ai décidé de vous parler de Gitlab-CI, car il est gratuit et intégré de base dans Gitlab aucun compte supplémentaire de requis ! Et surtout il est très puissant… Car il repose sur **Docker**, et vous l'avez compris maintenant ça veut dire que nous serons capables de tout faire.
 
 ![Résultat du pipeline](./res/pipelines_index_v13_0.png)
 
@@ -562,7 +562,7 @@ Et l'objectif est :
 - Automatisation de la livraison
 - Déploiement plus fréquent
 
-::: danger Évidemment il y a des alternatives
+::: danger évidemment il y a des alternatives
 Je vous entends déjà, non, mais moi je n’utilise pas Gitlab, mais Github… Évidemment il y a des alternatives des options pour faire plaisir à tous. [Vous avez ici une liste complète à jour des alternatives disponibles](https://github.com/ligurio/awesome-ci)
 :::
 
@@ -658,7 +658,7 @@ Il y a beaucoup de fournisseurs de FaaS :
 - Amazon avec Lambda.
 - Google avec Firebase Function.
 - Google avec Cloud Run (lancement d'image Docker à la demande)
-- OpenFaas solution libre similaire au précédentes.
+- OpenFaas solution libre similaire aux précédentes.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eOBq__h4OJ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

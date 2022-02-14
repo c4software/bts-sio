@@ -34,7 +34,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ### Avant
 
-- Monolitique
+- Monolithique
 - Mise à jour lente
 - Gros serveurs
 
@@ -200,7 +200,7 @@ Votre avis sur cette solution ?
 ### Pour résumer Docker c’est :
 
 - Un projet open source qui a pour but d’automatiser le déploiement d’applications dans un « container »
-- Le container une sorte « d’archive » qui contient tout ce qu’il faut pour faire fonctionner un logiciel : Code, Librairies pour l’éxecution, outils système, et librairies système. (autonome)
+- Le container une sorte « d’archive » qui contient tout ce qu’il faut pour faire fonctionner un logiciel : Code, Librairies pour l’exécution, outils système, et librairies système. (autonome)
 - Ça garantit que le code fonctionnera toujours de la même façon, quel que soit l’environnement.
 
 ---
@@ -355,7 +355,7 @@ docker run -p 5000:5000 flask:demo python hello.py
 
 ### Mais…
 
-Le container est _éphémère_ il ne sauvegarde rien, à chaque arrêt tout est supprimé.
+Le container est _éphémère,_ il ne sauvegarde rien, à chaque arrêt tout est supprimé.
 
 ---
 
