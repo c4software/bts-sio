@@ -637,6 +637,13 @@ Plein de mots qui font peur, mais ne vous inquiétez pas… C'est beaucoup plus 
 
 Ici pas de blabla, Netlify est une solution pensée pour être simple ; je vous propose donc de directement mettre en application via [le TP suivant](/tp/ci/jamstack/netlify.md)
 
+### Déployer un site Laravel
+
+Vous l'avez vu en pratique, il n’est parfois pas simple de déployer un site Laravel ! Vous devez configurer un certain nombre d'éléments sur votre Apache pour que ça fonctionne. Avec Gitlab-CI et l'intégration continue, l'ensemble de ces opérations sera grandement simplifié :
+
+- [Étape 1 - déployer un site Laravel avec Docker](/tp/ops/deployer-laravel-docker.md)
+- [Étape 2 - packager votre site avec une CI et Docker](/tp/ops/deployer-laravel-ci.md)
+
 ### FaaS
 
 Function As A Service, c'est le truc qui va fous faire passer dans une autre dimension. L'idée étant la suivante :
