@@ -8,16 +8,16 @@ L'autre gros avantage d'une stack d'intégration continue c'est la partie « tes
 
 L'intégration Continue (CI) va nous permettre justement de tester cette non-régression au fur et à mesure du projet. Ce TP va nous permettre de mettre en place la stack permettant de tester votre projet. Je vais illustrer la problématique avec deux langages, PHP et JavaScript mais sachez que ce que nous allons voir ici fonctionnera avec **n'importe quel langage de programmation**.
 
-Je ne vais pas me concentrer ici sur la partie écriture des tests (car la question n'est pas ici). Si vous avez déjà écrits des tests vous vous êtes peut-être déjà demandé « Pourquoi ? », en effet quand on apprend à écrire des tests on s'intéresse souvent qu'aux tests et pas à quand les tests vont s'exécuter… Et bien c'est maintenant !
+Je ne vais pas me concentrer ici sur la partie écriture des tests (car la question n'est pas ici). Si vous avez déjà écrit des tests vous vous êtes peut-être déjà demandé « Pourquoi ? », en effet quand on apprend à écrire des tests on s'intéresse souvent qu'aux tests et pas à quand les tests vont s'exécuter… Et bien c'est maintenant !
 
 ## Les tests et le JavaScript
 
-Comme en PHP il est possible de tester votre code JavaScript pour s'assurer que celui-ci ne connaisse pas de régression ou tout simplement ne perde pas en qualité au fur et à mesure des dévoloppement.
+Comme en PHP il est possible de tester votre code JavaScript pour s'assurer que celui-ci ne connaisse pas de régression ou tout simplement ne perde pas en qualité au fur et à mesure des développements.
 
 L'idée ici n'est pas de voir comment vous devez écrire des tests en JavaScript, l'idée est plutôt de voir comment les tests vont s'intégrer dans notre flow de développement. Pour illustrer, je vais utiliser Gitlab-CI (car je trouve la plateforme bien faite, et gratuite).
 
 - La première étape va être la récupération du projet d'exemple. [Celui-ci est disponible ici](/sample/vite-project-with-test.zip)
-- Nous avons notre projet « préconfiguré », **avant de continuer je vous laisse le tester sur votre machine**.
+- Nous avons notre projet « préconfiguré », **avant de continuer, je vous laisse le tester sur votre machine**.
 - Pour activer la partie CI il suffit de créer un fichier `gitlab-ci.yml`. Voilà le contenu.
 
 ```yml
@@ -43,7 +43,7 @@ C'est à vous, je vous laisse créer le :
 - Ajouter le fichier `.gitlab-ci.yml`
 - Le push vers Gitlab.
 
-Une fois correctement configuré vous devriez voir :
+Une fois correctement configuré, vous devriez voir :
 
 ![Résultat](../ressources/tests_results.png)
 
@@ -71,7 +71,7 @@ Je vous laisse reprendre le [TP Gitlab Page pour intégrer la partie « pages »
 
 ::: details Un peu d'aide? Bloqué ?
 
-Vous avez vraiment cherché ? Si oui voilà une solution possible.
+Vous avez vraiment cherché ? Si oui, voilà une solution possible.
 
 ```yml
 pages:
