@@ -1,5 +1,6 @@
 ---
 description: Dans ce document nous allons voir comment déployer votre Portfolio simplement dans « le cloud » avec la plateforme Netlify
+prev: ../pages-portfolio.md
 ---
 
 # Build, Deploy avec Netlify
@@ -43,7 +44,7 @@ C'est magique, ça semble parfait, non ? Si c'est magique … C'est qu'il y a un
 
 ### JamStack ?
 
-La jamstack c'est une nouvelle façon de voir la conception de site Internet, cette nouvelle façon de faire va nous permettre de réduire les couts d'hébergements / et bénéficier de l'avantage du Cloud (CI/CD, compression des assets, FAAS…)
+La JamStack c'est une nouvelle façon de voir la conception de site Internet, cette nouvelle façon de faire va nous permettre de réduire les couts d'hébergements / et bénéficier de l'avantage du Cloud (CI/CD, compression des ressources graphiques également nommées ASSETS, FAAS…)
 
 Plein de mots qui font peur, mais ne vous inquiétez pas… C'est beaucoup plus simple qu'il n'y parait. Ici pas de PHP pour générer vos pages nous allons tout concevoir en HTML / JavaScript (VanillaJS, React, Vue, …) / CSS
 
@@ -56,10 +57,10 @@ Les fonctionnalités dynamiques sont gérées par JavaScript. Vous êtes libres 
 Les opérations côté serveur sont abstraites sous forme d’APIs réutilisables, accessibles en HTTPS à l’aide de JavaScript. Ces opérations peuvent être déléguées à des services tiers ou bien à vos propres fonctions. C'est ce que l'on appelle souvent FAAS (Function As A Service)
 
 **Markup**
-Les sites web sont servis sous forme de fichiers HTML statiques. Ses fichiers peuvent être générés à partir de fichiers source (Markdown, générateur de site, ou simplement avec du HTML à l'ancienne).
+Les sites web sont servis sous forme de fichiers HTML statiques. Ses fichiers peuvent être générés à partir de fichiers sources (Markdown, générateur de sites, ou simplement avec du HTML à l'ancienne).
 
 ::: danger Est-ce la meilleure façon ?
-C'est à la mode, oui… Mais est-ce la meilleure façon ? Je ne sais pas. Sachez juste que pour l'instant c'est un standard et que beaucoup l'utilise.
+C'est à la mode, oui… Mais est-ce la meilleure façon ? Je ne sais pas. Sachez juste que pour l'instant c'est un standard et que beaucoup l'utilisent.
 
 **Il faut donc le connaitre / le maitriser.**
 :::
@@ -82,9 +83,9 @@ Avant de continuer, nous allons tester en local votre portfolio afin de vérifie
 
 Vous devez avoir un portfolio pour l'examen, mais si vous n'avez pour l'instant rien de disponible, il est tout à fait possible de continuer le TP. Pour ça je vous propose d'utiliser autre chose !
 
-Vous utilisez depuis le début d'année mon site, mon site est **un site reposant sur la JamStack** il utilise VueJS et pour écrire les pages je ne fais pas de HTML j'écris du Markdown.
+Vous utilisez depuis le début d'année mon site, mon site est **un site  de type JamStack** il utilise VueJS et pour écrire les pages je ne fais pas de HTML j'écris du Markdown.
 
-Je n'ai rien inventé. J'utilise un outil qui s'appelle [VuePress](https://vuepress.vuejs.org/), VuePress est un générateur de site statique, c'est-à-dire un site qui ne sera pas différent à chaque chargement de page. Il est possible d'utiliser VuePress dans beaucoup d'usage différent :
+Je n'ai rien inventé. J'utilise un outil qui s'appelle [VuePress](https://vuepress.vuejs.org/), VuePress est un générateur de site statique, c'est-à-dire un site qui ne sera pas différent à chaque chargement de page. Il est possible d'utiliser VuePress dans beaucoup d'usages différents :
 
 - De la documentation.
 - Un Blog
@@ -191,32 +192,32 @@ Mais Netlify c'est pas uniquement un simple CDN qui compile automatiquement vos 
 
 ![Settings](./res/settings.png)
 
-Ces règles sont nommées PostProcessing sur Netlify. Ne vous y trompez pas, les règles en question ne sont que des outils préparamètres pour vous faire gagner du temps. Si vous le souhaitez, il est complètement possible de faire la même chose avec des solutions comme Gitlab-CI.
+Ces règles sont nommées PostProcessing sur Netlify. Ne vous y trompez pas, les règles en question ne sont que des outils préparamètrés pour vous faire gagner du temps. Si vous le souhaitez, il est complètement possible de faire la même chose avec des solutions comme Gitlab-CI.
 
 Nous allons faire le tour ensemble des options. Je vous attends.
 
 ### Aller plus loin
 
-Nous avons vu la base regardons ce que nous allons pouvoir faire très simplement avec Netlify.
+Nous avons vu la base, regardons ce que nous allons pouvoir faire très simplement avec Netlify.
 
 #### Les branches
 
-Tester en prod personne n'aime ça… Pourtant vous pourriez vouloir montrer à votre client / collègue votre travail sans forcément le montrer sur votre ordinateur. Avec Netlify c'est possible :
+Tester en production, personne n'aime ça… Pourtant vous pourriez vouloir montrer à votre client / collègue votre travail sans forcément le montrer sur votre ordinateur. Avec Netlify c'est possible :
 
 Dans les paramètres de votre projet, vérifiez que les options suivantes sont actives :
 
 ![Preview](./res/portfolio-preview.png)
 
-À partir de maintenant, si vous créez une branche dans votre projet Git, une version de `prévisualisation` sera créée pour tester en temps réel votre modification. 
+À partir de maintenant, si vous créez une branche dans votre projet Git, une version de `prévisualisation` sera créée pour tester en temps réel votre modification.
 
 - Créer une branche.
 - Apporter une modification.
-- Vérifier que Netlify a bien créé un sous-domaine permettant de valider votre modification. 
+- Vérifier que Netlify a bien créé un sous-domaine permettant de valider votre modification.
 
 ::: tip Un instant !
 
 - À votre avis quel est l'intérêt ?
-- Pourquoi est-ce intéressant dans le cadre de la méthode agile ? 
+- Pourquoi est-ce intéressant dans le cadre de la méthode agile ?
 
 :::
 
@@ -234,3 +235,14 @@ La documentation explique très bien la procédure : [consulter la documentation
 #### La compression des ASSETS
 
 Des images trop lourdes ? Un CSS non compressé ? Des fichiers non minifiés ? Aucun problème, regardons comment répondre à cette problématique.
+
+#### La suite
+
+Netlify est vraiment une solution simple et intéressante pour livrer en continu des sites web. Vous l'avez vu, il est possible en quelques clics de mettre en ligne un site, cependant cette mise en ligne est très simpliste :
+
+- Vous n'avez que très peu la main sur les outils.
+- Vous ne pouvez pas faire autre chose que de la JamStack.
+
+Pour aller plus loin, je vous propose de tester Gitlab Pages qui, comme Netlify, va nous permettre de mettre en ligne votre site. Mais, cette fois-ci, vous allez voir que nous aurons la main sur l'ensemble des opérations.
+
+[La suite est par ici =>](../pages-portfolio.md)
