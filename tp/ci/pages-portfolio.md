@@ -74,7 +74,7 @@ pages:
     - master
 ```
 
-::: Un instant
+::: tip Un instant
 
 Regarder le contenu du fichier, étudier les différentes instructions.
 
