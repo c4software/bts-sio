@@ -7,7 +7,7 @@ next: ../pages-portfolio.md
 
 Dans ce document nous allons voir comment déployer votre portfolio simplement dans « le cloud » avec la plateforme [Netlify](https://www.netlify.com).
 
-::: details Sommaire
+::: details Sommaires
 [[toc]]
 :::
 
