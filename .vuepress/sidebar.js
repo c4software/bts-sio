@@ -214,6 +214,11 @@ module.exports = [
           "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose", "/tp/ops/deployer-laravel-docker.md"]
       },
       {
+        text: "Portfolio",
+        collapsible: true,
+        children: ["/tp/ci/jamstack/netlify-portfolio.md", "/tp/ci/pages-portfolio.md"]
+      },
+      {
         text: "Laravel",
         collapsible: true,
         children: [
