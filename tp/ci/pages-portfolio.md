@@ -6,7 +6,9 @@ next: /tp/ops/deployer-laravel-ci.md
 
 # Déployer votre portfolio avec GitLab Pages
 
-::: details Sommaires [[toc]] :::
+::: details Sommaires 
+[[toc]] 
+:::
 
 ## Introduction
 
