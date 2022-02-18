@@ -38,7 +38,7 @@ Le projet étant assez conséquent je vous propose de partir d’une base déjà
 - Les scripts pour compiler la partie Cordova
 - Les plug-ins « préconfigurés » / déclarés dans le fichier `config.xml`.
 
-Le code est [téléchargeable ici](./sources/vuejs-cordova-sample.zip)
+Le code est [téléchargeable ici](/sample/vuejs-cordova-sample.zip)
 
 ## Utiliser le code fourni
 
