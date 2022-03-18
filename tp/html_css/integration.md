@@ -53,6 +53,10 @@ _Bonne pratique :_
 
 - [Quelques règles de base (en 4 minutes)](https://jgthms.com/web-design-in-4-minutes/)
 
+_DevOps :_
+- [Certbot](https://certbot.eff.org/instructions) <- Installer un certificat SSL pour son site web (HTTPS)
+- [Acme.sh](https://github.com/acmesh-official/acme.sh) <- Installer un certificat SSL (HTTPS), équivalent Certbot mais écrit en script shell.
+
 ## Single Page Website
 
 ![Cas 1](./integration/cas1.png)
