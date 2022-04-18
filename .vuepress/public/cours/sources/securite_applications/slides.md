@@ -304,6 +304,33 @@ Les gens sont souvent trop confiants.
 
 ---
 
+Un instant ✋
+
+---
+
+Les mots de passe
+
+🔐
+
+---
+
+Comment les sauvegardez-vous en base de données ?
+
+---
+
+Crypter ≠ Hasher
+
+---
+
+Quelle est la différence ?
+
+---
+
+- Crypter => Réversible (comme Canal+).
+- Hasher => Non réversible (comme le steak hasher).
+
+---
+
 ### On connait les failles
 
 #### Comment on les corrige ?
