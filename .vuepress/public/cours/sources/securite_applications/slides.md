@@ -327,7 +327,7 @@ Quelle est la différence ?
 ---
 
 - Crypter => Réversible (comme Canal+).
-- Hasher => Non réversible (comme le steak hasher).
+- Hasher => Non réversible (comme le steak haché).
 
 ---
 
