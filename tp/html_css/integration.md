@@ -54,8 +54,19 @@ _Bonne pratique :_
 - [Quelques règles de base (en 4 minutes)](https://jgthms.com/web-design-in-4-minutes/)
 
 _DevOps :_
+
 - [Certbot](https://certbot.eff.org/instructions) <- Installer un certificat SSL pour son site web (HTTPS)
 - [Acme.sh](https://github.com/acmesh-official/acme.sh) <- Installer un certificat SSL (HTTPS), équivalent Certbot mais écrit en script shell.
+
+_Hebergement :_
+
+- [Netlify](https://www.netlify.com) <- CI/CD, Simple, « gratuit », avec une interface web de gestion.
+- [Surge.sh](https://www.netlify.com) <- CI/CD, Simple, « gratuit », un poil plus technique
+- [Heroku](https://www.heroku.com/) <- CI/CD, Plus complet, mais un peu plus « complexe ».
+- [Gitlab Pages](https://cours.brosseau.ovh/tp/ci/pages.html) <- CI/CD
+- [Github Pages](https://pages.github.com/) <- CI/CD
+- [Firebase Hosting](https://firebase.google.com/docs/hosting)
+- [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou multualisés.
 
 ## Single Page Website
 
