@@ -66,7 +66,7 @@ _Hebergement :_
 - [Gitlab Pages](https://cours.brosseau.ovh/tp/ci/pages.html) <- CI/CD
 - [Github Pages](https://pages.github.com/) <- CI/CD
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
-- [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou multualisés.
+- [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou mutualisés.
 
 ## Single Page Website
 
@@ -76,7 +76,7 @@ _Hebergement :_
 
 ![Cas 2](./integration/cas2.png)
 
-## Liste de liens (Avec responsive)
+## Liste de liens (avec responsive)
 
 ![Cas 3](./integration/cas3.png)
 
