@@ -214,13 +214,13 @@ internal class Personne(var nom: String, var prenom: String, private val dateNai
 
   </CodeGroupItem>
   <CodeGroupItem title="C#">
-    
+
 ```cs
 public class Personne
 {
     
   // Variable
-	public string nom, prenom;
+ public string nom, prenom;
 	public int nbEnfant;
 	private DateTime dateNaissance;
 	private int salaire;
@@ -286,8 +286,8 @@ Chaque objet représente un objet du monde réel
 
 <CodeGroup>
   <CodeGroupItem title="PHP" active>
-    
-```php 
+
+```php
 $personne1 = new Personne("Valentin", "Brosseau", "28/02/1987", 0);
 $personne2 = new Personne("John", "Doe", "01/01/1970", 12); 
 ```
@@ -1476,12 +1476,12 @@ class Animal{
   
 }
 
-class Humain extends Animal {
+class Humain : Animal {
 
   // Reste de la classe
   // …
 
-  public override void bruit(){
+  public override void bruit() {
     base.bruit()
     Console.WriteLine(" (Oui mais compréhensible)");
   }
@@ -1575,7 +1575,6 @@ class Mig29 : MachineVolante {
 }
 
 class Helicoptere : MachineVolante {
-    
     public override void fly() {
         Console.WriteLine("Start vertically, hover, fly");
     }
