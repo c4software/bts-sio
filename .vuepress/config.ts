@@ -1,22 +1,22 @@
 const { defaultTheme } = require('@vuepress/theme-default')
 const sidebar = require("./sidebar.ts");
+const { searchPlugin } = require('@vuepress/plugin-search')
+const { googleAnalyticsPlugin } = require('@vuepress/plugin-google-analytics')
+const { mediumZoomPlugin } = require('@vuepress/plugin-medium-zoom')
 
 module.exports = {
   title: "Cours",
   description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA, et dans différentes interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
   plugins: [
-    '@vuepress/medium-zoom',
-    ['@vuepress/google-analytics', { 'id': 'UA-2107503-8' }],
-    [
-      "@vuepress/plugin-search",
-      {
-        locales: {
-          "/": {
-            placeholder: "Rechercher",
-          },
+    mediumZoomPlugin(),
+    googleAnalyticsPlugin({ 'id': 'UA-2107503-8' }),
+    searchPlugin({
+      locales: {
+        "/": {
+          placeholder: "Rechercher",
         },
       },
-    ],
+    }),
     require('./plugins/authors.ts')
   ],
   locales: {
