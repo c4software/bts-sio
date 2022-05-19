@@ -1565,7 +1565,7 @@ abstract class MachineVolante {
 
 class Mig29 : MachineVolante {
     
-    public override	void fly() {
+    public override void fly() {
         Console.WriteLine("Start, fly");
     }
 
@@ -1575,7 +1575,7 @@ class Mig29 : MachineVolante {
 }
 
 class Helicoptere : MachineVolante {
-    public override void fly() {
+    public void fly() : base() {
         Console.WriteLine("Start vertically, hover, fly");
     }
 }
