@@ -20,6 +20,7 @@ Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA
 - Introduction au développement sécurisé.
 - Laravel, PHP & Framework.
 - VueJS.
+- Programmation orientée objet (POO) et UML.
 
 ## Contenu
 

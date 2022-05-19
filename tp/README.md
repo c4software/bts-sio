@@ -2,5 +2,5 @@
 
 Cours et TP utilisé dans :
 
-- En BTS SIO : Module SLAM 5.
+- En BTS SIO.
 - Divers cours et interventions.
