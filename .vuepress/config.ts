@@ -5,7 +5,7 @@ const { googleAnalyticsPlugin } = require('@vuepress/plugin-google-analytics')
 const { mediumZoomPlugin } = require('@vuepress/plugin-medium-zoom')
 
 module.exports = {
-  base: "./",
+  base: "",
   title: "Cours",
   description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA, et dans différentes interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
   plugins: [
