@@ -16,7 +16,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 $ git clone URL_DU_PROJET
 ```
 
-- À votre avis ? Quel type de protocoles sont possibles ? <!-- .element: class="fragment" -->
+- À votre avis ? Quel type de protocoles sont possibles ? 
 
 ---
 
@@ -149,12 +149,12 @@ Mais !? Y'a-t-il des équivalents ?
 
 ## Les risques dans le Cloud ?
 
-- Indisponibilité <!-- .element: class="fragment" -->
-- Lenteur <!-- .element: class="fragment" -->
-- Dépend de VOTRE connexion Internet <!-- .element: class="fragment" -->
-- Dépend de LEUR connexion Internet <!-- .element: class="fragment" -->
-- Sécurité <!-- .element: class="fragment" -->
-- Faille <!-- .element: class="fragment" -->
+- Indisponibilité 
+- Lenteur 
+- Dépend de VOTRE connexion Internet 
+- Dépend de LEUR connexion Internet 
+- Sécurité 
+- Faille 
 
 ---
 
@@ -232,7 +232,7 @@ Une API pour tout piloter ;)
 
 Des morceaux de code que l’on partage.
 
-- Quelqu'un connait un équivalent ? <!-- .element: class="fragment" -->
+- Quelqu'un connait un équivalent ? 
 
 ---
 
@@ -306,19 +306,19 @@ On en reparlera…
 
 ### Qualité de code
 
-- Important (pourquoi ?) <!-- .element: class="fragment" -->
-- Pour le chef du projet / responsable de projet (pour qui) <!-- .element: class="fragment" -->
-- Améliore la qualité (comment) <!-- .element: class="fragment" -->
-- Commentaires automatiques dans les issues <!-- .element: class="fragment" -->
-- Recherche les vulnérabilités (le vrai pourquoi…) <!-- .element: class="fragment" -->
+- Important (pourquoi ?) 
+- Pour le chef du projet / responsable de projet (pour qui) 
+- Améliore la qualité (comment) 
+- Commentaires automatiques dans les issues 
+- Recherche les vulnérabilités (le vrai pourquoi…) 
 
 ---
 
 ### Les tests unitaires
 
-- Permet de valider le fonctionnement <!-- .element: class="fragment" -->
-- Évite les régressions <!-- .element: class="fragment" -->
-- Façon de penser <!-- .element: class="fragment" -->
+- Permet de valider le fonctionnement 
+- Évite les régressions 
+- Façon de penser 
 
 ---
 

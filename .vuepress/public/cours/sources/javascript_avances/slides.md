@@ -306,8 +306,8 @@ Async / Await permet de rendre « synchrone » du code asynchrone.
 
 - Attendre le retour d'une requête Ajax avant de continuer.
 - À votre avis, quels sont les risques ?
-- Catch <!-- .element: class="fragment" -->
-- Bloquage de l'interface <!-- .element: class="fragment" -->
+- Catch 
+- Bloquage de l'interface 
 
 ---
 

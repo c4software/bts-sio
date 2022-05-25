@@ -163,10 +163,10 @@ Alors, qu'en pensez-vous ?
 ---
 
 - Simplifie la lecture du code.
-- Centralise les éléments « sensibles ». <!-- .element: class="fragment" -->
-- Évite le code dupliqué. <!-- .element: class="fragment" -->
-- Réduit la charge mentale. (évite la panique !) <!-- .element: class="fragment" -->
-- Être quelqu'un de bien. <!-- .element: class="fragment" -->
+- Centralise les éléments « sensibles ». 
+- Évite le code dupliqué. 
+- Réduit la charge mentale. (évite la panique !) 
+- Être quelqu'un de bien. 
 
 ---
 
@@ -189,9 +189,9 @@ Alors, qu'en pensez-vous ?
 ### Être prêt pour les modifications de
 
 - L'examen !
-- Du stage ! <!-- .element: class="fragment" -->
-- De la vie ! <!-- .element: class="fragment" -->
-- … <!-- .element: class="fragment" -->
+- Du stage ! 
+- De la vie ! 
+- … 
 
 ---
 

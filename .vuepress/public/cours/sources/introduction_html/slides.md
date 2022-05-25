@@ -294,8 +294,8 @@ La toile, Le Web…
 ---
 
 - VScode
-- WebStorm <!-- .element: class="fragment" -->
-- … <!-- .element: class="fragment" -->
+- WebStorm 
+- … 
 
 ---
 
@@ -311,7 +311,7 @@ La toile, Le Web…
 
 ### À votre avis ?
 
-(Code source de la page, Inspecteur d'éléments) <!-- .element: class="fragment" -->
+(Code source de la page, Inspecteur d'éléments) 
 
 ---
 

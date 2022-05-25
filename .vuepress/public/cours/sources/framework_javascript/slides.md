@@ -20,11 +20,11 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Pour moi
 
-- Règle et bonne pratique partagées (dossiers, organisation …) <!-- .element: class="fragment" -->
-- Réutilisable <!-- .element: class="fragment" -->
-- Documenté <!-- .element: class="fragment" -->
-- Composable / Étendable <!-- .element: class="fragment" -->
-- Open Source 🤔 <!-- .element: class="fragment" -->
+- Règle et bonne pratique partagées (dossiers, organisation …) 
+- Réutilisable 
+- Documenté 
+- Composable / Étendable 
+- Open Source 🤔 
 
 ---
 
