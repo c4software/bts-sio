@@ -74,6 +74,7 @@ iframe {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    width: 200px;
 }
 
 .action {
