@@ -8,12 +8,12 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Historique
 
-- FTP (à votre avis?) <!-- .element: class="fragment" -->
-- Index1, Index2, … (À votre avis?) <!-- .element: class="fragment" -->
-- Email (à votre avis?) <!-- .element:  class="fragment" -->
-- CVS <!-- .element: class="fragment" -->
-- SVN <!-- .element: class="fragment" -->
-- Git <!-- .element: class="fragment" -->
+- FTP (à votre avis?)
+- Index1, Index2, … (À votre avis?)
+- Email (à votre avis?)
+- CVS
+- SVN
+- Git
 
 ---
 
@@ -57,7 +57,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ## Maintenu pendant des années par des patchs…
 
-## … par emails <!-- .element: class="fragment" data-fragment-index="1" -->
+## … par emails 
 
 ![Via EMAIL](./img/via_email.gif)
 
@@ -78,7 +78,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 - Linux Torvald n'aime pas les outils existants
 - Il programme donc le sien
 
-## GIT <!-- .element: class="fragment" -->
+## GIT 
 
 ---
 
@@ -105,7 +105,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ### Le principe des snapshots / et des diffs
 
-![Snapshots](./img/git_snapshot.png) <!-- .element: class="fragment" -->
+![Snapshots](./img/git_snapshot.png) 
 
 ---
 
@@ -118,11 +118,11 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 ## Les points clés
 
 - Traçabilité
-- La gestion des branches <!-- .element: class="fragment" -->
-- La fusion de code efficace (Merge) <!-- .element: class="fragment" -->
-- Rapidité <!-- .element: class="fragment" -->
-- La ligne de commande <!-- .element: class="fragment" -->
-- Réécriture de l'histoire impossible <!-- .element: class="fragment" -->
+- La gestion des branches 
+- La fusion de code efficace (Merge) 
+- Rapidité 
+- La ligne de commande 
+- Réécriture de l'histoire impossible 
 
 ---
 
@@ -188,7 +188,7 @@ Un identifiant symbolique pour un commit.
 
 Nombre de commits par semaine chez Facebook ?
 
-- ~10 000 <!-- .element: class="fragment" -->
+- ~10 000 
 
 ---
 
@@ -196,9 +196,9 @@ Nombre de commits par semaine chez Facebook ?
 
 ### Vous allez voir c'est simple…
 
-(Enfin presque…, mais c'est puissant !) <!-- .element: class="fragment" -->
+(Enfin presque…, mais c'est puissant !) 
 
-![I've got power](./img/power.gif) <!-- .element: class="fragment" -->
+![I've got power](./img/power.gif) 
 
 ---
 
@@ -244,13 +244,13 @@ $ git commit -m "Mon premier commit"
  create mode 100644 mon_fichier.js
 ```
 
-![Git Commit](./img/git_commit.png) <!-- .element: class="fragment" -->
+![Git Commit](./img/git_commit.png) 
 
 ---
 
 ## Voilà !
 
-![Done](./img/done.gif) <!-- .element: class="fragment" -->
+![Done](./img/done.gif) 
 
 ---
 
@@ -261,7 +261,7 @@ $ git add fichier1.js fichier2.js
 ```sh
 $ git commit -m "Mon 2nd commit"
 ```
-<!-- .element: class="fragment" -->
+
 
 ```sh
 [master aa2507d] Mon 2nd commit
@@ -269,9 +269,9 @@ $ git commit -m "Mon 2nd commit"
  create mode 100644 fichier1.js
  create mode 100644 fichier2.js
 ```
-<!-- .element: class="fragment" -->
 
-![2nd commit](./img/git_commit2.png) <!-- .element: class="fragment" -->
+
+![2nd commit](./img/git_commit2.png) 
 
 ---
 
@@ -282,15 +282,15 @@ $ vim fichier.js
 ```sh
 $ git commit -am "Changement dans le fichier"
 ```
-<!-- .element: class="fragment" -->
+
 
 ```sh
 [master 841036d] Changement dans le fichier
  1 files changed, 28 insertions(+), 0 deletions(-)
 ```
-<!-- .element: class="fragment" -->
 
-![3eme commit](./img/git_commit3.png) <!-- .element: class="fragment" -->
+
+![3eme commit](./img/git_commit3.png) 
 
 ---
 
@@ -339,9 +339,9 @@ git tag V1.0
 
 ## Est-ce que tout doit être commité ?
 
-- Oui <!-- .element: class="fragment" -->
-- Non ? <!-- .element: class="fragment" -->
-- La réponse D ? <!-- .element: class="fragment" -->
+- Oui 
+- Non ? 
+- La réponse D ? 
 
 ---
 
@@ -372,8 +372,8 @@ conf/
 
 ## Les branches
 
-- Pourquoi ? <!-- .element: class="fragment" -->
-- Quand ? <!-- .element: class="fragment" -->
+- Pourquoi ? 
+- Quand ? 
 
 ---
 
@@ -383,7 +383,7 @@ conf/
 $ git branch evolution1
 ```
 
-![branche](./img/git_branch.png) <!-- .element: class="fragment -->
+![branche](./img/git_branch.png)
 
 ---
 
@@ -407,15 +407,15 @@ $ vim fichier2.js
 ```sh
 $ git commit -am "Ajout de l’évolution"
 ```
-<!-- .element: class="fragment" -->
+
 
 ```sh
 [evolution1 54d9dde] Ajout de l’évolution
  1 files changed, 208 insertions(+), 10 deletions(-)
 ```
-<!-- .element: class="fragment" -->
 
-![Commit 4](./img/git_commit4.png) <!-- .element: class="fragment" -->
+
+![Commit 4](./img/git_commit4.png) 
 
 ---
 
@@ -428,21 +428,21 @@ $ git commit -am "Ajout de l’évolution"
 ```sh
 $ git checkout master
 ```
-<!-- .element: class="fragment" -->
+
 
 ```sh
 $ git merge evolution1
 ```
-<!-- .element: class="fragment" -->
+
 
 ---
 
 ## Que vient t’il de se passer ?
 
-- Qui fusionne le code ? <!-- .element: class="fragment" -->
-- Fusion du code ?<!-- .element: class="fragment" -->
-- Conflit ? <!-- .element: class="fragment" -->
-- Et la branche ? On la coupe ? <!-- .element: class="fragment" -->
+- Qui fusionne le code ? 
+- Fusion du code ?
+- Conflit ? 
+- Et la branche ? On la coupe ? 
 
 ---
 
@@ -472,8 +472,8 @@ $ git branch -d evolution1
 
 ## Aucun souci !
 
-- Les branches <!-- .element: class="fragment" data-fragment-index="1" -->
-- Git Stash <!-- .element: class="fragment" data-fragment-index="1" -->
+- Les branches 
+- Git Stash 
 
 ---
 
@@ -531,9 +531,9 @@ $ git checkout --
 
 ### Comment procédez-vous ?
 
-- Je le commente ? <!-- .element: class="fragment" data-fragment-index="1" -->
-- J'ajoute un « return false » <!-- .element: class="fragment" data-fragment-index="1" -->
-- Je le supprime il est dans Git… <!-- .element: class="fragment" data-fragment-index="1" -->
+- Je le commente ? 
+- J'ajoute un « return false » 
+- Je le supprime il est dans Git… 
 
 ---
 
