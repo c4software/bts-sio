@@ -6,10 +6,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## L’intégration continue ?
 
-- Test immédiat des modifications. <!-- .element: class="fragment" data-fragment-index="1" -->
-- Notification rapide en cas de code incompatible ou manquant. <!-- .element: class="fragment" data-fragment-index="1" -->
-- Les problèmes d'intégration sont détectés et réparés de façon continue, évitant les problèmes de dernière minute .<!-- .element: class="fragment" data-fragment-index="1" -->
-- Une version est toujours disponible pour un test, une démonstration ou une distribution. <!-- .element: class="fragment" data-fragment-index="1" -->
+- Test immédiat des modifications. 
+- Notification rapide en cas de code incompatible ou manquant. 
+- Les problèmes d'intégration sont détectés et réparés de façon continue, évitant les problèmes de dernière minute .
+- Une version est toujours disponible pour un test, une démonstration ou une distribution. 
 
 ---
 
