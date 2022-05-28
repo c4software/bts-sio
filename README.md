@@ -8,7 +8,7 @@ next:
 
 ## Introduction
 
-Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA, et dans différentes interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.
+Cette documentation est réalisée par Valentin Brosseau (BTS SIO, GRETA, MyDigitalSchool, ESEO, etc), vous retrouverez dans l’ensemble des cours (slides et aide mémoire) ainsi que des TP.
 
 [Consulter les cours & TP sur Github Pages](https://cours.brosseau.ovh/)
 
@@ -19,8 +19,9 @@ Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA
 - Organisation du code
 - Introduction au développement sécurisé.
 - Laravel, PHP & Framework.
-- VueJS.
-- Programmation orientée objet (POO) et UML.
+- VueJS (2 & 3).
+- Programmation orientée objet (POO et UML).
+- Introduction DevOps.
 
 ## Contenu
 
