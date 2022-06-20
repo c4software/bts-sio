@@ -37,7 +37,7 @@ et de réponse aux besoins d’évolution.
 - Développer en équipe.
 - Valider et documenter une solution applicative.
 - Répondre à une demande d’assistance.
-- Résoudre un incident.
+- Résoudre des incidents.
 
 ## Licence
 
