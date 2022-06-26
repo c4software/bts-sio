@@ -8,7 +8,7 @@ Dans ce TP, nous allons prendre en main [la structure de code présente ici](./t
 
 ## Introduction
 
-Comme précisé dans le cours et dans nos échanges, la structure « MVC » est proposée ici comme phase transitoire entre votre code PHP de première année et du Laravel que l'on peut retrouver en entreprise. En effet, même si la structure MVC a été créée avec la prise en compte de contrainte de sécurité elle n’est en aucun cas dimensionnée pour réaliser un site client avec plusieurs centaines d'utilisateurs.
+Comme précisé dans le cours et dans nos échanges, la structure « MVC » est proposée ici comme phase transitoire entre votre code PHP de première année et du Laravel que l'on peut retrouver en entreprise. En effet, même si la structure MVC a été créée avec la prise en compte de contrainte de sécurité, elle n’est en aucun cas dimensionnée pour réaliser un site client avec plusieurs centaines d'utilisateurs.
 
 - [Aide mémoire Programmation Orientée Objet](/cheatsheets/poo/)
 
@@ -44,7 +44,7 @@ Le modèle représente la couche de votre application qui va manipuler les donn�
 
 Vous trouverez dans celle-ci **autant de méthodes que nécessaire**, vous pouvez _(et à mon avis vous devez)_ spécialiser vos modèles aux différentes tables présentes dans votre projet.
 
-Par exemple si nous avons la base de données suivante :
+Par exemple, si nous avons la base de données suivante :
 
 ![Exemple MCD](./res/mcd_exemple.jpeg)
 
@@ -78,7 +78,7 @@ Ce genre d'objet s'appelle un CRUD (Create, Update, Delete). C'est une structure
 
 ### La Vue
 
-La vue vous connaissez! Ici rien de nouveau. Le `V` de MVC c'est juste la représentation graphique de ce que vous souhaitez afficher (en HTML + CSS + JavaScript).
+La vue, vous connaissez! Ici, rien de nouveau. Le `V` de MVC c'est juste la représentation graphique de ce que vous souhaitez afficher (en HTML + CSS + JavaScript).
 
 Cependant par rapport à vos premiers développements nous allons découper au maximum le code HTML en différents fichiers ; Objectif éviter le code dupliqué en utilisant une organisation qui ressemblera à :
 
@@ -234,7 +234,7 @@ Je vous propose de mettre en place sur la page d'accueil une photo / image (de v
 La bonne démarche à mon sens est là suivante :
 
 - Utiliser un IDE pertinent (exemple PHPStorm ou VSCode).
-- Repensé à l'introduction et la notion de MVC. Nous allons effectivement toucher le `Vue` (elle même appelé par le contrôleur), ça veut dire que vous allez trouver votre fichier dans le dossier `views`.
+- Repenser à l'introduction et la notion de MVC. Nous allons effectivement toucher le `Vue` (elle même appelé par le contrôleur), ça veut dire que vous allez trouver votre fichier dans le dossier `views`.
 - Pour trouver le bon fichier, je vous laisse un peu investiguer, mais sachez que regarder dans le contrôleur semble être une bonne idée…
 
 👋 Je suis là pour ceux qui sont perdus 🤕
