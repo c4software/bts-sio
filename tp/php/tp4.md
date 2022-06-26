@@ -48,9 +48,9 @@ session_destroy();
 Cette opération est à faire par exemple à la déconnexion de l'utilisateur sur votre site.
 :::
 
-Dans le [TP3](./tp3.md) ([Le code du TP3 est disponible ici](/demo/php/bart/bart-form-structure.zip).), nous avions créé un « entry-point ». Ce point d'entrée (qui est une bonne pratique en termes de sécurité ! Pourquoi à votre avis ?) va-nous servir à démarrer la SESSION vous n'aurez comme plus à vous en soucier.
+Dans le [TP3](./tp3.md) ([Le code du TP3 est disponible ici](/demo/php/bart/bart-form-structure.zip).), nous avions créé un « entry-point ». Ce point d'entrée (qui est une bonne pratique en termes de sécurité ! Pourquoi à votre avis ?) va nous servir à démarrer la SESSION vous n'aurez comme plus à vous en soucier.
 
-### Démarrer la sesion
+### Démarrer la session
 
 Pour ça, dans le fichier `index.php`, ajouter tout en haut, la ligne de code suivante :
 
@@ -94,7 +94,7 @@ if(isset($_SESSION['phrase'])){
 
 ### C'est à vous
 
-Maintenant que nous avons revu les bases de l'utilisation de la session. Je vous propose de modifier le code que nous avons précédemment réalisé. Dans le code que vous avez réalisé / téléchargé nous avions créé un formulaire :
+Maintenant que nous avons revu les bases de l'utilisation de la session. Je vous propose de modifier le code que nous avons précédemment réalisé. Dans le code que vous avez réalisé / téléchargé, nous avions créé un formulaire :
 
 ![Formulaire de choix pour le TP Bart](./res/form_bart.png)
 
@@ -116,7 +116,7 @@ $_SESSION['phrase'] = $_POST['phrase'];
 $_SESSION['count'] = $_POST['count'];
 ```
 
-La troisième, et dernière étape va être de relire les valeurs enregistrées dans la session afin de les utiliser dans votre formulaire, par exemple, si vous souhaitez afficher la valeur de `$_SESSION['phrase']` dans un `input`:
+La troisième, et dernière étape, va être de relire les valeurs enregistrées dans la session afin de les utiliser dans votre formulaire, par exemple, si vous souhaitez afficher la valeur de `$_SESSION['phrase']` dans un `input`:
 
 ```php
 <input type='text' value='<?php echo $_SESSION["phrase"]; ?>' name='phrase'>
@@ -134,7 +134,7 @@ Pour le `select` la logique va être un peu similaire. Je vous laisse chercher c
 
 Le Cookie fonctionne un peu comme la SESSION au détail près que vous enregistrez la valeur non pas sur le serveur, mais sur **le poste de l'utilisateur**. Ce détail _est important_, si vous stockez de l'information sur le poste du client, ça veut dire qu'il est possible pour lui de la modifier (nous allons voir comment ensemble).
 
-L'autre différence entre la SESSION et les Cookies est la durée de vie de celle-ci, un cookie à une durée de vie que vous choisissez ! Ça peut aller de quelques secondes à plusieurs mois. À noter tout de même que le Cookie peut-être supprimé par le client.
+L'autre différence entre la SESSION et les Cookies est la durée de vie de celle-ci, un cookie à une durée de vie que vous choisissez ! Ça peut aller de quelques secondes à plusieurs mois. À noter tout de même que le Cookie peut être supprimé par le client.
 
 Comme pour la session vous pouvez enregistrer ce que vous souhaitez dans un Cookie, cependant les données étant accessible par l'utilisateur je vous conseille de sauvegarder des informations non sensibles telles que :
 
@@ -142,7 +142,7 @@ Comme pour la session vous pouvez enregistrer ce que vous souhaitez dans un Cook
 - Identifiant de trekking (uuid).
 - Données saisies par l'utilisateur (formulaire par exemple).
 
-Vous l'avez peut-être remarqué, votre modification précédente fonctionne correctement, mais si vous attendez plus de 22 minutes vos données sont quand même perdues. Nous allons résoudre cette problématique en utilisant un Cookie plutôt.
+Vous l'avez peut-être remarqué, votre modification précédente fonctionne correctement, mais si vous attendez plus de 22 minutes, vos données sont quand même perdues. Nous allons résoudre cette problématique en utilisant un Cookie plutôt.
 
 ### C'est à vous
 
@@ -160,9 +160,9 @@ echo $_COOKIE["monCookie"];
 
 ```
 
-Je vous laisse modifier votre code précédent afin d'utiliser des COOKIES plutôt que la SESSION. Cette fois-ci pas d'aide, je vous laisse vous organiser.
+Je vous laisse modifier votre code précédent afin d'utiliser des COOKIES plutôt que la SESSION. Cette fois-ci, pas d'aide, je vous laisse vous organiser.
 
-## Utiliser la session pour créer une page « Protégé »
+## Utiliser la session pour créer une page « protégée »
 
 Nous avons vu qu'il était possible assez simplement de sauvegarder des informations persistantes entre les rechargements avec une SESSION (ou un Cookie). Je vous propose de réfléchir à l'utilisation de la SESSION pour sauvegarder une authentification.
 
@@ -214,7 +214,7 @@ FIN SI
 => À votre avis pourquoi ?
 :::
 
-- C'est à vous, je vous laisse écrire le code dans la page que vous avez précédemment créé.
+- C'est à vous, je vous laisse écrire le code dans la page que vous avez précédemment créée.
 
 ### Afficher le formulaire ou le message
 
