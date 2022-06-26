@@ -190,6 +190,37 @@ La réécriture d'url va nous permettre d'avoir de beaux liens exemple `index.ph
 |                  ![Exemple qui fonctionne](./res/sample.png)                  |
 | Si tout fonctionne correctement, vous devriez avoir 👆 (superbe n'est-ce pas) |
 
+## Un serveur intégré ? 
+
+La structure MVC possède un serveur web intégré, celui-ci vous permettra de tester votre site web en local sans même avoir besoin de Wamp / Xampp ou autre serveur Apache + PHP.
+
+::: tip Si votre ordinateur est correctement configuré
+
+Vous devriez être capable de faire :
+
+```sh
+php mvc serve
+```
+
+Cette commande intégrée à la structure MVC lancera un serveur automatiquement (sur le port 9000).
+
+:::
+
+::: details Comment ça fonctionne? 
+
+```sh
+# Windows (avec XAMPP)
+C:/xampp/php/php -S localhost:9000
+
+# Windows (avec WAMP)
+C:/wamp64/bin/php/php7.4.9/php -S localhost:9000
+
+# Linux / OSX
+php -S localhost:9000
+```
+
+:::
+
 ## Modifier la page « Home »
 
 Le meilleur moyen pour prendre en main un projet c'est de le modifier, je vous propose donc une première modification très simple :
