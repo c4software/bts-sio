@@ -7,6 +7,7 @@ namespace controllers;
 use controllers\base\Web;
 use models\SampleAccount;
 use utils\SessionHelpers;
+use utils\Template;
 
 class Account extends Web
 {
@@ -25,9 +26,7 @@ class Account extends Web
             }
         }
 
-        $this->header();
-        include("views/account/login.php");
-        $this->footer();
+        Template::render("views/account/login.php", array());
     }
 
     function logout()
@@ -38,8 +37,6 @@ class Account extends Web
 
     function me()
     {
-        $this->header();
-        include("views/account/me.php");
-        $this->footer();
+        Template::render("views/account/me.php", array());
     }
 }

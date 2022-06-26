@@ -147,7 +147,7 @@ php -S localhost:9000
 Le fichier `index.php` présent à la racine du projet est, ce que l'on appelle, un **entry point**. Ce point d'entrée en
 français est le fichier qui va « prendre le trafic » de votre projet.
 
-Concrètement qu'est-ce que ça veut dire ? Ça veut dire que ce fichier est grandement générique ; en effet, quel que soit
+Concrètement, qu'est-ce que ça veut dire ? Ça veut dire que ce fichier est grandement générique ; en effet, quel que soit
 le projet celui-ci restera grandement inchangé. Il intègre les initialisations de base permettant à votre projet de
 fonctionner correctement. Je vous invite par curiosité à regarder son contenu. Mais pas de modification à prévoir dans
 ce fichier.
@@ -171,16 +171,16 @@ Cet élément repose sur le principe de la `WhiteList` (Liste blanche), nous avo
 - Api (`Api.php`) : Échange entre un client et le serveur (Ajax, Application, etc.)
 - Cli (`Cli.php`) : Définission d'actions accessibles uniquement via la ligne de commande (initialisation de Model, contrôleur, initialisation de la base de données)
 
-Nous avons un fichier `Router.php` qui comme l'entry-point est générique il initialise seulement le code (je vous laisse
+Nous avons un fichier `Router.php` qui comme l'entry-point est générique, il initialise seulement le code (je vous laisse
 le regarder par curiosité).
 
 La logique de chargement d'une route est dans `routes/base/Route.php`, c'est dans ce fichier que ce cache la
-fameuse `Whitelist` mais également la logique de chargement d'une page par rapport à une demande d'un utilisateur (
+fameuse, `Whitelist` mais également la logique de chargement d'une page par rapport à une demande d'un utilisateur (
 chargement en GET ou en POST).
 
 #### `Web.php` et `Api.php`
 
-Les deux fichiers ont une syntaxe identique, c'est normal, il s’agit de la réaliser déclaration des routes, celle-ci
+Les deux fichiers ont une syntaxe identique, c'est normal, il s’agit de la réaliser la déclaration des routes, celle-ci
 prendra toujours la même forme :
 
 ```php
@@ -265,34 +265,36 @@ Si nous reprenons la base d'un contrôleur, celui-ci aura toujours au minimum la
 namespace controllers;
 
 use controllers\base\Web;
+use utils\Template;
 
 class MonControleur extends Web
 {
     // Méthode d'exemple
     function methodeDExemple()
     {
-        $this->header();
-        include("views/monControleur/methodeDExemple.php");
-        $this->footer();
+        Template::render("views/monControleur/methodeDExemple.php", array());
     }
 }
 ```
 
 Comme vous pouvez le constater ici pas énormément de code, en effet une partie de la complexité est encapsulée dans l'héritage (`extends Web`).
 
-Un contrôleur est donc une classe, avec un ensemble de méthodes technique permettant de réaliser des opérations. Les 3 lignes :
+Un contrôleur est donc une classe, avec un ensemble de méthodes technique permettant de réaliser des opérations. La ligne :
 
 ```php
-$this->header();
-include("views/monControleur/methodeDExemple.php");
-$this->footer();
+Template::render("views/monControleur/methodeDExemple.php", array());
 ```
 
 Seront votre « traitement » / « votre page », nous avons :
 
-- `$this->header();` : Le haut de votre page (avant votre contenu)
-- `include("views/monControleur/methodeDExemple.php");` : Votre contenu HTML (**et uniquement votre contenu**)
-- `$this->footer();` : Le base de votre page (après le contenu)
+- `Template::render` méthode qui permet d'afficher votre **vue**. Le premier argument est le fichier à utiliser, le second est un tableau de paramètre.
+- La tableau de paramètre (`array()`), contiendra l'ensemble des variables accessible dans votre vue. Exemple, `array("nom" => "valentin")` va déclarer une variable `$nom` dans votre **vue**.
+
+Techniquement, si vous regardez le contenu de la méthode, `render` vous verrez 3 lignes :
+
+- `header();` : Le haut de votre page (avant votre contenu)
+- `include($filepath);` : Votre contenu HTML (**et uniquement votre contenu**)
+- `footer();` : Le bas de votre page (après le contenu)
 
 Nous pouvons le représenter de cette façon-ci :
 
@@ -300,7 +302,7 @@ Nous pouvons le représenter de cette façon-ci :
 
 ::: tip L'astuce du chef
 
-Si vous avez regarder un peu le code, vous avez certainement remarqué que les paramètres `$_GET` était automatiquement disponible en tant que paramétre de votre méthode. Exemple :
+Si vous avez regardé un peu le code, vous avez certainement remarqué que les paramètres `$_GET` était automatiquement disponible en tant que paramètre de votre méthode. Exemple :
 
 ```php
 // Si l'utilisateur accède à /home?nom=brosseau&prenom=valentin
@@ -319,8 +321,6 @@ Les contrôleurs **doivent hériter** de l'une des deux interfaces `Web` ou `Api
 Les différentes relations peuvent être représentées avec l'UML suivant :
 
 ![UML Relation](./res/uml_composition.png)
-
-Les méthodes `header()` et `footer()` ce charge de réaliser les imports nécessaires (ou le code nécessaire dans le cas de l'API) pour que vous pages s'affichent tels que vous le désirez.
 
 La méthode `redirectTo` permet de gérer la redirection vers une autre ressource. Rien de bien compliqué c'est un simple appel de la méthode `header` de PHP. Je vous laisse regarder le code dans `controller/base/web.php`.
 
@@ -344,7 +344,7 @@ Vos différentes pages **ne contiendront donc** que le contenu réel de la page 
 ::: tip Pourquoi est-ce important ?
 Au-delà de tout ce que nous voyons ensemble, mon but est de vous rendre autonome pour que vous puissiez réaliser vos propres projets. Et quand il s'agit de projet, le plus important à retenir c'est l'organisation, mais également éviter toutes répétitions.
 
-L'une dès principales sources de répétition dans un site Web c'est le code présent dans le header et dans le footer de votre site. C'est pourquoi je vous propose de ne pas le mettre dans chaque page.
+L'une des principales sources de répétition dans un site Web c'est le code présent dans le header et dans le footer de votre site. C'est pourquoi je vous propose de ne pas le mettre dans chaque page.
 
 <center><iframe src="https://giphy.com/embed/eBpiVHAzU8XXtvPCae" width="480" height="353" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></center>
 :::
@@ -448,7 +448,7 @@ Le dossier `utils/` contient dans la structure de base une classe permettant de 
 
 Mais vous allez placer ici l'ensemble des **librairies PHP** nécessaire au bon fonctionnement de votre projet.
 
-Un morceau de code que vous avez trouvé sur StackOverflow ? Une librairie que vous avez conçue ? Pas de problème ! Rangez-les dans le dossier `utils/`
+Un morceau de code que vous avez trouvé sur StackOverflow ? Une librairie que vous avez conçue ? Pas de problème ! Rangez-les dans le dossier. `utils/`
 
 ### Le dossier `migrations/`
 
@@ -458,7 +458,7 @@ Le dossier `migrations/` contient l'ensemble des fichiers nécessaire à l'insta
 - Lancer simplement l'installation de votre base de données.
 - Historiser vos « migrations ». En effet le script va charger **l'ensemble** des fichiers SQL.
 
-Pour l'utiliser, vous devez passer via la ligne de commande. En effet pour des raisons de sécurité, impossible de lancer les migrations depuis votre navigateur.
+Pour l'utiliser, vous devez passer via la ligne de commande. En effet, pour des raisons de sécurité, impossible de lancer les migrations depuis votre navigateur.
 
 ```php
 php mvc db:migrate
@@ -485,9 +485,7 @@ Par exemple, si vous souhaitez ajouter une page `/ping` faisant référence au c
 ```php
     function ping()
     {
-        $this->header();
-        include("views/global/ping.php");
-        $this->footer();
+        Template::render("views/global/ping.php", array());
     }
 ```
 
@@ -497,13 +495,54 @@ Par exemple, si vous souhaitez ajouter une page `/ping` faisant référence au c
 <h1>PONG</h1>
 ```
 
-Je sais que vous aimez les videos… Voilà la même procédure résumée en vidéo :
+Je sais que vous aimez les vidéos… Voilà la même procédure résumée en vidéo :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/HO7_O10S30o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+### Utiliser des variables dans votre vue
+
+Nous avons ajouté une page, cependant, cette page est relativement « statique »… Pour aller un peu plus loin, je vous propose de voir comment envoyer des paramètres dans votre **vue**. Contrairement à du PHP comme en première année, vous n'allez pas avoir dans votre vue l'ensemble des variables. Vous n'aurez que celles présentes dans l'`array()`. 
+
+Si nous reprenons l'exemple précédent :
+
+```php
+    Template::render("views/global/ping.php", array());
+```
+
+Combien de variables passons-nous ? Aucune, pour la suite, je vous propose d'ajouter une première variable :
+
+```php
+    Template::render("views/global/ping.php", array("texte" => "PONG !"));
+```
+
+Puis modifier votre vue pour qu'elle ressemble à :
+
+```php
+<h1><?= $texte ?></h1>
+```
+
+C'est à vous, je vous laisse tester !
+
+### Ajouter une seconde variable
+
+Pour vérifier que vous avez bien compris la procédure. Je vous laisse ajouter une seconde variable. Celle-ci doit-être la date du jour ainsi que l'heure. 
+
+**Bien évidemment cette valeur doit être dynamique et changée à chaque chargement de page**.
+
+Besoin d'aide ? Voilà un indice :
+
+```php
+    Template::render("views/global/ping.php", array("texte" => "PONG !", "date" => …));
+```
+
+C'est à vous : 
+
+- Modifier votre contrôleur pour ajouter le bon paramètre.
+- Modifier votre vue pour afficher la valeur. (en dessous du PONG !)
+
 ## Ajouter un modèle
 
-Pour rappel, le modèle est une classe qui va centraliser la partie communication avec la source de données (SQL ou autre). Dans la structure MVC **je vous encourage à créer autant de `modèles` que de table dans votre base de données**.
+Pour rappel, le modèle est une classe qui va centraliser la partie communication avec la source de données (SQL ou autre). Dans la structure MVC, **je vous encourage à créer autant de `modèles` que de tables dans votre base de données**.
 
 Une classe modèle de type SQL (ce qui vous intéressera dans 99.9% des cas) possède toujours la même structure :
 
@@ -513,6 +552,7 @@ Une classe modèle de type SQL (ce qui vous intéressera dans 99.9% des cas) pos
 namespace models;
 
 use models\base\SQL;
+use utils\Template;
 
 class VotreTable extends SQL
 {
@@ -600,23 +640,20 @@ Comme les modèles, les contrôleurs ont une structure de base. La différence e
 namespace controllers;
 
 use controllers\base\Web;
+use utils\Template;
 
 class VotreControleur extends Web
 {
     function methodeDExemple()
     {
-        $this->header();
-        include("views/votreVue.php");
-        $this->footer();
+        Template::render("views/votreVue.php", array());
     }
 }
 ```
 
 - Le `namespace controllers;` permet de structure votre code, et permettra via l'auto-loader l'import automatique de vos classes.
-- `class VotreControleur extends Web` indique que votre classe hérite de Web (une page client). Elle possèdera donc automatiquement des méthodes (accessible via `$this`) :
-  - `header`
-  - `footer`
-  - `redirect`
+- `class VotreControleur extends Web` indique que votre classe hérite de Web (une page client). Elle possèdera donc automatiquement la méthode (accessible via `$this`) :
+  - `redirectTo`
 
 ::: tip Et c'est tout !
 Créer un contrôleur est aussi simple que ça. C'est tellement simple que je vous encourage à en créer autant que nécessaire.

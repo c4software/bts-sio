@@ -3,13 +3,12 @@
 namespace controllers;
 
 use controllers\base\Web;
+use utils\Template;
 
 class Main extends Web
 {
     function about()
     {
-        $this->header();
-        include("views/global/about.php");
-        $this->footer();
+        Template::render("views/global/about.php");
     }
 }

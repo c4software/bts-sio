@@ -5,6 +5,7 @@ namespace controllers;
 use controllers\base\Web;
 use models\DBVideo;
 use models\SampleVideo;
+use utils\Template;
 
 class VideoWeb extends Web
 {
@@ -22,10 +23,7 @@ class VideoWeb extends Web
     {
         // Récupération des vidéo par le modèle
         $videos = $this->videoModel->getVideos();
-
-        $this->header();
-        include("./views/video/home.php");
-        $this->footer();
+        Template::render("./views/video/home.php", array("videos" => $videos));
     }
 
     /**
@@ -40,8 +38,6 @@ class VideoWeb extends Web
             $this->redirect("/");
         }
 
-        $this->header();
-        include("./views/video/tv.php");
-        $this->footer();
+        Template::render("./views/video/tv.php", array("video" => $video));
     }
 }

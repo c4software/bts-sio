@@ -5,6 +5,7 @@ namespace controllers;
 use controllers\base\Api;
 use models\DBVideo;
 use models\SampleVideo;
+use utils\JsonHelpers;
 
 class VideoApi extends Api
 {
@@ -20,7 +21,7 @@ class VideoApi extends Api
 
     function sample()
     {
-        echo json_encode(array("Ceci est un exemple", "de", "tableau"));
+        echo JsonHelpers::stringify(array("Ceci est un exemple", "de", "tableau"));
     }
 
     function videos()
