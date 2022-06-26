@@ -506,13 +506,13 @@ Nous avons ajouté une page, cependant, cette page est relativement « statique 
 Si nous reprenons l'exemple précédent :
 
 ```php
-    Template::render("views/global/ping.php", array());
+Template::render("views/global/ping.php", array());
 ```
 
 Combien de variables passons-nous ? Aucune, pour la suite, je vous propose d'ajouter une première variable :
 
 ```php
-    Template::render("views/global/ping.php", array("texte" => "PONG !"));
+Template::render("views/global/ping.php", array("texte" => "PONG !"));
 ```
 
 Puis modifier votre vue pour qu'elle ressemble à :
@@ -525,14 +525,14 @@ C'est à vous, je vous laisse tester !
 
 ### Ajouter une seconde variable
 
-Pour vérifier que vous avez bien compris la procédure. Je vous laisse ajouter une seconde variable. Celle-ci doit-être la date du jour ainsi que l'heure. 
+Pour vérifier que vous avez bien compris la procédure. Je vous laisse ajouter une seconde variable. Celle-ci doit-être la date du jour ainsi que l'heure.
 
 **Bien évidemment cette valeur doit être dynamique et changée à chaque chargement de page**.
 
 Besoin d'aide ? Voilà un indice :
 
 ```php
-    Template::render("views/global/ping.php", array("texte" => "PONG !", "date" => …));
+Template::render("views/global/ping.php", array("texte" => "PONG !", "date" => …));
 ```
 
 C'est à vous : 
