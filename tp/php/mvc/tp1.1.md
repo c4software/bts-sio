@@ -167,7 +167,7 @@ Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur
 
 ### Télécharger le code source
 
-Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/1.4.zip)
+Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/1.5.zip)
 
 ::: tip C'est un projet vide
 Même si celui-ci contient à première vue « beaucoup de fichiers », le projet vous avez téléchargé est bien un projet vide.
@@ -242,9 +242,7 @@ Nous allons dans un premier temps créer une méthode dans le contrôleur `Sampl
 ```php
 function about()
 {
-    $this->header(); // Va afficher le header de la page (mais comment ? Avez-vous regardé ?)
-    include("views/global/about.php");
-    $this->footer(); // Va afficher le footer de la page (mais comment ? Avez-vous regardé ?)
+    Template::render("views/global/about.php");
 }
 ```
 
@@ -259,6 +257,48 @@ Si ce n'est pas déjà fait, créé le fichier `views/global/about.php`. Pour le
 ::: tip Rappel
 ici nous n'écrivons que le contenu, l'entête et le pied de page sont « automatiquement » ajoutés grâce au code présent dans la méthode home de votre contrôleur.
 :::
+
+### Utiliser des variables dans votre vue
+
+Nous avons ajouté une page, cependant, cette page est relativement « statique »… Pour aller un peu plus loin, je vous propose de voir comment envoyer des paramètres dans votre **vue**. Contrairement à du PHP comme en première année, vous n'allez pas avoir dans votre vue l'ensemble des variables. Vous n'aurez que celles présentes dans l'`array()`. 
+
+Si nous reprenons l'exemple précédent :
+
+```php
+Template::render("views/global/about.php", array());
+```
+
+Combien de variables passons-nous ? Aucune, pour la suite, je vous propose d'ajouter une première variable :
+
+```php
+Template::render("views/global/about.php", array("titre" => "À Propos"));
+```
+
+Puis modifier votre vue pour y ajouter l'usage de votre variable :
+
+```php
+<h1><?= $titre ?></h1>
+```
+
+C'est à vous, je vous laisse tester !
+
+### Ajouter une seconde variable
+
+Pour vérifier que vous avez bien compris la procédure. Je vous laisse ajouter une seconde variable. Celle-ci doit-être la date du jour ainsi que l'heure.
+
+**Bien évidemment cette valeur doit être dynamique et changée à chaque chargement de page**.
+
+Besoin d'aide ? Voilà un indice :
+
+```php
+Template::render("views/global/about.php", array("titre" => "Votre titre !", "date" => …));
+```
+
+C'est à vous :
+
+- Modifier votre contrôleur pour ajouter la bonne valeur.
+- Modifier votre vue pour afficher la valeur. (En bas de la page à propos).
+- Valider le bon fonctionnement.
 
 ### Créer la route
 
@@ -592,10 +632,8 @@ class TodoWeb extends Web
 
 La première méthode que nous allons créer est celle de la liste. Elle se nommera `liste()`, cette méthode sera automatiquement appelée via le `routeur` à **chaque visite d'un utilisateur**. L'objectif de cette méthode est :
 
-- Afficher le header de la page (`$this->header()` méthode héritée du parent).
 - Récupérer l'ensemble des TODO (Array) actuellement en base via la méthode `getAll()` du TodoModel modèle.
-- Afficher votre `vue` via un include.
-- Afficher le footer de la page (`$this->footer()` méthode héritée du parent).
+- Afficher votre `vue` via un `Template::render`.
 
 ::: tip Toujours la même forme
 
@@ -605,9 +643,7 @@ Vous allez rapidement vous apercevoir que la structure de base est toujours la m
     function maMethodeQueJaiCopierColler()
     {
         // Pourquoi j'ai copier / coller ceci ? C'est un exemple seulement
-        $this->header();
-        include("views/global/home.php");
-        $this->footer();
+        Template::render("views/global/home.php");
     }
 ```
 
@@ -620,10 +656,8 @@ Dans notre cas, la méthode va ressembler à :
 ```php
 function liste()
     {
-        $this->header(); // Affichage de l'entête.
         $todos = $this->todoModel->getAll(); // Récupération des TODOS présents en base.
-        include("views/todos/liste.php"); // Affichage de votre vue.
-        $this->footer(); // Affichage de votre pied de page.
+        Template::render("views/todos/liste.php", array('todos' => $todos)); // Affichage de votre vue.
     }
 ```
 
@@ -636,7 +670,7 @@ Et c'est tout ! La puissance d'un Frawerork c'est aussi ça, écrire finalement 
 
 ### Le template de la page liste
 
-Votre IDE doit actuellement être moyen content… Effectivement, nous avons fait un `include` de `"views/todos/liste.php"` pourtant ce fichier n'existe pas.
+Votre IDE doit actuellement être moyen content… Effectivement, nous avons fait un `Template::render` de `"views/todos/liste.php"` pourtant ce fichier n'existe pas.
 
 Vu qu'il s'agit ici d'un projet découvert, je vais vous en donner le contenu (si vous le souhaitez, vous pouvez également l'écrire) voilà le rendu :
 

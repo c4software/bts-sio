@@ -485,7 +485,7 @@ Par exemple, si vous souhaitez ajouter une page `/ping` faisant référence au c
 ```php
     function ping()
     {
-        Template::render("views/global/ping.php", array());
+        Template::render("views/global/ping.php", array("generateAt", date('d-m-Y à H:i')));
     }
 ```
 
@@ -493,52 +493,12 @@ Par exemple, si vous souhaitez ajouter une page `/ping` faisant référence au c
 
 ```php
 <h1>PONG</h1>
+<center><?= $generateAt ?></center>
 ```
 
 Je sais que vous aimez les vidéos… Voilà la même procédure résumée en vidéo :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/HO7_O10S30o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### Utiliser des variables dans votre vue
-
-Nous avons ajouté une page, cependant, cette page est relativement « statique »… Pour aller un peu plus loin, je vous propose de voir comment envoyer des paramètres dans votre **vue**. Contrairement à du PHP comme en première année, vous n'allez pas avoir dans votre vue l'ensemble des variables. Vous n'aurez que celles présentes dans l'`array()`. 
-
-Si nous reprenons l'exemple précédent :
-
-```php
-Template::render("views/global/ping.php", array());
-```
-
-Combien de variables passons-nous ? Aucune, pour la suite, je vous propose d'ajouter une première variable :
-
-```php
-Template::render("views/global/ping.php", array("texte" => "PONG !"));
-```
-
-Puis modifier votre vue pour qu'elle ressemble à :
-
-```php
-<h1><?= $texte ?></h1>
-```
-
-C'est à vous, je vous laisse tester !
-
-### Ajouter une seconde variable
-
-Pour vérifier que vous avez bien compris la procédure. Je vous laisse ajouter une seconde variable. Celle-ci doit-être la date du jour ainsi que l'heure.
-
-**Bien évidemment cette valeur doit être dynamique et changée à chaque chargement de page**.
-
-Besoin d'aide ? Voilà un indice :
-
-```php
-Template::render("views/global/ping.php", array("texte" => "PONG !", "date" => …));
-```
-
-C'est à vous : 
-
-- Modifier votre contrôleur pour ajouter le bon paramètre.
-- Modifier votre vue pour afficher la valeur. (en dessous du PONG !)
 
 ## Ajouter un modèle
 
