@@ -334,13 +334,13 @@ Le framework que je vous propose entre directement dans cette catégorie « Gagn
 
 ```sh
 # Hors Windows
-php index.php model:create TodoModel
+php mvc model:create TodoModel
 
 # Sous Windows (avec XAMPP)
-C:/xampp/php/php index.php model:create TodoModel
+C:/xampp/php/php mvc model:create TodoModel
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php7.4.9/php index.php model:create TodoModel
+C:/wamp64/bin/php/php7.4.9/php mvc model:create TodoModel
 ```
 
 **Et c'est tout !** votre modèle pour accéder aux données est prêt 🤝. Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
@@ -482,13 +482,13 @@ COMMIT;
 
 ```sh
 # Hors Windows
-php index.php db:migrate
+php mvc db:migrate
 
 # Sous Windows (avec XAMPP)
-C:/xampp/php/php index.php db:migrate
+C:/xampp/php/php mvc db:migrate
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php7.4.9/php index.php db:migrate
+C:/wamp64/bin/php/php7.4.9/php mvc db:migrate
 ```
 
 Si tout va bien vous devriez avoir le résultat suivant:
@@ -514,13 +514,13 @@ Notre base est prête… Et si nous écrivions vraiment le code ? Comme pour cr�
 
 ```sh
 # Hors Windows
-php index.php controller:create TodoWeb
+php mvc controller:create TodoWeb
 
 # Sous Windows (avec XAMPP)
-C:/xampp/php/php index.php controller:create TodoWeb
+C:/xampp/php/php mvc controller:create TodoWeb
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php7.4.9/php index.php controller:create TodoWeb
+C:/wamp64/bin/php/php7.4.9/php mvc controller:create TodoWeb
 ```
 
 Cette commande va initialiser un contrôleur de type Web. Celui-ci est pour l'instant vide de méthode :
@@ -779,6 +779,18 @@ C:/wamp64/bin/php/php7.4.9/php -S localhost:9000
 # Linux / OSX
 php -S localhost:9000
 ```
+
+::: tip Si votre ordinateur est correctement configuré
+
+Vous devriez être capable de faire :
+
+```sh
+php mvc serve
+```
+
+Cette commande intégrée à la structure MVC lancera un serveur automatiquement (sur le port 9000).
+
+:::
 
 ### Évolution 0
 
