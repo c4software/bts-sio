@@ -111,6 +111,37 @@ Ce système de variables d'environnements est très intéressant, car il nous pe
 
 :::
 
+### Lancer votre site Internet
+
+La structure MVC possède un serveur web intégré, celui-ci vous permettra de tester votre site web en local sans même avoir besoin de Wamp / Xampp ou autre serveur Apache + PHP.
+
+::: tip Si votre ordinateur est correctement configuré
+
+Vous devriez être capable de faire :
+
+```sh
+php mvc serve
+```
+
+Cette commande intégrée à la structure MVC lancera un serveur automatiquement (sur le port 9000).
+
+:::
+
+::: details Comment ça fonctionne? 
+
+```sh
+# Windows (avec XAMPP)
+C:/xampp/php/php -S localhost:9000
+
+# Windows (avec WAMP)
+C:/wamp64/bin/php/php7.4.9/php -S localhost:9000
+
+# Linux / OSX
+php -S localhost:9000
+```
+
+:::
+
 ### L'entry Point (`index.php`)
 
 Le fichier `index.php` présent à la racine du projet est, ce que l'on appelle, un **entry point**. Ce point d'entrée en
@@ -430,7 +461,7 @@ Le dossier `migrations/` contient l'ensemble des fichiers nécessaire à l'insta
 Pour l'utiliser, vous devez passer via la ligne de commande. En effet pour des raisons de sécurité, impossible de lancer les migrations depuis votre navigateur.
 
 ```php
-php index.php db:migrate
+php mvc db:migrate
 ```
 
 ## Ajouter une page dans un contrôleur existant
@@ -509,7 +540,7 @@ Vos modèles doivent être obligatoirement dans le dossier `models/`
 La structure de code intègre également quelques commandes accessibles en ligne de commande. Pour créer un nouveau modèle rapidement vous pouvez également faire :
 
 ```sh
-php index.php model:create NomDeVotreModel
+php mvc model:create NomDeVotreModel
 ```
 
 :::
@@ -598,7 +629,7 @@ Dans mon exemple il y a qu'une seule méthode `methodeDExemple()`, évidemment v
 La structure de code intègre également quelques commandes accessibles en ligne de commande. Pour créer un nouveau contrôleur rapidement vous pouvez également faire :
 
 ```sh
-php index.php controller:create NomDeVotreControleur
+php mvc controller:create NomDeVotreControleur
 ```
 
 :::
