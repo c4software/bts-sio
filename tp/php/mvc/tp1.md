@@ -193,6 +193,10 @@ class Web
     Route::Add('/', [$monControleur, 'laMethodeAAppeler']);
     Route::Add('/autreChemin', [$monControleur, 'lautreMethode']);
 
+    // {monParametre} est dynamique en fonction du lien utilisateur
+    // Exemple /exemple/avec/param/1 ou /exemple/avec/param/2
+    Route::Add('/exemple/avec/param/{monParametre}', [$monControleur, 'methodeAvecParametre']); 
+
     // etc…
     // Vous pouvez avoir autant de routes que nécessaire
     }
