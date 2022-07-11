@@ -4,7 +4,7 @@ description: Un petit TP/Guide rapide pour créer une VM légère et rapide afin
 
 # VM Express : Alpine Linux, K3d & Docker
 
-Un petit TP/Guide rapide pour créer une VM légère et rapide afin d'héberger un cluster Kubernetes.
+Un petit TP/Guide rapide pour créer une VM légère et rapide afin d'héberger un cluster Kubernetes (ou un simple serveur permettant de lancer des machines via Docker)
 
 ::: details Sommaire
 [[toc]]
@@ -100,6 +100,12 @@ Vous avez dû remarquer les valeurs entre crochets à la fin des questions. Il s
 
 :::
 
+::: danger Vous souhaitez une IP Fixe ?
+
+C'est complètement possible ! Lors des questions « IP address for eth0 » et « Manual configuration for network » entrez ce dont vous avez l'habitude avec une Debian.
+
+:::
+
 ### Premier reboot
 
 Nous allons configurer notre système afin de lui installer les paquets nécessaires à notre usage, à savoir :
@@ -160,7 +166,7 @@ apk add vim
 Installer Docker sur Alpine Linux est rapide, il suffit de lancer la commande :
 
 ```sh
-apk add docker # Install Docker
+apk add docker docker-compose # Install Docker et Docker Compose
 rc-update add docker boot # Active Docker au démarrage de la machine
 service docker start # Démarre Docker dès maintenant
 ```
@@ -178,7 +184,7 @@ docker ps
 
 ## K3D
 
-Maintenant que nous avons installé Docker, il faut ajouter K3D. Malheureusement pour l'instant celui-ci n'est pas disponible dans le repo. Pour l'installer il faut passer via la commande décrite dans [la documentation officielle](https://github.com/rancher/k3d#get)
+Maintenant que nous avons installé Docker, il faut ajouter K3D. Malheureusement pour l'instant celui-ci n'est pas disponible dans le repo. Pour l'installer il faut passer via la commande décrite dans [la documentation officielle.](https://github.com/rancher/k3d#get)
 
 ```sh
 wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | sh # Installation de la commande k3D
