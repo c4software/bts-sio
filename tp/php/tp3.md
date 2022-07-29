@@ -190,6 +190,6 @@ Le `(.*).html` veut dire n'importe quel texte saisi avant le `.html` sera transf
 
 ## Toujours plus loin
 
-Nous avons ici travaillé sur un format « minimaliste », une structure seulement des dossiers et une organisation saine des imbrications du code. Sachez qu'il est possible d'aller bien plus loin en mettant en place un design Patern connu et reconnu comme un standard en termes de développement.
+Nous avons ici travaillé sur un format « minimaliste », une structure seulement des dossiers et une organisation saine des imbrications du code. Sachez qu'il est possible d'aller bien plus loin en mettant en place un design pattern connu et reconnu comme un standard en termes de développement.
 
-Ce n'est pas l'idée tout de suite, mais sachez que [celui-ci est détaillé ici](/php/mvc/tp1.md)
+Ce n'est pas l'idée tout de suite, mais sachez que [celui-ci est détaillé ici](/tp/php/mvc/tp1.html)
