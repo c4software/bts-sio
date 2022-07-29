@@ -8,13 +8,13 @@ Vous avez écrit du code oui… Mais il n'était pas forcément « bien organis�
 
 ## Introduction
 
-Comme [je l'indiquai dans le cours](./support.md#la-structure) la structuration du code est un point **très important** voir même je pense central dans votre future métier de développeur informatique. C'est pour ça qui me semble important de créer un TP dédié à cette problématique.
+Comme [je l'indiquai dans le cours,](./support.md#la-structure) la structuration du code est un point **très important** voir même je pense central dans votre futur métier de développeur informatique. C'est pour ça qui me semble important de créer un TP dédié à cette problématique.
 
 ::: tip
-La structure que je vais vous proposer dans ce TP n'est évidement pas la réponse universelle. Elle répond à une problématique à un moment donné, il faut l'utiliser et la prendre avec du recule.
+La structure que je vais vous proposer dans ce TP n'est évidemment pas la réponse universelle. Elle répond à une problématique à un moment donné, il faut l'utiliser et la prendre avec du recule.
 :::
 
-Pour réaliser ce TP, nous allons modifier votre projet [« Bart » (celui avec plusieurs page)](./tp2.md)
+Pour réaliser ce TP, nous allons modifier votre projet [« Bart » (celui avec plusieurs pages)](./tp2.md)
 
 ## La structure
 
@@ -39,7 +39,7 @@ Je vous laisse créer l'ensemble des dossiers et des fichiers en suivant l'organ
 ![Organisation d'un point de vue dossier](./res/organisation_structure_dossier.png)
 
 ::: tip c'est « juste la base »
-Dans votre projet vous avez plus de fichiers, notamment des images, c'est fichiers sont à destination du navigateur. Ils sont donc à placer **dans le dossier public**.  
+Dans votre projet vous avez plus de fichiers, notamment des images, ces fichiers sont à destination du navigateur. Ils sont donc à placer **dans le dossier public**.  
 :::
 
 ## Le point d'entrée
