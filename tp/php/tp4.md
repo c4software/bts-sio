@@ -181,7 +181,7 @@ Votre IDE intègre très certainement un template permettant la création du fic
 `html:5` suivi de la touche `tab`
 :::
 
-Dans la page je vous propose de créer un simple formulaire. Pour le formulaire vous pouvez de [vous inspirer de ceux proposés par Bootstrap](https://getbootstrap.com/docs/4.0/components/forms/)
+Dans la page je vous propose de créer un simple formulaire. Pour le formulaire vous pouvez de [vous inspirer de ceux proposés par Bootstrap.](https://getbootstrap.com/docs/4.0/components/forms/)
 
 ![Exemple de formulaire](./res/form.png)
 
