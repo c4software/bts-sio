@@ -166,7 +166,7 @@ Je vous laisse modifier votre code précédent afin d'utiliser des COOKIES plut�
 
 Nous avons vu qu'il était possible assez simplement de sauvegarder des informations persistantes entre les rechargements avec une SESSION (ou un Cookie). Je vous propose de réfléchir à l'utilisation de la SESSION pour sauvegarder une authentification.
 
-Nous allons sauvegarder des informations dans celle-ci pour sauvegarder la réussite d'un login utilisateur. Pour ça je vous propose de réaliser une nouvelle page PHP, celle-ci va contenir :
+Nous allons sauvegarder des informations dans celle-ci pour sauvegarder la réussite d'un login utilisateur. Pour ça, je vous propose de réaliser une nouvelle page PHP, celle-ci va contenir :
 
 - Un formulaire
 - Un message indiquant « Bienvenue EMAIL » si la personne c'est connecté avec le bon « EMAIL & MOT DE PASSE ».
@@ -176,12 +176,12 @@ Nous allons sauvegarder des informations dans celle-ci pour sauvegarder la réus
 Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Je vous laisse le créer (le nom importe peu).
 
 ::: tip N'oubliez pas
-Votre IDE intègre très certainement un template permettant la création du fichier en automatique. Exemple sous VSCode il suffit de saisir :
+Votre IDE intègre très certainement un template permettant la création du fichier en automatique. Exemple sous VSCode, il suffit de saisir :
 
 `html:5` suivi de la touche `tab`
 :::
 
-Dans la page je vous propose de créer un simple formulaire. Pour le formulaire vous pouvez de [vous inspirer de ceux proposés par Bootstrap.](https://getbootstrap.com/docs/4.0/components/forms/)
+Dans la page, je vous propose de créer un simple formulaire. Pour le formulaire, vous pouvez de [vous inspirer de ceux proposés par Bootstrap.](https://getbootstrap.com/docs/4.0/components/forms/)
 
 ![Exemple de formulaire](./res/form.png)
 
@@ -209,7 +209,7 @@ FIN SI
 ```
 
 ::: danger Non !
-Évidemment nous sommes d'accord **c'est nul** en termes de sécurité ! Vous ne devez JAMAIS « écrire en dur » un login mot de passe dans votre code.
+Évidemment, nous sommes d'accord **c'est nul** en termes de sécurité ! Vous ne devez JAMAIS « écrire en dur » un login mot de passe dans votre code.
 
 => À votre avis pourquoi ?
 :::
