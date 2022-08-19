@@ -28,7 +28,7 @@ N'oubliez pas d'y inclure un lien vers votre future page de connexion.
 
 :::
 
-## Utiliser la session pour créer une page « protégée »
+## Utiliser la session pour créer un accès protégé
 
 Nous avons vu qu'il était possible assez simplement de sauvegarder des informations persistantes entre les rechargements avec une SESSION (ou un Cookie). Je vous propose de réfléchir à l'utilisation de la SESSION pour sauvegarder une authentification.
 
@@ -103,7 +103,7 @@ FIN SI
 ```
 
 ::: danger Non !
-Évidemment, nous sommes d'accord **c'est nul** en termes de sécurité ! Vous ne devez JAMAIS « écrire en dur » un login mot de passe dans votre code.
+Évidemment, nous sommes d'accord **c'est nul** en termes de sécurité ! Vous ne devez JAMAIS « écrire en dur » un login de mot de passe dans votre code.
 
 => À votre avis pourquoi ?
 :::
@@ -112,19 +112,45 @@ FIN SI
 
 ### Afficher le formulaire ou le message
 
-Maintenant que nous avons sauvegardé dans la SESSION le fait que la personne est connectée, je vous propose de conditionner l'affichage du formulaire ; celui-ci ne doit pas être visible si la personne est connectée (vous avez un exemple dans le code un peu plus haut).
+Maintenant que nous avons sauvegardé dans la SESSION le fait que la personne est connectée, je vous propose de conditionner l'affichage du formulaire ; celui-ci ne doit pas être visible si la personne est connectée. Comment allons-nous faire ça ? En utilisant la Whiteliste évidemment !
+
+Vous devez conditionner votre Whiteliste en fonction de l'état de connexion de votre utilisateur, exemple en `algo` :
+
+```
+$whitelist = [];
+
+SI EST DEFINI (SAUVEGARDER_DANS_LA_SESSION[CONNECTE]) ALORS
+
+    $whitelist = ['bart', 'home', 'logout'];
+
+SINON SI
+
+    $whitelist = ['login', 'home'];
+
+FIN SI
+```
+
+::: tip prenez le temps de réfléchir et comprendre le code proposé
+
+Avant de continuer, arrêtons-nous un instant sur le code proposé :
+
+- Que veut-il dire ?
+- Où celui-ci doit-être mis ?
+- Avons-nous déjà une variable $whitelist ?
+
+:::
 
 Il faudra donc :
 
 - Faire une condition (if) pour vérifier que l'élément est présent en SESSION.
-- Si présent => Affichage du message de bienvenue.
-- Si non présent => Affichage du formulaire de connexion.
+    - Si présent => autoriser de la page `de génération des punitions`.
+    - Si non présent => autoriser les pages dites « publiques » de la page `Home`.
 
 ### Gérer la déconnexion
 
 À votre avis, comment allons-nous gérer la déconnexion ?
 
-### Une sécurité bien gérée
+### Évolution final : Une sécurité bien gérée
 
 Pour tester, nous avons mis un login et un mot de passe en dur. Évidemment dans la vraie vie ce n'est pas comme ça que nous procèderons. Je vous laisse créer la base de données et la table permettant de sauvegarder un mot de passe **en intégrant les notions de sécurité**.
 
