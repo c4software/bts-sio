@@ -35,7 +35,7 @@ session_start();
 ```
 
 ::: tip C'est tout
-À partir de cet instant vous avez maintenant accès à la SESSION de l'utilisateur, si celle-ci n'existait pas elle a été créée pour vous. :cool:
+À partir de cet instant vous avez maintenant accès à la SESSION de l'utilisateur :cool:.
 :::
 
 ::: warning Oui mais…
@@ -45,10 +45,36 @@ Il est également possible d'arrêter la SESSION pour détruire toutes les valeu
 session_destroy();
 ```
 
-Cette opération est à faire par exemple à la déconnexion de l'utilisateur sur votre site.
+🙈 Cette opération est à faire par exemple à la déconnexion de l'utilisateur sur votre site.
 :::
 
 Dans le [TP3](./tp3.md) ([Le code du TP3 est disponible ici](/demo/php/bart/bart-form-structure.zip).), nous avions créé un « entry-point ». Ce point d'entrée (qui est une bonne pratique en termes de sécurité ! Pourquoi à votre avis ?) va nous servir à démarrer la SESSION vous n'aurez comme plus à vous en soucier.
+
+### Tester le code
+
+Avant de continuer, je vous laisse tester le code. Pour ça vous avez deux solutions :
+
+- Utiliser XAMPP sur votre machine (ou Wamp).
+- Utiliser le serveur PHP intégré à PHP 8 (**ma solution favorite**).
+
+::: tip Vous souhaitez utiliser le serveur intégré ?
+
+Merci ça me fait plaisir ! Du coup, c'est plutôt simple, dans un terminal (par exemple celui intégré à VSCode) :
+
+```sh
+# Windows (avec XAMPP)
+C:/xampp/php/php -S localhost:9000
+
+# Windows (avec WAMP)
+C:/wamp64/bin/php/php7.4.9/php -S localhost:9000
+
+# Linux / OSX
+php -S localhost:9000
+```
+
+👋 Besoin d'aide ? Je suis là !
+
+:::
 
 ### Démarrer la session
 
@@ -162,81 +188,28 @@ echo $_COOKIE["monCookie"];
 
 Je vous laisse modifier votre code précédent afin d'utiliser des COOKIES plutôt que la SESSION. Cette fois-ci, pas d'aide, je vous laisse vous organiser.
 
-## Utiliser la session pour créer une page « protégée »
+## Vérifier le bon fonctionnement
 
-Nous avons vu qu'il était possible assez simplement de sauvegarder des informations persistantes entre les rechargements avec une SESSION (ou un Cookie). Je vous propose de réfléchir à l'utilisation de la SESSION pour sauvegarder une authentification.
+Je vous laisse valider le bon fonctionnement de votre site avec l'utilisateur des Cookies.
 
-Nous allons sauvegarder des informations dans celle-ci pour sauvegarder la réussite d'un login utilisateur. Pour ça, je vous propose de réaliser une nouvelle page PHP, celle-ci va contenir :
+::: tip Quel est l'impact d'un tel changement ?
 
-- Un formulaire
-- Un message indiquant « Bienvenue EMAIL » si la personne c'est connecté avec le bon « EMAIL & MOT DE PASSE ».
+Avec ce que nous avons vu en cours, mais également nos échanges, regarder l'impact « en termes de sécurité » sur votre code :
 
-### Créer la page
+- Avez-vous vu des différences ?
+- Pouvez-vous modifier le comportement « via une altération côté client ? »
 
-Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Je vous laisse le créer (le nom importe peu).
-
-::: tip N'oubliez pas
-Votre IDE intègre très certainement un template permettant la création du fichier en automatique. Exemple sous VSCode, il suffit de saisir :
-
-`html:5` suivi de la touche `tab`
 :::
 
-Dans la page, je vous propose de créer un simple formulaire. Pour le formulaire, vous pouvez de [vous inspirer de ceux proposés par Bootstrap.](https://getbootstrap.com/docs/4.0/components/forms/)
+## Cookie ou Session ?
 
-![Exemple de formulaire](./res/form.png)
+Libre à vous de choisir Cookie ou Session. Cependant, n'oubliez pas que les Cookies sont déposés sur le poste Utilisateur et sont donc modifiables. 
 
-::: tip GET ou POST ?
-À votre avis ? GET ou POST pour notre formulaire ?
-:::
+- **Les Cookies**, sont utiles par exemple pour rendre persistantes sur une longue durée les données de personnalisation d'une page.
+- **Les Sessions** sont utiles pour sauvegarder **sur le serveur** et **temporairement** des informations de vies de votre site Internet (exemple l'authentification, les données saisies dans un formulaire, etc.).
 
-### Vérifier l'authentification
+## La suite…
 
-Pour vérifier l'authentification, nous allons rester simples (car ici l'objectif est de voir la SESSION rien de plus). Je vous propose de considérer une authentification valide si :
+La SESSION ou les Cookies servent pour différentes choses sur Internet. La persistance des données peut servir à du tracking (vous le savez…), mais également pour gérer une authentification client. Dans nos développements la SESSION et les Cookies nous serviront principalement pour garder une trace de l'utilisateur afin de le reconnaitre quand celui-ci navigue de page en page sur votre site Internet.
 
-- Email == "admin@exemple.com"
-- Mot de passe == "mdp"
-
-Si nous écrivons « l'algo » de notre vérification d'authentification, ça va donner :
-
-```
-
-SI email === "admin@exemple.com" ET mot_de_passe == "mdp" ALORS
-
-    SAUVEGARDER_DANS_LA_SESSION[CONNECTE] = email
-
-FIN SI
-
-```
-
-::: danger Non !
-Évidemment, nous sommes d'accord **c'est nul** en termes de sécurité ! Vous ne devez JAMAIS « écrire en dur » un login mot de passe dans votre code.
-
-=> À votre avis pourquoi ?
-:::
-
-- C'est à vous, je vous laisse écrire le code dans la page que vous avez précédemment créée.
-
-### Afficher le formulaire ou le message
-
-Maintenant que nous avons sauvegardé dans la SESSION le fait que la personne est connectée, je vous propose de conditionner l'affichage du formulaire ; celui-ci ne doit pas être visible si la personne est connectée (vous avez un exemple dans le code un peu plus haut).
-
-Il faudra donc :
-
-- Faire une condition (if) pour vérifier que l'élément est présent en SESSION.
-- Si présent => Affichage du message de bienvenue.
-- Si non présent => Affichage du formulaire de connexion.
-
-### Gérer la déconnexion
-
-À votre avis, comment allons-nous gérer la déconnexion ?
-
-### Une sécurité bien gérée
-
-Pour tester, nous avons mis un login et un mot de passe en dur. Évidemment dans la vraie vie ce n'est pas comme ça que nous procèderons. Je vous laisse créer la base de données et la table permettant de sauvegarder un mot de passe **en intégrant les notions de sécurité**.
-
-- Le mot de passe ne doit pas être en clair.
-- Ajouter dans le projet la connexion à la base de données.
-  - Comment ?
-  - Où ?
-- Intégrer le code permettant de valider le mot de passe fourni par l'utilisateur.
-- Valider le bon fonctionnement avec un jeu d'essai.
+Pour la suite, attaquons le [TP 5, protégez des pages avec la session](./tp5.md)
