@@ -87,6 +87,10 @@ Ici, il est important de constater l'usage d'une variable nommée page. Celle-ci
 
 ### Vérifier l'authentification
 
+La logique que nous allons mettre en place est la suivante : 
+
+![Flow authentification](./res/flow_login_tp5.png)
+
 Pour vérifier l'authentification, nous allons rester simples (car ici l'objectif est de voir la SESSION, rien de plus). Je vous propose de considérer une authentification valide si :
 
 - Email == "admin@exemple.com"
@@ -110,7 +114,7 @@ FIN SI
 
 - C'est à vous, je vous laisse écrire le code dans la page que vous avez précédemment créée.
 
-### Afficher le formulaire ou le message
+### Autoriser l'accès à la page de génération (ou pas)
 
 Maintenant que nous avons sauvegardé dans la SESSION le fait que la personne est connectée, je vous propose de conditionner l'affichage du formulaire ; celui-ci ne doit pas être visible si la personne est connectée. Comment allons-nous faire ça ? En utilisant la Whiteliste évidemment !
 
