@@ -212,4 +212,4 @@ Libre à vous de choisir Cookie ou Session. Cependant, n'oubliez pas que les Coo
 
 La SESSION ou les Cookies servent pour différentes choses sur Internet. La persistance des données peut servir à du tracking (vous le savez…), mais également pour gérer une authentification client. Dans nos développements la SESSION et les Cookies nous serviront principalement pour garder une trace de l'utilisateur afin de le reconnaitre quand celui-ci navigue de page en page sur votre site Internet.
 
-Pour la suite, [TP 5, protégez des pages avec la session](./tp5.md)
+Pour la suite, [TP 5, protéger des pages à l'aide de la session](./tp5.md)

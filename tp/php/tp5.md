@@ -1,4 +1,4 @@
-# Protéger des pages avec la session
+# Protéger des pages à l'aide de la session
 
 Dans ce TP nous allons voir comment ajouter une couche d'authentification sur vos pages PHP.
 
