@@ -2,7 +2,7 @@
 description: Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des idées de page à reproduire le plus fidèlement possible.
 ---
 
-# Idée d'intégration
+# Ressources pour intégration
 
 Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des idées de page à reproduire le plus fidèlement possible.
 
@@ -69,7 +69,9 @@ _Hebergement :_
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 - [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou mutualisés.
 
-## Single Page Website
+### Éléments à intégrer
+
+### Single Page Website
 
 ![Cas 1](./integration/cas1.png)
 
@@ -77,11 +79,11 @@ _Hebergement :_
 
 ![Cas 2](./integration/cas2.png)
 
-## Liste de liens (avec responsive)
+### Liste de liens (avec responsive)
 
 ![Cas 3](./integration/cas3.png)
 
-## Blog
+### Blog
 
 ![Cas 4](./integration/cas4.png)
 
@@ -89,7 +91,7 @@ _Hebergement :_
 
 ![Cas 5](./integration/cas5.png)
 
-## Interfaces Mobiles / Responsives
+### Interfaces Mobiles / Responsives
 
 ![Cas 6](./integration/cas6.jpeg)
 
