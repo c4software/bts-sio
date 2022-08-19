@@ -20,6 +20,13 @@ Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Votre
 
 N'oubliez pas de l'autoriser dans la blacklist. **Point important** cette page doit s'afficher lors de l'accès à votre site Internet.
 
+![Home démo](./res/home-demo.jpg)
+
+::: tip N'oubliez pas
+
+N'oubliez pas d'y inclure un lien vers votre future page de connexion.
+
+:::
 
 ## Utiliser la session pour créer une page « protégée »
 
