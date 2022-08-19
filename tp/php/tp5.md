@@ -8,7 +8,18 @@ Dans ce TP nous allons voir comment ajouter une couche d'authentification sur vo
 
 ## Projet de référence
 
-Pour continuer de TP, vous devez reprendre le code du [TP précédent sur l'utilisation de la Session / Cookies](./tp4.md).
+Pour continuer de TP, vous devez reprendre le code du [TP précédent sur l'utilisation de la Session / Cookies](./tp4.md). Ce TP va donc être découpé en plusieurs étapes :
+
+- Création d'une page « Home » affichée à l'arrivée sur le site.
+- Création d'une page « Login » qui permettra à l'utilisateur de s'authentifier.
+- Gestion de l'authentification et des autorisations dans la Whitelist.
+
+## Création de la Home
+
+Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Votre page doit être rangée correctement. En regardant le projet, vous pouvez voir que les pages sont rangées dans le dossier `pages`. Je vous laisse créer la page d'accueil de votre site.
+
+N'oubliez pas de l'autoriser dans la blacklist. **Point important** cette page doit s'afficher lors de l'accès à votre site Internet.
+
 
 ## Utiliser la session pour créer une page « protégée »
 
@@ -21,7 +32,7 @@ Nous allons sauvegarder des informations dans celle-ci pour sauvegarder la réus
 
 ### Créer la page
 
-Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Votre page doit être rangé correctement. En regardant le projet, vous pouvez voir que les pages sont rangés dans le dossier `pages`.
+Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Votre page doit être rangée correctement. En regardant le projet, vous pouvez voir que les pages sont rangées dans le dossier `pages`.
 
 Dans la nouvelle page, je vous propose de créer un simple formulaire. Pour le formulaire, vous pouvez de [vous inspirer de ceux proposés par Bootstrap.](https://getbootstrap.com/docs/4.0/components/forms/)
 
@@ -46,6 +57,26 @@ Je vous laisse créer un formulaire similaire à :
 ![Exemple de formulaire](./res/form.png)
 
 PS: En Français dans notre cas…
+
+### Tester votre page
+
+Comment accéder à votre page ? Avec l'organisation proposée vous ne pouvez pas accéder directement à votre page PHP pour l'afficher. **Vous devez** passer par `l'entry-point`, c'est pour ça que les liens auront la forme suivante :
+
+```
+index.php?page=login
+```
+
+ou par exemple :
+
+```
+index.php?page=logout
+```
+
+::: tip Le point important
+
+Ici, il est important de constater l'usage d'une variable nommée page. Celle-ci est utilisé dans le fichier `index.php` pour charger la page que l'utilisateur souhaite.
+
+:::
 
 ### Vérifier l'authentification
 
