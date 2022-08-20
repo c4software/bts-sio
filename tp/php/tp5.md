@@ -146,15 +146,23 @@ Avant de continuer, arrêtons-nous un instant sur le code proposé :
 
 Il faudra donc :
 
-- Faire une condition (if) pour vérifier que l'élément est présent en SESSION.
-    - Si présent => autoriser de la page `de génération des punitions`.
-    - Si non présent => autoriser les pages dites « publiques » de la page `Home`.
+- Faire une condition (if) pour vérifier que l'élément est présent en SESSION :
+  - Si présent => autoriser de la page `de génération des punitions`.
+  - Si non présent => autoriser les pages dites « publiques » de la page `Home`.
+
+::: warning Note pour le vous du futur
+
+Aujourd'hui nous parlons de Whitelist, demain nous emploierons le terme de `Router`. C'est bien évidemment différent, mais le résultat sera le même :
+
+**Seulement les pages déclarées seront accessibles**
+
+:::
 
 ### Gérer la déconnexion
 
 À votre avis, comment allons-nous gérer la déconnexion ?
 
-### Évolution final : Une sécurité bien gérée
+### Évolution finale : Une sécurité bien gérée
 
 Pour tester, nous avons mis un login et un mot de passe en dur. Évidemment dans la vraie vie ce n'est pas comme ça que nous procèderons. Je vous laisse créer la base de données et la table permettant de sauvegarder un mot de passe **en intégrant les notions de sécurité**.
 
