@@ -151,6 +151,12 @@ module.exports = [
   },
 
   {
+    text: "Les composants",
+    collapsible: true,
+    children: ["/cours/composants", "/tp/composants/vuejs", "/tp/composants/android"],
+  },
+
+  {
     text: "Sécurité du code",
     collapsible: true,
     children: [

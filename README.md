@@ -8,9 +8,9 @@ next:
 
 ## Introduction
 
-Cette documentation est réalisée par Valentin Brosseau (BTS SIO, GRETA, MyDigitalSchool, ESEO, etc), vous retrouverez dans l’ensemble des cours (slides et aide mémoire) ainsi que des TP.
+Supports de cours de Valentin Brosseau (BTS SIO, GRETA, MyDigitalSchool, ESEO, etc), vous retrouverez dans l’ensemble des cours (slides et aide mémoire) ainsi que des TP.
 
-[Consulter les cours & TP sur Github Pages](https://cours.brosseau.ovh/)
+[Consulter les cours & TP](https://cours.brosseau.ovh/)
 
 ## Programme de l'année
 
@@ -22,6 +22,7 @@ Cette documentation est réalisée par Valentin Brosseau (BTS SIO, GRETA, MyDigi
 - VueJS (2 & 3).
 - Programmation orientée objet (POO et UML).
 - Introduction DevOps.
+- Android
 
 ## Contenu
 
