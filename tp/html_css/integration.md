@@ -1,10 +1,10 @@
 ---
-description: Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des idées de page à reproduire le plus fidèlement possible.
+description: Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
 ---
 
 # Ressources pour intégration
 
-Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des idées de page à reproduire le plus fidèlement possible.
+Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
 
 ::: details Table des matières
 [[toc]]
@@ -25,6 +25,11 @@ Vous aurez certainement besoin de ressources, voilà une liste d'élément pouva
 - [Bootstrap](https://getbootstrap.com/) <- Un standard
 - [Tailwind](https://tailwindcss.com/) <- À creuser
 - [Des templates réutilisable](https://startbootstrap.com/?showPro=false&showAngular=false)
+
+_Apprentissage :_
+
+- [Flexbox](https://flexboxfroggy.com/#fr)
+- [Grid](https://cssgridgarden.com/#fr)
 
 _Actualités :_
 
@@ -69,7 +74,8 @@ _Hebergement :_
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 - [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou mutualisés.
 
-### Éléments à intégrer
+
+::: details Vous avez envie de progresser ? Voilà des éléments à intégrer
 
 ### Single Page Website
 
@@ -93,8 +99,11 @@ _Hebergement :_
 
 ### Interfaces Mobiles / Responsives
 
-![Cas 6](./integration/cas6.jpeg)
+    ![Cas 6](./integration/cas6.jpeg)
 
----
+    ---
 
-![Cas 7](./integration/cas7.jpg)
+    ![Cas 7](./integration/cas7.jpg)
+
+
+:::
