@@ -184,6 +184,14 @@ Ce découpage s'appelle un développement en couche.
 
 ---
 
+![Routeur Schema](./res/mvc_router.png)
+
+---
+
+![Concrètement](./res/route.png)
+
+---
+
 ![Routeur](./res/routeur.jpg)
 
 ---
