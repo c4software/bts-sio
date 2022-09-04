@@ -172,3 +172,10 @@ Pour tester, nous avons mis un login et un mot de passe en dur. Évidemment dans
   - Où ?
 - Intégrer le code permettant de valider le mot de passe fourni par l'utilisateur.
 - Valider le bon fonctionnement avec un jeu d'essai.
+
+::: danger Un peu d'aide
+
+- Comment allez-vous enregistrer le mot de passe en base ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-hash.php))
+- Comment allez-vous vérifier l'authentification ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-verify.php))
+
+:::

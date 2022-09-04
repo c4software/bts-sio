@@ -869,11 +869,10 @@ Pour réaliser une page d'authentification dans votre projet, vous allez devoir 
 
 ::: danger Attention
 
-Mot de passe et sécurité… 
+Mot de passe et sécurité…
 
 - Comment allez-vous enregistrer le mot de passe en base ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-hash.php))
 - Comment allez-vous vérifier l'authentification ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-verify.php))
-
 
 :::
 
