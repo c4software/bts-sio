@@ -867,6 +867,17 @@ Pour réaliser une page d'authentification dans votre projet, vous allez devoir 
 - Est-ce nécessaire de créer un nouveau contrôleur ?
 - Combien de vue sera(ont) nécessaire(s) en plus de celles existantes ?
 
+::: danger Attention
+
+Mot de passe et sécurité… 
+
+- Comment allez-vous enregistrer le mot de passe en base ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-hash.php))
+- Comment allez-vous vérifier l'authentification ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-verify.php))
+
+
+:::
+
+
 ### Évolution 2
 
 Maintenant que nous avons un système d'authentification, je vous propose de sauvegarder qui a créé la TODO pour ce faire :
