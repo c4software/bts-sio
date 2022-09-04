@@ -1033,13 +1033,13 @@ Comme la Session… Mais sauvegardé sur le poste client
 
 ---
 
-![Cookie](./res/cookies.php)
+![Cookie](./res/cookies.png)
 
 ---
 
 ### Poste client == Danger
 
-Par défaut les valeurs enregistrées dans le cookie sont éditables par le client, donc il n'y a aucune garantie de ce que vous allez récupérer. Attention au XSS donc.
+Par défaut les valeurs enregistrées **dans** le cookie sont éditables par le client, donc il n'y a aucune garantie de ce que vous allez récupérer. Attention au XSS donc.
 
 ---
 
@@ -1093,14 +1093,14 @@ Fini les projets « en bordel ».
 
 ---
 
-[Gérer une authentification](/tp/php/support.html#utiliser-la-session-pour-gerer-un-espace-d-administration)
-
----
-
 ## Mise en pratique
 
 ### Organiser son code
 
 L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 3](/tp/php/tp3.html).
+
+---
+
+[Gérer une authentification](/tp/php/support.html#utiliser-la-session-pour-gerer-un-espace-d-administration)
 
 ---
