@@ -162,6 +162,32 @@ Ce découpage s'appelle un développement en couche.
 
 ---
 
+## 3-tiers assemblés par
+
+### Un *Routeur*
+
+---
+
+## Un Routeur ?
+
+### Avez-vous déjà entendu parler ?
+
+---
+
+### Défini la correspondance entre
+
+**un lien (navigateur)** 
+
+*et* 
+
+**une méthode (votre code)**.
+
+---
+
+![Routeur](./res/routeur.jpg)
+
+---
+
 **Important** on oubli pas ce que vous avez appris
 
 ## On améliore
