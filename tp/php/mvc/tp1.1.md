@@ -846,16 +846,28 @@ Je vous laisse modifier :
 - Le code du modèle afin d'y ajouter une méthode.
 - Appeler cette méthode depuis votre page à la place du `getAll()`.
 
-### Évolution 2
+## Ajouter une page d'authentification
 
-La partie TODOList ne doit pas être accessible à tous. En utilisant les techniques vu avec la SESSION (`$_SESSION`) ainsi qu'en réfléchissant sur les impacts en termes de sécurité (protection dans le routeur par exemple). Limiter l'accès de la partie TODOList seulement aux personnes avec un compte sur la plateforme.
+La partie TODOList ne doit pas être accessible à tous. En utilisant les techniques vues avec la SESSION (`$_SESSION`) ainsi qu'en réfléchissant sur les impacts en termes de sécurité (protection dans le routeur par exemple). Limiter l'accès de la partie TODOList seulement aux personnes avec un compte sur la plateforme.
+
+::: tip Quelques éléments pour vous aider
+
+Pour réaliser une page d'authentification dans votre projet, vous allez devoir ajouter :
+
+- Une page avec un formulaire pour vous connecter.
+- Une table en base
+- Un modèle et un contrôleur dédié à cette action (`php mvc model:create AuthModel`  `php mvc controller:create AuthControler`)
+- Modifier le routeur pour n'autoriser l'accès aux utilisateurs **authentifiés**.
+
+:::
+
 
 - Quels impacts sont à prévoir dans le routeur ?
 - Est-ce nécessaire de créer un nouveau modèle ?
 - Est-ce nécessaire de créer un nouveau contrôleur ?
 - Combien de vue sera(ont) nécessaire(s) en plus de celles existantes ?
 
-### Évolution 3
+### Évolution 2
 
 Maintenant que nous avons un système d'authentification, je vous propose de sauvegarder qui a créé la TODO pour ce faire :
 
@@ -865,6 +877,6 @@ Maintenant que nous avons un système d'authentification, je vous propose de sau
 - Ajouter **dans la vue**, l'affichage de l'identité de la personne.
   - Idéalement en groupant les TODO par nom d'utilisateur / email.
 
-### Évolution 4
+### Évolution 3
 
 Modifier la page d'accueil de votre site afin que celle-ci présente votre projet.
