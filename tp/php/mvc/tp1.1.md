@@ -279,8 +279,6 @@ function about()
 
 Pour l'instant aucun changement, si vous utilisez PHPStorm celui-ci va vous proposer de créer le fichier `about.php` directement en cliquant sur « la petite lampe jaune ».
 
-![Créer le fichier avec PHPStorm](./res/create_file_phpstorm.png)
-
 ### Créer la vue / page
 
 Si ce n'est pas déjà fait, créé le fichier `views/global/about.php`. Pour le contenu, je vous laisse libre. Je vous rappelle juste que nous sommes entrain de créer une page « À propos ».
