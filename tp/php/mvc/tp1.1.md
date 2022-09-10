@@ -464,6 +464,18 @@ function marquerCommeTermine($id){
 }
 ```
 
+::: danger Où mettre la méthode ?
+
+Vous avez 4 possibilités :
+
+- Dans la vue (Non).
+- Dans le routeur (Non).
+- Dans le contrôleur (Non).
+- Dans le modèle (**Oui**).
+
+:::
+
+
 ::: details Besoin d'aide ?
 Votre classe doit maintenant ressembler à
 
@@ -478,13 +490,6 @@ class TodoModel extends SQL
     public function __construct()
     {
         parent::__construct('todos', 'id');
-    }
-
-    function todoNonTermine()
-    {
-        $stmt = $this->pdo->prepare("SELECT * FROM todos WHERE termine = 0;");
-        $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     function marquerCommeTermine($id){
@@ -827,6 +832,61 @@ En utilisant le code précédemment fourni, écrire :
 - **Ne permettre la suppression** que des Todo ayant `termine = 1`. La vérification **ne doit pas être** présente que dans la vue.
 
 C'est à vous.
+
+### Le routeur, un usage avancé
+
+La structure MVC que vous avez à votre disponible incorpore également la possibilité d'avoir des routes « dynamiques », exemple :
+
+- `/sample/utilisateur/42`
+- `/sample/utilisateur/420`
+
+ou encore :
+
+- `/sample/fiche/1`
+- `/sample/fiche/123`
+
+Que constatez-vous ? 
+
+::: details Élément de réponse
+
+Nous avons effectivement une partie « variable » dans notre route, dans le cas des exemples :
+
+- `/sample/utilisateur/42` => Consulter l'utilisateur avec comme identifiant **42**.
+- `/sample/utilisateur/420` => Consulter l'utilisateur avec comme identifiant **420**.
+
+ou encore :
+
+- `/sample/fiche/1` => Consulter la fiche avec comme identifiant **1**.
+- `/sample/fiche/123` => Consulter la fiche avec comme identifiant **123**.
+
+:::
+
+Ce type de lien est très présent sur Internet, la structure MVC permet évidemment la création de ceux-ci. 
+
+
+Pour ça vous devez écrire dans votre routeur :
+
+```php
+Route::Add('/sample/{id}', [$main, 'sample']);
+```
+
+Et dans votre Contrôleur :
+
+```php
+function sample($id)
+{
+    echo "Vous consulter l'identifiant $id";
+}
+```
+
+Je vous laisse tester.
+
+::: tip Valider le bon fonctionnement
+
+- Tester le code proposé.
+- Écrire une vue plutôt qu'un simple `echo`.
+
+::: 
 
 ### Évolution 0
 
