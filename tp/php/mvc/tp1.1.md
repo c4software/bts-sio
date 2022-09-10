@@ -833,7 +833,7 @@ En utilisant le code précédemment fourni, écrire :
 
 C'est à vous.
 
-### Le routeur, un usage avancé
+## Le routeur, un usage avancé
 
 La structure MVC que vous avez à votre disponible incorpore également la possibilité d'avoir des routes « dynamiques », exemple :
 
@@ -888,14 +888,14 @@ Je vous laisse tester.
 
 ::: 
 
-### Évolution 0
+## Évolution 0
 
 Ajouter dans la page d'accueil du site un lien permettant d'accéder à votre TodoList. Quelques consignes à respecter :
 
 - Le lien doit être centré dans la page.
 - Le lien doit avoir l'**apparence** d'un bouton. [Voir la documentation](https://getbootstrap.com/docs/5.0/components/buttons/)
 
-### Évolution 1
+## Évolution 1
 
 Je souhaite finalement masquer de l'affichage par défaut l'ensemble des enregistrements de la table `TODO` ayant `termine = 1`.
 
@@ -934,8 +934,7 @@ Mot de passe et sécurité…
 
 :::
 
-
-### Évolution 2
+## Évolution 2
 
 Maintenant que nous avons un système d'authentification, je vous propose de sauvegarder qui a créé la TODO pour ce faire :
 
@@ -945,6 +944,6 @@ Maintenant que nous avons un système d'authentification, je vous propose de sau
 - Ajouter **dans la vue**, l'affichage de l'identité de la personne.
   - Idéalement en groupant les TODO par nom d'utilisateur / email.
 
-### Évolution 3
+## Évolution 3
 
 Modifier la page d'accueil de votre site afin que celle-ci présente votre projet.
