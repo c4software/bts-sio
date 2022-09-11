@@ -32,6 +32,16 @@ Cette opération n'est à réaliser qu'une seule fois (sur chaque machine/sessio
 
 La commande pour générer une clef est la suivante.
 
+::: tip Windows, Linux, macOS ?
+
+La commande sera la même, quel que soit votre système d'exploitation. Cependant, le terminal lui sera différent :
+
+- Windows : Git Bash (ou Git CMD). ([nécessite Git](https://git-scm.com/downloads))
+- macOS : terminal
+- Linux : console
+
+:::
+
 ```bash
 ssh-keygen
 ```
