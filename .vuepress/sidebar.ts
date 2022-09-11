@@ -29,6 +29,7 @@ module.exports = [
       { link: "/cheatsheets/cordova/README.md", text: "Cordova" },
       { link: "/cheatsheets/docker/README.md", text: "Docker" },
       { link: "/cheatsheets/owasp/README.md", text: "OWASP" },
+      { link: "/cheatsheets/ssh-key/README.md", text: "Clef SSH" },
     ]
   },
 
