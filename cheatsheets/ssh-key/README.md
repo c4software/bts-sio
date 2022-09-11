@@ -17,8 +17,8 @@ Dans cet aide mémoire vous allez retrouver l'ensemble des commandes et des opé
 > - De ne pas avoir un mot de passe à saisir toutes les 2 minutes.
 >
 > La clef privée est en principe unique : chaque utilisateur possède une clef privée qu'il peut copier sur les terminaux auxquels il accède physiquement et depuis lesquels il a besoin d'un accès SSH (via le client SSH).
-
-Source : [doc.ubuntu-fr](https://doc.ubuntu-fr.org/ssh)
+>
+> Source : [doc.ubuntu-fr](https://doc.ubuntu-fr.org/ssh)
 
 ::: details Sommaire
 [[toc]]
@@ -43,7 +43,7 @@ La commande va générer **deux fichiers** :
 - **id_rsa**, est privé. **Vous ne devez jamais le partager**.
 - **id_rsa.pub**, est publique, vous pouvez le partager autant que vous voulez ce fichier permettra de vous reconnaître au moment de la connexion.
 
-: : : danger Plus de sécurité
+::: danger Plus de sécurité
 
 Vous pouvez faire « entrée (3×) » pour générer une clef sans mot de passe. Vous pouvez également faire le choix de mettre un mot de passe sur votre clef pour plus de sécurité.
 
@@ -99,7 +99,7 @@ ssh-copy-id <username>@<ipaddress>
 ssh-copy-id pi@192.168.1.253
 ```
 
-: : : tip Et voilà !
+::: tip Et voilà !
 
 Rien de plus, à partir de maintenant votre serveur acceptera votre connexion sans vous demander de mot de passe. Pratique non ? (Et surtout très sécurisé)
 
