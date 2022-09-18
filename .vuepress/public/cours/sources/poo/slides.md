@@ -262,8 +262,6 @@ Supposons que chaque Voiture possède :
   - Calcul du nombre de km moyen par an depuis la fabrication.
   - Accélérer.
 
-C'est à vous 🤓. Concevez l'UML
-
 ---
 
 _Une solution possible_
