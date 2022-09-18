@@ -254,7 +254,7 @@ Nous souhaitons modéliser la problématique d'un vendeur de voitures.
 
 Supposons que chaque Voiture possède :
 
-- les « paramètres » suivant :
+- les « attributs » suivant :
   - Une vitesse.
   - Un nombre de km.
   - Une année de fabrication.
