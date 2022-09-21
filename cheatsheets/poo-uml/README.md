@@ -30,43 +30,86 @@ class Personne {
 }
 ```
 
-## Classe Caserne & lien avec Pompier
+## La surcharge
 
-![La classe Caserne & Pompier](./res/uml_simple_relation.png)
+![La surcharge](./res/uml_surcharge.png)
 
 ```php
-class Caserne {
-    private nom;
-    private addresse;
-    private leChef;
+<?php
+class SimpleClass
+{
+    // déclaration d'une propriété
+    public $var = 'une valeur par défaut';
+    public $var2 = 'une valeur par défaut';
 
-    function __construct($nom, $addresse, $leChef){
-        $this->nom = $nom;
-        $this->addresse = $addresse;
-        $this->leChef = $leChef;
+    // Constructeur
+    function __construct($var, $var2)
+    {
+        $this->var = $var;
+        $this->var2 = $var2;
     }
 
-    function __construct($nom, $addresse){
-        $this->nom = $nom;
-        $this->addresse = $addresse;
+    // déclaration des méthodes
+    public function displayVar() {
+        echo $this->var;
     }
 
-    function appelerChef(){
-        if($this->leChef){
-            return $this->leChef->appeler();
-        }
+    public function setVar($var){
+        $this->var = $var;
+    }
+
+    public function setVar($var, $var2){
+        $this->var = $var;
+        $this->var2 = $var2;
+    }
+}
+?>
+```
+
+
+## Une personne possède une ou des voiture
+
+![La classe Caserne & Pompier](./res/uml_simple_multiplicite.png)
+
+```php
+class Voiture {
+    Integer $vitesse;
+    private Integer $nombreKm;
+    private Date $annéeFabrication;
+    private Personne $lePropriétaire;
+
+    function __construct($nombreKm, $date, $lePropriétaire){
+        $this->nombreKm = $nombreKm;
+        $this->annéeFabrication = $annéeFabrication;
+        $this->lePropriétaire = $lePropriétaire;
+    }
+
+    function __construct($nombreKm, $date){
+        $this->nombreKm = $nombreKm;
+        $this->annéeFabrication = $annéeFabrication;
+    }
+
+    // Reste des méthodes
+
+    function affecterPropriétaire(Personne $p){
+        $this->lePropriétaire = $p
     }
 }
 
-class Pompier {
-    private nom;
+class Personne {
+    private String $nom;
+    private String $prenom;
+    private String $salaire;
+    private Date $dateNaissance;
+    Int $nbEnfant;
 
-    function __construct($nom){
+    function __construct($nom, $prenom){
         $this->nom = $nom;
+        $this->prenom = $prenom;
     }
 
-    function appeler(){
-        return "Appel du pompier";
+    function presenter(){
+        return $this->nom . " " . $ths->prenom;
     }
 }
 ```

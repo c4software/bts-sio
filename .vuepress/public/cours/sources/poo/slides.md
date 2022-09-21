@@ -119,7 +119,6 @@ Une classe étant **une définition**, elle nous servira plus tard à créer **d
 ```php
 class Personne
 {
-
     // Attribut
     private $nom;
     private $prenom;
@@ -175,6 +174,10 @@ class Personne
 ---
 
 ### Surcharges
+
+![La surcharge](./res/surcharge.png)
+
+---
 
 ```php
 
@@ -281,6 +284,25 @@ Une personne possède une voiture.
 ---
 
 ![Exemple UML](./res/uml_simple_multiplicite.png)
+
+---
+
+```php
+class Voiture {
+
+    private Integer $vitesse;
+    private Integer $nombreKm;
+    private Date $annéeFabrication;
+    private Personne $lePropriétaire;
+
+    // Reste de la classe
+
+    function affecterPropriétaire($propriétaire){
+        $this->lePropriétaire = $propriétaire
+    }
+
+}
+```
 
 ---
 
