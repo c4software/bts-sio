@@ -121,8 +121,8 @@ class Personne
 {
 
     // Attribut
-    public $nom;
-    public $prenom;
+    private $nom;
+    private $prenom;
     private $dateNaissance;
     private $salaire;
     public $nbEnfant;
@@ -267,6 +267,20 @@ Supposons que chaque Voiture possède :
 _Une solution possible_
 
 ![Visiblité d'un objet](./res/modelisationVoiture.jpg)
+
+---
+
+## Les multiplicités
+
+« La relation » entre deux classes.
+
+---
+
+Une personne possède une voiture.
+
+---
+
+![Exemple UML](./res/uml_simple_multiplicite.png)
 
 ---
 
