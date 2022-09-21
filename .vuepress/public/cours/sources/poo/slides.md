@@ -279,7 +279,7 @@ _Une solution possible_
 
 ---
 
-Une personne possède une voiture.
+Une personne possède une ou des voiture(s).
 
 ---
 
