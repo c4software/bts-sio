@@ -15,6 +15,12 @@ Comme précisé dans le cours et dans nos échanges, la structure « MVC » est 
 ::: tip C'est important
 Le point d'introduction est important. Savoir justifier d'une solution est tout aussi important que la solution en elle-même. Si vous décider décider d'utiliser ma structure dans d'autres développements vous devez le faire avec conviction et pas juste « parceque ».
 
+Des changements mineurs ont été ajoutés à la structure en 2022/2023 :
+
+- Le système de « template » n'affiche plus par défaut la page. Il ne faut pas oublier le return.
+- L'accès à base de données est maintenant « Lazy », la connexion à celle-ci ne sera faite que lors de la **première requête**.
+- Le connecteur de base de données est maintenant partagé avec l'ensemble des modèles.
+
 Ceci étant dit, nous pouvons continuer 🚀 !
 :::
 
@@ -167,7 +173,7 @@ Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur
 
 ### Télécharger le code source
 
-Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/1.8.zip)
+Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.0.zip)
 
 ::: tip C'est un projet vide
 Même si celui-ci contient à première vue « beaucoup de fichiers », le projet vous avez téléchargé est bien un projet vide.
@@ -266,6 +272,10 @@ Le routeur est un « composant » très important du web moderne. Il va nous per
 
 Vu que c'est la première fois, nous allons le faire ensemble… N'hésitez pas à poser vos questions !
 
+Voilà en vidéos ce que vous allez réaliser :
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/78_oUJrqd9c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Créer la méthode
 
 Nous allons dans un premier temps créer une méthode dans le contrôleur `SampleWeb.php`, pour le contenu pas grand-chose pour l'instant. Vous pouvez vous inspirer du contenu de la méthode `home()`.
@@ -273,7 +283,7 @@ Nous allons dans un premier temps créer une méthode dans le contrôleur `Sampl
 ```php
 function about()
 {
-    Template::render("views/global/about.php");
+    return Template::render("views/global/about.php");
 }
 ```
 
@@ -294,13 +304,13 @@ Nous avons ajouté une page, cependant, cette page est relativement « statique 
 Si nous reprenons l'exemple précédent :
 
 ```php
-Template::render("views/global/about.php", array());
+return Template::render("views/global/about.php", array());
 ```
 
 Combien de variables passons-nous ? Aucune, pour la suite, je vous propose d'ajouter une première variable :
 
 ```php
-Template::render("views/global/about.php", array("titre" => "À Propos"));
+return Template::render("views/global/about.php", array("titre" => "À Propos"));
 ```
 
 Puis modifier votre vue pour y ajouter l'usage de votre variable :
@@ -320,7 +330,7 @@ Pour vérifier que vous avez bien compris la procédure. Je vous laisse ajouter 
 Besoin d'aide ? Voilà un indice :
 
 ```php
-Template::render("views/global/about.php", array("titre" => "Votre titre !", "date" => …));
+return Template::render("views/global/about.php", array("titre" => "Votre titre !", "date" => …));
 ```
 
 C'est à vous :
@@ -459,7 +469,7 @@ Vu que c'est la première fois je vous donne du code, mais attention à bien com
 
 ```php
 function marquerCommeTermine($id){
-    $stmt = $this->pdo->prepare("UPDATE todos SET termine = 1 WHERE id = ?");
+    $stmt = $this->getPdo()->prepare("UPDATE todos SET termine = 1 WHERE id = ?");
     $stmt->execute([$id]);
 }
 ```
@@ -493,7 +503,7 @@ class TodoModel extends SQL
     }
 
     function marquerCommeTermine($id){
-        $stmt = $this->pdo->prepare("UPDATE todos SET termine = 1 WHERE id = ?");
+        $stmt = $this->getPdo()->prepare("UPDATE todos SET termine = 1 WHERE id = ?");
         $stmt->execute([$id]);
     }
 }
@@ -650,7 +660,7 @@ namespace controllers;
 use controllers\base\Web;
 use models\TodoModel;
 
-class TodoWeb extends Web
+class TodoWeb extends WebController
 {
     private $todoModel;
 
@@ -667,7 +677,7 @@ class TodoWeb extends Web
 La première méthode que nous allons créer est celle de la liste. Elle se nommera `liste()`, cette méthode sera automatiquement appelée via le `routeur` à **chaque visite d'un utilisateur**. L'objectif de cette méthode est :
 
 - Récupérer l'ensemble des TODO (Array) actuellement en base via la méthode `getAll()` du TodoModel modèle.
-- Afficher votre `vue` via un `Template::render`.
+- Afficher votre `vue` via un `return Template::render`.
 
 ::: tip Toujours la même forme
 
@@ -677,7 +687,7 @@ Vous allez rapidement vous apercevoir que la structure de base est toujours la m
     function maMethodeQueJaiCopierColler()
     {
         // Pourquoi j'ai copier / coller ceci ? C'est un exemple seulement
-        Template::render("views/global/home.php");
+        return Template::render("views/global/home.php");
     }
 ```
 
@@ -691,7 +701,7 @@ Dans notre cas, la méthode va ressembler à :
 function liste()
     {
         $todos = $this->todoModel->getAll(); // Récupération des TODOS présents en base.
-        Template::render("views/todos/liste.php", array('todos' => $todos)); // Affichage de votre vue.
+        return Template::render("views/todos/liste.php", array('todos' => $todos)); // Affichage de votre vue.
     }
 ```
 

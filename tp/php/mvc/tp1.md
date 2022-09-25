@@ -271,7 +271,7 @@ namespace controllers;
 use controllers\base\Web;
 use utils\Template;
 
-class MonControleur extends Web
+class MonControleur extends WebController
 {
     // Méthode d'exemple
     function methodeDExemple()
@@ -281,7 +281,7 @@ class MonControleur extends Web
 }
 ```
 
-Comme vous pouvez le constater ici pas énormément de code, en effet une partie de la complexité est encapsulée dans l'héritage (`extends Web`).
+Comme vous pouvez le constater ici pas énormément de code, en effet une partie de la complexité est encapsulée dans l'héritage (`extends WebController`).
 
 Un contrôleur est donc une classe, avec un ensemble de méthodes technique permettant de réaliser des opérations. La ligne :
 
@@ -326,7 +326,7 @@ Les différentes relations peuvent être représentées avec l'UML suivant :
 
 ![UML Relation](./res/uml_composition.png)
 
-La méthode `redirectTo` permet de gérer la redirection vers une autre ressource. Rien de bien compliqué c'est un simple appel de la méthode `header` de PHP. Je vous laisse regarder le code dans `controller/base/web.php`.
+La méthode `redirectTo` permet de gérer la redirection vers une autre ressource. Rien de bien compliqué c'est un simple appel de la méthode `header` de PHP. Je vous laisse regarder le code dans `controller/base/WebController.php`.
 
 ::: tip Be curious !
 Ne prenez pas automatiquement pour acquis ce que je vous écris. Allez voir le code source du projet afin de constater par vous-même ce que je viens de dire / écrire.
@@ -409,7 +409,7 @@ class DBVideo extends SQL
         // Utilisation d'une query à la place d'un simple getOne car la requête
         // est réalisé sur un champ différent que l'ID de la table.
 
-        $stmt = $this->pdo->prepare("SELECT * FROM video WHERE videoId = ?");
+        $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE videoId = ?");
         $stmt->execute([$videoId]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
@@ -573,7 +573,7 @@ class Video extends SQL
         // utilise la connexion BDD pour réaliser les requêtes vers les données
         // ici retourne l'ensemble des vidéos de type accessibles à tous (public)
 
-        $stmt = $this->pdo->prepare("SELECT * FROM video WHERE public = 1");
+        $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE public = 1");
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
@@ -583,7 +583,7 @@ class Video extends SQL
         // Utilisation d'une query à la place d'un simple getOne car la requête
         // est réalisé sur un champs différent que l'ID de la table.
 
-        $stmt = $this->pdo->prepare("SELECT * FROM video WHERE videoId = ?");
+        $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE videoId = ?");
         $stmt->execute([$videoId]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
@@ -606,7 +606,7 @@ namespace controllers;
 use controllers\base\Web;
 use utils\Template;
 
-class VotreControleur extends Web
+class VotreControleur extends WebController
 {
     function methodeDExemple()
     {
@@ -616,7 +616,7 @@ class VotreControleur extends Web
 ```
 
 - Le `namespace controllers;` permet de structure votre code, et permettra via l'auto-loader l'import automatique de vos classes.
-- `class VotreControleur extends Web` indique que votre classe hérite de Web (une page client). Elle possèdera donc automatiquement la méthode (accessible via `$this`) :
+- `class VotreControleur extends WebController` indique que votre classe hérite de Web (une page client). Elle possèdera donc automatiquement la méthode (accessible via `$this`) :
   - `redirectTo`
 
 ::: tip Et c'est tout !
