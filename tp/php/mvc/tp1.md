@@ -411,7 +411,7 @@ class DBVideo extends SQL
 
         $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE videoId = ?");
         $stmt->execute([$videoId]);
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 }
 ```
@@ -575,7 +575,7 @@ class Video extends SQL
 
         $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE public = 1");
         $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 
     function getByVideoId($videoId)
@@ -585,7 +585,7 @@ class Video extends SQL
 
         $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE videoId = ?");
         $stmt->execute([$videoId]);
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 }
 ```
@@ -610,7 +610,7 @@ class VotreControleur extends WebController
 {
     function methodeDExemple()
     {
-        Template::render("views/votreVue.php", array());
+        Template::render("views/votreVue.php", []);
     }
 }
 ```

@@ -173,7 +173,7 @@ Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur
 
 ### Télécharger le code source
 
-Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.1.zip)
+Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.2.zip)
 
 ::: tip C'est un projet vide
 Même si celui-ci contient à première vue « beaucoup de fichiers », le projet vous avez téléchargé est bien un projet vide.
@@ -738,9 +738,9 @@ Vu qu'il s'agit ici d'un projet découvert, je vais vous en donner le contenu (s
                     ?>
                     <li class="list-group-item">
                         <div class="d-flex">
-                            <div class="flex-grow-1 align-self-center"><?= $todo['texte'] ?></div>
+                            <div class="flex-grow-1 align-self-center"><?= $todo->texte ?></div>
                             <div>
-                                <a href="./terminer?id=<?= $todo['id'] ?>" class="btn btn-outline-success">
+                                <a href="./terminer?id=<?= $todo->id ?>" class="btn btn-outline-success">
                                     <i class="bi bi-check"></i>
                                 </a>
                                 <!-- Action à ajouter pour Supprimer -->
@@ -842,61 +842,6 @@ En utilisant le code précédemment fourni, écrire :
 - **Ne permettre la suppression** que des Todo ayant `termine = 1`. La vérification **ne doit pas être** présente que dans la vue.
 
 C'est à vous.
-
-## Le routeur, un usage avancé
-
-La structure MVC que vous avez à votre disponible incorpore également la possibilité d'avoir des routes « dynamiques », exemple :
-
-- `/sample/utilisateur/42`
-- `/sample/utilisateur/420`
-
-ou encore :
-
-- `/sample/fiche/1`
-- `/sample/fiche/123`
-
-Que constatez-vous ? 
-
-::: details Élément de réponse
-
-Nous avons effectivement une partie « variable » dans notre route, dans le cas des exemples :
-
-- `/sample/utilisateur/42` => Consulter l'utilisateur avec comme identifiant **42**.
-- `/sample/utilisateur/420` => Consulter l'utilisateur avec comme identifiant **420**.
-
-ou encore :
-
-- `/sample/fiche/1` => Consulter la fiche avec comme identifiant **1**.
-- `/sample/fiche/123` => Consulter la fiche avec comme identifiant **123**.
-
-:::
-
-Ce type de lien est très présent sur Internet, la structure MVC permet évidemment la création de ceux-ci. 
-
-
-Pour ça vous devez écrire dans votre routeur :
-
-```php
-Route::Add('/sample/{id}', [$main, 'sample']);
-```
-
-Et dans votre Contrôleur :
-
-```php
-function sample($id)
-{
-    echo "Vous consulter l'identifiant $id";
-}
-```
-
-Je vous laisse tester.
-
-::: tip Valider le bon fonctionnement
-
-- Tester le code proposé.
-- Écrire une vue plutôt qu'un simple `echo`.
-
-::: 
 
 ## Évolution 0
 
