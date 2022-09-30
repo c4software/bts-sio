@@ -158,6 +158,8 @@ Vous avez à votre disposition dans le bon modèle `XXXX` une méthode permettan
 
 ### Afficher la liste des produits d'un client
 
+### Ajouter un produit au client
+
 ## Les bonus
 
 ### Bonus : Ajouter une pagination dans la vue liste / recherche.
@@ -166,3 +168,9 @@ Modifier votre code pour ajouter un système de pagination (10 clients par 10 cl
 
 - Modifier l'interface afin de permettre la pagination.
 - Modifier vos appels aux modèles pour réaliser des listes paginées.
+
+### Bonus : Les produits
+
+#### Lister les produits en base
+
+#### Ajouter un produit en base
