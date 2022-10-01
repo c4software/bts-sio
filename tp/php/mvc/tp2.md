@@ -41,6 +41,7 @@ Même si celui-ci contient à première vue « beaucoup de fichiers », le proje
 Rassurez-vous, la lecture et l'écriture du code en seront grandement simplifiées ! Voilà quelques exemples :
 
 ```php
+<?php
 /** @var Client[] $clients */
 foreach ($clients as $c) { ?>
 
@@ -154,7 +155,7 @@ Je vous laisse tester.
 
 Dans ce TP vous allez travailler essentiellement la manipulation d'objet. Pour attaquer directement ce qui nous intéresse, voilà quelques modèles à télécharger et à déposer dans le dossier `models` de votre projet.
 
-=> TODO LIEN VERS LES MODELS. <=
+=> TODO LIEN VERS LES MODELS & Classes <=
 
 ### La base de données
 
