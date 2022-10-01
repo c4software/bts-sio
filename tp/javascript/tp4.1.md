@@ -16,7 +16,7 @@ Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure.zip). Il pou
 ::: tip Vous préférez une approche MVC ?
 La première version du code source fourni est très simple. En tant que développeur, on préfère une approche un peu plus complète que celle-ci. C'est pour ça que je vous propose plutôt d'utiliser la version MVC du projet.
 
-Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure-mvc.zip). La [documentation est disponible ici](/tp/php/mvc/tp1.md)
+Celui-ci est [disponible ici](https://github.com/c4software/demo-structure-mvc-video/archive/refs/tags/1.1.zip). La [documentation est disponible ici](/tp/php/mvc/tp1.md)
 
 **Attention**, la suite du TP repose sur la première version du code source. Les nommages sont différents, mais globalement le fonctionnement reste le même. Si vous voulez jouer, tentez la version MVC.
 :::
