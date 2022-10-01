@@ -149,13 +149,6 @@ Je vous laisse tester.
 
 ## Le code de base
 
-### La base de données.
-
-Le projet que vous avez récupérer contient une base de données. Pour vous permettre de la comprendre, voilà le diagramme de celle-ci.
-
-![Diagramme BDD](./res/diagram-bdd.jpg)
-
-Je vous laisse importer la base de données sur votre ordinateur.
 
 ### Les modèles
 
@@ -168,6 +161,12 @@ Dans ce TP vous allez travailler essentiellement la manipulation d'objet. Pour a
 Pour faire fonctionner les modèles, vous devez évidemment avoir la base de données compatible. La voilà :
 
 => TODO METTRE LIEN SUR LA BASE DE DONNÉES <=
+
+Afin de vous permettre de la comprendre, voilà le diagramme de celle-ci.
+
+![Diagramme BDD](./res/diagram-bdd.jpg)
+
+Je vous laisse importer la base de données sur votre ordinateur.
 
 ::: tip Import ?
 
