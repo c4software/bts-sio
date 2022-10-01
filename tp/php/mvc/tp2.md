@@ -41,13 +41,47 @@ Même si celui-ci contient à première vue « beaucoup de fichiers », le proje
 Rassurez-vous, la lecture et l'écriture du code en seront grandement simplifiées ! Voilà quelques exemples :
 
 ```php
-<h2><?= $hackathon->thematique ?></h2>
-<p><?= nl2br($hackathon->objectifs) ?></p>
-<p><?= nl2br($hackathon->conditions) ?></p>
-<p><?= "Avec {sizeOf($hackathon->lesParticipants())} participants." ?></p>
+/** @var Client[] $clients */
+foreach ($clients as $c) { ?>
+
+    <div class="card m-3 p-3">
+        <h3><?= $c->generalInfo() ?></h3>
+        <p class="small"><?= $c->contactInfo() ?></p>
+
+        <?php
+        // Liste des produits
+        $produits = $c->lesProduits();
+        if (sizeof($produits) > 0) {
+            ?>
+            <h4>Les produits</h4>
+            <ul>
+                <?php foreach ($produits as $p) { ?>
+                    <li><?= $p->toString() ?></li>
+                <?php } ?>
+            </ul>
+        <?php } ?>
+
+
+        <?php
+        // Liste des adresses
+        $adresses = $c->lesAdresses();
+        if (sizeof($adresses) > 0) {
+            ?>
+            <h4>Les adresse</h4>
+            <ul>
+                <?php foreach ($adresses as $a) { ?>
+                    <li><?= $a->toString() ?></li>
+                <?php } ?>
+            </ul>
+        <?php } ?>
+    </div>
+<?php } ?>
+
 ```
 
 Plus simple, non ? Ça va être surtout beaucoup plus puissant ! Nous allons être capables d'encapsuler la logique dans des objets que nous manipulerons directement dans notre vue.
+
+
 
 ## Avant d'aller plus loin… un usage avancé du routeur
 
