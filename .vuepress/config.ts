@@ -11,6 +11,7 @@ export default {
     mediumZoomPlugin(),
     googleAnalyticsPlugin({ 'id': 'UA-2107503-8' }),
     searchPlugin({
+      hotKeys: ["s", "/", {shift: true, key: "k"}],
       locales: {
         "/": {
           placeholder: "Rechercher",
