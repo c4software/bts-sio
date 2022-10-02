@@ -100,6 +100,7 @@ module.exports = [
         children: [
           "/tp/php/mvc/tp1.md",
           "/tp/php/mvc/tp1.1.md",
+          "/tp/php/mvc/tp2.md",
           { text: "iOT Dashboard", children: ["/tp/php/mvc/dashboard/tp0.md", "/tp/php/mvc/dashboard/tp1.md"] }
         ]
       },
