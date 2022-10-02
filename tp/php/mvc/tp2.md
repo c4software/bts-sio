@@ -165,7 +165,7 @@ Pour faire fonctionner les modèles, vous devez évidemment avoir la base de don
 
 Afin de vous permettre de la comprendre, voilà le diagramme de celle-ci.
 
-![Diagramme BDD](./res/diagram-bdd.jpg)
+![Diagramme BDD](./res/diagram-bdd.png)
 
 Je vous laisse importer la base de données sur votre ordinateur.
 
@@ -181,13 +181,20 @@ php mvc db:migrate
 
 ### Diagramme de classe / UML relative aux modèles
 
-Pour bien comprendre les classes que je vous fournis, voilà le diagramme de classe qui permet de les comprendre :
+Pour bien comprendre les classes que je vous fournis, voilà le diagramme de classe qui permet de les comprendre.
 
-=> TODO METTRE UML <=
+#### Diagramme des classes
+
+![Diagramme de classe](./res/tp2_diagram_classes.png)
+
+#### Diagramme des modèles
+
+![Diagramme de modèles](./res/tp2-diagram-modele.png)
 
 ::: warning STOP
+Arrêtons-nous un instant pour analyser les diagrammes.
 
-Arrêtons-nous un instant pour analyser le diagramme.
+<iframe src="https://giphy.com/embed/xCwYFe19SldXLrJlwm" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 :::
 
