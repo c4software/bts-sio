@@ -155,13 +155,13 @@ Je vous laisse tester.
 
 Dans ce TP vous allez travailler essentiellement la manipulation d'objet. Pour attaquer directement ce qui nous intéresse, voilà quelques modèles à télécharger et à déposer dans le dossier `models` de votre projet.
 
-=> TODO LIEN VERS LES MODELS & Classes <=
+[Télécharger les classes et modèles](https://cours.brosseau.ovh/demo/php/poo-mvc/tp2-modele-class.zip)
 
 ### La base de données
 
 Pour faire fonctionner les modèles, vous devez évidemment avoir la base de données compatible. La voilà :
 
-=> TODO METTRE LIEN SUR LA BASE DE DONNÉES <=
+[Télécharger la base de données](https://cours.brosseau.ovh/demo/php/poo-mvc/tp2-bdd.sql.zip)
 
 Afin de vous permettre de la comprendre, voilà le diagramme de celle-ci.
 
