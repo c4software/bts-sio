@@ -10,6 +10,9 @@ Dans ce TP, nous allons continuer notre découverte de la POO au travers du MVC.
 
 Dans le [TP todo liste](./tp1.1.md) nous avons vu la mise en place du design pattern MVC. Le découpage en 3 classes est le minimum, nous allons voir ici qu'il est possible d'exploiter la puissance de la programmation orientée objet (POO) pour organiser son code autour de classes qui auront un sens dans le cadre de votre projet.
 
+- [Aide mémoire Programmation Orientée Objet](/cheatsheets/poo/)
+- [La modélisation objet](/cheatsheets/poo-uml/)
+
 Le projet que vous allez réaliser est ce que l'on appelle une CRM (Customer Relationship Management), c'est un site (outil) qui va permettre d'afficher des informations clients sous le format d'une `Fiche Client`. Vous allez donc de voir créer quelques éléments de cette application à savoir :
 
 - Lister les clients.
