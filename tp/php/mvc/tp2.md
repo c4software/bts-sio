@@ -200,23 +200,23 @@ Arrêtons-nous un instant pour analyser les diagrammes.
 
 ## La page de liste / recherche
 
-Maintenant que vous avez vu l'ensemble des méthodes à votre disposition pour accéder aux données présentes en base. Je vous propose de travailler sur la liste des clients présent en base de données.
+Maintenant que vous avez vu l'ensemble des méthodes à votre disposition pour accéder aux données présentes en base. Je vous propose de travailler sur la liste des clients présents en base de données.
 
-Cette fonctionnalité est appelé la page de « Liste et de Recherche ». Elle va lister l'ensemble des clients présent en base et permettra l'accès à la fiche client.
+Cette fonctionnalité est appelée la page de « Liste et de Recherche ». Elle va lister l'ensemble des clients présent en base et permettra l'accès à la fiche client.
 
-Pour vous aider dans votre conception l'entreprise vous fourni le « mockup » d'interface suivant :
+Pour vous aider dans votre conception l'entreprise vous fournit le « mockup » d'interface suivant :
 
 ![Idée de design](./res/tp2-liste-client-ui.png)
 
 ::: tip Quelques éléments pour vous aider.
 
-Les zones « blanches » en design sont appelé des Cards. Ils sont fourni de base dans Bootstrap ou Tailwind. N'hésitez pas à les utiliser.
+Les zones « blanches » en design sont appelées des Cards. Ils sont fournis de base dans Bootstrap ou Tailwind. N'hésitez pas à les utiliser.
 
-Les résultats (liste des clients) sont une données tabulés, plutôt que de réinventer ce genre de choses avec des `div` n'hésitez pas à utiliser l'élément HTML prévu à cette effet à savoir une `table`.
+Les résultats (liste des clients) sont une donnée tabulée, plutôt que de réinventer ce genre de choses avec des `div` n'hésitez pas à utiliser l'élément HTML prévu à cet effet à savoir une `table`.
 
 :::
 
-Maintenant que vous avez les bases en tête nous allons pouvoir attaquer la conception de cette première page.
+Maintenant que vous avez les bases en tête, nous allons pouvoir attaquer la conception de cette première page.
 
 ### Créer le contrôleur
 
