@@ -200,6 +200,8 @@ Arrêtons-nous un instant pour analyser les diagrammes.
 
 ## La page de liste / recherche
 
+![Idée de design](./res/tp2-liste-client-ui.png)
+
 ### Créer le contrôleur
 
 ### Créer la vue
@@ -213,6 +215,8 @@ Arrêtons-nous un instant pour analyser les diagrammes.
 Vous avez à votre disposition dans le bon modèle `XXXX` une méthode permettant d'effectuer une recherche. Après l'avoir trouvé, je vous laisse écrire le code dans votre contrôleur pour effectuer une recherche dans la base de données des clients.
 
 ## La fiche client
+
+![Idée de design](./res/tp2-fiche-client-ui.png)
 
 ### Créer le contrôleur
 
