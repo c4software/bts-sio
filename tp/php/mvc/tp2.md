@@ -32,7 +32,7 @@ Le projet de base est disponible [à l'adresse suivante en cliquant ici](https:/
 Même si celui-ci contient à première vue « beaucoup de fichiers », le projet que vous avez téléchargé est bien un projet vide.
 :::
 
-## Pdo vous connaissez ?
+## PDO vous connaissez ?
 
 Évidemment [PDO](https://www.php.net/manual/en/book.pdo.php) vous connaissez… Mais connaissez-vous `FETCH_CLASS` ? Vous ne l'avez peut-être pas remarqué, mais la structure MVC n'utilise pas l'habituel`FETCH_ASSOC` , mais `FETCH_CLASS`. Ça veut dire qu'à partir de maintenant nous utiliser une syntaxe objet plutôt que des tableaux lors de la récupération de données en base !
 
@@ -81,8 +81,6 @@ foreach ($clients as $c) { ?>
 ```
 
 Plus simple, non ? Ça va être surtout beaucoup plus puissant ! Nous allons être capables d'encapsuler la logique dans des objets que nous manipulerons directement dans notre vue.
-
-
 
 ## Avant d'aller plus loin… un usage avancé du routeur
 
@@ -150,6 +148,7 @@ Je vous laisse tester.
 
 ## Le code de base
 
+Ici dans ce TP vous ne partirez pas de 0. J'ai écrit pour vous la partie « couche de données », il faudra donc avant d'attaquer analyser les différents diagrammes pour comprendre le code fourni.
 
 ### Les modèles
 
