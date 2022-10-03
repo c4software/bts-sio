@@ -76,7 +76,7 @@ Construis autour du noyau Linux mais … c'est tout
 Deux types :
 
 - SDK Android : Évolue lors des mises à jour de système. (Intégré)
-- Play Service : Évolue automatiquement indépendamment de la version de l'OS (En plus donc, Mais…)
+- Play Service : Évolue automatiquement indépendamment de la version de l'OS (en plus donc, mais…)
 
 ---
 
@@ -250,7 +250,7 @@ Très certainement l'avenir d'Android…
 
 ## Gradle
 
-- Open-source.
+- Open source.
 - Règles / scripts de compilation de votre projet.
 - Complètement intégré dans Android Studio (complétion, etc.)
 
@@ -286,7 +286,7 @@ Très certainement l'avenir d'Android…
 
 ---
 
-## Un détail qui compte… les layout
+## Un détail qui compte… les layouts
 
 - Constraint Layout
 - Linear Layout
@@ -418,7 +418,7 @@ Ajouter un bouton dans l'interface et une ImageView.
 - **drawable** : Vos images (png, xml, 9.png…) (`R.drawable.…`)
 - **layout** : Vos interfaces un fichier par vue (`R.layout.…`)
 - **menu** : Contenu de vos menus (Options Menu, Sub Menu…)
-- **values** : « Constantes » de votre application (String, Int, Color, etc)
+- **values** : « Constantes » de votre application (String, Int, Color, etc.)
 - **mipmap** : Icônes de votre application.
 
 ---
@@ -427,19 +427,19 @@ Ajouter un bouton dans l'interface et une ImageView.
 
 ### AKA les ressources alternative
 
-Chaque dossier peut-être redéfini en fonction de la résolution. (`-hdpi`, `-mdpi`, `-xxhdpi`…)
+Chaque dossier peut être redéfini en fonction de la résolution. (`-hdpi`, `-mdpi`, `-xxhdpi`…)
 
 ---
 
-## Dingue non ?
+## Dingue, non ?
 
-- Vous connaissez un équivalent dans d'autres environnement ?
+- Vous connaissez un équivalent dans d'autre environnement ?
 
 ---
 
 ## Mais ce n’est pas tout !
 
-Chaque dossier peut-être redéfini en fonction… De la langue (`values-fr/strings.xml`), de la configuration du « mobile », du thème sombre…
+Chaque dossier peut être redéfini en fonction… De la langue (`values-fr/strings.xml`), de la configuration du « mobile », du thème sombre…
 
 ---
 
@@ -493,7 +493,7 @@ Interaction « complexe » avec l'utilisateur (Choix…)
 
 Ajouter une Dialog dans votre interface.
 
-Nous allons utiliser la librarie [Material Dialog](https://github.com/afollestad/material-dialogs)
+Nous allons utiliser la librairie [Material Dialog](https://github.com/afollestad/material-dialogs)
 
 ---
 
@@ -645,7 +645,7 @@ class MainActivity : AppCompatActivity() {
 Petite subtilité du Kotlin. Dans un Scope :
 
 ```kotlin
-monBtn.setOnClickListener {
+binding.button.setOnClickListener {
     // ICI une variable « it » est accessible. Elle contient la vue.
 }
 ```
@@ -656,20 +656,6 @@ Où encore :
 listOf<Device>().forEach {
     // « it » dans le cas présent est la valeur _courante_ de l'itération
  }
-```
-
----
-
-Dans votre `Build.gradle` ajouter
-
----
-
-```gradle
-plugins {
-    id 'com.android.application' // Déjà présente.
-    id 'kotlin-android' // Vous devez déjà l'avoir.
-    id 'kotlin-android-extensions' // <- Cette ligne.
-}
 ```
 
 ---
