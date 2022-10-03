@@ -10,8 +10,12 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 - Développé par Google
 - Créé en 2008
-- Actuellement en version 11 (Android R)
-- Android 12 en beta (Android S)
+- Actuellement en version 13 (Android S)
+- Android 14 [en approche](https://blog.esper.io/android-14-deep-dive/)
+
+---
+
+À la base un OS pour appareil photo
 
 ---
 
@@ -25,7 +29,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ---
 
-## Les défauts d'Android
+## Le problème d'Android ?
 
 - La fragmentation
 - Un Android ? Non… des Android!
@@ -34,6 +38,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 - [Répartition des versions](https://gs.statcounter.com/android-version-market-share/mobile-tablet/worldwide)
 - [Répartition des caractéristiques](https://developer.android.com/about/dashboards)
+- [API Level VS utilisation](https://apilevels.com/)
 
 ---
 
@@ -71,7 +76,7 @@ Construis autour du noyau Linux mais … c'est tout
 Deux types :
 
 - SDK Android : Évolue lors des mises à jour de système. (Intégré)
-- Play Service : Évolue automatiquement indépendamment de la version de l'OS (En plus… Mais…)
+- Play Service : Évolue automatiquement indépendamment de la version de l'OS (En plus donc, Mais…)
 
 ---
 
@@ -83,13 +88,14 @@ Deux types :
 
 - Java (Historique)
 - Kotlin (_Nouveau_ à privilégier maintenant)
+- Flutter (Dart ? Quoi ?)
 
 ---
 
 ### Les Ressources
 
 - XML (Drawables, Layout, Settings, Color, String)
-- png / jpeg / 9.png (Images)
+- png / jpeg / 9.png / SVG (Images)
 
 ---
 
@@ -116,6 +122,26 @@ Deux types :
 
 ---
 
+- [Présentation](https://developer.android.com/jetpack/compose)
+- [Documentation](https://developer.android.com/jetpack/compose/documentation)
+- [Quelques cours et tutoriaux](https://developer.android.com/courses/jetpack-compose/course)
+
+---
+
+Très certainement l'avenir d'Android…
+
+[Exemple les animations](https://developer.android.com/jetpack/compose/animation)
+
+---
+
+## Nous sommes en transition
+
+### Dommage pour vous ? Pas certains…
+
+#### Nous resterons cette année en XML + Kotlin
+
+---
+
 ## Android Studio
 
 - l'IDE
@@ -124,21 +150,22 @@ Deux types :
 
 ---
 
-![Interface](./img/interface.png)
+![Interface](./img/interface.jpg)
 
 ---
 
 ## Toolbar
 
-![Interface](./img/toolbar.png)
+![Interface](./img/toolbar.jpg)
 
 ---
 
 ## Créer un émulateur
 
-- Intégré dans Android Studio.
+- Intégré dans Android Studio (🙌).
 - Performances suffisantes pour tester.
 - BLE / Bluetooth non disponible.
+- Consomme BEAUCOUP de RAM.
 
 ---
 
@@ -197,6 +224,12 @@ Deux types :
 ## Logcat
 
 ![Interface](./img/logcat.png)
+
+---
+
+![V2](./img/new_logcat.jpg)
+
+![Interface V2](./img/logcat-formatter.png)
 
 ---
 
