@@ -491,6 +491,34 @@ Toast.makeText(this, "Bonjour à tous", Toast.LENGTH_SHORT).show();
 
 ---
 
+### Les Snackbars
+
+![Snackbar avec action](./img/snackbar_action.jpg)
+
+![Snackbar sans action](./img/snackbar_sans_action.jpg)
+
+---
+
+```kotlin
+Snackbar.make(binding.root, "Je suis une Snackbar", Snackbar.LENGTH_LONG).show()
+```
+
+```kotlin
+Snackbar.make(binding.root, "Je suis une Snackbar", Snackbar.LENGTH_LONG).setAction("Action") {
+   // Votre action
+}.show()
+```
+
+---
+
+## C'est à vous
+
+Remplacer le toast dans votre interface
+
+⚠️ Avec la complétion d'Android Studio
+
+---
+
 ### Les Dialog
 
 Interaction « complexe » avec l'utilisateur (Choix…)
