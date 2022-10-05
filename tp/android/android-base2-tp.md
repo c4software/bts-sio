@@ -16,7 +16,7 @@ Nous sommes en 2021, le monde d'Android évolue… Pendant des années l'écritu
 
 ## Les animations
 
-Même si celle-ci n’est pas obligatoire dans une expérience mobile… Celle-ci peut changer radicalement l'expérience de vos utilisateurs. Sur Android (comme souvent) nous avons plusieurs façons de faire nos animations :
+Même si celle-ci n’est pas obligatoire dans une expérience mobile… Celle-ci peut changer radicalement l'expérience de vos utilisateurs. Sur Android nous avons plusieurs façons de faire nos animations (comme souvent) :
 
 - Les animations automatiques `animationLayoutChange`.
 - Les Gifs.
@@ -49,7 +49,7 @@ Je vous laisse tester.
 
 ### Lottie
 
-[Lottie](https://airbnb.design/lottie/) est une librairie permettant de faire des animations de qualités, bien au-dessus des GIF ! Lottie est simple à utiliser :
+[Lottie](https://airbnb.design/lottie/) est une librairie permettant de faire des animations de qualités, bien au-dessus des GIF ! En plus Lottie est vraiment simple à utiliser :
 
 - Installez-la [librairie lottie](https://github.com/airbnb/lottie-android) :
 
@@ -69,7 +69,7 @@ C'est à vous, je vous laisse mettre en place l'animation.
 Nous avons vu qu'il était possible d'animer « simplement » une partie de l'écran. Vous avez aussi la possibilité de contrôler les transitions d'un état A -> B et ça de manière assez simple.
 
 ```kotlin
-    imageView.animate().scaleY(10f).scaleX(10f).setDuration(1000).setStartDelay(500).start()
+imageView.animate().scaleY(10f).scaleX(10f).setDuration(1000).setStartDelay(500).start()
 ```
 
 Je vous laisse tester sur votre layout de `Splash` :
@@ -109,7 +109,7 @@ Le code en question permet de lancer la fenêtre de partage de votre téléphone
 Maintenant pour l'utiliser il suffit d'ajouter par exemple le code suivant :
 
 ```kotlin
-myButton.setOnClickListener {
+findViewById<Button>(R.id.myButton).setOnClickListener {
     this.share("Ceci est un partage", "Ceci est un partage sub")
 }
 ```
