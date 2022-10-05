@@ -16,8 +16,8 @@ Ce document présente l'équivalence entre une représentation UML et la syntaxe
 
 ```php
 class Personne {
-    private nom;
-    public age;
+    private String nom;
+    public int age;
 
     function __construct($nom, $age){
         $this->nom = $nom;
@@ -26,6 +26,14 @@ class Personne {
 
     function estMajeur(){
         return $this->age >= 18;
+    }
+
+    function getNom(){
+        return $this->nom;
+    }
+
+    function setNom($nom){
+        return $this->nom = $nom;
     }
 }
 ```
@@ -39,8 +47,8 @@ class Personne {
 class SimpleClass
 {
     // déclaration d'une propriété
-    public $var = 'une valeur par défaut';
-    public $var2 = 'une valeur par défaut';
+    private string $var = 'une valeur par défaut';
+    private string $var2 = 'une valeur par défaut';
 
     // Constructeur
     function __construct($var, $var2)
