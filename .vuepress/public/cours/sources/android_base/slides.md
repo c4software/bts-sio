@@ -387,6 +387,16 @@ Ajouter un bouton dans l'interface et une ImageView.
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.playmoweb.demo.dmocourseseo">
 
+    <!-- Nouvelles permissions permettant de scanner en BLE Android après 11 -->    
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="s" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -592,7 +602,8 @@ La nouvelle façon de faire :
 
 - Gère le typage.
 - NullSafety.
-- Plus complexe que le `kotlin-android-extension`.
+- Un peu plus complexe que le `kotlin-android-extension`. (Pourquoi ?)
+- [La documentation](https://developer.android.com/topic/libraries/view-binding)
 
 ---
 
@@ -646,7 +657,7 @@ Petite subtilité du Kotlin. Dans un Scope :
 
 ```kotlin
 binding.button.setOnClickListener {
-    // ICI une variable « it » est accessible. Elle contient la vue.
+    // ICI une variable « it » est accessible. Elle contient votre bouton.
 }
 ```
 
@@ -655,7 +666,7 @@ Où encore :
 ```kotlin
 listOf<Device>().forEach {
     // « it » dans le cas présent est la valeur _courante_ de l'itération
- }
+}
 ```
 
 ---
