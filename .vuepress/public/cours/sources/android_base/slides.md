@@ -568,14 +568,6 @@ findViewById<Button>(R.id.myButton).setOnClickListener(l -> {
 
 ---
 
-## Version Kotlin
-
-Beaucoup moins « verbeux ».
-
-**Dommage pour nous cette version est maintenant dépréciée**
-
----
-
 ```kotlin
 tvHello.setOnClickListener {
     Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
@@ -583,6 +575,14 @@ tvHello.setOnClickListener {
 ```
 
 Pas de déclaration de `tvHello` ? Bien sur que si, mais ça sera automatique avec `kotlin-android-extension`
+
+---
+
+## Version Kotlin
+
+Beaucoup moins « verbeux ».
+
+**Dommage pour nous cette version est maintenant dépréciée**
 
 ---
 
