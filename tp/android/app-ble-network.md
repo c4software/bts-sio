@@ -58,41 +58,51 @@ Concevoir une application qui va :
 ### Vérifier les permissions
 
 ```kotlin
-    /**
-     * Gère l'action après la demande de permission.
-     * 2 cas possibles :
-     * - Réussite 🎉.
-     * - Échec (refus utilisateur).
-     */
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (requestCode == PERMISSION_REQUEST_LOCATION && grantResults.size == 1) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && locationServiceEnabled()) {
-                // Permission OK => Lancer SCAN
-                setupBLE()
-            } else if (!locationServiceEnabled()) {
-                // Inviter à activer la localisation
-                startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-            } else {
-                // Permission KO => Gérer le cas.
-                // Vous devez ici modifier le code pour gérer le cas d'erreur (permission refusé)
-                // Avec par exemple une Dialog
-            }
+/**
+    * Gère l'action après la demande de permission.
+    * 2 cas possibles :
+    * - Réussite 🎉.
+    * - Échec (refus utilisateur).
+    */
+override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+    if (requestCode == PERMISSION_REQUEST_LOCATION) {
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED && locationServiceEnabled()) {
+            // Permission OK => Lancer SCAN
+            Snackbar.make(binding.root, "Vous devez lancer le scan ", Snackbar.LENGTH_LONG).setAction("Action", null).show()
+        } else if (!locationServiceEnabled()) {
+            // Inviter à activer la localisation
+            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+        } else {
+            // Permission KO => Gérer le cas.
+            // Vous devez ici modifier le code pour gérer le cas d'erreur (permission refusé)
+            // Avec par exemple une Dialog
         }
     }
+}
 
-    /**
-     * Permet de vérifier si l'application possede la permission « Localisation ». OBLIGATOIRE pour scanner en BLE
-     */
-    private fun hasPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+/**
+    * Permet de vérifier si l'application possede la permission « Localisation ». OBLIGATOIRE pour scanner en BLE
+    */
+private fun hasPermission(): Boolean {
+    return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+    } else {
+        ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED
     }
+}
 
-    /**
-     * Demande de la permission (ou des permissions) à l'utilisateur.
-     */
-    private fun askForPermission() {
+/**
+    * Demande de la permission (ou des permissions) à l'utilisateur.
+    */
+private fun askForPermission() {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_LOCATION)
+    } else {
+        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.BLUETOOTH_SCAN), PERMISSION_REQUEST_LOCATION)
     }
+}
 ```
 
 ### Vérifier si la localisation est active
@@ -162,7 +172,7 @@ private val leScanCallback: ScanCallback = object : ScanCallback() {
     override fun onScanResult(callbackType: Int, result: ScanResult) {
         super.onScanResult(callbackType, result)
 
-        // C'est ici que nous allons créer notre « device » et l'ajouter dans le RecyclerView (Datasource)
+        // C'est ici que nous allons créer notre « Device » et l'ajouter dans le RecyclerView (Datasource)
 
         //val device = Device(result.device.name, result.device.address, result.device)
         // if (!bleDevicesFoundList.contains(device)) {
