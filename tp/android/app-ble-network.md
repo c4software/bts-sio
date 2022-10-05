@@ -41,11 +41,18 @@ Concevoir une application qui va :
 ### Les permissions
 
 ```xml
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<!-- Nouvelles permissions permettant de scanner en BLE Android après 11 -->    
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+    android:usesPermissionFlags="neverForLocation"
+    tools:targetApi="s" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+<!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 ### Vérifier les permissions
@@ -319,7 +326,7 @@ private fun connectToCurrentDevice() {
                 },
                 onNotify = { runOnUiThread {
                     // VOUS DEVEZ APPELER ICI LA MÉTHODE QUI VA GÉRER LE CHANGEMENT D'ÉTAT DE LA LED DANS L'INTERFACE
-                    // handleToggleLedNotificationUpdate(it)
+                    // Exemple, handleToggleLedNotificationUpdate(it)
                  } },
                 onDisconnect = { runOnUiThread { disconnectFromCurrentDevice() } })
         )
@@ -544,13 +551,13 @@ data class LedStatus(var identifier: String = "", var status: Boolean = false) {
 ### Nouvelles dépendances Gradle
 
 ```groovy
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8'
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
 implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-implementation 'com.squareup.okhttp3:okhttp:4.7.2'
-implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 ```
 
 ### la classe APIService
