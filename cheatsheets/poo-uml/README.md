@@ -66,14 +66,13 @@ class SimpleClass
 ?>
 ```
 
-
 ## Une personne possède une ou des voiture
 
 ![La classe Caserne & Pompier](./res/uml_simple_multiplicite.png)
 
 ```php
 class Voiture {
-    Integer $vitesse;
+    public Integer $vitesse;
     private Integer $nombreKm;
     private Date $annéeFabrication;
     private Personne $lePropriétaire;
@@ -114,16 +113,41 @@ class Personne {
 }
 ```
 
+## Un enseignant stagiaire à un Tuteur
+
+![La classe Enseignant et la récursive avec un Tuteur de type enseignant](./res/uml_recursive.png)
+
+```php
+class Enseignant {
+    private string $nom;
+    private string $prenom;
+    private Enseignant unTuteur;
+
+    function __construct($nom, $prenom, $tuteur){
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->unTuteur = $tuteur;
+    }
+
+    function __construct($nom, $prenom){
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+    }
+}
+```
+
+⚠️ Nous avons ici une récursive, une classe qui possède une propriété du même type à l'intérieur. **(Autre exemple, un Client possède un Parrain de type Client)**
+
 ## Classe Caserne & lien avec Pompier & collection de camions
 
 ![La classe Caserne & Pompier & Camion](./res/uml_relation_collection.png)
 
 ```php
 class Caserne {
-    private nom;
-    private addresse;
-    private leChef;
-    private lesCamions = [];
+    private string nom;
+    private string addresse;
+    private Pompier leChef;
+    private Camion[] lesCamions = [];
 
     function __construct($nom, $addresse, $leChef){
         $this->nom = $nom;
