@@ -173,7 +173,7 @@ Je vous laisse importer la base de données sur votre ordinateur.
 
 ::: tip Import ?
 
-Pour important la base de données n'oublier pas le dossier migration. En déposant le script dans le dossier `migration` de votre projet. Vous pourrez initialiser la base de données avec la commande suivante :
+Point important la base de données n'oublier pas le dossier migration. En déposant le script dans le dossier `migration` de votre projet. Vous pourrez initialiser la base de données avec la commande suivante :
 
 ```sh
 php mvc db:migrate
@@ -285,12 +285,12 @@ Concrètement ça permet d'écrire quelque chose comme :
 $clientModele = new ClientModele();
 
 // Récupère les clients en base.
-$lesClients = $client->liste();
+$lesClients = $clientModele->liste();
 
 // Affiche l'ensemble des clients en base. 
 // Pour chaque client, affiche les informations général de celui
 // La méthode generalInfo() est disponible dans la classe Client.
-foreach ($leClient as $lesClients){
+foreach ($lesClients as $leClient){
     echo $leClient->generalInfo();
 }
 ```
