@@ -310,7 +310,7 @@ function __construct()
 
 function liste($page = 0): string
 {
-    $clients = $client->liste(10, $page);
+    $clients = $this->clientModele->liste(10, $page);
     return Template::render(
         "views/liste/client.php",
         array("page" => $page, "clients" => $clients)
