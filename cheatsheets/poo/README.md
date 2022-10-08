@@ -546,7 +546,7 @@ L'accès au propriété ne fonctionnera que si la visibilité (`private`, `publi
 
 ![Aggregation](./res/UML_Rel_aggregation.jpg)
 
-Ce symbole signifie la notion d'appartenance.
+Ce symbole signifie la notion de composition. Dans notre cas, une Entreprise est composer de Personne.
 
 :::
 
