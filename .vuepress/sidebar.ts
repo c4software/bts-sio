@@ -49,6 +49,7 @@ module.exports = [
         children: [
           { text: "POO", collapsible: true, children: ["/cours/poo", "/cours/les_interfaces", "/cours/poo_redefinition_polymorphisme"] },
           { text: "MVC", collapsible: true, children: ["/cours/mvc"] },
+          { text: "Entrainement", link: "/pages/urdle" },
           {
             text: "Interfaces & Abstractions", collapsible: true,
             children: [

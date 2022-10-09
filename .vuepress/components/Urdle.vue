@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="container">
-            <div class="col center">
+            <div class="col no-gap center">
                 <select v-model="selected" class="form-select">
                     <option value="-1">Consulter les exercices</option>
                     <option v-for="level in levels" :value="level">Jour {{level}}</option>
@@ -9,11 +9,32 @@
             </div>
         </div>
 
+        <template v-if="selected > 0 && isValid">
+            <div class="text-center">
+                <img :src="`/urdle/${selected}/uml.png`" alt="">
+            </div>
+            
+            <div class="text-left custom-container tip">
+                <p class="custom-container-title">Dans cet exercice vous devez :</p>
+                <div v-if="details" v-html="details"></div>
+                <div v-else>
+                    <ul>
+                        <li>Écrire le code (ou pseudo-code) permettant de définir les propriétés des classes proposées</li>
+                        <li>Écrire 2 constructeurs (autre que celui par défaut) des classes proposés</li>
+                    </ul>
+                </div>
+            </div>
 
+            <div v-if="pratique" class="text-left custom-container warning">
+                <p class="custom-container-title">Mise en pratique :</p>
+                <p v-html="pratique"></p>
+            </div>
+        </template>
 
         <div class="container">
             <div class="col center">
                 <input v-if="canNext" @click="selected++" type="button" value="Suivant" class="btn btn-primary" />
+                <input v-else @click="selected--" type="button" value="Précédent" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -23,18 +44,45 @@
 export default {
   name: "Urdle",
   watch: {
-    selected(){
-        localStorage.setItem('urdle', this.selected);
+    selected: {
+        immediate: true,
+        handler() {
+            localStorage.setItem('urdle', this.selected);
+
+            if(this.selected > 0){
+                fetch(`/urdle/${this.selected}/questions.html`)
+                .then((res) => res.text())
+                .then(obj => this.details = obj);
+                
+                fetch(`/urdle/${this.selected}/exercice.html`)
+                .then((res) => res.text())
+                .then(obj => this.pratique = obj.replace('{{ today }}', this.today));
+            }
+        }
+    }
+  },
+  mounted() {
+    if(!this.isValid){
+      this.selected = 1;
     }
   },
   computed: {
     canNext(){
         return this.selected <= this.levels.length - 1;
+    },
+    isValid(){
+        return this.selected <= this.levels.length;
+    },
+    today(){
+        let today = new Date(); 
+        return `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
     }
   },
   data() {
     return {
-        selected: localStorage.getItem('urdle') || -1,
+        details: undefined,
+        pratique: undefined,
+        selected: window.location.hash.replace('#', '') || localStorage.getItem('urdle') || -1,
         levels: [...Array(10).keys()].map(it => it+1)
     }
   }
@@ -54,6 +102,10 @@ export default {
 .col {
   flex-grow: 1;
   padding: 20px;
+}
+
+.col.no-gap {
+    padding: 20px 0;
 }
 
 .col.center {
@@ -142,6 +194,14 @@ button, input, optgroup, select, textarea {
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-center{
+    text-align: center;
 }
 
 .btn-primary {
