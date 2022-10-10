@@ -47,8 +47,8 @@ export default {
     selected: {
         immediate: true,
         handler() {
-            if(localStorage){
-              localStorage.setItem('urdle', this.selected);
+            if(window && window.localStorage){
+              window.localStorage.setItem('urdle', this.selected);
             }
 
             if(this.selected > 0){
@@ -68,8 +68,8 @@ export default {
       this.selected = 1;
     }
 
-    if(window && localStorage){
-      this.selected = window.location.hash.replace('#', '') || localStorage.getItem('urdle') || -1
+    if(window && window.localStorage){
+      this.selected = window.location.hash.replace('#', '') || window.localStorage.getItem('urdle') || -1
     }
   },
   computed: {
