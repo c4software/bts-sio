@@ -12,6 +12,10 @@ Préférez plutôt l'utilisation d'un framework tel que Laravel
 [[toc]]
 :::
 
+- [Aide mémoire Programmation Orientée Objet](/cheatsheets/poo/)
+- [La modélisation objet](/cheatsheets/poo-uml/)
+- [Aide mémoire Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
+
 ## Introduction
 
 Un des plus célèbres design patterns s’appelle MVC (Modèle - Vue - Contrôleur) ce pattern permet une bonne organisation du son code source. Pour l'instant vous codiez sans vraiment de structure, avec globalement, même si c'était rangé ; des pages Web qui mélangent traitement (PHP), accès aux données (SQL) et présentation (balises HTML). Même si c'est complètement fonctionnel, nous allons nous efforcer à partir de maintenant à séparer ces parties.

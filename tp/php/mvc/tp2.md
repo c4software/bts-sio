@@ -12,6 +12,7 @@ Dans le [TP todo liste](./tp1.1.md) nous avons vu la mise en place du design pat
 
 - [Aide mémoire Programmation Orientée Objet](/cheatsheets/poo/)
 - [La modélisation objet](/cheatsheets/poo-uml/)
+- [Aide mémoire Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 
 Le projet que vous allez réaliser est ce que l'on appelle une CRM (Customer Relationship Management), c'est un site (outil) qui va permettre d'afficher des informations clients sous le format d'une `Fiche Client`. Vous allez donc de voir créer quelques éléments de cette application à savoir :
 

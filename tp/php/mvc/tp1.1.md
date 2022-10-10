@@ -11,6 +11,8 @@ Dans ce TP, nous allons prendre en main [la structure de code présente ici](./t
 Comme précisé dans le cours et dans nos échanges, la structure « MVC » est proposée ici comme phase transitoire entre votre code PHP de première année et du Laravel que l'on peut retrouver en entreprise. En effet, même si la structure MVC a été créée avec la prise en compte de contrainte de sécurité, elle n’est en aucun cas dimensionnée pour réaliser un site client avec plusieurs centaines d'utilisateurs.
 
 - [Aide mémoire Programmation Orientée Objet](/cheatsheets/poo/)
+- [La modélisation objet](/cheatsheets/poo-uml/)
+- [Aide mémoire Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 
 ::: tip C'est important
 Le point d'introduction est important. Savoir justifier d'une solution est tout aussi important que la solution en elle-même. Si vous décider décider d'utiliser ma structure dans d'autres développements vous devez le faire avec conviction et pas juste « parceque ».
