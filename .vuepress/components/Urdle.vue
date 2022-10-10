@@ -82,7 +82,7 @@ export default {
     return {
         details: undefined,
         pratique: undefined,
-        selected: window.location.hash.replace('#', '') || localStorage.getItem('urdle') || -1,
+        selected: (window && window.location.hash.replace('#', '')) || (localStorage && localStorage.getItem('urdle')) || -1,
         levels: [...Array(10).keys()].map(it => it+1)
     }
   }
