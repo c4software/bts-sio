@@ -859,6 +859,19 @@ Je vous laisse modifier :
 - Le code du modèle afin d'y ajouter une méthode.
 - Appeler cette méthode depuis votre page à la place du `getAll()`.
 
+::: details Un doute sur comment procéder ?
+
+Vous devez réaliser une requête directement depuis votre modèle. Celle-ci devras retourner le résultat d'une requête SQL via un FetchAll de PDO.
+
+```php
+function getAllTermine($id){
+    $stmt = $this->getPdo()->prepare("SELECT * FROM todos WHERE termine = 1");
+    $stmt->execute([]);
+    return $stmt->fetch(\PDO::FETCH_ASSOC);
+}
+```
+:::
+
 ## Ajouter une page d'authentification
 
 La partie TODOList ne doit pas être accessible à tous. En utilisant les techniques vues avec la SESSION (`$_SESSION`) ainsi qu'en réfléchissant sur les impacts en termes de sécurité (protection dans le routeur par exemple). Limiter l'accès de la partie TODOList seulement aux personnes avec un compte sur la plateforme.
