@@ -47,7 +47,9 @@ export default {
     selected: {
         immediate: true,
         handler() {
-            localStorage.setItem('urdle', this.selected);
+            if(localStorage){
+              localStorage.setItem('urdle', this.selected);
+            }
 
             if(this.selected > 0){
                 fetch(`/urdle/${this.selected}/questions.html`)
