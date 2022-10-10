@@ -65,6 +65,10 @@ export default {
     if(!this.isValid){
       this.selected = 1;
     }
+
+    if(window && localStorage){
+      this.selected = window.location.hash.replace('#', '') || localStorage.getItem('urdle') || -1
+    }
   },
   computed: {
     canNext(){
@@ -82,7 +86,7 @@ export default {
     return {
         details: undefined,
         pratique: undefined,
-        selected: (window && window.location.hash.replace('#', '')) || (localStorage && localStorage.getItem('urdle')) || -1,
+        selected: -1,
         levels: [...Array(10).keys()].map(it => it+1)
     }
   }
