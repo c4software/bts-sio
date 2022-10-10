@@ -47,9 +47,9 @@ export default {
     selected: {
         immediate: true,
         handler() {
-            if(window && window.localStorage){
-              window.localStorage.setItem('urdle', this.selected);
-            }
+            try{
+                window.localStorage.setItem('urdle', this.selected);
+            } catch(e){}
 
             if(this.selected > 0){
                 fetch(`/urdle/${this.selected}/questions.html`)
@@ -68,9 +68,11 @@ export default {
       this.selected = 1;
     }
 
-    if(window && window.localStorage){
-      this.selected = window.location.hash.replace('#', '') || window.localStorage.getItem('urdle') || -1
-    }
+    try{
+      if(window && window.localStorage){
+        this.selected = window.location.hash.replace('#', '') || window.localStorage.getItem('urdle') || -1
+      }
+    } catch(e){}
   },
   computed: {
     canNext(){
