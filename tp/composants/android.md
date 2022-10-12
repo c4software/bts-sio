@@ -112,17 +112,45 @@ Pas de classe !?
 L'idée ici est de vous faire constater le bon fonctionnement. Voilà le code de votre premier composant :
 
 ```kotlin
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.testcomposant.R
 import com.example.testcomposant.ui.theme.TestComposantTheme
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ElementList(
     title: String = "Mon titre",
     content: String = "Mon contenu",
-    image: Int? = null,
-){
+    image: Int? = R.drawable.ic_launcher_foreground,
+    onClick: () -> Unit = {}
+) {
+    Card(modifier = Modifier.padding(5.dp), onClick = onClick) {
+        Row(modifier = Modifier.padding(5.dp), verticalAlignment = Alignment.CenterVertically) {
+            image?.let {
+                Image(modifier = Modifier.height(50.dp), painter = painterResource(id = it), contentDescription = content)
+            }
 
+            Column() {
+                Text(text = title)
+                Text(text = content, fontWeight = FontWeight.Light, fontSize = 10.sp)
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
@@ -138,3 +166,32 @@ Arrêtons-nous un instant, que constatez-vous dans le code que vous avez copié-
 
 - `@Composable` au-dessus de la fonction, indique l'emplacement d'un composant.
 - `@Preview(showBackground = true)` permet de réaliser une preview de votre composant sans la lancer sur un téléphone (pratique, testons).
+- Les variables (`title`, `content`, `image`, `onClick`) seront le moyen de customiser notre composant.
+
+Je vous laisse mettre en place le code. Et valider que celui-ci s'affiche correctement dans la partie preview.
+
+![Preview composant](./res/card_component.jpg)
+
+### Utiliser votre premier composant
+
+Nous avons réalisé notre premier composant, nous allons maintenant utiliser le composant dans notre application.
+
+Pour ça nous allons créer une liste qui contiendra le composant que vous avez créé.
+
+```kotlin
+val myData = listOf("Card 1","Card 2","Card 3","Card 4","Card 5","Card 6","Card 7","Card 8","Card 9","Card 10")
+
+LazyColumn {
+    items(myData) { item ->
+        ElementList(title = item) {
+            // Code appelé lors du clique sur un élément de la liste.
+        }
+    }
+}
+```
+
+Je vous laisse mettre le code en question **à la place** du `Greeting` dans le composant `Scaffold`.
+
+Vous devez obtenir :
+
+![Vous allez obtenir](./res/liste_preview.jpg)
