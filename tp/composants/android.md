@@ -172,7 +172,7 @@ Je vous laisse mettre en place le code. Et valider que celui-ci s'affiche correc
 
 ![Preview composant](./res/card_component.jpg)
 
-### Utiliser votre premier composant
+## Utiliser votre premier composant
 
 Nous avons réalisé notre premier composant, nous allons maintenant utiliser le composant dans notre application.
 
@@ -195,3 +195,17 @@ Je vous laisse mettre le code en question **à la place** du `Greeting` dans le 
 Vous devez obtenir :
 
 ![Vous allez obtenir](./res/liste_preview.jpg)
+
+### Rendre votre liste interactive
+
+### Gestion du bouton retour
+
+=> Dans la TopAppBar
+
+## Utiliser tout la puissance des composants
+
+=> Créer une liste d'objet (plutôt que string).
+
+## Découper encore plus
+
+=> Découper et sortir les différentes parties
