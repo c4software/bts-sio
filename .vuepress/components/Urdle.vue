@@ -91,7 +91,7 @@ export default {
         details: undefined,
         pratique: undefined,
         selected: -1,
-        levels: [...Array(10).keys()].map(it => it+1)
+        levels: [...Array(11).keys()].map(it => it+1)
     }
   }
 }
