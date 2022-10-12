@@ -30,7 +30,7 @@ Je vous laisse suivre les étapes de création d'un nouveau projet.
 
 - Le choix du package est très important. Comme nous avons vu ensemble en cours, le « Package » doit être unique. En effet deux applications ne peuvent pas avoir le même.
 - Choisir un min SDK qui correspond aux cibles des mobiles souhaités. (Si vous êtes en France ou dans un autre pays, il conviendra de faire le bon choix).
-- Kotlin est maintenant le langage à choisir en 2021, Java et Kotlin cohabite sans problème vous n'aurez donc aucun problème de compatibilité.
+- Kotlin est maintenant le langage à choisir, Java et Kotlin cohabite sans problème vous n'aurez donc aucun problème de compatibilité.
 
 :::
 
