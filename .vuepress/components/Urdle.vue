@@ -47,7 +47,8 @@ export default {
     selected: {
         immediate: true,
         handler() {
-            if(window && window.fetch && this.selected > 0){
+          try{
+            if(this.selected > 0){
                 fetch(`/urdle/${this.selected}/questions.html`)
                 .then((res) => res.text())
                 .then(obj => this.details = obj);
@@ -56,6 +57,7 @@ export default {
                 .then((res) => res.text())
                 .then(obj => this.pratique = obj.replace('{{ today }}', this.today));
             }
+          } catch (e) {}
         }
     }
   },
