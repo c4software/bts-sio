@@ -47,10 +47,6 @@ export default {
     selected: {
         immediate: true,
         handler() {
-            try{
-                window.localStorage.setItem('urdle', this.selected);
-            } catch(e){}
-
             if(this.selected > 0){
                 fetch(`/urdle/${this.selected}/questions.html`)
                 .then((res) => res.text())
@@ -70,7 +66,7 @@ export default {
 
     try{
       if(window && window.localStorage){
-        this.selected = window.location.hash.replace('#', '') || window.localStorage.getItem('urdle') || 1
+        this.selected = window.location.hash.replace('#', '') || 1
       }
     } catch(e){}
   },
