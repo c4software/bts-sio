@@ -47,7 +47,7 @@ export default {
     selected: {
         immediate: true,
         handler() {
-            if(this.selected > 0 && fetch){
+            if(window && window.fetch && this.selected > 0){
                 fetch(`/urdle/${this.selected}/questions.html`)
                 .then((res) => res.text())
                 .then(obj => this.details = obj);
