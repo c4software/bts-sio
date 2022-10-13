@@ -65,7 +65,7 @@ export default {
     }
 
     try{
-      if(window && window.localStorage){
+      if(window){
         this.selected = window.location.hash.replace('#', '') || 1
       }
     } catch(e){}
