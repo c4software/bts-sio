@@ -70,7 +70,7 @@ export default {
 
     try{
       if(window && window.localStorage){
-        this.selected = window.location.hash.replace('#', '') || window.localStorage.getItem('urdle') || 0
+        this.selected = window.location.hash.replace('#', '') || window.localStorage.getItem('urdle') || 1
       }
     } catch(e){}
   },
@@ -90,7 +90,7 @@ export default {
     return {
         details: undefined,
         pratique: undefined,
-        selected: 0,
+        selected: 1,
         levels: [...Array(11).keys()].map(it => it+1)
     }
   }
