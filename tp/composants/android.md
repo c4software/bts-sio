@@ -223,6 +223,15 @@ Je vous laisse ajouter la condition pour :
 
 => Dans la TopAppBar
 
+```kotlin
+navigationIcon = {
+    if (selectedItem != null) {
+        IconButton(onClick = { selectedItem = null })
+        { Icon(Icons.Default.ArrowBack, "Back") }
+    }
+},
+```
+
 ## Utiliser tout la puissance des composants
 
 => Créer une liste d'objet (plutôt que string).
