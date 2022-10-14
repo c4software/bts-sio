@@ -241,3 +241,5 @@ AnimatedContent (/* Votre Condition OU votre état */ ) { targetState ->
     }
 }
 ```
+
+TODO, je vous laisse écrire…
