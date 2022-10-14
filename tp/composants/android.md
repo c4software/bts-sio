@@ -230,3 +230,14 @@ Je vous laisse ajouter la condition pour :
 ## Découper encore plus
 
 => Découper et sortir les différentes parties
+
+## Ajouter des animations
+
+```kotlin
+AnimatedContent (/* Votre Condition OU votre état */ ) { targetState ->
+    when (targetState) {
+        true -> { /* Composant affiché quand la condition est vrai */ }
+        false -> { /* Composant affiché quand la condition est fausse */ }
+    }
+}
+```
