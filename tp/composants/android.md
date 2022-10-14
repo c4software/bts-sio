@@ -198,6 +198,27 @@ Vous devez obtenir :
 
 ### Rendre votre liste interactive
 
+Maintenant que notre liste s'affiche, nous allons la rendre interactive lors du touch / clique de l'utilisateur sur un élément de la liste. Nous allons avoir besoin de deux choses : 
+
+- Une variable qui permettra de connaitre quel élément à été cliqué.
+- Une condition (`if`) pour savoir si nous devons afficher la `LazyColumn` ou seulement un `ElementList`.
+
+Pour la variable, la déclaration de celle-ci est un peu particulière :
+
+```kotlin
+var selectedItem by remember { mutableStateOf<String?>(null) }
+```
+
+Ajouter cette ligne après votre variable `myData`.
+
+::: tip C'est à vous
+
+Je vous laisse ajouter la condition pour :
+
+- Afficher la `LazyColumn` ou `ElementList` en fonction de `selectedItem != null`.
+
+:::
+
 ### Gestion du bouton retour
 
 => Dans la TopAppBar

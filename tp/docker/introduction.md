@@ -29,7 +29,7 @@ Vous devez voir la version de Docker.
 
 ## Second test
 
-Maintenant que nous savons que Docker est correctement installé, testons avec une « machine » fournie par Docker. L’image se nomme `hello-world`, celle-ci ne fait qu’afficher un message de bienvenue. De nouveau, dans la console entrez la commande suivante :
+Maintenant que nous savons que Docker est correctement installé, testons avec une « machine » fournie par Docker. L’image se nomme `hello-world`, celle-ci ne fait qu’afficher un message de bienvenue. De nouveau, dans la console, entrez la commande suivante :
 
 ```bash
 docker run hello-world
@@ -60,7 +60,7 @@ PS On créera un DockerFile dans le 2nd TP.
 
 ## Pour aller plus loin
 
-Bon, un texte à l’écran c’est bien… Mais si on lançait un système entier ? Ubuntu par exemple. Pour ça rien de plus simple, dans la console lancée :
+Bon, un texte à l’écran c’est bien… Mais si on lançait un système entier ? Ubuntu par exemple. Pour ça rien de plus simple, dans la console lancer :
 
 ```bash
 docker run -it ubuntu bash
