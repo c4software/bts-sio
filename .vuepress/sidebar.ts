@@ -199,7 +199,7 @@ module.exports = [
         children: [
           "/cours/android_base",
           "/cours/android_ble",
-          { text: "Les bases", collapsible: true, children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp"] },
+          { text: "Les bases", collapsible: true, children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp", "/tp/composants/android"] },
           { text: "Les appels d'API", collapsible: true, children: ["/cours/android_http", "/tp/android/network"] },
           { text: "L'organisation", collapsible: true, children: ["/tp/android/sample-explication"] },
           { text: "Les projets", collapsible: true, children: ["/tp/android/app-base-android.md", "/tp/android/app-ble-network.md", "/tp/android/app-avance-android.md"] }
