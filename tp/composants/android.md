@@ -10,7 +10,7 @@ Dans ce TP nous allons mettre en pratique l'écriture de composants avec Android
 
 L'application que nous allons réaliser ici est très simple. Il s'agit juste d'une liste et d'une vue de détail. Elle nous servira à comprendre le système de composant.
 
-TODO IMAGE
+![Application](./res/application.jpg)
 
 ## Création du projet
 
@@ -221,7 +221,9 @@ Je vous laisse ajouter la condition pour :
 
 ### Gestion du bouton retour
 
-=> Dans la TopAppBar
+Si tout fonctionne comme prévu, vous devez avoir la possibilité de sélectionner un élément. Mais pour l'instant pas moyen de revenir sur la liste entière.
+
+Pour ça nous allons ajouter un nouvel attribut dans notre `TopAppBar`
 
 ```kotlin
 navigationIcon = {
@@ -232,15 +234,76 @@ navigationIcon = {
 },
 ```
 
-## Utiliser tout la puissance des composants
+Cet attribut va ajouter un bouton retour si un élément est sélectionné. Je vous laisse mettre en place ça dans votre code.
 
-=> Créer une liste d'objet (plutôt que string).
+## Utiliser toute la puissance des composants
+
+Vous l'avez peut-être remarqué, pour l'instant notre liste est très simple. Vous avez déclaré une liste de `string`, je vais vous demander d'allez un peu plus loin. Vous allez créer une liste `d'objet` (plutôt que `string`).
+
+Évidemment, je vais vous demander d'organiser tout ça.
+
+- Créer un package nommé models :
+
+![Create Package](./res/create_package.jpg)
+
+- Ajouter dans ce package une Classe (`data class` pour être précis) :
+
+```kotlin
+data class CardContent(val title: String, val content: String, @DrawableRes val image: Int?)
+```
+
+::: tip Data class ?
+
+Étrange cette classe n'est-ce pas ? 
+
+Nous créons fréquemment des classes dont le but principal est de conserver des données. Dans une telle classe, certaines fonctionnalités standard et fonctions utilitaires sont souvent dérivables mécaniquement à partir des données. Dans Kotlin, cela s'appelle une classe de données et est marqué comme `data`.
+
+:::
+
+C'est à vous, je vous laisse modifier votre liste (nommé `myData`) par une liste de `CardContent` (la classe que vous avez créée). Cette liste doit contenir 10 éléments avec des titres, des contenus et une image différente que celle par défaut (le logo de l'ESEO par exemple).
+
+::: details Besoin d'aide ?
+
+Avez-vous cherché ? Si oui, voilà un indice :
+
+```kotlin
+val myData = listOf(CardContent("Card 1", "Contenu de la card 1", R.drawable.logo), …)
+```
+
+:::
 
 ## Découper encore plus
 
-=> Découper et sortir les différentes parties
+Nous avons créé un composant, c'est bien, mais nous pouvons faire bien plus. En reprenant la logique du composant `ElementList`, je vous laisse créer un composant nommé `EseoTopAppBar` qui contiendra toute la logique de votre `TopAppBar` :
+
+```kotlin
+TopAppBar(
+    navigationIcon = {
+        if (selectedItem != null) {
+            IconButton(onClick = { selectedItem = null })
+            { Icon(Icons.Default.ArrowBack, "Back") }
+        }
+    },
+    title = { Text("Top App Bar") },
+    backgroundColor = MaterialTheme.colors.primary
+)
+```
+
+Une fois ce composant créé (dans le bon dossier), je vous laisse l'utilisé directement dans votre `Scaffold`.
+
+::: tip Rappel
+
+![Paramètres](./res/parameters.jpg)
+
+Les éléments encadrés en rouge sont les paramètres de chaque méthode. Certains sont des strings, d'autres des actions, mais un paramètre peut-être un composant. C'est le cas ici avec `topBar =`. 
+
+:::
+
+Je vous laisse tester que votre application fonctionne toujours.
 
 ## Ajouter des animations
+
+Une liste c'est bien ! Mais une liste avec des animations c'est encore mieux !
 
 ```kotlin
 AnimatedContent (/* Votre Condition OU votre état */ ) { targetState ->
@@ -251,4 +314,6 @@ AnimatedContent (/* Votre Condition OU votre état */ ) { targetState ->
 }
 ```
 
-TODO, je vous laisse écrire…
+Je vous laisse intégrer ce code dans votre application afin d'animer le changement d'état. Après intégration vous devriez obtenir :
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1v2eu4MGNy4?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
