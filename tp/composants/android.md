@@ -1,6 +1,8 @@
 # Les composants avec Android et Jetpack Compose
 
+::: details Sommaire
 [[toc]]
+:::
 
 ## Introduction
 
