@@ -73,6 +73,7 @@ _Hebergement :_
 - [Github Pages](https://pages.github.com/) <- CI/CD
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 - [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou mutualisés.
+- [Always Data](https://www.alwaysdata.com/fr/) <- Free-tiers de 100mo pour vos projets.
 
 
 ::: details Vous avez envie de progresser ? Voilà des éléments à intégrer
