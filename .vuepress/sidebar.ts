@@ -78,14 +78,15 @@ module.exports = [
       },
     ]
   },
-
+  
+  { collapsible: true, text: "Ressources & Intégrations", children: ["/tp/html_css/integration.md"] },
+  
   {
     text: "Le HTML + CSS",
     collapsible: true,
     children: [
       { collapsible: true, text: "Les TP", children: ["/tp/html_css/tp1.md", "/tp/html_css/tp2.md", "/tp/html_css/tp3.md", "/tp/html_css/tp4.md", "/tp/html_css/tp5.md"] },
       { collapsible: true, text: "Librairies", children: ["/tp/html_css/bootstrap.md", "/tp/html_css/tailwind.md"] },
-      { collapsible: true, text: "Ressources & Intégrations", children: ["/tp/html_css/integration.md"] }
     ]
   },
 
