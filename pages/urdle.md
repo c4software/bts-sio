@@ -12,6 +12,8 @@ Je suis à disposition pour les corrections via Slack ou par [email](./contact.m
 
 <Urdle />
 
+_(Les Getters et les Setters ne sont pas représentés dans l’UML)_
+
 ::: tip Rappels
 
 Écriture d'un constructeur :
