@@ -193,7 +193,6 @@ module.exports = [
     text: "Le mobile",
     collapsible: true,
     children: [
-      { text: "Cordova", collapsible: true, children: ["/cours/cordova", { link: "/cheatsheets/cordova/README.md", text: "En + du cours" }, "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] },
       {
         text: "Android",
         collapsible: true,
@@ -205,7 +204,8 @@ module.exports = [
           { text: "L'organisation", collapsible: true, children: ["/tp/android/sample-explication"] },
           { text: "Les projets", collapsible: true, children: ["/tp/android/app-base-android.md", "/tp/android/app-ble-network.md", "/tp/android/app-avance-android.md"] }
         ]
-      }
+      },
+      { text: "Cordova (Ancien)", collapsible: true, children: ["/cours/cordova", { link: "/cheatsheets/cordova/README.md", text: "En + du cours" }, "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] }
     ]
   },
 

@@ -325,3 +325,13 @@ Je vous laisse intégrer ce code dans votre application afin d'animer le changem
 [![Aide mémoire](./res/animation.jpg)](./res/Compose_Animation_Cheat_Sheet.pdf)
 
 _Source:_ [https://twitter.com/JorgeCastilloPr/status/1579057096360079361]
+
+## Utiliser les ressources textes
+
+Avoir des composants ne veux pas dire oublier les bonnes pratiques bien au contraire ! Pour finaliser votre application je vous laisse sortir les différents textes dans le fichier `strings.xml`
+
+Une fois vos textes externalisés vous pouvez rendre visible via :
+
+```xml
+getString(R.string.id_de_votre_string_dans_le_xml)
+```
