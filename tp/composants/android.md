@@ -322,9 +322,9 @@ Je vous laisse intégrer ce code dans votre application afin d'animer le changem
 
 ### Aller plus loin avec les animations
 
-[![Aide mémoire](./res/animation.jpg)](/Compose_Animation_Cheat_Sheet.pdf)
+[![Aide mémoire](./res/animation.jpg)](https://storage.googleapis.com/android-stories/compose/Compose_Animation_Cheat_Sheet.pdf)
 
-_Source:_ (https://twitter.com/JorgeCastilloPr/status/1579057096360079361)
+_Source:_ [Twitter](https://twitter.com/JorgeCastilloPr/status/1579057096360079361)
 
 ## Utiliser les ressources textes
 
