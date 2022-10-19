@@ -322,16 +322,31 @@ Je vous laisse intégrer ce code dans votre application afin d'animer le changem
 
 ### Aller plus loin avec les animations
 
-[![Aide mémoire](./res/animation.jpg)](./res/Compose_Animation_Cheat_Sheet.pdf)
+[![Aide mémoire](./res/animation.jpg)](./Compose_Animation_Cheat_Sheet.pdf)
 
 _Source:_ [https://twitter.com/JorgeCastilloPr/status/1579057096360079361]
 
 ## Utiliser les ressources textes
 
-Avoir des composants ne veux pas dire oublier les bonnes pratiques bien au contraire ! Pour finaliser votre application je vous laisse sortir les différents textes dans le fichier `strings.xml`
+Avoir des composants ne veut pas dire oublier les bonnes pratiques bien au contraire ! Pour finaliser votre application, je vous laisse sortir les différents textes dans le fichier. `strings.xml`
 
-Une fois vos textes externalisés vous pouvez rendre visible via :
+Une fois vos textes externalisés, vous pouvez rendre visible via :
 
 ```xml
 getString(R.string.id_de_votre_string_dans_le_xml)
 ```
+
+Je vous laisse utiliser cette méthode aux différents endroits ou vous avez mis du texte « en dur ».
+
+## Bonus : Adapter la TopAppBar
+
+Actuellement votre TopAppBar est statique, elle contient toujours la même chose à savoir « Top App Bar ». Je vous propose de réfléchir à comment faire pour que celle-ci s'adapte et change en fonction de l'élément choisi, en fonctionnant en suivant la logique :
+
+- Aucun élément = « Nom de votre application ».
+- Un élément choisi = « Titre de l'élément choisi ».
+
+::: tip Et les animations
+
+N'oubliez pas, les animations sont le détail qui change tout. Je vous laisse regarder pour faire en sorte d'animer le changement de titre.
+
+:::
