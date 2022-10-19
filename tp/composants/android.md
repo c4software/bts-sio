@@ -322,9 +322,9 @@ Je vous laisse intégrer ce code dans votre application afin d'animer le changem
 
 ### Aller plus loin avec les animations
 
-[![Aide mémoire](./res/animation.jpg)](./Compose_Animation_Cheat_Sheet.pdf)
+[![Aide mémoire](./res/animation.jpg)](/Compose_Animation_Cheat_Sheet.pdf)
 
-_Source:_ [https://twitter.com/JorgeCastilloPr/status/1579057096360079361]
+_Source:_ (https://twitter.com/JorgeCastilloPr/status/1579057096360079361)
 
 ## Utiliser les ressources textes
 
@@ -332,7 +332,7 @@ Avoir des composants ne veut pas dire oublier les bonnes pratiques bien au contr
 
 Une fois vos textes externalisés, vous pouvez rendre visible via :
 
-```xml
+```kotlin
 getString(R.string.id_de_votre_string_dans_le_xml)
 ```
 
@@ -350,3 +350,5 @@ Actuellement votre TopAppBar est statique, elle contient toujours la même chose
 N'oubliez pas, les animations sont le détail qui change tout. Je vous laisse regarder pour faire en sorte d'animer le changement de titre.
 
 :::
+
+![Le résultat de la TopAppBar](./res/animation_bar.gif)
