@@ -319,3 +319,9 @@ AnimatedContent (/* Votre Condition OU votre état */ ) { targetState ->
 Je vous laisse intégrer ce code dans votre application afin d'animer le changement d'état. Après intégration vous devriez obtenir :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1v2eu4MGNy4?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Aller plus loin avec les animations
+
+[![Aide mémoire](./res/animation.jpg)](./res/Compose_Animation_Cheat_Sheet.pdf)
+
+_Source:_ [https://twitter.com/JorgeCastilloPr/status/1579057096360079361]
