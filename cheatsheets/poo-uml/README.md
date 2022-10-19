@@ -10,6 +10,33 @@ Ce document présente l'équivalence entre une représentation UML et la syntaxe
 [[toc]]
 :::
 
+## Un diagramme de classes est un graphe :
+
+- Nœud du graphe = Classe
+- Le lien = Relation entre des classes.
+- Représente un problème dans son ensemble.
+
+## Multiplicité
+
+![Les multiplicité](./res/multiplicite.jpg)
+
+## La navigabilité
+
+![La navigabilité 1/2](./res/navigabilite1.jpg)
+
+Par défaut :
+
+- Navigabilité dans les deux sens
+- C1 a un attribut de type C2 et C2 a un attribut de type C1
+
+![La navigabilité 2/2](./res/navigabilite2.jpg)
+
+Spécification de la navigabilité :
+
+- Orientation de l’association
+- C1 a un attribut du type de C2, mais pas l’inverse
+
+
 ## Classe Personne
 
 ![La classe Personne](./res/uml_simple.png)
