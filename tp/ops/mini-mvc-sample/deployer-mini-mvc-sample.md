@@ -2,7 +2,7 @@
 description: Un petit TP/Guide rapide pour créer installer et configurer un serveur Apache afin d'y déployer Mini MVC Sample.
 ---
 
-# Déployer mini-mvc-sample sur Apache
+# Déployer Mini-MVC-Sample sur Apache
 
 Un petit TP/Guide rapide pour créer installer et configurer un serveur Apache afin d'y déployer Mini MVC Sample. Déployer un site Mini MVC Sample est assez similaire à ce que vous connaissez déjà, cependant il y aura quelques exceptions.
 
