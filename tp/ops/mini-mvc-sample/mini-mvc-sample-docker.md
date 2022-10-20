@@ -179,4 +179,4 @@ docker-compose restart
 
 ## C'est à vous
 
-Je vous laisse ajouter une nouvelle page dans votre site. Une page avec les Conditions générales pas exemple. Une fois cette page ajoutée, je vous laisse la mettre en ligne sur votre serveur.
+Je vous laisse ajouter une nouvelle page dans votre site. Une page avec les Conditions générales par exemple. Une fois cette page ajoutée, je vous laisse la mettre en ligne sur votre serveur.
