@@ -32,7 +32,7 @@ Pour ça nous allons avoir besoin d'un dépôt externe, celui-ci contiendra la d
 
 ```sh
 # Installation des dépendances nécessaires à l'ajout d'un dépôt
-apt-get install apt-transport-https gnupg2 ca-certificates -y
+apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
 ```
 
 ```sh

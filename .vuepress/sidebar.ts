@@ -239,6 +239,14 @@ module.exports = [
           "/tp/ops/deployer-laravel-ci.md",
         ]
       },
+      {
+        text: "Mini MVC Sample",
+        collapsible: true,
+        children: [
+          "/tp/ops/mini-mvc-sample/deployer-mini-mvc-sample.md",
+          "/tp/ops/mini-mvc-sample/mini-mvc-sample-docker.md",
+        ]
+      },
       { text: "Kubernetes", collapsible: true, children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
       { text: "OpenFaas", collapsible: true, children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
       { text: "Firebase", collapsible: true, children: ["/tp/ci/firebase/functions.md"] },
