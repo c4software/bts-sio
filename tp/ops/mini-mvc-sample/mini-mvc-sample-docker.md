@@ -2,7 +2,7 @@
 description: Déployer Mini-MVC-Sample avec Docker
 ---
 
-# Déployer un site Mini-MVC-Sample avec Docker
+# Déployer Mini-MVC-Sample avec Docker
 
 Dans le TP [Déployer Mini MVC Sample](./deployer-mini-mvc-sample.md) nous avons vu comment déployer un site Mini MVC Sample directement sur la machine. Cette fois-ci nous allons voir comment le faire avec Docker.
 
@@ -16,7 +16,7 @@ Vous débutez avec Docker ? Je vous conseille plutôt de [démarrer par ici](../
 
 ## Avant-propos
 
-Docker c'est simple ! Les étapes peuvent paraitre effrayante, mais non. Pour vous le prouver, voilà une vidéo de la procédure entière (2min top chrono de la création du projet à la mise à disposition sur votre machine) :
+Docker c'est simple ! Les étapes peuvent paraître effrayante, mais non. Pour vous le prouver, voilà une vidéo de la procédure entière (2min top chrono de la création du projet à la mise à disposition sur votre machine) :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/CgEAJfltyuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -93,9 +93,9 @@ Ce fichier indique que vous avez :
 
 À votre avis :
 
-- Quelles autres options avez vous à votre disposition pour le restart ? [C'est par ici](https://docs.docker.com/config/containers/start-containers-automatically/)
+- Quelles autres options avez-vous à votre disposition pour le restart ? [C'est par ici.](https://docs.docker.com/config/containers/start-containers-automatically/)
 - À quoi correspond "8080:80" ? Pourquoi avons-nous un `80` alors que le site est disponible sur le `8080` ?
-- Est-il possible de déclarer plusieurs services ? [C'est par ici](https://docs.docker.com/compose/compose-file/)
+- Est-il possible de déclarer plusieurs services ? [C'est par ici.](https://docs.docker.com/compose/compose-file/)
 
 :::
 
@@ -161,7 +161,7 @@ docker-compose up -d
 
 À votre avis ?
 
-- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le `docker-compose.yml` mais comment ?)
+- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le, `docker-compose.yml` mais comment ?)
 - Est-ce que votre service va démarrer automatiquement si vous redémarrez votre machine ?
 
 :::

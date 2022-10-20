@@ -4,7 +4,7 @@ description: Un petit TP/Guide rapide pour créer installer et configurer un ser
 
 # Déployer Mini-MVC-Sample sur Apache
 
-Un petit TP/Guide rapide pour créer installer et configurer un serveur Apache afin d'y déployer Mini MVC Sample. Déployer un site Mini MVC Sample est assez similaire à ce que vous connaissez déjà, cependant il y aura quelques exceptions.
+Un petit TP/Guide rapide pour créer, installer et configurer un serveur Apache afin d'y déployer Mini MVC Sample. Déployer un site Mini MVC Sample est assez similaire à ce que vous connaissez déjà, cependant il y aura quelques exceptions.
 
 ::: tip TP prévu pour Debian
 Le TP est axé sur Debian, mais il devrait fonctionner avec la plupart des distributions.
@@ -63,8 +63,8 @@ Zend Engine v4.1.11, Copyright (c) Zend Technologies
 
 ::: tip Un instant !
 
-- D'où viennent ces commande ?
-- Devez-vous ? Pouvez-vous me faire confiance et les copiez-collez directement ?
+- D'où viennent ces commandes ?
+- Devez-vous ? Pouvez-vous me faire confiance et les copier-coller directement ?
 
 :::
 
@@ -135,7 +135,7 @@ Dans mon cas voilà le résultat :
 
 Comprendre la configuration c'est important, c'est une partie importante de votre métier (et ça fait partie de la sécurité).
 
-- Comment comprendre ce que vous avez configuré ? [Vous avez de la chance la documentation est en Français](https://httpd.apache.org/docs/2.4/configuring.html)
+- Comment comprendre ce que vous avez configuré ? [Vous avez de la chance la documentation est en Français.](https://httpd.apache.org/docs/2.4/configuring.html)
 - Pourquoi vous devez faire attention à ce que vous copiez/collez ?
 
 :::
