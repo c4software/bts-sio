@@ -175,7 +175,7 @@ Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur
 
 ### Télécharger le code source
 
-Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.3.zip)
+Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.4.zip)
 
 ::: tip C'est un projet vide
 Même si celui-ci contient à première vue « beaucoup de fichiers », le projet vous avez téléchargé est bien un projet vide.
