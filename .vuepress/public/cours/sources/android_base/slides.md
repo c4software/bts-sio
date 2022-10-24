@@ -164,7 +164,7 @@ Très certainement l'avenir d'Android…
 
 - Intégré dans Android Studio (🙌).
 - Performances suffisantes pour tester.
-- BLE / Bluetooth non disponible.
+- BLE / Bluetooth partiellement disponible (limité).
 - Consomme BEAUCOUP de RAM.
 
 ---
