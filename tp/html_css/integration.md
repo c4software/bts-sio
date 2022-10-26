@@ -36,6 +36,7 @@ _Actualités :_
 - [dev.to](https://dev.to)
 - [medium.com](https://medium.com)
 - [Reddit /r/webdev](https://www.reddit.com/r/webdev/)
+- [Hacker News](https://news.ycombinator.com/)
 
 _Prototypage :_
 
