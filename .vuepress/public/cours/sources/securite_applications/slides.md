@@ -69,6 +69,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - [US CERT (LA SOURCE)](https://www.us-cert.gov/)
 - [The Hacker News](http://thehackernews.com/)
 - Zataz
+- [Undernews](https://www.undernews.fr/)
 - [Reddit NetSec](https://www.reddit.com/r/netsec/)
 - Next INpact (~Payant)
 - Google Actu
