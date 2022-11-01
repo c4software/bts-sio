@@ -50,6 +50,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+![](./img/faille_2022.jpg)
+
+---
+
 [Top50 du nombre de vulnérabilités par le nombre de produits des marques](https://www.cvedetails.com/top-50-vendors.php)
 
 ---
