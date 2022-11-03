@@ -33,7 +33,7 @@ Je vous laisse suivre les étapes de création d'un nouveau projet.
 ![Création d'un projet Étape 1](./res/compose_step_1.jpg)
 ![Création d'un projet Étape 2](./res/compose_step_2.jpg)
 
-::: warning, Mais quelques petites remarques :
+::: warning Mais quelques petites remarques :
 
 - Le choix du package est très important. Comme nous avons vu ensemble en cours, le « Package » doit être unique. En effet deux applications ne peuvent pas avoir le même.
 - Choisir un min SDK qui correspond aux cibles des mobiles souhaités. (Si vous êtes en France ou dans un autre pays, il conviendra de faire le bon choix).
@@ -182,7 +182,7 @@ Je vous laisse mettre en place le code. Et valider que celui-ci s'affiche correc
 
 Nous avons réalisé notre premier composant, nous allons maintenant utiliser le composant dans notre application.
 
-Pour ça nous allons créer une liste qui contiendra le composant que vous avez créé.
+Pour ça nous allons créer une liste (`LazyColumn` étant l'équivalent d'un `RecyclerView`, mais en beaucoup plus simple) Celui-ci contiendra le composant que vous avez créé.
 
 ```kotlin
 val myData = listOf("Card 1","Card 2","Card 3","Card 4","Card 5","Card 6","Card 7","Card 8","Card 9","Card 10")
