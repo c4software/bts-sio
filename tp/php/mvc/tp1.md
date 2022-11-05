@@ -41,7 +41,7 @@ Cette base de développement intègre une structure **qu'il faut respecter** pou
 
 ## Les sources
 
-Vous pouvez télécharger un code de démonstration [à l'adresse suivante en cliquant ici](https://github.com/c4software/demo-structure-mvc-video/archive/refs/tags/1.0.zip)
+Vous pouvez télécharger un code de démonstration [à l'adresse suivante en cliquant ici](https://github.com/c4software/demo-structure-mvc-video/archive/refs/tags/1.2.zip)
 
 Voilà le rendu :
 

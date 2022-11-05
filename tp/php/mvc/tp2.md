@@ -30,7 +30,7 @@ Nous allons nous placer ici dans un contexte type « entreprise » ou vous aurez
 
 ## Récupérer le projet de base
 
-Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.4.zip)
+Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.5.zip)
 
 ::: tip C'est un projet vide
 Même si celui-ci contient à première vue « beaucoup de fichiers », le projet que vous avez téléchargé est bien un projet vide.
