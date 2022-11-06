@@ -62,7 +62,7 @@ php artisan serve
 
 Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir le site de démonstration fourni par Laravel.
 
-![Sample Laravel](./ressources/sample_laravel.png)
+![Sample Laravel](./ressources/sample_laravel.jpg)
 
 ## La base de données
 
