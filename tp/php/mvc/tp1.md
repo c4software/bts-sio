@@ -230,8 +230,8 @@ class Web
         // Vos autres routes
         // …
 
-        Route::Add('/exemple1', function () {
-            return "Function inline 1";
+        Route::Add('/about', function () {
+            return Template::render('views/global/about.php');
         });
         
         Route::Add('/exemple2/{p1}', function ($p1 = 'Valeur par défaut') {

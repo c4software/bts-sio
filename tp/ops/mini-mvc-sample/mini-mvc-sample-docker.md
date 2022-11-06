@@ -24,7 +24,7 @@ Docker c'est simple ! Les étapes peuvent paraître effrayante, mais non. Pour v
 
 Pour tester (et pour être certains d'avoir un projet propre), nous allons créer un nouveau projet. Mais bien évidemment, dans votre cas, vous utiliserez **vos sources** / **votre projet.**
 
-[Télécharger un projet de démo](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.5.zip)
+[Télécharger un projet de démo](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.6.zip)
 
 ```sh
 php mvc serve
