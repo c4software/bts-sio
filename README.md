@@ -10,7 +10,9 @@ next:
 
 Supports de cours de Valentin Brosseau (BTS SIO, GRETA, MyDigitalSchool, ESEO, etc), vous retrouverez dans l’ensemble des cours (slides et aide mémoire) ainsi que des TP.
 
-[Consulter les cours & TP](https://cours.brosseau.ovh/)
+- [Consulter les cours & TP](https://cours.brosseau.ovh/)
+- <a rel="me" href="https://mastodon.social/@c4software">Mon Mastodon</a>
+- <a rel="me" href="https://twitter.com/c4software">Mon Twitter</a>
 
 ## Programme de l'année
 
