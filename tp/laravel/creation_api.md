@@ -4,7 +4,14 @@ description: Le but de notre application est de créer des API Rest qui vont exp
 
 # TodoList : (Ré-)écrire les API du projet
 
-Le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` définie en base de données
+Le but de notre application est de créer des API Rest qui vont exposer la gestion de nos`todos` définies en base de données
+
+::: danger
+Ancien TP. Depuis la sortie de Lumen, PHP à apporter de nombreuses améliorations en termes de performances. Pour cette raison, et avec la disponibilité de Laravel Octane, je ne recommande plus de commencer de nouveaux projets avec Lumen. Je vous recommande plutôt de toujours commencer vos nouveaux projets avec Laravel.
+
+Ce TP est présent comme historique.
+
+:::
 
 ## Introduction
 
@@ -45,7 +52,7 @@ Contrairement à un projet Laravel, les dépendances `composer` ne sont pas inst
 composer install
 ```
 
-Le projet n’étant pas initialisé nous allons devoir jouer quelques commandes pour terminer l’installation :
+Le projet n’étant pas initialisé, nous allons devoir jouer quelques commandes pour terminer l’installation :
 
 ```bash
 mv .env.example .env
@@ -120,7 +127,7 @@ Contrairement à la première version de notre application, nous allons stocker 
 
 > Un mapping objet-relationnel (en anglais object-relational mapping ou ORM) est une technique de programmation informatique qui crée l'illusion d'une base de données orientée objet à partir d'une base de données relationnelle en définissant des correspondances entre cette base de données et les objets du langage utilisé.
 
-Pour rappel, le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` définie en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données.
+Pour rappel, le but de notre application est de créer des API Rest qui vont exposer la gestion de nos `todos` définies en base de données. La première étape est de créer via la ligne de commande le « script » qui initialisera la structure de votre base de données.
 
 L’option `--create=todos` permet d’indiquer le nom de la table à créer
 
@@ -195,11 +202,11 @@ class Todos extends Model
 
 le `$fillable` définie les propriétés qui doivent êtres automatiquement remplis par Eloquent (l’ORM) lors de l’exécution du code.
 
-## Le controller
+## Le contrôleur
 
-Maintenant que nous avons notre base de données, nous allons créer le contrôleur. Pour rappel le controller va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de nos API.
+Maintenant que nous avons notre base de données, nous allons créer le contrôleur. Pour rappel le contrôleur va faire « le lien » entre la base de données et les appels HTTP. C’est ici que nous allons mettre la logique métier de nos API.
 
-Pour commencer, nous allons créer « la structure de base » de notre contrôleur. Pour ça créez le fichier `TodosController.php` dans le chemin suivant `app/Http/Controllers/` et mettez y le contenu suivant :
+Pour commencer, nous allons créer « la structure de base » de notre contrôleur. Pour ça créez le fichier `TodosController.php` dans le chemin suivant `app/Http/Controllers/` et mettez-y le contenu suivant :
 
 ```php
 <?php
@@ -222,7 +229,7 @@ Nous allons maintenant écrire une méthode pour chaque action. Avec les différ
 
 ### Liste
 
-La méthode `liste` est certainement la plus simple, nous allons simplement faire appel à la méthode `all()` de Eloquent (ORM pour l’accès à la base de données). Pour ça créez une nouvelle méthode dans la Class `TodoController` avec le code suivant :
+La méthode `liste` est certainement la plus simple, nous allons simplement faire appel à la méthode `all()` de Eloquent (ORM pour l’accès à la base de données). Pour ça, créez une nouvelle méthode dans la Class `TodoController` avec le code suivant :
 
 ```php
 public function list(){
@@ -244,7 +251,7 @@ public function saveTodo(Request $request){
 }
 ```
 
-Que va-t-il se passer lors de l’appel ? L’objet `$request` contiens tous les paramètres de l’appel HTTP, la méthode `all()` permets de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permettre de renseigner automatiquement les champs en base de données.
+Que va-t-il se passer lors de l’appel ? L’objet `$request` contient tous les paramètres de l’appel HTTP, la méthode `all()` permet de les récupérer. L’objet `Todos` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permettre de renseigner automatiquement les champs en base de données.
 
 ### Création, version alternative
 
@@ -285,7 +292,7 @@ public function markAsDone($id){
 
 ### Suppression
 
-Pour la partie suppression, nous allons devoir dans un premier temps récupérer la todo par son ID. Seuls les `Todos` marqués comme terminés peuvent être supprimés, il faudra donc controller l’état avant de faire le `delete()`
+Pour la partie suppression, nous allons devoir dans un premier temps récupérer la todo par son ID. Seuls les `Todos` marqués comme terminés peuvent être supprimés, il faudra donc contrôler l’état avant de faire le `delete()`
 
 ```php
 public function deleteTodo($id){
@@ -308,7 +315,7 @@ Maintenant que le mapping avec la base de données est créé, et que notre cont
 - Terminer (/terminer)
 - Suppression (/suppression)
 
-Nous allons « mapper » / « connecter » les routes avec les différentes actions de notre contrôleur. Avec un framework c’est très simple il suffit d’ajouter dans le fichier `routes/web.php` le code suivant :
+Nous allons « mapper » / « connecter » les routes avec les différentes actions de notre contrôleur. Avec un framework c’est très simple, il suffit d’ajouter dans le fichier `routes/web.php` le code suivant :
 
 ```php
 $router->get('api/todo','TodosController@list');
@@ -319,7 +326,7 @@ $router->delete('api/todo/delete/{id}','TodosController@deleteTodo');
 
 ## Activer le support d’Eloquent
 
-Avant de pouvoir tester votre application vous devez éditer le fichier `bootstrap/app.php` pour décommenter la ligne :
+Avant de pouvoir tester votre application, vous devez éditer le fichier `bootstrap/app.php` pour décommenter la ligne :
 
 ```php
 $app->withEloquent();
