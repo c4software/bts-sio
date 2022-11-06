@@ -193,16 +193,21 @@ class Web
 {
     function __construct()
     {
-    $monControleur = new MonControleur();
-    Route::Add('/', [$monControleur, 'laMethodeAAppeler']);
-    Route::Add('/autreChemin', [$monControleur, 'lautreMethode']);
+        $monControleur = new MonControleur();
+        $monControleur2 = new MonControleur2();
 
-    // {monParametre} est dynamique en fonction du lien utilisateur
-    // Exemple /exemple/avec/param/1 ou /exemple/avec/param/2
-    Route::Add('/exemple/avec/param/{monParametre}', [$monControleur, 'methodeAvecParametre']); 
+        Route::Add('/', [$monControleur, 'laMethodeAAppeler']);
+        Route::Add('/autreChemin', [$monControleur, 'lautreMethode']);
 
-    // etc…
-    // Vous pouvez avoir autant de routes que nécessaire
+        // {monParametre} est dynamique en fonction du lien utilisateur
+        // Exemple /exemple/avec/param/1 ou /exemple/avec/param/2
+        Route::Add('/exemple/avec/param/{monParametre}', [$monControleur, 'methodeAvecParametre']); 
+
+
+        Route::Add('/fonction2/home', [$monControleur2, 'ma2ndMethode']); 
+
+        // etc…
+        // Vous pouvez avoir autant de routes que nécessaire
     }
 }
 ```
@@ -212,6 +217,36 @@ Je pense qu'ici pas de problème! Vous comprenez l'idée, une nouvelle page ?
 - Une nouvelle route
 - Une nouvelle méthode dans le contrôleur…
 - Et c'est tout !
+
+#### Une route sans contrôleur ?
+
+Même s’il est préférable d'avoir toujours un contrôleur, il peut arriver parfois d'avoir besoin d’une route qui ne dépend pas d'un contrôleur. Avec la structure MVC, vous pouvez écrire :
+
+```php
+class Web
+{
+    function __construct()
+    {
+        // Vos autres routes
+        // …
+
+        Route::Add('/exemple1', function () {
+            return "Function inline 1";
+        });
+        
+        Route::Add('/exemple2/{p1}', function ($p1 = 'Valeur par défaut') {
+            return "Function inline 2, Voilà votre paramètre : $p1";
+        });
+
+        // Vos autres routes
+        // …
+    }
+}
+```
+
+::: danger 👋
+    Utile pour du code très simple, ou lors d’un test **uniquement**. L’utilisation d'un contrôleur est préférable.
+:::
 
 #### Gérer l'authentification ?
 
