@@ -106,7 +106,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire… (maintenant)
 
-- 8.X: Version actuelle
+- 9.X: Version actuelle
 
 ---
 

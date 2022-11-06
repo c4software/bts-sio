@@ -345,7 +345,7 @@ Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon c
 
 ## Les composants
 
-Au passage, nous avons maintenant (en Laravel 8) une autre façon de définir des templates / « morceaux de codes réutilisables ». C'est via un composant, nous détaillerons cette pratique un peu plus tard.
+Au passage, nous avons maintenant (**depuis Laravel 8**) une autre façon de définir des templates / « morceaux de codes réutilisables ». C'est via un composant, nous détaillerons cette pratique un peu plus tard.
 
 Le principe est très proche de l'héritage des templates vu précédemment. À la différence que nous allons avoir à notre disposition des balises personnalisées comme par exemple `<x-layout-base>` ou `<x-card></x-card>` ; c'est balise font référence à du code placé dans le dossier `resources/views/components/`.
 
