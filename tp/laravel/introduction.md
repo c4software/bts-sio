@@ -16,14 +16,18 @@ Dans ce TP nous allons couvrir l’installation, la configuration et la créatio
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
 
-- PHP7
+- PHP 8
 - Composer
 
 Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiquement par `Composer`
 
 ### Windows
 
-Pour « installer » Laravel sous Windows, vous devez dans un premier temps installer PHP7 sur votre machine. Dans un premier temps, installer Wamp + PHP7 :
+::: warning Xamp ou Wamp
+Si vous utilisez Xamp aucune manipulation est nécéssaire.
+:::
+
+Pour « installer » Laravel sous Windows, vous devez dans un premier temps installer PHP 8 sur votre machine. Dans un premier temps, installer Wamp + PHP 8 :
 
 - [Installation de Wamp.](http://www.wampserver.com/fr/#download-wrapper)
 - Installer Wamp, et vérifier que celui-ci fonctionne correctement.
@@ -36,7 +40,7 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 ### Linux
 
-Pour Linux c’est plus simple, il suffit d’installer PHP 7 sur votre machine (regarder la documentation de votre distribution). Une fois que PHP est installé, il suffit de faire :
+Pour Linux c’est plus simple, il suffit d’installer PHP 8 sur votre machine (regarder la documentation de votre distribution). Une fois que PHP est installé, il suffit de faire :
 
 ```bash
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -65,7 +69,7 @@ Sans les paquets, vous ne pourrez pas continuer l'installation.
 
 ### MacOS
 
-Sur la dernière version de MacOS, PHP est déjà disponible en version 7. Il suffit donc d’installer `Composer`, pour l’installer il suffit :
+Sur la dernière version de MacOS, PHP est déjà disponible en version 8. Il suffit donc d’installer `Composer`, pour l’installer il suffit :
 
 ```bash
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
