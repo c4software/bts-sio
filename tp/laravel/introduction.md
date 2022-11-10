@@ -437,13 +437,13 @@ Vous l'avez réalisé précédemment, je vous laisse écrire les deux `vue` / `l
 L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique où tout est a « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite. Comme pour la création du contrôleur, la première étape va passer par de la ligne de commande.
 
 ```sh
-php artisan make:model Demo --migration
+php artisan make:model Todo --migration
 ```
 
 Cette commande va créer « la définition du modèle » (le modèle la représentation objet de notre table), mais également la migration. La migration est le fichier qui va définir la structure de notre `Table`. Vous avez maintenant, dans votre projet, deux nouveaux fichiers :
 
-- `app/Models/Demo.php`
-- `database/migrations/YEAR_MONTH_DAY_TIME_create_demos_table.php`
+- `app/Models/Todo.php`
+- `database/migrations/YEAR_MONTH_DAY_TIME_create_todo_table.php`
 
 ### Définir la migration (structure de la table)
 
@@ -464,7 +464,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDemosTable extends Migration
+class CreateTodoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -473,7 +473,7 @@ class CreateDemosTable extends Migration
      */
     public function up()
     {
-        Schema::create('demos', function (Blueprint $table) {
+        Schema::create('todo', function (Blueprint $table) {
             $table->id();
             $table->string('texte');
             $table->timestamps();
@@ -487,7 +487,7 @@ class CreateDemosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('demos');
+        Schema::dropIfExists('todo');
     }
 }
 ```
@@ -496,7 +496,7 @@ class CreateDemosTable extends Migration
 
 ### Définition du modèle
 
-Vous vous en doutez, si nous avons ajouté un champ dans notre « migration » / « table », nous allons devoir l'ajouter également dans notre modèle ! Pour ça je vous laisse éditer le fichier `app/Models/Demo.php` pour y ajouter :
+Vous vous en doutez, si nous avons ajouté un champ dans notre « migration » / « table », nous allons devoir l'ajouter également dans notre modèle ! Pour ça je vous laisse éditer le fichier `app/Models/Todo.php` pour y ajouter :
 
 ```php
     protected $fillable = ['texte'];
@@ -505,7 +505,7 @@ Vous vous en doutez, si nous avons ajouté un champ dans notre « migration » /
 Avec cet ajout, nous indiquons à Laravel que nous allons avoir un champ `texte` qui pourra être assigné en automatique lors de la création d'une entrée en base de données.
 
 ::: tip optionnel, mais intéressant !
-Cette propriété est optionnelle, elle vous autorisera plus tard à faire du « mass-assignment » c'est-à-dire à créer un objet « Demos » depuis par exemple le POST HTTP.
+Cette propriété est optionnelle, elle vous autorisera plus tard à faire du « mass-assignment » c'est-à-dire à créer un objet « Todo » depuis par exemple le POST HTTP.
 :::
 
 ### Créer réellement vos tables
@@ -517,8 +517,8 @@ Retour dans la ligne de commande :
 ```sh
 $ php artisan migrate
 […]
-Migrating: YEAR_MONTH_DAY_TIME_create_demos_table
-Migrated:  YEAR_MONTH_DAY_TIME_create_demos_table
+Migrating: YEAR_MONTH_DAY_TIME_create_todos_table
+Migrated:  YEAR_MONTH_DAY_TIME_create_todos_table
 ```
 
 ::: warning Un instant
@@ -535,10 +535,10 @@ Vous n’avez ici qu'une petite liste de ce qu'il est possible de faire. Pour vo
 
 #### Obtenir toutes les données
 
-Voilà un exemple de code pour obtenir l'ensemble des données dans la table `demo`.
+Voilà un exemple de code pour obtenir l'ensemble des données dans la table `todo`.
 
 ```php
-$valeursEnBase = Demo::all()
+$valeursEnBase = Todo::all()
 ```
 
 #### Obtenir toutes les données avec filtre
@@ -546,7 +546,7 @@ $valeursEnBase = Demo::all()
 Voilà un exemple de code pour obtenir 10 lignes de données avec un filtre et trié par `id`.
 
 ```php
-$valeursFiltre = Demo::where('texte', "YOLO")->orderBy('id')->take(10)
+$valeursFiltre = Todo::where('texte', "YOLO")->orderBy('id')->take(10)
 ```
 
 ::: danger Ce ne sont que des exemples
@@ -560,19 +560,19 @@ Vous avez ici des exemples, ça ne sert à rien de les prendres maintenant. Nous
 Et c'est tellement simple que si vous souhaitez tout récupérer pour utiliser les données il vous suffit de faire :
 
 ```php
-public function listDemo(Request $request){
-  // Retourne à l'utilisateur le template nommés « monLayout » avec dedans une variable nommé `$demos` qui contiendra l'ensemble des éléments dans la table
-  // Votre template devra utiliser cette variable avec par exemple un @foreach($demos as $demo) … @endforeach
-  return view("monLayout", ["demos" => Demo::all()]);
+public function listTodo(Request $request){
+  // Retourne à l'utilisateur le template nommés « monLayout » avec dedans une variable nommé `$todos` qui contiendra l'ensemble des éléments dans la table
+  // Votre template devra utiliser cette variable avec par exemple un @foreach($todos as $todo) … @endforeach
+  return view("monLayout", ["todos" => Todo::all()]);
 }
 ```
 
 ::: danger Un instant ✋
 
-En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `Demo` soit accessible depuis le contrôleur il faudra :
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `Todo` soit accessible depuis le contrôleur il faudra :
 
 ```php
-use App\Models\Demo;
+use App\Models\Todo;
 ```
 
 - ⚠️ Si vous utilisez **PHPStorm** cet import sera automatique.
@@ -589,9 +589,9 @@ Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 #### Créer des données depuis un formulaire en POST
 
 ```php
-public function addDemo(Request $request){
-    Demos::create($request->all());
-    return redirect("/demo");
+public function addTodo(Request $request){
+    Todo::create($request->all());
+    return redirect("/todo");
 }
 ```
 
@@ -599,7 +599,7 @@ public function addDemo(Request $request){
 
 À partir de maintenant vous avez tout ce qu'il faut pour interroger votre base de données… Et oui c'est aussi simple que ça ! Pour la suite je vous laisse écrire le code par vous-même, mais la procédure va être la suivante :
 
-- Créer un contrôleur « DemoControleur ».
+- Créer un contrôleur « TodoControleur ».
 - Créer la `Vue` (template blade) associée à votre contrôleur.
 - Ajouter la route qui permettra d'accéder à cette page.
 - Ajouter une méthode qui va afficher l'ensemble des entrées présent dans votre base de données (affichage dans une `table` html).
@@ -671,9 +671,9 @@ $todo->save();
 Je ne vais pas vous donner le code. Mais plutôt la procédure vous devez :
 
 - Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type <code v-pre>`/todo/terminer/{{ $unElement->id}}`</code>.
-- Ajout d'une route permettant de faire fonctionner le lien. Exemple : <code v-pre>`Route::get('/todo/terminer/{id}', ['App\Http\Controllers\DemoControleur', 'markAsDone']);`</code>.
+- Ajout d'une route permettant de faire fonctionner le lien. Exemple : <code v-pre>`Route::get('/todo/terminer/{id}', ['App\Http\Controllers\TodoControleur', 'markAsDone']);`</code>.
 - Ajouter la méthode `markAsDone` dans votre contrôleur `public function markAsDone($id)`, celle-ci va réaliser l'action de marquer comme « terminer » pour la TODO `$id`
-- À la fin du traitement, vous devez rediriger la personne avec `return redirect("/demo");`
+- À la fin du traitement, vous devez rediriger la personne avec `return redirect("/todo");`
 
 ### Supprimer une TODO
 
