@@ -14,7 +14,7 @@ Dans ce TP nous allons voir comment générer le modèle Laravel à partir d'une
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
 
-- PHP 8 (ou 7)
+- PHP 8
 - Composer
 
 Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiquement par `Composer`

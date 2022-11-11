@@ -26,6 +26,30 @@ Pour cette étape, je vous laisse suivre le début du [précédent TP](./introdu
 
 **Attention** a bien installer au moins la version >8 de Laravel.
 
+## Installer la laravel debug bar
+
+Vous avez remarqué que les pages d'erreurs de Laravel sont toujours plein de bonnes informations. Avec Laravel nous pouvons avoir « encore mieux », vous avez à votre disposition une extension à Laravel qui vous permettra de voir :
+
+- Le contenu de la session.
+- Les requêtes SQL réalisé par l'ORM.
+- …
+
+![Debug bar](./ressources/debug_bar.png)
+
+Après installation cette barre va aparaitre automatiquement en bas de votre site Laravel (évidemment uniquement le temps du développement). Pour l'installer la commande est la suivante :
+
+```sh
+composer require barryvdh/laravel-debugbar --dev
+```
+
+::: warning
+
+La Debugbar sera automatiquement active quand APP_DEBUG est à `true`.
+
+:::
+
+[En savoir plus](https://github.com/barryvdh/laravel-debugbar)
+
 ## Ajout de l'authentification
 
 Nous allons intégrer l'authentification en utilisant [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) ce paquet `Composer` va ajouter l'ensemble des :
