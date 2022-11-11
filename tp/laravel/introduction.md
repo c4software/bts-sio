@@ -24,7 +24,7 @@ Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiqu
 ### Windows
 
 ::: warning Xamp ou Wamp
-Si vous utilisez Xamp aucune manipulation est nécéssaire.
+Si vous utilisez Xamp aucune manipulation n’est nécessaire.
 :::
 
 Pour « installer » Laravel sous Windows, vous devez dans un premier temps installer PHP 8 sur votre machine. Dans un premier temps, installer Wamp + PHP 8 :
@@ -35,7 +35,7 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 #### Installer Composer
 
-- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.0 minimum de PHP dans le dossier `C:\wamp\bin\php\php\8.X.X\bin\php.exe` <= Attention à prendre la bonne version (ou via XAMPP)
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.0 minimum de PHP dans le dossier `C:\wamp\bin\php\php\8.X.X\bin\php.exe` <= Attention à prendre la bonne version (ou via XAMPP).
 - vérifier que la commande est bien disponible en tapant `composer` dans un terminal
 
 ### Linux
@@ -49,7 +49,7 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ```
 
-Ajouter dans votre PATH la home de composer, exemple :
+Ajouter dans votre PATH la home de composer, par exemple :
 
 ```bash
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
@@ -57,7 +57,7 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 ::: tip Vous allez avoir besoin de paquets en plus
 
-Si vous utilisez Ubuntu / Debian / Pop_OS! etc :
+Si vous utilisez Ubuntu / Debian / Pop_OS! etc. :
 
 ```sh
 sudo apt install libapache2-mod-php php-common php-xml php-gd php-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip php-sqlite
@@ -78,7 +78,7 @@ php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
 ```
 
-Ajouter dans votre PATH la home de composer, exemple :
+Ajouter dans votre PATH la home de composer, par exemple :
 
 ```bash
 export PATH="$PATH:$HOME/.composer/vendor/bin"
@@ -139,7 +139,7 @@ Rendez-vous maintenant dans [votre navigateur](http://localhost:8000) pour voir 
 
 Éditer le fichier `resources/views/welcome.blade.php`, ajouter la variable `$titre`. La syntaxe « blade » est la suivante <span v-pre>`{{ $titre }}`</span>.
 
-Localiser dans le code l'endroit ou le logo de Laravel est affiché. Ajouter en dessous « <span v-pre>`{{ $titre }}`</span> ». Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelque chose s'affiche :
+Localiser dans le code l'endroit où le logo de Laravel est affiché. Ajouter en dessous « <span v-pre>`{{ $titre }}`</span> ». Vous avez défini votre première variable c'est bien ! Mais pour l'instant rien ne se passe… Pour que quelque chose s'affiche :
 
 Éditer le fichier `routes/web.php`, transformer :
 
@@ -191,7 +191,7 @@ Route::get('/ping', function () {
 
 ::: danger Un instant
 
-Nous avons écrit un peu de code. Vous avez pensé à GIT ? Git est en effet préconfiguré dans Laravel, nous avons de base un fichier `.gitignore` celui-ci limite l'ajout de quelques fichiers :
+Nous avons écrit un peu de code. Vous avez pensé à GIT ? Git est en effet préconfiguré dans Laravel, nous avons de base un fichier, `.gitignore` celui-ci limite l'ajout de quelques fichiers :
 
 - `.env`
 - Le dossier `vendor` etc…
@@ -325,9 +325,9 @@ Maintenant que nous avons notre template de base, nous allons l’utiliser dans 
 
 ### Utiliser le layout dans la route Pong
 
-Bon, maintenant que nous avons déclaré un layout utilisons-le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créé tout à l’heure. Pour cette dernière action je ne vous donne pas de code, mais uniquement les étapes :
+Bon, maintenant que nous avons déclaré un layout utilisons-le dans la 2nd route ([/ping](http://localhost:8000/ping)) que nous avons créée tout à l’heure. Pour cette dernière action, je ne vous donne pas de code, mais uniquement les étapes :
 
-- Créez une Vue par exemple `ping.blade.php` (Dans le dossiers `views`)
+- Créez une Vue par exemple `ping.blade.php` (dans le dossier `views`)
 - Utilisez `@extends('layouts.base')` pour « hériter » de votre layout principal.
 - Modifiez `web.php` pour répondre avec la fonction `view` comme dans l’autre route. (en vous inspirant de l'autre déjà présente)
 
@@ -351,7 +351,7 @@ Avec ces quelques explications, vous allez pouvoir atteindre l’objectif. Bon c
 
 Au passage, nous avons maintenant (**depuis Laravel 8**) une autre façon de définir des templates / « morceaux de codes réutilisables ». C'est via un composant, nous détaillerons cette pratique un peu plus tard.
 
-Le principe est très proche de l'héritage des templates vu précédemment. À la différence que nous allons avoir à notre disposition des balises personnalisées comme par exemple `<x-layout-base>` ou `<x-card></x-card>` ; c'est balise font référence à du code placé dans le dossier `resources/views/components/`.
+Le principe est très proche de l'héritage des templates vu précédemment. À la différence que nous allons avoir à notre disposition des balises personnalisées comme par exemple `<x-layout-base>` ou `<x-card></x-card>` ; ces balises font référence à du code placé dans le dossier `resources/views/components/`.
 
 Cette notation est très récente et n'est disponible qu'à partir de **Laravel 8**.
 
@@ -379,8 +379,8 @@ php artisan make:controller PingPongControleur
 
 Laravel, viens donc de créer un nouveau fichier dans votre projet, pour l'instant celui-ci est vide (aucune méthode).
 
-::: tip C'est dans le terminal / console
-Oui, c'est encore dans le terminal / console … Mais, nous gagnons du temps. Qui maitrise son clavier maitrise son ordinateur 👀.
+::: tip c'est dans le terminal / console
+Oui, c'est encore dans le terminal / console … Mais, nous gagnons du temps. Qui maîtrise son clavier maîtrise son ordinateur 👀.
 :::
 
 Notre contrôleur va contenir `deux méthodes`, ces deux méthodes vont représenter les deux `routes` de notre application :
@@ -413,7 +413,7 @@ Vous avez oublié la signification des `[]` ? C'est « simplement » les donnée
 Nous allons maintenant ajouter les routes, pour rappel les routes sont ce qui permet aux utilisateurs d'accéder à vos contrôleurs. L'ensemble des routes sont à déclarer dans le fichier `routes/web.php`, éditer le pour y ajouter vos routes :
 
 ```php
-Route::get('/ping', ['App\Http\Controllers\PingPongControleur', 'ping']);
+Route::get('/ping', [PingPongControleur::class, 'ping']);
 ```
 
 Je vous laisse écrire la seconde `route` en fonction de ce que je vous ai fourni.
@@ -434,7 +434,7 @@ Vous l'avez réalisé précédemment, je vous laisse écrire les deux `vue` / `l
 
 ## La base de données
 
-L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique où tout est a « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite. Comme pour la création du contrôleur, la première étape va passer par de la ligne de commande.
+L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique où tout est à « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite. Comme pour la création du contrôleur, la première étape va passer par de la ligne de commande.
 
 ```sh
 php artisan make:model Todo --migration
@@ -451,9 +451,10 @@ Le fichier de migration défini la structure de la table que vous allez créer, 
 
 ```php
 $table->string('texte');
+$table->boolean('termine');
 ```
 
-Je vous laisse l'ajouter avec les autres champs.
+Je vous laisse l'ajouter avec les autres colonnes.
 
 ::: details Vous avez un doute sur comment faire ? (je vous invite vraiment à le faire sans regarder la solution)
 
@@ -476,6 +477,7 @@ class CreateTodoTable extends Migration
         Schema::create('todo', function (Blueprint $table) {
             $table->id();
             $table->string('texte');
+            $table->boolean('termine');
             $table->timestamps();
         });
     }
@@ -499,7 +501,7 @@ class CreateTodoTable extends Migration
 Vous vous en doutez, si nous avons ajouté un champ dans notre « migration » / « table », nous allons devoir l'ajouter également dans notre modèle ! Pour ça je vous laisse éditer le fichier `app/Models/Todo.php` pour y ajouter :
 
 ```php
-    protected $fillable = ['texte'];
+    protected $fillable = ['texte', 'termine'];
 ```
 
 Avec cet ajout, nous indiquons à Laravel que nous allons avoir un champ `texte` qui pourra être assigné en automatique lors de la création d'une entrée en base de données.
@@ -522,7 +524,7 @@ Migrated:  YEAR_MONTH_DAY_TIME_create_todos_table
 ```
 
 ::: warning Un instant
-Je vous laisse configurer votre `.env` mais également vérifier si votre base de données fonctionne correctement (création etc).
+Je vous laisse configurer votre, `.env` mais également vérifier si votre base de données fonctionne correctement (création etc.).
 :::
 
 ### Requêter votre table
@@ -551,7 +553,7 @@ $valeursFiltre = Todo::where('texte', "YOLO")->orderBy('id')->take(10)
 
 ::: danger Ce ne sont que des exemples
 
-Vous avez ici des exemples, ça ne sert à rien de les prendres maintenant. Nous allons les utiliser **dans votre contrôleurs**.
+Vous avez ici des exemples, ça ne sert à rien de les prendre maintenant. Nous allons les utiliser **dans votre contrôleur**.
 
 :::
 
@@ -569,14 +571,14 @@ public function listTodo(Request $request){
 
 ::: danger Un instant ✋
 
-En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `Todo` soit accessible depuis le contrôleur il faudra :
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `Todo` soit accessible depuis le contrôleur, il faudra :
 
 ```php
 use App\Models\Todo;
 ```
 
-- ⚠️ Si vous utilisez **PHPStorm** cet import sera automatique.
-- ⚠️ Si vous utilisez **VSCode** il faudra passer par une extension [Disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
+- ⚠️ Si vous utilisez **PHPStorm,** cet import sera automatique.
+- ⚠️ Si vous utilisez **VSCode,** il faudra passer par une extension [disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
 
 Pour **PHPStorm**, alt+entrée permettra de déclencher l'ajout du use.
 
@@ -602,7 +604,7 @@ public function addTodo(Request $request){
 - Créer un contrôleur « TodoControleur ».
 - Créer la `Vue` (template blade) associée à votre contrôleur.
 - Ajouter la route qui permettra d'accéder à cette page.
-- Ajouter une méthode qui va afficher l'ensemble des entrées présent dans votre base de données (affichage dans une `table` html).
+- Ajouter une méthode qui va afficher l'ensemble des entrées présent dans votre base de données (affichage dans une `table` HTML).
 - Ajouter un formulaire dans votre `Vue` permettant d'ajouter des données dans la table.
 
 ::: tip Un instant
@@ -648,7 +650,7 @@ PS: Je vous laisse constater l'impact dans le code **en observant le code source
 
 ### Changer l'état d'une TODO
 
-En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/8.x/eloquent) ajouter :
+En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/8.x/eloquent) ajoutez :
 
 - Une action permettant de marquer « comme terminer » une TODO. (l'action peut-être un lien, ou un bouton)
 - Cette action doit être mise dans le bon contrôleur
@@ -657,7 +659,7 @@ En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) 
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find("L'ID QUE VOUS SOUHAITEZ MODIFIER")->first();
+$todo = Todo::find("L'ID QUE VOUS SOUHAITEZ MODIFIER")->first();
 
 // Le passer à terminer
 $todo->termine = true;
@@ -668,16 +670,16 @@ $todo->save();
 
 #### Besoin d'aide ?
 
-Je ne vais pas vous donner le code. Mais plutôt la procédure vous devez :
+Je ne vais pas vous donner le code. Mais plutôt la procédure, vous devez :
 
 - Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type <code v-pre>`/todo/terminer/{{ $unElement->id}}`</code>.
-- Ajout d'une route permettant de faire fonctionner le lien. Exemple : <code v-pre>`Route::get('/todo/terminer/{id}', ['App\Http\Controllers\TodoControleur', 'markAsDone']);`</code>.
+- Ajout d'une route permettant de faire fonctionner le lien. Exemple : <code v-pre>`Route::get('/todo/terminer/{id}', [TodoControleur::class, 'markAsDone']);`</code>.
 - Ajouter la méthode `markAsDone` dans votre contrôleur `public function markAsDone($id)`, celle-ci va réaliser l'action de marquer comme « terminer » pour la TODO `$id`
 - À la fin du traitement, vous devez rediriger la personne avec `return redirect("/todo");`
 
 ### Supprimer une TODO
 
-En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/8.x/eloquent) ajouter :
+En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel,](https://laravel.com/docs/8.x/eloquent) ajoutez :
 
 - Une action permettant de marquer « supprimer » une TODO.
 - Cette action doit être mise dans le bon contrôleur
@@ -687,20 +689,20 @@ En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) 
 ```php
 // Façon 1
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1)->first();
+$todo = Todo::find(1)->first();
 $todo->delete(); // Le supprimer
 
 // Façon 2
 // Le supprimer directement
-App\TodoList::destroy(1);
+Todo::destroy(1);
 
 // Façon 3
 // En supprimer plusieurs directement
-App\TodoList::destroy(1,2,3);
+Todo::destroy(1,2,3);
 
 // Façon 4
 // Supprimer avec une condition
-App\TodoList::where('termine', '==', 1)->delete();
+Todo::where('termine', '==', 1)->delete();
 ```
 
 N'oubliez pas la sécurité.
@@ -721,3 +723,11 @@ J'aimerais que notre petit site de démonstration intègre un formulaire de cont
 - Vous devez créer un contrôleur spécifique pour réaliser l'opération.
 
 C'est à vous ! Je suis là si besoin 🚀.
+
+### Évolution 2
+
+La mise en forme. Actuellement votre page s'affiche et est fonctionnelle. Cependant, c'est plutôt brut ! Pourquoi ne pas travailler la mise en forme ? Je vous propose donc de modifier l'apparence de votre site pour ressembler à :
+
+![Idée design](./ressources/idee_design.jpg)
+
+C'est à vous !
