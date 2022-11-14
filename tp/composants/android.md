@@ -145,7 +145,7 @@ fun ElementList(
     image: Int? = R.drawable.ic_launcher_foreground,
     onClick: () -> Unit = {}
 ) {
-    Card(modifier = Modifier.padding(5.dp), onClick = onClick) {
+    Card(modifier = Modifier.fillMaxWidth().padding(5.dp), onClick = onClick) {
         Row(modifier = Modifier.padding(5.dp), verticalAlignment = Alignment.CenterVertically) {
             image?.let {
                 Image(modifier = Modifier.height(50.dp), painter = painterResource(id = it), contentDescription = content)
