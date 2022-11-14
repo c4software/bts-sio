@@ -314,7 +314,7 @@ Modifier le code précédent pour utiliser la nouvelle façon vue précédemment
 ### Les Kotlin Android Extension
 
 ::: warning Cette méthode est maintenant dépréciée
-Bien que pratique cette méthode n'est maintenant plus « la bonne façon de faire.
+Bien que pratique, cette méthode n'est maintenant plus « la bonne façon de faire.
 
 La seconde façon (moins longue) d'accéder à un élément est via « les Kotlin-Android-Extensions ».
 
