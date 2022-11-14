@@ -511,6 +511,16 @@ Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackb
 
 ---
 
+### Vous souhaitez changer la durée d'affichage ?
+
+#### Plusieurs options s'offre à vous :
+
+- `Snackbar.LENGTH_SHORT`
+- `Snackbar.LENGTH_LONG`
+- `Snackbar.LENGTH_INDEFINITE`
+
+---
+
 ## C'est à vous
 
 Remplacer le toast dans votre interface

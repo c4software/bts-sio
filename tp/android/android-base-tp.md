@@ -230,6 +230,16 @@ Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackb
 }.show()
 ```
 
+::: tip Vous souhaitez changer la durée d'affichage ?
+
+Plusieurs options s'offre à vous :
+
+- `Snackbar.LENGTH_SHORT`
+- `Snackbar.LENGTH_LONG`
+- `Snackbar.LENGTH_INDEFINITE`
+
+:::
+
 ## Rendre un élément clickable
 
 Pour rendre un élément cliquable sur Android, nous avons plusieurs façons de faire. La première c'est dans le code via son id et la méthode `findViewById`.
