@@ -212,6 +212,24 @@ Les toasts sont rapides et simples à mettre en place. Cependant, ils ne sont pa
 
 :hand: Tester votre modification.
 
+### La Snackbar
+
+Un autre moyen d'interagir avec l'utilisateur, c'est via un Snackbar. Une snackbar est très similaire à un Toast, cependant elle pourra servir pour afficher des messages importants et surtout des messages avec lesquels nous allons pouvoir interagir.
+
+Je vous laisse modifier votre code pour remplacer le Toast par :
+
+```kotlin
+Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackbar.LENGTH_LONG).show()
+```
+
+**Ou**
+
+```kotlin
+Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackbar.LENGTH_LONG).setAction("Action") {
+   // Votre action
+}.show()
+```
+
 ## Rendre un élément clickable
 
 Pour rendre un élément cliquable sur Android, nous avons plusieurs façons de faire. La première c'est dans le code via son id et la méthode `findViewById`.

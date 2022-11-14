@@ -500,11 +500,11 @@ Toast.makeText(this, "Bonjour à tous", Toast.LENGTH_SHORT).show();
 ---
 
 ```kotlin
-Snackbar.make(binding.root, "Je suis une Snackbar", Snackbar.LENGTH_LONG).show()
+Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackbar.LENGTH_LONG).show()
 ```
 
 ```kotlin
-Snackbar.make(binding.root, "Je suis une Snackbar", Snackbar.LENGTH_LONG).setAction("Action") {
+Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackbar.LENGTH_LONG).setAction("Action") {
    // Votre action
 }.show()
 ```
