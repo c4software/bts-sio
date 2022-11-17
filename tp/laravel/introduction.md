@@ -451,7 +451,7 @@ Le fichier de migration défini la structure de la table que vous allez créer, 
 
 ```php
 $table->string('texte');
-$table->boolean('termine');
+$table->boolean('termine')->default(false);
 ```
 
 Je vous laisse l'ajouter avec les autres colonnes.
