@@ -399,7 +399,7 @@ App\TodoList::create(array(
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1)->first();
+$todo = App\TodoList::find(1);
 
 // Le passer à terminer
 $todo->termine = true;
@@ -414,7 +414,7 @@ $todo->save();
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1)->first();
+$todo = App\TodoList::find(1);
 
 // Le supprimer
 $todo->delete();

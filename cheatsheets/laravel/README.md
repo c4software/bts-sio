@@ -358,7 +358,7 @@ TodoList::create(array(
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1)->first();
+$todo = App\TodoList::find(1);
 
 // Le passer à terminer
 $todo->termine = true;
@@ -374,7 +374,7 @@ Plusieurs façon :
 ```php
 // Façon 1
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1)->first();
+$todo = App\TodoList::find(1);
 $todo->delete(); // Le supprimer
 
 // Façon 2

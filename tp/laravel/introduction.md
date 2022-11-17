@@ -659,7 +659,7 @@ En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) 
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = Todo::find("L'ID QUE VOUS SOUHAITEZ MODIFIER")->first();
+$todo = Todo::find("L'ID QUE VOUS SOUHAITEZ MODIFIER");
 
 // Le passer à terminer
 $todo->termine = true;
@@ -689,7 +689,7 @@ En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) 
 ```php
 // Façon 1
 // Rechercher celui avec l’id 1
-$todo = Todo::find(1)->first();
+$todo = Todo::find(1);
 $todo->delete(); // Le supprimer
 
 // Façon 2
