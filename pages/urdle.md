@@ -25,6 +25,20 @@ function __construct($nom, $prenom){
 }
 ```
 
+Appeler une méthode :
+
+```php
+class Exemple {
+    function helloWorld(){
+        echo "Bonjour Monde";
+    }
+}
+
+$exemple = new Exemple();
+
+$exemple->helloWorld();
+```
+
 Utiliser une liste :
 
 ```php
@@ -44,5 +58,11 @@ foreach ($maListe as $maValeur){
 // Taille d'un tableau
 echo sizeOf($maListe);
 ```
+
+Vous souhaitez plus d'aide ?
+
+- [Aide mémoire POO](/cheatsheets/poo/)
+- [Aide mémoire UML](/cheatsheets/poo-uml/)
+
 
 :::
