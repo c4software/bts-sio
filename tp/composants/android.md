@@ -24,7 +24,7 @@ Pour la création du projet, rien de spécial à prévoir. Il s'agit ici de suiv
 
 Lors de la création, Android Studio va nous poser plusieurs questions, nous allons donc choisir :
 
-- Template : Empty Activity
+- Template : Empty **Compose** Activity
 - Language : Kotlin
 - SDK Min. : SDK 26. (ou plus)
 
