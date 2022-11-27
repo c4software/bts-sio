@@ -12,7 +12,14 @@ module.exports = [
           { link: "/cheatsheets/php/README.md", text: "PHP" },
           { link: "/cheatsheets/javascript/README.md", text: "JavaScript" },
           { link: "/cheatsheets/vuejs/README.md", text: "VueJS" },
+        ]
+      },
+      {
+        text: "Laravel",
+        collapsible: true,
+        children: [
           { link: "/cheatsheets/laravel/README.md", text: "Laravel" },
+          { link: "/cheatsheets/laravel/quick.md", text: "Les commandes Laravel" },
         ]
       },
       {
