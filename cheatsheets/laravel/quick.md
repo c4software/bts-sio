@@ -35,7 +35,7 @@ $ php artisan db:seed
 $ php artisan make:migration create_products_table
 
 // Créer à partir du modèle avec des options : 
-// -m (migration), -c (contrôleur), -r (contrôleurs de ressources), -f (usine), -s (semence)
+// -m (migration), -c (contrôleur), -r (contrôleurs de ressources), -f (factory), -s (seeder)
 $ php artisan make:model Product -mcf
 
 // Créez un contrôleur
