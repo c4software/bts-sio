@@ -34,10 +34,16 @@ module.exports = [
       { link: "/cheatsheets/git/README.md", text: "Git" },
       { link: "/cheatsheets/sql/README.md", text: "SQL" },
       { link: "/cheatsheets/cordova/README.md", text: "Cordova" },
-      { link: "/cheatsheets/docker/README.md", text: "Docker" },
       { link: "/cheatsheets/owasp/README.md", text: "OWASP" },
-      { link: "/cheatsheets/ssh-key/README.md", text: "Clef SSH" },
-      { link: "/cheatsheets/mini-mvc-sample/README.md", text: "Mini MVC Sample" },
+      {
+        text: "DevOps",
+        collapsible: true,
+        children: [
+          { link: "/cheatsheets/ssh-key/README.md", text: "Clef SSH" },
+          { link: "/cheatsheets/mini-mvc-sample/README.md", text: "Mini MVC Sample" },
+          { link: "/cheatsheets/docker/README.md", text: "Docker" }
+        ]
+      },
     ]
   },
 
