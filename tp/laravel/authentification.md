@@ -113,7 +113,7 @@ Pour installer puis « compiler » vos ressources, il va falloir entrer les comm
 
 ```sh
 npm install
-npm run dev
+npm run build
 ```
 
 ::: danger Vous êtes sur un lecteur réseau ?
@@ -132,6 +132,14 @@ Exemple :
 
 ::: tip Petit point important
 Laravel Breeze est intéressant, car il ne cache pas le code **l'ensemble des éléments sont accessibles** vous pouvez modifier le code fourni aucun problème ! C'est d'ailleurs ce que nous allons faire.
+:::
+
+::: danger npm run build ?
+
+La commande `npm run build` va compiler vos ressources afin de le figer dans le temps après des modifications. Pendant la phase de développement vous serez amené à de plusieurs reprises à lancer cette commande pour mettre à jours vous ressources.
+
+Si vous souhaitez le faire de manière « automatique », vous pouvez lancer en arrière-plan `npm run dev` (en local uniquement évidemment), afin de surveiller le code client (CSS, JS) pour mettre à jour vos ressources.
+
 :::
 
 ### Tester le code
@@ -192,6 +200,13 @@ Avec le Scaffolding de Breeze nous avons à notre disposition **deux templates**
 - `guest.blade.php` pour les clients **non connectés**. Accessible dans votre template via `<x-guest-layout>`
 
 Nous allons donc migrer notre page d'accueil pour utiliser le nouveau système de composant. Pour ça rien de plus simple, il nous suffit d'utiliser `<x-guest-layout>` dans le template `welcome.blade.php`, je vous laisse le faire celui-ci va remplacer l'ensemble du haut de notre html jusqu'au `<body>` ce qui va donner :
+
+
+::: tip Un instant 👋
+
+Les composants sont une alternative à l'héritage des templates, ici nous allons réaliser l'équivalent du `@extends` du précédent TP. Je vous laisse choisir la version que vous préférez. Personnellement, j'aime bien l'approche composant bien plus moderne et lisible.
+
+:::
 
 ::: details Afficher le code du `welcome.blade.php`
 
@@ -468,6 +483,32 @@ Nous allons donc migrer notre page d'accueil pour utiliser le nouveau système d
 ::: danger À partir de maintenant
 J'espère qu'à partir de maintenant, vous allez utiliser le système de template ! Je vous encourage vivement à le faire.
 :::
+
+### Fonctionnement des composants
+
+Vous avez utilisé les composants, mais avez-vous compris le fonctionnement ? Un composant, c'est quelque chose de très simple. Il s'agit d'un morceau de vue réutilisable (un bouton, une card, etc.), il s'agit donc de « code HTML ». Si vous voulez une comparaison, nous pourrions comparer cela à une sorte de fonction. Prenons un exemple.
+
+Si nous souhaitons faire une `Card`. Notre composant pourrait ressembler à :
+
+```html
+<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        {{ $slot }}
+    </div>
+</div>
+```
+
+L'important dans le code ici est `{{ $slot }}`. `$slot` est une variable qui va contenir les éléments à l'intérieure de votre Card lors de son usage. Par exemple :
+
+```html
+<x-card>
+  Ceci est une démo
+</x-card>
+```
+
+Dans ce cas, la variable `$slot` contiendra… `Ceci est une démo`. Vous venez en quelque sorte de créer votre propre élément HTML réutilisable comme une `div` un `span` ou un `li`, mais ici cet élément est plus complet il peut contenir, du style, un comportement, des données par défaut.
+
+Je vous laisse parcourir les composants déjà disponibles dans le dossier `components`.
 
 ## Protéger une page
 
