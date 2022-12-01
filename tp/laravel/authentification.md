@@ -577,7 +577,7 @@ _resources/views/yolo/publicView.blade.php:_
 
 :::
 
-Je vous laisse coder votre version.
+Je vous laisse coder **votre version**.
 
 ### La partie privée
 
