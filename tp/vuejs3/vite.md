@@ -30,7 +30,7 @@ Cependant attention, si vous souhaitez supporter d'ancien navigateur (au hasard 
 Contrairement aux anciens outils fonctionnement avec VueJS, ViteJS ne nécessite rien d'autre que d'avoir sur votre ordinateur `NodeJS` (minimum 12) et `NPM`. Si c'est le cas pour vous, il vous suffit de saisir dans votre terminal :
 
 ```sh
-npm init @vitejs/app
+npm init vite
 ```
 
 ::: tip C'est interactif !
@@ -39,10 +39,10 @@ L'ensemble du processus est interactif ; il vous suffit donc de suivre les étap
 **Attention quand même**, le projet que vous allez créer sera situé dans le dossier courant.
 :::
 
-![ViteJS création d'un projet](./res/vitejs.png)
+![ViteJS création d'un projet](./res/vitejs.jpg)
 
 ::: warning plusieurs choix !
-Vous avez le choix du type de projet ; nous allons choisir **vue-ts**. Cette sélection du type de projet est la vraie force de ViteJS, grâce à son système de plug-in ViteJS est complètement agnostique il est donc complètement possible de faire autre chose que du VueJS (et ça, c'est cool).
+Vous avez le choix du type de projet ; nous allons choisir **Vue** puis **Typescript**. Cette sélection du type de projet est la vraie force de ViteJS, grâce à son système de plug-in ViteJS est complètement agnostique il est donc complètement possible de faire autre chose que du VueJS (et ça, c'est cool).
 :::
 
 ## Lancer le projet
