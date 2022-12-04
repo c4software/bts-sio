@@ -84,6 +84,33 @@ Quelques éléments importants :
 **Avant d'aller plus loin**, je vous laisse tester :
 
 - Le site que vous venez de lancer.
-- La modification du code source, je vous propose de changer **Vite + Vue** par **Vite + Vue + Votre Prénom**
+- La modification du code source, je vous propose de changer **Vite + Vue** par **Vite + Vue + Votre Prénom** (je vous laisse fouinner, mais la modification est à faire dans le `App.vue`)
 
 Votre modification de code doit être immédiatement disponible.
+
+## La structure
+
+Un projet Vite à toujours la même structure de base :
+
+![Structure](./res/vite-structure.jpg)
+
+Les éléments **importants** sont les suivants :
+
+- Votre code source sera dans le dossier `src/`.
+- Les composants seront dans `src/components/`.
+- Vos dépendances / librairies seront dans `package.json`.
+- Les scripts (hors `.vue`) seront nommé `….ts` (pour indiquer TypeScript).
+
+**Avant d'allez plus loin, je vous laisse regarder le contenu**.
+
+::: danger Envie de tout changer ?
+Bien évidemment vous pouvez la modifier… Mais je vous encourage vivement à la garder telle quelle !
+:::
+
+### Les .Vue
+
+Sans entrer trop dans le détail (ce n'est pas le but de ce TP), un fichier `.vue` va contenir l'ensemble de la logique « d'un composant » il pourra donc contenir :
+
+- _La vue (Le HTML) :_ Il s'agit de template, nous avons donc à notre disposition une synthaxe particulière [À voir ici](https://vuejs.org/guide/essentials/template-syntax.html).
+- _Le script (Le TypeScript / JavaScript) :_ Il s'agit de l'ensemble de la logique de fonctionnement de votre composant. (appel Ajax, logique de clique, etc). Avec VueJS 3.0 nous avons accès à la [composition API, c'est pratique n'hésitez pas à vous documenter ici](https://vuejs.org/api/sfc-script-setup.html)
+- _Le Style (CSS) :_ Style de votre composant, de la css classique, mais appliquée uniquement sur votre composant [En savoir plus](https://vue-loader.vuejs.org/guide/scoped-css.html)
