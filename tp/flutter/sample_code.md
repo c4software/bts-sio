@@ -74,3 +74,22 @@ Tout comme l'approche MVC, l'organisation du code est très importante. il est i
 Le découpage en Widgets, Screens et Services est une approche très courante. C'est une approche que je **vous recommande** d'utiliser pour vos projets.
 
 :::
+
+## Le routeur
+
+Le routeur permet de gérer les différentes pages de l'application. Il permet de définir les différentes routes de l'application et de gérer les transitions entre les pages.
+
+Le routeur est utilisé dans le fichier `HomePageScreen.dart` :
+
+```dart
+Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => DetailsScreen(image: image),
+  ),
+);
+```
+
+Dans cet exemple, on utilise la méthode `push` pour ajouter une nouvelle page à la pile de navigation. La méthode `push` prend en paramètre un `MaterialPageRoute` qui permet de définir la page à ajouter à la pile de navigation. 
+
+`DetailsScreen` est l'écran qui sera affiché. On lui passe en paramètre l'image à afficher. Il s'agit de l'élément sur lequel l'utilisateur a cliqué.
