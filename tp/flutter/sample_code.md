@@ -1,4 +1,4 @@
-# Projet d'exemple Flutter
+# Flutter, une liste et une API REST
 
 Cet exemple montre comment utiliser Flutter pour créer une application récupérant des données via une API REST.
 
