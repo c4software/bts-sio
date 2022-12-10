@@ -26,7 +26,7 @@ Vous pouvez utiliser la commande suivante pour vérifier que Flutter est bien in
 flutter doctor
 ```
 
-::: details Pas de détail
+::: tip Pas de détail
 Vous avez vu ces étapes lors des cours. Je ne vais donc pas entrer dans le détail de l'installation.
 :::
 
