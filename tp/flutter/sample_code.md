@@ -32,7 +32,7 @@ Vous avez vu ces étapes lors des cours. Je ne vais donc pas entrer dans le dét
 
 ## Récupération du code
 
-Le code est disponible à l'adresse suivante : [Github](https://github.com/c4software/flutter-list-sample). 
+Le code est disponible à l'adresse suivante : [c4software/flutter-list-sample](https://github.com/c4software/flutter-list-sample). 
 
 - Je vous laisse cloner le projet. 
 
