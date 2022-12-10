@@ -52,7 +52,7 @@ Puis vous pouvez lancer l'application via la commande suivante :
 flutter run
 ```
 
-::: details Être dans le bon répertoire
+::: tip Être dans le bon répertoire
 Évidemment, vous devez être dans le bon répertoire pour lancer l'application.
 :::
 
