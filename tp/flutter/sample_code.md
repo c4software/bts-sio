@@ -71,4 +71,6 @@ Le code est organisé de la manière suivante :
 
 Tout comme l'approche MVC, l'organisation du code est très importante. il est important de séparer les différentes parties de l'application. Cela permet de mieux comprendre le code et de le maintenir plus facilement.
 
+Le découpage en Widgets, Screens et Services est une approche très courante. C'est une approche que je **vous recommande** d'utiliser pour vos projets.
+
 :::
