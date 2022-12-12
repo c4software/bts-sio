@@ -69,8 +69,9 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
 
     if (requestCode == PERMISSION_REQUEST_LOCATION) {
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && locationServiceEnabled()) {
-            // Permission OK => Lancer SCAN
-            Snackbar.make(binding.root, "Vous devez lancer le scan ", Snackbar.LENGTH_LONG).setAction("Action", null).show()
+            // Permission OK => Nous pouvons lancer l'initialisation du BLE.
+            // En appelant la méthode setupBLE()
+            // La méthode setupBLE() va initialiser le BluetoothAdapter et lancera le scan.
         } else if (!locationServiceEnabled()) {
             // Inviter à activer la localisation
             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
@@ -124,20 +125,33 @@ private fun locationServiceEnabled(): Boolean {
 ### Le code du scan
 
 ```kotlin
-/**
-* Récupération de l'adapter Bluetooth & vérification si celui-ci est actif
-*/
+ /**
+  * Récupération de l'adapter Bluetooth & vérification si celui-ci est actif
+  */
+@SuppressLint("MissingPermission")
 private fun setupBLE() {
     (getSystemService(BLUETOOTH_SERVICE) as BluetoothManager?)?.let { bluetoothManager ->
         bluetoothAdapter = bluetoothManager.adapter
         if (bluetoothAdapter != null && !bluetoothManager.adapter.isEnabled) {
-            startActivityForResult(Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), REQUEST_ENABLE_BLE)
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == Activity.RESULT_OK) {
+                    // Le Bluetooth est activé, on lance le scan
+                    scanLeDevice()
+                } else {
+                    // Bluetooth non activé
+                    Toast.makeText(this, "Bluetooth non activé", Toast.LENGTH_SHORT).show()
+                }
+            }.launch(Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE))
         } else {
             scanLeDevice()
         }
     }
 }
 ```
+
+::: tip SetupBLE
+Cette méthode va vérifier si l'adapter Bluetooth est disponible et si il est activé. Si il n'est pas activé, on va demander à l'utilisateur de l'activer. Si il est activé, on lance le scan.
+:::
 
 ```kotlin
 // Le scan va durer 10 secondes seulement, sauf si vous passez une autre valeur comme paramètre.
@@ -164,6 +178,15 @@ private fun scanLeDevice(scanPeriod: Long = 10000) {
 }
 ```
 
+::: tip ScanLeDevice
+Cette méthode va lancer le scan pendant 10 secondes. Si vous passez une autre valeur en paramètre, le scan durera cette valeur en millisecondes. Elle va aussi lancer une tache qui va s'arrêter au bout de 10 secondes. Cette tache va appeler la méthode « stopScan » de l'adapter Bluetooth.
+
+- `scanFilters` : Permet de filtrer les résultats du scan.
+- `scanSettings` : Permet de configurer le scan. Comme par exemple la puissance du scan.
+- `leScanCallback` : Callback appelé à chaque périphérique trouvé. Nous allons voir comment le gérer dans la suite.
+
+:::
+
 ### Gestions des résultats
 
 ```kotlin
@@ -172,11 +195,13 @@ private val leScanCallback: ScanCallback = object : ScanCallback() {
     override fun onScanResult(callbackType: Int, result: ScanResult) {
         super.onScanResult(callbackType, result)
 
-        // C'est ici que nous allons créer notre « Device » et l'ajouter dans le RecyclerView (Datasource)
+        // C'est ici que nous allons créer notre « Device » et l'ajouter dans la dataSource de notre RecyclerView
 
-        //val device = Device(result.device.name, result.device.address, result.device)
-        // if (!bleDevicesFoundList.contains(device)) {
+        // val device = Device(result.device.name, result.device.address, result.device)
+        // if (!device.name.isNullOrBlank() && !bleDevicesFoundList.contains(device)) {
         //     bleDevicesFoundList.add(device)
+        //     Indique à l'adapter que nous avons ajouté un élément, il va donc se mettre à jour
+        //     findViewById<RecyclerView>(R.id.rvDevices).adapter?.notifyItemInserted(bleDevicesFoundList.size - 1)
         // }
     }
 }
@@ -184,13 +209,9 @@ private val leScanCallback: ScanCallback = object : ScanCallback() {
 
 ### Quelques variables
 
-```kotlin
-// REQUEST Code de gestion
-companion object {
-    const val PERMISSION_REQUEST_LOCATION = 9999
-    const val REQUEST_ENABLE_BLE = 9997
-}
+Sans ces variables, votre activité ne fonctionnera pas.
 
+```kotlin
 // Gestion du Bluetooth
 // L'Adapter permettant de se connecter
 private var bluetoothAdapter: BluetoothAdapter? = null
@@ -200,10 +221,6 @@ private var currentBluetoothGatt: BluetoothGatt? = null
 
 // « Interface système nous permettant de scanner »
 private var bluetoothLeScanner: BluetoothLeScanner? = null
-
-/**
-    * Gestion du SCAN, recherche des device BLE à proximité
-    */
 
 // Parametrage du scan BLE
 private val scanSettings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build()
@@ -215,10 +232,10 @@ private var scanFilters: List<ScanFilter> = arrayListOf(
 
 // Variable de fonctionnement
 private var mScanning = false
-private val handler = Handler()
+private val handler = Handler(Looper.getMainLooper())
 
-// Adapter
-private val bleDevicesFoundList = emptyDataSourceTyped<Device>()
+// DataSource de notre adapter.
+private val bleDevicesFoundList = arrayListOf<Device>()
 
 ```
 
@@ -236,36 +253,113 @@ data class Device (
     var device: BluetoothDevice
 ) {
     override fun equals(other: Any?): Boolean {
+        // On compare les MAC, pour ne pas ajouté deux fois le même device dans la liste.
         return other is Device && other.mac == this.mac
     }
 }
 ```
 
-### Le Viewholder
+### L'adatper
+
+L'adapter permet de gérer la liste des devices trouvés. Il va donc nous permettre de créer une vue pour chaque élément de la liste. Il va aussi nous permettre de gérer les interactions avec les éléments de la liste. Par exemple, si l'utilisateur clique sur un élément de la liste, on va pouvoir récupérer l'objet « Device » correspondant et l'utiliser pour se connecter.
 
 ```kotlin
-class DeviceViewHolder(itemView: View) : ViewHolder(itemView) {
-    val name: TextView = itemView.findViewById(R.id.title)
+class DeviceAdapter(private val deviceList: ArrayList<Device>, private val onClick: ((selectedDevice: Device) -> Unit)? = null) : RecyclerView.Adapter<DeviceAdapter.ViewHolder>() {
+
+    // Comment s'affiche ma vue
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun showItem(device: Device, onClick: ((selectedDevice: Device) -> Unit)? = null) {
+            itemView.findViewById<TextView>(R.id.title).text = device.name
+
+            if (onClick != null) {
+                itemView.setOnClickListener {
+                    onClick(device)
+                }
+            }
+        }
+    }
+
+    // Retourne une « vue » / « layout » pour chaque élément de la liste
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_device, parent, false)
+        return ViewHolder(view)
+    }
+
+    // Connect la vue ET la données
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.showItem(deviceList[position], onClick)
+    }
+
+    override fun getItemCount(): Int {
+        return deviceList.size
+    }
+
 }
 ```
 
-### La Définition
+### Initialisation du RecyclerView
+
+Pour fonctionner correctement, le RecyclerView doit être initialisé. Pour cela, nous allons utiliser une méthode qui va nous permettre de définir un « LayoutManager » et un « Adapter » à votre RecyclerView.
+
+Dans mon Layout, j'ai un RecyclerView avec l'id `rvDevices`.
 
 ```kotlin
-rvDevices.setup {
-    withDataSource(bleDevicesFoundList)
-    withItem<Device, DeviceViewHolder>(R.layout.item_device) {
-        onBind(::DeviceViewHolder) { _, item ->
-            name.text = item.name.takeIf { !it.isNullOrEmpty() } ?: run { item.mac }
-        }
-        onClick {
-            Toast.makeText(this@ScanActivity, getString(R.string.trying_connection_to, item.name), Toast.LENGTH_SHORT).show()
-            BluetoothLEManager.currentDevice = item.device
-            connectToCurrentDevice()
-        }
+/*
+ * Méthode qui initialise le recycler view.
+ * Alternativement, vous pouvez utiliser une librairie comme Recyclical.
+ */
+private fun setupRecycler() {
+    val rvDevice = findViewById<RecyclerView>(R.id.rvDevices)
+    rvDevice.layoutManager = LinearLayoutManager(this)
+    rvDevice.adapter = DeviceAdapter(bleDevicesFoundList) { device ->
+        // Évidemment, ici, vous pouvez faire ce que vous voulez. Nous nous connecterons plus tard à notre périphérique
+        Toast.makeText(this@ScanActivity, "Clique sur $device", Toast.LENGTH_SHORT).show()
     }
 }
 ```
+
+::: tip Où appeler cette méthode ?
+
+Nous allons appeler cette méthode dans la méthode `onCreate` de notre activité.
+
+:::
+
+### Gérer la compatibilité du mobile
+
+Dans le code de **l'activity BLE**, si vous souhaitez gérer l'ensembles des cas d'erreurs :
+
+- Équipement non compatible BLE.
+- Vérifications des permissions.
+- Vérification du service de localisation.
+
+```kotlin
+override fun onResume() {
+    super.onResume()
+
+    if (!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+        // Test si le téléphone est compatible BLE, si c'est pas le cas, on finish() l'activity
+        Toast.makeText(this, getString(R.string.not_compatible), Toast.LENGTH_SHORT).show()
+        finish()
+    } else if (hasPermission() && locationServiceEnabled()) {
+        // Lancer suite => Activation BLE + Lancer Scan
+        setupBLE()
+    } else if(!hasPermission()) {
+        // On demande la permission
+        askForPermission()
+    } else {
+        // On demande d'activer la localisation
+        // Idéalement on demande avec un activité.
+        // À vous de me proposer mieux (Une activité, une dialog, etc)
+        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+    }
+}
+```
+
+::: tip Pourquoi `onResume()` ?
+
+On va appeler cette méthode dans la méthode `onResume` de notre activité. C'est une méthode qui est appelée à chaque fois que l'activité est visible à l'écran. C'est donc le meilleur endroit pour vérifier si l'équipement est compatible BLE, si les permissions sont accordées, etc.
+
+:::
 
 ### La classe LocalPreferences ?
 
@@ -301,7 +395,6 @@ class LocalPreferences private constructor(context: Context) {
             }
         }
     }
-
 }
 ```
 
@@ -346,6 +439,8 @@ private fun connectToCurrentDevice() {
 
 ### Déconnexion
 
+Cette méthode va nous permettre de déconnecter le périphérique. Elle est appelée dans le cas où nous avons cliqué sur le bouton « Déconnexion ».
+
 ```kotlin
 /**
 * On demande la déconnexion du device
@@ -358,6 +453,8 @@ private fun disconnectFromCurrentDevice() {
 ```
 
 ### BluetothLEManager
+
+Cette classe va nous permettre de gérer les différentes méthodes de connexion, déconnexion, etc. Elle va aussi nous permettre de gérer les différents UUIDs, vous devez la placer dans un fichier à part. Par exemple `BluetoothLEManager.kt`, évidemment vous le rangerez dans le bon package.
 
 ```kotlin
 class BluetoothLEManager {
@@ -445,6 +542,8 @@ private fun setUiMode(isConnected: Boolean) {
 
 ### Interagir avec la LED
 
+Maintenant que nous sommes connecté, nous allons pouvoir interagir avec la LED. Pour cela, nous allons utiliser les UUIDs que nous avons défini dans la classe `BluetoothLEManager`. Nous allons donc récupérer le service qui nous intéresse, puis nous allons récupérer la caractéristique qui nous intéresse. Enfin, nous allons envoyer la valeur `1` pour toggle la LED (c'est à dire l'allumer ou l'éteindre).
+
 ```kotlin
 /**
 * Récupération de « service » BLE (via UUID) qui nous permettra d'envoyer / recevoir des commandes
@@ -476,43 +575,14 @@ private fun toggleLed() {
 }
 ```
 
-### Gérer la compatibilité du mobile
-
-Dans le code de **l'activity BLE**, si vous souhaitez gérer l'ensembles des cas d'erreurs :
-
-- Équipement non compatible BLE.
-- Vérifications des permissions.
-- Vérification du service de localisation.
-
-```kotlin
-override fun onResume() {
-    super.onResume()
-
-    if (!packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
-        // Test si le téléphone est compatible BLE, si c'est pas le cas, on finish() l'activity
-        Toast.makeText(this, getString(R.string.not_compatible), Toast.LENGTH_SHORT).show()
-        finish()
-    } else if (hasPermission() && locationServiceEnabled()) {
-        // Lancer suite => Activation BLE + Lancer Scan
-        setupBLE()
-    } else if(!hasPermission()) {
-        // On demande la permission
-        askForPermission()
-    } else {
-        // On demande d'activer la localisation
-        // Idéalement on demande avec un activité.
-        // À vous de me proposer mieux (Une activité, une dialog, etc)
-        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-    }
-}
-```
-
 ### Ajout des actions aux cliques sur l'interface
 
 Nous avons nos méthodes, mais elles ne sont actuellement pas appelées par une action utilisateur. Pour vous guider dans la mission, vous devez dans le `OnCreate` ajouter des lignes de code similaire à :
 
 ```kotlin
-startScan.setOnClickListener { askForPermission() }
+startScan.setOnClickListener { 
+    askForPermission()
+}
 
 disconnect.setOnClickListener {
     // Appeler la bonne méthode
@@ -522,6 +592,12 @@ toggleLed.setOnClickListener {
     // Appeler la bonne méthode
 }
 ```
+
+::: danger Vous lanciez le scan au démarrage de l'activité
+
+Pour rendre votre application plus « propre », vous devez lancer le scan uniquement si l'utilisateur clique sur le bouton « Scan ». Pour cela, vous allez devoir modifier la méthode `onResume` pour qu'elle ne lance pas le scan.
+
+:::
 
 ## Télécommande via Internet
 
