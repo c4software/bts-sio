@@ -597,7 +597,7 @@ toggleLed.setOnClickListener {
 
 ---
 
-Partie 2 : Ajout de la gestion de la LED via Internet
+## Partie 2 : Ajout de la gestion de la LED via Internet
 
 Cette partie est en bonus, pour faire fonctionner le code de cette partie, vous devez avoir fini la partie 1. Vous aller également avoir besoin de différentes librairies :
 
@@ -738,7 +738,7 @@ private fun getStatus() {
 
 ---
 
-Partie 3 : Les notifications BLE
+## Partie 3 : Les notifications BLE
 
 Si votre code fonctionne, un simple copier/coller devrait suffire pour faire fonctionner la partie 3.
 
