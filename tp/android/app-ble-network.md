@@ -634,6 +634,22 @@ Nécessite le « nom » du périphérique (donc d'un scan précédent).
 
 ### La classe LedStatus
 
+La classe `LedStatus` est un model qui va nous permettre de stocker l'état de la LED. Nous allons donc avoir besoin de deux propriétés : 
+
+- `identifier` : qui va contenir le nom du périphérique (identifiant unique).
+- `status` : qui va contenir l'état de la LED (allumée ou éteinte).
+
+Nous allons également avoir besoin de deux méthodes :
+
+- `setIdentifier` : qui va permettre de modifier l'identifiant du périphérique.
+- `setStatus` : qui va permettre de modifier l'état de la LED.
+- `reverseStatus` : qui va permettre de modifier l'état de la LED en fonction de son état actuel.
+- `clone` : qui va permettre de cloner l'objet.
+
+Cette classe nous permettra de stocker l'état de la LED, mais aussi de la modifier. Nous allons donc pouvoir l'utiliser pour envoyer des requêtes HTTP vers notre serveur.
+
+Voici le code de la classe :
+
 ```kotlin
 /**
  * LedStatus model
@@ -658,6 +674,8 @@ data class LedStatus(var identifier: String = "", var status: Boolean = false) {
     }
 }
 ```
+
+Je vous laisse ranger le code dans le bon package.
 
 ### Nouvelles dépendances Gradle
 
