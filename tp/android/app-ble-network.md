@@ -577,7 +577,9 @@ private fun toggleLed() {
 
 ### Ajout des actions aux cliques sur l'interface
 
-Nous avons nos méthodes, mais elles ne sont actuellement pas appelées par une action utilisateur. Pour vous guider dans la mission, vous devez dans le `OnCreate` ajouter des lignes de code similaire à :
+Actuellement votre Scan fonctionne, mais vous le lancez au démarrage de l'activité. C'est une solution, mais pas la plus propre. Nous allons donc faire évoluer le code pour que le scan ne se lance que si l'utilisateur clique sur le bouton « Scan ».
+
+Pour vous guider dans la mission, vous devez dans le `OnCreate` ajouter des lignes de code similaire à :
 
 ```kotlin
 startScan.setOnClickListener { 
@@ -593,9 +595,32 @@ toggleLed.setOnClickListener {
 }
 ```
 
-::: danger Vous lanciez le scan au démarrage de l'activité
+---
 
-Pour rendre votre application plus « propre », vous devez lancer le scan uniquement si l'utilisateur clique sur le bouton « Scan ». Pour cela, vous allez devoir modifier la méthode `onResume` pour qu'elle ne lance pas le scan.
+Partie 2 : Ajout de la gestion de la LED via Internet
+
+Cette partie est en bonus, pour faire fonctionner le code de cette partie, vous devez avoir fini la partie 1. Vous aller également avoir besoin de différentes librairies :
+
+- OkHttp
+- GSON
+- Retrofit
+- CoRoutines Kotlin
+
+Ces librairies ne sont pas présentes dans le projet, vous devez donc les ajouter. Pour cela, vous pouvez aller dans le fichier `build.gradle` du module `app` et ajouter les lignes suivantes :
+
+```groovy
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+```
+
+::: tip La documentation
+
+Avant de continuer je vous laisse regarder [la documentation disponnible ici](/tp/android/network.md). Vous y trouverez les différentes étapes pour faire fonctionner le code de cette partie. 
 
 :::
 
@@ -711,6 +736,12 @@ private fun getStatus() {
 }
 ```
 
+---
+
+Partie 3 : Les notifications BLE
+
+Si votre code fonctionne, un simple copier/coller devrait suffire pour faire fonctionner la partie 3.
+
 ### Notification BLE
 
 La Raspberry Pi dispose également d'un service de « Notification ». Les notifications sont envoyées à chaque changement d'état de la LED (local ou via le réseau). Cette notification est envoyée sur l'UUID `d75167c8-e6f9-4f0b-b688-09d96e195f00`.
@@ -737,4 +768,18 @@ private fun handleToggleLedNotificationUpdate(characteristic: BluetoothGattChara
 
 ### Fourniture des sources
 
+Votre code doit être disponible sur un dépôt Git (GitHub, GitLab, Bitbucket, etc.). Vous devez fournir l'URL de votre dépôt dans le formulaire ci-dessous. 
+
 [Partage du projet](https://docs.google.com/forms/d/e/1FAIpQLScZ5WflYVlnNzQlwYwdJsCc9izqthZJT9zVQK6HWsypgb06Bg/viewform)
+
+⚠️ N'oubliez pas de mettre votre nom et prénom dans le formulaire.
+
+Bravo, vous avez terminé le projet ! 🎉
+
+::: tip Rappel
+
+L'intégration de Git dans Android Studio est très simple. Celle-ci est disponible dans le menu `VCS` de la barre de menu, elle vous permettra de réaliser l'ensemble des opérations de base sur votre dépôt Git.
+
+Vous avez un doute ? N'hésitez pas à me demander de l'aide :).
+
+:::
