@@ -624,7 +624,7 @@ Avant de continuer je vous laisse regarder [la documentation disponnible ici](/t
 
 :::
 
-## Télécommande via Internet
+### Télécommande via Internet
 
 Nécessite le « nom » du périphérique (donc d'un scan précédent).
 
@@ -720,6 +720,17 @@ interface ApiService {
     }
 }
 ```
+
+- `readStatus` : Récupère l'état de la LED depuis le serveur.
+- `writeStatus` : Envoie l'état de la LED sur le serveur, et retourne l'état de la LED après modification.
+
+Ces deux méthodes sont des `suspend` car nous allons les utiliser dans des `coroutines`.
+
+::: tip Pas de code ?
+
+Et non, nous n'avons pas besoin de code pour faire fonctionner ces deux méthodes. Elles sont générées automatiquement par Retrofit, en fonction de l'interface `ApiService`. Pratique !
+
+:::
 
 ### Exemple d'utilisation
 
