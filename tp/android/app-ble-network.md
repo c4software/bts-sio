@@ -259,7 +259,7 @@ data class Device (
 }
 ```
 
-### L'adatper
+### L'adapter
 
 L'adapter permet de gérer la liste des devices trouvés. Il va donc nous permettre de créer une vue pour chaque élément de la liste. Il va aussi nous permettre de gérer les interactions avec les éléments de la liste. Par exemple, si l'utilisateur clique sur un élément de la liste, on va pouvoir récupérer l'objet « Device » correspondant et l'utiliser pour se connecter.
 
