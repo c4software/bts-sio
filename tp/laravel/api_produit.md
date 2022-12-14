@@ -255,6 +255,7 @@ C'est à vous que je vous laisse réaliser la même opération pour les produits
 
 ::: tip Aide
 pour l'image du produit, vous pouvez utiliser [https://picsum.photos/200/300](https://picsum.photos/200/300) pour générer des images aléatoires.
+:::
 
 ## Création de l'API
 
