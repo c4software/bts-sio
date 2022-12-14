@@ -541,6 +541,30 @@ function commandesClient($idClient){
 
 ### Obtenir les commandes d'un client
 
+Un peu d'aide pour cette partie. Pour obtenir toutes les commandes d'un client, nous allons utiliser la méthode `commandes()` qui permet de récupérer les commandes d'un client. 
+
+```php
+// Exemple de méthode qui récupère toutes les commandes d'un client
+function commandesClient($idClient){
+    return response()->json(Client::find($idClient)->commandes()->get());
+}
+```
+
+Nous passons ici par le modèle `Client` pour récupérer les commandes d'un client. Pourquoi ? Parce que nous avons défini une relation entre le modèle `Client` et le modèle `Commande`. Cette relation permet de récupérer les commandes d'un client.
+
+Mais nous pouvons également récupérer les produits de chaque commande. Pour cela, nous allons utiliser la méthode `with()` qui permet de récupérer les produits d'une commande.
+
+```php
+// Exemple de méthode qui récupère toutes les commandes d'un client avec les produits de chaque commande
+function commandesClient($idClient){
+    return response()->json(Client::find($idClient)->commandes()->with('produit')->get());
+}
+```
+
+Il est également possible de passer directement via le modèle `Commande` pour récupérer les commandes d'un client. Pour cela, nous allons utiliser la méthode `where()` qui permet de filtrer les résultats. Comme présenté dans la solution alternative suivante.
+
+### Obtenir les produits commandés par un client solution alternative
+
 Un peu d'aide pour cette partie. Pour obtenir toutes les commandes d'un client, nous allons utiliser la méthode `where()` qui permet de filtrer les résultats. Cette méthode prend en paramètre le nom du champ et la valeur à filtrer.
 
 ```php
