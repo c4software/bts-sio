@@ -452,6 +452,8 @@ private fun disconnectFromCurrentDevice() {
 }
 ```
 
+La méthode `setUiMode` va nous permettre de changer l'interface en fonction de si nous sommes connecté ou non. Nous l'écrirons un peu plus tard.
+
 ### BluetothLEManager
 
 Cette classe va nous permettre de gérer les différentes méthodes de connexion, déconnexion, etc. Elle va aussi nous permettre de gérer les différents UUIDs, vous devez la placer dans un fichier à part. Par exemple `BluetoothLEManager.kt`, évidemment vous le rangerez dans le bon package.
@@ -515,7 +517,11 @@ class BluetoothLEManager {
 
 Cette méthode permet de changer l'état de l'interface en fonction de la connexion.
 
-Je vous laisse écrire la méthode mais petite aide :
+::: tip Un instant 👋
+Le code proposé en exemple ne fonctionnera que si vous avez utilisé les même identifiants que moi **évidemment**.
+:::
+
+Je vous laisse écrire la méthode mais voici un exemple de code :
 
 ```kotlin
 private fun setUiMode(isConnected: Boolean) {
@@ -606,21 +612,9 @@ Cette partie est en bonus, pour faire fonctionner le code de cette partie, vous 
 - Retrofit
 - CoRoutines Kotlin
 
-Ces librairies ne sont pas présentes dans le projet, vous devez donc les ajouter. Pour cela, vous pouvez aller dans le fichier `build.gradle` du module `app` et ajouter les lignes suivantes :
-
-```groovy
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-
-implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-implementation 'com.squareup.okhttp3:okhttp:4.9.3'
-implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
-```
-
 ::: tip La documentation
 
-Avant de continuer je vous laisse regarder [la documentation disponnible ici](/tp/android/network.md). Vous y trouverez les différentes étapes pour faire fonctionner le code de cette partie. 
+Avant de continuer je vous laisse regarder [la documentation disponnible ici](/tp/android/network.md). Vous y trouverez des généralités sur la gestion des appels réseau, ainsi que des exemples de code.
 
 :::
 
@@ -678,6 +672,8 @@ data class LedStatus(var identifier: String = "", var status: Boolean = false) {
 Je vous laisse ranger le code dans le bon package.
 
 ### Nouvelles dépendances Gradle
+
+Nous allons maintenant avoir besoin de nouvelles dépendances pour faire fonctionner le code de cette partie. Pour cela, vous devez aller dans le fichier `build.gradle` du module `app` et ajouter les lignes suivantes :
 
 ```groovy
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
@@ -752,6 +748,8 @@ Et non, nous n'avons pas besoin de code pour faire fonctionner ces deux méthode
 
 ### Exemple d'utilisation
 
+Voici un exemple d'utilisation, celui-ci permet de récupérer l'état de la LED depuis le serveur. Nous utilisons une coroutine pour faire l'appel HTTP, et nous utilisons la méthode `runCatching` pour gérer les erreurs.
+
 ```kotlin
 // Récupération de l'état depuis le serveur
 private fun getStatus() {
@@ -765,6 +763,14 @@ private fun getStatus() {
 }
 ```
 
+::: tip RunCatching
+
+RunCatching est une méthode qui permet de gérer les erreurs. Elle permet de faire un `try/catch` en une seule ligne. Attention, elle va masquer les erreurs, donc il faut faire attention à ne pas l'utiliser dans des méthodes qui doivent retourner une valeur.
+
+Dans le cadre de debuggage, il est préférable d'utiliser `try/catch` classique pour afficher les erreurs.
+
+:::
+
 ---
 
 ## Partie 3 : Les notifications BLE
@@ -774,6 +780,8 @@ Si votre code fonctionne, un simple copier/coller devrait suffire pour faire fon
 ### Notification BLE
 
 La Raspberry Pi dispose également d'un service de « Notification ». Les notifications sont envoyées à chaque changement d'état de la LED (local ou via le réseau). Cette notification est envoyée sur l'UUID `d75167c8-e6f9-4f0b-b688-09d96e195f00`.
+
+Nous allons donc devoir l'écouter et changer l'état de notre interface pour afficher si la LED est éteinte ou allumée.
 
 ```kotlin
 private fun enableListenBleNotify() {

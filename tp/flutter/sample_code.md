@@ -10,7 +10,7 @@ Cet exemple montre comment utiliser Flutter pour créer une application récupé
 
 L'application affiche une liste de films récupérés via une API REST. Lorsque l'on clique sur un élément de la liste, on accède à une page détaillée de l'élément (affichage d'une image).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tqNIVVX0mMY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RgxA8u-oMBw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Prérequis
 
@@ -55,6 +55,14 @@ flutter run
 ::: tip Être dans le bon répertoire
 Évidemment, vous devez être dans le bon répertoire pour lancer l'application.
 :::
+
+## Le but du code
+
+L'objectif de ce projet est de présenter une application simple Flutter qui implémente :
+
+- Des tabs pour accéder au contenu.
+- Une liste de « Image » en provenance d'une API.
+- Une vue de détail.
 
 ## Organisation du code
 
