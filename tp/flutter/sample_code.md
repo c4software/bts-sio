@@ -83,6 +83,21 @@ Le découpage en Widgets, Screens et Services est une approche très courante. C
 
 :::
 
+## Les tabs
+
+Les tabs sont des éléments permettant de naviguer entre les différentes pages de l'application. Il s'agit d'un élément très courant dans les applications mobiles, elles prennent généralement la forme d'un menu en bas de l'écran.
+
+![Tabs](./res/bottombar.jpg)
+
+Ce composant ce nomme une `BottomNavigationBar`. Il fonctionne de la façon suivante :
+
+- On définit une liste d'éléments. (Les Widgets à afficher dans notre vue, nommés dans mon code `_children`).
+- On définit une `BottomNavigationBar` qui contient la liste des icônes à afficher.
+- On ajoute une variable `currentIndex` qui permet de définir l'élément actif.
+- Le `Body` de notre `Scaffold` contient le Widget actif. Il s'agit d'une référence à `currentIndex` dans la liste des Widgets.
+
+Vous pouvez voir l'implémentation de ce fonctionnement dans le fichier [`HomePageTabs.dart` disponible en cliquant ici](https://github.com/c4software/flutter-list-sample/blob/master/lib/ui/screens/home/HomePageTabs.dart)
+
 ## Le routeur
 
 Le routeur permet de gérer les différentes pages de l'application. Il permet de définir les différentes routes de l'application et de gérer les transitions entre les pages.
