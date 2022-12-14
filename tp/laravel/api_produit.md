@@ -644,3 +644,5 @@ Ne vous inquiétez pas, pour réaliser notre client, nous utiliserons deux frame
 - Flutter pour le Mobile
 
 Vous avez un exemple d'application [Flutter utilisant une API](/tp/flutter/sample_code.md). Vous pouvez vous en inspirer pour réaliser votre application.
+
+<iframe src="https://giphy.com/embed/m9eG1qVjvN56H0MXt8" width="295" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
