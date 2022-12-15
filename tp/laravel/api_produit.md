@@ -213,6 +213,18 @@ use HasApiTokens, HasFactory, Notifiable;
 
 ⚠️ Sans cela, vous ne pourrez pas utiliser les factories.
 
+::: danger Attention aux imports
+
+N'oublier pas d'importer les classes nécessaires pour utiliser les factories.
+
+```php
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+```
+
+:::
+
 ### Créer une factory
 
 ```shell
