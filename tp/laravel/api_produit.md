@@ -28,7 +28,7 @@ Ici nous n'allons pas utiliser de HTML, CSS ou autres. Nous allons uniquement ma
 
 - Lister les produits présents en base de données.
 - Commander un ou plusieurs produits.
-- Se connecter avec un compte utilisateur.
+- Se connecter avec un compte client.
 
 ::: tip API, JSON ?
 Une API est le cœur de beaucoup de systèmes moderne. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
@@ -642,58 +642,62 @@ Commande::destroy(1);
 
 :::
 
-## Créer un utilisateur
+## Créer un client
 
-Nous allons maintenant créer une route qui va nous permettre de créer un utilisateur. Pour cela nous allons utiliser la méthode `creerUtilisateur()` qui permet de créer un utilisateur.
+Nous allons maintenant créer une route qui va nous permettre de créer un client. Pour cela nous allons utiliser la méthode `creerClient()` qui permet de créer un client.
 
 Je vous laisse écrire le code pour cette partie. En reprenant les étapes précédentes, vous devriez pouvoir :
 
-- Créer la route (de type `post`, URL `/api/utilisateurs`).
-- Créer la méthode dans le contrôleur (nom de la méthode `creerUtilisateur`).
-- Écrire le code pour créer un utilisateur.
+- Créer la route (de type `post`, URL `/api/client`).
+- Créer la méthode dans le contrôleur (nom de la méthode `creerClient`).
+- Écrire le code pour créer un client.
 
 ::: tip Rappel
 
-Pour créer un utilisateur, il faut un nom, un prénom et un email.
+Pour créer un client, il faut un nom, un prénom et un email et un mot de passe.
 
 Vous pouvez passer ces informations en paramètre de la route ou les récupérer dans le corps de la requête. Exemple :
 
 ```php
-// Exemple de méthode qui prend en paramètre un nom, un prénom et un email
-function creerUtilisateur($nom, $prenom, $email){
-    // Code permettant de créer un utilisateur
+// Exemple de méthode qui prend en paramètre un nom, un prénom, un email et un mot de passe
+function creerClient($nom, $prenom, $email, $motDePasse){
+    // Code permettant de créer un client
 }
 ```
 
+⚠️ Attention, il faut vérifier que l'email n'est pas déjà utilisé par un autre client. Si c'est le cas, il faut retourner une erreur. Il faudra également vérifier que le mot de passe fait au moins 8 caractères.
+
+Attention également à bien hasher le mot de passe avant de l'enregistrer dans la base de données.
+
 :::
 
-## Authentification d'un utilisateur
+## Authentification d'un client
 
-Nous allons maintenant créer une route qui va nous permettre d'authentifier un utilisateur. Pour cela nous allons utiliser la méthode `authentifierUtilisateur()` qui permet d'authentifier un utilisateur.
+Nous allons maintenant créer une route qui va nous permettre d'authentifier un client. Pour cela nous allons utiliser la méthode `authentifierClient()` qui permet d'authentifier un client.
 
 Je vous laisse écrire le code pour cette partie. En reprenant les étapes précédentes, vous devriez pouvoir :
 
-- Créer la route (de type `post`, URL `/utilisateurs/authentification`).
-- Créer la méthode dans le contrôleur (nom de la méthode `authentifierUtilisateur`).
-- Écrire le code pour authentifier un utilisateur.
-- Retourner l'utilisateur authentifié.
+- Créer la route (de type `post`, URL `/client/authentification`).
+- Créer la méthode dans le contrôleur (nom de la méthode `authentifierClient`).
+- Écrire le code pour authentifier un client.
+- Retourner le client authentifié.
 
 ::: tip Rappel
 
-Pour authentifier un utilisateur, il faut un email et un mot de passe. 
+Pour authentifier un client, il faut un email et un mot de passe. 
 
 Vous pouvez passer ces informations en paramètre de la route ou les récupérer dans le corps de la requête. Exemple :
 
 ```php
 // Exemple de méthode qui prend en paramètre un email et un mot de passe
-function authentifierUtilisateur($email, $motDePasse){
-    // Code permettant d'authentifier un utilisateur
+function authentifierClient($email, $motDePasse){
+    // Code permettant d'authentifier un client
 }
 ```
 
 Vous allez devoir utiliser password_verify() pour vérifier le mot de passe.
 
-⚠️ N'oublier pas de retourner l'utilisateur authentifié.
+⚠️ N'oublier pas de retourner le client authentifié.
 :::
 
 ## Conclusion
