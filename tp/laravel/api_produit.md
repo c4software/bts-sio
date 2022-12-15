@@ -642,6 +642,60 @@ Commande::destroy(1);
 
 :::
 
+## Créer un utilisateur
+
+Nous allons maintenant créer une route qui va nous permettre de créer un utilisateur. Pour cela nous allons utiliser la méthode `creerUtilisateur()` qui permet de créer un utilisateur.
+
+Je vous laisse écrire le code pour cette partie. En reprenant les étapes précédentes, vous devriez pouvoir :
+
+- Créer la route (de type `post`, URL `/api/utilisateurs`).
+- Créer la méthode dans le contrôleur (nom de la méthode `creerUtilisateur`).
+- Écrire le code pour créer un utilisateur.
+
+::: tip Rappel
+
+Pour créer un utilisateur, il faut un nom, un prénom et un email.
+
+Vous pouvez passer ces informations en paramètre de la route ou les récupérer dans le corps de la requête. Exemple :
+
+```php
+// Exemple de méthode qui prend en paramètre un nom, un prénom et un email
+function creerUtilisateur($nom, $prenom, $email){
+    // Code permettant de créer un utilisateur
+}
+```
+
+:::
+
+## Authentification d'un utilisateur
+
+Nous allons maintenant créer une route qui va nous permettre d'authentifier un utilisateur. Pour cela nous allons utiliser la méthode `authentifierUtilisateur()` qui permet d'authentifier un utilisateur.
+
+Je vous laisse écrire le code pour cette partie. En reprenant les étapes précédentes, vous devriez pouvoir :
+
+- Créer la route (de type `post`, URL `/utilisateurs/authentification`).
+- Créer la méthode dans le contrôleur (nom de la méthode `authentifierUtilisateur`).
+- Écrire le code pour authentifier un utilisateur.
+- Retourner l'utilisateur authentifié.
+
+::: tip Rappel
+
+Pour authentifier un utilisateur, il faut un email et un mot de passe. 
+
+Vous pouvez passer ces informations en paramètre de la route ou les récupérer dans le corps de la requête. Exemple :
+
+```php
+// Exemple de méthode qui prend en paramètre un email et un mot de passe
+function authentifierUtilisateur($email, $motDePasse){
+    // Code permettant d'authentifier un utilisateur
+}
+```
+
+Vous allez devoir utiliser password_verify() pour vérifier le mot de passe.
+
+⚠️ N'oublier pas de retourner l'utilisateur authentifié.
+:::
+
 ## Conclusion
 
 Nous avons maintenant terminé la partie API. Nous avons vu comment créer des routes, des contrôleurs et des modèles. Nous avons aussi vu comment utiliser les méthodes `get()`, `post()`, `put()` et `delete()` pour créer des routes. 
