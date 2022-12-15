@@ -205,7 +205,7 @@ L'avantage du seeder ? Il va permettre de créer beaucoup de données en un rien
 
 ### Autoriser les factories
 
-Pour permettre à votre Modèle d'être « rempli », vous devez vérifier que la classe possède bien le 
+Pour permettre à votre Modèle d'être « rempli », vous devez vérifier que la classe possède bien les use suivants (à mettre dans la classe du modèle) :
 
 ```php
 use HasApiTokens, HasFactory, Notifiable;
