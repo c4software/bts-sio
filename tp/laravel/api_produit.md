@@ -98,7 +98,7 @@ composer create-project --prefer-dist laravel/laravel mon-premier-projet
 
 La commande va télécharger l'ensemble des dépendances nécessaire et va créer un dossier `mon-premier-projet` avec les sources.
 
-::: detail vous avez récupéré le projet via GIT ?
+::: details vous avez récupéré le projet via GIT ?
 
 Si vous avez récupéré le projet depuis GIT vous n'allez bien évidemment pas utiliser la commande `create-project`… Par contre vous allez devoir réinstaller les dépendances (`vendor`) de votre projet. C'est très simple :
 
