@@ -660,8 +660,9 @@ Vous pouvez passer ces informations en paramètre de la route ou les récupérer
 
 ```php
 // Exemple de méthode qui prend en paramètre un nom, un prénom, un email et un mot de passe
-function creerClient($nom, $prenom, $email, $motDePasse){
+function creerClient(Request $request){
     // Code permettant de créer un client
+    // $request->nom, $request->prenom, $request->email, $request->motDePasse
 }
 ```
 
@@ -690,8 +691,9 @@ Vous pouvez passer ces informations en paramètre de la route ou les récupérer
 
 ```php
 // Exemple de méthode qui prend en paramètre un email et un mot de passe
-function authentifierClient($email, $motDePasse){
+function authentifierClient(Request $request){
     // Code permettant d'authentifier un client
+    // $request->email, $request->motDePasse
 }
 ```
 
