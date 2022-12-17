@@ -1,32 +1,10 @@
 ---
-description: Un serveur Debian pour héberger un site web et une base de données.
+description: Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
 ---
 
-# Créer un serveur d'application avec Debian
+# Complément du cours Serveur
 
-Dans ce TP, nous allons créer un serveur avec Debian. Nous allons installer un serveur web, un serveur de base de données.
-
-::: details Sommaire
-[[toc]]
-:::
-
-## Introduction
-
-Les serveurs web et les serveurs de base de données sont des serveurs qui sont souvent utilisés ensemble. En effet, un site web dynamique nécessite souvent une base de données pour stocker les données.
-
-Nous allons voir dans ce TP comment installer un serveur web et un serveur de base de données, sans oublier de sécuriser le serveur. Nous utiliserons **Apache** pour le serveur web et **MariaDB** pour le serveur de base de données.
-
-## Prérequis
-
-Avant de commencer ce TP vous devez connaitre :
-
-- Les bases de Linux.
-- Les bases de la ligne de commande.
-- Les bases de la communication réseau (adresse IP, masque de sous-réseau, passerelle, etc.)
-
-<iframe src="https://giphy.com/embed/3knKct3fGqxhK" width="480" height="281" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-
-### Qu'est-ce qu'un serveur ?
+## Qu'est-ce qu'un serveur ?
 
 Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs. Il peut s'agir d'un serveur web, d'un serveur de base de données, d'un serveur de fichiers, etc.
 
@@ -46,7 +24,7 @@ Voilà à quoi peut ressembler un serveur à domicile (chez moi en l'occurrence)
 
 :::
 
-### Qu'est-ce qu'un serveur web ?
+## Qu'est-ce qu'un serveur web ?
 
 Un serveur web est un serveur qui permet de servir des pages web. Il permet de servir des pages web statiques (fichiers HTML, CSS, JavaScript, images, etc.) mais aussi des pages web dynamiques (fichiers PHP, Python, Ruby, etc.).
 
@@ -57,7 +35,9 @@ Il existe différents serveurs web, Apache est l'un des plus utilisés. Il exist
 - Nginx est également un serveur web très puissant, mais il est un peu plus difficile à configurer.
 - Caddy est un serveur web qui est très simple à configurer, mais il est moins puissant qu’apache.
 
-### Qu'est-ce qu'un serveur de base de données ?
+![Serveur](./res/serveur.png)
+
+## Qu'est-ce qu'un serveur de base de données ?
 
 Un serveur de base de données est un serveur qui permet de stocker des données. Il permet de stocker des données dans des tables, de faire des requêtes SQL, etc.
 
@@ -65,7 +45,7 @@ Dans notre cas nous utiliserons MariaDB pour le serveur de base de données. Mar
 
 ::: tip Pourquoi MariaDB et pas MySQL ?
 
-C'est une bonne question… MariaDB est un fork de MySQL, c'est-à-dire que c'est une copie de MySQL. MariaDB a été créé parce que Oracle a racheté MySQL. Oracle a ensuite décidé de rendre MySQL payant. MariaDB est donc une copie de MySQL qui est gratuite. MariaDB est donc une alternative à MySQL. 
+C'est une bonne question… MariaDB est un fork de MySQL, c'est-à-dire que c'est une copie de MySQL. MariaDB a été créé parce que Oracle a racheté MySQL. Oracle a ensuite décidé de rendre MySQL payant. MariaDB est donc une copie de MySQL qui est gratuite. MariaDB est donc une alternative à MySQL.
 
 Ce sont donc deux logiciels équivalents, MariadDB est gratuit et MySQL est pour l'instant également gratuit. Mais le logiciel MySQL pourrait devenir payant à l'avenir d'où l'intérêt de se tourner vers MariaDB.
 
@@ -116,9 +96,3 @@ Il y a plusieurs raisons pour avoir plusieurs serveurs :
 Il est possible d'installer un serveur dans un container Docker ou directement sur la machine. Dans notre cas nous allons installer un serveur directement sur la machine.
 
 Plus tard nous découvrirons Docker et l'avantage de celui-ci (vous verrez c'est incroyable 🎉). Il est de toute façon primordial de comprendre comment on installe un serveur classique pour comprendre l'usage de Docker.
-
-## Installer Debian
-
-## Apache
-
-## MariaDB
