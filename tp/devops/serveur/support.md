@@ -35,7 +35,7 @@ Il existe différents serveurs web, Apache est l'un des plus utilisés. Il exist
 - Nginx est également un serveur web très puissant, mais il est un peu plus difficile à configurer.
 - Caddy est un serveur web qui est très simple à configurer, mais il est moins puissant qu’apache.
 
-![Serveur](./res/serveur.png)
+![Serveur](./res/serveur.jpg)
 
 ## Qu'est-ce qu'un serveur de base de données ?
 
