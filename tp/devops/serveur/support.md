@@ -24,6 +24,8 @@ Voilà à quoi peut ressembler un serveur à domicile (chez moi en l'occurrence)
 
 :::
 
+Nous pourrions résumer la définition d'un serveur en disant que c'est un ordinateur qui est connecté à un réseau et qui est accessible depuis un autre ordinateur.
+
 ## Qu'est-ce qu'un serveur web ?
 
 Un serveur web est un serveur qui permet de servir des pages web. Il permet de servir des pages web statiques (fichiers HTML, CSS, JavaScript, images, etc.) mais aussi des pages web dynamiques (fichiers PHP, Python, Ruby, etc.).
