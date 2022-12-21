@@ -39,6 +39,7 @@ module.exports = [
         text: "DevOps",
         collapsible: true,
         children: [
+          { link: "/cheatsheets/serveur/debian.md", text: "Debian, Apache, PHP, MariaDB" },
           { link: "/cheatsheets/ssh-key/README.md", text: "Clef SSH" },
           { link: "/cheatsheets/mini-mvc-sample/README.md", text: "Mini MVC Sample" },
           { link: "/cheatsheets/docker/README.md", text: "Docker" }
@@ -81,7 +82,7 @@ module.exports = [
             ]
           },
           {
-            text: "Aide mémoire",
+            text: "Concepts",
             collapsible: true,
             children: [
               { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },

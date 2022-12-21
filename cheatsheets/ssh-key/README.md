@@ -46,7 +46,7 @@ La commande sera la même, quel que soit votre système d'exploitation. Cependan
 ssh-keygen
 ```
 
-![Génération d'une clef SSH](./img//ssh-key.jpg)
+![Génération d'une clef SSH](./img/ssh-key.jpg)
 
 La commande va générer **deux fichiers** :
 

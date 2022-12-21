@@ -61,7 +61,7 @@ Le TP que nous allons faire est sur une machine virtuelle. Mais vous pouvez éga
 
 ## La sécurité
 
-Héberger du contenu nécéssite de réfléchir à la sécurité. En effet, il est important de sécuriser son serveur pour éviter que des personnes malveillantes ne puissent accéder à votre serveur et à vos données.
+Héberger du contenu nécessite de réfléchir à la sécurité. En effet, il est important de sécuriser son serveur pour éviter que des personnes malveillantes ne puissent accéder à votre serveur et à vos données.
 
 Différents éléments seront à prendre en compte pour sécuriser votre serveur :
 
@@ -98,3 +98,242 @@ Il y a plusieurs raisons pour avoir plusieurs serveurs :
 Il est possible d'installer un serveur dans un container Docker ou directement sur la machine. Dans notre cas nous allons installer un serveur directement sur la machine.
 
 Plus tard nous découvrirons Docker et l'avantage de celui-ci (vous verrez c'est incroyable 🎉). Il est de toute façon primordial de comprendre comment on installe un serveur classique pour comprendre l'usage de Docker.
+
+::: tip Docker c'est vaste
+Plus tard dans l'année nous utiliserons Docker pour créer des environnements de type « Conteneurs »… Volontairement j'ai souhaité vous en parler ici. Donc soyez curieux. N'hésiter pas à vous documenter si vous le souhaitez.
+:::
+
+## Installation de Debian
+
+Pour créer votre machine, vous allez avoir besoin d'un système d'exploitation. Je vous propose d'utiliser la dernière version de Debian, avant d'aller plus loin posons-nous quelques questions :
+
+- Pourquoi Debian ?
+- Pourquoi dans sa dernière version ?
+
+### Procédure d'installation de l'OS
+
+Vous connaissez la procédure d'installation, mais quelques éléments sont importants à signaler :
+
+- **Pas d'interface graphique**.
+- Ajuster la configuration de l'adresse IP.
+- N'oubliez pas d'installer les VMware Tools.
+
+::: danger Les performances et la virtualisation
+
+Sans les VMware tools semble fonctionner correctement ? Oui… À première vue seulement… En réalité votre machine ne tire pas toutes les performances de l'environnement. Pire, elle peut dégrader les performances de toute la ferme.
+
+Bref, n'oubliez pas d'installer les Tools pour vivre une expérience optimale 👌.
+
+:::
+
+TODO à détailler.
+
+::: tip 👋 Pas d'interface graphique ?
+À votre avis, pourquoi ?
+:::
+
+### Accéder à votre serveur
+
+Pour accéder à votre serveur, vous pouvez utiliser la Remote Console de VMWare… Mais c'est une solution pas optimale qui sera lente et qui ne vous permettra pas de faire de copier/coller. Je vous propose donc d'utiliser un client SSH.
+
+Un client SSH est un logiciel qui permet de se connecter à un serveur via SSH. SSH est un protocole qui permet de se connecter à un serveur de manière sécurisée. De plus bien configuré avec des clés SSH, vous n'aurez pas besoin de rentrer de mot de passe (c'est magique… et en cybersécurité c'est une bonne chose).
+
+Pour installer un client SSH, vous pouvez utiliser Putty (Windows) ou SSH (macOS).
+
+Installer SSH sur votre serveur Debian :
+
+```bash
+sudo apt install openssh-server
+```
+
+Je vous laisse valider l'installation du paquet. Une fois l'installation terminée, vous pouvez vous connecter à votre serveur avec SSH.
+
+Avant d'aller plus loin, nous allons générer une clé SSH, elle vous servira de clé pour vous connecter à votre serveur. Mais également aux prochains serveurs que vous allez installer.
+
+Avoir une clé SSH est intéressant, car une clé SSH est plus sécurisée qu'un mot de passe. De plus une clé SSH est un standard, donc vous pouvez l'utiliser pour vous connecter à n'importe quel type de serveur (Linux, mais également GIT, etc.).
+
+::: tip C'est une clé ultra privée
+La clé SSH est une clé privée, donc ne la partagez pas avec n'importe qui. Elle vous permet de vous connecter à votre serveur, mais également à d'autres serveurs. Si vous la partagez avec n'importe qui, vous risquez de vous faire pirater votre serveur.
+
+**Avoir la clé == Pouvoir se connecter à votre serveur.**
+
+:::
+
+#### Générer une clef privée/public
+
+Cette opération n'est à réaliser qu'une seule fois (sur chaque machine/session). Au lycée, la clef va s'enregistrer dans votre dossier utilisateur, elle sera donc synchronisée automatiquement avec l'ensemble des ordinateurs sur lesquels vous allez pouvoir vous connecter.
+
+#### Générer la clef
+
+La commande pour générer une clef est la suivante.
+
+::: tip Windows, Linux, macOS ?
+
+La commande sera la même, quel que soit votre système d'exploitation. Cependant, le terminal lui sera différent :
+
+- Windows : `Git Bash` (ou `Git cmd`). ([nécessite Git](https://git-scm.com/downloads))
+- macOS : `terminal`.
+- Linux : `console`.
+
+:::
+
+```bash
+ssh-keygen
+```
+
+![Génération d'une clef SSH](./res/ssh-key.jpg)
+
+La commande va générer **deux fichiers** :
+
+- **id_rsa**, est privé. **Vous ne devez jamais le partager**.
+- **id_rsa.pub**, est publique, vous pouvez le partager autant que vous voulez ce fichier permettra de vous reconnaître au moment de la connexion.
+
+::: danger Plus de sécurité
+
+Vous pouvez faire « entrée (3×) » pour générer une clef sans mot de passe. Vous pouvez également faire le choix de mettre un mot de passe sur votre clef pour plus de sécurité en cas de perte de celle-ci.
+
+:::
+
+#### Installer la clef sur votre serveur
+
+Pour cela, il vous suffit de faire la commande suivante sur votre ordinateur.
+
+```bash
+ssh-copy-id <username>@<ipaddress>
+```
+
+⚠️ Vous devez évidemment remplacer `<username>`et `<ipaddress>`par votre utilisateur et votre mot de passe. Exemple :
+
+```bash
+ssh-copy-id pi@192.168.1.253
+```
+
+::: tip Et voilà !
+Rien de plus, à partir de maintenant votre serveur acceptera votre connexion sans vous demander de mot de passe. Pratique non ? (Et surtout très sécurisé)
+:::
+
+## Installation de Apache
+
+### Présentation
+
+Apache est un serveur web. Il permet de servir des pages web, mais également des applications web. Il est très utilisé sur le web, car il est gratuit, open source et très performant.
+
+### Installation
+
+Pour installer Apache sur votre serveur, vous pouvez utiliser la commande suivante :
+
+```bash
+sudo apt install apache2
+```
+
+### Démarrez le serveur
+
+Maintenant que le serveur est installé, il faut le démarrer. Pour cela, vous pouvez utiliser la commande suivante :
+
+```bash
+sudo systemctl start apache2
+```
+
+### Vérifier que le serveur est démarré
+
+Pour vérifier que le serveur est démarré, vous pouvez utiliser la commande suivante :
+
+```bash
+sudo systemctl status apache2
+```
+
+### Vérifier que le serveur est accessible
+
+Pour vérifier que le serveur est accessible, il vous suffit d'ouvrir votre navigateur et d'aller sur l'adresse IP de votre serveur. Si vous avez bien suivi les étapes précédentes, vous devriez voir la page d'accueil d'Apache.
+
+![Page d'accueil d'Apache](./res/apache.jpg)
+
+### Démarrer le serveur au démarrage du système
+
+Pour que le serveur se lance automatiquement au démarrage du système, vous pouvez utiliser la commande suivante :
+
+```bash
+sudo systemctl enable apache2
+```
+
+### Où sont les fichiers du serveur
+
+Les fichiers du serveur sont dans le dossier `/var/www/html`. Vous pouvez y accéder avec la commande suivante :
+
+```bash
+cd /var/www/html
+```
+
+C'est ici que nous voyons l'avantage de Linux. L'architecture est très simple, et les fichiers sont très facilement accessibles.
+
+### Personnaliser la page d'accueil
+
+Pour personnaliser la page d'accueil, vous pouvez modifier le fichier `index.html` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
+
+```bash
+nano /var/www/html/index.html
+```
+
+Vous pouvez également utiliser FileZilla pour modifier le fichier.
+
+### Déployer votre site web
+
+Je vous laisse créer une petite page web, et la déployer sur votre serveur. Votre site doit respecter les règles suivantes :
+
+- Le fichier doit être nommé `index.html`.
+- Posséder un titre (Bienvenue sur mon site).
+- Posséder un paragraphe (Ceci est mon site web).
+- Posséder une image (Une image de votre choix).
+- Posséder un lien vers un autre site (Un lien vers le site de votre choix).
+
+👋 C'est à vous de jouer. 
+
+Une fois votre code réalisé, je vous propose de le déployer sur votre serveur. Pour cela, vous pouvez utiliser FileZilla. Je vous propose de créer un dossier `monsite` dans le dossier `/var/www/html`.
+
+👀 Le dossier est créé ? vous pouvez déposer votre fichier `index.html` dans le dossier `monsite`. Vous pouvez ensuite ouvrir votre navigateur et aller sur l'adresse IP de votre serveur. Vous devriez voir votre site web.
+
+## Installation de PHP
+
+Avoir un serveur web sans PHP, c'est comme avoir un serveur web sans base de données. C'est un peu dommage. PHP est un langage de programmation qui permet de faire des applications web. Il est très utilisé sur le web, car il est gratuit, open source et très performant.
+
+### Installation
+
+Pour installer PHP sur votre serveur, vous pouvez utiliser la commande suivante :
+
+```bash
+sudo apt install php php-pdo php-mysql
+```
+
+### Vérifier que PHP est installé
+
+Pour vérifier que PHP est installé, vous pouvez utiliser la commande suivante :
+
+```bash
+php -v
+```
+
+Cette commande va vous afficher la version de PHP installée sur votre serveur.
+
+### Vérifier que Apache + PHP fonctionne
+
+Pour vérifier que Apache + PHP fonctionne, vous pouvez créer un fichier `index.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
+
+```bash
+nano /var/www/html/index.php
+```
+
+Dans ce fichier `index.php`, vous pouvez mettre le code suivant :
+
+```php
+<?php
+phpinfo();
+?>
+```
+
+Vous pouvez ensuite ouvrir votre navigateur et aller sur l'adresse IP de votre serveur. Si vous avez bien suivi les étapes précédentes, vous devriez voir la page d'information de PHP.
+
+::: tip phpinfo() ?
+La fonction `phpinfo()` permet d'afficher les informations de PHP. C'est très pratique pour vérifier que tout fonctionne correctement. Vous pouvez également utiliser cette fonction pour vérifier que les extensions PHP sont bien installées.
+
+Comme par exemple `php-pdo` et `php-mysql` pour la base de données.
+:::
