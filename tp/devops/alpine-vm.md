@@ -2,7 +2,7 @@
 description: Un petit TP/Guide rapide pour créer une VM légère et rapide afin d'héberger un cluster Kubernetes.
 ---
 
-# VM Express : Alpine Linux, K3d & Docker
+# Alpine Linux, K3d & Docker
 
 Un petit TP/Guide rapide pour créer une VM légère et rapide afin d'héberger un cluster Kubernetes (ou un simple serveur permettant de lancer des machines via Docker)
 

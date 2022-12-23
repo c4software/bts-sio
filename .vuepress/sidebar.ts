@@ -230,10 +230,18 @@ module.exports = [
     text: "DevOps",
     collapsible: true,
     children: [
-      { text: "Les bases", collapsible: true, children: ["/cours/serveur.md", "/tp/devops/serveur/support.md", "/tp/devops/serveur/debian.md"] },
+      { text: "Les bases", collapsible: true, children: ["/cours/serveur.md", "/tp/devops/serveur/support.md"] },
       { text: "L'intégration continue", collapsible: true, children: ["/tp/devops/support.md", { link: "/cours/docker", text: "Docker" }, "/cours/cicd", { link: "/cours/gitlabci", text: "Gitlab CI" }] },
       { text: "GitLab-CI", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-ci.md"] },
       { text: "JamStack", collapsible: true, children: ["/tp/ci/jamstack/netlify.md"] },
+      {
+        text: "Debian",
+        collapsible: true,
+        children: [
+          "/tp/devops/serveur/debian.md",
+          "/cheatsheets/serveur/debian.md",
+        ]
+      },
       {
         text: "Docker",
         collapsible: true,
@@ -241,6 +249,13 @@ module.exports = [
           { link: "/cheatsheets/docker/README.md", text: "En + du cours" },
           "/tp/docker/introduction",
           "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose", "/tp/ops/deployer-laravel-docker.md"]
+      },
+      {
+        text: "Alpine Linux",
+        collapsible: true,
+        children: [
+          "/tp/devops/alpine-vm.md"
+        ]
       },
       {
         text: "Portfolio",
@@ -268,7 +283,6 @@ module.exports = [
       { text: "OpenFaas", collapsible: true, children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
       { text: "Firebase", collapsible: true, children: ["/tp/ci/firebase/functions.md"] },
       "/tp/rpi/web-stack.md",
-      "/tp/devops/alpine-vm.md"
     ]
   },
 
