@@ -2,11 +2,24 @@
 
 Dans cette aide mémoire vous trouverez l'ensemble des commandes et des opérations à réaliser pour installer un serveur Debian.
 
-## Installer les paquets
+## Ajouter le dépôt pour PHP 8
 
 ```bash
 apt-get update
-apt-get install apache2 php php-mysql php-pdo php-mbstring php-gd php-zip mariadb-server -y
+apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+```
+
+::: tip Pourquoi ?
+Debian est une distribution stable, mais stabilité ≠ modernité. Pour avoir la dernière version de PHP il nous faut ajouter un dépôt tiers. Ce dépôt est maintenu par Ondřej Surý, un développeur PHP qui travaille pour Debian.
+:::
+
+## Installer PHP
+
+```bash
+apt-get update
+apt-get install libapache2-mod-php php php-common php-xml php-gd php8.0-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip curl -y
 ```
 
 Démarrez le serveur Apache
@@ -27,14 +40,45 @@ systemctl start mysql
 
 - `apt-get install` : permet d'installer un paquet
 - `apache2` : Le serveur web Apache
-- `mariadb-server` : Le serveur de base de données MariaDB
 - `php` : Le langage de programmation PHP
+- `php-common` : Les fichiers communs à tous les modules PHP
+- `php-xml` : Le module PHP pour gérer les fichiers XML
+- `php-opcache` : Le module PHP pour gérer le cache
+- `php-tokenizer` : Le module PHP pour gérer les chaînes de caractères
+- `php-json` : Le module PHP pour gérer les fichiers JSON
+- `php-bcmath` : Le module PHP pour gérer les nombres décimaux
 - `php-mysql` : Le module PHP pour se connecter à la base de données
 - `php-mbstring` : Le module PHP pour gérer les chaînes de caractères
 - `php-gd` : Le module PHP pour gérer les images
 - `php-zip` : Le module PHP pour gérer les archives
+- `unzip` : Le programme pour décompresser les archives
+- `curl` : Le programme pour télécharger des fichiers
 
 :::
+
+### Vérifie la bonne installation
+
+Et voilà, nous avons la base, votre serveur est prêt à recevoir votre code ! Avant de continuer, vérifiez avec la commande suivante que votre version de PHP est au moins égale à 8.
+
+```bash
+php -v
+```
+
+```bash
+PHP 8.0.10 (cli) (built: Aug 26 2021 16:06:19) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v4.0.10, Copyright (c) Zend Technologies
+    with Zend OPcache v8.0.10, Copyright (c), by Zend Technologies
+```
+
+## Installer MariaDB
+
+Évidemment vous n'êtes pas obligé d'installer MariaDB et Apache sur le même serveur. Vous pouvez très bien installer MariaDB sur un autre serveur et vous connecter à distance.
+
+```bash
+apt-get update
+apt-get install mariadb-server mariadb-client -y
+```
 
 ## Configurer la base de données
 
@@ -59,7 +103,7 @@ nano /etc/mysql/mariadb.conf.d/50-server.cnf
 Ajoutez la ligne suivante dans la section `[mysqld]`.
 
 ```ini
-bind-address = 127.0.0.1
+bind-address = 0.0.0.0
 ```
 
 Redémarrer le serveur MySQL
@@ -69,9 +113,9 @@ systemctl restart mysql
 ```
 
 ::: tip Pourquoi ?
-Par défaut, le serveur MySQL n'écoutera que les connexions locales. Il faut donc autoriser les connexions distantes en modifiant la valeur de `bind-address`. Si vous n'en avez pas besoin, vous pouvez laisser la valeur par défaut.
+Par défaut, le serveur MySQL n'écoutera que les connexions locales. Il faut donc autoriser les connexions distantes en modifiant la valeur de `bind-address`. **Si vous n'en avez pas besoin, vous pouvez laisser la valeur par défaut.**
 
-Changer se paramètre sera utile quand vous souhaiterez accéder à la base de données depuis un autre ordinateur (développement en C#).
+Changer se paramètre sera utile quand vous souhaiterez accéder à la base de données depuis un autre ordinateur (exemple développement en C#).
 :::
 
 ## Activer la réécriture d'URL
@@ -79,7 +123,7 @@ Changer se paramètre sera utile quand vous souhaiterez accéder à la base de d
 Dans certains cas, il est nécessaire d'activer la réécriture d'URL pour que le serveur puisse fonctionner correctement.
 
 ```bash
-a2enmod rewrite
+/usr/sbin/a2enmod rewrite
 ```
 
 Le module doit être activé dans le fichier de configuration de votre site.
@@ -99,5 +143,11 @@ Ajoutez la ligne suivante dans la section `<VirtualHost *:80>`.
 ```
 
 ::: tip Rewrite ?
-Plus tard nous utiliserons la réécriture d'URL pour personnaliser le liens indépendantement du nom des fichiers sur le disque.
+Plus tard nous utiliserons la réécriture d'URL pour personnaliser le lien indépendamment du nom des fichiers sur le disque. Pour faire simple grâce à l'URL Rewrite nous pouvons écrire des belles urls (liens) :
+
+- `qui-sommes-nous.html` => `index.php?page=quisommesnous`
+- `presentation.html` => `index.php?page=pres`
+
+Ce ne sont évidemment que des exemples.
+
 :::
