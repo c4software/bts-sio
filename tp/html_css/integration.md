@@ -25,6 +25,7 @@ Vous aurez certainement besoin de ressources, voilà une liste d'élément pouva
 - [Bootstrap](https://getbootstrap.com/) <- Un standard
 - [Tailwind](https://tailwindcss.com/) <- À creuser
 - [Des templates réutilisable](https://startbootstrap.com/?showPro=false&showAngular=false)
+- [Réaliser des schémas](https://draw.io)
 
 _Apprentissage :_
 
