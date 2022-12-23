@@ -1,6 +1,10 @@
-# Créer un serveur Web (Apache, MariaDB, PHP) avec Debian
+---
+description: "Aide mémoire pour installer un serveur LAMP (Web) à base de Debian."
+---
 
-Dans cette aide mémoire vous trouverez l'ensemble des commandes et des opérations à réaliser pour installer un serveur Debian.
+# Créer un serveur LAMP / WEB (Apache, MariaDB, PHP) avec Debian
+
+Dans cette aide mémoire vous trouverez l'ensemble des commandes et des opérations à réaliser pour installer un serveur LAMP (Web) à base de Debian.
 
 ## Ajouter le dépôt pour PHP 8
 

@@ -1,10 +1,10 @@
 ---
-description: Un serveur Debian pour héberger un site web et une base de données.
+description: Serveur LAMP / WEB (Apache, MariaDB, PHP) avec Debian
 ---
 
 # Créer un serveur d'application avec Debian
 
-Dans ce TP, nous allons créer un serveur avec Debian. Nous allons installer un serveur web, un serveur de base de données.
+Dans ce TP, nous allons créer un serveur avec Debian. Nous allons installer un serveur web / LAMP.
 
 ::: details Sommaire
 [[toc]]
