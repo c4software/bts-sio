@@ -239,7 +239,6 @@ module.exports = [
         collapsible: true,
         children: [
           "/tp/devops/serveur/debian.md",
-          "/cheatsheets/serveur/debian.md",
         ]
       },
       {
