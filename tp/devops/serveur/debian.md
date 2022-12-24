@@ -565,11 +565,15 @@ systemctl restart apache2
 
 Si vous avez bien suivi les étapes précédentes, vous pouvez maintenant accéder à phpMyAdmin. Vous pouvez utiliser l'adresse suivante : `http://ip_du_serveur:9090`.
 
+![phpMyAdmin](./res/phpmyadmin.png)
+
 Je vous laisse vous connecter à phpMyAdmin, pour l'instant vous n'avez pas créé d'utilisateur. Vous pouvez donc utiliser l'utilisateur `root` pour vous connecter. Vous pouvez utiliser le mot de passe que vous avez défini lors de l'installation de MariaDB.
 
 ## Conclusion
 
 Vous avez maintenant un serveur web et une base de données. Vous pouvez maintenant créer des sites web dynamiques. Vous pouvez utiliser PHP pour créer des sites web dynamiques. Vous pouvez utiliser MySQL ou MariaDB pour stocker des données.
+
+<iframe src="https://giphy.com/embed/3o7btNa0RUYa5E7iiQ" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 Même si l'ensemble des étapes ne sont pas réellement longues, il est important de bien comprendre ce que vous faites. Notamment pour la configuration de MariaDB et de phpMyAdmin. Si vous avez des questions, n'hésitez pas à me les poser.
 
