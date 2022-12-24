@@ -18,7 +18,7 @@ Nous allons voir dans ce TP comment installer un serveur web et un serveur de ba
 
 ## Prérequis
 
-Avant de commencer ce TP vous devez connaitre :
+Avant de commencer ce TP, vous devez connaître :
 
 - Les bases de Linux.
 - Les bases de la ligne de commande.
@@ -119,6 +119,18 @@ Plus tard nous découvrirons Docker et l'avantage de celui-ci (vous verrez c'est
 
 ::: tip Docker c'est vaste
 Plus tard dans l'année nous utiliserons Docker pour créer des environnements de type « Conteneurs »… Volontairement j'ai souhaité vous en parler ici. Donc soyez curieux. N'hésiter pas à vous documenter si vous le souhaitez.
+:::
+
+## La procédure en vidéo
+
+Je sais que vous aimez bien les tutos vidéo. Donc voici l'ensemble de la procédure d'installation résumé une une seule vidéo :
+
+TODO YOUTUBE
+
+::: tip À noter
+
+Comme vous pouvez le voir la procédure est relativement courte quand on la maitrise. Seulement quelques minutes suffise pour créer un serveur Web (Apache + MySQL complet), nous allons voir plus tard qu'avec Docker il est possible de gagner encore plus de temps (sans perdre en qualité bien au contraire).
+
 :::
 
 ## Installation de Debian
@@ -317,10 +329,21 @@ Avoir un serveur web sans PHP, c'est comme avoir un serveur web sans base de don
 
 ### Installation
 
-Pour installer PHP sur votre serveur, vous pouvez utiliser la commande suivante :
+La version de PHP fourni par défaut sur Debian est un peu ancienne. Pour avoir la dernière version, nous devons ajouter un dépôt. Pour cela, vous pouvez utiliser les commandes suivantes :
 
 ```bash
-sudo apt install php php-pdo php-mysql
+apt-get update
+apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+```
+
+Ces commandes vont ajouter le dépôt permettant d'installer la dernière version de PHP. Ce dépôt est maintenu par Ondřej Surý, un développeur PHP.
+
+Maintenant que le dépôt est ajouté, nous pouvons installer PHP. Pour cela, vous pouvez utiliser la commande suivante :
+
+```bash
+apt-get install libapache2-mod-php php-mysql php-pdo php php-common php-xml php-gd php8.0-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip curl -y
 ```
 
 ### Vérifier que PHP est installé
@@ -332,6 +355,8 @@ php -v
 ```
 
 Cette commande va vous afficher la version de PHP installée sur votre serveur.
+
+Un instant, quelle version de PHP est installée ?
 
 ### Vérifier que Apache + PHP fonctionne
 
@@ -356,3 +381,212 @@ La fonction `phpinfo()` permet d'afficher les informations de PHP. C'est très p
 
 Comme par exemple `php-pdo` et `php-mysql` pour la base de données.
 :::
+
+### Écrire du code PHP pour tester
+
+Pour tester que PHP fonctionne, vous pouvez créer un fichier `test.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
+
+```bash
+nano /var/www/html/test.php
+```
+
+Dans ce fichier `test.php`, vous pouvez mettre le code suivant :
+
+```php
+<?php
+echo "Hello " + $_GET['name'];
+?>
+```
+
+Vous pouvez ensuite ouvrir votre navigateur et aller sur l'adresse IP de votre serveur. Si vous avez bien suivi les étapes précédentes, vous devriez voir le message `Hello` suivi du nom que vous avez rentré dans l'URL.
+
+👋 C'est à vous de jouer.
+
+## Installation de MariaDB
+
+Maintenant que nous avons un serveur web, nous allons installer une base de données. Nous allons installer MariaDB, une base de données open source, qui est compatible avec MySQL.
+
+::: danger Attention
+Un instant, dans ce TP nous allons installer MariaDB sur le même serveur que Apache. C'est une mauvaise pratique, car si Apache tombe, MariaDB tombe aussi. 
+
+Dans la vraie vie, il est préférable d'avoir un serveur web et un serveur de base de données séparé. C'est plus sécurisé et plus performant.
+:::
+
+### Installation
+
+Pour installer MariaDB, vous pouvez utiliser la commande suivante :
+
+```bash
+apt-get update
+apt-get install mariadb-server mariadb-client -y
+```
+
+Pourquoi ces deux paquets ? `mariadb-server` est le serveur de base de données, et `mariadb-client` est le client de base de données. Le client est utilisé pour se connecter à la base de données.
+
+::: tip Arrêtons-nous un instant
+
+- Pourquoi faire un update avant d'installer un paquet ?
+- À quoi correspond le `-y` à la fin de la commande ?
+- Selon vous, est-ce que votre serveur de base de données est démarré ? Si oui, comment le vérifier ?
+
+:::
+
+### Configuration
+
+Avant d'utiliser MariaDB, nous devons configurer le mot de passe de l'utilisateur `root`. Pour cela, vous pouvez utiliser la commande suivante :
+
+```bash
+mysql_secure_installation
+```
+
+Cette commande va vous demander de rentrer le mot de passe actuel de l'utilisateur `root`. Comme vous venez d'installer MariaDB.
+
+::: tip Arrêtons-nous un instant
+
+- Qu'est-ce que `mysql_secure_installation` ?
+- Pourquoi est-ce important de changer le mot de passe de l'utilisateur `root` ?
+- Quel mot de passe avez-vous choisi ? Pourquoi ?
+
+:::
+
+### Vérifier que MariaDB est installé
+
+Pour vérifier que MariaDB est installé, vous pouvez utiliser la commande suivante :
+
+```bash
+mysql -u root -p
+```
+
+Cette commande va vous demander le mot de passe de l'utilisateur `root`. Si vous avez bien suivi les étapes précédentes, vous devriez être connecté à MariaDB.
+
+### PHP et MariaDB
+
+Lors de l'installation de PHP, nous avons installé l'extension `php-mysql`. Cette extension permet d'utiliser MariaDB avec PHP, elle est donc indispensable pour faire fonctionner vos sites webs si vous utilisez une base de données.
+
+::: tip Arrêtons-nous un instant
+
+- Qu'est-ce que `php-mysql` ?
+- Pourquoi MySQL et pas MariaDB ?
+
+:::
+
+## Installation de phpMyAdmin
+
+Maintenant que nous avons un serveur web et une base de données, nous allons installer phpMyAdmin. phpMyAdmin est un outil qui permet de gérer facilement une base de données. Il permet de créer des bases de données, des tables, des utilisateurs, etc.
+
+Vous l'avez déjà utilisé, mais vous ne l'avez jamais installé. C'est le moment de le faire.
+
+### Installation
+
+Pour installer phpMyAdmin, vous pouvez utiliser la commande suivante :
+
+```bash
+cd /var/www/html
+wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip
+tar -xvzf phpMyAdmin-5.2.0-all-languages.zip
+mv phpMyAdmin-5.2.0-all-languages phpmyadmin
+rm phpMyAdmin-5.2.0-all-languages.zip
+```
+
+L'installation est le résultat de plusieurs commandes :
+
+- `cd /var/www/html` : on se déplace dans le dossier `/var/www/html`.
+- `wget …` : on télécharge le fichier `phpMyAdmin-5.2.0-all-languages.zip`. Depuis les serveurs de phpMyAdmin.
+- `tar -xvzf …` : on décompresse le fichier `phpMyAdmin-5.2.0-all-languages.zip`.
+- `mv …` : on renomme le dossier `phpMyAdmin-5.2.0-all-languages` en `phpmyadmin`. Car il est plus simple de taper `phpmyadmin` que `phpMyAdmin-5.2.0-all-languages`.
+- `rm …` : on supprime le fichier `phpMyAdmin-5.2.0-all-languages.zip`. Car il n'est plus utile.
+
+::: tip Arrêtons-nous un instant
+
+- Pourquoi utilisons-nous la version du site web de phpMyAdmin ? Et pas la version du dépôt Debian ?
+- À votre avis est-ce suffisant pour que phpMyAdmin fonctionne ?
+
+### Créer un virtual host dédié à phpMyAdmin
+
+Nous pourrions utiliser PhpMyAdmin en allant sur l'adresse `http://ip_du_serveur/phpmyadmin`. Mais ce n'est pas une bonne pratique. Nous allons donc créer un virtual host dédié à phpMyAdmin.
+
+Un virtual host permet de séparer les sites web. Par exemple, si vous avez un site web `exemple.com`, vous pouvez avoir un virtual host pour `exemple.com` et un autre pour `phpmyadmin.exemple.com`. Cela permet de séparer les sites web, et de ne pas avoir de conflit entre les deux.
+
+Évidemment au lycée nous n'avons pas de nom de domaine, par contre, votre serveur possède une adresse IP et 65535 ports. Nous allons donc utiliser un port différent pour phpMyAdmin. Nous allons utiliser le port `9090`.
+
+Pour créer un virtual host, vous pouvez utiliser la commande suivante :
+
+```bash
+nano /etc/apache2/sites-available/phpmyadmin.conf
+```
+
+Cette commande va créer un fichier `phpmyadmin.conf` dans le dossier `/etc/apache2/sites-available`. Ce fichier va contenir la configuration de notre virtual host.
+
+Ce fichier va contenir la configuration de notre virtual host. Vous pouvez copier-coller le code suivant :
+
+```apache
+<VirtualHost *:9090>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/phpmyadmin
+
+    <Directory /var/www/html/phpmyadmin>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Cette configuration va permettre d'utiliser le port `9090` pour accéder à phpMyAdmin. Vous pouvez maintenant enregistrer le fichier.
+
+Pour activer le virtual host, vous pouvez utiliser la commande suivante :
+
+```bash
+a2ensite phpmyadmin
+```
+
+Cette commande va activer le virtual host `phpmyadmin.conf`. Vous pouvez maintenant redémarrer Apache pour que les modifications soient prises en compte :
+
+```bash
+systemctl restart apache2
+```
+
+::: tip Arrêtons-nous un instant
+
+- Qu'est-ce qu'un virtual host ?
+- Pourquoi utilisons-nous le port `9090` ?
+- Où avons-nous défini le port `9090` ?
+- À quoi sert la commande `a2ensite` ?
+- Pourquoi avons-nous besoin de redémarrer Apache ?
+
+:::
+
+### Accéder à phpMyAdmin
+
+Si vous avez bien suivi les étapes précédentes, vous pouvez maintenant accéder à phpMyAdmin. Vous pouvez utiliser l'adresse suivante : `http://ip_du_serveur:9090`.
+
+Je vous laisse vous connecter à phpMyAdmin, pour l'instant vous n'avez pas créé d'utilisateur. Vous pouvez donc utiliser l'utilisateur `root` pour vous connecter. Vous pouvez utiliser le mot de passe que vous avez défini lors de l'installation de MariaDB.
+
+## Conclusion
+
+Vous avez maintenant un serveur web et une base de données. Vous pouvez maintenant créer des sites web dynamiques. Vous pouvez utiliser PHP pour créer des sites web dynamiques. Vous pouvez utiliser MySQL ou MariaDB pour stocker des données.
+
+Même si l'ensemble des étapes ne sont pas réellement longues, il est important de bien comprendre ce que vous faites. Notamment pour la configuration de MariaDB et de phpMyAdmin. Si vous avez des questions, n'hésitez pas à me les poser.
+
+Le développeur cherche à automatiser le plus possible son installation c'est pour ça que par la suite nous verrons comment automatiser entièrement l'installation de MariaDB, PHP et Apache grâce à Docker et Docker Compose.
+
+Cependant il est important de comprendre les commandes de bases ainsi que la notion de virtual host / port, car elles seront utilisées dans le cadre de Docker.
+
+::: danger Attention
+
+Même si vous suivez l'option SLAM, il ne faut pas perdre de vue qu'en première année de BTS SIO vous allez devoir faire un projet de fin d'année. Ce projet va vous permettre de mettre en pratique ce que vous avez appris en première année. Vous allez donc devoir créer un site web dynamique. Vous allez donc devoir utiliser PHP, MySQL ou MariaDB, et Apache.
+
+Lors de l'examen final, vous serez également amené à créer un site web dynamique. Vous allez donc devoir utiliser PHP, MySQL ou MariaDB, et Apache. Vous allez donc devoir utiliser les commandes que vous avez vu dans ce chapitre.
+
+:::
+
+## Liens
+
+- [Apache](https://httpd.apache.org/)
+- [MariaDB](https://mariadb.org/)
+- [PhpMyAdmin](https://www.phpmyadmin.net/)
+- [PHP](https://www.php.net/)
+- [MySQL](https://www.mysql.com/)

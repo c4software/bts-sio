@@ -4,7 +4,7 @@ description: "Aide mémoire pour installer un serveur LAMP (Web) à base de Debi
 
 # Créer un serveur LAMP / WEB (Apache, MariaDB, PHP) avec Debian
 
-Dans cette aide mémoire vous trouverez l'ensemble des commandes et des opérations à réaliser pour installer un serveur LAMP (Web) à base de Debian.
+Dans cet aide mémoire vous trouverez l'ensemble des commandes et des opérations à réaliser pour installer un serveur LAMP (Web) à base de Debian.
 
 ## Ajouter le dépôt pour PHP 8
 
@@ -23,7 +23,7 @@ Debian est une distribution stable, mais stabilité ≠ modernité. Pour avoir l
 
 ```bash
 apt-get update
-apt-get install libapache2-mod-php php php-common php-xml php-gd php8.0-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip curl -y
+apt-get install libapache2-mod-php php php-common php-xml php-gd php8.0-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip curl php-mysql php-pdo -y
 ```
 
 Démarrez le serveur Apache
@@ -31,13 +31,6 @@ Démarrez le serveur Apache
 ```bash
 systemctl enable apache2
 systemctl start apache2
-```
-
-Démarrer le serveur MySQL
-
-```bash
-systemctl enable mysql
-systemctl start mysql
 ```
 
 ::: tip Un peu de détail
@@ -57,6 +50,9 @@ systemctl start mysql
 - `php-zip` : Le module PHP pour gérer les archives
 - `unzip` : Le programme pour décompresser les archives
 - `curl` : Le programme pour télécharger des fichiers
+- `php-pdo` : Le module PHP pour gérer les bases de données
+- `libapache2-mod-php` : Le module Apache pour gérer PHP
+- `php-mysql` : Le module PHP pour gérer les bases de données MySQL / MariaDB.
 
 :::
 
@@ -82,6 +78,13 @@ Zend Engine v4.0.10, Copyright (c) Zend Technologies
 ```bash
 apt-get update
 apt-get install mariadb-server mariadb-client -y
+```
+
+Démarrer le serveur MariaDB
+
+```bash
+systemctl enable mariadb
+systemctl start mariadb
 ```
 
 ## Configurer la base de données
@@ -155,3 +158,55 @@ Plus tard nous utiliserons la réécriture d'URL pour personnaliser le lien ind�
 Ce ne sont évidemment que des exemples.
 
 :::
+
+## Installer PhpMyAdmin
+
+Pour installer phpMyAdmin, vous pouvez utiliser la commande suivante :
+
+```bash
+cd /var/www/html
+wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip
+tar -xvzf phpMyAdmin-5.2.0-all-languages.zip
+mv phpMyAdmin-5.2.0-all-languages phpmyadmin
+rm phpMyAdmin-5.2.0-all-languages.zip
+```
+
+### Créer un virtual host dédié à phpMyAdmin
+
+Pour créer un virtual host, vous pouvez utiliser la commande suivante :
+
+```bash
+nano /etc/apache2/sites-available/phpmyadmin.conf
+```
+
+Cette commande va créer un fichier `phpmyadmin.conf` dans le dossier `/etc/apache2/sites-available`. Ce fichier va contenir la configuration de notre virtual host.
+
+Ce fichier va contenir la configuration de notre virtual host. Vous pouvez copier-coller le code suivant :
+
+```apache
+<VirtualHost *:9090>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/phpmyadmin
+
+    <Directory /var/www/html/phpmyadmin>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Pour activer le virtual host, vous pouvez utiliser la commande suivante :
+
+```bash
+a2ensite phpmyadmin
+```
+
+Cette commande va activer le virtual host `phpmyadmin.conf`. Vous pouvez maintenant redémarrer Apache pour que les modifications soient prises en compte :
+
+```bash
+systemctl restart apache2
+```
