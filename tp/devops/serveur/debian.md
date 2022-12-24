@@ -565,7 +565,7 @@ systemctl restart apache2
 
 Si vous avez bien suivi les étapes précédentes, vous pouvez maintenant accéder à phpMyAdmin. Vous pouvez utiliser l'adresse suivante : `http://ip_du_serveur:9090`.
 
-![phpMyAdmin](./res/phpmyadmin.png)
+![phpMyAdmin](./res/phpmyadmin.jpg)
 
 Je vous laisse vous connecter à phpMyAdmin, pour l'instant vous n'avez pas créé d'utilisateur. Vous pouvez donc utiliser l'utilisateur `root` pour vous connecter. Vous pouvez utiliser le mot de passe que vous avez défini lors de l'installation de MariaDB.
 
