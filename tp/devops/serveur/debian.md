@@ -501,6 +501,8 @@ L'installation est le résultat de plusieurs commandes :
 - Pourquoi utilisons-nous la version du site web de phpMyAdmin ? Et pas la version du dépôt Debian ?
 - À votre avis est-ce suffisant pour que phpMyAdmin fonctionne ?
 
+:::
+
 ### Créer un virtual host dédié à phpMyAdmin
 
 Nous pourrions utiliser PhpMyAdmin en allant sur l'adresse `http://ip_du_serveur/phpmyadmin`. Mais ce n'est pas une bonne pratique. Nous allons donc créer un virtual host dédié à phpMyAdmin.
