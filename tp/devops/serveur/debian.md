@@ -600,3 +600,31 @@ Vous avez à votre disposition une synthèse de ce TP disponible ici : [Aide mé
 - [PhpMyAdmin](https://www.phpmyadmin.net/)
 - [PHP](https://www.php.net/)
 - [MySQL](https://www.mysql.com/)
+
+::: details Bonus, accéder à votre base de données depuis votre ordinateur
+
+Par défaut, le port 3306 est fermé sur Debian. Il faut donc l'ouvrir pour que les applications puissent se connecter à la base de données. La configuration se fait dans le fichier `/etc/mysql/mariadb.conf.d/50-server.cnf`.
+
+```bash
+nano /etc/mysql/mariadb.conf.d/50-server.cnf
+```
+
+Ajoutez la ligne suivante dans la section `[mysqld]`.
+
+```ini
+bind-address = 0.0.0.0
+```
+
+Redémarrer le serveur MySQL
+
+```bash
+systemctl restart mysql
+```
+
+## tip Pourquoi ?
+
+Par défaut, le serveur MySQL n'écoutera que les connexions locales. Il faut donc autoriser les connexions distantes en modifiant la valeur de `bind-address`. **Si vous n'en avez pas besoin, vous pouvez laisser la valeur par défaut.**
+
+Changer se paramètre sera utile quand vous souhaiterez accéder à la base de données depuis un autre ordinateur (exemple développement en C#).
+
+:::
