@@ -6,6 +6,12 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+VueJS 2.0 ou VueJS 3.0 ?
+
+Nous sommes à une phase de transition. Ici nous allons nous intéresser à la force de VueJS dans son ensemble.
+
+---
+
 ### Progressive
 
 Qui se passe ou se développe progressivement ou par étapes.
