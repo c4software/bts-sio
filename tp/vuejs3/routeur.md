@@ -463,6 +463,17 @@ Exemple de template affichant les détails du pokémon :
 </div>
 ```
 
+## Évolution de l'application
+
+Je vous laisse travailler sur le style de l'application pour que celle-ci soit plus jolie. Vous pouvez également ajouter des fonctionnalités comme :
+
+- Ajouter un bouton pour revenir à la liste des pokémons
+- Ajouter un bouton pour aller au pokémon suivant
+- Ajouter un bouton pour aller au pokémon précédent
+
+- Vous n'oubierez pas de compléter la page `about` avec des informations sur l'application.
+- Vous n'oubierez pas de compléter la page `home`, celle-ci doit inviter l'utilisateur à aller sur la page `pokemons`.
+
 ## Conclusion
 
 Nous avons vu comment créer une application VueJS avec TailwindCSS. Nous avons également vu comment créer des pages et des composants. Nous avons également vu comment récupérer des données depuis une API.
