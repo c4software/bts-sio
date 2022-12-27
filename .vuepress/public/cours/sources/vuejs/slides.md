@@ -848,7 +848,7 @@ Le Store, avec l'arrivée de VueJS 3.0, le store à utiliser est [Pinia](https:/
 - VueJS 2 est plus mature.
 - VueJS 3 est plus rapide.
 - VueJS 2 supporte IE11.
-- VueJS 2 intégre certaines fonctionnalités de VueJS 3.
+- VueJS 2 intègre certaines fonctionnalités de VueJS 3.
 
 ---
 
