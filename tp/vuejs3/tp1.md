@@ -294,3 +294,19 @@ Ils ont tous la même logique :
 - Décoder les données souvent au format JSON.
 - Les afficher dans la page en les stylisant.
 - Permettre à l'utilisateur de recharger les données.
+
+::: tip Pour aller plus loin
+
+L'usage de VueJS en mode CDN est intéressant pour des petits projets. Pour des projets plus importants, je vous invite à utiliser VueJS en mode CLI.
+
+En effet, le mode CLI permet de créer des applications plus complexes. Il permet également de créer des applications avec des fonctionnalités avancées comme :
+
+- Le routeur
+- La gestion de l'état.
+- Les composants.
+
+Bref, tout ce qui est nécessaire pour créer des applications web modernes.
+
+Vous avez envie de découvrir VueJS en mode CLI ? Je vous invite à lire le TP suivant : [ViteJS](./vite.md).
+
+:::
