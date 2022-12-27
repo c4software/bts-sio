@@ -1,8 +1,8 @@
 ---
-description: Dans ce TP nous allons découvrir l'utilisation de VueJS 2.0
+description: Dans ce TP nous allons découvrir l'utilisation de VueJS 3.0
 ---
 
-# Prise en main de VueJS 2.0
+# Prise en main de VueJS 3
 
 Dans ce TP nous allons découvrir l'utilisation de VueJS.
 
@@ -35,7 +35,7 @@ Si vous utilisez Visual Studio Code, vous pouvez faire html:5<kbd>Tab</kbd> une 
 Pour ajouter VueJS dans la page ? Il faut juste ajouter la balise script suivante dans le « head » de votre page :
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
 
 Et voilà !
@@ -52,14 +52,19 @@ Bon en vrai on va devoir ajouter quelques petits trucs… Si vous avez suivi pen
 Remplacer le commentaire `<!-- Votre code ici -->` par
 
 ```html
-<div id="app"></div>
+<div id="app">{{ message }}</div>
+
 <script>
-  var app = new Vue({
-    el: "#app",
-    mounted() {
-      console.log("Ding ! 🍪 Votre code fonctionne !");
-    },
-  });
+    const { createApp } = Vue
+
+    createApp({
+        mounted() {
+            console.log('Ding ! 🍪 Votre code fonctionne !')
+        },
+        data() {
+            return {}
+        }
+    }).mount('#app')
 </script>
 ```
 
@@ -76,17 +81,19 @@ Votre code doit dès à présent fonctionner ! Vérifier dans la console de votr
 Nous allons ajouter un simple « button » dans notre page. Celui-ci affichera une `alert` lorsque l'utilisateur clique dessus. Modifier votre objet VueJS pour qu'il ressemble à :
 
 ```js
-new Vue({
-  el: "#app",
-  mounted() {
-    console.log("Ding ! 🍪 Votre code fonctionne !");
-  },
-  methods: {
-    action() {
-      alert("🎉 Bravo 🎉");
+  createApp({
+    mounted() {
+        console.log('Ding ! 🍪 Votre code fonctionne !')
     },
-  },
-});
+    data() {
+      return {}
+    },
+    methods: {
+        action() {
+            alert("🎉 Bravo 🎉");
+        },
+    },
+}).mount('#app')
 ```
 
 Vous venez de déclarer une nouvelle méthode, celle-ci se nomme `action`, celle-ci affiche « Bravo ». Il faut donc maintenant l'appeler…
@@ -127,22 +134,21 @@ data(){
 Une fois intégré à votre code :
 
 ```js
-new Vue({
-  el: "#app",
-  mounted() {
-    console.log("Ding ! 🍪 Votre code fonctionne !");
-  },
-  data() {
-    return {
-      liste: [],
-    };
-  },
-  methods: {
-    action() {
-      alert("🎉 Bravo 🎉");
+createApp({
+    mounted() {
+        console.log('Ding ! 🍪 Votre code fonctionne !')
     },
-  },
-});
+    data() {
+        return {
+            liste: ["Item 1", "Item 2", "Item 3"]
+        }
+    },
+    methods: {
+        action() {
+            alert("🎉 Bravo 🎉");
+        },
+    },
+}).mount('#app')
 ```
 
 🚀 Valider avec les Vue Dev Tools que votre liste est bien présente.
@@ -202,7 +208,7 @@ Un prompt c'est « pas très beau » non ? Passer par un input HTML serait quand
 - `@keyup.enter` Permets de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
 - `ref` permet de déclarer une référence vers l'élément HTML, celui-ci sera ensuite disponible par `$refs['input']`
 
-## Et via un input 2 ?
+## Et via un input version à privilegier ?
 
 La première solution est pas trop mal, mais, utiliser les data est serait certainement une meilleure idée. Autre solution, mais tout aussi simple (et certainement bien meilleur).
 
