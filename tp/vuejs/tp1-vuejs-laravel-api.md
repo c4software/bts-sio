@@ -2,7 +2,7 @@
 description: Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration.
 ---
 
-# Ajouter VueJS 2.0 dans un site existant
+# Ajouter VueJS 2.0 + Laravel
 
 Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration.
 
@@ -10,7 +10,7 @@ Dans le cadre du TP, vous allez devoir « moderniser » une application simple. 
 [[toc]]
 :::
 
-L’application existante est une « TodoList » codée avec le Framework Laravel.
+L’application existante est une « TodoList » codée avec le Framework Laravel. Le TP en question est [disponible ici](/tp/laravel/application_todo_list.md)
 
 ## Les API
 
