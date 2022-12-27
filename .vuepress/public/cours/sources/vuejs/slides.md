@@ -1,4 +1,4 @@
-# VueJS 2.0
+# VueJS
 
 ## Progressive JavaScript framework
 
@@ -530,6 +530,10 @@ export default {
 
 ---
 
+## Zoom sur VueJS 2 
+
+---
+
 ### Chez VueJS ils ont créé ViteJS
 
 - Un outil de développement rapide.
@@ -687,7 +691,7 @@ $ vue add vuex
 
 ### Démo store
 
-[Exemple simple](https://vuex.vuejs.org/fr/getting-started.html)
+[Exemple simple](https://vuex.vuejs.org/guide/#the-simplest-store)
 
 ---
 
@@ -720,6 +724,10 @@ $ vue add vuex
 
 ---
 
+## Zoom sur VueJS 3
+
+---
+
 ## Un aperçu du futur
 
 - Pourquoi utiliser un bundler (Webpack) ?
@@ -729,7 +737,7 @@ $ vue add vuex
 
 ---
 
-## VueJS 3.0
+## VueJS 3.X
 
 - Réécriture.
 - Fonctionnement très similaire.
