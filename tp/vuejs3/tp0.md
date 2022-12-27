@@ -266,3 +266,9 @@ Je vous laisse chercher comment l'implémenter dans votre code.
 Vous avez maintenant les bases de VueJS, vous pouvez maintenant vous lancer dans la création de vos premières applications. VueJS permet de simplifier énormément la récupération de données via une API REST.
 
 Je vous propose de continuer votre aventure avec le TP 2 : [Disponnible ici](./tp1.md)
+
+## Ressources
+
+- [VueJS](https://vuejs.org/)
+- [VueJS Dev Tools Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [VueJS Dev Tools Firefox](https://addons.mozilla.org/fr/firefox/addon/vue-js-devtools/)

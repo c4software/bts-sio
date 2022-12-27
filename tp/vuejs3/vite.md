@@ -2,7 +2,7 @@
 description: ViteJS est une des nouvelles façons de créer un projet « moderne » avec VueJS (mais pas que). L'objectif est la création de projets « rapide » permettant au développeur de créer des projets avec une structure simple et moderne.
 ---
 
-# Découverte de VueJS 3.0 (avec ViteJS)
+# Découverte de ViteJS
 
 ::: details Table des matières
 [[toc]]
@@ -406,3 +406,14 @@ const props = defineProps({
 ```
 
 :::
+
+## Conclusion
+
+Dans ce TP nous avons vu comment créer un projet VueJS 3.0. Nous avons également vu comment créer un composants possèdant des props. Bien que VueBootstrap ne soit pas encore disponible pour VueJS 3.0, nous avons pu voir comment utiliser Bootstrap dans notre projet.
+
+## Ressources
+
+- [VueJS 3.0](https://v3.vuejs.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Vuetify](https://vuetifyjs.com/en/)
+- [VueBootstrap](https://bootstrap-vue.org/)

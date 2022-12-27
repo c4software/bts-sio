@@ -238,7 +238,7 @@ Attendez un instant… Vous avez vraiment envie de voir le code ? 🤔
 <!-- Tailwind Navbar -->
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="https://flowbite.com/" class="flex items-center">
+        <a href="/" class="flex items-center">
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Démo VueJS 3.0</span>
         </a>
 
@@ -310,3 +310,11 @@ Bref, tout ce qui est nécessaire pour créer des applications web modernes.
 Vous avez envie de découvrir VueJS en mode CLI ? Je vous invite à lire le TP suivant : [ViteJS](./vite.md).
 
 :::
+
+## Ressources
+
+- [https://v3.vuejs.org/](https://v3.vuejs.org/)
+- [https://tailwindcss.com/](https://tailwindcss.com/)
+- [https://flowbite.com/](https://flowbite.com/)
+- [VueJS Dev Tools Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [VueJS Dev Tools Firefox](https://addons.mozilla.org/fr/firefox/addon/vue-js-devtools/)
