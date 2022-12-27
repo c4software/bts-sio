@@ -1,10 +1,10 @@
 ---
-description: Dans ce TP nous allons découvrir l'utilisation de VueJS 2.0
+description: Dans ce TP nous allons découvrir l'utilisation de VueJS sans Webpack. Nous allons donc utiliser directement le CDN de VueJS.
 ---
 
 # Prise en main de VueJS 2.0
 
-Dans ce TP nous allons découvrir l'utilisation de VueJS.
+Dans ce TP nous allons découvrir l'utilisation de VueJS sans Webpack. Nous allons donc utiliser directement le CDN de VueJS.
 
 ::: details Table des matières
 [[toc]]

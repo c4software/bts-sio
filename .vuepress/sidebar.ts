@@ -198,7 +198,7 @@ module.exports = [
       {
         text: "Version 3.0",
         collapsible: true,
-        children: ["/tp/vuejs3/vite.md", "/tp/vuejs3/petite-vue.md"]
+        children: ["/tp/vuejs/tp0.md", "/tp/vuejs3/vite.md", "/tp/vuejs3/petite-vue.md"]
       }
     ]
   },

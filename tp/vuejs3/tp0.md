@@ -1,10 +1,10 @@
 ---
-description: Dans ce TP nous allons découvrir l'utilisation de VueJS 3.0
+description: Dans ce TP nous allons découvrir l'utilisation de VueJS dans sans bundler. Nous allons donc utiliser directement le CDN de VueJS.
 ---
 
 # Prise en main de VueJS 3
 
-Dans ce TP nous allons découvrir l'utilisation de VueJS.
+Dans ce TP nous allons découvrir l'utilisation de VueJS sans bundler. Nous allons donc utiliser directement le CDN de VueJS.
 
 ::: details Table des matières
 [[toc]]
@@ -242,3 +242,27 @@ Comme vous l'avez très certainement remarqué, le champ n'est pas vidé après 
 - Autre solution via un watcher sur la variable `saisie`.
 
 C'est à vous implémenté la première solution, puis la seconde.
+
+## Et si on voulait supprimer un élément ?
+
+Pour supprimer un élément, il faut que vous ajoutiez un bouton dans votre liste. Pour ça, ajouter le code suivant dans votre `v-for` :
+
+```html
+<button @click="liste.splice(index, 1)">Supprimer</button>
+```
+
+Je vous laisse chercher comment l'implémenter dans votre code.
+
+::: tip index ?
+
+`index` est une variable qui est automatiquement créée par VueJS, elle représente l'index de l'élément dans le tableau. Vous pouvez la spécifier lors de l'écriture de votre `v-for` :
+
+```html
+<li v-for="(item, index) in liste">{{item}}</li>
+```
+
+## Conclusion
+
+Vous avez maintenant les bases de VueJS, vous pouvez maintenant vous lancer dans la création de vos premières applications. VueJS permet de simplifier énormément la récupération de données via une API REST.
+
+Je vous propose de continuer votre aventure avec le TP 2 : [Disponnible ici](./tp1.md)
