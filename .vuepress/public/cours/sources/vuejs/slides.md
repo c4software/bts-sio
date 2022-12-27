@@ -1,4 +1,4 @@
-# VueJS
+# VueJS 2.0
 
 ## Progressive JavaScript framework
 
@@ -98,8 +98,8 @@ Faire des PWA simplement (il y en a d'autres bien évidemment, en connaissez-vou
 - Création : **2013**
 - Première version « stable » **février 2014**
 - **V1.0** Octobre 2015
-- La version **3** arrive. Stable, mais reste en version `@next`.
 - La version **2** toujours distribuée sur les CDN.
+- La version **3** arrive. Elle est en stable, mais l'écosystème est jeune.
 
 ---
 
@@ -109,8 +109,8 @@ Et pas ReactJS ou Angular…
 
 - VueJS est « plus simple »
 - Le site de VueJS est plus clair ?
-- La fondation Apache ne veut pas des projets ReactJS ([c’est un signe…](https://www.theregister.co.uk/2017/07/17/apache_says_no_to_facebook_code_libraries/))
-- Mais… Facebook a annoncé un changement dans les licences (très récemment)
+- VueJS est plus léger.
+- VueJS peut être utilisé pour faire évoluer une application existante.
 
 ---
 
@@ -123,17 +123,13 @@ Et pas ReactJS ou Angular…
 
 ---
 
-### Quelques stats
-
-[Nous sommes à un click de la réponse](https://hasvuepassedreactyet.surge.sh/)
-
----
-
 ### Qui utilise VueJS
 
 - GitLab
 - Weex (Alibaba)
 - Baidu
+- Laravel
+- Moi à Playmoweb
 - …
 
 ---
@@ -435,13 +431,7 @@ Un composant ce n'est pas que du JavaScript.
 
 ---
 
-C'est possible grâce à la puissance de **webpack**.
-
----
-
-## Webpack
-
-![Des questions](./img/questions.gif)
+C'est possible grâce à la puissance de **webpack** ou **rollup**.
 
 ---
 
@@ -469,9 +459,27 @@ C'est deux éléments importants
 
 ---
 
+## Rollup
+
+- Assemble les « modules JavaScript ».
+- Concaténation « intelligente »
+- Découpe les JS pour la distribution
+- Assemble aussi des modules « css » (jusqu’aux images incluses)
+
+---
+
+- Rollup est plus « simple » que Webpack, mais moins « complet ». 
+- C'est le coeur de ViteJS.
+
+---
+
 ### Et pour VueJS
 
 ![Confused](./img/confused.gif)
+
+---
+
+Le Bundleur est l'outil qui va assembler les modules JavaScript. Qui nous permet de créer des composants en n'indiquant que le fichier « .vue ».
 
 ---
 
@@ -489,7 +497,7 @@ C'est deux éléments importants
 
 ---
 
-### C’est possible grâce à Webpack
+## Rollup et Webpack
 
 - Rechargement automatique
 - Sans perdre le contexte grâce au « Hot Reload »
@@ -498,7 +506,7 @@ C'est deux éléments importants
 
 ---
 
-### Quelques différences avec les précédents exemples…
+## Quelques différences avec les précédents exemples…
 
 ```js
 var vm = new Vue({
@@ -518,16 +526,16 @@ export default {
 
 ### Sauf que …
 
-#### Webpack c’est « compliqué » à mettre en place
+#### Webpack et Rollup c’est « compliqué » à mettre en place
 
 ---
 
-### Chez VueJS ils ont créé VueCLI
+### Chez VueJS ils ont créé ViteJS
 
-- Template de projet.
-- Rapide.
-- Étendable (plugin).
-- Mise à jour simple.
+- Un outil de développement rapide.
+- Un outil de développement « simple ».
+- Gère les composants VueJS.
+- Gère le hot reload (HMR).
 
 ---
 
@@ -549,18 +557,24 @@ $ npm install -g @vue/cli
 ---
 
 ```sh
-vue create demonstration
+$ vue create demo
 ```
 
 ---
 
-![init vueJS](./img/init_vuejs.png)
+Ou via `create-vue`
+
+```sh
+npm create vue@2
+```
+
+---
+
+### Et on répond aux questions
 
 ---
 
 ### Le projet est « initialisé »
-
-Psss: Chez VueJS ils sont sympas, ils ont init le projet git pour vous.
 
 ---
 
@@ -587,7 +601,9 @@ $ npm run dev
 … Lancement du serveur intégré …
 ```
 
-![Démo 1](./img/demo_vuejs.png)
+![Démo 1](./img/demo_vuejs.jpg)
+
+---
 
 ![Démo 2](./img/demo_app_vuejs.png)
 
@@ -725,7 +741,7 @@ $ vue add vuex
 ## Gros changement l'observation des données
 
 - La méthode `data()` (à l'ancienne)
-- La méthode `setup()` (nouveau)
+- La méthode `setup()` (nouveau) (ou via `<script setup>`)
 
 ---
 
@@ -785,10 +801,22 @@ export default {
 
 ---
 
+## Une démo
+
+```sh
+npm init vite@latest
+```
+
+---
+
 ## TypeScript ?
 
 - Permets de typer nos variables.
 - Complètement optionnel (mais je vous le conseille).
+
+---
+
+Le Store, avec l'arrivée de VueJS 3.0, le store à utiliser est [Pinia](https://pinia.esm.dev/)
 
 ---
 
@@ -801,6 +829,19 @@ export default {
 
 ---
 
+## VueJS 2 ou 3 ?
+
+- VueJS 2 est plus mature.
+- VueJS 3 est plus rapide.
+- VueJS 2 supporte IE11.
+- VueJS 2 intégre certaines fonctionnalités de VueJS 3.
+
+---
+
+C'est à vous de choisir, moi j'utilise de préférence VueJS 3. Et VueJS 2 pour les projets « plus anciens ».
+
+---
+
 ## Mettre en pratique
 
 [VueJS 3.0 + Vite](/tp/vuejs3/vite.md)
@@ -809,4 +850,4 @@ export default {
 
 ### Des questions
 
-(Il doit y en avoir beaucoup)
+(Il doit y en avoir énormément)
