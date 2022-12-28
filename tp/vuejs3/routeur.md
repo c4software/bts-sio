@@ -669,6 +669,10 @@ Exemple de template affichant les détails :
 </template>
 ```
 
+Une fois réalisé vous devriez voir :
+
+![Pokémon details](./res/routeur-poke-result.jpg)
+
 ## Ajouter une page `contact`
 
 En reprenant la logique vue précédemment, ajoutez une page `contact` qui contient un formulaire de contact. 
