@@ -203,6 +203,8 @@ module.exports = [
           "/tp/vuejs3/tp1.md",
           "/tp/vuejs3/vite.md",
           "/tp/vuejs3/routeur.md",
+          "/tp/vuejs3/firebase.md",
+          "/tp/vuejs3/vuetify.md",
           "/tp/vuejs3/petite-vue.md"
         ]
       }
