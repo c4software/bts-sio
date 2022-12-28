@@ -360,11 +360,64 @@ Avant de continuer je vous laisse créer la page `PokemonList.vue` et tester que
 
 En reprenant le système de card que nous avons utilisé dans le TP précédent, nous allons afficher la liste des pokémons sur la page `PokemonList.vue`.
 
+### Créer un composant `Card.vue`
+
+Je vous invite également vivement à créer un composant `Card` dansle dossier `src/components` et à l'utiliser dans votre composant `PokemonList.vue`. Comme toujours le découpage en composant est une bonne pratique.
+
+::: details Code du composant `Card.vue` avec un Slot
+
+```vue
+<script setup lang="ts">
+</script>
+
+<template>
+    <div class="m-6 block max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <p class="font-normal">
+            <slot />
+        </p>
+    </div>
+</template>
+```
+
+D'où vient le code ? [Flowbite](https://flowbite.com/) et plus particulièrement la page Card : [https://flowbite.com/docs/components/card/](https://flowbite.com/docs/components/card/).
+:::
+
+### Créer le composant `PokemonList.vue`
+
+Pour cette étape, je vous laisse créer la vue `PokemonList.vue` et afficher la liste des pokémons.
+
 ::: tip Vous avez besoin d'aide ?
 
-Vous pouvez également regarder le site [Flowbite](https://flowbite.com/) et plus particulièrement la page Card : [https://flowbite.com/docs/components/card/](https://flowbite.com/docs/components/card/)
+Je vous aide voici la base de votre composant `PokemonList.vue` :
+
+```vue
+<script setup lang="ts">
+// À l'étape suivante vous allez ajouter le code pour récupérer la liste des pokémons
+</script>
+
+<template>
+<!-- Visuel de votre vue -->
+</template>
+
+<style scoped>
+</style>
+```
 
 :::
+
+### Afficher la liste des pokémons
+
+Pour afficher la liste des pokémons nous avons besoin de récupérer la liste des pokémons depuis l'API. Pour cela, nous allons utiliser la fonction `fetch` de JavaScript.
+
+L'appel à l'API va être réalisé dans la partie `<script setup>` du composant `PokemonList.vue`. Nous allons donc créer une variable `pokemons` qui contiendra la liste des pokémons.
+
+```vue
+<script setup lang="ts">
+const pokemons = []
+
+// À l'étape suivante vous allez ajouter le code pour récupérer la liste des pokémons
+</script>
+```
 
 ### Appeler l'API
 
@@ -374,21 +427,15 @@ Pour appeler l'API, nous allons utiliser la fonction `fetch` de JavaScript. Cett
 fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
   .then(response => response.json())
   .then(data => {
-    this.pokemons = data.results
+    pokemons = data.results
   })
 ```
 
 Je vous laisse ajouter cette fonction dans le composant `PokemonList.vue` et tester que vous récupérez bien la liste des pokémons. Vous pouvez également afficher la liste des pokémons dans la console avec `console.log(this.pokemons)` dans le `then`.
 
-### Afficher la liste des pokémons
-
-Maintenant que nous avons récupéré la liste des pokémons, nous allons pouvoir les afficher dans la page `PokemonList.vue`. Je vous laisse ajouter le code HTML + CSS pour afficher la liste des pokémons.
-
-N'oubliez pas d'utiliser les cards.
-
 ## Ajouter une page pour afficher les détails d'un pokémon
 
-Nous allons maintenant ajouter une page pour afficher les détails d'un pokémon. Pour cela, nous allons utiliser l'API [PokéAPI](https://pokeapi.co/). 
+Nous allons maintenant ajouter une page pour afficher les détails d'un pokémon. Pour cela, nous allons utiliser l'API [PokéAPI](https://pokeapi.co/).
 
 Pour cela, nous allons créer une nouvelle vue nommée `PokemonDetails.vue`. Cette vue va afficher les détails d'un pokémon. Pour cela, nous allons utiliser l'ID du pokémon dans l'URL.
 
@@ -407,6 +454,18 @@ Par rapport aux liens précédent nous allons avoir un lien dynamique. Pour cela
 ```
 
 Ajouter le code précédent dans le fichier `router.js` et tester que vous pouvez accéder à la page `/pokemons/1`.
+
+::: tip Que signifie le `:id` ?
+
+Le `:id` signifie que l'URL peut contenir un paramètre. Dans notre cas, l'URL peut contenir un paramètre `id`. Nous allons pouvoir récupérer ce paramètre dans le composant `PokemonDetails.vue`.
+
+C'est un peu comme si nous avions une variable `id` dans l'URL, comme nous pouvions le faire en PHP. Exemple :
+
+- `/pokemons/1` => `id = 1`
+- `/pokemons/2` => `id = 2`
+- …
+
+:::
 
 ### Afficher les détails d'un pokémon
 
@@ -439,6 +498,18 @@ Quelques explications :
 - `pokemon.value = data` : on assigne les détails du pokémon à la variable `pokemon`
 
 Je vous laisse ajouter ce code dans le composant `PokemonDetails.vue` et tester que vous récupérez bien les détails du pokémon. Vous pouvez également afficher les détails du pokémon dans la console avec `console.log(this.pokemon)` dans le `then`.
+
+::: tip Que contient la variable `pokemon` ?
+
+Vous pouvez regarder la structure de la variable `pokemon` dans la console. Vous pouvez également regarder la documentation de l'API : [https://pokeapi.co/docs/v2#pokemon-section](https://pokeapi.co/docs/v2#pokemon-section) :
+
+- `pokemon.sprites` : contient les sprites du pokémon (les images)
+- `pokemon.name` : contient le nom du pokémon
+- `pokemon.types` : contient les types du pokémon
+- `pokemon.stats` : contient les statistiques du pokémon
+- …
+
+:::
 
 ### Afficher les détails du pokémon
 
@@ -477,6 +548,8 @@ Je vous laisse travailler sur le style de l'application pour que celle-ci soit p
 ## Conclusion
 
 Nous avons vu comment créer une application VueJS avec TailwindCSS. Nous avons également vu comment créer des pages et des composants. Nous avons également vu comment récupérer des données depuis une API.
+
+Le découpage de l'application en vue est primordial pour la maintenabilité de l'application. Même si votre site est développé en JavaScript / Typescript, il est important de séparer les différentes parties de l'application. C'était important en PHP avec Laravel et en MVC ça l'ai toujours en JavaScript avec VueJS.
 
 ## Ressources
 
