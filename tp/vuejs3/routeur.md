@@ -401,7 +401,7 @@ Je vous laisse tester la navigation entre les différentes pages de votre applic
 
 Nous allons maintenant ajouter une page listant les pokémons. Pour cela, nous allons utiliser l'API [PokéAPI](https://pokeapi.co/). En utilisant le code du TP précédent, nous allons créer un composant `PokemonList.vue` dans le dossier `src/views`.
 
-Avant de continuer je vous laisse créer la page `PokemonList.vue` et tester que vous pouvez y accéder. Voici les étapes à suivre :
+Avant de continuer, je vous laisse créer la page `PokemonList.vue` et tester que vous pouvez y accéder. Voici les étapes à suivre :
 
 - Créer le fichier `PokemonList.vue` dans le dossier `src/views`
 - Ajouter le composant `PokemonList.vue` dans le fichier `router.js`
@@ -411,7 +411,7 @@ Avant de continuer je vous laisse créer la page `PokemonList.vue` et tester que
 ::: tip Et pour le contenu ?
 Pour l'instant vous n'avez pas de contenu. Je vous laisse mettre un simple `h1` dans le composant `PokemonList.vue`.
 
-Je vous aide voici la base de votre composant `PokemonList.vue` :
+Je vous aide, voici la base de votre composant `PokemonList.vue` :
 
 ```vue
 <script setup lang="ts">
@@ -430,7 +430,7 @@ Je vous aide voici la base de votre composant `PokemonList.vue` :
 
 ## Modifier votre navbar
 
-Avant de continuer, je vous invite à modifier votre navbar pour ajouter un lien vers la page `/pokemons`. Une fois ajouté vérifiez que vous pouvez accéder à la page `/pokemons` en cliquant sur le lien dans votre navbar.
+Avant de continuer, je vous invite à modifier votre navbar pour ajouter un lien vers la page `/pokemons`. Une fois ajouté, vérifiez que vous pouvez accéder à la page `/pokemons` en cliquant sur le lien dans votre navbar.
 
 Vous devriez avoir quelque chose comme ça :
 
@@ -442,7 +442,7 @@ Je vous propose de reprendre le système de Card que nous avons utilisé dans le
 
 ### Créer un composant `Card.vue`
 
-Je vous invite également vivement à créer un composant `Card` dansle dossier `src/components` et à l'utiliser dans votre composant `PokemonList.vue`. Comme toujours le découpage en composant est une bonne pratique.
+Je vous invite également vivement à créer un composant `Card` dans le dossier `src/components` et à l'utiliser dans votre composant `PokemonList.vue`. Comme toujours le découpage en composant est une bonne pratique.
 
 Code du composant `Card.vue` :
 
@@ -510,7 +510,7 @@ Pas de panique, ici vous devez utiliser ce que vous avez appris dans les TP pré
 - Utiliser un v-for pour afficher une liste.
 - Utiliser le composant `Card.vue` pour afficher les données. (n'oubliez pas de l'importer `import Card from '@/components/Card.vue'`).
 
-Voilà à quoi ça peux ressembler :
+Voilà à quoi ça peut ressembler :
 
 ![Pokémons Liste](./res/routeur-poke-card.jpg)
 
@@ -542,7 +542,7 @@ Voilà à quoi ça peux ressembler :
 
 ## Ajouter une page pour afficher les détails
 
-Nous avons créer la page listant toute les données récupérées depuis l'API. L'API nous propose également de récupérer les détails d'un élément, nous allons maintenant ajouter une page pour afficher les détails d'un pokémon. Comme pour la page liste, nous allons dans un premier temps créer la page et ensuite ajouter le lien vers cette page.
+Nous avons créé la page listant toutes les données récupérées depuis l'API. L'API nous propose également de récupérer les détails d'un élément, nous allons maintenant ajouter une page pour afficher les détails d'un pokémon. Comme pour la page liste, nous allons dans un premier temps créer la page et ensuite ajouter le lien vers cette page.
 
 Pour cela, nous allons créer une nouvelle vue nommée `PokemonDetails.vue`. Cette vue va afficher les détails d'un pokémon. Pour cela, nous allons utiliser l'ID du pokémon dans l'URL.
 
