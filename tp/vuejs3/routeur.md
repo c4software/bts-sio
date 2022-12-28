@@ -364,7 +364,7 @@ Je vous propose de reprendre le système de Card que nous avons utilisé dans le
 
 Je vous invite également vivement à créer un composant `Card` dansle dossier `src/components` et à l'utiliser dans votre composant `PokemonList.vue`. Comme toujours le découpage en composant est une bonne pratique.
 
-::: details Code du composant `Card.vue` avec un Slot
+Code du composant `Card.vue` :
 
 ```vue
 <script setup lang="ts">
@@ -379,6 +379,11 @@ Je vous invite également vivement à créer un composant `Card` dansle dossier 
 </template>
 ```
 
+Avec du contenu voilà à quoi ça ressemble :
+
+![Card](./res/card.jpg)
+
+::: tip Un instant !
 D'où vient le code ? [Flowbite](https://flowbite.com/) et plus particulièrement la page Card : [https://flowbite.com/docs/components/card/](https://flowbite.com/docs/components/card/).
 :::
 
