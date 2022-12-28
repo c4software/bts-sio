@@ -231,8 +231,6 @@ class Client extends Model
 }
 ```
 
-⚠️ Sans cela, vous ne pourrez pas utiliser les factories.
-
 ::: danger Attention aux imports
 
 N'oublier pas d'importer les classes nécessaires pour utiliser les factories.
@@ -244,6 +242,10 @@ use Laravel\Sanctum\HasApiTokens;
 ```
 
 :::
+
+:::
+
+⚠️ Sans cela, vous ne pourrez pas utiliser les factories.
 
 ### Créer une factory
 
