@@ -175,7 +175,7 @@ const routes = [
   }
 ]
 
-const router = createRouter({
+export default createRouter({
   history: createWebHistory(),
   routes
 });
@@ -189,10 +189,36 @@ Qu'est ce que nous avons fait ?
 - Nous avons créé un tableau `routes` qui contient les routes de notre application.
 - Nous avons créé le routeur avec la fonction `createRouter` en lui passant en paramètre le tableau `routes`.
 - Nous avons exporté le routeur pour pouvoir l'utiliser dans notre application.
+- Nous avons ajouté la propriété `history` à notre routeur pour lui dire d'utiliser l'historique du navigateur.
 
 ::: tip C'est à vous de jouer
 
 Je vous laisse créer le fichier `router.ts` et de le remplir avec le code ci-dessus.
+
+:::
+
+## Initialisation du routeur
+
+Nous allons maintenant initialiser le routeur dans notre application. Pour cela, nous allons ajouter le routeur dans le composant `main.ts` :
+
+```ts
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+
+createApp(App).use(router).mount('#app')
+```
+
+Vous avez déjà une partie de ce code dans le fichier `main.ts` de votre application. 
+
+Ce que vous devez faire c'est :
+
+- Importer le routeur : `import router from './router'`
+- L'ajouter à l'application : `….use(router).…`
+
+::: tip C'est à vous de jouer
+
+Je vous laisse ajouter le routeur dans le composant `main.ts`. Ici pas de magie, le code est fourni directement sur le site de VueRouter : [https://router.vuejs.org/guide/#javascript](https://router.vuejs.org/guide/#javascript)
 
 :::
 
@@ -201,10 +227,6 @@ Je vous laisse créer le fichier `router.ts` et de le remplir avec le code ci-de
 Nous allons maintenant utiliser le routeur dans notre application. Pour cela, nous allons ajouter le routeur dans le composant `App.vue` :
 
 ```vue
-<script setup lang="ts">
-import router from './router'
-</script>
-
 <template>
   <router-view />
 </template>
@@ -226,6 +248,16 @@ Nous allons maintenant lancer notre application pour voir si tout fonctionne cor
 npm run serve
 ```
 
+Vous devriez voir l'application s'afficher dans votre navigateur :
+
+![VueJS - Application avec le routeur](./res/routeur-home.jpg)
+
+Les liens accessibles sont :
+
+- [http://localhost:4000/](http://localhost:4000/) : affiche le composant `Home.vue`
+- [http://localhost:4000/about](http://localhost:4000/about) : affiche le composant `About.vue`
+- [http://localhost:4000/autre](http://localhost:4000/autre) : affiche le composant `NotFound.vue`
+
 ## Et le style ?
 
 Pour l'instant nous avons une application qui affiche les composants que nous avons créé. C'est bien, mais c'est moche. Nous allons donc ajouter du style à notre application.
@@ -238,25 +270,26 @@ Nous allons maintenant ajouter TailwindCSS à notre application. Pour cela, nous
 
 ```bash
 npm install tailwindcss@latest postcss@latest autoprefixer@latest
+npx tailwindcss init -p
 ```
 
-Nous allons maintenant créer un fichier `tailwind.config.js` dans le dossier `src` :
+Nous allons maintenant créer un fichier `tailwind.config.cjs` à la racine de notre application :
 
 ```js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+  ],
   theme: {
-    extend: {},
-  },
-  variants: {
     extend: {},
   },
   plugins: [],
 }
 ```
 
-Nous allons maintenant créer un fichier `postcss.config.js` dans le dossier `src` :
+Nous allons maintenant créer un fichier `postcss.config.cjs` à la racine de notre application :
 
 ```js
 module.exports = {
@@ -274,6 +307,18 @@ Nous allons maintenant modifier le fichier `style.css` dans le dossier `src` :
 @tailwind components;
 @tailwind utilities;
 ```
+
+::: tip Un instant
+
+Ici nous ajoutons TailwindCSS dans notre CSS. Le `@tailwind` est une directive qui permet à postcss de comprendre que nous voulons utiliser TailwindCSS. Les directives `@tailwind` sont :
+
+- `@tailwind base` : ajoute les styles de base de TailwindCSS
+- `@tailwind components` : ajoute les styles des composants de TailwindCSS
+- `@tailwind utilities` : ajoute les styles des utilitaires de TailwindCSS
+
+Je vous laisse regarder le code source de votre page généré pour voir comment celui-ci est injecté dans votre page.
+
+:::
 
 Puis modifier le fichier `App.vue` pour qu'il utilise TailwindCSS :
 
@@ -323,11 +368,18 @@ Pour réaliser cette navbar, nous avons utilisé le framework CSS [TailwindCSS](
 Nous allons maintenant ajouter le composant `Navbar.vue` dans le composant `App.vue` :
 
 ```vue
+<script lang="ts" setup>
+import Navbar from "./components/Navbar.vue";
+</script>
+
 <template>
-  <div class="container mx-auto">
-    <Navbar />
-    <router-view />
-  </div>
+    <div class="flex flex-col h-screen">
+      <Navbar />
+
+      <div class="flex justify-center items-center flex-grow flex-col">
+        <router-view />
+      </div>
+    </div>    
 </template>
 ```
 
@@ -355,6 +407,34 @@ Avant de continuer je vous laisse créer la page `PokemonList.vue` et tester que
 - Ajouter le composant `PokemonList.vue` dans le fichier `router.js`
 - Tester que vous pouvez accéder à la page `/pokemons`
 - Modifier votre navbar pour ajouter un lien vers la page `/pokemons`
+
+::: tip Et pour le contenu ?
+Pour l'instant vous n'avez pas de contenu. Je vous laisse mettre un simple `h1` dans le composant `PokemonList.vue`.
+
+Je vous aide voici la base de votre composant `PokemonList.vue` :
+
+```vue
+<script setup lang="ts">
+// À l'étape suivante vous allez ajouter le code pour récupérer la liste des pokémons
+</script>
+
+<template>
+  <h1>Pokémons Liste</h1>
+</template>
+
+<style scoped>
+</style>
+```
+
+:::
+
+## Modifier votre navbar
+
+Avant de continuer, je vous invite à modifier votre navbar pour ajouter un lien vers la page `/pokemons`. Une fois ajouté vérifiez que vous pouvez accéder à la page `/pokemons` en cliquant sur le lien dans votre navbar.
+
+Vous devriez avoir quelque chose comme ça :
+
+![Navbar](./res/routeur-pokemons-list.jpg)
 
 ## Afficher la liste
 
@@ -387,29 +467,6 @@ Avec du contenu voilà à quoi ça ressemble :
 D'où vient le code ? [Flowbite](https://flowbite.com/) et plus particulièrement la page Card : [https://flowbite.com/docs/components/card/](https://flowbite.com/docs/components/card/).
 :::
 
-### Créer le composant `PokemonList.vue`
-
-Pour cette étape, je vous laisse créer la vue `PokemonList.vue` et afficher la liste des pokémons. Je vous donne quelques pistes pour vous aider :
-
-::: tip Vous avez besoin d'aide ?
-
-Je vous aide voici la base de votre composant `PokemonList.vue` :
-
-```vue
-<script setup lang="ts">
-// À l'étape suivante vous allez ajouter le code pour récupérer la liste des pokémons
-</script>
-
-<template>
-<!-- Visuel de votre vue -->
-</template>
-
-<style scoped>
-</style>
-```
-
-:::
-
 ### Afficher la liste des pokémons
 
 Pour afficher la liste des pokémons nous avons besoin de récupérer la liste des pokémons depuis l'API. Pour cela, nous allons utiliser la fonction `fetch` de JavaScript.
@@ -418,7 +475,9 @@ L'appel à l'API va être réalisé dans la partie `<script setup>` du composant
 
 ```vue
 <script setup lang="ts">
-const pokemons = []
+import { ref } from 'vue'
+
+const pokemons = ref([])
 
 // À l'étape suivante vous allez ajouter le code pour récupérer la liste des pokémons
 </script>
@@ -430,21 +489,54 @@ Pour appeler l'API, nous allons utiliser la fonction `fetch` de JavaScript. Cett
 
 ```js
 function getPokemons() {
-fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-  .then(response => response.json())
-  .then(data => {
-    pokemons = data.results
-  })
+  fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+    .then(response => response.json())
+    .then(data => {
+      pokemons = data.results
+    })
 }
 ```
 
 Je vous laisse ajouter cette fonction dans le composant `PokemonList.vue` et tester que vous récupérez bien votre liste. Vous pouvez également afficher les données dans la console avec `console.log(pokemons)` dans le `then`.
 
-**N'oubliez pas l'appel à la fonction `getPokemons` dans le composant `PokemonList.vue`**, sinon vous n'aurez pas de données.
+**N'oubliez pas l'appel à la fonction `getPokemons` dans le composant `PokemonList.vue`**, sinon vous n'aurez pas de données. Vous pouvez appeler la fonction à la fin de votre `<script lang="ts" setup>`.
 
 ::: tip C'est à vous !
 
 Je vous laisse terminer la page liste, elle doit afficher l'ensemble des données dans des Card. Vous utilisez le composant `Card.vue` que vous avez créé précédemment.
+
+Pas de panique, ici vous devez utiliser ce que vous avez appris dans les TP précédents, à savoir :
+
+- Utiliser un v-for pour afficher une liste.
+- Utiliser le composant `Card.vue` pour afficher les données. (n'oubliez pas de l'importer `import Card from '@/components/Card.vue'`).
+
+Voilà à quoi ça peux ressembler :
+
+![Pokémons Liste](./res/routeur-poke-card.jpg)
+
+:::
+
+::: details Une solution possible pour la vue
+
+```vue
+<template>
+    <div>
+        <h1>
+            Pokémon Liste 
+        </h1>
+    </div>
+    
+    <div>
+        <div class="grid grid-cols-4 gap-4">
+            <div v-for="(pokemon, index) in pokemons" :key="pokemon.name">
+                <Card>
+                    <div class="text-center">{{ pokemon.name }}</div>
+                </Card>
+            </div>
+        </div>
+    </div>
+</template>
+```
 
 :::
 
@@ -473,13 +565,13 @@ Par rapport aux liens précédents, nous allons avoir un lien dynamique. Pour ce
 
 ```js
 {
-  path: '/pokemons/:id',
+  path: '/pokemon/:id',
   name: 'PokemonDetails',
   component: PokemonDetails
 }
 ```
 
-Ajouter le code précédent dans le fichier `router.js` et tester que vous pouvez accéder à la page `/pokemons/1`.
+Ajouter le code précédent dans le fichier `router.js` et tester que vous pouvez accéder à la page `/pokemon/1`.
 
 ::: tip Que signifie le `:id` ?
 
@@ -487,13 +579,23 @@ Le `:id` signifie que l'URL peut contenir un paramètre. Dans notre cas, l'URL p
 
 C'est un peu comme si nous avions une variable `id` dans l'URL, comme nous pouvions le faire en PHP. Exemple :
 
-- `/pokemons/1` => `id = 1`
-- `/pokemons/2` => `id = 2`
+- `/pokemon/1` => `id = 1`
+- `/pokemon/2` => `id = 2`
 - …
 
 :::
 
-### Afficher les détails
+### Créer un lien vers la page de détails
+
+Nous allons maintenant créer un lien vers la page de détails. Pour cela, nous allons utiliser le composant `router-link` de Vue Router. Ce composant permet de créer un lien vers une route. Pour cela, nous allons utiliser la propriété `to` qui prend en paramètre l'URL de la route, ici `/pokemon/:id`.
+
+```vue
+    <router-link :to="`/pokemon/${index + 1}`">
+    // ...
+    </router-link>
+```
+
+### La vue de détails
 
 Nous avons défini le lien qui permettra d'accéder à la page de détails ainsi qu'une vue pour l'instant vide  Nous allons maintenant afficher les détails d'un pokémon. Pour cela, nous allons utiliser l'ID présent dans l'URL.
 
@@ -503,15 +605,18 @@ Voici le code à mettre dans votre setup de votre page `PokemonDetails.vue` :
 
 ```ts
 <script setup lang="ts">
-const pokemonId = this.$route.params.id
-const pokemon = ref({})
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+const pokemonId = useRoute().params.id
+const pokemon = ref(null)
 
 function fetchPokemon() {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-    .then(response => response.json())
-    .then(data => {
-      pokemon.value = data
-    })
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+        .then(response => response.json())
+        .then(data => {
+            pokemon.value = data
+        })
 }
 
 fetchPokemon()
@@ -520,7 +625,7 @@ fetchPokemon()
 
 Quelques explications :
 
-- `pokemonId` : récupère l'ID dans l'URL
+- `pokemonId` : récupère l'ID dans l'URL, récupéré avec `useRoute().params.id`.
 - `pokemon` : variable qui va contenir les détails du pokémon
 - `fetchPokemon` : fonction qui va appeler l'API pour récupérer les détails du pokémon
 - `fetchPokemon()` : appel de la fonction `fetchPokemon` pour récupérer les détails.
@@ -546,21 +651,71 @@ Maintenant que nous avons récupéré les données, nous allons pouvoir les affi
 Exemple de template affichant les détails :
 
 ```html
-<div class="flex flex-col items-center">
-  <div class="flex flex-col items-center">
-    <img :src="pokemon.sprites.front_default" class="w-32 h-32" />
-    <h1 class="text-2xl font-bold">{{ pokemon.name }}</h1>
-  </div>
-  <div class="flex flex-col items-center">
-    <h2 class="text-xl font-bold">Types</h2>
-    <div class="flex flex-row">
-      <span v-for="type in pokemon.types" :key="type.type.name" class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-        {{ type.type.name }}
-      </span>
+<template>
+  <div class="flex flex-col items-center" v-if="pokemon">
+    <div class="flex flex-col items-center">
+      <img :src="pokemon.sprites.front_default" class="w-32 h-32" />
+      <h1 class="text-2xl font-bold">{{ pokemon.name }}</h1>
+    </div>
+    <div class="flex flex-col items-center">
+      <h2 class="text-xl font-bold">Types</h2>
+      <div class="flex flex-row">
+        <span v-for="type in pokemon.types" :key="type.type.name" class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+          {{ type.type.name }}
+        </span>
+      </div>
     </div>
   </div>
-</div>
+</template>
 ```
+
+## Ajouter une page `contact`
+
+En reprenant la logique vue précédemment, ajoutez une page `contact` qui contient un formulaire de contact. 
+
+- Créez une page `contact` avec un formulaire de contact.
+- Ajoutez un lien vers cette page dans le menu.
+- Ajoutez une route vers cette page.
+- Le formulaire doit contenir les champs suivants :
+  - Nom
+  - Prénom
+  - Email
+  - Message
+- Le formulaire doit être stylisé. (Vous pouvez vous inspirer de [https://flowbite.com/blocks/marketing/contact/](https://flowbite.com/blocks/marketing/contact/])
+
+::: tip Comment récupérer les données du formulaire ?
+
+Vous pouvez récupérer les données du formulaire avec la fonction `onSubmit` :
+
+```html
+<form @submit="onSubmit">
+  <input type="text" v-model="name" />
+  <input type="text" v-model="firstname" />
+  <input type="text" v-model="email" />
+  <textarea v-model="message"></textarea>
+  <button type="submit">Envoyer</button>
+</form>
+```
+
+```ts
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const name = ref('')
+const firstname = ref('')
+const email = ref('')
+const message = ref('')
+
+function onSubmit() {
+  console.log(this.name)
+  console.log(this.firstname)
+  console.log(this.email)
+  console.log(this.message)
+}
+</script>
+```
+
+::::
 
 ## Évolution de l'application
 
