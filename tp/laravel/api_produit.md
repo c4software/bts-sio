@@ -243,8 +243,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 :::
 
-:::
-
 ⚠️ Sans cela, vous ne pourrez pas utiliser les factories.
 
 ### Créer une factory
