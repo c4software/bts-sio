@@ -201,8 +201,8 @@ module.exports = [
         children: [
           "/tp/vuejs3/tp0.md",
           "/tp/vuejs3/tp1.md",
-          "/tp/vuejs3/routeur.md",
           "/tp/vuejs3/vite.md",
+          "/tp/vuejs3/routeur.md",
           "/tp/vuejs3/petite-vue.md"
         ]
       }
