@@ -71,7 +71,9 @@ De plus les composants sont tous basés sur les règles de Material Design fourn
 
 ## Structure du projet
 
-Le projet que nous venons de créer est très simple. Il repose sur une structure de base de projet VueJS. 
+Le projet que nous venons de créer est très simple. Il repose sur une structure de base de projet VueJS.
+
+![vuetify-structure](./res/vuetify-structure.jpg)
 
 L'ensemble du code qui nous intéresse réellement est dans le dossier `src` :
 
