@@ -16,6 +16,8 @@ Firebase est une plateforme de développement d'applications web et mobiles. Ell
 
 ::: danger TP en cours de rédaction
 
-Ce TP est en cours de rédaction. Il est possible qu'il contienne des erreurs ou des informations incomplètes.
+🏗️ Ce TP est en cours de rédaction. Il est possible qu'il contienne des erreurs ou des informations incomplètes. 
+
+En attendant, vous pouvez consulter le [TP Firebase + VueJS 2](../vuejs/firebase-vuejs.md).
 
 :::
