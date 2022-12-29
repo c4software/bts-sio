@@ -88,6 +88,7 @@ L'ensemble du code qui nous intéresse réellement est dans le dossier `src` :
 
 Nous avons dans ce projet un routeur. Ce routeur est le même que nous avons utilisé précédemment. Cependant celui-ci est utilisé légèrement différemment, avant de continuer je vous propose de regarder le code du fichier `router/index.ts` :
 
+```ts
 const routes = [
   {
     path: '/',
@@ -101,6 +102,7 @@ const routes = [
     ],
   },
 ]
+```
 
 👋 Quelles différences voyez-vous par rapport au routeur que nous avons utilisé précédemment ? Ne regardez pas tout de suite la réponse, essayez de trouver par vous-même (et parlons-en).
 
