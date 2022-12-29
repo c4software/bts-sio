@@ -110,6 +110,54 @@ En VueJS, c'est simple ! Il vous suffit d'ajouter _dans_ `<div id="app"></div>` 
 
 🚀 Tester votre code.
 
+## Modifier une variable depuis la vue
+
+Nous allons maintenant modifier une variable depuis la vue. Pour cela nous allons : 
+
+- Déclarer une variable dans les `data`.
+- L'afficher dans le template.
+- Modifier la variable depuis le template.
+
+### Les data
+
+Vous vous souvenez comment déclarer les datas ? Non !? un petit rappel alors, nous allons déclarer une variable directement dans la méthode `data` de notre objet VueJS. Quelque chose comme :
+
+```js
+data(){
+    return {
+        compteur: 0
+    }
+}
+```
+
+🤓 Notez que la variable est nommée `compteur`.
+
+### L'affichage
+
+Nous allons maintenant afficher la variable dans le template. Pour cela il suffit d'ajouter `{{ compteur }}` dans le template. Après modification votre code doit ressembler à :
+
+```html
+<div id="app">
+  <button @click="action">Clique ici</button>
+  <p>{{ compteur }}</p>
+</div>
+```
+
+🚀 Tester votre code.
+
+### La modification
+
+Nous allons maintenant modifier la variable depuis le template. Pour cela il suffit d'ajouter `@click="compteur++"` dans le template. Après modification votre code doit ressembler à :
+
+```html
+<div id="app">
+  <button @click="action">Clique ici</button>
+  <p @click="compteur++">{{ compteur }}</p>
+</div>
+```
+
+🚀 Tester votre code.
+
 ## Afficher une liste
 
 Un bouton c'est bien, mais une liste c'est mieux non ? Vous allez voir qu'afficher une liste c'est aussi simple qu'un bonjour 👋. Comme vu ensemble en cours, nous allons :
