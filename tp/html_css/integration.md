@@ -14,6 +14,7 @@ Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez 
 
 Vous aurez certainement besoin de ressources, voilà une liste d'élément pouvant vous servir :
 
+- [Des ressources pour le design](https://designresourc.es/) (Merci Valentin Brebion)
 - [CodePen.io](https://codepen.io/)
 - [Génération de Gradient CSS](https://cssgradient.io/)
 - [Material.io](https://material.io/color/#!/?view.left=0&view.right=0&primary.color=F06292&secondary.color=E91E63)
