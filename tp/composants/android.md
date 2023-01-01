@@ -342,7 +342,7 @@ getString(R.string.id_de_votre_string_dans_le_xml)
 
 Je vous laisse utiliser cette méthode aux différents endroits ou vous avez mis du texte « en dur ».
 
-## Naviguer entre les composants
+## Naviguer entre différents composants
 
 Réaliser une interface avec Jetpack Compose c'est un peu comme assembler des Lego. Vos composants sont vos briques et vous allez devoir les assembler pour créer votre application.
 
