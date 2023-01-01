@@ -28,18 +28,13 @@
         </div>
 
         <div class="language-bash" data-ext="sh">
-            <pre class="language-bash">
-<code>
-auto {{ interface }}
+            <pre class="language-bash"><code>auto {{ interface }}
 iface {{ interface }} inet static
     address {{ ip }}
     netmask {{ netmask }}
     gateway {{ gateway }}
-    dns-nameservers {{ dns }}
-</code>
-            </pre>
+    dns-nameservers {{ dns }}</code></pre>
         </div>
-
     </div>
 </template>
 
