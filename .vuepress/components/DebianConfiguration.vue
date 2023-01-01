@@ -1,0 +1,136 @@
+<template>
+    <div>
+        <div class="container">
+            <div class="col">
+                <label>Interface :</label>
+                <input v-model="interface" class="form-control" type="text" name="Interface" placeholder="ens18 (eth0, …)" required />
+            </div>
+        </div>
+        <div class="container">
+            <div class="col">
+                <label>IP :</label>
+                <input v-model="ip" class="form-control" type="text" name="Adresse IP" placeholder="192.168…" required />
+            </div>
+            <div class="col">
+                <label>Masque de sous réseau :</label>
+                <input v-model="netmask" class="form-control" type="text" name="Masque de sous réseau" placeholder="255.255…" required />
+            </div>
+        </div>
+        <div class="container">
+            <div class="col">
+                <label>Passerelle :</label>
+                <input v-model="gateway" class="form-control" type="text" name="Passerelle" placeholder="192.168…" required />
+            </div>
+            <div class="col">
+                <label>DNS :</label>
+                <input v-model="dns" class="form-control" type="text" name="DNS" placeholder="192.168…" required />
+            </div>
+        </div>
+
+        <div class="language-bash" data-ext="sh">
+            <pre class="language-bash">
+<code>
+auto {{ interface }}
+iface {{ interface }} inet static
+    address {{ ip }}
+    netmask {{ netmask }}
+    gateway {{ gateway }}
+    dns-nameservers {{ dns }}
+</code>
+            </pre>
+        </div>
+
+    </div>
+</template>
+
+<script>
+export default {
+    name: "DebianConfiguration",
+    data() {
+        return {
+            vlan: "",
+            interface: "ens18",
+            ip: "192.168.1.1",
+            netmask: "255.255.255.0",
+            gateway: "192.168.1.254",
+            dns: "1.1.1.1",
+        }
+    },
+};
+</script>
+
+<style scoped>
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.col {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.col.center {
+    text-align: center;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+textarea.form-control {
+    height: auto;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+@media only screen and (max-width: 960px) {
+    .container {
+        display: block;
+    }
+}
+</style>
