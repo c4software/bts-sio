@@ -391,7 +391,9 @@ Ici nous avons un état qui nous permet de savoir si l'utilisateur est connecté
 
 Évidemment, il est possible de faire plus complexe, mais pour l'instant nous allons nous concentrer sur ces deux exemples.
 
-::: details Exemple de code pour nos deux composants HomeScreen et LoginScreen
+### Exemple de code pour nos deux composants et de leur utilisation
+
+Les deux composants :
 
 ```kotlin
 @Composable
@@ -407,7 +409,34 @@ fun LoginScreen(onLogin: () -> Unit) {
 }
 ```
 
-:::
+L'utilisation de ces deux composants, dans un Scaffold :
+
+```kotlin
+@Composable
+fun MyApp() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text("Mon application")
+                }
+            )
+        }
+    ) {
+        val isLoggedIn = remember { mutableStateOf(false) }
+
+        if (isLoggedIn.value) {
+            HomeScreen()
+        } else {
+            LoginScreen() {
+                isLoggedIn.value = true
+            }
+        }
+    }
+}
+```
+
+### Aller plus loin dans la navigation
 
 Vous souhaitez aller plus loin ? Là c'est un exemple très simple, pour découvrir. Dans une application plus complexe, nous aurions besoin de Compose Navigation pour gérer les transitions entre les composants. Vous pouvez retrouver un exemple d'utilisation de Compose Navigation dans la documentation officielle : [Compose Navigation](https://developer.android.com/jetpack/compose/navigation).
 
