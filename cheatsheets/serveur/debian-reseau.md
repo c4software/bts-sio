@@ -1,4 +1,10 @@
-# Générateur configuration réseau
+---
+title: Debian - Générateur de configuration réseau
+description: Configurateur de réseau pour Debian
+tags: [debian, réseau, configuration]
+---
+
+# Générateur configuration réseau pour Debian
 
 Vous trouverez dans cette page la procédure permettant de générer une configuration réseau en IP static pour Debian.
 
