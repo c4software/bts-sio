@@ -342,6 +342,77 @@ getString(R.string.id_de_votre_string_dans_le_xml)
 
 Je vous laisse utiliser cette méthode aux différents endroits ou vous avez mis du texte « en dur ».
 
+## Naviguer entre les composants
+
+Réaliser une interface avec Jetpack Compose c'est un peu comme assembler des Lego. Vos composants sont vos briques et vous allez devoir les assembler pour créer votre application.
+
+Prenons les composants que nous avons créés :
+
+- Une liste d'éléments.
+- Une card représentant un élément.
+
+Finalement, nous avons lié ces deux composants ensemble en utilisant un état. Lors de la sélection d'un élément, nous avons changé l'état de notre application pour afficher la card de l'élément sélectionné.
+
+C'est un peu comme si nous avions une pièce dans laquelle nous pouvions entrer et sortir. Pour entrer et sortir, nous utilisons l'action onClick, le onClick nous permet de changer l'état de notre application.
+
+Dans cet exemple, nous avons utilisé un état pour gérer l'affichage de notre card. Mais nous pouvons aussi utiliser un état pour gérer la sélection d'un élément :
+
+**(C'est un exemple, à ne pas copier-coller)**
+
+```kotlin
+val selectedItem = remember { mutableStateOf(null) }
+
+if (selectedItem.value == null) {
+    ElementList(selectedItem)
+} else {
+    ElementCard(selectedItem.value!!)
+}
+```
+
+Prenons un autre exemple, dans un cas simple de deux composants d'interface, nous pourrions écrire quelque chose comme :
+
+```kotlin
+val isLoggedIn = remember { mutableStateOf(false) }
+
+if (isLoggedIn.value) {
+    HomeScreen()
+} else {
+    LoginScreen() {
+        // L'action sera émise par le composant LoginScreen. Via un bouton par exemple.
+        isLoggedIn.value = true
+    }
+}
+```
+
+Ici nous avons un état qui nous permet de savoir si l'utilisateur est connecté ou non. Il faut donc comprendre que le code permet de :
+
+- Si l'utilisateur est connecté, afficher l'écran d'accueil.
+- Si l'utilisateur n'est pas connecté, afficher l'écran de connexion.
+
+Évidemment, il est possible de faire plus complexe, mais pour l'instant nous allons nous concentrer sur ces deux exemples.
+
+::: details Exemple de code pour nos deux composants HomeScreen et LoginScreen
+
+```kotlin
+@Composable
+fun HomeScreen() {
+    Text("Bienvenue sur votre application")
+}
+
+@Composable
+fun LoginScreen(onLogin: () -> Unit) {
+    Button(onClick = onLogin) {
+        Text("Se connecter")
+    }
+}
+```
+
+:::
+
+Vous souhaitez aller plus loin ? Là c'est un exemple très simple, pour découvrir. Dans une application plus complexe, nous aurions besoin de Compose Navigation pour gérer les transitions entre les composants. Vous pouvez retrouver un exemple d'utilisation de Compose Navigation dans la documentation officielle : [Compose Navigation](https://developer.android.com/jetpack/compose/navigation).
+
+Compose Navigation est un composant qui permet de gérer les transitions entre les composants. Il permet de gérer les animations, les transitions, les arguments, etc. C'est l'équivalent d'un routeur dans une application web (react-router, vue-router, etc.)
+
 ## Bonus : Adapter la TopAppBar
 
 Actuellement votre TopAppBar est statique, elle contient toujours la même chose à savoir « Top App Bar ». Je vous propose de réfléchir à comment faire pour que celle-ci s'adapte et change en fonction de l'élément choisi, en fonctionnant en suivant la logique :
