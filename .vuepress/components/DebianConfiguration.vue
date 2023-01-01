@@ -28,7 +28,16 @@
         </div>
 
         <div class="language-bash" data-ext="sh">
-            <pre class="language-bash"><code>auto {{ interface }}
+            <pre class="language-bash"><code>source /etc/network/interfaces.d/*
+
+# Configuration de l'interface de loopback
+auto lo
+iface lo inet loopback
+
+# Configuration de votre Interface
+allow-hotplug {{ interface }}
+
+auto {{ interface }}
 iface {{ interface }} inet static
     address {{ ip }}
     netmask {{ netmask }}
