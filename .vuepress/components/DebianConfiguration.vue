@@ -41,6 +41,28 @@ iface {{ interface }} inet static
 <script>
 export default {
     name: "DebianConfiguration",
+    updated() {
+        try {
+            localStorage.setItem("DebianConfiguration", JSON.stringify(this.$data));
+        } catch (e) {
+            // Ignore write errors.
+        }
+    },
+    beforeMount() {
+        try {
+            const data = JSON.parse(localStorage.getItem("DebianConfiguration"));
+            if (data) {
+                this.vlan = data.vlan;
+                this.interface = data.interface;
+                this.ip = data.ip;
+                this.netmask = data.netmask;
+                this.gateway = data.gateway;
+                this.dns = data.dns;
+            }
+        } catch (e) {
+            // Ignore read errors.
+        }
+    },
     data() {
         return {
             vlan: "",
@@ -91,36 +113,6 @@ export default {
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-textarea.form-control {
-    height: auto;
-}
-
-.btn {
-    display: inline-block;
-    font-weight: 400;
-    color: #212529;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
 }
 
 @media only screen and (max-width: 960px) {
