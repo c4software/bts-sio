@@ -6,15 +6,15 @@ description: Ce document est un complément du cours. Il vous permettra de reven
 
 ## Qu'est-ce qu'un serveur ?
 
-Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs. Il peut s'agir d'un serveur web, d'un serveur de base de données, d'un serveur de fichiers, etc.
+Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs. Il peut s'agir d'un serveur Web, d'un serveur de base de données, d'un serveur de fichiers, etc.
 
 Concrètement, un serveur est un ordinateur qui est connecté à un réseau et qui est accessible depuis un autre ordinateur. Il est souvent installé dans un datacenter, c'est-à-dire dans un bâtiment spécialisé qui contient des serveurs. Les serveurs sont souvent installés dans des salles spéciales qui sont climatisées et qui sont surveillées 24h/24 et 7j/7.
 
-Mais sans aller jusque-là, vous pouvez aussi installer un serveur chez vous. Vous pouvez installer un serveur chez vous pour faire des tests, pour héberger un site web, etc. Vous pouvez par exemple utiliser un Raspberry Pi comme serveur, et y installer les services que vous souhaitez (Web, Base de données, Domotique, Fichier).
+Mais sans aller jusque-là, vous pouvez aussi installer un serveur chez vous. Vous pouvez installer un serveur chez vous pour faire des tests, pour héberger un site Web, etc. Vous pouvez par exemple utiliser un Raspberry Pi comme serveur, et y installer les services que vous souhaitez (Web, Base de données, Domotique, Fichier).
 
 ::: tip Pourquoi installer un serveur chez soi ?
 
-Il est possible d'installer un serveur chez soi pour faire des tests, pour héberger un site web, etc. C'est une bonne idée de faire des tests sur un serveur chez soi avant de mettre en production sur un serveur distant.
+Il est possible d'installer un serveur chez soi pour faire des tests, pour héberger un site Web, etc. C'est une bonne idée de faire des tests sur un serveur chez soi avant de mettre en production sur un serveur distant.
 
 Créer un serveur à domicile permet réellement de progresser, car vous devrez gérer l'ensemble du serveur. Vous devrez gérer l'installation, la configuration, la sécurité, etc. C'est une bonne expérience pour apprendre à gérer un serveur.
 
@@ -32,26 +32,46 @@ Avant d'aller plus dans le détail, nous pouvons représenter un serveur de la m
 
 ![Serveur](./res/serveur_linux.png)
 
-Cette représentation est très simple, mais elle permet de comprendre les différents couches d'un serveur. Nous allons voir plus en détail chacune de ces couches.
+Cette représentation est très simple, mais elle permet de comprendre les différentes couches d'un serveur. Nous allons voir plus en détail chacune de ces couches.
 
-## Qu'est-ce qu'un serveur web ?
+## Qu'est-ce qu'un serveur Web ?
 
-Un serveur web est un serveur qui permet de servir des pages web. Il permet de servir des pages web statiques (fichiers HTML, CSS, JavaScript, images, etc.) mais aussi des pages web dynamiques (fichiers PHP, Python, Ruby, etc.).
+Un serveur Web est un serveur qui permet de servir des pages Web. Il permet de servir des pages Web statiques (fichiers HTML, CSS, JavaScript, images, etc.), mais aussi des pages Web dynamiques (fichiers PHP, Python, Ruby, etc.).
 
-Dans notre cas nous utiliserons Apache pour le serveur web. Apache est un serveur web open-source qui est très utilisé. Il est très puissant et il est très facile à configurer. Il est possible de configurer Apache pour servir des pages web statiques, mais aussi des pages web dynamiques.
+Dans notre cas nous utiliserons Apache pour le serveur Web. Apache est un serveur Web open source qui est très utilisé. Il est très puissant et il est très facile à configurer. Il est possible de configurer Apache pour servir des pages Web statiques, mais aussi des pages Web dynamiques.
 
-Il existe différents serveurs web, Apache est l'un des plus utilisés. Il existe également Nginx, Caddy, etc. Mais Apache est le plus utilisé, donc c'est le serveur web que nous utiliserons.
+Il existe différents serveurs Web, Apache est l'un des plus utilisés. Il existe également Nginx, Caddy, etc. Mais Apache est le plus utilisé, donc c'est le serveur Web que nous utiliserons.
 
-- Nginx est également un serveur web très puissant, mais il est un peu plus difficile à configurer.
-- Caddy est un serveur web qui est très simple à configurer, mais il est moins puissant qu’apache.
+- Nginx est également un serveur Web très puissant, mais il est un peu plus difficile à configurer.
+- Caddy est un serveur Web qui est très simple à configurer, mais il est moins puissant qu’apache.
 
 ![Serveur](./res/serveur.jpg)
+
+Notre serveur Web sera accessible par différents moyens :
+
+- Il sera accessible via son adresse IP.
+- Si vous en avez un, il sera accessible via son nom de domaine.
+
+::: tip Pourquoi un nom de domaine ?
+
+Un nom de domaine est un nom qui permet de se connecter à un serveur. Par exemple, si vous avez un nom de domaine, vous pouvez vous connecter à votre serveur via son nom de domaine. Par exemple, si vous avez un nom de domaine `monsite.com`, vous pouvez vous connecter à votre serveur via `monsite.com`.
+
+Techniquement, un nom de domaine est un nom qui est associé à une adresse IP. 
+
+Si votre serveur possède un nom de domaine, nous allons pouvoir également créer ce que l'on appelle des Virtual Hosts. Un Virtual Host est une configuration spécifique qui permet de faire correspondre un sous-domaine avec une site Web sur la machine :
+
+- `monsite.com` correspondra au site Web par défaut.
+- `blog.monsite.com` correspondra au site Web du blog.
+- `forum.monsite.com` correspondra au site Web du forum.
+- etc.
+
+:::
 
 ## Qu'est-ce qu'un serveur de base de données ?
 
 Un serveur de base de données est un serveur qui permet de stocker des données. Il permet de stocker des données dans des tables, de faire des requêtes SQL, etc.
 
-Dans notre cas nous utiliserons MariaDB pour le serveur de base de données. MariaDB est un serveur de base de données open-source qui est très utilisé. Il est très puissant et il est très facile à configurer. Il est possible de configurer MariaDB pour stocker des données dans des tables, de faire des requêtes SQL, etc. Quel que soit le langage de programmation que vous utilisez, il est possible de se connecter à MariaDB pour stocker et récupérer des données. Par exemple, si vous utilisez PHP, vous pouvez utiliser la librairie PDO pour vous connecter à MariaDB.
+Dans notre cas nous utiliserons MariaDB pour le serveur de base de données. MariaDB est un serveur de base de données open source qui est très utilisé. Il est très puissant et il est très facile à configurer. Il est possible de configurer MariaDB pour stocker des données dans des tables, de faire des requêtes SQL, etc. Quel que soit le langage de programmation que vous utilisez, il est possible de se connecter à MariaDB pour stocker et récupérer des données. Par exemple, si vous utilisez PHP, vous pouvez utiliser la librairie PDO pour vous connecter à MariaDB.
 
 ::: tip Pourquoi MariaDB et pas MySQL ?
 
@@ -67,9 +87,10 @@ Un port est un canal de communication entre deux ordinateurs. Il est possible d'
 
 Par exemple, si vous ouvrez le port 80 sur votre serveur, alors les ordinateurs distants pourront communiquer avec votre serveur en utilisant le port 80.
 
-La liste des ports est standardisée. Chaque serveur possède 65535 ports. Les ports vont de 0 à 65535. L
+La liste des ports est standardisée, chaque serveur possède 65535 ports. Les ports vont de 0 à 65535 :
 
-es ports vont de 0 à 1023 sont réservés pour les services système. Les ports qui vont de 1024 à 65535 sont réservés pour les services utilisateurs.
+- Les ports vont de 0 à 1023 sont réservés pour les services système. 
+- Les ports qui vont de 1024 à 65535 sont réservés pour les services utilisateurs.
 
 Dans les ports réservés pour les services système, il y a les ports suivants :
 
@@ -92,13 +113,56 @@ La liste des ports ci-dessus est la liste des ports standards, vous pouvez bien 
 
 La notion de port est **très importante,** car il est possible d'ouvrir des ports sur votre serveur. Il est donc important de réfléchir à la question suivante : quels ports ouvrir sur votre serveur ?
 
+::: danger Attention
+
+Les ports sont le moyen de faire communiquer votre serveur avec les ordinateurs distants. Même si il est possible d'ouvrir des ports sur votre serveur, il est important de ne pas ouvrir tous les ports. En effet, si vous ouvrez tous les ports, alors n'importe quel ordinateur pourra communiquer avec votre serveur. Cela peut être dangereux, car un pirate pourrait alors se connecter à votre serveur et faire des choses malveillantes.
+
+:::
+
+### iptables
+
+Sous Linux nous pouvons utiliser iptables pour gérer les ports, grâce à iptable qui est un quelques sortes un pare-feu nous allons pouvoir gérer les ports ouverts / accessibles sur notre serveur. Cette configuration n'est pas à négliger, car elle permet de sécuriser votre serveur.
+
+Par exemple, si nous réalisons un serveur Web, nous allons ouvrir uniquement le port 80 et le port 443. Nous allons donc bloquer tous les autres ports. Cela permet de sécuriser notre serveur.
+
+Voilà la configuration d'Iptables pour un serveur Web :
+
+```bash
+# On vide les règles
+iptables -F
+
+# On bloque tout
+iptables -P INPUT DROP
+
+# On autorise les connexions déjà établies
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# On autorise les connexions SSH
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+# On autorise les connexions HTTP
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+
+# On autorise les connexions HTTPS
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+# On sauvegarde les règles
+iptables-save > /etc/iptables/rules.v4
+```
+
+::: tip Pourquoi autoriser les connexions déjà établies ?
+
+Cela permet de ne pas bloquer les connexions déjà établies. Par exemple, si vous êtes en train de télécharger un fichier sur votre serveur, et que vous perdez votre connexion internet, alors votre navigateur va continuer à télécharger le fichier. Si vous bloquez les connexions déjà établies, alors votre navigateur ne pourra plus télécharger le fichier.
+
+:::
+
 ## Les services
 
-Votre serveur exécute des logiciels. Ces logiciels quand ils sont exécutés en arrière-plan sont appelés des services. Nos ordinateurs modernes (serveur ou non) on une puissance de calcul énorme. Il est donc possible d'exécuter plusieurs services en même temps sur un seul ordinateur.
+Votre serveur exécute des logiciels. Ces logiciels quand ils sont exécutés en arrière-plan sont appelés des services. Nos ordinateurs modernes (serveur ou non) ont une puissance de calcul énorme. Il est donc possible d'exécuter plusieurs services en même temps sur un seul ordinateur.
 
 Votre ordinateur est capable sans problème d'exécuter des 100aines de services en même temps. Par exemple :
 
-- Un serveur web
+- Un serveur Web
 - Un serveur de base de données
 - Un serveur de messagerie
 - Un serveur de fichiers
@@ -153,7 +217,7 @@ systemctl disable <nom_du_service>
 
 ::: tip Les services
 
-Les services sont le cœur du fonctionnement de votre serveur. Votre machine seule ne sert à rien. Il faut lui ajouter des services pour qu'elle soit utile. Par exemple, un serveur web, un serveur de base de données, un serveur de messagerie, un serveur de fichiers, etc.
+Les services sont le cœur du fonctionnement de votre serveur. Votre machine seule ne sert à rien. Il faut lui ajouter des services pour qu'elle soit utile. Par exemple, un serveur Web, un serveur de base de données, un serveur de messagerie, un serveur de fichiers, etc.
 
 Les quelques commandes ci-dessus vous permettent de gérer les services de votre serveur.
 
@@ -449,7 +513,7 @@ Vous vous dites également que les serveurs ne sont pas votre histoire. Que c'es
 
 Avant d'aller plus loin… Réfléchissez à la question suivante : est-ce que vous allez installer un seul serveur ou plusieurs serveurs ?
 
-L'idée est donc de comprendre pourquoi il est intéressant d'avoir plusieurs serveurs. En effet, il est possible d'avoir un seul serveur qui contient tout. Mais il est également possible d'avoir plusieurs serveurs qui contiennent chacun une partie du serveur. Par exemple, vous pouvez avoir un serveur qui contient le serveur web, un serveur qui contient le serveur de base de données, etc.
+L'idée est donc de comprendre pourquoi il est intéressant d'avoir plusieurs serveurs. En effet, il est possible d'avoir un seul serveur qui contient tout. Mais il est également possible d'avoir plusieurs serveurs qui contiennent chacun une partie du serveur. Par exemple, vous pouvez avoir un serveur qui contient le serveur Web, un serveur qui contient le serveur de base de données, etc.
 
 ### Pourquoi avoir plusieurs serveurs ?
 
@@ -460,15 +524,28 @@ Il y a plusieurs raisons pour avoir plusieurs serveurs :
 - Vous pouvez avoir plusieurs serveurs pour avoir une meilleure sécurité.
 - Vous pouvez avoir plusieurs serveurs pour avoir une meilleure maintenance.
 
-## Installation dans un container Docker ou directement sur la machine ?
+## Docker
 
-Il est possible d'installer un serveur dans un container Docker ou directement sur la machine. Dans notre cas nous allons installer un serveur directement sur la machine.
+L'autre moyen d'installer des services sur votre serveur est d'utiliser Docker. Docker est un logiciel qui permet de créer des conteneurs. 
+
+Un conteneur est un environnement qui contient un service. Par exemple, vous pouvez créer un conteneur qui contient un serveur Web. Vous pouvez créer plusieurs conteneurs qui contiennent chacun un serveur Web. Vous pouvez créer plusieurs conteneurs qui contiennent chacun un serveur Web et un serveur de base de données.
+
+### Installation dans un container Docker ou directement sur la machine ?
+
+Là c'est à vous de voir, les deux sont possibles. Personnellement je préfère l'utilisation de Docker, car cela permet de créer des environnements de fonctionnement différent en fonction du projet. Nous pouvons avoir des architectures vraiment spécifiques à chaque projet :
+
+- Projet A : Apache + Mysql version 5.7
+- Projet B : Nginx + MariaDB version 10.5
+
+Le tout sans avoir de conflit entre les deux projets. Autre avantage, de base, Docker n'expose pas les ports de vos conteneurs. Vous réduisez donc le risque d'attaques.
 
 Plus tard nous découvrirons Docker et l'avantage de celui-ci (vous verrez c'est incroyable 🎉). Il est de toute façon primordial de comprendre comment on installe un serveur classique pour comprendre l'usage de Docker.
 
 ::: tip Docker c'est vaste
-Plus tard dans l'année nous utiliserons Docker pour créer des environnements de type « Conteneurs »… Volontairement j'ai souhaité vous en parler ici. Donc soyez curieux. N'hésiter pas à vous documenter si vous le souhaitez.
 
+Plus tard dans l'année nous utiliserons Docker pour créer des environnements de type « Conteneurs »… Volontairement j'ai souhaité vous en parler ici. Donc soyez curieux. N'hésitez pas à vous documenter si vous le souhaitez.
+
+- [Cours Docker](/tp/devops/support.md)
 - [Aide mémoire](/cheatsheets/docker/)
 - [Introduction à Docker](/tp/docker/introduction.md)
 
