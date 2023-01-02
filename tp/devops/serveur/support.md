@@ -186,9 +186,15 @@ Pour éviter tout problème (erreur, sécurité, etc), il est également intére
 
 ## L'accès à distance
 
-Pour accéder à votre serveur, nous allons utiliser un **service** nommé SSH. Ce service permet de se connecter à distance à votre serveur. Il est très utilisé et très sécurisé.
+Vous vous doutez que nous n'accédons pas à un serveur comme nous accédons à une machine physique (via un clavier et un souris), nous allons utiliser un accès à distance. Il existe plusieurs méthodes pour accéder à distance à votre serveur :
 
-Le service SSH est installé par défaut sur la plupart des distributions Linux. Pour vérifier que le service est bien installé, vous pouvez utiliser la commande suivante :
+- SSH
+- FTP
+- SFTP
+
+Pour prendre la main sur votre serveur, nous allons utiliser le protocole SSH. Le **service** SSH permet de se connecter à distance à votre serveur. Il est très utilisé et très sécurisé.
+
+Il est installé par défaut sur la plupart des distributions Linux. Pour vérifier que le service est bien installé, vous pouvez utiliser la commande suivante :
 
 ```bash
 systemctl status ssh
@@ -202,7 +208,7 @@ systemctl enable ssh
 
 ### Les clés SSH
 
-Nous avons parlé des utilisateurs, nous avons parlé également des mots de passe. Lors de l'accès à distance à votre serveur, il est intéressant d'utiliser des clés SSH. 
+Nous avons parlé des utilisateurs, nous avons parlé également des mots de passe. Lors de l'accès à distance à votre serveur, il est intéressant d'utiliser des clés SSH.
 
 Pourquoi ? Parce que les mots de passe sont plus faciles à deviner que les clés SSH.
 
@@ -211,7 +217,7 @@ Une clé SSH est composée de deux parties :
 - Une clé privée : elle est stockée sur votre ordinateur. Elle est utilisée pour se connecter à votre serveur.
 - Une clé publique : elle est stockée sur votre serveur. Elle est utilisée pour vérifier que vous êtes bien le propriétaire de la clé privée.
 
-TODO mettre une image sur le fonctionnement des clés SSH
+![Clé SSH](./res/asymmetric-encryption.png)
 
 Pour générer une clé SSH, vous pouvez utiliser la commande suivante :
 
@@ -226,7 +232,7 @@ Cette commande va générer deux fichiers :
 
 ::: danger La clé privée
 
-Cette clé privée doit être protégée. Si quelqu'un a accès à cette clé privée, il pourra se connecter à votre serveur. Il est donc important de la protéger. 
+Cette clé privée doit être protégée. Si quelqu'un a accès à cette clé privée, il pourra se connecter à votre serveur. Il est donc important de la protéger.
 
 :::
 
@@ -252,22 +258,167 @@ Pratique, non ?
 
 ### Fonctionnement d'une clé SSH
 
-Lorsque vous vous connectez à votre serveur avec la commande `ssh`, le serveur va vérifier que la clé publique que vous avez envoyé correspond à la clé privée que vous avez sur votre ordinateur. Si c'est le cas, vous êtes connecté.
+Lorsque vous vous connectez à votre serveur avec la commande `ssh`, le serveur va vérifier que la clé publique que vous avez envoyée correspond à la clé privée que vous avez sur votre ordinateur. Si c'est le cas, vous êtes connecté.
 
 Techniquement il y a plusieurs étapes :
 
-- Le serveur génère un nombre aléatoire et le chiffre avec la clé privée.
-- Le serveur envoie le chiffre au client.
+- Le serveur génère une donnée aléatoire et le chiffre avec la clé privée et calcule le hash md5 de la valeur chiffré.
+- Le serveur envoie la donnée au client.
 - Le client déchiffre le chiffre avec la clé publique.
-- Le client renvoie le chiffre déchiffré au serveur.
-- Le serveur déchiffre le chiffre avec la clé privée.
-- Si les deux chiffres sont identiques, le serveur accepte la connexion.
+- Le client renvoie le hash md5 de la valeur déchiffré au serveur.
+- Si les deux md5 sont identiques, le serveur accepte la connexion.
+
+![Fonctionnement d'une clé SSH](./res/ssh-key-based-authentication.png)
 
 Nous parlons donc ici d'un chiffrement asymétrique. Il existe également un chiffrement symétrique.
 
 ## Les sauvegardes
 
-TODO 
+Qui dit serveur, dit … sauvegarde ! Il est important de sauvegarder son serveur pour éviter de perdre des données. Les sauvegardes ont plusieurs objectifs :
+
+- Sauvegarder les données (évidemment).
+- Sauvegarder les fichiers de configuration.
+- Sauvegarder les bases de données.
+
+Mais surtout elles doivent être **automatiques** pour ne pas les oublier (via un script mis dans un cron). Les sauvegardes doivent être **régulières** (tous les jours, toutes les semaines, tous les mois …). 
+
+Les sauvegardes doivent être **sécurisées** (chiffrées, stockées sur un autre support …).
+
+### Sauvegarder les données
+
+Pour sauvegarder les données, il existe plusieurs solutions :
+
+- Sauvegarder les données sur un autre serveur.
+- Sauvegarder les données sur un disque externe.
+- Sauvegarder les données sur un service de stockage en ligne.
+
+Dans tous les cas, il s'agit de sauvegarder les données sur une autre machine que le serveur. Pourquoi ? Parce que si le serveur tombe en panne, vous n'aurez plus accès aux données.
+
+Les sauvegardes sont également un élément sensible de la machine. En effet, elles vont contenir l'ensemble des données de celui-ci (les mots de passe y compris). Elles sont donc très sensibles, et ~peuvent~ doivent être chiffrées pour éviter que des personnes malveillantes ne puissent les récupérer.
+
+### Les types de sauvegardes
+
+Il existe plusieurs types de sauvegardes :
+
+- Sauvegarde complète : sauvegarde de l'ensemble des données.
+- Sauvegarde incrémentale : sauvegarde des données modifiées depuis la dernière sauvegarde.
+- Sauvegarde différentielle : sauvegarde des données modifiées depuis la dernière sauvegarde complète.
+
+Les sauvegardes incrémentales et différentielles sont plus rapides que les sauvegardes complètes. Mais elles sont plus complexes à mettre en place. En fonction du temps à passer et du volume des données à sauvegarder, vous pouvez choisir l'une ou l'autre.
+
+### Exemple de script de sauvegarde
+
+Voici un exemple de script de sauvegarde complet :
+
+```bash
+#!/bin/bash
+
+# Sauvegarde des données
+rsync -avz --delete /home/ /media/backup/home/
+
+# Sauvegarde de la base de données
+mysqldump -u root -p --all-databases > /media/backup/databases.sql
+```
+
+Ce script va sauvegarder les données du dossier `/home` et la base de données dans le dossier `/media/backup`.
+
+Voici un exemple de script de sauvegarde incrémentale :
+
+```bash
+#!/bin/bash
+
+# Sauvegarde des données
+rsync -avz --delete --link-dest=/media/backup/home/ /home/ /media/backup/home/
+
+# Sauvegarde de la base de données
+mysqldump -u root -p --all-databases > /media/backup/databases.sql
+```
+
+Ce script va sauvegarder les données du dossier `/home` et la base de données dans le dossier `/media/backup`.
+
+::: Comment l'automatiser ?
+
+Vous pouvez automatiser la sauvegarde en créant un script et en le mettant dans un cron. Voici un exemple de cron :
+
+```bash
+0 0 * * * /home/backup.sh
+```
+
+Ce cron va exécuter le script `/home/backup.sh` tous les jours à minuit.
+
+:::
+
+## Les logs
+
+Maintenant que nous avons vu comment fonctionnent les rudiments d'un serveur, nous allons nous intéresser aux logs. Les logs sont des fichiers qui contiennent les informations sur les actions effectuées sur le serveur. Ils sont très utiles pour débugger un serveur.
+
+Différents types de logs existent sur votre serveur :
+
+- Les logs du serveur (Apache, Nginx …).
+- Les logs des applications (WordPress, …).
+- Les logs des bases de données (MySQL, …).
+
+Et plusieurs niveaux de logs existent :
+
+- Les logs d'erreurs (erreurs, alertes …).
+- Les logs de débogage (informations …).
+
+En général, les logs d'erreurs sont plus importants que les logs de débogage. En effet, les logs d'erreurs vont vous permettre de débugger votre serveur. Les logs de débogage vont vous permettre de voir ce qui se passe sur votre serveur.
+
+::: tip Point cybersécurité
+
+Les logs sont des fichiers qui contiennent des informations sensibles. Les logs d’Apache ou Nginx contiennent entre autres les accès au votre serveur. Ils sont donc utiles pour observer si vous subissez des attaques. Ils sont également très sensibles, et très attractifs pour des attaquants.
+
+Si votre organisation le permet, les logs peuvent être externalisés pour être centralisés dans un serveur centralisé. Ce qui va permettre de les sécuriser, ainsi que les analyser plus facilement (avec des outils comme Kibana, Graylog…).
+
+:::
+
+### Les logs du serveur
+
+Les logs du serveur sont généralement stockés dans le dossier `/var/log`. Il est possible de les consulter avec la commande `tail` :
+
+```bash
+tail -f /var/log/apache2/access.log
+```
+
+Cette commande va afficher les logs du serveur Apache en temps réel. Le `-f` permet de suivre les logs en temps réel (sans avoir à relancer la commande).
+
+### Comment les analyser ?
+
+Une partie du travail du DevOps est d'analyser les logs. Il est important de savoir lire les logs, et de savoir les interpréter. Il est également important de savoir les analyser. Il existe plusieurs outils pour analyser les logs :
+
+- tail : affiche les logs en temps réel.
+- nano : éditeur de texte.
+- vim : éditeur de texte.
+- Kibana : outil de visualisation des logs.
+- Graylog : outil de centralisation des logs.
+
+Vous pouvez avoir différentes erreurs dans vos logs :
+
+- Des erreurs de configuration serveur. (ex. : mauvaise configuration d’Apache, erreur de type 500).
+- Des erreurs d'application. (ex. : erreur dans le code de votre site en PHP, erreur de type 500).
+- Des erreurs de type ressource introuvables. (ex : un fichier n'existe pas, erreur de type 404).
+
+### Exemple de logs
+
+Log de type 404 :
+
+```bash
+127.0.0.1 - - [28/Jul/2022:10:27:32 -0300] "GET /hidden/ HTTP/1.0" 404 7218
+```
+
+Comment lire ce log ? :
+
+- `127.0.0.1` : adresse IP de l'utilisateur ayant fait la requête.
+- `28/Jul/2022:10:27:32 -0300` : date et heure de la requête.
+- `GET /hidden/ HTTP/1.0` : méthode HTTP, URL, version HTTP.
+- `404` : code HTTP. (404 = ressource introuvable)
+
+::: tip Point lecture de log
+
+La lecture de logs est un exercice important. Il faut s'entraîner, ça vous permettra de mieux comprendre ce qui se passe sur votre serveur, et de mieux corriger vos erreurs.
+
+:::
 
 ## Physique ou virtuel ?
 
