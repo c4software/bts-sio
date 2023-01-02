@@ -1,5 +1,6 @@
 ---
 description: Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples.
+tags: devops, serveur, support
 ---
 
 # Complément du cours Serveur
