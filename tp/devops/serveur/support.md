@@ -78,6 +78,214 @@ Vous vous dites également que les serveurs ne sont pas votre histoire. Que c'es
 
 :::
 
+## Les ports
+
+Un port est un canal de communication entre deux ordinateurs. Il est possible d'ouvrir des ports sur votre serveur pour permettre à des ordinateurs distants de communiquer avec votre serveur.
+
+Par exemple, si vous ouvrez le port 80 sur votre serveur, alors les ordinateurs distants pourront communiquer avec votre serveur en utilisant le port 80.
+
+La liste des ports est standardisée. Chaque serveur possède 65535 ports. Les ports vont de 0 à 65535. L
+
+es ports vont de 0 à 1023 sont réservés pour les services système. Les ports qui vont de 1024 à 65535 sont réservés pour les services utilisateurs.
+
+Dans les ports réservés pour les services système, il y a les ports suivants :
+
+- 22 : SSH
+- 80 : HTTP
+- 443 : HTTPS
+- 3306 : MariaDB
+- …
+
+Dans les ports réservés pour les services utilisateurs, nous retrouvons souvent les ports suivants :
+
+- 8080 : HTTP
+- 8443 : HTTPS
+
+::: tip Port standard ou port personnalisé ?
+
+La liste des ports ci-dessus est la liste des ports standards, vous pouvez bien évidemment les changer. Exemple, pour éviter qu'un pirate ne trouve trop facilement le port SSH de votre machine, il est vivement conseillé de le changer.
+
+:::
+
+La notion de port est **très importante,** car il est possible d'ouvrir des ports sur votre serveur. Il est donc important de réfléchir à la question suivante : quels ports ouvrir sur votre serveur ?
+
+## Les services
+
+Votre serveur exécute des logiciels. Ces logiciels quand ils sont exécutés en arrière-plan sont appelés des services. Nos ordinateurs modernes (serveur ou non) on une puissance de calcul énorme. Il est donc possible d'exécuter plusieurs services en même temps sur un seul ordinateur.
+
+Votre ordinateur est capable sans problème d'exécuter des 100aines de services en même temps. Par exemple :
+
+- Un serveur web
+- Un serveur de base de données
+- Un serveur de messagerie
+- Un serveur de fichiers
+- …
+
+Mais il est important de réfléchir à la question suivante : quels services voulez-vous exécuter sur votre serveur ? Et surtout, ne serait-il pas intéressant de les exécuter sur des serveurs différents ? Pour plusieurs raisons :
+
+- Vous pouvez répartir la charge sur plusieurs serveurs.
+- Vous pouvez avoir plusieurs serveurs pour des raisons de sécurité.
+- Vous pouvez avoir plusieurs serveurs pour des raisons de maintenance.
+- …
+
+### Gérer les services
+
+Beaucoup de distribution Linux moderne utilise SystemD pour gérer les services. Il permet de démarrer, d'arrêter, de redémarrer, de recharger, de vérifier l'état des services.
+
+Pour vérifier l'état des services, vous pouvez utiliser la commande suivante :
+
+```bash
+systemctl status <nom_du_service>
+```
+
+Pour démarrer un service, vous pouvez utiliser la commande suivante :
+
+```bash
+systemctl start <nom_du_service>
+```
+
+Pour arrêter un service, vous pouvez utiliser la commande suivante :
+
+```bash
+systemctl stop <nom_du_service>
+```
+
+Pour redémarrer un service, vous pouvez utiliser la commande suivante :
+
+```bash
+systemctl restart <nom_du_service>
+```
+
+Pour indiquer au système que vous souhaitez démarrer le service au démarrage du système, vous pouvez utiliser la commande suivante :
+
+```bash
+systemctl enable <nom_du_service>
+```
+
+Et pour le désactiver :
+
+```bash
+systemctl disable <nom_du_service>
+```
+
+::: tip Les services
+
+Les services sont le cœur du fonctionnement de votre serveur. Votre machine seule ne sert à rien. Il faut lui ajouter des services pour qu'elle soit utile. Par exemple, un serveur web, un serveur de base de données, un serveur de messagerie, un serveur de fichiers, etc.
+
+Les quelques commandes ci-dessus vous permettent de gérer les services de votre serveur.
+
+:::
+
+## Les utilisateurs
+
+Voilà la pierre angulaire de la sécurité de votre serveur. La gestion des utilisateurs est centrale dans l'administration de votre machine. De base sous Linux nous avons :
+
+- Le compte root, il est le compte administrateur de votre machine. Il a tous les droits sur votre machine.
+- Le compte utilisateur, il est le compte utilisateur de votre machine. Il n'a pas tous les droits sur votre machine.
+
+À votre avis :
+
+- Est-ce pertinent d'utiliser le compte `root` ? Pourquoi ?
+- Quel type de mot de passe doit avoir votre compte `root` ?
+
+Lors d'une connexion à distance, il est important de se connecter avec un compte utilisateur et non avec le compte `root`. Pourquoi ? Parce que le compte `root` a tous les droits sur votre machine. Si un pirate parvient à se connecter à votre machine avec le compte `root`, il aura tous les droits sur votre machine. Il pourra donc faire ce qu'il veut.
+
+::: danger Le compte root
+
+Vous devez donc empêcher l'accès au compte `root` à distance. Pour cela, il faut modifier le fichier de configuration SSH. Pour cela, vous devez modifier le fichier `/etc/ssh/sshd_config` et modifier la ligne suivante :
+
+```bash
+PermitRootLogin no
+```
+
+Pour éviter tout problème (erreur, sécurité, etc), il est également intéressant d'utiliser le moins possible le compte `root`.
+:::
+
+## L'accès à distance
+
+Pour accéder à votre serveur, nous allons utiliser un **service** nommé SSH. Ce service permet de se connecter à distance à votre serveur. Il est très utilisé et très sécurisé.
+
+Le service SSH est installé par défaut sur la plupart des distributions Linux. Pour vérifier que le service est bien installé, vous pouvez utiliser la commande suivante :
+
+```bash
+systemctl status ssh
+```
+
+Pour le démarrer automatiquement au démarrage du système, vous pouvez utiliser la commande suivante :
+
+```bash
+systemctl enable ssh
+```
+
+### Les clés SSH
+
+Nous avons parlé des utilisateurs, nous avons parlé également des mots de passe. Lors de l'accès à distance à votre serveur, il est intéressant d'utiliser des clés SSH. 
+
+Pourquoi ? Parce que les mots de passe sont plus faciles à deviner que les clés SSH.
+
+Une clé SSH est composée de deux parties :
+
+- Une clé privée : elle est stockée sur votre ordinateur. Elle est utilisée pour se connecter à votre serveur.
+- Une clé publique : elle est stockée sur votre serveur. Elle est utilisée pour vérifier que vous êtes bien le propriétaire de la clé privée.
+
+TODO mettre une image sur le fonctionnement des clés SSH
+
+Pour générer une clé SSH, vous pouvez utiliser la commande suivante :
+
+```bash
+ssh-keygen -t rsa
+```
+
+Cette commande va générer deux fichiers :
+
+- `~/.ssh/id_rsa` : la clé privée
+- `~/.ssh/id_rsa.pub` : la clé publique
+
+::: danger La clé privée
+
+Cette clé privée doit être protégée. Si quelqu'un a accès à cette clé privée, il pourra se connecter à votre serveur. Il est donc important de la protéger. 
+
+:::
+
+### Autoriser une clé SSH
+
+Maintenant que vous avez généré une clé SSH, il faut l'ajouter sur votre serveur. Pour cela, vous devez copier le contenu du fichier `~/.ssh/id_rsa.pub` et le coller dans le fichier `~/.ssh/authorized_keys` sur votre serveur.
+
+Une commande existe pour faire cela automatiquement :
+
+```bash
+ssh-copy-id -i ~/.ssh/id_rsa.pub <nom_du_compte>@<adresse_ip_du_serveur>
+```
+
+À partir de maintenant vous pouvez vous connecter à votre serveur avec la commande suivante :
+
+```bash
+ssh <nom_du_compte>@<adresse_ip_du_serveur>
+```
+
+Et aucun mot de passe ne sera demandé.
+
+Pratique, non ?
+
+### Fonctionnement d'une clé SSH
+
+Lorsque vous vous connectez à votre serveur avec la commande `ssh`, le serveur va vérifier que la clé publique que vous avez envoyé correspond à la clé privée que vous avez sur votre ordinateur. Si c'est le cas, vous êtes connecté.
+
+Techniquement il y a plusieurs étapes :
+
+- Le serveur génère un nombre aléatoire et le chiffre avec la clé privée.
+- Le serveur envoie le chiffre au client.
+- Le client déchiffre le chiffre avec la clé publique.
+- Le client renvoie le chiffre déchiffré au serveur.
+- Le serveur déchiffre le chiffre avec la clé privée.
+- Si les deux chiffres sont identiques, le serveur accepte la connexion.
+
+Nous parlons donc ici d'un chiffrement asymétrique. Il existe également un chiffrement symétrique.
+
+## Les sauvegardes
+
+TODO 
+
 ## Un serveur ou plusieurs serveurs ?
 
 Avant d'aller plus loin… Réfléchissez à la question suivante : est-ce que vous allez installer un seul serveur ou plusieurs serveurs ?
