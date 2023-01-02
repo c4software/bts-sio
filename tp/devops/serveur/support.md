@@ -26,6 +26,14 @@ Voilà à quoi peut ressembler un serveur à domicile (chez moi en l'occurrence)
 
 Nous pourrions résumer la définition d'un serveur en disant que c'est un ordinateur qui est connecté à un réseau et qui est accessible depuis un autre ordinateur.
 
+### Comment représenter un serveur
+
+Avant d'aller plus dans le détail, nous pouvons représenter un serveur de la manière suivante :
+
+![Serveur](./res/serveur_linux.png)
+
+Cette représentation est très simple, mais elle permet de comprendre les différents couches d'un serveur. Nous allons voir plus en détail chacune de ces couches.
+
 ## Qu'est-ce qu'un serveur web ?
 
 Un serveur web est un serveur qui permet de servir des pages web. Il permet de servir des pages web statiques (fichiers HTML, CSS, JavaScript, images, etc.) mais aussi des pages web dynamiques (fichiers PHP, Python, Ruby, etc.).
@@ -50,31 +58,6 @@ Dans notre cas nous utiliserons MariaDB pour le serveur de base de données. Mar
 C'est une bonne question… MariaDB est un fork de MySQL, c'est-à-dire que c'est une copie de MySQL. MariaDB a été créé parce que Oracle a racheté MySQL. Oracle a ensuite décidé de rendre MySQL payant. MariaDB est donc une copie de MySQL qui est gratuite. MariaDB est donc une alternative à MySQL.
 
 Ce sont donc deux logiciels équivalents, MariadDB est gratuit et MySQL est pour l'instant également gratuit. Mais le logiciel MySQL pourrait devenir payant à l'avenir d'où l'intérêt de se tourner vers MariaDB.
-
-:::
-
-## Physique ou virtuel ?
-
-Il est possible d'installer un serveur sur un ordinateur physique, mais il est également possible d'installer un serveur sur une machine virtuelle. Une machine virtuelle est un logiciel qui permet de simuler un ordinateur. Il est possible de créer plusieurs machines virtuelles sur un seul ordinateur. Chaque machine virtuelle est indépendante de l'autre, c'est-à-dire que chaque machine virtuelle est comme un ordinateur physique.
-
-Le TP que nous allons faire est sur une machine virtuelle. Mais vous pouvez également installer un serveur sur un ordinateur physique.
-
-## La sécurité
-
-Héberger du contenu nécessite de réfléchir à la sécurité. En effet, il est important de sécuriser son serveur pour éviter que des personnes malveillantes ne puissent accéder à votre serveur et à vos données.
-
-Différents éléments seront à prendre en compte pour sécuriser votre serveur :
-
-- L'accès aux ports de votre serveur.
-- Les services présents sur votre serveur.
-- Les utilisateurs présents sur votre serveur.
-- Les mots de passe d'accès.
-
-::: danger Développeur != À l'arrache
-
-À première vue, vous vous dites que vous n'avez pas besoin de sécuriser votre serveur, car vous êtes le seul à y avoir accès. Mais ce n'est pas une bonne idée. Vous ne savez pas qui peut avoir accès à votre serveur. Il est possible que quelqu'un d'autre ait accès à votre serveur, et que cette personne soit malveillante. Il est donc important de sécuriser votre serveur.
-
-Vous vous dites également que les serveurs ne sont pas votre histoire. Que c'est l'affaire des personnes dans l'option SISR. Malheureusement pour vous dans la réalité des organisations vous serez amené à gérer des serveurs (au moins de développement).
 
 :::
 
@@ -285,6 +268,31 @@ Nous parlons donc ici d'un chiffrement asymétrique. Il existe également un chi
 ## Les sauvegardes
 
 TODO 
+
+## Physique ou virtuel ?
+
+Il est possible d'installer un serveur sur un ordinateur physique, mais il est également possible d'installer un serveur sur une machine virtuelle. Une machine virtuelle est un logiciel qui permet de simuler un ordinateur. Il est possible de créer plusieurs machines virtuelles sur un seul ordinateur. Chaque machine virtuelle est indépendante de l'autre, c'est-à-dire que chaque machine virtuelle est comme un ordinateur physique.
+
+Le TP que nous allons faire est sur une machine virtuelle. Mais vous pouvez également installer un serveur sur un ordinateur physique.
+
+## La sécurité
+
+Héberger du contenu nécessite de réfléchir à la sécurité. En effet, il est important de sécuriser son serveur pour éviter que des personnes malveillantes ne puissent accéder à votre serveur et à vos données.
+
+Différents éléments seront à prendre en compte pour sécuriser votre serveur :
+
+- L'accès aux ports de votre serveur.
+- Les services présents sur votre serveur.
+- Les utilisateurs présents sur votre serveur.
+- Les mots de passe d'accès.
+
+::: danger Développeur != À l'arrache
+
+À première vue, vous vous dites que vous n'avez pas besoin de sécuriser votre serveur, car vous êtes le seul à y avoir accès. Mais ce n'est pas une bonne idée. Vous ne savez pas qui peut avoir accès à votre serveur. Il est possible que quelqu'un d'autre ait accès à votre serveur, et que cette personne soit malveillante. Il est donc important de sécuriser votre serveur.
+
+Vous vous dites également que les serveurs ne sont pas votre histoire. Que c'est l'affaire des personnes dans l'option SISR. Malheureusement pour vous dans la réalité des organisations vous serez amené à gérer des serveurs (au moins de développement).
+
+:::
 
 ## Un serveur ou plusieurs serveurs ?
 
