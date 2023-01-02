@@ -163,6 +163,168 @@ Cela permet de ne pas bloquer les connexions déjà établies. Par exemple, si v
 
 :::
 
+## La ligne de commande
+
+Nous avons vu comment se connecter à notre serveur. Maintenant, nous allons voir comment utiliser la ligne de commande pour administrer notre serveur. Ici, pas d'interface graphique, tout se passe en ligne de commande.
+
+Pourquoi utiliser la ligne de commande ? Parce que c'est plus rapide, plus efficace et plus sécurisé. Vous pouvez automatiser des tâches avec des scripts. De plus celle-ci ne prend pas de ressources de votre serveur !
+
+### Les commandes de base
+
+Pour commencer, nous allons voir quelques commandes de base :
+
+- `ls` : liste les fichiers et dossiers du répertoire courant.
+- `cd` : change le répertoire courant.
+- `pwd` : affiche le répertoire courant.
+- `mkdir` : crée un répertoire.
+- `touch` : crée un fichier.
+- `rm` : supprime un fichier ou un répertoire.
+- `cp` : copie un fichier ou un répertoire.
+- `mv` : déplace un fichier ou un répertoire.
+- `cat` : affiche le contenu d'un fichier.
+- `nano` : édite un fichier (je vous conseille d'utiliser `vim` à la place).
+
+::: tip La liste est non exhaustive
+
+Bien évidemment, il existe beaucoup d'autres commandes. Mais celles-ci sont les plus utilisées. Vous pouvez les retrouver sur le site [Linux Command](https://linuxcommand.org/).
+
+:::
+
+### Les droits
+
+Les droits sont très importants sur un serveur. Ils permettent de définir qui peut faire quoi sur un fichier ou un répertoire.
+
+Les droits sont composés de trois parties :
+
+- Les droits du propriétaire.
+- Les droits du groupe.
+- Les droits des autres.
+
+Chaque partie est composée de trois caractères :
+
+- `r` : lecture
+- `w` : écriture
+- `x` : exécution
+
+Par exemple, si vous avez les droits suivants sur un fichier :
+
+```bash
+-rwxr-xr-x
+```
+
+Cela signifie que vous avez les droits suivants :
+
+- Vous avez les droits de lecture, d'écriture et d'exécution.
+- Le groupe a les droits de lecture et d'exécution.
+- Les autres ont les droits de lecture et d'exécution.
+
+Pour changer les droits d'un fichier, vous pouvez utiliser la commande `chmod` :
+
+```bash
+chmod <droits> <fichier>
+```
+
+Par exemple, pour donner les droits de lecture et d'exécution au groupe et aux autres, vous pouvez utiliser la commande suivante :
+
+```bash
+chmod g+rx,o+rx <fichier>
+```
+
+Pour changer le propriétaire d'un fichier, vous pouvez utiliser la commande `chown` :
+
+```bash
+chown <propriétaire>:<groupe> <fichier>
+```
+
+Par exemple si nous voulons autoriser l'utilisateur apache a lire et écrire dans le fichier `index.html`, nous pouvons utiliser la commande suivante :
+
+```bash
+chown apache:apache index.html
+```
+
+Le fichier `index.html` est maintenant accessible en lecture et en écriture par l'utilisateur apache.
+
+### Quelques commandes utiles
+
+- `sudo` : permet d'exécuter une commande en tant qu'administrateur.
+- `su` : permet de se connecter en tant qu'un autre utilisateur.
+- `top` : affiche les processus en cours d'exécution.
+- `ps` : affiche les processus en cours d'exécution.
+- `!!` : ré-exécute la dernière commande. Pratique par exemple pour y ajouter des arguments, ou pour l'exécuter en tant qu'administrateur (ex. `sudo !!`).
+
+## La structure des dossiers
+
+L'architecture des dossiers d'un linux est très simple. Elle est composée de différentes parties :
+
+- `/` : le dossier racine.
+- `/home` : les dossiers des utilisateurs.
+- `/var` : les dossiers des services.
+- `/etc` : les fichiers de configuration.
+
+Dans le dossier `/home`, vous trouverez les dossiers des utilisateurs. Chaque utilisateur possède son propre dossier.
+
+Dans le dossier `/var`, vous trouverez les dossiers des services. Par exemple, le dossier `/var/www` contient les fichiers du serveur Web Apache.
+
+Dans le dossier `/etc`, vous trouverez les fichiers de configuration. Par exemple, le fichier `/etc/apache2/apache2.conf` contient la configuration du serveur Web Apache.
+
+::: tip Nous avons plus de dossiers
+
+Nous avons ici une liste très courte des dossiers qui vous seront utiles. Vous pouvez retrouver la liste complète sur le site [Linux Filesystem Hierarchy Standard](https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard).
+
+Nous observerons plus en détail les différents dossiers dans les prochains TP.
+
+:::
+
+## Installer des logiciels
+
+Votre serveur ne possède pas d'interface, mais nous pouvons complètement y ajouter des logiciels. Sous Debian, nous avons le gestionnaire de paquets `apt` qui permet d'installer des logiciels.
+
+Le gestionnaire de paquet est la vraie force de Linux. Il permet d'installer des logiciels, de les mettre à jour, de les supprimer, de les configurer … Il est très puissant et très simple à utiliser. Le tout de manière centralisée et sécurisée (en effet les repositories sont signés et administrés par des personnes compétentes).
+
+### Installer un logiciel
+
+Pour installer un logiciel, il suffit d'utiliser la commande `apt install` :
+
+```bash
+apt install <logiciel>
+```
+
+Par exemple, pour installer le serveur Web Apache, nous pouvons utiliser la commande suivante :
+
+```bash
+apt install apache2
+```
+
+### Mettre à jour un logiciel
+
+Pour mettre à jour un logiciel, il suffit d'utiliser la commande `apt update` :
+
+```bash
+apt update
+```
+
+Cette commande va mettre à jour la liste des logiciels disponibles. Pour mettre à jour un logiciel, il suffit d'utiliser la commande `apt upgrade` :
+
+```bash
+apt upgrade
+```
+
+Cette commande va mettre à jour les logiciels installés.
+
+### Supprimer un logiciel
+
+Pour supprimer un logiciel, il suffit d'utiliser la commande `apt remove` :
+
+```bash
+apt remove <logiciel>
+```
+
+Par exemple, pour supprimer le serveur Web Apache, nous pouvons utiliser la commande suivante :
+
+```bash
+apt remove apache2
+```
+
 ## Les services
 
 Votre serveur exécute des logiciels. Ces logiciels quand ils sont exécutés en arrière-plan sont appelés des services. Nos ordinateurs modernes (serveur ou non) ont une puissance de calcul énorme. Il est donc possible d'exécuter plusieurs services en même temps sur un seul ordinateur.
@@ -342,140 +504,6 @@ Techniquement il y a plusieurs étapes :
 ![Fonctionnement d'une clé SSH](./res/ssh-key-based-authentication.png)
 
 Nous parlons donc ici d'un chiffrement asymétrique. Il existe également un chiffrement symétrique.
-
-## La ligne de commande
-
-Nous avons vu comment se connecter à notre serveur. Maintenant, nous allons voir comment utiliser la ligne de commande pour administrer notre serveur. Ici, pas d'interface graphique, tout se passe en ligne de commande.
-
-Pourquoi utiliser la ligne de commande ? Parce que c'est plus rapide, plus efficace et plus sécurisé. Vous pouvez automatiser des tâches avec des scripts. De plus celle-ci ne prend pas de ressources de votre serveur !
-
-### Les commandes de base
-
-Pour commencer, nous allons voir quelques commandes de base :
-
-- `ls` : liste les fichiers et dossiers du répertoire courant.
-- `cd` : change le répertoire courant.
-- `pwd` : affiche le répertoire courant.
-- `mkdir` : crée un répertoire.
-- `touch` : crée un fichier.
-- `rm` : supprime un fichier ou un répertoire.
-- `cp` : copie un fichier ou un répertoire.
-- `mv` : déplace un fichier ou un répertoire.
-- `cat` : affiche le contenu d'un fichier.
-- `nano` : édite un fichier (je vous conseille d'utiliser `vim` à la place).
-
-### Les droits
-
-Les droits sont très importants sur un serveur. Ils permettent de définir qui peut faire quoi sur un fichier ou un répertoire.
-
-Les droits sont composés de trois parties :
-
-- Les droits du propriétaire.
-- Les droits du groupe.
-- Les droits des autres.
-
-Chaque partie est composée de trois caractères :
-
-- `r` : lecture
-- `w` : écriture
-- `x` : exécution
-
-Par exemple, si vous avez les droits suivants sur un fichier :
-
-```bash
--rwxr-xr-x
-```
-
-Cela signifie que vous avez les droits suivants :
-
-- Vous avez les droits de lecture, d'écriture et d'exécution.
-- Le groupe a les droits de lecture et d'exécution.
-- Les autres ont les droits de lecture et d'exécution.
-
-Pour changer les droits d'un fichier, vous pouvez utiliser la commande `chmod` :
-
-```bash
-chmod <droits> <fichier>
-```
-
-Par exemple, pour donner les droits de lecture et d'exécution au groupe et aux autres, vous pouvez utiliser la commande suivante :
-
-```bash
-chmod g+rx,o+rx <fichier>
-```
-
-Pour changer le propriétaire d'un fichier, vous pouvez utiliser la commande `chown` :
-
-```bash
-chown <propriétaire>:<groupe> <fichier>
-```
-
-Par exemple si nous voulons autoriser l'utilisateur apache a lire et écrire dans le fichier `index.html`, nous pouvons utiliser la commande suivante :
-
-```bash
-chown apache:apache index.html
-```
-
-Le fichier `index.html` est maintenant accessible en lecture et en écriture par l'utilisateur apache.
-
-### Quelques commandes utiles
-
-- `sudo` : permet d'exécuter une commande en tant qu'administrateur.
-- `su` : permet de se connecter en tant qu'un autre utilisateur.
-- `top` : affiche les processus en cours d'exécution.
-- `ps` : affiche les processus en cours d'exécution.
-- `!!` : ré-exécute la dernière commande. Pratique par exemple pour y ajouter des arguments, ou pour l'exécuter en tant qu'administrateur (ex. `sudo !!`).
-
-## Installer des logiciels
-
-Votre serveur ne possède pas d'interface, mais nous pouvons complètement y ajouter des logiciels. Sous Debian, nous avons le gestionnaire de paquets `apt` qui permet d'installer des logiciels.
-
-Le gestionnaire de paquet est la vraie force de Linux. Il permet d'installer des logiciels, de les mettre à jour, de les supprimer, de les configurer … Il est très puissant et très simple à utiliser. Le tout de manière centralisée et sécurisée (en effet les repositories sont signés et administrés par des personnes compétentes).
-
-### Installer un logiciel
-
-Pour installer un logiciel, il suffit d'utiliser la commande `apt install` :
-
-```bash
-apt install <logiciel>
-```
-
-Par exemple, pour installer le serveur Web Apache, nous pouvons utiliser la commande suivante :
-
-```bash
-apt install apache2
-```
-
-### Mettre à jour un logiciel
-
-Pour mettre à jour un logiciel, il suffit d'utiliser la commande `apt update` :
-
-```bash
-apt update
-```
-
-Cette commande va mettre à jour la liste des logiciels disponibles. Pour mettre à jour un logiciel, il suffit d'utiliser la commande `apt upgrade` :
-
-```bash
-apt upgrade
-```
-
-Cette commande va mettre à jour les logiciels installés.
-
-### Supprimer un logiciel
-
-Pour supprimer un logiciel, il suffit d'utiliser la commande `apt remove` :
-
-```bash
-apt remove <logiciel>
-```
-
-Par exemple, pour supprimer le serveur Web Apache, nous pouvons utiliser la commande suivante :
-
-```bash
-apt remove apache2
-```
-
 
 ## Les sauvegardes
 
