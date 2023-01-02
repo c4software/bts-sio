@@ -77,9 +77,9 @@ export default {
             vlan: "",
             interface: "ens18",
             ip: "192.168.1.1",
-            netmask: "255.255.255.0",
-            gateway: "192.168.1.254",
-            dns: "1.1.1.1",
+            netmask: "255.255.0.0",
+            gateway: "192.168.235.254",
+            dns: "192.168.10.1",
         }
     },
 };
