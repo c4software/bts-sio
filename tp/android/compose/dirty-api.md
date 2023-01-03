@@ -10,6 +10,14 @@ Dans cette page vous trouverez un exemple d'application Android utilisant Jetpac
 [[toc]]
 :::
 
+::: warning Application d'apprentissage
+
+Cette application est un exemple d'application Android utilisant Jetpack Compose et appelant une API Rest. Elle est destinée à être utilisée comme support de cours.
+
+Dans un vrai projet, il est fortement recommandé d'utiliser une architecture MVVM, et de séparer les composants de l'application en plusieurs modules. Et surtout d'utiliser Jetpack Navigation pour la navigation entre les écrans.
+
+:::
+
 ## Présentation
 
 Cette application contient les éléments suivants :
