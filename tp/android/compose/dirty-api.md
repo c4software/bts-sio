@@ -23,7 +23,7 @@ Cette application contient les éléments suivants :
 
 ## Prérequis
 
-Pour comprendre cette application vous devez avoir des notions de :
+Pour comprendre cette application, vous devez avoir des notions de :
 
 - [Kotlin](https://kotlinlang.org/)
 - [Android](https://developer.android.com/)
@@ -43,9 +43,9 @@ Le code source de cette application est organisé de la manière suivante :
 
 - `MainActivity.kt` : Activité principale de l'application.
 - `screens/` : Contient les écrans de l'application.
-- `screens/HomeScreen.kt` : Ecran d'accueil.
-- `screens/AboutScreen.kt` : Ecran à propos.
-- `screens/list/ListScreen.kt` : Ecran de liste.
+- `screens/HomeScreen.kt` : Écran d'accueil.
+- `screens/AboutScreen.kt` : Écran à propos.
+- `screens/list/ListScreen.kt` : Écran de liste.
 - `screens/list/ListViewModel.kt` : Logique métier de l'écran de liste, ici nous appelons l'API et gérons l'état de la liste (chargement, erreur, données).
 - `data/ApiService.kt` : Service d'appel à l'API.
 - `data/Enums.kt` : Énums utilisés dans l'application (état de la liste, état de la requête).
@@ -68,6 +68,9 @@ Pour afficher le bon écran :
 
 ![choix écran](./choix-ecran.jpg)
 
-Pour les intéractions avec les tabs :
+Pour les interactions avec les tabs :
 
 ![interactions tabs](./tabs_selection.jpg)
+
+- Le `OnClick` de chaque `BottomNavigationItem` permet de changer l'écran actuellement affiché.
+- Le `Selected` de chaque `BottomNavigationItem` permet d'indiquer quel écran est actuellement affiché, et donc de changer l'icône (couleur).
