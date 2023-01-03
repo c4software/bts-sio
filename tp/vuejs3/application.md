@@ -20,6 +20,14 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
 [[toc]]
 :::
 
+::: danger TP en cours de rédaction
+
+Ce TP est en cours de rédaction, il est possible qu'il y ait des erreurs ou des incohérences.
+
+Vous pouvez consulter la version VueJS 2 du TP [ici](../vuejs/tp2.md).
+
+:::
+
 ## Une application web ?
 
 Une application Web ou un site Web ? Quelle est la différence ? C'est une bonne question, la nuance est faible. Mais, une application Web, c'est en quelques sorte comme une application classique (celle que vous avez sur votre ordinateur) mais qui est accessible depuis un navigateur Web.
