@@ -10,12 +10,6 @@ Vuetify est une bibliothèque de composants graphiques pour VueJS. Elle est bas�
 [[toc]]
 :::
 
-::: danger TP en cours de rédaction
-
-Ce TP est en cours de rédaction. Il est possible qu'il contienne des erreurs ou des informations incomplètes.
-
-:::
-
 ## NodeJS
 
 La première étape va être l’installation de NodeJS, la démarche est différente en fonction de votre environnement, mais pour résumer :
