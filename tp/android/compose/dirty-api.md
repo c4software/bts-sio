@@ -191,6 +191,8 @@ Pour afficher le bon écran :
 
 ![choix écran](./choix_ecran.jpg)
 
+Nous avons donc un `when` qui va afficher le bon écran en fonction de la valeur de `currentScreen`. La valeur de `currentScreen` est modifiée lors du clic sur un élément de la NavBar.
+
 Pour les interactions avec les tabs :
 
 ![interactions tabs](./tabs_selection.jpg)
