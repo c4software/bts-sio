@@ -66,7 +66,7 @@ Dans le fichier `MainActivity.kt` nous avons défini une liste d'écrans :
 
 Pour afficher le bon écran :
 
-![choix écran](./choix-ecran.jpg)
+![choix écran](./choix_ecran.jpg)
 
 Pour les interactions avec les tabs :
 
