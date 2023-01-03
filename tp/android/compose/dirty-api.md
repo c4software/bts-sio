@@ -1,5 +1,6 @@
 ---
 description: Dans cette page vous trouverez un exemple d'application Android utilisant Jetpack Compose.
+tags: [Android, Compose, API, Rest, Retrofit]
 ---
 
 # Android Compose, une liste et une API Rest
@@ -177,7 +178,7 @@ Les deux syntaxes sont correctes. En Kotlin il est préférable d'écrire la pre
 
 Dans cette application nous utilisons des tabs (NavBar) pour naviguer entre les écrans. Pour cela nous utilisons le composant `BottomNavigation` de Jetpack Compose.
 
-Ce Composant contient une liste de `BottomNavigationItem` qui correspondent aux différents différents éléments de la NavBar. Chaque élément est associé à un écran. Écrans qui sera affiché lors du clic sur l'élément via le callback `onClick`.
+Ce Composant contient une liste de `BottomNavigationItem` qui correspondent aux différents différents éléments de la NavBar. Chaque élément est associé à un écran. Écrans qui seront affichés lors du clic sur l'élément via le callback `onClick`.
 
 ![Tabs](./tabs.jpg)
 
@@ -199,7 +200,7 @@ Pour les interactions avec les tabs :
 
 ## Conclusion
 
-Dans ce support nous avons vu comment l'architecture d'une application Android avec Jetpack Compose et qui appel une API. Comme dans le TP précédent, nous nous sommes éforcés de découper notre application en plusieurs parties :
+Dans ce support nous avons vu comment l'architecture d'une application Android avec Jetpack Compose et qui appelle une API. Comme dans le TP précédent, nous nous sommes efforcés de découper notre application en plusieurs parties :
 
 - `screens` : Ce sont les écrans de l'application.
 - `components` : Ce sont les composants utilisés dans les différents écrans
