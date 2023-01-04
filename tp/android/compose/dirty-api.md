@@ -120,7 +120,128 @@ Pas tant que ça ! Avec l'habitude, cette gymnastique de créer un service d'app
 
 :::
 
-## Les enums
+## La réactivité
+
+En Kotlin les composants sont réactifs. Cela signifie que si une variable change, tous les composants qui utilisent cette variable seront mis à jour. Nous utilisons cette fonctionnalité pour mettre à jour l'écran de liste lorsque les données sont chargées depuis Internet.
+
+Prenons l'exmemple de la `Liste`. Premier point important, pour rendre le code lisible, celui-ci est découpé en deux fichiers :
+
+- `ListScreen.kt` : Écran de liste
+- `ListViewModel.kt` : Logique métier de l'écran de liste
+
+Le fichier `ListScreen.kt` contient uniquement la partie graphique de l'écran de liste. Le fichier `ListViewModel.kt` contient la logique métier de l'écran de liste. Nous allons voir comment ces deux fichiers communiquent entre eux.
+
+### Avant-propos : Le ViewModel
+
+Le `ViewModel` est un découpage de l'application qui permet de séparer la logique métier de l'application de la partie graphique. Chaque écran de l'application aura son `ViewModel` qui contiendra la logique métier de l'écran. L'objectif ? Découper l'application en plusieurs parties et ainsi rendre le code plus lisible.
+
+### Le fichier `ListScreen.kt`
+
+Nous avons ici la partie graphique. Les éléments qui seront affichés, nous avons cependant des éléments qui vont faire référence aux données à savoir :
+
+```kotlin
+fun ListScreen(viewModel: ListViewModel = ListViewModel()) {
+    // ...
+}
+```
+
+Le paramètre de la fonction `ListScreen` est un `ListViewModel`, il s'agit du `ViewModel` de l'écran de liste. Il nous permettra d'accéder à la logique métier de l'écran de liste.
+
+Nous avons ensuite deux variables :
+
+```kotlin
+// Variable qui changeront d'état lors du chargement des données
+val loadingState = viewModel.loadingState.collectAsState()
+val items = viewModel.itemsList.collectAsState()
+```
+
+Ces deux variables sont « réactives », c'est-à-dire qu'elles seront mises à jour lorsqu'une donnée change. Nous utilisons la fonction `collectAsState()`. CollectAsState est une méthode qui nous permettra d'écouter les changements des données directement dans notre interface.
+
+- loadingState : État du chargement des données (chargement, erreur, terminée).
+- items : Liste des données (l'ensemble des données retournées par l'API).
+
+Puis nous avons la demande de chargement des données :
+
+```kotlin
+// Récupération des éléments à afficher via le ViewModel
+viewModel.getItems()
+```
+
+Ici nous appelons la méthode `getItems()` du `ViewModel` de l'écran de liste. Cette méthode va déclencher le chargement des données depuis l'API. Chargement qui permettra de mettre à jour les variables `loadingState` et `items`.
+
+### Le fichier `ListViewModel.kt`
+
+Le ViewModel contient donc la logique d'accès aux données, nous avons donc ici :
+
+```kotlin
+// Variables qui vont changer d'état lors du chargement des données
+val itemsList = MutableStateFlow<List<Todo>>(emptyList())
+val loadingState = MutableStateFlow<LOADING_STATES>(LOADING_STATES.LOADING)
+
+// Récupération des éléments.
+// On utilise un CoroutineScope pour pouvoir faire des appels réseaux
+// sans bloquer le thread principal (c'est à dire l'interface)
+fun getItems() {
+    // On indique que les données sont en cours de chargement (chargement)
+    loadingState.value = LOADING_STATES.LOADING
+
+    // On lance une coroutine pour récupérer les données
+    // Une coroutine est un thread qui va s'exécuter en parallèle du thread principal
+    CoroutineScope(Dispatchers.IO).launch {
+        try {
+            // On récupère les données depuis l'API, c'est ici que l'on fait appel à l'API
+            // Le résultat est stocké dans la variable itemsList, cette variable est réactive la vue sera mise à jour
+            itemsList.value = APIService.getInstance().getTodos()
+
+            // On indique que les données sont chargées (terminé)
+            loadingState.value =LOADING_STATES.LOADED
+        } catch (e: Throwable) {
+            // En cas d'erreur
+            // On indique qu'une erreur est survenue (erreur)
+            loadingState.value = LOADING_STATES.ERROR
+        }
+    }
+}
+```
+
+### L'affichage des données
+
+Une fois les données obtenues, nous allons les afficher dans l'interface :
+
+```kotlin
+when (loadingState.value) {
+    LOADING_STATES.LOADING -> {
+        // Affichage d'un loader
+        Loader()
+    }
+    LOADING_STATES.LOADED -> {
+        // Affichage de la liste
+        ListItems(items = items.value) { selectedItem.value = it }
+    }
+    LOADING_STATES.ERROR -> {
+        // Affichage d'un message d'erreur
+        Error()
+    }
+    else -> {
+        // Affichage d'un message d'erreur
+        Error()
+    }
+}
+```
+
+Vous pouvez voir que nous avons 3 états possibles :
+
+- `LOADING_STATES.LOADING`: Les données sont en cours de chargement.
+- `LOADING_STATES.LOADED`: Les données ont été chargées avec succès.
+- `LOADING_STATES.ERROR`: Une erreur est survenue lors du chargement des données.
+
+Nous affichons donc un loader, la liste des données ou un message d'erreur en fonction de l'état. Grâce au découpage de l'interface en composants, notre code reste lisible et compréhensible, et est finalement très générique.
+
+## Les énumérations (enums)
+
+Écrire des énums est une bonne pratique pour définir des états. Nous pouvons ensuite utiliser ces énums pour définir l'état de notre application. C'est plus simple à lire et à comprendre que des `Boolean` ou des `Int`.
+
+Dans ce projet nous avons défini 2 énums :
 
 L'enum `LOADING_STATE` est utilisé pour définir l'état du chargement des données :
 
@@ -128,7 +249,11 @@ L'enum `LOADING_STATE` est utilisé pour définir l'état du chargement des donn
 - `ERROR`: Une erreur est survenue lors du chargement des données.
 - `SUCCESS`: Les données ont été chargées avec succès.
 
-Créer des énums est une bonne pratique pour définir des états. Nous pouvons ensuite utiliser ces énums pour définir l'état de notre application. C'est plus simple à lire et à comprendre que des `Boolean` ou des `Int`.
+L'enum `STATES` est utilisé pour définir quel écran est actuellement affiché en fonction de la NavBar en bas de l'écran :
+
+- `HOME`: Écran d'accueil.
+- `LIST`: Écran de liste.
+- `ABOUT`: Écran d'informations sur l'application.
 
 ## Rappel sur les callbacks
 

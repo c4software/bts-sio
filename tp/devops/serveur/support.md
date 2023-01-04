@@ -727,3 +727,7 @@ Plus tard dans l'année nous utiliserons Docker pour créer des environnements d
 - [Introduction à Docker](/tp/docker/introduction.md)
 
 :::
+
+## Références
+
+- 
