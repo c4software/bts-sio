@@ -135,40 +135,6 @@ Le fichier `ListScreen.kt` contient uniquement la partie graphique de l'écran d
 
 Le `ViewModel` est un découpage de l'application qui permet de séparer la logique métier de l'application de la partie graphique. Chaque écran de l'application aura son `ViewModel` qui contiendra la logique métier de l'écran. L'objectif ? Découper l'application en plusieurs parties et ainsi rendre le code plus lisible.
 
-### Le fichier `ListScreen.kt`
-
-Nous avons ici la partie graphique. Les éléments qui seront affichés, nous avons cependant des éléments qui vont faire référence aux données à savoir :
-
-```kotlin
-fun ListScreen(viewModel: ListViewModel = ListViewModel()) {
-    // ...
-}
-```
-
-Le paramètre de la fonction `ListScreen` est un `ListViewModel`, il s'agit du `ViewModel` de l'écran de liste. Il nous permettra d'accéder à la logique métier de l'écran de liste.
-
-Nous avons ensuite deux variables :
-
-```kotlin
-// Variable qui changeront d'état lors du chargement des données
-val loadingState = viewModel.loadingState.collectAsState()
-val items = viewModel.itemsList.collectAsState()
-```
-
-Ces deux variables sont « réactives », c'est-à-dire qu'elles seront mises à jour lorsqu'une donnée change. Nous utilisons la fonction `collectAsState()`. CollectAsState est une méthode qui nous permettra d'écouter les changements des données directement dans notre interface.
-
-- loadingState : État du chargement des données (chargement, erreur, terminée).
-- items : Liste des données (l'ensemble des données retournées par l'API).
-
-Puis nous avons la demande de chargement des données :
-
-```kotlin
-// Récupération des éléments à afficher via le ViewModel
-viewModel.getItems()
-```
-
-Ici nous appelons la méthode `getItems()` du `ViewModel` de l'écran de liste. Cette méthode va déclencher le chargement des données depuis l'API. Chargement qui permettra de mettre à jour les variables `loadingState` et `items`.
-
 ### Le fichier `ListViewModel.kt`
 
 Le ViewModel contient donc la logique d'accès aux données, nous avons donc ici :
@@ -204,7 +170,43 @@ fun getItems() {
 }
 ```
 
-### L'affichage des données
+### Le fichier `ListScreen.kt`
+
+Nous avons ici la partie graphique. Les éléments qui seront affichés, nous avons cependant des éléments qui vont faire référence aux données à savoir :
+
+```kotlin
+fun ListScreen(viewModel: ListViewModel = ListViewModel()) {
+    // ...
+}
+```
+
+Le paramètre de la fonction `ListScreen` est un `ListViewModel`, il s'agit du `ViewModel` de l'écran de liste. Il nous permettra d'accéder à la logique métier de l'écran de liste.
+
+#### L'écoute des données
+
+Notre vue écoute des données, pour ça nous avons besoin de deux variables :
+
+```kotlin
+// Variable qui changeront d'état lors du chargement des données
+val loadingState = viewModel.loadingState.collectAsState()
+val items = viewModel.itemsList.collectAsState()
+```
+
+Ces deux variables sont « réactives », c'est-à-dire qu'elles seront mises à jour lorsqu'une donnée change. Nous utilisons la fonction `collectAsState()`. CollectAsState est une méthode qui nous permettra d'écouter les changements des données directement dans notre interface.
+
+- loadingState : État du chargement des données (chargement, erreur, terminée).
+- items : Liste des données (l'ensemble des données retournées par l'API).
+
+Puis nous avons la demande de chargement des données :
+
+```kotlin
+// Récupération des éléments à afficher via le ViewModel
+viewModel.getItems()
+```
+
+Ici nous appelons la méthode `getItems()` du `ViewModel` de l'écran de liste. Cette méthode va déclencher le chargement des données depuis l'API. Chargement qui permettra de mettre à jour les variables `loadingState` et `items`.
+
+#### L'affichage des données
 
 Une fois les données obtenues, nous allons les afficher dans l'interface :
 
