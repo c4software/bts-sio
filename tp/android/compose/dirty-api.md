@@ -170,6 +170,22 @@ fun getItems() {
 }
 ```
 
+::: tip C'est presque générique !
+
+Le code d'accès à la donnée est presque générique, il suffit de changer la méthode `getTodos()` pour récupérer les données depuis une autre source (préalablement créé dans l'APIService).
+
+La gestion des états est toujours là même :
+
+- J'indique que les données sont en cours de chargement.
+- Je lance une coroutine pour récupérer les données.
+- Je mets à jour une variable qui est réactive avec les données obtenues.
+- J'indique que les données sont chargées.
+- En cas d'erreur, j'indique qu'une erreur est survenue.
+
+Nous avons une base réutilisable pour accéder à des données.
+
+:::
+
 ### Le fichier `ListScreen.kt`
 
 Nous avons ici la partie graphique. Les éléments qui seront affichés, nous avons cependant des éléments qui vont faire référence aux données à savoir :
@@ -298,8 +314,6 @@ ListItem(item = todo.title, onClick = {
 Les deux syntaxes sont correctes. En Kotlin il est préférable d'écrire la première syntaxe. Car elle est plus concise et plus lisible.
 
 :::
-
-
 
 ## Les tabs (La NavBar)
 
