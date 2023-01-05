@@ -33,7 +33,7 @@ Si vous utilisez Visual Studio Code, vous pouvez faire html:5<kbd>Tab</kbd> une 
     <title>Démo VueJS</title>
   </head>
   <body>
-    <!-- Votre code ici -->
+    <div id="app"></div>
   </body>
 </html>
 ```
@@ -96,7 +96,7 @@ Vous pouvez tester ce code dans la console de votre navigateur. Vous devriez voi
 
 Pour appeler l'API depuis VueJS, nous allons utiliser la fonction `mounted` de VueJS. Cette fonction est appelée lorsque l'instance de VueJS est montée.
 
-::: rappel mounted
+::: tip mounted
 
 La fonction `mounted` est appelée lorsque l'instance de VueJS est montée. C'est-à-dire lorsque le DOM est prêt, et que l'instance de VueJS est liée à un élément du DOM. 
 
