@@ -221,8 +221,7 @@ Maintenant que TailwindCSS est ajouté à votre application, vous pouvez stylise
 
 Pour réaliser ce rendu vous pouvez utiliser les classe de TailwindCSS :
 
-- Le flex : [https://tailwindcss.com/docs/flex](https://tailwindcss.com/docs/flex)
-- Le flex direction : [https://tailwindcss.com/docs/flex-direction](https://tailwindcss.com/docs/flex-direction)
+- Grid : [https://tailwindcss.com/docs/grid-template-columns](https://tailwindcss.com/docs/grid-template-columns)
 - Navbar : [https://flowbite.com/docs/components/navbar/](https://flowbite.com/docs/components/navbar/)
 - Card : [https://flowbite.com/docs/components/card/](https://flowbite.com/docs/components/card/)
 
