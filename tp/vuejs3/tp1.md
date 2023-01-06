@@ -263,8 +263,6 @@ Attendez un instant… Vous avez vraiment envie de voir le code ? 🤔
 
 :::
 
-:::
-
 ## Ajouter une action dans la navbar
 
 Pour l'instant, nous avons une navbar avec un lien vers la liste des posts. Je vous laisse écrire le code permettant d'ajouter un lien qui va permettre de recharger la liste des posts.

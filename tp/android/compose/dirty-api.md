@@ -66,6 +66,23 @@ Ce qu'il faut retenir c'est que nous découpons notre application en 3 parties :
 - `components` : Ce sont les composants utilisés dans les différents écrans
 - `data` : C'est le code d'accès aux données (API, base de données, etc.)
 
+## Le fichier `build.gradle`
+
+Pour que notre application puisse fonctionner correctement, nous avons besoin des dépendances suivantes dans le fichier `build.gradle` :
+
+```groovy
+// ViewModel
+implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+
+// Appel API
+implementation "com.squareup.retrofit2:retrofit:2.9.0"
+implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+```
+
+- Les dépendances `lifecycle-viewmodel-ktx` et `lifecycle-viewmodel-compose` sont nécessaires pour utiliser le ViewModel dans notre application. 
+- Les dépendances `retrofit` et `converter-gson` sont nécessaires pour appeler l'API.
+
 ## Le `ApiService.kt`
 
 Le fichier `ApiService.kt` contient le service d'appel à l'API. Il utilise la librairie [Retrofit](https://square.github.io/retrofit/) pour appeler l'API.
