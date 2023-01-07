@@ -706,6 +706,8 @@ const historiquePrecedent = computed(() => {
 
 Dans cet exemple, la variable `historiquePrecedent` est une variable computed. Elle est définie par une fonction fléchée. Cette fonction fléchée retourne le résultat de la méthode `JSON.parse` appliquée sur la méthode `getItem` appliquée sur le localStorage. Concrètement, la variable `historiquePrecedent` contiendra la totalité de l'historique dans un tableau. (que vous pourrez afficher avec un `v-for`).
 
+:::
+
 Ressources utiles :
 
 - [Liste Vuetify](https://next.vuetifyjs.com/components/lists)
@@ -769,3 +771,22 @@ npm run build
 ```
 
 - Tester l’application depuis votre Téléphone Android / iOS.
+
+## Conclusion
+
+Dans ce TP nous avons vu comment VueJS pouvait vous aider à créer un site web ressemblant à une application mobile. Nous avons vu comment utiliser le localStorage pour sauvegarder des données. Nous avons vu comment utiliser le router pour créer des pages.
+
+Les composants du type :
+
+- Drawer
+- Appbar
+- Card
+
+Sont des éléments des plus courants dans les applications mobiles, les avoirs dans votre boîte à outils vous permettront de créer des applications mobiles rapidement en utilisant les technologies web (VueJS, Vuetify, etc.)
+
+## Resources
+
+- [Vuetify](https://next.vuetifyjs.com/en/)
+- [VueJS](https://vuejs.org/)
+- [Vue Router](https://router.vuejs.org/)
+- [Vite](https://vitejs.dev/)
