@@ -20,14 +20,6 @@ Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus
 [[toc]]
 :::
 
-::: danger TP en cours de rédaction
-
-Ce TP est en cours de rédaction, il est possible qu'il y ait des erreurs ou des incohérences.
-
-Vous pouvez consulter la version VueJS 2 du TP [ici](../vuejs/tp2.md).
-
-:::
-
 ## Une application Web ?
 
 Une application Web ou un site Web ? Quelle est la différence ? C'est une bonne question, la nuance est faible. Mais, une application Web, c'est en quelque sorte comme une application classique (celle que vous avez sur votre ordinateur), mais qui est accessible depuis un navigateur Web.
@@ -39,7 +31,7 @@ Cette application aura donc le comportement d'une application classique à savoi
 - Un fonctionnement hors ligne (si l'utilisateur n'a pas de connexion Internet).
 - Sera installable sur un appareil (smartphone, tablette, etc.).
 
-C'est ce que l'on nomme une Progressive Web App (PWA). Cette application Web, reprendra les codes d'une application classique (Navbar, Sidebar, etc.).
+C'est ce que l'on nomme une Progressive Web App (PWA). Cette application Web reprendra les codes d'une application classique (Navbar, Sidebar, etc.).
 
 ::: tip Un exemple ?
 
@@ -653,3 +645,127 @@ Nous avons maintenant un menu qui fonctionne. Celui-ci est présent sur toutes l
 ```bash
 npm run dev
 ```
+
+### La page : Historique
+
+Notre application est maintenant fonctionnelle. Nous avons la capacité de calculer des chutes, d’afficher les informations sur l’application, et bonus dans plusieurs langues !
+
+Mais je pense qu’une application n’est jamais vraiment complète sans une notion d’historique. Pour ça nous allons créer une nouvelle « vue »
+
+- Créer le fichier `src/screen/History.vue`
+- Vérifier la route dans votre Router.
+- N’oubliez pas également d’ajouter l’élément dans le menu Drawer.
+
+Pour réaliser la vue historique, nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le `Localstorage`, avant d’allez plus loin je vous propose un peu de lecture sur le localStorage :
+
+> La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session du navigateur prend fin — donc quand on ferme le navigateur.
+
+Source: [https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
+
+::: tip Un instant
+⚠️ Petite subtilité, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
+:::
+
+#### Sauvegarder un élément dans le localStorage
+
+Voilà comment il est possible de sauvegarder un élément dans le localStorage :
+
+```javascript
+localStorage.setItem("historique", JSON.stringify([]));
+```
+
+Ici nous avons utilisé la méthode `setItem` pour sauvegarder un élément dans le localStorage. Nous avons utilisé la méthode `JSON.stringify` pour convertir notre tableau en JSON.
+
+#### Lire un élément dans le localStorage
+
+Pour lire un élément dans le localStorage, nous allons utiliser la méthode `getItem` :
+
+```javascript
+let histories = JSON.parse(localStorage.getItem("history"));
+```
+
+Ici nous avons utilisé la méthode `getItem` pour récupérer un élément dans le localStorage. Nous avons utilisé la méthode `JSON.parse` pour convertir notre JSON en tableau.
+
+La variable `histories` contient maintenant un tableau d’historique.
+
+#### Démarche
+
+- Adapter le code de `Home.vue` pour sauvegarder le résultat dans un tableau d’historique à chaque fois que l’utilisateur enregistre une nouvelle chute.
+- Écrire le code de la page `History.vue` pour afficher les valeurs enregistrées.
+- Utiliser les variables computed de VueJS pour retourner la liste de l’historique (<https://vuejs.org/guide/essentials/computed.html#basic-example>)
+
+
+::: tip Exemple de l'utilisation de la variable computed:
+
+```javascript
+// a computed ref
+const historiquePrecedent = computed(() => {
+  return JSON.parse(localStorage.getItem("history"));
+})
+```
+
+Dans cet exemple, la variable `historiquePrecedent` est une variable computed. Elle est définie par une fonction fléchée. Cette fonction fléchée retourne le résultat de la méthode `JSON.parse` appliquée sur la méthode `getItem` appliquée sur le localStorage. Concrètement, la variable `historiquePrecedent` contiendra la totalité de l'historique dans un tableau. (que vous pourrez afficher avec un `v-for`).
+
+Ressources utiles :
+
+- [Liste Vuetify](https://next.vuetifyjs.com/components/lists)
+- [JSON](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/JSON)
+- [Tester si tableau](https://www.w3schools.com/jsref/jsref_isarray.asp)
+
+Vu que c’est la 3ème vue que vous faites, je pense qu’il n’est plus nécessaire que je vous fournisse du code.
+
+## Ajouter une page permettant un ajout manuel
+
+Ajouter une nouvelle page, celle-ci permettra d'ajouter une entrée manuellement dans l'historique.
+
+### Démarche
+
+- Création du `.vue`.
+- Créer un formulaire (v-form).
+- Ajouter le lien dans le `Drawer.vue`.
+- Ajouter la route.
+
+## Distribuer vos sources
+
+Voilà votre application est maintenant terminée, bravo 👏👏. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour ça rien de plus simple il vous suffit de faire
+
+```bash
+npm run build
+```
+
+Cette commande va compiler votre application et vous fournir une version que vous allez pouvoir héberger comme n’importe quel site Internet (sur un serveur Apache par exemple).
+
+Le résultat de la compilation est dans le dossier `dist/`
+
+- Héberger le résultat sur un serveur Apache (wamp).
+
+## Ajouter un manifest
+
+Nous allons maintenant ajouter la dernière pierre à notre édifice, le fichier Manifest. Ce fichier décrit le fonctionnement du site Web en tant « qu’application », une fois que ce fichier est en place, votre navigateur le lira et adaptera son fonctionnement pour qu’il se rapproche d’une application (comme une APK).
+
+Pour ça nous allons utiliser deux sites :
+
+- [Un générateur de fichier Manifest](https://app-manifest.firebaseapp.com/)
+- [Un générateur d’icône](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html)
+
+> Le manifest d'une application web fournit des informations concernant celle-ci (comme son nom, son auteur, une icône et une description) dans un document texte JSON. Le but du manifeste est d'installer des applications sur l'écran d'accueil d'un appareil, offrant aux utilisateurs un accès plus rapide et une expérience plus riche.
+>
+> Les manifests font partie d'un ensemble de technologies appelées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion Internet et sont capables de recevoir des notifications push.
+
+Source: Mozilla.org
+
+- Générer les icônes ainsi que le fichier Manifest
+- Télécharger le manifest.json et le mettre dans le dossier `static/` faire la même chose pour les icônes.
+- Éditer le fichier `index.html` du dossier public pour y ajouter :
+
+```html
+<link rel="manifest" href="./static/manifest.json" />
+```
+
+- Vous pouvez builder votre application et la mettre à jour sur votre serveur Web.
+
+```bash
+npm run build
+```
+
+- Tester l’application depuis votre Téléphone Android / iOS.
