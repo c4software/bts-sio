@@ -6,6 +6,13 @@ description: "Aide mémoire pour installer un serveur LAMP (Web) à base de Debi
 
 Dans cet aide mémoire vous trouverez l'ensemble des commandes et des opérations à réaliser pour installer un serveur LAMP (Web) à base de Debian.
 
+::: tip Documents connexes :
+
+- [Linux à base de Debian](./linux-debian-based.md)
+- [Configurer le réseau](./debian-reseau.md)
+
+:::
+
 ## Ajouter le dépôt pour PHP 8
 
 ```bash

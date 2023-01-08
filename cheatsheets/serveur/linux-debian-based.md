@@ -1,9 +1,20 @@
-# Debian
+---
+description: "Aide mémoire pour configurer un Linux à base Debian."
+---
+
+# Machine à base de Debian
 
 Dans cette aide-mémoire vous trouverez l'ensemble des éléments de base pour configurer un serveur Debian.
 
 ::: details Table des matières
 [[toc]]
+:::
+
+::: tip Documents connexes :
+
+- [Serveur Web avec Debian](./debian-web.md)
+- [Configurer le réseau](./debian-reseau.md)
+
 :::
 
 ## Accéder à la machine

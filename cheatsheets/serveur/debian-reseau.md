@@ -4,6 +4,13 @@ description: Configurateur de réseau pour Debian
 tags: [debian, réseau, configuration]
 ---
 
+::: tip Documents connexes :
+
+- [Serveur Web avec Debian](./debian-web.md)
+- [Configurer le réseau](./linux-debian-based.md)
+
+:::
+
 # Générateur configuration réseau pour Debian
 
 Vous trouverez dans cette page la procédure permettant de générer une configuration réseau en IP static pour Debian.
