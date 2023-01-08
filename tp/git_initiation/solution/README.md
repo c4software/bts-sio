@@ -4,7 +4,7 @@ Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base d
 
 ## Ressources utiles
 
-* [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git.md)
+* [Aide mémoire](/cheatsheets/git/git.md)
 * [Google](https://www.google.fr)
 * [Livre Git en ligne](https://git-scm.com/book/fr/v2)
 
@@ -175,7 +175,7 @@ $ git log
 
 ## Modifier le message du précédent commit
 
-Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit, modifier le en utilisant [Un template de message de commit](https://github.com/c4software/cheatsheet/blob/master/git/commit_template.md)
+Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit, modifier le en utilisant [Un template de message de commit](/cheatsheets/git/commit-message.md)
 
 ```sh
 $ git commit --amend

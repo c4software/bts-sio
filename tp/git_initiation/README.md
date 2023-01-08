@@ -8,7 +8,7 @@ Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base d
 
 ## Ressources utiles
 
-- [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
+- [Aide mémoire](/cheatsheets/git/README.md)
 - [Google](https://www.google.fr)
 - [Livre Git en ligne](https://git-scm.com/book/fr/v2)
 
@@ -51,20 +51,18 @@ $ tree
 ├── documentations
 │   └── README.md
 ├── libs
-│   ├── HTMLPurifier.php
 │   └── fonction.php
 ├── public
 │   ├── index.jpg
 │   └── index.js
 ├── source
 │   ├── index.html
-│   ├── index.js
-│   └── index.php
+│   └── index.js
 └── tests
     ├── test.js
-    └── test.php
+    └── test.html
 
-5 directories, 11 files
+5 directories, 9 files
 ```
 
 ### Question bonus
@@ -144,7 +142,7 @@ $
 
 ## Modifier le message du précédent commit
 
-Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit. Modifier le en utilisant [un template de message de commit](https://github.com/c4software/cheatsheet/blob/master/git/commit_template.md)
+Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit. Modifier le en utilisant [un template de message de commit](/cheatsheets/git/commit_template.md)
 
 ```sh
 $
@@ -250,4 +248,4 @@ $
 - À votre avis, quel est l’intérêt de « taguer » une version ?
 - Quels sont les avantages de réaliser un tag ?
 
-[Voir la solution](https://github.com/c4software/bts-sio/blob/master/tp/git_initiation/solution/README.md)
+[Voir la solution](./solution/README.md)
