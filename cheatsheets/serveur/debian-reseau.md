@@ -1,15 +1,7 @@
 ---
-title: Debian - Générateur de configuration réseau
 description: Configurateur de réseau pour Debian
 tags: [debian, réseau, configuration]
 ---
-
-::: tip Documents connexes :
-
-- [Serveur Web avec Debian](./debian-web.md)
-- [Configurer le réseau](./linux-debian-based.md)
-
-:::
 
 # Générateur configuration réseau pour Debian
 
@@ -34,3 +26,10 @@ service networking restart
 ```bash
 ip a
 ```
+
+::: tip Documents connexes :
+
+- [Serveur Web avec Debian](./debian-web.md)
+- [Configurer le réseau](./linux-debian-based.md)
+
+:::

@@ -242,7 +242,7 @@ module.exports = [
     collapsible: true,
     children: [
       { text: "Les bases", collapsible: true, children: ["/cours/serveur.md", "/tp/devops/serveur/support.md"] },
-      { text: "L'intégration continue", collapsible: true, children: ["/tp/devops/support.md", { link: "/cours/docker", text: "Docker" }, "/cours/cicd", { link: "/cours/gitlabci", text: "Gitlab CI" }] },
+      { text: "L'intégration continue", collapsible: true, children: ["/tp/devops/support-docker-cicd.md", { link: "/cours/docker", text: "Docker" }, "/cours/cicd", { link: "/cours/gitlabci", text: "Gitlab CI" }] },
       { text: "GitLab-CI", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-ci.md"] },
       { text: "JamStack", collapsible: true, children: ["/tp/ci/jamstack/netlify.md"] },
       {
