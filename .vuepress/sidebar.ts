@@ -39,9 +39,9 @@ module.exports = [
         text: "DevOps",
         collapsible: true,
         children: [
+          { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux base Debian" },
           { link: "/cheatsheets/serveur/debian-reseau.md", text: "Générateur de config" },
           { link: "/cheatsheets/serveur/debian-web.md", text: "Debian, Apache, PHP, MariaDB" },
-          { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux base Debian" },
           { link: "/cheatsheets/ssh-key/README.md", text: "Clef SSH" },
           { link: "/cheatsheets/mini-mvc-sample/README.md", text: "Mini MVC Sample" },
           { link: "/cheatsheets/docker/README.md", text: "Docker" }
