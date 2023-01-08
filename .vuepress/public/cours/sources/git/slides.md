@@ -39,7 +39,7 @@ Un logiciel de gestion de versions agit sur une arborescence de fichiers afin de
 
 GIT est développé par Linus Torvalds (créateur du noyau Linux) depuis 2005.
 
-C’est un SCM (Source Code Management), un gestionnaire de versions de fichiers comme CVS ou SVN à la différence prêt qu’il est décentralisé.
+C’est un **SCM** (Source Code Management), un gestionnaire de versions de fichiers comme CVS ou SVN à la différence prêt qu’il est décentralisé.
 
 Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est prioritaire sur les autres).
 
@@ -63,22 +63,14 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-## Maintenu pendant des années par des patchs…
-
-## … par emails
-
-![Via EMAIL](./img/via_email.gif)
-
----
-
 ![Mouais](./img/mouais.jpeg)
 
 ---
 
 - Linux Torvald n'aime pas les outils existants
-- Il programme donc le sien
+- Il programme/code donc le sien
 
-## GIT 
+## GIT
 
 ---
 
@@ -408,14 +400,12 @@ $ vim fichier2.js
 $ git commit -am "Ajout de l’évolution"
 ```
 
-
 ```sh
 [evolution1 54d9dde] Ajout de l’évolution
  1 files changed, 208 insertions(+), 10 deletions(-)
 ```
 
-
-![Commit 4](./img/git_commit4.png) 
+![Commit 4](./img/git_commit4.png)
 
 ---
 
@@ -437,7 +427,7 @@ $ git merge evolution1
 
 ---
 
-## Que vient t’il de se passer ?
+## Que vient-il de se passer ?
 
 - Qui fusionne le code ? 
 - Fusion du code ?
@@ -472,8 +462,8 @@ $ git branch -d evolution1
 
 ## Aucun souci !
 
-- Les branches 
-- Git Stash 
+- Les branches
+- Git Stash
 
 ---
 
