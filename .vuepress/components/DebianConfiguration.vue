@@ -5,6 +5,15 @@
                 <label>Interface :</label>
                 <input v-model="interface" class="form-control" type="text" name="Interface" placeholder="ens18 (eth0, …)" required />
             </div>
+            <div class="col">
+                <label>VLAN :</label>
+                <select class="form-control" v-model="vlan">
+                    <option value="">Choisissez un VLAN</option>
+                    <optgroup v-for="(v,k) in vlans" :label="`VLAN ${k}`">
+                        <option v-for="el in v" :value="el">VLAN {{ el }}</option>
+                    </optgroup>
+                </select>
+            </div>
         </div>
         <div class="container">
             <div class="col">
@@ -37,6 +46,8 @@ iface lo inet loopback
 # Configuration de votre Interface
 allow-hotplug {{ interface }}
 
+# Configuration pour le VLAN {{ vlan }}
+# Generation depuis cours.brosseau.ovh
 auto {{ interface }}
 iface {{ interface }} inet static
     address {{ ip }}
@@ -72,13 +83,27 @@ export default {
             // Ignore read errors.
         }
     },
+    watch: {
+        vlan() {
+            if (!this.vlan) {
+                this.ip = "";
+                this.gateway = "";
+                this.netmask = "";
+            } else {
+                this.ip = `192.168.${this.vlan - 400}.1`;
+                this.netmask = "255.255.0.0";
+                this.gateway = `192.168.${this.vlan - 400}.254`;
+            }
+        }
+    },
     data() {
         return {
+            vlans: { 500: Array.from({ length: 99 }, (x, i) => 501 + i), 600: Array.from({ length: 99 }, (x, i) => 601 + i) },
             vlan: "",
             interface: "ens18",
             ip: "192.168.1.1",
             netmask: "255.255.0.0",
-            gateway: "192.168.235.254",
+            gateway: "192.168.1.254",
             dns: "192.168.10.1",
         }
     },
@@ -114,6 +139,11 @@ export default {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    box-sizing: border-box;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 2px);
 }
 
 .form-control:focus {

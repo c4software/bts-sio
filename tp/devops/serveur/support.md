@@ -96,6 +96,33 @@ Ce sont donc deux logiciels équivalents, MariadDB est gratuit et MySQL est pour
 
 :::
 
+## La configuration réseau
+
+La configuration réseau est une étape importante de la configuration d'un serveur. Si vous ne configurez pas correctement cette étape, il ne sera pas possible de s'y connecter.
+
+À votre domicile, vous ne vous souciez pas de ceci, car vous avez un DHCP qui s'occupe de tout pour vous. Mais sur un serveur, pour plus de sécurité, il n'y a que très rarement un DHCP. Il faut donc configurer manuellement l'adresse IP de votre serveur.
+
+En fonction des systèmes d'exploitation que vous utilisez. Sous Linux sans interface graphique vous devrez configurer le fichier `/etc/network/interfaces`.
+
+Dans ce fichier vous devrez configurer l'adresse IP, le masque de sous-réseau, la passerelle par défaut, etc.
+
+- L'adresse IP est l'adresse qui permet de se connecter à votre serveur.
+- Le masque de sous-réseau est l'adresse qui permet de déterminer les machines qui sont sur le même réseau que votre serveur.
+- La passerelle par défaut est l'adresse qui permet de se connecter à votre routeur.
+- Le DNS est l'adresse qui permettra à votre serveur de résoudre les noms de domaine (exemple qui est `google.com` ?).
+
+Pour simplifier cette procédure, vous trouverez un générateur de configuration ici : [Générateur de configuration réseau Debian](/cheatsheets/serveur/debian-reseau.md)
+
+::: tip DHCP ?
+
+Vous ne vous souvenez plus de ce qu'est le DHCP ? Le DHCP est un service installé sur votre routeur (ou sur un serveur), il permet de configurer automatiquement les machines qui se connectent au réseau. Il permet de configurer l'adresse IP, le masque de sous-réseau, la passerelle par défaut, etc. En quelques mots, comment ça fonctionne ?
+
+- Quand une machine se connecte au réseau, elle envoie une requête au DHCP pour obtenir une configuration réseau.
+- Le DHCP lui répond avec une configuration réseau.
+- La machine configure automatiquement son adresse IP, son masque de sous-réseau, sa passerelle par défaut, etc.
+
+:::
+
 ## Les ports
 
 Un port est un canal de communication entre deux ordinateurs. Il est possible d'ouvrir des ports sur votre serveur pour permettre à des ordinateurs distants de communiquer avec votre serveur.
