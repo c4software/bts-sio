@@ -6,6 +6,32 @@ Dans cette aide-mémoire vous trouverez l'ensemble des éléments de base pour c
 [[toc]]
 :::
 
+## Accéder à la machine
+
+Pour accéder à la machine, il faut utiliser la commande `ssh` :
+
+```bash
+ssh <utilisateur>@<ip>
+```
+
+::: tip Échanger les clés SSH
+
+Je vous conseille vivement d'échanger votre clé SSH avec la machine. Pour cela, il faut que vous ayez une clé SSH sur votre machine. Si ce n'est pas le cas, vous pouvez en générer une avec la commande suivante :
+
+```bash
+ssh-keygen
+```
+
+Ensuite, il faut copier votre clé SSH sur la machine avec la commande suivante :
+
+```bash
+ssh-copy-id <utilisateur>@<ip>
+```
+
+Par la suite vous pourrez vous connecter à la machine sans avoir à rentrer votre mot de passe.
+
+:::
+
 ## Emplacement important
 
 ### Emplacement des fichiers de configuration

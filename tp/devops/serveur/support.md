@@ -524,6 +524,22 @@ Et aucun mot de passe ne sera demandé.
 
 Pratique, non ?
 
+### Se connecter à un serveur
+
+Pour se connecter à un serveur, vous devez utiliser la commande suivante :
+
+```bash
+ssh <nom_du_compte>@<adresse_ip_du_serveur>
+```
+
+Par exemple, si vous voulez vous connecter à votre serveur avec le compte `vbrosseau`, vous devez utiliser la commande suivante :
+
+```bash
+ssh vbrosseau@192.168.1.10
+```
+
+Si votre échange de clé SSH à fonctionné, vous n'aurez pas besoin de rentrer de mot de passe 👍.
+
 ### Fonctionnement d'une clé SSH
 
 Lorsque vous vous connectez à votre serveur avec la commande `ssh`, le serveur va vérifier que la clé publique que vous avez envoyée correspond à la clé privée que vous avez sur votre ordinateur. Si c'est le cas, vous êtes connecté.
