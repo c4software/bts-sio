@@ -29,6 +29,10 @@ Concevoir une application qui va :
 ![Scan](./ressources/scan.png)
 ![Réseau et LED](./ressources/led.png)
 
+## Représentation UML
+
+![UML](./ressources/uml.png)
+
 ## Le scan
 
 - Création d'un Adapter pour les résultats du scan.
@@ -326,7 +330,7 @@ Nous allons appeler cette méthode dans la méthode `onCreate` de notre activit�
 
 ### Gérer la compatibilité du mobile
 
-Dans le code de **l'activity BLE**, si vous souhaitez gérer l'ensembles des cas d'erreurs :
+Dans le code de **l'activity BLE**, si vous souhaitez gérer l'ensemble des cas d'erreurs :
 
 - Équipement non compatible BLE.
 - Vérifications des permissions.
@@ -518,10 +522,10 @@ class BluetoothLEManager {
 Cette méthode permet de changer l'état de l'interface en fonction de la connexion.
 
 ::: tip Un instant 👋
-Le code proposé en exemple ne fonctionnera que si vous avez utilisé les même identifiants que moi **évidemment**.
+Le code proposé en exemple ne fonctionnera que si vous avez utilisé les mêmes identifiants que moi **évidemment**.
 :::
 
-Je vous laisse écrire la méthode mais voici un exemple de code :
+Je vous laisse écrire la méthode mais voici **un exemple de code** :
 
 ```kotlin
 private fun setUiMode(isConnected: Boolean) {
@@ -546,9 +550,134 @@ private fun setUiMode(isConnected: Boolean) {
 }
 ```
 
+::: tip Un instant 👋
+
+D'où vienne les variables `bleDevicesFoundList`, `rvDevices`, `startScan`, `currentConnexion`, `disconnect`, `toggleLed`, `ledStatus` ?
+
+Ces variables sont des variables de classe, elles sont définies dans le fichier `MainActivity.kt` et sont initialisées dans la méthode `onCreate`. Pour les initialiser vous devrez utiliser le `findViewById` comme vous le faites habituellement.
+
+Exemple :
+
+```kotlin
+
+private rvDevices: RecyclerView? = null
+private startScan: Button? = null
+private currentConnexion: Text? = null
+private disconnect: Button? = null
+private toggleLed: Button? = null
+private ledStatus: Text? = null
+
+override fun onCreate() {
+    // ... Reste du code
+
+    rvDevices = findViewById(R.id.rvDevices)
+    startScan = findViewById(R.id.startScan)
+    currentConnexion = findViewById(R.id.currentConnexion)
+    disconnect = findViewById(R.id.disconnect)
+    toggleLed = findViewById(R.id.toggleLed)
+    ledStatus = findViewById(R.id.ledStatus)
+}
+```
+
+:::
+
+### Le layout
+
+L'idée est que vous puissiez écrire vous-même votre **propre layout** (en respectant les contraintes de base). Je vous propose donc de vous aider avec un exemple de layout.
+
+::: details Je pense que vous êtes capable de le faire sans aide… mais si vous le souhaitez voilà un layout possible 
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDevices"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/startScan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_device" />
+
+    <ImageView
+        android:id="@+id/ledStatus"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/led_off"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/currentConnexion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/currentConnexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ledStatus"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Connecté à XXXXXX"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/startScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/start_scan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/disconnect"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/toggleLed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/toggleLed"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/disconnect"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/deconnection"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/startScan"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+:::
+
 ### Interagir avec la LED
 
-Maintenant que nous sommes connecté, nous allons pouvoir interagir avec la LED. Pour cela, nous allons utiliser les UUIDs que nous avons défini dans la classe `BluetoothLEManager`. Nous allons donc récupérer le service qui nous intéresse, puis nous allons récupérer la caractéristique qui nous intéresse. Enfin, nous allons envoyer la valeur `1` pour toggle la LED (c'est à dire l'allumer ou l'éteindre).
+Maintenant que nous sommes connectés, nous allons pouvoir interagir avec la LED. Pour cela, nous allons utiliser les UUIDs que nous avons définis dans la classe `BluetoothLEManager`. Nous allons donc récupérer le service qui nous intéresse, puis nous allons récupérer la caractéristique qui nous intéresse. Enfin, nous allons envoyer la valeur `1` pour toggle la LED (c'est-à-dire l'allumer ou l'éteindre).
 
 ```kotlin
 /**
@@ -605,7 +734,7 @@ toggleLed.setOnClickListener {
 
 ## Partie 2 : Ajout de la gestion de la LED via Internet
 
-Cette partie est en bonus, pour faire fonctionner le code de cette partie, vous devez avoir fini la partie 1. Vous aller également avoir besoin de différentes librairies :
+Cette partie est en bonus, pour faire fonctionner le code de cette partie, vous devez avoir fini la partie 1. Vous allez également avoir besoin de différentes librairies :
 
 - OkHttp
 - GSON
@@ -614,7 +743,7 @@ Cette partie est en bonus, pour faire fonctionner le code de cette partie, vous 
 
 ::: tip La documentation
 
-Avant de continuer je vous laisse regarder [la documentation disponnible ici](/tp/android/network.md). Vous y trouverez des généralités sur la gestion des appels réseau, ainsi que des exemples de code.
+Avant de continuer, je vous laisse regarder [la documentation disponible ici](/tp/android/network.md). Vous y trouverez des généralités sur la gestion des appels réseau, ainsi que des exemples de code.
 
 :::
 
@@ -624,11 +753,11 @@ Nécessite le « nom » du périphérique (donc d'un scan précédent).
 
 - Modifier la vue de la home pour que nous ne puissions pas cliquer sur le bouton.
 - L'activité ne doit pas être accessible. (elle doit `finish()` si pas de `getCurrentSelectedDevice() == null`)
-- Créer un nouveau model `LedStatus`
+- Créer un nouveau modèle `LedStatus`
 
 ### La classe LedStatus
 
-La classe `LedStatus` est un model qui va nous permettre de stocker l'état de la LED. Nous allons donc avoir besoin de deux propriétés : 
+La classe `LedStatus` est un modèle qui va nous permettre de stocker l'état de la LED. Nous allons donc avoir besoin de deux propriétés : 
 
 - `identifier` : qui va contenir le nom du périphérique (identifiant unique).
 - `status` : qui va contenir l'état de la LED (allumée ou éteinte).
@@ -767,7 +896,7 @@ private fun getStatus() {
 
 RunCatching est une méthode qui permet de gérer les erreurs. Elle permet de faire un `try/catch` en une seule ligne. Attention, elle va masquer les erreurs, donc il faut faire attention à ne pas l'utiliser dans des méthodes qui doivent retourner une valeur.
 
-Dans le cadre de debuggage, il est préférable d'utiliser `try/catch` classique pour afficher les erreurs.
+Dans le cadre de débogage, il est préférable d'utiliser `try/catch` classique pour afficher les erreurs.
 
 :::
 
@@ -775,7 +904,7 @@ Dans le cadre de debuggage, il est préférable d'utiliser `try/catch` classique
 
 ## Partie 3 : Les notifications BLE
 
-Si votre code fonctionne, un simple copier/coller devrait suffire pour faire fonctionner la partie 3.
+Si votre code fonctionne, un simple copier-coller devrait suffire pour faire fonctionner la partie 3.
 
 ### Notification BLE
 
