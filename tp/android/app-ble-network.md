@@ -357,7 +357,7 @@ override fun onResume() {
 
 ::: tip Pourquoi `onResume()` ?
 
-On va appeler cette méthode dans la méthode `onResume` de notre activité. C'est une méthode qui est appelée à chaque fois que l'activité est visible à l'écran. C'est donc le meilleur endroit pour vérifier si l'équipement est compatible BLE, si les permissions sont accordées, etc.
+C'est une méthode qui est appelée à chaque fois que l'activité est visible à l'écran. C'est donc le meilleur endroit pour vérifier si l'équipement est compatible BLE, si les permissions sont accordées, etc.
 
 :::
 
