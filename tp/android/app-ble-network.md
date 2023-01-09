@@ -1,5 +1,9 @@
 # Télécommande Bluetooth & Réseau
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Objectif
 
 Concevoir une application qui va :
