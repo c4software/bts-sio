@@ -476,7 +476,7 @@ class Mammifere {
     }
 }
 
-class Humain extends mammifere {
+class Humain extends Mammifere {
     private $prenom = "";
 
     function __construct($prenom)
