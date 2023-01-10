@@ -467,6 +467,10 @@ class Mammifere {
     protected $vertebre = true;
     protected $espece = "";
 
+    public __construct($espece) {
+        this->$espece = $espece;
+    }
+
     public print() {
         echo "Je suis un mammifère";
     }
@@ -481,7 +485,7 @@ class Humain extends Mammifere {
 
     function __construct($prenom)
     {
-        parent::__construct();
+        parent::__construct("Humain");
         this->$prenom = $prenom;
     }
 
