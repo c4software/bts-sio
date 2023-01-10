@@ -5,7 +5,7 @@ Installation et configuration d'un serveur d'application.
 <SlidesDeck src="serveur" />
 
 
-## Les supports 
+## Les supports
 
 - [Support d'accompagnement](/tp/devops/serveur/support.md)
 - [Aide mémoire Linux](/cheatsheets/serveur/linux-debian-based.md)
@@ -14,9 +14,9 @@ Installation et configuration d'un serveur d'application.
 
 ## Les TP Debian
 
-- [TP 1 - Créer une VM sur la ferme]()
-- [TP 1b - Installation d'un serveur]()
-- [TP 3 - Configurer un serveur Web]()
-- [TP 4 - Configurer un serveur de Base de données]()
-- [TP 5 - Déployer son code sur un serveur]()
-- [TP 6 - Créer un serveur Web & BDD]()
+- [TP 1 - Créer une VM sur la ferme](/tp/devops/serveur/tp1.md)
+- [TP 1b - Installation d'un serveur](/tp/devops/serveur/tp1b.md)
+- [TP 2 - Configurer un serveur Web](/tp/devops/serveur/tp2.md)
+- [TP 3 - Configurer un serveur de Base de données](/tp/devops/serveur/tp3.md)
+- [TP 4 - Déployer son code sur un serveur](/tp/devops/serveur/tp4.md)
+- [TP 5 - Créer un serveur Web & BDD](/tp/devops/serveur/tp5.md)
