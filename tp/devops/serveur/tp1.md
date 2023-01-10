@@ -10,7 +10,7 @@ description: Dans ce TP nous allons voir comment créer une VM (machine virtuell
 
 ## Objectifs
 
-Dans ce TP nous allons voir comment créer une VM (machine virtuelle) sur la ferme VMWare du BTS SIO à Angers. L'idée de ce TP est comprendre comment fonctionne la ferme, afin de la prendre en main.
+Dans ce TP nous allons voir comment créer une VM (machine virtuelle) sur la ferme VMWare du BTS SIO à Angers. L'idée de ce TP est de comprendre comment fonctionne la ferme, afin de la prendre en main.
 
 ::: danger 👋 Attention
 
@@ -33,23 +33,23 @@ Pour réaliser ce TP vous devez :
 
 La ferme est un cluster de serveur uniquement accessible depuis le réseau du lycée (ou via le VPN). Ce cluster possède une puissance conséquente, à savoir deux serveurs avec comme configuration :
 
-- Xeon avec 24 coeurs.
+- Xeon avec 24 cœurs.
 - 256Go de ram.
 - 13To de disque dur.
 
-Nous avons deux serveurs ce qui donne :
+Nous avons deux serveurs, ce qui donne :
 
-- 48 coeurs.
+- 48 cœurs.
 - 512Go de ram.
 - 26To de disque.
 
 ::: tip Un instant
-Beaucoup ou pas beaucoup ? Échangeons un peu sur ces specifications.
+beaucoup ou pas beaucoup ? Échangeons un peu sur ces spécifications.
 :::
 
 ## Accès à la ferme
 
-Pour accèder à la ferme vous devez :
+Pour accéder à la ferme, vous devez :
 
 [192.168.10.6](https://192.168.10.6)
 
@@ -60,7 +60,7 @@ Pour accèder à la ferme vous devez :
 
 ::: tip Observons
 
-Avant d'aller plus loin, observez les options du site. Si vous êtes curieux vous allez pouvoir voir l'usage actuel de la ferme, ainsi que la puissance de celle-ci.
+Avant d'aller plus loin, observez les options du site. Si vous êtes curieux, vous allez pouvoir voir l'usage actuel de la ferme, ainsi que la puissance de celle-ci.
 
 ![Menu de la ferme](./res/ferme-menu.jpg)
 
@@ -70,34 +70,34 @@ Avant d'aller plus loin, observez les options du site. Si vous êtes curieux vou
 
 L'équipe pédagogique vous a attribué l'accès à la zone de travail **GROIX**. C'est dans cette zone que vous allez créer vos VM. 
 
-Avant de continuer, quelques regles **sont importantes** pour utiliser aux mieux cette espace de travail partagé :
+Avant de continuer, quelques règles **sont importantes** pour utiliser aux mieux cette espace de travail partagé :
 
 - Ne pas créer de VM dans le dossier `GROIX` directement, mais dans un dossier à votre nom.
-- Nommer vos VM de la mannière suivante : `<votre-nom>-<utilité de la machine>`. (Exemple: `vbrosseau-ap2ServeurDebianWeb`).
+- Nommer vos VM de la manière suivante : `<votre-nom>-<utilité de la machine>`. (Exemple: `vbrosseau-ap2ServeurDebianWeb`).
 - Choisir l'allocation dynamique pour le disque dur.
 - Installer les VMWARE Tools une fois la machine installée.
-- Ne pas conserver les machine Linux allumées en dehors des heures de cours. Votre machine ne sert probablement pas la nuit… **Faites comme les grands acteurs du cloud, éteignez vos machines la nuit**.
+- Ne pas conserver les machines Linux allumées en dehors des heures de cours. Votre machine ne sert probablement pas la nuit… **Faites comme les grands acteurs du cloud, éteignez vos machines la nuit**.
 - Ne pas créer de machine avec une configuration trop importante. La ferme est un équipement partagé, il est donc important de ne pas surcharger les serveurs.
-- Supprimer régulièrement les VM qui ne vous sont plus utile. (en utilisant l'option **« Supprimer du disque »**).
-- **Sauvegarder vos identifiants et mot de passe de votre VM**.
+- Supprimer régulièrement les VM qui ne vous sont plus utiles. (en utilisant l'option **« Supprimer du disque »**).
+- **Sauvegarder vos identifiants et mots de passe de votre VM**.
 
 ::: tip Comment ne pas perdre vos identifiants ?
 
-Pour ne pas perdre vos identifiants vous **devez** créer une `fiche serveur`. Ce document va contenir tous les informations de votre Machine Virtuelle :
+Pour ne pas perdre vos identifiants vous **devez** créer une `fiche serveur`. Ce document va contenir toutes les informations de votre Machine Virtuelle :
 
 - Nom.
 - Système d'exploitation.
 - Adresse IP, Masque, Passerelle, adresse DNS.
 - Login et mot de passe administrateur.
-- Login et mot de passe utilisateur (si il y en a).
-- La liste des services de votre machines.
-- Si les services ont également des accès specifiques ajouter les dans votre `fiche serveur`.
+- Login et mot de passe utilisateur (s’il y en a).
+- La liste des services de votre machine.
+- Si les services ont également des accès spécifiques ajouter les dans votre `fiche serveur`.
 
 :::
 
 ::: danger 🚨 Attention
 
-Toute VM qui ne respecte pas ces exigence pourra être supprimée sans avertissement !
+Toutes les VM qui ne respectent pas ces exigences pourront être supprimées sans avertissement !
 
 Ne jouez pas avec le feu, respectez les règles. Sinon vous risquez de vous brûler 🔥.
 
@@ -113,7 +113,7 @@ Il est important de ne jamais les oublier, car ils sont vraiment une source d'op
 
 ## Créer le dossier pour ranger vos VM
 
-Première étape, ranger votre VM dans un dossier à votre nom. Pour cela :
+Première étape, rangez votre VM dans un dossier à votre nom. Pour cela :
 
 - Cliquez droit sur le dossier `GROIX`.
 - Cliquez sur `Nouveau dossier`.
@@ -133,7 +133,7 @@ Pour créer une VM, il faut :
 
 ![Création d'une VM](./res/ferme-creer-vm.jpg)
 
-Cette action va ouvrire un assistant vous permettant de créer votre machine virtuelle.
+Cette action va ouvrir un assistant vous permettant de créer votre machine virtuelle.
 
 ### 1. Type de création
 
@@ -159,13 +159,13 @@ Ne touchez à rien, et cliquez sur « Next ».
 
 ### 6. Choix de l'OS
 
-À cette étape vous allez indiquer à VMWare quel système d'exploitation votre VM va avoir. En fonction de votre choix. La VM sera optimisé pour celui-ci.
+À cette étape vous allez indiquer à VMWare quel système d'exploitation votre VM va avoir. En fonction de votre choix. La VM sera optimisée pour celui-ci.
 
 ![Ressource de calcul](./res/ferme-etape6.jpg)
 
 ### 7. Configuration de votre VM
 
-Comme pour un ordinateur physique une VM possède une configuration materiel. Cette configuration materiel doit être en adéquation avec le système d'exploitation que vous avez choisi :
+Comme pour un ordinateur physique, une VM possède une configuration matérielle. Cette configuration matérielle doit être en adéquation avec le système d'exploitation que vous avez choisi :
 
 #### Le disque dur & la mémoire vive
 
@@ -185,7 +185,7 @@ Le provisionnement dynamique est une méthode qui optimise l'utilisation du stoc
 #### Le réseau
 
 - Choisir votre VLAN (voir celui qui vous a été attribué).
-- Changer le type de l'adaptateur : Choisir VMXNET.
+- Changer le type de l'adaptateur : choisir VMXNET.
 
 ![Ressource de calcul](./res/ferme-etape7-reseau.jpg)
 
@@ -279,6 +279,27 @@ Plus tard, nous verrons pourquoi l'accès SSH est un incontournable en entrepris
 
 :::
 
+## Fiche sevreur
+
+Vous venez de créer votre première machine virtuelle. Comme vu en introduction, cette fiche doit contenir l'ensemble des informations de votre serveurs. Par exemple :
+
+- nom de la vm, mais surtout nom de la machine via le système d’exploitation
+- les comptes utilisateurs : identifiants et MOT DE PASSE
+- configuration IP
+- système d’exploitation installé
+- services installés avec mot de passe (compte)
+- outils installés avec mot de passe (compte)
+
+
+::: tip L'objectif ? 
+
+Ici l'idée est de ne pas oubliez la configuration de votre serveur. En effet, avec la multitude de serveurs et de cours, il n'est pas impossible que vous oubliez la configuration de votre machine. Pour éviter tout problème, créer dès le début votre fiche serveur.
+
+<iframe src="https://giphy.com/embed/Od0QRnzwRBYmDU3eEO" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+:::
+
+
 ## Accès à la ferme depuis chez vous
 
 Pour cela vous devez installer sur votre machine le logiciel OpenVPN.
@@ -288,3 +309,11 @@ Vous trouverez une procédure d’installation sur Moodle (192.168.10.9), ainsi 
 `Moodle\Info BTS SIO\Accès VPN`
 
 Une fois connecté, vous êtes sur votre machine comme si vous étiez sur un poste d’une des salles informatiques du lycée.
+
+## Conclusion
+
+Dans ce TP nous avons vu comment créer un VM. Et surtout quelles sont les règles de bases à respecter pour que la ferme fonctionne bien dans la durée ? Nous avons aussi vu comment accéder à votre VM depuis chez vous. Et enfin, nous avons vu l'importance de créer une fiche serveur.
+
+Vous pouvez penser en SLAM que les serveurs ne font pas partie de votre option ? Détrompez-vous, pendant les deux années, nous vous demanderons de créer des serveurs. Et surtout de les gérer. C'est pourquoi il est important de bien comprendre les bases de la création de VM.
+
+De plus, il y a fort à parier qu'en entreprise vous soyez amené à « gérer des serveurs », ou dans une moindre mesure vous connecter dessus pour y installer vos développements.
