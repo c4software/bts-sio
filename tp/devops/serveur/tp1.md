@@ -293,7 +293,7 @@ Vous venez de créer votre première machine virtuelle. Comme vu en introduction
 
 ::: tip L'objectif ? 
 
-Ici l'idée est de ne pas oubliez la configuration de votre serveur. En effet, avec la multitude de serveurs et de cours, il n'est pas impossible que vous oubliez la configuration de votre machine. Pour éviter tout problème, créer dès le début votre fiche serveur.
+Ici l'idée est de ne pas oublier la configuration de votre serveur. En effet, avec la multitude de serveurs et de cours, il n'est pas impossible que vous oubliez la configuration de votre machine. Pour éviter tout problème, créer dès le début votre fiche serveur.
 
 <iframe src="https://giphy.com/embed/Od0QRnzwRBYmDU3eEO" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
