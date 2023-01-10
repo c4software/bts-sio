@@ -2,7 +2,7 @@
 description: Dans ce TP nous allons voir comment créer une VM (machine virtuelle) sur la ferme VMWare du BTS SIO à Angers.
 ---
 
-# Créer une VM sur la ferme
+# TP1. Créer une VM sur la ferme
 
 ::: details Sommaire
 [[toc]]
