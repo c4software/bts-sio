@@ -24,7 +24,7 @@ Même si au premier abord installer une Debian semble intimidant vous allez voir
 
 PS: Si vous cherchez plus de défi, vous pouvez installer une [Arch Linux](https://wiki.archlinux.org/index.php/Installation_guide) ou une [Alpine Linux](https://www.alpinelinux.org/). Mais attention, c'est plus compliqué ! **Et surtout non utilisé en entreprise.**
 
-Blague à part 🙃, commençons par installer Debian, c'est l'une des distributions les plus utilisées en entreprise.
+Blague à part 🙃, commençons par installer une Debian, c'est l'une des distributions les plus utilisées en entreprise. Il faut donc maitriser les rudiments de cette distribution.
 
 :::
 
