@@ -11,11 +11,11 @@ Dans ce TP nous allons installer votre premier serveur Debian. L'idée de cette 
 - Comment installer un système d'exploitation.
 - Comment configurer le réseau.
 - Comment installer des logiciels.
-- Commenc accéder à votre serveur depuis votre poste de travail.
+- Comment accéder à votre serveur depuis votre poste de travail.
 
 ## Pré-requis
 
-Pour réaliser ce TP vous devez savoir créer une VM sur la ferme. Si vous ne savez pas comment faire, vous pouvez consulter le TP [Créer une VM sur la ferme](./tp1.md).
+Pour réaliser ce TP vous devez savoir créer une VM sur la ferme. Si vous ne savez pas comment faire, vous pouvez consulter le TP [créer une VM sur la ferme](./tp1.md).
 
 Vous avez créé votre VM ? Alors c'est parti !
 
@@ -24,7 +24,7 @@ Même si au premier abord installer une Debian semble intimidant vous allez voir
 
 PS: Si vous cherchez plus de défi, vous pouvez installer une [Arch Linux](https://wiki.archlinux.org/index.php/Installation_guide) ou une [Alpine Linux](https://www.alpinelinux.org/). Mais attention, c'est plus compliqué ! **Et surtout non utilisé en entreprise.**
 
-Blague à part 🙃, commençons par installer Debian, c'est l'une des distributions les plus utilisée en entreprise.
+Blague à part 🙃, commençons par installer Debian, c'est l'une des distributions les plus utilisées en entreprise.
 
 :::
 
