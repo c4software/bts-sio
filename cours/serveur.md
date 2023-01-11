@@ -15,7 +15,7 @@ Installation et configuration d'un serveur d'application.
 ## Les TP Debian
 
 - [TP 1 - Créer une VM sur la ferme](/tp/devops/serveur/tp1.md)
-- [TP 1b - Installation d'un serveur](/tp/devops/serveur/tp1b.md)
+- [TP 1b - Première installation d'une VM](/tp/devops/serveur/tp1b.md)
 - [TP 2 - Configurer un serveur Web](/tp/devops/serveur/tp2.md)
 - [TP 3 - Configurer un serveur de Base de données](/tp/devops/serveur/tp3.md)
 - [TP 4 - Déployer son code sur un serveur](/tp/devops/serveur/tp4.md)

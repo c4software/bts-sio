@@ -317,3 +317,7 @@ Dans ce TP nous avons vu comment créer un VM. Et surtout quelles sont les règl
 Vous pouvez penser en SLAM que les serveurs ne font pas partie de votre option ? Détrompez-vous, pendant les deux années, nous vous demanderons de créer des serveurs. Et surtout de les gérer. C'est pourquoi il est important de bien comprendre les bases de la création de VM.
 
 De plus, il y a fort à parier qu'en entreprise vous soyez amené à « gérer des serveurs », ou dans une moindre mesure vous connecter dessus pour y installer vos développements.
+
+## La suite ? 
+
+Dans le prochain TP, nous allons voir comment installer un système d'exploitation sur une VM. [Cliquez ici pour accéder au TP suivant](./tp1b.md)
