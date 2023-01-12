@@ -170,6 +170,14 @@ La force de cette nouvelle façon de faire? La possibilité d'installer des « p
 
 Par exemple l'excellent [vueuse](https://github.com/vueuse/vueuse)
 
+#### L'installer
+
+```bash
+npm install @vueuse/core
+```
+
+#### L'utiliser
+
 ```typescript
 <template>
   {{ x }}, {{ y }}
