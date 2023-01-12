@@ -68,7 +68,7 @@ Rappel: Ce dossier ne doit pas être versionné.
 
 ## Nettoyage du projet
 
-Nous allons supprimer le composant `HelloWorld.vue` et le fichier `App.vue` pour ne garder que le composant `App.vue` par défaut. En effet, nous allons utiliser le routeur pour afficher les composants.
+Nous allons supprimer le composant `HelloWorld.vue` pour ne garder que le composant `App.vue` par défaut. En effet, nous allons utiliser le routeur pour afficher les composants.
 
 Une fois réalisé vous devriez avoir un fichier `App.vue` qui ressemble à ça :
 
