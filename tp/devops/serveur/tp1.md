@@ -129,7 +129,7 @@ Pour créer une VM, il faut :
 
 - Sélectionner le dossier à votre nom.
 - Clique droit créer une VM.
-- Puis « Nouvelle machine virtuelle… ». 
+- Puis « Nouvelle machine virtuelle… ».
 
 ![Création d'une VM](./res/ferme-creer-vm.jpg)
 
@@ -203,7 +203,7 @@ Pour installer votre système d'exploitation, vous allez devoir connecter un ISO
 
 Un ISO est un fichier qui contient une image d'un CD ou d'un DVD. Il est possible de créer un ISO à partir d'un CD ou d'un DVD. Il est également possible de télécharger un ISO sur internet.
 
-Le fichier ISO est une copie parfaite d'un disque physique. 
+Le fichier ISO est une copie parfaite d'un disque physique.
 
 :::
 

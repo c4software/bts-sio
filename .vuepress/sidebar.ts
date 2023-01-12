@@ -241,7 +241,7 @@ module.exports = [
     text: "DevOps",
     collapsible: true,
     children: [
-      { text: "Les bases", collapsible: true, children: ["/cours/serveur.md", "/tp/devops/serveur/support.md", { text: "Les TP", children: ["/tp/devops/serveur/tp1.md"] }] },
+      { text: "Les bases", collapsible: true, children: ["/cours/serveur.md", "/tp/devops/serveur/support.md", { text: "Les TP", children: ["/tp/devops/serveur/tp1.md", "/tp/devops/serveur/tp1b.md"] }] },
       { text: "L'intégration continue", collapsible: true, children: ["/tp/devops/support-docker-cicd.md", { link: "/cours/docker", text: "Docker" }, "/cours/cicd", { link: "/cours/gitlabci", text: "Gitlab CI" }] },
       { text: "GitLab-CI", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-ci.md"] },
       { text: "JamStack", collapsible: true, children: ["/tp/ci/jamstack/netlify.md"] },
@@ -250,6 +250,9 @@ module.exports = [
         collapsible: true,
         children: [
           "/tp/devops/serveur/debian.md",
+          { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux à base Debian" },
+          { link: "/cheatsheets/serveur/debian-reseau.md", text: "Générateur de config réseau" },
+          { link: "/cheatsheets/serveur/debian-web.md", text: "Debian : Apache, PHP, MariaDB" },
         ]
       },
       {
