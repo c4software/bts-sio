@@ -527,6 +527,25 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
+## Appeler une méthode parente
+
+```php
+class Etudiant extends Personne {
+    // … Reste de la classe… 
+    public function formater(){
+     if($this->estMajeur()){
+        return "L'étudiant est majeur";
+     } else {
+        return "L'étudiant n'est pas majeur";
+     }
+    }
+}
+```
+
+Que constatez-vous ?
+
+---
+
 ## L'héritage c'est donc
 
 ### Un arbre
