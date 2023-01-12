@@ -1,4 +1,24 @@
-# Commandes Laravel
+# Aide Laravel
+
+## Démarrer le serveur
+
+```sh
+php artisan serve
+```
+
+Ou depuis n'importe où sur le réseau :
+
+```sh
+php artisan serve --host=0.0.0.0
+```
+
+::: tip Host ?
+
+0.0.0.0 est l'adresse IP de la machine locale. Cela signifie que le serveur sera accessible depuis n'importe quelle adresse IP de la machine locale.
+
+Exemple, depuis le Wifi ou depuis un autre ordinateur ou mobile sur le réseau local.
+
+:::
 
 ## Les projets
 
