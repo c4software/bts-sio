@@ -367,6 +367,10 @@ Les slots sont des éléments qui permettent de passer du contenu à un composan
 <template>
   <card> Contenu de ma Card </card>
 </template>
+
+<script setup lang="ts">
+import Card from "./components/card.vue";
+</script>
 ```
 
 ::: tip C'est à vous
