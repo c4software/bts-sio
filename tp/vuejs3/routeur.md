@@ -492,7 +492,7 @@ function getPokemons() {
   fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
     .then(response => response.json())
     .then(data => {
-      pokemons = data.results
+      pokemons.value = data.results
     })
 }
 ```
