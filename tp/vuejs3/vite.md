@@ -269,7 +269,7 @@ En utilisant le template ☝️. Je vous laisse écrire un composant « à l'anc
 Pour ajouter une action sur un bouton, vous pouvez procéder de la manière suivante :
 
 ```html
-<input type="button" @click="counter + 1" value="Click ici" />
+<input type="button" @click="counter++" value="Click ici" />
 ```
 :::
 
