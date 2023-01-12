@@ -171,28 +171,21 @@ La force de cette nouvelle façon de faire? La possibilité d'installer des « p
 Par exemple l'excellent [vueuse](https://github.com/vueuse/vueuse)
 
 ```typescript
+<template>
+  {{ x }}, {{ y }}
+  <div v-if="isDark">Dark mode</div>
+  <div v-else>Light mode</div>
+</template>
+
+<script setup lang="ts">
 import { useMouse, usePreferredDark, useLocalStorage } from '@vueuse/core'
 
-export default {
-  setup() {
-    // tracks mouse position
-    const { x, y } = useMouse()
+  // tracks mouse position
+  const { x, y } = useMouse()
 
-    // is user prefers dark theme
-    const isDark = usePreferredDark()
-
-    // persist state in localStorage
-    const store = useLocalStorage(
-      'my-storage',
-      {
-        name: 'Apple',
-        color: 'red',
-      },
-    )
-
-    return { x, y, isDark, store }
-  }
-})
+  // is user prefers dark theme
+  const isDark = usePreferredDark()
+</script>
 ```
 
 ::: tip Astuce de chef!
