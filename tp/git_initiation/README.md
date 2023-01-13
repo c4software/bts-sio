@@ -49,8 +49,6 @@ Vous devez éxécuter cette commande dans un dossier (exemple `test/`).
 Maintenant que votre projet est initialisé, il faut maintenant créer les fichiers de base. Créer la structure suivante :
 
 ```
-$ tree
-.
 ├── Makefile
 ├── documentations
 │   └── README.md
@@ -66,7 +64,7 @@ $ tree
     ├── test.js
     └── test.html
 
-5 directories, 9 files
+4 directories, 9 files
 ```
 
 ### Question bonus
@@ -95,6 +93,12 @@ Ajouter les changements
 ```
 
 Est-ce la seule façon de faire ? (Plusieurs réponses sont possibles)
+
+```sh
+
+```
+
+Créer une permière version
 
 ```sh
 
@@ -131,6 +135,12 @@ Ajouter vos modifications dans Git
 
 ```sh
 $
+```
+
+Créer une seconde version
+
+```sh
+
 ```
 
 ### Questions
