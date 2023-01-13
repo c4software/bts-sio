@@ -36,6 +36,10 @@ Votre choix est fait, vous devez maintenant initialiser votre espace de travail.
 
 ### Initialiser votre projet
 
+::: danger Dans un autre dossier
+Vous devez éxécuter cette commande dans un dossier (exemple `test/`).
+:::
+
 ```
 
 ```
