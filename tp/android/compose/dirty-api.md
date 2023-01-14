@@ -26,9 +26,10 @@ Cette application contient les éléments suivants :
 - Une page d'accueil.
 - Une page de liste, les données sont récupérées depuis une API (fichier `ApiService.kt`).
 - Une page de détail affiche les données de l'élément sélectionné dans la liste.
+- Une liste de photos, les données sont récupérées depuis une API (fichier `ApiService.kt`). Les photos sont affichées en utilisant la librairie Coil.
 - Une page à propos affiche des informations sur l'application.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-6sUwt4ZL9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hWCIqjsTJiw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Prérequis
 
@@ -49,13 +50,14 @@ Vous pouvez récupérer le code source de cette application depuis le dépôt Gi
 
 Le code source de cette application est organisé de la manière suivante :
 
-
 - `MainActivity.kt` : Activité principale de l'application.
 - `screens/` : Contient les écrans de l'application.
 - `screens/HomeScreen.kt` : Écran d'accueil.
 - `screens/AboutScreen.kt` : Écran à propos.
 - `screens/list/ListScreen.kt` : Écran de liste.
 - `screens/list/ListViewModel.kt` : Logique métier de l'écran de liste, ici nous appelons l'API et gérons l'état de la liste (chargement, erreur, données).
+- `screens/photos/PhotosScreen.kt` : Écran de liste de photos.
+- `screens/photos/PhotosViewModel.kt` : Logique métier de l'écran de liste de photos, ici nous appelons l'API et gérons l'état de la liste (chargement, erreur, données).
 - `data/ApiService.kt` : Service d'appel à l'API.
 - `data/Enums.kt` : Énums utilisés dans l'application (état de la liste, état de la requête).
 - `components/` : Contient les composants utilisés dans l'application.
@@ -78,6 +80,9 @@ implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
 // Appel API
 implementation "com.squareup.retrofit2:retrofit:2.9.0"
 implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+// Chargement des images via le réseau (coil)
+implementation("io.coil-kt:coil-compose:2.2.2")
 ```
 
 - Les dépendances `lifecycle-viewmodel-ktx` et `lifecycle-viewmodel-compose` sont nécessaires pour utiliser le ViewModel dans notre application. 
@@ -91,10 +96,13 @@ Le fichier `ApiService.kt` contient le service d'appel à l'API. Il utilise la l
 interface ApiService {
     @GET("todos")
     suspend fun getTodos(): List<Todo>
+
+    @GET("photos")
+    suspend fun getPhotos(): List<Photo>
 }
 ```
 
-Ici nous utilisons l'annotation `@GET` pour indiquer que nous faisons un appel `GET` sur l'URL `/todos`. Nous indiquons également que la méthode retourne une liste de `Todo`. 
+Ici nous utilisons l'annotation `@GET` pour indiquer que nous faisons un appel `GET` sur l'URL `/todos`. Nous indiquons également que la méthode retourne une liste de `Todo`.
 
 ::: tip Pas de code ?
 
@@ -141,7 +149,7 @@ Pas tant que ça ! Avec l'habitude, cette gymnastique de créer un service d'app
 
 En Kotlin les composants sont réactifs. Cela signifie que si une variable change, tous les composants qui utilisent cette variable seront mis à jour. Nous utilisons cette fonctionnalité pour mettre à jour l'écran de liste lorsque les données sont chargées depuis Internet.
 
-Prenons l'exmemple de la `Liste`. Premier point important, pour rendre le code lisible, celui-ci est découpé en deux fichiers :
+Prenons l'exemple de la `Liste`. Premier point important, pour rendre le code lisible, celui-ci est découpé en deux fichiers :
 
 - `ListScreen.kt` : Écran de liste
 - `ListViewModel.kt` : Logique métier de l'écran de liste
@@ -208,7 +216,7 @@ Nous avons une base réutilisable pour accéder à des données.
 Nous avons ici la partie graphique. Les éléments qui seront affichés, nous avons cependant des éléments qui vont faire référence aux données à savoir :
 
 ```kotlin
-fun ListScreen(viewModel: ListViewModel = ListViewModel()) {
+fun ListScreen(viewModel: ListViewModel = viewModel()) {
     // ...
 }
 ```
@@ -288,6 +296,7 @@ L'enum `STATES` est utilisé pour définir quel écran est actuellement affiché
 
 - `HOME`: Écran d'accueil.
 - `LIST`: Écran de liste.
+- `PHOTO`: Écran qui liste les photos.
 - `ABOUT`: Écran d'informations sur l'application.
 
 ## Rappel sur les callbacks
@@ -330,6 +339,55 @@ ListItem(item = todo.title, onClick = {
 
 Les deux syntaxes sont correctes. En Kotlin il est préférable d'écrire la première syntaxe. Car elle est plus concise et plus lisible.
 
+:::
+
+## Les photos
+
+### Les images locales
+
+Android Compose permet de charger des images depuis un fichier localement présent dans votre applicaton (res/drawable). Pour charger une image depuis un fichier local, nous utilisons le composant `Image` :
+
+```kotlin
+Image(
+    painter = painterResource(id = R.drawable.ic_launcher_foreground),
+    contentDescription = "Logo",
+)
+```
+
+::: tip Vous avez un exemple
+Si vous voulez un exemple dans l'application de démo, vous pouvez regarder le fichier `Home.kt` dans le dossier `screens`.
+:::
+
+### Les images distantes
+
+Pour charger une ressource distante, nous allons utiliser une librairie tierce. Nous allons utiliser la librairie [Coil](https://github.com/coil-kt/coil#jetpack-compose).
+
+Pour ajouter la librairie, il suffit d'ajouter la dépendance suivante dans le fichier `build.gradle` :
+
+```groovy
+implementation("io.coil-kt:coil-compose:2.2.2")
+```
+
+::: danger Attention
+Après avoir ajouté la dépendance, il faut synchroniser le projet pour que la librairie soit ajoutée (un bandeau en haut de l'IDE vous indique que le projet doit être synchronisé).
+:::
+
+Pour charger une image distante, nous utilisons le composant `Image` :
+
+```kotlin
+AsyncImage(
+    data = "https://picsum.photos/200/200",
+    contentDescription = "Image",
+    modifier = Modifier
+        .size(200.dp)
+        .padding(16.dp)
+)
+```
+
+Le composant `AsyncImage` est un composant de la librairie Coil. Il permet de charger une image distante de manière asynchrone, c'est-à-dire que le chargement de l'image ne bloque pas le thread principal et donc ne ralentit pas l'application.
+
+::: tip Un exemple ?
+Si vous voulez un exemple dans l'application de démo, vous pouvez regarder le fichier `PhotoItem.kt` dans le dossier `components`.
 :::
 
 ## Les tabs (La NavBar)
