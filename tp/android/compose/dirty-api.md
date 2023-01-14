@@ -444,3 +444,4 @@ Il serait également intéressant d'utiliser JetPack Navigation pour gérer les 
 - [Kotlin](https://kotlinlang.org/)
 - [Android](https://developer.android.com/)
 - [Jetpack Compose](https://developer.android.com/jetpack/compose)
+- [Coil](https://github.com/coil-kt/coil#jetpack-compose)
