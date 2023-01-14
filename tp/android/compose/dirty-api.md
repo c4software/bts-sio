@@ -341,7 +341,11 @@ Les deux syntaxes sont correctes. En Kotlin il est préférable d'écrire la pre
 
 :::
 
-## Les photos
+## Les images (res, drawable)
+
+Sur Android les ressources de type images sont stockées dans le dossier `res/drawable`. Nativement, Compose permet de charger les images depuis ce dossier. Pour charger des images depuis une ressource distante (par exemple une image stockée sur un serveur), nous allons utiliser une librairie tierce (Coil).
+
+Voilà la procédure pour charger des images (locales et distantes).
 
 ### Les images locales
 
