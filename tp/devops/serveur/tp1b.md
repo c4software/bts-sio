@@ -179,7 +179,7 @@ Une fois votre configuration généré par l'outils vous pouvez renseigner les d
 
 Nous terminons la configuration réseau en renseignant le nom de la machine :
 
-![Nom de la machine](./res/tp1b/5-DNS.jpg)
+![Nom de la machine](./res/tp1b/5-nom.jpg)
 
 ::: danger Attention
 Pour assurer la cohérence, le nom de la machine doit être le même que celui que vous avez choisi dans l'interface de vmWare.
