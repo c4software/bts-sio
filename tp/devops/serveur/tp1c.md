@@ -1,4 +1,4 @@
-# 1b. Prendre en main la ligne de commande
+# TP1c. Prendre en main la ligne de commande
 
 ::: details Sommaire
 [[toc]]

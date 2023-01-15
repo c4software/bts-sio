@@ -2,7 +2,7 @@
 description: Installer votre premier serveur virtuel sur la ferme.
 ---
 
-# 1b. Installer votre premier serveur
+# TP1b. Installer votre premier serveur
 
 ::: details Sommaire
 [[toc]]
