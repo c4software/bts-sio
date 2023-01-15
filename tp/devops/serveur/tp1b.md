@@ -85,6 +85,8 @@ Dans les prochaines semaines nous installerons plusieurs serveurs, pas de paniqu
 
 ### Le choix de la langue
 
+
+
 ### Le choix du clavier
 
 ### Le choix du fuseau horaire
