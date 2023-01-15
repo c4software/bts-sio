@@ -175,7 +175,7 @@ Une fois votre configuration généré par l'outils vous pouvez renseigner les d
 ![Adresse IP](./res/tp1b/5-ip.jpg)
 ![Masque de sous réeau](./res/tp1b/5-masque.jpg)
 ![Gateway](./res/tp1b/5-gateway.jpg)
-![DNS](./res/tp1b/5-DNS.jpg)
+![DNS](./res/tp1b/5-dns.jpg)
 
 Nous terminons la configuration réseau en renseignant le nom de la machine :
 
