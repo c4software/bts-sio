@@ -156,7 +156,7 @@ Bref, n'oubliez pas d'installer les Tools pour vivre une expérience optimale �
 
 :::
 
-TODO à détailler.
+[Suivre la procédure d'installation de Debian](./tp1b.md)
 
 ::: tip 👋 Pas d'interface graphique ?
 À votre avis, pourquoi ?
