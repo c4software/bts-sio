@@ -263,3 +263,21 @@ $
 - Quels sont les avantages de réaliser un tag ?
 
 [Voir la solution](./solution/README.md)
+
+## Utiliser un client graphique
+
+Pour les personnes qui préfèrent utiliser un client graphique, voici une liste de clients graphiques pour Git :
+
+- [GitKraken](https://www.gitkraken.com/)
+- [VSCode](https://code.visualstudio.com/)
+- [Visual Studio](https://visualstudio.microsoft.com/fr/)
+
+### VSCode
+
+VSCode intégre un client Git par défaut, il est possible de l’utiliser pour réaliser l'ensemble des opérations précédentes.
+
+![VSCode Git](./vscode.jpg)
+
+::: tip Appeler moi
+Nous allons voir ensemble comment utiliser VSCode pour réaliser les opérations précédentes.
+:::
