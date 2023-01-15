@@ -359,7 +359,7 @@ Image(
 ```
 
 ::: tip Vous avez un exemple
-Si vous voulez un exemple dans l'application de démo, vous pouvez regarder le fichier `Home.kt` dans le dossier `screens`.
+Si vous voulez un exemple dans l'application de démo, vous pouvez regarder le fichier [`Home.kt`](https://github.com/c4software/project-compose-api-sample/blob/main/app/src/main/java/com/example/exemplecomposelisteapi/screens/HomeScreen.kt) dans le dossier `screens`.
 :::
 
 ### Les images distantes
@@ -391,7 +391,7 @@ AsyncImage(
 Le composant `AsyncImage` est un composant de la librairie Coil. Il permet de charger une image distante de manière asynchrone, c'est-à-dire que le chargement de l'image ne bloque pas le thread principal et donc ne ralentit pas l'application.
 
 ::: tip Un exemple ?
-Si vous voulez un exemple dans l'application de démo, vous pouvez regarder le fichier `PhotoItem.kt` dans le dossier `components`.
+Si vous voulez un exemple dans l'application de démo, vous pouvez regarder le fichier [`PhotoItem.kt`](https://github.com/c4software/project-compose-api-sample/blob/main/app/src/main/java/com/example/exemplecomposelisteapi/components/PhotoItem.kt) dans le dossier `components`.
 :::
 
 ## Les tabs (La NavBar)
