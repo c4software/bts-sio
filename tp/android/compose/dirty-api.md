@@ -392,6 +392,21 @@ Le composant `AsyncImage` est un composant de la librairie Coil. Il permet de ch
 
 ::: tip Un exemple ?
 Si vous voulez un exemple dans l'application de démo, vous pouvez regarder le fichier [`PhotoItem.kt`](https://github.com/c4software/project-compose-api-sample/blob/main/app/src/main/java/com/example/exemplecomposelisteapi/components/PhotoItem.kt) dans le dossier `components`.
+
+Dans le cas du code de démo, nous utilisons une image dont le lien est retourné par l'API (lien de type `String`), exemple :
+
+```kotlin
+fun PhotoItem(photo: Photo) {
+    AsyncImage(
+        data = photo.thumbnailUrl,
+        contentDescription = "Image",
+        modifier = Modifier
+            .size(200.dp)
+            .padding(16.dp)
+    )
+}
+```
+
 :::
 
 ## Les tabs (La NavBar)
