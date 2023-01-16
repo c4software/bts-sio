@@ -576,12 +576,12 @@ private var ledStatus: Text? = null
 override fun onCreate() {
     // ... Reste du code
 
-    rvDevices = findViewById(R.id.rvDevices)
-    startScan = findViewById(R.id.startScan)
-    currentConnexion = findViewById(R.id.currentConnexion)
-    disconnect = findViewById(R.id.disconnect)
-    toggleLed = findViewById(R.id.toggleLed)
-    ledStatus = findViewById(R.id.ledStatus)
+    rvDevices = findViewById<RecyclerView>(R.id.rvDevices)
+    startScan = findViewById<Button>(R.id.startScan)
+    currentConnexion = findViewById<View>(R.id.currentConnexion)
+    disconnect = findViewById<View>(R.id.disconnect)
+    toggleLed = findViewById<View>(R.id.toggleLed)
+    ledStatus = findViewById<View>(R.id.ledStatus)
 }
 ```
 
