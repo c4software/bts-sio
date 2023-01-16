@@ -110,11 +110,11 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 ## Les points clés
 
 - Traçabilité
-- La gestion des branches 
-- La fusion de code efficace (Merge) 
-- Rapidité 
-- La ligne de commande 
-- Réécriture de l'histoire impossible 
+- La gestion des branches
+- La fusion de code efficace (Merge)
+- Rapidité
+- La ligne de commande
+- Réécriture de l'histoire impossible
 
 ---
 
@@ -161,6 +161,10 @@ Un identifiant symbolique pour un commit.
 ---
 
 ![principe](./img/git_principe2.jpeg)
+
+---
+
+![principe](./img/git-loop.png)
 
 ---
 
