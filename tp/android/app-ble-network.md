@@ -133,6 +133,16 @@ private fun locationServiceEnabled(): Boolean {
 ### Le code du scan
 
 ```kotlin
+val registerForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    if (it.resultCode == Activity.RESULT_OK) {
+        // Le Bluetooth est activé, on lance le scan
+        scanLeDevice()
+    } else {
+        // Bluetooth non activé
+        Toast.makeText(this, "Bluetooth non activé", Toast.LENGTH_SHORT).show()
+    }
+}
+
  /**
   * Récupération de l'adapter Bluetooth & vérification si celui-ci est actif
   */
@@ -141,15 +151,7 @@ private fun setupBLE() {
     (getSystemService(BLUETOOTH_SERVICE) as BluetoothManager?)?.let { bluetoothManager ->
         bluetoothAdapter = bluetoothManager.adapter
         if (bluetoothAdapter != null && !bluetoothManager.adapter.isEnabled) {
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                if (it.resultCode == Activity.RESULT_OK) {
-                    // Le Bluetooth est activé, on lance le scan
-                    scanLeDevice()
-                } else {
-                    // Bluetooth non activé
-                    Toast.makeText(this, "Bluetooth non activé", Toast.LENGTH_SHORT).show()
-                }
-            }.launch(Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE))
+            registerForResult.launch(Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE))
         } else {
             scanLeDevice()
         }
