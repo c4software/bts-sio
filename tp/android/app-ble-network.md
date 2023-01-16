@@ -566,12 +566,12 @@ Exemple :
 
 ```kotlin
 
-private rvDevices: RecyclerView? = null
-private startScan: Button? = null
-private currentConnexion: Text? = null
-private disconnect: Button? = null
-private toggleLed: Button? = null
-private ledStatus: Text? = null
+private var rvDevices: RecyclerView? = null
+private var startScan: Button? = null
+private var currentConnexion: Text? = null
+private var disconnect: Button? = null
+private var toggleLed: Button? = null
+private var ledStatus: Text? = null
 
 override fun onCreate() {
     // ... Reste du code
