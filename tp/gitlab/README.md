@@ -9,9 +9,10 @@ Introduction au travail à plusieurs avec GIT.
 ## Ressources utiles
 
 - [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
-- [Google](https://docs.gitlab.com/ee/README.html)
+- [Documentation Gitlab](https://docs.gitlab.com/ee/README.html)
 - [Livre Git en ligne](https://git-scm.com/book/fr/v2)
 - [GitLab.com](https://www.gitlab.com/)
+- [Créer une clé SSH](/cheatsheets/ssh-key/README.md)
 
 ## Situation
 
@@ -26,18 +27,13 @@ L’entreprise ou vous effectuez votre stage utilise GitLab, vous allez donc dev
 
 Avant d’utiliser GitLab nous allons dans un premier temps créer un site Internet sur votre ordinateur.
 
-- Créer un nouveau dossier
-- Initialiser un nouveau projet Git (en ligne de commande)
-- Créer la page d’accueil du votre site Internet (quelque chose de sympa et créatif ;))
-- Versionner cette première version. (`git commit` et vérifier avec `git status` que c’est bien ok)
-- Ajouter une 2nd page dans votre site Internet, par exemple une page vous présentant.
-- Versionner cette 2nd page. (`git commit` et vérifier avec `git status` que c’est bien ok)
-- Ajouter un « formulaire de contact », ce formulaire devra contenir à minima 3 « input » :
-  _ Un champs email
-  _ Un champs sujet
-  - Un champs message
-- Ajouter une page PHP qui enregistre les valeurs dans un fichier sur disque à chaque fois qu’un utilisateur valide le formulaire.
-- Versionner le formulaire de contact (attention, il serait intéressant de faire plusieurs `commit`, si vous avez ajouter plusieurs pages, vérifier avec `git status` que c’est bien ok)
+Je vous propose de versionner le blog que vous avez réalisé dans le cadre de la première AP. Je vous laisse :
+
+- Créer un dossier blog sur votre ordinateur.
+- Initialiser un projet git dans ce dossier. (`git init`)
+- Créer un premier commit avec le message « Initialisation du projet ».
+- Réaliser une modification en ajouter un nouvelle article dans votre blog. (thèmatique `git`).
+- Créer un nouveau commit avec le message « Ajout d’un nouvel article sur Git ».
 
 ## Les logs
 
@@ -51,25 +47,24 @@ Créer votre compte sur [GitLab.com onglet Register](https://gitlab.com/users/si
 
 #### Échange de clé
 
-Pour vous reconnaitre, GitLab/Github utilise un système de clé. Cette clé garantit votre identité sans utiliser un mot de passe.
+Pour vous reconnaître, GitLab/Github utilise un système de clé. Cette clé garantit votre identité sans utiliser un mot de passe.
 
 #### Génération de votre clé
 
-Sur votre ordinateur, en ligne de commande :
+[Voir l'aide mémoire sur comment créer une clé SSH](/cheatsheets/ssh-key/README.md)
 
-```sh
-$ ssh-keygen
-```
+::: tip Important
 
-Deux fichiers seront créés une clé « publique » ET une clé privée.
+- Cette clé est générée sur votre profil utilisateur, et ce quelques soit le poste au lycée. Vous pouvez donc utiliser cette clé sur plusieurs projets.
+- Cette opération ne doit être faite qu’une seule fois.
 
-⚠️ ⚠️ Vous ne devez JAMAIS rendre publique votre clé **privée**. Si ça vous arrive, vous devez immédiatement révoquer les clés !
+:::
 
 #### Envoyer votre clé sur GitLab
 
-[Ajouter une clé sur votre profil](https://gitlab.com/profile/keys)
+[Ajouter une clé sur votre profil](https://gitlab.com/-/profile/keys)
 
-La clé que vous devez envoyer est dans votre dossier personnel (W :) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est .pub
+La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est .pub
 
 ### Création de votre premier projet
 
@@ -98,34 +93,41 @@ Une fois que c’est fait. Regarder les différentes options que GitLab vous pro
 
 GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester les différentes fonctionnalités :
 
-- Créer une issue (exemple, Ajout d’informations sur la page d’accueil)
+- Créer une issue (exemple, Ajout d'une nouvelle image sur la page d’accueil)
 - Créer une branche relative à cette issue.
 - Vérifier que vous êtes bien sur la branche en question avant d’éditer le fichier index.html dans l’onglet `files`
 - Ajouter une image dans votre projet (via GitLab)
 - Ajouter dans la page index.html l’image en question (`<img src…`)
-- ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinant. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Testé 😉)
+- ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinent. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Je vous laisse tester 😉).
+
+
 - Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé assignez le à un autre étudiant ! Demandez-lui de le merger pour vous.
 - ⚠️ ⚠️ L’autre étudiant doit regarder le code, et si possible vous faire des commentaires, par exemple :
   _ Tu as oublié le `alt` à ton image.
   _ Tu as oublié le `title` à ton image. \* Ou même pourquoi as-tu choisi cette image ?
 - Prenez en compte les remarques et modifiez le code
 - Ajouter un commentaire (dans le merge request) pour indiquer à l’autre étudiant que vous avez terminé.
-- L’autre étudiant peut merger votre code
+- L’autre étudiant approuve votre code.
+- Vous pouvez merger votre code.
 
-## Participation à un projet collectif
+### Question (à faire en groupe)
 
-GitLab (comme Github) est un outil/site web, permettant le travail collaboratif, dans cette optique vous allez pouvoir travailler sur un projet à plusieurs :
+- Pourquoi est-ce que l’on utilise des branches ?
+- Pourquoi demander à un autre étudiant d'approuver votre code ?
 
-- Demander l’accès au groupe : [BTS SIO Chevrollier](https://gitlab.com/bts-sio-chevrollier)
-- Aller dans le projet : [découverte GitLab](https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab) et demander l’accès.
+### Observation
 
-### Questions
+Je vous invite à regarder les différentes options de GitLab. Vous pouvez par exemple :
 
-- Pourquoi devez-vous demander l’accès ?
-- Pourquoi est-ce important ?
-- Si nous étions sur un GitLab « privé » (interne à l’entreprise) cela aurait-il été aussi important ?
+- Créer un « issue board » (un tableau Kanban)
+- Créer un « wiki »
+- Créer un « snippet »
 
-## Cloner le projet
+Pourquoi est-ce intéressant ?
+
+## Édition en local
+
+### Cloner le projet
 
 Maintenant que votre compte est actif, vous pouvez cloner le projet :
 
@@ -135,23 +137,27 @@ Maintenant que votre compte est actif, vous pouvez cloner le projet :
 $ 
 ```
 
-## Traiter une des issues
+## Créer une issue
 
-Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab » sont disponibles choisissez en une. Traitez là en utilisant le « Worflow GitLab » :
+Dans votre projet, créez une seconde issue. (Exemple : Ajouter une page à propos)
 
-- Assignation de l’issue à vous-même.
-- Création d’une branche relative à l’issue (un bouton permet de le faire directement).
-- Modification du code.
-- Création d’une « merge request ».
-- Assigner à un autre étudiant le « merge » du code que vous venez d’effectuer.
+- Assignez vous cette issue.
+- Créer une nouvelle branche pour cette issue.
+- Traiter la modification en local.
+- Envoyer vos modifications sur le serveur GitLab.
+- Créer une merge request et assignez-la à un autre étudiant pour qu’il la valide.
+- Une fois la merge request validée, merger la branche.
 
 ### Mettre à jour le code local.
+
+Avant de commencer à travailler, il est important de mettre à jour votre code local. Pour cela, il faut faire un `pull` sur la branche `master`.
 
 ```sh
 $ 
 ```
 
 ### Créer une nouvelle branche
+
 ```sh
 $ 
 ```
@@ -162,17 +168,15 @@ $
 $ 
 ```
 
-### Envoyer vos modifications sur le serveurs GitLab
+### Envoyer vos modifications sur le serveur GitLab
 
 ```sh
 $ 
 ```
 
-### Création d’une merge request
+### Créer une merge request
 
-[Création de la merge request](https://gitlab.com/groups/bts-sio-chevrollier/merge_requests)
-
-- Remplissez l’ensemble des champs qui vous semblent nécessaires. N’oubliez pas que ça sera quelqu’un d’autre qui va regarder et traiter votre demande !
+Maintenant que vous avez terminé votre travail, vous allez devoir créer une merge request. Pour cela, il faut aller sur le serveur GitLab, et aller dans l’onglet `merge request`.
 
 ### Question
 
@@ -180,7 +184,7 @@ $
 
 ## Bonne nouvelle !
 
-Vous venez (normalement) d’avoir au moins un « merge request » d’assigner. Vous allez devoir traiter la demande, à votre avis comment se déroule la suite ?
+Vous venez (normalement) d’avoir au moins un « merge request » d’assigner. Vous allez devoir traiter la demande, à votre avis, comment se déroule la suite ?
 
 ## La revue de code
 
@@ -199,7 +203,3 @@ Vous venez (normalement) d’avoir au moins un « merge request » d’assig
 - Vous y voyez un intérêt ?
 - À votre avis, est-il possible d’améliorer la revue de code ?
 - En situation réelle, est-ce votre rôle de « merger le code » ?
-
-### Correction
-
-[Voir la correction](./correction.md)
