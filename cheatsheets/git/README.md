@@ -23,13 +23,17 @@ Voir la configuration :
 git config --list
 ```
 
-## Créer
+## Setup & Init
 
 Créer un nouveau dépôt local (dans le dossier courant) :
 
 ```sh
 git init
 ```
+
+::: tip Si vous projet
+Si votre projet est sur github/gitlab, **vous devez cloner le dépôt** et non le créer (via un `git clone`).
+:::
 
 Cloner un dépôt existant :
 
@@ -318,6 +322,10 @@ git reset --hard <commit>
 ```
 
 ## HTTPS et Identifiant sauvegardé sous Windows
+
+::: danger Attention
+Je vous déconseille d'utiliser HTTPS pour vos dépôts Git. Utilisez plutôt SSH.
+:::
 
 Si vous avez cloné votre repository en HTTPS il se peut que vous rencontriez une erreur du type « error git remote ». Vous avez certainement du faire une erreur dans votre mot de passe (erreur de saisie ou autre). Malheureusement Windows sauvegarde l'information dans le système, cependant il est possible de corriger le problème via :
 

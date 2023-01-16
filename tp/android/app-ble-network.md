@@ -571,7 +571,7 @@ private var startScan: Button? = null
 private var currentConnexion: TextView? = null
 private var disconnect: Button? = null
 private var toggleLed: Button? = null
-private var ledStatus: Text? = null
+private var ledStatus: TextView? = null
 
 override fun onCreate() {
     // ... Reste du code
