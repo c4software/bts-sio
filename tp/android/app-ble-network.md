@@ -568,7 +568,7 @@ Exemple :
 
 private var rvDevices: RecyclerView? = null
 private var startScan: Button? = null
-private var currentConnexion: Text? = null
+private var currentConnexion: TextView? = null
 private var disconnect: Button? = null
 private var toggleLed: Button? = null
 private var ledStatus: Text? = null
