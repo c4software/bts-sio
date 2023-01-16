@@ -16,7 +16,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 $ git clone URL_DU_PROJET
 ```
 
-- À votre avis ? Quel type de protocoles sont possibles ? 
+- À votre avis ? Quel protocol sera utilisé ?
 
 ---
 
@@ -96,7 +96,7 @@ Mais !? Y'a-t-il des équivalents ?
 
 - Github
 - GitLab
-- Gogs
+- Gogs / Gitea
 - Bitbucket
 - Serveur SSH
 - …
@@ -119,7 +119,7 @@ Mais !? Y'a-t-il des équivalents ?
 
 ---
 
-## GOGS
+## GOGS / GITEA
 
 ### Service installable en privé
 
@@ -149,12 +149,12 @@ Mais !? Y'a-t-il des équivalents ?
 
 ## Les risques dans le Cloud ?
 
-- Indisponibilité 
-- Lenteur 
-- Dépend de VOTRE connexion Internet 
-- Dépend de LEUR connexion Internet 
-- Sécurité 
-- Faille 
+- Indisponibilité
+- Lenteur
+- Dépend de VOTRE connexion Internet
+- Dépend de LEUR connexion Internet
+- Sécurité
+- Faille
 
 ---
 
@@ -232,7 +232,7 @@ Une API pour tout piloter ;)
 
 Des morceaux de code que l’on partage.
 
-- Quelqu'un connait un équivalent ? 
+- Quelqu'un connait un équivalent ?
 
 ---
 
