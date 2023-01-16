@@ -60,11 +60,16 @@ Pour vous reconnaître, GitLab/Github utilise un système de clé. Cette clé ga
 
 :::
 
+👋 Parlons un peu de cette clé. Elle est composée de deux parties :
+
+- Une partie publique (que vous pouvez partager avec qui vous voulez)
+- Une partie privée (que vous devez absolument garder pour vous)
+
 #### Envoyer votre clé sur GitLab
 
 [Ajouter une clé sur votre profil](https://gitlab.com/-/profile/keys)
 
-La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est .pub
+La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (à ouvrire avec notepad++ ou bloc-note).
 
 ### Création de votre premier projet
 
