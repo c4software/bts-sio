@@ -560,7 +560,7 @@ private fun setUiMode(isConnected: Boolean) {
 
 D'où vienne les variables `bleDevicesFoundList`, `rvDevices`, `startScan`, `currentConnexion`, `disconnect`, `toggleLed`, `ledStatus` ?
 
-Ces variables sont des variables de classe, elles sont définies dans le fichier `MainActivity.kt` et sont initialisées dans la méthode `onCreate`. Pour les initialiser vous devrez utiliser le `findViewById` comme vous le faites habituellement.
+Ces variables sont des variables de classe, elles sont définies dans le fichier `ScanActivity.kt` et sont initialisées dans la méthode `onCreate`. Pour les initialiser vous devrez utiliser le `findViewById` comme vous le faites habituellement.
 
 Exemple :
 
