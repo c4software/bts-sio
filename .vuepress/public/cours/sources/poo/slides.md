@@ -757,7 +757,7 @@ Une interface ressemble à une classe abstraite dans laquelle aucune méthode ne
 Classes abstraites et interfaces ont chacune une fonction bien distincte :
 
 - Les classes abstraites servent à factoriser du code.
-- Tandis que les interfaces servent à définir des contrats de service.
+- Tandis que les interfaces servent à définir des contrats de fonctionnement.
 
 ---
 
