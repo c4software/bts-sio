@@ -102,7 +102,7 @@ En utilisant à nouveau l'Interface, écrire l'implémentation de classe `Epargn
 
 ¹ `instanceOf` est utilisé pour déterminer si une variable PHP est un objet instancié d'une certaine classe.
 
-## Héritage multiple
+## L'implémentation multiple
 
 ![UML](./res/interface_uml3.png)
 
