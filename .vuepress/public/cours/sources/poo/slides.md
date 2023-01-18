@@ -510,7 +510,9 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
-[Héritage](./res/heritage_chat_animal.png)
+![Héritage](./res/heritage_chat_animal.png)
+
+---
 
 - Est-ce que le chien et le chat peuvent avoir un nom ?
 - Pourquoi l'héritage est intéressant ici ?
@@ -518,7 +520,9 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
-[Héritage 2](./res/heritage_personne.png)
+![Héritage 2](./res/heritage_personne.png)
+
+---
 
 - Que constatez-vous ?
 - Pourquoi avons-nous décidé de découper la logique comme ceci ?
@@ -546,11 +550,20 @@ Que constatez-vous ?
 
 ---
 
+Deux solutions :
+
+```php
+$this->estMajeur(); // Appel la méthode la plus proche.
+parent::estMajeur(); // Appel la méthode de la classe parente.
+```
+
+---
+
 ## L'héritage c'est donc
 
 ### Un arbre
 
-[Arbre](./res/heritage.png)
+![Arbre](./res/heritage.png)
 
 ---
 
