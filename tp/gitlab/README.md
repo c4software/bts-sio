@@ -23,6 +23,19 @@ L’entreprise ou vous effectuez votre stage utilise GitLab, vous allez donc dev
 - Pourquoi à votre avis l’entreprise utilise GitLab ?
 - Pourquoi GitLab plutôt que GitHub ?
 
+::: tip Comment choisir ?
+
+Je vous laisse regarder sur le site de Gitlab et le site de Github. Et plus particulièrement :
+
+- <https://github.com/pricing>
+- <https://about.gitlab.com/pricing/>
+- <https://about.gitlab.com/install/ce-or-ee/>
+- <https://www.ionos.fr/digitalguide/sites-internet/developpement-web/gitlab-vs-github/>
+
+Après avoir regardé les différents documents, nous allons réfléchir ensemble.
+
+:::
+
 ## Création du projet
 
 Avant d’utiliser GitLab nous allons dans un premier temps créer un site Internet sur votre ordinateur.
@@ -32,7 +45,7 @@ Je vous propose de versionner le blog que vous avez réalisé dans le cadre de l
 - Créer un dossier blog sur votre ordinateur.
 - Initialiser un projet git dans ce dossier. (`git init`)
 - Créer un premier commit avec le message « Initialisation du projet ».
-- Réaliser une modification en ajouter un nouvelle article dans votre blog. (thèmatique `git`).
+- Réaliser une modification en ajouter un nouvel article dans votre blog. (thématique `git`).
 - Créer un nouveau commit avec le message « Ajout d’un nouvel article sur Git ».
 
 ## Les logs
@@ -69,7 +82,7 @@ Pour vous reconnaître, GitLab/Github utilise un système de clé. Cette clé ga
 
 [Ajouter une clé sur votre profil](https://gitlab.com/-/profile/keys)
 
-La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (à ouvrire avec notepad++ ou bloc-note).
+La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (à ouvrir avec notepad++ ou bloc-note).
 
 ### Création de votre premier projet
 
@@ -146,7 +159,7 @@ $
 
 Dans votre projet, créez une seconde issue. (Exemple : Ajouter une page à propos)
 
-- Assignez vous cette issue.
+- Assignez-vous cette issue.
 - Créer une nouvelle branche pour cette issue.
 - Traiter la modification en local.
 - Envoyer vos modifications sur le serveur GitLab.
