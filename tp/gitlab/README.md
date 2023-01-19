@@ -30,6 +30,8 @@ Je vous laisse regarder sur le site de Gitlab et le site de Github. Et plus part
 - <https://github.com/pricing>
 - <https://about.gitlab.com/pricing/>
 - <https://about.gitlab.com/install/ce-or-ee/>
+- <https://github.com/features>
+- <https://about.gitlab.com/features/>
 - <https://www.ionos.fr/digitalguide/sites-internet/developpement-web/gitlab-vs-github/>
 
 Après avoir regardé les différents documents, nous allons réfléchir ensemble.
