@@ -88,6 +88,12 @@ implementation("io.coil-kt:coil-compose:2.2.2")
 - Les dépendances `lifecycle-viewmodel-ktx` et `lifecycle-viewmodel-compose` sont nécessaires pour utiliser le ViewModel dans notre application. 
 - Les dépendances `retrofit` et `converter-gson` sont nécessaires pour appeler l'API.
 
+## Le thème
+
+De base l'application utilise un fichier `theme.kt`. Celui-ci contient les couleurs de base de l'application. Vous pouvez générer un nouveau thème en modifiant directement celui-ci. 
+
+Vous pouvez également utiliser [une solution en ligne](https://m3.material.io/theme-builder#/custom).
+
 ## Le `ApiService.kt`
 
 Le fichier `ApiService.kt` contient le service d'appel à l'API. Il utilise la librairie [Retrofit](https://square.github.io/retrofit/) pour appeler l'API.
@@ -159,6 +165,8 @@ Le fichier `ListScreen.kt` contient uniquement la partie graphique de l'écran d
 ### Avant-propos : Le ViewModel
 
 Le `ViewModel` est un découpage de l'application qui permet de séparer la logique métier de l'application de la partie graphique. Chaque écran de l'application aura son `ViewModel` qui contiendra la logique métier de l'écran. L'objectif ? Découper l'application en plusieurs parties et ainsi rendre le code plus lisible.
+
+Un écran possèdera donc un `ViewModel` qui contiendra la logique métier de l'écran. Vous ne devez pas avoir plusieurs `ViewModel` pour un même écran. Si vous avez besoin de plusieurs `ViewModel` pour un même écran, il faut alors séparer l'écran en plusieurs écrans.
 
 ### Le fichier `ListViewModel.kt`
 

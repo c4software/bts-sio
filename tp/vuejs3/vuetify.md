@@ -49,7 +49,7 @@ Le projet que vous venez de créer est complètement fonctionnel. Vous pouvez le
 npm run dev
 ```
 
-Votre projet est accessible à l'adresse [http://localhost:3000](http://localhost:3000).
+Votre projet est accessible à l'adresse [http://127.0.0.1:3000](http://127.0.0.1:3000).
 
 ![vuetify-home](./res/vuetify-projet.jpg)
 
