@@ -401,7 +401,7 @@ Dans le cas du code de démo, nous utilisons une image dont le lien est retourn�
 @Composable
 fun PhotoItem(photo: Photo) {
     AsyncImage(
-        data = photo.thumbnailUrl, // Lien de l'image retourné par l'API
+        model = photo.thumbnailUrl, // Lien de l'image retourné par l'API
         contentDescription = "Image", // Description de l'image (pour les malvoyants)
         modifier = Modifier.size(200.dp) // Taille de l'image (200x200)
     )
