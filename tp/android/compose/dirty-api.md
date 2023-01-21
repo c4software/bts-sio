@@ -464,6 +464,28 @@ Pour les interactions avec les tabs :
 - Le `OnClick` de chaque `BottomNavigationItem` permet de changer l'écran actuellement affiché.
 - Le `Selected` de chaque `BottomNavigationItem` permet d'indiquer quel écran est actuellement affiché, et donc de changer l'icône (couleur).
 
+## L'apperçu d'un composant
+
+Pour faciliter le développement, vous pouvez utiliser le système de `Preview` de Jetpack Compose. Il permet de voir un composant dans l'IDE sans avoir à lancer l'application sur un appareil (ou un émulateur).
+
+Pour utiliser le système de `Preview`, il suffit d'ajouter l'annotation `@Preview` au-dessus de la fonction qui contient le composant à afficher.
+
+```kotlin
+@Composable
+@Preview(showBackground = true)
+fun ListItemPreview() {
+    ListItem("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut") {}
+}
+```
+
+![preview composant](./preview_composant.jpg)
+
+La flèche rouge vous permet de lancer l'aperçu du composant en mode « interactif ». Vous pourrez donc cliquer dessus pour voir les interactions (visuelles) avec le composant.
+
+::: tip C'est lent ?
+Malheureusement, le système de `Preview` est assez lent. Il faut donc faire attention à ne pas en abuser. C'est dommage, car c'est un outil très pratique pour le développement.
+:::
+
 ## Conclusion
 
 Dans ce support nous avons vu comment l'architecture d'une application Android avec Jetpack Compose et qui appelle une API. Comme dans le TP précédent, nous nous sommes efforcés de découper notre application en plusieurs parties :
