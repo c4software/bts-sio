@@ -29,7 +29,7 @@ Cette application contient les éléments suivants :
 - Une liste de photos, les données sont récupérées depuis une API (fichier `ApiService.kt`). Les photos sont affichées en utilisant la librairie Coil.
 - Une page à propos affiche des informations sur l'application.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hWCIqjsTJiw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Gs51sngU-3c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Prérequis
 
@@ -305,6 +305,7 @@ L'enum `STATES` est utilisé pour définir quel écran est actuellement affiché
 - `HOME`: Écran d'accueil.
 - `LIST`: Écran de liste.
 - `PHOTO`: Écran qui liste les photos.
+- `LOGIN`: Écran de connexion (deux champs).
 - `ABOUT`: Écran d'informations sur l'application.
 
 ## Rappel sur les callbacks
@@ -349,6 +350,25 @@ Les deux syntaxes sont correctes. En Kotlin il est préférable d'écrire la pre
 
 :::
 
+## L'écran de connexion
+
+Vous avez dans l'application de démo un écran de connexion. Cet écran est composé de deux champs de saisie (email et mot de passe). La connexion repose sur une API Rest.
+
+Le fonctionnement est le suivant :
+
+- L'utilisateur saisit son email et son mot de passe.
+- L'utilisateur clique sur le bouton "Connexion".
+- L'application utilise le viewModel pour appeler l'API Rest. La fonction prend 3 paramètres : l'email, le mot de passe et un callback.
+- Après l'appel de l'API le callback est appelé avec le résultat de l'appel.
+
+Vous pouvez [voir le code ici](https://github.com/c4software/project-compose-api-sample/tree/main/app/src/main/java/com/example/exemplecomposelisteapi/screens/login)
+
+::: danger Ici pas de sauvegarde de l'authentification
+L'idée ici est de voir comment naviguer entre différent écran, et de découvrir comment il est possible de lier l'ensemble (API, Navigation entre les vues, etc).
+
+La sauvegarde de l'authentification n'est donc pas traitée ici. 
+:::
+
 ## Les images (res, drawable)
 
 Sur Android les ressources de type images sont stockées dans le dossier `res/drawable`. Nativement, Compose permet de charger les images depuis ce dossier. Pour charger des images depuis une ressource distante (par exemple une image stockée sur un serveur), nous allons utiliser une librairie tierce (Coil).
@@ -357,7 +377,7 @@ Voilà la procédure pour charger des images (locales et distantes).
 
 ### Les images locales
 
-Android Compose permet de charger des images depuis un fichier localement présent dans votre applicaton (res/drawable). Pour charger une image depuis un fichier local, nous utilisons le composant `Image` :
+Android Compose permet de charger des images depuis un fichier localement présent dans votre application (res/drawable). Pour charger une image depuis un fichier local, nous utilisons le composant `Image` :
 
 ```kotlin
 Image(
