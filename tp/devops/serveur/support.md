@@ -620,7 +620,7 @@ mysqldump -u root -p --all-databases > /media/backup/databases.sql
 
 Ce script va sauvegarder les données du dossier `/home` et la base de données dans le dossier `/media/backup`.
 
-::: Comment l'automatiser ?
+::: tip Comment l'automatiser ?
 
 Vous pouvez automatiser la sauvegarde en créant un script et en le mettant dans un cron. Voici un exemple de cron :
 
