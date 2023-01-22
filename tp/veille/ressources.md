@@ -4,7 +4,7 @@ description: Pour progresser en développement il faut ce maintenir à jour, et 
 
 # Ressources pour le développement web
 
-Pour progresser en développement il faut ce maintenir à jour, et pour cela il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
+Pour progresser en développement il faut se maintenir à jour, et pour cela il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
 
 ::: details Table des matières
 [[toc]]
@@ -28,7 +28,7 @@ _Veille :_
 - [Le journal du hacker](https://www.journalduhacker.net/)
 - [Youtube](https://www.youtube.com/)
 
-_Aggregateurs RSS :_
+_Agrégateurs RSS :_
 
 - [Feedly](https://feedly.com/)
 - [Inoreader](https://www.inoreader.com/)
@@ -64,8 +64,8 @@ _Imageries et illustrations :_
 - [Des illustrations](https://icons8.com/illustrations?ref=lapaninja)
 - [Rappel sur design](https://atlassian.design/)
 - [Bootstrap](https://getbootstrap.com/) <- Un standard
-- [Tailwind](https://tailwindcss.com/) <- À creuser
-- [Des templates réutilisable](https://startbootstrap.com/?showPro=false&showAngular=false)
+- [Tailwind](https://tailwindcss.com/) <- À creuser.
+- [Des templates réutilisables](https://startbootstrap.com/?showPro=false&showAngular=false)
 - [Réaliser des schémas](https://draw.io)
 
 _Apprentissage :_
