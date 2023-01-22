@@ -4,7 +4,6 @@ Installation et configuration d'un serveur d'application.
 
 <SlidesDeck src="serveur" />
 
-
 ## Les supports
 
 - [Support d'accompagnement](/tp/devops/serveur/support.md)
