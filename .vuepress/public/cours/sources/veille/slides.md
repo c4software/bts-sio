@@ -16,7 +16,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Pourquoi c'est important ?
+## Pourquoi est-ce important ?
 
 ---
 
