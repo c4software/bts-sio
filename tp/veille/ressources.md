@@ -2,7 +2,7 @@
 description: Pour progresser en développement il faut ce maintenir à jour, et pour cela il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
 ---
 
-# Ressources pour le développement web
+# Ressources pour le développement / La veille
 
 Pour progresser en développement il faut se maintenir à jour, et pour cela il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
 

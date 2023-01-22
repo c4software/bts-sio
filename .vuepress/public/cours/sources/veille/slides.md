@@ -149,7 +149,7 @@ Beaucoup de sources d'informations sont disponibles.
 
 ---
 
-[Ma liste de sources]()
+[Ma liste de sources](https://cours.brosseau.ovh/tp/veille/ressources.html)
 
 ---
 
