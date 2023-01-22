@@ -11,7 +11,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - DevOps
 - Les OS et les dev
 - Qu'est-ce qu'un serveur (App, Web, BDD)
-- La constitutions d'un serveur (OS, Services, Accès, Sécurité, Sauvegarde, Organisation, Diagnostique)
+- La constitutions d'un serveur (OS, Services, Applications)
+- L'accès à distance
+- Diagnostiquer un problème
+- La Sécurité (Ports, Services, Utilisateurs, Sauvegardes)
 - Les différents types de serveurs (Physique, Virtuel, Cloud)
 - Docker
 
