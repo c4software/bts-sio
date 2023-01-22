@@ -96,7 +96,7 @@ module.exports = [
     ]
   },
 
-  { collapsible: true, text: "Ressources & Intégrations", children: ["/tp/html_css/integration.md"] },
+  { collapsible: true, text: "Veille & Ressources", children: ["cours/veille.md", "/tp/veille/ressources.md"] },
 
   {
     text: "Le HTML + CSS",

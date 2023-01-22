@@ -26,6 +26,22 @@ _Veille :_
 - [Les numériques](https://www.lesnumeriques.com/)
 - [Le Monde Informatique](https://www.lemondeinformatique.fr/)
 - [Le journal du hacker](https://www.journalduhacker.net/)
+- [Youtube](https://www.youtube.com/)
+
+_Aggregateurs RSS :_
+
+- [Feedly](https://feedly.com/)
+- [Inoreader](https://www.inoreader.com/)
+- [The Old Reader](https://theoldreader.com/)
+- [Feedbin](https://feedbin.com/)
+- [Aggregator](https://play.google.com/store/apps/details?id=com.tughi.aggregator)
+- [Nextcloud News](https://apps.nextcloud.com/apps/news)
+
+_Outillage :_
+
+- [Notion](https://www.notion.so/)
+- [Doodle](https://doodle.com/fr/)
+- [Trello](https://trello.com/)
 
 _Documentation :_
 
