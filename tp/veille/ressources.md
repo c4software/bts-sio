@@ -1,10 +1,10 @@
 ---
-description: Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
+description: Pour progresser en développement il faut ce maintenir à jour, et pour cela il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
 ---
 
-# Ressources pour intégration
+# Ressources pour le développement web
 
-Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
+Pour progresser en développement il faut ce maintenir à jour, et pour cela il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
 
 ::: details Table des matières
 [[toc]]
@@ -12,7 +12,31 @@ Pour progresser en HTML / CSS il faut pratiquer. Dans cette page vous trouverez 
 
 ## Ressources
 
-Vous aurez certainement besoin de ressources, voilà une liste d'élément pouvant vous servir :
+_Veille :_
+
+- [Github Trending](https://github.com/trending)
+- [Medium.com](https://medium.com/)
+- [Dev.to](https://dev.to/)
+- [Reddit /r/webdev](https://www.reddit.com/r/webdev/)
+- [Hacker News](https://news.ycombinator.com/)
+- [Twitter](https://twitter.com/)
+- [Développez.com](https://www.developpez.com/)
+- [Le journal du développeur](https://www.journaldunet.com/web-tech/developpeur/)
+- [Le journal du geek](https://www.journaldugeek.com/)
+- [Les numériques](https://www.lesnumeriques.com/)
+- [Le Monde Informatique](https://www.lemondeinformatique.fr/)
+- [Le journal du hacker](https://www.journalduhacker.net/)
+
+_Documentation :_
+
+- [MDN](https://developer.mozilla.org/fr/)
+- [W3Schools](https://www.w3schools.com/)
+- [Can I use](https://caniuse.com/) <- Voir si un navigateur supporte une fonctionnalité.
+- [CSS Tricks](https://css-tricks.com/)
+- [Le journal du développeur](https://www.journaldunet.com/web-tech/developpeur/)
+- [StackOverflow](https://stackoverflow.com/)
+
+_Imageries et illustrations :_
 
 - [Des ressources pour le design](https://designresourc.es/) (Merci Valentin Brebion)
 - [CodePen.io](https://codepen.io/)
@@ -77,37 +101,3 @@ _Hebergement :_
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 - [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou mutualisés.
 - [AlwaysData](https://www.alwaysdata.com/fr/) <- Free-tiers de 100mo pour vos projets.
-
-
-::: details Vous avez envie de progresser ? Voilà des éléments à intégrer
-
-### Single Page Website
-
-![Cas 1](./integration/cas1.png)
-
----
-
-![Cas 2](./integration/cas2.png)
-
-### Liste de liens (avec responsive)
-
-![Cas 3](./integration/cas3.png)
-
-### Blog
-
-![Cas 4](./integration/cas4.png)
-
----
-
-![Cas 5](./integration/cas5.png)
-
-### Interfaces Mobiles / Responsives
-
-    ![Cas 6](./integration/cas6.jpeg)
-
-    ---
-
-    ![Cas 7](./integration/cas7.jpg)
-
-
-:::
