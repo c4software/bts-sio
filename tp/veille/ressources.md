@@ -42,6 +42,7 @@ _Outillage :_
 - [Notion](https://www.notion.so/)
 - [Doodle](https://doodle.com/fr/)
 - [Trello](https://trello.com/)
+- [Pomodoro](https://pomofocus.io/)
 
 _Documentation :_
 
