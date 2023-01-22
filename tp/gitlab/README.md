@@ -38,13 +38,31 @@ Après avoir regardé les différents documents, nous allons réfléchir ensembl
 
 :::
 
+## Contraintes de l’entreprise
+
+Afin de s'assurer de la qualité du code, l'entreprise souhaite que vous utilisiez GitLab pour versionner votre code. Elle vous impose également quelques règles :
+
+- Vous devez utiliser GitLab pour versionner votre code.
+- Vous devez utiliser des branches pour travailler sur votre projet.
+- Les branches doivent être nommées de la façon suivante : `feature/ma-branche`. (ex: `feature/ajout-article-git`)
+- Vous devez faire des commits régulièrement. La fréquence est à définir en fonction de votre vision du projet.
+- Vous devez utiliser des messages de commit explicites. (ex: `Ajout d’un nouvel article sur Git`)
+- Vous devez faire des merges requests pour fusionner vos branches avec la branche `master`.
+- Vous devez cloner votre projet sur votre ordinateur. En utilisant obligatoirement une clé SSH.
+
+::: tip ✨ Ce TP est évalué ✨
+
+Ce TP est évalué, il est donc important de le réaliser correctement. Vous pouvez vous aider des ressources ci-dessus.
+
+:::
+
 ## Création du projet
 
 Avant d’utiliser GitLab nous allons dans un premier temps créer un site Internet sur votre ordinateur.
 
 Je vous propose de versionner le blog que vous avez réalisé dans le cadre de la première AP. Je vous laisse :
 
-- Créer un dossier blog sur votre ordinateur.
+- Créer un dossier blog sur votre ordinateur (ou de réutiliser le dossier que vous avez créé dans le cadre de la première AP)
 - Initialiser un projet git dans ce dossier. (`git init`)
 - Créer un premier commit avec le message « Initialisation du projet ».
 - Réaliser une modification en ajouter un nouvel article dans votre blog. (thématique `git`).
@@ -223,3 +241,20 @@ Vous venez (normalement) d’avoir au moins un « merge request » d’assig
 - Vous y voyez un intérêt ?
 - À votre avis, est-il possible d’améliorer la revue de code ?
 - En situation réelle, est-ce votre rôle de « merger le code » ?
+
+## Ajout d'une page à propos
+
+En utilisant le processus vu précédemment, ajouter une page « à propos » dans votre blog. Vous n'oublierez pas :
+
+- De créer une issue.
+- De créer une branche.
+- De créer une merge request.
+- De réaliser une revue de code (avec des commentaires).
+- De merger le code.
+
+## Document à rendre
+
+- Screenshot de la clé SSH sur votre compte GitLab.
+- Le document listant les différences entre Github et GitLab.
+- Réponse aux questions format PDF.
+- Lien vers votre projet GitLab (n'oubliez pas de m'inviter en tant que membre)
