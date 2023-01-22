@@ -6,8 +6,6 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Sommaire
-
 - DevOps
 - Les OS et les dev
 - Qu'est-ce qu'un serveur (App, Web, BDD)
