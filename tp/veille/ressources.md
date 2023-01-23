@@ -12,6 +12,15 @@ Pour progresser en développement il faut se maintenir à jour, et pour cela il 
 
 ## Ressources
 
+_Generalistes :_
+
+- [Clubic](https://www.clubic.com/)
+- [Le Monde Informatique](https://www.lemondeinformatique.fr/)
+- [Le journal du hacker](https://www.journalduhacker.net/)
+- [Le journal du geek](https://www.journaldugeek.com/)
+- [Les numériques](https://www.lesnumeriques.com/)
+- [01net](https://www.01net.com/)
+
 _Veille :_
 
 - [Github Trending](https://github.com/trending)
