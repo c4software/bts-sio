@@ -27,6 +27,8 @@
   - Apache
   - Nginx
   - Autre
+  - Virtual Host
+  - Les ports
 - Un serveur de base de données
   - Gestion des données
   - MySQL

@@ -10,6 +10,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - Les OS et les dev
 - Qu'est-ce qu'un serveur (App, Web, BDD)
 - La constitution d'un serveur (OS, Services, Applications)
+- Les vhosts, les ports etc
 - L'accès à distance
 - Diagnostiquer un problème
 - La Sécurité (Ports, Services, Utilisateurs, Sauvegardes)
