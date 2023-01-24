@@ -16,7 +16,7 @@ Vous débutez avec Docker ? Je vous conseille plutôt de [démarrer par ici](../
 
 ## Avant-propos
 
-Docker c'est simple ! Les étapes peuvent paraitre effrayante, mais non. Pour vous le prouver, voilà une vidéo de la procédure entière (2min top chrono de la création du projet à la mise à disposition sur votre machine) :
+Docker c'est simple ! Les étapes peuvent paraître effrayante, mais non. Pour vous le prouver, voilà une vidéo de la procédure entière (2min top chrono de la création du projet à la mise à disposition sur votre machine) :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/l6vrilZQ7G4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -134,7 +134,7 @@ Sur ma machine :
 
 Vous avez maintenant « un serveur » qui fonctionne, nous allons ajouter un fichier nommé qui sera utilisé par Docker Compose, cette configuration au format YAML.
 
-Docker Compose vas nous permet de créer de véritable environnement multi conteneur, dans notre cas pour l'instant nous n'aurons que Laravel, mais qui peux le plus peux le moins.
+Docker Compose vas nous permet de créer de véritable environnement multiconteneur, dans notre cas pour l'instant nous n'aurons que Laravel, mais qui peux le plus peux le moins.
 
 Je vous laisse créer (dans le même dossier que le `Dockerfile`) un fichier nommé `docker-compose.yaml`, pour le contenu le voilà :
 
@@ -158,9 +158,9 @@ Ce fichier indique que vous avez :
 
 À votre avis :
 
-- Quelles autres options avez vous à votre disposition pour le restart ? [C'est par ici](https://docs.docker.com/config/containers/start-containers-automatically/)
+- Quelles autres options avez-vous à votre disposition pour le restart ? [C'est par ici.](https://docs.docker.com/config/containers/start-containers-automatically/)
 - À quoi correspond "8080:80" ? Pourquoi avons-nous un `80` alors que le site est disponible sur le `8080` ?
-- Est-il possible de déclarer plusieurs services ? [C'est par ici](https://docs.docker.com/compose/compose-file/)
+- Est-il possible de déclarer plusieurs services ? [C'est par ici.](https://docs.docker.com/compose/compose-file/)
 
 :::
 
@@ -235,7 +235,7 @@ docker-compose up -d
 
 À votre avis ?
 
-- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le `docker-compose.yml` mais comment ?)
+- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le, `docker-compose.yml` mais comment ?)
 - Est-ce que votre service va démarrer automatiquement si vous redémarrez votre machine ?
 
 :::

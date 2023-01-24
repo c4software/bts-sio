@@ -12,7 +12,7 @@ Comme nous l’avons vu dans [le premier TP](introduction.md) chaque image Docke
 
 Comme vous avez pu le voir sur le DockerHub il existe énormément d’images déjà prêtes, elles nous seront bien évidement utiles dans nos images Docker, mais tels quelles elles n’ont que « peu d’intérêts ». Nous allons donc écrire un fichier Dockefile qui va permettre de créer toute la définition pour le bon fonctionnement de l’application « TODO » que vous avez écrit dans un autre TP.
 
-Une fois le fichier Dockerfile écrit, votre application sera fonctionnelle sur toutes les plateformes supportées par Docker (Windows, Linux, OSX, Raspberry Pi…), fonctionnelles oui, mais surtout fonctionnelle en quelques secondes !
+Une fois le fichier Dockerfile écrit, votre application sera fonctionnelle sur toutes les plateformes supportées par Docker (Windows, Linux, OSX, Raspberry Pi…), fonctionnelles oui, mais surtout fonctionnel en quelques secondes !
 
 ## Créer un Dockerfile
 
@@ -52,11 +52,11 @@ Lancer la précédente commande dans le dossier où vous avez créé le fichier 
 
 ## Image Docker pour l’application "TODO"
 
-Faire un test c’est bien! Mais maintenant que l’on connait les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à se soucier de l’environnement sur lequel vous allez lancer « votre application / site web ».
+Faire un test c’est bien! Mais maintenant que l’on connaît les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à nous soucier de l’environnement sur lequel vous allez lancer « votre application / site web ».
 
 ### 1. Écriture du Dockerfile
 
-Pour écrire notre Dockerfile nous allons avoir besoin de connaitre les technologies nécessaires au bon fonctionnement de notre application. Dans notre cas, il faut le langage de programmation de la partie serveur :
+Pour écrire notre Dockerfile nous allons avoir besoin de connaître les technologies nécessaires au bon fonctionnement de notre application. Dans notre cas, il faut le langage de programmation de la partie serveur :
 
 - […] (À vous de trouver…)
 
@@ -65,7 +65,7 @@ Une fois que c’est fait, il faut trouver une image de base qui nous servira de
 - Quelle version choisissez-vous ?
 - Pourquoi ?
 
-Pour continuer nous allons utiliser l’image PHP 7 Apache. Voilà le début de notre Dockerfile :
+Pour continuer, nous allons utiliser l’image PHP 7 Apache. Voilà le début de notre Dockerfile :
 
 ```dockerfile
 FROM php:7-apache
@@ -95,7 +95,7 @@ Et voilà! C’est terminé. Votre image est prête à être « build ».
 
 ### 3. Build de l’image
 
-Maintenant que notre image est prête nous allons pouvoir builder l’image :
+Maintenant que notre image est prête, nous allons pouvoir builder l’image :
 
 ```bash
 docker build --tag "vuejs-todo:latest" .
@@ -105,7 +105,7 @@ Ding ! C’est prêt.
 
 ### 4. Lancer votre application
 
-Votre application étant buildée pour la lancer il suffit de faire :
+Votre application étant buildée pour la lancer, il suffit de faire :
 
 ```bash
 docker run -p 8888:80 vuejs-todo:latest

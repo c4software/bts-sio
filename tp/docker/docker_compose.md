@@ -19,14 +19,14 @@ C’est dans des cas comme celui-ci que nous allons utiliser Docker-Compose. Ave
 
 Docker Compose est fourni directement par les développeurs de Docker, cependant sous Linux il n’est pas inclus dans l’installation de base des paquets. Pour l’installer, rendez-vous sur la [documentation de Docker](https://docs.docker.com/compose/install/#install-compose).
 
-Sous Windows et OSX pas de soucis Docker Compose est **inclus** dans l’installation de base.
+Sous Windows et OSX pas de soucis, Docker Compose est **inclus** dans l’installation de base.
 
 ## Structure d’un Docker Compose
 
 Un fichier `docker-compose.yml` utilise la syntaxe yaml. Pour rappel un fichier Yaml c’est :
 
 > La syntaxe du flux YAML est relativement simple, efficiente, moins verbeuse que du XML, moins compacte cependant que du CSV. Elle a été établie pour être le plus lisible possible par des humains, tout en pouvant être mise en correspondance facilement avec les types de données précités, communs dans les langages de haut niveau. À ces langages il emprunte certaines notations.
-> – Les commentaires sont signalés par le signe dièse (#) et se prolongent sur toute la ligne. Si par contre le dièse apparait dans une chaine, il signifie alors un nombre littéral.
+> – Les commentaires sont signalés par le signe dièse (#) et se prolongent sur toute la ligne. Si par contre le dièse apparaît dans une chaîne, il signifie alors un nombre littéral.
 > – Une valeur nulle s’écrit avec le caractère tilde (~)
 > Il est possible d’inclure une syntaxe JSON dans une syntaxe YAML.
 > – Les éléments de listes sont dénotés par le tiret (-), suivi d’une espace, à raison d’un élément par ligne.
@@ -34,7 +34,7 @@ Un fichier `docker-compose.yml` utilise la syntaxe yaml. Pour rappel un fichier 
 > – Les scalaires peuvent être entourés de guillemets doubles ("), ou simples ('), sachant qu’un guillemet s’échappe avec un antislash (\), alors qu’un apostrophe s’échappe avec un autre apostrophe4. Ils peuvent de plus être représentés par un bloc indenté avec des modificateurs facultatifs pour conserver (|) ou éliminer (>) les retours à la ligne.
 >
 > - Plusieurs documents rassemblés dans un seul fichier sont séparés par trois traits d'union (---) ; trois points (…) optionnels marquent la fin d’un document dans un fichier.
->   – Les nœuds répétés sont initialement signalés par une esperluette (&) puis sont référencés avec un astérisque (\*) ; JSON, un langage concurrent de YAML, est compatible avec la syntaxe de JavaScript mais ne supporte pas cette notion de référence.
+>   – Les nœuds répétés sont initialement signalés par une esperluette (&) puis sont référencés avec un astérisque (\*) ; JSON, un langage concurrent de YAML, est compatible avec la syntaxe de JavaScript, mais ne supporte pas cette notion de référence.
 >   – L’indentation, par des espaces, manifeste une arborescence.
 
 Source : Wikipedia
@@ -56,7 +56,7 @@ Dans ce fichier, nous définissons 2 services.
 
 Le premier nommé Web fait référence à un fichier DockerFile présent dans le même dossier que le `docker-compose.yml`. Le service en question expose au client final le port `5000`.
 
-Le second service est un service nommé Redis, il fait référence à une image disponible sur https://hub.docker.com. Cette image n’expose aucun port au public mais sera accessible pour `web`.
+Le second service est un service nommé Redis, il fait référence à une image disponible sur https://hub.docker.com. Cette image n’expose aucun port au public, mais sera accessible pour `web`.
 
 ## Monter une application grâce Docker Compose
 
@@ -95,7 +95,7 @@ volumes:
   db_data: {}
 ```
 
-Et voilà, c’est tout ! Votre stack Wordpress est prête il vous suffit de la lancer avec la commande suivante :
+Et voilà, c’est tout ! Votre stack Wordpress est prêt, il vous suffit de la lancer avec la commande suivante :
 
 ```bash
 docker-compose up
@@ -133,7 +133,7 @@ Je vous laisse tester.
 
 ## Allons plus loin ?
 
-Nous avons vu ici que nous pouvions montrer rapidement un ensemble d'image Docker pour créer une Stack Applicative. Docker-Compose permet également d'utiliser des images « local » (des Dockerfile comme vu précédement) pour les intégrer dans votre projet.
+Nous avons vu ici que nous pouvions montrer rapidement un ensemble d'images de Docker pour créer une Stack Applicative. Docker-Compose permet également d'utiliser des images « local » (des Dockerfile comme vus précédemment) pour les intégrer dans votre projet.
 
 Je vous propose que nous réfléchissions ensemble à une « Stack » que nous pourrions dockerisé, un exemple avant de démarrer voilà mon Dockerfile
 
@@ -170,7 +170,7 @@ volumes:
   mysql-data:
 ```
 
-Voilà les autres fichiers nécéssaire, dans un dossier `php/` le fichier Dockerfile suivant :
+Voilà les autres fichiers nécessaires, dans un dossier, `php/` le fichier Dockerfile suivant :
 
 ```dockerfile
 FROM php:7.4.14-apache

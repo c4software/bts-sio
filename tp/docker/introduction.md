@@ -6,6 +6,10 @@ description: Dans ce TP nous allons voir l’installation de Docker et les premi
 
 Dans ce TP nous allons voir l’installation de Docker et les premiers exemples d’utilisations de votre nouvel environnement.
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Installation de Docker sous Windows
 
 Pour installer Docker rien de plus simple, il suffit d’utiliser l’installeur officiel en le téléchargent sur [le site de Docker.](https://www.docker.com/docker-windows)
@@ -44,7 +48,7 @@ docker run hello-world
 
 Maintenant que nous avons lancé notre première « vrai » machine, intéressons-nous à son fonctionnement. Vous avez du constater le terme « Pulling From » c’est l’image ou les morceaux d’image utile au fonctionnement de votre service. Celui-ci est téléchargé directement depuis le « Docker Hub » (il est également possible d’avoir un Hub privé). Vous pouvez voir « les sources » de l’image en question : [ici](https://github.com/docker-library/hello-world), comme beaucoup de projets libres l’image est disponible sur Github.
 
-Surprise ! On retrouve des plateformes (amd64, i686, armXX). Et c’est normal, Docker est multiplateforme et dans le cas de notre exemple l’exécutable « hello » est codé en C il est donc logique de retrouver l’exécutable pour les différentes plateformes ou l’image doit fonctionner.
+Surprise ! On retrouve des plateformes (amd64, i686, armXX). Et c’est normal, Docker est multiplate-forme et dans le cas de notre exemple l’exécutable « hello » est codé en C il est donc logique de retrouver l’exécutable pour les différentes plateformes ou l’image doit fonctionner.
 
 Maintenant que nous avons vu le projet, entrons plus en détail, allons voir la définition de notre image le [fichier Dockerfile.](https://github.com/docker-library/hello-world/blob/master/i386/hello-world/Dockerfile)
 
@@ -120,7 +124,7 @@ Sous Unix :
 docker run -v $(pwd):/mnt/ -it ubuntu bash # Monte le dossier courant dans le /mnt du Docker.
 ```
 
-Lancer la commande `ls /mnt` vous devriez voir vos fichiers.
+Lancer la commande, `ls /mnt` vous devriez voir vos fichiers.
 
 #### Monter un fichier
 
@@ -148,7 +152,7 @@ Et c’est la que l’on voit la puissance, on verra qu’il sera possible par l
 
 ## Compilation Cordova
 
-Je pense que vous vous souvenez que paramétrer l’environnement de compilation Android sur Windows n’était pas vraiment simple (JDK, SDK, etc…), avec Docker c’est beaucoup plus simple ! Vraiment beaucoup plus simple. Pour compiler un projet Cordova avec Docker j’ai préparé une petite image Docker qui possède l’ensemble des éléments nécessaires, pour l’utiliser :
+Je pense que vous vous souvenez que paramétrer l’environnement de compilation Android sur Windows n’était pas vraiment simple (JDK, SDK, etc.), avec Docker c’est beaucoup plus simple ! Vraiment beaucoup plus simple. Pour compiler un projet Cordova avec Docker j’ai préparé une petite image Docker qui possède l’ensemble des éléments nécessaires, pour l’utiliser :
 
 ### Unix (Linux, Osx)
 

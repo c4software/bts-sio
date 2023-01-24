@@ -4,17 +4,17 @@ description: Dans ce TP nous allons voir comment monter rapidement (et très sim
 
 # Créer des services très rapidement (et simplement)
 
-Dans ce TP nous allons voir comment monter rapidement (et très simplement) un service avec Docker. Ici pas de Docker-Composes ou autre… Il s'agit de voir que Docker vous nous permettre de créer très simplement un « Serveur » pour répondre à une problématique ponctuelle de developpement.
+Dans ce TP nous allons voir comment monter rapidement (et très simplement) un service avec Docker. Ici pas de Docker-Composes ou autre… Il s'agit de voir que Docker vous nous permettre de créer très simplement un « Serveur » pour répondre à une problématique ponctuelle de développement.
 
 ::: danger Un détail
-Le plus important dans ce genre de « stack » c'est de se souvenir qu'un conteneur Docker est « Stateless », c'est à dire que les données seront éffacés à chaque redémarrage de celui-ci. Donc attention !
+Le plus important dans ce genre de « stack » c'est de se souvenir qu'un conteneur Docker est « Stateless », c'est-à-dire que les données seront effacées à chaque redémarrage de celui-ci. Donc attention !
 :::
 
-Vous avez oubliez comment fonctionne la ligne de commande de Docker ? [Petit rappel ici sur son utilisation](/cheatsheets/docker/)
+Vous avez oublié comment fonctionne la ligne de commande de Docker ? [Petit rappel ici sur son utilisation](/cheatsheets/docker/)
 
 ## PHP
 
-Même si PHP est relativement et très simplement disponible sur différents environnements il est quand même intéressant de voir comment le lancer directement via Docker. Pourquoi ? Et bien, car Docker va nous permettre de lancer plusieurs versions du PHP sur la même machine. Pratique par exemple si vous souhaitez tester rapidement un développement. De plus nous allons voir qu'avec le système de volume, il sera possible de le faire en quelques secondes.
+Même si PHP est relativement et très simplement disponible sur différents environnements, il est quand même intéressant de voir comment le lancer directement via Docker. Pourquoi ? Et bien, car Docker va nous permettre de lancer plusieurs versions du PHP sur la même machine. Pratique par exemple si vous souhaitez tester rapidement un développement. De plus nous allons voir qu'avec le système de volume, il sera possible de le faire en quelques secondes.
 
 ### PHP 7
 
