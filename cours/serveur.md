@@ -9,7 +9,7 @@ Installation et configuration d'un serveur d'application.
 - [Support d'accompagnement](/tp/devops/serveur/support.md)
 - [Aide mémoire Linux](/cheatsheets/serveur/linux-debian-based.md)
 - [Configurateur réseau Debian](/cheatsheets/serveur/debian-reseau.md)
-- [Créer une VM Serveur Web Debian](/cheatsheets/serveur/debian-web.md)
+- [De A à Z… Créer une VM Serveur Web Debian](/cheatsheets/serveur/debian-web.md)
 
 ## Les TP Debian
 
