@@ -464,7 +464,7 @@ Pour les interactions avec les tabs :
 - Le `OnClick` de chaque `BottomNavigationItem` permet de changer l'écran actuellement affiché.
 - Le `Selected` de chaque `BottomNavigationItem` permet d'indiquer quel écran est actuellement affiché, et donc de changer l'icône (couleur).
 
-## L'apperçu d'un composant
+## L'aperçu d'un composant
 
 Pour faciliter le développement, vous pouvez utiliser le système de `Preview` de Jetpack Compose. Il permet de voir un composant dans l'IDE sans avoir à lancer l'application sur un appareil (ou un émulateur).
 
