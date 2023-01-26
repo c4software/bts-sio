@@ -716,10 +716,10 @@ const email = ref('')
 const message = ref('')
 
 function onSubmit() {
-  console.log(this.name)
-  console.log(this.firstname)
-  console.log(this.email)
-  console.log(this.message)
+  console.log(name)
+  console.log(firstname)
+  console.log(email)
+  console.log(message)
 }
 </script>
 ```
