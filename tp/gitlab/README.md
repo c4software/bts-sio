@@ -84,7 +84,11 @@ Pour vous reconnaître, GitLab/Github utilise un système de clé. Cette clé ga
 
 #### Génération de votre clé
 
-[Voir l'aide mémoire sur comment créer une clé SSH](/cheatsheets/ssh-key/README.md)
+Cette procédure n'est à faire qu'une seule fois « par ordinateur », la clé que nous allons générer aujourd'hui vous servira pendant les deux ans.
+
+Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoire sur comment créer une clé SSH](/cheatsheets/ssh-key/README.md)
+
+🚨 La procédure de génération de clé est la même pour Github et Gitlab, vous pouvez donc utiliser la même clé pour les deux services. 🚨
 
 ::: tip Important
 
@@ -102,11 +106,11 @@ Pour vous reconnaître, GitLab/Github utilise un système de clé. Cette clé ga
 
 [Ajouter une clé sur votre profil](https://gitlab.com/-/profile/keys)
 
-La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (à ouvrir avec notepad++ ou bloc-note).
+La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (**à ouvrir avec notepad++ ou bloc-note**).
 
 ### Création de votre premier projet
 
-Maintenant que votre compte est créé (et que l’échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet « gitlab », aura pour vocation de contenir les sources de votre site Internet (celui créé au début du TP). Nommer le bien !
+Maintenant que votre compte est créé (et que l’échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet « gitlab » aura pour vocation de contenir les sources de votre site Internet (projet, que vous aller me partager). Donc, nommer le bien !
 
 ### Question
 
@@ -139,7 +143,7 @@ GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester l
 - ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinent. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Je vous laisse tester 😉).
 
 
-- Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé assignez le à un autre étudiant ! Demandez-lui de le merger pour vous.
+- Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé, assignez le à un autre étudiant ! Demandez-lui de le merger pour vous.
 - ⚠️ ⚠️ L’autre étudiant doit regarder le code, et si possible vous faire des commentaires, par exemple :
   _ Tu as oublié le `alt` à ton image.
   _ Tu as oublié le `title` à ton image. \* Ou même pourquoi as-tu choisi cette image ?
@@ -183,7 +187,7 @@ Dans votre projet, créez une seconde issue. (Exemple : Ajouter une page à pro
 - Créer une nouvelle branche pour cette issue.
 - Traiter la modification en local.
 - Envoyer vos modifications sur le serveur GitLab.
-- Créer une merge request et assignez-la à un autre étudiant pour qu’il la valide.
+- Créez une merge request et assignez-la à un autre étudiant pour qu’il la valide.
 - Une fois la merge request validée, merger la branche.
 
 ### Mettre à jour le code local.
@@ -231,7 +235,7 @@ Vous venez (normalement) d’avoir au moins un « merge request » d’assig
 - Apporter des commentaires
   _ Dans l’issue, générale.
   _ Directement dans la partie code de l’issue.
-- Laisser votre collègue effectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc). DISCUTER ! (du code)
+- Laisser votre collègue effectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc.). DISCUTER ! (du code)
 - Si tout vous semble correcte « Merger » les modifications.
 
 ### Questions
@@ -257,4 +261,8 @@ En utilisant le processus vu précédemment, ajouter une page « à propos » da
 - Screenshot de la clé SSH sur votre compte GitLab.
 - Le document listant les différences entre Github et GitLab.
 - Réponse aux questions format PDF.
-- Lien vers votre projet GitLab (n'oubliez pas de m'inviter en tant que membre)
+- Lien vers votre projet GitLab (n'oubliez pas de m'inviter en tant que membre).
+
+## Rendu
+
+La restitution est à faire en utilisant le lien suivant : <https://forms.gle/f1hTk9X1EUAkgECp6>
