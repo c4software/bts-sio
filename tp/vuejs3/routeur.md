@@ -606,27 +606,31 @@ Voici le code à mettre dans votre setup de votre page `PokemonDetails.vue` :
 
 ```ts
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-const pokemonId = useRoute().params.id
+const route = useRoute() 
 const pokemon = ref(null)
 
 function fetchPokemon() {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${route.params.id}`)
         .then(response => response.json())
         .then(data => {
             pokemon.value = data
         })
 }
 
+// Si l'ID change, on appelle la fonction fetchPokemon
+watch(route, () => fetchPokemon())
+
+// Appel de la fonction fetchPokemon, pour récupérer les détails du pokémon
 fetchPokemon()
 </script>
 ```
 
 Quelques explications :
 
-- `pokemonId` : récupère l'ID dans l'URL, récupéré avec `useRoute().params.id`.
+- `route.params.id` : récupère l'ID dans l'URL. Exemple : `/pokemon/1` => `id = 1`
 - `pokemon` : variable qui va contenir les détails du pokémon
 - `fetchPokemon` : fonction qui va appeler l'API pour récupérer les détails du pokémon
 - `fetchPokemon()` : appel de la fonction `fetchPokemon` pour récupérer les détails.
