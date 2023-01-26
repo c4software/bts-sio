@@ -166,7 +166,7 @@ apk add vim
 Installer Docker sur Alpine Linux est rapide, il suffit de lancer la commande :
 
 ```sh
-apk add docker docker-compose # Install Docker et Docker Compose
+apk add docker docker-cli-compose # Install Docker et Docker Compose
 rc-update add docker boot # Active Docker au démarrage de la machine
 service docker start # Démarre Docker dès maintenant
 ```

@@ -122,7 +122,7 @@ Maintenant que le code est sur votre Raspberry Pi. Il suffit de le lancer pour l
 
 ```sh
 cd rpi-docker-lamp-stack
-docker-compose up -d
+docker compose up -d
 ```
 
 ::: tip Et c'est parti !

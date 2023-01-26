@@ -104,7 +104,7 @@ Ce fichier indique que vous avez :
 Pour tester, c'est encore plus simple !
 
 ```sh
-docker-compose up
+docker compose up
 ```
 
 Patientez quelques instants et votre site sera disponible sur le port [http://localhost:8080](http://localhost:8080).
@@ -154,7 +154,7 @@ Pour déployer votre site, il vous suffit :
 - Lancer la commande :
 
 ```sh
-docker-compose up -d
+docker compose up -d
 ```
 
 ::: tip Un instant !
@@ -174,7 +174,7 @@ Pour mettre à jour votre site, il vous suffit :
 - Lancer la commande :
 
 ```sh
-docker-compose restart
+docker compose restart
 ```
 
 ## C'est à vous

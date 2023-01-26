@@ -351,10 +351,10 @@ Une fois créée vous pourrez lancer votre infra via :
 
 ```sh
 # Lancement sans rendre la main
-docker-compose up
+docker compose up
 
 # Lancement en passant la stack en arrière plan
-docker-compose up -d
+docker compose up -d
 ```
 
 La force de Docker Compose c'est :
@@ -362,7 +362,7 @@ La force de Docker Compose c'est :
 - Autonome (car prête à être « mise en place » partout, quelle que soit la plateforme cible).
 - Préparamètre (tout est dans le fichier docker-compose.yml).
 - Isolé (tous les services ne sont pas forcément accessibles du public, mais sont accessibles par vos autres applications).
-- Administrable simplement grâce au cli (docker-compose up/down/start/stop)
+- Administrable simplement grâce au cli (docker compose up/down/start/stop)
 
 ::: danger L'astuce du chef !
 Nous avons vu précédemment qu'il était possible de builder nos propres images avec Docker. Quand nous utilisons docker compose cette option **sera bien évidemment encore disponible**.

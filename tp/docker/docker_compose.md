@@ -13,7 +13,7 @@ C’est dans des cas comme celui-ci que nous allons utiliser Docker-Compose. Ave
 - Autonome (car prête à être « mise en place » partout, quelle que soit la plateforme cible).
 - Pré-paramètrée (tout est dans le fichier `docker-compose.yml`).
 - Isolé (tous les services ne sont pas forcément accessibles du public, mais sont accessibles par vos autres applications).
-- Administrable simplement grâce au cli (`docker-compose up/down/start/stop`).
+- Administrable simplement grâce au cli (`docker compose up/down/start/stop`).
 
 ## Installer Docker Compose
 
@@ -98,7 +98,7 @@ volumes:
 Et voilà, c’est tout ! Votre stack Wordpress est prêt, il vous suffit de la lancer avec la commande suivante :
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 Rendez-vous sur [localhost:8080](http://localhost:8080) pour admirer votre travail.
