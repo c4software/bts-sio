@@ -405,7 +405,7 @@ Nous allons maintenant ajouter une page listant les pokémons. Pour cela, nous a
 Avant de continuer, je vous laisse créer la page `PokemonList.vue` et tester que vous pouvez y accéder. Voici les étapes à suivre :
 
 - Créer le fichier `PokemonList.vue` dans le dossier `src/views`
-- Ajouter le composant `PokemonList.vue` dans le fichier `router.js`
+- Ajouter le composant `PokemonList.vue` dans le fichier `router.ts`
 - Tester que vous pouvez accéder à la page `/pokemons`
 - Modifier votre navbar pour ajouter un lien vers la page `/pokemons`
 
@@ -693,7 +693,7 @@ En reprenant la logique vue précédemment, ajoutez une page `contact` qui conti
 Vous pouvez récupérer les données du formulaire avec la fonction `onSubmit` :
 
 ```html
-<form @submit="onSubmit">
+<form @submit.prevent="onSubmit">
   <input type="text" v-model="name" />
   <input type="text" v-model="firstname" />
   <input type="text" v-model="email" />
@@ -727,8 +727,9 @@ function onSubmit() {
 Je vous laisse travailler sur le style de l'application pour que celle-ci soit plus jolie. Vous pouvez également ajouter des fonctionnalités comme :
 
 - Ajouter un bouton pour revenir à la liste.
-- Ajouter un bouton pour aller au suivant
-- Ajouter un bouton pour aller au précédent
+- Ajouter un bouton pour aller au suivant.
+- Ajouter un bouton pour aller au précédent.
+- Afficher un pokémeon en aléatoire. (`math.random…`).
 
 - Vous n'oublierez pas de compléter la page `about` avec des informations sur l'application.
 - Vous n'oublierez pas de compléter la page `home`, celle-ci doit inviter l'utilisateur à aller sur la page `pokemons`.

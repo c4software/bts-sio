@@ -206,8 +206,7 @@ Je vous laisse tester et explorer les possibilités de cette nouvelle syntaxe. V
 
 ::: tip À faire
 
-- Tester la modification de valeur avec l'inspecteur.
-- Ajouter du code « interactif » (simple, ref + actions), exemple effacer le contenu du champ de saisie.
+- Ajouter du code « interactif » dans votre composant.
 - Utiliser VueUse, et par exemple tracker la position de la souris en utilisant [vueuse](https://github.com/vueuse/vueuse)
 
 :::
