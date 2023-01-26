@@ -202,7 +202,7 @@ Je vous laisse créer le fichier `router.ts` et de le remplir avec le code ci-de
 Nous allons maintenant initialiser le routeur dans notre application. Pour cela, nous allons ajouter le routeur dans le composant `main.ts` :
 
 ```ts
-import style.css
+import "./style.css"
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
