@@ -243,10 +243,10 @@ Heu, c'est tout ? Oui, c'est tout. Nous avons configuré le routeur et nous l'av
 
 ## Lancement de l'application
 
-Nous allons maintenant lancer notre application pour voir si tout fonctionne correctement. Pour cela, nous allons lancer la commande `npm run serve` :
+Nous allons maintenant lancer notre application pour voir si tout fonctionne correctement. Pour cela, nous allons lancer la commande `npm run dev` :
 
 ```bash
-npm run serve
+npm run dev
 ```
 
 Vous devriez voir l'application s'afficher dans votre navigateur :
