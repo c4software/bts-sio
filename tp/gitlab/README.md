@@ -113,10 +113,10 @@ La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le d
 
 ### Création de votre premier projet
 
-Maintenant que votre compte est créé (et que l’échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet « gitlab » aura pour vocation de contenir les sources de votre site Internet (projet, que vous aller me partager). Donc, nommer le bien !
+Maintenant que votre compte est créé (et que l’échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet gitlab aura pour vocation de contenir les sources de votre site Internet (projet, que vous aller me partager). Donc, nommer le bien !
 
 - Je vous laisse explorer les menus de GitLab pour créer votre projet.
-- Attention, vous devez choisir le type de projet « Empty project ».
+- Attention, vous devez choisir le type de projet Blank project ».
 - Vous devez choisir la visibilité du projet. (Public ou Private).
 
 ### Question
