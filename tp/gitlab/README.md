@@ -112,13 +112,19 @@ La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le d
 
 Maintenant que votre compte est créé (et que l’échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet « gitlab » aura pour vocation de contenir les sources de votre site Internet (projet, que vous aller me partager). Donc, nommer le bien !
 
+- Je vous laisse explorer les menus de GitLab pour créer votre projet.
+- Attention, vous devez choisir le type de projet « Empty project ».
+- Vous devez choisir la visibilité du projet. (Public ou Private).
+
 ### Question
 
 - Comment choisir la visibilité du projet ? (Visiblity Level)
 
 ### Envoi sur GitLab
 
-Maintenant que votre projet est créé, GitLab doit vous donner les instructions pour « pusher » votre projet sur le serveur. Suivez les instructions.
+Maintenant que votre projet est créé, GitLab doit vous donner les instructions pour « pusher » votre projet sur le serveur. Suivez les instructions. 
+
+Je vous invite pour cette première fois à suivre les instructions que Gitlab vous donne.
 
 #### Exemple :
 
@@ -128,10 +134,10 @@ Une fois que c’est fait. Regarder les différentes options que GitLab vous pro
 
 - Inviter un (ou plusieurs) autre étudiant dans votre projet (c’est dans l’onglet Members dans les paramètres)
 - Créer une nouvelle issue
-- Assigner l’issue à vous-même (ou a un autre étudiant).
+- Assigner l’issue à vous-même (ou à un autre étudiant).
 - Regarder les options autour de l’issue (Création de branch, issue board, etc…)
 
-### Édition en ligne
+### Édition en ligne (via GitLab)
 
 GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester les différentes fonctionnalités :
 
@@ -143,7 +149,7 @@ GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester l
 - ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinent. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Je vous laisse tester 😉).
 
 
-- Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé, assignez le à un autre étudiant ! Demandez-lui de le merger pour vous.
+- Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé, assignez-le à un autre étudiant ! Demandez-lui de le merger pour vous.
 - ⚠️ ⚠️ L’autre étudiant doit regarder le code, et si possible vous faire des commentaires, par exemple :
   _ Tu as oublié le `alt` à ton image.
   _ Tu as oublié le `title` à ton image. \* Ou même pourquoi as-tu choisi cette image ?
@@ -167,7 +173,33 @@ Je vous invite à regarder les différentes options de GitLab. Vous pouvez par e
 
 Pourquoi est-ce intéressant ?
 
+### Mettre à jour votre projet
+
+Vous avez édité votre projet en ligne, c'est bien… mais maintenant comment récupérer les modifications sur votre poste ? Pour récupérer les modifications, vous allez devoir faire un `pull` sur votre projet.
+
+```sh
+$ git pull
+```
+
+::: tip Attention
+Vous devez être dans le dossier du projet pour faire un `pull`.
+:::
+
+Je vous laisse vérifier si vous avez bien récupéré les modifications (via l’éditeur de texte comme avant)
+
 ## Édition en local
+
+Maintenant que vous avez compris le fonctionnement de GitLab, vous allez pouvoir travailler en local. Pour faire cela, nous allons reprendre le processus depuis le début, et faire comme si vous étiez sur un nouvel ordinateur.
+
+Quand nous changerons de poste, la première chose à faire sera de :
+
+- Cloner le projet
+
+::: warning Stop !
+
+**L'étape de clone**, n'est pas à faire si vous êtes sur le même poste que précédemment. Elle est à faire si vous êtes sur un nouveau poste, ou si vous avez supprimé le dossier du projet.
+
+:::
 
 ### Cloner le projet
 
