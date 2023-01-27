@@ -79,7 +79,7 @@ Vérifier que votre projet est bien commité, avec la commande `git status`. Vou
 
 ### Création du compte
 
-Créer votre compte sur [GitLab.com onglet Register](https://gitlab.com/users/sign_in). Se compte sera utile pour plusieurs projets, remplissez les champs avec attention.
+Créer votre compte sur [GitLab.com onglet Register](https://gitlab.com/users/sign_in). Ce compte sera utile pour plusieurs projets, remplissez les champs avec attention.
 
 #### Échange de clé
 
