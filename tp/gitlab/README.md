@@ -72,6 +72,9 @@ Je vous propose de versionner le blog que vous avez réalisé dans le cadre de l
 
 Vérifier que votre projet est bien commité, avec la commande `git status`. Vous pouvez également vérifier l’historique de vos commits via `git log`
 
+- Votre historique contient-il bien les deux commits que vous avez réalisé ?
+- Quelle est la différence entre `git status` et `git log` ?
+
 ## GitLab
 
 ### Création du compte
@@ -122,7 +125,7 @@ Maintenant que votre compte est créé (et que l’échange de clé est effectif
 
 ### Envoi sur GitLab
 
-Maintenant que votre projet est créé, GitLab doit vous donner les instructions pour « pusher » votre projet sur le serveur. Suivez les instructions. 
+Maintenant que votre projet est créé, GitLab doit vous donner les instructions pour « pusher » votre projet sur le serveur. Suivez les instructions.
 
 Je vous invite pour cette première fois à suivre les instructions que Gitlab vous donne.
 
