@@ -744,6 +744,94 @@ Il y a plusieurs raisons pour avoir plusieurs serveurs :
 - Vous pouvez avoir plusieurs serveurs pour avoir une meilleure sécurité.
 - Vous pouvez avoir plusieurs serveurs pour avoir une meilleure maintenance.
 
+## Les hébergeurs
+
+Maintenant que nous avons vu les différents éléments à prendre en compte pour installer un serveur, nous allons voir où nous pouvons installer un serveur. En effet, il est possible d'installer un serveur sur un ordinateur physique, mais il est également possible d'installer un serveur sur un hébergeur.
+
+### Qu'est-ce qu'un hébergeur ?
+
+Un hébergeur est une entreprise qui propose des serveurs. Vous pouvez louer un serveur chez un hébergeur. Vous pouvez louer un serveur chez un hébergeur pour héberger votre site Web, votre application, etc.
+
+### Les différents types d'hébergeurs
+
+Il existe plusieurs types d'hébergeurs :
+
+- Les hébergements mutualisés.
+- Les hébergements dédiés.
+- Les hébergements de type SaaS.
+
+#### Les hébergements mutualisés
+
+Les hébergeurs mutualisés sont des hébergeurs qui proposent des serveurs mutualisés. Un serveur mutualisé est un serveur qui contient plusieurs sites Web. Les sites Web sont séparés les uns des autres. Un serveur va donc contenir plusieurs sites Web, mais ces sites Web ne peuvent pas communiquer entre eux. Ils sont indépendants.
+
+#### Les hébergements dédiés
+
+Dans le cas d'un hébergement dédié, vous louez un serveur qui est entièrement dédié à votre site Web. Vous pouvez donc installer les services que vous voulez sur votre serveur. Vous pouvez donc installer un serveur Web, un serveur de base de données, etc.
+
+Le serveur peut-être physique ou virtuel. Mais dans tous les cas vous avez un accès complet à l'OS.
+
+#### Les hébergements de type SaaS
+
+Dans le cas d'un hébergement de type SaaS, vous louez un service, par exemple :
+
+- Un service de messagerie.
+- Un service de stockage.
+- Un service de gestion de projet.
+- Un service de gestion de relation client.
+- Un service d'hébergement de base de données.
+- Un WordPress
+
+### Les hébergeurs
+
+Il existe énormément d'hébergeurs, nous pouvons les classer en deux catégories :
+
+#### Les hébergeurs de type mutualisé & dédié
+
+- [OVH](https://www.ovh.com/fr/)
+- [Scaleway](https://www.scaleway.com/fr/)
+- [DigitalOcean](https://www.digitalocean.com/)
+- [Linode](https://www.linode.com/)
+- [Amazon Web Services](https://aws.amazon.com/fr/)
+- [Google Cloud Platform](https://cloud.google.com/)
+- [Microsoft Azure](https://azure.microsoft.com/fr-fr/)
+
+::: tip Les hébergeurs précédemment cités
+
+Ici nous retrouvons les grands noms de l'hébergement. Ces hébergeurs proposent des hébergements mutualisés, dédiés, VPS, etc. Ils proposent également des services de type SaaS (exemple Shadow)
+
+:::
+
+#### Les hébergeurs de type SaaS
+
+Ensuite, il est possible d'identifier des hébergeurs plus spécialisés :
+
+- [Heroku](https://www.heroku.com/)
+- [Netlify](https://www.netlify.com/)
+- [Vercel](https://vercel.com/)
+- [GitHub Pages](https://pages.github.com/)
+- [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/)
+- [Firebase](https://firebase.google.com/)
+
+L'ensemble de ces services sont en partie ou en totalité gratuits. Vous pouvez les utiliser pour héberger des sites « statiques » (HTML, CSS, JS, etc.). Ce type de site ne nécessite pas de serveur Web, car il n'y a pas de traitement côté serveur, ils sont nommés JAMStack.
+
+C’est une façon intéressante pour débuter gratuitement sur le web, c'est par exemple le cas de mon site. Réalisé avec [VuePress](https://vuepress.vuejs.org/), il est hébergé sur [Netlify](https://www.netlify.com/).
+
+### Comment choisir votre hébergeur ?
+
+Il existe plusieurs critères pour choisir votre hébergeur :
+
+- La localisation de votre hébergeur. (Important dans le cadre du RGPD).
+- La disponibilité de votre hébergeur.
+- La sécurité de votre hébergeur.
+- La performance de votre hébergeur.
+- Le prix de votre hébergeur.
+
+::: tip En entrprise
+
+Le choix de votre hébergeur est important, car il va déterminer la performance de votre application. Vous devez donc être vigilant lors de votre sélection, car un mauvais choix peut avoir des conséquences importantes sur l'activité de l'organisation.
+
+:::
+
 ## Docker
 
 L'autre moyen d'installer des services sur votre serveur est d'utiliser Docker. Docker est un logiciel qui permet de créer des conteneurs. 
@@ -770,3 +858,23 @@ Plus tard dans l'année nous utiliserons Docker pour créer des environnements d
 - [Introduction à Docker](/tp/docker/introduction.md)
 
 :::
+
+### Kubernetes ?
+
+Kubernetes est une solution open source permettant de gérer des clusters de conteneurs. Il permet de déployer, de gérer et de mettre à l'échelle des applications dans un cluster de conteneurs.
+
+Kubernetes est un orchestrateur de conteneurs. Il permet de déployer, de gérer et de mettre à l'échelle des applications dans un cluster de conteneurs. Si nous devons faire un parallèle, c'est un peu la suite de Docker. Il permet de déployer des conteneurs sur plusieurs serveurs et gérer la scalabilité d'un système.
+
+::: tip Scalabilité ?
+
+La scalabilité d'un système informatique décrit sa capacité à gérer une croissance accrue des utilisateurs, des données ou des exigences de performance sans compromettre la qualité de service. Cela peut être atteint en utilisant des technologies telles que la répartition de charges, la mise en réseau et la virtualisation.
+
+C'est un concept important dans le monde du DevOps. En effet, il est important de pouvoir déployer des applications sur plusieurs serveurs. Cela permet de répartir la charge et de pouvoir gérer une augmentation de la charge. Kubernetes permet de gérer cette scalabilité, mais il existe d'autres solutions comme Docker Swarm.
+
+:::
+
+## Conclusion
+
+Même si vous êtes un développeur, maîtriser les bases de l'administration d'un serveur est important. En effet, vos applications (web) ont des besoins (librairies, dépendances, etc.) pour bien comprendre comment déployer vos sites, il est important de comprendre comment votre serveur va fonctionner.
+
+Le DevOps sera donc capable de réaliser son site, mais également de le déployer sur un serveur qu'il aura choisi / défini. Avec par exemple des solutions comme Docker ou Kubernetes.
