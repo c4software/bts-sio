@@ -27,4 +27,35 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+## Qu'est-ce que DevOps ?
+
+Aujourd'hui, on parle de DevOps, mais c'est quoi ?
+
+---
+
+- DevOps est une culture, une philosophie, une approche
+- DevOps est un ensemble de pratiques, de méthodes, d'outils
+- DevOps est une approche centrée sur l'automatisation et l'agilité
+
+---
+
+Avez-vous déjà entendu parler de DevOps ?
+
+---
+
+Demain, vous serez très certainement nommé DevOps… 
+
+Quels seront vos missions ?
+
+---
+
+- Développer (et maintenir) des applications.
+- Choisir la configuration de votre serveur.
+- Déployer votre application sur le serveur.
+- Automatiser le déploiement de votre application.
+- Diagnostiquer les problèmes.
+- **Sécuriser** votre serveur.
+
+---
+
 ## Des questions ?
