@@ -20,6 +20,8 @@ _Generalistes :_
 - [Le journal du geek](https://www.journaldugeek.com/)
 - [Les numériques](https://www.lesnumeriques.com/)
 - [01net](https://www.01net.com/)
+- [macg.co](https://www.macg.co/)
+- [9to5Linux](https://9to5linux.com/)
 
 _Veille :_
 

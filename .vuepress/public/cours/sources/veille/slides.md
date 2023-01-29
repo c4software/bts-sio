@@ -12,7 +12,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 - La veille est un processus d'information
 - Elle permet de rester à jour sur un sujet
-- Elle permet de se tenir au courant des nouveautés & évolutions
+- Elle permet de se tenir au courant des évolutions
 
 ---
 
@@ -30,13 +30,13 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Avez-vous une news récente en tête ?
+## Avez-vous une actualité récente en tête ?
 
 ### Par groupe de 3, je vous laisse 10 minutes pour chercher une actualité récente en lien avec le développement
 
 ---
 
-Bien, maintenant que vous avez trouvé une news, je vous propose de la partager avec le groupe
+Bien, maintenant que vous avez trouvé une actu, je vous propose de la partager avec le groupe
 
 ---
 
@@ -44,7 +44,7 @@ Bien, maintenant que vous avez trouvé une news, je vous propose de la partager 
 
 ---
 
-Et oui… Quelles sources d'information utilisez-vous ?
+Et oui… Quelles sources d'information utiliser ?
 
 ---
 
