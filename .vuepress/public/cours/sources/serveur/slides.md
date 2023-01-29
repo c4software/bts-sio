@@ -43,7 +43,7 @@ Avez-vous déjà entendu parler de DevOps ?
 
 ---
 
-Demain, vous serez très certainement nommé DevOps… 
+Demain, vous aurez certainement le poste de DevOps…
 
 Quels seront vos missions ?
 
