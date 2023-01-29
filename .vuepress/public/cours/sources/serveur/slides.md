@@ -47,6 +47,8 @@ Demain, vous aurez certainement le poste de DevOps…
 
 Quels seront vos missions ?
 
+(Psst… c'est un peu fourre-tout)
+
 ---
 
 - Développer (et maintenir) des applications.
