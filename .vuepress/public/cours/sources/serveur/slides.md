@@ -96,6 +96,10 @@ Le plus important ?
 - Un éditeur de texte
 - Un terminal
 
+---
+
+![Linux, Mac, Windows](./res/tobias01.png)
+
 --- 
 
 ## Windows

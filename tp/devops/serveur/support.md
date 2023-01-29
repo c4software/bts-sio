@@ -52,6 +52,8 @@ Pour coder, un développeur à généralement besoin de :
 
 Nous retrouvons ces deux éléments dans la plupart des environnements de développement. Mais certains environnements de développement vont plus loin et vont proposer des outils supplémentaires.
 
+![Linux, Mac, Windows](./res/tobias01.png)
+
 ### Windows
 
 - [Visual Studio Code](https://code.visualstudio.com/)
