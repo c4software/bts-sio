@@ -39,6 +39,44 @@ Le DevOps est donc un métier qui regroupe plusieurs métiers. Il est donc diffi
 
 Mais surtout le DevOps **s'assure de la qualité** de son application. Il s'assure que l'application est **disponible**, **performante** et **sécurisée**.
 
+![DevOps](./res/devops_loop.webp)
+
+## L'environnement des développeurs
+
+Choisir son environnement de développement est très important. En effet, le choix de l'environnement de développement va déterminer votre productivité. Il est donc important de choisir un environnement de développement adapté à vos besoins.
+
+Pour coder, un développeur à généralement besoin de :
+
+- Un éditeur de texte.
+- Un terminal.
+
+Nous retrouvons ces deux éléments dans la plupart des environnements de développement. Mais certains environnements de développement vont plus loin et vont proposer des outils supplémentaires.
+
+### Windows
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Git Bash](https://gitforwindows.org/)
+- [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=fr-fr&gl=fr)
+- [Windows Subsystem for Linux](https://learn.microsoft.com/fr-fr/windows/wsl/install)
+
+### Linux
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- Git : `sudo apt install git`
+- Terminal : Intégré
+
+### macOS
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- Git : `brew install git` (ou `xcode-select --install`)
+- Terminal : Intégré
+
+### Votre OS… Votre choix
+
+Vous pouvez utiliser l'OS que vous souhaitez. Je ne vais pas tenter de vous convertir à un OS en particulier. Mais je vous conseille d'utiliser un environnement de développement qui vous convient. Si vous êtes à l'aise avec Windows, alors utilisez Windows. Si vous êtes à l'aise avec Linux, alors utilisez Linux. Si vous êtes à l'aise avec macOS, alors utilisez macOS.
+
+Mais sachez qu'utiliser Linux (par exemple) est une vraie réalité en entreprise (tout comme macOS).
+
 ## Qu'est-ce qu'un serveur ?
 
 Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs. Il peut s'agir d'un serveur Web, d'un serveur de base de données, d'un serveur de fichiers, etc.
