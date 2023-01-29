@@ -100,7 +100,7 @@ Le plus important ?
 
 ![Linux, Mac, Windows](./res/tobias01.png)
 
---- 
+---
 
 ## Windows
 
