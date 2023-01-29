@@ -103,6 +103,9 @@
   - Comment choisir
 - Un serveur ou plusieurs serveur ?
   - Découpage des services
+- Les hébergeurs
+  - Les différents types d'hébergement
+  - Comment choisir
 - Docker
   - Gestion des services
   - Multi-versions

@@ -37,6 +37,8 @@ Le DevOps est donc un métier qui regroupe plusieurs métiers. Il est donc diffi
 - Diagnostiquer les problèmes _(analyse des logs, superviser.)_
 - **Sécuriser** votre serveur _(firewall, etc.)_
 
+Mais surtout le DevOps **s'assure de la qualité** de son application. Il s'assure que l'application est **disponible**, **performante** et **sécurisée**.
+
 ## Qu'est-ce qu'un serveur ?
 
 Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs. Il peut s'agir d'un serveur Web, d'un serveur de base de données, d'un serveur de fichiers, etc.
