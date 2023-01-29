@@ -11,6 +11,32 @@ Dans ce document, nous allons voir ce que sont les serveurs, les serveurs Web, l
 [[toc]]
 :::
 
+## Le DevOps
+
+Aujourd'hui, on parle de DevOps, mais c'est quoi ?
+
+- DevOps est une culture, une philosophie, une approche
+- DevOps est un ensemble de pratiques, de méthodes, d'outils
+- DevOps est une approche centrée sur l'automatisation et l'agilité
+
+Le DevOps répond à un besoin : celui de faire évoluer les méthodes de développement et de déploiement des applications. L'objectif étant que le développeur puisse déployer son application le plus simplement et rapidement possible. Les développeurs ont utilisé les outils qu'ils avaient à disposition pour automatiser le déploiement de leurs applications. Ils ont donc utilisé les outils de gestion de version (Git, SVN, etc.), les outils de déploiement (intégration continue) mais également les outils de conteneurisation (Docker) pour réaliser leurs tâches.
+
+Le terme de DevOps est un peu fourre-tout, car il regroupe plusieurs métiers. En effet, le DevOps est un métier qui regroupe plusieurs métiers :
+
+- Développeur
+- Administrateur système
+- Administrateur réseau
+- Administrateur de base de données
+
+Le DevOps est donc un métier qui regroupe plusieurs métiers. Il est donc difficile de définir précisément ce qu'est un DevOps. Mais en général, on peut dire que le DevOps est un développeur qui a des connaissances en administration, système, réseau et base de données. L'objectif du devops étant :
+
+- Développer (et maintenir) des applications.
+- Choisir la configuration de votre serveur.
+- Déployer votre application sur le serveur.
+- Automatiser le déploiement de votre application.
+- Diagnostiquer les problèmes.
+- **Sécuriser** votre serveur.
+
 ## Qu'est-ce qu'un serveur ?
 
 Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs. Il peut s'agir d'un serveur Web, d'un serveur de base de données, d'un serveur de fichiers, etc.
