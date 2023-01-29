@@ -23,19 +23,19 @@ Le DevOps répond à un besoin : celui de faire évoluer les méthodes de dével
 
 Le terme de DevOps est un peu fourre-tout, car il regroupe plusieurs métiers. En effet, le DevOps est un métier qui regroupe plusieurs métiers :
 
-- Développeur
-- Administrateur système
-- Administrateur réseau
-- Administrateur de base de données
+- Développeur.
+- Administrateur système.
+- Administrateur réseau.
+- Administrateur de base de données.
 
 Le DevOps est donc un métier qui regroupe plusieurs métiers. Il est donc difficile de définir précisément ce qu'est un DevOps. Mais en général, on peut dire que le DevOps est un développeur qui a des connaissances en administration, système, réseau et base de données. L'objectif du devops étant :
 
 - Développer (et maintenir) des applications.
-- Choisir la configuration de votre serveur.
-- Déployer votre application sur le serveur.
-- Automatiser le déploiement de votre application.
-- Diagnostiquer les problèmes.
-- **Sécuriser** votre serveur.
+- Choisir la configuration de votre serveur (choix de l'OS, de la distribution, etc.).
+- Déployer votre application sur le serveur (installation, configuration, etc.).
+- Automatiser le déploiement de votre application (intégration continue).
+- Diagnostiquer les problèmes (analyse des logs, etc.)
+- **Sécuriser** votre serveur (firewall, etc.)
 
 ## Qu'est-ce qu'un serveur ?
 
