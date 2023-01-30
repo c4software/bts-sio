@@ -122,9 +122,25 @@ Je suis un étudiant SEN et je suis spécialisé en sécurité.
 
 :::
 
+## Évolution du code
+
+Vous souhaitez ajouter l'identifiant de l'étudiant :
+
+- nom
+- prénom
+
+::: tip Questionnement
+
+- Quelles classe(s) seront impactée(s) ?
+- Quelles modifications apporter au code ?
+- Écrire le code permettant d'ajouter ces informations.
+- Devez-vous modifier la méthode `parler()` ?
+
+:::
+
 ## Analyser une erreur
 
-Un développeur a écrit le code suivant :
+Un développeur souhaite créer un Étudiant, il a donc écrit le code suivant :
 
 ```php
 $etudiant = new EtudiantAbstrait();
