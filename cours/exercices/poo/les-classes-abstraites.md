@@ -94,7 +94,7 @@ Pour le SIO ils doivent avoir les options suivantes :
 - SISR
 - SLAM
 
-Vous placerez ces étudiants dans une liste. Puis pour chacun d'entre eux, vous appellerez la méthode `parler()`.
+Vous placerez ces étudiants dans **une liste**. Puis pour chacun d'entre eux, vous appellerez la méthode `parler()`.
 
 ::: tip Questionnement
 
@@ -102,5 +102,43 @@ Vous placerez ces étudiants dans une liste. Puis pour chacun d'entre eux, vous 
 - Faire évoluer le code pour ajouter le `nom` et le `prenom` de l'étudiant.
   - Quelle(s) classe(s) seront impactées ?
   - Et de quelle manière ?
+
+:::
+
+## Redéfinir une méthode
+
+Après réflexion, vous souhaitez changer le comportement de la méthode `parler()` pour les étudiants de la classe `EtudiantSEN`.
+
+Vous souhaitez que le message soit le suivant :
+
+```php
+Je suis un étudiant SEN et je suis spécialisé en sécurité.
+```
+
+::: tip Questionnement
+
+- Identifier les modifications à apporter au code.
+- Écrire le code pour la classe `EtudiantSEN`.
+
+:::
+
+## Analyser une erreur
+
+Un développeur a écrit le code suivant :
+
+```php
+$etudiant = new EtudiantAbstrait();
+```
+
+En exécutant ce code, vous obtenez l'erreur suivante :
+
+```php
+Cannot instantiate abstract class EtudiantAbstrait
+```
+
+::: tip Questionnement
+
+- Identifier la raison de cette erreur.
+- Identifier la solution pour contourner cette erreur.
 
 :::
