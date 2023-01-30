@@ -4,11 +4,12 @@ description: Dans cette mise en pratique, nous allons voir comment déclarer et 
 
 # Classe abstraite : Mise en pratique
 
-Dans cette mise en pratique, nous allons voir comment déclarer et utiliser des `Classes Abstraites en PHP`. Les classes abstraites sont un élément important de la programmation-objet, pour rappel les classes abstraites ne sont pas instanciable :
+Dans cette mise en pratique, nous allons voir comment déclarer et utiliser des `Classes Abstraites en PHP`. Les classes abstraites sont un élément important de la programmation-objet, pour rappel :
 
 - Sers de base à d'autres classes dérivées (héritées).
 - Ne peut pas être instanciée (pas de new).
 - Permets de factoriser du code.
+- Les classes abstraites ne sont pas instanciable
 - Dois être héritée depuis une classe fille.
 
 ::: details Sommaire
