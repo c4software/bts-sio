@@ -772,6 +772,21 @@ La lecture de logs est un exercice important. Il faut s'entraîner, ça vous per
 
 :::
 
+### Superviser les logs
+
+Nous avons vu comment analyser les logs. Mais il est également important de superviser les logs. La supervision des logs va permettre de détecter les erreurs, et de les corriger. Il existe plusieurs outils pour superviser les logs :
+
+- LogStash : outil de centralisation des logs.
+- Graylog : outil de centralisation des logs.
+- Nagios : outil de supervision des logs.
+
+Ces outils vont permettre de centraliser les logs. En effet, même si vous savez analyser les logs, les centraliser permettra de les « valoriser ». L'autre aspect important de la supervision est la notification, celle-ci vous permettra d'être proactif sur les problèmes. Les notifications pourront prendre différentes formes :
+
+- Notification par mail.
+- Notification par slack.
+
+![GrayLog](./res/graylog1.png)
+
 ## Physique ou virtuel ?
 
 Il est possible d'installer un serveur sur un ordinateur physique, mais il est également possible d'installer un serveur sur une machine virtuelle. Une machine virtuelle est un logiciel qui permet de simuler un ordinateur. Il est possible de créer plusieurs machines virtuelles sur un seul ordinateur. Chaque machine virtuelle est indépendante de l'autre, c'est-à-dire que chaque machine virtuelle est comme un ordinateur physique.

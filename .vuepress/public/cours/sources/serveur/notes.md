@@ -93,6 +93,7 @@
   - Les logs.
   - Comment lire les logs.
   - La sécurité et les logs.
+  - Superviser les logs
 - La sécurité
   - Les ports
   - Les services
