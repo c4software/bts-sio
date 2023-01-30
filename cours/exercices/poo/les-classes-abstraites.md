@@ -1,5 +1,5 @@
 ---
-description:
+description: Dans cette mise en pratique, nous allons voir comment déclarer et utiliser des classes abstraites.
 ---
 
 # Classe abstraite : Mise en pratique
