@@ -115,4 +115,3 @@
 - Docker Compose
   - Créer des stocks applicative
   - Sécurité des ports
-  - À détailler

@@ -11,6 +11,30 @@ Dans ce document, nous allons voir ce que sont les serveurs, les serveurs Web, l
 [[toc]]
 :::
 
+::: details TL;DR
+
+Voici un résumé de ce qu'il est possible de retenir de ce document (évidemment, je vous conseille vivement de lire l'ensemble de celui-ci, mais voilà les grandes idées).
+
+L'approche DevOps à pour objectif principal d'automatiser pour assurer la qualité via par entre autres le test et la répétabilité.
+
+Les développeurs sont également des utilisateurs d'un OS et pour le comprendre nous réfléchirons aux différentes distributions Linux disponibles en les comparant à Windows et MacOS.
+
+Beaucoup de types de serveurs existent (serveurs Web, de base de données, de fichiers, etc). en SLAM la notion de la stack logicielle est importante et surtout celle nommée LAMP (Linux, Apache, MySQL, PHP). Un serveur ne fonctionne pas sans que le réseau (adresses IP, DNS, DHCP, les ports permettant de communiquer). Sans entrer dans une complexité extrême, il sera important d'en connaître les bases.
+
+Nous étudierons également comment la ligne de commandes fonctionne, ainsi que l'architecture d'un serveur Linux (système de fichier, utilisateurs, droits). Un serveur Linux ne possédant pas d'interface graphique, nous utiliserons les protocoles de communication suivants pour l'administrer :
+
+- SSH
+- FTP
+- SFTP
+
+⚠️ L'ensemble protégé pas seulement par des mots de passe, mais également par des clés SSH.
+
+Nous regarderons comment il est possible de mettre en place une analyse pertinente **des logs d'erreurs**. Ainsi qu'une politique de sauvegarde pour s'assurer que notre machine soit toujours fonctionnelle, quels que soient les problèmes qu'elle pourra rencontrer.
+
+Et finalement nous regarderons comment doit être prise la décision entre un serveur physique ou virtuel. Ainsi que les différents types d'hébergement disponible (mutualisés, dédiés, SaaS) et comment choisir le meilleur pour les besoins.
+
+:::
+
 ## Le DevOps
 
 Aujourd'hui, on parle de DevOps, mais c'est quoi ?
@@ -89,9 +113,9 @@ Mais sans aller jusque-là, vous pouvez aussi installer un serveur chez vous. Vo
 
 ::: tip Pourquoi installer un serveur chez soi ?
 
-Il est possible d'installer un serveur chez soi pour faire des tests, pour héberger un site Web, etc. C'est une bonne idée de faire des tests sur un serveur chez soi avant de mettre en production sur un serveur distant.
+Il est possible d'installer un serveur chez soi pour faire des tests, pour héberger un site Web, etc. C'est une bonne idée de faire des tests ou pour tester des idées avant de mettre en production sur un serveur distant.
 
-Créer un serveur à domicile permet réellement de progresser, car vous devrez gérer l'ensemble du serveur. Vous devrez gérer l'installation, la configuration, la sécurité, etc. C'est une bonne expérience pour apprendre à gérer un serveur.
+Créer un serveur à domicile permet réellement de progresser, car vous devrez gérer l'ensemble du serveur. Vous devrez gérer l'installation, la configuration, la sécurité, etc. C'est une bonne expérience pour apprendre l'administration système.
 
 Voilà à quoi peut ressembler un serveur à domicile (chez moi en l'occurrence) :
 
