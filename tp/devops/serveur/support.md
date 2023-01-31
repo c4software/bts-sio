@@ -909,7 +909,7 @@ Il existe plusieurs critères pour choisir votre hébergeur :
 - La performance de votre hébergeur.
 - Le prix de votre hébergeur.
 
-::: tip En entrprise
+::: tip En entreprise
 
 Le choix de votre hébergeur est important, car il va déterminer la performance de votre application. Vous devez donc être vigilant lors de votre sélection, car un mauvais choix peut avoir des conséquences importantes sur l'activité de l'organisation.
 

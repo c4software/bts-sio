@@ -108,18 +108,18 @@ Vous placerez ces étudiants dans **une liste**. Puis pour chacun d'entre eux, v
 
 ## Redéfinir une méthode
 
-Après réflexion, vous souhaitez changer le comportement de la méthode `parler()` pour les étudiants de la classe `EtudiantSEN`.
+Après réflexion, vous souhaitez changer le comportement de la méthode `parler()` pour les étudiants de la classe `EtudiantSIO`.
 
 Vous souhaitez que le message soit le suivant :
 
 ```php
-Je suis un étudiant SEN et je suis spécialisé en sécurité.
+Je suis un étudiant SIO et je suis spécialisé en sécurité.
 ```
 
 ::: tip Questionnement
 
 - Identifier les modifications à apporter au code.
-- Écrire le code pour la classe `EtudiantSEN`.
+- Écrire le code pour la classe `EtudiantSIO`.
 
 :::
 
