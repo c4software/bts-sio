@@ -122,7 +122,7 @@ _Hebergement :_
 
 - [Netlify](https://www.netlify.com) <- CI/CD, Simple, « gratuit », avec une interface web de gestion.
 - [Fleek.co](https://www.fleek.co) <- CI/CD, Simple, « gratuit », repose sur le Web 3 avec une interface web de gestion. ([miroir](https://ipfs.cours.brosseau.ovh/))
-- [Surge.sh](https://www.netlify.com) <- CI/CD, Simple, « gratuit », un poil plus technique
+- [Surge.sh](https://www.netlify.com) <- CI/CD, Simple, « gratuit », un poil plus technique.
 - [Heroku](https://www.heroku.com/) <- CI/CD, Plus complet, mais un peu plus « complexe ».
 - [Gitlab Pages](https://cours.brosseau.ovh/tp/ci/pages.html) <- CI/CD
 - [Github Pages](https://pages.github.com/) <- CI/CD

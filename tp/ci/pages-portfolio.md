@@ -4,7 +4,7 @@ prev: /tp/ci/jamstack/netlify-portfolio.md
 next: /tp/ops/deployer-laravel-ci.md
 ---
 
-# Déployer votre portfolio avec GitLab Pages
+# Déployer votre portfolio avec GitLab CI
 
 ::: details Sommaires 
 [[toc]] 
@@ -12,7 +12,7 @@ next: /tp/ops/deployer-laravel-ci.md
 
 ## Introduction
 
-Dans ce TP vous allez mettre en ligne votre Portfolio sur Gitlab Pages grâce à Gitlab-CI. Dans [le TP précédent](/tp/ci/jamstack/netlify-portfolio.md) nous avons utilisé Netlify avec une solution en « 1 click » / « clé en main », ici la procédure sera un peu plus compliquée, mais vous allez le voir elle permettra beaucoup plus de choses.
+Dans ce TP vous allez mettre en ligne votre Portfolio sur Gitlab Pages grâce à Gitlab-CI. Dans [le TP précédent,](/tp/ci/jamstack/netlify-portfolio.md) nous avons utilisé Netlify avec une solution en « 1 click » / « clé en main », ici la procédure sera un peu plus compliquée, mais vous allez le voir elle va permettre beaucoup plus de choses.
 
 ## Création d’un nouveau projet sur Gitlab
 
@@ -50,7 +50,7 @@ git push
 
 ::: details Vous n'avez pas de code source ?
 
-Vous n'avez pas de Portfolio ? Aucun problème [vous pouvez utiliser celui-ci.](https://startbootstrap.com/theme/stylish-portfolio)
+Vous n'avez pas de Portfolio ? Aucun problème, [vous pouvez utiliser celui-ci.](https://startbootstrap.com/theme/stylish-portfolio)
 
 PS: N'oubliez pas que vous devez avoir un portfolio de prêt pour votre passage de titre.
 start
@@ -70,8 +70,8 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
 ::: tip Un instant
@@ -126,7 +126,7 @@ Je vous laisse valider que votre CI fonctionne correctement, apporter une modifi
 
 Ce que nous venons de faire est générique! Ça veut dire que si vous souhaitez héberger rapidement (et gratuitement) un petit site Internet codé en HTML, CSS, JavaScript vous avez l'ensemble des éléments.
 
-Vous ajoutez à votre code source un fichier `.gitlab-ci.yml` avec le contenu précédent et c'est terminé quelques minutes plus tard votre site est en ligne.
+Vous ajoutez à votre code source un fichier `.gitlab-ci.yml` avec le contenu précédent et c'est terminé quelques minutes plus tard, votre site est en ligne.
 
 C'est **LA** force de l'intégration continue !
 
@@ -168,8 +168,8 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - tags
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
 Quelle différence notez-vous par rapport au précédent YAML?
@@ -186,6 +186,124 @@ Une fois le projet créé, ajouter le fichier `.gitlab-ci.yml` et envoyer votre 
 
 :::
 
+## Aller plus loin avec Surge
+
+Dans le précédent TP, nous avons utilisé Vercel / Netlify. Dans ce TP je vous ai parlé de Surge comme alternative, mais une alternative qui demande un peu plus de travail. Nous y voilà, nous avons vu dans ce TP comment Gitlab-CI permet de compiler un site statique. Nous allons donc utiliser ce principe pour automatiser le déploiement avec Surge.
+
+Surge c'est un peu technique, mais si vous souhaitez tester voilà la procédure.
+
+### Sur votre machine
+
+Installation du CLI de Surge
+
+```sh
+npm install -g surge
+```
+
+Création de votre compte
+
+```sh
+surge login
+```
+
+Obtention d'un token qui vous permettra de déployer sur votre compte
+
+```sh
+surge token
+```
+
+::: danger Un token == un compte
+Le token que vous avez obtenu représente votre compte. Il faut donc le garder secret.
+:::
+
+Compiler / Créer une première version de votre site. Exemple avec ViteJS
+
+```sh
+npm run build
+```
+
+::: tip ?
+Cette commande va créer un dossier `dist` qui contient l'ensemble de votre site.
+:::
+
+Déployer votre site
+
+```sh
+surge ./dist https://votre-domaine-unique.surge.sh --token VOTRE_TOKEN_OBTENU_PRECEDEMMENT
+```
+
+Et voilà, votre site est en ligne ! Rendez-vous sur votre domaine pour le voir (<https://votre-domaine-unique.surge.sh>)
+
+### Sur Gitlab-CI
+
+Maintenant que nous avons déployé une première version depuis votre poste, nous allons automatiser le déploiement avec Gitlab-CI.
+
+Créer un fichier `.gitlab-ci.yml` avec le contenu suivant :
+
+```yaml
+image: node:16.5.0
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  before_script:
+    - npm run ci
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - build
+
+deploy:
+  stage: deploy
+  before_script:
+    - npm install -g surge
+  script:
+    - surge ./build $SURGE_DOMAIN --token $SURGE_TOKEN
+```
+
+Que font les différentes étapes ? Nous avons ici la logique de compilation et de déploiement de notre site web :
+
+- `build` : Compilation du site, via la commande `npm run build`
+- `deploy` : Déploiement du site, via la commande `surge ./build $SURGE_DOMAIN --token $SURGE_TOKEN`
+
+::: tip Des variables d'environnement ?
+
+Comme en code, nous avons la possibilité d'utiliser des variables. Ces variables vont nous permettre de rendre générique notre script, et surtout de masquer les informations sensibles (comme le token).
+
+:::
+
+Je vous laisse ajouter les variables d'environnement dans votre projet Gitlab : 
+
+`Repository > Settings > CI/CD > Variables`
+
+![Variables d'environnement](./res/variables_surge.webp)
+
+- SURGE_LOGIN = `Votre login de connexion à Surge (email)`
+- SURGE_TOKEN = `Votre token obtenu précédemment`
+
+Maintenant que vos variables sont ajoutées, nous pouvons **commiter** et **pusher** notre code sur Gitlab ! Et place à la magie !
+
+À partir de maintenant, à chaque modification de votre code, Gitlab-CI va compiler votre site et le déployer sur Surge. Très très pratique !
+
+## On copie / colle ?
+
+Ça semble étonnant peut-être. Dans ce TP vous avez massivement copié / collé des commandes. Mais c'est normal… L'intégration continue c'est l'automatisation de tâches. 
+
+Et quand on débute, on copie / colle, on adapte, et on debug. C'est comme ça que ça marche.
+
+Dans ce TP, j'ai passé le temps d'assemblage en lisant, testant, collectant les étapes pour vous les présenter… Dans la vraie vie, vous allez passer du temps (parfois plusieurs heures) à chercher comment faire, à tester, à adapter…
+
 ## Aller plus loin…
 
 Compiler et héberger des sites statiques, ce n'est qu'une partie des possibilités de Gitlab-CI, vous pouvez faire bien plus !
@@ -194,6 +312,18 @@ Pour ceux qui voudrais mettre en place de l'intégration continue pour créer l'
 
 ::: tip Ça semble compliqué ?
 
-L'intégration continue ça peut faire peur… mais si vous maitrisez les codes et le fonctionnement de ce genre de plateforme, vous serez un moteur dans votre entreprise. Ne loupez pas le coche !
+L'intégration continue ça peut faire peur… mais si vous maîtrisez les codes et le fonctionnement de ce genre de plateforme, vous serez un moteur dans votre entreprise. Ne loupez pas le coche !
 
 :::
+
+## Références
+
+
+- [Gitlab-CI](https://docs.gitlab.com/ee/ci/)
+- [Gitlab-CI - Variables d'environnement](https://docs.gitlab.com/ee/ci/variables/)
+- [Gitlab-CI - Pipeline](https://docs.gitlab.com/ee/ci/pipelines/)
+- [Gitlab-CI - Artifacts](https://docs.gitlab.com/ee/ci/pipelines/job_artifacts.html)
+- [Gitlab-CI - Cache](https://docs.gitlab.com/ee/ci/yaml/#cache)
+- [Gitlab-CI - Stages](https://docs.gitlab.com/ee/ci/yaml/#stages)
+- [Gitlab-CI - Jobs](https://docs.gitlab.com/ee/ci/yaml/#jobs)
+- [Surge](https://surge.sh/)

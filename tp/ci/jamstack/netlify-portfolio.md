@@ -1,5 +1,5 @@
 ---
-description: Dans ce document nous allons voir comment déployer votre portfolio simplement dans « le cloud » avec la plateforme Netlify
+description: Dans ce document nous allons voir comment déployer votre portfolio simplement dans « le cloud » avec la plateforme Netlify / Vercel.
 next: ../pages-portfolio.md
 ---
 
@@ -235,6 +235,19 @@ La documentation explique très bien la procédure : [consulter la documentation
 #### La compression des ASSETS
 
 Des images trop lourdes ? Un CSS non compressé ? Des fichiers non minifiés ? Aucun problème, regardons comment répondre à cette problématique.
+
+#### Des alternatives
+
+Netlify n'est pas la seule solution pour mettre en ligne simplement un site web statique. Avant de passer à Gitlab Pages, je vous propose de regarder d'autres solutions comme par exemple :
+
+- [Surge](https://surge.sh/)
+- [Vercel](https://vercel.com/)
+
+Vercel est une solution presque identique à Netlify. Vous pouvez donc tester dès maintenant Vercel pour voir les différences.
+
+Surge par contre est une solution un peu différente. Elle repose sur l'utilisation d'un outil pour déployer votre site. Nous pouvons le faire à la main depuis notre machine, mais nous allons perdre le côté automatique.
+
+C'est pour ça que je vous propose pour continuer de tester Gitlab Pages, qui va reposer sur l'utilisation de Gitlab-CI pour le déploiement. Avec Gitlab-CI, nous allons pouvoir faire beaucoup plus de choses qu'avec Netlify / Vercel. Mais, pour faire cela, nous allons devoir écrire les règles et les commandes nous-mêmes.
 
 #### La suite
 
