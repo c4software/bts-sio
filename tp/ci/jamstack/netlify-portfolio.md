@@ -93,7 +93,7 @@ Je n'ai rien inventé. J'utilise un outil qui s'appelle [VuePress](https://vuepr
 - Et via les thèmes vous pouvez tout imaginer ([exemple](https://github.com/vuepress/awesome-vuepress#community-themes))
 
 ```sh
-npx create-vuepress-site 
+npx create-vuepress-site
 ```
 
 ![VuePress Init](./res/netlify-vuepress.png)
