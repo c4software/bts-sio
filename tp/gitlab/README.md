@@ -56,6 +56,14 @@ Ce TP est évalué, il est donc important de le réaliser correctement. Vous pou
 
 :::
 
+## Le TP
+
+Dans ce TP vous allez avoir trois étapes importantes :
+
+- Versionner votre projet avec Git.
+- Travailler avec Gitlab directement sur le Web (via le Web IDE).
+- Travailler avec Gitlab depuis votre ordinateur (envoi du code avec le push).
+
 ## Création du projet
 
 Avant d’utiliser GitLab nous allons dans un premier temps créer un site Internet sur votre ordinateur.
@@ -72,7 +80,7 @@ Je vous propose de versionner le blog que vous avez réalisé dans le cadre de l
 
 Vérifier que votre projet est bien commité, avec la commande `git status`. Vous pouvez également vérifier l’historique de vos commits via `git log`
 
-- Votre historique contient-il bien les deux commits que vous avez réalisé ?
+- Votre historique contient-il bien les deux commits que vous avez réalisés ?
 - Quelle est la différence entre `git status` et `git log` ?
 
 ## GitLab
@@ -110,6 +118,10 @@ Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoir
 [Ajouter une clé sur votre profil](https://gitlab.com/-/profile/keys)
 
 La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (**à ouvrir avec notepad++ ou bloc-note**).
+
+::: tip Cette clé est importante
+Vous devez vraiment maîtriser cette étape. C'est une notion très importante dans le monde du développement. Si vous souhaitez en savoir plus, n'hésiter pas à me demander 👋.
+:::
 
 ### Création de votre premier projet
 
@@ -185,10 +197,10 @@ $ git pull
 ```
 
 ::: tip Attention
-Vous devez être dans le dossier du projet pour faire un `pull`.
+Vous devez être dans le dossier du projet pour faire un `pull`. Sinon Git vous dira que vous n’êtes pas dans un dépôt git.
 :::
 
-Je vous laisse vérifier si vous avez bien récupéré les modifications (via l’éditeur de texte comme avant)
+Je vous laisse vérifier si vous avez bien récupéré les modifications (en regardant le fichier index.html par exemple, ou via un `git status`).
 
 ## Édition en local
 
@@ -206,7 +218,11 @@ Quand nous changerons de poste, la première chose à faire sera de :
 
 ### Cloner le projet
 
-Maintenant que votre compte est actif, vous pouvez cloner le projet :
+Vous souhaitez maintenant modifier le code sur votre machine. Pour cela, vous **devez** cloner le projet.
+
+::: danger Vous ne pouvez pas deviner les commandes !
+Pour vous aider, n'hésitez pas à regarder [l'aide mémoire git](/cheatsheets/git/README.md)
+:::
 
 ### Cloner le projet sur votre machine
 
@@ -295,7 +311,7 @@ En utilisant le processus vu précédemment, ajouter une page « à propos » da
 
 - Screenshot de la clé SSH sur votre compte GitLab.
 - Le document listant les différences entre Github et GitLab.
-- Réponse aux questions format PDF.
+- Vos réponses aux questions et commandes présentes dans ce TP (format PDF).
 - Lien vers votre projet GitLab (n'oubliez pas de m'inviter en tant que membre).
 
 ## Rendu
