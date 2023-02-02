@@ -6,8 +6,8 @@ next: /tp/ops/deployer-laravel-ci.md
 
 # Déployer votre portfolio avec GitLab CI
 
-::: details Sommaires 
-[[toc]] 
+::: details Sommaires
+[[toc]]
 :::
 
 ## Introduction
@@ -57,6 +57,10 @@ start
 :::
 
 ## Activation de GitLab-CI
+
+::: tip Un instant
+Gitlab-CI nécessite de mettre votre carte bleue pour prouver que vous êtes un humain. Si vous ne souhaitez pas la mettre vous pouvez déployer un runner Gitlab-CI sur votre machine en suivant le TP ici : [Installer un runner Gitlab-CI](/tp/ci/gitlab/runner.md)
+:::
 
 Maintenant que votre première version est prête, nous allons activer Gitlab-CI pour ça, il faut **simplement** créer un fichier intitulé `.gitlab-ci.yml` à la racine de votre projet. Mettez-y le contenu suivant :
 
