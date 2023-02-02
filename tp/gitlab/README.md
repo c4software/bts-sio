@@ -307,6 +307,13 @@ En utilisant le processus vu précédemment, ajouter une page « à propos » da
 - De réaliser une revue de code (avec des commentaires).
 - De merger le code.
 
+## Questions
+
+- À quoi sert la commande `git log` ?
+- À quoi sert la commande `git status` ?
+- À quoi sert la commande `git commit` ?
+- Décrire le processus d'utilisation de Git et GitLab ? (Vous pouvez utiliser un schéma si vous le souhaitez (ex : <https://www.draw.io/>)))
+
 ## Document à rendre
 
 - Screenshot de la clé SSH sur votre compte GitLab.
