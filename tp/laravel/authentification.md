@@ -682,7 +682,7 @@ Si nous souhaitons utiliser la table `clients` à la place de `users` pour stock
 - Créer la migration ainsi que le modèle : `php artisan make:model Client -m`
 - Modifier le fichier `config/auth.php`.
 
-### Le modèle & la migration
+### La migration
 
 Nous allons créer une migration pour ajouter les champs nécessaires à la table `clients` :
 
@@ -701,6 +701,7 @@ Schema::create('clients', function (Blueprint $table) {
 Maintenant que la migration est créée, il faut lancer la commande `php artisan migrate` pour créer la table dans la base de données.
 :::
 
+### Le modèle
 
 Nous allons ensuite modifier le modèle `app/Models/Client.php` pour ajouter les champs `$fillable` et réaliser l'héritage avec `Authenticatable` :
 
