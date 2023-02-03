@@ -4,6 +4,10 @@ description: Nous avons vu précédemment qu'il était simple de créer des site
 
 # API & Client Web Simple
 
+::: tip Vous pouvez consulter une nouvelle version
+🚨 Une nouvelle version de ce TP est disponible [ici](./api_produit.md).
+:::
+
 Nous avons vu précédemment qu'il était simple de créer des sites Web avec Laravel. Dans le monde du développement, il est très courant de ne pas échanger entre le client et le serveur directement en HTML, mais directement en JSON.
 
 Nous appelons cette façon des API (dans notre cas des API REST), c'est le fondement même de beaucoup de sites Internet que vous utilisez tous les jours (Gmail, Facebook, …).

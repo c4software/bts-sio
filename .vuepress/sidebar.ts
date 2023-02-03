@@ -132,7 +132,6 @@ module.exports = [
           "/tp/laravel/generation_model",
           "/tp/laravel/application_todo_list",
           "/tp/laravel/api_produit",
-          "/tp/laravel/laravel_api",
           "/tp/ops/deployer-laravel.md"
         ]
       }
