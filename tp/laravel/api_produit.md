@@ -759,7 +759,7 @@ Cette partie n'interessera pas tout le monde. Si vous êtes intéressé, vous po
 
 Nous avons maintenant terminé la partie API. Nous avons vu comment créer des routes, des contrôleurs et des modèles. Nous avons aussi vu comment utiliser les méthodes `get()`, `post()`, `put()` et `delete()` pour créer des routes. 
 
-En Bonus, nous avons aussi vu comment utiliser les méthodes `where()` et `with()` pour filtrer les résultats.
+En Bonus, nous avons aussi vu comment utiliser les méthodes `where()` et `with()` pour filtrer les résultats. Nous avons également vu comment il était possible de sécuriser nos routes avec Laravel Sanctum.
 
 Nous allons maintenant passer à la partie Frontend. Nous allons créer une application web ou mobile qui va nous permettre de gérer nos commandes et nos clients.
 
