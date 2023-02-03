@@ -312,6 +312,9 @@ En utilisant le processus vu précédemment, ajouter une page « à propos » da
 - À quoi sert la commande `git log` ?
 - À quoi sert la commande `git status` ?
 - À quoi sert la commande `git commit` ?
+- Quelle commande permet de récupérer les modifications d’un dépôt distant ?
+- Quelle commande permet d'envoyer les modifications sur le dépôt distant ?
+- Pourquoi est-il important de faire un `pull` avant de commencer à travailler ?
 - Décrire le processus d'utilisation de Git et GitLab ? (Vous pouvez utiliser un schéma si vous le souhaitez (ex : <https://www.draw.io/>)))
 
 ## Document à rendre
@@ -320,6 +323,7 @@ En utilisant le processus vu précédemment, ajouter une page « à propos » da
 - Le document listant les différences entre Github et GitLab.
 - Vos réponses aux questions et commandes présentes dans ce TP (format PDF).
 - Lien vers votre projet GitLab (n'oubliez pas de m'inviter en tant que membre).
+
 
 ## Rendu
 
