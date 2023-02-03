@@ -620,6 +620,20 @@ function commandesClient($idClient){
 
 Je vous laisse observer la différence entre les deux réponses.
 
+::: tip `with()`
+
+Le `with()` permet de récupérer les données d'une autre table. Vous pouvez également déclarer le `with()` dans le modèle. 
+
+Exemple, **dans le modèle `Commande`** :
+
+```php
+$with = ['produit'];
+```
+
+En indiquant le `$with` dans le modèle, votre jointure sera automatiquement effectuée. Vous n'aurez plus besoin de passer par le `with()` dans le contrôleur. Pratique pour automatiser les jointures.
+
+:::
+
 ::: details Qu'avez-vous observez ? 
 
 - La première réponse contient les commandes du client.
@@ -720,6 +734,25 @@ function authentifierClient(Request $request){
 Vous allez devoir utiliser password_verify() pour vérifier le mot de passe.
 
 ⚠️ N'oublier pas de retourner le client authentifié.
+:::
+
+## Aller plus loin
+
+Pour aller plus loin dans la partie API, vous pouvez :
+
+- Utiliser `sanctum` pour créer des tokens d'authentification. <<https://laravel.com/docs/9.x/sanctum>
+- Utiliser les `abilities` pour gérer les droits d'accès. <https://laravel.com/docs/9.x/sanctum#token-abilities>
+
+Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous avons « juste » la logique pour :
+
+- Créer des tokens d'authentification (`$token = $request->user()->createToken($request->token_name);`)
+- Gérer les droits d'accès pour chaque route (`->middleware('auth:sanctum')`)
+- Authentifier les utilisateurs via un token (appelé bearer token).
+
+::: tip C'est du bonus
+
+Cette partie n'interessera pas tout le monde. Si vous êtes intéressé, vous pouvez regarder la documentation de Sanctum. Et me demander si vous avez des questions.
+
 :::
 
 ## Conclusion
