@@ -250,4 +250,8 @@ Créer un serveur à domicile permet réellement de progresser.
 
 ---
 
+## Un bon moyen de se familiariser avec la notion de serveur.
+
+---
+
 ## Des questions ?
