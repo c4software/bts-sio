@@ -154,7 +154,7 @@ En entreprise, c'est variable… mais chaque année en stage je constate que les
 
 ---
 
-![Linux, Mac, Windows](./res/os_sharing.jpg)
+![Linux, Mac, Windows](./res/os_share.jpg)
 _Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-software-development-followed-by-linux/)_
 
 ---
