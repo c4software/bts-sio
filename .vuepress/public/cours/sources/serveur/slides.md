@@ -12,7 +12,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - Les OS et les développeurs
 - Qu'est-ce qu'un serveur (App, Web, BDD)
 - La constitution d'un serveur (OS, Services, Applications)
-- Les vhosts, les ports etc
+- Les vhosts, les ports, etc.
 - L'accès à distance
 
 ---
@@ -170,7 +170,7 @@ _Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-
 
 ## Et pourquoi pas les trois ?
 
-C'est possible via la virtualisation. 
+C'est possible via la virtualisation.
 
 Avec par exemple Proxmox.
 
@@ -182,7 +182,71 @@ Avec par exemple Proxmox.
 
 ---
 
+Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs.
 
+- Web
+- Base de données
+- Fichiers
+
+---
+
+## Concrètement…
+
+C'est un ordinateur qui tourne 24h/24 et 7j/7.
+
+---
+
+Dans une salle spéciale, souvent climatisée.
+
+---
+
+![Serveur](./res/OVH-gazette.jpg)
+
+OVH
+
+---
+
+![Serveur](./res/cloud.jpg)
+
+---
+
+![Serveur](./res/000873331_896x598_c.jpg)
+
+Google
+
+---
+
+## Ici on parle de Cloud
+
+Le cloud, c'est « juste » l'ordinateur d'un autre.
+
+---
+
+<fieldset>
+  <legend>Définition</legend>
+  <p>
+    Un serveur est un ordinateur **connecté au réseau** qui fournit **des services** à d'**autres** ordinateurs.
+  </p>
+</fieldset>
+
+---
+
+## Et si vous pensiez plus petit ?
+
+Les raspberry pi sont des ordinateurs à 35€. Ils peuvent être utilisés comme serveur.
+
+---
+
+![Serveur à domicile](./res/version1.jpg)
+
+---
+
+Créer un serveur à domicile permet réellement de progresser.
+
+- Gérer le serveur
+- Gérer l'installation
+- Gérer la configuration
+- Gérer la sécurité
 
 ---
 
