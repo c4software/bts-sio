@@ -231,6 +231,115 @@ Le `TypeScript` est également activé grâce à la définition du langage `<scr
 Nous pourrions très bien utiliser uniquement le JavaScript même avec VueJS 3.0, mais je pense que nous sommes à un tournant du développement client ou il est **impossible** de ne pas aborder le TypeScript. Le voir à travers un Framework comme VueJS est un très bon moyen de le voir.
 :::
 
+## Les variables computed
+
+Comme dans VueJS2.0, nous avons des variables calculées. Elles sont déclarées dans le `setup` et seront recalculées à chaque fois que l'une des variables dépendantes sera modifiée.
+
+Je vous laisse créer le composant `Author.vue` et y ajouter le code suivant :
+
+```typescript
+<script setup>
+import { reactive, computed } from 'vue'
+
+const author = reactive({
+  name: 'John Doe',
+  books: [
+    'Vue 2 - Brosseau',
+    'Vue 3 - Test',
+    'Vue 4 - Démo'
+  ]
+})
+
+const publishedBooksMessage = computed(() => {
+  return author.books.length > 0 ? 'Yes' : 'No'
+})
+</script>
+
+<template>
+  <p>
+    Auteur : {{author.name}}
+  </p>
+  
+  <ul>
+    <li v-for="book in author.books">{{ book }}</li>
+  </ul>
+
+  <p>
+  Nombre de livre : <span>{{ publishedBooksMessage }}</span>
+  </p>
+</template>
+```
+
+::: tip Comment lire le code ?
+
+- Nous avons déclaré une variable `author` qui est un objet. Nous avons déclaré cette variable avec la fonction `reactive` de VueJS. Pourquoi `reactive` ? Une variable `reactive` est comme une, `ref` mais dédié aux objets.
+- Nous avons déclaré une variable `publishedBooksMessage` qui est une variable calculée. Nous avons déclaré cette variable avec la fonction `computed` de VueJS. Cette variable sera recalculée à chaque fois que l'une des variables dépendantes sera modifiée.
+
+:::
+
+Je vous laisse mettre en place le code dans votre projet, insérer le composant dans `App.vue` et tester le code.
+
+### Filtrer les données
+
+Modifier le composant `Author.vue` pour ajouter un champ de recherche. Ce champ de recherche permettra de filtrer les livres de l'auteur.
+
+Nous allons ajouter un champ de recherche dans le composant `Author.vue` :
+
+```typescript
+<script setup>
+import { reactive, computed, ref } from 'vue'
+
+const search = ref("");
+  
+const author = reactive({
+  name: 'John Doe',
+  books: [
+    'Vue 2 - Cours Brosseau',
+    'Vue 3 - Cours Test',
+    'Vue 4 - Cours Démo'
+  ]
+})
+
+const publishedBooksMessage = computed(() => {
+  return filteredBooks.value.length
+})
+
+const filteredBooks = computed(() => {
+  if(search.value != ""){
+   return author.books.filter(it => it.includes(search.value));
+  } else {
+    return author.books;
+  }
+})
+</script>
+
+<template>
+  <p>
+    Auteur : {{author.name}}
+  </p>
+  
+  <input type="text" v-model="search" placeholder="Rechercher un livre" />
+
+  <ul>
+    <li v-for="book in filteredBooks">{{ book }}</li>
+  </ul>
+
+  <p>
+  Nombre de livre : <span>{{ publishedBooksMessage }}</span>
+  </p>
+</template>
+```
+
+::: tip Que constatez-vous ?
+
+Plusieurs différences sont à noter par rapport au code précédent :
+
+- Nous avons déclaré une variable `search` qui est une variable `ref`.
+- Nous avons déclaré une variable `filteredBooks` qui est une variable calculée. Cette variable contient la liste des livres filtrés en fonction de la valeur de la variable `search` (qui est une `ref`).
+- Nous avons modifié la variable `publishedBooksMessage` pour qu'elle retourne le nombre de livres filtrés. En ce basant sur la variable `filteredBooks`.
+
+:::
+
 ## Créer un composant au format « 2.0 » dans une structure « 3.0 »
 
 Comme je l'indiquais précédemment… Vous n'êtes pas obligé d'utiliser l'API de composition pour créer un composant avec VueJS 3.0. Vous pouvez tout à fait écrire un composant « à l'ancienne » par exemple :
@@ -295,7 +404,7 @@ Comme toujours vous ne devez pas avoir plusieurs `script` dans un composant, ni 
 
 ## Et Vuetify ou VueBootstrap ?
 
-C'est là que le bas blesse… Actuellement seule Vuetify est en version Next (c'est à dire compatible VueJS 3.0), pour BootstrapVue par contre pour l'instant celui-ci n'est pas compatible avec VueJS 3.0… Mais rien n'est impossible ! Bien au contraire !
+C'est là que le bât blesse… Actuellement seule Vuetify est en version Next (c'est à dire compatible VueJS 3.0), pour BootstrapVue par contre pour l'instant celui-ci n'est pas compatible avec VueJS 3.0… Mais rien n'est impossible ! Bien au contraire !
 
 Ce que nous n'avons pas de disponible c'est « Les jeux de composants », par contre, aucun problème pour installer / utiliser Bootstrap tel que nous le ferions dans un développement classique.
 
@@ -332,7 +441,7 @@ Et voilà. Votre projet inclut maintenant Bootstrap 🚀
 
 ### Utiliser Bootstrap
 
-Pour l'utilisation de bootstrap il faut se référer à la documentation (vous le saviez déjà, mais je préfère le rappeler). Vue que nous n'avons pas de composant de disponible je vous propose de créer les nôtres :
+Pour l'utilisation de bootstrap il faut se référer à la documentation (vous le saviez déjà, mais je préfère le rappeler). Vue que nous n'avons pas de composant de disponible, je vous propose de créer les nôtres :
 
 - Un composant `button`. (Avec comme `props` le `label` et la `color`)
 - Un composant `card`.
@@ -409,11 +518,9 @@ const props = defineProps({
 </script>
 ```
 
-:::
-
 ## Conclusion
 
-Dans ce TP nous avons vu comment créer un projet VueJS 3.0. Nous avons également vu comment créer un composants possèdant des props. Bien que VueBootstrap ne soit pas encore disponible pour VueJS 3.0, nous avons pu voir comment utiliser Bootstrap dans notre projet.
+Dans ce TP nous avons vu comment créer un projet VueJS 3.0. Nous avons également vu comment créer un composant possédant des props. Bien que VueBootstrap ne soit pas encore disponible pour VueJS 3.0, nous avons pu voir comment utiliser Bootstrap dans notre projet.
 
 ## Ressources
 

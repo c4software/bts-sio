@@ -45,7 +45,7 @@ Avez-vous déjà entendu parler de DevOps ?
 
 Demain, vous aurez certainement le poste de DevOps…
 
-Quels seront vos missions ?
+Quelles seront vos missions ?
 
 (Psst… c'est un peu fourre-tout)
 
@@ -67,7 +67,7 @@ Quels seront vos missions ?
 <fieldset>
   <legend>Définition</legend>
   <p>
-    Le DevOps <b>s'assure de la qualité</b> de son application, de la  <b>disponibilité</b>,<b>performances</b> et <b>sécurité</b>.
+    Le DevOps <b>s'assure de la qualité</b> de son application, de la  <b>disponibilité</b>, <b>performances</b> et <b>sécurité</b>.
   </p>
 </fieldset>
 
@@ -87,7 +87,11 @@ _(C'est une question sérieuse)_
 
 Moi je suis développeur, je veux juste coder !
 
-Mais… j'ai besoin d'outils pour développer.
+Mais…
+
+---
+
+J'ai besoin d'outils pour développer ?
 
 ---
 
@@ -107,7 +111,7 @@ Le plus important ?
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Git Bash](https://gitforwindows.org/)
 - [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=fr-fr&gl=fr)
-- [Windows Subsystem for Linux](https://learn.microsoft.com/fr-fr/windows/wsl/install)
+- [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/fr-fr/windows/wsl/install)
 
 ---
 
@@ -145,8 +149,30 @@ Comment choisir ?
 En entreprise, c'est variable… mais chaque année en stage je constate que les entreprises utilisent :
 
 - Windows (beaucoup).
-- Linux (beaucoup, régulièrement des stagiaires utilisent Ubuntu).
-- macOS (de temps en temps).
+- Linux (beaucoup, souvent Ubuntu).
+- macOS (de temps en temps 👋).
+
+---
+
+![Linux, Mac, Windows](./res/os_sharing.jpg)
+_Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-software-development-followed-by-linux/)_
+
+---
+
+<fieldset>
+  <legend>Définition</legend>
+  <p>
+    Choisir son OS pour un développeur est une question de <b>préférence</b> et de <b>confort,</b> mais aussi en fonction du langage de programmation <b>ciblé</b>.
+  </p>
+</fieldset>
+
+---
+
+## Et pourquoi pas les trois ?
+
+C'est possible via la virtualisation. 
+
+Avec par exemple Proxmox.
 
 ---
 

@@ -57,7 +57,9 @@ Pour déclarer notre script VueJS, il faut ajouter une balise script dans le bod
             console.log('Application montée')
         },
         data() {
-            return {items: []}
+            return {
+                items: []
+            }
         }
     }).mount('#app')
 </script>
@@ -276,6 +278,60 @@ Pour recharger la liste des posts, vous pouvez utiliser la fonction `fetchData()
 ```
 
 :::
+
+## Filtrer les posts
+
+Pour compléter notre application, nous allons ajouter un champs de recherche. Ce champs va filtrer les posts en fonction d'une saisie utilisateur.
+
+### Le champs de recherche
+
+Pour ajouter le champs de recherche, nous allons utiliser la directive `v-model` de VueJS. Cette directive permet de lier un champs de formulaire à une variable. Par exemple :
+
+```html
+<input type="text" v-model="search">
+```
+
+::: tip N'oubliez pas
+Pour que la variable `search` soit disponible dans votre application, vous devez l'ajouter dans le `data()` de votre application. Exemple :
+
+```js
+data() {
+    return {
+        items: [],
+        search: ''
+    }
+}
+```
+
+:::
+
+Je vous laisse ajouter le champs de recherche et le JS dans votre application.
+
+### Filtrer les posts
+
+Pour filtrer les posts, nous allons utiliser une fonction de VueJS nommé `computed`. Cette fonction permet de créer une variable qui est calculée à partir d'autres variables. Par exemple :
+
+```js
+computed: {
+    filteredItems() {
+        return this.items.filter(item => item.title.includes(this.search))
+    }
+}
+```
+
+::: Comment ça marche ?
+La variable `filteredItems` est calculée à partir de la variable `items` et de la variable `search`. À chaque fois que le tableau `items` ou la variable `search` est modifié, la variable `filteredItems` est recalculée. C'est très pratique !
+
+La ligne `return this.items.filter(item => item.title.includes(this.search))` permet de filtrer le tableau `items` en ne gardant que les éléments dont le titre contient la valeur de la variable `search`. C'est possible grace à la fonction `includes()` qui permet de savoir si une chaine de caractère est incluse dans une autre chaine de caractère ([documentée ici](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/includes)).
+:::
+
+Pour afficher les posts filtrés, il suffit de remplacer la variable `items` par la variable `filteredItems` dans le code HTML (dans la boucle `v-for`)
+
+```html
+<a v-for="item in filteredItems" href="#" class="m-6 block max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+```
+
+Je vous laisse **modifier votre code HTML** tel que décrit ci-dessus.
 
 ## Conclusion
 

@@ -18,7 +18,7 @@ Installation et configuration d'un serveur d'application.
 - [TP 1c - Prendre en main la ligne de commande](/tp/devops/serveur/tp1c.md)
 - [TP 2 - Configurer un serveur Web](/tp/devops/serveur/tp2.md)
 - [TP 3 - Configurer un serveur de Base de données](/tp/devops/serveur/tp3.md)
-- [TP 4 - Déployer son code sur un serveur](/tp/devops/serveur/tp4.md)
+- [TP 4 - Déployer (et redéployer) son code sur un serveur](/tp/devops/serveur/tp4.md)
 - [TP 5 - Créer un serveur Web & BDD](/tp/devops/serveur/tp5.md)
 
 ## Docker

@@ -65,6 +65,10 @@ Mais surtout le DevOps **s'assure de la qualité** de son application. Il s'assu
 
 ![DevOps](./res/devops_loop.webp)
 
+::: tip Définition
+    Le DevOps **s'assure de la qualité** de son application, de la  **disponibilité**, **performances** et **sécurité**.
+:::
+
 ## L'environnement des développeurs
 
 Choisir son environnement de développement est très important. En effet, le choix de l'environnement de développement va déterminer votre productivité. Il est donc important de choisir un environnement de développement adapté à vos besoins.
@@ -83,7 +87,7 @@ Nous retrouvons ces deux éléments dans la plupart des environnements de dével
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Git Bash](https://gitforwindows.org/)
 - [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=fr-fr&gl=fr)
-- [Windows Subsystem for Linux](https://learn.microsoft.com/fr-fr/windows/wsl/install)
+- [Windows Subsystem for Linux WSL](https://learn.microsoft.com/fr-fr/windows/wsl/install)
 
 ### Linux
 
@@ -102,6 +106,13 @@ Nous retrouvons ces deux éléments dans la plupart des environnements de dével
 Vous pouvez utiliser l'OS que vous souhaitez. Je ne vais pas tenter de vous convertir à un OS en particulier. Mais je vous conseille d'utiliser un environnement de développement qui vous convient. Si vous êtes à l'aise avec Windows, alors utilisez Windows. Si vous êtes à l'aise avec Linux, alors utilisez Linux. Si vous êtes à l'aise avec macOS, alors utilisez macOS.
 
 Mais sachez qu'utiliser Linux (par exemple) est une vraie réalité en entreprise (tout comme macOS).
+
+![Répartition](./res/os_share.jpg)
+_Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-software-development-followed-by-linux/)_
+
+::: tip Définition
+Choisir son OS pour un développeur est une question de **préférence** et de **confort** mais aussi en fonction du langage de programmation **ciblé**.
+:::
 
 ## Qu'est-ce qu'un serveur ?
 
