@@ -144,9 +144,9 @@ Avant d'aller plus dans le détail, nous pouvons représenter un serveur de la m
 
 Cette représentation est très simple, mais elle permet de comprendre les différentes couches d'un serveur. Nous allons voir plus en détail chacune de ces couches.
 
-- Le système d'exploitation est la couche la plus basse. C'est la couche qui permet de faire fonctionner le serveur. Dans notre cas Linux.
+- **Le système d'exploitation** est la couche la plus basse. C'est la couche qui permet de faire fonctionner le serveur. Dans notre cas Linux.
 - **Les Ports** : Ce sont des numéros qui permettent d'identifier un service. Les ports vont permettre de rendre accessible le service depuis l'extérieur.
-- **Les utilisateurs** : Une machine == au moins un utilisateur le root. Pour respecter les bonnes pratiques, il est préférable de créer un utilisateur dédié à chaque service.
+- **Les utilisateurs** : Une machine == au moins un utilisateur le **root**. Pour respecter les bonnes pratiques, il est préférable de créer un utilisateur dédié à chaque service.
 - **Les services** : Ce sont définition des applications qui vont tourner en arrière-plan. Par exemple, un serveur Web, un serveur de base de données, etc.
 - **Les applications** : Ce sont les binaires qui vont être exécutés. Par exemple, Apache, MySQL, etc.
 - **Les Logs** : Ce sont des fichiers (habituellement dans le dossier `/var/log`) qui vont contenir les messages générés par les applications (erreurs, informations, etc.).

@@ -252,6 +252,56 @@ Créer un serveur à domicile permet réellement de progresser.
 
 ## Un bon moyen de se familiariser avec la notion de serveur.
 
+Essayer d'être curieux, en code oui, mais aussi sur les serveurs.
+
+---
+
+## Un instant…
+
+### Comment se représenter un serveur ?
+
+---
+
+![Serveur](./res/serveur_linux.png)
+
+---
+
+- **Le système d'exploitation** est la couche la plus basse.
+
+C'est la couche qui permet de faire fonctionner le serveur. Dans notre cas Linux.
+
+---
+
+- **Les Ports** : Ce sont des numéros qui permettent d'identifier un service.
+
+Les ports vont permettre de rendre accessible le service depuis l'extérieur (de 1 à 65535).
+
+---
+
+- **Les utilisateurs** : Une machine == au moins un utilisateur le **root**.
+
+Pour respecter les bonnes pratiques, il est préférable de créer un utilisateur dédié à chaque service.
+
+---
+
+- **Les services** : Ce sont définition des applications qui vont tourner en arrière-plan. 
+
+Par exemple, un serveur Web, un serveur de base de données, etc.
+
+---
+
+- **Les applications** : Ce sont les binaires qui vont être exécutés.
+
+Par exemple, Apache, MySQL, etc.
+
+---
+
+- **Les Logs** : Ce sont des fichiers (habituellement dans le dossier `/var/log`) qui vont contenir les messages générés par les applications (erreurs, informations, etc.).
+
+---
+
+- **Les données** : Ce sont des fichiers exemple le code source de vos applications, ou encore les données de la base de données.
+
 ---
 
 ## Des questions ?
