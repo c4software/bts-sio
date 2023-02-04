@@ -307,7 +307,7 @@ data() {
 
 Je vous laisse ajouter le champs de recherche et le JS dans votre application.
 
-### Filtrer les posts
+### Les `computed` : Filtrer les posts
 
 Pour filtrer les posts, nous allons utiliser une fonction de VueJS nommé `computed`. Cette fonction permet de créer une variable qui est calculée à partir d'autres variables. Par exemple :
 
