@@ -279,7 +279,7 @@ Pour recharger la liste des posts, vous pouvez utiliser la fonction `fetchData()
 
 :::
 
-## Filtrer les posts
+## Les `computed` : Filtrer les posts
 
 Pour compléter notre application, nous allons ajouter un champs de recherche. Ce champs va filtrer les posts en fonction d'une saisie utilisateur.
 
@@ -307,7 +307,7 @@ data() {
 
 Je vous laisse ajouter le champs de recherche et le JS dans votre application.
 
-### Les `computed` : Filtrer les posts
+### Le filtre des posts
 
 Pour filtrer les posts, nous allons utiliser une fonction de VueJS nommé `computed`. Cette fonction permet de créer une variable qui est calculée à partir d'autres variables. Par exemple :
 
