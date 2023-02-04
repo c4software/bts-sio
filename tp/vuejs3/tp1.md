@@ -319,7 +319,7 @@ computed: {
 }
 ```
 
-::: Comment ça marche ?
+::: tip Comment ça marche ?
 La variable `filteredItems` est calculée à partir de la variable `items` et de la variable `search`. À chaque fois que le tableau `items` ou la variable `search` est modifié, la variable `filteredItems` est recalculée. C'est très pratique !
 
 La ligne `return this.items.filter(item => item.title.includes(this.search))` permet de filtrer le tableau `items` en ne gardant que les éléments dont le titre contient la valeur de la variable `search`. C'est possible grace à la fonction `includes()` qui permet de savoir si une chaine de caractère est incluse dans une autre chaine de caractère ([documentée ici](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/includes)).
