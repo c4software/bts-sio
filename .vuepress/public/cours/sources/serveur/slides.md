@@ -192,7 +192,7 @@ Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs.
 
 ## Concrètement…
 
-C'est un ordinateur qui tourne 24h/24 et 7j/7.
+C'est un ordinateur qui tourne **24h/24** et **7j/7**.
 
 ---
 
@@ -216,7 +216,7 @@ Google
 
 ---
 
-## Ici on parle de Cloud
+## On parle souvent de Cloud
 
 Le cloud, c'est « juste » l'ordinateur d'un autre.
 
@@ -225,7 +225,7 @@ Le cloud, c'est « juste » l'ordinateur d'un autre.
 <fieldset>
   <legend>Définition</legend>
   <p>
-    Un serveur est un ordinateur **connecté au réseau** qui fournit **des services** à d'**autres** ordinateurs.
+    Un serveur est un ordinateur <b>connecté au réseau</b> qui fournit <b>des services</b> à d'<b>autres</b> ordinateurs.
   </p>
 </fieldset>
 
@@ -284,7 +284,7 @@ Pour respecter les bonnes pratiques, il est préférable de créer un utilisateu
 
 ---
 
-- **Les services** : Ce sont définition des applications qui vont tourner en arrière-plan. 
+- **Les services** : Ce sont définition des applications qui vont tourner en arrière-plan.
 
 Par exemple, un serveur Web, un serveur de base de données, etc.
 
