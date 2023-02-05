@@ -155,6 +155,7 @@ En entreprise, c'est variable… mais chaque année en stage je constate que les
 ---
 
 ![Linux, Mac, Windows](./res/os_share.jpg)
+
 _Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-software-development-followed-by-linux/)_
 
 ---
@@ -202,7 +203,7 @@ Dans une salle spéciale, souvent climatisée.
 
 ![Serveur](./res/OVH-gazette.jpg)
 
-OVH
+_OVH_
 
 ---
 
@@ -212,7 +213,7 @@ OVH
 
 ![Serveur](./res/000873331_896x598_c.jpg)
 
-Google
+_Google_
 
 ---
 
