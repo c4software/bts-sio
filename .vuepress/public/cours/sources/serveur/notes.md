@@ -104,6 +104,9 @@
   - Comment choisir
 - Un serveur ou plusieurs serveur ?
   - Découpage des services
+- La réplication
+  - Les différents types de réplication
+  - Comment choisir
 - Les hébergeurs
   - Les différents types d'hébergement
   - Comment choisir

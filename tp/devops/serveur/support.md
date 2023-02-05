@@ -66,7 +66,7 @@ Mais surtout le DevOps **s'assure de la qualité** de son application. Il s'assu
 ![DevOps](./res/devops_loop.webp)
 
 ::: tip Définition
-    Le DevOps **s'assure de la qualité** de son application, de la  **disponibilité**, **performances** et **sécurité**.
+Le DevOps **s'assure de la qualité** de son application, de la  **disponibilité**, **performances** et **sécurité**.
 :::
 
 ## L'environnement des développeurs
@@ -855,12 +855,38 @@ L'idée est donc de comprendre pourquoi il est intéressant d'avoir plusieurs se
 
 ### Pourquoi avoir plusieurs serveurs ?
 
-Il y a plusieurs raisons pour avoir plusieurs serveurs :
+Il y a plusieurs raisons pour avoir plusieurs serveurs pour :
 
-- Vous pouvez avoir plusieurs serveurs pour répartir la charge.
-- Vous pouvez avoir plusieurs serveurs pour avoir une meilleure disponibilité.
-- Vous pouvez avoir plusieurs serveurs pour avoir une meilleure sécurité.
-- Vous pouvez avoir plusieurs serveurs pour avoir une meilleure maintenance.
+- Répartir la charge.
+- Meilleure disponibilité.
+- Meilleure sécurité.
+- Meilleure maintenance.
+
+## La réplication
+
+La **réplication informatique des données** est un procédé qui consiste à copier les données d’un serveur maître et à les stocker sur d’autres supports, la plupart du temps un ou **différents serveurs**. On les appelle serveurs cibles, aussi appelés **serveurs esclaves** ou de destination, et l’on parle de réplication de serveur à serveur en réseau.
+
+Nous allosn pouvoir réaliser de la réplication de données de plusieurs manières :
+
+- Réplication de base de données (très courant).
+- Réplication de fichiers / Serveur.
+
+La réplication de base de données est très réppandue dans l'organisation. Elle permet de s'assurer de la disponibilité des données. En effet, si le serveur de base de données tombe en panne, il est possible de récupérer les données sur un autre serveur. Il ne faut pas confondre la réplication de base de données avec la sauvegarde de base de données. Ici nous nous **concentrons sur la haute disponibilité des données**. En s'assurant que les données soit très rapidement disponible en cas de problème.
+
+Comme pour la base de données, il est possible d'avoir une copie parfaite des fichiers de son serveur (fichier, et configuration) afin d'être en capacité d'avoir instantanément un serveur de remplacement en cas de problème.
+
+### Plusieurs type de réplications existent
+
+Pour les réplications de base de données :
+
+- Active : le serveur esclave peut être utilisé en cas de problème sur le serveur maître. Les deux serveurs peuvent être utilisés en même temps.
+- Passive : le serveur esclave ne peut pas être utilisé en cas de problème sur le serveur maître. Dans le cas normal, le serveur esclave ne fait que recevoir les données du serveur maître.
+
+Pour les réplications de fichiers :
+
+- Synchrone : les données sont répliquées en temps réel (le serveur esclave est toujours à jour).
+- Asynchrone : les données sont répliquées de manière périodique (la fréquence des mise à jours est définie en fonction de la criticité).
+- Semi-synchrone : les données sont répliquées de manière périodique et en temps réel.
 
 ## Les hébergeurs
 

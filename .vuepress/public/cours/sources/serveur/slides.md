@@ -43,7 +43,7 @@ Avez-vous déjà entendu parler de DevOps ?
 
 ---
 
-Demain, vous aurez certainement le poste de DevOps…
+Demain, vous aurez certainement le titre de DevOps…
 
 Quelles seront vos missions ?
 
@@ -51,11 +51,11 @@ Quelles seront vos missions ?
 
 ---
 
-- Développer (et maintenir) des applications.
-- Choisir la configuration de votre serveur.
-- Déployer votre application sur le serveur.
-- Automatiser le déploiement de votre application.
-- Diagnostiquer les problèmes.
+- **Développer** (et maintenir) des applications.
+- Choisir la **configuration** de votre serveur.
+- **Déployer** votre application sur le serveur.
+- **Automatiser** le déploiement de votre application.
+- **Diagnostiquer** les **problèmes**.
 - **Sécuriser** votre serveur.
 
 ---
