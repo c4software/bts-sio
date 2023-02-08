@@ -16,7 +16,7 @@ Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 
 - **Concept de modélisation** à travers la notion de classe et d’instanciation de ces classes.
 - **Concept d’action** à travers la notion d’envoi de messages et de méthodes à l’intérieur des objets.
-- **Concept de construction** par réutilisation et amélioration par l’utilisation de la notion d’héritage.
+- **Concept de construction** en créant un objet en reposant sur la définition d’une classe.
 - **Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter. (inaccessible de l'exterieur).
 
 ::: tip Mais surtout
