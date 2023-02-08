@@ -27,7 +27,7 @@ En groupe de 2 ou 3
 
 ---
 
-**Concept de construction** par réutilisation et amélioration par l’utilisation de la notion d’héritage.
+**Concept de construction** en créant un objet en reposant sur la définition d’une classe.
 
 ---
 
