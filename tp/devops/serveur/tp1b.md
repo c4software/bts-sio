@@ -715,6 +715,11 @@ Nous venons de créer rapidement un serveur web. Dans le prochain TP, nous allon
 Nous verrons ensuite comment mettre en place un serveur web dans son intégralité. _Car oui, ça sera un peu plus compliqué que ce que nous venons de faire._ (Mais pas trop quand même 😉)
 :::
 
+_À votre avis :_
+
+- Pouvons-nous faire du PHP sur notre serveur ?
+- Comment pouvons nous envoyer des fichiers sur notre serveur ?
+
 ## Conclusion
 
 Dans ce TP nous avons vu comment installer un serveur Debian 10. Nous avons également vu comment configurer le réseau de notre machine virtuelle, comment installer les VMware tools et comment configurer l'accès SSH à notre serveur.
