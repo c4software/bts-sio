@@ -638,6 +638,83 @@ apt-get install open-vm-tools
 
 :::
 
+## Installer Apache
+
+Pour valider notre installation. Nous allons installer un serveur Web. Pour ça nous allons installer Apache.
+
+Pour rappel, Apache est un serveur Web. Il permet de mettre en ligne des sites Internet. C'est un service qui va tourner en permanence sur votre serveur.
+
+### Installation
+
+Pour installer Apache, nous allons utiliser la commande `apt` :
+
+```bash
+apt-get install apache2
+```
+
+### Vérification
+
+Pour vérifier que Apache est bien installé, nous allons utiliser la commande `systemctl` :
+
+```bash
+systemctl status apache2
+```
+
+::: tip Comment vérifier que le service est bien lancé ?
+Si le service est bien lancé, vous devriez voir la ligne suivante :
+
+```bash
+Active: active (running) 
+```
+
+:::
+
+### Accéder à votre site
+
+Pour accéder à votre site, vous devez utiliser l'adresse IP de votre serveur. Par exemple :
+
+```bash
+http://192.168.1.1
+```
+
+::: tip Comment trouver l'adresse IP de votre serveur ?
+Pour obtenir l'adresse IP de votre serveur, vous pouvez utiliser la commande `IP.` :
+
+```bash
+ip a
+```
+
+:::
+
+### Créer une page web
+
+Pour finaliser ce premier TP, nous allons créer une page web. Pour ça nous allons utiliser l'éditeur de texte `vim.` :
+
+```bash
+vim /var/www/html/index.html
+```
+
+Dans le fichier, nous allons y mettre le code suivant :
+
+```html
+<html>
+    <head>
+        <title>Bienvenue sur le serveur de VOTRE NOM</title>
+    </head>
+    <body>
+        <h1>Bravo ! Votre site fonctionne</h1>
+    </body>
+</html>
+```
+
+Cette dernière étape permet de valider que votre serveur fonctionne comme prévu.
+
+::: tip Pratique ?
+Nous venons de créer rapidement un serveur web. Dans le prochain TP, nous allons voir comment être efficace avec la ligne de commande. Cette compétence sera très utile pour la suite de votre formation.
+
+Nous verrons ensuite comment mettre en place un serveur web dans son intégralité. _Car oui, ça sera un peu plus compliqué que ce que nous venons de faire._ (Mais pas trop quand même 😉)
+:::
+
 ## Conclusion
 
 Dans ce TP nous avons vu comment installer un serveur Debian 10. Nous avons également vu comment configurer le réseau de notre machine virtuelle, comment installer les VMware tools et comment configurer l'accès SSH à notre serveur.
