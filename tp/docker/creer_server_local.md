@@ -26,17 +26,23 @@ docker run --rm -p 8080:80 -v $(pwd):/var/www/html/ php:7-apache
 docker run --rm -p 8080:80 -v %cd%:/var/www/html/ php:7-apache
 ```
 
-Tester la commande (et comprendre pourquoi ça ne fonctionne pas).
+Tester la commande (et chercher pourquoi ça ne fonctionne pas).
 
 ### PHP 8
 
 ```sh
 # Pour *Nix
-docker run --rm -p 8080:80 -v $(pwd):/var/www/html/ php:8-apache
+docker run --rm -p 8080:80 -v $(pwd):/var/www/html/ php:8.2-apache
 
 # Pour Windows
-docker run --rm -p 8080:80 -v %cd%:/var/www/html/ php:8-apache
+docker run --rm -p 8080:80 -v %cd%:/var/www/html/ php:8.2-apache
 ```
+
+### La force de Docker
+
+Ici nous voyons que Docker nous permet de lancer très rapidement un serveur PHP. Mais ce n'est pas tout, nous allons voir que nous pouvons également lancer plusieurs versions de PHP sur la même machine. Pour cela, il suffit de changer le numéro de version dans la commande.
+
+C'est vraiment très pratique pour tester rapidement un projet, une idée, ou même pour faire des tests de compatibilité.
 
 ## PostgreSQL (ou autre BDD)
 
@@ -66,6 +72,14 @@ En regardant la documentation, je vous laisse faire la même chose que pour [Pos
 Juste une petite aide, le port de MySQL est le `3306`.
 :::
 
+::: details Solution
+
+```sh
+docker run -p 3306:3306 --name fixy-mysql -v ./mysqlData:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=myPassword -d mysql
+```
+
+:::
+
 ## Wordpress
 
 Nous avons vu PHP, une base de données (MySQL et PostgreSQL), pourquoi ne pas aller plus loin ? En effet Docker ne se limite pas à PHP / Python / MySQL nous pouvons packager ce que nous souhaitons. C'est le cas de plein de solutions Wordpress en fait parti ; vous avez sur le [DockerHub une image toute prête avec la dernière version de Wordpress](https://hub.docker.com/_/wordpress)
@@ -75,7 +89,25 @@ docker run -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=<password> --name 
 ```
 
 ::: danger vous voyez le problème ?
-Et oui… Wordpress seul est pas très utile ! Il nous faut une base de données pour sauvegarder les données du container. C'est à partir d'ici que nous allons voir [la force de Docker Compose](/tp/docker/docker_compose.md).
+Et oui… Wordpress seul n'est pas très utile ! Il nous faut une base de données pour sauvegarder les données du container. C'est à partir d'ici que nous allons voir [la force de Docker Compose](/tp/docker/docker_compose.md).
 
 Bien évidemment Docker Compose n'est pas obligatoire… Je vous laisse tester et regarder comment il est possible de faire **sans**.
 :::
+
+## Aller plus loin
+
+Pour finaliser votre découverte, je vous propose de monter un serveur Redmine :
+
+- [https://hub.docker.com/_/redmine](https://hub.docker.com/_/redmine)
+
+Redmine est un outil de gestion de projet, il est très simple à utiliser et très complet. Vous pouvez l'utiliser pour gérer vos projets, vos tâches, vos bugs, etc.
+
+Une fois démarré, je vous laisse découvrir l'outil.
+
+## Conclusion
+
+Dans ce TP nous avons vu comment lancer un container Docker. Nous avons vu que Docker est très simple à utiliser et que nous pouvons lancer plusieurs versions de PHP sur la même machine. 
+
+Nous avons également vu que nous pouvons lancer une base de données (MySQL ou PostgreSQL) et même un serveur Web contenant le site Wordpress.
+
+Ici l'idée c'était de vous montrer que Docker était très simple à utiliser et qu'il pouvait nous servir comme un environnement de développement.
