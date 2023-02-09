@@ -279,7 +279,7 @@ Plus tard, nous verrons pourquoi l'accès SSH est un incontournable en entrepris
 
 :::
 
-## Fiche sevreur
+## Fiche serveur
 
 Vous venez de créer votre première machine virtuelle. Comme vu en introduction, cette fiche doit contenir l'ensemble des informations de votre serveurs. Par exemple :
 
