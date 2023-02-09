@@ -189,6 +189,10 @@ Le provisionnement dynamique est une méthode qui optimise l'utilisation du stoc
 
 ![Ressource de calcul](./res/ferme-etape7-reseau.jpg)
 
+::: tip Votre VLAN ?
+Si vous ne connaissez plus votre VLAN, vous pouvez [le retrouver sur Moodle](https://192.168.10.9/course/view.php?id=58).
+:::
+
 ### Fin. Récap
 
 La configuration de votre VM est complète. Vous pouvez maintenant cliquer sur « Finish » pour valider la création de celle-ci.

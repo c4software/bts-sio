@@ -13,6 +13,8 @@
                         <option v-for="el in v" :value="el">VLAN {{ el }}</option>
                     </optgroup>
                 </select>
+
+                <a href="https://192.168.10.9/course/view.php?id=58">Retrouvez votre VLAN (Lycée Chevrollier)</a>
             </div>
         </div>
         <div class="container">
