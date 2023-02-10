@@ -1,9 +1,8 @@
-//import { defaultTheme } from '@vuepress/theme-default'
+import { defaultTheme } from '@vuepress/theme-default'
 import sidebar from "./sidebar.ts";
 import { searchPlugin } from '@vuepress/plugin-search';
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics';
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
-import { mixTheme } from 'vuepress-theme-mix'
 
 export default {
   title: "Cours",
@@ -43,7 +42,7 @@ export default {
     ['meta', { name: 'msapplication-TileColor', content: '#3e80af' }],
     ['meta', { name: 'google-site-verification', content: 'IpzGtrtih2KT0f0XkFOsx0qHPBihE6JADKtXpO-KN-4' }]
   ],
-  theme: mixTheme({
+  theme: defaultTheme({
     docsBranch: 'master',
     editLinks: true,
     nextLinks: false,
