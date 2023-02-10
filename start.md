@@ -14,17 +14,18 @@ Supports de cours de Valentin Brosseau (BTS SIO, GRETA, MyDigitalSchool, ESEO, e
 - <a rel="me" href="https://mastodon.gougere.fr/@c4software">Mon Mastodon</a>
 - <a rel="me" href="https://twitter.com/c4software">Mon Twitter</a>
 
-## Programme de l'année
+## Disponible sur le site
 
-- Git.
-- Gitlab et travail collaboratif.
+- Git, Gitlab et travail collaboratif.
 - Organisation du code
 - Introduction au développement sécurisé.
 - Laravel, PHP & Framework.
 - VueJS (2 & 3).
 - Programmation orientée objet (POO et UML).
 - Introduction DevOps.
-- Android
+- Android (View & Compose).
+- Linux (Debian, Alpine, etc).
+- DevOps (Docker, Kubernetes, Gitlab CI/CD, etc).
 
 ## Contenu
 
