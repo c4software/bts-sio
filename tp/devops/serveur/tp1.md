@@ -56,6 +56,12 @@ Pour accéder à la ferme, vous devez :
 - Cliquer sur « LANCER VSPHERE CLIENT (HTML5) ».
 - Entrer votre identifiant et mot de passe de l'AD (ceux de votre compte Windows).
 
+::: tip Format
+
+Votre login doit être sous la forme suivante : `Dombtsig.local\votrelogin`.
+
+:::
+
 ![Connexion à la ferme](./res/ferme-connexion.jpg)
 
 ::: tip Observons
