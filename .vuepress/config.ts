@@ -3,10 +3,13 @@ import sidebar from "./sidebar.ts";
 import { searchPlugin } from '@vuepress/plugin-search';
 import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics';
 import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
+import { viteBundler } from '@vuepress/bundler-vite';
+import { path } from '@vuepress/utils'
 
 export default {
   title: "Cours",
   description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA, et dans différentes interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
+  bundler: viteBundler(),
   plugins: [
     mediumZoomPlugin(),
     googleAnalyticsPlugin({ 'id': 'UA-2107503-8' }),
@@ -56,5 +59,8 @@ export default {
       { text: 'Une question ?', link: '/pages/contact.md' },
     ],
     sidebar: sidebar
-  })
+  }),
+  alias: {
+    '@theme/Sidebar.vue': path.resolve(__dirname, './components/Sidebar.vue'),
+  }
 };

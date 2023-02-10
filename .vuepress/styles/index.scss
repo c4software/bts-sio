@@ -110,3 +110,37 @@
     break-after: auto;
   }
 }
+
+:root {
+  scroll-behavior: smooth;
+  --c-text: #333;
+  --c-brand: #fe7846;
+  --c-brand-light: #fe7846;
+}
+
+html.dark {
+  --c-brand: #fe7846;
+  --c-brand-light: #fe7846;
+}
+
+.sidebar-item.sidebar-heading{
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.sidebar .sidebar-item {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+p,
+ul,
+ol {
+  line-height: 1.8;
+}
+
+body {
+  font-size: 16px;
+  font-weight: 400;
+}
