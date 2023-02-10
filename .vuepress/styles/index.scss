@@ -116,8 +116,20 @@ iframe {
 }
 
 .custom-container.tip {
-  border: 0;
+  border-radius: 10px;
+  border: 1px solid var(--c-tip-title);
 }
+
+.custom-container.danger {
+  border-radius: 10px;
+  border: 1px solid var(--c-danger-title);
+}
+
+.custom-container.warning {
+  border-radius: 10px;
+  border: 1px solid var(--c-warning-title);
+}
+
 
 :root {
   scroll-behavior: smooth;
