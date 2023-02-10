@@ -100,7 +100,7 @@ export default {
     },
     data() {
         return {
-            vlans: { 500: Array.from({ length: 99 }, (x, i) => 501 + i), 600: Array.from({ length: 99 }, (x, i) => 601 + i) },
+            vlans: { 400: Array.from({ length: 99 }, (x, i) => 400 + i), 500: Array.from({ length: 99 }, (x, i) => 501 + i), 600: Array.from({ length: 99 }, (x, i) => 601 + i) },
             vlan: "",
             interface: "ens18",
             ip: "192.168.1.1",
