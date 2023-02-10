@@ -13,7 +13,8 @@
     "lodash.trimend": "4.5.1",
     "lodash.trimstart": "4.5.1",
     "remove-markdown": "0.5.0",
-    "striptags": "3.2.0"
+    "striptags": "3.2.0",
+    "vuepress-theme-mix": "1.4.1"
   },
   "scripts": {
     "dev": "vuepress dev",
