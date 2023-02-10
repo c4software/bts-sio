@@ -22,6 +22,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - Diagnostiquer un problème
 - La Sécurité (Ports, Services, Utilisateurs, Sauvegardes)
 - Les différents types de serveurs (Physique, Virtuel, Cloud)
+- Les environnements (Développement, Recette, Production)
 - Les hébergeurs
 - Docker
 

@@ -861,6 +861,17 @@ Il y a plusieurs raisons pour avoir plusieurs serveurs pour :
 - Meilleure disponibilité.
 - Meilleure sécurité.
 - Meilleure maintenance.
+- Plusieurs environnements.
+
+## Les environnements
+
+En informatique (comme dans la vraie vie), on a besoin de plusieurs environnements. En effet, actuellement, vous n'avez qu'un seul environnement : votre ordinateur. Mais vous avez besoin de plusieurs environnements :
+
+- Développement. (ex. : votre ordinateur).
+- Test / Recette (ex. : un serveur qui servira à valider vos développements, ou héberger votre base de données).
+- Production. (ex. : le serveur qui hébergera votre site).
+
+Le découpage en environnement est une pratique très répandue. Elle permet de tester son code sans risquer de casser le site de production.
 
 ## La réplication
 
