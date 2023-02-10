@@ -111,16 +111,35 @@
   }
 }
 
+iframe {
+    max-width: 100% !important;
+}
+
+.custom-container.tip {
+  border: 0;
+}
+
 :root {
   scroll-behavior: smooth;
   --c-text: #333;
   --c-brand: #fe7846;
   --c-brand-light: #fe7846;
+
+  --c-tip: #10b9810d;
+  --c-tip-bg: var(--c-tip);
+  --c-tip-text: #10b981;
+  --c-tip-title: #10b981;
+  --c-tip-text-accent: #129a6c;
+
 }
 
 html.dark {
   --c-brand: #fe7846;
   --c-brand-light: #fe7846;
+
+  --c-tip-text: #fff;
+  --c-tip-title: #fff;
+  --c-tip-text-accent: #fff;
 }
 
 .sidebar-item.sidebar-heading{

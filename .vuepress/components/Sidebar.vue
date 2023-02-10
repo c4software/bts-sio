@@ -46,6 +46,10 @@ watch(isClose, (value) => {
     transform: translateX(-100%);
 }
 
+.no-sidebar .back-to-top{
+    display: none;
+}
+
 @media (max-width: 719px){
     .back-to-top{
         display: none;

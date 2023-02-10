@@ -27,7 +27,7 @@ export default {
     '/': {
       lang: 'fr-FR',
       title: "Cours",
-      description: "Cette documentation est réalisée par Valentin Brosseau (BTS SIO - SLAM 5, Greta, mais également dans divers cours et interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
+      description: "Supports de cours de Valentin Brosseau",
     }
   },
   lang: "fr-FR",
