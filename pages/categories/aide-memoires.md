@@ -25,6 +25,7 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 - [La programmation orientée objet](/cheatsheets/poo/)
 - [La représentation UML](/cheatsheets/poo-uml/)
 - [Git](/cheatsheets/git/)
+- [Veille & Ressources](/tp/veille/ressources.md)
 
 ## DevOps
 
