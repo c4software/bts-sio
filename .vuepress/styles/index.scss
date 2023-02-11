@@ -197,5 +197,11 @@ body {
   .actions{
     display: grid !important;
     grid-template-columns: 1fr 1fr;
+
+    > .action-button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }

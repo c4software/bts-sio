@@ -7,7 +7,7 @@ actions:
   - text: Commencer
     link: /start.html
     type: secondary
-  - text: Les aides mémoires
+  - text: Aides mémoires
     link: /pages/categories/aide-memoires.html
     type: secondary
   - text: Les concepts
