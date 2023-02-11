@@ -192,3 +192,10 @@ body {
   font-size: 16px;
   font-weight: 400;
 }
+
+.hero {
+  .actions{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+  }
+}
