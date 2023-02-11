@@ -310,8 +310,6 @@ module.exports = [
     collapsible: true,
     children: [
       { text: "Framework Flask (Python)", children: ["/cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
-      { text: "Typescript (prochainement)", children: ["/cours/typescript", "/tp/typescript/vuejs"] },
-      { text: "NodeJS (prochainement)", children: ["/cours/nodejs"] },
     ]
   }
 
