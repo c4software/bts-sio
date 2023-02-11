@@ -32,7 +32,7 @@ Le versionning est un système qui permet de gérer les différentes versions d'
 La sécurité est un ensemble de règles et de bonnes pratiques qui permettent de protéger un système informatique.
 
 - [Le cours](/cours/securite_applications.md)
-- [La sécurité OWASP](/cheatsheets/owasp/README.md)
+- [La méthode OWASP](/cheatsheets/owasp/README.md)
 
 ## L'organisation
 

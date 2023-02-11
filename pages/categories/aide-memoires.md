@@ -18,7 +18,7 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 
 ## La sécurité
 
-- [La sécurité OWASP](/cheatsheets/owasp/)
+- [La méthode OWASP](/cheatsheets/owasp/)
 
 ## L'organisation
 
