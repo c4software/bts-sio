@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: icons/icon-512x512.png
+heroImage: icons/icon-192x192.png
 heroText: Bienvenue 👋
 description: Supports de cours & TP de Valentin Brosseau (BTS SIO, GRETA, MyDigitalSchool, ESEO, etc)
 actions:
