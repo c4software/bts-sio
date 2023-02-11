@@ -6,15 +6,15 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 
 - [HTML](/cheatsheets/html/)
 - [PHP](/cheatsheets/php/)
-- [Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 - [JavaScript](/cheatsheets/javascript/)
 - [SQL](/cheatsheets/sql/)
 
 ## Le Web avancé
 
 - [Laravel](/cheatsheets/laravel/)
+- [Mini MVC Sample](/cheatsheets/mini-mvc-sample/README.md)
 - [Les API](/cheatsheets/api/)
-- [VueJS](/cheatsheets/vuejs/)
+- [VueJS 2.0](/cheatsheets/vuejs/)
 
 ## La sécurité
 
