@@ -128,4 +128,6 @@ _Hebergement :_
 - [Github Pages](https://pages.github.com/) <- CI/CD
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
 - [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou mutualisés.
+- [Web Hosting OVH](https://www.ovhcloud.com/fr/web-hosting/) <- Démarre à 2€ / mois pour un Kimsufi.
 - [AlwaysData](https://www.alwaysdata.com/fr/) <- Free-tiers de 100mo pour vos projets.
+- [Page Perso Free](https://assistance.free.fr/?search=Pages%20Perso&offer=tags-92) <- 10Go gratuits si abonné Free.
