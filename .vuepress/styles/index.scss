@@ -155,17 +155,20 @@ html.dark {
   --c-brand: #fe7846;
   --c-brand-light: #fe7846;
 
-  --c-tip-text: #fff;
-  --c-tip-title: #fff;
-  --c-tip-text-accent: #fff;
+  --c-tip: #10b9810d;
+  --c-tip-text: #10b981;
+  --c-tip-title: #10b981;
+  --c-tip-text-accent: #09865d;
 
-  --c-warning-text: #fff4bf;
-  --c-warning-title: #fff4bf;
-  --c-warning-text-accent: #fffdf4;
+  --c-warning: #eab3080d;
+  --c-warning-text: #eab308;
+  --c-warning-title: #eab308;
+  --c-warning-text-accent: #ad8306;
 
-  --c-danger-text: #fff;
-  --c-danger-title: #fff;
-  --c-danger-text-accent: #fff;
+  --c-danger:#f43f5e0d;
+  --c-danger-text: #f43f5e;
+  --c-danger-title: #f43f5e;
+  --c-danger-text-accent: #b02e44;
 }
 
 .sidebar-item.sidebar-heading{
