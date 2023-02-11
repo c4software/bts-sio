@@ -17,7 +17,7 @@ Dans cette pages vous trouverez les ressources pour vous aider à comprendre la 
 - [Lire un diagramme UML](/cours/uml.md)
 - [Les interfaces](/cours/les_interfaces.md)
 - [Redéfinition & Polymorphisme](/cours/poo_redefinition_polymorphisme.md)
-- [S'entrainer URDL](/pages/urdle.md)
+- [S'entrainer](/pages/urdle.md)
 
 ## Le versionning
 
@@ -39,6 +39,7 @@ La sécurité est un ensemble de règles et de bonnes pratiques qui permettent d
 Structurer son code et ses projets permet de faciliter la maintenance et la compréhension du code.
 
 - [Cours sur l'organisation](/cours/organisations.md)
+- [La veille](/cours/veille.md)
 
 ## Les composants
 
