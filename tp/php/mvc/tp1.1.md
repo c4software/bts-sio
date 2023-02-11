@@ -1,4 +1,4 @@
-# Prise en main structure MVC
+# TP TODO List
 
 Dans ce TP, nous allons prendre en main [la structure de code présente ici](./tp1.md).
 

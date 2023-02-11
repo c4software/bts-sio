@@ -1,5 +1,4 @@
 module.exports = [
-  { link: "/README.md", text: "Introduction" },
   {
     text: "Aides mémoires",
     collapsible: true,
@@ -96,14 +95,37 @@ module.exports = [
     ]
   },
 
-  { collapsible: true, text: "Veille & Ressources", children: ["/cours/veille.md", "/tp/veille/ressources.md"] },
+  {
+    collapsible: true, text: "Veille & Ressources", children: ["/cours/veille.md", "/tp/veille/ressources.md"]
+  },
 
   {
-    text: "Le HTML + CSS",
+    text: "Le versionning",
+    collapsible: true,
+    children: [
+      { link: "/cheatsheets/git/README.md", text: "En + du cours" },
+      { text: "Initiation à Git", collapsible: true, children: ["/cours/git", "/tp/git_initiation/"] },
+      { text: "Git en groupe + GitLab", collapsible: true, children: ["/cours/gitlab", "/tp/gitlab/"] },
+    ]
+  },
+
+  {
+    text: "HTML + CSS",
     collapsible: true,
     children: [
       { collapsible: true, text: "Les TP", children: ["/tp/html_css/tp1.md", "/tp/html_css/tp2.md", "/tp/html_css/tp3.md", "/tp/html_css/tp4.md", "/tp/html_css/tp5.md"] },
       { collapsible: true, text: "Librairies", children: ["/tp/html_css/bootstrap.md", "/tp/html_css/tailwind.md"] },
+    ]
+  },
+
+  {
+    text: "Le JavaScript",
+    collapsible: true,
+    children: [
+      { text: "Les bases", collapsible: true, children: ["/cours/introduction_javascript", "/tp/javascript/support.md"] },
+      { text: "Les TP basiques", collapsible: true, children: ["/tp/javascript/tp1.md", "/tp/javascript/tp1.1.md", "/tp/javascript/tp1.2.md", "/tp/javascript/tp2.md", "/tp/javascript/tp3.md", "/tp/javascript/tp3.1.md", "/tp/javascript/tp5.md", "/tp/javascript/tp4.md", "/tp/javascript/tp4.1.md"] },
+      { text: "Javascript avancé", collapsible: true, children: ["/cours/javascript_avances", "/tp/javascript_avances/introduction", "/tp/javascript_avances/revision"] },
+      { text: "Les frameworks", collapsible: true, children: ["/cours/framework_javascript"] }
     ]
   },
 
@@ -113,7 +135,20 @@ module.exports = [
     children: [
       { text: "Les bases", collapsible: true, children: ["/cours/introduction_php", "/cours/introduction_sql_php", "/tp/php/support.md", "/tp/php/sql/support.md"] },
       { text: "Les TP basiques", collapsible: true, children: ["/tp/php/tp1.md", "/tp/php/tp-param.md", "/tp/php/tp1.1.md", "/tp/php/tp1.2.md", "/tp/php/tp2.md", "/tp/php/tp3.md", "/tp/php/tp4.md", "/tp/php/tp5.md"] },
-      { text: "PHP & SQL", collapsible: true, children: ["/tp/php/sql/tp5.md", "/tp/php/sql/tp6.md"] },
+      { text: "PHP & SQL", collapsible: true, children: ["/tp/php/sql/tp5.md", "/tp/php/sql/tp6.md"] }
+    ]
+  },
+
+  {
+    text: "L'organisation",
+    collapsible: true,
+    children: ["/cours/organisations", "/tp/organisation/introduction"],
+  },
+
+  {
+    text: "Le PHP Avancé",
+    collapsible: true,
+    children: [
       {
         text: "MVC",
         collapsible: true,
@@ -121,7 +156,6 @@ module.exports = [
           "/tp/php/mvc/tp1.md",
           "/tp/php/mvc/tp1.1.md",
           "/tp/php/mvc/tp2.md",
-          { text: "iOT Dashboard", children: ["/tp/php/mvc/dashboard/tp0.md", "/tp/php/mvc/dashboard/tp1.md"] }
         ]
       },
       {
@@ -139,36 +173,9 @@ module.exports = [
   },
 
   {
-    text: "Le JavaScript",
-    collapsible: true,
-    children: [
-      { text: "Les bases", collapsible: true, children: ["/cours/introduction_javascript", "/tp/javascript/support.md"] },
-      { text: "Les TP basiques", collapsible: true, children: ["/tp/javascript/tp1.md", "/tp/javascript/tp1.1.md", "/tp/javascript/tp1.2.md", "/tp/javascript/tp2.md", "/tp/javascript/tp3.md", "/tp/javascript/tp3.1.md", "/tp/javascript/tp5.md", "/tp/javascript/tp4.md", "/tp/javascript/tp4.1.md"] },
-      { text: "Javascript avancé", collapsible: true, children: ["/cours/javascript_avances", "/tp/javascript_avances/introduction", "/tp/javascript_avances/revision"] },
-      { text: "Les frameworks", collapsible: true, children: ["/cours/framework_javascript"] }
-    ]
-  },
-
-  {
     text: "Les CMS",
     collapsible: true,
     children: ["/tp/cms/wordpress.md"]
-  },
-
-  {
-    text: "Le versionning",
-    collapsible: true,
-    children: [
-      { link: "/cheatsheets/git/README.md", text: "En + du cours" },
-      { text: "Initiation à Git", collapsible: true, children: ["/cours/git", "/tp/git_initiation/"] },
-      { text: "Git en groupe + GitLab", collapsible: true, children: ["/cours/gitlab", "/tp/gitlab/"] },
-    ]
-  },
-
-  {
-    text: "L'organisation",
-    collapsible: true,
-    children: ["/cours/organisations", "/tp/organisation/introduction"],
   },
 
   {
@@ -189,7 +196,7 @@ module.exports = [
     text: "VueJS",
     collapsible: true,
     children: [
-      { text: "Cours Vue 2.0", collapsible: true, children: ["/cheatsheets/vuejs/README.md", "/cours/vuejs"] },
+      { text: "Cours Vue", collapsible: true, children: ["/cheatsheets/vuejs/README.md", "/cours/vuejs"] },
       { text: "Exemples", collapsible: true, children: ["/cours/demo/vuejs/demo1", "/cours/demo/vuejs/counter", "/cours/demo/vuejs/clock", "/cours/demo/vuejs/timestamp-color", "/cours/demo/vuejs/sound", "/cours/demo/vuejs/12vue", "/cours/demo/vuejs/chat"] },
       {
         text: "Version 2.0",
@@ -215,7 +222,7 @@ module.exports = [
 
 
   {
-    text: "Le mobile",
+    text: "Mobile",
     collapsible: true,
     children: [
       {
@@ -284,7 +291,7 @@ module.exports = [
         ]
       },
       {
-        text: "Mini MVC Sample",
+        text: "Hébergement mini MVC Sample",
         collapsible: true,
         children: [
           "/tp/ops/mini-mvc-sample/deployer-mini-mvc-sample.md",

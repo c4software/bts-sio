@@ -7,6 +7,21 @@ actions:
   - text: Commencer
     link: /start.html
     type: secondary
+  - text: Les aides mémoires
+    link: /pages/categories/aide-memoires.html
+    type: secondary
+  - text: Les concepts
+    link: /pages/categories/les-concepts.html
+    type: secondary
+  - text: Le web
+    link: /pages/categories/le-web.html
+    type: secondary
+  - text: Les serveurs
+    link: /pages/categories/les-serveurs.html
+    type: secondary
+  - text: Le mobile
+    link: /pages/categories/le-mobile.html
+    type: secondary
 next:
   text: GitHub
   link: https://github.com/c4software/bts-sio
