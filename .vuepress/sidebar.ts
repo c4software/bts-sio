@@ -78,7 +78,8 @@ module.exports = [
     text: "Le PHP",
     collapsible: true,
     children: [
-      { text: "Les cours", collapsible: true, children: ["/cours/introduction_php", "/cours/introduction_sql_php", "/tp/php/support.md", "/tp/php/sql/support.md"] },
+      { text: "Les cours", collapsible: true, children: ["/cours/introduction_php", "/cours/introduction_sql_php"] },
+      { text: "En + du cours", collapsible: true, children: ["/tp/php/support.md", "/tp/php/sql/support.md"] },
       { text: "TP bases", collapsible: true, children: ["/tp/php/tp1.md", "/tp/php/tp-param.md", "/tp/php/tp1.1.md", "/tp/php/tp1.2.md", "/tp/php/tp2.md", "/tp/php/tp3.md", "/tp/php/tp4.md", "/tp/php/tp5.md"] },
       { text: "TP SQL", collapsible: true, children: ["/tp/php/sql/tp5.md", "/tp/php/sql/tp6.md"] }
     ]
