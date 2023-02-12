@@ -20,7 +20,7 @@ module.exports = [
         ]
       },
       {
-        text: "Aide mémorielle",
+        text: "Aide mémoire",
         collapsible: true,
         children: [
           { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
