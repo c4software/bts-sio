@@ -178,7 +178,7 @@ module.exports = [
           { text: "Les TP simple", collapsible: true, children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp", "/tp/composants/android"] },
           { text: "Les TP API", collapsible: true, children: ["/tp/android/network"] },
           { text: "Les projets", collapsible: true, children: ["/tp/android/app-base-android.md", "/tp/android/app-ble-network.md", "/tp/android/app-avance-android.md"] },
-          { text: "Jetpack Compose", collapsible: true, children: ["/tp/composants/android.md", "/tp/android/compose/dirty-api.md"] }
+          { text: "Jetpack Compose", collapsible: true, children: ["/tp/composants/android.md", "/tp/android/compose/dirty-api.md"] },
           { text: "Code d'exemple", collapsible: true, children: ["/tp/android/sample-explication"] },
         ]
       },
