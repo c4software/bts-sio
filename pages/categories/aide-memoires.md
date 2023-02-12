@@ -27,11 +27,15 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 - [Git](/cheatsheets/git/)
 - [Veille & Ressources](/tp/veille/ressources.md)
 
-## DevOps
+## DevOps / Serveur
 
 - [Docker](/cheatsheets/docker/)
 - [Configuration réseau debian](/cheatsheets/serveur/debian-reseau.md)
 - [Configurer un serveur Web](/cheatsheets/serveur/debian-web.md)
 - [Debian](/cheatsheets/serveur/linux-debian-based.md)
 - [Utiliser la ferme SIO](/tp/devops/serveur/tp1.html)
-- [L'échange de clés SSH](/cheatsheets/ssh/)
+- [L'échange de clés SSH](/cheatsheets/ssh-key/)
+
+## Le Mobile
+
+- [Cordova (ancien)](/cheatsheets/cordova/README.md)
