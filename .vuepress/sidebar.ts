@@ -1,53 +1,10 @@
 module.exports = [
   {
     text: "Aides mémoires",
-    collapsible: true,
-    children: [
-      {
-        text: "Web",
-        collapsible: true,
-        children: [
-          { link: "/cheatsheets/html/README.md", text: "Html" },
-          { link: "/cheatsheets/php/README.md", text: "PHP" },
-          { link: "/cheatsheets/javascript/README.md", text: "JavaScript" },
-          { link: "/cheatsheets/vuejs/README.md", text: "VueJS" },
-        ]
-      },
-      {
-        text: "Laravel",
-        collapsible: true,
-        children: [
-          { link: "/cheatsheets/laravel/README.md", text: "Laravel" },
-          { link: "/cheatsheets/laravel/quick.md", text: "Les commandes Laravel" },
-        ]
-      },
-      {
-        text: "POO",
-        collapsible: true,
-        children: [
-          { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
-          { link: "/cheatsheets/poo/README.md", text: "Programmation Orientée Objet" },
-        ]
-      },
-      { link: "/cheatsheets/api/README.md", text: "Les API" },
-      { link: "/cheatsheets/git/README.md", text: "Git" },
-      { link: "/cheatsheets/sql/README.md", text: "SQL" },
-      { link: "/cheatsheets/cordova/README.md", text: "Cordova" },
-      { link: "/cheatsheets/owasp/README.md", text: "OWASP" },
-      {
-        text: "DevOps",
-        collapsible: true,
-        children: [
-          { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux base Debian" },
-          { link: "/cheatsheets/serveur/debian-reseau.md", text: "Générateur de config" },
-          { link: "/cheatsheets/serveur/debian-web.md", text: "Debian, Apache, PHP, MariaDB" },
-          { link: "/cheatsheets/ssh-key/README.md", text: "Clef SSH" },
-          { link: "/cheatsheets/mini-mvc-sample/README.md", text: "Mini MVC Sample" },
-          { link: "/cheatsheets/docker/README.md", text: "Docker" }
-        ]
-      },
-    ]
+    link: "/pages/categories/aide-memoires.md",
   },
+
+  { collapsible: true, text: "Veille & Ressources", children: ["/cours/veille.md", "/tp/veille/ressources.md"] },
 
   {
     text: "Les cours",
@@ -93,10 +50,6 @@ module.exports = [
         ]
       },
     ]
-  },
-
-  {
-    collapsible: true, text: "Veille & Ressources", children: ["/cours/veille.md", "/tp/veille/ressources.md"]
   },
 
   {
