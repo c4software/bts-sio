@@ -58,7 +58,7 @@ module.exports = [
     collapsible: true,
     children: [
       { text: "Le cours", collapsible: true, children: ["/cours/introduction_html_css", "/tp/html_css/maquette.md"] },
-      { text: "En + du cours", link: ["/cheatsheets/html/README.md", "/tp/html_css/support.md"] }
+      { text: "En + du cours", link: ["/cheatsheets/html/README.md", "/tp/html_css/support.md"] },
       { collapsible: true, text: "Les TP", children: ["/tp/html_css/tp1.md", "/tp/html_css/tp2.md", "/tp/html_css/tp3.md", "/tp/html_css/tp4.md", "/tp/html_css/tp5.md"] },
       { collapsible: true, text: "Librairies", children: ["/tp/html_css/bootstrap.md", "/tp/html_css/tailwind.md"] },
     ]
