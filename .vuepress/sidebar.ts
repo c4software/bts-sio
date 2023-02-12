@@ -15,7 +15,6 @@ module.exports = [
           { text: "Les bases", link: "/cours/poo" },
           { text: "Les Interfaces", link: "/cours/les_interfaces" },
           { text: "Le polymorphisme", link: "/cours/poo_redefinition_polymorphisme" },
-          { text: "Modèle Vue Contrôleur", link: "/cours/mvc" },
           { text: "Lire un diagramme de classe UML", link: "/cours/uml" },
         ]
       },
@@ -99,20 +98,33 @@ module.exports = [
         text: "MVC",
         collapsible: true,
         children: [
-          "/tp/php/mvc/tp1.md",
-          "/tp/php/mvc/tp1.1.md",
-          "/tp/php/mvc/tp2.md",
+          { text: "Le cours", link: "/cours/mvc" },
+          { text: "En + du cours", collapsible: true, children: ["/cheatsheets/mini-mvc-sample/README.md"] },
+          {
+            text: "Les TP",
+            collapsible: true,
+            children: [
+              "/tp/php/mvc/tp1.md",
+              "/tp/php/mvc/tp1.1.md",
+              "/tp/php/mvc/tp2.md"]
+          }
         ]
       },
       {
         text: "Laravel", collapsible: true, children: [
-          "/cours/laravel",
-          "/tp/laravel/introduction",
-          "/tp/laravel/authentification",
-          "/tp/laravel/generation_model",
-          "/tp/laravel/application_todo_list",
-          "/tp/laravel/api_produit",
-          "/tp/ops/deployer-laravel.md"
+          { text: "Le cours", link: "/cours/laravel" },
+          { text: "En + du cours", collapsible: true, children: ["/cheatsheets/laravel/README.md", "/cheatsheets/laravel/quick.md"] },
+          {
+            text: "Les TP",
+            collapsible: true,
+            children: [
+              "/tp/laravel/introduction",
+              "/tp/laravel/authentification",
+              "/tp/laravel/generation_model",
+              "/tp/laravel/application_todo_list",
+              "/tp/laravel/api_produit",
+              "/tp/ops/deployer-laravel.md"]
+          }
         ]
       }
     ]
