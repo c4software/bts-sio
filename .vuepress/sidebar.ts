@@ -22,8 +22,8 @@ module.exports = [
         text: "Aide mémoire",
         collapsible: true,
         children: [
-          { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
-          { link: "/cheatsheets/poo/README.md", text: "Programation Orientée Objet" }
+          { link: "/cheatsheets/poo-uml/", text: "Représentation UML" },
+          { link: "/cheatsheets/poo/", text: "Programation Orientée Objet" }
         ]
       },
       {
@@ -48,7 +48,7 @@ module.exports = [
     children: [
       { text: "Initiation à Git", collapsible: true, children: ["/cours/git", "/tp/git_initiation/"] },
       { text: "Git en groupe + GitLab", collapsible: true, children: ["/cours/gitlab", "/tp/gitlab/"] },
-      { text: "En + du cours", link: "/cheatsheets/git/README.md" },
+      { text: "En + du cours", link: "/cheatsheets/git/" },
     ]
   },
 
@@ -57,7 +57,7 @@ module.exports = [
     collapsible: true,
     children: [
       { text: "Le cours", collapsible: true, children: ["/cours/introduction_html_css", "/tp/html_css/maquette.md"] },
-      { text: "En + du cours", collapsible: true, children: ["/cheatsheets/html/README.md", "/tp/html_css/support.md"] },
+      { text: "En + du cours", collapsible: true, children: ["/cheatsheets/html/", "/tp/html_css/support.md"] },
       { collapsible: true, text: "Les TP", children: ["/tp/html_css/tp1.md", "/tp/html_css/tp2.md", "/tp/html_css/tp3.md", "/tp/html_css/tp4.md", "/tp/html_css/tp5.md"] },
       { collapsible: true, text: "Librairies", children: ["/tp/html_css/bootstrap.md", "/tp/html_css/tailwind.md"] },
     ]
@@ -99,7 +99,7 @@ module.exports = [
         collapsible: true,
         children: [
           { text: "Le cours", link: "/cours/mvc" },
-          { text: "En + du cours", collapsible: true, children: ["/cheatsheets/mini-mvc-sample/README.md"] },
+          { text: "En + du cours", collapsible: true, children: ["/cheatsheets/mini-mvc-sample/"] },
           {
             text: "Les TP",
             collapsible: true,
@@ -113,7 +113,7 @@ module.exports = [
       {
         text: "Laravel", collapsible: true, children: [
           { text: "Le cours", link: "/cours/laravel" },
-          { text: "En + du cours", collapsible: true, children: ["/cheatsheets/laravel/README.md", "/cheatsheets/laravel/quick.md"] },
+          { text: "En + du cours", collapsible: true, children: ["/cheatsheets/laravel/", "/cheatsheets/laravel/quick.md"] },
           {
             text: "Les TP",
             collapsible: true,
@@ -143,7 +143,7 @@ module.exports = [
     text: "Les API",
     collapsible: true,
     children: [
-      { text: "Le cours", collapsible: true, children: ["/cours/introduction_api", "/cheatsheets/api/README.md"] },
+      { text: "Le cours", collapsible: true, children: ["/cours/introduction_api", "/cheatsheets/api/"] },
       { text: "Flask (Python)", collapsible: true, children: ["/cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
       { text: "Laravel", collapsible: true, children: ["/tp/laravel/api_produit"] }
     ]
@@ -156,7 +156,7 @@ module.exports = [
       {
         text: "OWASP", children: [
           { text: "Le cours", link: "/cours/securite_applications" },
-          { text: "Synthèse du cours", link: "/cheatsheets/owasp/README.md" },
+          { text: "Synthèse du cours", link: "/cheatsheets/owasp/" },
           "/tp/securite/"
         ]
       }
@@ -167,7 +167,7 @@ module.exports = [
     text: "VueJS",
     collapsible: true,
     children: [
-      { text: "Le cours", collapsible: true, children: ["/cours/vuejs", "/cheatsheets/vuejs/README.md"] },
+      { text: "Le cours", collapsible: true, children: ["/cours/vuejs", "/cheatsheets/vuejs/"] },
       { text: "Exemples", collapsible: true, children: ["/cours/demo/vuejs/demo1", "/cours/demo/vuejs/counter", "/cours/demo/vuejs/clock", "/cours/demo/vuejs/timestamp-color", "/cours/demo/vuejs/sound", "/cours/demo/vuejs/12vue", "/cours/demo/vuejs/chat"] },
       {
         text: "TP Vue 2.X",
@@ -209,7 +209,7 @@ module.exports = [
         ]
       },
       { text: "Flutter", collapsible: true, children: ["/tp/flutter/sample_code"] },
-      { text: "Cordova (Ancien)", collapsible: true, children: ["/cours/cordova", { link: "/cheatsheets/cordova/README.md", text: "En + du cours" }, "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] }
+      { text: "Cordova (Ancien)", collapsible: true, children: ["/cours/cordova", { link: "/cheatsheets/cordova/", text: "En + du cours" }, "/tp/cordova/decouverte", "/tp/cordova/vuejs_cordova", "/tp/cordova/vuejs_api_led", "/tp/api/doc_api_led"] }
     ]
   },
 
