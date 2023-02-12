@@ -131,12 +131,6 @@ module.exports = [
   },
 
   {
-    text: "Les CMS",
-    collapsible: true,
-    children: ["/tp/cms/wordpress.md"]
-  },
-
-  {
     text: "Les composants",
     collapsible: true,
     children: [
@@ -144,6 +138,16 @@ module.exports = [
       { text: "Les TP", collapsible: true, children: ["/tp/composants/vuejs", "/tp/composants/android"] }
     ],
   },
+
+  {
+    text: "Les API",
+    collapsible: true,
+    children: [
+      { text: "Le cours", collapsible: true, children: ["/cours/introduction_api", "/cheatsheets/api/README.md"] },
+      { text: "Flask (Python)", collapsible: true, children: ["/cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
+      { text: "Laravel", collapsible: true, children: ["/tp/laravel/api_produit"] }
+    ]
+  }
 
   {
     text: "Sécurité du code",
@@ -268,13 +272,9 @@ module.exports = [
   },
 
   {
-    text: "Les API",
+    text: "Les CMS",
     collapsible: true,
-    children: [
-      { text: "Le cours", collapsible: true, children: ["/cours/introduction_api", "/cheatsheets/api/README.md"] },
-      { text: "Flask (Python)", children: ["/cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
-      { text: "Laravel", children: ["/tp/laravel/api_produit"] }
-    ]
-  }
+    children: ["/tp/cms/wordpress.md"]
+  },
 
 ]
