@@ -7,48 +7,39 @@ module.exports = [
   { collapsible: true, text: "Veille & Ressources", children: ["/cours/veille.md", "/tp/veille/ressources.md"] },
 
   {
-    text: "Les cours",
+    text: "Programmation Orientée Objet",
     collapsible: true,
     children: [
-      { text: "En + du cours", collapsible: true, children: ["/cheatsheets/html/README.md", "/tp/html_css/support.md", "/tp/php/support.md", "/tp/php/sql/support.md", "/tp/javascript/support.md"] },
-      { text: "HTML + CSS", collapsible: true, children: ["/cours/introduction_html_css", "/tp/html_css/maquette.md"] },
-      { text: "PHP", collapsible: true, children: ["/cours/introduction_php"] },
-      { text: "PHP & SQL", collapsible: true, children: ["/cours/introduction_sql_php"] },
-      { text: "Javascript", collapsible: true, children: ["/cours/introduction_javascript"] },
-      { text: "Les API", collapsible: true, children: ["/cours/introduction_api"] },
       {
-        text: "La POO",
-        collapsible: true,
-        children: [
-          { text: "POO", collapsible: true, children: ["/cours/poo", "/cours/les_interfaces", "/cours/poo_redefinition_polymorphisme"] },
-          { text: "MVC", collapsible: true, children: ["/cours/mvc"] },
+        text: "Le cours", collapsible: true, children: [
+          { text: "Les bases", link: "/cours/poo" },
+          { text: "Les Interfaces", link: "/cours/les_interfaces" },
+          { text: "Le polymorphisme", link: "/cours/poo_redefinition_polymorphisme" },
+          { text: "Modèle Vue Contrôleur", link: "/cours/mvc" },
           { text: "Lire un diagramme de classe UML", link: "/cours/uml" },
-          { text: "Entrainement", link: "/pages/urdle" },
-          {
-            text: "Interfaces & Abstractions", collapsible: true,
-            children: [
-              "/cours/exercices/poo/les-interfaces-1",
-              "/cours/exercices/poo/les-interfaces-2",
-              "/cours/exercices/poo/les-classes-abstraites.md"
-            ]
-          },
-          {
-            text: "Redéfinition et Polymorphisme", collapsible: true,
-            children: [
-              "/cours/exercices/poo/redefinition",
-              "/cours/exercices/poo/polymorphisme"
-            ]
-          },
-          {
-            text: "Concepts",
-            collapsible: true,
-            children: [
-              { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
-              { link: "/cheatsheets/poo/README.md", text: "Programation Orientée Objet" }
-            ]
-          }
         ]
       },
+      {
+        text: "Aide mémorielle",
+        collapsible: true,
+        children: [
+          { link: "/cheatsheets/poo-uml/README.md", text: "Représentation UML" },
+          { link: "/cheatsheets/poo/README.md", text: "Programation Orientée Objet" }
+        ]
+      },
+      {
+        "text": "Les exercices",
+        "collapsible": true,
+        "children": [
+          { text: "Entrainement multi exercices", link: "/pages/urdle" },
+          { text: "Redéfinition", link: "/cours/exercices/poo/redefinition", },
+          { text: "Polymorphisme", link: "/cours/exercices/poo/polymorphisme" },
+          { text: "Les Interface 1", link: "/cours/exercices/poo/les-interfaces-1" },
+          { text: "Les Interface 2", link: "/cours/exercices/poo/les-interfaces-2" },
+          { text: "Les classes abstraites", link: "/cours/exercices/poo/les-classes-abstraites.md" },
+        ]
+      },
+
     ]
   },
 
@@ -56,9 +47,9 @@ module.exports = [
     text: "Le versionning",
     collapsible: true,
     children: [
-      { link: "/cheatsheets/git/README.md", text: "En + du cours" },
       { text: "Initiation à Git", collapsible: true, children: ["/cours/git", "/tp/git_initiation/"] },
       { text: "Git en groupe + GitLab", collapsible: true, children: ["/cours/gitlab", "/tp/gitlab/"] },
+      { text: "En + du cours", link: "/cheatsheets/git/README.md" },
     ]
   },
 
@@ -66,6 +57,8 @@ module.exports = [
     text: "HTML + CSS",
     collapsible: true,
     children: [
+      { text: "Le cours", collapsible: true, children: ["/cours/introduction_html_css", "/tp/html_css/maquette.md"] },
+      { text: "En + du cours", link: ["/cheatsheets/html/README.md", "/tp/html_css/support.md"] }
       { collapsible: true, text: "Les TP", children: ["/tp/html_css/tp1.md", "/tp/html_css/tp2.md", "/tp/html_css/tp3.md", "/tp/html_css/tp4.md", "/tp/html_css/tp5.md"] },
       { collapsible: true, text: "Librairies", children: ["/tp/html_css/bootstrap.md", "/tp/html_css/tailwind.md"] },
     ]
@@ -75,10 +68,9 @@ module.exports = [
     text: "Le JavaScript",
     collapsible: true,
     children: [
-      { text: "Les bases", collapsible: true, children: ["/cours/introduction_javascript", "/tp/javascript/support.md"] },
+      { text: "Le cours", collapsible: true, children: ["/cours/introduction_javascript", "/tp/javascript/support.md", "/cours/javascript_avances", "/cours/framework_javascript"] },
       { text: "Les TP basiques", collapsible: true, children: ["/tp/javascript/tp1.md", "/tp/javascript/tp1.1.md", "/tp/javascript/tp1.2.md", "/tp/javascript/tp2.md", "/tp/javascript/tp3.md", "/tp/javascript/tp3.1.md", "/tp/javascript/tp5.md", "/tp/javascript/tp4.md", "/tp/javascript/tp4.1.md"] },
-      { text: "Javascript avancé", collapsible: true, children: ["/cours/javascript_avances", "/tp/javascript_avances/introduction", "/tp/javascript_avances/revision"] },
-      { text: "Les frameworks", collapsible: true, children: ["/cours/framework_javascript"] }
+      { text: "Javascript avancé", collapsible: true, children: ["/tp/javascript_avances/introduction", "/tp/javascript_avances/revision"] },
     ]
   },
 
@@ -86,9 +78,9 @@ module.exports = [
     text: "Le PHP",
     collapsible: true,
     children: [
-      { text: "Les bases", collapsible: true, children: ["/cours/introduction_php", "/cours/introduction_sql_php", "/tp/php/support.md", "/tp/php/sql/support.md"] },
-      { text: "Les TP basiques", collapsible: true, children: ["/tp/php/tp1.md", "/tp/php/tp-param.md", "/tp/php/tp1.1.md", "/tp/php/tp1.2.md", "/tp/php/tp2.md", "/tp/php/tp3.md", "/tp/php/tp4.md", "/tp/php/tp5.md"] },
-      { text: "PHP & SQL", collapsible: true, children: ["/tp/php/sql/tp5.md", "/tp/php/sql/tp6.md"] }
+      { text: "Les cours", collapsible: true, children: ["/cours/introduction_php", "/cours/introduction_sql_php", "/tp/php/support.md", "/tp/php/sql/support.md"] },
+      { text: "TP bases", collapsible: true, children: ["/tp/php/tp1.md", "/tp/php/tp-param.md", "/tp/php/tp1.1.md", "/tp/php/tp1.2.md", "/tp/php/tp2.md", "/tp/php/tp3.md", "/tp/php/tp4.md", "/tp/php/tp5.md"] },
+      { text: "TP SQL", collapsible: true, children: ["/tp/php/sql/tp5.md", "/tp/php/sql/tp6.md"] }
     ]
   },
 
@@ -149,15 +141,15 @@ module.exports = [
     text: "VueJS",
     collapsible: true,
     children: [
-      { text: "Cours Vue", collapsible: true, children: ["/cheatsheets/vuejs/README.md", "/cours/vuejs"] },
+      { text: "Le cours", collapsible: true, children: ["/cours/vuejs", "/cheatsheets/vuejs/README.md"] },
       { text: "Exemples", collapsible: true, children: ["/cours/demo/vuejs/demo1", "/cours/demo/vuejs/counter", "/cours/demo/vuejs/clock", "/cours/demo/vuejs/timestamp-color", "/cours/demo/vuejs/sound", "/cours/demo/vuejs/12vue", "/cours/demo/vuejs/chat"] },
       {
-        text: "Version 2.0",
+        text: "TP Vue 2.X",
         collapsible: true,
         children: ["/tp/vuejs/tp0.md", "/tp/vuejs/tp1-vuejs-laravel-api", "/tp/vuejs/tp1", "/tp/vuejs/tp2", "/tp/vuejs/firebase-vuejs", "/tp/vuejs/vuetify-vuejs.md"]
       },
       {
-        text: "Version 3.0",
+        text: "TP Vue 3.X",
         collapsible: true,
         children: [
           "/tp/vuejs3/tp0.md",
@@ -182,13 +174,12 @@ module.exports = [
         text: "Android",
         collapsible: true,
         children: [
-          "/cours/android_base",
-          "/cours/android_ble",
-          { text: "Les bases", collapsible: true, children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp", "/tp/composants/android"] },
-          { text: "Les appels d'API", collapsible: true, children: ["/cours/android_http", "/tp/android/network"] },
-          { text: "L'organisation", collapsible: true, children: ["/tp/android/sample-explication"] },
+          { text: "Le cours", collapsible: true, children: ["/cours/android_base", "/cours/android_ble", "/cours/android_http"] },
+          { text: "Les TP simple", collapsible: true, children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp", "/tp/composants/android"] },
+          { text: "Les TP API", collapsible: true, children: ["/tp/android/network"] },
           { text: "Les projets", collapsible: true, children: ["/tp/android/app-base-android.md", "/tp/android/app-ble-network.md", "/tp/android/app-avance-android.md"] },
           { text: "Jetpack Compose", collapsible: true, children: ["/tp/composants/android.md", "/tp/android/compose/dirty-api.md"] }
+          { text: "Code d'exemple", collapsible: true, children: ["/tp/android/sample-explication"] },
         ]
       },
       { text: "Flutter", collapsible: true, children: ["/tp/flutter/sample_code"] },
@@ -262,6 +253,7 @@ module.exports = [
     text: "Les API",
     collapsible: true,
     children: [
+      { text: "Le cours", collapsible: true, children: ["/cours/introduction_api", "/cheatsheets/api/README.md"] },
       { text: "Framework Flask (Python)", children: ["/cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
     ]
   }
