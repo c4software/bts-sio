@@ -4,6 +4,12 @@ description: Aide mémoire Docker
 
 # Aide mémoire Docker
 
+Vous trouverez ici les commandes de base pour utiliser Docker et Docker Compose.
+
+::: details Sommaire
+[[toc]]
+:::
+
 ## Installation
 
 ### Windows
@@ -15,10 +21,10 @@ https://www.docker.com/products/docker-desktop
 ### MacOS
 
 ```sh
-https://download.docker.com/mac/stable/Docker.dmg
+https://www.docker.com/products/docker-desktop
 ```
 
-### Linux
+### Linux (Debian/Ubuntu)
 
 ```sh
 curl -sSL https://get.docker.com/ | sh
@@ -157,4 +163,56 @@ docker build  -t exemple/yasb .
 ```sh
 docker system prune
 docker volume prune
+```
+
+## Docker Compose
+
+### Lancer une stack
+
+Au premier plan :
+
+```sh
+docker compose up
+```
+
+En arrière plan :
+
+```sh
+docker compose up -d
+```
+
+### Afficher les stacks
+
+```sh
+docker compose ps
+```
+
+### Afficher les logs
+
+```sh
+docker compose logs
+```
+
+### Afficher et suivre les logs
+
+```sh
+docker compose logs -f
+```
+
+### Afficher les logs d'un service
+
+```sh
+docker compose logs -f NomDuService
+```
+
+### Arrêter une stack
+
+```sh
+docker compose down
+```
+
+### Arrêter et supprimer les volumes
+
+```sh
+docker compose down -v
 ```
