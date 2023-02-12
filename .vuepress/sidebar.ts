@@ -139,14 +139,23 @@ module.exports = [
   {
     text: "Les composants",
     collapsible: true,
-    children: ["/cours/composants", "/tp/composants/vuejs", "/tp/composants/android"],
+    children: [
+      { text: "Le cours", link: "/cours/composants" },
+      { text: "Les TP", collapsible: true, children: ["/tp/composants/vuejs", "/tp/composants/android"] }
+    ],
   },
 
   {
     text: "Sécurité du code",
     collapsible: true,
     children: [
-      { text: "OWASP", children: ["/cours/securite_applications", { link: "/cheatsheets/owasp/README.md", text: "Synthèse du cours" }, "/tp/securite/"] }
+      {
+        text: "OWASP", children: [
+          { text: "Le cours", link: "/cours/securite_applications" },
+          { text: "Synthèse du cours", link: "/cheatsheets/owasp/README.md" },
+          "/tp/securite/"
+        ]
+      }
     ]
   },
 
