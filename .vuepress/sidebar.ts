@@ -210,64 +210,60 @@ module.exports = [
   },
 
   {
-    text: "DevOps",
+    text: "DevOps / Serveur",
     collapsible: true,
     children: [
-      { text: "Les bases", collapsible: true, children: ["/cours/serveur.md", "/tp/devops/serveur/support.md", { text: "Les TP", children: ["/tp/devops/serveur/tp1.md", "/tp/devops/serveur/tp1b.md", "/tp/devops/serveur/tp1c.md"] }] },
-      { text: "L'intégration continue", collapsible: true, children: ["/tp/devops/support-docker-cicd.md", { link: "/cours/docker", text: "Docker" }, "/cours/cicd", { link: "/cours/gitlabci", text: "Gitlab CI" }] },
-      { text: "GitLab-CI", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-ci.md"] },
-      { text: "JamStack", collapsible: true, children: ["/tp/ci/jamstack/netlify.md"] },
+      { text: "Les cours", collapsible: true, children: ["/cours/serveur.md", "/cours/docker", "/cours/cicd", "/cours/gitlabci"] },
+      { text: "En + du cours", collapsible: true, children: ["/tp/devops/serveur/support.md", "/tp/devops/support-docker-cicd.md"] },
       {
-        text: "Debian",
-        collapsible: true,
-        children: [
-          "/tp/devops/serveur/debian.md",
-          { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux à base Debian" },
-          { link: "/cheatsheets/serveur/debian-reseau.md", text: "Générateur de config réseau" },
-          { link: "/cheatsheets/serveur/debian-web.md", text: "Debian : Apache, PHP, MariaDB" },
+        text: "Les TP", collapsible: true, children: [
+          { text: "La base", collapsible: true, children: ["/tp/devops/serveur/tp1.md", "/tp/devops/serveur/tp1b.md", "/tp/devops/serveur/tp1c.md"] },
+          { text: "L'intégration continue", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-ci.md"] },
+          { text: "Déployer un site static", collapsible: true, children: ["/tp/ci/jamstack/netlify.md", "/tp/ci/jamstack/netlify-portfolio.md", "/tp/ci/pages-portfolio.md"] },
+          { text: "Kubernetes", collapsible: true, children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
+          { text: "OpenFaas", collapsible: true, children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
+          { text: "Firebase", collapsible: true, children: ["/tp/ci/firebase/functions.md"] },
         ]
       },
       {
-        text: "Docker",
-        collapsible: true,
-        children: [
-          { link: "/cheatsheets/docker/README.md", text: "En + du cours" },
-          "/tp/docker/introduction",
-          "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile", "/tp/docker/docker_compose", "/tp/ops/deployer-laravel-docker.md"]
-      },
-      {
-        text: "Alpine Linux",
-        collapsible: true,
-        children: [
-          "/tp/devops/alpine-vm.md"
+        text: "Les procédures", collapsible: true, children: [
+          {
+            text: "Debian",
+            collapsible: true,
+            children: [
+              "/tp/devops/serveur/debian.md",
+              { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux à base Debian" },
+              { link: "/cheatsheets/serveur/debian-reseau.md", text: "Générateur de config réseau" },
+              { link: "/cheatsheets/serveur/debian-web.md", text: "Debian : Apache, PHP, MariaDB" },
+            ]
+          },
+          {
+            text: "Laravel",
+            collapsible: true,
+            children: [
+              "/tp/ops/deployer-laravel.md",
+              "/tp/ops/deployer-laravel-docker.md",
+              "/tp/ops/deployer-laravel-ci.md",
+            ]
+          },
+          {
+            text: "Alpine Linux",
+            collapsible: true,
+            children: [
+              "/tp/devops/alpine-vm.md"
+            ]
+          },
+          {
+            text: "Mini MVC Sample",
+            collapsible: true,
+            children: [
+              "/tp/ops/mini-mvc-sample/deployer-mini-mvc-sample.md",
+              "/tp/ops/mini-mvc-sample/mini-mvc-sample-docker.md",
+            ]
+          },
+          "/tp/rpi/web-stack.md",
         ]
-      },
-      {
-        text: "Portfolio",
-        collapsible: true,
-        children: ["/tp/ci/jamstack/netlify-portfolio.md", "/tp/ci/pages-portfolio.md"]
-      },
-      {
-        text: "Laravel",
-        collapsible: true,
-        children: [
-          "/tp/ops/deployer-laravel.md",
-          "/tp/ops/deployer-laravel-docker.md",
-          "/tp/ops/deployer-laravel-ci.md",
-        ]
-      },
-      {
-        text: "Hébergement mini MVC Sample",
-        collapsible: true,
-        children: [
-          "/tp/ops/mini-mvc-sample/deployer-mini-mvc-sample.md",
-          "/tp/ops/mini-mvc-sample/mini-mvc-sample-docker.md",
-        ]
-      },
-      { text: "Kubernetes", collapsible: true, children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
-      { text: "OpenFaas", collapsible: true, children: ["/tp/openfaas/openfaas-quicky-installation", "/tp/openfaas/openfaas-quicky-installation-pi", "/tp/openfaas/openfaas-quicky-create-faas"] },
-      { text: "Firebase", collapsible: true, children: ["/tp/ci/firebase/functions.md"] },
-      "/tp/rpi/web-stack.md",
+      }
     ]
   },
 
@@ -276,7 +272,8 @@ module.exports = [
     collapsible: true,
     children: [
       { text: "Le cours", collapsible: true, children: ["/cours/introduction_api", "/cheatsheets/api/README.md"] },
-      { text: "Framework Flask (Python)", children: ["/cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
+      { text: "Flask (Python)", children: ["/cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
+      { text: "Laravel", children: ["/tp/laravel/api_produit"] }
     ]
   }
 
