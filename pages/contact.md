@@ -6,9 +6,11 @@ description: Vous avez des questions ? Vous souhaitez plus d'informations sur un
 
 Vous avez des questions ? Vous souhaitez plus d'informations sur un cours.
 
-## Par Twitter
+## Via les réseaux sociaux
 
-[Twitter @c4software](https://twitter.com/c4software)
+<a rel="me" href="https://mastodon.gougere.fr/@c4software">Mastodon @c4software</a>
+
+<a rel="me" href="https://twitter.com/c4software">Twitter @c4software</a>
 
 ## Par email
 
