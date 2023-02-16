@@ -259,6 +259,9 @@ Todos::where('name', 'like', '%' . $my . '%')->get()
 // Réalise une requête avec plusieurs conditions de type OR
 Todos::where('name', 'mike')->orWhere('title', '=', 'Admin')->get();
 
+// Réalise une requête avec plusieurs conditions de type AND
+Todos::where('name', 'mike')->where('title', '=', 'Admin')->get();
+
 // Compter le nombre d'enregistrements
 $count = Flight::where('active', 1)->count();
 
