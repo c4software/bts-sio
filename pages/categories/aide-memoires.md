@@ -12,6 +12,7 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 ## Le Web avancé
 
 - [Laravel](/cheatsheets/laravel/)
+- [Les commandes laravel](/cheatsheets/laravel/quick.md)
 - [Mini MVC Sample](/cheatsheets/mini-mvc-sample/README.md)
 - [Les API](/cheatsheets/api/)
 - [VueJS 2.0](/cheatsheets/vuejs/)
