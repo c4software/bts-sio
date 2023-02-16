@@ -209,63 +209,63 @@ $ php artisan migrate --seed
 ## L'ORM
 
 ```php
-// New 
+// Créer un enregistrement en base de données
 $flight = new Flight;
 $flight->name = $request->name;
 $flight->save();
 
-// Update 
+// Mettre à jour un enregistrement en base de données
 $flight = Flight::find(1);
 $flight->name = 'New Flight Name';
 $flight->save();
 
-// Create
+// Créer un enregistrement en base de données à partir d'un tableau (mass assignment). Le tableau peut être rempli avec des données de formulaire
 $user = User::create(['first_name' => 'Taylor','last_name' => 'Otwell']); 
 
-// Update All:  
+// Mettre à jour un enregistrement en base de données à partir d'un tableau (mass assignment). Le tableau peut être rempli avec des données de formulaire
 Flight::where('active', 1)->update(['delayed' => 1]);
 
-// Delete 
-$current_user = User::Find(1)
-$current_user.delete(); 
+// Supprimer un enregistrement en base de données
+$current_user = User::Find(1); // On récupère l'utilisateur
+$current_user->delete();  // On le supprime
 
-// Delete by id:  
+// Supprimer un enregistrement en base de données à partir de son id 
 User::destroy(1);
 
-// Delete all
+// Supprimer plusieurs enregistrements en base de données
 $deletedRows = Flight::where('active', 0)->delete();
 
-// Get All 
+// Obtenir tous les enregistrements d'une table équivaut à SELECT * FROM table
 $items = Item::all(). 
 
-// Find one by primary key
+// Trouver un enregistrement en base de données à partir de son id (équivaut à SELECT * FROM table WHERE id = $id). La colonne id est définit dans votre modèle (protected $primaryKey = 'id';)
 $flight = Flight::find(1);
 
-// display 404 if not found
+// Obtiens l'enregistrement avec l'id 1 ou lève une exception
 $model = Flight::findOrFail(1); 
 
-// Get last entry
+// Obtient le dernier enregistrement de la table
 $items = Item::latest()->get()
 
-// Chain 
+// Réaliser une requête personnalisée. Trouve tous les enregistrements actifs et les trie par nom dans l'ordre décroissant. Limite le nombre de résultats à 10
 $flights = App\Flight::where('active', 1)->orderBy('name', 'desc')->take(10)->get();
 
-// Where
+// Cherche un enregistrement en base de données à partir de son id. Si l'enregistrement n'existe pas la requête renvoi une exception
 Todo::where('id', $id)->firstOrFail()  
 
-// Like 
+// Réaliser un where de type LIKE
 Todos::where('name', 'like', '%' . $my . '%')->get()
 
-// Or where
+// Réalise une requête avec plusieurs conditions de type OR
 Todos::where('name', 'mike')->orWhere('title', '=', 'Admin')->get();
 
-// Count
+// Compter le nombre d'enregistrements
 $count = Flight::where('active', 1)->count();
 
-// Sum
+// Somme des valeurs de la colonne price
 $sum = Flight::where('active', 1)->sum('price');
 
-// Contain?
+// Est-ce que l'enregistrement existe en base de données ?
 if ($project->$users->contains('mike')) 
 ```
 

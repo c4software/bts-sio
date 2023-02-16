@@ -13,7 +13,7 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 
 - [Laravel](/cheatsheets/laravel/)
 - [Les commandes laravel](/cheatsheets/laravel/quick.md)
-- [Mini MVC Sample](/cheatsheets/mini-mvc-sample/README.md)
+- [Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 - [Les API](/cheatsheets/api/)
 - [VueJS 2.0](/cheatsheets/vuejs/)
 
@@ -39,4 +39,4 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 
 ## Le Mobile
 
-- [Cordova (ancien)](/cheatsheets/cordova/README.md)
+- [Cordova (ancien)](/cheatsheets/cordova/)
