@@ -272,6 +272,12 @@ $sum = Flight::where('active', 1)->sum('price');
 if ($project->$users->contains('mike')) 
 ```
 
+::: tip La documentation officielle de Laravel sur l'ORM
+Pour aller plus loins, vous trouverez dans la documentation officielle de Laravel une liste des méthodes / ainsi que leurs utilisations :
+
+[https://laravel.com/docs/8.x/eloquent](https://laravel.com/docs/8.x/eloquent)
+:::
+
 ## Les routes
 
 ```php
