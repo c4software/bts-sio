@@ -10,7 +10,7 @@ module.exports = [
     text: "Programmation Orientée Objet",
     collapsible: true,
     children: [
-      { text: "Introduction", children: "/pages/categories/les-concepts.md" },
+      { text: "Introduction", link: "/pages/categories/les-concepts.md" },
       {
         text: "Le cours", collapsible: true, children: [
           { text: "Les bases", link: "/cours/poo" },
@@ -95,7 +95,7 @@ module.exports = [
     text: "Le PHP Avancé",
     collapsible: true,
     children: [
-      { text: "Introduction", children: "/pages/categories/le-web.md" },
+      { text: "Introduction", link: "/pages/categories/le-web.md" },
       {
         text: "MVC",
         collapsible: true,
@@ -198,7 +198,7 @@ module.exports = [
     text: "Mobile",
     collapsible: true,
     children: [
-      { text: "Introduction", children: "/pages/categories/le-mobile.md" },
+      { text: "Introduction", link: "/pages/categories/le-mobile.md" },
       {
         text: "Android",
         collapsible: true,
@@ -220,7 +220,7 @@ module.exports = [
     text: "DevOps / Serveur",
     collapsible: true,
     children: [
-      { text: "Introduction",  children: "/pages/categories/les-serveurs.md" },
+      { text: "Introduction",  link: "/pages/categories/les-serveurs.md" },
       { text: "Les cours", collapsible: true, children: ["/cours/serveur.md", "/cours/docker", "/cours/cicd", "/cours/gitlabci"] },
       { text: "En + du cours", collapsible: true, children: ["/tp/devops/serveur/support.md", "/tp/devops/support-docker-cicd.md"] },
       {
