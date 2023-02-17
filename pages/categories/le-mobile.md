@@ -1,11 +1,11 @@
-# Le Mobile
+# Le mobile
 
 Le développement mobile évolue rapidement, vous trouverez ici des ressources pour vous aider commencer votre apprentissage.
 
 - [Cours base Android](/cours/android_base.md)
 - [Cours Android Bluetooth](/cours/android_ble.md)
-- [Cordova (Ancien)](/cours/cordova.md)
 - [Introduction à Android Compose](/tp/composants/android.md)
+- [Cordova (Ancien)](/cours/cordova.md)
 
 ## Applications d'exemples
 
