@@ -531,7 +531,7 @@ En indiquant le `$with` dans le modèle, votre jointure sera automatiquement eff
 
 ### En savoir plus
 
-Nous avons effleuré ici les types de requêtes… [Pour en savoir plus](./quick.md)
+Nous avons effleuré ici les types de requêtes… [Pour en savoir plus](./quick.md#l-orm)
 
 ## La vue
 
