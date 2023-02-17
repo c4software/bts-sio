@@ -29,6 +29,4 @@ next:
 
 <center>
   <a rel="me" href="https://mastodon.gougere.fr/@c4software">Mon Mastodon</a> - <a rel="me" href="https://twitter.com/c4software">Mon Twitter</a>
-
-  <a class="twitter-timeline" href="https://twitter.com/c4software?ref_src=twsrc%5Etfw">Tweets by c4software</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </center>
