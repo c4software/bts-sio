@@ -483,9 +483,55 @@ class Role extends Model
 }
 ```
 
+### Requêter les données
+
+Nous avons vu comment définir les relations, mais comment les utiliser ? C’est très simple, vous pouvez utiliser les méthodes de relations comme si elles étaient des méthodes de modèle.
+
+```php
+// Récupérer les commentaires d’un post
+$comments = App\Post::find(1)->comments()->get();
+
+// Récupérer les commentaires d’un post et les ordonner par date
+$comments = App\Post::find(1)->comments()->orderBy('created_at', 'desc')->get();
+
+// Récupérer les commentaires d’un post et les ordonner par date et avec une limite
+$comments = App\Post::find(1)->comments()->orderBy('created_at', 'desc')->take(10)->get();
+
+// Utiliser le with pour récupérer les données en une seule requête
+// Ici on récupère les posts avec leurs commentaires
+$posts = App\Post::with('comments')->get();
+
+// Obtenir les articles d’un utilisateur
+$articles = App\User::find(1)->articles()->get();
+
+// Réaliser plusieurs jointures avec le with
+// Ici on récupère les utilisateurs avec leurs rôles et leurs articles
+$users = App\User::with('roles', 'posts')->get();
+
+// Jointure conditionnelle obtenir les articles d’un utilisateur dont le titre contient « Laravel »
+$articles = App\User::find(1)->articles()->where('title', 'like', '%Laravel%')->get();
+
+// Obtenir un utilisateurs avec les posts et les commentaires via le with
+$users = App\User::with('posts.comments')->get();
+```
+
+::: tip `with()`
+
+Le `with()` permet de récupérer les données d'une autre table. Vous pouvez également déclarer le `with()` dans le modèle. 
+
+Exemple, **dans le modèle `Commande`** :
+
+```php
+$with = ['produit'];
+```
+
+En indiquant le `$with` dans le modèle, votre jointure sera automatiquement effectuée. Vous n'aurez plus besoin de passer par le `with()` dans le contrôleur. Pratique pour automatiser les jointures.
+
+:::
+
 ### En savoir plus
 
-Nous avons effleuré ici les types de requêtes… [Pour en savoir plus](https://laravel.com/docs/8.x/queries)
+Nous avons effleuré ici les types de requêtes… [Pour en savoir plus](./quick.md)
 
 ## La vue
 
