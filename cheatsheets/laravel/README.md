@@ -483,6 +483,52 @@ class Role extends Model
 }
 ```
 
+### Générer les modèles
+
+Il est également possible de générer les modèles à partir de la base de données. Cette fonctionnalitée n'est pas disponible de base dans Laravel, il faut donc installer une dépendance supplémentaire :
+
+```sh
+composer require reliese/laravel --dev
+php artisan vendor:publish --tag=reliese-models
+php artisan config:clear
+```
+
+Le plugin en question [Reliese Laravel Model Generator](https://github.com/reliese/laravel). Je vous laisse regarder la documentation pour plus d'informations.
+
+::: tip Attention
+
+Autoriser les factories.
+
+Pour permettre à votre Modèle d'être « rempli », vous devez vérifier que la classe possède bien les use suivants (à mettre dans la classe du modèle) :
+
+```php
+use HasApiTokens, HasFactory, Notifiable;
+```
+
+::: details Exemple
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class Client extends Model
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    // ... le reste du code
+}
+```
+
+:::
+
+:::
+
 ### Requêter les données
 
 Nous avons vu comment définir les relations, mais comment les utiliser ? C’est très simple, vous pouvez utiliser les méthodes de relations comme si elles étaient des méthodes de modèle.

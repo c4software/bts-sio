@@ -155,7 +155,7 @@ Pour cette première fois, nous allons le faire ensemble.
 
 ### 1. Ajouter un contrôleur
 
-La première étape, c'est la création du contrôleur : 
+La première étape, c'est la création du contrôleur :
 
 ```sh
 php artisan make:controller OrdersControler
