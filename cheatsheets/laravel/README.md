@@ -527,8 +527,6 @@ class Client extends Model
 
 :::
 
-:::
-
 ### Requêter les données
 
 Nous avons vu comment définir les relations, mais comment les utiliser ? C’est très simple, vous pouvez utiliser les méthodes de relations comme si elles étaient des méthodes de modèle.
