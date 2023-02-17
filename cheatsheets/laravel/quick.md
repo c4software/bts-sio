@@ -269,13 +269,60 @@ $count = Flight::where('active', 1)->count();
 $sum = Flight::where('active', 1)->sum('price');
 
 // Est-ce que l'enregistrement existe en base de données ?
-if ($project->$users->contains('mike')) 
+if ($project->$users->contains('mike')) {}
+
+// Choisir les colonnes à récupérer
+$users = User::select('name', 'email as user_email')->get();
+
+// Choisir les colonnes à récupérer avec une condition
+$users = User::select('name', 'email as user_email')->where('name', 'John')->get();
 ```
 
 ::: tip La documentation officielle de Laravel sur l'ORM
 Pour aller plus loins, vous trouverez dans la documentation officielle de Laravel une liste des méthodes / ainsi que leurs utilisations :
 
 [https://laravel.com/docs/8.x/eloquent](https://laravel.com/docs/8.x/eloquent)
+:::
+
+## L'ORM (Relations)
+
+```php
+// Obtenir les commentaires d'un article
+$commentairesArticle = App\Models\Article::find($id)->comments()->get();
+
+// Obtenir les articles d'un utilisateur
+$articlesUtilisateur = App\Models\User::find($id)->articles()->get();
+
+// Obtenir les Utilisateurs avec leurs articles
+$users = App\Models\User::with('articles')->get();
+
+// Obtenir les Utilisateurs avec leurs articles et leurs commentaires
+$users = App\Models\User::with('articles.comments')->get();
+
+// Réaliser la jointure à la main entre les tables (en dernier recours, si vous ne pouvez pas utiliser les relations)
+$users = App\Models\User::join('articles', 'users.id', '=', 'articles.user_id')->get();
+
+// Obtenir les articles d'un utilisateur avec une condition
+$articlesUtilisateur = App\Models\User::find($id)->articles()->where('title', 'like', '%test%')->get();
+
+// Plusieurs with, récupère les articles et les commentaires de chaque utilisateur
+$users = App\Models\User::with('articles', 'comments')->get();
+```
+
+**Rappel** : Les relations sont définies dans le modèle (belongsTo, hasMany, ...).
+
+::: tip `with()`
+
+Le `with()` permet de récupérer les données d'une autre table. Vous pouvez également déclarer le `with()` dans le modèle. 
+
+Exemple, **dans le modèle `Commande`** :
+
+```php
+$with = ['produit'];
+```
+
+En indiquant le `$with` dans le modèle, votre jointure sera automatiquement effectuée. Vous n'aurez plus besoin de passer par le `with()` dans le contrôleur. Pratique pour automatiser les jointures.
+
 :::
 
 ## Les routes
