@@ -1,27 +1,28 @@
-# TP1c. Prendre en main la ligne de commande
+# TP1c. Prendre en main la ligne de commande.
 
 ::: details Sommaire
 [[toc]]
 :::
 
-::: tip TP Évalué
+::: tip TP évalué
 
 Nous sommes à un point étape. La réalisation de ce TP sera évaluée. Il sera évalué de la manière suivante :
 
 - VM fonctionnelle : **5 points** (en intégrant les éléments de sécurité).
-- Accès à la VM via échange de clés : **2 point**. (je vous fournirai une clé publique à ajouter à votre VM, pour que je puisse m'y connecter).
+- Accès à la VM via échange de clés : **2 points**. (La clé publique à ajouter à votre VM est disponible en fin de TP).
 - Réalisation des étapes présentées dans le TP : **5 points**.
-- Fourniture d'un rapport illustrant les différentes étape : **2 points**.
+- Fourniture d'un rapport illustrant les différentes étapes : **2 points**.
+- Fourniture de la fiche serveur : **2 points**.
 
 :::
 
 ## Introduction
 
-Avant de commencer, il est important de savoir que la ligne de commande est un outil puissant et très utile. Maitriser les rudiments de celle-ci vous permettra de gagner du temps et donc d’être plus efficace.
+Avant de commencer, il est important de savoir que la ligne de commande est un outil puissant et très utile. Maîtriser les rudiments de celle-ci vous permettra de gagner du temps et donc d’être plus efficace.
 
 ## Préparation
 
-Pour réaliser ce TP, vous aurez besoin d'un environnement de Linux, je vous propose d'utiliser la VM que vous avez créé dans [le TP précédent](./tp1b.md).
+Pour réaliser ce TP, vous aurez besoin d'un environnement de Linux. Je vous propose d'en créer une en suivant le [TP précédent](./tp1b.md).
 
 ## Pré-requis
 
