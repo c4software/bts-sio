@@ -329,16 +329,15 @@ Annule toutes les modifications effectuées depuis :
 git reset --hard <commit>
 ```
 
-## HTTPS et Identifiant sauvegardé sous Windows
+## Les clients graphiques
 
-::: danger Attention
-Je vous déconseille d'utiliser HTTPS pour vos dépôts Git. Utilisez plutôt SSH.
-:::
+Git ne s'utilise pas forcément en ligne de commande. Il existe de nombreux clients graphiques qui permettent de visualiser l'historique des commits, de gérer les branches, de faire des merges, etc.
 
-Si vous avez cloné votre repository en HTTPS il se peut que vous rencontriez une erreur du type « error git remote ». Vous avez certainement du faire une erreur dans votre mot de passe (erreur de saisie ou autre). Malheureusement Windows sauvegarde l'information dans le système, cependant il est possible de corriger le problème via :
+- [GitKraken](https://www.gitkraken.com/)
+- [VsCode](https://code.visualstudio.com/docs/sourcecontrol/overview)
+- [Tower](https://www.git-tower.com/)
+- [Sourcetree](https://www.sourcetreeapp.com/)
+- [Webstorm](https://www.jetbrains.com/help/webstorm/using-git-integration.html)
+- [PHPStorm](https://www.jetbrains.com/help/phpstorm/using-git-integration.html)
 
-> "Si vous travaillez avec le système d'exploitation Windows, il existe une autre solution pour changer les paramètres d'authentification. Il faut pour cela accéder au gestionnaire d'informations d'identification. Dans la zone de recherche de la barre des tâches, tapez "Gestionnaire d'informations d'identification". Ouvrez ensuite le menu "Informations d'identification Windows". Dépliez le menu consacré à Git et cliquez sur "Modifier" pour pouvoir changer le mot de passe."
-
-![Erreur Windows & HTTPS](./windows_error.png)
-
-[Plus de détail sur l'erreur](https://www.journaldunet.fr/web-tech/developpement/1441077-gitlab-comment-corriger-l-e[…]rreur-remote-http-basic-access-denied-fatal-authentication/)
+L'idée derrière ces outils c'est que Git ne doit pas être un frein à la productivité. Vous devez donc trouver le bon équilibre entre l'utilisation de la ligne de commande et l'utilisation d'un client graphique (si vous n'êtes pas à l'aise avec la ligne de commande).
