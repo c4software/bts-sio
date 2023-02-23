@@ -190,3 +190,63 @@ Vous êtes en SLAM, du coup le Web vous conaissez. Créez une page web qui respe
   - [Google](https://www.google.com)
   - [Facebook](https://www.facebook.com)
   - [Twitter](https://www.twitter.com)
+
+Où devez vous placer votre page web pour qu'elle soit accessible depuis l'extérieur ? Par défaut Apache place les pages web dans le dossier `/var/www/html/`.
+
+Je vous laisse éditer le fichier `/var/www/html/index.html` pour y mettre votre page web.
+
+::: detail Solution (je vous conseille de faire l'exercice avant de regarder la solution)
+
+```bash
+nano /var/www/html/index.html
+```
+
+Une fois le fichier édité, vous pouvez le visualiser en ouvrant votre navigateur et en tapant l'adresse IP de votre serveur.
+
+### Vérifier les logs
+
+Maintenant que vous avez un serveur web, il est important de vérifier les logs pour voir si tout se passe bien. Pour cela, nous allons utiliser la commande `tail`.
+
+- Affichez les logs d'Apache en temps réel.
+- Affichez les logs d'Apache pour les 10 dernières lignes.
+
+```bash
+tail -f /var/log/apache2/access.log
+```
+
+```bash
+tail -n 10 /var/log/apache2/access.log
+```
+
+Vous pouvez aussi afficher l'ensemble des logs avec la commande :
+
+```bash
+nano /var/log/apache2/access.log
+```
+
+## Évolution du site
+
+Afin de rendre votre site plus attractif, vous allez ajouter une page `apropos.html` qui contiendra les informations de contact de votre site. Celle-ci devra contenir les informations suivantes :
+
+- Nom de l'école : `Lycée Chevrollier`.
+- Votre nom.
+- Votre prénom.
+- La date de réalisation du site.
+
+Cette page devra être accessible depuis la page `index.html` via un lien nommé `A propos` et pointant vers la page `pages/apropos.html`.
+
+::: tip Comment faire ?
+
+En vous aidant des étapes précédentes, vous devriez pouvoir créer votre page `apropos.html` et la rendre accessible depuis la page `index.html`.
+
+Bon courage !
+
+:::
+
+## Me donner accès à votre serveur
+
+TODO
+
+## Restitution
+
+TODO
