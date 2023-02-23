@@ -217,6 +217,14 @@ git rebase --continue
 
 ## Travailler avec un dépôt distant
 
+::: danger Accès à votre repository distant
+
+Même si Github/Gitlab vous permet de récupérer un repository distant, vous devez **toujours** le cloner la première fois. Cette étape de clone est nécessaire pour initialiser le dossier local, et donc pour pouvoir y travailler.
+
+Vous devez donc **toujours** utiliser la commande `git clone` pour récupérer un repository distant. La récupération d'un projet est à réaliser en ssh, et non en https (voir [Aide mémoire SSH](/cheatsheets/ssh-key/)).
+
+:::
+
 Lister tous les dépôts distants configurés :
 
 ```sh
