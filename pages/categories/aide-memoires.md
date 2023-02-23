@@ -31,11 +31,15 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 
 - [La méthode OWASP](/cheatsheets/owasp/)
 
+## Le versionning (Git)
+
+- [Git](/cheatsheets/git/)
+- [L'échange de clés SSH](/cheatsheets/ssh-key/)
+
 ## L'organisation
 
 - [La programmation orientée objet](/cheatsheets/poo/)
 - [La représentation UML](/cheatsheets/poo-uml/)
-- [Git](/cheatsheets/git/)
 - [Veille & Ressources](/tp/veille/ressources.md)
 
 ## DevOps / Serveur
