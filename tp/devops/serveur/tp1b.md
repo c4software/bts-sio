@@ -628,7 +628,7 @@ Bref, n'oubliez pas d'installer les Tools pour vivre une expérience optimale �
 Comment installer les VMware tools ? Et bien avec `apt` évidemment :
 
 ```bash
-apt-get install open-vm-tools
+apt install open-vm-tools
 ```
 
 ::: danger N'oubliez pas
@@ -649,7 +649,8 @@ Pour rappel, Apache est un serveur Web. Il permet de mettre en ligne des sites I
 Pour installer Apache, nous allons utiliser la commande `apt` :
 
 ```bash
-apt-get install apache2
+apt update
+apt install apache2
 ```
 
 ### Vérification
@@ -678,11 +679,14 @@ http://192.168.1.1
 ```
 
 ::: tip Comment trouver l'adresse IP de votre serveur ?
+
 Pour obtenir l'adresse IP de votre serveur, vous pouvez utiliser la commande `IP.` :
 
 ```bash
 ip a
 ```
+
+Vous pouvez également regarder votre fiche serveur ;).
 
 :::
 
@@ -722,6 +726,6 @@ _À votre avis :_
 
 ## Conclusion
 
-Dans ce TP nous avons vu comment installer un serveur Debian 10. Nous avons également vu comment configurer le réseau de notre machine virtuelle, comment installer les VMware tools et comment configurer l'accès SSH à notre serveur.
+Dans ce TP nous avons vu comment installer un serveur Debian 11. Nous avons également vu comment configurer le réseau de notre machine virtuelle, comment installer les VMware tools et comment configurer l'accès SSH à notre serveur.
 
 Cette machine nous servira de base pour les prochains TP de [prise en main de la ligne de commande](./tp1c.md)

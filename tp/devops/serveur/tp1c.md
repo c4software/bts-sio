@@ -39,3 +39,29 @@ Pour réaliser ce TP, vous aurez besoin de :
 - [Aide mémoire Debian](/cheatsheets/serveur/linux-debian-based.md)
 - [Générateur de configuration](/cheatsheets/serveur/debian-reseau.md)
 - [Aide mémoire clé SSH](/cheatsheets/ssh-key/)
+
+## La VM
+
+Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les spécifications suivantes :
+
+- Nom de la VM : `<votre nom>-ligne-de-commande`.
+- OS : Debian 11.
+- Mémoire : 1Go.
+- CPU : 1.
+- Disque : 10Go.
+- Utilisateur : `<votre nom>`.
+- Mot de passe : `<votre mot de passe>` (mot de passe de votre choix mais qui respecte les règles de sécurité).
+
+### Étape 1 : Créez une VM
+
+À l'aide des TP précédents, créez une VM qui respecte les spécifications ci-dessus.
+
+### Étape 2 : Configurez la VM
+
+Configurez la VM pour qu'elle respecte les spécifications suivantes :
+
+- La VM doit avoir une IP statique. (Vous pouvez utiliser le générateur de configuration).
+
+### Étape 3 : Connectez-vous à la VM
+
+

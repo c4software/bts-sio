@@ -116,3 +116,94 @@ Navigator.push(
 Dans cet exemple, on utilise la méthode `push` pour ajouter une nouvelle page à la pile de navigation. La méthode `push` prend en paramètre un `MaterialPageRoute` qui permet de définir la page à ajouter à la pile de navigation. 
 
 `DetailsScreen` est l'écran qui sera affiché. On lui passe en paramètre l'image à afficher. Il s'agit de l'élément sur lequel l'utilisateur a cliqué.
+
+## L'appel à l'API
+
+L'appel à l'API se fait dans le fichier `Api.dart` :
+
+```dart
+static Future getPhotos() {
+  return http.get(Uri.parse("$baseUrl/photos"));
+}
+```
+
+On utilise la librairie `http` pour faire l'appel à l'API. On utilise la méthode `get` pour récupérer les données. On passe en paramètre l'URL de l'API. La méthode `get` retourne un `Future` qui contient les données récupérées, celle-ci est traitée dans le fichier `HomePageScreen.dart` :
+
+```dart
+_getData() async {
+
+    // Appel à l'API pour récupérer les données
+    var response = await API.getPhotos();
+
+    // Traitement des données
+    if (response.statusCode == 200) {
+
+      // On utilise la librairie json pour parser les données
+      Iterable list = json.decode(response.body);
+
+      // On met à jour l'état de l'application
+      setState(() {
+        _data = list.map((model) => ImageData.fromJson(model)).toList(); // On transforme les données en modèle
+        _loading = false; // On met à jour l'état de chargement à false pour cacher le loader
+      });
+    } else {
+      // En cas d'erreur on lève une exception
+      throw Exception('Erreur récupération des données');
+    }
+  }
+```
+
+On utilise la méthode `setState` pour mettre à jour l'état de l'application. Cela permet de rafraichir l'affichage de l'application, et de mettre à jour les données affichées.
+
+::: tip Asynchrone
+L'appel à l'API est asynchrone. Cela signifie que l'application ne va pas attendre la réponse de l'API pour continuer son exécution. Cela permet d'avoir une application plus fluide, mais ça veux dire aussi que vous allez devoir gérer une vue de chargement / une vue d'attente.
+
+Vous pouvez voir l'implémentation de ce fonctionnement dans le fichier [`HomePageScreen.dart` disponible en cliquant ici](https://github.com/c4software/flutter-list-sample/blob/master/lib/ui/screens/home/tabs/ListTab.dart)
+:::
+
+## Les modèles de données
+
+Les modèles de données sont des classes qui permettent de représenter les données de l'application. Dans mon cas, j'ai créé une classe `ImageData` qui représente une image. 
+
+```dart
+/// Modèle de données pour les images provenant de l'API.
+class ImageData {
+  int id;
+  String title;
+  String url;
+  String thumbnailUrl;
+
+  ImageData(this.id, this.title, this.url, this.thumbnailUrl);
+
+  ImageData.fromJson(Map json)
+      : id = json['id'],
+        title = json['title'],
+        url = json['url'],
+        thumbnailUrl = json['thumbnailUrl'];
+
+  Map toJson() {
+    return {'id': id, 'title': title, 'url': url, 'thumbnailUrl': thumbnailUrl};
+  }
+}
+```
+
+Un modèle de données est une classe qui contient des propriétés. Dans mon cas, j'ai créé une classe `ImageData` qui contient les propriétés suivantes : 
+
+- `id` : l'identifiant de l'image.
+- `title` : le titre de l'image.
+- `url` : l'URL de l'image.
+- `thumbnailUrl` : l'URL de la miniature de l'image.
+
+Les données récupérées depuis l'API sont des données au format JSON. Pour pouvoir les utiliser dans notre application, il faut les transformer en modèle de données. C'est ce que fait la méthode `fromJson` :
+
+```dart
+  ImageData.fromJson(Map json)
+      : id = json['id'],
+        title = json['title'],
+        url = json['url'],
+        thumbnailUrl = json['thumbnailUrl'];
+```
+
+Cette méthode permet de créer un objet `ImageData` à partir d'un objet `Map` qui contient les données au format clé / valeur (résultat du découpage JSON). 
+
+**Bien évidemment, il faut que les clés de l'objet `Map` correspondent aux propriétés de l'objet `ImageData`.**
