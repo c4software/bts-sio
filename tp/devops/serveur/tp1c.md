@@ -30,7 +30,9 @@ Dans ce TP nous allons utiliser l'accès SSH pour nous connecter à la VM.
 
 Vous êtes prêt ?
 
+<center>
 <iframe src="https://giphy.com/embed/2uIlaHVsql55CLP3as" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
 
 ## Ressources
 
@@ -231,7 +233,7 @@ tail -f /var/log/apache2/access.log
 tail -n 10 /var/log/apache2/access.log
 ```
 
-Vous pouvez aussi afficher l'ensemble des logs avec la commande :
+Vous pouvez aussi afficher l'ensemble des logs avec la commande :       
 
 ```bash
 nano /var/log/apache2/access.log
@@ -299,4 +301,6 @@ Le rendu se fera via le formulaire suivant : [Rendre le TP](https://forms.gle/1U
 
 Bravo vous avez terminé le TP !
 
+<center>
 <iframe src="https://giphy.com/embed/4PXUYM1bXS3lRXO7lX" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
