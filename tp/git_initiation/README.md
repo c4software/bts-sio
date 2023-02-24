@@ -6,6 +6,10 @@ description: Vous débutez avec GIT, le TP suivant vous fera parcourir les conce
 
 Vous débutez avec GIT, le TP suivant vous fera parcourir les concepts de base de la ligne de commande Git.
 
+::: details Table des matières
+[[toc]]
+:::
+
 ## Ressources utiles
 
 - [Aide mémoire](/cheatsheets/git/README.md)

@@ -62,5 +62,6 @@ export default {
   }),
   alias: {
     '@theme/Sidebar.vue': path.resolve(__dirname, './components/Sidebar.vue'),
+    '@theme/Page.vue': path.resolve(__dirname, './components/Page.vue'),
   }
 };
