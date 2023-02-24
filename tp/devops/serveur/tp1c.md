@@ -1,6 +1,6 @@
 # TP1c. Prendre en main la ligne de commande
 
-::: detailss Sommaire
+::: details Sommaire
 [[toc]]
 :::
 
