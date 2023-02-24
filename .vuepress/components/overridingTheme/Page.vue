@@ -9,12 +9,15 @@ const hasDocumentToc = ref(false);
 const activeItem = ref("");
 const navBarHeight = ref(0);
 const { y } = useWindowScroll();
+const defaultName = ref("Cours");
 
 nextTick(() => {
     if (typeof window === 'undefined' || !window.document) {
         return
     }
-    
+
+    document.getElementsByClassName("site-name")[0].textContent = defaultName.value;
+
     // Récupération des titres de la page (h2)
     document.querySelectorAll('.content h2').forEach((h2: any) => {
         onThisPage.value.push({
@@ -38,6 +41,19 @@ const shouldShowToc = computed(() => hasDocumentToc.value && onThisPage.value.le
 
 watch(y, () => {
     try{
+        if (typeof window === 'undefined' || !window.document) {
+            return
+        }
+
+        // Si on est en dessous de la barre de navigation, on affiche le nom du site
+        if(y.value > navBarHeight.value){
+            // Récupération du titre de la page (h1) et affichage dans la barre de navigation
+            document.getElementsByClassName("site-name")[0].textContent = document.querySelectorAll(".content h1")[0]?.textContent?.replace("#", "") ?? defaultName.value;
+        } else {
+            // Sinon, on affiche le nom du site
+            document.getElementsByClassName("site-name")[0].textContent = defaultName.value;
+        }
+
         if(shouldShowToc){
             // Récupération de l'élément actif, en fonction de la position de la page (y)
             var cur = onThisPage.value.filter(it => (it.el.offsetTop <= y.value + navBarHeight.value));
