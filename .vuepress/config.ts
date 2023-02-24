@@ -61,7 +61,7 @@ export default {
     sidebar: sidebar
   }),
   alias: {
-    '@theme/Sidebar.vue': path.resolve(__dirname, './components/Sidebar.vue'),
-    '@theme/Page.vue': path.resolve(__dirname, './components/Page.vue'),
+    '@theme/Sidebar.vue': path.resolve(__dirname, './components/overridingTheme/Sidebar.vue'),
+    '@theme/Page.vue': path.resolve(__dirname, './components/overridingTheme/Page.vue'),
   }
 };
