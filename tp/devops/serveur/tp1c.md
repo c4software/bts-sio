@@ -1,6 +1,6 @@
 # TP1c. Prendre en main la ligne de commande
 
-::: details Sommaire
+::: detailss Sommaire
 [[toc]]
 :::
 
@@ -150,7 +150,7 @@ Voici le contenu du fichier 2.
 Avec ce fichier je vais avoir une bonne note.
 ```
 
-::: detail Solution (je vous conseille de faire l'exercice avant de regarder la solution)
+::: details Solution (je vous conseille de faire l'exercice avant de regarder la solution)
 
 ```bash
 mkdir /home/vbrosseau
@@ -178,7 +178,7 @@ Notre serveur a maintenant besoin d'un service Web (HTML seulement), nous allons
 Je vous laisse regarder dans les ressources du TP précédent (voir [TP précédent](./tp1b.md)). Pour voir comment installer Apache.
 :::
 
-::: detail Solution (je vous conseille de faire l'exercice avant de regarder la solution)
+::: details Solution (je vous conseille de faire l'exercice avant de regarder la solution)
 
 ```bash
 apt update
@@ -206,7 +206,7 @@ Où devez-vous placer votre page web pour qu'elle soit accessible depuis l'exté
 
 Je vous laisse éditer le fichier `/var/www/html/index.html` pour y mettre votre page web.
 
-::: detail Solution (je vous conseille de faire l'exercice avant de regarder la solution)
+::: details Solution (je vous conseille de faire l'exercice avant de regarder la solution)
 
 ```bash
 nano /var/www/html/index.html
