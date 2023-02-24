@@ -92,6 +92,20 @@ Si vous avez un doute sur une commande, vous pouvez taper `man <nom-de-la-comman
 Exemple : `man ls`.
 :::
 
+### Quelques astuces
+
+La ligne de commande est très puissante. Voici quelques astuces pour vous faciliter la vie :
+
+- La touche `tab` : permet de compléter une commande ou un chemin de fichier.
+- `!!` : permet de répéter la dernière commande.
+- `ctlr + r` : permet de rechercher une commande dans l'historique.
+- `échap pus :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
+- `échap pus :q!` : permet de quitter un fichier ouvert avec `vim` sans sauvegarder.
+
+::: tip Vous en connaissez d'autres ?
+N'hésitez pas à partager vos astuces entre vous. :wink:
+:::
+
 ## Les utilisateurs
 
 ### Créer un utilisateur
@@ -141,26 +155,36 @@ find /sys/class/net -type l -execdir basename '{}' ';' | grep -v "^lo$"
 
 ## Gérer les paquets
 
+Seul l'utilisateur `root` peut gérer les paquets. Pour passer en `root` il faut utiliser la commande `su` :
+
+```bash
+su -
+```
+
+::: danger `su -` ?
+L'option `-` permet de passer en `root` et de conserver les variables d'environnement. 
+:::
+
+### Mettre à jour les paquets
+
+```bash
+apt update
+```
+
 ### Installer un paquet
 
 ```bash
-apt-get install <nom-du-paquet>
+apt install <nom-du-paquet>
 ```
 
 ### Supprimer un paquet
 
 ```bash
-apt-get remove <nom-du-paquet>
+apt remove <nom-du-paquet>
 ```
 
 ### Mettre à jour les paquets
 
 ```bash
-apt-get update
-```
-
-### Mettre à jour les paquets
-
-```bash
-apt-get upgrade
+apt upgrade
 ```

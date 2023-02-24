@@ -637,6 +637,36 @@ systemctl restart ssh
 
 Cette étape est vraiment intéressante, car elle nous assure que notre serveur ne sera pas accessible via une attaque de type "force brute". Si vous décidez de réaliser cette étape, **je vous conseille de le mettre en avant lors d'un oral (car ça montre que vous avez compris l'importance de la sécurité).**
 
+## Installer des paquets
+
+Pour installer des paquets sur votre serveur, vous allez utiliser la commande `apt` :
+
+```bash
+apt update
+apt install <nom_du_paquet>
+```
+
+Cette commande va modifier votre OS et installer le paquet demandé. Par exemple, pour installer `apache2` :
+
+```bash
+apt update
+apt install cmatrix
+
+cmatrix
+```
+
+L'installation de paquets n'est possible que si votre utilisateur a accès à l'ensemble du système, c'est pour ça que nous avons à notre disposition l'utilisateur `root`. Pour passer en mode `root` nous allons utiliser la commande `su` :
+
+```bash
+su -
+```
+
+::: tip `su -` ?
+
+La commande `su` permet de passer en mode `root`. La commande `su -` permet de passer en mode `root` et de charger les variables d'environnement de l'utilisateur `root`. C'est pour ça que nous utilisons `su -` et non `su`. Si vous ne chargez pas les variables d'environnement de l'utilisateur `root`, vous ne pourrez pas utiliser `apt` par exemple.
+
+:::
+
 ## Installer les vmware tools
 
 Les VMware tools sont des outils qui vont permettre à votre machine virtuelle de tirer le maximum de performances de l'environnement.
@@ -652,6 +682,7 @@ Bref, n'oubliez pas d'installer les Tools pour vivre une expérience optimale �
 Comment installer les VMware tools ? Et bien avec `apt` évidemment :
 
 ```bash
+apt update
 apt install open-vm-tools
 ```
 

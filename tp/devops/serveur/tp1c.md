@@ -48,7 +48,7 @@ Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les s
 - OS : Debian 11.
 - Mémoire : 1Go.
 - CPU : 1.
-- Disque : 10Go.
+- Disque : 5Go.
 - Utilisateur : `<votre nom>`.
 - Mot de passe : `<votre mot de passe>` (mot de passe de votre choix mais qui respecte les règles de sécurité).
 
@@ -85,7 +85,7 @@ Pour vous connecter à la VM vous devez utiliser la commande `ssh` depuis votre 
 - L'accès par mot de passe doit être désactivé sur votre VM (voir [TP précédent](./tp1b.md)).
 - L'accès `root` par SSH doit être désactivé sur votre VM (voir [TP précédent](./tp1b.md)).
 
-## L'OS
+## Les commandes de base
 
 Nous avons maintenant une VM qui fonctionne. Nous allons maintenant nous intéresser à l'OS et les programmes qui y sont installés. Avant de commencer nous allons voir comment utiliser les bases de la ligne de commande.
 
@@ -102,6 +102,16 @@ Nous avons maintenant une VM qui fonctionne. Nous allons maintenant nous intére
 - `tail` : Affiche les dernières lignes d'un fichier. (Exemple : `tail -f /var/log/syslog` affiche les dernières lignes du fichier syslog en temps réel).
 
 Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisées. **Il est important de savoir les utiliser.**
+
+::: tip Quelques astuces
+
+- La touche `tab` : permet de compléter une commande ou un chemin de fichier.
+- `!!` : permet de répéter la dernière commande.
+- `ctlr + r` : permet de rechercher une commande dans l'historique.
+- `échap pus :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
+- `échap pus :q!` : permet de quitter un fichier ouvert avec `vim` sans sauvegarder.
+
+:::
 
 ### Créer une arborescence
 
@@ -229,8 +239,8 @@ nano /var/log/apache2/access.log
 Afin de rendre votre site plus attractif, vous allez ajouter une page `apropos.html` qui contiendra les informations de contact de votre site. Celle-ci devra contenir les informations suivantes :
 
 - Nom de l'école : `Lycée Chevrollier`.
-- Votre nom.
-- Votre prénom.
+- Votre nom & prénom.
+- Une description de votre site.
 - La date de réalisation du site.
 
 Cette page devra être accessible depuis la page `index.html` via un lien nommé `A propos` et pointant vers la page `pages/apropos.html`.
@@ -245,8 +255,43 @@ Bon courage !
 
 ## Me donner accès à votre serveur
 
-TODO
+Votre réalisation est maintenant terminée, il est temps de me donner accès à votre serveur pour que je puisse vérifier votre travail. Nous avons vu dans le TP précédent comment autoriser votre clé SSH sur le serveur. Évidemment, je ne vais pas vous demander votre clé SSH, mais je vais vous fournir ma clé SSH **publique**.
+
+La procédure est la suivante :
+
+- Récupérez ma clé SSH publique (Télécharger le fichier [ici](https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub)).
+- Ajouter le contenu du fichier `id_rsa_etudiant.pub` dans le fichier `~/.ssh/authorized_keys` de votre utilisateur sur le serveur (exemple : `/home/vbrosseau/.ssh/authorized_keys`).
+  - Vous pouvez utiliser `nano` ou `vim` pour éditer le fichier.
+
+::: tip À la fin de cette étape, votre fichier `authorized_keys` devrait ressembler à ça :
+
+```bash
+ssh-rsa VotreClé ...
+ssh-rsa MaClé ...
+```
+
+:::
+
+À présent, si vous me donner l'adresse IP de votre serveur, je pourrais me connecter dessus et vérifier votre travail. Si vous avez des problèmes, n'hésitez pas à me contacter.
+
+::: danger Attention
+
+En réalisant cette étape, vous me donnez accès à votre serveur. Je ne ferai rien de malveillant, mais je vous conseille de ne pas laisser votre serveur accessible à tout le monde. Vous ne devez ajouter que des personnes de confiance dans le fichier `authorized_keys`.
+
+Si vous avez bien réalisé les étapes précédentes, je ne devrais pas avoir accès en root à votre serveur. Les modifications que je pourrais faire seront limitées à votre utilisateur, mais c'est quand même mieux de ne pas laisser votre serveur accessible à tout le monde…
+
+:::
 
 ## Restitution
 
-TODO
+Pour restituer le projet, merci de me fournir les éléments suivants :
+
+- L'adresse IP de votre serveur.
+- Votre fiche serveur.
+- Rapport illustrant les différentes étapes.
+
+Le rendu se fera via le formulaire suivant : [Rendre le TP](https://forms.gle/1U7j3Wwku1gpNMDf6)
+
+Bravo vous avez terminé le TP !
+
+<iframe src="https://giphy.com/embed/4PXUYM1bXS3lRXO7lX" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
