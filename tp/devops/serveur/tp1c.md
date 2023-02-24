@@ -237,6 +237,8 @@ Vous pouvez aussi afficher l'ensemble des logs avec la commande :
 nano /var/log/apache2/access.log
 ```
 
+🚨 Je vous laisse tester, normalement vous devriez voir les logs de vos connexions au serveur. Vous pouvez le voir en temps réel avec la commande `tail -f` et en accédant à votre page web depuis votre navigateur.
+
 ## Évolution du site
 
 Afin de rendre votre site plus attractif, vous allez ajouter une page `apropos.html` qui contiendra les informations de contact de votre site. Celle-ci devra contenir les informations suivantes :
