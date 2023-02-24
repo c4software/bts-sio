@@ -11,23 +11,25 @@ const navBarHeight = ref(0);
 const { y } = useWindowScroll();
 
 nextTick(() => {
-    if(document){
-        // Récupération des titres de la page (h2)
-        document.querySelectorAll('.content h2').forEach((h2: any) => {
-            onThisPage.value.push({
-                el: h2,
-                id: h2.id,
-                text: h2.innerText.replace("#", "")
-            })
-        })
-
-        // Vérification de l'existence d'une table des matières dans la page
-        // (si oui, on affiche la colonne de droite)
-        hasDocumentToc.value = document.getElementsByClassName("table-of-contents").length > 0;
-
-        // Récupération de la hauteur de la barre de navigation (pour gérer la classe "active" sur le bon élément)
-        navBarHeight.value = document.getElementsByClassName("navbar")[0]?.clientHeight ?? 0
+    if (typeof window === 'undefined' || !window.document) {
+        return
     }
+    
+    // Récupération des titres de la page (h2)
+    document.querySelectorAll('.content h2').forEach((h2: any) => {
+        onThisPage.value.push({
+            el: h2,
+            id: h2.id,
+            text: h2.innerText.replace("#", "")
+        })
+    })
+
+    // Vérification de l'existence d'une table des matières dans la page
+    // (si oui, on affiche la colonne de droite)
+    hasDocumentToc.value = document.getElementsByClassName("table-of-contents").length > 0;
+
+    // Récupération de la hauteur de la barre de navigation (pour gérer la classe "active" sur le bon élément)
+    navBarHeight.value = document.getElementsByClassName("navbar")[0]?.clientHeight ?? 0
 })
 
 // Computed, Est-ce qu'on doit afficher la colonne de droite ?
