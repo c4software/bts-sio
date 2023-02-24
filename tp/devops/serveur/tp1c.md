@@ -1,4 +1,4 @@
-# TP1c. Prendre en main la ligne de commande.
+# TP1c. Prendre en main la ligne de commande
 
 ::: details Sommaire
 [[toc]]
@@ -50,7 +50,7 @@ Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les s
 - CPU : 1.
 - Disque : 5Go.
 - Utilisateur : `<votre nom>`.
-- Mot de passe : `<votre mot de passe>` (mot de passe de votre choix mais qui respecte les règles de sécurité).
+- Mot de passe : `<votre mot de passe>` (mot de passe de votre choix, mais qui respecte les règles de sécurité).
 
 ::: tip Rappel
 
@@ -78,7 +78,7 @@ Configurez la VM pour qu'elle respecte les spécifications suivantes :
 
 ### Étape 3 : Connectez-vous à la VM
 
-Pour vous connecter à la VM vous devez utiliser la commande `ssh` depuis votre machine hôte. Pour que cela fonctionne :
+Pour vous connecter à la VM, vous devez utiliser la commande `ssh` depuis votre machine hôte. Pour que cela fonctionne :
 
 - Vous devez avoir installé le serveur SSH sur votre VM (voir [TP précédent](./tp1b.md)).
 - Vous devez avoir généré une clé SSH sur votre machine hôte et l'avoir ajoutée à votre VM (voir [TP précédent](./tp1b.md)).
@@ -87,7 +87,7 @@ Pour vous connecter à la VM vous devez utiliser la commande `ssh` depuis votre 
 
 ## Les commandes de base
 
-Nous avons maintenant une VM qui fonctionne. Nous allons maintenant nous intéresser à l'OS et les programmes qui y sont installés. Avant de commencer nous allons voir comment utiliser les bases de la ligne de commande.
+Nous avons maintenant une VM qui fonctionne. Nous allons maintenant nous intéresser à l'OS et les programmes qui y sont installés. Avant de commencer, nous allons voir comment utiliser les bases de la ligne de commande.
 
 - `ls` : Liste les fichiers et dossiers. (Exemple : `ls -l` affiche les fichiers et dossiers avec les permissions).
 - `cd` : Change de dossier. (Exemple : `cd /var/log` change de dossier pour aller dans le dossier `/var/log`).
@@ -105,7 +105,7 @@ Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisée
 
 ::: tip Quelques astuces
 
-- La touche `tab` : permet de compléter une commande ou un chemin de fichier.
+- La touche `tab` : permets de compléter une commande ou un chemin de fichier.
 - `!!` : permet de répéter la dernière commande.
 - `ctlr + r` : permet de rechercher une commande dans l'historique.
 - `échap pus :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
@@ -142,7 +142,7 @@ Voici le contenu du fichier 2.
 ```
 
 - Déplacez le fichier `fichier1.md` dans le dossier `/home/vbrosseau/`.
-- Dupliquez le fichier `fichier2.md` dans le dossier `/home/vbrosseau/tp1/` et renommez le `fichier2bis.md`.
+- Dupliquez le fichier `fichier2.md` dans le dossier `/home/vbrosseau/tp1/` et renommez-le `fichier2bis.md`.
 - Renommez le fichier `fichier1.md` en `introduction.md`.
 - Changer le contenu du fichier `introduction.md` pour qu'il contienne :
 
@@ -190,7 +190,7 @@ systemctl status apache2
 
 #### Créer votre page web
 
-Vous êtes en SLAM, du coup le Web vous conaissez. Créez une page web qui respecte les spécifications suivantes :
+Vous êtes en SLAM, du coup le Web vous conaissez ? Je vous propose de créez une page web qui respecte les spécifications suivantes :
 
 - Le titre de la page doit être `SLAM 4`.
 - Le titre principal de la page doit être `SLAM 4`.
@@ -200,8 +200,9 @@ Vous êtes en SLAM, du coup le Web vous conaissez. Créez une page web qui respe
   - [Google](https://www.google.com)
   - [Facebook](https://www.facebook.com)
   - [Twitter](https://www.twitter.com)
+- **Pour l'instant pas de PHP car notre serveur n'est pas configuré pour.**
 
-Où devez vous placer votre page web pour qu'elle soit accessible depuis l'extérieur ? Par défaut Apache place les pages web dans le dossier `/var/www/html/`.
+Où devez-vous placer votre page web pour qu'elle soit accessible depuis l'extérieur ? Par défaut, Apache place les pages web dans le dossier `/var/www/html/`.
 
 Je vous laisse éditer le fichier `/var/www/html/index.html` pour y mettre votre page web.
 
@@ -210,6 +211,8 @@ Je vous laisse éditer le fichier `/var/www/html/index.html` pour y mettre votre
 ```bash
 nano /var/www/html/index.html
 ```
+
+:::
 
 Une fois le fichier édité, vous pouvez le visualiser en ouvrant votre navigateur et en tapant l'adresse IP de votre serveur.
 
@@ -259,7 +262,7 @@ Votre réalisation est maintenant terminée, il est temps de me donner accès à
 
 La procédure est la suivante :
 
-- Récupérez ma clé SSH publique (Télécharger le fichier [ici](https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub)).
+- Récupérez ma clé SSH publique (télécharger le fichier [ici](https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub)).
 - Ajouter le contenu du fichier `id_rsa_etudiant.pub` dans le fichier `~/.ssh/authorized_keys` de votre utilisateur sur le serveur (exemple : `/home/vbrosseau/.ssh/authorized_keys`).
   - Vous pouvez utiliser `nano` ou `vim` pour éditer le fichier.
 
@@ -272,7 +275,7 @@ ssh-rsa MaClé ...
 
 :::
 
-À présent, si vous me donner l'adresse IP de votre serveur, je pourrais me connecter dessus et vérifier votre travail. Si vous avez des problèmes, n'hésitez pas à me contacter.
+À présent, si vous me donnez l'adresse IP de votre serveur, je pourrais me connecter dessus et vérifier votre travail. Si vous avez des problèmes, n'hésitez pas à me contacter.
 
 ::: danger Attention
 
