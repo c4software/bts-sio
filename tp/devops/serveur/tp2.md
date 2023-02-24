@@ -18,4 +18,12 @@ Dans ce TP nous allons voir comment créer un serveur Web (Apache + PHP) et comm
 
 Maitriser la création de serveur, est un point important. En effet, derrière chaque site Web, il y a un serveur qui tourne. Il est donc important de savoir comment le configurer, et comment le sécuriser. Même si il est possible d'héberger son site Web sur des plateformes ou la notion de serveur n'est pas présente, il est important de savoir comment cela fonctionne afin de pouvoir dépanner un site web en cas de problème (gestion des droits, des logs, etc.).
 
+### Ce que nous allons voir
+
+Voilà l'architecture que nous allons mettre en place :
+
 ![Réalisation](./res/realisation.png)
+
+- Un serveur Debian 11
+- Un serveur Web Apache
+- PHP 8.X
