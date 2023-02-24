@@ -16,7 +16,11 @@ nextTick(() => {
         return
     }
 
-    document.getElementsByClassName("site-name")[0].textContent = defaultName.value;
+    try{
+        document.getElementsByClassName("site-name")[0].textContent = defaultName.value;
+    } catch(e){
+        // ignored
+    }
 
     // Récupération des titres de la page (h2)
     document.querySelectorAll('.content h2').forEach((h2: any) => {
@@ -40,11 +44,11 @@ nextTick(() => {
 const shouldShowToc = computed(() => hasDocumentToc.value && onThisPage.value.length > 0);
 
 watch(y, () => {
-    try{
-        if (typeof window === 'undefined' || !window.document) {
-            return
-        }
+    if (typeof window === 'undefined' || !window.document) {
+        return
+    }
 
+    try{
         // Si on est en dessous de la barre de navigation, on affiche le nom du site
         if(y.value > navBarHeight.value){
             // Récupération du titre de la page (h1) et affichage dans la barre de navigation
@@ -53,7 +57,11 @@ watch(y, () => {
             // Sinon, on affiche le nom du site
             document.getElementsByClassName("site-name")[0].textContent = defaultName.value;
         }
-
+    } catch(e){
+        // ignored
+    }
+    
+    try{
         if(shouldShowToc){
             // Récupération de l'élément actif, en fonction de la position de la page (y)
             var cur = onThisPage.value.filter(it => (it.el.offsetTop <= y.value + navBarHeight.value));
