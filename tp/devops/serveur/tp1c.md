@@ -87,6 +87,24 @@ Pour vous connecter à la VM, vous devez utiliser la commande `ssh` depuis votre
 - L'accès par mot de passe doit être désactivé sur votre VM (voir [TP précédent](./tp1b.md)).
 - L'accès `root` par SSH doit être désactivé sur votre VM (voir [TP précédent](./tp1b.md)).
 
+::: details Rappel sur la clé SSH
+
+Pour installer votre clé SSH sur votre serveur, il vous suffit de faire la commande suivante sur votre ordinateur.
+
+```bash
+ssh-copy-id <username>@<ipaddress>
+```
+
+⚠️ Vous devez évidemment remplacer `<username>`et `<ipaddress>`par votre utilisateur et votre mot de passe. Exemple :
+
+```bash
+ssh-copy-id pi@192.168.1.253
+```
+
+Rien de plus, à partir de maintenant votre serveur acceptera votre connexion sans vous demander de mot de passe. Pratique non ? (Et surtout très sécurisé)
+
+:::
+
 ## Les commandes de base
 
 Nous avons maintenant une VM qui fonctionne. Nous allons maintenant nous intéresser à l'OS et les programmes qui y sont installés. Avant de commencer, nous allons voir comment utiliser les bases de la ligne de commande.

@@ -93,7 +93,7 @@ watch(y, () => {
             <div class="toc-titre">Dans cette page</div>
             <ul class="toc-list">
                 <li v-for="item in onThisPage" :key="item.id">
-                    <a :href="'#' + item.id" :class="{active: activeItem == item.id}">{{item.top}} {{ item.text }}</a>
+                    <a :href="'#' + item.id" @click="activeItem = item.id" :class="{active: activeItem == item.id}">{{item.top}} {{ item.text }}</a>
                 </li>
             </ul>
         </div>
