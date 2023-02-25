@@ -4,6 +4,10 @@ description: Aide mémoire Cordova
 
 ## Aide mémoire Cordova
 
+::: details Table des matières
+[[toc]]
+:::
+
 ### Installation
 
 Installer Cordova de manière « globale » sur l’ordinateur :

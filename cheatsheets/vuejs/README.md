@@ -4,6 +4,10 @@ description: Le document présent ainsi que les supports de cours et TP sont act
 
 # Aide mémoire VueJS 2.0
 
+::: details Table des matières
+[[toc]]
+:::
+
 ::: danger Remarque Décembre 2020
 Nous sommes actuellement à une periode charnière de VueJS. La version 3.0 bien que stable n'est pas encore la version « par defaut ».
 

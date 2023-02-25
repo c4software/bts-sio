@@ -4,6 +4,10 @@ description: Aide mémoire Mini MVC Sample
 
 # Aide mémoire Mini MVC Sample
 
+::: details Table des matières
+[[toc]]
+:::
+
 ## Lancer le serveur intégré
 
 ```sh

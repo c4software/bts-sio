@@ -1,5 +1,9 @@
 # Aide Laravel
 
+::: details Table des matières
+[[toc]]
+:::
+
 ## Démarrer le serveur
 
 ```sh

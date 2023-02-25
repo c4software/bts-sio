@@ -5,6 +5,10 @@ keywords: SSH, ssh-key, clé SSH, clef ssh, clés ssh, ssh-keygen
 
 # Aide mémoire Clef SSH
 
+::: details Table des matières
+[[toc]]
+:::
+
 Dans cet aide mémoire vous allez retrouver l'ensemble des commandes et des opérations à réaliser pour réaliser une clef SSH sur votre machine et l'échanger avec un tiers pour vous authentifier sans mot de passe.
 
 > Autrefois, tout le monde employait l'authentification typique par le principe identifiant - mot de passe. Cependant si quelqu'un connaît votre mot de passe ou le découvre au moyen d'une attaque, la sécurité est compromise. De plus, utiliser un mot de passe différent pour chaque serveur et le saisir à chaque connexion peut s'avérer contraignant.
