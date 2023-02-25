@@ -301,7 +301,7 @@ Pour tester le principe des VirtualHost, nous allons créer deux sites Internet 
 - `<votre-ip>:80` : va afficher le site présent dans `/var/www/html/siteA/`
 - `<votre-ip>:8080` : va afficher le site présent dans `/var/www/html/siteB/`
 
-![VirtualHost](./res/vhost.jpg)
+![VirtualHost](./res/vhost.png)
 
 ::: tip Port ou Domaine ?
 
