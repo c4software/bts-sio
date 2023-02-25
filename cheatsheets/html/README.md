@@ -10,6 +10,10 @@ Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les 
 Cet aide mémoire ne contient pas l'ensemble des balises, par contre vous retrouverez (en Français) une liste complète de l'ensemble des balises sur le site de la MDM Web Docs [à consulter ici](https://developer.mozilla.org/fr/docs/Web/HTML/Element)
 :::
 
+::: details Table des matières
+[[toc]]
+:::
+
 ## La structure d'une page
 
 Les balises formant la structure de base sont restées identiques depuis la création des pages Internet. Celle-ci est obligatoire et est le minimum à mettre dans toutes vos pages.

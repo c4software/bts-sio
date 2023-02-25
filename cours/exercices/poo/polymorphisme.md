@@ -4,6 +4,10 @@ description: Dans cette mise en pratique, nous allons voir comment l'intérêt d
 
 # Le Polymorphisme : Mise en pratique
 
+::: details Table des matières
+[[toc]]
+:::
+
 ## Introduction
 
 Dans cette mise en pratique, nous allons voir comment l'intérêt du Polymorphisme. Le polymorphisme est le fait qu'une classe mère peut prendre plusieurs formes (**poly** : plusieurs, **morphisme** : forme). Avec le polymorphisme nous pouvons donc écrire sans que cela pose problème :
