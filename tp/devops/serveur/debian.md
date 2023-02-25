@@ -343,7 +343,8 @@ Ces commandes vont ajouter le dépôt permettant d'installer la dernière versio
 Maintenant que le dépôt est ajouté, nous pouvons installer PHP. Pour cela, vous pouvez utiliser la commande suivante :
 
 ```bash
-apt-get install libapache2-mod-php php-mysql php-pdo php php-common php-xml php-gd php8.0-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip curl -y
+apt update
+apt install php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl} -y
 ```
 
 ### Vérifier que PHP est installé
@@ -360,13 +361,20 @@ Un instant, quelle version de PHP est installée ?
 
 ### Vérifier que Apache + PHP fonctionne
 
-Pour vérifier que Apache + PHP fonctionne, vous pouvez créer un fichier `index.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
+Maintenant que notre PHP est installé, il faut l'activer :
 
 ```bash
-nano /var/www/html/index.php
+a2enmod proxy_fcgi setenvif php8.2-fpm
+systemctl restart apache2
 ```
 
-Dans ce fichier `index.php`, vous pouvez mettre le code suivant :
+Pour vérifier que Apache + PHP fonctionne, vous pouvez créer un fichier `info.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
+
+```bash
+nano /var/www/html/info.php
+```
+
+Dans ce fichier `info.php`, vous pouvez mettre le code suivant :
 
 ```php
 <?php

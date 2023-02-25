@@ -29,39 +29,17 @@ Debian est une distribution stable, mais stabilité ≠ modernité. Pour avoir l
 ## Installer PHP
 
 ```bash
-apt-get update
-apt-get install libapache2-mod-php php php-common php-xml php-gd php8.0-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip curl php-mysql php-pdo -y
+apt update
+apt install php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd}  -y
 ```
 
 Démarrez le serveur Apache
 
 ```bash
+a2enmod proxy_fcgi setenvif php8.2-fpm
+systemctl restart apache2
 systemctl enable apache2
-systemctl start apache2
 ```
-
-::: tip Un peu de détail
-
-- `apt-get install` : permet d'installer un paquet
-- `apache2` : Le serveur web Apache
-- `php` : Le langage de programmation PHP
-- `php-common` : Les fichiers communs à tous les modules PHP
-- `php-xml` : Le module PHP pour gérer les fichiers XML
-- `php-opcache` : Le module PHP pour gérer le cache
-- `php-tokenizer` : Le module PHP pour gérer les chaînes de caractères
-- `php-json` : Le module PHP pour gérer les fichiers JSON
-- `php-bcmath` : Le module PHP pour gérer les nombres décimaux
-- `php-mysql` : Le module PHP pour se connecter à la base de données
-- `php-mbstring` : Le module PHP pour gérer les chaînes de caractères
-- `php-gd` : Le module PHP pour gérer les images
-- `php-zip` : Le module PHP pour gérer les archives
-- `unzip` : Le programme pour décompresser les archives
-- `curl` : Le programme pour télécharger des fichiers
-- `php-pdo` : Le module PHP pour gérer les bases de données
-- `libapache2-mod-php` : Le module Apache pour gérer PHP
-- `php-mysql` : Le module PHP pour gérer les bases de données MySQL / MariaDB.
-
-:::
 
 ### Vérifie la bonne installation
 
