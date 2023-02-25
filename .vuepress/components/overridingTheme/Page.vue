@@ -115,7 +115,8 @@ watch(y, () => {
 }
 
 #onThisPage{
-    display: none;
+    transition: transform 0.3s ease-in-out;
+    transform: translate(200%);
 }
 
 @media print {
@@ -135,7 +136,7 @@ watch(y, () => {
     }
 
     #onThisPage {
-        display: block;
+        transform: translate(0);
     }
     .content {
         flex-grow: 1;
