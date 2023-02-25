@@ -164,7 +164,7 @@ watch(y, () => {
     left: -8px;
     z-index: -1;
     width: 2px;
-    background: #eaecef;
+    background: var(--c-border);
 }
 
 .toc-titre{
