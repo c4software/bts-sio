@@ -4,7 +4,7 @@
 
 <SlidesDeck src="introduction_html" />
 
-- [En plus de cours](cheatsheets/html/)
+- [En plus de cours](/cheatsheets/html/)
 - [TP 1](/tp/html_css/tp1.md)
 
 ## Le CSS
