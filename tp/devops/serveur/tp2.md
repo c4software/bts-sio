@@ -469,6 +469,96 @@ Notre serveur Apache est maintenant configuré, et permet même de créer plusie
 - Sur le port `8080` : Une page en PHP qui affiche le nom du serveur (centré au milieu de la page et en gras et gros).
 - Sur le port `8181` : Une page en PHP qui liste les fichiers présents dans le dossier `/var/www/siteB`.
 
+## Comment travailler avec le serveur ?
+
+Pour réaliser cette partie, nous avons deux possibilités :
+
+- Travailler directement sur le serveur.
+- Travailler sur votre machine, et copier les fichiers sur le serveur.
+
+::: danger Travailler sur le serveur == Danger
+
+Travailler sur le serveur peut sembler intéressant, mais il y a un gros inconvénient : si vous faites une erreur, vous allez devoir tout recommencer. Je vous conseille donc de travailler sur votre machine, et de copier les fichiers sur le serveur.
+
+:::
+
+### Travailler sur votre machine
+
+Pour travailler sur votre machine, vous avez plusieurs solutions :
+
+- Coder en local comme habituellement, puis périodiquement copier les fichiers sur le serveur (à l'aide d'un **client SFTP**, comme FileZilla par exemple).
+- Coder en local en utilisant **Git**, puis cloner le dépôt sur le serveur (ou le puller si vous avez déjà un dépôt sur le serveur).
+
+Les deux solutions sont valables, mais je vous conseille d'utiliser Git. Cela vous permettra de travailler sur plusieurs projets en même temps, et de les gérer facilement.
+
+### Les clients SFTP
+
+Il existe plusieurs clients SFTP :
+
+- FileZilla : <https://filezilla-project.org/> (déjà installé sur les ordinateurs du lycée)
+- WinSCP : <https://winscp.net/eng/index.php> (minimaliste, mais très efficace)
+
+Ces deux clients sont gratuits et utilisent le SSH pour se connecter au serveur. Pour vous connecter, vous devez renseigner les informations suivantes :
+
+- **Host** : l'adresse IP du serveur
+- **Username** : votre nom d'utilisateur
+- **Port** : 22 (le port SSH)
+
+Et pas de mot de passe… Et oui, nous avons configuré le serveur pour ne pas demander de mot de passe. Pour vous connecter, vous devez utiliser une **clé SSH**. Pour ça vous devez :
+
+- Édition > Paramètres > Connexion> SFTP > Ajouter un fichier de clé.
+
+![FileZilla](./res/filezilla_parametres.jpg)
+![FileZilla](./res/filezilla_clefs.jpg)
+
+### Via Git
+
+J'aime beaucoup l'idée de travailler avec Git pour ce genre de situation. Vous pouvez créer un dépôt sur votre machine, et le cloner sur le serveur, puis continuer à travailler sur votre machine et puller les modifications sur le serveur régulièrement.
+
+La procédure sera la suivante :
+
+- Installer Git sur le serveur : `apt install git`.
+- Créer un dépôt sur votre machine et le partager sur Github / Gitlab.
+- Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH sur le serveur, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/README.md)).
+- Travailler sur votre machine les pusher régulièrement
+- Puller les modifications sur le serveur.
+
+Voilà un exemple complet de procédure sur le serveur :
+
+```bash
+# Installation de Git
+apt install git
+
+# Création d'un dossier pour le projet
+mkdir /var/www/siteA
+cd /var/www/siteA
+
+# clone du dépôt de votre projet, le . à la fin est important, il permet de cloner le dépôt dans le dossier courant (ici /var/www/siteA)
+git clone git@gitlab.com:c4software/votre-projet-deja-existant.git .
+
+# Vous pouvez maintenant travailler sur votre machine
+# et pusher les modifications sur le serveur
+
+# Pour puller les modifications sur le serveur
+cd /var/www/siteA
+git pull
+```
+
+::: tip faignant ?
+
+Et vu que nous sommes faignant, voici un script pour gérer les mises à jour. Créez un fichier `update.sh` dans le dossier de votre choix (dans votre dossier personnel de votre serveur), et mettez-y le code suivant :
+
+```bash
+#!/bin/bash
+
+cd /var/www/siteA
+git pull
+```
+
+Vous pourrez lancer ce script avec la commande `./update.sh`. Attention, il faut que le script soit exécutable (`chmod +x update.sh`).
+
+:::
+
 ### Site Web sur le port 80
 
 Pour cette partie je vous laisse faire. Vous devez modifier le fichier `index.html` dans le dossier `/var/www/html`.

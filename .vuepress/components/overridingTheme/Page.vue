@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PageMeta from '@theme/PageMeta.vue'
 import PageNav from '@theme/PageNav.vue'
-import {ref, nextTick, computed, watch} from 'vue'
+import {ref, onMounted, computed, watch} from 'vue'
 import { useWindowScroll } from '@vueuse/core'
 
 const onThisPage = ref<any[]>([]);
@@ -11,7 +11,7 @@ const navBarHeight = ref(0);
 const { y } = useWindowScroll();
 const defaultName = ref("Cours");
 
-nextTick(() => {
+onMounted(() => {
     if (typeof window === 'undefined' || !window.document) {
         return
     }
