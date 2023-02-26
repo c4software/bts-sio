@@ -86,6 +86,10 @@ _(C'est une question sérieuse)_
 
 ---
 
+![Don't feed the troll](./res/troll.jpg)
+
+---
+
 Moi je suis développeur, je veux juste coder !
 
 Mais…
