@@ -327,6 +327,10 @@ Par exemple, Apache, MySQL, etc.
 - Nginx
 - Autres (Lighttpd, Caddy, etc.)
 
+![Apache Logo](./res/apache_logo.png)
+![Nginx Logo](./res/nginx_logo.png)
+
+
 ---
 
 ## Un point en commun
