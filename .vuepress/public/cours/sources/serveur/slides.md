@@ -374,7 +374,9 @@ Deux solutions pour découper notre serveur :
 
 ---
 
-En réalité, votre serveur possède 65 535 ports. Les ports 80, 443, 8080, 8443 sont les ports par défaut, **mais vous pouvez en créer d'autres**.
+En réalité, votre serveur possède **65 535 ports**.
+
+Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous pouvez en créer d'autres**.
 
 ---
 
