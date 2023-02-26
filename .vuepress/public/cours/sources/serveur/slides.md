@@ -150,7 +150,7 @@ Comment choisir ?
 En entreprise, c'est variable… mais chaque année en stage je constate que les entreprises utilisent :
 
 - Windows (beaucoup).
-- Linux (beaucoup, souvent Ubuntu).
+- Linux (Souvent, Ubuntu).
 - macOS (de temps en temps 👋).
 
 ---
@@ -303,6 +303,100 @@ Par exemple, Apache, MySQL, etc.
 ---
 
 - **Les données** : Ce sont des fichiers exemple le code source de vos applications, ou encore les données de la base de données.
+
+---
+
+## Plusieurs types de serveurs
+
+- Serveur Web.
+- Serveur de base de données.
+- Serveurs spécialisés.
+
+---
+
+## Serveur Web
+
+- Serveurs de fichiers.
+- Serveurs de code (PHP, Python, Node.js, etc.).
+
+---
+
+## Des logiciels
+
+- Apache
+- Nginx
+- Autres (Lighttpd, Caddy, etc.)
+
+---
+
+## Un point en commun
+
+**Les virtualhosts**
+
+---
+
+## Virtualhosts
+
+<fieldset>
+  <legend>Un virtualhost</legend>
+  <p>
+    Serveur Web qui peut servir plusieurs sites Web. Il est possible de configurer un virtualhost pour chaque site Web. Chaque virtualhost a son propre nom de domaine, port, logs.
+  </p>
+</fieldset>
+
+---
+
+## Les ports ? Les noms de domaine ?
+
+- Les ports permettent de rendre accessible le service depuis l'extérieur.
+- Les noms de domaine permettent de rendre accessible le service depuis l'intérieur.
+
+---
+
+Deux solutions pour découper notre serveur :
+
+- Un port par site.
+- Un nom de domaine par site.
+
+---
+
+## Les ports
+
+- 80 : HTTP
+- 443 : HTTPS
+- 8080 : HTTP
+- 8443 : HTTPS
+- …
+
+---
+
+En réalité, votre serveur possède 65 535 ports. Les ports 80, 443, 8080, 8443 sont les ports par défaut, **mais vous pouvez en créer d'autres**.
+
+---
+
+## Les noms de domaine
+
+- Payant (ou interne à l'organisation).
+- Permets segmenter les services. (Exemple : `api.example.com`).
+- Permets de rendre accessible le service depuis l'intérieur.
+- Un nom de domaine = une infinité de sous-domaines sur un port unique (Exemple : `api.example.com`, `api.dev.example.com`, `api.prod.example.com`).
+
+---
+
+<fieldset>
+  <legend>Le serveur Web</legend>
+  <p>
+    Le serveur Web est un logiciel qui permet de servir des fichiers statiques (HTML, CSS, JS, images, etc.) et des fichiers dynamiques (PHP, Python, Node.js, etc.).
+  </p>
+
+  <p>
+    Il permet **d'héberger** un ou des sites Web. Chaque site sera accessible via un nom de domaine **et/ou** un port.
+  </p>
+</fieldset>
+
+---
+
+## Serveur de base de données
 
 ---
 
