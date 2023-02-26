@@ -174,6 +174,40 @@ _Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-
 
 ---
 
+## La ligne de commande
+
+- C'est un outil de base pour les développeurs.
+- Optimise la productivité.
+- Permet l'automatisation.
+
+---
+
+## Pour vous c'est quoi ?
+
+---
+
+## Quelques commandes
+
+- `ls` : liste les fichiers et dossiers.
+- `cd` : change de dossier.
+- `mkdir` : crée un dossier.
+- `touch` : crée un fichier.
+- `rm` : supprime un fichier ou dossier.
+- `cp` : copie un fichier ou dossier.
+- `mv` : déplace un fichier ou dossier.
+- `cat` : affiche le contenu d'un fichier.
+- `vim` : édite un fichier (`nano` autre éditeur).
+
+---
+
+## Quelques astuces
+
+- `tab` : complète le nom d'un fichier ou dossier.
+- `ctrl + r` : recherche dans l'historique des commandes.
+- `!!` : répète la dernière commande.
+
+---
+
 ## Et pourquoi pas les trois ?
 
 C'est possible via la virtualisation.
