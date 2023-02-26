@@ -396,7 +396,7 @@ Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous p
   </p>
 
   <p>
-    Il permet **d'héberger** un ou des sites Web. Chaque site sera accessible via un nom de domaine **et/ou** un port.
+    Il permet <b>d'héberger</b> un ou des sites Web. Chaque site sera accessible via un nom de domaine <b>et/ou</b> un port.
   </p>
 </fieldset>
 
