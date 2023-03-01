@@ -10,6 +10,8 @@ Cet aide mémoire n’est pas exhaustif, elle contient les connaissances minimum
 [[toc]]
 :::
 
+Vous cherchez une synthèse des commandes / fonctions de Laravel ? [Cliquez ici](./quick.md)
+
 ## Architecture MVC
 
 ![Architecture MVC](./res/mvc-diagram.png)
