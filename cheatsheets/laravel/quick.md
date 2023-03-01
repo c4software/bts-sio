@@ -4,6 +4,13 @@
 [[toc]]
 :::
 
+Cette page est un résumé rapide des fonctionnalités Laravel qui peuvent vous être utiles. Pour plus de détail :
+
+- [Laravel](/cheatsheets/laravel/)
+- [Laravel - Introduction](/tp/laravel/introduction.md)
+- [Laravel - Authentification](/tp/laravel/authentification.md)
+- [Cours](/cours/laravel.md)
+
 ## Démarrer le serveur
 
 ```sh
