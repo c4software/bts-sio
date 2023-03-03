@@ -403,6 +403,7 @@ Travailler en root sur un serveur est un « gros risque », en effet en cas de m
 Pour installer `vim` sur votre serveur nous allons utiliser la commande `apt` :
 
 ```bash
+apt update
 apt install vim
 ```
 
