@@ -27,6 +27,13 @@ service networking restart
 ip a
 ```
 
+6. Vérifier la configuration DNS
+
+```bash
+nano /etc/resolv.conf
+```
+
+
 ::: tip Documents connexes :
 
 - [Serveur Web avec Debian](./debian-web.md)

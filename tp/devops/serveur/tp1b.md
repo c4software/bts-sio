@@ -326,15 +326,24 @@ ip a
 Nous allons maintenant observer la configuration réseau de notre serveur. Pour cela nous allons utiliser la commande `cat` :
 
 ```bash
-cat /etc/network/interfaces
+nano /etc/network/interfaces
 ```
 
 Cette commande va afficher le contenu du fichier `/etc/network/interfaces`. Ce fichier contient la configuration réseau de votre serveur. Si vous souhaitez modifier l'adresse IP de votre serveur vous pouvez modifier ce fichier.
+
+La configuration DNS est également stockée dans le fichier `/etc/resolv.conf`. Pour afficher le contenu de ce fichier nous allons utiliser la commande `cat` :
+
+```bash
+nano /etc/resolv.conf
+```
 
 ### Modifier l'adresse IP de votre serveur
 
 _Étape 1 :_
 En utilisant l'aide mémoire [disponible ici](/cheatsheets/serveur/debian-reseau.md), générer une nouvelle adresse IP pour votre serveur.
+
+_Étape 1b :_
+Vérifier le nom de votre interface réseau avec la commande `ip link`.
 
 _Étape 2 :_
 Nous allons maintenant modifier l'adresse IP de votre serveur. Pour cela nous allons utiliser la commande `nano` :
