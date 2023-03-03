@@ -382,13 +382,17 @@ Une fois la nouvelle adresse IP rentrée, vous pouvez sauvegarder le fichier en 
 
 _Étape 3 :_
 
-Nous allons maintenant redémarrer le service réseau de votre serveur. Pour cela nous allons utiliser la commande `systemctl` :
+Nous allons maintenant redémarrer le service réseau de votre serveur. Du fait d'un bug sur la ferme, nous allons utiliser la commande `reboot` :
 
 ```bash
-systemctl restart networking
+reboot
 ```
 
-Cette commande va redémarrer le service réseau de votre serveur pour lui faire prendre en compte la nouvelle configuration.
+::: tip Alternative ?
+
+En tant normal un `systemctl restart networking`, cette commande va redémarrer le service réseau de votre serveur pour lui faire prendre en compte la nouvelle configuration.
+
+:::
 
 ::: tip Pourquoi changer l'adresse IP ?
 Ici nous avons installé entièrement l'OS du serveur. L'avantage d'une machine virtuelle c'est qu'il est possible de réaliser une image « réutilisable » pour gagner de précieuses minutes lors de l'installation d'un nouveau serveur. 
