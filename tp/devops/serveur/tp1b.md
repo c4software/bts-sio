@@ -342,7 +342,7 @@ apt install open-vm-tools
 
 ::: danger N'oubliez pas
 
-- Vous devez être connecté en tant que `root` pour installer les VMware tools.
+- Vous devez être connecté en tant que `root` pour installer les VMware tools (ou via `su -`).
 - Vous devez avoir `update` les dépôts avant d'installer de nouveaux paquets.
 
 :::
