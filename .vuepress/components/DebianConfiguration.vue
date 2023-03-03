@@ -33,7 +33,7 @@
                 <input v-model="gateway" class="form-control" type="text" name="Passerelle" placeholder="192.168…" required />
             </div>
             <div class="col">
-                <label>DNS :</label>
+                <label>Serveur De Nom (DNS) :</label>
                 <input v-model="dns" class="form-control" type="text" name="DNS" placeholder="192.168…" required />
             </div>
         </div>
