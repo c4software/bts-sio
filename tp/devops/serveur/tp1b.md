@@ -349,7 +349,7 @@ apt install open-vm-tools
 
 ### Observer la configuration du serveur
 
-Nous allons maintenant observer la configuration réseau de notre serveur. Pour cela nous allons utiliser la commande `cat` :
+Nous allons maintenant observer la configuration réseau de notre serveur. Pour cela nous allons utiliser la commande `nano` :
 
 ```bash
 nano /etc/network/interfaces
@@ -357,7 +357,7 @@ nano /etc/network/interfaces
 
 Cette commande va afficher le contenu du fichier `/etc/network/interfaces`. Ce fichier contient la configuration réseau de votre serveur. Si vous souhaitez modifier l'adresse IP de votre serveur vous pouvez modifier ce fichier.
 
-La configuration DNS est également stockée dans le fichier `/etc/resolv.conf`. Pour afficher le contenu de ce fichier nous allons utiliser la commande `cat` :
+La configuration DNS est également stockée dans le fichier `/etc/resolv.conf`. Pour afficher le contenu de ce fichier nous allons utiliser la commande `nano` :
 
 ```bash
 nano /etc/resolv.conf
