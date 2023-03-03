@@ -321,6 +321,32 @@ Vous pouvez également vérifier l'adresse IP de votre serveur avec la commande 
 ip a
 ```
 
+## Installer les vmware tools
+
+Les VMware tools sont des outils qui vont permettre à votre machine virtuelle de tirer le maximum de performances de l'environnement.
+
+::: danger Les performances et la virtualisation
+
+Sans les VMware tools semble fonctionner correctement ? Oui… À première vue seulement… En réalité votre machine ne tire pas toutes les performances de l'environnement. Pire, elle peut dégrader les performances de toute la ferme.
+
+Bref, n'oubliez pas d'installer les Tools pour vivre une expérience optimale 👌.
+
+:::
+
+Comment installer les VMware tools ? Et bien avec `apt` évidemment :
+
+```bash
+apt update
+apt install open-vm-tools
+```
+
+::: danger N'oubliez pas
+
+- Vous devez être connecté en tant que `root` pour installer les VMware tools.
+- Vous devez avoir `update` les dépôts avant d'installer de nouveaux paquets.
+
+:::
+
 ### Observer la configuration du serveur
 
 Nous allons maintenant observer la configuration réseau de notre serveur. Pour cela nous allons utiliser la commande `cat` :
@@ -682,32 +708,6 @@ su -
 ::: tip `su -` ?
 
 La commande `su` permet de passer en mode `root`. La commande `su -` permet de passer en mode `root` et de charger les variables d'environnement de l'utilisateur `root`. C'est pour ça que nous utilisons `su -` et non `su`. Si vous ne chargez pas les variables d'environnement de l'utilisateur `root`, vous ne pourrez pas utiliser `apt` par exemple.
-
-:::
-
-## Installer les vmware tools
-
-Les VMware tools sont des outils qui vont permettre à votre machine virtuelle de tirer le maximum de performances de l'environnement.
-
-::: danger Les performances et la virtualisation
-
-Sans les VMware tools semble fonctionner correctement ? Oui… À première vue seulement… En réalité votre machine ne tire pas toutes les performances de l'environnement. Pire, elle peut dégrader les performances de toute la ferme.
-
-Bref, n'oubliez pas d'installer les Tools pour vivre une expérience optimale 👌.
-
-:::
-
-Comment installer les VMware tools ? Et bien avec `apt` évidemment :
-
-```bash
-apt update
-apt install open-vm-tools
-```
-
-::: danger N'oubliez pas
-
-- Vous devez être connecté en tant que `root` pour installer les VMware tools.
-- Vous devez avoir `update` les dépôts avant d'installer de nouveaux paquets.
 
 :::
 
