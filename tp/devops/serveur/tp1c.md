@@ -128,8 +128,8 @@ Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisée
 - La touche `tab` : permets de compléter une commande ou un chemin de fichier.
 - `!!` : permet de répéter la dernière commande.
 - `ctlr + r` : permet de rechercher une commande dans l'historique.
-- `échap pus :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
-- `échap pus :q!` : permet de quitter un fichier ouvert avec `vim` sans sauvegarder.
+- `échap puis :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
+- `échap puis :q!` : permet de quitter un fichier ouvert avec `vim` sans sauvegarder.
 
 :::
 

@@ -99,8 +99,8 @@ La ligne de commande est très puissante. Voici quelques astuces pour vous facil
 - La touche `tab` : permet de compléter une commande ou un chemin de fichier.
 - `!!` : permet de répéter la dernière commande.
 - `ctlr + r` : permet de rechercher une commande dans l'historique.
-- `échap pus :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
-- `échap pus :q!` : permet de quitter un fichier ouvert avec `vim` sans sauvegarder.
+- `échap puis :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
+- `échap puis :q!` : permet de quitter un fichier ouvert avec `vim` sans sauvegarder.
 
 ::: tip Vous en connaissez d'autres ?
 N'hésitez pas à partager vos astuces entre vous. :wink:
