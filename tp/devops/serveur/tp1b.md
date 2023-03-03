@@ -334,7 +334,7 @@ Cette commande va afficher le contenu du fichier `/etc/network/interfaces`. Ce f
 ### Modifier l'adresse IP de votre serveur
 
 _Étape 1 :_
-En utilisant l'aide mémoire [disponible ici](cheatsheets/serveur/debian-reseau.md), générer une nouvelle adresse IP pour votre serveur.
+En utilisant l'aide mémoire [disponible ici](/cheatsheets/serveur/debian-reseau.md), générer une nouvelle adresse IP pour votre serveur.
 
 _Étape 2 :_
 Nous allons maintenant modifier l'adresse IP de votre serveur. Pour cela nous allons utiliser la commande `nano` :
