@@ -569,6 +569,14 @@ Maintenant que nous avons notre clé privée, nous allons ajouter notre clé pub
 ssh-copy-id <nom_du_compte>@<adresse_ip_du_serveur>
 ```
 
+::: tip Attention
+
+Cette commande doit être exécutée sur votre machine locale. 
+
+Elle va copier votre clé publique (local à votre machine) sur votre serveur (VM).
+
+:::
+
 Dans mon cas :
 
 ```bash
