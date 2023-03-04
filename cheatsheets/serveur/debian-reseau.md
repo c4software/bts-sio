@@ -21,6 +21,8 @@ Vous trouverez dans cette page la procédure permettant de générer une configu
 service networking restart
 ```
 
+:danger: L'autre solution pour appliquer la configuration est de redémarrer la machine (via la commande `reboot`).
+
 5. Vérifier que la configuration est correcte
 
 ```bash
@@ -32,6 +34,12 @@ ip a
 ```bash
 nano /etc/resolv.conf
 ```
+
+::: tip resolv.conf
+
+Le fichier `/etc/resolv.conf` est un fichier de configuration qui permet de configurer les serveurs DNS utilisés par le système. Il contient généralement une seule ligne avec l'adresse IP du serveur DNS.
+
+:::
 
 
 ::: tip Documents connexes :
