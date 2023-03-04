@@ -13,6 +13,41 @@ Dans cet aide mémoire vous trouverez l'ensemble des commandes et des opération
 
 :::
 
+::: details Vous souhaitez juste les commandes pour Apache + PHP ?
+
+Voici la procédure de création de la partie PHP + Apache :
+
+```bash
+apt-get update
+apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+
+# Installer Apache + PHP
+apt-get install open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
+
+# Activer PHP dans Apache
+a2enmod proxy_fcgi setenvif php8.2-fpm rewrite
+
+systemctl restart apache2
+systemctl enable apache2
+
+# Vérifier la version de PHP
+php -v
+
+# Vérifier l'accès à Apache
+curl -s --head http://localhost:80 | grep "HTTP/1.[01] [23].." && echo "Le serveur écoute bien sur le port 80." || echo "Aucun serveur en écoute sur le port 80."
+```
+
+:::
+
+## Installer Apache
+
+```bash
+apt-get update
+apt-get install apache2 -y
+```
+
 ## Ajouter le dépôt pour PHP 8
 
 ```bash
@@ -36,7 +71,7 @@ apt install php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysq
 Démarrez le serveur Apache
 
 ```bash
-a2enmod proxy_fcgi setenvif php8.2-fpm
+a2enmod proxy_fcgi setenvif php8.2-fpm rewrite
 systemctl restart apache2
 systemctl enable apache2
 ```

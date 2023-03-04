@@ -62,7 +62,7 @@ Configurez la VM pour qu'elle respecte les spécifications suivantes :
 
 - La VM doit avoir une IP statique. (Vous pouvez utiliser le générateur de configuration).
 - La VM doit avoir accès à Internet (`ping www.google.com` dois fonctionner).
-- La VM doit posséder les **vmtools**.
+- La VM doit posséder les **vmtools**. (`apt install open-vm-tools`).
 
 ### Étape 3 : Accès SSH à la VM
 
@@ -222,7 +222,7 @@ Vous devriez voir quelque chose similaire à :
 Maintenant que notre PHP est installé, il faut l'activer :
 
 ```bash
-a2enmod proxy_fcgi setenvif php8.2-fpm
+a2enmod proxy_fcgi setenvif php8.2-fpm rewrite
 systemctl restart apache2
 ```
 

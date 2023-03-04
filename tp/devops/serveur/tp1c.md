@@ -72,11 +72,11 @@ c'est à vous de jouer !
 
 ### Étape 2 : Configurez la VM
 
-Configurez la VM pour qu'elle respecte les spécifications suivantes :
+Vérifier que votre VM respecte les spécifications suivantes :
 
 - La VM doit avoir une IP statique. (Vous pouvez utiliser le générateur de configuration).
 - La VM doit avoir accès à Internet (`ping www.google.com` doit fonctionner).
-- La VM doit posséder les **vmtools**.
+- La VM doit posséder les **vmtools** (`apt install open-vm-tools`)
 
 ### Étape 3 : Connectez-vous à la VM
 

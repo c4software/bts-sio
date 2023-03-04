@@ -105,7 +105,36 @@ Pourquoi cette configuration ? Apache et PHP sont installés, car, nous allons m
 Maintenant que notre besoin est défini, nous allons pouvoir créer notre machine. Je vous laisse suivre la procédure suivante :
 
 - [TP1. Créer une VM sur la ferme.](/tp/devops/serveur/tp1.md)
-- [TP2. Configurer une machine.](/tp/devops/serveur/tp2.md)
+- [TP2. Avoir une machine Debian avec Apache + PHP](/tp/devops/serveur/tp2.md) => **ou la synthèse de ce TP** : [Configurer une serveur Debian pour le Web](/cheatsheets/serveur/debian-web.md)
+
+::: details Vous souhaitez juste les commandes ?
+
+Voici la procédure de création de la partie PHP + Apache :
+
+```bash
+apt-get update
+apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+
+# Installer Apache + PHP
+apt-get install open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
+
+# Activer PHP dans Apache
+a2enmod proxy_fcgi setenvif php8.2-fpm rewrite
+
+# Active  Apache
+systemctl restart apache2
+systemctl enable apache2
+
+# Vérifier la version de PHP
+php -v
+
+# Affiche OK si le serveur web est accessible.
+curl -s --head http://localhost:80 | grep "HTTP/1.[01] [23].." && echo "Le serveur écoute bien sur le port 80." || echo "Aucun serveur en écoute sur le port 80."
+```
+
+:::
 
 ::: tip Des points à vérifier
 
