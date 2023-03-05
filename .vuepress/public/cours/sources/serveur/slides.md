@@ -545,7 +545,7 @@ Deux ? Non… Trois !
 
 ---
 
-## Une chose importante
+### Une chose importante
 
 ## VOUS NE DEVEZ JAMAIS TRAVAILLER SUR L'ENVIRONNEMENT DE PRODUCTION !
 
@@ -555,7 +555,7 @@ Deux ? Non… Trois !
 
 ---
 
-## Pourquoi à votre avis ?
+### Pourquoi à votre avis ?
 
 ---
 
@@ -598,11 +598,11 @@ C'est ce que l'on appelle une **stack** (ou pile logicielle).
   </p>
 
   <p>
-    Elle peut-être local (sur votre ordinateur) ou distante (sur un serveur).
+    Elle peut-être <b>local</b> (sur votre ordinateur) ou <b>distante</b> (sur un serveur).
   </p>
 
   <p>
-    Elle peut-être de développement, recette ou de production.
+    Elle peut-être de <b>développement<b>, <b>recette</b> ou de <b>production</b>.
   </p>
 </fieldset>
 
