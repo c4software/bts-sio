@@ -226,6 +226,7 @@ module.exports = [
       {
         text: "Les TP", collapsible: true, children: [
           { text: "La base", collapsible: true, children: ["/tp/devops/serveur/tp1.md", "/tp/devops/serveur/tp1b.md", "/tp/devops/serveur/tp1c.md", "/tp/devops/serveur/tp2.md", "/tp/devops/serveur/tp3.md"] },
+          { text: "Docker", collapsible: true, children: ["/tp/docker/introduction.md", "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile.md", "/tp/docker/docker_compose.md"] },
           { text: "L'intégration continue", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-ci.md"] },
           { text: "Déployer un site static", collapsible: true, children: ["/tp/ci/jamstack/netlify.md", "/tp/ci/jamstack/netlify-portfolio.md", "/tp/ci/pages-portfolio.md"] },
           { text: "Kubernetes", collapsible: true, children: ["/tp/ci/kubernetes/deploy-container-in-kubernetes.md", "/tp/ci/kubernetes/cd-avec-kubernetes.md"] },
