@@ -444,4 +444,168 @@ Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous p
 
 ---
 
+Il existe plusieurs types de serveurs
+
+---
+
+## Serveurs relationnels
+
+- MySQL
+- MariaDB
+- PostgreSQL
+- …
+
+---
+
+## Serveurs non relationnels
+
+- MongoDB
+- Redis
+- …
+
+---
+
+## Leurs points communs
+
+- Stocker des données.
+- Requêter ces données.
+- Ils écoutent sur un port.
+
+---
+
+## Un port ?
+
+### Non des ports !
+
+Pour MariaDB, vous le connaissez ?
+
+---
+
+- MySQL / MariaDB : 3306
+- PostgreSQL : 5432
+- MongoDB : 27017
+
+---
+
+<fieldset>
+  <legend>Le serveur de base de données</legend>
+  <p>
+    Le serveur de base de données est un logiciel qui permet de stocker des données et de les requêter.
+  </p>
+
+  <p>
+    Il permet <b>d'héberger</b> une ou plusieurs bases de données.
+  </p>
+</fieldset>
+
+---
+
+## Arrêtons-nous pour le moment
+
+### Les environnements
+
+---
+
+## Pour vous, un environnement c'est quoi ?
+
+---
+
+Il existe au minimum deux types d'environnements :
+
+- Développement.
+- Production.
+
+---
+
+## Développement
+
+- Votre ordinateur (ou un serveur local).
+- Vous êtes le seul à y avoir accès.
+- Vous pouvez faire ce que vous voulez.
+
+---
+
+## Production
+
+- Un serveur distant.
+- Accessible par les utilisateurs.
+- Ne dois jamais être en panne.
+
+---
+
+Deux ? Non… Trois !
+
+---
+
+## Recette / Staging
+
+- Un serveur distant.
+- Accessible par les développeurs.
+- Permets de valider les changements avant la production.
+
+---
+
+## Une chose importante
+
+## VOUS NE DEVEZ JAMAIS TRAVAILLER SUR L'ENVIRONNEMENT DE PRODUCTION !
+
+---
+
+## JAMAIS !
+
+---
+
+## Pourquoi à votre avis ?
+
+---
+
+## La combinaison de Apache + PHP + SQL
+
+---
+
+![Une lampe](./res/lamp.jpg)
+
+---
+
+![Trollface](./res/trollface.png)
+
+---
+
+## Linux + Apache + PHP + SQL
+
+## =
+
+## LAMP
+
+---
+
+C'est ce que l'on appelle une **stack** (ou pile logicielle).
+
+---
+
+![Lamp Stack](./res/lampstack.png)
+
+---
+
+<fieldset>
+  <legend>La stack LAMP</legend>
+  <p>
+    La stack LAMP est une pile logicielle qui permet de développer des applications web.
+  </p>
+
+  <p>
+    Elle est composée de : Linux, Apache, PHP et SQL.
+  </p>
+
+  <p>
+    Elle peut-être local (sur votre ordinateur) ou distante (sur un serveur).
+  </p>
+
+  <p>
+    Elle peut-être de développement, recette ou de production.
+  </p>
+</fieldset>
+
+---
+
 ## Des questions ?

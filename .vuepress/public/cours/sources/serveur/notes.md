@@ -29,9 +29,6 @@
   - Autre
   - Virtual Host
   - Les ports
-
-===
-
 - Un serveur de base de données
   - Gestion des données
   - MySQL
@@ -39,6 +36,11 @@
 - La notion de LAMP
   - Linux, Apache, MySQL, PHP
   - C’est une Stack Logiciel
+
+=== FIN SLIDE 1 ===
+
+
+
 - Le réseau
   - Adresse IP
   - DNS
