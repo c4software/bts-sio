@@ -8,7 +8,8 @@
 
 ## TP
 
-- [Créer des services très rapidement](/tp/docker/creer_server_local.md)
+- [Découverte de Docker](/tp/docker/introduction.md)
+- [Tester / Créer des services très rapidement](/tp/docker/creer_server_local.md)
 - [Les Dockerfiles](/tp/docker/dockerfile.md)
 - [Docker Compose](/tp/docker/docker_compose.md)
 
