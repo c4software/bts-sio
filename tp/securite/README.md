@@ -93,17 +93,15 @@ Deux versions existent :
 - Le jar
 - Un containeur Docker
 
-Nous allons choisir le jar :
-
-[Télécharger WebGoat](https://github.com/WebGoat/WebGoat/releases/download/7.1/webgoat-container-7.1-exec.jar)
+Nous allons choisir la version Docker :
 
 ## Lancement
 
 ```sh
-java -jar webgoat-container-7.1-exec.jar
+docker run -p 127.0.0.1:8080:8080 -p 127.0.0.1:9090:9090 -e TZ=Europe/Amsterdam webgoat/webgoat
 ```
 
-C’est parti, vous pouvez maintenant aller sur [http://localhost:8080/WebGoat](http://localhost:8080/WebGoat)
+C’est parti, vous pouvez maintenant aller sur [http://127.0.0.1:8080/WebGoat](http://127.0.0.1:8080/WebGoat)
 
 ⚠️ Nous allons utiliser un outil intégrant des failles… Pour éviter tout risque pour votre machine, le mieux est de couper l’accès au réseau de votre ordinateur. ⚠️
 
