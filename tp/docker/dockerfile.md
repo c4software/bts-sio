@@ -65,7 +65,7 @@ Une fois que c’est fait, il faut trouver une image de base qui nous servira de
 - Quelle version choisissez-vous ?
 - Pourquoi ?
 
-Pour continuer, nous allons utiliser l’image PHP 7 Apache. Voilà le début de notre Dockerfile :
+Pour continuer, nous allons utiliser l’image PHP 8 Apache. Voilà le début de notre Dockerfile :
 
 ```dockerfile
 FROM php:7-apache
@@ -83,13 +83,13 @@ La commande `COPY` permet de copier des fichiers (dossiers, fichiers, etc.) dire
 La commande `COPY` prend deux arguments le fichier « sources » et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande `COPY` suivante :
 
 ```dockerfile
-FROM php:7-apache
+FROM php:8-apache
 MAINTAINER Valentin Brosseau "c4software@gmail.com"
 
 COPY src/ /var/www/html/
 ```
 
-Le premier dossier c’est vos sources, sur votre machine dans le même dossier que le fichier Dockerfile, créez un dossier nommé `src` avec à l’intérieur les sources de votre projet `todo-vuejs`.
+Le premier dossier c’est vos sources, sur votre machine dans le même dossier que le fichier Dockerfile, créez un dossier nommé `src` avec à l’intérieur les sources de votre projet `todo-php`.
 
 Et voilà! C’est terminé. Votre image est prête à être « build ».
 
@@ -98,7 +98,7 @@ Et voilà! C’est terminé. Votre image est prête à être « build ».
 Maintenant que notre image est prête, nous allons pouvoir builder l’image :
 
 ```bash
-docker build --tag "vuejs-todo:latest" .
+docker build --tag "php-todo:latest" .
 ```
 
 Ding ! C’est prêt.
@@ -108,7 +108,7 @@ Ding ! C’est prêt.
 Votre application étant buildée pour la lancer, il suffit de faire :
 
 ```bash
-docker run -p 8888:80 vuejs-todo:latest
+docker run -p 8888:80 php-todo:latest
 ```
 
 Votre application est maintenant [disponible ici](http://localhost:8080).

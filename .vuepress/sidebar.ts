@@ -152,16 +152,12 @@ module.exports = [
   },
 
   {
-    text: "Sécurité du code",
+    text: "Sécurité du code (OWASP)",
     collapsible: true,
     children: [
-      {
-        text: "OWASP", children: [
           { text: "Le cours", link: "/cours/securite_applications" },
           { text: "Synthèse du cours", link: "/cheatsheets/owasp/" },
           "/tp/securite/"
-        ]
-      }
     ]
   },
 
