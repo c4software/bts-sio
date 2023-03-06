@@ -442,13 +442,9 @@ DELETE /photos/{photo} destroy photos.destroy
 Route::resource('photos.comments', PhotoCommentController::class);
 
 // Ressource partielle
-Route::resource('photos', PhotoController::class)->only([
-    'index', 'show
-]);
+Route::resource('photos', PhotoController::class)->only(['index', 'show']);
 
-Route::resource('photos', PhotoController::class)->except([
-    créer', 'stocker', 'mettre à jour', 'détruire'].
-]);
+Route::resource('photos', PhotoController::class)->except(['create', 'save', 'update', 'destroy']);
 
 // URL avec le nom de la route
 $url = route('profile', ['id' => 1]);
