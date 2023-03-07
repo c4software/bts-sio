@@ -141,7 +141,7 @@ watch(y, () => {
     .content {
         flex-grow: 1;
         width: 80%;
-        max-width: 1300px;
+        max-width: 900px;
     }
 }
 
