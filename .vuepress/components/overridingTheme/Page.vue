@@ -131,6 +131,7 @@ watch(y, () => {
 @media screen and (min-width: 1300px) {
     .theme-default-content{
         display: flex;
+        justify-content: center;
         max-width: calc(100vw - var(--sidebar-width));
         margin: 0;
     }
