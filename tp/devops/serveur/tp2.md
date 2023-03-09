@@ -56,6 +56,8 @@ Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les s
 
 À l'aide des TP précédents (et de vos notes), créez une VM qui respecte les spécifications ci-dessus.
 
+PS: Vous pouvez également utiliser un modèle comme décrit dans le [TP1](./tp1alt.md).
+
 ### Étape 2 : Configurez la VM
 
 Configurez la VM pour qu'elle respecte les spécifications suivantes :

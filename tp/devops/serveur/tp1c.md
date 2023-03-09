@@ -60,6 +60,7 @@ Ici je ne vais pas vous redonner les commandes, je vous laisse chercher dans les
 
 - [Aide mémoire Debian](/cheatsheets/serveur/linux-debian-based.md)
 - [TP précédent](./tp1b.md)
+- [Créer une VM plus rapidement depuis un modèle](./tp1alt.md)
 - Votre prise de notes
 
 c'est à vous de jouer !

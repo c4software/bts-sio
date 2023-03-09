@@ -155,9 +155,9 @@ module.exports = [
     text: "Sécurité du code (OWASP)",
     collapsible: true,
     children: [
-          { text: "Le cours", link: "/cours/securite_applications" },
-          { text: "Synthèse du cours", link: "/cheatsheets/owasp/" },
-          "/tp/securite/"
+      { text: "Le cours", link: "/cours/securite_applications" },
+      { text: "Synthèse du cours", link: "/cheatsheets/owasp/" },
+      "/tp/securite/"
     ]
   },
 
@@ -216,12 +216,12 @@ module.exports = [
     text: "DevOps / Serveur",
     collapsible: true,
     children: [
-      { text: "Introduction",  link: "/pages/categories/les-serveurs.md" },
+      { text: "Introduction", link: "/pages/categories/les-serveurs.md" },
       { text: "Les cours", collapsible: true, children: ["/cours/serveur.md", "/cours/docker", "/cours/cicd", "/cours/gitlabci"] },
       { text: "En + du cours", collapsible: true, children: ["/tp/devops/serveur/support.md", "/tp/devops/support-docker-cicd.md"] },
       {
         text: "Les TP", collapsible: true, children: [
-          { text: "La base", collapsible: true, children: ["/tp/devops/serveur/tp1.md", "/tp/devops/serveur/tp1b.md", "/tp/devops/serveur/tp1c.md", "/tp/devops/serveur/tp2.md", "/tp/devops/serveur/tp3.md"] },
+          { text: "La base", collapsible: true, children: ["/tp/devops/serveur/tp1.md", "/tp/devops/serveur/tp1alt.md", "/tp/devops/serveur/tp1b.md", "/tp/devops/serveur/tp1c.md", "/tp/devops/serveur/tp2.md", "/tp/devops/serveur/tp3.md"] },
           { text: "Docker", collapsible: true, children: ["/tp/docker/introduction.md", "/tp/docker/creer_server_local.md", "/tp/docker/dockerfile.md", "/tp/docker/docker_compose.md"] },
           { text: "L'intégration continue", collapsible: true, children: ["/tp/ci/pages", "/tp/ci/ci-test/tests", "/tp/ci/packager-docker", "/tp/ci/ci-hybride", "/tp/ci/gitlab/runner.md", "/tp/devops/sonarqube/sonarqube.md", "/tp/ops/deployer-laravel-ci.md"] },
           { text: "Déployer un site static", collapsible: true, children: ["/tp/ci/jamstack/netlify.md", "/tp/ci/jamstack/netlify-portfolio.md", "/tp/ci/pages-portfolio.md"] },
@@ -277,5 +277,5 @@ module.exports = [
     collapsible: true,
     children: ["/tp/cms/wordpress.md"]
   },
-  
+
 ]

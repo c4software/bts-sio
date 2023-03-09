@@ -18,9 +18,11 @@ La ferme est un équipement partagé par l'ensemble des étudiants du BTS (1ère
 
 :::
 
+Dans ce TP nous allons créer une VM à partir de zéro. Si vous souhaitez créer une VM depuis un modèle, vous pouvez suivre le [TP1 - Alternitif](./tp1.md).
+
 ## Pré-requis
 
-::: tip Uniquement disponible pour le Lycée
+::: tip Uniquement disponible pour le Lycée / VPN
 
 Pour réaliser ce TP vous devez :
 
@@ -300,8 +302,7 @@ Vous venez de créer votre première machine virtuelle. Comme vu en introduction
 - services installés avec mot de passe (compte)
 - outils installés avec mot de passe (compte)
 
-
-::: tip L'objectif ? 
+::: tip L'objectif ?
 
 Ici l'idée est de ne pas oublier la configuration de votre serveur. En effet, avec la multitude de serveurs et de cours, il n'est pas impossible que vous oubliez la configuration de votre machine. Pour éviter tout problème, créer dès le début votre fiche serveur.
 
@@ -328,6 +329,6 @@ Vous pouvez penser en SLAM que les serveurs ne font pas partie de votre option ?
 
 De plus, il y a fort à parier qu'en entreprise vous soyez amené à « gérer des serveurs », ou dans une moindre mesure vous connecter dessus pour y installer vos développements.
 
-## La suite ? 
+## La suite ?
 
 Dans le prochain TP, nous allons voir comment installer un système d'exploitation sur une VM. [Cliquez ici pour accéder au TP suivant](./tp1b.md)
