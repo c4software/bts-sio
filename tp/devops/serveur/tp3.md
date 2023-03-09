@@ -107,19 +107,6 @@ Maintenant que notre besoin est défini, nous allons pouvoir créer notre machin
 - [TP1. Créer une VM sur la ferme.](/tp/devops/serveur/tp1.md)
 - [TP2. Avoir une machine Debian avec Apache + PHP](/tp/devops/serveur/tp2.md) => **ou la synthèse de ce TP** : [Configurer une serveur Debian pour le Web](/cheatsheets/serveur/debian-web.md)
 
-<CodeGroup>
-  <CodeGroupItem title="Création complète de la VM" active>
-    Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez plus d'options, mais vous devez réaliser l'installation du système d'exploitation.
-
-    - [Consulter la documentation](./tp1.md)
-  </CodeGroupItem>
-  <CodeGroupItem title="Création de la VM via un modèle">
-    Dans cette version, vous allez créer votre VM à partir d'un modèle. Le modèle contient déjà le système d'exploitation et les logiciels installés. Vous n'avez plus qu'à configurer la VM (réseau, utilisateur, etc.).
-
-    - [Consulter la documentation](./tp1alt.md)
-  </CodeGroupItem>
-</CodeGroup>
-
 ::: details Vous souhaitez juste les commandes ?
 
 Voici la procédure de création de la partie PHP + Apache :
@@ -160,6 +147,18 @@ curl -s --head http://localhost:80 | grep "HTTP/1.[01] [23].." && echo "Le serve
 ::: danger Je veux une fiche serveur
 Je vous rappelle que vous **devez** avoir une fiche serveur pour chaque machine que vous créez. Cette fiche doit être complète et doit contenir les informations de connexion à votre machine (les IP, Login, Mot de passe, etc.).
 :::
+
+### Création complète de la VM
+
+Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez plus d'options, mais vous devez réaliser l'installation du système d'exploitation.
+
+- [Consulter la documentation](./tp1.md)
+
+### Création de la VM via un modèle <Badge type="tip" text="Meilleure solution" vertical="top" />
+
+Dans cette version, vous allez créer votre VM à partir d'un modèle. Le modèle contient déjà le système d'exploitation et les logiciels installés. Vous n'avez plus qu'à configurer la VM (réseau, utilisateur, etc.).
+
+- [Consulter la documentation](./tp1alt.md)
 
 ## Configuration de la base de la machine
 
