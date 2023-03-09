@@ -289,7 +289,7 @@ Dans le prochain TP nous allons voir pour configurer Apache avec des VirtualHost
 
 Avant de continuer le TP, je vous laisse valider que PHPMyAdmin fonctionne correctement en répondant à la problématique suivante :
 
-::: tip Problématique
+### Problématique
 
 L'entreprise BTS SIO, vous demande de numériser la gestion des absences de ses étudiants. Pour cela, vous devez créer une base de données qui contiendra les informations suivantes :
 
@@ -298,13 +298,11 @@ L'entreprise BTS SIO, vous demande de numériser la gestion des absences de ses 
 
 Chaque étudiant peut avoir plusieurs absences. Chaque absence est liée à un seul étudiant. Les étudiants sont répartis en 2 classes : **SIO1** et **SIO2**, et en deux niveaux : **1ère année** et **2ème année**.
 
-:::
-
 ## Autre logiciels pour gérer une base de données
 
 Nous avons pour l'instant vu comment installer MariaDB et PHPMyAdmin. Mais il existe d'autres logiciels pour gérer une base de données. Nous allons voir ici comment installer ces logiciels. Pour que les autres logiciels fonctionnent, il faut que vous autorisiez le port 3306 dans la configuration de MariaDB.
 
-::: tip Rappel sur les ports
+::: warning Rappel sur les ports
 
 Le port est un numéro qui permet de différencier les différents services qui tournent sur un serveur. Par exemple, le port 80 est utilisé par le serveur web Apache. Le port 22 est utilisé par le service SSH. Le port 3306 est utilisé par le service MariaDB. De base, le port 3306 n'écoute que les connexions locales. Pour que les autres logiciels puissent se connecter à MariaDB, il faut autoriser les connexions distantes.
 
