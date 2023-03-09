@@ -13,6 +13,10 @@ Dans cet aide mémoire vous trouverez l'ensemble des commandes et des opération
 
 :::
 
+::: details Sommaire
+[[toc]]
+:::
+
 ::: details Vous souhaitez juste les commandes pour Apache + PHP ?
 
 Voici la procédure de création de la partie PHP + Apache :
