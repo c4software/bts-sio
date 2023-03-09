@@ -153,6 +153,14 @@ C'est ici que nous voyons l'avantage de Linux. L'architecture est très simple, 
 
 :::
 
+#### Les permissions
+
+Afin que votre utilisateur puisse modifier le code de votre site, vous devez modifier les permissions du dossier `/var/www/html` :
+
+```bash
+chown -R <VOTRE-UTILISATEUR>:www-data /var/www/
+```
+
 ## Installation de PHP
 
 Maintenant que nous avons un serveur Web, nous allons installer PHP. Pour l'instant vous avez utilisé PHP sur votre machine Windows (via XAMPP). Mais PHP peut également être installé sur un serveur Linux. Pour cela, nous allons utiliser la commande `apt` pour installer le paquet `php`.
@@ -564,7 +572,7 @@ git pull
 
 ::: tip faignant ?
 
-Et vu que nous sommes faignant, voici un script pour gérer les mises à jour. Créez un fichier `update.sh` dans le dossier de votre choix (dans votre dossier personnel de votre serveur), et mettez-y le code suivant :
+Et vu que nous sommes faignants, voici un script pour gérer les mises à jour. Créez un fichier `update.sh` dans le dossier de votre choix (dans votre dossier personnel de votre serveur), et mettez-y le code suivant :
 
 ```bash
 #!/bin/bash

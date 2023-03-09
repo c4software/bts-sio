@@ -767,9 +767,17 @@ Vous pouvez également regarder votre fiche serveur ;).
 
 :::
 
+### Les permissions
+
+Afin que votre utilisateur puisse modifier le code de votre site, vous devez modifier les permissions du dossier `/var/www/` :
+
+```bash
+chown -R <VOTRE-UTILISATEUR>:www-data /var/www/
+```
+
 ### Créer une page web
 
-Pour finaliser ce premier TP, nous allons créer une page web. Pour ça nous allons utiliser l'éditeur de texte `vim.` :
+Pour finaliser ce premier TP, nous allons créer une page web. Pour ça nous allons utiliser l'éditeur de texte `vim` :
 
 ```bash
 vim /var/www/html/index.html

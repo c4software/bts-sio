@@ -221,6 +221,14 @@ systemctl status apache2
 
 :::
 
+### Les permissions
+
+Afin que votre utilisateur puisse modifier le code de votre site, vous devez modifier les permissions du dossier `/var/www/` :
+
+```bash
+chown -R <VOTRE-UTILISATEUR>:www-data /var/www/
+```
+
 #### Créer votre page web
 
 Vous êtes en SLAM, du coup le Web vous conaissez ? Je vous propose de créez une page web qui respecte les spécifications suivantes :

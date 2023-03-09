@@ -354,6 +354,8 @@ Une fois DBeaver lancé, vous devriez pouvoir vous connecter à MariaDB en utili
 
 Dans ce TP, nous avons vu comment installer MariaDB et PHPMyAdmin. Nous avons aussi vu comment configurer MariaDB pour qu'il accepte les connexions distantes. Vous pouvez maintenant garder ce serveur pour vous entraîner à créer des bases de données et à les gérer.
 
+[N'oubliez pas, vous avez une aide mémoire récapitulant les commandes vues dans ce TP](/cheatsheets/serveur/debian-web.md)
+
 <center>
 <iframe src="https://giphy.com/embed/fdyZ3qI0GVZC0" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 </center>
