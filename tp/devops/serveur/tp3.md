@@ -10,7 +10,7 @@ description: Dans ce TP nous allons voir comment créer un serveur de base de do
 
 ## Pré-requis
 
-Pour réaliser ce TP vous devez avoir connaître les éléments suivants :
+Pour réaliser ce TP vous devez connaître les éléments suivants :
 
 - [TP1. Créer une VM sur la ferme.](/tp/devops/serveur/tp1.md)
 - [Aide mémoire Linux](/cheatsheets/serveur/linux-debian-based.md)
@@ -18,7 +18,7 @@ Pour réaliser ce TP vous devez avoir connaître les éléments suivants :
 
 ## Objectifs
 
-Ce TP / TD a pour objectif de vous faire découvrir comment configurer un serveur de base de données (MySQL) pour qu'il soit utilisable par un serveur Web (Apache) mais également par une application Client (C#, Java, PHP, etc.).
+Ce TP / TD a pour objectif de vous faire découvrir comment configurer un serveur de base de données (MySQL) pour qu'il soit utilisable par un serveur Web (Apache), mais également par une application Client (C#, Java, PHP, etc.).
 
 ::: tip Application cliente ?
 
@@ -94,7 +94,7 @@ Avant de créer votre machine, je vous invite à réfléchir sur ces choix. Une 
 - OS : Debian 11.5.
 - Logiciels : MySQL, SSH, Apache, PHP.
 - Accès SSH : Sans mot de passe, uniquement avec une clé SSH.
-- Votre machine **ne dois pas avoir de bureau graphique** (inutile pour un serveur).
+- Votre machine **ne doit pas avoir de d’interface graphique** (inutile pour un serveur).
 
 Pourquoi cette configuration ? Apache et PHP sont installés, car, nous allons mettre sur votre serveur PHPMyAdmin. Si vous ne souhaitez pas installer PHPMyAdmin, vous pouvez supprimer Apache et PHP.
 
@@ -138,7 +138,7 @@ curl -s --head http://localhost:80 | grep "HTTP/1.[01] [23].." && echo "Le serve
 
 ::: tip Des points à vérifier
 
-- Votre machine doit posséder une IP fixe (à générer via le configurateur réseau, en prenant soint de ne pas utiliser une IP déjà utilisée).
+- Votre machine doit posséder une IP fixe (à générer via le configurateur réseau, en prenant soin de ne pas utiliser une IP déjà utilisée).
 - Votre machine doit être à jour (`apt update && apt upgrade`).
 - Votre machine doit avoir un accès SSH sécurisé (via échange de clé).
 
@@ -175,7 +175,7 @@ Les VMWare Tools sont des logiciels qui permettent d'optimiser l'utilisation de 
 
 ## La base de données
 
-Notre machine est maintenant prête à accueillir le serveur de base de données. Nous avons plusieurs possiblités :
+Notre machine est maintenant prête à accueillir le serveur de base de données. Nous avons plusieurs possibilités :
 
 - MariaDB
 - MySQL
@@ -246,6 +246,114 @@ Dans la suite du TP/TD nous allons voir comment administrer notre base de donné
 - Utiliser un équivalent de PHPMyAdmin (comme Adminer).
 - Utiliser l'outil intégré à votre IDE (comme dans PHPStorm, VsCode, etc).
 
-Quelques soit votre choix, vous devez être très vigilant dans votre vocabulaire pour ne **jamais mélanger** le terme de base de données et celui de PHPMyAdmin.
+Quel que soit votre choix, vous devez être très vigilant dans votre vocabulaire pour ne **jamais mélanger** le terme de base de données et celui de PHPMyAdmin (**au risque de passer pour un débutant**).
 
 :::
+
+Avant d'aller plus loin, regardons ce que nous allons installer. PHPMyAdmin est un site web qui permet de gérer une base de données. Il est donc nécessaire d'avoir un serveur web (Apache) et un langage de programmation (PHP) pour pouvoir l'utiliser. Si vous avez suivi les étapes précédentes, vous devriez déjà avoir Apache et PHP installés.
+
+### Installation de PHPMyAdmin
+
+Pour installer phpMyAdmin, vous pouvez utiliser la commande suivante :
+
+```bash
+cd /var/www/html
+wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip
+tar -xvzf phpMyAdmin-5.2.0-all-languages.zip
+mv phpMyAdmin-5.2.0-all-languages phpmyadmin
+rm phpMyAdmin-5.2.0-all-languages.zip
+```
+
+L'installation est le résultat de plusieurs commandes :
+
+- `cd /var/www/html` : on se déplace dans le dossier `/var/www/html`.
+- `wget …` : on télécharge le fichier `phpMyAdmin-5.2.0-all-languages.zip`. Depuis les serveurs de phpMyAdmin.
+- `tar -xvzf …` : on décompresse le fichier `phpMyAdmin-5.2.0-all-languages.zip`.
+- `mv …` : on renomme le dossier `phpMyAdmin-5.2.0-all-languages` en `phpmyadmin`. Car il est plus simple de taper `phpmyadmin` que `phpMyAdmin-5.2.0-all-languages`.
+- `rm …` : on supprime le fichier `phpMyAdmin-5.2.0-all-languages.zip`. Car il n'est plus utile.
+
+::: tip Arrêtons-nous un instant
+
+- Pourquoi utilisons-nous la version du site web de phpMyAdmin ? Et pas la version du dépôt Debian ?
+- À votre avis est-ce suffisant pour que phpMyAdmin fonctionne ?
+
+:::
+
+### Configuration de PHPMyAdmin
+
+PHPMyAdmin est maintenant installé, il ne nécessite pas de configuration particulière. Il suffit de se rendre sur l'adresse suivante : `http://<adresse_ip>/`.
+
+::: tip Dans un prochain TP/TD
+Dans le prochain TP nous allons voir pour configurer Apache avec des VirtualHosts. L'objectif ? **Héberger plusieurs sites web sur un seul serveur**.
+:::
+
+Avant de continuer le TP, je vous laisse valider que PHPMyAdmin fonctionne correctement en répondant à la problématique suivante :
+
+::: tip Problématique
+
+L'entreprise BTS SIO, vous demande de numériser la gestion des absences de ses étudiants. Pour cela, vous devez créer une base de données qui contiendra les informations suivantes :
+
+- Pour les étudiants : nom, prénom, classe, date de naissance, adresse, téléphone, email.
+- Pour les absences : date, heure de début, heure de fin, motif, étudiant.
+
+Chaque étudiant peut avoir plusieurs absences. Chaque absence est liée à un seul étudiant. Les étudiants sont répartis en 2 classes : **SIO1** et **SIO2**, et en deux niveaux : **1ère année** et **2ème année**.
+
+:::
+
+## Autre logiciels pour gérer une base de données
+
+Nous avons pour l'instant vu comment installer MariaDB et PHPMyAdmin. Mais il existe d'autres logiciels pour gérer une base de données. Nous allons voir ici comment installer ces logiciels. Pour que les autres logiciels fonctionnent, il faut que vous autorisiez le port 3306 dans la configuration de MariaDB.
+
+::: tip Rappel sur les ports
+
+Le port est un numéro qui permet de différencier les différents services qui tournent sur un serveur. Par exemple, le port 80 est utilisé par le serveur web Apache. Le port 22 est utilisé par le service SSH. Le port 3306 est utilisé par le service MariaDB. De base, le port 3306 n'écoute que les connexions locales. Pour que les autres logiciels puissent se connecter à MariaDB, il faut autoriser les connexions distantes.
+
+🚨 **Point cyber**, VOUS NE DEVEZ JAMAIS OUVRIR LE PORT 3306 SUR INTERNET. VOUS DEVEZ LE LAISSER OUVERT UNIQUEMENT SUR VOTRE RÉSEAU LOCAL. 🚨
+
+:::
+
+### Autoriser les connexions distantes
+
+La configuration se fait dans le fichier `/etc/mysql/mariadb.conf.d/50-server.cnf`.
+
+```bash
+nano /etc/mysql/mariadb.conf.d/50-server.cnf
+```
+
+Ajoutez la ligne suivante dans la section `[mysqld]`.
+
+```ini
+bind-address = 0.0.0.0
+```
+
+Redémarrer le serveur MySQL
+
+```bash
+systemctl restart mysql
+```
+
+::: tip Comment lire la ligne ajoutée ?
+
+- `bind-address` : c'est la variable qui permet de définir l'adresse IP sur laquelle MariaDB va écouter les connexions.
+- `0.0.0.0` : Cette valeur signifie que MariaDB va écouter sur toutes les adresses IP disponibles sur le serveur.
+
+:::
+
+### Connexion avec DBeaver
+
+Maintenant que MariaDB est configuré pour accepter les connexions distantes, nous allons voir comment se connecter à MariaDB avec DBeaver. 
+
+Dbeaver est déjà installé sur votre machine. Vous pouvez le lancer via le menu démarrer.
+
+![DBeaver](./res/dbeaver.png)
+
+Une fois DBeaver lancé, vous devriez pouvoir vous connecter à MariaDB en utilisant les informations suivantes :
+
+- **Hôte** : `<adresse_ip>`
+- **Port** : `3306`
+
+## Conclusion
+
+Dans ce TP, nous avons vu comment installer MariaDB et PHPMyAdmin. Nous avons aussi vu comment configurer MariaDB pour qu'il accepte les connexions distantes. Vous pouvez maintenant garder ce serveur pour vous entraîner à créer des bases de données et à les gérer.
+
+<iframe src="https://giphy.com/embed/fdyZ3qI0GVZC0" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
