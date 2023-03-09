@@ -296,6 +296,10 @@ Essayer d'être curieux, en code oui, mais aussi sur les serveurs.
 
 ---
 
+![Serveur](./res/linux-serveur.png)
+
+---
+
 ## Un instant…
 
 ### Comment se représenter un serveur ?

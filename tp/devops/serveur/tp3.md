@@ -175,4 +175,77 @@ Les VMWare Tools sont des logiciels qui permettent d'optimiser l'utilisation de 
 
 ## La base de données
 
-TODO
+Notre machine est maintenant prête à accueillir le serveur de base de données. Nous avons plusieurs possiblités :
+
+- MariaDB
+- MySQL
+- PostgreSQL
+
+Dans ce TP, nous allons utiliser MariaDB. Pourquoi ? Car celui-ci est disponible de base sur debian.
+
+### Installation de MariaDB
+
+Vous l'avez compris, installer un logiciel sur Linux est très simple, une seule commande suffit :
+
+```bash
+apt-get update
+apt-get install mariadb-server mariadb-client -y
+```
+
+Pourquoi ces deux paquets ? `mariadb-server` est le serveur de base de données, et `mariadb-client` est le client de base de données. Le client est utilisé pour se connecter **localement** à la base de données.
+
+::: tip Arrêtons-nous un instant
+
+- Pourquoi faire un update avant d'installer un paquet ?
+- À quoi correspond le `-y` à la fin de la commande ?
+- Selon vous, est-ce que votre serveur de base de données est démarré ? Si oui, comment le vérifier ?
+- Que veux dire **localement** ?
+
+:::
+
+### Configuration
+
+Avant d'utiliser MariaDB, nous devons configurer le mot de passe de l'utilisateur `root`. Pour cela, vous pouvez utiliser la commande suivante :
+
+```bash
+mysql_secure_installation
+```
+
+Cette commande va vous demander de rentrer le mot de passe actuel de l'utilisateur `root`. Comme vous venez d'installer MariaDB.
+
+::: tip Arrêtons-nous un instant
+
+- Qu'est-ce que `mysql_secure_installation` ?
+- Pourquoi est-ce important de changer le mot de passe de l'utilisateur `root` ?
+- Quel mot de passe avez-vous choisi ? Pourquoi ?
+
+:::
+
+### Vérifier que MariaDB est installé
+
+Pour vérifier que MariaDB est installé, vous pouvez utiliser la commande suivante :
+
+```bash
+mysql -u root -p
+```
+
+Cette commande va vous demander le mot de passe de l'utilisateur `root`. Si vous avez bien suivi les étapes précédentes, vous devriez être connecté à MariaDB.
+
+## Configurer PHPMyAdmin
+
+Notre serveur de base de données est maintenant installé, mais nous n'avons pas d'interface graphique pour le gérer. Pour cela, nous allons installer PHPMyAdmin.
+
+::: danger Un instant
+
+Une base de données ≠ de PHPMyAdmin. PHPMyAdmin est un logiciel qui permet de gérer une base de données. Il est donc possible d'utiliser une base de données sans PHPMyAdmin. Des alternatives existent, en fonction de vos besoins, il n'est peut-être pas nécessaire d'installer Apache + PHP + PHPMyAdmin sur votre serveur de base de données.
+
+Dans la suite du TP/TD nous allons voir comment administrer notre base de données **sans** PHPMyAdmin. Les alternatives sont les suivantes :
+
+- Utiliser la ligne de commande (compliqué).
+- Utiliser un logiciel tiers (comme HeidiSQL, DBeaver, etc.).
+- Utiliser un équivalent de PHPMyAdmin (comme Adminer).
+- Utiliser l'outil intégré à votre IDE (comme dans PHPStorm, VsCode, etc).
+
+Quelques soit votre choix, vous devez être très vigilant dans votre vocabulaire pour ne **jamais mélanger** le terme de base de données et celui de PHPMyAdmin.
+
+:::
