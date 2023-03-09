@@ -69,6 +69,19 @@ c'est à vous de jouer !
 
 ### Étape 1 : Créez une VM
 
+<CodeGroup>
+  <CodeGroupItem title="Création complète de la VM" active>
+    Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez plus d'options, mais vous devez réaliser l'installation du système d'exploitation.
+
+    - [Consulter la documentation](./tp1.md)
+  </CodeGroupItem>
+  <CodeGroupItem title="Création de la VM via un modèle">
+    Dans cette version, vous allez créer votre VM à partir d'un modèle. Le modèle contient déjà le système d'exploitation et les logiciels installés. Vous n'avez plus qu'à configurer la VM (réseau, utilisateur, etc.).
+
+    - [Consulter la documentation](./tp1alt.md)
+  </CodeGroupItem>
+</CodeGroup>
+
 À l'aide des TP précédents, créez une VM qui respecte les spécifications ci-dessus.
 
 ### Étape 2 : Configurez la VM

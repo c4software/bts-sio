@@ -56,7 +56,18 @@ Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les s
 
 À l'aide des TP précédents (et de vos notes), créez une VM qui respecte les spécifications ci-dessus.
 
-PS: Vous pouvez également utiliser un modèle comme décrit dans le [TP1](./tp1alt.md).
+<CodeGroup>
+  <CodeGroupItem title="Création complète de la VM" active>
+    Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez plus d'options, mais vous devez réaliser l'installation du système d'exploitation.
+
+    - [Consulter la documentation](./tp1.md)
+  </CodeGroupItem>
+  <CodeGroupItem title="Création de la VM via un modèle">
+    Dans cette version, vous allez créer votre VM à partir d'un modèle. Le modèle contient déjà le système d'exploitation et les logiciels installés. Vous n'avez plus qu'à configurer la VM (réseau, utilisateur, etc.).
+
+    - [Consulter la documentation](./tp1alt.md)
+  </CodeGroupItem>
+</CodeGroup>
 
 ### Étape 2 : Configurez la VM
 
