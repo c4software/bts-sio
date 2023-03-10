@@ -531,7 +531,9 @@ systemctl restart ssh
 - C'est à vous ! Je vous laisse vérifier que l'accès SSH pour l'utilisateur `root` est désactivé
 
 ::: danger Pourquoi est-ce très important ?
-Avant de continuer, je vous propose que l'on discute un peu de la sécurité.
+Avant de continuer, je vous propose que l'on discute un peu de la sécurité. 
+
+Élément de réponse… À présent, vous ne pourrez plus vous connecter en tant qu'utilisateur root via SSH. Vous devez vous connecter avec un autre utilisateur (celui que vous avez créé lors de l'installation de votre serveur). Cette étape est vraiment importante, car elle va vous permettre de sécuriser votre serveur.
 :::
 
 ## L'échange de clés
@@ -638,30 +640,6 @@ Cette étape supplémentaire lors de la configuration d'un serveur est à mon av
 - D'autoriser l'accès à votre serveur à plusieurs personnes (exemple membre d'un projet) sans avoir à leur donner votre mot de passe.
 
 :::
-
-### Désactiver l'accès SSH pour l'utilisateur root
-
-Par défaut, l'accès SSH pour l'utilisateur root est activé. C'est une mauvaise pratique de laisser l'accès SSH pour l'utilisateur root. Nous allons donc désactiver l'accès SSH pour l'utilisateur root.
-
-Pour ça nous allons modifier le fichier de configuration de SSH :
-
-```bash
-vim /etc/ssh/sshd_config
-```
-
-Pour désactiver l'accès SSH pour l'utilisateur root, nous allons modifier la ligne `PermitRootLogin` :
-
-```bash
-PermitRootLogin no
-```
-
-Ensuite nous allons redémarrer le service SSH :
-
-```bash
-systemctl restart ssh
-```
-
-À présent, vous ne pourrez plus vous connecter en tant qu'utilisateur root via SSH. Vous devez vous connecter avec un autre utilisateur (celui que vous avez créé lors de l'installation de votre serveur). Cette étape est vraiment importante, car elle va vous permettre de sécuriser votre serveur.
 
 ### Bonus : Ne plus autoriser l'accès SSH avec un mot de passe
 

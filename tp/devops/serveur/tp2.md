@@ -18,7 +18,7 @@ Dans ce TP nous allons voir comment créer un serveur Web (Apache + PHP) et comm
 
 Maîtriser la création de serveurs est un point important. En effet, derrière chaque site Web, il y a un serveur qui tourne. Il est donc important de savoir comment le configurer, et comment le sécuriser. Même s’il est possible d'héberger son site Web sur des plateformes où la notion de serveur n'est pas présente, il est important de savoir comment cela fonctionne afin de pouvoir dépanner un site Web en cas de problème (gestion des droits, des logs, etc.).
 
-::: important Machine type examen
+::: danger Machine type examen
 
 Comprendre le découpage multimachines est un élément important pour le passage de l'examen. Il est donc important de bien comprendre ce que nous faisons dans ce TP.
 
