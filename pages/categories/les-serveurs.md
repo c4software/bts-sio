@@ -15,8 +15,7 @@ Connaitre le fonctionnement des serveurs est indispensable pour comprendre le fo
 ## Debian
 
 - [Linux à base de Debian](/cheatsheets/serveur/linux-debian-based.md)
-- [Configurer un serveur Web](/cheatsheets/serveur/debian-web.md)
-- [Créer un serveur d'applications avec Debian](/tp/devops/serveur/debian.md)
+- [Configurer un serveur Web (Apache, PHP, MariaDB)](/cheatsheets/serveur/debian-web.md)
 
 ## Monter un serveur
 
