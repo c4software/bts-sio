@@ -39,17 +39,25 @@ Vous retrouverez ci-dessous les étapes à suivre pour réaliser une machine dep
 
 Pour créer une VM, il faut :
 
-- Sélectionner le dossier à votre nom.
-- Clique droit créer une VM.
-- Puis « Nouvelle machine virtuelle… ».
+- Sélectionner le modèle dans le dossier « MODELES ».
+- Clique droit sur la VM que vous souhaitez prendre comme modèle
+- Puis « Nouvelle VM à partir de ce modèle ».
 
-### 1. Type de création
+### 1. Choix du modèle dans la liste
 
 ![Type de création](./res/modele-step-1.jpg)
 
-### 2. Sélection du modèle
+::: tip 📝 Remarque
 
-![Sélection du modèle](./res/modele-step-2.jpg)
+Le nom du modèle est composé de la façon suivante :
+
+- `MODELE-` : Préfixe.
+- `OS` : Nom de l'OS (exemple : `debian`).
+- `VERSION` : Version de l'OS (exemple : `11.5`).
+- `UTILISATEUR` : Nom de l'utilisateur pour utiliser le modèle (exemple: `root`).
+- `Mot de passe` : Mot de passe de l'utilisateur pour utiliser le modèle (exemple : `root`). **Ce mot de passe est à changer une fois la VM créée.**
+
+:::
 
 ### 3. Nom de la VM et emplacement
 
