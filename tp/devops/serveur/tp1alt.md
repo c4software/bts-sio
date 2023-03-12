@@ -134,6 +134,35 @@ Pour cela vous pouvez utiliser la commande :
 apt update && apt upgrade -y
 ```
 
+### Changer le nom de la machine
+
+Par défaut le nom de la machine sera celui du modèle. Pour changer le nom de la machine, vous pouvez utiliser la commande `hostnamectl`.
+
+```bash
+# Définir le nom de la machine
+hostnamectl set-hostname votre-nouveau-nom-de-machine
+```
+
+Puis changer le fichiers `/etc/hosts` pour que le nom de la machine soit correct. Dans mon cas je vais remplacer :
+
+```bash
+192.168.137.10 modele-debian-11
+```
+
+Par :
+
+```bash
+192.168.MON.IP vbrosseau-demo-modele
+```
+
+Vous pouvez utiliser `vim` ou `nano` pour modifier le fichier.
+
+::: details le fichiers /etc/hosts
+
+![Fichier /etc/hosts](./res/edit-hostname.jpg)
+
+:::
+
 ## Conclusion
 
 Vous avez maintenant une VM fonctionnelle, vous pouvez maintenant l'utiliser pour vos projets.
