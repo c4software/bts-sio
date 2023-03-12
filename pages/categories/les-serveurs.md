@@ -14,6 +14,8 @@ Connaitre le fonctionnement des serveurs est indispensable pour comprendre le fo
 
 ## Debian
 
+- [Créer une VM sur la ferme](/tp/devops/serveur/tp1.md)
+- [Créer une VM sur la ferme via un modèle](/tp/devops/serveur/tp1alt.md) (le modèle permet de créer une VM plus rapidement)
 - [Linux à base de Debian](/cheatsheets/serveur/linux-debian-based.md)
 - [Configurer un serveur Web (Apache, PHP, MariaDB)](/cheatsheets/serveur/debian-web.md)
 
