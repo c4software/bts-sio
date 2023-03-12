@@ -12,7 +12,7 @@ Connaitre le fonctionnement des serveurs est indispensable pour comprendre le fo
 - [Support de cours CI/CD](/tp/devops/support-docker-cicd.md)
 - [Générateur de configuration réseau](/cheatsheets/serveur/debian-reseau.md)
 
-## Debian
+## Debian / Ferme
 
 - [Créer une VM sur la ferme](/tp/devops/serveur/tp1.md)
 - [Créer une VM sur la ferme via un modèle](/tp/devops/serveur/tp1alt.md) (le modèle permet de créer une VM plus rapidement)
