@@ -35,6 +35,18 @@ Pour réaliser ce TP vous devez :
 
 Vous retrouverez ci-dessous les étapes à suivre pour réaliser une machine depuis un modèle.
 
+::: danger 👋 Attention
+
+Créer une VM à partir d'un modèle est plus rapide que de créer une VM à partir de zéro. Cependant, un modèle impose la personnalisation de la VM en fin de procédure. À savoir :
+
+- Configuration du VLAN.
+- Configuration de l'IP.
+- Configuration du nom de la machine.
+- Changement du mot de passe `root`.
+- Mise à jour des paquets de la machine.
+
+:::
+
 ### 0. Créer la VM
 
 Pour créer une VM, il faut :
