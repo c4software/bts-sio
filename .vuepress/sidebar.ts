@@ -236,7 +236,8 @@ module.exports = [
             text: "Debian",
             collapsible: true,
             children: [
-              "/tp/devops/serveur/debian.md",
+              { link: "/tp/devops/serveur/tp1.md", "text": "Créer une VM sur la ferme" },
+              { link: "/tp/devops/serveur/tp1alt.md", "text": "Utiliser les modèle sur la ferme" },
               { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux à base Debian" },
               { link: "/cheatsheets/serveur/debian-reseau.md", text: "Générateur de config réseau" },
               { link: "/cheatsheets/serveur/debian-web.md", text: "Debian : Apache, PHP, MariaDB" },

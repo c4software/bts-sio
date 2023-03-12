@@ -157,7 +157,7 @@ Par :
 
 Vous pouvez utiliser `vim` ou `nano` pour modifier le fichier.
 
-::: details le fichiers /etc/hosts
+::: details le fichiers /etc/hosts avant modification
 
 ![Fichier /etc/hosts](./res/edit-hostname.jpg)
 

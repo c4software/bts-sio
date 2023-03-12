@@ -234,3 +234,7 @@ Cette commande va activer le virtual host `phpmyadmin.conf`. Vous pouvez mainten
 ```bash
 systemctl restart apache2
 ```
+
+## Conclusion
+
+Vous souhaitez une version plus complète ? [Voir le TD](/tp/devops/serveur/debian.md)
