@@ -119,6 +119,10 @@ watch(y, () => {
     display: none;
 }
 
+.content{
+    text-align: justify;
+}
+
 @media print {
     .theme-default-content{
         display: block;
