@@ -159,7 +159,7 @@ watch(y, () => {
 #onThisPage > div{
     position: sticky;
     top: 70px;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 #onThisPage > div::before{
