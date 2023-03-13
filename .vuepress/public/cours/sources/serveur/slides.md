@@ -348,6 +348,19 @@ Par exemple, Apache, MySQL, etc.
 
 ---
 
+<fieldset>
+  <legend>Définition</legend>
+  <p>
+    Un serveur est constitué d'un système d'exploitation (Linux, Windows, etc.), d'utilisateurs, de services, d'applications, de logs et de données. Lorsqu'une application est exécutée en arrière-plan, on l'appelle un service. Pour pouvoir suivre un service, on observe les logs.
+  </p>
+
+  <p>
+    Les services sont accessibles depuis l'extérieur grâce aux ports. Certains ports sont réservés (80 -> HTTP, 443 -> HTTPS, 22 -> SSH, etc.). Il est possible de créer des ports personnalisés pour chaque service.
+  </p>
+</fieldset>
+
+---
+
 ## Plusieurs types de serveurs
 
 - Serveur Web.
