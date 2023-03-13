@@ -376,6 +376,10 @@ Par exemple, Apache, MySQL, etc.
 
 ---
 
+![Serveur Web](./res/serveur_web.jpg)
+
+---
+
 ## Des logiciels
 
 - Apache
