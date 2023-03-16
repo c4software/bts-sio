@@ -233,9 +233,9 @@ chown -R <VOTRE-UTILISATEUR>:www-data /var/www/
 
 Vous êtes en SLAM, du coup le Web vous conaissez ? Je vous propose de créez une page web qui respecte les spécifications suivantes :
 
-- Le titre de la page doit être `SLAM 4`.
-- Le titre principal de la page doit être `SLAM 4`.
-- Le texte de la page doit être `Bienvenue sur la page de SLAM 4`.
+- Le titre de la page doit être `TC 5`.
+- Le titre principal de la page doit être `TC 5`.
+- Le texte de la page doit être `Bienvenue sur la page de TC 5`.
 - Le texte de la page doit être en rouge et en gras et centré.
 - Votre page doit contenir 3 liens vers les pages suivantes :
   - [Google](https://www.google.com)
@@ -272,13 +272,16 @@ tail -f /var/log/apache2/access.log
 tail -n 10 /var/log/apache2/access.log
 ```
 
-Vous pouvez aussi afficher l'ensemble des logs avec la commande :       
+Vous pouvez aussi afficher l'ensemble des logs avec la commande :
 
 ```bash
 nano /var/log/apache2/access.log
 ```
 
 🚨 Je vous laisse tester, normalement vous devriez voir les logs de vos connexions au serveur. Vous pouvez le voir en temps réel avec la commande `tail -f` et en accédant à votre page web depuis votre navigateur.
+
+PS: N'oubliez pas de quitter la commande `tail -f` avec `CTRL + C` pour pouvoir continuer le TP.
+PS2: N'oubliez pas que vous devez me restituer un document PDF en fin de TP qui contient vos observations.
 
 ## Évolution du site
 
@@ -308,6 +311,12 @@ La procédure est la suivante :
 - Récupérez ma clé SSH publique (télécharger le fichier [ici](https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub)).
 - Ajouter le contenu du fichier `id_rsa_etudiant.pub` dans le fichier `~/.ssh/authorized_keys` de votre utilisateur sur le serveur (exemple : `/home/vbrosseau/.ssh/authorized_keys`).
   - Vous pouvez utiliser `nano` ou `vim` pour éditer le fichier.
+- Vous pouvez également le faire via la commande curl :
+
+```bash
+apt install curl
+curl https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub >> ~/.ssh/authorized_keys
+```
 
 ::: tip À la fin de cette étape, votre fichier `authorized_keys` devrait ressembler à ça :
 
@@ -339,6 +348,67 @@ Pour restituer le projet, merci de me fournir les éléments suivants :
 Le rendu se fera via le formulaire suivant : [Rendre le TP](https://forms.gle/1U7j3Wwku1gpNMDf6)
 
 Bravo vous avez terminé le TP !
+
+::: details Comment sera validé la partie VM ?
+
+Pour valider la partie VM, je vais utiliser le script suivant :
+
+```bash
+#!/bin/bash
+
+# Définir le chemin du fichier CSV contenant les informations de connexion
+csv_file="./input.csv"
+
+# Fonction pour se connecter en SSH et exécuter une commande
+function ssh_execute {
+    ssh -i ~/.ssh/id_rsa_etudiant "${remote_user}@${remote_host}" "$1"
+}
+
+echo "Validation des VMs"
+echo "VM Name;OS,Memory;CPU;Disk;index.html;apropos.html" > vm_check_result.csv
+
+# Boucle sur chaque ligne du fichier CSV
+awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
+    echo "Validation pour l'utilisateur ${user} avec l'adresse IP ${ip}."
+
+    # Définir les paramètres de la machine distante
+    remote_host="${ip}"
+    remote_user="${user}"
+
+    # Définir les paramètres de la VM
+    vm_name="-ligne-de-commande"
+
+    # Vérifier le nom de la VM
+    vm_name_check=$(ssh_execute "hostname" | grep "${user}${vm_name}" | wc -l)
+    if [ "${vm_name_check}" -eq 1 ]; then
+        vm_name_result="true"
+    else
+        vm_name_result="false"
+    fi
+
+    # Vérifier l'OS
+    os_result=$(ssh_execute "lsb_release -ds")
+
+    # Vérifier la mémoire 
+    memory_result=$(ssh_execute "awk '/MemTotal/{print \$2}' /proc/meminfo")
+
+    # Vérifier le CPU
+    cpu_result=$(ssh_execute "nproc")
+
+    # Vérifier le disque
+    disk_result=$(ssh_execute "df -h | grep '/dev/sda1'" | awk '{print $2}')
+
+    index_check=$(ssh_execute "wget -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
+    apropos_check=$(ssh_execute "wget -qO- http://localhost/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
+
+
+    # Enregistrer les résultats dans un fichier CSV
+    echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check}" >> vm_check_result.csv
+done
+```
+
+:::
+
 
 <center>
 <iframe src="https://giphy.com/embed/4PXUYM1bXS3lRXO7lX" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
