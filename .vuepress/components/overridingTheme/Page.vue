@@ -119,10 +119,6 @@ watch(y, () => {
     display: none;
 }
 
-.content{
-    text-align: justify;
-}
-
 @media print {
     .theme-default-content{
         display: block;
@@ -147,6 +143,7 @@ watch(y, () => {
         flex-grow: 1;
         width: 80%;
         max-width: 900px;
+        text-align: justify;
     }
 }
 
