@@ -397,8 +397,7 @@ awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
     disk_result=$(ssh_execute "df -h | grep '/dev/sda1'" | awk '{print $2}')
 
     index_check=$(ssh_execute "wget -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
-    apropos_check=$(ssh_execute "wget -qO- http://localhost/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
-
+    apropos_check=$(ssh_execute "wget -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
 
     # Enregistrer les résultats dans un fichier CSV
     echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check}" >> vm_check_result.csv
