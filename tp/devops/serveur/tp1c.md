@@ -314,8 +314,10 @@ La procédure est la suivante :
 - Vous pouvez également le faire via la commande curl :
 
 ```bash
-apt install curl
-curl https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub >> ~/.ssh/authorized_keys
+su - # Se connecter en tant que root
+apt install curl # Installer curl si ce n'est pas déjà fait
+exit # Se déconnecter en tant que root
+curl https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub >> ~/.ssh/authorized_keys # Ajouter la clé SSH publique dans le fichier authorized_keys
 ```
 
 ::: tip À la fin de cette étape, votre fichier `authorized_keys` devrait ressembler à ça :
@@ -365,7 +367,8 @@ function ssh_execute {
 }
 
 echo "Validation des VMs"
-echo "VM Name;OS,Memory;CPU;Disk;index.html;apropos.html" > vm_check_result.csv
+echo "VM Name;OS;Memory;CPU;Disk;index.html;apropos.html" > vm_check_result.csv
+
 
 # Boucle sur chaque ligne du fichier CSV
 awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
@@ -379,12 +382,7 @@ awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
     vm_name="-ligne-de-commande"
 
     # Vérifier le nom de la VM
-    vm_name_check=$(ssh_execute "hostname" | grep "${user}${vm_name}" | wc -l)
-    if [ "${vm_name_check}" -eq 1 ]; then
-        vm_name_result="true"
-    else
-        vm_name_result="false"
-    fi
+    vm_name_result=$(ssh_execute "hostname")
 
     # Vérifier l'OS
     os_result=$(ssh_execute "lsb_release -ds")
