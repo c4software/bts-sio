@@ -47,10 +47,10 @@ Pour réaliser ce TP, vous aurez besoin de :
 Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les spécifications suivantes :
 
 - Nom de la VM : `<votre nom>-ligne-de-commande`.
-- OS : Debian 11.
-- Mémoire : 1Go.
+- OS : Debian 11.5
+- Mémoire : 1Go (ou 2Go si vous utilisez le modèle).
 - CPU : 1.
-- Disque : 5Go.
+- Disque : 5Go (ou 8Go si vous utilisez le modèle).
 - Utilisateur : `<votre nom>`.
 - Mot de passe : `<votre mot de passe>` (mot de passe de votre choix, mais qui respecte les règles de sécurité).
 
