@@ -19,6 +19,8 @@ Vous trouverez dans cette page la procédure permettant de générer une configu
 
 ```bash
 service networking restart
+# Ou redémarrer le serveur
+reboot
 ```
 
 :danger: L'autre solution pour appliquer la configuration est de redémarrer la machine (via la commande `reboot`).
