@@ -231,7 +231,7 @@ chown -R <VOTRE-UTILISATEUR>:www-data /var/www/
 
 #### Créer votre page web
 
-Vous êtes en SLAM, du coup le Web vous conaissez ? Je vous propose de créez une page web qui respecte les spécifications suivantes :
+Vous êtes en SLAM, du coup le Web vous connaissez ? Je vous propose de créer une page web qui respecte les spécifications suivantes :
 
 - Le titre de la page doit être `TC 5`.
 - Le titre principal de la page doit être `TC 5`.
