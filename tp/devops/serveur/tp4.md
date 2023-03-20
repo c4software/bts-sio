@@ -95,7 +95,8 @@ sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/
 apt-get install open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
 
 # Activer PHP dans Apache
-a2enmod proxy_fcgi setenvif php8.2-fpm rewrite
+a2enmod proxy_fcgi setenvif rewrite
+a2enconf php8.2-fpm
 
 # Active  Apache
 systemctl restart apache2
