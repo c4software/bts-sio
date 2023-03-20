@@ -602,7 +602,7 @@ Lors de l'examen final, vous serez également amené à créer un site web dynam
 
 ## Synthèse
 
-Vous avez à votre disposition une synthèse de ce TP disponible ici : [Aide mémoire](/cheatsheets/serveur/debian.md)
+Vous avez à votre disposition une synthèse de ce TP disponible ici : [Aide mémoire](/cheatsheets/serveur/debian-web.md)
 
 ## Liens
 
