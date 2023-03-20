@@ -1,5 +1,5 @@
 ---
-description: Dans ce TP nous allons voir comment créer un serveur de base de données (MySQL) et comment le configurer.
+description: Dans ce TP nous allons voir comment créer un serveur de base de données (MySQL / MariaDB) et comment le configurer.
 ---
 
 # TP3. Configurer un serveur de base de données
@@ -92,7 +92,7 @@ Avant de créer votre machine, je vous invite à réfléchir sur ces choix. Une 
 - Mémoire vive : 1 Go.
 - Processeur : 1 vCPU.
 - OS : Debian 11.5.
-- Logiciels : MySQL, SSH, Apache, PHP.
+- Logiciels : MySQL / MariaDB, SSH, Apache, PHP.
 - Accès SSH : Sans mot de passe, uniquement avec une clé SSH.
 - Votre machine **ne doit pas avoir de d’interface graphique** (inutile pour un serveur).
 
