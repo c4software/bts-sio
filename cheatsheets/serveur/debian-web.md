@@ -89,10 +89,10 @@ php -v
 ```
 
 ```bash
-PHP 8.0.10 (cli) (built: Aug 26 2021 16:06:19) ( NTS )
+PHP 8.2.3 (cli) (built: Feb 15 2023 00:18:01) (NTS)
 Copyright (c) The PHP Group
-Zend Engine v4.0.10, Copyright (c) Zend Technologies
-    with Zend OPcache v8.0.10, Copyright (c), by Zend Technologies
+Zend Engine v4.2.3, Copyright (c) Zend Technologies
+    with Zend OPcache v8.2.3, Copyright (c), by Zend Technologies
 ```
 
 ## Installer MariaDB
@@ -188,9 +188,10 @@ Ce ne sont évidemment que des exemples.
 Pour installer phpMyAdmin, vous pouvez utiliser la commande suivante :
 
 ```bash
+apt install unzip
 cd /var/www/html
 wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip
-tar -xvzf phpMyAdmin-5.2.0-all-languages.zip
+unzip phpMyAdmin-5.2.0-all-languages.zip
 mv phpMyAdmin-5.2.0-all-languages phpmyadmin
 rm phpMyAdmin-5.2.0-all-languages.zip
 ```

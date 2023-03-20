@@ -257,18 +257,20 @@ Avant d'aller plus loin, regardons ce que nous allons installer. PHPMyAdmin est 
 Pour installer phpMyAdmin, vous pouvez utiliser la commande suivante :
 
 ```bash
+apt install unzip
 cd /var/www/html
 wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip
-tar -xvzf phpMyAdmin-5.2.0-all-languages.zip
+unzip phpMyAdmin-5.2.0-all-languages.zip
 mv phpMyAdmin-5.2.0-all-languages phpmyadmin
 rm phpMyAdmin-5.2.0-all-languages.zip
 ```
 
 L'installation est le résultat de plusieurs commandes :
 
+- `apt install unzip` : on installe le logiciel `unzip`. C'est un logiciel qui permet de décompresser des fichiers.
 - `cd /var/www/html` : on se déplace dans le dossier `/var/www/html`.
 - `wget …` : on télécharge le fichier `phpMyAdmin-5.2.0-all-languages.zip`. Depuis les serveurs de phpMyAdmin.
-- `tar -xvzf …` : on décompresse le fichier `phpMyAdmin-5.2.0-all-languages.zip`.
+- `unzip …` : on décompresse le fichier `phpMyAdmin-5.2.0-all-languages.zip`.
 - `mv …` : on renomme le dossier `phpMyAdmin-5.2.0-all-languages` en `phpmyadmin`. Car il est plus simple de taper `phpmyadmin` que `phpMyAdmin-5.2.0-all-languages`.
 - `rm …` : on supprime le fichier `phpMyAdmin-5.2.0-all-languages.zip`. Car il n'est plus utile.
 
