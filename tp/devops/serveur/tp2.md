@@ -249,6 +249,15 @@ a2enconf php8.2-fpm
 systemctl restart apache2
 ```
 
+Que font ces commandes ?
+
+- `a2enmod proxy_fcgi setenvif rewrite` permet d'activer les modules Apache qui vont nous permettre d'utiliser PHP.
+  - `proxy_fcgi` est le module qui permet d'utiliser PHP-FPM (mode FastCGI).
+  - `setenvif` est le module qui permet d'envoyer des variables d'environnement à PHP.
+  - `rewrite`est le module qui permet de faire de la réécriture d'URL, c'est très utile pour les frameworks.
+- `a2enconf php8.2-fpm` permet d'activer la configuration de PHP dans Apache.
+- `systemctl restart apache2` permet de redémarrer Apache, pour prendre en compte les modifications.
+
 Pour vérifier que Apache + PHP fonctionne, vous pouvez créer un fichier `info.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
 
 ```bash
@@ -274,6 +283,8 @@ Comme par exemple `php-pdo` et `php-mysql` pour la base de données.
 ::: danger Attention
 
 Ce fichier dangereux, ne pas laisser ce fichier sur un serveur en production. Il permet d'afficher des informations sensibles sur le serveur. En effet, il est possible d'avoir des informations sur les modules installés, les versions de PHP, les extensions installées, etc. Il est donc très important de ne pas laisser ce fichier sur un serveur en production.
+
+🚨 Ne **JAMAIS** laisser un `phpinfo()` sur un serveur en production, **JAMAIS**.
 
 :::
 
