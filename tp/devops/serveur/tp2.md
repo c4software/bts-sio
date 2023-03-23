@@ -174,8 +174,8 @@ Le Dépôt est une source supplémentaire pour l'installation de paquets. Il est
 Nous allons donc ajouter un nouveau dépôt pour avoir accès aux dernières versions de PHP.
 
 ```bash
-apt get update
-apt get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
+apt update
+apt install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 ```
