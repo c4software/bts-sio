@@ -505,6 +505,12 @@ Vous devriez maintenant avoir une page vous indiquant que le site est inaccessib
 
 ![VirtualHost](./res/vhost-error.jpg)
 
+::: tip Qu'observez-vous ?
+
+L'option importante dans le fichier de configuration est `Options -Indexes`. Cette option permet de masquer les fichiers présents dans le dossier. Pour lister à nouveau les fichiers, vous pouvez supprimer cette option.
+
+:::
+
 ## Créer un site Web
 
 Notre serveur Apache est maintenant configuré, et permet même de créer plusieurs sites Web. Pour valider son bon fonctionnement, nous allons créer trois sites Web :
