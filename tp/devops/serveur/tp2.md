@@ -46,27 +46,30 @@ Pour réaliser ce TP, vous aurez besoin de :
 
 Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les spécifications suivantes :
 
-- Nom de la VM : `<votre nom>-web`.
-- OS : Debian 11.
-- Mémoire : 1Go.
+- Nom de la VM : `<votre nom>-web`. (et dans le bon dossier)
+- OS : Debian 11.5.
+- Mémoire : 2Go (ou la configuration du modèle).
 - CPU : 1.
-- Disque : 5Go.
+- Disque : 20Go (ou la configuration du modèle).
 
 ### Étape 1 : Créez une VM
 
 À l'aide des TP précédents (et de vos notes), créez une VM qui respecte les spécifications ci-dessus.
-
-### Création complète de la VM
-
-Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez plus d'options, mais vous devez réaliser l'installation du système d'exploitation.
-
-- [Consulter la documentation](./tp1.md)
 
 ### Création de la VM via un modèle <Badge type="tip" text="Meilleure solution" vertical="top" />
 
 Dans cette version, vous allez créer votre VM à partir d'un modèle. Le modèle contient déjà le système d'exploitation et les logiciels installés. Vous n'avez plus qu'à configurer la VM (réseau, utilisateur, etc.).
 
 - [Consulter la documentation](./tp1alt.md)
+
+::: details Alternative
+
+Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez plus d'options, mais vous devez réaliser l'installation du système d'exploitation.
+
+- [Consulter la documentation](./tp1.md)
+
+:::
+
 
 ### Étape 2 : Configurez la VM
 
