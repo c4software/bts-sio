@@ -225,6 +225,8 @@ Il est possible que plus tard pour un développement vous ayez besoin d'ajouter 
 
 PHP-FPM est un outil qui permet de faire tourner PHP en tant que service. C'est-à-dire que PHP va tourner en arrière plan, et que les pages Web vont être générées par PHP. C'est un peu comme si vous aviez un serveur Apache, et un serveur PHP qui tourne en arrière plan. C'est la nouvelle façon de faire tourner PHP.
 
+👋 C'est surtout la bonne façon de le faire fonctionner en 2023 (même si les autres façons fonctionnent évidemment encore).
+
 #### Vérifier la version de PHP
 
 Maintenant que nous avons installé PHP, nous pouvons le vérifier via la commande :
