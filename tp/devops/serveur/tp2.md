@@ -420,6 +420,10 @@ a2ensite siteA
 a2ensite siteB
 ```
 
+`a2ensite` ? Cette commande va permettre d'activer les site web que vous avez créé dans le dossier `/etc/apache2/sites-available/`. Cette commande va créer un lien symbolique dans le dossier `/etc/apache2/sites-enabled/`.
+
+Un lien symbolique est un fichier qui pointe vers un autre fichier, c'est un peu comme un raccourci. Dans notre cas, le lien symbolique va pointer vers le fichier de configuration du site Web.
+
 ### Écouter sur plusieurs ports
 
 Par défaut, Apache écoute sur le port 80. Nous allons donc modifier la configuration d'Apache pour qu'il puisse écouter sur plusieurs ports.
