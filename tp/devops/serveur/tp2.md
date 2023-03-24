@@ -206,7 +206,7 @@ Maintenant que nous avons ajouté le dépôt, nous allons pouvoir installer PHP.
 
 ```bash
 apt update
-apt install php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl} -y
+apt install php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
 ```
 
 Ça fait beaucoup de paquets, mais en fait, c'est très simple. Voici le détail pour quelques paquets :
