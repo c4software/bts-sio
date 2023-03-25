@@ -241,6 +241,7 @@ module.exports = [
               { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux à base Debian" },
               { link: "/cheatsheets/serveur/debian-reseau.md", text: "Générateur de config réseau" },
               { link: "/cheatsheets/serveur/debian-web.md", text: "Debian : Apache, PHP, MariaDB" },
+              { link: "/cheatsheets/serveur/debian-docker.md", text: "Installer Docker sur Debian" },
             ]
           },
           {
