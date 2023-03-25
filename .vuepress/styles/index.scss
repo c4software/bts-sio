@@ -194,6 +194,10 @@ body {
   font-weight: 400;
 }
 
+.page-meta, .page-nav{
+  max-width: 100%;
+}
+
 .hero {
   .actions{
     display: grid !important;
