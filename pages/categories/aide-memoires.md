@@ -50,6 +50,7 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 - [Debian](/cheatsheets/serveur/linux-debian-based.md)
 - [Créer une VM sur la ferme SIO](/tp/devops/serveur/tp1.md)
 - [Créer une VM depuis un modèle sur la ferme SIO](/tp/devops/serveur/tp1alt.md)
+- [Installer docker sur un serveur Debian](/cheatsheets/serveur/debian-docker.md)
 - [L'échange de clés SSH](/cheatsheets/ssh-key/)
 
 ## Le Mobile
