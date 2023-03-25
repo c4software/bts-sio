@@ -80,7 +80,7 @@ watch(y, () => {
   <main class="page" ref="el">
     <slot name="top" />
 
-    <div class="theme-default-content" :class="{'centered': !shouldShowToc}">
+    <div class="theme-default-content vbrosseau-theme" :class="{'centered': !shouldShowToc}">
       <div class="content">
         <slot name="content-top" />
 
@@ -110,7 +110,7 @@ watch(y, () => {
 
 <style scoped>
 
-.theme-default-content.centered{
+.theme-default-content.vbrosseau-theme.centered{
     justify-content: center;
 }
 
@@ -120,7 +120,7 @@ watch(y, () => {
 }
 
 @media print {
-    .theme-default-content{
+    .theme-default-content.vbrosseau-theme{
         display: block;
     }
     #onThisPage {
@@ -129,7 +129,7 @@ watch(y, () => {
 }
 
 @media screen and (min-width: 1300px) {
-    .theme-default-content{
+    .theme-default-content.vbrosseau-theme{
         display: flex;
         justify-content: center;
         max-width: calc(100vw - var(--sidebar-width));
