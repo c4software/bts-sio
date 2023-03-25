@@ -48,7 +48,8 @@ Les aide mémoire sont des fiches synthétiques qui vous permettront de vous rap
 - [Configuration réseau debian](/cheatsheets/serveur/debian-reseau.md)
 - [Configurer un serveur Web](/cheatsheets/serveur/debian-web.md)
 - [Debian](/cheatsheets/serveur/linux-debian-based.md)
-- [Utiliser la ferme SIO](/tp/devops/serveur/tp1.html)
+- [Créer une VM sur la ferme SIO](/tp/devops/serveur/tp1.md)
+- [Créer une VM depuis un modèle sur la ferme SIO](/tp/devops/serveur/tp1alt.md)
 - [L'échange de clés SSH](/cheatsheets/ssh-key/)
 
 ## Le Mobile
