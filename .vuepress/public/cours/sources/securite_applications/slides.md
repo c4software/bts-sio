@@ -465,6 +465,40 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ---
 
+## Zoom sur les mots de passe
+
+- Un mot de passe ne dois jamais être stocké en claire.
+- Un mot de passe doit être haché (non réversible).
+- Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
+
+---
+
+## Principes de base
+
+![Salage](./img/salt.png)
+
+---
+
+## Le sel
+
+- Peut-être différent pour chaque utilisateur.
+- Peut-être global pour tous les utilisateurs.
+
+---
+
+<fieldset>
+  <legend>Les mots de passes</legend>
+  <p>
+    Un mot de passe ne dois jamais être stocké en claire. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
+  </p>
+
+  <p>
+    Le sel peut-être différent pour chaque utilisateur ou global pour tous les utilisateurs. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe.
+  </p>
+</fieldset>
+
+---
+
 ## Étape 2 : Le réseau
 
 ---
