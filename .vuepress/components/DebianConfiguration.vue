@@ -39,9 +39,10 @@
         </div>
 
 
-        <h3>Fichier de configuration (vous pouvez également juste copier/coller la partie address et gateway)</h3>
+        <h3>Fichier de configuration :</h3>
 
         Fichier à éditer (avec nano ou vim) : <code>/etc/network/interfaces</code>
+
         <div class="language-bash" data-ext="sh">
             <pre class="language-bash"><code>source /etc/network/interfaces.d/*
 
@@ -60,6 +61,13 @@ iface {{ interface }} inet static
     netmask {{ netmask }}
     gateway {{ gateway }}
     dns-nameservers {{ dns }}</code></pre>
+        </div>
+
+        <div class="custom-container tip">
+            <p class="custom-container-title">Une configuration à recopier</p>
+            <p>
+                Dans certains cas vous ne pouvez pas copier/coller, vous pouvez juste prendre la partie <code>address</code> et <code>gateway</code>.
+            </p>
         </div>
     </div>
 </template>
