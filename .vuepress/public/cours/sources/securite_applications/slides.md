@@ -486,6 +486,14 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ---
 
+## Le bcrypt
+
+- Intégre le sel.
+- Intégre un coût (nombre d’itération).
+- Intégre un hachage (SHA-256).
+
+---
+
 <fieldset>
   <legend>Les mots de passes</legend>
   <p>
@@ -495,7 +503,24 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
   <p>
     Le sel peut-être différent pour chaque utilisateur ou global pour tous les utilisateurs. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe.
   </p>
+
+  <p>
+    Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (SHA-256).
+  </p>
 </fieldset>
+
+---
+
+## La double authentification
+
+- **Application :** OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
+- **Objet physique :** U2F (Universal 2nd Factor) : Clé USB, Yubikey.
+- **Biométrie :** Empreinte digitale, Reconnaissance faciale.
+
+---
+
+- Permet de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
+- Via un secret partagé entre la personne **physique** et le site.
 
 ---
 
