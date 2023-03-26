@@ -23,6 +23,51 @@ Prévenir plutôt que guérir… Quelques sites à surveiller :
 Vous êtes la première ligne d’informations !
 :::
 
+### Les mots de passe
+
+Zoom sur les mots de passe :
+
+- Un mot de passe ne doit jamais être stocké en claire.
+- Un mot de passe doit être haché (non réversible).
+- Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
+
+## Principes de base
+
+Avoir un mot de passe hashé ne suffit pas. Il faut aussi le saler.
+
+![Salage](./res/salt.png)
+
+Le salage est une technique qui permet d’ajouter une chaîne aléatoire au mot de passe avant (ou après) de le hacher. Idéalement le sel est différent par utilisateur, cela permet de rendre le mot de passe unique pour chaque utilisateur.
+
+## Le bcrypt
+
+Le bcrypt est un algorithme de hachage qui :
+
+- Intègre le sel.
+- Intègre un coût (nombre d’itération). Plus le coût est élevé, plus le hachage est long (et donc plus sécurisé).
+- Intègre un hachage (SHA-256).
+
+## Résumé :
+
+Les mots de passe :
+
+- Un mot de passe ne doit jamais être stocké en claire. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
+- Le sel peut-être différent pour chaque utilisateur ou global pour tous les utilisateurs. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe.
+- Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (SHA-256).
+
+## La double authentification
+
+Des **outils** :
+
+- **Application :** OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
+- **Objet physique :** U2F (Universal 2nd Factor) : Clé USB, Yubikey.
+- **Biométrie :** Empreinte digitale, Reconnaissance faciale.
+
+Mais surtout c'est :
+
+- Permets de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
+- Via un secret partagé entre la personne **physique** et le site.
+
 ### Les impacts liés à la sécurité
 
 La sécurité informatique dans une application c’est un « équilibre »

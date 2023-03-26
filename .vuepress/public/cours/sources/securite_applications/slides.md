@@ -467,7 +467,7 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ## Zoom sur les mots de passe
 
-- Un mot de passe ne dois jamais être stocké en claire.
+- Un mot de passe ne doit jamais être stocké en claire.
 - Un mot de passe doit être haché (non réversible).
 - Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
 
@@ -488,16 +488,16 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ## Le bcrypt
 
-- Intégre le sel.
-- Intégre un coût (nombre d’itération).
-- Intégre un hachage (SHA-256).
+- Intègre le sel.
+- Intègre un coût (nombre d’itération).
+- Intègre un hachage (SHA-256).
 
 ---
 
 <fieldset>
-  <legend>Les mots de passes</legend>
+  <legend>Les mots de passe</legend>
   <p>
-    Un mot de passe ne dois jamais être stocké en claire. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
+    Un mot de passe ne doit jamais être stocké en claire. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
   </p>
 
   <p>
@@ -519,7 +519,7 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ---
 
-- Permet de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
+- Permets de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
 - Via un secret partagé entre la personne **physique** et le site.
 
 ---
