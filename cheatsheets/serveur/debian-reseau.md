@@ -23,7 +23,7 @@ service networking restart
 reboot
 ```
 
-:danger: L'autre solution pour appliquer la configuration est de redémarrer la machine (via la commande `reboot`).
+🚨 L'autre solution pour appliquer la configuration est de redémarrer la machine (via la commande `reboot`).
 
 5. Vérifier que la configuration est correcte
 

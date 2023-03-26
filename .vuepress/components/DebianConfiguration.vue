@@ -38,6 +38,10 @@
             </div>
         </div>
 
+
+        <h3>Fichier de configuration (vous pouvez également juste copier/coller la partie address et gateway)</h3>
+
+        Fichier à éditer (avec nano ou vim) : <code>/etc/network/interfaces</code>
         <div class="language-bash" data-ext="sh">
             <pre class="language-bash"><code>source /etc/network/interfaces.d/*
 
