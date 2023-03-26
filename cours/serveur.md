@@ -23,10 +23,11 @@ Installation et configuration d'un serveur d'application.
 
 ## Docker
 
-- [Installer docker sur un serveur Debian](/cheatsheets/serveur/debian-docker.md)
 - [Découverte de Docker](/tp/docker/introduction.md)
+- [Docker sur un serveur](/tp/docker/deployer-docker-sur-un-serveur.md)
 - [Docker pour créer un serveur Local](/tp/docker/creer_server_local.md)
 - [Le Dockerfile](/tp/docker/dockerfile.md)
 - [Docker Compose](/tp/docker/docker_compose.md)
 - [Utiliser Docker Compose pour héberger votre site Internet]()
 - [Utiliser Docker Compose pour héberger un site Laravel](/tp/ops/deployer-laravel-docker.md)
+- [Installer docker sur un serveur Debian](/cheatsheets/serveur/debian-docker.md)
