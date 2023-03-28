@@ -341,8 +341,8 @@ Actuellement, votre serveur tourne avec la configuration par défaut d'Apache. C
 
 Pour tester le principe des VirtualHost, nous allons créer deux sites Internet sur notre serveur :
 
-- `<votre-ip>:80` : va afficher le site présent dans `/var/www/html/siteA/`
-- `<votre-ip>:8080` : va afficher le site présent dans `/var/www/html/siteB/`
+- `<votre-ip>:80` : va afficher le site présent dans `/var/www/siteA/`
+- `<votre-ip>:8080` : va afficher le site présent dans `/var/www/siteB/`
 
 ![VirtualHost](./res/vhost.png)
 
@@ -363,7 +363,7 @@ C'est quelque chose que nous retrouvons sur les sites Web professionnels. C'est 
 
 ### Créer les dossiers
 
-Nous allons créer deux dossiers dans `/var/www/html` :
+Nous allons créer deux dossiers dans `/var/www` :
 
 ```bash
 mkdir /var/www/siteA
