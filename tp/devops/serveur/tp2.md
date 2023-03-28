@@ -589,6 +589,7 @@ cd /var/www/siteA
 # clone du dépôt de votre projet, le . à la fin est important, il permet de cloner le dépôt dans le dossier courant (ici /var/www/siteA)
 git clone git@gitlab.com:c4software/votre-projet-deja-existant.git .
 
+# PLUS TARD
 # Vous pouvez maintenant travailler sur votre machine
 # et pusher les modifications sur le serveur
 
