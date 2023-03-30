@@ -10,9 +10,7 @@ Pour progresser en développement il faut se maintenir à jour, et pour cela il 
 [[toc]]
 :::
 
-## Ressources
-
-_Generalistes :_
+## Generalistes :
 
 - [Clubic](https://www.clubic.com/)
 - [Le Monde Informatique](https://www.lemondeinformatique.fr/)
@@ -23,7 +21,7 @@ _Generalistes :_
 - [macg.co](https://www.macg.co/)
 - [9to5Linux](https://9to5linux.com/)
 
-_Veille :_
+## Veille :
 
 - [Github Trending](https://github.com/trending)
 - [Medium.com](https://medium.com/)
@@ -39,7 +37,7 @@ _Veille :_
 - [Le journal du hacker](https://www.journalduhacker.net/)
 - [Youtube](https://www.youtube.com/)
 
-_Agrégateurs RSS :_
+## Agrégateurs RSS :
 
 - [Feedly](https://feedly.com/)
 - [Inoreader](https://www.inoreader.com/)
@@ -48,14 +46,16 @@ _Agrégateurs RSS :_
 - [Aggregator](https://play.google.com/store/apps/details?id=com.tughi.aggregator)
 - [Nextcloud News](https://apps.nextcloud.com/apps/news)
 
-_Outillage :_
+## Outillage :
 
 - [Notion](https://www.notion.so/)
 - [Doodle](https://doodle.com/fr/)
 - [Trello](https://trello.com/)
 - [Pomodoro](https://pomofocus.io/)
+- [Docker](https://www.docker.com/)
+- [Docker Hub](https://hub.docker.com/)
 
-_Documentation :_
+## Documentation :
 
 - [MDN](https://developer.mozilla.org/fr/)
 - [W3Schools](https://www.w3schools.com/)
@@ -64,7 +64,7 @@ _Documentation :_
 - [Le journal du développeur](https://www.journaldunet.com/web-tech/developpeur/)
 - [StackOverflow](https://stackoverflow.com/)
 
-_Imageries et illustrations :_
+## Imageries et illustrations :
 
 - [Des ressources pour le design](https://designresourc.es/) (Merci Valentin Brebion)
 - [CodePen.io](https://codepen.io/)
@@ -80,53 +80,67 @@ _Imageries et illustrations :_
 - [Des templates réutilisables](https://startbootstrap.com/?showPro=false&showAngular=false)
 - [Réaliser des schémas](https://draw.io)
 
-_Apprentissage :_
+## Apprentissage :
 
 - [Flexbox](https://flexboxfroggy.com/#fr)
 - [Grid](https://cssgridgarden.com/#fr)
 
-_Actualités :_
+## Actualités :
 
 - [dev.to](https://dev.to)
 - [medium.com](https://medium.com)
 - [Reddit /r/webdev](https://www.reddit.com/r/webdev/)
 - [Hacker News](https://news.ycombinator.com/)
 
-_Prototypage :_
+## Prototypage :
 
 - [Figma](https://www.figma.com/)
 - [Rappel sur le centrage en CSS](https://web.dev/centering-in-css/)
 - [Afficher du code](https://carbon.now.sh/)
 
-_Icones :_
+## Icones :
 
 - [Material Design Icons](https://materialdesignicons.com/)
 - [Flat Icon](https://www.flaticon.com/)
 - [Font Awesome](https://fontawesome.com/)
 
-_Couleurs :_
+## Couleurs :
 
 - [Color Picker & Choix de couleur](https://www.webfx.com/web-design/color-picker/)
 - [Couleurs RAL](http://couleursral.fr/)
 
-_Bonne pratique :_
+## Bonne pratique :
 
 - [Quelques règles de base (en 4 minutes)](https://jgthms.com/web-design-in-4-minutes/)
 
-_DevOps :_
+## DevOps :
 
 - [Certbot](https://certbot.eff.org/instructions) <- Installer un certificat SSL pour son site web (HTTPS)
 - [Acme.sh](https://github.com/acmesh-official/acme.sh) <- Installer un certificat SSL (HTTPS), équivalent Certbot mais écrit en script shell.
 
-_Hebergement :_
+## Hebergement :
+
+Deux catégories :
+
+- Les sites statiques (HTML, CSS, JS)
+- Les sites dynamiques (PHP, NodeJS, Python, Ruby, Java, etc.)
+
+::: tip Point vocabulaire
+CI/CD signifie « Continuous Integration / Continuous Delivery ». Il s'agit d'un ensemble de techniques permettant de déployer automatiquement un site web à chaque modification du code source. Les plateformes proposant ce service sont souvent gratuites pour les sites statiques et intègre une interfarce permettant de gérer les déploiements (exemple Netlify).
+:::
+
+## Sites statiques :
 
 - [Netlify](https://www.netlify.com) <- CI/CD, Simple, « gratuit », avec une interface web de gestion.
 - [Fleek.co](https://www.fleek.co) <- CI/CD, Simple, « gratuit », repose sur le Web 3 avec une interface web de gestion. ([miroir](https://ipfs.cours.brosseau.ovh/))
 - [Surge.sh](https://www.netlify.com) <- CI/CD, Simple, « gratuit », un poil plus technique.
-- [Heroku](https://www.heroku.com/) <- CI/CD, Plus complet, mais un peu plus « complexe ».
 - [Gitlab Pages](https://cours.brosseau.ovh/tp/ci/pages.html) <- CI/CD
 - [Github Pages](https://pages.github.com/) <- CI/CD
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
+
+## Sites dynamiques :
+
+- [Heroku](https://www.heroku.com/) <- CI/CD, Plus complet, mais un peu plus « complexe ».
 - [OVH](https://www.ovh.com/) <- Hébergeur classique à base de serveurs dédiés ou mutualisés.
 - [Web Hosting OVH](https://www.ovhcloud.com/fr/web-hosting/) <- Démarre à 2€ / mois pour un Kimsufi.
 - [AlwaysData](https://www.alwaysdata.com/fr/) <- Free-tiers de 100mo pour vos projets.
