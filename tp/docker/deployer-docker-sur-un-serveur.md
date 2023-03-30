@@ -98,7 +98,7 @@ Lancer un Hello World c'est bien, mais lancer un serveur MySQL c'est mieux. Nous
 
 Et même, plus que ça, nous pouvons lancer sur notre serveur plusieurs versions du même service, par exemple MySQL 5.7 et MySQL 8.0. Est-ce une bonne idée ? À vous d'en juger… mais c'est possible !
 
-![Docker](./ressources/docker-containers.png)
+![Docker](./ressources/docker-containers.jpg)
 
 ::: tip Dans cette image
 Dans cette image, vous pouvez voir comment fonctionne docker. Il s'agit de plusieurs petites applications (**cloisonnées**) qui vont fonctionner au-dessus de votre serveur. Ces applications sont appelées des **conteneurs**.
