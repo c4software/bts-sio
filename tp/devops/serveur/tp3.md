@@ -287,8 +287,69 @@ L'installation est le résultat de plusieurs commandes :
 PHPMyAdmin est maintenant installé, il ne nécessite pas de configuration particulière. Il suffit de se rendre sur l'adresse suivante : `http://<adresse_ip>/`.
 
 ::: tip Dans un prochain TP/TD
-Dans le prochain TP nous allons voir pour configurer Apache avec des VirtualHosts. L'objectif ? **Héberger plusieurs sites web sur un seul serveur**.
+Dans le prochain TP nous allons (re)voir pour configurer Apache avec des VirtualHosts. L'objectif ? **Héberger plusieurs sites web sur un seul serveur**.
 :::
+
+### Les utilisateurs de base de données
+
+Comme pour la partie serveur, il est vivement déconseillé (comprendre ici, je ne veux jamais voir quelqu'un en root), d'utiliser l'utilisateur `root` pour administrer sa base de données. Pour cela, nous allons créer un utilisateur `<votre-nom>` qui aura des droits limités sur la base de données.
+
+Avant de continuer, réfléchissons ensemble à la raison pour laquelle nous ne devons pas utiliser l'utilisateur `root` pour administrer notre base de données.
+
+::: details Réponse possible
+
+- L'utilisateur `root` est un utilisateur très puissant. Il a accès à toutes les bases de données, et peut donc faire n'importe quoi.
+- L'utilisateur `root` utilisé dans une application web est un gros risque de sécurité. Si quelqu'un parvient à se connecter à votre application web, il pourra faire n'importe quoi sur votre base de données.
+- L'utilisateur `root` est l'utilisateur par défaut, c'est donc le premier utilisateur que les pirates vont essayer de pirater.
+
+Je vous déconseille donc vivement d'utiliser le compte `root` pour quelques usages. Il est vivement conseillé d'utiliser un compte avec des droits limités, et idéalement, de créer un compte différent pour chaque application web.
+
+:::
+
+#### Avant-propos
+
+La première étape est de créer l'utilisateur. Pour ça nous avons plusieurs possibilités :
+
+- Soit nous utilisons la ligne de commande (`mysql` directement depuis le serveur).
+- Soit nous utilisons `phpMyAdmin`.
+
+::: tip il n'y a pas de bonne ou de mauvaise solution
+
+- La ligne de commande est plus rapide, mais plus compliquée.
+- PHPMyAdmin c'est plus simple, mais un peu plus long.
+
+Utilisez la méthode qui vous convient le mieux.
+
+:::
+
+#### Via la ligne de commande
+
+Pour créer un utilisateur, nous allons utiliser la commande `CREATE USER`. Cette commande prend en paramètre le nom de l'utilisateur, et son mot de passe. Pour créer l'utilisateur `<votre-nom>` avec le mot de passe de votre choix, nous allons utiliser la commande suivante :
+
+```sql
+# Création
+CREATE USER '<votre-nom>'@'%' IDENTIFIED BY '<votre-mot-de-passe>';
+
+# Les droits
+GRANT ALL PRIVILEGES ON *.* TO '<votre-nom>'@'%';
+
+# Rafraîchir les privilèges
+FLUSH PRIVILEGES;
+```
+
+Un peu d'explication :
+
+- le `%` signifie que l'utilisateur peut se connecter depuis n'importe quelle adresse IP.
+- `*.*` signifie que l'utilisateur a tous les droits sur toutes les bases de données. (À votre avis, est-ce une bonne idée ?)
+- `FLUSH PRIVILEGES` permet de rafraîchir les privilèges. C'est une commande qui est nécessaire pour que les modifications soient prises en compte.
+
+#### Via PHPMyAdmin
+
+Pour créer un utilisateur, nous allons utiliser l'onglet `Utilisateurs` de PHPMyAdmin. Pour cela, il faut se rendre sur l'adresse suivante : `http://<adresse_ip>/`.
+
+#### Conclusion intermédiaire
+
+Comme sur un serveur, comprendre que plusieurs utilisateurs sont nécessaires sur une base de données est très important. À l'avenir vous devez essayer de ne jamais utiliser l'utilisateur `root` pour vos applications. Je dirais même plus, si en stage ou dans une application web, vous êtes amené à utiliser l'utilisateur `root`, je vous conseille vivement de l'indiquer à votre tuteur. Il y a de fortes chances que votre tuteur vous demande de changer cela.
 
 Avant de continuer le TP, je vous laisse valider que PHPMyAdmin fonctionne correctement en répondant à la problématique suivante :
 
@@ -299,9 +360,46 @@ L'entreprise BTS SIO, vous demande de numériser la gestion des absences de ses 
 - Pour les étudiants : nom, prénom, classe, date de naissance, adresse, téléphone, email.
 - Pour les absences : date, heure de début, heure de fin, motif, étudiant.
 
-Chaque étudiant peut avoir plusieurs absences. Chaque absence est liée à un seul étudiant. Les étudiants sont répartis en 2 classes : **SIO1** et **SIO2**, et en deux niveaux : **1ère année** et **2ème année**.
+Chaque étudiant peut avoir plusieurs absences. Chaque absence est liée à un seul étudiant. Les étudiants sont répartis en 2 classes : **SIO1** et **SIO2**, et en deux niveaux : **SLAM** et **SISR**.
 
-## Autre logiciels pour gérer une base de données
+::: details Réponse possible (à ne regarder qu'en cas de blocage)
+
+```sql
+CREATE DATABASE gestion_absences;
+
+USE gestion_absences;
+
+CREATE TABLE classe (
+  id_classe INT AUTO_INCREMENT PRIMARY KEY,
+  nom_classe VARCHAR(250) NOT NULL,
+);
+
+INSERT INTO classe (nom_classe, niveau) VALUES ('SIO1 SLAM'), ('SIO1 SISR'), ('SIO2 SLAM'), ('SIO2 SISR');
+
+CREATE TABLE etudiant (
+  id_etudiant INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(50) NOT NULL,
+  prenom VARCHAR(50) NOT NULL,
+  id_classe INT NOT NULL,
+  date_naissance DATE NOT NULL,
+  adresse VARCHAR(255) NOT NULL,
+  telephone VARCHAR(20) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  FOREIGN KEY (id_classe) REFERENCES classe(id_classe)
+);
+
+CREATE TABLE absence (
+  id_absence INT AUTO_INCREMENT PRIMARY KEY,
+  date_absence DATE NOT NULL,
+  heure_debut TIME NOT NULL,
+  heure_fin TIME NOT NULL,
+  motif VARCHAR(255) NOT NULL,
+  id_etudiant INT NOT NULL,
+  FOREIGN KEY (id_etudiant) REFERENCES etudiant(id_etudiant)
+);
+```
+
+## Autres logiciels pour gérer une base de données
 
 Nous avons pour l'instant vu comment installer MariaDB et PHPMyAdmin. Mais il existe d'autres logiciels pour gérer une base de données. Nous allons voir ici comment installer ces logiciels. Pour que les autres logiciels fonctionnent, il faut que vous autorisiez le port 3306 dans la configuration de MariaDB.
 
