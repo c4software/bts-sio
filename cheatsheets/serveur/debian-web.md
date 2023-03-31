@@ -22,13 +22,14 @@ Dans cet aide mémoire vous trouverez l'ensemble des commandes et des opération
 Voici la procédure de création de la partie PHP + Apache :
 
 ```bash
-apt-get update
-apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
+apt update
+apt install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 
 # Installer Apache + PHP
-apt-get install open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
+apt update
+apt install curl open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
 
 # Activer PHP dans Apache
 a2enmod proxy_fcgi setenvif rewrite
