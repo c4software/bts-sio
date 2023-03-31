@@ -372,7 +372,7 @@ USE gestion_absences;
 
 CREATE TABLE classe (
   id_classe INT AUTO_INCREMENT PRIMARY KEY,
-  nom_classe VARCHAR(250) NOT NULL,
+  nom_classe VARCHAR(250) NOT NULL
 );
 
 INSERT INTO classe (nom_classe, niveau) VALUES ('SIO1 SLAM'), ('SIO1 SISR'), ('SIO2 SLAM'), ('SIO2 SISR');
