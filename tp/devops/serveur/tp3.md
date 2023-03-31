@@ -112,13 +112,14 @@ Maintenant que notre besoin est défini, nous allons pouvoir créer notre machin
 Voici la procédure de création de la partie PHP + Apache :
 
 ```bash
-apt-get update
-apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
+apt update
+apt install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 
 # Installer Apache + PHP
-apt-get install open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
+apt update
+apt install curl open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
 
 # Activer PHP dans Apache
 a2enmod proxy_fcgi setenvif rewrite
@@ -189,8 +190,8 @@ Dans ce TP, nous allons utiliser MariaDB. Pourquoi ? Car celui-ci est disponible
 Vous l'avez compris, installer un logiciel sur Linux est très simple, une seule commande suffit :
 
 ```bash
-apt-get update
-apt-get install mariadb-server mariadb-client -y
+apt update
+apt install mariadb-server mariadb-client -y
 ```
 
 Pourquoi ces deux paquets ? `mariadb-server` est le serveur de base de données, et `mariadb-client` est le client de base de données. Le client est utilisé pour se connecter **localement** à la base de données.
@@ -284,7 +285,7 @@ L'installation est le résultat de plusieurs commandes :
 
 ### Configuration de PHPMyAdmin
 
-PHPMyAdmin est maintenant installé, il ne nécessite pas de configuration particulière. Il suffit de se rendre sur l'adresse suivante : `http://<adresse_ip>/`.
+PHPMyAdmin est maintenant installé, il ne nécessite pas de configuration particulière. Il suffit de se rendre sur l'adresse suivante : `http://<adresse_ip>/phpmyadmin`.
 
 ::: tip Dans un prochain TP/TD
 Dans le prochain TP nous allons (re)voir pour configurer Apache avec des VirtualHosts. L'objectif ? **Héberger plusieurs sites web sur un seul serveur**.
