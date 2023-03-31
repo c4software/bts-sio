@@ -420,7 +420,7 @@ La configuration se fait dans le fichier `/etc/mysql/mariadb.conf.d/50-server.cn
 nano /etc/mysql/mariadb.conf.d/50-server.cnf
 ```
 
-Ajoutez la ligne suivante dans la section `[mysqld]`.
+Modifier la ligne `bind-address` par la ligne suivante dans la section `[mysqld]`.
 
 ```ini
 bind-address = 0.0.0.0
