@@ -375,7 +375,7 @@ CREATE TABLE classe (
   nom_classe VARCHAR(250) NOT NULL
 );
 
-INSERT INTO classe (nom_classe, niveau) VALUES ('SIO1 SLAM'), ('SIO1 SISR'), ('SIO2 SLAM'), ('SIO2 SISR');
+INSERT INTO classe (nom_classe) VALUES ('SIO1 SLAM'), ('SIO1 SISR'), ('SIO2 SLAM'), ('SIO2 SISR');
 
 CREATE TABLE etudiant (
   id_etudiant INT AUTO_INCREMENT PRIMARY KEY,
