@@ -151,6 +151,16 @@ $maRequete = "SELECT * FROM client WHERE id='{$id}'"
 
 :::
 
+#### Comment corriger ?
+
+- Toujours utiliser des requêtes préparées.
+- Ou utiliser des ORM (Object Relational Mapping) qui font la même chose.
+
+```php
+$maRequete = $pdo->prepare("SELECT * FROM client WHERE id=:id");
+$maRequete->execute(['id' => $_GET['id']]);
+```
+
 ### A2 - Violation de Gestion d’Authentification et de Session
 
 Risque de casser / usurper une authentification ou une session. Comprends notamment le vol de session ou la récupération de mots de passe.
@@ -160,6 +170,12 @@ Une session en paramètre GET == ⚠️. Si vous partagez le lien, n'importe qui
 ```
 http://exemple.com/?jsessionid=A2938298D293
 ```
+
+#### Comment corriger ?
+
+- Toujours utiliser des sessions cryptées.
+- Toujours utiliser des sessions avec un identifiant unique.
+- Toujours utiliser des sessions avec un TTL (Time To Live).
 
 ### A3 - Cross-Site Scripting (XSS)
 
@@ -175,6 +191,14 @@ Votre Nom : <input type="text" name="nom" value="" />
 
 ```js
 alert("Bonjour " + $_POST["nom"]);
+```
+
+#### Comment corriger ?
+
+- Toujours valider les entrées utilisateurs.
+
+```php
+$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
 ```
 
 ### A4 - Références directes non sécurisées à un objet
@@ -203,6 +227,21 @@ Vous noterez ici que nous avons une requête « préparé » ça n'empêche pas 
 
 :::
 
+#### Comment corriger ?
+
+- Toujours valider les entrées utilisateurs.
+- Toujours vérifier les droits de l'utilisateur.
+
+```php
+if ($_SESSION['mode'] == 'client') {
+    // On peut charger la ressource
+} else if ($_SESSION['mode'] == 'admin') {
+    // On peut charger la ressource
+} else {
+    // On ne peut pas charger la ressource
+}
+```
+
 ### A5 - Mauvaise configuration Sécurité
 
 Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
@@ -212,6 +251,12 @@ Corresponds aux failles de configuration liées aux serveurs Web, applications, 
 - Exemples de code non supprimés.
 - Application en debug.
 
+#### Comment corriger ?
+
+- Toujours supprimer les exemples de code.
+- Toujours supprimer les répertoires de débug.
+- Lire la documentation.
+
 ### A6 - Exposition de données sensibles
 
 Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
@@ -220,12 +265,32 @@ Exposition de données sensibles comme les mots de passe, les numéros de carte 
 - Mot de passe en claire (ou en MD5) dans la base de données.
 - Sauvegarde de données inutiles.
 
+#### Comment corriger ?
+
+- Toujours utiliser le HTTPS.
+- Toujours utiliser des mots de passe chiffrés (hashés + sel).
+- Toujours supprimer les données inutiles.
+
 ### A7 - Manque de contrôle d’accès au niveau fonctionnel
 
 Failles liées aux contrôles d'accès de fonctionnalité.
 
 - Page d’admin accessible avec un compte utilisateur.
 - Mode non filtré (similaire à l’exemple mode={client,admin}).
+
+#### Comment corriger ?
+
+- Toujours vérifier les droits de l'utilisateur.
+
+```php
+if ($_SESSION['mode'] == 'client') {
+    // On peut charger la ressource
+} else if ($_SESSION['mode'] == 'admin') {
+    // On peut charger la ressource
+} else {
+    // On ne peut pas charger la ressource
+}
+```
 
 ### A8 - Falsification de requête intersite (CSRF)
 
@@ -239,6 +304,21 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable. Int�
 
 :::
 
+#### Comment corriger ?
+
+- Ajouter un jeton unique dans les formulaires.
+
+```php
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+// Côté PHP
+if (isset($_POST['_token']) && $_POST['_token'] == $_SESSION['_token']) {
+    // On peut traiter la requête
+} else {
+    die();
+}
+```
+
 ### A9 - Utilisation de composants avec des vulnérabilités connues
 
 Failles liées à l’utilisation de composants tiers vulnérables.
@@ -246,6 +326,11 @@ Failles liées à l’utilisation de composants tiers vulnérables.
 - CMS non à jour
 - Apache / Tomcat non patchés
 - Librairies XYZ non à jour
+
+#### Comment corriger ?
+
+- Toujours mettre à jour les composants tiers.
+- Ne pas utiliser des vieux frameworks (exemple PHP 4, ou Symfony 1.4)
 
 ### A10 - Redirections et Renvois Non Validés
 
@@ -257,6 +342,20 @@ _Exemple :_
 
 ```
 http://www.shop-vdt.com/login.php?goto=evil.com/login
+```
+
+#### Comment corriger ?
+
+- Toujours valider les entrées utilisateurs.
+- Filtrer les liens possibles.
+
+```php
+// Autorise uniquement les redirections vers le site
+if (preg_match('/^https?:\/\/shop-vdt\.com\//', $_GET['goto'])) {
+    header('Location: ' . $_GET['goto']);
+} else {
+    die();
+}
 ```
 
 ### Mais, une faille c’est quoi ?
