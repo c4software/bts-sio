@@ -19,7 +19,7 @@ Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 - **Concept de construction** en créant un objet en reposant sur la définition d’une classe.
 - **Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter. (inaccessible de l'exterieur).
 
-::: tip Mais surtout
+::: tip, Mais surtout
 Ça permet de représenter **informatiquement** quelque chose du monde réel.
 :::
 
@@ -27,6 +27,17 @@ Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 
 - Les classes
 - Les objets
+
+### Définition
+
+La **programmation orientée objet** (POO) est un paradigme de programmation qui utilise des objets pour représenter des entités du monde réel. Les objets sont des instances de classes, qui peuvent contenir des données et des méthodes. Les classes sont des modèles pour créer des objets.
+
+### Avantages
+
+- **Réutilisation** : on peut réutiliser des classes déjà existantes.
+- **Abstraction** : on peut cacher les détails d'implémentation.
+- **Encapsulation** : on peut cacher les données et les méthodes.
+- **Héritage** : on peut créer des classes à partir d'autres classes.
 
 ### La modélisation
 
@@ -44,6 +55,10 @@ Avant de parler des classes ou des objets, je vous propose de regarder le princi
 - D'attributs (variable d'instance ou propriété).
 - De méthodes (actions / opération au niveau de la classe).
 
+Les attributs sont les valeurs qui feront fonctionner notre objet (exemple `nom`, `prenom`, `age` etc.).
+
+Les méthodes vont permettre d'effectuer des actions dans notre objet (exemple `presenter()`, `bouger()`, etc.).
+
 #### Nous avons donc deux types membres dans la classe
 
 - Des **propriétés** (le données de l'objet) **avec une visibilité**
@@ -53,7 +68,7 @@ Avant de parler des classes ou des objets, je vous propose de regarder le princi
 
 - Privée : accessible que dans l'objet.
 - Public : accessible hors de l'objet.
-- Protected : **Accessible** aux enfants (héritage) mais pas hors de la classe.
+- Protected : **Accessible** aux enfants (héritage), mais pas hors de la classe.
 
 #### Les méthodes
 
@@ -64,9 +79,17 @@ Avant de parler des classes ou des objets, je vous propose de regarder le princi
 
 #### Les types de méthodes
 
+Dans une classe nous avons différents types de méthodes :
+
 - Le constructeur.
 - Les méthodes d'actions.
 - Les méthodes accesseurs / mutateurs.
+
+Le constructeur est une méthode qui permet d'initialiser un objet. Il est appelé automatiquement lors de la création d'un objet (`new`). Il est possible de définir plusieurs constructeurs dans une classe (surcharge).
+
+Les méthodes d'actions sont des méthodes qui permettent d'effectuer des actions sur l'objet. Exemple : `accelerer()`, `freiner()`, `tourner()`, etc.
+
+Les méthodes accesseurs / mutateurs sont des méthodes qui permettent de lire ou d'écrire les propriétés de l'objet. Exemple : `getVitesse()`, `setVitesse()`, etc. Elles sont appelées **getter** et **setter**.
 
 ### Exemple
 
@@ -267,14 +290,14 @@ public class Personne
 - Les classes sont instanciables (création d'objets, `$unPersonne = new Personne(…)`).
 - Les propriétés sont les « variables » de l'objet.
 - Les méthodes sont les « actions » de l'objet.
-- Les méthodes **et** les propriétés _**ont des visiblités**_.
+- Les méthodes **et** les propriétés _**ont des visibilités**_.
 - Les méthodes peuvent être surchargées.
 
 :::
 
 ## Les objets
 
-Chaque objet représente un objet du monde réel
+Chaque objet représente un objet du monde réel. Exemple : une voiture, une personne, un élément de menu, etc.
 
 ### exemple :
 
@@ -315,10 +338,32 @@ Personne personne2 = new Personne("John", "Doe", "01/01/1970", 12);
 ```php
 class Personne
 {
+    // Attribut
+    private $nom;
+    private $prenom;
+
+    // Constructeur
     function __construct($nom, $prenom)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
+    }
+
+    // Méthode
+    public function identite(){
+        return $this->nom . " " . $this->prenom;
+    }
+
+    // Accesseur
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    // Mutateur
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
     }
 }
 ```
@@ -329,12 +374,32 @@ class Personne
 
 ```java
 class Personne {
+
+    // Attribut
     private String nom;
     private String prenom;
 
+    // Constructeur
     public Personne(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
+    }
+
+    // Méthode
+    public String identite(){
+        return this.nom + " " + this.prenom;
+    }
+
+    // Accesseur
+    public String getNom()
+    {
+        return this.nom;
+    }
+
+    // Mutateur
+    public void setNom(String nom)
+    {
+        this.nom = nom;
     }
 
 }
@@ -346,6 +411,20 @@ class Personne {
 
 ```kotlin
 class Personne(val nom: String, val prenom: String) {
+    // Méthode
+    fun identite(): String {
+        return "$nom $prenom"
+    }
+
+    // Accesseur
+    fun getNom(): String {
+        return nom
+    }
+
+    // Mutateur
+    fun setNom(nom: String) {
+        this.nom = nom
+    }
 }
 ```
 
@@ -354,12 +433,24 @@ class Personne(val nom: String, val prenom: String) {
 
 ```cs
 class Personne {
+    // Attribut
     private string nom;
     private string prenom;
 
+    // Constructeur
     public Personne(string nom, string prenom) {
         this.nom = nom;
         this.prenom = prenom;
+    }
+
+    // Méthode  
+    public string identite() {
+        return this.nom + " " + this.prenom;
+    }
+
+    // Accesseur
+    public string getNom() {
+        return this.nom;
     }
 }
 ```
@@ -367,12 +458,13 @@ class Personne {
   </CodeGroupItem>
 </CodeGroup>
 
-## Instanciation (Créer un objet)
+## Instanciation (créer un objet)
 
 <CodeGroup>
   <CodeGroupItem title="PHP" active>
 
 ```php
+// Instanciation
 $unePersonne = new Personne("Valentin", "Brosseau");
 ```
 
@@ -381,6 +473,7 @@ $unePersonne = new Personne("Valentin", "Brosseau");
   <CodeGroupItem title="Java">
 
 ```java
+// Instanciation
 Personne unPersonne = new Personne("Valentin", "Brosseau");
 ```
 
@@ -389,6 +482,7 @@ Personne unPersonne = new Personne("Valentin", "Brosseau");
   <CodeGroupItem title="Kotlin">
 
 ```kotlin
+// Instanciation
 unPersonne = Personne("Valentin", "Brosseau");
 ```
 
@@ -397,6 +491,7 @@ unPersonne = Personne("Valentin", "Brosseau");
   <CodeGroupItem title="C#">
 
 ```cs
+// Instanciation
 Personne unePersonne = new Personne("Valentin", "Brosseau");
 ```
 
@@ -411,6 +506,7 @@ Personne unePersonne = new Personne("Valentin", "Brosseau");
 ```php
 class Personne
 {
+    // Attribut
     private $nom;
     private $prenom;
 
@@ -429,9 +525,11 @@ class Personne
 
 ```java
 class Personne {
+    // Attribut
     private final String nom;
     private final String prenom;
 
+    // Constructeur
     public Personne(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
@@ -454,6 +552,10 @@ class Personne(val nom: String, val prenom: String) {
 ```cs 
 class Personne {
   
+  // Attribut
+  private string nom;
+  private string prenom;
+
   // Le constructeur
   public Personne(string nom, string prenom)
   {
@@ -472,8 +574,11 @@ class Personne {
   <CodeGroupItem title="PHP" active>
 
 ```php
+// Instanciation
 $unePersonne = new Personne("Valentin", "Brosseau");
-$unPersonne->afficheIdentite();
+
+// Appel de la méthode
+$unPersonne->afficheIdentite(); // Affiche "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
@@ -481,37 +586,49 @@ $unPersonne->afficheIdentite();
   <CodeGroupItem title="Java">
 
 ```java
+// Instanciation
 Personne unePersonne = new Personne("Valentin", "Brosseau");
-unePersonne.afficheIdentite();
+
+// Appel de la méthode
+unePersonne.afficheIdentite(); // Affiche "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
   <CodeGroupItem title="Kotlin">
 
 ```kotlin
+// Instanciation
 unePersonne = Personne("Valentin", "Brosseau");
-unePersonne.afficheIdentite();
+
+// Appel de la méthode
+unePersonne.afficheIdentite(); // Affiche "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
   <CodeGroupItem title="C#">
 
 ```cs
+// Instanciation
 Personne unePersonne = new Personne("Valentin", "Brosseau");
-unePersonne.identite();
+
+// Appel de la méthode
+unePersonne.identite(); // Affiche "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
 </CodeGroup>
 
-## Accès à une propriété
+## Accès à une propriété // Accesseur et Mutateur
 
 <CodeGroup>
   <CodeGroupItem title="PHP" active>
 
 ```php
 $unePersonne = new Personne("Valentin", "Brosseau");
-$unPersonne->afficheIdentite();
+$unePersonne->getNom(); // Affiche "Valentin"
+
+$unePersonne->setNom("Chouette");
+$unePersonne->getNom(); // Affiche "Chouette", la valeur a été modifiée
 ```
 
   </CodeGroupItem>
@@ -520,7 +637,10 @@ $unPersonne->afficheIdentite();
 
 ```java
 Personne unPersonne = new Personne("Valentin", "Brosseau");
-unePersonne.afficheIdentite();
+unePersonne.getNom(); // Affiche "Valentin"
+
+unePersonne.setNom("Chouette");
+unePersonne.getNom(); // Affiche "Chouette", la valeur a été modifiée
 ```
 
   </CodeGroupItem>
@@ -528,13 +648,13 @@ unePersonne.afficheIdentite();
 
 ::: tip Attention
 
-L'accès au propriété ne fonctionnera que si la visibilité (`private`, `public`, `protected`) ne vous y autorise :
+L'accès aux propriétés ne fonctionnera que si la visibilité (`private`, `public`, `protected`) ne vous y autorise :
 
 |  Visibilité |                                                                     Accès depuis |
 | ----------: | -------------------------------------------------------------------------------: |
-|   `private` |                                             Seulement depuis l'objet en lui même |
+|   `private` |                                             Seulement depuis l'objet en lui-même |
 |    `public` |                 Depuis n'import où (objet, depuis l'objet, ou depuis l'héritage) |
-| `protected` | Comme `private` **mais non accessible depuis la classe fille en cas d'héritage** |
+| `protected` | Comme, `private` **mais non accessible depuis la classe fille en cas d'héritage** |
 
 :::
 
@@ -544,23 +664,23 @@ L'accès au propriété ne fonctionnera que si la visibilité (`private`, `publi
 
 ::: tip Le losange vide
 
-![Aggregation](./res/UML_Rel_aggregation.jpg)
+![Agrégation](./res/UML_Rel_aggregation.jpg)
 
-Ce symbole signifie la notion de composition. Dans notre cas, une Entreprise est composer de Personne.
+Ce symbole signifie la notion de composition. Dans notre cas, une Entreprise n’est composée de personne.
 
 :::
 
-Permet de regrouper des listes d'objets.
+Permets de regrouper des listes d'objets.
 
 ![Représentation UML](./res/collections_2.png)
 
-En modélisation, la fleche signife un lien entre les deux classes. En l'occurence, dans le cas des collections nous aurons :
+En modélisation, la flèche signifie un lien entre les deux classes. En l'occurrence, dans le cas des collections, nous aurons :
 
 - Le nom « de la collection » qui va contenir les objets.
 - Le nombre minimum & maximum.
-- Exemple, **1** étudiant possède plusieurs devoir.
+- Exemple, **1** étudiant possède plusieurs devoirs.
 
-Fonctionnellement, nous allons donc avoir dans l'étudiant collection d'objet du type devoirs. Celle-ci sera nommée **lesDevoirs**. **lesDevoirs** sera une propriété de la classe Étudiant.
+Fonctionnellement, nous allons donc avoir dans l'étudiant une collection d'objets du type devoirs. Celle-ci sera nommée **lesDevoirs**. **lesDevoirs** sera une propriété de la classe Étudiant.
 
 ### Déclaration
 
@@ -734,6 +854,14 @@ L'héritage permet de généraliser le fonctionnement d'un objet. L'idée est de
 - Une **Voiture** et une **Moto** sont des véhicules. Nous pouvons donc créer une super classe « **Véhicule** ».
 - …
 
+Comment identifier qu'il s'agit d'un héritage ? **C'est simple**, si vous pouvez dire « est un » alors il s'agit d'un héritage. Exemple :
+
+- Un **humain** est un **mammifère**.
+- Une **Voiture** est un **Véhicule**.
+- Mais nous ne pouvons pas dire qu'un **Pompier** est un **Camion**. Il n'y a pas d'héritage.
+
+Le mot clé **extends** permet de définir une classe enfant. **Exemple**
+
 <CodeGroup>
   <CodeGroupItem title="PHP" active>
 
@@ -750,6 +878,7 @@ class Mammifere {
     }
 }
 
+// Humain hérite de Mammifere
 class Humain extends mammifere {
     private $prenom = "";
 
@@ -883,6 +1012,7 @@ unHumain.manger(); // Je suis omnivore
 
 - La classe mère contient la logique **partagée**.
 - La classe fille contient la logique **spécifique**.
+- Si nous pouvons dire « est un » alors il s'agit d'un héritage.
 - Un mot-clé Extends `class Humain extends Mammifere`.
 - **Vous devez** construire le parent dans le constructeur de l'enfant.
 - **Permets de généraliser un objet afin de partager des propriétés communes.**.
@@ -891,7 +1021,9 @@ unHumain.manger(); // Je suis omnivore
 
 ## Le polymorphisme
 
-Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la méthode qui correspond au type réel de l’objet
+Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la méthode qui correspond au type réel de l’objet. C’est un concept fondamental de la programmation orientée objet.
+
+Le mot polymorphisme vient du grec poly (plusieurs) et morphisme (forme). Il signifie donc « plusieurs formes ». **L'héritage est une forme de polymorphisme.**
 
 ## L'encapsulation
 
@@ -899,13 +1031,15 @@ Mécanisme consistant à rassembler les données et les méthodes au sein d'une 
 
 ![L'encapsulation](./res/niveau_encapsulation.jpg)
 
-::: tip Sécurité ?
+::: danger Sécurité ?
 
 Vous avez ici un élément important, la notion de visibilité et de gestion de l'accès aux propriétés est **fondamentale**. L'encapsulation fait partie d'une des raisons pourquoi la POO est à favoriser pour réaliser un développement sécurisé.
 
 :::
 
 ## Les méthodes statiques
+
+Les méthodes statiques sont des méthodes qui peuvent être appelées sans avoir besoin d'instancier un objet. Elles sont déclarées avec le mot-clé `static`. Les méthodes statiques sont souvent utilisées pour créer des fonctions utilitaires.
 
 <CodeGroup>
   <CodeGroupItem title="PHP" active>
@@ -972,17 +1106,18 @@ Personne.laReponseDeLunivers();
 ```
 
   </CodeGroupItem>
-  
-  
 </CodeGroup>
 
 ## Abstraction et Interface
 
 ### Les classes abstraites
 
-Permets de définir des comportements (méthodes) dont l'implémentation (le code dans la méthode) se fait dans les classes filles.
+_Définition :_
 
-> Ainsi, on a l'assurance que les classes filles respecteront le contrat défini par la classe mère abstraite.
+- Une classe abstraite est une classe qui ne peut pas être instanciée.
+- Permets de définir des comportements (méthodes) dont l'implémentation (le code dans la méthode) se fait dans les classes filles.
+
+ Ainsi, on a l'assurance que les classes filles respecteront le contrat défini par la classe mère abstraite.
 
 Nous aurons donc deux types de classes :
 
@@ -1007,6 +1142,7 @@ Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'e
 ```php
 <?php
 
+// Classe abstraite, non instanciable
 abstract class EtudiantAbstrait
 {
     // Force les classes filles à définir cette méthode
@@ -1019,6 +1155,7 @@ abstract class EtudiantAbstrait
     }
 }
 
+// Classe fille, instanciable car concrète l'ensemble des méthodes possède du code
 class EtudiantSIO extends EtudiantAbstrait
 {
     private $option = "SLAM";
@@ -1032,6 +1169,7 @@ class EtudiantSIO extends EtudiantAbstrait
     }
 }
 
+// Classe fille, instanciable car concrète l'ensemble des méthodes possède du code
 class EtudiantSEN extends EtudiantAbstrait
 {
     private $competences = "SOUDER";
@@ -1045,9 +1183,13 @@ class EtudiantSEN extends EtudiantAbstrait
     }
 }
 
+// Instanciation
 $class1 = new EtudiantSIO();
-$class1->parler();
-echo $class1->demarrerUneDiscussion('La sécurité') ."\n";
+$class1->parler(); // L'informatique c'est cool, je suis : SLAM
+echo $class1->demarrerUneDiscussion('La sécurité') ."\n"; // Je vais vous parler de « La sécurité »
+
+// Le code suivant ne fonctionne pas car on ne peut pas instancier une classe abstraite
+$class1 = new EtudiantAbstrait(); // Erreur, on ne peut pas instancier une classe abstraite
 ```
 
   </CodeGroupItem>
@@ -1056,6 +1198,7 @@ echo $class1->demarrerUneDiscussion('La sécurité') ."\n";
 
 ```java
 
+// Une classe abstraite, non instanciable
 abstract class EtudiantAbstrait
 {
     // Force les classes filles à définir cette méthode
@@ -1160,6 +1303,12 @@ class1.demarrerUneDiscussion('La sécurité'); // Je vais vous parler de ' La s�
 Une Interface ressemble beaucoup à une classe abstraite. **Sauf que** celle-ci ne possède pas de code. Une Interface définit un comportement qui **devra être** implémenté par la classe fille.
 
 Les classes filles **implémentent** une interface, une classe fille peut **implémenter** plusieurs interfaces.
+
+Quand une classe implémente une interface, elle **doit** définir l'ensemble des méthodes de l'interface.
+
+**C'est obligatoire**. C'est une sorte de contrat entre la classe fille et l'interface.
+
+À quoi sert une interface ? **A définir un comportement**. 
 
 #### Les interfaces :
 
@@ -1510,7 +1659,7 @@ Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la m�
   - Toutes les méthodes de la classe A peuvent donc être appelées sur la classe B.
 
 - Le polymorphisme nous permettra :
-  - Manipuler un objet sans en connaitre le type précis.
+  - Manipuler un objet sans en connaître le type précis.
   - Manipulation de liste sans connaître le type des objets.
 
 ::: tip Pratique !
@@ -1599,6 +1748,8 @@ foreach (MachineVolante m in machines) {
 :::
 
 ## Les namespaces (organisation des classes)
+
+Les namespaces permettent d'organiser les classes en groupes. Cela permet de mieux s'y retrouver dans un projet et de mieux gérer les dépendances. Les namespaces sont des espaces de noms. Ils permettent de regrouper des classes ayant un nom identique, mais qui ne sont pas les mêmes. Par exemple, si vous avez une classe `Personne` dans votre projet, vous pouvez avoir une classe `Personne` dans un namespace `Mammifere` et une classe `Personne` dans un namespace `Primate`. Les deux classes `Personne` ne seront pas les mêmes.
 
 ```php
 namespace Mammifere\Primate ;
