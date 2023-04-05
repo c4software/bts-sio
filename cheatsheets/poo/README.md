@@ -85,7 +85,7 @@ Dans une classe nous avons différents types de méthodes :
 - Les méthodes d'actions.
 - Les méthodes accesseurs / mutateurs.
 
-Le constructeur est une méthode qui permet d'initialiser un objet. Il est appelé automatiquement lors de la création d'un objet (`new`). Il est possible de définir plusieurs constructeurs dans une classe (surcharge).
+Le constructeur est une méthode qui permet d'initialiser un objet. Il est appelé automatiquement lors de la création d'un objet (`new`). Son rôle est d'initialiser les attributs de l'objet avec des valeurs spécifiques, selon les paramètres fournis lors de la création de l'objet. Il est possible de définir plusieurs constructeurs dans une classe (surcharge). Il permet de garantir l'intégrité des objets et de s'assurer qu'ils sont initialisés de manière cohérente.
 
 Les méthodes d'actions sont des méthodes qui permettent d'effectuer des actions sur l'objet. Exemple : `accelerer()`, `freiner()`, `tourner()`, etc.
 
