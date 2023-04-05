@@ -19,7 +19,7 @@ Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 - **Concept de construction** en créant un objet en reposant sur la définition d’une classe.
 - **Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter. (inaccessible de l'exterieur).
 
-::: tip, Mais surtout
+::: tip Mais surtout
 Ça permet de représenter **informatiquement** quelque chose du monde réel.
 :::
 
