@@ -12,7 +12,7 @@ Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 
 ## Introduction
 
-### La POO c'est 3 concepts
+### La POO c'est 4 concepts
 
 - **Concept de modélisation** à travers la notion de classe et d’instanciation de ces classes.
 - **Concept d’action** à travers la notion d’envoi de messages et de méthodes à l’intérieur des objets.
