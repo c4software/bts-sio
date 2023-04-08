@@ -93,7 +93,7 @@ sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/
 
 # Installer Apache + PHP
 apt update
-apt-get install open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
+apt-get install curl open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
 
 # Activer PHP dans Apache
 a2enmod proxy_fcgi setenvif rewrite
@@ -237,6 +237,22 @@ Et pas de mot de passe… Et oui, nous avons configuré le serveur pour ne pas d
 ![FileZilla](./res/filezilla_parametres.jpg)
 ![FileZilla](./res/filezilla_clefs.jpg)
 
+### Utiliser filezilla
+
+FileZilla vous permet de vous connecter à votre serveur, il est très simple d'utilisation. Vous pouvez simplement glisser-déposer vos fichiers dans le dossier `/var/www/siteA` pour les envoyer sur le serveur.
+
+Tout d'abord, vous devez vous connecter à votre serveur. Pour cela, vous devez renseigner les informations suivantes :
+
+- **Host** : l'adresse IP du serveur
+- **Username** : votre nom d'utilisateur
+- **Port** : 22 (le port SSH)
+
+Et pas de mot de passe… Et oui, nous avons configuré le serveur pour ne pas demander de mot de passe. Pour vous connecter, vous devez utiliser une **clé SSH**. Les informations sont à renseigner dans la barre de menu en haut :
+
+![FileZilla](./res/filezilla-connexion.jpg)
+
+Vous êtes maintenant connecté à votre serveur !
+
 Je vous laisse envoyer votre code sur le serveur (dans le dossier `/var/www/siteA`).
 
 Une fois que vous avez envoyé votre code sur le serveur, vous pouvez tester votre site en vous rendant sur l'adresse IP du serveur, sur le port 8080. Votre site doit être accessible.
@@ -291,6 +307,17 @@ Vous pourrez lancer ce script avec la commande `./update.sh`. Attention, il faut
 
 Je vous laisse tester la procédure sur votre serveur en déployant le code source de votre AP (qui doit être sur Github / Gitlab). Je suis disponible pour vous aider si vous avez des difficultés.
 
+### Automatiser le déploiement
+
+Je vous laisse mettre en place une procédure de déploiement automatique sur votre serveur. Nous avons à notre disposition plusieurs outils pour cela :
+
+- Le CRON (qui permet de lancer des scripts à des moments précis).
+- L'intégration continue (qui permet de lancer des scripts à chaque push sur le dépôt).
+
+Vous ne savez pas encore comment réaliser de l'intégration continue… par contre, vous savez déjà comment utiliser le CRON. Je vous laisse donc mettre en place une procédure de déploiement automatique sur votre serveur en utilisant le CRON.
+
+Je souhaite que le code source de votre projet soit mis à jour une fois par heure du lundi au vendredi. Pour vous aider vous pouvez utiliser un outil comme [Crontab generator](https://crontab-generator.org/).
+
 ## Conclusion
 
 Dans ce TP / TD, nous avons vu comment nous pouvons simplifier la gestion du déploiement de nos projets. Nous avons également déployé plusieurs sites Web sur un même serveur.
@@ -304,3 +331,4 @@ Ce TP est loin d'être exhaustif, mais il vous permettra de vous familiariser av
 - [FileZilla](https://filezilla-project.org/)
 - [Git](https://git-scm.com/)
 - [SSH](/cheatsheets/ssh-key/README.md)
+- [Debian Web](/cheatsheets/serveur/debian-web.md)
