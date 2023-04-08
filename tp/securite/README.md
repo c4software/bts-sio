@@ -94,7 +94,7 @@ Voilà une liste des éléments que nous allons pouvoir « exploiter » dans Web
 
 Nous n’allons bien évidemment pas tous les faire, l’idée est d’en faire quelques-uns et si vous le souhaitez vous pourrez approfondir le sujet.
 
-![](./webgoat-dom-injection-700x407.png)
+![WebGoat](./webgoat-dom-injection-700x407.png)
 
 ## Téléchargement
 
