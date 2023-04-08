@@ -14,7 +14,7 @@ Dans les précédents TP nous avons traité de la création d'une VM, de l'insta
 
 Vous avez atteint un point étape. Vous avez maintenant la capacité de créer des serveurs Web et de base de données.
 
-Ce TP est un donc un TP de synthèse. 
+Ce TP est un donc un TP de synthèse.
 
 <center><iframe src="https://giphy.com/embed/CjmvTCZf2U3p09Cn0h" width="480" height="452" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></center>
 
@@ -80,7 +80,7 @@ Le site sur le port 8080 doit être un site en PHP. Il doit afficher les éléme
 - Un titre principal (`<h1>`) avec dedans écrit "Bienvenue sur mon site".
 - Dans un sous-titre (`<h2>`), la date du jour suivit de l'heure.
 - Un `<hr>`.
-- Un paragraphe (`<p>`) avec dedans écrit "Bonjour, je suis <VOTRE-NOM> et je suis en BTS SIO".
+- Un paragraphe (`<p>`) avec dedans écrit "Bonjour, je suis `<VOTRE-NOM>` et je suis en BTS SIO".
 - Un pied de page (`<footer>`) contenant le nom de votre serveur et l'adresse IP de celui-ci (obtenue via le PHP).
 
 ::: details Pour le PHP…
