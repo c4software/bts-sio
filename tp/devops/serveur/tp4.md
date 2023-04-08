@@ -275,11 +275,17 @@ Voilà un exemple complet de procédure sur le serveur :
 # Installation de Git
 apt install git
 
+# Générer une clé SSH sur le serveur
+ssh-keygen
+
+# Ajouter la clé SSH sur votre compte Github / Gitlab
+cat ~/.ssh/id_rsa.pub # Va afficher la clé SSH dans le terminal pour que vous puissiez la copier / coller.
+
 # Création d'un dossier pour le projet
 mkdir /var/www/siteB
 cd /var/www/siteB
 
-# clone du dépôt de votre projet, le . à la fin est important, il permet de cloner le dépôt dans le dossier courant (ici /var/www/siteA)
+# clone du dépôt de votre projet, le . à la fin est important, il permet de cloner le dépôt dans le dossier courant (ici /var/www/siteB)
 git clone git@gitlab.com:c4software/votre-projet-deja-existant.git .
 
 # Vous pouvez maintenant travailler sur votre machine
