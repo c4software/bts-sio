@@ -111,6 +111,8 @@ DocumentRoot /var/www/html/votresite
 </Directory>
 ```
 
+**Cette partie est importante, elle permet d'activer la réécriture d'URL nécessaire pour Mini MVC Sample.**, il faut l'ajouter dans la configuration du `VirtualHost` (entre les balises `<VirtualHost>` et `</VirtualHost>`).
+
 ::: details Un exemple du résultat
 
 Dans mon cas voilà le résultat :
