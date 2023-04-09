@@ -32,21 +32,25 @@ Pour ça nous allons avoir besoin d'un dépôt externe, celui-ci contiendra la d
 
 ```sh
 # Installation des dépendances nécessaires à l'ajout d'un dépôt
-apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
-```
+apt-get install lsb-release wget apt-transport-https gnupg2 ca-certificates -y
 
-```sh
 # Ajout du dépôt Sury
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
-```
 
-```sh
-# Ajout de PHP et des dépendances nécessaire au bon fonctionnement de Laravel
+# Ajout de PHP et des dépendances nécessaire au bon fonctionnement de Mini MVC Sample
 apt-get update -y
-apt-get install libapache2-mod-php php php-common php-xml php-gd php8.0-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip curl -y
+apt-get install apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd,zip} unzip zip -y
 
-# Active la réécriture d'URL nécessaire pour Laravel
+# Activer PHP dans Apache
+a2enmod proxy_fcgi setenvif rewrite
+a2enconf php8.2-fpm
+
+# Active  Apache
+systemctl restart apache2
+systemctl enable apache2   
+
+# Active la réécriture d'URL nécessaire pour Mini MVC Sample
 /usr/sbin/a2enmod rewrite
 ```
 
