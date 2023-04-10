@@ -157,12 +157,13 @@ ALTER TABLE `commande` ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_utilisa
 
 Pour évaluer votre TP, je dois avoir accès à votre serveur. Comme dans le précédent TP je souhaite que vous ajoutiez une clé publique à votre serveur. Pour cela, vous devez :
 
-La procédure est la suivante :
+### Procédure manuelle
 
 - Récupérez ma clé SSH publique (télécharger le fichier [ici](https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub)).
 - Ajouter le contenu du fichier `id_rsa_etudiant.pub` dans le fichier `~/.ssh/authorized_keys` de votre utilisateur sur le serveur (exemple : `/home/VOTRE-USER/.ssh/authorized_keys`).
   - Vous pouvez utiliser `nano` ou `vim` pour éditer le fichier.
-- Vous pouvez également le faire via la commande curl :
+
+### Procédure automatique via `curl` <Badge type="tip" text="Meilleure solution" vertical="top" />
 
 ```bash
 su - # Se connecter en tant que root
