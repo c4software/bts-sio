@@ -25,14 +25,16 @@ Nous sommes à un point étape. La réalisation de ce TP sera évaluée. Il sera
 - VM fonctionnelle : **5 points** (en intégrant les éléments de sécurité).
 - Accès à la VM via échange de clés : **2 points**. (La clé publique à ajouter à votre VM est disponible en fin de TP).
 - Réalisation des étapes présentées dans le TP : **5 points**.
-- Fourniture d'un rapport illustrant les différentes étapes : **2 points**.
-- Fourniture de la fiche serveur : **2 points**.
+- Site web 1 fonctionnel : **2.5 points**.
+- Site web 2 fonctionnel : **2.5 points**.
+- Base de données présente : **2.5 points**.
+- PHPMyAdmin présent : **2.5 points**.
+- **Fourniture d'un rapport illustrant les différentes étapes** : **2 points**.
+- **Fourniture de la fiche serveur** : **2 points**.
 
 :::
 
-Vous avez à votre disposition l'ensemble des documents nécessaires à la réalisation de ce TP. Vous pouvez également vous aider des TP précédents.
-
-Et plus particulièrement des TP :
+Vous avez à votre disposition l'ensemble des documents nécessaires. Vous pouvez également vous aider des TP précédents, et plus particulièrement de :
 
 - [TP1. Créer une VM depuis un modèle.](./tp1alt.md)
 - [TP2. Installer un serveur Web.](./tp2.md)
