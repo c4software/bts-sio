@@ -54,6 +54,17 @@ systemctl enable apache2
 /usr/sbin/a2enmod rewrite
 ```
 
+::: tip PHP-FPM ?
+
+PHP-FPM est la nouvelle façon de faire fonctionner PHP sur un serveur. Il a plusieurs avantages :
+
+- Performances accrues.
+- Moins de ressources utilisées.
+- Permet de faire tourner plusieurs versions de PHP en même temps.
+- Rechargement de la configuration sans redémarrage du serveur.
+
+:::
+
 Et voilà, nous avons la base, votre serveur est prêt à recevoir votre code ! Avant de continuer, vérifiez avec la commande suivante que votre version de PHP est au moins égale à `8`.
 
 ```sh
