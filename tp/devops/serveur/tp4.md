@@ -178,6 +178,16 @@ a2ensite siteA
 a2ensite siteB
 ```
 
+::: tip La commande ne fonctionne pas ?
+
+Pour que la commande fonctionne vous devez être en `root` avec les variables d'environnement chargée :
+
+```bash
+su -
+```
+
+:::
+
 ### Écouter sur plusieurs ports
 
 Par défaut, Apache écoute sur le port 80. Nous allons donc modifier la configuration d'Apache pour qu'il puisse écouter sur plusieurs ports.
