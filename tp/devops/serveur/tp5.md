@@ -199,8 +199,14 @@ Pour valider votre serveur, je vais utiliser un script de vérification. Le voic
 ```bash
 #!/bin/bash
 
+# Fonction pour se connecter en SSH et exécuter une commande
+function ssh_execute {
+    ssh -o "PreferredAuthentications=publickey" -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa_etudiant "$1"@$2 "$3"
+}
+
+# Tableau contenant les utilisateurs et les IPs des serveurs à vérifier
 array=(
-  "vous;ip"
+  "$USER;127.0.0.1"
 )
 
 # Itérer sur le tableau et afficher chaque utilisateur et IP séparément
