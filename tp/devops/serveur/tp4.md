@@ -265,27 +265,27 @@ Vous êtes maintenant connecté à votre serveur !
 
 Je vous laisse envoyer votre code sur le serveur (dans le dossier `/var/www/siteA`).
 
-Une fois que vous avez envoyé votre code sur le serveur, vous pouvez tester votre site en vous rendant sur l'adresse IP du serveur, sur le port 8080. Votre site doit être accessible.
+Une fois que vous avez envoyé votre code, vous pouvez tester votre site en vous rendant sur l'adresse IP du serveur, sur le port 8080. Votre site doit être accessible.
 
 ## Déployer le code source de l'AP
 
-J'aime beaucoup l'idée de travailler avec Git pour ce genre de situation. Vous pouvez créer un dépôt sur votre machine, et le cloner sur le serveur, puis continuer à travailler sur votre machine et puller les modifications sur le serveur régulièrement.
+J'aime beaucoup l'idée de travailler avec Git pour ce genre de situation. Vous pouvez créer un dépôt sur votre machine, et le cloner sur le serveur, puis continuer à travailler sur votre machine et puller les modifications régulièrement.
 
 La procédure sera la suivante sur votre serveur :
 
-- Installer Git sur le serveur : `apt install git`.
+- Installer Git : `apt install git`.
 - Créer un dépôt sur votre machine et le partager sur Github / Gitlab.
-- Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH sur le serveur, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/README.md)).
+- Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/README.md)).
 - Travailler sur votre machine les pusher régulièrement
 - Puller les modifications sur le serveur.
 
-Voilà un exemple complet de procédure sur le serveur :
+Voilà un exemple complet de procédure **SUR LE SERVEUR** :
 
 ```bash
 # Installation de Git
 apt install git
 
-# Générer une clé SSH sur le serveur
+# Générer une clé SSH SUR LE SERVEUR
 ssh-keygen
 
 # Ajouter la clé SSH sur votre compte Github / Gitlab
@@ -299,9 +299,9 @@ cd /var/www/siteB
 git clone git@gitlab.com:c4software/votre-projet-deja-existant.git .
 
 # Vous pouvez maintenant travailler sur votre machine
-# et pusher les modifications sur le serveur
+# et pusher les modifications régulièrement
 
-# Pour puller les modifications sur le serveur
+# Pour puller les modifications
 cd /var/www/siteA
 git pull
 ```
