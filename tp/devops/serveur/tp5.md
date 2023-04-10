@@ -1,8 +1,8 @@
 ---
-description: Dans ce TP nous allons voir comment créer un serveur permettant d'héberger un site Web et une base de données.
+description: Dans ce TP, vous allez devoir mettre en place un serveur permettant d'héberger un site Web et une base de données.
 ---
 
-# TP5. Créer un serveur Web et une base de données
+# TP5. Créer un serveur Web et une base de données.
 
 ::: details Sommaire
 [[toc]]
@@ -10,11 +10,11 @@ description: Dans ce TP nous allons voir comment créer un serveur permettant d'
 
 ## Introduction
 
-Dans les précédents TP nous avons traité de la création d'une VM, de l'installation d'un serveur Web et d'une base de données. Dans ce TP nous allons voir comment créer un serveur permettant d'héberger un site Web et une base de données. Il n'y a rien de nouveau dans ce TP, il s'agit juste de rassembler les différentes étapes dans un seul et même TP.
+Dans les précédents TP, nous avons traité de la création d'une VM, de l'installation d'un serveur Web et d'une base de données. Dans ce TP, vous allez devoir mettre en place un serveur permettant d'héberger un site Web et une base de données. Il n'y aura pas de procédure pas à pas, à vous de mettre en place les éléments vus précédemment.
 
-Vous avez atteint un point étape. Vous avez maintenant la capacité de créer des serveurs Web et de base de données.
+Vous avez atteint un point étape. Vous avez maintenant la capacité de créer des serveurs Web et des serveurs de base de données.
 
-Ce TP est un donc un TP de synthèse.
+Ce TP est un donc une synthèse des précédents.
 
 <center><iframe src="https://giphy.com/embed/CjmvTCZf2U3p09Cn0h" width="480" height="452" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></center>
 
@@ -37,7 +37,7 @@ Et plus particulièrement des TP :
 - [TP1. Créer une VM depuis un modèle.](./tp1alt.md)
 - [TP2. Installer un serveur Web.](./tp2.md)
 - [TP3. Installer une base de données.](./tp3.md)
-- [TP4. Déployer votre code](./tp4.md)
+- [TP4. Déployer votre code.](./tp4.md)
 
 ::: danger Attention
 
@@ -45,7 +45,7 @@ N'oubliez pas de documenter votre travail. Vous devez fournir un rapport illustr
 
 :::
 
-Ici pas de procéure pas à pas. Vous devez réaliser les éléments suivants :
+Ici pas de procédure pas-à-pas. Vous devez réaliser les éléments suivants :
 
 ## Partie Serveur
 
@@ -57,13 +57,13 @@ Ici pas de procéure pas à pas. Vous devez réaliser les éléments suivants :
 
 ## Partie Web
 
-- Votre serveur doit posséder un serveur web (Apache)
+- Votre serveur doit posséder un serveur Web (Apache)
 - Votre serveur doit posséder un serveur PHP 8 (la version la plus récente disponible sur le dépôt Ondrej).
 - Votre serveur doit posséder deux sites :
   - Le premier doit être accessible via le port 80.
   - Le second doit être accessible via le port 8080.
 
-### Les site sur le port 80
+### Le site sur le port 80
 
 Le site sur le port 80 doit être votre blog (réalisé en début de formation). Celui-ci doit être déployé sur votre serveur via Git.
 
