@@ -28,5 +28,5 @@ next:
 ---
 
 <center>
-  <a rel="me" href="https://mastodon.gougere.fr/@c4software">Mon Mastodon</a> - <a rel="me" href="https://twitter.com/c4software">Mon Twitter</a>
+  <a rel="me" href="https://mastodon.gougere.fr/@c4software">Mon Mastodon</a> - <a rel="me" href="https://twitter.com/c4software">Mon Twitter</a> - <a rel="contact" href="/pages/contact.html">Contact</a>
 </center>
