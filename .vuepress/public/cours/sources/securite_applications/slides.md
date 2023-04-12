@@ -511,8 +511,17 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ---
 
+## Plusieurs formes
+
+- **Mémorielle** qui représente une chose que l'intéressé connaît (**un secret**),
+- **Matérielle** qui se réfère à quelque chose qu'il possède (**un objet**),
+- **Corporelle** qui utilise un trait physique de l'utilisateur (**une biométrie**).
+
+---
+
 ## La double authentification
 
+- **Mot de passe :** chaine de caractère, chiffre, symbole.
 - **Application :** OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
 - **Objet physique :** U2F (Universal 2nd Factor) : Clé USB, Yubikey.
 - **Biométrie :** Empreinte digitale, Reconnaissance faciale.

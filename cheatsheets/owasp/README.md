@@ -55,10 +55,17 @@ Les mots de passe :
 - Le sel peut-être différent pour chaque utilisateur ou global pour tous les utilisateurs. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe.
 - Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (SHA-256).
 
-## La double authentification
+## Authentification à plusieurs facteurs
+
+3 formes d'authentification :
+
+- Mémorielle qui représente une chose que l'intéressé connaît (un secret),
+- Matérielle qui se réfère à quelque chose qu'il possède (un objet),
+- Corporelle qui utilise un trait physique de l'utilisateur (une biométrie).
 
 Des **outils** :
 
+- **Mot de passe :** Un mot de passe avec un niveau de sécurité suffisant (longueur, caractères spéciaux, majuscules, minuscules, chiffres).
 - **Application :** OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
 - **Objet physique :** U2F (Universal 2nd Factor) : Clé USB, Yubikey.
 - **Biométrie :** Empreinte digitale, Reconnaissance faciale.
