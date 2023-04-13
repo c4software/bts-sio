@@ -233,3 +233,25 @@ Une méthode `login` est définie dans le fichier [`lib/data/services/api.dart`]
 - lastName : le nom de l'utilisateur.
 
 Cette API est appelée dans le fichier `lib/ui/screens/home/tabs/LoginTab.dart` lors de la validation du formulaire.
+
+La méthode est asynchrone, elle retourne un `Future` qui contient les données de l'utilisateur connecté, le code de la fonction est le suivant :
+
+```dart
+// Fonction appelée lors de la connexion
+// Elle appelle l'API pour se connecter
+// Si la connexion est réussie, on affiche les informations de l'utilisateur
+_getData() async {
+  API.login(_username, _password).then((response) {
+    setState(() {
+      _data = LoginData.fromJson(json.decode(response.body));
+      _loading = false;
+    });
+  }).catchError((error) {
+    _loading = false;
+  });
+}
+```
+
+::: tip Je vous laisse regarder l'ensemble du code
+Pour comprendre le fonctionnement de l'authentification, je vous invite à regarder le code disponible dans le projet GitHub.
+:::
