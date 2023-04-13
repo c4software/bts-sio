@@ -204,6 +204,32 @@ Les données récupérées depuis l'API sont des données au format JSON. Pour p
         thumbnailUrl = json['thumbnailUrl'];
 ```
 
-Cette méthode permet de créer un objet `ImageData` à partir d'un objet `Map` qui contient les données au format clé / valeur (résultat du découpage JSON). 
+Cette méthode permet de créer un objet `ImageData` à partir d'un objet `Map` qui contient les données au format clé / valeur (résultat du découpage JSON).
 
 **Bien évidemment, il faut que les clés de l'objet `Map` correspondent aux propriétés de l'objet `ImageData`.**
+
+## L'authentification
+
+Dans le projet vous avez un exemple d'authentification avec un formulaire. Le formulaire est composé de deux champs :
+
+- `username` : le nom d'utilisateur.
+- `password` : le mot de passe.
+
+Le code est dans le fichier [`lib/ui/scroons/home/tabs/LoginTab.dart`](https://github.com/c4software/flutter-list-sample/blob/master/lib/ui/screens/home/tabs/LoginTab.dart). Il est composé des éléments suivants :
+
+- LoginTab : la classe qui représente le formulaire d'authentification.
+- FormAuthWidget : le widget qui représente le formulaire d'authentification. (avec les champs et le bouton de validation).
+- AuthUserInformationWidget : le widget qui représente les informations de l'utilisateur connecté.
+
+Les actions sont réalisés via des `Callback` (`onLogin` et `onLogout`, …).
+
+### L'API de l'authentification
+
+Une méthode `login` est définie dans le fichier [`lib/data/services/api.dart`](https://github.com/c4software/flutter-list-sample/blob/master/lib/data/services/api.dart), il s'agit de l'API qui permet de se connecter. Cette API retourne un objet de type `LoginData` qui contient les informations de l'utilisateur connecté.
+
+- id : l'identifiant de l'utilisateur.
+- email : l'email de l'utilisateur.
+- firstName : le prénom de l'utilisateur.
+- lastName : le nom de l'utilisateur.
+
+Cette API est appelée dans le fichier `lib/ui/screens/home/tabs/LoginTab.dart` lors de la validation du formulaire.
