@@ -219,7 +219,26 @@ Comprendre la configuration c'est important, c'est une partie importante de votr
 systemctl restart apache2
 ```
 
-### 4 - Profit !
+### 5 - Installer NodeJS
+
+Si vous avez utilisé Breeze, il vous faudra installer NodeJS pour pouvoir compiler les assets.
+
+```sh
+curl -sL https://deb.nodesource.com/setup_16.x | bash -
+apt-get install -y nodejs
+```
+
+### 6 - Compiler les assets
+
+Cette étape va permettre de compiler les assets (CSS, JS, etc.) de votre site pour qu'ils soient utilisables par le navigateur.
+
+```sh
+cd /var/www/html/votresite
+npm install
+npm run build
+```
+
+### 7 - Profit !
 
 Voilà ! Votre site est maintenant fonctionnel sur votre serveur.
 
