@@ -215,8 +215,8 @@ Listen 8888
 ::: tip ici nous avons
 
 - `Listen 80` : le port par défaut d'Apache
-- `Listen 8181` : le port sur lequel le site A est accessible
-- `Listen 8080` : le port sur lequel le site B est accessible
+- `Listen 8080` : le port sur lequel le site A est accessible
+- `Listen 8888` : le port sur lequel le site B est accessible
 
 Si nous voulions ajouter un quatrième site Web, nous aurions donc ajouté une ligne `Listen 8282` dans le fichier `ports.conf`. Ou tout autre port libre sur le serveur.
 
