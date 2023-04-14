@@ -10,6 +10,14 @@ Dans ce TP, nous allons créer un serveur avec Debian. Nous allons installer un 
 [[toc]]
 :::
 
+::: danger Attention
+
+Document de référence, il est découpé en plusieurs partie pour faciliter la lecture :
+
+- [Voir page avec découpage](/pages/categories/les-serveurs.md)
+
+:::
+
 ## Introduction
 
 Les serveurs web et les serveurs de base de données sont des serveurs qui sont souvent utilisés ensemble. En effet, un site web dynamique nécessite souvent une base de données pour stocker les données.
