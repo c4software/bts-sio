@@ -186,6 +186,40 @@ Ce ne sont évidemment que des exemples.
 
 :::
 
+## Les virtualHost
+
+```bash
+nano /etc/apache2/sites-available/votre-virtual-host.conf
+```
+
+```apache
+<VirtualHost *:9090>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/votre-dossier
+
+    <Directory /var/www/html/votre-dossier>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Activer un virtual host :
+
+```bash
+a2ensite votre-virtual-host
+```
+
+Désactiver un virtual host :
+
+```bash
+a2dissite votre-virtual-host
+```
+
 ## Installer PhpMyAdmin
 
 Pour installer phpMyAdmin, vous pouvez utiliser la commande suivante :

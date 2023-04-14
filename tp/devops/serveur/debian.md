@@ -479,6 +479,40 @@ Lors de l'installation de PHP, nous avons installé l'extension `php-mysql`. Cet
 
 :::
 
+## Les virtualHost
+
+```bash
+nano /etc/apache2/sites-available/votre-virtual-host.conf
+```
+
+```apache
+<VirtualHost *:9090>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/votre-dossier
+
+    <Directory /var/www/html/votre-dossier>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Activer un virtual host :
+
+```bash
+a2ensite votre-virtual-host
+```
+
+Désactiver un virtual host :
+
+```bash
+a2dissite votre-virtual-host
+```
+
 ## Installation de phpMyAdmin
 
 Maintenant que nous avons un serveur web et une base de données, nous allons installer phpMyAdmin. phpMyAdmin est un outil qui permet de gérer facilement une base de données. Il permet de créer des bases de données, des tables, des utilisateurs, etc.
