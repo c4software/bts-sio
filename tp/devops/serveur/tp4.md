@@ -188,6 +188,17 @@ su -
 
 :::
 
+### Désactiver les sites Web
+
+Si vous voulez désactiver un site Web, vous pouvez utiliser la commande `a2dissite` :
+
+```bash
+a2dissite siteA
+a2dissite siteB
+```
+
+Cette commande va supprimer le lien symbolique dans le dossier `/etc/apache2/sites-enabled/`.
+
 ### Écouter sur plusieurs ports
 
 Par défaut, Apache écoute sur le port 80. Nous allons donc modifier la configuration d'Apache pour qu'il puisse écouter sur plusieurs ports.

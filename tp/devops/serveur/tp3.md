@@ -456,6 +456,56 @@ Une fois DBeaver lancé, vous devriez pouvoir vous connecter à MariaDB en utili
 - **Hôte** : `<adresse_ip>`
 - **Port** : `3306`
 
+## Un virtual host pour PHPMyAdmin ?
+
+Si vous souhaiter avoir un virtual host pour PHPMyAdmin, vous pouvez suivre les instructions suivantes :
+
+⚠️ Cette partie est optionnelle. Si vous ne souhaitez pas avoir un virtual host pour PHPMyAdmin, vous pouvez passer à la partie suivante.
+
+::: details Voir les instructions
+
+### Créer un virtual host dédié à phpMyAdmin
+
+Pour créer un virtual host, vous pouvez utiliser la commande suivante :
+
+```bash
+nano /etc/apache2/sites-available/phpmyadmin.conf
+```
+
+Cette commande va créer un fichier `phpmyadmin.conf` dans le dossier `/etc/apache2/sites-available`. Ce fichier va contenir la configuration de notre virtual host.
+
+Ce fichier va contenir la configuration de notre virtual host. Vous pouvez copier-coller le code suivant :
+
+```apache
+<VirtualHost *:9090>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/phpmyadmin
+
+    <Directory /var/www/html/phpmyadmin>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Pour activer le virtual host, vous pouvez utiliser la commande suivante :
+
+```bash
+a2ensite phpmyadmin
+```
+
+Cette commande va activer le virtual host `phpmyadmin.conf`. Vous pouvez maintenant redémarrer Apache pour que les modifications soient prises en compte :
+
+```bash
+systemctl restart apache2
+```
+
+:::
+
 ## Conclusion
 
 Dans ce TP, nous avons vu comment installer MariaDB et PHPMyAdmin. Nous avons aussi vu comment configurer MariaDB pour qu'il accepte les connexions distantes. Vous pouvez maintenant garder ce serveur pour vous entraîner à créer des bases de données et à les gérer.
