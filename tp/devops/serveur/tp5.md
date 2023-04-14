@@ -129,7 +129,7 @@ CREATE TABLE `commande` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_utilisateur` int(11) NOT NULL,
   `date` date NOT NULL,
-  `montant` float NOT NULL
+  `montant` float NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
