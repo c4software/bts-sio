@@ -144,3 +144,13 @@ Pour observer le fonctionnement, vous devez utiliser`L'inspecteur d'éléments` 
 En développement, vous devez être acteur de votre analyse, ça passe par l'utilisation des outils intégrés à votre navigateur.
 
 :::
+
+## Normer les API
+
+Pour normer les API, il existe des outils tels que :
+
+- [Swagger](https://swagger.io/)
+- [Définition des API](https://swagger.io/specification/)
+- [OpenAPI](https://www.openapis.org/)
+
+L'idée est de générer une documentation technique à partir du code source. Cette documentation technique permettra de générer des clients pour les différents langages.
