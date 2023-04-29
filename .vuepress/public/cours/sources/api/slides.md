@@ -276,4 +276,12 @@ https://json.org/example.html
 
 ---
 
+## Normer les API
+
+- [Swagger](https://swagger.io/)
+- [Définition des API](https://swagger.io/specification/)
+- [OpenAPI](https://www.openapis.org/)
+
+---
+
 ## Des questions ?
