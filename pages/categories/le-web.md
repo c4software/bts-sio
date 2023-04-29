@@ -31,3 +31,11 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 - [Cours Laravel](/cours/laravel.md)
 - [Aide mémoire Laravel](/cheatsheets/laravel/README.md)
 - [Les commandes Laravel](/cheatsheets/laravel/quick.md)
+
+### API
+
+- [Cours Introduction API](/cours/introduction_api.md)
+- [Aide mémoire API](/cheatsheets/api/README.md)
+- [Aide mémoire Ajax](/cheatsheets/javascript/README.md)
+- [Créer des API avec Laravel](/tp/laravel/laravel_api.md)
+- [Appeler des API depuis le JavaScript](/tp/javascript/tp4.md)
