@@ -98,6 +98,11 @@ Pour progresser en développement il faut se maintenir à jour, et pour cela il 
 - [Rappel sur le centrage en CSS](https://web.dev/centering-in-css/)
 - [Afficher du code](https://carbon.now.sh/)
 
+## Polices :
+
+- [Google Fonts](https://fonts.google.com/)
+- [Bunny fonts](https://fonts.bunny.net/)
+
 ## Icones :
 
 - [Material Design Icons](https://materialdesignicons.com/)
