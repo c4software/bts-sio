@@ -29,7 +29,7 @@ sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/
 
 # Installer Apache + PHP
 apt update
-apt install curl open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd} -y
+apt install curl zip open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd,xml} -y
 
 # Activer PHP dans Apache
 a2enmod proxy_fcgi setenvif rewrite
@@ -71,7 +71,7 @@ Debian est une distribution stable, mais stabilité ≠ modernité. Pour avoir l
 
 ```bash
 apt update
-apt install php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd}  -y
+apt install zip php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd,xml}  -y
 ```
 
 Démarrez le serveur Apache
