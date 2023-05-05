@@ -247,7 +247,7 @@ Vous devriez voir quelque chose similaire à :
 Maintenant que notre PHP est installé, il faut l'activer :
 
 ```bash
-a2enmod proxy_fcgi setenvif rewrite
+a2enmod proxy_fcgi setenvif rewrite headers
 a2enconf php8.2-fpm
 systemctl restart apache2
 ```
