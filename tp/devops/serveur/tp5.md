@@ -260,7 +260,7 @@ do
     table_row_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'select count(*) from tp5.utilisateur;' | grep -q '5' && echo 'true' || echo 'false'")
 
     # Vérifier la présence du bon nombre de lignes dans la table commande
-    table_row_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'select count(*) from tp5.commande;' | grep -q '14' && echo 'true' || echo 'false'")
+    table_row_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'select count(*) from tp5.commande;' | grep -q '15' && echo 'true' || echo 'false'")
 
     # Retourner le résultat
     echo "VM $user@$target_ip :"
