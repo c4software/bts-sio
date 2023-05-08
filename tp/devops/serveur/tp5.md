@@ -209,7 +209,7 @@ function ssh_execute {
 
 # Tableau contenant les utilisateurs et les IPs des serveurs à vérifier
 array=(
-  "$USER;127.0.0.1"
+    "$USER;127.0.0.1"
 )
 
 # Itérer sur le tableau et afficher chaque utilisateur et IP séparément
@@ -250,17 +250,17 @@ do
     phpmyadmin_check=$(ssh_execute $user $target_ip "wget -qO- http://localhost:9090/ | grep -q 'html' && echo 'true' || echo 'false'")
 
     # Vérifier la base de données
-    db_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'show databases;' | grep -q 'tp5' && echo 'true' || echo 'false'")
+    db_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'use tp5;show databases;' | grep -q 'tp5' && echo 'true' || echo 'false'")
 
     # Vérifier la présence des tables du script SQL
-    table_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'show tables;' | grep -q 'commande' && echo 'true' || echo 'false'")
-    table_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'show tables;' | grep -q 'utilisateur' && echo 'true' || echo 'false'")
+    table_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'use tp5;show tables;' | grep -q 'commande' && echo 'true' || echo 'false'")
+    table_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'use tp5;show tables;' | grep -q 'utilisateur' && echo 'true' || echo 'false'")
 
     # Vérifier la présence du bon nombre de lignes dans la table utilisateur
-    table_row_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'select count(*) from utilisateur;' | grep -q '5' && echo 'true' || echo 'false'")
+    table_row_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'select count(*) from tp5.utilisateur;' | grep -q '5' && echo 'true' || echo 'false'")
 
     # Vérifier la présence du bon nombre de lignes dans la table commande
-    table_row_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'select count(*) from commande;' | grep -q '14' && echo 'true' || echo 'false'")
+    table_row_check=$(ssh_execute $user $target_ip "mysql -u tp5 -p'voici-le-mot-de-passe-de-la-bdd' -e 'select count(*) from tp5.commande;' | grep -q '14' && echo 'true' || echo 'false'")
 
     # Retourner le résultat
     echo "VM $user@$target_ip :"
@@ -276,3 +276,4 @@ do
     echo "  - Lignes : $table_row_check"
     echo ""
 done
+```
