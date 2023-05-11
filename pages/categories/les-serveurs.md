@@ -19,6 +19,16 @@ Connaitre le fonctionnement des serveurs est indispensable pour comprendre le fo
 - [Linux à base de Debian](/cheatsheets/serveur/linux-debian-based.md)
 - [Configurer un serveur Web (Apache, PHP, MariaDB)](/cheatsheets/serveur/debian-web.md)
 
+## Les TP Debian
+
+- [TP 1 - Créer une VM sur la ferme](/tp/devops/serveur/tp1.md)
+- [TP 1b - Première installation d'une VM](/tp/devops/serveur/tp1b.md)
+- [TP 1c - Prendre en main la ligne de commande](/tp/devops/serveur/tp1c.md)
+- [TP 2 - Configurer un serveur Web](/tp/devops/serveur/tp2.md)
+- [TP 3 - Configurer un serveur de Base de données](/tp/devops/serveur/tp3.md)
+- [TP 4 - Déployer (et redéployer) son code sur un serveur](/tp/devops/serveur/tp4.md)
+- [TP 5 - Créer un serveur Web & BDD](/tp/devops/serveur/tp5.md)
+
 ## Monter un serveur
 
 - [Alpine Linux](/tp/devops/alpine-vm.md)
