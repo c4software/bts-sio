@@ -200,6 +200,11 @@ Votre Nom : <input type="text" name="nom" value="" />
 alert("Bonjour " + $_POST["nom"]);
 ```
 
+Deux types sont à connaitre :
+
+- XSS Persistant (Stocké)
+- XSS Reflété (via un lien)
+
 #### Comment corriger ?
 
 - Toujours valider les entrées utilisateurs.

@@ -17,7 +17,7 @@ Avant d'utiliser WebGoat, nous allons nous focaliser sur la partie Injection SQL
 
 Celui-ci contient un bon « tutoriel » interactif permettant de tester et de se former au principe d’injections SQL.
 
-## Partie 2 : Les XSS
+## Partie 2 : Les XSS Réfléchies / Stockées
 
 Voilà un exemple simple de XSS via un input non filtré.
 
@@ -67,7 +67,7 @@ C'est à vous (enfin à nous).
 
 :::
 
-## Partie 2.1 : Les XSS
+## Partie 2.1 : Les XSS Stockées
 
 Pour mieux comprendre l'aspect dangereux d'une XSS nous allons utiliser Hack Splaining, pour ça rendez-vous sur [Hack Splaining](https://www.hacksplaining.com/exercises/xss-stored)
 

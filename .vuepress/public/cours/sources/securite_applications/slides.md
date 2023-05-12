@@ -368,7 +368,12 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ### A3 - Cross-Site Scripting (XSS)
 
-Exécution de code JavaScript sans validation
+Exécution de code JavaScript sans validation.
+
+- XSS Stocké (base de données).
+- XSS Réfléchi (URL / Lien).
+
+---
 
 ```html
 Votre Nom : <input type="text" name="nom" value="" />
