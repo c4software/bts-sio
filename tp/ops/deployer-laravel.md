@@ -227,7 +227,8 @@ Si vous avez utilisé Breeze, il vous faudra installer NodeJS pour pouvoir compi
 
 ```sh
 curl -sL https://deb.nodesource.com/setup_16.x | bash -
-apt-get install -y nodejs
+apt update
+apt install -y nodejs
 ```
 
 ### 2 - Compiler les assets
