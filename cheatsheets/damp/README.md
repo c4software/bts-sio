@@ -83,7 +83,9 @@ La configuration de l'interface graphique se fait en modifiant le fichier `confi
 
 ### Interface graphique
 
-🎉 Il suffit de la lancer pour que celle-ci fonctionne 🎉.
+- 1. Lancer Docker Desktop.
+- 2. Lancer DAMP.
+- 3. Profit !
 
 ### Interface en ligne de commande
 
