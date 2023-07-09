@@ -82,7 +82,13 @@ La configuration de l'interface graphique se fait en modifiant le fichier `confi
 
 ## Utilisation
 
+_Démo interface graphique :_
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5KvGDLrcasw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+_Démo interface en ligne de commande :_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n3xNIprTFMU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Interface graphique
 
