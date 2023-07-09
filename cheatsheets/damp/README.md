@@ -77,6 +77,7 @@ La configuration de DAMP se fait en modifiant les fichiers :
 La configuration de l'interface graphique se fait en modifiant le fichier `configuration.yaml` :
 
 - `home` : Chemin **absolu** vers le dossier contenant le fichier `docker-compose.yml`.
+- `dockerStackHome`: Chemin **absolu** ou **relatif** vers les dossiers qui seront montés dans les conteneurs. (vous pouvez laisser `./`, cela correspond au dossier contenant le fichier `docker-compose.yml`)
 - `services` : Liste des services à afficher dans l'interface graphique.
 
 ## Utilisation
