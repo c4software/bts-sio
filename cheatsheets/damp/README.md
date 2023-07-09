@@ -29,10 +29,10 @@ DAMP contient les éléments suivants :
 - PHPMyAdmin (dernière version)
 - MongoDB (dernière version)
 
-### Docker c'est deux choses
+### DAMP c'est deux choses
 
 - Un stack via Docker Compose pour créer un environnement de développement
-- Une interface graphique pour gérer les conteneurs (Démarer, arrêter, etc.)
+- Une interface graphique pour gérer les conteneurs (Démarrer, arrêter, etc.)
 
 ::: tip L'interface graphique
 
@@ -42,7 +42,7 @@ L'interface graphique est optionnelle, vous pouvez très bien utiliser DAMP sans
 
 ## Prérequis
 
-Pour fonctionner vous devez avoir installé Docker et Docker Compose sur votre machine. Pour cela, il vous suffit d'installer Docker Desktop :
+Pour fonctionner, vous devez avoir installé Docker et Docker Compose sur votre machine. Pour cela, il vous suffit d'installer Docker Desktop :
 
 - [Installer Docker](https://docs.docker.com/get-docker/)
 
@@ -100,7 +100,7 @@ Les ports utilisés par la version en ligne de commande seront affichés dans le
 
 Vos fichiers Web doivent être placés dans le dossier `data/htdocs`. Ce dossier est monté dans le conteneur Apache.
 
-Ils seront ensuite accessible via l'adresse spécifiée dans la configuration de l'interface graphique ou dans le terminal.
+Ils seront ensuite accessibles via l'adresse spécifiée dans la configuration de l'interface graphique ou dans le terminal.
 
 Vous avez de base un fichier `index.php` qui affiche le `phpinfo()`.
 
@@ -130,7 +130,7 @@ PHP est accessible à l'adresse suivante : [http://localhost:8080](http://localh
 
 Oui DAMP est Open Source, vous pouvez retrouver le code source sur GitHub :
 
-- [L'inteface graphique](https://github.com/c4software/DAMP)
+- [L'interface graphique](https://github.com/c4software/DAMP)
 - [La Stack Docker (et le script de démarrage)](https://github.com/c4software/DAMP-docker-stack)
 
 ### Comment puis-je contribuer ?
