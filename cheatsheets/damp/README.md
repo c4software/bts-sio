@@ -10,29 +10,19 @@ Document présentant l'installation de Docker, Apache, MySQL et PHP.
 
 DAMP est un acronyme pour Docker Apache MySQL PHP. Il s'agit d'un environnement de développement pour les applications web. Il repose sur Docker et permet de créer un environnement de développement en quelques minutes.
 
-## Démo
-
-_Interface graphique_ :
-
-![DAMP UI](./demo.jpg)
-
-_Interface en ligne de commande_ :
-
-![DAMP CURSES](./demo2.jpg)
-
 ### Que contient DAMP ?
 
 DAMP contient les éléments suivants :
 
-- PHP 8.2
+- PHP 8.2.7
 - MariaDB 10.9
 - PHPMyAdmin (dernière version)
 - MongoDB (dernière version)
 
 ### DAMP c'est deux choses
 
-- Un stack via Docker Compose pour créer un environnement de développement
-- Une interface graphique pour gérer les conteneurs (Démarrer, arrêter, etc.)
+- Un stack via Docker Compose pour créer un environnement de développement.
+- Une interface graphique pour gérer les conteneurs (Démarrer, arrêter, etc.).
 
 ::: tip L'interface graphique
 
@@ -58,14 +48,12 @@ Pour installer DAMP, il suffit de :
 
 ## Linux & MacOS
 
-L'interface graphique n'est pas pré-compilée pour Linux et MacOS, il faut donc la compiler soit même. Pour cela, il faut :
-
-- 1. [Clonez le dépôt](https://github.com/c4software/DAMP/tree/master).
-
-Solution alternative :
+L'interface graphique n'est pas pré-compilée pour Linux et MacOS. Vous pouvez [la compiler vous même](https://github.com/c4software/DAMP), mais je vous conseille d'utiliser la version en ligne de commande :
 
 - 1. [Clonez le dépôt Docker-Stack](https://github.com/c4software/DAMP-docker-stack).
 - 2. Lancer le script `startup.sh`.
+
+Le fonctionnement est le même que pour la version graphique, vous pouvez utiliser le script `startup.sh` pour démarrer les conteneurs.
 
 ## Configuration
 
