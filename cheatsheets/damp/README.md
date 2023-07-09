@@ -76,7 +76,7 @@ La configuration de DAMP se fait en modifiant les fichiers :
 
 La configuration de l'interface graphique se fait en modifiant le fichier `configuration.yaml` :
 
-- `home` : Chemin vers le dossier contenant le fichier `docker-compose.yml`.
+- `home` : Chemin **absolu** vers le dossier contenant le fichier `docker-compose.yml`.
 - `services` : Liste des services à afficher dans l'interface graphique.
 
 ## Utilisation
@@ -86,6 +86,10 @@ La configuration de l'interface graphique se fait en modifiant le fichier `confi
 - 1. Lancer Docker Desktop.
 - 2. Lancer DAMP.
 - 3. Profit !
+
+::: danger Attention
+Le premier démarrage peut prendre plusieurs minutes, le temps de télécharger les images Docker.
+:::
 
 ### Interface en ligne de commande
 
