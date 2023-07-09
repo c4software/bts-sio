@@ -25,6 +25,9 @@ actions:
   - text: Les ressources
     link: /tp/veille/ressources.html
     type: secondary
+  - text: DAMP
+    link: /cheatsheets/damp/index.html
+    type: secondary
 next:
   text: GitHub
   link: https://github.com/c4software/bts-sio
