@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr" v-scope v-cloak @vue:mounted="init">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat avec Ye {{messageCount}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <style>
+        [v-cloak] { display: none; }
+
+        .loader {
+            width: 55px;
+            height: 30px;
+            background-color: #f1f0f0;
+            margin: auto;
+            border-radius: 15px;
+            padding: 0 10px 8px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+        }
+        .loader .dot {
+            display: inline-block;
+            background-color: #90949c;
+            border-radius: 50%;
+            width: 7px;
+            height: 7px;
+            animation: jump 1.5s linear infinite;
+        }
+        .loader .dot:nth-of-type(2) {
+            animation-delay: 0.1s;
+        }
+        .loader .dot:nth-of-type(3) {
+            animation-delay: 0.2s;
+        }
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+            18% {
+                transform: translateY(-7px);
+            }
+            36%, 100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-400 font-sans leading-normal tracking-normal">
+
+    <!--Nav-->
+    <nav class="bg-gray-800 p-2 mt-0 fixed w-full z-10 top-0">
+        <div class="container mx-auto flex flex-wrap items-center">
+            <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
+                <a class="text-white no-underline hover:text-white hover:no-underline" href="#">
+                    <span class="text-2xl pl-2"><i class="em em-spock-hand"></i> Ye</span>
+                </a>
+            </div>
+            <div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
+                <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                    <li class="mr-3">
+                        <a class="inline-block py-2 px-4 text-white no-underline" href="#">Accueil</a>
+                    </li>
+                    <li class="mr-3">
+                        <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">À propos</a>
+                    </li>
+                    <li class="mr-3">
+                        <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">Cours</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--Container-->
+    <div class="container shadow-lg mx-auto bg-white mt-[8em] w-96 h-[20rem] overflow-auto p-8 scroll-smooth" id="chat">
+
+        <div class="chat-message" v-for="current in messages">
+            <div class="flex items-end justify-end my-3"  v-if="current.user == 'valentin'">
+                <div class="flex flex-col space-y-2 text-xs  max-w-[60%] mx-2 order-1 items-end">
+                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white">{{current.message}}</span></div>
+                </div>
+                <img :src="current.pic" title="Valentin" class="w-6 h-6 rounded-full order-2">
+            </div>
+
+            <div class="flex items-end my-3" v-else-if="current.user == 'kanye'">
+                <div class="flex flex-col space-y-2 text-xs  max-w-[60%] mx-2 order-2 items-start">
+                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">{{current.message}}</span></div>
+                </div>
+                <img :src="current.pic" class="w-6 h-6 rounded-full order-2" title="Kanye">
+            </div>
+        </div>
+
+        <div class="loader" v-if="fetching">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <div class="container shadow-lg mx-auto bg-white p-8 w-96">
+        <div class="border-t-2 border-gray-200 mt-4 pt-4 mb-2 sm:mb-0">
+            <div class="relative flex">
+                <input type="text" v-model="message" placeholder="Votre message" @keyup.enter="addMessage()" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
+                <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
+                    <button @click="addMessage()" type="button" class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 transform rotate-90">
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/petite-vue?module'
+
+        createApp({
+            messages: [],
+            message: "",
+            fetching: false,
+
+            get messageCount(){
+                this.messages.length;
+            },
+
+            scrollBottom(){
+                this.$nextTick().then(() => {
+                    const chat = document.getElementById("chat");
+                    chat.scrollTop = chat.scrollHeight +  1000;
+                });
+            },
+
+            addMessage(){
+                this.messages.push({message: this.message, user: "valentin", pic:"https://pbs.twimg.com/profile_images/3762199551/9fdd72f73c3eb3c974b004e83f7b4623_normal.jpeg"});
+                this.message = "";
+
+                this.fetching = true;
+                setTimeout(this.fetchKanye, 1000);
+                this.scrollBottom();
+            },
+
+            addKanye(message){
+                const pic = "https://images.rtl.fr/~c/770v513/rtl/www/1461751-kanye-west-s-est-rebaptise-ye-pour-des-motifs-personnels.jpg";
+                this.messages.push({ message, user: "kanye", pic })
+                this.scrollBottom();
+            },
+
+            fetchKanye() {
+                this.fetching = true;
+                
+                fetch("https://api.kanye.rest/")
+                    .then((result) => result.json())
+                    .then((res) => this.addKanye(res.quote))
+                    .finally(() => this.fetching = false)
+            },
+
+            init() {
+                this.addKanye("Yo what's up bro ?!");
+                this.fetchKanye();
+            },
+        }).mount()
+    </script>
+
+</body>
+</html>

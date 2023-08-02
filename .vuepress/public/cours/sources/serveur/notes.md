@@ -1,0 +1,126 @@
+# Structure du cours
+
+- DevOPS
+  - Combinaison entre le développeur & le réseau.
+  - S’assurer de la qualité
+    - Tester
+    - Automatiser
+  - Objectif automatiser
+- Linux et les développeurs
+  - Desktop
+  - Serveur
+  - Les distributions
+- Windows et les développeurs
+- MacOS et les développeurs
+- Qu’est-ce qu’une serveur
+  - Ordinateur qui fourni des services à un tiers (ordinateur, smartphone, voiture, etc)
+  - Disponible H24
+  - Dans une environnement spécial
+  - Ou plus simplement « chez vous ».
+  - Exemple de serveur (Web, Base de données, Domotique, Fichier)
+  - Pourquoi avoir un serveur « chez soit »
+- Se représenter un serveur
+  - (Voir image)
+- Un serveur Web
+  - Serveur de fichier
+  - Execution de code (PHP, NodeJS, etc)
+  - Apache
+  - Nginx
+  - Autre
+  - Virtual Host
+  - Les ports
+- Un serveur de base de données
+  - Gestion des données
+  - MySQL
+  - Postqresql
+- La notion de LAMP
+  - Linux, Apache, MySQL, PHP
+  - C’est une Stack Logiciel
+
+=== FIN SLIDE 1 ===
+
+
+
+- Le réseau
+  - Adresse IP
+  - DNS
+  - Sécurité
+  - Le DHCP
+- Les ports
+  - Canal de communication
+  - Normé
+  - Port système
+  - Port utilisateur
+  - Sécurité
+    - IPTABLE
+    - Firewall
+    - Redirection de port sur la box
+- La ligne de commande
+  - Pourquoi
+  - Comment
+  - Les commandes de bases
+  - Les droits utilisateurs
+- L’organisation d’un Linux (Dossier, concept)
+  - Normé (liste à montrer)
+  - Ne voir que les éléments de bases et introduire vers « la suite)
+- Installer un logiciel
+  - La commande apt (ou apt-get)
+  - Les dépôts
+  - Normalisé
+  - Sécurisé
+  - Centralisé
+- La notion de service
+  - Qu’est-ce qu’un service
+  - Pourquoi ?
+  - Systemctl
+- Les utilisateurs
+  - Les différents compte
+  - L’importance des différents compte
+  - Les mots de passe et la sécurité.
+- L’accès à distance
+  - SSH
+  - FTP
+  - SFTP
+  - VNC
+  - Les clés d’authentification
+    - Chiffrement asymétrique
+    - Fonctionnement d’une clé SSH
+    - Comment les générer
+    - Comment les utiliser
+    - Pourquoi c’est important
+- Les sauvegardes
+  - L’importance des sauvegardes
+  - L’organisation
+  - Les types de sauvegarde
+  - L’automatisation
+- Diagnostiquer un problème
+  - Méthodologie
+  - Les logs.
+  - Comment lire les logs.
+  - La sécurité et les logs.
+  - Superviser les logs
+- La sécurité
+  - Les ports
+  - Les services
+  - Les utilisateurs
+  - Les sauvegarde
+- Serveur Physique ou Serveur Virtuel
+  - Comparaison des deux
+  - Comment choisir
+- Un serveur ou plusieurs serveur ?
+  - Découpage des services
+  - Les différents environnements
+- La réplication
+  - Les différents types de réplication
+  - Comment choisir
+- Les hébergeurs
+  - Les différents types d'hébergement
+  - Comment choisir
+- Docker
+  - Gestion des services
+  - Multi-versions
+  - Comment choisir / pourquoi c’est intéressant.
+  - À détailler
+- Docker Compose
+  - Créer des stocks applicative
+  - Sécurité des ports

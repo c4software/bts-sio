@@ -1,0 +1,7 @@
+<?php
+
+/**
+ * This file is use to simplify the command line usage, and keeping the backward compatibility.
+ */
+
+include('index.php');

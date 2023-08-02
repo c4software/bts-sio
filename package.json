@@ -1,0 +1,36 @@
+{
+  "name": "cours",
+  "version": "3.0.0",
+  "description": "Supports de cours de Valentin Brosseau (BTS SIO, GRETA, MyDigitalSchool, ESEO, etc)",
+  "devDependencies": {
+    "@vuepress/plugin-search": "2.0.0-beta.61",
+    "vuepress": "2.0.0-beta.61",
+    "@vuepress/plugin-google-analytics": "2.0.0-beta.61",
+    "@vuepress/plugin-medium-zoom": "2.0.0-beta.61",
+    "vuepress-vite": "2.0.0-beta.61",
+    "typescript": "^4.7.4",
+    "lodash.defaultsdeep": "4.6.1",
+    "lodash.findindex": "4.6.0",
+    "lodash.isempty": "4.4.0",
+    "lodash.trimend": "4.5.1",
+    "lodash.trimstart": "4.5.1",
+    "remove-markdown": "0.5.0",
+    "striptags": "3.2.0",
+    "@vueuse/core": "9.13.0"
+  },
+  "scripts": {
+    "dev": "vuepress dev",
+    "serve": "vuepress dev",
+    "build": "vuepress build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c4software/bts-sio.git"
+  },
+  "author": "Valentin Brosseau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/c4software/bts-sio/issues"
+  },
+  "homepage": "https://github.com/c4software/bts-sio#readme"
+}

@@ -1,0 +1,34 @@
+body,
+html,
+#app {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+* {
+  user-select: none;
+}
+[v-cloak] {
+  display: none !important;
+}
+
+#app {
+  transition: background-color 1s;
+  font-size: 5em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+h1 {
+  display: inline-block;
+  font-size: 2em;
+}
+span {
+  font-size: 15rem;
+  padding: 50px;
+  display: inline-block;
+  cursor: pointer;
+}

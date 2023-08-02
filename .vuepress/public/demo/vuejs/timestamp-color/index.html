@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Timestamp Color</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="app" :style="`background-color: ${hexBackground}`" v-cloak>
+      <span @click="count = count - (60 * 1000)">-</span>
+      <h1>{{ getTimesFormatted }}</h1>
+      <span @click="count = count + (60 * 1000)">+</span>
+    </div>
+
+    <script type="module">
+      import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
+      Vue.config.devtools = true;
+
+      new Vue({
+        el: "#app",
+        computed: {
+          hexBackground() {
+            return this.colorToHex(this.count);
+          },
+          getTimesFormatted() {
+            let date = new Date(this.count);
+            return String(date.getHours()).padStart(2, "0") + ":" + String(date.getMinutes()).padStart(2, "0");
+          }
+        },
+        data() {
+          return {
+            count: Date.now()
+          };
+        },
+        methods: {
+          colorToHex(i) {
+            let bbggrr = ("000000" + i.toString(16)).slice(-6);
+            let rrggbb = bbggrr.substr(4, 2) + bbggrr.substr(2, 2) + bbggrr.substr(0, 2);
+            return "#" + rrggbb;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

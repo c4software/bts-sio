@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BartJS − Version Petite Vue</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <style>
+        #tableau {
+            background-color: #1e5518;
+            color: white;
+            border: 5px solid #5e3600;
+            padding: 10px;
+            max-width: 900px;
+            margin: auto;
+            height: 400px;
+            overflow: auto;
+            font-family: cursive;
+            font-size: x-large;
+        }
+
+        [v-cloak] { display: none; }
+    </style>
+</head>
+
+<body>
+    <div v-scope v-cloak>
+        <div>
+            <div class="form-group">
+                <label>Phrase</label>
+                <input class="form-control" type="text" v-model="phrase" />
+            </div>
+
+            <div class="form-group mt-2">
+                <label>Nombre de phrase : {{count}}</label>
+                <input min="5" max="100" class="form-control" type="range" v-model.number="count">
+            </div>
+        </div>
+        
+        <div id="tableau">
+            <div v-for="i in count" :key="i">{{phrase}}</div>
+        </div>
+    </div>
+
+
+    <script type="module">
+        import {createApp} from 'https://unpkg.com/petite-vue?module'
+        createApp({
+            phrase: 'Je ne copie pas le code de valentin',
+            count: 10
+        }).mount()
+    </script>
+</body>
+
+</html>
