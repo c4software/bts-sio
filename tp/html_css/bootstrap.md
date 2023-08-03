@@ -20,7 +20,7 @@ La première étape est toujours la même. Je vous laisse créer un nouveau fich
 
 ::: tip Astuce du chef
 
-Je vous le rappelle votre IDE à une fonctionnalité appelée « EMMET », vous avez donc des raccourcis à votre disposition permettant de gagner pas mal de temps.
+Je vous le rappelle votre IDE (VSCode, WebStorm, …) à une fonctionnalité appelée « EMMET », vous avez donc des raccourcis à votre disposition permettant de gagner pas mal de temps.
 
 ![emmet](./res/emmet.png)
 
@@ -28,9 +28,9 @@ Je vous le rappelle votre IDE à une fonctionnalité appelée « EMMET », vous 
 
 ## Ajout de Bootstrap
 
-Pour ajouter Bootstrap le plus simple est de **suivre la documentation officielle**. Celle-ci est disponible sur [le site de Bootstrap dans la partie Get Started](https://getbootstrap.com/docs/4.5/getting-started/introduction/#quick-start)
+Pour ajouter Bootstrap le plus simple est de **suivre la documentation officielle**. Celle-ci est disponible sur [le site de Bootstrap dans la partie Get Started](https://getbootstrap.com/docs/4.6/getting-started/introduction/#quick-start)
 
-Vous pouvez également remplacer votre fichier HTML vide par [le starter template proposé par Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/#starter-template)
+Vous pouvez également remplacer votre fichier HTML vide par [le starter template proposé par Bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/#starter-template)
 
 Je vous laisse valider que votre site fonctionne correctement.
 
@@ -45,7 +45,7 @@ Questions :
 
 Maintenant que nous avons une page vide disposant de Bootstrap, je vous propose de créer votre première page Bootstrap. Dans Bootstrap nous avons à notre disposition des « Templates » ou plutôt des « layouts » tout prêt nous permettant de partir d'une base de code déjà faite.
 
-C'est templates [sont disponibles dans le menu de la documentation](https://getbootstrap.com/docs/4.5/examples/).
+C'est templates [sont disponibles dans le menu de la documentation](https://getbootstrap.com/docs/4.6/examples/).
 
 ::: tip Pourquoi ? Quand ?
 « Copier ≠ ne pas travailler » nous en avons parlé, mais c'est toujours un rappel important. Dans notre cas, Bootstrap nous propose des templates / gabarit déjà faits. Ils sont là pour :
@@ -54,10 +54,10 @@ C'est templates [sont disponibles dans le menu de la documentation](https://getb
 - Améliorer la qualité de vos sites Internet.
 - Vous montrer comment intégrer les éléments de Boostrap.
 
-N'hésitez pas à vous en servir dans vos développements. Ils sont [disponible ici](https://getbootstrap.com/docs/4.5/examples)
+N'hésitez pas à vous en servir dans vos développements. Ils sont [disponible ici](https://getbootstrap.com/docs/4.6/examples)
 :::
 
-Faite votre choix, une fois que vous avez choisis regarder le code par exemple avec [du starter Template](https://getbootstrap.com/docs/4.5/examples/starter-template/)
+Faite votre choix, une fois que vous avez choisis regarder le code par exemple avec [du starter Template](https://getbootstrap.com/docs/4.6/examples/starter-template/)
 
 ## Mise en place d'une NavBar
 
@@ -84,7 +84,7 @@ Voilà un exemple de NavBar :
 </nav>
 ```
 
-La documentation de la NavBar est disponible sur le site. [Je vous laisse la consulter pour plus de détail](https://getbootstrap.com/docs/4.5/components/navbar/)
+La documentation de la NavBar est disponible sur le site. [Je vous laisse la consulter pour plus de détail](https://getbootstrap.com/docs/4.6/components/navbar/)
 
 ### À faire
 
@@ -98,11 +98,11 @@ Un autre incontournable dans le développement est l'affichage de « Card » afi
 
 ### À faire
 
-- En vous inspirant [du code fourni sur la page](https://getbootstrap.com/docs/4.5/components/card/), mettre en place sur votre page une Card.
+- En vous inspirant [du code fourni sur la page](https://getbootstrap.com/docs/4.6/components/card/), mettre en place sur votre page une Card.
 
 ## Le responsive
 
-Nous avons vu ensemble que Bootstrap était un framework permettant de gérer le responsive. En utilisant le système [de grid](https://getbootstrap.com/docs/4.5/layout/grid/) nous allons mettre sur notre site une grille de **3 colonnes**.
+Nous avons vu ensemble que Bootstrap était un framework permettant de gérer le responsive. En utilisant le système [de grid](https://getbootstrap.com/docs/4.6/layout/grid/) nous allons mettre sur notre site une grille de **3 colonnes**.
 
 Nous allons bien évidemment le faire ensemble.
 
@@ -110,7 +110,7 @@ Nous allons bien évidemment le faire ensemble.
 
 L'autre gros avantage de Bootstrap c'est l'aspect « propre » des formulaires. De bases sans que vous n'ayez aucune CSS vos formulaires seront « propre », pour ça rien de spécial à faire il suffit d'utiliser le code d'exemple fourni sur la documentation :
 
-[Exemple ici](https://getbootstrap.com/docs/4.5/components/forms/#form-row)
+[Exemple ici](https://getbootstrap.com/docs/4.6/components/forms/#form-row)
 
 ::: tip Petite remarque
 
@@ -126,9 +126,9 @@ Comme vous avez pu le constater dans l'exemple précédent. La documentation de 
 
 Bootstrap nous propose également des « Utilities », les utilities sont des petites aides CSS, nous permettant de gagner du temps sur des taches récurrentes de mise en forme :
 
-- Exemple [les bordures](https://getbootstrap.com/docs/4.5/utilities/borders/)
-- Ou encore [les ombres](https://getbootstrap.com/docs/4.5/utilities/shadows/)
-- Ou simplement [les alignements de textes](https://getbootstrap.com/docs/4.5/utilities/text/)
+- Exemple [les bordures](https://getbootstrap.com/docs/4.6/utilities/borders/)
+- Ou encore [les ombres](https://getbootstrap.com/docs/4.6/utilities/shadows/)
+- Ou simplement [les alignements de textes](https://getbootstrap.com/docs/4.6/utilities/text/)
 
 ::: tip Je vous vois là !
 
@@ -160,7 +160,7 @@ Je vous laisse ajouter un texte sur cette page. Attention à bien utiliser :
 
 ### Ajout d'un tableau
 
-Les tableaux, gros sujet les tableaux non ?! Bootstrap va vous simplifier GRANDEMENT la création et surtout le style des tableaux. Rendez-vous sur [la page Tables](https://getbootstrap.com/docs/4.5/content/tables/)
+Les tableaux, gros sujet les tableaux non ?! Bootstrap va vous simplifier GRANDEMENT la création et surtout le style des tableaux. Rendez-vous sur [la page Tables](https://getbootstrap.com/docs/4.6/content/tables/)
 
 ![Les tableaux](./res/tables.png)
 
@@ -176,7 +176,7 @@ Votre page d'accueil est très certainement « minimaliste », je vous propose d
 
 ### Mise en place d'une cover « Hero »
 
-En vous inspirant du code de la page suivante : [https://getbootstrap.com/docs/4.5/examples/cover/](https://getbootstrap.com/docs/4.5/examples/cover/) remplacer la home de votre page par une « Cover ».
+En vous inspirant du code de la page suivante : [https://getbootstrap.com/docs/4.6/examples/cover/](https://getbootstrap.com/docs/4.6/examples/cover/) remplacer la home de votre page par une « Cover ».
 
 ::: tip Pas d'idée pour l'image ?
 

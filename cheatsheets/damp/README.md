@@ -18,6 +18,7 @@ DAMP contient les éléments suivants :
 - MariaDB 10.9
 - PHPMyAdmin (dernière version)
 - MongoDB (dernière version)
+- MailHog (dernière version, serveur SMTP pour le développement)
 
 ### DAMP c'est deux choses
 
@@ -26,7 +27,9 @@ DAMP contient les éléments suivants :
 
 ::: tip L'interface graphique
 
-L'interface graphique est optionnelle, vous pouvez très bien utiliser DAMP sans l'interface graphique en utilisant uniquement le script `start.sh`.
+L'interface graphique est optionnelle, vous pouvez très bien utiliser DAMP sans l'interface graphique en utilisant uniquement le script `startup.sh`.
+
+👋 Je vous conseille vivement, d'utiliser l'interface en ligne de commande, elle est plus simple à utiliser et plus rapide à démarrer.
 
 :::
 
@@ -36,9 +39,40 @@ Pour fonctionner, vous devez avoir installé Docker et Docker Compose sur votre 
 
 - [Installer Docker](https://docs.docker.com/get-docker/)
 
-## Installation
+::: tip Docker Desktop
 
-## Windows
+Il est possible que Docker Desktop vous demande de créer un compte. Vous pouvez le faire, mais ce n'est pas obligatoire.
+
+Il est également possible que Docker Desktop vous demande de mettre à jour votre WSL. Pour cela, il vous suffit de suivre les instructions :
+
+- Ouvrir un terminal (cmd, powershell, etc.)
+- Exécuter la commande suivante : `wsl --update`
+
+::::
+
+## Installation & Lancement
+
+![CLI](./demo2.jpg)
+
+L'interface graphique n'est pas pré-compilée pour Linux et MacOS. Vous pouvez [la compiler vous même](https://github.com/c4software/DAMP), mais je vous conseille d'utiliser la version en ligne de commande :
+
+- 1. [Télécharger la stack docker](https://github.com/c4software/DAMP-docker-stack/archive/refs/tags/1.1.zip).
+- 2. Lancer Docker.
+- 2. Éxraire l'archive de DAMP.
+- 3. Plusieurs solutions s'offrent à vous :
+  - Sous Windows : `startup.bat` (lancement sans gestion des ports dynamiques) **RECOMMANDÉ**
+  - Sous Windows : `startup.ps1` (lancement avec gestion des ports dynamiques)
+  - Sous Linux / MacOS : `startup.sh` (lancement avec gestion des ports dynamiques)
+
+::: tip Première utilisation
+
+Lors de la première utilisation, les images sont téléchargées et préparées. Cela peut prendre plusieurs minutes. Vous pouvez suivre l'avancement dans le terminal.
+
+:::
+
+::: details Installation GUI (Windows uniquement, non recommandé)
+
+![GUI](./demo.jpg)
 
 Pour installer DAMP, il suffit de :
 
@@ -46,14 +80,23 @@ Pour installer DAMP, il suffit de :
 - 2. Décompresser l'archive.
 - 3. Lancer le `damp.exe`.
 
-## Linux & MacOS
+Le premier démarrage peut prendre plusieurs minutes, le temps de télécharger les images Docker. Vous pouvez utiliser le bouton `Refresh` pour actualiser l'état. Vous pouvez également ouvrir la feneêtre de Docker Desktop pour suivre l'avancement (dans la partie Conteneurs).
 
-L'interface graphique n'est pas pré-compilée pour Linux et MacOS. Vous pouvez [la compiler vous même](https://github.com/c4software/DAMP), mais je vous conseille d'utiliser la version en ligne de commande :
+:::
 
-- 1. [Clonez le dépôt Docker-Stack](https://github.com/c4software/DAMP-docker-stack).
-- 2. Lancer le script `startup.sh`.
+## Utilisation
 
-Le fonctionnement est le même que pour la version graphique, vous pouvez utiliser le script `startup.sh` pour démarrer les conteneurs.
+_Démo interface en ligne de commande :_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/n3xNIprTFMU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+::: details Utilisation GUI (Windows uniquement, non recommandé)
+
+_Démo interface graphique :_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5KvGDLrcasw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+:::
 
 ## Configuration
 
@@ -67,37 +110,6 @@ La configuration de l'interface graphique se fait en modifiant le fichier `confi
 - `home` : Chemin **absolu** vers le dossier contenant le fichier `docker-compose.yml`.
 - `dockerStackHome`: Chemin **absolu** ou **relatif** vers les dossiers qui seront montés dans les conteneurs. (vous pouvez laisser `./`, cela correspond au dossier contenant le fichier `docker-compose.yml`)
 - `services` : Liste des services à afficher dans l'interface graphique.
-
-## Utilisation
-
-_Démo interface graphique :_
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5KvGDLrcasw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-_Démo interface en ligne de commande :_
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/n3xNIprTFMU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### Interface graphique
-
-- 1. Lancer Docker Desktop.
-- 2. Lancer DAMP.
-- 3. Profit !
-
-::: danger Attention
-Le premier démarrage peut prendre plusieurs minutes, le temps de télécharger les images Docker.
-:::
-
-### Interface en ligne de commande
-
-Pour utiliser DAMP en ligne de commande, il suffit d'utiliser le script `startup.sh` :
-
-```sh
-chmod +x startup.sh # Rend le script exécutable, à faire une seule fois
-./startup.sh
-```
-
-Les ports utilisés par la version en ligne de commande seront affichés dans le terminal.
 
 ## Où sont les fichiers ?
 
@@ -115,7 +127,7 @@ PHPMyAdmin est accessible à l'adresse suivante : [http://localhost:9090](http:/
 
 ### Comment accéder à MongoDB ?
 
-MongoDB est accessible à l'adresse suivante : [http://localhost:27017](http://localhost:27017). Cette information est également disponible dans l'interface graphique ou dans le terminal. 
+MongoDB est accessible à l'adresse suivante : [http://localhost:27017](http://localhost:27017). Cette information est également disponible dans l'interface graphique ou dans le terminal.
 
 🚨 MongoDB n'est pas démarré par défaut, il faut le démarrer dans l'interface graphique ou dans le terminal. 🚨
 
@@ -128,6 +140,12 @@ MariaDB est accessible via le port `3306` sur l'adresse `localhost`. Si vous sou
 PHP est accessible à l'adresse suivante : [http://localhost:8080](http://localhost:8080). Cette information est également disponible dans l'interface graphique ou dans le terminal.
 
 ⚠️ Les sources sont à mettre dans `data/htdocs`. ⚠️
+
+### Comment accéder à MailHog ?
+
+MailHog est accessible à l'adresse suivante : [http://localhost:8025](http://localhost:8025). Cette information est également disponible dans l'interface graphique ou dans le terminal.
+
+MailHog expose également un serveur SMTP sur le port `1025` de l'adresse `localhost`.
 
 ### Est-ce Open Source ?
 
