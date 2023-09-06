@@ -103,6 +103,145 @@ _header.php_ :
     </header>
 ```
 
+::: details La partie CSS
+
+Télécharger la police d'écriture [ici](https://www.dafont.com/simpsonfont.font) et la placer dans le dossier `public`.
+
+```css
+@font-face {
+  font-family: simpsonfont;
+  src: url(./simpsonfont.otf);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #fafafa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  height: 50px;
+  background-color: #e53935 !important;
+  border-color: #e53935 !important;
+  color: white;
+  font-family: "simpsonfont";
+}
+
+header > a {
+  color: white;
+  text-decoration: none;
+}
+
+.card {
+  margin: 50px auto;
+  padding: 20px;
+  max-width: 500px;
+  background: white;
+  transition-property: box-shadow, opacity;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn {
+  display: block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.ma-auto {
+  margin: auto;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+.tableau {
+  background-color: #1e5518;
+  color: white;
+  border: 5px solid #5e3600;
+  padding: 10px;
+  padding-right: 180px;
+  width: 900px;
+  max-width: calc(100vw - 50px);
+  margin: 50px auto;
+  height: 400px;
+  overflow: auto;
+  background-image: url(./img/bart.png);
+  background-size: 170px;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  font-family: cursive;
+  font-size: x-large;
+}
+```
+
+:::
+
 _footer.php_ :
 
 ```php
