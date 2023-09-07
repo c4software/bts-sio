@@ -8,7 +8,7 @@ Dans ce TP nous allons voir comment ajouter une couche d'authentification sur vo
 
 ## Projet de référence
 
-Pour continuer de TP, vous devez reprendre le code du [TP précédent sur l'utilisation de la Session / Cookies](./tp4.md). Ce TP va donc être découpé en plusieurs étapes :
+Pour continuer ce TP, vous devez reprendre le code du [TP précédent sur l'utilisation de la Session / Cookies](./tp4.md). Ce TP va donc être découpé en plusieurs étapes :
 
 - Création d'une page « Home » affichée à l'arrivée sur le site.
 - Création d'une page « Login » qui permettra à l'utilisateur de s'authentifier.
@@ -18,7 +18,7 @@ Pour continuer de TP, vous devez reprendre le code du [TP précédent sur l'util
 
 Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Votre page doit être rangée correctement. En regardant le projet, vous pouvez voir que les pages sont rangées dans le dossier `pages`. Je vous laisse créer la page d'accueil de votre site.
 
-N'oubliez pas de l'autoriser dans la blacklist. **Point important** cette page doit s'afficher lors de l'accès à votre site Internet.
+N'oubliez pas de l'autoriser dans la whitelist. **Point important** cette page doit s'afficher lors de l'accès à votre site Internet.
 
 ![Home démo](./res/home-demo.jpg)
 
