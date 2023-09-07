@@ -201,6 +201,12 @@ Avec ce que nous avons vu en cours, mais également nos échanges, regarder l'im
 
 :::
 
+## Les limites des Cookies
+
+Comme vu en cours, avez-vous essayé de modifier la valeur du Cookie ? Si ce n'est pas le cas, je vous invite à le faire. Pour ça, vous pouvez utiliser l'outil de développement de votre navigateur (F12) et aller dans l'onglet « Application ».
+
+À votre avis, quels sont les risques de l'utilisation des Cookies (sans filtrage) ?
+
 ## Cookie ou Session ?
 
 Libre à vous de choisir Cookie ou Session. Cependant, n'oubliez pas que les Cookies sont déposés sur le poste Utilisateur et sont donc modifiables. 
