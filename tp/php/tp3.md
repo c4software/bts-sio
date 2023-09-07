@@ -283,6 +283,16 @@ Pour les pages, je vous laisse faire, c'est « juste le contenu de votre site »
 Comme évoqué dans le cours, le format des liens va changer ! Ils seront maintenant dynamiques via un paramètre `GET`. Pensez donc bien à changer vos différents liens.
 :::
 
+## Écrire la page Bart
+
+Je vous laisse écrire la page `bart.php` en vous inspirant de votre code précédent. Cette page doit afficher le résultat de la génération de la punition.
+
+- Affichage de la phrase * nombre de ligne.
+
+L'affichage doit être :
+
+![Étape 2](./res/bart_form_step2.png)
+
 ## C'est à vous
 
 Je vous laisse modifier votre code pour que votre projet utilise cette nouvelle façon « de s'organiser ».
