@@ -68,7 +68,7 @@ N'oubliez pas de regarder ma proposition de design. Le choix du nombre de phrase
 La page `bart.php` va contenir la logique d'affichage de votre projet, elle va se charger, voilà comment nous allons procéder :
 
 - Prendre les valeurs en provenance du `$_POST`.
-- Afficher les valeurs reçues sur le tableau de Bart (de manière identique à précédemment).
+- Afficher les valeurs reçues sur le tableau de Bart (de manière identique a précédemment).
 - Permettre à l'utilisateur de revenir sur la page d'accueil via la `toolbar`.
 
 ![Étape 2](./res/bart_form_step2.png)
@@ -135,4 +135,4 @@ Vous n'aimez pas Bart ? Je vous propose d'ajouter la sélection du type de perso
 - Trouver les images pour l'affichage.
 - Utiliser la valeur obtenue dans le `$_POST` pour afficher la bonne personne.
 
-:hand: Je ne vous donne pas plus d'information! Avec ce que nous avons vu ensemble vous pouvez y arriver seule.
+:hand: Je ne vous donne pas plus d'information! Avec ce que nous avons vu ensemble, vous pouvez y arriver seule.
