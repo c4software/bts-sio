@@ -884,7 +884,7 @@ Pour réaliser une page d'authentification dans votre projet, vous allez devoir 
 
 - Une page avec un formulaire pour vous connecter.
 - Une table en base
-- Un modèle et un contrôleur dédié à cette action (`php mvc model:create AuthModel`  `php mvc controller:create AuthControler`)
+- Un modèle et un contrôleur dédié à cette action (`php mvc model:create AuthModel` et `php mvc controller:create AuthControler`)
 - Modifier le routeur pour n'autoriser l'accès aux utilisateurs **authentifiés**.
 
 :::
