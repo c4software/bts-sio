@@ -245,7 +245,9 @@ class Web
 ```
 
 ::: danger 👋
-    Utile pour du code très simple, ou lors d’un test **uniquement**. L’utilisation d'un contrôleur est préférable.
+
+Utile pour du code très simple, ou lors d’un test **uniquement**. L’utilisation d'un contrôleur est préférable.
+
 :::
 
 #### Gérer l'authentification ?
@@ -315,7 +317,7 @@ class MonControleur extends WebController
     // Méthode d'exemple
     function methodeDExemple()
     {
-        Template::render("views/monControleur/methodeDExemple.php", array());
+        return Template::render("views/monControleur/methodeDExemple.php", array());
     }
 }
 ```
@@ -400,6 +402,8 @@ Finis donc les requêtes SQL partout dans votre code. À partir de maintenant, v
 
 ::: warning Un instant
 Cette notion de modèle **est très importante**, en effet il s'agit ici d'être explicit et de ne pas faire une classe fourretout!
+
+Je ne veux donc pas voir de fichier model.php avec 5000 lignes de code. Et encore moins de requêtes SQL dans vos contrôleurs.
 :::
 
 Comme pour les contrôleurs, vous avez à votre disposition (dans le dossier, base) une classe générique vous permettant d'automatiser certaines requêtes (`getAll`, `getOne`, `deleteOne`, `updateOne`). Bien évidemment ce ne sont que des raccourcis, vous pouvez sans problème écrire les requêtes via PDO.
