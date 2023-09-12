@@ -2,4 +2,4 @@
 
 <SlidesDeck src="mvc" />
 
-- [Support Structure MVC](/tp/mvc/tp1.md)
+- [Support Structure MVC](/tp/php/mvc/tp1.md)
