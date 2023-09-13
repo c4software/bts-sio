@@ -174,7 +174,7 @@ Ce découpage s'appelle un développement en couche.
 
 ---
 
-### Défini la correspondance entre
+### Définission de la correspondance entre
 
 **un lien (navigateur)** 
 
@@ -196,9 +196,9 @@ Ce découpage s'appelle un développement en couche.
 
 ---
 
-**Important** on oubli pas ce que vous avez appris
+**Important,** on n’oublie pas ce que vous avez appris
 
-## On améliore
+## Mais on ne fait qu’améliorer.
 
 ---
 
