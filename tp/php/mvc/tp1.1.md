@@ -15,7 +15,7 @@ Comme précisé dans le cours et dans nos échanges, la structure « MVC » est 
 - [Aide mémoire Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 
 ::: tip C'est important
-Le point d'introduction est important. Savoir justifier d'une solution est tout aussi important que la solution en elle-même. Si vous décider décider d'utiliser ma structure dans d'autres développements vous devez le faire avec conviction et pas juste « parceque ».
+Le point d'introduction est important. Savoir justifier d'une solution est tout aussi important que la solution en elle-même. Si vous décidez d'utiliser ma structure dans d'autres développements vous devez le faire avec conviction et pas juste « parceque ».
 
 Des changements mineurs ont été ajoutés à la structure en 2022/2023 :
 
@@ -170,7 +170,7 @@ Dans l'organisation que je vous propose, cette configuration est centralisée da
 ::: tip La configuration c'est bien !
 C'est peut-être un détail pour vous… Mais pour moi ça veut dire beaucoup ! Actuellement vous avez un serveur, mais demain peut-être 20… Et pour votre projet final, vous aurez à déployer rapidement votre application sur un autre serveur que celui sur lequel vous avez développé.
 
-Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur, mot de passe de BDD, etc.) dans le fichier `configs.php`. Dans l'architecture que je vous propose vous y trouverez le minimum nécessaire au bon fonctionnement d'une application.
+Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur, mot de passe de BDD, etc.) dans le fichier `configs.php`. Dans l'architecture que je vous propose vous trouverez le minimum nécessaire au bon fonctionnement d'une application.
 :::
 
 ### Télécharger le code source
@@ -185,7 +185,7 @@ Même si celui-ci contient à première vue « beaucoup de fichiers », le proje
 
 La première étape est de faire fonctionner le code sur votre machine. Je vous laisse mettre en place le code fourni dans votre dossier `htdocs` ou `www` en fonction de l'outil que vous utilisez.
 
-**Attention au fichiers cachés**, dans l'archive il y a un fichier .htaccess ne l'oubliez pas !
+**Attention aux fichiers cachés**, dans l'archive il y a un fichier .htaccess ne l'oubliez pas !
 
 ::: tip .htaccess ?
 Vous avez déjà entendu parler de ce fichier ? C'est un fichier important, il va nous permettre de définir / redéfinir le comportement de votre serveur Web pour par exemple activer l’URL REWRITING` (réécriture d'URL).
@@ -636,7 +636,7 @@ Dans le fichier `routes/Web.php`, ajouter le lignes :
 ```
 
 - Où les ajouter ?
-- À quoi correspondent-t-elles ?
+- À quoi correspondent-elles ?
 
 ### Ajouter le constructeur `__construct()`
 
@@ -885,7 +885,7 @@ Pour réaliser une page d'authentification dans votre projet, vous allez devoir 
 - Une page avec un formulaire pour vous connecter.
 - Une table en base
 - Un modèle et un contrôleur dédié à cette action (`php mvc model:create AuthModel` et `php mvc controller:create AuthControler`)
-- Modifier le routeur pour n'autoriser l'accès aux utilisateurs **authentifiés**.
+- Modifier le routeur pour n'autoriser l'accès aux utilisateurs **authentifié**.
 
 :::
 
@@ -916,3 +916,4 @@ Maintenant que nous avons un système d'authentification, je vous propose de sau
 ## Évolution 3
 
 Modifier la page d'accueil de votre site afin que celle-ci présente votre projet.
+
