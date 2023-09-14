@@ -280,7 +280,7 @@ Voilà en vidéos ce que vous allez réaliser :
 
 ### Créer la méthode
 
-Nous allons dans un premier temps créer une méthode dans le contrôleur `SampleWeb.php`, pour le contenu pas grand-chose pour l'instant. Vous pouvez vous inspirer du contenu de la méthode `home()`.
+Nous allons dans un premier temps créer une méthode dans le contrôleur `SampleWebController.php`, pour le contenu pas grand-chose pour l'instant. Vous pouvez vous inspirer du contenu de la méthode `home()`.
 
 ```php
 function about()
