@@ -358,6 +358,8 @@ Route::Add('/about', [$main, 'about']);
 
 ## Place au projet « La TODO list »
 
+Avant de commencer, je vous propose de regarder ensemble ce que nous allons réaliser.
+
 Maintenant que nous avons pris en main le code existant, je vous propose de réaliser une plus grosse modification, l'ajout d'une nouvelle fonctionnalité « La TodoList », pour réaliser l'ensemble du code, je vais bien évidemment vous guider.
 
 Nous allons donc créer une TODO List. Une TODO List c'est toujours le même genre d'action :
