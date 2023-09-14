@@ -15,7 +15,7 @@ description: Aide mémoire Mini MVC Sample
 C:/xampp/php/php -S localhost:9000
 
 # Windows (avec WAMP)
-C:/wamp64/bin/php/php7.4.9/php -S localhost:9000
+C:/wamp64/bin/php/php8.2.0/php -S localhost:9000
 
 # Linux / OSX
 php mvc serve
