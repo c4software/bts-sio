@@ -671,6 +671,25 @@ class TodoWeb extends WebController
 }
 ```
 
+::: danger un instant ✋
+
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que la classe `Demo` soit accessible depuis une autre classe, il faudra :
+
+```php
+use App\Models\Demo;
+```
+
+- ⚠️ Si vous utilisez **PHPStorm,** cet import sera automatique.
+- ⚠️ Si vous utilisez **VSCode,** il faudra passer par une extension [disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
+
+Pour **PHPStorm**, alt+entrée permettra de déclencher l'ajout dû use.
+
+Pour **VSCode** je vous laisse regarder l'usage de l'extension :
+
+![Namespace Resolver](../../../cheatsheets/laravel/res/namespace_resolver.gif)
+
+:::
+
 :::
 
 ### La méthode `liste()`
