@@ -52,7 +52,9 @@ Le modèle représente la couche de votre application qui va manipuler les donn�
 
 Vous trouverez dans celle-ci **autant de méthodes que nécessaire**, vous pouvez _(et à mon avis vous devez)_ spécialiser vos modèles aux différentes tables présentes dans votre projet.
 
-Par exemple, si nous avons la base de données suivante :
+::: tip Par exemple
+
+Si nous avons la base de données suivante :
 
 ![Exemple MCD](./res/mcd_exemple.jpeg)
 
@@ -69,6 +71,8 @@ Avec à chaque fois des méthodes spécifiques exemple, nous pourrions avoir
 | Client        | `CreerClient()`, `ModifierClient()`, `SupprimerClient()`    |
 | BonDeCommande | `CreerBdc()`, `ModifierBdc()`, `SupprimerBdc()`             |
 | Produit       | `CreerProduit()`, `ModifierProduit()`, `SupprimerProduit()` |
+
+:::
 
 ::: danger STOP ! Ce qu'il faut retenir
 Ce qu'il faut retenir c'est :
@@ -133,7 +137,7 @@ L'idée ici était de rappeler les bases, si vous souhaitez plus de détail sur 
 
 ## Récupérer le code source d'exemple
 
-Un peu comme pour un projet Laravel, nous n'allons pas partir de 0 ! Vous allez partir d'un code initial qui vous servira de base de travail.
+Assez de blabla, un peu comme pour un projet Laravel, nous n'allons pas partir de 0 ! Vous allez partir d'un code initial qui vous servira de base de travail.
 
 Le code en question est « vide », il s'agit uniquement d'une structure que **vous devez** respecter. Un peu comme en entreprise vous vous intégrez dans une équipe, je vous propose ici de respecter quelques règles qui sont des standards du développement.
 
@@ -249,7 +253,7 @@ La bonne démarche à mon sens est là suivante :
 
 :::
 
-## Créer la page « About »
+## Créer la page « Test »
 
 Maintenant que vous avez réalisé votre modification, je vous propose de regarder « Comment ajouter une nouvelle page dans cette superbe architecture (que je trouve déjà géniale) ».
 
@@ -261,7 +265,7 @@ J'imagine que pour l'instant vous avez peur :
 Et bien la réponse à vos questions est
 
 - Une **nouvelle** méthode dans le bon contrôleur.
-- Un fichier `about.php` dans `views`.
+- Un fichier `test.php` dans `views`.
 - Une correspondance entre « Votre méthode » et une route dans le `routes/Web.php`.
 
 ::: tip Nous l'avons vu ensemble
@@ -285,15 +289,15 @@ Nous allons dans un premier temps créer une méthode dans le contrôleur `Sampl
 ```php
 function about()
 {
-    return Template::render("views/global/about.php");
+    return Template::render("views/global/test.php");
 }
 ```
 
-Pour l'instant aucun changement, si vous utilisez PHPStorm celui-ci va vous proposer de créer le fichier `about.php` directement en cliquant sur « la petite lampe jaune ».
+Pour l'instant aucun changement, si vous utilisez PHPStorm celui-ci va vous proposer de créer le fichier `test.php` directement en cliquant sur « la petite lampe jaune ».
 
 ### Créer la vue / page
 
-Si ce n'est pas déjà fait, créé le fichier `views/global/about.php`. Pour le contenu, je vous laisse libre. Je vous rappelle juste que nous sommes entrain de créer une page « À propos ».
+Si ce n'est pas déjà fait, créé le fichier `views/global/test.php`. Pour le contenu, je vous laisse libre. Je vous rappelle juste que nous sommes entrain de créer une page « À propos ».
 
 ::: tip Rappel
 ici nous n'écrivons que le contenu, l'entête et le pied de page sont « automatiquement » ajoutés grâce au code présent dans la méthode home de votre contrôleur.
@@ -306,13 +310,13 @@ Nous avons ajouté une page, cependant, cette page est relativement « statique 
 Si nous reprenons l'exemple précédent :
 
 ```php
-return Template::render("views/global/about.php", array());
+return Template::render("views/global/test.php", array());
 ```
 
 Combien de variables passons-nous ? Aucune, pour la suite, je vous propose d'ajouter une première variable :
 
 ```php
-return Template::render("views/global/about.php", array("titre" => "À Propos"));
+return Template::render("views/global/test.php", array("titre" => "À Propos"));
 ```
 
 Puis modifier votre vue pour y ajouter l'usage de votre variable :
@@ -348,7 +352,7 @@ Voilà nous avons maintenant l'ensemble du code, mais celui-ci n'est pas encore 
 Ici nous sommes entrain de faire une page `Web`, vous devez donc ajouter dans le routeur `Web.php` l'accès à votre page via l'ajout de la ligne suivante :
 
 ```php
-Route::Add('/about', [$main, 'about']);
+Route::Add('/test', [$main, 'test']);
 ```
 
 - **Évidemment** c'est à ajouter après la route existante.
@@ -403,7 +407,7 @@ Avant de continuer, je vous propose de définir le format de la base de données
 
 ![Modélisation table TODO](./res/todos.png)
 
-PS: Oui, oui je sais c'est impressionnant !
+Nous allons créer cette table plus tard, mais pour l'instant, nous avons besoin de la modélisation pour créer notre modèle.
 
 ### Créer le modèle
 
@@ -426,7 +430,7 @@ C:/xampp/php/php mvc model:create TodoModel
 C:/wamp64/bin/php/php7.4.9/php mvc model:create TodoModel
 ```
 
-**Et c'est tout !** votre modèle pour accéder aux données est prêt 🤝. Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
+**Et c'est tout !** votre modèle pour accéder aux données est prêt 🤝 (il est créé automatiquement dans le dossier `models`). Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
 
 - Via les méthodes « de base » (comme vu en cours via l'héritage présent dans la classe).
 - Via **_vos méthodes_** directement écrite par vous.
