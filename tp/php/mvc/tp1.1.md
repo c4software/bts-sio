@@ -942,3 +942,14 @@ Maintenant que nous avons un système d'authentification, je vous propose de sau
 
 Modifier la page d'accueil de votre site afin que celle-ci présente votre projet.
 
+## Évolution 4
+
+Permettre aux utilisateurs d'inviter d'autres utilisateurs à rejoindre leur TODOList. Pour ce faire, vous allez devoir :
+
+- Créer une nouvelle table en base de données permettant de faire le lien entre les utilisateurs et les TODOList.
+- Créer un nouveau modèle permettant de gérer les invitations.
+- Créer un nouveau contrôleur permettant de gérer les invitations.
+- Créer une nouvelle vue permettant de gérer les invitations.
+- Modifier le modèle de TODOList afin de permettre l'ajout d'un utilisateur à une TODOList.
+
+
