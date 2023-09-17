@@ -928,7 +928,7 @@ Pour réaliser une page d'authentification dans votre projet, vous allez devoir 
 
 :::
 
-## Évolution 2 : Qui a créé la TODO ?
+## Évolution 1 : Qui a créé la TODO ?
 
 Maintenant que nous avons un système d'authentification, je vous propose de sauvegarder qui a créé la TODO pour ce faire :
 
@@ -939,7 +939,7 @@ Maintenant que nous avons un système d'authentification, je vous propose de sau
   - Idéalement en groupant les TODO par nom d'utilisateur / email.
   - Ou via l'ajout d'une image de profil (avatar / gravatar) à côté de la TODO.
 
-## Évolution 3 : Envoi d'email
+## Évolution 2 : Envoi d'email
 
 Vous avez mis en place un système de connexion, mais pour l'instant l'utilisateur ne reçois aucun email. Il serait intéressant de lui envoyer un email après la création du compte afin de lui confirmer la bonne création de celui-ci. Il existe plein de façon d'envoyer des emails en PHP. Dans ce TP je vous propose d'utiliser PHPMailer. 
 
