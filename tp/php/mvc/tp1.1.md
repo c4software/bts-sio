@@ -907,8 +907,8 @@ La partie TODOList ne doit pas être accessible à tous. En utilisant les techni
 
 Pour réaliser une page d'authentification dans votre projet, vous allez devoir ajouter :
 
-- Une page avec un formulaire pour vous connecter.
-- Une table en base
+- Une page avec un formulaire pour vous connecter (votre vue).
+- Une table en base (qui sera utilisé via un modèle).
 - Un modèle et un contrôleur dédié à cette action (`php mvc model:create AuthModel` et `php mvc controller:create AuthControler`)
 - Modifier le routeur pour n'autoriser l'accès aux utilisateurs **authentifié**.
 
@@ -921,7 +921,7 @@ Pour réaliser une page d'authentification dans votre projet, vous allez devoir 
 
 ::: danger Attention
 
-Mot de passe et sécurité…
+⚠️ Mot de passe et sécurité…
 
 - Comment allez-vous enregistrer le mot de passe en base ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-hash.php))
 - Comment allez-vous vérifier l'authentification ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-verify.php))
@@ -932,24 +932,92 @@ Mot de passe et sécurité…
 
 Maintenant que nous avons un système d'authentification, je vous propose de sauvegarder qui a créé la TODO pour ce faire :
 
-- Modifier la base de données afin d'ajouter « l'email / nom d'utilisateur » de la personne ayant créé la TODO
+- Modifier la base de données afin d'ajouter « l'email / nom d'utilisateur » de la personne ayant créé la TODO (évidement, il faudra utiliser une clé étrangère).
 - Modifier la méthode d'ajout dans le modèle pour enregistrer l'information
   - Attention, comment allez-vous procéder pour récupérer la personne actuellement connectée ?
 - Ajouter **dans la vue**, l'affichage de l'identité de la personne.
   - Idéalement en groupant les TODO par nom d'utilisateur / email.
+  - Ou via l'ajout d'une image de profil (avatar / gravatar) à côté de la TODO.
 
 ## Évolution 3
 
-Modifier la page d'accueil de votre site afin que celle-ci présente votre projet.
+Maintenant que nous avons un système de connexion, il serait intéressant d'arriver sur une page d'accueil personnalisée. Pour ce faire, je vous propose de :
 
-## Évolution 4
+- Créer dans votre contrôleur une méthode qui sera appelée par défaut.
+- Modifier votre routeur afin de rediriger vers cette méthode par défaut (si non connecté).
+- Créer votre page d'accueil personnalisée (elle doit contenir au minimum un titre, une bouton invitant à la création d'un compte, un bouton invitant à la connexion)
+- Si l'utilisateur est déjà connecté, rediriger vers la TODOList.
 
-Permettre aux utilisateurs d'inviter d'autres utilisateurs à rejoindre leur TODOList. Pour ce faire, vous allez devoir :
+Pour vous aider dans la conception de votre page d'accueil, vous pouvez utiliser un template « bootstrap » disponible [ici](https://bootstrapmade.com/bootstrap-landing-page-templates/).
 
-- Créer une nouvelle table en base de données permettant de faire le lien entre les utilisateurs et les TODOList.
-- Créer un nouveau modèle permettant de gérer les invitations.
-- Créer un nouveau contrôleur permettant de gérer les invitations.
-- Créer une nouvelle vue permettant de gérer les invitations.
-- Modifier le modèle de TODOList afin de permettre l'ajout d'un utilisateur à une TODOList.
+## Évolution 4 : Envoi d'email
 
+Vous avez mis en place un système de connexion, mais pour l'instant l'utilisateur ne reçois aucun email. Il serait intéressant de lui envoyer un email après la création du compte afin de lui confirmer la bonne création de celui-ci. Il existe plein de façon d'envoyer des emails en PHP. Dans ce TP je vous propose d'utiliser PHPMailer. 
 
+PHPMail est une librairie PHP permettant d'envoyer des emails. Celle-ci s'installe via composer. Pour l'installer, il suffit de lancer la commande suivante (à la racine de votre projet)
+
+```sh
+composer require phpmailer/phpmailer
+```
+
+::: danger Installation de composer
+
+Pour que la commande précédente fonctionne, il faut que composer soit installé sur votre machine. Pour l'installer, je vous invite à suivre la documentation officielle [disponible ici](https://getcomposer.org/download/). Composer est un outil permettant de gérer les dépendances d'un projet PHP, il est très utilisé dans le monde PHP (notamment avec Laravel).
+:::
+
+Dans l'AP, vous avez dans le code source un utilitaire permettant la gestion de l'envoi d'email. Celui-ci est présent dans le dossier `utils`, pour les besoin de cette évolution nous allons en avoir besoin :
+
+```php
+<?php
+
+namespace utils;
+
+use PHPMailer\PHPMailer\PHPMailer;
+
+class EmailUtils
+{
+    static function sendEmail($to, $subject, $template, $data): bool
+    {
+        // Récupération des informations de configuration
+        $config = include("configs.php");
+
+        // Construction du message avec la librairie Template
+        $message = Template::render("views/emails/$template.php", $data, false);
+
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = $config["MAIL_SERVER"] ?: 'localhost';
+        $mail->SMTPAuth = false;
+        $mail->Port = 1025;
+
+        $mail->setFrom($config["FROM_EMAIL"], "Contact");
+        $mail->addAddress($to);
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+        $mail->isHTML(true);
+
+        return $mail->send();
+    }
+}
+```
+
+::: tip Avant de continuer
+
+Appeler-moi nous allons discuter un peu de ce code, il y a plein de choses à dire dessus !
+
+:::
+
+Voici un exemple d'utilisation de cette classe :
+
+```php
+EmailUtils::sendEmail("you@test.com", "Mon sujet", "monTemplate", array("name" => "John Doe"));
+```
+
+- Quels sont les paramètres de la méthode ?
+- À quoi correspond l'array de données ?
+- À quoi correspond le paramètre `monTemplate`, ou doit-il être dans votre projet ?
+- Est-ce que le code proposé est suffisant pour envoyer un email ?
+
+::: tip C'est à vous
+Je vous laisse mettre en place l'envoi d'email dans votre projet. Celui-ci doit être fait **après la création du compte**.
+:::
