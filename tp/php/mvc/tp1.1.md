@@ -1021,3 +1021,20 @@ EmailUtils::sendEmail("you@test.com", "Mon sujet", "monTemplate", array("name" =
 ::: tip C'est à vous
 Je vous laisse mettre en place l'envoi d'email dans votre projet. Celui-ci doit être fait **après la création du compte**.
 :::
+
+## Bonus, mot de passe oublié
+
+Je vous laisse réfléchir à la mise en place d'un système de mot de passe oublié. Celui-ci doit permettre à l'utilisateur de réinitialiser son mot de passe en cas d'oubli.
+
+::: tip Quelques éléments pour vous aider
+
+- Il faudra certainement ajouter une nouvelle table en base de données.
+- Il faudra certainement ajouter une nouvelle page dans votre projet.
+- Il faudra certainement ajouter une nouvelle méthode dans votre contrôleur.
+- Il faudra certainement ajouter une nouvelle méthode dans votre modèle.
+- Il faudra certainement ajouter une nouvelle méthode dans votre routeur.
+- Il faudra certainement ajouter un nouvel email dans votre projet.
+
+:::
+
+👋 Bon courage !
