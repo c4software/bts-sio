@@ -869,14 +869,14 @@ En utilisant le code précédemment fourni, écrire :
 
 C'est à vous.
 
-## Évolution 0
+## Ajouter un lien dans la page d'accueil
 
 Ajouter dans la page d'accueil du site un lien permettant d'accéder à votre TodoList. Quelques consignes à respecter :
 
 - Le lien doit être centré dans la page.
 - Le lien doit avoir l'**apparence** d'un bouton. [Voir la documentation](https://getbootstrap.com/docs/5.0/components/buttons/)
 
-## Évolution 1
+## Masquer les TODO terminées
 
 Je souhaite finalement masquer de l'affichage par défaut l'ensemble des enregistrements de la table `TODO` ayant `termine = 1`.
 
@@ -928,7 +928,7 @@ Pour réaliser une page d'authentification dans votre projet, vous allez devoir 
 
 :::
 
-## Évolution 2
+## Évolution 2 : Qui a créé la TODO ?
 
 Maintenant que nous avons un système d'authentification, je vous propose de sauvegarder qui a créé la TODO pour ce faire :
 
@@ -939,18 +939,7 @@ Maintenant que nous avons un système d'authentification, je vous propose de sau
   - Idéalement en groupant les TODO par nom d'utilisateur / email.
   - Ou via l'ajout d'une image de profil (avatar / gravatar) à côté de la TODO.
 
-## Évolution 3
-
-Maintenant que nous avons un système de connexion, il serait intéressant d'arriver sur une page d'accueil personnalisée. Pour ce faire, je vous propose de :
-
-- Créer dans votre contrôleur une méthode qui sera appelée par défaut.
-- Modifier votre routeur afin de rediriger vers cette méthode par défaut (si non connecté).
-- Créer votre page d'accueil personnalisée (elle doit contenir au minimum un titre, une bouton invitant à la création d'un compte, un bouton invitant à la connexion)
-- Si l'utilisateur est déjà connecté, rediriger vers la TODOList.
-
-Pour vous aider dans la conception de votre page d'accueil, vous pouvez utiliser un template « bootstrap » disponible [ici](https://bootstrapmade.com/bootstrap-landing-page-templates/).
-
-## Évolution 4 : Envoi d'email
+## Évolution 3 : Envoi d'email
 
 Vous avez mis en place un système de connexion, mais pour l'instant l'utilisateur ne reçois aucun email. Il serait intéressant de lui envoyer un email après la création du compte afin de lui confirmer la bonne création de celui-ci. Il existe plein de façon d'envoyer des emails en PHP. Dans ce TP je vous propose d'utiliser PHPMailer. 
 
@@ -1036,5 +1025,17 @@ Je vous laisse réfléchir à la mise en place d'un système de mot de passe oub
 - Il faudra certainement ajouter un nouvel email dans votre projet.
 
 :::
+
+## Bonus, une page d'accueil personnalisée
+
+Il serait intéressant d'arriver sur une page d'accueil personnalisée. Pour ce faire, je vous propose de :
+
+- Créer dans votre contrôleur une méthode qui sera appelée par défaut.
+- Modifier votre routeur afin de rediriger vers cette méthode par défaut (si non connecté).
+- Créer votre page d'accueil personnalisée (elle doit contenir au minimum un titre, une bouton invitant à la création d'un compte, un bouton invitant à la connexion)
+- Si l'utilisateur est déjà connecté, rediriger vers la TODOList.
+
+Pour vous aider dans la conception de votre page d'accueil, vous pouvez utiliser un template « bootstrap » disponible [ici](https://bootstrapmade.com/bootstrap-landing-page-templates/).
+
 
 👋 Bon courage !
