@@ -990,6 +990,12 @@ class EmailUtils
 }
 ```
 
+Modifier maintenant le fichier `index.php` afin d'ajouter l'include des librairies :
+
+```php
+include("vendor/autoload.php"); // Pour les librairies externes. (PHPMailer, etc.)
+```
+
 ::: tip Avant de continuer
 
 Appeler-moi nous allons discuter un peu de ce code, il y a plein de choses à dire dessus !
