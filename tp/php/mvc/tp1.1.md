@@ -893,7 +893,7 @@ Vous devez réaliser une requête directement depuis votre modèle. Celle-ci dev
 function getAllTermine($id){
     $stmt = $this->getPdo()->prepare("SELECT * FROM todos WHERE termine = 1");
     $stmt->execute([]);
-    return $stmt->fetch(\PDO::FETCH_ASSOC);
+    return $stmt->fetch(\PDO::FETCH_OBJ);
 }
 ```
 
