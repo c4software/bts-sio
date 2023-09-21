@@ -454,7 +454,7 @@ Et oui, les commandes magiques c'est bien … mais voilà ce que nous avons cré
 
 ### Modifier le constructeur
 
-Dans le constructeur de la classe, je vous laisse modifier les paramètres lors de la création du parent ; afin de spécifier le bon tableName et primmaryKey.
+Dans le constructeur de la classe, je vous laisse modifier les paramètres lors de la création du parent ; afin de spécifier le bon tableName et primaryKey.
 
 Je vous redonne le schéma de la base de données :
 
