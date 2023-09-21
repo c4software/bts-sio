@@ -427,7 +427,7 @@ php mvc model:create TodoModel
 C:/xampp/php/php mvc model:create TodoModel
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php7.4.9/php mvc model:create TodoModel
+C:/wamp64/bin/php/php8.0.14/php mvc model:create TodoModel
 ```
 
 **Et c'est tout !** votre modèle pour accéder aux données est prêt 🤝 (il est créé automatiquement dans le dossier `models`). Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
@@ -631,7 +631,7 @@ Vous vous souvenez lors de la création de notre première page, nous avions dû
 | /todo/terminer  | `TodoWeb`  | `terminer()`  |
 | /todo/supprimer | `TodoWeb`  | `supprimer()` |
 
-Dans le fichier `routes/Web.php`, ajouter le lignes :
+Dans le fichier `routes/Web.php`, ajouter les lignes :
 
 ```php
   $todo = new TodoWeb();
