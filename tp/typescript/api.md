@@ -445,7 +445,13 @@ Voici la route que vous devez créer :
 /addition/:a/:b"
 ```
 
-### Et le POST ?
+:::
+
+
+Je vous laisse créer la route, et tester la route.
+
+
+### Et si nous souhaitions utiliser une méthode POST ?
 
 Maintenant que nous avons vu comment créer une route, nous allons créer une route qui va gérer les requêtes POST.
 
@@ -460,7 +466,7 @@ app.post("/addition", (req, res) => {
 });
 ```
 
-::: tip La différence avec le paramètre ?
+::: tip La différence avec les paramètres ?
 
 Vous avez remarqué que nous n'avons pas utilisé `req.params` mais `req.body`. C'est normal, `req.params` permet de récupérer les paramètres de la route, `req.body` permet de récupérer les paramètres de la requête.
 
