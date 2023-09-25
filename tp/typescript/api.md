@@ -2,7 +2,7 @@
 
 Dans ce TP nous allons voir comment réaliser une API avec Bun.sh et TypeScript. Pour réaliser cette API nous nous reposerons sur les outils fournis de base par `Bun.sh` et nous utiliserons `Express` pour réaliser notre API.
 
-![Bun.sh](./img/bun.svg)
+![Bun.sh](./img/bun.png)
 
 ::: details Sommaire
 [[toc]]
@@ -829,3 +829,81 @@ $ bun test
 ![Bun test](./img/buntest2.jpg)
 
 Les tests devraient passer, c'est une bonne nouvelle !
+
+### Point étape Git
+
+Ne serait-il pas temps de faire un point étape Git ? Je vous laisse faire un commit avec le message `CRUD Reader`.
+
+### Tests pour le modèle Book
+
+Maintenant que nous avons créé le CRUD pour le modèle Reader, nous allons pouvoir créer le CRUD pour le modèle Book. Si vous avez bien compris, vous devriez pouvoir le faire sans aide.
+
+Je ne vais vous donner que les tests :
+
+```ts
+// BookModel.test.ts
+
+import { expect, test, beforeAll } from "bun:test";
+import { BookModel } from "../models/BookModel.ts";
+
+beforeAll(async () => {
+    // Clear the database
+    const bookModel = new BookModel();
+    await bookModel.deleteAll();
+});
+
+test("all", async () => {
+    const bookModel = new BookModel();
+    const books = await bookModel.all();
+
+    expect(books).toBeInstanceOf(Array);
+});
+
+test("create", async () => {
+    const bookModel = new BookModel();
+    const id = await bookModel.create({
+        title: "Mon livre",
+        author: "Valentin Brosseau"
+    });
+
+    expect(id).toBeGreaterThan(0);
+});
+
+test("read", async () => {
+    const bookModel = new BookModel();
+    const book = await bookModel.read(1);
+
+    expect(book.id).toBe(1);
+    expect(book.title).toBe("Mon livre");
+    expect(book.author).toBe("Valentin Brosseau");
+});
+
+test("update", async () => {
+    const bookModel = new BookModel();
+    const book = await bookModel.update({
+        id: 1,
+        title: "Mon livre",
+        author: "Valentin Brosseau 2"
+    });
+});
+
+test("delete", async () => {
+    const bookModel = new BookModel();
+    await bookModel.delete(1);
+
+    const book = await bookModel.read(1);
+    expect(book).toBeNull();
+});
+```
+
+C'est à vous de jouer ! Je vous laisse créer le modèle `BookModel` et faire passer les tests (vous pouvez vous inspirer du modèle `ReaderModel`). N'oubliez pas de faire un commit avec le message `CRUD Book`.
+
+### Conclusion sur le CRUD
+
+Créer un CRUD est un « basique » du développement. en travaillant en TDD, nous rendons notre code plus robuste et plus maintenable.
+
+En effet, nous nous assurons que notre code fonctionne correctement quelques soit les modifications que nous apportons (les tests nous le diront).
+
+## Créer les routes
+
+TOOD
