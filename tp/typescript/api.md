@@ -429,6 +429,38 @@ Voici la route que vous devez créer :
 /addition/:a/:b"
 ```
 
+### Et le POST ?
+
+Maintenant que nous avons vu comment créer une route, nous allons créer une route qui va gérer les requêtes POST.
+
+Éditer le fichier `server.ts` et modifier le code de la route par le code suivant :
+
+```ts
+app.post("/addition", (req, res) => {
+    const a = parseInt(req.body.a);
+    const b = parseInt(req.body.b);
+
+    res.send(`Le résultat de l'addition est ${addition(a, b)}`);
+});
+```
+
+::: tip La différence avec le paramètre ?
+
+Vous avez remarqué que nous n'avons pas utilisé `req.params` mais `req.body`. C'est normal, `req.params` permet de récupérer les paramètres de la route, `req.body` permet de récupérer les paramètres de la requête.
+
+:::
+
+Pour tester cette route, nous allons utiliser Postman. Postman est un outil qui permet de réaliser des requêtes HTTP. Vous pouvez le télécharger [ici](https://www.postman.com/downloads/).
+
+Une fois Postman installé, vous pouvez créer une requête POST sur l'URL `http://localhost:3000/addition` avec le champ suivant :
+
+```
+a: 10
+b: 2
+```
+
+Vous devriez voir le message `Le résultat de l'addition est 12`.
+
 ### Conclusion de notre test
 
 Nous avons rapidement créer une API avec Bun et Express. Nous avons vu comment créer des routes, comment gérer les erreurs, etc.
