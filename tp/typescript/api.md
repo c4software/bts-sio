@@ -24,6 +24,14 @@ Ici nous allons réaliser une API de type HTTP, c'est à dire que nous allons r�
 
 Les opérations seront globalement des CRUD, c'est à dire que nous pourrons réaliser des opérations de création, de lecture, de mise à jour et de suppression sur des données.
 
+L'ensemble des développements seront réalisés en utilisant la métodoogie TDD (Test Driven Development), c'est à dire que nous allons commencer par réaliser les tests, puis nous allons coder les fonctions.
+
+::: tip Pourquoi le TDD ?
+
+Le TDD est une méthode de développement qui permet de réduire les erreurs de programmation et de faciliter la maintenance du code. C'est une méthode très utilisée dans le monde du développement.
+
+:::
+
 ## Installer Bun.sh
 
 Le guide d'installation de Bun est plutôt bien fait ([voir ici](https://bun.sh/docs/installation)), pour simplifier voilà les commandes à exécuter :
