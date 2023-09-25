@@ -137,9 +137,13 @@ Si tout c'est bien passé, vous devriez avoir le message suivant :
 Hello via Bun!
 ```
 
+<iframe src="https://giphy.com/embed/MgRKCBGvlpqTENUzWk" width="480" height="343" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
 ## Prise en main
 
 Avant de réaliser votre API je vous propose de réaliser un petit exercice pour vous familiariser avec Bun.
+
+<iframe src="https://giphy.com/embed/3oriNLx3dUqFgVi86I" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ### Modifier le message
 
@@ -314,9 +318,13 @@ Cette pratique ce nomme le TDD (Test Driven Development), c'est une pratique tr�
 
 :::
 
+<iframe src="https://giphy.com/embed/dIxkmtCuuBQuM9Ux1E" width="480" height="240" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
 ## Place à l'API
 
 Maintenant que nous avons vu les bases de Bun, nous allons pouvoir réaliser notre API. Pour cela, nous allons utiliser Express, une librairie qui permet de réaliser des API HTTP en JavaScript / TypeScript.
+
+Express est un standard dans le monde du JavaScript / TypeScript. Elle est globalement très utilisé dans le dévelppement serveur. Vous ne vous tromperez pas en l'utilisant.
 
 ### Installer Express
 
