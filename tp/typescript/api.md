@@ -50,11 +50,11 @@ Si tout c'est bien passé vous devriez avoir accès à la commande `bun` dans vo
 
 ![Bun.sh](./img/bunv.jpg)
 
-## Pourquoi le TypeScript ?
+## Pourquoi TypeScript ?
 
-Le TypeScript est un langage de programmation qui est une surcouche du JavaScript. Le TypeScript est un langage qui permet de réaliser du JavaScript, mais avec des fonctionnalités supplémentaires (comme la typage par exemple). C'est un langage qui est de plus en plus utilisé dans le monde du développement Web (Serveur et Client).
+TypeScript est un langage de programmation qui est une surcouche du JavaScript. C'est un langage qui permet de réaliser du JavaScript, mais avec des fonctionnalités supplémentaires (comme la typage). C'est un langage qui est de plus en plus utilisé dans le monde du développement Web (Serveur et Client).
 
-Le typage pour rappel est le fait de définir le type d'une variable. Par exemple, en JavaScript nous pouvons écrire :
+Le typage pour rappel est le fait de définir le type d'une variable (string, number, boolean…). Par exemple, en JavaScript nous pouvons écrire :
 
 ```js
 let a = 1;
@@ -69,6 +69,27 @@ a = "Hello"; // Erreur, nous ne pouvons pas changer le type de la variable a
 ```
 
 Avoir un type fort est un avantage, car cela permet de réduire les erreurs de programmation (et diminuer les risques en terme de cybersécurité).
+
+Il est égamement possible de typer les paramètres et les retours des fonctions :
+
+```ts
+function addition(a: number, b: number): number{
+    return a + b;
+}
+```
+
+Mais il est également possible de créer ces propres types :
+
+```ts
+// Définir un type Client
+class Client {
+    public id: number;
+    public firstName: string;
+    public lastName: string;
+}
+
+const client: Client = new Client(); // Ici nous créons une variable de type Client
+```
 
 ## Créer un projet
 
