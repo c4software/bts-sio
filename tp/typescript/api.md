@@ -404,9 +404,9 @@ import { division } from "./division";
 
 :::
 
-### Gérer les erreurs
+### Gérer l'erreur « Division par 0 »
 
-Maintenant que nous avons vu comment créer une route, nous allons créer une route qui va gérer les erreurs.
+Maintenant que nous avons vu comment créer une route, nous allons créer une route qui va gérer l'erreur de type « Division par 0 ».
 
 Éditer le fichier `server.ts` et modifier le code de la route par le code suivant :
 
@@ -418,12 +418,20 @@ app.get("/division/:a/:b", (req, res) => {
     try {
         res.send(`Le résultat de la division est ${division(a, b)}`);
     } catch (e) {
-        res.status(500).send(e.message);
+        res.status(400).send(e.message);
     }
 });
 ```
 
 Rendez-vous sur l'URL `http://localhost:3000/division/10/0`, vous devriez voir le message `Division par 0 impossible`.
+
+::: tip qu'avons nous fait ?
+
+Nous avons simplement ajouté un bloc `try catch` pour gérer l'erreur. Si une erreur est levée, nous retournons le code HTTP `400` avec le message de l'erreur.
+
+**Rappel** : Le code HTTP `400` correspond à une erreur de type « Bad Request ». (voir [ici](https://developer.mozilla.org/fr/docs/Web/HTTP/Status/400)
+
+:::
 
 ### Ajouter une route pour l'addition
 
