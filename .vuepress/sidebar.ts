@@ -147,7 +147,8 @@ module.exports = [
     children: [
       { text: "Le cours", collapsible: true, children: ["/cours/introduction_api", "/cheatsheets/api/"] },
       { text: "Flask (Python)", collapsible: true, children: ["/cours/python", "/tp/python/flask", "/tp/python/flask_todolist_api"] },
-      { text: "Laravel", collapsible: true, children: ["/tp/laravel/api_produit"] }
+      { text: "Laravel", collapsible: true, children: ["/tp/laravel/api_produit"] },
+      { text: "TypeScript", collapsible: true, children: ["/tp/typescript/api"] }
     ]
   },
 
