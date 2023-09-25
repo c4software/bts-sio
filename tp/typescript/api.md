@@ -474,7 +474,7 @@ Vous avez remarqué que nous n'avons pas utilisé `req.params` mais `req.body`. 
 
 Pour tester cette route, nous allons utiliser ~~Postman~~ HoppScotch. ~~Postman~~ HoppScotch est un outil qui permet de réaliser des requêtes HTTP. Vous pouvez le télécharger [ici](https://hoppscotch.io/).
 
-HoppScotch est une alternative Gratuite et Open Source à Postman.
+HoppScotch est une alternative Gratuite et Open Source à Postman. Si vous souhaitez utiliser Postman, vous pouvez le télécharger [ici](https://www.postman.com/).
 
 ::: tip Comment utiliser HoppScotch ?
 
