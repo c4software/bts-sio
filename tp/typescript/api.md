@@ -472,14 +472,24 @@ Vous avez remarqué que nous n'avons pas utilisé `req.params` mais `req.body`. 
 
 :::
 
-Pour tester cette route, nous allons utiliser Postman. Postman est un outil qui permet de réaliser des requêtes HTTP. Vous pouvez le télécharger [ici](https://www.postman.com/downloads/).
+Pour tester cette route, nous allons utiliser ~~Postman~~ HoppScotch. ~~Postman~~ HoppScotch est un outil qui permet de réaliser des requêtes HTTP. Vous pouvez le télécharger [ici](https://hoppscotch.io/).
 
-Une fois Postman installé, vous pouvez créer une requête POST sur l'URL `http://localhost:3000/addition` avec le champ suivant :
+HoppScotch est une alternative Gratuite et Open Source à Postman.
+
+::: tip Comment utiliser HoppScotch ?
+
+Pour que HoppScotch fonctionne, vous devez lancer votre serveur avec la commande `bun run server.ts` et avoir l'extension HoppScotch installée dans votre navigateur.
+
+:::
+
+Vous pouvez créer une requête POST sur l'URL `http://localhost:3000/addition` avec le champ suivant :
 
 ```
 a: 10
 b: 2
 ```
+
+![HoppScotch](./img/hoppscotch.jpg)
 
 Vous devriez voir le message `Le résultat de l'addition est 12`.
 
