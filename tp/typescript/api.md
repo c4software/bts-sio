@@ -1,6 +1,8 @@
 # Réaliser une API avec Bun.sh et TypeScript
 
-Dans ce TP nous allons voir comment réaliser une API avec Bun.sh et TypeScript. Pour réaliser cette API nous nous reposerons sur les outils fournis de base par Bun.sh.
+Dans ce TP nous allons voir comment réaliser une API avec Bun.sh et TypeScript. Pour réaliser cette API nous nous reposerons sur les outils fournis de base par `Bun.sh` et nous utiliserons `Express` pour réaliser notre API.
+
+![Bun.sh](./img/bun.svg)
 
 ::: details Sommaire
 [[toc]]
