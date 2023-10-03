@@ -1,4 +1,4 @@
-# Exercie OWASP
+# Exercices OWASP
 
 Vous êtes en charge de la sécurité d'une application Web. Pour améliorer la sécurité, votre responsable a commandé un audit de sécurité. L'auditeur a trouvé plusieurs failles de sécurité. Vous devez corriger ces failles.
 
