@@ -12,7 +12,7 @@ L'auditeur a trouvé une faille de type XSS (Cross Site Scripting). Il a réussi
 
 Le code source ou la faille se trouve est le suivant :
 
-```html
+```php
 <?php
 if (isset($_POST['name']) && isset($_POST['email'])) {
     $name = $_POST['name'];
@@ -68,7 +68,7 @@ L'auditeur a trouvé une faille de type Injection SQL. Il a réussi à afficher 
 
 Le code source ou la faille se trouve est le suivant :
 
-```html
+```php
 <?php
 
 $request = "SELECT * FROM users WHERE id = " . $_GET['id'];
@@ -103,7 +103,7 @@ L'auditeur a trouvé une faille de type CSRF (Cross Site Request Forgery). Il a 
 
 Le code source ou la faille se trouve est le suivant :
 
-```html
+```php
 
 <?php
 if(isset($_GET['id'])) {
@@ -172,7 +172,7 @@ L'auditeur a trouvé une faille de type bruteforce.
 
 Le code source ou la faille se trouve est le suivant :
 
-```html
+```php
 <?php
 
 if (isset($_POST['password'])) {
@@ -293,7 +293,7 @@ Le code source ou la faille se trouve est le suivant :
 
 Page affichant les commentaires :
 
-```html
+```php
 <?php
 // Récupère les commentaires
 $request = "SELECT * FROM comments";
