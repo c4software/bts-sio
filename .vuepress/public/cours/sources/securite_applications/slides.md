@@ -248,7 +248,7 @@ Failles liées aux contrôles d'accès de fonctionnalité.
 
 ### A8 - Falsification de requête intersite (CSRF)
 
-Exécution de requêtes à l’insu de l’utilisateur.
+Exécution de requêtes à l’insu de l’utilisateur (rejeu de requête, brute force…)
 
 ---
 
@@ -265,6 +265,10 @@ Les redirections et les renvois non validés sont une vulnérabilité profitant 
 ---
 
 ![Tableau des failles](./img/tableau.png)
+
+---
+
+L'objectif est souvent de ralentir l'attaquant. Afin de le décourager.
 
 ---
 
@@ -289,7 +293,7 @@ Les redirections et les renvois non validés sont une vulnérabilité profitant 
 
 ---
 
-### Le Social Enineering
+### Le Social Engineering
 
 Les gens sont souvent trop confiants.
 
@@ -430,7 +434,8 @@ $stmt->bindParam(1, $mode);
 
 ### A8 - Falsification de requête intersite (CSRF)
 
-- Rejeu de requête déjà joué
+- Rejeu de requête déjà joué.
+- Brute force sur un formulaire.
 
 ---
 

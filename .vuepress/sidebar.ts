@@ -158,6 +158,7 @@ module.exports = [
     children: [
       { text: "Le cours", link: "/cours/securite_applications" },
       { text: "Synthèse du cours", link: "/cheatsheets/owasp/" },
+      "/tp/securite/exercice.md",
       "/tp/securite/"
     ]
   },
