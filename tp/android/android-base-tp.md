@@ -10,7 +10,7 @@ description: La première étape est la création d'un projet. Pour ça nous all
 
 ::: danger XML ou Compose ?
 
-Nous sommes en 2021, le monde d'Android évolue… Pendant des années l'écriture des « layouts » (interface) n'était possible que via du XML. Il est maintenant possible d'écrire les layouts de manières bien plus modernes avec [JetPack Compose](https://developer.android.com/jetpack/compose). Le TP que vous suivez est toujours valide, mais repose sur l'utilisation de XML.
+Nous sommes en 2023, le monde d'Android évolue… Pendant des années l'écriture des « layouts » (interface) n'était possible que via du XML. Il est maintenant possible d'écrire les layouts de manières bien plus modernes avec [JetPack Compose](https://developer.android.com/jetpack/compose). Le TP que vous suivez est toujours valide, mais repose sur l'utilisation de XML.
 
 :::
 
@@ -20,7 +20,7 @@ La première étape est la création d'un projet. Pour ça nous allons utiliser 
 
 Lors de la création, Android Studio va nous poser plusieurs questions, nous allons donc choisir :
 
-- Template : Empty Activity
+- Template : Empty View Activity
 - Language : Kotlin
 - SDK Min. : SDK 26.
 
@@ -40,7 +40,7 @@ Comme vu ensemble pendant le cours, l'émulateur va nous permettre de tester « 
 
 ![AVD](./ressources/avd.jpg)
 
-Pour le choix du type de devices vous êtes libres… Mais le mieux est de choisir un « template de mobile » assez représentatif de ce que l'on trouve chez les clients. Un bon choix est par exemple un « Pixel 2 » avec Android Oreo.
+Pour le choix du type de devices vous êtes libres… Mais le mieux est de choisir un « template de mobile » assez représentatif de ce que l'on trouve chez les clients. Un bon choix est par exemple un « Pixel 6a » avec Android Oreo.
 
 ::: tip
 
@@ -739,6 +739,8 @@ Mais dans les grandes lignes :
 - Chaque élément de la liste doit ressembler à (je vous laisse créer le fichier nommé `item_list.xml` dans les layouts).
 
 ![List Item Layout](./ressources/layout_list_item.png)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/28GgLW7vCRM?si=z9kwjf4zHq60pFLl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ::: tip Les RecyclerView c'est important
 

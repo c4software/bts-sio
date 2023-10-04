@@ -127,7 +127,7 @@ L'objectif :
 
 ---
 
-## « Nécessite » une Lib
+## « Nécessite » une librairie
 
 ```gradle
     implementation "androidx.fragment:fragment-ktx:1.2.5"
@@ -201,7 +201,7 @@ Comment ça fonctionne ?
 
 ## Navigation Components
 
-Nouveau 🚀 − [Documentation officielle](https://developer.android.com/guide/navigation/navigation-getting-started)
+Nouveau 🚀 − [Documentation officielle](https://developer.android.com/guide/navigation/get-started)
 
 ---
 
@@ -242,17 +242,13 @@ Nouveau 🚀 − [Documentation officielle](https://developer.android.com/guide/
 
 ## JetPack Compose
 
-Dans un avenir proche
+Plus de Fragment (en vrai c'est encore possible). Mais plutôt des composants, basés sur des états en code (beaucoup plus simple).
 
 ---
 
 <video autoplay controls loop class="block">
     <source src="https://developer.android.com/jetpack/videos/jetpack-compose-preview.mp4" type="video/mp4">
 </video>
-
----
-
-Actuellement en Alpha
 
 ---
 

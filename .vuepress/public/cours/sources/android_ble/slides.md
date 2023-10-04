@@ -6,6 +6,11 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ## Rappel sur le BLE
 
+- Un serveur (périphérique)
+- Des client (mobile, tablette, ordinateur, …)
+
+---
+
 - Des Services
 - Des Characteristics
 
@@ -13,7 +18,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ## Le Bluetooth et Android
 
-- Les permissions
+- Les permissions (Manifest + Code)
 - Différent en fonction d'Android ( > Lolipop et Kotlin )
 
 ---
@@ -53,8 +58,6 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 ---
 
 ## Asynchrone is hard
-
-(non pas de gif)
 
 ---
 
@@ -329,6 +332,8 @@ private val bleDevicesFoundList = emptyDataSourceTyped<Device>()
 
 ## Le layout (item_device.xml)
 
+Représente un élément de la liste (dans notre cas un périphérique)
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -360,6 +365,8 @@ data class Device (
     var mac: String?,
     var device: BluetoothDevice
 ) {
+    // Pourquoi est-ce que j'ai besoin de cette méthode ?
+    // À votre avis ?
     override fun equals(other: Any?): Boolean {
         return other is Device && other.mac == this.mac
     }
@@ -384,19 +391,10 @@ class DeviceViewHolder(itemView: View) : ViewHolder(itemView) {
 ## Initialisation
 
 ```kotlin
-// On initialise le RecyclerView (Version Recyclycal)
-rvDevices.setup {
-    withDataSource(bleDevicesFoundList)
-    withItem<Device, DeviceViewHolder>(R.layout.item_device) {
-        onBind(::DeviceViewHolder) { _, item ->
-            // Si nous avons un nom, sinon la MAC sera utilisée
-            name.text = item.name.takeIf { !it.isNullOrEmpty() } ?: run { item.mac }
-        }
-        onClick {
-            // Item représente votre « BluetoothDevice »
-            // Ici l'action au click (connexion etc)
-        }
-    }
+rvDevices.adapter = DeviceAdapter(emptyArray()) { item ->
+    Toast.makeText(this@ScanActivity, getString(R.string.trying_connection_to, item.name), Toast.LENGTH_SHORT).show()
+    BluetoothLEManager.currentDevice = item.device
+    connectToCurrentDevice()
 }
 ```
 

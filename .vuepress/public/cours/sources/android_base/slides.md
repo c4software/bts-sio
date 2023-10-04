@@ -4,18 +4,25 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ---
 
+Point statistique :
+
+- Combien d'entre vous ont un téléphone Android ?
+- Combien d'entre vous ont un iPhone ?
+
+---
+
 ## Introduction à Android
 
 ---
 
 - Développé par Google
 - Créé en 2008
-- Actuellement en version 13 (Android S)
-- Android 14 [en approche](https://blog.esper.io/android-14-deep-dive/)
+- Actuellement en version 14
+- Android 15 (Vanilla Ice Cream, Q3 2024)
 
 ---
 
-À la base un OS pour appareil photo
+À la base un OS pour appareil photo.
 
 ---
 
@@ -32,6 +39,9 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 ## Le problème d'Android ?
 
 - La fragmentation
+
+---
+
 - Un Android ? Non… des Android!
 
 ---
@@ -50,6 +60,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 Linux ?
 
+<center>
+    <iframe src="https://giphy.com/embed/3og0ICG4WxdKSRzE3K" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
+
 ---
 
 ## Android is not Linux
@@ -57,7 +71,7 @@ Linux ?
 Construis autour du noyau Linux mais … c'est tout
 
 - Noyau Linux : Drivers, Batterie, Ram.
-- Runtime Android : Fais tourner les applications Android.
+- Runtime Android (ART, Dalvik) : Fais tourner les applications Android.
 - App Framework : Android Framework (Android API).
 
 ---
@@ -87,7 +101,7 @@ Deux types :
 ### Le Code
 
 - Java (Historique)
-- Kotlin (_Nouveau_ à privilégier maintenant)
+- Kotlin (À privilégier maintenant)
 - Flutter (Dart ? Quoi ?)
 
 ---
@@ -96,6 +110,18 @@ Deux types :
 
 - XML (Drawables, Layout, Settings, Color, String)
 - png / jpeg / 9.png / SVG (Images)
+
+---
+
+### Layout « View »
+
+- Fichier XML
+- Représente l'interface graphique
+- Déclaratif
+
+---
+
+![Layout](./img/building-your-android-UI-views.webp)
 
 ---
 
@@ -110,7 +136,7 @@ Deux types :
 ### Compose ?
 
 - Passer d'une Interface déclarative (XML).
-- À une Interface « Composable » écrite en code (Compose)
+- À une Interface « Composable » écrite en **code** (Kotlin)
 
 ---
 
@@ -128,9 +154,16 @@ Deux types :
 
 ---
 
-Très certainement l'avenir d'Android…
+Le renouveau du développement Android
 
 [Exemple les animations](https://developer.android.com/jetpack/compose/animation)
+
+---
+
+- Plus simple
+- Permet de faire des animations simplement
+- Écriture plus moderne
+- Repose sur des Composants (comme React, Vue, Flutter…)
 
 ---
 
@@ -160,12 +193,19 @@ Très certainement l'avenir d'Android…
 
 ---
 
-## Créer un émulateur
+Deux façons de travailler :
+
+- Téléphone connecté en USB.
+- Émulateur (et non simulateur).
+
+---
+
+## L'émulateur
 
 - Intégré dans Android Studio (🙌).
 - Performances suffisantes pour tester.
+- Consomme de la RAM (car c'est un VM).
 - BLE / Bluetooth partiellement disponible (limité).
-- Consomme BEAUCOUP de RAM.
 
 ---
 
@@ -319,6 +359,12 @@ Très certainement l'avenir d'Android…
 
 ---
 
+<center>
+    <iframe src="https://giphy.com/embed/xSTtrYhZOpDjYIGkYC" width="480" height="343" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
+
+---
+
 ## Exemple de Layout
 
 ```xml
@@ -344,12 +390,18 @@ Très certainement l'avenir d'Android…
 
 ---
 
-✋ − Quelques points importants
+✋ Quelques points importants ✋
 
 - Les Namespaces (Tools, App, Android)
 - L'internationalisation (i18n)
 - Les contraints
 - Les dimensions
+
+---
+
+<center>
+    <iframe src="https://giphy.com/embed/kRXnZwKrPTwVq" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
 
 ---
 
@@ -471,6 +523,8 @@ Chaque dossier peut être redéfini en fonction… De la langue (`values-fr/stri
 
 ## Afficher un message à l'utilisateur
 
+Plusieurs solutions (Toast, Snackbar, Dialog)
+
 ---
 
 ### Les toasts
@@ -586,25 +640,6 @@ Ensemble « de règles » / de bonne pratique pour avoir des interfaces de quali
 ## Le listener
 
 ```java
-findViewById<Button>(R.id.myButton).setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Toast.makeText(MainActivity.this, "Bonus point", Toast.LENGTH_SHORT).show();
-    }
-});
-```
-
----
-
-## Le Listener en version « courte »
-
-Android supporte Java 1.8 (dont les lambdas)
-
----
-
-## Les lambda's
-
-```java
 findViewById<Button>(R.id.myButton).setOnClickListener(l -> {
     Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
 });
@@ -616,31 +651,12 @@ findViewById<Button>(R.id.myButton).setOnClickListener(l -> {
 
 ---
 
-```kotlin
-tvHello.setOnClickListener {
-    Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
-};
-```
-
-Pas de déclaration de `tvHello` ? Bien sur que si, mais ça sera automatique avec `kotlin-android-extension`
-
----
-
-## Version Kotlin
-
-Beaucoup moins « verbeux ».
-
-**Dommage pour nous cette version est maintenant dépréciée**
-
----
-
 ## ViewBinding
 
 La nouvelle façon de faire :
 
 - Gère le typage.
 - NullSafety.
-- Un peu plus complexe que le `kotlin-android-extension`. (Pourquoi ?)
 - [La documentation](https://developer.android.com/topic/libraries/view-binding)
 
 ---
@@ -650,8 +666,11 @@ La nouvelle façon de faire :
 Activer le « ViewBinding », dans le block Android déjà présent ajouter :
 
 ```gladle
-buildFeatures {
-    viewBinding true
+android {
+    [...]
+    buildFeatures {
+        viewBinding = true
+    }
 }
 ```
 
@@ -706,6 +725,24 @@ listOf<Device>().forEach {
     // « it » dans le cas présent est la valeur _courante_ de l'itération
 }
 ```
+
+---
+
+Ou de manière plus explicite :
+
+```kotlin
+binding.button.setOnClickListener { button ->
+    // ICI une variable « button » est accessible. Elle contient votre bouton.
+}
+```
+
+```kotlin
+listOf<Device>().forEach { device ->
+    // « device » dans le cas présent est la valeur _courante_ de l'itération
+}
+```
+
+⚠️ Vous avez le choix.
 
 ---
 
