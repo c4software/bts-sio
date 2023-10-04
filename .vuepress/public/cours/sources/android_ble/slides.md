@@ -318,7 +318,7 @@ private var mScanning = false
 private val handler = Handler()
 
 // La liste des résultats
-private val bleDevicesFoundList = emptyDataSourceTyped<Device>()
+private val bleDevicesFoundList = mutableListOf<Device>()
 ```
 
 ---
@@ -391,7 +391,7 @@ class DeviceViewHolder(itemView: View) : ViewHolder(itemView) {
 ## Initialisation
 
 ```kotlin
-rvDevices.adapter = DeviceAdapter(emptyArray()) { item ->
+rvDevices.adapter = DeviceAdapter(bleDevicesFoundList) { item ->
     Toast.makeText(this@ScanActivity, getString(R.string.trying_connection_to, item.name), Toast.LENGTH_SHORT).show()
     BluetoothLEManager.currentDevice = item.device
     connectToCurrentDevice()
