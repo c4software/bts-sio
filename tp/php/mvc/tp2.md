@@ -174,7 +174,7 @@ Je vous laisse importer la base de données sur votre ordinateur.
 
 ::: tip Import ?
 
-Point important la base de données n'oublier pas le dossier migration. En déposant le script dans le dossier `migration` de votre projet. Vous pourrez initialiser la base de données avec la commande suivante :
+Point important la base de données n'oubliez pas le dossier migration. En déposant le script dans le dossier `migration` de votre projet. Vous pourrez initialiser la base de données avec la commande suivante :
 
 ```sh
 php mvc db:migrate
