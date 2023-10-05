@@ -72,7 +72,7 @@ foreach ($clients as $c) { ?>
         $adresses = $c->lesAdresses();
         if (sizeof($adresses) > 0) {
             ?>
-            <h4>Les adresse</h4>
+            <h4>Les adresses</h4>
             <ul>
                 <?php foreach ($adresses as $a) { ?>
                     <li><?= $a->toString() ?></li>
