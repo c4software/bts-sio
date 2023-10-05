@@ -454,7 +454,7 @@ Pour traiter ce problème, vous devez découper votre travail en différentes é
 
 ## Les bonus
 
-Un bon TP se termine toujours par de bons bonus. Les bonus vont vous permettre de voir si vous avez compris les manipulations précédemment réalisées.
+Un bon TP se termine toujours par de bons bonus. Les bonus vont vous permettre devoir si vous avez compris les manipulations précédemment réalisées.
 
 ### Bonus : Ajouter une pagination dans la vue liste / recherche.
 
