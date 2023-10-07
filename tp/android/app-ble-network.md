@@ -534,13 +534,11 @@ class BluetoothLEManager {
         }
 
         /**
-         * Méthodes appelée à chaque notifications BLE (en cas de changement de la led)
+         * Méthodes appelée à chaque notifications BLE
          */
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
             super.onCharacteristicChanged(gatt, characteristic)
-            if (characteristic.uuid == CHARACTERISTIC_NOTIFY_STATE) {
-                onNotify(characteristic)
-            }
+            onNotify(characteristic)
         }
     }
 }
