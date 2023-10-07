@@ -13,19 +13,33 @@ Concevoir une application qui va :
 - Connexion à notre « Équipement ».
 - Commander la LED / afficher l'état.
 
+## Rappels des fonctionnalités de l'équipement
+
+L'équipement dispose des caractéristiques suivantes :
+
+- Allumer / Éteindre la LED.
+- Récupérer l'état de la LED (via une notification BLE).
+- Récupérer le nombre de fois que la LED a été allumée et éteinte.
+- Récupérer la liste des réseaux WiFi disponibles environnants.
+- Changer le nom de l'équipement.
+- Allumer ou éteindre la LED en suivant un patterne (1 étant allumé, 0 étant éteint. Alors S.O.S = `1010100011101110111000101010`).
+
 ## Projet final
 
 - Gérer correctement les messages d'erreurs (permissions, liste périphérique vide, etc.).
-- Gérer correctement le non-accès au réseau (pour la partie, télécommande via Internet).
 - Ranger / organiser « correctement le code source » dans des packages comme vus précédemment.
-- Ne scanner que les Raspberry Pi.
+- Ne scanner que les équipements compatibles.
 - Vider la liste après une connexion (et ne pas avoir de doublons dans la liste).
 - Personnaliser l'icône de l'application (mettre le logo de l'école + ampoule).
 - L'ensemble des textes **doivent-être** dans le `strings.xml`.
 - Empêcher la rotation de l'ensemble des activity (`manifest.xml`).
-- Empêcher l'accès à la partie HTTP si le téléphone est en mode avion ou n'a pas accès à Internet.
-- Bonus : Implémenter la partie notification BLE.
-- Bonus : Commander en HTTP un équipement sur lequel nous ne nous sommes jamais connectés (intégrer un scan Bluetooth dans un dialog de type liste, en ne dupliquant pas le code).
+- Permettre l'allumage / l'extinction de la LED.
+- Afficher le nombre de fois que la LED a été allumée / éteinte.
+- Implémenter la partie notification BLE.
+- Implémenter l'animation de la LED en envoyant une chaîne de caractères du type `1010100011101110111000101010`.
+- Bonus: Afficher la liste des réseaux WiFi disponibles.
+- Bonus: Changer le nom de l'équipement.
+- Bonus: Proposer à l'utilisateur une liste de pattern (S.O.S, etc.) pour animer la LED.
 
 ## Les activités
 
@@ -375,7 +389,7 @@ C'est une méthode qui est appelée à chaque fois que l'activité est visible �
 
 Cette classe va nous permettre de sauvegarder de manière « persistant » des paramètres.
 
-Pour l'instant nous allons sauvegarder le nom raspberryPi, ça nous sera utile lors de la prochaine étape (connexion HTTP)
+Pour l'instant nous allons sauvegarder le nom de L'ESP 32, ça nous sera utile pour la suite.
 
 ```kotlin
 
@@ -439,7 +453,15 @@ private fun connectToCurrentDevice() {
                 },
                 onNotify = { runOnUiThread {
                     // VOUS DEVEZ APPELER ICI LA MÉTHODE QUI VA GÉRER LE CHANGEMENT D'ÉTAT DE LA LED DANS L'INTERFACE
-                    // Exemple, handleToggleLedNotificationUpdate(it)
+                    // Si it (BluetoothGattCharacteristic) est pour l'UUID CHARACTERISTIC_NOTIFY_STATE
+                    // Alors vous devez appeler la méthode qui va gérer le changement d'état de la LED
+                    /* if(it.getUuid() == BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE) {
+                        // À IMPLÉMENTER
+                    } else if (it.getUuid() == BluetoothLEManager.CHARACTERISTIC_GET_COUNT) {
+                        // À IMPLÉMENTER
+                    } else if (it.getUuid() == BluetoothLEManager.CHARACTERISTIC_GET_WIFI_SCAN) {
+                        // À IMPLÉMENTER
+                    } */
                  } },
                 onDisconnect = { runOnUiThread { disconnectFromCurrentDevice() } })
         )
@@ -475,10 +497,11 @@ class BluetoothLEManager {
         var currentDevice: BluetoothDevice? = null
 
         val DEVICE_UUID: UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c")
-        val CHARACTERISTIC_LED_PIN_UUID: UUID = UUID.fromString("31517c58-66bf-470c-b662-e352a6c80cba")
-        val CHARACTERISTIC_BUTTON_PIN_UUID: UUID = UUID.fromString("0b89d2d4-0ea6-4141-86bb-0c5fb91ab14a")
         val CHARACTERISTIC_TOGGLE_LED_UUID: UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b")
         val CHARACTERISTIC_NOTIFY_STATE: UUID = UUID.fromString("d75167c8-e6f9-4f0b-b688-09d96e195f00")
+        val CHARACTERISTIC_GET_COUNT: UUID = UUID.fromString("a877d87f-60bf-4ad5-ba61-56133b2cd9d4")
+        val CHARACTERISTIC_GET_WIFI_SCAN: UUID = UUID.fromString("10f83060-64f8-11ee-8c99-0242ac120002")
+        val CHARACTERISTIC_SET_DEVICE_NAME: UUID = UUID.fromString("1497b8a8-64f8-11ee-8c99-0242ac120002")
     }
 
     open class GattCallback(
@@ -736,196 +759,33 @@ toggleLed.setOnClickListener {
 }
 ```
 
----
 
-## Partie 2 : Ajout de la gestion de la LED via Internet
-
-Cette partie est en bonus, pour faire fonctionner le code de cette partie, vous devez avoir fini la partie 1. Vous allez également avoir besoin de différentes librairies :
-
-- OkHttp
-- GSON
-- Retrofit
-- CoRoutines Kotlin
-
-::: tip La documentation
-
-Avant de continuer, je vous laisse regarder [la documentation disponible ici](/tp/android/network.md). Vous y trouverez des généralités sur la gestion des appels réseau, ainsi que des exemples de code.
-
-:::
-
-### Télécommande via Internet
-
-Nécessite le « nom » du périphérique (donc d'un scan précédent).
-
-- Modifier la vue de la home pour que nous ne puissions pas cliquer sur le bouton.
-- L'activité ne doit pas être accessible. (elle doit `finish()` si pas de `getCurrentSelectedDevice() == null`)
-- Créer un nouveau modèle `LedStatus`
-
-### La classe LedStatus
-
-La classe `LedStatus` est un modèle qui va nous permettre de stocker l'état de la LED. Nous allons donc avoir besoin de deux propriétés : 
-
-- `identifier` : qui va contenir le nom du périphérique (identifiant unique).
-- `status` : qui va contenir l'état de la LED (allumée ou éteinte).
-
-Nous allons également avoir besoin de deux méthodes :
-
-- `setIdentifier` : qui va permettre de modifier l'identifiant du périphérique.
-- `setStatus` : qui va permettre de modifier l'état de la LED.
-- `reverseStatus` : qui va permettre de modifier l'état de la LED en fonction de son état actuel.
-- `clone` : qui va permettre de cloner l'objet.
-
-Cette classe nous permettra de stocker l'état de la LED, mais aussi de la modifier. Nous allons donc pouvoir l'utiliser pour envoyer des requêtes HTTP vers notre serveur.
-
-Voici le code de la classe :
-
-```kotlin
-/**
- * LedStatus model
- */
-data class LedStatus(var identifier: String = "", var status: Boolean = false) {
-    fun setIdentifier(identifier: String): LedStatus {
-        this.identifier = identifier
-        return this
-    }
-
-    fun setStatus(status: Boolean): LedStatus {
-        this.status = status
-        return this
-    }
-
-    fun reverseStatus(): LedStatus {
-        return setStatus(!status)
-    }
-
-    fun clone(): LedStatus {
-        return LedStatus(identifier, status)
-    }
-}
-```
-
-Je vous laisse ranger le code dans le bon package.
-
-### Nouvelles dépendances Gradle
-
-Nous allons maintenant avoir besoin de nouvelles dépendances pour faire fonctionner le code de cette partie. Pour cela, vous devez aller dans le fichier `build.gradle` du module `app` et ajouter les lignes suivantes :
-
-```groovy
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
-
-implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-implementation 'com.squareup.okhttp3:okhttp:4.9.3'
-implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
-```
-
-### la classe APIService
-
-```kotlin
-
-/**
- * ApiService
- */
-interface ApiService {
-
-    @GET("/status")
-    suspend fun readStatus(@Query("identifier") identifier: String): LedStatus
-
-    @POST("/status")
-    suspend fun writeStatus(@Body status: LedStatus): LedStatus
-
-    companion object {
-        /**
-         * Création d'un singleton pour la simplicité, mais normalement nous utilisons plutôt un
-         * injecteur de dépendances.
-         */
-        val instance = build()
-
-        /**
-         * Création de l'objet qui nous permettra de faire les appels d'API
-         */
-        private fun build(): ApiService {
-            val gson = GsonBuilder().create() // JSON deserializer/serializer
-
-            // Create the OkHttp Instance
-            val okHttpClient = OkHttpClient.Builder()
-                .readTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .addInterceptor(HttpLoggingInterceptor().setLevel(if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE))
-                .addInterceptor(Interceptor { chain: Interceptor.Chain ->
-                    val request = chain.request().newBuilder().addHeader("Accept", "application/json").build()
-                    chain.proceed(request)
-                })
-                .build()
-
-            return Retrofit.Builder()
-                .baseUrl(BuildConfig.URI_REMOTE_SERVER)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
-                .create(ApiService::class.java)
-        }
-    }
-}
-```
-
-- `readStatus` : Récupère l'état de la LED depuis le serveur.
-- `writeStatus` : Envoie l'état de la LED sur le serveur, et retourne l'état de la LED après modification.
-
-Ces deux méthodes sont des `suspend` car nous allons les utiliser dans des `coroutines`.
-
-::: tip Pas de code ?
-
-Et non, nous n'avons pas besoin de code pour faire fonctionner ces deux méthodes. Elles sont générées automatiquement par Retrofit, en fonction de l'interface `ApiService`. Pratique !
-
-:::
-
-### Exemple d'utilisation
-
-Voici un exemple d'utilisation, celui-ci permet de récupérer l'état de la LED depuis le serveur. Nous utilisons une coroutine pour faire l'appel HTTP, et nous utilisons la méthode `runCatching` pour gérer les erreurs.
-
-```kotlin
-// Récupération de l'état depuis le serveur
-private fun getStatus() {
-    CoroutineScope(Dispatchers.IO).launch {
-        runCatching {
-            val readStatus = ApiService.instance.readStatus(ledStatus.identifier)
-            ledStatus.setStatus(readStatus.status)
-            setVisualState()
-        }
-    }
-}
-```
-
-::: tip RunCatching
-
-RunCatching est une méthode qui permet de gérer les erreurs. Elle permet de faire un `try/catch` en une seule ligne. Attention, elle va masquer les erreurs, donc il faut faire attention à ne pas l'utiliser dans des méthodes qui doivent retourner une valeur.
-
-Dans le cadre de débogage, il est préférable d'utiliser `try/catch` classique pour afficher les erreurs.
-
-:::
-
----
-
-## Partie 3 : Les notifications BLE
+## Partie 2 : Les notifications BLE
 
 Si votre code fonctionne, un simple copier-coller devrait suffire pour faire fonctionner la partie 3.
 
 ### Notification BLE
 
-La Raspberry Pi dispose également d'un service de « Notification ». Les notifications sont envoyées à chaque changement d'état de la LED (local ou via le réseau). Cette notification est envoyée sur l'UUID `d75167c8-e6f9-4f0b-b688-09d96e195f00`.
+L'ESP 32 dispose également de différents services de « Notification ». Les services sont les suivants :
 
-Nous allons donc devoir l'écouter et changer l'état de notre interface pour afficher si la LED est éteinte ou allumée.
+- `CHARACTERISTIC_NOTIFY_STATE` : Permet de savoir si la LED est allumée ou éteinte.
+- `CHARACTERISTIC_GET_COUNT` : Permet de récupérer le nombre de fois que la LED a été allumée.
+- `CHARACTERISTIC_GET_WIFI_SCAN` : Permet de récupérer la liste des réseaux WiFi disponibles.
+
+Nous allons donc devoir l'écouter et changer l'état de notre interface.
 
 ```kotlin
 private fun enableListenBleNotify() {
     getMainDeviceService()?.let { service ->
         Toast.makeText(this, getString(R.string.enable_ble_notifications), Toast.LENGTH_SHORT).show()
         // Indique que le GATT Client va écouter les notifications sur le charactérisque
-        val notification = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
+        val notificationStatus = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
+        val notificationLedCount = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_COUNT)
+        val wifiScan = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_WIFI_SCAN)
 
-        currentBluetoothGatt?.setCharacteristicNotification(notification, true)
+        currentBluetoothGatt?.setCharacteristicNotification(notificationStatus, true)
+        currentBluetoothGatt?.setCharacteristicNotification(notificationLedCount, true)
+        currentBluetoothGatt?.setCharacteristicNotification(wifiScan, true)
     }
 }
 
@@ -934,6 +794,55 @@ private fun handleToggleLedNotificationUpdate(characteristic: BluetoothGattChara
         ledStatus.setImageResource(R.drawable.led_on)
     } else {
         ledStatus.setImageResource(R.drawable.led_off)
+    }
+}
+
+private fun handleCountLedChangeNotificationUpdate(characteristic: BluetoothGattCharacteristic) {
+    characteristic.getStringValue(0).toIntOrNull()?.let {
+        ledCount.text = getString(R.string.led_count, it)
+    }
+}
+
+private fun handleOnNotifyNotificationReceived(characteristic: BluetoothGattCharacteristic) {
+    // TODO : Vous devez ici récupérer la liste des réseaux WiFi disponibles et les afficher dans une liste.
+    // Vous pouvez utiliser un RecyclerView pour afficher la liste des réseaux WiFi disponibles.
+}
+```
+
+## Partie 3 : Les animations sauvegardées
+
+Une fois connecté au périphérique, nous pouvons lui envoyer une trame plus longue (de type 0 et 1) pour lui indiquer de jouer une animation. Cette trame est envoyée sur l'UUID `59b6bf7f-44de-4184-81bd-a0e3b30c919b`.
+
+En fonction de la trame envoyée, la LED va jouer une animation. Vous devez donc créer une interface qui permet de choisir une animation et de l'envoyer au périphérique.
+
+Bonus : Vous pouvez créer une interface qui permet de sauvegarder une animation (dans le LocalPreferences) et de la jouer.
+
+Exemple d'envoi d'une animation :
+
+```kotlin
+private fun sendAnimation() {
+    getMainDeviceService()?.let { service ->
+        val toggleLed = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_TOGGLE_LED_UUID)
+        toggleLed.setValue("101010101111011111000010101010")
+        currentBluetoothGatt?.writeCharacteristic(toggleLed)
+    }
+}
+```
+
+## Partie 4 : Récupérer la liste des réseaux WiFi
+
+L'ESP32 dispose d'un service qui permet de récupérer la liste des réseaux WiFi disponibles. Ce service est disponible sur l'UUID `10f83060-64f8-11ee-8c99-0242ac120002`. Une fois connecté au périphérique, vous pouvez observer les notifications sur l'UUID `10f83060-64f8-11ee-8c99-0242ac120002` il emettra une notification toutes les 30 secondes avec la liste des réseaux WiFi disponibles et leur force de signal.
+
+## Partie 5 : Changer le nom du périphérique
+
+En utilisant l'UUID `1497b8a8-64f8-11ee-8c99-0242ac120002` vous pouvez changer le nom du périphérique. Vous devez donc créer une interface qui permet de changer le nom du périphérique.
+
+```kotlin
+private fun sendDeviceName() {
+    getMainDeviceService()?.let { service ->
+        val setDeviceName = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_SET_DEVICE_NAME)
+        setDeviceName.setValue("LeNomDuDevice") // Le ESEO- est ajouté automatiquement
+        currentBluetoothGatt?.writeCharacteristic(setDeviceName)
     }
 }
 ```
