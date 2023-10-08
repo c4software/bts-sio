@@ -6,6 +6,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 Que fait notre objet ?
 
+![what](./img/ESP.jpg)
+
+---
+
 **en BLE :**
 
 - Toggle de la LED.
