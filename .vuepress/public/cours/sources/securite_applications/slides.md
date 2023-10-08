@@ -484,10 +484,10 @@ if ($_SESSION['mode'] == 'client') {
 ### Exposition de données sensibles
 
 - Espace client sans SSL.
-- Mot de passe en claire (**ou en MD5**) dans la base de données.
+- Mot de passe en clair (**ou en MD5**) dans la base de données.
 - Sauvegarde de données inutiles.
 - Données sensibles dans les logs.
-- Données sensibles en claire dans la base de données.
+- Données sensibles en clair dans la base de données.
 
 ---
 
@@ -523,13 +523,13 @@ if(SessionUtilisateur::estAdmin()) {
 
 - Rejeu de requête déjà joué.
 - Attaque de type brute force.
-- Execution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tierce).
+- Exécution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tierce).
 
 ---
 
 #### Comment le bloquer ?
 
-Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
+Ajoutez un identifiant/jeton dans la requête, unique et non réutilisable
 
 ⚠️ Parlons-en !
 
@@ -560,7 +560,7 @@ if (isset($_POST['_token']) && $_POST['_token'] == $_SESSION['_token']) {
 
 ---
 
-### Redirections et Renvois Non Validés
+### Redirections et Renvois non validés
 
 - Utilisation de votre site comme « masque » dans du phishing
 
@@ -636,7 +636,7 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ## La double authentification
 
-- **Mot de passe :** chaine de caractère, chiffre, symbole.
+- **Mot de passe :** chaîne de caractère, chiffre, symbole.
 - **Application :** OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
 - **Objet physique :** U2F (Universal 2nd Factor) : Clé USB, Yubikey.
 - **Biométrie :** Empreinte digitale, Reconnaissance faciale.

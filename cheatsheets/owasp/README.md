@@ -115,7 +115,7 @@ C’est **votre métier**
 
 S'assurer d'une qualité continue du code avec :
 
-- Des règles à connaitre (OWASP).
+- Des règles à connaître (OWASP).
 - Des tests unitaires.
 - Une analyse automatique du code (SonarQube).
 
@@ -123,11 +123,11 @@ S'assurer d'une qualité continue du code avec :
 
 > Open Web Application Security Project (OWASP) est une communauté en ligne travaillant sur la sécurité des applications Web. Sa philosophie est d'être à la fois libre et ouverte à tous. Elle a pour vocation de publier des recommandations de sécurisation Web et de proposer aux internautes, administrateurs et entreprises des méthodes et outils de référence permettant de contrôler le niveau de sécurisation de ses applications Web.
 
-> _Source: Wikipedia_
+> _Source: Wikipédia_
 
 [Site de Owasp](https://owasp.org/)
 
-OWASP liste 10 grandes catégories de failles **à connaitre** :
+OWASP liste 10 grandes catégories de failles **à connaître** :
 
 - **Injection** : Les attaques par injection surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête. Cela peut se produire avec les injections SQL, les injections OS, etc.
 - Violation de Gestion d’Authentification et de Session : Cela se produit lorsque les attaquants exploitent des vulnérabilités dans les mécanismes d'authentification, comme les sessions mal gérées, les mots de passe faibles ou les identifiants exposés.
@@ -142,7 +142,7 @@ OWASP liste 10 grandes catégories de failles **à connaitre** :
 
 ### Les failles
 
-Le TOP 10 OWASP nous donnes les grandes catégories de failles à connaitre. Pour entrer dans le détail, voici les failles les plus courantes :
+Le TOP 10 OWASP nous donne les grandes catégories de failles à connaître. Pour entrer dans le détail, voici les failles les plus courantes :
 
 ### Les Injections
 
@@ -160,7 +160,7 @@ http://exemple.com/liste?id='or '1'='1
 
 ::: tip C'est la base de la sécurité
 
-Vous trouverez cette exemple un peu partout. C'est le mauvais exemple en termes de sécurité !
+Vous trouverez cet exemple un peu partout. C'est le mauvais exemple en termes de sécurité !
 
 Au passage, si vous écrivez :
 
@@ -227,9 +227,9 @@ Le code sera exécuté dans le navigateur de l'utilisateur lors de l'affichage d
 
 :::
 
-Deux types sont à connaitre :
+Deux types sont à connaître :
 
-- XSS Persistant (Stocké)
+- XSS Persistant (stocké)
 - XSS Reflété (via un lien)
 
 #### Comment corriger ?
@@ -305,10 +305,10 @@ Corresponds aux failles de configuration liées aux serveurs Web, applications, 
 Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 - Espace client sans SSL.
-- Mot de passe en claire (ou en MD5) dans la base de données.
+- Mot de passe en clair (ou en MD5) dans la base de données.
 - Sauvegarde de données inutiles.
 - Données sensibles dans les logs.
-- Données sensibles en claire dans la base de données.
+- Données sensibles en clair dans la base de données.
 
 #### Comment corriger ?
 
@@ -345,11 +345,11 @@ Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
 
 - Rejeu de requête déjà joué.
 - Attaque de type brute force.
-- Execution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tierce).
+- Exécution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tierce).
 
 ::: tip Comment le bloquer ?
 
-Ajouter un identifiant/jeton dans la requête, unique et non réutilisable. Intégré de base dans Laravel.
+Ajoutez un identifiant/jeton dans la requête, unique et non réutilisable. Intégré de base dans Laravel.
 
 :::
 
@@ -381,9 +381,9 @@ Failles liées à l’utilisation de composants tiers vulnérables.
 #### Comment corriger ?
 
 - Toujours mettre à jour les composants tiers.
-- Ne pas utiliser des vieux frameworks (exemple PHP 4, ou Symfony 1.4)
+- Ne pas utiliser de vieux frameworks (exemple PHP 4, ou Symfony 1.4)
 
-### Redirections et Renvois Non Validés
+### Redirections et Renvois non validés
 
 Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante
 
