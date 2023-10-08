@@ -867,8 +867,8 @@ private fun sendWifiConfig() {
 
 Une fois connecté au réseau WiFi, votre ESP32 expose 2 endpoints :
 
-- `/status` : Permet de récupérer l'état de la LED (`{state: "1", count: 0}` ou `{state: "0", count: 0}`).
-- `/toggle` : Permet de changer l'état de la LED (`{state: "1", count: 0}` ou `{state: "0", count: 0}`).
+- `/status` : Permet de récupérer l'état de la LED (`{state: "ON", count: 0}` ou `{state: "OFF", count: 0}`).
+- `/toggle` : Permet de changer l'état de la LED (`{state: "ON", count: 0}` ou `{state: "OFF", count: 0}`).
 
 Pour appeler ces endpoints, vous pouvez utiliser la librairie `OkHttp` ou `Retrofit`. Nous pouvons en discuter ensemble si vous avez des questions, vous avez à votre disposition [la documentation ici](./network.md)
 
