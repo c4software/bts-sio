@@ -4,6 +4,32 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ---
 
+Que fait notre objet ?
+
+**en BLE :**
+
+- Toggle de la LED.
+- Comptage du nombre d’allumages.
+- Changement du nom de la carte (persistant).
+- Notification lors de l’allumage / extinction de la LED.
+- Liste des réseaux Wifi environnants.
+- Définition des credentials Wifi (persistant).
+
+---
+
+**En HTTP :**
+
+- Allumage et extinction de la LED (toggle).
+- Récupération du statut.
+
+---
+
+**En Physique :**
+
+- Utilisation du bouton pour allumer et éteindre la LED.
+
+---
+
 ## Rappel sur le BLE
 
 - Un serveur (périphérique)
