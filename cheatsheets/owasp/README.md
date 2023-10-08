@@ -8,7 +8,7 @@ description: La méthode OWASP ! Prévenir plutôt que guérir…
 [[toc]]
 :::
 
-### Comment se tenir à jour ?
+## Comment se tenir à jour ?
 
 Prévenir plutôt que guérir… Quelques sites à surveiller :
 
@@ -23,7 +23,7 @@ Prévenir plutôt que guérir… Quelques sites à surveiller :
 Vous êtes la première ligne d’informations !
 :::
 
-### Les mots de passe
+## Les mots de passe
 
 Zoom sur les mots de passe :
 
@@ -31,7 +31,7 @@ Zoom sur les mots de passe :
 - Un mot de passe doit être haché (non réversible).
 - Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
 
-## Principes de base
+### Principes de base
 
 Avoir un mot de passe hashé ne suffit pas. Il faut aussi le saler.
 
@@ -39,7 +39,7 @@ Avoir un mot de passe hashé ne suffit pas. Il faut aussi le saler.
 
 Le salage est une technique qui permet d’ajouter une chaîne aléatoire au mot de passe avant (ou après) de le hacher. Idéalement le sel est différent par utilisateur, cela permet de rendre le mot de passe unique pour chaque utilisateur.
 
-## Le bcrypt
+### Des algorithmes : Le bcrypt
 
 Le bcrypt est un algorithme de hachage qui :
 
@@ -129,7 +129,22 @@ S'assurer d'une qualité continue du code avec :
 
 OWASP liste 10 grandes catégories de failles **à connaitre** :
 
-### A1 - Injection
+- **Injection** : Les attaques par injection surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête. Cela peut se produire avec les injections SQL, les injections OS, etc.
+- Violation de Gestion d’Authentification et de Session : Cela se produit lorsque les attaquants exploitent des vulnérabilités dans les mécanismes d'authentification, comme les sessions mal gérées, les mots de passe faibles ou les identifiants exposés.
+- **Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire compte tenu des défaillances cryptographiques possibles (et donc à l’exposition de données sensibles). Cela est particulièrement vrai dans le cas où ces données relèvent de dispositifs réglementés comme le RGPD, le CCPA, etc. Exemple, mot de passe non chiffré en base de données
+- **Conception non sécurisée / Exposition de données sensibles** : La « conception non sécurisée » est un terme assez large qui regroupe diverses failles et désigne l’absence ou la faiblesse de la conception des contrôles. Exemple d’accès direct à une ressource sans contrôle, manque de contrôle dans un système de routeur Web, Manque de contrôle de saisie.
+- **Mauvaise configuration de la sécurité** : Manque de validation des types de paramètres, accès trop facile aux ressources non accessibles au public (cloud), configuration incomplète ou trop permissive, messages d’erreurs trop détaillés, contenant des informations sensibles, manque de contrôle sur les données en entrée (filtrage non présent type filter_input, strip_tags, htmlspecialchars etc.)
+- **Utilisation de composants avec des vulnérabilités connues** : L'utilisation de logiciels ou de composants obsolètes et vulnérables peut exposer l'application à des attaques connues. Il est essentiel de maintenir une liste des composants utilisés et de surveiller les vulnérabilités associées. Ancienne version de Laravel, ancienne version de PHP, MySQL non à jour, etc.
+- **Identification et authentification de mauvaise qualité** : Lorsque les applications n’exécutent pas de manière correcte les fonctions liées à la gestion des sessions ou à l’authentification des utilisateurs, des intrus peuvent compromettre les mots de passe, clés de sécurité ou jetons de sessions et usurper, de manière temporaire ou permanente, les identités et donc les autorisations d’autres utilisateurs. Exemple, absence d’authentification multifacteur, absence de règle de mot de passe, utilisateur par défaut type root / root sur un système, utilisation d’id dans un lien.
+- **Manque d’intégrité des données et du logiciel** : Cette catégorie englobe les codes et infrastructures qui ne sont pas protégés contre les violations d’intégrité. Exemple, mise à jour sans contrôle, absence de signature numérique, présence de XSS dans un système, aucune protection anti-rejeux (brute force, CSRF)
+- **Absence de logs serveur et de surveillance** : Permettre un cas d’incident d’avoir de la traçabilité.
+- **Falsification de requête côté serveur** : Elle permet à un hacker d’inciter l’application côté serveur à envoyer des requêtes à un endroit non prévu. Le serveur est donc capable de faire des requêtes à des endroits non prévus (depuis le coeur de l'application).
+
+### Les failles
+
+Le TOP 10 OWASP nous donnes les grandes catégories de failles à connaitre. Pour entrer dans le détail, voici les failles les plus courantes :
+
+### Les Injections
 
 Injection SQL, Shell...
 
@@ -168,7 +183,7 @@ $maRequete = $pdo->prepare("SELECT * FROM client WHERE id=:id");
 $maRequete->execute(['id' => $_GET['id']]);
 ```
 
-### A2 - Violation de Gestion d’Authentification et de Session
+### Violation de Gestion d’Authentification et de Session
 
 Risque de casser / usurper une authentification ou une session. Comprends notamment le vol de session ou la récupération de mots de passe.
 
@@ -184,7 +199,7 @@ http://exemple.com/?jsessionid=A2938298D293
 - Toujours utiliser des sessions avec un identifiant unique.
 - Toujours utiliser des sessions avec un TTL (Time To Live).
 
-### A3 - Cross-Site Scripting (XSS)
+### Cross-Site Scripting (XSS)
 
 Risque d'injection de contenu dans une page pour but de provoquer des actions non désirées dans celle-ci.
 
@@ -197,8 +212,20 @@ Votre Nom : <input type="text" name="nom" value="" />
 ```
 
 ```js
-alert("Bonjour " + $_POST["nom"]);
+echo "Bonjour " . $_POST['nom'];
 ```
+
+::: danger Attention
+
+Avec ce code, il est possible d'exécuter du code JavaScript. Exemple, si l'utilisateur entre :
+
+```html
+<script>alert('Hello')</script>
+```
+
+Le code sera exécuté dans le navigateur de l'utilisateur lors de l'affichage de la page.
+
+:::
 
 Deux types sont à connaitre :
 
@@ -211,9 +238,13 @@ Deux types sont à connaitre :
 
 ```php
 $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
+// ou
+$nom = strip_tags($_POST['nom']);
+// ou
+$nom = htmlspecialchars($_POST['nom']);
 ```
 
-### A4 - Références directes non sécurisées à un objet
+### Références directes non sécurisées à un objet
 
 Accès à de la donnée en spécifiant un `id` directement par un paramètre non filtré.
 
@@ -254,7 +285,7 @@ if ($_SESSION['mode'] == 'client') {
 }
 ```
 
-### A5 - Mauvaise configuration Sécurité
+### Mauvaise configuration Sécurité
 
 Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
 
@@ -269,21 +300,25 @@ Corresponds aux failles de configuration liées aux serveurs Web, applications, 
 - Toujours supprimer les répertoires de débug.
 - Lire la documentation.
 
-### A6 - Exposition de données sensibles
+### Exposition de données sensibles
 
 Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
 
 - Espace client sans SSL.
 - Mot de passe en claire (ou en MD5) dans la base de données.
 - Sauvegarde de données inutiles.
+- Données sensibles dans les logs.
+- Données sensibles en claire dans la base de données.
 
 #### Comment corriger ?
 
 - Toujours utiliser le HTTPS.
 - Toujours utiliser des mots de passe chiffrés (hashés + sel).
 - Toujours supprimer les données inutiles.
+- Toujours supprimer les données sensibles des logs.
+- Protéger les données sensibles dans la base de données (chiffrement).
 
-### A7 - Manque de contrôle d’accès au niveau fonctionnel
+### Manque de contrôle d’accès au niveau fonctionnel
 
 Failles liées aux contrôles d'accès de fonctionnalité.
 
@@ -304,11 +339,13 @@ if ($_SESSION['mode'] == 'client') {
 }
 ```
 
-### A8 - Falsification de requête intersite (CSRF)
+### Falsification de requête intersite (CSRF)
 
 Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
 
 - Rejeu de requête déjà joué.
+- Attaque de type brute force.
+- Execution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tierce).
 
 ::: tip Comment le bloquer ?
 
@@ -331,20 +368,22 @@ if (isset($_POST['_token']) && $_POST['_token'] == $_SESSION['_token']) {
 }
 ```
 
-### A9 - Utilisation de composants avec des vulnérabilités connues
+### Utilisation de composants avec des vulnérabilités connues
 
 Failles liées à l’utilisation de composants tiers vulnérables.
 
-- CMS non à jour
-- Apache / Tomcat non patchés
-- Librairies XYZ non à jour
+- CMS non à jour.
+- Apache / Tomcat non patchés.
+- Librairies XYZ non à jour.
+- Version de PHP non à jour.
+- Framework non à jour.
 
 #### Comment corriger ?
 
 - Toujours mettre à jour les composants tiers.
 - Ne pas utiliser des vieux frameworks (exemple PHP 4, ou Symfony 1.4)
 
-### A10 - Redirections et Renvois Non Validés
+### Redirections et Renvois Non Validés
 
 Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante
 
@@ -372,7 +411,7 @@ if (preg_match('/^https?:\/\/shop-vdt\.com\//', $_GET['goto'])) {
 
 ### Mais, une faille c’est quoi ?
 
-![](./res/faille.png)
+![Une faille](./res/faille.png)
 
 L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement… Et surtout avec OWASP on parle de **vulnérabilité, et non de risque**.
 

