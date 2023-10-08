@@ -23,6 +23,10 @@ L'équipement dispose des caractéristiques suivantes :
 - Récupérer la liste des réseaux WiFi disponibles environnants.
 - Changer le nom de l'équipement.
 - Allumer ou éteindre la LED en suivant un patterne (1 étant allumé, 0 étant éteint. Alors S.O.S = `1010100011101110111000101010`).
+- Définir les informations de connexion au réseau WiFi.
+- **Si un réseau Wifi est défini**, lancement d'un serveur sur le port 80 permettant :
+  - D'afficher l'état de la LED (`/status`).
+  - D'allumer / éteindre la LED (`/toggle`).
 
 ## Projet final
 
@@ -40,6 +44,7 @@ L'équipement dispose des caractéristiques suivantes :
 - Bonus: Afficher la liste des réseaux WiFi disponibles.
 - Bonus: Changer le nom de l'équipement.
 - Bonus: Proposer à l'utilisateur une liste de pattern (S.O.S, etc.) pour animer la LED.
+- Bonus: Le réseau WiFi est défini, il est possible d'allumer / éteindre la LED via un accès HTTP.
 
 ## Les activités
 
@@ -502,6 +507,7 @@ class BluetoothLEManager {
         val CHARACTERISTIC_GET_COUNT: UUID = UUID.fromString("a877d87f-60bf-4ad5-ba61-56133b2cd9d4")
         val CHARACTERISTIC_GET_WIFI_SCAN: UUID = UUID.fromString("10f83060-64f8-11ee-8c99-0242ac120002")
         val CHARACTERISTIC_SET_DEVICE_NAME: UUID = UUID.fromString("1497b8a8-64f8-11ee-8c99-0242ac120002")
+        val CHARACTERISTIC_SET_WIFI_CREDENTIALS: UUID = UUID.fromString("1a0f3c0c-64f8-11ee-8c99-0242ac120002")
     }
 
     open class GattCallback(
@@ -844,6 +850,27 @@ private fun sendDeviceName() {
     }
 }
 ```
+
+### Bonus : Le HTTP
+
+La carte ESP32 dispose d'un serveur HTTP. Celui-ci sera actif que si vous envoyez une trame de configuration WiFi.
+
+```kotlin
+private fun sendWifiConfig() {
+    getMainDeviceService()?.let { service ->
+        val setCredential = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_SET_WIFI_CREDENTIALS)
+        setCredential.setValue("SSID|PASSWORD")
+        currentBluetoothGatt?.writeCharacteristic(setCredential)
+    }
+}
+```
+
+Une fois connecté au réseau WiFi, votre ESP32 expose 2 endpoints :
+
+- `/status` : Permet de récupérer l'état de la LED (`{state: "1", count: 0}` ou `{state: "0", count: 0}`).
+- `/toggle` : Permet de changer l'état de la LED (`{state: "1", count: 0}` ou `{state: "0", count: 0}`).
+
+Pour appeler ces endpoints, vous pouvez utiliser la librairie `OkHttp` ou `Retrofit`. Nous pouvons en discuter ensemble si vous avez des questions, vous avez à votre disposition [la documentation ici](./network.md)
 
 ### Fourniture des sources
 
