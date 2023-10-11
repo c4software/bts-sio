@@ -146,6 +146,8 @@ Deux types :
     <source src="https://developer.android.com/jetpack/videos/jetpack-compose-preview.mp4" type="video/mp4">
 </video>
 
+[Source](https://developer.android.com/jetpack/videos/jetpack-compose-preview.mp4)
+
 ---
 
 - [Présentation](https://developer.android.com/jetpack/compose)

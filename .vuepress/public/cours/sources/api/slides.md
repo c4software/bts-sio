@@ -29,41 +29,22 @@ Progressive Web Apps
 
 ---
 
-### Le monde de demain sera Web
+## Le monde de demain sera Web
 
-#### Exemple de PWA
+PWA, Site Web, WebApp, … 
 
-- <https://appsco.pe/> (Liste d'exemples)
-- <https://pwa.rocks/> (Liste d’exemples)
+- <https://www.gmail.com>
+- <https://pwa.rocks/>
 - <https://mobile.twitter.com>
-- <https://m.facebook.com> (volontairement bridé)
+- <https://m.facebook.com>
+- <https://www.youtube.com/tv>
+- <https://drive.google.com>
 
 ---
 
 ![Twitter PWA](./img/twitter.png)
 
----
-
-Bluffant n’est-ce pas ? (psst c’est du ReactJS)
-
----
-
-### Concrètement une PWA c’est quoi
-
-![Question](./img/questions.gif)
-
----
-
-- Pour tous, quelques soit le navigateur
-- Responsive
-- Indépendant du réseau (via des services Workers, fonctionne hors-ligne ou en ligne)
-- App-like
-- Toujours à jour
-- Sure (HTTPS)
-- Découvrable et identifié comme application grâce au fichier manifeste
-- Notifications, envoyer de l’information
-- Installable
-- Partageable (oui, c’est « juste » un lien)
+(Bluffant n’est-ce pas ? (psst c’est du ReactJS))
 
 ---
 
@@ -74,7 +55,7 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 
 ---
 
-### IoT
+### IoT (Internet of Things)
 
 - Objet connecté
 - Communique via 3G / 4G
