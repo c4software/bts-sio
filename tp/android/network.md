@@ -17,7 +17,7 @@ Un thread ou fil (d'exécution) ou tâche (terme et définition normalisée par 
 [[toc]]
 :::
 
-## Pourquoi était-ce complexe ?
+## Pourquoi est-ce complexe ?
 
 Internet est une variable incontrôlable dans un projet Android, vous n'êtes pas certains que :
 
