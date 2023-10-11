@@ -313,30 +313,7 @@ Modifier le code précédent pour utiliser la nouvelle façon vue précédemment
 
 ### Les Kotlin Android Extension
 
-::: warning Cette méthode est maintenant dépréciée
-Bien que pratique, cette méthode n'est maintenant plus « la bonne façon de faire.
-
-La seconde façon (moins longue) d'accéder à un élément est via « les Kotlin-Android-Extensions ».
-
-::: details Je prends le risque je regarde
-
-Les extensions sont à ajouter dans votre `build.gradle` (app). Ajouter
-
-```gradle
-plugins {
-    id 'com.android.application' // Déjà présente.
-    id 'kotlin-android' // Vous devez déjà l'avoir.
-    id 'kotlin-android-extensions' // <- Cette ligne.
-}
-```
-
-:hand: N'oubliez pas de resync l'IDE
-
-![ide sync](./ressources/sync.png)
-
-Maintenant vous pouvez simplement faire `myButton.setOnClickListener…` pour rendre l'élément cliquable.
-
-:::
+Bien que pratique, cette méthode n'est maintenant plus « la bonne façon de faire ». Si vous la trouvez sur Internet, passez votre chemin.
 
 ### Créer une autre activity
 
