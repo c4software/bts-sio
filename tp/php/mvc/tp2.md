@@ -325,23 +325,39 @@ Vous avez à votre disposition dans le bon modèle `ClientModele` une méthode p
 
 ⚠️ Un instant ! Ici pas besoin de créer une nouvelle route ! Vous devez modifier la méthode de liste pour ajouter de nouveaux paramètres pour la pagination et la partie recherche.
 
+::: tip Vous ne pouvez pas deviner
+
+Il faut donc « tester », « expérimenter », pour ça vous avez à votre disposition la documentation de PHP, mais également vos connaisances de première année. Par exemple, pour passer un paramètre à votre PHP en GET vous savez déjà faire :
+
+```php
+<a href="index.php?nom=valeur">Lien</a>
+// Dans le cas du paramètre page, vous pouvez donc écrire :
+<a href="index.php?page=2">Lien</a>
+```
+
+Avec la structure MVC, le paramètre page=XXX sera automatiquement récupéré par votre routeur et sera passé en paramètre de votre méthode (si vous avez bien respecté la signature de la méthode).
+
+:::
+
 ## La fiche client
 
 Maintenant que la liste des clients fonctionne, nous allons créer la fiche client. Celle-ci a pour but d'afficher les informations **d'un client**, il va donc falloir être capables de récupérer les informations d'un client via `son identifiant` puis d'en afficher le détail. L'entreprise pour vous aider vous propose le design suivant :
 
 ![Idée de design](./res/tp2-fiche-client-ui.png)
 
-### Créer le contrôleur
+### Le contrôleur
 
-Comme pour la liste, la fonctionnalité Fiche Client, sera mise dans un contrôleur dédiée. Je vous laisse créer le contrôleur à l'aide de la ligne de commande. Vous pouvez le nommer `FicheControleur`.
-
-Vous pouvez également en profiter pour créer le code qui afficher la fiche d'un client.
+Nous avons un controleur existant `ClientControleur`, celui-ci va devoir être modifié pour ajouter une nouvelle méthode `fiche`. Celle-ci va devoir récupérer les informations d'un client et les passer à la vue.
 
 ```php
 public function fiche($id="")
 {
     // À compléter avec les bons appels de méthode.
-    return Template::render("views/fiche/client", []);
+    // …
+
+
+    // Affichage de la vue ($client est un objet de type Client, récupéré en base via votre modèle et son identifiant)
+    return Template::render("views/fiche/client", ["client" => $client]);
 }
 ```
 
@@ -386,6 +402,8 @@ $leClient->getNom();
 // Exemple, retourne la liste des clients du produit.
 $lesProduitDuClient = $leClient->lesProduits();
 ```
+
+**Évidemment, vous devez adapter le code à votre besoin.** N'hésitez pas à regarder le code des modèles pour voir les méthodes disponibles, mais également l'exemple présent en début de TP.
 
 :::
 
@@ -456,7 +474,7 @@ Pour traiter ce problème, vous devez découper votre travail en différentes é
 
 Un bon TP se termine toujours par de bons bonus. Les bonus vont vous permettre de voir si vous avez compris les manipulations précédemment réalisées.
 
-### Bonus : Ajouter une pagination dans la vue liste / recherche.
+### Bonus : Ajouter une pagination dans la fonctionnalitée de recherche.
 
 Modifier votre code pour ajouter un système de pagination (10 clients par 10 clients) dans votre liste. Les méthodes que vous avez utilisées comportent différents paramètres permettant de réaliser des listes paginées. Après l'avoir trouvé, je vous laisse donc :
 
