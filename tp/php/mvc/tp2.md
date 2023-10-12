@@ -205,7 +205,7 @@ Arrêtons-nous un instant pour analyser les diagrammes.
 
 Maintenant que vous avez vu l'ensemble des méthodes à votre disposition pour accéder aux données présentes en base. Je vous propose de travailler sur la liste des clients présents en base de données.
 
-Cette fonctionnalité est appelée la page de « Liste et de Recherche ». Elle va lister l'ensemble des clients présent en base et permettra l'accès à la fiche client.
+Cette fonctionnalité est appelée la page de « Liste de Recherche ». Elle va lister l'ensemble des clients présents en base et permettra l'accès à la fiche client.
 
 Pour vous aider dans votre conception l'entreprise vous fournit le « mockup » d'interface suivant :
 
@@ -271,7 +271,7 @@ Ceci est un objet instancié à partir de la classe de votre ClientControleur. P
 
 Nous y voilà ! Vous avez Votre Vue, Votre Controleur… Il ne manque plus que le modèle. Dans ce projet vous n'allez pas écrire de modèle, mais vous allez utiliser des modèles existants créés par un tiers (ce qui risque d'arriver par exemple … en stage).
 
-Avant de continuer cette première page, il faut trouver le bon modèle à utiliser pour pouvoir construire votre liste de client. Vu que c'est le premier, je vous propose que nous le fassions ensemble…
+Avant de continuer cette première page, il faut trouver le bon modèle à utiliser pour pouvoir construire votre liste de clients. Vu que c'est le premier, je vous propose que nous le fassions ensemble…
 
 Vous avez dans le diagramme UML de classe une classe nommée `ClientModele`, celle-ci contient l'ensemble du code permettant de rechercher des données dans la base client. Si vous regardez le diagramme en détail, vous avez accès à une méthode `liste` (avec deux paramètres). Celle-ci retourne un tableau (`array`), mais pas un array de n'importe quoi ! Elle retourne un `array` de client, que nous pouvons nommer ainsi `Client[]`.
 
@@ -454,7 +454,7 @@ Pour traiter ce problème, vous devez découper votre travail en différentes é
 
 ## Les bonus
 
-Un bon TP se termine toujours par de bons bonus. Les bonus vont vous permettre devoir si vous avez compris les manipulations précédemment réalisées.
+Un bon TP se termine toujours par de bons bonus. Les bonus vont vous permettre de voir si vous avez compris les manipulations précédemment réalisées.
 
 ### Bonus : Ajouter une pagination dans la vue liste / recherche.
 
@@ -497,4 +497,4 @@ Le développeur de l'entreprise vous demande d'ajouter un système d'authentific
 
 - N'oubliez pas de modifier votre routeur pour que la page d'accueil pointe vers votre nouvelle page de connexion.
 
-- N'oublier pas également de modifier votre routeur afin de ne pas autoriser l'accès à votre CRM sans être connecté (sauf la page de connexion évidemment).
+- N'oubliez pas également de modifier votre routeur afin de ne pas autoriser l'accès à votre CRM sans être connecté (sauf la page de connexion évidemment).
