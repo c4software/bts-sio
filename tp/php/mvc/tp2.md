@@ -333,7 +333,7 @@ Maintenant que la liste des clients fonctionne, nous allons créer la fiche clie
 
 ### Créer le contrôleur
 
-Comme pour la liste, la fonctionnalité Fiche Client, sera mise dans une contrôleuse dédiée. Je vous laisse créer le contrôleur à l'aide de la ligne de commande. Vous pouvez le nommer `FicheControleur`.
+Comme pour la liste, la fonctionnalité Fiche Client, sera mise dans un contrôleur dédiée. Je vous laisse créer le contrôleur à l'aide de la ligne de commande. Vous pouvez le nommer `FicheControleur`.
 
 Vous pouvez également en profiter pour créer le code qui afficher la fiche d'un client.
 
