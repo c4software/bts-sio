@@ -10,23 +10,23 @@ Dans ce TP nous allons voir comment réaliser une API avec Bun.sh et TypeScript.
 
 ## Introduction
 
-Le monde du développement Web est un univers qui va relativement vite, nous avons depuis plusieurs années un outils nommé Node qui nous permet de réaliser des applications serveurs à base de Javascript / Typescript. Node est l'outil le plus utilisé, cependant et plutôt récement nous avons à notre disposition de nouveaux outils très intéressants car plus rapide et plus moderne.
+Le monde du développement Web est un univers qui va relativement vite, nous avons depuis plusieurs années un outil nommé Node qui nous permet de réaliser des applications serveurs à base de JavaScript / Typescript. Node est l'outil le plus utilisé, cependant et plutôt récemment nous avons à notre disposition de nouveaux outils très intéressants, car plus rapides et plus modernes.
 
-Nous allons aujourd'hui utiliser [Bun.sh](https://bun.sh/), ce « nouvel outil » va nous peremettre de réaliser notre applications en TypeScript (et JavaScript). Le pitch de Bun.sh est simple, et est le suivant :
+Nous allons aujourd'hui utiliser [Bun.sh](https://bun.sh/), ce « nouvel outil » va nous permettre de réaliser notre application en TypeScript (et JavaScript). Le pitch de Bun.sh est simple, et est le suivant :
 
 « Develop, test, run, and bundle JavaScript & TypeScript projects »
 
-Cette outils est donc un « All in one », permettant de réaliser l'ensemble des tâches nécessaire à la réalisation de notre application serveur.
+Cet outil est donc un « All in one », permettant de réaliser l'ensemble des tâches nécessaire à la réalisation de notre application serveur.
 
-## Qu'allons nous réaliser ?
+## Qu'allons-nous réaliser ?
 
-Ici nous allons réaliser une API. Pour rappel, une API est une interface de programmation applicative, c'est à dire un ensemble de fonctions et de procédures qui permettent de réaliser des applications. Une API est donc un ensemble de fonctions et de procédures qui permettent de réaliser des applications.
+Ici nous allons réaliser une API. Pour rappel, une API est une interface de programmation applicative, c'est-à-dire un ensemble de fonctions et de procédures qui permettent de réaliser des applications. Une API est donc un ensemble de fonctions et de procédures qui permettent de réaliser des applications.
 
-Ici nous allons réaliser une API de type HTTP, c'est à dire que nous allons réaliser une API qui sera accessible via le protocole HTTP. Cette API sera donc accessible via une URL, et nous pourrons réaliser des requêtes HTTP sur cette API.
+Ici nous allons réaliser une API de type HTTP, c'est-à-dire que nous allons réaliser une API qui sera accessible via le protocole HTTP. Cette API sera donc accessible via une URL, et nous pourrons réaliser des requêtes HTTP sur cette API.
 
-Les opérations seront globalement des CRUD, c'est à dire que nous pourrons réaliser des opérations de création, de lecture, de mise à jour et de suppression sur des données.
+Les opérations seront globalement des CRUD, c'est-à-dire que nous pourrons réaliser des opérations de création, de lecture, de mise à jour et de suppression sur des données.
 
-L'ensemble des développements seront réalisés en utilisant la métodoogie TDD (Test Driven Development), c'est à dire que nous allons commencer par réaliser les tests, puis nous allons coder les fonctions.
+L'ensemble des développements seront réalisés en utilisant la méthodologie TDD (Test Driven Development), c'est-à-dire que nous allons commencer par réaliser les tests, puis nous allons coder les fonctions.
 
 ::: tip Pourquoi le TDD ?
 
@@ -36,7 +36,7 @@ Le TDD est une méthode de développement qui permet de réduire les erreurs de 
 
 ## Installer Bun.sh
 
-Le guide d'installation de Bun est plutôt bien fait ([voir ici](https://bun.sh/docs/installation)), pour simplifier voilà les commandes à exécuter :
+Le guide d'installation de Bun est plutôt bien fait ([voir ici](https://bun.sh/docs/installation)), pour simplifier, voilà les commandes à exécuter :
 
 ```bash
 curl -fsSL https://bun.sh/install | bash # Pour Linux / MacOS / WSL
@@ -48,15 +48,15 @@ Si malheusement vous êtes sous Windows et que vous n'avez pas WSL, vous pouvez 
 npm install -g bun
 ```
 
-Si tout c'est bien passé vous devriez avoir accès à la commande `bun` dans votre terminal.
+Si tout s'est bien passé, vous devriez avoir accès à la commande `bun` dans votre terminal.
 
 ![Bun.sh](./img/bunv.jpg)
 
 ## Pourquoi TypeScript ?
 
-TypeScript est un langage de programmation qui est une surcouche du JavaScript. C'est un langage qui permet de réaliser du JavaScript, mais avec des fonctionnalités supplémentaires (comme la typage). C'est un langage qui est de plus en plus utilisé dans le monde du développement Web (Serveur et Client).
+TypeScript est un langage de programmation qui est une surcouche du JavaScript. C'est un langage qui permet de réaliser du JavaScript, mais avec des fonctionnalités supplémentaires (comme le typage). C'est un langage qui est de plus en plus utilisé dans le monde du développement Web (Serveur et Client).
 
-Le typage pour rappel est le fait de définir le type d'une variable (string, number, boolean…). Par exemple, en JavaScript nous pouvons écrire :
+Le typage pour rappel est le fait de définir le type d'une variable (string, number, boolean…). Par exemple, en JavaScript, nous pouvons écrire :
 
 ```js
 let a = 1;
@@ -70,9 +70,9 @@ let a: number = 1;
 a = "Hello"; // Erreur, nous ne pouvons pas changer le type de la variable a
 ```
 
-Avoir un type fort est un avantage, car cela permet de réduire les erreurs de programmation (et diminuer les risques en terme de cybersécurité).
+Avoir un type fort est un avantage, car cela permet de réduire les erreurs de programmation (et diminuer les risques en termes de cybersécurité).
 
-Il est égamement possible de typer les paramètres et les retours des fonctions :
+Il est également possible de typer les paramètres et les retours des fonctions :
 
 ```ts
 function addition(a: number, b: number): number{
@@ -99,14 +99,14 @@ Pour créer un projet Bun, il suffit d'exécuter la commande `bun init` dans un 
 
 ![Bun init](./img/buninit.jpg)
 
-Qu'avons nous ici ? 
+Qu'avons-nous ici ? 
 
 - `Package name` : Le nom de votre projet, ici nous allons utiliser `bun-api`.
-- `Entry point` : Le point d'entrée de votre projet, c'est à dire le fichier qui sera exécuté en premier. Ici nous allons utiliser `index.ts`.
+- `Entry point` : Le point d'entrée de votre projet, c'est-à-dire le fichier qui sera exécuté en premier. Ici nous allons utiliser `index.ts`.
 
 ::: tip Ça vous rappelle quelque chose ?
 
-Et oui ! Encore un entry point… C'est normal, ça sera le cas pour beaucoup de projet Web côté serveur.
+Et oui ! Encore un entry point… C'est normal, ça sera le cas pour beaucoup de projets Web côté serveur.
 
 :::
 
@@ -116,7 +116,7 @@ La commande `bun init` nous a créé l'ensemble des dossiers et fichiers nécess
 
 ![Bun init](./img/structure.jpg)
 
-- `index.ts` : Le point d'entrée de notre projet, c'est à dire le fichier qui sera exécuté en premier.
+- `index.ts` : Le point d'entrée de notre projet, c'est-à-dire le fichier qui sera exécuté en premier.
 - `package.json` : Le fichier de configuration de notre projet, c'est ici que nous allons définir les dépendances de notre projet, les scripts, etc.
 - `tsconfig.json` : Le fichier de configuration de TypeScript, c'est ici que nous allons définir les options de compilation de TypeScript.
 - `node_modules` : Le dossier qui contiendra les dépendances de notre projet (les librairies que nous allons utiliser).
@@ -567,13 +567,13 @@ class Book {
 export { Book };
 ```
 
-### Créer les modèles
+### Créer le modèle
 
 Les modèles seront des classes qui permettront de manipuler les entités. Nous allons donc créer le modèle `ReaderModel`
 
 Pour cela, nous allons créer un dossier `models` dans notre dossier `src`. Dans ce dossier, nous allons créer le fichier `ReaderModel.ts`,
 
-Voici le code que vous devez mettre dans les fichiers :
+Voici le code que vous devez mettre dans le fichier :
 
 ```ts
 // ReaderModel.ts
@@ -691,13 +691,13 @@ Maintenant que nous avons créé les tests, nous allons pouvoir les jouer. Pour 
 $ bun test
 ```
 
-Les tests ne passent pas, c'est normal, nous n'avons pas encore codé les fonctions. Nous allons donc coder les fonctions.
+Les tests **ne passent pas**, c'est normal, nous n'avons pas encore codé les fonctions. Nous allons donc coder les fonctions.
 
 ### Coder les méthodes
 
 Maintenant que nous avons créé les tests, nous allons pouvoir coder les méthodes. Pour cela, nous allons modifier le fichier `ReaderModel.ts`.
 
-::: tip Voici le code pour chaque opération :
+::: tip Voici un exemple de code pour chaque opération :
 
 ```ts
 import { Database } from "bun:sqlite";
@@ -736,7 +736,7 @@ db.close();
 
 :::
 
-Je vous donne le code du ReaderModel, à vous de faire les autres :
+Je vous donne le code du ReaderModel :
 
 ```ts
 // ReaderModel.ts
@@ -824,7 +824,7 @@ Pour que notre code fonctionne, nous avons besoin d'une base de données. Pour c
 
 Vous pouvez télécharger le fichier `mydb.sqlite` [ici](/sqlite/mydb.sqlite).
 
-Une fois le fichier téléchargé, **vous devez** le mettre dans le dossier src de votre projet.
+Une fois le fichier téléchargé, **vous devez** le mettre dans le dossier **src** de votre projet.
 
 ### Jouer les tests
 
@@ -914,4 +914,373 @@ En effet, nous nous assurons que notre code fonctionne correctement quelques soi
 
 ## Créer les routes
 
-TOOD
+Maintenant que nous avons créé les modèles, nous allons pouvoir créer les routes. Pour cela, nous allons créer un dossier `routes` dans notre dossier `src`. Dans ce dossier, nous allons créer les fichiers `ReaderRoute.ts` et `BookRoute.ts`.
+
+Pourquoi découper les routes dans des fichiers différents ? Pour une question de maintenabilité. En effet, si nous avons 100 routes, nous aurons 100 routes dans un seul fichier. C'est un peu compliqué à maintenir. En découpant les routes dans des fichiers différents, nous rendons notre code plus maintenable.
+
+### Les routes pour le modèle Reader
+
+Nous allons commencer par créer les routes pour le modèle Reader. Pour cela, nous allons créer le fichier `ReaderRoute.ts` dans le dossier `routes`.
+
+Voici le code que vous devez mettre dans le fichier :
+
+```ts
+// ReaderRoute.ts
+
+import express from "express";
+import { ReaderModel } from "../models/ReaderModel";
+
+const router = express.Router();
+
+router.get("/", async (req, res) => {
+    const readerModel = new ReaderModel();
+    const readers = await readerModel.all();
+
+    res.send(readers);
+});
+
+router.post("/", async (req, res) => {
+    const readerModel = new ReaderModel();
+    const id = await readerModel.create(req.body);
+
+    res.send({
+        id: id
+    });
+});
+
+router.get("/:id", async (req, res) => {
+    const readerModel = new ReaderModel();
+    const reader = await readerModel.read(parseInt(req.params.id));
+
+    if (!reader) {
+        res.status(404).send("Reader not found");
+        return;
+    }
+
+    res.send(reader);
+});
+
+router.put("/:id", async (req, res) => {
+    const readerModel = new ReaderModel();
+    const reader = await readerModel.read(parseInt(req.params.id));
+
+    if (!reader) {
+        res.status(404).send("Reader not found");
+        return;
+    }
+
+    await readerModel.update({
+        id: reader.id,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+    });
+
+    res.send(reader);
+});
+
+router.delete("/:id", async (req, res) => {
+    const readerModel = new ReaderModel();
+    const reader = await readerModel.read(parseInt(req.params.id));
+
+    if (!reader) {
+        res.status(404).send("Reader not found");
+        return;
+    }
+
+    await readerModel.delete(reader.id);
+
+    res.send(reader);
+});
+
+export { router };
+```
+
+Qu'avons nous fait ? Nous avons créé le CRUD pour le modèle Reader. Nous avons donc créé les routes suivantes :
+
+- `GET /` : Récupérer tous les lecteurs.
+- `POST /` : Créer un lecteur.
+- `GET /:id` : Récupérer un lecteur.
+- `PUT /:id` : Mettre à jour un lecteur.
+- `DELETE /:id` : Supprimer un lecteur.
+
+::: tip Pourquoi `PUT` et non `PATCH` ?
+
+Nous aurions pu utiliser la méthode `PATCH` pour mettre à jour un lecteur. Cependant, la méthode `PATCH` est moins utilisée que la méthode `PUT`. Nous avons donc choisi d'utiliser la méthode `PUT`.
+
+Qu'attend la méthode `PUT` et le `POST` ? Ces méthodes attendent un objet JSON qui contient les données à mettre à jour ou ajouter. Par exemple :
+
+```json
+{
+    "firstName": "Valentin",
+    "lastName": "Brosseau"
+}
+```
+
+:::
+
+### Ajouter les routes au serveur
+
+Maintenant que nous avons créé les routes, nous allons pouvoir les ajouter au serveur. Pour cela, nous allons modifier le fichier `server.ts`.
+
+Voici le code que vous devez mettre dans le fichier :
+
+```ts
+// server.ts
+
+import express from "express";
+import { router as readerRouter } from "./routes/ReaderRoute";
+
+const app = express();
+
+app.use(express.json());
+
+app.use("/readers", readerRouter);
+```
+
+Il faut évidement laisser le code existant, ici nous ajoutons simplement les routes pour les lecteurs.
+
+- Vous noterez que nous avons ajouté `app.use(express.json());`. Cette ligne permet de dire à Express que nous allons utiliser le format JSON pour les requêtes. Cela nous permettra de récupérer les données de la requête via `req.body`.
+- Vosu noterez également que nous avons ajouté `app.use("/readers", readerRouter);`. Cette ligne permet de dire à Express que nous allons utiliser le router `readerRouter` pour la route `/readers`, les routes que nous avons créé dans le fichier `ReaderRoute.ts` seront donc accessible sous le prefix `/readers`.
+
+Je vous laisse tester les routes avec HoppScotch :
+
+- `GET /readers` : Récupérer tous les lecteurs.
+- `POST /readers` : Créer un lecteur.
+- `GET /readers/:id` : Récupérer un lecteur.
+- `PUT /readers/:id` : Mettre à jour un lecteur.
+- `DELETE /readers/:id` : Supprimer un lecteur.
+
+### Les routes pour le modèle Book
+
+En vous inspirant du modèle `ReaderRoute.ts`, je vous laisse créer les routes pour le modèle `Book`.
+
+Je vous donne les routes :
+
+- `GET /` : Récupérer tous les livres.
+- `POST /` : Créer un livre.
+- `GET /:id` : Récupérer un livre.
+- `PUT /:id` : Mettre à jour un livre.
+- `DELETE /:id` : Supprimer un livre.
+
+### Ajouter les routes au serveur
+
+Je vous laisse ajouter les routes au serveur en reprenant le principe du modèle `ReaderRoute.ts`.
+
+### Conclusion sur les routes
+
+Déclarer et utiliser un routeur avec avec Express est relativement simple. Nous avons finalement que « une seule ligne à ajouter » pour déclarer un routeur. Exemple :
+
+```ts
+app.use("/readers", readerRouter);
+```
+
+- `app` : Notre serveur Express.
+- `use` : Indique à express que nous allons inclure un routeur.
+- `/readers` : Le prefix de la route. (exemple : `/readers/1`)
+- `readerRouter` : Le routeur à inclure (notre routeur pour les lecteurs).
+
+### Tester les routes
+
+Nous avons l'ensemble de notre API, il est temps de la tester. Pour cela, nous allons utiliser ~~Postman~~ HoppScotch. Dans HoppScotch, nous allons créer une requête pour chaque route.
+
+Je vous laisse tester les routes avec HoppScotch :
+
+- `GET /readers` : Récupérer tous les lecteurs.
+- `POST /readers` : Créer un lecteur.
+- `GET /readers/:id` : Récupérer un lecteur.
+- `PUT /readers/:id` : Mettre à jour un lecteur.
+- `DELETE /readers/:id` : Supprimer un lecteur.
+
+- `GET /books` : Récupérer tous les livres.
+- `POST /books` : Créer un livre.
+- `GET /books/:id` : Récupérer un livre.
+- `PUT /books/:id` : Mettre à jour un livre.
+- `DELETE /books/:id` : Supprimer un livre.
+
+N'oubliez pas de tester la bonne création en base de données des différents modèles.
+
+## Conclusion
+
+Réaliser une API avec Bun + Express est un jeu d'enfant ! Dans ce TP nous avons vu comment créer une API mais également comment **la tester**.
+
+Et oui ! Créer une API est simple, la tester est plus compliqué. Ici nous avons coder en TDD c'est à dire en partant du test pour coder la fonction. C'est une pratique très utilisée dans le monde du développement Web.
+
+Nous avons également créé un CRUD (Create, Read, Update, Delete) pour les lecteurs et les livres. Cette partie est très importante, c'est une partie que vous retrouverez dans tous les projets.
+
+## Implémenter une authentification sur les routes
+
+Difficile de faire une API sans parler d'authentification. Il existe plusieurs méthodes d'authentification :
+
+- Basic Auth (utilisateur / mot de passe, encodé en base64 dans le header de la requête).
+- Un token simple (un token généré par l'API, stocké dans la base de données).
+- JWT (JSON Web Token).
+- OAuth2 (utilisé par Google, Facebook, etc.).
+
+Nous allons voir comment implémenter une authentification « simple » avec un token. Cette méthode est très limité elle ne permet pas vraiment d'authentifier un utilisateur. Cependant, elle permet de valider l'accès ou non à une ressource.
+
+### Créer la table
+
+Pour stocker les tokens, nous allons créer une table `tokens` dans notre base de données. Pour cela, nous allons utiliser le fichier `mydb.sqlite` que nous avons créé précédemment.
+
+Voici le code SQL que vous devez exécuter :
+
+```sql
+CREATE TABLE tokens (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    token TEXT NOT NULL,
+);
+```
+
+Cette table contient deux champs :
+
+- `id` : L'identifiant du token.
+- `token` : Le token (chaîne de caractères qui sera en réalité un UUID).
+
+### Créer le modèle
+
+Maintenant que nous avons créé la table, nous allons pouvoir créer le modèle. Pour cela, nous allons créer le fichier `TokenModel.ts` dans le dossier `models`.
+
+Nous allons avoir besoin des méthodes suivantes :
+
+- `create` : Créer un token en base de données. (retourne l'identifiant du token).
+- `find` : Vérifier si un token existe (retourne `true` ou `false`).
+
+### Ajouter un token en base de données
+
+Maintenant que nous avons créé le modèle, nous allons pouvoir ajouter un token en base de données. Pour cela, vous pouvez créer un test dans le fichier `TokenModel.test.ts` :
+
+```ts
+// TokenModel.test.ts
+import { expect, test, beforeAll } from "bun:test";
+import { TokenModel } from "../models/TokenModel.ts";
+
+beforeAll(async () => {
+    // Clear the database
+    const tokenModel = new TokenModel();
+    await tokenModel.deleteAll();
+});
+
+test("create", async () => {
+    const tokenModel = new TokenModel();
+    const id = tokenModel.create("f47ac10b-58cc-4372-a567-0e02b2c3d479");
+
+    expect(id).toBeInstanceOf(string);
+});
+
+test("read", async () => {
+    const tokenModel = new TokenModel();
+    const token = await tokenModel.find("f47ac10b-58cc-4372-a567-0e02b2c3d479");
+
+    expect(token).toBe(true);
+});
+```
+
+### Authentifier les requêtes (HTTP)
+
+Maintenant que nous avons notre système de token. Nous allons pouvoir authentifier les requêtes. Pour cela, nous allons créer un middleware qui va vérifier si le token est valide à chaque demande de notre utilisateur.
+
+::: tip Point sécurité
+
+Ce système d'authentification est très simple, il ne doit être utilisé que dans des cas très spécifiques. En effet, il est très facile de voler un token. Il est donc très facile de se faire passer pour un autre utilisateur.
+
+:::
+
+Mais avant tout… Qu'est-ce qu'un middleware ? Un middleware est une fonction qui va être exécutée à chaque requête (HTTP). C'est très pratique pour ajouter des fonctionnalités à notre API.
+
+Pour créer un middleware, nous allons créer le fichier `TokenMiddleware.ts` dans le dossier `middlewares`.
+
+Voici le code que vous devez mettre dans le fichier :
+
+```ts
+// TokenMiddleware.ts
+
+import { Request, Response, NextFunction } from "express";
+import { TokenModel } from "../models/TokenModel.ts";
+
+const tokenModel = new TokenModel();
+
+const tokenMiddleware = (req: Request, res: Response, next: NextFunction) => {
+    // Nous allons ici vérifier que notre requête contient bien un token et que ce token est valide.
+    // Si le token est valide, nous allons appeler la fonction next() pour passer à la suite.
+    // Si le token n'est pas valide, nous allons retourner une erreur 401 (Unauthorized).
+
+    // Vérifier que la requête contient bien un token
+    if(!req.headers.authorization) {
+        res.status(401).send("Unauthorized");
+        return;
+    }
+
+    // Vérifier que le token est valide
+    const token = req.headers.authorization.replace("Bearer ", "");
+    const isValid = tokenModel.find(token);
+
+    // Si le token n'est pas valide, nous retournons une erreur 401 (Unauthorized)
+    if(!isValid) {
+        res.status(401).send("Unauthorized");
+        return;
+    }
+
+    // Si le token est valide, nous appelons la fonction next() pour passer à la suite.
+    next();
+};
+
+export { tokenMiddleware };
+```
+
+### Ajouter le middleware au serveur
+
+Maintenant que nous avons créé le middleware, nous allons pouvoir l'ajouter au serveur. Pour cela, nous allons modifier le fichier `server.ts`.
+
+Voici le code que vous devez mettre dans le fichier :
+
+```ts
+// L'import du middleware
+import { tokenMiddleware } from "./middlewares/TokenMiddleware";
+
+// Le reste du code
+
+// Ici nous ajoutons le middleware à toutes les routes.
+app.all("*", tokenMiddleware);
+```
+
+::: tip La documentation
+
+Et si nous ne voulions pas ajouter le middleware à toutes les routes ?
+
+Et bien c'est possible ! L'autre solution est d'ajouter le middleware uniquement aux routes qui nous intéressent. Pour cela, il suffit d'ajouter le middleware dans la route :
+
+```ts
+app.use("/readers", tokenMiddleware, readerRouter);
+```
+
+Ici, nous ajoutons le middleware uniquement aux routes qui commencent par `/readers`.
+
+Vous voulez en savoir plus sur les middlewares ? Je vous invite à lire la documentation d'Express [ici](https://expressjs.com/en/guide/using-middleware.html).
+
+:::
+
+### Tester le bon fonctionnement
+
+Maintenant que nous avons créé le middleware, nous allons pouvoir le tester. Pour cela, nous allons utiliser ~~Postman~~ HoppScotch. Vous ne devriez pas pouvoir accéder à une route sans token.
+
+C'est à vous ! Je vous laisse tester le bon fonctionnement du middleware.
+
+### Allez plus loin
+
+La vrai bonne pratique est d'utiliser un système d'authentification plus complexe. En 2023, le système d'authentification le plus utilisé est le JWT (JSON Web Token). Je vous invite à lire la documentation [ici](https://jwt.io/introduction/).
+
+Difficile dans un TP de tout voir. Si vous souhaitez implémenter un token JWT vous pouvez lire la ressource [disponible ici](https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs)
+
+## Conclusion
+
+Et voilà ! Vous avez créé votre première API avec Bun et Express. Vous avez vu comment créer un CRUD, comment créer des routes, comment tester une API. Ce TP est une base qui vous permettra de créer vos propres API.
+
+Si vous souhaitez découvrir des sujets connexes, je vous invite à lire les ressources suivantes :
+
+- NestJS : https://nestjs.com/ (un framework pour créer des API avec ExpressJS)
+- TypeORM : https://typeorm.io/ (un ORM pour NodeJS / Bun)
+- Bun : https://bun.sh/ (le site officiel de Bun)
+
+Ou une alternative complète pour créer des API avec GraphQL :
+
+- Hasura : https://hasura.io/ (un outil qui permet de créer une API GraphQL à partir d'une base de données)
