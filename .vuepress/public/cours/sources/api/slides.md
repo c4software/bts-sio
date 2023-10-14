@@ -232,9 +232,9 @@ https://json.org/example.html
 
 ## Écrivons ensemble le JSON :
 
-- Une liste d'utilisateur (id, nom, age).
+- Une liste de 3 utilisateurs (id, nom, age).
 - Une liste de `string`.
-- Un objet représentant **un** restaurant (id, nom, adresse (latitude, longitude), contact)
+- Un objet représentant **un** restaurant (id, nom, adresse (latitude, longitude), contact, et une liste de 2 plats (id, nom, prix)).
 
 ---
 
@@ -253,7 +253,8 @@ https://json.org/example.html
 - L'Ajax est fourni de base.
   - Fetch
   - jQuery
-  - …
+
+Vous avez déjà utilisé ?
 
 ---
 
@@ -262,6 +263,61 @@ https://json.org/example.html
 - [Swagger](https://swagger.io/)
 - [Définition des API](https://swagger.io/specification/)
 - [OpenAPI](https://www.openapis.org/)
+
+---
+
+## La sécurité
+
+- Authentification
+- Autorisation
+
+---
+
+## Repose souvent sur un middleware
+
+Code qui sera exécuté avant le code de l'API. Lors de chaque requête HTTP.
+
+---
+
+## Exemple
+
+- Vérification de l'authentification.
+- Vérification des droits.
+
+---
+
+## Le Token nommé Bearer
+
+- JWT (JSON Web Token)
+- Simple (UUID)
+
+---
+
+## Exemple Bearer Simple
+
+Dans la requête HTTP
+
+```
+GET /api/users HTTP/1.1
+Host: cours.brosseau.ovh
+Authorization: Bearer faf1c7e0-6e5b-11eb-9439-0242ac130002
+```
+
+Identique pour l'ensemble des requêtes. À votre avis quel est le problème ?
+
+---
+
+## Exemple Bearer JWT
+
+Dans la requête HTTP
+
+```
+GET /api/users HTTP/1.1
+Host: cours.brosseau.ovh
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+```
+
+Propre à chaque utilisateur. Contient des informations (Des informations sensibles ?)
 
 ---
 
