@@ -40,3 +40,4 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 - [Aide mémoire Ajax](/cheatsheets/javascript/README.md)
 - [Créer des API avec Laravel](/tp/laravel/laravel_api.md)
 - [Appeler des API depuis le JavaScript](/tp/javascript/tp4.md)
+- [Créer des API avec Bun.sh et ExpressJS](/tp/typescript/api.md)
