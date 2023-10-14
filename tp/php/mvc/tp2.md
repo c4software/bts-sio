@@ -330,9 +330,9 @@ Vous avez à votre disposition dans le bon modèle `ClientModele` une méthode p
 Il faut donc « tester », « expérimenter », pour ça vous avez à votre disposition la documentation de PHP, mais également vos connaisances de première année. Par exemple, pour passer un paramètre à votre PHP en GET vous savez déjà faire :
 
 ```php
-<a href="index.php?nom=valeur">Lien</a>
+<a href="/?nom=valeur">Lien vers une page avec un paramètre</a>
 // Dans le cas du paramètre page, vous pouvez donc écrire :
-<a href="index.php?page=2">Lien</a>
+<a href="/?page=2">Page suivante</a>
 ```
 
 Avec la structure MVC, le paramètre page=XXX sera automatiquement récupéré par votre routeur et sera passé en paramètre de votre méthode (si vous avez bien respecté la signature de la méthode).
