@@ -339,6 +339,25 @@ Avec la structure MVC, le paramètre page=XXX sera automatiquement récupéré p
 
 :::
 
+::: danger Point variables
+
+Pour incrémenter une variable, vous pouvez utiliser la syntaxe suivante :
+
+```php
+$maVariable = 0;
+$maVariable++;
+```
+
+Ici, nous incrémentons la variable de 1, mais celle-ci sera directement modifiée. C'est pratique, mais dans le cas d'une pagination (ou nous allons faire +1 et -1) il faut faire attention **à ne pas modifier** la variable d'origine. Pour cela, il faut utiliser la syntaxe suivante :
+
+```php
+$maVariable = 1;
+echo $maVariable + 1; // Affiche 2
+echo $maVariable - 1; // Affiche 0
+```
+
+:::
+
 ## La fiche client
 
 Maintenant que la liste des clients fonctionne, nous allons créer la fiche client. Celle-ci a pour but d'afficher les informations **d'un client**, il va donc falloir être capables de récupérer les informations d'un client via `son identifiant` puis d'en afficher le détail. L'entreprise pour vous aider vous propose le design suivant :
