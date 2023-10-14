@@ -1277,10 +1277,10 @@ Et voilà ! Vous avez créé votre première API avec Bun et Express. Vous avez 
 
 Si vous souhaitez découvrir des sujets connexes, je vous invite à lire les ressources suivantes :
 
-- NestJS : https://nestjs.com/ (un framework pour créer des API avec ExpressJS)
-- TypeORM : https://typeorm.io/ (un ORM pour NodeJS / Bun)
-- Bun : https://bun.sh/ (le site officiel de Bun)
+- NestJS : <https://nestjs.com/> (un framework pour créer des API avec ExpressJS)
+- TypeORM : <https://typeorm.io/> (un ORM pour NodeJS / Bun)
+- Bun : <https://bun.sh/> (le site officiel de Bun)
 
 Ou une alternative complète pour créer des API avec GraphQL :
 
-- Hasura : https://hasura.io/ (un outil qui permet de créer une API GraphQL à partir d'une base de données).
+- Hasura : <https://hasura.io/> (un outil qui permet de créer une API GraphQL à partir d'une base de données).
