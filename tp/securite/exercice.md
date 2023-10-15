@@ -2,7 +2,7 @@
 
 Vous êtes en charge de la sécurité d'une application Web. Pour améliorer la sécurité, votre responsable a commandé un audit de sécurité. L'auditeur a trouvé plusieurs failles de sécurité. Vous devez corriger ces failles.
 
-Votre application est composée de HTML, CSS, Javascript et PHP.
+Votre application est composée de HTML, CSS, JavaScript et PHP.
 
 La suite de l'exercice vous demandera d'identifier les failles de sécurité et de les corriger.
 
@@ -258,14 +258,31 @@ Identifiez les failles de sécurité dans le code source suivant :
 if (isset($_POST['name']) && isset($_POST['email'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $request = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
-    $pdo->exec($request);
+    $request = "INSERT INTO users (name, email) VALUES ('?', '?')";
+    $pdo->prepare($request)->execute([$name, $email]);
 }
 
 ?>
 ```
 
 Proposez une solution pour corriger cette faille.
+
+::: tip Rappel
+
+Filtrer une saisie utilisateur :
+
+- `htmlspecialchars()` : Convertit les caractères spéciaux en entités HTML.
+- `strip_tags()` : Supprime les balises HTML.
+- `filter_input()` : Filtre une variable avec un filtre spécifique.
+  - `FILTER_SANITIZE_STRING` : Supprime les balises HTML et les caractères spéciaux.
+  - `FILTER_SANITIZE_EMAIL` : Supprime les caractères illégaux dans un email.
+  - `FILTER_SANITIZE_URL` : Supprime les caractères illégaux dans une URL.
+  - `FILTER_SANITIZE_NUMBER_INT` : Supprime tous les caractères sauf les chiffres et le signe + et -.
+  - Exemple : `filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);`
+  - Exemple : `filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);`
+  - Voir plus de filtres : [https://www.php.net/manual/fr/filter.filters.sanitize.php](https://www.php.net/manual/fr/filter.filters.sanitize.php)
+
+:::
 
 ## Faille 9
 
@@ -283,7 +300,6 @@ echo "<h2>Bonjour $_GET['name']</h2>";
 L'utilisateur accède à la page avec l'URL suivante : `http://localhost:8000/index.php?name=John`
 
 Proposez une solution pour corriger cette faille. Expliquez en quoi cette faille est dangereuse.
-
 
 ## Faille 10
 
@@ -329,3 +345,65 @@ if (isset($_POST['content'])) {
 ```
 
 Proposez une solution pour corriger cette faille. Deux solutions sont possibles.
+
+## Faille 11
+
+L'auditeur a trouvé dans votre code une faille de type CSRF. Avec cette faille il est capable de rejouer une requête à l'infini sans aucune limite, il peut s'en servir pour bruteforcer un mot de passe par exemple.
+
+Soit l'extrait de code suivant :
+
+```html
+<!-- Formulaire d'authentification -->
+<form action="/login" method="post">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Login">
+</form>
+```
+
+```php
+<?php
+
+$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+// Vérification du mot de passe
+$request = "SELECT * FROM users WHERE username = ?";
+$pdo->prepare($request)->execute([$username]);
+$user = $pdo->fetch(PDO::FETCH_ASSOC);
+
+if ($user && password_verify($password, $user['password'])) {
+    // Connexion réussie
+    // …
+}
+```
+
+L'auditeur vous indique que vous devez mettre en place en place un token afin d'éviter le rejeu de requête.
+
+::: tip Protection CSRF / Token
+
+Pour protéger votre application contre les attaques CSRF, vous devez ajouter un token CSRF dans le formulaire. Ce token doit être généré aléatoirement et doit être vérifié lors de l'accès à la page.
+
+```php
+// Génère un token aléatoire
+$_SESSION['token'] = uniqid;
+
+// Vérifier le token
+if (isset($_POST['token']) && $_POST['token'] === $_SESSION['token']) {
+    // Nous avons consommé le token, nous pouvons le supprimer
+    unset($_SESSION['token']);
+
+    // Le token est valide, nous pouvons traiter la requête
+    // ...
+}
+```
+
+Et dans le formulaire :
+
+```html
+<input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+```
+
+:::
+
+Proposez une solution pour corriger cette faille.
