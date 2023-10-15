@@ -543,9 +543,9 @@ Notre CRUD sera assez minimaliste, nous allons créer des lecteurs et des livres
 
 Les entités sont des classes qui représentent des données. Nous allons donc créer l'entité `Reader`.
 
-Pour cela, nous allons créer un dossier `entities` dans notre dossier `src`. Dans ce dossier, nous allons créer le fichier `Reader.ts`.
+Pour cela, nous allons créer un dossier `entities` dans notre dossier `src`. Dans ce dossier, nous allons créer le fichier `Reader.ts` et `Book.ts`.
 
-Voici le code que vous devez mettre dans le fichiers :
+Voici le code que vous devez mettre dans les fichiers :
 
 ```ts
 // Reader.ts
@@ -553,6 +553,12 @@ class Reader {
     public id: number;
     public firstName: string;
     public lastName: string;
+
+    constructor(id: number, firstName: string, lastName: string) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
 
 export { Reader };
@@ -562,6 +568,12 @@ class Book {
     public id: number;
     public title: string;
     public author: string;
+
+    constructor(id: number, title: string, author: string) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+    }
 }
 
 export { Book };
@@ -577,7 +589,8 @@ Voici le code que vous devez mettre dans le fichier :
 
 ```ts
 // ReaderModel.ts
-import { Reader } from "../entities/Reader";
+import Database from "bun:sqlite";
+import { Reader } from "../entities/Reader.ts";
 
 class ReaderModel {
 
@@ -595,7 +608,7 @@ class ReaderModel {
         // TODO
     }
 
-    public async create(reader: Reader): Promise<Number> {
+    public async create(reader: Partial<Reader>): Promise<Number> {
         // TODO
     }
 
@@ -740,7 +753,7 @@ Je vous donne le code du ReaderModel :
 
 ```ts
 // ReaderModel.ts
-import { Reader } from "../entities/Reader";
+import { Reader } from "../entities/Reader.ts";
 import { Database } from "bun:sqlite";
 
 class ReaderModel {
@@ -825,6 +838,16 @@ Pour que notre code fonctionne, nous avons besoin d'une base de données. Pour c
 Vous pouvez télécharger le fichier `mydb.sqlite` [ici](/sqlite/mydb.sqlite).
 
 Une fois le fichier téléchargé, **vous devez** le mettre dans le dossier **src** de votre projet.
+
+::: tip Pas de panique
+
+Le fichier ici, est un fichier SQLite vide, il ne contient que la structure de la base de données. Nous allons la remplir au fur et à mesure. Vous pouvez ouvrir ce fichier avec :
+
+- [DB Browser for SQLite](https://sqlitebrowser.org/)
+- [TablePlus](https://tableplus.com/)
+- [SQLite pour VSCode](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite)
+
+:::
 
 ### Jouer les tests
 
@@ -928,7 +951,7 @@ Voici le code que vous devez mettre dans le fichier :
 // ReaderRoute.ts
 
 import express from "express";
-import { ReaderModel } from "../models/ReaderModel";
+import { ReaderModel } from "../models/ReaderModel.ts";
 
 const router = express.Router();
 
@@ -1018,6 +1041,8 @@ Qu'attend la méthode `PUT` et le `POST` ? Ces méthodes attendent un objet JSON
 
 :::
 
+Pour l'instant la création seul des routes ne suffit pas, nous devons les ajouter au serveur. Sans cela, les routes (et donc votre code) ne seront pas accessible.
+
 ### Ajouter les routes au serveur
 
 Maintenant que nous avons créé les routes, nous allons pouvoir les ajouter au serveur. Pour cela, nous allons modifier le fichier `server.ts`.
@@ -1035,6 +1060,10 @@ const app = express();
 app.use(express.json());
 
 app.use("/readers", readerRouter);
+
+app.listen(3000, () => {
+    console.log("Server started on port 3000");
+});
 ```
 
 Il faut évidement laisser le code existant, ici nous ajoutons simplement les routes pour les lecteurs.
@@ -1042,13 +1071,21 @@ Il faut évidement laisser le code existant, ici nous ajoutons simplement les ro
 - Vous noterez que nous avons ajouté `app.use(express.json());`. Cette ligne permet de dire à Express que nous allons utiliser le format JSON pour les requêtes. Cela nous permettra de récupérer les données de la requête via `req.body`.
 - Vosu noterez également que nous avons ajouté `app.use("/readers", readerRouter);`. Cette ligne permet de dire à Express que nous allons utiliser le router `readerRouter` pour la route `/readers`, les routes que nous avons créé dans le fichier `ReaderRoute.ts` seront donc accessible sous le prefix `/readers`.
 
-Je vous laisse tester les routes avec HoppScotch :
+Je vous laisse tester les routes avec HoppScotch (ou Postman)) :
 
 - `GET /readers` : Récupérer tous les lecteurs.
 - `POST /readers` : Créer un lecteur.
 - `GET /readers/:id` : Récupérer un lecteur.
 - `PUT /readers/:id` : Mettre à jour un lecteur.
 - `DELETE /readers/:id` : Supprimer un lecteur.
+
+Voici un exemple avec la route `GET /readers` :
+
+![Readers](./img/readers.jpg)
+
+Pour le POST et le PUT, n'oubliez pas de mettre le contenu de la requête en JSON, en suivant l'exemple :
+
+![Readers](./img/readers_add.jpg)
 
 ### Les routes pour le modèle Book
 
@@ -1064,7 +1101,7 @@ Je vous donne les routes :
 
 ### Ajouter les routes au serveur
 
-Je vous laisse ajouter les routes au serveur en reprenant le principe du modèle `ReaderRoute.ts`.
+Je vous laisse ajouter les routes au serveur en reprenant le principe du modèle `ReaderRoute.ts` (n'oubliez pas d'ajouter le prefix `/books`)
 
 ### Conclusion sur les routes
 
@@ -1231,16 +1268,17 @@ export { tokenMiddleware };
 
 Maintenant que nous avons créé le middleware, nous allons pouvoir l'ajouter au serveur. Pour cela, nous allons modifier le fichier `server.ts`.
 
-Voici le code que vous devez mettre dans le fichier :
+Éditer le fichier `server.ts` et ajouter le middleware à toutes les routes, le middlware doit être ajouté avant les routes :
 
 ```ts
+// […] Le reste du code
 // L'import du middleware
-import { tokenMiddleware } from "./middlewares/TokenMiddleware";
+import { tokenMiddleware } from "./middlewares/TokenMiddleware.ts";
 
-// Le reste du code
-
-// Ici nous ajoutons le middleware à toutes les routes.
+app.use(express.json());
 app.all("*", tokenMiddleware);
+
+// […] Le reste du code
 ```
 
 ::: tip La documentation
@@ -1261,7 +1299,11 @@ Vous voulez en savoir plus sur les middlewares ? Je vous invite à lire la docum
 
 ### Tester le bon fonctionnement
 
-Maintenant que nous avons créé le middleware, nous allons pouvoir le tester. Pour cela, nous allons utiliser ~~Postman~~ HoppScotch. Vous ne devriez pas pouvoir accéder à une route sans token.
+Maintenant que nous avons créé le middleware, nous allons pouvoir le tester. Pour cela, nous allons utiliser HoppScotch (ou PostMan). Vous ne devriez pas pouvoir accéder à une route sans token.
+
+Une fois le Bearer Token ajouté, vous devriez pouvoir accéder à la ressource :
+
+![Token](./img/bearer_example.jpg)
 
 C'est à vous ! Je vous laisse tester le bon fonctionnement du middleware.
 
@@ -1270,6 +1312,15 @@ C'est à vous ! Je vous laisse tester le bon fonctionnement du middleware.
 La vrai bonne pratique est d'utiliser un système d'authentification plus complexe. En 2023, le système d'authentification le plus utilisé est le JWT (JSON Web Token). Je vous invite à lire la documentation [ici](https://jwt.io/introduction/).
 
 Difficile dans un TP de tout voir. Si vous souhaitez implémenter un token JWT vous pouvez lire la ressource [disponible ici](https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs)
+
+### Une suite possible
+
+Je vous laisse ajouter les routes suivantes :
+
+- `POST /token` : Valider un token.
+- `POST /tokens` : Créer un token.
+
+Je vous laisse créer les routes et la déclaration des routes dans le serveur.
 
 ## Conclusion
 
