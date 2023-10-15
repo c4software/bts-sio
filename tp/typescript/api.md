@@ -841,8 +841,9 @@ Une fois le fichier téléchargé, **vous devez** le mettre dans le dossier **sr
 
 ::: tip Pas de panique
 
-Le fichier ici, est un fichier SQLite vide, il ne contient que la structure de la base de données. Nous allons la remplir au fur et à mesure. Vous pouvez ouvrir ce fichier avec :
+Le fichier ici est un fichier SQLite vide, il ne contient que la structure de la base de données. Nous allons la remplir au fur et à mesure. Vous pouvez ouvrir ce fichier avec :
 
+- [DataGrip](https://www.jetbrains.com/datagrip/)
 - [DB Browser for SQLite](https://sqlitebrowser.org/)
 - [TablePlus](https://tableplus.com/)
 - [SQLite pour VSCode](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite)
