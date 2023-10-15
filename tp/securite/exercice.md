@@ -168,7 +168,7 @@ Proposez une solution pour corriger cette faille.
 
 ## Faille 5
 
-L'auditeur a trouvé une faille de type bruteforce. 
+L'auditeur a trouvé une faille de type bruteforce.
 
 Le code source ou la faille se trouve est le suivant :
 
@@ -348,7 +348,7 @@ Proposez une solution pour corriger cette faille. Deux solutions sont possibles.
 
 ## Faille 11
 
-L'auditeur a trouvé dans votre code une faille de type CSRF. Avec cette faille il est capable de rejouer une requête à l'infini sans aucune limite, il peut s'en servir pour bruteforcer un mot de passe par exemple.
+L'auditeur a trouvé dans votre code une faille de type Bruteforce / CSRF. Avec cette faille il est capable de rejouer une requête à l'infini sans aucune limite, il peut s'en servir pour bruteforcer un mot de passe par exemple.
 
 Soit l'extrait de code suivant :
 
@@ -407,3 +407,15 @@ Et dans le formulaire :
 :::
 
 Proposez une solution pour corriger cette faille.
+
+::: tip Rappel
+
+Pour corriger cette faille, d'autres solutions sont possibles :
+
+- Limiter le nombre de tentatives de connexion (par exemple 3 tentatives).
+- Ajouter un token CSRF dans le formulaire. (voir faille 3)
+- Ajouter un délai entre chaque tentative de connexion. (exemple : 1 seconde)
+
+L'objectif est de limiter le nombre de tentatives de connexion. L'objectif est de ralentir l'attaque brute force.
+
+:::
