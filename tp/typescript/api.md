@@ -478,7 +478,6 @@ Voici la route que vous devez créer :
 
 :::
 
-
 Je vous laisse créer la route, et tester la route.
 
 
@@ -523,6 +522,13 @@ b: 2
 ![HoppScotch](./img/hoppscotch.jpg)
 
 Vous devriez voir le message `Le résultat de l'addition est 12`.
+
+### Implémenter les routes suivantes :
+
+- `/soustraction/:a/:b`
+- `/multiplication/:a/:b`
+
+Bien entendu, vous devez gérer les erreurs.
 
 ### Conclusion de notre test
 
