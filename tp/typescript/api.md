@@ -1335,3 +1335,7 @@ Si vous souhaitez découvrir des sujets connexes, je vous invite à lire les res
 Ou une alternative complète pour créer des API avec GraphQL :
 
 - Hasura : <https://hasura.io/> (un outil qui permet de créer une API GraphQL à partir d'une base de données).
+
+<center>
+<iframe src="https://giphy.com/embed/jJQC2puVZpTMO4vUs0" width="480" height="400" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
