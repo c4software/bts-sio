@@ -126,6 +126,15 @@
         <code>
             <pre class="bg-gray-800 p-3 text-white">OLLAMA_ORIGINS=* OLLAMA_HOST=127.0.0.1:11435 ollama serve</pre>
         </code>
+
+        <p class="mt-4">
+            Configuration du modèle & du prompt initial :
+        </p>
+
+        <input v-model="model" type="text" placeholder="Modèle" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
+        
+        <input v-model="initialPrompt" type="text" placeholder="Prompt initial" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
+
     </div>
 
     <script type="module">
