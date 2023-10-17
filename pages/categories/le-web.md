@@ -36,6 +36,7 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 ### API
 
 - [Cours Introduction API](/cours/introduction_api.md)
+- [Exercices passage de paramètres](/tp/api/exercice.md)
 - [Aide mémoire API](/cheatsheets/api/README.md)
 - [Aide mémoire Ajax](/cheatsheets/javascript/README.md)
 - [Créer des API avec Laravel](/tp/laravel/laravel_api.md)
