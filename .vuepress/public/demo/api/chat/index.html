@@ -79,7 +79,7 @@
 
 
     <!--Container-->
-    <div class="container shadow-lg mx-auto bg-white mt-[8em] w-96 h-[20rem] overflow-auto p-8 scroll-smooth" id="chat">
+    <div class="container shadow-lg mx-auto bg-white mt-[8em] w-130 h-[20rem] overflow-auto p-8 scroll-smooth" id="chat">
 
         <div class="chat-message" v-for="current in messages">
             <div class="flex items-end justify-end my-3"  v-if="current.user == 'valentin'">
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div class="container shadow-lg mx-auto bg-white p-8 w-96">
+    <div class="container shadow-lg mx-auto bg-white p-8 w-130">
         <div class="border-t-2 border-gray-200 mt-4 pt-4 mb-2 sm:mb-0">
             <div class="relative flex">
                 <input type="text" v-model="message" placeholder="Votre message" @keyup.enter="addMessage()" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3 pr-[50px]">
