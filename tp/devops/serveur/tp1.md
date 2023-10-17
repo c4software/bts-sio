@@ -53,7 +53,7 @@ beaucoup ou pas beaucoup ? Échangeons un peu sur ces spécifications.
 
 Pour accéder à la ferme, vous devez :
 
-[192.168.10.6](https://192.168.10.6)
+[192.168.10.42](https://192.168.10.42)
 
 - Cliquer sur « LANCER VSPHERE CLIENT (HTML5) ».
 - Entrer votre identifiant et mot de passe de l'AD (ceux de votre compte Windows).
