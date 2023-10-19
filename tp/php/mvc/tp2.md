@@ -482,12 +482,18 @@ Il vous demande de modifier l'objet `Client` pour ajouter un nouveau `getters` p
 Pour traiter ce problème, vous devez découper votre travail en différentes étapes :
 
 - Créer un nouveau modèle `php mvc model:create ContactModele`
-- Ajouter en base les deux tables.
+- Ajouter en base la tables.
 - Écrire les requêtes dans votre modèle.
 - Créer un objet `Contact` (prendre exemple sur ceux déjà présents dans le code, dans le dossier `classes`).
 - Afficher les contacts du client dans la partie Fiche Client.
 
 :::
+
+## Restitution du travail
+
+Vous avez atteint la fin du TP (horssss bonus). Il est temps de rendre votre travail. Pour cela, vous remplissez le formulaire suivant :
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfybcRlzChYkU3rj3orI4Fkh82mOalfN4myNzMNdIHydMzNZQ/viewform?embedded=true" width="640" height="376" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
 ## Les bonus
 
@@ -504,7 +510,7 @@ Modifier votre code pour ajouter un système de pagination (10 clients par 10 cl
 
 Vous avez précédemment codé la partie Fiche client. Le développeur de l'entreprise vous demande maintenant d'ajouter les différents écrans pour afficher les produits. La première étape va donc être la création d'un contrôleur.
 
-#### Lister les produits en base
+#### Bonus : Lister les produits en base
 
 - Créer la vue permettant de liste les produits présente en base.
 - Créer la route permettant d'afficher votre vue.
