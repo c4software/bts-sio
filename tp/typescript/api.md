@@ -99,6 +99,13 @@ Pour créer un projet Bun, il suffit d'exécuter la commande `bun init` dans un 
 
 ![Bun init](./img/buninit.jpg)
 
+::: danger Le BON dossier
+
+Attention à bien exécuter la commande `bun init` dans un dossier vide (et non dans un dossier avec d'autres fichiers). Si vous utilisez WSL n'oubliez pas de vous placer dans votre dossier personnel en saisissant la commande `cd ~`.
+
+:::
+
+
 Qu'avons-nous ici ? 
 
 - `Package name` : Le nom de votre projet, ici nous allons utiliser `bun-api`.
@@ -337,6 +344,18 @@ bun add v1.0.3 (25e69c71)
  installed express@4.18.2
  installed body-parser
 ```
+
+::: tip Une erreur de permissions sous WSL avec Windows ?
+
+Visiblement pour certains WSL sous Windows, il y a un problème de permissions. Pour corriger cela, il suffit d'exécuter la commande suivante :
+
+```sh
+bun add express body-parser --no-save
+```
+
+C'est une spécificité de WSL sous Windows au Lycée, vous n'aurez pas ce problème sous Linux ou MacOS ou sur votre Windows personnel.
+
+:::
 
 Cette commande ajoute dans votre projet la librairie Express, et met à jour le fichier `package.json` pour ajouter la dépendance *(pour rappel, le fichier `package.json` est le fichier de configuration de votre projet, il contient notamment les dépendances de votre projet)*.
 
