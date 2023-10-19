@@ -461,7 +461,7 @@ En reprenant le principe de la liste des produits dans la fiche client, écrire 
 - D'afficher la liste des adresses d'un client.
 - Créer et ajouter une adresse à un client.
 
-::: warning Vous manquer d'inspiration ?
+::: warning En manque d'inspiration ?
 
 Pour traiter la demande d'affichage des adresses d'un utilisateur, vous devez regarder l'UML et plus précisément les méthodes accessibles dans l'objet `Client`. En regardant attentivement, vous devriez trouver une méthode nommée `lesAdresses()`. Cette méthode retourne un tableau des adresses utilisateur.
 
