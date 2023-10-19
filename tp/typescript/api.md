@@ -331,11 +331,11 @@ Express est un standard dans le monde du JavaScript / TypeScript. Elle est globa
 Pour installer Express, il suffit d'exécuter la commande `bun add express` dans votre projet. Bun va alors installer Express dans votre projet.
 
 ```sh
-$ bun add express
+bun add express body-parser
 
 bun add v1.0.3 (25e69c71)
  installed express@4.18.2
- 58 packages installed [417.00ms]
+ installed body-parser
 ```
 
 Cette commande ajoute dans votre projet la librairie Express, et met à jour le fichier `package.json` pour ajouter la dépendance *(pour rappel, le fichier `package.json` est le fichier de configuration de votre projet, il contient notamment les dépendances de votre projet)*.
@@ -348,6 +348,8 @@ Maintenant que nous avons installé Express, nous allons pouvoir créer notre se
 import express from "express";
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true });
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
