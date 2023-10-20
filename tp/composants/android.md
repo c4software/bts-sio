@@ -86,6 +86,24 @@ _À faire :_
 
 Je vous laisse tester votre application à nouveau.
 
+::: tip Un peu de couleur
+
+Votre top bar est blanche ? C'est normal, nous n'avons pas encore ajouté de thème. Je vous laisse ajouter le thème suivant :
+
+```kotlin
+topBar = { 
+    TopAppBar(
+        title = {Text("Top App Bar") }, // Titre de la barre
+        colors = TopAppBarDefaults.smallTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.primary,
+        ), // Couleur de la barre
+    ),
+},
+```
+
+:::
+
 ## Votre premier composant
 
 Avant de réaliser le code, nous allons dans un premier temps créer un nouveau package. Il nous servira à stocker nos composants.
@@ -321,7 +339,7 @@ AnimatedContent(label = "") (/* Votre Condition OU votre état */ ) { targetStat
 
 Je vous laisse intégrer ce code dans votre application afin d'animer le changement d'état. Après intégration vous devriez obtenir :
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/1v2eu4MGNy4?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LrYjOWEid2A?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Aller plus loin avec les animations
 
@@ -362,8 +380,10 @@ Dans cet exemple, nous avons utilisé un état pour gérer l'affichage de notre 
 val selectedItem = remember { mutableStateOf(null) }
 
 if (selectedItem.value == null) {
+    // Nous n'avons pas d'élément sélectionné, nous affichons donc la liste.
     ElementList(selectedItem)
 } else {
+    // Nous avons un élément sélectionné, nous affichons donc la card.
     ElementCard(selectedItem.value!!)
 }
 ```
@@ -400,6 +420,7 @@ Les deux composants :
 @Composable
 fun HomeScreen() {
     Text("Bienvenue sur votre application")
+    // À compléter avec votre liste d'éléments précédemment créée.
 }
 
 @Composable
@@ -409,6 +430,10 @@ fun LoginScreen(onLogin: () -> Unit) {
     }
 }
 ```
+
+Un peu de détail sur le composant LoginScreen :
+
+- `onLogin` est une action qui sera émise par le composant. Cette action sera émise lors du clique sur le bouton (par l'utilisateur). C'est ce que nous appelons un callback, il permet de faire remonter une action dans le composant parent.
 
 L'utilisation de ces deux composants, dans un Scaffold :
 
@@ -439,7 +464,123 @@ fun MyApp() {
 }
 ```
 
-### Aller plus loin dans la navigation
+Je vous laisse tester le code. Évidemment, dans le composant `HomeScreen` je vous laisse remettre votre liste d'éléments (que vous avez créée précédemment).
+
+Votre fichier `MainActivity.kt` doit ressembler à ça :
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApplicationTheme {
+                MyApp()
+            }
+        }
+    }
+}
+```
+
+Vous commencez à comprendre le fonctionnement ? Nous avons un composant `MyApp` qui contient un `Scaffold` qui contient un `Column` qui contient un état qui permet de savoir si l'utilisateur est connecté ou non. En fonction de cet état, nous affichons un composant ou un autre.
+
+Ça semble compliqué ? C'est en effet un peu différent de ce que vous avez l'habitude de faire. Mais c'est très puissant, car vous pouvez créer des composants qui sont réutilisables et qui peuvent être utilisés dans plusieurs endroits de votre application.
+
+On découpe notre code en plein de petits morceaux, et on assemble le tout pour créer notre application.
+
+## Les permissions
+
+Nous avons vu dans notre introduction Android que nous avions besoin de demander des permissions à l'utilisateur pour accéder à certaines fonctionnalités de son téléphone. Nous allons voir comment faire avec Compose. Pour ça nous allons devoir utiliser une librairie développée par Google : [Accompanist](https://google.github.io/accompanist/)
+
+::: tip Accompanist
+
+Accompanist est une librairie de transition, elle existe le temps que Compose évolue, mûrisse et que les fonctionnalités soient intégrées dans Compose (ou pas, mais c'est un autre débat).
+
+:::
+
+Pour rester dans le thème du Bluetooth, nous allons regarder comment demander les permissions en lien avec le BLE.
+
+### Ajouter la librairie
+
+Pour ajouter la librairie, nous allons devoir modifier notre fichier `build.gradle` (celui dans `app` du projet). Nous allons ajouter la dépendance suivante :
+
+```groovy
+    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
+```
+
+Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
+
+### Le fichier AndroidManifest.xml
+
+Avant de demander les permissions, nous allons devoir les déclarer pour que l'application puisse les demander. Pour ça nous allons modifier le fichier `AndroidManifest.xml`. Nous allons ajouter les permissions suivantes :
+
+```xml
+<!-- Permissions pour le BLE Android 12 et plus -->
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+    android:usesPermissionFlags="neverForLocation"
+    tools:targetApi="s" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+<!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
+
+### Utiliser la librairie
+
+Cette librarie va nous permettre de demander les permissions à l'utilisateur et de gérer l'état de la demande (acceptée, refusée, etc.). Si vous avez compris ce que nous avons vus précédemment, vous vous doutez que tout va être géré par un état.
+
+```kotlin
+val toCheckPermissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+    listOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+} else {
+    listOf(android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_SCAN)
+}
+
+val permissionState = rememberMultiplePermissionsState(toCheckPermissions)
+```
+
+Quelques explications :
+
+- `toCheckPermissions` est une liste de permissions à vérifier. Dans notre cas, nous allons vérifier les permissions pour le Bluetooth. En fonction de la version d'Android, nous n'allons pas vérifier les mêmes permissions. C'est pour ça que nous avons une condition qui permet de vérifier la version d'Android.
+- `rememberMultiplePermissionsState` est un état qui va contenir l'état de la demande de permission. Cet état va nous permettre de savoir si les permissions sont accordés ou non.
+
+Maintenant que nous avons notre état, nous allons pouvoir l'utiliser pour demander les permissions à l'utilisateur. Pour ça nous allons utiliser un composant nommé `PermissionRequired` :
+
+```kotlin
+if (!permissionState.allPermissionsGranted) {
+    Button(onClick = { permissionState.launchMultiplePermissionRequest() }) {
+        Text(text = "Demander la permission")
+    }
+else {
+    Text(text = "Permission accordée")
+}
+```
+
+Que fait ce code ?
+
+- Si l'utilisateur n'a pas accordé les permissions, nous affichons un bouton qui permet de demander les permissions.
+- Si l'utilisateur a accordé les permissions, nous affichons un texte qui indique que les permissions sont accordées.
+
+## Scannez les périphériques BLE
+
+TODO Exemple simple
+
+## Arrêtons-nous un instant
+
+Ici l'idée était de vous montrer les bases de la création de composants. Il est évident que dans une vrai application, nous aurions un peu plus que ça.
+
+Notamment :
+
+- Une architecture (MVI, MVVM, etc.) qui permet de gérer la logique de l'application. Dans Compose nous appelons ça un ViewModel.
+- Une Navigation basée sur un Routeur, sur android il se nomme Jetpack Compose Navigation.
+- Une gestion des erreurs, des exceptions, etc.
+
+Mais pour l'instant, nous allons nous arrêter là. Nous avons vu les bases, nous avons vu comment créer des composants, comment les utiliser, comment les animer, comment les rendre interactifs, etc.
+
+## Aller plus loin dans la navigation
 
 Vous souhaitez aller plus loin ? Là c'est un exemple très simple, pour découvrir. Dans une application plus complexe, nous aurions besoin de Compose Navigation pour gérer les transitions entre les composants. Vous pouvez retrouver un exemple d'utilisation de Compose Navigation dans la documentation officielle : [Compose Navigation](https://developer.android.com/jetpack/compose/navigation).
 
