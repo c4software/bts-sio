@@ -45,7 +45,7 @@ Je vous laisse suivre les étapes de création d'un nouveau projet.
 
 Pour débuter (et avant de tout casser), je vous laisse compiler et lancer une première fois l'application proposée par Google. Le premier résultat va être incroyable, accrochez-vous…
 
-![Première application](./res//compose_step_3.jpg)
+![Première application](./res/compose_step_3.jpg)
 > Dans mon cas l'application est sur la droite.
 
 ::: tip STOP ! Analysons ensemble ce que nous avons obtenu.
@@ -66,9 +66,9 @@ Je vous laisse modifier le code de la méthode `onCreate`, pour y mettre :
 
 ```kotlin
 setContent {
-    TestComposantTheme {
+    MyApplicationTheme {
         Scaffold(
-            topBar = { TopAppBar(title = {Text("Top App Bar")},backgroundColor = MaterialTheme.colors.primary)  },
+            topBar = { TopAppBar(title = {Text("Top App Bar")}  },
         ) {
             Greeting(name = "Valentin")
         }
@@ -135,7 +135,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testcomposant.R
-import com.example.testcomposant.ui.theme.TestComposantTheme
+import com.example.testcomposant.ui.theme.MyApplicationTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -162,7 +162,7 @@ fun ElementList(
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    TestComposantTheme {
+    MyApplicationTheme {
         ElementList()
     }
 }
@@ -291,7 +291,6 @@ TopAppBar(
         }
     },
     title = { Text("Top App Bar") },
-    backgroundColor = MaterialTheme.colors.primary
 )
 ```
 
@@ -312,7 +311,7 @@ Je vous laisse tester que votre application fonctionne toujours.
 Une liste c'est bien ! Mais une liste avec des animations c'est encore mieux !
 
 ```kotlin
-AnimatedContent (/* Votre Condition OU votre état */ ) { targetState ->
+AnimatedContent(label = "") (/* Votre Condition OU votre état */ ) { targetState ->
     when (targetState) {
         true -> { /* Composant affiché quand la condition est vrai */ }
         false -> { /* Composant affiché quand la condition est fausse */ }
@@ -372,14 +371,16 @@ if (selectedItem.value == null) {
 Prenons un autre exemple, dans un cas simple de deux composants d'interface, nous pourrions écrire quelque chose comme :
 
 ```kotlin
-val isLoggedIn = remember { mutableStateOf(false) }
+Column(Modifier.padding(it)) {
+    val isLoggedIn = remember { mutableStateOf(false) }
 
-if (isLoggedIn.value) {
-    HomeScreen()
-} else {
-    LoginScreen() {
-        // L'action sera émise par le composant LoginScreen. Via un bouton par exemple.
-        isLoggedIn.value = true
+    if (isLoggedIn.value) {
+        HomeScreen()
+    } else {
+        LoginScreen() {
+            // L'action sera émise par le composant LoginScreen. Via un bouton par exemple.
+            isLoggedIn.value = true
+        }
     }
 }
 ```
@@ -423,13 +424,15 @@ fun MyApp() {
             )
         }
     ) {
-        val isLoggedIn = remember { mutableStateOf(false) }
+        Column(Modifier.padding(it)) {
+            val isLoggedIn = remember { mutableStateOf(false) }
 
-        if (isLoggedIn.value) {
-            HomeScreen()
-        } else {
-            LoginScreen() {
-                isLoggedIn.value = true
+            if (isLoggedIn.value) {
+                HomeScreen()
+            } else {
+                LoginScreen() {
+                    isLoggedIn.value = true
+                }
             }
         }
     }
