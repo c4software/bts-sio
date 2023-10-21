@@ -566,7 +566,41 @@ Que fait ce code ?
 
 ## Scannez les périphériques BLE
 
-TODO Exemple simple
+Sans entrer dans le détails des subtilités du Bluetooth, nous allons décomposer le code permettant de scanner les périphérique BLE. Voilà le résultat final :
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WZessnr9gZ4?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Introduction
+
+Pour scanner les périphériques BLE, nous allons avoir besoin de plusieurs choses :
+
+- Un état qui va contenir la liste des périphériques scannés.
+- Un état qui va contenir l'état du scan (en cours, terminé, etc.)
+- Le contexte de l'application (pour accéder au Bluetooth).
+- L'accès au Bluetooth du téléphone.
+- Un découpage de notre code en ViewModel.
+
+### Le contexte
+
+Pour rappel, le contexte est un objet qui permet d'accéder à des informations sur l'application. Dans notre cas, nous allons avoir besoin du contexte pour accéder au Bluetooth du téléphone.
+
+⚠️ C'est un élément obligatoire.
+
+### Le ViewModel
+
+Le ViewModel repose sur le découpage du code de type MVVM (Model View ViewModel). Nous allons donc avoir un ViewModel qui va contenir la logique de notre écran (ici le scan BLE).
+
+Je ne souhaite pas dans cette introduction au composant vous assomer avec des détails techniques. Sachez juste que c'est une bonne pratique de découper son code, et que pour ça nous allons utiliser un ViewModel dans notre cas.
+
+### Le code complet
+
+TODO :
+
+- Illustrer les dossiers (avec mise en couleurs des ajouts).
+- Ajouter le code complet des deux fichiers Compose.
+- Ajouter les explications.
+- Ajouter le ApplicationRoot (pour le contexte).
+- Ajouter la déclaration dans le manifest du ApplicationRoot.
 
 ## Arrêtons-nous un instant
 
