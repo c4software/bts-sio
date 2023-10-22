@@ -580,36 +580,279 @@ Pour scanner les périphériques BLE, nous allons avoir besoin de plusieurs chos
 - L'accès au Bluetooth du téléphone.
 - Un découpage de notre code en ViewModel.
 
-### Le contexte
+### Le `Context`
 
-Pour rappel, le contexte est un objet qui permet d'accéder à des informations sur l'application. Dans notre cas, nous allons avoir besoin du contexte pour accéder au Bluetooth du téléphone.
+Pour rappel le `Context` est un objet qui permet d'accéder à des informations sur l'application. Dans notre cas, nous allons avoir besoin du contexte pour accéder au Bluetooth du téléphone.
 
 ⚠️ C'est un élément obligatoire.
+
+### La recomposition
+
+Il faut comprendre ici que notre vue sera « recomposée » à chaque fois que nous allons obtenir de nouveaux périphériques BLE. Nous allons donc devoir gérer des listes qui vont être modifiées en temps réel. Pour ça nous allons utiliser un `Flow`, le flow sera un flux de données qui va nous permettre de mettre à jour notre liste de périphériques BLE (visuellement dans notre interface).
+
+Cette interface sera également recomposée à chaque fois que nous indiquerons « En Scan » ou « Scan terminé ».
+
+![Recomposition](./res/lifecycle-composition.png)
+
+[En savoir plus sur la recomposition](https://developer.android.com/jetpack/compose/lifecycle?hl=fr)
 
 ### Le ViewModel
 
 Le ViewModel repose sur le découpage du code de type MVVM (Model View ViewModel). Nous allons donc avoir un ViewModel qui va contenir la logique de notre écran (ici le scan BLE).
 
-Je ne souhaite pas dans cette introduction au composant vous assomer avec des détails techniques. Sachez juste que c'est une bonne pratique de découper son code, et que pour ça nous allons utiliser un ViewModel dans notre cas.
+Je ne souhaite pas dans cette introduction au composant vous assommer avec des détails techniques. Sachez juste que c'est une bonne pratique de découper son code, et que pour ça nous allons utiliser un ViewModel dans notre cas.
 
-### Le code complet
+### Évolution de la structure
 
-TODO :
+Notre projet va évoluer un peu, voici les éléments que nous allons devoir ajouter :
 
-- Illustrer les dossiers (avec mise en couleurs des ajouts).
-- Ajouter le code complet des deux fichiers Compose.
-- Ajouter les explications.
-- Ajouter le ApplicationRoot (pour le contexte).
-- Ajouter la déclaration dans le manifest du ApplicationRoot.
+![Arborescence](./res/arborescence_ble.jpg)
+
+- `ScanViewModel.kt` : Le ViewModel qui va contenir la logique de notre écran.
+- `ScanScreen.kt` : Le composant qui va contenir l'interface de notre écran (notre liste et nos boutons d'actions).
+- `ApplicationRoot.kt` : Une activité qui sera appelée par la plateforme Android, elle nous permettra d'avoir accès au contexte de l'application depuis notre ViewModel.
+
+::: tip Pas d'inquiétude
+
+Ici, il faut bien voir que je vous communique une façon correcte de faire. Nous pourrions évidemment tout simplifier en mettant tout dans le même fichier (dans la vue par exemple). Mais à mon sens, il est important de comprendre dès le début les bonnes pratiques.
+
+Pour revenir au `Context`, il est possible de le récupérer depuis la vue via un `LocalContext`. Dans le cas présent cette solution n'est pas possible (ou partiellement), car lors de la « recomposition » (en cas de changement dans les données) de la vue, notre viewModel sera dans certains cas détruit et recréé et nous perdrons nos données.
+
+:::
+
+### Quelques libraires à ajouter
+
+Pour que nous puissions faire notre scan en arrière-plan et échanger les données entre la `View` et le `ViewModel` nous allons avoir besoin de quelques librairies :
+
+```groovy
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+```
+
+Ajouter ces dépendances dans votre fichier `build.gradle` (celui dans `app` du projet). Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
+
+[Plus d'informations](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+
+### Le code du ScanScreen
+
+```kotlin
+@SuppressLint("MissingPermission")
+@Composable
+fun ScanScreen(
+    modifier: Modifier = Modifier,
+    scanViewModel: ScanViewModel = viewModel()
+) {
+    // La liste des appareils scannés autour
+    val scanItems by scanViewModel.scanItemsFlow.collectAsStateWithLifecycle()
+    // Boolean permettant de savoir si nous sommes en train de scanner
+    val isScanning by scanViewModel.isScanningFlow.collectAsStateWithLifecycle()
+
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Boutons en haut de l'écran (débuter le scan, arrêter le scan, vider la liste)
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 5.dp)) {
+            Button(
+                colors = if (isScanning) ButtonDefaults.buttonColors(containerColor = Color.Red) else ButtonDefaults.buttonColors(),
+                onClick = { scanViewModel.startScan() },
+                enabled = !isScanning
+            ) {
+                if (isScanning) Text(text = "Scan en cours") else Text(text = "Débuter le scan")
+            }
+            Spacer(modifier = Modifier.padding(5.dp))
+            Button(onClick = { scanViewModel.clearScanItems() }) {
+                Text(text = "Vider la liste")
+            }
+        }
+
+        // Le scan est lancé nous affichons la liste des appareils trouvés
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(scanItems) { item ->
+                ElementList(
+                    title = item.device.name ?: "Sans nom",
+                    content = item.device.address ?: "00:00:00:00:00:00",
+                    image = R.drawable.baseline_bluetooth_24
+                )
+            }
+        }
+    }
+}
+```
+
+Quelques explications :
+
+- `scanViewModel` est un paramètre qui permet de passer le ViewModel à notre composant. C'est ce que nous appelons une dépendance. Nous allons avoir besoin de ce ViewModel pour accéder aux données et aux actions.
+- `scanItems` est un état qui va contenir la liste des appareils scannés. Cet état va être mis à jour à chaque fois que nous allons scanner un nouvel appareil.
+- `isScanning` est un état qui va contenir l'état du scan. Cet état va être mis à jour à chaque fois que nous allons démarrer ou arrêter le scan.
+- `LazyColumn` est un composant qui permet d'afficher une liste. Il est équivalent à un `RecyclerView` sur Android sans Compose. Cette liste contiendra autant d'éléments que d'appareils scannés.
+
+### Le code du ScanViewModel
+
+```kotlin
+class ScanViewModel : ViewModel() {
+    // La liste des appareils scannés autour
+    val scanItemsFlow = MutableStateFlow<List<ScanResult>>(emptyList())
+
+    // Boolean permettant de savoir si nous sommes en train de scanner
+    val isScanningFlow = MutableStateFlow(false)
+
+    // Le processus de scan
+    private var scanJob: Job? = null
+
+    /**
+     * Le scanner bluetooth
+     */
+    // ApplicationRoot.getContext() est une référence au contexte de l'application
+    // Elle est initialisée dans ApplicationRoot
+    private val bluetoothLeScanner = (ApplicationRoot.getContext().getSystemService(BLUETOOTH_SERVICE) as BluetoothManager).adapter.bluetoothLeScanner
+    private val scanFilters: List<ScanFilter> = emptyList()
+    private val scanSettings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build()
+    private val scanResultsSet = mutableMapOf<String, ScanResult>()
+
+    @SuppressLint("MissingPermission")
+    fun startScan() {
+        if(isScanningFlow.value) return
+
+        scanJob = CoroutineScope(Dispatchers.IO).launch {
+            // On indique que nous sommes en train de scanner
+            isScanningFlow.value = true
+
+            // Objet qui sera appelé à chaque résultat de scan
+            val scanCallback = object : ScanCallback() {
+                override fun onScanResult(callbackType: Int, result: ScanResult) {
+                    super.onScanResult(callbackType, result)
+                    // On ajoute le résultat dans le set, si il n'y est pas déjà
+                    // L'ajout retourne null si l'élément n'était pas déjà présent
+                    if (scanResultsSet.put(result.device.address, result) == null) {
+                        // On envoie la nouvelle liste des appareils scannés
+                        scanItemsFlow.value = scanResultsSet.values.toList()
+                    }
+                }
+            }
+
+            // On lance le scan BLE a la souscription de scanFlow
+            bluetoothLeScanner.startScan(scanFilters, scanSettings, scanCallback)
+
+            delay(10000)
+
+            // Lorsque scanFlow est stoppé, on stop le scan BLE
+            bluetoothLeScanner.stopScan(scanCallback)
+
+            // On indique que nous ne sommes plus en train de scanner
+            isScanningFlow.value = false
+        }
+    }
+
+    fun clearScanItems() {
+        scanResultsSet.clear()
+        scanItemsFlow.value = scanResultsSet.values.toList()
+    }
+}
+```
+
+Quelques explications :
+
+- `scanItemsFlow` est un `Flow` qui va contenir la liste des appareils scannés. Ce `Flow` va être mis à jour à chaque fois que nous allons scanner un nouvel appareil.
+- `isScanningFlow` est un `Flow` qui va contenir l'état du scan. Ce `Flow` va être mis à jour à chaque fois que nous allons démarrer ou arrêter le scan.
+- `scanJob` est un `Job` qui va contenir le processus de scan. Ce `Job` sera la tâche en cours d'exécution. Elle permettrait de l'annuler si besoin.
+- `bluetoothLeScanner` est un objet qui permet de scanner les périphériques BLE. C'est un objet fourni par Android.
+- `scanFilters` est une liste de filtres qui permet de filtrer les périphériques scannés. Dans notre cas, nous ne filtrons rien.
+- `scanSettings` est un objet qui permet de définir les paramètres du scan. Dans notre cas, nous définissons le mode de scan en `SCAN_MODE_LOW_LATENCY` (le mode le plus rapide, pour avoir les résultats le plus rapidement possible).
+- `scanResultsSet` est un `Set` qui va contenir les résultats du scan. Nous utilisons un `Set` pour éviter d'avoir des doublons dans notre liste.
+- `startScan` est une fonction qui permet de démarrer le scan. Cette fonction va être appelée lors du clique sur le bouton « Débuter le scan ».
+- `clearScanItems` est une fonction qui permet de vider la liste des appareils scannés. Cette fonction va être appelée lors du clique sur le bouton « Vider la liste ».
+- `scanCallback` est un objet qui va être appelé à chaque résultat de scan. Cet objet va nous permettre de mettre à jour notre liste des appareils scannés.
+
+Ici nous avons un code qui est un peu plus complexe, mais complètement lisible. Il faut juste prendre le temps de le décomposer et de comprendre ce que nous faisons (notamment le flow et le callback).
+
+Vous avez des questions ? Je suis là 👋.
+
+::: warning `CallBack` ?
+
+Un `CallBack` est un objet qui va être appelé à chaque fois qu'une action est réalisée. Dans notre cas, nous avons un `CallBack` qui va être appelé à chaque fois que nous allons scanner un nouvel appareil. C'est ce que nous appelons un `CallBack` ou un `Listener`.
+
+:::
+
+### Le code de l'ApplicationRoot
+
+```kotlin
+
+/**
+ * Classe permettant de récupérer le contexte de l'application
+ * depuis n'importe où dans le code
+ *
+ * Pour cela il suffit d'appeler ApplicationRoot.getContext()
+ *
+ * Elle est initialisée dans le fichier AndroidManifest.xml
+ * application android:name=".ApplicationRoot"
+ * Android va automatiquement appeler la méthode onCreate() pour nous
+ * afin d'initialiser la variable INSTANCE
+ */
+class ApplicationRoot: Application() {
+
+    companion object {
+        private lateinit var INSTANCE: Application
+
+        fun getContext(): Context = INSTANCE.applicationContext
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        INSTANCE = this
+    }
+}
+```
+
+Quelques explications :
+
+- `ApplicationRoot` est une classe qui permet de récupérer le contexte de l'application depuis n'importe où dans le code. Pour cela il suffit d'appeler `ApplicationRoot.getContext()`.
+- `getContext()` est une fonction qui permet de récupérer le contexte de l'application.
+- `Compagnon` est un objet qui permet de créer des fonctions et des variables statiques. C'est un peu comme si nous avions une classe avec des fonctions et des variables statiques.
+
+### Le fichier AndroidManifest.xml
+
+Pour l'instant le code que je vous ai fourni ne fonctionne pas. Il manque une étape, nous devons déclarer notre `ApplicationRoot` dans le fichier `AndroidManifest.xml`. Pour ça nous allons ajouter l'attribut `android:name` à l'élément `application` :
+
+```xml
+android:name=".ApplicationRoot"
+```
+
+À ajouter dans le `<Application` :
+
+![AndroidManifest.xml](./res/manifest_approot.jpg)
+
+::: tip Pourquoi ?
+
+En déclarant notre `ApplicationRoot` dans le `AndroidManifest.xml`, nous indiquons à Android que nous souhaitons utiliser notre classe `ApplicationRoot` comme classe principale de notre application. C'est cette classe qui sera appelée en premier lors du lancement de l'application.
+
+Celle-ci n'affichera rien mais elle sera lancé en premier. C'est ce que nous appelons un point d'entrée, « elle tiendra » une référence au contexte de l'application. C'est ce qui nous permettra d'accéder au Bluetooth depuis notre ViewModel.
+
+Il n'y a pour l'instant pas d'autre moyen de faire, c'est une limitation de Compose (ou du moins un comportement / astuce à connaitre).
+
+:::
+
+### C'est à vous
+
+Vous avez l'ensemble des éléments, je vous laisse le mettre en place dans votre application.
+
+Une fois le code en place, vous devrez l'appeler depuis votre « MainActivity » à la place du `ListScreen`. Dans mon cas :
+
+```kotlin
+ScanScreen(Modifier.padding(it))
+```
 
 ## Arrêtons-nous un instant
 
-Ici l'idée était de vous montrer les bases de la création de composants. Il est évident que dans une vrai application, nous aurions un peu plus que ça.
+Ici l'idée était de vous montrer les bases de la création de composants. Il est évident que dans une vraie application, nous aurions un peu plus que ça.
 
 Notamment :
 
 - Une architecture (MVI, MVVM, etc.) qui permet de gérer la logique de l'application. Dans Compose nous appelons ça un ViewModel.
-- Une Navigation basée sur un Routeur, sur android il se nomme Jetpack Compose Navigation.
+- Une Navigation basée sur un Routeur, sur Android il se nomme Jetpack Compose Navigation.
 - Une gestion des erreurs, des exceptions, etc.
 
 Mais pour l'instant, nous allons nous arrêter là. Nous avons vu les bases, nous avons vu comment créer des composants, comment les utiliser, comment les animer, comment les rendre interactifs, etc.
