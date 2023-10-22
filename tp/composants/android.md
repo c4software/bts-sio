@@ -2,7 +2,7 @@
 description: Dans ce TP nous allons mettre en pratique l'écriture de composants avec Android Compose. De la logique à la réalisation, nous allons parcourir les bases de la réalisation de composants et de « la réactivité » en lien avec ceux-ci.
 ---
 
-# Les composants avec Android et Jetpack Compose
+# Introduction à Android Compose
 
 ::: details Sommaire
 [[toc]]
@@ -56,6 +56,130 @@ Nous allons donc retravailler tout ça pour organiser un minimum notre code sour
 
 :::
 
+## La structure / Les composants
+
+Compose repose sur l'utilisation du code pour définir l'interface que l'utilisateur va voir. Elle reprend les principes de la programmation en composant qui est largement utilisée dans le développement web.
+
+Nous avons à notre disposition un ensemble de composants « fonctionnels » qui vont nous permettre de créer les éléments de notre interface :
+
+- `Text` : Un composant qui permet d'afficher du texte.
+- `Button` : Un composant qui permet d'afficher un bouton.
+- `Switch` : Un composant qui permet d'afficher un toggle (un bouton qui peut être activé ou désactivé).
+- `Image` : Un composant qui permet d'afficher une image.
+- `LazyColumn` : Un composant qui permet d'afficher une liste.
+- `Scaffold` : Un composant qui permet de créer une structure de base pour notre application (barre de navigation, etc.).
+- `TopAppBar` : Un composant qui permet de créer une barre de navigation en haut de l'application.
+- `Card` : Un composant qui permet de créer une carte.
+- `IconButton` : Un composant qui permet de créer un bouton avec une icône.
+- Etc… (Il y en a beaucoup plus, mais nous allons nous arrêter là pour l'instant).
+
+Nous avons également des composants qui sont là pour définir la structure de notre application :
+
+- `Column` : Un composant qui permet de créer une colonne.
+- `Row` : Un composant qui permet de créer une ligne.
+- `Box` : Un composant qui permet de créer une boîte.
+- `Spacer` : Un composant qui permet de créer un espace entre deux éléments.
+
+Les composants sont des fonctions que nous allons pouvoir appeler dans notre code. Ils seront appelés au bon moment en fonction de conditions que nous allons définir. Les composants seront imbriquables les uns dans les autres, ce qui nous permettra de créer des interfaces complexe. Par exemple :
+
+```kotlin
+Column() {
+    Text("Texte 1")
+    Text("Texte 2")
+    Text("Texte 3")
+}
+```
+
+Ce code va nous permettre d'afficher trois textes les uns en dessous des autres. Et si nous souhaitons afficher les textes les uns à côté des autres ? Il suffit de changer le composant `Column` par `Row`.
+
+```kotlin
+Row() {
+    Text("Texte 1")
+    Text("Texte 2")
+    Text("Texte 3")
+}
+```
+
+Nous pouvons également imbriquer les Colonnes et les Lignes :
+
+```kotlin
+Column() {
+    Row() {
+        Text("Texte 1")
+        Text("Texte 2")
+        Text("Texte 3")
+    }
+    Row() {
+        Text("Texte 4")
+        Text("Texte 5")
+        Text("Texte 6")
+    }
+}
+```
+
+Cet exemple est là pour vous montrer la puissance de Compose. Compose a été pensé pour être simple et modulaire, par exemple pour un bouton le principe est le même :
+
+```kotlin
+Button(onClick = { /* Code appelé lors du clique sur le bouton */ }) {
+    Text("Mon bouton")
+}
+```
+
+Ici nous voyons que le composant `Button` prend en paramètre une action (un code qui sera appelé lors du clique sur le bouton) et un composant `Text` qui sera affiché dans le bouton. Pratique ! Et si nous souhaitons un bouton avec un loader ? Et bien c'est simple il suffit de changer le composant `Text` par un composant `CircularProgressIndicator` (qui est un loader).
+
+```kotlin
+Button(onClick = { /* Code appelé lors du clique sur le bouton */ }) {
+    CircularProgressIndicator()
+}
+```
+
+Et évidemment, nous allons pouvoir créer nos propres composants…
+
+## Le modifier
+
+Le modifier est un élément qui va nous permettre de modifier un composant. Par exemple, nous pouvons modifier la taille d'un composant, sa couleur, etc. Pour ça nous allons utiliser le composant `Modifier` qui va nous permettre de modifier un composant.
+
+```kotlin
+Text("Mon texte", modifier = Modifier.size(20.dp))
+```
+
+Le modifier est différent d'un composant à un autre, il faut donc regarder la documentation pour savoir ce que l'on peut faire avec un composant.
+
+Par exemple, pour la colonne nous avons :
+
+```kotlin
+Column(
+    modifier = Modifier
+        .fillMaxWidth()
+        .padding(5.dp)
+) {
+    // Contenu de la colonne
+}
+```
+
+- `fillMaxWidth` permet de remplir la largeur de la zone disponible.
+- `padding` permet d'ajouter un padding (un espace) autour de la colonne.
+
+::: tip Rien de mieux que la documentation
+
+Nous avons vu quelques composants, et quelques modifiers. Mais il y en a beaucoup plus. Je vous laisse regarder la documentation pour en savoir plus.
+
+[Documentation](https://developer.android.com/jetpack/compose/components)
+
+⚠️ Compose évolue très rapidement, il est donc primordial de regarder la documentation…
+
+:::
+
+## Material Design
+
+En plus des composants proposés par Compose, nous avons également accès aux composants de Material Design. Le projet que vous avez créé utilise déjà le Material Design en version 3.
+
+Les composants proposés sont prêts à l'emploi, ils intègrent toutes les bonnes pratiques définies par Google. 
+
+[Documentation de Material Design](https://m3.material.io/)
+
+Ce TP est guidé, vous n'avez pas à « apprendre la documentation », par contre je vous invite à la parcourir pour voir les options / fonctionnements, votre compréhension en sera grandement facilitée.
+
 ## Un peu de structure !
 
 Avant d'aller plus loin, nous allons ajouter un peu de structure dans le microprojet. L'idée étant de faire une application qui ressemble à quelque chose. Nous allons ajouter la structure d'une application basique à savoir une `TopAppBar`.
@@ -88,7 +212,7 @@ Je vous laisse tester votre application à nouveau.
 
 ::: tip Un peu de couleur
 
-Votre top bar est blanche ? C'est normal, nous n'avons pas encore ajouté de thème. Je vous laisse ajouter le thème suivant :
+Votre top-bar est blanche ? C'est normal, nous n'avons pas encore ajouté de thème. Je vous laisse ajouter le thème suivant :
 
 ```kotlin
 topBar = { 
