@@ -877,3 +877,11 @@ N'oubliez pas, les animations sont le détail qui change tout. Je vous laisse re
 :::
 
 ![Le résultat de la TopAppBar](./res/animation_bar.gif)
+
+## Le code complet
+
+Même si je vous ai donné le code au fur et à mesure, je vous laisse le code complet de l'application :
+
+[Code complet](https://github.com/c4software/Android-Composant-sample-ble-scan)
+
+PS: Je vous conseil de créer vous même votre application, c'est en forgeant que l'on devient forgeron.
