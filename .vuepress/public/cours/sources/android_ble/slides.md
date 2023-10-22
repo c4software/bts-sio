@@ -46,6 +46,12 @@ Que fait notre objet ?
 
 ---
 
+## Découvrons l'objet !
+
+Avec l'application « nRF Connect »
+
+---
+
 ## Le Bluetooth et Android
 
 - Les permissions (Manifest + Code)
