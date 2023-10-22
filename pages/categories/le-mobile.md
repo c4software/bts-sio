@@ -3,6 +3,7 @@
 Le développement mobile évolue rapidement, vous trouverez ici des ressources pour vous aider commencer votre apprentissage.
 
 - [Cours base Android](/cours/android_base.md)
+- [Cours Android Compose](/cours/android_compose.md)
 - [Cours Android Bluetooth](/cours/android_ble.md)
 
 ## Les TP

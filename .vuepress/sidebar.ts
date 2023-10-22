@@ -201,7 +201,7 @@ module.exports = [
         text: "Android",
         collapsible: true,
         children: [
-          { text: "Le cours", collapsible: true, children: ["/cours/android_base", "/cours/android_ble", "/cours/android_http"] },
+          { text: "Le cours", collapsible: true, children: ["/cours/android_base", "/cours/android_ble", "/cours/android_http", "/cours/android_compose.md"] },
           { text: "Les TP simple", collapsible: true, children: ["/tp/android/android-base-tp", "/tp/android/android-base2-tp", "/tp/composants/android"] },
           { text: "Les TP API", collapsible: true, children: ["/tp/android/network"] },
           { text: "Les projets", collapsible: true, children: ["/tp/android/app-base-android.md", "/tp/android/app-ble-network.md", "/tp/android/app-avance-android.md"] },

@@ -12,6 +12,8 @@ description: Dans ce TP nous allons mettre en pratique l'écriture de composants
 
 Dans ce TP nous allons mettre en pratique l'écriture de composants avec Android Compose. De la logique à la réalisation, nous allons parcourir les bases de la réalisation de composants et de « la réactivité » en lien avec ceux-ci.
 
+Ce TP fait suite au cours sur Android Compose, je vous invite donc à le lire avant de commencer ce TP ([Cours Android Compose](/cours/android_compose.md)).
+
 ## Aperçu du projet
 
 L'application que nous allons réaliser ici est très simple. Il s'agit juste d'une liste et d'une vue de détail. Elle nous servira à comprendre le système de composant.
