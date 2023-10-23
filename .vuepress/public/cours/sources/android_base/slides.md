@@ -101,7 +101,7 @@ Deux types :
 ### Le Code
 
 - Java (Historique)
-- Kotlin (À privilégier maintenant)
+- Kotlin (à privilégier maintenant)
 - Flutter (Dart ? Quoi ?)
 
 ---
@@ -163,7 +163,7 @@ Le renouveau du développement Android
 ---
 
 - Plus simple
-- Permet de faire des animations simplement
+- Permets de faire des animations simplement
 - Écriture plus moderne
 - Repose sur des Composants (comme React, Vue, Flutter…)
 
@@ -252,7 +252,7 @@ Deux façons de travailler :
 
 ---
 
-## Debugger
+## Débugger
 
 - Points d'arrêts.
   - Avec arrêt.
