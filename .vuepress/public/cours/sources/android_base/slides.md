@@ -933,3 +933,9 @@ Réorganisation de votre projet initial.
 ---
 
 [Voir dans le support un exemple](/tp/android/android-base-tp.html)
+
+---
+
+Des questions ?
+
+---
