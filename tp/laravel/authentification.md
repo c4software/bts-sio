@@ -129,7 +129,7 @@ Attention, si vous êtes sur un lecteur réseau ça va être long… Très long 
 
 Une fois le processus terminé, vous devriez avoir un résultat comme celui-ci :
 
-![Laravel Mix](./ressources/mix.png)
+![Laravel Mix](./ressources/vite.jpg)
 
 Vos pages d'authentification sont maintenant fonctionnelles, votre site intègre maintenant toute la mécanique permettant de gérer cette problématique.
 
