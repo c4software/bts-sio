@@ -106,7 +106,9 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire… (maintenant)
 
-- 9.X: Version actuelle
+- 10.X: Version actuelle
+
+**Requiert PHP 8.1**, à votre avis pourquoi ?
 
 ---
 
@@ -235,10 +237,38 @@ Consulter la page **/demo/3** chargera automatiquement le bon contrôleur et la 
 ```php
 Route::post('/demo/ajout', [DemoController::class, "ajout");
 ```
-
 ---
 
 ## Autre que le POST ?
+
+(get, post, put, patch, delete, options)
+
+```php
+Route::put('/demo/{id}', [DemoController::class, "modifier"]);
+Route::delete('/demo/{id}', [DemoController::class, "supprimer"]);
+```
+
+---
+
+## Protéger une route
+
+```php
+Route::get('/demo/{id}', [DemoController::class, "voir"])->middleware('auth');
+```
+
+---
+
+## Les « middlewares »
+
+auth est un middleware fourni par Laravel. Il permet de vérifier que l’utilisateur est connecté.
+
+---
+
+## Un middleware ?
+
+Un middleware est un « filtre » qui va être exécuté avant l’action demandée. Il sera exécuté avant le contrôleur. Il permettra de vérifier des choses avant d’exécuter le contrôleur.
+
+Ex: L'authentification, token, etc…
 
 ---
 

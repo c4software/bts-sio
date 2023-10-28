@@ -632,7 +632,13 @@ Nous allons donc ajouter dans le fichier `routes/web.php`
 Route::get('/yolo-connected', ['App\Http\Controllers\YoloControler', 'privateView'])->middleware(['auth'])->name("yoloPrivate");
 ```
 
-Noter l'ajout du middleware `auth`.
+::: tip Middleware
+
+Pour rappel, le middleware `auth` est celui qui va vérifier si l'utilisateur est connecté ou non. Si ce n'est pas le cas, il va rediriger l'utilisateur vers la page de connexion.
+
+Un Middleware est un morceau de code qui va être exécuté avant le contrôleur. Il peut être utilisé pour faire des contrôles supplémentaires, ou pour modifier la demande initiale.
+
+:::
 
 Voilà le résultat pour moi
 
