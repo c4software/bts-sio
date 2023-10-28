@@ -24,7 +24,7 @@ Vous l'avez compris, la liste est longue… Vous pouvez évidemment tout coder v
 
 Pour cette étape, je vous laisse suivre le début du [précédent TP](./introduction.md).
 
-**Attention** a bien installer au moins la version >8 de Laravel.
+**Attention** a bien installer au moins la version >10 de Laravel.
 
 ## Installer la laravel debug bar
 
@@ -52,11 +52,10 @@ La Debugbar sera automatiquement active quand APP_DEBUG est à `true`.
 
 ## Ajout de l'authentification
 
-Nous allons intégrer l'authentification en utilisant [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits#laravel-breeze) ce paquet `Composer` va ajouter l'ensemble des :
+Nous allons intégrer l'authentification en utilisant [Laravel Breeze](https://laravel.com/docs/10.x/starter-kits#laravel-breeze) ce paquet `Composer` va ajouter l'ensemble des :
 
 - routes
 - contrôleur
-- middleware
 - Vue (templates blades)
 
 Permettant de gérer simplement l'ensemble des problématiques.
@@ -631,6 +630,8 @@ Nous allons donc ajouter dans le fichier `routes/web.php`
 ```php
 Route::get('/yolo-connected', ['App\Http\Controllers\YoloControler', 'privateView'])->middleware(['auth'])->name("yoloPrivate");
 ```
+
+Ici la protection est ajoutée grâce à la méthode `middleware(['auth'])`. Elle va permettre de ne laisser passer que les utilisateurs connectés.
 
 ::: tip Middleware
 
