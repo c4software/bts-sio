@@ -554,7 +554,7 @@ Route::get('/yolo', ['App\Http\Controllers\YoloControler', 'publicView']);
 Je vous aide pour la partie méthode :
 
 ```php
-    return view("yolo.publicView");
+  return view("yolo.publicView");
 ```
 
 :::
@@ -577,9 +577,9 @@ _resources/views/yolo/publicView.blade.php:_
 ```html
 <x-guest-layout>
   <x-card>
-    <div class="text-center font-bold text-indigo-600">Bonjour à toi 👋</div>
+    <div class="text-center font-bold text-indigo-600">Bonjour Mr Anonyme 👋</div>
   </x-card>
-</x-guest-layout
+</x-guest-layout>
 ```
 
 :::
@@ -692,6 +692,8 @@ Nous l'avons fait dans notre exemple de contrôleur, mais, si vous ne l'aviez pa
 
 ## Changer la table des utilisateurs
 
+Le fonctionnement par défaut (avec la table `users`) est très bien, mais il est possible que vous souhaitiez utiliser une autre table pour stocker les informations des utilisateurs. Par exemple, si vous avez déjà un projet et que vous souhaitez utiliser Breeze pour gérer l'authentification.
+
 Si nous souhaitons utiliser la table `clients` à la place de `users` pour stocker les informations des utilisateurs, nous devons modifier plusieurs éléments :
 
 - Créer la migration ainsi que le modèle : `php artisan make:model Client -m`
@@ -770,9 +772,8 @@ class Client extends Authenticatable
 }
 ```
 
-
-::: tip Pourquoi `Authenticatable` ?
-C'est une interface qui permet de dire à Laravel que ce modèle est utilisé pour l'authentification.
+::: tip Pourquoi l'héritage avec `Authenticatable` ?
+Ceca va permetre à Laravel de savoir comment gérer l'authentification avec cette classe.
 :::
 
 ::: danger Attention !
@@ -861,3 +862,28 @@ Et voilà nous avons maintenant une méthode de « Création d'un utilisateur »
 ::: tip C'est bien évidement un exemple
 Je vous laisse l'implémenter… Cependant vous comprenez bien que c'est évidemment un exemple !
 :::
+
+Je vous laisse implémenter la modification dans votre code.
+
+## Afficher les informations de l'utilisateur
+
+Maintenant que nous avons créé une personne lors de la création d'un utilisateur, nous allons afficher ces données dans la page d'accueil après la connexion.
+
+- Modifier la vue `resources/views/dashboard.blade.php` pour afficher les informations de la personne connectée.
+- Modifier le contrôleur `app/Http/Controllers/DashboardController.php` pour récupérer les informations de la personne connectée.
+
+::: tip Vous avez besoin d'aide ?
+
+Je vous aide pour le contrôleur :
+
+```php
+public function index()
+{
+    $personne = Personne::where('userId', Auth::user()->id)->first();
+    return view('dashboard', ['personne' => $personne]);
+}
+```
+
+:::
+
+C'est à vous de jouer pour la vue !
