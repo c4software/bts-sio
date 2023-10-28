@@ -16,7 +16,7 @@ Dans ce TP nous allons couvrir l’installation, la configuration et la créatio
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
 
-- PHP 8
+- PHP 8.1
 - Composer
 
 Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiquement par `Composer`
@@ -40,51 +40,24 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 ### Linux
 
-Pour Linux c’est plus simple, il suffit d’installer PHP 8 sur votre machine (regarder la documentation de votre distribution). Une fois que PHP est installé, il suffit de faire :
+Pour Linux c’est plus simple, il suffit d’installer PHP 8 sur votre machine (regarder la documentation de votre distribution). Une fois que PHP est installé, il vous suffit d'installer Composer
 
 ```bash
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-mv composer.phar /usr/local/bin/composer
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
 ```
 
-Ajouter dans votre PATH la home de composer, par exemple :
-
-```bash
-export PATH="$PATH:$HOME/.config/composer/vendor/bin"
-```
-
-::: tip Vous allez avoir besoin de paquets en plus
-
-Si vous utilisez Ubuntu / Debian / Pop_OS! etc. :
-
-```sh
-sudo apt install libapache2-mod-php php-common php-xml php-gd php-opcache php-mbstring php-tokenizer php-json php-bcmath php-zip unzip php-sqlite
-```
-
-Sans les paquets, vous ne pourrez pas continuer l'installation.
-
-:::
 
 ### MacOS
 
-Sur la dernière version de MacOS, PHP est déjà disponible en version 8. Il suffit donc d’installer `Composer`, pour l’installer il suffit :
+Sous MacOS, il est possible d’utiliser la commande `brew` pour installer PHP 8.1. Pour ça, il suffit de faire :
 
 ```bash
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-mv composer.phar /usr/local/bin/composer
+brew install php
 ```
 
-Ajouter dans votre PATH la home de composer, par exemple :
-
-```bash
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-```
-
-Fermer et rouvrir le terminal.
+Brew est un gestionnaire de paquets pour MacOS, il est très pratique pour installer des logiciels. Pour l’installer, il suffit de suivre la documentation officielle : [https://brew.sh/fr/](https://brew.sh/fr/)
 
 ## Créer le premier Projet
 
@@ -93,10 +66,6 @@ Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un n
 ✋ Attention, le projet sera créé dans le dossier courant.
 
 ```bash
-laravel new mon-premier-projet
-
-# Ou
-
 composer create-project --prefer-dist laravel/laravel mon-premier-projet
 ```
 

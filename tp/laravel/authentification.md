@@ -54,14 +54,16 @@ La Debugbar sera automatiquement active quand APP_DEBUG est à `true`.
 
 Nous allons intégrer l'authentification en utilisant [Laravel Breeze](https://laravel.com/docs/10.x/starter-kits#laravel-breeze) ce paquet `Composer` va ajouter l'ensemble des :
 
-- routes
-- contrôleur
+- Routes
+- Contrôleur
 - Vue (templates blades)
 
 Permettant de gérer simplement l'ensemble des problématiques.
 
-::: warning Nous avons deux possibilités
-Je fais le choix de partir vers Laravel Breeze qui est plus « récente » et plus moderne que Laravel/ui ; Laravel/ui est un paquet qui fonctionne toujours avec Laravel 8, cependant celui-ci est en fin de vie… Nous partons donc vers des bases « moderne »
+::: warning Nous avons plusieurs choix
+
+Laravel Breeze n'est pas la seule option, vous avez également : [Laravel Jetstream](https://jetstream.laravel.com/introduction.html) qui est plus complet, mais également plus complexe à mettre en place. Pour l'instant nous allons nous concentrer sur Breeze, mais vous pouvez regarder Jetstream si vous le souhaitez.
+
 :::
 
 ### Ajout de la dépendance
@@ -82,6 +84,10 @@ php artisan breeze:install
 php artisan migrate
 ```
 
+La commande `breeze:install` va vous poser quelques questions, voici les réponses que vous pouvez donner :
+
+![Laravel Breeze](./ressources/auth_breeze_setup.jpg)
+
 ::: tip Que c'est il passé ?
 
 Nous venons d'ajouter de nouvelles routes, celle-ci sont dans le dossier `route/auth.php` **,mais ce n'est pas tout** vous avez également maintenant l'ensemble des contrôleurs, mais également l'ensemble des `Layout Blade` nécessaires à toute la partie authentification.
@@ -89,13 +95,15 @@ Nous venons d'ajouter de nouvelles routes, celle-ci sont dans le dossier `route/
 Pour le reste c'est dans les dossiers que vous connaissez déjà.
 :::
 
+Lors de cette phase d'installation, Breeze va rajouter un ensemble de dépendances JavaScript (Vite, Alpine, Tailwind). Ne vous inquiétez pas, tout est déjà configuré, vous n'avez rien à faire.
+
 ### L'UI
 
 Si vous lancez dès maintenant votre projet via la commande `php artisan serve` vous allez voir que votre page d'accueil intègre maintenant deux nouveaux liens :
 
 ![Laravel Breeze](./ressources/laravel_auth_breeze.png)
 
-Vous pouvez cliquer dès à présent sur les différents liens, **cependant** les fichiers que vous avez ajoutés avec Breeze reposent sur un « framework UI » autre que Bootstrap celui-ci se nomme [Tailwind](https://tailwindcss.com/) l'approche de Laravel est moderne et Tailwind repose sur un concept similaire à Bootstrap, mais en ce focalisant plus sur un système de `class css` que l'on va appeler « utilitaire ».
+Vous pouvez cliquer dès à présent sur les différents liens, **cependant** les fichiers que vous avez ajoutés avec Breeze reposent sur un « framework UI » autre que Bootstrap celui-ci se nomme [Tailwind](https://tailwindcss.com/) l'approche de Laravel est moderne et Tailwind repose sur un concept similaire à Bootstrap, mais en ce focalisant plus sur un système de classes `css` que l'on va appeler « utilitaire ».
 
 Nous allons donc avoir besoin de `node`, mais surtout de `npm` pour compiler l'ensemble des ressources nécessaires au bon fonctionnement de l'interface ajouté. Si vous avez déjà pratiqué `node` et `npm` vous savez peut-être que ces outils sont plus utilisés dans le monde du JavaScript que du PHP ; rien d'étonnant dans notre cas, nous allons utilisé `npm` pour ajouter l'ensemble des dépendances UI de notre projet, mais également les « compiler » / « packager » dans un gros fichier CSS et JS pour nos clients.
 
