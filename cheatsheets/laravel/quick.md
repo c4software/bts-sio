@@ -385,19 +385,19 @@ En indiquant le `$with` dans le modèle, votre jointure sera automatiquement eff
 ## Les routes
 
 ```php
-// Fermeture de la route de base
+// Route avec la méthode directement dans le routeur (pas de contrôleur)
 Route::get('/greeting', function () {
     return 'Hello World';
 });
 
-// Raccourci de la vue directe de la route
+// Raccourci permettant de retourner une vue directement (pas de contrôleur)
 Route::view('/welcome', 'welcome');
 
-// Route vers la classe du contrôleur
+// Route vers la classe du contrôleur (méthode index)
 utiliser App\Http\Controllers\UserController;
 Route::get('/user', [UserController::class, 'index']);
 
-// Route uniquement pour des verbes HTTP spécifiques
+// Route uniquement pour des verbes HTTP spécifiques (GET, POST, PUT, DELETE, ...)
 Route::match(['get', 'post'], '/', function () {
     //
 });
@@ -407,7 +407,7 @@ Route::any('/', function () {
     //
 });
 
-// Route Redirect
+// Route de type redirection
 Route::redirect('/clients', '/customers');
 
 
@@ -430,6 +430,8 @@ Route::get(
 // Ressource
 Route::resource('photos', PhotoController::class);
 
+// Génération des routeus suivantes :
+/*
 GET /photos index photos.index
 GET /photos/create create photos.create
 POST /photos store photos.store
@@ -437,29 +439,32 @@ GET /photos/{photo} show photos.show
 GET /photos/{photo}/edit edit photos.edit
 PUT/PATCH /photos/{photo} mettre à jour les photos.update
 DELETE /photos/{photo} destroy photos.destroy
+*/
 
 // Ressource imbriquée
 Route::resource('photos.comments', PhotoCommentController::class);
 
-// Ressource partielle
+// Ressource partielle (uniquement les méthodes index et show seront accessibles)
 Route::resource('photos', PhotoController::class)->only(['index', 'show']);
 
+// Ressource partielle (toutes les méthodes sauf index et show seront accessibles)
 Route::resource('photos', PhotoController::class)->except(['create', 'save', 'update', 'destroy']);
 
-// URL avec le nom de la route
+// Génération d'une URL à partir du nom de la route
 $url = route('profile', ['id' => 1]);
 
-// Génération de redirections...
+// Retourne une redirection vers la route nommée
 return redirect()->route('profile');
 
-// Groupe de préfixes de route
+// Groupe de route
 Route::prefix('admin')->group(function () {
     Route::get('/users', function () {
-        // Correspond à l'URL "/admin/users".
+        // Méthode accessible par
+        // l'URL "/admin/users".
     });
 });
 
-// Liaison du modèle de route
+// Permet de relier un modèle à une route (identifiant)
 utiliser App\Models\User;
 Route::get('/users/{user}', function (User $user) {
     return $user->email;
@@ -471,9 +476,9 @@ Route::get('/posts/{post:slug}', function (Post $post) {
     return view('post', ['post' => $post]);
 });
 
-// Route fallback
+// Route fallback (404)
 Route::fallback(function () {
-    //
+    // Équivalent à la route par défaut
 });
 ```
 
@@ -550,12 +555,63 @@ Classe ProductsController
         return redirect("/contacts");
    }
 }
+```
 
-// Paramètres de requête www.demo.html?name=mike
-request()->nom //mike
+## Lire les données d'un formulaire
 
-// Données du formulaire (ou valeur par défaut)
-request()->input('email', 'no@email.com')
+Dans la méthode du contrôleur, vous pouvez récupérer les données d'un formulaire de plusieurs manières :
+
+```php
+// Via la $request
+function votreMethode(Request $request){
+    // Récupérer toutes les données du formulaire
+    $request->all(); // Récupère un tableau associatif de toutes les données du formulaire (clé => valeur)
+
+    // Récupérer une donnée du formulaire
+    $request->input('name'); // Récupère la valeur de la donnée "name" du formulaire
+
+    // Récupérer une donnée du formulaire avec une valeur par défaut
+    $request->input('name', 'John'); // Récupère la valeur de la donnée "name" du formulaire. Si la donnée n'existe pas, la valeur par défaut est "John"
+
+    // Paramètres de requête www.demo.html?name=mike
+    request()->nom; //mike
+
+    // Données du formulaire (ou valeur par défaut)
+    request()->input('email', 'no@email.com');
+
+    // Récupérer toutes les données du formulaire
+    request()->all();
+}
+
+// Via le mapping des paramètres de la méthode
+function votreMethode($name, $email){
+    // Récupérer une donnée du formulaire
+    $name; // Récupère la valeur de la donnée "name" du formulaire
+    $email; // Récupère la valeur de la donnée "email" du formulaire
+}
+```
+
+## Les retours possible d'une méthode
+
+```php
+// Retourne une vue
+return view('view.name', ['name' => 'John']);
+
+// Retourne une vue avec un message flash (session)
+return redirect('/home')->with('status', 'Task was successful!');
+
+// Retourn une redirection vers une route nommée
+return redirect()->route('profile');
+
+// Retourne une redirection vers une route nommée avec des paramètres
+return redirect()->route('profile', ['id' => 1]);
+
+// Retourne une redirection vers une route nommée avec des paramètres et un message flash
+return redirect()->route('profile', ['id' => 1])->with('status', 'Task was successful!');
+
+// Retourner une réponse JSON
+$user = App\Models\User::find(1);
+return response()->json($user);
 ```
 
 ## Blade (les templates, la vue)

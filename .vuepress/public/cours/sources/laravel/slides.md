@@ -313,6 +313,55 @@ class DemoController extends Controller
 
 ---
 
+## Lire les données d'un formulaire
+
+```php
+    // […]
+    public function voir(Request $request, $id)
+    {
+        $nom = $request->input('nom');
+        $nom = $request->input('nom', 'John'); // Valeur par défaut
+
+        $all = $request->all(); // Récupérer toutes les données
+    }
+```
+
+---
+
+## Les retours possibles d'une méthode
+
+```php
+// Retourne une vue
+return view('view.name', ['name' => 'John']);
+
+// Retourne une vue avec un message flash (session)
+return redirect('/home')->with('status', 'Task was successful!');
+
+// Retourn une redirection vers une route nommée
+return redirect()->route('profile');
+
+// Retourne une redirection vers une route nommée avec des paramètres
+return redirect()->route('profile', ['id' => 1]);
+
+// Retourne une redirection vers une route nommée avec des paramètres et un message flash
+return redirect()->route('profile', ['id' => 1])->with('status', 'Task was successful!');
+
+// Retourner une réponse JSON
+$user = App\Models\User::find(1);
+return response()->json($user);
+```
+
+---
+
+Exercice :
+
+- Créer une méthode dans le contrôleur User qui permet de récupérer un utilisateur par son identifiant.
+- Créer une route qui retourne une réponse JSON de l’utilisateur 1.
+- Créer une redirection vers la route « home » avec un message flash « Bienvenue ».
+- Récupérer toutes les données dans la méthode « validation » du contrôleur « Demo ».
+
+---
+
 ## Les modèles
 
 La représentation objet de la base de données
