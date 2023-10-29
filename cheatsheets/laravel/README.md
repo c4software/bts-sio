@@ -2,7 +2,7 @@
 description: Cet aide mémoire n’est pas exhaustif, elle contient les connaissances minimums pour réaliser un site avec Laravel.
 ---
 
-# Laravel 8
+# Laravel
 
 Cet aide mémoire n’est pas exhaustif, elle contient les connaissances minimums pour réaliser un site avec Laravel.
 

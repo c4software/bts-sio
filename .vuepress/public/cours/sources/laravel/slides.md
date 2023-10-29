@@ -560,6 +560,33 @@ class Role extends Model
 
 ---
 
+Via le modèle, il est possible de récupérer les données de l’autre modèle.
+
+```php
+// Récupérer les rôles d’un utilisateur
+$roles = App\User::find(1)->roles;
+
+// Récupérer les utilisateurs d’un rôle
+$users = App\Role::find(1)->users;
+```
+
+---
+
+Ou automatiquement via la méthode `with`
+
+```php
+$users = App\User::with('roles')->get();
+```
+
+---
+
+La différence ? 
+
+- Dans le premier cas, la requête est exécutée au moment de l’appel (lazy loading).
+- Dans le second cas, la requête est exécutée au moment de l’appel de la méthode `get` (eager loading).
+
+---
+
 [En savoir plus dans la documentation](https://laravel.com/docs/8.x/eloquent-relationships)
 
 ---
@@ -577,6 +604,14 @@ class Message extends Model{}
 - Écrire le code permettant d'avoir l'ensemble des messages de l'utilisateur 4.
 - Écrire le code permettant de modifier le message 4.
 - Écrire le code permettant de supprimer l'ensemble des messages de l'utilisateur 10.
+
+---
+
+## Automatisation de la création des modèles
+
+Créer les modèles peut-être fastidieux, il existe un outil pour automatiser la création des modèles depuis la base de données.
+
+[https://github.com/reliese/laravel](https://github.com/reliese/laravel)
 
 ---
 
