@@ -640,7 +640,7 @@ La différence ?
 
 ---
 
-[En savoir plus dans la documentation](https://laravel.com/docs/8.x/eloquent-relationships)
+[En savoir plus dans la documentation](https://laravel.com/docs/10.x/eloquent-relationships)
 
 ---
 
@@ -751,13 +751,13 @@ Blade intègre également un système de composant permettant de découper son t
 
 ---
 
-[Documentation composant](https://laravel.com/docs/8.x/blade#components)
+[Documentation composant](https://laravel.com/docs/10.x/blade#components)
 
 ---
 
 ## Les composants pour le layout
 
-[La documentation](https://laravel.com/docs/8.x/blade#layouts-using-components)
+[La documentation](https://laravel.com/docs/10.x/blade#layouts-using-components)
 
 ---
 

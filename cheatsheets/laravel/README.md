@@ -831,8 +831,59 @@ Blade intègre également un système de composant permettant de découper son t
 </VotreComposant>
 ```
 
-[Documentation des composants](https://laravel.com/docs/8.x/blade#components)
-[Utiliser les composants pour définir son affichage](https://laravel.com/docs/8.x/blade#layouts-using-components)
+Pour créer un composant :
+
+```sh
+php artisan make:component VotreComposant
+```
+
+Cette commande va créer le squelette de votre composant :
+
+- `app/View/Components/VotreComposant.php` : Le composant en lui-même (la logique, les données, etc)
+- `resources/views/components/votre-composant.blade.php` : La vue du composant (le contenu, le HTML en lui-même)
+
+Si vous souhaitez que votre composant puisse avoir du code enfant, il faudra ajouter dans la vue du composant :
+
+```php
+<!-- resources/views/components/votre-composant.blade.php -->
+{{ $slot }}
+```
+
+- `$slot` contiendra le contenu de l’enfant (c'est à dire le contenu entre les balises du composant).
+
+Si vous souhaitez que votre composant puisse avoir des attributs, il faudra modifier le code du composant. Par exemple, si vous souhaitez que votre composant puisse avoir un attribut `nom` :
+
+```php
+// app/View/Components/VotreComposant.php
+public function __construct(public string $nom)
+{
+}
+```
+
+Puis dans la vue du composant :
+
+```php
+<!-- resources/views/components/votre-composant.blade.php -->
+
+<!-- Attribut nom, récupéré depuis les attributs -->
+{{ $nom }}
+
+<!-- Données enfants -->
+<div>
+    {{ $slot }}
+</div>
+```
+
+Il sera ensuite possible d’utiliser votre composant dans vos vues :
+
+```php
+<x-votre-composant nom="Valentin">
+    Vous pouvez ici avoir des enfants.
+</x-votre-composant>
+```
+
+- [Documentation des composants](https://laravel.com/docs/10.x/blade#components)
+- [Utiliser les composants pour définir son affichage](https://laravel.com/docs/10.x/blade#layouts-using-components)
 
 ::: tip C'est nouveau
 

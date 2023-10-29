@@ -35,8 +35,8 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 #### Installer Composer
 
-- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.0 minimum de PHP dans le dossier `C:\wamp\bin\php\php\8.X.X\bin\php.exe` <= Attention à prendre la bonne version (ou via XAMPP).
-- vérifier que la commande est bien disponible en tapant `composer` dans un terminal
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.1 minimum de PHP.
+- Vérifier que la commande est bien disponible en tapant `composer` dans un nouveau terminal.
 
 ### Linux
 
@@ -48,16 +48,15 @@ sudo mv composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
 ```
 
+### macOS
 
-### MacOS
-
-Sous MacOS, il est possible d’utiliser la commande `brew` pour installer PHP 8.1. Pour ça, il suffit de faire :
+Sous macOS, il est possible d’utiliser la commande `brew` pour installer PHP 8.1. Pour ça, il suffit de faire :
 
 ```bash
 brew install php
 ```
 
-Brew est un gestionnaire de paquets pour MacOS, il est très pratique pour installer des logiciels. Pour l’installer, il suffit de suivre la documentation officielle : [https://brew.sh/fr/](https://brew.sh/fr/)
+Brew est un gestionnaire de paquets pour macOS, il est très pratique pour installer des logiciels. Pour l’installer, il suffit de suivre la documentation officielle : [https://brew.sh/fr/](https://brew.sh/fr/)
 
 ## Créer le premier Projet
 
@@ -604,7 +603,7 @@ Je vous ai parlé de la sécurité non ? Laravel intègre directement la protect
 Exemple :
 
 ```html
-<form method="POST" action="/VOTRE-ACTIO-DEFINI-DANS-LES-ROUTES">
+<form method="POST" action="/VOTRE-ACTION-DEFINIE-DANS-LES-ROUTES">
   @csrf
 
   <!-- La suite de votre formulaire -->
@@ -627,13 +626,13 @@ En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) 
 ::: tip Rappel
 
 ```php
-// Rechercher celui avec l’id 1
+// Rechercher celui avec l’id « L'ID QUE VOUS SOUHAITEZ MODIFIER » (Exemple : 1)
 $todo = Todo::find("L'ID QUE VOUS SOUHAITEZ MODIFIER");
 
 // Le passer à terminer
 $todo->termine = true;
 
-// Le sauvegarder en base de données
+// Le sauvegarder en base de données. (Ici Eloquent va générer une requête de type UPDATE)
 $todo->save();
 ```
 
@@ -644,14 +643,14 @@ Je ne vais pas vous donner le code. Mais plutôt la procédure, vous devez :
 - Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type <code v-pre>`/todo/terminer/{{ $unElement->id}}`</code>.
 - Ajout d'une route permettant de faire fonctionner le lien. Exemple : <code v-pre>`Route::get('/todo/terminer/{id}', [TodoControleur::class, 'markAsDone']);`</code>.
 - Ajouter la méthode `markAsDone` dans votre contrôleur `public function markAsDone($id)`, celle-ci va réaliser l'action de marquer comme « terminer » pour la TODO `$id`
-- À la fin du traitement, vous devez rediriger la personne avec `return redirect("/todo");`
+- À la fin du traitement, vous devez rediriger le demandeur avec `return redirect("/todo");`
 
 ### Supprimer une TODO
 
 En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel,](https://laravel.com/docs/8.x/eloquent) ajoutez :
 
 - Une action permettant de marquer « supprimer » une TODO.
-- Cette action doit être mise dans le bon contrôleur
+- Cette action doit être mise dans le bon contrôleur.
 
 ::: tip Rappel
 
@@ -674,17 +673,19 @@ Todo::destroy(1,2,3);
 Todo::where('termine', '==', 1)->delete();
 ```
 
-N'oubliez pas la sécurité.
+N'oubliez pas la sécurité. Et n'oubliez pas également qu'il ne dois pas être possible de supprimer une TODO qui n'est pas terminée en base de données.
+
+:::
 
 ::: details Besoin d'aide ?
+
 Ici pas de code, mais la procédure sera identique à celle de l'action terminer.
-:::
 
 :::
 
 ### Évolution 1
 
-J'aimerais que notre petit site de démonstration intègre un formulaire de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
+J'aimerais que notre petit site de démonstration intègre un formulaire de demande de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
 
 - Le formulaire doit être en HTML.
 - Les demandes faites via le formulaire doivent être sauvegardées en base de données (table spécifique, avec un id, un titre, un texte, un email et les dates).
@@ -700,3 +701,14 @@ La mise en forme. Actuellement votre page s'affiche et est fonctionnelle. Cepend
 ![Idée design](./ressources/idee_design.jpg)
 
 C'est à vous !
+
+::: tip N'oubliez pas les composants
+
+Nous avons le temps, explorer la création de composants pour structurer / réutiliser votre code. Pourquoi ne pas créer des composants :
+
+- Pour la barre de navigation.
+- Pour les boutons.
+- Pour un élément de la liste des TODO.
+- Pour le conteneur de la liste des TODO (type card).
+
+:::

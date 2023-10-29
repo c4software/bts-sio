@@ -725,3 +725,46 @@ $users = Cache::remember('users', now()->addMinutes(5), function () {
 ```
 
 [Source et plus de commandes](https://dev.to/ericchapman/my-beloved-laravel-cheat-sheet-3l73)
+
+## Les composants
+
+Pour créer un composant :
+
+```sh
+php artisan make:component VotreComposant
+```
+
+Cette commande va créer le squelette de votre composant :
+
+- `app/View/Components/VotreComposant.php` : Le composant en lui-même (la logique, les données, etc)
+- `resources/views/components/votre-composant.blade.php` : La vue du composant (le contenu, le HTML en lui-même)
+
+Le composant sera ensuite utilisable dans vos vues :
+
+```php
+<x-votre-composant />
+```
+
+::: tip Je veux passer des données à mon composant
+
+Pour passer des données à votre composant, il suffit d'ajouter le nom de l'attribut dans le constructeur de votre composant :
+
+```php
+public function __construct(public string $nom)
+{
+}
+```
+
+Et dans votre vue de composant, vous pouvez utiliser la variable `$nom` :
+
+```php
+{{ $nom }}
+```
+
+Exemple d'utilisation :
+
+```php
+<x-votre-composant nom="John" />
+```
+
+:::
