@@ -259,6 +259,8 @@ $user = App\Models\User::find(1);
 return response()->json($user);
 ```
 
+[En savoir plus](https://laravel.com/docs/10.x/requests#retrieving-input)
+
 ## Éloquent « l’ORM »
 
 ### La migration

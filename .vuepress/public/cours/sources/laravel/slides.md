@@ -353,6 +353,10 @@ return response()->json($user);
 
 ---
 
+[En savoir plus](https://laravel.com/docs/10.x/requests#retrieving-input)
+
+---
+
 Exercice :
 
 - Créer une méthode dans le contrôleur User qui permet de récupérer un utilisateur par son identifiant.
