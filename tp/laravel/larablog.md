@@ -898,6 +898,28 @@ Les commentaires sont une fonctionnalité importante d'un blog. Nous allons donc
 
 Chaque article doit avoir une liste de commentaires. Chaque utilisateur doit pouvoir ajouter un commentaire sur un article. L'ajout de commentaire ne doit être possible que pour les utilisateurs connectés.
 
+### Comment allons nous procéder ?
+
+Pour traiter cette ajout de fonctionnalité, nous allons procéder de la manière suivante :
+
+- Création d'un contrôleur `CommentController` qui va nous permettre de gérer les commentaires.
+- Création d'une route `comments.store` qui va nous permettre d'ajouter un commentaire.
+- Modification de la vue `public.show` pour ajouter :
+  - Une liste des commentaires.
+  - Un formulaire pour ajouter un commentaire. (Si l'utilisateur est connecté).
+- Nous avons à notre disposition un modèle `Comment` qui va nous permettre de stocker les commentaires.
+- Nous avons une relation entre les modèles `Article` et `Comment` qui va nous permettre de récupérer les commentaires d'un article.
+
+### Création du contrôleur
+
+Nous l'avons vu précédemment, nous allons créer un contrôleur `CommentController` qui va nous permettre de gérer les commentaires.
+
+Je vous laisse retrouver la commande pour créer un contrôleur.
+
+### Ajout de la route
+
+TODO
+
 ## Point étape
 
 Vous avez maintenant la base de votre site Internet. Vous pouvez maintenant créer des articles, les modifier, les supprimer et les consulter. Vous pouvez également consulter les articles publiés de chaque utilisateur.
