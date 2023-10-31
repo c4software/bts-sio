@@ -167,6 +167,10 @@ CREATE TABLE comments (
 );
 ```
 
+Avant de continuer étudiont un peu la base de données :
+
+![Schéma de la base de données](./ressources/larablog_bdd.jpg)
+
 ::: tip Remarque
 
 Vous pouvez utiliser votre machine en local pour mettre la base de données, mais mieux encore ! Vous pouvez utiliser [bdd.dombtsig.local](http://bdd.dombtsig.local) pour créer votre base de données.
@@ -890,7 +894,9 @@ Je vous laisse faire un nouveau commit de votre projet.
 
 ## Les commentaires
 
-TODO
+Les commentaires sont une fonctionnalité importante d'un blog. Nous allons donc les ajouter à notre projet. 
+
+Chaque article doit avoir une liste de commentaires. Chaque utilisateur doit pouvoir ajouter un commentaire sur un article. L'ajout de commentaire ne doit être possible que pour les utilisateurs connectés.
 
 ## Point étape
 
