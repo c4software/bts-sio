@@ -8,7 +8,11 @@
 
 Le projet consiste à créer une plateforme de blogging collaborative où les utilisateurs peuvent s'inscrire, se connecter et créer des articles. Chaque utilisateur peut écrire, éditer et supprimer ses propres articles. Les articles peuvent être associés à des catégories et des tags pour faciliter la recherche. Les utilisateurs peuvent également commenter les articles et interagir avec d'autres utilisateurs à travers les commentaires.
 
-Voici un aperçu de la plateforme :
+Voici un aperçu de la plateforme que vous allez réaliser:
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fevKbHEFDzk?si=EdcDYdQh5SqKNkSO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</center>
 
 ### Authentification des Utilisateurs:
 
@@ -33,13 +37,6 @@ Voici un aperçu de la plateforme :
 
 - Validation des données côté serveur pour prévenir les attaques CSRF et XSS.
 - Modération des commentaires pour prévenir le spam et le contenu inapproprié.
-
-### Bonus (Optionnel):
-
-- Ajout d'une fonctionnalité de pagination pour les listes d'articles et de commentaires.
-- Possibilité pour les utilisateurs de télécharger des images pour illustrer leurs articles.
-- Système de « likes » pour les articles (Compteur cumulatif de likes).
-- Personnalisation de chaque blog avec un thème (feuille de style CSS).
 
 ## Prérequis
 
@@ -232,6 +229,23 @@ Si tout fonctionne, vous devriez avoir quelque chose comme ça :
 
 ![Larablog - Dashboard](./ressources/larablog_dashboard.jpg)
 
+## L'interface
+
+Pour réaliser l'interface de notre projet, nous allons utiliser le framework CSS [TailwindCSS](https://tailwindcss.com/). Celui-ci sera **automatiquement** installé dans notre projet grace à l'ajout de Breeze.
+
+Si vous souhaitez en savoir plus sur TailwindCSS, je vous invite à consulter la [documentation](https://tailwindcss.com/docs).
+
+Sachez juste que TailwindCSS est un framework CSS qui permet de créer des interfaces rapidement. Il est très utilisé dans le monde du développement web. Il repose cependant sur l'utilisation de NPM, pour que votre CSS fonctionne correctement deux solutions :
+
+- Executer periodiquement la commande `npm run build` pour compiler votre CSS.
+- Observer les changements de votre CSS avec la commande `npm run dev`.
+
+::: tip Comment moi je fais ?
+
+Personnellement, j'utilise la commande `npm run dev` pour observer les changements de mon CSS. Je n'ai pas besoin de compiler mon CSS à chaque fois que je fais une modification.
+
+:::
+
 ## Génération des modèles
 
 Maintenant que nous avons notre base de données, nous allons générer les modèles correspondants. Pour cela, nous allons utiliser la commande :
@@ -382,7 +396,7 @@ Pour commencer, nous allons créer le fichier `resources/views/articles/create.b
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                   <!-- Input de titret de l'article -->
+                   <!-- Input de titre de l'article -->
                    <input type="text" name="title" id="title" placeholder="Titre de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 </div>
 
@@ -456,7 +470,16 @@ public function store(Request $request)
     $data['draft'] = isset($data['draft']) ? 1 : 0;
 
     // On crée l'article
-    Article::create($data);
+    $article = Article::create($data); // $Article est l'objet article nouvellement créé
+
+    // Exemple pour ajouter la catégorie 1 à l'article
+    // $article->categories()->sync(1);
+
+    // Exemple pour ajouter des catégories à l'article
+    // $article->categories()->sync([1, 2, 3]);
+
+    // Exemple pour ajouter des catégories à l'article en venant du formulaire
+    // $article->categories()->sync($request->input('categories'));
 
     // On redirige l'utilisateur vers la liste des articles
     return redirect()->route('dashboard');
@@ -572,6 +595,7 @@ Pour la suite, je ne vais pas vous guider pas à pas. Je vais vous laisser réal
 Voici le code nécessaire pour réaliser les différentes étapes
 
 Des méthodes :
+
 ```php
 public function edit(Article $article)
 {
@@ -608,6 +632,7 @@ public function update(Request $request, Article $article)
 ```
 
 Une page :
+
 ```html
 <x-app-layout>
     <x-slot name="header">
@@ -649,13 +674,15 @@ Une page :
 ```
 
 Lien permettant l'édition :
+
 ```html
 <div class="text-right">
     <a href="{{ route('articles.edit', $article->id) }}" class="text-red-500 hover:text-red-700">Modifier</a>
 </div>
 ```
 
-Div pour le message flash :
+div pour le message flash (message qui s'affiche une seule fois) :
+
 ```html
 <!-- Message flash -->
 @if (session('success'))
@@ -801,7 +828,7 @@ Nous allons maintenant créer la vue `public.index` qui va nous permettre d'affi
                 <h2 class="text-2xl font-bold">{{ $article->title }}</h2>
                 <p class="text-gray-700 dark:text-gray-300">{{ substr($article->content, 0, 30) }}...</p>
                 
-                <a href="{{ route('public.show', [$user->id, $article->id]) }}" class="text-red-500 hover:text-red-700">Lire la suite</a>
+                <a href="{{ route('public.show', [$article->user_id, $article->id]) }}" class="text-red-500 hover:text-red-700">Lire la suite</a>
             </div>
         </div>
         <hr>
@@ -842,6 +869,10 @@ public function show(User $user, Article $article)
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ $article->title }}
         </h2>
+    </div>
+
+    <div class="text-gray-500 text-sm">
+        Publié le {{ $article->created_at->format('d/m/Y') }} par <a href="{{ route('public.index', $article->user->id) }}">{{ $article->user->name }}</a>
     </div>
 
     <div>
@@ -914,11 +945,119 @@ Pour traiter cette ajout de fonctionnalité, nous allons procéder de la manièr
 
 Nous l'avons vu précédemment, nous allons créer un contrôleur `CommentController` qui va nous permettre de gérer les commentaires.
 
-Je vous laisse retrouver la commande pour créer un contrôleur.
+Je vous laisse retrouver la commande pour créer un contrôleur (vous l'avez déjà utilisée plusieurs fois, celle-ci est également disponible dans l'aide mémoire).
 
 ### Ajout de la route
 
-TODO
+Maintenant que nous avons notre contrôleur, nous allons créer la route `comments.store` qui va nous permettre d'ajouter un commentaire.
+
+::: details un peu d'aide ?
+
+Vous ne devriez pas avoir de difficulté à créer la route. Vous pouvez vous inspirer des routes déjà présentes dans le fichier `routes/web.php`. Mais voici un petit rappel.
+
+```php
+Route::post('/comments/store', [CommentController::class, 'store'])->name('comments.store');
+```
+
+:::
+
+### Ajouter la méthode store
+
+Pour rappel, la méthode `store` va nous permettre d'ajouter un commentaire en base de données. Je vous laisse écrire la méthode `store` dans le contrôleur `CommentController`. Voici les étapes à réaliser :
+
+- Récupérer les données du formulaire (commentaire, articleId).
+- Créer le commentaire dans la base de données.
+- Rediriger l'utilisateur vers la page de l'article qu'il vient de commenter.
+
+C'est à vous de jouer ! Je vous laisse implémenter le code dans votre projet.
+
+::: tip Rappel
+
+Pour créer un commentaire dans la base de données, vous pouvez utiliser la méthode `create` du modèle `Comment`.
+
+```php
+Comment::create([
+    'content' => $content,
+    'article_id' => $articleId,
+    'user_id' => Auth::user()->id
+]);
+```
+
+:::
+
+::: danger Attention
+
+N'oubliez pas de vérifier que la personne est connectée avant d'ajouter un commentaire. Vous pouvez utiliser la classe `Auth` de Laravel pour vérifier si un utilisateur est connecté.
+
+```php
+if (Auth::check()) {
+    // L'utilisateur est connecté
+}
+```
+
+Si l'utilisateur n'est pas connecté, vous devez rediriger l'utilisateur vers la page de connexion (```return redirect()->route('login');```).
+
+:::
+
+::: tip L'astuce du chef
+
+En Laravel, il exist une methode redirect qui permet de rediriger l'utilisateur vers la page précédente.
+
+```php
+return redirect()->back();
+```
+
+:::
+
+### Ajouter le formulaire
+
+Nous allons maintenant ajouter le formulaire qui va nous permettre d'ajouter un commentaire. Pour cela, nous allons modifier la vue `public.show`. Je ne vais pas vous donner le code en entier du formulaire, je vais vous donner les grandes lignes.
+
+```html
+<!-- Ajout d'un commentaire -->
+<form action="{{ route('comments.store') }}" method="post" class="mt-6">
+    @csrf
+    <input type="hidden" name="articleId" value="{{ $article->id }}">
+
+    <!-- Ajouter le reste de votre formulaire -->
+</form>
+```
+
+Un peu de détail sur le code :
+
+- Nous utilisons la méthode `route` pour générer une URL. Nous utilisons la méthode `comments.store` pour générer l'URL de la route `comments.store`.
+- Nous utilisons la méthode `csrf` pour générer un token CSRF pour sécuriser notre formulaire.
+- Nous utilisons un champ `hidden` pour stocker l'id de l'article (pour lequel nous ajoutons un commentaire).
+
+::: danger Attention
+
+N'oubliez pas qu'il ne dois être possible d'ajouter un commentaire que pour les utilisateurs connectés. Vous devez donc ajouter une condition pour afficher le formulaire uniquement si l'utilisateur est connecté. En Laravel vous pouvez utiliser la classe `Auth` pour vérifier si un utilisateur est connecté.
+
+```php
+@auth
+    <!-- Le code affiché si la personne est connecté -->
+@endauth
+```
+
+:::
+
+### Ajouter la liste des commentaires
+
+Maintenant que nous avons la possiblitité d'ajouter un commentaire, nous allons ajouter la liste des commentaires. Pour cela, nous allons modifier la vue `public.show`. Je ne vais pas vous donner le code en entier de la liste des commentaires, je vais vous donner les grandes lignes.
+
+```html
+<!-- Liste des commentaires -->
+@foreach ($article->comments as $comment)
+    <!-- $comment représente un commentaire -->
+@endforeach
+```
+
+### Le résultat
+
+Vous avez maintenant la possibilité d'ajouter des commentaires sur vos articles. Dans mon cas, voici le résultat :
+
+![Ajout de commentaire](./ressources/larablog_comment_vide.jpg)
+![Ajout de commentaire](./ressources/larablog_comment_plein.jpg)
 
 ## Point étape
 
@@ -928,7 +1067,123 @@ Je vous laisse faire un nouveau commit de votre projet.
 
 ## Les catégories
 
-TODO
+Chaque article peut avoir une ou plusieurs catégories (technologie, sport, etc.). Actuellement, nous n'avons pas de catégorie. Je vous propose donc d'ajouter cette fonctionnalité à notre site Internet.
+
+La liste des catégories sera fixe, c'est à dire que nous allons les mettres en dur dans notre base de données. Nous n'allons pas créer une interface pour les gérer.
+
+Vu que nous avons généré nos modèles à partir de la base de données, nos relations en code sont déjà présentes. Nous allons avoir uniquement les modifications de code et d'interface à faire.
+
+### Remplissage de la base de données
+
+Pour commencer, nous allons remplir notre base de données avec les catégories. Pour cela, je vous laisse insérer les catégories suivantes dans la table `categories` :
+
+- Technologie
+- Sport
+- Jeux vidéo
+- Cinéma
+- Musique
+- IA
+- Développement
+- Informatique
+
+### Comment allons nous procéder ?
+
+Pour traiter cette ajout de fonctionnalité, nous allons procéder de la manière suivante :
+
+Partie public :
+
+- Modifier la page d'affichage de la liste des articles pour afficher les catégories.
+- Modifier la page d'affichage d'un article pour afficher les catégories.
+
+::: tip Comment tester ?
+
+Avant de faire la partie Utilisateur, vous pourrez tester votre code en insérant manuellement des catégories dans la base de données pour les articles que vous avez déjà créés.
+
+:::
+
+Partie utilisateur :
+
+- Modifier la page de création d'un article pour permettre de choisir une ou des catégories.
+- Modifier le code qui sauvegarde l'article pour sauvegarder les catégories.
+- Modifier la page d'édition d'un article pour permettre de choisir une ou des catégories.
+- Modifier le code qui sauvegarde l'article pour sauvegarder les catégories.
+
+::: tip C'est à vous de jouer !
+
+Ici je ne vais pas vous guider pas à pas. Je vais vous laisser réaliser le code par vous-même. L'important dans une fonctionnalité comme celle-ci, c'est de se projeter dans le résultat final.
+
+Je vous donne juste une petite aide : 
+
+Si vous souhaitez avoir la liste des catégories depuis un article, vous pouvez utiliser la propriété `categories` de l'article.
+
+```php
+@foreach ($article->categories as $category)
+    {{ $category->name }}
+@endforeach
+```
+
+Si vous souhaitez avoir l'ensemble des catégories, vous pouvez utiliser la méthode `all` du modèle `Category`.
+
+```php
+$categories = Category::all();
+```
+
+Si vous souhaitez sauvegarder les catégories d'un article, vous pouvez utiliser la méthode `sync` du modèle `Article`.
+
+```php
+    // $article est l'article sauvé en base de données (resultat de la méthode create ou d'un update)
+    // Exemple pour ajouter des catégories à l'article en venant du formulaire
+    $article->categories()->sync($request->input('categories'));
+```
+
+:::
+
+### Le résultat
+
+![Ajout de commentaire](./ressources/larablog_articles_liste_categories.jpg)
+![Ajout de commentaire](./ressources/larablog_detail_article_liste_categories.jpg)
+
+## Amélioration de l'interface
+
+Nous avons un projet complètement fonctionnel. Je vous propose d'ajouter quelques éléments pour simplifier la navigation :
+
+Ajout d'un lien « voir mon blog » dans le menu de l'utilisateur. Ce lien doit rediriger vers la liste des articles publiés de l'utilisateur connecté.
+
+![Lien voir mon blog](./ressources/larablog_voir_blog.jpg)
+
+::: details un peu d'aide ?
+
+```html
+<x-nav-link :href="route('public.index', Auth::id())" :active="request()->routeIs('article.index')">
+    Voir mon blog
+</x-nav-link>
+```
+
+## Amélioration de l'interface 2
+
+Pour l'instant il est probable que votre page « publique » ne possède pas de menu de navigation. Je vous propose de l'ajouter dans le fichier `guest.blade.php`:
+
+```html
+@auth
+    @include('layouts.navigation')
+@endauth
+
+@guest
+    @if (Route::has('login'))
+        <livewire:welcome.navigation />
+    @endif
+@endguest
+```
+
+Voilà le résultat chez moi :
+
+![Navigation menu](./ressources/larablog_navigation_menu.jpg)
+
+## Point étape
+
+Votre projet avance bien !
+
+Je vous laisse faire un nouveau commit de votre projet.
 
 ## Les likes
 
@@ -942,9 +1197,38 @@ Vous devez également afficher le nombre de like sur chaque article.
 
 Pour réaliser cette fonctionnalité, vous devrez ajouter une nouvelle colonne dans la table `articles`. Cette colonne de type integer va nous permettre de stocker le nombre de like de l'article.
 
-Une fois la colonne ajoutée, vous devrez modifier le modèle `Article` pour ajouter la colonne dans la propriété `$fillable`.
+Une fois la colonne ajoutée, vous devrez modifier le modèle `Article` pour ajouter la colonne dans la propriété `$fillable` et `$casts`.
 
 :::
+
+Pour vous aider dans votre réalisation, voici les étapes à réaliser :
+
+- Ajouter une colonne `likes` dans la table `articles`.
+- Modifier le modèle `Article` pour ajouter la colonne dans la propriété `$fillable` et `$casts`.
+- Modifier la vue `public.show` pour ajouter un bouton « like » et le nombre de like.
+- Ajouter une route `articles.like` qui va nous permettre de liker un article.
+- Ajouter la méthode `like` dans le contrôleur `ArticleController`.
+
+Voici un peu de HTML pour vous aider :
+
+```html
+@auth
+<a href="{{ route('article.like', $article->id) }}" class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M9.719,17.073l-6.562-6.51c-0.27-0.268-0.504-0.567-0.696-0.888C1.385,7.89,1.67,5.613,3.155,4.14c0.864-0.856,2.012-1.329,3.233-1.329c1.924,0,3.115,1.12,3.612,1.752c0.499-0.634,1.689-1.752,3.612-1.752c1.221,0,2.369,0.472,3.233,1.329c1.484,1.473,1.771,3.75,0.693,5.537c-0.19,0.32-0.425,0.618-0.695,0.887l-6.562,6.51C10.125,17.229,9.875,17.229,9.719,17.073 M6.388,3.61C5.379,3.61,4.431,4,3.717,4.707C2.495,5.92,2.259,7.794,3.145,9.265c0.158,0.265,0.351,0.51,0.574,0.731L10,16.228l6.281-6.232c0.224-0.221,0.416-0.466,0.573-0.729c0.887-1.472,0.651-3.346-0.571-4.56C15.57,4,14.621,3.61,13.612,3.61c-1.43,0-2.639,0.786-3.268,1.863c-0.154,0.264-0.536,0.264-0.69,0C9.029,4.397,7.82,3.61,6.388,3.61" clip-rule="evenodd" />
+    </svg>
+    <span>{{$article->like}}</span>
+</a>
+@endauth
+```
+
+- Nous avons un lien qui pointe vers la route `articles.like`.
+- Nous avons un bouton avec un SVG pour afficher un coeur.
+- Nous avons un span qui affiche le nombre de like.
+
+Voici le rendu :
+
+![Ajout like](./ressources/larablog_like.jpg)
 
 ## La page d'accueil
 

@@ -634,6 +634,33 @@ En indiquant le `$with` dans le modèle, votre jointure sera automatiquement eff
 
 :::
 
+### Mettre à jour les données d'une relation 
+
+```php
+// Ajouter un commentaire à un post
+$comment = new App\Comment(['message' => 'A new comment.']);
+$post = App\Post::find(1);
+$post->comments()->save($comment);
+
+// Ajouter un commentaire à un post avec un utilisateur
+$comment = new App\Comment(['message' => 'A new comment.']);
+$user = App\User::find(1);
+$post = App\Post::find(1);
+$post->comments()->save($comment, ['user_id' => $user->id]);
+
+// Attacher un rôle à un utilisateur
+$user = App\User::find(1);
+$user->roles()->attach($roleId);
+
+// Attacher des roles à un utilisateur nouvellement créé
+$user = App\User::create($attributes);
+$user->roles()->attach([1, 2, 3]);
+
+// Syncroniser les rôles d'un utilisateur (remplace les rôles existants)
+$user->roles()->sync([1, 2, 3]);
+```
+
+
 ### En savoir plus
 
 Nous avons effleuré ici les types de requêtes… [Pour en savoir plus](./quick.md#l-orm)

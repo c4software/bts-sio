@@ -633,7 +633,41 @@ $users = App\User::with('roles')->get();
 
 ---
 
-La différence ? 
+Créer des enregistrements avec des relations. Deux méthodes sont disponibles :
+
+- `attach` <= Ajoute une relation en plus de celles existantes
+- `sync` <= Remplace les relations existantes par celles données
+
+---
+
+Le sync
+
+```php
+$user->roles()->sync([1, 2, 3]);
+```
+
+---
+
+Le attach
+
+```php
+// Ajouter un commentaire à un post
+$comment = new App\Comment(['message' => 'A new comment.']);
+$post = App\Post::find(1);
+$post->comments()->save($comment);
+
+// Attacher un rôle à un utilisateur
+$user = App\User::find(1);
+$user->roles()->attach($roleId);
+
+// Attacher des roles à un utilisateur nouvellement créé
+$user = App\User::create($attributes);
+$user->roles()->attach([1, 2, 3]);
+```
+
+---
+
+La différence ?
 
 - Dans le premier cas, la requête est exécutée au moment de l’appel (lazy loading).
 - Dans le second cas, la requête est exécutée au moment de l’appel de la méthode `get` (eager loading).
@@ -645,18 +679,22 @@ La différence ?
 ---
 
 ```php
-class Utilisateur extends Model{}
-class Annonce extends Model{}
-class Categorie extends Model{}
-class Message extends Model{}
+class Article extends Model{}
+class User extends Model{}
+class Comment extends Model{}
+class Category extends Model{}
+class ArticleComment extends Model{}
+class ArticleCategory extends Model{}
 ```
 
 - Que constatez-vous ?
 - Combien il y a-t-il de table ?
 - Écrire le code permettant d'obtenir l'ensemble des utilisateurs.
-- Écrire le code permettant d'avoir l'ensemble des messages de l'utilisateur 4.
-- Écrire le code permettant de modifier le message 4.
+- Écrire le code permettant d'avoir l'ensemble des Article de l'utilisateur 4.
+- Écrire le code permettant de modifier l'article 1.
 - Écrire le code permettant de supprimer l'ensemble des messages de l'utilisateur 10.
+- Écrire le code permettant d'ajouter un commentaire à l'article 1.
+- Écrire le code permettant d'ajouter les catégories 1, 2 et 3 à l'article 1.
 
 ---
 
@@ -799,7 +837,15 @@ Blade intègre également un système de composant permettant de découper son t
 
 ## Gestion des droits d’accès
 
-- **@auth**, **@guest**
+```php
+@auth
+  // L'utilisateur est authentifié...
+@endauth
+
+@guest
+  // L'utilisateur n'est pas authentifié...
+@endguest
+```
 
 ---
 
