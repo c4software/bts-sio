@@ -670,13 +670,35 @@ php artisan code:models --table=roles
 
 3. Ajouter une page permettant de modifier les rôles d'un client (vous pouvez utiliser `sync` sur la relation `roles` du modèle `Customer`). Comment faire ?
 
-Vous avez un modèle `Customer` qui contient une méthode `roles`. Vous pouvez donc écrire dans votre méthode :
+Vous avez un modèle `Customer` qui contient une méthode `roles`. Vous pouvez donc écrire dans votre méthode de modification des rôles:
 
 ```php
 // Get roles from post
 $roles = $request->input("roles"); // <- Tableau contenant les identifiants des rôles à ajouter [1, 2, 3]
 Customer::find(1)->roles()->sync($roles);
 ```
+
+::: details Une astuce pour récupérer directement votre Customer depuis une route du routeur ?
+
+Si vous avez besoin de récupérer votre `Customer` depuis une route du routeur, vous pouvez utiliser le code suivant :
+
+La route :
+
+```php
+Route::get('/customers/{customer}/edit-roles', [CustomersController::class, 'editRolesForm']);
+```
+
+La méthode :
+
+```php
+function editRolesForm(Customer $customer){
+    return view("customers-edit-roles", ["customer" => $customer, "roles" => Role::all()]);
+}
+```
+
+En utilisant le type `Customer` dans la route, Laravel va automatiquement récupérer le client depuis la base de données et le passer en paramètre de la méthode. La récupération du Customer est réalisée grâce à son identifiant et la méthode `find`.
+
+:::
 
 Et dans votre template :
 
