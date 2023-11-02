@@ -11,7 +11,7 @@ Le projet consiste à créer une plateforme de blogging collaborative où les ut
 Voici un aperçu de la plateforme que vous allez réaliser:
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fevKbHEFDzk?si=EdcDYdQh5SqKNkSO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="100%" height="700px" src="https://www.youtube-nocookie.com/embed/fevKbHEFDzk?si=EdcDYdQh5SqKNkSO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </center>
 
 ### Authentification des Utilisateurs:
