@@ -477,3 +477,239 @@ La variable `$customer` est un objet de type `Customer`, celui-ci contient les m
 :::
 
 C'est à vous !
+
+## Évolution de la base de données
+
+Actuellement notre `customers` ne peux avoir qu'une seule adresse, nous allons modifier la base de données pour que celui-ci puisse avoir plusieurs adresses.
+
+Pour ça, nous allons devoir modifier la table `customers` et créer une nouvelle table `addresses`.
+
+### 1. Modifier la table `customers`
+
+Pour modifier la table `customers` nous allons devoir retirer la colonne retalif à l'adresse et ajouter une colonne `address_id`.
+
+```sql
+ALTER TABLE `customers` DROP COLUMN `addressLine1`;
+ALTER TABLE `customers` DROP COLUMN `addressLine2`;
+ALTER TABLE `customers` DROP COLUMN `city`;
+ALTER TABLE `customers` DROP COLUMN `state`;
+ALTER TABLE `customers` DROP COLUMN `postalCode`;
+ALTER TABLE `customers` DROP COLUMN `country`;
+
+ALTER TABLE `customers` ADD COLUMN `address_id` INT(11) NULL AFTER `customerNumber`;
+```
+
+### 2. Créer la table `addresses`
+
+Pour créer la table `addresses` nous allons devoir créer une nouvelle table.
+
+```sql
+CREATE TABLE `addresses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `addressLine1` varchar(50) DEFAULT NULL,
+  `addressLine2` varchar(50) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `state` varchar(50) DEFAULT NULL,
+  `postalCode` varchar(15) DEFAULT NULL,
+  `country` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+
+### 3. Regénération des modèles
+
+Notre base de données a changé, nous allons devoir regénérer les modèles.
+
+```sh
+php artisan code:models --table=customers
+php artisan code:models --table=addresses
+```
+
+Ces deux commandes vont permettre de regénérer le modèle `Customer` et générer le modèle `Address`.
+
+### 4. Corriger votre précédente vue
+
+Vous avez créé une vue permettant de voir le détail d'un `Customer`, celle-ci ne fonctionne plus, il va falloir la corriger pour afficher une liste d'adresse.
+
+::: tip Comment faire ?
+
+Vous avez un modèle `Customer` qui contient une méthode `addresses`. Vous pouvez donc écrire dans votre template :
+
+```html
+@forelse ($customer->addresses as $address)
+    <div>
+        <div>{{$address->addressLine1}}</div>
+        <div>{{$address->addressLine2}}</div>
+        <div>{{$address->city}}, {{$address->postalCode}}, {{ $address->state }} , {{$address->country}}</div>
+    </div>
+@empty
+    <div>Aucune adresse</div>
+@endforelse
+```
+
+Un peu de lecture :
+
+- `@forelse`: C'est une boucle, si la liste est vide, le code dans le bloc `@empty` sera exécuté.
+- `$address` : C'est l'adresse en cours de traitement dans la boucle.
+
+:::
+
+### 5. Créer une nouvelle adresse
+
+Maintenant que nous avons corrigé la vue, nous allons pouvoir créer une nouvelle adresse pour un client. Pour ça nous allons créer deux nouvelles routes :
+
+```php
+Route::get('/customers/{id}/addresses/create', [CustomersController::class, 'createAddressForm']);
+Route::post('/customers/{id}/addresses/create', [CustomersController::class, 'createAddress']);
+```
+
+Puis les méthodes dans le contrôleur :
+
+```php
+function createAddressForm($id){
+    return view("customers-create-address", ["customer" => Customer::find($id)]);
+}
+
+function createAddress(Request $request, $id){
+    // Création de l'adresse
+    $address = new Address();
+    $address->addressLine1 = $request->input("addressLine1");
+    $address->addressLine2 = $request->input("addressLine2");
+    $address->city = $request->input("city");
+    $address->state = $request->input("state");
+    $address->postalCode = $request->input("postalCode");
+    $address->country = $request->input("country");
+    $address->save();
+
+    // Ajout de l'adresse au client
+    $customer = Customer::find($id);
+    $customer->addresses()->attach($address);
+    
+    // Redirection vers la page de détail du client
+    return redirect("/customers/$id");
+}
+```
+
+Et enfin le template :
+
+```html
+<form action="/customers/{{$customer->id}}/addresses/create" method="post">
+    @csrf
+    <!-- Je vous laisse écrire l'interieur du formulaire -->
+</form>
+```
+
+- `@csrf` ? C'est une protection anti-rejeu de Laravel, il faut toujours l'ajouter dans les formulaires.
+- `{{$customer->id}}` ? C'est l'identifiant du client, il est nécessaire pour ajouter l'adresse au client.
+
+::: tip C'est à vous !
+
+Je vous laisse assembler le code pour créer de nouvelle adresse pour un client.
+
+:::
+
+### 6. Afficher un message de succès
+
+Avec Laravel il est très simple d'afficher un message de succès, pour ça nous allons utiliser la méthode `with` de l'objet `RedirectResponse`.
+
+Modifier la méthode `createAddress` pour remplacer le return par le code suivant :
+
+```php
+return redirect("/customers/$id")->with("success", "L'adresse a bien été ajoutée");
+```
+
+Puis dans le template de la vue de détail, ajouter le code suivant :
+
+```html
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+```
+
+Comment ça fonctionne ?
+
+- `session('success')` ? C'est une variable de session, elle est disponible dans tous les templates.
+- `{{ session('success') }}` ? C'est la valeur de la variable de session `success`.
+- `with("success", "L'adresse a bien été ajoutée")` ? C'est la méthode `with` qui va ajouter une variable de session `success` avec la valeur `L'adresse a bien été ajoutée`.
+
+L'avantage ? Les variables de session ajoutées avec `with` seront automatiquement supprimées après la première lecture. Pratique !
+
+### 7. Supprimer une adresse
+
+Maintenant que vous avez compris le principe. Je vous laisse créer le code pour supprimer une adresse. Pour vous aider dans la démarche, voilà les étapes :
+
+- Créer une nouvelle route `customers/{id}/addresses/{addressId}/delete`.
+- Créer une nouvelle méthode dans le contrôleur `deleteAddress`.
+- Le code doit trouver l'adresse en base de données et la supprimer. (`find` et `delete`).
+- Le code doit rediriger vers la page de détail du client avec un message de succès ou d'erreur.
+
+N'oubliez pas, pour vous aider, vous avez l'aide mémoire :
+
+- [Aide mémoire Rapide](/cheatsheets/laravel/quick.md)
+- [Aide mémoire Complète](/cheatsheets/laravel/readme.md)
+
+## Aller plus loin
+
+Déjà au bout ? Vous souhaitez un peu de challenge ? Je vous laisse aller plus loin :
+
+1. Ajouter des rôles aux clients :
+
+- Créer une nouvelle table `roles`.
+- Créer une nouvelle table `customers_roles`.
+- Créer les relations entre les tables.
+
+2. Réexporter les modèles :
+
+```sh
+php artisan code:models --table=customers
+php artisan code:models --table=custmers_roles
+php artisan code:models --table=roles
+```
+
+3. Ajouter une page permettant de modifier les rôles d'un client (vous pouvez utiliser `sync` sur la relation `roles` du modèle `Customer`).
+
+::: tip Comment ? 
+
+Vous avez un modèle `Customer` qui contient une méthode `roles`. Vous pouvez donc écrire dans votre méthode :
+
+```php
+// Get roles from post
+$roles = $request->input("roles"); // <- Tableau contenant les identifiants des rôles à ajouter [1, 2, 3]
+Customer::find(1)->roles()->sync($roles);
+```
+
+Et dans votre template :
+
+```html
+<!-- Select multiple avec reselect des valeurs précédement choisi pour les roles du client -->
+<select name="roles[]" id="roles" multiple>
+    @foreach($roles as $role)
+        <option value="{{$role->id}}" @if($customer->roles->contains($role->id)) selected @endif>{{$role->name}}</option>
+    @endforeach
+</select>
+```
+
+::: tip L'astuce
+
+L'astuce ici, c'est d'utiliser un `select` avec l'attribut `multiple` pour pouvoir sélectionner plusieurs rôles. La notation `roles[]` permet de récupérer les valeurs dans un tableau.
+
+Évidemment, le code ne fonctionnera pas si vous n'envoyez pas l'ensemble des rôles depuis votre méthode :
+
+```php
+return view("customers-edit-roles", ["customer" => Customer::find($id), "roles" => Role::all()]);
+```
+
+:::
+
+## Conclusion
+
+Vous avez vu, avec Laravel, il est possible d'écrire très peu de code pour avoir un résultat plutôt complet. Évidemment, comme toujours il faudra utiliser les outils à votre disposition pour appréhender le framework à savoir :
+
+- La documentation officielle.
+- Les exemples / tutoriels.
+- Les aides mémoires.
+- Les forums / StackOverflow / ChatGPT.
+
+La suite, ça sera [Larablog](./larablog.md) une plateforme de blog codé entièrement avec Laravel.
