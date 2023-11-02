@@ -339,6 +339,96 @@ Ce n’est pas beau, mais ça fonctionne :
 
 :::
 
+## Créer une commande
+
+Nous avons traité la lecture, maintenant nous allons voir comment créer une commande. Pour ça, nous allons devoir :
+
+- Créer une route pour traiter le formulaire.
+- Créer un formulaire pour saisir les informations de la commande.
+- Créer une méthode dans le contrôleur pour traiter le formulaire.
+
+### 1. Créer la route
+
+Pour notre système, nous allons créer une route qui va permettre d'afficher le formulaire, et une autre qui va permettre de traiter le formulaire.
+
+```php
+Route::get('/orders/create', [OrdersController::class, 'createForm']);
+Route::post('/orders/create', [OrdersController::class, 'create']);
+```
+
+::: tip Un instant !
+
+- Pourquoi deux routes ?
+- Pourquoi une route `get` et une route `post` ?
+
+:::
+
+### 2. Créer le formulaire
+
+Pour créer le formulaire, rien de nouveau, nous allons utiliser comme d'habitude du HTML.
+
+```html
+<form action="/orders/create" method="post">
+    @csrf
+    <div>
+        <label for="orderNumber">Numéro de commande</label>
+        <input type="text" name="orderNumber" id="orderNumber">
+    </div>
+    <div>
+        <label for="status">Status</label>
+        <input type="text" name="status" id="status">
+    </div>
+    <div>
+        <label for="comments">Commentaires</label>
+        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <label for="customerNumber">Numéro de client</label>
+        <select name="customerNumber" id="customerNumber">
+            @foreach($customers as $customer)
+                <option value="{{$customer->customerNumber}}">{{$customer->contactLastName}} {{$customer->contactFirstName}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Créer la commande">
+    </div>
+</form>
+```
+
+Quelques explications :
+
+- `@csrf` ? C'est une protection de Laravel, il faut toujours l'ajouter dans les formulaires.
+- `@foreach($customers as $customer)` ? Vous avez vu ? Nous avons une variable `$customers` qui contient l'ensemble des clients. Comment est-ce possible ? Vous n'avez pas écrit de requête ? C'est le modèle `Customer` qui va faire la requête pour vous !
+
+### 3. Créer la méthode affichant le formulaire
+
+Pour afficher le formulaire, nous allons devoir créer une méthode dans le contrôleur.
+
+```php
+function createForm(){
+    return view("orders-create", ["customers" => Customer::all()]);
+}
+```
+
+`Customer::all()` va permettre de récupérer l'ensemble des clients. La variable `$customers` sera donc disponible dans le template pour afficher la liste des clients.
+
+### 4. Créer la méthode traitant le formulaire
+
+Pour traiter le formulaire, nous allons devoir créer une méthode dans le contrôleur.
+
+```php
+function create(Request $request){
+    $order = new Order();
+    $order->orderNumber = $request->input("orderNumber");
+    $order->status = $request->input("status");
+    $order->comments = $request->input("comments");
+    $order->customerNumber = $request->input("customerNumber");
+    $order->save();
+    return redirect("/orders");
+}
+```
+
 ## Et si nous allions plus loin!
 
 Notre base de données est assez volumineuse et permet de faire bien plus ! Je vous laisse créer les routes et la vue permettant de constulter un `Customer` :
@@ -356,6 +446,33 @@ Pour ça vous allez devoir :
 ::: tip Un Instant !
 
 Pour réaliser les deux pages, vous n'avez besoin que d'un seul modèle (`Customer`). Via les jointures l'ensemble des autres requêtes sera automatique !
+
+Exemple dans le PHP: 
+
+```php
+
+// Récupérer le client 1
+$customer = Customer::find(1);
+
+// Récupérer les commandes du client
+$customer->orders;
+
+// Récupérer les commandes du client avec le détail
+$customer->orders->orderdetails;
+
+// Récupérer les commandes du client avec le détail et le produit
+$customer->orders->orderdetails->product;
+```
+
+Ou depuis un template blade :
+
+```html
+{{ $customer->orders }}
+{{ $customer->orders->orderdetails }}
+{{ $customer->orders->orderdetails->product }}
+```
+
+La variable `$customer` est un objet de type `Customer`, celui-ci contient les méthodes `orders` et `ordersdetails` qui vont faire les requêtes pour vous !
 
 :::
 
