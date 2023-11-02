@@ -123,7 +123,7 @@ module.exports = [
               "/tp/laravel/introduction",
               "/tp/laravel/authentification",
               "/tp/laravel/generation_model",
-              "/tp/laravel/application_todo_list",
+              "/tp/laravel/larablog.md",
               "/tp/laravel/api_produit",
               "/tp/ops/deployer-laravel.md"]
           }
