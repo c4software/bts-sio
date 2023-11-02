@@ -668,9 +668,7 @@ php artisan code:models --table=custmers_roles
 php artisan code:models --table=roles
 ```
 
-3. Ajouter une page permettant de modifier les rôles d'un client (vous pouvez utiliser `sync` sur la relation `roles` du modèle `Customer`).
-
-::: tip Comment ? 
+3. Ajouter une page permettant de modifier les rôles d'un client (vous pouvez utiliser `sync` sur la relation `roles` du modèle `Customer`). Comment faire ?
 
 Vous avez un modèle `Customer` qui contient une méthode `roles`. Vous pouvez donc écrire dans votre méthode :
 
