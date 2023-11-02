@@ -491,7 +491,7 @@ Pour traiter ce problème, vous devez découper votre travail en différentes é
 
 ## Restitution du travail
 
-Vous avez atteint la fin du TP (horssss bonus). Il est temps de rendre votre travail. Pour cela, vous remplissez le formulaire suivant :
+Vous avez atteint la fin du TP (hors bonus). Il est temps de rendre votre travail. Pour cela, vous remplissez le formulaire suivant :
 
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfybcRlzChYkU3rj3orI4Fkh82mOalfN4myNzMNdIHydMzNZQ/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 

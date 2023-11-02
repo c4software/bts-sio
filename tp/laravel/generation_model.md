@@ -19,17 +19,17 @@ Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
 
 Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiquement par `Composer`
 
-## Créer le premier Projet
+## Créer le projet
 
 Votre poste est maintenant configuré pour Laravel, vous pouvez donc créer un nouveau projet grâce à la commande :
 
 ✋ Attention, le projet sera créé dans le dossier courant.
 
 ```bash
-composer create-project --prefer-dist laravel/laravel mon-premier-projet
+composer create-project --prefer-dist laravel/laravel generation-de-modele
 ```
 
-La commande va télécharger l'ensemble des dépendances nécessaire et va créer un dossier `mon-premier-projet` avec les sources.
+La commande va télécharger l'ensemble des dépendances nécessaire et va créer un dossier `generation-de-modele` avec les sources.
 
 ::: tip Vous avez récupéré le projet via GIT ?
 
