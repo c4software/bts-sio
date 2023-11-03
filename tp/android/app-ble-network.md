@@ -15,7 +15,7 @@ Concevoir une application qui va :
 
 ::: tip Rappels
 
-L'application que vous réaliserez doit respecter les bonnes pratiques vues en cours. Et doit être le reflet de votre travail personnel.
+L'application que vous réaliserez doit respecter les bonnes pratiques vues en cours. Et cela doit être le reflet de votre travail personnel.
 
 :::
 
@@ -28,7 +28,7 @@ L'équipement dispose des caractéristiques suivantes :
 - Récupérer le nombre de fois que la LED a été allumée et éteinte.
 - Récupérer la liste des réseaux WiFi disponibles environnants.
 - Changer le nom de l'équipement.
-- Allumer ou éteindre la LED en suivant un patterne (1 étant allumé, 0 étant éteint. Alors S.O.S = `1010100011101110111000101010`).
+- Allumer ou éteindre la LED en suivant un paterne (1 étant allumé, 0 étant éteint. Alors S.O.S = `1010100011101110111000101010`).
 - Définir les informations de connexion au réseau WiFi.
 - **Si un réseau Wifi est défini**, lancement d'un serveur sur le port 80 permettant :
   - D'afficher l'état de la LED (`/status`).
@@ -144,7 +144,7 @@ private fun askForPermission() {
 
 ### Vérifier si la localisation est active
 
-Permet de vérifier que l'utilisateur a bien activé la localisation.
+Permets de vérifier que l'utilisateur a bien activé la localisation.
 
 ```kotlin
 private fun locationServiceEnabled(): Boolean {
@@ -200,14 +200,14 @@ private fun setupBLE() {
 ```
 
 ::: tip SetupBLE
-Cette méthode va vérifier si l'adapter Bluetooth est disponible et si il est activé. Si il n'est pas activé, on va demander à l'utilisateur de l'activer. Si il est activé, on lance le scan.
+Cette méthode va vérifier si l'adapter Bluetooth est disponible et si il est activé. Si il n'est pas activé, on va demander à l'utilisateur de l'activer. S’il est activé, on lance le scan.
 :::
 
 Place à présent au code permettant de lancer le scan. Pour cela, nous allons utiliser l'adapter Bluetooth. Nous allons donc utiliser la méthode `startScan` de l'adapter Bluetooth.
 
 Afin de ne pas scanner de manière infinie, nous allons utiliser une tache qui va s'arrêter au bout de 10 secondes. Cette tache va appeler la méthode `stopScan` de l'adapter Bluetooth.
 
-⚠️ Si vous oublier d'arrêter le scan, le système vous bloquera et vous ne pourrez plus scanner. Il faudra alors redémarrer LE TÉLÉPHONE pour pouvoir scanner à nouveau. De même, si vous scanner trop souvent, le système vous bloquera également. ⚠️
+⚠️ Si vous oubliez d'arrêter le scan, le système vous bloquera et vous ne pourrez plus scanner. Il faudra alors redémarrer LE TÉLÉPHONE pour pouvoir scanner à nouveau. De même, si vous scannez trop souvent, le système vous bloquera également. ⚠️
 
 ```kotlin
 // Le scan va durer 10 secondes seulement, sauf si vous passez une autre valeur comme paramètre.
@@ -268,7 +268,7 @@ private val leScanCallback: ScanCallback = object : ScanCallback() {
 
 Le principe du Callback est simple, il permet de définir une méthode qui sera appelée à un moment précis. Par exemple, lorsque le scan a trouvé un périphérique, lorsque le scan est terminé, etc.
 
-Le Scan BLE est un processus asynchrone, c'est-à-dire que le scan se fait en arrière-plan. C'est pour cela que nous devons utiliser des callbacks, notre interface utilisateur ne doit pas être bloquée pendant le scan et sera mise à jour à chaque fois que nous recevons un résultat.
+Le Scan BLE est un processus asynchrone, c'est-à-dire que le scan se fait en arrière-plan. C'est pour cela que nous devons utiliser des callbacks, notre interface utilisateur ne doit pas être bloquée pendant le scan et sera mis à jour à chaque fois que nous recevons un résultat.
 
 :::
 
@@ -528,14 +528,14 @@ private fun connectToCurrentDevice() {
 
 Un peu de détails sur le code :
 
-- `BluetoothLEManager.currentDevice?.let { device ->` : Permet de vérifier que le périphérique est bien défini. Si il est défini, on peut continuer.
+- `BluetoothLEManager.currentDevice?.let { device ->` : Permet de vérifier que le périphérique est bien défini. S’il est défini, on peut continuer.
 - `device.connectGatt` : Permet de se connecter au périphérique. Cette méthode prend en paramètre un contexte, un booléen et un callback. Le contexte est l'activité dans laquelle nous sommes. Le booléen permet de savoir si nous voulons nous connecter automatiquement au périphérique. Le callback est une classe que nous allons définir un peu plus tard.
 - `BluetoothLEManager.GattCallback` : Cette classe va nous permettre de gérer les différents événements qui vont se produire lors de la connexion. Par exemple, lorsque nous sommes connectés, lorsque nous sommes déconnectés, lorsque nous recevons une notification, etc. (Encore un callback).
 - `onConnect` : Méthode appelée lorsque nous sommes connectés au périphérique.
 - `onNotify` : Méthode appelée lorsque nous recevons une notification de la part de la carte ESP32.
 - `onDisconnect` : Méthode appelée lors de la déconnexion du périphérique.
 
-Ici nous avons donc un système de « boite à état », notre téléphone en fonction du moment de la connexion va appeler les bonnes méthodes afin d'ajuster l'interface en fonction du moment où nous nous trouvons.
+Ici nous avons donc un système de « boîte à état », notre téléphone en fonction du moment de la connexion va appeler les bonnes méthodes afin d'ajuster l'interface en fonction du moment où nous nous trouvons.
 
 ### Déconnexion
 
@@ -552,11 +552,11 @@ private fun disconnectFromCurrentDevice() {
 }
 ```
 
-La méthode `setUiMode` va nous permettre de changer l'interface en fonction de si nous sommes connecté ou non. Nous l'écrirons un peu plus tard.
+La méthode `setUiMode` va nous permettre de changer l'interface en fonction de si nous sommes connectés ou non. Nous l'écrirons un peu plus tard.
 
 ### BluetothLEManager
 
-Cette classe va nous permettre de gérer les différentes méthodes de connexion, déconnexion, etc. Elle va aussi nous permettre de gérer les différents UUIDs, vous devez la placer dans un fichier à part. Par exemple `BluetoothLEManager.kt`, évidemment vous le rangerez dans le bon package.
+Cette classe va nous permettre de gérer les différentes méthodes de connexion, déconnexion, etc. Elle va aussi nous permettre de gérer les différents UUIDs, vous devez la placer dans un fichier à part. Par exemple `BluetoothLEManager.kt`, évidemment, vous le rangerez dans le bon package.
 
 Ce code est relativement générique, il est complètement possible de le réutiliser dans d'autres projets.
 
@@ -631,7 +631,7 @@ Cette méthode permet de changer l'état de l'interface en fonction de la connex
 Le code proposé en exemple ne fonctionnera que si vous avez utilisé les mêmes identifiants que moi **évidemment**.
 :::
 
-Je vous laisse écrire la méthode mais voici **un exemple de code** :
+Je vous laisse écrire la méthode, mais voici **un exemple de code** :
 
 ```kotlin
 private fun setUiMode(isConnected: Boolean) {
@@ -660,7 +660,7 @@ private fun setUiMode(isConnected: Boolean) {
 
 D'où vienne les variables `bleDevicesFoundList`, `rvDevices`, `startScan`, `currentConnexion`, `disconnect`, `toggleLed`, `ledStatus` ?
 
-Ces variables sont des variables de classe, elles sont définies dans le fichier `ScanActivity.kt` et sont initialisées dans la méthode `onCreate`. Pour les initialiser vous devrez utiliser le `findViewById` comme vous le faites habituellement.
+Ces variables sont des variables de classe, elles sont définies dans le fichier `ScanActivity.kt` et sont initialisées dans la méthode `onCreate`. Pour les initialiser, vous devrez utiliser le `findViewById` comme vous le faites habituellement.
 
 Dans mon cas, j'ai défini ces variables comme ceci :
 
@@ -889,7 +889,7 @@ private fun handleOnNotifyNotificationReceived(characteristic: BluetoothGattChar
 
 ## Partie 3 : Les animations sauvegardées
 
-Une fois connecté au périphérique, nous pouvons lui envoyer une trame plus longue (de type 0 et 1) pour lui indiquer de jouer une animation. Cette trame est envoyée sur l'UUID `59b6bf7f-44de-4184-81bd-a0e3b30c919b`.
+Une fois connectés au périphérique, nous pouvons lui envoyer une trame plus longue (de type 0 et 1) pour lui indiquer de jouer une animation. Cette trame est envoyée sur l'UUID `59b6bf7f-44de-4184-81bd-a0e3b30c919b`.
 
 En fonction de la trame envoyée, la LED va jouer une animation. Vous devez donc créer une interface qui permet de choisir une animation et de l'envoyer au périphérique.
 
@@ -909,7 +909,7 @@ private fun sendAnimation() {
 
 ## Partie 4 : Récupérer la liste des réseaux WiFi
 
-L'ESP32 dispose d'un service qui permet de récupérer la liste des réseaux WiFi disponibles. Ce service est disponible sur l'UUID `10f83060-64f8-11ee-8c99-0242ac120002`. Une fois connecté au périphérique, vous pouvez observer les notifications sur l'UUID `10f83060-64f8-11ee-8c99-0242ac120002` il emettra une notification toutes les 30 secondes avec la liste des réseaux WiFi disponibles et leur force de signal.
+L'ESP32 dispose d'un service qui permet de récupérer la liste des réseaux WiFi disponibles. Ce service est disponible sur l'UUID `10f83060-64f8-11ee-8c99-0242ac120002`. Une fois connecté au périphérique, vous pouvez observer les notifications sur l'UUID `10f83060-64f8-11ee-8c99-0242ac120002` il émettra une notification toutes les 30 secondes avec la liste des réseaux WiFi disponibles et leur force de signal.
 
 ## Partie 5 : Changer le nom du périphérique
 
@@ -927,7 +927,7 @@ private fun sendDeviceName() {
 
 ### Bonus : Le HTTP
 
-La carte ESP32 dispose d'un serveur HTTP. Celui-ci sera actif que si vous envoyez une trame de configuration WiFi.
+La carte ESP32 dispose d'un serveur HTTP. Celui-ci ne sera actif que si vous envoyez une trame de configuration WiFi.
 
 ```kotlin
 private fun sendWifiConfig() {
