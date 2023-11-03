@@ -49,7 +49,7 @@ C'est donc du code (PHP ou autre) qui va permettre de faire parler deux ordinate
 
 ### Étape 1 : Analyse du code
 
-La première étape va être de créer l'API, nous allons donc regarder comment fonctionne le code que vous avez téléchargé. Je vous laisse regarder, une fois analysé nous allons en parler ensemble.
+La première étape va être de créer l'API, nous allons donc regarder comment fonctionne le code que vous avez téléchargé. Je vous laisse regarder, une fois analysé, nous allons en parler ensemble.
 
 ::: details Analyse du code
 
@@ -84,11 +84,11 @@ Nous pouvons y voir un exemple de code PHP très simple à savoir :
 
 ---
 
-Une autre partie du code est intéressante, le fichier `index.php` ; ce fichier est un entrypoint, c'est une bonne pratique que je vous encourage vraiment à pratiquer. Regardons le fichier ensemble ! Et plus particulièrement la variable `$whitelist` celle-ci contient la liste des pages **autorisées**.
+Une autre partie du code est intéressante, le fichier `index.php` ; ce fichier est un entrypoint, c'est une bonne pratique que je vous encourage vraiment à pratiquer. Regardons le fichier ensemble ! Et plus particulièrement la variable, `$whitelist` celle-ci contient la liste des pages **autorisées**.
 
 ::: tip Whitelist ?
 
-La sécurité vous connaissez ? J'espère, quand vous développez un site Internet, vous êtes par définition « en short » sur la toile. Votre site peut-être et sera certainement (je vous le garantis pour l'avoir vécue) piraté par une personne malveillante. Comment s'en prémunir alors ? Tout simplement empêchant au maximum l'exploitation de problème connut.
+La sécurité, vous connaissez ? J'espère, quand vous développez un site Internet, vous êtes par définition « en short » sur la toile. Votre site peut-être et sera certainement (je vous le garantis pour l'avoir vécue) piraté par une personne malveillante. Comment s'en prémunir alors ? Tout simplement empêchant au maximum l'exploitation de problème connut.
 
 Créer une `whitelist` va nous permettre de dormir paisiblement, nous allons contrôler finement ce que l'utilisateur va pouvoir inclure. Vous retrouverez cette pratique dans différents langages sous différent nom (Un `router` peut-être assimilé à ce genre de pratique).
 
@@ -133,7 +133,7 @@ _Source:_ Wikipédia
 
 Nous devons donc écrire une API… Une API c'est **juste un fichier PHP** comme un autre ; à la seule différence que celui-ci ne retourne pas du HTML, mais du JSON. Vous avez un exemple d'API dans le projet avec le fichier `sample.php`, je vous laisse le regarder…
 
-Une fois celui-ci analysé, je vous laisse créer votre fichier, exemple `videos.php` **dans le dossier `api/`** ça sera notre futur API ! Nous avons maintenant une API **vide** ! Mais que mettre dedans ?
+Une fois celui-ci analysé, je vous laisse créer votre fichier, par exemple `videos.php` **dans le dossier `api/`** ça sera notre futur API ! Nous avons maintenant une API **vide** ! Mais que mettre dedans ?
 
 - À votre avis ?
 - Du code PHP :-O
@@ -185,7 +185,7 @@ Je vous laisse modifier le code PHP de la page `home.php` pour le vider de tout 
 
 ### Étape 3 : Appeler l'API en Ajax
 
-Comme nous l'avons fait précédemment je vous laisse reprendre le code. Mais le code va ressembler à :
+Comme nous l'avons fait précédemment, je vous laisse reprendre le code. Mais le code va ressembler à :
 
 ```javascript
 fetch("./api.php?page=videos")
@@ -226,7 +226,7 @@ datas.forEach((el) => {
 
 ### Étape 4 : Évolution de la page
 
-Ajouter un bouton rafraichir dans la page. Le bouton rafraichir doit permettre de récupérer à nouveau la liste des vidéos pour les mettre à jour dans la page.
+Ajouter un bouton rafraîchir dans la page. Le bouton rafraîchir doit permettre de récupérer à nouveau la liste des vidéos pour les mettre à jour dans la page.
 
 - Ajouter une icône à droite dans l'interface.
 - Utiliser les icônes fournies par bootstrap.
@@ -234,7 +234,7 @@ Ajouter un bouton rafraichir dans la page. Le bouton rafraichir doit permettre d
 
 Voilà la maquette :
 
-![Maquette rendu](./res/maquette.png)
+![Maquette rendue](./res/maquette.png)
 
 ## Allons plus loin
 
