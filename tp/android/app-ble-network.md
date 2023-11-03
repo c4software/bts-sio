@@ -13,6 +13,12 @@ Concevoir une application qui va :
 - Connexion à notre « Équipement ».
 - Commander la LED / afficher l'état.
 
+::: tip Rappels
+
+L'application que vous réaliserez doit respecter les bonnes pratiques vues en cours. Et doit être le reflet de votre travail personnel.
+
+:::
+
 ## Rappels des fonctionnalités de l'équipement
 
 L'équipement dispose des caractéristiques suivantes :
@@ -96,9 +102,8 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
 
     if (requestCode == PERMISSION_REQUEST_LOCATION) {
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && locationServiceEnabled()) {
-            // Permission OK => Nous pouvons lancer l'initialisation du BLE.
-            // En appelant la méthode setupBLE()
-            // La méthode setupBLE() va initialiser le BluetoothAdapter et lancera le scan.
+            // Permission OK & service de localisation actif => Nous pouvons lancer l'initialisation du BLE.
+            // En appelant la méthode setupBLE(), La méthode setupBLE() va initialiser le BluetoothAdapter et lancera le scan.
         } else if (!locationServiceEnabled()) {
             // Inviter à activer la localisation
             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
@@ -111,8 +116,10 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
 }
 
 /**
-    * Permet de vérifier si l'application possede la permission « Localisation ». OBLIGATOIRE pour scanner en BLE
-    */
+ * Permet de vérifier si l'application possede la permission « Localisation ». OBLIGATOIRE pour scanner en BLE
+ * Sur Android 11, il faut la permission « BLUETOOTH_CONNECT » et « BLUETOOTH_SCAN »
+ * Sur Android 10 et inférieur, il faut la permission « ACCESS_FINE_LOCATION » qui permet de scanner en BLE
+ */
 private fun hasPermission(): Boolean {
     return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
         ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
@@ -122,8 +129,10 @@ private fun hasPermission(): Boolean {
 }
 
 /**
-    * Demande de la permission (ou des permissions) à l'utilisateur.
-    */
+ * Demande de la permission (ou des permissions) à l'utilisateur.
+ * Sur Android 11, il faut la permission « BLUETOOTH_CONNECT » et « BLUETOOTH_SCAN »
+ * Sur Android 10 et inférieur, il faut la permission « ACCESS_FINE_LOCATION » qui permet de scanner en BLE
+ */
 private fun askForPermission() {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_LOCATION)
@@ -134,6 +143,8 @@ private fun askForPermission() {
 ```
 
 ### Vérifier si la localisation est active
+
+Permet de vérifier que l'utilisateur a bien activé la localisation.
 
 ```kotlin
 private fun locationServiceEnabled(): Boolean {
@@ -151,19 +162,29 @@ private fun locationServiceEnabled(): Boolean {
 
 ### Le code du scan
 
+Permet de lancer le scan à l'aide de l'adapter Bluetooth.
+
 ```kotlin
+/**
+ * La méthode « registerForActivityResult » permet de gérer le résultat d'une activité.
+ * Ce code est appelé à chaque fois que l'utilisateur répond à la demande d'activation du Bluetooth (visible ou non)
+ * Si l'utilisateur accepte et donc que le BLE devient disponible, on lance le scan.
+ * Si l'utilisateur refuse, on affiche un message d'erreur (Toast).
+ */
 val registerForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
     if (it.resultCode == Activity.RESULT_OK) {
         // Le Bluetooth est activé, on lance le scan
         scanLeDevice()
     } else {
-        // Bluetooth non activé
+        // Bluetooth non activé, vous DEVEZ gérer ce cas autrement qu'avec un Toast.
         Toast.makeText(this, "Bluetooth non activé", Toast.LENGTH_SHORT).show()
     }
 }
 
  /**
-  * Récupération de l'adapter Bluetooth & vérification si celui-ci est actif
+  * Récupération de l'adapter Bluetooth & vérification si celui-ci est actif.
+  * Si il n'est pas actif, on demande à l'utilisateur de l'activer. Dans ce cas, au résultat le code présent dans « registerForResult » sera appelé.
+  * Si il est déjà actif, on lance le scan.
   */
 @SuppressLint("MissingPermission")
 private fun setupBLE() {
@@ -182,6 +203,12 @@ private fun setupBLE() {
 Cette méthode va vérifier si l'adapter Bluetooth est disponible et si il est activé. Si il n'est pas activé, on va demander à l'utilisateur de l'activer. Si il est activé, on lance le scan.
 :::
 
+Place à présent au code permettant de lancer le scan. Pour cela, nous allons utiliser l'adapter Bluetooth. Nous allons donc utiliser la méthode `startScan` de l'adapter Bluetooth.
+
+Afin de ne pas scanner de manière infinie, nous allons utiliser une tache qui va s'arrêter au bout de 10 secondes. Cette tache va appeler la méthode `stopScan` de l'adapter Bluetooth.
+
+⚠️ Si vous oublier d'arrêter le scan, le système vous bloquera et vous ne pourrez plus scanner. Il faudra alors redémarrer LE TÉLÉPHONE pour pouvoir scanner à nouveau. De même, si vous scanner trop souvent, le système vous bloquera également. ⚠️
+
 ```kotlin
 // Le scan va durer 10 secondes seulement, sauf si vous passez une autre valeur comme paramètre.
 private fun scanLeDevice(scanPeriod: Long = 10000) {
@@ -191,6 +218,7 @@ private fun scanLeDevice(scanPeriod: Long = 10000) {
         // On vide la liste qui contient les devices actuellement trouvés
         bleDevicesFoundList.clear()
 
+        // Évite de scanner en double
         mScanning = true
 
         // On lance une tache qui durera « scanPeriod » à savoir donc de base
@@ -210,7 +238,7 @@ private fun scanLeDevice(scanPeriod: Long = 10000) {
 ::: tip ScanLeDevice
 Cette méthode va lancer le scan pendant 10 secondes. Si vous passez une autre valeur en paramètre, le scan durera cette valeur en millisecondes. Elle va aussi lancer une tache qui va s'arrêter au bout de 10 secondes. Cette tache va appeler la méthode « stopScan » de l'adapter Bluetooth.
 
-- `scanFilters` : Permet de filtrer les résultats du scan.
+- `scanFilters` : Permet de filtrer les résultats du scan (UUID, etc.).
 - `scanSettings` : Permet de configurer le scan. Comme par exemple la puissance du scan.
 - `leScanCallback` : Callback appelé à chaque périphérique trouvé. Nous allons voir comment le gérer dans la suite.
 
@@ -236,6 +264,14 @@ private val leScanCallback: ScanCallback = object : ScanCallback() {
 }
 ```
 
+::: tip Rappel sur les callbacks
+
+Le principe du Callback est simple, il permet de définir une méthode qui sera appelée à un moment précis. Par exemple, lorsque le scan a trouvé un périphérique, lorsque le scan est terminé, etc.
+
+Le Scan BLE est un processus asynchrone, c'est-à-dire que le scan se fait en arrière-plan. C'est pour cela que nous devons utiliser des callbacks, notre interface utilisateur ne doit pas être bloquée pendant le scan et sera mise à jour à chaque fois que nous recevons un résultat.
+
+:::
+
 ### Quelques variables
 
 Sans ces variables, votre activité ne fonctionnera pas.
@@ -256,7 +292,7 @@ private val scanSettings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_
 
 // On ne retourne que les « Devices » proposant le bon UUID
 private var scanFilters: List<ScanFilter> = arrayListOf(
-//        ScanFilter.Builder().setServiceUuid(ParcelUuid(BluetoothLEManager.DEVICE_UUID)).build()
+//  ScanFilter.Builder().setServiceUuid(ParcelUuid(BluetoothLEManager.DEVICE_UUID)).build()
 )
 
 // Variable de fonctionnement
@@ -270,7 +306,16 @@ private val bleDevicesFoundList = arrayListOf<Device>()
 
 ### Le RecyclerView
 
+Rappels sur le RecyclerView :
+
+- Il permet d'afficher une liste d'éléments.
+- Il est composé d'un `LayoutManager` et d'un `Adapter`.
+- Il est plus performant qu'un `ListView`.
+- Il nécessite un `ViewHolder` pour fonctionner.
+
 ### Le Model
+
+Représente les données que nous allons afficher dans notre RecyclerView. Ici nous allons créer un objet « Device » qui va contenir le nom, l'adresse MAC et l'objet « BluetoothDevice ». Nous allons aussi redéfinir la méthode `equals` pour pouvoir comparer deux objets « Device ». Nous allons utiliser cette méthode pour ne pas ajouter deux fois le même périphérique dans la liste.
 
 ```kotlin
 import android.bluetooth.BluetoothDevice
@@ -297,9 +342,14 @@ class DeviceAdapter(private val deviceList: ArrayList<Device>, private val onCli
 
     // Comment s'affiche ma vue
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        /**
+         * Méthode appelée par la vue pour afficher les données
+         * Ici nous faisons le lien entre les données et la vue (itemView)
+         */
         fun showItem(device: Device, onClick: ((selectedDevice: Device) -> Unit)? = null) {
             itemView.findViewById<TextView>(R.id.title).text = device.name
 
+            // Action au clique sur un élément de la liste
             if (onClick != null) {
                 itemView.setOnClickListener {
                     onClick(device)
@@ -314,11 +364,12 @@ class DeviceAdapter(private val deviceList: ArrayList<Device>, private val onCli
         return ViewHolder(view)
     }
 
-    // Connect la vue ET la données
+    // Connect la vue ET la données, cette méthode est appelée à chaque fois que l'élément devient visible à l'écran
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.showItem(deviceList[position], onClick)
     }
 
+    // Retourne le nombre d'éléments dans la liste
     override fun getItemCount(): Int {
         return deviceList.size
     }
@@ -335,22 +386,23 @@ Dans mon Layout, j'ai un RecyclerView avec l'id `rvDevices`.
 ```kotlin
 /*
  * Méthode qui initialise le recycler view.
- * Alternativement, vous pouvez utiliser une librairie comme Recyclical.
  */
 private fun setupRecycler() {
-    val rvDevice = findViewById<RecyclerView>(R.id.rvDevices)
-    rvDevice.layoutManager = LinearLayoutManager(this)
+    val rvDevice = findViewById<RecyclerView>(R.id.rvDevices) // Récupération du RecyclerView présent dans le layout
+    rvDevice.layoutManager = LinearLayoutManager(this) // Définition du LayoutManager, Comment vont être affichés les éléments, ici en liste
     rvDevice.adapter = DeviceAdapter(bleDevicesFoundList) { device ->
-        // Évidemment, ici, vous pouvez faire ce que vous voulez. Nous nous connecterons plus tard à notre périphérique
+        // Le code écrit ici sera appelé lorsque l'utilisateur cliquera sur un élément de la liste.
+        // C'est un « callback », c'est-à-dire une méthode qui sera appelée à un moment précis.
+        // Évidemment, vous pouvez faire ce que vous voulez. Nous nous connecterons plus tard à notre périphérique
+
+        // Pour la démo, nous allons afficher un Toast avec le nom du périphérique choisi par l'utilisateur.
         Toast.makeText(this@ScanActivity, "Clique sur $device", Toast.LENGTH_SHORT).show()
     }
 }
 ```
 
 ::: tip Où appeler cette méthode ?
-
-Nous allons appeler cette méthode dans la méthode `onCreate` de notre activité.
-
+Nous allons appeler cette méthode dans la méthode `onCreate` de notre activité. En effet, nous voulons que le RecyclerView soit initialisé dès le démarrage de l'activité. Et nous voulons que le RecyclerView soit initialisé une seule fois.
 :::
 
 ### Gérer la compatibilité du mobile
@@ -474,6 +526,17 @@ private fun connectToCurrentDevice() {
 }
 ```
 
+Un peu de détails sur le code :
+
+- `BluetoothLEManager.currentDevice?.let { device ->` : Permet de vérifier que le périphérique est bien défini. Si il est défini, on peut continuer.
+- `device.connectGatt` : Permet de se connecter au périphérique. Cette méthode prend en paramètre un contexte, un booléen et un callback. Le contexte est l'activité dans laquelle nous sommes. Le booléen permet de savoir si nous voulons nous connecter automatiquement au périphérique. Le callback est une classe que nous allons définir un peu plus tard.
+- `BluetoothLEManager.GattCallback` : Cette classe va nous permettre de gérer les différents événements qui vont se produire lors de la connexion. Par exemple, lorsque nous sommes connectés, lorsque nous sommes déconnectés, lorsque nous recevons une notification, etc. (Encore un callback).
+- `onConnect` : Méthode appelée lorsque nous sommes connectés au périphérique.
+- `onNotify` : Méthode appelée lorsque nous recevons une notification de la part de la carte ESP32.
+- `onDisconnect` : Méthode appelée lors de la déconnexion du périphérique.
+
+Ici nous avons donc un système de « boite à état », notre téléphone en fonction du moment de la connexion va appeler les bonnes méthodes afin d'ajuster l'interface en fonction du moment où nous nous trouvons.
+
 ### Déconnexion
 
 Cette méthode va nous permettre de déconnecter le périphérique. Elle est appelée dans le cas où nous avons cliqué sur le bouton « Déconnexion ».
@@ -495,12 +558,18 @@ La méthode `setUiMode` va nous permettre de changer l'interface en fonction de 
 
 Cette classe va nous permettre de gérer les différentes méthodes de connexion, déconnexion, etc. Elle va aussi nous permettre de gérer les différents UUIDs, vous devez la placer dans un fichier à part. Par exemple `BluetoothLEManager.kt`, évidemment vous le rangerez dans le bon package.
 
+Ce code est relativement générique, il est complètement possible de le réutiliser dans d'autres projets.
+
 ```kotlin
 class BluetoothLEManager {
 
     companion object {
         var currentDevice: BluetoothDevice? = null
 
+        /**
+         * Les UUIDS sont des identifiants uniques qui permettent d'identifier les services et les caractéristiques.
+         * Ces UUIDs sont définis dans le code de l'ESP32.
+         */
         val DEVICE_UUID: UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c")
         val CHARACTERISTIC_TOGGLE_LED_UUID: UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b")
         val CHARACTERISTIC_NOTIFY_STATE: UUID = UUID.fromString("d75167c8-e6f9-4f0b-b688-09d96e195f00")
@@ -510,6 +579,10 @@ class BluetoothLEManager {
         val CHARACTERISTIC_SET_WIFI_CREDENTIALS: UUID = UUID.fromString("1a0f3c0c-64f8-11ee-8c99-0242ac120002")
     }
 
+    /**
+     * Définitionn de la classe GattCallback qui va nous permettre de gérer les différents événements BLE
+     * Elle implémente la classe BluetoothGattCallback fournie par Android
+     */
     open class GattCallback(
         val onConnect: () -> Unit,
         val onNotify: (characteristic: BluetoothGattCharacteristic) -> Unit,
@@ -552,7 +625,7 @@ class BluetoothLEManager {
 
 ### setUiMode ?
 
-Cette méthode permet de changer l'état de l'interface en fonction de la connexion.
+Cette méthode permet de changer l'état de l'interface en fonction de la connexion. Si nous sommes connectés, nous allons afficher le nom du périphérique, le bouton de déconnexion, etc. Si nous ne sommes pas connectés, nous allons afficher la liste des périphériques, le bouton de scan, etc.
 
 ::: tip Un instant 👋
 Le code proposé en exemple ne fonctionnera que si vous avez utilisé les mêmes identifiants que moi **évidemment**.
@@ -589,7 +662,7 @@ D'où vienne les variables `bleDevicesFoundList`, `rvDevices`, `startScan`, `cur
 
 Ces variables sont des variables de classe, elles sont définies dans le fichier `ScanActivity.kt` et sont initialisées dans la méthode `onCreate`. Pour les initialiser vous devrez utiliser le `findViewById` comme vous le faites habituellement.
 
-Exemple :
+Dans mon cas, j'ai défini ces variables comme ceci :
 
 ```kotlin
 
@@ -618,7 +691,9 @@ override fun onCreate() {
 
 L'idée est que vous puissiez écrire vous-même votre **propre layout** (en respectant les contraintes de base). Je vous propose donc de vous aider avec un exemple de layout.
 
-::: details Je pense que vous êtes capable de le faire sans aide… mais si vous le souhaitez voilà un layout possible 
+::: details Je pense que vous êtes capable de le faire sans aide… mais si vous le souhaitez voilà un layout possible
+
+Je ne souhaite pas retrouver ce layout dans vos projets, je souhaite que vous le fassiez vous-même. Cependant, si vous êtes bloqué, voici un exemple de layout :
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -714,8 +789,8 @@ Maintenant que nous sommes connectés, nous allons pouvoir interagir avec la LED
 
 ```kotlin
 /**
-* Récupération de « service » BLE (via UUID) qui nous permettra d'envoyer / recevoir des commandes
-*/
+ * Récupération de « service » BLE (via UUID) qui nous permettra d'envoyer / recevoir des commandes
+ */
 private fun getMainDeviceService(): BluetoothGattService? {
     return currentBluetoothGatt?.let { bleGatt ->
         val service = bleGatt.getService(BluetoothLEManager.DEVICE_UUID)
@@ -732,8 +807,8 @@ private fun getMainDeviceService(): BluetoothGattService? {
 }
 
 /**
-* On change l'état de la LED (via l'UUID de toggle)
-*/
+ * On change l'état de la LED (via l'UUID de toggle)
+ */
 private fun toggleLed() {
     getMainDeviceService()?.let { service ->
         val toggleLed = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_TOGGLE_LED_UUID)
@@ -747,7 +822,7 @@ private fun toggleLed() {
 
 Actuellement votre Scan fonctionne, mais vous le lancez au démarrage de l'activité. C'est une solution, mais pas la plus propre. Nous allons donc faire évoluer le code pour que le scan ne se lance que si l'utilisateur clique sur le bouton « Scan ».
 
-Pour vous guider dans la mission, vous devez dans le `OnCreate` ajouter des lignes de code similaire à :
+Pour vous guider dans la mission, vous devez dans le `onCreate` ajouter des lignes de code similaire à :
 
 ```kotlin
 startScan.setOnClickListener { 
@@ -762,7 +837,6 @@ toggleLed.setOnClickListener {
     // Appeler la bonne méthode
 }
 ```
-
 
 ## Partie 2 : Les notifications BLE
 
