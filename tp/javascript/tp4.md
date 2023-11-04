@@ -223,4 +223,7 @@ Nous allons maintenant regarder ce qu'il se passe « à l'intérieur » (dans le
 
 ## Concrètement dans un site existant
 
-Nous avons fait deux pages de tests, je vous propose de faire la même chose, mais dans un code plus complet [→ La suite est par ici ←](./tp4.1.md)
+Nous avons fait deux pages de tests, je vous propose de faire la même chose, mais dans un code plus complet, deux possibilités s'offrent à vous :
+
+- [→ Ajouter de l'Ajax dans la Greta TV / Site PHP ←](./tp4.1.md)
+- [→ Ajouter de l'Ajax dans Larablog / Site Laravel ←](./tp6.md)

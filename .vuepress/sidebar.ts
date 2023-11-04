@@ -69,8 +69,8 @@ module.exports = [
     collapsible: true,
     children: [
       { text: "Le cours", collapsible: true, children: ["/cours/introduction_javascript", "/tp/javascript/support.md", "/cours/javascript_avances", "/cours/framework_javascript"] },
-      { text: "Les TP basiques", collapsible: true, children: ["/tp/javascript/tp1.md", "/tp/javascript/tp1.1.md", "/tp/javascript/tp1.2.md", "/tp/javascript/tp2.md", "/tp/javascript/tp3.md", "/tp/javascript/tp3.1.md", "/tp/javascript/tp5.md", "/tp/javascript/tp4.md", "/tp/javascript/tp4.1.md"] },
-      { text: "Javascript avancé", collapsible: true, children: ["/tp/javascript_avances/introduction", "/tp/javascript_avances/revision"] },
+      { text: "Les TP basiques", collapsible: true, children: ["/tp/javascript/tp1.md", "/tp/javascript/tp1.1.md", "/tp/javascript/tp1.2.md", "/tp/javascript/tp2.md", "/tp/javascript/tp3.md", "/tp/javascript/tp3.1.md", "/tp/javascript/tp5.md"] },
+      { text: "Javascript avancé", collapsible: true, children: ["/tp/javascript_avances/introduction", "/tp/javascript_avances/revision", "/tp/javascript/tp4.md", "/tp/javascript/tp4.1.md", "/tp/javascript/tp4.md", "/tp/javascript/tp6.md"] },
     ]
   },
 

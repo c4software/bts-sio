@@ -2,9 +2,9 @@
 description: Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant.
 ---
 
-# Pratiquer l'Ajax, adaptons un code existant
+# La Greta TV 2.0 (Ajax)
 
-Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant. Nous avons réalisé un site la GRETA TV, ce site comportait **«deux pages** :
+Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant. Nous avons réalisé un site la GRETA TV, ce site comportait **« deux pages »** :
 
 - Une page d'accueil `home.php`, qui affiche la liste des vidéos.
 - Une page `tv.php` ayant pour but l'affichage de la vidéo souhaité.

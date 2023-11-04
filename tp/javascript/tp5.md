@@ -7,7 +7,7 @@ description: Nous avons vu ensemble que jQuery était un vrai gain te temps et d
 Nous avons vu ensemble que jQuery était un vrai gain te temps et de ligne en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
 
 ::: tip 2021 ?
-En 2021, j'ai envie de dire, vous n'avez plus besoin de jQuer ! Nous avons des supers alternatives sans librairies (ES6, etc.), et si vous voulez gagner du temps ? Je vous conseille plutôt la mise en place de Framework autorisant à être intégré comme des librairies (c'est-à-dire dans un petit morceau du site) comme par exemple VueJS.
+En 2021, j'ai envie de dire, vous n'avez plus besoin de jQuery ! Nous avons des supers alternatives sans librairies (ES6, etc.), et si vous voulez gagner du temps ? Je vous conseille plutôt la mise en place de Framework autorisant à être intégré comme des librairies (c'est-à-dire dans un petit morceau du site) comme par exemple VueJS.
 
 **Attention, je ne dis pas que jQuery est un mauvais choix ! Je pense juste que celui-ci ne doit pas/plus être automatique en 2021**
 :::
