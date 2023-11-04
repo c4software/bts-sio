@@ -16,6 +16,15 @@ Dans le [TP Larablog](../laravel/larablog.md), nous avons créé une plateforme 
 - Installer les dépendances : `composer install`
 - Lancer le serveur : `php artisan serve`
 
+Pour rappel, la plateforme Larablog permet :
+
+- Création de compte.
+- Connexion / Déconnexion.
+- CRUD des articles (création, modification, suppression).
+- Consultation des articles.
+- Like d'article (avec compte utilisateur).
+- Système de commentaires (avec compte utilisateur).
+
 ## Introduction
 
 Dans ce TP nous allons explorer la modernisation d'un site Web classique en ajoutant de la réactivité. Nous allons voir comment le JavaScript et plus particulièrement l'Ajax et VueJS peuvent nous aider à améliorer l'expérience d'un utilisateur.
