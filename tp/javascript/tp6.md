@@ -587,7 +587,7 @@ Un peu de détail sur le résultat :
 - Chaque commentaire est un tableau associatif qui contient les informations du commentaire.
 - Les deux méthodes retournent le même résultat, c'est-à-dire que la méthode « addComment » retourne le même résultat que la méthode « getComments ».
 
-### Étape 1b : Nétoyage du code
+### Étape 1b : Nettoyage du code
 
 Le code que nous avons écrit est normalement déjà présent dans votre projet, mais dans la partie non API. Nous allons donc supprimer le code de la partie non API. Nous allons donc supprimer les méthodes « getComments » et « addComment » du contrôleur « ArticleController ».
 
