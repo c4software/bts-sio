@@ -124,6 +124,7 @@ module.exports = [
               "/tp/laravel/authentification",
               "/tp/laravel/generation_model",
               "/tp/laravel/larablog.md",
+              "/tp/javascript/tp6.md",
               "/tp/laravel/api_produit",
               "/tp/ops/deployer-laravel.md"]
           }
