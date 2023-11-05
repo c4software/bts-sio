@@ -2,7 +2,7 @@
 description: Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux exemples, puis nous allons voir comment utiliser une API.
 ---
 
-# Ajouter de l'Ajax dans Larablog
+# Larablog 2.0 (Ajax & VueJS)
 
 Dans le [TP Larablog](../laravel/larablog.md), nous avons créé une plateforme de blog en utilisant uniquement Laravel (Blade, Eloquent, etc). Ça fonctionne, mais vous l'avez certainement remarqué, nous avons des pages qui se rechargent entièrement à chaque fois. Dans ce tp, nous allons voir comment ajouter du JavaScript afin d'améliorer l'expérience utilisateur.
 
