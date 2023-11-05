@@ -740,8 +740,8 @@ Vous allez devoir utiliser password_verify() pour vérifier le mot de passe.
 
 Pour aller plus loin dans la partie API, vous pouvez :
 
-- Utiliser `sanctum` pour créer des tokens d'authentification. <<https://laravel.com/docs/9.x/sanctum>
-- Utiliser les `abilities` pour gérer les droits d'accès. <https://laravel.com/docs/9.x/sanctum#token-abilities>
+- Utiliser `sanctum` pour créer des tokens d'authentification. <<https://laravel.com/docs/10.x/sanctum>
+- Utiliser les `abilities` pour gérer les droits d'accès. <https://laravel.com/docs/10.x/sanctum#token-abilities>
 
 Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous avons « juste » la logique pour :
 
