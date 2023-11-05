@@ -283,7 +283,7 @@ Pour que notre code fonctionne, nous allons évidemment devoir modifier la page 
 
 ![Schéma de la page de l'article](./res/larablog_div_like.jpg)
 
-Dans **mon cas**, j'ai modifié mon code HTML comme ceci :
+::: details Dans **mon cas**, j'ai modifié mon code HTML comme ceci :
 
 ```html
 @auth
@@ -304,6 +304,8 @@ Un peu de détail sur ce code :
 - Nous utilisons la directive `@auth` afin de vérifier si l'utilisateur est connecté.
 - J'ai ajouté un élément HTML `<div id="like">` qui englobe le bouton « like » et le compteur de like.
 - J'ai ajouté un élément HTML `<script type="module" src="{{ asset('like.js') }}"></script>` qui permet d'inclure le fichier « like.js » dans la page.
+
+:::
 
 Je vous laisse mettre en place ce code dans votre projet. Si vous avez des difficultés, n'hésitez pas à me demander de l'aide. Une fois intégré, vous devriez avoir dans votre console le message « Démarrage du système de like en Vue.js ».
 
@@ -396,7 +398,7 @@ Pour que notre code fonctionne, nous allons évidemment devoir modifier la page 
 - En bleu : Le code qui affiche le nombre de like. `@{{ count }}` permet d'afficher la valeur de la variable réactive `count`. La variable réactive `count` est mise à jour automatiquement par le composant. C'est-à-dire que si la valeur de la variable `count` change, alors le DOM sera mis à jour automatiquement.
   - Le `@` permet d'indiquer à Blade que le code entre accolades doit être interprété par VueJS et non par Blade.
 
-Dans **mon cas**, Le code final ressemble à :
+::: details Dans **mon cas**, Le code final ressemble à :
 
 ```html
 @auth
@@ -411,6 +413,8 @@ Dans **mon cas**, Le code final ressemble à :
 <script type="module" src="{{ asset('like.js') }}"></script>
 @endauth
 ```
+
+:::
 
 C'est à vous, je vous laisse mettre en place ce code dans votre projet. Si vous avez des difficultés, n'hésitez pas à me demander de l'aide. Une fois intégré, vous devriez obtenir :
 
