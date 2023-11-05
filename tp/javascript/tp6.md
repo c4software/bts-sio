@@ -154,6 +154,21 @@ Nous avons maintenant un nouveau contrôleur, nous allons donc pouvoir commencer
 
 ### Étape 2 : Ajout des méthodes
 
+Pour retourner du JSON, nous allons utiliser la méthode « json » de Laravel. Nous allons donc ajouter cette méthode dans notre contrôleur :
+
+```php
+public function getLike(Article $article)
+{
+    return response()->json(['like' => 666]);
+}
+```
+
+Je vous laisse réfléchir au code que nous pourrions mettre dans ces deux méthodes. Vous l'avez déjà fait dans le projet Larablog, mais je vous laisse réfléchir à la logique que nous allons mettre en place.
+
+Une fois réfléchi je vous laisse le mettre en place dans votre projet.
+
+::: details Besoin d'aide ?
+
 Nous allons maintenant ajouter les méthodes dans notre contrôleur. Nous allons commencer par la méthode « getLike » :
 
 ```php
@@ -183,7 +198,9 @@ public function addLike(Article $article)
 
 Cette méthode est très similaire à la précédente, nous avons juste ajouté l'incrémentation du compteur de like.
 
-::: tip Que retournent les méthodes ?
+:::
+
+::: tip Que doivent retourner les méthodes ?
 
 Nous allons observer le résultat avec PostMan, mais en attendant, voilà ce que retournent les méthodes :
 
@@ -202,7 +219,6 @@ Nous allons observer le résultat avec PostMan, mais en attendant, voilà ce que
 Nous avons donc dans les deux cas un JSON avec une clé « like » et une valeur qui correspond au nombre de like.
 
 :::
-
 
 Ici, vous observerez que nous avons du code très similaire au code d'origine. Nous avons juste extrait la partie « récupération de l'article » et « sauvegarde de l'article » dans le contrôleur. En effet, quand nous travaillons avec des API, « nous oublions » la partie « affichage » afin de nous concentrer sur la données brute.
 
@@ -467,7 +483,9 @@ Route::middleware('web')->group(function () {
 });
 ```
 
-Nous allons maintenant ajouter les méthodes dans notre contrôleur :
+Nous allons maintenant ajouter les méthodes dans notre contrôleur, contrairement au code que vous aviez écrit dans le projet Larablog, ici nous allons passer par le modèle `Comment` afin de récupérer les commentaires AINSI que les informations de l'utilisateur qui a écrit le commentaire.
+
+En effet, ici nous nous concentrons sur la données, il est donc plus logique de passer par le modèle `Comment` afin de récupérer les commentaires plutôt que de passer par le modèle `Article` qui récupèrera des données d'article non utiles dans notre API.
 
 ```php
 // Récupération des commentaires d'un article
@@ -738,6 +756,15 @@ Pour l'instant, notre page n'affiche rien tant que les commentaires ne sont pas 
 ```
 
 Je vous laisse mettre en place ce code dans votre projet, vous allez également devoir modifier le code du composant afin de modifier la variable réactive `comments` afin de mettre `null` au lieu de `[]`. Cela permettra d'afficher le message de chargement.
+
+### Créer l'API permettant d'avoir les articles
+
+Maintenant que vous avez vu comment mettre en place une API, je vous laisse mettre en place une API permettant de récupérer les articles. Vous devrez donc :
+
+- Créer une route dans le fichier « routes/api.php ».
+- Créer une méthode dans le contrôleur « ApiController ».
+- Tester votre API avec PostMan.
+- Créer une version de votre home page qui utilise votre API.
 
 ### Bonus: Sauvegarde du commentaire
 
