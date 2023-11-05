@@ -4,7 +4,7 @@ description: Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux
 
 # Larablog 2.0 (Ajax & VueJS)
 
-Dans le [TP Larablog](../laravel/larablog.md), nous avons créé une plateforme de blog en utilisant uniquement Laravel (Blade, Eloquent, etc). Ça fonctionne, mais vous l'avez certainement remarqué, nous avons des pages qui se rechargent entièrement à chaque fois. Dans ce tp, nous allons voir comment ajouter du JavaScript afin d'améliorer l'expérience utilisateur.
+Dans le [TP Larablog](../laravel/larablog.md), nous avons créé une plateforme de blog en utilisant uniquement Laravel (Blade, Eloquent, etc). Ça fonctionne, mais vous l'avez certainement remarqué, nous avons des pages qui se rechargent entièrement à chaque fois que nous effectuons une opération. Dans ce tp, nous allons voir comment ajouter du JavaScript afin d'améliorer l'expérience utilisateur.
 
 ::: details Sommaires
 [[toc]]
@@ -34,7 +34,9 @@ Pour rappel, la plateforme Larablog permet :
 
 Dans ce TP nous allons explorer la modernisation d'un site Web classique en ajoutant de la réactivité. Nous allons voir comment le JavaScript et plus particulièrement l'Ajax et VueJS peuvent nous aider à améliorer l'expérience d'un utilisateur.
 
-En détail nous allons créer des API (Application Programming Interface) qui vont nous retourner des données au format JSON, puis nous allons les consommer dans notre site Web. Mais avant tout, **pourquoi faire ça ?** L'avantage de découper le traitement comme ça. C'est que nous pourrions très simplement créer un client « Mobile », et ça sans toucher au code de notre serveur. 
+L'une des forces de VueJS est sa simplicité et sa facilité d'intégration dans un projet existant. Ici nous allons l'utiliser pour améliorer le projet Larablog afin de lui donner le comportement des sites type X, Youtube, etc.
+
+En détail nous allons créer des API (Application Programming Interface) qui vont nous retourner des données au format JSON, puis nous allons les consommer dans notre site Web. Mais avant tout, **pourquoi faire ça ?** L'avantage de découper le traitement comme ça. C'est que nous pourrions très simplement créer un client « Mobile », et ça sans toucher au code de notre serveur.
 
 Pleins d'avantages :
 
