@@ -585,46 +585,6 @@ Remplacer le toast dans votre interface
 
 ---
 
-### Les Dialog
-
-Interaction « complexe » avec l'utilisateur (Choix…)
-
-![dialog.png](./img/dialog.png)
-
----
-
-## C'est à vous
-
-Ajouter une Dialog dans votre interface.
-
-Nous allons utiliser la librairie [Material Dialog](https://github.com/afollestad/material-dialogs)
-
----
-
-## Sans librairie
-
-Grâce à [`Material.io`](https://material.io/develop/android/docs/getting-started)
-
----
-
-## Material ?
-
-Ensemble « de règles » / de bonne pratique pour avoir des interfaces de qualités _ou_ cohérentes.
-
----
-
-## Ajouter la librairie.
-
-### C'est à vous !
-
----
-
-## Créer une Dialog avec la proposition de Google
-
-[La documentation](https://material.io/develop/android/components/dialogs)
-
----
-
 ## Interagir avec l'utilisateur
 
 ### 3 étapes
@@ -635,21 +595,13 @@ Ensemble « de règles » / de bonne pratique pour avoir des interfaces de quali
 
 ---
 
-## Version Java
-
----
-
 ## Le listener
 
 ```java
-findViewById<Button>(R.id.myButton).setOnClickListener(l -> {
+findViewById<Button>(R.id.myButton).setOnClickListener {
     Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
-});
+};
 ```
-
----
-
-![Migration](./img/migrate_java_1_8.png)
 
 ---
 
@@ -745,6 +697,46 @@ listOf<Device>().forEach { device ->
 ```
 
 ⚠️ Vous avez le choix.
+
+---
+
+### Les Dialog
+
+Interaction « complexe » avec l'utilisateur (Choix…)
+
+![dialog.png](./img/dialog.png)
+
+---
+
+## C'est à vous
+
+Ajouter une Dialog dans votre interface.
+
+Nous allons utiliser la librairie [Material Dialog](https://github.com/afollestad/material-dialogs)
+
+---
+
+## Sans librairie
+
+Grâce à [`Material.io`](https://material.io/develop/android/docs/getting-started)
+
+---
+
+## Material ?
+
+Ensemble « de règles » / de bonne pratique pour avoir des interfaces de qualités _ou_ cohérentes.
+
+---
+
+## Ajouter la librairie.
+
+### C'est à vous !
+
+---
+
+## Créer une Dialog avec la proposition de Google
+
+[La documentation](https://material.io/develop/android/components/dialogs)
 
 ---
 
