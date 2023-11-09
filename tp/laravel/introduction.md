@@ -278,16 +278,20 @@ Question :
 Maintenant que nous avons notre template de base, nous allons l’utiliser dans le template « Welcome ». Remplacer le contenu de `resources/views/welcome.blade.php` par :
 
 ```html
-@extends('layouts.base') @section('title', 'Bienvenue') @section('content')
-<div class="title m-b-md">Laravel</div>
+@extends('layouts.base') 
 
-<div class="links">
-  <a href="https://laravel.com/docs">Documentation</a>
-  <a href="https://laracasts.com">Laracasts</a>
-  <a href="https://laravel-news.com">News</a>
-  <a href="https://forge.laravel.com">Forge</a>
-  <a href="https://github.com/laravel/laravel">GitHub</a>
-</div>
+@section('title', 'Bienvenue') 
+
+@section('content')
+  <div class="title m-b-md">Laravel</div>
+
+  <div class="links">
+    <a href="https://laravel.com/docs">Documentation</a>
+    <a href="https://laracasts.com">Laracasts</a>
+    <a href="https://laravel-news.com">News</a>
+    <a href="https://forge.laravel.com">Forge</a>
+    <a href="https://github.com/laravel/laravel">GitHub</a>
+  </div>
 @endsection
 ```
 

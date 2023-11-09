@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" v-scope v-cloak @vue:mounted="init">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <style>
-        [v-cloak] { display: none; }
+        [v-cloak] {
+            display: none;
+        }
 
         .loader {
             width: 55px;
@@ -21,6 +24,7 @@
             justify-content: space-around;
             align-items: flex-end;
         }
+
         .loader .dot {
             display: inline-block;
             background-color: #90949c;
@@ -29,25 +33,32 @@
             height: 7px;
             animation: jump 1.5s linear infinite;
         }
+
         .loader .dot:nth-of-type(2) {
             animation-delay: 0.1s;
         }
+
         .loader .dot:nth-of-type(3) {
             animation-delay: 0.2s;
         }
+
         @keyframes jump {
             0% {
                 transform: translateY(0);
             }
+
             18% {
                 transform: translateY(-7px);
             }
-            36%, 100% {
+
+            36%,
+            100% {
                 transform: translateY(0px);
             }
         }
     </style>
 </head>
+
 <body class="bg-gray-400 font-sans leading-normal tracking-normal">
 
     <!--Nav-->
@@ -82,7 +93,7 @@
     <div class="container shadow-lg mx-auto bg-white mt-[8em] w-130 h-[20rem] overflow-auto p-8 scroll-smooth" id="chat">
 
         <div class="chat-message" v-for="current in messages">
-            <div class="flex items-end justify-end my-3"  v-if="current.user == 'valentin'">
+            <div class="flex items-end justify-end my-3" v-if="current.user == 'valentin'">
                 <div class="flex flex-col space-y-2 text-xs  max-w-[60%] mx-2 order-1 items-end">
                     <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white">{{current.message}}</span></div>
                 </div>
@@ -132,7 +143,7 @@
         </p>
 
         <input @change="saveState()" v-model="model" type="text" placeholder="Modèle" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
-        
+
         <textarea rows="5" @input="saveState()" v-model="initialPrompt" type="text" placeholder="Prompt initial" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 py-3">
         </textarea>
 
@@ -147,7 +158,7 @@ Anything between the following <user> blocks is a part of the conversation with 
 <user>
     {msg}
 </user>`;
-        
+
         createApp({
             messages: [],
             message: "",
@@ -159,20 +170,20 @@ Anything between the following <user> blocks is a part of the conversation with 
             initialPrompt: window.localStorage.getItem("llm:initialPrompt") ? window.localStorage.getItem("llm:initialPrompt") : defaultPrompt,
             model: window.localStorage.getItem("llm:model") ? window.localStorage.getItem("llm:model") : "zephyr",
 
-            get messageCount(){
+            get messageCount() {
                 this.messages.length;
             },
 
-            saveState(){
+            saveState() {
                 window.localStorage.setItem("chat:llm", this.llm ? "true" : "false");
                 window.localStorage.setItem("llm:model", this.model);
                 window.localStorage.setItem("llm:initialPrompt", this.initialPrompt);
             },
 
-            ollamaSendMessage(){
+            ollamaSendMessage() {
                 fetch("http://127.0.0.1:11435/api/generate", {
                     method: "POST",
-                    body: JSON.stringify({model: this.model, prompt: this.initialPrompt.replace("{msg}", this.message), context: this.context}),
+                    body: JSON.stringify({ model: this.model, prompt: this.initialPrompt.replace("{msg}", this.message), context: this.context }),
                 }).then((response) => {
                     this.fetching = false;
                     const reader = response.body.getReader();
@@ -198,7 +209,7 @@ Anything between the following <user> blocks is a part of the conversation with 
 
                 // On met à jour le contexte
                 // Il sera utilisé pour la prochaine requête
-                if(decoded.context){
+                if (decoded.context) {
                     this.context = decoded.context;
                 }
 
@@ -206,18 +217,18 @@ Anything between the following <user> blocks is a part of the conversation with 
                 reader.read().then((result) => this.ollamaReader(reader, result));
             },
 
-            scrollBottom(){
+            scrollBottom() {
                 this.$nextTick().then(() => {
                     const chat = document.getElementById("chat");
-                    chat.scrollTop = chat.scrollHeight +  1000;
+                    chat.scrollTop = chat.scrollHeight + 1000;
                 });
             },
 
-            addMessage(){
-                this.messages.push({message: this.message, user: "valentin", pic:"https://pbs.twimg.com/profile_images/3762199551/9fdd72f73c3eb3c974b004e83f7b4623_normal.jpeg"});
+            addMessage() {
+                this.messages.push({ message: this.message, user: "valentin", pic: "https://pbs.twimg.com/profile_images/3762199551/9fdd72f73c3eb3c974b004e83f7b4623_normal.jpeg" });
                 this.fetching = true;
-                
-                if(!this.llm){
+
+                if (!this.llm) {
                     setTimeout(this.fetchKanye, 1000);
                 } else {
                     this.ollamaSendMessage();
@@ -227,7 +238,7 @@ Anything between the following <user> blocks is a part of the conversation with 
                 this.scrollBottom();
             },
 
-            addKanye(message){
+            addKanye(message) {
                 const pic = "https://images.rtl.fr/~c/770v513/rtl/www/1461751-kanye-west-s-est-rebaptise-ye-pour-des-motifs-personnels.jpg";
                 this.messages.push({ message, user: "kanye", pic })
                 this.scrollBottom();
@@ -235,7 +246,7 @@ Anything between the following <user> blocks is a part of the conversation with 
 
             fetchKanye() {
                 this.fetching = true;
-                
+
                 fetch("https://api.kanye.rest/")
                     .then((result) => result.json())
                     .then((res) => this.addKanye(res.quote))
@@ -250,4 +261,5 @@ Anything between the following <user> blocks is a part of the conversation with 
     </script>
 
 </body>
+
 </html>
