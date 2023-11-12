@@ -626,7 +626,7 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ---
 
-## Plusieurs formes
+## Plusieurs formes d'authentification
 
 - **Mémorielle** qui représente une chose que l'intéressé connaît (**un secret**),
 - **Matérielle** qui se réfère à quelque chose qu'il possède (**un objet**),
