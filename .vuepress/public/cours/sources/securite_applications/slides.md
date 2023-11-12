@@ -585,7 +585,7 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 - Un mot de passe ne doit jamais être stocké en claire.
 - Un mot de passe doit être haché (non réversible).
 - Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
-- **Un mot de passe seul n'est souvent pas suffisant.** (Double authentification)
+- Un mot de passe seul n'est souvent pas suffisant (Double authentification).
 
 ---
 
