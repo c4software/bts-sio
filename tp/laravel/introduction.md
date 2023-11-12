@@ -23,8 +23,8 @@ Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiqu
 
 ### Windows
 
-::: warning Xamp ou Wamp
-Si vous utilisez Xamp aucune manipulation n’est nécessaire.
+::: warning Xampp ou Wamp
+Si vous utilisez Xampp aucune manipulation n’est nécessaire.
 :::
 
 Pour « installer » Laravel sous Windows, vous devez dans un premier temps installer PHP 8 sur votre machine. Dans un premier temps, installer Wamp + PHP 8 :
