@@ -523,7 +523,7 @@ Vous avez remarqué que nous n'avons pas utilisé `req.params` mais `req.body`. 
 
 :::
 
-Pour tester cette route, nous allons utiliser ~~Postman~~ HoppScotch. ~~Postman~~ HoppScotch est un outil qui permet de réaliser des requêtes HTTP. Vous pouvez le télécharger [ici](https://hoppscotch.io/).
+Pour tester cette route, nous allons utiliser PostMan/HoppScotch/Bruno. PostMan/HoppScotch/Bruno sont des outils qui permettent de réaliser des requêtes HTTP. Vous pouvez les télécharger [HoppScotch](https://hoppscotch.io/), [PostMan](https://www.postman.com/), [Bruno](https://www.usebruno.com/).
 
 HoppScotch est une alternative Gratuite et Open Source à Postman. Si vous souhaitez utiliser Postman, vous pouvez le télécharger [ici](https://www.postman.com/).
 
@@ -1099,7 +1099,7 @@ Il faut évidement laisser le code existant, ici nous ajoutons simplement les ro
 - Vous noterez que nous avons ajouté `app.use(express.json());`. Cette ligne permet de dire à Express que nous allons utiliser le format JSON pour les requêtes. Cela nous permettra de récupérer les données de la requête via `req.body`.
 - Vosu noterez également que nous avons ajouté `app.use("/readers", readerRouter);`. Cette ligne permet de dire à Express que nous allons utiliser le router `readerRouter` pour la route `/readers`, les routes que nous avons créé dans le fichier `ReaderRoute.ts` seront donc accessible sous le prefix `/readers`.
 
-Je vous laisse tester les routes avec HoppScotch (ou Postman)) :
+Je vous laisse tester les routes avec HoppScotch (ou Postman ou Bruno)) :
 
 - `GET /readers` : Récupérer tous les lecteurs.
 - `POST /readers` : Créer un lecteur.
@@ -1146,7 +1146,7 @@ app.use("/readers", readerRouter);
 
 ### Tester les routes
 
-Nous avons l'ensemble de notre API, il est temps de la tester. Pour cela, nous allons utiliser ~~Postman~~ HoppScotch. Dans HoppScotch, nous allons créer une requête pour chaque route.
+Nous avons l'ensemble de notre API, il est temps de la tester. Pour cela, nous allons utiliser HoppScotch/PostMan/Bruno. Dans HoppScotch/PostMan/Bruno, nous allons créer une requête pour chaque route.
 
 Je vous laisse tester les routes avec HoppScotch :
 
@@ -1327,7 +1327,7 @@ Vous voulez en savoir plus sur les middlewares ? Je vous invite à lire la docum
 
 ### Tester le bon fonctionnement
 
-Maintenant que nous avons créé le middleware, nous allons pouvoir le tester. Pour cela, nous allons utiliser HoppScotch (ou PostMan). Vous ne devriez pas pouvoir accéder à une route sans token.
+Maintenant que nous avons créé le middleware, nous allons pouvoir le tester. Pour cela, nous allons utiliser HoppScotch (ou PostMan ou Bruno). Vous ne devriez pas pouvoir accéder à une route sans token.
 
 Une fois le Bearer Token ajouté, vous devriez pouvoir accéder à la ressource :
 
