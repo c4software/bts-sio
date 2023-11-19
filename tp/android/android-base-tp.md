@@ -564,6 +564,13 @@ private fun hasPermission(): Boolean {
 ### Demander la permission
 
 ```kotlin
+companion object {
+    // Permet d'identifier le fait que nous demandons la permission
+    // Le code peut-être n'importe quoi, mais il doit être unique
+    // Il vous permettra de savoir si l'utilisateur revient de la demande de permission (onRequestPermissionsResult)
+    private const val PERMISSION_REQUEST_LOCATION = 9999
+}
+
 private fun requestPermission() {
     if (!hasPermission()) {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_LOCATION)
@@ -605,7 +612,7 @@ Je vous laisse écrire le code afin d'envoyer l'utilisateur vers les paramètres
 
 C'est le code « métier ». Les méthodes précédentes sont par contre génériques, et toujours présentes, quelle que soit la problématique.
 
-_Obtenir la location : Via « la dernière connue »:_
+_Obtenir la location : Via « la dernière connue » :_
 
 ```kotlin
 private fun getLocation() {
@@ -620,7 +627,7 @@ private fun getLocation() {
 }
 ```
 
-_Obtenir la localisation 2 pour avoir la position réelle (pas la dernière obtenue par le système):_
+_Obtenir la localisation 2 pour avoir la position réelle (pas la dernière obtenue par le système) :_
 
 ```kotlin
 private fun getLocation() {
@@ -633,7 +640,7 @@ private fun getLocation() {
 }
 ```
 
-_Obtenir la localisation 3 : Via les Play Services_
+_Obtenir la localisation 3 : Via les Play Services :_
 
 ```kotlin
 private fun getLocation() {
