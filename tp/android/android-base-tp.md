@@ -615,6 +615,10 @@ C'est le code « métier ». Les méthodes précédentes sont par contre génér
 _Obtenir la location : Via « la dernière connue » :_
 
 ```kotlin
+private fun geoCode(location: Location){
+    Toast.makeText(this, "Lat: ${location.latitude} - Long: ${location.longitude}", Toast.LENGTH_SHORT).show()
+}
+
 private fun getLocation() {
     if (hasPermission()) {
         val locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager?
@@ -630,6 +634,10 @@ private fun getLocation() {
 _Obtenir la localisation 2 pour avoir la position réelle (pas la dernière obtenue par le système) :_
 
 ```kotlin
+private fun geoCode(location: Location){
+    Toast.makeText(this, "Lat: ${location.latitude} - Long: ${location.longitude}", Toast.LENGTH_SHORT).show()
+}
+
 private fun getLocation() {
     if (hasPermission()) {
         val locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager?
@@ -643,6 +651,10 @@ private fun getLocation() {
 _Obtenir la localisation 3 : Via les Play Services :_
 
 ```kotlin
+private fun geoCode(location: Location){
+    Toast.makeText(this, "Lat: ${location.latitude} - Long: ${location.longitude}", Toast.LENGTH_SHORT).show()
+}
+
 private fun getLocation() {
     if (hasPermission()) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
