@@ -669,7 +669,7 @@ private fun geoCode(location: Location){
     val geocoder = Geocoder(this, Locale.getDefault())
     val results = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
-    if (results.isNotEmpty()) {
+    if (results?.isNotEmpty() == true) {
         locationText.text = results[0].getAddressLine(0)
     }
 }
