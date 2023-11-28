@@ -714,7 +714,7 @@ class ArticleComment extends Model{}
 
 - Que constatez-vous ?
 - Combien il y a-t-il de table ?
-- Voyez-vous un problème ?
+- Voyez-vous un/des problème(s) ?
 
 ---
 
