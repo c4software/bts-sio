@@ -446,13 +446,20 @@ Aide mémoire écriture et comparaison
 
 ---
 
-## L'héritage
+<!-- .slide: data-background="./res/heritage.jpg" data-auto-animate style="color: white" -->
+
+L'héritage
 
 Ça vous évoque quoi ?
 
 ---
 
-L’héritage permet, lors de la déclaration d’une nouvelle classe, d'y inclure les caractéristiques d’une autre classe.
+L’héritage permet :
+
+- lors de la déclaration d’une classe, d'y inclure les caractéristiques d’une autre classe.
+- Partager de la logique.
+- Partager des propriétés ou des méthodes.
+- Factoriser du code.
 
 ---
 
@@ -462,7 +469,7 @@ L’héritage permet, lors de la déclaration d’une nouvelle classe, d'y inclu
 
 ---
 
-```php
+```php [1-16|18-30|32-36]
 class Mammifere {
     protected $vertebre = true;
     protected $espece = "";
@@ -510,13 +517,49 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
-![Héritage](./res/heritage_chat_animal.png)
+![Héritage](./res/animal-1.png)
 
 ---
+
+<!-- .slide: data-background="./res/cat.jpg" -->
 
 - Est-ce que le chien et le chat peuvent avoir un nom ?
 - Pourquoi l'héritage est intéressant ici ?
 - Écrire la définition de classe correspondant au diagrame UML.
+
+---
+
+<fieldset>
+  <legend>L'UML</legend>
+  <ul>
+    <li>Permet d'avoir un langage d'échange</li>
+    <li>Standardise</li>
+  </ul>
+</fieldset>
+
+---
+
+## Un instant…
+
+Comment détecter l'héritage ?
+
+- Si vous pouvez dire **_« est un »_**.
+- Si votre classe possède le mot-clé **_extends_**.
+
+---
+
+- **_« Un chien est un mammifère »_**
+- `class Chien extends Mammifere`
+
+---
+
+- **_« Un chat est un mammifère »_**
+- `class Chat extends Mammifere`
+
+---
+
+- **_« Un humain est un mammifère »_**
+- `class Humain extends Mammifere`
 
 ---
 
@@ -556,6 +599,21 @@ Deux solutions :
 $this->estMajeur(); // Appel la méthode la plus proche.
 parent::estMajeur(); // Appel la méthode de la classe parente.
 ```
+
+---
+
+## La plus proche ?
+
+- La méthode la plus proche dans l'arbre d'héritage.
+- Si la méthode n'existe pas dans la classe fille, alors on remonte dans l'arbre d'héritage.
+
+Car les enfants peuvent **redéfinir** les méthodes de la classe parente. (**Redéfinition** / **Override**)
+
+---
+
+En cas de redéfinition, on parle de spécialisation. C'est-à-dire que l'enfant sera plus précis que le parent.
+
+Un exemple du monde réel ?
 
 ---
 

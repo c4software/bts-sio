@@ -1,5 +1,4 @@
-import { HORIZONTAL_SLIDES_SELECTOR, VERTICAL_SLIDES_SELECTOR } from '../utils/constants.js'
-import { extend, queryAll, closest } from '../utils/util.js'
+import { extend, queryAll, closest, getMimeTypeFromFile, encodeRFC3986URI } from '../utils/util.js'
 import { isMobile } from '../utils/device.js'
 
 import fitty from 'fitty';
@@ -25,6 +24,10 @@ export default class SlideContent {
 	 * @param {HTMLElement} element
 	 */
 	shouldPreload( element ) {
+
+		if( this.Reveal.isScrollView() ) {
+			return true;
+		}
 
 		// Prefer an explicit global preload setting
 		let preload = this.Reveal.getConfig().preloadIframes;
@@ -109,7 +112,9 @@ export default class SlideContent {
 					// URL(s)
 					else {
 						backgroundContent.style.backgroundImage = backgroundImage.split( ',' ).map( background => {
-							return `url(${encodeURI(background.trim())})`;
+							// Decode URL(s) that are already encoded first
+							let decoded = decodeURI(background.trim());
+							return `url(${encodeRFC3986URI(decoded)})`;
 						}).join( ',' );
 					}
 				}
@@ -137,7 +142,13 @@ export default class SlideContent {
 
 					// Support comma separated lists of video sources
 					backgroundVideo.split( ',' ).forEach( source => {
-						video.innerHTML += '<source src="'+ source +'">';
+						let type = getMimeTypeFromFile( source );
+						if( type ) {
+							video.innerHTML += `<source src="${source}" type="${type}">`;
+						}
+						else {
+							video.innerHTML += `<source src="${source}">`;
+						}
 					} );
 
 					backgroundContent.appendChild( video );
@@ -181,15 +192,14 @@ export default class SlideContent {
 	}
 
 	/**
-	 * Applies JS-dependent layout helpers for the given slide,
-	 * if there are any.
+	 * Applies JS-dependent layout helpers for the scope.
 	 */
-	layout( slide ) {
+	layout( scopeElement ) {
 
 		// Autosize text with the r-fit-text class based on the
 		// size of its container. This needs to happen after the
 		// slide is visible in order to measure the text.
-		Array.from( slide.querySelectorAll( '.r-fit-text' ) ).forEach( element => {
+		Array.from( scopeElement.querySelectorAll( '.r-fit-text' ) ).forEach( element => {
 			fitty( element, {
 				minSize: 24,
 				maxSize: this.Reveal.getConfig().height * 0.8,

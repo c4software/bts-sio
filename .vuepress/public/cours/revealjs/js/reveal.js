@@ -1,7 +1,10 @@
 import SlideContent from './controllers/slidecontent.js'
 import SlideNumber from './controllers/slidenumber.js'
+import JumpToSlide from './controllers/jumptoslide.js'
 import Backgrounds from './controllers/backgrounds.js'
 import AutoAnimate from './controllers/autoanimate.js'
+import ScrollView from './controllers/scrollview.js'
+import PrintView from './controllers/printview.js'
 import Fragments from './controllers/fragments.js'
 import Overview from './controllers/overview.js'
 import Keyboard from './controllers/keyboard.js'
@@ -10,7 +13,6 @@ import Controls from './controllers/controls.js'
 import Progress from './controllers/progress.js'
 import Pointer from './controllers/pointer.js'
 import Plugins from './controllers/plugins.js'
-import Print from './controllers/print.js'
 import Touch from './controllers/touch.js'
 import Focus from './controllers/focus.js'
 import Notes from './controllers/notes.js'
@@ -26,14 +28,14 @@ import {
 } from './utils/constants.js'
 
 // The reveal.js version
-export const VERSION = '4.1.3';
+export const VERSION = '5.0.1';
 
 /**
  * reveal.js
  * https://revealjs.com
  * MIT licensed
  *
- * Copyright (C) 2020 Hakim El Hattab, https://hakim.se
+ * Copyright (C) 2011-2022 Hakim El Hattab, https://hakim.se
  */
 export default function( revealElement, options ) {
 
@@ -101,8 +103,11 @@ export default function( revealElement, options ) {
 		// may be multiple presentations running in parallel.
 		slideContent = new SlideContent( Reveal ),
 		slideNumber = new SlideNumber( Reveal ),
+		jumpToSlide = new JumpToSlide( Reveal ),
 		autoAnimate = new AutoAnimate( Reveal ),
 		backgrounds = new Backgrounds( Reveal ),
+		scrollView = new ScrollView( Reveal ),
+		printView = new PrintView( Reveal ),
 		fragments = new Fragments( Reveal ),
 		overview = new Overview( Reveal ),
 		keyboard = new Keyboard( Reveal ),
@@ -111,7 +116,6 @@ export default function( revealElement, options ) {
 		progress = new Progress( Reveal ),
 		pointer = new Pointer( Reveal ),
 		plugins = new Plugins( Reveal ),
-		print = new Print( Reveal ),
 		focus = new Focus( Reveal ),
 		touch = new Touch( Reveal ),
 		notes = new Notes( Reveal );
@@ -137,6 +141,11 @@ export default function( revealElement, options ) {
 		// 4. Options passed to Reveal.initialize
 		// 5. Query params
 		config = { ...defaultConfig, ...config, ...options, ...initOptions, ...Util.getQueryHash() };
+
+		// Legacy support for the ?print-pdf query
+		if( /print-pdf/gi.test( window.location.search ) ) {
+			config.view = 'print';
+		}
 
 		setViewport();
 
@@ -190,17 +199,23 @@ export default function( revealElement, options ) {
 		// Prevent the slides from being scrolled out of view
 		setupScrollPrevention();
 
+		// Adds bindings for fullscreen mode
+		setupFullscreen();
+
 		// Resets all vertical slides so that only the first is visible
 		resetVerticalSlides();
 
 		// Updates the presentation to match the current configuration values
 		configure();
 
-		// Read the initial hash
-		location.readURL();
-
 		// Create slide backgrounds
 		backgrounds.update( true );
+
+		// Activate the print/scroll view if configured
+		activateInitialView();
+
+		// Read the initial hash
+		location.readURL();
 
 		// Notify listeners that the presentation is ready but use a 1ms
 		// timeout to ensure it's not fired synchronously after #initialize()
@@ -220,19 +235,41 @@ export default function( revealElement, options ) {
 			});
 		}, 1 );
 
-		// Special setup and config is required when printing to PDF
-		if( print.isPrintingPDF() ) {
-			removeEventListeners();
+	}
 
-			// The document needs to have loaded for the PDF layout
-			// measurements to be accurate
-			if( document.readyState === 'complete' ) {
-				print.setupPDF();
+	/**
+	 * Activates the correct reveal.js view based on our config.
+	 * This is only invoked once during initialization.
+	 */
+	function activateInitialView() {
+
+		const activatePrintView = config.view === 'print';
+		const activateScrollView = config.view === 'scroll' || config.view === 'reader';
+
+		if( activatePrintView || activateScrollView ) {
+
+			if( activatePrintView ) {
+				removeEventListeners();
 			}
 			else {
-				window.addEventListener( 'load', () => {
-					print.setupPDF();
-				} );
+				touch.unbind();
+			}
+
+			// Avoid content flickering during layout
+			dom.viewport.classList.add( 'loading-scroll-mode' );
+
+			if( activatePrintView ) {
+				// The document needs to have loaded for the PDF layout
+				// measurements to be accurate
+				if( document.readyState === 'complete' ) {
+					printView.activate();
+				}
+				else {
+					window.addEventListener( 'load', () => printView.activate() );
+				}
+			}
+			else {
+				scrollView.activate();
 			}
 		}
 
@@ -250,7 +287,18 @@ export default function( revealElement, options ) {
 
 		if( !config.showHiddenSlides ) {
 			Util.queryAll( dom.wrapper, 'section[data-visibility="hidden"]' ).forEach( slide => {
-				slide.parentNode.removeChild( slide );
+				const parent = slide.parentNode;
+
+				// If this slide is part of a stack and that stack will be
+				// empty after removing the hidden slide, remove the entire
+				// stack
+				if( parent.childElementCount === 1 && /section/i.test( parent.nodeName ) ) {
+					parent.remove();
+				}
+				else {
+					slide.remove();
+				}
+
 			} );
 		}
 
@@ -275,6 +323,7 @@ export default function( revealElement, options ) {
 
 		backgrounds.render();
 		slideNumber.render();
+		jumpToSlide.render();
 		controls.render();
 		progress.render();
 		notes.render();
@@ -368,11 +417,24 @@ export default function( revealElement, options ) {
 	function setupScrollPrevention() {
 
 		setInterval( () => {
-			if( dom.wrapper.scrollTop !== 0 || dom.wrapper.scrollLeft !== 0 ) {
+			if( !scrollView.isActive() && dom.wrapper.scrollTop !== 0 || dom.wrapper.scrollLeft !== 0 ) {
 				dom.wrapper.scrollTop = 0;
 				dom.wrapper.scrollLeft = 0;
 			}
 		}, 1000 );
+
+	}
+
+	/**
+	 * After entering fullscreen we need to force a layout to
+	 * get our presentations to scale correctly. This behavior
+	 * is inconsistent across browsers but a force layout seems
+	 * to normalize it.
+	 */
+	function setupFullscreen() {
+
+		document.addEventListener( 'fullscreenchange', onFullscreenChange );
+		document.addEventListener( 'webkitfullscreenchange', onFullscreenChange );
 
 	}
 
@@ -389,32 +451,7 @@ export default function( revealElement, options ) {
 	function setupPostMessage() {
 
 		if( config.postMessage ) {
-			window.addEventListener( 'message', event => {
-				let data = event.data;
-
-				// Make sure we're dealing with JSON
-				if( typeof data === 'string' && data.charAt( 0 ) === '{' && data.charAt( data.length - 1 ) === '}' ) {
-					data = JSON.parse( data );
-
-					// Check if the requested method can be found
-					if( data.method && typeof Reveal[data.method] === 'function' ) {
-
-						if( POST_MESSAGE_METHOD_BLACKLIST.test( data.method ) === false ) {
-
-							const result = Reveal[data.method].apply( Reveal, data.args );
-
-							// Dispatch a postMessage event with the returned value from
-							// our method invocation for getter functions
-							dispatchPostMessage( 'callback', { method: data.method, result: result } );
-
-						}
-						else {
-							console.warn( 'reveal.js: "'+ data.method +'" is is blacklisted from the postMessage API' );
-						}
-
-					}
-				}
-			}, false );
+			window.addEventListener( 'message', onPostMessage, false );
 		}
 
 	}
@@ -447,8 +484,8 @@ export default function( revealElement, options ) {
 		dom.wrapper.setAttribute( 'data-background-transition', config.backgroundTransition );
 
 		// Expose our configured slide dimensions as custom props
-		dom.viewport.style.setProperty( '--slide-width', config.width + 'px' );
-		dom.viewport.style.setProperty( '--slide-height', config.height + 'px' );
+		dom.viewport.style.setProperty( '--slide-width', typeof config.width === 'string' ? config.width :  config.width + 'px' );
+		dom.viewport.style.setProperty( '--slide-height', typeof config.height === 'string' ? config.height :  config.height + 'px' );
 
 		if( config.shuffle ) {
 			shuffle();
@@ -529,6 +566,7 @@ export default function( revealElement, options ) {
 		controls.bind();
 		focus.bind();
 
+		dom.slides.addEventListener( 'click', onSlidesClicked, false );
 		dom.slides.addEventListener( 'transitionend', onTransitionEnd, false );
 		dom.pauseOverlay.addEventListener( 'click', resume, false );
 
@@ -554,8 +592,69 @@ export default function( revealElement, options ) {
 
 		window.removeEventListener( 'resize', onWindowResize, false );
 
+		dom.slides.removeEventListener( 'click', onSlidesClicked, false );
 		dom.slides.removeEventListener( 'transitionend', onTransitionEnd, false );
 		dom.pauseOverlay.removeEventListener( 'click', resume, false );
+
+	}
+
+	/**
+	 * Uninitializes reveal.js by undoing changes made to the
+	 * DOM and removing all event listeners.
+	 */
+	function destroy() {
+
+		removeEventListeners();
+		cancelAutoSlide();
+		disablePreviewLinks();
+
+		// Destroy controllers
+		notes.destroy();
+		focus.destroy();
+		plugins.destroy();
+		pointer.destroy();
+		controls.destroy();
+		progress.destroy();
+		backgrounds.destroy();
+		slideNumber.destroy();
+		jumpToSlide.destroy();
+
+		// Remove event listeners
+		document.removeEventListener( 'fullscreenchange', onFullscreenChange );
+		document.removeEventListener( 'webkitfullscreenchange', onFullscreenChange );
+		document.removeEventListener( 'visibilitychange', onPageVisibilityChange, false );
+		window.removeEventListener( 'message', onPostMessage, false );
+		window.removeEventListener( 'load', layout, false );
+
+		// Undo DOM changes
+		if( dom.pauseOverlay ) dom.pauseOverlay.remove();
+		if( dom.statusElement ) dom.statusElement.remove();
+
+		document.documentElement.classList.remove( 'reveal-full-page' );
+
+		dom.wrapper.classList.remove( 'ready', 'center', 'has-horizontal-slides', 'has-vertical-slides' );
+		dom.wrapper.removeAttribute( 'data-transition-speed' );
+		dom.wrapper.removeAttribute( 'data-background-transition' );
+
+		dom.viewport.classList.remove( 'reveal-viewport' );
+		dom.viewport.style.removeProperty( '--slide-width' );
+		dom.viewport.style.removeProperty( '--slide-height' );
+
+		dom.slides.style.removeProperty( 'width' );
+		dom.slides.style.removeProperty( 'height' );
+		dom.slides.style.removeProperty( 'zoom' );
+		dom.slides.style.removeProperty( 'left' );
+		dom.slides.style.removeProperty( 'top' );
+		dom.slides.style.removeProperty( 'bottom' );
+		dom.slides.style.removeProperty( 'right' );
+		dom.slides.style.removeProperty( 'transform' );
+
+		Array.from( dom.wrapper.querySelectorAll( SLIDES_SELECTOR ) ).forEach( slide => {
+			slide.style.removeProperty( 'display' );
+			slide.style.removeProperty( 'top' );
+			slide.removeAttribute( 'hidden' );
+			slide.removeAttribute( 'aria-hidden' );
+		} );
 
 	}
 
@@ -619,6 +718,26 @@ export default function( revealElement, options ) {
 		}
 
 		return event;
+
+	}
+
+	/**
+	 * Dispatches a slidechanged event.
+	 *
+	 * @param {string} origin Used to identify multiplex clients
+	 */
+	function dispatchSlideChanged( origin ) {
+
+		dispatchEvent({
+			type: 'slidechanged',
+			data: {
+				indexh,
+				indexv,
+				previousSlide,
+				currentSlide,
+				origin
+			}
+		});
 
 	}
 
@@ -805,7 +924,10 @@ export default function( revealElement, options ) {
 	 */
 	function layout() {
 
-		if( dom.wrapper && !print.isPrintingPDF() ) {
+		if( dom.wrapper && !printView.isActive() ) {
+
+			const viewportWidth = dom.viewport.offsetWidth;
+			const viewportHeight = dom.viewport.offsetHeight;
 
 			if( !config.disableLayout ) {
 
@@ -819,7 +941,9 @@ export default function( revealElement, options ) {
 					document.documentElement.style.setProperty( '--vh', ( window.innerHeight * 0.01 ) + 'px' );
 				}
 
-				const size = getComputedSlideSize();
+				const size = scrollView.isActive() ?
+							 getComputedSlideSize( viewportWidth, viewportHeight ) :
+							 getComputedSlideSize();
 
 				const oldScale = scale;
 
@@ -836,8 +960,9 @@ export default function( revealElement, options ) {
 				scale = Math.max( scale, config.minScale );
 				scale = Math.min( scale, config.maxScale );
 
-				// Don't apply any scaling styles if scale is 1
-				if( scale === 1 ) {
+				// Don't apply any scaling styles if scale is 1 or we're
+				// in the scroll view
+				if( scale === 1 || scrollView.isActive() ) {
 					dom.slides.style.zoom = '';
 					dom.slides.style.left = '';
 					dom.slides.style.top = '';
@@ -846,31 +971,12 @@ export default function( revealElement, options ) {
 					transformSlides( { layout: '' } );
 				}
 				else {
-					// Zoom Scaling
-					// Content remains crisp no matter how much we scale. Side
-					// effects are minor differences in text layout and iframe
-					// viewports changing size. A 200x200 iframe viewport in a
-					// 2x zoomed presentation ends up having a 400x400 viewport.
-					if( scale > 1 && Device.supportsZoom && window.devicePixelRatio < 2 ) {
-						dom.slides.style.zoom = scale;
-						dom.slides.style.left = '';
-						dom.slides.style.top = '';
-						dom.slides.style.bottom = '';
-						dom.slides.style.right = '';
-						transformSlides( { layout: '' } );
-					}
-					// Transform Scaling
-					// Content layout remains the exact same when scaled up.
-					// Side effect is content becoming blurred, especially with
-					// high scale values on ldpi screens.
-					else {
-						dom.slides.style.zoom = '';
-						dom.slides.style.left = '50%';
-						dom.slides.style.top = '50%';
-						dom.slides.style.bottom = 'auto';
-						dom.slides.style.right = 'auto';
-						transformSlides( { layout: 'translate(-50%, -50%) scale('+ scale +')' } );
-					}
+					dom.slides.style.zoom = '';
+					dom.slides.style.left = '50%';
+					dom.slides.style.top = '50%';
+					dom.slides.style.bottom = 'auto';
+					dom.slides.style.right = 'auto';
+					transformSlides( { layout: 'translate(-50%, -50%) scale('+ scale +')' } );
 				}
 
 				// Select all slides, vertical and horizontal
@@ -884,7 +990,7 @@ export default function( revealElement, options ) {
 						continue;
 					}
 
-					if( config.center || slide.classList.contains( 'center' ) ) {
+					if( ( config.center || slide.classList.contains( 'center' ) ) ) {
 						// Vertical stacks are not centred since their section
 						// children will be
 						if( slide.classList.contains( 'stack' ) ) {
@@ -910,7 +1016,25 @@ export default function( revealElement, options ) {
 						}
 					});
 				}
+
+				// Responsively turn on the scroll mode if there is an activation
+				// width configured. Ignore if we're configured to always be in
+				// scroll mode.
+				if( typeof config.scrollActivationWidth === 'number' && config.view !== 'scroll' ) {
+					if( size.presentationWidth > 0 && size.presentationWidth <= config.scrollActivationWidth ) {
+						if( !scrollView.isActive() ) scrollView.activate();
+					}
+					else {
+						if( scrollView.isActive() ) scrollView.deactivate();
+					}
+				}
 			}
+
+			dom.viewport.style.setProperty( '--slide-scale', scale );
+			dom.viewport.style.setProperty( '--viewport-width', viewportWidth + 'px' );
+			dom.viewport.style.setProperty( '--viewport-height', viewportHeight + 'px' );
+
+			scrollView.layout();
 
 			progress.update();
 			backgrounds.updateParallax();
@@ -931,7 +1055,6 @@ export default function( revealElement, options ) {
 	 * @param {string|number} height
 	 */
 	function layoutSlideContents( width, height ) {
-
 		// Handle sizing of elements with the 'r-stretch' class
 		Util.queryAll( dom.slides, 'section > .stretch, section > .r-stretch' ).forEach( element => {
 
@@ -968,10 +1091,18 @@ export default function( revealElement, options ) {
 	 */
 	function getComputedSlideSize( presentationWidth, presentationHeight ) {
 
+		let width = config.width;
+		let height = config.height;
+
+		if( config.disableLayout ) {
+			width = dom.slides.offsetWidth;
+			height = dom.slides.offsetHeight;
+		}
+
 		const size = {
 			// Slide size
-			width: config.width,
-			height: config.height,
+			width: width,
+			height: height,
 
 			// Presentation size
 			presentationWidth: presentationWidth || dom.wrapper.offsetWidth,
@@ -1043,6 +1174,19 @@ export default function( revealElement, options ) {
 	function isVerticalSlide( slide = currentSlide ) {
 
 		return slide && slide.parentNode && !!slide.parentNode.nodeName.match( /section/i );
+
+	}
+
+	/**
+	 * Checks if the current or specified slide is a stack containing
+	 * vertical slides.
+	 *
+	 * @param {HTMLElement} [slide=currentSlide]
+	 * @return {Boolean}
+	 */
+	function isVerticalStack( slide = currentSlide ) {
+
+		return slide.classList.contains( '.stack' ) || slide.querySelector( 'section' ) !== null;
 
 	}
 
@@ -1156,6 +1300,20 @@ export default function( revealElement, options ) {
 	}
 
 	/**
+	 * Toggles visibility of the jump-to-slide UI.
+	 */
+	function toggleJumpToSlide( override ) {
+
+		if( typeof override === 'boolean' ) {
+			override ? jumpToSlide.show() : jumpToSlide.hide();
+		}
+		else {
+			jumpToSlide.isVisible() ? jumpToSlide.hide() : jumpToSlide.show();
+		}
+
+	}
+
+	/**
 	 * Toggles the auto slide mode on and off.
 	 *
 	 * @param {Boolean} [override] Flag which sets the desired state.
@@ -1198,7 +1356,7 @@ export default function( revealElement, options ) {
 	 */
 	function slide( h, v, f, origin ) {
 
-		// Dispatch an event before hte slide
+		// Dispatch an event before the slide
 		const slidechange = dispatchEvent({
 			type: 'beforeslidechange',
 			data: {
@@ -1216,6 +1374,14 @@ export default function( revealElement, options ) {
 
 		// Query all horizontal slides in the deck
 		const horizontalSlides = dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR );
+
+		// If we're in scroll mode, we scroll the target slide into view
+		// instead of running our standard slide transition
+		if( scrollView.isActive() ) {
+			const scrollToSlide = scrollView.getSlideByIndices( h, v );
+			if( scrollToSlide ) scrollView.scrollToSlide( scrollToSlide );
+			return;
+		}
 
 		// Abort if there are no slides
 		if( horizontalSlides.length === 0 ) return;
@@ -1263,6 +1429,9 @@ export default function( revealElement, options ) {
 
 		// Detect if we're moving between two auto-animated slides
 		if( slideChanged && previousSlide && currentSlide && !overview.isActive() ) {
+			transition = 'running';
+
+			autoAnimateTransition = shouldAutoAnimateBetween( previousSlide, currentSlide, indexhBefore, indexvBefore );
 
 			// If this is an auto-animated transition, we disable the
 			// regular slide transition
@@ -1270,16 +1439,9 @@ export default function( revealElement, options ) {
 			// Note 20-03-2020:
 			// This needs to happen before we update slide visibility,
 			// otherwise transitions will still run in Safari.
-			if( previousSlide.hasAttribute( 'data-auto-animate' ) && currentSlide.hasAttribute( 'data-auto-animate' )
-					&& previousSlide.getAttribute( 'data-auto-animate-id' ) === currentSlide.getAttribute( 'data-auto-animate-id' )
-					&& !( ( indexh > indexhBefore || indexv > indexvBefore ) ? currentSlide : previousSlide ).hasAttribute( 'data-auto-animate-restart' ) ) {
-
-				autoAnimateTransition = true;
-				dom.slides.classList.add( 'disable-slide-transitions' );
+			if( autoAnimateTransition ) {
+				dom.slides.classList.add( 'disable-slide-transitions' )
 			}
-
-			transition = 'running';
-
 		}
 
 		// Update the visibility of slides now that the indices have changed
@@ -1338,16 +1500,7 @@ export default function( revealElement, options ) {
 		}
 
 		if( slideChanged ) {
-			dispatchEvent({
-				type: 'slidechanged',
-				data: {
-					indexh,
-					indexv,
-					previousSlide,
-					currentSlide,
-					origin
-				}
-			});
+			dispatchSlideChanged( origin );
 		}
 
 		// Handle embedded content
@@ -1393,6 +1546,71 @@ export default function( revealElement, options ) {
 	}
 
 	/**
+	 * Checks whether or not an auto-animation should take place between
+	 * the two given slides.
+	 *
+	 * @param {HTMLElement} fromSlide
+	 * @param {HTMLElement} toSlide
+	 * @param {number} indexhBefore
+	 * @param {number} indexvBefore
+	 *
+	 * @returns {boolean}
+	 */
+	function shouldAutoAnimateBetween( fromSlide, toSlide, indexhBefore, indexvBefore ) {
+
+		return 	fromSlide.hasAttribute( 'data-auto-animate' ) && toSlide.hasAttribute( 'data-auto-animate' ) &&
+				fromSlide.getAttribute( 'data-auto-animate-id' ) === toSlide.getAttribute( 'data-auto-animate-id' ) &&
+				!( ( indexh > indexhBefore || indexv > indexvBefore ) ? toSlide : fromSlide ).hasAttribute( 'data-auto-animate-restart' );
+
+	}
+
+	/**
+	 * Called anytime a new slide should be activated while in the scroll
+	 * view. The active slide is the page that occupies the most space in
+	 * the scrollable viewport.
+	 *
+	 * @param {number} pageIndex
+	 * @param {HTMLElement} slideElement
+	 */
+	function setCurrentScrollPage( slideElement, h, v ) {
+
+		let indexhBefore = indexh || 0;
+
+		indexh = h;
+		indexv = v;
+
+		const slideChanged = currentSlide !== slideElement;
+
+		previousSlide = currentSlide;
+		currentSlide = slideElement;
+
+		if( currentSlide && previousSlide ) {
+			if( config.autoAnimate && shouldAutoAnimateBetween( previousSlide, currentSlide, indexhBefore, indexv ) ) {
+				// Run the auto-animation between our slides
+				autoAnimate.run( previousSlide, currentSlide );
+			}
+		}
+
+		// Start or stop embedded content like videos and iframes
+		if( slideChanged ) {
+			if( previousSlide ) {
+				slideContent.stopEmbeddedContent( previousSlide );
+				slideContent.stopEmbeddedContent( previousSlide.slideBackgroundElement );
+			}
+
+			slideContent.startEmbeddedContent( currentSlide );
+			slideContent.startEmbeddedContent( currentSlide.slideBackgroundElement );
+		}
+
+		requestAnimationFrame( () => {
+			announceStatus( getStatusText( currentSlide ) );
+		});
+
+		dispatchSlideChanged();
+
+	}
+
+	/**
 	 * Syncs the presentation with the current DOM. Useful
 	 * when new slides or control elements are added or when
 	 * the configuration has changed.
@@ -1418,7 +1636,9 @@ export default function( revealElement, options ) {
 		// Write the current hash to the URL
 		location.writeURL();
 
-		fragments.sortAll();
+		if( config.sortFragmentsOnSync === true ) {
+			fragments.sortAll();
+		}
 
 		controls.update();
 		progress.update();
@@ -1535,16 +1755,21 @@ export default function( revealElement, options ) {
 		let slides = Util.queryAll( dom.wrapper, selector ),
 			slidesLength = slides.length;
 
-		let printMode = print.isPrintingPDF();
+		let printMode = scrollView.isActive() || printView.isActive();
+		let loopedForwards = false;
+		let loopedBackwards = false;
 
 		if( slidesLength ) {
 
 			// Should the index loop?
 			if( config.loop ) {
+				if( index >= slidesLength ) loopedForwards = true;
+
 				index %= slidesLength;
 
 				if( index < 0 ) {
 					index = slidesLength + index;
+					loopedBackwards = true;
 				}
 			}
 
@@ -1582,10 +1807,7 @@ export default function( revealElement, options ) {
 
 					if( config.fragments ) {
 						// Show all fragments in prior slides
-						Util.queryAll( element, '.fragment' ).forEach( fragment => {
-							fragment.classList.add( 'visible' );
-							fragment.classList.remove( 'current-fragment' );
-						} );
+						showFragmentsIn( element );
 					}
 				}
 				else if( i > index ) {
@@ -1594,9 +1816,17 @@ export default function( revealElement, options ) {
 
 					if( config.fragments ) {
 						// Hide all fragments in future slides
-						Util.queryAll( element, '.fragment.visible' ).forEach( fragment => {
-							fragment.classList.remove( 'visible', 'current-fragment' );
-						} );
+						hideFragmentsIn( element );
+					}
+				}
+				// Update the visibility of fragments when a presentation loops
+				// in either direction
+				else if( i === index && config.fragments ) {
+					if( loopedForwards ) {
+						hideFragmentsIn( element );
+					}
+					else if( loopedBackwards ) {
+						showFragmentsIn( element );
 					}
 				}
 			}
@@ -1637,6 +1867,29 @@ export default function( revealElement, options ) {
 	}
 
 	/**
+	 * Shows all fragment elements within the given container.
+	 */
+	function showFragmentsIn( container ) {
+
+		Util.queryAll( container, '.fragment' ).forEach( fragment => {
+			fragment.classList.add( 'visible' );
+			fragment.classList.remove( 'current-fragment' );
+		} );
+
+	}
+
+	/**
+	 * Hides all fragment elements within the given container.
+	 */
+	function hideFragmentsIn( container ) {
+
+		Util.queryAll( container, '.fragment.visible' ).forEach( fragment => {
+			fragment.classList.remove( 'visible', 'current-fragment' );
+		} );
+
+	}
+
+	/**
 	 * Optimization method; hide all slides that are far away
 	 * from the present slide.
 	 */
@@ -1662,7 +1915,7 @@ export default function( revealElement, options ) {
 			}
 
 			// All slides need to be visible when exporting to PDF
-			if( print.isPrintingPDF() ) {
+			if( printView.isActive() ) {
 				viewDistance = Number.MAX_VALUE;
 			}
 
@@ -1766,7 +2019,7 @@ export default function( revealElement, options ) {
 		}
 
 		// If includeFragments is set, a route will be considered
-		// availalbe if either a slid OR fragment is available in
+		// available if either a slid OR fragment is available in
 		// the given direction
 		if( includeFragments === true ) {
 			let fragmentRoutes = fragments.availableRoutes();
@@ -1893,21 +2146,31 @@ export default function( revealElement, options ) {
 
 		// If a slide is specified, return the indices of that slide
 		if( slide ) {
-			let isVertical = isVerticalSlide( slide );
-			let slideh = isVertical ? slide.parentNode : slide;
+			// In scroll mode the original h/x index is stored on the slide
+			if( scrollView.isActive() ) {
+				h = parseInt( slide.getAttribute( 'data-index-h' ), 10 );
 
-			// Select all horizontal slides
-			let horizontalSlides = getHorizontalSlides();
+				if( slide.getAttribute( 'data-index-v' ) ) {
+					v = parseInt( slide.getAttribute( 'data-index-v' ), 10 );
+				}
+			}
+			else {
+				let isVertical = isVerticalSlide( slide );
+				let slideh = isVertical ? slide.parentNode : slide;
 
-			// Now that we know which the horizontal slide is, get its index
-			h = Math.max( horizontalSlides.indexOf( slideh ), 0 );
+				// Select all horizontal slides
+				let horizontalSlides = getHorizontalSlides();
 
-			// Assume we're not vertical
-			v = undefined;
+				// Now that we know which the horizontal slide is, get its index
+				h = Math.max( horizontalSlides.indexOf( slideh ), 0 );
 
-			// If this is a vertical slide, grab the vertical index
-			if( isVertical ) {
-				v = Math.max( Util.queryAll( slide.parentNode, 'section' ).indexOf( slide ), 0 );
+				// Assume we're not vertical
+				v = undefined;
+
+				// If this is a vertical slide, grab the vertical index
+				if( isVertical ) {
+					v = Math.max( Util.queryAll( slide.parentNode, 'section' ).indexOf( slide ), 0 );
+				}
 			}
 		}
 
@@ -2108,11 +2371,7 @@ export default function( revealElement, options ) {
 
 		if( currentSlide && config.autoSlide !== false ) {
 
-			let fragment = currentSlide.querySelector( '.current-fragment' );
-
-			// When the slide first appears there is no "current" fragment so
-			// we look for a data-autoslide timing on the first fragment
-			if( !fragment ) fragment = currentSlide.querySelector( '.fragment' );
+			let fragment = currentSlide.querySelector( '.current-fragment[data-autoslide]' );
 
 			let fragmentAutoSlide = fragment ? fragment.getAttribute( 'data-autoslide' ) : null;
 			let parentAutoSlide = currentSlide.parentNode ? currentSlide.parentNode.getAttribute( 'data-autoslide' ) : null;
@@ -2358,6 +2617,38 @@ export default function( revealElement, options ) {
 	}
 
 	/**
+	* Listener for post message events posted to this window.
+	*/
+	function onPostMessage( event ) {
+
+		let data = event.data;
+
+		// Make sure we're dealing with JSON
+		if( typeof data === 'string' && data.charAt( 0 ) === '{' && data.charAt( data.length - 1 ) === '}' ) {
+			data = JSON.parse( data );
+
+			// Check if the requested method can be found
+			if( data.method && typeof Reveal[data.method] === 'function' ) {
+
+				if( POST_MESSAGE_METHOD_BLACKLIST.test( data.method ) === false ) {
+
+					const result = Reveal[data.method].apply( Reveal, data.args );
+
+					// Dispatch a postMessage event with the returned value from
+					// our method invocation for getter functions
+					dispatchPostMessage( 'callback', { method: data.method, result: result } );
+
+				}
+				else {
+					console.warn( 'reveal.js: "'+ data.method +'" is is blacklisted from the postMessage API' );
+				}
+
+			}
+		}
+
+	}
+
+	/**
 	 * Event listener for transition end on the current slide.
 	 *
 	 * @param {object} [event]
@@ -2370,6 +2661,33 @@ export default function( revealElement, options ) {
 				type: 'slidetransitionend',
 				data: { indexh, indexv, previousSlide, currentSlide }
 			});
+		}
+
+	}
+
+	/**
+	 * A global listener for all click events inside of the
+	 * .slides container.
+	 *
+	 * @param {object} [event]
+	 */
+	function onSlidesClicked( event ) {
+
+		const anchor = Util.closest( event.target, 'a[href^="#"]' );
+
+		// If a hash link is clicked, we find the target slide
+		// and navigate to it. We previously relied on 'hashchange'
+		// for links like these but that prevented media with
+		// audio tracks from playing in mobile browsers since it
+		// wasn't considered a direct interaction with the document.
+		if( anchor ) {
+			const hash = anchor.getAttribute( 'href' );
+			const indices = location.getIndicesFromHash( hash );
+
+			if( indices ) {
+				Reveal.slide( indices.h, indices.v, indices.f );
+				event.preventDefault();
+			}
 		}
 
 	}
@@ -2400,6 +2718,26 @@ export default function( revealElement, options ) {
 				document.activeElement.blur();
 			}
 			document.body.focus();
+		}
+
+	}
+
+	/**
+	 * Handler for the document level 'fullscreenchange' event.
+	 *
+	 * @param {object} [event]
+	 */
+	function onFullscreenChange( event ) {
+
+		let element = document.fullscreenElement || document.webkitFullscreenElement;
+		if( element === dom.wrapper ) {
+			event.stopImmediatePropagation();
+
+			// Timeout to avoid layout shift in Safari
+			setTimeout( () => {
+				Reveal.layout();
+				Reveal.focus.focus(); // focus.focus :'(
+			}, 1 );
 		}
 
 	}
@@ -2456,6 +2794,7 @@ export default function( revealElement, options ) {
 
 		initialize,
 		configure,
+		destroy,
 
 		sync,
 		syncSlide,
@@ -2504,17 +2843,24 @@ export default function( revealElement, options ) {
 		// Toggles the overview mode on/off
 		toggleOverview: overview.toggle.bind( overview ),
 
+		// Toggles the scroll view on/off
+		toggleScrollView: scrollView.toggle.bind( scrollView ),
+
 		// Toggles the "black screen" mode on/off
 		togglePause,
 
 		// Toggles the auto slide mode on/off
 		toggleAutoSlide,
 
+		// Toggles visibility of the jump-to-slide UI
+		toggleJumpToSlide,
+
 		// Slide navigation checks
 		isFirstSlide,
 		isLastSlide,
 		isLastVerticalSlide,
 		isVerticalSlide,
+		isVerticalStack,
 
 		// State checks
 		isPaused,
@@ -2522,7 +2868,9 @@ export default function( revealElement, options ) {
 		isSpeakerNotes: notes.isSpeakerNotesWindow.bind( notes ),
 		isOverview: overview.isActive.bind( overview ),
 		isFocused: focus.isFocused.bind( focus ),
-		isPrintingPDF: print.isPrintingPDF.bind( print ),
+
+		isScrollView: scrollView.isActive.bind( scrollView ),
+		isPrintView: printView.isActive.bind( printView ),
 
 		// Checks if reveal.js has been loaded and is ready for use
 		isReady: () => ready,
@@ -2530,6 +2878,10 @@ export default function( revealElement, options ) {
 		// Slide preloading
 		loadSlide: slideContent.load.bind( slideContent ),
 		unloadSlide: slideContent.unload.bind( slideContent ),
+
+		// Media playback
+		startEmbeddedContent: () => slideContent.startEmbeddedContent( currentSlide ),
+		stopEmbeddedContent: () => slideContent.stopEmbeddedContent( currentSlide, { unloadIframes: false } ),
 
 		// Preview management
 		showPreview,
@@ -2591,6 +2943,8 @@ export default function( revealElement, options ) {
 		hasNavigatedHorizontally: () => navigationHistory.hasNavigatedHorizontally,
 		hasNavigatedVertically: () => navigationHistory.hasNavigatedVertically,
 
+		shouldAutoAnimateBetween,
+
 		// Adds/removes a custom key binding
 		addKeyBinding: keyboard.addKeyBinding.bind( keyboard ),
 		removeKeyBinding: keyboard.removeKeyBinding.bind( keyboard ),
@@ -2602,6 +2956,7 @@ export default function( revealElement, options ) {
 		registerKeyboardShortcut: keyboard.registerKeyboardShortcut.bind( keyboard ),
 
 		getComputedSlideSize,
+		setCurrentScrollPage,
 
 		// Returns the current scale of the presentation content
 		getScale: () => scale,
@@ -2611,6 +2966,9 @@ export default function( revealElement, options ) {
 
 		// Helper method, retrieves query string as a key:value map
 		getQueryHash: Util.getQueryHash,
+
+		// Returns the path to the current slide as represented in the URL
+		getSlidePath: location.getHash.bind( location ),
 
 		// Returns reveal.js DOM elements
 		getRevealElement: () => revealElement,
@@ -2635,13 +2993,14 @@ export default function( revealElement, options ) {
 		getStatusText,
 
 		// Controllers
-		print,
 		focus,
+		scroll: scrollView,
 		progress,
 		controls,
 		location,
 		overview,
 		fragments,
+		backgrounds,
 		slideContent,
 		slideNumber,
 

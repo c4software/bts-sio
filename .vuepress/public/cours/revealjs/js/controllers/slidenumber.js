@@ -23,7 +23,7 @@ export default class SlideNumber {
 	configure( config, oldConfig ) {
 
 		let slideNumberDisplay = 'none';
-		if( config.slideNumber && !this.Reveal.isPrintingPDF() ) {
+		if( config.slideNumber && !this.Reveal.isPrintView() ) {
 			if( config.showSlideNumber === 'all' ) {
 				slideNumberDisplay = 'block';
 			}
@@ -120,6 +120,12 @@ export default class SlideNumber {
 					<span class="slide-number-a">${a}</span>
 					</a>`;
 		}
+
+	}
+
+	destroy() {
+
+		this.element.remove();
 
 	}
 

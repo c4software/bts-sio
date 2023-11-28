@@ -1,92 +1,85 @@
 <!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<html lang="en">
 
-		<title>Présentation - Valentin Brosseau</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/solarized.css">
-		<link rel="stylesheet" href="css/custom.css">
-		<link rel="stylesheet" href="plugin/chalkboard/style.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<title>Présentation - Valentin Brosseau</title>
 
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/beige.css">
+	<link rel="stylesheet" href="css/custom.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section data-markdown="" id="section"></section>
-			</div>
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown="" id="section"></section>
 		</div>
+	</div>
 
-		<div class="custom-controls">
-			<i class="fa fa-pencil-square fa-2x" onclick="RevealChalkboard.toggleChalkboard();"></i>
-			<i class="fa fa-pencil fa-2x" onclick="RevealChalkboard.toggleNotesCanvas();"></i>
-			<i class="fa fa-desktop fa-2x" onclick="Reveal.getPlugins().notes.open();"></i>
-		</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script src="plugin/chalkboard/plugin.js"></script>
+	<script>
+		// Load custom slides from uri.
+		var url = new URL(window.location);
+		var source = url.searchParams.get("source");
+		document.querySelector("#section").setAttribute("data-markdown", "/cours/sources/" + source + "/slides.md");
+		const SAVE_ITEM_STORAGE_KEY = `saved_slides_position_${source}`;
 
-		<script>
-			// Load custom slides from uri.
-			var url = new URL(window.location);
-			var source = url.searchParams.get("source");
-			document.querySelector("#section").setAttribute("data-markdown", "/cours/sources/" + source + "/slides.md");
-			const SAVE_ITEM_STORAGE_KEY = `saved_slides_position_${source}`;
+		function savePosition(page) {
+			try {
+				localStorage.setItem(SAVE_ITEM_STORAGE_KEY, event.indexh);
+			} catch (err) { }
+		}
 
-			function savePosition(page) {
-				try {
-					localStorage.setItem(SAVE_ITEM_STORAGE_KEY, event.indexh);
-				} catch (err) { }
-			}
+		function restorePosition() {
+			try {
+				const page = localStorage.getItem(SAVE_ITEM_STORAGE_KEY);
+				console.log("Last page loaded was => ", page);
+				if (page) {
+					Reveal.slide(page);
+				}
+			} catch (err) { }
+		}
 
-			function restorePosition() {
-				try {
-					const page = localStorage.getItem(SAVE_ITEM_STORAGE_KEY);
-					console.log("Last page loaded was => ", page);
-					if (page) {
-						Reveal.slide(page);
-					}
-				} catch (err) { }
-			}
+		// Initialize the Reveal presentation
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			//history: true,
+			fragmentInURL: true,
+			//hash: true,
 
-			// Initialize the Reveal presentation
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				center: true,
-				history: true,
-				fragmentInURL: true,
-				hash: true,
+			keyboard: {
+				40: 'prev',
+				38: 'next',
+				9: function () { Reveal.toggleOverview() }
+			},
 
-				keyboard: {
-					40: 'prev',
-					38: 'next',
-					9: function () { Reveal.toggleOverview() }
-				},
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+		});
 
-				plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealChalkboard],
+		Reveal.addEventListener('ready', () => {
+			restorePosition();
+
+			Reveal.addEventListener('slidechanged', (event) => {
+				savePosition(event.indexh);
 			});
+		});
 
-			Reveal.addEventListener('ready', () => {
-				restorePosition();
+		// Change base to the « source » base, to make image, and other link correctly working
+		document.querySelector("head").insertAdjacentHTML("beforeend", "<base href='/cours/sources/" + source + "/'>");
+	</script>
+</body>
 
-				Reveal.addEventListener('slidechanged', (event) => {
-					savePosition(event.indexh);
-				});
-			});
-
-			// Change base to the « source » base, to make image, and other link correctly working
-			document.querySelector("head").insertAdjacentHTML("beforeend", "<base href='/cours/sources/" + source + "/'>");
-		</script>
-	</body>
 </html>

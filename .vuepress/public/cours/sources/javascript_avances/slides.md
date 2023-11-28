@@ -6,29 +6,77 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
+<!-- .slide: data-background="./img/sad.gif" data-auto-animate -->
+
 ## Mais je n’aime pas le web moi
 
 ---
 
-![sad](./img/sad.gif)
-
----
+<!-- .slide: data-background="./img/sad.gif" data-auto-animate -->
 
 ## Désolé, mais le JavaScript est partout
 
 ---
 
+<!-- .slide: data-background="./img/happy.gif" data-auto-animate -->
+
 ## Bonne nouvelle ! Ce n'est pas que pour le web.
 
 ---
 
+<!-- .slide: data-background="./img/bg.jpg" -->
+
 ![spacex](./img/spacex.jpg)
+
+---
+
+- Le Web : HTML / CSS / JavaScript (navigateur)
+- Les applications : Electron / React Native / …
+- Les serveurs : NodeJS / Deno / BunJS
+
+---
+
+<!-- .slide: data-background-iframe="https://www.google.com/maps" -->
+
+<div class="frame-cover">
+  <h2>Google Maps</h2>
+  <p>100% en JS</p>
+</div>
+
+---
+
+<!-- .slide: data-background-iframe="https://www.twitter.com" -->
+
+<div class="frame-cover">
+  <h2>Twitter</h2>
+  <p>Utilise le JS pour charger le flux</p>
+</div>
+
+---
+
+<!-- .slide: data-background-iframe="https://reactnative.dev/showcase" -->
+
+<div class="frame-cover">
+  <h2>ReactNative</h2>
+  <p>Le JS pour réaliser des applications</p>
+</div>
+
+---
+
+<!-- .slide: data-background-iframe="https://expressjs.com/" -->
+
+<div class="frame-cover">
+  <h2>ExpressJS</h2>
+  <p>Réaliser un serveur en JS</p>
+</div>
 
 ---
 
 ## JavaScript -> ECMAScript (201X, 2017, 2020, …)
 
 ---
+
+<!-- .slide: data-background="./img/78Mz.gif" -->
 
 ## Votre navigateur bouge, évolue
 
@@ -38,17 +86,22 @@ Beaucoup de différences… Donc attention au support !
 
 ---
 
-[caniuse.com](https://caniuse.com/)
+<!-- .slide: data-background-iframe="https://caniuse.com/" data-background-interactive -->
+
+<div class="frame-cover">
+  <h2>Can I Use</h2>
+  <p>Pour connaître la compatibilité</p>
+</div>
 
 ---
 
-## Rappel sur l'asynchrone
+## L'Asynchrone
 
 Pouvez-vous me dire à quoi ça correspond ?
 
 ---
 
-```javascript
+```javascript [1|3|7|4]
 var resultat = "";
 
 ajax("http://api/getRandom", (randomValue) => {
@@ -68,7 +121,7 @@ console.log(resultat);
 - Global
 - Les Arrays (Tableau)
 - Les Objets
-- L'Ajax
+- L'Ajax (Fetch)
 - Les Promises (Promesses)
 - Async / Await
 
@@ -306,8 +359,8 @@ Async / Await permet de rendre « synchrone » du code asynchrone.
 
 - Attendre le retour d'une requête Ajax avant de continuer.
 - À votre avis, quels sont les risques ?
-- Catch 
-- Bloquage de l'interface 
+- Catch.
+- Bloquage de l'interface.
 
 ---
 
@@ -323,11 +376,7 @@ Async / Await permet de rendre « synchrone » du code asynchrone.
 
 ---
 
-Mais maintenant… nous avons [Snowpack](https://www.snowpack.dev/) 🎉
-
----
-
-Mais également… [Vue Vite](https://github.com/vitejs/vite) 😲
+Mais maintenant… nous avons [ViteJS](https://vitejs.dev/) 🎉
 
 ---
 
