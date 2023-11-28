@@ -539,6 +539,8 @@ $unHumain->manger(); // Je suis omnivore.
 
 ---
 
+<!-- .slide: data-background="./res/wait.jpg" data-auto-animate style="color: white" -->
+
 ## Un instant…
 
 Comment détecter l'héritage ?
