@@ -679,21 +679,51 @@ La différence ?
 ---
 
 ```php
-class Article extends Model{}
-class User extends Model{}
-class Comment extends Model{}
-class Category extends Model{}
-class ArticleComment extends Model{}
+class Article extends Model{
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+}
+class User extends Model{
+    public function articles(){
+        return $this->hasMany(Article::class);
+    }
+}
+class Comment extends Model{
+    public function article(){
+        return $this->belongsTo(Article::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+}
+class Category extends Model{
+    public function articles(){
+        return $this->belongsToMany(Article::class);
+    }
+}
 class ArticleCategory extends Model{}
+class ArticleComment extends Model{}
 ```
 
 - Que constatez-vous ?
 - Combien il y a-t-il de table ?
-- Écrire le code permettant d'obtenir l'ensemble des utilisateurs.
-- Écrire le code permettant d'avoir l'ensemble des Article de l'utilisateur 4.
+- Voyez-vous un problème ?
 
 ---
 
+![Version UML](./img/uml_article.png)
+
+---
+
+- Écrire le code permettant d'obtenir l'ensemble des utilisateurs.
+- Écrire le code permettant d'avoir l'ensemble des Article de l'utilisateur 4.
 - Écrire le code permettant de modifier l'article 1.
 - Écrire le code permettant de supprimer l'ensemble des messages de l'utilisateur 10.
 - Écrire le code permettant d'ajouter un commentaire à l'article 1.
