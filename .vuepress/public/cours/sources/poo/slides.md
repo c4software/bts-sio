@@ -633,7 +633,7 @@ Un exemple du monde réel ?
 
 ## Mais nous pratiquons un exemple déjà
 
-### La structure MVC
+### La structure MVC / Laravel
 
 ---
 
