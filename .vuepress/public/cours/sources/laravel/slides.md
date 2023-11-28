@@ -691,10 +691,15 @@ class ArticleCategory extends Model{}
 - Combien il y a-t-il de table ?
 - Écrire le code permettant d'obtenir l'ensemble des utilisateurs.
 - Écrire le code permettant d'avoir l'ensemble des Article de l'utilisateur 4.
+
+---
+
 - Écrire le code permettant de modifier l'article 1.
 - Écrire le code permettant de supprimer l'ensemble des messages de l'utilisateur 10.
 - Écrire le code permettant d'ajouter un commentaire à l'article 1.
 - Écrire le code permettant d'ajouter les catégories 1, 2 et 3 à l'article 1.
+
+[Aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/quick.html#l-orm-relations)
 
 ---
 
