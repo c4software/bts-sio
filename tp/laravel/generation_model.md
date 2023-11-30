@@ -270,8 +270,8 @@ Je vous laisse tester dans votre navigateur, si tout fonctionne correctement vou
 
 Vu que vous avez regardé le modèle `Order`, vous avez remarqué la méthode `orderdetails`. Je vous laisse :
 
-- Ajouter dans le données une nouvelle colonne.
-- Celle-ci doit contenir le nombre de produits commandés
+- Ajouter dans les données une nouvelle colonne dans le tableau.
+- Celle-ci doit contenir le nombre de produits commandés.
 
 Un indice
 
