@@ -123,6 +123,8 @@ npm install
 npm run build
 ```
 
+**Attention** pour que la commande NPM fonctionne, vous devez avoir `NodeJS`. Si vous ne l'avez pas, vous pouvez le télécharger [ici](https://nodejs.org/).
+
 ::: danger Vous êtes sur un lecteur réseau ?
 Attention, si vous êtes sur un lecteur réseau ça va être long… Très long ! Je vous conseille vivement de passer via un développement en local.
 :::
