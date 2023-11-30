@@ -126,7 +126,12 @@ Pour installer puis « compiler » vos ressources, il va falloir entrer les comm
 
 ```sh
 npm install
+
+# Lancer la compilation des ressources
 npm run build
+
+# Ou si vous souhaitez que les ressources soient recompilées à chaque modification
+npm run dev
 ```
 
 ::: danger Vous êtes sur un lecteur réseau ?
