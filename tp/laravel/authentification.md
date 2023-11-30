@@ -456,7 +456,6 @@ Le fonctionnement par défaut (avec la table `users`) est très bien, mais il es
 Si nous souhaitons utiliser la table `clients` à la place de `users` pour stocker les informations des utilisateurs, nous devons modifier plusieurs éléments :
 
 - Créer la migration ainsi que le modèle : `php artisan make:model Client -m`
-- Modifier le fichier `config/auth.php`.
 
 ### La migration
 
