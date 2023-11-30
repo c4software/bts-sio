@@ -28,7 +28,7 @@ Pour cette étape, je vous laisse suivre le début du [précédent TP](./introdu
 
 ## Installer la laravel debug bar
 
-Vous avez remarqué que les pages d'erreurs de Laravel sont toujours plein de bonnes informations. Avec Laravel nous pouvons avoir « encore mieux », vous avez à votre disposition une extension à Laravel qui vous permettra de voir :
+Vous avez remarqué que les pages d'erreurs de Laravel sont toujours pleines de bonnes informations. Avec Laravel nous pouvons avoir « encore mieux », vous avez à votre disposition une extension à Laravel qui vous permettra de voir :
 
 - Le contenu de la session.
 - Les requêtes SQL réalisé par l'ORM.
@@ -36,7 +36,7 @@ Vous avez remarqué que les pages d'erreurs de Laravel sont toujours plein de bo
 
 ![Debug bar](./ressources/debug_bar.png)
 
-Après installation cette barre va aparaitre automatiquement en bas de votre site Laravel (évidemment uniquement le temps du développement). Pour l'installer la commande est la suivante :
+Après installation cette barre va apparaître automatiquement en bas de votre site Laravel (évidemment uniquement le temps du développement). Pour l'installer la commande est la suivante :
 
 ```sh
 composer require barryvdh/laravel-debugbar --dev
@@ -62,7 +62,7 @@ Permettant de gérer simplement l'ensemble des problématiques.
 
 ::: warning Nous avons plusieurs choix
 
-Laravel Breeze n'est pas la seule option, vous avez également : [Laravel Jetstream](https://jetstream.laravel.com/introduction.html) qui est plus complet, mais également plus complexe à mettre en place. Pour l'instant nous allons nous concentrer sur Breeze, mais vous pouvez regarder Jetstream si vous le souhaitez (je vous conseille cependant de débuter avec Breeze, Jetstream est réellment plus complexe à mettre en place).
+Laravel Breeze n'est pas la seule option, vous avez également : [Laravel Jetstream](https://jetstream.laravel.com/introduction.html) qui est plus complet, mais également plus complexe à mettre en place. Pour l'instant nous allons nous concentrer sur Breeze, mais vous pouvez regarder Jetstream si vous le souhaitez (je vous conseille cependant de débuter avec Breeze, Jetstream est réellement plus complexe à mettre en place).
 
 :::
 
@@ -70,7 +70,7 @@ Laravel Breeze n'est pas la seule option, vous avez également : [Laravel Jetstr
 
 ::: tip Un instant
 
-**Attention** pour que breeze s'install il vous faut NPM, vous devez avoir `NodeJS`. Si vous ne l'avez pas, vous pouvez le télécharger [ici](https://nodejs.org/).
+**Attention** pour que breeze s'installe il vous faut NPM, vous devez avoir `NodeJS`. Si vous ne l'avez pas, vous pouvez le télécharger [ici](https://nodejs.org/).
 
 :::
 
@@ -94,9 +94,9 @@ La commande `breeze:install` va vous poser quelques questions, voici les répons
 
 ![Laravel Breeze](./ressources/auth_breeze_setup.jpg)
 
-::: tip Que c'est il passé ?
+::: tip Vous avez vu ?
 
-Nous venons d'ajouter de nouvelles routes, celle-ci sont dans le dossier `route/auth.php` **,mais ce n'est pas tout** vous avez également maintenant l'ensemble des contrôleurs, mais également l'ensemble des `Layout Blade` nécessaires à toute la partie authentification.
+Nous venons d'ajouter de nouvelles routes, celles-ci sont dans le dossier `route/auth.php` **,mais ce n'est pas tout** vous avez également maintenant l'ensemble des contrôleurs, mais également l'ensemble des `Layout Blade` nécessaires à toute la partie authentification.
 
 Pour le reste c'est dans les dossiers que vous connaissez déjà.
 :::
@@ -134,13 +134,11 @@ npm run build
 npm run dev
 ```
 
-::: danger Vous êtes sur un lecteur réseau ?
-Attention, si vous êtes sur un lecteur réseau ça va être long… Très long ! Je vous conseille vivement de passer via un développement en local.
-:::
+Si vous lancez la commande `npm run build`, votre projet sera compilé une seule fois. C'est intéressant pour la mise en production, mais pas pour le développement. Si vous souhaitez que vos ressources soient recompilées à chaque modification, vous pouvez lancer la commande `npm run dev` en arrière-plan. Celle-ci va surveiller les modifications de vos fichiers et recompiler vos ressources à chaque modification.
 
 Une fois le processus terminé, vous devriez avoir un résultat comme celui-ci :
 
-![Laravel Mix](./ressources/vite.jpg)
+![Vite build](./ressources/vite.jpg)
 
 Vos pages d'authentification sont maintenant fonctionnelles, votre site intègre maintenant toute la mécanique permettant de gérer cette problématique.
 
@@ -206,7 +204,7 @@ Le nouveau système de template est très très sympa, il permet de découper so
 
 L'organisation est tout aussi importante que le code, tu peux copier-coller du code entre tous les templates oui… Mais sache que c'est pas efficace, que tu perds du temps et que si on te demande une modification **tu perdras du temps** !
 
-Prendre du temps pour utiliser le système de layout tels proposé par Laravel est un vrai gain de temps ! Le toi du futur te remercies d'avance.
+Prendre du temps pour utiliser le système de layout tels proposé par Laravel est un vrai gain de temps ! Le toi du futur te remercie d'avance.
 
 Promis, ça va bien se passer !
 
@@ -219,14 +217,13 @@ Avec le Scaffolding de Breeze nous avons à notre disposition **deux templates**
 
 Nous allons donc migrer notre page d'accueil pour utiliser le nouveau système de composant. Pour ça rien de plus simple, il nous suffit d'utiliser `<x-guest-layout>` dans le template `welcome.blade.php`, je vous laisse le faire celui-ci va remplacer l'ensemble du haut de notre html jusqu'au `<body>` ce qui va donner :
 
-
 ::: tip Un instant 👋
 
 Les composants sont une alternative à l'héritage des templates, ici nous allons réaliser l'équivalent du `@extends` du précédent TP. Je vous laisse choisir la version que vous préférez. Personnellement, j'aime bien l'approche composant bien plus moderne et lisible.
 
 :::
 
-::: details Afficher le code du `welcome.blade.php`
+Nous allons donc modifier `welcome.blade.php`, pour utiliser le composant `<x-guest-layout>` :
 
 ```html
 <x-guest-layout>
@@ -247,8 +244,6 @@ Les composants sont une alternative à l'héritage des templates, ici nous allon
     Bienvenue sur mon site !
 </x-guest-layout>
 ```
-
-:::
 
 ⚠️ Je vous laisse constater la différence.
 
