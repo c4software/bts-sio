@@ -68,6 +68,12 @@ Laravel Breeze n'est pas la seule option, vous avez également : [Laravel Jetstr
 
 ### Ajout de la dépendance
 
+::: tip Un instant
+
+**Attention** pour que breeze s'install il vous faut NPM, vous devez avoir `NodeJS`. Si vous ne l'avez pas, vous pouvez le télécharger [ici](https://nodejs.org/).
+
+:::
+
 L'ajout de dépendances, pour cette étape aucun problème, il suffit d'ajouter dans votre projet « breeze » dans le dossier de votre projet :
 
 ```sh
@@ -122,8 +128,6 @@ Pour installer puis « compiler » vos ressources, il va falloir entrer les comm
 npm install
 npm run build
 ```
-
-**Attention** pour que la commande NPM fonctionne, vous devez avoir `NodeJS`. Si vous ne l'avez pas, vous pouvez le télécharger [ici](https://nodejs.org/).
 
 ::: danger Vous êtes sur un lecteur réseau ?
 Attention, si vous êtes sur un lecteur réseau ça va être long… Très long ! Je vous conseille vivement de passer via un développement en local.
