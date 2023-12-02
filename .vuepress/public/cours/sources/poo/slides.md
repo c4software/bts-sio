@@ -613,14 +613,16 @@ Car les enfants peuvent **redéfinir** les méthodes de la classe parente. (**Re
 
 ```php
 class Personne {
+    protected $age = 0;
+    
     public function estMajeur(){
-        return $this->age() >= 18;
+        return $this->age >= 18;
     }
 }
 
 class Americain extends Personne {
     public function estMajeur(){
-        return $this->age() >= 21;
+        return $this->age >= 21;
     }
 }
 ```
