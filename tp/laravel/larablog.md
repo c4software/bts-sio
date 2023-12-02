@@ -1253,6 +1253,18 @@ Vous avez terminé votre projet ? Vous avez encore du temps ? Voici quelques id�
 - Voir les articles en fonction d'une catégorie.
 - Voir les articles en fonction d'un tag.
 
+## Déploiement
+
+Maintenant que votre projet est terminé, vous allez pouvoir le déployer sur un serveur. Pour cela, je vous invite à suivre le TP suivant :
+
+[TP - Déploiement d'un projet Laravel](https://cours.brosseau.ovh/tp/ops/deployer-laravel.html)
+
+::: tip Rappel
+
+N'oubliez pas de faire un commit de votre projet avant de le déployer. Pour finaliser votre projet vous devez le déployer sur un serveur. Vous devez me partager l'URL de votre projet déployé.
+
+:::
+
 ## Conclusion
 
 Vous avez terminé votre projet. Vous avez maintenant un blog fonctionnel. Vous pouvez maintenant le personnaliser à votre guise.
