@@ -611,18 +611,23 @@ Car les enfants peuvent **redéfinir** les méthodes de la classe parente. (**Re
 
 ---
 
-```php
+```java
 class Personne {
-    protected $age = 0;
+    protected int age = 0;
     
     public function estMajeur(){
-        return $this->age >= 18;
+        return this.age >= 18;
     }
 }
 
 class Americain extends Personne {
+    /**
+     * @override
+     * @return bool
+     * @description Retourne vrai si la personne est majeur.
+     */
     public function estMajeur(){
-        return $this->age >= 21;
+        return this->age >= 21;
     }
 }
 ```
@@ -643,6 +648,70 @@ Un autre exemple du monde réel ?
 
 ---
 
+![Exemple](./res/uml-mammifere.png)
+
+---
+
+## Un arbre ou il faut initialiser le parent
+
+```php
+class Mammifere {
+    protected $espece = "";
+
+    public __construct($espece) {
+        this->$espece = $espece;
+    }
+
+    /**
+     * Affiche l'espèce
+     */
+    public function print() {
+        echo "Je suis un $this->espece";
+    }
+}
+
+class Humain extends Mammifere {
+    private $prenom = "";
+
+    function __construct($prenom)
+    {
+        parent::__construct("Humain");
+        this->$prenom = $prenom;
+    }
+
+    /**
+     * Affiche l'espèce & le prénom
+     */
+    public function print(){
+        parent::print();
+        echo "Je m'appelle $this->prenom";
+    }
+}
+
+class Chien extends Mammifere {
+    private $nom = "";
+
+    function __construct($nom)
+    {
+        parent::__construct("Chien");
+        this->$nom = $nom;
+    }
+}
+```
+
+---
+
+## Exercice
+
+- Créer un Humain nommé « Valentin ».
+- Créer un Humain nommé « Carine ».
+- Créer un Chien nommé « Médor ».
+- Mettre les trois objets dans une liste.
+- Parcourir la liste et afficher le nom de chaque objet.
+- Écrire ce que vas afficher le parcours de la liste.
+
+---
+
 ## C'est à vous
 
 ### Seul ou en groupe, trouvez des exemples d'héritages
@@ -655,7 +724,7 @@ Un autre exemple du monde réel ?
 
 ---
 
-## Démo !
+## Analyse !
 
 ### À vous de me dire là où se trouve l'héritage, et pourquoi c'est intéressant…
 
@@ -670,11 +739,12 @@ Un autre exemple du monde réel ?
     <li><b>Permets de généraliser un objet afin de partager des propriétés communes.</b>.</li>
     <li><b>mais</b> il est également possible de spécialiser / redéfinir un objet.</li>
     <li>Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.</li>
+    <li>Il est possible d'appeler les méthodes du parent via `$this->…` ou `parent::…`</li>
 </fieldset>
 
 ---
 
-Mise en pratique
+Mise en pratique.
 
 ---
 
