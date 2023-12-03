@@ -1018,6 +1018,10 @@ unHumain.manger(); // Je suis omnivore
 - **Permets de généraliser un objet afin de partager des propriétés communes.**.
 - **mais** il est également possible de spécialiser / redéfinir un objet.
   - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.
+- Il est possible d'appeler une méthode de la classe mère depuis la classe fille.
+  - `parent::manger();` // `super.manger();`
+  - Ou d'appeler la méthode la plus proche de la classe fille :
+  - `$this->manger();`
 
 ## Le polymorphisme
 
