@@ -801,16 +801,16 @@ data class SettingsItem(val name: String, val icon: Int, val onClick: (() -> Uni
 // Exemple de déclaration dans la datasource (à déclarer dans votre Activity)
 arrayOf(
     SettingsItem("Paramètre Bluetooth", R.drawable.bluetooth) {
-        // Action au cliques
+        // Action lors du click
     },
     SettingsItem("Informations", R.drawable.info) {
-        // Action aux cliques
+        // Action lors du click
     },
     SettingsItem("Paramètres", R.drawable.settings) {
-        // Action aux cliques
+        // Action lors du click
     },
     SettingsItem("Site de l'ESEO", R.drawable.logo_eseo) {
-        // Action aux cliques
+        // Action lors du click
     }
 )
 
