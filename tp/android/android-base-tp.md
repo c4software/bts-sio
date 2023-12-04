@@ -799,7 +799,7 @@ data class SettingsItem(val name: String, val icon: Int, val onClick: (() -> Uni
 
 ```kotlin
 // Exemple de déclaration dans la datasource (à déclarer dans votre Activity)
-arrayOf(
+val mesItems = arrayOf(
     SettingsItem("Paramètre Bluetooth", R.drawable.bluetooth) {
         // Action lors du click
     },
