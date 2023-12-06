@@ -616,7 +616,7 @@ class Personne {
     protected int age = 0;
     
     public function estMajeur(){
-        return this.age >= 18;
+        return $this.age >= 18;
     }
 }
 
@@ -627,7 +627,7 @@ class Americain extends Personne {
      * @description Retourne vrai si la personne est majeur.
      */
     public function estMajeur(){
-        return this->age >= 21;
+        return $this->age >= 21;
     }
 }
 ```
@@ -659,7 +659,7 @@ class Mammifere {
     protected $espece = "";
 
     public __construct($espece) {
-        this->$espece = $espece;
+        $this->espece = $espece;
     }
 
     /**
@@ -676,7 +676,7 @@ class Humain extends Mammifere {
     function __construct($prenom)
     {
         parent::__construct("Humain");
-        this->$prenom = $prenom;
+        $this->prenom = $prenom;
     }
 
     /**
@@ -694,7 +694,7 @@ class Chien extends Mammifere {
     function __construct($nom)
     {
         parent::__construct("Chien");
-        this->$nom = $nom;
+        $this->nom = $nom;
     }
 }
 ```
