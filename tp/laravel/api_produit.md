@@ -12,7 +12,7 @@ Dans ce TP nous allons voir comment il est possible de créer des API avec Larav
 
 ::: tip Un instant
 
-Avant de continuer, dans ce TP nous allons réaliser des API. Les API en elles-mêmes ne servent pas directement. Elles seront utilisées par des applications mobiles ou des sites web.
+Avant de continuer, dans ce TP, nous allons réaliser des API. Les API en elles-mêmes ne servent pas directement. Elles seront utilisées par des applications mobiles ou des sites web.
 
 Nous allons donc voir comment créer des API et comment les utiliser.
 
@@ -167,7 +167,7 @@ php artisan code:models
 ```
 
 ::: tip C'est rapide et ça fonctionne !
-En quelques secondes le plugin a créé l'ensemble des modèles de votre projet. Je vous laisser regarder les modifications dans votre projet, et surtout le dossier `models`
+En quelques secondes le plugin a créé l'ensemble des modèles de votre projet. Je vous laisse regarder les modifications dans votre projet, et surtout le dossier `models`
 :::
 
 ### Les modèles générés
@@ -291,7 +291,7 @@ pour l'image du produit, vous pouvez utiliser [https://picsum.photos/200/300](ht
 
 ## Création de l'API
 
-La création d'une API va être très proche de ce que nous connaissons déjà. Première étape, créer un contrôleur ; pour rappel celui-ci permet de gérer le trafic et de répondre aux demandes des / du client.
+La création d'une API va être très proche de ce que nous connaissons déjà. Première étape, créez un contrôleur ; pour rappel celui-ci permet de gérer le trafic et de répondre aux demandes des / du client.
 
 Notre API sera très simple, elle contiendra **3 routes / fonctionnalités** :
 
@@ -634,7 +634,7 @@ En indiquant le `$with` dans le modèle, votre jointure sera automatiquement eff
 
 :::
 
-::: details Qu'avez-vous observez ? 
+::: details Qu'avez-vous observé ? 
 
 - La première réponse contient les commandes du client.
 - La deuxième réponse contient les commandes du client et les produits commandés.
@@ -741,7 +741,7 @@ Vous allez devoir utiliser password_verify() pour vérifier le mot de passe.
 Pour aller plus loin dans la partie API, vous pouvez :
 
 - Utiliser `sanctum` pour créer des tokens d'authentification. <<https://laravel.com/docs/10.x/sanctum>
-- Utiliser les `abilities` pour gérer les droits d'accès. <https://laravel.com/docs/10.x/sanctum#token-abilities>
+- Utilisez-les `abilities` pour gérer les droits d'accès. <https://laravel.com/docs/10.x/sanctum#token-abilities>
 
 Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous avons « juste » la logique pour :
 
@@ -751,7 +751,7 @@ Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous 
 
 ::: tip C'est du bonus
 
-Cette partie n'interessera pas tout le monde. Si vous êtes intéressé, vous pouvez regarder la documentation de Sanctum. Et me demander si vous avez des questions.
+Cette partie n'intéressera pas tout le monde. Si vous êtes intéressé, vous pouvez regarder la documentation de Sanctum. Et me demander si vous avez des questions.
 
 :::
 
