@@ -429,9 +429,63 @@ function create(Request $request){
 }
 ```
 
+## La pagination
+
+Temps estimé : 5 minutes (et oui, c'est rapide !)
+
+Vous l'avez certainement remarqué, la liste des commandes est assez longue. Pour l'instant aucun problème, mais si nous avions 1 million de commandes, ça serait un peu plus compliqué.
+
+Réaliser une pagination avec Laravel est très simple, il suffit de remplacer la méthode `all` par la méthode `paginate`.
+
+Dans la méthode `list` du contrôleur `OrdersController` :
+
+```php
+function list(){
+    return view("orders-list", ["orders" => Order::paginate(10)]);
+}
+```
+
+::: tip Notez la différence
+
+- `Order::all()` ? Récupère l'ensemble des commandes.
+- `Order::paginate(10)` ? Récupère les 10 premières commandes.
+
+:::
+
+Et c'est tout ! Laravel va automatiquement ajouter les liens de pagination dans votre template.
+
+Vous pouvez tester en ajoutant un paramètre `page` dans l'URL. Exemple : `http://localhost:8000/orders?page=2`
+
+Et là vous allez me dire… Mais ok, je dois quand même écrire du code pour afficher les liens de pagination ? Et bien non ! Laravel nous fournit des méthodes pour afficher les liens de pagination.
+
+Dans le template `orders-list.blade.php` :
+
+```html
+{{ $orders->links() }}
+```
+
+![Pagination](./ressources/pagination-tailwind.png)
+
+::: tip La personnalisation c'est possible !
+
+Le style proposé utilise TailWind, mais il est également possible de gérer les liens de pagination manuellement, pour ça :
+
+```html
+<div>
+    <a href="{{ $orders->previousPageUrl() }}">Précédent</a>
+    <a href="{{ $orders->nextPageUrl() }}">Suivant</a>
+</div>
+```
+
+Laravel propose également d'autres méthodes pour gérer la pagination :
+
+[Documentation Laravel](https://laravel.com/docs/10.x/pagination#paginator-instance-methods)
+
+:::
+
 ## Et si nous allions plus loin!
 
-Notre base de données est assez volumineuse et permet de faire bien plus ! Je vous laisse créer les routes et la vue permettant de constulter un `Customer` :
+Notre base de données est assez volumineuse et permet de faire bien plus ! Je vous laisse créer les routes et la vue permettant de consulter un `Customer` :
 
 - Liste des `Customer`.
 - Vue de détail d'un `Customer`.
@@ -486,7 +540,7 @@ Pour ça, nous allons devoir modifier la table `customers` et créer une nouvell
 
 ### 1. Modifier la table `customers`
 
-Pour modifier la table `customers` nous allons devoir retirer la colonne retalif à l'adresse et ajouter une colonne `address_id`.
+Pour modifier la table `customers` nous allons devoir retirer la colonne relative à l'adresse et ajouter une colonne `address_id`.
 
 ```sql
 ALTER TABLE `customers` DROP COLUMN `addressLine1`;
@@ -495,8 +549,6 @@ ALTER TABLE `customers` DROP COLUMN `city`;
 ALTER TABLE `customers` DROP COLUMN `state`;
 ALTER TABLE `customers` DROP COLUMN `postalCode`;
 ALTER TABLE `customers` DROP COLUMN `country`;
-
-ALTER TABLE `customers` ADD COLUMN `address_id` INT(11) NULL AFTER `customerNumber`;
 ```
 
 ### 2. Créer la table `addresses`
@@ -516,16 +568,34 @@ CREATE TABLE `addresses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ```
 
+### 3. Ajouter la relation
+
+Maintenant que nous avons créé la table `addresses`, nous allons devoir ajouter la relation entre `customers` et `addresses`. Pour ça, nous allons ajouter une autre table `customers_addresses`.
+
+```sql
+CREATE TABLE `customers_addresses` (
+  `customer_id` int(11) NOT NULL,
+  `address_id` int(11) NOT NULL,
+  PRIMARY KEY (`customer_id`,`address_id`),
+  KEY `customers_addresses_address_id_foreign` (`address_id`),
+  CONSTRAINT `customers_addresses_address_id_foreign` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
+  CONSTRAINT `customers_addresses_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customerNumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+```
+
+Cette table va permettre de faire la relation entre `customers` et `addresses`, l'objectif est de pouvoir ajouter plusieurs adresses à un client.
+
 ### 3. Regénération des modèles
 
-Notre base de données a changé, nous allons devoir regénérer les modèles.
+Notre base de données a changé, nous allons devoir régénérer les modèles.
 
 ```sh
 php artisan code:models --table=customers
 php artisan code:models --table=addresses
+php artisan code:models --table=customers_addresses
 ```
 
-Ces deux commandes vont permettre de regénérer le modèle `Customer` et générer le modèle `Address`.
+Ces trois commandes vont permettre de régénérer le modèle `Customer` et générer le modèle `Address`.
 
 ### 4. Corriger votre précédente vue
 
@@ -729,7 +799,7 @@ Vous avez vu, avec Laravel, il est possible d'écrire très peu de code pour avo
 
 - La documentation officielle.
 - Les exemples / tutoriels.
-- Les aides mémoires.
+- Les aide mémoire.
 - Les forums / StackOverflow / ChatGPT.
 
-La suite, ça sera [Larablog](./larablog.md) une plateforme de blog codé entièrement avec Laravel.
+La suite, ça sera [Larablog,](./larablog.md) une plateforme de blog codé entièrement avec Laravel.
