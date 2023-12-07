@@ -466,6 +466,8 @@ Dans le template `orders-list.blade.php` :
 
 ![Pagination](./ressources/pagination-tailwind.png)
 
+Nous touchons du doigt l'un des avantage d'un framework (ici Laravel). Si vous aviez dû écrire le code pour gérer la pagination, vous auriez passé du temps à écire un code assez complexe. Ici, en une ligne, vous avez la pagination. C'est l'intérêt de la standardisation, et de l'uniformisation du code.
+
 ::: tip La personnalisation c'est possible !
 
 Le style proposé utilise TailWind, mais il est également possible de gérer les liens de pagination manuellement, pour ça :
