@@ -41,7 +41,7 @@ Maintenant que vous avez validé que votre application fonctionne correctement, 
 Dockeriser une application requiert un nouveau fichier dans votre code source. Celui-ci doit se nommer `Dockerfile` je vous laisse créer à la racine de votre site (au même endroit que le `.env`) un fichier nommé `Dockerfile` avec comme contenu :
 
 ```dockerfile
-FROM webdevops/php-nginx:8.0-alpine
+FROM webdevops/php-nginx:8.3-alpine
 
 # Installation dans votre Image du minimum pour que Docker fonctionne
 RUN apk add oniguruma-dev libxml2-dev
@@ -65,7 +65,7 @@ COPY . .
 RUN cp -n .env.example .env
 
 # Installation et configuration de votre site pour la production
-# https://laravel.com/docs/8.x/deployment#optimizing-configuration-loading
+# https://laravel.com/docs/10.x/deployment#optimizing-configuration-loading
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 # Generate security key
 RUN php artisan key:generate
@@ -84,6 +84,8 @@ RUN chown -R application:application .
 Ce fichier contient l'ensemble de la configuration pour que Laravel fonctionne correctement. Il est en quelque sorte **générique** et pourra servir, quel que soit votre projet.
 
 C'est donc un outil très très pratique surtout avec ce que l'on appelle des plateformes d'intégration continue avec par exemple **Gitlab-CI**.
+
+**Attention, ce fichier doit être placé à la racine de votre projet, au même niveau que le `.env`.**
 
 :::
 
