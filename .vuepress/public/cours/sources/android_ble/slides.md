@@ -82,32 +82,6 @@ Avec l'application « nRF Connect »
 
 ---
 
-## Rx ?
-
-![what](./img/what2.gif)
-
----
-
-- Multi-thread
-- Asynchrone
-
----
-
-## Asynchrone is hard
-
----
-
-- Les données sont des streams
-- Les traitements sont faits dans d'autres thread que l'UI
-- Simplifie le multithread
-
----
-
-![RxJava](./img/reactivex.png)
-[Le site](http://reactivex.io/)
-
----
-
 ## La librairie (suite)
 
 - [Android-Ble-Librairie](https://github.com/NordicSemiconductor/Android-BLE-Library)
@@ -133,7 +107,6 @@ Avec l'application « nRF Connect »
 - Localisation ?
 - Est-ce que le Bluetooth est actif ?
 - Le Manifest
-- [Exemple](https://gitlab.com/vbrosseau/eseo-course-2020-kotlin/-/blob/master/app/src/main/java/com/eseo/kotlineseo/ui/scan/ScanActivity.kt)
 
 ---
 
@@ -183,10 +156,6 @@ Avec l'application « nRF Connect »
 ## BLE
 
 ### Le Scan
-
----
-
-(Je ne présenterai pas la version Java, mais si vous le souhaitez je vous montrerai)
 
 ---
 
