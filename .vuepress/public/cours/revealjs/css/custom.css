@@ -84,3 +84,10 @@ fieldset>legend {
 .frame-cover > h2{
     color: white;
 }
+
+.reveal img,
+.reveal video,
+.reveal iframe {
+    max-height: 90vh;
+        height: 60vh;
+}
