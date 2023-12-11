@@ -4,7 +4,7 @@ description: Nous avons vu précédemment qu'il était possible de compiler puis
 
 # Déployer une Image Docker dans Kubernetes
 
-Nous avons vu précédemment qu'il était possible de compiler puis de packager une application grâce à Gitlab-CI, dans ce TP nous allons voir comment déployer cette image (**présente dans un registry privée**) dans un cluster Kubernetes
+Nous avons vu précédemment qu'il était possible de compiler puis de packager une application grâce à Gitlab-CI, dans ce TP nous allons voir comment déployer cette image (**présente dans un registry privé**) dans un cluster Kubernetes
 
 ::: details Sommaire
 [[toc]]
@@ -76,7 +76,7 @@ Dans mon cas, j'ai donc la version `4.4.3` de k3d.
 
 #### Initialiser un Cluster
 
-Pour l'instant nous n'avons pas initialisé de cluster, notre machine / serveur est toujours identique à avant l'installation. La création de clusters va se réaliser via la commande `k3d` récemment installés. Pour faire simple, si vous souhaitez créer un cluster il vous suffira de :
+Pour l'instant nous n'avons pas initialisé de cluster, notre machine / serveur est toujours identique à avant l'installation. La création de clusters va se réaliser via la commande `k3d` récemment installée. Pour faire simple, si vous souhaitez créer un cluster, il vous suffira de :
 
 ```sh
 k3d cluster create --api-port IP_DE_VOTRE_SERVEUR:20135 -p "8080:80@loadbalancer" --volume $(pwd)/volume/:/data/ -s 1 -a 2 monCluster
@@ -97,7 +97,7 @@ k3d cluster create --api-port IP_DE_VOTRE_SERVEUR:20135 -p "8080:80@loadbalancer
 | `-a 2`                                  | Indique que vous souhaitez 2 agents                                                         |
 | `monCluster`                            | Le nom du cluster que vous souhaitez créer                                                  |
 
-Vous pouvez maintenant lancer la commande. Dans quelques minutes / secondes en fonctions de votre machine vous aurez un cluster Kubernetes disponible.
+Vous pouvez maintenant lancer la commande. Dans quelques minutes / secondes en fonctions de votre machine, vous aurez un cluster Kubernetes disponible.
 
 ::: tip C'est dans « du docker »
 
@@ -194,7 +194,7 @@ Bref, ce que vous souhaitez donc !
 
 ### Le projet
 
-Pour débuter nous allons déployer un projet simple, je vous propose de déployer un projet similaire à la documentation que vous êtes entrain de lire. La solution que j'utilise s'appelle [VuePress](https://vuepress.vuejs.org/), cette solution permet de créer rapidement un site à partir de fichier `Markdown` nous sommes donc en plein dans la JamStack.
+Pour débuter nous allons déployer un projet simple, je vous propose de déployer un projet similaire à la documentation que vous êtes en train de lire. La solution que j'utilise s'appelle [VuePress](https://vuepress.vuejs.org/), cette solution permet de créer rapidement un site à partir de fichier `Markdown` nous sommes donc en plein dans la JamStack.
 
 **-> Je vous laisse regarder un peu la documentation de VuePress avant de continuer**
 
@@ -265,7 +265,7 @@ Je vous laisse regarder comment nous avions fait, afin de reprendre la même log
 - Ajouter la configuration qui permettra de `builder le projet` puis de `builder l'image docker`.
 - Commiter et pusher votre projet pour que Gitlab-CI lance la compilation.
 
-**Attention**, dans le cas présent les étapes de compilation « JS » seront plus simples que dans l'exemple du TP dont vous vous inspirez, un simple `npm run build` sera certainement suffisant ;).
+**Attention**, dans le cas présent, les étapes de compilation « JS » seront plus simples que dans l'exemple du TP dont vous vous inspirez, un simple `npm run build` sera certainement suffisant ;).
 
 ::: warning Tester c'est douter ?
 Avant d'envoyer l'image dans notre cluster Kubernetes, je vous propose de tester que celle-ci fonctionne correctement. Après le build, tester de la récupérer pour la lancer sur votre Docker local.
@@ -332,15 +332,15 @@ Comme je disais en introduction nous allons devoir écrire quelques fichiers YAM
 - `services.yaml` va indiquer le ou les ports disponibles à l'intérieur de votre/vos image(s).
 - `ingress.yaml` va indiquer comment le port ou les ports doivent-être exposé à vos clients (path, ou sur un domaine en particulié)
 
-Ces fichiers sont « presque » toujours identiques entre chaque déploiement, c'est pour ça que des solutions comme `helm` existent. Pour simplifier, dans notre cas je vais vous donner les fichiers.
+Ces fichiers sont « presque » toujours identiques entre chaque déploiement, c'est pour ça que des solutions comme `helm` existent. Pour simplifier, dans notre cas, je vais vous donner les fichiers.
 
-Cependant, si vous souhaitez vraiment maitriser ce que nous sommes entrain de voir, je vous invite vivement à regarder ce que vous indiquer dans les fichiers.
+Cependant, si vous souhaitez vraiment maîtriser ce que nous sommes en train de voir, je vous invite vivement à regarder ce que vous indiquez dans les fichiers.
 
 ::: tip Les paramètres importants ?
 Même si tous les paramètres sont importants deux doivent attirer votre attention :
 
 - le `name`, présent dans l'ensemble des fichiers, c'est le nom de votre projet à déployer.
-- le `image`, c'est le lien vers votre image Docker à déployer (privée ou publique). Si l'image est privée il faudra indiquer un `imagePullSecrets`.
+- le `image`, c'est le lien vers votre image Docker à déployer (privée ou publique). Si l'image est privée, il faudra indiquer un `imagePullSecrets`.
 
 ![Fichier deployment.yml](./res/deployment_yaml_file.png)
 :::
@@ -357,7 +357,7 @@ export KUBECONFIG=~/emplacement/vers/le/secret/kubeconfig-monCluster.yaml
 
 Même si il est complètement possible d'utiliser le Docker Hub j'ai fait le choix de vous montrer directement comment utiliser une image sur un `Registry privé`. Pourquoi ? À mon sens, c'est très certainement la première problématique que vous rencontrerez. En effet dans le cadre du déploiement continu à part travailler sur un projet « Open Source » publique il y a fort à parier que votre entreprise ne souhaite pas vraiment avoir son code source disponible publiquement en ligne…
 
-**C'est pour ça qu'il est important** de maitriser cet aspect. Kubernetes est complètement capable d'utiliser le Registry de Gitlab, il faut juste lui donner « vos identifiants ». Évidemment vous n'aller pas donner votre login et votre mot de passe.
+**C'est pour ça qu'il est important** de maîtriser cet aspect. Kubernetes est complètement capable d'utiliser le Registry de Gitlab, il faut juste lui donner « vos identifiants ». Évidemment vous n'aller pas donner votre login et votre mot de passe.
 
 | <iframe src="https://giphy.com/embed/gIfdqZA4ECvMVrRpSv" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> |
 | :---------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -369,12 +369,12 @@ Cette fois-ci pas de YAML, mais **une simple commande** :
 kubectl create secret docker-registry gitlab-registry --docker-server="https://registry.gitlab.com" --docker-username="VOTRE_UTILISATEUR_GITLAB" --docker-password="TOKEN_OBTENU_PAR_GITLAB" --docker-email="VOTRE_EMAIL_GITLAB" -o yaml --dry-run=client | kubectl apply -f -
 ```
 
-Pour générer le Token, il suffit de passer par les paramètres de votre profile :
+Pour générer le Token, il suffit de passer par les paramètres de votre profil :
 
 ![Token création](./res/token.png)
 
 ::: warning Be curious !
-Inspecter, regarder, questionner moi, l'important est de comprendre ce que vous êtes entrain de faire. Dans le cas présent tenter de jouer la commande sans la fin (`| kubectl apply -f -`), vous allez voir le contenu de la configuration envoyé à votre cluster Kubernetes.
+Inspectez, regardez, questionnez-moi, l'important est de comprendre ce que vous êtes en train de faire. Dans le cas présent tenter de jouer la commande sans la fin (`| kubectl apply -f -`), vous allez voir le contenu de la configuration envoyé à votre cluster Kubernetes.
 
 Et oui… C'est encore du YAML :cry:
 :::
@@ -462,7 +462,7 @@ spec:
 ```
 
 ::: tip À quoi ça sert ?
-Le fichier Ingress défini comment votre pod va être accessible. Nous avons donc ici la correspondance entre le chemin (path, ou domain) et le port du service défini plus haut.
+Le fichier Ingress définit comment votre pod va être accessible. Nous avons donc ici la correspondance entre le chemin (path, ou domain) et le port du service défini plus haut.
 :::
 
 ### Déployer votre application
@@ -519,7 +519,7 @@ Déployer une nouvelle version de notre application va être très très simple.
   - Dans mon cas`image: registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:LE_NOUVEAU_HASH`
 - Appliquer la nouvelle configuration sur le Cluster `kubectl apply -f deployment.yaml`
 
-Et c'est tout ! Patientez une ou deux minutes votre modification est en ligne !
+Et c'est tout ! Patientez une ou deux minutes, votre modification est en ligne !
 
 ## La suite ?
 
@@ -529,9 +529,15 @@ La suite de cette introduction ça va être le déploiement automatisé en cas d
 
 PS: Ne vous inquiétez pas… Vous avez clairement fait le plus difficile.
 
-## L'usage en plus
+## La gestion des domaines
 
 Nous avons couvert un usage de base dans les premières étapes… C'est bien ! Mais nous pouvons aller plus loin pour utiliser toute la puissance de Kubernetes.
+
+Avec Kubernetes, comme pour un serveur classique, nous avons plusieurs possibilités pour exposer nos services :
+
+- Sur un port / domaine.
+- Via un chemin personnalisé (ex: `/api`).
+- Via un sous-domaine (ex: `api.domain.tld`).
 
 ### Gestion multi paths
 
@@ -577,6 +583,11 @@ spec:
                   number: 80
 ```
 
+Notre cluster va donc exposer :
+
+- `/` vers le service `vitejs-sample`
+- `/api` vers le service `api-sample`
+
 ::: danger Évidemment il s'agit d'un exemple
 J'ai résumé ici la partie ingress seulement et avec des noms fictifs. Les éléments importants dans l'extrait précédent sont :
 
@@ -589,7 +600,7 @@ C'est évidemment un exemple à adapter. Je vous conseille autant que possible d
 
 ### Gestion multidomaine
 
-Dans l'exemple précédent, nous avons déployé une seule application dans notre cluster ; même si d'un point segmentation c'est plus propre, dans les faits il est complètement possible de déployer plusieurs « applications » différentes dans un même cluster. C'est d'ailleurs le cas si votre application possède plusieurs services (API, Web et Base de données par exemple).
+Dans l'exemple précédent, nous avons déployé une seule application dans notre cluster ; même si d'un point de vue segmentation c'est plus propre, dans les faits il est complètement possible de déployer plusieurs « applications » différentes dans un même cluster. C'est d'ailleurs le cas si votre application possède plusieurs services (API, Web et Base de données par exemple).
 
 L'idée ici, c'est d'indiquer comment le trafic doit être routé vers les containers. Cette configuration est spécifiée dans les fichiers `ingress.yaml` de vos différentes applications.
 
@@ -622,6 +633,8 @@ spec:
                   number: 80
 ```
 
+Dans ce cas, le service `vuepress-test` sera accessible sur le domaine `press.domain.tld` et uniquement sur ce domaine.
+
 #### `ingress.yaml` vitejs-sample
 
 ```yaml
@@ -653,6 +666,10 @@ Cet usage est un peu plus compliqué à mettre en place, mais c'est clairement p
 
 PS: Nous allons devoir jouer avec votre fichier `hosts` si vous n'avez pas de nom de domaine. Mais vous allez voir c'est marrant.
 :::
+
+## La persistance des données
+
+Nous avons vu comment déployer une application, mais nous n'avons pas encore vu comment gérer la persistance des données. Dans le cas d'une application « classique » nous avons vu que nous pouvions utiliser un volume Docker pour sauvegarder les données.
 
 ### Créer un pod MariaDB utilisant un volume (persistant)
 
@@ -737,7 +754,7 @@ spec:
             claimName: fa-mysql-pv-claim
 ```
 
-### Accéder à un port sans le rendre public
+## Gérer les accès à vos pods / services
 
 Si vous avez créé le serveur MySQL du point précédent, vous souhaitez peut-être maintenant y accèder pour faire par exemple… des requêtes SQL ! Utiliser Kubernetes même en temps que débutant ne veux pas dire configurer n'importe comment votre serveur, si vous avez un service « non public », mais que vous souhaitez quand même y accéder dans le cadre du test ou de la maintenance vous pouvez utiliser :
 
@@ -746,3 +763,93 @@ kubectl port-forward mariadb-75f59d57f4-4nd6q 3306:3306
 ```
 
 Cette commande aura pour but de rendre accessible le port `3306` de la machine distante sur votre machine **et seulement sur votre machine**.
+
+## Les certificats SSL
+
+Nos applications sont maintenant déployées, mais nous avons un problème… Elles ne sont pas sécurisées. En effet, nous avons déployé nos applications sur des ports « classiques » (80). Cependant, nous n'avons pas configuré de certificat SSL pour nos applications. Avec Kubernetes, il est possible de gérer les certificats SSL de manière automatique.
+
+### Certificat SSL avec Let's Encrypt
+
+Pour gérer les certificats SSL, nous allons utiliser [cert-manager](https://cert-manager.io/docs/). Cert-manager est un outil qui va nous permettre de gérer les certificats SSL de manière automatique. Pour l'installer, il suffit de suivre la documentation officielle :
+
+```sh
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.3/cert-manager.yaml
+``` 
+
+Vérifier que l'installation s'est bien déroulée :
+
+```sh
+kubectl get pods --namespace cert-manager
+```
+
+Vous devriez avoir un résultat similaire à :
+
+```sh
+NAME                                       READY   STATUS    RESTARTS   AGE
+cert-manager-6f5b7c6d9f-4q9q8              1/1     Running   0          2m
+cert-manager-cainjector-5f4f9f6d9f-4q9q8   1/1     Running   0          2m
+cert-manager-webhook-7f5b7c6d9f-4q9q8      1/1     Running   0          2m
+```
+
+Une fois installés, nous allons pouvoir configurer notre cluster pour qu'il puisse demander des certificats SSL à Let's Encrypt. Pour cela, nous allons devoir créer un `Issuer` et un `Certificate`.
+
+```yaml
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: <your-email-address>
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+```
+
+```sh
+kubectl apply -f clusterissuer.yaml
+```
+
+Voilà! Votre cluster est maintenant capable de demander des certificats SSL à Let's Encrypt. Il ne reste plus qu'à configurer votre application pour qu'elle utilise le certificat SSL.
+
+Pour ça nous allons devoir modifier notre fichier `ingress.yaml` :
+
+Exemple, si votre nom de domaine est `press.domain.tld` et que vous souhaitez utiliser un certificat SSL pour votre application, il suffit de modifier le fichier `ingress.yaml` comme suit :
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vuepress-test
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - host: press.domain.tld
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vuepress-test
+                port:
+                  number: 80
+  tls:
+  - hosts:
+    - press.domain.tld 
+    secretName: letsencrypt-prod # Le nom du secret créé par cert-manager (Dans notre cas letsencrypt-prod)
+
+```
+
+Puis appliquer la configuration :
+
+```sh
+kubectl apply -f ingress.yaml
+```
+
+Lors de l'application de la configuration, cert-manager va automatiquement demander un certificat SSL à Let's Encrypt.
