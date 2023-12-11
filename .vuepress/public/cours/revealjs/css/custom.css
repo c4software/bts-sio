@@ -86,8 +86,16 @@ fieldset>legend {
 }
 
 .reveal img,
-.reveal video,
-.reveal iframe {
+.reveal video {
     max-height: 90vh;
         height: 60vh;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .reveal img,
+    .reveal video {
+        max-height: 90vh;
+        height: 90vh;
+    }
 }
