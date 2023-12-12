@@ -20,7 +20,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 <!-- .slide: data-background="./img/happy.gif" data-auto-animate -->
 
-## Bonne nouvelle ! Ce n'est pas que pour le web.
+## Bonne nouvelle ! Ce n'est pas que pour le web !
 
 ---
 

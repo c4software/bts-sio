@@ -91,6 +91,10 @@ fieldset>legend {
     max-width: 90vw;
 }
 
+.text-white {
+    color: white !important;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     .reveal img,
