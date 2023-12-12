@@ -88,7 +88,7 @@ fieldset>legend {
 .reveal img,
 .reveal video {
     max-height: 90vh;
-    max-width: 60vh;
+    max-width: 90vw;
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -96,6 +96,6 @@ fieldset>legend {
     .reveal img,
     .reveal video {
         max-height: 90vh;
-        max-width: 60vh;
+        max-width: 90vw;
     }
 }
