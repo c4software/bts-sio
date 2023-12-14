@@ -455,7 +455,7 @@ Je vous laisse tester votre code. Vous devriez avoir quelque chose comme ça :
 
 Maintenant que nous avons notre formulaire, nous allons pouvoir enregistrer notre article. Pour cela nous allons devoir faire le code derrère la route `articles.store` que nous avons créée précédemment.
 
-Notre méthode a pour but de récupérer les données du formulaire et de les enregistrer dans la base de données. Pour cela, nous allons utiliser la méthode `create` du modèle `Article`.
+Notre méthode a pour but de récupérer les données du formulaire et de les enregistrer dans la base de données. Pour cela, nous allons utiliser la méthode `store` du modèle `Article`.
 
 ```php
 public function store(Request $request)
