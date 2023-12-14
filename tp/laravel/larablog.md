@@ -419,7 +419,7 @@ Pour commencer, nous allons créer le fichier `resources/views/articles/create.b
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </x-app-layout>
 ```
 
