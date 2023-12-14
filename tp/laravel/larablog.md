@@ -751,6 +751,12 @@ $article = Article::find($id);
 $article->delete();
 ```
 
+Si vous avez un `Article` en paramètre de votre méthode, vous pouvez utiliser la méthode `delete` directement sur l'objet.
+
+```php
+$article->delete();
+```
+
 ⚠️ N'oubliez pas de vérifier que l'utilisateur connecté est bien le créateur de l'article. Vous pouvez utiliser la même méthode que pour l'édition d'un article.
 
 :::
