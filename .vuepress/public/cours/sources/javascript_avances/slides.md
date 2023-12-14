@@ -36,7 +36,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-<!-- .slide: data-background-iframe="https://www.google.com/maps" -->
+<!-- .slide: data-background-iframe="https://leaflet-extras.github.io/leaflet-providers/preview/" -->
 
 <div class="frame-cover">
   <h2>Google Maps</h2>
@@ -45,7 +45,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-<!-- .slide: data-background-iframe="https://www.twitter.com" -->
+<!-- .slide: data-background-iframe="https://twitter.com/c4software?ref_src=twsrc%5Etfw" -->
 
 <div class="frame-cover">
   <h2>Twitter</h2>
