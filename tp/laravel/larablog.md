@@ -734,7 +734,7 @@ Le message flash doit être de type `error` et doit contenir le message suivant 
 
 ### Suppression d'un article
 
-Je vous laisse réaliser la partie suppression d'unt article. Voici les étapes à réaliser :
+Je vous laisse réaliser la partie suppression d'un article. Voici les étapes à réaliser :
 
 - Créer la route `articles.remove` qui va nous permettre de supprimer un article.
 - Créer la méthode `remove` dans le contrôleur `UserController`.
