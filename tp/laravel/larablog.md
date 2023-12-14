@@ -386,7 +386,7 @@ Pour commencer, nous allons créer le fichier `resources/views/articles/create.b
 ```html
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Créer un article
         </h2>
     </x-slot>
@@ -394,18 +394,18 @@ Pour commencer, nous allons créer le fichier `resources/views/articles/create.b
     <form method="post" action="{{ route('articles.store') }}" class="py-12">
         @csrf
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 ">
                    <!-- Input de titre de l'article -->
                    <input type="text" name="title" id="title" placeholder="Titre de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 </div>
 
-                <div class="p-6 pt-0 text-gray-900 dark:text-gray-100">
+                <div class="p-6 pt-0 text-gray-900 ">
                    <!-- Contenu de l'article -->
                    <textarea rows="30" name="content" id="content" placeholder="Contenu de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                 </div>
 
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex items-center">
+                <div class="p-6 text-gray-900 flex items-center">
                     <!-- Action sur le formulaire -->
                     <div class="grow">
                         <input type="checkbox" name="draft" id="draft" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -541,10 +541,10 @@ Nous allons maintenant modifier la vue `dashboard` pour afficher les articles de
 ```html
 <!-- Articles -->
 @foreach ($articles as $article)
-    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mt-4">
-        <div class="p-6 text-gray-900 dark:text-gray-100">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-4">
+        <div class="p-6 text-gray-900">
             <h2 class="text-2xl font-bold">{{ $article->title }}</h2>
-            <p class="text-gray-700 dark:text-gray-300">{{ substr($article->content, 0, 30) }}...</p>
+            <p class="text-gray-700">{{ substr($article->content, 0, 30) }}...</p>
         </div>
     </div>
 @endforeach
@@ -581,11 +581,11 @@ Route::post('/articles/{article}/update', [UserController::class, 'update'])->na
 
 ::: danger Attention
 
-N'oubliez pas la sécurité ! Seul un utilisateur connecté doit pouvoir accéder à ces route. À vous de placer la route au bon endroit dans le fichier `web.php`.
+N'oubliez pas la sécurité ! Seul un utilisateur connecté doit pouvoir accéder à ces routes. À vous de placer la route au bon endroit dans le fichier `web.php`.
 
 :::
 
-Pour la suite, Nous allons réaliser les étapes suivantes :
+Pour la suite, nous allons réaliser les étapes suivantes :
 
 - Créer la méthode `edit` dans le contrôleur `UserController`.
 - Créer la vue `articles.edit` qui va nous permettre d'afficher le formulaire d'édition d'un article.
@@ -636,7 +636,7 @@ Une page :
 ```html
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Modifier l'article {{ $article->id }}
         </h2>
     </x-slot>
@@ -644,18 +644,18 @@ Une page :
     <form method="post" action="{{ route('articles.update', $article->id) }}" class="py-12">
         @csrf
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
                    <!-- Input de titret de l'article -->
                    <input type="text" value="{{ $article->title }}" name="title" id="title" placeholder="Titre de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 </div>
 
-                <div class="p-6 pt-0 text-gray-900 dark:text-gray-100">
+                <div class="p-6 pt-0 text-gray-900">
                    <!-- Contenu de l'article -->
                    <textarea rows="30" name="content" id="content" placeholder="Contenu de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ $article->content }}</textarea>
                 </div>
 
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex items-center">
+                <div class="p-6 text-gray-900 flex items-center">
                     <!-- Action sur le formulaire -->
                     <div class="grow">
                         <input type="checkbox" name="draft" id="draft" {{ $article->draft ? 'checked' : '' }} class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -906,7 +906,7 @@ Modifier le composant `x-guest-layout` pour que celui ne soit plus centré. Prof
 
 Le composant se trouve dans le fichier `resources/views/layouts/guest.blade.php`.
 
-Vous pouvez également retirer le logo de la page (ou mettre le votre).
+Vous pouvez également retirer le logo de la page (ou mettre le vôtre).
 
 Pour vous inspirer, vous pouvez aller voir le template [Tailwind Awesome](https://www.tailwindawesome.com/?price=free&type=template) qui propose des templates gratuits.
 
@@ -935,9 +935,9 @@ Les commentaires sont une fonctionnalité importante d'un blog. Nous allons donc
 
 Chaque article doit avoir une liste de commentaires. Chaque utilisateur doit pouvoir ajouter un commentaire sur un article. L'ajout de commentaire ne doit être possible que pour les utilisateurs connectés.
 
-### Comment allons nous procéder ?
+### Comment allons-nous procéder ?
 
-Pour traiter cette ajout de fonctionnalité, nous allons procéder de la manière suivante :
+Pour traiter cet ajout de fonctionnalité, nous allons procéder de la manière suivante :
 
 - Création d'un contrôleur `CommentController` qui va nous permettre de gérer les commentaires.
 - Création d'une route `comments.store` qui va nous permettre d'ajouter un commentaire.
@@ -1007,7 +1007,7 @@ Si l'utilisateur n'est pas connecté, vous devez rediriger l'utilisateur vers la
 
 ::: tip L'astuce du chef
 
-En Laravel, il exist une methode redirect qui permet de rediriger l'utilisateur vers la page précédente.
+En Laravel, il existe une méthode redirect qui permet de rediriger l'utilisateur vers la page précédente.
 
 ```php
 return redirect()->back();
@@ -1037,7 +1037,7 @@ Un peu de détail sur le code :
 
 ::: danger Attention
 
-N'oubliez pas qu'il ne dois être possible d'ajouter un commentaire que pour les utilisateurs connectés. Vous devez donc ajouter une condition pour afficher le formulaire uniquement si l'utilisateur est connecté. En Laravel vous pouvez utiliser la classe `Auth` pour vérifier si un utilisateur est connecté.
+N'oubliez pas qu'il ne doit être possible d'ajouter un commentaire que pour les utilisateurs connectés. Vous devez donc ajouter une condition pour afficher le formulaire uniquement si l'utilisateur est connecté. En Laravel vous pouvez utiliser la classe `Auth` pour vérifier si un utilisateur est connecté.
 
 ```php
 @auth
@@ -1049,7 +1049,7 @@ N'oubliez pas qu'il ne dois être possible d'ajouter un commentaire que pour les
 
 ### Ajouter la liste des commentaires
 
-Maintenant que nous avons la possiblitité d'ajouter un commentaire, nous allons ajouter la liste des commentaires. Pour cela, nous allons modifier la vue `public.show`. Je ne vais pas vous donner le code en entier de la liste des commentaires, je vais vous donner les grandes lignes.
+Maintenant que nous avons la possibilité d'ajouter un commentaire, nous allons ajouter la liste des commentaires. Pour cela, nous allons modifier la vue `public.show`. Je ne vais pas vous donner le code en entier de la liste des commentaires, je vais vous donner les grandes lignes.
 
 ```html
 <!-- Liste des commentaires -->
@@ -1075,7 +1075,7 @@ Je vous laisse faire un nouveau commit de votre projet.
 
 Chaque article peut avoir une ou plusieurs catégories (technologie, sport, etc.). Actuellement, nous n'avons pas de catégorie. Je vous propose donc d'ajouter cette fonctionnalité à notre site Internet.
 
-La liste des catégories sera fixe, c'est à dire que nous allons les mettres en dur dans notre base de données. Nous n'allons pas créer une interface pour les gérer.
+La liste des catégories sera fixe, c'est-à-dire que nous allons les mettre en dur dans notre base de données. Nous n'allons pas créer une interface pour les gérer.
 
 Vu que nous avons généré nos modèles à partir de la base de données, nos relations en code sont déjà présentes. Nous allons avoir uniquement les modifications de code et d'interface à faire.
 
@@ -1092,11 +1092,11 @@ Pour commencer, nous allons remplir notre base de données avec les catégories.
 - Développement
 - Informatique
 
-### Comment allons nous procéder ?
+### Comment allons-nous procéder ?
 
-Pour traiter cette ajout de fonctionnalité, nous allons procéder de la manière suivante :
+Pour traiter cet ajout de fonctionnalité, nous allons procéder de la manière suivante :
 
-Partie public :
+Partie publique :
 
 - Modifier la page d'affichage de la liste des articles pour afficher les catégories.
 - Modifier la page d'affichage d'un article pour afficher les catégories.
@@ -1195,13 +1195,13 @@ Je vous laisse faire un nouveau commit de votre projet.
 
 Vous arrivez à la fin de votre projet. Il ne vous reste plus qu'une fonctionnalité à réaliser. Les likes.
 
-Sur chaque article, vous devez ajouter un bouton qui va permettre de liker l'article. Lorsque l'utilisateur clique sur le bouton, vous devez ajouter un like à l'article. Ce compteur doit être à l'infini. C'est à dire que l'utilisateur peut liker plusieurs fois le même article.
+Sur chaque article, vous devez ajouter un bouton qui va permettre de liker l'article. Lorsque l'utilisateur clique sur le bouton, vous devez ajouter un like à l'article. Ce compteur doit être à l'infini. C'est-à-dire que l'utilisateur peut liker plusieurs fois le même article.
 
 Vous devez également afficher le nombre de like sur chaque article.
 
 ::: tip Rappel
 
-Pour réaliser cette fonctionnalité, vous devrez ajouter une nouvelle colonne dans la table `articles`. Cette colonne de type integer va nous permettre de stocker le nombre de like de l'article.
+Pour réaliser cette fonctionnalité, vous devrez ajouter une nouvelle colonne dans la table `articles`. Cette colonne de type intégré va nous permettre de stocker le nombre de like de l'article.
 
 Une fois la colonne ajoutée, vous devrez modifier le modèle `Article` pour ajouter la colonne dans la propriété `$fillable` et `$casts`.
 
@@ -1229,7 +1229,7 @@ Voici un peu de HTML pour vous aider :
 ```
 
 - Nous avons un lien qui pointe vers la route `articles.like`.
-- Nous avons un bouton avec un SVG pour afficher un coeur.
+- Nous avons un bouton avec un SVG pour afficher un cœur.
 - Nous avons un span qui affiche le nombre de like.
 
 Voici le rendu :
@@ -1267,7 +1267,7 @@ Maintenant que votre projet est terminé, vous allez pouvoir le déployer sur un
 
 ::: tip Rappel
 
-N'oubliez pas de faire un commit de votre projet avant de le déployer. Pour finaliser votre projet vous devez le déployer sur un serveur. Vous devez me partager l'URL de votre projet déployé.
+N'oubliez pas de faire un commit de votre projet avant de le déployer. Pour finaliser votre projet, vous devez le déployer sur un serveur. Vous devez me partager l'URL de votre projet déployé.
 
 :::
 
