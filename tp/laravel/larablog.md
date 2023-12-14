@@ -585,14 +585,14 @@ N'oubliez pas la sécurité ! Seul un utilisateur connecté doit pouvoir accéde
 
 :::
 
-Pour la suite, je ne vais pas vous guider pas à pas. Je vais vous laisser réaliser le code par vous-même. Je vous laisse donc réaliser les étapes suivantes :
+Pour la suite, Nous allons réaliser les étapes suivantes :
 
 - Créer la méthode `edit` dans le contrôleur `UserController`.
 - Créer la vue `articles.edit` qui va nous permettre d'afficher le formulaire d'édition d'un article.
 - Créer la méthode `update` dans le contrôleur `UserController`.
 - Modifier la vue `dashboard` pour ajouter un lien d'édition sur chaque article.
 
-Voici le code nécessaire pour réaliser les différentes étapes
+Voici le code nécessaire :
 
 Des méthodes :
 
