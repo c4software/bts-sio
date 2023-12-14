@@ -237,7 +237,7 @@ Si vous souhaitez en savoir plus sur TailwindCSS, je vous invite à consulter la
 
 Sachez juste que TailwindCSS est un framework CSS qui permet de créer des interfaces rapidement. Il est très utilisé dans le monde du développement web. Il repose cependant sur l'utilisation de NPM, pour que votre CSS fonctionne correctement deux solutions :
 
-- Executer periodiquement la commande `npm run build` pour compiler votre CSS.
+- Éxecuter périodiquement la commande `npm run build` pour compiler votre CSS.
 - Observer les changements de votre CSS avec la commande `npm run dev`.
 
 ::: tip Comment moi je fais ?
@@ -669,7 +669,7 @@ Une page :
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </x-app-layout>
 ```
 
