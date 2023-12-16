@@ -95,14 +95,14 @@
         <div class="chat-message" v-for="current in messages">
             <div class="flex items-end justify-end my-3" v-if="current.user == 'valentin'">
                 <div class="flex flex-col space-y-2 text-xs  max-w-[60%] mx-2 order-1 items-end">
-                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white">{{current.message}}</span></div>
+                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white">{{current.content}}</span></div>
                 </div>
                 <img :src="current.pic" title="Valentin" class="w-6 h-6 rounded-full order-2">
             </div>
 
             <div class="flex items-end my-3" v-else-if="current.user == 'kanye'">
                 <div class="flex flex-col space-y-2 text-xs  max-w-[60%] mx-2 order-2 items-start">
-                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600 whitespace-pre-line" v-html="current.message"></span></div>
+                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600 whitespace-pre-line" v-html="current.content"></span></div>
                 </div>
                 <img :src="current.pic" class="w-6 h-6 rounded-full order-2" title="Kanye">
             </div>
@@ -144,7 +144,7 @@
 
         <input @change="saveState()" v-model="model" type="text" placeholder="Modèle" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
 
-        <textarea rows="5" @input="saveState()" v-model="initialPrompt" type="text" placeholder="Prompt initial" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 py-3">
+        <textarea rows="5" @input="saveState()" v-model="systemPrompt" type="text" placeholder="Prompt initial" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 py-3">
         </textarea>
 
     </div>
@@ -152,38 +152,48 @@
     <script type="module">
         import { createApp } from 'https://unpkg.com/petite-vue?module'
 
-
-        const defaultPrompt = `You are a Ye the famous Kanye West who is famous for simple, intuitive explanations.
-Anything between the following <user> blocks is a part of the conversation with the user.
-<user>
-    {msg}
-</user>`;
+        const systemPrompt = `You are Kanye West, the famous singer. You are chatting with the user via the Assistant WebSite. This means most of the time your lines should be a sentence or two, unless the user's request requires reasoning or long-form outputs.`;
 
         createApp({
+            // messages est un tableau d'objets du type:
+            // {role: "system"|"user"|"assistant", content: "string"}
             messages: [],
             message: "",
             fetching: false,
-            context: [],
 
             llm: window.localStorage.getItem("chat:llm") == "true" ? true : false,
 
-            initialPrompt: window.localStorage.getItem("llm:initialPrompt") ? window.localStorage.getItem("llm:initialPrompt") : defaultPrompt,
+            systemPrompt: window.localStorage.getItem("llm:systemPrompt") ? window.localStorage.getItem("llm:systemPrompt") : systemPrompt,
             model: window.localStorage.getItem("llm:model") ? window.localStorage.getItem("llm:model") : "zephyr",
 
             get messageCount() {
                 this.messages.length;
             },
 
+            init() {
+                this.messages = [{
+                    role: "system",
+                    content: this.systemPrompt
+                }];
+
+                if(!this.llm){
+                    this.addKanye("Yo what's up bro ?!");
+                    this.fetchKanye();
+                }
+            },
+            
             saveState() {
                 window.localStorage.setItem("chat:llm", this.llm ? "true" : "false");
                 window.localStorage.setItem("llm:model", this.model);
-                window.localStorage.setItem("llm:initialPrompt", this.initialPrompt);
+                window.localStorage.setItem("llm:systemPrompt", this.systemPrompt);
+
+                this.init();
             },
 
             ollamaSendMessage() {
-                fetch("http://127.0.0.1:11435/api/generate", {
+                fetch("http://127.0.0.1:11435/api/chat", {
                     method: "POST",
-                    body: JSON.stringify({ model: this.model, prompt: this.initialPrompt.replace("{msg}", this.message), context: this.context }),
+                    body: JSON.stringify({ model: this.model, messages: this.messages.map(it => ({role: it.role, content: it.content})) }),
                 }).then((response) => {
                     this.fetching = false;
                     const reader = response.body.getReader();
@@ -197,21 +207,16 @@ Anything between the following <user> blocks is a part of the conversation with 
                 // On récupère le résultat en provenance du serveur
                 const { done, value } = result;
 
-                if (done) {
+                const textChunk = new TextDecoder().decode(value);
+                const decoded = JSON.parse(textChunk);
+
+                if(decoded.done){
                     // Génération terminée
                     return;
                 }
 
-                const textChunk = new TextDecoder().decode(value);
-                const decoded = JSON.parse(textChunk);
-                this.messages[this.messages.length - 1].message += decoded.response;
+                this.messages[this.messages.length - 1].content += decoded.message.content;
                 this.scrollBottom();
-
-                // On met à jour le contexte
-                // Il sera utilisé pour la prochaine requête
-                if (decoded.context) {
-                    this.context = decoded.context;
-                }
 
                 // Pas encore done, on continue la lecture
                 reader.read().then((result) => this.ollamaReader(reader, result));
@@ -225,7 +230,7 @@ Anything between the following <user> blocks is a part of the conversation with 
             },
 
             addMessage() {
-                this.messages.push({ message: this.message, user: "valentin", pic: "https://pbs.twimg.com/profile_images/3762199551/9fdd72f73c3eb3c974b004e83f7b4623_normal.jpeg" });
+                this.messages.push({ content: this.message, user: "valentin", role: "user", pic: "https://pbs.twimg.com/profile_images/3762199551/9fdd72f73c3eb3c974b004e83f7b4623_normal.jpeg" });
                 this.fetching = true;
 
                 if (!this.llm) {
@@ -240,7 +245,7 @@ Anything between the following <user> blocks is a part of the conversation with 
 
             addKanye(message) {
                 const pic = "https://images.rtl.fr/~c/770v513/rtl/www/1461751-kanye-west-s-est-rebaptise-ye-pour-des-motifs-personnels.jpg";
-                this.messages.push({ message, user: "kanye", pic })
+                this.messages.push({ content: message, user: "kanye", role: "assistant", pic })
                 this.scrollBottom();
             },
 
@@ -251,11 +256,6 @@ Anything between the following <user> blocks is a part of the conversation with 
                     .then((result) => result.json())
                     .then((res) => this.addKanye(res.quote))
                     .finally(() => this.fetching = false)
-            },
-
-            init() {
-                this.addKanye("Yo what's up bro ?!");
-                this.fetchKanye();
             },
         }).mount()
     </script>
