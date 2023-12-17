@@ -14,6 +14,112 @@ Vous débutez avec Docker ? Je vous conseille plutôt de [démarrer par ici](../
 [[toc]]
 :::
 
+::: details TL;DR
+
+Vous êtes pressé ? Vous ne voulez pas lire ? 
+
+Installation de Docker sur votre serveur :
+
+```sh
+# Ajout des éléments nécessaire à l'installation
+apt-get update
+apt-get -y install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+# Ajout du dépôt permettant d'installer Docker
+mkdir -m 0755 -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update la liste des packages et installation de Docker
+apt update
+apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+```
+
+Création de votre fichier `Dockerfile` :
+
+```dockerfile
+FROM webdevops/php-nginx:8.3-alpine
+
+# Installation dans votre Image du minimum pour que Docker fonctionne
+RUN apk add oniguruma-dev libxml2-dev
+RUN docker-php-ext-install \
+        bcmath \
+        ctype \
+        fileinfo \
+        mbstring \
+        pdo_mysql \
+        xml
+
+# Installation dans votre image de Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Installation dans votre image de NodeJS
+RUN apk add nodejs npm
+
+ENV WEB_DOCUMENT_ROOT /app/public
+ENV APP_ENV production
+WORKDIR /app
+COPY . .
+
+# On copie le fichier .env.example pour le renommer en .env
+# Vous pouvez modifier le .env.example pour indiquer la configuration de votre site pour la production
+RUN cp -n .env.example .env
+
+# Installation et configuration de votre site pour la production
+# https://laravel.com/docs/10.x/deployment#optimizing-configuration-loading
+RUN composer install --no-interaction --optimize-autoloader --no-dev
+# Generate security key
+RUN php artisan key:generate
+# Optimizing Configuration loading
+RUN php artisan config:cache
+# Optimizing Route loading
+RUN php artisan route:cache
+# Optimizing View loading
+RUN php artisan view:cache
+
+# Compilation des assets de Breeze (ou de votre site)
+RUN npm install
+RUN npm run build
+
+RUN chown -R application:application .
+```
+
+Création de votre fichier `docker-compose.yaml` :
+
+```yaml
+version: "3.9"
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+  db:
+    image: mariadb:11.3
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_DATABASE: demo
+      MARIADB_USER: demo
+      MARIADB_PASSWORD: demo
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - ./data/db:/var/lib/mysql
+```
+
+Déploiement de votre site :
+
+```sh
+docker compose up -d
+```
+
+:::
+
 ## Avant-propos
 
 Docker c'est simple ! Les étapes peuvent paraître effrayante, mais non. Pour vous le prouver, voilà une vidéo de la procédure entière (2min top chrono de la création du projet à la mise à disposition sur votre machine) :
