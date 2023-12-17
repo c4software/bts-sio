@@ -1249,6 +1249,28 @@ Pour réaliser cette fonctionnalité, vous allez devoir modifier :
 
 :::
 
+## Déploiement
+
+Maintenant que votre projet est terminé, vous allez pouvoir le déployer sur un serveur. Pour cela, je vous invite à suivre l'un des deux TP suivants :
+
+- [TP - Déploiement d'un projet Laravel](https://cours.brosseau.ovh/tp/ops/deployer-laravel.html)
+- [TP - Déploiement d'un projet Laravel **avec Docker**](https://cours.brosseau.ovh/tp/ops/deployer-laravel-docker.html)
+
+::: warning Deux solutions sont possibles
+
+Pour déployer votre projet, vous avez deux solutions :
+
+- Installation classique de Laravel, via un serveur web (Apache).
+- Installation de Laravel via Docker <- Je vous conseille cette solution, c'est simple et rapide (il faut juste ajouter deux fichiers dans votre projet)
+
+Pour moi, la solution Docker **est celle à privilégier**. Même si vous ne connaissez pas Docker, vous pouvez suivre le TP. Il est très simple et vous permettra de déployer votre projet rapidement.
+
+**Avoir docker sur un serveur va vous permettre de déployer votre architecture très rapidement, sans n'avoir rien à installer (autre que Docker) sur votre serveur. Pratique.**
+
+:::
+
+PS: N'oubliez pas de faire un commit de votre projet avant de le déployer. Pour finaliser votre projet, vous devez le déployer sur un serveur. Vous devez me partager l'URL de votre projet déployé.
+
 ## Bonus
 
 Vous avez terminé votre projet ? Vous avez encore du temps ? Voici quelques idées de fonctionnalités supplémentaires.
@@ -1258,18 +1280,6 @@ Vous avez terminé votre projet ? Vous avez encore du temps ? Voici quelques id�
 - Ajouter un système de recherche sur la liste des articles.
 - Voir les articles en fonction d'une catégorie.
 - Voir les articles en fonction d'un tag.
-
-## Déploiement
-
-Maintenant que votre projet est terminé, vous allez pouvoir le déployer sur un serveur. Pour cela, je vous invite à suivre le TP suivant :
-
-[TP - Déploiement d'un projet Laravel](https://cours.brosseau.ovh/tp/ops/deployer-laravel.html)
-
-::: tip Rappel
-
-N'oubliez pas de faire un commit de votre projet avant de le déployer. Pour finaliser votre projet, vous devez le déployer sur un serveur. Vous devez me partager l'URL de votre projet déployé.
-
-:::
 
 ## Conclusion
 

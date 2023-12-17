@@ -156,7 +156,7 @@ Qu'avons nous dans cette commande ?
 
 Cette commande permet de tester rapidement votre image, c'est pratique ça va vite, mais nous allons voir comment faire mieux. Pour le moment, vous pouvez tester votre site sur [http://localhost:8080](http://localhost:8080).
 
-Pour la suite nous allons utiliser Docker Compose. C'est un outil qui permet de définir l'ensemble de la configuration de votre application dans un fichier. C'est un peu comme le `Dockerfile` mais en plus complet.
+Pour la suite, nous allons utiliser Docker Compose. C'est un outil qui permet de définir l'ensemble de la configuration de votre application dans un fichier. C'est un peu comme le `Dockerfile` mais en plus complet.
 
 ## Docker Compose : prêt à déployer sur votre serveur
 
@@ -192,6 +192,26 @@ Ce fichier indique que vous avez :
 
 :::
 
+### Tester
+
+Pour tester, c'est encore plus simple !
+
+```sh
+docker compose up
+```
+
+Patientez quelques instants et votre site sera disponible sur le port [http://localhost:8080](http://localhost:8080).
+
+::: tip C'est ce fichier…
+
+Ce fichier est celui qui nous permettra de lancer facilement votre site sur votre serveur 👌
+
+:::
+
+![Lancement Docker](./img/lancement-docker.png)
+![Lancement navigateur](./img/lancement-navigateur.png)
+
+
 ### Ajouter une base de données
 
 Et si nous ajoutions une base de données ? Et bien aucun problème, il suffit d'ajouter un service dans le fichier `docker-compose.yaml` :
@@ -225,24 +245,22 @@ Nous avons maintenant deux services :
 
 Pour le moment, nous n'avons pas encore configuré Laravel pour utiliser cette base de données. Si vous souhaitez tester, il faut modifier le fichier `.env` de votre site pour utiliser les informations de connexion de la base de données.
 
-### Tester
+::: tip Le fichier .env
 
-Pour tester, c'est encore plus simple !
+Ici, nous allons donc devoir modifier le `.env.example` pour indiquer la configuration de votre site pour la production. Dans le cas de la base de données, il faut modifier les informations suivantes :
 
-```sh
-docker compose up
+```env
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=demo
+DB_USERNAME=demo
+DB_PASSWORD=demo
 ```
 
-Patientez quelques instants et votre site sera disponible sur le port [http://localhost:8080](http://localhost:8080).
-
-::: tip C'est ce fichier…
-
-Ce fichier est celui qui nous permettra de lancer facilement votre site sur votre serveur 👌
+Pourquoi ? Et bien parce que le service `db` est accessible sur le port `3306` et que son nom est `db`. C'est ce que nous avons indiqué dans le fichier `docker-compose.yaml`.
 
 :::
-
-![Lancement Docker](./img/lancement-docker.png)
-![Lancement navigateur](./img/lancement-navigateur.png)
 
 ## Installer Docker sur votre serveur Debian
 
@@ -250,24 +268,21 @@ La procédure est assez similaire à l'installation d'un package classique :
 
 ```sh
 # Ajout des éléments nécessaire à l'installation
-sudo apt-get update
-sudo apt-get -y install \
+apt-get update
+apt-get -y install \
     ca-certificates \
     curl \
     gnupg \
     lsb-release
 
 # Ajout du dépôt permettant d'installer Docker
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+mkdir -m 0755 -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Update la liste des packages et installation de Docker
-sudo apt-get update
-sudo apt-get -y install docker-ce docker-ce-cli containerd.io
-
-# Installation de docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+apt update
+apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 ```
 
 **Félicitation,** vous avez maintenant Docker sur votre Serveur.
