@@ -51,11 +51,13 @@ RUN docker-php-ext-install \
         fileinfo \
         mbstring \
         pdo_mysql \
-        tokenizer \
         xml
 
 # Installation dans votre image de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Installation dans votre image de NodeJS
+RUN apk add nodejs npm
 
 ENV WEB_DOCUMENT_ROOT /app/public
 ENV APP_ENV production
@@ -75,6 +77,10 @@ RUN php artisan config:cache
 RUN php artisan route:cache
 # Optimizing View loading
 RUN php artisan view:cache
+
+# Compilation des assets de Breeze (ou de votre site)
+RUN npm install
+RUN npm run build
 
 RUN chown -R application:application .
 ```
@@ -132,6 +138,24 @@ Sur ma machine :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/CB2l0cYkRJM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+## Lancer votre image pour tester
+
+Maintenant que vous avez créé votre image, vous pouvez la lancer pour tester que tout fonctionne correctement.
+
+```sh
+docker run -p 8080:80 test-laravel:latest
+```
+
+Qu'avons nous dans cette commande ?
+
+- `docker run` : C'est la commande qui permet de lancer un conteneur.
+- `-p 8080:80` : C'est l'option qui permet de dire que le port `8080` de votre machine sera redirigé vers le port `80` du conteneur.
+- `test-laravel:latest` : C'est le nom de l'image que vous avez créée.
+
+Cette commande permet de tester rapidement votre image, c'est pratique ça va vite, mais nous allons voir comment faire mieux. Pour le moment, vous pouvez tester votre site sur [http://localhost:8080](http://localhost:8080).
+
+Pour la suite nous allons utiliser Docker Compose. C'est un outil qui permet de définir l'ensemble de la configuration de votre application dans un fichier. C'est un peu comme le `Dockerfile` mais en plus complet.
+
 ## Docker Compose : prêt à déployer sur votre serveur
 
 Vous avez maintenant « un serveur » qui fonctionne, nous allons ajouter un fichier nommé qui sera utilisé par Docker Compose, cette configuration au format YAML.
@@ -165,6 +189,39 @@ Ce fichier indique que vous avez :
 - Est-il possible de déclarer plusieurs services ? [C'est par ici.](https://docs.docker.com/compose/compose-file/)
 
 :::
+
+### Ajouter une base de données
+
+Et si nous ajoutions une base de données ? Et bien aucun problème, il suffit d'ajouter un service dans le fichier `docker-compose.yaml` :
+
+```yaml
+version: "3.9"
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+  db:
+    image: mariadb:11.3
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_DATABASE: demo
+      MARIADB_USER: demo
+      MARIADB_PASSWORD: demo
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - ./data/db:/var/lib/mysql
+```
+
+Nous avons maintenant deux services :
+
+- `web` : C'est notre site Laravel.
+- `db` : C'est notre base de données.
+
+Pour le moment, nous n'avons pas encore configuré Laravel pour utiliser cette base de données. Si vous souhaitez tester, il faut modifier le fichier `.env` de votre site pour utiliser les informations de connexion de la base de données.
 
 ### Tester
 
