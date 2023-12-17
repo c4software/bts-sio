@@ -1267,6 +1267,8 @@ Pour moi, la solution Docker **est celle à privilégier**. Même si vous ne con
 
 **Avoir docker sur un serveur va vous permettre de déployer votre architecture très rapidement, sans n'avoir rien à installer (autre que Docker) sur votre serveur. Pratique.**
 
+PS: Déployer le site aveck Docker prend 2min et 20seconde (en comptant le temps de téléchargement de l'image Docker). C'est très rapide.
+
 :::
 
 PS: N'oubliez pas de faire un commit de votre projet avant de le déployer. Pour finaliser votre projet, vous devez le déployer sur un serveur. Vous devez me partager l'URL de votre projet déployé.
