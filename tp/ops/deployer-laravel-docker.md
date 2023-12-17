@@ -64,6 +64,8 @@ ENV APP_ENV production
 WORKDIR /app
 COPY . .
 
+# On copie le fichier .env.example pour le renommer en .env
+# Vous pouvez modifier le .env.example pour indiquer la configuration de votre site pour la production
 RUN cp -n .env.example .env
 
 # Installation et configuration de votre site pour la production
