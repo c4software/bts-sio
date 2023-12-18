@@ -876,9 +876,7 @@ private fun handleToggleLedNotificationUpdate(characteristic: BluetoothGattChara
 }
 
 private fun handleCountLedChangeNotificationUpdate(characteristic: BluetoothGattCharacteristic) {
-    characteristic.getStringValue(0).toIntOrNull()?.let {
-        ledCount.text = getString(R.string.led_count, it)
-    }
+    Toast.makeText(this, characteristic.getStringValue(0), Toast.LENGTH_SHORT).show()
 }
 
 private fun handleOnNotifyNotificationReceived(characteristic: BluetoothGattCharacteristic) {
