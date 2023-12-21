@@ -1176,7 +1176,9 @@ Pour l'instant il est probable que votre page « publique » ne possède pas de 
 
 @guest
     @if (Route::has('login'))
-        <livewire:welcome.navigation />
+        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+        </div>
     @endif
 @endguest
 ```
