@@ -917,7 +917,7 @@ En utilisant l'UUID `1497b8a8-64f8-11ee-8c99-0242ac120002` vous pouvez changer l
 private fun sendDeviceName() {
     getMainDeviceService()?.let { service ->
         val setDeviceName = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_SET_DEVICE_NAME)
-        setDeviceName.setValue("LeNomDuDevice") // Le ESEO- est ajouté automatiquement
+        setDeviceName.setValue("LeNomDuDevice") // Le PMW- est ajouté automatiquement
         currentBluetoothGatt?.writeCharacteristic(setDeviceName)
     }
 }

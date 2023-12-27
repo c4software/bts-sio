@@ -31,7 +31,7 @@ Celle-ci est certainement la plus simple à mettre en place. Vous n'aurez aucun 
 Pour mettre en place les animations automatiques il suffit d'ajouter `animationLayoutChange` à la racine du layout à animé layout. Je vous laisse le mettre en place dans votre projet :
 
 - Modifier le layout de votre `splash` pour y ajouter le `animationLayoutChange`.
-- Masquer de base le logo de l'ESEO.
+- Masquer de base le logo de l'école.
 - Afficher celui-ci après un délai (comme vu précédemment).
 - Le changement sera normalement « animé ».
 
@@ -42,7 +42,7 @@ Je vous laisse tester.
 AKA la technique cheap « et pas ouf ». Je vous l'indique, car c'est marrant ! Et que nous sommes dans un monde où nous utilisons des GIF souvent… Mais en réalité c'est nul comme technique… Lire des GIF ne sont pas supportés nativement par Android, par contre c'est assez simple d'ajouter le support :
 
 - Ajouter la librairie [GifView](https://github.com/Cutta/GifView).
-- Remplacer le logo de l'ESEO par un logo animé sur votre Splash.
+- Remplacer le logo de l'école par un logo animé sur votre Splash.
 - Lancer l'`activity` principale à la fin de l'animation.
 
 Je vous laisse tester.
@@ -281,11 +281,11 @@ Je vous passe la création des activités et des Fragments. Ce que nous allons a
 
     <fragment
         android:id="@+id/page_1"
-        android:name="com.eseo.myapplication2.ui.bottom.fragment.Page1"
+        android:name="com.pmw.myapplication2.ui.bottom.fragment.Page1"
         android:label="Page1" />
     <fragment
         android:id="@+id/page_2"
-        android:name="com.eseo.myapplication2.ui.bottom.fragment.Page2"
+        android:name="com.pmw.myapplication2.ui.bottom.fragment.Page2"
         android:label="Page2" />
 
 </navigation>

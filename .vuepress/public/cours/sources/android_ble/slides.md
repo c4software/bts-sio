@@ -127,7 +127,7 @@ Avec l'application « nRF Connect »
 - Design du layout.
 - Les contraintes :
   - Le bouton « actions » ne doit pas être actif si pas de périphérique sélectionné.
-  - Afficher le logo de L'ESEO.
+  - Afficher le logo du campus / école.
 
 ---
 
@@ -969,7 +969,7 @@ BuildConfig.URI_REMOTE_SERVER ?
 
 ```apacheconf
 defaultConfig {
-    buildConfigField "String", "URI_REMOTE_SERVER", "\"https://us-central1-eseo-course.cloudfunctions.net\""
+    buildConfigField "String", "URI_REMOTE_SERVER", "\"http://IP.DU.ESP\""
 …
 }
 ```

@@ -410,7 +410,7 @@ Nous créons fréquemment des classes dont le but principal est de conserver des
 
 :::
 
-C'est à vous, je vous laisse modifier votre liste (nommé `myData`) par une liste de `CardContent` (la classe que vous avez créée). Cette liste doit contenir 10 éléments avec des titres, des contenus et une image différente que celle par défaut (le logo de l'ESEO par exemple).
+C'est à vous, je vous laisse modifier votre liste (nommé `myData`) par une liste de `CardContent` (la classe que vous avez créée). Cette liste doit contenir 10 éléments avec des titres, des contenus et une image différente que celle par défaut (le logo de l'école par exemple).
 
 ::: details Besoin d'aide ?
 

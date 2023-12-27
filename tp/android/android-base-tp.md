@@ -184,7 +184,7 @@ Je vous laisse réaliser l'ensemble des contraintes afin que votre layout ressem
 
 ![Constrainte](./ressources/constrainte.png)
 
-:warning: Vous noterez l'icône de l'ESEO, je vous laisse l'ajouter dans le dossier `drawable` de votre projet. Le fichier doit être au format `png` ou `jpeg`. Une fois celle-ci ajoutée modifier l'ImageView pour l'utiliser dans l'`ImageView` avec par exemple `app:srcCompat="@drawable/eseo"`.
+:warning: Vous noterez l'icône de Playmoweb, je vous laisse l'ajouter dans le dossier `drawable` de votre projet. Le fichier doit être au format `png` ou `jpeg`. Une fois celle-ci ajoutée modifier l'ImageView pour l'utiliser dans l'`ImageView` avec par exemple `app:srcCompat="@drawable/logo"`.
 
 :hand: Relancer l'application et tester que celle-ci fonctionne.
 
@@ -520,8 +520,8 @@ Maintenant que vous savez comment ouvrir une intent Externe :
 
 - Ajouter sur la `MainActivity` une icône en haut à droite type « Settings ».
 - Celle-ci doit être cliquable et doit permettre d'ouvrir les paramètres (`ACTION_SETTINGS`).
-- Ajouter sous le bouton « En bas de l'activité » un texte cliquable `TextView` permettant d'ouvrir le site de l'ESEO.
-- Ajoute à côté du `TextView` un second `TextView` qui ouvre l'adresse / la position GPS de l'ESEO dans Google Maps.
+- Ajouter sous le bouton « En bas de l'activité » un texte cliquable `TextView` permettant d'ouvrir le site de l'école.
+- Ajoute à côté du `TextView` un second `TextView` qui ouvre l'adresse / la position GPS de l'école dans Google Maps.
 
 Exemple :
 
@@ -778,8 +778,8 @@ Je vous laisse créer une nouvelle activité. Celle-ci **doit être** constitué
   - Paramètres Bluetooth -> ouvre les paramètres du téléphone.
   - Informations -> ouvre une activité (ou un dialogue avec un message texte).
   - Un élément ouvrant « les paramètres de l'application »
-  - Un lien vers le site de l'ESEO.
-  - Un lien vers le Google Maps de l'ESEO.
+  - Un lien vers le site de l'école.
+  - Un lien vers le Google Maps de l'école.
 
 ::: danger Votre RecyclerView
 Votre RecyclerView va contenir des objets du type SettingsItem (class a créé). Chaque élément va ressembler à :
@@ -809,7 +809,7 @@ val mesItems = arrayOf(
     SettingsItem("Paramètres", R.drawable.settings) {
         // Action lors du click
     },
-    SettingsItem("Site de l'ESEO", R.drawable.logo_eseo) {
+    SettingsItem("Site de l'école", R.drawable.logo_eseo) {
         // Action lors du click
     }
 )

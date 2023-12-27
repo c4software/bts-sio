@@ -63,7 +63,7 @@ Pour accéder à Internet, il faut ajouter une permission, celle-ci autorisera �
 Vous pouvez, **si vous le souhaitez**, ajouter dans votre `Build.gradle` (app) le domaine de votre API dans le block `defaultConfig`, exemple
 
 ```txt
-    buildConfigField "String", "URI_REMOTE_SERVER", "\"https://us-central1-eseo-course.cloudfunctions.net\""
+    buildConfigField "String", "URI_REMOTE_SERVER", "\"http://IP.DU.ESP\""
 ```
 
 ### Les CoRoutines Kotlin

@@ -28,7 +28,7 @@ L'application à fournir doit contenir **au minimum** les éléments suivants :
     - Paramétrages
 - Une activity Localisation permettant de :
   - Localiser la personne (via le GPS ou le Réseau au choix).
-  - Une fois la localisation obtenue, la distance entre l'ESEO et sa position doit être affichée en **kilomètre**.
+  - Une fois la localisation obtenue, la distance entre l'école et sa position doit être affichée en **kilomètre**.
   - À chaque localisation, à l'aide des **SharedPreferences**, enregistrez la demande pour la lister dans la vue « historique ».
   - Vous devez gérer correctement le flow permission comme vue ensemble (avec gestion des erreurs)
 - Une activity Historique :
@@ -42,8 +42,8 @@ L'application à fournir doit contenir **au minimum** les éléments suivants :
   - Utilisation d'un **Recyclerview** qui doit contenir :
     - L'accès aux paramètres **de l'application**.
     - L'accès au paramétrage de **localisation du téléphone**.
-    - Ouverture de l'application « carte » du téléphone sur la position géo de l'ESEO.
-    - Ouverture du site de l'ESEO.
+    - Ouverture de l'application « carte » du téléphone sur la position géo de l'école.
+    - Ouverture du site de l'école.
     - Ouverture de l'application « email » pour vous contacter. (lien type mailto)
 
 ## Wireframe

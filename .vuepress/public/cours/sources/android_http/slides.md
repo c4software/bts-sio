@@ -161,7 +161,7 @@ BuildConfig.URI_REMOTE_SERVER ?
 
 ```apacheconf
 defaultConfig {
-    buildConfigField "String", "URI_REMOTE_SERVER", "\"https://us-central1-eseo-course.cloudfunctions.net\""
+    buildConfigField "String", "URI_REMOTE_SERVER", "\"http://IP.DE.VOTRE.ESP\""
 …
 }
 ```
