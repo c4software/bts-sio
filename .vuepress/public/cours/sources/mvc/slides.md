@@ -154,7 +154,7 @@ L'idée est de créer différentes couches à partir des éléments
 
 Ce découpage s'appelle un développement en couche.
 
-« 3 - Tiers »
+« 3 - Tiers » / « N - Tiers »
 
 ---
 
