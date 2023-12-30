@@ -1,19 +1,12 @@
 # Git
 
-## Introduction à GIT
+## Introduction à GIT / Gestionnaire de version
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
 ---
 
-## Historique
-
-- FTP (à votre avis?)
-- Index1, Index2, … (À votre avis?)
-- Email (à votre avis?)
-- CVS
-- SVN
-- Git
+## Pour vous qu-est-ce qu'un gestionnaire de version ?
 
 ---
 
@@ -57,7 +50,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ## Maintenu pendant des années par des patchs…
 
-## … par emails 
+## … par emails
 
 ![Via EMAIL](./img/via_email.gif)
 
@@ -67,19 +60,34 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-- Linux Torvald n'aime pas les outils existants
+- Linux Torvald utilise BitKeeper
+- BitKeeper devient payant
 - Il programme/code donc le sien
 
-## GIT
+---
+
+## GIT (2005, récent donc)
+
+---
+
+## Historique (avant GIT)
+
+- FTP (à votre avis?)
+- Index1, Index2, … (À votre avis?)
+- Email (à votre avis?)
+- CVS
+- SVN
+- Git
 
 ---
 
 ## Les points clés de Git
 
-- Distribué
-- Rapide (différences entre les versions)
-- Très très fiable (Hash SHA)
-- Ligne de commande très évoluée
+- Distribué.
+- Rapide (différences entre les versions).
+- Très très fiable (Hash SHA).
+- Ligne de commande très évoluée.
+- Est capable de gérer des projets de toutes tailles.
 
 ---
 
@@ -97,7 +105,7 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ### Le principe des snapshots / et des diffs
 
-![Snapshots](./img/git_snapshot.png) 
+![Snapshots](./img/git_snapshot.png)
 
 ---
 
