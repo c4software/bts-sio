@@ -66,7 +66,9 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-## GIT (2005, récent donc)
+## GIT
+
+### (2005, récent donc)
 
 ---
 
