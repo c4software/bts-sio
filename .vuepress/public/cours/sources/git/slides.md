@@ -6,7 +6,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Pour vous qu-est-ce qu'un gestionnaire de version ?
+## Pour vous qu'est-ce qu'un gestionnaire de version ?
 
 ---
 
@@ -128,7 +128,9 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-## Terminologie
+### Avant de commencer
+
+### Terminologie
 
 ---
 
@@ -194,7 +196,7 @@ Un identifiant symbolique pour un commit.
 
 Nombre de commits par semaine chez Facebook ?
 
-- ~10 000 
+- ~10 000
 
 ---
 
@@ -202,9 +204,9 @@ Nombre de commits par semaine chez Facebook ?
 
 ### Vous allez voir c'est simple…
 
-(Enfin presque…, mais c'est puissant !) 
+(Enfin presque…, mais c'est puissant !)
 
-![I've got power](./img/power.gif) 
+![I've got power](./img/power.gif)
 
 ---
 
@@ -250,13 +252,37 @@ $ git commit -m "Mon premier commit"
  create mode 100644 mon_fichier.js
 ```
 
-![Git Commit](./img/git_commit.png) 
+![Git Commit](./img/git_commit.png)
 
 ---
 
 ## Voilà !
 
-![Done](./img/done.gif) 
+![Done](./img/done.gif)
+
+---
+
+## Que mettre dans le commentaire de commit ?
+
+- Le numéro de ticket
+- Le nom de la fonctionnalité
+
+---
+
+## Des conventions existent :
+
+- [Conventional Commits](https://www.conventionalcommits.org/fr/v1.0.0/)
+- [Gitmoji](https://gitmoji.dev/)
+
+---
+
+## Exemples de commits
+
+```sh
+$ git commit -m "feat: Ajout de la fonctionnalité de connexion"
+$ git commit -m "fix: Correction du bug de connexion"
+$ git commit -m "docs: Ajout de la documentation"
+```
 
 ---
 
@@ -268,7 +294,6 @@ $ git add fichier1.js fichier2.js
 $ git commit -m "Mon 2nd commit"
 ```
 
-
 ```sh
 [master aa2507d] Mon 2nd commit
  2 files changed, 2 insertions(+), 0 deletions(-)
@@ -276,8 +301,7 @@ $ git commit -m "Mon 2nd commit"
  create mode 100644 fichier2.js
 ```
 
-
-![2nd commit](./img/git_commit2.png) 
+![2nd commit](./img/git_commit2.png)
 
 ---
 
@@ -289,14 +313,12 @@ $ vim fichier.js
 $ git commit -am "Changement dans le fichier"
 ```
 
-
 ```sh
 [master 841036d] Changement dans le fichier
  1 files changed, 28 insertions(+), 0 deletions(-)
 ```
 
-
-![3eme commit](./img/git_commit3.png) 
+![3eme commit](./img/git_commit3.png)
 
 ---
 
@@ -345,9 +367,9 @@ git tag V1.0
 
 ## Est-ce que tout doit être commité ?
 
-- Oui 
-- Non ? 
-- La réponse D ? 
+- Oui
+- Non ?
+- La réponse D ?
 
 ---
 
@@ -378,8 +400,8 @@ conf/
 
 ## Les branches
 
-- Pourquoi ? 
-- Quand ? 
+- Pourquoi ?
+- Quand ?
 
 ---
 
@@ -433,20 +455,18 @@ $ git commit -am "Ajout de l’évolution"
 $ git checkout master
 ```
 
-
 ```sh
 $ git merge evolution1
 ```
-
 
 ---
 
 ## Que vient-il de se passer ?
 
-- Qui fusionne le code ? 
+- Qui fusionne le code ?
 - Fusion du code ?
-- Conflit ? 
-- Et la branche ? On la coupe ? 
+- Conflit ?
+- Et la branche ? On la coupe ?
 
 ---
 
@@ -535,13 +555,22 @@ $ git checkout --
 
 ### Comment procédez-vous ?
 
-- Je le commente ? 
-- J'ajoute un « return false » 
-- Je le supprime il est dans Git… 
+- Je le commente ?
+- J'ajoute un « return false »
+- Je le supprime il est dans Git…
 
 ---
 
 ## Je le supprime il est dans Git
+
+---
+
+## Ok la ligne de commande c'est bien, mais…
+
+- [VSCode](https://code.visualstudio.com/docs/sourcecontrol/overview)
+- [SourceTree](https://www.sourcetreeapp.com/)
+- [GitKraken](https://www.gitkraken.com/)
+- [Fork](https://git-fork.com/)
 
 ---
 
@@ -566,6 +595,10 @@ $ git checkout --
 
 ### Git à plusieurs
 
-## GitLab
+- GitLab
+- GitHub
+- Gogs
+
+---
 
 ![Logo Gitlab](./img/gitlab.png)

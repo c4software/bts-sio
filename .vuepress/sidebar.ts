@@ -50,6 +50,7 @@ module.exports = [
       { text: "Initiation à Git", collapsible: true, children: ["/cours/git", "/tp/git_initiation/"] },
       { text: "Git en groupe + GitLab", collapsible: true, children: ["/cours/gitlab", "/tp/gitlab/"] },
       { text: "En + du cours", link: "/cheatsheets/git/" },
+      { text: "La clé SSH", link: "/cheatsheets/ssh-key/" },
     ]
   },
 

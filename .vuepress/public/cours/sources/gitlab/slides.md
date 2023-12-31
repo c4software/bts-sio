@@ -20,6 +20,16 @@ $ git clone URL_DU_PROJET
 
 ---
 
+## Un instant !
+
+Gitlab, Github permettent de télécharger le projet en ZIP.
+
+Dans le cadre du développement, IL NE FAUT PAS UTILISER CETTE MÉTHODE.
+
+Pourquoi à votre avis ?
+
+---
+
 ### Mise à jour
 
 ```sh
@@ -257,6 +267,34 @@ On en reparlera…
 
 ---
 
+## Gitlab, Github va vous identifier par votre clef SSH.
+
+---
+
+Clé SSH ?
+
+[Comment générer une clef SSH](https://cours.brosseau.ovh/cheatsheets/ssh-key/)
+
+---
+
+Bon… Comment tester ? Plusieurs solutions :
+
+- Gitlab.com
+- Github.com
+- Ou…
+
+---
+
+Un serveur local ici même !
+
+- <http://gitlab.dombtsig.local/>
+
+---
+
+À votre avis, comment choisir ?
+
+---
+
 ### Démo
 
 ---
@@ -306,19 +344,19 @@ On en reparlera…
 
 ### Qualité de code
 
-- Important (pourquoi ?) 
-- Pour le chef du projet / responsable de projet (pour qui) 
-- Améliore la qualité (comment) 
-- Commentaires automatiques dans les issues 
-- Recherche les vulnérabilités (le vrai pourquoi…) 
+- Important (pourquoi ?)
+- Pour le chef du projet / responsable de projet (pour qui)
+- Améliore la qualité (comment)
+- Commentaires automatiques dans les issues
+- Recherche les vulnérabilités (le vrai pourquoi…)
 
 ---
 
 ### Les tests unitaires
 
-- Permet de valider le fonctionnement 
-- Évite les régressions 
-- Façon de penser 
+- Permet de valider le fonctionnement
+- Évite les régressions
+- Façon de penser
 
 ---
 
