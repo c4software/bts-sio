@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Slides Laravel
 
 <SlidesDeck src="laravel" />

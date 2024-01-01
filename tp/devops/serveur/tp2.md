@@ -583,7 +583,7 @@ La procédure sera la suivante :
 
 - Installer Git sur le serveur : `apt install git`.
 - Créer un dépôt sur votre machine et le partager sur Github / Gitlab.
-- Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH sur le serveur, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/README.md)).
+- Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH sur le serveur, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/)).
 - Travailler sur votre machine les pusher régulièrement
 - Puller les modifications sur le serveur.
 

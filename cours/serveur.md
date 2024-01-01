@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Serveur / DevOps
 
 Installation et configuration d'un serveur d'application.
@@ -28,6 +32,5 @@ Installation et configuration d'un serveur d'application.
 - [Docker pour créer un serveur Local](/tp/docker/creer_server_local.md)
 - [Le Dockerfile](/tp/docker/dockerfile.md)
 - [Docker Compose](/tp/docker/docker_compose.md)
-- [Utiliser Docker Compose pour héberger votre site Internet]()
 - [Utiliser Docker Compose pour héberger un site Laravel](/tp/ops/deployer-laravel-docker.md)
 - [Installer docker sur un serveur Debian](/cheatsheets/serveur/debian-docker.md)

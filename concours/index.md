@@ -1,1 +1,0 @@
-<SlidesDeck src="concours" />

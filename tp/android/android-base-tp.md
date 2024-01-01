@@ -267,7 +267,7 @@ Le `ViewBinding` est maintenant la nouvelle façon moderne de gérer « les réf
 
 Première étape, il faut activer dans votre build.gradle le « ViewBinding », dans le block Android déjà présent ajouter :
 
-```gladle
+```txt
 buildFeatures {
     viewBinding true
 }

@@ -8,11 +8,11 @@ Introduction au travail à plusieurs avec GIT.
 
 ## Ressources utiles
 
-- [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/README.md)
+- [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/)
 - [Documentation Gitlab](https://docs.gitlab.com/ee/README.html)
 - [Livre Git en ligne](https://git-scm.com/book/fr/v2)
 - [GitLab.com](https://www.gitlab.com/)
-- [Créer une clé SSH](/cheatsheets/ssh-key/README.md)
+- [Créer une clé SSH](/cheatsheets/ssh-key/)
 
 ## Situation
 
@@ -97,7 +97,7 @@ Pour vous reconnaître, GitLab/Github utilise un système de clé. Cette clé ga
 
 Cette procédure n'est à faire qu'une seule fois « par ordinateur », la clé que nous allons générer aujourd'hui vous servira pendant les deux ans.
 
-Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoire sur comment créer une clé SSH](/cheatsheets/ssh-key/README.md)
+Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoire sur comment créer une clé SSH](/cheatsheets/ssh-key/)
 
 🚨 La procédure de génération de clé est la même pour Github et Gitlab, vous pouvez donc utiliser la même clé pour les deux services. 🚨
 
@@ -221,7 +221,7 @@ Quand nous changerons de poste, la première chose à faire sera de :
 Vous souhaitez maintenant modifier le code sur votre machine. Pour cela, vous **devez** cloner le projet.
 
 ::: danger Vous ne pouvez pas deviner les commandes !
-Pour vous aider, n'hésitez pas à regarder [l'aide mémoire git](/cheatsheets/git/README.md)
+Pour vous aider, n'hésitez pas à regarder [l'aide mémoire git](/cheatsheets/git/)
 :::
 
 ### Cloner le projet sur votre machine

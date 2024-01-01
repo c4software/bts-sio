@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Les composants
 
 <SlidesDeck src="composants" />

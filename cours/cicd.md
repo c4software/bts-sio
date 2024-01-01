@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # CI/CD
 
 L'integration continue

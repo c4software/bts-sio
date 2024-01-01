@@ -1,5 +1,6 @@
 ---
 description: Vous avez des questions ? Vous souhaitez plus d'informations sur un cours.
+aside: false
 ---
 
 # Une question ?

@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Slides HTML et CSS
 
 ## Le HTML
@@ -20,9 +24,7 @@
 <SlidesDeck src="responsive" />
 
 - [Mise en pratique responsive](/tp/html_css/tp4.md)
-- [Maquetter un site Internet](/tp/html_css/figma.md)
 - [Bootstrap](/tp/html_css/bootstrap.md)
-- [Integration](/tp/html_css/integration.md)
 - [Projet de fond, mon CV](/tp/html_css/tp5.md)
 
 <!-- <Qcm title='QCM avec titre' :data='{

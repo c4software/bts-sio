@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Slides introduction PHP
 
 <SlidesDeck src="php" />

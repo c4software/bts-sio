@@ -53,7 +53,7 @@ Je vous laisse tester.
 
 - Installez-la [librairie lottie](https://github.com/airbnb/lottie-android) :
 
-```gradle
+```txt
 dependencies {
   implementation 'com.airbnb.android:lottie:3.6.0'
 }
@@ -134,7 +134,7 @@ Les Fragments sont un concept pas forcément très compliqué, mais celui-ci dem
 
 La première étape va être l'ajoute des différentes librairies :
 
-```gradle
+```txt
     implementation "androidx.fragment:fragment-ktx:1.2.5"
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.2"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.2"

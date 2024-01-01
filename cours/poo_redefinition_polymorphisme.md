@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Slides POO : La redéfinition & Polymorphisme
 
 <SlidesDeck src="poo_redefinition_polymorphisme" />

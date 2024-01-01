@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Slides Gitlab
 
 <SlidesDeck src="gitlab" />

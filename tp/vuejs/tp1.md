@@ -659,7 +659,7 @@ Ajouter des règles de réécriture via un fichier .htaccess
 
 Le fichier `.htaccess` exemple :
 
-```apacheconf
+```txt
 RewriteEngine On
 RewriteRule ^api/ajouter$ api/ajouter.php [L,QSA]
 ```

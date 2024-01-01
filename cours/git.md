@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Slides Git
 
 <SlidesDeck src="git" />

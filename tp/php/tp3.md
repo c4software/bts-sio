@@ -316,7 +316,7 @@ Nous avons vu que les liens ne sont pas très beaux. Avec Apache, il est possibl
 
 Pour ça, il faut créer un fichier `.htaccess` avec comme contenu:
 
-```htaccess
+```txt
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !index.php
 RewriteRule (.*).html index.php?page=$1 [L,QSA]

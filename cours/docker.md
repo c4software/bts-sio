@@ -1,10 +1,14 @@
+---
+aside: false
+---
+
 # Slides Docker
 
 <SlidesDeck src="docker" />
 
 ## Support de cours
 
-- [Aide mémoire](/cheatsheets/docker/README.md)
+- [Aide mémoire](/cheatsheets/docker/)
 
 ## TP
 

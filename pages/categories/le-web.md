@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Le Web
 
 Le développement Web est un domaine très vaste. Vous trouverez ici des ressources pour vous aider à vous y retrouver.
@@ -10,7 +14,7 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 - [Complément HTML](/cheatsheets/html/)
 - [Complément CSS](/tp/html_css/support.md)
 - [Les frameworks CSS](/tp/html_css/framework_css/indroduction.md)
-- [JavaScript](tp/javascript/support.md)
+- [JavaScript](/tp/javascript/support.md)
 - [Bootstrap](/tp/html_css/bootstrap.md)
 
 ### PHP et SQL
@@ -30,15 +34,15 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 ### Laravel
 
 - [Cours Laravel](/cours/laravel.md)
-- [Aide mémoire Laravel](/cheatsheets/laravel/README.md)
+- [Aide mémoire Laravel](/cheatsheets/laravel/)
 - [Les commandes Laravel](/cheatsheets/laravel/quick.md)
 
 ### API
 
 - [Cours Introduction API](/cours/introduction_api.md)
 - [Exercices passage de paramètres](/tp/api/exercice.md)
-- [Aide mémoire API](/cheatsheets/api/README.md)
-- [Aide mémoire Ajax](/cheatsheets/javascript/README.md)
+- [Aide mémoire API](/cheatsheets/api/)
+- [Aide mémoire Ajax](/cheatsheets/javascript/)
 - [Créer des API avec Laravel](/tp/laravel/laravel_api.md)
 - [Appeler des API depuis le JavaScript](/tp/javascript/tp4.md)
 - [Créer des API avec Bun.sh et ExpressJS](/tp/typescript/api.md)

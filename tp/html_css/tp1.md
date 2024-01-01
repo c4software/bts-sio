@@ -39,7 +39,7 @@ Votre carrière sera faite de balises / problèmes inconnue, le bon réflexe c'e
   - Un entête et un pied de tableau
 
 ::: tip Comment procéder ?
-Vous avez un exemple de tableau dans le [Mémo HTML](/cheatsheets/html).
+Vous avez un exemple de tableau dans le [Mémo HTML](/cheatsheets/html/).
 
 :hand: _Petite astuce_, votre IDE propose un mode « emmet » nous allons découvrir son fonctionnement ensemble. :hand:
 :::

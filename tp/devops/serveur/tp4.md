@@ -286,7 +286,7 @@ La procédure sera la suivante sur votre serveur :
 
 - Installer Git : `apt install git`.
 - Créer un dépôt sur votre machine et le partager sur Github / Gitlab.
-- Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/README.md)).
+- Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/)).
 - Travailler sur votre machine les pusher régulièrement
 - Puller les modifications sur le serveur.
 
@@ -357,5 +357,5 @@ Ce TP est loin d'être exhaustif, mais il vous permettra de vous familiariser av
 - [PHP](https://www.php.net/)
 - [FileZilla](https://filezilla-project.org/)
 - [Git](https://git-scm.com/)
-- [SSH](/cheatsheets/ssh-key/README.md)
+- [SSH](/cheatsheets/ssh-key/)
 - [Debian Web](/cheatsheets/serveur/debian-web.md)

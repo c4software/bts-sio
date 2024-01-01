@@ -124,7 +124,7 @@ faas-cli version
 
 Vous pouvez également accéder à l'interface d'admin WEB via :
 
-[172.16.162.4:8080](172.16.162.4:8080)
+[http://172.16.162.4:8080](http://172.16.162.4:8080)
 
 Votre ordinateur est maintenant prêt, nous avons donc créé :
 

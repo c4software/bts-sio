@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Le design pattern MVC
 
 <SlidesDeck src="mvc" />

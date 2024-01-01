@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Lire un diagramme de classe UML
 
 <SlidesDeck src="uml" />

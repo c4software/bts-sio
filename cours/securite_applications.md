@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Slides Securité des applications (OWASP)
 
 <SlidesDeck src="securite_applications" />

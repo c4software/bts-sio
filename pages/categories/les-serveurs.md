@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Les serveurs / DevOps
 
 Connaitre le fonctionnement des serveurs est indispensable pour comprendre le fonctionnement des applications. Dans cette catégorie vous trouverez les ressources pour vous aider à comprendre les serveurs.

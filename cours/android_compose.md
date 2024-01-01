@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Slides Android Compose
 
 ## Introduction
