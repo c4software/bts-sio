@@ -20,7 +20,18 @@ export default defineConfig({
     ['link', { rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#3e80af' }],
     ['meta', { name: 'msapplication-TileImage', content: '/icons/icon-144x144.png' }],
     ['meta', { name: 'msapplication-TileColor', content: '#3e80af' }],
-    ['meta', { name: 'google-site-verification', content: 'IpzGtrtih2KT0f0XkFOsx0qHPBihE6JADKtXpO-KN-4' }]
+    ['meta', { name: 'google-site-verification', content: 'IpzGtrtih2KT0f0XkFOsx0qHPBihE6JADKtXpO-KN-4' }],
+    [
+      [
+        'script',
+        { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-8EFZPGCSXK' }
+      ],
+      [
+        'script',
+        {},
+        "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-8EFZPGCSXK');"
+      ]
+    ]
   ],
   lang: 'fr-FR',
   markdown: {
