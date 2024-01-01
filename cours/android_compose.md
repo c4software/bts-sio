@@ -6,7 +6,9 @@ aside: false
 
 ## Introduction
 
+<ClientOnly>
 <SlidesDeck src="android_compose" />
+</ClientOnly>
 
 ## Un peu plus loin
 

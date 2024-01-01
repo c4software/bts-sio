@@ -6,4 +6,6 @@ aside: false
 
 L'integration continue
 
+<ClientOnly>
 <SlidesDeck src="cicd" />
+</ClientOnly>

@@ -6,14 +6,18 @@ aside: false
 
 ## Le HTML
 
+<ClientOnly>
 <SlidesDeck src="introduction_html" />
+</ClientOnly>
 
 - [En plus de cours](/cheatsheets/html/)
 - [TP 1](/tp/html_css/tp1.md)
 
 ## Le CSS
 
+<ClientOnly>
 <SlidesDeck src="introduction_css" />
+</ClientOnly>
 
 - [En plus de cours](/tp/html_css/support.md)
 - [Mise en pratique des sélécteurs](/tp/html_css/tp2.md)
@@ -21,7 +25,9 @@ aside: false
 
 ## Le Responsive
 
+<ClientOnly>
 <SlidesDeck src="responsive" />
+</ClientOnly>
 
 - [Mise en pratique responsive](/tp/html_css/tp4.md)
 - [Bootstrap](/tp/html_css/bootstrap.md)

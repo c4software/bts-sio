@@ -6,7 +6,9 @@ aside: false
 
 Installation et configuration d'un serveur d'application.
 
+<ClientOnly>
 <SlidesDeck src="serveur" />
+</ClientOnly>
 
 ## Les supports
 

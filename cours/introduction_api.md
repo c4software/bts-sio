@@ -4,7 +4,9 @@ aside: false
 
 # Slides Introduction API
 
+<ClientOnly>
 <SlidesDeck src="api" />
+</ClientOnly>
 
 ## Support
 

@@ -6,15 +6,21 @@ aside: false
 
 ## Support
 
+<ClientOnly>
 <SlidesDeck src="framework_javascript" />
+</ClientOnly>
 
 ---
 
+<ClientOnly>
 <SlidesDeck src="javascript_avances" />
+</ClientOnly>
 
 ---
 
+<ClientOnly>
 <SlidesDeck src="vuejs" />
+</ClientOnly>
 
 ## TP
 
