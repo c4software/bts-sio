@@ -137,8 +137,8 @@ CI/CD signifie « Continuous Integration / Continuous Delivery ». Il s'agit d'u
 ## Sites statiques :
 
 - [Netlify](https://www.netlify.com) <- CI/CD, Simple, « gratuit », avec une interface web de gestion.
+- [Surge.sh](https://surge.sh/) <- CI/CD, Simple, « gratuit », un poil plus technique.
 - [Fleek.co](https://www.fleek.co) <- CI/CD, Simple, « gratuit », repose sur le Web 3 avec une interface web de gestion. ([miroir](https://ipfs.cours.brosseau.ovh/))
-- [Surge.sh](https://www.netlify.com) <- CI/CD, Simple, « gratuit », un poil plus technique.
 - [Gitlab Pages](https://cours.brosseau.ovh/tp/ci/pages.html) <- CI/CD
 - [Github Pages](https://pages.github.com/) <- CI/CD
 - [Firebase Hosting](https://firebase.google.com/docs/hosting)
