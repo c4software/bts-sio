@@ -23,6 +23,12 @@ export default defineConfig({
     ['meta', { name: 'google-site-verification', content: 'IpzGtrtih2KT0f0XkFOsx0qHPBihE6JADKtXpO-KN-4' }]
   ],
   lang: 'fr-FR',
+  markdown: {
+    lineNumbers: true,
+    image: {
+      lazyLoading: true
+    }
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
