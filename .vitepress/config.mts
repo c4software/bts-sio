@@ -29,10 +29,15 @@ export default defineConfig({
       lazyLoading: true
     }
   },
+  lastUpdated: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
       provider: 'local'
+    },
+
+    editLink: {
+      pattern: 'https://github.com/c4software/bts-sio/:path'
     },
 
     nav: [
