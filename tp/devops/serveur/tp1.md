@@ -64,7 +64,7 @@ Votre login doit être sous la forme suivante : `Dombtsig.local\votrelogin`.
 
 :::
 
-![Connexion à la ferme](./res/ferme-connexion.jpg)
+![Connexion à la ferme](./res/ferme-connexion.png)
 
 ::: tip Observons
 
