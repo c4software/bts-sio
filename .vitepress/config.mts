@@ -37,7 +37,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/c4software/bts-sio/:path'
+      pattern: 'https://github.com/c4software/bts-sio/tree/master/:path'
     },
 
     nav: [
