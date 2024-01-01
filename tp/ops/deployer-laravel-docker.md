@@ -355,7 +355,7 @@ Pour le moment, nous n'avons pas encore configuré Laravel pour utiliser cette b
 
 Ici, nous allons donc devoir modifier le `.env.example` pour indiquer la configuration de votre site pour la production. Dans le cas de la base de données, il faut modifier les informations suivantes :
 
-```env
+```txt
 DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306

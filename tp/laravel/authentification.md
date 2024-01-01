@@ -265,7 +265,7 @@ Si nous souhaitons faire une `Card`. Notre composant pourrait ressembler à, vou
 </div>
 ```
 
-L'important dans le code ici est `{{ $slot }}`. `$slot` est une variable qui va contenir les éléments à l'intérieure de votre Card lors de son usage. Par exemple :
+L'important dans le code ici est <span v-pre>`{{ $slot }}`</span>. `$slot` est une variable qui va contenir les éléments à l'intérieure de votre Card lors de son usage. Par exemple :
 
 Puis dans votre `welcome.blade.php`, vous pouvez utiliser votre composant comme ceci :
 

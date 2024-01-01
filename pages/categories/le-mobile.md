@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Le mobile
 
 Le développement mobile évolue rapidement, vous trouverez ici des ressources pour vous aider commencer votre apprentissage.

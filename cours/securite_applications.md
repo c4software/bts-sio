@@ -1,6 +1,12 @@
+---
+aside: false
+---
+
 # Slides Securité des applications (OWASP)
 
+<ClientOnly>
 <SlidesDeck src="securite_applications" />
+</ClientOnly>
 
 - [La synthèse du cours](/cheatsheets/owasp/)
 - [Les exercices](/tp/securite/exercice.md)

@@ -1,5 +1,6 @@
 ---
 description: Exercice d'entrainement lecture d'UML.
+aside: false
 ---
 
 # Exercices d'entraînement à la lecture d'UML
@@ -10,7 +11,9 @@ Cette page a été conçue dans le but de réaliser un exercice par jour.
 
 Je suis à disposition pour les corrections via Slack ou par [email](./contact.md).
 
+<ClientOnly>
 <Urdle />
+</ClientOnly>
 
 _(Les Getters et les Setters ne sont pas représentés dans l’UML)_
 

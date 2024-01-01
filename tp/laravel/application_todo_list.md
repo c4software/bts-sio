@@ -80,13 +80,13 @@ Attention: Utiliser git-bash pour avoir la commande `touch`
 
 Maintenant que le fichier a été créé nous allons indiquer à Laravel qu'il faut l'utiliser pour cela, éditer le fichier `.env` et modifier la ligne :
 
-```apacheconf
+```txt
 DB_CONNECTION=mysql
 ```
 
 par :
 
-```apacheconf
+```txt
 DB_CONNECTION=sqlite
 DB_DATABASE=database/database.sqlite
 ```
@@ -258,13 +258,13 @@ Bizarrerie de Laravel… Il faut maintenant changer le chemin de la base de donn
 
 Éditer à nouveau le fichier `.env` pour remplacer :
 
-```apacheconf
+```txt
 DB_DATABASE=database/database.sqlite
 ```
 
 par
 
-```apacheconf
+```txt
 DB_DATABASE=../database/database.sqlite
 ```
 

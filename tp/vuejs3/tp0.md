@@ -134,7 +134,7 @@ data(){
 
 ### L'affichage
 
-Nous allons maintenant afficher la variable dans le template. Pour cela il suffit d'ajouter `{{ compteur }}` dans le template. Après modification votre code doit ressembler à :
+Nous allons maintenant afficher la variable dans le template. Pour cela il suffit d'ajouter <span v-pre>`{{ compteur }}`</span> dans le template. Après modification votre code doit ressembler à :
 
 ```html
 <div id="app">

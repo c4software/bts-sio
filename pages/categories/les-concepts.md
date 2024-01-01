@@ -1,3 +1,7 @@
+---
+aside: false
+---
+
 # Les concepts
 
 ## La Programmation orientée objet
@@ -23,7 +27,7 @@ Dans cette pages vous trouverez les ressources pour vous aider à comprendre la 
 
 Le versionning est un système qui permet de gérer les différentes versions d'un projet. Il permet de garder une trace des modifications apportées au projet et de pouvoir revenir à une version précédente si besoin.
 
-- [Aide mémoire git](/cheatsheets/git/README.md)
+- [Aide mémoire git](/cheatsheets/git/)
 - [Cours sur le versionning](/cours/git.md)
 - [Gitlab](/cours/gitlab.md)
 
@@ -32,7 +36,7 @@ Le versionning est un système qui permet de gérer les différentes versions d'
 La sécurité est un ensemble de règles et de bonnes pratiques qui permettent de protéger un système informatique.
 
 - [Le cours](/cours/securite_applications.md)
-- [La méthode OWASP](/cheatsheets/owasp/README.md)
+- [La méthode OWASP](/cheatsheets/owasp/)
 
 ## L'organisation
 

@@ -285,7 +285,7 @@ Vous avez maintenant découvert Bootstrap, et vous avez pu voir qu'il est très 
 
 Nous avons ici pavé la route, vous pouvez utiliser cette base pour créer votre blog.
 
-Pour aller plus loin, vous pouvez consulter le [TP Bootstrap](../../tp/html_css/bootstrap.md).
+Pour aller plus loin, vous pouvez consulter le [TP Bootstrap](/tp/html_css/bootstrap.md).
 
 ## Tester Tailwind CSS
 

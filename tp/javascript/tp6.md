@@ -266,7 +266,7 @@ Dans Laravel, nous avons deux dossiers qui semblent se ressembler, mais qui sont
 
 Le dossier « public » est donc le dossier qui contient les fichiers qui seront envoyés à l'utilisateur. Le dossier « resources » est le dossier qui contient les fichiers qui seront utilisés par le serveur pour générer les fichiers du dossier « public ».
 
-Les ressources placées dans le dossier public sont accessibles via la syntaxe suivante `{{ asset('chemin/vers/le/fichier') }}`. Par exemple, si vous avez un fichier « like.js », alors vous pourrez l'inclure dans votre page avec la syntaxe suivante :
+Les ressources placées dans le dossier public sont accessibles via la syntaxe suivante <span v-pre>`{{ asset('chemin/vers/le/fichier') }}`</span>. Par exemple, si vous avez un fichier « like.js », alors vous pourrez l'inclure dans votre page avec la syntaxe suivante :
 
 ```html
 <script type="module" src="{{ asset('like.js') }}"></script>
@@ -321,7 +321,7 @@ Un peu de détail sur ce code :
 
 - Nous utilisons la directive `@auth` afin de vérifier si l'utilisateur est connecté.
 - J'ai ajouté un élément HTML `<div id="like">` qui englobe le bouton « like » et le compteur de like.
-- J'ai ajouté un élément HTML `<script type="module" src="{{ asset('like.js') }}"></script>` qui permet d'inclure le fichier « like.js » dans la page.
+- J'ai ajouté un élément HTML <span v-pre>`<script type="module" src="{{ asset('like.js') }}"></script>`</span> qui permet d'inclure le fichier « like.js » dans la page.
 
 :::
 
@@ -707,7 +707,7 @@ La notation JavaScript est légèrement différente pour naviguer dans un objet 
 
 Je vous laisse mettre en place ce code dans votre projet. Si vous avez des difficultés, n'hésitez pas à me demander de l'aide. Une fois intégré, vous devriez obtenir un fonctionnement similaire à avant, mais en utilisant votre API.
 
-Normalement il vous suffit de remplacer le `@foreach` par un `v-for` et de remplacer les `{{ }}` par des `@{{ }}` et évidement de passer de la notation `->` à la notation `.`.
+Normalement il vous suffit de remplacer le `@foreach` par un `v-for` et de remplacer les <span v-pre>`{{ }}`</span> par des <span v-pre>`@{{ }}`</span> et évidement de passer de la notation `->` à la notation `.`.
 
 #### Ajouter un commentaire
 

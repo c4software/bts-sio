@@ -18,8 +18,8 @@ Dans cette mise en pratique, nous allons voir comment déclarer et utiliser des 
 
 ## Ressources disponibles :
 
-- [Aide mémoire POO](/cheatsheets/poo/README.md)
-- [Aide mémoire POO-UML](/cheatsheets/poo-uml/README.md)
+- [Aide mémoire POO](/cheatsheets/poo/)
+- [Aide mémoire POO-UML](/cheatsheets/poo-uml/)
 - [Cours POO](/cours/poo.md)
 
 ## Mise en situation

@@ -18,8 +18,8 @@ C'est donc un contrat que la classe doit respecter si elle implémente l'interfa
 
 ## Ressources disponibles :
 
-- [Aide mémoire POO](/cheatsheets/poo/README.md)
-- [Aide mémoire POO-UML](/cheatsheets/poo-uml/README.md)
+- [Aide mémoire POO](/cheatsheets/poo/)
+- [Aide mémoire POO-UML](/cheatsheets/poo-uml/)
 - [Cours POO](/cours/poo.md)
 
 ::: tip Définition

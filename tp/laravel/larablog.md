@@ -912,9 +912,9 @@ Pour vous inspirer, vous pouvez aller voir le template [Tailwind Awesome](https:
 
 ::: tip Rappel
 
-N'oubliez pas d'inclure le `{{ $slot }}` dans votre template. Sinon, vous n'aurez pas le contenu de vos pages.
+N'oubliez pas d'inclure le <span v-pre>`{{ $slot }}`</span> dans votre template. Sinon, vous n'aurez pas le contenu de vos pages.
 
-**Rappel**, le `{{ $slot }}` correspond au contenu de votre composant.
+**Rappel**, le <span v-pre>`{{ $slot }}`</span> correspond au contenu de votre composant.
 
 :::
 

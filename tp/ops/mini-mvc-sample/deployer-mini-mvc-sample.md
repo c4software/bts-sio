@@ -113,13 +113,13 @@ Dans le fichier en question vous devez :
 
 ### 1 - **Changer** / **Modifier** le `DocumentRoot` par :
 
-```apacheconf
+```txt
 DocumentRoot /var/www/html/votresite
 ```
 
 ### 2 - Ajouter **dans** la configuration du `VirtualHost` :
 
-```apacheconf
+```txt
 # Autorise l'exécution des fichiers .htaccess dans votre site.
 <Directory /var/www/html/votresite>
     AllowOverride All
@@ -132,7 +132,7 @@ DocumentRoot /var/www/html/votresite
 
 Dans mon cas voilà le résultat :
 
-```apacheconf
+```txt
 <VirtualHost *:80>
     ServerAdmin admin@example.com
     DocumentRoot /var/www/html/votresite

@@ -1014,7 +1014,7 @@ Plus tard nous découvrirons Docker et l'avantage de celui-ci (vous verrez c'est
 
 Plus tard dans l'année nous utiliserons Docker pour créer des environnements de type « Conteneurs »… Volontairement j'ai souhaité vous en parler ici. Donc soyez curieux. N'hésitez pas à vous documenter si vous le souhaitez.
 
-- [Cours Docker](/tp/devops/support.md)
+- [Cours Docker](/tp/devops/support-docker-cicd.md)
 - [Aide mémoire](/cheatsheets/docker/)
 - [Introduction à Docker](/tp/docker/introduction.md)
 

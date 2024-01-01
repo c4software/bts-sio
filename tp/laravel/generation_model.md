@@ -2,6 +2,8 @@
 description: Dans ce TP nous allons voir comment générer le modèle Laravel à partir d'une base de données existante.
 ---
 
+<!-- https://vitepress.dev/guide/using-vue.html#escaping -->
+
 # Eloquent les modèles simplement
 
 ::: details Sommaires
@@ -136,7 +138,7 @@ Vous vous souvenez des jointures ? Je vous avais expliqué qu'il était possible
 
 Ici, pas de magie ! Le plugin ne fait qu'écrire du code à votre place. Le code vous ne pouvez **évidemment pas l'inventer,** il est dans la documentation officielle de Laravel.
 
-Vous l'avez oublié ? Pas de problème : 
+Vous l'avez oublié ? Pas de problème :
 
 [La documentation de base](https://laravel.com/docs/8.x/eloquent)
 [Les jointures et Eloquent](https://laravel.com/docs/8.x/eloquent-relationships)
@@ -254,7 +256,6 @@ Vous l'avez vu, nous avons besoin d'un template pour que la page s'affiche. Cré
 Je vous laisse tester dans votre navigateur, si tout fonctionne correctement vous devriez avoir :
 
 ![Exemple de résultat](./ressources/exemple-resultat.png)
-
 
 ::: tip Un instant !
 
@@ -485,7 +486,7 @@ Laravel propose également d'autres méthodes pour gérer la pagination :
 
 :::
 
-## Et si nous allions plus loin!
+## Et si nous allions plus loin
 
 Notre base de données est assez volumineuse et permet de faire bien plus ! Je vous laisse créer les routes et la vue permettant de consulter un `Customer` :
 
@@ -503,7 +504,7 @@ Pour ça vous allez devoir :
 
 Pour réaliser les deux pages, vous n'avez besoin que d'un seul modèle (`Customer`). Via les jointures l'ensemble des autres requêtes sera automatique !
 
-Exemple dans le PHP: 
+Exemple dans le PHP:
 
 ```php
 
@@ -672,7 +673,7 @@ Et enfin le template :
 ```
 
 - `@csrf` ? C'est une protection anti-rejeu de Laravel, il faut toujours l'ajouter dans les formulaires.
-- `{{$customer->id}}` ? C'est l'identifiant du client, il est nécessaire pour ajouter l'adresse au client.
+- <span v-pre>`{{$customer->id}}`</span> ? C'est l'identifiant du client, il est nécessaire pour ajouter l'adresse au client.
 
 ::: tip C'est à vous !
 
@@ -703,7 +704,7 @@ Puis dans le template de la vue de détail, ajouter le code suivant :
 Comment ça fonctionne ?
 
 - `session('success')` ? C'est une variable de session, elle est disponible dans tous les templates.
-- `{{ session('success') }}` ? C'est la valeur de la variable de session `success`.
+- <span v-pre>`{{ session('success') }}`</span> ? C'est la valeur de la variable de session `success`.
 - `with("success", "L'adresse a bien été ajoutée")` ? C'est la méthode `with` qui va ajouter une variable de session `success` avec la valeur `L'adresse a bien été ajoutée`.
 
 L'avantage ? Les variables de session ajoutées avec `with` seront automatiquement supprimées après la première lecture. Pratique !
@@ -720,7 +721,7 @@ Maintenant que vous avez compris le principe. Je vous laisse créer le code pour
 N'oubliez pas, pour vous aider, vous avez l'aide mémoire :
 
 - [Aide mémoire Rapide](/cheatsheets/laravel/quick.md)
-- [Aide mémoire Complète](/cheatsheets/laravel/readme.md)
+- [Aide mémoire Complète](/cheatsheets/laravel/)
 
 ## Aller plus loin
 

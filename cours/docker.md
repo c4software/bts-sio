@@ -1,10 +1,16 @@
+---
+aside: false
+---
+
 # Slides Docker
 
+<ClientOnly>
 <SlidesDeck src="docker" />
+</ClientOnly>
 
 ## Support de cours
 
-- [Aide mémoire](/cheatsheets/docker/README.md)
+- [Aide mémoire](/cheatsheets/docker/)
 
 ## TP
 
@@ -18,4 +24,3 @@
 - [Déployer un site Laravel avec Compose](/tp/ops/deployer-laravel-docker.md)
 - [Déployer Mini MVC Sample avec Compose](/tp/ops/mini-mvc-sample/mini-mvc-sample-docker.md)
 - [Créer un LAMP sur Raspberry Pi](/tp/rpi/web-stack.md)
-- [Un équivalent à XAMPP à base de docker (Prochainement)](#)
