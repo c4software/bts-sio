@@ -356,7 +356,10 @@ const mountEl = document.querySelector("#like");
 createApp({
     /**
      * Une propriété props est une propriété qui est passée à un composant
-     * depuis le composant parent. Ici, on récupère l'id de l'article
+     * depuis le composant parent. Ici, on récupère l'id de l'article.
+     * Les props sont récupérées depuis les attributs HTML de l'élément HTML.
+     * Ici, nous récupérons l'attribut "data-id" qui contient l'id de l'article.
+     * Cette partie props est remplie par le {... mountEl.dataset} présent en bas du code
      */
     props: {
         id: {
@@ -405,13 +408,23 @@ Le code peut vous paraître compliqué, mais en réalité il est très simple. N
 - Fait une requête Ajax pour ajouter un like.
 - L'ensemble de ces actions sont automatiquement liées au DOM.
 
+::: tip `mountEl.dataset`
+
+Ici, la synthaxe `mountEl.dataset` permet de récupérer les attributs HTML de l'élément HTML. Dans notre cas, nous récupérons l'attribut « data-id » qui contient l'id de l'article qui est passé dans le code HTML. C'est un élément important de notre code, car c'est grâce à cet attribut que nous allons pouvoir faire nos requêtes Ajax.
+
+Sans celui-ci, nous ne pourrions pas faire nos requêtes Ajax. En effet, nous avons besoin de l'id de l'article pour faire nos requêtes Ajax. C'est pour cela que nous avons ajouté l'attribut « data-id » dans le code HTML.
+
+Pour l'instant, vous n'avez pas encore ajouté cet attribut dans votre code HTML. Nous allons le faire ensemble dans la partie suivante.
+
+:::
+
 ##### Modifier le code HTML
 
 Pour que notre code fonctionne, nous allons évidemment devoir modifier la page de l'article. Nous allons donc modifier le code de la page de l'article afin d'ajouter un élément HTML qui aura pour id « like », celle-ci englobera le bouton « like » et le compteur de like.
 
 ![Schéma de la page de l'article](./res/larablog_code_du_composant.jpg)
 
-- En orange : Le code qui spécifie l'id de l'article, celui-ci est récupéré par le composant pour faire les requêtes Ajax.
+- En orange : Le code qui spécifie l'id de l'article, celui-ci est récupéré par le composant pour faire les requêtes Ajax (le fameux `data-id` qui est récupéré par `mountEl.dataset`)
 - En vert : L'action qui est appelée au clic sur le bouton « like ». `@click` permet d'ajouter un événement au clic sur l'élément HTML. `addLike` est la méthode qui est appelée au clic sur le bouton « like ».
 - En bleu : Le code qui affiche le nombre de like. `@{{ count }}` permet d'afficher la valeur de la variable réactive `count`. La variable réactive `count` est mise à jour automatiquement par le composant. C'est-à-dire que si la valeur de la variable `count` change, alors le DOM sera mis à jour automatiquement.
   - Le `@` permet d'indiquer à Blade que le code entre accolades doit être interprété par VueJS et non par Blade.
@@ -462,7 +475,7 @@ Actuellement il est possible de s'auto-liker. C'est-à-dire que vous pouvez like
 
 ::: danger L'art du placement
 
-Bien placer son code c'est un peu comme le travail d'un artiste… Un peu à la manière d'un peintre, vous devez placer votre code au bon endroit. 
+Bien placer son code c'est un peu comme le travail d'un artiste… Un peu à la manière d'un peintre, vous devez placer votre code au bon endroit.
 
 Ici nous parlons d'un problème de « sécurité », le code doit être placé au plus proche de la source. C'est-à-dire que le code doit être placé au plus proche de la base de données. Dans notre cas, le code doit être placé dans le contrôleur et plus précisément dans la méthode « addLike ».
 
