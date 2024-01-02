@@ -821,8 +821,8 @@ C'est une autre façon de travailler, qui permet d'avoir un site Web plus réact
 
 Pour aller plus loin dans la partie API, vous pouvez :
 
-- Utiliser `sanctum` pour créer des tokens d'authentification. <<https://laravel.com/docs/10.x/sanctum>
-- Utiliser les `abilities` pour gérer les droits d'accès. <https://laravel.com/docs/10.x/sanctum#token-abilities>
+- [Utiliser `sanctum` pour créer des tokens d'authentification.](https://laravel.com/docs/10.x/sanctum)
+- [Utiliser les `abilities` pour gérer les droits d'accès.](https://laravel.com/docs/10.x/sanctum#token-abilities)
 
 Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous avons « juste » la logique pour :
 
@@ -830,7 +830,7 @@ Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous 
 - Gérer les droits d'accès pour chaque route (`->middleware('auth:sanctum')`)
 - Authentifier les utilisateurs via un token (appelé bearer token).
 
-::: tip C'est du bonus
+::: danger C'est du bonus
 
 Cette partie n'intéressera pas tout le monde. Si vous êtes intéressé, vous pouvez regarder la documentation de Sanctum. Et me demander si vous avez des questions.
 
