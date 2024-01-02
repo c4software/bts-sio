@@ -257,7 +257,7 @@ Dans notre cas, pour simplifier le TP, nous allons utiliser un CDN de type ESM (
 
 #### Créer un consommateur
 
-Nous allons maintenant créer un consommateur pour notre API. Nous allons créer un fichier « like.js » dans le dossier « public/ ».
+Nous allons maintenant créer un consommateur pour notre API. Nous allons créer un fichier `like.js` dans le dossier **`public/`**.
 
 ::: tip Pourquoi dans le dossier « public » ?
 
@@ -265,7 +265,11 @@ Dans Laravel, nous avons deux dossiers qui semblent se ressembler, mais qui sont
 
 Le dossier « public » est donc le dossier qui contient les fichiers qui seront envoyés à l'utilisateur. Le dossier « resources » est le dossier qui contient les fichiers qui seront utilisés par le serveur pour générer les fichiers du dossier « public ».
 
-Les ressources placées dans le dossier public sont accessibles via la syntaxe suivante <span v-pre>`{{ asset('chemin/vers/le/fichier') }}`</span>. Par exemple, si vous avez un fichier « like.js », alors vous pourrez l'inclure dans votre page avec la syntaxe suivante :
+Les ressources placées dans le dossier public sont accessibles via la syntaxe suivante :
+
+<span v-pre>`{{ asset('chemin/vers/le/fichier') }}`</span>.
+
+Par exemple, si vous avez un fichier « like.js », alors vous pourrez l'inclure dans votre page avec la syntaxe suivante :
 
 ```html
 <script type="module" src="{{ asset('like.js') }}"></script>
@@ -296,7 +300,7 @@ Un peu de détail sur ce code :
 
 ##### Modifier la page de l'article
 
-Pour que notre code fonctionne, nous allons évidemment devoir modifier la page de l'article. Nous allons donc modifier le code de la page de l'article afin d'ajouter un élément HTML qui aura pour id « like », celle-ci englobera le bouton « like » et le compteur de like.
+Pour que notre code fonctionne, nous allons évidemment devoir modifier la page de l'article. Nous allons donc modifier le code de la page de l'article afin d'ajouter un élément HTML (une `div` par exemple) qui aura pour id `like`, celle-ci englobera le bouton « like » et le compteur de like.
 
 ![Schéma de la page de l'article](./res/larablog_div_like.jpg)
 
