@@ -76,11 +76,19 @@ Avant d'aller plus loin, observez les options du site. Si vous êtes curieux, vo
 
 ## Les règles à respecter
 
-L'équipe pédagogique vous a attribué l'accès à la zone de travail **OUESSANT**. C'est dans cette zone que vous allez créer vos VM. 
+L'équipe pédagogique vous a attribué l'accès une zone de travail :
+
+::: tip Quelle est votre Zone ?
+
+| 1ère année | 2nd année |
+|------------|-----------|
+|   BREHAT   | OUESSANT  |
+
+:::
 
 Avant de continuer, quelques règles **sont importantes** pour utiliser aux mieux cette espace de travail partagé :
 
-- Ne pas créer de VM dans le dossier `OUESSANT` directement, mais dans un dossier à votre nom.
+- Ne pas créer de VM directement dans votre zone (BREHAT, OUESSANT, …), mais dans un dossier à votre nom.
 - Nommer vos VM de la manière suivante : `<votre-nom>-<utilité de la machine>`. (Exemple: `vbrosseau-ap2ServeurDebianWeb`).
 - Choisir l'allocation dynamique pour le disque dur.
 - Installer les VMWARE Tools une fois la machine installée.
@@ -123,7 +131,7 @@ Il est important de ne jamais les oublier, car ils sont vraiment une source d'op
 
 Première étape, rangez votre VM dans un dossier à votre nom. Pour cela :
 
-- Cliquez droit sur le dossier `OUESSANT`.
+- Cliquez droit sur le dossier qui correspond à votre zone (OUESSANT, BREHAT, …).
 - Cliquez sur `Nouveau dossier`.
 - Nommez le dossier avec votre nom (Exemple: `vbrosseau`).
 
