@@ -134,7 +134,21 @@ Même question, mais en utilisant [Wretch](https://elbywan.github.io/wretch/)
 
 ### Question 11
 
-Créer une classe pour la liste des `Todos`, puis en utilisant le `chainage` (then) des `Promises` et la méthode map d'un tableau transformer l'ensemble des Todos du retour en objet de type `Todo`
+Créer une classe pour la liste des `Todos`, puis en utilisant le `chainage` (then) des `Promises` et la méthode `map` d'un tableau transformer l'ensemble des Todos du retour en objet de type `Todo`.
+
+Exemple pour l'appel réseau:
+
+```javascript
+fetch("VOTRE_URL")
+  .then((response) => response.json())
+  .then((todos) => {
+    // todos est un tableau d'object.
+    // Il est donc possible d'utiliser la méthode map
+    // pour transformer l'ensemble des éléments du tableau
+    // en objet de type Todo.
+    // return todo.map(el => …)
+  })};
+```
 
 ### Question 12
 
@@ -145,9 +159,45 @@ Via l'instruction `filter`, filtrer l'ensemble des Todos qui sont pour l'utilisa
 "completed": true
 ```
 
+Vous repartirez des éléments de la question précédente. Vous pouvez donc utiliser le `chainage` (then) des `Promises` et la méthode `filter` d'un tableau.
+
+Exemple :
+
+```javascript
+// Reste du code
+.then(todos => {
+  // todos est un tableau de Todo
+  // Il est donc possible d'utiliser la méthode filter
+  // pour filtrer l'ensemble des éléments du tableau en respectant la condition (vous pouvez également déclarer une méthode dans la classe Todo)
+  // return todo.filter(el => …)
+}):
+```
+
 ### Question 13
 
-Lister l'ensemble des valeurs de l'ensemble de la liste des Todo créé précédemment.
+Réécrire le code de la question 12 en utilisant `async` / `await`.
+
+::: tip Rappel
+
+async / await permettent de transformer des fonctions retournant une `Promise` en fonction « normale ». 
+
+Exemple :
+
+```javascript
+// Avant
+fetch("votre-url").then((response) => response.json()).then((data) => { console.log(data) });
+
+// Après
+let retourAPI = await fetch("votre-url");
+retourAPI = await retourAPI.json();
+console.log(retourAPI);
+```
+
+:::
+
+### Question 14
+
+Lister l'ensemble des valeurs de l'ensemble de la liste des Todos créé précédemment.
 
 ::: tip
 `Object.values(…)`
