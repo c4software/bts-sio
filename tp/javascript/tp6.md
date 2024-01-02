@@ -29,7 +29,6 @@ Pour rappel, la plateforme Larablog permet :
 <iframe width="100%" height="700px" src="https://www.youtube-nocookie.com/embed/fevKbHEFDzk?si=EdcDYdQh5SqKNkSO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </center>
 
-
 ## Introduction
 
 Dans ce TP nous allons explorer la modernisation d'un site Web classique en ajoutant de la réactivité. Nous allons voir comment le JavaScript et plus particulièrement l'Ajax et VueJS peuvent nous aider à améliorer l'expérience d'un utilisateur.
@@ -56,7 +55,7 @@ Avant d'aller plus loin, réfléchissons ensemble sur les pages / éléments qui
 
 ::: tip Stop !  
 
-Avant de continuer, à vos crayons, et sur une feuille, listez les pages / éléments qui pourraient être améliorer.
+Avant de continuer, à vos crayons, et sur une feuille, listez les pages / éléments qui pourraient être améliorées.
 
 :::
 
@@ -78,7 +77,7 @@ L'avantage de VueJS est que celui-ci va nous simplifier la manipulation du DOM (
 
 ## Mettre en place une méthodologie
 
-Avant de commencer nos évolutions, nous allons mettre en place une méthodologie de travail. En effet pour ne pas se retrouver submergé par les modifications, il est important de découper notre travail en plusieurs étapes.
+Avant de commencer nos évolutions, nous allons mettre en place une méthodologie de travail. En effet, pour ne pas se retrouver submergé par les modifications, il est important de découper notre travail en plusieurs étapes.
 
 - Étape 1 : Les données, quelles données allons-nous avoir besoin ? Comment les obtenir ?
 - Étape 2 : Quelle partie du code va être ajoutée ? Les contrôleurs, les vues, les routes ?
@@ -222,17 +221,17 @@ Nous avons donc dans les deux cas un JSON avec une clé « like » et une valeur
 
 :::
 
-Ici, vous observerez que nous avons du code très similaire au code d'origine. Nous avons juste extrait la partie « récupération de l'article » et « sauvegarde de l'article » dans le contrôleur. En effet, quand nous travaillons avec des API, « nous oublions » la partie « affichage » afin de nous concentrer sur la données brute.
+Ici, vous observerez que nous avons du code très similaire au code d'origine. Nous avons juste extrait la partie « récupération de l'article » et « sauvegarde de l'article » dans le contrôleur. En effet, quand nous travaillons avec des API, « nous oublions » la partie « affichage » afin de nous concentrer sur la donnée brute.
 
 #### Tester notre code
 
-Pour l'instant nous n'avons pas de consommateur de notre API. Nous allons donc devoir utiliser un outil externe dédier à ce genre d'usage. Il en existe plusieurs, mais PostMan est celui qui est actuellement le plus utilisé. 
+Pour l'instant nous n'avons pas de consommateur de notre API. Nous allons donc devoir utiliser un outil externe dédié à ce genre d'usage. Il en existe plusieurs, mais PostMan est celui qui est actuellement le plus utilisé.
 
 - Télécharger PostMan : [https://www.postman.com/downloads/]
 
 ::: tip Pas besoin de compte
 
-Vous n'avez pas l'obligation de créer un compte pour utiliser PostMan. Il suffit de cliquer sur « Skip signing in and take me straight to the app ». 
+Vous n'avez pas l'obligation de créer un compte pour utiliser PostMan. Il suffit de cliquer sur « Skip signing in and take me straight to the app ».
 
 :::
 
@@ -258,11 +257,11 @@ Dans notre cas, pour simplifier le TP, nous allons utiliser un CDN de type ESM (
 
 #### Créer un consommateur
 
-Nous allons maintenant créer un consommateur pour notre API. Nous allons créer un fichier « like.js » dans le dossier « public/ ». 
+Nous allons maintenant créer un consommateur pour notre API. Nous allons créer un fichier « like.js » dans le dossier « public/ ».
 
 ::: tip Pourquoi dans le dossier « public » ?
 
-Dans Laravel, nous avons deux dossiers qui semblent se ressembler, mais qui sont très différents. Le dossier « public » est le dossier qui est accessible depuis Internet. C'est-à-dire que si vous mettez un fichier dans ce dossier, alors celui-ci sera accessible depuis Internet. Le dossier « resources » est le dossier qui servira à la compilation de vos fichiers (soit par vite, soit par Blade). 
+Dans Laravel, nous avons deux dossiers qui semblent se ressembler, mais qui sont très différents. Le dossier « public » est le dossier qui est accessible depuis Internet. C'est-à-dire que si vous mettez un fichier dans ce dossier, alors celui-ci sera accessible depuis Internet. Le dossier « resources » est le dossier qui servira à la compilation de vos fichiers (soit par vite, soit par Blade).
 
 Le dossier « public » est donc le dossier qui contient les fichiers qui seront envoyés à l'utilisateur. Le dossier « resources » est le dossier qui contient les fichiers qui seront utilisés par le serveur pour générer les fichiers du dossier « public ».
 
@@ -331,7 +330,7 @@ Je vous laisse mettre en place ce code dans votre projet. Si vous avez des diffi
 
 ##### Point étape
 
-Vous l'avez remarqué, pour l'instant notre code ne fait rien. Nous avons juste mis en place l'architecture de notre code. Nous allons maintenant commencer à coder notre consommateur. 
+Vous l'avez remarqué, pour l'instant notre code ne fait rien. Nous avons juste mis en place l'architecture de notre code. Nous allons maintenant commencer à coder notre consommateur.
 
 ::: tip Beaucoup de code
 
@@ -425,7 +424,7 @@ Pour que notre code fonctionne, nous allons évidemment devoir modifier la page 
 ![Schéma de la page de l'article](./res/larablog_code_du_composant.jpg)
 
 - En orange : Le code qui spécifie l'id de l'article, celui-ci est récupéré par le composant pour faire les requêtes Ajax (le fameux `data-id` qui est récupéré par `mountEl.dataset`)
-- En vert : L'action qui est appelée au clic sur le bouton « like ». `@click` permet d'ajouter un événement au clic sur l'élément HTML. `addLike` est la méthode qui est appelée au clic sur le bouton « like ».
+- En vert : L'action qui est appelée au clic sur le bouton « like ». `@click` Permets d'ajouter un événement au clic sur l'élément HTML. `addLike` est la méthode qui est appelée au clic sur le bouton « like ».
 - En bleu : Le code qui affiche le nombre de like. `@{{ count }}` permet d'afficher la valeur de la variable réactive `count`. La variable réactive `count` est mise à jour automatiquement par le composant. C'est-à-dire que si la valeur de la variable `count` change, alors le DOM sera mis à jour automatiquement.
   - Le `@` permet d'indiquer à Blade que le code entre accolades doit être interprété par VueJS et non par Blade.
 
@@ -500,7 +499,7 @@ Route::middleware('web')->group(function () {
 
 Nous allons maintenant ajouter les méthodes dans notre contrôleur, contrairement au code que vous aviez écrit dans le projet Larablog, ici nous allons passer par le modèle `Comment` afin de récupérer les commentaires AINSI que les informations de l'utilisateur qui a écrit le commentaire.
 
-En effet, ici nous nous concentrons sur la données, il est donc plus logique de passer par le modèle `Comment` afin de récupérer les commentaires plutôt que de passer par le modèle `Article` qui récupèrera des données d'article non utiles dans notre API.
+En effet, ici nous nous concentrons sur la donnée, il est donc plus logique de passer par le modèle `Comment` afin de récupérer les commentaires plutôt que de passer par le modèle `Article` qui récupèrera des données d'article non utiles dans notre API.
 
 ```php
 // Récupération des commentaires d'un article
@@ -803,7 +802,7 @@ Je vous laisse mettre en place ce code dans votre projet. Si vous avez des diffi
 
 ## Conclusion
 
-Dans ce TP (très guidé) vous avez vu comment mettre en place une API REST dans un projet existant. Même si je vous ai guidé, vous avez vu que mettre en place un système réactif est relativement simple. 
+Dans ce TP (très guidé) vous avez vu comment mettre en place une API REST dans un projet existant. Même si je vous ai guidé, vous avez vu que mettre en place un système réactif est relativement simple.
 
 Notre code est découpé en plusieurs parties :
 
@@ -829,6 +828,6 @@ Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous 
 
 ::: tip C'est du bonus
 
-Cette partie n'interessera pas tout le monde. Si vous êtes intéressé, vous pouvez regarder la documentation de Sanctum. Et me demander si vous avez des questions.
+Cette partie n'intéressera pas tout le monde. Si vous êtes intéressé, vous pouvez regarder la documentation de Sanctum. Et me demander si vous avez des questions.
 
 :::
