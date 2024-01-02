@@ -81,7 +81,7 @@ L'équipe pédagogique vous a attribué l'accès une zone de travail :
 ::: tip Quelle est votre Zone ?
 
 | 1ère année | 2nd année |
-|------------|-----------|
+|:----------:|:---------:|
 |   BREHAT   | OUESSANT  |
 
 :::
@@ -168,7 +168,7 @@ Ici vous allez choisir le nom de votre VM. Il est important de respecter la conv
 ::: tip Quelle ressource de calcul ?
 
 | 1ère année | 2nd année |
-|------------|-----------|
+|:----------:|:---------:|
 |   BREHAT   | OUESSANT  |
 
 :::
@@ -180,7 +180,7 @@ Ici vous allez choisir le nom de votre VM. Il est important de respecter la conv
 ::: tip Quelle est votre Zone ?
 
 | 1ère année | 2nd année |
-|------------|-----------|
+|:----------:|:---------:|
 |   BREHAT   | OUESSANT  |
 
 :::
