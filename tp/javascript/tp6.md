@@ -480,7 +480,7 @@ Actuellement il est possible de s'auto-liker. C'est-à-dire que vous pouvez like
 
 Bien placer son code c'est un peu comme le travail d'un artiste… Un peu à la manière d'un peintre, vous devez placer votre code au bon endroit.
 
-Ici nous parlons d'un problème de « sécurité », le code doit être placé au plus proche de la source. C'est-à-dire que le code doit être placé au plus proche de la base de données. Dans notre cas, le code doit être placé dans le contrôleur et plus précisément dans la méthode « addLike ».
+Ici nous parlons d'un problème de « sécurité », le code doit être placé au plus proche de la source. C'est-à-dire que le code doit être placé au plus proche de la base de données. Dans notre cas, le code doit être placé dans le contrôleur et plus précisément dans la méthode `addLike`.
 
 :::
 
@@ -490,7 +490,7 @@ Nous avons vu ensemble comment mettre en place un système de like. Nous allons 
 
 ### Étape 1 : Les données
 
-Nous allons commencer par créer deux nouvelles routes dans le fichier « routes/api.php » :
+Nous allons commencer par créer deux nouvelles routes dans le fichier `routes/api.php` :
 
 ```php
 Route::get('/article/{article}/comments', [ApiController::class, 'getComments']);
@@ -601,15 +601,15 @@ Un peu de détail sur le résultat :
 
 - Nous avons un tableau « comments » qui contient les commentaires.
 - Chaque commentaire est un tableau associatif qui contient les informations du commentaire.
-- Les deux méthodes retournent le même résultat, c'est-à-dire que la méthode « addComment » retourne le même résultat que la méthode « getComments ».
+- Les deux méthodes retournent le même résultat, c'est-à-dire que la méthode `addComment` retourne le même résultat que la méthode `getComments`.
 
 ### Étape 1b : Nettoyage du code
 
-Le code que nous avons écrit est normalement déjà présent dans votre projet, mais dans la partie non API. Nous allons donc supprimer le code de la partie non API. Nous allons donc supprimer les méthodes « getComments » et « addComment » du contrôleur « ArticleController ».
+Le code que nous avons écrit est normalement déjà présent dans votre projet, mais dans la partie non API. Nous allons donc supprimer le code de la partie non API. Nous allons donc supprimer les méthodes `getComments` et `addComment` du contrôleur `ArticleController`.
 
 ### Étape 2 : Créer le « composant »
 
-Nous allons maintenant créer le composant qui va afficher les commentaires. Nous allons créer un fichier « comments.js » dans le dossier « public/ ».
+Nous allons maintenant créer le composant qui va afficher les commentaires. Nous allons créer un fichier `comments.js` dans le dossier `public/`.
 
 Cette fois-ci je ne vais pas vous donner l'ensemble du code, mais juste la structure :
 
@@ -717,7 +717,7 @@ Quelques éléments, en VueJS, nous utilisons la directive `v-for` afin de faire
 La notation JavaScript est légèrement différente pour naviguer dans un objet :
 
 - En JavaScript `comment.id` permet de récupérer la valeur de la clé « id » dans l'objet « comment ».
-- En PHP `$comment->id` permet de récupérer la valeur de la clé « id » dans l'objet « $comment ».
+- En PHP `$comment->id` permet de récupérer la valeur de la clé `id` dans l'objet `$comment`.
 
 :::
 
