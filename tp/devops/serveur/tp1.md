@@ -88,7 +88,7 @@ L'équipe pédagogique vous a attribué l'accès une zone de travail :
 
 Avant de continuer, quelques règles **sont importantes** pour utiliser aux mieux cette espace de travail partagé :
 
-- Ne pas créer de VM directement dans votre zone (BREHAT, OUESSANT, …), mais dans un dossier à votre nom.
+- Ne pas créer de VM directement dans **votre zone**, mais dans un dossier à votre nom.
 - Nommer vos VM de la manière suivante : `<votre-nom>-<utilité de la machine>`. (Exemple: `vbrosseau-ap2ServeurDebianWeb`).
 - Choisir l'allocation dynamique pour le disque dur.
 - Installer les VMWARE Tools une fois la machine installée.
@@ -165,9 +165,25 @@ Ici vous allez choisir le nom de votre VM. Il est important de respecter la conv
 
 ![Ressource de calcul](./res/ferme-etape3.jpg)
 
+::: tip Quelle ressource de calcul ?
+
+| 1ère année | 2nd année |
+|------------|-----------|
+|   BREHAT   | OUESSANT  |
+
+:::
+
 ### 4. L'espace de stockage
 
 ![Ressource de calcul](./res/ferme-etape4.jpg)
+
+::: tip Quelle est votre Zone ?
+
+| 1ère année | 2nd année |
+|------------|-----------|
+|   BREHAT   | OUESSANT  |
+
+:::
 
 ### 5. Compatibilité
 
@@ -259,7 +275,7 @@ Maintenant que vous avez démarré votre VM. Il faut accéder à celle-ci.
 
 Évidemment, nous n'avons pas la possiblité de connecter un écran à la ferme. Nous allons utiliser un accès distant « web » (une sorte de VNC). Cette accès distant n'est pas très pratique et est plutôt lent.
 
-**Il ne nous servira que pour l'installation**
+🔥 **Il ne nous servira que pour l'installation**
 
 ![Accès distant](./res/ferme-acces-distant.jpg)
 
@@ -317,7 +333,6 @@ Ici l'idée est de ne pas oublier la configuration de votre serveur. En effet, a
 <iframe src="https://giphy.com/embed/Od0QRnzwRBYmDU3eEO" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 :::
-
 
 ## Accès à la ferme depuis chez vous
 
