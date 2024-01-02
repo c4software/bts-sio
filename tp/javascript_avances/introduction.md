@@ -8,6 +8,8 @@ Vous avez déjà fait du JavaScript, mais certainement avec jQuery et surement s
 
 Dans ce TP et au travers de quelques exemples, nous allons découvrir en pratique les nouveautés.
 
+Pour réaliser ce TP, vous pouvez utiliser [CodePen](https://codepen.io/pen/) ou [Repl.it](https://repl.it/).
+
 ## Question 0
 
 Pourquoi est-ce important d'utiliser les fonctionnalités modernes du JavaScript ? En quoi est-ce primordial ?
