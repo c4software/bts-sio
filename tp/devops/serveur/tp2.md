@@ -70,7 +70,6 @@ Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez p
 
 :::
 
-
 ### Étape 2 : Configurez la VM
 
 Configurez la VM pour qu'elle respecte les spécifications suivantes :
@@ -183,7 +182,7 @@ wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 ```
 
-Un peu de détail sur les commandes : 
+Un peu de détail sur les commandes :
 
 - `wget` est un outil qui permet de télécharger des fichiers depuis Internet.
 - `lsb-release` est un outil qui permet de récupérer des informations sur la distribution Linux.
@@ -350,7 +349,7 @@ Pour tester le principe des VirtualHost, nous allons créer deux sites Internet 
 
 Au lycée nous allons faire des virtualhost avec des ports. En effet, nous n'avons pas accès à la configuration DNS du lycée, et nous ne pouvons donc pas créer des domaines.
 
-En production, vous pouvez utiliser des domaines, ou des ports. C'est à vous de voir ce qui vous convient le mieux. 
+En production, vous pouvez utiliser des domaines, ou des ports. C'est à vous de voir ce qui vous convient le mieux.
 
 Utiliser des domaines est plus joli, car nous pourrions avoir des URL de type :
 

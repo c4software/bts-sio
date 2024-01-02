@@ -128,7 +128,7 @@ Pour changer le mot de passe de l'utilisateur, `root` vous pouvez utiliser la co
 
 ### Créer un compte utilisateur
 
-Pour créer un compte utilisateur, vous pouvez utiliser la commande `adduser <votre-nom-d-utilisateur>`. 
+Pour créer un compte utilisateur, vous pouvez utiliser la commande `adduser <votre-nom-d-utilisateur>`.
 
 ::: tip 📝 Remarque
 

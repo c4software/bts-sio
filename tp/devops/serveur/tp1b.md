@@ -24,7 +24,7 @@ Pour réaliser ce TP vous devez savoir créer une VM sur la ferme. Si vous ne sa
 Vous avez créé votre VM ? Alors c'est parti !
 
 ::: tip Installer Debian
-Même si au premier abord installer une Debian semble intimidant vous allez voir qu'en réalité c'est plutôt très simple. 
+Même si au premier abord installer une Debian semble intimidant vous allez voir qu'en réalité c'est plutôt très simple.
 
 PS: Si vous cherchez plus de défi, vous pouvez installer une [Arch Linux](https://wiki.archlinux.org/index.php/Installation_guide) ou une [Alpine Linux](https://www.alpinelinux.org/). Mais attention, c'est plus compliqué ! **Et surtout non utilisé en entreprise.**
 
@@ -168,7 +168,7 @@ Pour simplifier son usage, voilà la version intégré dans ce support :
 
 <DebianConfiguration />
 
-Une fois votre configuration généré par l'outils vous pouvez renseigner les différentes étapes dans votre VM. 
+Une fois votre configuration généré par l'outils vous pouvez renseigner les différentes étapes dans votre VM.
 
 **Dans mon cas**, avec le VLAN 537, j'ai donc :
 
@@ -187,7 +187,7 @@ Pour assurer la cohérence, le nom de la machine doit être le même que celui q
 
 ### Le choix du mot de passe root
 
-À cet étape, vous devez choisir un mot de passe pour l'utilisateur root. C'est l'utilisateur qui a tous les droits sur le serveur. 
+À cet étape, vous devez choisir un mot de passe pour l'utilisateur root. C'est l'utilisateur qui a tous les droits sur le serveur.
 
 ⚠️ Il est donc important de choisir un mot de passe fort.
 
@@ -395,7 +395,7 @@ En tant normal un `systemctl restart networking`, cette commande va redémarrer 
 :::
 
 ::: tip Pourquoi changer l'adresse IP ?
-Ici nous avons installé entièrement l'OS du serveur. L'avantage d'une machine virtuelle c'est qu'il est possible de réaliser une image « réutilisable » pour gagner de précieuses minutes lors de l'installation d'un nouveau serveur. 
+Ici nous avons installé entièrement l'OS du serveur. L'avantage d'une machine virtuelle c'est qu'il est possible de réaliser une image « réutilisable » pour gagner de précieuses minutes lors de l'installation d'un nouveau serveur.
 
 Dans ce cas, dès le premier boot, nous irons modifier l'adresse du serveur pour le rendre accessible depuis le réseau.
 :::
@@ -452,7 +452,7 @@ apt install vim
 
 ### Installation de SSH
 
-Dans quelques instant nous allons voir comment accèder à votre serveur. Pour ça nous utiliserons SSH. SSH est un protocole de communication sécurisé. 
+Dans quelques instant nous allons voir comment accèder à votre serveur. Pour ça nous utiliserons SSH. SSH est un protocole de communication sécurisé.
 
 Pour installer SSH sur votre serveur nous allons utiliser la commande `apt` :
 
@@ -531,7 +531,7 @@ systemctl restart ssh
 - C'est à vous ! Je vous laisse vérifier que l'accès SSH pour l'utilisateur `root` est désactivé
 
 ::: danger Pourquoi est-ce très important ?
-Avant de continuer, je vous propose que l'on discute un peu de la sécurité. 
+Avant de continuer, je vous propose que l'on discute un peu de la sécurité.
 
 Élément de réponse… À présent, vous ne pourrez plus vous connecter en tant qu'utilisateur root via SSH. Vous devez vous connecter avec un autre utilisateur (celui que vous avez créé lors de l'installation de votre serveur). Cette étape est vraiment importante, car elle va vous permettre de sécuriser votre serveur.
 :::
@@ -603,7 +603,7 @@ ssh-copy-id <nom_du_compte>@<adresse_ip_du_serveur>
 
 ::: tip Attention
 
-Cette commande doit être exécutée sur votre machine locale. 
+Cette commande doit être exécutée sur votre machine locale.
 
 Elle va copier votre clé publique (local à votre machine) sur votre serveur (VM).
 

@@ -114,7 +114,7 @@ Votre serveur doit être accessible depuis votre navigateur. Pour cela, vous dev
 
 ## Les virtuals hosts
 
-Vu que nous allons déployer deux sites sur un seul serveur, nous allons utiliser les **virtuals hosts**. Les virtuals hosts permettent de définir plusieurs sites sur un seul serveur. 
+Vu que nous allons déployer deux sites sur un seul serveur, nous allons utiliser les **virtuals hosts**. Les virtuals hosts permettent de définir plusieurs sites sur un seul serveur.
 
 ### Créer les dossiers
 

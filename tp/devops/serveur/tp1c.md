@@ -207,7 +207,7 @@ Notre serveur a maintenant besoin d'un service Web (HTML seulement), nous allons
 - Installez Apache avec la commande `apt`.
 - Vérifiez que le service Apache est bien lancé.
 
-::: tip Comment faire ? 
+::: tip Comment faire ?
 Je vous laisse regarder dans les ressources du TP précédent (voir [TP précédent](./tp1b.md)). Pour voir comment installer Apache.
 :::
 
@@ -405,7 +405,6 @@ done
 ```
 
 :::
-
 
 <center>
 <iframe src="https://giphy.com/embed/4PXUYM1bXS3lRXO7lX" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>

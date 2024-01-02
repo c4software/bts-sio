@@ -132,7 +132,7 @@ Dans cette version, vous allez créer votre VM à partir d'un modèle. Le modèl
 
 Je vous laisse suivre le TP suivant pour configurer votre machine :
 
-- [TP2. Avoir une machine Debian avec Apache + PHP](/tp/devops/serveur/tp2.md) 
+- [TP2. Avoir une machine Debian avec Apache + PHP](/tp/devops/serveur/tp2.md)
 - **ou la synthèse de ce TP** : [Configurer une serveur Debian pour le Web](/cheatsheets/serveur/debian-web.md)
 
 ::: details Vous souhaitez juste les commandes ?
@@ -445,7 +445,7 @@ systemctl restart mysql
 
 ### Connexion avec DBeaver
 
-Maintenant que MariaDB est configuré pour accepter les connexions distantes, nous allons voir comment se connecter à MariaDB avec DBeaver. 
+Maintenant que MariaDB est configuré pour accepter les connexions distantes, nous allons voir comment se connecter à MariaDB avec DBeaver.
 
 Dbeaver est déjà installé sur votre machine. Vous pouvez le lancer via le menu démarrer.
 
