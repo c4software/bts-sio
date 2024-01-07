@@ -1,0 +1,99 @@
+Title,Description,Issue ID,URL,State,Author,Author Username,Assignee,Assignee Username,Confidential,Locked,Due Date,Created At (UTC),Updated At (UTC),Closed At (UTC),Milestone,Weight,Labels,Time Estimate,Time Spent
+Ajouter un CSS bts-sio.css,"Ajouter une feuille de style ```bts-sio.css``` dans le header, celle-ci doit contenir :
+
+```
+h1, h2, h3, h4, h5, h6{
+font-weight: 300;
+}
+```
+
+PS: La feuille de style doit être externe.",37,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/37,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:27:40,2024-01-07 19:09:13,,,,,0,0
+Traduction,Traduire « Made with Love » en Français et le remplacer dans le site Internet.,36,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/36,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:24:52,2019-09-20 13:47:11,,,,,0,0
+Définir la meta author,Mettre BTS SIO 2017 dans la meta author du site Internet.,35,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/35,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:24:07,2017-09-11 20:24:07,,,,,0,0
+div -> section,"Changer la <div class=""call-to-action bg-dark"" en <section class=""call-to-action bg-dark"" …",34,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/34,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:23:19,2017-09-11 20:23:19,,,,,0,0
+Changer l’attribut html lang=,"Actuellement c’est en, mettre fr",33,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/33,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:22:05,2017-09-11 20:22:05,,,,,0,0
+Changement couleur titre,Changer la couleur du titre « Découverte GitLab » par #262360,32,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/32,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:20:58,2019-09-20 13:46:47,,,,,0,0
+Ajout vidéo Youtube,Ajouter une vidéo Youtube dans la partie Orange.,31,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/31,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:20:01,2024-01-07 19:09:12,,,,,0,0
+Ajouter Lien Linkedin,Ajouter un lien linkedin dans le pied de page,30,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/30,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:19:26,2024-01-07 19:09:13,,,,,0,0
+Changer l’image principale,"Changer l’image principale par celle de votre choix, en choisissant dans les images suivantes :
+
+http://www.stocklib.fr/",29,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/29,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:18:50,2024-01-07 19:09:13,,,,,0,0
+Changement texte,"Changer le texte : 
+
+GitLab simplifie la collaboration en permettant aux utilisateurs de travailler ensemble sans se prendre la tête
+
+Par le texte de votre choix.",28,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/28,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:17:46,2019-09-20 13:50:30,,,,,0,0
+Changer le titre de la partie contact,La partie contact est nommée Go! Changer le titre par « Contact »,27,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/27,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:16:57,2024-01-07 19:09:14,,,,,0,0
+Renommer Portefolio,Changer le titre « portefolio » en « Mes Photos »,26,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/26,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:14:55,2024-01-07 19:09:13,,,,,0,0
+Ajouter une nouvelle image,Ajouter une image dans la partie « Portefolio »,25,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/25,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:14:18,2019-09-20 13:50:55,,,,,0,0
+Ajouter Twitter dans la partie contact,Ajouter une icone et un lien vers le profil Twitter de votre choix,24,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/24,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:11:30,2019-09-20 13:47:37,,,,,0,0
+Ajout Facebook dans la partie contact,Ajouter une icone et un lien vers la page facebook de votre choix,23,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/23,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:11:05,2019-09-20 13:49:18,,,,,0,0
+Changement adresse email,"Changer l’email dans le dernier block par :
+
+contact@demo.fr",22,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/22,Open,Valentin Brosseau,vbrosseau,Fabbro Paul,PaulFabbro,No,No,,2017-09-11 20:10:29,2024-01-07 19:09:13,,,,,0,0
+Ajouter tooltip 2,"Ajouter une tooltip 
+
+https://v4-alpha.getbootstrap.com/components/tooltips/#interactive-demo
+
+sur l’email",21,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/21,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:09:01,2017-09-11 20:09:01,,,,,0,0
+Ajouter une tooltip,"Ajouter une tooltip 
+
+https://v4-alpha.getbootstrap.com/components/tooltips/#interactive-demo
+
+sur le numéro de téléphone",20,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/20,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:08:46,2017-09-11 20:08:46,,,,,0,0
+Changement titre,"Changer le titre (title) et de la page par :
+
+Découverte de GitLab - BTS SIO 2017",19,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/19,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:06:57,2019-09-20 13:48:50,,,,,0,0
+Ajouter une modal,"Ajout d’une modal 
+
+https://v4-alpha.getbootstrap.com/components/modal/
+
+À la place de l’action actuelle du premier bouton",18,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/18,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:06:07,2021-02-04 13:15:33,,,,,0,0
+Ajouter animation,"Ajouter une animation sur le premier bouton avec 
+
+https://daneden.github.io/animate.css/",17,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/17,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:04:34,2024-01-07 19:09:42,,,,,0,0
+Ajout meta,Ajouter les balise « Meta description » et « Meta Keywords ».,16,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/16,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:03:08,2017-09-11 20:03:08,,,,,0,0
+Mettre un crayon à la place d’un avion,Changer l’icône « avion » un éditeur en ligne par un crayon,15,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/15,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:01:57,2019-09-20 13:49:07,,,,,0,0
+Changement icone,Changer icône « des issues »,14,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/14,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:00:51,2019-09-20 15:41:08,,,,,0,0
+Changement couleur,"Changer la couleur du 2nd block, mettre #25225E",13,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/13,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 20:00:15,2024-01-07 19:09:42,,,,,0,0
+Ajouter une nouvelle section,Ajouter une section présentant le BTS SIO,12,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/12,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:58:38,2017-09-11 19:58:38,,,,,0,0
+Changement lien,Changer la cible du lien « c’est ici » pour faire pointer vers ```https://gitlab.com```,11,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/11,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:57:57,2019-09-20 15:55:14,,,,,0,0
+Ajout d’un Pied de page,"Ajouter un pied de page :
+
+- Date
+- Copyright 2017",10,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/10,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:56:58,2024-01-07 19:09:41,,,,,0,0
+Rendre le numéro de tel cliquable,Ajouter un lien type tel: sur le numéro dans le bas de la page.,9,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/9,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:54:00,2024-01-07 19:09:41,,,,,0,0
+Changement de la 6eme image.,"Merci de remplacer la 6eme image après la zone « à votre service ».
+
+PS: Changer également le texte.
+PS2: Attention au thème.",8,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/8,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:50:15,2019-09-20 15:52:17,,,,,0,0
+Changement de la 5eme image.,"Merci de remplacer la 5eme image après la zone « à votre service ».
+
+PS: Changer également le texte.
+PS2: Attention au thème.",7,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/7,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:49:53,2024-01-07 19:09:41,,,,,0,0
+Changement de la 4 eme image.,"Merci de remplacer la 4eme image après la zone « à votre service ».
+
+PS: Changer également le texte.
+PS2: Attention au thème.",6,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/6,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:49:35,2019-09-20 15:40:50,,,,,0,0
+Changer la 3 eme image.,"Merci de remplacer la 3eme image après la zone « à votre service ».
+
+PS: Changer également le texte.
+PS2: Attention au thème.",5,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/5,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:49:16,2024-01-07 19:09:41,,,,,0,0
+Remplacer la 2eme image.,"Merci de remplacer la 2eme image après la zone « à votre service ».
+
+PS: Changer également le texte.
+PS2: Attention au thème.",4,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/4,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:48:39,2024-01-07 19:09:42,,,,,0,0
+Changement d’image 1,"Merci de remplacer la première image après la zone « à votre service ».
+
+PS: Changer également le texte.
+PS2: Attention au thème.",3,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/3,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:48:01,2024-01-07 19:09:42,,,,,0,0
+Ajout d’une Favicon,"Visiblement le développeur a oublié de mettre une favicon (https://www.w3schools.com/tags/att_link_sizes.asp), merci d’en mettre une en lien avec notre site web.",2,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/2,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-11 19:45:59,2017-09-11 19:45:59,,,,,0,0
+Ajouter une fichier .gitignore,"Pour éviter que Git ne suive certains fichiers il est possible de créer un fichier ```.gitignore```. Se projet n’en possède pas, les développeurs qui travaillerons sur ce projet utiliseront : 
+
+- Windows
+- Linux
+- MacOS
+
+L’IDE utilisé sera PhpStorm d’intelliJ.
+
+Merci de créer le fichier ```.gitignore``` correspondant le mieux.",1,https://gitlab.com/bts-sio-chevrollier/decouverte-gitlab/-/issues/1,Open,Valentin Brosseau,vbrosseau,"","",No,No,,2017-09-09 16:46:32,2017-09-09 16:46:32,,,,,0,0
