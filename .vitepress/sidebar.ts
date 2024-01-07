@@ -64,6 +64,7 @@ export default [
                 text: "Git en groupe + GitLab", collapsed: true, items: [
                     { text: "Slides Gitlab", link: "/cours/gitlab" },
                     { text: "Utiliser Gitlab", link: "/tp/gitlab/" },
+                    { text: "Gitlab à plusieurs", link: "/tp/gitlab/projet-collaboratif.md" },
                 ]
             },
             { text: "En + du cours", link: "/cheatsheets/git/" },

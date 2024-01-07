@@ -87,7 +87,23 @@ Vérifier que votre projet est bien commité, avec la commande `git status`. Vou
 
 ### Création du compte
 
-Créer votre compte sur [GitLab.com onglet Register](https://gitlab.com/users/sign_in). Ce compte sera utile pour plusieurs projets, remplissez les champs avec attention.
+Créer votre compte sur la plateforme de votre choix, nous avons trois choix possibles :
+
+- [Gitlab du lycée](http://gitlab.dombtsig.local/)
+- [GitLab](https://gitlab.com/users/sign_in)
+- [Github](https://github.com/signup)
+
+Ce compte sera utile pour plusieurs projets, remplissez les champs avec attention.
+
+::: tip Comment choisir ?
+
+Nous avons fait le choix de mettre en place un Gitlab dans la section BTS. Cela permet de vous donner un accès à un Gitlab sans avoir à créer un compte sur un service externe. Cependant, vous pouvez utiliser le service de votre choix.
+
+Avoir un compte Github est également intéressant, car c’est un service très utilisé dans le monde du développement. Cela vous permettra de vous familiariser avec l’outil, et de vous créer un profil « professionnel ».
+
+Cependant, pour l'instant vos réalisations sont « débutantes », et vous n'avez pas forcément envie de les partager avec le monde entier. C'est pourquoi, je vous conseille plutôt d'utiliser le Gitlab du lycée.
+
+:::
 
 #### Échange de clé
 
@@ -115,7 +131,7 @@ Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoir
 
 #### Envoyer votre clé sur GitLab
 
-[Ajouter une clé sur votre profil](https://gitlab.com/-/profile/keys)
+[Ajouter une clé sur votre profil](https://gitlab.dombtsig.local/-/profile/keys)
 
 La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (**à ouvrir avec notepad++ ou bloc-note**).
 
@@ -284,8 +300,8 @@ Vous venez (normalement) d’avoir au moins un « merge request » d’assig
 - Regarder l’issue.
 - Regarder le code de votre « collègue ».
 - Apporter des commentaires
-  _ Dans l’issue, générale.
-  _ Directement dans la partie code de l’issue.
+  - Dans l’issue, générale.
+  - Directement dans la partie code de l’issue.
 - Laisser votre collègue effectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc.). DISCUTER ! (du code)
 - Si tout vous semble correcte « Merger » les modifications.
 
@@ -323,7 +339,6 @@ En utilisant le processus vu précédemment, ajouter une page « à propos » da
 - Le document listant les différences entre Github et GitLab.
 - Vos réponses aux questions et commandes présentes dans ce TP (format PDF).
 - Lien vers votre projet GitLab (n'oubliez pas de m'inviter en tant que membre).
-
 
 ## Rendu
 
