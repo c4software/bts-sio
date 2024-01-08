@@ -868,7 +868,7 @@ private fun enableListenBleNotify() {
 }
 
 private fun handleToggleLedNotificationUpdate(characteristic: BluetoothGattCharacteristic) {
-    if (characteristic.getStringValue(0).equals("on", ignoreCase = true)) {
+    if (characteristic.getStringValue(0).equals("1", ignoreCase = true)) {
         ledStatus.setImageResource(R.drawable.led_on)
     } else {
         ledStatus.setImageResource(R.drawable.led_off)
