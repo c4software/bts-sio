@@ -828,6 +828,10 @@ metadata:
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
+  tls:
+    - hosts:
+      - press.domain.tld 
+      secretName: letsencrypt-prod # Le nom du secret créé par cert-manager (Dans notre cas letsencrypt-prod)
   rules:
     - host: press.domain.tld
       http:
@@ -839,11 +843,6 @@ spec:
                 name: vuepress-test
                 port:
                   number: 80
-  tls:
-  - hosts:
-    - press.domain.tld 
-    secretName: letsencrypt-prod # Le nom du secret créé par cert-manager (Dans notre cas letsencrypt-prod)
-
 ```
 
 Puis appliquer la configuration :
