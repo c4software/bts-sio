@@ -133,8 +133,8 @@ export default [
             },
             {
                 text: "Javascript avancé", collapsed: true, items: [
-                    { text: "Prise en main « JavaScript Avancé »", link: "/tp/javascript_avances/introduction" },
-                    { text: "Questions complémentaires", link: "/tp/javascript_avances/revision" },
+                    { text: "Prise en main JavaScript Avancé", link: "/tp/javascript_avances/introduction.md" },
+                    { text: "Questions complémentaires", link: "/tp/javascript_avances/revision.md" },
                     { text: "Pratiquer l'Ajax", link: "/tp/javascript/tp4.md" },
                     { text: "La Greta TV 2.0 (Ajax)", link: "/tp/javascript/tp4.1.md" },
                     { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" }

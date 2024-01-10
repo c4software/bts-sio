@@ -816,9 +816,29 @@ kubectl apply -f clusterissuer.yaml
 
 Voilà! Votre cluster est maintenant capable de demander des certificats SSL à Let's Encrypt. Il ne reste plus qu'à configurer votre application pour qu'elle utilise le certificat SSL.
 
-Pour ça nous allons devoir modifier notre fichier `ingress.yaml` :
+Première étape, il faut modifier notre fichier `services.yaml` pour écouter sur le port `443` en plus du port `80`.
 
-Exemple, si votre nom de domaine est `press.domain.tld` et que vous souhaitez utiliser un certificat SSL pour votre application, il suffit de modifier le fichier `ingress.yaml` comme suit :
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: vuepress-test
+spec:
+  selector:
+    app: vuepress-test
+  type: LoadBalancer
+  ports:
+    - port: 80
+      name: http
+      targetPort: 80
+      protocol: TCP
+    - port: 443
+      name: https
+      targetPort: 443
+      protocol: TCP
+```
+
+Pour ça nous allons devoir modifier notre fichier `ingress.yaml` Exemple, si votre nom de domaine est `press.domain.tld` et que vous souhaitez utiliser un certificat SSL pour votre application, il suffit de modifier le fichier `ingress.yaml` comme suit :
 
 ```yaml
 apiVersion: networking.k8s.io/v1
