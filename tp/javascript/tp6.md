@@ -115,18 +115,18 @@ Notre code actuel ressemble à quelque chose comme ça :
 
 ```php
 // Récupération de l'article, et affichage de celui-ci.
-function Article(Article $id)
+function Article(Article $article)
 {
     return view('article', ['article' => $article]);
 }
 
 // Incrémentation du compteur de like puis redirection vers la page de l'article.
-function AjoutLike(Article $id)
+function AjoutLike(Article $article)
 {
     $article->like = $article->like + 1;
     $article->save();
 
-    return redirect()->route('article', ['id' => $id]);
+    return redirect()->route('article', ['article' => $article]);
 }
 ```
 
