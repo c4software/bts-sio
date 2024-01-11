@@ -1165,6 +1165,8 @@ Ajout d'un lien « voir mon blog » dans le menu de l'utilisateur. Ce lien doit 
 </x-nav-link>
 ```
 
+:::
+
 ## Amélioration de l'interface 2
 
 Pour l'instant il est probable que votre page « publique » ne possède pas de menu de navigation. Je vous propose de l'ajouter dans le fichier `guest.blade.php`:
