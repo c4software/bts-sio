@@ -768,6 +768,8 @@ Cette commande aura pour but de rendre accessible le port `3306` de la machine d
 
 Nos applications sont maintenant déployées, mais nous avons un problème… Elles ne sont pas sécurisées. En effet, nous avons déployé nos applications sur des ports « classiques » (80). Cependant, nous n'avons pas configuré de certificat SSL pour nos applications. Avec Kubernetes, il est possible de gérer les certificats SSL de manière automatique.
 
+Attention, cette configuration est plus complexe et ne fonctionne pas sur tous les clusters Kubernetes. En effet, il faut que votre cluster soit accessible depuis l'extérieur pour que la configuration fonctionne.
+
 ### Certificat SSL avec Let's Encrypt
 
 Pour gérer les certificats SSL, nous allons utiliser [cert-manager](https://cert-manager.io/docs/). Cert-manager est un outil qui va nous permettre de gérer les certificats SSL de manière automatique. Pour l'installer, il suffit de suivre la documentation officielle :
@@ -798,6 +800,7 @@ apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
+  namespace: cert-manager
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
@@ -806,8 +809,7 @@ spec:
       name: letsencrypt-prod
     solvers:
     - http01:
-        ingress:
-          class: traefik
+        ingress: { }
 ```
 
 ```sh
@@ -826,7 +828,6 @@ metadata:
 spec:
   selector:
     app: vuepress-test
-  type: LoadBalancer
   ports:
     - port: 80
       name: http
@@ -838,6 +839,14 @@ spec:
       protocol: TCP
 ```
 
+Ajout du HELM Chart Ingress Nginx ainsi que le « Service » associé permettant de gérer les certificats SSL :
+
+```sh
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+helm -n ingress-nginx install ingress-nginx ingress-nginx/ingress-nginx --create-namespace
+```
+
 Pour ça nous allons devoir modifier notre fichier `ingress.yaml` Exemple, si votre nom de domaine est `press.domain.tld` et que vous souhaitez utiliser un certificat SSL pour votre application, il suffit de modifier le fichier `ingress.yaml` comme suit :
 
 ```yaml
@@ -847,7 +856,11 @@ metadata:
   name: vuepress-test
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx
   tls:
     - hosts:
       - press.domain.tld 
