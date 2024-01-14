@@ -768,7 +768,11 @@ Cette commande aura pour but de rendre accessible le port `3306` de la machine d
 
 Nos applications sont maintenant déployées, mais nous avons un problème… Elles ne sont pas sécurisées. En effet, nous avons déployé nos applications sur des ports « classiques » (80). Cependant, nous n'avons pas configuré de certificat SSL pour nos applications. Avec Kubernetes, il est possible de gérer les certificats SSL de manière automatique.
 
-Attention, cette configuration est plus complexe et ne fonctionne pas sur tous les clusters Kubernetes. En effet, il faut que votre cluster soit accessible depuis l'extérieur pour que la configuration fonctionne.
+::: danger Attention
+Cette configuration est plus complexe et ne fonctionne pas sur tous les clusters Kubernetes.
+
+En effet, il faut que votre cluster soit accessible depuis l'extérieur pour que la configuration fonctionne.
+:::
 
 ### Certificat SSL avec Let's Encrypt
 
@@ -776,7 +780,7 @@ Pour gérer les certificats SSL, nous allons utiliser [cert-manager](https://cer
 
 ```sh
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.3/cert-manager.yaml
-``` 
+```
 
 Vérifier que l'installation s'est bien déroulée :
 
@@ -839,13 +843,17 @@ spec:
       protocol: TCP
 ```
 
-Ajout du HELM Chart Ingress Nginx ainsi que le « Service » associé permettant de gérer les certificats SSL :
+::: danger Vous êtes chez un hébergeur (OVH, Scaleway, etc) ?
+
+Vous devez ajouter l'ingress NGINX, celui-ci ajoutera le NameSpace nginx ainsi que le LoadBalancer (et son IP) pour que cert-manager puisse faire son travail.
 
 ```sh
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 helm -n ingress-nginx install ingress-nginx ingress-nginx/ingress-nginx --create-namespace
 ```
+
+:::
 
 Pour ça nous allons devoir modifier notre fichier `ingress.yaml` Exemple, si votre nom de domaine est `press.domain.tld` et que vous souhaitez utiliser un certificat SSL pour votre application, il suffit de modifier le fichier `ingress.yaml` comme suit :
 
