@@ -813,7 +813,8 @@ spec:
       name: letsencrypt-prod
     solvers:
     - http01:
-        ingress: { }
+        ingress:
+          class: nginx
 ```
 
 ```sh
@@ -865,7 +866,7 @@ metadata:
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    acme.cert-manager.io/http01-edit-in-place: "true"
+    # acme.cert-manager.io/http01-edit-in-place: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     kubernetes.io/ingress.class: nginx
 spec:
