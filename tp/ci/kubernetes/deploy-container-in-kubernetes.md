@@ -854,6 +854,8 @@ helm repo update
 helm -n ingress-nginx install ingress-nginx ingress-nginx/ingress-nginx --create-namespace
 ```
 
+Cette étape n'est pas nécessaire si vous utilisez un cluster Kubernetes type k3d car celui-ci possède déjà un loadbalancer intégré.
+
 :::
 
 Pour ça nous allons devoir modifier notre fichier `ingress.yaml` Exemple, si votre nom de domaine est `press.domain.tld` et que vous souhaitez utiliser un certificat SSL pour votre application, il suffit de modifier le fichier `ingress.yaml` comme suit :
