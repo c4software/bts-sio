@@ -94,6 +94,11 @@ C'est un choix intéressant pour centraliser les informations.
 
 ---
 
+- [Feedly Android](https://play.google.com/store/apps/details?id=com.devhd.feedly)
+- [Feedly iOS](https://apps.apple.com/us/app/feedly-smart-news-reader/id396069556)
+
+---
+
 ## Une alternative les agrégateurs de news
 
 - [Ycombinator](https://news.ycombinator.com/)
@@ -138,6 +143,14 @@ C'est un choix intéressant pour centraliser les informations.
 - Sur vos réseaux sociaux
 - Sur le Slack de la classe (#actu-dev par exemple)
 - Sur votre Discord
+
+---
+
+## Comment voler de l'information ?
+
+- Prenez le temps de lire
+- Prenez le temps de tester
+- Prenez le temps de partager
 
 ---
 
