@@ -96,6 +96,7 @@ C'est un choix intéressant pour centraliser les informations.
 
 - [Feedly Android](https://play.google.com/store/apps/details?id=com.devhd.feedly)
 - [Feedly iOS](https://apps.apple.com/us/app/feedly-smart-news-reader/id396069556)
+- [FreshRSS (à installer sur un serveur)](https://freshrss.org/)
 
 ---
 
