@@ -897,3 +897,19 @@ kubectl apply -f ingress.yaml
 ```
 
 Lors de l'application de la configuration, cert-manager va automatiquement demander un certificat SSL à Let's Encrypt.
+
+Nous avons donc au final un ensemble de fichiers YAML :
+
+- `deployment.yaml` qui contient la configuration de notre application (version de l'image, nombre de pods, etc)
+- `services.yaml` qui contient la configuration de notre service (les services sont des « pointeurs » vers les pods)
+- `ingress.yaml` qui contient la configuration de notre ingress (l'ingress étant le point d'entrée de notre application)
+- `clusterissuer.yaml` qui contient la configuration de notre cluster pour qu'il puisse demander des certificats SSL à Let's Encrypt
+
+Si vous modifiez votre application, il suffit de modifier le fichier `deployment.yaml` et d'appliquer la configuration :
+
+```sh
+kubectl apply -f deployment.yaml
+```
+
+C'est complètement possible d'automatiser cette étape avec Gitlab-CI, mais c'est une autre histoire…
+
