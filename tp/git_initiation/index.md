@@ -43,7 +43,7 @@ Nous utiliserons par simplicité GIT-SCM, mais rien ne vous empêche d'utiliser 
 
 ::: details WSL
 
-L'activation de WSL sur votre machine est découpé en plusieurs étapes :
+L'activation de WSL sur votre machine est découpée en plusieurs étapes :
 
 ```sh
 wsl --set-default-version 2
@@ -70,7 +70,7 @@ Et voilà, vous avez maintenant GIT sur WSL.
 ### Initialiser votre projet
 
 ::: danger Dans un autre dossier
-Vous devez éxécuter cette commande dans un dossier (exemple `test/`).
+Vous devez exécuter cette commande dans un dossier (exemple `test/`).
 :::
 
 ```
@@ -99,6 +99,8 @@ Maintenant que votre projet est initialisé, il faut maintenant créer les fichi
 
 4 dossiers, 9 fichiers
 ```
+
+Je vous laisse créer les fichiers et les dossiers. Pour le contenu des fichiers, vous pouvez mettre ce que vous voulez (structure d'une page HTML, d'un fichier JavaScript, etc.). Le contenu n'est pas important, seule la structure compte.
 
 ### Question bonus
 
@@ -131,7 +133,7 @@ Est-ce la seule façon de faire ? (Plusieurs réponses sont possibles)
 
 ```
 
-Créer une permière version
+Créer une première version
 
 ```sh
 
@@ -150,7 +152,7 @@ Créer une permière version
 
 ## Ajout / Modification de fichiers
 
-Modifier le fichier `source/index.html`, ajouter du contenu dedans (par exemple, une page html fictive)
+Modifier le fichier `source/index.html`, ajouter du contenu dedans (par exemple, une page HTML fictive)
 
 ```
 $ vim source/index.html
@@ -179,8 +181,8 @@ Créer une seconde version
 ### Questions
 
 - À quoi servent les commentaires ?
-- Sont ils utilent que pour pour vous ?
-- Y’a-t-il plusieurs façon de faire ?
+- Sont-ils utiles que pour pour vous ?
+- Y’a-t-il plusieurs façons de faire ?
 - Comment vérifier que vos modifications ont bien été prises en compte ?
 
 ```sh
@@ -189,7 +191,7 @@ $
 
 ## Modifier le message du précédent commit
 
-Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit. Modifier le en utilisant [un template de message de commit](/cheatsheets/git/commit_template.md)
+Votre responsable n’est pas satisfait de la qualité du message de votre dernier commit. Modifiez-le en utilisant [un template de message de commit](/cheatsheets/git/commit_template.md)
 
 ```sh
 $
@@ -206,7 +208,7 @@ $
 $
 ```
 
-Sauvegarder l'ensemble des modifications après avoir vérifié que celle-ci sont bien présentes
+Sauvegarder l'ensemble des modifications après avoir vérifié que celle-ci sont bien présente
 
 ```sh
 $
@@ -217,7 +219,7 @@ $
 
 - À votre avis, comment déterminer la fréquence des « commits » ?
 
-## Un coup d’oeil dans le rétroviseur
+## Un coup d’œil dans le rétroviseur
 
 Vérifier l’historique de votre projet
 
@@ -252,7 +254,7 @@ Faites des modifications dans les fichiers que vous voulez.
 
 - Vérifier l’état de votre dépôt Git
 - Quel est l’avantage de travailler dans « une branch » ?
-- À votre avis qu’elles sont les prochaines étapes ?
+- À votre avis quelles sont les prochaines étapes ?
 
 ## Fusion / Merge de la fonctionnalité
 
@@ -307,7 +309,7 @@ Pour les personnes qui préfèrent utiliser un client graphique, voici une liste
 
 ### VSCode
 
-VSCode intégre un client Git par défaut, il est possible de l’utiliser pour réaliser l'ensemble des opérations précédentes.
+VSCode intègre un client Git par défaut, il est possible de l’utiliser pour réaliser l'ensemble des opérations précédentes.
 
 ![VSCode Git](./vscode.jpg)
 
