@@ -32,6 +32,35 @@ Vous êtes en entreprise, vous avez un nouveau projet à réaliser. Le projet es
 
 Votre choix est fait, vous devez maintenant initialiser votre espace de travail. Comment procédez-vous?
 
+## Installer GIT sur votre machine
+
+Au lycée tout est déjà installé, cependant sur votre machine personnelle, il faut installer GIT. Sous Windows vous avez plusieurs choix :
+
+- [Installer GIT](https://git-scm.com/)
+- WSL, WSL est un sous-système Linux pour Windows, il permet d’installer un système Linux sur votre machine Windows. C'est très pratique pour les développeurs, car il permet d'utiliser les outils Linux directement sur Windows.
+
+Nous utiliserons par simplicité GIT-SCM, mais rien ne vous empêche d'utiliser WSL.
+
+::: details WSL
+
+L'activation de WSL sur votre machine est découpé en plusieurs étapes :
+
+```sh
+wsl --set-default-version 2
+wsl --install -d Debian
+```
+
+WSL va télécharger « Debian » puis il va l'activer sur votre machine. Une fois l'installation terminée, vous pouvez lancer Debian depuis le menu démarrer.
+
+```sh
+apt update
+apt install git
+```
+
+Et voilà, vous avez maintenant GIT sur WSL.
+
+:::
+
 ### Définir votre identité dans GIT
 
 ```
