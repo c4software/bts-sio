@@ -97,7 +97,7 @@ Maintenant que votre projet est initialisé, il faut maintenant créer les fichi
     ├── test.js
     └── test.html
 
-4 directories, 9 files
+4 dossiers, 9 fichiers
 ```
 
 ### Question bonus
@@ -233,11 +233,11 @@ $
 - À quoi sert l’identifiant de chaque commit ? (Hash SHA)
 - Comment vérifiez-vous l’historique pour un fichier précis ?
 - Comment voir l’ensemble des modifications en détail pour le fichier `source/index.html` ?
-- Est-ce judicieux de travailler toujours sur la branche `master` ?
+- Est-ce judicieux de travailler toujours sur la branche `master` / `main`?
 
 ## Une autre évolution
 
-Votre première version est maintenant disponible pour les utilisateurs, votre responsable vous demande une évolution importante du code, celle-ci est majeure et changera complètement le comportement de votre application. Vous ne pouvez pas travailler directement sur la master.
+Votre première version est maintenant disponible pour les utilisateurs, votre responsable vous demande une évolution importante du code, celle-ci est majeure et changera complètement le comportement de votre application. Vous ne pouvez pas travailler directement sur la `master` / `main`.
 
 Comment procédez-vous ?
 
@@ -256,7 +256,7 @@ Faites des modifications dans les fichiers que vous voulez.
 
 ## Fusion / Merge de la fonctionnalité
 
-Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre « branch master » :
+Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre « branch master » / « branch main »:
 
 ```sh
 $
@@ -265,12 +265,12 @@ $
 
 ### Questions
 
-- À votre avis, en entreprise « merge / fusionne » t-on directement sur la master ?
+- À votre avis, en entreprise « merge / fusionne » t-on directement sur la `master` / `main`?
 - Une autre personne peut-elle / doit-elle être impliquée dans cette étape ?
 
 ## Annulation, retour arrière
 
-Faite des évolutions dans votre branche master (2 ou 3), ajouter les via `git add`. Votre responsable vous demande finalement de les annuler, car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
+Faite des évolutions dans votre branche `master` / `main` (2 ou 3), ajouter les via `git add`. Votre responsable vous demande finalement de les annuler, car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
 
 ```sh
 $
