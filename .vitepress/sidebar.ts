@@ -137,7 +137,8 @@ export default [
                     { text: "Questions complémentaires", link: "/tp/javascript_avances/revision.md" },
                     { text: "Pratiquer l'Ajax", link: "/tp/javascript/tp4.md" },
                     { text: "La Greta TV 2.0 (Ajax)", link: "/tp/javascript/tp4.1.md" },
-                    { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" }
+                    { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" },
+                    { text: "Découverte de HTMX", link: "/tp/htmx/tp1.md" }
                 ]
             },
         ]
@@ -218,7 +219,12 @@ export default [
             {
                 text: "Laravel", collapsed: true, items: [
                     { text: "Le cours", link: "/cours/laravel" },
-                    { text: "En + du cours", collapsed: true, items: ["/cheatsheets/laravel/", "/cheatsheets/laravel/quick.md"] },
+                    {
+                        text: "En + du cours", collapsed: true, items: [
+                            { text: "Aide mémoire", link: "/cheatsheets/laravel/" },
+                            { text: "Synthèses commandes", link: "/cheatsheets/laravel/quick.md" },
+                        ]
+                    },
                     {
                         text: "Les TP",
                         collapsed: true,
