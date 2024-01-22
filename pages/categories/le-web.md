@@ -30,6 +30,7 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 - [Introduction Mini MVC Sample](/tp/php/mvc/tp1.md)
 - [Aide mémoire Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 - [Cours VueJS](/cours/vuejs.md)
+- [Introduction HTMX](/tp/htmx/tp1.md)
 
 ### Laravel
 
