@@ -424,7 +424,7 @@ export default [
                     }
                 ]
             },
-            { text: "Flutter", collapsed: true, items: [{ text: "", link: "/tp/flutter/sample_code" }] },
+            { text: "Flutter", collapsed: true, items: [{ text: "Exemple Flutter", link: "/tp/flutter/sample_code.md" }] },
             {
                 text: "Cordova (Ancien)",
                 collapsed: true,
