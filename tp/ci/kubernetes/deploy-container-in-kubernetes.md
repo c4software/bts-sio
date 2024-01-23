@@ -415,9 +415,16 @@ spec:
       containers:
         - name: vuepress-test
           image: registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:bb2d2d0b
+           env:
+           - name: CLEF_DE_DEMO
+             value: "VARIABLE D'ENVIRONNEMENT SPECIFIQUE A VOTRE APPLICATION"
+           - name: BDD_URL
+             value: "EXEMPLE URL DE VOTRE BASE DE DONNEES"
       imagePullSecrets:
         - name: gitlab-registry
 ```
+
+Vous pouvez voir que nous avons indiqué le nom de notre image Docker, mais également le secret que nous avons créé précédemment. Nous avons également indiqué deux variables d'environnement, celles-ci seront disponibles dans votre application elles sont spécifiques à ce déploiement, exemple lien vers une base de données, ou une clé d'API etc…
 
 ::: danger image
 N'oubliez pas de changer le lien de l'image vers **votre** image dans le registry gitlab.
