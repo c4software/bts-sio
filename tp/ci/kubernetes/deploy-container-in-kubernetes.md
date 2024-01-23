@@ -415,7 +415,7 @@ spec:
       containers:
         - name: vuepress-test
           image: registry.gitlab.com/vbrosseau/vuepress-kubernetes-deploy:bb2d2d0b
-           env:
+          env:
            - name: CLEF_DE_DEMO
              value: "VARIABLE D'ENVIRONNEMENT SPECIFIQUE A VOTRE APPLICATION"
            - name: BDD_URL
