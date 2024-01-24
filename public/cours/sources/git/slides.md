@@ -22,9 +22,9 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Définition
 
-Un logiciel de gestion de versions ou VCS (Version Control System) est un logiciel qui permet de stocker un ensemble de fichiers en conservant la chronologie de toutes les modifications qui ont été effectuées dessus.
+Un logiciel de gestion de versions ou VCS (**Version Control System**) est un logiciel qui permet de stocker un ensemble de fichiers en conservant la **chronologie** de toutes les modifications qui ont été effectuées dessus.
 
-Un logiciel de gestion de versions agit sur une arborescence de fichiers afin de conserver toutes les versions des fichiers.
+Un logiciel de gestion de versions agit sur une **arborescence** de fichiers afin de conserver toutes les versions des **fichiers**.
 
 ---
 
