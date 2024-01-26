@@ -237,9 +237,35 @@ $
 - Comment voir l’ensemble des modifications en détail pour le fichier `source/index.html` ?
 - Est-ce judicieux de travailler toujours sur la branche `master` / `main`?
 
+## Mettre de côté vos modifications
+
+Votre responsable vous demande de mettre de côté vos modifications, car il souhaite que vous travailliez sur une correction urgente.
+
+```sh
+git stash
+```
+
+Puis pour récupérer vos modifications
+
+```sh
+git stash pop
+```
+
+Cet usage, un peu plus avancé de GIT, permet de mettre de côté vos modifications, pour les récupérer plus tard. Cela permet de travailler sur une autre tâche, sans perdre vos modifications, mais sans forcément les commiter.
+
+## Un instant, les clients graphiques
+
+Nous avons débuté en utilisant le plus possible la ligne de commande, mais il existe des clients graphiques pour GIT. Quand nous commençons à utiliser les branches, les clients graphiques sont très utiles. Notamment pour corriger les problèmes de « merge » / « fusion » / « conflit ».
+
+Il existe plusieurs clients, de manière très simple il est possible de commencer avec une simple extension pour VSCode : [GIT Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+
+Une fois installée, vous pouvez l'activer en cliquant sur l'icône en bas de VSCode :
+
+![GIT Graph](./git_graph.png)
+
 ## Une autre évolution
 
-Votre première version est maintenant disponible pour les utilisateurs, votre responsable vous demande une évolution importante du code, celle-ci est majeure et changera complètement le comportement de votre application. Vous ne pouvez pas travailler directement sur la `master` / `main`.
+Votre première version est maintenant disponible pour les utilisateurs, votre responsable vous demande une évolution importante du code, celle-ci est majeure et changera complètement le comportement de votre application. Vous ne pouvez pas travailler directement sur la `master` / `main`. On vous demande de travailler sur la branche `fct-1`.
 
 Comment procédez-vous ?
 
@@ -253,12 +279,12 @@ Faites des modifications dans les fichiers que vous voulez.
 ### Questions
 
 - Vérifier l’état de votre dépôt Git
-- Quel est l’avantage de travailler dans « une branch » ?
+- Quel est l’avantage de travailler dans « une branche » ?
 - À votre avis quelles sont les prochaines étapes ?
 
 ## Fusion / Merge de la fonctionnalité
 
-Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre « branch master » / « branch main »:
+Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre « branche master » / « branche main »:
 
 ```sh
 $
@@ -306,6 +332,7 @@ Pour les personnes qui préfèrent utiliser un client graphique, voici une liste
 - [GitKraken](https://www.gitkraken.com/)
 - [VSCode](https://code.visualstudio.com/)
 - [Visual Studio](https://visualstudio.microsoft.com/fr/)
+- [L'extension GIT Graph pour VSCode](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 
 ### VSCode
 
