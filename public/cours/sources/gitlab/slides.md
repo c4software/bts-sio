@@ -16,13 +16,13 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 $ git clone URL_DU_PROJET
 ```
 
-- À votre avis ? Quel protocol sera utilisé ?
+- À votre avis ? Quel protocole sera utilisé ?
 
 ---
 
 ## Un instant !
 
-Gitlab, Github permettent de télécharger le projet en ZIP.
+Gitlab et GitHub permettent de télécharger le projet en ZIP.
 
 Dans le cadre du développement, IL NE FAUT PAS UTILISER CETTE MÉTHODE.
 
@@ -104,7 +104,7 @@ Mais !? Y'a-t-il des équivalents ?
 
 ### GitLab est un choix parmi plusieurs outils
 
-- Github
+- GitHub
 - GitLab
 - Gogs / Gitea
 - Bitbucket
@@ -161,8 +161,8 @@ Mais !? Y'a-t-il des équivalents ?
 
 - Indisponibilité
 - Lenteur
-- Dépend de VOTRE connexion Internet
-- Dépend de LEUR connexion Internet
+- Dépends de VOTRE connexion Internet
+- Dépends de LEUR connexion Internet
 - Sécurité
 - Faille
 
@@ -242,13 +242,13 @@ Une API pour tout piloter ;)
 
 Des morceaux de code que l’on partage.
 
-- Quelqu'un connait un équivalent ?
+- Quelqu'un connaît un équivalent ?
 
 ---
 
 ### Des « Web hooks »
 
-Des URL appelées lors d’action dans l’interface (Intégration slack par exemple)
+Des URL appelées lors d’action dans l’interface (Intégration Slack par exemple)
 
 ![Chat qui lit 2](img/chat.gif)
 
@@ -267,7 +267,7 @@ On en reparlera…
 
 ---
 
-## Gitlab, Github va vous identifier par votre clef SSH.
+## Gitlab, GitHub va vous identifier par votre clef SSH.
 
 ---
 
@@ -318,7 +318,7 @@ Un serveur local ici même !
 - Création de la « merge request »
 - Assignation de la « merge request » à quelqu’un
 - Discussion avec le « quelqu’un » (IMPORTANT)
-- « merge du code » sur la branch Master
+- « merge du code » sur la branche Master
 
 ---
 
@@ -354,7 +354,7 @@ Un serveur local ici même !
 
 ### Les tests unitaires
 
-- Permet de valider le fonctionnement
+- Permets de valider le fonctionnement
 - Évite les régressions
 - Façon de penser
 
