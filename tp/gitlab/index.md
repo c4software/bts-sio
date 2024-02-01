@@ -34,9 +34,11 @@ Je vous laisse regarder sur le site de Gitlab et le site de Github. Et plus part
 - <https://about.gitlab.com/features/>
 - <https://www.ionos.fr/digitalguide/sites-internet/developpement-web/gitlab-vs-github/>
 
-Après avoir regardé les différents documents, nous allons réfléchir ensemble.
-
 :::
+
+Après avoir regardé les différents documents, nous allons réfléchir ensemble. Avant de continuer, je vous propose de faire un document listant les différences entre Github et GitLab.
+
+En groupe (de deux) ou seul, votre document doit posséder des arguments pour choisir l’un ou l’autre des services. Vous pouvez également ajouter des arguments pour choisir un service auto-hébergé.
 
 ## Contraintes de l’entreprise
 
