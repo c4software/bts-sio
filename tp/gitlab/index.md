@@ -135,7 +135,7 @@ Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoir
 
 [Ajouter une clé sur votre profil](https://gitlab.dombtsig.local/-/profile/keys)
 
-La clé que vous devez envoyer est dans votre dossier personnel (`W:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (**à ouvrir avec notepad++ ou bloc-note**).
+La clé que vous devez envoyer est dans votre dossier personnel (`P:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (**à ouvrir avec notepad++ ou bloc-note**).
 
 ::: tip Cette clé est importante
 Vous devez vraiment maîtriser cette étape. C'est une notion très importante dans le monde du développement. Si vous souhaitez en savoir plus, n'hésiter pas à me demander 👋.
