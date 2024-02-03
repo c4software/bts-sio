@@ -202,3 +202,5 @@ C'est un contournement temporaire, le problème est récent et sera corrigé dan
 
 https://github.com/rancher/k3d/issues/607
 :::
+
+Vous souhaitez découvrir le fonctionnement de K3D ? Vous pouvez suivre le [TP sur K3D](/tp/ci/kubernetes/deploy-container-in-kubernetes.md).
