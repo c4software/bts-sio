@@ -360,6 +360,20 @@ Un serveur local ici même !
 
 ---
 
+### Les livrables
+
+- Identifié par un tag
+- Si possible, automatisé
+
+Sur quelle branche ? Pourquoi ?
+
+---
+
+- Possible en ligne de commande (`git tag -a v1.0 -m "Version 1.0"`)
+- Possible via l’interface GitLab (Création de tag)
+
+---
+
 ### L’identité sur Git
 
 #### Encore plus important en groupe
@@ -368,6 +382,45 @@ Un serveur local ici même !
 
 - PGP Physique
 - PGP Logiciel (OpenPGP)
+
+---
+
+### La traçabilité
+
+- Qui a fait quoi ?
+- Quand ?
+- Pourquoi ?
+
+---
+
+### Concrètement
+
+- Un commit par fonctionnalité
+- Un commit par bug
+- Un commit par amélioration
+
+---
+
+```md
+#1234 - Ajout de la fonctionnalité X
+
+En détail :
+
+Expliquer ici ce que fait la fonctionnalité
+
+Pourquoi :
+
+Pourquoi cette fonctionnalité est nécessaire (demande client, amélioration, etc.)
+```
+
+---
+
+Pourquoi ? 
+
+- Identifier les modifications
+- En cas de problème, revenir en arrière
+- En cas de problème de sécurité, identifier les modifications
+- ...
 
 ---
 
@@ -410,6 +463,16 @@ $ git push
 ## Le « Workflow » Git
 
 ![Le cycle de vie](./img/workflow_git.png)
+
+---
+
+## Trois commandes à retenir
+
+```sh
+$ git clone URL_DU_PROJET
+$ git pull
+$ git push
+```
 
 ---
 
