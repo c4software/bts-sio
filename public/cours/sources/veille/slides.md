@@ -147,7 +147,7 @@ C'est un choix intéressant pour centraliser les informations.
 
 ---
 
-## Comment voler de l'information ?
+## Comment valoriser l'information ?
 
 - Prenez le temps de lire
 - Prenez le temps de tester
