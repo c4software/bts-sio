@@ -30,7 +30,7 @@ Pour accéder au projet :
 
 Dans ce projet, vous avez accès à un ensemble de fichiers. Le site proposé est déjà fonctionnel, mais il manque quelques fonctionnalités (listé dans les issues).
 
-Dans un premier temps, vous pouvez voir le site en accédant à l'adresse suivante : [https://bts-sio-chevrollier.gitlab.io/decouverte-gitlab](https://bts-sio-chevrollier.gitlab.io/decouverte-gitlab).
+Dans un premier temps, vous pouvez voir le site en accédant à l'adresse suivante : [https://pages.gitlab.dombtsig.local/slam-1ere-ann-e/entrainement-gitlab/]https://pages.gitlab.dombtsig.local/slam-1ere-ann-e/entrainement-gitlab/).
 
 ## Cloner le projet
 
