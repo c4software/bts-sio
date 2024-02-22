@@ -35,15 +35,15 @@ Pour réaliser ce TP vous devez :
 
 La ferme est un cluster de serveur uniquement accessible depuis le réseau du lycée (ou via le VPN). Ce cluster possède une puissance conséquente, à savoir deux serveurs avec comme configuration :
 
-- Xeon avec 24 cœurs.
-- 256Go de ram.
-- 13To de disque dur.
+- Xeon avec 32 cœurs.
+- 1,5To de ram.
+- 25To de disque dur.
 
 Nous avons deux serveurs, ce qui donne :
 
-- 48 cœurs.
-- 512Go de ram.
-- 26To de disque.
+- 64 cœurs.
+- 3To de ram.
+- 25To de disque.
 
 ::: tip Un instant
 beaucoup ou pas beaucoup ? Échangeons un peu sur ces spécifications.
