@@ -183,3 +183,16 @@ Le Scaffold est un exemple de composant de haut niveau, c'est-à-dire un composa
 
 ### La différence entre `compose.` et `libs.`
 
+## L'approche multiplateforme first
+
+## Les mots clés `expect` et `actual`
+
+## `precompose`
+
+### Définir nos routes
+
+### Définir un point d'entrée différent par plateforme
+
+## Les tests
+
+## Les ressources
