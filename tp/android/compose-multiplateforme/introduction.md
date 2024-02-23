@@ -193,6 +193,24 @@ Le Scaffold est un exemple de composant de haut niveau, c'est-à-dire un composa
 
 ### Définir un point d'entrée différent par plateforme
 
+## Découper pour mieux régner
+
+### Les composants communs
+
+### Les composants par plateforme
+
+## Koin
+
+### Une configuration centralisée
+
+### Des spécificités par plateforme
+
+## ktor
+
+### Penser centralisé
+
+### Le cas du Bearer
+
 ## Les tests
 
 ## Les ressources
