@@ -18,7 +18,7 @@ La ferme est un équipement partagé par l'ensemble des étudiants du BTS (1ère
 
 :::
 
-Dans ce TP nous allons créer une VM à partir de zéro. Si vous souhaitez créer une VM depuis un modèle, vous pouvez suivre le [TP1 - Alternatif](./tp1.md).
+Dans ce TP nous allons créer une VM à partir de zéro. Si vous souhaitez créer une VM depuis un modèle, vous pouvez suivre le [TP1 - Alternatif](./tp1alt.md).
 
 ## Pré-requis
 
