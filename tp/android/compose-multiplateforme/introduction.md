@@ -346,6 +346,55 @@ Il est important de comprendre que ce fichier est centralisé, c'est-à-dire que
 
 :::
 
+### Évolution des versions
+
+Avant de continuer notre exploration, je vous propose de basculer certaines dépendances vers des versions plus récentes :
+
+```
+compose = "1.6.2"
+compose-plugin = "1.6.0-rc02"
+```
+
+Et également ajouter quelques dépendances :
+
+```toml
+koin = "3.6.0-wasm-alpha2"
+precompose = "1.6.0-beta01"
+ktorClient = "2.3.8"
+
+
+koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorClient" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorClient" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktorClient" }
+precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
+precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
+```
+
+Je vous laisse déclarer ces dépendances dans le fichier de version (`gradle/libs.versions.toml`). Et les déclarer dans la partie `sourceSets` du fichier `composeApp/build.gradle.kts`.
+
+```kotlin
+commonMain.dependencies {
+    // Dépendances communes à ajouter
+    api(libs.koin)
+    api(libs.koin.compose)
+    api(libs.precompose)
+    api(libs.precompose.viewmodel)
+    api(libs.precompose.koin)
+    api(libs.ktor.client.core)
+    api(libs.ktor.client.cio)
+}
+```
+
+::: tip Remarque
+Pourquoi mettre des versions alpha ? Ça bouge vite, et si nous voulons bénéficier des dernières fonctionnalités, il est important de suivre les versions. Cependant, il est important de comprendre que les versions alpha sont instables, il est donc possible que votre application ne compile plus. C'est un choix à faire.
+
+La version 1.6.0 ajoute le support de WASM et une amélioration de la gestion des ressources, elle est donc très intéressante pour nous.
+:::
+
 ## L'approche multi-plateforme first
 
 ### Les ressources
