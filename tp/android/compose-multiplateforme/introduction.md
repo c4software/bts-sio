@@ -298,8 +298,8 @@ Dans le code que vous avez généré, nous avons le minimum pour faire fonctionn
 
 Nous avons deux types de dépendances :
 
-- `libs.` : Ce sont des dépendances spécifiques à Compose Multiplateforme. Elles sont définies dans le fichier `gradle/libs.versions.toml`.
-- `compose.` : Ce sont des dépendances spécifiques à Compose, elle ne sont pas défini dans notre application mia via le plugin Compose Multiplateforme (pas celui installé dans Android Studio, mais celui qui est dans le fichier `build.gradle.kts`).
+- `libs.…` : Ce sont des dépendances spécifiques à Compose Multiplateforme. Elles sont définies dans le fichier `gradle/libs.versions.toml`.
+- `compose.…` : Ce sont des dépendances spécifiques à Compose, elle ne sont pas défini dans notre application mia via le plugin Compose Multiplateforme (pas celui installé dans Android Studio, mais celui qui est dans le fichier `build.gradle.kts`).
 
 ::: tip Remarque
 
@@ -457,8 +457,6 @@ actual fun ScanScreen() {
     }
 }
 ```
-
-:::
 
 ::: danger Attention
 
