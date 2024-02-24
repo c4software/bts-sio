@@ -1,6 +1,6 @@
 # Compose Multiplateforme
 
-Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multi-plateforme permet de créer des applications multi-plateformes. Nous nous intéresserons notamment aux différences avec le développement d'applications natives et plus particulièrement l'état d'esprit à adopter pour développer des applications multi-plateformes de manière efficace.
+Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multiplatform permet de créer des applications multip-plateforme. Nous nous intéresserons notamment aux différences avec le développement d'applications natives et plus particulièrement l'état d'esprit à adopter pour développer des applications Multiplatforms de manière efficace.
 
 ::: details Sommaire
 [[toc]]
@@ -8,9 +8,9 @@ Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multi
 
 ## Objectifs
 
-- Comprendre les enjeux du développement multi-plateforme.
-- Découvrir les outils de JetBrains pour le développement multi-plateforme.
-- Comprendre les différences entre le développement multi-plateforme et le développement natif.
+- Comprendre les enjeux du développement multip-plateforme.
+- Découvrir les outils de JetBrains pour le développement multip-plateforme.
+- Comprendre les différences entre le développement multip-plateforme et le développement natif.
 
 ## Prérequis
 
@@ -18,15 +18,15 @@ Comprendre les principes du développement en Kotlin et l'approche composant.
 
 ## Le Multiplateforme ?
 
-Compose Multiplateforme est « la suite » du Kotlin Multiplateforme. En effet, JetBrains a décidé de créer un outil spécifique pour le développement d'applications multi-plateformes. Cet outil est basé sur le framework Compose, lui-même basé sur le langage Kotlin.
+Compose Multiplateforme est « la suite » du **Kotlin** Multiplateforme. En effet, JetBrains a décidé de créer un outil spécifique pour le développement d'applications Multiplatforms. Cet outil est basé sur le framework Compose, lui-même basé sur le langage Kotlin.
 
-Le Kotlin Multiplateforme permet de créer relativement simplement des couches communes à des applications Android, iOS, JVM, JS, WASM, etc. Cependant, il ne permet pas de créer des interfaces utilisateurs communes. C'est là que Compose multi-plateforme intervient.
+Le Kotlin Multiplateforme permet de créer relativement simplement des couches communes à des applications Android, iOS, JVM, JS, WASM, etc. Cependant, il ne permet pas de créer des interfaces utilisateurs communes. C'est là que Compose Multiplatform intervient.
 
-Compose est un framework de création d'interfaces utilisateurs développé par Google. Il est le renouveau du développement d'interfaces utilisateurs sur Android. C'est à partir de cette base et en lien avec Google que JetBrains a décidé de créer Compose multi-plateforme, un outil permettant de créer des interfaces avec des composants similaires pour les différentes plateformes.
+Compose est un framework de création d'interfaces utilisateurs développé par Google. Il est le renouveau du développement d'interfaces utilisateurs sur Android. C'est à partir de cette base et en lien avec Google que JetBrains a décidé de créer Compose Multiplatform, un outil permettant de créer des interfaces avec des composants similaires pour les différentes plateformes.
 
 ## Un peu de terminologie
 
-Avant de rentrer dans le vif du sujet, il est important de comprendre la terminologie utilisée par Compose multi-plateforme.
+Avant de rentrer dans le vif du sujet, il est important de comprendre la terminologie utilisée par Compose Multiplatform.
 
 - **Composant** : Un composant est un élément graphique, par exemple un bouton, un texte, une liste, etc.
 - **Koin** : Koin est un injecteur de dépendances pour Kotlin. Il permet de gérer les dépendances entre les composants d'une application.
@@ -34,7 +34,7 @@ Avant de rentrer dans le vif du sujet, il est important de comprendre la termino
 - **ViewModel** : Un ViewModel est un composant qui permet de gérer l'état d'une application. Il est souvent utilisé pour stocker des données et des états.
 - **State** : Un State est un élément qui permet de stocker des données et des états. Il est souvent utilisé pour stocker des données qui peuvent être modifiées. Il est souvent utilisé avec un ViewModel.
 - **Composable** : Un Composable est une fonction qui génère un composant graphique. Il est annoté avec `@Composable`.
-- **PreCompose** : Librairie permettant de gérer la navigation et la gestion des états dans une application Compose multi-plateforme.
+- **PreCompose** : Librairie permettant de gérer la navigation et la gestion des états dans une application Compose Multiplatform.
 - **Navigation** : Système déclaratif permettant de gérer la navigation de l'utilisateur entre différentes vues de l'application.
 - **Ressources** : Les ressources sont des éléments externe au code, mais utilisé par l'application, par exemple des images, des textes, des couleurs, etc.
 - **gradle** : Gradle est un système de build, il permet de gérer les dépendances, les tâches, les configurations, etc.
@@ -42,7 +42,7 @@ Avant de rentrer dans le vif du sujet, il est important de comprendre la termino
 
 ::: tip Remarque
 
-Il est important de comprendre que Compose multi-plateforme est un outil en constante évolution, il est donc possible que certaines notions évoluent dans le temps.
+Il est important de comprendre que Compose Multiplatform est un outil en constante évolution, il est donc possible que certaines notions évoluent dans le temps.
 
 Beaucoup d'éléments sont encore en cours de développement, notamment la partie ressource. Mais si vous avez déjà fait du développement Android, vous savez que la gestion des ressources est un élément important et qu'il ne vas aller qu'en s'améliorant.
 
@@ -50,7 +50,7 @@ Beaucoup d'éléments sont encore en cours de développement, notamment la parti
 
 ## Compose Multiplateforme
 
-Avant de rentrer dans le détail du multi-plateforme, arrêtons-nous un instant sur Compose, et notamment sur la manière dont il fonctionne. L'approche de compose est similaire à ce que nous pouvons trouver dans d'autres frameworks à base de composants, nous allons donc écrire des éléments d'interface utilisateur directement en Kotlin, mais avec une base de code commun fourni en grande partie par Google (Boutons, Textes, etc.).
+Avant de rentrer dans le détail du Multiplatform, arrêtons-nous un instant sur Compose, et notamment sur la manière dont il fonctionne. L'approche de compose est similaire à ce que nous pouvons trouver dans d'autres frameworks à base de composants, nous allons donc écrire des éléments d'interface utilisateur directement en Kotlin, mais avec une base de code commun fourni en grande partie par Google (Boutons, Textes, etc.).
 
 ```kotlin
 @Composable
@@ -119,7 +119,7 @@ Cependant, Compose n'est pas limité à Material Design, il est possible de cré
 
 C'est d'ailleurs ce que nous avons fait dans des développements précédents comme par exemple « Vivre à Angers » où nous avons utilisé Compose pour créer une application Android identique à l'application iOS.
 
-Mais vous allez me dire… Nous aurions pu utiliser Compose multi-plateforme pour créer l'application ? Et bien oui… très certainement…
+Mais vous allez me dire… Nous aurions pu utiliser Compose Multiplatform pour créer l'application ? Et bien oui… très certainement…
 
 ## Un petit parallèle avec les autres frameworks
 
@@ -169,6 +169,30 @@ Le Scaffold est un exemple de composant de haut niveau, c'est-à-dire un composa
 
 ## Créer notre première application
 
+Le plus simple pour créer une structure de base pour notre application est d'utiliser le site fourni dans la documentation de Compose Multiplatform. Ce site permet de générer une structure de base dans laquelle nous pouvons choisir les plateformes que nous souhaitons (Web, Android, iOS, etc.).
+
+::: danger Attention
+
+Le système est pour l'instant très jeune, tous n'est pas encore vraiment compatibl. Exemple si vous activé WASM, beaucoup de librairie rendront votre application non compilable (car non compatible avec WASM).
+
+Ceci étant, les librairies sont en constant évolution, et il est certain que très rapidement cet avertissement ne sera plus d'actualité.
+
+Pour information, j'ai échangé à ce sujet sur plusieurs librairies :
+
+- [PreCompose](https://github.com/Tlaster/PreCompose/pull/251)
+- [Koin](https://github.com/InsertKoinIO/koin/issues/1634#issuecomment-1960959984)
+- [Repo officiel de Compose Multiplateforme](https://github.com/JetBrains/compose-multiplatform/issues/4277#issuecomment-1945922199)
+
+Bref, ça bouge, et ça bouge vite !
+
+:::
+
+Le site de Jetbrains est une bonne base pour commencer la découverte [https://www.jetbrains.com/lp/compose-multiplatform/](https://www.jetbrains.com/lp/compose-multiplatform/). Il est une vitrine assez représentative de ce que nous allons pouvoir faire, dans la documentation, nous y trouvons le fameux outil qui va nous permettre de créer notre application :
+
+- [https://kmp.jetbrains.com/](https://kmp.jetbrains.com/)
+
+![KMP INIT](./res/kmp-init.png)
+
 ## L'architecture des dossiers
 
 ## Les fichiers de configuration
@@ -214,3 +238,5 @@ Le Scaffold est un exemple de composant de haut niveau, c'est-à-dire un composa
 ## Les tests
 
 ## Les ressources
+
+## L'intégation continue
