@@ -241,7 +241,25 @@ Nous allons principalement travailler dans le dossier `composeApp`, mais il est 
 
 Avant de rentrer dans le détail des fichiers de configuration, nous allons lancer notre application.
 
+![Run](./res/gradle-run.png)
 
+Dans cette fenêtre, nous voyons que nous avons plusieurs tâches disponibles :
+
+Lancement de l'application de bureau :
+
+```sh
+gradle :composeApp:run
+```
+
+Pour les autres plateformes, pas besoin de lancer une tâche spécifique :
+
+![Run](./res/run.png)
+
+::: tip Le résultat
+
+![Résultat](./res/resultat-lancement.png)
+
+:::
 
 ## Les fichiers de configuration
 
