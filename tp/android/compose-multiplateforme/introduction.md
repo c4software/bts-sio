@@ -397,27 +397,289 @@ La version 1.6.0 ajoute le support de WASM et une amélioration de la gestion de
 
 ## L'approche multi-plateforme first
 
+Il y a plusieurs façons d'imaginer une application multi-plateforme, pour moi la plus efficace est de penser « comment je peux faire pour que mon code soit le plus commun possible ? ». C'est une approche qui demande un peu de réflexion, mais qui est très efficace.
+
+En effet, une fois que nous avons compris que le code commun est le plus important, nous allons chercher à réduire au maximum les variations d'implémentation entre les plateformes.
+
+Cette façon de faire permet :
+
+- De limiter la répétition de code.
+- S'assurer que le visuel est le plus proche possible de la maquette.
+- S'assurer que le visuel est le plus proche possible entre les plateformes.
+
+**En résumé**, essayer de coder « comme avant », est l'erreur à ne pas commettre.
+
+### Un exemple
+
+Prenons un exemple, simple, vous souhaitez afficher par exemple la caméra de l'utilisateur. La manière de faire sera forcément différente en fonction de la plateforme. Vous pourriez être tenté de créer un composant « CameraScreen » qui serait à implémenter pour chaque plateforme.
+
+#### La mauvaise façon de faire
+
+```kotlin
+@Composable
+expect fun CameraScreen()
+```
+
+Puis dans chaque plateforme :
+
+```kotlin
+@OptIn(ExperimentalResourceApi::class)
+@Composable
+actual fun ScanScreen() {
+    Box(modifier = Modifier.fillMaxSize()) {
+
+        /**
+            Le code spécifique à Android
+            …
+            Très long, avec la gestion des permissions, etc.
+        **/
+
+
+        Column(
+            modifier = Modifier.fillMaxSize().padding(24.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.weight(1f))
+            Image(
+                modifier = Modifier.testTag("scanArea"),
+                painter = painterResource(DrawableResource("drawable/scan_area.xml")),
+                contentDescription = "Scan Area"
+            )
+            Spacer(modifier = Modifier.weight(1f))
+
+            OutlinedButton(
+                modifier = Modifier.fillMaxWidth().testTag("manualButton"),
+                onClick = {},
+                text = "Enter the code manually"
+            )
+        }
+    }
+}
+```
+
+:::
+
+::: danger Attention
+
+Procéder de cette manière serait en réalité une erreur. En faisant comme cela, nous allons créer des composants pour chaque plateforme avec énormément de code « d'interface », donc avec un risque de divergence entre les plateformes.
+
+:::
+
+#### La « bonne façon de faire »
+
+Alors qu'en réalité, si nous inversons la logique, nous allons d’abord créer un composant commun, ce composant doit être le plus « fonctionnel » possible, c'est-à-dire qu'il doit être capable de fonctionner sur toutes les plateformes.
+
+J'ai même envie de dire qu'il doit pouvoir fonctionner (sans afficher la caméra évidemment), dans cette façon de procéder, notre composant pourrait ressembler à :
+
+```kotlin
+@Composable
+expect fun CameraView()
+
+@OptIn(ExperimentalResourceApi::class)
+@Composable
+fun ScanScreen() {
+    Box(modifier = Modifier.fillMaxSize()) {
+        CameraView()
+
+        Column(
+            modifier = Modifier.fillMaxSize().padding(24.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.weight(1f))
+            Image(
+                modifier = Modifier.testTag("scanArea"),
+                painter = painterResource(DrawableResource("drawable/scan_area.xml")),
+                contentDescription = "Scan Area"
+            )
+            Spacer(modifier = Modifier.weight(1f))
+
+            OutlinedButton(
+                modifier = Modifier.fillMaxWidth().testTag("manualButton"),
+                onClick = {},
+                text = "Enter the code manually"
+            )
+        }
+    }
+}
+```
+
+Et dans chaque plateforme :
+
+```kotlin
+// Exemple Android
+
+@Composable
+actual fun CameraView() {
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+    var preview by remember { mutableStateOf<Preview?>(null) }
+
+    val cameraProviderFuture: ListenableFuture<ProcessCameraProvider> = ProcessCameraProvider.getInstance(context)
+    DisposableEffect(cameraProviderFuture) {
+        onDispose {
+            cameraProviderFuture.get().unbindAll()
+        }
+    }
+
+    var hasCamPermission by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        )
+    }
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { granted ->
+            hasCamPermission = granted
+        }
+    )
+    LaunchedEffect(key1 = true) {
+        launcher.launch(Manifest.permission.CAMERA)
+    }
+    if (hasCamPermission) {
+        AndroidView(
+            factory = { AndroidViewContext ->
+                PreviewView(AndroidViewContext).apply {
+                    this.scaleType = PreviewView.ScaleType.FILL_CENTER
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                    )
+                    implementationMode = PreviewView.ImplementationMode.COMPATIBLE
+                }
+            },
+            modifier = Modifier.fillMaxSize(),
+            update = { previewView ->
+                val cameraSelector: CameraSelector = CameraSelector.Builder()
+                    .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                    .build()
+                val cameraExecutor: ExecutorService = Executors.newSingleThreadExecutor()
+
+                cameraProviderFuture.addListener({
+                    preview = Preview.Builder().build().also {
+                        it.setSurfaceProvider(previewView.surfaceProvider)
+                    }
+                    val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+                    
+                    try {
+                        cameraProvider.unbindAll()
+                        cameraProvider.bindToLifecycle(
+                            lifecycleOwner,
+                            cameraSelector,
+                            preview,
+                            imageAnalysis
+                        )
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        Log.e("qr code", e.message ?: "")
+                    }
+                }, ContextCompat.getMainExecutor(context))
+            }
+        )
+    }
+}
+```
+
+::: tip La différence semble minime
+
+À première vue, la différence semble minime, mais en réalité, c'est loin d'être le cas.
+
+Si vous observez bien, dans la partie multiplateforme, nous avons globalement que la partie « interface » et dans le code Android, nous n'avons pas d'élément d'interface, mais uniquement la gestion de la caméra.
+
+:::
+
+### Les mots clés `expect` et `actual`
+
+Dans le code précédent, nous avons utilisé les mots clés `expect` et `actual`. Ce sont des mots clés spécifiques à la gestion du multiplateforme en Kotlin. Ils permettent de déclarer une fonction qui doit être implémentée dans une autre plateforme.
+
+- `expect` : Ce mot clé est utilisé pour déclarer une fonction qui doit être implémentée dans une autre plateforme.
+- `actual` : Ce mot clé est utilisé pour implémenter une fonction déclarée avec le mot clé `expect`.
+
+Une fois un morceau de code déclaré avec le mot clé `expect`, **vous devrez** l'implémenter dans chaque plateforme. Cette syntaxe s'applique également aux classes, aux propriétés, etc.
+
+Exemple :
+
+```kotlin
+// Méthode permettant de récupérer la route par défaut, elle doit être implémentée dans chaque plateforme
+expect fun getDefaultRoute(): String
+
+// Méthode permettant de retourner un module Koin permettant de gérer le stockage, elle doit être implémentée dans chaque plateforme
+expect fun storageModule(): Module
+
+// Classe permettant de standardiser la gestion du stockage, elle doit être implémentée dans chaque plateforme
+expect open class LocalStorage : ILocalStorage{
+    override fun save(key: String, value: String)
+    override fun get(key: String): String
+    override fun remove(key: String)
+    override fun clear()
+}
+```
+
+Le mot clé `expect` est la réelle force du langage Kotlin, c'est avec lui que nous allons pouvoir créer des applications multiplateformes efficaces.
+
+::: danger Attention
+
+C'est une force si vous l'utilisez de manière intelligente, c'est-à-dire en ciblant pour garder au maximum le code commun. Personnellement, je commence toujours par écrire le code commun (sans `excpect` donc), puis je regarde par la suite ce qui doit être spécifié par plateforme.
+
+Keep it simple comme dirais l'autre…
+
+<center>
+    <iframe src="https://giphy.com/embed/TSokjMYhJAZRMqExC2" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
+
+:::
+
 ### Les ressources
 
-## Les mots clés `expect` et `actual`
+Comme pour le code, j'ai envie de dire que les ressources doivent être les plus communes possibles ! J'ai bien l'impression que c'est la même chose pour JetBrain, les ressources sont en effet centralisées dans le dossier `composeApp/src/commonMain/resources`.
+
+Jusqu'à la version 1.6.0, les ressources étaient très librement gérées, mais avec la version 1.6.0, JetBrain a introduit une nouvelle manière de gérer les ressources (pas de dossier en particulier autre que `commonMain/resources`). Depuis la version 1.6.0, cette gestion est maintenant plus structurée et très proche de ce que nous pouvons trouver dans une application Android classique.
+
+![Ressources](./res/ressources.png)
+
+Voir la documentation officielle pour plus d'informations : <https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-images-resources.html>
+
+### C'est à vous
+
+Avec les éléments que nous avons vus. Je vous propose de modifier votre application pour ajouter la fameuse Caméra. Vous pouvez utiliser la librairie [CameraX](https://developer.android.com/training/camerax) pour Android, et pour iOS, vous pouvez utiliser la librairie [AVFoundation](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture).
 
 ## `precompose`
+
+Et bien voilà, nous y sommes, nous avons vu les éléments de bases pour créer une application Compose Multiplateform. C'est bien, mais notre application est très simple (un seul écran), et nous n'avons pas encore vu la navigation, la gestion des états, etc.
+
+C'est ici que `precompose` intervient. Sur une application Android classique, nous aurions utilisé `Jetpack` pour gérer la navigation, la gestion des états, etc. Cependant, même si Google est très actif sur le multi-plateforme, il n'est pas pour l'instant possible d'utiliser les éléments comme la navigation sur autre chose qu'Android.
+
+::: tip Est-ce que ça changera ?
+
+Pour l'instant ça ne semble pas être le cas. En effet, il ne faut pas oublier que Compose Multiplateform est développé par JetBrains et non par Google. Les deux mondes vont donc se rapprocher petit à petit. Mais je doute très fortement que Google mette à disposition des éléments centraux de Jetpack pour le multi-plateforme.
+
+:::
+
+Il existe plusieurs librairies pour gérer la navigation, la gestion des états, etc, [Jetbrains, les listes d'ailleurs sur leur documentation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html), toutes sont très bien, certaines vont très loin voir plus loin que Jetpack. Après avoir passé un peu de temps à les tester (et à lire des retours d'expérience), j'ai choisi de travailler avec `precompose`. Cette librairie est très simple à prendre en main, elle est très proche (voir identique) à ce que nous pouvons trouver dans Jetpack.
+
+Vous pouvez consulter la documentation de `precompose` ici : [https://tlaster.github.io/PreCompose/](https://tlaster.github.io/PreCompose/)
+
+### Ajouter `precompose`
+
+Nous avons déjà ajouté `precompose` dans notre fichier de version, il est maintenant temps de l'ajouter dans notre application. Pour tester `precompose`, nous allons restructurer notre application pour y inclure un `NavHost` et y définir des routes.
+
+### Modifier la structure de notre application
 
 ### Définir nos routes
 
 ### Définir un point d'entrée différent par plateforme
-
-## Découper pour mieux régner
-
-### Les composants communs
-
-### Les composants par plateforme
 
 ## Koin
 
 ### Une configuration centralisée
 
 ### Des spécificités par plateforme
+
+## Les ViewsModels
 
 ## ktor
 
