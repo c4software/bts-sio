@@ -203,12 +203,20 @@ Pour commencer nous allons créer une application « simple » :
 
 Pour ce support, nous allons utiliser Android Studio, mais Fleet (le nouvel IDE de JetBrains) est également compatible avec Compose Multiplateforme. Il semble que Fleet soit bien adapté, mais si comme moi vous n'avez pas les outils de build de Xcode, Android Studio est un bon choix.
 
+::: tip Vous êtes sous Android ?
+
+Si vous êtes sous Android Sudio, il est possible de faire l'ensemble des compilations (Android, iOS, Desktop) pour peu que vous ayez les outils de Build de Xcode et le [plugin officiel](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile)
+
+![Plugin](./res/kotlin-plugin.png)
+
+:::
+
 ## L'architecture des dossiers
 
 Contrairement à une application Android classique, une application Compose (MP) va contenir l'ensemble des plateformes dans un seul projet. Nous allons donc retrouver des dossiers spécifiques à chaque plateforme, mais aussi des dossiers communs.
 
 ![Dossiers](./res/folders.png)
- 
+
 Entrons un peu dans le détail de ces dossiers de code :
 
 - `composeApp` : Ce dossier va contenir notre code Compose / Kotlin. C'est ici que nous allons écrire notre application.
@@ -222,6 +230,18 @@ Nous avons également quelques éléments de configuration :
 - `settings.gradle.kts` : Peu d'éléments ici, mais c'est ici que nous allons déclarer nos repositories.
 - `/build.gradle.kts` : Configuration de base de notre projet, nous déclarons ici les plugins communs à toutes les plateformes.
 - `/composeApp/build.gradle.kts` : Configuration spécifique à notre application Compose. Configuration de la partie Android, iOS, Desktop, **mais aussi** de la partie commune (common).
+
+::: tip Remarque
+
+Nous allons principalement travailler dans le dossier `composeApp`, mais il est important de comprendre que nous allons certainement avoir à configurer nos plateformes et surtout ajouter des dépendances (Koin, PreCompose, etc.).
+
+:::
+
+## Lancer notre application
+
+Avant de rentrer dans le détail des fichiers de configuration, nous allons lancer notre application.
+
+
 
 ## Les fichiers de configuration
 
