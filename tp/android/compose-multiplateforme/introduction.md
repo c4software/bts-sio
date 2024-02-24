@@ -39,6 +39,7 @@ Avant de rentrer dans le vif du sujet, il est important de comprendre la termino
 - **Ressources** : Les ressources sont des éléments externe au code, mais utilisé par l'application, par exemple des images, des textes, des couleurs, etc.
 - **gradle** : Gradle est un système de build, il permet de gérer les dépendances, les tâches, les configurations, etc.
 - **libs.versions.toml** : Fichier de configuration permettant de gérer les versions des dépendances d'un projet. Il est utilisé par Gradle.
+- **ktor** : Ktor est un framework pour créer des applications serveur et client en Kotlin. Il est souvent utilisé pour créer des applications qui communiquent avec des serveurs.
 
 ::: tip Remarque
 
@@ -273,7 +274,7 @@ Pour les autres plateformes, pas besoin de lancer une tâche spécifique :
 
 ### La différence entre `compose.` et `libs.`
 
-## L'approche multiplateforme first
+## L'approche multi-plateforme first
 
 ## Les mots clés `expect` et `actual`
 
