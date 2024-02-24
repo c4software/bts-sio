@@ -264,17 +264,91 @@ Pour les autres plateformes, pas besoin de lancer une tâche spécifique :
 
 ## Les fichiers de configuration
 
-### settings.gradle.kts
-
-### build.gradle.kts
+Maintenant que nous avons lancé notre application, nous allons rentrer dans le détail des fichiers de configuration. En effet, Compose Multiplateforme n'est qu'une base de code, pour réaliser nos applications de manière efficace, nous allons devoir ajouter des dépendances, des configurations, etc.
 
 ### composeApp/build.gradle.kts
 
+Ce fichier est **le plus important** de tous, il va contenir les configurations spécifiques et les dépendances. La partie la plus intéressante de ce fichier est la partie `sourceSets` :
+
+```kotlin
+sourceSets {
+        val desktopMain by getting
+        
+        androidMain.dependencies {
+            implementation(libs.compose.ui.tooling.preview)
+            implementation(libs.androidx.activity.compose)
+        }
+        
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.ui)
+            @OptIn(ExperimentalComposeLibrary::class)
+            implementation(compose.components.resources)
+        }
+
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+        }
+    }
+```
+
+Dans le code que vous avez généré, nous avons le minimum pour faire fonctionner notre application. Vous avez dans le code ci-dessus les dépendances de chaque plateforme. En fonction des problèmes, nous allons ajouter des dépendances soit dans la partie `commonMain` (si la dépendance est commune à toutes les plateformes), soit dans la partie spécifique à la plateforme (Android, iOS, Desktop).
+
+Nous avons deux types de dépendances :
+
+- `libs.` : Ce sont des dépendances spécifiques à Compose Multiplateforme. Elles sont définies dans le fichier `gradle/libs.versions.toml`.
+- `compose.` : Ce sont des dépendances spécifiques à Compose, elle ne sont pas défini dans notre application mia via le plugin Compose Multiplateforme (pas celui installé dans Android Studio, mais celui qui est dans le fichier `build.gradle.kts`).
+
+::: tip Remarque
+
+Cette différence est importante, en effet, pour que notre application fonctionne. Jetbrains maintient une sorte de structure de dépendances compatible, un mauvais choix ? Et votre application ne compile plus.
+
+Ça paraît contraignant, mais c'est en réalité une très bonne chose comme nous allons le voir par la suite.
+
+:::
+
 ### gradle/libs.versions.toml
 
-### La différence entre `compose.` et `libs.`
+Vous avez remarqué ? Non ? Vraiment ? Bon, je vous guide alors… Dans la partie `sourceSets` nous avons des dépendances mais jamais de version. C'est normal, cette écriture est la nouvelle façon de déclarer nos dépendances. Elle simplifie la lecture du fichier `build.gradle.kts` et permet de centraliser les versions des dépendances dans le fichier `gradle/libs.versions.toml`.
+
+```toml
+[versions]
+# Déclaration des versions 
+
+[libraries]
+# Déclaration des dépendances
+
+[plugins]
+# Déclaration des plugins
+```
+
+Dans ce toml, nous avons trois sections :
+
+- `versions` : Cette section va contenir les versions des dépendances. C'est ici que nous allons déclarer les versions des dépendances que nous allons utiliser dans notre application.
+- `libraries` : Cette section va contenir les dépendances. Quelle que soit la plateforme, nous allons déclarer ici les dépendances que nous allons utiliser.
+- `plugins` : Cette section va contenir les plugins. C'est ici que nous allons déclarer les plugins que nous allons utiliser dans notre application.
+
+Concrètement, voici un exemple :
+
+![Versions](./res/exemple-versions.png)
+
+Dans cette exemple nous avons déclaré :
+
+- Les versions des dépendances (Compose, AGP, etc.).
+- Les dépendances (androidx-ui-test-manifest, compose-ui-tooling, etc.).
+- Les plugins (androidApplication, androidLibrary, etc.).
+
+::: tip Remarque
+
+Il est important de comprendre que ce fichier est centralisé, c'est-à-dire que toutes les plateformes vont utiliser les mêmes versions de dépendances. C'est une très bonne chose, car cela permet de garantir une certaine compatibilité entre les différentes plateformes.
+
+:::
 
 ## L'approche multi-plateforme first
+
+### Les ressources
 
 ## Les mots clés `expect` et `actual`
 
@@ -304,6 +378,4 @@ Pour les autres plateformes, pas besoin de lancer une tâche spécifique :
 
 ## Les tests
 
-## Les ressources
-
-## L'intégation continue
+## L'intégration continue
