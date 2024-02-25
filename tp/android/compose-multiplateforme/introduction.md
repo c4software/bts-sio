@@ -358,11 +358,12 @@ compose-plugin = "1.6.0-rc02"
 Et également ajouter quelques dépendances :
 
 ```toml
+[version]
 koin = "3.6.0-wasm-alpha2"
 precompose = "1.6.0-beta01"
 ktorClient = "2.3.8"
 
-
+[libraries]
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
@@ -503,11 +504,9 @@ fun ScanScreen() {
 }
 ```
 
-Et dans chaque plateforme :
+::: details L'implémentation Android
 
 ```kotlin
-// Exemple Android
-
 @Composable
 actual fun CameraView() {
     val context = LocalContext.current
@@ -582,6 +581,203 @@ actual fun CameraView() {
 }
 ```
 
+:::
+
+::: details L'implémentation iOS
+
+```kotlin
+package ui.scan
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.interop.UIKitView
+import kotlinx.cinterop.CValue
+import kotlinx.cinterop.ExperimentalForeignApi
+import kotlinx.cinterop.ObjCAction
+import platform.AVFoundation.*
+import platform.AVFoundation.AVCaptureDeviceDiscoverySession.Companion.discoverySessionWithDeviceTypes
+import platform.AVFoundation.AVCaptureDeviceInput.Companion.deviceInputWithDevice
+import platform.AudioToolbox.AudioServicesPlaySystemSound
+import platform.AudioToolbox.kSystemSoundID_Vibrate
+import platform.CoreGraphics.CGRect
+import platform.Foundation.NSNotification
+import platform.Foundation.NSNotificationCenter
+import platform.Foundation.NSSelectorFromString
+import platform.QuartzCore.CATransaction
+import platform.QuartzCore.kCATransactionDisableActions
+import platform.UIKit.UIDevice
+import platform.UIKit.UIDeviceOrientation
+import platform.UIKit.UIView
+import platform.darwin.NSObject
+import platform.darwin.dispatch_get_main_queue
+
+// Source :
+// https://gist.github.com/oianmol/77b84e498ca0210632ad2f3523c08752
+
+private sealed interface CameraAccess {
+    object Undefined : CameraAccess
+    object Denied : CameraAccess
+    object Authorized : CameraAccess
+}
+
+private val deviceTypes = listOf(
+    AVCaptureDeviceTypeBuiltInWideAngleCamera,
+    AVCaptureDeviceTypeBuiltInDualWideCamera,
+    AVCaptureDeviceTypeBuiltInDualCamera,
+    AVCaptureDeviceTypeBuiltInUltraWideCamera,
+    AVCaptureDeviceTypeBuiltInDuoCamera
+)
+
+@Composable
+actual fun CameraView() {
+    var cameraAccess: CameraAccess by remember { mutableStateOf(CameraAccess.Undefined) }
+    LaunchedEffect(Unit) {
+        when (AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)) {
+            AVAuthorizationStatusAuthorized -> {
+                cameraAccess = CameraAccess.Authorized
+            }
+
+            AVAuthorizationStatusDenied, AVAuthorizationStatusRestricted -> {
+                cameraAccess = CameraAccess.Denied
+            }
+
+            AVAuthorizationStatusNotDetermined -> {
+                AVCaptureDevice.requestAccessForMediaType(
+                    mediaType = AVMediaTypeVideo
+                ) { success ->
+                    cameraAccess = if (success) CameraAccess.Authorized else CameraAccess.Denied
+                }
+            }
+        }
+    }
+
+    AuthorizedCamera()
+}
+
+@Composable
+private fun AuthorizedCamera() {
+    val camera: AVCaptureDevice? = remember {
+        discoverySessionWithDeviceTypes(
+            deviceTypes = deviceTypes,
+            mediaType = AVMediaTypeVideo,
+            position = AVCaptureDevicePositionBack,
+        ).devices.firstOrNull() as? AVCaptureDevice
+    }
+    if (camera != null) {
+        RealDeviceCamera(camera)
+    } else {
+        Text(
+            """
+            Camera is not available on simulator.
+            Please try to run on a real iOS device.
+            """.trimIndent(), color = Color.White
+        )
+    }
+}
+
+@OptIn(ExperimentalForeignApi::class)
+@Composable
+private fun RealDeviceCamera(camera: AVCaptureDevice) {
+    val capturePhotoOutput = remember { AVCapturePhotoOutput() }
+    var actualOrientation by remember {
+        mutableStateOf(
+            AVCaptureVideoOrientationPortrait
+        )
+    }
+
+
+    val captureSession: AVCaptureSession = remember {
+        AVCaptureSession().also { captureSession ->
+            captureSession.sessionPreset = AVCaptureSessionPresetPhoto
+            val captureDeviceInput: AVCaptureDeviceInput = deviceInputWithDevice(device = camera, error = null)!!
+            captureSession.addInput(captureDeviceInput)
+        }
+    }
+
+    val cameraPreviewLayer = remember {
+        AVCaptureVideoPreviewLayer(session = captureSession)
+    }
+
+    DisposableEffect(Unit) {
+        class OrientationListener : NSObject() {
+            @Suppress("UNUSED_PARAMETER")
+            @ObjCAction
+            fun orientationDidChange(arg: NSNotification) {
+                val cameraConnection = cameraPreviewLayer.connection
+                if (cameraConnection != null) {
+                    actualOrientation = when (UIDevice.currentDevice.orientation) {
+                        UIDeviceOrientation.UIDeviceOrientationPortrait ->
+                            AVCaptureVideoOrientationPortrait
+
+                        UIDeviceOrientation.UIDeviceOrientationLandscapeLeft ->
+                            AVCaptureVideoOrientationLandscapeRight
+
+                        UIDeviceOrientation.UIDeviceOrientationLandscapeRight ->
+                            AVCaptureVideoOrientationLandscapeLeft
+
+                        UIDeviceOrientation.UIDeviceOrientationPortraitUpsideDown ->
+                            AVCaptureVideoOrientationPortrait
+
+                        else -> cameraConnection.videoOrientation
+                    }
+                    cameraConnection.videoOrientation = actualOrientation
+                }
+                capturePhotoOutput.connectionWithMediaType(AVMediaTypeVideo)
+                    ?.videoOrientation = actualOrientation
+            }
+        }
+
+        val listener = OrientationListener()
+        val notificationName = platform.UIKit.UIDeviceOrientationDidChangeNotification
+        NSNotificationCenter.defaultCenter.addObserver(
+            observer = listener,
+            selector = NSSelectorFromString(
+                OrientationListener::orientationDidChange.name + ":"
+            ),
+            name = notificationName,
+            `object` = null
+        )
+        onDispose {
+            NSNotificationCenter.defaultCenter.removeObserver(
+                observer = listener,
+                name = notificationName,
+                `object` = null
+            )
+        }
+    }
+    UIKitView(
+        modifier = Modifier.fillMaxSize(),
+        background = Color.Black,
+        factory = {
+            val cameraContainer = UIView()
+            cameraContainer.layer.addSublayer(cameraPreviewLayer)
+            cameraPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            captureSession.startRunning()
+            cameraContainer
+        },
+        onRelease = {
+            if (captureSession.isRunning()) {
+                captureSession.stopRunning()
+            }
+        },
+        onResize = { view: UIView, rect: CValue<CGRect> ->
+            CATransaction.begin()
+            CATransaction.setValue(true, kCATransactionDisableActions)
+            view.layer.setFrame(rect)
+            cameraPreviewLayer.setFrame(rect)
+            CATransaction.commit()
+        },
+    )
+}
+```
+
+:::
+
 ::: tip La différence semble minime
 
 À première vue, la différence semble minime, mais en réalité, c'est loin d'être le cas.
@@ -651,13 +847,13 @@ Et bien voilà, nous y sommes, nous avons vu les éléments de bases pour créer
 
 C'est ici que `precompose` intervient. Sur une application Android classique, nous aurions utilisé `Jetpack` pour gérer la navigation, la gestion des états, etc. Cependant, même si Google est très actif sur le multi-plateforme, il n'est pas pour l'instant possible d'utiliser les éléments comme la navigation sur autre chose qu'Android.
 
-::: tip Est-ce que ça changera ?
+::: tip est-ce que ça changera ?
 
 Pour l'instant ça ne semble pas être le cas. En effet, il ne faut pas oublier que Compose Multiplateform est développé par JetBrains et non par Google. Les deux mondes vont donc se rapprocher petit à petit. Mais je doute très fortement que Google mette à disposition des éléments centraux de Jetpack pour le multi-plateforme.
 
 :::
 
-Il existe plusieurs librairies pour gérer la navigation, la gestion des états, etc, [Jetbrains, les listes d'ailleurs sur leur documentation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html), toutes sont très bien, certaines vont très loin voir plus loin que Jetpack. Après avoir passé un peu de temps à les tester (et à lire des retours d'expérience), j'ai choisi de travailler avec `precompose`. Cette librairie est très simple à prendre en main, elle est très proche (voir identique) à ce que nous pouvons trouver dans Jetpack.
+Il existe plusieurs librairies pour gérer la navigation, la gestion des états, etc, [Jetbrains, les liste d'ailleurs sur leur documentation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html), toutes sont très bien, certaines vont très loin voir plus loin que Jetpack. Après avoir passé un peu de temps à les tester (et à lire des retours d'expérience), j'ai choisi de travailler avec `precompose`. Cette librairie est très simple à prendre en main, elle est très proche (voir identique) à ce que nous pouvons trouver dans Jetpack.
 
 Vous pouvez consulter la documentation de `precompose` ici : [https://tlaster.github.io/PreCompose/](https://tlaster.github.io/PreCompose/)
 
@@ -665,7 +861,130 @@ Vous pouvez consulter la documentation de `precompose` ici : [https://tlaster.gi
 
 Nous avons déjà ajouté `precompose` dans notre fichier de version, il est maintenant temps de l'ajouter dans notre application. Pour tester `precompose`, nous allons restructurer notre application pour y inclure un `NavHost` et y définir des routes.
 
+::: tip Remarque
+
+N'oubliez pas de synchroniser votre projet pour récupérer les dépendances.
+
+:::
+
 ### Modifier la structure de notre application
+
+Pour ajouter `precompose`, nous allons modifier le fichier `composeApp/src/commonMain/kotlin/App.kt` :
+
+```kotlin
+@Composable
+@ExperimentalTransitionApi
+fun App() {
+    PreComposeApp {
+        val navigator = rememberNavigator()
+
+        YourApplicationTheme {
+            NavHost(
+                navigator = navigator,
+                initialRoute = "/"
+            ) {
+                scene("/") {
+                    MainRoute {
+                        navigator.navigate(route = "/second")
+                    }
+                }
+
+                scene("/second") {
+                    HelloRoute {
+                        navigator.navigate(route = "/")
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+Si vous avez bien suivi, nous avons modifié la structure de notre application pour y inclure un `NavHost` et des `scene`. Mais nous avons également commencé à structurer notre application en créant un `YourApplicationTheme` qui va contenir l'ensemble des éléments de style de notre application ainsi que le Scaffold.
+
+::: tip Un instant
+
+Avant de parler du `YourApplicationTheme`, arrêtons-nous un instant sur les `…Route`. Découper le `Screen` de la `Route` nous permettra de gérer plus facilement la partie Tests et également l'injection de dépendances.
+
+:::
+
+Donc, dans mon cas, le fichier `YourApplicationTheme` ressemble à :
+
+```kotlin
+@Composable
+fun YourApplicationTheme(content: @Composable () -> Unit) {
+    MaterialTheme {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text("Demo App")
+                    }
+                )
+            }
+        ) { innerPadding ->
+            Box(modifier = Modifier.padding(innerPadding)) {
+                content()
+            }
+        }
+    }
+}
+```
+
+Qu'avons nous ici ?
+
+- `MaterialTheme` : C'est le thème de base de notre application, il va contenir l'ensemble des éléments de style de notre application. Nous n'avons aucune personnalisation ici, mais il est possible de le faire.
+- `Scaffold` : C'est le conteneur principal de notre application, il va contenir l'ensemble des éléments de notre application. Ici, nous avons un `TopAppBar` qui va contenir le titre de notre application.
+- Le seul contenu de notre `Scaffold` est un `Box` qui va contenir l'ensemble des éléments de notre application (ici, notre `NavHost`).
+
+::: danger Comment ranger les fichiers ?
+
+Évidemment vous pouvez ranger les fichiers comme vous le souhaitez, mais je vous conseille de ranger les fichiers de la manière suivante :
+
+![Ranger](./res/commonMain-folders.png)
+
+Pourquoi ce rangement ? Organiser son code en package est une bonne pratique, l'organiser avec au minimum des packages `ui`, `di`, `data` est une très bonne pratique. Cela permet de séparer les éléments de l'interface, de la gestion des états, et de la gestion des données. De plus, elle permettra à n'importe qui de comprendre rapidement l'organisation de votre application afin d'y apporter des correctifs ou des améliorations.
+
+:::
+
+### Créer les composants `MainRoute` et `HelloRoute`
+
+Avant de continuer, nous allons créer deux composants `MainRoute` et `HelloRoute`, ils auront pour vocation de simuler deux écrans différents. Le rendu final de mon application ressemble à :
+
+![Rendu](./res/sample-step1.png)
+![Rendu](./res/sample-step2.png)
+
+::: tip C'est à vous
+
+Je vous laisse créer ces deux composants. Puis tester votre application à la fois sur Android et sur Desktop.
+
+:::
+
+::: details Vous débutez en Compose ?
+
+Voici un exemple de composant `MainRoute` :
+
+```kotlin
+@Composable
+fun MainRoute(onClick: () -> Unit) {
+    MainScreen(onClick)
+}
+
+@Composable
+fun MainScreen(onClick: () -> Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = onClick) {
+            Text("Go to second screen")
+        }
+    }
+}
+```
+
+:::
 
 ### Définir nos routes
 
