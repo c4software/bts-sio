@@ -1133,7 +1133,7 @@ fun App() {
 
 À partir de maintenant, si vous lancez votre application sans rien toucher vous devriez avoir une erreur :
 
-![Erreur](./res/erreur-koin.png)
+![Erreur](./res/errer-koin.png)
 
 Et oui, nous n'avons pas démarré Koin, c'est ce que nous allons faire maintenant.
 
