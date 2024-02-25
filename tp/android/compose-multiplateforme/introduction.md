@@ -1,4 +1,4 @@
-# Compose Multiplateforme
+# Compose Multiplateform
 
 Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multiplatform permet de créer des applications multip-plateforme. Nous nous intéresserons notamment aux différences avec le développement d'applications natives et plus particulièrement l'état d'esprit à adopter pour développer des applications Multiplatforms de manière efficace.
 
@@ -16,9 +16,15 @@ Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multi
 
 Comprendre les principes du développement en Kotlin et l'approche composant.
 
+::: tip Vous débutez avec Compose ?
+
+Je vous invite à lire / réaliser le support [Introduction à Android Compose](../../composants/android.md) avant de commencer ce support.
+
+:::
+
 ## Le Multiplateforme ?
 
-Compose Multiplateforme est « la suite » du **Kotlin** Multiplateforme. En effet, JetBrains a décidé de créer un outil spécifique pour le développement d'applications Multiplatforms. Cet outil est basé sur le framework Compose, lui-même basé sur le langage Kotlin.
+Compose Multiplateform est « la suite » du **Kotlin** Multiplateforme. En effet, JetBrains a décidé de créer un outil spécifique pour le développement d'applications Multiplatforms. Cet outil est basé sur le framework Compose, lui-même basé sur le langage Kotlin.
 
 Le Kotlin Multiplateforme permet de créer relativement simplement des couches communes à des applications Android, iOS, JVM, JS, WASM, etc. Cependant, il ne permet pas de créer des interfaces utilisateurs communes. C'est là que Compose Multiplatform intervient.
 
@@ -45,11 +51,11 @@ Avant de rentrer dans le vif du sujet, il est important de comprendre la termino
 
 Il est important de comprendre que Compose Multiplatform est un outil en constante évolution, il est donc possible que certaines notions évoluent dans le temps.
 
-Beaucoup d'éléments sont encore en cours de développement, notamment la partie ressource. Mais si vous avez déjà fait du développement Android, vous savez que la gestion des ressources est un élément important et qu'il ne vas aller qu'en s'améliorant.
+Beaucoup d'éléments sont encore en cours de développement, notamment la partie ressource. Mais si vous avez déjà fait du développement Android, vous savez que la gestion des ressources est un élément important et qu'il ne va aller qu'en s'améliorant.
 
 :::
 
-## Compose Multiplateforme
+## Compose Multiplateform
 
 Avant de rentrer dans le détail du Multiplatform, arrêtons-nous un instant sur Compose, et notamment sur la manière dont il fonctionne. L'approche de compose est similaire à ce que nous pouvons trouver dans d'autres frameworks à base de composants, nous allons donc écrire des éléments d'interface utilisateur directement en Kotlin, mais avec une base de code commun fourni en grande partie par Google (Boutons, Textes, etc.).
 
@@ -124,9 +130,9 @@ Mais vous allez me dire… Nous aurions pu utiliser Compose Multiplatform pour c
 
 ## Un petit parallèle avec les autres frameworks
 
-Précédemment nous avons fait des applications en Flutter, ces applications sont également compatibles avec iOS, Android et le Web. Cependant, la manière de faire est différente, Flutter utilise un langage spécifique, le Dart, et une manière de faire spécifique (Widgets, approche très similaire à React). Compose Multiplateforme, lui, utilise le Kotlin, un langage que nous connaissons déjà.
+Précédemment nous avons fait des applications en Flutter, ces applications sont également compatibles avec iOS, Android et le Web. Cependant, la manière de faire est différente, Flutter utilise un langage spécifique, le Dart, et une manière de faire spécifique (Widgets, approche très similaire à React). Compose Multiplateform, lui, utilise le Kotlin, un langage que nous connaissons déjà.
 
-L'autre gros avantage Compose, est le Kotlin, en effet écrire du code en Kotlin nous permet de déjà de créer du code commun à plusieurs plateformes, nous l'avons déjà fait, nous savons que c'est très efficaces et relativement simple à mettre en place.
+L'autre gros avantage Compose, c’est le Kotlin, en effet écrire du code en Kotlin nous permet de déjà de créer du code commun à plusieurs plateformes, nous l'avons déjà fait, nous savons que c'est très efficace et relativement simple à mettre en place.
 
 Avec Compose Multilplateforme, nous passons un cran au-dessus… Faire l'intégralité d'une application !
 
@@ -174,15 +180,15 @@ Le plus simple pour créer une structure de base pour notre application est d'ut
 
 ::: danger Attention
 
-Le système est pour l'instant très jeune, tous n'est pas encore vraiment compatibl. Exemple si vous activé WASM, beaucoup de librairie rendront votre application non compilable (car non compatible avec WASM).
+Le système est pour l'instant très jeune, tout n'est pas encore vraiment compatible. Exemple si vous activé WASM, beaucoup de librairies rendront votre application non compilable (car non compatible avec WASM).
 
-Ceci étant, les librairies sont en constant évolution, et il est certain que très rapidement cet avertissement ne sera plus d'actualité.
+Ceci étant, les librairies sont en constante évolution, et il est certain que très rapidement cet avertissement ne sera plus d'actualité.
 
 Pour information, j'ai échangé à ce sujet sur plusieurs librairies :
 
 - [PreCompose](https://github.com/Tlaster/PreCompose/pull/251)
 - [Koin](https://github.com/InsertKoinIO/koin/issues/1634#issuecomment-1960959984)
-- [Repo officiel de Compose Multiplateforme](https://github.com/JetBrains/compose-multiplatform/issues/4277#issuecomment-1945922199)
+- [Repo officiel de Compose Multiplateform](https://github.com/JetBrains/compose-multiplatform/issues/4277#issuecomment-1945922199)
 
 Bref, ça bouge, et ça bouge vite !
 
@@ -194,7 +200,7 @@ Le site de Jetbrains est une bonne base pour commencer la découverte [https://w
 
 ![KMP INIT](./res/kmp-init.png)
 
-Pour commencer nous allons créer une application « simple » :
+Pour commencer, nous allons créer une application « simple » :
 
 - Android
 - iOS
@@ -202,7 +208,7 @@ Pour commencer nous allons créer une application « simple » :
 
 ## L'IDE
 
-Pour ce support, nous allons utiliser Android Studio, mais Fleet (le nouvel IDE de JetBrains) est également compatible avec Compose Multiplateforme. Il semble que Fleet soit bien adapté, mais si comme moi vous n'avez pas les outils de build de Xcode, Android Studio est un bon choix.
+Pour ce support, nous allons utiliser Android Studio, mais Fleet (le nouvel IDE de JetBrains) est également compatible avec Compose Multiplateform. Il semble que Fleet soit bien adapté, mais si comme moi vous n'avez pas les outils de build de Xcode, Android Studio est un bon choix.
 
 ::: tip Vous êtes sous Android ?
 
@@ -223,7 +229,7 @@ Entrons un peu dans le détail de ces dossiers de code :
 - `composeApp` : Ce dossier va contenir notre code Compose / Kotlin. C'est ici que nous allons écrire notre application.
 - `composeApp/src/commonMain` : Ce dossier va contenir le code commun à toutes les plateformes. Dans un monde idéal, nous allons essayer de mettre le maximum de code ici.
 - `composeApp/src/androidMain` : Ce dossier va contenir le code spécifique à Android. Nous y retrouvons une structure classique d'application Android (Manifest, etc.). C'est dans ce dossier que nous intégrerons les composants et le code spécifique à Android.
-- `composeApp/src/iosMain` : Vous l'avez compris, ce dossier va contenir le code spécifique à iOS. Nous y retrouvons une structure classique d'application iOS (Info.plist, etc.). **Cependant**, Compose Multiplateforme propose un bridge vers les fonctionnalités natives d'iOS, nous n'écrirons donc pas de code en Swift ici, mais du Kotlin qui a comme spécificité d'être en mesure d'importer des librairies iOS (Network, Camera, etc.).
+- `composeApp/src/iosMain` : Vous l'avez compris, ce dossier va contenir le code spécifique à iOS. Nous y retrouvons une structure classique d'application iOS (Info.plist, etc.). **Cependant**, Compose Multiplateform propose un bridge vers les fonctionnalités natives d'iOS, nous n'écrirons donc pas de code en Swift ici, mais du Kotlin qui a comme spécificité d'être en mesure d'importer des librairies iOS (Network, Camera, etc.).
 - `composeApp/src/desktopMain` : Ici nous écrirons du code qui a pour vocation de fonctionner sur un ordinateur (Linux, Windows, Mac). Le code fonctionnera sur la JVM, ce qui signifie que nous pourrons utiliser des librairies Java.
 
 Nous avons également quelques éléments de configuration :
@@ -264,7 +270,7 @@ Pour les autres plateformes, pas besoin de lancer une tâche spécifique :
 
 ## Les fichiers de configuration
 
-Maintenant que nous avons lancé notre application, nous allons rentrer dans le détail des fichiers de configuration. En effet, Compose Multiplateforme n'est qu'une base de code, pour réaliser nos applications de manière efficace, nous allons devoir ajouter des dépendances, des configurations, etc.
+Maintenant que nous avons lancé notre application, nous allons rentrer dans le détail des fichiers de configuration. En effet, Compose Multiplateform n'est qu'une base de code, pour réaliser nos applications de manière efficace, nous allons devoir ajouter des dépendances, des configurations, etc.
 
 ### composeApp/build.gradle.kts
 
@@ -298,8 +304,8 @@ Dans le code que vous avez généré, nous avons le minimum pour faire fonctionn
 
 Nous avons deux types de dépendances :
 
-- `libs.…` : Ce sont des dépendances spécifiques à Compose Multiplateforme. Elles sont définies dans le fichier `gradle/libs.versions.toml`.
-- `compose.…` : Ce sont des dépendances spécifiques à Compose, elle ne sont pas défini dans notre application mia via le plugin Compose Multiplateforme (pas celui installé dans Android Studio, mais celui qui est dans le fichier `build.gradle.kts`).
+- `libs.…` : Ce sont des dépendances spécifiques à Compose Multiplateform. Elles sont définies dans le fichier `gradle/libs.versions.toml`.
+- `compose.…` : Ce sont des dépendances spécifiques à Compose, elle ne sont pas défini dans notre application mia via le plugin Compose Multiplateform (pas celui installé dans Android Studio, mais celui qui est dans le fichier `build.gradle.kts`).
 
 ::: tip Remarque
 
@@ -931,7 +937,7 @@ fun YourApplicationTheme(content: @Composable () -> Unit) {
 }
 ```
 
-Qu'avons nous ici ?
+Qu'avons-nous ici ?
 
 - `MaterialTheme` : C'est le thème de base de notre application, il va contenir l'ensemble des éléments de style de notre application. Nous n'avons aucune personnalisation ici, mais il est possible de le faire.
 - `Scaffold` : C'est le conteneur principal de notre application, il va contenir l'ensemble des éléments de notre application. Ici, nous avons un `TopAppBar` qui va contenir le titre de notre application.
@@ -988,22 +994,759 @@ fun MainScreen(onClick: () -> Unit) {
 
 ### Définir nos routes
 
+Pour l'instant nous avons créé des routes en « dur » directement dans le code. Techniquement ça fonctionne, mais ce n’est globalement pas très pratique. Par exemple, si nous souhaitons avoir des routes dynamiques en fonction de la plateforme (par exemple, une route pour la caméra), nous allons devoir modifier le code à chaque fois.
+
+Avec une simple adaptation de notre code, nous pouvons passer via une enum pour définir nos routes :
+
+```kotlin
+enum class Route(val path: String) {
+    Default(getDefaultRoute()),
+    Main("/"),
+    Hello("/hello"),
+    Scan("/scan")
+}
+
+expect fun getDefaultRoute(): String
+```
+
+À partir de maintenant nous pouvons modifier notre `NavHost` pour utiliser cette enum :
+
+```kotlin
+NavHost(
+    navigator = navigator,
+    initialRoute = Route.Default.path
+) {
+    scene(Route.Main.path) {
+        MainRoute {
+            navigator.navigate(route = Route.Hello.path)
+        }
+    }
+
+    scene(Route.Hello.path) {
+        HelloRoute {
+            navigator.navigate(route = Route.Default.path)
+        }
+    }
+}
+```
+
+L'avantage de rendre les routes « déclaratives » est que nous améliorons la lisibilité de notre code, mais ça nous offre également une certaines souplesse, en effet nous pouvons maintenant définir des routes dynamiques en fonction de la plateforme.
+
+Avant de vous laisser implémenter cette enum, n'oubliez pas l'organisation de vos fichiers. Dans mon cas, j'ai créé un fichier `Route.kt` dans le package `navigation` :
+
+![Suite dossier](./res/folders-suite.png)
+
+::: tip C'est à vous
+
+Je vous laisse modifier votre application pour utiliser cette enum. Puis tester votre application à la fois sur Android et sur Desktop.
+
+:::
+
 ### Définir un point d'entrée différent par plateforme
+
+Pourquoi est-ce intéressant de définir un point d'entrée différent par plateforme ? C'est une question que vous pouvez vous poser, et c'est une très bonne question.
+
+Dans notre code, pour l'instant nous arrivons sur la vue « MainRoute », c'est bien, mais si là je vous demandais que notre route principale soit la vue « ScanRoute » ? 
+
+La particularité de la vue ScanRoute est qu'elle n'est pas disponible sur Desktop (sauf si vous avez implémenté la caméra sur Desktop). Dans ce cas, nous devons rendre notre route principale dynamique en fonction de la plateforme. Et c'est ici que les mots clés `expect` et `actual` vont nous aider.
+
+Pour commencer, nous avons déclaré une fonction `getDefaultRoute` :
+
+```kotlin
+expect fun getDefaultRoute(): String
+```
+
+Pour l'instant, nous indiquons juste que cette fonction doit être implémentée dans chaque plateforme. Nous allons maintenant l'implémenter dans chaque plateforme.
+
+Je vous laisse implémenter cette fonction dans chaque plateforme. Pour Android, vous pouvez utiliser la route `/scan`, pour Desktop, vous pouvez utiliser la route `/`.
+
+N'oubliez pas que AndroidStudio / Fleet est rempli de petits raccourcis pour vous aider à implémenter ces fonctions :
+
+![Raccourcis](./res/raccourcis.png)
+
+Puis :
+
+![Implementations](./res/implementations.png)
+
+## Conclusion intermédiaire
+
+Nous avons vu les bases du développement d'une application Compose Multiplateform. Si vous avez bien suivi, vous avez compris que l'important est d'avoir une approche « multiplateforme first », c'est-à-dire de penser à réduire au maximum les différences d'implémentation entre les plateformes.
+
+Si vous respectez ce principe, vos applications seront plus simples à maintenir, plus simples à tester, et plus simples à améliorer.
+
+Nous allons attaquer la suite :
+
+- Koin : Pour la gestion des dépendances.
+- ktor : Pour la gestion des appels réseau.
+- Les ViewModels : Pour la gestion des états.
 
 ## Koin
 
+Il est clairement possible de faire du code pendant des années sans jamais avoir entendu parler d'injection de dépendances. Ce terme barbare était autrefois assez compliqué à mettre en place, mais avec l'arrivée de Koin, c'est devenu un jeu d'enfant (presque ok…).
+
+::: tip Point terminologie
+
+L'injection de dépendances est un concept qui permet de séparer la création d'un objet de son utilisation. Cela permet de rendre le code plus modulaire, plus testable, et plus facile à maintenir.
+
+Grâce à l'injection de dépendances, nous allons pouvoir créer des objets qui vont être utilisés dans notre application. Au moment de l'instanciation de notre objet, nous ne savons pas encore de quelle manière il sera utilisé. C'est bien plus tard, dans votre code, que vous allez utiliser cet objet (par exemple dans un ViewModel).
+
+:::
+
 ### Une configuration centralisée
+
+Comme pour les Composants d'interface, nous allons chercher à centraliser au maximum la configuration de nos dépendances. C'est-à-dire que nous allons penser `CommonFirst` avant de penser `PlatformFirst`.
+
+Cette gymnastique de l'esprit est importante, je vous invite vivement à le faire.
+
+Dans notre application, nous allons donc créer un package `di` dans lequel nous allons déclarer l'ensemble de nos dépendances. Dans mon cas, j'ai créé un fichier `Koin.kt` :
+
+```kotlin
+fun setupKoin() = startKoin {
+    modules(platformSpecificModule())
+}
+
+expect fun platformSpecificModule(): Module
+```
+
+Dans ce fichier, nous avons déclaré une fonction `setupKoin` qui va permettre de démarrer Koin. Cette fonction va également charger les modules spécifiques à chaque plateforme. Évidemment, nous allons devoir implémenter cette fonction dans chaque plateforme.
+
+L'autre point important, c'est que pour l'instant nous n'avons pas démarré Koin, donc rien ne sera injecté dans notre application. Pour activer Koin nous allons devoir :
+
+- Indiquer que notre application va utiliser Koin (dans le fichier `App.kt`).
+- Démarrer Koin (dans le fichier `MainApplication.kt` pour Android, dans le fichier `Main.kt` pour Desktop).
+
+### Indiquer que notre application va utiliser Koin
+
+Pour indiquer que notre application va utiliser Koin, nous allons devoir modifier notre fichier `App.kt` :
+
+```kotlin
+@Composable
+@ExperimentalTransitionApi
+fun App() {
+    PreComposeApp {
+        KoinContext {
+            // Le reste de notre application
+        }
+    }
+}
+```
+
+À partir de maintenant, si vous lancez votre application sans rien toucher vous devriez avoir une erreur :
+
+![Erreur](./res/erreur-koin.png)
+
+Et oui, nous n'avons pas démarré Koin, c'est ce que nous allons faire maintenant.
+
+### Démarrer Koin
+
+#### Desktop
+
+Pour l'implémentation Desktop, nous allons devoir démarrer Koin dans le fichier `Main.kt` :
+
+```kotlin
+@OptIn(ExperimentalTransitionApi::class)
+fun main() {
+    setupKoin()
+    
+    application {
+        val state = rememberWindowState(height = 800.dp, width = 500.dp)
+        Window(onCloseRequest = ::exitApplication, title = "Kotlin Project", state = state, resizable = false) {
+            App()
+        }
+    }
+}
+```
+
+#### Android
+
+Pour Android l'approche va être un peu différente, nous allons devoir démarrer Koin dans le fichier `MainApplication.kt` dans le package `src/androidMain/com…`. Pour l'instant vous n'avez pas ce fichier, il va falloir le créer. Voici un exemple de fichier `MainApplication.kt` :
+
+```kotlin
+class MainApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        stopKoin()
+        setupKoin().androidContext(this)
+    }
+}
+```
+
+Par rapport à l'implémentation Desktop, nous avons utilisé la fonction `androidContext`, cela va nous permettre de récupérer le contexte de notre application Android si nous en avons besoin.
+
+Une fois ce fichier créé, n'oubliez pas de le déclarer dans le `AndroidManifest.xml` :
+
+```xml
+<application
+    android:name=".MainApplication"
+    …
+    >
+    …
+</application>
+```
+
+Pour que le code fonctionne, vous allez également avoir besoin d'ajouter une dépendance dans votre fichier `build.gradle.kts` :
+
+```kotlin
+androidMain.dependencies {
+    // Le reste de vos dépendances
+
+    // Dépendance pour Koin Android
+    implementation(libs.koin.android)
+}
+```
+
+![Koin Android](./res/koin-android.png)
+
+Si vous avez bien suivi, votre application devrait compiler sans erreur. Vous avez maintenant Koin de démarré dans votre application !
+
+Bravo !
+
+<iframe src="https://giphy.com/embed/l46Cd4qNHmnDI8Hks" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ### Des spécificités par plateforme
 
-## Les ViewsModels
+Dans notre partie commune, nous avons déclaré une fonction `platformSpecificModule` qui va permettre de charger les modules spécifiques à chaque plateforme. Nous allons maintenant l'implémenter dans chaque plateforme.
+
+Pour l'instant il est vide :
+
+```kotlin
+actual fun platformSpecificModule() = module {}
+```
+
+Plus tard, nous pourrons y ajouter des dépendances spécifiques à chaque plateforme. Par exemple, pour Android, nous pourrions y ajouter une dépendance pour la gestion des appels réseau, pour Desktop, nous pourrions y ajouter une dépendance pour la gestion des fichiers.
 
 ## ktor
 
-### Penser centralisé
+L'intérêt d'avoir un injecteur de dépendances est de pouvoir centraliser tous les éléments « réutilisables » de notre application. L'un des premiers qui peut-être intéressant est la centralisation de la gestion des appels réseaux.
 
-### Le cas du Bearer
+Pour la gestion des appels réseau, nous allons utiliser `ktor`. C'est une librairie développée par JetBrains, elle est très simple à prendre en main, et elle est très puissante. Elle permet à la fois de faire des appels réseau, mais également de créer des serveurs. C'est une librairie très complète.
+
+Nous avons dans notre setup initial déjà ajouté les dépendances pour `ktor`, nous allons maintenant l'implémenter dans notre application. Nous allons découper notre logique en différentes parties :
+
+- Déclarer le module Koin pour la gestion des appels réseaux (`NetworkModule.kt` dans le dossier `di`).
+- Déclarer le connecteur réseau (`NetworkDao.kt` dans le dossier `data.dao`).
+- Une fois le connecteur réseau déclaré, nous allons pouvoir l'utiliser dans nos ViewModels.
+
+### Déclarez-le `NetworkModule`
+
+Pour déclarer le module Koin pour la gestion des appels réseaux, nous allons créer un fichier `NetworkModule.kt` dans le dossier `di` :
+
+```kotlin
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.HttpTimeout
+import org.koin.dsl.module
+
+val networkModule = module {
+    single {
+        HttpClient {
+            CIO
+            expectSuccess = true
+            install(HttpTimeout) {
+                requestTimeoutMillis = 30_000
+                connectTimeoutMillis = 30_000
+                socketTimeoutMillis = 30_000
+            }
+        }
+    }
+}
+```
+
+Dans ce fichier, nous avons déclaré un module Koin qui va permettre de créer un client HTTP. Ce client HTTP va être utilisé pour faire des appels réseau. Le client utilise le moteur `CIO` qui est le moteur par défaut de `ktor`.
+
+### Déclarer le connecteur réseau dans Koin
+
+Pour déclarer le connecteur réseau dans Koin, nous allons devoir modifier notre fichier `Koin.kt` :
+
+```kotlin
+fun setupKoin() = startKoin {
+    modules(platformSpecificModule())
+    modules(networkModule)
+}
+```
+
+::: tip Qu'avons-nous fait ?
+
+En déclarant le module `networkModule` dans notre fichier `Koin.kt`, nous rendons disponible le client HTTP à toutes les classes de notre application qui en feront la demande.
+
+C'est pour ça que nous appelons ça un injecteur de dépendances, nous injectons des dépendances qui vont être utilisées plus tard dans notre application.
+
+:::
+
+### Déclarer le `NetworkOperation`
+
+Pour l'instant notre client HTTP est triste, seul, il n'a pas d'amis… Nous allons lui créer un ami, nous allons créer un fichier `NetworkOperation.kt` dans le dossier `data.dao` :
+
+```kotlin
+class NetworkOperation(private val client: HttpClient) {
+    suspend fun getHello(): String? {
+        return try {
+            client.get("https://raw.githubusercontent.com/c4software/bts-sio/master/hello.md").body<String>()
+        } catch (e: Exception) {
+            null
+        }
+    }
+}
+```
+
+Notre DAO va permettre de faire des appels réseau. Pour l'instant nous avons une seule méthode `getHello` qui va permettre de récupérer un fichier `hello.md` sur mon dépôt GitHub.
+
+Pour l'instant notre `NetworkOperation` n'est pas injecté dans notre application, nous allons devoir le faire.
+
+### Injecter le `NetworkOperation` dans notre application
+
+Pour injecter le `NetworkOperation` dans notre application, nous allons devoir modifier notre fichier `Koin.kt` :
+
+```kotlin
+fun setupKoin() = startKoin {
+    modules(platformSpecificModule())
+    modules(networkModule)
+    modules(networkDaoModule)
+}
+```
+
+C'est à partir de maintenant que la magie de Koin opère, nous allons pouvoir injecter notre `NetworkOperation` dans nos ViewModels. Et donc faire des appels réseau dans nos vues.
+
+## Les ViewsModels
+
+Les ViewModels sont des éléments centraux de notre application, ils vont permettre de gérer l'ensemble des états de notre application. Pour l'instant nous n'avons pas encore vu comment les implémenter, mais nous allons le faire maintenant.
+
+`Precompose` Intègre le code permettant de gérer les ViewModels. Pour « tester » cette partie, nous allons créer un ViewModel qui va permettre de récupérer le contenu du fichier `hello.md` que nous avons récupéré précédemment.
+
+### Créer le ViewModel
+
+Nous allons ajouter un fichier `MainViewModel.kt` dans le package `ui.main` :
+
+```kotlin
+interface IMainViewModel {
+    val isLoading: MutableStateFlow<Boolean>
+    fun getHello()
+}
+
+class MainViewModel(private val networkOperation: NetworkOperation) : ViewModel(), IMainViewModel {
+    override val isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    override fun getHello() {
+        isLoading.value = true
+
+        CoroutineScope(Dispatchers.Default).launch {
+            // On affiche le résultat dans la console
+            println(networkOperation.getHello())
+
+            // On arrête le chargement
+            isLoading.value = false
+        }
+    }
+}
+```
+
+Pourquoi avons-nous créé une interface `IMainViewModel` ? C'est une très bonne question ! Créer une interface va nous permettre de tester notre ViewModel plus facilement. En effet, nous allons pouvoir créer un Mock de notre ViewModel pour tester notre application.
+
+### Injecter le ViewModel dans notre application
+
+Pour injecter le ViewModel dans notre application, nous allons devoir modifier notre fichier `Koin.kt` :
+
+```kotlin
+var daoModule = module {
+    single { NetworkOperation(get()) }
+}
+
+val appModule = module {
+    factory { MainViewModel(get()) }
+}
+```
+
+::: danger Attention
+
+Évidemment on n'oublie pas de ranger ces déclarations dans des fichiers séparés :
+
+![Ranger](./res/koin-suite.png)
+
+:::
+
+Puis dans notre fichier `Koin.kt` :
+
+```kotlin
+fun setupKoin() = startKoin {
+    modules(platformSpecificModule())
+    modules(networkModule)
+    modules(daoModule)
+    modules(appModule)
+}
+```
+
+### Utiliser le ViewModel dans notre Composant
+
+Pour utiliser le ViewModel dans notre composant, nous allons devoir modifier notre composant `MainRoute` :
+
+```kotlin
+@Composable
+fun MainRoute(onClick: () -> Unit) {
+    val viewModel = koinViewModel(MainViewModel::class)
+    val isLoading: Boolean by viewModel.isLoading.collectAsStateWithLifecycle()
+
+    MainScreen(
+        viewModel = viewModel,
+        isLoading = isLoading,
+        onClick = onClick
+    )
+}
+
+@Composable
+fun MainScreen(
+    viewModel: IMainViewModel,
+    isLoading: Boolean = false,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        if (isLoading) {
+            CircularProgressIndicator()
+        }
+
+        Button(onClick = onClick) {
+            Text("Go to second screen")
+        }
+
+        Button(onClick = { viewModel.getHello() }) {
+            Text("Get Hello")
+        }
+    }
+}
+```
+
+Un peu de code, mais rien de bien compliqué. Nous avons utilisé la fonction `koinViewModel` pour récupérer notre ViewModel. Nous avons également utilisé `collectAsStateWithLifecycle` pour récupérer l'état de notre ViewModel.
+
+Une fois ces deux variables disponibles, nous les passons en paramètre de notre composant `MainScreen`. Celui-ci va les utiliser pour afficher un `CircularProgressIndicator` si notre ViewModel est en train de charger, et un bouton pour récupérer le contenu du fichier `hello.md`.
+
+::: tip C'est à vous
+
+Je vous laisse modifier votre application pour utiliser le ViewModel. Puis tester votre application à la fois sur Android et sur Desktop.
+
+:::
+
+### En résumé
+
+Beaucoup de code ? En réalité, pas tant que ça. Nous avons vu comment :
+
+- Créer un ViewModel.
+- Injecter le ViewModel dans notre application.
+- Utiliser le ViewModel dans notre composant.
+- Injecter différentes classes dans notre application (NetworkOperation, ViewModel).
+
+Notre structure a un peu évolué, mais reste dans le moule de ce que nous avons vu précédemment :
+
+![Ranger](./res/structure-viewmodel.png)
+
+::: danger Point important
+
+Vous noterez que nous n'avons pas écrit de code spécifique à chaque plateforme. C'est bien, c'est ce que nous cherchons à faire. Nous avons réussi à garder notre code commun, et à ne pas écrire de code spécifique à chaque plateforme.
+
+:::
+
+## Sauvegarder les données sur le téléphone
+
+Pour sauvegarder des données sur le téléphone, nous allons devoir écrire du code spécifique à chaque plateforme. Pour ça nous allons utiliser à nouveau les mots clés `expect` et `actual`.
+
+```kotlin
+interface ILocalStorage {
+    fun save(key: String, value: String)
+    fun get(key: String): String
+    fun remove(key: String)
+    fun clear()
+}
+
+expect open class LocalStorage : ILocalStorage{
+    override fun save(key: String, value: String)
+    override fun get(key: String): String
+    override fun remove(key: String)
+    override fun clear()
+}
+```
+
+```kotlin
+expect fun storageModule(): Module
+```
+
+Grâce à ces deux éléments, nous avons défini les règles que chaque plateforme doit respecter pour sauvegarder des données sur le téléphone. Nous allons maintenant les implémenter dans chaque plateforme.
+
+### Android
+
+Pour Android, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
+
+```kotlin
+actual class LocalStorage(private val context: Context) {
+    private val sharedPreferences = context.getSharedPreferences("app", Context.MODE_PRIVATE)
+
+    actual fun save(key: String, value: String) {
+        sharedPreferences.edit().putString(key, value).apply()
+    }
+
+    actual fun get(key: String): String {
+        return sharedPreferences.getString(key, "") ?: ""
+    }
+
+    actual fun remove(key: String) {
+        sharedPreferences.edit().remove(key).apply()
+    }
+
+    actual fun clear() {
+        sharedPreferences.edit().clear().apply()
+    }
+}
+```
+
+```kotlin
+actual fun storageModule() = module {
+    single { LocalStorage(androidContext()) }
+}
+```
+
+### Desktop
+
+Pour Desktop, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
+
+```kotlin
+actual class LocalStorage {
+    private val preferences = Preferences.userRoot().node("app")
+
+    actual fun save(key: String, value: String) {
+        preferences.put(key, value)
+    }
+
+    actual fun get(key: String): String {
+        return preferences.get(key, "")
+    }
+
+    actual fun remove(key: String) {
+        preferences.remove(key)
+    }
+
+    actual fun clear() {
+        preferences.keys().forEach {
+            preferences.remove(it)
+        }
+    }
+}
+```
+
+```kotlin
+actual fun storageModule() = module {
+    single { LocalStorage() }
+}
+```
+
+### iOS
+
+Pour iOS, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
+
+```kotlin
+actual class LocalStorage {
+    private val userDefaults = NSUserDefaults.standardUserDefaults
+
+    actual fun save(key: String, value: String) {
+        userDefaults.setObject(value, key)
+    }
+
+    actual fun get(key: String): String {
+        return userDefaults.stringForKey(key) ?: ""
+    }
+
+    actual fun remove(key: String) {
+        userDefaults.removeObjectForKey(key)
+    }
+
+    actual fun clear() {
+        userDefaults.dictionaryRepresentation.keys.forEach {
+            userDefaults.removeObjectForKey(it)
+        }
+    }
+}
+```
+
+```kotlin
+actual fun storageModule() = module {
+    single { LocalStorage() }
+}
+```
 
 ## Les tests
 
+Coder c'est bien, mais coder sans tester c'est un peu comme faire du vélo sans les mains, c'est amusant, mais ça peut faire mal.
+
+Pour tester notre application, nous allons devoir écrire des tests. Cette partie est intégrée dans `ComposePlugin`, pour ça nous allons devoir dans un premier temps modifier notre fichier `build.gradle.kts` pour y ajouter la partie `commonTest` dans le block `sourceSet` :
+
+```kotlin
+sourceSets {
+    // Reste de votre code
+
+    commonTest.dependencies {
+        implementation(kotlin("test"))
+        @OptIn(ExperimentalComposeLibrary::class)
+        implementation(compose.uiTest)
+
+        implementation(libs.kotlin.test)
+        implementation(libs.kotlin.test.junit)
+        implementation(libs.junit)
+        implementation(libs.androidx.test.junit)
+        implementation(libs.ktor.client.mock)
+    }
+
+    // Reste de votre code
+}
+```
+
+Après avoir synchronisé votre projet, vous avez maintenant accès au test unitaire. Avant de continuer, vous allez devoir créer les dossiers dans votre projet :
+
+![Dossiers](./res/commonTest-1.png)
+![Dossiers](./res/commonTest-2.png)
+
+Puis vous pouvez écrire votre premier test :
+
+```kotlin
+class HelloTest {
+    @OptIn(ExperimentalTestApi::class)
+    @Test
+    fun `Button should trigger click`() = runComposeUiTest {
+        val clicked = mutableStateOf(false)
+
+        setContent {
+            HelloScreen {
+                clicked.value = true
+            }
+        }
+
+        onNodeWithTag("button").performClick()
+        assertTrue { clicked.value }
+    }
+}
+```
+
+Pour que ce code fonctionne, vous devez modifier très légèrement votre composant `HelloScreen`, pour ajouter un tag à votre bouton. Ajouter `Modifier.testTag("button")` à votre bouton.
+
+Dans mon cas, voici le résultat du bouton :
+
+```kotlin
+Button(modifier = Modifier.testTag("button"), onClick = onClick) {
+    Text("Go back")
+}
+```
+
+![Test](./res/run-test.png)
+
+::: tip Remarque
+
+Pour l'instant seulement les tests de type Desktop sont disponibles. Les tests de type Android sont en cours de développement.
+
+:::
+
+C'est à vous, je vous laisse écrire d'avantage de test pour votre application.
+
 ## L'intégration continue
+
+Et pour terminer en beauté, voici un script Gitlab-CI pour lancer vos tests et générer vos APK :
+
+```yaml
+image: mingc/android-build-box:latest
+
+# TEST
+Test:
+  stage: test
+  script:
+    - ./gradlew desktopTest
+  artifacts:
+    when: always
+    paths:
+      - composeApp/build/test-results/desktopTest/
+    expire_in: 1 month
+    reports:
+      junit: composeApp/build/test-results/desktopTest/TEST-*.xml
+  tags:
+    - pmw
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# BUILD
+AndroidAppStaging:
+  interruptible: true
+  stage: build
+  when: manual
+  tags:
+    - pmw
+  script:
+    - ./gradlew :composeApp:assembleDebug
+  artifacts:
+    paths:
+      - composeApp/build/outputs/apk/**/**/*.apk
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# DEPLOY
+LinuxPackageApplication:
+  interruptible: true
+  allow_failure: true
+  stage: deploy
+  when: manual
+  tags:
+    - pmw
+  script:
+    # - ./gradlew :composeApp:packageUberJarForCurrentOS
+    - apt-get update -y
+    - apt-get install -y fakeroot
+    - ./gradlew :composeApp:packageDeb
+  artifacts:
+    paths:
+      - ./composeApp/build/compose/binaries/main/deb/*.deb
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+WindowsPackageApplication:
+  interruptible: true
+  stage: deploy
+  when: manual
+  tags:
+    - windows
+  script:
+    - ./gradlew :composeApp:packageMsi
+  artifacts:
+    paths:
+      - ./composeApp/build/compose/binaries/**/*.msi
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+bundleAndroidRelease:
+  interruptible: true
+  stage: deploy
+  tags:
+    - pmw
+  script:
+    - ./gradlew :composeApp:signReleaseBundle
+  artifacts:
+    paths:
+      - composeApp/build/outputs/bundle/release/*.aab
+    expire_in: 1 week
+  when: manual
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+```
+
+## Conclusion
+
+C'était un long tutoriel, mais je pense que nous avons vu l'essentiel pour créer une application Compose Multiplateform. Nous avons vu comment :
+
+- Créer une application Compose Multiplateform.
+- Gérer la navigation.
+- Gérer les états.
+- Gérer les appels réseau.
+- Gérer les données sur le téléphone.
+- Tester notre application.
+- Générer nos APK.
+
+Vous avez maintenant toutes les clés en main pour créer votre application Compose Multiplateform. Si vous avez des questions, n'hésitez pas ;).
