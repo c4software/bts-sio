@@ -358,7 +358,7 @@ Avant de continuer notre exploration, je vous propose de basculer certaines dép
 
 ```
 compose = "1.6.2"
-compose-plugin = "1.6.0-rc02"
+compose-plugin = "1.6.0-beta02"
 ```
 
 Et également ajouter quelques dépendances :
@@ -833,6 +833,10 @@ Keep it simple comme dirais l'autre…
 
 :::
 
+### C'est à vous
+
+Avec les éléments que nous avons vus. Je vous propose de modifier votre application pour ajouter la fameuse Caméra. Vous pouvez utiliser la librairie [CameraX](https://developer.android.com/training/camerax) pour Android, et pour iOS, vous pouvez utiliser la librairie [AVFoundation](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture).
+
 ### Les ressources
 
 Comme pour le code, j'ai envie de dire que les ressources doivent être les plus communes possibles ! J'ai bien l'impression que c'est la même chose pour JetBrain, les ressources sont en effet centralisées dans le dossier `composeApp/src/commonMain/resources`.
@@ -863,9 +867,18 @@ val leTexte = stringResource(Res.string.dialog_network_confirmation_title)
 
 :::
 
-### C'est à vous
+## Expérimenter les ressources
 
-Avec les éléments que nous avons vus. Je vous propose de modifier votre application pour ajouter la fameuse Caméra. Vous pouvez utiliser la librairie [CameraX](https://developer.android.com/training/camerax) pour Android, et pour iOS, vous pouvez utiliser la librairie [AVFoundation](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture).
+Pour tester les ressources, je vous propose d'ajuster votre application pour y inclure des éléments graphiques et également une traduction des textes, dans mon cas l'application ressemble à :
+
+![Ressources](./res/ressources-app.png)
+
+Pour réaliser ces modifications, j'ai ajouté les éléments suivants :
+
+- Un fichier `strings.xml` dans le dossier `commonMain/composeResources/values`
+- Un fichier `logo_playmoweb.png` dans le dossier `commonMain/composeResources/drawable`
+
+C'est à vous de jouer !
 
 ## `precompose`
 
