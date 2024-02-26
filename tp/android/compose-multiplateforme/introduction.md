@@ -848,14 +848,18 @@ Voir la documentation officielle pour plus d'informations : <https://www.jetbrai
 Cette partie est en pleine mutation. Dans la version 1.6.0, il est maintenant possible de gérer les ressources de manière presque identique à une application Android classique. Les ressources sont maintenant stockées dans le dossier `commonMain/composeResources` et sont accessibles de la manière suivante :
 
 ```kotlin
-// Pour une migae
+// Pour une image
 val leDrawable = Res.drawable.NOM_DE_LA_RESSOURCE
 
 // Pour un texte (string stocké dans `values/strings.xml`)
 val leTexte = stringResource(Res.string.dialog_network_confirmation_title)
 ```
 
-**Attention**, les `Res.…` ne sont visible qu'après une compilation, car gérée par le plugin Compose Multiplateform.
+**Attention**, les `Res.…` ne sont visible qu'après une compilation, car gérée par le plugin Compose Multiplateform. La gestion des langues est déjà géré par les plateformes, il est donc possible d'utiliser `stringResource` pour récupérer les textes en respectant la langue de l'utilisateur. Exemple :
+
+![Ressources EN](./res/screen_en.png)
+
+![Ressources FR](./res/screen_fr.png)
 
 :::
 
