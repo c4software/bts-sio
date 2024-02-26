@@ -1,6 +1,6 @@
 # Compose Multiplateform
 
-Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multiplatform permet de créer des applications multip-plateforme. Nous nous intéresserons notamment aux différences avec le développement d'applications natives et plus particulièrement l'état d'esprit à adopter pour développer des applications Multiplatforms de manière efficace.
+Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multiplatform permet de créer des applications multi-plateforme. Nous nous intéresserons notamment aux différences avec le développement d'applications natives et plus particulièrement l'état d'esprit à adopter pour développer des applications Multiplatforms de manière efficace.
 
 ::: details Sommaire
 [[toc]]
@@ -8,9 +8,9 @@ Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multi
 
 ## Objectifs
 
-- Comprendre les enjeux du développement multip-plateforme.
-- Découvrir les outils de JetBrains pour le développement multip-plateforme.
-- Comprendre les différences entre le développement multip-plateforme et le développement natif.
+- Comprendre les enjeux du développement multi-plateforme.
+- Découvrir les outils de JetBrains pour le développement multi-plateforme.
+- Comprendre les différences entre le développement multi-plateforme et le développement natif.
 
 ## Prérequis
 
