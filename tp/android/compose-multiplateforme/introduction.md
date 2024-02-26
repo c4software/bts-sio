@@ -843,6 +843,22 @@ Jusqu'à la version 1.6.0, les ressources étaient très librement gérées, mai
 
 Voir la documentation officielle pour plus d'informations : <https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-images-resources.html>
 
+::: danger Remarque
+
+Cette partie est en pleine mutation. Dans la version 1.6.0, il est maintenant possible de gérer les ressources de manière presque identique à une application Android classique. Les ressources sont maintenant stockées dans le dossier `commonMain/composeResources` et sont accessibles de la manière suivante :
+
+```kotlin
+// Pour une migae
+val leDrawable = Res.drawable.NOM_DE_LA_RESSOURCE
+
+// Pour un texte (string stocké dans `values/strings.xml`)
+val leTexte = stringResource(Res.string.dialog_network_confirmation_title)
+```
+
+**Attention**, les `Res.…` ne sont visible qu'après une compilation, car gérée par le plugin Compose Multiplateform.
+
+:::
+
 ### C'est à vous
 
 Avec les éléments que nous avons vus. Je vous propose de modifier votre application pour ajouter la fameuse Caméra. Vous pouvez utiliser la librairie [CameraX](https://developer.android.com/training/camerax) pour Android, et pour iOS, vous pouvez utiliser la librairie [AVFoundation](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture).
