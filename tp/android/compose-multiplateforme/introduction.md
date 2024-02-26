@@ -1468,6 +1468,14 @@ Vous noterez que nous n'avons pas écrit de code spécifique à chaque plateform
 
 :::
 
+## Mise en pratique
+
+Maintenant que nous avons vu les bases. Je vous propose de mettre en application ce que nous avons vu en créant une nouvelle vue qui va afficher une carte Google Maps / Apple Maps (en fonction de la plateforme).
+
+L'objectif de cette vue est d'avoir une interface commune (filtres, actions, etc.), mais un fond de carte différent en fonction de la plateforme. Cette carte doit posséder des marqueurs (en utilisant une API) et doit réagir à des événements (clic sur un marqueur) pour afficher des informations complémentaires.
+
+Je vous propose d'intégrer les données en provenance de : <https://angersloiremetropole.opendatasoft.com/explore/dataset/info-travaux/api/>
+
 ## Sauvegarder les données sur le téléphone
 
 Pour sauvegarder des données sur le téléphone, nous allons devoir écrire du code spécifique à chaque plateforme. Pour ça nous allons utiliser à nouveau les mots clés `expect` et `actual`.
