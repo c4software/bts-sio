@@ -1224,6 +1224,43 @@ Bravo !
 
 <iframe src="https://giphy.com/embed/l46Cd4qNHmnDI8Hks" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
+## iOS
+
+Éditer le fichier `iosApp/iosApp/iOSApp.swift` :
+
+```swift
+import ComposeApp
+
+import SwiftUI
+import ComposeApp
+
+extension Color {
+    static let mainBackground: Color = Color(
+        red: 2.0 / 255.0,
+        green: 6.0 / 255.0,
+        blue: 23.0 / 255.0
+    )
+}
+
+@main
+struct iOSApp: App {
+    init() {
+        KoinKt.setupKoin()
+    }
+
+ var body: some Scene {
+    WindowGroup {
+        ZStack {
+            Color.mainBackground.ignoresSafeArea()
+            ContentView()
+    }
+  }
+ }
+}
+```
+
+Votre application est maintenant prête à utiliser Koin.
+
 ### Des spécificités par plateforme
 
 Dans notre partie commune, nous avons déclaré une fonction `platformSpecificModule` qui va permettre de charger les modules spécifiques à chaque plateforme. Nous allons maintenant l'implémenter dans chaque plateforme.
