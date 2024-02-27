@@ -458,8 +458,9 @@ actual fun ScanScreen() {
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth().testTag("manualButton"),
                 onClick = {},
-                text = "Enter the code manually"
-            )
+            ) {
+                Text("Enter the code manually")
+            }
         }
     }
 }
