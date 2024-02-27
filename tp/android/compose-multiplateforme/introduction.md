@@ -1604,7 +1604,7 @@ actual class LocalStorage {
     }
 
     actual fun clear() {
-        userDefaults.dictionaryRepresentation.keys.forEach {
+        userDefaults.dictionaryRepresentation().keys.filterNotNull().map { it as String }.forEach {
             userDefaults.removeObjectForKey(it)
         }
     }
