@@ -448,13 +448,7 @@ actual fun ScanScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.weight(1f))
-            Image(
-                modifier = Modifier.testTag("scanArea"),
-                painter = painterResource(DrawableResource("drawable/scan_area.xml")),
-                contentDescription = "Scan Area"
-            )
-            Spacer(modifier = Modifier.weight(1f))
-
+            
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth().testTag("manualButton"),
                 onClick = {},
@@ -493,19 +487,12 @@ fun ScanScreen() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.weight(1f))
-            Image(
-                modifier = Modifier.testTag("scanArea"),
-                painter = painterResource(DrawableResource("drawable/scan_area.xml")),
-                contentDescription = "Scan Area"
-            )
-            Spacer(modifier = Modifier.weight(1f))
-
             OutlinedButton(
                 modifier = Modifier.fillMaxWidth().testTag("manualButton"),
-                onClick = {},
-                text = "Enter the code manually"
-            )
+                onClick = {}
+            ) {
+                Text("Enter the code manually")
+            }
         }
     }
 }
