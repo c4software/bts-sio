@@ -1314,6 +1314,16 @@ Notre DAO va permettre de faire des appels réseau. Pour l'instant nous avons un
 
 Pour l'instant notre `NetworkOperation` n'est pas injecté dans notre application, nous allons devoir le faire.
 
+### Créer le module Koin pour le DAO
+
+Pour créer le module Koin pour le DAO, nous allons créer un fichier `NetworkDaoModule.kt` dans le dossier `di` :
+
+```kotlin
+var networkDaoModule = module {
+    single { NetworkOperation(get()) }
+}
+```
+
 ### Injecter le `NetworkOperation` dans notre application
 
 Pour injecter le `NetworkOperation` dans notre application, nous allons devoir modifier notre fichier `Koin.kt` :
