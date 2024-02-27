@@ -1314,6 +1314,14 @@ Notre DAO va permettre de faire des appels réseau. Pour l'instant nous avons un
 
 Pour l'instant notre `NetworkOperation` n'est pas injecté dans notre application, nous allons devoir le faire.
 
+### Ajouter la permission Internet
+
+Pour que notre application puisse faire des appels réseau, nous allons devoir ajouter la permission Internet dans notre fichier `AndroidManifest.xml` :
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
 ### Créer le module Koin pour le DAO
 
 Pour créer le module Koin pour le DAO, nous allons créer un fichier `NetworkDaoModule.kt` dans le dossier `di` :
@@ -1378,10 +1386,6 @@ Pourquoi avons-nous créé une interface `IMainViewModel` ? C'est une très bonn
 Pour injecter le ViewModel dans notre application, nous allons devoir modifier notre fichier `Koin.kt` :
 
 ```kotlin
-var daoModule = module {
-    single { NetworkOperation(get()) }
-}
-
 val appModule = module {
     factory { MainViewModel(get()) }
 }
