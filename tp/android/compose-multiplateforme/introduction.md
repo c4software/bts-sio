@@ -1522,22 +1522,22 @@ Grâce à ces deux éléments, nous avons défini les règles que chaque platefo
 Pour Android, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
 
 ```kotlin
-actual class LocalStorage(private val context: Context) {
+actual open class LocalStorage(private val context: Context): ILocalStorage {
     private val sharedPreferences = context.getSharedPreferences("app", Context.MODE_PRIVATE)
 
-    actual fun save(key: String, value: String) {
+    actual override fun save(key: String, value: String) {
         sharedPreferences.edit().putString(key, value).apply()
     }
 
-    actual fun get(key: String): String {
+    actual override fun get(key: String): String {
         return sharedPreferences.getString(key, "") ?: ""
     }
 
-    actual fun remove(key: String) {
+    actual override fun remove(key: String) {
         sharedPreferences.edit().remove(key).apply()
     }
 
-    actual fun clear() {
+    actual override fun clear() {
         sharedPreferences.edit().clear().apply()
     }
 }
@@ -1554,22 +1554,22 @@ actual fun storageModule() = module {
 Pour Desktop, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
 
 ```kotlin
-actual class LocalStorage {
+actual open class LocalStorage: ILocalStorage {
     private val preferences = Preferences.userRoot().node("app")
 
-    actual fun save(key: String, value: String) {
+    actual override fun save(key: String, value: String) {
         preferences.put(key, value)
     }
 
-    actual fun get(key: String): String {
+    actual override fun get(key: String): String {
         return preferences.get(key, "")
     }
 
-    actual fun remove(key: String) {
+    actual override fun remove(key: String) {
         preferences.remove(key)
     }
 
-    actual fun clear() {
+    actual override fun clear() {
         preferences.keys().forEach {
             preferences.remove(it)
         }
@@ -1588,22 +1588,22 @@ actual fun storageModule() = module {
 Pour iOS, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
 
 ```kotlin
-actual class LocalStorage {
+actual open class LocalStorage: ILocalStorage {
     private val userDefaults = NSUserDefaults.standardUserDefaults
 
-    actual fun save(key: String, value: String) {
+    actual override fun save(key: String, value: String) {
         userDefaults.setObject(value, key)
     }
 
-    actual fun get(key: String): String {
+    actual override fun get(key: String): String {
         return userDefaults.stringForKey(key) ?: ""
     }
 
-    actual fun remove(key: String) {
+    actual override fun remove(key: String) {
         userDefaults.removeObjectForKey(key)
     }
 
-    actual fun clear() {
+    actual override fun clear() {
         userDefaults.dictionaryRepresentation().keys.filterNotNull().map { it as String }.forEach {
             userDefaults.removeObjectForKey(it)
         }
