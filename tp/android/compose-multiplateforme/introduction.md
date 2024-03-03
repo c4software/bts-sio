@@ -1716,6 +1716,8 @@ Button(modifier = Modifier.testTag("button"), onClick = onClick) {
 }
 ```
 
+Le testTag est similaire à donner un id à un élément sur le Web. Cela va nous permettre de récupérer notre bouton dans notre test afin de lui déclencher des actions (clic, etc.).
+
 ![Test](./res/run-test.png)
 
 ::: tip Remarque
@@ -1725,6 +1727,110 @@ Pour l'instant seulement les tests de type Desktop sont disponibles. Les tests d
 :::
 
 C'est à vous, je vous laisse écrire d'avantage de test pour votre application.
+
+### Tester une vue avec un ViewModel
+
+Pour tester une vue avec un ViewModel, nous allons devoir utiliser un Mock de notre ViewModel. Pour ça, nous allons devoir créer un Mock de notre ViewModel.
+
+Par exemple, pour tester notre `MainScreen`, nous allons devoir créer un Mock de notre `MainViewModel` :
+
+::: details Notre composant MainScreen
+
+```kotlin
+@Composable
+fun MainScreen(
+    viewModel: IMainViewModel,
+    isLoading: Boolean = false,
+    continueAction: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        if (isLoading) {
+            CircularProgressIndicator()
+        }
+
+        Button(
+            modifier = Modifier.testTag("continueButton"),
+            onClick = continueAction
+        ) {
+            Text("Go to second screen")
+        }
+
+        Button(
+            modifier = Modifier.testTag("getHelloButton"),
+            onClick = { viewModel.getHello() }
+        ) {
+            Text("Get Hello")
+        }
+    }
+}
+```
+
+:::
+
+```kotlin
+// L'interface définit les méthodes de notre ViewModel
+interface IMainViewModel {
+    val isLoading: MutableStateFlow<Boolean>
+    fun getHello()
+}
+
+// Dans le cadre de notre test, nous allons créer un Mock de notre ViewModel
+// Nous ajoutons un paramètre `onHello` qui va nous permettre de déclencher un événement
+// Cet événement va nous permettre de tester notre ViewModel (exemple : vérifier que notre méthode `getHello` est bien appelée)
+class MainViewModelMock(onHello: () -> Unit) : IMainViewModel {
+    override val isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    override fun getHello() {
+        onHello()
+    }
+}
+```
+
+Puis dans notre test, nous allons devoir utiliser ce Mock :
+
+```kotlin
+class MainTest {
+
+    @OptIn(ExperimentalTestApi::class)
+    @Test
+    fun `MainScreen continue button should trigger continueAction`() = runComposeUiTest {
+        var clicked = false
+        setContent {
+            MainScreen(
+                viewModel = MainViewModelMock({ clicked = true }),
+                isLoading = false,
+                continueAction = { clicked = true }
+            )
+        }
+
+        onNodeWithTag("continueButton").performClick()
+        assertTrue { clicked }
+    }    
+
+    @OptIn(ExperimentalTestApi::class)
+    @Test
+    fun `MainScreen button should call getHello`() = runComposeUiTest {
+        var clicked = false
+        setContent {
+            MainScreen(
+                viewModel = MainViewModelMock({ clicked = true }),
+                isLoading = false,
+                continueAction = {}
+            )
+        }
+
+        onNodeWithTag("getHelloButton").performClick()
+        assertTrue { clicked }
+    }
+}
+```
+
+Il faut remarquer dans ce tests que nous avons utilisé un instance mocké de notre ViewModel. Cela va nous permettre de tester **uniquement** notre composant, sans tester le ViewModel.
 
 ## L'intégration continue
 
