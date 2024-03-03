@@ -414,6 +414,13 @@ export default [
                         ]
                     },
                     {
+                        text: "Le multiplateforme avec Kotlin",
+                        collapsed: true,
+                        items: [
+                            { text: "Introduction à Kotlin Multiplateforme", link: "/tp/android/compose-multiplateforme/introduction.md" },
+                        ]
+                    },
+                    {
                         text: "Code d'exemple",
                         collapsed: true,
                         items: [
