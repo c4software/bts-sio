@@ -1832,6 +1832,101 @@ class MainTest {
 
 Il faut remarquer dans ce tests que nous avons utilisé un instance mocké de notre ViewModel. Cela va nous permettre de tester **uniquement** notre composant, sans tester le ViewModel.
 
+## L'équivalent des flavors Android (Build Variants)
+
+Il arrive parfois que vous ayez besoin de créer des versions différentes de votre application. Par exemple, une version production, staging, ou encore une version avec des fonctionnalités spécifiques.
+
+Sur Android, nous avons à notre disposition les `flavors` qui vont nous permettre de créer ces versions. Nativement en Compose Multiplateform, nous n'avons pas cette fonctionnalité. Mais nous pouvons la recréer avec une librairie tierce.
+
+Pour cela, nous allons utiliser la librairie [`BuildKonfig`](https://github.com/yshrsmz/BuildKonfig) qui va nous permettre de créer des `Build Variants` pour notre application. Son usage est très proche de celui des `flavors` Android (voir identique) :
+
+- Une configuration par défaut.
+- Une configuration par « flavor » (`staging`, `production`, `dev`, etc).
+- Une configuration par plateforme (`android`, `desktop`, `ios`).
+
+La librarie est un plugin Gradle, pour l'ajouter, il faut modifier votre fichier `gradle/libs.versions.toml` :
+
+```toml
+[versions]
+buildKonfig = "0.15.1"
+
+[plugins]
+buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig" }
+```
+
+Puis dans votre fichier `build.gradle.kts` :
+
+```kotlin
+plugins {
+    // Le reste de vos plugins
+    alias(libs.plugins.buildKonfig)
+}
+
+Un petit sync de votre projet, et vous avez maintenant accès à la librairie `BuildKonfig`. Pour l'utiliser, vous allez devoir modifier votre fichier `build.gradle.kts` pour y **ajouter** la configuration de votre application :
+
+```kotlin
+// Le reste de votre fichier
+
+buildkonfig {
+    packageName = "com.arcure.bxt5.config.client"
+
+    defaultConfigs {
+        buildConfigField(FieldSpec.Type.STRING, "HASURA_AUTH_ENDPOINT", "https://ceci-est-un-endpoint-par-defaut")
+        buildConfigField(FieldSpec.Type.STRING, "HASURA_ENDPOINT", "https://ceci-est-un-endpoint-par-defaut/v1/graphql")
+    }
+
+    defaultConfigs("dev") {
+        buildConfigField(FieldSpec.Type.STRING, "HASURA_AUTH_ENDPOINT", "https://ceci-est-un-endpoint-dev")
+        buildConfigField(FieldSpec.Type.STRING, "HASURA_ENDPOINT", "https://ceci-est-un-endpoint-dev/v1/graphql")
+    }
+
+    defaultConfigs("release") {
+        buildConfigField(FieldSpec.Type.STRING, "HASURA_AUTH_ENDPOINT", "https://ceci-est-un-endpoint-production")
+        buildConfigField(FieldSpec.Type.STRING, "HASURA_ENDPOINT", "https://ceci-est-un-endpoint-production/v1/graphql")
+    }
+}
+
+// Le reste de votre fichier
+```
+
+Dans cet exemple, nous avons déclaré une configuration par défaut, puis une configuration `dev`. Vous pouvez ajouter autant de configuration que vous le souhaitez.
+
+L'application utilise de base la configuration par défaut, mais vous pouvez changer la configuration en éditant votre fichier `gradle.properties` :
+
+```properties
+buildkonfig.flavor=dev
+```
+
+Il est également possible de changer la configuration directement lors du build :
+
+```shell
+./gradlew :composeApp:signReleaseBundle -Pbuildkonfig.flavor=release
+```
+
+::: tip Remarque
+
+Ici avec cette commande gradlew, nous allons créer une version de notre application avec la configuration `release`. L'application produite sera au format `AAB` (Android App Bundle). C'est un format à privilégier pour la publication sur le Play Store.
+
+:::
+
+À partir de maintenant, vous avez accès depuis votre application à la configuration de votre application (après un build) :
+
+```kotlin
+val hasuraAuthEndpoint = BuildKonfig.HASURA_AUTH_ENDPOINT
+val hasuraEndpoint = BuildKonfig.HASURA_ENDPOINT
+```
+
+Évidemment, il est possible d'aller plus loin, pour cela je vous invite à consulter [la documentation de la librairie](https://github.com/yshrsmz/BuildKonfig).
+
+::: tip C'est à vous
+
+Je vous laisse modifier votre application pour utiliser cette librairie. Pour tester, nous allons :
+
+- Ajouter l'information du type de configuration dans notre application puis l'afficher dans notre application.
+- Ajouter un titre différent en fonction de la configuration.
+
+:::
+
 ## L'intégration continue
 
 Et pour terminer en beauté, voici un script Gitlab-CI pour lancer vos tests et générer vos APK :
