@@ -114,6 +114,55 @@ _Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-
 Choisir son OS pour un développeur est une question de **préférence** et de **confort** mais aussi en fonction du langage de programmation **ciblé**.
 :::
 
+## La ligne de commande
+
+La ligne de commande est un outil très puissant. Elle permet de faire des choses très rapidement, très efficacement et (souvent) très simplement.
+
+Quelques commandes de base :
+
+- `ls` : liste les fichiers et dossiers du répertoire courant.
+- `cd` : change le répertoire courant.
+- `pwd` : affiche le répertoire courant.
+- `mkdir` : crée un répertoire.
+- `touch` : crée un fichier.
+- `rm` : supprime un fichier ou un répertoire.
+- `cp` : copie un fichier ou un répertoire.
+- `mv` : déplace un fichier ou un répertoire.
+
+::: tip La liste est non exhaustive
+
+Il existe beaucoup d'autres commandes. Mais celles-ci sont les plus utilisées. Vous pouvez les retrouver sur le site [Linux Command](https://linuxcommand.org/).
+
+:::
+
+### Astuces
+
+- `tab` : complète le nom d'un fichier ou dossier.
+- `ctrl + r` : recherche dans l'historique des commandes.
+- `!!` : répète la dernière commande.
+
+### L'édition de fichier
+
+Il est possible d'éditer un fichier en ligne de commande. Pour cela, vous pouvez utiliser la commande `nano` :
+
+```bash
+nano <fichier>
+```
+
+Mais je vous conseille d'utiliser `vim` à la place. `vim` est un éditeur de texte très puissant.
+
+```bash
+vim <fichier>
+```
+
+Pour utiliser `vim`, il suffit juste de connaitre quelques commandes :
+
+- `i` : mode insertion.
+- `esc` : sort du mode insertion.
+- `:w` : enregistre.
+- `:q` : quitte.
+- `:wq` : enregistre et quitte.
+
 ## Qu'est-ce qu'un serveur ?
 
 Un serveur est un ordinateur qui fournit des services à d'autres ordinateurs. Il peut s'agir d'un serveur Web, d'un serveur de base de données, d'un serveur de fichiers, etc.

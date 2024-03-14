@@ -213,6 +213,54 @@ Avec par exemple Proxmox (hyperviseur)
 - `chmod` : change les permissions.
 - `chown` : change le propriétaire.
 
+---
+
+Les droits sont composés de trois parties :
+
+- Les droits du propriétaire.
+- Les droits du groupe.
+- Les droits des autres.
+
+---
+
+Chaque partie est composée de trois caractères :
+
+- `r` : lecture
+- `w` : écriture
+- `x` : exécution
+
+---
+
+Par exemple, si vous avez les droits suivants sur un fichier :
+
+```bash
+-rwxr-xr-x
+```
+
+---
+
+Cela signifie que vous avez les droits suivants :
+
+- Vous avez les droits de lecture, d'écriture et d'exécution.
+- Le groupe a les droits de lecture et d'exécution.
+- Les autres ont les droits de lecture et d'exécution.
+
+---
+
+Pour changer les droits d'un fichier, vous pouvez utiliser la commande `chmod` :
+
+```bash
+chmod <droits> <fichier>
+```
+
+Par exemple, pour donner les droits de lecture et d'exécution au groupe et aux autres, vous pouvez utiliser la commande suivante :
+
+```bash
+chmod go+rx <fichier>
+```
+
+---
+
 ```sh
 chmod -ugo+rwx fichier
 chown vbrosseau:www-data /var/www/html
@@ -226,7 +274,9 @@ chown vbrosseau:www-data /var/www/html
 - `ctrl + r` : recherche dans l'historique des commandes.
 - `!!` : répète la dernière commande.
 
-```
+Exemple :
+
+```bash
 sudo !!
 ```
 
