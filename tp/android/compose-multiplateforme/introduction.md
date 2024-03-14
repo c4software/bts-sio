@@ -98,7 +98,7 @@ fun Counter() {
 
 Dans cet exemple, nous avons un composant `Counter` qui affiche un bouton et un texte. Le texte affiche le nombre de fois que le bouton a été cliqué. Le nombre de clics est stocké dans une variable `count` qui est un état mutable. Lorsque le bouton est cliqué, la variable `count` est incrémentée.
 
-Il est bien évidemment possible de créer des composants bien plus complexes, mais ces exemples permettent de comprendre la manière dont Compose fonctionne. Vous en voulez plus ? 
+Il est bien évidemment possible de créer des composants bien plus complexes, mais ces exemples permettent de comprendre la manière dont Compose fonctionne. Vous en voulez plus ?
 
 ```kotlin
 @Composable
@@ -144,7 +144,7 @@ Suffisant de blabla, rentrons dans le dur !
 
 ## L'architecture
 
-Vue que nous avons tous des bases différentes sur Compose, je me permets de vous faire un petit rappel sur les bénéfices de Compose et d'un développement à base de composants réutilisable. Dans un premier temps, intéressons-nous à un composant très important le `Scaffold`. 
+Vue que nous avons tous des bases différentes sur Compose, je me permets de vous faire un petit rappel sur les bénéfices de Compose et d'un développement à base de composants réutilisable. Dans un premier temps, intéressons-nous à un composant très important le `Scaffold`.
 
 ```kotlin
 @Composable
@@ -1067,7 +1067,7 @@ Je vous laisse modifier votre application pour utiliser cette enum. Puis tester 
 
 Pourquoi est-ce intéressant de définir un point d'entrée différent par plateforme ? C'est une question que vous pouvez vous poser, et c'est une très bonne question.
 
-Dans notre code, pour l'instant nous arrivons sur la vue « MainRoute », c'est bien, mais si là je vous demandais que notre route principale soit la vue « ScanRoute » ? 
+Dans notre code, pour l'instant nous arrivons sur la vue « MainRoute », c'est bien, mais si là je vous demandais que notre route principale soit la vue « ScanRoute » ?
 
 La particularité de la vue ScanRoute est qu'elle n'est pas disponible sur Desktop (sauf si vous avez implémenté la caméra sur Desktop). Dans ce cas, nous devons rendre notre route principale dynamique en fonction de la plateforme. Et c'est ici que les mots clés `expect` et `actual` vont nous aider.
 
@@ -1844,7 +1844,7 @@ Pour cela, nous allons utiliser la librairie [`BuildKonfig`](https://github.com/
 - Une configuration par « flavor » (`staging`, `production`, `dev`, etc).
 - Une configuration par plateforme (`android`, `desktop`, `ios`).
 
-La librarie est un plugin Gradle, pour l'ajouter, il faut modifier votre fichier `gradle/libs.versions.toml` :
+La librairie est un plugin Gradle, pour l'ajouter, il faut modifier votre fichier `gradle/libs.versions.toml` :
 
 ```toml
 [versions]

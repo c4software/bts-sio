@@ -165,6 +165,14 @@ _Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-
 
 ---
 
+## Et pourquoi pas les trois ?
+
+C'est possible via la virtualisation.
+
+Avec par exemple Proxmox (hyperviseur)
+
+---
+
 <fieldset>
   <legend>Définition</legend>
   <p>
@@ -200,19 +208,50 @@ _Source: [fossbytes.com](https://fossbytes.com/windows-still-the-leading-os-for-
 
 ---
 
+## Les permissions
+
+- `chmod` : change les permissions.
+- `chown` : change le propriétaire.
+
+```sh
+chmod -ugo+rwx fichier
+chown vbrosseau:www-data /var/www/html
+```
+
+---
+
 ## Quelques astuces
 
 - `tab` : complète le nom d'un fichier ou dossier.
 - `ctrl + r` : recherche dans l'historique des commandes.
 - `!!` : répète la dernière commande.
 
+```
+sudo !!
+```
+
 ---
 
-## Et pourquoi pas les trois ?
+## Les éditeurs (en ligne de commande)
 
-C'est possible via la virtualisation.
+- `vim` : Éditeur de texte.
+- `nano` : Éditeur de texte.
 
-Avec par exemple Proxmox.
+---
+
+## Vous connaissez Nano… Mais Vim ?
+
+- `i` : mode insertion.
+- `esc` : sort du mode insertion.
+- `:w` : enregistre.
+- `:q` : quitte.
+- `:wq` : enregistre et quitte.
+
+---
+
+Certains l'adoreront, d'autres le détesteront.
+
+C'est un choix personnel, comme l'OS. Mais en ligne de commande, c'est un outil puissant (et **très** rapide)
 
 ---
 
