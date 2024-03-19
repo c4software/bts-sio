@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr" v-scope v-cloak @vue:mounted="init">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat avec Ye {{messageCount}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        .loader {
+            width: 55px;
+            height: 30px;
+            background-color: #f1f0f0;
+            margin: auto;
+            border-radius: 15px;
+            padding: 0 10px 8px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+        }
+
+        .loader .dot {
+            display: inline-block;
+            background-color: #90949c;
+            border-radius: 50%;
+            width: 7px;
+            height: 7px;
+            animation: jump 1.5s linear infinite;
+        }
+
+        .loader .dot:nth-of-type(2) {
+            animation-delay: 0.1s;
+        }
+
+        .loader .dot:nth-of-type(3) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+
+            18% {
+                transform: translateY(-7px);
+            }
+
+            36%,
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-400 font-sans leading-normal tracking-normal">
+
+    <!--Nav-->
+    <nav class="bg-gray-800 p-2 mt-0 fixed w-full z-10 top-0">
+        <div class="container mx-auto flex flex-wrap items-center">
+            <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
+                <a class="text-white no-underline hover:text-white hover:no-underline" href="#">
+                    <span class="text-2xl pl-2"><i class="em em-spock-hand"></i> Ye</span>
+                </a>
+            </div>
+            <div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
+                <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
+                    <li class="mr-3">
+                        <a class="inline-block py-2 px-4 text-white no-underline" href="#">Accueil</a>
+                    </li>
+                    <li class="mr-3">
+                        <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">À propos</a>
+                    </li>
+                    <li class="mr-3">
+                        <div class="flex items-center">
+                            <input @change="saveState()" v-model="llm" id="checked-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="checked-checkbox" class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4">LLM</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--Container-->
+    <div class="container shadow-lg mx-auto bg-white mt-[8em] w-130 h-[20rem] overflow-auto p-8 scroll-smooth" id="chat">
+
+        <div class="chat-message" v-for="current in messages">
+            <div class="flex items-end justify-end my-3" v-if="current.user == 'valentin'">
+                <div class="flex flex-col space-y-2 text-xs  max-w-[60%] mx-2 order-1 items-end">
+                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white">{{current.content}}</span></div>
+                </div>
+                <img :src="current.pic" title="Valentin" class="w-6 h-6 rounded-full order-2">
+            </div>
+
+            <div class="flex items-end my-3" v-else-if="current.user == 'kanye'">
+                <div class="flex flex-col space-y-2 text-xs  max-w-[60%] mx-2 order-2 items-start">
+                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600 whitespace-pre-line" v-html="current.content"></span></div>
+                </div>
+                <img :src="current.pic" class="w-6 h-6 rounded-full order-2" title="Kanye">
+            </div>
+        </div>
+
+        <div class="loader" v-if="fetching">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <div class="container shadow-lg mx-auto bg-white p-8 w-130">
+        <div class="border-t-2 border-gray-200 mt-4 pt-4 mb-2 sm:mb-0">
+            <div class="relative flex">
+                <input type="text" v-model="message" placeholder="Votre message" @keyup.enter="addMessage()" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3 pr-[50px]">
+                <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
+                    <button @click="addMessage()" type="button" class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 transform rotate-90">
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div v-if="llm" class="container shadow-lg mx-auto bg-white w-130 mt-8 p-8">
+        <p class="mb-4">
+            Afin d'activer l'API de Ollama, vous devez démarrer le serveur avec les paramètres suivants :
+        </p>
+        <code>
+            <pre class="bg-gray-800 p-3 text-white overflow-auto">OLLAMA_ORIGINS=https://cours.brosseau.ovh OLLAMA_HOST=127.0.0.1:11435 ollama serve</pre>
+        </code>
+
+        <p class="mt-4">
+            Configuration du modèle & du prompt initial :
+        </p>
+
+        <input @change="saveState()" v-model="model" type="text" placeholder="Modèle" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
+
+        <textarea rows="5" @input="saveState()" v-model="systemPrompt" type="text" placeholder="Prompt initial" class="mt-4 w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 py-3">
+        </textarea>
+
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/petite-vue?module'
+
+        const systemPrompt = `You are Kanye West, the famous singer. You are chatting with the user via the Assistant WebSite. This means most of the time your lines should be a sentence or two, unless the user's request requires reasoning or long-form outputs.`;
+
+        createApp({
+            // messages est un tableau d'objets du type:
+            // {role: "system"|"user"|"assistant", content: "string"}
+            messages: [],
+            message: "",
+            fetching: false,
+
+            llm: window.localStorage.getItem("chat:llm") == "true" ? true : false,
+
+            systemPrompt: window.localStorage.getItem("llm:systemPrompt") ? window.localStorage.getItem("llm:systemPrompt") : systemPrompt,
+            model: window.localStorage.getItem("llm:model") ? window.localStorage.getItem("llm:model") : "zephyr",
+
+            get messageCount() {
+                this.messages.length;
+            },
+
+            init() {
+                this.messages = [{
+                    role: "system",
+                    content: this.systemPrompt
+                }];
+
+                if(!this.llm){
+                    this.addKanye("Yo what's up bro ?!");
+                    this.fetchKanye();
+                }
+            },
+            
+            saveState() {
+                window.localStorage.setItem("chat:llm", this.llm ? "true" : "false");
+                window.localStorage.setItem("llm:model", this.model);
+                window.localStorage.setItem("llm:systemPrompt", this.systemPrompt);
+
+                this.init();
+            },
+
+            ollamaSendMessage() {
+                fetch("http://127.0.0.1:11435/api/chat", {
+                    method: "POST",
+                    body: JSON.stringify({ model: this.model, messages: this.messages.map(it => ({role: it.role, content: it.content})) }),
+                }).then((response) => {
+                    this.fetching = false;
+                    const reader = response.body.getReader();
+                    this.addKanye(""); // AJout d'un message vide pour le temps de la génération
+
+                    reader.read().then((result) => this.ollamaReader(reader, result));
+                });
+            },
+
+            ollamaReader(reader, result) {
+                // On récupère le résultat en provenance du serveur
+                const { done, value } = result;
+
+                const textChunk = new TextDecoder().decode(value);
+                const decoded = JSON.parse(textChunk);
+
+                if(decoded.done){
+                    // Génération terminée
+                    return;
+                }
+
+                this.messages[this.messages.length - 1].content += decoded.message.content;
+                this.scrollBottom();
+
+                // Pas encore done, on continue la lecture
+                reader.read().then((result) => this.ollamaReader(reader, result));
+            },
+
+            scrollBottom() {
+                this.$nextTick().then(() => {
+                    const chat = document.getElementById("chat");
+                    chat.scrollTop = chat.scrollHeight + 1000;
+                });
+            },
+
+            addMessage() {
+                this.messages.push({ content: this.message, user: "valentin", role: "user", pic: "https://pbs.twimg.com/profile_images/3762199551/9fdd72f73c3eb3c974b004e83f7b4623_normal.jpeg" });
+                this.fetching = true;
+
+                if (!this.llm) {
+                    setTimeout(this.fetchKanye, 1000);
+                } else {
+                    this.ollamaSendMessage();
+                }
+
+                this.message = "";
+                this.scrollBottom();
+            },
+
+            addKanye(message) {
+                const pic = "https://images.rtl.fr/~c/770v513/rtl/www/1461751-kanye-west-s-est-rebaptise-ye-pour-des-motifs-personnels.jpg";
+                this.messages.push({ content: message, user: "kanye", role: "assistant", pic })
+                this.scrollBottom();
+            },
+
+            fetchKanye() {
+                this.fetching = true;
+
+                fetch("https://api.kanye.rest/")
+                    .then((result) => result.json())
+                    .then((res) => this.addKanye(res.quote))
+                    .finally(() => this.fetching = false)
+            },
+        }).mount()
+    </script>
+
+</body>
+
+</html>

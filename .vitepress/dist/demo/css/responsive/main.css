@@ -1,0 +1,12 @@
+/** Valeur par defaut **/
+body {
+  background: red;
+}
+
+/** Valeur pour un viewport <= 800px **/
+@media (max-width: 800px) {
+  body {
+    background: blue;
+    color: white;
+  }
+}

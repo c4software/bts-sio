@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>Présentation - Valentin Brosseau</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/beige.css">
+	<link rel="stylesheet" href="css/custom.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown="" id="section"></section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+
+	<script>
+		// Load custom slides from uri.
+		var url = new URL(window.location);
+		var source = url.searchParams.get("source");
+		document.querySelector("#section").setAttribute("data-markdown", "/cours/sources/" + source + "/slides.md");
+		const SAVE_ITEM_STORAGE_KEY = `saved_slides_position_${source}`;
+
+		function savePosition(page) {
+			try {
+				localStorage.setItem(SAVE_ITEM_STORAGE_KEY, event.indexh);
+			} catch (err) { }
+		}
+
+		function restorePosition() {
+			try {
+				const page = localStorage.getItem(SAVE_ITEM_STORAGE_KEY);
+				console.log("Last page loaded was => ", page);
+				if (page) {
+					Reveal.slide(page);
+				}
+			} catch (err) { }
+		}
+
+		// Initialize the Reveal presentation
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			//history: true,
+			fragmentInURL: true,
+			//hash: true,
+
+			keyboard: {
+				40: 'prev',
+				38: 'next',
+				9: function () { Reveal.toggleOverview() }
+			},
+
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+		});
+
+		Reveal.addEventListener('ready', () => {
+			restorePosition();
+
+			Reveal.addEventListener('slidechanged', (event) => {
+				savePosition(event.indexh);
+			});
+		});
+
+		// Change base to the « source » base, to make image, and other link correctly working
+		document.querySelector("head").insertAdjacentHTML("beforeend", "<base href='/cours/sources/" + source + "/'>");
+	</script>
+</body>
+
+</html>

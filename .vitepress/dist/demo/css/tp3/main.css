@@ -1,0 +1,123 @@
+:root {
+  --background: #e8e8e8;
+  --white: white;
+  --color-alt: #fafafa;
+  --background-dark: #161616;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--background);
+}
+
+header {
+  background-image: url("double-bubble-dark.png");
+  color: var(--color-alt);
+}
+
+header > h1 {
+  text-align: center;
+  padding: 70px;
+  margin: 0;
+}
+
+nav {
+  background-color: #161616;
+  text-align: center;
+  padding: 30px;
+}
+
+nav > ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+nav > ul > li {
+  display: inline;
+  padding: 10px;
+}
+
+nav > ul > li > a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+  text-decoration: underline;
+}
+
+section {
+  border-radius: 10px;
+  background-color: var(--white);
+  margin: 20px;
+  padding: 10px;
+}
+
+section > h2 {
+  margin: 0;
+}
+
+section > h2::before {
+  content: " ➡ ";
+}
+
+.article_col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.article_col > article {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--white);
+  width: 400px;
+  text-align: center;
+  transition: box-shadow 1s;
+  box-shadow: 0px 0px 20px 0px var(--background-dark);
+  cursor: pointer;
+}
+
+.article_col > article:hover {
+  box-shadow: 0px 0px 50px 0px rgb(71, 168, 168);
+  color: rgb(71, 168, 168);
+  background: url("double-bubble-outline.png");
+}
+
+article > h3 {
+  font-size: 2rem;
+  margin: 10px;
+}
+
+footer {
+  font-size: smaller;
+  padding: 10px;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  /** Thème sombre de votre mobile / ordinateur **/
+  :root {
+    --background: #000000;
+    --white: rgb(0, 0, 0);
+    --color-alt: #373737;
+    --background-dark: #9d9d9d;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  /** Thème clair de votre mobile / ordinateur **/
+}
+
+@media print {
+  body::before {
+    display: block;
+    content: "Document imprimé depuis le site…";
+  }
+}
