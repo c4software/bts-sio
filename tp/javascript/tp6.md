@@ -476,6 +476,8 @@ D'ailleurs… c'est une bonne idée ! Je vous laisse ajouter le composant « lik
 
 Actuellement il est possible de s'auto-liker. C'est-à-dire que vous pouvez liker votre propre article. Je vous laisse trouver comment interdire cela dans votre API.
 
+Vous pouvez utiliser la méthode `auth('api')->user()->id` pour récupérer l'id de l'utilisateur connecté.
+
 ::: danger L'art du placement
 
 Bien placer son code c'est un peu comme le travail d'un artiste… Un peu à la manière d'un peintre, vous devez placer votre code au bon endroit.
