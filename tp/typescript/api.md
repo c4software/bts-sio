@@ -862,7 +862,7 @@ export { ReaderModel };
 
 Pour que notre code fonctionne, nous avons besoin d'une base de données. Pour cela, nous allons utiliser SQLite, une base de données légère qui fonctionne avec un fichier.
 
-Vous pouvez télécharger le fichier `mydb.sqlite` [ici](/sqlite/mydb.sqlite).
+Vous pouvez télécharger le fichier `mydb.sqlite` [ici](/public/sqlite/mydb.sqlite).
 
 Une fois le fichier téléchargé, **vous devez** le mettre dans le dossier **src** de votre projet.
 
