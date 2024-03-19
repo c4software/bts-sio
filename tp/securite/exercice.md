@@ -6,6 +6,102 @@ Votre application est composée de HTML, CSS, JavaScript et PHP.
 
 La suite de l'exercice vous demandera d'identifier les failles de sécurité et de les corriger.
 
+## Mise en situation
+
+Vous êtes en charge de la correction d'un problème de sécurité. Nous sommes dans la phase d'analyse, vous devez identifier un problème. Dans un premier temps, vous devez analyser les logs d'accès à votre application :
+
+```
+127.0.0.1 - frank [10/Oct/2024:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
+127.0.0.1 - frank [10/Oct/2024:13:55:36 -0700] "GET /favicon.ico HTTP/1.0" 404 209
+192.168.1.1 - - [10/Oct/2024:13:55:36 -0700] "GET /index.html HTTP/1.0" 200 2761
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /search?q=demo HTTP/1.0" 200 512
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /facture?id=8987 HTTP/1.0" 200 512
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /facture?id=8988 HTTP/1.0" 404 512
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /facture?id=8989 HTTP/1.0" 404 512
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /facture?id=8990 HTTP/1.0" 404 512
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /facture?id=8991 HTTP/1.0" 404 512
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /facture?id=8991 HTTP/1.0" 404 512
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /facture?id=8991 HTTP/1.0" 404 512
+192.168.1.4 - - [10/Oct/2024:13:55:36 -0700] "GET /facture?id=8986 HTTP/1.0" 200 512
+192.168.1.2 - - [10/Oct/2024:13:55:36 -0700] "POST /form.php HTTP/1.0" 200 183
+192.168.1.3 - - [10/Oct/2024:13:55:36 -0700] "GET /secret.html HTTP/1.0" 403 289
+```
+
+Avez-vous identifié un problème de sécurité ? Si oui, lequel ?
+
+À partir de l'analyse des logs, vous devez maintenant trouver où se trouve la faille dans le code source de votre application. Pour cela, vous avez à votre disposition les éléments suivants (code source projet Laravel) :
+
+```bash
+ls -l
+app/
+    Console/
+    Exceptions/
+    Http/
+        Controllers/
+            Auth/
+            Controller.php
+            HomeController.php
+            FactureController.php
+            AdminController.php
+            UserController.php
+        Middleware/
+        Kernel.php
+    Providers/
+bootstrap/
+config/
+database/
+public/
+resources/
+routes/
+    api.php
+    web.php
+    server.php
+storage/
+tests/
+```
+
+```php
+<?php
+// Routeur de l'application
+
+Route::get('/', 'HomeController@index');
+Route::get('/search', 'HomeController@index');
+Route::get('/facture', 'FactureController@index');
+Route::get('/admin', 'AdminController@index');
+// …
+Route::get('/admin/users', 'UserController@index');
+```
+
+Quels sont les fichiers à analyser pour trouver la faille de sécurité ?
+
+```php
+<?php
+// FactureController.php
+class FactureController extends Controller
+{
+    public function index(Request $request)
+    {
+        $id = $request->input('id');
+        $facture = Facture::find($id);
+        if ($facture) {
+            return view('facture', ['facture' => $facture]);
+        }
+        return abort(404);
+    }
+
+    private function checkIfUserCanAccessFacture($facture)
+    {
+        return $facture->user_id === Auth::id() 
+    }
+
+    private function throttleUserAccess(){
+        return RateLimiter::for('facture')->hit(Auth::id());
+    }
+}
+```
+
+Modifier l'accès aux factures en utilisant les fonctions à votre disposition afin de corriger le problème de sécurité identifié.
+
 ## Faille 0
 
 Observer les logs d'accès à votre application :
@@ -38,7 +134,6 @@ foreach ($result as $article) {
 }
 ?>
 ```
-
 
 ## Faille 1
 
