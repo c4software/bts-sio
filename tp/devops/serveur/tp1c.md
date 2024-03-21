@@ -114,7 +114,7 @@ ssh-copy-id <username>@<ipaddress>
 ssh-copy-id pi@192.168.1.253
 ```
 
-Rien de plus, à partir de maintenant votre serveur acceptera votre connexion sans vous demander de mot de passe. Pratique non ? (Et surtout très sécurisé)
+Rien de plus, à partir de maintenant votre serveur acceptera votre connexion sans vous demander de mot de passe. Pratique, non ? (Et surtout très sécurisé)
 
 :::
 
@@ -150,10 +150,10 @@ Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisée
 
 À l'aide des commandes vues précédemment, créez une arborescence qui respecte les spécifications suivantes :
 
-- Créez un dossier `vbrosseau` dans le dossier `/home/`.
-- Créez un dossier `tp1` dans le dossier `/home/vbrosseau/`.
-- Créez un fichier `fichier1.md` dans le dossier `/home/vbrosseau/tp1/`. (deux solutions possibles, via `touch` ou via `nano`).
-- Créez un fichier `fichier2.md` dans le dossier `/home/vbrosseau/tp1/`. (deux solutions possibles, via `touch` ou via `nano`).
+- Créez un dossier `restitution` dans le dossier `/home/`.
+- Créez un dossier `tp1` dans le dossier `/home/restitution/`.
+- Créez un fichier `fichier1.md` dans le dossier `/home/restitution/tp1/`. (deux solutions possibles, via `touch` ou via `nano`).
+- Créez un fichier `fichier2.md` dans le dossier `/home/restitution/tp1/`. (deux solutions possibles, via `touch` ou via `nano`).
 - Mettre le contenu suivant dans le fichier `fichier1` :
 
 ```bash
@@ -183,23 +183,6 @@ Voici le contenu du fichier 2.
 Avec ce fichier je vais avoir une bonne note.
 ```
 
-::: details Solution (je vous conseille de faire l'exercice avant de regarder la solution)
-
-```bash
-mkdir /home/vbrosseau
-mkdir /home/vbrosseau/tp1
-touch /home/vbrosseau/tp1/fichier1.md
-touch /home/vbrosseau/tp1/fichier2.md
-nano /home/vbrosseau/tp1/fichier1.md
-nano /home/vbrosseau/tp1/fichier2.md
-mv /home/vbrosseau/tp1/fichier1.md /home/vbrosseau/
-cp /home/vbrosseau/tp1/fichier2.md /home/vbrosseau/tp1/fichier2bis.md
-mv /home/vbrosseau/fichier1.md /home/vbrosseau/introduction.md
-nano /home/vbrosseau/introduction.md
-```
-
-:::
-
 ### Installer un serveur web
 
 Notre serveur a maintenant besoin d'un service Web (HTML seulement), nous allons donc y installer Apache. Nous allons utiliser la commande `apt` pour installer Apache.
@@ -217,17 +200,97 @@ Je vous laisse regarder dans les ressources du TP précédent (voir [TP précéd
 apt update
 apt install apache2
 systemctl status apache2
+systemctl enable apache2
 ```
 
 :::
 
-### Les permissions
+### Gérer les permissions
+
+Actuellement vous utilisez un utilisateur, celui-ci va créer des fichiers et des dossiers en son nom. Il est important de savoir comment gérer les droits sur ces fichiers et dossiers. Linux est un système multi-utilisateur, vous ne vous en rendez pas compte, mais beaucoup d'applications tournent en arrière-plan et ont besoin de droits spécifiques pour fonctionner.
+
+::: Danger Un utilisateur différent ?
+
+Et oui, si vous regardez avec la commande `ps aux` vous verrez que de nombreux processus tournent avec un utilisateur différent du vôtre. Par exemple, Apache tourne avec l'utilisateur `www-data`. C'est pour cela que nous allons voir comment gérer les droits sur les fichiers et dossiers.
+
+:::
+
+### Le dossier `/var/www/`
 
 Afin que votre utilisateur puisse modifier le code de votre site, vous devez modifier les permissions du dossier `/var/www/` :
 
 ```bash
 chown -R <VOTRE-UTILISATEUR>:www-data /var/www/
 ```
+
+::: tip Les droits de base
+
+Le dossier `/var/www/` sont uniquement accessible pour l'utilisateur :
+
+- `www-data` : C'est l'utilisateur qui va exécuter le serveur web.
+- `root` : C'est l'utilisateur qui a tous les droits sur le système.
+
+En modifiant les droits du dossier `/var/www/` vous permettez à votre utilisateur de modifier les fichiers et dossiers du site web.
+
+:::
+
+### Les droits
+
+En plus des propriétaires, les fichiers et dossiers ont des droits. Ces droits sont représentés par des lettres et des chiffres. Les droits sont divisés en trois parties :
+
+- Le propriétaire.
+- Le groupe.
+- Les autres.
+
+Par exemple, si vous avez les droits suivants sur un fichier :
+
+```bash
+-rwxr-xr--
+```
+
+- `r` : Permet de lire le fichier.
+- `w` : Permet de modifier le fichier.
+- `x` : Permet d'exécuter le fichier.
+
+Dans l'exemple ci-dessus, le propriétaire a tous les droits, le groupe a le droit de lire et d'exécuter le fichier et les autres n'ont aucun droit.
+
+Si vous souhaitez modifier les droits d'un fichier ou d'un dossier, vous pouvez utiliser la commande `chmod`. Par exemple, pour donner tous les droits à un fichier :
+
+```bash
+chmod ugo+rwx fichier
+```
+
+Ici, `u` signifie utilisateur, `g` signifie groupe et `o` signifie autres. `rwx` signifie lire, écrire et exécuter. Il est également possible d'utiliser des chiffres pour définir les droits. Par exemple, pour donner tous les droits à un fichier :
+
+```bash
+chmod 777 fichier
+```
+
+Ici `777` équivaut à `ugo+rwx`.
+
+### Modifier les permissions
+
+Avec les commandes vues précédemment, modifiez les permissions des fichiers et dossiers suivants :
+
+- Donnez tous les droits à l'utilisateur sur le fichier `introduction.md` (`rwx`).
+- Changer le propriétaire du fichier `introduction.md` pour qu'il appartienne à l'utilisateur `root`.
+
+Créer un script nommé `hello.sh` dans le dossier `/home/restitution/` celui-ci doit contenir :
+
+```bash
+#!/bin/bash
+
+echo "Hello World"
+```
+
+- Donner les droits d'exécution au fichier `hello.sh` (`chmod +x hello.sh`).
+- Exécutez le script `hello.sh` en utilisant la commande `./hello.sh` (`./` permets d'exécuter un script dans le dossier courant).
+
+::: tip Bravo !
+
+Vous venez de faire votre premier script shell. En plus, vous avez vu comment le rendre exécutable pour le lancer via la ligne de commande.
+
+:::
 
 #### Créer votre page web
 
@@ -301,6 +364,19 @@ En vous aidant des étapes précédentes, vous devriez pouvoir créer votre page
 Bon courage !
 
 :::
+
+## Finalisation de votre site
+
+Ajouter une page `contact.html` qui contiendra un formulaire de contact. Ce formulaire devra contenir les champs suivants :
+
+- Nom.
+- Prénom.
+- Email.
+- Message.
+
+Pour l'instant le formulaire ne doit pas être fonctionnel, il doit juste être présent sur la page.
+
+Ce formulaire devra être accessible depuis la page `index.html` via un lien nommé `Contact` et pointant vers la page `pages/contact.html`.
 
 ## Me donner accès à votre serveur
 
