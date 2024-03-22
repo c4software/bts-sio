@@ -141,7 +141,7 @@ Il est important de créer un compte utilisateur pour ne pas utiliser le compte 
 Pour pouvoir passer des commandes en tant que super utilisateur, vous pouvez ajouter votre utilisateur au groupe `sudo`.
 
 ```bash
-sudo usermod -aG sudo <votre-nom-d-utilsateur>
+usermod -aG sudo <votre-nom-d-utilsateur>
 ```
 
 ### Mettre à jour le système
