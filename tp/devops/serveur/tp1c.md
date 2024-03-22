@@ -174,8 +174,8 @@ Voici le contenu du fichier 2.
 - Ligne 3
 ```
 
-- Déplacez le fichier `fichier1.md` dans le dossier `/home/vbrosseau/`.
-- Dupliquez le fichier `fichier2.md` dans le dossier `/home/vbrosseau/tp1/` et renommez-le `fichier2bis.md`.
+- Déplacez le fichier `fichier1.md` dans le dossier `/home/restitution/`.
+- Dupliquez le fichier `fichier2.md` dans le dossier `/home/restitution/tp1/` et renommez-le `fichier2bis.md`.
 - Renommez le fichier `fichier1.md` en `introduction.md`.
 - Changer le contenu du fichier `introduction.md` pour qu'il contienne :
 
