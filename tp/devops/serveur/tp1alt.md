@@ -136,6 +136,14 @@ Il est important de créer un compte utilisateur pour ne pas utiliser le compte 
 
 :::
 
+### Vous ajouter au groupe sudo
+
+Pour pouvoir passer des commandes en tant que super utilisateur, vous pouvez ajouter votre utilisateur au groupe `sudo`.
+
+```bash
+sudo usermod -aG sudo <votre-nom-d-utilsateur>
+```
+
 ### Mettre à jour le système
 
 Maintenant que votre VM est prête, il faut mettre à jour le système.
