@@ -191,6 +191,33 @@ $name = strip_tags($_POST['name']);
 
 Proposez une solution pour corriger cette faille.
 
+## Faille 1.1 : Les Guards / Middleware
+
+L'auditeur vous demande d'observer le code PHP suivant :
+
+```php
+<?php
+// Routeur de l'application
+
+Route::get('/', 'HomeController@index');
+Route::get('/search', 'HomeController@index');
+Route::get('/facture', 'FactureController@index');
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin', 'AdminController@index');
+    // …
+    Route::get('/admin/users', 'UserController@index');
+});
+```
+
+Il vous demande d'expliquer le rôle du guard / middleware `admin` ?
+
+À la suite de cette question, il vous demande de faire en sorte d'ajouter la page `/admin/factures` qui permettra d'afficher les factures de l'ensemble des utilisateurs. Celle-ci ne doit être accessible qu'aux utilisateurs ayant le rôle `admin`.
+
+La route `/admin/factures` doit appeler la méthode `FactureController@all`.
+
+Proposez une solution permettant de mettre en place cette fonctionnalité.
+
 ## Faille 2
 
 L'auditeur a trouvé une faille de type Injection SQL. Il a réussi à afficher les données de la base de données.
