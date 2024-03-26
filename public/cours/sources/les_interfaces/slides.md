@@ -20,7 +20,7 @@ Elles ne sont donc pas **instantiables**
 
 <fieldset>
   <legend>Une Interface</legend>
-    <li>Va décrire un comportement.</li>
+    <li>Permet décrire un comportement.</li>
     <li>Définir les signatures des méthodes et propriétés</li>
     <li>Garantir au code qui fait l'appel que la méthode existera.</li>
 </fieldset>
