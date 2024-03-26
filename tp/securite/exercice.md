@@ -254,6 +254,34 @@ $user = $result->fetch(PDO::FETCH_ASSOC);
 
 Proposez une solution pour corriger cette faille.
 
+## Faille 2 variante
+
+L'auditeur a trouvé une faille de type Injection SQL. Observer le code source suivant :
+
+```php
+<?php
+
+$id = $_GET['id'];
+$request = "SELECT * FROM users WHERE id = $id";
+$pdo->prepare($request)->execute();
+$user = $pdo->fetch(PDO::FETCH_ASSOC);
+?>
+
+<div class="container">
+    <h1>Exercice 2</h1>
+    <p>Vous devez corriger la faille d'injection SQL</p>
+    <p>Voici les informations de l'utilisateur</p>
+    <ul>
+        <li>Nom : <?= $user['name'] ?></li>
+        <li>Email : <?= $user['email'] ?></li>
+    </ul>
+</div>
+
+?>
+```
+
+Pourquoi le code source est-il vulnérable à une injection SQL ? Proposez une solution pour corriger cette faille.
+
 ## Faille 3
 
 L'auditeur a trouvé une faille de type CSRF (Cross Site Request Forgery). Il a réussi à modifier les données de l'utilisateur.
