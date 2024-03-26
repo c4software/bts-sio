@@ -219,7 +219,7 @@ Pour créer un fichier de test, il suffit de créer un fichier avec l'extension 
 
 ```ts
 import { expect, test } from "bun:test";
-import { addition } from "./index";
+import { addition } from "./addition";
 
 test("addition 1 + 2", () => {
     expect(addition(1, 2)).toBe(3);
@@ -228,6 +228,7 @@ test("addition 1 + 2", () => {
 test("addition 2030 + 1020", () => {
     expect(addition(2030, 1020)).toBe(3050);
 });
+```
 
 Lancer le test, pour cela exécuter la commande `bun test` dans votre projet. Vous devriez avoir le résultat suivant :
 
