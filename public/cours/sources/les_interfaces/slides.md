@@ -20,7 +20,7 @@ Elles ne sont donc pas **instantiables**
 
 <fieldset>
   <legend>Une Interface</legend>
-    <li>Permet décrire un comportement.</li>
+    <li>Permets de décrire un comportement.</li>
     <li>Définir les signatures des méthodes et propriétés</li>
     <li>Garantir au code qui fait l'appel que la méthode existera.</li>
 </fieldset>
@@ -28,6 +28,12 @@ Elles ne sont donc pas **instantiables**
 ---
 
 C'est donc **un contrat** que la `classe` **doit respecter** si elle implémente l'interface.
+
+---
+
+Nous sommes donc en train de décrire un comportement attendu.
+
+Pratique en cybersécurité pour s'assurer que les classes respectent bien les contraintes.
 
 ---
 
@@ -82,7 +88,7 @@ La partie importante est « **implements** »
 
 ---
 
-✋ Une classe peu implémenter plusieurs Interfaces
+✋ Une classe peut implémenter plusieurs Interfaces
 
 <iframe src="https://giphy.com/embed/KfO2j3bhYTXNYORzX4" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
@@ -134,7 +140,7 @@ class Cheval implements SpeciesInterface, DeplacementInterface{
 
 <br>
 
-- `Array Object` implément combien d'interface ?
+- `Array Object` implément combien d'interfaces ?
 - Quel est l'impact ?
 - Quel est le but ?
 
@@ -155,7 +161,7 @@ class Cheval implements SpeciesInterface, DeplacementInterface{
 ## Exemples d'utilisations
 
 - Définir un moyen de communiquer entre deux classes « via une Interface partagée ».
-- Attendre un objet sans en connaitre le type, mais en s'assurant que celui-ci aura bien la méthode attendue.
+- Attendre un objet sans en connaître le type, mais en s'assurant que celui-ci aura bien la méthode attendue.
 
 ---
 
