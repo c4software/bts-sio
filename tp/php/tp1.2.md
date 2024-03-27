@@ -23,7 +23,7 @@ En reprenant [les propositions faites dans le cours](/tp/php/support.md#le-code)
 
 J'ai travaillé pour vous ! Je vous propose une super librairie. Celle-ci intègre quelques fonctions (utile ou non) que nous allons pouvoir utiliser dans notre page.
 
-La librairie est <a target="_blank" download="sample.php" href="/public/demo/php/library/sample.php">disponible ici</a>
+La librairie est <a target="_blank" download="sample.php" href="/demo/php/library/sample.php">disponible ici</a>
 
 Je vous laisse télécharger la librairie et la mettre dans votre projet.
 

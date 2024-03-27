@@ -14,57 +14,42 @@ Nous allons mettre en place une carte du monde qui affiche en temps réel l'empl
 
 ## La mise en place
 
-Nous allons utiliser VueCLI pour initialiser le projet, première étape l'installation.
+Nous allons utiliser VueCreate pour initialiser le projet, première étape l'installation.
 
-## Installer NodeJS + VueCLI
+## Installer NodeJS + VueCreate
 
 Avant de commencer, nous allons avoir besoin de plusieurs outils :
 
 - NodeJS
-- VueCli
+- Vue-Create
 
 ## NodeJS
 
 La première étape va être l’installation de NodeJS, la démarche est différente en fonction de votre environnement, mais pour résumer [sous Windows c’est ici](https://nodejs.org/en/download/) prendre la version CURRENT, sous OSX le plus simple c’est via Brew `brew install nodejs`, et sous Linux c’est via le gestionnaire de paquet `apt install nodejs`
-
-Une fois installé, vous êtes prêt, votre PC est prêt à accueillir l’outil Vue-Cli.
-
-## Vue-Cli
-
-Vue-Cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
-
-Dans un terminal lancer la commande suivante dans le `Node.js Command Prompt` :
-
-```bash
-npm install -g @vue/cli
-```
-
-Maintenant que vue-cli est installé, vous avez à votre disposition sur votre ordinateur une nouvelle commande, la commande `vue`.
-
-Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante dans le `Node.js Command Prompt`.
 
 ## Initialiser le projet
 
 La création d'un nouveau projet est très simple. Il suffit de rentrer la commande suivante :
 
 ```js
-vue create firebase-vuejs
+npm create vue@legacy firebase-vuejs
 ```
 
-Choisir l'option « Default ».
+Puis de répondre aux questions posées :
 
-🤓 git est déjà initialisé, vous pouvez en profiter pour pusher votre code sur Github / Gitlab.
+![VueJS init](./ressources/vue-create.png)
 
-### Questions
-
-- Pourquoi git est déjà initialisé ?
-- Allez jeter un coup d'œil au fichier `.gitignore`
+🤓 N'oubliez pas d'initialiser votre git.
 
 ## Tester
 
-Le projet initialisé par `Vue-Cli` est immédiatement fonctionnel. Testez-le en saisissant :
+Le projet initialisé par `Vue-Create` est immédiatement fonctionnel. Testez-le en saisissant :
 
-```js
+```sh
+npm install
+```
+
+```sh
 npm run serve
 ```
 
@@ -121,9 +106,9 @@ import "leaflet/dist/leaflet.css";
 delete Icon.Default.prototype._getIconUrl;
 
 Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+  iconRetinaUrl: import("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: import("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: import("leaflet/dist/images/marker-shadow.png"),
 });
 ```
 

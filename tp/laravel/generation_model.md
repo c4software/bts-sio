@@ -78,7 +78,7 @@ Ils contiendront évidemment les, `$fillable` mais également les jointures entr
 
 Dans un premier temps, je vous laisse restaurer la base suivante :
 
-<a href="/public/tp/mysqlsampledatabase.sql" download="mysqlsampledatabase.sql">Télécharger la base de données</a>
+<a href="/tp/mysqlsampledatabase.sql" download="mysqlsampledatabase.sql">Télécharger la base de données</a>
 
 ![Aperçu de la bdd](./ressources/sample_db.png)
 
