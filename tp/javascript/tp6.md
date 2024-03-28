@@ -476,7 +476,27 @@ D'ailleurs… c'est une bonne idée ! Je vous laisse ajouter le composant « lik
 
 Actuellement il est possible de s'auto-liker. C'est-à-dire que vous pouvez liker votre propre article. Je vous laisse trouver comment interdire cela dans votre API.
 
-Vous pouvez utiliser la méthode `auth('api')->user()->id` pour récupérer l'id de l'utilisateur connecté.
+Pour cela vous devez :
+
+- `middleware("web");`
+
+Puis dans votre code :
+
+```php
+$id = $request->user()->id;
+```
+
+Ce qui donnerai :
+
+```php
+Route::post('/article/{article}/like', [ApiController::class, 'addLike'])->name('article.like')->middleware("web");
+
+// Puis dans le contrôleur :
+public function addLike(Request $request, Article $article){
+        $id = $request->user()->id;
+        //…
+}
+```
 
 ::: danger L'art du placement
 
