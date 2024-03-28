@@ -498,6 +498,16 @@ public function addLike(Request $request, Article $article){
 }
 ```
 
+**Attention,** le middleware `web` est obligatoire pour récupérer l'utilisateur connecté. Sans ce middleware, vous n'aurez pas accès à l'utilisateur connecté. Cependant, ce middleware obligera l'utilisateur à avoir un token `CSRF` pour faire une requête POST. 
+
+Pour autoriser les routes API à ne pas avoir de token `CSRF`, vous pouvez ajouter les routes dans le middleware `VerifyCsrfToken` :
+
+```php
+protected $except = [
+    '/api/*'
+];
+```
+
 ::: danger L'art du placement
 
 Bien placer son code c'est un peu comme le travail d'un artiste… Un peu à la manière d'un peintre, vous devez placer votre code au bon endroit.
