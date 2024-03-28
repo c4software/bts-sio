@@ -290,9 +290,45 @@ Ce fichier dangereux, ne pas laisser ce fichier sur un serveur en production. Il
 
 :::
 
+## Regarder les erreurs / logs
+
+Actuellement, notre script est parfait, et il n'y a pas d'erreur. Nous allons le modifier pour y ajouter une erreur, et voir comment cela se passe.
+
+### Étape 1 : Ajouter une erreur
+
+Pour ajouter une erreur, vous pouvez modifier le fichier `info.php` et ajouter une erreur :
+
+```php
+<?php
+    throw new Exception('Ceci est une erreur');
+    phpinfo();
+```
+
+### Étape 2 : Accéder à la page
+
+Je vous laisse accéder à la page `info.php` pour voir ce qu'il se passe.
+
+Qu'avez vous vu ? Une page blanche, une erreur 500 ? C'est normal ! Notre serveur est configuré comme un serveur de **production**. C'est-à-dire que les erreurs PHP ne sont pas affichées dans le navigateur, mais dans un fichier de log.
+
+### Étape 2 : Vérifier les logs
+
+Maintenant que nous avons un erreur, nous allons vérifier les logs d'Apache. Pour cela, nous allons utiliser la commande `tail` :
+
+```bash
+tail -f /var/log/apache2/error.log
+```
+
+Cette commande va afficher les dernières lignes du fichier `error.log`. Puis elle va rester en attente, et afficher les nouvelles lignes qui sont ajoutées au fichier.
+
+Vous pouvez maintenant rafraîchir la page `info.php` pour voir l'erreur s'afficher dans le terminal. Vous devriez voir quelque chose de similaire à :
+
+```bash
+[Sun Jan 01 00:00:00.000000 2023] [proxy_fcgi:error] [pid 20960:tid 140623185172160] [client 192.168.0.200:54636] AH01071: Got error 'PHP message: PHP Fatal error:  Uncaught Exception: Ceci est une erreur. in /var/www/html/info.php:4\nStack trace:\n#0 {main}\n  thrown in /var/www/html/info.php on line 4'
+```
+
 ## Conclusion intermédiaire
 
-Nous avons donc installé Apache, MySQL et PHP. Nous avons également configuré Apache pour qu'il puisse utiliser PHP. Nous avons également installé les extensions PHP qui nous seront utiles pour le développement.
+Nous avons donc installé Apache, PHP (avec PDO permettant l'accès à la base de données). Nous avons également configuré Apache pour qu'il puisse utiliser PHP. Nous avons également installé les extensions PHP qui nous seront utiles pour le développement.
 
 C'est un point étape, votre serveur est maintenant prêt pour le développement. Avant de continuer, nous allons voir comment est configuré un serveur Web (PHP).
 

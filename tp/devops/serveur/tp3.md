@@ -265,20 +265,20 @@ Pour installer phpMyAdmin, vous pouvez utiliser la commande suivante :
 ```bash
 apt install unzip
 cd /var/www/html
-wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip
-unzip phpMyAdmin-5.2.0-all-languages.zip
-mv phpMyAdmin-5.2.0-all-languages phpmyadmin
-rm phpMyAdmin-5.2.0-all-languages.zip
+wget https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.zip
+unzip phpMyAdmin-5.2.1-all-languages.zip
+mv phpMyAdmin-5.2.1-all-languages phpmyadmin
+rm phpMyAdmin-5.2.1-all-languages.zip
 ```
 
 L'installation est le résultat de plusieurs commandes :
 
 - `apt install unzip` : on installe le logiciel `unzip`. C'est un logiciel qui permet de décompresser des fichiers.
 - `cd /var/www/html` : on se déplace dans le dossier `/var/www/html`.
-- `wget …` : on télécharge le fichier `phpMyAdmin-5.2.0-all-languages.zip`. Depuis les serveurs de phpMyAdmin.
-- `unzip …` : on décompresse le fichier `phpMyAdmin-5.2.0-all-languages.zip`.
-- `mv …` : on renomme le dossier `phpMyAdmin-5.2.0-all-languages` en `phpmyadmin`. Car il est plus simple de taper `phpmyadmin` que `phpMyAdmin-5.2.0-all-languages`.
-- `rm …` : on supprime le fichier `phpMyAdmin-5.2.0-all-languages.zip`. Car il n'est plus utile.
+- `wget …` : on télécharge le fichier `phpMyAdmin-5.2.1-all-languages.zip`. Depuis les serveurs de phpMyAdmin.
+- `unzip …` : on décompresse le fichier `phpMyAdmin-5.2.1-all-languages.zip`.
+- `mv …` : on renomme le dossier `phpMyAdmin-5.2.1-all-languages` en `phpmyadmin`. Car il est plus simple de taper `phpmyadmin` que `phpMyAdmin-5.2.0-all-languages`.
+- `rm …` : on supprime le fichier `phpMyAdmin-5.2.1-all-languages.zip`. Car il n'est plus utile.
 
 ::: tip Arrêtons-nous un instant
 
@@ -295,9 +295,61 @@ PHPMyAdmin est maintenant installé, il ne nécessite pas de configuration parti
 Dans le prochain TP nous allons (re)voir pour configurer Apache avec des VirtualHosts. L'objectif ? **Héberger plusieurs sites web sur un seul serveur**.
 :::
 
+## Autres logiciels pour gérer une base de données
+
+Nous avons pour l'instant vu comment installer MariaDB et PHPMyAdmin. Mais il existe d'autres logiciels pour gérer une base de données. Nous allons voir ici comment installer ces logiciels. Pour que les autres logiciels fonctionnent, il faut que vous autorisiez le port 3306 dans la configuration de MariaDB.
+
+::: warning Rappel sur les ports
+
+Le port est un numéro qui permet de différencier les différents services qui tournent sur un serveur. Par exemple, le port 80 est utilisé par le serveur web Apache. Le port 22 est utilisé par le service SSH. Le port 3306 est utilisé par le service MariaDB. De base, le port 3306 n'écoute que les connexions locales. Pour que les autres logiciels puissent se connecter à MariaDB, il faut autoriser les connexions distantes.
+
+🚨 **Point cyber**, VOUS NE DEVEZ JAMAIS OUVRIR LE PORT 3306 SUR INTERNET. VOUS DEVEZ LE LAISSER OUVERT UNIQUEMENT SUR VOTRE RÉSEAU LOCAL. 🚨
+
+:::
+
+### Autoriser les connexions distantes
+
+La configuration se fait dans le fichier `/etc/mysql/mariadb.conf.d/50-server.cnf`.
+
+```bash
+nano /etc/mysql/mariadb.conf.d/50-server.cnf
+```
+
+Modifier la ligne `bind-address` par la ligne suivante dans la section `[mysqld]`.
+
+```ini
+bind-address = 0.0.0.0
+```
+
+Redémarrer le serveur MySQL
+
+```bash
+systemctl restart mysql
+```
+
+::: tip Comment lire la ligne ajoutée ?
+
+- `bind-address` : c'est la variable qui permet de définir l'adresse IP sur laquelle MariaDB va écouter les connexions.
+- `0.0.0.0` : Cette valeur signifie que MariaDB va écouter sur toutes les adresses IP disponibles sur le serveur.
+
+:::
+
+### Connexion avec DBeaver
+
+Maintenant que MariaDB est configuré pour accepter les connexions distantes, nous allons voir comment se connecter à MariaDB avec DBeaver.
+
+Dbeaver est déjà installé sur votre machine. Vous pouvez le lancer via le menu démarrer.
+
+![DBeaver](./res/dbeaver.png)
+
+Une fois DBeaver lancé, vous devriez pouvoir vous connecter à MariaDB en utilisant les informations suivantes :
+
+- **Hôte** : `<adresse_ip>`
+- **Port** : `3306`
+
 ### Les utilisateurs de base de données
 
-Comme pour la partie serveur, il est vivement déconseillé (comprendre ici, je ne veux jamais voir quelqu'un en root), d'utiliser l'utilisateur `root` pour administrer sa base de données. Pour cela, nous allons créer un utilisateur `<votre-nom>` qui aura des droits limités sur la base de données.
+Comme pour la partie serveur, il est vivement déconseillé (**comprendre ici, je ne veux jamais voir quelqu'un en root**), d'utiliser l'utilisateur `root` pour administrer sa base de données. Pour cela, nous allons créer un utilisateur `<votre-nom>` qui aura des droits limités sur la base de données.
 
 Avant de continuer, réfléchissons ensemble à la raison pour laquelle nous ne devons pas utiliser l'utilisateur `root` pour administrer notre base de données.
 
@@ -404,57 +456,7 @@ CREATE TABLE absence (
 );
 ```
 
-## Autres logiciels pour gérer une base de données
-
-Nous avons pour l'instant vu comment installer MariaDB et PHPMyAdmin. Mais il existe d'autres logiciels pour gérer une base de données. Nous allons voir ici comment installer ces logiciels. Pour que les autres logiciels fonctionnent, il faut que vous autorisiez le port 3306 dans la configuration de MariaDB.
-
-::: warning Rappel sur les ports
-
-Le port est un numéro qui permet de différencier les différents services qui tournent sur un serveur. Par exemple, le port 80 est utilisé par le serveur web Apache. Le port 22 est utilisé par le service SSH. Le port 3306 est utilisé par le service MariaDB. De base, le port 3306 n'écoute que les connexions locales. Pour que les autres logiciels puissent se connecter à MariaDB, il faut autoriser les connexions distantes.
-
-🚨 **Point cyber**, VOUS NE DEVEZ JAMAIS OUVRIR LE PORT 3306 SUR INTERNET. VOUS DEVEZ LE LAISSER OUVERT UNIQUEMENT SUR VOTRE RÉSEAU LOCAL. 🚨
-
 :::
-
-### Autoriser les connexions distantes
-
-La configuration se fait dans le fichier `/etc/mysql/mariadb.conf.d/50-server.cnf`.
-
-```bash
-nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-Modifier la ligne `bind-address` par la ligne suivante dans la section `[mysqld]`.
-
-```ini
-bind-address = 0.0.0.0
-```
-
-Redémarrer le serveur MySQL
-
-```bash
-systemctl restart mysql
-```
-
-::: tip Comment lire la ligne ajoutée ?
-
-- `bind-address` : c'est la variable qui permet de définir l'adresse IP sur laquelle MariaDB va écouter les connexions.
-- `0.0.0.0` : Cette valeur signifie que MariaDB va écouter sur toutes les adresses IP disponibles sur le serveur.
-
-:::
-
-### Connexion avec DBeaver
-
-Maintenant que MariaDB est configuré pour accepter les connexions distantes, nous allons voir comment se connecter à MariaDB avec DBeaver.
-
-Dbeaver est déjà installé sur votre machine. Vous pouvez le lancer via le menu démarrer.
-
-![DBeaver](./res/dbeaver.png)
-
-Une fois DBeaver lancé, vous devriez pouvoir vous connecter à MariaDB en utilisant les informations suivantes :
-
-- **Hôte** : `<adresse_ip>`
-- **Port** : `3306`
 
 ## Un virtual host pour PHPMyAdmin ?
 
