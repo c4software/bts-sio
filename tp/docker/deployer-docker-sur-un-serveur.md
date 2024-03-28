@@ -27,7 +27,7 @@ Ici il s'agit d'une introduction à Docker, nous allons donc rester simples. Mai
 
 La première étape est de préparer votre serveur. Pour cela, vous devez :
 
-- Créer une machine virtuelle Debian 11.5.0 (64 bits) avec 2Go de RAM et 20Go de disque. (Vous pouvez utiliser le modèle [Debian 11](/tp/devops/serveur/tp1alt.md) pour créer votre machine virtuelle).
+- Créer une machine virtuelle Debian 12 (64 bits) avec 2Go de RAM et 20Go de disque. (Vous pouvez utiliser le modèle [Debian 12](/tp/devops/serveur/tp1alt.md) pour créer votre machine virtuelle).
 - Ajouter les dépôts de Docker sur votre machine virtuelle.
 
 ```bash

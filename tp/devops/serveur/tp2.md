@@ -30,7 +30,7 @@ Voilà l'architecture que nous allons mettre en place :
 
 ![Réalisation](./res/realisation.png)
 
-- Un serveur Debian 11.
+- Un serveur Debian 12.
 - Un serveur Web Apache.
 - PHP 8.X (le `X` étant la dernière version disponible).
 
@@ -47,7 +47,7 @@ Pour réaliser ce TP, vous aurez besoin de :
 Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les spécifications suivantes :
 
 - Nom de la VM : `<votre nom>-web`. (et dans le bon dossier)
-- OS : Debian 11.5.
+- OS : Debian 12.
 - Mémoire : 2Go (ou la configuration du modèle).
 - CPU : 1.
 - Disque : 20Go (ou la configuration du modèle).

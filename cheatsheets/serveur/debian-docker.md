@@ -14,11 +14,11 @@ Dans cet aide-mémoire vous trouverez l'ensemble des éléments de base pour ins
 
 Docker est un outil qui permet de créer des conteneurs. Il ne faut pas le confondre avec une machine virtuelle. Un conteneur est un ensemble de processus qui partagent le même noyau. Il est donc plus léger qu'une machine virtuelle.
 
-Dans cette procédure, nous allons installer Docker sur une machine Debian 11.
+Dans cette procédure, nous allons installer Docker sur une machine Debian 12.
 
 ## Installation
 
-Je pars du principe que vous avez déjà une machine Debian 11. Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 11](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
+Je pars du principe que vous avez déjà une machine Debian 12. Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 12](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
 
 ### Installation de Docker
 

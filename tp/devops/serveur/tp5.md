@@ -51,7 +51,7 @@ Ici pas de procédure pas-à-pas. Vous devez réaliser les éléments suivants :
 
 ## Partie Serveur
 
-- Créer **une** nouvelle VM à l'aide du modèle (DEBIAN 11.5)
+- Créer **une** nouvelle VM à l'aide du modèle (Debian 12)
 - Nommer votre VM `<VOTRE-NOM>-serveur-tp5` (dans l'interface de VMWare, **mais également dans votre serveur**).
 - Votre serveur doit être accessible depuis votre utilisateur.
 - Le mot de passe du compte root doit être modifié (et documenté).
