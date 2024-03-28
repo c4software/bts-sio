@@ -763,7 +763,7 @@ Nous allons maintenant modifier le code HTML de la page de l'article afin d'ajou
 
 ```html
 @auth
-<form @submit="addComments">
+<form @submit.prevent="addComments">
     <div class="mb-4">
         <label for="content" class="sr-only">Commentaire</label>
         <textarea v-model="comment" name="content" id="content" cols="30" rows="4" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('content') border-red-500 @enderror" placeholder="Votre commentaire"></textarea>
