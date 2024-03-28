@@ -726,7 +726,7 @@ Vous n'avez pas fait beaucoup de VueJS, mais la syntaxe est très simple. Nous a
 Première étape, englobez le code des commentaires dans un élément HTML qui a pour id « comments » :
 
 ```html
-<div id="like" data-id="{{ $article->id }}">
+<div id="comments" data-id="{{ $article->id }}">
     <!-- Ici le code des commentaires -->
 </div>
 <script type="module" src="{{ asset('comments.js') }}"></script>
