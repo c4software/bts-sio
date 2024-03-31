@@ -262,9 +262,13 @@ chmod go+rx <fichier>
 ---
 
 ```sh
-chmod -ugo+rwx fichier
+chmod ugo+rwx fichier
 chown vbrosseau:www-data /var/www/html
 ```
+
+---
+
+![Chown vs Chmod](./res/20240331_111148.jpg)
 
 ---
 
