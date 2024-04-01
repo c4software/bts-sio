@@ -45,7 +45,7 @@ curl -fsSL https://bun.sh/install | bash # Pour Linux / MacOS / WSL
 Si malheusement vous êtes sous Windows et que vous n'avez pas WSL, vous pouvez utiliser npm pour installer Bun (c'est un peu étrange étant donné que Bun est un outils pour remplacer npm… mais bon, vous avez compris l'idée) :
 
 ```bash
-npm install -g bun
+powershell -c "irm bun.sh/install.ps1 | iex"
 ```
 
 Si tout s'est bien passé, vous devriez avoir accès à la commande `bun` dans votre terminal.
