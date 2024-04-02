@@ -480,8 +480,8 @@ Par exemple, Apache, MySQL, etc.
 - Autres (Lighttpd, Caddy, etc.)
 
 ![Apache Logo](./res/apache_logo.png)
-![Nginx Logo](./res/nginx_logo.png)
 
+![Nginx Logo](./res/nginx_logo.png)
 
 ---
 
@@ -551,6 +551,24 @@ Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous p
     Il permet <b>d'héberger</b> un ou des sites Web. Chaque site sera accessible via un nom de domaine <b>et/ou</b> un port.
   </p>
 </fieldset>
+
+---
+
+## Sécurité
+
+- Désactiver les ports inutiles.
+- Utiliser des certificats SSL.
+- Masquer les informations de version.
+
+---
+
+![Apache Version](./res/show-server-info1.png)
+
+---
+
+Exemples :
+
+- `ServerSignature Off`
 
 ---
 
