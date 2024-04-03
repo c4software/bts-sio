@@ -454,8 +454,8 @@ Vous pouvez voir que nous avons également configuré les logs d'Apache. Nous av
 Nous avons créé deux fichiers de configuration, mais ils ne sont pas encore activés. Pour les activer, nous allons utiliser la commande `a2ensite` :
 
 ```bash
-a2ensite siteA
-a2ensite siteB
+sudo a2ensite siteA
+sudo a2ensite siteB
 ```
 
 `a2ensite` ? Cette commande va permettre d'activer les site web que vous avez créé dans le dossier `/etc/apache2/sites-available/`. Cette commande va créer un lien symbolique dans le dossier `/etc/apache2/sites-enabled/`.
@@ -464,11 +464,11 @@ Un lien symbolique est un fichier qui pointe vers un autre fichier, c'est un peu
 
 ### Désactiver les sites Web
 
-Si vous voulez désactiver un site Web, vous pouvez utiliser la commande `a2dissite` :
+Si vous voulez **désactiver** un site Web, vous pouvez utiliser la commande `a2dissite` :
 
 ```bash
-a2dissite siteA
-a2dissite siteB
+sudo a2dissite siteA
+sudo a2dissite siteB
 ```
 
 Cette commande va supprimer le lien symbolique dans le dossier `/etc/apache2/sites-enabled/`.
