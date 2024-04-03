@@ -17,7 +17,7 @@ Voici un résumé de ce qu'il est possible de retenir de ce document (évidemmen
 
 L'approche DevOps à pour objectif principal d'automatiser pour assurer la qualité via par entre autres le test et la répétabilité.
 
-Les développeurs sont également des utilisateurs d'un OS et pour le comprendre nous réfléchirons aux différentes distributions Linux disponibles en les comparant à Windows et MacOS.
+Les développeurs sont également des utilisateurs d'un OS et pour le comprendre nous réfléchirons aux différentes distributions Linux disponibles en les comparant à Windows et macOS.
 
 Beaucoup de types de serveurs existent (serveurs Web, de base de données, de fichiers, etc). en SLAM la notion de la stack logicielle est importante et surtout celle nommée LAMP (Linux, Apache, MySQL, PHP). Un serveur ne fonctionne pas sans que le réseau (adresses IP, DNS, DHCP, les ports permettant de communiquer). Sans entrer dans une complexité extrême, il sera important d'en connaître les bases.
 
@@ -73,7 +73,7 @@ Le DevOps **s'assure de la qualité** de son application, de la  **disponibilit�
 
 Choisir son environnement de développement est très important. En effet, le choix de l'environnement de développement va déterminer votre productivité. Il est donc important de choisir un environnement de développement adapté à vos besoins.
 
-Pour coder, un développeur à généralement besoin de :
+Pour coder, un développeur a généralement besoin de :
 
 - Un éditeur de texte.
 - Un terminal.
@@ -155,7 +155,7 @@ Mais je vous conseille d'utiliser `vim` à la place. `vim` est un éditeur de te
 vim <fichier>
 ```
 
-Pour utiliser `vim`, il suffit juste de connaitre quelques commandes :
+Pour utiliser `vim`, il suffit juste de connaître quelques commandes :
 
 - `i` : mode insertion.
 - `esc` : sort du mode insertion.
@@ -696,7 +696,7 @@ Par exemple, si vous voulez vous connecter à votre serveur avec le compte `vbro
 ssh vbrosseau@192.168.1.10
 ```
 
-Si votre échange de clé SSH à fonctionné, vous n'aurez pas besoin de rentrer de mot de passe 👍.
+Si votre échange de clés SSH a fonctionné, vous n'aurez pas besoin de rentrer de mot de passe 👍.
 
 ### Fonctionnement d'une clé SSH
 
@@ -937,7 +937,7 @@ Nous allosn pouvoir réaliser de la réplication de données de plusieurs maniè
 - Réplication de base de données (très courant).
 - Réplication de fichiers / Serveur.
 
-La réplication de base de données est très réppandue dans l'organisation. Elle permet de s'assurer de la disponibilité des données. En effet, si le serveur de base de données tombe en panne, il est possible de récupérer les données sur un autre serveur. Il ne faut pas confondre la réplication de base de données avec la sauvegarde de base de données. Ici nous nous **concentrons sur la haute disponibilité des données**. En s'assurant que les données soit très rapidement disponible en cas de problème.
+La réplication de base de données est très réppandue dans l'organisation. Elle permet de s'assurer de la disponibilité des données. En effet, si le serveur de base de données tombe en panne, il est possible de récupérer les données sur un autre serveur. Il ne faut pas confondre la réplication de base de données avec la sauvegarde de base de données. Ici nous nous **concentrons sur la haute disponibilité des données**. En s'assurant que les données soit très rapidement disponibles en cas de problème.
 
 Comme pour la base de données, il est possible d'avoir une copie parfaite des fichiers de son serveur (fichier, et configuration) afin d'être en capacité d'avoir instantanément un serveur de remplacement en cas de problème.
 
@@ -951,7 +951,7 @@ Pour les réplications de base de données :
 Pour les réplications de fichiers :
 
 - Synchrone : les données sont répliquées en temps réel (le serveur esclave est toujours à jour).
-- Asynchrone : les données sont répliquées de manière périodique (la fréquence des mise à jours est définie en fonction de la criticité).
+- Asynchrone : les données sont répliquées de manière périodique (la fréquence des mises à jour est définie en fonction de la criticité).
 - Semi-synchrone : les données sont répliquées de manière périodique et en temps réel.
 
 ## Les hébergeurs
