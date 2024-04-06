@@ -240,6 +240,33 @@ Si votre serveur possède un nom de domaine, nous allons pouvoir également cré
 
 :::
 
+Exemple de virtual host Apache : 
+
+```
+<VirtualHost *:9090>
+ ServerAdmin webmaster@localhost
+ DocumentRoot /var/www/html/phpmyadmin
+ 
+ <Directory /var/www/html/phpmyadmin>
+     Options Indexes FollowSymLinks
+     AllowOverride All
+     Require all granted
+ </Directory>
+ 
+ ErrorLog ${APACHE_LOG_DIR}/error.log
+ CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Ici nous avons un virtual host qui permet d'accéder à phpmyadmin via le port 9090 (exemple : `http://monsite.com:9090`).
+
+- `ServerAdmin` : L'adresse mail de l'administrateur du serveur.
+- `DocumentRoot` : Le dossier racine du site Web.
+- `Directory` : Les options du dossier racine.
+- `ErrorLog` : Le fichier de log des erreurs.
+- `CustomLog` : Le fichier de log des accès.
+
+
 ## Qu'est-ce qu'un serveur de base de données ?
 
 Un serveur de base de données est un serveur qui permet de stocker des données. Il permet de stocker des données dans des tables, de faire des requêtes SQL, etc.

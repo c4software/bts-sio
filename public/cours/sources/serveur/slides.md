@@ -532,6 +532,24 @@ Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous p
 
 ---
 
+```
+<VirtualHost *:9090>
+ ServerAdmin webmaster@localhost
+ DocumentRoot /var/www/html/phpmyadmin
+ 
+ <Directory /var/www/html/phpmyadmin>
+     Options Indexes FollowSymLinks
+     AllowOverride All
+     Require all granted
+ </Directory>
+ 
+ ErrorLog ${APACHE_LOG_DIR}/error.log
+ CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+---
+
 ## Les noms de domaine
 
 - Payant (ou interne à l'organisation).
