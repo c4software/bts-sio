@@ -227,7 +227,7 @@ Il est possible que plus tard pour un développement vous ayez besoin d'ajouter 
 
 PHP-FPM est un outil qui permet de faire tourner PHP en tant que service. C'est-à-dire que PHP va tourner en arrière plan, et que les pages Web vont être générées par PHP. C'est un peu comme si vous aviez un serveur Apache, et un serveur PHP qui tourne en arrière plan. C'est la nouvelle façon de faire tourner PHP.
 
-👋 C'est surtout la bonne façon de le faire fonctionner en 2023 (même si les autres façons fonctionnent évidemment encore).
+👋 C'est surtout la bonne façon de le faire fonctionner en 2024 (même si les autres façons fonctionnent évidemment encore).
 
 #### Vérifier la version de PHP
 
@@ -323,7 +323,7 @@ Cette commande va afficher les dernières lignes du fichier `error.log`. Puis el
 Vous pouvez maintenant rafraîchir la page `info.php` pour voir l'erreur s'afficher dans le terminal. Vous devriez voir quelque chose de similaire à :
 
 ```bash
-[Sun Jan 01 00:00:00.000000 2023] [proxy_fcgi:error] [pid 20960:tid 140623185172160] [client 192.168.0.200:54636] AH01071: Got error 'PHP message: PHP Fatal error:  Uncaught Exception: Ceci est une erreur. in /var/www/html/info.php:4\nStack trace:\n#0 {main}\n  thrown in /var/www/html/info.php on line 4'
+[Sun Jan 01 00:00:00.000000 2024] [proxy_fcgi:error] [pid 20960:tid 140623185172160] [client 192.168.0.200:54636] AH01071: Got error 'PHP message: PHP Fatal error:  Uncaught Exception: Ceci est une erreur. in /var/www/html/info.php:4\nStack trace:\n#0 {main}\n  thrown in /var/www/html/info.php on line 4'
 ```
 
 ## Conclusion intermédiaire
