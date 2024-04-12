@@ -273,6 +273,30 @@ Cette commande va activer le virtual host `phpmyadmin.conf`. Vous pouvez mainten
 systemctl restart apache2
 ```
 
+::: details Écouter le port 9090
+
+Par défaut, Apache écoute sur le port 80. Si vous souhaitez que phpMyAdmin soit accessible sur un autre port, vous pouvez modifier le fichier `/etc/apache2/ports.conf` :
+
+```bash
+nano /etc/apache2/ports.conf
+```
+
+Ajoutez la ligne suivante :
+
+```apache
+Listen 9090
+```
+
+Redémarrez Apache pour que les modifications soient prises en compte :
+
+```bash
+systemctl restart apache2
+```
+
+:::
+
+
+
 ## Conclusion
 
 Vous souhaitez une version plus complète ? [Voir le TD](/tp/devops/serveur/debian.md)

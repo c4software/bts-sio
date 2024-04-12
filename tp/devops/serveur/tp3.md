@@ -508,6 +508,23 @@ systemctl restart apache2
 
 :::
 
+::: details Écouter le port 9090
+
+Pour que le virtual host fonctionne, il faut que Apache écoute sur le port 9090. Pour cela, vous pouvez modifier le fichier `/etc/apache2/ports.conf` :
+
+```apache
+Listen 80
+Listen 9090
+```
+
+Une fois les modifications effectuées, vous pouvez redémarrer Apache :
+
+```bash
+systemctl restart apache2
+```
+
+:::
+
 ## Conclusion
 
 Dans ce TP, nous avons vu comment installer MariaDB et PHPMyAdmin. Nous avons aussi vu comment configurer MariaDB pour qu'il accepte les connexions distantes. Vous pouvez maintenant garder ce serveur pour vous entraîner à créer des bases de données et à les gérer.
