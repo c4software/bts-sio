@@ -23,6 +23,19 @@ Prévenir plutôt que guérir… Quelques sites à surveiller :
 Vous êtes la première ligne d’informations !
 :::
 
+## Les grandes catégories à connaître
+
+- Les mots de passe (multi-facteurs, complexité, hashage).
+- Les failles dans le code (injections, XSS, CSRF, etc.).
+- Les failles dans les configurations (serveur, application, etc.).
+- Le social engineering (le maillon faible, l'humain).
+
+::: danger Le risque ?
+
+Le risque est la multiplication des failles. Plus vous avez de failles, plus vous avez de risques. C'est là que la sécurité devient un enjeu majeur. Car plus le nombre de failles est importantes plus **la surface d'attaque** est grande.
+
+:::
+
 ## Les mots de passe
 
 Zoom sur les mots de passe :

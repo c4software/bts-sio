@@ -180,6 +180,15 @@ C’est aussi votre métier
 
 ---
 
+## Les grandes catégories à connaître
+
+- Les mots de passe (multi-facteurs, complexité, hashage).
+- Les failles dans le code (injections, XSS, CSRF, etc.).
+- Les failles dans les configurations (serveur, application, etc.).
+- Le social engineering (le maillon faible, l'humain).
+
+---
+
 ## Assurer la qualité
 
 s'assurer une qualité continue du code
@@ -187,6 +196,30 @@ s'assurer une qualité continue du code
 - 10 règles à connaitre (OWASP).
 - Des tests unitaires.
 - Une analyse automatique du code (SonarQube).
+
+---
+
+## 10 grandes catégories
+
+- **Injection** ;
+- **Violation de Gestion d’Authentification et de Session** ;
+- **Cross-Site Scripting (XSS)** ;
+- **Références directes non sécurisées à un objet** ;
+- **Mauvaise configuration Sécurité** ;
+- **Exposition de données sensibles** ;
+- **Manque de contrôle d’accès au niveau fonctionnel** ;
+- **Falsification de requête intersite (CSRF)** ;
+- **Utilisation de composants avec des vulnérabilités connues** ;
+- **Redirections et Renvois non validés**.
+
+---
+
+<fieldset>
+  <legend>Le risque, la multiplication des failles</legend>
+  <p>
+  Plus vous avez de failles, plus vous avez de risques. C'est là que la sécurité devient un enjeu majeur. Car plus le nombre de failles est importantes plus <b>la surface d'attaque</b> est grande.
+  </p>
+</fieldset>
 
 ---
 
