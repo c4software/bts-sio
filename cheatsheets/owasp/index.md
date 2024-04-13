@@ -131,7 +131,7 @@ S'assurer d'une qualité continue du code avec :
 OWASP liste 10 grandes catégories de failles **à connaître** :
 
 - **Injection** : Les attaques par injection surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête. Cela peut se produire avec les injections SQL, les injections OS, etc.
-- Violation de Gestion d’Authentification et de Session : Cela se produit lorsque les attaquants exploitent des vulnérabilités dans les mécanismes d'authentification, comme les sessions mal gérées, les mots de passe faibles ou les identifiants exposés.
+- **Violation de Gestion d’Authentification et de Session** : Cela se produit lorsque les attaquants exploitent des vulnérabilités dans les mécanismes d'authentification, comme les sessions mal gérées, les mots de passe faibles ou les identifiants exposés.
 - **Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire compte tenu des défaillances cryptographiques possibles (et donc à l’exposition de données sensibles). Cela est particulièrement vrai dans le cas où ces données relèvent de dispositifs réglementés comme le RGPD, le CCPA, etc. Exemple, mot de passe non chiffré en base de données
 - **Conception non sécurisée / Exposition de données sensibles** : La « conception non sécurisée » est un terme assez large qui regroupe diverses failles et désigne l’absence ou la faiblesse de la conception des contrôles. Exemple d’accès direct à une ressource sans contrôle, manque de contrôle dans un système de routeur Web, Manque de contrôle de saisie.
 - **Mauvaise configuration de la sécurité** : Manque de validation des types de paramètres, accès trop facile aux ressources non accessibles au public (cloud), configuration incomplète ou trop permissive, messages d’erreurs trop détaillés, contenant des informations sensibles, manque de contrôle sur les données en entrée (filtrage non présent type filter_input, strip_tags, htmlspecialchars etc.)
@@ -140,6 +140,27 @@ OWASP liste 10 grandes catégories de failles **à connaître** :
 - **Manque d’intégrité des données et du logiciel** : Cette catégorie englobe les codes et infrastructures qui ne sont pas protégés contre les violations d’intégrité. Exemple, mise à jour sans contrôle, absence de signature numérique, présence de XSS dans un système, aucune protection anti-rejeux (brute force, CSRF)
 - **Absence de logs serveur et de surveillance** : Permettre un cas d’incident d’avoir de la traçabilité.
 - **Falsification de requête côté serveur** : Elle permet à un hacker d’inciter l’application côté serveur à envoyer des requêtes à un endroit non prévu. Le serveur est donc capable de faire des requêtes à des endroits non prévus (depuis le coeur de l'application).
+
+### Top 10 : Simplifié
+
+Le nouveau TOP 10 est très intéressant, car il met en lumière le croisement entre les failles et les risques. Mais il est plus complexe à mémoriser. Il est donc également possible de classer les failles de manière brute :
+
+- **Injection** : Injection SQL, Shell...
+- **Violation de Gestion d’Authentification et de Session** : Risque de casser / usurper une authentification ou une session.
+- **Cross-Site Scripting (XSS)** : Risque d'injection de contenu dans une page pour but de provoquer des actions non désirées dans celle-ci.
+- **Références directes non sécurisées à un objet** : Accès à de la donnée en spécifiant un `id` directement par un paramètre non filtré.
+- **Mauvaise configuration Sécurité** : Failles liées aux serveurs Web, applications, base de données ou frameworks.
+- **Exposition de données sensibles** : Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
+- **Manque de contrôle d’accès au niveau fonctionnel** : Failles liées aux contrôles d'accès de fonctionnalité.
+- **Falsification de requête intersite (CSRF)** : Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
+- **Utilisation de composants avec des vulnérabilités connues** : Failles liées à l’utilisation de composants tiers vulnérables.
+- **Redirections et Renvois non validés** : Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante.
+
+Ce classement est plus simple à mémoriser et permet de se rappeler des failles les plus courantes.
+
+::: tip Je ne l'invente pas
+Ce classement est en fait la version antérieure du TOP 10 (avant 2020). Il est donc toujours complètement valable.
+:::
 
 ### Les failles
 
