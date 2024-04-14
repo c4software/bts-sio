@@ -264,7 +264,7 @@ Le code sera exécuté dans le navigateur de l'utilisateur lors de l'affichage d
 
 Deux types sont à connaître :
 
-- XSS Persistant (stocké)
+- XSS Persistant (stocké en base de données, dans un logs, et exécuté à chaque affichage de la page)
 - XSS Reflété (via un lien)
 
 #### Comment corriger ?
