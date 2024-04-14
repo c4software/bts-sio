@@ -458,6 +458,22 @@ L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les
 - OWASP Testing guide (Guide pour voir le niveau de sécu)
 - OWASP Code Review guide (Méthode d’audit)
 
+## La formation
+
+En cybersécurité, il est important de rappeler que la formation des employés est primordiale. Cette formation doit être :
+
+- Régulière (tous les ans).
+- Adaptée à l'entreprise (pas de formation générique).
+- Prendre plusieurs formes (phishing fictif, formation en ligne, formation en présentiel).
+
+La formation prend également la forme de **sensibilisation** :
+
+- Affichage de consignes de sécurité.
+- Sensibilisation aux risques.
+- Formation aux bonnes pratiques.
+- Formation sur les mots de passe.
+- Chocoblast (technique pour rappeler aux utilisateurs l'importance de verrouiller leur session).
+
 ## Synthèse OWASP
 
 ![](./res/tableau.png)
