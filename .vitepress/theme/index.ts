@@ -12,6 +12,7 @@ import SlidesDeck from './components/SlidesDeck.vue'
 import Center from './components/Center.vue'
 import Urdle from './components/Urdle.vue'
 import DebianConfiguration from './components/DebianConfiguration.vue'
+import './custom.css'
 
 export default {
   extends: DefaultTheme,
