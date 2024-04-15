@@ -123,6 +123,15 @@ Pour progresser en développement il faut se maintenir à jour, et pour cela il 
 - [Certbot](https://certbot.eff.org/instructions) <- Installer un certificat SSL pour son site web (HTTPS)
 - [Acme.sh](https://github.com/acmesh-official/acme.sh) <- Installer un certificat SSL (HTTPS), équivalent Certbot mais écrit en script shell.
 
+## Outillage (portfolios, documentation, etc.) :
+
+Les outils suivants permettent de générer des sites « clients » dynamiques ou statiques en utilisant uniquement du HTML, CSS et JS. Ils sont donc hébergés sur des plateformes de type Netlify, Github Pages, etc.
+
+- [VitePress](https://vitepress.vuejs.org/) <- Générateur de site statique basé sur VueJS.
+- [Astro](https://astro.build/) <- Générateur de site statique.
+- [Docusaurus](https://docusaurus.io/) <- Générateur de documentation.
+- [NextJS](https://nextjs.org/) <- Générateur de site web basé sur React.
+
 ## Hebergement :
 
 Deux catégories :
@@ -140,8 +149,8 @@ CI/CD signifie « Continuous Integration / Continuous Delivery ». Il s'agit d'u
 - [Surge.sh](https://surge.sh/) <- CI/CD, Simple, « gratuit », un poil plus technique.
 - [Fleek.co](https://www.fleek.co) <- CI/CD, Simple, « gratuit », repose sur le Web 3 avec une interface web de gestion. ([miroir](https://ipfs.cours.brosseau.ovh/))
 - [Gitlab Pages](https://cours.brosseau.ovh/tp/ci/pages.html) <- CI/CD
-- [Github Pages](https://pages.github.com/) <- CI/CD
-- [Firebase Hosting](https://firebase.google.com/docs/hosting)
+- [Github Pages](https://pages.github.com/) <- CI/CD (Gratuit, mais sans interface de gestion)
+- [Firebase Hosting](https://firebase.google.com/docs/hosting) <- CI/CD (Gratuit, mais sans interface de gestion)
 
 ## Sites dynamiques :
 
