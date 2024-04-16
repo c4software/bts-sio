@@ -49,12 +49,6 @@ apt update
 apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 ```
 
-### Tester le bon fonctionnement de Docker
-
-```bash
-docker run hello-world
-```
-
 ## Autoriser un utilisateur à utiliser Docker
 
 Par défaut, seul le compte `root` peut utiliser Docker. Pour autoriser un autre utilisateur à utiliser Docker, il faut ajouter ce compte dans le groupe `docker`.
@@ -121,6 +115,12 @@ Vous pouvez maintenant accéder à PHPMyAdmin via l'adresse :
   - Mot de passe : `user-password`
   - Utilisateur root : `root`
   - Mot de passe root : `root`
+
+### Tester le bon fonctionnement de Docker
+
+```bash
+docker run hello-world
+```
 
 ## Sources
 
