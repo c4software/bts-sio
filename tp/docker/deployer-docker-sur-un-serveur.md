@@ -212,14 +212,14 @@ Nous allons maintenant définir l'ensemble des conteneurs que nous allons lancer
 version: '3.7'
 
 services:
-  mariadb:
-    image: mariadb:latest
-    container_name: mariadb
+  db:
+    image: mysql:8
+    container_name: db
     restart: always
     environment:
-      - MARIADB_USER=example-user
-      - MARIADB_PASSWORD=my_cool_secret
-      - MARIADB_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user-password
+      - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ~/mysql-data:/var/lib/mysql
     ports:
@@ -230,12 +230,12 @@ services:
     container_name: phpmyadmin
     restart: always
     environment:
-      - PMA_HOST=mariadb
+      - PMA_HOST=db
       - PMA_PORT=3306
     ports:
-      - 8080:80
+      - 8081:80
     depends_on:
-      - mariadb
+      - db
 ```
 
 Je vous propose de regarder le fichier `docker-compose.yml` ligne par ligne, nous allons le faire ensemble.

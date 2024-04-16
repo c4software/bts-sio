@@ -20,6 +20,14 @@ Dans cette procédure, nous allons installer Docker sur une machine Debian 12.
 
 Je pars du principe que vous avez déjà une machine Debian 12. Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 12](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
 
+### Si vous avez déjà un MySQL installé
+
+Si vous avez déjà un MySQL installé sur votre machine, il est nécessaire de le désinstaller avant d'installer Docker. Pour cela, vous pouvez utiliser la commande suivante :
+
+```bash
+apt-get remove --purge mariadb-server mariadb-client -y
+```
+
 ### Installation de Docker
 
 ```bash
@@ -66,6 +74,53 @@ systemctl enable containerd.service
 ```
 
 Cette commande permet de démarrer Docker au démarrage de la machine, et donc démarre automatiquement les conteneurs que vous avez spécifiés comme étant à démarrer au démarrage (exemple les conteneurs de type `nginx` ou `mysql`).
+
+## Créer un environnement complet MySQL + PHPMyAdmin
+
+Créer un fichier `docker-compose.yml` avec le contenu suivant :
+
+```yaml
+services:
+  db:
+    image: mysql:8
+    container_name: db
+    restart: always
+    environment:
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user-password
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ~/mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    ports:
+      - 8081:80
+    depends_on:
+      - db
+```
+
+Pour démarrer l'environnement, il suffit de lancer la commande suivante :
+
+```bash
+docker-compose up -d
+```
+
+Vous pouvez maintenant accéder à PHPMyAdmin via l'adresse :
+
+- Accéder à votre PHPMyAdmin : http://ip-de-votre-machine:8081
+- Pour le MYSQL vous avez les informations suivantes :
+  - Utilisateur : `user`
+  - Mot de passe : `user-password`
+  - Utilisateur root : `root`
+  - Mot de passe root : `root`
 
 ## Sources
 
