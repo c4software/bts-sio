@@ -187,9 +187,14 @@ Notre machine est maintenant prête à accueillir le serveur de base de données
 - MySQL
 - PostgreSQL
 
-Dans ce TP, nous allons utiliser MariaDB. Pourquoi ? Car celui-ci est disponible de base sur debian.
+Dans ce TP vous allez avoir le choix (vous savez l'histoire dont vous êtes le héros). En fonction de vos besoins vous avez le choix entre :
 
-## TP Version MariaDB
+- MariaDB : C'est un fork de MySQL, il est donc compatible avec MySQL. C'est un serveur de base de données très utilisé.
+- MySQL : C'est un serveur de base de données très utilisé. Il est très performant et très stable.
+
+Comment choisir ? MariaDB est de base dans Debian, il est plus simple à installer, cependant dans certains cas, vous aurez besoin de MySQL. C'est donc à vous de choisir.
+
+## Installation de MariaDB
 
 MariaDB est disponible dans les dépôts de Debian. MySQL et MariaDB sont deux serveurs de base de données avec des fonctionnalités similaires. MariaDB est un fork de MySQL, c'est-à-dire que c'est une version modifiée de MySQL.
 
@@ -233,7 +238,7 @@ Cette commande va vous demander le mot de passe de l'utilisateur `root`. Si vous
 
 :::
 
-## Version alternative : MySQL
+## Installation de MySQL
 
 Parfois, il est utile d'avoir MySQL à la place de MariaDB. Même si MariaDB est un fork de MySQL (c'est-à-dire une version modifiée de MySQL), il est possible que vous ayez besoin de MySQL pour des raisons de compatibilité.
 
@@ -242,7 +247,7 @@ Bien qu'optionnelle, je vous propose de voir comment installer MySQL sur votre s
 ::: danger Cette partie est optionnelle
 Évidemment, si vous avez déjà installé MariaDB et que celui-ci vous convient, vous n'avez pas besoin de suivre cette partie.
 
-👋 Vous ne pouvez pas avoir MySQL et MariaDB en même temps sur le même serveurs.
+👋 Vous ne pouvez pas avoir MySQL et MariaDB en même temps sur le même serveur.
 
 :::
 
