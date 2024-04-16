@@ -404,7 +404,7 @@ Dans le prochain TP nous allons (re)voir pour configurer Apache avec des Virtual
 
 ## Autres logiciels pour gérer une base de données
 
-Nous avons pour l'instant vu comment installer MariaDB et PHPMyAdmin. Mais il existe d'autres logiciels pour gérer une base de données. Nous allons voir ici comment installer ces logiciels. Pour que les autres logiciels fonctionnent, il faut que vous autorisiez le port 3306 dans la configuration de MariaDB.
+Nous avons pour l'instant vu comment installer MariaDB et PHPMyAdmin. Mais il existe d'autres logiciels pour gérer une base de données. Nous allons voir ici comment installer ces logiciels. Pour que les autres logiciels fonctionnent, il vous faut un compte utilisateur avec les droits `%` et pour MariaDB, il faut que vous ayez autorisé les connexions distantes (voir plus haut).
 
 ::: warning Rappel sur les ports
 
