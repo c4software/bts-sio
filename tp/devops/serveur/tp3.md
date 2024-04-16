@@ -388,7 +388,7 @@ Pour créer un utilisateur, nous allons utiliser la commande `CREATE USER`. Cett
 CREATE USER '<votre-nom>'@'%' IDENTIFIED BY '<votre-mot-de-passe>';
 
 # Les droits
-GRANT ALL PRIVILEGES ON *.* TO '<votre-nom>'@'%';
+GRANT ALL PRIVILEGES ON *.* TO '<votre-nom>'@'%' WITH GRANT OPTION;
 
 # Rafraîchir les privilèges
 FLUSH PRIVILEGES;
