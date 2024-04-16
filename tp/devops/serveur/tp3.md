@@ -198,7 +198,7 @@ Comment choisir ? MariaDB est de base dans Debian, il est plus simple à install
 
 MariaDB est disponible dans les dépôts de Debian. MySQL et MariaDB sont deux serveurs de base de données avec des fonctionnalités similaires. MariaDB est un fork de MySQL, c'est-à-dire que c'est une version modifiée de MySQL.
 
-::: details Mariadb
+::: details Procédure MariaDB
 
 ```bash
 apt update
