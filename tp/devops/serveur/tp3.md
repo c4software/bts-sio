@@ -236,6 +236,32 @@ mysql -u root -p
 
 Cette commande va vous demander le mot de passe de l'utilisateur `root`. Si vous avez bien suivi les étapes précédentes, vous devriez être connecté à MariaDB.
 
+### Autoriser les connexions distantes
+
+La configuration se fait dans le fichier `/etc/mysql/mariadb.conf.d/50-server.cnf`.
+
+```bash
+nano /etc/mysql/mariadb.conf.d/50-server.cnf
+```
+
+Modifier la ligne `bind-address` par la ligne suivante dans la section `[mysqld]`.
+
+```ini
+bind-address = 0.0.0.0
+```
+
+Redémarrer le serveur MySQL
+
+```bash
+systemctl restart mysql
+```
+
+Comment lire cette configuration ?
+
+- `bind-address` : c'est la variable qui permet de définir l'adresse IP sur laquelle MariaDB va écouter les connexions.
+- `0.0.0.0` : Cette valeur signifie que MariaDB va écouter sur toutes les adresses IP disponibles sur le serveur.
+
+
 :::
 
 ## Installation de MySQL
@@ -385,33 +411,6 @@ Nous avons pour l'instant vu comment installer MariaDB et PHPMyAdmin. Mais il ex
 Le port est un numéro qui permet de différencier les différents services qui tournent sur un serveur. Par exemple, le port 80 est utilisé par le serveur web Apache. Le port 22 est utilisé par le service SSH. Le port 3306 est utilisé par le service MariaDB. De base, le port 3306 n'écoute que les connexions locales. Pour que les autres logiciels puissent se connecter à MariaDB, il faut autoriser les connexions distantes.
 
 🚨 **Point cyber**, VOUS NE DEVEZ JAMAIS OUVRIR LE PORT 3306 SUR INTERNET. VOUS DEVEZ LE LAISSER OUVERT UNIQUEMENT SUR VOTRE RÉSEAU LOCAL. 🚨
-
-:::
-
-### Autoriser les connexions distantes
-
-La configuration se fait dans le fichier `/etc/mysql/mariadb.conf.d/50-server.cnf`.
-
-```bash
-nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-Modifier la ligne `bind-address` par la ligne suivante dans la section `[mysqld]`.
-
-```ini
-bind-address = 0.0.0.0
-```
-
-Redémarrer le serveur MySQL
-
-```bash
-systemctl restart mysql
-```
-
-::: tip Comment lire la ligne ajoutée ?
-
-- `bind-address` : c'est la variable qui permet de définir l'adresse IP sur laquelle MariaDB va écouter les connexions.
-- `0.0.0.0` : Cette valeur signifie que MariaDB va écouter sur toutes les adresses IP disponibles sur le serveur.
 
 :::
 
