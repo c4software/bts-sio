@@ -189,9 +189,11 @@ Notre machine est maintenant prête à accueillir le serveur de base de données
 
 Dans ce TP, nous allons utiliser MariaDB. Pourquoi ? Car celui-ci est disponible de base sur debian.
 
-### Installation de MariaDB
+## TP Version MariaDB
 
-Vous l'avez compris, installer un logiciel sur Linux est très simple, une seule commande suffit :
+MariaDB est disponible dans les dépôts de Debian. MySQL et MariaDB sont deux serveurs de base de données avec des fonctionnalités similaires. MariaDB est un fork de MySQL, c'est-à-dire que c'est une version modifiée de MySQL.
+
+::: details Mariadb
 
 ```bash
 apt update
@@ -200,14 +202,10 @@ apt install mariadb-server mariadb-client -y
 
 Pourquoi ces deux paquets ? `mariadb-server` est le serveur de base de données, et `mariadb-client` est le client de base de données. Le client est utilisé pour se connecter **localement** à la base de données.
 
-::: tip Arrêtons-nous un instant
-
 - Pourquoi faire un update avant d'installer un paquet ?
 - À quoi correspond le `-y` à la fin de la commande ?
 - Selon vous, est-ce que votre serveur de base de données est démarré ? Si oui, comment le vérifier ?
 - Que veux dire **localement** ?
-
-:::
 
 ### Configuration
 
@@ -219,13 +217,9 @@ mysql_secure_installation
 
 Cette commande va vous demander de rentrer le mot de passe actuel de l'utilisateur `root`. Comme vous venez d'installer MariaDB.
 
-::: tip Arrêtons-nous un instant
-
 - Qu'est-ce que `mysql_secure_installation` ?
 - Pourquoi est-ce important de changer le mot de passe de l'utilisateur `root` ?
 - Quel mot de passe avez-vous choisi ? Pourquoi ?
-
-:::
 
 ### Vérifier que MariaDB est installé
 
@@ -236,6 +230,88 @@ mysql -u root -p
 ```
 
 Cette commande va vous demander le mot de passe de l'utilisateur `root`. Si vous avez bien suivi les étapes précédentes, vous devriez être connecté à MariaDB.
+
+:::
+
+## Version alternative : MySQL
+
+Parfois, il est utile d'avoir MySQL à la place de MariaDB. Même si MariaDB est un fork de MySQL (c'est-à-dire une version modifiée de MySQL), il est possible que vous ayez besoin de MySQL pour des raisons de compatibilité.
+
+Bien qu'optionnelle, je vous propose de voir comment installer MySQL sur votre serveur.
+
+::: danger Cette partie est optionnelle
+Évidemment, si vous avez déjà installé MariaDB et que celui-ci vous convient, vous n'avez pas besoin de suivre cette partie.
+
+👋 Vous ne pouvez pas avoir MySQL et MariaDB en même temps sur le même serveurs.
+
+:::
+
+::: details Procédure MySQL
+
+⚠️ Attention, nous allons désinstaller MariaDB pour installer MySQL. Si vous avez déjà des bases de données, je vous conseille de les sauvegarder avant de continuer.
+
+```bash
+apt remove --purge mariadb-server mariadb-client -y
+```
+
+
+Bien, nous n'avons plus MariaDB, nous pouvons maintenant installer MySQL. L'installation de MySQL est légèrement différente de celle de MariaDB. En effet, MySQL n'est pas disponible dans les dépôts de Debian, il faut donc ajouter un dépôt spécifique.
+
+La première étape est d'ajouter le dépôt MySQL :
+
+```bash
+sudo apt update
+sudo apt install gnupg -y
+sudo wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.29-1_all.deb
+```
+
+Ce paquet va nous configurer les dépôts MySQL, voici les étapes à suivre :
+
+![MySQL Config](./res/mysql-1.png)
+![MySQL Config](./res/mysql-2.png)
+![MySQL Config](./res/mysql-3.png)
+
+Une fois que vous avez choisi la version de MySQL que vous souhaitez installer, vous pouvez valider votre choix via « ok ». Une fois revenu sur le terminal, vous pouvez installer MySQL :
+
+```bash
+sudo apt update
+sudo apt install mysql-server -y
+```
+
+À cette étape, MySQL va vous demander de configurer le mot de passe de l'utilisateur `root`. Vous pouvez suivre les instructions pour configurer le mot de passe.
+
+![MySQL Config](./res/mysql-4.png)
+![MySQL Config](./res/mysql-5.png)
+
+Vous pouvez maintenant activer et démarrer MySQL :
+
+```bash
+sudo systemctl start mysql
+sudo systemctl enable mysql
+```
+
+Pour vérifier que MySQL est bien installé, vous pouvez utiliser la commande suivante :
+
+```bash
+mysql -u root -p
+```
+
+Et comme MariaDB, de base, MySQL n'autorise pas les connexions distantes. Pour autoriser les connexions distantes, vous pouvez suivre la procédure suivante :
+
+```bash
+sudo mysql -u root -p
+```
+
+```sql
+CREATE USER 'root'@'%' IDENTIFIED BY '<votre-mot-de-passe>';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+Avec ces requêtes, vous autorisez l'utilisateur `root` à se connecter depuis n'importe quelle adresse IP. Vous pouvez maintenant vous connecter à MySQL depuis n'importe quelle machine. N'oubliez pas de remplacer `<votre-mot-de-passe>` par le mot de passe que vous avez choisi.
+
+:::
 
 ## Configurer PHPMyAdmin
 
