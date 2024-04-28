@@ -8,6 +8,10 @@ description: Aide mémoire GIT
 [[toc]]
 :::
 
+## Un tutoriel interactif
+
+Pour apprendre Git de manière interactive, je vous conseille le site [learngitbranching.js.org](https://learngitbranching.js.org/?locale=fr_FR).
+
 ## Personnaliser
 
 Définir son identité :
