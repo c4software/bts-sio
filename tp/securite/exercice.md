@@ -570,9 +570,6 @@ L'auditeur vous indique que vous devez mettre en place en place un token afin d'
 Pour protéger votre application contre les attaques CSRF, vous devez ajouter un token CSRF dans le formulaire. Ce token doit être généré aléatoirement et doit être vérifié lors de l'accès à la page.
 
 ```php
-// Génère un token aléatoire
-$_SESSION['token'] = uniqid;
-
 // Vérifier le token
 if (isset($_POST['token']) && $_POST['token'] === $_SESSION['token']) {
     // Nous avons consommé le token, nous pouvons le supprimer
@@ -581,6 +578,9 @@ if (isset($_POST['token']) && $_POST['token'] === $_SESSION['token']) {
     // Le token est valide, nous pouvons traiter la requête
     // ...
 }
+
+// Génère un token aléatoire
+$_SESSION['token'] = uniqid();
 ```
 
 Et dans le formulaire :
