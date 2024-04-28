@@ -284,7 +284,7 @@ Pourquoi le code source est-il vulnérable à une injection SQL ? Proposez une s
 
 ## Faille 3
 
-L'auditeur a trouvé une faille de type CSRF (Cross Site Request Forgery). Il a réussi à modifier les données de l'utilisateur.
+L'auditeur a trouvé une faille de type CSRF (Cross Site Request Forgery). Il a réussi via un email à faire supprimer des utilisateurs par l'administrateur de la plateforme.
 
 Le code source ou la faille se trouve est le suivant :
 
