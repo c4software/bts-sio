@@ -28,9 +28,9 @@ Dans cette procédure, nous allons être exclusivement en mode `root`. Pour pass
 sudo su -
 ```
 
-### Si vous avez déjà un MySQL installé
+### Si vous avez déjà un MariaDB installé
 
-Si vous avez déjà un MySQL installé sur votre machine, il est nécessaire de le désinstaller avant d'installer Docker. Pour cela, vous pouvez utiliser la commande suivante :
+Si vous avez déjà un MariaDB installé sur votre machine, il est nécessaire de le désinstaller avant d'installer Mysql via Docker. Pour cela, vous pouvez utiliser la commande suivante :
 
 ```bash
 apt-get remove --purge mariadb-server mariadb-client -y
@@ -38,7 +38,7 @@ apt-get remove --purge mariadb-server mariadb-client -y
 
 ::: danger Attention
 
-Cette commande va supprimer MySQL de votre machine. Assurez-vous d'avoir une sauvegarde de vos bases de données avant de lancer cette commande.
+Cette commande va supprimer MariaDB de votre machine. Assurez-vous d'avoir une sauvegarde de vos bases de données avant de lancer cette commande.
 
 :::
 
