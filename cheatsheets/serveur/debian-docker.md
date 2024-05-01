@@ -36,6 +36,12 @@ Si vous avez déjà un MySQL installé sur votre machine, il est nécessaire de 
 apt-get remove --purge mariadb-server mariadb-client -y
 ```
 
+::: danger Attention
+
+Cette commande va supprimer MySQL de votre machine. Assurez-vous d'avoir une sauvegarde de vos bases de données avant de lancer cette commande.
+
+:::
+
 ### Installation de Docker
 
 ```bash
