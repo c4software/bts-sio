@@ -134,12 +134,6 @@ Vous pouvez maintenant accéder à PHPMyAdmin via l'adresse :
   - Utilisateur root : `root`
   - Mot de passe root : `root`
 
-### Tester le bon fonctionnement de Docker
-
-```bash
-docker run hello-world
-```
-
 ## Sources
 
 - [Docker - Installation](https://docs.docker.com/engine/install/debian/)

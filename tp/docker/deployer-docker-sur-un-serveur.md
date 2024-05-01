@@ -245,7 +245,7 @@ Je vous propose de regarder le fichier `docker-compose.yml` ligne par ligne, nou
 Maintenant que nous avons défini notre stack, nous allons pouvoir la lancer.
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Les logs
@@ -253,21 +253,21 @@ docker-compose up -d
 Comme pour un serveur classique, nous pouvons consulter les logs de nos conteneurs.
 
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 Cette commande va nous permettre de consulter les logs de nos conteneurs. Nous pouvons également consulter les logs d'un conteneur en particulier.
 
 ```bash
-docker-compose logs -f mariadb
+docker compose logs -f mariadb
 ```
 
 ### Arrêter la stack
 
-Pour arrêter la stack, nous allons utiliser la commande `docker-compose down`.
+Pour arrêter la stack, nous allons utiliser la commande `docker compose down`.
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ## C'est à vous, le cas de Redmine
@@ -312,7 +312,7 @@ Nous allons maintenant créer un serveur Apache + PHP + MySQL. Pour ça je vous 
 [Stack applicatif type AP](https://gitlab.com/bts-sio-chevrollier/demo-docker-compose)
 
 1. Récupérer le projet sur votre serveur.
-2. Lancer le projet avec la commande `docker-compose up -d`.
+2. Lancer le projet avec la commande `docker compose up -d`.
 
 Je vous laisse regarder le fichier `docker-compose.yml` et le fichier `Dockerfile` pour comprendre comment fonctionne ce projet.
 
