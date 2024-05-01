@@ -122,7 +122,7 @@ services:
 Pour démarrer l'environnement, il suffit de lancer la commande suivante :
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Vous pouvez maintenant accéder à PHPMyAdmin via l'adresse :
