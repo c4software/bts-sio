@@ -20,6 +20,14 @@ Dans cette procédure, nous allons installer Docker sur une machine Debian 12.
 
 Je pars du principe que vous avez déjà une machine Debian 12. Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 12](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
 
+## Commande en root
+
+Dans cette procédure, nous allons être exclusivement en mode `root`. Pour passer en mode `root`, vous pouvez utiliser la commande suivante :
+
+```bash
+sudo su -
+```
+
 ### Si vous avez déjà un MySQL installé
 
 Si vous avez déjà un MySQL installé sur votre machine, il est nécessaire de le désinstaller avant d'installer Docker. Pour cela, vous pouvez utiliser la commande suivante :
@@ -59,6 +67,16 @@ usermod -aG docker <votre-utilisateur>
 ```
 
 Une fois l'utilisateur ajouté au groupe `docker`, il faut se déconnecter et se reconnecter pour que les changements soient pris en compte.
+
+## La suite est en tant qu'utilisateur
+
+Vous pouvez maintenant vous déconnecter du compte `root` et vous reconnecter avec votre compte utilisateur.
+
+```bash
+exit
+```
+
+Pour que vous puissez utiliser Docker sans avoir à passer par un `sudo`, il est nécessaire de vous déconnecter et de vous reconnecter (quitter la session SSH et vous reconnecter).
 
 ## Démarrer Docker au démarrage de la machine
 
