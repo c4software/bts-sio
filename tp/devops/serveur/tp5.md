@@ -34,6 +34,16 @@ Nous sommes à un point étape. La réalisation de ce TP sera évaluée. Il sera
 
 :::
 
+::: danger Bonus
+
+Vous aimez les notes ? Vous souhaitez plus de points ? Tout en travaillant plus efficacement ? Et bien, aujourd'hui c'est possible. 
+
+Un Bonus de **2 points** vous sera accordé si vous utilisez Docker pour déployer votre serveur.
+
+[Installer Docker sur une Debian](../../docker/deployer-docker-sur-un-serveur.md)
+
+:::
+
 Vous avez à votre disposition l'ensemble des documents nécessaires. Vous pouvez également vous aider des TP précédents, et plus particulièrement de :
 
 - [TP1. Créer une VM depuis un modèle.](./tp1alt.md)
