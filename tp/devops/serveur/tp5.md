@@ -40,7 +40,7 @@ Vous aimez les notes ? Vous souhaitez plus de points ? Tout en travaillant plus 
 
 Un Bonus de **2 points** vous sera accordé si vous utilisez Docker pour déployer votre serveur.
 
-[Installer Docker sur une Debian](../../docker/deployer-docker-sur-un-serveur.md)
+[Installer Docker sur une Debian](/cheatsheets/serveur/debian-docker.md)
 
 :::
 
