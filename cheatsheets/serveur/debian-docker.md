@@ -140,6 +140,44 @@ Vous pouvez maintenant accéder à PHPMyAdmin via l'adresse :
   - Utilisateur root : `root`
   - Mot de passe root : `root`
 
+## Héberger un site PHP
+
+Pour héberger un site PHP, vous pouvez utiliser le conteneur `php:apache`. Pour cela, vous pouvez créer un fichier `docker-compose.yml` avec le contenu suivant :
+
+```yaml
+services:
+  php:
+    image: php:apache
+    container_name: php
+    restart: always
+    volumes:
+      - ~/site:/var/www/html
+    ports:
+      - 9090:80
+```
+
+Nous allons monter le dossier `~/site` dans le dossier `/var/www/html` du conteneur. Vous pouvez donc placer votre site dans le dossier `~/site` de votre machine.
+
+::: tip Rappel
+
+Le `~` indique le home directory de l'utilisateur. Par exemple, si vous êtes l'utilisateur `valentin`, le dossier `~/site` correspondra à `/home/valentin/site`.
+
+:::
+
+Évidemment, vous pouvez modifier le fichier `docker-compose.yml` pour ajouter des éléments comme un serveur MySQL ou autre.
+
+Puis, pour démarrer le conteneur, il suffit de lancer la commande suivante :
+
+```bash
+docker compose up -d
+```
+
+Vous pouvez maintenant accéder à votre site PHP via l'adresse : <http://ip-de-votre-machine:9090>
+
+Dans mon cas :
+
+![PHP Info](./img/php-info.png)
+
 ## Sources
 
 - [Docker - Installation](https://docs.docker.com/engine/install/debian/)
