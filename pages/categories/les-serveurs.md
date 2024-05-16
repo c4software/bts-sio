@@ -47,4 +47,4 @@ Connaitre le fonctionnement des serveurs est indispensable pour comprendre le fo
 ## Le portfolio
 
 - [Déploiement avec Netlify](/tp/ci/jamstack/netlify-portfolio.md)
-- [Déploiement avec Githab Pages](/tp/ci/pages-portfolio.md)
+- [Déploiement avec Gitlab Pages](/tp/ci/pages-portfolio.md)
