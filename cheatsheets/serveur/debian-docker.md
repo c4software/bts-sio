@@ -142,12 +142,24 @@ Vous pouvez maintenant accéder à PHPMyAdmin via l'adresse :
 
 ## Héberger un site PHP
 
-Pour héberger un site PHP, vous pouvez utiliser le conteneur `php:apache`. Pour cela, vous pouvez créer un fichier `docker-compose.yml` avec le contenu suivant :
+Pour héberger un site PHP, nous allons utiliser un conteneur PHP officiel. Cepedant, il est nécessaire de le personnaliser pour y ajouter les extensions nécessaires.
+
+Créez un fichier `Dockerfile` avec le contenu suivant :
+
+```Dockerfile
+FROM php:apache
+RUN docker-php-ext-install pdo pdo_mysql mysqli
+```
+
+Nous ajoutons les extensions `pdo`, `pdo_mysql` et `mysqli` qui sont nécessaires pour faire fonctionner un site PHP avec une base de données MySQL (ou MariaDB). Ce dockerfile est basé sur l'image officielle de PHP avec Apache (`php:apache`).
+
+
+Puis, créez un fichier `docker-compose.yml` avec le contenu suivant :
 
 ```yaml
 services:
   php:
-    image: php:apache
+    build: .
     container_name: php
     restart: always
     volumes:
@@ -155,6 +167,11 @@ services:
     ports:
       - 9090:80
 ```
+
+Comment lire ce fichier :
+
+- `build: .` : permet de construire l'image à partir du fichier `Dockerfile` situé dans le dossier courant.
+- `ports: - 9090:80` : permet de rediriger le port 9090 de votre machine vers le port 80 du conteneur.
 
 Nous allons monter le dossier `~/site` dans le dossier `/var/www/html` du conteneur. Vous pouvez donc placer votre site dans le dossier `~/site` de votre machine.
 
