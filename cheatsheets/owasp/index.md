@@ -36,6 +36,16 @@ Le risque est la multiplication des failles. Plus vous avez de failles, plus vou
 
 :::
 
+## L'authentication
+
+Il est possible de sécuriser l'authentification de plusieurs manières :
+
+- **Mots de passe** : Complexité, hachage, salage.
+- **Authentification à plusieurs facteurs** : Double authentification, biométrie, OTP.
+- **Sécurisation des mots de passe** : Bcrypt, Argon2, Scrypt.
+- **Sécurisation des sessions** : JWT, Cookies sécurisés.
+- **Authentification unique** : OAuth, OpenID (SSO, Single Sign-On).
+
 ## Les mots de passe
 
 Zoom sur les mots de passe :

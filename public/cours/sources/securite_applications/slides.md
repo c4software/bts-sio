@@ -199,6 +199,16 @@ s'assurer une qualité continue du code
 
 ---
 
+## L'authentification, un point clé
+
+- **Mots de passe** : Complexité, hachage, salage.
+- **Authentification à plusieurs facteurs** : Double authentification, biométrie, OTP.
+- **Sécurisation des mots de passe** : Bcrypt, Argon2, Scrypt.
+- **Sécurisation des sessions** : JWT, Cookies sécurisés.
+- **Authentification unique** : OAuth, OpenID (SSO, Single Sign-On).
+
+---
+
 ## 10 grandes catégories
 
 - **Injection** ;
