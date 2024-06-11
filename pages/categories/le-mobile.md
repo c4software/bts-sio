@@ -1,4 +1,4 @@
----
+git---
 aside: false
 ---
 
@@ -16,6 +16,7 @@ Le développement mobile évolue rapidement, vous trouverez ici des ressources p
 - [Les bases d'Android (View) suite](/tp/android/android-base2-tp.md)
 - [Introduction à Android Compose](/tp/composants/android.md)
 - [Cordova (Ancien)](/cours/cordova.md)
+- [Introduction Compose Multiplateforme](/tp/android/compose-multiplateforme/introduction.md)
 
 ## Applications d'exemples
 
