@@ -55,6 +55,14 @@ Zoom sur les mots de passe :
 - Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
 - Un mot de passe seul n'est souvent pas suffisant (Double authentification).
 
+## Les risques du SSO
+
+Le SSO (Single Sign-On) est une méthode d'authentification qui permet à un utilisateur de se connecter avec un seul identifiant et un seul mot de passe pour accéder à plusieurs applications. C'est une méthode très pratique, mais qui peut être dangereuse en cas de compromission (du mot de passe, de l'identifiant, de la session).
+
+En effet, si un attaquant compromet un compte, il peut accéder à toutes les applications liées à ce compte.
+
+Il est donc important de sécuriser le SSO avec des méthodes d'authentification à plusieurs facteurs (2FA, MFA).
+
 ### Principes de base
 
 Avoir un mot de passe hashé ne suffit pas. Il faut aussi le saler.
@@ -134,6 +142,12 @@ La sécurité c’est un état d’esprit à intégrer.
 C’est **votre métier**
 
 ![](./res/toutes_les_etapes.png)
+
+## L'observabilité
+
+L'observabilité est un concept qui permet de mesurer et d'analyser le comportement d'un système. On parlera de traçabilité, de logs, de monitoring, de métriques, etc.
+
+La traçabilité est un élément clé de la sécurité. Elle permet de savoir qui a fait quoi, quand et comment.
 
 ### Assurer la qualité
 

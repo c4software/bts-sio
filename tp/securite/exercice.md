@@ -102,6 +102,16 @@ class FactureController extends Controller
 
 Modifier l'accès aux factures en utilisant les fonctions à votre disposition afin de corriger le problème de sécurité identifié.
 
+## Authentification
+
+L'entreprise vous demande de mettre en place un système d'authentification centralisé (SSO) pour l'ensemble de ses applications. Expliquer en quoi, la mise en place de ce système risque de réduire la sécurité de l'ensemble des applications.
+
+Proposez une solution à cette problématique.
+
+## Les logs
+
+Expliquer en quoi les logs d'accès à une application peuvent être utiles pour identifier des problèmes de sécurité. Décrivez un cas concret où les logs permettraient d'identifier une faille de sécurité, indiquer si le traitement doit être manuel ou automatisé.
+
 ## Faille 0
 
 Observer les logs d'accès à votre application :
@@ -728,3 +738,40 @@ die();
 ```
 
 Proposez une solution pour mettre en place une double authentification dans votre application.
+
+## Appel d'API
+
+Lors de la phase de développement Antonin rencontre des problèmes d'appels aux API :
+
+```
+405 Method Not Allowed
+```
+
+Il vous demande de l'aider à résoudre ce problème. Voici l'extrait du code source de l'appel à l'API :
+
+Client : 
+
+```js
+fetch('https://api.example.com/data', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application
+    },
+    body: JSON.stringify({name: 'John Doe'})
+});
+```
+
+Serveur :
+
+```php
+<?php
+// Extrait du code du routeur
+Route::get('/', 'HomeController@index');
+Route::get('/about', 'HomeController@about');
+Route::get('/contact', 'HomeController@contact');
+Route::post('/contact', 'HomeController@envoyer');
+Route::put('/data', 'DataController@ajouter');
+Route::delete('/data', 'DataController@supprimer');
+```
+
+Expliquez à Antonin pourquoi il reçoit une erreur 405 et proposez une solution pour corriger ce problème.

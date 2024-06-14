@@ -209,6 +209,25 @@ s'assurer une qualité continue du code
 
 ---
 
+## SSO (Single Sign-On) : Authentification unique. Est un risque potentiel.
+
+À votre avis pourquoi ?
+
+---
+
+## SSO (Single Sign-On) : Authentification unique. Est un risque potentiel.
+
+Risques :
+
+- Accès à plusieurs services avec un seul compte.
+- Un seul compte à pirater pour accéder à plusieurs services.
+
+Solution :
+
+- Double authentification (2FA, MFA).
+
+---
+
 ## 10 grandes catégories
 
 - **Injection** ;
@@ -321,6 +340,12 @@ Absence de logs serveur et de surveillance des activités de l’application.
 - Absence de logs serveur.
 - Absence de logs applicatifs.
 - Manque de supervision.
+
+---
+
+**L'observabilité** est un concept qui permet de mesurer et d'analyser le comportement d'un système. On parlera de **traçabilité**, de logs, de monitoring, de métriques, etc.
+
+La **traçabilité** est un élément clé de la sécurité. Elle permet de savoir qui a fait quoi, quand et comment.
 
 ---
 
