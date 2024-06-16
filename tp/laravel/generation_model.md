@@ -600,6 +600,20 @@ php artisan code:models --table=customers_addresses
 
 Ces trois commandes vont permettre de régénérer le modèle `Customer` et générer le modèle `Address`.
 
+::: tip Un instant !
+
+Vous n'etes pas obligé d'utiliser `code:models` pour générer les modèles, vous pouvez également les écrire à la main. Exemple :
+
+Créer un modèle `Address` :
+
+```bash
+php artisan make:model Address
+```
+
+Puis ajouter les colonnes et les relations dans le modèle.
+
+:::
+
 ### 4. Corriger votre précédente vue
 
 Vous avez créé une vue permettant de voir le détail d'un `Customer`, celle-ci ne fonctionne plus, il va falloir la corriger pour afficher une liste d'adresse.
@@ -607,6 +621,8 @@ Vous avez créé une vue permettant de voir le détail d'un `Customer`, celle-ci
 ::: tip Comment faire ?
 
 Vous avez un modèle `Customer` qui contient une méthode `addresses`. Vous pouvez donc écrire dans votre template :
+
+Ici, nous allons parcourir les adresses du client et les afficher :
 
 ```html
 @forelse ($customer->addresses as $address)
