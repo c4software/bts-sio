@@ -38,10 +38,13 @@ La logique sera donc la suivante :
 2. On lance la bonne commande Kamal pour construire notre image Docker & la pousser sur le Docker Hub
 3. Kamal se connecte à notre serveur distant, récupère l'image Docker et la déploie
 
-
 ### Créer un projet Kamal
 
 ### Mettre en place l'environnement
+
+#### La configuration de Kamal
+
+#### Le .env
 
 ### Déployer le projet
 
@@ -58,3 +61,11 @@ La logique sera donc la suivante :
 1. On pousse notre code sur notre dépôt Git
 2. Notre CI/CD construit l'image Docker & la pousse l'image Docker sur le Registry Docker intégré
 3. Avec Kamal, on se connecte à notre serveur distant, le configure, puis déploit notre application
+
+### Créer notre .gitlab-ci.yml
+
+### Les secrets
+
+### Testons
+
+### Conclusion
