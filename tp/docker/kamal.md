@@ -46,7 +46,44 @@ La logique sera donc la suivante :
 
 #### Le .env
 
-### Déployer le projet
+### Mettre à jour notre application
+
+### Et si nous avions besoin d'une base de données ?
+
+Avec Kamal, il est possible de déployer des services supplémentaires (base de données, cache, etc.). Pour cela, nous allons devoir déclarer des `accessories` dans notre fichier `deploy.yml`.
+
+Un accessory est un service, qui ne sera pas compilé / packagé par nous. Il sera directement déployé par Kamal lors de la phase de `setup`. Les accessories n'ont pas vocation à être mis à jour aussi fréquemment que notre application principale.
+
+Pour tester nous allons déployer une base de données MySQL 8, dans votre fichier `deploy.yml` ajoutez le code suivant :
+
+```yaml
+accessories:
+  db:
+    service: mysql
+    image: mysql:8
+    host: ip_du_serveur
+    env:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kamal
+      MYSQL_USER: kamal
+      MYSQL_PASSWORD: kamal
+```
+
+::: tip Vous souhaitez exposer le port de votre base de données ?
+
+Évidemment, ne l'exposez pas avec les identifiants par défaut (et de préférence, sur un port non standard). Pour exposer le port de votre base de données, ajoutez la ligne suivante après `image` dans la partie `db` :
+
+```yaml
+port: 3306
+```
+
+Cette ligne rendra le port 3306 de votre base de données accessible depuis l'extérieur. Vous pourrez alors vous connecter à votre base de données depuis votre machine locale (ou tout autre machine) en utilisant l'adresse IP de votre serveur et le port 3306.
+
+:::
+
+### Plusieurs projets sur un même serveur ?
+
+Nous avons pour l'instant déployer qu'une seule application. Cependant, il est possible de déployer plusieurs applications sur un même serveur. Pour cela, il suffit de créer un fichier `deploy.yml` par application (Exemple un front et un back).
 
 ### Conclusion
 
