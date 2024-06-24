@@ -365,13 +365,14 @@ Et également ajouter quelques dépendances :
 
 ```toml
 [version]
-koin = "3.6.0-wasm-alpha2"
-precompose = "1.6.0-beta01"
+koin = "3.6.0-Beta4"
+koinCompose = "1.2.0-Beta4"
+precompose = "1.6.1"
 ktorClient = "2.3.8"
 
 [libraries]
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorClient" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorClient" }
@@ -397,7 +398,7 @@ commonMain.dependencies {
 ```
 
 ::: tip Remarque
-Pourquoi mettre des versions alpha ? Ça bouge vite, et si nous voulons bénéficier des dernières fonctionnalités, il est important de suivre les versions. Cependant, il est important de comprendre que les versions alpha sont instables, il est donc possible que votre application ne compile plus. C'est un choix à faire.
+Pourquoi mettre des versions Beta ? Ça bouge vite, et si nous voulons bénéficier des dernières fonctionnalités, il est important de suivre les versions. Cependant, il est important de comprendre que les versions Beta sont instables, il est donc possible que votre application ne compile plus. C'est un choix à faire.
 
 La version 1.6.0 ajoute le support de WASM et une amélioration de la gestion des ressources, elle est donc très intéressante pour nous.
 :::
@@ -973,6 +974,16 @@ Qu'avons-nous ici ?
 Pourquoi ce rangement ? Organiser son code en package est une bonne pratique, l'organiser avec au minimum des packages `ui`, `di`, `data` est une très bonne pratique. Cela permet de séparer les éléments de l'interface, de la gestion des états, et de la gestion des données. De plus, elle permettra à n'importe qui de comprendre rapidement l'organisation de votre application afin d'y apporter des correctifs ou des améliorations.
 
 :::
+
+### La plateforme Desktop
+
+Avec la version 1.6.1 de PreCompose, il faut maintenant légèrement modifié la partie Desktop, pour que celle-ci puisse se lancer correctement. Modifier le code présent dans `composeApp/src/desktopMain/kotlin/main.kt` pour entourer la fonction `App()` par `ProvidePreComposeLocals` :
+
+```kotlin
+ProvidePreComposeLocals {
+    App()
+}
+```
 
 ### Créer les composants `MainRoute` et `HelloRoute`
 
