@@ -509,7 +509,8 @@ export default [
                             { text: "Compiler une application hybride avec Gitlab-CI", link: "/tp/ci/ci-hybride" },
                             { text: "Installation & Configuration d'un Runner Gitlab", link: "/tp/ci/gitlab/runner.md" },
                             { text: "SonarQube", link: "/tp/devops/sonarqube/sonarqube.md" },
-                            { text: "Intégration continue avec Laravel", link: "/tp/ops/deployer-laravel-ci.md" }
+                            { text: "Intégration continue avec Laravel", link: "/tp/ops/deployer-laravel-ci.md" },
+                            { text: "Déploiement automatique avec Kamal", link: "/tp/docker/kamal.md" }
                         ]
                     },
                     {
