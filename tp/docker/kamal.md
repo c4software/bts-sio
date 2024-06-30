@@ -252,11 +252,13 @@ kamal setup
 
 Voici le rendu sur ma machine :
 
-ICI_VIDEO_YOUTUBE
+<center>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/C9NMzrQ5xp8?si=40xeFxITYV_H2dTb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
 
 ::: tip Et voilà
 
-Nous avons déployé notre première application avec Kamal ! Vous pouvez maintenant vous rendre sur l'adresse IP de votre serveur pour voir votre application en ligne.
+Nous avons déployé notre première application avec Kamal ! Vous pouvez maintenant vous rendre sur l'adresse IP de votre serveur pour voir votre application en ligne. Dans mon cas le déploiement a été fait en moins d'une minute.
 
 :::
 
