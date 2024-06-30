@@ -51,6 +51,18 @@ Pourquoi le SSH ? Kamal va se connecter à votre serveur distant pour déployer 
 Si vous souhaitez utiliser un gem, vous pouvez suivre les instructions sur le [site officiel de Kamal](https://kamal-deploy.org/docs/installation/).
 :::
 
+::: danger Vous êtes sous macOS ?
+
+Sur ma machine, j'ai rencontré un problème pour le Socket SSH. En effet, celui-ci n'était pas accessible. Pour pallier à ce problème, je dois  lancer Docker depuis le terminal (et non depuis Docker Desktop). Pour cela, je lance la commande suivante :
+
+```bash
+/Applications/Docker.app/Contents/MacOS/Docker\ Desktop.app/Contents/MacOS/Docker\ Desktop
+```
+
+Ensuite aucun changement n'est nécessaire pour l'alias Kamal.
+
+:::
+
 ## Déployer depuis votre machine (en utilisant le Docker Hub)
 
 ### La logique
