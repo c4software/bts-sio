@@ -20,7 +20,7 @@ Aujourd'hui, nous allons voir un outil simple et efficace pour automatiser le d�
 
 ## Prérequis
 
-Dans ce TP, je pars du principe que vous avez déjà un serveur distant (VPS, serveur dédié, etc.) avec Docker installé. Si ce n'est pas le cas, je vous invite à suivre le [TP sur l'installation de Docker](/tp/docker/introduction.md). Je pars également du principe que votre machine est correctement configurée (Docker installé, WSL si vous êtes sous Windows, ou alors mieux un macOS ou une distribution Linux).
+Dans ce TP, je pars du principe que vous avez déjà un serveur distant (Serveur sur la ferme au lycée, machine virtuelle, VPS, serveur dédié, etc.). Je pars également du principe que votre machine est correctement configurée (Docker installé, WSL si vous êtes sous Windows, ou alors mieux un macOS ou une distribution Linux).
 
 ## Installation de Kamal
 
