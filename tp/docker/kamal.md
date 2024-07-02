@@ -341,7 +341,7 @@ Cette ligne rendra le port 3306 de votre base de données accessible depuis l'ex
 Maintenant que nous avons ajouté notre base de données, nous allons lancer la commande `kamal setup` pour déployer notre application et notre base de données :
 
 ```bash
-kamal setup
+kamal accessory all
 ```
 
 #### Utiliser la base de données
