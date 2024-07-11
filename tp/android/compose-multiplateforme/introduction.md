@@ -1879,7 +1879,7 @@ Un petit sync de votre projet, et vous avez maintenant accès à la librairie `B
 // Le reste de votre fichier
 
 buildkonfig {
-    packageName = "com.arcure.bxt5.config.client"
+    packageName = "YOUR.PACKAGE.NAME.CHANGE.ME"
 
     defaultConfigs {
         buildConfigField(FieldSpec.Type.STRING, "HASURA_AUTH_ENDPOINT", "https://ceci-est-un-endpoint-par-defaut")
