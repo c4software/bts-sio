@@ -24,6 +24,11 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 - [PHP & SQL](/cours/introduction_sql_php.md)
 - [SQL](/tp/php/sql/support.md)
 
+### L'Approche MVC
+
+- [Cours MVC](/cours/mvc.md)
+- [Support cours MVC](/tp/mvc/support.md)
+
 ### Le Web avancé
 
 - [JavaScript Avancé](/cours/javascript_avances.md)
