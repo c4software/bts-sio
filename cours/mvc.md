@@ -8,4 +8,5 @@ aside: false
 <SlidesDeck src="mvc" />
 </ClientOnly>
 
-- [Support Structure MVC](/tp/php/mvc/tp1.md)
+- [Support de cours](/tp/mvc/support.md)
+- [Structure MVC : MiniMVC Sample](/tp/php/mvc/tp1.md)
