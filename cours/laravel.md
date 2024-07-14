@@ -8,4 +8,5 @@ aside: false
 <SlidesDeck src="laravel" />
 </ClientOnly>
 
+- [Synthèse](/tp/laravel/support.md)
 - [Aide mémoire](/cheatsheets/laravel/)

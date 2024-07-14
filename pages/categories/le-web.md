@@ -40,6 +40,7 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 ### Laravel
 
 - [Cours Laravel](/cours/laravel.md)
+- [Support cours Laravel](/tp/laravel/support.md)
 - [Aide mémoire Laravel](/cheatsheets/laravel/)
 - [Les commandes Laravel](/cheatsheets/laravel/quick.md)
 
