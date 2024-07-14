@@ -202,6 +202,7 @@ export default [
                     { text: "Le cours", link: "/cours/mvc" },
                     {
                         text: "En + du cours", collapsed: true, items: [
+                            { text: "Support", link: "/tp/mvc/support.md" },
                             { text: "Aide mémoire Mini MVC Sample", link: "/cheatsheets/mini-mvc-sample/" }
                         ]
                     },
@@ -221,8 +222,9 @@ export default [
                     { text: "Le cours", link: "/cours/laravel" },
                     {
                         text: "En + du cours", collapsed: true, items: [
+                            { text: "Support", link: "/tp/laravel/support.md" },
                             { text: "Aide mémoire", link: "/cheatsheets/laravel/" },
-                            { text: "Synthèses commandes", link: "/cheatsheets/laravel/quick.md" },
+                            { text: "Synthèses commandes", link: "/cheatsheets/laravel/quick.md" }
                         ]
                     },
                     {
