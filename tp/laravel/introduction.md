@@ -12,11 +12,21 @@ description: Dans ce TP nous allons couvrir l’installation, la configuration e
 
 Dans ce TP nous allons couvrir l’installation, la configuration et la création d’un premier projet « démo » à base de Laravel.
 
+::: danger TP découverte
+
+Nous sommes sur le premier TP de découverte de Laravel. Nous allons voir les bases du framework. Il est donc **très guidé**.
+
+Je vous laisse donc, faire très attention à chaque étape, et surtout à bien comprendre le fonctionnement des éléments évoqués.
+
+👋 Si vous avez des questions, n'hésitez pas
+
+:::
+
 ## Introduction
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
 
-- PHP 8.1
+- PHP 8.2
 - Composer
 
 Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiquement par `Composer`
@@ -404,7 +414,229 @@ php artisan route:list
 
 Vous l'avez réalisé précédemment, je vous laisse écrire les deux `vue` / `layout`. Attention à bien hériter de votre « Layout de base » (`@extends('layouts.base')`) comme dans la précédente vue.
 
+### Les directives
+
+Avant de continuer le partie technique, nous allons regarder comment afficher des données dans nos vues. Nous allons surtout voir comment `manipuler` les données dans les vues.
+
+En Laravel ce qu'il faut retenir c'est que nous avons des `directives`. Chaque directive est en général une action que vous auriez pu faire en PHP. Par exemple : 
+
+- Pour afficher une variable, vous pouvez utiliser `{{ $variable }}` (c'est l'équivalent de `echo $variable` en PHP)
+- Pour faire une boucle, vous pouvez utiliser `@foreach($variable as $valeur) … @endforeach` (c'est l'équivalent de `foreach($variable as $valeur) { … }` en PHP)
+- Pour faire une condition, vous pouvez utiliser `@if($variable) … @endif` (c'est l'équivalent de `if($variable) { … }` en PHP)
+
+#### Afficher une variable
+
+Nous allons donc modifier notre vue `ping.blade.php` pour afficher un variable `word`, pour cela ajouter dans votre vue (au bon endroit) :
+
+```html
+<h1>{{ $word }}</h1>
+```
+
+Et dans votre contrôleur, ajouter la variable `word` dans le tableau :
+
+```php
+return view('ping', ['word' => 'PING']);
+```
+
+C'est à vous. Je vous laisse simplifier le code de la vue `pong.blade.php` pour afficher `PONG`. 
+
+::: tip Une astuce ?
+
+Si vous avez compris le principe… vous observerez que vous pouvez supprimer la vue `pong.blade.php` et simplement modifier le contrôleur pour afficher `PONG` dans la vue `ping.blade.php`.
+
+Une question ? Je suis là pour vous aider.
+
+:::
+
+#### Créer une boucle
+
+Maintenant que nous avons une variable, nous allons aller un peu plus loin. Nous allons créer une boucle pour afficher le contenu de la variable `$_SERVER` (qui contient les informations sur le serveur).
+
+Pour cela, ajouter dans votre vue `ping.blade.php` :
+
+```html
+<ul>
+    @foreach($serverInfo as $key => $value)
+        <li>{{ $key }} : {{ $value }}</li>
+    @endforeach
+</ul>
+``` 
+
+Je vous laisse ajouter dans votre contrôleur la variable `$serverInfo` pour que la boucle fonctionne.
+
+::: details Besoin d'aide ?
+
+Votre contrôleur permet de passer des variables à votre vue. En lisant le code, vous devez observer la présence de la variable `$serverInfo` dans la vue `ping.blade.php`. Vous devez donc ajouter cette variable dans le tableau de la méthode `ping`.
+
+Cette variable doit contenir les informations du serveur, pour cela vous pouvez utiliser la fonction `$_SERVER` de PHP.
+
+Nous pourrions donc écrire :
+
+```php
+return view('ping', ['word' => 'PING', 'serverInfo' => $_SERVER]);
+```
+
+:::
+
+#### Créer une condition
+
+Pour finir, nous allons ajouter une condition dans notre vue `ping.blade.php`. Nous allons créer une condition, pour afficher un message différent en fonction de la valeur de la variable `word`.
+
+Pour cela, ajouter dans votre vue `ping.blade.php` :
+
+```html
+@if($word === 'PING')
+    <p>La page est en mode PING ({{ time() }}</p>
+@else
+    <p>La page est en mode PONG ({{ time() }}</p>
+@endif
+```
+
+Je vous laisse ajouter cette condition dans votre vue.
+
+Évidemment, il est possible de faire des conditions plus complexes, mais pour l'instant nous allons rester sur quelque chose de simple.
+
+::: tip Une utilité de la condition
+
+La système de condition est très pratique pour afficher ou pas des éléments en fonction de l'état de connexion de l'utilisateur par exemple. Avec Laravel, pour afficher ou non un bouton de connexion, il suffit de faire :
+
+```html
+@if(Auth::check())
+    <a href="{{ route('logout') }}">Déconnexion</a>
+@else
+    <a href="{{ route('login') }}">Connexion</a>
+@endif
+```
+
+:::
+
+#### Les messages flash
+
+La dernière directive intéressante que nous allons voir est la gestion des erreurs. Laravel propose un système de message flash, c'est-à-dire un message qui va s'afficher une seule fois (à la prochaine requête).
+
+Ce système nous sera utile pour afficher des messages d'erreurs ou de succès.
+
+Pour tester cette fonctionnalité, nous allons créer un nouveau contrôleur `TestFlashController` (car pourquoi pas). Ce contrôleur va contenir deux méthodes :
+
+- `main` qui va afficher un formulaire.
+- `traitement` qui va traiter le formulaire.
+
+La méthode `main` va afficher un formulaire avec un champ `texte` et un bouton `submit`. La méthode `traitement` va vérifier si le champ `texte` est vide, si c'est le cas, un message d'erreur sera retourné à l'utilisateur (via un message flash).
+
+Créer le contrôleur `TestFlashController` :
+
+```bash
+php artisan make:controller TestFlashController
+```
+
+Ajouter la méthode `main` :
+
+```php
+public function main()
+{
+    return view('flash', []);
+}
+```
+
+Cette méthode est toute simple, elle va juste afficher notre formulaire :
+
+```html
+<form action="/traitement" method="post">
+    @csrf
+    <input type="text" name="texte" />
+    <button type="submit">Envoyer</button>
+</form>
+```
+
+::: tip quelques éléments à noter
+
+- La directive `@csrf` est une directive de Laravel qui permet de protéger votre formulaire contre les attaques CSRF (Cross-Site Request Forgery).
+- Le formulaire est envoyé en POST vers la route `/traitement`.
+
+À part ça, rien de bien compliqué.
+
+:::
+
+Ajouter la méthode `traitement` :
+
+```php
+public function traitement(Request $request)
+{
+    if ($request->texte === '') {
+        return redirect()->back()->with('error', 'Le champ texte ne peut pas être vide');
+    }
+
+    return redirect()->back()->with('success', 'Le champ texte est bien rempli');
+}
+```
+
+Cette méthode est un peu plus complexe, elle va vérifier si le champ `texte` est vide, si c'est le cas, un message d'erreur sera retourné à l'utilisateur (via un message flash). Sinon, un message de succès sera retourné.
+
+::: tip quelques éléments à noter
+
+- La méthode `traitement` prend en paramètre un objet `Request` qui va contenir les données du formulaire.
+- La méthode `redirect()->back()` permet de rediriger l'utilisateur vers la page précédente.
+- La méthode `with()` permet de stocker un message flash dans la session (la même qu'en PHP classique avec `$_SESSION`).
+- `$request->texte` permet de récupérer la valeur du champ `texte` du formulaire. C'est un raccourci pour `$request->input('texte')` ou en PHP classique `$_POST['texte']`.
+
+:::
+
+Ajouter les routes :
+
+```php
+Route::get('/flash', [TestFlashController::class, 'main']);
+Route::post('/traitement', [TestFlashController::class, 'traitement']);
+```
+
+Tester votre formulaire en vous rendant sur la route `/flash`.
+
+::: danger Rien ne se passe ?
+
+Si rien ne se passe, c'est normal. Nous avons ajouté des messages flash, mais nous n'avons pas encore de vue pour les afficher.
+
+:::
+
+Modifier votre vue `flash.blade.php` pour afficher les messages flash :
+
+```html
+@if(session('error'))
+    <div style="color: red;">{{ session('error') }}</div>
+@endif
+
+@if(session('success'))
+    <div style="color: green;">{{ session('success') }}</div>
+@endif
+```
+
+Tester à nouveau votre formulaire, vous devriez voir les messages d'erreur ou de succès s'afficher.
+
+::: tip Pour cette fois je vous donne le code
+
+Dans ce premier TP, je vous donne énormément de code, mais c'est pour vous montrer la puissance de Laravel. Il va également vous servir de base pour d'autres TP.
+
+Je vous laisse donc être très vigilent sur le code que vous écrivez, et surtout sur la compréhension de celui-ci.
+
+:::
+
+### Vous en voulez plus ?
+
+Pour aller plus loins sur Blade et les directives, je vous invite à consulter la [documentation officielle](https://laravel.com/docs/11.x/blade).
+
+Ou regarder l'aide mémoire : [les directives de blades](/cheatsheets/laravel/#les-directives)
+
 ## La base de données
+
+Dans les versions précédentes de Laravel la base de données était préconfigurée pour utiliser MySQL. Depuis Laravel en version 11, la base de données par défaut est SQLite, **évidemment** vous pouvez changer cette configuration dans le fichier `.env`, mais pour l'instant nous allons rester sur SQLite.
+
+::: tip SQLite ?
+
+SQLite est un système de gestion de base de données relationnelle, il est très simple à mettre en place et ne nécessite pas de configuration particulière. C'est donc parfait pour un TP.
+
+Pour entrer un peu plus dans le détails, SQLite est un système de base de données (comme MySQL) mais qui ne nécessite pas de serveur. Les données sont stockées dans un fichier `.sqlite` (ou `.db`). Ce genre de base de données est très utilisée pour les applications mobiles par exemple.
+
+C'est un excellent moyen également de prototyper très rapidement une idée sans même avoir besoin de serveur distant.
+
+:::
 
 L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique où tout est à « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite. Comme pour la création du contrôleur, la première étape va passer par de la ligne de commande.
 
@@ -695,6 +927,8 @@ J'aimerais que notre petit site de démonstration intègre un formulaire de dema
 - Les demandes faites via le formulaire doivent être sauvegardées en base de données (table spécifique, avec un id, un titre, un texte, un email et les dates).
 - L'ajout doit être fait par un modèle.
 - Vous devez créer un contrôleur spécifique pour réaliser l'opération.
+- Un message flash doit être affiché pour indiquer à l'utilisateur que sa demande a bien été prise en compte.
+- Un message flash doit être affiché pour indiquer à l'utilisateur que sa demande n'a pas été prise en compte.
 
 C'est à vous ! Je suis là si besoin 🚀.
 
