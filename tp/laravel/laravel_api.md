@@ -30,7 +30,23 @@ Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simp
 
 Pour cette étape, je vous laisse suivre le début du [précédent TP](./introduction.md).
 
-**Attention** a bien installer au moins la version >8 de Laravel.
+**Attention** a bien installer au moins la version >11 de Laravel.
+
+## Activer les API
+
+Depuis Laravel 11 la structure des fichiers/dossiers à changé. Les API ne sont maintenant plus activée par défaut. Pour les activer il suffit de lancer la commande suivante :
+
+```bash
+php artisan install:api
+```
+
+Cette commande va modifier votre projet pour activer le routeur spécifique aux API.
+
+::: tip Note
+
+Il est également possible de mettre les API directement dans le fichier `web.php` mais pour des raisons de clarté et de séparation des responsabilités, il est préférable de les mettre dans un fichier dédié.
+
+:::
 
 ## Création de la base de données
 

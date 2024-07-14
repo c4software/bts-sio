@@ -106,9 +106,9 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire… (maintenant)
 
-- 10.X: Version actuelle
+- 11.X: Version actuelle
 
-**Requiert PHP 8.1**, à votre avis pourquoi ?
+**Requiert PHP 8.2**, à votre avis pourquoi ?
 
 ---
 
