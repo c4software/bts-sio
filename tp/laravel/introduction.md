@@ -796,8 +796,10 @@ Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
 ```php
 public function addTodo(Request $request){
-    Todo::create($request->all());
-    return redirect("/todo");
+  // $request contient l'ensemble des données envoyées par le formulaire
+  // request()->all() retourne un tableau associatif avec l'ensemble des données
+  Todo::create($request->all());
+  return redirect("/todo");
 }
 ```
 
