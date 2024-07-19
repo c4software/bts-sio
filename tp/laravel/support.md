@@ -292,6 +292,54 @@ La sécurité est un aspect crucial du développement web. Laravel offre des fon
 
 :::
 
+## Laravel is PHP
+
+Laravel est un framework PHP, vous avez donc accès à toutes les fonctionnalités de PHP. Vous pouvez utiliser des bibliothèques tierces, des extensions PHP, etc. Et surtout le code PHP comme vous avez l'habitude de le faire. Exemple, voici les équivalents Laravel et PHP pour le traitement de formulaires et la session :
+
+### $_GET
+
+```php
+// Laravel
+$name = $request->input('name');
+
+// PHP
+$name $_GET['name'];
+```
+
+### $_POST
+
+```php
+// Laravel
+$name = $request->input('name');
+
+// PHP
+$name $_POST['name'];
+```
+
+### $_SESSION
+
+```php
+// Laravel
+$request->session()->put('key', 'value');
+$value = $request->session()->get('key');
+$request->session()->forget('key');
+$request->session()->flush();
+$request->session()->all();
+$request->session()->has('key');
+
+// PHP
+$_SESSION['key'] = 'value';
+$value = $_SESSION['key'];
+unset($_SESSION['key']);
+session_destroy();
+$_SESSION;
+isset($_SESSION['key']);
+```
+
+::: tip Laravel et PHP
+Il faut donc bien comprendre que Laravel est une surcouche à PHP, il offre des raccourcis et des fonctionnalités supplémentaires, mais il ne remplace pas PHP.
+:::
+
 ## Conclusion
 
 Laravel offre un écosystème riche et une expérience de développement agréable pour les développeurs PHP. Sa combinaison de simplicité d'utilisation et de puissance en fait un choix populaire pour une grande variété de projets web, des petites applications aux grandes plateformes d'entreprise.

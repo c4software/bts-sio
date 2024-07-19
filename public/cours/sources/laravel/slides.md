@@ -112,6 +112,35 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ---
 
+## Laravel is PHP
+
+---
+
+Avant de commencer, il est important de comprendre que Laravel est un framework PHP. Il utilise donc les fonctionnalités de PHP.
+
+---
+
+## Quelques équivalents ($_GET, $_POST, etc…)
+
+---
+
+- `$_GET['id']` <=> `$request->query('id')`
+- `$_POST['id']` <=> `$request->input('id')`
+- `$_FILES['photo']` <=> `$request->file('photo')`
+
+---
+
+## Et pour les sessions ?
+
+---
+
+- `$_SESSION['user']` <=> `$request->session()->get('user')`
+- `$_SESSION = []` <=> `$request->session()->flush()`
+- `$_SESSION` <=> `$request->session()->all()`
+- `isset($_SESSION['user'])` <=> `$request->session()->has('user')`
+
+---
+
 ## Architecture
 
 ![MVC](./img/mvc-diagram.png)
