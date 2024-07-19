@@ -110,34 +110,6 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 **Requiert PHP 8.2**, à votre avis pourquoi ?
 
----
-
-## Laravel is PHP
-
----
-
-Avant de commencer, il est important de comprendre que Laravel est un framework PHP. Il utilise donc les fonctionnalités de PHP.
-
----
-
-## Quelques équivalents ($_GET, $_POST, etc…)
-
----
-
-- `$_GET['id']` <=> `$request->query('id')`
-- `$_POST['id']` <=> `$request->input('id')`
-- `$_FILES['photo']` <=> `$request->file('photo')`
-
----
-
-## Et pour les sessions ?
-
----
-
-- `$_SESSION['user']` <=> `$request->session()->get('user')`
-- `$_SESSION = []` <=> `$request->session()->flush()`
-- `$_SESSION` <=> `$request->session()->all()`
-- `isset($_SESSION['user'])` <=> `$request->session()->has('user')`
 
 ---
 
@@ -969,7 +941,61 @@ Dans quel cas par exemple ?
 
 ---
 
-## Pour des API par exemple ?
+## Laravel is PHP
+
+---
+
+Avant de commencer, il est important de comprendre que Laravel est un framework PHP. Il utilise donc les fonctionnalités de PHP.
+
+---
+
+## Quelques équivalents ($_GET, $_POST, etc…)
+
+---
+
+- `$_GET['id']` <=> `$request->query('id')`
+- `$_POST['id']` <=> `$request->input('id')`
+- `$_FILES['photo']` <=> `$request->file('photo')`
+
+---
+
+## Et pour les sessions ?
+
+---
+
+- `$_SESSION['user']` <=> `$request->session()->get('user')`
+- `$_SESSION = []` <=> `$request->session()->flush()`
+- `$_SESSION` <=> `$request->session()->all()`
+- `isset($_SESSION['user'])` <=> `$request->session()->has('user')`
+
+---
+
+Et la base de données ?
+
+```php
+// Eloquent
+$users = User::where('name', 'John')->get();
+
+// PDO
+$stmt = $pdo->prepare('SELECT * FROM users WHERE name = :name');
+$stmt->execute(['name' => 'John']);
+```
+
+---
+
+```php
+// Eloquent
+$user = new User();
+$user->name = 'John';
+$user->save();
+
+// Eloquent (alternative)
+User::create(['name' => 'John']);
+
+// PDO
+$stmt = $pdo->prepare('INSERT INTO users (name) VALUES (:name)');
+$stmt->execute(['name' => 'John']);
+```
 
 ---
 

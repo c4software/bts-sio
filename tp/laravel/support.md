@@ -340,6 +340,44 @@ isset($_SESSION['key']);
 Il faut donc bien comprendre que Laravel est une surcouche à PHP, il offre des raccourcis et des fonctionnalités supplémentaires, mais il ne remplace pas PHP.
 :::
 
+### Requêtes préparées / PDO
+
+Laravel utilise Eloquent pour interagir avec la base de données. Eloquent utilise des requêtes préparées pour protéger contre les injections SQL.
+
+Exemple de requête préparée avec Eloquent :
+
+```php
+// Eloquent
+$users = User::where('name', 'John')->get();
+
+// PDO
+$stmt = $pdo->prepare('SELECT * FROM users WHERE name = :name');
+$stmt->execute(['name' => 'John']);
+```
+
+```php
+// Eloquent
+User::where('name', 'John')->update(['name' => 'Jane']);
+
+// PDO
+$stmt = $pdo->prepare('UPDATE users SET name = :newName WHERE name = :oldName');
+$stmt->execute(['newName' => 'Jane', 'oldName' => 'John']);
+```
+
+```php
+// Eloquent
+$user = new User();
+$user->name = 'John';
+$user->save();
+
+// Ou
+User::create(['name' => 'John']);
+
+// PDO
+$stmt = $pdo->prepare('INSERT INTO users (name) VALUES (:name)');
+$stmt->execute(['name' => 'John']);
+```
+
 ## Conclusion
 
 Laravel offre un écosystème riche et une expérience de développement agréable pour les développeurs PHP. Sa combinaison de simplicité d'utilisation et de puissance en fait un choix populaire pour une grande variété de projets web, des petites applications aux grandes plateformes d'entreprise.
