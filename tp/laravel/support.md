@@ -277,6 +277,14 @@ Route::get('/demo/{id}', [DemoController::class, "voir"])->middleware('auth');
 
 Un middleware (code intercépteur) est un code qui s'exécute avant ou après une requête HTTP. Il permet de modifier la requête, de vérifier des informations, ou de réaliser des actions spécifiques (exemple: journalisation, gestion des droits, de la sécurité, etc.).
 
+Vous pouvez créer vos propres middlewares pour des besoins spécifiques :
+
+```bash
+php artisan make:middleware IsUserConnceted
+```
+
+C'est le cas par exemple dans l'AP3 hackathon, où un middleware vérifie si l'utilisateur est connecté avant de lui permettre d'accéder à certaines pages.
+
 :::
 
 ## Sécurité
