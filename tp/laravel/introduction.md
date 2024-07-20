@@ -921,6 +921,43 @@ Ici pas de code, mais la procédure sera identique à celle de l'action terminer
 
 :::
 
+### Créer un Middleware
+
+Pour tester les middleware, nous allons créer un Middleware qui va vérifier la présence d'un mot dans le texte de la TODO. Si le mot est présent, la TODO ne pourra pas être ajoutée en base de données.
+
+Pour commencer, créez un Middleware :
+
+```sh
+php artisan make:middleware CheckTodo
+```
+
+Ajoutez la logique dans le Middleware :
+
+```php
+public function handle(Request $request, Closure $next)
+{
+    if (strpos($request->texte, 'twitter') !== false) {
+        return redirect()->back()->with('error', 'Le mot twitter est interdit');
+    }
+
+    return $next($request);
+}
+```
+
+Ajouter le Middleware sur la route que vous souhaitez protéger :
+
+```php
+->middleware(CheckTodo::class)
+```
+
+::: tip Besoin d'aide ?
+
+Je vous laisse implémenter le code dans votre projet. Si vous avez des questions, je suis là pour vous aider.
+
+Le système de middleware est très puissant, c'est un peu comme un filtre qui va être exécuté avant ou après une action. C'est très utile pour la sécurité, la gestion des erreurs, etc.
+
+:::
+
 ### Évolution 1
 
 J'aimerais que notre petit site de démonstration intègre un formulaire de demande de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
