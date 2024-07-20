@@ -285,6 +285,32 @@ php artisan make:middleware IsUserConnceted
 
 C'est le cas par exemple dans l'AP3 hackathon, où un middleware vérifie si l'utilisateur est connecté avant de lui permettre d'accéder à certaines pages.
 
+Exemple dans l'AP 3 :
+
+```php
+class IsEquipeConnected
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        // Si l'équipe n'est pas connectée, on la redirige vers la page de connexion
+        if (!SessionHelpers::isConnected()) {
+            return redirect("/login");
+        }
+
+        return $next($request);
+    }
+}
+```
+
+```php
+Route::get('/me', [EquipeController::class, "me"])->middleware(IsEquipeConnected::class);
+```
+
 :::
 
 ## Sécurité
