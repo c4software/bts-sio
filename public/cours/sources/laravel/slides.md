@@ -261,7 +261,7 @@ Route::get('/demo/{id}', [DemoController::class, "voir"])->middleware('auth');
 
 ## Les « middlewares »
 
-auth est un middleware fourni par Laravel. Il permet de vérifier que l’utilisateur est connecté.
+Auth est un middleware fourni par Laravel Breeze. Il permet de vérifier que l’utilisateur est connecté.
 
 ---
 
@@ -270,6 +270,44 @@ auth est un middleware fourni par Laravel. Il permet de vérifier que l’utilis
 Un middleware est un « filtre » qui va être exécuté avant l’action demandée. Il sera exécuté avant le contrôleur. Il permettra de vérifier des choses avant d’exécuter le contrôleur.
 
 Ex: L'authentification, token, etc…
+
+---
+
+Vous pouvez également créer vos propres middlewares.
+
+```bash
+php artisan make:middleware isEquipeConnected
+```
+
+---
+
+Exemple dans l'AP 3 :
+
+```php
+class IsEquipeConnected
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        // Si l'équipe n'est pas connectée, on la redirige vers la page de connexion
+        if (!SessionHelpers::isConnected()) {
+            return redirect("/login");
+        }
+
+        return $next($request);
+    }
+}
+```
+
+---
+
+```php
+Route::get('/me', [EquipeController::class, "me"])->middleware(IsEquipeConnected::class);
+```
 
 ---
 
