@@ -231,6 +231,7 @@ export default [
                         text: "Les TP",
                         collapsed: true,
                         items: [
+                            { text: "Transition vers Laravel", link: "/tp/php/tp6.md" },
                             { text: "Introduction à Laravel", link: "/tp/laravel/introduction" },
                             { text: "Laravel & L'authentification", link: "/tp/laravel/authentification" },
                             { text: "Eloquent les modèles simplement", link: "/tp/laravel/generation_model" },
