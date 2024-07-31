@@ -408,4 +408,4 @@ Je vous laisse modifier votre contrôleur `HomeController` pour sauvegarder le n
 
 Nous avons vu dans ce TP les éléments de base base de Laravel, nous allons maintenant passer sur une introduction plus poussée de Laravel. Nous allons voir comment réaliser des accès à une base de données, comment réaliser des formulaires plus complexes, etc.
 
-la suite du TP est disponible ici : [TP Laravel - Introduction](/tp/laravel//introduction.md)
+la suite du TP est disponible ici : [TP Laravel - Introduction](/tp/laravel/introduction.md)
