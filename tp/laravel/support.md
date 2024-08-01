@@ -1,4 +1,4 @@
-# Vue d'ensemble détaillée de Laravel
+# Le framework Laravel
 
 ## Introduction à Laravel
 
