@@ -61,6 +61,12 @@ Le choix du framework dépend du projet en question… Et parfois pas de framewo
 
 ---
 
+## Laravel == PHP
+
+### Mais sous stéroïdes ! Vous allez voir…
+
+---
+
 ## Historique
 
 - Taylor Otwell
