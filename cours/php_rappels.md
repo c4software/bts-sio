@@ -9,3 +9,4 @@ aside: false
 </ClientOnly>
 
 - [Support de cours](/tp/php/support.md)
+- [TP : Session](/tp/php/tp4.md)

@@ -14,7 +14,7 @@ Variables « automatiquement remplies », et ça dès le début de votre script.
 
 ---
 
-[Liste des variables](/tp/php/support.md#les-super-globales)
+[Liste des variables](/tp/php/support.html#les-super-globales)
 
 ---
 
@@ -144,6 +144,19 @@ echo $_COOKIE["monCookie"];
 ---
 
 ## Mise en pratique
+
+### On vous demande d'implémenter un formulaire de connexion.
+
+- Que devez-vous utiliser ?
+  - Comment ?
+  - Dans quels cas ?
+- Vous devez autoriser la connexion si le mot de passe est `1234`.
+- Si la connexion est réussie, vous devez afficher un message de bienvenue.
+- Si la connexion est en erreur, vous devez afficher un message d'erreur.
+
+---
+
+## Mise en pratique 2 (TP)
 
 ### Pratiquer les SESSIONS & Cookies
 
