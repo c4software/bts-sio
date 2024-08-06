@@ -195,6 +195,7 @@ export default [
         collapsed: true,
         items: [
             { text: "Introduction", link: "/pages/categories/le-web.md" },
+            { text: "Rappels PHP", link: "/cours/php_rappels.md" },
             {
                 text: "MVC",
                 collapsed: true,
