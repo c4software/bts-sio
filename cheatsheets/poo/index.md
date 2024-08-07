@@ -242,8 +242,8 @@ internal class Personne(var nom: String, var prenom: String, private val dateNai
 public class Personne
 {
     
-  // Variable
- public string nom, prenom;
+  	// Variables
+ 	public string nom, prenom;
 	public int nbEnfant;
 	private DateTime dateNaissance;
 	private int salaire;
@@ -641,6 +641,18 @@ unePersonne.getNom(); // Affiche "Valentin"
 
 unePersonne.setNom("Chouette");
 unePersonne.getNom(); // Affiche "Chouette", la valeur a été modifiée
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="C#">
+
+```cs
+Personne unePersonne = new Personne("Valentin", "Brosseau");
+Console.WriteLine(unePersonne.getNom()); // Affiche "Valentin"
+
+unePersonne.setNom("Chouette");
+Console.WriteLine(unePersonne.getNom()); // Affiche "Chouette", la valeur a été modifiée
 ```
 
   </CodeGroupItem>
@@ -1272,7 +1284,7 @@ public class EtudiantSIO : EtudiantAbstrait
     private string option = "SLAM";
 
      protected string getBlahBlah() {
-       Console.WriteLine("L'informatique c'est cool, je suis : " + option.toString();
+       Console.WriteLine("L'informatique c'est cool, je suis : " + option.toString());
      }
 
      public string demarrerUneDiscussion(string sujet) {
