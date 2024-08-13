@@ -177,11 +177,224 @@ Trop pour certains… Mais le reflet de la réalité (foldable, 5G, Bluetooth LE
 
 ---
 
-<video autoplay controls loop class="block">
-    <source src="https://developer.android.com/jetpack/videos/jetpack-compose-preview.mp4" type="video/mp4">
-</video>
+---
 
-[Source](https://developer.android.com/jetpack/videos/jetpack-compose-preview.mp4)
+```kotlin
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
+}
+```
+
+---
+
+## Repose sur une approche composant
+
+### Comme SwiftUI, Flutter… ou encore VueJS, React…
+
+---
+
+Le composant est un principe de base de la conception d'interface utilisateur en 2023.
+
+---
+
+## Un composant c'est quoi ?
+
+### À votre avis ?
+
+---
+
+- Un morceau d'interface.
+- Réutilisable.
+- Interactif.
+- Indépendant.
+- Imbriquable.
+
+---
+
+![Composant](./res/components-1.png)
+
+---
+
+Des briques de base d'une interface.
+
+---
+
+## Compose
+
+- Librairie Kotlin à part entière.
+- Remplace le XML pour les interfaces.
+- Utilise un moteur de rendu (Skia).
+
+---
+
+## Un moteur de rendu ?
+
+---
+
+<iframe src="https://giphy.com/embed/a5viI92PAF89q" width="480" height="331" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+---
+
+## Utilisable sur :
+
+- Android (Maintenu par Google).
+- Desktop (Compose Multiplatform).
+- iOS (Compose Multiplatform).
+- Web (Compose Multiplatform, mais expérimental).
+
+---
+
+## Revenons à Android
+
+- Compose est la nouvelle façon de faire des interfaces.
+- Poussé par Google.
+- En cours de développement.
+- En cours d'adoption par les entreprises.
+
+---
+
+Change la façon de faire des interfaces. Et **uniquement** ça.
+
+(Nous avons toujours besoin de Kotlin, de Java, de Gradle, de l'Android SDK, etc.)
+
+---
+
+## Le fonctionnement
+
+- Chaque composant est une fonction.
+- Mis à jour en fonction de l'état de l'écran.
+- Mise à jour automatique et temps réel.
+
+---
+
+## Un exemple
+
+---
+
+```kotlin
+var counter by remember { mutableStateOf(0) }
+Button(onClick = { counter++ }) {
+    Text("Clique => ${counter}")
+}
+```
+
+Qu'observez-vous ? À votre avis, comment ça fonctionne ?
+
+---
+
+## Un autre exemple
+
+---
+
+```kotlin
+var isLogin by remember { mutableStateOf(false) }
+if (isLogin) {
+    Text("Bienvenue")
+} else {
+    Button(onClick = { isLogin = true }) {
+        Text("Se connecter")
+    }
+}
+```
+
+Qu'observez-vous ? À votre avis, comment ça fonctionne ?
+
+---
+
+## Quelques composants de base
+
+---
+
+## La structure
+
+- `Column` : Alignement vertical.
+- `Row` : Alignement horizontal.
+- `Box` : Alignement libre.
+
+---
+
+## Les interactions
+
+- `Button` : Un bouton.
+- `TextField` : Un champ de texte.
+- `Checkbox` : Une case à cocher.
+- `Switch` : Un interrupteur.
+- `Text` : Un texte.
+- …
+
+---
+
+Beaucoup de composants sont déjà disponibles.
+
+[https://developer.android.com/jetpack/compose/components](https://developer.android.com/jetpack/compose/components)
+
+---
+
+Repose sur le material design (nous y reviendrons)
+
+[https://m3.material.io/](https://m3.material.io/)
+
+---
+
+## Un exemple
+
+```kotlin
+Column {
+    Text("Hello")
+    Text("World")
+}
+```
+
+---
+
+## Un exemple
+
+```kotlin
+Row {
+    Text("Hello")
+    Text("World")
+}
+```
+
+---
+
+## Un exemple
+
+```kotlin
+Column {
+    Row {
+        Text("Hello")
+        Text("World")
+    }
+    Row {
+        Text("Hello")
+        Text("World")
+    }
+}
+```
+
+---
+
+## Les animations
+
+```kotlin
+var counter by remember { mutableStateOf(0) }
+
+Column {
+    Button(onClick = { counter++ }) {
+        Text("Action")
+    }
+
+    AnimatedVisibility(visible = counter > 0) {
+        Text("Visible")
+    }
+
+    AnimatedContent(targetState = count) { targetState ->
+        Text(text = "Count: $targetState")
+    }
+}
+```
 
 ---
 
@@ -201,6 +414,7 @@ Le renouveau du développement Android
 - Permets de faire des animations simplement
 - Écriture plus moderne
 - Repose sur des Composants (comme React, Vue, Flutter…)
+- Pensez réutilisation
 - Est multiplateforme (Desktop, Web…)
 
 ---
@@ -231,6 +445,26 @@ Trois termes à retenir :
 ---
 
 Compose multiplateforme vous permettra donc de créer du code partagé entre vos applications Android, iOS, Desktop et Web.
+
+---
+
+Une dernière chose…
+
+---
+
+Jetpack Compose c'est jeune.
+
+Il faut donc accepter que ça évolue vite / change / sois instable.
+
+---
+
+Pour nous accompagner dans cette transition, Google a créé :
+
+[Accompanist](https://github.com/google/accompanist)
+
+---
+
+Accompanist est voué à disparaître. Car les fonctionnalités seront intégrées à Compose.
 
 ---
 
@@ -268,7 +502,7 @@ Deux façons de travailler :
 - Intégré dans Android Studio (🙌).
 - Performances suffisantes pour tester.
 - Consomme de la RAM (car c'est un VM).
-- BLE / Bluetooth partiellement disponible (limité).
+- BLE / Bluetooth partiellement disponible (**très limité**).
 
 ---
 
@@ -307,9 +541,17 @@ Deux façons de travailler :
 - Généré automatiquement.
 - Contiens les références de tous les id.
 - Permets l'accès aux ressources depuis votre code :
-  - `getString(R.string.title)`
-  - `setContentView(R.layout.activity_main)`
+  - `stringResource(R.string.hello)`
+  - `imageResource(R.drawable.image)`
   - …
+
+---
+
+### Pourquoi est-ce important ?
+
+- Accessibilité.
+- Une plateforme pensée internationalement.
+- Une adaptation à l'utilisateur (taille, couleur, etc.)
 
 ---
 
@@ -356,6 +598,10 @@ Deux façons de travailler :
 - Open source.
 - Règles / scripts de compilation de votre projet.
 - Complètement intégré dans Android Studio (complétion, etc.)
+
+---
+
+TODO : Réécrire à partir de là
 
 ---
 
