@@ -224,9 +224,9 @@ Le tout est Open Source.
 
 Trois termes à retenir :
 
-- **Compose** : La librairie de Google pour Android.
-- **KMM** : Kotlin Multiplatform (Jetbrains).
-- **CMP** : Compose Multiplatform (Jetbrains).
+- **Compose** : La librairie de Google pour Android => Interface déclarative.
+- **KMM** : Kotlin Multiplatform (Jetbrains) => Logique métier partagée.
+- **CMP** : Compose Multiplatform (Jetbrains) => Interface partagée.
 
 ---
 
