@@ -601,10 +601,6 @@ Deux façons de travailler :
 
 ---
 
-TODO : Réécrire à partir de là
-
----
-
 ## Votre première application
 
 - Activity
