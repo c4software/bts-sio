@@ -16,9 +16,9 @@ Point statistique :
 ---
 
 - Développé par Google
-- Créé en 2008
-- Actuellement en version 14
-- Android 15 (Vanilla Ice Cream, Q3 2024)
+- Créé en 2008 (16 ans)
+- Actuellement en version 15
+- Android 16 (TBA)
 
 ---
 
@@ -78,6 +78,12 @@ Construis autour du noyau Linux mais … c'est tout
 
 ## La sécurité
 
+---
+
+L'isolation avant tout
+
+---
+
 - Chaque application a son propre utilisateur Linux.
 - Les applications sont sandboxées.
 - Chaque application tourne dans sa propre « VM ».
@@ -89,8 +95,8 @@ Construis autour du noyau Linux mais … c'est tout
 
 Deux types :
 
-- SDK Android : Évolue lors des mises à jour de système. (Intégré)
-- Play Service : Évolue automatiquement indépendamment de la version de l'OS (en plus donc, mais…)
+- SDK Android : Évolue lors des mises à **jour de système**. (Intégré)
+- Play Service : Évolue automatiquement indépendamment de la version de l'OS. (Distribué par Google, mais…)
 
 ---
 
@@ -109,7 +115,38 @@ Deux types :
 ### Les Ressources
 
 - XML (Drawables, Layout, Settings, Color, String)
-- png / jpeg / 9.png / SVG (Images)
+- png / jpeg / SVG (presque)
+
+---
+
+### Android est une plateforme ouverte, qui évolue rapidement.
+
+Trop pour certains… Mais le reflet de la réalité (foldable, 5G, Bluetooth LE, Bluetooth Mesh, NFC,…)
+
+---
+
+### Bon… Et comment on fait une application ?
+
+<center>
+<iframe src="https://giphy.com/embed/Ot4U0KHw2fdvxJZ4jh" width="480" height="480" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
+
+---
+
+## 1. L'interface
+
+---
+
+## Nous sommes en transition
+
+### Dommage pour vous ? Pas certains…
+
+#### Cette année, nous utiliserons Compose + Kotlin
+
+---
+
+- [Compose (Code)](https://developer.android.com/compose)
+- [View (XML)](https://developer.android.com/guide/topics/ui/declaring-layout)
 
 ---
 
@@ -140,8 +177,6 @@ Deux types :
 
 ---
 
-### Sans entrer dans le détail…
-
 <video autoplay controls loop class="block">
     <source src="https://developer.android.com/jetpack/videos/jetpack-compose-preview.mp4" type="video/mp4">
 </video>
@@ -166,14 +201,40 @@ Le renouveau du développement Android
 - Permets de faire des animations simplement
 - Écriture plus moderne
 - Repose sur des Composants (comme React, Vue, Flutter…)
+- Est multiplateforme (Desktop, Web…)
 
 ---
 
-## Nous sommes en transition
+## Multiplateforme ?
 
-### Dommage pour vous ? Pas certains…
+Arrêtons-nous un instant…
 
-#### Nous resterons cette année en XML + Kotlin
+---
+
+- Google développe Compose pour Android.
+- JetBrains développe Compose pour iOS, Desktop (Linux, MacOS, Windows), Web.
+
+---
+
+Jetbrains a développé Kotlin, Google l'a adopté. Les deux travaillent ensemble. Activement. 
+
+Le tout est Open Source.
+
+---
+
+Trois termes à retenir :
+
+- **Compose** : La librairie de Google pour Android.
+- **KMM** : Kotlin Multiplatform (Jetbrains).
+- **CMP** : Compose Multiplatform (Jetbrains).
+
+---
+
+Compose multiplateforme vous permettra donc de créer du code partagé entre vos applications Android, iOS, Desktop et Web.
+
+---
+
+## 2. L'outillage
 
 ---
 
