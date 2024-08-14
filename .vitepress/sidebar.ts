@@ -388,16 +388,7 @@ export default [
                         text: "Les TP View",
                         collapsed: true,
                         items: [
-                            { text: "Découverte des bases d'Android", link: "/tp/android/view/android-base-tp" },
                             { text: "Suite découverte des base d'Android", link: "/tp/android/view/android-base2-tp" },
-                        ]
-                    },
-                    {
-                        Text: "Les TP Compose",
-                        collapsed: true,
-                        items: [
-                            { text: "Découverte d'Android avec Compose", link: "/tp/android/compose/android-base.md" },
-                            { text: "Introduction à Android Compose", link: "/tp/composants/android.md" },
                         ]
                     },
                     {
@@ -420,6 +411,7 @@ export default [
                         text: "Jetpack Compose",
                         collapsed: true,
                         items: [
+                            { text: "Découverte des bases d'Android", link: "/tp/android/view/android-base-tp" },
                             { text: "Introduction à Android Compose", link: "/tp/composants/android.md" },
                             { text: "Android Compose, une liste et une API REST", link: "/tp/android/compose/dirty-api.md" }
                         ]
