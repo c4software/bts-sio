@@ -35,7 +35,7 @@ Pour récupérer le code source, vous avez deux possibilités :
 
 Avant d'effectuer des modifications dans le projet, nous allons le lancer une première fois. Pour ça, il suffit d'ouvrir le projet avec Android Studio.
 
-![Ouvrir le projet](./ressources/open_project.png)
+![Ouvrir le projet](./view/ressources/open_project.png)
 
 Une fois l'indexation terminée, vous devez pouvoir lancer le projet sur un émulateur ou sur votre téléphone. Ce qui devrait donner quelque chose comme :
 
@@ -45,7 +45,7 @@ Une fois l'indexation terminée, vous devez pouvoir lancer le projet sur un ému
 
 Afin de simplifier l'entrée dans le code, j'ai volontairement limité l'organisation des dossiers au strict minimum. Attention, ça ne veut pas dire que vous ne pouvez pas en créer d'autres pour organiser votre code au mieux.
 
-![structure dossier](./ressources/structures.png)
+![structure dossier](./view/ressources/structures.png)
 
 - `data` : Contiens la définition (interface) de vos sources de données (exemple la définition des appels réseau).
 - `di` : La définition des éléments qui sont « injectés ».
@@ -59,7 +59,7 @@ L’acronyme MVVM signifie Modèle Vue Vue-Modèle (Model–view–viewmodel). L
 
 Elle a récemment été popularisée par certains frameworks JavaScript, car elle permet d'implémenter « simplement » des interfaces avec une réactivité importante.
 
-![MVVM Pattern](./ressources/MVVMPattern.png)
+![MVVM Pattern](./view/ressources/MVVMPattern.png)
 
 Cette méthode permet, tel le modèle MVC (modèle-vue-contrôleur), de séparer la vue de la logique et de l'accès aux données en accentuant les principes de liaison et d’évènement.
 
@@ -257,7 +257,7 @@ class YourActivity : AppCompatActivity() {
 
 👀 Comme toujours l'organisation du code est une chose très importante, ne placez pas votre classe n'importe où. Mais dans un package dans `view` :
 
-![create package](./ressources/create_package.png)
+![create package](./view/ressources/create_package.png)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/M1RJ1kQg7Hg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -303,7 +303,7 @@ Si vous souhaitez réaliser cette action à la main. Il suffit d'ajouter « dans
 
 ⚠️ Mais sérieusement, ne l'ajoutez pas à la main. Faite plutôt alt entrée sur le nom de votre class dans l'IDE l'action vous sera proposée.
 
-![ajouter au manifeste](./ressources/add_manifest.png)
+![ajouter au manifeste](./view/ressources/add_manifest.png)
 
 ### Créer une home
 

@@ -10,11 +10,17 @@ Le développement mobile évolue rapidement, vous trouverez ici des ressources p
 - [Cours Android Compose](/cours/android_compose.md)
 - [Cours Android Bluetooth](/cours/android_ble.md)
 
-## Les TP
+## Les TP View / XML (Ancien)
 
-- [Les bases d'Android (View)](/tp/android/android-base-tp.md)
-- [Les bases d'Android (View) suite](/tp/android/android-base2-tp.md)
+- [Les bases d'Android (View)](/tp/android/view/android-base-tp.md)
+- [Les bases d'Android (View) suite](/tp/android/view/android-base2-tp.md)
+
+## Les TP Compose
+
 - [Introduction à Android Compose](/tp/composants/android.md)
+
+## Multiplateforme
+
 - [Cordova (Ancien)](/cours/cordova.md)
 - [Introduction Compose Multiplateforme](/tp/android/compose-multiplateforme/introduction.md)
 

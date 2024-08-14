@@ -388,8 +388,8 @@ export default [
                         text: "Les TP simple",
                         collapsed: true,
                         items: [
-                            { text: "Découverte des bases d'Android", link: "/tp/android/android-base-tp" },
-                            { text: "Suite découverte des base d'Android", link: "/tp/android/android-base2-tp" },
+                            { text: "Découverte des bases d'Android", link: "/tp/android/view/android-base-tp" },
+                            { text: "Suite découverte des base d'Android", link: "/tp/android/view/android-base2-tp" },
                             { text: "Introduction à Android Compose", link: "/tp/composants/android" }
                         ]
                     },
@@ -397,16 +397,16 @@ export default [
                         text: "Les TP API",
                         collapsed: true,
                         items: [
-                            { text: "Appeler une API Simplement", link: "/tp/android/network" }
+                            { text: "Appeler une API Simplement", link: "/tp/android/view/network" }
                         ]
                     },
                     {
                         text: "Les projets",
                         collapsed: true,
                         items: [
-                            { text: "Android Base : Projet final", link: "/tp/android/app-base-android.md" },
-                            { text: "Télécommand Bluetooth & Réseau", link: "/tp/android/app-ble-network.md" },
-                            { text: "Application Client / Serveur", link: "/tp/android/app-avance-android.md" }
+                            { text: "Android Base : Projet final", link: "/tp/android/view/app-base-android.md" },
+                            { text: "Télécommand Bluetooth & Réseau", link: "/tp/android/view/app-ble-network.md" },
+                            { text: "Application Client / Serveur", link: "/tp/android/view/app-avance-android.md" }
                         ]
                     },
                     {
