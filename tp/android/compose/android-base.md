@@ -927,6 +927,8 @@ Scaffold(
     }
 ```
 
+![Scaffold](./img/base/topappbar.jpg)
+
 ### À faire
 
 Je vous laisse ajouter un `Scaffold` à votre `Screen1` et `Screen2`. 
