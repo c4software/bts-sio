@@ -444,7 +444,7 @@ Dans cette application nous utilisons des tabs (NavBar) pour naviguer entre les 
 
 Ce Composant contient une liste de `BottomNavigationItem` qui correspondent aux différents différents éléments de la NavBar. Chaque élément est associé à un écran. Écrans qui seront affichés lors du clic sur l'élément via le callback `onClick`.
 
-![Tabs](./tabs.jpg)
+![Tabs](./img/tabs.jpg)
 
 Dans le fichier `MainActivity.kt` nous avons défini une liste d'écrans :
 
@@ -453,13 +453,13 @@ Dans le fichier `MainActivity.kt` nous avons défini une liste d'écrans :
 
 Pour afficher le bon écran :
 
-![choix écran](./choix_ecran.jpg)
+![choix écran](./img/choix_ecran.jpg)
 
 Nous avons donc un `when` qui va afficher le bon écran en fonction de la valeur de `currentScreen`. La valeur de `currentScreen` est modifiée lors du clic sur un élément de la NavBar.
 
 Pour les interactions avec les tabs :
 
-![interactions tabs](./tabs_selection.jpg)
+![interactions tabs](./img/tabs_selection.jpg)
 
 - Le `OnClick` de chaque `BottomNavigationItem` permet de changer l'écran actuellement affiché.
 - Le `Selected` de chaque `BottomNavigationItem` permet d'indiquer quel écran est actuellement affiché, et donc de changer l'icône (couleur).
@@ -478,7 +478,7 @@ fun ListItemPreview() {
 }
 ```
 
-![preview composant](./preview_composant.jpg)
+![preview composant](./img/preview_composant.jpg)
 
 La flèche rouge vous permet de lancer l'aperçu du composant en mode « interactif ». Vous pourrez donc cliquer dessus pour voir les interactions (visuelles) avec le composant.
 

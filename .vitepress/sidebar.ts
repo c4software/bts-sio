@@ -385,12 +385,19 @@ export default [
                         ]
                     },
                     {
-                        text: "Les TP simple",
+                        text: "Les TP View / XML (Ancien)",
                         collapsed: true,
                         items: [
                             { text: "Découverte des bases d'Android", link: "/tp/android/view/android-base-tp" },
                             { text: "Suite découverte des base d'Android", link: "/tp/android/view/android-base2-tp" },
                             { text: "Introduction à Android Compose", link: "/tp/composants/android" }
+                        ]
+                    },
+                    {
+                        Text: "Les TP Compose",
+                        collapsed: true,
+                        items: [
+                            { text: "Découverte d'Android avec Compose", link: "/tp/android/compose/android-base.md" }
                         ]
                     },
                     {

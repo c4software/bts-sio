@@ -376,11 +376,11 @@ Le renouveau du développement Android
 - Écriture plus moderne
 - Repose sur des Composants (comme React, Vue, Flutter…)
 - Pensez réutilisation
-- Est multiplateforme (Desktop, Web…)
+- Est multi-plateforme (Desktop, Web…)
 
 ---
 
-## Multiplateforme ?
+## Multi-plateforme ?
 
 Arrêtons-nous un instant…
 
@@ -405,7 +405,7 @@ Trois termes à retenir :
 
 ---
 
-Compose multiplateforme vous permettra donc de créer du code partagé entre vos applications Android, iOS, Desktop et Web.
+Compose multi-plateforme vous permettra donc de créer du code partagé entre vos applications Android, iOS, Desktop et Web.
 
 ---
 
@@ -565,7 +565,7 @@ Deux façons de travailler :
 ## Votre première application
 
 - Activity
-- Un layout (Composant ou XML)
+- Un layout (Composant)
 - Déclaré dans le « Manifest »
 
 ---
@@ -589,6 +589,13 @@ Deux façons de travailler :
 
 - L'ensemble de vos activity hérite d'une super **ComponentActivity**.
 - « Override » surcharge des méthodes de base (au début uniquement onCreate).
+
+---
+
+## C'est à vous
+
+- Personnaliser le nom de votre application.
+- Personnaliser l'icône de votre application.
 
 ---
 
@@ -681,7 +688,7 @@ Modifier pour réaliser ceci :
 
 ---
 
-## Il vous manques queques choses ?
+## Il vous manque quelque chose ?
 
 … quelques composants, et un peu de style.
 
@@ -908,7 +915,7 @@ Column(
 
 Avant de continuer, une petite pause…
 
-Nous allons en profiter pour créer un composant (vous allez voir c'est simple).
+Nous allons en profiter pour créer un composant (vous aller voir c'est simple).
 
 ---
 
@@ -986,7 +993,7 @@ Accessible via `stringResourcestringResource(R.string.un_texte)`.
 
 ## C'est à vous, je vous laisse extraire le texte dans le fichier `strings.xml`
 
-👋 Pour la première fois, faisons le ensemble
+👋 Pour la première fois, faisons-le ensemble
 
 ---
 
@@ -1016,7 +1023,7 @@ Image(
 )
 ```
 
-Placer l'image dans le dossier `res/drawable/`. Puis ajouter le au dessus de votre `Text` qui est actuellement au centre de votre `Column`.
+Placer l'image dans le dossier `res/drawable/`. Puis ajouter le au-dessus de votre `Text` qui est actuellement au centre de votre `Column`.
 
 ---
 
@@ -1119,7 +1126,7 @@ Chaque dossier peut être redéfini en fonction… De la langue (`values-fr/stri
 
 ---
 
-[Pratiquons ensemble](/tp/android/android-base-tp.html#les-ressources-alternatives)
+Pratiquons ensemble les ressources alternatives. En testant de dynamiser nos textes sans modifier le code.
 
 ---
 
@@ -1164,7 +1171,7 @@ Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show();
 
 ### Vous souhaitez changer la durée d'affichage ?
 
-#### Plusieurs options s'offre à vous :
+#### Plusieurs options s'offrent à vous :
 
 - `Snackbar.LENGTH_SHORT`
 - `Snackbar.LENGTH_LONG`
@@ -1421,9 +1428,9 @@ Screen 2 doit afficher le nom passé en paramètre.
 
 ---
 
-## Testons ensembles
+## Testons ensemble
 
-- Rendre dynamique le nom saisie dans la le Screen 1.
+- Rendre dynamique le nom saisi dans la le Screen 1.
 - À votre avis, comment faire ? Quelle ressource utiliser ?
 
 ---
@@ -1473,7 +1480,7 @@ Mettre en place un Scaffold dans votre `Screen1` et `Screen2`.
 
 ---
 
-## Où allons nous ranger l'accès aux données ?
+## Où allons-nous ranger l'accès aux données ?
 
 ---
 
@@ -1487,8 +1494,8 @@ Mettre en place un Scaffold dans votre `Screen1` et `Screen2`.
 
 - Un composant de l'architecture Jetpack.
 - Stocke et gère les données.
-- Survit aux changements de configuration.
-- Ne contient pas de référence à la vue.
+- Survis aux changements de configuration.
+- Ne contiens pas de référence à la vue.
 
 ---
 
@@ -1552,7 +1559,7 @@ fun Screen2(
 
 ---
 
-[La théorie c'est bien… La pratique c'est mieux](/tp/android/android-base-tp.html#les-permissions)
+[La théorie c'est bien… La pratique c'est mieux.](/tp/android/android-base-tp.html#les-permissions)
 
 ---
 
@@ -1562,7 +1569,7 @@ fun Screen2(
 
 ---
 
-Android c'est très ouvert… Il faut s'imposer une organisation
+Android c'est très ouvert… Il faut s'imposer une organisation.
 
 ---
 
@@ -1659,7 +1666,7 @@ fun ElementList(
 ## SharedPreferences
 
 - Simple
-- Type natif **exclusivement**(`int`, `string`, …)
+- Type natif **exclusivement **(`int`, `string`, …)
 - Persistant
 - Supprimé à chaque réinstallation
 

@@ -14,6 +14,12 @@ Dans ce TP nous allons mettre en pratique l'écriture de composants avec Android
 
 Ce TP fait suite au cours sur Android Compose, je vous invite donc à le lire avant de commencer ce TP ([Cours Android Compose](/cours/android_compose.md)).
 
+::: danger Important
+
+Ce TP ce concentre sur le découpage en composants et la réactivité. Il s'agit d'un TP d'introduction seulement.
+
+:::
+
 ## Aperçu du projet
 
 L'application que nous allons réaliser ici est très simple. Il s'agit juste d'une liste et d'une vue de détail. Elle nous servira à comprendre le système de composant.
