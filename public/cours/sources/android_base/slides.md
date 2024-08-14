@@ -1337,7 +1337,7 @@ fun Screen2(navController: NavController, name: String) {
 - Faire évoluer votre code pour y ajouter un Router.
 - Découper votre code en :
   - `ui/` : Les pages.
-    - `home.kt` : La page d'accueil.
+    - `home.kt` : La page d'accueil, logo + deux boutons.
     - `screen1.kt` : La première page.
     - `screen2.kt` : La seconde page.
 
@@ -1345,14 +1345,13 @@ Screen 2 doit afficher le nom passé en paramètre.
 
 ---
 
-TODO : Reprendre ici (Routeur)
+## Testons ensembles
+
+- Rendre dynamique le nom saisie dans la le Screen 1.
 
 ---
 
-## Testons ensembles
-
-- Création « d'un Splash ».
-- Démarrage après un délai « simulant un petit chargement » la Home.
+TODO : CONTINUER ICI
 
 ---
 
