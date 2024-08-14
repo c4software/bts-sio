@@ -1548,14 +1548,7 @@ fun Screen2(
 - Créer un ViewModel pour votre `Screen2`.
 - Implémenter l'ajout et la suppression d'élément dans votre liste.
   - Comment faire pour déclencher la suppression ?
-
----
-
-## Bon et les permissions ?
-
----
-
-![Flow Permissions](./img/flow_permissions.png)
+- Afficher la liste dans votre `Screen2`.
 
 ---
 
@@ -1606,6 +1599,53 @@ Vérifier l'organisation de votre projet initial.
 - Reprise du code
 - Maintenance
 - …
+
+---
+
+## 9. Découper plus finement
+
+Maintenant que nous avons une organisation, nous allons découper plus finement.
+
+---
+
+Plutôt qu'une simple liste de String, nous allons créer un élément de liste que nous allons répéter.
+
+---
+
+![Liste](./img/compose-card-item-reapeat.png)
+
+---
+
+```kotlin
+@Composable
+fun ElementList(
+    title: String = "Mon titre",
+    content: String = "Mon contenu",
+    image: Int? = R.drawable.ic_launcher_foreground,
+    onClick: () -> Unit = {}
+) {
+    Card(modifier = Modifier.fillMaxWidth().padding(5.dp), onClick = onClick) {
+        Row(modifier = Modifier.padding(5.dp), verticalAlignment = Alignment.CenterVertically) {
+            image?.let {
+                Image(modifier = Modifier.height(50.dp), painter = painterResource(id = it), contentDescription = content)
+            }
+
+            Column() {
+                Text(text = title)
+                Text(text = content, fontWeight = FontWeight.Light, fontSize = 10.sp)
+            }
+        }
+    }
+}
+```
+
+---
+
+## Bon et les permissions ?
+
+---
+
+![Flow Permissions](./img/flow_permissions.png)
 
 ---
 
