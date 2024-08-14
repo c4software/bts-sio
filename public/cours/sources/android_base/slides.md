@@ -693,11 +693,29 @@ Pour le style c'est plutôt automatique :
 
 ---
 
-Pour le reste quelques éléments :
+Nous avons à notre disposition un ensemble de composants « fonctionnels » qui vont nous permettre de créer les éléments de notre interface.
 
-- `Button` : Un bouton.
-- `Spacer` : Un espace (vertical ou horizontal ou les deux).
-- `Text` : Un texte.
+---
+
+- `Text` : Un composant qui permet d'afficher du texte.
+- `Button` : Un composant qui permet d'afficher un bouton.
+- `Switch` : Un composant qui permet d'afficher un toggle (un bouton qui peut être activé ou désactivé).
+- `Image` : Un composant qui permet d'afficher une image.
+- `LazyColumn` : Un composant qui permet d'afficher une liste.
+- `Scaffold` : Un composant qui permet de créer une structure de base pour notre application (barre de navigation, - etc.).
+- `TopAppBar` : Un composant qui permet de créer une barre de navigation en haut de l'application.
+- `Card` : Un composant qui permet de créer une carte.
+- `IconButton` : Un composant qui permet de créer un bouton avec une icône.
+- Etc… (Il y en a beaucoup plus, mais nous allons nous arrêter là pour l'instant).
+
+---
+
+Nous avons également des composants qui sont là pour définir la structure de notre application :
+
+- `Column` : Un composant qui permet de créer une colonne.
+- `Row` : Un composant qui permet de créer une ligne.
+- `Box` : Un composant qui permet de créer une boîte.
+- `Spacer` : Un composant qui permet de créer un espace entre deux éléments.
 
 ---
 
@@ -712,6 +730,12 @@ Column {
     Text("Un texte")
 }
 ```
+
+---
+
+## Tout est donc composant
+
+### Et imbriquable à l'infini.
 
 ---
 
@@ -905,6 +929,49 @@ Et c'est tout… Je vous laisse essayer en créant un composant `MyUI` qui repr�
 
 ---
 
+## 3.1. L'agencement
+
+En compose, nous parlons de `Modifier`.
+
+Les modifiers ont des méthodes pour modifier les composants (taille, couleur, etc.). Ils sont chaînables et varient en fonction du composant.
+
+---
+
+## Exemple
+
+```kotlin
+Text(
+    text = "Hello World",
+    modifier = Modifier
+        .padding(16.dp)
+        .background(Color.Blue)
+        .border(1.dp, Color.Black)
+)
+```
+
+---
+
+## Exemple les dimensions
+
+```kotlin
+Modifier.fillMaxWidth() // Rempli la largeur
+Modifier.fillMaxHeight() // Rempli la hauteur
+Modifier.fillMaxSize() // Rempli la taille
+```
+
+---
+
+## Exemple le padding
+
+```kotlin
+Modifier.padding(16.dp) // Ajoute un padding de 16dp
+Modifier.padding(16.dp, 8.dp) // Ajoute un padding de 16dp en largeur et 8dp en hauteur
+```
+
+Etc…
+
+---
+
 ## 4. Les ressources
 
 ---
@@ -920,7 +987,6 @@ Accessible via `stringResourcestringResource(R.string.un_texte)`.
 ## C'est à vous, je vous laisse extraire le texte dans le fichier `strings.xml`
 
 👋 Pour la première fois, faisons le ensemble
-
 
 ---
 
@@ -1345,17 +1411,143 @@ Screen 2 doit afficher le nom passé en paramètre.
 
 ---
 
+![Layout possible](./img/compose-suite-layout-1.png)
+
+---
+
+## Point dossier
+
+![Dossier](./img/compose-point-dossier.png)
+
+---
+
 ## Testons ensembles
 
 - Rendre dynamique le nom saisie dans la le Screen 1.
+- À votre avis, comment faire ? Quelle ressource utiliser ?
 
 ---
 
-TODO : CONTINUER ICI
+## 7. Structure
 
 ---
 
-[Mettre en pratique avec la création d'un SplashScreen](/tp/android/android-base-tp.html#creer-une-autre-activity)
+## Le scaffold
+
+---
+
+Le Scaffold est un composant qui permet de créer une structure de base pour votre application (barre de navigation, etc.).
+
+---
+
+```kotlin
+Scaffold(
+    topBar = { TopAppBar(
+        title = { Text('Top App Bar') }),
+        navigationIcon = {
+            IconButton(onClick = { navController.popBackStack() }) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "Back")
+            }
+        }
+    })
+    {
+        // Contenu de votre screen
+    }
+```
+
+---
+
+## C'est à vous
+
+Mettre en place un Scaffold dans votre `Screen1` et `Screen2`.
+
+---
+
+## 8. Les données
+
+---
+
+« Jouons » avec les données…
+
+---
+
+## Où allons nous ranger l'accès aux données ?
+
+---
+
+- Dans la vue ?
+- Dans le composant ?
+- Dans un ViewModel ?
+
+---
+
+## Le ViewModel
+
+- Un composant de l'architecture Jetpack.
+- Stocke et gère les données.
+- Survit aux changements de configuration.
+- Ne contient pas de référence à la vue.
+
+---
+
+## Un exemple
+
+```kotlin
+class Screen2ViewModel : ViewModel() {
+    // Liste de String
+    val listFlow = MutableStateFlow<List<String>>(emptyList())
+
+    // Ajouter un élément
+    fun addElement(element: String) {
+        list.add(element)
+    }
+
+    // Supprimer un élément
+    fun removeElement(element: String) {
+        list.remove(element)
+    }
+}
+```
+
+---
+
+## Exemple d'utilisation
+
+```kotlin
+fun Screen2(
+    navController: NavController,
+    name: String,
+    viewModel: Screen2ViewModel = viewModel()
+) {
+    // Liste dynamique de String
+    val list by viewModel.listFlow.collectAsStateWithLifecycle()
+
+    Column {
+        Text("Bonjour $name")
+        Button(onClick = { viewModel.addElement("Un élément") }) {
+            Text("Ajouter un élément")
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(list) { item ->
+                Text(item)
+            }
+        }
+    }
+}
+```
+
+---
+
+## C'est à vous
+
+- Créer un ViewModel pour votre `Screen2`.
+- Implémenter l'ajout et la suppression d'élément dans votre liste.
+  - Comment faire pour déclencher la suppression ?
 
 ---
 
@@ -1368,60 +1560,6 @@ TODO : CONTINUER ICI
 ---
 
 [La théorie c'est bien… La pratique c'est mieux](/tp/android/android-base-tp.html#les-permissions)
-
----
-
-## Les RecyclerView (AdapterView)
-
----
-
-![Adater](./img/adapter.jpg)
-
----
-
-- **adapter** : gère les données pour les afficher dans la vue.
-- L'adapter est associé à la liste.
-- Un Datasource est attaché à l'Adapter.
-- Les données sont ajoutées dans la Datasource.
-
----
-
-- [En 3 fichiers version Java](https://gist.github.com/c4software/6687dc4bb1d858bb81a79313f0e81fd9)
-- [En 3 fichiers version Kotlin](https://gist.github.com/c4software/95e51417890c68078c14555b2f1d9a03)
-
----
-
-- [Guide complet](https://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
-
----
-
-## C'est à vous !
-
-### Ajoutons une RecyclerView « Simple de type String »
-
----
-
-## C'est complexe… mais des librairies existent
-
-- [FlexibleAdapter](https://github.com/davideas/FlexibleAdapter)
-- [Recyclical](https://github.com/afollestad/recyclical) (Kotlin)
-
----
-
-## C'est à vous !
-
-### Utilisons ensemble la librairie Recyclical
-
----
-
-## Réorganisons notre code
-
----
-
-## Organisation du code
-
-- MVP
-- ViewModel
 
 ---
 
@@ -1451,18 +1589,14 @@ Bien évidemment c'est un exemple
 
 ### Zoom sur le package ui
 
-- Organisation par « vue » / « activity ».
+- Organisation par « vue » / « écran ».
 - On regroupe les fonctionnalités par « vue » (exemple les `Adapters`)
 
 ---
 
 ### C'est à vous
 
-Réorganisation de votre projet initial.
-
----
-
-![Package](./img/packages.png)
+Vérifier l'organisation de votre projet initial.
 
 ---
 
@@ -1488,10 +1622,6 @@ Réorganisation de votre projet initial.
 - Type natif **exclusivement**(`int`, `string`, …)
 - Persistant
 - Supprimé à chaque réinstallation
-
----
-
-[Voir dans le support un exemple](/tp/android/android-base-tp.html)
 
 ---
 
