@@ -337,45 +337,6 @@ Repose sur le material design (nous y reviendrons)
 
 ---
 
-## Un exemple
-
-```kotlin
-Column {
-    Text("Hello")
-    Text("World")
-}
-```
-
----
-
-## Un exemple
-
-```kotlin
-Row {
-    Text("Hello")
-    Text("World")
-}
-```
-
----
-
-## Un exemple
-
-```kotlin
-Column {
-    Row {
-        Text("Hello")
-        Text("World")
-    }
-    Row {
-        Text("Hello")
-        Text("World")
-    }
-}
-```
-
----
-
 ## Les animations
 
 ```kotlin
@@ -601,10 +562,6 @@ Deux façons de travailler :
 
 ---
 
-TODO : Réécrire à partir de là
-
----
-
 ## Votre première application
 
 - Activity
@@ -650,27 +607,111 @@ Qu'observez-vous ?
 
 ---
 
-## Constraint Layout
-
-- Contraint par rapport au « TOP, BOTTOM, START, END » des autres éléments.
-- La nouvelle façon de faire.
+## 3. Définir un Layout
 
 ---
 
-## Les éléments du Layout
-
-- TextView
-- Button
-- RecyclerView
-- ImageView
-- …
+- Des colonnes.
+- Des lignes.
+- Des boîtes (box)
 
 ---
 
-## Comment les découvrir ?
+## Un exemple
 
-- Via l'interface graphique.
-- Via l'autocomplétion dans le XML de layout (oui, oui, oui)
+```kotlin
+Column {
+    Text("Hello")
+    Text("World")
+}
+```
+
+---
+
+## Un exemple
+
+```kotlin
+Row {
+    Text("Hello")
+    Text("World")
+}
+```
+
+---
+
+## Un exemple
+
+```kotlin
+Column {
+    Row {
+        Text("Hello")
+        Text("World")
+    }
+    Row {
+        Text("Hello")
+        Text("World")
+    }
+}
+```
+
+---
+
+## Un exemple
+
+```kotlin
+Box {
+    Text("Hello")
+    Text("World")
+}
+```
+
+---
+
+Nous construisons donc des grilles de composants.
+
+![Layout](./img/compose-layout.png)
+
+---
+
+## C'est à vous
+
+Modifier pour réaliser ceci :
+
+![Layout](./img/compose-layout-refactor.png)
+
+---
+
+## Il vous manques queques choses ?
+
+… quelques composants, et un peu de style.
+
+---
+
+Pour le style c'est plutôt automatique :
+
+- Material Design.
+
+---
+
+Pour le reste quelques éléments :
+
+- `Button` : Un bouton.
+- `Spacer` : Un espace (vertical ou horizontal ou les deux).
+- `Text` : Un texte.
+
+---
+
+Exemple :
+
+```kotlin
+Column {
+    Button(onClick = { /* Action */ }) {
+        Text("Cliquez ici")
+    }
+    Spacer(modifier = Modifier.weight(1f))
+    Text("Un texte")
+}
+```
 
 ---
 
@@ -680,37 +721,158 @@ Qu'observez-vous ?
 
 ---
 
-## Exemple de Layout
+## En vrai… c'est hard non ?
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+Un peu d'explication… avant de continuer…
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+---
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+## Un bouton
+
+```kotlin
+Button(onClick = { /* Action */ }) {
+    Text("Cliquez ici")
+}
+```
+
+Ici, nous avons un bouton qui affiche un texte. Lorsque l'on clique dessus, une action est déclenchée.
+
+---
+
+## Spacer
+
+```kotlin
+Spacer(modifier = Modifier.weight(1f))
+```
+
+Un espace qui prend tout l'espace disponible. `weight` est un pourcentage. Ici nous avons un poids de 1, donc il prend tout l'espace disponible.
+
+---
+
+```kotlin
+Column {
+    Spacer(modifier = Modifier.weight(1f))
+    Text("Un texte")
+}
+```
+
+À votre avis, que va-t-il se passer ?
+
+---
+
+![Compose layout guess 1](./img/compose-layout-guess-1.png)
+
+---
+
+Comment faire pour que le texte soit centré ?
+
+Deux solutions :
+
+- `horizontalAlignment = Alignment.CenterHorizontally` sur la `Column`.
+- `textAlign = TextAlign.Center` sur le `Text`. ⚠️ Attention, cela ne fonctionne que si votre `Text` fait la largeur de l'écran.
+
+---
+
+```kotlin
+Column(
+    horizontalAlignment = Alignment.CenterHorizontally
+) {
+    Spacer(modifier = Modifier.weight(1f))
+    Text("Un texte")
+}
 ```
 
 ---
 
-✋ Quelques points importants ✋
+![Compose layout guess 2](./img/compose-layout-guess-2.png)
 
-- Les Namespaces (Tools, App, Android)
-- L'internationalisation (i18n)
-- Les contraints
-- Les dimensions
+---
+
+## C'est à vous…
+
+Comment faire pour que le texte soit centré verticalement ?
+
+(PS : Il y a plusieurs solutions)
+
+---
+
+## Une solution
+
+```kotlin
+Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Spacer(modifier = Modifier.weight(1f))
+    Text("Un texte")
+    Spacer(modifier = Modifier.weight(1f))
+}
+```
+
+---
+
+## Une autre solution
+
+```kotlin
+Column(
+    verticalArrangement = Arrangement.Center, 
+    horizontalAlignment = Alignment.CenterHorizontally) 
+{
+    Text("Un texte")
+}
+```
+
+À votre avis, dans quels cas utiliser l'une ou l'autre des solutions ?
+
+---
+
+## Compose c'est beaucoup de pratique et « de référence »
+
+Pss : N'hésitez pas à consulter la documentation (mais également StackOverflow, ChatGPT, Claude, etc)
+
+---
+
+## C'est à vous
+
+Modifier pour réaliser ceci :
+
+![Layout](./img/compose-layout-refactor.png)
+
+- [https://developer.android.com/develop/ui/compose/layouts/basics]
+
+---
+
+## Exemple de Layout
+
+```kotlin
+Column(
+    modifier = Modifier.padding(innerPadding)
+) {
+    Spacer(modifier = Modifier.weight(1f))
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    )
+    {
+        Greeting(
+            name = "Android",
+        )
+    }
+
+    Spacer(modifier = Modifier.weight(1f))
+
+    Row {
+        Button(onClick = { /*TODO*/ }) {
+            Text("Button 1")
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Button(onClick = { /*TODO*/ }) {
+            Text("Button 2")
+        }
+    }
+}
+```
 
 ---
 
@@ -720,15 +882,75 @@ Qu'observez-vous ?
 
 ---
 
+Avant de continuer, une petite pause…
+
+Nous allons en profiter pour créer un composant (vous allez voir c'est simple).
+
+---
+
+## Créer un composant
+
+```kotlin
+@Composable
+fun VotreComposant(content: String) {
+    Text(text = content)
+}
+```
+
+Et c'est tout… Je vous laisse essayer en créant un composant `MyUI` qui représente votre petite interface.
+
+---
+
+## À votre avis, où ranger ce composant ?
+
+---
+
+## 4. Les ressources
+
+---
+
+### L'internationalisation
+
+- `res/values/strings.xml`
+
+Accessible via `stringResourcestringResource(R.string.un_texte)`.
+
+---
+
+## C'est à vous, je vous laisse extraire le texte dans le fichier `strings.xml`
+
+👋 Pour la première fois, faisons le ensemble
+
+
+---
+
 ## Comment procéder ?
 
 Via Android Studio bien évidemment. Et de préférence via l'éditeur XML
 
+![Astuce Extraction](./img/astuce_extract.png)
+
 ---
 
-## C'est à vous
+## Les images
 
-Ajouter un bouton dans l'interface et une ImageView.
+- `res/drawable/`
+- Un nom sans espace, sans accent, sans caractère spéciaux.
+- Importable directement dans le code (`R.drawable.nom_image`).
+
+---
+
+## Ajoutons le logo de l'ESEO :
+
+```kotlin
+Image(
+    painter = painterResource(R.drawable.nom_image),
+    contentDescription = "Une image",
+    modifier = Modifier.size(128.dp)
+)
+```
+
+Placer l'image dans le dossier `res/drawable/`. Puis ajouter le au dessus de votre `Text` qui est actuellement au centre de votre `Column`.
 
 ---
 
@@ -791,7 +1013,6 @@ Ajouter un bouton dans l'interface et une ImageView.
 
 ## Le dossier `res` en détail
 
-- **anim** : Définition des propriétés d'animation (`R.anim.…`)
 - **drawable** : Vos images (png, xml, 9.png…) (`R.drawable.…`)
 - **layout** : Vos interfaces un fichier par vue (`R.layout.…`)
 - **menu** : Contenu de vos menus (Options Menu, Sub Menu…)
@@ -852,11 +1073,14 @@ Plusieurs solutions (Toast, Snackbar, Dialog)
 
 Ajouter un Toast dans votre interface
 
-```java
-Toast.makeText(this, "Bonjour à tous", Toast.LENGTH_SHORT).show();
+```kotlin
+// Récupération du context
+val context = LocalContext.current
+
+Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show();
 ```
 
-⚠️ Avec la complétion d'Android Studio
+⚠️ Avec la complétion d'Android Studio.
 
 ---
 
@@ -868,15 +1092,7 @@ Toast.makeText(this, "Bonjour à tous", Toast.LENGTH_SHORT).show();
 
 ---
 
-```kotlin
-Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackbar.LENGTH_LONG).show()
-```
-
-```kotlin
-Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackbar.LENGTH_LONG).setAction("Action") {
-   // Votre action
-}.show()
-```
+[https://developer.android.com/develop/ui/compose/components/snackbar]
 
 ---
 
@@ -890,126 +1106,66 @@ Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackb
 
 ---
 
-## C'est à vous
-
-Remplacer le toast dans votre interface
-
-⚠️ Avec la complétion d'Android Studio
+## 6. Les interactions
 
 ---
 
-## Interagir avec l'utilisateur
+## Très simple avec compose
 
-### 3 étapes
-
-- Le layout (ajouter un `id`)
-- La méthode `findViewById` (dans le code)
-- Le `setOnClickListener(…)`
+- `onClick` : Clic sur un composant de type `Button`.
+- `Modifier.clickable` : Clic sur tous les composants.
 
 ---
 
-## Le listener
-
-```java
-findViewById<Button>(R.id.myButton).setOnClickListener {
-    Toast.makeText(this, "Bonus Point", Toast.LENGTH_LONG).show();
-};
-```
-
----
-
-## ViewBinding
-
-La nouvelle façon de faire :
-
-- Gère le typage.
-- NullSafety.
-- [La documentation](https://developer.android.com/topic/libraries/view-binding)
-
----
-
-## Dans le Build.gradle
-
-Activer le « ViewBinding », dans le block Android déjà présent ajouter :
-
-```txt
-android {
-    [...]
-    buildFeatures {
-        viewBinding = true
-    }
-}
-```
-
----
-
-![Dans Mon Cas](./img/viewBinding.png)
-
----
-
-Dans vos class, modifier le code pour :
+## Exemple
 
 ```kotlin
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding // <-- Référence à notre ViewBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // --> Indique que l'on utilise le ViewBinding
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // L'ensemble de nos références sont disponibles directement dans « binding.LE_NOM_DE_L_ELEMENT »
-        binding.button.setOnClickListener {
-            // Click sur le Button nommé « Button » dans notre Layout.
-        }
-    }
+Button(onClick = { /* Action */ }) {
+    Text("Cliquez ici")
 }
 ```
+
+L'action est déclenchée lors du clic sur le bouton. Simple, non ?
+
+---
+
+Si vous souhaitez par exemple afficher un Toast lors du clic sur un bouton :
+
+```kotlin
+val context = LocalContext.current
+
+Button(onClick = {
+    Toast.makeText(context, "Clic sur le bouton", Toast.LENGTH_LONG).show()
+}) {
+    Text("Cliquez ici")
+}
+```
+
+---
+
+Où sur une `Image` :
+
+```kotlin
+val context = LocalContext.current
+
+Image(
+    painter = painterResource(R.drawable.nom_image),
+    contentDescription = "Une image",
+    modifier = Modifier.size(128.dp).clickable {
+        Toast.makeText(context, "Clic sur l'image", Toast.LENGTH_LONG).show()
+    }
+)
+```
+
+---
+
+## C'est à vous
+
+Ajouter une interaction sur votre bouton pour afficher un Toast.
 
 ---
 
 [Voir dans le support](/tp/android/android-base-tp.html#rendre-un-element-clickable-2)
-
----
-
-## Paramètre et le Scope `{ … }`
-
-Petite subtilité du Kotlin. Dans un Scope :
-
-```kotlin
-binding.button.setOnClickListener {
-    // ICI une variable « it » est accessible. Elle contient votre bouton.
-}
-```
-
-Où encore :
-
-```kotlin
-listOf<Device>().forEach {
-    // « it » dans le cas présent est la valeur _courante_ de l'itération
-}
-```
-
----
-
-Ou de manière plus explicite :
-
-```kotlin
-binding.button.setOnClickListener { button ->
-    // ICI une variable « button » est accessible. Elle contient votre bouton.
-}
-```
-
-```kotlin
-listOf<Device>().forEach { device ->
-    // « device » dans le cas présent est la valeur _courante_ de l'itération
-}
-```
-
-⚠️ Vous avez le choix.
 
 ---
 
@@ -1021,17 +1177,69 @@ Interaction « complexe » avec l'utilisateur (Choix…)
 
 ---
 
-## C'est à vous
+```kotlin
+val context = LocalContext.current
 
-Ajouter une Dialog dans votre interface.
-
-Nous allons utiliser la librairie [Material Dialog](https://github.com/afollestad/material-dialogs)
+AlertDialog(
+    onDismissRequest = { /* Action */ },
+    title = { Text("Titre") },
+    text = { Text("Contenu") },
+    confirmButton = {
+        Button(
+            onClick = {
+                Toast.makeText(context, "Clic sur le bouton", Toast.LENGTH_LONG).show()
+            }
+        ) {
+            Text("Confirmer")
+        }
+    },
+    dismissButton = {
+        Button(
+            onClick = {
+                Toast.makeText(context, "Clic sur le bouton", Toast.LENGTH_LONG).show()
+            }
+        ) {
+            Text("Annuler")
+        }
+    }
+)
+```
 
 ---
 
-## Sans librairie
+## C'est à vous, je vous laisse ajouter un Dialog
 
-Grâce à [`Material.io`](https://material.io/develop/android/docs/getting-started)
+---
+
+Ok mais… mais comment « déclencher » ce Dialog ?
+
+---
+
+## En compose, il faut penser Code et État
+
+---
+
+```kotlin
+var showDialog by remember { mutableStateOf(false) }
+
+if (showDialog) {
+    // Afficher le Dialog
+}
+
+Button(onClick = { showDialog = true }) {
+    Text("Afficher le Dialog")
+}
+```
+
+---
+
+showDialog est un état qui permet de savoir si le Dialog doit être affiché ou non. Il est **mutable**, car il peut changer.
+
+---
+
+## On s'arrête un instant…
+
+### Ça fait beaucoup là non ?
 
 ---
 
@@ -1041,56 +1249,103 @@ Ensemble « de règles » / de bonne pratique pour avoir des interfaces de quali
 
 ---
 
-## Ajouter la librairie.
-
-### C'est à vous !
-
----
-
 ## Créer une Dialog avec la proposition de Google
 
 [La documentation](https://material.io/develop/android/components/dialogs)
 
 ---
 
-## Créer une activity
+## Créer plusieurs « Pages »
 
-- Intégré dans Android Studio
-- Une activity (Kotlin), Un Layout (XML), Une entrée dans le Manifest (XML)
-
----
-
-## Démarrer une autre `activity`
-
-Une astuce…
+Principe du Router en Web.
 
 ---
-
-### Dans l'activity à démarrer ajouter
 
 ```kotlin
-companion object {
-    fun getStartIntent(context: Context): Intent {
-        return Intent(context, MaClass::class.java)
+val navController = rememberNavController()
+
+NavHost(
+    modifier = Modifier.padding(innerPadding),
+    navController = navController,
+    startDestination = "screen1"
+) {
+    // Une page simple sans paramètre
+    composable("screen1") { Screen1(navController) }
+
+    // Une page avec un paramètre (ici un nom)
+    composable(
+        route = "screen2/{name}",
+        arguments = listOf(navArgument("name") { type = NavType.StringType })
+    ) { backStackEntry -> Screen2(
+            navController,
+            name = backStackEntry.arguments?.getString("name") ?: ""
+        )
     }
 }
 ```
 
 ---
 
-### Et quand on souhaite afficher la vue
+## Ajouter la dépendance dans le `build.gradle`
 
-```java
-startActivity(MaClass.getStartIntent(this));
+```groovy
+implementation("androidx.navigation:navigation-compose:2.7.7")
+```
+
+⚠️ N'oubliez pas de `Sync` votre projet.
+
+---
+
+## Exemple de page simple
+
+```kotlin
+@Composable
+fun Screen1(navController: NavController) {
+    Column {
+        Button(onClick = { navController.navigate("screen2/Valentin") }) {
+            Text("Bonjour Valentin")
+        }
+    }
+}
 ```
 
 ---
 
-![Create Activity](./img/create_activity.png)
+## Exemple de page avec paramètre
+
+```kotlin
+@Composable
+fun Screen2(navController: NavController, name: String) {
+    Column {
+        Text("Bonjour $name")
+        Button(onClick = { navController.popBackStack() }) {
+            Text("Retour")
+        }
+    }
+}
+```
 
 ---
 
-![Create Activity suite](./img/create_activity2.png)
+- Où ranger ces pages ?
+- Où mettre le Router ?
+
+---
+
+## C'est à vous
+
+- Faire évoluer votre code pour y ajouter un Router.
+- Découper votre code en :
+  - `ui/` : Les pages.
+    - `home.kt` : La page d'accueil.
+    - `screen1.kt` : La première page.
+    - `screen2.kt` : La seconde page.
+
+Screen 2 doit afficher le nom passé en paramètre.
+
+---
+
+TODO : Reprendre ici (Routeur)
 
 ---
 
