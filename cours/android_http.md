@@ -8,4 +8,4 @@ aside: false
 <SlidesDeck src="android_http" />
 </ClientOnly>
 
-[Support](/tp/android/network)
+[Support](/tp/android/view/network.md)
