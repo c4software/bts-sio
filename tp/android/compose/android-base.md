@@ -878,6 +878,35 @@ Les `Screen` sont des composants comme les autres. Vous pouvez les ranger dans u
 
 :::
 
+#### Créer des éléments
+
+Avant de réaliser le code, nous allons dans un premier temps créer un nouveau package. Il nous servira à stocker nos composants.
+
+Création du package, la procédure est intégrée dans Android Studio :
+
+![Création package](./img/base/package_1.jpg)
+
+Nommage du package, dans mon cas « ui » :
+
+![Nommage](./img/base/package_2.jpg)
+
+Maintenant que votre package est créé, je vous laisse créer le fichier Kotlin qui contiendra votre code :
+
+![Création fichier composant](./img/base/create_composant_file.jpg)
+![Création fichier composant suite](./img/base/create_composant_file_2.jpg)
+
+Pour le nom du fichier, je vous laisse choisir. Moi dans mon cas je vais le nommer « `home.kt` ».
+
+::: tip Un instant !
+
+Pas de classe !?
+
+<iframe src="https://giphy.com/embed/l0HlKrB02QY0f1mbm" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+**Et non** avec Compose, les composants ne sont pas des classes. Ce sont des fonctions « Composable » qui seront appelées au bon moment suivant les bonnes conditions dans votre vue.
+
+:::
+
 #### À faire
 
 - Remplacer le contenu du `setContent` de votre `MainActivity` par le `NavHost` que nous avons vu ensemble.
@@ -935,6 +964,22 @@ Je vous laisse ajouter un `Scaffold` à votre `Screen1` et `Screen2`.
 
 - Le `Screen1` doit avoir un `TopAppBar` avec un titre et un bouton de retour.
 - Le `Screen2` doit avoir un `TopAppBar` avec un titre et un bouton de retour.
+
+::: tip Un peu de couleur
+
+Votre top-bar est blanche ? C'est normal, nous n'avons pas encore ajouté de thème. Je vous laisse ajouter le thème suivant :
+
+```kotlin
+topBar = {
+    TopAppBar(
+        title = {Text("Top App Bar") }, // Titre de la barre
+        colors = TopAppBarDefaults.smallTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.primary,
+        ), // Couleur de la barre
+    ),
+},
+```
 
 ## Les données
 
