@@ -601,10 +601,14 @@ Deux façons de travailler :
 
 ---
 
+TODO : Réécrire à partir de là
+
+---
+
 ## Votre première application
 
 - Activity
-- Un Layout associé
+- Un layout (Composant ou XML)
 - Déclaré dans le « Manifest »
 
 ---
@@ -626,17 +630,23 @@ Deux façons de travailler :
 
 ---
 
-- L'ensemble de vos activity hérite d'une super **Activity**.
+- L'ensemble de vos activity hérite d'une super **ComponentActivity**.
 - « Override » surcharge des méthodes de base (au début uniquement onCreate).
 
 ---
 
-## Un détail qui compte… les layouts
+## Un détail qui compte… les composants
 
-- Constraint Layout
-- Linear Layout
-- Relative Layout
-- Grid Layout
+- Découpage de l'interface.
+- Réutilisation.
+- Indépendance.
+- Paramétrable (car réutilisable).
+
+---
+
+![Composant](./img/composants-base.png)
+
+Qu'observez-vous ?
 
 ---
 
