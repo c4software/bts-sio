@@ -96,8 +96,8 @@ Lors de la création, Android Studio va nous poser plusieurs questions, nous all
 
 Je vous laisse suivre les étapes de création d'un nouveau projet.
 
-![Création d'un projet Étape 1](./res/compose_step_1.jpg)
-![Création d'un projet Étape 2](./res/compose_step_2.jpg)
+![Création d'un projet Étape 1](./img/base/compose_step_1.jpg)
+![Création d'un projet Étape 2](./img/base/compose_step_2.jpg)
 
 ::: warning Mais quelques petites remarques :
 
@@ -127,7 +127,7 @@ Maintenant que votre émulateur est créé, nous allons pouvoir lancer l'applica
 
 Pour débuter (et avant de tout retravailler), je vous laisse compiler et lancer une première fois l'application proposée par Google.
 
-![Première application](./res/compose_step_3.jpg)
+![Première application](./img/base/compose_step_3.jpg)
 
 > Dans mon cas l'application est sur la droite.
 
