@@ -4,14 +4,18 @@ aside: false
 
 # Slides Android Base
 
-## Introduction Compose
+## Les bases d'Android avec Compose
 
 <ClientOnly>
 <SlidesDeck src="android_base" />
 </ClientOnly>
 
-## Les animations avec View (XML)
+- [Support de cours](/tp/android//compose/android-base.md)
+
+::: details Les animations avec view (XML)
 
 <ClientOnly>
 <SlidesDeck src="android_base_suite" />
 </ClientOnly>
+
+:::

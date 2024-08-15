@@ -4,6 +4,8 @@
 [[toc]]
 :::
 
+- [Slides Android Base](/cours/android_base.md)
+
 ## Introduction
 
 Dans ce TP, nous allons découvrir Android Compose, la nouvelle façon de créer des interfaces pour Android.
