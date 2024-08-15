@@ -1643,6 +1643,18 @@ Plutôt qu'une simple liste de String, nous allons créer un élément de liste 
 
 ---
 
+- Nous avons un `Card` qui contient un Titre, un Sous-Titre et une icône.
+- Le `Card` est répété pour chaque élément de la liste.
+- Vous ne le voyez pas, mais le `Card` est cliquable.
+
+---
+
+## À ranger dans
+
+![Liste](./img/organisation_list_item.png)
+
+---
+
 ```kotlin
 @Composable
 fun ElementList(

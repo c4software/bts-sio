@@ -1248,4 +1248,34 @@ Maintenant que vous avez l'ensemble des éléments, je vous laisse créer votre 
 
 ## Découper plus finement / Améliorer l'affichage
 
-TODO
+Votre liste est plutôt basique, un simple texte qui se répète. Nous allons voir ensemble comment améliorer l'affichage de cette liste. L'objectif est d'avoir un affichage similaire à celui-ci :
+
+![Résultat final](./img/base/compose-card-item-reapeat.png)
+
+Avant de continuer analysons ensemble ce que nous avons :
+
+- Nous avons un `Card` qui contient un Titre, un Sous-Titre et une icône.
+- Le `Card` est répété pour chaque élément de la liste.
+- Vous ne le voyez pas, mais le `Card` est cliquable.
+
+## Organisation du code
+
+Ici, les cards ne sont pas des `Screens` Mais un simple composant, nous allons donc les ranger dans un dossier différents. Pour cela, je vous laisse créer un dossier `components` dans votre dossier `ui`.
+
+![Création dossier](./img/base/organisation_list_item.png)
+
+## Base du composant
+
+Cette fois-ci je ne vous donne que la base du composant, je vous laisse le compléter.
+
+```kotlin
+@Composable
+fun ElementList(
+    title: String = "Mon titre",
+    content: String = "Mon contenu",
+    image: Int? = R.drawable.ic_launcher_foreground,
+    onClick: () -> Unit = {}
+) {
+    // À vous de jouer
+}
+```
