@@ -91,6 +91,16 @@ L'isolation avant tout
 
 ---
 
+Permissions d'accès
+
+---
+
+- Chaque application doit demander l'accès à certaines ressources.
+- L'utilisateur doit accepter ces permissions.
+- Les permissions sont limitées (et révoquables).
+
+---
+
 ## Les API
 
 Deux types :
@@ -1707,11 +1717,64 @@ fun ElementList(
 
 ---
 
+## Petit défi
+
+Nous allons créer un composant `MyScaffold` qui va nous permettre de créer un Scaffold avec une barre de navigation et un contenu.
+
+---
+
+![Scaffold](./img/myscaffold.png)
+
+---
+
+Créer un composant générique qui contient un Scaffold avec une barre de navigation et un contenu.
+
+(Voir support)
+
+---
+
 ## Bon et les permissions ?
 
 ---
 
 ![Flow Permissions](./img/flow_permissions.png)
+
+---
+
+## Point clé de la plateforme
+
+---
+
+- Les permissions sont nécessaires pour accéder à certaines fonctionnalités.
+- Elles sont demandées à l'utilisateur au moment de l'utilisation.
+- Elles peuvent être refusées.
+- Elles peuvent être retirées.
+
+---
+
+## Et pour le Blutooth ?
+
+---
+
+- `BLUETOOTH` : Permet d'activer le Bluetooth.
+- `BLUETOOTH_ADMIN` : Permet de gérer le Bluetooth.
+- `ACCESS_COARSE_LOCATION` : Permet d'accéder à la localisation approximative.
+- `ACCESS_FINE_LOCATION` : Permet d'accéder à la localisation précise.
+- `BLUETOOTH_SCAN` : Permet de scanner en BLE.
+- `BLUETOOTH_CONNECT` : Permet de se connecter en BLE.
+
+---
+
+À votre avis, pourquoi ces permissions sont-elles nécessaires ?
+
+---
+
+- Basé sur un système d'état (granted, denied, etc.)
+- Utilise `Accompanist` pour les demandes de permissions.
+
+---
+
+La suite dans le support…
 
 ---
 

@@ -47,6 +47,7 @@ Lors de l'installation d'une application Android. Techniquement, l'application e
 - Utilisation de permissions pour accéder à des ressources.
 - Isolation des applications (sandbox).
 - Sécurité des données (chiffrement, etc.).
+- Permissions pour accéder à des ressources (caméra, contacts, localisation, etc).
 
 ::: tip Signature
 
@@ -1106,11 +1107,11 @@ Pour la vue, nous allons procéder différement. Je vais vous montrer le résult
 
 ::: tip Analyse
 
-Avant de continuer, qu'observer vous dans l'image ci-dessus ?
+Avant de continuer, qu'observez-vous dans l'image ci-dessus ?
 
 - Quels éléments sont présents ?
 - À votre avis, quels sont les composants utilisés ?
-- Combien avons nous d'actions
+- Combien avons-nous d'actions
 
 :::
 
@@ -1121,7 +1122,7 @@ Avant de vous donner le code, nous allons analyser ensemble la structure du code
 ![Structure](./img/base/decoupage_code_screen3.png)
 
 - En vert : La TopAppBar avec le bouton de retour et l'action pour vider la liste.
-- En jaune : Le bouton floatant qui va permettre d'ajouter un élément à la liste.
+- En jaune : Le bouton flottant qui va permettre d'ajouter un élément à la liste.
 - En violet : La liste des éléments. `LazyColumn` est un composant qui va permettre d'afficher une liste de manière optimisée.
 
 ### Structure du composant
@@ -1189,7 +1190,7 @@ topBar = {
 },
 ```
 
-Comment lire ce code ? Il y plusieurs éléments important :
+Comment lire ce code ? Il y a plusieurs éléments importants :
 
 - `NavigationIcon` : Le bouton de retour. Celui-ci va permettre de revenir à l'écran précédent avec `navController.popBackStack()`.
 - `Actions` : Les actions de la `TopAppBar`. Ici nous avons un seul bouton qui va permettre de vider la liste. Ce bouton est un `IconButton` qui contient un `Icon`.
@@ -1244,7 +1245,7 @@ Column(modifier = Modifier.padding(innerPadding)) {
 
 `LazyColumn` est un composant qui va permettre d'afficher une liste de manière optimisée. En effet, il ne va afficher que les éléments qui sont visibles à l'écran. Cela permet de ne pas charger tous les éléments en même temps.
 
-Nous pourrions avoir des milliers d'éléments dans notre liste, `LazyColumn` va permettre de les afficher sans problème. Quelques soit la puissance de votre téléphone…
+Nous pourrions avoir des milliers d'éléments dans notre liste, `LazyColumn` va permettre de les afficher sans problème. Quelle que soit la puissance de votre téléphone…
 
 :::
 
@@ -1252,13 +1253,13 @@ Nous pourrions avoir des milliers d'éléments dans notre liste, `LazyColumn` va
 
 Maintenant que vous avez l'ensemble des éléments, je vous laisse créer votre `Screen3`. N'hésitez pas à me poser des questions si vous avez des difficultés.
 
-## Découper plus finement / Améliorer l'affichage
+## Découper plus finement / améliorer l'affichage
 
 Votre liste est plutôt basique, un simple texte qui se répète. Nous allons voir ensemble comment améliorer l'affichage de cette liste. L'objectif est d'avoir un affichage similaire à celui-ci :
 
 ![Résultat final](./img/base/compose-card-item-reapeat.png)
 
-Avant de continuer analysons ensemble ce que nous avons :
+Avant de continuer, analysons ensemble ce que nous avons :
 
 - Nous avons un `Card` qui contient un Titre, un Sous-Titre et une icône.
 - Le `Card` est répété pour chaque élément de la liste.
@@ -1266,7 +1267,7 @@ Avant de continuer analysons ensemble ce que nous avons :
 
 ### Organisation du code
 
-Ici, les cards ne sont pas des `Screens` Mais un simple composant, nous allons donc les ranger dans un dossier différents. Pour cela, je vous laisse créer un dossier `components` dans votre dossier `ui`.
+Ici, les cards ne sont pas des `Screens` Mais un simple composant, nous allons donc les ranger dans un dossier différent. Pour cela, je vous laisse créer un dossier `components` dans votre dossier `ui`.
 
 ![Création dossier](./img/base/organisation_list_item.png)
 
@@ -1299,3 +1300,240 @@ Dans mon cas voici le rendu final :
 ### À faire suite
 
 Maintenant que vous avez votre liste d'éléments avec un peu de style, je vous laisse implémenter la suppression d'un élément avec une confirmation. Pour cela, vous pouvez utiliser un `Dialog` ou un `Snackbar` (plus compliqué, il faut regarder la documentation).
+
+## Vous souhaitez aller plus loin ?
+
+Nous avons créé des composants simples, mais il est possible d'aller beaucoup plus loin. Par exemple, vous n'avez pas l'impression que votre Scaffold est toujours un peu identique ?
+
+Et oui, c'est toujours un peu là mêmes choses, je vous propose de créer un composant `MyScaffold` qui va permettre de simplifier la création de vos `Screen`.
+
+![MyScaffold](./img/base/myscaffold.png)
+
+Dans le dossier `components`, je vous laisse créer un fichier `MyScaffold.kt`. Voici la base du composant :
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyScaffold(title: String, onBackClick: () -> Unit, content: @Composable () -> Unit) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(title) },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.primary,
+                ),
+                navigationIcon = {
+                    IconButton(onClick = { onBackClick() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                }
+            )
+        }
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
+            content()
+        }
+    }
+}
+```
+
+### À faire
+
+Je vous laisse mettre à jours vos `Screen1`, `Screen2` pour utiliser ce nouveau composant.
+
+::: danger Pourquoi pas le `Screen3`
+
+Il est tentant de vouloir généraliser au maximum son code. Cependant, il faut faire attention à ne pas tomber dans le piège de la généralisation à outrance. En effet, il est important de bien comprendre les besoins de l'application et de ne pas généraliser pour généraliser.
+
+C'est le cas ici, le `Screen3` est un écran qui est très spécifique (FloatButton, Action de clear, etc.). Il est donc important de ne pas généraliser ce composant.
+
+:::
+
+## Les permissions
+
+Les permissions sont un élément important d'une application Android. Elles permettent de demander à l'utilisateur l'autorisation d'accéder à certaines fonctionnalités de l'appareil.
+
+Elles sont obligatoires pour accéder à certaines fonctionnalités de l'appareil. Par exemple, pour accéder à la caméra, il est nécessaire d'avoir la permission `CAMERA`.
+
+::: danger Point important
+
+L'utilisateur aura toujours le choix d'accepter ou de refuser une permission. Il est donc important de gérer les deux cas. De plus, l'utilisateur peut également changer sont choix à posteriori dans les paramètres de l'application.
+
+Il ne faut donc **jamais** sauvegarder le choix de l'utilisateur dans une base de données ou autre. Il est important de toujours demander la permission à chaque lancement de l'application.
+
+Si l'utilisateur à déjà accepté la permission, la demande sera automatiquement acceptée **et donc invisible pour lui**
+
+:::
+
+![Permissions](./img/base/flow_permissions.png)
+
+Nous allons voir comment faire avec Compose. Pour ça nous allons devoir utiliser une librairie développée par Google : [Accompanist](https://google.github.io/accompanist/)
+
+::: tip Accompanist
+
+Accompanist est une librairie de transition, elle existe le temps que Compose évolue, mûrisse et que les fonctionnalités soient intégrées dans Compose (ou pas, mais c'est un autre débat).
+
+:::
+
+Pour rester dans le thème du Bluetooth, nous allons regarder comment demander les permissions en lien avec le BLE. À savoir :
+
+- `ACCESS_FINE_LOCATION` : Pour accéder à la localisation de l'appareil.
+
+### Ajouter la librairie
+
+Pour ajouter la librairie, nous allons devoir modifier notre fichier `build.gradle` (celui dans `app` du projet). Nous allons ajouter la dépendance suivante :
+
+```groovy
+implementation("com.google.accompanist:accompanist-permissions:0.35.1-alpha")
+```
+
+Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
+
+### Le fichier AndroidManifest.xml
+
+Avant de demander les permissions, nous allons devoir les déclarer pour que l'application puisse les demander. Pour ça nous allons modifier le fichier `AndroidManifest.xml`. Nous allons ajouter les permissions suivantes :
+
+```xml
+<!-- Permissions pour le BLE Android 12 et plus -->
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+    android:usesPermissionFlags="neverForLocation"
+    tools:targetApi="s" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+<!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
+
+::: tip Des nouvelles permissions avec Android S
+
+Avec Android S, Google a ajouté de nouvelles permissions pour le BLE. Il est donc important de les ajouter pour que votre application fonctionne correctement sur les appareils Android 12 et plus.
+
+C'est permissions vont permettre de demander l'accès au BLE sans demander l'accès à la localisation. Cela permet surtout de ne pas effrayer l'utilisateur avec une demande de permission de localisation (qui souvent est mal perçue).
+
+:::
+
+### Utiliser la librairie
+
+Cette librairie va nous permettre de demander les permissions à l'utilisateur et de gérer l'état de la demande (acceptée, refusée, etc.). Si vous avez compris ce que nous avons vu précédemment, vous vous doutez que tout va être géré par un état.
+
+```kotlin
+val toCheckPermissions = listOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+val permissionState = rememberMultiplePermissionsState(toCheckPermissions)
+```
+
+Quelques explications :
+
+- `toCheckPermissions` : La liste des permissions à vérifier.
+- `permissionState` : L'état des permissions. Cet état va nous permettre de savoir si les permissions sont accordées ou non.
+
+Maintenant que nous avons notre état, nous allons pouvoir l'utiliser pour demander les permissions à l'utilisateur. Pour ça nous allons utiliser un composant nommé `PermissionRequired` :
+
+```kotlin
+if (!permissionState.allPermissionsGranted) {
+    Button(onClick = { permissionState.launchMultiplePermissionRequest() }) {
+        Text(text = "Demander la permission")
+    }
+} else {
+    Text(text = "Permission accordée")
+}
+```
+
+Que fait ce code ?
+
+- Si l'utilisateur n'a pas accordé les permissions, nous affichons un bouton qui permet de demander les permissions.
+- Si l'utilisateur a accordé les permissions, nous affichons un texte qui indique que les permissions sont accordées.
+
+::: tip C'est tout ?
+
+Et oui, c'est tout. La librairie `Accompanist` va gérer pour vous l'affichage de la demande de permission. Elle va afficher une fenêtre qui va permettre à l'utilisateur d'accepter ou de refuser les permissions.
+
+Vous n'avez pas connu les demandes de permissions à l'ancienne, mais croyez-moi, c'est un sacré gain de temps.
+
+:::
+
+### À faire
+
+Pour tester la demande de permission, nous allons réaliser l'exemple suivant :
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/jVg4nR6WSic?si=Ldr1g2OIqPyMoPWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
+
+Qu'avons-nous ici ?
+
+- Un nouvel écran `Screen4` qui va contenir la demande de permission.
+- Un bouton qui va permettre de demander la permission.
+- La dernière localisation connue de l'appareil.
+
+::: tip Important
+
+Ici l'idée est de comprendre la logique de demande de permissions. Obtenir la localisation est plutôt un prétexte pour vous montrer comment ça doit fonctionner.
+
+Dans le cas du BLE, la demande de permission nous permettra d'accéder à la partie scan du BLE. La localisation ici est « un bonus » pour illustrer.
+
+:::
+
+#### Comment obtenir la dernière localisation connue ?
+
+Pour obtenir la dernière localisation connue de l'appareil, nous allons utiliser le `LocationManager` d'Android.
+
+```kotlin
+// Récupérer le contexte de l'application
+val applicationContext = androidx.compose.ui.platform.LocalContext.current
+
+// Récupérer la dernière localisation connue. C'est une variable mutable
+// c'est à dire que nous allons pouvoir la modifier. Et la vue sera mise à jour
+var locationText by remember { mutableStateOf("") }
+
+// Récupérer la position de l'utilisateur. Cette récupération
+// est faite après la demande de permission.
+// VOUS DEVEZ METTRE CE CODE DANS LE BLOCK DU IF
+// QUAND LES PERMISSIONS SONT ACCORDÉES
+LaunchedEffect(permissionState) {
+    val locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager?
+
+    locationManager?.run {
+        locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)?.run {
+            // Ici nous avons la dernière localisation connue
+            // mais nous ne l'affichons pas
+            val latitude = this.latitude
+            val longitude = this.longitude
+
+            // Nous modifions le texte. Quand la valeur va changer
+            // Compose va mettre à jour l'interface
+            locationText = "Latitude: $latitude, Longitude: $longitude"
+        }
+    }
+}
+
+Text(text = locationText)
+```
+
+::: tip `LaunchedEffect` ?
+
+`LaunchedEffect` est un composant qui va permettre de lancer une action lorsqu'un élément change. Ici, nous allons lancer la récupération de la localisation lorsque les permissions sont accordées.
+
+L'idée derrière `LaunchedEffect` est de lancer une action qui n'est pas liée à l'interface. Par exemple, lancer une requête réseau, ou récupérer une localisation. Il ne sera lancé qu'une seule fois.
+
+**Attention** : `LaunchedEffect` est un composant qui ne doit pas être utilisé à tout va. Il est important de bien comprendre son fonctionnement et de l'utiliser à bon escient. Ici il nous aide juste à avoir un code simple. En réalité, il serait intéressant de gérer la récupération de la localisation dans le `ViewModel`.
+
+:::
+
+### À faire
+
+Je vous laisse créer le `Screen4` avec la demande de permission et l'affichage de la dernière localisation connue.
+
+N'oubliez pas :
+
+- La page doit être ajoutée sur la Home (bouton).
+- Les permissions doivent être demandées dans le `LaunchedEffect`.
+- Votre `Screen4` doit être dans votre dossier `ui`.
+- Votre `Screen4` doit être mis dans le `NavHost`.
