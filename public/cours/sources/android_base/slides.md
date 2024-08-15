@@ -975,6 +975,16 @@ Modifier.padding(16.dp) // Ajoute un padding de 16dp
 Modifier.padding(16.dp, 8.dp) // Ajoute un padding de 16dp en largeur et 8dp en hauteur
 ```
 
+---
+
+## Taille et style du texte
+
+```kotlin
+Text(text = content, fontWeight = FontWeight.Light, fontSize = 10.sp)
+```
+
+---
+
 Etc…
 
 ---
@@ -1677,6 +1687,23 @@ fun ElementList(
     }
 }
 ```
+
+---
+
+## C'est à vous
+
+- Créer un composant `ElementList`.
+- Utiliser ce composant dans votre `Screen3`.
+
+---
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/y5himtvZQFQ?si=Ldr1g2OIqPyMoPWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
+## C'est à vous : Suite
+
+- Ajouter une confirmation avec un Dialog (ou une snackbar) lors de la suppression d'un élément.
 
 ---
 

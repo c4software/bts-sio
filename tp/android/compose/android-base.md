@@ -546,6 +546,12 @@ Modifier.padding(16.dp) // Ajoute un padding de 16dp
 Modifier.padding(16.dp, 8.dp) // Ajoute un padding de 16dp en largeur et 8dp en hauteur
 ```
 
+## Taille et style du texte
+
+```kotlin
+Text(text = content, fontWeight = FontWeight.Light, fontSize = 10.sp)
+```
+
 ## Les ressources
 
 Les ressources sont un élément important d'une application Android. Elles peuvent être de plusieurs types :
@@ -1258,13 +1264,13 @@ Avant de continuer analysons ensemble ce que nous avons :
 - Le `Card` est répété pour chaque élément de la liste.
 - Vous ne le voyez pas, mais le `Card` est cliquable.
 
-## Organisation du code
+### Organisation du code
 
 Ici, les cards ne sont pas des `Screens` Mais un simple composant, nous allons donc les ranger dans un dossier différents. Pour cela, je vous laisse créer un dossier `components` dans votre dossier `ui`.
 
 ![Création dossier](./img/base/organisation_list_item.png)
 
-## Base du composant
+### Base du composant
 
 Cette fois-ci je ne vous donne que la base du composant, je vous laisse le compléter.
 
@@ -1279,3 +1285,17 @@ fun ElementList(
     // À vous de jouer
 }
 ```
+
+### À faire
+
+Je vous laisse créer le composant `ElementList` dans le dossier `components`. Puis l'utiliser dans votre `Screen3` à la place du `Text`.
+
+Dans mon cas voici le rendu final :
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/y5himtvZQFQ?si=Ldr1g2OIqPyMoPWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
+
+### À faire suite
+
+Maintenant que vous avez votre liste d'éléments avec un peu de style, je vous laisse implémenter la suppression d'un élément avec une confirmation. Pour cela, vous pouvez utiliser un `Dialog` ou un `Snackbar` (plus compliqué, il faut regarder la documentation).
