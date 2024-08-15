@@ -10,7 +10,7 @@ aside: false
 <SlidesDeck src="android_base" />
 </ClientOnly>
 
-- [Support de cours](/tp/android//compose/android-base.md)
+- [Support de cours](/tp/android/compose/android-base.md)
 
 ::: details Les animations avec view (XML)
 
