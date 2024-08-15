@@ -411,7 +411,7 @@ export default [
                         text: "Jetpack Compose",
                         collapsed: true,
                         items: [
-                            { text: "Découverte des bases d'Android", link: "/tp/android/view/android-base-tp" },
+                            { text: "Découverte des bases d'Android", link: "/tp/android/compose/android-base.md" },
                             { text: "Introduction à Android Compose", link: "/tp/composants/android.md" },
                             { text: "Android Compose, une liste et une API REST", link: "/tp/android/compose/dirty-api.md" }
                         ]
