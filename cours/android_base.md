@@ -4,13 +4,13 @@ aside: false
 
 # Slides Android Base
 
-## Introduction
+## Introduction Compose
 
 <ClientOnly>
 <SlidesDeck src="android_base" />
 </ClientOnly>
 
-## Un peu plus loin
+## Les animations avec View (XML)
 
 <ClientOnly>
 <SlidesDeck src="android_base_suite" />
