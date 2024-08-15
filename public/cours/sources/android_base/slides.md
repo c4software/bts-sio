@@ -1449,18 +1449,23 @@ Le Scaffold est un composant qui permet de créer une structure de base pour vot
 
 ```kotlin
 Scaffold(
-    topBar = { TopAppBar(
-        title = { Text('Top App Bar') }),
-        navigationIcon = {
-            IconButton(onClick = { navController.popBackStack() }) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "Back")
-            }
+        topBar = {
+            TopAppBar(
+                title = { Text("Ma liste") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                })
+
         }
-    })
-    {
-        // Contenu de votre screen
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
+            // Contenu de la page
+        }
     }
 ```
 
@@ -1502,18 +1507,24 @@ Mettre en place un Scaffold dans votre `Screen1` et `Screen2`.
 ## Un exemple
 
 ```kotlin
-class Screen2ViewModel : ViewModel() {
-    // Liste de String
-    val listFlow = MutableStateFlow<List<String>>(emptyList())
+class Screen3ViewModel : ViewModel() {
+    // Liste de String.
+    // MutableStateFlow est un Flow qui peut être modifié.
+    val listFlow = MutableStateFlow(listOf<String>())
 
     // Ajouter un élément
     fun addElement(element: String) {
-        list.add(element)
+        listFlow.value += element
     }
 
     // Supprimer un élément
     fun removeElement(element: String) {
-        list.remove(element)
+        listFlow.value -= element
+    }
+
+    // Vider la liste
+    fun clearList() {
+        listFlow.value = emptyList()
     }
 }
 ```
@@ -1523,7 +1534,8 @@ class Screen2ViewModel : ViewModel() {
 ## Exemple d'utilisation
 
 ```kotlin
-fun Screen2(
+@Composable
+fun Screen3(
     navController: NavController,
     name: String,
     viewModel: Screen2ViewModel = viewModel()
@@ -1550,16 +1562,24 @@ fun Screen2(
 
 ---
 
-## C'est à vous
-
-- Créer un ViewModel pour votre `Screen2`.
-- Implémenter l'ajout et la suppression d'élément dans votre liste.
-  - Comment faire pour déclencher la suppression ?
-- Afficher la liste dans votre `Screen2`.
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ai1NUBL0gRs?si=Ldr1g2OIqPyMoPWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 
-[La théorie c'est bien… La pratique c'est mieux.](/tp/android/android-base-tp.html#les-permissions)
+![Liste](./img/decoupage_code_screen3.png)
+
+---
+
+## C'est à vous
+
+- Créer un ViewModel pour votre `Screen3`.
+- Implémenter l'ajout et la suppression d'élément dans votre liste.
+  - Comment faire pour déclencher la suppression ?
+- Afficher la liste dans votre `Screen3`.
+
+---
+
+## 9. Découper
 
 ---
 

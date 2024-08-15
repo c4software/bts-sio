@@ -795,7 +795,7 @@ N'oubliez pas, Google propose des règles pour vous aider dans le développement
 
 ## Structure, organisation d'un code avec plusieurs Screens
 
-Avant compose, une application Android était composée de plusieurs `Activity` qui permettaient de naviguer entre les différents écrans de l'application. 
+Avant compose, une application Android était composée de plusieurs `Activity` qui permettaient de naviguer entre les différents écrans de l'application.
 
 Avec Compose, nous allons utiliser un autre système : les `Screen`. Chaque `Screen` est une interface qui va être affichée à l'écran. Nous allons pouvoir naviguer entre les différentes `Screen` en utilisant un `Router` que nous allons appeler un `NavHost`.
 
@@ -909,9 +909,15 @@ Pas de classe !?
 
 #### À faire
 
-- Remplacer le contenu du `setContent` de votre `MainActivity` par le `NavHost` que nous avons vu ensemble.
+- Remplacer le contenu du `setContent` de votre `MainActivity` par le `NavHost` que nous avons vu ensemble. 
 - Créer les `Screen` `Screen1` et `Screen2`.
 - Lancer votre application et tester la navigation entre les deux `Screen`.
+
+::: danger Attention
+
+Pour le `NavHost` dans le `setContent` il est important de retirer **le Scaffold**. En effet, en le retirant nous allons pouvoir le gérer écran par écran.
+
+:::
 
 Voici le rendu attendu :
 
@@ -920,6 +926,10 @@ Voici le rendu attendu :
 Dans mon cas, après la création de mes `Screen` j'ai l'architecture suivante :
 
 ![Dossier](./img/base/compose-point-dossier.png)
+
+Et d'un point de vue code :
+
+![Code](./img/base/navhost_result.png)
 
 #### Testons ensemble
 
@@ -941,18 +951,23 @@ Chaque élément est optionnel, vous pouvez donc choisir de les afficher ou non.
 
 ```kotlin
 Scaffold(
-    topBar = { TopAppBar(
-        title = { Text('Top App Bar') }),
-        navigationIcon = {
-            IconButton(onClick = { navController.popBackStack() }) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "Back")
-            }
+        topBar = {
+            TopAppBar(
+                title = { Text("Ma liste") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                })
+
         }
-    })
-    {
-        // Contenu de votre screen
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
+            // Contenu de la page
+        }
     }
 ```
 
@@ -960,7 +975,7 @@ Scaffold(
 
 ### À faire
 
-Je vous laisse ajouter un `Scaffold` à votre `Screen1` et `Screen2`. 
+Je vous laisse ajouter un `Scaffold` à votre `Screen1` et `Screen2`.
 
 - Le `Screen1` doit avoir un `TopAppBar` avec un titre et un bouton de retour.
 - Le `Screen2` doit avoir un `TopAppBar` avec un titre et un bouton de retour.
@@ -983,8 +998,254 @@ topBar = {
 
 ## Les données
 
-TODO
+Depuis le début, nous avons globalement travaillé sur des données statique. Android est une plateforme « très ouverte », il est donc très facilement possible de faire « n'importe quoi ».
 
-## Découper plus finement
+Dans cette partie nous allons voir l'organisation des données, et surtout l'organinisation du code pour les gérer.
+
+Avant de rentrer dans le vif du sujet, voici ce que nous allons réaliser :
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ai1NUBL0gRs?si=Ldr1g2OIqPyMoPWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
+
+### MVVM : Model View ViewModel
+
+Le MVVM est un pattern de conception qui permet de séparer les données de l'interface. Bien que plutôt ancien (créé par Microsoft en 2005), il est toujours d'actualité. 
+
+Il est très utilisé dans l'approche composant, car il permet de séparer les données de l'interface. Il est composé de trois éléments :
+
+- `Model` : Les données de l'application. Sur Android nous allons utiliser des classes `data class`.
+- `View` : L'interface de l'application. Ce sont nos composants (`@Composable`).
+- `ViewModel` : La logique de l'application. Ce sont des classes particulières qui vont faire le lien entre les `Model` et les `View`.
+
+Quelques points sont à retenir :
+
+- Le `Model` ne doit pas contenir de logique, il doit uniquement contenir les données.
+- Le `ViewModel` doit contenir la logique de l'application. Il doit être testable.
+- Le `View` doit uniquement contenir l'interface de l'application.
+- Le `ViewModel` doit être observé par la `View`. (Nous verrons cela plus tard).
+- Le `ViewModel` **ne doit pas** contenir de référence à la `View`.
+
+### Évolution de la structure
+
+Notre projet va évoluer un peu, voici les éléments que nous allons devoir ajouter :
+
+![Arborescence](./img/base/arborescence_mvvm.png)
+
+- `Screen2ViewModel.kt` : Le ViewModel qui va contenir la logique de notre écran.
+- `Screen2.kt` : Le composant qui va contenir l'interface de notre écran (notre liste et nos boutons d'actions).
+
+::: tip Pas d'inquiétude
+
+Ici, il faut bien voir que je vous communique une façon correcte de faire. Nous pourrions évidemment tout simplifier en mettant tout dans le même fichier (dans la vue par exemple). Mais à mon sens, il est important de comprendre dès le début les bonnes pratiques.
+
+:::
+
+### Quelques libraires à ajouter
+
+Pour que nous puissions faire notre scan en arrière-plan et échanger les données entre la `View` et le `ViewModel` nous allons avoir besoin de quelques librairies :
+
+```groovy
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
+implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+```
+
+Ajouter ces dépendances dans votre fichier `build.gradle` (celui dans `app` du projet). Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
+
+[Plus d'informations](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+
+### Création du ViewModel
+
+Le `ViewModel` est une classe qui va contenir la logique de notre écran. Il va permettre de séparer les données de l'interface.
+
+```kotlin
+class Screen3ViewModel: ViewModel() {
+    // Liste de String
+    val listFlow = MutableStateFlow(listOf<String>())
+
+    // Ajouter un élément
+    fun addElement(element: String) {
+        listFlow.value += element
+    }
+
+    // Supprimer un élément
+    fun removeElement(element: String) {
+        listFlow.value -= element
+    }
+
+    fun clearList() {
+        listFlow.value = emptyList()
+    }
+}
+```
+
+- `listFlow` : Une liste de `String` qui est un `MutableStateFlow`. Un `MutableStateFlow` est un élément qui va permettre de stocker des données et de les observer.
+- `addElement` : Une fonction qui va permettre d'ajouter un élément à la liste.
+- `removeElement` : Une fonction qui va permettre de supprimer un élément de la liste.
+- `clearList` : Une fonction qui va permettre de vider la liste.
+
+::: tip Je vous laisse faire
+
+Créer le fichier `Screen3ViewModel.kt` dans le bon dossier. Et ajouter le code ci-dessus.
+
+:::
+
+### Création de la `View`
+
+Pour la vue, nous allons procéder différement. Je vais vous montrer le résultat final, et vous allez devoir le reproduire étape par étape.
+
+![Résultat final](./img/base/mvvm_result.png)
+
+::: tip Analyse
+
+Avant de continuer, qu'observer vous dans l'image ci-dessus ?
+
+- Quels éléments sont présents ?
+- À votre avis, quels sont les composants utilisés ?
+- Combien avons nous d'actions
+
+:::
+
+### La structure du composant
+
+Avant de vous donner le code, nous allons analyser ensemble la structure du code que vous allez devoir écrire.
+
+![Structure](./img/base/decoupage_code_screen3.png)
+
+- En vert : La TopAppBar avec le bouton de retour et l'action pour vider la liste.
+- En jaune : Le bouton floatant qui va permettre d'ajouter un élément à la liste.
+- En violet : La liste des éléments. `LazyColumn` est un composant qui va permettre d'afficher une liste de manière optimisée.
+
+### Structure du composant
+
+Pour fonctionner, notre composant va avoir besoin de plusieurs paramètres :
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun Screen3(
+    navController: NavController,
+    viewModel: Screen3ViewModel = viewModel()
+) {
+    // Code du composant
+}
+```
+
+- `navController` : Le `NavController` qui va permettre de naviguer entre les différentes `Screen`.
+- `viewModel` : Le `ViewModel` qui va contenir la logique de notre écran.
+
+### Les données
+
+Pour observer les données, nous allons utiliser un `collectAsStateWithLifecycle`. Cela va nous permettre de mettre à jour l'interface en fonction des données.
+
+```kotlin
+val list by viewModel.listFlow.collectAsStateWithLifecycle()
+```
+
+### La TopAppBar
+
+La `TopAppBar` dois permettre dans cet écran de :
+
+- Revenir à l'écran précédent.
+- Afficher le titre de l'écran.
+- Vider la liste.
+
+```kotlin
+topBar = {
+    TopAppBar(
+        title = { Text("Ma liste") },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.primary,
+        ),
+        navigationIcon = {
+            IconButton(onClick = { navController.popBackStack() }) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back"
+                )
+            }
+        },
+        actions = {
+            IconButton(
+                onClick = { viewModel.clearList() },
+                enabled = list.isNotEmpty(),
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Refresh,
+                    contentDescription = "Clear"
+                )
+            }
+        }
+    )
+},
+```
+
+Comment lire ce code ? Il y plusieurs éléments important :
+
+- `NavigationIcon` : Le bouton de retour. Celui-ci va permettre de revenir à l'écran précédent avec `navController.popBackStack()`.
+- `Actions` : Les actions de la `TopAppBar`. Ici nous avons un seul bouton qui va permettre de vider la liste. Ce bouton est un `IconButton` qui contient un `Icon`.
+  - Celui-ci est activé uniquement si la liste n'est pas vide (`list.isNotEmpty()`).
+
+::: tip Et oui…
+
+Avec Compose et Kotlin, rendre actif ou inactif un bouton est très simple. Il suffit de mettre `enabled = true` ou `enabled = false`. En exploitant le côté réactif de Compose, le bouton sera automatiquement mis à jour en fonction de la valeur de `list`.
+
+- Liste vide : `enabled = false` == `list.isNotEmpty()`
+- Liste non vide : `enabled = true` == `list.isNotEmpty()`
+
+Ça change du code que vous avez l'habitude de voir non ? 😏
+
+:::
+
+### Le bouton flottant
+
+Le bouton flottant est également un élément courant dans les applications Android. Il permet de réaliser une action principale. Dans notre cas ici, il va permettre d'ajouter un élément à la liste.
+
+```kotlin
+floatingActionButton = {
+    FloatingActionButton(onClick = { viewModel.addElement("Element ${list.size + 1}") }) {
+        Icon(Icons.Filled.Add, "Floating action button.")
+    }
+}
+```
+
+- `FloatingActionButton` : Le bouton flottant.
+- `onClick` : L'action à réaliser lors du clique sur le bouton.
+- `Icon` : L'icône du bouton.
+
+L'action à réaliser appelle la fonction `addElement` du `ViewModel` avec un élément de la forme `Element ${list.size + 1}`. Cela va permettre d'ajouter un élément à la liste.
+
+### La liste
+
+Pour la liste rien de bien compliqué, nous allons utiliser un `LazyColumn` qui va permettre d'afficher une liste de manière optimisée.
+
+```kotlin
+Column(modifier = Modifier.padding(innerPadding)) {
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
+        items(list) { item ->
+            // Affiché à chaque élément de la liste.
+            // Ici un simple Text
+            Text(item)
+        }
+    }
+}
+```
+
+::: tip LazyColumn ?
+
+`LazyColumn` est un composant qui va permettre d'afficher une liste de manière optimisée. En effet, il ne va afficher que les éléments qui sont visibles à l'écran. Cela permet de ne pas charger tous les éléments en même temps.
+
+Nous pourrions avoir des milliers d'éléments dans notre liste, `LazyColumn` va permettre de les afficher sans problème. Quelques soit la puissance de votre téléphone…
+
+:::
+
+### À faire
+
+Maintenant que vous avez l'ensemble des éléments, je vous laisse créer votre `Screen3`. N'hésitez pas à me poser des questions si vous avez des difficultés.
+
+## Découper plus finement / Améliorer l'affichage
 
 TODO
