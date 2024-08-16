@@ -13,7 +13,7 @@ Le développement mobile évolue rapidement, vous trouverez ici des ressources p
 ## Les TP Compose
 
 - [Les bases d'Android Compose](/tp/android/compose/android-base.md)
-- [Introduction à Android Compose](/tp/composants/android.md)
+- [Introduction au Composant avec Compose](/tp/composants/android.md)
 
 ## Multiplateforme
 

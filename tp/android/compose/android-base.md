@@ -1035,6 +1035,14 @@ Quelques points sont à retenir :
 - Le `ViewModel` doit être observé par la `View`. (Nous verrons cela plus tard).
 - Le `ViewModel` **ne doit pas** contenir de référence à la `View`.
 
+### La recomposition
+
+Il faut comprendre ici que notre vue sera « recomposée » à chaque fois que nous allons mettre à jours nos données. Nous allons donc devoir gérer des listes qui vont être modifiées en temps réel. Pour ça nous allons utiliser un `MutableStateFlow`, le `MutableStateFlow` sera un flux de données qui va nous permettre de mettre à jour notre liste (visuellement dans notre interface).
+
+![Recomposition](./img/base/lifecycle-composition.png)
+
+[En savoir plus sur la recomposition](https://developer.android.com/jetpack/compose/lifecycle?hl=fr)
+
 ### Évolution de la structure
 
 Notre projet va évoluer un peu, voici les éléments que nous allons devoir ajouter :

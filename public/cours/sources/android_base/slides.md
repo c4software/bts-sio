@@ -1455,6 +1455,10 @@ Screen 2 doit afficher le nom passé en paramètre.
 
 ---
 
+Voir le support de cours
+
+---
+
 ## 7. Structure
 
 ---
@@ -1502,6 +1506,22 @@ Mettre en place un Scaffold dans votre `Screen1` et `Screen2`.
 ---
 
 « Jouons » avec les données…
+
+---
+
+## Recomposition
+
+---
+
+Il faut comprendre ici que notre vue sera « **recomposée** » à chaque fois que nous allons mettre à jours nos données.
+
+---
+
+![Recomposition](./img/lifecycle-composition.png)
+
+---
+
+[En savoir plus sur la recomposition](https://developer.android.com/jetpack/compose/lifecycle?hl=fr)
 
 ---
 
