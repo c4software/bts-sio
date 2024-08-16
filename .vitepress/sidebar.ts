@@ -385,7 +385,16 @@ export default [
                         ]
                     },
                     {
-                        text: "Les TP View",
+                        text: "Android Compose",
+                        collapsed: true,
+                        items: [
+                            { text: "Découverte des bases d'Android", link: "/tp/android/compose/android-base.md" },
+                            { text: "Introduction à Android Compose", link: "/tp/composants/android.md" },
+                            { text: "Android Compose, une liste et une API REST", link: "/tp/android/compose/dirty-api.md" }
+                        ]
+                    },
+                    {
+                        text: "Android View",
                         collapsed: true,
                         items: [
                             { text: "Suite découverte des base d'Android", link: "/tp/android/view/android-base2-tp" },
@@ -405,15 +414,6 @@ export default [
                             { text: "Android Base : Projet final", link: "/tp/android/view/app-base-android.md" },
                             { text: "Télécommand Bluetooth & Réseau", link: "/tp/android/view/app-ble-network.md" },
                             { text: "Application Client / Serveur", link: "/tp/android/view/app-avance-android.md" }
-                        ]
-                    },
-                    {
-                        text: "Jetpack Compose",
-                        collapsed: true,
-                        items: [
-                            { text: "Découverte des bases d'Android", link: "/tp/android/compose/android-base.md" },
-                            { text: "Introduction à Android Compose", link: "/tp/composants/android.md" },
-                            { text: "Android Compose, une liste et une API REST", link: "/tp/android/compose/dirty-api.md" }
                         ]
                     },
                     {
