@@ -8,4 +8,4 @@ aside: false
 <SlidesDeck src="android_ble" />
 </ClientOnly>
 
-- [Support de cours](/tp/android/compose/android-ble.md)
+- [Support Android et le BLE](/tp/android/compose/android-ble.md)
