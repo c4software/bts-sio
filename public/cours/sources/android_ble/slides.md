@@ -102,11 +102,28 @@ Avec l'application « nRF Connect »
 
 ## La version code
 
-- Demander les permissions (Manifest + Code)
 - Vérifier si le BLE est disponible
+- Demander les permissions (Manifest + Code)
 - Filtrer les résultats (ou pas)
 - Démarrer le Scan
 - Connexion au `BluetoothDevice`
+- Lire / Ecrire des données
+
+---
+
+## Un système à état
+
+---
+
+![Flow ble](./img/flow_ble.png)
+
+---
+
+## Avant propos, nous allons co-réfléchir sur le projet
+
+### Je vous propose du code
+
+### Vous allez devoir l'implémenter
 
 ---
 
@@ -121,407 +138,102 @@ Avec l'application « nRF Connect »
 ## Les permissions : Le manifest
 
 ```xml
-<uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.BLUETOOTH"/>
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<!-- Permissions pour le BLE Android 12 et plus -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="s" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 ---
 
-## La home
+## La vue scan
 
-- Design du layout.
-- Les contraintes :
-  - Le bouton « actions » ne doit pas être actif si pas de périphérique sélectionné.
-  - Afficher le logo du campus / école.
+- Un nouveau screen à créer
+- Un ViewModel associé
 
 ---
 
-## Exemple
-
-![Layout](./img/layout.png)
-
----
-
-## Le scan
-
-- Design du layout
-- Contrainte
-  - Avoir une liste (`RecyclerView`)
+<center>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XzDb5gaF2zI?si=6ceKFVKceKS3GlwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
 
 ---
 
 ## C'est à vous
 
-- Deux Activity :
-  - Celle existante qui sera notre page de home.
-  - Une nouvelle qui sera la page de scan.
+- Créer une nouvelle « Screen ».
+- Créer un nouveau ViewModel.
+  - Cette vue doit afficher une « liste », je vous laisse préparer le code pour afficher une liste.
+  - Nous allons utiliser le pattern MVVM.
 
 ---
 
-## BLE
-
-### Le Scan
+## Les permissions
 
 ---
-
-## Vérifier si le BLE est disponible / compatible
 
 ```kotlin
-private fun isLECompatible(): Boolean {
-    return packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)
-}
-```
-
----
-
-## Vérifier les permissions
-
-```kotlin
-private fun hasPermission(): Boolean {
-    return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+// Partie 1: Demander la permission
+// En fonction de la version d'Android, on demande des permissions différentes
+// Pour Android 12, on demande les permissions BLUETOOTH_CONNECT et BLUETOOTH_SCAN (qui sont moins agréssives pour l'utilisateur)
+// Pour les autres versions, on demande la permission ACCESS_FINE_LOCATION (Souvent non comprise par l'utilisateur)
+val toCheckPermissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+    listOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
+} else {
+    listOf(android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_SCAN)
 }
 
-private fun askForPermission() {
-    ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_LOCATION)
-}
-```
+// État de la demande de permission (granted, denied, shouldShowRationale)
+val permissionState = rememberMultiplePermissionsState(toCheckPermissions)
 
----
-
-## Après l'acceptation de l'utilisateur
-
-On en parle ?
-
-```kotlin
-override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-    if (requestCode == PERMISSION_REQUEST_LOCATION && grantResults.size == 1) {
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // Permission OK => Lancer SCAN
-            setupBLE()
-        } else {
-            // Permission KO => Gérer le cas.
-            // Vous devez ici modifier le code pour gérer le cas d'erreur (permission refusée)
-            // Avec par exemple une Dialog
-        }
+ // Vérifier si la permission est accordée
+if (permissionState.allPermissionsGranted) {
+    // La permission est accordée
+    // Nous sommes prêt à scanner
+} else {
+    // La permission n'est pas accordée
+    // Nous devons demander la permission
+    Button(onClick = { permissionState.launchMultiplePermissionRequest() }) {
+        Text(text = "Demander la permission")
     }
 }
 ```
 
 ---
 
-## Vérifier si la localisation est active
+## C'est à vous ! Je vous laisse implémenter la demande de permission
+
+---
+
+## Vérifier si le Bluetooth est actif
+
+---
+
+## Composant de vérification
 
 ```kotlin
-private fun locationServiceEnabled(): Boolean {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-        // This is new method provided in API 28
-        val lm = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        lm.isLocationEnabled
-    } else {
-        // This is Deprecated in API 28
-        val mode = Settings.Secure.getInt(this.contentResolver, Settings.Secure.LOCATION_MODE, Settings.Secure.LOCATION_MODE_OFF)
-        mode != Settings.Secure.LOCATION_MODE_OFF
+@Composable
+fun checkBluetoothEnabled(context: Context, notAvailable: () -> Unit = {}) {
+    val bluetoothManager: BluetoothManager? = remember {
+        context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager?
     }
-}
-```
-
----
-
-## Et finalement …
-
----
-
-## Le Bluetooth
-
-```kotlin
-private fun setupBLE() {
-    (getSystemService(BLUETOOTH_SERVICE) as BluetoothManager?)?.let { bluetoothManager ->
-        bluetoothAdapter = bluetoothManager.adapter
-        if (bluetoothAdapter != null && bluetoothManager.adapter.isEnabled) {
-            startActivityForResult(Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), REQUEST_ENABLE_BLE)
-        } else {
-            scanLeDevice()
-        }
-    }
-}
-```
-
----
-
-## Le BLE : Le scan
-
-```kotlin
-private fun scanLeDevice(scanPeriod: Long = 10000) {
-    if (!mScanning) {
-        bluetoothLeScanner = bluetoothAdapter?.bluetoothLeScanner
-
-        // On vide la liste qui contient les devices actuellement trouvées
-        bleDevicesFoundList.clear()
-
-        mScanning = true
-
-        // On lance une tache qui durera « scanPeriod » à savoir donc de base
-        // 10 secondes
-        handler.postDelayed({
-            mScanning = false
-            bluetoothLeScanner?.stopScan(leScanCallback)
-            Toast.makeText(this, getString(R.string.scan_ended), Toast.LENGTH_SHORT).show()
-        }, scanPeriod)
-
-        // On lance le scan
-        bluetoothLeScanner?.startScan(scanFilters, scanSettings, leScanCallback)
-    }
-}
-```
-
----
-
-## Le BLE : Le Scan Gestion des résultats
-
-```kotlin
-private val leScanCallback: ScanCallback = object : ScanCallback() {
-    override fun onScanResult(callbackType: Int, result: ScanResult) {
-        super.onScanResult(callbackType, result)
-
-        // Ajout dans la liste du nouveau périphérique trouvé (si celui-ci est pas déjà présent)
-        val device = Device(result.device.name, result.device.address, result.device)
-        if (!bleDevicesFoundList.contains(device)) {
-            bleDevicesFoundList.add(device)
-        }
-    }
-}
-```
-
----
-
-## Quelques variables en plus
-
-Dans la class ScanActivity
-
-```kotlin
-// REQUEST Code de gestion
-companion object {
-    const val PERMISSION_REQUEST_LOCATION = 9999
-    const val REQUEST_ENABLE_BLE = 9997
-}
-// L'Adapter permettant de se connecter
-private var bluetoothAdapter: BluetoothAdapter? = null
-
-// La connexion actuellement établie
-private var currentBluetoothGatt: BluetoothGatt? = null
-
-// « Interface système nous permettant de scanner »
-private var bluetoothLeScanner: BluetoothLeScanner? = null
-
-/**
-* Gestion du SCAN, recherche des device BLE à proximité
-*/
-
-// Parametrage du scan BLE
-private val scanSettings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build()
-
-// On ne retourne que les « Devices » proposant le bon UUID
-private var scanFilters: List<ScanFilter> = arrayListOf()
-
-// Variable de fonctionnement
-private var mScanning = false
-private val handler = Handler()
-
-// La liste des résultats
-private val bleDevicesFoundList = mutableListOf<Device>()
-```
-
----
-
-## Le RecyclerView
-
-- Un DeviceViewHolder
-- Un « modèle Device » (représente l'élément trouvé)
-
----
-
-## Le layout (item_device.xml)
-
-Représente un élément de la liste (dans notre cas un périphérique)
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="@string/app_name"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-```
-
----
-
-## Le modele
-
-```kotlin
-// Représente les données
-data class Device (
-    var name: String?,
-    var mac: String?,
-    var device: BluetoothDevice
-) {
-    // Pourquoi est-ce que j'ai besoin de cette méthode ?
-    // À votre avis ?
-    override fun equals(other: Any?): Boolean {
-        return other is Device && other.mac == this.mac
-    }
-}
-```
-
-- Pouvez-vous m'en dire plus ?
-
----
-
-## Le ViewHolder
-
-```kotlin
-// Représente la vue
-class DeviceViewHolder(itemView: View) : ViewHolder(itemView) {
-    val name: TextView = itemView.findViewById(R.id.title)
-}
-```
-
----
-
-## Initialisation
-
-```kotlin
-rvDevices.adapter = DeviceAdapter(bleDevicesFoundList) { item ->
-    Toast.makeText(this@ScanActivity, getString(R.string.trying_connection_to, item.name), Toast.LENGTH_SHORT).show()
-    BluetoothLEManager.currentDevice = item.device
-    connectToCurrentDevice()
-}
-```
-
----
-
-## Quelle est la méthode à appeler
-
-### Pour lancer le scan
-
----
-
-### Beaucoup de périphériques non ?
-
----
-
-## Activer le filtre par Service UUID
-
-Oui, car c'est vrai on détecte trop de périphériques incompatibles !
-
-Remplacer dans votre code `scanFilters` par :
-
-```kotlin
-private var scanFilters: List<ScanFilter> = arrayListOf(
-    ScanFilter.Builder().setServiceUuid(ParcelUuid(BluetoothLEManager.DEVICE_UUID)).build()
-)
-```
-
----
-
-## C'est à vous !
-
-### Implémenter le scan et mettre les résultats dans le RecyclerView
-
----
-
-## Maintenant que l'on a la liste…
-
----
-
-## Sélectionner un périphérique…
-
-- Implémenter la méthode `onClick` de votre « RecyclerView ».
-- Sauvegarder (de manière `static`) le périphérique dans le `BluetoothLEManager`.
-- Changer la vue d'état.
-
----
-
-```kotlin
-onClick {
-    Toast.makeText(this@ScanActivity, getString(R.string.trying_connection_to, item.name), Toast.LENGTH_SHORT).show()
-    BluetoothLEManager.currentDevice = item.device
-    connectToCurrentDevice()
-}
-```
-
----
-
-## Le BluetoothLEManager
-
-```kotlin
-class BluetoothLEManager {
-
-    companion object {
-        var currentDevice: BluetoothDevice? = null
-
-        val DEVICE_UUID: UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c")
-        val CHARACTERISTIC_TOGGLE_LED_UUID: UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b")
-        val CHARACTERISTIC_NOTIFY_STATE: UUID = UUID.fromString("d75167c8-e6f9-4f0b-b688-09d96e195f00")
-        val CHARACTERISTIC_GET_COUNT: UUID = UUID.fromString("a877d87f-60bf-4ad5-ba61-56133b2cd9d4")
-        val CHARACTERISTIC_GET_WIFI_SCAN: UUID = UUID.fromString("10f83060-64f8-11ee-8c99-0242ac120002")
-        val CHARACTERISTIC_SET_DEVICE_NAME: UUID = UUID.fromString("1497b8a8-64f8-11ee-8c99-0242ac120002")
-        val CHARACTERISTIC_SET_WIFI_CREDENTIALS: UUID = UUID.fromString("1a0f3c0c-64f8-11ee-8c99-0242ac120002")
-    }
-}
-```
-
----
-
-## Organisation
-
-- « Ranger » le `BluetoothLEManager` dans le package `….data.manager`
-
----
-
-## LocalPreferences
-
-- Sauvegarde d'information dans les préférences de l'application
-
----
-
-```kotlin
-import android.content.Context
-import android.content.SharedPreferences
-
-class LocalPreferences private constructor(context: Context) {
-    private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-
-    fun lastConnectedDeviceName(deviceName: String?) {
-        sharedPreferences.edit().putString("selectedDevice", deviceName).apply()
-    }
-
-    fun lastConnectedDeviceName(): String? {
-        return sharedPreferences.getString("selectedDevice", null)
-    }
-
-    companion object {
-        private var INSTANCE: LocalPreferences? = null
-
-        fun getInstance(context: Context): LocalPreferences {
-            return INSTANCE?.let {
-                INSTANCE
-            } ?: run {
-                INSTANCE = LocalPreferences(context)
-                return INSTANCE!!
+    val bluetoothAdapter: BluetoothAdapter? = bluetoothManager?.adapter
+    val enableBluetoothLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {}
+    LaunchedEffect(bluetoothAdapter) {
+        when {
+            bluetoothAdapter == null -> { notAvailable() }
+            !bluetoothAdapter.isEnabled -> {
+                // Demander l'activation du Bluetooth
+                val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                enableBluetoothLauncher.launch(enableBtIntent)
             }
         }
     }
@@ -530,14 +242,147 @@ class LocalPreferences private constructor(context: Context) {
 
 ---
 
-- « Ranger » le `LocalPreferences` dans le package `….data.local`
+### Utilisation du composant de vérification
+
+```kotlin
+// Vérification si le Bluetooth est activé
+checkBluetoothEnabled(context) {
+    // Le Bluetooth n'est pas disponible
+    Toast.makeText(context, "Le Bluetooth n'est pas disponible", android.widget.Toast.LENGTH_SHORT).show()
+    navController.popBackStack()
+}
+```
+
+À votre avis, que fait ce code ? Où doit-il être placé ?
 
 ---
 
-### Selected Device && LocalPreferences
+## C'est à vous, je vous laisse implémenter la partie demande d'activation du Bluetooth
+
+---
+
+## Exemple de Layout (à adapter)
+
+![scan layout](./img/scan_layout.png)
+
+---
+
+## Le Scan
+
+Réparti entre le ViewModel et la Vue.
+
+---
+
+- La vue doit afficher la liste des périphériques.
+- Le ViewModel doit gérer le scan (méthode asynchrone).
+
+---
+
+## Le ViewModel : Les variables de scan
 
 ```kotlin
-LocalPreferences.getInstance(this).saveCurrentSelectedDevice("MON_DEVICE_SELECTED");
+// Le processus de scan
+private var scanJob: Job? = null
+
+// Durée du scan
+private val scanDuration = 10000L
+
+/**
+    * Le scanner bluetooth
+    */
+private val scanFilters: List<ScanFilter> = listOf(
+    // À décommenter pour filtrer les périphériques
+    // ScanFilter.Builder().setServiceUuid(ParcelUuid(BluetoothLEManager.DEVICE_UUID)).build()
+)
+private val scanSettings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build()
+private val scanResultsSet = mutableMapOf<String, ScanResult>()
+```
+
+---
+
+## Le ViewModel : La méthode de scan
+
+```kotlin
+@SuppressLint("MissingPermission")
+fun startScan(context: Context) {
+    // Récupération du scanner BLE
+    val bluetoothLeScanner = (context.getSystemService(BLUETOOTH_SERVICE) as BluetoothManager).adapter.bluetoothLeScanner
+
+    // Si nous sommes déjà en train de scanner, on ne fait rien
+    if (isScanningFlow.value) return
+
+    // Définition du processus de scan (Coroutine)
+    // Une coroutine est un moyen de gérer des tâches asynchrones de manière plus simple et plus lisible
+    scanJob = CoroutineScope(Dispatchers.IO).launch {
+        // On indique que nous sommes en train de scanner
+        isScanningFlow.value = true
+
+        // Objet qui sera appelé à chaque résultat de scan
+        val scanCallback = object : ScanCallback() {
+            /**
+                * Le callback appelé à chaque résultat de scan (nouvel appareil trouvé)
+                * Il n'est pas dédoublonné, c'est à nous de le faire (il peut être appelé plusieurs fois pour le même appareil)
+                */
+            override fun onScanResult(callbackType: Int, result: ScanResult) {
+                super.onScanResult(callbackType, result)
+                // On ajoute le résultat dans le set, si il n'y est pas déjà
+                // L'ajout retourne null si l'élément n'était pas déjà présent
+                if (scanResultsSet.put(result.device.address, result) == null) {
+                    // On envoie la nouvelle liste des appareils scannés
+                    scanItemsFlow.value = scanResultsSet.values.toList()
+                }
+            }
+        }
+
+        // On lance le scan BLE a la souscription de scanFlow
+        bluetoothLeScanner.startScan(scanFilters, scanSettings, scanCallback)
+
+        // On attend la durée du scan (10 secondes)
+        delay(scanDuration)
+
+        // Lorsque scanFlow est stoppé, on stop le scan BLE
+        bluetoothLeScanner.stopScan(scanCallback)
+
+        // On indique que nous ne sommes plus en train de scanner
+        isScanningFlow.value = false
+    }
+}
+
+fun stopScan() {
+    scanJob?.cancel()
+    isScanningFlow.value = false
+}
+```
+
+---
+
+## Vous avez remarqué ?
+
+- La méthode `startScan` est une méthode asynchrone.
+- Elle utilise une coroutine pour gérer le scan.
+- Elle utilise un `Flow` pour envoyer les résultats de scan.
+
+---
+
+## En parlant de Flow
+
+```kotlin
+// La liste des appareils scannés autour
+val scanItemsFlow = MutableStateFlow<List<ScanResult>>(emptyList())
+
+// Boolean permettant de savoir si nous sommes en train de scanner
+val isScanningFlow = MutableStateFlow(false)
+```
+
+---
+
+## C'est à vous, je vous laisse implémenter la partie scan
+
+Rappel : Écouter les variables du ViewModel dans la Vue.
+
+```kotlin
+val list by viewModel.scanItemsFlow.collectAsStateWithLifecycle()
+val isScanning by viewModel.isScanningFlow.collectAsStateWithLifecycle()
 ```
 
 ---
@@ -546,52 +391,131 @@ LocalPreferences.getInstance(this).saveCurrentSelectedDevice("MON_DEVICE_SELECTE
 
 ---
 
-```kotlin
-private fun connectToCurrentDevice() {
-    BluetoothLEManager.currentDevice?.let { device ->
-        Toast.makeText(this, "Connexion en cours … $device", Toast.LENGTH_SHORT).show()
+- Action de connexion déclenchée par l'utilisateur. (Clic sur un élément de la liste)
+- Affichage d'un loader pendant la connexion.
+- L'écran liste est remplacé par un nouveau composant d'action
 
-        currentBluetoothGatt = device.connectGatt(
-            this,
-            false,
-            gattCallback)
-    }
+---
+
+![Action Layout](./img/action_screen.png)
+
+---
+
+Qu'allons-nous faire ?
+
+- Modifier le ViewModel pour ajouter de nouvelles variables d'état.
+- Écouter les variables côté Vue.
+
+---
+
+```kotlin
+// Flow permettant de savoir si nous sommes en train de nous connecter
+val isConnectingFlow = MutableStateFlow(false)
+
+// Flow permettant de savoir si un appareil est connecté
+val isConnectedToDeviceFlow = MutableStateFlow(false)
+```
+
+---
+
+## Le code de la connexion
+
+```kotlin
+@SuppressLint("MissingPermission")
+fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
+    // On arrête le scan si il est en cours
+    stopScan()
+
+    // On indique que nous sommes en train de nous connecter (pour afficher un loader par exemple)
+    isConnectingFlow.value = true
+
+    // On tente de se connecter à l'appareil
+    // On utilise le GattCallback pour gérer les événements BLE (connexion, déconnexion, notifications).
+    currentBluetoothGatt = bluetoothDevice.connectGatt(
+        context,
+        false,
+        BluetoothLEManager.GattCallback(
+            // La connexion a réussi (onServicesDiscovered)
+            onConnect = {
+                isConnectedToDeviceFlow.value = true
+                isConnectingFlow.value = false
+                // On active les notifications pour recevoir les événements de la LED et du compteur
+                // enableNotify()
+            },
+
+            // Nouvelle valeur reçue sur une caractéristique de type notification
+            onNotify = { characteristic, value ->
+                when (characteristic.uuid) {
+                    BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE -> connectedDeviceLedStateFlow.value = value == "1"
+                    BluetoothLEManager.CHARACTERISTIC_GET_COUNT -> ledCountFlow.value = value.toInt()
+                }
+            },
+
+            // L'ESP32 s'est déconnecté (BluetoothGatt.STATE_DISCONNECTED)
+            onDisconnect = {
+                isConnectedToDeviceFlow.value = false
+            }
+        ))
 }
 ```
 
 ---
 
-## gattCallBack
+## Avez vous remarqué ?
 
-![what](./img/what.gif)
-
----
-
-### Le GattCallback gère la connexion à votre périphérique
-
-- Fourni par le SDK (mais vide).
-- Méthodes à implémenter :
-  - onServicesDiscovered
-  - onConnectionStateChange
-  - onCharacteristicChanged
+- La méthode `connect` est une méthode asynchrone.
+- Elle repose sur un `GattCallback` pour gérer les événements BLE.
+- Elle utilise des `Flow` pour envoyer les informations à la Vue.
 
 ---
 
-## Un exemple à implémenter
+## BluetoothLEManager
 
-### À ajouter dans votre class `BluetoothLEManager`
+- Code générique pour gérer les états BLE.
+- Contient les UUIDs des services et caractéristiques.
+- Contient le `GattCallback` pour gérer les événements BLE.
+- Écrit par moi-même pour simplifier le code.
+
+---
+
+Ce code est à ajouter dans un fichier `BluetoothLEManager.kt` dans un package `data.ble`
+
+![Package data BLE](./img/package_data_ble.png)
 
 ---
 
 ```kotlin
-open class GattCallback(
+class BluetoothLEManager {
+
+    companion object {
+        var currentDevice: BluetoothDevice? = null
+
+        /**
+         * Les UUIDS sont des identifiants uniques qui permettent d'identifier les services et les caractéristiques.
+         * Ces UUIDs sont définis dans le code de l'ESP32.
+         */
+        val DEVICE_UUID: UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c")
+        val CHARACTERISTIC_TOGGLE_LED_UUID: UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b")
+        val CHARACTERISTIC_NOTIFY_STATE: UUID = UUID.fromString("d75167c8-e6f9-4f0b-b688-09d96e195f00")
+        val CHARACTERISTIC_GET_COUNT: UUID = UUID.fromString("a877d87f-60bf-4ad5-ba61-56133b2cd9d4")
+        val CHARACTERISTIC_GET_SET_WIFI: UUID = UUID.fromString("10f83060-64f8-11ee-8c99-0242ac120002")
+        val CHARACTERISTIC_SET_DEVICE_NAME: UUID = UUID.fromString("1497b8a8-64f8-11ee-8c99-0242ac120002")
+        val CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID: UUID = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb")
+
+    }
+
+    /**
+     * Définitionn de la classe GattCallback qui va nous permettre de gérer les différents événements BLE
+     * Elle implémente la classe BluetoothGattCallback fournie par Android
+     */
+    open class GattCallback(
         val onConnect: () -> Unit,
-        val onNotify: (characteristic: BluetoothGattCharacteristic) -> Unit,
+        val onNotify: (characteristic: BluetoothGattCharacteristic, value: String) -> Unit,
         val onDisconnect: () -> Unit
     ) : BluetoothGattCallback() {
 
         /**
-         * Méthode appelée au moment où les « services » ont été découverts
+         * Méthode appelé au moment ou les « services » ont été découvert
          */
         override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
             super.onServicesDiscovered(gatt, status)
@@ -603,8 +527,9 @@ open class GattCallback(
         }
 
         /**
-         * Méthode appelée au moment du changement d'état de la stack BLE
+         * Méthode appelé au moment du changement d'état de la stack BLE
          */
+        @SuppressLint("MissingPermission")
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
             super.onConnectionStateChange(gatt, status, newState)
             when (newState) {
@@ -614,185 +539,181 @@ open class GattCallback(
         }
 
         /**
-         * Méthodes appelées à chaque notification BLE
+         * Méthode appelé lorsqu'une caractéristique a été modifiée
+         * Dans les nouvelles versions d'Android, cette méthode est appelée
+         */
+        override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic, value: ByteArray) {
+            super.onCharacteristicChanged(gatt, characteristic, value)
+            onNotify(characteristic, value.toString(Charsets.UTF_8))
+        }
+
+        /**
+         * Méthode appelé lorsqu'une caractéristique a été modifiée
+         * Ancienne méthode utilisée sur les versions antérieures d'Android
          */
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
             super.onCharacteristicChanged(gatt, characteristic)
-            onNotify(characteristic)
+            onNotify(characteristic, characteristic.value.toString(Charsets.UTF_8))
         }
-    }
-```
 
----
-
-## Comment ça fonctionne ?
-
-- Callback a implémenté dans votre code:
-  - onConnect
-  - onDisconnect
-  - onNotify
-
----
-
-## Les CallBacks ça vous parle ?
-
----
-
-```kotlin
-device.connectGatt(
-    this,
-    false,
-    BluetoothLEManager.GattCallback(
-        onConnect = {
-            // On indique à l'utilisateur que nous sommes correctement connecté
-            runOnUiThread {
-                // Nous sommes connecté au device, on active les notifications pour être notifié si la LED change d'état
-                enableListenBleNotify()
-
-                // On change la vue « pour être en mode connecté »
-                setUiMode(true)
-
-                // On sauvegarde dans les « LocalPreference » de l'application le nom du dernier préphérique
-                // sur lequel nous nous sommes connecté avec BluetoothLEManager.currentDevice?.name
-
-                // JE VOUS LAISSE APPELER LE LocalPreferences COMME VU PLUS HAUT
-
+        override fun onDescriptorWrite(gatt: BluetoothGatt?, descriptor: BluetoothGattDescriptor?, status: Int) {
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                Log.d("BLE", "Descriptor write successful for ${descriptor?.characteristic?.uuid}")
+            } else {
+                Log.e("BLE", "Descriptor write failed for ${descriptor?.characteristic?.uuid}, status: $status")
             }
-        },
-        onNotify = { runOnUiThread { handleToggleLedNotificationUpdate(it) } },
-        onDisconnect = { runOnUiThread { disconnectFromCurrentDevice() } })
-)
-```
-
----
-
-## runOnUiThread ?
-
-- Nous permet de lancer une action sur le bon Thread
-
----
-
-## Attend quoi ?
-
-- Quelques explications !
-
----
-
-## Déconnexion du périphérique
-
-```kotlin
-    currentBluetoothGatt?.disconnect()
-    BluetoothLEManager.currentDevice = null
-    setUiMode(false)
-```
-
----
-
-## Réagir aux notifications BLE
-
-```kotlin
-/**
-* Méthode appelée à chaque notification du Device, la notification contient le nouvel
-* état de la led
-*/
-private fun handleToggleLedNotificationUpdate(characteristic: BluetoothGattCharacteristic) {
-    if (characteristic.getStringValue(0).equals("on", ignoreCase = true)) {
-        ledStatus.setImageResource(R.drawable.led_on)
-    } else {
-        ledStatus.setImageResource(R.drawable.led_off)
-    }
-}
-```
-
----
-
-## SetUiMode
-
-Méthode permettant de changer l'état de l'interface en fonction de la connexion.
-
----
-
-```kotlin
-private fun setUiMode(isConnected: Boolean) {
-    if (isConnected) {
-        // Connecté à un périphérique
-        bleDevicesFoundList.clear()
-        rvDevices.visibility = View.GONE
-        startScan.visibility = View.GONE
-        currentConnexion.visibility = View.VISIBLE
-        currentConnexion.text = getString(R.string.connected_to, BluetoothLEManager.currentDevice?.name)
-        disconnect.visibility = View.VISIBLE
-        toggleLed.visibility = View.VISIBLE
-    } else {
-        // Non connecté, reset de la vue.
-        rvDevices.visibility = View.VISIBLE
-        startScan.visibility = View.VISIBLE
-        ledStatus.visibility = View.GONE
-        currentConnexion.visibility = View.GONE
-        disconnect.visibility = View.GONE
-        toggleLed.visibility = View.GONE
-    }
-}
-```
-
----
-
-## À votre avis… Une autre façon de faire ?
-
----
-
-## Et allumer / éteindre la led ?
-
-### L'interaction va fonctionner avec un Service (déclarer via un UUID)
-
----
-
-## Récupérer le service « commande »
-
-Récupération de « service » BLE (via UUID) qui nous permettra d'envoyer / recevoir des commandes
-
-```kotlin
-private fun getMainDeviceService(): BluetoothGattService? {
-    return currentBluetoothGatt?.let { bleGatt ->
-        val service = bleGatt.getService(BluetoothLEManager.DEVICE_UUID)
-        service?.let {
-            return it
-        } ?: run {
-            Toast.makeText(this, getString(R.string.uuid_not_found), Toast.LENGTH_SHORT).show()
-            return null;
         }
-    } ?: run {
-        Toast.makeText(this, getString(R.string.not_connected), Toast.LENGTH_SHORT).show()
-        return null
     }
 }
 ```
 
 ---
 
-## Changer l'état de la LED
+## C'est à vous, je vous laisse implémenter la connexion
 
-En écrivant sur la bonne Characteristics
+- Créer l'action de connexion dans la Vue.
+- Écouter les variables du ViewModel.
+- Créer un **Composant** pour afficher les actions.
+- Gérer les différents états (scan, connexion, actions).
+- Pour vous aider…
+
+---
+
+![Machine à état](./img/state_screen.png)
+
+---
+
+## Interagir avec le périphérique
+
+---
+
+- Envoi de commandes via les caractéristiques.
+- Écoute des notifications (caractéristiques de type notification).
+
+---
 
 ```kotlin
-private fun toggleLed() {
-    getMainDeviceService()?.let { service ->
-        val toggleLed = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_TOGGLE_LED_UUID)
-        toggleLed.setValue("1")
-        currentBluetoothGatt?.writeCharacteristic(toggleLed)
+fun toggleLed() {
+    writeCharacteristic(BluetoothLEManager.CHARACTERISTIC_TOGGLE_LED_UUID, "1")
+}
+```
+
+⚠️ Méthode générique pour écrire dans une caractéristique. Elle s'applique à toutes les caractéristiques du projet.
+
+---
+
+```kotlin
+@SuppressLint("MissingPermission")
+private fun writeCharacteristic(uuid: UUID, value: String) {
+    // Récupération du service principal (celui de l'ESP32)
+    getMainService()?.let { service ->
+        // Récupération de la caractéristique
+        val characteristic = service.getCharacteristic(uuid)
+
+        if (characteristic == null) {
+            Log.e("BluetoothLEManager", "La caractéristique $uuid n'a pas été trouvée")
+            return
+        }
+
+        Log.i("BluetoothLEManager", "Ecriture de la valeur $value dans la caractéristique $uuid")
+
+        // En fonction de la version de l'OS, on utilise la méthode adaptée
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // On écrit la valeur dans la caractéristique
+            currentBluetoothGatt?.writeCharacteristic(characteristic, value.toByteArray(), BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT)
+        } else {
+            // On écrit la valeur dans la caractéristique
+            characteristic.setValue(value)
+            currentBluetoothGatt?.writeCharacteristic(characteristic)
+
+        }
     }
 }
 ```
 
 ---
 
-## C'est à vous !
+```kotlin
+private fun getMainService(): BluetoothGattService? = currentBluetoothGatt?.getService(BluetoothLEManager.DEVICE_UUID)
+```
 
 ---
 
-## Exemple de Layout
+```kotlin
+@SuppressLint("MissingPermission")
+private fun enableNotify() {
+    getMainService()?.let { service ->
+        // Indique que le GATT Client va écouter les notifications sur le charactérisque
+        val notificationStatus = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
+        val notificationLedCount = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_COUNT)
+        val wifiScan = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI)
 
-![scan layout](./img/scan_layout.png)
+        listOf(notificationStatus, notificationLedCount, wifiScan).forEach { characteristic ->
+            currentBluetoothGatt?.setCharacteristicNotification(characteristic, true)
+            characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)?.let {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    currentBluetoothGatt?.writeDescriptor(it, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
+                } else {
+                    it.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+                    currentBluetoothGatt?.writeDescriptor(it)
+                }
+            }
+        }
+    }
+}
+```
+
+---
+
+## C'est à vous, je vous laisse implémenter l'action de toggle de la LED
+
+---
+
+![Simple](./img/simple.gif)
+
+---
+
+## Recevoir l'état de la LED
+
+---
+
+- Fonctionne par notification.
+- Est asynchrone.
+- Utilise un `Flow`.
+
+---
+
+## Dans votre viewModel
+
+```kotlin
+// Flow permettant de savoir si la LED est allumée ou éteinte
+val connectedDeviceLedStateFlow = MutableStateFlow(false)
+
+// Sera mis à jour dans la méthode onNotify du GattCallback
+// Si la valeur est "1", la LED est allumée, sinon elle est éteinte
+// connectedDeviceLedStateFlow.value = value == "1"
+```
+
+---
+
+## Dans votre Vue
+
+```kotlin
+val ledState by viewModel.connectedDeviceLedStateFlow.collectAsStateWithLifecycle()
+
+// … ailleurs dans votre code
+if(ledState) {
+    // La LED est allumée
+} else {
+    // La LED est éteinte
+}
+```
+
+---
+
+## D'autres actions sont possibles (Wifi, Nom de la carte, …)
+
+### Elles seront à implémenter de la même manière dans le projet final.
 
 ---
 
@@ -807,10 +728,6 @@ private fun toggleLed() {
 ## La permission
 
 - `<uses-permission android:name="android.permission.INTERNET"/>`
-
----
-
-Depuis Android > 6, c'est **automatique** (plus nécessaire)
 
 ---
 
@@ -1066,17 +983,11 @@ private fun getIdentifiant(): String? {
 
 ---
 
-## Exemple de Layout
-
-![Action Layout](./img/action_layout.png)
-
----
-
 ## L'ActionActivity
 
 ### En quelques mots…
 
-- Vous devez obtenir l'état de la led en arrivant dans la Vue (OnResume).
+- Vous devez obtenir l'état de la led en arrivant dans la Vue.
 - Vous devez modifier l'état de la led avec le bouton.
 - Vous devez pouvoir obtenir l'état de la led aux cliques sur le symbole « refresh ».
 

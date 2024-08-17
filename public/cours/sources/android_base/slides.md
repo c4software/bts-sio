@@ -1644,6 +1644,31 @@ fun Screen3(
 
 ---
 
+## Les flow
+
+- Un `Flow` est un flux de données asynchrone.
+- Il peut être modifié.
+- Il peut être observé.
+
+---
+
+```kotlin
+// Dans le ViewModel
+val listFlow = MutableStateFlow(listOf<String>())
+listFlow.value += "Un élément"
+// Ou
+val intFlow = MutableStateFlow(0)
+intFlow.value += 1
+
+// Dans le composant
+val list by viewModel.listFlow.collectAsStateWithLifecycle()
+```
+
+- Le flow est mis à jour dans le ViewModel via le `.value = …`.
+- Dans le composant, nous allons observer le flow avec un `collectAsStateWithLifecycle`.
+
+---
+
 ## C'est à vous
 
 - Créer un ViewModel pour votre `Screen3`.
