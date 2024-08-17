@@ -11,7 +11,7 @@ aside: false
 </ClientOnly>
 
 - [Support de cours](/tp/android/compose/android-base.md)
-- []
+- [Slides Android BLE](/cours/android_ble.md)
 
 ::: details Les animations avec view (XML)
 
