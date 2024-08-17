@@ -49,7 +49,7 @@ Avant de rentrer dans le détail, que fait notre objet ?
 ## Rappel sur le BLE
 
 - Un serveur (périphérique)
-- Des client (mobile, tablette, ordinateur, …)
+- Des clients (mobile, tablette, ordinateur …)
 
 ---
 
@@ -94,9 +94,9 @@ Avec l'application « nRF Connect »
 
 - [Android-Ble-Librairie](https://github.com/NordicSemiconductor/Android-BLE-Library)
 - Proposé par … Nordic.
-- Assez mal-docummentée.
+- Assez mal-documentée.
 - Très rapide « simple d'utilisation ».
-- Un entredeux « Code / Librairie ».
+- Un entre-deux « Code / Librairie ».
 
 ---
 
@@ -107,7 +107,7 @@ Avec l'application « nRF Connect »
 - Filtrer les résultats (ou pas)
 - Démarrer le Scan
 - Connexion au `BluetoothDevice`
-- Lire / Ecrire des données
+- Lire / écrire des données
 
 ---
 
@@ -145,17 +145,17 @@ Avec l'application « nRF Connect »
 
 ```xml
 <!-- Permissions pour le BLE Android 12 et plus -->
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
-        android:usesPermissionFlags="neverForLocation"
-        tools:targetApi="s" />
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+    android:usesPermissionFlags="neverForLocation"
+    tools:targetApi="s" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
-    <!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 ---
@@ -215,7 +215,7 @@ if (permissionState.allPermissionsGranted) {
 
 ---
 
-## C'est à vous ! Je vous laisse implémenter la demande de permission
+## C'est à vous ! Je vous laisse implémenter la demande de permission.
 
 ---
 
@@ -453,7 +453,6 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
             onNotify = { characteristic, value ->
                 when (characteristic.uuid) {
                     BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE -> connectedDeviceLedStateFlow.value = value == "1"
-                    BluetoothLEManager.CHARACTERISTIC_GET_COUNT -> ledCountFlow.value = value.toInt()
                 }
             },
 
@@ -467,7 +466,7 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
 
 ---
 
-## Avez vous remarqué ?
+## Avez-vous remarqué ?
 
 - La méthode `connect` est une méthode asynchrone.
 - Elle repose sur un `GattCallback` pour gérer les événements BLE.
@@ -478,8 +477,8 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
 ## BluetoothLEManager
 
 - Code générique pour gérer les états BLE.
-- Contient les UUIDs des services et caractéristiques.
-- Contient le `GattCallback` pour gérer les événements BLE.
+- Contiens les UUIDs des services et caractéristiques.
+- Contiens-le `GattCallback` pour gérer les événements BLE.
 - Écrit par moi-même pour simplifier le code.
 
 ---
@@ -645,32 +644,6 @@ private fun getMainService(): BluetoothGattService? = currentBluetoothGatt?.getS
 
 ---
 
-```kotlin
-@SuppressLint("MissingPermission")
-private fun enableNotify() {
-    getMainService()?.let { service ->
-        // Indique que le GATT Client va écouter les notifications sur le charactérisque
-        val notificationStatus = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
-        val notificationLedCount = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_COUNT)
-        val wifiScan = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI)
-
-        listOf(notificationStatus, notificationLedCount, wifiScan).forEach { characteristic ->
-            currentBluetoothGatt?.setCharacteristicNotification(characteristic, true)
-            characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)?.let {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    currentBluetoothGatt?.writeDescriptor(it, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
-                } else {
-                    it.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
-                    currentBluetoothGatt?.writeDescriptor(it)
-                }
-            }
-        }
-    }
-}
-```
-
----
-
 ## C'est à vous, je vous laisse implémenter l'action de toggle de la LED
 
 ---
@@ -712,6 +685,38 @@ if(ledState) {
     // La LED est allumée
 } else {
     // La LED est éteinte
+}
+```
+
+---
+
+## Pour que le code fonctionne
+
+### Il faut activer les notifications sur la caractéristique
+
+---
+
+```kotlin
+@SuppressLint("MissingPermission")
+private fun enableNotify() {
+    getMainService()?.let { service ->
+        // Indique que le GATT Client va écouter les notifications sur le charactérisque
+        val notificationStatus = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
+        val notificationLedCount = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_COUNT)
+        val wifiScan = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI)
+
+        listOf(notificationStatus, notificationLedCount, wifiScan).forEach { characteristic ->
+            currentBluetoothGatt?.setCharacteristicNotification(characteristic, true)
+            characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)?.let {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    currentBluetoothGatt?.writeDescriptor(it, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
+                } else {
+                    it.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+                    currentBluetoothGatt?.writeDescriptor(it)
+                }
+            }
+        }
+    }
 }
 ```
 
