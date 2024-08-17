@@ -55,6 +55,10 @@ code.lang-sh::before {
     font-size: 30px;
 }
 
+.reveal img {
+    max-height: 90vh;
+}
+
 fieldset {
     padding: 10px;
     font-size: 2rem;
