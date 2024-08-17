@@ -10,6 +10,13 @@ Le développement mobile évolue rapidement, vous trouverez ici des ressources p
 - [Cours Android Compose](/cours/android_compose.md)
 - [Cours Android Bluetooth](/cours/android_ble.md)
 
+## Intervention ESEO
+
+- [Cours base Android](/cours/android_base.md)
+- [Cours Android Bluetooth](/cours/android_ble.md)
+- [Les bases d'Android Compose](/tp/android/compose/android-base.md)
+- [Le projet BLE](/tp/android/view/app-ble-network.md)
+
 ## Les TP Compose
 
 - [Les bases d'Android Compose](/tp/android/compose/android-base.md)
