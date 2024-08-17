@@ -1203,6 +1203,40 @@ Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show();
 
 ---
 
+## Avant de continuer…
+
+### Les callbacks avec Kotlin
+
+---
+
+Un callback est une fonction qui est passée en paramètre d'une autre fonction.
+
+---
+
+## Exemple en Kotlin
+
+```kotlin 
+fun doSomething(callback: () -> Unit) {
+    callback()
+}
+```
+---
+
+Fonctionne dans le code, mais également dans vos composants Compose.
+
+---
+
+```kotlin
+@Composable
+fun MyButton(onClick: () -> Unit) {
+    Button(onClick = onClick) {
+        Text("Cliquez ici")
+    }
+}
+```
+
+---
+
 ## Très simple avec compose
 
 - `onClick` : Clic sur un composant de type `Button`.

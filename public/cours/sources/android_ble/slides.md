@@ -4,7 +4,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ---
 
-Que fait notre objet ?
+Avant de rentrer dans le détail, que fait notre objet ?
 
 ![what](./img/ESP.jpg)
 
@@ -34,6 +34,18 @@ Que fait notre objet ?
 
 ---
 
+<center>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LQsL3jDOc7o?si=6ceKFVKceKS3GlwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
+
+---
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/W9N-JtwWSzE?si=6ceKFVKceKS3GlwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
+
+---
+
 ## Rappel sur le BLE
 
 - Un serveur (périphérique)
@@ -59,6 +71,12 @@ Avec l'application « nRF Connect »
 
 ---
 
+## Sur Android
+
+### L'implémentation évolue **beaucoup**. Il est important de suivre les dernières recommandations. Sous peine d'avoir des comportements inattendus.
+
+---
+
 ## Deux solutions
 
 - Le coder.
@@ -69,16 +87,6 @@ Avec l'application « nRF Connect »
 ## La librairie
 
 - Plus simple (beaucoup moins de question à se poser, version, permissions… )
-
----
-
-## La librairie (suite)
-
-- [RxAndroidBLE](https://github.com/Polidea/RxAndroidBle)
-- Gère le Bluetooth
-- Les permissions (presque)
-- L'état du Bluetooth
-- …
 
 ---
 

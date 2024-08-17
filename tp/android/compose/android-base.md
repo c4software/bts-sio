@@ -631,8 +631,30 @@ Image(
 
 ⚠️ `R.drawable.nom_image` est un exemple, vous devez remplacer `nom_image` par le nom de votre image. ⚠️
 
-
 ## Les interactions
+
+::: tip Avant de continuer… Les callbacks avec Kotlin
+
+Un callback est une fonction qui est passée en paramètre d'une autre fonction.
+
+```kotlin
+fun doSomething(callback: () -> Unit) {
+    callback()
+}
+```
+
+Fonctionne dans le code, mais également dans vos composants Compose.
+
+```kotlin
+@Composable
+fun MyButton(onClick: () -> Unit) {
+    Button(onClick = onClick) {
+        Text("Cliquez ici")
+    }
+}
+```
+
+:::
 
 Intéragir avec l'utilisateur est un élément clé d'une application. Sur Android, au-delà dès `onClick` que nous avons vu, nous avons également accès à d'autres interactions :
 
