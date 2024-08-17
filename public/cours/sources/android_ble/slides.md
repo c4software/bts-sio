@@ -127,6 +127,12 @@ Avec l'application « nRF Connect »
 
 ---
 
+## Respirez, c'est parti !
+
+(Ça va être dense, mais on va y arriver)
+
+---
+
 ## Les permissions
 
 - Localisation ?
