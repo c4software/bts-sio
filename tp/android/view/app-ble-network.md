@@ -94,7 +94,7 @@ Composable :
 
 Cette classe va nous permettre de sauvegarder de manière « persistant » des paramètres.
 
-Pour l'instant nous allons sauvegarder le nom de L'ESP 32, ça nous sera utile pour la suite.
+Pour l'instant nous allons sauvegarder le nom du dernier périphérique connecté.
 
 ```kotlin
 
