@@ -14,12 +14,12 @@ Le développement mobile évolue rapidement, vous trouverez ici des ressources p
 
 - [Cours base Android](/cours/android_base.md)
 - [Cours Android Bluetooth](/cours/android_ble.md)
-- [Les bases d'Android Compose](/tp/android/compose/android-base.md)
+- [Support : Les bases d'Android Compose](/tp/android/compose/android-base.md)
+- [Support : Intéraction BLE](/tp/android/compose/android-ble.md)
 - [Le projet BLE](/tp/android/view/app-ble-network.md)
 
 ## Les TP Compose
 
-- [Les bases d'Android Compose](/tp/android/compose/android-base.md)
 - [Introduction au Composant avec Compose](/tp/composants/android.md)
 
 ## Multiplateforme
