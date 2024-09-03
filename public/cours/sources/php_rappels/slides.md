@@ -107,6 +107,10 @@ Et … C'est tout !
 
 ---
 
+Et si vous oublier le `session_start()` ?
+
+---
+
 ### Les cookies
 
 Comme la Session… Mais sauvegardé sur le poste client
@@ -153,6 +157,9 @@ echo $_COOKIE["monCookie"];
 - Vous devez autoriser la connexion si le mot de passe est `1234`.
 - Si la connexion est réussie, vous devez afficher un message de bienvenue.
 - Si la connexion est en erreur, vous devez afficher un message d'erreur.
+- Vous devez sauvegarder les informations suivante pour authentifier automatiquement l'utilisateur :
+  - `nom`
+  - `email`
 
 ---
 
