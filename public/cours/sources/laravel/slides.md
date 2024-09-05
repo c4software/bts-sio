@@ -158,19 +158,11 @@ Technique de programmation informatique qui crée l'illusion d'une base de donn�
 
 ---
 
-## Installation
-
-```bash
-$ composer global require "laravel/installer"
-```
-
----
-
 ## Créer un projet
 
 ```bash
-$ laravel new exemple
-laravel new exemple
+$ composer create-project laravel/laravel projectName
+laravel new projectName
 Crafting application...
 Loading composer repositories with package information
 Installing dependencies (including require-dev) from lock file
@@ -196,6 +188,22 @@ command [options] [arguments]
 Options:
 -h, --help            Display this help message
 […]
+```
+
+---
+
+## Réinstaller un projet
+
+```bash
+$ composer install
+```
+
+---
+
+## Lancer le serveur
+
+```bash
+$ php artisan serve
 ```
 
 ---
