@@ -192,18 +192,18 @@ Options:
 
 ---
 
-## Réinstaller un projet
-
-```bash
-$ composer install
-```
-
----
-
 ## Lancer le serveur
 
 ```bash
 $ php artisan serve
+```
+
+---
+
+## Réinstaller un projet
+
+```bash
+$ composer install
 ```
 
 ---
@@ -252,6 +252,7 @@ Consulter la page **/demo/3** chargera automatiquement le bon contrôleur et la 
 ```php
 Route::post('/demo/ajout', [DemoController::class, "ajout");
 ```
+
 ---
 
 ## Autre que le POST ?
@@ -262,6 +263,12 @@ Route::post('/demo/ajout', [DemoController::class, "ajout");
 Route::put('/demo/{id}', [DemoController::class, "modifier"]);
 Route::delete('/demo/{id}', [DemoController::class, "supprimer"]);
 ```
+
+---
+
+## Analyse
+
+![Analyse](./img/erreur_ctrl.png)
 
 ---
 
@@ -402,6 +409,10 @@ return redirect()->route('profile', ['id' => 1])->with('status', 'Task was succe
 // Retourner une réponse JSON
 $user = App\Models\User::find(1);
 return response()->json($user);
+
+// Retourner une réponse JSON avec un code de statut
+$allUsers = App\Models\User::all();
+return response()->json($allUsers);
 ```
 
 ---
@@ -414,14 +425,21 @@ Exercice :
 
 - Créer une méthode dans le contrôleur User qui permet de récupérer un utilisateur par son identifiant.
 - Créer une route qui retourne une réponse JSON de l’utilisateur 1.
-- Créer une redirection vers la route « home » avec un message flash « Bienvenue ».
-- Récupérer toutes les données dans la méthode « validation » du contrôleur « Demo ».
+- Créer une redirection vers la route `/` avec un `message` flash « Bienvenue ».
+- Créer une route qui vas retourner l'ensemble des utilisateurs au format JSON.
 
 ---
 
 ## Les modèles
 
 La représentation objet de la base de données
+
+---
+
+## Laravel > 11
+
+- Base de données par défaut : SQLite
+- Vous connaissez ?
 
 ---
 
