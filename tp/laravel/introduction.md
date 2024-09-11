@@ -1050,7 +1050,6 @@ if ($estValide) {
 
 C'est à vous de jouer !
 
-
 ### Créer un Middleware pour l'authentification
 
 Maintenant que vous avez un système d'authentification, je vous propose de créer un Middleware qui va vérifier si l'utilisateur est connecté. Si l'utilisateur n'est pas connecté, il sera redirigé vers la page de connexion.
@@ -1081,6 +1080,29 @@ Ajouter le Middleware sur la route que vous souhaitez protéger :
 ```php
 ->middleware(CheckAuth::class)
 ```
+
+## Limiter le nombre d'appels à une route
+
+Le rate limiting est une technique qui permet de limiter le nombre de requêtes à une route. Cela permet de protéger votre application contre les attaques de type DDoS. Laravel propose un système de rate limiting très simple à mettre en place.
+
+Celui-ci est documenté [ici](https://laravel.com/docs/11.x/routing#rate-limiting).
+
+Comme souvent, nous allons protéger au plus proche de l'appel réseau, c'est à dire dans le routeur. Pour cela, nous allons ajouter une méthode `middleware` à notre route :
+
+```php
+Route::middleware('throttle:5,1')->get('/throttle', function () {
+    return 'Hello World';
+});
+```
+
+Ici pour tester nous avons déclarer une route `/throttle` qui va limiter à 5 requêtes par minute. Vous pouvez tester directement avec votre navigateur. Après 5 requêtes, vous devriez voir une erreur `429 Too Many Requests`.
+
+### C'est à vous
+
+Je vous laisse modifier votre code, pour intégrer la règle suivante :
+
+- Limiter à 50 requêtes par minute la route permettant de lister les TODO.
+- Limiter à 10 requêtes par minute la route permettant d'ajouter une TODO.
 
 ## L'apparence
 
