@@ -958,7 +958,7 @@ Le système de middleware est très puissant, c'est un peu comme un filtre qui v
 
 :::
 
-### Évolution 1
+## Un formulaire de contact
 
 J'aimerais que notre petit site de démonstration intègre un formulaire de demande de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
 
@@ -971,7 +971,118 @@ J'aimerais que notre petit site de démonstration intègre un formulaire de dema
 
 C'est à vous ! Je suis là si besoin 🚀.
 
-### Évolution 2
+## Gérer de l'authentification
+
+Nous avons des TODO, mais pourquoi pas créer un système d'authentification pour gérer les utilisateurs ? Pour cela, nous allons utiliser la commande artisan pour créer la table utilisateur :
+
+```sh
+php artisan make:model Utilisateur --migration
+```
+
+Je vous laisse configurer la migration pour ajouter les colonnes :
+
+- `name` (string)
+- `email` (string)
+- `password` (string)
+- Les timestamps
+
+Ajoutez également les `fillable` dans le modèle `Utilisateur`. 
+
+::: tip Besoin d'aide ?
+
+Je vous laisse regarder ce que nous avons fait précédemment pour la table TODO. Vous devriez pouvoir vous en sortir.
+
+:::
+
+### Créer un contrôleur pour l'authentification
+
+Je vous laisse écrire le code permettant de réaliser l'authentification. Pour cela, vous allez devoir :
+
+- Créer un contrôleur `AuthentificationControleur`.
+- Ajouter une méthode `login` qui va afficher le formulaire de connexion.
+- Ajouter une méthode `traitementLogin` qui va traiter le formulaire de connexion.
+- Ajouter une méthode `register` qui va afficher le formulaire d'inscription.
+- Ajouter une méthode `traitementRegister` qui va traiter le formulaire d'inscription.
+
+L'ensemble des méthodes devra être accessible via des routes :
+
+- GET `/login` pour afficher le formulaire de connexion.
+- POST `/traitementLogin` pour traiter le formulaire de connexion.
+- GET `/register` pour afficher le formulaire d'inscription.
+- POST `/traitementRegister` pour traiter le formulaire d'inscription.
+
+::: tip Besoin d'aide ?
+
+Pour réaliser l'authentification il y a du code oui, mais il y a surtout des étapes à suivre :
+
+- Créer un contrôleur.
+- Ajouter les méthodes.
+- Ajouter les routes.
+- Créer les vues.
+
+Je vous laisse donc réaliser ces étapes. Si vous avez des questions, je suis là pour vous aider. N'hésitez pas à regarder le code de l'AP 3 pour vous aider.
+
+:::
+
+### Gérer l'authentification
+
+Quelques rappels sur l'authentification :
+
+Les mots de passe ne doivent jamais être stockés en clair dans la base de données. En PHP vous pouvez utiliser `password_hash` pour hasher un mot de passe et `password_verify` pour vérifier un mot de passe.
+
+```php
+// Dans la méthode traitementRegister
+$mdp = $request->input('password');
+$hash = password_hash($mdp, PASSWORD_DEFAULT);
+
+// Dans la méthode traitementLogin
+$mdp = $request->input('password');
+$email = $request->input('email');
+$utilisateur = Utilisateur::where('email', $email)->first();
+$estValide = password_verify($mdp, $utilisateur->password);
+
+if ($estValide) {
+    $request->session()->put('user', $utilisateur);
+} else {
+    return redirect('/login')->with('error', 'Identifiants incorrects');
+}
+```
+
+C'est à vous de jouer !
+
+
+### Créer un Middleware pour l'authentification
+
+Maintenant que vous avez un système d'authentification, je vous propose de créer un Middleware qui va vérifier si l'utilisateur est connecté. Si l'utilisateur n'est pas connecté, il sera redirigé vers la page de connexion.
+
+Pour commencer, créez un Middleware :
+
+```sh
+php artisan make:middleware CheckAuth
+```
+
+Ajoutez la logique dans le Middleware :
+
+```php
+public function handle(Request $request, Closure $next)
+{
+    // Vous devez utiliser la session pour vérifier si l'utilisateur est connecté.
+    // $request->session()->has('user') par exemple
+    if (/* L'utilisateur n'est pas connecté */) {
+        return redirect('/login');
+    }
+
+    return $next($request);
+}
+```
+
+Ajouter le Middleware sur la route que vous souhaitez protéger :
+
+```php
+->middleware(CheckAuth::class)
+```
+
+## L'apparence
 
 La mise en forme. Actuellement votre page s'affiche et est fonctionnelle. Cependant, c'est plutôt brut ! Pourquoi ne pas travailler la mise en forme ? Je vous propose donc de modifier l'apparence de votre site pour ressembler à :
 

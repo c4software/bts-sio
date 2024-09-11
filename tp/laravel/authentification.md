@@ -24,7 +24,7 @@ Vous l'avez compris, la liste est longue… Vous pouvez évidemment tout coder v
 
 Pour cette étape, je vous laisse suivre le début du [précédent TP](./introduction.md).
 
-**Attention** a bien installer au moins la version >10 de Laravel.
+**Attention** a bien installer au moins la version >=11 de Laravel.
 
 ## Installer la laravel debug bar
 
