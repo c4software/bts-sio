@@ -448,7 +448,7 @@ App\TodoList::destroy(1,2,3);
 
 // Façon 4
 // Supprimer avec une condition
-App\TodoList::where('termine', '==', 1)->delete();
+App\TodoList::where('termine', '=', 1)->delete();
 ```
 
 ### Les jointures

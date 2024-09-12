@@ -908,7 +908,7 @@ Todo::destroy(1,2,3);
 
 // Façon 4
 // Supprimer avec une condition
-Todo::where('termine', '==', 1)->delete();
+Todo::where('termine', '=', 1)->delete();
 ```
 
 N'oubliez pas la sécurité. Et n'oubliez pas également qu'il ne dois pas être possible de supprimer une TODO qui n'est pas terminée en base de données.
