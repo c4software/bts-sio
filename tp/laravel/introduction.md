@@ -1183,7 +1183,7 @@ public function todos()
 }
 ```
 
-Ces relations vont permettre de récupérer les TODO d'un utilisateur et l'utilisateur d'une TODO. Par expemple :
+Ces relations vont permettre de récupérer les TODO d'un utilisateur et l'utilisateur d'une TODO. Par exemple :
 
 ```php
 ## Récupérer les TODO d'un utilisateur
