@@ -1104,7 +1104,7 @@ Je vous laisse modifier votre code, pour intégrer la règle suivante :
 - Limiter à 50 requêtes par minute la route permettant de lister les TODO.
 - Limiter à 10 requêtes par minute la route permettant d'ajouter une TODO.
 
-## L'apparence
+## Bonus 1 : L'apparence
 
 La mise en forme. Actuellement votre page s'affiche et est fonctionnelle. Cependant, c'est plutôt brut ! Pourquoi ne pas travailler la mise en forme ? Je vous propose donc de modifier l'apparence de votre site pour ressembler à :
 
@@ -1122,3 +1122,93 @@ Nous avons le temps, explorer la création de composants pour structurer / réut
 - Pour le conteneur de la liste des TODO (type card).
 
 :::
+
+## Bonus 2 : Lier les TODO à un utilisateur
+
+Pour bien finaliser se TP, je vous propose de lier les TODO à un utilisateur. Pour cela, vous allons ajouter une colonne `utilisateur_id` dans la table `todo`. Cette colonne va contenir l'id de l'utilisateur qui a créé la TODO.
+
+::: danger Attention le nom est important
+
+Nous l'avons vu ensemble, Laravel utilise des conventions de nommage. Pour les relations entre les tables, il est important de respecter ces conventions. Par exemple, pour lier une TODO à un utilisateur, il est important de respecter le nom `utilisateur_id`.
+
+En respectant ces conventions, Laravel va automatiquement faire le lien entre les tables et vous permettre de récupérer les données facilement (c'est la magie de l'ORM Eloquent). Ici Laravel va automatiquement lier la colonne `utilisateur_id` de la table `todo` à la colonne `id` de la table `utilisateur`.
+
+:::
+
+Pour commencer, créez une migration pour ajouter la colonne `utilisateur_id` :
+
+```sh
+php artisan make:migration add_utilisateur_id_to_todo
+```
+
+Ajoutez la colonne dans la migration :
+
+```php
+$table->foreignId('utilisateur_id')->constrained();
+```
+
+Mettez à jour la table en exécutant la migration :
+
+```sh
+php artisan migrate
+```
+
+::: tip N'oubliez pas de bien spécifier la table dans la migration
+
+Dans la méthode `up` de la migration, vous devez spécifier la table sur laquelle vous voulez ajouter la colonne. Par exemple :
+
+```php
+Schema::table('todo', function (Blueprint $table) {
+    $table->foreignId('utilisateur_id')->constrained();
+});
+```
+
+:::
+
+Pour le modèle `Todo`, ajoutez la relation avec l'utilisateur :
+
+```php
+public function utilisateur()
+{
+    return $this->belongsTo(Utilisateur::class);
+}
+```
+
+Pour le modèle `Utilisateur`, ajoutez la relation avec les TODO :
+
+```php
+public function todos()
+{
+    return $this->hasMany(Todo::class);
+}
+```
+
+Ces relations vont permettre de récupérer les TODO d'un utilisateur et l'utilisateur d'une TODO. Par expemple :
+
+```php
+## Récupérer les TODO d'un utilisateur
+$utilisateur = Utilisateur::find(1);
+$todos $utilisateur->todos; // Retourne la liste des TODO de l'utilisateur
+
+## Récupérer l'utilisateur d'une TODO
+$todo = Todo::find(1);
+$utilisateur = $todo->utilisateur; // Retourne l'utilisateur de la TODO
+```
+
+Maintenant que les relations sont en place, vous pouvez :
+
+- Modifier la méthode `addTodo` pour ajouter l'id de l'utilisateur dans la TODO (vous pouvez récupérer l'utilisateur connecté avec `$request->session()->get('user')`).
+- Modifier la méthode `listTodo` pour afficher uniquement les TODO de l'utilisateur connecté.
+
+C'est à vous ! Je vous laisse réaliser ces étapes.
+
+## Bonus 3 : Créer des pages permettant de voir les TODO d'un utilisateur
+
+Pour finaliser ce TP, je vous propose de créer des pages permettant de voir les TODO d'un utilisateur. Pour cela, vous allez devoir :
+
+- Créer une route permettant d'afficher les TODO d'un utilisateur.
+- Créer une méthode dans le contrôleur permettant d'afficher les TODO d'un utilisateur.
+- Créer une vue permettant d'afficher les TODO d'un utilisateur.
+- Créer une page listant l'ensemble des utilisateurs et permettant de voir les TODO de chaque utilisateur.
+
+C'est à vous ! Je vous laisse réaliser ces étapes.
