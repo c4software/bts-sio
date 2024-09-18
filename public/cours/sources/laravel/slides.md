@@ -988,7 +988,10 @@ Exemple, zone dans le header pour injecter des scripts JS utiles que dans certai
 Exemple le CSRF
 
 ```html
-[…] {{ csrf_field() }} […]
+<form method="POST" action="/profile">
+    @csrf
+    […]
+</form>
 ```
 
 La vérification côté serveur est **automatique**
