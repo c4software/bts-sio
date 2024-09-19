@@ -994,13 +994,13 @@ Exemple le CSRF
 </form>
 ```
 
-La vérification côté serveur est **automatique**
+La vérification côté serveur est **automatique**.
 
 ---
 
 ## L’authentification
 
-Intégré dans Laravel, s’initialise simplement en suivant la documentation
+Intégré dans Laravel, s’initialise simplement en suivant la documentation.
 
 [En savoir plus](https://laravel.com/docs/5.7/authentication)
 
