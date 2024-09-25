@@ -10,8 +10,6 @@ Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux exemples.
 
 L'Ajax est vraiment le coeur de nos sites Internet moderne. On le retrouve dans de simples chats comme dans des applications « complexes ». Avec l'avènement des PWA, nous utilisons maintenant l'Ajax comme nous pouvons utiliser une API dans une application classique.
 
-Nous allons utiliser à nouveau la Greta TV comme base de code. Nous allons rendre dynamique la page d'accueil pour que celle-ci puisse être chargée via un appel réseau asynchrone (Ajax).
-
 ## Cas 1 : Le serveur génère toujours la page (mais pas entière)
 
 Dans cette première version, nous allons « juste » découper la logique de génération de notre page. Celle-ci va être construite en deux temps, lors du chargement nous allons avoir la structure principale de notre page. Puis dans un second temps notre page va télécharger le contenu manquant via un appel réseau.
@@ -223,7 +221,9 @@ Nous allons maintenant regarder ce qu'il se passe « à l'intérieur » (dans le
 
 ## Concrètement dans un site existant
 
-Nous avons fait deux pages de tests, je vous propose de faire la même chose, mais dans un code plus complet, deux possibilités s'offrent à vous :
+Nous avons fait deux pages de tests, je vous propose de faire la même chose, mais dans un code plus complet, plusieurs possibilités s'offrent à vous :
 
 - [→ Ajouter de l'Ajax dans la Greta TV / Site PHP ←](./tp4.1.md)
 - [→ Ajouter de l'Ajax dans Larablog / Site Laravel ←](./tp6.md)
+- [→ Découverte de HTMX ←](../htmx/tp1.md)
+- [→ Ajouter un chat dans Laravel ←](../laravel/authentification.md#ajouter-un-système-de-chat)
