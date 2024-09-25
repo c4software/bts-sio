@@ -277,7 +277,6 @@ Puis dans votre `welcome.blade.php`, vous pouvez utiliser votre composant comme 
 
 Dans ce cas, la variable `$slot` contiendra… `Ceci est une démo`. Vous venez en quelque sorte de créer votre propre élément HTML réutilisable comme une `div` un `span` ou un `li`, mais ici cet élément est plus complet il peut contenir, du style, un comportement, des données par défaut.
 
-
 Je vous laisse parcourir les composants déjà disponibles dans le dossier `components`.
 
 ## Protéger une page
@@ -606,7 +605,17 @@ Nous n'avons pas besoin de modifier le formulaire de connexion, car nous avons d
 Le but de Breeze est de vous permettre de modifier le code « préfourni » c'est ce que l'on appelle du Scaffolding, nous allons donc en profiter pour modifier son comportement afin de créer lors de l'ajout d'utilisateur une autre entrée en base de données, par exemple une `personne`.
 
 - Créer la migration ainsi que le modèle. `php artisan make:model Personne --migration`
-- Renseigner les champs dans votre migration **,mais également** dans le modèle.
+- Renseigner les champs dans votre migration **,mais également** dans le modèle. Exemple de migration :
+
+```php
+Schema::create('personnes', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->foreignId('userId')->constrained('users');
+    $table->timestamps();
+});
+```
+
 - Lancer la migration `php artisan migrate`
 - Modifier le code de la méthode `store` dans le contrôleur `app/Http/Controllers/Auth/RegisteredUserController.php` pour ajouter également un utilisateur :
 
@@ -649,3 +658,172 @@ public function index()
 :::
 
 C'est à vous de jouer pour la vue !
+
+## Utiliser le système de mapping des paramètres de route
+
+En cours nous avons vu qu'il était possible de passer des paramètres dans des routes. Pour l'instant vous vous êtes contenté de récupérer des paramètres simple `id`, `slug`, etc. Mais il est possible de faire plus complexe.
+
+- Créer une nouvelle route `/personne/{personne}` qui va afficher les informations de la personne.
+- Créer une méthode dans le contrôleur `PersonneController` qui va récupérer les informations de la personne.
+- Créer une vue `resources/views/personne.blade.php` qui va afficher les informations de la personne.
+
+::: tip C'est à vous de jouer !
+
+Je vous laisse créer le structure de cette demande.
+
+:::
+
+### Vous avez la base
+
+Comment gagner du temps ? Et bien, c'est simple ! En utilisant le système de récupération automatique des objets de la base de données. Pour cela, il vous suffit de modifier le contrôleur `PersonneController` pour qu'il récupère directement l'objet `Personne` :
+
+```php
+public function show(Personne $personne)
+{
+    return view('personne', ['personne' => $personne]);
+}
+```
+
+Et voilà, Laravel va automatiquement récupérer l'objet `Personne` correspondant à l'`id` passé dans la route. C'est magique ! C'est automatique ! Et c'est très pratique !
+
+## Ajouter un système de chat
+
+Pour conclure ce TP, je vais vous demander d'ajouter un système de chat à votre application. Ce chat doit être accessible uniquement aux utilisateurs connectés.
+
+Voici les fonctionnalités que vous devez implémenter :
+
+- Un utilisateur connecté doit pouvoir envoyer un message à tous les autres utilisateurs connectés.
+- Les messages seront disponible dans une page `/chat`, celle-ci doit être accessible depuis le dashboard de l'utilisateur. Elle doit s'intégrer visuellement à votre application (menu, etc.).
+- Vous devez créer une page `/getMessages` qui va retourner la liste des messages en HTML. Cette page sera utilisée pour afficher les messages en temps réel.
+- Les messages doivent être stockés en base de données (vous pouvez utiliser une table `messages`).
+- Les messages doivent être affichés en temps réel.
+- Les messages doivent être affichés dans l'ordre chronologique.
+- Les messages doivent contenir le nom de l'utilisateur qui l'a envoyé, la date et l'heure d'envoi, et le contenu du message.
+
+### Pour le JavaScript
+
+En général, pour récupérer des messages on utilise une API Rest qui retourne du JSON. Ici, nous allons faire autrement, nous allons retourner du HTML directement. C'est une approche très « Web centric » qui permet de simplifier le code JavaScript.
+
+Votre page `/getMessages` doit retourner un code HTML qui contient les messages :
+
+```html
+<!-- Message 1 -->
+<div class="message">
+    <div class="user">Valentin</div>
+    <div class="content">Bonjour tout le monde !</div>
+</div>
+
+<!-- Message 2 -->
+<div class="message">
+    <div class="user">Valentin</div>
+    <div class="content">Ceci est un test</div>
+</div>
+
+<!-- etc. -->
+```
+
+Grace à l'Ajax, nous allons pouvoir récupérer ce code HTML et l'ajouter à notre page `/chat` pour afficher les messages periodiquement dans notre chat. Par exemple, toutes les 15 secondes.
+
+Voici un exemple de code JavaScript pour récupérer les messages :
+
+```javascript
+function getMessages() {
+    fetch('/getMessages')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('messages').innerHTML = html;
+        });
+}
+
+setInterval(() => {
+    getMessages();    
+}, 15000);
+
+document.addEventListener('DOMContentLoaded', function() {
+    getMessages();
+});
+```
+
+Quelques explications :
+
+- `setInterval` permet d'exécuter une fonction toutes les 15 secondes.
+- `fetch` permet de faire une requête HTTP pour récupérer les messages.
+- `response.text()` permet de récupérer le contenu de la réponse en tant que texte.
+- `document.getElementById('messages').innerHTML = html;` permet d'ajouter le code HTML des messages à la page. Ici, `messages` est l'identifiant de la balise HTML qui contiendra les messages.
+- `document.addEventListener('DOMContentLoaded', function() { getMessages(); });` permet de récupérer les messages une première fois lorsque la page est chargée.
+
+Extrait du template `chat.blade.php` :
+
+```html
+<div id="messages">
+  Chargement des messages...
+  <!-- Les messages vont remplacer ce texte automatiquement -->
+</div>
+```
+
+Les messages seront affichés dans la balise `div` avec l'identifiant `messages`.
+
+### L'Approche HTMX ?
+
+HTMX est une librairie JavaScript qui permet de faire des requêtes HTTP pour récupérer du HTML et l'ajouter à la page. C'est une approche très simple et très efficace pour faire des applications Web modernes.
+
+Pour les curieux, je vous invite à consulter le site officiel de [HTMX](https://htmx.org/). Ou mon TP sur le sujet [ici](../htmx/tp1.md)
+
+Pour utiliser HTMX dans votre projet, vous pouvez ajouter la librairie via un CDN :
+
+```html
+<script src="https://unpkg.com/htmx.org@1.9.10"></script>
+<script>
+    // Permet d'ajouter le token CSRF à chaque requête AJAX,
+    // pour éviter les erreurs 419, spécifiques à Laravel.
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRF-Token'] = '{{ csrf_token() }}';
+        })
+    });
+</script>
+<style>
+    div.htmx-swapping div {
+        opacity: 0;
+        transition: opacity 1s ease-out;
+    }
+</style>
+```
+
+Puis, vous pouvez utiliser HTMX pour récupérer les messages :
+
+```html
+<div id="messages" hx-get="/getMessages">
+  Chargement des messages...
+  <!-- Les messages vont remplacer ce texte automatiquement -->
+</div>
+```
+
+Avec HTMX, vous n'avez pas besoin de JavaScript pour récupérer les messages. HTMX va s'occuper de tout pour vous.
+
+::: tip C'est magique !
+
+HTMX est très intéressant pour faire des sites web ! Elle utilise une approche différente de VueJS ou React, mais elle est également très intéressante. Je vous encourage à l'essayer pour voir si elle correspond à vos besoins.
+
+:::
+
+### Bonus : Et si vous faisiez l'ajout en Ajax ?
+
+Pour aller plus loin, vous pouvez également ajouter un formulaire pour envoyer des messages en Ajax. Pour cela, vous pouvez utiliser HTMX pour envoyer le formulaire en Ajax.
+
+Voici un exemple de formulaire qui envoie un message en Ajax :
+
+```html
+<form hx-post="/sendMessage" hx-target="#messages" hx-swap="outerHTML">
+    <input type="text" name="message" placeholder="Votre message">
+    <button type="submit">Envoyer</button>
+</form>
+```
+
+Ce formulaire va envoyer le message en Ajax à la route `/sendMessage` et remplacer le contenu de la balise `div` avec l'identifiant `messages` par le contenu de la réponse (qui doit être si vous avez bien suivi du code HTML, et si vous avez bien suivi le TP, la liste des messages).
+
+::: tip C'est à vous de jouer !
+
+Ici, l'idée c'est de vous laisser faire. Vous avez toutes les informations nécessaires pour ajouter un chat à votre application. C'est à vous de jouer !
+
+:::
