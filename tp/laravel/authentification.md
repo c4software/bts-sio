@@ -694,17 +694,25 @@ Voici les fonctionnalités que vous devez implémenter :
 
 - Un utilisateur connecté doit pouvoir envoyer un message à tous les autres utilisateurs connectés.
 - Les messages seront disponible dans une page `/chat`, celle-ci doit être accessible depuis le dashboard de l'utilisateur. Elle doit s'intégrer visuellement à votre application (menu, etc.).
-- Vous devez créer une page `/getMessages` qui va retourner la liste des messages en HTML. Cette page sera utilisée pour afficher les messages en temps réel.
 - Les messages doivent être stockés en base de données (vous pouvez utiliser une table `messages`).
 - Les messages doivent être affichés en temps réel.
 - Les messages doivent être affichés dans l'ordre chronologique.
 - Les messages doivent contenir le nom de l'utilisateur qui l'a envoyé, la date et l'heure d'envoi, et le contenu du message.
 
-### Pour le JavaScript
+### Faire évoluer le code pour utiliser de l'Ajax
+
+Votre chat fonctionne, mais il ne se met pas à jour automatiquement. Pour cela, vous allez devoir utiliser de l'Ajax pour récupérer les messages en temps réel. Pour cela nous allons devoir découper notre code en plusieurs parties :
+
+- Vous devez créer une page `/getMessages` qui va retourner la liste des messages en HTML. Cette page sera utilisée pour afficher les messages en temps réel.
+- Vous devez modifier la page `/chat` pour afficher les messages en temps réel. Vous pouvez utiliser du JavaScript
+
+#### Pour le JavaScript
 
 En général, pour récupérer des messages, on utilise une API Rest qui retourne du JSON. Ici, nous allons faire autrement, nous allons retourner du HTML directement. C'est une approche très « Web centric » qui permet de simplifier le code JavaScript.
 
-Votre page `/getMessages` doit retourner un code HTML qui contient les messages :
+Votre page `/getMessages` doit retourner un code HTML qui contient les messages (le code HTML doit être le même que celui que vous utilisez pour afficher les messages dans la page `/chat` évidemment) :
+
+Exemple de code HTML pour la récupération des messages :
 
 ```html
 <!-- Message 1 -->
@@ -763,7 +771,7 @@ Extrait du template `chat.blade.php` :
 
 Les messages seront affichés dans la balise `div` avec l'identifiant `messages`.
 
-### L'Approche HTMX ?
+#### L'Approche HTMX ?
 
 HTMX est une librairie JavaScript qui permet de faire des requêtes HTTP pour récupérer du HTML et l'ajouter à la page. C'est une approche très simple et très efficace pour faire des applications Web modernes.
 
@@ -807,7 +815,7 @@ HTMX est très intéressant pour faire des sites web ! Elle utilise une approche
 
 :::
 
-### Bonus : Et si vous faisiez l'ajout en Ajax ?
+#### Bonus : Et si vous faisiez l'ajout en Ajax ?
 
 Pour aller plus loin, vous pouvez également ajouter un formulaire pour envoyer des messages en Ajax. Pour cela, vous pouvez utiliser HTMX pour envoyer le formulaire en Ajax.
 
