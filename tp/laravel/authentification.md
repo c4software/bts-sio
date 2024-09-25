@@ -702,7 +702,7 @@ Voici les fonctionnalités que vous devez implémenter :
 
 ### Pour le JavaScript
 
-En général, pour récupérer des messages on utilise une API Rest qui retourne du JSON. Ici, nous allons faire autrement, nous allons retourner du HTML directement. C'est une approche très « Web centric » qui permet de simplifier le code JavaScript.
+En général, pour récupérer des messages, on utilise une API Rest qui retourne du JSON. Ici, nous allons faire autrement, nous allons retourner du HTML directement. C'est une approche très « Web centric » qui permet de simplifier le code JavaScript.
 
 Votre page `/getMessages` doit retourner un code HTML qui contient les messages :
 
@@ -722,7 +722,7 @@ Votre page `/getMessages` doit retourner un code HTML qui contient les messages 
 <!-- etc. -->
 ```
 
-Grace à l'Ajax, nous allons pouvoir récupérer ce code HTML et l'ajouter à notre page `/chat` pour afficher les messages periodiquement dans notre chat. Par exemple, toutes les 15 secondes.
+Grace à l'Ajax, nous allons pouvoir récupérer ce code HTML et l'ajouter à notre page `/chat` pour afficher les messages périodiquement dans notre chat. Par exemple, toutes les 15 secondes.
 
 Voici un exemple de code JavaScript pour récupérer les messages :
 
