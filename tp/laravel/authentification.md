@@ -701,6 +701,12 @@ Voici les fonctionnalités que vous devez implémenter :
 
 ### Faire évoluer le code pour utiliser de l'Ajax
 
+::: danger Un instant !
+
+Avant d'attaquer cette partie, nous allons réaliser ce mini TP [ici](../javascript/tp4.md) pour comprendre comment fonctionne l'Ajax.
+
+:::
+
 Votre chat fonctionne, mais il ne se met pas à jour automatiquement. Pour cela, vous allez devoir utiliser de l'Ajax pour récupérer les messages en temps réel. Pour cela nous allons devoir découper notre code en plusieurs parties :
 
 - Vous devez créer une page `/getMessages` qui va retourner la liste des messages en HTML. Cette page sera utilisée pour afficher les messages en temps réel.
