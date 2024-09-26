@@ -511,6 +511,8 @@ public function index()
 
 C'est à vous de jouer pour la vue !
 
+::: details Bonus : Changer la table des utilisateurs
+
 ## Changer la table des utilisateurs
 
 Le fonctionnement par défaut (avec la table `users`) est très bien, mais il est possible que vous souhaitiez utiliser une autre table pour stocker les informations des utilisateurs. Par exemple, si vous avez déjà un projet et que vous souhaitez utiliser Breeze pour gérer l'authentification.
@@ -664,6 +666,8 @@ Nous n'avons pas besoin de modifier le formulaire de connexion, car nous avons d
 - La vue de création de compte pour y ajouter des champs supplémentaires.
 - Le modèle `Client` pour correspondre à vos besoins.
 - Le design des vues pour qu'elles correspondent à votre charte graphique.
+
+:::
 
 ## Utiliser le système de mapping des paramètres de route
 
