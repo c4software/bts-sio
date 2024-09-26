@@ -519,6 +519,17 @@ Je vous aide pour le contrôleur :
 ```php
 public function index()
 {
+    /**
+     * Ici je récupère la personne connectée,
+     * mais le mieux serait de faire une relation dans le modèle User du type :
+     * public function personne(){
+     *    return $this->hasOne(Personne::class);
+     * }
+     * 
+     * ET de récupérer la personne via :
+     * 
+     * $personne = Auth::user()->personne;
+     */
     $personne = Personne::where('userId', Auth::user()->id)->first();
     return view('dashboard', ['personne' => $personne]);
 }
