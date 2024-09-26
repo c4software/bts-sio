@@ -231,7 +231,7 @@ Nous allons donc modifier `welcome.blade.php`, pour utiliser le composant `<x-gu
       <div class="fixed top-0 right-0 px-6 py-4 sm:block">
         @auth
           <a href="{{ url('/dashboard') }}" class="text-sm text-white underline">Dashboard</a>
-          @else
+        @else
           <a href="{{ route('login') }}" class="text-sm text-white underline">Log in</a>
 
           @if (Route::has('register'))
@@ -452,6 +452,65 @@ Nous l'avons fait dans notre exemple de contrôleur, mais, si vous ne l'aviez pa
 {{Auth::user()->name}}
 ```
 
+## Créer plusieurs enregistrements en base de données
+
+Le but de Breeze est de vous permettre de modifier le code « préfourni » c'est ce que l'on appelle du Scaffolding, nous allons donc en profiter pour modifier son comportement afin de créer lors de l'ajout d'utilisateur une autre entrée en base de données, par exemple une `personne`.
+
+- Créer la migration ainsi que le modèle. `php artisan make:model Personne --migration`
+- Renseigner les champs dans votre migration **,mais également** dans le modèle. Exemple de migration :
+
+```php
+Schema::create('personnes', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->foreignId('userId')->constrained('users');
+    $table->timestamps();
+});
+```
+
+- Lancer la migration `php artisan migrate`
+- Modifier le code de la méthode `store` dans le contrôleur `app/Http/Controllers/Auth/RegisteredUserController.php` pour ajouter également un utilisateur :
+
+Exemple dans mon cas :
+
+```php
+Personne::create([
+    'name' => $request->name,
+    'userId' => $user->id
+])
+```
+
+Et voilà nous avons maintenant une méthode de « Création d'un utilisateur » qui ajoute également une personne.
+
+::: tip C'est bien évidement un exemple
+Je vous laisse l'implémenter… Cependant vous comprenez bien que c'est évidemment un exemple !
+:::
+
+Je vous laisse implémenter la modification dans votre code.
+
+## Afficher les informations de l'utilisateur
+
+Maintenant que nous avons créé une personne lors de la création d'un utilisateur, nous allons afficher ces données dans la page d'accueil après la connexion.
+
+- Modifier la vue `resources/views/dashboard.blade.php` pour afficher les informations de la personne connectée.
+- Modifier le contrôleur `app/Http/Controllers/DashboardController.php` pour récupérer les informations de la personne connectée.
+
+::: tip Vous avez besoin d'aide ?
+
+Je vous aide pour le contrôleur :
+
+```php
+public function index()
+{
+    $personne = Personne::where('userId', Auth::user()->id)->first();
+    return view('dashboard', ['personne' => $personne]);
+}
+```
+
+:::
+
+C'est à vous de jouer pour la vue !
+
 ## Changer la table des utilisateurs
 
 Le fonctionnement par défaut (avec la table `users`) est très bien, mais il est possible que vous souhaitiez utiliser une autre table pour stocker les informations des utilisateurs. Par exemple, si vous avez déjà un projet et que vous souhaitez utiliser Breeze pour gérer l'authentification.
@@ -555,6 +614,12 @@ Par défaut, Breeze utilise la table `users` pour stocker les informations des u
     ],
 ```
 
+Et dans le .env, modifier la ligne `SESSION_DRIVER` pour qu'elle utilise le driver `file` :
+
+```env
+SESSION_DRIVER=file
+```
+
 ## Modifier les vues et les contrôleurs
 
 Maintenant que nous avons modifié la table utilisée pour stocker les informations des utilisateurs, nous devons modifier les vues pour qu'elles utilisent les bonnes informations.
@@ -582,7 +647,7 @@ public function store(Request $request): RedirectResponse
 
     Auth::login($user);
 
-    return redirect(RouteServiceProvider::HOME);
+    return redirect()->name('dashboard');
 }
 ```
 
@@ -599,65 +664,6 @@ Nous n'avons pas besoin de modifier le formulaire de connexion, car nous avons d
 - La vue de création de compte pour y ajouter des champs supplémentaires.
 - Le modèle `Client` pour correspondre à vos besoins.
 - Le design des vues pour qu'elles correspondent à votre charte graphique.
-
-## Créer plusieurs enregistrements en base de données
-
-Le but de Breeze est de vous permettre de modifier le code « préfourni » c'est ce que l'on appelle du Scaffolding, nous allons donc en profiter pour modifier son comportement afin de créer lors de l'ajout d'utilisateur une autre entrée en base de données, par exemple une `personne`.
-
-- Créer la migration ainsi que le modèle. `php artisan make:model Personne --migration`
-- Renseigner les champs dans votre migration **,mais également** dans le modèle. Exemple de migration :
-
-```php
-Schema::create('personnes', function (Blueprint $table) {
-    $table->id();
-    $table->string('name');
-    $table->foreignId('userId')->constrained('users');
-    $table->timestamps();
-});
-```
-
-- Lancer la migration `php artisan migrate`
-- Modifier le code de la méthode `store` dans le contrôleur `app/Http/Controllers/Auth/RegisteredUserController.php` pour ajouter également un utilisateur :
-
-Exemple dans mon cas :
-
-```php
-Personne::create([
-    'name' => $request->name,
-    'userId' => $user->id
-])
-```
-
-Et voilà nous avons maintenant une méthode de « Création d'un utilisateur » qui ajoute également une personne.
-
-::: tip C'est bien évidement un exemple
-Je vous laisse l'implémenter… Cependant vous comprenez bien que c'est évidemment un exemple !
-:::
-
-Je vous laisse implémenter la modification dans votre code.
-
-## Afficher les informations de l'utilisateur
-
-Maintenant que nous avons créé une personne lors de la création d'un utilisateur, nous allons afficher ces données dans la page d'accueil après la connexion.
-
-- Modifier la vue `resources/views/dashboard.blade.php` pour afficher les informations de la personne connectée.
-- Modifier le contrôleur `app/Http/Controllers/DashboardController.php` pour récupérer les informations de la personne connectée.
-
-::: tip Vous avez besoin d'aide ?
-
-Je vous aide pour le contrôleur :
-
-```php
-public function index()
-{
-    $personne = Personne::where('userId', Auth::user()->id)->first();
-    return view('dashboard', ['personne' => $personne]);
-}
-```
-
-:::
-
-C'est à vous de jouer pour la vue !
 
 ## Utiliser le système de mapping des paramètres de route
 
