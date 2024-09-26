@@ -444,6 +444,23 @@ En reprenant ce que nous avons fait précédemment, je vous laisse modifier la s
 - Modifier le modèle `app/Models/User.php` pour ajouter dans les `$fillable` le nouveau champ.
 - Modifier le contrôleur pour sauvegarder la nouvelle valeur. (méthode `store` dans `app/Http/Controllers/Auth/RegisteredUserController.php`)
 
+Vous souhaitez le faire avec une migration ?
+
+```sh
+php artisan make:migration add_pseudo_to_users_table --table=users
+```
+
+Puis dans votre migration :
+
+```php
+public function up(): void
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->string('pseudo');
+    });
+}
+```
+
 ## Accéder aux informations du connecté
 
 Nous l'avons fait dans notre exemple de contrôleur, mais, si vous ne l'aviez pas compris :
