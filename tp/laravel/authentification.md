@@ -255,7 +255,7 @@ J'espère qu'à partir de maintenant, vous allez utiliser le système de templat
 
 Vous avez utilisé les composants, mais avez-vous compris le fonctionnement ? Un composant, c'est quelque chose de très simple. Il s'agit d'un morceau de vue réutilisable (un bouton, une card, etc.), il s'agit donc de « code HTML ». Si vous voulez une comparaison, nous pourrions comparer cela à une sorte de fonction. Prenons un exemple.
 
-Si nous souhaitons faire une `Card`. Notre composant pourrait ressembler à, vous pouvez mettre ce code dans `resources/views/components/card.blade.php` :
+Si nous souhaitons faire une `Card`. Notre composant pourrait ressembler à :
 
 ```html
 <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
@@ -265,9 +265,9 @@ Si nous souhaitons faire une `Card`. Notre composant pourrait ressembler à, vou
 </div>
 ```
 
-L'important dans le code ici est <span v-pre>`{{ $slot }}`</span>. `$slot` est une variable qui va contenir les éléments à l'intérieure de votre Card lors de son usage. Par exemple :
+Vous pouvez mettre ce code dans `resources/views/components/card.blade.php`
 
-Puis dans votre `welcome.blade.php`, vous pouvez utiliser votre composant comme ceci :
+L'important dans le code ici est <span v-pre>`{{ $slot }}`</span>. `$slot` est une variable qui va contenir les éléments à l'intérieure de votre Card lors de son usage. Dans votre `welcome.blade.php`, vous pouvez utiliser votre composant comme ceci :
 
 ```html
 <x-card>
