@@ -566,6 +566,175 @@ public function show(Personne $personne)
 
 Et voilà, Laravel va automatiquement récupérer l'objet `Personne` correspondant à l'`id` passé dans la route. C'est magique ! C'est automatique ! Et c'est très pratique !
 
+## Création d'une table pivot pour les rôles
+
+Dans cette partie, nous allons voir comment créer une table pivot pour gérer les rôles des utilisateurs. Pour cela, nous allons créer une table `roles` qui va contenir les différents rôles disponibles, et une table `role_user` qui va faire le lien entre les utilisateurs et les rôles.
+
+### Créer la table `roles`
+
+Pour commencer, nous allons créer la table `roles` qui va contenir les différents rôles disponibles. Pour cela, nous allons créer une migration :
+
+```sh
+php artisan make:migration create_roles_table
+```
+
+Dans la migration, nous allons ajouter les champs suivants :
+
+- `id` : l'identifiant du rôle.
+- `name` : le nom du rôle.
+
+Exemple de migration :
+
+```php
+Schema::create('roles', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+```
+
+### Créer la table `role_user`
+
+Ensuite, nous allons créer la table `role_user` qui va faire le lien entre les utilisateurs et les rôles. Pour cela, nous allons créer une migration :
+
+```sh
+php artisan make:migration create_role_user_table
+```
+
+Dans la migration, nous allons ajouter les champs suivants :
+
+- `id` : l'identifiant de la relation.
+- `user_id` : l'identifiant de l'utilisateur.
+- `role_id` : l'identifiant du rôle.
+
+Exemple de migration :
+
+```php
+Schema::create('role_user', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained();
+    $table->foreignId('role_id')->constrained();
+    $table->timestamps();
+});
+```
+
+### Créer les modèles
+
+Ensuite, nous allons créer les modèles `Role` et `RoleUser` pour gérer les rôles. Pour cela, nous allons créer les fichiers `Role.php` et `RoleUser.php` dans le dossier `app/Models` :
+
+```sh
+php artisan make:model Role
+php artisan make:model RoleUser
+```
+
+Dans le modèle `Role`, nous allons ajouter la relation `belongsToMany` avec le modèle `User` :
+
+```php
+class Role extends Model
+{
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+}
+```
+
+Dans le modèle `RoleUser`, nous allons ajouter la relation `belongsTo` avec les modèles `User` et `Role` :
+
+```php
+class RoleUser extends Model
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+}
+```
+
+Et dans le modèle `User`, nous allons ajouter la relation `belongsToMany` avec le modèle `Role` :
+
+```php
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+```
+
+### Créer les roles en base de données
+
+Pour créer les rôles en base de données, nous allons ajouter les rôles dans la méthode `run` du seeder `DatabaseSeeder` :
+
+```php
+public function run()
+{
+    // À la fin de la méthode run
+    // Création des rôles par défaut de l'application
+    Role::factory()->create(['name' => 'admin']);
+    Role::factory()->create(['name' => 'user']);
+}
+```
+
+Ensuite, nous allons exécuter le seeder pour ajouter les rôles en base de données :
+
+```sh
+php artisan db:seed
+```
+
+### Affecter un rôle à un utilisateur lors de la création
+
+Dans la méthode `store` du contrôleur `RegisteredUserController`, nous allons ajouter le code nécessaire pour affecter un rôle à un utilisateur lors de la création :
+
+```php
+// Après la création de l'utilisateur (role user)
+$user->attach(2);
+```
+
+La méthode `attach` permet d'ajouter un rôle à un utilisateur. Elle prend en paramètre l'identifiant du rôle à ajouter. Elle va ajouter une entrée dans la table `role_user` pour faire le lien entre l'utilisateur et le rôle.
+
+::: tip Code magique ?
+
+Vous avez vu le code magique ? Vous avez vu comment Laravel simplifie la gestion des relations entre les tables ? C'est ça la magie de Laravel ! C'est ça la puissance de l'ORM Eloquent !
+
+:::
+
+### Afficher les rôles de l'utilisateur
+
+Pour tester, ajouter une page `/roles` qui va afficher les rôles de l'utilisateur connecté. Pour cela, vous pouvez ajouter une méthode `roles` dans le contrôleur `DashboardController` :
+
+```php
+public function roles()
+{
+    $roles = Auth::user()->roles;
+    return view('roles', ['roles' => $roles]);
+}
+```
+
+Je vous laisse écrire la vue `roles.blade.php` pour afficher les rôles de l'utilisateur. Cette page doit être disponible uniquement pour les utilisateurs connectés et visible dans le menu du dashboard.
+
+### Super bouton
+
+Dans le but de tester notre système de rôles, nous allons ajouter un super bouton dans le dashboard qui va permettre à l'utilisateur de changer de rôle. Pour cela, nous allons ajouter une méthode `glowUpAsAdmin` dans le contrôleur `DashboardController`, elle aura pour objectif de remplacer le rôle de l'utilisateur par le rôle d'administrateur.
+
+```php
+public function glowUpAsAdmin()
+{
+    $user = Auth::user();
+    $user->roles()->sync([1]);
+    return redirect()->route('dashboard');
+}
+```
+
+::: tip Pourquoi sync ?
+
+`sync` est une méthode qui va synchroniser les rôles de l'utilisateur avec les rôles passés en paramètre. Cela signifie que les rôles de l'utilisateur seront remplacés par les rôles passés en paramètre.
+
+:::
+
 ## Ajouter un système de chat
 
 Pour conclure ce TP, je vais vous demander d'ajouter un système de chat à votre application. Ce chat doit être accessible uniquement aux utilisateurs connectés.
@@ -578,6 +747,19 @@ Voici les fonctionnalités que vous devez implémenter :
 - Les messages doivent être affichés en temps réel.
 - Les messages doivent être affichés dans l'ordre chronologique.
 - Les messages doivent contenir le nom de l'utilisateur qui l'a envoyé, la date et l'heure d'envoi, et le contenu du message.
+- Les utilisateurs avec le rôle d'administrateur doivent pouvoir supprimer les messages.
+
+::: tip Rôle d'administrateur ?
+
+Pour vérifier si un utilisateur a le rôle d'administrateur, vous pouvez utiliser la méthode `roles` du modèle `User` :
+
+```php
+if (Auth::user()->roles->contains('name', 'admin')) {
+    // L'utilisateur a le rôle d'administrateur
+}
+```
+
+:::
 
 ### Faire évoluer le code pour utiliser de l'Ajax
 
