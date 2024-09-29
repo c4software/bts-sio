@@ -1,4 +1,5 @@
 .answer{
+    background-color: var(--vp-c-bg);
     z-index: 9999;
     display: none;
     position: fixed;
@@ -6,7 +7,6 @@
     width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
     border: 1px solid #b9b9b9;
     border-radius: 5px;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);

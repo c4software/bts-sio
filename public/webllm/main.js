@@ -1,6 +1,8 @@
 import * as webllm from "https://esm.run/@mlc-ai/web-llm";
 let engine = null;
 let saveSelection;
+const selectedModel = "Llama-3.2-3B-Instruct-q4f32_1-MLC";
+const systemPrompt = "Explique le texte suivant de manière concise, en préservant les informations clés. Le texte doit rester simple et clair pour être compris par des développeurs web débutants, sans ajouter d'éléments ou de détails superflus. N'ajoute pas d'élément supplémentaire";
 
 function showAnswer(initialText) {
     document.querySelector('#answerContent').innerHTML = initialText;
@@ -17,13 +19,22 @@ async function loadModel() {
         return engine;
     }
 
+    const hasModelInCache = await webllm.hasModelInCache(selectedModel);
+
+    if (!hasModelInCache) {
+        const result = confirm("Voulez-vous télécharger le modèle de reformulation ? (~1.8 Go)");
+
+        if (!result) {
+            return;
+        }
+    }
+
     showAnswer("Chargement du modèle en cours... 0%");
 
     // Callback function to update model loading progress
     const initProgressCallback = (initProgress) => {
         document.querySelector('#answerContent').innerHTML = initProgress.text;
     }
-    const selectedModel = "Llama-3.2-3B-Instruct-q4f32_1-MLC";
     const config = {
         initProgressCallback: initProgressCallback,
         temperature: 0.3,
@@ -37,10 +48,14 @@ async function loadModel() {
 async function getAnswer(text) {
     const engine = await loadModel();
 
+    if (!engine) {
+        return;
+    }
+
     showAnswer("");
 
     const messages = [
-        { role: "system", content: "Explique le texte suivant de manière concise, en préservant les informations clés. Le texte doit rester simple et clair pour être compris par des développeurs web débutants, sans ajouter d'éléments ou de détails superflus. N'ajoute pas d'élément supplémentaire" },
+        { role: "system", content: systemPrompt },
         { role: "user", content: text },
     ]
 
@@ -72,11 +87,12 @@ async function getAnswer(text) {
     await engine.getMessage();
 }
 
-// Inject the stylesheets
-document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="/webllm/style.css">`);
+if (navigator.gpu) {
+    // Inject the stylesheets
+    document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="/webllm/style.css">`);
 
-// Inject the answer container    
-document.body.insertAdjacentHTML('beforeend', `
+    // Inject the answer container    
+    document.body.insertAdjacentHTML('beforeend', `
     <div class="answer">
         <!-- Close icon -->
         <span class="close">&times;</span>
@@ -92,30 +108,31 @@ document.body.insertAdjacentHTML('beforeend', `
     </div>
     `);
 
-document.getElementsByClassName('close')[0].addEventListener('click', function () {
-    document.querySelector('.answer').classList.remove('visible');
-});
+    document.getElementsByClassName('close')[0].addEventListener('click', function () {
+        document.querySelector('.answer').classList.remove('visible');
+    });
 
-document.addEventListener('mouseup', function () {
-    const selectedText = window.getSelection().toString().trim();
-    const reformulateAction = document.getElementById('reformulateAction');
+    document.addEventListener('mouseup', function () {
+        const selectedText = window.getSelection().toString().trim();
+        const reformulateAction = document.getElementById('reformulateAction');
 
-    if (selectedText.length > 0) {
-        saveSelection = window.getSelection().getRangeAt(0).cloneRange();
-        const rect = saveSelection.getBoundingClientRect();
-        reformulateAction.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-        reformulateAction.style.left = (rect.right + window.scrollX + 5) + 'px';
-        reformulateAction.style.display = 'block';
-    } else {
-        reformulateAction.style.display = 'none';
-    }
-});
+        if (selectedText.length > 0) {
+            saveSelection = window.getSelection().getRangeAt(0).cloneRange();
+            const rect = saveSelection.getBoundingClientRect();
+            reformulateAction.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+            reformulateAction.style.left = (rect.right + window.scrollX + 5) + 'px';
+            reformulateAction.style.display = 'block';
+        } else {
+            reformulateAction.style.display = 'none';
+        }
+    });
 
-document.getElementById('reformulateAction').addEventListener('click', function () {
-    getAnswer(saveSelection.toString().trim());
-    this.style.display = 'none'; // Cacher le bouton après action
-});
+    document.getElementById('reformulateAction').addEventListener('click', function () {
+        getAnswer(saveSelection.toString().trim());
+        this.style.display = 'none'; // Cacher le bouton après action
+    });
 
-document.addEventListener('scroll', function () {
-    document.getElementById('reformulateAction').style.display = 'none';
-});
+    document.addEventListener('scroll', function () {
+        document.getElementById('reformulateAction').style.display = 'none';
+    });
+}
