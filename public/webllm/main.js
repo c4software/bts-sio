@@ -26,8 +26,8 @@ async function loadModel() {
     const selectedModel = "Llama-3.2-3B-Instruct-q4f32_1-MLC";
     const config = {
         initProgressCallback: initProgressCallback,
-        temperature: 1.0,
-        top_p: 1,
+        temperature: 0.3,
+        top_p: 0.3,
     };
     engine = await webllm.CreateMLCEngine(selectedModel, config);
 
