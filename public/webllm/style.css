@@ -14,11 +14,13 @@
     right: 30px;
     margin-bottom: 10px;
     overflow-y: auto;
-    max-height: 1000px;
+    max-height: 85vh;
 }
 
-#answerContent{
-    white-space: break-spaces;
+#answerContent > ul, ol{
+    list-style: initial;
+    margin: revert;
+    padding: revert;
 }
 
 .answerContentInfo{

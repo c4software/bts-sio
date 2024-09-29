@@ -1,6 +1,9 @@
 import * as webllm from "https://esm.run/@mlc-ai/web-llm";
+import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/+esm'
+
 let engine = null;
 let saveSelection;
+const md = markdownIt()
 const selectedModel = "Llama-3.2-3B-Instruct-q4f32_1-MLC";
 const systemPrompt = "Explique le texte suivant de manière concise, en préservant les informations clés. Le texte doit rester simple et clair pour être compris par des développeurs web débutants, sans ajouter d'éléments ou de détails superflus. N'ajoute pas d'élément supplémentaire";
 
@@ -59,7 +62,7 @@ async function getAnswer(text) {
         { role: "user", content: text },
     ]
 
-    // Chunks is an AsyncGenerator object
+    // Chunks sont les réponses partielles
     const chunks = await engine.chat.completions.create({
         messages,
         temperature: 1,
@@ -74,13 +77,14 @@ async function getAnswer(text) {
         }
 
         reply += chunk.choices[0]?.delta.content || "";
-        document.querySelector('#answerContent').innerHTML = reply;
+        document.querySelector('#answerContent').innerHTML = md.render(reply);
 
         if (chunk.usage) {
             // console.log(chunk.usage); // only last chunk has usage
             // Retrait de la sélection et de l'animation de couleur
             stopAnimationAnswer();
             saveSelection = null;
+            reply = "";
         }
     }
 
