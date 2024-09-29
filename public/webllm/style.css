@@ -14,7 +14,8 @@
     transition: all 0.3s;
     right: 30px;
     margin-bottom: 10px;
-    overflow: auto;
+    overflow-y: auto;
+    max-height: 1000px;
 }
 
 #answerContent{
