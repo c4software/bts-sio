@@ -21,7 +21,8 @@
     white-space: break-spaces;
 }
 
-#answerContentInfo{
+.answerContentInfo{
+    padding-top: 10px;
     font-size: 0.7em;
     line-height: 1;
     font-style: italic;
