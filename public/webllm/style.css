@@ -21,6 +21,13 @@
     white-space: break-spaces;
 }
 
+#answerContentInfo{
+    font-size: 0.7em;
+    line-height: 1;
+    font-style: italic;
+    text-align: center;
+}
+
 .answer.visible{
     display: block;
 }
