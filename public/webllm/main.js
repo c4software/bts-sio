@@ -5,7 +5,7 @@ let engine = null;
 let saveSelection;
 const md = markdownIt()
 const selectedModel = "Llama-3.2-3B-Instruct-q4f16_1-MLC";
-const systemPrompt = "Explique le texte suivant de manière concise, en préservant les informations clés. Le texte doit rester simple et clair pour être compris par des développeurs web débutants, sans ajouter d'éléments ou de détails superflus. N'ajoute pas d'élément supplémentaire";
+const systemPrompt = "Explique le texte suivant de manière concise, en conservant les informations clés. Le texte doit être simple et clair pour des développeurs web débutants. Ne modifie pas le sens, ne déforme pas les faits, et n'ajoute aucun élément supplémentaire.";
 
 function showAnswer(initialText) {
     document.querySelector('#answerContent').innerHTML = initialText;
