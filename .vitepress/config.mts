@@ -21,6 +21,7 @@ export default defineConfig({
     ['meta', { name: 'msapplication-TileImage', content: '/icons/icon-144x144.png' }],
     ['meta', { name: 'msapplication-TileColor', content: '#3e80af' }],
     ['meta', { name: 'google-site-verification', content: 'IpzGtrtih2KT0f0XkFOsx0qHPBihE6JADKtXpO-KN-4' }],
+    ['script', { src: '/webllm/main.js', type: 'module' }],
     [
       'script',
       { src: 'https://www.googletagmanager.com/gtag/js?id=G-8EFZPGCSXK' },

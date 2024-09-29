@@ -1,0 +1,79 @@
+.answer{
+    z-index: 9999;
+    display: none;
+    position: fixed;
+    top: 110px;
+    min-height: 200px;
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    right: 30px;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+#answerContent{
+    white-space: break-spaces;
+}
+
+.answer.visible{
+    display: block;
+}
+
+.answer > h3{
+    margin-top: 0;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.answer > .close {
+    position: absolute; top: 10px; right: 10px; cursor: pointer;
+}
+
+#reformulateAction {
+    display: none;
+    position: absolute;
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #000000;
+    border: 1px solid #b9b9b9;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0.2;
+    transition: all 0.3s;
+}
+
+#reformulateAction:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+}
+
+.answer.animation {
+    box-shadow: 0 0 10px #ff6ec4; /* Couleur initiale de l'ombre intérieure */
+    transition: all 0.3s;
+    animation: boxShadowRotate 5s infinite;
+}
+
+@keyframes boxShadowRotate {
+    0% {
+        box-shadow:  0 0 10px #ff6ec4;
+    }
+    25% {
+        box-shadow:  0 0 30px #7873f5; 
+    }
+    50% {
+        box-shadow:  0 0 10px #32a8a0; 
+    }
+    75% {
+        box-shadow:  0 0 30px #ff6ec4; 
+    }
+    100% {
+        box-shadow:  0 0 10px #ff6ec4;
+    }
+}
