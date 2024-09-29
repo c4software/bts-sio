@@ -4,7 +4,7 @@ import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/+esm'
 let engine = null;
 let saveSelection;
 const md = markdownIt()
-const selectedModel = "Llama-3.2-3B-Instruct-q4f32_1-MLC";
+const selectedModel = "Llama-3.2-3B-Instruct-q4f16_1-MLC";
 const systemPrompt = "Explique le texte suivant de manière concise, en préservant les informations clés. Le texte doit rester simple et clair pour être compris par des développeurs web débutants, sans ajouter d'éléments ou de détails superflus. N'ajoute pas d'élément supplémentaire";
 
 function showAnswer(initialText) {
@@ -25,7 +25,7 @@ async function loadModel() {
     const hasModelInCache = await webllm.hasModelInCache(selectedModel);
 
     if (!hasModelInCache) {
-        const result = confirm("Voulez-vous télécharger le modèle de reformulation ? (~1.8 Go)");
+        const result = confirm("Voulez-vous télécharger le modèle de reformulation ? (~1.7 Go, une seule fois. Le modèle sera stocké dans le cache du navigateur.)");
 
         if (!result) {
             return;
