@@ -5,7 +5,13 @@ let engine = null;
 let saveSelection;
 const md = markdownIt()
 const selectedModel = "Llama-3.2-3B-Instruct-q4f16_1-MLC";
-const systemPrompt = "Explique le texte suivant de manière concise, en conservant les informations clés. Le texte doit être simple et clair pour des développeurs web débutants. Ne modifie pas le sens, ne déforme pas les faits, et n'ajoute aucun élément supplémentaire.";
+const systemPrompt = `Explique le texte suivant de manière concise, en conservant les informations clés.
+Le texte doit être simple et clair pour des développeurs web débutants.Ne modifie pas le sens, ne déforme pas les faits, et n'ajoute aucun élément supplémentaire.
+
+Voici le context de la reformulation : "<<contexte>>"
+Titre de la page : "<<titre>>"
+
+Voici le texte à reformuler :`;
 
 function showAnswer(initialText) {
     document.querySelector('#answerContent').innerHTML = initialText;
@@ -48,7 +54,7 @@ async function loadModel() {
     return engine;
 }
 
-async function getAnswer(text) {
+async function getAnswer(text, closestParagraph) {
     const engine = await loadModel();
 
     if (!engine) {
@@ -58,7 +64,7 @@ async function getAnswer(text) {
     showAnswer("");
 
     const messages = [
-        { role: "system", content: systemPrompt },
+        { role: "system", content: systemPrompt.replace("<<contexte>>", closestParagraph).replace("<<titre>>", document.title) },
         { role: "user", content: text },
     ]
 
@@ -132,7 +138,22 @@ if (navigator.gpu) {
     });
 
     document.getElementById('reformulateAction').addEventListener('click', function () {
-        getAnswer(saveSelection.toString().trim());
+        // Get closest p around the selection
+        let closestParagraph = "";
+        try {
+            closestParagraph = saveSelection.startContainer.parentElement.innerText || "";
+        } catch (error) {
+            closestParagraph = "";
+        }
+
+        if (closestParagraph.length > 200) {
+            closestParagraph = closestParagraph.substring(0, 200) + "...";
+        }
+
+        if (saveSelection) {
+            getAnswer(saveSelection.toString().trim(), closestParagraph);
+        }
+
         this.style.display = 'none'; // Cacher le bouton après action
     });
 
