@@ -732,7 +732,7 @@ Dans la méthode `store` du contrôleur `RegisteredUserController`, nous allons 
 
 ```php
 // Après la création de l'utilisateur (role user)
-$user->attach(2);
+$user->roles()->attach(2);
 ```
 
 La méthode `attach` permet d'ajouter un rôle à un utilisateur. Elle prend en paramètre l'identifiant du rôle à ajouter. Elle va ajouter une entrée dans la table `role_user` pour faire le lien entre l'utilisateur et le rôle.
