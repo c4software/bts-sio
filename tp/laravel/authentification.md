@@ -709,8 +709,8 @@ public function run()
 {
     // À la fin de la méthode run
     // Création des rôles par défaut de l'application
-    Role::factory()->create(['name' => 'admin']);
-    Role::factory()->create(['name' => 'user']);
+    Role::create(['name' => 'admin']);
+    Role::create(['name' => 'user']);
 }
 ```
 
