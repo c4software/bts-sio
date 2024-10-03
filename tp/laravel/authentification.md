@@ -601,6 +601,12 @@ public function show(Personne $personne)
 
 Et voilà, Laravel va automatiquement récupérer l'objet `Personne` correspondant à l'`id` passé dans la route. C'est magique ! C'est automatique ! Et c'est très pratique !
 
+## Liste des Personnes
+
+Maintenant que nous avons la possibilité de voir une personne, nous allons créer une page qui va afficher la liste de toutes les personnes enregistrées dans la base de données.
+
+Je vous laisse créer une nouvelle route `/personnes` qui va afficher la liste des personnes.
+
 ## Création d'une table pivot pour les rôles
 
 Dans cette partie, nous allons voir comment créer une table pivot pour gérer les rôles des utilisateurs. Pour cela, nous allons créer une table `roles` qui va contenir les différents rôles disponibles, et une table `role_user` qui va faire le lien entre les utilisateurs et les rôles.
