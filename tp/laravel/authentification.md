@@ -611,6 +611,25 @@ Je vous laisse créer une nouvelle route `/personnes` qui va afficher la liste d
 
 Dans cette partie, nous allons voir comment créer une table pivot pour gérer les rôles des utilisateurs. Pour cela, nous allons créer une table `roles` qui va contenir les différents rôles disponibles, et une table `role_user` qui va faire le lien entre les utilisateurs et les rôles.
 
+::: tip Relation de type `many-to-many`
+
+La relation entre les utilisateurs et les rôles est une relation de type `many-to-many`. Cela signifie qu'un utilisateur peut avoir plusieurs rôles, et qu'un rôle peut être attribué à plusieurs utilisateurs.
+
+Elle se représente de la façon suivante :
+
+```plaintext
++-----------+     +-----------+     +-----------+
+| users     |     | role_user |     | roles     |
++-----------+     +-----------+     +-----------+
+| id        |     | user_id   |     | id        |
+| name      |     | role_id   |     | name      |
+| …         |     |           |     |           |
++-----------+     +-----------+     +-----------+
+
+users.id <----> role_user.user_id
+roles.id <----> role_user.role_id
+```
+
 ### Créer la table `roles`
 
 Pour commencer, nous allons créer la table `roles` qui va contenir les différents rôles disponibles. Pour cela, nous allons créer une migration :
