@@ -479,7 +479,9 @@ Le but de Breeze est de vous permettre de modifier le code « préfourni » c'es
 ```php
 Schema::create('personnes', function (Blueprint $table) {
     $table->id();
-    $table->string('name');
+    $table->string('ville');
+    $table->date('dateNaissance');
+    $table->string('genre');
     $table->foreignId('userId')->constrained('users');
     $table->timestamps();
 });
@@ -492,7 +494,9 @@ Exemple dans mon cas :
 
 ```php
 Personne::create([
-    'name' => $request->name,
+    'ville' => $request->ville,
+    'dateNaissance' => $request->dateNaissance,
+    'genre' => $request->genre,
     'userId' => $user->id
 ])
 ```
@@ -504,6 +508,29 @@ Je vous laisse l'implémenter… Cependant vous comprenez bien que c'est évidem
 :::
 
 Je vous laisse implémenter la modification dans votre code.
+
+::: details Votre table existe ? Vous souhaitez la modifier ?
+
+```php
+php artisan make:migration add_ville_dateNaissance_genre_to_personnes_table --table=personnes
+```
+
+```php
+public function up(): void
+{
+    Schema::table('personnes', function (Blueprint $table) {
+        $table->string('ville');
+        $table->date('dateNaissance');
+        $table->string('genre');
+    });
+}
+```
+
+```sh
+php artisan migrate
+```
+
+:::
 
 ## Afficher les informations de l'utilisateur
 
