@@ -630,6 +630,8 @@ users.id <----> role_user.user_id
 roles.id <----> role_user.role_id
 ```
 
+:::
+
 ### Créer la table `roles`
 
 Pour commencer, nous allons créer la table `roles` qui va contenir les différents rôles disponibles. Pour cela, nous allons créer une migration :
