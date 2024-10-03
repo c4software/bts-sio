@@ -558,7 +558,7 @@ public function index()
      * Ici je récupère la personne connectée,
      * mais le mieux serait de faire une relation dans le modèle User du type :
      * public function personne(){
-     *    return $this->hasOne(Personne::class);
+     *    return $this->hasOne(Personne::class, 'userId', 'id');
      * }
      * 
      * ET de récupérer la personne via :
