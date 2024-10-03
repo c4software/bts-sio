@@ -507,6 +507,14 @@ Et voilà nous avons maintenant une méthode de « Création d'un utilisateur »
 Je vous laisse l'implémenter… Cependant vous comprenez bien que c'est évidemment un exemple !
 :::
 
+::: danger N'oubliez pas la validation
+
+Les données que vous récupérez dans le formulaire doivent être validées. Laravel propose un système de validation très complet. Je vous laisse regarder la documentation pour en savoir plus.
+
+[https://laravel.com/docs/11.x/validation#available-validation-rules](https://laravel.com/docs/11.x/validation#available-validation-rules)
+
+:::
+
 Je vous laisse implémenter la modification dans votre code.
 
 ::: details Votre table existe ? Vous souhaitez la modifier ?
