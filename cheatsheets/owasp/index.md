@@ -36,6 +36,20 @@ Le risque est la multiplication des failles. Plus vous avez de failles, plus vou
 
 :::
 
+## La surface d'attaque
+
+La surface d'attaque est l'ensemble des points d'entrée d'un système qui peuvent être exploités par un attaquant pour compromettre la sécurité de ce système.
+
+Plus la surface d'attaque est grande, plus le système est vulnérable.
+
+### Exemple
+
+Une application Web avec un ensemble de failles (injection SQL, XSS, CSRF, etc.) a une grande surface d'attaque. Un attaquant peut exploiter ces failles pour compromettre la sécurité de l'application.
+
+Un serveur mal configuré (ports ouverts, services non sécurisés, etc.) a une grande surface d'attaque. Un attaquant peut exploiter ces failles pour compromettre la sécurité du serveur.
+
+Réduire la surface d'attaque est un enjeu majeur en sécurité informatique. Réduire la surface d'attaque implique de minimiser les points d'entrée.
+
 ## L'authentication
 
 Il est possible de sécuriser l'authentification de plusieurs manières :
