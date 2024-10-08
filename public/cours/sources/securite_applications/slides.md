@@ -280,13 +280,15 @@ Risque de casser / usurper une authentification ou une session. Comprends notamm
 
 ### Conception non sécurisée / Exposition de données sensibles
 
-Conception d'une application sans prise en compte de la sécurité. 
+Conception d'une application sans prise en compte de la sécurité.
 
 - Données en claire.
 - Manque de contrôle d'accès.
-- Manque de chiffrement (HTTPS). 
 - Manque de contôle de saisie.
 - Manque de contrôle de type (XSS, CSRF).
+- Absence d'anti-bots.
+- Utilisation d'une question secrète.
+- Réservation de place sans accompte.
 
 ---
 
@@ -625,6 +627,32 @@ if (isset($_POST['_token']) && $_POST['_token'] == $_SESSION['_token']) {
 - Librairies XYZ non à jour.
 - PHP non à jour.
 - MySQL non à jour.
+
+---
+
+### Mauvaise conception
+
+- Absence d'anti-bots.
+
+Utilisation de captcha (Google Recaptcha par exemple).
+
+```html
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<div class="g-recaptcha" data-sitekey="your_site_key"></div>
+
+// Côté PHP
+if (isset($_POST['g-recaptcha-response'])) {
+    // On peut traiter la requête
+} else {
+    die();
+}
+```
+
+---
+
+Utilisation d'une question secrète :
+
+- Car faible possibilité de réponse (peu de couleurs, peu de réponses possibles, peu de dates, etc).
 
 ---
 
