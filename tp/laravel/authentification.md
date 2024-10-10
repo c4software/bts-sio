@@ -931,7 +931,7 @@ Pour utiliser HTMX dans votre projet, vous pouvez ajouter la librairie via un CD
 Puis, vous pouvez utiliser HTMX pour récupérer les messages :
 
 ```html
-<div id="messages" hx-get="/getMessages">
+<div id="messages" hx-get="/getMessages" hx-trigger="load" />
   Chargement des messages...
   <!-- Les messages vont remplacer ce texte automatiquement -->
 </div>
@@ -939,11 +939,26 @@ Puis, vous pouvez utiliser HTMX pour récupérer les messages :
 
 Avec HTMX, vous n'avez pas besoin de JavaScript pour récupérer les messages. HTMX va s'occuper de tout pour vous.
 
+- `hx-get="/getMessages"` permet de faire une requête HTTP GET pour récupérer les messages.
+- `hx-trigger="load"` permet de charger les messages automatiquement lorsque la page est chargée.
+
 ::: tip C'est magique !
 
 HTMX est très intéressant pour faire des sites web ! Elle utilise une approche différente de VueJS ou React, mais elle est également très intéressante. Je vous encourage à l'essayer pour voir si elle correspond à vos besoins.
 
 :::
+
+#### Raffraichir les messages en (presque) temps réel
+
+Pour rafraîchir les messages en (presque) temps réel, vous pouvez utiliser l'attribut `hx-trigger` de HTMX. Cet attribut permet de rafraîchir une partie de la page à intervalles réguliers.
+
+Voici un exemple de code qui rafraîchit les messages toutes les 15 secondes :
+
+```html
+<div id="messages" hx-get="/getMessages" hx-trigger="every 2s">
+  Chargement des messages...
+  <!-- Les messages vont remplacer ce texte automatiquement -->
+</div>
 
 #### Bonus : Et si vous faisiez l'ajout en Ajax ?
 
