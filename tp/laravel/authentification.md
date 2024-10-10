@@ -959,6 +959,7 @@ Voici un exemple de code qui rafraîchit les messages toutes les 15 secondes :
   Chargement des messages...
   <!-- Les messages vont remplacer ce texte automatiquement -->
 </div>
+```
 
 #### Bonus : Et si vous faisiez l'ajout en Ajax ?
 
