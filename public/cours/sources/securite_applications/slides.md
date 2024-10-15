@@ -262,6 +262,19 @@ Solution :
 
 ---
 
+- A01:2021-Contrôles d'accès défaillants ;
+- A02:2021-Défaillances cryptographiques ;
+- A03:2021-Injection ;
+- A04:2021-Conception non sécurisée ;
+- A05:2021-Mauvaise configuration de sécurité ;
+- A06:2021-Composants vulnérables et obsolètes ;
+- A07:2021-Identification et authentification de mauvaise qualité ;
+- A08:2021-Manque d'intégrité des données et du logiciel ;
+- A09:2021-Carence des systèmes de contrôle et de journalisation ;
+- A10:2021-Falsification de requête côté serveur ;
+
+---
+
 ### L'injection
 
 Risque d’injection SQL, Shell...
@@ -351,11 +364,12 @@ La **traçabilité** est un élément clé de la sécurité. Elle permet de savo
 
 ---
 
-### Falsification de requête côté serveu
+### Falsification de requête côté serveur
 
-Elle permet à un hacker d’inciter l’application côté serveur à envoyer des requêtes à un endroit non prévu. 
+Elle permet à un hacker d’inciter l’application côté serveur à envoyer des requêtes à un endroit non prévu.
 
-Le serveur est donc capable de faire des requêtes à des endroits non prévus (depuis le coeur de l'application).
+- Absence de vérification de l'origine de la requête.
+- Absence de vérification de l'origine de l'utilisateur.
 
 ---
 
