@@ -968,7 +968,7 @@ Pour aller plus loin, vous pouvez également ajouter un formulaire pour envoyer 
 Voici un exemple de formulaire qui envoie un message en Ajax :
 
 ```html
-<form hx-post="/sendMessage" hx-target="#messages" hx-swap="outerHTML">
+<form hx-post="/sendMessage" hx-target="#messages" hx-swap="innerHTML">
     <input type="text" name="message" placeholder="Votre message">
     <button type="submit">Envoyer</button>
 </form>
