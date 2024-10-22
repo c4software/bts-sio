@@ -187,8 +187,6 @@ Trop pour certains… Mais le reflet de la réalité (foldable, 5G, Bluetooth LE
 
 ---
 
----
-
 ```kotlin
 @Composable
 fun Greeting(name: String) {
@@ -204,7 +202,7 @@ fun Greeting(name: String) {
 
 ---
 
-Le composant est un principe de base de la conception d'interface utilisateur en 2023.
+Le composant sont maintenant un principe de base de la conception d'interface utilisateur.
 
 ---
 
@@ -222,7 +220,7 @@ Le composant est un principe de base de la conception d'interface utilisateur en
 
 ---
 
-![Composant](./res/components-1.png)
+![Composant](./img/components-1.png)
 
 ---
 
@@ -425,7 +423,7 @@ Une dernière chose…
 
 Jetpack Compose c'est jeune.
 
-Il faut donc accepter que ça évolue vite / change / sois instable.
+Il faut donc accepter que ça évolue vite / change / sois (parfois) instable.
 
 ---
 
@@ -1867,7 +1865,7 @@ La suite dans le support…
 ## SharedPreferences
 
 - Simple
-- Type natif **exclusivement **(`int`, `string`, …)
+- Type natif **exclusivement** _(`int`, `string`, …)_
 - Persistant
 - Supprimé à chaque réinstallation
 
