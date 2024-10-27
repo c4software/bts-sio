@@ -426,13 +426,7 @@ Un instant ✋
 
 ---
 
-Les mots de passe
-
-🔐
-
----
-
-Comment les sauvegardez-vous en base de données ?
+🔐 L'authentification 🔐
 
 ---
 
@@ -446,6 +440,29 @@ Quelle est la différence ?
 
 - Crypter => Réversible (comme Canal+).
 - Hasher => Non réversible (comme le steak haché).
+
+---
+
+## L'authentification forte
+
+- MFA (Multi-Factor Authentication)
+- 2FA (Two-Factor Authentication)
+- OTP (One-Time Password)
+
+---
+
+## 3 formes d'authentification
+
+- **Mémorielle** qui représente une chose que l'intéressé connaît (un secret),
+- **Matérielle** qui se réfère à quelque chose qu'il possède (un objet),
+- **Corporelle** qui utilise un trait physique de l'utilisateur (une biométrie).
+
+## Des outils
+
+- Mot de passe : Un mot de passe avec un niveau de sécurité suffisant (longueur, caractères spéciaux, majuscules, minuscules, chiffres).
+- Application : OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
+- Objet physique : U2F (Universal 2nd Factor) : Clé USB, Yubikey.
+- Biométrie : Empreinte digitale, Reconnaissance faciale.
 
 ---
 
