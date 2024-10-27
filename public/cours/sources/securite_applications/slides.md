@@ -466,6 +466,11 @@ Quelle est la différence ?
 
 ---
 
+- Permets de sécuriser les mots de passe en ajoutant **une couche de sécurité supplémentaire**.
+- Via un secret partagé entre la personne **physique** et le site/application.
+
+---
+
 ### On connait les failles
 
 #### Comment on les corrige ?
@@ -484,7 +489,7 @@ OWASP donne la liste des grandes catégories de failles. Entrons dans le détail
 SELECT * FROM client WHERE id='" . $_GET["id"] . "'
 ```
 
-```
+```html
 http://exemple.com/liste?id='or '1'='1
 ```
 
@@ -502,7 +507,7 @@ $stmt->execute();
 
 ### Accès non autorisé à une session
 
-```
+```html
 http://exemple.com/?jsessionid=A2938298D293
 ```
 
@@ -570,7 +575,6 @@ if ($_SESSION['mode'] == 'client') {
     // On ne peut pas charger la ressource
 }
 ```
-
 
 ---
 
