@@ -609,21 +609,7 @@ php artisan code:models --table=addresses
 php artisan code:models --table=customers_addresses
 ```
 
-Ces trois commandes vont permettre de régénérer le modèle `Customer` et générer le modèle `Address`.
-
-::: tip Un instant !
-
-Vous n'etes pas obligé d'utiliser `code:models` pour générer les modèles, vous pouvez également les écrire à la main. Exemple :
-
-Créer un modèle `Address` :
-
-```bash
-php artisan make:model Address
-```
-
-Puis ajouter les colonnes et les relations dans le modèle.
-
-:::
+Ces trois commandes vont permettre de régénérer le modèle `Customer` et générer le modèle `Address`. 
 
 ### 4. Corriger votre précédente vue
 
@@ -683,6 +669,8 @@ function createAddress(Request $request, $id){
 
     // Ajout de l'adresse au client
     $customer = Customer::find($id);
+
+    // La méthode attach permet d'ajouter une relation entre deux tables. Elle va ajouter une ligne dans la table de relation.
     $customer->addresses()->attach($address);
     
     // Redirection vers la page de détail du client
