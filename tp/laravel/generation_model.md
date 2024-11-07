@@ -376,8 +376,7 @@ Pour créer le formulaire, rien de nouveau, nous allons utiliser comme d'habitud
         <input type="text" name="orderNumber" id="orderNumber">
     </div>
     <div>
-        <label for="status">Status</label>
-        <input type="text" name="status" id="status">
+        <!-- Vous pouvez ajouter ici un select pour les status -->
     </div>
     <div>
         <label for="comments">Commentaires</label>
@@ -429,6 +428,18 @@ function create(Request $request){
     return redirect("/orders");
 }
 ```
+
+C'est à vous ! Je vous laisse assembler le code pour créer une commande.
+
+::: tip N'oubliez pas !
+
+Nous créons une nouvelle commande, mais nous n'avons pas de vérification sur les données. Vous pouvez ajouter des vérifications sur les données, par exemple :
+
+- Vérifier que le numéro de commande n'existe pas déjà.
+- Vérifier que le client existe.
+- Vérifier que le status est bien un status valide.
+
+:::
 
 ## La pagination
 
