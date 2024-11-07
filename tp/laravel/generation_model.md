@@ -160,7 +160,7 @@ Pour cette première fois, nous allons le faire ensemble.
 La première étape, c'est la création du contrôleur :
 
 ```sh
-php artisan make:controller OrdersControler
+php artisan make:controller OrdersController
 ```
 
 ### 2. Déclarer la route
