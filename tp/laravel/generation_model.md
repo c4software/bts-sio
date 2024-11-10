@@ -497,6 +497,168 @@ Laravel propose également d'autres méthodes pour gérer la pagination :
 
 :::
 
+## Créer un paiement pour le client
+
+Avec le système de relation entre les tables, il est possible d'intéragir uniquement avec un modèle pour réaliser des actions sur plusieurs tables. Par exemple créer un paiement pour un client.
+
+Voici un exemple :
+
+```php
+// Récupérer le client 103
+$customer = Customer::find(103);
+
+// Création d'un nouveau payments
+$payment = new Payment();
+$payment->checkNumber = '123456';
+$payment->paymentDate = '2004-10-19';
+$payment->amount = 14571.44;
+
+// Ajouter le nouveau paiement au client 103
+$customer->payments()->save($payment);
+```
+
+Dans cet exemple, nous avons créé un nouveau paiement pour le client 103. La méthode `save` va automatiquement ajouter le paiement au client.
+
+::: tip C'est à vous !
+
+Je vous laisse modifier votre formulaire de création de commande pour y ajouter les éléments nécessaire pour y joindre un paiement
+
+:::
+
+## Rappel sur les relations avec `Sync` et `Attach`
+
+Avec Laravel, il est possible de gérer les relations entre les tables de manière très simple. Pour ça, Laravel propose deux méthodes :
+
+- `attach` : Permet d'ajouter une relation entre deux tables.
+- `sync` : Permet de synchroniser les relations entre deux tables.
+
+Nous allons modifier notre base de données pour créer un système de catégorie de client (en respectant les règles de nommage de Laravel) :
+
+- Créer une nouvelle table `categories`.
+- Créer une nouvelle table pivot `category_customer`.
+- Créer les relations entre les tables.
+- Un client peut avoir plusieurs catégories.
+
+```sql
+-- Création de la table categories
+CREATE TABLE categories (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+-- Création de la table pivot category_customer
+CREATE TABLE category_customer (
+    customerNumber INT NOT NULL,
+    category_id BIGINT UNSIGNED NOT NULL,
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (customerNumber, category_id),
+    FOREIGN KEY (customerNumber) REFERENCES customers(customerNumber) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE,
+    INDEX category_customer_customer_number_index (customerNumber),
+    INDEX category_customer_category_id_index (category_id)
+);
+
+-- Insertion des données dans la table categories
+INSERT INTO categories (name, description) VALUES
+('Premium', 'Clients premium avec avantages spéciaux'),
+('Standard', 'Clients standards'),
+('Business', 'Clients professionnels'),
+('VIP', 'Clients très importants'),
+('Nouveau', 'Nouveaux clients'),
+('Inactif', 'Clients inactifs depuis plus de 6 mois');
+```
+
+
+### 1. Régénérer les modèles
+
+Maintenant que nous avons modifié la base de données, nous allons devoir régénérer les modèles.
+
+```sh
+php artisan code:models --table=categories
+php artisan code:models --table=category_customer
+php artisan code:models --table=customers
+```
+
+Je vous laisse regarder les modèles générés, vous avez maintenant un modèle `Category` et un modèle `CustomerCategory`. 
+
+Le modèle `Customer` a également été mis à jour pour prendre en compte la nouvelle relation. Il est intéressant de regarder le code généré :
+
+```php
+// NE PAS COPIER COLLER
+// Exemple de code généré
+// NE PAS COPIER COLLER
+public function categories()
+{
+return $this->belongsToMany(Category::class, 'category_customer', 'customerNumber')
+    ->withTimestamps();
+}
+// NE PAS COPIER COLLER
+ ```
+
+Quelques explications :
+
+- `belongsToMany` ? C'est la méthode qui permet de définir une relation de type `many to many` (plusieurs à plusieurs). Ici, un client peut avoir plusieurs catégories.
+- `Category::class` ? C'est la classe du modèle `Category`.
+- `'category_customer'` ? C'est le nom de la table pivot.
+- `'customerNumber'` ? C'est la clé étrangère de la table `customers`.
+- `->withTimestamps()` ? C'est une option qui va ajouter les champs `created_at` et `updated_at` dans la table pivot. Utile pour garder une trace des modifications.
+
+### 2. Associer une catégorie à un client
+
+Maintenant que nous avons créé les tables, nous allons pouvoir associer des catégories à des clients. Pour cela plusieurs options sont possibles :
+
+- `sync` : Permet de synchroniser les relations entre deux tables. **Cela va supprimer les relations existantes et ajouter les nouvelles.**
+- `attach` : Permet d'ajouter une relation entre deux tables. **Cela va ajouter une nouvelle relation. Sans supprimer les relations existantes.**
+
+Pour ajouter une catégorie à un client, nous allons utiliser la méthode `attach` :
+
+```php
+// Récupérer le client 103
+$customer = Customer::find(103);
+
+// Ajouter la catégorie au client
+$customer->categories()->attach([1, 2]);
+```
+
+Si à la place de `attach` vous utilisez `sync`, vous allez supprimer les relations existantes et ajouter la nouvelle relation. 
+
+```php
+// Récupérer le client 103
+$customer = Customer::find(103);
+
+// Ajouter la catégorie au client
+$customer->categories()->sync([3, 4]);
+```
+
+Pour supprimer une relation, vous pouvez utiliser la méthode `detach` :
+
+```php
+// Récupérer le client 103
+$customer = Customer::find(103);
+
+// Supprimer la catégorie du client
+$customer->categories()->detach(1);
+```
+
+::: tip C'est à vous !
+
+Pour l'instant notre application ne gère pas les `customer`, nous allons donc simplement créer une route pour tester cette nouvelle fonctionnalité.
+
+```php
+Route::get('/customers/{id}/categories', [CustomersController::class, 'categories']);
+```
+
+**Je vous laisse tester les différentes méthodes (sync, attach, detach) en regardant le résultat dans votre base de données.** Exemple avec un sync :
+
+![Sync](./ressources/sync_exemple.png)
+
+:::
+
 ## Et si nous allions plus loin
 
 Notre base de données est assez volumineuse et permet de faire bien plus ! Je vous laisse créer les routes et la vue permettant de consulter un `Customer` :
@@ -530,6 +692,9 @@ $customer->orders->orderdetails;
 
 // Récupérer les commandes du client avec le détail et le produit
 $customer->orders->orderdetails->product;
+
+// Récupérer les catégories du client
+$customer->categories;
 ```
 
 Ou depuis un template blade :
@@ -538,6 +703,7 @@ Ou depuis un template blade :
 {{ $customer->orders }}
 {{ $customer->orders->orderdetails }}
 {{ $customer->orders->orderdetails->product }}
+{{ $customer->categories }}
 ```
 
 La variable `$customer` est un objet de type `Customer`, celui-ci contient les méthodes `orders` et `ordersdetails` qui vont faire les requêtes pour vous !
@@ -609,7 +775,7 @@ php artisan code:models --table=addresses
 php artisan code:models --table=customers_addresses
 ```
 
-Ces trois commandes vont permettre de régénérer le modèle `Customer` et générer le modèle `Address`. 
+Ces trois commandes vont permettre de régénérer le modèle `Customer` et générer le modèle `Address`.
 
 ### 4. Corriger votre précédente vue
 
@@ -738,6 +904,30 @@ N'oubliez pas, pour vous aider, vous avez l'aide mémoire :
 - [Aide mémoire Rapide](/cheatsheets/laravel/quick.md)
 - [Aide mémoire Complète](/cheatsheets/laravel/)
 
+## Créer un nouveau client
+
+Je vous laisse maintenant créer un formulaire pour ajouter un nouveau client. N'oubliez pas de vous inspirer du code existant.
+
+**Petite contrainte de ma part, le formulaire doit également permettre de sélectionner une ou plusieurs catégories pour le client.**
+
+::: tip Un instant !
+
+Pour la partie catégorie, n'oubliez pas vos tests précédent. Vous avez déjà testé les relations `sync`, `attach` et `detach`. Vous pouvez les réutiliser pour ajouter des catégories à un client.
+
+:::
+
+## Modifier un client
+
+Maintenant que vous avez créé un formulaire pour ajouter un client, je vous laisse créer un formulaire pour modifier un client. N'oubliez pas de vous inspirer du code existant.
+
+**Petite contrainte de ma part, le formulaire doit également permettre de sélectionner une ou plusieurs catégories pour le client.**
+
+::: tip Un instant !
+
+Pour la partie catégorie, n'oubliez pas vos tests précédent. Vous avez déjà testé les relations `sync`, `attach` et `detach`. Vous pouvez les réutiliser pour ajouter des catégories à un client.
+
+:::
+
 ## Aller plus loin
 
 Déjà au bout ? Vous souhaitez un peu de challenge ? Je vous laisse aller plus loin :
@@ -818,6 +1008,6 @@ Vous avez vu, avec Laravel, il est possible d'écrire très peu de code pour avo
 - La documentation officielle.
 - Les exemples / tutoriels.
 - Les aide mémoire.
-- Les forums / StackOverflow / ChatGPT.
+- Les forums / StackOverflow / ChatGPT / Claude.
 
 La suite, ça sera [Larablog,](./larablog.md) une plateforme de blog codé entièrement avec Laravel.
