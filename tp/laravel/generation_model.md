@@ -573,7 +573,6 @@ INSERT INTO categories (name, description) VALUES
 ('Inactif', 'Clients inactifs depuis plus de 6 mois');
 ```
 
-
 ### 1. Régénérer les modèles
 
 Maintenant que nous avons modifié la base de données, nous allons devoir régénérer les modèles.
@@ -607,6 +606,27 @@ Quelques explications :
 - `'category_customer'` ? C'est le nom de la table pivot.
 - `'customerNumber'` ? C'est la clé étrangère de la table `customers`.
 - `->withTimestamps()` ? C'est une option qui va ajouter les champs `created_at` et `updated_at` dans la table pivot. Utile pour garder une trace des modifications.
+
+::: danger L'importance du nommage
+
+Quand vous écrivez vos modèles manuellement, aucun problème, vous pouvez les nommer comme vous le souhaitez.
+
+Cependant, si vous utilisez le plugin de génération de modèle, il est important de respecter les règles de nommage de Laravel. Pour que celui-ci puisse générer les relations correctement, vos tables doivent respecter :
+
+- Le nom de la table doit être au pluriel.
+- Le nom de la table pivot doit être composé des noms des tables en ordre alphabétique et au singulier.
+
+Sinon, il faut écrire les relations manuellement :
+
+```php
+public function categories()
+{
+    return $this->belongsToMany(Category::class, 'category_customer', 'customerNumber')
+        ->withTimestamps();
+}
+```
+
+:::
 
 ### 2. Associer une catégorie à un client
 
