@@ -774,12 +774,12 @@ Maintenant que nous avons créé la table `addresses`, nous allons devoir ajoute
 
 ```sql
 CREATE TABLE `customers_addresses` (
-  `customer_id` int(11) NOT NULL,
+  `customerNumber` int(11) NOT NULL,
   `address_id` int(11) NOT NULL,
-  PRIMARY KEY (`customer_id`,`address_id`),
+  PRIMARY KEY (`customerNumber`,`address_id`),
   KEY `customers_addresses_address_id_foreign` (`address_id`),
   CONSTRAINT `customers_addresses_address_id_foreign` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
-  CONSTRAINT `customers_addresses_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customerNumber`)
+  CONSTRAINT `customers_addresses_customer_number_foreign` FOREIGN KEY (`customerNumber`) REFERENCES `customers` (`customerNumber`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ```
 
