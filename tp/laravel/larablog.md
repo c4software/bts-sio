@@ -95,18 +95,6 @@ Dans l'univers de Laravel, il est possible de réaliser la base de données de d
 Dans ce TP, nous allons utiliser la deuxième méthode. Avant d'aller plus loin, nous allons créer la base de données de notre projet. Je vous la fournis :
 
 ```sql
--- Table des utilisateurs
-CREATE TABLE `users` (
-  `id` bigint(20) PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
 -- Table des catégories
 CREATE TABLE categories (
     `id` bigint(20) PRIMARY KEY AUTO_INCREMENT,
