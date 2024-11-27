@@ -170,7 +170,7 @@ CREATE TABLE tags (
 -- Table des articles
 CREATE TABLE articles (
     `id` bigint(20) PRIMARY KEY AUTO_INCREMENT,
-    `user_id` bigint(20),
+    `user_id` bigint UNSIGNED,
     `title` VARCHAR(255) NOT NULL,
     `content` TEXT NOT NULL,
     `draft` BOOLEAN DEFAULT 1,
@@ -198,7 +198,7 @@ CREATE TABLE article_tag (
 -- Table des commentaires
 CREATE TABLE comments (
     `id` bigint(20) PRIMARY KEY AUTO_INCREMENT,
-    `user_id` bigint(20),
+    `user_id` bigint UNSIGNED,
     `article_id` bigint(20),
     `content` TEXT NOT NULL,
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
