@@ -85,6 +85,62 @@ N'oubliez pas d'installer la debugbar dans votre projet. Elle vous sera très ut
 
 :::
 
+## Configuration de votre projet
+
+Avant de continuer, n'oubliez pas de configurer votre projet. Pour cela, vous devez modifier le fichier `.env` à la racine de votre projet.
+
+Je vous laisse renseigner les paramètres de connexion à la base de données et le nom de l'application.
+
+::: warning Remarque
+
+Le fichier `.env` est un fichier qui ne sera pas versionné. Il est propre à votre environnement de développement. Vous pouvez donc le modifier sans risque.
+
+Vous avez un fichier `.env.example` qui vous donne un exemple de configuration. Vous pouvez le dupliquer en `.env` pour commencer à travailler.
+
+:::
+
+## Authentification des utilisateurs
+
+Pour l'authentification des utilisateurs nous n'allons pas réinventer la roue. Nous allons utiliser l'excellent package « Breeze » de Laravel. Pour l'installer, nous allons utiliser la commande :
+
+```bash
+composer require laravel/breeze --dev
+```
+
+Une fois le package installé, nous allons l'installer dans notre projet :
+
+```bash
+php artisan breeze:install
+php artisan migrate
+npm install
+npm run build
+```
+
+::: tip Remarque
+
+Pour l'installation de Breeze, nous allons choisir « Laravel with Alpine ».
+
+:::
+
+Voilà, nous avons maintenant un système d'authentification complet. Vous pouvez tester en vous inscrivant et en vous connectant. Vous pouvez également tester la réinitialisation de mot de passe.
+
+Je vous laisse valider le bon fonctionnement avant de continuer.
+
+::: tip Rappel
+
+Pour lancer votre projet, vous devez utiliser la commande :
+
+```bash
+php artisan serve
+```
+
+:::
+
+Si tout fonctionne, vous devriez avoir quelque chose comme ça :
+
+![Larablog - Dashboard](./ressources/larablog_dashboard.jpg)
+
+
 ## La base de données
 
 Dans l'univers de Laravel, il est possible de réaliser la base de données de deux façons :
@@ -161,61 +217,6 @@ Avant de continuer étudiont un peu la base de données :
 Vous pouvez utiliser votre machine en local pour mettre la base de données, mais mieux encore ! Vous pouvez utiliser [bdd.dombtsig.local](http://bdd.dombtsig.local) pour créer votre base de données.
 
 :::
-
-## Configuration de votre projet
-
-Avant de continuer, n'oubliez pas de configurer votre projet. Pour cela, vous devez modifier le fichier `.env` à la racine de votre projet.
-
-Je vous laisse renseigner les paramètres de connexion à la base de données et le nom de l'application.
-
-::: warning Remarque
-
-Le fichier `.env` est un fichier qui ne sera pas versionné. Il est propre à votre environnement de développement. Vous pouvez donc le modifier sans risque.
-
-Vous avez un fichier `.env.example` qui vous donne un exemple de configuration. Vous pouvez le dupliquer en `.env` pour commencer à travailler.
-
-:::
-
-## Authentification des utilisateurs
-
-Pour l'authentification des utilisateurs nous n'allons pas réinventer la roue. Nous allons utiliser l'excellent package « Breeze » de Laravel. Pour l'installer, nous allons utiliser la commande :
-
-```bash
-composer require laravel/breeze --dev
-```
-
-Une fois le package installé, nous allons l'installer dans notre projet :
-
-```bash
-php artisan breeze:install
-php artisan migrate
-npm install
-npm run build
-```
-
-::: tip Remarque
-
-Pour l'installation de Breeze, nous allons choisir « Laravel with Alpine ».
-
-:::
-
-Voilà, nous avons maintenant un système d'authentification complet. Vous pouvez tester en vous inscrivant et en vous connectant. Vous pouvez également tester la réinitialisation de mot de passe.
-
-Je vous laisse valider le bon fonctionnement avant de continuer.
-
-::: tip Rappel
-
-Pour lancer votre projet, vous devez utiliser la commande :
-
-```bash
-php artisan serve
-```
-
-:::
-
-Si tout fonctionne, vous devriez avoir quelque chose comme ça :
-
-![Larablog - Dashboard](./ressources/larablog_dashboard.jpg)
 
 ## L'interface
 
