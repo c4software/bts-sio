@@ -231,6 +231,26 @@ class Client extends Model
 
 ## Remplir une base de données (données fictives)
 
+### Votre modèle
+
+Dans votre modèle, vous devez ajouter le trait `HasFactory` :
+
+**Dans le modèle `Product`, par exemple :**
+
+
+Extrait du modèle :
+
+```php
+use Illuminate\Database\Eloquent\Factories\HasFactory; <== Ajouter cette ligne
+
+class Product extends Model
+{
+    use HasFactory; // <== Ajouter cette ligne
+
+    // Le reste de votre modèle
+}
+```
+
 ### Factory
 
 Comment nous allons remplir. (définition)
