@@ -1027,6 +1027,8 @@ topBar = {
 },
 ```
 
+:::
+
 ## Les données
 
 Depuis le début, nous avons globalement travaillé sur des données statique. Android est une plateforme « très ouverte », il est donc très facilement possible de faire « n'importe quoi ».
