@@ -1284,6 +1284,4 @@ Je vous laisse faire un dernier commit de votre projet. Puis vous pouvez me le p
 
 ## Restitution
 
-Vous avez atteint la fin du TP (avec ou sans bonus). Il est temps de rendre votre travail. Pour cela, vous remplissez le formulaire suivant :
-
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe64etyKnhZ-Fh720M5Xep6bnnSULYtT0JmmZMFtsoqTI_r0w/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+Vous avez atteint la fin du TP (avec ou sans bonus). Il est temps de rendre votre travail. Pour cela, rendez-vous sur Moodle et déposez votre projet.
