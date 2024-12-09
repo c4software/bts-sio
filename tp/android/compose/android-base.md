@@ -1073,8 +1073,8 @@ Notre projet va évoluer un peu, voici les éléments que nous allons devoir ajo
 
 ![Arborescence](./img/base/arborescence_mvvm.png)
 
-- `Screen2ViewModel.kt` : Le ViewModel qui va contenir la logique de notre écran.
-- `Screen2.kt` : Le composant qui va contenir l'interface de notre écran (notre liste et nos boutons d'actions).
+- `Screen3ViewModel.kt` : Le ViewModel qui va contenir la logique de notre écran.
+- `Screen3.kt` : Le composant qui va contenir l'interface de notre écran (notre liste et nos boutons d'actions).
 
 ::: tip Pas d'inquiétude
 
