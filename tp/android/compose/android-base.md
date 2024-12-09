@@ -1208,7 +1208,7 @@ val list by viewModel.listFlow.collectAsStateWithLifecycle()
 Le flow est mis à jour dans le ViewModel via le `.value = …`. 
 Dans le composant, nous allons observer le flow avec un `collectAsStateWithLifecycle`.
 
-```
+:::
 
 ### La TopAppBar
 
