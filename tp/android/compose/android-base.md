@@ -1177,6 +1177,16 @@ fun Screen3(
 - `navController` : Le `NavController` qui va permettre de naviguer entre les différentes `Screen`.
 - `viewModel` : Le `ViewModel` qui va contenir la logique de notre écran.
 
+::: tip Attention
+
+Android Studio est parfois un peu capricieux. Si vous avez une erreur sur `viewModel()`. Ajuster le code en ajoutant l'import suivant :
+
+```kotlin
+import androidx.lifecycle.viewmodel.compose.viewModel
+```
+
+:::
+
 ### Les données
 
 Pour observer les données, nous allons utiliser un `collectAsStateWithLifecycle`. Cela va nous permettre de mettre à jour l'interface en fonction des données.
