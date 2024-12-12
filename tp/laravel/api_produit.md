@@ -122,6 +122,14 @@ Avant de commencer à coder, nous allons tester que notre projet fonctionne corr
 php artisan serve
 ```
 
+## Activer les API
+
+Depuis Laravel 11, la partie API n'est plus activée par défaut. Pour activer la partie API, il suffit de réaliser la commande suivante :
+
+```sh
+php artisan install:api
+```
+
 ## Importer la base de données
 
 L'idée de ce TP est de générer automatiquement les modèles à partir de la structure de votre base de données.
