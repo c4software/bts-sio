@@ -379,6 +379,9 @@ val scanItemsFlow = MutableStateFlow<List<ScanResult>>(emptyList())
 
 // Boolean permettant de savoir si nous sommes en train de scanner
 val isScanningFlow = MutableStateFlow(false)
+
+// État de la led
+val connectedDeviceLedStateFlow = MutableStateFlow(false)
 ```
 
 :::
