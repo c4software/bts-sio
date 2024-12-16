@@ -307,6 +307,9 @@ private val scanSettings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_
 
 // Liste des résultats du scan, Le Set sera utilisé pour éviter les doublons
 private val scanResultsSet = mutableMapOf<String, ScanResult>()
+
+// Référence au BluetoothGatt en cours (device sur lequel nous sommes connectés)
+private var currentBluetoothGatt : BluetoothGatt? = null
 ```
 
 Et la méthode de scan :
