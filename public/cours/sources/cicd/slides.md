@@ -252,6 +252,7 @@ Non !
 ## Cloud : gratuit / payant
 
 - Gitlab-CI
+- Github Actions
 - CircleCI
 - Bitrise
 - Travis
@@ -265,6 +266,7 @@ Non !
 - Gitlab-CI
 - Jenkins
 - Coolify
+- Github Actions
 - …
 
 ---
