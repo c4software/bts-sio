@@ -132,6 +132,11 @@ Les outils suivants permettent de générer des sites « clients » dynamiques o
 - [Astro](https://astro.build/) <- Générateur de site statique.
 - [Docusaurus](https://docusaurus.io/) <- Générateur de documentation.
 - [NextJS](https://nextjs.org/) <- Générateur de site web basé sur React.
+- [Astro](https://astro.build/) <- Générateur de site statique.
+
+### Thème pour Astro
+
+[Liste de thèmes](https://github.com/withastro/astro/tree/main/examples)
 
 ## Hebergement :
 
