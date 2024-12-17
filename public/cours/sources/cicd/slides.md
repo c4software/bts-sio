@@ -188,6 +188,30 @@ Non !
 
 ---
 
+## Docker
+
+- Conteneurisation (isolation)
+- Répétable (Linux, Windows, Mac)
+- Facile à mettre en place
+- Facile à déployer
+
+---
+
+## Docker Compose
+
+- Plusieurs conteneurs
+- Configuration unique
+- Facile à mettre en place
+
+--- 
+
+## Docker
+
+- Construction d'une image
+- Création d'un artifact (livrable)
+
+---
+
 ## Centralisation des Artifacts
 
 ---
@@ -268,6 +292,12 @@ Non !
 - Coolify
 - Github Actions
 - …
+
+---
+
+## Plus simplement
+
+- OVH et le mode GIT.
 
 ---
 
