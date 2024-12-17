@@ -170,6 +170,8 @@ Non !
 
 ---
 
+## SonarQube
+
 ![SonarQube](./img/sonarqube.png)
 
 ---
@@ -253,6 +255,7 @@ Non !
 - CircleCI
 - Bitrise
 - Travis
+- Netlify
 - …
 
 ---
@@ -261,6 +264,7 @@ Non !
 
 - Gitlab-CI
 - Jenkins
+- Coolify
 - …
 
 ---
