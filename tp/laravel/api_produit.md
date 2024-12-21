@@ -765,7 +765,7 @@ Cette partie n'intéressera pas tout le monde. Si vous êtes intéressé, vous p
 
 Exemple de code complet :
 
-Méthode login pour authentifier un client en mode API :
+Méthode login pour authentifier un client en mode API (méthode à ajouter dans le contrôleur de votre choix) :
 
 ```php
 public function login(Request $request)
