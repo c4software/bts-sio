@@ -748,12 +748,12 @@ Vous allez devoir utiliser password_verify() pour vérifier le mot de passe.
 
 Pour aller plus loin dans la partie API, vous pouvez :
 
-- Utiliser `sanctum` pour créer des tokens d'authentification. <<https://laravel.com/docs/10.x/sanctum>
-- Utilisez-les `abilities` pour gérer les droits d'accès. <https://laravel.com/docs/10.x/sanctum#token-abilities>
+- Utiliser `sanctum` pour créer des tokens d'authentification. <<https://laravel.com/docs/11.x/sanctum>
+- Utilisez-les `abilities` pour gérer les droits d'accès. <https://laravel.com/docs/11.x/sanctum#token-abilities>
 
 Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous avons « juste » la logique pour :
 
-- Créer des tokens d'authentification (`$token = $request->user()->createToken($request->token_name);`)
+- Créer des tokens d'authentification (`$token = $request->user()->createToken('nom-du-token');`)
 - Gérer les droits d'accès pour chaque route (`->middleware('auth:sanctum')`)
 - Authentifier les utilisateurs via un token (appelé bearer token).
 
@@ -762,6 +762,92 @@ Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous 
 Cette partie n'intéressera pas tout le monde. Si vous êtes intéressé, vous pouvez regarder la documentation de Sanctum. Et me demander si vous avez des questions.
 
 :::
+
+Exemple de code complet :
+
+Méthode login pour authentifier un client en mode API :
+
+```php
+public function login(Request $request)
+    {
+        // Validation des données, email et mot de passe sont obligatoires et l'email doit être un email
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Authentification du user, `attempt` permet de vérifier les identifiants du user
+        // Si ils sont incorrects, une erreur 401 est retournée (Unauthorized)
+        if (!auth()->attempt($request->only('email', 'password'))) {
+            return response([
+                'message' => 'Invalid credentials',
+            ], 401);
+        }
+
+        // Récupération du user authentifié (avec le auth()->attempt, le user est authentifié)
+        $user = auth()->user();
+
+        // Création d'un token pour le user (sanctum, le token sera stocké en base de données et sera utilisé pour authentifier le user dans les prochaines requêtes)
+        // via un Bearer Token
+        $token = $user->createToken('token-name')->plainTextToken;
+
+        // Retourne une réponse JSON avec le user et le token
+        return response([
+            'user' => $user,
+            'token' => $token,
+        ]);
+    }
+```
+
+Méthode logout pour déconnecter un user :
+
+```php
+public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response([
+            'message' => 'Logged out',
+        ]);
+    }
+```
+
+Exemple d'appel via CURL, création d'un token :
+
+```sh
+curl -X POST http://localhost:8000/api/login \
+     -H "Content-Type: application/json" \
+     -d '{
+           "email": "valentin@demo.fr",
+           "password": "password"
+         }'
+```
+
+Ici, `email` et `password` sont l'équivalent des champs d'un formulaire de connexion. Vous devez les remplacer par les valeurs présentes dans votre base de données.
+
+Validation du token :
+
+```sh
+curl -X GET http://localhost:8000/api/user -H "Authorization: Bearer TOKEN-OBTENU-PRECÉDEMMENT"
+```
+
+### À faire
+
+- Ajouter une route permettant de lister les produits. Cette route doit être accessible uniquement aux utilisateurs authentifiés.
+- Créer un token de type admin (abilities : `admin`), qui permettra d'accéder à une route permettant de lister les commandes de tous les clients.
+
+Pour créer un token avec des abilities, il suffit de passer un tableau associatif en paramètre de la méthode `createToken()`. Exemple :
+
+```php
+$token = $request->user()->createToken('token-name', ['admin'])->plainTextToken;
+```
+
+Puis dans le middleware, vous pouvez vérifier les abilities de l'utilisateur. Exemple :
+
+```php
+Route::get('/commandes', [CommandesController::class, "liste"])->middleware('auth:sanctum', 'abilities:admin');
+```
+
 
 ## Conclusion
 
