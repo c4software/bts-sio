@@ -114,7 +114,7 @@ Ici nous avons Wordpress oui, mais également une base de données associées, n
 
 ## HomeAssistant ?
 
-Docker-Compose permet vraiment de tout faire, vous souhaitez mettre en place un petit serveur pour de la Domotique ? Pas de problème ! Vous pouvez monter très simplement un HomeAssistant :
+Docker Compose permet vraiment de tout faire, vous souhaitez mettre en place un petit serveur pour de la Domotique ? Pas de problème ! Vous pouvez monter très simplement un HomeAssistant :
 
 ```yml
 version: "3"
@@ -133,7 +133,7 @@ Je vous laisse tester.
 
 ## Allons plus loin ?
 
-Nous avons vu ici que nous pouvions montrer rapidement un ensemble d'images de Docker pour créer une Stack Applicative. Docker-Compose permet également d'utiliser des images « local » (des Dockerfile comme vus précédemment) pour les intégrer dans votre projet.
+Nous avons vu ici que nous pouvions montrer rapidement un ensemble d'images de Docker pour créer une Stack Applicative. Docker Compose permet également d'utiliser des images « local » (des Dockerfile comme vus précédemment) pour les intégrer dans votre projet.
 
 Je vous propose que nous réfléchissions ensemble à une « Stack » que nous pourrions dockerisé, un exemple avant de démarrer voilà mon Dockerfile
 

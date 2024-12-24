@@ -14,7 +14,7 @@ Dans ce TP/TD nous allons voir comment il est possible d'automatiser l'installat
 
 Nous avons vu via les différents TP qu'il était relativement simple de conteneuriser une application Web. Nous avons également vu qu'il était possible de créer une stack complète avec Docker Compose ([voir aide mémoire](/cheatsheets/serveur/debian-docker.md)).
 
-Cependant, l'installation reste manuelle (`docker-compose up -d`) et peut être source d'erreur (oubli de paramètre, erreur de syntaxe, etc.). Pour pallier à ce problème, de nombreux outils existent (Kubernetes, Rancher, etc.). Cependant, ces outils sont souvent complexes à mettre en place et à maintenir.
+Cependant, l'installation reste manuelle (`docker compose up -d`) et peut être source d'erreur (oubli de paramètre, erreur de syntaxe, etc.). Pour pallier à ce problème, de nombreux outils existent (Kubernetes, Rancher, etc.). Cependant, ces outils sont souvent complexes à mettre en place et à maintenir.
 
 Aujourd'hui, nous allons voir un outil simple et efficace pour automatiser le déploiement de nos applications Web : [Kamal](https://kamal-deploy.org/).
 
