@@ -18,6 +18,9 @@ hero:
     - theme: alt
       text: Contact
       link: /pages/contact.html
+    - theme: Chevrollier
+      text: Rejoignez-nous
+      link: https://btssio.campus-chevrollier.fr/index.html
 
 features:
   - title: Commencer
