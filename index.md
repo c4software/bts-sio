@@ -19,7 +19,7 @@ hero:
       text: Contact
       link: /pages/contact.html
     - theme: Chevrollier
-      text: Rejoignez-nous
+      text: Rejoignez-nous à Chevrollier Angers
       link: https://btssio.campus-chevrollier.fr/index.html
 
 features:
