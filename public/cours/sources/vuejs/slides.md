@@ -8,7 +8,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 VueJS 2.0 ou VueJS 3.0 ?
 
-Nous sommes à une phase de transition. Ici nous allons nous intéresser à la force de VueJS dans son ensemble.
+Ici nous allons nous intéresser à la force de VueJS dans son ensemble.
 
 ---
 
@@ -26,8 +26,7 @@ Progressive Web Apps
 
 #### Exemple de PWA
 
-- <https://appsco.pe/> (Liste d'exemples)
-- <https://pwa.rocks/> (Liste d’exemples)
+- <https://github.com/hemanth/awesome-pwa>
 - <https://mobile.twitter.com>
 - <https://m.facebook.com> (volontairement bridé)
 
@@ -146,6 +145,7 @@ Et pas ReactJS ou Angular…
 - Fonctionnement en composant
 - Des « .Vue » / Monofichier
 - Un cycle de vie complet pour chaque composant
+- Approche MVVM (Model View ViewModel)
 
 ---
 
@@ -157,12 +157,26 @@ Et pas ReactJS ou Angular…
 
 ---
 
+Deux modes de fonctionnement
+
+- VueJS comme librairie
+- VueJS avec un bundler (Webpack, Rollup, Vite)
+
+---
+
+## Comme librairie
+
+---
+
 ### L’objet VueJS
 
 ```js
-var vm = new Vue({
+const app = Vue.createApp({
   // Options
 });
+
+// Montage de l'application
+app.mount('#app');
 ```
 
 ---
@@ -178,15 +192,22 @@ var vm = new Vue({
 ---
 
 ```js
-var vm = new Vue({
-  el: "#demo",
+const app = Vue.createApp({
   data() {
     return { compteur: 1 };
   },
   mounted() {
     console.log("Le compteur est : " + this.compteur);
   },
+  methods: {
+    increment() {
+      this.compteur++;
+    },
+  },
 });
+
+// Là où l'application sera affichée
+app.mount("#demo");
 ```
 
 ---
@@ -218,8 +239,7 @@ Les directives sont des attributs HTML propres à VueJS
 Code utilisable dans votre objet. « Votre code », accessible via le `this` :
 
 ```js
-var vm = new Vue({
-  el: "#demo",
+const app = Vue.createApp({
   data() {
     return { compteur: 1 };
   },
@@ -229,32 +249,35 @@ var vm = new Vue({
     },
   },
 });
+
+app.mount("#demo");
 ```
 
 ---
 
-```js
-this.message();
+### Mais comment l’appeler ?
+
+```html
+<button @click="message">Cliquez ici</button>
 ```
 
 ---
 
-### Gestion des évènements
+### Gestion des évènements suite
 
 Exemple d'objet :
 
 ```js
-    var vm = new Vue({
-        el: "#demo"
-        data(){
-          return { compteur: 0 }
-        },
-        methods: {
-            message(message){
-                alert(message)
-            }
-        }
-    });
+Vue.createApp({
+  data() {
+    return { compteur: 0 };
+  },
+  methods: {
+    message(message) {
+      alert(message);
+    },
+  },
+}).mount("#demo");
 ```
 
 ---
@@ -274,9 +297,10 @@ Exemple d'objet :
 ---
 
 ```html
-<div v-if="chaine === 'TEST'">1</div>
-<div v-else-if="chaine === 'TEST1'">2</div>
-<div v-else>Non 1 non 2</div>
+<div id="demo">
+  <p v-if="compteur > 10">Vous avez cliqué plus de 10 fois</p>
+  <p v-else>Vous avez cliqué moins de 10 fois</p>
+</div>
 ```
 
 ---
@@ -332,17 +356,16 @@ data: {
 Observation des « Data », pour réagir en code aux modifications de l'état de votre objet.
 
 ```js
-var vm = new Vue({
-  el: "#demo",
+Vue.createApp({
   data() {
     return { compteur: 1 };
   },
   watch: {
-    compteur() {
-      console.log(`La valeur est maintenant de ${this.compteur}`);
+    compteur(newVal) {
+      console.log(`La valeur est maintenant de ${newVal}`);
     },
   },
-});
+}).mount("#demo");
 ```
 
 ---
@@ -355,8 +378,8 @@ VueJS c'est simple et très complet. La suite en pratique et sur [le site de Vue
 
 ### VueJS « Deux modes » de fonctionnement
 
-- J’ajoute VueJS dans un développement (classique) existant (**sans** Webpack)
-- Je crée une « application » JavaScript (**avec** Webpack)
+- J’ajoute VueJS dans un développement (classique) existant (**sans** Webpack/Vite/Rollup)
+- Je crée une « application » JavaScript (**avec** Webpack/Vite/Rollup)
 
 ---
 
@@ -364,7 +387,7 @@ VueJS c'est simple et très complet. La suite en pratique et sur [le site de Vue
 
 - Librairie externe à ajouter au projet (« vuejs.js »).
 - S'utilise un peu comme jquery.
-- Le but rendre « réactif » un développement basique
+- Le but rendre « réactif » un développement basique (Une partie de la page).
 - C'est puissant, et très simple. Un exemple.
 
 ---
@@ -422,22 +445,27 @@ On est vraiment loin d’une page Web dans la conception
 Un composant ce n'est pas que du JavaScript.
 
 ```html
-<template> […] </template>
+<script setup>
+  import { ref } from 'vue'
 
-<script>
-  export default {
-    name: "exemple",
-  };
+  // Déclaration d'une variable observée
+  const count = ref(0); 
 </script>
 
+<template>
+  <button @click="count++">Count is: {{ count }}</button>
+</template>
+
 <style scoped>
-  […]
+button {
+  font-weight: bold;
+}
 </style>
 ```
 
 ---
 
-C'est possible grâce à la puissance de **webpack** ou **rollup**.
+C'est possible grâce à la puissance de **Vite**, **Webpack** ou **Rollup**.
 
 ---
 
@@ -514,18 +542,26 @@ Le Bundleur est l'outil qui va assembler les modules JavaScript. Qui nous permet
 
 ## Quelques différences avec les précédents exemples…
 
-```js
-var vm = new Vue({
-  el: "#demo",
-});
-```
+Version « librairie »
 
 ```js
-export default {
-  data: () => {
+Vue.createApp({
+  data() {
     return { demo: 1 };
   },
-};
+}).mount("#demo");
+```
+
+Version « composant »
+
+```js
+<template>…</template>
+<script setup>
+  import { ref } from 'vue'
+
+  // Déclaration d'une variable observée
+  const count = ref(0); 
+</script>
 ```
 
 ---
@@ -536,7 +572,7 @@ export default {
 
 ---
 
-## Zoom sur VueJS 2 
+## Zoom sur ViteJS
 
 ---
 
@@ -560,22 +596,7 @@ export default {
 ---
 
 ```sh
-$ npm install -g @vue/cli
-… Installation …
-```
-
----
-
-```sh
-$ vue create demo
-```
-
----
-
-Ou via `create-vue`
-
-```sh
-npm create vue@2
+npm create vite@latest
 ```
 
 ---
@@ -589,12 +610,6 @@ npm create vue@2
 ---
 
 ### Et c'est tout
-
----
-
-### Vue UI. Une GUI de gestion
-
-![Vue UI](https://cli.vuejs.org/ui-new-project.png)
 
 ---
 
@@ -619,14 +634,10 @@ $ npm run dev
 
 ---
 
-### La force de VueCLI c'est une gestion des plugins
+### Vue c'est les plugins
 
-```sh
-$ vue add router
-… Modification AUTOMATIQUE du projet …
-$ vue add vuex
-… Modification AUTOMATIQUE du projet …
-```
+- Le routeur (`npm install vue-router@4`)
+- Le store (`npm install pinia`)
 
 ---
 
@@ -636,7 +647,7 @@ $ vue add vuex
 - Gestion des paramètres
 - Assemblage
 
-[Documentation](https://router.vuejs.org/fr/)
+[Documentation](https://router.vuejs.org/)
 
 ---
 
@@ -659,9 +670,9 @@ $ vue add vuex
 
 ### Communication entre les .Vue
 
-- Événements natifs
-- Store
-- Des composants Fils
+- Événements natifs (comme les événements HTML)
+- Store (Pinia)
+- Des composants Fils (via les props)
 
 ---
 
@@ -671,7 +682,7 @@ $ vue add vuex
 
 ---
 
-### Le store : Vuex
+### Le store : Pinia
 
 - Gestionnaire d'état
 - Bibliothèque (optionel) à VueJS
@@ -697,7 +708,7 @@ $ vue add vuex
 
 ### Démo store
 
-[Exemple simple](https://vuex.vuejs.org/guide/#the-simplest-store)
+[Exemple simple](https://pinia.vuejs.org/introduction.html)
 
 ---
 
@@ -818,7 +829,7 @@ export default {
 ## Une démo
 
 ```sh
-npm init vite@latest
+npm create vite@latest
 ```
 
 ---
@@ -827,10 +838,6 @@ npm init vite@latest
 
 - Permets de typer nos variables.
 - Complètement optionnel (mais je vous le conseille).
-
----
-
-Le Store, avec l'arrivée de VueJS 3.0, le store à utiliser est [Pinia](https://pinia.esm.dev/)
 
 ---
 

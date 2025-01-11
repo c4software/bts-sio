@@ -319,7 +319,8 @@ export default [
                 collapsed: true,
                 items: [
                     { text: "Slides VueJS", link: "/cours/vuejs" },
-                    { text: "Aide mémoire VueJS 2.0", link: "/cheatsheets/vuejs/" }
+                    { text: "Aide mémoire VueJS 2.0", link: "/cheatsheets/vuejs/" },
+                    { text: "Aide mémoire VueJS 3.0", link: "/cheatsheets/vuejs3/" }
                 ]
             },
             {
