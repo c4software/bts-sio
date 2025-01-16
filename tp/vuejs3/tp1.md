@@ -364,6 +364,52 @@ Vous avez envie de découvrir VueJS en mode CLI ? Je vous invite à lire le TP s
 
 :::
 
+## Allons plus loin avec VueUse
+
+Si vous souhaitez utiliser VueUse en mode amélioration d'un site existant (sans vite donc), c'est complètement possible. 
+
+Pour rappel, VueUse est une collection de composition VueJS. Ces compositions permettent de simplifier la création d'application VueJS. Vous pouvez par exemple utiliser la composition `useMouse` pour récupérer la position de la souris, ou encore la composition `useLocalStorage` pour sauvegarder des données dans le navigateur, ou encore la composition `useFetch` pour faire des requêtes HTTP.
+
+Pour plus d'informations, je vous invite à consulter la documentation de VueUse : [https://vueuse.org/](https://vueuse.org/)
+
+
+Voici un exemple :
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://unpkg.com/@vueuse/shared"></script>
+  <script src="https://unpkg.com/@vueuse/core"></script>
+<div id="app">
+    {{ message }}
+    <div>pos: {{ x }}, {{ y }}</div>
+</div>
+<script type="module">
+  const { createApp, ref } = Vue
+  const { useMouse } = window.VueUse;
+  createApp({
+    setup() {
+      const message = ref('Hello Vue!')
+      const { x, y } = useMouse()
+      return {
+        message,
+        x,
+        y
+      }
+    }
+  }).mount('#app')
+</script>
+</body>
+</html>
+```
+
 ## Ressources
 
 - [https://v3.vuejs.org/](https://v3.vuejs.org/)
