@@ -14,6 +14,12 @@ Nous l'avons vu en cours. La force de Docker est la portabilité des conteneurs.
 
 Pour ce TP, vous allez avoir besoin d'une VM (avec ou sans docker). Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 12](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
 
+::: tip Votre serveur doit être vierge
+
+Pour ce TP, votre serveur doit être vierge, c'est-à-dire qu'il ne doit pas avoir de service déjà installé (Apache, Nginx, etc.). Si ce n'est pas le cas, je vous invite à réinitialiser votre VM.
+
+:::
+
 ## Les solutions existantes
 
 Dans le monde du DevOps, il existe de nombreuses solutions pour automatiser le déploiement d'applications. Évidemment, il existe de nombreuses solutions propriétaires (Vercel, Netlify, Heroku, etc.). Ces solutions sont très efficaces, mais elles peuvent avoir un coût non négligeable, et surtout elles sont hébergées chez un tiers. Parfois, il est nécessaire de déployer une solution sur son propre serveur, c'est ici que les solutions open-source prennent tout leur sens. 
