@@ -281,7 +281,9 @@ L'auto-deploiement est une fonctionnalité très intéressante de Dokploy. Elle 
 
 [Puis suivez les étapes décrite ici](https://docs.dokploy.com/docs/core/auto-deploy)
 
-L'auto-déploiement repose sur un webhook, c'est-à-dire une URL que vous allez devoir ajouter dans les paramètres de votre repository. À chaque push, votre repository enverra une requête à cette URL, et Dokploy déclenchera un déploiement. Cela sous entend que votre serveur doit être accessible depuis internet, malheureusement, si vous êtes sur un réseau privé, cela ne fonctionnera pas.
+L'auto-déploiement repose sur un webhook, c'est-à-dire une URL que vous allez devoir ajouter dans les paramètres de votre repository. À chaque push, votre repository enverra une requête à cette URL, et Dokploy déclenchera un déploiement.
+
+Cela sous entend que votre serveur doit être accessible depuis votre serveur Gitlab / Github. Si vous utilisez le Gitlab de la section aucun problème.
 
 ## Tester c'est bien !
 
