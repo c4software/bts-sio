@@ -275,6 +275,14 @@ Votre base de données sera déployée de manière « interne », c'est-à-dire 
 
 Ce nom sera le nom de l'hôte de votre base de données (à définir par exemple dans le fichier `.env` de votre application Laravel).
 
+## Configurer l'auto-deploiement
+
+L'auto-deploiement est une fonctionnalité très intéressante de Dokploy. Elle permet de déployer automatiquement votre application à chaque push sur votre repository. Pour cela, rendez-vous dans les paramètres de votre projet, puis dans l'onglet « Deployment ».
+
+[Puis suivez les étapes décrite ici](https://docs.dokploy.com/docs/core/auto-deploy)
+
+L'auto-déploiement repose sur un webhook, c'est-à-dire une URL que vous allez devoir ajouter dans les paramètres de votre repository. À chaque push, votre repository enverra une requête à cette URL, et Dokploy déclenchera un déploiement. Cela sous entend que votre serveur doit être accessible depuis internet, malheureusement, si vous êtes sur un réseau privé, cela ne fonctionnera pas.
+
 ## Tester c'est bien !
 
 Je vous laisse tester le déploiement en mode zip.
