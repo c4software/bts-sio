@@ -30,7 +30,7 @@ Dans le monde de l'open-source, idem, il existe beaucoup de possibilités, les p
 - Dokku.
 - Coolify.
 
-En fonction de vos besoins, vous pourrez choisir l'une ou l'autre de ces solutions. Pour ce TP, nous allons nous concentrer sur Dokploy.
+En fonction de vos besoins, vous pourrez choisir l'une ou l'autre de ces solutions. Pour ce TP, nous allons nous concentrer sur [Dokploy](https://dokploy.com).
 
 ::: tip Besoin de comparer ?
 
@@ -42,7 +42,7 @@ Avant de vous lancer, je vous invite à regarder cette page pour partir avec une
 
 ## Introduction à Dokploy
 
-Dokploy est une solution de déploiement stable et facile à utiliser, conçue pour simplifier la gestion des applications. Pensez à Dokploy comme une alternative gratuite et auto-hébergeable à des plateformes comme Heroku, Vercel et [Netlify](/tp/ci/jamstack/netlify.md), en tirant parti de la robustesse de [Docker](/cours/docker.md) et de la flexibilité de [Traefik](https://traefik.io/).
+[Dokploy](https://dokploy.com) est une solution de déploiement stable et facile à utiliser, conçue pour simplifier la gestion des applications. Pensez à Dokploy comme une alternative gratuite et auto-hébergeable à des plateformes comme Heroku, Vercel et [Netlify](/tp/ci/jamstack/netlify.md), en tirant parti de la robustesse de [Docker](/cours/docker.md) et de la flexibilité de [Traefik](https://traefik.io/).
 
 ![Dokploy](./img/dokploy.png)
 
