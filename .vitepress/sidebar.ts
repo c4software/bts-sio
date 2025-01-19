@@ -515,7 +515,8 @@ export default [
                             { text: "Installation & Configuration d'un Runner Gitlab", link: "/tp/ci/gitlab/runner.md" },
                             { text: "SonarQube", link: "/tp/devops/sonarqube/sonarqube.md" },
                             { text: "Intégration continue avec Laravel", link: "/tp/ops/deployer-laravel-ci.md" },
-                            { text: "Déploiement automatique avec Kamal", link: "/tp/docker/kamal.md" }
+                            { text: "Déploiement automatique avec Kamal", link: "/tp/docker/kamal.md" },
+                            { text: "Déploiement avec Dokploy", link: "/tp/devops/paas/dokploy.md" },
                         ]
                     },
                     {
