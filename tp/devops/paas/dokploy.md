@@ -141,6 +141,8 @@ Pour tester simplement Dokploy, je vous propose de déployer une image Docker ex
 
 Dokploy repose sur deux niveaux de catégorisation, le premier est le projet, c'est le groupe de services qui vont être déployés ensemble. Le second est le service, c'est l'élément qui va être déployé (un conteneur Docker, un site statique, une base de données, etc.).
 
+:::
+
 ### Créer un déploiement
 
 1. Connectez-vous à l'interface de Dokploy.
