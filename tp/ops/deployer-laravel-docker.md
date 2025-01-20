@@ -436,3 +436,9 @@ docker compose up --build -d
 ## C'est à vous
 
 Je vous laisse ajouter une nouvelle page dans votre site. Une page avec les Conditions générales pas exemple. Une fois cette page ajoutée, je vous laisse la mettre en ligne sur votre serveur.
+
+## La suite ?
+
+La suite est peut-être l'automatisation du déploiement de votre site en utilisant [Dokploy par exemple](/tp/devops/paas/dokploy.md). L'objectif est de ne plus avoir à lancer la commande `docker compose up -d` à chaque fois que vous mettez à jour votre site.
+
+Je vous laisse consulter le TP [Dokploy](/tp/devops/paas/dokploy.md) pour en savoir plus.
