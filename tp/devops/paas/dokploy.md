@@ -170,6 +170,14 @@ Vous avez un nom de domaine ? Aucun problème, il suffit d'ajouter un enregistre
 
 Pour tester, Dokploy intègre un système de nom de domaine « dynamique » (qui fonctionne seulement en interne). Pouvez l'utiliser en allant dans l'interface de Dokploy, configurer l'onglet « Domains » pour ajouter un domaine en utilisant le petit symbole « aléatoire » (une sorte de dé).
 
+::: danger Attention
+
+Pour que cela fonctionne vous devez vérifier que votre IP est bien configurée dans les paramètres de Dokploy :
+
+![IP](./img/dokploy-server-ip.png)
+
+:::
+
 ::: tip Vous voulez un nom de domaine quand même ? 
 
 C'est là que le bât blesse, en tant qu'étudiant vous n'avez peut-être pas de nom de domaine à votre disposition pour tester votre service. Mais, pour tester, nous allons pouvoir tricher un peu.
