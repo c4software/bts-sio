@@ -168,6 +168,10 @@ Patientez quelques instants, et vous devriez voir votre service déployé. Vous 
 
 Vous avez un nom de domaine ? Aucun problème, il suffit d'ajouter un enregistrement DNS pour pointer vers votre serveur.
 
+Pour tester, Dokploy intègre un système de nom de domaine « dynamique » (qui fonctionne seulement en interne). Pouvez l'utiliser en allant dans l'interface de Dokploy, configurer l'onglet « Domains » pour ajouter un domaine en utilisant le petit symbole « aléatoire » (une sorte de dé).
+
+::: tip Vous voulez un nom de domaine quand même ? 
+
 C'est là que le bât blesse, en tant qu'étudiant vous n'avez peut-être pas de nom de domaine à votre disposition pour tester votre service. Mais, pour tester, nous allons pouvoir tricher un peu.
 
 ::: tip hosts ?
@@ -188,6 +192,8 @@ Dans l'interface de Dokploy, configurer l'onglet « Domains » pour ajouter le d
 Vous pouvez ouvrir un navigateur et rendez-vous sur l'adresse `http://nginx-test.local`. Vous devriez voir la page par défaut de Nginx.
 
 ![Nginx](./img/nginx.png)
+
+:::
 
 ::: tip Vous êtes au lycée Chevrollier ?
 Si vous êtes au lycée, nous pouvons également ajouter une entrée DNS dans notre serveur DNS local.
