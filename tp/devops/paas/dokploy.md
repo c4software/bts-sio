@@ -178,34 +178,18 @@ Pour que cela fonctionne vous devez vérifier que votre IP est bien configurée 
 
 :::
 
-::: tip Vous voulez un nom de domaine quand même ? 
+::: tip Vous voulez un nom de domaine personnalisé ?
 
-C'est là que le bât blesse, en tant qu'étudiant vous n'avez peut-être pas de nom de domaine à votre disposition pour tester votre service. Mais, pour tester, nous allons pouvoir tricher un peu.
+Le service traefik.me est plutôt intéressant. Il fonctionne sur le principe d'un sous-domaine contenant l'IP de destination. Exemple :
 
-::: tip hosts ?
-Le fichier `hosts` permet de faire de la résolution de nom de domaine en local (sur votre machine). C'est très pratique pour tester des sites sans avoir à modifier les DNS.
-:::
-
-1. Récupérez l'adresse IP de votre serveur.
-2. **Sur votre machine**, éditer le fichier `/etc/hosts` ou `C:\Windows\System32\drivers\etc\hosts` (en tant qu'administrateur) et ajoutez la ligne suivante :
-
-```bash
-adresse-ip-de-votre-serveur nginx-test.local
+```text
+http://bts-sio-127-0-0-1.traefik.me
 ```
 
-Dans l'interface de Dokploy, configurer l'onglet « Domains » pour ajouter le domaine `nginx-test.local`.
-
-![Domaine](./img/domain.png)
-
-Vous pouvez ouvrir un navigateur et rendez-vous sur l'adresse `http://nginx-test.local`. Vous devriez voir la page par défaut de Nginx.
-
-![Nginx](./img/nginx.png)
+Dans cet exemple le domaine `bts-sio-127-0-0-1.traefik.me` pointe vers l'IP `127.0.0.1`. C'est très pratique pour avoir une configuration basée sur des noms de domaine sans avoir à exposer votre serveur sur internet.
 
 :::
 
-::: tip Vous êtes au lycée Chevrollier ?
-Si vous êtes au lycée, nous pouvons également ajouter une entrée DNS dans notre serveur DNS local.
-:::
 
 Et voilà, vous avez déployé votre premier service via Dokploy. Simple, non ?
 
