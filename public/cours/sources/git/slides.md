@@ -154,7 +154,7 @@ Action d'enregistrer les modifications d'un ou des fichiers. Création d'une ver
 
 ### Commit
 
-Le résultat d'une action de commit, représenté par un hash SHA-1.
+Le résultat d'une action de commit, représenté par un hash SHA-1/SHA-256.
 
 ---
 
