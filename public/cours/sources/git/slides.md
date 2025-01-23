@@ -160,7 +160,7 @@ Le résultat d'une action de commit, représenté par un hash SHA-1/SHA-256.
 
 ### Branche
 
-Une lignée de développement. Par défaut tout le développement se fait dans la branche nommée « master ».
+Une lignée de développement. Par défaut tout le développement se fait dans la branche nommée « main ».
 
 ---
 
@@ -247,7 +247,7 @@ $ git add mon_fichier.js
 ```sh
 $ git commit -m "Mon premier commit"
 
-[master 745a6ef] Mon premier commit
+[main 745a6ef] Mon premier commit
  1 files changed, 1 insertions(+), 0 deletions(-)
  create mode 100644 mon_fichier.js
 ```
@@ -295,7 +295,7 @@ $ git commit -m "Mon 2nd commit"
 ```
 
 ```sh
-[master aa2507d] Mon 2nd commit
+[main aa2507d] Mon 2nd commit
  2 files changed, 2 insertions(+), 0 deletions(-)
  create mode 100644 fichier1.js
  create mode 100644 fichier2.js
@@ -314,7 +314,7 @@ $ git commit -am "Changement dans le fichier"
 ```
 
 ```sh
-[master 841036d] Changement dans le fichier
+[main 841036d] Changement dans le fichier
  1 files changed, 28 insertions(+), 0 deletions(-)
 ```
 
@@ -329,8 +329,8 @@ $ git commit -am "Changement dans le fichier"
 ```sh
 $ git status
 
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch main
+Your branch is up-to-date with 'origin/main'.
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -452,7 +452,7 @@ $ git commit -am "Ajout de l’évolution"
 ### « Merger » les branches
 
 ```sh
-$ git checkout master
+$ git checkout main
 ```
 
 ```sh
