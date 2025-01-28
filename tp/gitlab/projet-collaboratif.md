@@ -21,6 +21,26 @@ Pour accéder au projet :
 
 :::
 
+## Génération de votre clé
+
+Cette procédure n'est à faire qu'une seule fois « par ordinateur », la clé que nous allons générer aujourd'hui vous servira pendant les deux ans.
+
+Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoire sur comment créer une clé SSH](/cheatsheets/ssh-key/)
+
+🚨 La procédure de génération de clé est la même pour Github et Gitlab, vous pouvez donc utiliser la même clé pour les deux services. 🚨
+
+::: tip Important
+
+- Cette clé est générée sur votre profil utilisateur, et ce quelques soit le poste au lycée. Vous pouvez donc utiliser cette clé sur plusieurs projets.
+- Cette opération ne doit être faite qu’une seule fois.
+
+:::
+
+👋 Parlons un peu de cette clé. Elle est composée de deux parties :
+
+- Une partie publique (que vous pouvez partager avec qui vous voulez)
+- Une partie privée (que vous devez absolument garder pour vous)
+
 ### Questions
 
 - Pourquoi devez-vous vous connecter à GitLab ?
@@ -30,7 +50,7 @@ Pour accéder au projet :
 
 Dans ce projet, vous avez accès à un ensemble de fichiers. Le site proposé est déjà fonctionnel, mais il manque quelques fonctionnalités (listé dans les issues).
 
-Dans un premier temps, vous pouvez voir le site en accédant à l'adresse suivante : [https://pages.gitlab.dombtsig.local/slam-1ere-ann-e/entrainement-gitlab/]https://pages.gitlab.dombtsig.local/slam-1ere-ann-e/entrainement-gitlab/).
+Dans un premier temps, vous pouvez voir le site en accédant à l'adresse suivante : [https://pages.gitlab.dombtsig.local/slam-1ere-ann-e/entrainement-gitlab/]
 
 ## Cloner le projet
 
@@ -50,6 +70,12 @@ Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab�
 - Assigner à un autre étudiant le « merge » du code que vous venez d’effectuer.
 
 ### Mettre à jour le code local.
+
+::: danger Pour ces commandes…
+
+Vous devez utiliser l'aide mémoire sur Git pour vous aider : [Voir l'aide mémoire sur Git](/cheatsheets/git/)
+
+:::
 
 ```sh
 $ 
@@ -104,4 +130,3 @@ Vous venez (normalement) d’avoir au moins un « merge request » d’assig
 - Vous y voyez un intérêt ?
 - À votre avis, est-il possible d’améliorer la revue de code ?
 - En situation réelle, est-ce votre rôle de « merger le code » ?
-
