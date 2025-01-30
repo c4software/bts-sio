@@ -270,52 +270,30 @@ Vous l'aurez compris, nous allons utiliser TailwindCSS. Nous allons donc ajouter
 Nous allons maintenant ajouter TailwindCSS à notre application. Pour cela, nous allons utiliser la commande `npm install` :
 
 ```bash
-npm install tailwindcss@latest postcss@latest autoprefixer@latest
-npx tailwindcss init -p
+npm install tailwindcss @tailwindcss/vite
 ```
 
-Nous allons maintenant créer un fichier `tailwind.config.cjs` à la racine de notre application :
+Nous allons maintenant ajouter le plugin tailwindcss à notre fichier `vite.config.js` :
 
 ```js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [
+    tailwindcss(), // <- Ligne à ajouter
   ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
-
-Nous allons maintenant créer un fichier `postcss.config.cjs` à la racine de notre application :
-
-```js
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  }
-}
+})
 ```
 
 Nous allons maintenant modifier le fichier `style.css` dans le dossier `src` :
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 ```
 
 ::: tip Un instant
 
-Ici nous ajoutons TailwindCSS dans notre CSS. Le `@tailwind` est une directive qui permet à postcss de comprendre que nous voulons utiliser TailwindCSS. Les directives `@tailwind` sont :
-
-- `@tailwind base` : ajoute les styles de base de TailwindCSS
-- `@tailwind components` : ajoute les styles des composants de TailwindCSS
-- `@tailwind utilities` : ajoute les styles des utilitaires de TailwindCSS
+Le plugin TailwindCSS va générer le fichier CSS à partir du fichier `style.css`. 
 
 Je vous laisse regarder le code source de votre page généré pour voir comment celui-ci est injecté dans votre page.
 
