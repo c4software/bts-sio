@@ -151,7 +151,7 @@ Nous allons maintenant configurer le routeur pour qu'il affiche les composants q
 Nous allons créer un fichier `router.ts` dans le dossier `src` :
 
 ```ts
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 import Home from './views/Home.vue'
 import NotFound from './views/NotFound.vue'
@@ -176,7 +176,7 @@ const routes = [
 ]
 
 export default createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 });
 
