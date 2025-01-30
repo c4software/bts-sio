@@ -56,8 +56,18 @@ Dans un premier temps, vous pouvez voir le site en accédant à l'adresse suivan
 
 Maintenant que vous avez observé le site, vous pouvez le cloner sur votre machine. Plusieurs solutions s'offrent à vous :
 
-- Utiliser un IDE (comme [Visual Studio Code](https://code.visualstudio.com/)) et cloner le projet.
 - Utiliser le client GIT en ligne de commande (via Git Bash ou le terminal).
+- Utiliser un IDE (comme [Visual Studio Code](https://code.visualstudio.com/)) et cloner le projet.
+
+```sh
+$ git clone git@g…
+```
+
+::: danger Ici nous clonons en SSH
+
+Il est important de cloner en SSH pour pouvoir pousser vos modifications. Et optimiser la sécurité.
+
+:::
 
 ## Traiter une des issues
 

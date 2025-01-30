@@ -181,7 +181,6 @@ GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester l
 - Ajouter dans la page index.html l’image en question (`<img src…`)
 - ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinent. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Je vous laisse tester 😉).
 
-
 - Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé, assignez-le à un autre étudiant ! Demandez-lui de le merger pour vous.
 - ⚠️ ⚠️ L’autre étudiant doit regarder le code, et si possible vous faire des commentaires, par exemple :
   _ Tu as oublié le `alt` à ton image.
@@ -325,7 +324,21 @@ En utilisant le processus vu précédemment, ajouter une page « à propos » da
 - De réaliser une revue de code (avec des commentaires).
 - De merger le code.
 
+## Instructions à réaliser
+
+- Créer à la racine de votre projet un fichier `README.md` qui contient le nom de votre projet, une description et votre nom. Ce document doit être écrit en markdown. [Écrire en markdown](https://www.markdownguide.org/cheat-sheet/)
+- Créer un fichier `.gitignore` qui contient les fichiers que vous ne souhaitez pas versionner. En utilisant le site <https://www.gitignore.io/> pour vous aider.
+- Versionner ces deux fichiers. Avec un commit explicite.
+- Créer une nouvelle branche pour ajouter un fichier `contact.html` qui contient un formulaire de contact. (Nom, Prénom, Email, Message).
+- Créer une merge request pour fusionner cette branche avec votre branche principale.
+- Ajouter une branche de travail avec 5 commits.
+- Votre projet doit contenir au moins 20 commits.
+
+C'est à vous de jouer !
+
 ## Questions
+
+L'ensemble des questions du TP sont à répondre dans un document PDF à restituer. Voici quelques questions finalisant le TP.
 
 - À quoi sert la commande `git log` ?
 - À quoi sert la commande `git status` ?
