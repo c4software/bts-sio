@@ -96,7 +96,7 @@ Pour ajouter votre clef, vous devez :
 La procédure avec Gitlab est très similaire, vous devez :
 
 - Copier **le contenu** du fichier `id_rsa.pub`(ouvrir le fichier avec par exemple Notepad++)
-- L'ajouter à votre profil Github [en cliquant ici](https://gitlab.com/-/profile/keys)
+- L'ajouter à votre profil Gitlab de la section [en cliquant ici](https://gitlab.dombtsig.local/-/profile/keys) ou [Gitlab.com](https://gitlab.com/-/profile/keys)
 - Tester votre connexion avec la commande `ssh -T git@gitlab.com`
 
 ## Dans le cadre de la gestion à distance de serveur (ssh, sft, etc)
