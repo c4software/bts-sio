@@ -257,17 +257,28 @@ Docker Deployed: ✅
 
 ## Déployer un site Laravel
 
-Pour ce second exemple, nous allons déployer un site Laravel. Pour cela, nous allons devoir créer un `Dockerfile` pour notre application. Je vous laisse suivre le TP [Déployer un site Laravel avec Docker](/tp/ops/deployer-laravel-docker.md) qui vous explique les différentes étapes (c'est très simple).
+Pour ce second exemple, nous allons déployer un site Laravel. 
+
+Deux solutions s'offrent à nous : 
+
+- Créer un `Dockerfile` pour notre application. Je vous laisse suivre le TP [Déployer un site Laravel avec Docker](/tp/ops/deployer-laravel-docker.md) qui vous explique les différentes étapes (c'est très simple).
+- Laisser Nixpacks s'occuper de la construction de notre application. (ça fonctionne très bien et normalement sans problème).
 
 Je vous laisse commiter votre projet sur Github, Gitlab ou autre, et vous pourrez ensuite le déployer via Dokploy.
 
-Ici la démarche sera similaire à celle de ViteJS, vous allez choisir la méthode de déploiement « Git Repository » et entrer l'URL de votre repository. La différence sera que vous allez devoir spécifier à Dokploy que nous allons déployer en mode Dockerfile.
+Ici la démarche sera similaire à celle de ViteJS, vous allez choisir la méthode de déploiement « Git Repository » et entrer l'URL de votre repository. Si vous avez choisi la version Dockerfile, alors la seule différence sera que vous allez devoir spécifier à Dokploy que nous allons déployer en mode Dockerfile :
 
 ![Projet Laravel](./img/deploy-laravel.png)
 
+Une fois le Git configuré, vous devez renseigner le contenu de votre `.env` dans l'onglet « Environment » de Dokploy. Ce sont ces variables qui seront utilisées par votre application Laravel. Ici donc pas besoin de les mettre dans le fichier `.env` de votre projet (comme nous l'avons vu en cours, ce fichier contient des informations sensibles **et ne doit pas être versionné**).
+
 Cliquez sur « Deploy », patientez puis votre site Laravel sera déployé. Il ne vous restera plus qu'à configurer un domaine pour accéder à votre site.
 
-## Ajouter une base de données
+## Une base de données + PHPMyAdmin
+
+Il est également possible de déployer une base de données via Dokploy. L'interface est très simple, vous pouvez choisir entre plusieurs types de bases de données (MySQL, PostgreSQL, etc.).
+
+### Ajouter une base de données
 
 Vous avez besoin d'une base de données ? Pas de problème, vous avez dans le menu « + Create service » la possibilité de créer un service de type « Database ». Vous pouvez choisir entre plusieurs types de base de données :
 
@@ -280,6 +291,35 @@ Votre base de données sera déployée de manière « interne », c'est-à-dire 
 ![Base de données](./img/database-url-interne.png)
 
 Ce nom sera le nom de l'hôte de votre base de données (à définir par exemple dans le fichier `.env` de votre application Laravel).
+
+::: tip Vous souhaitez la rendre accessible depuis l'extérieur ?
+
+Si vous souhaitez vous connecter depuis le réseau local (ou depuis un autre serveur), vous pouvez également activer un « port » pour rendre votre base de données accessible depuis l'exterieur. 
+
+![Base de données](./img/external_port.png)
+
+:::
+
+### Ajouter PHPMyAdmin
+
+PhpMyAdmin n'est pas le seul outil pour gérer une base de données. Même si je vous encourage à utiliser plutôt un client SQL (comme DBeaver), il est possible de déployer PhpMyAdmin via Dokploy. Voici un exemple vidéo de configuration :
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/JL1dYJX1y4g?si=3gpD2XYXHCs0a8J3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+Pour changer j'ai utilisé le mode `Docker Compose` pour le déployer. Voici la configuration :
+
+```yaml
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.1
+    environment:
+      PMA_HOST: À-REMPLACER-PAR-LE-HOST-DE-VOTRE-BDD-INDIQUÉ-DANS-LA-CONFIGURATION-DE-VOTRE-BDD (voir vidéo)
+      PMA_ARBITRARY: 0
+```
+
+::: tip Une alternative ? 
+
+Vous pouvez également déployer PHPMyAdmin en mode `Application` en utilisant l'image `phpmyadmin/phpmyadmin:5.2.1` et en configurant les variables d'environnement `PMA_HOST` et `PMA_ARBITRARY` dans l'onglet « Environment ».
 
 ## Configurer l'auto-deploiement
 
