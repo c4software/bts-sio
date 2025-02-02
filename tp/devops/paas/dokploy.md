@@ -280,7 +280,7 @@ Il est également possible de déployer une base de données via Dokploy. L'inte
 
 ### Ajouter une base de données
 
-Vous avez besoin d'une base de données ? Pas de problème, vous avez dans le menu « + Create service » la possibilité de créer un service de type « Database ». Vous pouvez choisir entre plusieurs types de base de données :
+Vous avez besoin d'une base de données ? Pas de problème, vous avez dans le menu « + Create service » la possibilité de créer un service de type « Database ». Vous pouvez choisir entre plusieurs types (et version) de base de données :
 
 ![Base de données](./img/database.png)
 
@@ -290,7 +290,7 @@ Votre base de données sera déployée de manière « interne », c'est-à-dire 
 
 ![Base de données](./img/database-url-interne.png)
 
-Ce nom sera le nom de l'hôte de votre base de données (à définir par exemple dans le fichier `.env` de votre application Laravel).
+Ce nom sera le `nom de l'hôte` de votre base de données (à définir par exemple dans le fichier `.env` de votre application Laravel).
 
 ::: tip Vous souhaitez la rendre accessible depuis l'extérieur ?
 
