@@ -321,6 +321,18 @@ services:
 
 Vous pouvez également déployer PHPMyAdmin en mode `Application` en utilisant l'image `phpmyadmin/phpmyadmin:5.2.1` et en configurant les variables d'environnement `PMA_HOST` et `PMA_ARBITRARY` dans l'onglet « Environment ».
 
+:::
+
+### Point cyber
+
+::: danger Sécurité
+
+Nous installons ici un outil qui permet de gérer la base de données. Il est important de sécuriser cet outil. Vous devez donc impérativement avoir un mot de passe fort pour l'accès à votre base de données.
+
+Autre point important, je vous conseille vivement de ne pas exposer le port `3306` de votre base de données sur Internet. Il est préférable de le garder uniquement ouvert au sein du réseau interne de Docker. Si réellement vous avez besoin d'accéder à votre base de données depuis l'exterieur (ex depuis C#), alors je vous conseille de choisir un port aléatoire différent du port `3306` et de le configurer dans votre application.
+
+:::
+
 ## Configurer l'auto-deploiement
 
 L'auto-deploiement est une fonctionnalité très intéressante de Dokploy. Elle permet de déployer automatiquement votre application à chaque push sur votre repository. Pour cela, rendez-vous dans les paramètres de votre projet, puis dans l'onglet « Deployment ».
@@ -329,7 +341,7 @@ L'auto-deploiement est une fonctionnalité très intéressante de Dokploy. Elle 
 
 L'auto-déploiement repose sur un webhook, c'est-à-dire une URL que vous allez devoir ajouter dans les paramètres de votre repository. À chaque push, votre repository enverra une requête à cette URL, et Dokploy déclenchera un déploiement.
 
-Cela sous entend que votre serveur doit être accessible depuis votre serveur Gitlab / Github. Si vous utilisez le Gitlab de la section aucun problème.
+Cela sous entend que votre serveur doit être accessible depuis votre serveur Gitlab / Github. Si vous utilisez **le Gitlab de la section aucun problème.**
 
 ## Tester c'est bien !
 
