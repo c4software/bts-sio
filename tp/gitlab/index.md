@@ -356,4 +356,4 @@ L'ensemble des questions du TP sont à répondre dans un document PDF à restitu
 
 ## Rendu
 
-La restitution est à faire en utilisant le lien suivant : <https://forms.gle/f1hTk9X1EUAkgECp6>
+La restitution est à faire en utilisant le lien suivant : <https://forms.gle/iY1HxAAhD1TyA6xs9>
