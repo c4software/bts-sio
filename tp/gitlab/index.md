@@ -183,8 +183,9 @@ GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester l
 
 - Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé, assignez-le à un autre étudiant ! Demandez-lui de le merger pour vous.
 - ⚠️ ⚠️ L’autre étudiant doit regarder le code, et si possible vous faire des commentaires, par exemple :
-  _ Tu as oublié le `alt` à ton image.
-  _ Tu as oublié le `title` à ton image. \* Ou même pourquoi as-tu choisi cette image ?
+  - Tu as oublié le `alt` à ton image.
+  - Tu as oublié le `title` à ton image.
+  - Ou même pourquoi as-tu choisi cette image ?
 - Prenez en compte les remarques et modifiez le code
 - Ajouter un commentaire (dans le merge request) pour indiquer à l’autre étudiant que vous avez terminé.
 - L’autre étudiant approuve votre code.
