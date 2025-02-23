@@ -76,17 +76,7 @@ Avant d'aller plus loin, observez les options du site. Si vous êtes curieux, vo
 
 ## Les règles à respecter
 
-L'équipe pédagogique vous a attribué l'accès une zone de travail :
-
-::: tip Quelle est votre Zone ?
-
-| 1ère année | 2nd année |
-|:----------:|:---------:|
-|   BREHAT   | OUESSANT  |
-
-:::
-
-Avant de continuer, quelques règles **sont importantes** pour utiliser aux mieux cette espace de travail partagé :
+L'équipe pédagogique vous a attribué l'accès une zone de travail. Cette zone est un dossier et des ressources réservées pour vous. Avant de continuer, quelques règles **sont importantes** pour utiliser aux mieux cette espace de travail partagé :
 
 - Ne pas créer de VM directement dans **votre zone**, mais dans un dossier à votre nom.
 - Nommer vos VM de la manière suivante : `<votre-nom>-<utilité de la machine>`. (Exemple: `vbrosseau-ap2ServeurDebianWeb`).
