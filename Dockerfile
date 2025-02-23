@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN bun install
 COPY . .
+RUN apt update && apt install -y git
 RUN bun run docs:build
 
 # Production stage
