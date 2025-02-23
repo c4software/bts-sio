@@ -155,25 +155,9 @@ Ici vous allez choisir le nom de votre VM. Il est important de respecter la conv
 
 ![Ressource de calcul](./res/ferme-etape3.jpg)
 
-::: tip Quelle ressource de calcul ?
-
-| 1ère année | 2nd année |
-|:----------:|:---------:|
-|   BREHAT   | OUESSANT  |
-
-:::
-
 ### 4. L'espace de stockage
 
 ![Ressource de calcul](./res/ferme-etape4.jpg)
-
-::: tip Quelle est votre Zone ?
-
-| 1ère année | 2nd année |
-|:----------:|:---------:|
-|   BREHAT   | OUESSANT  |
-
-:::
 
 ### 5. Compatibilité
 
