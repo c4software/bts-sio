@@ -1,3 +1,5 @@
+providers=["node","staticfile"]
+
 [phases.setup]
 nixPkgs = ['bun']
 
@@ -5,4 +7,7 @@ nixPkgs = ['bun']
 cmds = ['bun i --no-save']
 
 [phases.build]
-cmds = ['bun run docs:build']
+cmds = ['bun run build']
+
+[[ nixpacks.included_files ]]
+paths = [".vitepress/dist"]
