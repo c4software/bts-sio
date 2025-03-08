@@ -110,6 +110,12 @@ Pour cette étape vous pouvez utiliser l'outil disponible dans l'aide mémoire :
 
 En utilisant l'aide mémoire [disponible ici](/cheatsheets/serveur/debian-reseau.md), générer une nouvelle adresse IP pour votre serveur.
 
+Une fois les lignes `address` et `gateway` modifié dans le fichier `/etc/network/interfaces`, vous pouvez redémarrer votre serveur pour que les modifications soient prises en compte.
+
+```bash
+reboot
+```
+
 Une fois suivi vous pouvez vérifier que votre serveur a bien une nouvelle adresse IP en utilisant la commande `ip a`.
 
 Vous pouvez aussi vérifier l'accès à internet en utilisant la commande `ping google.com`
@@ -180,6 +186,30 @@ Vous pouvez utiliser `vim` ou `nano` pour modifier le fichier.
 ::: details le fichiers /etc/hosts avant modification
 
 ![Fichier /etc/hosts](./res/edit-hostname.jpg)
+
+:::
+
+## Sécurisation de l'accès SSH
+
+Nous l'avons vu dans [le TP précédent](./tp1b.md#ajouter-votre-clé-publique-sur-votre-serveur), il est important de sécuriser l'accès SSH à votre serveur. Nous allons donc réaliser les mêmes étapes que dans le TP précédent à savoir :
+
+- Interdire la connexion en tant que `root` (`PermitRootLogin no`).
+- Interdire la connexion avec un mot de passe (`PasswordAuthentication no`).
+
+::: danger 👋 Attention
+
+Une fois ces paramètres modifiés, votre serveur ne sera plus accessible en mode mot de passe. Il est donc important de réaliser **un échange de clés au préalable** (via la commande `ssh-copy-id <votre-utilisateur>@<votre-ip>` depuis votre machine).
+
+:::
+
+Pour cela vous pouvez éditer le fichier `/etc/ssh/sshd_config` et modifier les lignes relatives à ces paramètres (`vim /etc/ssh/sshd_config`).
+
+
+::: details Aller plus loin
+
+Vous pouvez aussi changer le port d'écoute du serveur SSH pour éviter les attaques par force brute. Pour cela vous pouvez modifier la ligne `Port 22` par un autre port (exemple : `Port 2222`).
+
+Une fois modifié, vous pourrez accéder à votre serveur en utilisant la commande `ssh -p 2222 <votre-utilisateur>@<votre-ip>`.
 
 :::
 
