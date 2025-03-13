@@ -183,13 +183,15 @@ Voici le contenu du fichier 2.
 Avec ce fichier je vais avoir une bonne note.
 ```
 
-### Installer un logiciel
+### Installer des logiciels
 
 Dans ce TP je vous demande d'installer les logiciels suivants :
 
 - `htop` : Un gestionnaire de tâches.
 - `cmatrix` : Un économiseur d'écran en mode terminal.
 - `curl` : Un outil pour récupérer des fichiers depuis le Web.
+
+Pour rappel, pour installer un logiciel sur un système Debian, vous pouvez utiliser la commande `apt`.
 
 ### Télécharger le fichier `valeurs.md`
 
