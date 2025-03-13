@@ -231,7 +231,7 @@ systemctl enable apache2
 
 Actuellement vous utilisez un utilisateur, celui-ci va créer des fichiers et des dossiers en son nom. Il est important de savoir comment gérer les droits sur ces fichiers et dossiers. Linux est un système multi-utilisateur, vous ne vous en rendez pas compte, mais beaucoup d'applications tournent en arrière-plan et ont besoin de droits spécifiques pour fonctionner.
 
-::: Danger Un utilisateur différent ?
+::: danger Un utilisateur différent ?
 
 Et oui, si vous regardez avec la commande `ps aux` vous verrez que de nombreux processus tournent avec un utilisateur différent du vôtre. Par exemple, Apache tourne avec l'utilisateur `www-data`. C'est pour cela que nous allons voir comment gérer les droits sur les fichiers et dossiers.
 
@@ -290,6 +290,14 @@ chmod 777 fichier
 
 Ici `777` équivaut à `ugo+rwx`.
 
+::: danger Attention danger
+
+Il est important de ne pas donner des droits trop permissifs à un fichier ou un dossier. Cela peut entraîner des problèmes de sécurité. Par exemple, si vous donnez tous les droits à un fichier, n'importe qui pourra le modifier.
+
+Si vous êtes entrain de faire un 777, vous êtes très probablement en train de faire une erreur. Il est important de bien comprendre les droits et de ne donner que les droits nécessaires.
+
+:::
+
 ### Modifier les permissions
 
 Avec les commandes vues précédemment, modifiez les permissions des fichiers et dossiers suivants :
@@ -335,7 +343,8 @@ Je vous laisse éditer le fichier `/var/www/html/index.html` pour y mettre votre
 ::: details Solution (je vous conseille de faire l'exercice avant de regarder la solution)
 
 ```bash
-nano /var/www/html/index.html
+echo "" > /var/www/html/index.html # Efface le contenu du fichier
+vim /var/www/html/index.html
 ```
 
 :::
@@ -497,6 +506,9 @@ awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
     fichier2_check=$(ssh_execute "[ -f /home/restitution/tp1/fichier2.md ] && echo 'true' || echo 'false'")
     fichier2bis_check=$(ssh_execute "[ -f /home/restitution/tp1/fichier2bis.md ] && echo 'true' || echo 'false'")
     introduction_check=$(ssh_execute "[ -f /home/restitution/introduction.md ] && echo 'true' || echo 'false'")
+
+    # Présence du hello.sh
+    hello_check=$(ssh_execute "[ -f /home/restitution/hello.sh ] && echo 'true' || echo 'false'")
     
     # Vérifier les logiciels installés
     htop_check=$(ssh_execute "dpkg -l | grep -q htop && echo 'true' || echo 'false'")
