@@ -458,7 +458,7 @@ Le rendu se fera via le formulaire suivant : [Rendre le TP](https://forms.gle/1U
 
 Bravo vous avez terminé le TP !
 
-::: details Comment sera validé la partie VM ?
+::: details Comment sera validée la partie VM ?
 
 Pour valider la partie VM, je vais utiliser le script suivant :
 
