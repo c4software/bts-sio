@@ -474,7 +474,7 @@ function ssh_execute {
 }
 
 echo "Validation des VMs"
-echo "VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md" > vm_check_result.csv
+echo "VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh" > vm_check_result.csv
 
 # Boucle sur chaque ligne du fichier CSV
 awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
@@ -523,7 +523,7 @@ awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
     apropos_check=$(ssh_execute "wget -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
 
     # Enregistrer les résultats dans un fichier CSV
-    echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check}" >> vm_check_result.csv
+    echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check}" >> vm_check_result.csv
 done
 ```
 
