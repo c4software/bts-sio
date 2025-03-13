@@ -50,7 +50,7 @@ Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les s
 - OS : Debian 12
 - Mémoire : 1Go (ou 2Go si vous utilisez le modèle).
 - CPU : 1.
-- Disque : 5Go (ou 8Go si vous utilisez le modèle).
+- Disque : 5Go (ou 20Go si vous utilisez le modèle).
 - Utilisateur : `<votre nom>`.
 - Mot de passe : `<votre mot de passe>` (mot de passe de votre choix, mais qui respecte les règles de sécurité).
 
@@ -182,6 +182,26 @@ Voici le contenu du fichier 2.
 ```bash
 Avec ce fichier je vais avoir une bonne note.
 ```
+
+### Installer un logiciel
+
+Dans ce TP je vous demande d'installer les logiciels suivants :
+
+- `htop` : Un gestionnaire de tâches.
+- `cmatrix` : Un économiseur d'écran en mode terminal.
+- `curl` : Un outil pour récupérer des fichiers depuis le Web.
+
+### Télécharger le fichier `valeurs.md`
+
+À l'aide de curl, téléchargez le fichier `valeurs.md` depuis le lien suivant : `https://gist.githubusercontent.com/c4software/65d2003034854fc705f4806ef07bace6/raw/d6e4a967cf058f53a176007898bb2da3b4db4d06/gistfile1.txt`.
+
+Pour cela, vous pouvez utiliser la commande suivante :
+
+```bash
+curl https://gist.githubusercontent.com/c4software/65d2003034854fc705f4806ef07bace6/raw/d6e4a967cf058f53a176007898bb2da3b4db4d06/gistfile1.txt > /restitution/valeurs.md
+```
+
+Ici, `>` permet de rediriger la sortie de la commande `curl` vers le fichier `valeurs.md`. Vous pouvez ensuite vérifier que le fichier a bien été téléchargé en utilisant la commande `cat` (`cat /restitution/valeurs.md`).
 
 ### Installer un serveur web
 
@@ -443,8 +463,7 @@ function ssh_execute {
 }
 
 echo "Validation des VMs"
-echo "VM Name;OS;Memory;CPU;Disk;index.html;apropos.html" > vm_check_result.csv
-
+echo "VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md" > vm_check_result.csv
 
 # Boucle sur chaque ligne du fichier CSV
 awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
@@ -453,9 +472,6 @@ awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
     # Définir les paramètres de la machine distante
     remote_host="${ip}"
     remote_user="${user}"
-
-    # Définir les paramètres de la VM
-    vm_name="-ligne-de-commande"
 
     # Vérifier le nom de la VM
     vm_name_result=$(ssh_execute "hostname")
@@ -470,13 +486,30 @@ awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
     cpu_result=$(ssh_execute "nproc")
 
     # Vérifier le disque
-    disk_result=$(ssh_execute "df -h | grep '/dev/sda1'" | awk '{print $2}')
+    disk_result=$(ssh_execute "df -h | grep '/dev/sda1' | awk '{print \$2}'")
 
+    # Vérifier les fichiers et dossiers requis
+    restitution_check=$(ssh_execute "[ -d /home/restitution ] && echo 'true' || echo 'false'")
+    tp1_check=$(ssh_execute "[ -d /home/restitution/tp1 ] && echo 'true' || echo 'false'")
+    fichier1_check=$(ssh_execute "[ -f /home/restitution/fichier1.md ] && echo 'true' || echo 'false'")
+    fichier2_check=$(ssh_execute "[ -f /home/restitution/tp1/fichier2.md ] && echo 'true' || echo 'false'")
+    fichier2bis_check=$(ssh_execute "[ -f /home/restitution/tp1/fichier2bis.md ] && echo 'true' || echo 'false'")
+    introduction_check=$(ssh_execute "[ -f /home/restitution/introduction.md ] && echo 'true' || echo 'false'")
+    
+    # Vérifier les logiciels installés
+    htop_check=$(ssh_execute "dpkg -l | grep -q htop && echo 'true' || echo 'false'")
+    cmatrix_check=$(ssh_execute "dpkg -l | grep -q cmatrix && echo 'true' || echo 'false'")
+    curl_check=$(ssh_execute "dpkg -l | grep -q curl && echo 'true' || echo 'false'")
+    
+    # Vérifier le fichier valeurs.md
+    valeurs_check=$(ssh_execute "[ -f /home/restitution/valeurs.md ] && echo 'true' || echo 'false'")
+
+    # Vérifier la présence et le contenu des pages web
     index_check=$(ssh_execute "wget -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
     apropos_check=$(ssh_execute "wget -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
 
     # Enregistrer les résultats dans un fichier CSV
-    echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check}" >> vm_check_result.csv
+    echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check}" >> vm_check_result.csv
 done
 ```
 
