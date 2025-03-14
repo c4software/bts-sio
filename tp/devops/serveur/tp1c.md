@@ -48,7 +48,7 @@ Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les s
 
 - Nom de la VM : `<votre nom>-ligne-de-commande`.
 - OS : Debian 12
-- Mémoire : 1Go (ou 2Go si vous utilisez le modèle).
+- Mémoire : 1Go (ou 4Go si vous utilisez le modèle).
 - CPU : 1.
 - Disque : 5Go (ou 20Go si vous utilisez le modèle).
 - Utilisateur : `<votre nom>`.
