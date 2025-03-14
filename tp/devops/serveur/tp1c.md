@@ -154,6 +154,13 @@ Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisée
 - Créez un dossier `tp1` dans le dossier `/home/restitution/`.
 - Créez un fichier `fichier1.md` dans le dossier `/home/restitution/tp1/`. (deux solutions possibles, via `touch` ou via `nano`).
 - Créez un fichier `fichier2.md` dans le dossier `/home/restitution/tp1/`. (deux solutions possibles, via `touch` ou via `nano`).
+
+::: danger Problème de droits ?
+
+Si vous avez un problème de droits, c'est normal. Vous devez modifier les droits des dossiers et fichiers pour que votre utilisateur puisse les modifier. Dans un premier temps créer le dossier `/home/restitution` en root (`sudo mkdir /home/restitution`) puis changer le propriéjson du dossier (`sudo chown -R <votre utilisateur>:<votre utilisateur> /home/restitution`). Vous pourrez ensuite créer les dossiers et fichiers sans problème.
+
+:::
+
 - Mettre le contenu suivant dans le fichier `fichier1` :
 
 ```bash
