@@ -195,7 +195,9 @@ Pour rappel, pour installer un logiciel sur un système Debian, vous pouvez util
 
 ### Télécharger le fichier `valeurs.md`
 
-À l'aide de curl, téléchargez le fichier `valeurs.md` depuis le lien suivant : `https://gist.githubusercontent.com/c4software/65d2003034854fc705f4806ef07bace6/raw/d6e4a967cf058f53a176007898bb2da3b4db4d06/gistfile1.txt`.
+À l'aide de curl, téléchargez le fichier `valeurs.md` depuis le lien suivant : 
+
+`https://gist.githubusercontent.com/c4software/65d2003034854fc705f4806ef07bace6/raw/d6e4a967cf058f53a176007898bb2da3b4db4d06/gistfile1.txt`
 
 Pour cela, vous pouvez utiliser la commande suivante :
 
