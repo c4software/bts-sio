@@ -202,10 +202,10 @@ Pour rappel, pour installer un logiciel sur un système Debian, vous pouvez util
 Pour cela, vous pouvez utiliser la commande suivante :
 
 ```bash
-curl https://gist.githubusercontent.com/c4software/65d2003034854fc705f4806ef07bace6/raw/d6e4a967cf058f53a176007898bb2da3b4db4d06/gistfile1.txt > /restitution/valeurs.md
+curl https://gist.githubusercontent.com/c4software/65d2003034854fc705f4806ef07bace6/raw/d6e4a967cf058f53a176007898bb2da3b4db4d06/gistfile1.txt > /home/restitution/valeurs.md
 ```
 
-Ici, `>` permet de rediriger la sortie de la commande `curl` vers le fichier `valeurs.md`. Vous pouvez ensuite vérifier que le fichier a bien été téléchargé en utilisant la commande `cat` (`cat /restitution/valeurs.md`).
+Ici, `>` permet de rediriger la sortie de la commande `curl` vers le fichier `valeurs.md`. Vous pouvez ensuite vérifier que le fichier a bien été téléchargé en utilisant la commande `cat` (`cat /home/restitution/valeurs.md`).
 
 ### Installer un serveur web
 
