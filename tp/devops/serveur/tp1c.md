@@ -477,59 +477,62 @@ Pour valider la partie VM, je vais utiliser le script suivant :
 # Définir le chemin du fichier CSV contenant les informations de connexion
 csv_file="./input.csv"
 
-# Fonction pour se connecter en SSH et exécuter une commande
 function ssh_execute {
-    ssh -i ~/.ssh/id_rsa_etudiant "${remote_user}@${remote_host}" "$1"
+  ssh-keygen -R $2 > /dev/null 2>&1
+  ssh -o "PreferredAuthentications=publickey" -o "CheckHostIP=no" -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa_etudiant "$1"@$2 "$3" 2> /dev/null
 }
 
 echo "Validation des VMs"
 echo "VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh" > vm_check_result.csv
 
-# Boucle sur chaque ligne du fichier CSV
-awk -F";" '{print $1, $2}' "${csv_file}" | while read user ip; do
-    echo "Validation pour l'utilisateur ${user} avec l'adresse IP ${ip}."
-
+# Boucle sur chaque ligne du fichier CSV, en ignorant la première ligne (commentaire)
+cat "${csv_file}" | while IFS=";" read -r user ip; do
+    # Ignorer les lignes vides
+    [ -z "$user" ] && continue
+    
     # Définir les paramètres de la machine distante
-    remote_host="${ip}"
-    remote_user="${user}"
+    target_ip="${ip}"
+    user="${user}"
+
+    echo "Validation de la VM $user@$target_ip"
 
     # Vérifier le nom de la VM
-    vm_name_result=$(ssh_execute "hostname")
+    vm_name_result=$(ssh_execute $user $target_ip "hostname")
 
     # Vérifier l'OS
-    os_result=$(ssh_execute "lsb_release -ds")
+    os_result=$(ssh_execute $user $target_ip "lsb_release -ds")
 
     # Vérifier la mémoire 
-    memory_result=$(ssh_execute "awk '/MemTotal/{print \$2}' /proc/meminfo")
+    memory_result=$(ssh_execute $user $target_ip "awk '/MemTotal/{print \$2}' /proc/meminfo")
 
     # Vérifier le CPU
-    cpu_result=$(ssh_execute "nproc")
+    cpu_result=$(ssh_execute $user $target_ip "nproc")
 
     # Vérifier le disque
-    disk_result=$(ssh_execute "df -h | grep '/dev/sda1' | awk '{print \$2}'")
+    disk_result=$(ssh_execute $user $target_ip "df -h | grep '/dev/sda1' | awk '{print \$2}'")
 
     # Vérifier les fichiers et dossiers requis
-    restitution_check=$(ssh_execute "[ -d /home/restitution ] && echo 'true' || echo 'false'")
-    tp1_check=$(ssh_execute "[ -d /home/restitution/tp1 ] && echo 'true' || echo 'false'")
-    fichier1_check=$(ssh_execute "[ -f /home/restitution/fichier1.md ] && echo 'true' || echo 'false'")
-    fichier2_check=$(ssh_execute "[ -f /home/restitution/tp1/fichier2.md ] && echo 'true' || echo 'false'")
-    fichier2bis_check=$(ssh_execute "[ -f /home/restitution/tp1/fichier2bis.md ] && echo 'true' || echo 'false'")
-    introduction_check=$(ssh_execute "[ -f /home/restitution/introduction.md ] && echo 'true' || echo 'false'")
+    restitution_check=$(ssh_execute $user $target_ip "[ -d /home/restitution ] && echo 'true' || echo 'false'")
+    tp1_check=$(ssh_execute $user $target_ip "[ -d /home/restitution/tp1 ] && echo 'true' || echo 'false'")
+    fichier1_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/fichier1.md ] && echo 'true' || echo 'false'")
+    fichier2_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/tp1/fichier2.md ] && echo 'true' || echo 'false'")
+    fichier2bis_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/tp1/fichier2bis.md ] && echo 'true' || echo 'false'")
+    introduction_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/introduction.md ] && echo 'true' || echo 'false'")
 
     # Présence du hello.sh
-    hello_check=$(ssh_execute "[ -f /home/restitution/hello.sh ] && echo 'true' || echo 'false'")
+    hello_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/hello.sh ] && echo 'true' || echo 'false'")
     
     # Vérifier les logiciels installés
-    htop_check=$(ssh_execute "dpkg -l | grep -q htop && echo 'true' || echo 'false'")
-    cmatrix_check=$(ssh_execute "dpkg -l | grep -q cmatrix && echo 'true' || echo 'false'")
-    curl_check=$(ssh_execute "dpkg -l | grep -q curl && echo 'true' || echo 'false'")
+    htop_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q htop && echo 'true' || echo 'false'")
+    cmatrix_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q cmatrix && echo 'true' || echo 'false'")
+    curl_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q curl && echo 'true' || echo 'false'")
     
     # Vérifier le fichier valeurs.md
-    valeurs_check=$(ssh_execute "[ -f /home/restitution/valeurs.md ] && echo 'true' || echo 'false'")
+    valeurs_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/valeurs.md ] && echo 'true' || echo 'false'")
 
     # Vérifier la présence et le contenu des pages web
-    index_check=$(ssh_execute "wget -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
-    apropos_check=$(ssh_execute "wget -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
+    index_check=$(ssh_execute $user $target_ip "wget -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
+    apropos_check=$(ssh_execute $user $target_ip "wget -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
 
     # Enregistrer les résultats dans un fichier CSV
     echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check}" >> vm_check_result.csv
