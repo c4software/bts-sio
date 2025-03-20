@@ -32,10 +32,10 @@ Tester la commande (et chercher pourquoi ça ne fonctionne pas).
 
 ```sh
 # Pour *Nix
-docker run --rm -p 8080:80 -v $(pwd):/var/www/html/ php:8.2-apache
+docker run --rm -p 8080:80 -v $(pwd):/var/www/html/ php:8.4-apache
 
 # Pour Windows
-docker run --rm -p 8080:80 -v %cd%:/var/www/html/ php:8.2-apache
+docker run --rm -p 8080:80 -v %cd%:/var/www/html/ php:8.4-apache
 ```
 
 ### La force de Docker

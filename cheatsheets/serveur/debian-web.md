@@ -92,7 +92,7 @@ php -v
 ```
 
 ```bash
-PHP 8.2.3 (cli) (built: Feb 15 2023 00:18:01) (NTS)
+PHP 8.4 (cli) (built: Feb 15 2023 00:18:01) (NTS)
 Copyright (c) The PHP Group
 Zend Engine v4.2.3, Copyright (c) Zend Technologies
     with Zend OPcache v8.2.3, Copyright (c), by Zend Technologies

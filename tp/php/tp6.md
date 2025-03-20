@@ -35,7 +35,7 @@ Laravel est un framework PHP qui se veut simple d'utilisation. Il est basé sur 
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
 
-- PHP 8.2
+- PHP 8.4
 - Composer
 
 Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiquement par `Composer`
