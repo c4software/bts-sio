@@ -481,20 +481,35 @@ function ssh_execute {
 }
 
 echo "Validation des VMs"
-echo "VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh" > vm_check_result.csv
+echo "Etudiant;echange;VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh" > vm_check_result.csv
 
 array=(
-"vbrosseau;ip.de.la.machine"
+"utilisateur;ip.de.la.machine"
 )
 
 for i in "${array[@]}"
 do
     # Séparer la ligne en deux parties
     IFS=';' read -ra parts <<< "$i"
+
+    etudiant=${parts[0]}
     user=${parts[0]}
     target_ip=${parts[1]}
 
     echo "Validation de la VM $user@$target_ip"
+
+    # Validation de la connexion SSH à la VM (si echec alors $user = vbrosseau)
+    ssh_execute $user $target_ip "exit"
+    if [ $? -ne 0 ]; then
+        user="vbrosseau"
+    fi
+
+    # Malus si l'utilisateur est vbrosseau
+    if [ $user = "vbrosseau" ]; then
+      echange="0"
+    else
+      echange="1"
+    fi
 
     # Vérifier le nom de la VM
     vm_name_result=$(ssh_execute $user $target_ip "hostname")
@@ -535,7 +550,7 @@ do
     apropos_check=$(ssh_execute $user $target_ip "wget -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
 
     # Enregistrer les résultats dans un fichier CSV
-    echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check}" >> vm_check_result.csv
+    echo "${etudiant};${echange};${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check}" >> vm_check_result.csv
     echo "Validation de la VM $user@$ip terminée"
 done
 ```
