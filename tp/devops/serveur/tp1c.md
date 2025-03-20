@@ -475,24 +475,24 @@ Pour valider la partie VM, je vais utiliser le script suivant :
 #!/bin/bash
 
 # Définir le chemin du fichier CSV contenant les informations de connexion
-csv_file="./input.csv"
-
 function ssh_execute {
   ssh-keygen -R $2 > /dev/null 2>&1
-  ssh -o "PreferredAuthentications=publickey" -o "CheckHostIP=no" -o "StrictHostKeyChecking=no" -i ~/.ssh/id_rsa_etudiant "$1"@$2 "$3" 2> /dev/null
+  ssh -o "PreferredAuthentications=publickey" -o "CheckHostIP=no" -o "StrictHostKeyChecking=no" -o "BatchMode=yes" -i ~/.ssh/id_rsa_etudiant "$1"@$2 "$3" 2>/dev/null
 }
 
 echo "Validation des VMs"
 echo "VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh" > vm_check_result.csv
 
-# Boucle sur chaque ligne du fichier CSV, en ignorant la première ligne (commentaire)
-cat "${csv_file}" | while IFS=";" read -r user ip; do
-    # Ignorer les lignes vides
-    [ -z "$user" ] && continue
-    
-    # Définir les paramètres de la machine distante
-    target_ip="${ip}"
-    user="${user}"
+array=(
+"vbrosseau;ip.de.la.machine"
+)
+
+for i in "${array[@]}"
+do
+    # Séparer la ligne en deux parties
+    IFS=';' read -ra parts <<< "$i"
+    user=${parts[0]}
+    target_ip=${parts[1]}
 
     echo "Validation de la VM $user@$target_ip"
 
@@ -536,6 +536,7 @@ cat "${csv_file}" | while IFS=";" read -r user ip; do
 
     # Enregistrer les résultats dans un fichier CSV
     echo "${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check}" >> vm_check_result.csv
+    echo "Validation de la VM $user@$ip terminée"
 done
 ```
 
