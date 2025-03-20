@@ -66,7 +66,7 @@ Merci ça me fait plaisir ! Du coup, c'est plutôt simple, dans un terminal (par
 C:/xampp/php/php -S localhost:9000
 
 # Windows (avec WAMP)
-C:/wamp64/bin/php/php8.2.0/php -S localhost:9000
+C:/wamp64/bin/php/php8.4.0/php -S localhost:9000
 
 # Linux / OSX
 php -S localhost:9000

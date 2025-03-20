@@ -93,11 +93,11 @@ sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/
 
 # Installer Apache + PHP
 apt update
-apt install curl zip open-vm-tools apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd,xml} -y
+apt install curl zip open-vm-tools apache2 php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl,pdo,mysql,gd,xml} -y
 
 # Activer PHP dans Apache
 a2enmod proxy_fcgi setenvif rewrite headers
-a2enconf php8.2-fpm
+a2enconf php8.4-fpm
 
 # Active  Apache
 systemctl restart apache2

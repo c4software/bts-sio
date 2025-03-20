@@ -352,7 +352,7 @@ Maintenant que le dépôt est ajouté, nous pouvons installer PHP. Pour cela, vo
 
 ```bash
 apt update
-apt install php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl} -y
+apt install php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl} -y
 ```
 
 ### Vérifier que PHP est installé
@@ -373,7 +373,7 @@ Maintenant que notre PHP est installé, il faut l'activer :
 
 ```bash
 a2enmod proxy_fcgi setenvif rewrite headers
-a2enconf php8.2-fpm
+a2enconf php8.4-fpm
 systemctl restart apache2
 ```
 

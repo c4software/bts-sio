@@ -40,11 +40,11 @@ sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/
 
 # Ajout de PHP et des dépendances nécessaire au bon fonctionnement de Mini MVC Sample
 apt-get update -y
-apt-get install apache2 php8.2 php8.2-fpm php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd,zip,xml} unzip zip -y
+apt-get install apache2 php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl,pdo,mysql,gd,zip,xml} unzip zip -y
 
 # Activer PHP dans Apache
 a2enmod proxy_fcgi setenvif rewrite headers
-a2enconf php8.2-fpm
+a2enconf php8.4-fpm
 
 # Active  Apache
 systemctl restart apache2

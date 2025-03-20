@@ -205,15 +205,15 @@ Maintenant que nous avons ajouté le dépôt, nous allons pouvoir installer PHP.
 
 ```bash
 apt update
-apt install php8.2 php8.2-fpm zip php8.2-cli php8.2-{bz2,curl,mbstring,intl,pdo,mysql,gd,xml} -y
+apt install php8.4 php8.4-fpm zip php8.4-cli php8.4-{bz2,curl,mbstring,intl,pdo,mysql,gd,xml} -y
 ```
 
 Ça fait beaucoup de paquets, mais en fait, c'est très simple. Voici le détail pour quelques paquets :
 
-- `php8.2` est le paquet principal de PHP.
-- `php8.2-fpm` est le paquet qui permet de faire tourner PHP en tant que service.
-- `php8.2-cli` est le paquet qui permet d'utiliser PHP en ligne de commande.
-- `php8.2-{bz2,curl,mbstring,intl}` sont des paquets qui permettent d'ajouter des fonctionnalités à PHP.
+- `php8.4` est le paquet principal de PHP.
+- `php8.4-fpm` est le paquet qui permet de faire tourner PHP en tant que service.
+- `php8.4-cli` est le paquet qui permet d'utiliser PHP en ligne de commande.
+- `php8.4-{bz2,curl,mbstring,intl}` sont des paquets qui permettent d'ajouter des fonctionnalités à PHP.
 
 ::: tip pourquoi autant de paquets ?
 
@@ -247,7 +247,7 @@ Maintenant que notre PHP est installé, il faut l'activer :
 
 ```bash
 a2enmod proxy_fcgi setenvif rewrite headers
-a2enconf php8.2-fpm
+a2enconf php8.4-fpm
 systemctl restart apache2
 ```
 
@@ -257,7 +257,7 @@ Que font ces commandes ?
   - `proxy_fcgi` est le module qui permet d'utiliser PHP-FPM (mode FastCGI).
   - `setenvif` est le module qui permet d'envoyer des variables d'environnement à PHP.
   - `rewrite`est le module qui permet de faire de la réécriture d'URL, c'est très utile pour les frameworks.
-- `a2enconf php8.2-fpm` permet d'activer la configuration de PHP dans Apache.
+- `a2enconf php8.4-fpm` permet d'activer la configuration de PHP dans Apache.
 - `systemctl restart apache2` permet de redémarrer Apache, pour prendre en compte les modifications.
 
 Pour vérifier que Apache + PHP fonctionne, vous pouvez créer un fichier `info.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
@@ -274,7 +274,9 @@ phpinfo();
 ?>
 ```
 
-Vous pouvez ensuite ouvrir votre navigateur et aller sur l'adresse IP de votre serveur. Si vous avez bien suivi les étapes précédentes, vous devriez voir la page d'information de PHP.
+Vous pouvez ensuite ouvrir votre navigateur et aller sur l'adresse IP de votre serveur `http://<votre-ip>/info.php`.
+
+☝️ Si vous avez bien suivi les étapes précédentes, vous devriez voir la page d'information de PHP.
 
 ::: tip phpinfo() ?
 La fonction `phpinfo()` permet d'afficher les informations de PHP. C'est très pratique pour vérifier que tout fonctionne correctement. Vous pouvez également utiliser cette fonction pour vérifier que les extensions PHP sont bien installées.
@@ -334,10 +336,10 @@ C'est un point étape, votre serveur est maintenant prêt pour le développement
 
 ## La configuration de PHP
 
-La configuration de PHP se fait via le fichier `/etc/php/8.2/fpm/php.ini`. Vous pouvez l'ouvrir avec la commande suivante :
+La configuration de PHP se fait via le fichier `/etc/php/8.4/fpm/php.ini`. Vous pouvez l'ouvrir avec la commande suivante :
 
 ```bash
-vim /etc/php/8.2/fpm/php.ini
+vim /etc/php/8.4/fpm/php.ini
 ```
 
 Vous trouverez dans ce fichier toutes les options de configuration de PHP. Vous pouvez par exemple modifier la taille de la mémoire allouée à PHP, ou encore modifier le temps d'exécution d'un script PHP.
@@ -357,7 +359,7 @@ display_errors = On
 Ensuite, il faut redémarrer le service PHP :
 
 ```bash
-systemctl restart php8.2-fpm
+systemctl restart php8.4-fpm
 ```
 
 À partir de maintenant, les erreurs PHP seront affichées dans le navigateur, et non plus dans le fichier `error.log` d'Apache.
