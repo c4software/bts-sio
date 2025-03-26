@@ -26,7 +26,7 @@ Je vous laisse donc, faire très attention à chaque étape, et surtout à bien 
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :
 
-- PHP 8.2
+- PHP 8.
 - Composer
 
 Il y a bien plus de dépendances, mais celles-ci seront récupérées automatiquement par `Composer`

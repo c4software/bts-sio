@@ -18,7 +18,7 @@ Pour réaliser ce TP vous devez connaître les éléments suivants :
 
 ## Objectifs
 
-Ce TP / TD a pour objectif de vous faire découvrir comment configurer un serveur de base de données (MySQL) pour qu'il soit utilisable par un serveur Web (Apache), mais également par une application Client (C#, Java, PHP, etc.).
+Ce TP / TD a pour objectif de vous faire découvrir comment configurer un serveur de base de données (MySQL) pour qu'il soit utilisable par un serveur Web (Apache), mais également par une application client (C#, Java, PHP, etc.).
 
 ::: tip Application cliente ?
 
