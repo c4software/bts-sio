@@ -135,6 +135,14 @@ Je vous laisse suivre le TP suivant pour configurer votre machine :
 - [TP2. Avoir une machine Debian avec Apache + PHP](/tp/devops/serveur/tp2.md)
 - **ou la synthèse de ce TP** : [Configurer une serveur Debian pour le Web](/cheatsheets/serveur/debian-web.md)
 
+::: tip Question…
+
+Levez les mains du clavier !
+
+À votre avis, pour un serveur de base de données, est-ce que c'est utile d'avoir un serveur web ? Pourquoi ?
+
+:::
+
 ::: details Vous souhaitez juste les commandes ?
 
 Voici la procédure de création de la partie PHP + Apache :
@@ -261,7 +269,6 @@ Comment lire cette configuration ?
 - `bind-address` : c'est la variable qui permet de définir l'adresse IP sur laquelle MariaDB va écouter les connexions.
 - `0.0.0.0` : Cette valeur signifie que MariaDB va écouter sur toutes les adresses IP disponibles sur le serveur.
 
-
 :::
 
 ## Installation de MySQL
@@ -284,7 +291,6 @@ Bien qu'optionnelle, je vous propose de voir comment installer MySQL sur votre s
 ```bash
 apt remove --purge mariadb-server mariadb-client -y
 ```
-
 
 Bien, nous n'avons plus MariaDB, nous pouvons maintenant installer MySQL. L'installation de MySQL est légèrement différente de celle de MariaDB. En effet, MySQL n'est pas disponible dans les dépôts de Debian, il faut donc ajouter un dépôt spécifique.
 
@@ -328,7 +334,32 @@ Pour vérifier que MySQL est bien installé, vous pouvez utiliser la commande su
 mysql -u root -p
 ```
 
-Et comme MariaDB, de base, MySQL n'autorise pas les connexions distantes. Pour autoriser les connexions distantes, vous pouvez suivre la procédure suivante :
+Et comme MariaDB, de base, MySQL n'autorise pas les connexions distantes. Pour autoriser les connexions distantes, vous pouvez suivre la procédure suivante.
+
+### Autoriser les connexions distantes
+
+La configuration se fait dans le fichier `/etc/mysql/mysql.conf.d/50-server.cnf`.
+
+```bash
+nano /etc/mysql/mysql.conf.d/50-server.cnf
+```
+
+Modifier la ligne `bind-address` par la ligne suivante dans la section `[mysqld]`.
+
+```ini
+bind-address = 0.0.0.0
+```
+
+Redémarrer le serveur MySQL
+
+```bash
+systemctl restart mysql
+```
+
+Comment lire cette configuration ?
+
+- `bind-address` : c'est la variable qui permet de définir l'adresse IP sur laquelle Mysql va écouter les connexions.
+- `0.0.0.0` : Cette valeur signifie que Mysql va écouter sur toutes les adresses IP disponibles sur le serveur.
 
 ```bash
 sudo mysql -u root -p
