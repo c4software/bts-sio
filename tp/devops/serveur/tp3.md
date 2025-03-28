@@ -334,32 +334,7 @@ Pour vérifier que MySQL est bien installé, vous pouvez utiliser la commande su
 mysql -u root -p
 ```
 
-Et comme MariaDB, de base, MySQL n'autorise pas les connexions distantes. Pour autoriser les connexions distantes, vous pouvez suivre la procédure suivante.
-
-### Autoriser les connexions distantes
-
-La configuration se fait dans le fichier `/etc/mysql/mysql.conf.d/50-server.cnf`.
-
-```bash
-nano /etc/mysql/mysql.conf.d/50-server.cnf
-```
-
-Modifier la ligne `bind-address` par la ligne suivante dans la section `[mysqld]`.
-
-```ini
-bind-address = 0.0.0.0
-```
-
-Redémarrer le serveur MySQL
-
-```bash
-systemctl restart mysql
-```
-
-Comment lire cette configuration ?
-
-- `bind-address` : c'est la variable qui permet de définir l'adresse IP sur laquelle Mysql va écouter les connexions.
-- `0.0.0.0` : Cette valeur signifie que Mysql va écouter sur toutes les adresses IP disponibles sur le serveur.
+Et comme MariaDB, de base, MySQL n'autorise pas les connexions distantes. Pour autoriser les connexions distantes, vous pouvez suivre la procédure suivante :
 
 ```bash
 sudo mysql -u root -p
