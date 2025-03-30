@@ -454,6 +454,17 @@ Par exemple, Apache, MySQL, etc.
 
 ---
 
+## Rendre un service moins visible
+
+- Changer le port d'écoute.
+- N'écouter que sur une adresse IP.
+- Utiliser un pare-feu.
+- Ne répondre que sur un domaine spécifique.
+- Utiliser un VPN.
+- Masquer les informations de version.
+
+---
+
 ## Plusieurs types de serveurs
 
 - Serveur Web.

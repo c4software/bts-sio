@@ -207,6 +207,14 @@ Un serveur est constitué d'un système d'exploitation (Linux, Windows, etc.), d
 
 Les services sont accessibles depuis l'extérieur grâce aux ports. Certains ports sont réservés (80 -> HTTP, 443 -> HTTPS, 22 -> SSH, etc.). Il est possible de créer des ports personnalisés pour chaque service.
 
+::: tip Rendre un service moins visible
+
+Il est possible de rendre un service moins visible en changeant le port d'écoute. Par exemple, si vous avez un serveur Web qui écoute sur le port 80, vous pouvez le changer pour qu'il écoute sur le port 8080. Cela permet de rendre le service moins visible, mais cela ne le rend pas plus sécurisé.
+
+Idem pour le SSH, le port 22 est très connu, et souvent ciblé par les pirates. Il est donc conseillé de changer le port d'écoute du SSH pour un port moins connu.
+
+:::
+
 ## Qu'est-ce qu'un serveur Web ?
 
 Un serveur Web est un serveur qui permet de servir des pages Web. Il permet de servir des pages Web statiques (fichiers HTML, CSS, JavaScript, images, etc.), mais aussi des pages Web dynamiques (fichiers PHP, Python, Ruby, etc.).
