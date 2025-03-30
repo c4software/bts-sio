@@ -634,7 +634,7 @@ Vous devez donc empêcher l'accès au compte `root` à distance. Pour cela, il f
 PermitRootLogin no
 ```
 
-Pour éviter tout problème (erreur, sécurité, etc), il est également intéressant d'utiliser le moins possible le compte `root`.
+Pour éviter tout problème (erreur, sécurité, etc), il est également intéressant d'utiliser le moins possible le compte `root`. Nous allons donc travailler avec l'approche du "moindre privilège". C'est-à-dire que nous allons créer un compte utilisateur avec les droits nécessaires pour faire ce que nous voulons faire.
 :::
 
 ## L'accès à distance

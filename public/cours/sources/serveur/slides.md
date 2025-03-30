@@ -417,7 +417,7 @@ Les ports vont permettre de rendre accessible le service depuis l'extérieur (de
 
 - **Les utilisateurs** : Une machine == au moins un utilisateur le **root**.
 
-Pour respecter les bonnes pratiques, il est préférable de créer un utilisateur dédié à chaque service.
+Pour respecter les bonnes pratiques, il est préférable de créer un utilisateur dédié à chaque service. Nous utiliserons l'approche du moindre privilège pour réstreindre les accès, et utiliser sudo pour les accès administratifs.
 
 ---
 
