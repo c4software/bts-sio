@@ -211,7 +211,14 @@ Les services sont accessibles depuis l'extérieur grâce aux ports. Certains por
 
 Il est possible de rendre un service moins visible en changeant le port d'écoute. Par exemple, si vous avez un serveur Web qui écoute sur le port 80, vous pouvez le changer pour qu'il écoute sur le port 8080. Cela permet de rendre le service moins visible, mais cela ne le rend pas plus sécurisé.
 
-Idem pour le SSH, le port 22 est très connu, et souvent ciblé par les pirates. Il est donc conseillé de changer le port d'écoute du SSH pour un port moins connu.
+Idem pour le SSH, le port 22 est très connu, et souvent ciblé par les pirates. Il est donc conseillé de changer le port d'écoute du SSH pour un port moins connu. Nous pouvons également :
+
+- Changer le port d'écoute.
+- N'écouter que sur une adresse IP spécifique (ex. uniquement sur l'IP locale).
+- Utiliser un pare-feu (iptables, ufw, etc.).
+- Ne répondre que sur un domaine spécifique.
+- Utiliser un VPN (Accessible uniquement via le VPN).
+- Masquer les informations de version.
 
 :::
 
@@ -274,6 +281,19 @@ Ici nous avons un virtual host qui permet d'accéder à phpmyadmin via le port 9
 - `ErrorLog` : Le fichier de log des erreurs.
 - `CustomLog` : Le fichier de log des accès.
 
+::: tip AllowOverride ?
+
+`AllowOverride` permet de définir si les fichiers `.htaccess` sont autorisés ou non. Si vous mettez `AllowOverride None`, alors les fichiers `.htaccess` ne seront pas pris en compte. Si vous mettez `AllowOverride All`, alors les fichiers `.htaccess` seront pris en compte.
+
+Le fichier `.htaccess` est un fichier qui va permettre de surcharger la configuration d'Apache. Il est possible de définir par exemple:
+
+- Réécrire les URL (ex. `http://monsite.com/monfichier.php?id=1` devient `http://monsite.com/monfichier/1`).
+- Protéger un dossier par mot de passe.
+- Rediriger une page vers une autre page.
+- Bloquer l'accès à une page.
+- Interdire le listing d'un dossier en cas d'absence de fichier `index.html` (ou de `index.php`).
+
+:::
 
 ## Qu'est-ce qu'un serveur de base de données ?
 
@@ -666,6 +686,38 @@ Pour le démarrer automatiquement au démarrage du système, vous pouvez utilise
 ```bash
 systemctl enable ssh
 ```
+
+### Configuration SSH
+
+SSh est un service « critique » de votre serveur. Il est donc important de le configurer correctement. Pour cela, vous devez modifier le fichier de configuration SSH. Pour cela, vous devez modifier le fichier `/etc/ssh/sshd_config`. Voici quelques options intéressantes à modifier :
+
+- `PermitRootLogin no` : interdit la connexion au compte root.
+- `PasswordAuthentication no` : interdit la connexion avec un mot de passe.
+- `PubkeyAuthentication yes` : autorise la connexion avec une clé SSH.
+- `Port 22` : change le port d'écoute du service SSH (par défaut 22).
+- `AllowUsers <utilisateur>` : autorise uniquement certains utilisateurs à se connecter au service SSH.
+- `DenyUsers <utilisateur>` : interdit certains utilisateurs à se connecter au service SSH.
+- `MaxAuthTries 3` : limite le nombre de tentatives de connexion à 3.
+- `MaxSessions 2` : limite le nombre de sessions à 2.
+- `ClientAliveInterval 300` : envoie un message au client toutes les 5 minutes pour vérifier qu'il est toujours connecté.
+- `ClientAliveCountMax 0` : déconnecte le client si il ne répond pas au message envoyé par le serveur.
+
+Bien évidemment, il n'est pas nécessaire de modifier toutes ces options, mais il est important de savoir qu'elles existent. Vous pouvez les modifier en fonction de vos besoins.
+
+::: tip Pourquoi modifier ces options ?
+
+Il est important de modifier ces options pour plusieurs raisons :
+
+- Interdire la connexion au compte root : cela permet d'éviter que quelqu'un se connecte à votre serveur avec le compte root. Si un pirate parvient à se connecter à votre serveur avec le compte root, il aura tous les droits sur votre machine. Il pourra donc faire ce qu'il veut.
+- Interdire la connexion avec un mot de passe : cela permet d'éviter que quelqu'un se connecte à votre serveur avec un mot de passe. Si un pirate parvient à se connecter à votre serveur avec un mot de passe, il aura tous les droits sur votre machine. Il pourra donc faire ce qu'il veut.
+- Autoriser la connexion avec une clé SSH : cela permet d'autoriser la connexion avec une clé SSH. Si un pirate parvient à se connecter à votre serveur avec une clé SSH, il aura tous les droits sur votre machine. Il pourra donc faire ce qu'il veut.
+- Changer le port d'écoute du service SSH : cela permet de changer le port d'écoute du service SSH. Par défaut, le service SSH écoute sur le port 22. Si vous changez le port d'écoute, il sera plus difficile pour un pirate de se connecter à votre serveur.
+- Limiter le nombre de tentatives de connexion : cela permet de limiter le nombre de tentatives de connexion à 3. Si un pirate parvient à se connecter à votre serveur avec un mot de passe, il aura tous les droits sur votre machine. Il pourra donc faire ce qu'il veut.
+- Limiter le nombre de sessions : cela permet de limiter le nombre de sessions à 2. Si un pirate parvient à se connecter à votre serveur avec un mot de passe, il aura tous les droits sur votre machine. Il pourra donc faire ce qu'il veut.
+- Envoyer un message au client toutes les 5 minutes : cela permet d'envoyer un message au client toutes les 5 minutes pour vérifier qu'il est toujours connecté. Si le client ne répond pas au message envoyé par le serveur, il sera déconnecté.
+- Déconnecter le client si il ne répond pas au message envoyé par le serveur : cela permet de déconnecter le client si il ne répond pas au message envoyé par le serveur. Si le client ne répond pas au message envoyé par le serveur, il sera déconnecté.
+
+:::
 
 ### Les clés SSH
 

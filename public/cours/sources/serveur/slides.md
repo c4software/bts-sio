@@ -465,11 +465,22 @@ Par exemple, Apache, MySQL, etc.
 
 ---
 
-## Plusieurs types de serveurs
+Penser sécurité dès le début.
 
-- Serveur Web.
-- Serveur de base de données.
-- Serveurs spécialisés.
+- Ne pas exposer un service si ce n'est pas nécessaire.
+- Ne pas exposer un service sur Internet si ce n'est pas nécessaire.
+- Configurer un pare-feu ou au minimum un accès SSH sécurisé (clé SSH, pas de mot de passe, pas de compte root, etc.).
+
+---
+
+## Rappel SSHD
+
+- `permitrootlogin no`
+- `PasswordAuthentication no`
+- `PubkeyAuthentication yes`
+- `AllowUsers vbrosseau`
+- `Port 22` (ou autre)
+- `PermitEmptyPasswords no`
 
 ---
 
@@ -539,7 +550,7 @@ Deux solutions pour découper notre serveur :
 
 En réalité, votre serveur possède **65 535 ports**.
 
-Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous pouvez en créer d'autres**.
+Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous pouvez en définir d'autres**.
 
 ---
 
@@ -550,7 +561,7 @@ Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous p
  
  <Directory /var/www/html/phpmyadmin>
      Options Indexes FollowSymLinks
-     AllowOverride All
+     AllowOverride All # 👋 
      Require all granted
  </Directory>
  
@@ -558,6 +569,17 @@ Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous p
  CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+
+---
+
+## AllowOverride All
+
+- Surcharger la configuration du serveur Apache (`.htaccess`).
+- Réécriture d'URL.
+- Login / Mot de passe.
+- Limiter l'accès depuis une adresse IP.
+- Interdire le listing d'un dossier.
+- …
 
 ---
 
