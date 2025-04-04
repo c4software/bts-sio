@@ -421,7 +421,6 @@ Dans ce fichier, nous allons mettre le code suivant :
 <VirtualHost *:8080>
     DocumentRoot /var/www/siteA
 
-    <!-- Configuration du dossier autorisant les fichiers .htaccess  et désactivant le listing des fichiers --> 
     <Directory /var/www/siteA>
         Options -Indexes +FollowSymLinks
         AllowOverride All
@@ -432,6 +431,16 @@ Dans ce fichier, nous allons mettre le code suivant :
     CustomLog ${APACHE_LOG_DIR}/siteA-access.log combined
 </VirtualHost>
 ```
+
+::: tip Directory ?
+
+La balise `<Directory>` permet de configurer les options d'Apache pour le dossier `/var/www/siteA`. Nous avons donc configuré les options suivantes :
+
+- `Options -Indexes` : permet de masquer les fichiers présents dans le dossier.
+- `Options +FollowSymLinks` : permet de suivre les liens symboliques.
+- `AllowOverride All` : permet d'utiliser les fichiers `.htaccess`.
+- `Require all granted` : permet d'autoriser l'accès à tous les utilisateurs.
+:::
 
 Ensuite, nous allons créer le fichier de configuration pour le site B :
 
