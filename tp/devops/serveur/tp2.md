@@ -420,6 +420,14 @@ Dans ce fichier, nous allons mettre le code suivant :
 ```apache
 <VirtualHost *:8080>
     DocumentRoot /var/www/siteA
+
+    <!-- Configuration du dossier autorisant les fichiers .htaccess  et désactivant le listing des fichiers --> 
+    <Directory /var/www/siteA>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
     ErrorLog ${APACHE_LOG_DIR}/siteA-error.log
     CustomLog ${APACHE_LOG_DIR}/siteA-access.log combined
 </VirtualHost>
