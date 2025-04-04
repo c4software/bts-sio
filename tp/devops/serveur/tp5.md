@@ -219,7 +219,7 @@ Pour évaluer votre TP, je dois avoir accès à votre serveur **via SSH avec mon
 
     ```bash
     # Exécutez cette commande en tant que votre utilisateur standard (pas root)
-    curl [https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub](https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub) >> ~/.ssh/authorized_keys
+    curl https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub >> ~/.ssh/authorized_keys
     ```
 
 * **Vérification :** Le fichier `~/.ssh/authorized_keys` doit contenir votre clé publique ET la mienne.
