@@ -1197,7 +1197,7 @@ val list by viewModel.listFlow.collectAsStateWithLifecycle()
 
 ::: tip Comprendre les Flow en deux mots
 
-## Les flow
+Un `Flow` est un élément qui va permettre de stocker des données et de les observer. Il est très utilisé dans l'approche MVVM. Voici quelques éléments à retenir :
 
 - Un `Flow` est un flux de données asynchrone.
 - Il peut être modifié.
@@ -1216,7 +1216,7 @@ val list by viewModel.listFlow.collectAsStateWithLifecycle()
 ```
 
 Le flow est mis à jour dans le ViewModel via le `.value = …`. 
-Dans le composant, nous allons observer le flow avec un `collectAsStateWithLifecycle`.
+Dans le composant, nous allons observer le flow avec un `collectAsStateWithLifecycle`. À chaque fois que le flow est mis à jour, le composant sera mis à jour de manière réactive et automatique.
 
 :::
 
