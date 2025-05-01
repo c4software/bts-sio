@@ -18,6 +18,16 @@ Pour installer Docker rien de plus simple, il suffit d’utiliser l’installeur
 
 Lancer Docker en tant qu’administrateur (et autoriser Hyper-V si celui-ci vous le demande).
 
+## Quota et utilisation
+
+Dans nos différents tests, nous allons utiliser le registry Docker officiel. Celui-ci depuis le mois dernier a mis en place des quotas assez « restrictif » pour les utilisateurs non authentifiés. Il est donc préférable de créer un compte Docker et de vous authentifier sur le registry. Pour cela rien de plus simple, il suffit d’entrer la commande suivante dans une console :
+
+```bash
+docker login
+```
+
+Il vous sera demandé de vous authentifier avec votre compte Docker. Une fois authentifié, vous pourrez télécharger des images avec une limite beaucoup plus élevée.
+
 ## Premier test
 
 Maintenant qu’il est installé sur votre poste, rien de plus simple. Dans une console, entrez la commande suivante :
@@ -150,25 +160,61 @@ docker run -v $(pwd)/mon_fichier:/mnt/mon_fichier:ro -it ubuntu bash
 
 Et c’est la que l’on voit la puissance, on verra qu’il sera possible par la suite de créer de vrai « stack » applicative qui définiront l’ensemble des paramètres de notre environnement (cloisonné) et gérant finement les droits d’accès à la configuration par exemple ! Un régal !
 
-## Compilation Cordova
+## Utiliser Docker pour développer
 
-Je pense que vous vous souvenez que paramétrer l’environnement de compilation Android sur Windows n’était pas vraiment simple (JDK, SDK, etc.), avec Docker c’est beaucoup plus simple ! Vraiment beaucoup plus simple. Pour compiler un projet Cordova avec Docker j’ai préparé une petite image Docker qui possède l’ensemble des éléments nécessaires, pour l’utiliser :
+Docker est un outil intéressant pour développer, il permet de créer des environnements de développement isolés et facilement reproductibles. Vous pouvez avec docker packager une application avec toutes ces dépendances pour la faire fonctionner sur n'importe quel système d'exploitation. Pour vous donner envie d'utiliser Docker, nous allons tester des exemples atypiques.
 
-### Unix (Linux, Osx)
+### Youtube-dl
 
-```sh
-cd mon_projet_cordova/
-docker run -it --entrypoint /bin/bash -v $(pwd):/Sources/ c4software/cordova-light:latest
-# Vous pouvez maintenant lancer, par exemple : cordova build
+Youtube-dl est un outil en ligne de commande permettant de télécharger des vidéos sur Youtube et d'autres sites de streaming. Il est disponible sous forme de conteneur Docker, ce qui vous permet de l'utiliser sans avoir à l'installer sur votre système.
+
+```bash
+alias ytdl='docker run --rm -v "$(pwd):/downloads" -it jauderho/yt-dlp:latest -x --audio-format mp3 --audio-quality 0 --embed-metadata'
 ```
 
-### Windows
+Qu'avons-nous ici? 
 
-```sh
-cd mon_projet_cordova/
-docker run -it --entrypoint /bin/bash -v %cd%:/Sources/ c4software/cordova-light:latest
-# Vous pouvez maintenant lancer, par exemple : cordova build
+- `alias ytdl=` : Crée un alias pour la commande, ce qui vous permet de l'utiliser plus facilement. (C'est une commande shell, pas une commande Docker).
+- `docker run` : Lance un conteneur Docker.
+- `--rm` : Supprime le conteneur après son utilisation.
+- `-v "$(pwd):/downloads"` : Monte le répertoire courant dans le conteneur à l'emplacement `/downloads`. Cela vous permet de télécharger des fichiers directement dans votre répertoire de travail.
+- `-it` : Lance le conteneur en mode interactif.
+- `jauderho/yt-dlp:latest` : Spécifie l'image Docker à utiliser. Dans ce cas, il s'agit de l'image `jauderho/yt-dlp` avec la dernière version.
+- `-x --audio-format mp3 --audio-quality 0 --embed-metadata` : Ce sont les options passées à `yt-dlp`, qui est l'outil utilisé pour télécharger les vidéos. Ces options permettent de télécharger la vidéo au format MP3 avec la meilleure qualité audio et d'incorporer les métadonnées.
+
+Si vous souhaitez télécharger une vidéo pour en sauvegarder une copie au format MP3, il vous suffit de lancer la commande suivante :
+
+```bash
+ytdl https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
+
+Je vous laisse tester. Vous allez voir que le téléchargement est rapide et que la qualité est au rendez-vous. Vous pouvez également utiliser d'autres options de `yt-dlp` pour personnaliser le téléchargement selon vos besoins.
+
+### Autres exemples
+
+Autre exemple « amusant » : Spotdl, un outil permettant de télécharger des chansons. Il est également disponible sous forme de conteneur Docker.
+
+```bash
+alias spotdl='docker run --rm -v "$(pwd):/music" spotdl/spotify-downloader --output "{artist}/{album}/{track-number} - {title}.{output-ext}" download'
+```
+
+Qu'avons-nous ici?
+
+- `alias spotdl=` : Crée un alias pour la commande, ce qui vous permet de l'utiliser plus facilement. (C'est une commande shell, pas une commande Docker).
+- `docker run` : Lance un conteneur Docker.
+- `--rm` : Supprime le conteneur après son utilisation.
+- `-v "$(pwd):/music"` : Monte le répertoire courant dans le conteneur à l'emplacement `/music`. Cela vous permet de télécharger des fichiers directement dans votre répertoire de travail.
+- `spotdl/spotify-downloader` : Spécifie l'image Docker à utiliser. Dans ce cas, il s'agit de l'image `spotdl/spotify-downloader`.
+- `--output "{artist}/{album}/{track-number} - {title}.{output-ext}"` : Spécifie le format de sortie pour les fichiers téléchargés.
+- `download` : Indique que vous souhaitez télécharger une chanson.
+
+Si vous souhaitez télécharger une chanson, il vous suffit de lancer la commande suivante :
+
+```bash
+spotdl https://open.spotify.com/intl-fr/track/4PTG3Z6ehGkBFwjybzWkR8?si=b667ca05a91e4558
+```
+
+L'outil SpotDL va rechercher dans les metadata de la chanson pour la retrouver sur Youtube et la télécharger.
 
 ## Allons plus loin
 

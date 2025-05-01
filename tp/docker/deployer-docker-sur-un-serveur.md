@@ -209,8 +209,6 @@ nano docker-compose.yml
 Nous allons maintenant définir l'ensemble des conteneurs que nous allons lancer. Pour cela, nous allons utiliser la syntaxe YAML.
 
 ```yaml
-version: '3.7'
-
 services:
   db:
     image: mysql:8
@@ -247,6 +245,8 @@ Maintenant que nous avons défini notre stack, nous allons pouvoir la lancer.
 ```bash
 docker compose up -d
 ```
+
+Le `-d` permet de lancer la stack en mode détaché, c'est-à-dire que la stack va tourner en arrière plan. Si vous ne mettez pas le `-d`, vous allez voir les logs de l'ensemble des conteneurs.
 
 ### Les logs
 
@@ -315,6 +315,54 @@ Nous allons maintenant créer un serveur Apache + PHP + MySQL. Pour ça je vous 
 2. Lancer le projet avec la commande `docker compose up -d`.
 
 Je vous laisse regarder le fichier `docker-compose.yml` et le fichier `Dockerfile` pour comprendre comment fonctionne ce projet.
+
+## Adguard
+
+Je vous propose de créer un serveur Adguard. Adguard est un bloqueur de publicité et de traqueurs. Il est très simple à utiliser et très efficace.
+
+```yaml
+services:
+   adguardhome:
+     image: adguard/adguardhome
+     container_name: adguardhome
+     ports:
+       - "9191:80" # Interface de gestion de Adguard
+       - "53:53/tcp"
+       - "53:53/udp"
+       - "784:784/udp"
+       - "853:853/tcp"
+       - "[::]:53:53/tcp"
+       - "[::]:53:53/udp"
+       - "[::]:784:784/udp"
+       - "[::]:853:853/tcp"
+     volumes:
+       - ./work:/opt/adguardhome/work
+       - ./conf:/opt/adguardhome/conf
+     cap_add:
+       - NET_ADMIN
+      security_opt:
+        - no-new-privileges=true
+      restart: unless-stopped
+      logging:
+        driver: "json-file"
+        options:
+          max-size: "5m"
+          max-file: "1"
+```
+
+Démarrez le conteneur avec la commande suivante :
+
+```bash
+docker compose up -d
+```
+
+À partir de là, vous pouvez accéder à l'interface d'administration d'Adguard en vous rendant sur `http://<ip.de.votre.serveur>:9191`. Une fois configuré, il vous suffit de changer la configuration DNS de votre machine pour utiliser le serveur DNS de adguard c'est à dire `<ip.de.votre.serveur>`.
+
+Pour tester rapidement sans changer la configuration de votre machine, vous pouvez utiliser la commande suivante :
+
+```bash
+nslookup google.com <ip.de.votre.serveur>
+```
 
 ## Conclusion
 

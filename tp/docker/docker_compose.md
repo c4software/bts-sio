@@ -41,8 +41,7 @@ Source : Wikipedia
 
 Voilà un exemple de Docker Compose :
 
-```
-version : '3'
+```yaml
 services :
   web :
     build: .
@@ -117,7 +116,6 @@ Ici nous avons Wordpress oui, mais également une base de données associées, n
 Docker Compose permet vraiment de tout faire, vous souhaitez mettre en place un petit serveur pour de la Domotique ? Pas de problème ! Vous pouvez monter très simplement un HomeAssistant :
 
 ```yml
-version: "3"
 services:
   homeassistant:
     container_name: homeassistant
@@ -138,7 +136,6 @@ Nous avons vu ici que nous pouvions montrer rapidement un ensemble d'images de D
 Je vous propose que nous réfléchissions ensemble à une « Stack » que nous pourrions dockerisé, un exemple avant de démarrer voilà mon Dockerfile
 
 ```yml
-version: "3.7"
 services:
   web-server:
     build:
@@ -178,3 +175,13 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN a2enmod userdir
 RUN a2enmod rewrite
 ```
+
+Et dans un dossier `html/` le fichier `index.php` suivant :
+
+```php
+<?php
+phpinfo();
+?>
+```
+
+Je vous laisse tester un peu plus en essayant par exemple d'héberger votre site de l'AP.

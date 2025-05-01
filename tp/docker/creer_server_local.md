@@ -94,6 +94,77 @@ Et oui… Wordpress seul n'est pas très utile ! Il nous faut une base de donné
 Bien évidemment Docker Compose n'est pas obligatoire… Je vous laisse tester et regarder comment il est possible de faire **sans**.
 :::
 
+## Créer un serveur local multi services
+
+Jusqu'à présent nous avons lancé plusieurs services, mais un par un. Ils étaient tous indépendants les un des autres. Dans la vraie vie, nous avons souvent besoin de plusieurs services qui communiquent entre eux. Par exemple, un serveur Web qui communique avec une base de données.
+
+Avec Docker on appel cela une stack. Une stack est un ensemble de services. Il est possible de créer une stack avec Docker Compose.
+
+Si nous voulons par exemple Wordpress + MySQL + PHPMyAdmin, il nous suffit de créer un fichier `docker-compose.yml` et de le remplir avec le contenu suivant :
+
+```yml
+services:
+  wordpress:
+    image: wordpress:6.7.1
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress_data:/var/www/html
+
+  db:
+    image: mysql:5.7.34
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2.1
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: exampleuser
+      PMA_PASSWORD: examplepass
+      PMA_ARBITRARY: 1
+    depends_on:
+      - db
+
+volumes:
+  wordpress_data:
+  db_data:
+```
+
+Nous avons ici défini trois services :
+
+- `wordpress` : le serveur Web qui va servir le site Wordpress
+- `db` : la base de données MySQL
+- `phpmyadmin` : l'interface Web pour gérer la base de données
+
+Pour lancer la stack, il suffit de se placer dans le dossier contenant le fichier `docker-compose.yml` et de lancer la commande suivante :
+
+```sh
+docker compose up
+```
+
+Vous pouvez ensuite accéder à votre site Wordpress sur `http://localhost:8080` et à phpMyAdmin sur `http://localhost:8081`.
+
+::: danger Attention au version
+
+Ici nous avons pris des versions précises de chaque service, mais il est possible de prendre la dernière version. Par exemple pour Wordpress, il suffit de remplacer `wordpress:6.7.1` par `wordpress:latest`. 
+
+**Figer les versions ici me permet de rendre le TP plus simple. Dans la vraie vie, il est préférable de prendre la dernière version stable pour éviter les problèmes de sécurité.**
+
+:::
+
 ## Aller plus loin
 
 Pour finaliser votre découverte, je vous propose de monter un serveur Redmine :
@@ -111,3 +182,7 @@ Dans ce TP nous avons vu comment lancer un container Docker. Nous avons vu que D
 Nous avons également vu que nous pouvons lancer une base de données (MySQL ou PostgreSQL) et même un serveur Web contenant le site Wordpress.
 
 Ici l'idée c'était de vous montrer que Docker était très simple à utiliser et qu'il pouvait nous servir comme un environnement de développement.
+
+## Continuer l'exploration
+
+Je vous propose de continuer l'exploration de Docker avec la création d'une stack applicative. Nous allons voir comment créer un environnement de développement complet avec Docker Compose, [voir ici](./docker_compose.md).
