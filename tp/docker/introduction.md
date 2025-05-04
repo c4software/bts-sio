@@ -195,7 +195,7 @@ Je vous laisse tester. Vous allez voir que le téléchargement est rapide et que
 Autre exemple « amusant » : Spotdl, un outil permettant de télécharger des chansons. Il est également disponible sous forme de conteneur Docker.
 
 ```bash
-alias spotdl='docker run --rm -v "$(pwd):/music" spotdl/spotify-downloader --output "{artist}/{album}/{track-number} - {title}.{output-ext}" download'
+alias spotdl='docker run --rm -v "$(pwd):/music" spotdl/spotify-downloader --audio {youtube,youtube-music,soundcloud,bandcamp,piped} --output "{artist}/{album}/{track-number} - {title}.{output-ext}" download'
 ```
 
 Qu'avons-nous ici?
@@ -205,6 +205,7 @@ Qu'avons-nous ici?
 - `--rm` : Supprime le conteneur après son utilisation.
 - `-v "$(pwd):/music"` : Monte le répertoire courant dans le conteneur à l'emplacement `/music`. Cela vous permet de télécharger des fichiers directement dans votre répertoire de travail.
 - `spotdl/spotify-downloader` : Spécifie l'image Docker à utiliser. Dans ce cas, il s'agit de l'image `spotdl/spotify-downloader`.
+- `--audio {youtube,youtube-music,soundcloud,bandcamp,piped}` : Indique les sources audio à utiliser pour le téléchargement. Vous pouvez choisir parmi plusieurs options.
 - `--output "{artist}/{album}/{track-number} - {title}.{output-ext}"` : Spécifie le format de sortie pour les fichiers téléchargés.
 - `download` : Indique que vous souhaitez télécharger une chanson.
 
