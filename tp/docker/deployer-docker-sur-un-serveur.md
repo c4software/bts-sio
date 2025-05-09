@@ -315,7 +315,7 @@ services:
      image: adguard/adguardhome
      container_name: adguardhome
      ports:
-       - "9191:80" # Interface de gestion de Adguard
+       - "9191:3000" # Interface de gestion de Adguard
        - "53:53/tcp"
        - "53:53/udp"
        - "784:784/udp"
