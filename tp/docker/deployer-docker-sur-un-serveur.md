@@ -349,6 +349,12 @@ Pour tester rapidement sans changer la configuration de votre machine, vous pouv
 nslookup google.com <ip.de.votre.serveur>
 ```
 
+ou avec `dig` :
+
+```bash
+dig @<ip.de.votre.serveur> google.com
+```
+
 ## Conclusion
 
 Dans ce TP nous avons vu comment Docker facilite la mise en place d'un serveur sur une machine. Nous avons vu comment Docker permet de créer rapidement des infrastructures répétables, et ce quelques soit la version, la configuration, ou l'OS de la machine.
