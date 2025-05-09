@@ -219,7 +219,7 @@ services:
       - MYSQL_PASSWORD=user-password
       - MYSQL_ROOT_PASSWORD=root
     volumes:
-      - ~/mysql-data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql
     ports:
       - 3306:3306
 
@@ -305,17 +305,6 @@ services:
 
 Je vous laisse regarder et tester le serveur.
 
-## Apache + PHP + MySQL
-
-Nous allons maintenant créer un serveur Apache + PHP + MySQL. Pour ça je vous propose de tenter le déploiement du projet suivant :
-
-[Stack applicatif type AP](https://gitlab.com/bts-sio-chevrollier/demo-docker-compose)
-
-1. Récupérer le projet sur votre serveur.
-2. Lancer le projet avec la commande `docker compose up -d`.
-
-Je vous laisse regarder le fichier `docker-compose.yml` et le fichier `Dockerfile` pour comprendre comment fonctionne ce projet.
-
 ## Adguard
 
 Je vous propose de créer un serveur Adguard. Adguard est un bloqueur de publicité et de traqueurs. Il est très simple à utiliser et très efficace.
@@ -340,14 +329,14 @@ services:
        - ./conf:/opt/adguardhome/conf
      cap_add:
        - NET_ADMIN
-      security_opt:
-        - no-new-privileges=true
-      restart: unless-stopped
-      logging:
-        driver: "json-file"
-        options:
-          max-size: "5m"
-          max-file: "1"
+     security_opt:
+       - no-new-privileges=true
+     restart: unless-stopped
+     logging:
+       driver: "json-file"
+       options:
+         max-size: "5m"
+         max-file: "1"
 ```
 
 Démarrez le conteneur avec la commande suivante :
