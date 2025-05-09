@@ -320,10 +320,6 @@ services:
        - "53:53/udp"
        - "784:784/udp"
        - "853:853/tcp"
-       - "[::]:53:53/tcp"
-       - "[::]:53:53/udp"
-       - "[::]:784:784/udp"
-       - "[::]:853:853/tcp"
      volumes:
        - ./work:/opt/adguardhome/work
        - ./conf:/opt/adguardhome/conf
