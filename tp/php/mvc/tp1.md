@@ -41,7 +41,7 @@ Cette base de développement intègre une structure **qu'il faut respecter** pou
 
 ## Les sources
 
-Vous pouvez télécharger un code de démonstration [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/3.0.zip)
+Vous pouvez télécharger un code de démonstration [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/3.1.zip)
 
 Voilà le rendu :
 
@@ -207,7 +207,8 @@ class Web
         Route::Add('/fonction2/home', [$monControleur2, 'ma2ndMethode']); 
 
         // etc…
-        // Vous pouvez avoir autant de routes que nécessaire
+        // Vous pouvez avoir autant de routes que nécessaire.
+        // Attention en cas de doublon, la dernière route définie sera celle qui sera utilisée
     }
 }
 ```
@@ -396,6 +397,8 @@ L'une des principales sources de répétition dans un site Web c'est le code pr�
 
 ### Le dossier `models/`
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/TFzF4XtoS4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Le dossier `models/` contiens les classes qui vont représenter les tables en base de données. Ces classes vont faire « l'interface » entre votre contrôleur et votre base de données.
 
 Finis donc les requêtes SQL partout dans votre code. À partir de maintenant, vos requêtes sont **dans le modèle** et uniquement dans le modèle.
@@ -444,6 +447,7 @@ class DBVideo extends SQL
 
     function getVideos()
     {
+        // Retourne l'ensemble des vidéos de la table
         return $this->getAll();
     }
 
