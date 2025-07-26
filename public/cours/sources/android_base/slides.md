@@ -1829,7 +1829,7 @@ Créer un composant générique qui contient un Scaffold avec une barre de navig
 
 ---
 
-## Et pour le Blutooth ?
+## Et pour le Bluetooth ?
 
 ---
 

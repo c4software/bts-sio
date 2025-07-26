@@ -2,7 +2,7 @@
 description: Dans ce TP nous allons mettre en pratique l'écriture de composants avec Android Compose. De la logique à la réalisation, nous allons parcourir les bases de la réalisation de composants et de « la réactivité » en lien avec ceux-ci.
 ---
 
-# Introduction à Android Compose
+# Android Compose - Créer une interface dynamique
 
 ::: details Sommaire
 [[toc]]
@@ -225,7 +225,7 @@ Votre top-bar est blanche ? C'est normal, nous n'avons pas encore ajouté de th�
 ```kotlin
 topBar = { 
     TopAppBar(
-        title = {Text("Top App Bar") }, // Titre de la barre
+        title = { Text("Top App Bar") }, // Titre de la barre
         colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             titleContentColor = MaterialTheme.colorScheme.primary,
@@ -233,6 +233,14 @@ topBar = {
     ),
 },
 ```
+
+Une couleur personnalisée ? C'est possible, soit via le thème de votre application (Theme.kt), soit un utilisant une couleur personnalisée :
+
+```kotlin
+val example = Color(0xFFD1C1D) // Couleur personnalisée (Rouge ici)
+```
+
+Pour les couleurs personnalisées, comme en HTML, vous pouvez utiliser le code hexadécimal de la couleur. Il faut juste ajouter `0xFF` au début du code pour indiquer que c'est une couleur opaque. Vous l'avez compris, il est donc également possible de jouer sur l'opacité pour avoir une couleur plus ou moins transparente.
 
 :::
 
@@ -260,6 +268,8 @@ Pas de classe !?
 <iframe src="https://giphy.com/embed/l0HlKrB02QY0f1mbm" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 **Et non** avec Compose, les composants ne sont pas des classes. Ce sont des fonctions « Composable » qui seront appelées au bon moment suivant les bonnes conditions dans votre vue.
+
+Le terme « Composable » est un terme utilisé pour désigner les fonctions qui vont créer des composants. Ces fonctions sont annotées avec `@Composable` et elles vont être appelées pour créer l'interface utilisateur.
 
 :::
 
@@ -354,7 +364,7 @@ Vous devez obtenir :
 
 ### Rendre votre liste interactive
 
-Maintenant que notre liste s'affiche, nous allons la rendre interactive lors du touch / clique de l'utilisateur sur un élément de la liste. Nous allons avoir besoin de deux choses : 
+Maintenant que notre liste s'affiche, nous allons la rendre interactive lors du touch / clique de l'utilisateur sur un élément de la liste. Nous allons avoir besoin de deux choses :
 
 - Une variable qui permettra de connaitre quel élément à été cliqué.
 - Une condition (`if`) pour savoir si nous devons afficher la `LazyColumn` ou seulement un `ElementList`.
@@ -371,7 +381,43 @@ Ajouter cette ligne après votre variable `myData`.
 
 Je vous laisse ajouter la condition pour :
 
-- Afficher la `LazyColumn` ou `ElementList` en fonction de `selectedItem != null`.
+- Afficher la `LazyColumn` ou `ElementList` en fonction de `selectedItem != null`. Vu que c'est la première fois, voici un exemple :
+
+```kotlin
+if (selectedItem != null) {
+    ElementList(title = selectedItem!!) {
+        // Code appelé lors du clique sur un élément de la liste.
+    }
+} else {
+    LazyColumn {
+        items(myData) { item ->
+            ElementList(title = item) {
+                selectedItem = item // Mettre à jour l'élément sélectionné
+            }
+        }
+    }
+}
+```
+
+⚠️ Attention au `!!`, cela signifie que nous sommes sûrs que `selectedItem` n'est pas `null`. En effet, la variable `selectedItem` est de type `String?`, ce qui signifie qu'elle peut être `null`. Le `!!` permet de dire que nous sommes sûrs que la variable n'est pas `null` à ce moment-là. Si elle l'était, cela provoquerait une exception. **C'est une mauvaise pratique**, il est préférable d'écrire à la place :
+
+```kotlin
+selectedItem?.let {
+    ElementList(title = it) {
+        // Code appelé lors du clique sur un élément de la liste.
+    }
+} ?: run {
+    LazyColumn {
+        items(myData) { item ->
+            ElementList(title = item) {
+                selectedItem = item // Mettre à jour l'élément sélectionné
+            }
+        }
+    }
+}
+```
+
+Le mot-clé `let` permet d'exécuter un bloc de code si la variable n'est pas `null`. Le mot-clé `run` permet d'exécuter un bloc de code si la variable est `null`. Cela permet d'éviter les exceptions et de rendre le code plus lisible. À l'interieur du `let`, nous avons automatiquement accès à la variable `it` qui est la valeur de `selectedItem` (non nullable).
 
 :::
 
@@ -413,6 +459,8 @@ data class CardContent(val title: String, val content: String, @DrawableRes val 
 Étrange cette classe n'est-ce pas ? 
 
 Nous créons fréquemment des classes dont le but principal est de conserver des données. Dans une telle classe, certaines fonctionnalités standard et fonctions utilitaires sont souvent dérivables mécaniquement à partir des données. Dans Kotlin, cela s'appelle une classe de données et est marqué comme `data`.
+
+La `Data class` est un type de classe en Kotlin qui a pour but de stocker des données. L'avantage de cette classe c'est qu'elle sera automatiquement serializable, et qu'elle va générer automatiquement les méthodes `equals`, `hashCode`, `toString`, etc. Cela permet de simplifier le code et de rendre la classe plus facile à utiliser.
 
 :::
 
@@ -714,7 +762,9 @@ Pour scanner les périphériques BLE, nous allons avoir besoin de plusieurs chos
 
 ### Le `Context`
 
-Pour rappel le `Context` est un objet qui permet d'accéder à des informations sur l'application. Dans notre cas, nous allons avoir besoin du contexte pour accéder au Bluetooth du téléphone.
+Pour rappel, le `Context` est un objet qui permet d'accéder à des informations sur l'application. Dans notre cas, nous allons avoir besoin du contexte pour accéder au Bluetooth du téléphone.
+
+Le terme `Context` est un utilisé dans le développement Android pour faire référence à l'environnement dans lequel l'application s'exécute. Il permet d'accéder à des ressources, des services et des informations sur l'application (préférences, ressources, bleuetooth, etc.).
 
 ⚠️ C'est un élément obligatoire.
 
@@ -757,10 +807,10 @@ Pour revenir au `Context`, il est possible de le récupérer depuis la vue via u
 Pour que nous puissions faire notre scan en arrière-plan et échanger les données entre la `View` et le `ViewModel` nous allons avoir besoin de quelques librairies :
 
 ```groovy
-implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
-implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
-implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.2")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.2")
+implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.2")
+implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.2")
 ```
 
 Ajouter ces dépendances dans votre fichier `build.gradle` (celui dans `app` du projet). Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).

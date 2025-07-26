@@ -12,5 +12,6 @@ aside: false
 
 ## Un peu plus loin
 
-- [TP Introduction au composant](/tp/composants/android.md)
+- [Les bases de la composition](/tp/android/compose/android-base.md).
+- [Android Compose - Créer une interface dynamique](/tp/composants/android.md).
 - [Appeler des API avec Compose](/tp/android/compose/dirty-api.md)

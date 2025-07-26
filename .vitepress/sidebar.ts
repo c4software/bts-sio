@@ -390,8 +390,8 @@ export default [
                         collapsed: true,
                         items: [
                             { text: "Découverte des bases d'Android", link: "/tp/android/compose/android-base.md" },
+                            { text: "Créer une interface dynamique", link: "/tp/composants/android.md" },
                             { text: "Android et BLE", link: "/tp/android/compose/android-ble.md" },
-                            { text: "Introduction à Android Compose", link: "/tp/composants/android.md" },
                             { text: "Android Compose, une liste et une API REST", link: "/tp/android/compose/dirty-api.md" }
                         ]
                     },

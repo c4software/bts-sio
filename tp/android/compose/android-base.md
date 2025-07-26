@@ -1,4 +1,4 @@
-# TP Android Compose
+# Introduction à Android avec Compose
 
 ::: details Sommaire
 [[toc]]
@@ -354,6 +354,12 @@ Je vous laisse tester, et garder ce genre de code pour votre projet final. Les a
 
 :::
 
+#### Aller plus loin avec les animations
+
+[![Aide mémoire](./res/animation.jpg)](https://storage.googleapis.com/android-stories/compose/Compose_Animation_Cheat_Sheet.pdf)
+
+_Source:_ [Twitter](https://twitter.com/JorgeCastilloPr/status/1579057096360079361)
+
 ### Le material design
 
 En plus des composants proposés par Compose, nous avons également accès aux composants de Material Design. Le projet que vous avez créé utilise déjà le Material Design en version 3.
@@ -708,6 +714,14 @@ Plusieurs options s'offre à vous :
 
 :::
 
+#### Le `Context`
+
+Pour rappel, le `Context` est un objet qui permet d'accéder à des informations sur l'application. Dans notre cas, nous allons avoir besoin du contexte pour accéder au Bluetooth du téléphone.
+
+Le terme `Context` est un utilisé dans le développement Android pour faire référence à l'environnement dans lequel l'application s'exécute. Il permet d'accéder à des ressources, des services et des informations sur l'application (préférences, ressources, bleuetooth, etc.).
+
+⚠️ C'est un élément obligatoire. Et une notion importante à comprendre pour le développement Android. Sans `Context`, vous ne pouvez pas accéder aux ressources de l'application, ni aux services du téléphone.
+
 ### Rendre un bouton cliquable
 
 Pour rendre un bouton cliquable, nous allons utiliser le paramètre `onClick` :
@@ -1059,6 +1073,14 @@ Quelques points sont à retenir :
 - Le `ViewModel` doit être observé par la `View`. (Nous verrons cela plus tard).
 - Le `ViewModel` **ne doit pas** contenir de référence à la `View`.
 
+::: tip Découper plus ?
+
+Il est bien évidemment possible de découper d'avantage le code. Par exemple, nous pourrions ajouter un `Repository` ou un `Service` qui va permettre de gérer les données. Mais pour l'instant, nous allons nous concentrer sur le MVVM. Ceux qui ont l'habitude de travailler avec des architectures plus complexes pourront facilement adapter ce modèle.
+
+Ce qu'il faut retenir, c'est que Google vous laisse de la liberté dans l'organisation de votre code, mais recommande fortement le MVVM pour les applications Android.
+
+:::
+
 ### La recomposition
 
 Il faut comprendre ici que notre vue sera « recomposée » à chaque fois que nous allons mettre à jours nos données. Nous allons donc devoir gérer des listes qui vont être modifiées en temps réel. Pour ça nous allons utiliser un `MutableStateFlow`, le `MutableStateFlow` sera un flux de données qui va nous permettre de mettre à jour notre liste (visuellement dans notre interface).
@@ -1087,10 +1109,10 @@ Ici, il faut bien voir que je vous communique une façon correcte de faire. Nous
 Pour que nous puissions faire notre scan en arrière-plan et échanger les données entre la `View` et le `ViewModel` nous allons avoir besoin de quelques librairies :
 
 ```groovy
-implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
-implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
-implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
-implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4")
+implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4")
+implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.4")
 ```
 
 Ajouter ces dépendances dans votre fichier `build.gradle` (celui dans `app` du projet). Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
