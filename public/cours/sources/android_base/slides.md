@@ -16,9 +16,9 @@ Point statistique :
 ---
 
 - Développé par Google
-- Créé en 2008 (16 ans)
-- Actuellement en version 15
-- Android 16 (TBA)
+- Créé en 2008 (17 ans)
+- Actuellement en version 16
+- Android 17 (Q2 2026)
 
 ---
 
@@ -297,6 +297,7 @@ Qu'observez-vous ? À votre avis, comment ça fonctionne ?
 
 ```kotlin
 var isLogin by remember { mutableStateOf(false) }
+
 if (isLogin) {
     Text("Bienvenue")
 } else {
@@ -307,6 +308,19 @@ if (isLogin) {
 ```
 
 Qu'observez-vous ? À votre avis, comment ça fonctionne ?
+
+---
+
+- `remember` : Permet de conserver l'état d'une variable entre les recompositions.
+- `mutableStateOf` : Permet de créer une variable observable.
+
+---
+
+## Recomposition ?
+
+- Lorsqu'une variable observable change, Compose « recomposera » l'interface.
+- Compose va détecter les changements et mettre à jour l'interface en conséquence.
+- Pas besoin de gérer manuellement les mises à jour de l'interface.
 
 ---
 
@@ -1175,6 +1189,14 @@ Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show();
 
 ---
 
+### Context ?
+
+Le contexte est l'environnement dans lequel votre application s'exécute. Il permet d'accéder aux ressources, aux services et aux informations sur l'application.
+
+C'est un objet important dans Android, car il est utilisé pour accéder à de nombreuses fonctionnalités de l'application.
+
+---
+
 ### Les Snackbars
 
 ![Snackbar avec action](./img/snackbar_action.jpg)
@@ -1868,6 +1890,16 @@ La suite dans le support…
 - Type natif **exclusivement** _(`int`, `string`, …)_
 - Persistant
 - Supprimé à chaque réinstallation
+
+---
+
+```kotlin
+// Création d'un SharedPreferences
+val sharedPreferences = context.getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
+
+sharedPreferences.edit().putString("key", "value").apply() // Enregistrer une valeur
+val value = sharedPreferences.getString("key", "default_value") // Récupérer une valeur
+```
 
 ---
 
