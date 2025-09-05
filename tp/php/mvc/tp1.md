@@ -54,6 +54,12 @@ Sur les PC du lycée, tout est déjà installé, mais si vous souhaitez travaill
 - [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version >= 8.2 minimum de PHP.
 - Cocher bien la case `Add to the PATH` afin de pouvoir utiliser Composer depuis n'importe quel terminal.
 
+::: danger Cette étape n'est pas à faire au lycée !
+
+Si vous êtes au lycée, tout est déjà installé. Ne faites pas cette étape.
+
+:::
+
 ## Structure
 
 Comme indiqué en introduction, la structuration d'un développement est aussi importante que le développement en
