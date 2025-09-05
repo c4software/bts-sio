@@ -47,6 +47,11 @@ Voilà le rendu :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/HiJp6sgn0NY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+## Installer Composer
+
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version >= 8.2 minimum de PHP.
+- Cocher bien la case `Add to the PATH` afin de pouvoir utiliser Composer depuis n'importe quel terminal.
+
 ## Structure
 
 Comme indiqué en introduction, la structuration d'un développement est aussi importante que le développement en
