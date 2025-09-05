@@ -49,6 +49,8 @@ Voilà le rendu :
 
 ## Installer Composer
 
+Sur les PC du lycée, tout est déjà installé, mais si vous souhaitez travailler chez vous, il vous faudra installer Composer. Composer est un gestionnaire de dépendance pour PHP. Il permettra de configurer correctement le path pour avoir PHP et les librairies nécessaires au bon fonctionnement du code.
+
 - [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version >= 8.2 minimum de PHP.
 - Cocher bien la case `Add to the PATH` afin de pouvoir utiliser Composer depuis n'importe quel terminal.
 
