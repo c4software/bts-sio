@@ -356,7 +356,7 @@ Je vous laisse tester, et garder ce genre de code pour votre projet final. Les a
 
 #### Aller plus loin avec les animations
 
-[![Aide mémoire](./res/animation.jpg)](https://storage.googleapis.com/android-stories/compose/Compose_Animation_Cheat_Sheet.pdf)
+![Aide mémoire](https://storage.googleapis.com/android-stories/compose/Compose_Animation_Cheat_Sheet.pdf)
 
 _Source:_ [Twitter](https://twitter.com/JorgeCastilloPr/status/1579057096360079361)
 
