@@ -679,6 +679,36 @@ Box {
 
 ---
 
+## Définir un taille
+
+```kotlin
+Row(modifier = Modifier.size(100.dp))
+
+Row(modifier = Modifier.fillMaxWidth())
+
+Row(modifier = Modifier.fillMaxHeight())
+
+Row(modifier = Modifier.fillMaxSize())
+```
+
+---
+
+## Le positionnement
+
+```kotlin
+Row(
+    horizontalArrangement = Arrangement.Center,
+    verticalAlignment = Alignment.CenterVertically
+)
+
+Row(
+    horizontalArrangement = Arrangement.SpaceBetween,
+    verticalAlignment = Alignment.CenterVertically
+)
+```
+
+---
+
 Nous construisons donc des grilles de composants.
 
 ![Layout](./img/compose-layout.png)

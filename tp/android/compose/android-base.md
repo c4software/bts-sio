@@ -291,6 +291,66 @@ Button(onClick = { /* Code appelé lors du clique sur le bouton */ }) {
 
 Et évidemment, nous allons pouvoir créer nos propres composants… Mais nous verrons ça plus tard.
 
+### Taille des composants
+
+Via le `Modifier` (que nous verrons plus tard), nous allons pouvoir définir la taille des composants. Par exemple :
+
+```kotlin
+Text(
+    text = "Hello World",
+    modifier = Modifier.size(128.dp)
+)
+```
+
+Ou plus largement, nous allons pouvoir définir des tailles par rapport à l'écran :
+
+```kotlin
+Text(
+    text = "Hello World",
+    modifier = Modifier.fillMaxWidth() // Rempli toute la largeur de l'écran
+)
+```
+
+```kotlin
+Text(
+    text = "Hello World",
+    modifier = Modifier.fillMaxHeight() // Rempli toute la hauteur de l'écran
+)
+```
+
+```kotlin
+Text(
+    text = "Hello World",
+    modifier = Modifier.fillMaxSize() // Rempli toute la taille de l'écran
+)
+```
+
+::: tip Le modifier
+
+Le `Modifier` est disponible sur tous les composants. Il permet de modifier le comportement du composant (taille, couleur, etc.). Nous verrons plus en détail le `Modifier` plus tard.
+
+Vous pouvez le découvrir en utilisant l'autocomplétion de votre IDE. Point important, il est également chaînable. Ce qu'il signifie que vous pouvez enchaîner plusieurs modificateurs les uns après les autres, exemple :
+
+```kotlin
+Text(
+    text = "Hello World",
+    modifier = Modifier
+        .padding(16.dp)
+        .background(Color.Blue)
+        .border(1.dp, Color.Black)
+)
+```
+
+Nous avons ici un `Text` avec un padding de 16dp, un fond bleu et une bordure noire de 1dp.
+
+:::
+
+::: danger Attention
+
+Ici la taille est relative au parent. Si le parent n'a pas de taille définie, le composant n'aura pas de taille définie.
+
+:::
+
 ### Imbrication des composants
 
 Avec Compose, tout est composant. Cela signifie que nous allons pouvoir imbriquer les composants les uns dans les autres pour créer des interfaces complexes.
