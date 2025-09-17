@@ -592,32 +592,15 @@ Deux façons de travailler :
 
 ---
 
-## L'activity
-
-- Représente un seul écran.
-- Gère tout ce qu'il y a dans l'écran.
-- Gère la logique des interactions utilisateurs.
-- Possède son propre **cycle de vie**.
-
----
-
-![Lifecycle](./img/lifecycle.png)
-
----
-
-![Lifecycle 2](./img/lifecycle2.png)
-
----
-
-- L'ensemble de vos activity hérite d'une super **ComponentActivity**.
-- « Override » surcharge des méthodes de base (au début uniquement onCreate).
-
----
-
 ## C'est à vous
 
 - Personnaliser le nom de votre application.
 - Personnaliser l'icône de votre application.
+
+---
+
+- Dans le fichier `AndroidManifest.xml` (édition du fichier strings.xml)
+- Via l'outil d'Android Studio (clique droit sur `res` > New > Image Asset)
 
 ---
 
