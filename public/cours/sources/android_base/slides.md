@@ -1012,6 +1012,12 @@ Modifier.padding(16.dp, 8.dp) // Ajoute un padding de 16dp en largeur et 8dp en 
 
 ---
 
+## Modifier ?
+
+**Rappel** Un `Modifier` est un objet qui permet de modifier le comportement ou l'apparence d'un composant.
+
+---
+
 ## Taille et style du texte
 
 ```kotlin
@@ -1020,7 +1026,20 @@ Text(text = content, fontWeight = FontWeight.Light, fontSize = 10.sp)
 
 ---
 
-Etc…
+## Ou via un style
+
+```kotlin
+// Défini dans le theme
+val monStyle = TextStyle(
+    fontWeight = FontWeight.Light,
+    fontSize = 10.sp
+)
+
+Text(
+    text = content,
+    style = monStyle
+)
+```
 
 ---
 
@@ -1032,7 +1051,7 @@ Etc…
 
 - `res/values/strings.xml`
 
-Accessible via `stringResourcestringResource(R.string.un_texte)`.
+Accessible via `stringResource(R.string.un_texte)`.
 
 ---
 
@@ -1248,11 +1267,12 @@ Un callback est une fonction qui est passée en paramètre d'une autre fonction.
 
 ## Exemple en Kotlin
 
-```kotlin 
+```kotlin
 fun doSomething(callback: () -> Unit) {
     callback()
 }
 ```
+
 ---
 
 Fonctionne dans le code, mais également dans vos composants Compose.
@@ -1261,8 +1281,8 @@ Fonctionne dans le code, mais également dans vos composants Compose.
 
 ```kotlin
 @Composable
-fun MyButton(onClick: () -> Unit) {
-    Button(onClick = onClick) {
+fun MyRedButton(onClick: () -> Unit) {
+    Button(onClick = onClick, colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
         Text("Cliquez ici")
     }
 }

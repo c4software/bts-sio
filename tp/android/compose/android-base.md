@@ -629,54 +629,6 @@ Les ressources sont un élément important d'une application Android. Elles peuv
 - `miap` : Les icônes.
 - `values` : Les valeurs (couleurs, textes, dimensions, etc.).
 
-::: warning Internationalisation
-
-Je ne le répéterai jamais assez, l'internationalisation est un élément important d'une application. Android Studio propose un outil pour gérer les traductions de votre application.
-
-:::
-
-Extraire les textes de votre application est donc un **un incontournable**. Android Studio vous guide pour cela :
-
-![Extract String](./img/base/astuce_extract.png)
-
-::: tip C'est à vous
-
-Je vous laisse extraire les différents textes de votre application.
-
-:::
-
-### Les ressources alternatives
-
-Les ressources alternatives sont des ressources qui sont utilisées en fonction de la configuration de l'appareil. Par exemple, si l'appareil est en mode sombre, les ressources alternatives seront utilisées. Voici une liste non exhaustive des configurations qui peuvent être utilisées :
-
-- Taille de l'écran.
-- Langue.
-- Rotation de l'écran (Paysage / Portrait).
-- DPI
-- Thème sombre
-- Version d'Android
-- etc.
-
-Cette création de ressource est réalisable directement depuis Android Studio :
-
-![Create new resources](./img/base/create_new_resources.png)
-![Création de ressources alternatives](./img/base/resources.png)
-
-::: tip Vous pouvez tout redéfinir
-L'ensemble des ressources (`res`) est redéfinissable sans écrire de code. Par exemple si vous souhaitez redéfinir des `strings` dans différentes conditions il suffit de :
-
-![Popup de création](./img/base/resources_strings.png)
-![Ressources alternatives](./img/base/exemple_res_alt.png)
-:::
-
-#### À faire
-
-Nous allons tester ensemble ce fonctionnement grâce aux textes que vous avez extraits :
-
-- Ajouter la langue `it` (Italien) à votre application.
-- Traduire votre fichier `strings.xml` en italien.
-- Lancer votre application et changer la langue de votre téléphone pour voir le résultat.
-
 ### Les images
 
 Nous avons dans notre application un dossier `drawable` qui contient les images de l'application. Nous allons maintenant ajouter une image à notre application.
@@ -727,6 +679,52 @@ Intéragir avec l'utilisateur est un élément clé d'une application. Sur Andro
 - **Toast** : Un message qui s'affiche à l'écran.
 - **Snackbar** : Un message qui s'affiche en bas de l'écran.
 - **Dialog** : Une fenêtre qui s'affiche à l'écran.
+
+### Internationalisation
+
+Je ne le répéterai jamais assez, l'internationalisation est un élément important d'une application. Android Studio propose un outil pour gérer les traductions de votre application.
+
+Extraire les textes de votre application est donc un **un incontournable**. Android Studio vous guide pour cela :
+
+![Extract String](./img/base/astuce_extract.png)
+
+::: tip C'est à vous
+
+Je vous laisse extraire les différents textes de votre application.
+
+:::
+
+### Les ressources alternatives
+
+Les ressources alternatives sont des ressources qui sont utilisées en fonction de la configuration de l'appareil. Par exemple, si l'appareil est en mode sombre, les ressources alternatives seront utilisées. Voici une liste non exhaustive des configurations qui peuvent être utilisées :
+
+- Taille de l'écran.
+- Langue.
+- Rotation de l'écran (Paysage / Portrait).
+- DPI
+- Thème sombre
+- Version d'Android
+- etc.
+
+Cette création de ressource est réalisable directement depuis Android Studio :
+
+![Create new resources](./img/base/create_new_resources.png)
+![Création de ressources alternatives](./img/base/resources.png)
+
+::: tip Vous pouvez tout redéfinir
+L'ensemble des ressources (`res`) est redéfinissable sans écrire de code. Par exemple si vous souhaitez redéfinir des `strings` dans différentes conditions il suffit de :
+
+![Popup de création](./img/base/resources_strings.png)
+![Ressources alternatives](./img/base/exemple_res_alt.png)
+:::
+
+#### À faire
+
+Nous allons tester ensemble ce fonctionnement grâce aux textes que vous avez extraits :
+
+- Ajouter la langue `it` (Italien) à votre application.
+- Traduire votre fichier `strings.xml` en italien.
+- Lancer votre application et changer la langue de votre téléphone pour voir le résultat.
 
 ### Les Toast
 
