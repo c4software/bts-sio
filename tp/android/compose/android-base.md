@@ -982,6 +982,14 @@ Les `Screen` sont des composants comme les autres. Vous pouvez les ranger dans u
 
 :::
 
+::: danger Des callbacks partout ?
+
+Il est possible que vous trouviez cela « bizarre » d'avoir des callbacks partout. C'est normal, c'est le principe de la programmation avec Compose. Ça nous permet de garder une application simple et modulaire. Et avec des composants réutilisables, indpendants les uns des autres. 
+
+En effet, les composants ne connaissent pas le contexte dans lequel ils sont utilisés. Ils ne font qu'afficher des données et appeler des actions. C'est à vous de gérer la logique de votre application.
+
+:::
+
 #### Créer des éléments
 
 Avant de réaliser le code, nous allons dans un premier temps créer un nouveau package. Il nous servira à stocker nos composants.
