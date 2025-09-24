@@ -1507,6 +1507,14 @@ fun Screen2(name: String, goBack: () -> Unit) {
 
 ---
 
+## Nous utilisons beaucoup de fonctions de callback ?
+
+### Oui, mais c'est normal. Les composants sont indépendants. Et réutilisables.
+
+(psst : Et ça permet aussi de faire facilement des `@preview`)
+
+---
+
 - Où ranger ces pages ?
 - Où mettre le Router ?
 
