@@ -43,7 +43,7 @@ Le projet final a pour objectif de réaliser une application Android **propre** 
 - Ne scanner que les équipements compatibles.
 - Vider la liste après une connexion (et ne pas avoir de doublons dans la liste).
 - Personnaliser l'icône de l'application (mettre le logo de l'école + ampoule).
-- L'ensemble des textes **doivent-être** dans le `strings.xml`.
+- L'ensemble des textes **doivent-être** dans le `strings.xml`. Deux langues minimum (français + italien).
 - Empêcher la rotation de l'ensemble de l'application (`manifest.xml`).
 - Permettre l'allumage / l'extinction de la LED.
 - Afficher le nombre de fois que la LED a été allumée / éteinte.
