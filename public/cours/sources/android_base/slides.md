@@ -1237,7 +1237,7 @@ C'est un objet important dans Android, car il est utilisé pour accéder à de n
 
 ---
 
-[https://developer.android.com/develop/ui/compose/components/snackbar]
+<https://developer.android.com/develop/ui/compose/components/snackbar>
 
 ---
 
