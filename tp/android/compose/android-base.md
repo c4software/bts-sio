@@ -929,6 +929,10 @@ Dans cet exemple, nous avons un `NavHost` qui contient deux `Screen` : `Screen1`
 
 - `goBack = { navController.popBackStack() }` permet de revenir à l'écran précédent. C'est une fonction de callback que nous allons passer à la `Screen2` pour lui permettre de revenir à l'écran précédent.
 
+`PopBackStack` ? Il faut imaginer que votre navigation est une pile (comme un millefeuille). Chaque fois que vous naviguez vers un nouvel écran, celui-ci est ajouté en haut de la pile. Si vous ne faites qu'ajouter des écrans, vous allez finir par avoir une pile très haute. `popBackStack` permet de retirer l'écran du dessus de la pile et de revenir à l'écran précédent. C'est l'équivalent de l'action du bouton « retour » sur votre téléphone (ou du geste retour).
+
+---
+
 Ce code nécessite une librairie supplémentaire `navigation-compose`. Pour l'ajouter, il suffit d'ajouter la dépendance suivante dans votre `build.gradle` :
 
 ```gradle
