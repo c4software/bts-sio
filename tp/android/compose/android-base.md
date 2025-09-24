@@ -911,21 +911,23 @@ NavHost(
     startDestination = "screen1"
 ) {
     // Une page simple sans paramètre
-    composable("screen1") { Screen1(navController) }
+    composable("screen1") { Screen1(goToScreen2 = { name -> navController.navigate("screen2/$name") }) }
 
     // Une page avec un paramètre (ici un nom)
     composable(
         route = "screen2/{name}",
         arguments = listOf(navArgument("name") { type = NavType.StringType })
     ) { backStackEntry -> Screen2(
-            navController,
-            name = backStackEntry.arguments?.getString("name") ?: ""
+            name = backStackEntry.arguments?.getString("name") ?: "",
+            goBack = { navController.popBackStack() }
         )
     }
 }
 ```
 
 Dans cet exemple, nous avons un `NavHost` qui contient deux `Screen` : `Screen1` et `Screen2`. `Screen2` Prends un paramètre `name` qui est un `String`.
+
+- `goBack = { navController.popBackStack() }` permet de revenir à l'écran précédent. C'est une fonction de callback que nous allons passer à la `Screen2` pour lui permettre de revenir à l'écran précédent.
 
 Ce code nécessite une librairie supplémentaire `navigation-compose`. Pour l'ajouter, il suffit d'ajouter la dépendance suivante dans votre `build.gradle` :
 
@@ -943,32 +945,31 @@ Maintenant que vous avez un exemple de `NavHost`, je vous laisse créer deux `Sc
 
 ```kotlin
 @Composable
-fun Screen1(navController: NavController) {
+fun Screen1(goToScreen2: (name: String) -> Unit) {
     Column {
-        Button(onClick = { navController.navigate("screen2/Valentin") }) {
+        Button(onClick = { goToScreen2("Valentin") }) {
             Text("Bonjour Valentin")
         }
     }
 }
 ```
 
-- Screen1 est une page qui possède un paramètre `navController` qui est un `NavController`. Ce paramètre va nous permettre de naviguer entre les différentes `Screen`.
-- `navController.navigate("screen2/Valentin")` permet de naviguer vers la `Screen2` avec le paramètre `Valentin`.
+- Screen1 est une page qui possède un paramètre `goToScreen2` qui est une fonction. Ce paramètre va nous permettre de naviguer entre les différentes `Screen`.
+- `goToScreen2("Valentin")` permet de naviguer vers la `Screen2` avec le paramètre `Valentin`.
 
 ```kotlin
 @Composable
-fun Screen2(navController: NavController, name: String) {
+fun Screen2(name: String, goBack: () -> Unit) {
     Column {
         Text("Bonjour $name")
-        Button(onClick = { navController.popBackStack() }) {
+        Button(onClick = { goBack() }) {
             Text("Retour")
         }
     }
 }
 ```
 
-- Screen2 est une page qui possède deux paramètres : `navController` qui est un `NavController` et `name` qui est un `String`. `name` est le paramètre que nous avons passé dans la `Screen1`.
-- `navController.popBackStack()` permet de revenir à la `Screen1`. `popBackStack` permet de revenir à la `Screen` précédente.
+- Screen2 est une page qui possède deux paramètres : `name` qui est un `String` et une action `goBack` qui est une fonction (callback).
 
 ::: tip Où ranger les `Screen`
 

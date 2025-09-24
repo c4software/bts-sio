@@ -1450,15 +1450,15 @@ NavHost(
     startDestination = "screen1"
 ) {
     // Une page simple sans paramètre
-    composable("screen1") { Screen1(navController) }
+    composable("screen1") { Screen1(goToScreen2 = { name -> navController.navigate("screen2/$name") }) }
 
     // Une page avec un paramètre (ici un nom)
     composable(
         route = "screen2/{name}",
         arguments = listOf(navArgument("name") { type = NavType.StringType })
     ) { backStackEntry -> Screen2(
-            navController,
-            name = backStackEntry.arguments?.getString("name") ?: ""
+            name = backStackEntry.arguments?.getString("name") ?: "",
+            goBack = { navController.popBackStack() }
         )
     }
 }
@@ -1480,9 +1480,9 @@ implementation("androidx.navigation:navigation-compose:2.7.7")
 
 ```kotlin
 @Composable
-fun Screen1(navController: NavController) {
+fun Screen1(goToScreen2: (String) -> Unit) {
     Column {
-        Button(onClick = { navController.navigate("screen2/Valentin") }) {
+        Button(onClick = { goToScreen2("Valentin") }) {
             Text("Bonjour Valentin")
         }
     }
@@ -1495,10 +1495,10 @@ fun Screen1(navController: NavController) {
 
 ```kotlin
 @Composable
-fun Screen2(navController: NavController, name: String) {
+fun Screen2(name: String, goBack: () -> Unit) {
     Column {
         Text("Bonjour $name")
-        Button(onClick = { navController.popBackStack() }) {
+        Button(onClick = { goBack() }) {
             Text("Retour")
         }
     }
