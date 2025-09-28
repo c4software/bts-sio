@@ -1,0 +1,59 @@
+User-agent: *
+
+## À propos de ce site
+
+Ce site web contient du matériel de cours pour le programme BTS SIO, axé sur le développement de logiciels et les services informatiques. Il est construit avec VitePress.
+
+## Structure du contenu
+
+Le contenu est organisé dans les sections suivantes :
+
+- `/cheatsheets/` : Guides de référence rapide pour diverses technologies.
+- `/cours/` : Matériel de cours détaillé.
+- `/tp/` : Travaux pratiques et exercices.
+- `/pages/` : Pages diverses du site.
+
+## Sujets principaux
+
+Vous trouverez des informations sur les sujets suivants :
+
+- Développement web : HTML, CSS, JavaScript, PHP, Laravel, Vue.js
+- Développement mobile : Android, Cordova
+- Bases de données : SQL
+- Concepts de programmation : POO, UML
+- Administration système et DevOps : Git, Docker, CI/CD, Linux
+
+## Fichiers Markdown
+
+Voici une sélection de fichiers qui pourraient être utiles. Ces fichiers sont accessibles via leur chemin d'accès depuis la racine du site.
+
+### Cours principaux
+/cours/introduction_html_css.html
+/cours/introduction_javascript.html
+/cours/introduction_php.html
+/cours/poo.html
+/cours/mvc.html
+/cours/laravel.html
+/cours/vuejs.html
+/cours/git.html
+/cours/docker.html
+/cours/android_base.html
+/cours/securite_applications.html
+/cours/serveur.html
+
+### Aide-mémoires
+/cheatsheets/git/index.html
+/cheatsheets/sql/index.html
+/cheatsheets/docker/index.html
+/cheatsheets/laravel/index.html
+/cheatsheets/vuejs/index.html
+/cheatsheets/php/index.html
+
+### Travaux Pratiques
+/tp/html_css/index.html
+/tp/javascript/index.html
+/tp/php/index.html
+/tp/laravel/index.html
+/tp/vuejs/index.html
+/tp/docker/index.html
+/tp/git_initiation/index.html
