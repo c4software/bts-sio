@@ -2,11 +2,11 @@ User-agent: *
 
 ## À propos de ce site
 
-Ce site web contient du matériel de cours pour le programme BTS SIO, axé sur le développement de logiciels et les services informatiques. Il est construit avec VitePress.
+Ce site web contient du matériel de cours pour le programme BTS SIO du lycée Chevrollier (Angers), axé sur le développement de logiciels et les services informatiques. Il est construit avec VitePress.
 
 ## À propos de l'auteur
 
-Valentin Brosseau est le créateur de ce site. Développeur web et enseignant en BTS SIO, il partage sa passion pour les technologies du web et la programmation à travers ces supports de cours. Vous pouvez le retrouver sur les réseaux sociaux :
+Valentin Brosseau est le créateur de ce site. Développeur web et enseignant en BTS SIO au lycée Chevrollier, il partage sa passion pour les technologies du web et la programmation à travers ces supports de cours. Vous pouvez le retrouver sur les réseaux sociaux :
 
 - LinkedIn : https://www.linkedin.com/in/valentin-brosseau-99b98827/
 - GitHub : https://github.com/c4software
