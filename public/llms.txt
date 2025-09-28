@@ -4,6 +4,16 @@ User-agent: *
 
 Ce site web contient du matériel de cours pour le programme BTS SIO, axé sur le développement de logiciels et les services informatiques. Il est construit avec VitePress.
 
+## À propos de l'auteur
+
+Valentin Brosseau est le créateur de ce site. Développeur web et enseignant en BTS SIO, il partage sa passion pour les technologies du web et la programmation à travers ces supports de cours. Vous pouvez le retrouver sur les réseaux sociaux :
+
+- LinkedIn : https://www.linkedin.com/in/valentin-brosseau-99b98827/
+- GitHub : https://github.com/c4software
+- Twitter (X) : https://x.com/c4software
+- Mastodon : https://mastodon.social/@c4software@mastodon.gougere.fr
+- Gitlab : https://gitlab.com/vbrosseau
+
 ## Structure du contenu
 
 Le contenu est organisé dans les sections suivantes :
