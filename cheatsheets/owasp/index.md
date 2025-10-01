@@ -12,11 +12,12 @@ description: La méthode OWASP ! Prévenir plutôt que guérir…
 
 Prévenir plutôt que guérir… Quelques sites à surveiller :
 
-- [US CERT (LA SOURCE)](https://www.us-cert.gov/)
-- [The Hacker News](http://thehackernews.com/)
+- [CISA (anciennement US-CERT)](https://www.cisa.gov/)
+- [The Hacker News](https://thehackernews.com/)
 - [Zataz](https://www.zataz.com/)
 - [Reddit NetSec](https://www.reddit.com/r/netsec/)
 - [Next INpact](https://www.nextinpact.com/) (~payant)
+- [CERT-FR (ANSSI)](https://www.cert.ssi.gouv.fr/)
 - Google Actu
 
 ::: tip Important
@@ -90,8 +91,8 @@ Le salage est une technique qui permet d’ajouter une chaîne aléatoire au mot
 Le bcrypt est un algorithme de hachage qui :
 
 - Intègre le sel.
-- Intègre un coût (nombre d’itération). Plus le coût est élevé, plus le hachage est long (et donc plus sécurisé).
-- Intègre un hachage (SHA-256).
+- Intègre un coût (nombre d'itération). Plus le coût est élevé, plus le hachage est long (et donc plus sécurisé).
+- Est basé sur l'algorithme de chiffrement Blowfish (et non SHA-256).
 
 ## Résumé :
 
@@ -179,38 +180,38 @@ S'assurer d'une qualité continue du code avec :
 
 [Site de Owasp](https://owasp.org/)
 
-OWASP liste 10 grandes catégories de failles **à connaître** :
+OWASP liste 10 grandes catégories de failles **à connaître** (version 2021) :
 
-- **Injection** : Les attaques par injection surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête. Cela peut se produire avec les injections SQL, les injections OS, etc.
-- **Violation de Gestion d’Authentification et de Session** : Cela se produit lorsque les attaquants exploitent des vulnérabilités dans les mécanismes d'authentification, comme les sessions mal gérées, les mots de passe faibles ou les identifiants exposés.
-- **Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire compte tenu des défaillances cryptographiques possibles (et donc à l’exposition de données sensibles). Cela est particulièrement vrai dans le cas où ces données relèvent de dispositifs réglementés comme le RGPD, le CCPA, etc. Exemple, mot de passe non chiffré en base de données
-- **Conception non sécurisée / Exposition de données sensibles** : La « conception non sécurisée » est un terme assez large qui regroupe diverses failles et désigne l’absence ou la faiblesse de la conception des contrôles. Exemple d’accès direct à une ressource sans contrôle, manque de contrôle dans un système de routeur Web, Manque de contrôle de saisie, utilisation d'une question secrète, réservation sans payer d'accompte, pas de protection anti-bot.
-- **Mauvaise configuration de la sécurité** : Manque de validation des types de paramètres, accès trop facile aux ressources non accessibles au public (cloud), configuration incomplète ou trop permissive, messages d’erreurs trop détaillés, contenant des informations sensibles, manque de contrôle sur les données en entrée (filtrage non présent type filter_input, strip_tags, htmlspecialchars etc.)
-- **Utilisation de composants avec des vulnérabilités connues** : L'utilisation de logiciels ou de composants obsolètes et vulnérables peut exposer l'application à des attaques connues. Il est essentiel de maintenir une liste des composants utilisés et de surveiller les vulnérabilités associées. Ancienne version de Laravel, ancienne version de PHP, MySQL non à jour, etc.
-- **Identification et authentification de mauvaise qualité** : Lorsque les applications n’exécutent pas de manière correcte les fonctions liées à la gestion des sessions ou à l’authentification des utilisateurs, des intrus peuvent compromettre les mots de passe, clés de sécurité ou jetons de sessions et usurper, de manière temporaire ou permanente, les identités et donc les autorisations d’autres utilisateurs. Exemple, absence d’authentification multifacteur, absence de règle de mot de passe, utilisateur par défaut type root / root sur un système, utilisation d’id dans un lien.
-- **Manque d’intégrité des données et du logiciel** : Cette catégorie englobe les codes et infrastructures qui ne sont pas protégés contre les violations d’intégrité. Exemple, mise à jour sans contrôle, absence de signature numérique, présence de XSS dans un système, aucune protection anti-rejeux (brute force, CSRF)
-- **Absence de logs serveur et de surveillance** : Permettre un cas d’incident d’avoir de la traçabilité.
-- **Falsification de requête côté serveur** : Elle permet à un hacker d’inciter l’application côté serveur à envoyer des requêtes à un endroit non prévu. Le serveur est donc capable de faire des requêtes à des endroits non prévus (depuis le coeur de l'application).
+- **A01:2021 – Contrôles d'accès défaillants** : Les vulnérabilités liées aux contrôles d'accès permettent aux utilisateurs d'agir en dehors de leurs permissions prévues.
+- **A02:2021 – Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire. Exemple : mots de passe non hashés en base de données, absence de HTTPS.
+- **A03:2021 – Injection** : Les attaques par injection (SQL, NoSQL, OS, LDAP) surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête.
+- **A04:2021 – Conception non sécurisée** : Désigne l'absence ou la faiblesse de la conception des contrôles de sécurité. Exemple : absence de contrôle dans un système de routage Web, manque de validation des entrées, absence de protection anti-bot.
+- **A05:2021 – Mauvaise configuration de sécurité** : Configuration incomplète ou trop permissive, services inutiles activés, comptes par défaut non modifiés, messages d'erreur trop détaillés.
+- **A06:2021 – Composants vulnérables et obsolètes** : L'utilisation de logiciels ou composants obsolètes (frameworks, bibliothèques, systèmes) peut exposer l'application à des attaques connues.
+- **A07:2021 – Identification et authentification de mauvaise qualité** : Vulnérabilités liées à l'authentification : absence de MFA, mots de passe faibles acceptés, sessions mal gérées, identifiants par défaut.
+- **A08:2021 – Manque d'intégrité des données et du logiciel** : Code et infrastructure non protégés contre les violations d'intégrité. Exemple : mises à jour non signées, pipelines CI/CD non sécurisés, désérialisation non sécurisée.
+- **A09:2021 – Carence des systèmes de contrôle et de journalisation** : Absence de logs, logs insuffisants, ou absence de surveillance permettant de détecter et répondre aux incidents de sécurité.
+- **A10:2021 – Falsification de requête côté serveur (SSRF)** : Permet à un attaquant d'inciter le serveur à envoyer des requêtes vers des destinations non prévues (services internes, cloud metadata, etc.).
 
 ### Top 10 : Simplifié
 
 Le nouveau TOP 10 est très intéressant, car il met en lumière le croisement entre les failles et les risques. Mais il est plus complexe à mémoriser. Il est donc également possible de classer les failles de manière brute :
 
-- **Injection** : Injection SQL, Shell...
-- **Violation de Gestion d’Authentification et de Session** : Risque de casser / usurper une authentification ou une session.
-- **Cross-Site Scripting (XSS)** : Risque d'injection de contenu dans une page pour but de provoquer des actions non désirées dans celle-ci.
+- **Injection** : Injection SQL, NoSQL, OS, LDAP...
+- **Violation de Gestion d'Authentification et de Session** : Risque de casser / usurper une authentification ou une session.
+- **Cross-Site Scripting (XSS)** : Risque d'injection de contenu dans une page pour provoquer des actions non désirées.
 - **Références directes non sécurisées à un objet** : Accès à de la donnée en spécifiant un `id` directement par un paramètre non filtré.
 - **Mauvaise configuration Sécurité** : Failles liées aux serveurs Web, applications, base de données ou frameworks.
-- **Exposition de données sensibles** : Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
-- **Manque de contrôle d’accès au niveau fonctionnel** : Failles liées aux contrôles d'accès de fonctionnalité.
-- **Falsification de requête intersite (CSRF)** : Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
-- **Utilisation de composants avec des vulnérabilités connues** : Failles liées à l’utilisation de composants tiers vulnérables.
-- **Redirections et Renvois non validés** : Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante.
+- **Exposition de données sensibles** : Exposition de données sensibles et nécessité de chiffrer ces données.
+- **Manque de contrôle d'accès au niveau fonctionnel** : Failles liées aux contrôles d'accès de fonctionnalité.
+- **Falsification de requête intersite (CSRF)** : Failles liées à l'exécution de requêtes à l'insu de l'utilisateur.
+- **Utilisation de composants avec des vulnérabilités connues** : Failles liées à l'utilisation de composants tiers vulnérables.
+- **Redirections et Renvois non validés** : Vulnérabilité permettant de rediriger l'utilisateur sur une page malveillante.
 
 Ce classement est plus simple à mémoriser et permet de se rappeler des failles les plus courantes.
 
-::: tip Je ne l'invente pas
-Ce classement est en fait la version antérieure du TOP 10 (avant 2020). Il est donc toujours complètement valable.
+::: tip Je n'invente rien
+Ce classement correspond à la version OWASP TOP 10 de 2017. Bien que mise à jour en 2021, ces concepts restent valables et pertinents.
 :::
 
 ### Les failles
@@ -310,12 +311,16 @@ Deux types sont à connaître :
 - Toujours valider les entrées utilisateurs.
 
 ```php
-$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
+$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 // ou
 $nom = strip_tags($_POST['nom']);
-// ou
-$nom = htmlspecialchars($_POST['nom']);
+// ou (recommandé pour l'affichage)
+$nom = htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8');
 ```
+
+::: warning Note importante
+`FILTER_SANITIZE_STRING` est **déprécié depuis PHP 8.1**. Utilisez `FILTER_SANITIZE_FULL_SPECIAL_CHARS` ou `htmlspecialchars()`.
+:::
 
 ### Références directes non sécurisées à un objet
 
@@ -491,10 +496,11 @@ L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les
 ## Les outils OWASP
 
 - [OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
-- WebGoat (Formation, Java)
-- WebScarab (Audit)
-- OWASP Testing guide (Guide pour voir le niveau de sécu)
-- OWASP Code Review guide (Méthode d’audit)
+- [WebGoat (Formation, Java)](https://owasp.org/www-project-webgoat/)
+- [ZAP - Zed Attack Proxy (Audit, remplace WebScarab)](https://www.zaproxy.org/)
+- [OWASP Testing Guide (Guide de test de sécurité)](https://owasp.org/www-project-web-security-testing-guide/)
+- [OWASP Code Review Guide (Méthode d'audit de code)](https://owasp.org/www-project-code-review-guide/)
+- [OWASP Dependency-Check (Vérification des composants vulnérables)](https://owasp.org/www-project-dependency-check/)
 
 ## La formation
 

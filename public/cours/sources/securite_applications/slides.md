@@ -78,45 +78,38 @@ Vous en avez d’autres en tête ?
 
 ---
 
-#### Vous êtes la première ligne d’informations
-
-Par deux, collecter une actualité récente « sur un problème de sécurités ».
-
-![QRCode](./img/code.png)
-
-Lien : [https://forms.gle/zXBhF61uKxtHh6Ma7](https://forms.gle/zXBhF61uKxtHh6Ma7)
-
----
-
 ### Le prix de la sécurité
 
 - Impact fonctionnel
-- Limitation de l’expérience utilisateur (UX)
+- Limitation de l'expérience utilisateur (UX)
 - Impact financier
+- Impact réputationnel
 
 ---
 
-### Les facteurs d’expositions
+### Les facteurs d'expositions
 
 ![](./img/expositions.png)
 
 ---
 
-#### La sécurité informatique dans une application c’est un « équilibre »
+#### La sécurité informatique dans une application c'est un « équilibre »
+
+Entre protection et utilisabilité
 
 ---
 
-### L’insécurité à un coût
+### L'insécurité à un coût
 
 À votre avis ?
 
 ---
 
-# 2.86 Millions d’euros
+# 4.45 Millions de dollars
 
-Estimation des coûts pour une entreprise à chaque incident de vol de données en France
+Coût moyen mondial d'une violation de données en 2023 selon IBM Security
 
-Source: Cost Of Data Breach \- Symantec
+Source: Cost Of Data Breach - IBM Security 2023
 
 ---
 
@@ -307,11 +300,13 @@ Conception d'une application sans prise en compte de la sécurité.
 
 ### Mauvaise configuration de la sécurité
 
-Manque de validation des types de paramètres, accès trop facile aux ressources non accessibles au public (cloud), configuration incomplète ou trop permissive, messages d’erreurs trop détaillés.
+Manque de validation des types de paramètres, accès trop facile aux ressources non accessibles au public (cloud), configuration incomplète ou trop permissive, messages d'erreurs trop détaillés.
 
 - Accès à des ressources non publiques.
 - Messages d'erreurs trop détaillés.
 - Filtrage absent ou incomplet (filter_input, strip_tags, htmlspecialchars, htmlentities, etc.).
+- En-têtes de sécurité manquants (CSP, HSTS, X-Frame-Options, etc.).
+- Services inutiles activés.
 
 ---
 
@@ -588,11 +583,12 @@ if ($_SESSION['mode'] == 'client') {
 
 ### Exposition de données sensibles
 
-- Espace client sans SSL.
-- Mot de passe en clair (**ou en MD5**) dans la base de données.
+- Espace client sans SSL/TLS.
+- Mot de passe en clair (**ou en MD5, SHA1**) dans la base de données.
 - Sauvegarde de données inutiles.
 - Données sensibles dans les logs.
 - Données sensibles en clair dans la base de données.
+- Absence de chiffrement des données au repos.
 
 ---
 
@@ -735,24 +731,25 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ## Le bcrypt
 
-- Intègre le sel.
-- Intègre un coût (nombre d’itération).
-- Intègre un hachage (SHA-256).
+- Intègre le sel automatiquement.
+- Intègre un coût (nombre d'itération) configurable.
+- Utilise Blowfish comme algorithme de base (pas SHA-256).
+- Alternatives modernes : Argon2, Scrypt.
 
 ---
 
 <fieldset>
   <legend>Les mots de passe</legend>
   <p>
-    Un mot de passe ne doit jamais être stocké en claire. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
+    Un mot de passe ne doit jamais être stocké en clair. Il doit être haché (non réversible) et salé (ajout d'une chaîne aléatoire).
   </p>
 
   <p>
-    Le sel peut-être différent pour chaque utilisateur ou global pour tous les utilisateurs. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe.
+    Le sel doit être unique pour chaque utilisateur (recommandation actuelle). Celui-ci doit être stocké avec le hash et sera utilisé pour vérifier le mot de passe.
   </p>
 
   <p>
-    Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (SHA-256).
+    Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et utilise Blowfish. Argon2 est recommandé comme alternative moderne (gagnant du Password Hashing Competition 2015).
   </p>
 </fieldset>
 
@@ -808,14 +805,15 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 
 ### Comment réduire le risque ?
 
----
-
-- Sensibilisations / Formations
-- Revue de code
-- Tests d’intrusions
+- Sensibilisations / Formations continues
+- Revue de code (peer review, code review)
+- Tests d'intrusions (pentests)
 - Sécurité lors du recrutement
-- Sécurité dès la conception du projet
+- Sécurité dès la conception du projet (Security by Design)
 - Suivi des bonnes pratiques (ex. OWASP)
+- Analyse statique du code (SAST)
+- Analyse dynamique du code (DAST)
+- Gestion des dépendances et CVE
 
 ---
 
@@ -835,8 +833,21 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 #### En continu
 
 - [Le Hack](https://lehack.org/fr) / [Hack In Paris](https://hackinparis.com/)
-- Internet
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+- [ANSSI](https://www.ssi.gouv.fr/)
+- Internet (blogs, forums, newsletters)
+- Certifications (OSCP, CEH, CompTIA Security+)
 - Appliquer les bonnes pratiques tout le temps !
+
+---
+
+#### Vous êtes la première ligne d’informations
+
+Par deux, collecter une actualité récente « sur un problème de sécurités ».
+
+![QRCode](./img/code.png)
+
+Lien : [https://forms.gle/zXBhF61uKxtHh6Ma7](https://forms.gle/zXBhF61uKxtHh6Ma7)
 
 ---
 

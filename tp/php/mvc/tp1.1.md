@@ -1043,5 +1043,4 @@ Il serait intéressant d'arriver sur une page d'accueil personnalisée. Pour ce 
 
 Pour vous aider dans la conception de votre page d'accueil, vous pouvez utiliser un template « bootstrap » disponible [ici](https://bootstrapmade.com/bootstrap-landing-page-templates/).
 
-
 👋 Bon courage !
