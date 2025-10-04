@@ -268,6 +268,12 @@ Solution :
 
 ---
 
+### Analyse d'une situation
+
+![Exemple](./img/form.png)
+
+---
+
 ### L'injection
 
 Risque d’injection SQL, Shell...
@@ -290,9 +296,9 @@ Conception d'une application sans prise en compte de la sécurité.
 
 - Données en claire.
 - Manque de contrôle d'accès.
-- Manque de contôle de saisie.
+- Manque de contrôle de saisie.
 - Manque de contrôle de type (XSS, CSRF).
-- Absence d'anti-bots.
+- Absence d'anti-bots (captcha).
 - Utilisation d'une question secrète.
 - Réservation de place sans accompte.
 
