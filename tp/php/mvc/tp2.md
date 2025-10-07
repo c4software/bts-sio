@@ -376,7 +376,7 @@ public function fiche($id="")
 
 
     // Affichage de la vue ($client est un objet de type Client, récupéré en base via votre modèle et son identifiant)
-    return Template::render("views/fiche/client", ["client" => $client]);
+    return Template::render("views/fiche/client.php", ["client" => $client]);
 }
 ```
 
