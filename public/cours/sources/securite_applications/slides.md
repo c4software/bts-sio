@@ -544,6 +544,19 @@ echo "Bonjour " . $_POST['nom'];
 
 ---
 
+### Correction
+
+```php
+$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+// ou
+$nom = strip_tags($_POST['nom']);
+// ou (recommandé pour l'affichage)
+$nom = htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8');
+```
+
+
+---
+
 ### A4 - Références directes non sécurisées à un objet
 
 ```
