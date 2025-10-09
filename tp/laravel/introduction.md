@@ -1104,6 +1104,51 @@ Je vous laisse modifier votre code, pour intégrer la règle suivante :
 - Limiter à 50 requêtes par minute la route permettant de lister les TODO.
 - Limiter à 10 requêtes par minute la route permettant d'ajouter une TODO.
 
+## Laravel tinker
+
+Laravel Tinker est un outil en ligne de commande qui permet d'interagir avec votre application Laravel. Il est basé sur PsySH, un shell interactif pour PHP. Il permet d'exécuter du code PHP dans le contexte de votre application Laravel. C'est un outil très puissant pour tester du code, interagir avec la base de données, etc.
+
+Pour lancer Tinker, il suffit de taper la commande suivante dans votre terminal :
+
+```sh
+php artisan tinker
+```
+
+Vous pouvez maintenant exécuter du code PHP dans le contexte de votre application Laravel. Par exemple, pour récupérer l'ensemble des TODO en base de données, vous pouvez taper :
+
+```php
+App\Models\Todo::all();
+```
+
+Je vous laisse tester rapidement.
+
+Allons plus loin, vous pouvez également créer une TODO directement depuis Tinker :
+
+```php
+App\Models\Todo::create(['texte' => 'Ma première TODO', 'termine' => false]);
+```
+
+Je vous laisse tester rapidement.
+
+Nous allons encore plus loin, récupérer une TODO pour changer son état :
+
+```php
+$todo = App\Models\Todo::find(1);
+$todo->termine = true;
+$todo->save();
+```
+
+Je vous laisse tester rapidement.
+
+Nous pouvons également récupérer les résultats de manière paginée :
+
+```php
+App\Models\Todo::paginate(10);
+```
+
+Vous l'avez compris, Tinker est intéressant pour tester du code rapidement. C'est une bonne solution pour tester du code dans le contexte de votre application Laravel.
+
+
 ## Bonus 1 : L'apparence
 
 La mise en forme. Actuellement votre page s'affiche et est fonctionnelle. Cependant, c'est plutôt brut ! Pourquoi ne pas travailler la mise en forme ? Je vous propose donc de modifier l'apparence de votre site pour ressembler à :
