@@ -364,6 +364,10 @@ Maintenant que la liste des clients fonctionne, nous allons créer la fiche clie
 
 ![Idée de design](./res/tp2-fiche-client-ui.png)
 
+::: danger Vous n'oublierez pas
+Évidement, vous n'oublierez pas de gérer la pagination de l'ensemble des listes.
+:::
+
 ### Le contrôleur
 
 Nous avons un controleur existant `ClientControleur`, celui-ci va devoir être modifié pour ajouter une nouvelle méthode `fiche`. Celle-ci va devoir récupérer les informations d'un client et les passer à la vue.
