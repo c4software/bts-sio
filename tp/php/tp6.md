@@ -255,7 +255,7 @@ Vous avez créé une route (en lien) et une vue (la page HTML). Vous avez donc d
 
 ## Les passages de paramètres
 
-En PHP, vous avez vu comment passer des paramètres dans l'URL. Avec Laravel, c'est très similaire, mais nous allons avoir à utiliser une synthaxe objet.
+En PHP, vous avez vu comment passer des paramètres dans l'URL. Avec Laravel, c'est très similaire, mais nous allons avoir à utiliser une syntaxe objet.
 
 ### Le paramètre GET
 
@@ -406,6 +406,6 @@ Je vous laisse modifier votre contrôleur `HomeController` pour sauvegarder le n
 
 ## Conclusion
 
-Nous avons vu dans ce TP les éléments de base base de Laravel, nous allons maintenant passer sur une introduction plus poussée de Laravel. Nous allons voir comment réaliser des accès à une base de données, comment réaliser des formulaires plus complexes, etc.
+Nous avons vu dans ce TP les éléments de base de Laravel, nous allons maintenant passer sur une introduction plus poussée de Laravel. Nous allons voir comment réaliser des accès à une base de données, comment réaliser des formulaires plus complexes, etc.
 
 la suite du TP est disponible ici : [TP Laravel - Introduction](/tp/laravel/introduction.md)
