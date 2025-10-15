@@ -151,7 +151,7 @@ public function comments()
 // Relation "One to Many" (commentaires avec un article) 
 public function post() 
 {                            
-    return $this->belongTo(Post::class); 
+    return $this->belongsTo(Post::class); 
 }
 
 // Relation One to one (Auteur avec un Profil)
@@ -163,7 +163,7 @@ public function profile()
 // Relation One to one (Un Profil à un auteur) 
 public function author() 
 {                            
-    return $this->belongTo(Author::class); 
+    return $this->belongsTo(Author::class); 
 }
 
 // Relation Many to Many
@@ -297,13 +297,13 @@ $flight->name = 'New Flight Name';
 $flight->save();
 
 // Créer un enregistrement en base de données à partir d'un tableau (mass assignment). Le tableau peut être rempli avec des données de formulaire
-$user = User::create(['first_name' => 'Taylor','last_name' => 'Otwell']); 
+$user = User::create(['first_name' => 'Taylor', 'last_name' => 'Otwell']); 
 
 // Mettre à jour un enregistrement en base de données à partir d'un tableau (mass assignment). Le tableau peut être rempli avec des données de formulaire
 Flight::where('active', 1)->update(['delayed' => 1]);
 
 // Supprimer un enregistrement en base de données
-$current_user = User::Find(1); // On récupère l'utilisateur
+$current_user = User::find(1); // On récupère l'utilisateur
 $current_user->delete();  // On le supprime
 
 // Supprimer un enregistrement en base de données à partir de son id 
@@ -313,7 +313,7 @@ User::destroy(1);
 $deletedRows = Flight::where('active', 0)->delete();
 
 // Obtenir tous les enregistrements d'une table équivaut à SELECT * FROM table
-$items = Item::all(). 
+$items = Item::all(); 
 
 // Trouver un enregistrement en base de données à partir de son id (équivaut à SELECT * FROM table WHERE id = $id). La colonne id est définit dans votre modèle (protected $primaryKey = 'id';)
 $flight = Flight::find(1);
@@ -346,7 +346,7 @@ $count = Flight::where('active', 1)->count();
 $sum = Flight::where('active', 1)->sum('price');
 
 // Est-ce que l'enregistrement existe en base de données ?
-if ($project->$users->contains('mike')) {}
+if ($project->users->contains('mike')) {}
 
 // Choisir les colonnes à récupérer
 $users = User::select('name', 'email as user_email')->get();
@@ -358,7 +358,7 @@ $users = User::select('name', 'email as user_email')->where('name', 'John')->get
 ::: tip La documentation officielle de Laravel sur l'ORM
 Pour aller plus loins, vous trouverez dans la documentation officielle de Laravel une liste des méthodes / ainsi que leurs utilisations :
 
-[https://laravel.com/docs/8.x/eloquent](https://laravel.com/docs/8.x/eloquent)
+[https://laravel.com/docs/12.x/eloquent](https://laravel.com/docs/12.x/eloquent)
 :::
 
 ## L'ORM (Relations)
@@ -436,7 +436,7 @@ Route::get('/greeting', function () {
 Route::view('/welcome', 'welcome');
 
 // Route vers la classe du contrôleur (méthode index)
-utiliser App\Http\Controllers\UserController;
+use App\Http\Controllers\UserController;
 Route::get('/user', [UserController::class, 'index']);
 
 // Route uniquement pour des verbes HTTP spécifiques (GET, POST, PUT, DELETE, ...)
@@ -507,13 +507,13 @@ Route::prefix('admin')->group(function () {
 });
 
 // Permet de relier un modèle à une route (identifiant)
-utiliser App\Models\User;
+use App\Models\User;
 Route::get('/users/{user}', function (User $user) {
     return $user->email;
 });
 
 // Liaison du modèle de route (autre que l'identifiant)
-utiliser App\Models\User;
+use App\Models\User;
 Route::get('/posts/{post:slug}', function (Post $post) {
     return view('post', ['post' => $post]);
 });
@@ -529,8 +529,8 @@ Route::fallback(function () {
 ```php
 // Définir les règles de validation 
 protected $rules = [
-    title' => 'required|unique:posts|max:255',
-    name' => 'required|min:6',
+    'title' => 'required|unique:posts|max:255',
+    'name' => 'required|min:6',
     'email' => 'required|email',
     'publish_at' => 'nullable|date',
 ];
@@ -542,7 +542,7 @@ $validatedData = $request->validate($rules)
 abort(404, 'Sorry, Post not found')
 
 // Exemple de contrôleur CRUD
-Classe ProductsController
+class ProductsController
 {
 
    public function index()
@@ -550,7 +550,7 @@ Classe ProductsController
        $produits = Product::all();
 
        // app/resources/views/produits/index.blade.php
-       return view('products.index', ['products', $products]); 
+       return view('products.index', ['products' => $products]); 
    }
 
    public function create()
@@ -561,9 +561,9 @@ Classe ProductsController
    public function store()
    {
        Product::create(request()->validate([
-           name' => 'required',
-           price' => 'required',
-           note' => 'nullable
+           'name' => 'required',
+           'price' => 'required',
+           'note' => 'nullable'
        ]));
 
        return redirect(route('products.index'));
@@ -572,20 +572,20 @@ Classe ProductsController
    //méthode avec injection de modèle
    public function show(Produit $produit)
    {
-       return view('produits.show', ['produit', $produit]); 
+       return view('produits.show', ['produit' => $produit]); 
    }
 
    public function edit(Product $product)
    {
-       return view('produits.edit', ['produit', $produit]); 
+       return view('produits.edit', ['produit' => $produit]); 
    }
 
    public function update(Product $product)
    {
        Product::update(request()->validate([
-           name' => 'required',
-           price' => 'required',
-           note' => 'nullable
+           'name' => 'required',
+           'price' => 'required',
+           'note' => 'nullable'
        ]));
 
        return redirect(route($product->path()));
@@ -593,7 +593,7 @@ Classe ProductsController
 
    public function delete(Product $product)
    {
-        $produit->supprimer();
+        $produit->delete();
         return redirect("/contacts");
    }
 }
@@ -616,7 +616,7 @@ function votreMethode(Request $request){
     $request->input('name', 'John'); // Récupère la valeur de la donnée "name" du formulaire. Si la donnée n'existe pas, la valeur par défaut est "John"
 
     // Paramètres de requête www.demo.html?name=mike
-    request()->nom; //mike
+    request()->input('nom'); //mike
 
     // Données du formulaire (ou valeur par défaut)
     request()->input('email', 'no@email.com');
@@ -676,7 +676,7 @@ return response()->json($user);
 {{ var_name }} 
 
 <!-- Variable html raw safe --> 
-{ ! ! var_name ! ! }
+{!! var_name !!}
 
 <!-- Interation -->
 @foreach ($items as $item)

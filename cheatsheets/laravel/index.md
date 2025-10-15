@@ -186,7 +186,7 @@ use Illuminate\Http\Request;
 
 class DemoController extends Controller
 {
-    public function voir($id): string
+    public function voir($id)
     {
         // Pour l’instant pas de vue, nous verrons ça plus tard.
         return "Vous avez demandé l’id : " . $id;
@@ -219,7 +219,7 @@ function votreMethode(Request $request){
     $request->input('name', 'John'); // Récupère la valeur de la donnée "name" du formulaire. Si la donnée n'existe pas, la valeur par défaut est "John"
 
     // Paramètres de requête www.demo.html?name=mike
-    request()->nom; //mike
+    request()->input('nom'); //mike
 
     // Données du formulaire (ou valeur par défaut)
     request()->input('email', 'no@email.com');
@@ -320,13 +320,13 @@ Lancer la migration, c’est-à-dire appliquer l’ensemble des modifications en
 php artisan migrate
 ```
 
-[Plus d’information](https://laravel.com/docs/8.x/migrations)
+[Plus d’information](https://laravel.com/docs/12.x/migrations)
 
 ### Le modèle
 
 Le modèle est l’objet qui nous permettra de faire « nos requêtes SQL », l’accès à nos données.
 
-La grande force de Laravel, son Framework [Eloquent](https://laravel.com/docs/8.x/eloquent). Laravel intègre une commande pour créer un modèle vide :
+La grande force de Laravel, son Framework [Eloquent](https://laravel.com/docs/12.x/eloquent). Laravel intègre une commande pour créer un modèle vide :
 
 ```sh
 php artisan make:model LeNomDeVotreTableEnBase
@@ -380,7 +380,7 @@ $todos = LeNomDeVotreTableEnBase::all();
 $todo = LeNomDeVotreTableEnBase::find(42);
 
 // Obtenir, mais filtrer et ordonné et avec une limite
-$todos = LeNomDeVotreTableEnBase::where('temine', 1)->orderBy('id', 'desc')->take(10)->get();
+$todos = LeNomDeVotreTableEnBase::where('termine', 1)->orderBy('id', 'desc')->take(10)->get();
 
 // Ou avec un where
 $users = User::where('votes', '>', 100)->get();
@@ -409,7 +409,7 @@ Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
 ```php
 // Création d’une nouvelle entrée en BDD (équivalent d’un INSERT INTO)
-TodoList::create(array(
+LeNomDeVotreTableEnBase::create(array(
     'texte'     => 'Super Cool',
     'termine'   => false
 ));
@@ -419,7 +419,7 @@ TodoList::create(array(
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1);
+$todo = App\LeNomDeVotreTableEnBase::find(1);
 
 // Le passer à terminer
 $todo->termine = true;
@@ -435,20 +435,20 @@ Plusieurs façon :
 ```php
 // Façon 1
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1);
+$todo = App\LeNomDeVotreTableEnBase::find(1);
 $todo->delete(); // Le supprimer
 
 // Façon 2
 // Le supprimer directement
-App\TodoList::destroy(1);
+App\LeNomDeVotreTableEnBase::destroy(1);
 
 // Façon 3
 // En supprimer plusieurs directement
-App\TodoList::destroy(1,2,3);
+App\LeNomDeVotreTableEnBase::destroy(1,2,3);
 
 // Façon 4
 // Supprimer avec une condition
-App\TodoList::where('termine', '=', 1)->delete();
+App\LeNomDeVotreTableEnBase::where('termine', '=', 1)->delete();
 ```
 
 ### Les jointures
@@ -457,7 +457,7 @@ Les jointures sont à définir directement dans le modèle. Elles seront des mé
 
 #### One To One
 
-![One To One](./res/many-to-many.png)
+![One To One](./res/one-to-one.png)
 
 ```php
 class Todo extends Model {
@@ -667,7 +667,7 @@ Nous avons effleuré ici les types de requêtes… [Pour en savoir plus](./quick
 
 ## La vue
 
-Laravel utilise l’excellent moteur de template « [Blade](https://laravel.com/docs/8.x/blade) ». À la fois souple et puissant il améliorera très grandement la qualité de vos projets.
+Laravel utilise l’excellent moteur de template « [Blade](https://laravel.com/docs/12.x/blade) ». À la fois souple et puissant il améliorera très grandement la qualité de vos projets.
 
 - Moteur de template
 - Performant
@@ -708,7 +708,7 @@ use Illuminate\Http\Request;
 
 class DemoController extends Controller
 {
-    public function voir($id): string
+    public function voir($id)
     {
         return view('votrePage', ['id' => $id]);
     }

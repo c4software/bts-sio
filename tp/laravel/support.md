@@ -12,7 +12,7 @@ Taylor Otwell a créé Laravel en réaction à la complexité de CodeIgniter, vi
 
 ::: tip Laravel et Symfony
 
-Certains en stage on peut-être utilisé Symfony. Laravel est souvent comparé à Symfony, un autre framework PHP populaire. Laravel est souvent considéré comme plus simple et plus rapide à prendre en main que Symfony, qui est plus complexe, mais offre une plus grande flexibilité.
+Certains en stage ont peut-être utilisé Symfony. Laravel est souvent comparé à Symfony, un autre framework PHP populaire. Laravel est souvent considéré comme plus simple et plus rapide à prendre en main que Symfony, qui est plus complexe, mais offre une plus grande flexibilité.
 
 **Cependant**, Laravel utilise de nombreux composants de Symfony, notamment le composant HTTP Kernel, le composant Routing, le composant Console, etc. Les deux frameworks partagent donc des similitudes malgré leurs différences.
 
@@ -44,7 +44,7 @@ L'architecture MVC de Laravel se compose de trois parties principales :
 Le système de routage de Laravel permet de définir les URL de l'application et de les lier aux contrôleurs appropriés. Les routes sont définies dans différents fichiers selon leur usage :
 
 - `web.php`: Pour les routes web standard (sans préfixe). (Par exemple, `/`, `/about`, `/contact`
-- `api.php`: Pour les routes d'API. (Toujours préfixé par `/api`, automatiquement. L'authentification est également gérée différemment. Via un système de jetons avec [Laravel Sanctum](https://laravel.com/docs/11.x/sanctum))
+- `api.php`: Pour les routes d'API. (Toujours préfixé par `/api`, automatiquement. L'authentification est également gérée différemment. Via un système de jetons avec [Laravel Sanctum](https://laravel.com/docs/12.x/sanctum))
 - `console.php`: Pour les commandes console. Nous ne les verrons pas en cours, mais c'est un élément important dans la souplesse de Laravel.
 
 Exemple de définition de route **très simple** :
@@ -337,7 +337,7 @@ Laravel est un framework PHP, vous avez donc accès à toutes les fonctionnalit�
 $name = $request->input('name');
 
 // PHP
-$name $_GET['name'];
+$name = $_GET['name'];
 ```
 
 ### $_POST
@@ -347,7 +347,7 @@ $name $_GET['name'];
 $name = $request->input('name');
 
 // PHP
-$name $_POST['name'];
+$name = $_POST['name'];
 ```
 
 ### $_SESSION

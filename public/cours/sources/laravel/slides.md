@@ -46,7 +46,7 @@ Ensemble d'outils et de composants logiciels à la base d'un logiciel ou d'une a
 
 ## Revenons sur le quand…
 
-Le choix du framework dépend du projet en question… Et parfois pas de framework dutout…
+Le choix du framework dépend du projet en question… Et parfois pas de framework du tout…
 
 ---
 
@@ -98,7 +98,7 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ---
 
-### À votre avis pourquoi, est-ce important (le gestionnaire de paquets) ?
+### À votre avis, pourquoi est-ce important (le gestionnaire de paquets) ?
 
 ---
 
@@ -112,9 +112,9 @@ Le pitch de lancement, c’est « Un framework connu pour sa simplicité »
 
 ## L’histoire… (maintenant)
 
-- 11.X: Version actuelle
+- 12.x : Version actuelle
 
-**Requiert PHP 8.2**, à votre avis pourquoi ?
+Requiert PHP 8.4 : à votre avis pourquoi ?
 
 
 ---
@@ -250,7 +250,7 @@ Consulter la page **/demo/3** chargera automatiquement le bon contrôleur et la 
 ## Et pour le POST ?
 
 ```php
-Route::post('/demo/ajout', [DemoController::class, "ajout");
+Route::post('/demo/ajout', [DemoController::class, 'ajout']);
 ```
 
 ---
@@ -417,7 +417,7 @@ return response()->json($allUsers);
 
 ---
 
-[En savoir plus](https://laravel.com/docs/10.x/requests#retrieving-input)
+[En savoir plus](https://laravel.com/docs/12.x/requests#retrieving-input)
 
 ---
 
@@ -426,7 +426,7 @@ Exercice :
 - Créer une méthode dans le contrôleur User qui permet de récupérer un utilisateur par son identifiant.
 - Créer une route qui retourne une réponse JSON de l’utilisateur 1.
 - Créer une redirection vers la route `/` avec un `message` flash « Bienvenue ».
-- Créer une route qui vas retourner l'ensemble des utilisateurs au format JSON.
+- Créer une route qui va retourner l'ensemble des utilisateurs au format JSON.
 
 ---
 
@@ -516,7 +516,7 @@ $todo = App\TodoList::find(42);
 ## Éloquent : Le « Query Builder »
 
 ```php
-    $flights = App\TodoList::where('temine', 1)
+    $flights = App\TodoList::where('termine', 1)
     ->orderBy('id', 'desc')
     ->take(10)
     ->get();
@@ -855,7 +855,7 @@ Route::get('/', function () {
     <title>Site Exemple - @yield('titre')</title>
   </head>
   <body>
-    @section('sidebar') « Section » Sidebard principal @show
+    @section('sidebar') « Section » barre latérale principale @show
 
     <div class="container">@yield('content')</div>
   </body>
@@ -1006,7 +1006,7 @@ Intégré dans Laravel, s’initialise simplement en suivant la documentation.
 
 ---
 
-## Heu, mais c’est lourd non ?
+- Heu, mais c'est lourd, non ?
 
 Éffectivement Laravel est un « gros » Framework. Dans certains cas on veut plus simple.
 
