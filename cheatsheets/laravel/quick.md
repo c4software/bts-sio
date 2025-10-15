@@ -53,6 +53,36 @@ php artisan tinker
 php artisan route:list
 ```
 
+## Tinker
+
+Laravel Tinker est une console interactive (REPL) qui vous permet d'interagir avec votre application Laravel depuis la ligne de commande. C'est un outil très puissant pour tester du code, manipuler des données ou déboguer.
+
+Pour le lancer :
+
+```sh
+php artisan tinker
+```
+
+Une fois dans Tinker, vous pouvez exécuter du code PHP et interagir avec vos modèles Eloquent.
+
+```php
+// Créer un nouvel utilisateur
+>>> $user = new App\Models\User;
+>>> $user->name = "Test";
+>>> $user->email = "test@test.com";
+>>> $user->password = bcrypt('password');
+>>> $user->save();
+
+// Récupérer un utilisateur
+>>> App\Models\User::find(1);
+
+// Récupérer tous les utilisateurs
+>>> App\Models\User::all();
+
+// Quitter tinker
+>>> exit
+```
+
 ## Commande de base
 
 ```shell

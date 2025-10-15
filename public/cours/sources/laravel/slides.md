@@ -998,6 +998,22 @@ La vérification côté serveur est **automatique**.
 
 ---
 
+## Laravel Tinker
+
+Une console interactive (REPL) pour interagir avec votre application.
+
+```bash
+$ php artisan tinker
+```
+
+Permet de :
+
+- Tester du code rapidement.
+- Manipuler des données (créer, lire, mettre à jour, supprimer).
+- Déboguer des parties de votre application.
+
+---
+
 ## L’authentification
 
 Intégré dans Laravel, s’initialise simplement en suivant la documentation.

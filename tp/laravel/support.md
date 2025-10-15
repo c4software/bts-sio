@@ -313,6 +313,45 @@ Route::get('/me', [EquipeController::class, "me"])->middleware(IsEquipeConnected
 
 :::
 
+### 8. Tinker
+
+Laravel Tinker est un REPL (Read-Eval-Print Loop) puissant pour interagir avec votre application Laravel depuis la ligne de commande. Il est basé sur PsySH. Pour le lancer, il suffit d'exécuter la commande Artisan suivante :
+
+```bash
+php artisan tinker
+```
+
+Une fois dans la session Tinker, vous pouvez exécuter n'importe quel code PHP comme si vous étiez à l'intérieur de votre application. C'est extrêmement utile pour :
+
+- Tester rapidement des requêtes Eloquent.
+- Créer ou modifier des données manuellement.
+- Déboguer des services ou des classes.
+- Explorer les objets et les données de votre application.
+
+Exemple d'utilisation de Tinker pour créer un utilisateur :
+
+```php
+// $ php artisan tinker
+
+// Récupérer un utilisateur
+>>> App\Models\User::find(1);
+
+// Créer un nouvel utilisateur
+>>> $user = new App\Models\User;
+=> App\Models\User {#4429}
+>>> $user->name = "Test";
+=> "Test"
+>>> $user->email = "test@test.com";
+=> "test@test.com"
+>>> $user->password = bcrypt('password');
+=> "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi"
+>>> $user->save();
+=> true
+
+// Quitter tinker
+>>> exit
+```
+
 ## Sécurité
 
 Laravel intègre plusieurs fonctionnalités de sécurité :
