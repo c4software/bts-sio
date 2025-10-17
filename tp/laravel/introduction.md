@@ -43,9 +43,26 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 - Installer Wamp, et vérifier que celui-ci fonctionne correctement.
 - Activer l’extension `php_openssl.dll` dans la liste des extensions PHP.
 
+::: tip 2025 ? Solution WSL !
+
+WSL vous permet d'avoir un environnement Linux directement sous Windows. C'est une excellente solution pour développer sous Windows.
+
+Un bon point de départ, c'est Alpine => <https://github.com/yuk7/AlpineWSL/releases>
+
+Puis, après l'installation (il suffit de décompresser l'archive, et lancer `Alpine.exe`), vous pouvez installer les paquets suivants :
+
+```sh
+apk add php83 php83-tokenizer php83-session php83-pdo php83-dom php83-xml php83-xmlwriter php83-fileinfo
+php83-pdo_sqlite php83-pdo_mysql php83-simplexml npm git vim
+```
+
+Vous avez maintenant un environnement Linux avec PHP 8.3, Composer, Git, Vim et NodeJS. Parfait pour Laravel !
+
+:::
+
 #### Installer Composer
 
-- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.1 minimum de PHP.
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.3 minimum de PHP.
 - Vérifier que la commande est bien disponible en tapant `composer` dans un nouveau terminal.
 
 ### Linux
@@ -60,7 +77,7 @@ chmod +x /usr/local/bin/composer
 
 ### macOS
 
-Sous macOS, il est possible d’utiliser la commande `brew` pour installer PHP 8.1. Pour ça, il suffit de faire :
+Sous macOS, il est possible d’utiliser la commande `brew` pour installer PHP 8.3. Pour ça, il suffit de faire :
 
 ```bash
 brew install php

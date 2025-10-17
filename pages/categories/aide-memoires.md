@@ -6,6 +6,10 @@ aside: false
 
 Les aides mémoires sont des fiches synthétiques qui vous permettront de vous rappeler les commandes et les syntaxes les plus utilisées. Elles vous seront utiles dans le cadre des cours, TP et révisions lors des examens.
 
+## Outillage
+
+- [Installation d'un environnement de développement (Windows, Linux, macOS)](/cheatsheets/web/index.md)
+
 ## Web
 
 - [HTML](/cheatsheets/html/)

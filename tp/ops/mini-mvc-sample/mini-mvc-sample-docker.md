@@ -41,7 +41,7 @@ Maintenant que vous avez validé que votre application fonctionne correctement, 
 Dockeriser une application requiert un nouveau fichier dans votre code source. Celui-ci doit se nommer `Dockerfile` je vous laisse créer à la racine de votre site (au même endroit que le `.env`) un fichier nommé `Dockerfile` avec comme contenu :
 
 ```dockerfile
-FROM php:8.1.10-cli
+FROM php:8.3-cli
 RUN docker-php-ext-install pdo_mysql
 WORKDIR /var/www/html
 ```
