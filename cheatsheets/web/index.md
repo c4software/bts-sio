@@ -9,6 +9,11 @@ Dans ce support, vous trouverez les instructions pour configurer un environnemen
 Pour coder vous aurez besoin d'un éditeur de texte ou d'un IDE. Voici quelques recommandations populaires :
 
 - [Visual Studio Code](https://code.visualstudio.com/) - Un éditeur de code léger et puissant, avec de nombreuses extensions pour le développement web.
+  - Extensions recommandées : 
+    - [PHP Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) - Fournit l'autocomplétion, la vérification de syntaxe et d'autres fonctionnalités pour PHP.
+    - [PHP Namespace Resolver] (https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver) - Aide à gérer les namespaces en PHP.
+    - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Un formateur de code pour divers langages, y compris JavaScript, HTML et CSS.
+    - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) - Fournit l'autocomplétion et la documentation pour Tailwind CSS.
 - [WebStorm](https://www.jetbrains.com/webstorm/) - Un IDE complet pour le développement web, avec des fonctionnalités avancées.
 - [PHPStorm](https://www.jetbrains.com/phpstorm/) - Un IDE dédié au développement PHP, avec des outils intégrés pour le débogage et le testing.
 - [NeoVim](https://neovim.io/) - Un éditeur de texte moderne basé sur Vim, très personnalisable et extensible. Très puissant une fois maîtrisé.
