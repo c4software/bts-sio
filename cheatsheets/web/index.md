@@ -11,7 +11,7 @@ Pour coder vous aurez besoin d'un éditeur de texte ou d'un IDE. Voici quelques 
 - [Visual Studio Code](https://code.visualstudio.com/) - Un éditeur de code léger et puissant, avec de nombreuses extensions pour le développement web.
   - Extensions recommandées : 
     - [PHP Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) - Fournit l'autocomplétion, la vérification de syntaxe et d'autres fonctionnalités pour PHP.
-    - [PHP Namespace Resolver] (https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver) - Aide à gérer les namespaces en PHP.
+    - [PHP Namespace Resolver](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver) - Aide à gérer les namespaces en PHP.
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Un formateur de code pour divers langages, y compris JavaScript, HTML et CSS.
     - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) - Fournit l'autocomplétion et la documentation pour Tailwind CSS.
 - [WebStorm](https://www.jetbrains.com/webstorm/) - Un IDE complet pour le développement web, avec des fonctionnalités avancées.
