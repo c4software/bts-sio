@@ -41,6 +41,7 @@ Pour commencer à développer sous Windows, il est recommandé d'installer un en
 - [Installation du VCRedist](https://github.com/abbodi1406/vcredist/releases).
 - [Installation de Wamp.](https://wampserver.aviatechno.net/).
 - Installer Wamp, et vérifier que celui-ci fonctionne correctement.
+- Gitbash : [Téléchargement](https://git-scm.com/download/win) et installation.
 
 ### Installer un gestionnaire de paquets
 
