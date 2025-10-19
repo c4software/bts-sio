@@ -4,6 +4,15 @@ Préparer son environnement de développement est une étape essentielle pour to
 
 Dans ce support, vous trouverez les instructions pour configurer un environnement de développement web sous Windows, Linux et macOS.
 
+## Global
+
+Pour coder vous aurez besoin d'un éditeur de texte ou d'un IDE. Voici quelques recommandations populaires :
+
+- [Visual Studio Code](https://code.visualstudio.com/) - Un éditeur de code léger et puissant, avec de nombreuses extensions pour le développement web.
+- [WebStorm](https://www.jetbrains.com/webstorm/) - Un IDE complet pour le développement web, avec des fonctionnalités avancées.
+- [PHPStorm](https://www.jetbrains.com/phpstorm/) - Un IDE dédié au développement PHP, avec des outils intégrés pour le débogage et le testing.
+- [NeoVim](https://neovim.io/) - Un éditeur de texte moderne basé sur Vim, très personnalisable et extensible. Très puissant une fois maîtrisé.
+
 ## Windows
 
 ::: tip 2025 ? Solution WSL !
