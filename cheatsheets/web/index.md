@@ -9,7 +9,7 @@ Dans ce support, vous trouverez les instructions pour configurer un environnemen
 Pour coder vous aurez besoin d'un éditeur de texte ou d'un IDE. Voici quelques recommandations populaires :
 
 - [Visual Studio Code](https://code.visualstudio.com/) - Un éditeur de code léger et puissant, avec de nombreuses extensions pour le développement web.
-  - Extensions recommandées : 
+  - Extensions recommandées :
     - [PHP Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) - Fournit l'autocomplétion, la vérification de syntaxe et d'autres fonctionnalités pour PHP.
     - [PHP Namespace Resolver](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver) - Aide à gérer les namespaces en PHP.
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Un formateur de code pour divers langages, y compris JavaScript, HTML et CSS.
@@ -24,18 +24,24 @@ Pour coder vous aurez besoin d'un éditeur de texte ou d'un IDE. Voici quelques 
 
 WSL permet d'obtenir un environnement Linux directement sous Windows, idéal pour le développement.
 
-Un bon point de départ, c'est Alpine => <https://github.com/yuk7/AlpineWSL/releases>
+Un bon point de départ est **Alpine** avec l'ensemble des éléments nécessaires au développement web.  
 
-Après installation (décompression et lancement de `Alpine.exe`), vous pouvez installer les outils de base :
+Il s’agit d’un fork de **AlpineWSL**, enrichi de nombreux outils déjà installés :
 
-```sh
-apk add php83 php83-tokenizer php83-session php83-pdo php83-dom php83-xml php83-xmlwriter php83-fileinfo
-php83-pdo_sqlite php83-pdo_mysql php83-simplexml npm git vim
-```
+<https://github.com/c4software/AlpineWSL-web/releases>
 
-Vous disposez ainsi d'un environnement Linux avec les principaux langages et outils (PHP, Node.js, Python, Composer, Git, Vim, etc.), parfait pour le développement web !
+Après installation (**décompression** et lancement de `Alpine.exe`), vous disposez d’un terminal Linux avec les outils suivants préinstallés :
 
-`apk` est le gestionnaire de paquets d'Alpine Linux, similaire à `apt` sous Debian/Ubuntu. L'avantage de Alpine ici est sa légèreté et sa simplicité.
+- PHP  
+- Composer  
+- Node.js et npm  
+- Python  
+- Git  
+- Vim  
+
+Vous avez ainsi un environnement Linux complet, léger et prêt à l’emploi, comprenant les principaux langages et outils du développement web (PHP, Node.js, Python, Composer, Git, Vim, etc.).
+
+**PS :** `apk` est le gestionnaire de paquets
 
 :::
 
