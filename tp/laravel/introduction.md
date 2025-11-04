@@ -45,18 +45,15 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 ::: tip 2025 ? Solution WSL !
 
-WSL vous permet d'avoir un environnement Linux directement sous Windows. C'est une excellente solution pour développer sous Windows.
+::: tip 2025 ? Solution WSL !
 
-Un bon point de départ, c'est Alpine => <https://github.com/yuk7/AlpineWSL/releases>
+WSL permet d'obtenir un environnement Linux directement sous Windows, idéal pour le développement.
 
-Puis, après l'installation (il suffit de décompresser l'archive, et lancer `Alpine.exe`), vous pouvez installer les paquets suivants :
+Un bon point de départ est **Alpine** avec l'ensemble des éléments nécessaires au développement web.  
 
-```sh
-apk add php83 php83-tokenizer php83-session php83-pdo php83-dom php83-xml php83-xmlwriter php83-fileinfo
-php83-pdo_sqlite php83-pdo_mysql php83-simplexml npm git vim
-```
+Il s’agit d’un fork de **AlpineWSL**, enrichi de nombreux outils déjà installés :
 
-Vous avez maintenant un environnement Linux avec PHP 8.3, Composer, Git, Vim et NodeJS. Parfait pour Laravel !
+<https://github.com/c4software/AlpineWSL-web/releases>
 
 :::
 
