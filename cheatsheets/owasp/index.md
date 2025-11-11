@@ -164,6 +164,19 @@ L'observabilité est un concept qui permet de mesurer et d'analyser le comportem
 
 La traçabilité est un élément clé de la sécurité. Elle permet de savoir qui a fait quoi, quand et comment.
 
+## Supply Chain Attacks
+
+Les Supply Chain Attacks sont des attaques ciblant les dépendances logicielles. Très courantes de nos jours. Les dépendances logicielles sont partout dans nos applications (nuget, composer, npm, pip, etc.), mais également sur nos serveurs (apt, yum, docker, etc.). Exemple : la faille Log4Shell en 2021.
+
+Concrètement, voici comment ça peut se dérouler :
+
+- Une dépendance est compromise (par un attaquant ou un développeur malveillant).
+- Un malware est injecté dans la dépendance.
+- Le malware est distribué via la dépendance.
+- Le malware s'exécute sur les systèmes des utilisateurs de la dépendance (serveur ou poste de travail en fonction du type de dépendance).
+
+Vous êtes donc la cible ici d'une attaque pas directement de votre code, mais d'une dépendance que vous utilisez.
+
 ### Assurer la qualité
 
 S'assurer d'une qualité continue du code avec :

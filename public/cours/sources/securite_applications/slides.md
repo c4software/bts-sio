@@ -472,6 +472,25 @@ Quelle est la différence ?
 
 ---
 
+### Supply Chain Attacks
+
+#### Attaque ciblant les dépendances logicielles
+
+---
+
+Les dépendances logicielles sont partout dans nos applications (nuget, composer, npm, pip, etc.), mais également sur nos serveurs (apt, yum, docker, etc).
+
+---
+
+### Exemple d'attaque
+
+- Une dépendance est compromise (par un attaquant ou un développeur malveillant).
+- Un malware est injecté dans la dépendance.
+- Le malware est distribué via la dépendance.
+- Le malware s'exécute sur les systèmes des utilisateurs de la dépendance (serveur ou poste de travail en fonction du type de dépendance).
+
+---
+
 ### On connait les failles
 
 #### Comment on les corrige ?

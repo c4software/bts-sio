@@ -18,3 +18,4 @@ aside: false
 - OWASP liste 10 grandes catégories de failles à connaître.
 - OWASP évolue en fonction des nouvelles failles découvertes et de l'évolution des technologies.
 - S'applique à toutes les applications, pas seulement aux sites web.
+- Les Supply Chain Attacks sont des attaques ciblant les dépendances logicielles. Très courante de nos jours.
