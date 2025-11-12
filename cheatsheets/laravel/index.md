@@ -694,7 +694,6 @@ $user->roles()->attach([1, 2, 3]);
 $user->roles()->sync([1, 2, 3]);
 ```
 
-
 ### En savoir plus
 
 Nous avons effleuré ici les types de requêtes… [Pour en savoir plus](./quick.md#l-orm)
