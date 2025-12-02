@@ -1156,6 +1156,71 @@ App\Models\Todo::paginate(10);
 
 Vous l'avez compris, Tinker est intéressant pour tester du code rapidement. C'est une bonne solution pour tester du code dans le contexte de votre application Laravel.
 
+## Bonus 0 : Remplir la base de données avec des données factices
+
+Pour aller plus loin, je vous propose de remplir votre base de données avec des données factices. Pour cela, nous allons utiliser les `factories` de Laravel.
+
+Cette étape, vous permettra de créer rapidement des données en base de données pour tester votre application. C'est ce que l'on appelle du `seeding`.
+
+Pour commencer, créez une factory pour le modèle `Todo` :
+
+```sh
+php artisan make:factory TodoFactory --model=Todo
+```
+
+Cette commande va créer un fichier `database/factories/TodoFactory.php`. Vous devez modifier ce fichier pour définir les données factices, dans la méthode `definition` :
+
+```php
+public function definition(): array
+{
+    return [
+        'texte' => fake()->sentence(),
+        'completed' => fake()->boolean(),
+    ];
+}
+```
+
+::: tip Qu'avons nous fait ici ?
+
+Nous avons utilisé la bibliothèque `Faker` pour générer des données factices. La méthode `fake()->sentence()` génère une phrase aléatoire, et la méthode `fake()->boolean()` génère un booléen aléatoire.
+
+:::
+
+Ensuite, créez un seeder pour le modèle `Todo` :
+
+```sh
+php artisan make:seeder TodoSeeder
+```
+
+Cette commande va créer un fichier `database/seeders/TodoSeeder.php`. Vous devez modifier ce fichier pour utiliser la factory que nous avons créée précédemment, dans la méthode `run` :
+
+```php
+public function run(): void
+{
+    \App\Models\Todo::factory()->count(50)->create();
+}
+```
+
+Cette commande défini le nombre de données factices à créer (ici 50).
+
+Il faut maintenant indiquer à Laravel que notre `Model` `Todo` possède une factory, pour cela ajouter dans le modèle `app/Models/Todo.php` le code suivant :
+
+```php
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Todo extends Model
+{
+    use HasFactory;
+// Le reste de votre code
+}
+```
+
+Enfin, exécutez le seeder pour remplir la base de données avec les données factices :
+
+```sh
+php artisan db:seed --class=TodoSeeder
+```
+
 ## Bonus 1 : L'apparence
 
 La mise en forme. Actuellement votre page s'affiche et est fonctionnelle. Cependant, c'est plutôt brut ! Pourquoi ne pas travailler la mise en forme ? Je vous propose donc de modifier l'apparence de votre site pour ressembler à :
@@ -1196,7 +1261,9 @@ php artisan make:migration add_utilisateur_id_to_todo
 Ajoutez la colonne dans la migration :
 
 ```php
-$table->foreignId('utilisateur_id')->constrained();
+// Colonne à ajouter & la clé étrangère
+$table->unsignedBigInteger('utilisateur_id');
+$table->foreign('utilisateur_id')->references('id')->on('utilisateurs')->onDelete('cascade');
 ```
 
 Mettez à jour la table en exécutant la migration :
@@ -1211,7 +1278,9 @@ Dans la méthode `up` de la migration, vous devez spécifier la table sur laquel
 
 ```php
 Schema::table('todo', function (Blueprint $table) {
-    $table->foreignId('utilisateur_id')->constrained();
+  // Colonne à ajouter & la clé étrangère
+  $table->unsignedBigInteger('utilisateur_id');
+  $table->foreign('utilisateur_id')->references('id')->on('utilisateurs')->onDelete('cascade');
 });
 ```
 
