@@ -430,7 +430,7 @@ Avant de continuer le partie technique, nous allons regarder comment afficher de
 
 En Laravel ce qu'il faut retenir c'est que nous avons des `directives`. Chaque directive est en général une action que vous auriez pu faire en PHP. Par exemple :
 
-- Pour afficher une variable, vous pouvez utiliser `{{ $variable }}` (c'est l'équivalent de `echo $variable` en PHP)
+- Pour afficher une variable, vous pouvez utiliser `{ { $variable } }` (c'est l'équivalent de `echo $variable` en PHP)
 - Pour faire une boucle, vous pouvez utiliser `@foreach($variable as $valeur) … @endforeach` (c'est l'équivalent de `foreach($variable as $valeur) { … }` en PHP)
 - Pour faire une condition, vous pouvez utiliser `@if($variable) … @endif` (c'est l'équivalent de `if($variable) { … }` en PHP)
 
