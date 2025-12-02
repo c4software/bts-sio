@@ -49,7 +49,7 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 WSL permet d'obtenir un environnement Linux directement sous Windows, idéal pour le développement.
 
-Un bon point de départ est **Alpine** avec l'ensemble des éléments nécessaires au développement web.  
+Un bon point de départ est **Alpine** avec l'ensemble des éléments nécessaires au développement web.
 
 Il s’agit d’un fork de **AlpineWSL**, enrichi de nombreux outils déjà installés :
 
@@ -302,20 +302,16 @@ Question :
 Maintenant que nous avons notre template de base, nous allons l’utiliser dans le template « Welcome ». Remplacer le contenu de `resources/views/welcome.blade.php` par :
 
 ```html
-@extends('layouts.base') 
+@extends('layouts.base') @section('title', 'Bienvenue') @section('content')
+<div class="title m-b-md">Laravel</div>
 
-@section('title', 'Bienvenue') 
-
-@section('content')
-  <div class="title m-b-md">Laravel</div>
-
-  <div class="links">
-    <a href="https://laravel.com/docs">Documentation</a>
-    <a href="https://laracasts.com">Laracasts</a>
-    <a href="https://laravel-news.com">News</a>
-    <a href="https://forge.laravel.com">Forge</a>
-    <a href="https://github.com/laravel/laravel">GitHub</a>
-  </div>
+<div class="links">
+  <a href="https://laravel.com/docs">Documentation</a>
+  <a href="https://laracasts.com">Laracasts</a>
+  <a href="https://laravel-news.com">News</a>
+  <a href="https://forge.laravel.com">Forge</a>
+  <a href="https://github.com/laravel/laravel">GitHub</a>
+</div>
 @endsection
 ```
 
@@ -432,7 +428,7 @@ Vous l'avez réalisé précédemment, je vous laisse écrire les deux `vue` / `l
 
 Avant de continuer le partie technique, nous allons regarder comment afficher des données dans nos vues. Nous allons surtout voir comment `manipuler` les données dans les vues.
 
-En Laravel ce qu'il faut retenir c'est que nous avons des `directives`. Chaque directive est en général une action que vous auriez pu faire en PHP. Par exemple : 
+En Laravel ce qu'il faut retenir c'est que nous avons des `directives`. Chaque directive est en général une action que vous auriez pu faire en PHP. Par exemple :
 
 - Pour afficher une variable, vous pouvez utiliser `{{ $variable }}` (c'est l'équivalent de `echo $variable` en PHP)
 - Pour faire une boucle, vous pouvez utiliser `@foreach($variable as $valeur) … @endforeach` (c'est l'équivalent de `foreach($variable as $valeur) { … }` en PHP)
@@ -452,7 +448,7 @@ Et dans votre contrôleur, ajouter la variable `word` dans le tableau :
 return view('ping', ['word' => 'PING']);
 ```
 
-C'est à vous. Je vous laisse simplifier le code de la vue `pong.blade.php` pour afficher `PONG`. 
+C'est à vous. Je vous laisse simplifier le code de la vue `pong.blade.php` pour afficher `PONG`.
 
 ::: tip Une astuce ?
 
@@ -470,11 +466,11 @@ Pour cela, ajouter dans votre vue `ping.blade.php` :
 
 ```html
 <ul>
-    @foreach($serverInfo as $key => $value)
-        <li>{{ $key }} : {{ $value }}</li>
-    @endforeach
+  @foreach($serverInfo as $key => $value)
+  <li>{{ $key }} : {{ $value }}</li>
+  @endforeach
 </ul>
-``` 
+```
 
 Je vous laisse ajouter dans votre contrôleur la variable `$serverInfo` pour que la boucle fonctionne.
 
@@ -499,10 +495,10 @@ Pour finir, nous allons ajouter une condition dans notre vue `ping.blade.php`. N
 Pour cela, ajouter dans votre vue `ping.blade.php` :
 
 ```html
-@if($word === 'PING')
-    <p>La page est en mode PING ({{ time() }}</p>
+@if($word == 'PING')
+<p>La page est en mode PING ({{ time() }}</p>
 @else
-    <p>La page est en mode PONG ({{ time() }}</p>
+<p>La page est en mode PONG ({{ time() }}</p>
 @endif
 ```
 
@@ -516,9 +512,9 @@ La système de condition est très pratique pour afficher ou pas des éléments 
 
 ```html
 @if(Auth::check())
-    <a href="{{ route('logout') }}">Déconnexion</a>
+<a href="{{ route('logout') }}">Déconnexion</a>
 @else
-    <a href="{{ route('login') }}">Connexion</a>
+<a href="{{ route('login') }}">Connexion</a>
 @endif
 ```
 
@@ -556,9 +552,9 @@ Cette méthode est toute simple, elle va juste afficher notre formulaire :
 
 ```html
 <form action="/traitement" method="post">
-    @csrf
-    <input type="text" name="texte" />
-    <button type="submit">Envoyer</button>
+  @csrf
+  <input type="text" name="texte" />
+  <button type="submit">Envoyer</button>
 </form>
 ```
 
@@ -576,7 +572,7 @@ Ajouter la méthode `traitement` :
 ```php
 public function traitement(Request $request)
 {
-    if ($request->texte === '') {
+    if ($request->texte == '') {
         return redirect()->back()->with('error', 'Le champ texte ne peut pas être vide');
     }
 
@@ -614,11 +610,9 @@ Modifier votre vue `flash.blade.php` pour afficher les messages flash :
 
 ```html
 @if(session('error'))
-    <div style="color: red;">{{ session('error') }}</div>
-@endif
-
-@if(session('success'))
-    <div style="color: green;">{{ session('success') }}</div>
+<div style="color: red;">{{ session('error') }}</div>
+@endif @if(session('success'))
+<div style="color: green;">{{ session('success') }}</div>
 @endif
 ```
 
@@ -1000,7 +994,7 @@ Je vous laisse configurer la migration pour ajouter les colonnes :
 - `password` (string)
 - Les timestamps
 
-Ajoutez également les `fillable` dans le modèle `Utilisateur`. 
+Ajoutez également les `fillable` dans le modèle `Utilisateur`.
 
 ::: tip Besoin d'aide ?
 
@@ -1161,7 +1155,6 @@ App\Models\Todo::paginate(10);
 ```
 
 Vous l'avez compris, Tinker est intéressant pour tester du code rapidement. C'est une bonne solution pour tester du code dans le contexte de votre application Laravel.
-
 
 ## Bonus 1 : L'apparence
 
