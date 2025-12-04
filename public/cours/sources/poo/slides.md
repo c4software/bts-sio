@@ -475,7 +475,7 @@ class Mammifere {
     protected $espece = "";
 
     public __construct($espece) {
-        this->$espece = $espece;
+        $this->espece = $espece;
     }
 
     public print() {
@@ -493,7 +493,7 @@ class Humain extends Mammifere {
     function __construct($prenom)
     {
         parent::__construct("Humain");
-        this->$prenom = $prenom;
+        $this->prenom = $prenom;
     }
 
     public function manger(){
@@ -578,7 +578,7 @@ Comment détecter l'héritage ?
 
 ```php
 class Etudiant extends Personne {
-    // … Reste de la classe… 
+    // … Reste de la classe…
     public function formater(){
      if($this->estMajeur()){
         return "L'étudiant est majeur";
@@ -614,7 +614,7 @@ Car les enfants peuvent **redéfinir** les méthodes de la classe parente. (**Re
 ```java
 class Personne {
     protected int age = 0;
-    
+
     public function estMajeur(){
         return $this.age >= 18;
     }
