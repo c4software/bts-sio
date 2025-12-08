@@ -1,5 +1,9 @@
 # Plateforme de Micro-Messages
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Contexte
 
 L’idée du projet est simple : construire une petite plateforme de micro-messages, inspirée de X (Twitter), où chacun peut écrire et lire des messages courts.  
@@ -57,6 +61,8 @@ public function user(){
     return $this->belongsTo(User::class);
 }
 ```
+
+:::
 
 C'est parti ! À partir de maintenant, fini les roulettes vous êtes le pilote !
 
