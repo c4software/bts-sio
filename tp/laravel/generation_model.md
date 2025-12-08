@@ -84,6 +84,12 @@ Dans un premier temps, je vous laisse restaurer la base suivante :
 
 - Je vous laisse importer la base de données dans MySQL.
 
+::: warning Un instant !
+
+Pour que l'import fonctionne correctement, vous devez désactiver « Activer la vérification des clés étrangères » dans phpMyAdmin. Si vous avez une erreur de type `Gateway Timeout` pas d'inquiétude, c'est normal, votre import est en cours.
+
+:::
+
 ### Installer le générateur de modèle
 
 Pour générer les modèles, nous allons utiliser un plugin que nous allons ajouter avec Composer.
@@ -124,6 +130,63 @@ php artisan code:models
 En quelques secondes le plugin a créé l'ensemble des modèles de votre projet. Je vous laisser regarder les modifications dans votre projet, et surtout le dossier `models`
 :::
 
+### Point de vigilance le modele `User`
+
+Le modèle `User` est un modèle particulier dans Laravel, celui-ci est utilisé pour la gestion des utilisateurs. Le plugin par defaut va générer un modèle `User` basé sur la table `users`. Cependant, nous avons besoin d'un modèle spécifique de type `Authenticatable` pour que Laravel puisse gérer les utilisateurs correctement.
+
+Voici le modèle d'origine à remettre en place si vous souhaitez utiliser le système d'authentification de Laravel :
+
+```php
+<?php
+
+namespace App\Models;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+}
+```
+
 ### Les modèles générés
 
 Avant d'aller plus loin, regardons ensemble un peu les modèles :
@@ -140,8 +203,8 @@ Ici, pas de magie ! Le plugin ne fait qu'écrire du code à votre place. Le code
 
 Vous l'avez oublié ? Pas de problème :
 
-[La documentation de base](https://laravel.com/docs/8.x/eloquent)
-[Les jointures et Eloquent](https://laravel.com/docs/8.x/eloquent-relationships)
+[La documentation de base](https://laravel.com/docs/12.x/eloquent)
+[Les jointures et Eloquent](https://laravel.com/docs/12.x/eloquent-relationships)
 
 :::
 
@@ -216,40 +279,52 @@ Vous l'avez vu, nous avons besoin d'un template pour que la page s'affiche. Cré
 ```html
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
-    <body>
-        <div>
-            <div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>Numéro de commande</td>
-                            <td>Status</td>
-                            <td>Client</td>
-                            <td>#</td>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white dark:bg-slate-800">
-                    @foreach($orders as $order)
-                        <tr>
-                            <td>{{$order->orderNumber}}</td>
-                            <td>{{$order->status}}</td>
-                            <td>{{$order->customer->contactFirstName}} {{$order->customer->contactLastName}}</td>
-                            <td>
-                                <a class="btn btn-primary" href="/orders/{{$order->orderNumber}}">Voir la page de détail</a>
-                            </td>
-                        </tr>    
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <td>Numéro de commande</td>
+              <td>Status</td>
+              <td>Client</td>
+              <td>#</td>
+            </tr>
+          </thead>
+          <tbody class="bg-white dark:bg-slate-800">
+            @foreach($orders as $order)
+            <tr>
+              <td>{{$order->orderNumber}}</td>
+              <td>{{$order->status}}</td>
+              <td>
+                {{$order->customer->contactFirstName}}
+                {{$order->customer->contactLastName}}
+              </td>
+              <td>
+                <a
+                  class="btn btn-primary"
+                  href="/orders/{{$order->orderNumber}}"
+                  >Voir la page de détail</a
+                >
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
 </html>
 ```
 
@@ -286,7 +361,7 @@ C'est à vous !
 
 Nous allons maintenant faire la page de détail en prenant le même principe.
 
-### 1. La méthode  
+### 1. La méthode
 
 Pour vous aider, voilà le code. **Attention** avant de copier / coller trop rapidement, regardez bien…
 
@@ -370,29 +445,31 @@ Pour créer le formulaire, rien de nouveau, nous allons utiliser comme d'habitud
 
 ```html
 <form action="/orders/create" method="post">
-    @csrf
-    <div>
-        <label for="orderNumber">Numéro de commande</label>
-        <input type="text" name="orderNumber" id="orderNumber">
-    </div>
-    <div>
-        <!-- Vous pouvez ajouter ici un select pour les status -->
-    </div>
-    <div>
-        <label for="comments">Commentaires</label>
-        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
-    </div>
-    <div>
-        <label for="customerNumber">Numéro de client</label>
-        <select name="customerNumber" id="customerNumber">
-            @foreach($customers as $customer)
-                <option value="{{$customer->customerNumber}}">{{$customer->contactLastName}} {{$customer->contactFirstName}}</option>
-            @endforeach
-        </select>
-    </div>
-    <div>
-        <input type="submit" value="Créer la commande">
-    </div>
+  @csrf
+  <div>
+    <label for="orderNumber">Numéro de commande</label>
+    <input type="text" name="orderNumber" id="orderNumber" />
+  </div>
+  <div>
+    <!-- Vous pouvez ajouter ici un select pour les status -->
+  </div>
+  <div>
+    <label for="comments">Commentaires</label>
+    <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+  </div>
+  <div>
+    <label for="customerNumber">Numéro de client</label>
+    <select name="customerNumber" id="customerNumber">
+      @foreach($customers as $customer)
+      <option value="{{$customer->customerNumber}}">
+        {{$customer->contactLastName}} {{$customer->contactFirstName}}
+      </option>
+      @endforeach
+    </select>
+  </div>
+  <div>
+    <input type="submit" value="Créer la commande" />
+  </div>
 </form>
 ```
 
@@ -419,12 +496,19 @@ Pour traiter le formulaire, nous allons devoir créer une méthode dans le contr
 
 ```php
 function create(Request $request){
+    // Ici on utilise la syntaxe classique avec un new et un save
     $order = new Order();
     $order->orderNumber = $request->input("orderNumber");
     $order->status = $request->input("status");
     $order->comments = $request->input("comments");
     $order->customerNumber = $request->input("customerNumber");
     $order->save();
+
+    // Mais il est également possible d'utiliser la méthode create
+    // Order::create($request->all());
+    // Cela fonctionne uniquement si vous avez bien défini le $fillable dans le modèle
+    // Le create combine le new et le save en une seule méthode.
+
     return redirect("/orders");
 }
 ```
@@ -486,8 +570,8 @@ Le style proposé utilise TailWind, mais il est également possible de gérer le
 
 ```html
 <div>
-    <a href="{{ $orders->previousPageUrl() }}">Précédent</a>
-    <a href="{{ $orders->nextPageUrl() }}">Suivant</a>
+  <a href="{{ $orders->previousPageUrl() }}">Précédent</a>
+  <a href="{{ $orders->nextPageUrl() }}">Suivant</a>
 </div>
 ```
 
@@ -513,7 +597,8 @@ $payment->checkNumber = '123456';
 $payment->paymentDate = '2004-10-19';
 $payment->amount = 14571.44;
 
-// Ajouter le nouveau paiement au client 103
+// Ajouter le nouveau paiement au client 103.
+// La force ici c'est que Laravel va automatiquement gérer la clé étrangère customerNumber
 $customer->payments()->save($payment);
 ```
 
@@ -525,7 +610,7 @@ Je vous laisse modifier votre formulaire de création de commande pour y ajouter
 
 :::
 
-## Rappel sur les relations avec `Sync` et `Attach`
+## Les relations avec `Sync` et `Attach`
 
 Avec Laravel, il est possible de gérer les relations entre les tables de manière très simple. Pour ça, Laravel propose deux méthodes :
 
@@ -583,7 +668,11 @@ php artisan code:models --table=category_customer
 php artisan code:models --table=customers
 ```
 
-Je vous laisse regarder les modèles générés, vous avez maintenant un modèle `Category` et un modèle `CustomerCategory`. 
+::: tip Astuce
+Oui ici nous avons regénéré que les modèles concernés par notre modification. Pas besoin de tout regénérer à chaque fois !
+:::
+
+Je vous laisse regarder les modèles générés, vous avez maintenant un modèle `Category` et un modèle `CustomerCategory`.
 
 Le modèle `Customer` a également été mis à jour pour prendre en compte la nouvelle relation. Il est intéressant de regarder le code généré :
 
@@ -597,7 +686,7 @@ return $this->belongsToMany(Category::class, 'category_customer', 'customerNumbe
     ->withTimestamps();
 }
 // NE PAS COPIER COLLER
- ```
+```
 
 Quelques explications :
 
@@ -635,6 +724,8 @@ Maintenant que nous avons créé les tables, nous allons pouvoir associer des ca
 - `sync` : Permet de synchroniser les relations entre deux tables. **Cela va supprimer les relations existantes et ajouter les nouvelles.**
 - `attach` : Permet d'ajouter une relation entre deux tables. **Cela va ajouter une nouvelle relation. Sans supprimer les relations existantes.**
 
+**Voici quelques exemples :**
+
 Pour ajouter une catégorie à un client, nous allons utiliser la méthode `attach` :
 
 ```php
@@ -645,7 +736,7 @@ $customer = Customer::find(103);
 $customer->categories()->attach([1, 2]);
 ```
 
-Si à la place de `attach` vous utilisez `sync`, vous allez supprimer les relations existantes et ajouter la nouvelle relation. 
+Si à la place de `attach` vous utilisez `sync`, vous allez supprimer les relations existantes et ajouter la nouvelle relation.
 
 ```php
 // Récupérer le client 103
@@ -720,10 +811,8 @@ $customer->categories;
 Ou depuis un template blade :
 
 ```html
-{{ $customer->orders }}
-{{ $customer->orders->orderdetails }}
-{{ $customer->orders->orderdetails->product }}
-{{ $customer->categories }}
+{{ $customer->orders }} {{ $customer->orders->orderdetails }} {{
+$customer->orders->orderdetails->product }} {{ $customer->categories }}
 ```
 
 La variable `$customer` est un objet de type `Customer`, celui-ci contient les méthodes `orders` et `ordersdetails` qui vont faire les requêtes pour vous !
@@ -809,13 +898,16 @@ Ici, nous allons parcourir les adresses du client et les afficher :
 
 ```html
 @forelse ($customer->addresses as $address)
-    <div>
-        <div>{{$address->addressLine1}}</div>
-        <div>{{$address->addressLine2}}</div>
-        <div>{{$address->city}}, {{$address->postalCode}}, {{ $address->state }} , {{$address->country}}</div>
-    </div>
+<div>
+  <div>{{$address->addressLine1}}</div>
+  <div>{{$address->addressLine2}}</div>
+  <div>
+    {{$address->city}}, {{$address->postalCode}}, {{ $address->state }} ,
+    {{$address->country}}
+  </div>
+</div>
 @empty
-    <div>Aucune adresse</div>
+<div>Aucune adresse</div>
 @endforelse
 ```
 
@@ -858,7 +950,7 @@ function createAddress(Request $request, $id){
 
     // La méthode attach permet d'ajouter une relation entre deux tables. Elle va ajouter une ligne dans la table de relation.
     $customer->addresses()->attach($address);
-    
+
     // Redirection vers la page de détail du client
     return redirect("/customers/$id");
 }
@@ -868,8 +960,8 @@ Et enfin le template :
 
 ```html
 <form action="/customers/{{$customer->id}}/addresses/create" method="post">
-    @csrf
-    <!-- Je vous laisse écrire l'interieur du formulaire -->
+  @csrf
+  <!-- Je vous laisse écrire l'interieur du formulaire -->
 </form>
 ```
 
@@ -896,9 +988,7 @@ Puis dans le template de la vue de détail, ajouter le code suivant :
 
 ```html
 @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success">{{ session('success') }}</div>
 @endif
 ```
 
@@ -1003,9 +1093,11 @@ Et dans votre template :
 ```html
 <!-- Select multiple avec reselect des valeurs précédement choisi pour les roles du client -->
 <select name="roles[]" id="roles" multiple>
-    @foreach($roles as $role)
-        <option value="{{$role->id}}" @if($customer->roles->contains($role->id)) selected @endif>{{$role->name}}</option>
-    @endforeach
+  @foreach($roles as $role)
+  <option value="{{$role->id}}" @if($customer->
+    roles->contains($role->id)) selected @endif>{{$role->name}}
+  </option>
+  @endforeach
 </select>
 ```
 
@@ -1030,4 +1122,4 @@ Vous avez vu, avec Laravel, il est possible d'écrire très peu de code pour avo
 - Les aide mémoire.
 - Les forums / StackOverflow / ChatGPT / Claude.
 
-La suite, ça sera [Larablog,](./larablog.md) une plateforme de blog codé entièrement avec Laravel.
+La suite, ça sera [Une plateforme de Micro-Messages](./x.md)

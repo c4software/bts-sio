@@ -237,6 +237,7 @@ export default [
                             { text: "Introduction à Laravel", link: "/tp/laravel/introduction" },
                             { text: "Laravel & L'authentification", link: "/tp/laravel/authentification" },
                             { text: "Eloquent les modèles simplement", link: "/tp/laravel/generation_model" },
+                            { text: "Projet Micro-Messages", link: "/tp/laravel/x.md" },
                             { text: "Projet - Larablog", link: "/tp/laravel/larablog.md" },
                             { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" },
                             { text: "Des API avec Laravel", link: "/tp/laravel/api_produit" },
