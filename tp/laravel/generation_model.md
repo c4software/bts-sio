@@ -459,6 +459,17 @@ Pour créer le formulaire, rien de nouveau, nous allons utiliser comme d'habitud
     <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
   </div>
   <div>
+    <label for="status">Status</label>
+    <select name="status" id="status">
+      <option value="In Process">In Process</option>
+      <option value="On Hold">On Hold</option>
+      <option value="Resolved">Resolved</option>
+      <option value="Shipped">Shipped</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Disputed">Disputed</option>
+      <option value="Completed">Completed</option>
+    </select>
+  <div>
     <label for="customerNumber">Numéro de client</label>
     <select name="customerNumber" id="customerNumber">
       @foreach($customers as $customer)
