@@ -21,6 +21,12 @@ Dans ce TP, nous allons nous concentrer sur l'analyse d'une application Android 
 - Modifier le code de l'application pour contourner les restrictions d'achat in-app.
 - Tester la version modifiée de l'application pour vérifier si les fonctionnalités restreintes sont désormais accessibles.
 
+## Télécharger l'application
+
+L'application est disponible sur le playstore via le lien suivant : [https://play.google.com/store/apps/details?id=com.vbrosseau.stackgame](https://play.google.com/store/apps/details?id=com.vbrosseau.stackgame)
+
+Je vous laisse le soin de l'installer pour la tester. Pas d'accès au playstore ? Vous pouvez télécharger l'APK directement ici : [stackgame.apk](https://github.com/c4software/StackGameApp/raw/refs/heads/main/app-release.apk)
+
 ## Compte de tests
 
 L'application possède 3 comptes de test pour les différents niveaux d'abonnement :
