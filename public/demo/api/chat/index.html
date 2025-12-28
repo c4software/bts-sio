@@ -176,12 +176,12 @@
                     content: this.systemPrompt
                 }];
 
-                if(!this.llm){
+                if (!this.llm) {
                     this.addKanye("Yo what's up bro ?!");
                     this.fetchKanye();
                 }
             },
-            
+
             saveState() {
                 window.localStorage.setItem("chat:llm", this.llm ? "true" : "false");
                 window.localStorage.setItem("llm:model", this.model);
@@ -193,7 +193,7 @@
             ollamaSendMessage() {
                 fetch("http://127.0.0.1:11435/api/chat", {
                     method: "POST",
-                    body: JSON.stringify({ model: this.model, messages: this.messages.map(it => ({role: it.role, content: it.content})) }),
+                    body: JSON.stringify({ model: this.model, messages: this.messages.map(it => ({ role: it.role, content: it.content })) }),
                 }).then((response) => {
                     this.fetching = false;
                     const reader = response.body.getReader();
@@ -210,7 +210,7 @@
                 const textChunk = new TextDecoder().decode(value);
                 const decoded = JSON.parse(textChunk);
 
-                if(decoded.done){
+                if (decoded.done) {
                     // Génération terminée
                     return;
                 }
