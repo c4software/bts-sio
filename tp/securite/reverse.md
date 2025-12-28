@@ -13,6 +13,8 @@ Le reverse engineering, ou ingénierie inverse, est le processus d'analyse d'un 
 
 Dans ce TP, nous allons nous concentrer sur l'analyse d'une application Android simple. Avec comme objectif de dévérouiller certaines fonctionnalités normalement accessibles uniquement après un achats in-app.
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pnUSgpbpTJM?si=i5X-XwcC3a0f9Nbl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ### Étapes du TP
 
 - Tester l'application pour comprendre son fonctionnement normal.
