@@ -126,7 +126,7 @@ Maintenant que nous avons réussi à modifier un texte simple, essayons quelque 
 
 Pour cela, nous devons localiser dans le code décompilé où le nombre de vies est défini. En cherchant dans le code SMALI, nous pouvons trouver une classe qui gère les paramètres du jeu. Le développeur a peut-être défini une constante pour le nombre de vies initiales. Nous allons chercher des termes comme "lives", "initialLives", ou "maxLives" dans le code SMALI.
 
-Nous pouvons également chercher la valeur `0x3` (qui est 3 en décimal) dans le code SMALI, cela pourrait nous mener directement à l'endroit où le nombre de vies est défini. Je vous laisse le soin de faire cette recherche.
+Nous pouvons également chercher la valeur `0x3` (qui est 3 en décimal) dans le code SMALI, cela pourrait nous mener directement à l'endroit où le nombre de vies est défini. Je vous laisse le soin de faire cette recherche. Pour mettre 10 vies, il faudra remplacer la valeur `0x3` par `0xA` (10 en décimal).
 
 ::: info Astuce
 
@@ -134,11 +134,11 @@ Vu que c'est mon application, je peux vous dire que la constante est défini dan
 
 :::
 
-### La class User
+### Et si nous forçions le niveau ULTRA ?
 
-Après décompilation du code, nous avons accès au code SMALI de l'application, nous avons notamment la classe `User` qui gère les informations des utilisateurs.
+L'autre solution, est maintenant de forcer le niveau ULTRA à un utilisateur, peu importe son abonnement. Pour cela, nous devons trouver où le niveau d'un utilisateur est défini dans le code. En observant le code décompilé, nous pouvons voir qu'un appel d'API est fait pour récupérer les informations de l'utilisateur, y compris son niveau d'abonnement. Cet appel d'API renvoie un objet utilisateur qui contient un attribut `level`.
 
-Si nous nous concentrons sur les constructeurs comme échangé, nous pouvons observer que celui-ci est passé en paramètre lors de la création d'un utilisateur.
+En POO, vous le savez, les objets sont souvent instanciés via des constructeurs. Nous avons la classe `User` qui gère les informations des utilisateurs. Et … elle possède un attribut `level` qui correspond au niveau d'abonnement de l'utilisateur. Et elle possède deux constructeurs, Si nous nous concentrons sur les constructeurs comme échangé, nous pouvons observer que celui-ci est passé en paramètre lors de la création d'un utilisateur.
 
 ```smali
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Lcom/vbrosseau/stackgame/models/UserLevel;Ljava/lang/String;)V
