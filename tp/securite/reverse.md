@@ -31,7 +31,7 @@ Ce TP est à but éducatif, ici nous modifions une application que j'ai moi mêm
 
 L'application est disponible sur le playstore via le lien suivant : [https://play.google.com/store/apps/details?id=com.vbrosseau.stackgame](https://play.google.com/store/apps/details?id=com.vbrosseau.stackgame)
 
-Je vous laisse le soin de l'installer pour la tester. Pas d'accès au playstore ? Vous pouvez télécharger l'APK directement ici : [stackgame.apk](https://github.com/c4software/StackGameApp/raw/refs/heads/main/app-release.apk)
+Je vous laisse le soin de l'installer pour la tester. Pas d'accès au playstore ? Vous pouvez télécharger l'**APK** directement ici : [stackgame.apk](https://github.com/c4software/StackGameApp/releases/latest)
 
 ## Compte de tests
 
@@ -63,6 +63,10 @@ Pour décompiler l'application Android, nous allons utiliser l'outil `apktool`. 
    ```
 
    Cette commande va créer un dossier `stackgame_decompiled` contenant les fichiers décompilés.
+
+## Rappel sur le fonctionnement des applications Android
+
+Avant de plonger dans le code SMALI, rappelons brièvement comment fonctionnent les applications Android. Une application Android est composée de plusieurs composants clés :
 
 ## Analyse du code
 
