@@ -84,6 +84,56 @@ Je vous laisse le soins de parcourir le code décompilé avec votre éditeur de 
 
 :::
 
+### Commençons simple…
+
+Pour débuter, nous allons chercher à faire une modification simple. Pourquoi pas dans un premier temps ne pas modifier un texte affiché dans l'application ? Par exemple, changé "Bravo" en "Félicitations".
+
+Dans les applications Android, les textes affichés sont souvent stockés dans des fichiers de ressources XML. Nous allons donc chercher dans le dossier `res/values/strings.xml` du code décompilé.
+
+En ouvrant ce fichier, nous pouvons voir une liste de chaînes de caractères utilisées dans l'application. Cherchons la chaîne "Bravo". Et modifier la en "Félicitations".
+
+Je vous laisse le soin de faire cette modification vous même.
+
+### Recompilation et test
+
+Une fois la modification effectuée, nous allons recompiler l'application avec apktool. Utilisez la commande suivante pour recompiler l'APK :
+
+```bash
+apktool b stackgame_decompiled -o stackgame_modified.apk
+```
+
+### Signature de l'APK
+
+Pour l'instant vous n'avez qu'un fichier APK modifié, mais non signé. Android exige que toutes les applications soient signées avant de pouvoir être installées sur un appareil. Nous allons donc utiliser l'outil `jarsigner` pour signer notre APK modifié. Dans un premier temps, nous allons créer une clé de signature si vous n'en avez pas déjà une :
+
+```bash
+keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
+```
+
+Ensuite, utilisez la commande suivante pour signer l'APK modifié :
+
+```bash
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks stackgame_modified.apk my-alias
+```
+
+Cette étape est cruciale, car sans une signature valide, Android refusera d'installer l'application. Évidemment, vous n'allez pas pouvoir mettre à jour l'application officielle sur le playstore avec cette version modifiée, mais pour un usage personnel sur votre appareil, cela fonctionnera parfaitement.
+
+En effet, Android pour des raisons de sécurité, n'autorise pas l'installation d'applications non signées ou signées avec une clé différente de celle utilisée pour l'application originale. OUF !
+
+### Un peu plus technique : Modifier le nombre de vies
+
+Maintenant que nous avons réussi à modifier un texte simple, essayons quelque chose d'un peu plus technique. Par exemple, modifions le nombre de vies initiales d'un joueur. Actuellement l'application donne 3 vies au joueur au démarrage. Nous allons changer cela pour donner 10 vies.
+
+Pour cela, nous devons localiser dans le code décompilé où le nombre de vies est défini. En cherchant dans le code SMALI, nous pouvons trouver une classe qui gère les paramètres du jeu. Le développeur a peut-être défini une constante pour le nombre de vies initiales. Nous allons chercher des termes comme "lives", "initialLives", ou "maxLives" dans le code SMALI.
+
+Nous pouvons également chercher la valeur `0x3` (qui est 3 en décimal) dans le code SMALI, cela pourrait nous mener directement à l'endroit où le nombre de vies est défini. Je vous laisse le soin de faire cette recherche.
+
+::: info Astuce
+
+Vu que c'est mon application, je peux vous dire que la constante est défini dans la classe `GameViewModel.smali`. Cherchez la ligne où la variable `INITIAL_LIVES` est définie.
+
+:::
+
 ### La class User
 
 Après décompilation du code, nous avons accès au code SMALI de l'application, nous avons notamment la classe `User` qui gère les informations des utilisateurs.
