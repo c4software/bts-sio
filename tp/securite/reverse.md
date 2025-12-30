@@ -68,6 +68,14 @@ Pour décompiler l'application Android, nous allons utiliser l'outil `apktool`. 
 
 Avant de plonger dans le code SMALI, rappelons brièvement comment fonctionnent les applications Android. Une application Android est composée de plusieurs composants clés :
 
+- Le code est découpé en packages et classes, souvent écrits en Java ou Kotlin, mais compilés en bytecode Dalvik/ART.
+- Les ressources (images, fichiers XML, etc.) sont stockées dans des dossiers spécifiques.
+- Le fichier `AndroidManifest.xml` définit les composants de l'application et leurs permissions.
+- Les textes et autres chaînes de caractères sont souvent stockés dans des fichiers de ressources XML (`res/values/strings.xml`).
+- Un code moderne utilise des composants via Compose.
+- Les intéractions sont faites avec des ViewModels, Repositories, etc.
+- Repose souvent sur des appels réseau pour récupérer des données.
+
 ## Analyse du code
 
 L'analyse du code est la partie la plus importante lors d'un reverse engineering. Nous allons devoir examiner du code sans en connaitre réellement le fonctionnement. Il faudra être méthodique et rigoureux.
