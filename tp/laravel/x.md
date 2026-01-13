@@ -193,6 +193,10 @@ Une structure simple, mais suffisante pour modéliser une vraie interaction soci
 
 Pour enrichir l’expérience, plusieurs extensions facultatives peuvent être ajoutées.
 
+### Permettre de mettre une bannière sur un utilisateur
+
+Chaque utilisateur peut personnaliser son profil avec une image de bannière stockée sur le serveur.
+
 ### Likes
 
 Les utilisateurs peuvent indiquer qu’ils apprécient un message.  
@@ -224,6 +228,38 @@ Une barre de recherche permet de filtrer par :
 - mot-clé
 
 Un moyen rapide de retrouver une idée, une personne, un message.
+
+### Citer une utilisateur
+
+Permettre de mentionner un utilisateur dans un message avec `@username`. Si l'utilisateur existe, un lien vers son profil est créé.
+
+### Notifications
+
+Envoyer une notification à un utilisateur lorsqu’il est suivi ou lorsqu’un de ses messages reçoit un like ou un commentaire.
+
+### DM (Message Direct)
+
+Permettre aux utilisateurs de s’envoyer des messages privés entre eux. Les messages directs ne sont visibles que par les deux participants.
+
+### Groupes de discussion
+
+Permettre aux utilisateurs de créer des groupes de discussion où plusieurs utilisateurs peuvent échanger des messages. Les groupes peuvent être publics ou privés.
+
+### Thèmes
+
+Permettre aux utilisateurs de personnaliser leur mur via des thèmes de couleurs ou des arrière-plans.
+
+### Communauté
+
+Les utilisateurs peuvent créer des communautés autour de sujets spécifiques. Chaque communauté a son propre mur de messages. Les communautés sont accessibles via un lien dédié et personnalisable.
+
+#### Modération des communautés
+
+Les utilisateurs peuvent signaler des messages inappropriés dans une communauté. Les messages seront masqués jusqu'à ce qu'un modérateur les examine.
+
+### Mute un utilisateur
+
+Permettre aux utilisateurs de masquer les messages d'un utilisateur spécifique sans le bloquer. Les messages de l'utilisateur masqué n'apparaîtront plus dans le mur public ou le flux des suivis.
 
 ## Critères de Validation du TP
 
