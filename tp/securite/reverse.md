@@ -47,8 +47,8 @@ Pour décompiler et modifier l'application Android, nous allons utiliser les out
 
 - `apktool` : Un outil pour décompiler et recompiler les fichiers APK.
 - `vscode` ou tout autre éditeur de texte pour modifier le code décompilé.
-- `JDK` Java : Nécessaire pour utiliser `jarsigner` et `keytool` pour signer l'APK modifié.
-- `Ligne de commande Android`: Pour le zipalign, et l'installation de l'APK modifié.
+- `JDK` Java : Nécessaire pour utiliser `keytool` pour signer l'APK modifié.
+- `Ligne de commande Android`: Pour le zipalign, apksigner et l'installation de l'APK modifié.
 
 La magie d'APKTool est qu'il permet de décompiler une application Android en un format lisible, notamment en extrayant les fichiers SMALI, qui sont une représentation intermédiaire du code Java utilisé dans les applications Android. Il permet également de recréér une APK à partir du SMALI modifié.
 
