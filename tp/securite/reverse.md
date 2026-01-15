@@ -141,6 +141,20 @@ Pour que l'APK puisse être installé correctement, il est recommandé d'utilise
 zipalign -P 16 -f -v 4 stackgame_modified.apk stackgame_aligned.apk
 ```
 
+### Investiguer les erreurs
+
+Si lors de l'installation vous avez une erreurs de librairie native, il faut certainement modifier le fichier :
+
+`AndroidManifest.xml`
+
+Pour mettre le `android:extractNativeLibs` à `true` dans la balise `<application>`
+
+::: tip Pourquoi ?
+
+Certaines applications utilisent des bibliothèques natives (fichiers .so) qui doivent être extraites lors de l'installation. Si cette option est définie sur `false`, Android ne les extraira pas, ce qui peut entraîner des erreurs si l'application tente de les charger. En mettant cette option à `true`, vous vous assurez que toutes les bibliothèques natives nécessaires sont correctement extraites et disponibles pour l'application.
+
+:::
+
 ### Installation de l'APK modifié
 
 Maintenant que nous avons notre APK modifié, signé et aligné, nous pouvons l'installer sur notre appareil Android. Utilisez la commande suivante pour installer l'APK :
