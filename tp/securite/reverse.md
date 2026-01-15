@@ -115,23 +115,15 @@ Une fois la modification effectuée, nous allons recompiler l'application avec a
 apktool b stackgame_decompiled -o stackgame_modified.apk
 ```
 
-### Signature de l'APK
+::: details Vous êtes sous Linux et vous avez une erreur de HEAP SIZE lors de la recompilation ?
 
-Pour l'instant vous n'avez qu'un fichier APK modifié, mais non signé. Android exige que toutes les applications soient signées avant de pouvoir être installées sur un appareil. Nous allons donc utiliser l'outil `jarsigner` pour signer notre APK modifié. Dans un premier temps, nous allons créer une clé de signature si vous n'en avez pas déjà une :
-
-```bash
-keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
+```
+export _JAVA_OPTIONS="-Xmx8G"
 ```
 
-Ensuite, utilisez la commande suivante pour signer l'APK modifié :
+Puis lancez de nouveau la commande de recompilation.
 
-```bash
-jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks stackgame_modified.apk my-alias
-```
-
-Cette étape est cruciale, car sans une signature valide, Android refusera d'installer l'application. Évidemment, vous n'allez pas pouvoir mettre à jour l'application officielle sur le playstore avec cette version modifiée, mais pour un usage personnel sur votre appareil, cela fonctionnera parfaitement.
-
-En effet, Android pour des raisons de sécurité, n'autorise pas l'installation d'applications non signées ou signées avec une clé différente de celle utilisée pour l'application originale. OUF !
+:::
 
 ### Alignement de l'APK
 
@@ -140,6 +132,24 @@ Pour que l'APK puisse être installé correctement, il est recommandé d'utilise
 ```bash
 zipalign -P 16 -f -v 4 stackgame_modified.apk stackgame_aligned.apk
 ```
+
+### Signature de l'APK
+
+Pour l'instant vous n'avez qu'un fichier APK modifié, mais non signé. Android exige que toutes les applications soient signées avant de pouvoir être installées sur un appareil. Nous allons donc utiliser l'outil `jarsigner` pour signer notre APK modifié. Dans un premier temps, nous allons créer une clé de signature si vous n'en avez pas déjà une :
+
+```bash
+keytool -genkey -v -keystore my-release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-alias
+```
+
+Ensuite, utilisez la commande suivante pour signer l'APK modifié (via apksigner) :
+
+```bash
+apksigner sign --ks my-release-key.jks --out stackgame_signed.apk stackgame_aligned.apk
+```
+
+Cette étape est cruciale, car sans une signature valide, Android refusera d'installer l'application. Évidemment, vous n'allez pas pouvoir mettre à jour l'application officielle sur le playstore avec cette version modifiée, mais pour un usage personnel sur votre appareil, cela fonctionnera parfaitement.
+
+En effet, Android pour des raisons de sécurité, n'autorise pas l'installation d'applications non signées ou signées avec une clé différente de celle utilisée pour l'application originale. OUF !
 
 ### Investiguer les erreurs
 
