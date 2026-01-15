@@ -47,7 +47,8 @@ Pour décompiler et modifier l'application Android, nous allons utiliser les out
 
 - `apktool` : Un outil pour décompiler et recompiler les fichiers APK.
 - `vscode` ou tout autre éditeur de texte pour modifier le code décompilé.
-- `jarsigner` : Un outil pour signer les APK modifiés afin qu'ils puissent être installés sur un appareil Android.
+- `JDK` Java : Nécessaire pour utiliser `jarsigner` et `keytool` pour signer l'APK modifié.
+- `Ligne de commande Android`: Pour le zipalign, et l'installation de l'APK modifié.
 
 La magie d'APKTool est qu'il permet de décompiler une application Android en un format lisible, notamment en extrayant les fichiers SMALI, qui sont une représentation intermédiaire du code Java utilisé dans les applications Android. Il permet également de recréér une APK à partir du SMALI modifié.
 
@@ -131,6 +132,24 @@ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.
 Cette étape est cruciale, car sans une signature valide, Android refusera d'installer l'application. Évidemment, vous n'allez pas pouvoir mettre à jour l'application officielle sur le playstore avec cette version modifiée, mais pour un usage personnel sur votre appareil, cela fonctionnera parfaitement.
 
 En effet, Android pour des raisons de sécurité, n'autorise pas l'installation d'applications non signées ou signées avec une clé différente de celle utilisée pour l'application originale. OUF !
+
+### Alignement de l'APK
+
+Pour que l'APK puisse être installé correctement, il est recommandé d'utiliser l'outil `zipalign` pour optimiser l'APK. Utilisez la commande suivante :
+
+```bash
+zipalign -P 16 -f -v 4 stackgame_modified.apk stackgame_aligned.apk
+```
+
+### Installation de l'APK modifié
+
+Maintenant que nous avons notre APK modifié, signé et aligné, nous pouvons l'installer sur notre appareil Android. Utilisez la commande suivante pour installer l'APK :
+
+```bash
+adb install -r stackgame_aligned.apk
+```
+
+Ou si vous n'avez pas activé le mode développeur, vous pouvez transférer l'APK sur votre appareil et l'installer manuellement.
 
 ### Un peu plus technique : Modifier le nombre de vies
 
