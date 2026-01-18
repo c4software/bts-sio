@@ -57,7 +57,8 @@ export default [
                 text: "Initiation à Git", collapsed: true,
                 items: [
                     { text: "Slides", link: "/cours/git" },
-                    { text: "Initiation à GIT", link: "/tp/git_initiation/" }
+                    { text: "Initiation à GIT", link: "/tp/git_initiation/" },
+                    { text: "Les branches avec GIT", link: "/tp/git_initiation/branch.md" }
                 ]
             },
             {
@@ -308,7 +309,8 @@ export default [
             { text: "Le cours", link: "/cours/securite_applications" },
             { text: "Synthèse du cours", link: "/cheatsheets/owasp/" },
             { text: "Exercices OWASP", link: "/tp/securite/exercice.md" },
-            { text: "TP Sécurité", link: "/tp/securite/" }
+            { text: "TP Sécurité", link: "/tp/securite/" },
+            { text: "Analyser une application", link: "/tp/securite/reverse.md" },
         ]
     },
 

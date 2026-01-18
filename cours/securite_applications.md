@@ -10,6 +10,7 @@ aside: false
 
 - [La synthèse du cours](/cheatsheets/owasp/)
 - [Les exercices](/tp/securite/exercice.md)
+- [Analyser une application](/tp/securite/reverse.md)
 
 ## Les points importants
 

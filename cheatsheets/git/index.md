@@ -1,8 +1,7 @@
 ---
-description: Aide mémoire GIT
+description: Aide mémoire Git avec les commandes les plus courantes.
+# Aide mémoire Git
 ---
-
-# Aide mémoire GIT
 
 ::: details Table des matières
 [[toc]]
@@ -12,7 +11,7 @@ description: Aide mémoire GIT
 
 Pour apprendre Git de manière interactive, je vous conseille le site [learngitbranching.js.org](https://learngitbranching.js.org/?locale=fr_FR).
 
-## Personnaliser
+## Configuration de base
 
 Définir son identité :
 
@@ -21,270 +20,247 @@ git config --global user.email "email@example.com"
 git config --global user.name "Valentin Brosseau"
 ```
 
-Voir la configuration :
+Vérifier la configuration :
 
 ```sh
 git config --list
 ```
 
-## Setup & Init
+## Initialisation & clonage
 
-Créer un nouveau dépôt local (dans le dossier courant) :
+Créer un nouveau dépôt local :
 
 ```sh
 git init
 ```
 
-::: tip Si vous projet
-Si votre projet est sur github/gitlab, **vous devez cloner le dépôt** et non le créer (via un `git clone`).
+::: tip Projet distant
+Si le projet existe déjà sur GitHub / GitLab, **ne faites jamais `git init`**.
+Vous devez **cloner** le dépôt.
 :::
 
-Cloner un dépôt existant :
+Cloner un dépôt existant (SSH recommandé) :
 
 ```sh
-git clone ssh://user@domain.com/repo.git
+git clone git@domain.com:utilisateur/repo.git
 ```
 
-Créer un fichier « .gitignore » :
+## `.gitignore`
+
+Créer manuellement :
 
 ```sh
-# Création du fichier
 vim .gitignore
-# …
 git add .gitignore
-git commit -m "Ajout gitignore"
+git commit -m "Ajout du .gitignore"
 ```
 
-Créer un fichier « .gitignore » en utilisant un template « Windows »:
+Créer via un template :
 
 ```sh
-curl -s https://www.gitignore.io/api/windows > .gitignore
+curl -s https://www.toptal.com/developers/gitignore/api/windows,macos,linux > .gitignore
 git add .gitignore
-git commit -m "Ajout gitignore"
+git commit -m "Ajout du .gitignore"
 ```
 
-Créer un fichier « .gitignore » en utilisant un template « MacOS »:
+## État et modifications locales
 
-```sh
-curl -s https://www.gitignore.io/api/osx > .gitignore
-git add .gitignore
-git commit -m "Ajout gitignore"
-```
-
-## Modifications locales
-
-Fichiers modifiés dans votre répertoire de travail :
+État du dépôt :
 
 ```sh
 git status
 ```
 
-Modifications sur les fichiers suivis :
+Différences non indexées :
 
 ```sh
 git diff
 ```
 
-Ajouter tous les changements actuels au prochain commit :
+Indexer des fichiers :
 
 ```sh
-git add
+git add fichier.txt
 ```
 
-Ajouter tous les changements de toute l’arborescence :
+Indexer tous les changements :
 
 ```sh
+git add .
+# ou
 git add --all
 ```
 
-Commiter tous les changements locaux des fichiers suivis :
+Créer un commit :
 
 ```sh
-git commit -a
+git commit -m "Message du commit"
 ```
 
-Commiter les modifications en attente :
+Commit rapide (fichiers déjà suivis uniquement) :
 
 ```sh
-git commit -m 'Votre message'
+git commit -am "Message du commit"
 ```
 
-Modifier le commit précédent :
+Modifier le dernier commit (message ou contenu) :
 
 ```sh
 git commit --amend
-# ou
-git commit --am
 ```
 
-## Historique de Commit
+## Historique
 
-Afficher tous les commits :
+Historique complet :
 
 ```sh
 git log
 ```
 
-Afficher tous les commits (uniquement l’identifiant et le texte) :
+Historique simplifié :
 
 ```sh
-git log --oneline
+git log --oneline --graph --decorate
 ```
 
-Afficher l’historique d’un utilisateur uniquement :
+Historique par auteur :
 
 ```sh
-git log --author="utilisateur"
+git log --author="Nom"
 ```
 
-Afficher l’historique des modifications pour un fichier uniquement :
+Historique d’un fichier :
 
 ```sh
-git log -p <fichier>
+git log -p fichier.txt
 ```
 
-Affiche les changements (en détail) dans le fichier :
+Qui a modifié quoi :
 
 ```sh
-git blame <file>
+git blame fichier.txt
 ```
 
-## Branches & Tags
+## Branches & tags
 
-Lister toutes les branches :
+Lister les branches :
 
 ```sh
 git branch
 ```
 
-Changer de branche :
+Créer une branche :
 
 ```sh
-git checkout <votre-branche>
+git branch ma-branche
 ```
 
-Créer une nouvelle branche en se basant sur le HEAD :
+Changer de branche (commande moderne) :
 
 ```sh
-git branch <votre-branche>
+git switch ma-branche
 ```
 
-Créer une nouvelle branche de suivi, basée sur une branche distante :
+Changer de branche (ancienne commande) :
 
 ```sh
-git branch --track <nouvelle-branche> <branche-distante>
+git checkout ma-branche
 ```
 
-Supprimer une branche :
+Créer et changer de branche :
 
 ```sh
-git branch -d <votre-branche>
+git switch -c ma-branche
 ```
 
-Marquer le commit courant avec un tag :
+Supprimer une branche locale :
 
 ```sh
-git tag <non-du-tag>
+git branch -d ma-branche
 ```
 
-## Merge & Rebase
-
-Fusionner la branche `<votre-branche>` avec la master :
+Créer un tag :
 
 ```sh
-git checkout master
-git merge <votre-branche>
+git tag v1.0.0
 ```
 
-⚠️ Attention ⚠️
+## Merge & rebase
 
-Jouer avec l’historique est toujours dangereux surtout si vous travaillez à plusieurs !
-
-Mettre à jour votre branche avec le code de la master :
+Fusionner une branche dans `main` :
 
 ```sh
-git checkout <votre-branch>
-git rebase master
+git switch main
+git merge ma-branche
 ```
 
-Annuler un rebase en cours :
+::: warning Attention
+Modifier l’historique (`rebase`, `reset`) est **dangereux sur une branche partagée**.
+:::
+
+Mettre à jour une branche avec `main` :
+
+```sh
+git switch ma-branche
+git rebase main
+```
+
+Annuler un rebase :
 
 ```sh
 git rebase --abort
 ```
 
-Continuer un rebase après avoir résolu des conflits :
+Continuer après résolution de conflits :
 
 ```sh
 git rebase --continue
 ```
 
-## Travailler avec un dépôt distant
+## Dépôts distants
 
-::: danger Accès à votre repository distant
-
-Même si Github/Gitlab vous permet de récupérer un repository distant, vous devez **toujours** le cloner la première fois. Cette étape de clone est nécessaire pour initialiser le dossier local, et donc pour pouvoir y travailler.
-
-Vous devez donc **toujours** utiliser la commande `git clone` pour récupérer un repository distant. La récupération d'un projet est à réaliser en ssh, et non en https (voir [Aide mémoire SSH](/cheatsheets/ssh-key/)).
-
-:::
-
-Lister tous les dépôts distants configurés :
+Lister les remotes :
 
 ```sh
 git remote -v
 ```
 
-Monter les informations d'un dépôt distant :
+Informations sur `origin` :
 
 ```sh
 git remote show origin
 ```
 
-Ajouter un nouveau dépôt distant, nommé &lt;remote&gt; :
+Ajouter un dépôt distant :
 
 ```sh
-git remote add <remote> <url>
+git remote add origin git@domain.com:user/repo.git
 ```
 
-Synchroniser la branche « origin » avec la master. Et indiquer origin comme le dépôt distant par défaut.
+Premier push et définition du upstream :
 
 ```sh
-git push -u origin master
+git push -u origin main
 ```
 
-Télécharger toutes les modifications d'un dépôt distant nommé &lt;remote&gt;, sans les fusionner :
+Récupérer sans fusionner :
 
 ```sh
-git fetch <remote>
+git fetch origin
 ```
 
-Télécharger les modifications et les fusionner directement dans le HEAD :
-
-```sh
-git remote pull <remote> <url>
-```
-
-Fusionner les modifications de la `master` distante sur la branche courante :
-
-```sh
-git pull origin master
-```
-
-Récupérer toutes les modifications du HEAD dans le dépôt local :
+Récupérer et fusionner :
 
 ```sh
 git pull
-# ou
-git pull origin
+# ou explicitement
+git pull origin main
 ```
 
-Publier les modifications locales sur un dépôt distant :
+Publier les commits locaux :
 
 ```sh
 git push
-ou
-git push remote <remote> <branch>
 ```
 
 Publier les tags :
@@ -293,55 +269,52 @@ Publier les tags :
 git push --tags
 ```
 
-## Annulation
+## Annulation & restauration
 
-Annuler le dernier `git add` :
-
-```sh
-git reset HEAD
-```
-
-Annuler les modifications locales d'un fichier spécifique :
+Retirer des fichiers de l’index :
 
 ```sh
-git checkout HEAD <file>
+git reset HEAD fichier.txt
 ```
 
-Annuler un commit (création d’un commit avec les modifications inverses) :
+Restaurer un fichier (commande moderne) :
+
+```sh
+git restore fichier.txt
+```
+
+Annuler un commit (sans réécrire l’historique) :
 
 ```sh
 git revert <commit>
 ```
 
-Placer le pointeur du HEAD sur un commit précédent.
-Conserve toutes les modifications effectuées depuis :
+Revenir à un commit en conservant les modifications :
 
 ```sh
 git reset <commit>
 ```
 
-⚠️ Annuler toutes les modifications dans le répertoire de travail :
+⚠️ Supprimer TOUTES les modifications locales :
 
 ```sh
 git reset --hard HEAD
 ```
 
-⚠️ Placer le pointeur du HEAD sur un commit précédent.
-Annule toutes les modifications effectuées depuis :
+⚠️ Revenir à un commit en supprimant tout :
 
 ```sh
 git reset --hard <commit>
 ```
 
-## Les clients graphiques
+## Clients graphiques
 
-Git ne s'utilise pas forcément en ligne de commande. Il existe de nombreux clients graphiques qui permettent de visualiser l'historique des commits, de gérer les branches, de faire des merges, etc.
+Git peut être utilisé via des interfaces graphiques :
 
-- [GitKraken](https://www.gitkraken.com/)
-- [VsCode](https://code.visualstudio.com/docs/sourcecontrol/overview)
-- [Tower](https://www.git-tower.com/)
-- [Sourcetree](https://www.sourcetreeapp.com/)
-- [Webstorm](https://www.jetbrains.com/help/webstorm/using-git-integration.html)
-- [PHPStorm](https://www.jetbrains.com/help/phpstorm/using-git-integration.html)
+* GitKraken
+* Visual Studio Code
+* Tower
+* Sourcetree
+* WebStorm / PhpStorm
 
-L'idée derrière ces outils c'est que Git ne doit pas être un frein à la productivité. Vous devez donc trouver le bon équilibre entre l'utilisation de la ligne de commande et l'utilisation d'un client graphique (si vous n'êtes pas à l'aise avec la ligne de commande).
+L’objectif n’est pas d’éviter Git, mais de **choisir l’outil qui vous rend le plus efficace**, sans perdre la compréhension des concepts fondamentaux.
