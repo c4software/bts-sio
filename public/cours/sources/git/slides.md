@@ -1,56 +1,56 @@
 # Git
 
-## Introduction à GIT / Gestionnaire de version
+## Introduction à Git / Gestionnaire de versions
 
-Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
-
----
-
-## Pour vous qu'est-ce qu'un gestionnaire de version ?
+Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](https://twitter.com/c4software)
 
 ---
 
-## Quand utiliser un gestionnaire de version ?
+## Pour vous, qu’est-ce qu’un gestionnaire de versions ?
+
+---
+
+## Quand utiliser un gestionnaire de versions ?
 
 - À votre avis ?
 
 ---
 
-## Dès que l'on code !
+## Dès que l’on code !
 
 ---
 
 ## Définition
 
-Un logiciel de gestion de versions ou VCS (**Version Control System**) est un logiciel qui permet de stocker **un ensemble de fichiers** en conservant la **chronologie** de toutes les **modifications** qui ont été effectuées dessus.
+Un logiciel de gestion de versions ou **VCS** (*Version Control System*) est un logiciel qui permet de stocker **un ensemble de fichiers** en conservant la **chronologie** de toutes les **modifications** effectuées.
 
-Un logiciel de gestion de versions agit sur une **arborescence** de fichiers afin de conserver toutes les versions des **fichiers**.
+Un gestionnaire de versions agit sur une **arborescence de fichiers** afin de conserver l’historique complet des **versions**.
 
 ---
 
 ## Git en quelques mots
 
-GIT est développé par Linus Torvalds (créateur du noyau Linux) depuis 2005.
+Git est développé par Linus Torvalds (créateur du noyau Linux) depuis 2005.
 
-C’est un **SCM** (Source Code Management), un gestionnaire de versions de fichiers comme CVS ou SVN à la différence prêt qu’il est décentralisé.
+C’est un **SCM** (*Source Code Management*), un gestionnaire de versions comparable à CVS ou SVN, à la différence près qu’il est **décentralisé**.
 
-Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est prioritaire sur les autres).
+Les dépôts Git d’un projet sont donc **distribués** : aucun dépôt n’est intrinsèquement prioritaire sur les autres.
 
 ---
 
-## Un peu d'histoire…
+## Un peu d’histoire…
 
 ### Noyau Linux
 
-- 150Mo de source
+- ~150 Mo de sources
 - Des milliers de développeurs
-- Stable
+- Un niveau de stabilité très élevé
 
 ---
 
 ## Maintenu pendant des années par des patchs…
 
-## … par emails
+## … envoyés par e-mail
 
 ![Via EMAIL](./img/via_email.gif)
 
@@ -60,23 +60,23 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-- Linux Torvald utilise BitKeeper
+- Linus Torvalds utilise BitKeeper
 - BitKeeper devient payant
-- Il programme/code donc le sien
+- Il décide donc de développer son propre outil
 
 ---
 
-## GIT
+## Git
 
-### (2005, récent donc)
+### (2005 — récent à l’époque)
 
 ---
 
-## Historique (avant GIT)
+## Historique (avant Git)
 
-- FTP (à votre avis?)
-- Index1, Index2, … (À votre avis?)
-- Email (à votre avis?)
+- FTP
+- Fichiers `index1`, `index2`, …
+- E-mail
 - CVS
 - SVN
 - Git
@@ -85,15 +85,15 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ## Les points clés de Git
 
-- Distribué.
-- Rapide (différences entre les versions).
-- Très très fiable (Hash SHA).
-- Ligne de commande très évoluée.
-- Est capable de gérer des projets de toutes tailles.
+- Distribué
+- Très rapide (comparaison par différences)
+- Très fiable (hash cryptographique SHA-1 / SHA-256)
+- Ligne de commande puissante et expressive
+- Capable de gérer des projets de toute taille
 
 ---
 
-![principe](./img/git_principe.jpeg)
+![Principe](./img/git_principe.jpeg)
 
 ---
 
@@ -103,28 +103,28 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-## Pourquoi
+## Pourquoi ?
 
-### Le principe des snapshots / et des diffs
+### Le principe des snapshots et des diffs
 
 ![Snapshots](./img/git_snapshot.png)
 
 ---
 
-## Connaissez-vous d'autres systèmes utilisant le même principe ?
+## Connaissez-vous d’autres systèmes utilisant ce principe ?
 
-- Quels sont les autres avantages de fonctionner avec des « diffs »?
+- Quels sont les avantages du fonctionnement par « diffs » ?
 
 ---
 
 ## Les points clés
 
 - Traçabilité
-- La gestion des branches
-- La fusion de code efficace (Merge)
+- Gestion des branches
+- Fusion de code efficace (*merge*)
 - Rapidité
-- La ligne de commande
-- Réécriture de l'histoire impossible
+- Ligne de commande
+- Historique non modifiable sans action explicite
 
 ---
 
@@ -134,17 +134,17 @@ Les dépôts GIT d’un projet sont donc «distribués» (aucun dépôt n’est 
 
 ---
 
-### Repository
+### Repository (dépôt)
 
-Vos sources + un dossier « caché » le « .git ».
+Vos sources + un dossier caché nommé `.git`.
 
-Le .git, est le dossier qui contient **l'historique de votre projet.** (et plus encore)
+Le dossier `.git` contient **l’historique complet du projet** (et bien plus).
 
 ---
 
 ### Diff (ou patch)
 
-Différences entre 2 versions d'un fichier.
+Différence entre deux versions d’un fichier.
 
 ---
 
@@ -152,49 +152,55 @@ Différences entre 2 versions d'un fichier.
 
 Action d'enregistrer les modifications d'un ou des fichiers. Création d'une version.
 
+---
+
 ### Commit
 
-Le résultat d'une action de commit, représenté par un hash SHA-1/SHA-256.
+Action d’enregistrer un ensemble de modifications.
+
+Un commit est identifié par un hash cryptographique unique (SHA-1 ou SHA-256).
 
 ---
 
 ### Branche
 
-Une lignée de développement. Par défaut tout le développement se fait dans la branche nommée « main ».
+Une lignée de développement indépendante.
+
+Par défaut, le développement se fait sur la branche `main`.
 
 ---
 
-### tag
+### Tag
 
-Un identifiant symbolique pour un commit.
+Identifiant symbolique associé à un commit.
 
-« C'est une étiquette ou un raccourci vers une version »
-
----
-
-![principe](./img/git_principe2.jpeg)
+> Une étiquette pointant vers une version précise
 
 ---
 
-![principe](./img/git-loop.png)
+![Principe](./img/git_principe2.jpeg)
+
+---
+
+![Principe](./img/git-loop.png)
 
 ---
 
 ## Les branches
 
-![branches](./img/git_branch.jpeg)
+![Branches](./img/git_branch.jpeg)
 
 ---
 
-## Le Merge
+## Le merge
 
-![branches](./img/git_merge.jpeg)
+![Merge](./img/git_merge.jpeg)
 
 ---
 
 ## Quelques chiffres
 
-Nombre de commits par semaine chez Facebook ?
+Nombre de commits par semaine chez Facebook :
 
 - ~10 000
 
@@ -202,9 +208,9 @@ Nombre de commits par semaine chez Facebook ?
 
 ## Exemple
 
-### Vous allez voir c'est simple…
+### Vous allez voir, c’est simple…
 
-(Enfin presque…, mais c'est puissant !)
+(Enfin presque… mais extrêmement puissant)
 
 ![I've got power](./img/power.gif)
 
@@ -213,31 +219,28 @@ Nombre de commits par semaine chez Facebook ?
 ## Qui suis-je ?
 
 ```sh
-$ git config --global user.name "Valentin Brosseau"
-```
-
-```sh
-$ git config --global user.email "c4software@gmail.com"
-```
+git config --global user.name "Valentin Brosseau"
+git config --global user.email "c4software@gmail.com"
+````
 
 ---
 
 ## Initialisation
 
 ```sh
-$ cd mon_projet
-$ git init
+cd mon_projet
+git init
 ```
 
-Création d'un nouveau « repository » **vide**.
+Création d’un nouveau dépôt Git **vide**.
 
 ---
 
 ## Premier commit
 
 ```sh
-$ vim mon_fichier.js
-$ git add mon_fichier.js
+vim mon_fichier.js
+git add mon_fichier.js
 ```
 
 ---
@@ -245,10 +248,10 @@ $ git add mon_fichier.js
 ## Premier commit
 
 ```sh
-$ git commit -m "Mon premier commit"
+git commit -m "Mon premier commit"
 
 [main 745a6ef] Mon premier commit
- 1 files changed, 1 insertions(+), 0 deletions(-)
+ 1 file changed, 1 insertion(+)
  create mode 100644 mon_fichier.js
 ```
 
@@ -262,40 +265,37 @@ $ git commit -m "Mon premier commit"
 
 ---
 
-## Que mettre dans le commentaire de commit ?
+## Que mettre dans le message de commit ?
 
-- Le numéro de ticket
-- Le nom de la fonctionnalité
+* Numéro de ticket
+* Nom ou objectif de la fonctionnalité
 
 ---
 
-## Des conventions existent :
+## Des conventions existent
 
-- [Conventional Commits](https://www.conventionalcommits.org/fr/v1.0.0/)
-- [Gitmoji](https://gitmoji.dev/)
+* [Conventional Commits](https://www.conventionalcommits.org/fr/v1.0.0/)
+* [Gitmoji](https://gitmoji.dev/)
 
 ---
 
 ## Exemples de commits
 
 ```sh
-$ git commit -m "feat: Ajout de la fonctionnalité de connexion"
-$ git commit -m "fix: Correction du bug de connexion"
-$ git commit -m "docs: Ajout de la documentation"
+git commit -m "feat: ajout de la fonctionnalité de connexion"
+git commit -m "fix: correction du bug de connexion"
+git commit -m "docs: ajout de la documentation"
 ```
 
 ---
 
 ```sh
-$ git add fichier1.js fichier2.js
+git add fichier1.js fichier2.js
+git commit -m "Deuxième commit"
 ```
 
 ```sh
-$ git commit -m "Mon 2nd commit"
-```
-
-```sh
-[main aa2507d] Mon 2nd commit
+[main aa2507d] Deuxième commit
  2 files changed, 2 insertions(+), 0 deletions(-)
  create mode 100644 fichier1.js
  create mode 100644 fichier2.js
@@ -306,15 +306,12 @@ $ git commit -m "Mon 2nd commit"
 ---
 
 ```sh
-$ vim fichier.js
+vim fichier.js
+git commit -am "Modification du fichier"
 ```
 
 ```sh
-$ git commit -am "Changement dans le fichier"
-```
-
-```sh
-[main 841036d] Changement dans le fichier
+[main 841036d] Modification du fichier
  1 files changed, 28 insertions(+), 0 deletions(-)
 ```
 
@@ -324,104 +321,82 @@ $ git commit -am "Changement dans le fichier"
 
 ## À tout moment
 
-### Vérifier le statut de mon dépôt Git
+### Vérifier le statut du dépôt
 
 ```sh
-$ git status
-
-On branch main
-Your branch is up-to-date with 'origin/main'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-  modified:   index.html
-  modified:   ../gitlab/index.html
-
-no changes added to commit (use "git add" and/or "git commit -a")
+git status
 ```
 
 ---
 
-## Via un Diff
-
-Afficher les changements dans votre dépôt.
+## Visualiser les différences
 
 ```sh
-$ git config --global diff.tool vimdiff
-$ git difftool
+git difftool
 ```
 
-![diff](./img/gitdiff.png)
+![Diff](./img/gitdiff.png)
 
 ---
 
 ## Figer une version
 
 ```sh
-git tag V1.0
+git tag v1.0.0
 ```
 
 ---
 
 ## Est-ce que tout doit être commité ?
 
-- Oui
-- Non ?
-- La réponse D ?
+* Oui
+* Non
+* La réponse D ?
 
 ---
 
-## Non bien évidemment
+## Non, bien évidemment
 
-Filtrer les données sensibles (ou inutiles)
+Il faut exclure :
 
-- Les mots de passe
-- Les fichiers générés
-- …
+* Données sensibles (mots de passe, clés API)
+* Fichiers générés
+* Dépendances locales
 
 ---
 
-## Le .gitignore
+## Le `.gitignore`
 
-```sh
-$ cat .gitignore
-
+```txt
 lib.so
 conf/
 *.yml
-.pyc
+*.pyc
 ```
 
-[Générer un gitignore](http://gitignore.io)
+[Générer un `.gitignore`](https://www.toptal.com/developers/gitignore)
 
 ---
 
 ## Les branches
 
-- Pourquoi ?
-- Quand ?
+* Pourquoi ?
+* Quand ?
 
 ---
 
-## Les branches
+## Création d’une branche
 
 ```sh
-$ git branch evolution1
+git branch evolution1
 ```
 
 ![branche](./img/git_branch.png)
 
 ---
 
-![Et ?](./img/and.gif)
-
----
-
-```bash
-$ git checkout evolution1
-Switched to branch 'evolution1'
+```sh
+git switch evolution1
 ```
 
 ![Et ?](./img/git_branch2.png)
@@ -429,11 +404,8 @@ Switched to branch 'evolution1'
 ---
 
 ```sh
-$ vim fichier2.js
-```
-
-```sh
-$ git commit -am "Ajout de l’évolution"
+vim fichier2.js
+git commit -am "Ajout de l’évolution"
 ```
 
 ```sh
@@ -445,160 +417,123 @@ $ git commit -am "Ajout de l’évolution"
 
 ---
 
-## À votre avis que faut-il faire maintenant ?
-
----
-
-### « Merger » les branches
+## Fusion des branches
 
 ```sh
-$ git checkout main
-```
-
-```sh
-$ git merge evolution1
+git switch main
+git merge evolution1
 ```
 
 ---
 
 ## Que vient-il de se passer ?
 
-- Qui fusionne le code ?
-- Fusion du code ?
-- Conflit ?
-- Et la branche ? On la coupe ?
-
----
-
-![Meh](img/git_branch3.gif)
+* Qui réalise la fusion ?
+* Y a-t-il des conflits ?
+* Que faire de la branche ?
 
 ---
 
 ## Suppression de la branche
 
 ```sh
-$ git branch -d evolution1
+git branch -d evolution1
 ```
 
 ---
 
-## Allez plus loin
+## Aller plus loin
 
-- Voir l'historique.
-- « Tagger » une version.
-- « Signer » un commit.
-
----
-
-## J'ai un BUG en prod !
+* Consulter l’historique (`git log`)
+* Taguer une version
+* Signer des commits
 
 ---
 
-## Aucun souci !
+## J’ai un bug en production !
 
-- Les branches
-- Git Stash
+---
+
+## Aucun souci
+
+* Les branches
+* `git stash`
 
 ---
 
 ## Les différentes façons d’utiliser Git
 
-- Individuel/localement
-- Individuel avec un dépôt de référence
-- Collectif : Avec dépôt de référence
-- Collectif : Avec dépôt de référence et Manager(s) d’intégration(s)
-- Collectif : Avec dépôt de référence et Propriétaire(s) du dépôt (GitLab, Github, …)
+* Individuellement (local)
+* Individuellement avec dépôt distant
+* En équipe avec dépôt de référence
+* Avec intégrateurs
+* Avec plateformes (GitLab, GitHub, …)
 
 ---
 
 ## En résumé
 
----
-
-![principe](./img/git_principe3.jpeg)
+![Principe](./img/git_principe3.jpeg)
 
 ---
 
 ## La zone de staging
 
-Afficher le statut
-
 ```sh
-$ git status
-```
-
-Ajout en staging
-
-```sh
-$ git add monFichier
-```
-
-Suppression de la zone de staging
-
-```sh
-$ git rm --cached
-# or
-$ git checkout --
+git status
+git add monFichier
+git restore --staged monFichier
 ```
 
 ---
 
-## En résumé : Le statut des fichiers
-
-### La routine Git
+## En résumé : le cycle de vie
 
 ![La routine Git](./img/lifecycle.png)
 
 ---
 
-## La gestion du code inutile
+## Gestion du code inutile
 
-### Comment procédez-vous ?
-
-- Je le commente ?
-- J'ajoute un « return false »
-- Je le supprime il est dans Git…
+* Le commenter ?
+* Le neutraliser ?
+* Le supprimer ?
 
 ---
 
-## Je le supprime il est dans Git
+## Je le supprime : il est dans Git
 
 ---
 
-## Ok la ligne de commande c'est bien, mais…
+## Interfaces graphiques
 
-- [VSCode](https://code.visualstudio.com/docs/sourcecontrol/overview)
-- [SourceTree](https://www.sourcetreeapp.com/)
-- [GitKraken](https://www.gitkraken.com/)
-- [Fork](https://git-fork.com/)
-
----
-
-## C'est bien, mais moi je ne suis pas seul
+* [VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview)
+* [SourceTree](https://www.sourcetreeapp.com/)
+* [GitKraken](https://www.gitkraken.com/)
+* [Fork](https://git-fork.com/)
 
 ---
 
-## Et donc à plusieurs ?
+## Travail collaboratif
 
 ---
 
-## Pas de protocol « git »
+## Protocoles supportés
 
-- file://
-- http(s)://
-- ssh://
-- rsync://
-- …
-- Bittorent
-
----
-
-### Git à plusieurs
-
-- GitLab
-- GitHub
-- Gogs
+* `file://`
+* `https://`
+* `ssh://`
+* `rsync://`
+* BitTorrent
 
 ---
 
-![Logo Gitlab](./img/gitlab.png)
+## Git à plusieurs
+
+* GitLab
+* GitHub
+* Gogs
+
+---
+
+![Logo GitLab](./img/gitlab.png)
