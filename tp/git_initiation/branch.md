@@ -7,6 +7,11 @@ Comprendre et manipuler les branches Git en local pour travailler en parallèle 
 [[toc]]
 :::
 
+Ici, nous avons un TP très guidé, l'idée étant de vous faire manipuler les branches Git pour bien comprendre leur fonctionnement. Comme toujours, 
+n'hésitez pas à consulter l'aide mémoire Git disponible ici :
+
+- [Aide mémoire Git](../../cheatsheets/git/)
+
 ## Création du dépôt de travail
 
 Créez un nouveau répertoire et initialisez un dépôt Git :
