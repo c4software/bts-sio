@@ -1,9 +1,13 @@
-## TP – Découverte des branches Git (en local)
+# TP – Découverte des branches Git (en local)
 
 **Objectif**  
 Comprendre et manipuler les branches Git en local pour travailler en parallèle sur différentes évolutions sans perturber la version principale.
 
-### 1. Création du dépôt de travail
+::: details Table des matières
+[[toc]]
+:::
+
+## Création du dépôt de travail
 
 Créez un nouveau répertoire et initialisez un dépôt Git :
 
@@ -33,7 +37,7 @@ Ici nous utilisons la commande echo pour créer rapidement des fichiers texte de
 
 :::
 
-### 2. Création d’une première branche de fonctionnalité
+## Création d’une première branche de fonctionnalité
 
 Vous allez maintenant travailler sur une nouvelle fonctionnalité sans toucher la branche principale.
 
@@ -83,7 +87,7 @@ git add contenu.txt
 git commit -m "Ajout du footer"
 ```
 
-### 3. Retour à la branche principale et constatation
+## Retour à la branche principale et constatation
 
 Revenez sur la branche principale :
 
@@ -99,7 +103,7 @@ cat contenu.txt
 
 **Que remarquez-vous ?** Les modifications faites sur la branche `feature/accueil` ne sont pas présentes ici.
 
-### 4. Visualisation de l’historique
+## Visualisation de l’historique
 
 Affichez l’historique sous forme graphique :
 
@@ -109,7 +113,7 @@ git log --oneline --graph --all
 
 Vous devriez voir clairement la divergence entre les deux branches.
 
-### 5. Intégration des modifications (fusion simple)
+## Intégration des modifications (fusion simple)
 
 Une fois la fonctionnalité validée, intégrez-la dans la branche principale :
 
@@ -132,7 +136,7 @@ git log --oneline --graph --all
 
 Vous observez un « fast-forward » : la branche principale a simplement avancé jusqu’au dernier commit de la branche feature.
 
-### 6. Nettoyage
+## Nettoyage
 
 Maintenant que la fonctionnalité est intégrée, supprimez la branche devenue inutile :
 
@@ -152,7 +156,7 @@ Ne supprimez une branche que si vous êtes sûr que son contenu a été intégr�
 
 :::
 
-### 7. Simulation d’un conflit (situation classique)
+## Simulation d’un conflit (situation classique)
 
 Vous allez maintenant provoquer intentionnellement un conflit pour apprendre à le résoudre.
 
