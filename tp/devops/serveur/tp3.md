@@ -91,7 +91,7 @@ Avant de créer votre machine, je vous invite à réfléchir sur ces choix. Une 
 - Espace disque : 10 Go.
 - Mémoire vive : 1 Go.
 - Processeur : 1 vCPU.
-- OS : Debian 12.
+- OS : Debian 13.
 - Logiciels : MySQL / MariaDB, SSH, Apache, PHP.
 - Accès SSH : Sans mot de passe, uniquement avec une clé SSH.
 - Votre machine **ne doit pas avoir de d’interface graphique** (inutile pour un serveur).

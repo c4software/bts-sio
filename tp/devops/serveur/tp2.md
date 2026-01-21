@@ -30,7 +30,7 @@ Voilà l'architecture que nous allons mettre en place :
 
 ![Réalisation](./res/realisation.png)
 
-- Un serveur Debian 12.
+- Un serveur Debian 13.
 - Un serveur Web Apache.
 - PHP 8.X (le `X` étant la dernière version disponible).
 
@@ -47,7 +47,7 @@ Pour réaliser ce TP, vous aurez besoin de :
 Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les spécifications suivantes :
 
 - Nom de la VM : `<votre nom>-web`. (et dans le bon dossier)
-- OS : Debian 12.
+- OS : Debian 13.
 - Mémoire : 2Go (ou la configuration du modèle).
 - CPU : 1.
 - Disque : 20Go (ou la configuration du modèle).
@@ -440,7 +440,7 @@ La balise `<Directory>` permet de configurer les options d'Apache pour le dossie
 - `Options +FollowSymLinks` : permet de suivre les liens symboliques.
 - `AllowOverride All` : permet d'utiliser les fichiers `.htaccess`.
 - `Require all granted` : permet d'autoriser l'accès à tous les utilisateurs.
-:::
+  :::
 
 Ensuite, nous allons créer le fichier de configuration pour le site B :
 

@@ -12,7 +12,7 @@ Nous l'avons vu en cours. La force de Docker est la portabilité des conteneurs.
 
 ## Prérequis
 
-Pour ce TP, vous allez avoir besoin d'une VM (avec ou sans docker). Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 12](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
+Pour ce TP, vous allez avoir besoin d'une VM (avec ou sans docker). Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 13](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
 
 ::: tip Votre serveur doit être vierge
 
@@ -22,7 +22,7 @@ Pour ce TP, votre serveur doit être vierge, c'est-à-dire qu'il ne doit pas avo
 
 ## Les solutions existantes
 
-Dans le monde du DevOps, il existe de nombreuses solutions pour automatiser le déploiement d'applications. Évidemment, il existe de nombreuses solutions propriétaires (Vercel, Netlify, Heroku, etc.). Ces solutions sont très efficaces, mais elles peuvent avoir un coût non négligeable, et surtout elles sont hébergées chez un tiers. Parfois, il est nécessaire de déployer une solution sur son propre serveur, c'est ici que les solutions open-source prennent tout leur sens. 
+Dans le monde du DevOps, il existe de nombreuses solutions pour automatiser le déploiement d'applications. Évidemment, il existe de nombreuses solutions propriétaires (Vercel, Netlify, Heroku, etc.). Ces solutions sont très efficaces, mais elles peuvent avoir un coût non négligeable, et surtout elles sont hébergées chez un tiers. Parfois, il est nécessaire de déployer une solution sur son propre serveur, c'est ici que les solutions open-source prennent tout leur sens.
 
 Dans le monde de l'open-source, idem, il existe beaucoup de possibilités, les plus connues étant :
 
@@ -34,7 +34,7 @@ En fonction de vos besoins, vous pourrez choisir l'une ou l'autre de ces solutio
 
 ::: tip Besoin de comparer ?
 
-Dokploy propose sur son site une [comparaison](https://docs.dokploy.com/docs/core/comparison) avec les autres solutions du marché. 
+Dokploy propose sur son site une [comparaison](https://docs.dokploy.com/docs/core/comparison) avec les autres solutions du marché.
 
 Avant de vous lancer, je vous invite à regarder cette page pour partir avec une bonne idée des avantages et inconvénients de chaque solution.
 
@@ -190,7 +190,6 @@ Dans cet exemple le domaine `bts-sio-127-0-0-1.traefik.me` pointe vers l'IP `127
 
 :::
 
-
 Et voilà, vous avez déployé votre premier service via Dokploy. Simple, non ?
 
 ### Conclusion de ce premier déploiement
@@ -257,9 +256,9 @@ Docker Deployed: ✅
 
 ## Déployer un site Laravel
 
-Pour ce second exemple, nous allons déployer un site Laravel. 
+Pour ce second exemple, nous allons déployer un site Laravel.
 
-Deux solutions s'offrent à nous : 
+Deux solutions s'offrent à nous :
 
 - Créer un `Dockerfile` pour notre application. Je vous laisse suivre le TP [Déployer un site Laravel avec Docker](/tp/ops/deployer-laravel-docker.md) qui vous explique les différentes étapes (c'est très simple).
 - Laisser Nixpacks s'occuper de la construction de notre application. (ça fonctionne très bien et normalement sans problème).
@@ -294,7 +293,7 @@ Ce nom sera le `nom de l'hôte` de votre base de données (à définir par exemp
 
 ::: tip Vous souhaitez la rendre accessible depuis l'extérieur ?
 
-Si vous souhaitez vous connecter depuis le réseau local (ou depuis un autre serveur), vous pouvez également activer un « port » pour rendre votre base de données accessible depuis l'exterieur. 
+Si vous souhaitez vous connecter depuis le réseau local (ou depuis un autre serveur), vous pouvez également activer un « port » pour rendre votre base de données accessible depuis l'exterieur.
 
 ![Base de données](./img/external_port.png)
 
@@ -317,7 +316,7 @@ services:
       PMA_ARBITRARY: 0
 ```
 
-::: tip Une alternative ? 
+::: tip Une alternative ?
 
 Vous pouvez également déployer PHPMyAdmin en mode `Application` en utilisant l'image `phpmyadmin/phpmyadmin:5.2.1` et en configurant les variables d'environnement `PMA_HOST` et `PMA_ARBITRARY` dans l'onglet « Environment ».
 

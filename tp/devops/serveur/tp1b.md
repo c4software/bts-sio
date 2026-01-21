@@ -720,7 +720,7 @@ systemctl status apache2
 Si le service est bien lancé, vous devriez voir la ligne suivante :
 
 ```bash
-Active: active (running) 
+Active: active (running)
 ```
 
 :::
@@ -765,12 +765,12 @@ Dans le fichier, nous allons y mettre le code suivant :
 
 ```html
 <html>
-    <head>
-        <title>Bienvenue sur le serveur de VOTRE NOM</title>
-    </head>
-    <body>
-        <h1>Bravo ! Votre site fonctionne</h1>
-    </body>
+  <head>
+    <title>Bienvenue sur le serveur de VOTRE NOM</title>
+  </head>
+  <body>
+    <h1>Bravo ! Votre site fonctionne</h1>
+  </body>
 </html>
 ```
 
@@ -789,6 +789,6 @@ _À votre avis :_
 
 ## Conclusion
 
-Dans ce TP nous avons vu comment installer un serveur Debian 12. Nous avons également vu comment configurer le réseau de notre machine virtuelle, comment installer les VMware tools et comment configurer l'accès SSH à notre serveur.
+Dans ce TP nous avons vu comment installer un serveur Debian 13. Nous avons également vu comment configurer le réseau de notre machine virtuelle, comment installer les VMware tools et comment configurer l'accès SSH à notre serveur.
 
 Cette machine nous servira de base pour les prochains TP de [prise en main de la ligne de commande](./tp1c.md)

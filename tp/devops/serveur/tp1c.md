@@ -47,7 +47,7 @@ Pour réaliser ce TP, vous aurez besoin de :
 Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les spécifications suivantes :
 
 - Nom de la VM : `<votre nom>-ligne-de-commande`.
-- OS : Debian 12
+- OS : Debian 13
 - Mémoire : 1Go (ou 4Go si vous utilisez le modèle).
 - CPU : 1.
 - Disque : 5Go (ou 20Go si vous utilisez le modèle).
@@ -202,7 +202,7 @@ Pour rappel, pour installer un logiciel sur un système Debian, vous pouvez util
 
 ### Télécharger le fichier `valeurs.md`
 
-À l'aide de curl, téléchargez le fichier `valeurs.md` depuis le lien suivant : 
+À l'aide de curl, téléchargez le fichier `valeurs.md` depuis le lien suivant :
 
 `https://gist.githubusercontent.com/c4software/65d2003034854fc705f4806ef07bace6/raw/d6e4a967cf058f53a176007898bb2da3b4db4d06/gistfile1.txt`
 
@@ -517,7 +517,7 @@ do
     # Vérifier l'OS
     os_result=$(ssh_execute $user $target_ip "lsb_release -ds")
 
-    # Vérifier la mémoire 
+    # Vérifier la mémoire
     memory_result=$(ssh_execute $user $target_ip "awk '/MemTotal/{print \$2}' /proc/meminfo")
 
     # Vérifier le CPU
@@ -536,12 +536,12 @@ do
 
     # Présence du hello.sh
     hello_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/hello.sh ] && echo 'true' || echo 'false'")
-    
+
     # Vérifier les logiciels installés
     htop_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q htop && echo 'true' || echo 'false'")
     cmatrix_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q cmatrix && echo 'true' || echo 'false'")
     curl_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q curl && echo 'true' || echo 'false'")
-    
+
     # Vérifier le fichier valeurs.md
     valeurs_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/valeurs.md ] && echo 'true' || echo 'false'")
 

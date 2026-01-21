@@ -27,7 +27,7 @@ Ici il s'agit d'une introduction à Docker, nous allons donc rester simples. Mai
 
 La première étape est de préparer votre serveur. Pour cela, vous devez :
 
-- Créer une machine virtuelle Debian 12 (64 bits) avec 2Go de RAM et 20Go de disque. (Vous pouvez utiliser le modèle [Debian 12](/tp/devops/serveur/tp1alt.md) pour créer votre machine virtuelle).
+- Créer une machine virtuelle Debian 13 (64 bits) avec 2Go de RAM et 20Go de disque. (Vous pouvez utiliser le modèle [Debian 13](/tp/devops/serveur/tp1alt.md) pour créer votre machine virtuelle).
 - Ajouter les dépôts de Docker sur votre machine virtuelle.
 
 ```bash
@@ -311,28 +311,28 @@ Je vous propose de créer un serveur Adguard. Adguard est un bloqueur de publici
 
 ```yaml
 services:
-   adguardhome:
-     image: adguard/adguardhome
-     container_name: adguardhome
-     ports:
-       - "9191:3000" # Interface de gestion de Adguard
-       - "53:53/tcp"
-       - "53:53/udp"
-       - "784:784/udp"
-       - "853:853/tcp"
-     volumes:
-       - ./work:/opt/adguardhome/work
-       - ./conf:/opt/adguardhome/conf
-     cap_add:
-       - NET_ADMIN
-     security_opt:
-       - no-new-privileges=true
-     restart: unless-stopped
-     logging:
-       driver: "json-file"
-       options:
-         max-size: "5m"
-         max-file: "1"
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    ports:
+      - "9191:3000" # Interface de gestion de Adguard
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "784:784/udp"
+      - "853:853/tcp"
+    volumes:
+      - ./work:/opt/adguardhome/work
+      - ./conf:/opt/adguardhome/conf
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - no-new-privileges=true
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "1"
 ```
 
 Démarrez le conteneur avec la commande suivante :

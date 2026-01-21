@@ -14,11 +14,11 @@ Dans cet aide-mémoire vous trouverez l'ensemble des éléments de base pour ins
 
 Docker est un outil qui permet de créer des conteneurs. Il ne faut pas le confondre avec une machine virtuelle. Un conteneur est un ensemble de processus qui partagent le même noyau. Il est donc plus léger qu'une machine virtuelle.
 
-Dans cette procédure, nous allons installer Docker sur une machine Debian 12.
+Dans cette procédure, nous allons installer Docker sur une machine Debian 13.
 
 ## Installation
 
-Je pars du principe que vous avez déjà une machine Debian 12. Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 12](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
+Je pars du principe que vous avez déjà une machine Debian 13. Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 13](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
 
 ## Commande en root
 
@@ -152,7 +152,6 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli
 ```
 
 Nous ajoutons les extensions `pdo`, `pdo_mysql` et `mysqli` qui sont nécessaires pour faire fonctionner un site PHP avec une base de données MySQL (ou MariaDB). Ce dockerfile est basé sur l'image officielle de PHP avec Apache (`php:apache`).
-
 
 Puis, créez un fichier `docker-compose.yml` avec le contenu suivant :
 
