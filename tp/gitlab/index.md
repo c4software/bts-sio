@@ -16,7 +16,7 @@ Introduction au travail à plusieurs avec GIT.
 
 ## Situation
 
-L’entreprise ou vous effectuez votre stage utilise GitLab, vous allez donc devoir utiliser en plus de GIT un outil permettant de gérer votre « workflow de travail ».
+L'entreprise où vous effectuez votre stage utilise GitLab, vous allez donc devoir utiliser en plus de GIT un outil permettant de gérer votre « workflow de travail ».
 
 ### Questions
 
@@ -47,7 +47,7 @@ Afin de s'assurer de la qualité du code, l'entreprise souhaite que vous utilisi
 - Les branches doivent être nommées de la façon suivante : `feature/ma-branche`. (ex: `feature/ajout-article-git`)
 - Vous devez faire des commits régulièrement. La fréquence est à définir en fonction de votre vision du projet.
 - Vous devez utiliser des messages de commit explicites. (ex: `Ajout d’un nouvel article sur Git`)
-- Vous devez faire des merges requests pour fusionner vos branches avec la branche `master`.
+- Vous devez faire des merges requests pour fusionner vos branches avec la branche `main`.
 - Vous devez cloner votre projet sur votre ordinateur. En utilisant obligatoirement une clé SSH.
 
 ::: tip ✨ Ce TP est évalué ✨
@@ -73,7 +73,7 @@ Je vous propose de versionner le blog que vous avez réalisé dans le cadre de l
 - Créer un dossier blog sur votre ordinateur (ou de réutiliser le dossier que vous avez créé dans le cadre de la première AP)
 - Initialiser un projet git dans ce dossier. (`git init`)
 - Créer un premier commit avec le message « Initialisation du projet ».
-- Réaliser une modification en ajouter un nouvel article dans votre blog. (thématique `git`).
+- Réaliser une modification en ajoutant un nouvel article dans votre blog. (thématique `git`).
 - Créer un nouveau commit avec le message « Ajout d’un nouvel article sur Git ».
 
 ## Les logs
@@ -136,20 +136,20 @@ Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoir
 La clé que vous devez envoyer est dans votre dossier personnel (`P:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est `.pub` (**à ouvrir avec notepad++ ou bloc-note**).
 
 ::: tip Cette clé est importante
-Vous devez vraiment maîtriser cette étape. C'est une notion très importante dans le monde du développement. Si vous souhaitez en savoir plus, n'hésiter pas à me demander 👋.
+Vous devez vraiment maîtriser cette étape. C'est une notion très importante dans le monde du développement. Si vous souhaitez en savoir plus, n'hésitez pas à me demander 👋.
 :::
 
 ### Création de votre premier projet
 
-Maintenant que votre compte est créé (et que l’échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet gitlab aura pour vocation de contenir les sources de votre site Internet (projet, que vous aller me partager). Donc, nommer le bien !
+Maintenant que votre compte est créé (et que l'échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet gitlab aura pour vocation de contenir les sources de votre site Internet (projet, que vous allez me partager). Donc, nommez-le bien !
 
 - Je vous laisse explorer les menus de GitLab pour créer votre projet.
-- Attention, vous devez choisir le type de projet Blank project ».
+- Attention, vous devez choisir le type de projet « Blank project ».
 - Vous devez choisir la visibilité du projet. (Public ou Private).
 
 ### Question
 
-- Comment choisir la visibilité du projet ? (Visiblity Level)
+- Comment choisir la visibilité du projet ? (Visibility Level)
 
 ### Envoi sur GitLab
 
@@ -176,8 +176,8 @@ GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester l
 - Créer une branche relative à cette issue.
 - Vérifier que vous êtes bien sur la branche en question avant d’éditer le fichier index.html dans l’onglet `files`
 - Ajouter une image dans votre projet (via GitLab)
-- Ajouter dans la page index.html l’image en question (`<img src…`)
-- ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinent. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Je vous laisse tester 😉).
+- Ajouter dans la page index.html l'image en question (exemple : `<img src="mon-image.jpg">`)
+- ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinent. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l'issue sera automatiquement « fermée » une fois votre modification en place sur la branche principale. Je vous laisse tester 😉).
 
 - Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé, assignez-le à un autre étudiant ! Demandez-lui de le merger pour vous.
 - ⚠️ ⚠️ L’autre étudiant doit regarder le code, et si possible vous faire des commentaires, par exemple :
@@ -243,7 +243,7 @@ Pour vous aider, n'hésitez pas à regarder [l'aide mémoire git](/cheatsheets/g
 ### Cloner le projet sur votre machine
 
 ```sh
-$ 
+$ git clone git@gitlab.example.com:votre-username/votre-projet.git
 ```
 
 ## Créer une issue
@@ -259,28 +259,30 @@ Dans votre projet, créez une seconde issue. (Exemple : Ajouter une page à pro
 
 ### Mettre à jour le code local.
 
-Avant de commencer à travailler, il est important de mettre à jour votre code local. Pour cela, il faut faire un `pull` sur la branche `master`.
+Avant de commencer à travailler, il est important de mettre à jour votre code local. Pour cela, il faut faire un `pull` sur la branche principale.
 
 ```sh
-$ 
+$ git pull
 ```
 
 ### Créer une nouvelle branche
 
 ```sh
-$ 
+$ git switch -c feature/ma-nouvelle-fonctionnalite
 ```
 
-### Changer de branche
+::: tip Note
+La commande `git switch -c` permet de créer une nouvelle branche et de basculer dessus directement. L'option `-c` signifie "create". Si la branche existe déjà, utilisez simplement `git switch nom-de-la-branche` pour basculer dessus.
 
-```sh
-$ 
-```
+La commande `git switch` est la commande moderne pour gérer les branches (introduite dans Git 2.23). Elle remplace `git checkout` qui reste fonctionnelle mais moins claire dans son intention.
+:::
 
 ### Envoyer vos modifications sur le serveur GitLab
 
 ```sh
-$ 
+$ git add .
+$ git commit -m "Description de vos modifications"
+$ git push origin feature/ma-nouvelle-fonctionnalite
 ```
 
 ### Créer une merge request
@@ -303,7 +305,7 @@ Vous venez (normalement) d’avoir au moins un « merge request » d’assig
   - Dans l’issue, générale.
   - Directement dans la partie code de l’issue.
 - Laisser votre collègue effectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc.). DISCUTER ! (du code)
-- Si tout vous semble correcte « Merger » les modifications.
+- Si tout vous semble correct « Merger » les modifications.
 
 ### Questions
 
