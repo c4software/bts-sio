@@ -55,16 +55,16 @@ Remplacer le commentaire `<!-- Votre code ici -->` par
 <div id="app">{{ message }}</div>
 
 <script>
-    const { createApp } = Vue
+  const { createApp } = Vue;
 
-    createApp({
-        mounted() {
-            console.log('Ding ! 🍪 Votre code fonctionne !')
-        },
-        data() {
-            return {}
-        }
-    }).mount('#app')
+  createApp({
+    mounted() {
+      console.log("Ding ! 🍪 Votre code fonctionne !");
+    },
+    data() {
+      return {};
+    },
+  }).mount("#app");
 </script>
 ```
 
@@ -81,19 +81,19 @@ Votre code doit dès à présent fonctionner ! Vérifier dans la console de votr
 Nous allons ajouter un simple « button » dans notre page. Celui-ci affichera une `alert` lorsque l'utilisateur clique dessus. Modifier votre objet VueJS pour qu'il ressemble à :
 
 ```js
-  createApp({
-    mounted() {
-        console.log('Ding ! 🍪 Votre code fonctionne !')
+createApp({
+  mounted() {
+    console.log("Ding ! 🍪 Votre code fonctionne !");
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    action() {
+      alert("🎉 Bravo 🎉");
     },
-    data() {
-      return {}
-    },
-    methods: {
-        action() {
-            alert("🎉 Bravo 🎉");
-        },
-    },
-}).mount('#app')
+  },
+}).mount("#app");
 ```
 
 Vous venez de déclarer une nouvelle méthode, celle-ci se nomme `action`, celle-ci affiche « Bravo ». Il faut donc maintenant l'appeler…
@@ -112,7 +112,7 @@ En VueJS, c'est simple ! Il vous suffit d'ajouter _dans_ `<div id="app"></div>` 
 
 ## Modifier une variable depuis la vue
 
-Nous allons maintenant modifier une variable depuis la vue. Pour cela nous allons : 
+Nous allons maintenant modifier une variable depuis la vue. Pour cela nous allons :
 
 - Déclarer une variable dans les `data`.
 - L'afficher dans le template.
@@ -183,20 +183,20 @@ Une fois intégré à votre code :
 
 ```js
 createApp({
-    mounted() {
-        console.log('Ding ! 🍪 Votre code fonctionne !')
+  mounted() {
+    console.log("Ding ! 🍪 Votre code fonctionne !");
+  },
+  data() {
+    return {
+      liste: ["Item 1", "Item 2", "Item 3"],
+    };
+  },
+  methods: {
+    action() {
+      alert("🎉 Bravo 🎉");
     },
-    data() {
-        return {
-            liste: ["Item 1", "Item 2", "Item 3"]
-        }
-    },
-    methods: {
-        action() {
-            alert("🎉 Bravo 🎉");
-        },
-    },
-}).mount('#app')
+  },
+}).mount("#app");
 ```
 
 🚀 Valider avec les Vue Dev Tools que votre liste est bien présente.
@@ -308,6 +308,8 @@ Je vous laisse chercher comment l'implémenter dans votre code.
 ```html
 <li v-for="(item, index) in liste">{{item}}</li>
 ```
+
+:::
 
 ## Conclusion
 
