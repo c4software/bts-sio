@@ -1,5 +1,5 @@
 ---
-description: Dans ce TP nous allons découvrir l'utilisation de VueJS dans sans bundler. Nous allons donc utiliser directement le CDN de VueJS.
+description: Dans ce TP nous allons découvrir l'utilisation de VueJS sans bundler. Nous allons donc utiliser directement le CDN de VueJS.
 ---
 
 # Suite prise en main de VueJS 3
@@ -50,18 +50,18 @@ Pour déclarer notre script VueJS, il faut ajouter une balise script dans le bod
 
 ```html
 <script>
-    const { createApp } = Vue
+  const { createApp } = Vue;
 
-    createApp({
-        mounted() {
-            console.log('Application montée')
-        },
-        data() {
-            return {
-                items: []
-            }
-        }
-    }).mount('#app')
+  createApp({
+    mounted() {
+      console.log("Application montée");
+    },
+    data() {
+      return {
+        items: [],
+      };
+    },
+  }).mount("#app");
 </script>
 ```
 
@@ -69,19 +69,19 @@ Pour l'instant rien ne se passe, c'est normal. Nous allons maintenant ajouter un
 
 ## l'API
 
-Pour récupérer les données depuis l'API, nous allons utiliser la fonction `fetch` de JavaScript. Cette fonction permet de faire des requêtes HTTP. 
+Pour récupérer les données depuis l'API, nous allons utiliser la fonction `fetch` de JavaScript. Cette fonction permet de faire des requêtes HTTP.
 
 Rappel sur `fetch`, cette fonction prend en paramètre l'URL de l'API et retourne une promesse. Cette promesse contient la réponse de l'API. Pour récupérer les données, il faut utiliser la méthode `json()` de la réponse.
 
 Exemple :
 
 ```js
-fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.json())
-    .then(data => console.log(data))
+fetch("https://jsonplaceholder.typicode.com/posts")
+  .then((response) => response.json())
+  .then((data) => console.log(data));
 ```
 
-Comment lire le code ci-dessus ? 
+Comment lire le code ci-dessus ?
 
 - On fait une requête HTTP vers l'URL `https://jsonplaceholder.typicode.com/posts`
 - On récupère la réponse de l'API.
@@ -100,7 +100,7 @@ Pour appeler l'API depuis VueJS, nous allons utiliser la fonction `mounted` de V
 
 ::: tip mounted
 
-La fonction `mounted` est appelée lorsque l'instance de VueJS est montée. C'est-à-dire lorsque le DOM est prêt, et que l'instance de VueJS est liée à un élément du DOM. 
+La fonction `mounted` est appelée lorsque l'instance de VueJS est montée. C'est-à-dire lorsque le DOM est prêt, et que l'instance de VueJS est liée à un élément du DOM.
 
 :::
 
@@ -138,16 +138,9 @@ Je vous laisse créer une méthode qui va appeler l'API.
 👋 Évidemment, le code ne remplace pas le code que vous avez déjà écrit. Il faut le compléter.
 
 ```vue
-mounted() {
-    this.fetchData()
-},
-methods: {
-    fetchData() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(data => this.items = data)
-    }
-}
+mounted() { this.fetchData() }, methods: { fetchData() {
+fetch('https://jsonplaceholder.typicode.com/posts') .then(response =>
+response.json()) .then(data => this.items = data) } }
 ```
 
 :::
@@ -158,11 +151,9 @@ Pour afficher les données, nous allons utiliser la directive `v-for` de VueJS. 
 
 ```html
 <div id="app">
-    <ul>
-        <li v-for="item in items" :key="item.id">
-            {{ item.title }}
-        </li>
-    </ul>
+  <ul>
+    <li v-for="item in items" :key="item.id">{{ item.title }}</li>
+  </ul>
 </div>
 ```
 
@@ -237,35 +228,54 @@ Attendez un instant… Vous avez vraiment envie de voir le code ? 🤔
 
 ```html
 <!-- Tailwind Navbar -->
-<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
-    <div class="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="/" class="flex items-center">
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Démo VueJS 3.0</span>
-        </a>
+<nav
+  class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900"
+>
+  <div class="container flex flex-wrap items-center justify-between mx-auto">
+    <a href="/" class="flex items-center">
+      <span
+        class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+        >Démo VueJS 3.0</span
+      >
+    </a>
 
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                    <a href="/" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Liste</a>
-                </li>
-            </ul>
-        </div>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul
+        class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+      >
+        <li>
+          <a
+            href="/"
+            class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+            aria-current="page"
+            >Liste</a
+          >
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
-
 
 <!-- La liste des posts -->
 <div class="flex flex-wrap justify-center">
-    <a v-for="item in items" href="#" class="m-6 block max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{item.title}}</h5>
-        <p class="font-normal text-gray-700 dark:text-gray-400">{{item.body}}</p>
-    </a>
+  <a
+    v-for="item in items"
+    href="#"
+    class="m-6 block max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+  >
+    <h5
+      class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+    >
+      {{item.title}}
+    </h5>
+    <p class="font-normal text-gray-700 dark:text-gray-400">{{item.body}}</p>
+  </a>
 </div>
 ```
 
 :::
 
-## Ajouter une action dans la navbar
+## Ajouter un bouton de rechargement dans la navbar
 
 Pour l'instant, nous avons une navbar avec un lien vers la liste des posts. Je vous laisse écrire le code permettant d'ajouter un lien qui va permettre de recharger la liste des posts.
 
@@ -281,14 +291,14 @@ Pour recharger la liste des posts, vous pouvez utiliser la fonction `fetchData()
 
 ## Les `computed` : Filtrer les posts
 
-Pour compléter notre application, nous allons ajouter un champs de recherche. Ce champs va filtrer les posts en fonction d'une saisie utilisateur.
+Pour compléter notre application, nous allons ajouter un champ de recherche. Ce champ va filtrer les posts en fonction d'une saisie utilisateur.
 
-### Le champs de recherche
+### Le champ de recherche
 
-Pour ajouter le champs de recherche, nous allons utiliser la directive `v-model` de VueJS. Cette directive permet de lier un champs de formulaire à une variable. Par exemple :
+Pour ajouter le champ de recherche, nous allons utiliser la directive `v-model` de VueJS. Cette directive permet de lier un champ de formulaire à une variable. Par exemple :
 
 ```html
-<input type="text" v-model="search">
+<input type="text" v-model="search" />
 ```
 
 ::: tip N'oubliez pas
@@ -305,11 +315,11 @@ data() {
 
 :::
 
-Je vous laisse ajouter le champs de recherche et le JS dans votre application.
+Je vous laisse ajouter le champ de recherche et le JS dans votre application.
 
 ### Le filtre des posts
 
-Pour filtrer les posts, nous allons utiliser une fonction de VueJS nommé `computed`. Cette fonction permet de créer une variable qui est calculée à partir d'autres variables. Par exemple :
+Pour filtrer les posts, nous allons utiliser une fonction de VueJS nommée `computed`. Cette fonction permet de créer une variable qui est calculée à partir d'autres variables. Par exemple :
 
 ```js
 computed: {
@@ -322,13 +332,17 @@ computed: {
 ::: tip Comment ça marche ?
 La variable `filteredItems` est calculée à partir de la variable `items` et de la variable `search`. À chaque fois que le tableau `items` ou la variable `search` est modifié, la variable `filteredItems` est recalculée. C'est très pratique !
 
-La ligne `return this.items.filter(item => item.title.includes(this.search))` permet de filtrer le tableau `items` en ne gardant que les éléments dont le titre contient la valeur de la variable `search`. C'est possible grace à la fonction `includes()` qui permet de savoir si une chaine de caractère est incluse dans une autre chaine de caractère ([documentée ici](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/includes)).
+La ligne `return this.items.filter(item => item.title.includes(this.search))` permet de filtrer le tableau `items` en ne gardant que les éléments dont le titre contient la valeur de la variable `search`. C'est possible grâce à la fonction `includes()` qui permet de savoir si une chaîne de caractères est incluse dans une autre chaîne de caractères ([documentée ici](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/includes)).
 :::
 
 Pour afficher les posts filtrés, il suffit de remplacer la variable `items` par la variable `filteredItems` dans le code HTML (dans la boucle `v-for`)
 
 ```html
-<a v-for="item in filteredItems" href="#" class="m-6 block max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a
+  v-for="item in filteredItems"
+  href="#"
+  class="m-6 block max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+></a>
 ```
 
 Je vous laisse **modifier votre code HTML** tel que décrit ci-dessus.
@@ -366,53 +380,52 @@ Vous avez envie de découvrir VueJS en mode CLI ? Je vous invite à lire le TP s
 
 ## Allons plus loin avec VueUse
 
-Si vous souhaitez utiliser VueUse en mode amélioration d'un site existant (sans vite donc), c'est complètement possible. 
+Si vous souhaitez utiliser VueUse en mode amélioration d'un site existant (sans vite donc), c'est complètement possible.
 
 Pour rappel, VueUse est une collection de composition VueJS. Ces compositions permettent de simplifier la création d'application VueJS. Vous pouvez par exemple utiliser la composition `useMouse` pour récupérer la position de la souris, ou encore la composition `useLocalStorage` pour sauvegarder des données dans le navigateur, ou encore la composition `useFetch` pour faire des requêtes HTTP.
 
 Pour plus d'informations, je vous invite à consulter la documentation de VueUse : [https://vueuse.org/](https://vueuse.org/)
-
 
 Voici un exemple :
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="https://unpkg.com/@vueuse/shared"></script>
-  <script src="https://unpkg.com/@vueuse/core"></script>
-<div id="app">
-    {{ message }}
-    <div>pos: {{ x }}, {{ y }}</div>
-</div>
-<script type="module">
-  const { createApp, ref } = Vue
-  const { useMouse } = window.VueUse;
-  createApp({
-    setup() {
-      const message = ref('Hello Vue!')
-      const { x, y } = useMouse()
-      return {
-        message,
-        x,
-        y
-      }
-    }
-  }).mount('#app')
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/@vueuse/shared"></script>
+    <script src="https://unpkg.com/@vueuse/core"></script>
+    <div id="app">
+      {{ message }}
+      <div>pos: {{ x }}, {{ y }}</div>
+    </div>
+    <script type="module">
+      const { createApp, ref } = Vue;
+      const { useMouse } = window.VueUse;
+      createApp({
+        setup() {
+          const message = ref("Hello Vue!");
+          const { x, y } = useMouse();
+          return {
+            message,
+            x,
+            y,
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>
 ```
 
 ## Ressources
 
-- [https://v3.vuejs.org/](https://v3.vuejs.org/)
+- [https://vuejs.org/](https://vuejs.org/)
 - [https://tailwindcss.com/](https://tailwindcss.com/)
 - [https://flowbite.com/](https://flowbite.com/)
 - [VueJS Dev Tools Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)

@@ -1,5 +1,5 @@
 ---
-description: Dans ce TP nous allons découvrir l'utilisation de VueJS dans sans bundler. Nous allons donc utiliser directement le CDN de VueJS.
+description: Dans ce TP nous allons découvrir l'utilisation de VueJS sans bundler. Nous allons donc utiliser directement le CDN de VueJS.
 ---
 
 # Prise en main de VueJS 3
@@ -62,7 +62,9 @@ Remplacer le commentaire `<!-- Votre code ici -->` par
       console.log("Ding ! 🍪 Votre code fonctionne !");
     },
     data() {
-      return {};
+      return {
+        message: "Bienvenue dans VueJS 3 !",
+      };
     },
   }).mount("#app");
 </script>
@@ -258,7 +260,7 @@ Un prompt c'est « pas très beau » non ? Passer par un input HTML serait quand
 
 ## Et via un input version à privilegier ?
 
-La première solution est pas trop mal, mais, utiliser les data est serait certainement une meilleure idée. Autre solution, mais tout aussi simple (et certainement bien meilleur).
+La première solution est pas trop mal, mais, utiliser les data serait certainement une meilleure idée. Autre solution, mais tout aussi simple (et certainement bien meilleure).
 
 - Déclarer une nouvelle variable dans les `data`, par exemple, dans mon cas la variable est `saisie` :
 
@@ -286,20 +288,57 @@ data(){
 
 Comme vous l'avez très certainement remarqué, le champ n'est pas vidé après une saisie… Vous avez deux solutions pour faire ça:
 
-- Modifier le code dans le `@keyup.enter` pour effacer la variable `saisie`. (Via la création d'une nouvelle méthode dans votre objet).
-- Autre solution via un watcher sur la variable `saisie`.
+### Solution 1 : Via une méthode
 
-C'est à vous implémenté la première solution, puis la seconde.
+Modifier votre code pour créer une méthode dédiée :
+
+```js
+methods: {
+  ajouterElement() {
+    this.liste.push(this.saisie);
+    this.saisie = ""; // Vide le champ après ajout dans la liste
+  }
+}
+```
+
+Puis modifier votre input :
+
+```html
+<input type="text" v-model="saisie" @keyup.enter="ajouterElement" />
+```
+
+🚀 Tester votre code, le champ devrait maintenant se vider après chaque ajout.
+
+### Solution 2 : Via un watcher (découper les responsabilités)
+
+C'est à vous d'implémenter la seconde solution en utilisant un watcher sur la variable `liste`.
+
+Quelques éléments pour vous aider :
+
+```js
+watch: {
+  liste(newValue, oldValue) {
+    // Votre code ici
+  }
+}
+```
+
+La méthode `watch` permet de surveiller une variable, ici `liste`. À chaque modification de cette variable, la méthode sera appelée. Vous pouvez donc en profiter pour vider la variable `saisie`.
 
 ## Et si on voulait supprimer un élément ?
 
-Pour supprimer un élément, il faut que vous ajoutiez un bouton dans votre liste. Pour ça, ajouter le code suivant dans votre `v-for` :
+Pour supprimer un élément, il faut que vous ajoutiez un bouton dans votre liste. Voici comment faire :
 
 ```html
-<button @click="liste.splice(index, 1)">Supprimer</button>
+<ul>
+  <li v-for="(item, index) in liste">
+    {{item}}
+    <button @click="liste.splice(index, 1)">Supprimer</button>
+  </li>
+</ul>
 ```
 
-Je vous laisse chercher comment l'implémenter dans votre code.
+🚀 Tester votre code, vous devriez pouvoir supprimer chaque élément de la liste.
 
 ::: tip index ?
 
