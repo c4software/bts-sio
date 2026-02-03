@@ -57,7 +57,7 @@ Remplacer le commentaire `<!-- Votre code ici -->` par
 <script>
   const { createApp } = Vue;
 
-  createApp({
+  app = createApp({
     mounted() {
       console.log("Ding ! 🍪 Votre code fonctionne !");
     },
@@ -67,6 +67,8 @@ Remplacer le commentaire `<!-- Votre code ici -->` par
       };
     },
   }).mount("#app");
+
+  app.config.devtools = true;
 </script>
 ```
 
@@ -83,7 +85,7 @@ Votre code doit dès à présent fonctionner ! Vérifier dans la console de votr
 Nous allons ajouter un simple « button » dans notre page. Celui-ci affichera une `alert` lorsque l'utilisateur clique dessus. Modifier votre objet VueJS pour qu'il ressemble à :
 
 ```js
-createApp({
+app = createApp({
   mounted() {
     console.log("Ding ! 🍪 Votre code fonctionne !");
   },
@@ -96,6 +98,8 @@ createApp({
     },
   },
 }).mount("#app");
+
+app.config.devtools = true;
 ```
 
 Vous venez de déclarer une nouvelle méthode, celle-ci se nomme `action`, celle-ci affiche « Bravo ». Il faut donc maintenant l'appeler…
@@ -184,7 +188,7 @@ data(){
 Une fois intégré à votre code :
 
 ```js
-createApp({
+app = createApp({
   mounted() {
     console.log("Ding ! 🍪 Votre code fonctionne !");
   },
@@ -199,6 +203,8 @@ createApp({
     },
   },
 }).mount("#app");
+
+app.config.devtools = true;
 ```
 
 🚀 Valider avec les Vue Dev Tools que votre liste est bien présente.
