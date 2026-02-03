@@ -229,6 +229,14 @@ Ajouter le code HTML dans la `div#data`, vous devez obtenir :
 
 🤓 Tester d'ajouter un élément « à la main » via les VueJS dev tools.
 
+::: tip Activer les VueJS Dev Tools
+
+Il faut activer dans le JavaScript les VueJS Dev Tools. Pour cela, ajouter la ligne suivante avant la création de l'application VueJS :
+
+```js
+Vue.config.devtools = true;
+```
+
 ## Ajouter un élément dans la liste
 
 Le but de VueJS c'est aussi de rendre simple la modification de la vue / template / affichage. Nous allons (enfin vous…) modifier le code précédent pour ajouter dans la liste l'élément saisi par l'utilisateur :
@@ -317,13 +325,18 @@ Quelques éléments pour vous aider :
 
 ```js
 watch: {
-  liste(newValue, oldValue) {
-    // Votre code ici
+  liste: {
+    handler() {
+      this.saisie = "";
+    },
+    deep: true,
   }
 }
 ```
 
-La méthode `watch` permet de surveiller une variable, ici `liste`. À chaque modification de cette variable, la méthode sera appelée. Vous pouvez donc en profiter pour vider la variable `saisie`.
+La méthode `watch` permet de surveiller une variable, ici `liste`. À chaque modification de cette variable, la méthode sera appelée. Vous pouvez donc en profiter pour vider la variable `saisie`. `deep` permet de surveiller les modifications profondes d'un objet ou d'un tableau.
+
+C'est à vous, ajouter un watcher qui ajoute un élément dans la liste à chaque fois que le compteur atteint un modulo de 10 (10, 20, 30, etc.).
 
 ## Et si on voulait supprimer un élément ?
 
