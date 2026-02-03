@@ -237,6 +237,8 @@ Il faut activer dans le JavaScript les VueJS Dev Tools. Pour cela, ajouter la li
 Vue.config.devtools = true;
 ```
 
+:::
+
 ## Ajouter un élément dans la liste
 
 Le but de VueJS c'est aussi de rendre simple la modification de la vue / template / affichage. Nous allons (enfin vous…) modifier le code précédent pour ajouter dans la liste l'élément saisi par l'utilisateur :
