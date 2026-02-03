@@ -57,7 +57,7 @@ Remplacer le commentaire `<!-- Votre code ici -->` par
 <script>
   const { createApp } = Vue;
 
-  app = createApp({
+  createApp({
     mounted() {
       console.log("Ding ! 🍪 Votre code fonctionne !");
     },
@@ -67,8 +67,6 @@ Remplacer le commentaire `<!-- Votre code ici -->` par
       };
     },
   }).mount("#app");
-
-  app.config.devtools = true;
 </script>
 ```
 
@@ -97,9 +95,10 @@ app = createApp({
       alert("🎉 Bravo 🎉");
     },
   },
-}).mount("#app");
+});
 
 app.config.devtools = true;
+app.mount("#app");
 ```
 
 Vous venez de déclarer une nouvelle méthode, celle-ci se nomme `action`, celle-ci affiche « Bravo ». Il faut donc maintenant l'appeler…
@@ -202,9 +201,10 @@ app = createApp({
       alert("🎉 Bravo 🎉");
     },
   },
-}).mount("#app");
+});
 
 app.config.devtools = true;
+app.mount("#app");
 ```
 
 🚀 Valider avec les Vue Dev Tools que votre liste est bien présente.
