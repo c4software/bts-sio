@@ -332,7 +332,7 @@ Cette pratique ce nomme le TDD (Test Driven Development), c'est une pratique tr�
 
 Maintenant que nous avons vu les bases de Bun, nous allons pouvoir réaliser notre API. Pour cela, nous allons utiliser Express, une librairie qui permet de réaliser des API HTTP en JavaScript / TypeScript.
 
-Express est un standard dans le monde du JavaScript / TypeScript. Elle est globalement très utilisé dans le dévelppement serveur. Vous ne vous tromperez pas en l'utilisant.
+Express est un standard dans le monde du JavaScript / TypeScript. Elle est globalement très utilisé dans le développement serveur. Vous ne vous tromperez pas en l'utilisant.
 
 ### Installer Express
 
