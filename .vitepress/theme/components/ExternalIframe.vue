@@ -33,7 +33,41 @@ export default {
       }
     }
   },
+  mounted() {
+    window.addEventListener('keydown', this.handleKeyPress);
+  },
+  beforeUnmount() {
+    window.removeEventListener('keydown', this.handleKeyPress);
+  },
   methods: {
+    handleKeyPress(event) {
+      if (event.key === 'f' || event.key === 'F') {
+        this.toggleFullscreen();
+      }
+    },
+    toggleFullscreen() {
+      const element = this.$refs.iframe;
+      if (!element) return;
+
+      const isFullscreen = document.fullscreenElement || 
+                          document.mozFullScreenElement || 
+                          document.webkitFullscreenElement;
+
+      if (isFullscreen) {
+        this.exitFullscreen();
+      } else {
+        this.requestFullscreen(element);
+      }
+    },
+    exitFullscreen() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    },
     requestFullscreen(element){
       if (element.requestFullscreen) {
         element.requestFullscreen();
