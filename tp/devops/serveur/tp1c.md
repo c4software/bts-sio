@@ -572,3 +572,283 @@ done
 <center>
 <iframe src="https://giphy.com/embed/4PXUYM1bXS3lRXO7lX" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 </center>
+
+## Bonus
+
+Vous avez terminé le TP ? Bravo 👏
+
+Pour aller plus loin, je vous propose 3 bonus de difficulté croissante.
+
+::: tip Important
+
+Ces bonus sont **optionnels** et ne remplacent pas les étapes obligatoires du TP.
+
+:::
+
+### Bonus 1 : Prendre en main Vim avec Vim Adventures <Badge type="tip" text="Facile" vertical="top" />
+
+Dans une démarche DevOps, on travaille régulièrement en SSH sur des machines distantes. Dans ce contexte, savoir utiliser `vim` est un vrai gain de temps.
+
+Pour ce bonus, entraînez-vous avec [Vim Adventures](https://vim-adventures.com/) puis appliquez immédiatement ce que vous avez appris sur votre VM.
+
+#### Pourquoi Vim Adventures ?
+
+Vim Adventures est un jeu en ligne qui vous permet d'apprendre les commandes de base de `vim` de manière ludique. C'est une excellente façon de se familiariser avec l'éditeur de texte `vim` sans se sentir perdu.
+
+Personnaliser VIM pour le rendre plus agréable à utiliser est aussi une bonne idée.
+
+```bash
+cat >> ~/.vimrc <<'EOF'
+" ========================
+" Interface
+" ========================
+syntax on
+set number
+set cursorline
+set ruler
+set showcmd
+set showmatch
+set laststatus=2
+set signcolumn=yes
+
+" ========================
+" Navigation
+" ========================
+set scrolloff=8
+set mouse=a
+
+" ========================
+" Recherche
+" ========================
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" ========================
+" Indentation
+" ========================
+set autoindent
+set smartindent
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+
+" ========================
+" Edition
+" ========================
+set nowrap
+set clipboard=unnamedplus
+
+" ========================
+" Fichiers
+" ========================
+set undofile
+set undodir=~/.vim/undo
+set nobackup
+set nowritebackup
+
+" ========================
+" Complétion
+" ========================
+set wildmenu
+set wildmode=longest:full,full
+set completeopt=menuone,noinsert,noselect
+EOF
+
+mkdir -p ~/.vim/undo # Permet de stocker les fichiers d'undo pour la fonctionnalité d'undo persistante
+```
+
+::: tip Explications
+
+Vim est minimaliste par défaut, ce qui peut être déroutant pour les débutants. Ce fichier de configuration ajoute des fonctionnalités essentielles pour une expérience de codage plus agréable, comme la coloration syntaxique, les numéros de ligne, une meilleure gestion de l'indentation, et une navigation plus fluide.
+
+:::
+
+### Bonus 2 : Script de vérification automatique <Badge type="tip" text="Moyenne difficulté" vertical="top" />
+
+Dans ce bonus, vous allez poser un premier bloc d'automatisation DevOps.
+
+Créez un script `/home/restitution/check_tp1c.sh` qui vérifie automatiquement :
+
+- la présence des dossiers et fichiers demandés dans le TP ;
+- la présence des paquets `htop`, `cmatrix`, `curl` ;
+- la présence du fichier `valeurs.md`.
+
+Le script doit afficher un résultat lisible : `OK` ou `KO` pour chaque point, puis un résumé final.
+
+::: tip Pourquoi ce bonus ?
+
+En DevOps, l'objectif n'est pas seulement de faire, mais aussi de **vérifier rapidement et de manière reproductible**.
+
+:::
+
+::: details Indices
+
+- Commencez par vérifier 2 éléments, puis complétez progressivement.
+- Utilisez des tests bash simples (fichier, dossier, paquet).
+- N'oubliez pas de rendre votre script exécutable avant de le lancer. (droit `+x` nécessaire).
+
+Pour vérifier un paquet, vous pouvez utiliser la commande suivante :
+
+```bash
+dpkg -l | grep -q htop && echo "htop : OK" || echo "htop : KO"
+```
+
+Pour vérifier la présence d'un fichier, vous pouvez utiliser la commande suivante :
+
+```bash
+[ -f /home/restitution/valeurs.md ] && echo "valeurs.md : OK" || echo "valeurs.md : KO"
+```
+
+Vous pouvez faire de même pour les dossiers avec `-d` au lieu de `-f`. En bash, vous pouvez également faire des boucles pour réduire la répétition de code. Par exemple, pour vérifier plusieurs fichiers :
+
+```bash
+for file in votre_fichier1 votre_fichier2 votre_fichier3; do
+  [ -f /home/restitution/$file ] && echo "$file : OK" || echo "$file : KO"
+done
+```
+
+Et vous pouvez bien évidemment aller plus loin en déclarant des variables et des fonctions pour rendre votre script plus lisible et maintenable, exemple :
+
+```bash
+check_file() {
+  if [ -f "$1" ]; then
+    echo "$1 : OK"
+  else
+    echo "$1 : KO"
+  fi
+}
+
+check_package() {
+  if dpkg -l | grep -q "$1"; then
+    echo "$1 : OK"
+  else
+    echo "$1 : KO"
+  fi
+}
+
+check_file /home/restitution/valeurs.md
+check_package htop
+
+# Et il est toujours possible de faire une boucle
+files=(votre-fichier1 votre-fichier2 votre-fichier3)
+for file in "${files[@]}"; do
+  check_file "/home/restitution/$file"
+done
+
+```
+
+:::
+
+### Bonus 3 : Sauvegarde et restauration <Badge type="warning" text="Difficile" vertical="top" />
+
+Ce bonus introduit une pratique centrale en DevOps : sécuriser ses livrables avec une sauvegarde testée.
+
+Objectif :
+
+1. Créez un script `backup_restitution.sh` qui archive `/home/restitution` dans un fichier compressé daté.
+2. Créez un script `restore_restitution.sh` qui restaure une archive dans `/home/restore-test`.
+3. Vérifiez que les fichiers restaurés sont bien présents et lisibles.
+
+::: danger Attention
+
+Une sauvegarde non testée n'est pas une sauvegarde fiable. Vous devez toujours vérifier la restauration.
+
+:::
+
+::: details Indices
+
+- Format attendu pour l'archive : `.tar.gz`.
+- Ajoutez la date dans le nom du fichier de sauvegarde.
+- Vérifiez le résultat avec `ls` et `cat` sur quelques fichiers.
+- Vous pouvez créer un fichier avec la date en utilisant la syntaxe suivante : `backup_$(date +%Y%m%d).tar.gz`.
+- Pour compresser un dossier, vous pouvez utiliser la commande suivante : `tar -czvf VOTRE-ARCHIVE.tar.gz le-chemin-a-compresser`.
+- Pour restaurer une archive, vous pouvez utiliser la commande suivante : `tar -xzvf VOTRE-ARCHIVE.tar.gz -C le-chemin-de-restauration`.
+
+:::
+
+::: tip Bravo 👏
+
+Si vous réalisez les 3 bonus, vous aurez déjà de très bons réflexes DevOps : automatiser, vérifier, sauvegarder, restaurer.
+
+:::
+
+### Bonus 4 : Automatisation des sauvegardes avec cron <Badge type="warning" text="Technique" vertical="top" />
+
+::: tip Prérequis
+
+Ce bonus s'appuie sur le script `backup_restitution.sh` créé au Bonus 3. Assurez-vous de l'avoir réalisé avant de continuer.
+
+:::
+
+Vous avez maintenant un script de sauvegarde fonctionnel. Le problème : vous devez penser à le lancer manuellement. En production, une sauvegarde qu'on oublie de lancer ne sert à rien.
+
+L'objectif de ce bonus est d'automatiser l'exécution de ce script grâce à `cron`, le planificateur de tâches de Linux.
+
+#### Découvrir cron
+
+`cron` permet de planifier des commandes ou des scripts pour qu'ils s'exécutent automatiquement à des moments précis. Pour éditer vos tâches planifiées, utilisez la commande :
+
+```bash
+crontab -e
+```
+
+Chaque ligne de votre crontab représente une tâche et suit toujours le même format :
+
+```bash
+# MIN  HEURE  JOUR_DU_MOIS  MOIS  JOUR_DE_SEMAINE  COMMANDE
+```
+
+Par exemple, pour exécuter un script tous les lundis à 8h30 :
+
+```bash
+30 8 * * 1 /home/utilisateur/mon_script.sh
+```
+
+Pour vérifier la liste de vos tâches actives à tout moment :
+
+```bash
+crontab -l
+```
+
+::: tip Ressource utile
+
+Le site [crontab.guru](https://crontab.guru/) vous permet de construire et tester visuellement vos expressions cron. C'est un outil utilisé quotidiennement par les professionnels.
+
+:::
+
+#### Créer la tâche
+
+Une fois la syntaxe comprise, créez une tâche cron qui exécute votre script de sauvegarde tous les jours à 2h du matin.
+
+::: danger Attention aux chemins
+
+`cron` s'exécute dans un environnement minimal, différent de votre session SSH habituelle. Les chemins relatifs et les variables d'environnement comme `$PATH` ne sont pas garantis. Assurez-vous d'utiliser uniquement des **chemins absolus** dans votre script et dans votre ligne cron. Exemple : `/home/utilisateur/backup_restitution.sh` au lieu de `./backup_restitution.sh`.
+
+:::
+
+#### Vérifier sans attendre 2h du matin
+
+Attendre la nuit pour savoir si votre tâche fonctionne n'est pas une stratégie viable. Réfléchissez à comment vous pouvez vérifier immédiatement que :
+
+1. La tâche est bien enregistrée dans votre crontab.
+2. Le script s'exécute correctement quand cron le lance.
+3. La sauvegarde produite est valide.
+
+::: tip Indice
+
+Pour le point 2, vous pouvez temporairement modifier la fréquence de la tâche pour qu'elle s'exécute très souvent, vérifier que tout fonctionne, puis rétablir la fréquence définitive. Les logs système peuvent également vous aider à confirmer qu'une tâche cron a bien été déclenchée.
+
+:::
+
+::: tip Pourquoi ce bonus ?
+
+En DevOps, une tâche manuelle est une tâche qui finira par être oubliée. Automatiser les sauvegardes garantit que vos données sont protégées de façon fiable et régulière, sans intervention humaine. C'est l'un des premiers réflexes d'automatisation à acquérir.
+
+:::
+
+```
+
+```
