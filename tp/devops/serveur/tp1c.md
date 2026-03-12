@@ -157,7 +157,7 @@ Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisée
 
 ::: danger Problème de droits ?
 
-Si vous avez un problème de droits, c'est normal. Vous devez modifier les droits des dossiers et fichiers pour que votre utilisateur puisse les modifier. Dans un premier temps créer le dossier `/home/restitution` en root (`sudo mkdir /home/restitution`) puis changer le propriéjson du dossier (`sudo chown -R <votre utilisateur>:<votre utilisateur> /home/restitution`). Vous pourrez ensuite créer les dossiers et fichiers sans problème.
+Si vous avez un problème de droits, c'est normal. Vous devez modifier les droits des dossiers et fichiers pour que votre utilisateur puisse les modifier. Dans un premier temps créer le dossier `/home/restitution` en root (`sudo mkdir /home/restitution`) puis changer le propriétaire du dossier (`sudo chown -R <votre utilisateur>:<votre utilisateur> /home/restitution`). Vous pourrez ensuite créer les dossiers et fichiers sans problème.
 
 :::
 
@@ -312,7 +312,7 @@ Si vous êtes entrain de faire un 777, vous êtes très probablement en train de
 Avec les commandes vues précédemment, modifiez les permissions des fichiers et dossiers suivants :
 
 - Donnez tous les droits à l'utilisateur sur le fichier `introduction.md` (`rwx`).
-- Changer le propriétaire du fichier `introduction.md` pour qu'il appartienne à l'utilisateur `root`.
+- Changer le propriétaire du fichier `introduction.md` pour qu'il appartienne à votre utilisateur.
 
 Créer un script nommé `hello.sh` dans le dossier `/home/restitution/` celui-ci doit contenir :
 
@@ -344,6 +344,10 @@ Vous êtes en SLAM, du coup le Web vous connaissez ? Je vous propose de créer u
   - [Facebook](https://www.facebook.com)
   - [Twitter](https://www.twitter.com)
 - **Pour l'instant pas de PHP car notre serveur n'est pas configuré pour.**
+
+::: tip Important pour la validation
+Pour que la validation automatique fonctionne, utilisez exactement `TC 5` dans votre page. Sauf si vous voulez perdre des points, bien sûr.
+:::
 
 Où devez-vous placer votre page web pour qu'elle soit accessible depuis l'extérieur ? Par défaut, Apache place les pages web dans le dossier `/var/www/html/`.
 
@@ -430,10 +434,17 @@ La procédure est la suivante :
 - Vous pouvez également le faire via la commande curl :
 
 ```bash
-su - # Se connecter en tant que root
-apt install curl # Installer curl si ce n'est pas déjà fait
-exit # Se déconnecter en tant que root
+sudo apt install -y curl # Installer curl si ce n'est pas déjà fait
+mkdir -p ~/.ssh && chmod 700 ~/.ssh
 curl https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub >> ~/.ssh/authorized_keys # Ajouter la clé SSH publique dans le fichier authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+
+# Ou via un passage en root
+sudo su - # Passer en root
+apt install -y curl # Installer curl si ce n'est pas déjà fait
+exit # Quitter le mode root
+
+# Suite de la commande précédente
 ```
 
 ::: tip À la fin de cette étape, votre fichier `authorized_keys` devrait ressembler à ça :
@@ -460,7 +471,7 @@ Si vous avez bien réalisé les étapes précédentes, je ne devrais pas avoir a
 Pour restituer le projet, merci de me fournir les éléments suivants :
 
 - L'adresse IP de votre serveur.
-- Votre fiche serveur.
+- Votre fiche serveur (avec les informations de votre serveur, et si vous avez utilisé un modèle ou non).
 - Rapport illustrant les différentes étapes.
 
 Le rendu se fera via le formulaire suivant : [Rendre le TP](https://forms.gle/1U7j3Wwku1gpNMDf6)
@@ -481,7 +492,7 @@ function ssh_execute {
 }
 
 echo "Validation des VMs"
-echo "Etudiant;echange;VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh" > vm_check_result.csv
+echo "Etudiant;echange;VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;contact.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh" > vm_check_result.csv
 
 array=(
 "utilisateur;ip.de.la.machine"
@@ -546,11 +557,12 @@ do
     valeurs_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/valeurs.md ] && echo 'true' || echo 'false'")
 
     # Vérifier la présence et le contenu des pages web
-    index_check=$(ssh_execute $user $target_ip "wget -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
-    apropos_check=$(ssh_execute $user $target_ip "wget -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
+    index_check=$(ssh_execute $user $target_ip "wget --timeout=5 -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
+    apropos_check=$(ssh_execute $user $target_ip "wget --timeout=5 -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
+    contact_check=$(ssh_execute $user $target_ip "wget --timeout=5 -qO- http://localhost/pages/contact.html | grep -q 'form' && echo 'true' || echo 'false'")
 
     # Enregistrer les résultats dans un fichier CSV
-    echo "${etudiant};${echange};${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check}" >> vm_check_result.csv
+    echo "${etudiant};${echange};${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${contact_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check}" >> vm_check_result.csv
     echo "Validation de la VM $user@$ip terminée"
 done
 ```
