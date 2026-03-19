@@ -591,6 +591,8 @@ Dans une démarche DevOps, on travaille régulièrement en SSH sur des machines 
 
 Pour ce bonus, entraînez-vous avec [Vim Adventures](https://vim-adventures.com/) puis appliquez immédiatement ce que vous avez appris sur votre VM.
 
+Alternative à Vim Adventures : [Open Vim](https://openvim.com/), un tutoriel interactif pour apprendre les bases de `vim`.
+
 #### Pourquoi Vim Adventures ?
 
 Vim Adventures est un jeu en ligne qui vous permet d'apprendre les commandes de base de `vim` de manière ludique. C'est une excellente façon de se familiariser avec l'éditeur de texte `vim` sans se sentir perdu.
