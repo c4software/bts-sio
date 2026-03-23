@@ -372,6 +372,29 @@ Le mot important ici est **développement**. En effet, sur un serveur de product
 
 :::
 
+## Filtrer le .git dans les dossiers Web
+
+Actuellement, votre serveur tourne avec le site par défaut d'Apache. Celui-ci prend les fichiers présents dans le dossier `/var/www/html`. Ça fonctionne, mais avant d'aller plus loin, nous allons faire une petite modification pour observer les possibilités de configuration d'Apache. 
+
+Nous allons configurer le VirtualHost pour que les clients ne puissent pas accéder au dossier `.git` qui se trouve dans le dossier `/var/www/html`. Pour cela, nous allons ajouter la ligne suivante dans le fichier de configuration du site Web (à l'intérieur de la balise `<VirtualHost>`) : 
+
+Dans le fichier de configuration du site Web (par défaut c'est `/etc/apache2/sites-available/000-default.conf`), ajoutez le code suivant à l'intérieur de la balise `<VirtualHost>` :
+
+```apache
+<Directory /var/www/html>
+    Options -Indexes +FollowSymLinks
+    AllowOverride All
+    Require all granted
+    
+    
+    <DirectoryMatch "^/.*/\.git/">
+        Require all denied
+    </DirectoryMatch>
+</Directory>
+```
+
+Cette configuration permet de bloquer l'accès au dossier `.git` qui se trouve dans le dossier `/var/www/html`. Si un client essaie d'accéder à ce dossier, il recevra une erreur 403 (Forbidden).
+
 ## La configuration d'Apache
 
 Actuellement, votre serveur tourne avec la configuration par défaut d'Apache. C'est-à-dire que vous avez un seul site Web qui est accessible sur le port 80. Nous allons maintenant voir comment créer plusieurs sites Web, et comment les configurer.
