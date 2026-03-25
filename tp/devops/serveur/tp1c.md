@@ -485,85 +485,138 @@ Pour valider la partie VM, je vais utiliser le script suivant :
 ```bash
 #!/bin/bash
 
-# Définir le chemin du fichier CSV contenant les informations de connexion
 function ssh_execute {
-  ssh-keygen -R $2 > /dev/null 2>&1
-  ssh -o "PreferredAuthentications=publickey" -o "CheckHostIP=no" -o "StrictHostKeyChecking=no" -o "BatchMode=yes" -i ~/.ssh/id_rsa_etudiant "$1"@$2 "$3" 2>/dev/null
+  local user="$1"
+  local target="$2"
+  local cmd="$3"
+
+  # Parser IP et PORT
+  local host port
+  if [[ "$target" == *:* ]]; then
+    host="${target%:*}"
+    port="${target##*:}"
+  else
+    host="$target"
+    port="22"
+  fi
+
+  # ssh-keygen -R attend [host]:port pour les ports non-22
+  if [ "$port" = "22" ]; then
+    ssh-keygen -R "$host" > /dev/null 2>&1
+  else
+    ssh-keygen -R "[$host]:$port" > /dev/null 2>&1
+  fi
+
+  ssh -o "PreferredAuthentications=publickey" \
+      -o "CheckHostIP=no" \
+      -o "StrictHostKeyChecking=no" \
+      -o "BatchMode=yes" \
+      -o "ConnectTimeout=5" \
+      -p "$port" \
+      -i ~/.ssh/id_rsa_etudiant \
+      "$user"@"$host" "$cmd" 2>/dev/null
 }
 
 echo "Validation des VMs"
-echo "Etudiant;echange;VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;contact.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh" > vm_check_result.csv
+echo "Etudiant;echange;VM Name;OS;Memory;CPU;Disk;index.html;apropos.html;contact.html;restitution;tp1;fichier1.md;fichier2.md;fichier2bis.md;introduction.md;htop;cmatrix;curl;valeurs.md;hello.sh;bonus_check_sh;bonus_backup_sh;bonus_restore_sh;bonus_cron;note" > vm_check_result.csv
 
 array=(
-"utilisateur;ip.de.la.machine"
+  "utilisateur;ip.de.la.machine"
+  # "etudiant2;192.168.1.42:2222"
 )
 
 for i in "${array[@]}"
 do
-    # Séparer la ligne en deux parties
     IFS=';' read -ra parts <<< "$i"
 
-    etudiant=${parts[0]}
-    user=${parts[0]}
-    target_ip=${parts[1]}
+    etudiant="${parts[0]}"
+    user="${parts[0]}"
+    target="${parts[1]}"
 
-    echo "Validation de la VM $user@$target_ip"
+    echo "Validation de la VM $user@$target"
 
-    # Validation de la connexion SSH à la VM (si echec alors $user = vbrosseau)
-    ssh_execute $user $target_ip "exit"
+    # Test de connexion SSH
+    ssh_execute "$user" "$target" "exit"
     if [ $? -ne 0 ]; then
         user="vbrosseau"
     fi
 
-    # Malus si l'utilisateur est vbrosseau
-    if [ $user = "vbrosseau" ]; then
+    if [ "$user" = "vbrosseau" ]; then
       echange="0"
     else
       echange="1"
     fi
 
-    # Vérifier le nom de la VM
-    vm_name_result=$(ssh_execute $user $target_ip "hostname")
+    # Infos système
+    vm_name_result=$(ssh_execute "$user" "$target" "hostname")
+    os_result=$(ssh_execute "$user" "$target" "lsb_release -ds")
+    memory_result=$(ssh_execute "$user" "$target" "awk '/MemTotal/{print \$2}' /proc/meminfo")
+    cpu_result=$(ssh_execute "$user" "$target" "nproc")
+    disk_result=$(ssh_execute "$user" "$target" "df -h | grep '/dev/sda1' | awk '{print \$2}'")
 
-    # Vérifier l'OS
-    os_result=$(ssh_execute $user $target_ip "lsb_release -ds")
+    # Arborescence
+    restitution_check=$(ssh_execute "$user" "$target" "[ -d /home/restitution ] && echo 'true' || echo 'false'")
+    tp1_check=$(ssh_execute "$user" "$target" "[ -d /home/restitution/tp1 ] && echo 'true' || echo 'false'")
+    fichier1_check=$(ssh_execute "$user" "$target" "[ -f /home/restitution/fichier1.md ] && echo 'true' || echo 'false'")
+    fichier2_check=$(ssh_execute "$user" "$target" "[ -f /home/restitution/tp1/fichier2.md ] && echo 'true' || echo 'false'")
+    fichier2bis_check=$(ssh_execute "$user" "$target" "[ -f /home/restitution/tp1/fichier2bis.md ] && echo 'true' || echo 'false'")
+    introduction_check=$(ssh_execute "$user" "$target" "[ -f /home/restitution/introduction.md ] && echo 'true' || echo 'false'")
+    hello_check=$(ssh_execute "$user" "$target" "[ -f /home/restitution/hello.sh ] && echo 'true' || echo 'false'")
 
-    # Vérifier la mémoire
-    memory_result=$(ssh_execute $user $target_ip "awk '/MemTotal/{print \$2}' /proc/meminfo")
+    # Logiciels
+    htop_check=$(ssh_execute "$user" "$target" "dpkg -l | grep -q htop && echo 'true' || echo 'false'")
+    cmatrix_check=$(ssh_execute "$user" "$target" "dpkg -l | grep -q cmatrix && echo 'true' || echo 'false'")
+    curl_check=$(ssh_execute "$user" "$target" "dpkg -l | grep -q curl && echo 'true' || echo 'false'")
 
-    # Vérifier le CPU
-    cpu_result=$(ssh_execute $user $target_ip "nproc")
+    # Fichier téléchargé
+    valeurs_check=$(ssh_execute "$user" "$target" "[ -f /home/restitution/valeurs.md ] && echo 'true' || echo 'false'")
 
-    # Vérifier le disque
-    disk_result=$(ssh_execute $user $target_ip "df -h | grep '/dev/sda1' | awk '{print \$2}'")
+    # Pages web
+    index_check=$(ssh_execute "$user" "$target" "wget --timeout=5 -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
+    apropos_check=$(ssh_execute "$user" "$target" "wget --timeout=5 -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
+    contact_check=$(ssh_execute "$user" "$target" "wget --timeout=5 -qO- http://localhost/pages/contact.html | grep -q 'form' && echo 'true' || echo 'false'")
 
-    # Vérifier les fichiers et dossiers requis
-    restitution_check=$(ssh_execute $user $target_ip "[ -d /home/restitution ] && echo 'true' || echo 'false'")
-    tp1_check=$(ssh_execute $user $target_ip "[ -d /home/restitution/tp1 ] && echo 'true' || echo 'false'")
-    fichier1_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/fichier1.md ] && echo 'true' || echo 'false'")
-    fichier2_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/tp1/fichier2.md ] && echo 'true' || echo 'false'")
-    fichier2bis_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/tp1/fichier2bis.md ] && echo 'true' || echo 'false'")
-    introduction_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/introduction.md ] && echo 'true' || echo 'false'")
+    # Bonus
+    bonus_check_sh=$(ssh_execute "$user" "$target" "[ -f /home/restitution/check_tp1c.sh ] && echo 'true' || echo 'false'")
+    bonus_backup_sh=$(ssh_execute "$user" "$target" "[ -f /home/restitution/backup_restitution.sh ] && echo 'true' || echo 'false'")
+    bonus_restore_sh=$(ssh_execute "$user" "$target" "[ -f /home/restitution/restore_restitution.sh ] && echo 'true' || echo 'false'")
+    bonus_cron=$(ssh_execute "$user" "$target" "crontab -l 2>/dev/null | grep -q 'backup_restitution' && echo 'true' || echo 'false'")
 
-    # Présence du hello.sh
-    hello_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/hello.sh ] && echo 'true' || echo 'false'")
+    # --- Calcul de la note ---
+    note=0
 
-    # Vérifier les logiciels installés
-    htop_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q htop && echo 'true' || echo 'false'")
-    cmatrix_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q cmatrix && echo 'true' || echo 'false'")
-    curl_check=$(ssh_execute $user $target_ip "dpkg -l | grep -q curl && echo 'true' || echo 'false'")
+    # VM fonctionnelle + sécurité : 5 pts (évaluation manuelle, on met 5 si SSH ok)
+    # On accorde les 5 pts si la connexion SSH fonctionne avec la bonne clé
+    [ "$echange" = "1" ] && note=$(echo "$note + 5" | bc)
 
-    # Vérifier le fichier valeurs.md
-    valeurs_check=$(ssh_execute $user $target_ip "[ -f /home/restitution/valeurs.md ] && echo 'true' || echo 'false'")
+    # Échange de clés : 2 pts
+    [ "$echange" = "1" ] && note=$(echo "$note + 2" | bc)
 
-    # Vérifier la présence et le contenu des pages web
-    index_check=$(ssh_execute $user $target_ip "wget --timeout=5 -qO- http://localhost/index.html | grep -q 'TC 5' && echo 'true' || echo 'false'")
-    apropos_check=$(ssh_execute $user $target_ip "wget --timeout=5 -qO- http://localhost/pages/apropos.html | grep -q 'html' && echo 'true' || echo 'false'")
-    contact_check=$(ssh_execute $user $target_ip "wget --timeout=5 -qO- http://localhost/pages/contact.html | grep -q 'form' && echo 'true' || echo 'false'")
+    # Étapes du TP : 5 pts répartis sur les éléments vérifiables (~0.33 pt chacun)
+    tp_items=(
+      "$restitution_check" "$tp1_check" "$fichier1_check" "$fichier2_check"
+      "$fichier2bis_check" "$introduction_check" "$hello_check"
+      "$htop_check" "$cmatrix_check" "$curl_check" "$valeurs_check"
+      "$index_check" "$apropos_check" "$contact_check"
+    )
+    tp_ok=0
+    for item in "${tp_items[@]}"; do
+      [ "$item" = "true" ] && tp_ok=$((tp_ok + 1))
+    done
+    tp_score=$(echo "scale=2; $tp_ok * 5 / ${#tp_items[@]}" | bc)
+    note=$(echo "$note + $tp_score" | bc)
 
-    # Enregistrer les résultats dans un fichier CSV
-    echo "${etudiant};${echange};${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${contact_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check}" >> vm_check_result.csv
-    echo "Validation de la VM $user@$ip terminée"
+    # Rapport PDF + fiche serveur : 4 pts → évaluation manuelle, non inclus ici
+
+    # Bonus : 0.25 pt chacun
+    [ "$bonus_check_sh"  = "true" ] && note=$(echo "$note + 0.25" | bc)
+    [ "$bonus_backup_sh" = "true" ] && note=$(echo "$note + 0.25" | bc)
+    [ "$bonus_restore_sh"= "true" ] && note=$(echo "$note + 0.25" | bc)
+    [ "$bonus_cron"      = "true" ] && note=$(echo "$note + 0.25" | bc)
+
+    echo "${etudiant};${echange};${vm_name_result};${os_result};${memory_result};${cpu_result};${disk_result};${index_check};${apropos_check};${contact_check};${restitution_check};${tp1_check};${fichier1_check};${fichier2_check};${fichier2bis_check};${introduction_check};${htop_check};${cmatrix_check};${curl_check};${valeurs_check};${hello_check};${bonus_check_sh};${bonus_backup_sh};${bonus_restore_sh};${bonus_cron};${note}" >> vm_check_result.csv
+
+    echo "Validation de la VM $user@$target terminée — note auto: $note/12 (rapport/fiche: +4 pts manuel)"
 done
 ```
 
