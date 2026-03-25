@@ -374,9 +374,9 @@ Le mot important ici est **développement**. En effet, sur un serveur de product
 
 ## Filtrer le .git dans les dossiers Web
 
-Actuellement, votre serveur tourne avec le site par défaut d'Apache. Celui-ci prend les fichiers présents dans le dossier `/var/www/html`. Ça fonctionne, mais avant d'aller plus loin, nous allons faire une petite modification pour observer les possibilités de configuration d'Apache. 
+Actuellement, votre serveur tourne avec le site par défaut d'Apache. Celui-ci prend les fichiers présents dans le dossier `/var/www/html`. Ça fonctionne, mais avant d'aller plus loin, nous allons faire une petite modification pour observer les possibilités de configuration d'Apache.
 
-Nous allons configurer le VirtualHost pour que les clients ne puissent pas accéder au dossier `.git` qui se trouve dans le dossier `/var/www/html`. Pour cela, nous allons ajouter la ligne suivante dans le fichier de configuration du site Web (à l'intérieur de la balise `<VirtualHost>`) : 
+Nous allons configurer le VirtualHost pour que les clients ne puissent pas accéder au dossier `.git` qui se trouve dans le dossier `/var/www/html`. Pour cela, nous allons ajouter la ligne suivante dans le fichier de configuration du site Web (à l'intérieur de la balise `<VirtualHost>`) :
 
 Dans le fichier de configuration du site Web (par défaut c'est `/etc/apache2/sites-available/000-default.conf`), ajoutez le code suivant à l'intérieur de la balise `<VirtualHost>` :
 
@@ -385,8 +385,8 @@ Dans le fichier de configuration du site Web (par défaut c'est `/etc/apache2/si
     Options -Indexes +FollowSymLinks
     AllowOverride All
     Require all granted
-    
-    
+
+
     <DirectoryMatch "^/.*/\.git/">
         Require all denied
     </DirectoryMatch>
@@ -408,16 +408,14 @@ Pour tester le principe des VirtualHost, nous allons créer deux sites Internet 
 
 ::: tip Port ou Domaine ?
 
-Au lycée nous allons faire des virtualhost avec des ports. En effet, nous n'avons pas accès à la configuration DNS du lycée, et nous ne pouvons donc pas créer des domaines.
+Dans la configuration d'appache, il est possible de faire du VirtualHost en utilisant des ports différents, ou en utilisant des domaines différents. Pour l'instant, nous allons utiliser des ports différents.
 
-En production, vous pouvez utiliser des domaines, ou des ports. C'est à vous de voir ce qui vous convient le mieux.
+Mais, au lycée, nous avons mis en place un système de DNS local ou vous avez la possibilité de « réserver » des nom de domaine terminant par `.etud`.
 
-Utiliser des domaines est plus joli, car nous pourrions avoir des URL de type :
+Exemple, dans le cas de ce TP, vous pourriez réserver les domaines suivants :
 
-- `siteA.monsite.com`
-- `siteB.monsite.com`
-
-C'est quelque chose que nous retrouvons sur les sites Web professionnels. C'est plus joli, et c'est plus facile à retenir pour les utilisateurs.
+- `sitea.votrelogin.etud` : va afficher le site présent dans `/var/www/siteA/`
+- `siteb.votrelogin.etud` : va afficher le site présent dans `/var/www/siteB/`
 
 :::
 
@@ -574,6 +572,32 @@ Nous avons deux sites Web qui sont accessibles, mais pour le moment ils sont vid
 
 :::
 
+### Utiliser un nom de domaine au lieu d'un port
+
+Il est également possible d'utiliser un nom de domaine au lieu d'un port pour différencier les sites Web. Dans un premier temps, il faut déclarer le nom de domaine dans le registrar (le service qui gère les noms de domaine) du lycée : [http://bdd.dombtsig.local](http://bdd.dombtsig.local).
+
+Puis maintenant, il faut modifier les fichiers de configuration des sites Web pour utiliser le nom de domaine au lieu du port. Par exemple, pour le site A, nous allons modifier le fichier `siteA.conf` :
+
+```apache
+<VirtualHost *:80>
+    ServerName sitea.votrelogin.etud
+    DocumentRoot /var/www/siteA
+
+    <Directory /var/www/siteA>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/siteA-error.log
+    CustomLog ${APACHE_LOG_DIR}/siteA-access.log combined
+</VirtualHost>
+```
+
+N'oubliez pas de remplacer `votrelogin` par votre login. Et surtout, n'oubliez pas de changer le port d'écoute de `8080` à `80`. Pour le site B, vous devez faire la même chose, mais avec le nom de domaine `siteb.votrelogin.etud`.
+
+Étape 3 : Redémarrer Apache
+
 ### Masquer les fichiers présents dans le dossier
 
 Si vous souhaitez que Apache ne liste pas les fichiers présents dans le dossier, vous pouvez ajouter la ligne suivante dans le fichier de configuration du site Web (à l'intérieur de la balise `<VirtualHost>`), exemple pour le site A :
@@ -609,6 +633,8 @@ Notre serveur Apache est maintenant configuré, et permet même de créer plusie
 - Sur le port `80`: Une page listant les différents sites Web (site A et site B).
 - Sur le port `8080` : Une page en PHP qui affiche le nom du serveur (centré au milieu de la page et en gras et gros).
 - Sur le port `8181` : Une page en PHP qui liste les fichiers présents dans le dossier `/var/www/siteB`.
+
+Si vous préférez utiliser 3 noms domaines, aucun problème, vous pouvez faire la même chose avec les noms de domaine `sitea.votrelogin.etud` et `siteb.votrelogin.etud`.
 
 ## Comment travailler avec le serveur ?
 
