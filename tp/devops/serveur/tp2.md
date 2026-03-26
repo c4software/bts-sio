@@ -385,12 +385,11 @@ Dans le fichier de configuration du site Web (par défaut c'est `/etc/apache2/si
     Options -Indexes +FollowSymLinks
     AllowOverride All
     Require all granted
-
-
-    <DirectoryMatch "^/.*/\.git/">
-        Require all denied
-    </DirectoryMatch>
 </Directory>
+
+<DirectoryMatch "^/.*/\.git/">
+    Require all denied
+</DirectoryMatch>
 ```
 
 Cette configuration permet de bloquer l'accès au dossier `.git` qui se trouve dans le dossier `/var/www/html`. Si un client essaie d'accéder à ce dossier, il recevra une erreur 403 (Forbidden).
