@@ -558,13 +558,13 @@ Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous p
 <VirtualHost *:9090>
  ServerAdmin webmaster@localhost
  DocumentRoot /var/www/html/phpmyadmin
- 
+
  <Directory /var/www/html/phpmyadmin>
      Options Indexes FollowSymLinks
-     AllowOverride All # 👋 
+     AllowOverride All # 👋
      Require all granted
  </Directory>
- 
+
  ErrorLog ${APACHE_LOG_DIR}/error.log
  CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
@@ -680,6 +680,24 @@ Pour MariaDB, vous le connaissez ?
     Il permet <b>d'héberger</b> une ou plusieurs bases de données.
   </p>
 </fieldset>
+
+---
+
+## Les droits d'accès
+
+Comme pour l'accès au serveur, nous allons privilégier l'approche du moindre privilège pour les accès à la base de données.
+
+- Un utilisateur par pour chaque application.
+- Un utilisateur avec des droits limités (SELECT, INSERT, UPDATE, DELETE).
+- Comme pour l'accès root interdit sur le serveur, interdit l'accès root à la base de données.
+
+---
+
+## Et PHPMyAdmin ?
+
+PhpMyAdmin est une application web qui permet de gérer une base de données MySQL / MariaDB via une interface graphique.
+
+Il ne faut pas l'exposer sur Internet, mais il peut être très utile en local ou sur l'environnement de développement.
 
 ---
 
