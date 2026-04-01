@@ -299,8 +299,8 @@ La première étape est d'ajouter le dépôt MySQL :
 ```bash
 sudo apt update
 sudo apt install gnupg -y
-sudo wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
-sudo dpkg -i mysql-apt-config_0.8.29-1_all.deb
+sudo wget https://dev.mysql.com/get/mysql-apt-config_0.8.36-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.36-1_all.deb
 ```
 
 Ce paquet va nous configurer les dépôts MySQL, voici les étapes à suivre :
