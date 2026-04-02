@@ -146,6 +146,10 @@ Pour les autres variables d'environnement :
 
 Et bien, maintenant, si vous avez tout bien configuré, à chaque fois que vous pousserez du code sur la branche `main` de votre dépôt Gitlab, Gitlab-CI va automatiquement se connecter à votre serveur web et déployer votre site internet en exécutant la commande `git pull` dans le répertoire de travail que vous avez spécifié.
 
+Vous pouvez tester cela en modifiant un fichier de votre site internet, en le committant et en le poussant sur la branche `main` de votre dépôt Gitlab. Vous devriez voir dans les pipelines de Gitlab que le job de déploiement s'exécute, et si tout se passe bien, votre site internet devrait être mis à jour avec les dernières modifications que vous avez poussées.
+
+![Pipeline Gitlab-CI](./res/ci-resultat.png)
+
 ## Conclusion
 
 Dans ce TP, nous avons vu comment mettre en place un déploiement continu pour un site internet en utilisant Gitlab-CI. Nous avons vu comment configurer Gitlab-CI pour se connecter à notre serveur web via SSH et déployer notre site internet à chaque fois que nous poussons du code sur la branche `main` de notre dépôt Gitlab.
