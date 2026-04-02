@@ -12,9 +12,11 @@ description: Dans ce TP nous allons voir comment mettre simplement en place un d
 
 Dans ce TP nous allons voir comment mettre simplement en place un déploiement continu pour un site internet. Nous allons utiliser Gitlab-CI pour effectuer l'automatisation du déploiement du code source de notre site internet.
 
-## Rappel sur Gitlab-CI
+::: tip Rappel sur Gitlab-CI
 
 Gitlab-CI est un outil d’intégration continue, il permet d’automatiser des tâches à chaque fois que vous poussez du code sur votre dépôt Git. Par exemple, à chaque fois que vous poussez du code, Gitlab-CI peut automatiquement lancer des tests unitaires, ou encore compiler votre application.
+
+:::
 
 ## Prérequis
 
