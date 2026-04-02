@@ -513,6 +513,7 @@ export default [
                         collapsed: true,
                         items: [
                             { text: "Utiliser Gitlab Pages", link: "/tp/ci/pages" },
+                            { text: "Déployer en continu", link: "/tp/ci/ci-simple" },
                             { text: "Tester en continue", link: "/tp/ci/ci-test/tests" },
                             { text: "Packager une application avec Docker", link: "/tp/ci/packager-docker" },
                             { text: "Compiler une application hybride avec Gitlab-CI", link: "/tp/ci/ci-hybride" },

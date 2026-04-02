@@ -611,6 +611,12 @@ systemctl restart apache2
 
 :::
 
+## Vous vous sentez l'âme d'un devops ?
+
+Je vous propose d'aller au bout du processus en configurant un déploiement continue de votre site en utilisant Gitlab-CI.
+
+[La suite par ici](/tp/ci/ci-simple.md)
+
 ## Conclusion
 
 Dans ce TP, nous avons vu comment installer MariaDB et PHPMyAdmin. Nous avons aussi vu comment configurer MariaDB pour qu'il accepte les connexions distantes. Vous pouvez maintenant garder ce serveur pour vous entraîner à créer des bases de données et à les gérer.
