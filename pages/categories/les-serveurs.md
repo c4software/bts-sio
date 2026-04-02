@@ -48,3 +48,16 @@ Connaitre le fonctionnement des serveurs est indispensable pour comprendre le fo
 
 - [Déploiement avec Netlify](/tp/ci/jamstack/netlify-portfolio.md)
 - [Déploiement avec Gitlab Pages](/tp/ci/pages-portfolio.md)
+
+## CI/CD
+
+- [Utiliser Gitlab Pages](/tp/ci/pages.md)
+- [Déployer en continu](/tp/ci/ci-simple.md)
+- [Tester en continue](/tp/ci/ci-test/tests.md)
+- [Packager une application avec Docker](/tp/ci/packager-docker.md)
+- [Compiler une application hybride avec Gitlab-CI](/tp/ci/ci-hybride.md)
+- [Installation & Configuration d'un Runner Gitlab](/tp/ci/gitlab/runner.md)
+- [SonarQube](/tp/devops/sonarqube/sonarqube.md)
+- [Intégration continue avec Laravel](/tp/ops/deployer-laravel-ci.md)
+- [Déploiement automatique avec Kamal](/tp/docker/kamal.md)
+- [Déploiement avec Dokploy](/tp/devops/paas/dokploy.md)

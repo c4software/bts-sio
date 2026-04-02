@@ -95,9 +95,9 @@ Voici les variables à définir :
 - `SSH_USER` : Le nom d'utilisateur que Gitlab utilisera pour se connecter à votre serveur web.
 - `WORK_DIR` : Le répertoire de travail sur votre serveur web où votre site internet est hébergé.
 
-![Step 1](./res/ci_step1.png)
+![Step 1](./res/ci_step3.png)
 ![Step 2](./res/ci_step2.png)
-![Step 3](./res/ci_step3.png)
+![Step 3](./res/ci_step1.png)
 
 ## La clef SSH d'accès à votre serveur web
 
