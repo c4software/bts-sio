@@ -30,13 +30,13 @@ La réalisation de ce TP sera évaluée.
   - Configuration SSH sécurisée (`PermitRootLogin no`, `PasswordAuthentication no`) : **2 points**.
 - **Partie Web (5 points)**
   - Serveur Apache + PHP fonctionnels (bonne version) : **1 point**.
-  - Site web 1 (Blog port 80) fonctionnel et déployé via Git : **2 points**.
-  - Site web 2 (PHP port 8080) fonctionnel avec contenu dynamique : **2 points**.
+  - Site web 1 (Blog) fonctionnel et déployé via Git : **2 points**.
+  - Site web 2 (PHP) fonctionnel avec contenu dynamique : **2 points**.
 - **Partie Base de Données (6 points)**
   - MySQL installé et fonctionnel : **1 point**.
   - Base de données `tp5` créée et script SQL importé : **1 point**.
   - Utilisateur `tp5` créé avec le bon mot de passe et privilèges sur la BDD `tp5` : **2 points**.
-  - PHPMyAdmin installé et accessible sur le port 9090 : **2 points**.
+  - PHPMyAdmin installé et accessible : **2 points**.
 - **Documentation & Restitution (4 points)**
   - Fourniture d'un rapport illustrant les étapes clés (commandes, captures d'écran) : **2 points**.
   - Fourniture de la fiche serveur complète : **2 points**.
@@ -100,22 +100,76 @@ Ici pas de procédure pas-à-pas. Vous devez réaliser les éléments suivants e
    - Installer PHP 8 (la version la plus récente disponible sur le dépôt Ondřej Sury, comme vu en TP2/TP3).
    - Configurer Apache pour utiliser PHP-FPM.
    - Redémarrer Apache.
-2. **Configuration des Sites (Virtual Hosts basés sur les ports) :**
-   - Configurer Apache pour écouter sur les ports 80, 8080 et 9090 (modifier `/etc/apache2/ports.conf`).
-   - Créer les répertoires racines pour les deux sites (ex: `/var/www/site_port_80`, `/var/www/site_port_8080`). Adapter les permissions si nécessaire pour Apache.
-   - Créer et activer les fichiers de configuration VirtualHost dans `/etc/apache2/sites-available/`:
-     - Un VirtualHost pour le port 80 pointant vers le répertoire du blog.
-     - Un VirtualHost pour le port 8080 pointant vers le répertoire du site PHP.
-     - Activer les VirtualHosts avec `a2ensite` (ex: `a2ensite site_port_80.conf` et `a2ensite site_port_8080.conf`).
-   - Redémarrer Apache après modification de la configuration.
+2. **Configuration des Sites (Virtual Hosts basés sur les noms de domaine) :**
+    - Créer les répertoires racines pour les deux sites (ex: `/var/www/blog`, `/var/www/php`). Adapter les permissions si nécessaire pour Apache.
+    - Créer et activer les fichiers de configuration VirtualHost dans `/etc/apache2/sites-available/` :
+      - Un VirtualHost pour `blog.<votre-login>.etud` pointant vers le répertoire du blog (port 80).
+      - Un VirtualHost pour `php.<votre-login>.etud` pointant vers le répertoire du site PHP (port 80).
+      - Activer les VirtualHosts avec `a2ensite` (ex: `a2ensite blog.conf` et `a2ensite php.conf`).
+    - Redémarrer Apache après modification de la configuration.
+
+::: details Configuration VirtualHost par nom de domaine
+
+Exemple pour le blog (`/etc/apache2/sites-available/blog.conf`) :
+
+```apache
+<VirtualHost *:80>
+    ServerName blog.<votre-login>.etud
+    DocumentRoot /var/www/blog
+
+    <Directory /var/www/blog>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/blog-error.log
+    CustomLog ${APACHE_LOG_DIR}/blog-access.log combined
+</VirtualHost>
+```
+
+Exemple pour le site PHP (`/etc/apache2/sites-available/php.conf`) :
+
+```apache
+<VirtualHost *:80>
+    ServerName php.<votre-login>.etud
+    DocumentRoot /var/www/php
+
+    <Directory /var/www/php>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/php-error.log
+    CustomLog ${APACHE_LOG_DIR}/php-access.log combined
+</VirtualHost>
+```
+
+N'oubliez pas de remplacer `<votre-login>` par votre login. Les noms de domaine doivent être réservés via le registrar du lycée : [http://bdd.dombtsig.local](http://bdd.dombtsig.local).
+:::
+
+::: details Alternative : VirtualHost par ports (méthode vue dans les TP précédents)
+
+Si vous préférez utiliser la méthode par ports (comme dans les TP2/TP4), vous pouvez configurer Apache pour écouter sur les ports 80, 8080 et 9090 (modifier `/etc/apache2/ports.conf`) et créer des VirtualHost avec des ports différents :
+
+```apache
+<VirtualHost *:8080>
+    DocumentRoot /var/www/site_port_8080
+    # ...
+</VirtualHost>
+```
+:::
+
 3. **Déploiement des Sites :**
-   - **Site port 80 :** Déployer votre blog (réalisé en début de formation) dans le répertoire correspondant via **Git** (`git clone` depuis votre dépôt distant). _Bonus : Mettre en place un cron pour automatiser le `git pull` (à documenter pour le valoriser)._
-   - **Site port 8080 :** Créer un fichier `index.php` dans le répertoire correspondant. Ce fichier doit afficher dynamiquement :
-     - Un titre principal (`<h1>`) : "Bienvenue sur mon site TP5".
-     - Un sous-titre (`<h2>`) : La date et l'heure actuelles du serveur (format libre mais lisible).
-     - Une ligne horizontale (`<hr>`).
-     - Un paragraphe (`<p>`) : "Bonjour, je suis `<VOTRE-NOM>` et mon serveur s'appelle `<NOM_SERVEUR>` (IP: `<IP_SERVEUR>`)". Utiliser les fonctions PHP pour obtenir le nom d'hôte et l'IP du serveur. Vous pouvez utiliser `gethostname()` pour le nom d'hôte et `$_SERVER['SERVER_ADDR']` pour l'adresse IP.
-     - Un pied de page (`<footer>`) : "TP5 Réalisé par `<VOTRE-NOM>` ainsi que le nom et l'adresse IP de votre serveur".
+    - **Site Blog :** Déployer votre blog (réalisé en début de formation) dans le répertoire correspondant via **Git** (`git clone` depuis votre dépôt distant). _Bonus : Mettre en place un cron pour automatiser le `git pull` (à documenter pour le valoriser)._
+    - **Site PHP :** Créer un fichier `index.php` dans le répertoire correspondant. Ce fichier doit afficher dynamiquement :
+      - Un titre principal (`<h1>`) : "Bienvenue sur mon site TP5".
+      - Un sous-titre (`<h2>`) : La date et l'heure actuelles du serveur (format libre mais lisible).
+      - Une ligne horizontale (`<hr>`).
+      - Un paragraphe (`<p>`) : "Bonjour, je suis `<VOTRE-NOM>` et mon serveur s'appelle `<NOM_SERVEUR>` (IP: `<IP_SERVEUR>`)". Utiliser les fonctions PHP pour obtenir le nom d'hôte et l'IP du serveur. Vous pouvez utiliser `gethostname()` pour le nom d'hôte et `$_SERVER['SERVER_ADDR']` pour l'adresse IP.
+      - Un pied de page (`<footer>`) : "TP5 Réalisé par `<VOTRE-NOM>` ainsi que le nom et l'adresse IP de votre serveur".
+      - Un tableau contenant l'ensemble des valeurs de `$_SERVER` (afficher les clés et les valeurs dans un tableau HTML).
 
 ::: details Pour le PHP…
 
@@ -147,10 +201,33 @@ $nom = gethostname(); // Pour obtenir le nom de votre serveur
    - Quitter MySQL.
 
 3. **Installation PHPMyAdmin :**
-   - Installer PHPMyAdmin (la méthode manuelle vue en TP3 est recommandée : télécharger l'archive, décompresser dans `/var/www/`, renommer le dossier en `phpmyadmin`).
-   - Créer et activer un fichier de configuration VirtualHost Apache pour PHPMyAdmin écoutant sur le **port 9090** et pointant vers le dossier d'installation de PHPMyAdmin.
-   - Redémarrer Apache.
-   - Tester l'accès à `http://<VOTRE_IP>:9090`. Vous devriez pouvoir vous connecter avec l'utilisateur `tp5` et voir la base de données `tp5` et ses tables.
+    - Installer PHPMyAdmin (la méthode manuelle vue en TP3 est recommandée : télécharger l'archive, décompresser dans `/var/www/`, renommer le dossier en `phpmyadmin`).
+    - Créer et activer un fichier de configuration VirtualHost Apache pour PHPMyAdmin écoutant sur le **port 80** avec le nom de domaine `phpmyadmin.<votre-login>.etud` et pointant vers le dossier d'installation de PHPMyAdmin.
+    - Redémarrer Apache.
+    - Tester l'accès à `http://phpmyadmin.<votre-login>.etud`. Vous devriez pouvoir vous connecter avec l'utilisateur `tp5` et voir la base de données `tp5` et ses tables.
+
+::: details Configuration VirtualHost PHPMyAdmin
+
+Exemple (`/etc/apache2/sites-available/phpmyadmin.conf`) :
+
+```apache
+<VirtualHost *:80>
+    ServerName phpmyadmin.<votre-login>.etud
+    DocumentRoot /var/www/phpmyadmin
+
+    <Directory /var/www/phpmyadmin>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/phpmyadmin-error.log
+    CustomLog ${APACHE_LOG_DIR}/phpmyadmin-access.log combined
+</VirtualHost>
+```
+
+N'oubliez pas de remplacer `<votre-login>` par votre login.
+:::
 
 ::: tip Alternatives à PHPMyAdmin
 Rappelez-vous (vu en TP3 et dans le cours) que PHPMyAdmin n'est qu'une interface web. Pour administrer une base de données, on peut aussi utiliser :
@@ -211,6 +288,8 @@ Rappelez-vous (vu en TP3 et dans le cours) que PHPMyAdmin n'est qu'une interface
    ALTER TABLE `commande` ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id`);
    ```
 
+   **Bonus**: Ajouter dans votre site PHP une page affichant l'ensemble des utilisateurs.
+
 ## Autoriser l'accès pour l'évaluation
 
 Pour évaluer votre TP, je dois avoir accès à votre serveur **via SSH avec mon utilisateur**. Ajoutez ma clé publique à votre serveur pour **votre utilisateur standard** (pas root).
@@ -235,16 +314,17 @@ Pour restituer le projet, merci de me fournir les éléments suivants via le for
 2. **Fiche serveur :** Complète et à jour.
 3. **Rapport illustré :**
    - Documentez les étapes clés avec les commandes utilisées et/ou des captures d'écran pertinentes.
+   - Les bonus (cron, réflexion sur les privilèges) seront valorisés que si ils sont correctement documentés.
    - **Incluez impérativement :**
-     - La configuration réseau (IP/masque/passerelle/DNS).
-     - Les commandes/preuves de la configuration SSH sécurisée (`PermitRootLogin no`, `PasswordAuthentication no`).
-     - La configuration des VirtualHosts Apache (contenu des fichiers `.conf`).
-     - La preuve du déploiement Git (ex: `git log` ou capture d'écran du site).
-     - Une capture d'écran du site PHP sur le port 8080 affichant les informations dynamiques.
-     - Une capture d'écran de PHPMyAdmin montrant les tables `utilisateur` et `commande` dans la base `tp5`.
-     - **Une brève réflexion (2-3 lignes) sur les implications de sécurité des privilèges `GRANT ALL PRIVILEGES ON tp5.*` accordés à l'utilisateur `tp5`.**
-     - **Un exemple de ligne de log d'accès Apache (`access.log`) pour une requête vers le site du port 80 ou 8080.**
-     - Si bonus cron : la ligne de cron ajoutée.
+      - La configuration réseau (IP/masque/passerelle/DNS).
+      - Les commandes/preuves de la configuration SSH sécurisée (`PermitRootLogin no`, `PasswordAuthentication no`).
+      - La configuration des VirtualHosts Apache (contenu des fichiers `.conf`).
+      - La preuve du déploiement Git (ex: `git log` ou capture d'écran du site).
+      - Une capture d'écran du site PHP (`php.<votre-login>.etud`) affichant les informations dynamiques.
+      - Une capture d'écran de PHPMyAdmin montrant les tables `utilisateur` et `commande` dans la base `tp5`.
+      - **Une brève réflexion (2-3 lignes) sur les implications de sécurité des privilèges `GRANT ALL PRIVILEGES ON tp5.*` accordés à l'utilisateur `tp5`.**
+      - **Un exemple de ligne de log d'accès Apache (`access.log`) pour une requête vers le site blog ou PHP.**
+      - Si bonus cron : la ligne de cron ajoutée.
 
 Le rendu se fera via le formulaire suivant : [Rendre le TP](https://forms.gle/1U7j3Wwku1gpNMDf6)
 
@@ -288,15 +368,15 @@ do
     echo -n "  - SSHD PasswordAuthentication no ? "
     ssh_execute $user $target_ip "sudo grep -E '^PasswordAuthentication\s+no' /etc/ssh/sshd_config" && echo "OK" || echo "KO"
 
-    # Vérification web
-    echo -n "  - Site Port 80 (Blog) accessible ? "
-    curl -s --head http://$target_ip:80 | grep "HTTP/1.[01] [23].." && echo "OK" || echo "KO"
-    echo -n "  - Site Port 8080 (PHP) accessible ? "
-    curl -s --head http://$target_ip:8080 | grep "HTTP/1.[01] [23].." && echo "OK" || echo "KO"
-    echo -n "  - Site Port 8080 contient H1, H2, P, Footer ? "
-    curl -s http://$target_ip:8080 | grep -q '<h1>' && curl -s http://$target_ip:8080 | grep -q '<h2>' && curl -s http://$target_ip:8080 | grep -q '<p>' && curl -s http://$target_ip:8080 | grep -q '<footer>' && echo "OK" || echo "KO"
-    echo -n "  - PHPMyAdmin Port 9090 accessible ? "
-    curl -s --head http://$target_ip:9090 | grep "HTTP/1.[01] [23].." && echo "OK" || echo "KO"
+    # Vérification web (vérification de la configuration Apache)
+    echo -n "  - VirtualHost Blog configuré ? "
+    ssh_execute $user $target_ip "grep -q 'ServerName blog' /etc/apache2/sites-available/*.conf && grep -q 'DocumentRoot' /etc/apache2/sites-available/*.conf" && echo "OK" || echo "KO"
+    echo -n "  - VirtualHost PHP configuré ? "
+    ssh_execute $user $target_ip "grep -q 'ServerName php' /etc/apache2/sites-available/*.conf && grep -q 'DocumentRoot' /etc/apache2/sites-available/*.conf" && echo "OK" || echo "KO"
+    echo -n "  - VirtualHost PHPMyAdmin configuré ? "
+    ssh_execute $user $target_ip "grep -q 'ServerName phpmyadmin' /etc/apache2/sites-available/*.conf && grep -q 'DocumentRoot' /etc/apache2/sites-available/*.conf" && echo "OK" || echo "KO"
+    echo -n "  - Les sites sont activés ? "
+    ssh_execute $user $target_ip "test -L /etc/apache2/sites-enabled/blog.conf && test -L /etc/apache2/sites-enabled/php.conf" && echo "OK" || echo "KO"
 
     # Vérifier la base de données MySQL
     echo -n "  - Connexion BDD user tp5 OK ? "
