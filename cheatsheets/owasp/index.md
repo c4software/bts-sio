@@ -512,6 +512,92 @@ if (preg_match('/^https?:\/\/shop-vdt\.com\//', $_GET['goto'])) {
 
 L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les produire involontairement… Et surtout avec OWASP on parle de **vulnérabilité, et non de risque**.
 
+## La gestion des secrets
+
+::: danger Ne jamais écrire en dur
+Les clés API, mots de passe de BDD, tokens et certificats ne doivent **jamais** figurer dans le code source.
+:::
+
+- **Variables d'environnement** : Utiliser un fichier `.env` en local (hors git) et des variables d'environnement sur le serveur.
+- **Ne pas versionner** : Ajouter `.env` au `.gitignore`. Un secret commité est un secret exposé.
+- **Rotation** : Changer régulièrement les mots de passe et clés API en cas de fuite.
+- **Vaults** : Pour les projets avancés, utiliser un coffre-fort (HashiCorp Vault, AWS Secrets Manager, Azure Key Vault).
+
+```php
+// Mauvais
+$apiKey = "sk-1234567890abcdef";
+
+// Bon
+$apiKey = getenv('API_KEY');
+// ou via une librairie comme vlucas/phpdotenv
+$apiKey = $_ENV['API_KEY'];
+```
+
+::: tip Vérifier avant de commit
+Utilisez des outils comme `git-secrets`, `GitLeaks` ou `TruffleHog` pour scanner l'historique Git.
+:::
+
+## Sécuriser les API et les tokens
+
+Quelques règles d'or quand on expose ou consomme une API :
+
+- **JWT** : Ne stockez jamais d'informations sensibles dans le payload (il est juste encodé en Base64). Signez-le avec une clé forte, définissez une expiration courte et utilisez des refresh tokens.
+- **Rate Limiting** : Protégez vos endpoints d'authentification et d'API contre le brute-force (ex. `throttle` de Laravel, middleware Express).
+- **CORS** : Ne laissez jamais `Access-Control-Allow-Origin: *` sur une API privée. Restreignez aux domaines autorisés.
+- **Ne pas passer de secrets en GET** : Les paramètres d'URL restent dans l'historique du navigateur et les logs du serveur.
+
+```php
+// Mauvais : token dans l'URL
+// https://api.exemple.com/user?token=eyJhbGci...
+
+// Bon : token dans le header Authorization
+$headers = getallheaders();
+$token = str_replace('Bearer ', '', $headers['Authorization'] ?? '');
+```
+
+::: warning Stocker un JWT
+Ne stockez pas un JWT dans le `localStorage` si vous pouvez l'éviter (risque XSS). Préférez un cookie `HttpOnly` / `Secure`.
+:::
+
+## Les headers de sécurité HTTP
+
+Les headers HTTP sont le premier rempart côté navigateur. Ils se configurent côté serveur.
+
+| Header | Rôle |
+|---|---|
+| `Content-Security-Policy` (CSP) | Empêche l'exécution de scripts inline et limite les sources de contenu (protection XSS). |
+| `Strict-Transport-Security` (HSTS) | Force le navigateur à n'utiliser que HTTPS. |
+| `X-Frame-Options` | Empêche le clickjacking (ex. `DENY`, `SAMEORIGIN`). |
+| `X-Content-Type-Options` | Empêche le navigateur de deviner le type MIME (`nosniff`). |
+| `Referrer-Policy` | Contrôle la fuite d'information dans l'en-tête `Referer`. |
+
+```php
+// Exemple en PHP
+header("Content-Security-Policy: default-src 'self'; script-src 'self'");
+header("Strict-Transport-Security: max-age=31536000; includeSubDomains");
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header("Referrer-Policy: strict-origin-when-cross-origin");
+```
+
+### Les cookies sécurisés
+
+Quand vous posez un cookie de session :
+
+- `HttpOnly` : Empêche JavaScript d'y accéder (protection XSS).
+- `Secure` : N'envoie le cookie que sur HTTPS.
+- `SameSite=Strict` (ou `Lax`) : Protège contre le CSRF en ne l'envoyant pas depuis un autre site.
+
+```php
+setcookie('session', $token, [
+    'expires' => time() + 3600,
+    'path' => '/',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+```
+
 ## Les outils OWASP
 
 - [OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
@@ -520,6 +606,46 @@ L'idée d'OWASP, c'est de former pour comprendre les failles afin de ne plus les
 - [OWASP Testing Guide (Guide de test de sécurité)](https://owasp.org/www-project-web-security-testing-guide/)
 - [OWASP Code Review Guide (Méthode d'audit de code)](https://owasp.org/www-project-code-review-guide/)
 - [OWASP Dependency-Check (Vérification des composants vulnérables)](https://owasp.org/www-project-dependency-check/)
+
+## DevSecOps et CI/CD sécurisé
+
+La sécurité ne se fait pas qu'en production. Il faut l'intégrer dès la phase de développement (_shift-left_).
+
+- **Analyse statique (SAST)** : SonarQube, Semgrep, CodeQL analysent le code à la recherche de failles sans l'exécuter.
+- **Scan de dépendances (SCA)** : Snyk, Dependabot, OWASP Dependency-Check vérifient que vous n'utilisez pas de librairies vulnérables.
+- **Scan de secrets** : GitLeaks ou TruffleHog dans la pipeline bloquent un commit contenant une clé API.
+- **Tests de sécurité automatisés** : ZAP en mode headless dans votre CI pour détecter les régressions.
+
+```yaml
+# Exemple conceptuel de pipeline CI
+stages:
+  - build
+  - test
+  - security
+
+sast:
+  stage: security
+  script:
+    - sonar-scanner
+
+dependency_check:
+  stage: security
+  script:
+    - dependency-check.sh --project MonApp --scan .
+
+secret_detection:
+  stage: security
+  script:
+    - gitleaks detect --source .
+```
+
+::: tip Le pré-commit hook
+Avant même la CI, bloquez les secrets en local :
+```bash
+# .git/hooks/pre-commit
+gitleaks protect --staged
+```
+:::
 
 ## La formation
 

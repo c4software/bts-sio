@@ -66,12 +66,12 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ### Des sites à surveiller
 
-- [US CERT (LA SOURCE)](https://www.us-cert.gov/)
-- [The Hacker News](http://thehackernews.com/)
-- Zataz
-- [Undernews](https://www.undernews.fr/)
+- [CISA (anciennement US-CERT)](https://www.cisa.gov/)
+- [The Hacker News](https://thehackernews.com/)
+- [Zataz](https://www.zataz.com/)
 - [Reddit NetSec](https://www.reddit.com/r/netsec/)
-- Next INpact (~Payant)
+- [Next INpact](https://www.nextinpact.com/) (~payant)
+- [CERT-FR (ANSSI)](https://www.cert.ssi.gouv.fr/)
 - Google Actu
 
 Vous en avez d’autres en tête ?
@@ -424,10 +424,11 @@ Les gens sont souvent trop confiants.
 ### Les outils autour d’OWASP
 
 - [OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
-- WebGoat (Formation, Java + Web)
-- WebScarab (Audit)
-- OWASP Testing guide (Guide pour voir le niveau de sécu)
-- OWASP Code Review guide (Méthode d’audit)
+- [WebGoat (Formation, Java)](https://owasp.org/www-project-webgoat/)
+- [ZAP - Zed Attack Proxy (Audit, remplace WebScarab)](https://www.zaproxy.org/)
+- [OWASP Testing Guide (Guide de test de sécurité)](https://owasp.org/www-project-web-security-testing-guide/)
+- [OWASP Code Review Guide (Méthode d'audit de code)](https://owasp.org/www-project-code-review-guide/)
+- [OWASP Dependency-Check (Vérification des composants vulnérables)](https://owasp.org/www-project-dependency-check/)
 
 ---
 
@@ -742,6 +743,152 @@ http://www.shop-vdt.com/login.php?goto=evil.com/login
 ```
 
 [En vidéo](https://www.youtube.com/watch?v=ibFs8FZxzu4)
+
+---
+
+### La gestion des secrets
+
+::: danger Ne jamais écrire en dur
+Les clés API, mots de passe de BDD, tokens et certificats ne doivent **jamais** figurer dans le code source.
+:::
+
+- **Variables d'environnement** : Utiliser un fichier `.env` en local (hors git) et des variables d'environnement sur le serveur.
+- **Ne pas versionner** : Ajouter `.env` au `.gitignore`. Un secret commité est un secret exposé.
+- **Rotation** : Changer régulièrement les mots de passe et clés API en cas de fuite.
+
+---
+
+```php
+// Mauvais
+$apiKey = "sk-1234567890abcdef";
+
+// Bon
+$apiKey = getenv('API_KEY');
+```
+
+---
+
+#### Vérifier avant de commit
+
+Utilisez des outils comme **GitLeaks** ou **TruffleHog** pour scanner l'historique Git.
+
+---
+
+### Sécuriser les API et les tokens
+
+- **JWT** : Ne stockez jamais d'informations sensibles dans le payload (Base64). Signez-le avec une clé forte et définissez une expiration courte.
+- **Rate Limiting** : Protégez vos endpoints d'authentification et d'API contre le brute-force.
+- **CORS** : Ne laissez jamais `Access-Control-Allow-Origin: *` sur une API privée.
+- **Ne jamais passer de secrets en GET** : Les paramètres d'URL restent dans l'historique du navigateur et les logs serveur.
+
+---
+
+```php
+// ❌ Token dans l'URL
+// https://api.exemple.com/user?token=eyJhbGci...
+
+// Token dans le header Authorization
+$token = str_replace('Bearer ', '', $headers['Authorization'] ?? '');
+```
+
+---
+
+#### Stocker un JWT
+
+`localStorage` (risque XSS)  
+Cookie `HttpOnly` + `Secure` + `SameSite`
+
+---
+
+### Les headers de sécurité HTTP
+
+Premier rempart côté navigateur, ils se configurent côté serveur.
+
+| Header | Rôle |
+|---|---|
+| `Content-Security-Policy` (CSP) | Empêche l'exécution de scripts inline et limite les sources de contenu. |
+| `Strict-Transport-Security` (HSTS) | Force le navigateur à n'utiliser que HTTPS. |
+| `X-Frame-Options` | Empêche le clickjacking (`DENY`, `SAMEORIGIN`). |
+| `X-Content-Type-Options` | Empêche le navigateur de deviner le type MIME (`nosniff`). |
+
+---
+
+```php
+header("Content-Security-Policy: default-src 'self'; script-src 'self'");
+header("Strict-Transport-Security: max-age=31536000; includeSubDomains");
+header("X-Frame-Options: DENY");
+header("X-Content-Type-Options: nosniff");
+header("Referrer-Policy: strict-origin-when-cross-origin");
+```
+
+---
+
+### Les cookies sécurisés
+
+Quand vous posez un cookie de session :
+
+- `HttpOnly` : Empêche JavaScript d'y accéder (protection XSS).
+- `Secure` : N'envoie le cookie que sur HTTPS.
+- `SameSite=Strict` (ou `Lax`) : Protège contre le CSRF.
+
+---
+
+```php
+setcookie('session', $token, [
+    'expires' => time() + 3600,
+    'path' => '/',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+```
+
+---
+
+### DevSecOps et CI/CD sécurisé
+
+Intégrer la sécurité dès la phase de développement (_shift-left_).
+
+- **SAST** : SonarQube, Semgrep, CodeQL (analyse statique du code).
+- **SCA** : Snyk, Dependabot, OWASP Dependency-Check (dépendances vulnérables).
+- **Scan de secrets** : GitLeaks, TruffleHog dans la pipeline.
+- **Tests sécurité** : ZAP en mode headless pour détecter les régressions.
+
+---
+
+```yaml
+# Exemple conceptuel de pipeline CI
+stages:
+  - build
+  - test
+  - security
+
+sast:
+  stage: security
+  script:
+    - sonar-scanner
+
+dependency_check:
+  stage: security
+  script:
+    - dependency-check.sh --project MonApp --scan .
+
+secret_detection:
+  stage: security
+  script:
+    - gitleaks detect --source .
+```
+
+---
+
+#### Pre-commit hook
+
+Bloquer les secrets **avant même la CI** :
+
+```bash
+# .git/hooks/pre-commit
+gitleaks protect --staged
+```
 
 ---
 
