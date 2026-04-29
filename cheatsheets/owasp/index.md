@@ -24,7 +24,13 @@ Prévenir plutôt que guérir… Quelques sites à surveiller :
 Vous êtes la première ligne d’informations !
 :::
 
-## Les grandes catégories à connaître
+## Les grande catégories 
+
+- **Confidentialité** : Risque de divulgation d’informations sensibles (ex. fuite de données personnelles).
+- **Intégrité** : Risque de modification non autorisée de données ou de code (ex. injection SQL, XSS).
+- **Disponibilité** : Risque de rendre un service indisponible (ex. attaque DDoS, ransomware).
+
+## Les grandes catégories de failles
 
 - Les mots de passe (multi-facteurs, complexité, hashage).
 - Les failles dans le code (injections, XSS, CSRF, etc.).

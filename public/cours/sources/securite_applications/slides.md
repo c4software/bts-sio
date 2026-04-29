@@ -78,6 +78,14 @@ Vous en avez d’autres en tête ?
 
 ---
 
+### 3 Grandes catégories de risques
+
+- **Confidentialité** : Risque de divulgation d’informations sensibles (ex. fuite de données personnelles).
+- **Intégrité** : Risque de modification non autorisée de données ou de code (ex. injection SQL, XSS).
+- **Disponibilité** : Risque de rendre un service indisponible (ex. attaque DDoS, ransomware).
+
+---
+
 ### Le prix de la sécurité
 
 - Impact fonctionnel
