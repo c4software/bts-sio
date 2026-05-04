@@ -1,74 +1,65 @@
 ---
-description: Dans ce TP nous allons voir comment créer une vraie arborescence de service avec Docker. Dans une application réelle, il n’est pas rare d’avoir plusieurs technologies (ou plusieurs « services ») pour assurer le bon fonctionnement d’un système dans son ensemble (Exemple pour faire fonctionner mon application j’ai besoin de MySQL, PHP, et d’un serveur Web pour l’interface client).
+description: Dans ce TP nous allons voir comment créer une vraie arborescence de service avec Docker. Dans une application réelle, il n'est pas rare d'avoir plusieurs technologies (ou plusieurs « services ») pour assurer le bon fonctionnement d'un système dans son ensemble (Exemple : pour faire fonctionner mon application j'ai besoin de MySQL, PHP, et d'un serveur Web pour l'interface client).
 ---
 
-# Le Docker Compose
+# Docker Compose
 
 ## Introduction
 
-Dans ce TP nous allons voir comment créer une vraie arborescence de service avec Docker. Dans une application réelle, il n’est pas rare d’avoir plusieurs technologies (ou plusieurs « services ») pour assurer le bon fonctionnement d’un système dans son ensemble (Exemple pour faire fonctionner mon application j’ai besoin de MySQL, PHP, et d’un serveur Web pour l’interface client).
+Dans ce TP nous allons voir comment créer une vraie arborescence de services avec Docker. Dans une application réelle, il n'est pas rare d'avoir plusieurs technologies (ou plusieurs « services ») pour assurer le bon fonctionnement d'un système dans son ensemble (exemple : pour faire fonctionner mon application j'ai besoin de MySQL, PHP, et d'un serveur Web pour l'interface client).
 
-C’est dans des cas comme celui-ci que nous allons utiliser Docker-Compose. Avec Docker compose-nous allons créer une architecture multiconteneur que l’on peut appeler « stack ». Cette Stack sera :
+C'est dans des cas comme celui-ci que nous allons utiliser Docker Compose. Avec Docker Compose, nous allons créer une architecture multi-conteneurs que l'on peut appeler « stack ». Cette stack sera :
 
-- Autonome (car prête à être « mise en place » partout, quelle que soit la plateforme cible).
-- Pré-paramètrée (tout est dans le fichier `docker-compose.yml`).
-- Isolé (tous les services ne sont pas forcément accessibles du public, mais sont accessibles par vos autres applications).
-- Administrable simplement grâce au cli (`docker compose up/down/start/stop`).
+- **Autonome** — prête à être déployée partout, quelle que soit la plateforme cible.
+- **Pré-paramétrée** — tout est décrit dans le fichier `docker-compose.yml`.
+- **Isolée** — tous les services ne sont pas forcément accessibles depuis l'extérieur, mais peuvent communiquer entre eux.
+- **Administrable simplement** grâce au CLI (`docker compose up/down/start/stop`).
 
-## Installer Docker Compose
+## Docker Compose est déjà installé
 
-Docker Compose est fourni directement par les développeurs de Docker, cependant sous Linux il n’est pas inclus dans l’installation de base des paquets. Pour l’installer, rendez-vous sur la [documentation de Docker](https://docs.docker.com/compose/install/#install-compose).
+Docker Compose est fourni directement par les développeurs de Docker. Depuis Docker Desktop (Windows, macOS) et depuis l'installation via les dépôts officiels sous Linux, il est **inclus par défaut** sous la forme du plugin `docker-compose-plugin`. Vous l'utilisez avec la commande `docker compose` (sans tiret).
 
-Sous Windows et OSX pas de soucis, Docker Compose est **inclus** dans l’installation de base.
+::: tip `docker-compose` vs `docker compose`
+L'ancienne commande `docker-compose` (avec tiret) correspondait à un outil séparé, aujourd'hui déprécié. Utilisez toujours `docker compose` (sans tiret), qui est le plugin intégré à Docker.
+:::
 
-## Structure d’un Docker Compose
+## Structure d'un fichier docker-compose.yml
 
-Un fichier `docker-compose.yml` utilise la syntaxe yaml. Pour rappel un fichier Yaml c’est :
+Un fichier `docker-compose.yml` utilise la syntaxe YAML. Pour rappel, YAML est un format de sérialisation de données conçu pour être lisible par des humains. Quelques règles essentielles :
 
-> La syntaxe du flux YAML est relativement simple, efficiente, moins verbeuse que du XML, moins compacte cependant que du CSV. Elle a été établie pour être le plus lisible possible par des humains, tout en pouvant être mise en correspondance facilement avec les types de données précités, communs dans les langages de haut niveau. À ces langages il emprunte certaines notations.
-> – Les commentaires sont signalés par le signe dièse (#) et se prolongent sur toute la ligne. Si par contre le dièse apparaît dans une chaîne, il signifie alors un nombre littéral.
-> – Une valeur nulle s’écrit avec le caractère tilde (~)
-> Il est possible d’inclure une syntaxe JSON dans une syntaxe YAML.
-> – Les éléments de listes sont dénotés par le tiret (-), suivi d’une espace, à raison d’un élément par ligne.
-> Les tableaux sont de la forme clé : valeur, à raison d’un couple par ligne.
-> – Les scalaires peuvent être entourés de guillemets doubles ("), ou simples ('), sachant qu’un guillemet s’échappe avec un antislash (\), alors qu’un apostrophe s’échappe avec un autre apostrophe4. Ils peuvent de plus être représentés par un bloc indenté avec des modificateurs facultatifs pour conserver (|) ou éliminer (>) les retours à la ligne.
->
-> - Plusieurs documents rassemblés dans un seul fichier sont séparés par trois traits d'union (---) ; trois points (…) optionnels marquent la fin d’un document dans un fichier.
->   – Les nœuds répétés sont initialement signalés par une esperluette (&) puis sont référencés avec un astérisque (\*) ; JSON, un langage concurrent de YAML, est compatible avec la syntaxe de JavaScript, mais ne supporte pas cette notion de référence.
->   – L’indentation, par des espaces, manifeste une arborescence.
+- L'indentation (par des espaces, jamais des tabulations) définit la hiérarchie.
+- Les listes sont dénotées par un tiret (`-`) suivi d'une espace.
+- Les paires clé/valeur s'écrivent `clé: valeur`.
+- Les commentaires commencent par `#`.
 
-Source : Wikipedia
-
-Voilà un exemple de Docker Compose :
+Voilà un exemple de fichier Docker Compose :
 
 ```yaml
-services :
-  web :
+services:
+  web:
     build: .
-    ports :
-     - "5000:5000"
-  redis :
-    image : "redis:alpine"
+    ports:
+      - "5000:5000"
+  redis:
+    image: "redis:alpine"
 ```
 
-Dans ce fichier, nous définissons 2 services.
+Dans ce fichier, nous définissons 2 services.
 
-Le premier nommé Web fait référence à un fichier DockerFile présent dans le même dossier que le `docker-compose.yml`. Le service en question expose au client final le port `5000`.
+Le premier, nommé `web`, fait référence à un fichier `Dockerfile` présent dans le même dossier que le `docker-compose.yml`. Il expose le port `5000` vers l'extérieur.
 
-Le second service est un service nommé Redis, il fait référence à une image disponible sur https://hub.docker.com. Cette image n’expose aucun port au public, mais sera accessible pour `web`.
+Le second, nommé `redis`, utilise une image disponible sur [Docker Hub](https://hub.docker.com). Il n'expose aucun port vers l'extérieur, mais est accessible par le service `web` via le réseau interne Docker (en utilisant simplement le nom `redis` comme hôte).
 
-## Monter une application grâce Docker Compose
+## Monter une application avec Docker Compose
 
-Dans cet exemple, vous allez voir comment il est possible de monter rapidement une application grâce à Docker. Nous allons en quelques lignes monter un blog (Wordpress) ainsi que la base de données.
+Dans cet exemple, vous allez voir comment monter rapidement une application grâce à Docker Compose. En quelques lignes, nous allons déployer un blog WordPress ainsi que sa base de données.
 
-Pour ça, dans un nouveau dossier, créez le fichier `docker-compose.yml` avec le contenu suivant :
+Dans un nouveau dossier, créez le fichier `docker-compose.yml` avec le contenu suivant :
 
 ```yaml
-version: "3.9"
-
 services:
   db:
-    image: mysql:5.7
+    image: mysql:8
     volumes:
       - db_data:/var/lib/mysql
     restart: always
@@ -90,36 +81,41 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
+
 volumes:
   db_data: {}
 ```
 
-Et voilà, c’est tout ! Votre stack Wordpress est prêt, il vous suffit de la lancer avec la commande suivante :
+Et voilà, c'est tout ! Lancez la stack avec :
 
 ```bash
-docker compose up
+docker compose up -d
 ```
 
-Rendez-vous sur [localhost:8080](http://localhost:8080) pour admirer votre travail.
+Rendez-vous sur [http://localhost:8000](http://localhost:8000) pour admirer votre travail.
 
-::: tip La différence avec un simple Docker ?
-Ici nous avons Wordpress oui, mais également une base de données associées, nous avons donc l'ensemble de la « stack applicative » permettant de faire tourner Wordpress.
+::: tip La différence avec un simple `docker run` ?
+Ici nous avons WordPress, mais également une base de données associée, configurée et reliée automatiquement. Nous avons donc l'ensemble de la « stack applicative » nécessaire pour faire tourner WordPress, décrite en un seul fichier.
 :::
 
-### Remarques
+::: danger Mots de passe par défaut
+Les mots de passe ci-dessus sont fournis à titre d'exemple. Ne les laissez jamais tels quels sur un serveur accessible en réseau.
+:::
 
-- Vous n’avez pas eu à rédiger le moindre Dockerfile, pourquoi ?
-- Vous n’avez aucune persistance de données.
+### Questions
 
-## HomeAssistant ?
+- Vous n'avez pas eu à rédiger le moindre Dockerfile, pourquoi ?
+- Actuellement, que se passe-t-il si vous supprimez la stack avec `docker compose down` ? Les données sont-elles conservées ?
 
-Docker Compose permet vraiment de tout faire, vous souhaitez mettre en place un petit serveur pour de la Domotique ? Pas de problème ! Vous pouvez monter très simplement un HomeAssistant :
+## Home Assistant
 
-```yml
+Docker Compose permet vraiment de tout faire. Vous souhaitez mettre en place un serveur de domotique ? Pas de problème, vous pouvez déployer Home Assistant très simplement :
+
+```yaml
 services:
   homeassistant:
     container_name: homeassistant
-    image: homeassistant/home-assistant:stable
+    image: ghcr.io/home-assistant/home-assistant:stable
     volumes:
       - ./config:/config
       - /etc/localtime:/etc/localtime:ro
@@ -127,15 +123,21 @@ services:
     network_mode: host
 ```
 
+::: tip `network_mode: host`
+Home Assistant utilise le mode réseau `host` pour pouvoir découvrir les appareils sur votre réseau local (Zigbee, mDNS, etc.). Cela signifie que le conteneur partage directement l'interface réseau de la machine hôte.
+:::
+
 Je vous laisse tester.
 
-## Allons plus loin ?
+## Allons plus loin : construire sa propre image
 
-Nous avons vu ici que nous pouvions montrer rapidement un ensemble d'images de Docker pour créer une Stack Applicative. Docker Compose permet également d'utiliser des images « local » (des Dockerfile comme vus précédemment) pour les intégrer dans votre projet.
+Nous avons vu comment assembler des images existantes en une stack. Docker Compose permet également d'intégrer vos propres images construites à partir d'un `Dockerfile`.
 
-Je vous propose que nous réfléchissions ensemble à une « Stack » que nous pourrions dockerisé, un exemple avant de démarrer voilà mon Dockerfile
+Voici un exemple de stack complète : un serveur PHP/Apache maison, une base de données MariaDB, et Adminer pour l'administration.
 
-```yml
+**`docker-compose.yml`** :
+
+```yaml
 services:
   web-server:
     build:
@@ -167,16 +169,15 @@ volumes:
   mysql-data:
 ```
 
-Voilà les autres fichiers nécessaires, dans un dossier, `php/` le fichier Dockerfile suivant :
+Dans un dossier `php/`, créez le fichier `Dockerfile` suivant :
 
 ```dockerfile
-FROM php:7.4.14-apache
+FROM php:8.2-apache
 RUN docker-php-ext-install mysqli pdo pdo_mysql
-RUN a2enmod userdir
 RUN a2enmod rewrite
 ```
 
-Et dans un dossier `html/` le fichier `index.php` suivant :
+Et dans un dossier `html/`, le fichier `index.php` suivant :
 
 ```php
 <?php
@@ -184,4 +185,8 @@ phpinfo();
 ?>
 ```
 
-Je vous laisse tester un peu plus en essayant par exemple d'héberger votre site de l'AP.
+::: tip Comment tester ?
+Une fois la stack lancée avec `docker compose up -d`, rendez-vous sur [http://localhost](http://localhost) pour voir la page `phpinfo()`, et sur [http://localhost:8080](http://localhost:8080) pour accéder à Adminer. Connectez-vous avec le serveur `db`, l'utilisateur `root` et le mot de passe `example`.
+:::
+
+Je vous laisse tester, puis essayez d'héberger votre propre projet PHP à la place du `phpinfo()`.

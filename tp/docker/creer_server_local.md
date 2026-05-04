@@ -1,108 +1,133 @@
 ---
-description: Dans ce TP nous allons voir comment monter rapidement (et très simplement) un service avec Docker. Ici pas de Docker-Composes ou autre… Il s'agit de voir que Docker vous nous permettre de créer très simplement un « Serveur » pour répondre à une problématique ponctuelle de developpement.
+description: Dans ce TP nous allons voir comment monter rapidement (et très simplement) un service avec Docker. Ici pas de Docker Compose ou autre… Il s'agit de voir que Docker va nous permettre de créer très simplement un « serveur » pour répondre à une problématique ponctuelle de développement.
 ---
 
 # Créer des services très rapidement (et simplement)
 
-Dans ce TP nous allons voir comment monter rapidement (et très simplement) un service avec Docker. Ici pas de Docker-Composes ou autre… Il s'agit de voir que Docker vous nous permettre de créer très simplement un « Serveur » pour répondre à une problématique ponctuelle de développement.
+Dans ce TP nous allons voir comment monter rapidement (et très simplement) un service avec Docker. Ici pas de Docker Compose ou autre… Il s'agit de voir que Docker va nous permettre de créer très simplement un « serveur » pour répondre à une problématique ponctuelle de développement.
 
-::: danger Un détail
-Le plus important dans ce genre de « stack » c'est de se souvenir qu'un conteneur Docker est « Stateless », c'est-à-dire que les données seront effacées à chaque redémarrage de celui-ci. Donc attention !
+::: danger Un point important
+Le plus important dans ce genre d'usage c'est de se souvenir qu'un conteneur Docker est « stateless », c'est-à-dire que les données seront effacées à chaque redémarrage du conteneur — sauf si vous utilisez un volume. Donc attention !
 :::
 
-Vous avez oublié comment fonctionne la ligne de commande de Docker ? [Petit rappel ici sur son utilisation](/cheatsheets/docker/)
+Vous avez oublié comment fonctionne la ligne de commande de Docker ? [Petit rappel ici](/cheatsheets/docker/)
 
 ## PHP
 
-Même si PHP est relativement et très simplement disponible sur différents environnements, il est quand même intéressant de voir comment le lancer directement via Docker. Pourquoi ? Et bien, car Docker va nous permettre de lancer plusieurs versions du PHP sur la même machine. Pratique par exemple si vous souhaitez tester rapidement un développement. De plus nous allons voir qu'avec le système de volume, il sera possible de le faire en quelques secondes.
+Même si PHP est relativement simple à installer sur différents environnements, il est quand même intéressant de le lancer directement via Docker. Pourquoi ? Car Docker va nous permettre de faire tourner plusieurs versions de PHP sur la même machine, sans conflit. Pratique pour tester la compatibilité d'un projet. De plus, grâce aux volumes, le serveur a accès à vos fichiers en quelques secondes.
 
 ### PHP 7
 
 ```sh
-# Pour *Nix
+# Sous Linux / macOS
 docker run --rm -p 8080:80 -v $(pwd):/var/www/html/ php:7-apache
 
-# Pour Windows
-docker run --rm -p 8080:80 -v %cd%:/var/www/html/ php:7-apache
+# Sous Windows (PowerShell)
+docker run --rm -p 8080:80 -v "${PWD}:/var/www/html/" php:7-apache
 ```
 
-Tester la commande (et chercher pourquoi ça ne fonctionne pas).
+::: tip Pourquoi ça ne fonctionne pas ?
+L'image `php:7-apache` n'existe plus sur Docker Hub — PHP 7 est en fin de vie depuis décembre 2022. Essayez de chercher sur [hub.docker.com](https://hub.docker.com/_/php/tags) quelle est la dernière image `php:7.x-apache` encore disponible, ou passez directement à PHP 8 ci-dessous.
+:::
 
 ### PHP 8
 
 ```sh
-# Pour *Nix
-docker run --rm -p 8080:80 -v $(pwd):/var/www/html/ php:8.4-apache
+# Sous Linux / macOS
+docker run --rm -p 8080:80 -v $(pwd):/var/www/html/ php:8.2-apache
 
-# Pour Windows
-docker run --rm -p 8080:80 -v %cd%:/var/www/html/ php:8.4-apache
+# Sous Windows (PowerShell)
+docker run --rm -p 8080:80 -v "${PWD}:/var/www/html/" php:8.2-apache
 ```
+
+Créez un fichier `index.php` dans votre dossier courant avec le contenu suivant pour tester :
+
+```php
+<?php
+phpinfo();
+```
+
+Rendez-vous ensuite sur [http://localhost:8080](http://localhost:8080).
 
 ### La force de Docker
 
-Ici nous voyons que Docker nous permet de lancer très rapidement un serveur PHP. Mais ce n'est pas tout, nous allons voir que nous pouvons également lancer plusieurs versions de PHP sur la même machine. Pour cela, il suffit de changer le numéro de version dans la commande.
+Ici nous voyons que Docker nous permet de lancer très rapidement un serveur PHP, sans rien installer sur notre machine. Mais ce n'est pas tout : il est possible de faire tourner simultanément PHP 7 et PHP 8 sur des ports différents. Il suffit de changer le numéro de version dans la commande et d'utiliser un port différent.
 
-C'est vraiment très pratique pour tester rapidement un projet, une idée, ou même pour faire des tests de compatibilité.
+C'est très pratique pour tester rapidement un projet, une idée, ou pour faire des tests de compatibilité.
 
 ## PostgreSQL (ou autre BDD)
 
-Créer temporairement un serveur de base de données peut-être intéressant pour tester un projet ou une idée. Vous utilisez actuellement peut-être XAMPP ou WAMP pour faire ce genre de choses, mais vous êtes limité à une version précise de Postgres (ou MySQL) ; avec Docker pas de limite ! Vous avez l'embarras du choix pour la version.
+Créer temporairement un serveur de base de données peut être intéressant pour tester un projet. Vous utilisez peut-être XAMPP ou WAMP pour ce genre de choses, mais vous êtes limité à une version précise — avec Docker, vous avez l'embarras du choix.
 
 ```sh
-docker run -p 5432:5432 --name fixy-postgres  -v ./pgData:/var/lib/postgresql/data -e POSTGRES_USER=myUser -e POSTGRES_PASSWORD=myPassword -d postgres
+docker run -p 5432:5432 --name fixy-postgres \
+  -v ./pgData:/var/lib/postgresql/data \
+  -e POSTGRES_USER=myUser \
+  -e POSTGRES_PASSWORD=myPassword \
+  -d postgres
 ```
 
-C'est à vous, je vous laisse tester le container. Pour tester la connexion à votre base de données, je vous propose plusieurs solutions :
+Pour tester la connexion à votre base de données, plusieurs clients sont disponibles :
 
-- [https://wiki.postgresql.org/wiki/PostgreSQL_Clients#HeidiSQL](HeidiSQL gratuit)
-- Datagrip de JetBrains
-- WebStorm / PHPStorm / InteliJ
+- [HeidiSQL](https://www.heidisql.com/) (gratuit, Windows)
+- [DBeaver](https://dbeaver.io/) (gratuit, multiplateforme)
+- DataGrip / WebStorm / PHPStorm / IntelliJ de JetBrains
 
 ::: tip Vous ne savez pas comment faire ?
-Appeler moi, nous allons le faire ensemble.
+Appelez-moi, nous allons le faire ensemble.
 :::
 
 ### Une autre BDD ?
 
-Vous n'utilisez pas PostgreSQL, mais MySQL !? Aucun problème sur le DockerHub il y a également une image officielle pour MySQL ; [disponible ici](https://hub.docker.com/_/mysql)
+Vous utilisez MySQL plutôt que PostgreSQL ? Aucun problème, il y a également une image officielle sur Docker Hub : [https://hub.docker.com/_/mysql](https://hub.docker.com/_/mysql).
 
-En regardant la documentation, je vous laisse faire la même chose que pour [PostgreSQL](https://hub.docker.com/_/postgres)
+En regardant la documentation, je vous laisse faire la même chose que pour PostgreSQL.
 
-::: tip Ici pas de commande je vous laisse chercher
-Juste une petite aide, le port de MySQL est le `3306`.
+::: tip Aide
+Le port par défaut de MySQL est le `3306`.
 :::
 
 ::: details Solution
 
 ```sh
-docker run -p 3306:3306 --name fixy-mysql -v ./mysqlData:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=myPassword -d mysql
+docker run -p 3306:3306 --name fixy-mysql \
+  -v ./mysqlData:/var/lib/mysql \
+  -e MYSQL_ROOT_PASSWORD=myPassword \
+  -d mysql
 ```
 
 :::
 
-## Wordpress
+## WordPress
 
-Nous avons vu PHP, une base de données (MySQL et PostgreSQL), pourquoi ne pas aller plus loin ? En effet Docker ne se limite pas à PHP / Python / MySQL nous pouvons packager ce que nous souhaitons. C'est le cas de plein de solutions Wordpress en fait parti ; vous avez sur le [DockerHub une image toute prête avec la dernière version de Wordpress](https://hub.docker.com/_/wordpress)
+Nous avons vu PHP et des bases de données — pourquoi ne pas aller plus loin ? Docker ne se limite pas à des briques techniques, on peut packager des applications complètes. C'est le cas de WordPress : une [image officielle est disponible sur Docker Hub](https://hub.docker.com/_/wordpress).
 
 ```sh
-docker run -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=<password> --name wordpress -p 8080:80 -v $(pwd)/html:/var/www/html -d wordpress
+# Sous Linux / macOS
+docker run \
+  -e WORDPRESS_DB_USER=root \
+  -e WORDPRESS_DB_PASSWORD=<password> \
+  --name wordpress \
+  -p 8080:80 \
+  -v $(pwd)/html:/var/www/html \
+  -d wordpress
 ```
 
-::: danger vous voyez le problème ?
-Et oui… Wordpress seul n'est pas très utile ! Il nous faut une base de données pour sauvegarder les données du container. C'est à partir d'ici que nous allons voir [la force de Docker Compose](/tp/docker/docker_compose.md).
+::: danger Vous voyez le problème ?
+WordPress seul n'est pas très utile ! Il lui faut une base de données pour fonctionner. C'est à partir d'ici que Docker Compose prend tout son sens : [voir le TP Docker Compose](/tp/docker/docker_compose.md).
 
-Bien évidemment Docker Compose n'est pas obligatoire… Je vous laisse tester et regarder comment il est possible de faire **sans**.
+Bien évidemment Docker Compose n'est pas obligatoire — je vous laisse chercher comment relier les deux conteneurs sans lui.
 :::
 
-## Créer un serveur local multi services
+## Créer un serveur local multi-services
 
-Jusqu'à présent nous avons lancé plusieurs services, mais un par un. Ils étaient tous indépendants les un des autres. Dans la vraie vie, nous avons souvent besoin de plusieurs services qui communiquent entre eux. Par exemple, un serveur Web qui communique avec une base de données.
+Jusqu'à présent nous avons lancé plusieurs services, mais un par un, indépendants les uns des autres. Dans la vraie vie, nous avons souvent besoin de plusieurs services qui communiquent entre eux : un serveur Web avec une base de données, par exemple.
 
-Avec Docker on appel cela une stack. Une stack est un ensemble de services. Il est possible de créer une stack avec Docker Compose.
+Avec Docker on appelle cela une **stack**. Une stack est un ensemble de services définis dans un fichier `docker-compose.yml`.
 
-Si nous voulons par exemple Wordpress + MySQL + PHPMyAdmin, il nous suffit de créer un fichier `docker-compose.yml` et de le remplir avec le contenu suivant :
+Si nous voulons WordPress + MySQL + PHPMyAdmin, voici le fichier à créer :
 
-```yml
+```yaml
 services:
   wordpress:
     image: wordpress:6.7.1
@@ -117,7 +142,7 @@ services:
       - wordpress_data:/var/www/html
 
   db:
-    image: mysql:5.7.34
+    image: mysql:8
     environment:
       MYSQL_DATABASE: exampledb
       MYSQL_USER: exampleuser
@@ -125,9 +150,9 @@ services:
       MYSQL_ROOT_PASSWORD: rootpass
     volumes:
       - db_data:/var/lib/mysql
-      
+
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.2.1
+    image: phpmyadmin:5.2.1
     ports:
       - "8081:80"
     environment:
@@ -145,24 +170,20 @@ volumes:
 
 Nous avons ici défini trois services :
 
-- `wordpress` : le serveur Web qui va servir le site Wordpress
-- `db` : la base de données MySQL
-- `phpmyadmin` : l'interface Web pour gérer la base de données
+- `wordpress` : le serveur Web qui sert le site WordPress.
+- `db` : la base de données MySQL.
+- `phpmyadmin` : l'interface Web pour gérer la base de données.
 
-Pour lancer la stack, il suffit de se placer dans le dossier contenant le fichier `docker-compose.yml` et de lancer la commande suivante :
+Pour lancer la stack, placez-vous dans le dossier contenant le fichier `docker-compose.yml` et lancez :
 
 ```sh
-docker compose up
+docker compose up -d
 ```
 
-Vous pouvez ensuite accéder à votre site Wordpress sur `http://localhost:8080` et à phpMyAdmin sur `http://localhost:8081`.
+Vous pouvez ensuite accéder à votre site WordPress sur [http://localhost:8080](http://localhost:8080) et à PHPMyAdmin sur [http://localhost:8081](http://localhost:8081).
 
-::: danger Attention au version
-
-Ici nous avons pris des versions précises de chaque service, mais il est possible de prendre la dernière version. Par exemple pour Wordpress, il suffit de remplacer `wordpress:6.7.1` par `wordpress:latest`. 
-
-**Figer les versions ici me permet de rendre le TP plus simple. Dans la vraie vie, il est préférable de prendre la dernière version stable pour éviter les problèmes de sécurité.**
-
+::: tip Versions épinglées
+Ici nous utilisons des versions précises pour chaque service (ex. `wordpress:6.7.1`). Cela rend le TP reproductible dans le temps. Dans un projet réel, il est recommandé de suivre les mises à jour régulièrement pour bénéficier des correctifs de sécurité.
 :::
 
 ## Aller plus loin
@@ -171,18 +192,14 @@ Pour finaliser votre découverte, je vous propose de monter un serveur Redmine :
 
 - [https://hub.docker.com/_/redmine](https://hub.docker.com/_/redmine)
 
-Redmine est un outil de gestion de projet, il est très simple à utiliser et très complet. Vous pouvez l'utiliser pour gérer vos projets, vos tâches, vos bugs, etc.
+Redmine est un outil de gestion de projet open source, très complet. Vous pouvez l'utiliser pour gérer vos projets, vos tâches, vos tickets de bugs, etc.
 
 Une fois démarré, je vous laisse découvrir l'outil.
 
 ## Conclusion
 
-Dans ce TP nous avons vu comment lancer un container Docker. Nous avons vu que Docker est très simple à utiliser et que nous pouvons lancer plusieurs versions de PHP sur la même machine. 
-
-Nous avons également vu que nous pouvons lancer une base de données (MySQL ou PostgreSQL) et même un serveur Web contenant le site Wordpress.
-
-Ici l'idée c'était de vous montrer que Docker était très simple à utiliser et qu'il pouvait nous servir comme un environnement de développement.
+Dans ce TP nous avons vu comment lancer des conteneurs Docker de façon unitaire pour créer rapidement des environnements de développement. Nous avons vu qu'il est possible de lancer plusieurs versions de PHP sur la même machine, de créer une base de données temporaire, et même de déployer une application complète comme WordPress.
 
 ## Continuer l'exploration
 
-Je vous propose de continuer l'exploration de Docker avec la création d'une stack applicative. Nous allons voir comment créer un environnement de développement complet avec Docker Compose, [voir ici](./docker_compose.md).
+Je vous propose de continuer avec la création d'une stack applicative plus complète. Nous allons voir comment structurer un environnement de développement avec Docker Compose : [voir ici](./docker_compose.md).

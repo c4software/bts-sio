@@ -14,35 +14,39 @@ Dans ce TP nous allons voir comment utiliser Docker sur un serveur pour rendre u
 
 Il est possible de travailler de plusieurs façons différentes avec Docker :
 
-- Utiliser une image Docker disponible sur le Docker Hub (exemple Mysql).
+- Utiliser une image Docker disponible sur le Docker Hub (exemple MySQL).
 - Créer une image Docker à partir d'un Dockerfile.
-- Utiliser une image générique (type PHP), et la personnaliser grâce à un volume.
-- Construire une image Docker via l'intégration continue (CI/CD), avec Gitlab par exemple pour la déployer sur un serveur.
+- Utiliser une image générique (type PHP) et la personnaliser grâce à un volume.
+- Construire une image Docker via l'intégration continue (CI/CD), avec GitLab par exemple, pour la déployer sur un serveur.
 
 ::: tip Et en entreprise ?
-Ici il s'agit d'une introduction à Docker, nous allons donc rester simples. Mais dans la vraie vie, nous réalisons le plus souvent la construction d'une image Docker via l'intégration continue (CI/CD), avec Gitlab par exemple pour la déployer sur un serveur.
+Ici il s'agit d'une introduction à Docker, nous allons donc rester simples. Mais dans la vraie vie, nous réalisons le plus souvent la construction d'une image Docker via l'intégration continue (CI/CD), avec GitLab par exemple, pour la déployer sur un serveur.
 :::
 
 ## Préparer votre serveur
 
 La première étape est de préparer votre serveur. Pour cela, vous devez :
 
-- Créer une machine virtuelle Debian 13 (64 bits) avec 2Go de RAM et 20Go de disque. (Vous pouvez utiliser le modèle [Debian 13](/tp/devops/serveur/tp1alt.md) pour créer votre machine virtuelle).
+- Créer une machine virtuelle Debian 12 (64 bits) avec 2 Go de RAM et 20 Go de disque. (Vous pouvez utiliser le modèle [Debian 12](/tp/devops/serveur/tp1alt.md) pour créer votre machine virtuelle).
 - Ajouter les dépôts de Docker sur votre machine virtuelle.
 
 ```bash
-# Ajout des éléments nécessaire à l'installation
+# Ajout des éléments nécessaires à l'installation
 apt-get update
-apt-get -y install \
+apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
     lsb-release
 
 # Ajout du dépôt permettant d'installer Docker
-mkdir -m 0755 -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
 Ici nous ajoutons les dépôts de Docker sur notre machine virtuelle.
@@ -58,17 +62,17 @@ Ces commandes sont tirées de la documentation officielle de Docker : [https://d
 Maintenant que nous avons ajouté les dépôts de Docker sur notre machine virtuelle, nous pouvons installer Docker.
 
 ```bash
-apt update
-apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+apt-get update
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-Nous installons ici Docker, Docker Compose, Docker Buildx et Docker Compose. Il s'agit de tous les outils nécessaires pour travailler avec Docker de manière simple. Rappel le `-y` permet de répondre automatiquement "oui" à toutes les questions.
+Nous installons ici Docker, Docker CLI, containerd, Buildx et Docker Compose. Il s'agit de tous les outils nécessaires pour travailler avec Docker de manière simple. Rappel : le `-y` permet de répondre automatiquement « oui » à toutes les questions.
 
-À partir de maintenant, nous pouvons utiliser Docker sur notre machine virtuelle, par contre nous devons être connecté en tant que `root` pour pouvoir utiliser Docker. Pour éviter cela, nous allons ajouter notre utilisateur au groupe `docker`.
+À partir de maintenant, nous pouvons utiliser Docker sur notre machine virtuelle. Par contre, nous devons être connectés en tant que `root` pour pouvoir utiliser Docker. Pour éviter cela, nous allons ajouter notre utilisateur au groupe `docker`.
 
 ## Configurer Docker
 
-Docker ne demande pas particulièrement de configuration, mais il est possible de configurer Docker pour qu'il fonctionne de manière optimale. Ce qui est intéressant avec Docker c'est que nous pouvons le configurer pour que celui-ci fonctionne avec notre utilisateur et non pas avec `root`.
+Docker ne demande pas particulièrement de configuration, mais il est possible de le configurer pour qu'il fonctionne de manière optimale. Ce qui est intéressant avec Docker, c'est que nous pouvons le configurer pour qu'il fonctionne avec notre utilisateur et non pas avec `root`.
 
 Pour cela, nous allons ajouter notre utilisateur au groupe `docker`.
 
@@ -77,7 +81,7 @@ usermod -aG docker <user>
 ```
 
 ::: tip Vous devez être root
-Rappel, pour ajouter un utilisateur au groupe `docker` vous devez être connecté en tant que `root`. Une fois que vous avez ajouté votre utilisateur au groupe `docker`, vous pouvez vous déconnecter et vous reconnecter avec votre utilisateur.
+Rappel : pour ajouter un utilisateur au groupe `docker` vous devez être connecté en tant que `root` (ou en utilisant `sudo`). Une fois que vous avez ajouté votre utilisateur au groupe `docker`, vous devez vous déconnecter puis vous reconnecter pour que le changement soit pris en compte.
 :::
 
 ## Vérifier que Docker fonctionne
@@ -88,20 +92,20 @@ Pour vérifier que Docker fonctionne, nous allons lancer un conteneur Docker.
 docker run hello-world
 ```
 
-Ce conteneur va nous afficher un message de bienvenue, et nous indiquer que Docker fonctionne correctement. C'est le cas ? Si oui, vous pouvez passer à la suite.
+Ce conteneur va afficher un message de bienvenue et nous indiquer que Docker fonctionne correctement. C'est le cas ? Si oui, vous pouvez passer à la suite.
 
 ![Docker Hello World](./ressources/docker-hello-world.png)
 
 ## Lancer un serveur MySQL / MariaDB
 
-Lancer un Hello World c'est bien, mais lancer un serveur MySQL c'est mieux. Nous allons donc voir comment lancer un serveur MySQL dans un conteneur Docker. Je vous rappelle que l'idée de docker est de pouvoir créer des conteneurs répétables, et donc de pouvoir lancer plusieurs fois le même conteneur.
+Lancer un Hello World c'est bien, mais lancer un serveur MySQL c'est mieux. Nous allons donc voir comment lancer un serveur MySQL dans un conteneur Docker. Je vous rappelle que l'idée de Docker est de pouvoir créer des conteneurs répétables, et donc de pouvoir lancer plusieurs fois le même conteneur.
 
 Et même, plus que ça, nous pouvons lancer sur notre serveur plusieurs versions du même service, par exemple MySQL 5.7 et MySQL 8.0. Est-ce une bonne idée ? À vous d'en juger… mais c'est possible !
 
 ![Docker](./ressources/docker-containers.jpg)
 
 ::: tip Dans cette image
-Dans cette image, vous pouvez voir comment fonctionne docker. Il s'agit de plusieurs petites applications (**cloisonnées**) qui vont fonctionner au-dessus de votre serveur. Ces applications sont appelées des **conteneurs**.
+Dans cette image, vous pouvez voir comment fonctionne Docker. Il s'agit de plusieurs petites applications (**cloisonnées**) qui vont fonctionner au-dessus de votre serveur. Ces applications sont appelées des **conteneurs**.
 :::
 
 ### Choisir une version
@@ -110,85 +114,92 @@ Maintenant que votre environnement Docker est prêt, nous allons pouvoir lancer 
 
 ::: tip Docker Hub ?
 
-Pour faire simple, Docker Hub est un dépôt d'images Docker. Vous pouvez y trouver des images Docker pour toutes sortes de services. Vous pouvez également y publier vos propres images Docker. L'avantage du Docker Hub c'est que vous pouvez lancer un conteneur Docker en une seule commande, sans avoir à construire l'image Docker. De plus, certaines images (comme MariaDB) sont validées par Docker, ce qui garantit que l'image est sécurisée et fonctionnelle.
+Pour faire simple, Docker Hub est un dépôt d'images Docker. Vous pouvez y trouver des images pour toutes sortes de services, et également y publier vos propres images. L'avantage du Docker Hub c'est que vous pouvez lancer un conteneur Docker en une seule commande, sans avoir à construire l'image vous-même. De plus, certaines images (comme MariaDB) sont validées par Docker, ce qui garantit qu'elles sont sécurisées et fonctionnelles.
 
 :::
 
-Je vous propose de lancer la dernière version de MariaDB, nous allons donc utiliser l'image `mariadb:latest`. Vous pouvez également choisir une version spécifique, par exemple `mariadb:10.5`. Dans notre cas :
+Je vous propose de lancer la dernière version de MariaDB avec l'image `mariadb:latest`. Vous pouvez également choisir une version spécifique, par exemple `mariadb:10.11`. Dans notre cas :
 
 ```bash
-docker run -d --name mariadb -p 3306:3306 -v ~/mysql-data:/var/lib/mysql  --env MARIADB_USER=example-user --env MARIADB_PASSWORD=my_cool_secret --env MARIADB_ROOT_PASSWORD=my-secret-pw  mariadb:latest
+docker run -d \
+  --name mariadb \
+  -p 3306:3306 \
+  -v ~/mysql-data:/var/lib/mysql \
+  --env MARIADB_USER=example-user \
+  --env MARIADB_PASSWORD=my_cool_secret \
+  --env MARIADB_ROOT_PASSWORD=my-secret-pw \
+  mariadb:latest
 ```
 
 Quelques explications sur cette commande :
 
-- `docker run` : permet de lancer un conteneur Docker
-- `-d` : permet de lancer le conteneur en mode détaché, c'est-à-dire que le conteneur va tourner en arrière plan
-- `-p 3306:3306` : permet de définir un port de redirection. Dans notre cas, nous redirigeons le port `3306` de notre machine virtuelle vers le port `3306` du conteneur.
-- `-v ./mysql-data:/var/lib/mysql` : permet de définir un volume. Dans notre cas, nous définissons un volume qui va permettre de sauvegarder les données de la base de données. Ce volume est lié au dossier `mysql-data` de notre machine virtuelle.
-- `--name mariadb` : permet de donner un nom au conteneur
-- `--env MARIADB_USER=example-user` : permet de définir une variable d'environnement pour le conteneur. Dans notre cas, nous définissons l'utilisateur de la base de données.
-- `--env MARIADB_PASSWORD=my_cool_secret` : permet de définir une variable d'environnement pour le conteneur. Dans notre cas, nous définissons le mot de passe de l'utilisateur de la base de données.
-- `MARIADB_ROOT_PASSWORD=my-secret-pw` : permet de définir une variable d'environnement pour le conteneur. Dans notre cas, nous définissons le mot de passe de l'utilisateur `root` de la base de données.
-- `mariadb:latest` : permet de définir l'image Docker à utiliser pour le conteneur.
+- `docker run` : permet de lancer un conteneur Docker.
+- `-d` : lance le conteneur en mode détaché, c'est-à-dire en arrière-plan.
+- `-p 3306:3306` : redirige le port `3306` de votre serveur vers le port `3306` du conteneur.
+- `-v ~/mysql-data:/var/lib/mysql` : monte le dossier `mysql-data` de votre serveur dans le conteneur pour persister les données.
+- `--name mariadb` : donne un nom au conteneur.
+- `--env MARIADB_USER=example-user` : définit le nom de l'utilisateur de la base de données.
+- `--env MARIADB_PASSWORD=my_cool_secret` : définit le mot de passe de cet utilisateur.
+- `--env MARIADB_ROOT_PASSWORD=my-secret-pw` : définit le mot de passe de l'utilisateur `root`.
+- `mariadb:latest` : l'image Docker à utiliser.
 
-::: danger N'oubliez pas le mot de passe
+::: danger N'oubliez pas de changer les mots de passe
 
-N'oubliez pas de changer les mots de passe.
+Ne laissez jamais des mots de passe par défaut sur un serveur accessible en réseau.
 
 :::
 
 ### Les volumes
 
-En cours nous avons vu qu'un conteneur Docker est dit `stateless`, c'est-à-dire qu'il sera supprimé à la fin de son utilisation. C'est bien, mais cela veut dire que nous allons perdre toutes les données de notre base de données à la fin de l'utilisation du conteneur.
+En cours nous avons vu qu'un conteneur Docker est dit `stateless`, c'est-à-dire que ses données internes sont supprimées à chaque arrêt. C'est bien pour l'isolation, mais cela veut dire que nous perdrions toutes les données de notre base de données à chaque redémarrage du conteneur.
 
-Bien évidemment, nous ne voulons pas perdre nos données, nous allons donc utiliser un volume. Un volume est un dossier qui est lié à un conteneur Docker. Ce dossier est lié à un dossier de notre machine virtuelle. Ainsi, lorsque nous supprimons le conteneur, le dossier du volume est conservé. Lorsque nous relançons le conteneur, le dossier du volume est utilisé. Pratique, non ?
+Pour éviter cela, nous utilisons un **volume** : un dossier de votre serveur monté à l'intérieur du conteneur. Ainsi, les données sont conservées même si le conteneur est supprimé et recréé. Pratique, non ?
 
 ### Exposer le port 3306
 
-Par défaut, le port 3306 n'est pas accessible. En effet, les conteneurs Docker sont isolés par défaut. Pour pouvoir accéder à notre base de données, nous allons donc devoir exposer le port 3306 de notre conteneur. C'est ce que nous faisons avec l'option `-p 3306:3306`.
+Par défaut, les conteneurs Docker sont isolés : aucun port n'est accessible depuis l'extérieur. Pour pouvoir accéder à notre base de données depuis une autre machine (ou depuis PHPMyAdmin), nous exposons le port 3306 avec l'option `-p 3306:3306`.
 
-Maintenant que votre conteneur est lancé, vous pouvez vous connecter à votre base de données. Pour cela, vous pouvez utiliser un client MySQL comme [DBeaver](https://dbeaver.io/) ou [DataGrip](https://www.jetbrains.com/fr-fr/datagrip/).
-
-Et pourquoi pas PHPMyAdmin ? C'est possible, mais nous allons voir comment lancer un serveur PHP dans un conteneur Docker.
+Maintenant que votre conteneur est lancé, vous pouvez vous connecter à votre base de données avec un client comme [DBeaver](https://dbeaver.io/) ou [DataGrip](https://www.jetbrains.com/fr-fr/datagrip/).
 
 ### Point étape !
 
-Et voilà, vous avez maintenant un serveur de base de données. Celui-ci est équivalent à celui que vous auriez pu installer via les dépôts de votre distribution. La grande différence c'est que vous pouvez lancer plusieurs versions de MariaDB sur la même machine, et que vous pouvez lancer plusieurs conteneurs sur la même machine. Et surtout, nous pouvons choisir une version précise simplement, et sans même ajouter de dépôts sur notre serveur.
+Et voilà, vous avez maintenant un serveur de base de données. Celui-ci est équivalent à celui que vous auriez pu installer via les dépôts de votre distribution. La grande différence, c'est que vous pouvez lancer plusieurs versions de MariaDB sur la même machine, sans conflit entre elles. Et surtout, vous pouvez choisir une version précise simplement, sans ajouter de dépôts sur votre serveur.
 
-Autre avantage, avec docker, vous pouvez créer un environnement similaire entre votre machine de développement et votre serveur de production. Vous pouvez ainsi avoir une base de données identique sur votre machine de développement et sur votre serveur de production.
+Autre avantage : avec Docker, vous pouvez reproduire un environnement identique entre votre machine de développement et votre serveur de production.
 
-## Lancer un serveur Apache + PHP
+## Lancer PHPMyAdmin
 
-Une base de données sans serveur web, c'est dommage… Regardons comment nous pouvons lancer un conteneur PHPMyAdmin grâce à Docker.
+Une base de données sans interface de gestion, c'est dommage… Regardons comment lancer un conteneur PHPMyAdmin grâce à Docker.
 
 ### Choisir une version
 
-Comme pour MariaDB, nous allons nous rendre sur le Docker Hub pour trouver une image de PHPMyAdmin. Nous allons utiliser l'image [PHPMyAdmin](https://hub.docker.com/_/phpmyadmin).
+Comme pour MariaDB, nous allons nous rendre sur le Docker Hub pour trouver une image de PHPMyAdmin : [PHPMyAdmin](https://hub.docker.com/_/phpmyadmin).
 
 ### Lancer le conteneur
 
 ```bash
-docker run -d --name phpmyadmin -d -p 8080:80 phpmyadmin
+docker run -d --name phpmyadmin -p 8080:80 phpmyadmin
 ```
 
-Quelques explications sur cette commande :
+Quelques explications :
 
-- `docker run` : permet de lancer un conteneur Docker
-- `-d` : permet de lancer le conteneur en mode détaché, c'est-à-dire que le conteneur va tourner en arrière plan
-- `-p 8080:80` : permet de définir un port de redirection. Dans notre cas, nous redirigeons le port `8080` de notre machine virtuelle vers le port `80` du conteneur.
-- `--name phpmyadmin` : permet de donner un nom au conteneur
-- `phpmyadmin` : permet de définir l'image Docker à utiliser pour le conteneur.
+- `-p 8080:80` : redirige le port `8080` de votre serveur vers le port `80` du conteneur.
+- `--name phpmyadmin` : donne un nom au conteneur.
+- `phpmyadmin` : l'image Docker à utiliser.
 
-Je vous laisse tester le serveur PHPMyAdmin en vous connectant à l'adresse `http://<ip.de.votre.serveur>:8080`.
+Testez en vous connectant à `http://<ip.de.votre.serveur>:8080`.
 
-## Créer un docker compose pour lancer les deux serveurs
+::: tip PHPMyAdmin ne trouve pas la base de données ?
+Par défaut, PHPMyAdmin ne sait pas où se trouve votre serveur MariaDB. Nous allons résoudre ce problème proprement dans la section Docker Compose ci-dessous, en utilisant le réseau interne de Docker.
+:::
 
-Nous avons vu comment lancer un conteneur Docker de manière unitaire, c'est pratique, mais ce que nous voulons c'est lancer un ensemble de conteneurs Docker. L'objectif étant de créer une architecture, que nous pourrons lancer très rapidement, et qui sera répétable.
+## Créer un docker-compose.yml pour lancer les deux serveurs
+
+Nous avons vu comment lancer des conteneurs de manière unitaire, c'est pratique, mais ce que nous voulons c'est orchestrer un ensemble de conteneurs. L'objectif est de créer une infrastructure que nous pourrons démarrer en une seule commande, de façon répétable.
 
 ### Arrêter les conteneurs précédents
 
-Dans un premier temps je vous propose d'arrêter l'ensemble de conteneurs que nous avons lancé précédemment.
+Dans un premier temps, arrêtez les conteneurs lancés précédemment.
 
 ```bash
 # Arrêt des conteneurs
@@ -200,13 +211,13 @@ docker rm phpmyadmin mariadb
 
 ### Créer un fichier docker-compose.yml
 
-Dans le dossier de votre choix, je vous laisse créer un fichier `docker-compose.yml`. Ce fichier va nous permettre de définir l'ensemble des conteneurs que nous allons lancer.
+Dans le dossier de votre choix, créez un fichier `docker-compose.yml` :
 
 ```bash
 nano docker-compose.yml
 ```
 
-Nous allons maintenant définir l'ensemble des conteneurs que nous allons lancer. Pour cela, nous allons utiliser la syntaxe YAML.
+Voici le contenu du fichier :
 
 ```yaml
 services:
@@ -236,55 +247,51 @@ services:
       - db
 ```
 
-Je vous propose de regarder le fichier `docker-compose.yml` ligne par ligne, nous allons le faire ensemble.
+::: tip PMA_HOST=db
+Notez que PHPMyAdmin utilise `PMA_HOST=db` pour se connecter à la base de données. `db` est le nom du service défini dans ce même fichier. Docker Compose crée automatiquement un réseau interne entre les conteneurs, ce qui leur permet de communiquer par leur nom de service.
+:::
+
+Je vous propose de lire ce fichier ligne par ligne — nous allons le faire ensemble.
 
 ### Lancer votre stack
-
-Maintenant que nous avons défini notre stack, nous allons pouvoir la lancer.
 
 ```bash
 docker compose up -d
 ```
 
-Le `-d` permet de lancer la stack en mode détaché, c'est-à-dire que la stack va tourner en arrière plan. Si vous ne mettez pas le `-d`, vous allez voir les logs de l'ensemble des conteneurs.
+Le `-d` permet de lancer la stack en mode détaché. Sans ce flag, vous verriez les logs de l'ensemble des conteneurs défiler dans le terminal.
 
 ### Les logs
 
-Comme pour un serveur classique, nous pouvons consulter les logs de nos conteneurs.
+Comme pour un serveur classique, vous pouvez consulter les logs de vos conteneurs.
 
 ```bash
+# Logs de tous les conteneurs
 docker compose logs -f
-```
 
-Cette commande va nous permettre de consulter les logs de nos conteneurs. Nous pouvons également consulter les logs d'un conteneur en particulier.
-
-```bash
-docker compose logs -f mariadb
+# Logs d'un conteneur en particulier
+docker compose logs -f db
 ```
 
 ### Arrêter la stack
-
-Pour arrêter la stack, nous allons utiliser la commande `docker compose down`.
 
 ```bash
 docker compose down
 ```
 
-## C'est à vous, le cas de Redmine
+## C'est à vous : le cas de Redmine
 
-En reprenant le fonctionnement précédent, je vous propose de créer un nouveau service sur votre serveur. Celui-ci devra être un serveur Redmine. Je vous laisse chercher comment faire. Une piste :
+En reprenant le fonctionnement précédent, je vous propose de créer un nouveau service sur votre serveur : un serveur **Redmine**. Je vous laisse chercher comment faire.
 
-- [Redmine](https://hub.docker.com/_/redmine)
+Une piste : [https://hub.docker.com/_/redmine](https://hub.docker.com/_/redmine)
 
-## Un autre exemple
+## Un autre exemple : EmulatorJS
 
-Redmine, ce n’est pas forcément très fun… Je vous propose de partir sur un autre usage de Docker, nous allons créer un [`emulatorjs`](https://docs.linuxserver.io/images/docker-emulatorjs).
+Redmine, ce n'est pas forcément très fun… Je vous propose un autre usage de Docker : nous allons déployer [`emulatorjs`](https://docs.linuxserver.io/images/docker-emulatorjs), un émulateur de consoles rétro accessible depuis le navigateur.
 
 ### Créer un fichier docker-compose.yml
 
 ```yaml
----
-version: "2.1"
 services:
   emulatorjs:
     image: lscr.io/linuxserver/emulatorjs:latest
@@ -292,7 +299,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
+      - TZ=Europe/Paris
       - SUBFOLDER=/ #optional
     volumes:
       - ~/emulatorjs-config:/config
@@ -303,11 +310,11 @@ services:
     restart: unless-stopped
 ```
 
-Je vous laisse regarder et tester le serveur.
+Je vous laisse tester le serveur une fois démarré.
 
-## Adguard
+## Adguard Home
 
-Je vous propose de créer un serveur Adguard. Adguard est un bloqueur de publicité et de traqueurs. Il est très simple à utiliser et très efficace.
+Je vous propose de déployer **Adguard Home**, un bloqueur de publicités et de traqueurs qui fonctionne comme un serveur DNS. Il est très simple à utiliser et très efficace.
 
 ```yaml
 services:
@@ -315,7 +322,7 @@ services:
     image: adguard/adguardhome
     container_name: adguardhome
     ports:
-      - "9191:3000" # Interface de gestion de Adguard
+      - "9191:3000" # Interface de gestion
       - "53:53/tcp"
       - "53:53/udp"
       - "784:784/udp"
@@ -335,15 +342,15 @@ services:
         max-file: "1"
 ```
 
-Démarrez le conteneur avec la commande suivante :
+Démarrez le conteneur :
 
 ```bash
 docker compose up -d
 ```
 
-À partir de là, vous pouvez accéder à l'interface d'administration d'Adguard en vous rendant sur `http://<ip.de.votre.serveur>:9191`. Une fois configuré, il vous suffit de changer la configuration DNS de votre machine pour utiliser le serveur DNS de adguard c'est à dire `<ip.de.votre.serveur>`.
+Accédez à l'interface d'administration à l'adresse `http://<ip.de.votre.serveur>:9191`. Une fois configuré, il vous suffit de changer la configuration DNS de votre machine pour pointer vers votre serveur.
 
-Pour tester rapidement sans changer la configuration de votre machine, vous pouvez utiliser la commande suivante :
+Pour tester rapidement sans modifier la configuration DNS de votre machine :
 
 ```bash
 nslookup google.com <ip.de.votre.serveur>
@@ -357,6 +364,6 @@ dig @<ip.de.votre.serveur> google.com
 
 ## Conclusion
 
-Dans ce TP nous avons vu comment Docker facilite la mise en place d'un serveur sur une machine. Nous avons vu comment Docker permet de créer rapidement des infrastructures répétables, et ce quelques soit la version, la configuration, ou l'OS de la machine.
+Dans ce TP nous avons vu comment Docker facilite la mise en place de services sur un serveur. Nous avons vu comment Docker permet de créer rapidement des infrastructures répétables, quel que soit la version, la configuration, ou l'OS de la machine.
 
-Nous avons vu également comment Docker Compose permet de lancer plusieurs conteneurs en même temps, et de les lier entre eux (exemple : un serveur MySQL et un serveur PHP).
+Nous avons également vu comment Docker Compose permet de lancer plusieurs conteneurs simultanément et de les faire communiquer entre eux (exemple : un serveur MySQL et PHPMyAdmin).
