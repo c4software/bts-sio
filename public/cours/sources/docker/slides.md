@@ -355,6 +355,51 @@ Pour _sauvegarder_ de la donnée, il faut faire un volume.
 
 ---
 
+### Le container est « Stateless »
+
+- Chaque exécution repart d'un état **identique et prédictible**
+- Indépendamment des exécutions précédentes
+- Ça garantit la reproductibilité… mais ça a des conséquences !
+
+---
+
+### Stateless… concrètement ?
+
+Un container **ne conserve aucun état** entre deux exécutions.
+
+Tout ce qui est écrit dans son filesystem disparaît à l'arrêt.
+
+---
+
+### Cycle de vie des données
+
+```
+docker run  →  Exécution  →  docker stop  →  docker rm
+[vierge]       [écritures]   [arrêté]        [Données perdues]
+```
+
+Sans volume : les données n'existent que le temps de vie du container.
+
+---
+
+### Les avantages du Stateless
+
+- **Reproductibilité** : le container se comporte toujours de la même façon
+- **Déploiements idempotents** : remplacer un container ne laisse pas d'état résiduel
+- **Scalabilité** : on peut multiplier les instances sans conflit d'état
+
+---
+
+### La conséquence : tout état doit être externalisé
+
+- Base de données → dans un **volume** (ou un service dédié)
+- Fichiers uploadés → dans un **volume** (ou stockage objet)
+- Configuration → via des **variables d'environnement**
+
+> Ne jamais stocker de donnée persistante directement dans le container.
+
+---
+
 ### Un volume
 
 - Un dossier « partagé » entre votre machine et le container
