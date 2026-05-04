@@ -104,15 +104,6 @@ Très très long… (Linux ~2h, Firefox 40min)
 
 ---
 
-### Quelques chiffres
-
-- 14 millions de « machines »
-- 900 000 images Docker
-- 12 milliards d’images téléchargées
-- 3300 contributeurs au projet
-
----
-
 ### Car Oui… Docker est OPEN SOURCE.
 
 ---
@@ -320,7 +311,6 @@ docker run -p 5432:5432 --name pgServer -e POSTGRES_USER=monUser -e POSTGRES_PAS
 
 ```dockerfile
 FROM ubuntu:latest
-MAINTAINER Valentin Brosseau
 
 RUN apt-get update
 RUN apt-get install -y python python-pip wget
@@ -419,7 +409,6 @@ Permets de composer une stack ou une infrastructure complète de conteneurs. Cel
 ---
 
 ```yaml
-version: "3"
 services:
   reverse-proxy:
     restart: unless-stopped
@@ -444,11 +433,10 @@ services:
 ---
 
 ```yaml
-version: "3"
 services:
   homeassistant:
     container_name: homeassistant
-    image: homeassistant/raspberrypi4-homeassistant:stable
+    image: ghcr.io/home-assistant/home-assistant:stable
     volumes:
       - ./config:/config
       - /etc./localtime:/etc/localtime:ro
@@ -463,8 +451,6 @@ services:
 ### L'exemple de Wordpress
 
 ```yaml
-ersion: "3.9"
-
 services:
   db:
     image: mysql:5.7
