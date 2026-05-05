@@ -225,12 +225,12 @@ Pourquoi ces deux paquets ? `mariadb-server` est le serveur de base de données,
 Avant d'utiliser MariaDB, nous devons configurer le mot de passe de l'utilisateur `root`. Pour cela, vous pouvez utiliser la commande suivante :
 
 ```bash
-mysql_secure_installation
+mariadb-secure-installation
 ```
 
 Cette commande va vous demander de rentrer le mot de passe actuel de l'utilisateur `root`. Comme vous venez d'installer MariaDB.
 
-- Qu'est-ce que `mysql_secure_installation` ?
+- Qu'est-ce que `mariadb-secure-installation` ?
 - Pourquoi est-ce important de changer le mot de passe de l'utilisateur `root` ?
 - Quel mot de passe avez-vous choisi ? Pourquoi ?
 

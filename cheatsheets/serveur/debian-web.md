@@ -117,7 +117,7 @@ systemctl start mariadb
 ## Configurer la base de données
 
 ```bash
-mysql_secure_installation
+mariadb-secure-installation
 ```
 
 Cette commande va vous demander de choisir un mot de passe pour l'utilisateur root de la base de données. Elle nous permettra aussi de supprimer les utilisateurs anonymes, de désactiver l'accès à la base de données pour l'utilisateur root à distance et de supprimer la base de données de test.
