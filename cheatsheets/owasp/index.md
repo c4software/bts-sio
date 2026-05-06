@@ -183,7 +183,7 @@ Concrètement, voici comment ça peut se dérouler :
 
 Vous êtes donc la cible ici d'une attaque pas directement de votre code, mais d'une dépendance que vous utilisez.
 
-### Assurer la qualité
+## Assurer la qualité
 
 S'assurer d'une qualité continue du code avec :
 
@@ -191,7 +191,7 @@ S'assurer d'une qualité continue du code avec :
 - Des tests unitaires.
 - Une analyse automatique du code (SonarQube).
 
-### Open Web Application Security Project (OWASP)
+## Open Web Application Security Project (OWASP)
 
 > Open Web Application Security Project (OWASP) est une communauté en ligne travaillant sur la sécurité des applications Web. Sa philosophie est d'être à la fois libre et ouverte à tous. Elle a pour vocation de publier des recommandations de sécurisation Web et de proposer aux internautes, administrateurs et entreprises des méthodes et outils de référence permettant de contrôler le niveau de sécurisation de ses applications Web.
 
@@ -212,7 +212,7 @@ OWASP liste 10 grandes catégories de failles **à connaître** (version 2021) :
 - **A09:2021 – Carence des systèmes de contrôle et de journalisation** : Absence de logs, logs insuffisants, ou absence de surveillance permettant de détecter et répondre aux incidents de sécurité.
 - **A10:2021 – Falsification de requête côté serveur (SSRF)** : Permet à un attaquant d'inciter le serveur à envoyer des requêtes vers des destinations non prévues (services internes, cloud metadata, etc.).
 
-### Top 10 : Simplifié
+## Top 10 : Simplifié
 
 Le nouveau TOP 10 est très intéressant, car il met en lumière le croisement entre les failles et les risques. Mais il est plus complexe à mémoriser. Il est donc également possible de classer les failles de manière brute :
 
@@ -506,7 +506,7 @@ if (preg_match('/^https?:\/\/shop-vdt\.com\//', $_GET['goto'])) {
 }
 ```
 
-### Mais, une faille c’est quoi ?
+## Mais, une faille c’est quoi ?
 
 ![Une faille](./res/faille.png)
 
