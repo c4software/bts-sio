@@ -45,8 +45,6 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 
 ::: tip 2025 ? Solution WSL !
 
-::: tip 2025 ? Solution WSL !
-
 WSL permet d'obtenir un environnement Linux directement sous Windows, idéal pour le développement.
 
 Un bon point de départ est **Alpine** avec l'ensemble des éléments nécessaires au développement web.
