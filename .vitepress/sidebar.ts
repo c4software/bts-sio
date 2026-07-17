@@ -236,6 +236,9 @@ export default [
                         items: [
                             { text: "Transition vers Laravel", link: "/tp/php/tp6.md" },
                             { text: "Introduction à Laravel", link: "/tp/laravel/introduction" },
+                            { text: "Introduction base de données et ORM", link: "/tp/laravel/base_de_donnees" },
+                            { text: "Comprendre l'authentification", link: "/tp/laravel/authentification_manuelle" },
+                            { text: "Aller plus loin avec Laravel", link: "/tp/laravel/aller_plus_loin" },
                             { text: "Laravel & L'authentification", link: "/tp/laravel/authentification" },
                             { text: "Eloquent les modèles simplement", link: "/tp/laravel/generation_model" },
                             { text: "Projet Micro-Messages", link: "/tp/laravel/x.md" },

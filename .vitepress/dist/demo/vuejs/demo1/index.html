@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Démo VueJS 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <style>
+      #app {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ message }}</h1>
+      <button @click="reverseTitle">inverse le titre</button>
+      <hr />
+      <h1>Vous avez cliqué : {{ nbClick }}</h1>
+      <button @click="addClick" v-if="nbClick < 5">Click</button>
+      <button @click="addClick" v-else-if="nbClick < 10">STOP</button>
+      <button @click="resetClick" v-else>NOP !</button>
+    </div>
+
+    <script>
+      var App = new Vue({
+        el: "#app",
+        data() {
+          return {
+            message: "Hello Vue!",
+            nbClick: 0,
+          };
+        },
+        methods: {
+          reverseTitle: function () {
+            this.message = this.message.split("").reverse().join("");
+          },
+          addClick: function () {
+            this.nbClick++;
+          },
+          resetClick: function () {
+            this.nbClick = 0;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

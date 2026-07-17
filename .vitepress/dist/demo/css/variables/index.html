@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démo survol</title>
+
+    <style>
+        :root {
+            --main-bg-color: #eeeeee;
+            --main-card-shadow: rgba(36, 170, 69, 0.75);
+        }
+
+
+        html, body {
+            height: 100%;
+        }
+        body {
+            background-color: var(--main-bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            margin: 50px;
+            padding: 10px;
+            width: 200px;
+            height: 100px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 40px 0px var(--main-card-shadow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            cursor: pointer;
+            transition: all 1s;
+        }
+
+        .card:hover {
+            --main-card-shadow: rgb(230, 53, 53);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        Ceci est une card
+    </div>
+</body>
+</html>

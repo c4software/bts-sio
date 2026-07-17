@@ -1,0 +1,103 @@
+.reveal h1 {
+    font-size: 2em;
+    text-shadow: none;
+}
+
+.reveal h2 {
+    font-size: 1.3em;
+}
+
+.reveal h3 {
+    font-size: 1.1em;
+}
+
+.reveal h4 {
+    font-size: 1em;
+}
+
+code:not(.hljs) {
+    color: #476582;
+    padding: 0.25rem 0.5rem;
+    margin: 0;
+    font-size: 0.85em;
+    background-color: rgba(27, 31, 35, 0.2);
+    border-radius: 3px;
+}
+
+code.hljs {
+    padding: 18px 18px 18px 12px !important;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
+}
+
+code.lang-sh {
+    padding: 10px !important;
+    border-radius: 5px;
+    padding-top: 10px !important;
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
+}
+
+code.lang-sh::before {
+    content: url("../img/icon.svg");
+    display: block;
+    padding-bottom: 10px;
+}
+
+.colContainer {
+    display: flex;
+}
+
+.col {
+    flex: 1;
+}
+
+.reveal{
+    font-size: 30px;
+}
+
+fieldset {
+    padding: 10px;
+    font-size: 2rem;
+    text-align: start;
+    border-radius: 5px;
+    border: 4px solid red;
+}
+
+fieldset>legend {
+    background: red;
+    color: white;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+
+.frame-cover{
+    position: absolute;
+    width: 40%;
+    right: 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 5px 25px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff !important;
+    padding: 20px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.frame-cover > h2{
+    color: white;
+}
+
+.text-white {
+    color: white !important;
+}
+
+.reveal img {
+    max-height: calc(var(--slide-height) - (var(--r-block-margin) * 2));
+}
+
+.reveal img.top {
+    max-height: calc(var(--slide-height) * 0.5);
+}
+
+.reveal img.side {
+    max-width: calc(var(--slide-width) * 0.5);
+}
