@@ -14,7 +14,7 @@ La gestion des utilisateurs est en effet un élément complexe d'une application
 - La gestion du mot de passe oubliée.
 - …
 
-Vous l'avez compris, la liste est longue… Vous pouvez évidemment tout coder vous-même! C'est d'ailleurs ce que nous avons fait dans le TP [Comprendre l'authentification](./authentification_manuelle.md) (mots de passe hashés, session, middleware). Mais nous allons le voir la force de Laravel c'est également ça, intégrer l'ensemble des briques pour une application qualitative dans les standards du marché — en automatisant ce que vous avez codé à la main.
+Vous l'avez compris, la liste est longue… Vous pouvez évidemment tout coder vous-même! C'est d'ailleurs ce que nous avons fait dans le TP [Comprendre l'authentification](./authentification_manuelle.md) (mots de passe hashés, session, middleware). Mais nous allons le voir la force de Laravel c'est également ça, intégrer l'ensemble des briques pour une application qualitative dans les standards du marché, en automatisant ce que vous avez codé à la main.
 
 ::: details Sommaire
 [[toc]]

@@ -122,7 +122,7 @@ $utilisateurs = [
 
 Je vous laisse compléter les deux `TODO` avec vos connaissances de PHP de première année. Pas de piège : un `if`, `isset`, `password_verify`, `$_SESSION`.
 
-<Reveal text="Voir l'une des solutions possibles">
+::: details Voir l'une des solutions possibles
 
 ```php
 // TODO 1
@@ -148,7 +148,7 @@ if (isset($_GET['logout'])) {
 
 (et un `<?php if ($erreur): ?><p style="color: red"><?= $erreur ?></p><?php endif; ?>` au-dessus du formulaire)
 
-</Reveal>
+:::
 
 ### Questions de compréhension
 
@@ -269,7 +269,11 @@ Question :
 
 - Pourquoi afficher le même message « Identifiants incorrects » que l'email existe ou non ? Que pourrait déduire un attaquant si les messages étaient différents ?
 
-✅ Point de contrôle : vous devez pouvoir vous inscrire, vous voir en base de données (avec un mot de passe **hashé**, vérifiez dans votre outil SQLite !), puis vous connecter.
+::: tip Point de contrôle
+
+Vous devez pouvoir vous inscrire, vous voir en base de données (avec un mot de passe **hashé**, vérifiez dans votre outil SQLite !), puis vous connecter.
+
+:::
 
 ### La déconnexion
 

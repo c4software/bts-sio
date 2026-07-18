@@ -109,11 +109,17 @@ php artisan make:model Todo --migration
 Cette commande va créer « la définition du modèle » (le modèle la représentation objet de notre table), mais également la migration. La migration est le fichier qui va définir la structure de notre `Table`. Vous avez maintenant, dans votre projet, deux nouveaux fichiers :
 
 - `app/Models/Todo.php`
-- `database/migrations/YEAR_MONTH_DAY_TIME_create_todo_table.php`
+- `database/migrations/YEAR_MONTH_DAY_TIME_create_todos_table.php`
+
+::: tip Pourquoi `todos` au pluriel ?
+
+Vous avez demandé un modèle `Todo`, et Laravel a nommé la table `todos`… C'est une **convention** : le modèle est au singulier, la table au pluriel. En respectant cette convention, Laravel fait le lien automatiquement entre les deux, sans aucune configuration.
+
+:::
 
 ### Définir la migration (structure de la table)
 
-Le fichier de migration défini la structure de la table que vous allez créer, actuellement vous avec un « format type », votre table va contenir de base quelques colonnes (id, et dates). Nous allons ajouter dans la méthode `up()` nos colonnes :
+Le fichier de migration définit la structure de la table que vous allez créer, actuellement vous avez un « format type », votre table va contenir de base quelques colonnes (id, et dates). Nous allons ajouter dans la méthode `up()` nos colonnes :
 
 ```php
 $table->string('texte');
@@ -131,33 +137,29 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTodoTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('todo', function (Blueprint $table) {
+        Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->string('texte');
-            $table->boolean('termine');
+            $table->boolean('termine')->default(false);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('todo');
+        Schema::dropIfExists('todos');
     }
-}
+};
 ```
 
 :::
@@ -195,7 +197,7 @@ Migrated:  YEAR_MONTH_DAY_TIME_create_todos_table
 ```
 
 ::: warning Un instant
-Je vous laisse configurer votre, `.env` mais également vérifier si votre base de données fonctionne correctement (création etc.).
+Avec SQLite il n'y a rien à configurer, Laravel a même créé le fichier `database/database.sqlite` pour vous si celui-ci n'existait pas. Si vous décidez plus tard d'utiliser MySQL, c'est dans le `.env` que ça se passera.
 :::
 
 Question :
@@ -210,7 +212,7 @@ Votre table est créée, mais rien ne vaut une vérification visuelle. Le fichie
 - L'extension VSCode [SQLite Viewer](https://marketplace.visualstudio.com/items?itemName=qwtel.sqlite-viewer).
 - La vue « Database » de PHPStorm.
 
-Je vous laisse ouvrir le fichier et vérifier que la table `todo` est bien présente avec les bonnes colonnes.
+Je vous laisse ouvrir le fichier et vérifier que la table `todos` est bien présente avec les bonnes colonnes.
 
 ::: tip Gardez cet outil sous la main
 Tout au long du TP, vous pourrez vérifier que vos actions (ajout, modification, suppression) ont bien un impact en base de données. C'est un excellent réflexe de développeur.
@@ -221,15 +223,15 @@ Tout au long du TP, vous pourrez vérifier que vos actions (ajout, modification,
 Pour vous montrer la simplicité de Eloquent, je vous laisse juste avec les appels de méthodes (nous avons vu ça ensemble lors du cours)
 
 ::: danger Liste non exhaustive
-Vous n’avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère plutôt [la documentation officielle](https://laravel.com/docs/8.x/eloquent)
+Vous n’avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère plutôt [la documentation officielle](https://laravel.com/docs/11.x/eloquent)
 :::
 
 #### Obtenir toutes les données
 
-Voilà un exemple de code pour obtenir l'ensemble des données dans la table `todo`.
+Voilà un exemple de code pour obtenir l'ensemble des données dans la table `todos`.
 
 ```php
-$valeursEnBase = Todo::all()
+$valeursEnBase = Todo::all();
 ```
 
 #### Obtenir toutes les données avec filtre
@@ -237,7 +239,7 @@ $valeursEnBase = Todo::all()
 Voilà un exemple de code pour obtenir 10 lignes de données avec un filtre et trié par `id`.
 
 ```php
-$valeursFiltre = Todo::where('texte', "YOLO")->orderBy('id')->take(10)
+$valeursFiltre = Todo::where('texte', "YOLO")->orderBy('id')->take(10)->get();
 ```
 
 ::: danger Ce ne sont que des exemples
@@ -339,15 +341,19 @@ Exemple :
 
 PS: Je vous laisse constater l'impact dans le code **en observant le code source via votre navigateur**.
 
-[Plus d'information](https://laravel.com/docs/8.x/csrf)
+[Plus d'information](https://laravel.com/docs/11.x/csrf)
 
 :::
 
-✅ Point de contrôle : à ce stade vous devez pouvoir ajouter une TODO via votre formulaire, la voir apparaître dans la liste, **et** la retrouver dans votre base via votre outil SQLite. Vérifiez avant de continuer.
+::: tip Point de contrôle
+
+À ce stade vous devez pouvoir ajouter une TODO via votre formulaire, la voir apparaître dans la liste, **et** la retrouver dans votre base via votre outil SQLite. Vérifiez avant de continuer.
+
+:::
 
 ### Changer l'état d'une TODO
 
-En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/8.x/eloquent) ajoutez :
+En utilisant [l'aide mémoire](/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/11.x/eloquent) ajoutez :
 
 - Une action permettant de marquer « comme terminer » une TODO. (l'action peut-être un lien, ou un bouton)
 - Cette action doit être mise dans le bon contrôleur
@@ -378,7 +384,7 @@ Je ne vais pas vous donner le code. Mais plutôt la procédure, vous devez :
 
 ### Supprimer une TODO
 
-En utilisant [l'aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/) et la [documentation de Laravel,](https://laravel.com/docs/8.x/eloquent) ajoutez :
+En utilisant [l'aide mémoire](/cheatsheets/laravel/) et la [documentation de Laravel,](https://laravel.com/docs/11.x/eloquent) ajoutez :
 
 - Une action permettant de marquer « supprimer » une TODO.
 - Cette action doit être mise dans le bon contrôleur.
@@ -404,7 +410,7 @@ Todo::destroy(1,2,3);
 Todo::where('termine', '=', 1)->delete();
 ```
 
-N'oubliez pas la sécurité. Et n'oubliez pas également qu'il ne dois pas être possible de supprimer une TODO qui n'est pas terminée en base de données.
+N'oubliez pas la sécurité. Et n'oubliez pas également qu'il ne doit pas être possible de supprimer une TODO qui n'est pas terminée en base de données.
 
 :::
 

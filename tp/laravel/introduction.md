@@ -320,7 +320,7 @@ Cette notation est très récente et n'est disponible qu'à partir de **Laravel 
 
 Nous utiliserons les composants dans le TP [Aller plus loin avec Laravel](./aller_plus_loin.md).
 
-[Pour les plus curieux, la documentation officielle est disponible ici](https://laravel.com/docs/8.x/blade#components)
+[Pour les plus curieux, la documentation officielle est disponible ici](https://laravel.com/docs/11.x/blade#components)
 
 ::: tip Un composant
 L'organisation en composant est très populaire en ce moment, elle est la base de beaucoup de frameworks moderne. Vous devriez vivement vous y intéresser.
@@ -330,7 +330,7 @@ C'est par exemple la base du fonctionnement de VueJS 👌.
 
 ## Utiliser un contrôleur
 
-La force de Laravel est sa structure, nous avons vu ensemble que celui-ci propose un découpage « précis » et clair des couches « MVC » (Modèle, Vue, Controlleur). Nous allons donc organiser notre code pour utiliser un Contrôleur (qui je le rappelle à pour but de répondre aux requêtes HTTP des clients).
+La force de Laravel est sa structure, nous avons vu ensemble que celui-ci propose un découpage « précis » et clair des couches « MVC » (Modèle, Vue, Contrôleur). Nous allons donc organiser notre code pour utiliser un Contrôleur (qui je le rappelle a pour but de répondre aux requêtes HTTP des clients).
 
 ### Le Contrôleur:
 
@@ -467,9 +467,9 @@ Pour cela, ajouter dans votre vue `ping.blade.php` :
 
 ```html
 @if($word == 'PING')
-<p>La page est en mode PING ({{ time() }}</p>
+<p>La page est en mode PING ({{ time() }})</p>
 @else
-<p>La page est en mode PONG ({{ time() }}</p>
+<p>La page est en mode PONG ({{ time() }})</p>
 @endif
 ```
 
@@ -593,13 +593,13 @@ Tester à nouveau votre formulaire, vous devriez voir les messages d'erreur ou d
 
 Dans ce premier TP, je vous donne énormément de code, mais c'est pour vous montrer la puissance de Laravel. Il va également vous servir de base pour d'autres TP.
 
-Je vous laisse donc être très vigilent sur le code que vous écrivez, et surtout sur la compréhension de celui-ci.
+Je vous laisse donc être très vigilant sur le code que vous écrivez, et surtout sur la compréhension de celui-ci.
 
 :::
 
 ### Vous en voulez plus ?
 
-Pour aller plus loins sur Blade et les directives, je vous invite à consulter la [documentation officielle](https://laravel.com/docs/11.x/blade).
+Pour aller plus loin sur Blade et les directives, je vous invite à consulter la [documentation officielle](https://laravel.com/docs/11.x/blade).
 
 Ou regarder l'aide mémoire : [les directives de blades](/cheatsheets/laravel/#les-directives)
 

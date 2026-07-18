@@ -23,8 +23,8 @@ Dans ce TP, je vous invite à avoir en parallèle :
 
 Ce TP repose sur le projet des TP précédents. Avant de commencer, vérifiez que vous avez :
 
-- La TODO List fonctionnelle (lister, ajouter, terminer, supprimer) — [TP base de données](./base_de_donnees.md).
-- L'authentification (inscription, connexion, déconnexion, middleware `CheckAuth`) — [TP authentification](./authentification_manuelle.md).
+- La TODO List fonctionnelle (lister, ajouter, terminer, supprimer), voir le [TP base de données](./base_de_donnees.md).
+- L'authentification (inscription, connexion, déconnexion, middleware `CheckAuth`), voir le [TP authentification](./authentification_manuelle.md).
 
 ::: details Il vous manque un morceau ?
 
@@ -56,7 +56,7 @@ Route::middleware('throttle:5,1')->get('/throttle', function () {
 });
 ```
 
-Ici pour tester nous avons déclarer une route `/throttle` qui va limiter à 5 requêtes par minute. Vous pouvez tester directement avec votre navigateur. Après 5 requêtes, vous devriez voir une erreur `429 Too Many Requests`.
+Ici pour tester nous avons déclaré une route `/throttle` qui va limiter à 5 requêtes par minute. Vous pouvez tester directement avec votre navigateur. Après 5 requêtes, vous devriez voir une erreur `429 Too Many Requests`.
 
 Question :
 
@@ -160,7 +160,7 @@ public function run(): void
 }
 ```
 
-Cette commande défini le nombre de données factices à créer (ici 50).
+Cette commande définit le nombre de données factices à créer (ici 50).
 
 Il faut maintenant indiquer à Laravel que notre `Model` `Todo` possède une factory, pour cela ajouter dans le modèle `app/Models/Todo.php` le code suivant :
 
@@ -180,24 +180,28 @@ Enfin, exécutez le seeder pour remplir la base de données avec les données fa
 php artisan db:seed --class=TodoSeeder
 ```
 
-✅ Point de contrôle : rechargez votre page `/todo`, vous devez voir vos 50 TODO factices.
+::: tip Point de contrôle
+
+Rechargez votre page `/todo`, vous devez voir vos 50 TODO factices.
+
+:::
 
 ## Étape 4 : Lier les TODO à un utilisateur
 
-Actuellement, tous les utilisateurs voient les mêmes TODO… Nous allons lier chaque TODO à l'utilisateur qui l'a créée. Pour cela, nous allons ajouter une colonne `utilisateur_id` dans la table `todo`. Cette colonne va contenir l'id de l'utilisateur qui a créé la TODO.
+Actuellement, tous les utilisateurs voient les mêmes TODO… Nous allons lier chaque TODO à l'utilisateur qui l'a créée. Pour cela, nous allons ajouter une colonne `utilisateur_id` dans la table `todos`. Cette colonne va contenir l'id de l'utilisateur qui a créé la TODO.
 
 ::: danger Attention le nom est important
 
 Nous l'avons vu ensemble, Laravel utilise des conventions de nommage. Pour les relations entre les tables, il est important de respecter ces conventions. Par exemple, pour lier une TODO à un utilisateur, il est important de respecter le nom `utilisateur_id`.
 
-En respectant ces conventions, Laravel va automatiquement faire le lien entre les tables et vous permettre de récupérer les données facilement (c'est la magie de l'ORM Eloquent). Ici Laravel va automatiquement lier la colonne `utilisateur_id` de la table `todo` à la colonne `id` de la table `utilisateur`.
+En respectant ces conventions, Laravel va automatiquement faire le lien entre les tables et vous permettre de récupérer les données facilement (c'est la magie de l'ORM Eloquent). Ici Laravel va automatiquement lier la colonne `utilisateur_id` de la table `todos` à la colonne `id` de la table `utilisateurs`.
 
 :::
 
 Pour commencer, créez une migration pour ajouter la colonne `utilisateur_id` :
 
 ```sh
-php artisan make:migration add_utilisateur_id_to_todo
+php artisan make:migration add_utilisateur_id_to_todos
 ```
 
 Ajoutez la colonne dans la migration :
@@ -219,7 +223,7 @@ php artisan migrate
 Dans la méthode `up` de la migration, vous devez spécifier la table sur laquelle vous voulez ajouter la colonne. Par exemple :
 
 ```php
-Schema::table('todo', function (Blueprint $table) {
+Schema::table('todos', function (Blueprint $table) {
   // Colonne à ajouter & la clé étrangère
   $table->unsignedBigInteger('utilisateur_id');
   $table->foreign('utilisateur_id')->references('id')->on('utilisateurs')->onDelete('cascade');
@@ -230,7 +234,7 @@ Schema::table('todo', function (Blueprint $table) {
 
 ::: warning Votre migration ne passe pas ?
 
-Si votre table `todo` contient déjà des données (les 50 TODO factices de l'étape 3 par exemple), l'ajout d'une colonne obligatoire avec clé étrangère peut échouer. Le plus simple dans notre cas : repartir d'une base propre avec `php artisan migrate:fresh` (⚠️ cette commande **supprime toutes les données**, y compris vos utilisateurs — il faudra vous réinscrire).
+Si votre table `todos` contient déjà des données (les 50 TODO factices de l'étape 3 par exemple), l'ajout d'une colonne obligatoire avec clé étrangère peut échouer. Le plus simple dans notre cas : repartir d'une base propre avec `php artisan migrate:fresh` (⚠️ cette commande **supprime toutes les données**, y compris vos utilisateurs, il faudra donc vous réinscrire).
 
 Question : pourquoi une telle commande est-elle acceptable en développement, mais interdite en production ?
 
@@ -279,7 +283,11 @@ Vous venez d'apprendre Tinker, c'est le moment de l'utiliser : vérifiez vos rel
 
 :::
 
-✅ Point de contrôle : créez deux comptes utilisateurs, ajoutez des TODO avec chacun. Chaque utilisateur ne doit voir **que ses propres TODO**.
+::: tip Point de contrôle
+
+Créez deux comptes utilisateurs, ajoutez des TODO avec chacun. Chaque utilisateur ne doit voir **que ses propres TODO**.
+
+:::
 
 ## Étape 5 : Les pages « profil »
 
