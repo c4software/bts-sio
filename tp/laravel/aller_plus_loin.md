@@ -10,7 +10,7 @@ description: "Dernier TP de la découverte de Laravel. Nous allons finaliser not
 [[toc]]
 :::
 
-Ce TP conclut notre découverte de Laravel. Depuis le [TP d'introduction](./introduction.md), nous avons construit pas à pas un projet complet : une TODO List [persistante en base de données](./base_de_donnees.md), protégée par [un système d'authentification](./authentification_manuelle.md).
+Ce TP conclut notre découverte de Laravel. Depuis le [TP d'introduction](./introduction.md), nous avons construit pas à pas un projet complet : une TODO List [persistante en base de données](./base_de_donnees.md), protégée par [un système d'authentification](./authentification_manuelle.md) complet, [reset de mot de passe](./reset_mot_de_passe.md) compris.
 
 Dans ce dernier TP, nous allons **finaliser** ce projet comme le ferait un développeur : lier les TODO aux utilisateurs (relations entre tables), remplir la base avec des données de test, limiter les abus (rate limiting), découvrir Tinker, et soigner l'apparence.
 

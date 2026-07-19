@@ -984,4 +984,4 @@ Ici, l'idée c'est de vous laisser faire. Vous avez toutes les informations néc
 
 ## La suite
 
-Breeze vous a généré (entre autres) un système de « mot de passe oublié » complet. Mais savez-vous réellement ce qu'il fait ? Dans le TP suivant, nous allons coder ce mécanisme nous-même : token, expiration, envoi d'email… Rendez-vous dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md).
+Breeze vous a généré (entre autres) un système de « mot de passe oublié » complet. Et vous savez **exactement** ce qu'il fait : c'est le mécanisme que vous avez codé à la main dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md) (token, expiration, envoi d'email). Je vous invite d'ailleurs à comparer : explorez le code généré par Breeze et retrouvez-y les briques que vous connaissez.

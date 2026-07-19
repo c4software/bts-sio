@@ -14,7 +14,7 @@ description: "Dans ce TP nous allons coder un système de réinitialisation de m
 
 ::: tip Encore à la main ?
 
-Oui ! Comme pour [le TP Comprendre l'authentification](./authentification_manuelle.md), l'objectif est de comprendre le mécanisme. Laravel (via Breeze, vu dans [le TP précédent](./authentification.md)) sait générer tout ça automatiquement, mais un reset de mot de passe mal compris est une **faille de sécurité classique**. Une fois codé à la main, vous saurez exactement ce que fait l'outil automatique.
+Oui ! Comme pour [le TP Comprendre l'authentification](./authentification_manuelle.md), l'objectif est de comprendre le mécanisme. Laravel sait générer tout ça automatiquement (nous le verrons avec [Breeze](./authentification.md)), mais un reset de mot de passe mal compris est une **faille de sécurité classique**. Une fois codé à la main, vous saurez exactement ce que fait l'outil automatique.
 
 :::
 
@@ -164,7 +164,7 @@ class EmailHelpers
 
 ### Tester l'envoi
 
-Vous avez appris Tinker dans [le TP Aller plus loin](./aller_plus_loin.md), utilisons-le :
+Pour tester, nous allons utiliser **Tinker**, la console interactive de Laravel : elle permet d'exécuter du code PHP directement dans le contexte de votre application (nous l'utiliserons plus largement dans [le TP Aller plus loin](./aller_plus_loin.md)) :
 
 ```sh
 php artisan tinker
@@ -395,14 +395,14 @@ Un système d'authentification se teste aussi « en mode attaquant ». Vérifiez
 Questions :
 
 - Pourquoi un token de 64 caractères aléatoires ne peut-il pas être « deviné » par force brute, alors qu'un code à 6 chiffres pourrait l'être ?
-- Notre formulaire de demande de reset peut être utilisé pour **spammer** quelqu'un (une demande = un email). Quelle protection, vue dans [le TP Aller plus loin](./aller_plus_loin.md), pourrait limiter ça ?
+- Notre formulaire de demande de reset peut être utilisé pour **spammer** quelqu'un (une demande = un email). Quelle protection pourrait limiter ça ? (indice : limiter le **nombre de requêtes**, nous verrons comment dans [le TP Aller plus loin](./aller_plus_loin.md))
 
 ### Bonus
 
 Si vous êtes en avance :
 
-- Ajoutez un **rate limiting** sur les deux routes POST du TP (5 requêtes par minute semble raisonnable).
 - Après un reset réussi, envoyez un **email de confirmation** « Votre mot de passe a été modifié » (réutilisez votre `EmailHelpers`). Pourquoi cet email est-il une bonne pratique de sécurité ?
+- Pour les plus curieux : limitez le nombre de requêtes sur les deux routes POST du TP avec le middleware `throttle:5,1` (5 requêtes par minute). Nous détaillerons le rate limiting dans [le TP Aller plus loin](./aller_plus_loin.md).
 
 ## Conclusion
 
@@ -413,8 +413,10 @@ Vous venez de coder la fonctionnalité « mot de passe oublié » comme le font 
 - La réponse est **identique** que l'email existe ou non (anti-énumération).
 - Blade et le mailer `log` permettent de développer tout ça sans serveur mail.
 
+Et comme pour l'authentification : oui, nous avons **tout codé à la main**, mais Laravel sait générer ce mécanisme automatiquement avec [Breeze](./authentification.md). La force de Laravel, c'est justement de ne pas tout recoder… maintenant que vous savez ce qu'il y a dedans, vous pourrez l'utiliser en confiance.
+
 N'oubliez pas de **commiter votre projet**.
 
-Et maintenant que vous avez tout codé à la main (authentification, puis reset), vous mesurez ce que [Breeze](./authentification.md) génère pour vous en une commande… et surtout, vous savez ce qu'il y a dedans.
+La suite du fil rouge : [Aller plus loin avec Laravel](./aller_plus_loin.md), pour finaliser le projet TODO (relations entre tables, données de test, rate limiting, Tinker…).
 
-Une fonctionnalité de sécurité comme celle-ci mérite d'être **testée automatiquement** : nous le ferons dans le TP [Tester son application avec PHPUnit](./tests.md).
+Et gardez un rendez-vous en tête : dans le TP [Tester son application avec PHPUnit](./tests.md), nous testerons automatiquement cette fonctionnalité de sécurité.

@@ -25,6 +25,14 @@ Dans ce TP, je vous invite à avoir en parallèle :
 - [L'aide mémoire Laravel](/cheatsheets/laravel/)
 - [La synthèse des commandes](/cheatsheets/laravel/quick.md)
 
+## Les slides
+
+Avant de coder, posons les concepts : hash, session, middleware et double authentification :
+
+<ClientOnly>
+<SlidesDeck src="laravel_authentification" />
+</ClientOnly>
+
 ## Objectifs
 
 À la fin de ce TP vous saurez :
@@ -34,7 +42,6 @@ Dans ce TP, je vous invite à avoir en parallèle :
 - Créer un système complet d'inscription / connexion / déconnexion en Laravel.
 - Utiliser le système d'authentification de Laravel (`Auth::`) en sachant précisément ce qu'il fait derrière (la session).
 - Protéger des routes avec un **Middleware**.
-- Mettre en place une **double authentification** (2FA) par code temporaire.
 
 ## Un peu de théorie : comment fonctionne une authentification ?
 
@@ -236,48 +243,123 @@ C'est exactement la configuration que vous retrouverez dans le projet d'AP.
 
 :::
 
-### Créer un contrôleur pour l'authentification
+### Créer le contrôleur et les routes
 
-Je vous laisse écrire le code permettant de réaliser l'authentification. Pour cela, vous allez devoir :
+Nous allons construire l'authentification **étape par étape**. Vue d'ensemble de ce dont nous avons besoin :
 
-- Créer un contrôleur `AuthentificationControleur`.
-- Ajouter une méthode `login` qui va afficher le formulaire de connexion.
-- Ajouter une méthode `traitementLogin` qui va traiter le formulaire de connexion.
-- Ajouter une méthode `register` qui va afficher le formulaire d'inscription.
-- Ajouter une méthode `traitementRegister` qui va traiter le formulaire d'inscription.
+|          Route          |       Méthode        | Rôle                                |
+| :---------------------: | :------------------: | :---------------------------------- |
+|      GET `/login`       |      `login()`       | Afficher le formulaire de connexion |
+| POST `/traitementLogin` | `traitementLogin()`  | Traiter le formulaire de connexion  |
+|     GET `/register`     |     `register()`     | Afficher le formulaire d'inscription |
+| POST `/traitementRegister` | `traitementRegister()` | Traiter le formulaire d'inscription |
 
-L'ensemble des méthodes devra être accessible via des routes :
+Première étape, créer le contrôleur (vous connaissez la commande) :
 
-- GET `/login` pour afficher le formulaire de connexion.
-- POST `/traitementLogin` pour traiter le formulaire de connexion.
-- GET `/register` pour afficher le formulaire d'inscription.
-- POST `/traitementRegister` pour traiter le formulaire d'inscription.
+```sh
+php artisan make:controller AuthentificationControleur
+```
 
-::: tip Besoin d'aide ?
+Puis déclarez les quatre routes dans `routes/web.php` :
 
-Pour réaliser l'authentification il y a du code oui, mais il y a surtout des étapes à suivre :
+```php
+Route::get('/login', [AuthentificationControleur::class, 'login']);
+Route::post('/traitementLogin', [AuthentificationControleur::class, 'traitementLogin']);
+Route::get('/register', [AuthentificationControleur::class, 'register']);
+Route::post('/traitementRegister', [AuthentificationControleur::class, 'traitementRegister']);
+```
 
-- Créer un contrôleur.
-- Ajouter les méthodes.
-- Ajouter les routes.
-- Créer les vues.
+::: tip Vérifiez avant de continuer
 
-Je vous laisse donc réaliser ces étapes en vous aidant de [l'aide mémoire](/cheatsheets/laravel/). Si vous avez des questions, je suis là pour vous aider.
-
-N'oubliez pas ce que vous avez vu dans les TP précédents : `@extends('layouts.base')` pour vos vues, et `@csrf` dans vos formulaires.
+`php artisan route:list` doit lister vos quatre routes (le `use App\Http\Controllers\AuthentificationControleur;` est bien présent en haut de `web.php` ?). Pour l'instant elles pointent vers des méthodes qui n'existent pas encore : c'est l'objet des étapes suivantes.
 
 :::
 
-### Gérer l'authentification
+### La page de connexion
 
-Vous l'avez fait en PHP pur dans l'étape 0, c'est **exactement le même mécanisme** ici, avec les outils de Laravel :
+Commençons par l'affichage. Dans le contrôleur, la méthode est minimaliste :
 
 ```php
-// Dans la méthode traitementRegister
-$mdp = $request->input('password');
-$hash = password_hash($mdp, PASSWORD_DEFAULT);
+public function login()
+{
+    return view('login');
+}
+```
 
-// Dans la méthode traitementLogin
+Et voilà la vue `resources/views/login.blade.php` complète :
+
+```html
+@extends('layouts.base')
+
+@section('title', 'Connexion')
+
+@section('content')
+<h1>Connexion</h1>
+
+@if(session('error'))
+<div style="color: red;">{{ session('error') }}</div>
+@endif
+
+<form method="POST" action="/traitementLogin">
+  @csrf
+  <input type="email" name="email" placeholder="Email" />
+  <input type="password" name="password" placeholder="Mot de passe" />
+  <button type="submit">Se connecter</button>
+</form>
+
+<p><a href="/register">Pas encore de compte ? Inscrivez-vous</a></p>
+@endsection
+```
+
+Rien de nouveau : le layout et `@csrf` viennent du [TP d'introduction](./introduction.md), le formulaire ressemble à celui de votre TODO List. Testez : `/login` doit afficher votre formulaire.
+
+### La page d'inscription : à vous
+
+Sur **exactement le même modèle** (méthode `register()` + vue `register.blade.php`), je vous laisse créer la page d'inscription. Seules différences :
+
+- Trois champs : `name`, `email`, `password`.
+- Le formulaire poste vers `/traitementRegister`.
+- Un lien vers `/login` (« Déjà un compte ? »).
+
+::: tip Point de contrôle
+
+`/login` et `/register` affichent chacun leur formulaire, avec votre layout. Les boutons ne font encore rien d'utile (les méthodes de traitement n'existent pas), c'est normal.
+
+:::
+
+### L'inscription : `traitementRegister`
+
+Passons au traitement de l'inscription. Le principe : récupérer les champs du formulaire, **hasher** le mot de passe, créer l'utilisateur en base, rediriger vers la connexion. Voilà la méthode complète :
+
+```php
+public function traitementRegister(Request $request)
+{
+    // On stocke le HASH du mot de passe, jamais le mot de passe en clair
+    $hash = password_hash($request->input('password'), PASSWORD_DEFAULT);
+
+    Utilisateur::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => $hash,
+    ]);
+
+    return redirect('/login')->with('success', 'Votre compte a été créé, vous pouvez vous connecter');
+}
+```
+
+N'oubliez pas le `use App\Models\Utilisateur;` en haut du contrôleur. Et souvenez-vous du [TP base de données](./base_de_donnees.md) : `Utilisateur::create()` fonctionne grâce au `$fillable` de votre modèle.
+
+::: tip Point de contrôle
+
+Inscrivez-vous via `/register`, puis ouvrez votre outil SQLite : l'utilisateur est en base, et la colonne `password` contient bien un **hash** (`$2y$…`), pas votre mot de passe. Ajoutez l'affichage du message flash `success` sur la page de connexion pour un retour utilisateur propre.
+
+:::
+
+### La connexion : `traitementLogin`
+
+Vous l'avez fait en PHP pur dans l'étape 0, c'est **exactement le même mécanisme** ici : retrouver l'utilisateur par son email, vérifier le mot de passe contre le hash, puis ouvrir la session. Je vous donne le cœur de la méthode, à vous de l'assembler :
+
+```php
 $mdp = $request->input('password');
 $email = $request->input('email');
 $utilisateur = Utilisateur::where('email', $email)->first();
@@ -306,14 +388,15 @@ Question : pourquoi stocker uniquement l'id, plutôt que l'objet `$utilisateur` 
 
 :::
 
-C'est à vous de jouer !
+C'est à vous de jouer ! Il vous reste à :
+
+- Transformer ce fragment en méthode complète `traitementLogin(Request $request)`.
+- Rediriger vers `/todo` après une connexion réussie.
 
 ::: warning Quelques points de vigilance
 
-- Dans `traitementRegister`, c'est bien le **hash** qu'il faut stocker en base, jamais le mot de passe en clair.
-- Dans `traitementLogin`, que se passe-t-il si l'email n'existe pas en base ? (`$utilisateur` sera `null`…). Gérez ce cas **avant** d'appeler `password_verify`, avec le même message d'erreur « Identifiants incorrects ».
+- Que se passe-t-il si l'email n'existe pas en base ? (`$utilisateur` sera `null` et `password_verify` plantera…). Gérez ce cas **avant** d'appeler `password_verify`, avec le même message d'erreur « Identifiants incorrects ».
 - N'oubliez pas le `use Illuminate\Support\Facades\Auth;` en haut de votre contrôleur.
-- N'oubliez pas les **messages flash** pour informer l'utilisateur (succès de l'inscription, erreur de connexion…).
 
 :::
 
@@ -354,7 +437,7 @@ Les deux fonctionnent ! Le message flash convient à un message **global** (« V
 
 ::: tip Point de contrôle
 
-Vous devez pouvoir vous inscrire, vous voir en base de données (avec un mot de passe **hashé**, vérifiez dans votre outil SQLite !), puis vous connecter.
+Le parcours complet fonctionne : inscription, puis connexion avec redirection vers `/todo`. Avec un mauvais mot de passe (ou un email inconnu), le message « Identifiants incorrects » s'affiche et la saisie de l'email est conservée.
 
 :::
 
@@ -419,127 +502,11 @@ C'est le moment de tout relier : je vous laisse protéger **l'ensemble des route
 
 Testez les deux cas (une navigation privée est pratique pour tester « non connecté »).
 
-## TD : ajouter la double authentification (2FA)
+::: tip Vous êtes en avance ?
 
-Votre authentification fonctionne, nous allons maintenant la renforcer, **ensemble et pas à pas**, avec une double authentification.
-
-### Rappel : qu'est-ce qu'une 2FA ?
-
-Vous l'avez forcément déjà vécue : après le mot de passe, le site vous demande un **code à 6 chiffres** reçu par email, SMS ou application. C'est la double authentification (2FA) : elle combine quelque chose que vous **savez** (le mot de passe) avec quelque chose que vous **possédez** (l'accès à la boîte mail ou au téléphone). Un mot de passe volé ne suffit donc plus pour entrer.
-
-Le parcours de connexion devient :
-
-```
-POST /traitementLogin (mot de passe OK)
-        → génération d'un code à 6 chiffres (stocké en base, avec expiration)
-        → le code est transmis à l'utilisateur
-        → GET /verification : formulaire de saisie du code
-        → POST /verification : code correct et non expiré ?
-              → oui : le code est invalidé, Auth::login(), c'est gagné
-              → non : « Code invalide ou expiré »
-```
-
-Point important : tant que le code n'est pas validé, l'utilisateur n'est **pas connecté** (pas de `Auth::login()`).
-
-### Étape 1 : la migration
-
-Deux colonnes suffisent, comme souvent avec les codes temporaires :
-
-```sh
-php artisan make:migration add_two_factor_to_utilisateurs
-```
-
-```php
-Schema::table('utilisateurs', function (Blueprint $table) {
-    $table->string('two_factor_code', 6)->nullable();
-    $table->dateTime('two_factor_expires_at')->nullable();
-});
-```
-
-Je vous laisse compléter la méthode `down()`, lancer `php artisan migrate`, et ajouter les deux colonnes dans le `$fillable` du modèle.
-
-### Étape 2 : générer le code au login
-
-Dans `traitementLogin`, quand le mot de passe est correct, nous ne connectons **plus** l'utilisateur directement. À la place :
-
-```php
-if ($estValide) {
-    // Un code aléatoire à 6 chiffres (str_pad ajoute les zéros de tête : 007243)
-    $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-
-    $utilisateur->two_factor_code = $code;
-    $utilisateur->two_factor_expires_at = now()->addMinutes(10);
-    $utilisateur->save();
-
-    // « Envoi » du code : dans ce TD, il est écrit dans le fichier de log
-    Log::info("Code 2FA pour {$utilisateur->email} : {$code}");
-
-    // On mémorise qui est en cours de connexion (mais PAS encore connecté)
-    $request->session()->put('2fa_email', $utilisateur->email);
-
-    return redirect('/verification');
-}
-```
-
-N'oubliez pas le `use Illuminate\Support\Facades\Log;`.
-
-::: tip Et le vrai envoi ?
-
-En production, ce code partirait par **email ou SMS**, jamais dans un log. Nous verrons comment envoyer des emails avec Laravel dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md). En attendant, le fichier `storage/logs/laravel.log` jouera le rôle de la boîte mail.
+Un TP bonus vous attend : [La double authentification (2FA)](./2fa.md). Vous y renforcerez la connexion que vous venez de coder avec un code temporaire à 6 chiffres (celui présenté en fin de slides), exactement comme dans le projet que vous retrouverez en AP.
 
 :::
-
-Question :
-
-- Pourquoi stocker `2fa_email` en session plutôt que de considérer l'utilisateur comme connecté ?
-
-### Étape 3 : la page de vérification
-
-À vous de jouer pour cette étape, vous avez tous les outils :
-
-- Deux routes : GET `/verification` et POST `/verification`.
-- Une méthode `showVerification` : si la session ne contient pas `2fa_email`, redirigez vers `/login` (personne n'a rien à faire sur cette page sans avoir passé l'étape du mot de passe). Sinon, affichez la vue.
-- Une vue avec un formulaire : un champ `code`, un bouton, `@csrf`, et l'affichage de l'erreur avec `@error('code')`.
-
-### Étape 4 : vérifier le code
-
-Pour la vérification, je vous donne la requête clé, qui vérifie le code **et** son expiration en une seule fois (vous la reconnaîtrez dans le TP reset) :
-
-```php
-$email = $request->session()->get('2fa_email');
-
-$utilisateur = Utilisateur::where('email', $email)
-    ->where('two_factor_code', $request->input('code'))
-    ->where('two_factor_expires_at', '>', now())
-    ->first();
-```
-
-Je vous laisse écrire la méthode `verification(Request $request)` :
-
-- Si `$utilisateur` est `null` : retour au formulaire avec `withErrors(['code' => 'Code invalide ou expiré'])`.
-- Sinon, dans l'ordre :
-  1. Invalider le code (les deux colonnes à `null`, puis `save()`).
-  2. Nettoyer la session : `$request->session()->forget('2fa_email');`.
-  3. Connecter l'utilisateur : `Auth::login($utilisateur);` puis `$request->session()->regenerate();`.
-  4. Rediriger vers la TODO List avec un message de bienvenue.
-
-::: tip Point de contrôle
-
-Déroulez le parcours complet :
-
-1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`, **sans être connecté** (vérifiez : `/todo` doit encore rediriger vers `/login`).
-2. Récupérez le code dans `storage/logs/laravel.log` et saisissez-le : vous êtes connecté.
-3. Modifiez à la main `two_factor_expires_at` en base pour mettre une date passée : le code doit être refusé.
-4. Après une connexion réussie, vérifiez en base : les deux colonnes 2FA sont repassées à `NULL`.
-
-:::
-
-Questions :
-
-- Un code à 6 chiffres n'offre que 1 000 000 de possibilités, un script peut toutes les essayer en quelques minutes… Quelles protections rendent malgré tout ce mécanisme sûr ? (il y en a au moins deux dans votre code, et une troisième arrive dans le TP [Aller plus loin](./aller_plus_loin.md))
-- Que se passe-t-il si l'utilisateur ferme son navigateur entre le mot de passe et la saisie du code ?
-
-Ce trio « code temporaire + expiration + usage unique » reviendra dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md), et vous retrouverez une 2FA construite exactement sur ce modèle dans le projet d'AP.
 
 ## Conclusion
 
@@ -548,11 +515,16 @@ Vous venez de coder un système d'authentification complet, et surtout vous save
 - Un mot de passe n'est **jamais** stocké en clair : `password_hash` à l'inscription, `password_verify` à la connexion.
 - `Auth::login()` / `Auth::check()` / `Auth::logout()` : le système de Laravel, dont vous connaissez maintenant l'envers du décor (la **session**, comme en PHP pur).
 - Un **Middleware** protège les routes qui nécessitent d'être connecté.
-- Une **2FA** renforce la connexion avec un code temporaire, à expiration courte et usage unique.
+
+Et oui, nous avons **tout codé à la main**… mais sachez que Laravel sait faire tout ça pour vous, automatiquement, avec [Breeze](./authentification.md). C'est justement la force d'un framework : ne pas tout recoder à chaque projet. Vous venez de gagner le droit d'utiliser ces outils **en sachant ce qu'ils font**.
 
 N'oubliez pas de **commiter votre projet**.
 
-Deux suites possibles (et complémentaires) :
+La suite directe : [Le reset de mot de passe](./reset_mot_de_passe.md), pour compléter votre authentification avec la fonctionnalité « mot de passe oublié » (token temporaire, expiration, envoi d'email).
 
-- [Aller plus loin avec Laravel](./aller_plus_loin.md) : nous allons terminer notre projet TODO (lier les TODO aux utilisateurs, remplir la base de données de test, limiter les abus…).
-- [L'authentification avec Breeze](./authentification.md) : dans la vraie vie, on ne recode pas tout ça à la main. Laravel sait générer une authentification complète (mot de passe oublié, vérification d'email…) : maintenant que vous savez ce qu'il y a dedans, vous pouvez l'utiliser en confiance.
+Puis viendront :
+
+- [La double authentification (2FA)](./2fa.md) : le TP bonus pour les plus rapides, qui ajoute le code à 6 chiffres présenté dans les slides.
+
+- [Aller plus loin avec Laravel](./aller_plus_loin.md) : terminer le projet TODO (lier les TODO aux utilisateurs, remplir la base de données de test, limiter les abus…).
+- [L'authentification avec Breeze](./authentification.md) : dans la vraie vie, on ne recode pas tout ça à la main. Laravel sait générer une authentification complète : maintenant que vous savez ce qu'il y a dedans, vous pourrez l'utiliser en confiance.

@@ -633,11 +633,14 @@ N'oubliez pas de **commiter votre projet**, nous allons le réutiliser et l'enri
 
 :::
 
-La suite de la découverte se déroule en trois TP, toujours sur ce même projet :
+La suite de la découverte se déroule en quatre TP, toujours sur ce même projet :
 
 1. [Introduction base de données et ORM avec Laravel](./base_de_donnees.md) : rendre notre site persistant avec Eloquent (nous allons construire une TODO List).
 2. [Comprendre l'authentification](./authentification_manuelle.md) : coder nous-même un système de connexion (mots de passe hashés, sessions, middleware).
-3. [Aller plus loin avec Laravel](./aller_plus_loin.md) : finaliser le projet (relations entre tables, données de test, rate limiting, Tinker…).
+3. [Le reset de mot de passe](./reset_mot_de_passe.md) : la fonctionnalité « mot de passe oublié » (token, expiration, envoi d'email).
+4. [Aller plus loin avec Laravel](./aller_plus_loin.md) : finaliser le projet (relations entre tables, données de test, rate limiting, Tinker…).
+
+Et en bonus pour les plus rapides : [La double authentification (2FA)](./2fa.md).
 
 Rendez-vous dans le TP [Introduction base de données et ORM avec Laravel](./base_de_donnees.md) 🚀.
 
