@@ -24,6 +24,14 @@ Je vous laisse faire très attention à chaque étape, et surtout à bien compre
 
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : l'ORM, les migrations et Eloquent.
+
+<ClientOnly>
+<SlidesDeck src="laravel_bdd" />
+</ClientOnly>
+
 Dans ce TP, je vous invite à avoir en parallèle :
 
 - [L'aide mémoire Laravel](/cheatsheets/laravel/)

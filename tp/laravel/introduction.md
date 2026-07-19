@@ -22,6 +22,18 @@ Je vous laisse donc, faire très attention à chaque étape, et surtout à bien 
 
 :::
 
+## Les slides
+
+Avant de plonger dans le code, voici une présentation rapide de la partie théorie de notre TP du jour : ce qu'est un framework et les briques que nous allons manipuler (routes, contrôleurs, vues).
+
+<ClientOnly>
+<SlidesDeck src="laravel_introduction" />
+</ClientOnly>
+
+::: tip Le cours complet
+Ces slides sont un condensé. Le support complet du cours Laravel est disponible ici : [le cours Laravel](/cours/laravel.md).
+:::
+
 ## Prérequis
 
 Ce TP fait suite au TP [Transition vers Laravel](/tp/php/tp6.md), votre poste est donc normalement déjà prêt avec :

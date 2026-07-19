@@ -43,7 +43,7 @@ La Blackliste est donc moins contraignante pour le développeur… **Mais elle e
 
 En comparaison avec le code souvent produit en première année d'études, qui mélange fréquemment HTML, PHP et requêtes SQL, une approche plus structurée est nécessaire pour des projets professionnels.
 
-Exemple d'un code pas ranger :
+Exemple d'un code pas rangé :
 
 ![HTML, PHP, SQL mélangés](./res/html-php-db-beurk-orig.png)
 
@@ -55,7 +55,7 @@ Voici, comment découper / identifier les différentes parties du code à ranger
 
 Le MVC est un pattern de conception qui permet de séparer les responsabilités au sein d'une application.
 
-Nous avons ici Trois tiers, mais sachez que plus globalement on parle de développement en N-tiers (N étant un nombre variable).
+Nous avons ici trois tiers, mais sachez que plus globalement on parle de développement en N-tiers (N étant un nombre variable).
 
 ![3 Parties MVC](./res/3-tiers.jpg)
 
@@ -82,9 +82,9 @@ En fonction du framework utilisé, plusieurs options sont possibles.
 - Contient le HTML et le minimum de logique d'affichage
 - Ne doit pas contenir de logique métier
 
-::: dange Attention !
+::: danger Attention !
 
-Pas de traitemement ici. Le découpage est la clé de la réussite. Vous devez ici ne faire que la logique d'affichage des données.
+Pas de traitement ici. Le découpage est la clé de la réussite. Vous devez ici ne faire que la logique d'affichage des données.
 
 - Boucle
 - Mise en forme
@@ -101,7 +101,7 @@ Pas de traitemement ici. Le découpage est la clé de la réussite. Vous devez i
 
 ::: danger Attention !
 
-Pas de requête SQL dans un contrôleur. Ici nous **devons** faire appel à un Modèle pour acceder aux données.
+Pas de requête SQL dans un contrôleur. Ici nous **devons** faire appel à un Modèle pour accéder aux données.
 
 :::
 
@@ -114,7 +114,7 @@ Le routeur est un composant crucial dans une architecture MVC :
 
 ::: tip Comment le représenter ?
 
-Intéractions entre les composants du MVC :
+Interactions entre les composants du MVC :
 
 ![Routeur Schema](./res/mvc_router.png)
 
@@ -130,7 +130,7 @@ Exemple du code d'un routeur simple :
 
 ## Conclusion
 
-L'approche MVC représente une évolution significative dans la façon d'organiser et de structurer le code. Elle permet de créer des applications plus maintenables, évolutives et adéquate au travail en équipe.
+L'approche MVC représente une évolution significative dans la façon d'organiser et de structurer le code. Elle permet de créer des applications plus maintenables, évolutives et adaptées au travail en équipe.
 
 ::: tip Important
 

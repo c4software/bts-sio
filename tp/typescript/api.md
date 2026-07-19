@@ -20,7 +20,7 @@ Cet outil est donc un « All in one », permettant de réaliser l'ensemble des t
 
 ## Qu'allons-nous réaliser ?
 
-Ici nous allons réaliser une API. Pour rappel, une API est une interface de programmation applicative, c'est-à-dire un ensemble de fonctions et de procédures qui permettent de réaliser des applications. Une API est donc un ensemble de fonctions et de procédures qui permettent de réaliser des applications.
+Ici nous allons réaliser une API. Pour rappel, une API est une interface de programmation applicative, c'est-à-dire un ensemble de fonctions et de procédures qui permettent de réaliser des applications.
 
 Ici nous allons réaliser une API de type HTTP, c'est-à-dire que nous allons réaliser une API qui sera accessible via le protocole HTTP. Cette API sera donc accessible via une URL, et nous pourrons réaliser des requêtes HTTP sur cette API.
 
@@ -42,7 +42,7 @@ Le guide d'installation de Bun est plutôt bien fait ([voir ici](https://bun.sh/
 curl -fsSL https://bun.sh/install | bash # Pour Linux / MacOS / WSL
 ```
 
-Si malheusement vous êtes sous Windows et que vous n'avez pas WSL, vous pouvez utiliser npm pour installer Bun (c'est un peu étrange étant donné que Bun est un outils pour remplacer npm… mais bon, vous avez compris l'idée) :
+Si malheureusement vous êtes sous Windows et que vous n'avez pas WSL, vous pouvez utiliser npm pour installer Bun (c'est un peu étrange étant donné que Bun est un outil pour remplacer npm… mais bon, vous avez compris l'idée) :
 
 ```bash
 powershell -c "irm bun.sh/install.ps1 | iex"
@@ -138,7 +138,7 @@ Et oui, `bun.sh` est rétrocompatible avec `npm`, c'est pour cela que nous avons
 
 Avant de continuer, nous allons vérifier que notre projet fonctionne correctement. Pour cela, nous allons exécuter la commande `bun run index.ts` dans notre projet. Bun va alors compiler notre projet et l'exécuter.
 
-Si tout c'est bien passé, vous devriez avoir le message suivant :
+Si tout s'est bien passé, vous devriez avoir le message suivant :
 
 ```sh
 Hello via Bun!
@@ -318,11 +318,11 @@ division.test.ts:
 
 ::: tip l'importance des tests
 
-Ici nous touchons du doigts l'importance des tests. En effet, nous avons pu modifier le code de la fonction `division` sans avoir peur de casser le code.
+Ici nous touchons du doigt l'importance des tests. En effet, nous avons pu modifier le code de la fonction `division` sans avoir peur de casser le code.
 
-Nous avons inversé la manière de coder, nous sommes parti de ce que nous voulions obtenir (les tests) pour ensuite coder la fonction.
+Nous avons inversé la manière de coder, nous sommes partis de ce que nous voulions obtenir (les tests) pour ensuite coder la fonction.
 
-Cette pratique ce nomme le TDD (Test Driven Development), c'est une pratique très utilisée dans le monde du développement Web. Elle permet de réduire les erreurs de programmation et de faciliter la maintenance du code.
+Cette pratique se nomme le TDD (Test Driven Development), c'est une pratique très utilisée dans le monde du développement Web. Elle permet de réduire les erreurs de programmation et de faciliter la maintenance du code.
 
 :::
 
@@ -332,7 +332,7 @@ Cette pratique ce nomme le TDD (Test Driven Development), c'est une pratique tr�
 
 Maintenant que nous avons vu les bases de Bun, nous allons pouvoir réaliser notre API. Pour cela, nous allons utiliser Express, une librairie qui permet de réaliser des API HTTP en JavaScript / TypeScript.
 
-Express est un standard dans le monde du JavaScript / TypeScript. Elle est globalement très utilisé dans le développement serveur. Vous ne vous tromperez pas en l'utilisant.
+Express est un standard dans le monde du JavaScript / TypeScript. Elle est globalement très utilisée dans le développement serveur. Vous ne vous tromperez pas en l'utilisant.
 
 ### Installer Express
 
@@ -478,11 +478,11 @@ app.get("/division/:a/:b", (req, res) => {
 
 Rendez-vous sur l'URL `http://localhost:3000/division/10/0`, vous devriez voir le message `Division par 0 impossible`.
 
-::: tip qu'avons nous fait ?
+::: tip qu'avons-nous fait ?
 
 Nous avons simplement ajouté un bloc `try catch` pour gérer l'erreur. Si une erreur est levée, nous retournons le code HTTP `400` avec le message de l'erreur.
 
-**Rappel** : Le code HTTP `400` correspond à une erreur de type « Bad Request ». (voir [ici](https://developer.mozilla.org/fr/docs/Web/HTTP/Status/400)
+**Rappel** : Le code HTTP `400` correspond à une erreur de type « Bad Request ». (voir [ici](https://developer.mozilla.org/fr/docs/Web/HTTP/Status/400))
 
 :::
 
@@ -554,7 +554,7 @@ Bien entendu, vous devez gérer les erreurs.
 
 ### Conclusion de notre test
 
-Nous avons rapidement créer une API avec Bun et Express. Nous avons vu comment créer des routes, comment gérer les erreurs, etc.
+Nous avons rapidement créé une API avec Bun et Express. Nous avons vu comment créer des routes, comment gérer les erreurs, etc.
 
 ## Créer notre CRUD
 
@@ -960,9 +960,9 @@ C'est à vous de jouer ! Je vous laisse créer le modèle `BookModel` et faire p
 
 ### Conclusion sur le CRUD
 
-Créer un CRUD est un « basique » du développement. en travaillant en TDD, nous rendons notre code plus robuste et plus maintenable.
+Créer un CRUD est un « basique » du développement. En travaillant en TDD, nous rendons notre code plus robuste et plus maintenable.
 
-En effet, nous nous assurons que notre code fonctionne correctement quelques soit les modifications que nous apportons (les tests nous le diront).
+En effet, nous nous assurons que notre code fonctionne correctement quelles que soient les modifications que nous apportons (les tests nous le diront).
 
 ## Créer les routes
 
@@ -1047,7 +1047,7 @@ router.delete("/:id", async (req, res) => {
 export { router };
 ```
 
-Qu'avons nous fait ? Nous avons créé le CRUD pour le modèle Reader. Nous avons donc créé les routes suivantes :
+Qu'avons-nous fait ? Nous avons créé le CRUD pour le modèle Reader. Nous avons donc créé les routes suivantes :
 
 - `GET /` : Récupérer tous les lecteurs.
 - `POST /` : Créer un lecteur.
@@ -1070,7 +1070,7 @@ Qu'attend la méthode `PUT` et le `POST` ? Ces méthodes attendent un objet JSON
 
 :::
 
-Pour l'instant la création seul des routes ne suffit pas, nous devons les ajouter au serveur. Sans cela, les routes (et donc votre code) ne seront pas accessible.
+Pour l'instant la création seul des routes ne suffit pas, nous devons les ajouter au serveur. Sans cela, les routes (et donc votre code) ne seront pas accessibles.
 
 ### Ajouter les routes au serveur
 
@@ -1095,12 +1095,12 @@ app.listen(3000, () => {
 });
 ```
 
-Il faut évidement laisser le code existant, ici nous ajoutons simplement les routes pour les lecteurs.
+Il faut évidemment laisser le code existant, ici nous ajoutons simplement les routes pour les lecteurs.
 
 - Vous noterez que nous avons ajouté `app.use(express.json());`. Cette ligne permet de dire à Express que nous allons utiliser le format JSON pour les requêtes. Cela nous permettra de récupérer les données de la requête via `req.body`.
-- Vosu noterez également que nous avons ajouté `app.use("/readers", readerRouter);`. Cette ligne permet de dire à Express que nous allons utiliser le router `readerRouter` pour la route `/readers`, les routes que nous avons créé dans le fichier `ReaderRoute.ts` seront donc accessible sous le prefix `/readers`.
+- Vous noterez également que nous avons ajouté `app.use("/readers", readerRouter);`. Cette ligne permet de dire à Express que nous allons utiliser le router `readerRouter` pour la route `/readers`, les routes que nous avons créées dans le fichier `ReaderRoute.ts` seront donc accessibles sous le prefix `/readers`.
 
-Je vous laisse tester les routes avec HoppScotch (ou Postman ou Bruno)) :
+Je vous laisse tester les routes avec HoppScotch (ou Postman ou Bruno) :
 
 - `GET /readers` : Récupérer tous les lecteurs.
 - `POST /readers` : Créer un lecteur.
@@ -1134,7 +1134,7 @@ Je vous laisse ajouter les routes au serveur en reprenant le principe du modèle
 
 ### Conclusion sur les routes
 
-Déclarer et utiliser un routeur avec avec Express est relativement simple. Nous avons finalement que « une seule ligne à ajouter » pour déclarer un routeur. Exemple :
+Déclarer et utiliser un routeur avec Express est relativement simple. Nous avons finalement que « une seule ligne à ajouter » pour déclarer un routeur. Exemple :
 
 ```ts
 app.use("/readers", readerRouter);
@@ -1169,7 +1169,7 @@ N'oubliez pas de tester la bonne création en base de données des différents m
 
 Réaliser une API avec Bun + Express est un jeu d'enfant ! Dans ce TP nous avons vu comment créer une API mais également comment **la tester**.
 
-Et oui ! Créer une API est simple, la tester est plus compliqué. Ici nous avons coder en TDD c'est à dire en partant du test pour coder la fonction. C'est une pratique très utilisée dans le monde du développement Web.
+Et oui ! Créer une API est simple, la tester est plus compliqué. Ici nous avons codé en TDD, c'est-à-dire en partant du test pour coder la fonction. C'est une pratique très utilisée dans le monde du développement Web.
 
 Nous avons également créé un CRUD (Create, Read, Update, Delete) pour les lecteurs et les livres. Cette partie est très importante, c'est une partie que vous retrouverez dans tous les projets.
 
@@ -1182,7 +1182,7 @@ Difficile de faire une API sans parler d'authentification. Il existe plusieurs m
 - JWT (JSON Web Token).
 - OAuth2 (utilisé par Google, Facebook, etc.).
 
-Nous allons voir comment implémenter une authentification « simple » avec un token. Cette méthode est très limité elle ne permet pas vraiment d'authentifier un utilisateur. Cependant, elle permet de valider l'accès ou non à une ressource.
+Nous allons voir comment implémenter une authentification « simple » avec un token. Cette méthode est très limitée, elle ne permet pas vraiment d'authentifier un utilisateur. Cependant, elle permet de valider l'accès ou non à une ressource.
 
 ### Créer la table
 
@@ -1193,7 +1193,7 @@ Voici le code SQL que vous devez exécuter :
 ```sql
 CREATE TABLE tokens (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    token TEXT NOT NULL,
+    token TEXT NOT NULL
 );
 ```
 
@@ -1297,7 +1297,7 @@ export { tokenMiddleware };
 
 Maintenant que nous avons créé le middleware, nous allons pouvoir l'ajouter au serveur. Pour cela, nous allons modifier le fichier `server.ts`.
 
-Éditer le fichier `server.ts` et ajouter le middleware à toutes les routes, le middlware doit être ajouté avant les routes :
+Éditer le fichier `server.ts` et ajouter le middleware à toutes les routes, le middleware doit être ajouté avant les routes :
 
 ```ts
 // […] Le reste du code
@@ -1338,7 +1338,7 @@ C'est à vous ! Je vous laisse tester le bon fonctionnement du middleware.
 
 ### Allez plus loin
 
-La vrai bonne pratique est d'utiliser un système d'authentification plus complexe. En 2023, le système d'authentification le plus utilisé est le JWT (JSON Web Token). Je vous invite à lire la documentation [ici](https://jwt.io/introduction/).
+La vraie bonne pratique est d'utiliser un système d'authentification plus complexe. En 2023, le système d'authentification le plus utilisé est le JWT (JSON Web Token). Je vous invite à lire la documentation [ici](https://jwt.io/introduction/).
 
 Difficile dans un TP de tout voir. Si vous souhaitez implémenter un token JWT vous pouvez lire la ressource [disponible ici](https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs)
 
