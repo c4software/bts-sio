@@ -272,7 +272,7 @@ $utilisateur = $todo->utilisateur; // Retourne l'utilisateur de la TODO
 
 Maintenant que les relations sont en place, vous pouvez :
 
-- Modifier la méthode `addTodo` pour ajouter l'id de l'utilisateur dans la TODO (vous pouvez récupérer l'utilisateur connecté avec `$request->session()->get('user')`).
+- Modifier la méthode `addTodo` pour ajouter l'id de l'utilisateur dans la TODO (vous pouvez récupérer l'utilisateur connecté avec `Auth::user()`, ou directement son id avec `Auth::id()`).
 - Modifier la méthode `listTodo` pour afficher uniquement les TODO de l'utilisateur connecté.
 
 C'est à vous ! Je vous laisse réaliser ces étapes en vous aidant de [l'aide mémoire](/cheatsheets/laravel/) et de la [documentation de Laravel](https://laravel.com/docs/11.x/eloquent-relationships).
@@ -340,6 +340,6 @@ Autrement dit : vous avez réalisé une application web complète, de la base de
 
 Pour la suite du parcours :
 
-- [Laravel & l'authentification](./authentification.md) : générer une authentification complète « standard du marché » avec Laravel.
+- [L'authentification avec Breeze](./authentification.md) : générer une authentification complète « standard du marché » avec Laravel.
 - [Eloquent les modèles simplement](./generation_model.md) : aller plus loin avec les modèles.
 - Puis les projets : [Micro-Messages](./x.md) et [Larablog](./larablog.md) pour mettre tout ça en pratique.

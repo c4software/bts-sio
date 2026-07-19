@@ -2,7 +2,7 @@
 description: Nous avons vu dans le TP introduction qu'il était très simple de créer un petit site avec Laravel. L'autre problème que Laravel résout « simplement » c'est la partie authentification.
 ---
 
-# Laravel & l'authentification
+# L'authentification avec Breeze
 
 Nous avons vu dans [le TP introduction](./introduction.md) qu'il était très simple de créer un petit site avec Laravel. L'autre problème que Laravel résout « simplement » c'est la partie authentification.
 
@@ -981,3 +981,7 @@ Ce formulaire va envoyer le message en Ajax à la route `/sendMessage` et rempla
 Ici, l'idée c'est de vous laisser faire. Vous avez toutes les informations nécessaires pour ajouter un chat à votre application. C'est à vous de jouer !
 
 :::
+
+## La suite
+
+Breeze vous a généré (entre autres) un système de « mot de passe oublié » complet. Mais savez-vous réellement ce qu'il fait ? Dans le TP suivant, nous allons coder ce mécanisme nous-même : token, expiration, envoi d'email… Rendez-vous dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md).

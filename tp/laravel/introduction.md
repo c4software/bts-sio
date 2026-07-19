@@ -391,6 +391,20 @@ php artisan route:list
 
 :::
 
+::: tip Les routes nommées
+
+Dans les projets professionnels, vous verrez très souvent les routes déclarées avec un **nom** :
+
+```php
+Route::get('/ping', [PingPongControleur::class, 'ping'])->name('ping');
+```
+
+Ce nom permet ensuite de générer l'URL sans l'écrire en dur : <code v-pre>{{ route('ping') }}</code> dans une vue, ou `redirect()->route('ping')` dans un contrôleur. Avantage : si l'URL change un jour, le reste du code continue de fonctionner sans modification.
+
+Dans nos TP nous utiliserons les URL directement pour rester simples, mais retenez cette écriture : vous la croiserez dans tous les vrais projets (notamment en AP).
+
+:::
+
 ### Les vues
 
 Vous l'avez réalisé précédemment, je vous laisse écrire les deux `vue` / `layout`. Attention à bien hériter de votre « Layout de base » (`@extends('layouts.base')`) comme dans la précédente vue.
