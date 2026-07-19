@@ -53,6 +53,12 @@ POST /traitementLogin (mot de passe OK)
 
 Point important : tant que le code n'est pas validé, l'utilisateur n'est **pas connecté** (pas de `Auth::login()`).
 
+::: tip Ce que dit OWASP
+
+La 2FA (ou MFA, Multi-Factor Authentication) est **la** contre-mesure recommandée par l'[OWASP](https://owasp.org/) contre le vol de mots de passe, dans la catégorie [A07 du Top 10](https://owasp.org/Top10/fr/A07_2021-Identification_and_Authentication_Failures/). Sa [Multifactor Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html) détaille les bonnes pratiques : vous allez en implémenter les principales dans ce TP (expiration courte, usage unique, session ouverte seulement après validation).
+
+:::
+
 ## Étape 1 : la migration
 
 Deux colonnes suffisent, comme souvent avec les codes temporaires :

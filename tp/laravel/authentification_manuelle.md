@@ -87,6 +87,17 @@ Autre point : `password_hash` intègre automatiquement un **sel** (salt), une va
 
 :::
 
+::: tip OWASP : la référence sécurité du métier
+
+Ces règles ne sortent pas de mon chapeau : elles sont documentées par l'[OWASP](https://owasp.org/) (Open Worldwide Application Security Project), la fondation de référence en sécurité applicative. Deux ressources à connaître (on vous en parlera en entretien d'embauche) :
+
+- Le [Top 10 OWASP](https://owasp.org/Top10/fr/) : le classement des 10 failles les plus répandues du web. Ce que nous évitons ici correspond à la catégorie [A07 : Identification and Authentication Failures](https://owasp.org/Top10/fr/A07_2021-Identification_and_Authentication_Failures/).
+- La [Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html) : les recommandations officielles pour stocker un mot de passe. Bonne nouvelle : `password_hash` avec `PASSWORD_DEFAULT` les applique pour vous.
+
+Nous recroiserons OWASP dans les prochains TP.
+
+:::
+
 ## Étape 0 : l'authentification en PHP pur (sans Laravel, sans BDD)
 
 Avant de passer à Laravel, nous allons faire le mécanisme complet dans **un seul fichier PHP**, sans base de données. Objectif : voir le mécanisme « nu », sans framework autour. Comptez 30 minutes maximum.

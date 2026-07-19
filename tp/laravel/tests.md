@@ -249,6 +249,12 @@ Le test `test_todo_list_protegee` doit passer au **rouge** : vous venez de simul
 
 Remettez le middleware et vérifiez que tout repasse au vert.
 
+::: tip Un test de sécurité, au sens OWASP
+
+La faille que vous venez de simuler (une page protégée qui ne l'est plus) porte un nom : [A01 Broken Access Control](https://owasp.org/Top10/fr/A01_2021-Broken_Access_Control/), la faille **numéro 1** du [Top 10 OWASP](https://owasp.org/Top10/fr/). Votre `test_todo_list_protegee` est donc un vrai test de sécurité : tant qu'il est vert, cette faille ne peut pas revenir discrètement dans votre projet.
+
+:::
+
 Question :
 
 - Que se passerait-il si cette régression partait en production sans test ?

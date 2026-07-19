@@ -397,6 +397,12 @@ Questions :
 - Pourquoi un token de 64 caractères aléatoires ne peut-il pas être « deviné » par force brute, alors qu'un code à 6 chiffres pourrait l'être ?
 - Notre formulaire de demande de reset peut être utilisé pour **spammer** quelqu'un (une demande = un email). Quelle protection pourrait limiter ça ? (indice : limiter le **nombre de requêtes**, nous verrons comment dans [le TP Aller plus loin](./aller_plus_loin.md))
 
+::: tip Vous avez suivi les recommandations OWASP sans le savoir
+
+L'[OWASP](https://owasp.org/) (croisée dans [le TP Comprendre l'authentification](./authentification_manuelle.md)) publie une [Forgot Password Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html) : les recommandations officielles pour un « mot de passe oublié » sécurisé. Parcourez-la, vous allez reconnaître point par point ce que vous venez de coder : réponse identique quel que soit l'email (anti-énumération), token aléatoire impossible à deviner, expiration courte, usage unique, et même le rate limiting du bonus ci-dessous.
+
+:::
+
 ### Bonus
 
 Si vous êtes en avance :
