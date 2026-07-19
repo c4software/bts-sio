@@ -12,6 +12,14 @@ description: Dans ce TP nous allons voir comment générer le modèle Laravel à
 
 Dans ce TP nous allons voir comment générer le modèle Laravel à partir d'une base de données existante.
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : pourquoi générer les modèles, les relations Eloquent, et les conventions qui rendent tout ça possible.
+
+<ClientOnly>
+<SlidesDeck src="laravel_generation_model" />
+</ClientOnly>
+
 ## Introduction
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :

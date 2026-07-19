@@ -31,6 +31,14 @@ Dans ce TP, je vous invite à avoir en parallèle :
 Laravel est un framework PHP qui se veut simple d'utilisation. Il est basé sur le principe de la programmation orientée objet, et utilise le modèle MVC (Modèle Vue Contrôleur). Vous avez déjà vu ces notions en première année, mais nous allons les revoir ici appliquées à Laravel.
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : pourquoi un framework, et les équivalences entre votre PHP de première année et Laravel.
+
+<ClientOnly>
+<SlidesDeck src="laravel_transition" />
+</ClientOnly>
+
 ## Préparation
 
 Pour pouvoir utiliser Laravel, nous allons avoir besoin de différents outils :

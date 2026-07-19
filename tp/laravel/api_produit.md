@@ -22,6 +22,14 @@ Plus tard, dans le cours de développement Flutter vous utiliserez ces API pour 
 
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : ce qu'est une API, pourquoi le JSON, les verbes REST et la question de la protection.
+
+<ClientOnly>
+<SlidesDeck src="laravel_api" />
+</ClientOnly>
+
 ## Description du projet
 
 Ici nous n'allons pas utiliser de HTML, CSS ou autres. Nous allons uniquement manipuler de la donnée et les renvoyer au format JSON. Notre projet va permettre :

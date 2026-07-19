@@ -20,6 +20,14 @@ Vous l'avez compris, la liste est longue… Vous pouvez évidemment tout coder v
 [[toc]]
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : le scaffolding, ce que Breeze génère, et les nouveaux outils qui arrivent avec (Tailwind, Vite, composants).
+
+<ClientOnly>
+<SlidesDeck src="laravel_breeze" />
+</ClientOnly>
+
 ## Créer votre projet
 
 Pour cette étape, je vous laisse suivre le début du [précédent TP](./introduction.md).
