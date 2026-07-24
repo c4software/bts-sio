@@ -159,7 +159,9 @@ export default [
             {
                 text: "En + du cours", collapsed: true, items: [
                     { text: "Complément du cours PHP", link: "/tp/php/support.md" },
-                    { text: "Complément cours SQL", link: "/tp/php/sql/support.md" }
+                    { text: "Complément cours SQL", link: "/tp/php/sql/support.md" },
+                    { text: "Exercices en classe", link: "/tp/php/exercices.md" },
+                    { text: "Exercices à la maison", link: "/tp/php/exercices-maison.md" }
                 ]
             },
             {
