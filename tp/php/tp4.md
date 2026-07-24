@@ -10,6 +10,14 @@ Nous avons des informations, mais celle-ci est pour l'instant perdue « à chaqu
 [[toc]]
 :::
 
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : la session, les cookies, et surtout la différence entre les deux.
+
+<ClientOnly>
+<SlidesDeck src="php_tp4" />
+</ClientOnly>
+
 ## Introduction
 
 En PHP l'usage de la session est transparent, c'est à dire que vous n'avez pas vraiment à vous souciez du fonctionnement de celle-ci tout ce que vous devez retenir c'est que vos valeurs sont disponible dans les tableaux :

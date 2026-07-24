@@ -61,7 +61,7 @@ Modéliser une base de données est une étape très importante, elle fait parti
 
 Cette étape de modélisation doit être faite avant chaque création d'une base de données, mais également lors de la modification de celle-ci, je pense qu'il est intéressant de faire ça en dehors d'un ordinateur avec une simple feuille de papier; vous pouvez bien évidemment utiliser un outil en ligne pour créer votre modélisation.
 
-Cette modélisation s'appelle un **MLD** (Modèle Conceptuel de Données), ce MLD va regrouper l'ensemble de la structure de notre base de données (nom des tables, nom des colonnes, types de données), mais également les contraintes **relationnelles**, c'est-à-dire les contraintes entre les tables (nombre maximum, jointures, etc.)
+Cette modélisation s'appelle un **MLD** (Modèle Logique de Données), ce MLD va regrouper l'ensemble de la structure de notre base de données (nom des tables, nom des colonnes, types de données), mais également les contraintes **relationnelles**, c'est-à-dire les contraintes entre les tables (nombre maximum, jointures, etc.)
 
 Pour réaliser le MLD nous avons plusieurs solutions :
 
@@ -246,17 +246,17 @@ SELECT * FROM utilisateurs WHERE age > 18 AND pays = "FR";
 SELECT nom, prenom FROM utilisateurs;
 ```
 
-| Liste des opérateurs de conditions |
-| ---------------------------------- |
-| =                                  | Égal à |
-| >                                  | Supérieur à |
-| <                                  | Inférieur à |
-| =>                                 | Strictement supérieur |
-| >=                                 | Strictement inférieur |
-| !=                                 | Différent de |
-| BETWEEN                            | Entre deux valeurs `WHERE age BETWEEN 30 AND 50;` |
-| LIKE                               | Recherche `WHERE nom LIKE 'val%';` |
-| IN                                 | Plusieurs valeurs `WHERE IN pays ('FRA','USA');` |
+| Opérateur | Signification                                       |
+| --------- | --------------------------------------------------- |
+| =         | Égal à                                              |
+| !=        | Différent de                                        |
+| >         | Strictement supérieur à                             |
+| <         | Strictement inférieur à                             |
+| >=        | Supérieur ou égal à                                 |
+| <=        | Inférieur ou égal à                                 |
+| BETWEEN   | Entre deux valeurs `WHERE age BETWEEN 30 AND 50;`   |
+| LIKE      | Recherche `WHERE nom LIKE 'val%';`                  |
+| IN        | Plusieurs valeurs `WHERE pays IN ('FR','US');`      |
 
 ::: tip C'est à vous
 
@@ -327,7 +327,7 @@ Nous avons vu qu'il était possible d'ajouter des données via une interface gra
 _Ajout de certains champs_:
 
 ```sql
-insert into utilisateurs (nom, prenom, age) values (1, 'Test'), (2, 'Insert'), (3, 22);
+INSERT INTO utilisateurs (nom, prenom, age) VALUES ('Brosseau', 'Valentin', 33), ('Doe', 'John', 14);
 ```
 
 _Tout les champs_:
@@ -417,7 +417,6 @@ Dans quel cas utiliser l'un, et dans quel cas utiliser l'autre ? C'est simple, v
 
 ```php
 // Requête préparée :
-$results = $pdo->query()->fetchAll(\PDO::FETCH_ASSOC);
 $stmt= $pdo->prepare("SELECT * FROM phrases WHERE id = ?");
 $stmt->execute([22]); // Paramètre qui va remplacer le « ? ».
 $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -431,4 +430,8 @@ $results = $pdo->query("SELECT * FROM phrases")->fetchAll(\PDO::FETCH_ASSOC);
 Nous allons maintenant mettre en pratique avec deux projets :
 
 - [Persister Bart en Base de données](/tp/php/sql/tp5.md)
-- [Greta TV personnalisable](/tp/php/sql/tp6.md)
+- [BTS TV personnalisable](/tp/php/sql/tp6.md)
+
+::: warning Point étape 3 (TP évalué)
+Les deux TP sont terminés ? Place à la synthèse évaluée du parcours PHP : [Évaluation 3 : Le mini catalogue](/tp/php/eval3.md).
+:::

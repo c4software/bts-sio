@@ -223,7 +223,7 @@ Nous allons maintenant regarder ce qu'il se passe « à l'intérieur » (dans le
 
 Nous avons fait deux pages de tests, je vous propose de faire la même chose, mais dans un code plus complet, plusieurs possibilités s'offrent à vous :
 
-- [→ Ajouter de l'Ajax dans la Greta TV / Site PHP ←](./tp4.1.md)
+- [→ Ajouter de l'Ajax dans la BTS TV / Site PHP ←](./tp4.1.md)
 - [→ Ajouter de l'Ajax dans Larablog / Site Laravel ←](./tp6.md)
 - [→ Découverte de HTMX ←](../htmx/tp1.md)
 - [→ Ajouter un chat dans Laravel ←](../laravel/authentification.md#ajouter-un-système-de-chat)

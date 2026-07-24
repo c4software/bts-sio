@@ -1,13 +1,21 @@
-# Greta TV - Administrable
+# TP 6 SQL : BTS TV administrable
 
 Dans ce TP nous allons mettre en pratique nos connaissances autour de la base de données. Nous allons mettre en place une base de données nous permettant de rendre administrable :
 
 - La liste des vidéos.
 - Le thème en fonction de la vidéo.
 
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : la clé étrangère, la jointure et le mot de passe haché.
+
+<ClientOnly>
+<SlidesDeck src="sql_tp6" />
+</ClientOnly>
+
 ## Première étape définir le besoin
 
-La première étape dans tous les projets est la définition du besoin. Vous devez avec la personne qui vous demande une mission comprendre ce qu'il attend (moi en l'occurence dans ce projet). Je souhaite donc rendre administrable l'application Greta TV.
+La première étape dans tous les projets est la définition du besoin. Vous devez avec la personne qui vous demande une mission comprendre ce qu'il attend (moi en l'occurence dans ce projet). Je souhaite donc rendre administrable l'application BTS TV.
 
 En effet, la première version de l'application est statique, nous avons utilisé le PHP pour intégrer des vidéos dans une page nommée `tv.php`. Cette page prend en paramètre un identifiant de vidéo, et potentiellement un thème si vous aviez intégré cette fonctionnalité.
 

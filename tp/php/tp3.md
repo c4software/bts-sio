@@ -6,6 +6,14 @@ description: Vous avez écrit du code oui… Mais il n'était pas forcément « 
 
 Vous avez écrit du code oui… Mais il n'était pas forcément « bien organisé ». Je vous propose dans ce TP une façon d'organiser votre code qui vous permettra de vous organiser, quelles que soient les évolutions de votre projet.
 
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : l'entry-point, le `?page=` et la whitelist.
+
+<ClientOnly>
+<SlidesDeck src="php_tp3" />
+</ClientOnly>
+
 ## Introduction
 
 Comme [je l'indiquai dans le cours,](./support.md#la-structure) la structuration du code est un point **très important** voir même je pense central dans votre futur métier de développeur informatique. C'est pour ça qui me semble important de créer un TP dédié à cette problématique.

@@ -6,6 +6,10 @@ aside: false
 
 Le développement Web est un domaine très vaste. Vous trouverez ici des ressources pour vous aider à vous y retrouver.
 
+## Par où commencer ?
+
+Si vous débutez, suivez [les TP web de base dans l'ordre](/pages/categories/les-tp-web-de-base.md) : HTML/CSS, puis PHP, puis SQL, et enfin la transition vers Laravel.
+
 ## Les supports de cours
 
 ### Les bases

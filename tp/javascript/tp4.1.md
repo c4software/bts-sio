@@ -2,15 +2,15 @@
 description: Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant.
 ---
 
-# La Greta TV 2.0 (Ajax)
+# La BTS TV 2.0 (Ajax)
 
-Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant. Nous avons réalisé un site la GRETA TV, ce site comportait **« deux pages »** :
+Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant. Nous avons réalisé un site la BTS TV, ce site comportait **« deux pages »** :
 
 - Une page d'accueil `home.php`, qui affiche la liste des vidéos.
 - Une page `tv.php` ayant pour but l'affichage de la vidéo souhaité.
 
 ::: tip Vous n'avez pas le code source ?
-Celui-ci est [disponible ici](/demo/php/greta-tv/refactor-structure.zip). Il pourra vous servir de base de travail. (c'est une version sans base de données, pour simplifier l'installation locale)
+Celui-ci est [disponible ici](/demo/php/bts-tv/refactor-structure.zip). Il pourra vous servir de base de travail. (c'est une version sans base de données, pour simplifier l'installation locale)
 :::
 
 ::: tip Vous préférez une approche MVC ?

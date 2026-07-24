@@ -209,7 +209,7 @@ En PHP (mais également dans les autres langages), les variables possèdent un t
 | `array`   | ["a", "b", "c"]           |                                 | Contiens des listes de « quelques choses »                                                                          |
 
 ::: tip Le formalisme c'est important
-Nous écrirons le code au maximum en Anglais ! Ça veut dire que vos noms de variables doivent rester simples. Donc pas d'accent, de caractères « étranges ». Limité vous à la liste suivante :
+Nous écrirons le code au maximum en Anglais ! Ça veut dire que vos noms de variables doivent rester simples. Donc pas d'accent, de caractères « étranges ». Limitez-vous à la liste suivante :
 `abcdefghijklmnopqrstuvwxyz1234567890_-`
 :::
 
@@ -289,6 +289,20 @@ echo "Bonjour " . $_GET['nom'];
 
 Appeler la page en question en ajoutant dans le lien : `?nom=Valentin`
 
+::: tip Et si le paramètre n'est pas présent ?
+Si vous appelez la page **sans** le paramètre `nom`, PHP affichera un avertissement. Pour éviter ça, nous avons la fonction [`isset()`](https://www.php.net/manual/en/function.isset.php) qui permet de tester si une variable (ou une clé de tableau) existe :
+
+```php
+if(isset($_GET['nom'])){
+    echo "Bonjour " . $_GET['nom'];
+} else {
+    echo "Bonjour inconnu";
+}
+```
+
+Nous nous en servirons très souvent, notamment dans les prochains TP.
+:::
+
 ::: danger ATTENTION
 Petit aparté sur la sécurité informatique. Nous verrons plus tard les failles de sécurités, ce que vous venez de faire **en est une** (c'est une XSS).
 :::
@@ -335,7 +349,7 @@ $valeurs[2] = 'élément 3';
 ```
 
 ::: tip Un peu de formalisme
-Pour éviter toute confusion. Nommées vos tableaux avec un nom qui ce termine par un `s` comme ça aucun doute sur son type à la lecture de votre code.
+Pour éviter toute confusion. Nommez vos tableaux avec un nom qui se termine par un `s` comme ça aucun doute sur son type à la lecture de votre code.
 :::
 
 ### Associatifs
@@ -451,10 +465,10 @@ if($age >= 18) {
 ```php
 $age = 22;
 
-if($age >= 14) {
-    echo "Vous pouvez passer le permis 2 roues.";
-} else if ($age >= 18) {
+if($age >= 18) {
     echo "Vous pouvez passer le permis voiture";
+} else if ($age >= 14) {
+    echo "Vous pouvez passer le permis 2 roues.";
 } else {
     echo "Encore un peu de patience… Pour le permis 2 roues c'est à 14ans";
 }
@@ -620,7 +634,7 @@ $etudiants = array(
 );
 
 for($i = 0; $i < count($etudiants); ++$i) {
-    echo $people[$i]['nom'];
+    echo $etudiants[$i]['nom'];
 }
 ```
 
@@ -799,7 +813,7 @@ Maintenant que nous avons visualisé les éléments réutilisables, il faut main
 L'instruction `include` est très simple, c'est une fonction qui prend en paramètres le nom d'un autre fichier PHP. Au moment de l'exécution de votre page, le PHP va prendre le contenu de chaque fichier PHP et mettra le contenu à l'endroit ou vous l'avez inclus. Un exemple ?
 
 ```php
-include(`monfichier.php`);
+include('monfichier.php');
 ```
 
 ![Organisation avec include](./res/organisation_include.png)
@@ -941,6 +955,14 @@ Maintenant que nous savons découper notre code. Je vous laisse retourner dans [
 
 - Sortir votre fonction dans un autre fichier.
 - `include` le fichier.
+
+### À faire ter
+
+Pour mettre en pratique **en même temps** les paramètres `$_GET`, les includes et les boucles, je vous propose un TP plus complet : [le TP BTS TV (passage de paramètres)](./tp-param.md).
+
+::: warning Point étape 1 (TP évalué)
+Vous maitrisez les bases ? C'est le moment de le prouver avec un mini projet évalué : [Évaluation 1 : Ma page profil dynamique](./eval1.md).
+:::
 
 ## Les formulaires
 
@@ -1214,6 +1236,14 @@ Je pense vraiment que l'organisation du code est aussi importante que le code en
 
 Actuellement, nous n'avons pas fait beaucoup de sites multipages, mais rapidement dans vos projets, ou dans votre vie professionnelle nous aurons 2, 3, 10 pages pour un même et unique site.
 
+### Les slides
+
+Cette partie est également disponible sous forme de présentation :
+
+<ClientOnly>
+<SlidesDeck src="php_structure" />
+</ClientOnly>
+
 ### L'include notre sauveur
 
 Nous avons en PHP un outil surpuissant pour gérer ce genre de problème, nous l'avons déjà utilisé, c'est le `include`. la fonction `include` va nous permettre de découper notre logique dans différents fichiers. C'est une logique que nous allons retrouver dans beaucoup de langage serveur. C'est important de prendre quelques minutes afin de comprendre son fonctionnement pour la mettre en place **tout le temps**.
@@ -1290,15 +1320,35 @@ Plus tard nous utiliserons un Framework en PHP qui gèrera c'est problématique 
 
 ### Assez parlé !
 
-L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 4](./tp3.md).
+L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 3](./tp3.md).
 
 ## Mise en pratique de la Session / Cookie
 
 Nous avons maintenant organisé notre code afin que celui-ci soit moins « brouillon », je vous propose de [pratiquer un peu la partie session](./tp4.md)
 
+## Mise en pratique de l'authentification
+
+La session est maintenant maitrisée. Nous allons nous en servir pour un usage très classique : protéger l'accès à certaines pages avec un login et un mot de passe.
+
+[Protéger des pages à l'aide de la session (TP 5)](./tp5.md)
+
+::: warning Point étape 2 (TP évalué)
+Formulaires, structure, session et protection de pages : le deuxième mini projet évalué mobilise tout ça. [Évaluation 2 : Le livre d'or](./eval2.md).
+:::
+
 ## PHP et Base de données
 
 Cette partie est disponible ici : [Introduction à la base de données avec PHP](./sql/support.md)
+
+::: warning Point étape 3 (TP évalué)
+Une fois la partie base de données terminée, la synthèse du parcours vous attend : [Évaluation 3 : Le mini catalogue](./eval3.md).
+:::
+
+## La suite : un framework
+
+Vous connaissez maintenant les bases du PHP « à la main ». Dans la vraie vie, nous nous appuyons sur des frameworks qui gèrent pour nous la structure, le routeur, la sécurité…
+
+[La transition vers Laravel (TP 6)](./tp6.md)
 
 ## Le PHP Objet
 

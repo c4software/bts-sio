@@ -6,6 +6,14 @@ description: Faire des sites « statiques » c'est bien… Mais c'est mieux si n
 
 Faire des sites « statiques » c'est bien… Mais c'est mieux si nous pouvions échanger un peu avec notre utilisateur. La première étape de l'échange va passer par la construction de formulaire pour récolter des informations utilisateurs.
 
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : GET vs POST, l'anatomie d'un formulaire et `$_POST`.
+
+<ClientOnly>
+<SlidesDeck src="php_tp2" />
+</ClientOnly>
+
 ## Introduction
 
 Dans le TP [précédent](./tp1.1.md) nous avons vu comment créer une page dynamique avec la punition de Bart… Mais la page était cependant très statique, à chaque chargement les valeurs sont identiques. Dans ce TP nous allons dynamiser tout ça :

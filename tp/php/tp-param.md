@@ -1,10 +1,10 @@
 ---
-description: Nous allons illustrer le passage de paramètres grâce à la Greta TV. Ce TP va nous permettre de mieux comprendre l'intérêt des paramètres.
+description: Nous allons illustrer le passage de paramètres grâce à la BTS TV. Ce TP va nous permettre de mieux comprendre l'intérêt des paramètres.
 ---
 
 # Le passage de paramètres
 
-Nous allons illustrer le passage de paramètres grâce à la Greta TV. Ce TP va nous permettre de mieux comprendre l'intérêt des paramètres.
+Nous allons illustrer le passage de paramètres grâce à la BTS TV. Ce TP va nous permettre de mieux comprendre l'intérêt des paramètres.
 
 Nous allons produire le code qui va nous permettre de réaliser les deux pages suivantes :
 
@@ -15,6 +15,14 @@ L'objectif de ce code est d'illustrer le passage de paramètres entre deux pages
 - Deux pages
 - Responsive
 - Un paramètre (?id=...)
+
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : une page générique, les paramètres GET et la génération de liens en boucle.
+
+<ClientOnly>
+<SlidesDeck src="php_tp_param" />
+</ClientOnly>
 
 ## Rappel sur les paramètres
 
@@ -49,7 +57,7 @@ Nous avons en PHP la possibilité de « sortir » les éléments en question pou
 ```php
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">GRETA TV</a>
+        <a class="navbar-brand" href="/">BTS TV</a>
     </div>
 </nav>
 ```
@@ -71,7 +79,7 @@ Je vous laisse faire de même pour la partie `head` de votre site.
 
 ::: tip Bon ok…
 Un petit indice pour la suite, votre structure de dossier ressemblera à :
-![Structure GRETA TV](./res/gretatv_struct.png)
+![Structure BTS TV](./res/gretatv_struct.png)
 :::
 
 ## Évolution 1
@@ -104,7 +112,7 @@ _Exemple simple **à ne pas recopier**_
 $videos = array("BcgsOgjHgWA","lcOxhH8N3Bo","jTuBnZrLbq0", "M2VtfZDOcHQ", "i1iIaSbK9bg", "MTaHw-S6IDo", "KfMCApWc5xE", "igtN49I1CtM");
 
 foreach ($videos as $id) {
-    echo "- <a href='tv.php?id=".$id."> Video " .$id.  "<a/>";
+    echo "- <a href='tv.php?id=" . $id . "'>Video " . $id . "</a>";
 }
 ```
 

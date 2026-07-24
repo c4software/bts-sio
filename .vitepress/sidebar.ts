@@ -137,7 +137,7 @@ export default [
                     { text: "Prise en main JavaScript Avancé", link: "/tp/javascript_avances/introduction.md" },
                     { text: "Questions complémentaires", link: "/tp/javascript_avances/revision.md" },
                     { text: "Pratiquer l'Ajax", link: "/tp/javascript/tp4.md" },
-                    { text: "La Greta TV 2.0 (Ajax)", link: "/tp/javascript/tp4.1.md" },
+                    { text: "La BTS TV 2.0 (Ajax)", link: "/tp/javascript/tp4.1.md" },
                     { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" },
                     { text: "Découverte de HTMX", link: "/tp/htmx/tp1.md" }
                 ]
@@ -152,6 +152,7 @@ export default [
             {
                 text: "Les cours", collapsed: true, items: [
                     { text: "Slides introduction PHP", link: "/cours/introduction_php" },
+                    { text: "Slides la structure (entry-point)", link: "/cours/php_structure" },
                     { text: "Slides introduction à SQL avec PHP", link: "/cours/introduction_sql_php" }
                 ]
             },
@@ -176,7 +177,14 @@ export default [
             {
                 text: "TP SQL", collapsed: true, items: [
                     { text: "Bart PHP et MySQL", link: "/tp/php/sql/tp5.md" },
-                    { text: "Greta TV - Administrable", link: "/tp/php/sql/tp6.md" }
+                    { text: "BTS TV - Administrable", link: "/tp/php/sql/tp6.md" }
+                ]
+            },
+            {
+                text: "TP évalués (points étapes)", collapsed: true, items: [
+                    { text: "Évaluation 1 : Ma page profil dynamique", link: "/tp/php/eval1.md" },
+                    { text: "Évaluation 2 : Le livre d'or", link: "/tp/php/eval2.md" },
+                    { text: "Évaluation 3 : Le mini catalogue", link: "/tp/php/eval3.md" }
                 ]
             }
         ]

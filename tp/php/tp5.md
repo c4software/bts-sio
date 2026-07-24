@@ -6,6 +6,14 @@ Dans ce TP nous allons voir comment ajouter une couche d'authentification sur vo
 [[toc]]
 :::
 
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : le test de session, le flux de connexion et la redirection.
+
+<ClientOnly>
+<SlidesDeck src="php_tp5" />
+</ClientOnly>
+
 ## Projet de référence
 
 Pour continuer ce TP, vous devez reprendre le code du [TP précédent sur l'utilisation de la Session / Cookies](./tp4.md). Ce TP va donc être découpé en plusieurs étapes :
@@ -163,6 +171,10 @@ Aujourd'hui nous parlons de Whitelist, demain nous emploierons le terme de `Rout
 À votre avis, comment allons-nous gérer la déconnexion ?
 
 ### Évolution finale : Une sécurité bien gérée
+
+::: warning Évolution optionnelle
+Cette évolution utilise une base de données et PDO, des notions que nous verrons dans [le cours SQL](./sql/support.md). Si vous n'avez pas encore vu cette partie, gardez cette évolution de côté et revenez-y plus tard.
+:::
 
 Pour tester, nous avons mis un login et un mot de passe en dur. Évidemment dans la vraie vie ce n'est pas comme ça que nous procèderons. Je vous laisse créer la base de données et la table permettant de sauvegarder un mot de passe **en intégrant les notions de sécurité**.
 

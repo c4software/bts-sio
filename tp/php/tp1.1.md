@@ -6,6 +6,14 @@ description: Le meilleur moyen de comprendre les boucles. C'est d'en écrire par
 
 Le meilleur moyen de comprendre les boucles. C'est d'en écrire par soi-même. Je vous propose de créer votre propre générateur de Bart.
 
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : les boucles `while` et `for`, et le paramètre `$_GET`.
+
+<ClientOnly>
+<SlidesDeck src="php_tp1_1" />
+</ClientOnly>
+
 ## Introduction
 
 Nous allons mettre en application les boucles en PHP. Bon je ne vais pas vous demander de recopier 100× une phrase au tableau… Mais je vais demander à votre ordinateur de le faire avec une boucle `while` ou `for`.

@@ -574,4 +574,4 @@ $pdo = new PDO($dsn, $user, $passwd);
 ## Mise en pratique
 
 - [Persister Bart en Base de données](/tp/php/sql/tp5.md)
-- [Greta TV personnalisable](/tp/php/sql/tp6.md)
+- [BTS TV personnalisable](/tp/php/sql/tp6.md)

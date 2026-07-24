@@ -112,8 +112,8 @@ Toujours la même « base »
 Votre HTML est un texte à trou. Le PHP peut-être _inséré_ n'importe où.
 
 - Le script PHP commence par `<?php`.
-- Et ce termine par `?>`.
-- Chaque instruction PHP (ligne) ce termine par un `;`.
+- Et se termine par `?>`.
+- Chaque instruction PHP (ligne) se termine par un `;`.
 - Un fichier `.php` n'est même pas obligé de contenir du PHP (🤔)
 
 ---
@@ -225,7 +225,7 @@ Nous écrirons le code au maximum en Anglais !
 
 Vos noms de variables doivent rester simples.
 
-Limité vous à la liste suivante :
+Limitez-vous à la liste suivante :
 
 `abcdefghijklmnopqrstuvwxyz1234567890\_-`
 
@@ -233,7 +233,7 @@ Limité vous à la liste suivante :
 
 ## C'est à vous
 
-Ajouter dans le TP1 la création et l'utilisation d'une variable d'une variable.
+Ajouter dans le TP1 la création et l'utilisation d'une variable.
 
 <iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
@@ -518,10 +518,10 @@ if($age >= 18) {
 ```php
 $age = 22;
 
-if($age >= 14) {
-    echo "Vous pouvez passer le permis 2 roues.";
-} else if ($age >= 18) {
+if($age >= 18) {
     echo "Vous pouvez passer le permis voiture";
+} else if ($age >= 14) {
+    echo "Vous pouvez passer le permis 2 roues.";
 } else {
     echo "Encore un peu de patience… Pour le permis 2 roues c'est à 14ans";
 }
@@ -647,7 +647,7 @@ $etudiants = array(
 );
 
 for($i = 0; $i < count($etudiants); ++$i) {
-    echo $people[$i]['nom'];
+    echo $etudiants[$i]['nom'];
 }
 ```
 
@@ -919,6 +919,18 @@ Maintenant que nous savons découper notre code. Je vous laisse retourner dans l
 
 ---
 
+## Un peu de pratique
+
+### Le passage de paramètres
+
+Mettons en pratique les paramètres `$_GET`, les includes et les boucles :
+
+[Le TP BTS TV](/tp/php/tp-param.html)
+
+<iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+---
+
 ## Les formulaires
 
 Communication entre le HTML et le PHP
@@ -975,6 +987,36 @@ Déroulement en 3 étapes :
 Nous avons vu beaucoup de nouvelles choses. Nous allons les mettre en pratique avec le TP 2
 
 [La suite ici](/tp/php/tp2.html)
+
+---
+
+## La structure
+
+### J'organise mon code
+
+---
+
+C'est un gros morceau. L'include sera notre « sauveur ».
+
+Fini les projets « en bordel ».
+
+---
+
+- Fonctionner avec un « Entry Point unique ».
+- Utiliser un Routeur / liste blanche
+- Objectif réduire le mélange HTML / PHP.
+
+---
+
+[La suite dans le support](/tp/php/support.html#la-structure)
+
+---
+
+## Mise en pratique
+
+### Organiser son code
+
+L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 3](/tp/php/tp3.html).
 
 ---
 
@@ -1071,36 +1113,40 @@ echo $_COOKIE["monCookie"];
 
 ---
 
-## La structure
-
-### J'organise mon code
-
----
-
-C'est un gros morceau. L'include sera notre « sauveur ».
-
-Fini les projets « en bordel ».
-
----
-
-- Fonctionner avec un « Entry Point unique ».
-- Utiliser un Routeur / liste blanche
-- Objectif réduire le mélange HTML / PHP.
-
----
-
-[La suite dans le support](/tp/php/support.html#la-structure)
+[Gérer une authentification](/tp/php/support.html#utiliser-la-session-pour-gerer-un-espace-d-administration)
 
 ---
 
 ## Mise en pratique
 
-### Organiser son code
+### Protéger des pages
 
-L'organisation étant un point important, je vous propose de la mettre [en pratique immédiatement dans le TP 3](/tp/php/tp3.html).
+Mettons en pratique l'authentification :
+
+[Protéger des pages à l'aide de la session (TP 5)](/tp/php/tp5.html)
+
+<iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ---
 
-[Gérer une authentification](/tp/php/support.html#utiliser-la-session-pour-gerer-un-espace-d-administration)
+## Et ensuite ?
+
+Vous connaissez maintenant les bases du PHP. Il est temps de passer sur un framework.
+
+[La transition vers Laravel (TP 6)](/tp/php/tp6.html)
+
+---
+
+## Récap
+
+- PHP = langage **serveur** pour des pages **dynamiques**.
+- Variables, conditions, boucles, fonctions : la base de l'algorithmique.
+- `$_GET` / `$_POST` pour communiquer avec le client.
+- Session & Cookies pour la persistance.
+- Un entry-point unique pour organiser le code.
+
+---
+
+## Place au TP 🚀
 
 ---

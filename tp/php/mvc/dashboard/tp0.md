@@ -85,4 +85,4 @@ Je vous laisse créer le MCD de votre base de données.
 
 ## La suite
 
-Nous avons défini la base de notre projet, [continuons la suite ici](./tp1.md)
+Nous avons défini la base de notre projet, la réalisation se fera ensemble en classe.

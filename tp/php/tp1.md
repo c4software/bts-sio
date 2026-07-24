@@ -6,6 +6,14 @@ description: Dans ce TP nous allons créer votre première page PHP. Rassurez-vo
 
 Dans ce TP nous allons créer votre première page PHP. Rassurez-vous, elle sera très simple, pas très jolie… Mais elle nous permettra de voir les concepts de bases.
 
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : où s'exécute le PHP, les balises, et `echo`.
+
+<ClientOnly>
+<SlidesDeck src="php_tp1" />
+</ClientOnly>
+
 ## Introduction
 
 Je vous disais [tout à l'heure](./support.md#et-le-php-dans-tout-ca) que nous avions un texte « à trou », c'est littéralement le cas. Nous allons pouvoir mettre du PHP **partout** dans notre page pour rendre certaines parties **dynamique**

@@ -6,6 +6,14 @@ description: Nous avons vu dans le cours qu'il était possible grace à la fonct
 
 Nous avons vu dans le cours qu'il était possible grace à la fonction PHP `include` d'inclure une page dans une autre. Cette fonction nous permet également d'utiliser des librairies en les incluant dans les différentes pages ou ça est nécessaire.
 
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : l'`include` et la notion de librairie.
+
+<ClientOnly>
+<SlidesDeck src="php_tp1_2" />
+</ClientOnly>
+
 ## Création d'un nouveau projet
 
 Je vous laisse créer un nouveau projet. Ce projet sera constitué pour l'instant de :
