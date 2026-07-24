@@ -10,15 +10,15 @@ Les [sujets de révision](./exercices-maison.md) sont à faire **à la maison**,
 
 Légende :
 
-- 🧠 **Analyse** : lire, prédire, expliquer.
-- 👥 **Observation collective** : on regarde et on discute ensemble.
-- ✍️ **Pratique** : écrire du code sur la feuille.
+- **(analyse)** : lire, prédire, expliquer.
+- **(collectif)** : on observe et on discute ensemble.
+- **(pratique)** : écrire du code sur la feuille.
 
 ---
 
 ## Série 1 : Le client et le serveur
 
-### Exercice 1.1 👥 Que reçoit le navigateur ?
+### Exercice 1.1 (collectif) Que reçoit le navigateur ?
 
 Voici le contenu du fichier `page.php` sur le serveur :
 
@@ -36,7 +36,7 @@ Voici le contenu du fichier `page.php` sur le serveur :
 2. Le visiteur fait « Afficher le code source de la page ». Voit-il le mot `echo` ? Pourquoi ?
 3. Le lendemain, le visiteur recharge la page. Qu'est-ce qui change, et **qui** a fait ce changement ?
 
-### Exercice 1.2 🧠 Vrai ou faux ?
+### Exercice 1.2 (analyse) Vrai ou faux ?
 
 Pour chaque affirmation, répondez vrai ou faux et **justifiez en une phrase** :
 
@@ -49,7 +49,7 @@ Pour chaque affirmation, répondez vrai ou faux et **justifiez en une phrase** :
 
 ## Série 2 : Variables et types
 
-### Exercice 2.1 🧠 Quel type ?
+### Exercice 2.1 (analyse) Quel type ?
 
 Donnez le type de chaque valeur (`string`, `int`, `float`, `boolean`, `array`) :
 
@@ -62,7 +62,7 @@ Donnez le type de chaque valeur (`string`, `int`, `float`, `boolean`, `array`) :
 | `array("a", "b")` | |
 | `"true"` | |
 
-### Exercice 2.2 🧠 Suivez la valeur
+### Exercice 2.2 (analyse) Suivez la valeur
 
 ```php
 $a = 5;
@@ -74,7 +74,7 @@ echo $b;
 1. Qu'affiche ce code ?
 2. Expliquez pourquoi en une phrase.
 
-### Exercice 2.3 🧠 Concaténer n'est pas calculer
+### Exercice 2.3 (analyse) Concaténer n'est pas calculer
 
 ```php
 $nom = "brosseau";
@@ -85,13 +85,13 @@ echo $prenom . " " . $nom;
 ```
 
 1. Qu'affichent ces deux lignes (soyez précis, chaque caractère compte) ?
-2. ✍️ Écrivez la ligne qui affiche `BROSSEAU Valentin` à partir des deux variables (indice : cherchez du côté des fonctions `strtoupper` et `ucfirst`, à quoi peuvent-elles servir d'après leur nom ?).
+2. (pratique) Écrivez la ligne qui affiche `BROSSEAU Valentin` à partir des deux variables (indice : cherchez du côté des fonctions `strtoupper` et `ucfirst`, à quoi peuvent-elles servir d'après leur nom ?).
 
 ---
 
 ## Série 3 : Les conditions
 
-### Exercice 3.1 👥 Le bug du permis
+### Exercice 3.1 (collectif) Le bug du permis
 
 Un étudiant a écrit ce code :
 
@@ -110,9 +110,9 @@ if($age >= 14) {
 1. Qu'affiche ce code avec `$age = 22` ?
 2. Est-ce le comportement attendu ? Pourquoi ?
 3. La branche `else if ($age >= 18)` peut-elle s'exécuter un jour ? Justifiez.
-4. ✍️ Corrigez le code.
+4. (pratique) Corrigez le code.
 
-### Exercice 3.2 ✍️ Le tarif du cinéma
+### Exercice 3.2 (pratique) Le tarif du cinéma
 
 Écrivez le code qui affiche le tarif en fonction de la variable `$age` :
 
@@ -120,7 +120,7 @@ if($age >= 14) {
 - De 14 à 25 ans inclus : « Tarif jeune : 7€ »
 - Plus de 25 ans : « Tarif plein : 11€ »
 
-### Exercice 3.3 🧠 La ternaire
+### Exercice 3.3 (analyse) La ternaire
 
 ```php
 $estConnecte = true;
@@ -128,13 +128,13 @@ echo $estConnecte ? "Bienvenue" : "Veuillez vous connecter";
 ```
 
 1. Qu'affiche ce code ?
-2. ✍️ Réécrivez-le avec un `if / else` classique.
+2. (pratique) Réécrivez-le avec un `if / else` classique.
 
 ---
 
 ## Série 4 : Les boucles
 
-### Exercice 4.1 🧠 Tracez la boucle
+### Exercice 4.1 (analyse) Tracez la boucle
 
 ```php
 $i = 0;
@@ -149,7 +149,7 @@ echo "fin:" . $i;
 2. Combien de fois le corps de la boucle s'exécute-t-il ?
 3. Que vaut `$i` **après** la boucle ?
 
-### Exercice 4.2 👥 La boucle qui ne s'arrête jamais
+### Exercice 4.2 (collectif) La boucle qui ne s'arrête jamais
 
 ```php
 $compteur = 10;
@@ -160,9 +160,9 @@ while ($compteur > 0) {
 
 1. Quel est le problème de ce code ?
 2. Que va-t-il se passer concrètement sur le serveur ?
-3. ✍️ Corrigez-le.
+3. (pratique) Corrigez-le.
 
-### Exercice 4.3 ✍️ À vous d'écrire
+### Exercice 4.3 (pratique) À vous d'écrire
 
 1. Écrivez une boucle qui affiche les nombres de 10 à 0 (compte à rebours).
 2. Écrivez une boucle qui affiche la table de multiplication de 7 (de `7 x 1 = 7` à `7 x 10 = 70`).
@@ -172,7 +172,7 @@ while ($compteur > 0) {
 
 ## Série 5 : Tableaux et filtrage
 
-### Exercice 5.1 🧠 Lire un tableau
+### Exercice 5.1 (analyse) Lire un tableau
 
 ```php
 $student = array(
@@ -190,7 +190,7 @@ Que valent les expressions suivantes ?
 3. `$student["moyennes"][1]` (attention au piège)
 4. `count($student["moyennes"])`
 
-### Exercice 5.2 ✍️ Afficher une liste
+### Exercice 5.2 (pratique) Afficher une liste
 
 Soit le tableau :
 
@@ -200,7 +200,7 @@ $courses = array("Pain", "Lait", "Chocolat", "Café");
 
 Écrivez le code qui affiche chaque élément précédé d'un tiret, un par ligne, avec un `foreach`.
 
-### Exercice 5.3 ✍️ Le filtrage
+### Exercice 5.3 (pratique) Le filtrage
 
 Soit le tableau :
 
@@ -215,13 +215,13 @@ $students = array(
 
 1. Écrivez le code qui affiche uniquement les prénoms des personnes **majeures** (boucle + condition : c'est ça, le filtrage).
 2. Écrivez le code qui **compte** le nombre de mineurs et affiche le résultat à la fin.
-3. 🧠 Si j'ajoute une personne au tableau, dois-je modifier votre code ? Justifiez.
+3. (analyse) Si j'ajoute une personne au tableau, dois-je modifier votre code ? Justifiez.
 
 ---
 
 ## Série 6 : Les fonctions
 
-### Exercice 6.1 🧠 `echo` n'est pas `return`
+### Exercice 6.1 (analyse) `echo` n'est pas `return`
 
 ```php
 function a() {
@@ -241,7 +241,7 @@ echo b();
 2. Que contient la variable `$x` après `$x = a();` ? Et après `$x = b();` ?
 3. Formulez la règle : quelle est la différence entre `echo` et `return` ?
 
-### Exercice 6.2 🧠 Tracez l'appel
+### Exercice 6.2 (analyse) Tracez l'appel
 
 ```php
 function double($n) {
@@ -255,13 +255,13 @@ echo double(double(3));
 1. Qu'affichent ces deux lignes ?
 2. Dans `double(double(3))`, dans quel ordre les choses se passent-elles ?
 
-### Exercice 6.3 ✍️ Écrivez vos fonctions
+### Exercice 6.3 (pratique) Écrivez vos fonctions
 
 1. Écrivez une fonction `prixTTC($prixHT)` qui retourne le prix TTC (TVA à 20%).
 2. Écrivez une fonction `estMajeur($age)` qui retourne `true` ou `false`.
 3. Utilisez `estMajeur()` dans une condition qui affiche « Entrée autorisée » ou « Entrée refusée ».
 
-### Exercice 6.4 🧠 Le mystère de la variable invisible
+### Exercice 6.4 (analyse) Le mystère de la variable invisible
 
 Un étudiant a écrit ce code, qui ne fonctionne pas :
 
@@ -276,13 +276,13 @@ echo prixTTC(100);
 ```
 
 1. Quel est le problème ? (Indice : une fonction est une boite **fermée**.)
-2. ✍️ Proposez une correction **sans** variable globale.
+2. (pratique) Proposez une correction **sans** variable globale.
 
 ---
 
 ## Série 7 : Les includes et la structure
 
-### Exercice 7.1 🧠 Qu'affiche la page ?
+### Exercice 7.1 (analyse) Qu'affiche la page ?
 
 Quatre fichiers sur le serveur :
 
@@ -319,7 +319,7 @@ function signature() {
 1. Écrivez **exactement** ce que reçoit le navigateur (nous sommes en 2026).
 2. Que se passe-t-il si on inverse les deux premières lignes de `index.php` ? Et si on déplace l'include de `functions.php` tout en bas ?
 
-### Exercice 7.2 🧠 Où corriger le bug ?
+### Exercice 7.2 (analyse) Où corriger le bug ?
 
 Le site ci-dessus possède 5 pages, toutes construites sur le même modèle que `index.php`. Un client signale que le pied de page affiche « © 2024 » sur **toutes** les pages.
 
@@ -327,7 +327,7 @@ Le site ci-dessus possède 5 pages, toutes construites sur le même modèle que 
 2. Quelle est la cause probable du bug ? (Le code du footer ci-dessus est correct, imaginez ce qu'a écrit le développeur fautif.)
 3. Sans les includes, combien de fichiers auraient été à corriger ?
 
-### Exercice 7.3 🧠 Suivez l'entry-point
+### Exercice 7.3 (analyse) Suivez l'entry-point
 
 ```php
 <?php
@@ -354,7 +354,7 @@ Pour chaque URL, indiquez quel fichier de `pages/` est inclus :
 | `index.php` | |
 | `index.php?page=HOME` | |
 
-### Exercice 7.4 ✍️ Rangez le projet
+### Exercice 7.4 (pratique) Rangez le projet
 
 Voici les fichiers d'un projet, en vrac : `main.css`, `header.php`, `home.php`, `bart.php`, `index.php`, `functions.php`, `logo.png`, `footer.php`.
 
@@ -366,7 +366,7 @@ Dessinez l'arborescence du projet en rangeant chaque fichier au bon endroit (`co
 
 C'est **le** gros morceau. Prenez le temps sur cette série.
 
-### Exercice 8.1 👥 Les URL que vous utilisez tous les jours
+### Exercice 8.1 (collectif) Les URL que vous utilisez tous les jours
 
 Observez ces URL réelles (ou presque) :
 
@@ -392,15 +392,15 @@ Questions pour la discussion :
 2. À quoi sert le `t=42` dans la deuxième URL ? Que fait le serveur (ou le navigateur) avec ?
 3. Sur leboncoin, que se passe-t-il si vous changez `sort=price` en `sort=date` directement dans la barre d'adresse ?
 
-### Exercice 8.2 ✍️ Écrivez les URL
+### Exercice 8.2 (pratique) Écrivez les URL
 
 Le site d'un cinéma possède une page `film.php`. Écrivez l'URL complète (partie après le nom de domaine) pour :
 
 1. Afficher le film numéro `12`.
 2. Afficher le film numéro `12` en version sous-titrée (`vost` à `oui`).
-3. 🧠 Un utilisateur tape `film.php?ID=12` (ID en majuscules). Est-ce que `$_GET['id']` fonctionnera ? Justifiez.
+3. (analyse) Un utilisateur tape `film.php?ID=12` (ID en majuscules). Est-ce que `$_GET['id']` fonctionnera ? Justifiez.
 
-### Exercice 8.3 🧠 Que contient `$_GET` ?
+### Exercice 8.3 (analyse) Que contient `$_GET` ?
 
 La page est appelée avec : `fiche.php?nom=Simpson&prenom=Bart`
 
@@ -410,9 +410,9 @@ echo $_GET['prenom'] . " " . $_GET['nom'];
 
 1. Qu'affiche ce code ?
 2. La page est maintenant appelée avec `fiche.php` tout court. Que se passe-t-il ?
-3. ✍️ Réécrivez le code pour qu'il affiche « Visiteur inconnu » quand les paramètres sont absents.
+3. (pratique) Réécrivez le code pour qu'il affiche « Visiteur inconnu » quand les paramètres sont absents.
 
-### Exercice 8.4 ✍️ La mini BTS TV
+### Exercice 8.4 (pratique) La mini BTS TV
 
 Vous avez le tableau suivant dans `index.php` :
 
@@ -421,13 +421,13 @@ $videos = array("abc123", "def456", "ghi789");
 ```
 
 1. Écrivez le code qui génère un lien HTML par vidéo, pointant vers `tv.php` avec le bon identifiant en paramètre.
-2. 🧠 Votre collègue a écrit `<a href="tv.php?id=abc123">` en dur, 3 fois. Son site fonctionne exactement comme le vôtre. Pourquoi votre version est-elle quand même meilleure ? Donnez deux raisons.
+2. (analyse) Votre collègue a écrit `<a href="tv.php?id=abc123">` en dur, 3 fois. Son site fonctionne exactement comme le vôtre. Pourquoi votre version est-elle quand même meilleure ? Donnez deux raisons.
 
 ---
 
 ## Série 9 : Les formulaires
 
-### Exercice 9.1 🧠 Anatomie d'un formulaire
+### Exercice 9.1 (analyse) Anatomie d'un formulaire
 
 ```html
 <form method="post" action="inscription.php">
@@ -442,7 +442,7 @@ $videos = array("abc123", "def456", "ghi789");
 3. Quelles seront les **clés** disponibles dans cette superglobale ?
 4. L'attribut `value="S'inscrire"` sert à quoi ?
 
-### Exercice 9.2 👥 GET ou POST ?
+### Exercice 9.2 (collectif) GET ou POST ?
 
 Le même formulaire est passé en `method="get"`.
 
@@ -450,7 +450,7 @@ Le même formulaire est passé en `method="get"`.
 2. Quel est le problème avec le champ `mdp` ? Pensez : historique du navigateur, écran partagé en cours, lien copié / collé…
 3. Règle à retenir : pour un formulaire, quelle méthode choisit-on ?
 
-### Exercice 9.3 ✍️ La page de destination
+### Exercice 9.3 (pratique) La page de destination
 
 Écrivez le code de `inscription.php` qui :
 
@@ -461,7 +461,7 @@ Le même formulaire est passé en `method="get"`.
 
 ## Série 10 : Session et cookies
 
-### Exercice 10.1 🧠 Le tableau comparatif
+### Exercice 10.1 (analyse) Le tableau comparatif
 
 Complétez de mémoire :
 
@@ -472,7 +472,7 @@ Complétez de mémoire :
 | Modifiable par l'utilisateur ? | | |
 | Exemple d'usage | | |
 
-### Exercice 10.2 👥 Session ou cookie ?
+### Exercice 10.2 (collectif) Session ou cookie ?
 
 Pour chaque besoin, choisissez **session** ou **cookie**, et justifiez :
 
@@ -483,7 +483,7 @@ Pour chaque besoin, choisissez **session** ou **cookie**, et justifiez :
 
 Question de discussion : pour le panier, les grands sites marchands utilisent en réalité une troisième solution. Laquelle, à votre avis, et pourquoi ?
 
-### Exercice 10.3 🧠 Prédisez le comportement
+### Exercice 10.3 (analyse) Prédisez le comportement
 
 Page `a.php` :
 
@@ -509,7 +509,7 @@ echo $_SESSION['prenom'];
 
 ## Série 11 : La sécurité
 
-### Exercice 11.1 👥 L'attaque du livre d'or
+### Exercice 11.1 (collectif) L'attaque du livre d'or
 
 Votre livre d'or affiche les messages ainsi :
 
@@ -529,7 +529,7 @@ Un visiteur malveillant saisit ce « message » dans le formulaire :
 2. Comment s'appelle cette faille ?
 3. Cherchez dans vos souvenirs (ou discutez-en) : quelle fonction PHP permet de neutraliser les balises HTML d'une saisie avant affichage ?
 
-### Exercice 11.2 👥 L'include trop confiant
+### Exercice 11.2 (collectif) L'include trop confiant
 
 Un étudiant a écrit cet entry-point, **sans whitelist** :
 
@@ -541,9 +541,9 @@ Un visiteur appelle : `index.php?page=../../../../etc/passwd%00` ou plus simplem
 
 1. Que tente-t-il de faire ?
 2. Pourquoi la whitelist (`in_array`) empêche-t-elle complètement cette attaque ?
-3. 🧠 « Personne ne connait les noms de mes fichiers, donc je ne risque rien. » Que répondez-vous à cet argument ?
+3. (analyse) « Personne ne connait les noms de mes fichiers, donc je ne risque rien. » Que répondez-vous à cet argument ?
 
-### Exercice 11.3 👥 L'injection SQL
+### Exercice 11.3 (collectif) L'injection SQL
 
 Le code de connexion d'un site est le suivant :
 
@@ -558,7 +558,7 @@ Un attaquant saisit comme login : `admin' --` (et n'importe quoi comme mot de pa
 2. Que se passe-t-il ? L'attaquant connait-il le mot de passe ?
 3. Quel mécanisme, vu en cours, rend cette attaque impossible ?
 
-### Exercice 11.4 🧠 Le champ caché pas si caché
+### Exercice 11.4 (analyse) Le champ caché pas si caché
 
 Un site marchand envoie le prix dans le formulaire de commande :
 
@@ -573,7 +573,7 @@ Un site marchand envoie le prix dans le formulaire de commande :
 2. Énoncez la règle générale : peut-on faire confiance à une donnée qui vient du client (`$_GET`, `$_POST`, cookie, champ caché) ?
 3. Où le prix devrait-il être récupéré ?
 
-### Exercice 11.5 🧠 La fuite de la base
+### Exercice 11.5 (analyse) La fuite de la base
 
 La base de données d'un site fuite sur Internet. Elle contient la table `users` avec les mots de passe **en clair**.
 
@@ -587,7 +587,7 @@ La base de données d'un site fuite sur Internet. Elle contient la table `users`
 
 La modélisation se fait sur papier : autant s'entrainer sur papier.
 
-### Exercice 12.1 🧠 Lire un MLD
+### Exercice 12.1 (analyse) Lire un MLD
 
 | categories | | produits |
 | --- | --- | --- |
@@ -603,7 +603,7 @@ Les deux tables sont reliées par un trait entre `categories.id` et `produits.id
 3. Un produit peut-il appartenir à deux catégories dans ce modèle ? Justifiez.
 4. Peut-on supprimer une catégorie qui possède encore des produits ? Qu'est-ce qui décide de la réponse ?
 
-### Exercice 12.2 👥 Le modèle qui sent mauvais
+### Exercice 12.2 (collectif) Le modèle qui sent mauvais
 
 Un étudiant a modélisé sa table `produits` ainsi, **sans** table `categories` :
 
@@ -620,7 +620,7 @@ Dans sa base, la colonne `categorie` contient : « Écrans », « écran », « 
 2. Comment le modèle en deux tables (exercice 12.1) empêche-t-il ce problème par construction ?
 3. Énoncez la règle générale : quand faut-il sortir une information dans sa propre table ?
 
-### Exercice 12.3 ✍️ Modélisez
+### Exercice 12.3 (pratique) Modélisez
 
 La BTS TV doit stocker : des vidéos (identifiant YouTube, titre) et les utilisateurs de l'administration (login, mot de passe). Chaque vidéo est ajoutée par un utilisateur, et on veut savoir lequel.
 
@@ -628,7 +628,7 @@ Dessinez le MLD : tables, colonnes avec types, clés primaires, clé étrangère
 
 ---
 
-## Pour finir 👥
+## Pour finir (collectif)
 
 Trois questions de synthèse, à débattre :
 

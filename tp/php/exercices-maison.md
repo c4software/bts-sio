@@ -10,9 +10,9 @@ Les [exercices en classe](./exercices.md) restent votre référence pour l'entra
 
 Légende :
 
-- 🧠 **Analyse** : lire, prédire, expliquer.
-- 👥 **À discuter** : comparez vos réponses avec un camarade.
-- ✍️ **Pratique** : écrire du code sur la feuille.
+- **(analyse)** : lire, prédire, expliquer.
+- **(collectif)** : comparez vos réponses avec un camarade.
+- **(pratique)** : écrire du code sur la feuille.
 
 ---
 
@@ -38,8 +38,8 @@ echo "Nombre de films : " . compteur;
 
 Questions complémentaires :
 
-1. 🧠 Une fois corrigé, réécrivez la boucle en `foreach`. Laquelle des deux versions préférez-vous, et pourquoi ?
-2. ✍️ Ajoutez la gestion d'un paramètre `?favori=` : si le film passé en paramètre est dans le tableau, afficher « Bon choix ! », sinon « Inconnu au bataillon », et gérer l'absence du paramètre.
+1. (analyse) Une fois corrigé, réécrivez la boucle en `foreach`. Laquelle des deux versions préférez-vous, et pourquoi ?
+2. (pratique) Ajoutez la gestion d'un paramètre `?favori=` : si le film passé en paramètre est dans le tableau, afficher « Bon choix ! », sinon « Inconnu au bataillon », et gérer l'absence du paramètre.
 
 ---
 
@@ -83,11 +83,11 @@ if (isset($_SESSION['messages'])) {
 
 Scénarios à dérouler (répondez précisément) :
 
-1. 🧠 Premier visiteur, première visite, aucun formulaire soumis : qu'affiche la page ?
-2. 🧠 Il envoie « Bonjour » puis « Super site » : qu'affiche la page après le deuxième envoi ?
-3. 🧠 Un **autre** visiteur ouvre le site sur son propre ordinateur : voit-il ces messages ? Pourquoi ? Est-ce le comportement souhaitable pour un livre d'or ?
-4. 👥 Il y a **deux** problèmes de sécurité dans ce code : trouvez-les (l'un concerne l'affichage, l'autre la page `admin`).
-5. ✍️ Écrivez le code à ajouter en haut de `pages/admin.php` pour la protéger.
+1. (analyse) Premier visiteur, première visite, aucun formulaire soumis : qu'affiche la page ?
+2. (analyse) Il envoie « Bonjour » puis « Super site » : qu'affiche la page après le deuxième envoi ?
+3. (analyse) Un **autre** visiteur ouvre le site sur son propre ordinateur : voit-il ces messages ? Pourquoi ? Est-ce le comportement souhaitable pour un livre d'or ?
+4. (collectif) Il y a **deux** problèmes de sécurité dans ce code : trouvez-les (l'un concerne l'affichage, l'autre la page `admin`).
+5. (pratique) Écrivez le code à ajouter en haut de `pages/admin.php` pour la protéger.
 
 ---
 
@@ -119,7 +119,7 @@ Extrait de la table `users` :
 | --- | --- | --- |
 | 1 | admin | azerty123 |
 
-1. 👥 Listez **tous** les problèmes de sécurité que vous repérez (il y en a au moins 4 : deux dans les requêtes, un dans le stockage, un dans les accès aux superglobales).
-2. ✍️ Réécrivez `pages/produit.php` correctement (requête préparée + gestion de l'id absent ou inexistant).
-3. 🧠 Décrivez la marche à suivre pour corriger le stockage des mots de passe d'un site **déjà en production**, sans connaitre les mots de passe des utilisateurs existants (question ouverte, plusieurs réponses possibles).
-4. 🧠 Question MLD : ce site stocke l'adresse de livraison dans la table `users` (colonnes `rue`, `ville`). Un client veut pouvoir enregistrer **plusieurs** adresses. Que faut-il changer dans le modèle ?
+1. (collectif) Listez **tous** les problèmes de sécurité que vous repérez (il y en a au moins 4 : deux dans les requêtes, un dans le stockage, un dans les accès aux superglobales).
+2. (pratique) Réécrivez `pages/produit.php` correctement (requête préparée + gestion de l'id absent ou inexistant).
+3. (analyse) Décrivez la marche à suivre pour corriger le stockage des mots de passe d'un site **déjà en production**, sans connaitre les mots de passe des utilisateurs existants (question ouverte, plusieurs réponses possibles).
+4. (analyse) Question MLD : ce site stocke l'adresse de livraison dans la table `users` (colonnes `rue`, `ville`). Un client veut pouvoir enregistrer **plusieurs** adresses. Que faut-il changer dans le modèle ?

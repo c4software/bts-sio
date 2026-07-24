@@ -111,7 +111,7 @@ Et pour la déconnexion, regardez du côté de `unset()` (ou `session_destroy()`
 Les messages sont stockés en `$_SESSION`. Que se passe-t-il si vous fermez votre navigateur ? Est-ce une vraie solution de stockage ? Notez votre réponse en commentaire dans votre code, nous en reparlerons avec les bases de données.
 :::
 
-## Le challenge 🔥
+## Le challenge
 
 Vous avez terminé ? Voici le défi bonus :
 

@@ -137,7 +137,7 @@ Il doit contenir :
 Le `README.md` sera demandé et évalué dans **toutes les évaluations** de ce parcours (3 points à chaque fois). C'est également un standard dans le monde professionnel : tous vos futurs projets (et dépôts Git) devraient en avoir un.
 :::
 
-## Le challenge 🔥
+## Le challenge
 
 Vous avez terminé ? Voici le défi bonus :
 

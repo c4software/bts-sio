@@ -152,7 +152,7 @@ Ne codez pas dans le désordre. Un ordre qui fonctionne bien en 2 heures :
 6. README + rendu : 20 min.
 :::
 
-## Le challenge 🔥
+## Le challenge
 
 Vous avez terminé ? Voici le défi bonus :
 

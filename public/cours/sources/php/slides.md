@@ -46,9 +46,9 @@ _Maintenant PHP_ => **H**ypertext **P**reprocessor
 
 ---
 
-## ✋
+## Un instant !
 
-Internet ≠ Chrome
+✋ Internet ≠ Chrome
 
 ---
 
@@ -1147,6 +1147,8 @@ Vous connaissez maintenant les bases du PHP. Il est temps de passer sur un frame
 
 ---
 
-## Place au TP 🚀
+## Des questions ?
+
+Place au TP 🚀
 
 ---
