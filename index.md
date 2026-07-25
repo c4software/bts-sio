@@ -20,7 +20,7 @@ hero:
       link: /pages/contact.html
     - theme: alt
       text: SIO Chevrollier Angers
-      link: https://btssio.campus-chevrollier.fr/index.html
+      link: https://campus-chevrollier.fr/sio/
 
 features:
   - title: Commencer
