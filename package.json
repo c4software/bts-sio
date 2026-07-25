@@ -1,7 +1,8 @@
 {
   "scripts": {
+    "quiz:build": "node moodle/gift2md.mjs",
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
+    "docs:build": "npm run quiz:build && vitepress build",
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {

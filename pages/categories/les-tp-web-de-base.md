@@ -38,6 +38,11 @@ Le passage au dynamique. Les TP suivent le [complément de cours PHP](/tp/php/su
 6. [TP 3 : Structurer mon code (entry-point)](/tp/php/tp3.md)
 7. [TP 4 : Utiliser la session](/tp/php/tp4.md)
 8. [TP 5 : Protéger des pages à l'aide de la session](/tp/php/tp5.md)
+9. [TP : (Ré)organiser mon code](/tp/organisation/introduction.md)
+
+::: tip Les supports associés
+Le TP de réorganisation s'appuie sur les [Slides Organisation](/cours/organisations).
+:::
 
 ::: warning Point étape 2
 [Évaluation 2 : Le livre d'or](/tp/php/eval2.md). Un mini projet évalué pour valider les formulaires, l'entry-point, la session et la protection de pages.

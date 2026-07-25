@@ -6,6 +6,7 @@ import ExternalIframe from './components/ExternalIframe.vue'
 import NoBreak from './components/NoBreak.vue'
 import NoPrint from './components/NoPrint.vue'
 import Qcm from './components/Qcm.vue'
+import QuizGift from './components/QuizGift.vue'
 import Reveal from './components/Reveal.vue'
 import Sample from './components/Sample.vue'
 import SlidesDeck from './components/SlidesDeck.vue'
@@ -22,6 +23,7 @@ export default {
     app.component('NoBreak', NoBreak)
     app.component('NoPrint', NoPrint)
     app.component('Qcm', Qcm)
+    app.component('QuizGift', QuizGift)
     app.component('Reveal', Reveal)
     app.component('Sample', Sample)
     app.component('SlidesDeck', SlidesDeck)

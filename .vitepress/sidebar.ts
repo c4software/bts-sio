@@ -149,6 +149,7 @@ export default [
         text: "Le PHP",
         collapsed: true,
         items: [
+            { text: "Le parcours conseillé", link: "/pages/categories/les-tp-web-de-base.md" },
             {
                 text: "Les cours", collapsed: true, items: [
                     { text: "Slides introduction PHP", link: "/cours/introduction_php" },
