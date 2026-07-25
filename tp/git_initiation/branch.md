@@ -241,7 +241,7 @@ git log --oneline --graph --all
 
 Créer un nouveau fichier dans votre dépôt git : 
 
-- Index.html contenant une structure HTML de base.
+- index.html contenant une structure HTML de base.
 - styles.css contenant quelques règles CSS simples.
 
 Tester le site et versionner les fichiers dans la branche principale (main).

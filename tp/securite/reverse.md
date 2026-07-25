@@ -11,12 +11,12 @@ Le reverse engineering, ou ingénierie inverse, est le processus d'analyse d'un 
 
 ## Objectifs du TP
 
-Dans ce TP, nous allons nous concentrer sur l'analyse d'une application Android simple. Avec comme objectif de dévérouiller certaines fonctionnalités normalement accessibles uniquement après un achats in-app.
+Dans ce TP, nous allons nous concentrer sur l'analyse d'une application Android simple. Avec comme objectif de déverrouiller certaines fonctionnalités normalement accessibles uniquement après un achat in-app.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pnUSgpbpTJM?si=i5X-XwcC3a0f9Nbl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ::: warning Une note importante
-Ce TP est à but éducatif, ici nous modifions une application que j'ai moi même réalisé et mis à disposition. Ne tentez pas de faire cela sur des applications que vous ne possédez pas ou sans l'autorisation explicite de leur auteur, cela pourrait être illégal et contraire aux conditions d'utilisation.
+Ce TP est à but éducatif, ici nous modifions une application que j'ai moi-même réalisée et mise à disposition. Ne tentez pas de faire cela sur des applications que vous ne possédez pas ou sans l'autorisation explicite de leur auteur, cela pourrait être illégal et contraire aux conditions d'utilisation.
 :::
 
 ### Étapes du TP
@@ -50,7 +50,7 @@ Pour décompiler et modifier l'application Android, nous allons utiliser les out
 - `JDK` Java : Nécessaire pour utiliser `keytool` pour signer l'APK modifié.
 - `Ligne de commande Android`: Pour le zipalign, apksigner et l'installation de l'APK modifié.
 
-La magie d'APKTool est qu'il permet de décompiler une application Android en un format lisible, notamment en extrayant les fichiers SMALI, qui sont une représentation intermédiaire du code Java utilisé dans les applications Android. Il permet également de recréér une APK à partir du SMALI modifié.
+La magie d'APKTool est qu'il permet de décompiler une application Android en un format lisible, notamment en extrayant les fichiers SMALI, qui sont une représentation intermédiaire du code Java utilisé dans les applications Android. Il permet également de recréer une APK à partir du SMALI modifié.
 
 ## Décompilation de l'application
 
@@ -74,7 +74,7 @@ Avant de plonger dans le code SMALI, rappelons brièvement comment fonctionnent 
 - Le fichier `AndroidManifest.xml` définit les composants de l'application et leurs permissions.
 - Les textes et autres chaînes de caractères sont souvent stockés dans des fichiers de ressources XML (`res/values/strings.xml`).
 - Un code moderne utilise des composants via Compose.
-- Les intéractions sont faites avec des ViewModels, Repositories, etc.
+- Les interactions sont faites avec des ViewModels, Repositories, etc.
 - Repose souvent sur des appels réseau pour récupérer des données.
 
 ## Analyse du code
@@ -93,19 +93,19 @@ En bref, le SMALI est un langage bas niveau, mais avec un peu de patience et de 
 
 ::: info Astuce
 
-Je vous laisse le soins de parcourir le code décompilé avec votre éditeur de texte préféré. N'hésitez pas à utiliser la fonction de recherche pour trouver des mots clés pertinents.
+Je vous laisse le soin de parcourir le code décompilé avec votre éditeur de texte préféré. N'hésitez pas à utiliser la fonction de recherche pour trouver des mots clés pertinents.
 
 :::
 
 ### Commençons simple…
 
-Pour débuter, nous allons chercher à faire une modification simple. Pourquoi pas dans un premier temps ne pas modifier un texte affiché dans l'application ? Par exemple, changé "Bravo" en "Félicitations".
+Pour débuter, nous allons chercher à faire une modification simple. Pourquoi pas dans un premier temps ne pas modifier un texte affiché dans l'application ? Par exemple, changer "Bravo" en "Félicitations".
 
 Dans les applications Android, les textes affichés sont souvent stockés dans des fichiers de ressources XML. Nous allons donc chercher dans le dossier `res/values/strings.xml` du code décompilé.
 
-En ouvrant ce fichier, nous pouvons voir une liste de chaînes de caractères utilisées dans l'application. Cherchons la chaîne "Bravo". Et modifier la en "Félicitations".
+En ouvrant ce fichier, nous pouvons voir une liste de chaînes de caractères utilisées dans l'application. Cherchons la chaîne "Bravo". Et la modifier en "Félicitations".
 
-Je vous laisse le soin de faire cette modification vous même.
+Je vous laisse le soin de faire cette modification vous-même.
 
 ### Recompilation et test
 
@@ -153,7 +153,7 @@ En effet, Android pour des raisons de sécurité, n'autorise pas l'installation 
 
 ### Investiguer les erreurs
 
-Si lors de l'installation vous avez une erreurs de librairie native, il faut certainement modifier le fichier :
+Si lors de l'installation vous avez une erreur de librairie native, il faut certainement modifier le fichier :
 
 `AndroidManifest.xml`
 
@@ -185,7 +185,7 @@ Nous pouvons également chercher la valeur `0x3` (qui est 3 en décimal) dans le
 
 ::: info Astuce
 
-Vu que c'est mon application, je peux vous dire que la constante est défini dans la classe `GameViewModel.smali`. Cherchez la ligne où la variable `INITIAL_LIVES` est définie.
+Vu que c'est mon application, je peux vous dire que la constante est définie dans la classe `GameViewModel.smali`. Cherchez la ligne où la variable `INITIAL_LIVES` est définie.
 
 :::
 
@@ -193,7 +193,7 @@ Vu que c'est mon application, je peux vous dire que la constante est défini dan
 
 L'autre solution, est maintenant de forcer le niveau ULTRA à un utilisateur, peu importe son abonnement. Pour cela, nous devons trouver où le niveau d'un utilisateur est défini dans le code. En observant le code décompilé, nous pouvons voir qu'un appel d'API est fait pour récupérer les informations de l'utilisateur, y compris son niveau d'abonnement. Cet appel d'API renvoie un objet utilisateur qui contient un attribut `level`.
 
-En POO, vous le savez, les objets sont souvent instanciés via des constructeurs. Nous avons la classe `User` qui gère les informations des utilisateurs. Et … elle possède un attribut `level` qui correspond au niveau d'abonnement de l'utilisateur. Et elle possède deux constructeurs, Si nous nous concentrons sur les constructeurs comme échangé, nous pouvons observer que celui-ci est passé en paramètre lors de la création d'un utilisateur.
+En POO, vous le savez, les objets sont souvent instanciés via des constructeurs. Nous avons la classe `User` qui gère les informations des utilisateurs. Et … elle possède un attribut `level` qui correspond au niveau d'abonnement de l'utilisateur. Et elle possède deux constructeurs. Si nous nous concentrons sur les constructeurs comme échangé, nous pouvons observer que celui-ci est passé en paramètre lors de la création d'un utilisateur.
 
 ```smali
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Lcom/vbrosseau/stackgame/models/UserLevel;Ljava/lang/String;)V
@@ -247,7 +247,7 @@ public User(String playerId, String displayName, UserLevel level, String avatarU
 }
 ```
 
-Comment faire alors pour modifier le niveau d'un utilisateur et lui attribuer le niveau ULTRA sans passer par un achat in-app ? Simple ! Il suffit de ne plus utiliser le variable `level` passée en paramètre et de forcer la valeur ULTRA lors de l'instanciation de l'objet `User`.
+Comment faire alors pour modifier le niveau d'un utilisateur et lui attribuer le niveau ULTRA sans passer par un achat in-app ? Simple ! Il suffit de ne plus utiliser la variable `level` passée en paramètre et de forcer la valeur ULTRA lors de l'instanciation de l'objet `User`.
 
 ```smali
 .method public constructor <init>(Ljava/lang/String;Ljava/lang/String;Lcom/vbrosseau/stackgame/models/UserLevel;Ljava/lang/String;)V

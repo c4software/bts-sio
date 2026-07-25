@@ -47,7 +47,7 @@ Afin de s'assurer de la qualité du code, l'entreprise souhaite que vous utilisi
 - Les branches doivent être nommées de la façon suivante : `feature/ma-branche`. (ex: `feature/ajout-article-git`)
 - Vous devez faire des commits régulièrement. La fréquence est à définir en fonction de votre vision du projet.
 - Vous devez utiliser des messages de commit explicites. (ex: `Ajout d’un nouvel article sur Git`)
-- Vous devez faire des merges requests pour fusionner vos branches avec la branche `main`.
+- Vous devez faire des merge requests pour fusionner vos branches avec la branche `main`.
 - Vous devez cloner votre projet sur votre ordinateur. En utilisant obligatoirement une clé SSH.
 
 ::: tip ✨ Ce TP est évalué ✨
@@ -89,7 +89,7 @@ Vérifier que votre projet est bien commité, avec la commande `git status`. Vou
 
 Créer votre compte sur la plateforme de votre choix, nous avons trois choix possibles :
 
-- [Gitlab du lycée](http://gitlab.dombtsig.local/)
+- [Gitlab du lycée](https://gitlab.dombtsig.local/)
 - [GitLab](https://gitlab.com/users/sign_in)
 - [Github](https://github.com/signup)
 
@@ -119,7 +119,7 @@ Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoir
 
 ::: tip Important
 
-- Cette clé est générée sur votre profil utilisateur, et ce quelques soit le poste au lycée. Vous pouvez donc utiliser cette clé sur plusieurs projets.
+- Cette clé est générée sur votre profil utilisateur, et ce quel que soit le poste au lycée. Vous pouvez donc utiliser cette clé sur plusieurs projets.
 - Cette opération ne doit être faite qu’une seule fois.
 
 :::
@@ -295,7 +295,7 @@ Maintenant que vous avez terminé votre travail, vous allez devoir créer une me
 
 ## Bonne nouvelle !
 
-Vous venez (normalement) d’avoir au moins un « merge request » d’assigner. Vous allez devoir traiter la demande, à votre avis, comment se déroule la suite ?
+Vous venez (normalement) d’avoir au moins un « merge request » d’assigné. Vous allez devoir traiter la demande, à votre avis, comment se déroule la suite ?
 
 ## La revue de code
 
@@ -347,7 +347,7 @@ L'ensemble des questions du TP sont à répondre dans un document PDF à restitu
 - Quelle commande permet de récupérer les modifications d’un dépôt distant ?
 - Quelle commande permet d'envoyer les modifications sur le dépôt distant ?
 - Pourquoi est-il important de faire un `pull` avant de commencer à travailler ?
-- Décrire le processus d'utilisation de Git et GitLab ? (Vous pouvez utiliser un schéma si vous le souhaitez (ex : <https://www.draw.io/>)))
+- Décrire le processus d'utilisation de Git et GitLab ? (Vous pouvez utiliser un schéma si vous le souhaitez (ex : <https://www.draw.io/>))
 
 ## Document à rendre
 

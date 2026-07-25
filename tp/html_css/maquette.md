@@ -1,10 +1,10 @@
 ---
-description: Dans ce TP nous allons découvrir comment maqueter un Site Web (ou une application) grace à l'outils FIGMA.
+description: Dans ce TP nous allons découvrir comment maqueter un Site Web (ou une application) grâce à l'outil FIGMA.
 ---
 
 # Maquetter un site Internet
 
-Dans ce TP nous allons découvrir comment maqueter un Site Web (ou une application) grace à l'outils FIGMA.
+Dans ce TP nous allons découvrir comment maqueter un Site Web (ou une application) grâce à l'outil FIGMA.
 
 [Figma](https://www.figma.com/)
 

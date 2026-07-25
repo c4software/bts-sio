@@ -30,7 +30,7 @@ Vous êtes en entreprise, vous avez un nouveau projet à réaliser. Le projet es
 
 ## Initialisation
 
-Votre choix est fait, vous devez maintenant initialiser votre espace de travail. Comment procédez-vous?
+Votre choix est fait, vous devez maintenant initialiser votre espace de travail. Comment procédez-vous ?
 
 ## Installer GIT sur votre machine
 
@@ -118,7 +118,7 @@ Vérifier le statut de Git après avoir tout créé
 ### Questions
 
 - Que constatez-vous ?
-  - Quelles commandes, faut-il faire maintenant?
+  - Quelles commandes faut-il faire maintenant ?
   - Une autre commande serait-elle utile ?
 
 Ajouter les changements
@@ -142,7 +142,7 @@ Créer une première version
 ### Questions
 
 - Qu’avez-vous fait ?
-- Qu’elles sont différences entre les deux commandes ?
+- Quelles sont les différences entre les deux commandes ?
 - Dans quel état est votre dépôt (repository) ?
 - À quoi sert la commande `git status` ?
   - Une autre commande permettrait-elle d’avoir une information similaire ?
@@ -181,7 +181,7 @@ Créer une seconde version
 ### Questions
 
 - À quoi servent les commentaires ?
-- Sont-ils utiles que pour pour vous ?
+- Sont-ils utiles que pour vous ?
 - Y’a-t-il plusieurs façons de faire ?
 - Comment vérifier que vos modifications ont bien été prises en compte ?
 
@@ -208,7 +208,7 @@ $
 $
 ```
 
-Sauvegarder l'ensemble des modifications après avoir vérifié que celle-ci sont bien présente
+Sauvegarder l'ensemble des modifications après avoir vérifié que celles-ci sont bien présentes
 
 ```sh
 $
@@ -235,7 +235,7 @@ $
 - À quoi sert l’identifiant de chaque commit ? (Hash SHA)
 - Comment vérifiez-vous l’historique pour un fichier précis ?
 - Comment voir l’ensemble des modifications en détail pour le fichier `source/index.html` ?
-- Est-ce judicieux de travailler toujours sur la branche `master` / `main`?
+- Est-ce judicieux de travailler toujours sur la branche `master` / `main` ?
 
 ## Mettre de côté vos modifications
 
@@ -284,7 +284,7 @@ Faites des modifications dans les fichiers que vous voulez.
 
 ## Fusion / Merge de la fonctionnalité
 
-Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre « branche master » / « branche main »:
+Votre code est finalisé, il faut maintenant fusionner vos modifications avec votre « branche master » / « branche main » :
 
 ```sh
 $
@@ -293,12 +293,12 @@ $
 
 ### Questions
 
-- À votre avis, en entreprise « merge / fusionne » t-on directement sur la `master` / `main`?
+- À votre avis, en entreprise « merge / fusionne »-t-on directement sur la `master` / `main` ?
 - Une autre personne peut-elle / doit-elle être impliquée dans cette étape ?
 
 ## Annulation, retour arrière
 
-Faite des évolutions dans votre branche `master` / `main` (2 ou 3), ajouter les via `git add`. Votre responsable vous demande finalement de les annuler, car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
+Faites des évolutions dans votre branche `master` / `main` (2 ou 3), ajoutez-les via `git add`. Votre responsable vous demande finalement de les annuler, car il ne souhaite pas garder la fonctionnalité. Comment procédez-vous ?
 
 ```sh
 $
@@ -340,6 +340,6 @@ VSCode intègre un client Git par défaut, il est possible de l’utiliser pour 
 
 ![VSCode Git](./vscode.jpg)
 
-::: tip Appeler moi
+::: tip Appelez-moi
 Nous allons voir ensemble comment utiliser VSCode pour réaliser les opérations précédentes.
 :::

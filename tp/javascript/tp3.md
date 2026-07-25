@@ -1,26 +1,26 @@
 ---
-description: Le JavaScript, comme je l'indiquai en introduction, est partout. Pour l'instant, nous allons le limiter principalement aux interactions utilisateurs (contrôle de saisie, validation de formulaire, interactivité).
+description: Le JavaScript, comme je l'indiquais en introduction, est partout. Pour l'instant, nous allons le limiter principalement aux interactions utilisateurs (contrôle de saisie, validation de formulaire, interactivité).
 ---
 
-# Contrôle de saisie & intéractivité
+# Contrôle de saisie & interactivité
 
-Le JavaScript, comme je l'indiquai en introduction, est partout. Pour l'instant, nous allons le limiter principalement aux interactions utilisateurs (contrôle de saisie, validation de formulaire, interactivité).
+Le JavaScript, comme je l'indiquais en introduction, est partout. Pour l'instant, nous allons le limiter principalement aux interactions utilisateurs (contrôle de saisie, validation de formulaire, interactivité).
 
-Nous allons pratiquer les évènements JavaScript en ajoutant à notre TP Bart ([Version JavaScript](/tp/php/tp2.md)) un simple formulaire puis des contrôles de saisie.
+Nous allons pratiquer les évènements JavaScript en ajoutant à notre TP Bart ([Version JavaScript](/tp/javascript/tp2.md)) un simple formulaire puis des contrôles de saisie.
 
 L'objectif étant donc d'ajouter des contrôles de saisie sur votre page formulaire.
 
-Deux solutions sont possibles coder nous même, ou faire confiance à une librairie « provenant d'Internet ».
+Deux solutions sont possibles : coder nous-mêmes, ou faire confiance à une librairie « provenant d'Internet ».
 
 ## Ajouter le formulaire sur votre page
 
-La première étape vas être d'ajouter dans la page un formulaire HTML doit ressembler à :
+La première étape va être d'ajouter dans la page un formulaire HTML qui doit ressembler à :
 
 ![Formulaire BART](./res/bart-form.png)
 
-Je vais laisse écrire le code _et le style_ du formulaire en question. Quelques règles :
+Je vous laisse écrire le code _et le style_ du formulaire en question. Quelques règles :
 
-- Vous pouvez ajouter bootstrap si vous souhaitez.
+- Vous pouvez ajouter Bootstrap si vous le souhaitez.
 - Vous devez utiliser un « form »
 - Vous devez externaliser la CSS.
 - Votre formulaire doit être avant le tableau.
@@ -30,7 +30,7 @@ Je vais laisse écrire le code _et le style_ du formulaire en question. Quelques
 Ajouter des contrôles, finalement c'est simple. Il « faut juste » :
 
 - Ajouter un évènement « onSubmit ».
-- Vérifier que les champs `input` ne sont pas vide (ou du moins, possède les valeurs attendues).
+- Vérifier que les champs `input` ne sont pas vides (ou du moins, possèdent les valeurs attendues).
 
 En pratique ça va donner :
 
@@ -64,7 +64,7 @@ document
 ```
 
 ::: tip Un Instant !
-`return false` ? Et oui, c'est aussi simple que ça ! En JS si vous souhaitez stopper la soumissions d'un formulaire il suffit que votre fonction de validation retourne `false`. Votre navigateur sera automatiquement qu'il doit arrêter imédiatement la soumission du formulaire. Votre _serveur ne recevra donc **pas**_ les données.
+`evt.preventDefault()` ? Eh oui, c'est aussi simple que ça ! En JS si vous souhaitez stopper la soumission d'un formulaire il suffit d'appeler `evt.preventDefault()` dans votre fonction de validation. Votre navigateur saura automatiquement qu'il doit arrêter immédiatement la soumission du formulaire. Votre _serveur ne recevra donc **pas**_ les données.
 :::
 
 ### À faire
@@ -78,15 +78,15 @@ document
 Maintenant que nos informations sont validées, il faut les utiliser dans la page. En reprenant [le code du TP précédent](./tp2.md), je vous laisse intégrer la logique suivante :
 
 - Le tableau ne doit pas être visible au chargement de la page.
-- Une fois, la validation du formulaire effective (saisie correcte), le tableau doit s'afficher avec dedans la phrase choisie par l'utilisateur (ainsi que le nombre).
-- Le formulaire ne doit plus être visible (ainsi que la `card` dans lequel celui-ci est).
+- Une fois la validation du formulaire effective (saisie correcte), le tableau doit s'afficher avec dedans la phrase choisie par l'utilisateur (ainsi que le nombre).
+- Le formulaire ne doit plus être visible (ainsi que la `card` dans laquelle celui-ci est).
 - « Une action » recommencer la saisie doit permettre de :
   - Masquer le tableau
   - Afficher le formulaire à nouveau
 
 ::: tip Rappels
 
-Je vous rappels que vous avez [l'aide mémoire](/cheatsheets/javascript/) ainsi que le [support du cours](/tp/javascript/support.md) pour vous aider. Mais l'ensemble va reposer sur :
+Je vous rappelle que vous avez [l'aide-mémoire](/cheatsheets/javascript/) ainsi que le [support du cours](/tp/javascript/support.md) pour vous aider. Mais l'ensemble va reposer sur :
 
 - Des sélecteurs, exemple `document.getElementById('tableau')`.
 - L'obtention de valeur, exemple `document.getElementById('monInputText').value`.
@@ -96,14 +96,14 @@ Je vous rappels que vous avez [l'aide mémoire](/cheatsheets/javascript/) ainsi 
 
 ## Avec une Librairie
 
-Nous avons vu la façon manuelle de valider les formulaires. Je pense que sans vous faire un dessin… vous vous rendez compte que si nous avons 200 champs; ça va être plus compliqué ! D'autant plus que plus notre formulaire sera complexe plus celui-ci aura des règles complexes.
+Nous avons vu la façon manuelle de valider les formulaires. Je pense que sans vous faire un dessin… vous vous rendez compte que si nous avons 200 champs, ça va être plus compliqué ! D'autant plus que plus notre formulaire sera complexe, plus celui-ci aura des règles complexes.
 
 Heureusement des gens ont déjà pensé à ce genre de problématique pour vous… Je vous propose d'utiliser :
 
 - [jQuery Validation](https://github.com/jquery-validation/jquery-validation)
 
 ::: warning C'est un plug-in parmi tant d'autres
-Ce plug-in est juste « un parmi tant d'autre », comme toujours utilisez celui le plus adapté à votre problématique.
+Ce plug-in est juste « un parmi tant d'autres », comme toujours utilisez le plus adapté à votre problématique.
 
 Par exemple quand nous ferons du VueJS, **il ne faudra plus utiliser jQuery** !
 :::

@@ -4,9 +4,9 @@ description: Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux
 
 # Larablog 2.0 (Ajax & VueJS)
 
-Dans le [TP Larablog](../laravel/larablog.md), nous avons créé une plateforme de blog en utilisant uniquement Laravel (Blade, Eloquent, etc). Ça fonctionne, mais vous l'avez certainement remarqué, nous avons des pages qui se rechargent entièrement à chaque fois que nous effectuons une opération. Dans ce tp, nous allons voir comment ajouter du JavaScript afin d'améliorer l'expérience utilisateur.
+Dans le [TP Larablog](../laravel/larablog.md), nous avons créé une plateforme de blog en utilisant uniquement Laravel (Blade, Eloquent, etc.). Ça fonctionne, mais vous l'avez certainement remarqué, nous avons des pages qui se rechargent entièrement à chaque fois que nous effectuons une opération. Dans ce TP, nous allons voir comment ajouter du JavaScript afin d'améliorer l'expérience utilisateur.
 
-::: details Sommaires
+::: details Sommaire
 [[toc]]
 :::
 
@@ -35,9 +35,9 @@ Dans ce TP nous allons explorer la modernisation d'un site Web classique en ajou
 
 L'une des forces de VueJS est sa simplicité et sa facilité d'intégration dans un projet existant. Ici nous allons l'utiliser pour améliorer le projet Larablog afin de lui donner le comportement des sites type X, Youtube, etc.
 
-En détail nous allons créer des API (Application Programming Interface) qui vont nous retourner des données au format JSON, puis nous allons les consommer dans notre site Web. Mais avant tout, **pourquoi faire ça ?** L'avantage de découper le traitement comme ça. C'est que nous pourrions très simplement créer un client « Mobile », et ça sans toucher au code de notre serveur.
+En détail nous allons créer des API (Application Programming Interface) qui vont nous retourner des données au format JSON, puis nous allons les consommer dans notre site Web. Mais avant tout, **pourquoi faire ça ?** L'avantage de découper le traitement comme ça, c'est que nous pourrions très simplement créer un client « Mobile », et ça sans toucher au code de notre serveur.
 
-Pleins d'avantages :
+Plein d'avantages :
 
 - Code unique pour le Web et les autres plateformes
 - Centralisation de la logique dans un code dédié à la récupération « du contenu » (les vidéos en l'occurrence).
@@ -46,16 +46,16 @@ Pleins d'avantages :
 ::: danger Un INSTANT !
 Une API ? What ? Alors, une API dans le fond c'est « comme une page web ». Mais, cette page web ne produit pas du HTML et n'a pas pour vocation d'être lue par un humain.
 
-C'est donc du code (du PHP dans notre cas, mais ça pourrais être autre chose) qui va permettre de faire parler deux ordinateurs (le client et le serveur) dans un langage spécifique (XML, JSON …)
+C'est donc du code (du PHP dans notre cas, mais ça pourrait être autre chose) qui va permettre de faire parler deux ordinateurs (le client et le serveur) dans un langage spécifique (XML, JSON …)
 :::
 
 ## Identifier les pages à améliorer
 
-Avant d'aller plus loin, réfléchissons ensemble sur les pages / éléments qui pourraient être améliorer et qui pourraient bénéficier d'un peu de réactivité.
+Avant d'aller plus loin, réfléchissons ensemble sur les pages / éléments qui pourraient être améliorés et qui pourraient bénéficier d'un peu de réactivité.
 
 ::: tip Stop !  
 
-Avant de continuer, à vos crayons, et sur une feuille, listez les pages / éléments qui pourraient être améliorées.
+Avant de continuer, à vos crayons, et sur une feuille, listez les pages / éléments qui pourraient être améliorés.
 
 :::
 
@@ -63,13 +63,13 @@ Avant de continuer, à vos crayons, et sur une feuille, listez les pages / élé
 
 Rappel, qu'est-ce que la réactivité ? La réactivité est le fait de ne pas recharger une page entière pour en changer le contenu. Ça aura plusieurs impacts dans notre code :
 
-- Observer les interactions de l'utilisateur (clic, etc)
+- Observer les interactions de l'utilisateur (clic, etc.)
 - Obtention de données depuis le serveur (Ajax).
 - Modification de la page / ou d'une partie de la page avec VueJS.
 
 ![Schéma de la réactivité](./res/data.png)
 
-## Ajax pure ou Ajax avec VueJS ?
+## Ajax pur ou Ajax avec VueJS ?
 
 Nous avons plusieurs écoles, certains préfèrent faire du VanillaJS (JavaScript pur) et d'autres préfèrent utiliser des librairies / frameworks. Dans ce TP, nous allons utiliser VueJS, car celui-ci est très simple à mettre en place et à utiliser. Mais, sachez que vous pouvez très bien faire la même chose avec du JavaScript pur.
 
@@ -79,12 +79,12 @@ L'avantage de VueJS est que celui-ci va nous simplifier la manipulation du DOM (
 
 Avant de commencer nos évolutions, nous allons mettre en place une méthodologie de travail. En effet, pour ne pas se retrouver submergé par les modifications, il est important de découper notre travail en plusieurs étapes.
 
-- Étape 1 : Les données, quelles données allons-nous avoir besoin ? Comment les obtenir ?
+- Étape 1 : Les données, de quelles données allons-nous avoir besoin ? Comment les obtenir ?
 - Étape 2 : Quelle partie du code va être ajoutée ? Les contrôleurs, les vues, les routes ?
 - Étape 3 : Quelle partie du code va être modifiée ? Les contrôleurs, les vues, les routes ?
 - Étape 4 : Quelle partie du code va être supprimée ? Les contrôleurs, les vues, les routes ?
 
-Cette étape est importante, car si vous ne la réalisez pas, vous serez vite perdu et dépasser par les évolutions que vous allez mettre en place.
+Cette étape est importante, car si vous ne la réalisez pas, vous serez vite perdu et dépassé par les évolutions que vous allez mettre en place.
 
 Dans notre projet, nous avons identifié les fonctionnalités suivantes à faire évoluer :
 
@@ -137,7 +137,7 @@ Route::get('/article/{article}/like', [ApiController::class, 'getLike']);
 Route::post('/article/{article}/like', [ApiController::class, 'addLike']);
 ```
 
-::: tip Quel sont les différences entre `web.php` et `api.php` ?
+::: tip Quelles sont les différences entre `web.php` et `api.php` ?
 
 La différence entre les deux fichiers de route est simple. Le fichier « web.php » est dédié aux routes de type « page web ». C'est-à-dire que les routes de ce fichier vont retourner du HTML. Le fichier « api.php » est dédié aux routes de type « API ». C'est-à-dire que les routes de ce fichier vont retourner du JSON.
 
@@ -251,7 +251,7 @@ Maintenant que nous avons nos API, nous allons modifier notre code afin de conso
 Avant de créer notre consommateur, nous allons ajouter VueJS. Pour ajouter VueJS, nous avons deux solutions :
 
 - Utiliser un CDN (Content Delivery Network).
-- Utiliser un package manager (npm, yarn, etc).
+- Utiliser un package manager (npm, yarn, etc.).
 
 Dans notre cas, pour simplifier le TP, nous allons utiliser un CDN de type ESM (ECMAScript Module). Nous allons inclure ce CDN directement dans notre code JavaScript au moment de l'écriture de celui-ci.
 
@@ -275,7 +275,7 @@ Par exemple, si vous avez un fichier « like.js », alors vous pourrez l'inclure
 <script type="module" src="{{ asset('like.js') }}"></script>
 ```
 
-Que veux dire `type="module"` ? Cela signifie que le fichier est un module JavaScript. C'est-à-dire que le fichier peut être importé dans un autre fichier JavaScript. C'est la nouvelle norme JavaScript, et c'est pour cela que nous utilisons un CDN de type ESM.
+Que veut dire `type="module"` ? Cela signifie que le fichier est un module JavaScript. C'est-à-dire que le fichier peut être importé dans un autre fichier JavaScript. C'est la nouvelle norme JavaScript, et c'est pour cela que nous utilisons un CDN de type ESM.
 
 :::
 
@@ -396,7 +396,7 @@ createApp({
 
 Un peu de détail sur ce code :
 
-- Nous utilisons la méthode `defineProps` afin de définir les propriétés qui seront passées au composant. Dans notre cas, nous avons une propriété « id » qui est obligatoire.
+- Nous utilisons l'option `props` afin de définir les propriétés qui seront passées au composant. Dans notre cas, nous avons une propriété « id » qui est obligatoire.
 - Nous utilisons la méthode `setup` afin de créer une fonction qui sera exécutée au démarrage de l'application.
 - Nous utilisons la méthode `ref` afin de créer une variable réactive. C'est-à-dire que si la variable change, alors le DOM sera mis à jour automatiquement.
 - Nous utilisons la méthode `fetch` afin de faire une requête Ajax. Nous utilisons la méthode `then` afin de récupérer le résultat de la requête. Nous utilisons la méthode `json` afin de convertir le résultat de la requête en JSON. Nous utilisons la méthode `then` afin de récupérer le JSON. Nous utilisons la méthode `value` afin de modifier la valeur de la variable réactive.
@@ -413,7 +413,7 @@ Le code peut vous paraître compliqué, mais en réalité il est très simple. N
 
 ::: tip `mountEl.dataset`
 
-Ici, la synthaxe `mountEl.dataset` permet de récupérer les attributs HTML de l'élément HTML. Dans notre cas, nous récupérons l'attribut « data-id » qui contient l'id de l'article qui est passé dans le code HTML. C'est un élément important de notre code, car c'est grâce à cet attribut que nous allons pouvoir faire nos requêtes Ajax.
+Ici, la syntaxe `mountEl.dataset` permet de récupérer les attributs HTML de l'élément HTML. Dans notre cas, nous récupérons l'attribut « data-id » qui contient l'id de l'article qui est passé dans le code HTML. C'est un élément important de notre code, car c'est grâce à cet attribut que nous allons pouvoir faire nos requêtes Ajax.
 
 Sans celui-ci, nous ne pourrions pas faire nos requêtes Ajax. En effet, nous avons besoin de l'id de l'article pour faire nos requêtes Ajax. C'est pour cela que nous avons ajouté l'attribut « data-id » dans le code HTML.
 
@@ -428,7 +428,7 @@ Pour que notre code fonctionne, nous allons évidemment devoir modifier la page 
 ![Schéma de la page de l'article](./res/larablog_code_du_composant.jpg)
 
 - En orange : Le code qui spécifie l'id de l'article, celui-ci est récupéré par le composant pour faire les requêtes Ajax (le fameux `data-id` qui est récupéré par `mountEl.dataset`)
-- En vert : L'action qui est appelée au clic sur le bouton « like ». `@click` Permets d'ajouter un événement au clic sur l'élément HTML. `addLike` est la méthode qui est appelée au clic sur le bouton « like ».
+- En vert : L'action qui est appelée au clic sur le bouton « like ». `@click` permet d'ajouter un événement au clic sur l'élément HTML. `addLike` est la méthode qui est appelée au clic sur le bouton « like ».
 - En bleu : Le code qui affiche le nombre de like. `@{{ count }}` permet d'afficher la valeur de la variable réactive `count`. La variable réactive `count` est mise à jour automatiquement par le composant. C'est-à-dire que si la valeur de la variable `count` change, alors le DOM sera mis à jour automatiquement.
   - Le `@` permet d'indiquer à Blade que le code entre accolades doit être interprété par VueJS et non par Blade.
 
@@ -486,7 +486,7 @@ Puis dans votre code :
 $id = $request->user()->id;
 ```
 
-Ce qui donnerai :
+Ce qui donnerait :
 
 ```php
 Route::post('/article/{article}/like', [ApiController::class, 'addLike'])->name('article.like')->middleware("web");
@@ -550,7 +550,7 @@ public function addComment(Article $article, Request $request)
 {
     $comment = new Comment();
     $comment->content = $request->input('content');
-    $comment->user_id = auth('api')->user()->id;
+    $comment->user_id = auth()->id();
     $comment->article_id = $article->id;
     $comment->save();
 
@@ -563,7 +563,7 @@ public function addComment(Article $article, Request $request)
 Un peu de détail sur ce code :
 
 - Nous utilisons la méthode `input` afin de récupérer les données envoyées par le client. Dans notre cas, nous récupérons la valeur de l'input « content ».
-- Nous utilisons la méthode `Auth::id()` afin de récupérer l'id de l'utilisateur connecté.
+- Nous utilisons la méthode `auth()->id()` afin de récupérer l'id de l'utilisateur connecté.
 - Nous utilisons la méthode `save` afin de sauvegarder le commentaire dans la base de données.
 - Nous utilisons la méthode `with` afin de récupérer les informations de l'utilisateur qui a écrit le commentaire. C'est-à-dire que nous récupérons l'utilisateur qui a écrit le commentaire. Nous utilisons la méthode `get` afin de récupérer les commentaires.
 
@@ -667,7 +667,7 @@ createApp({
         // Ensemble des commentaires
         const comments = ref([]);
 
-        // Récupération du commentaire saisie
+        // Récupération du commentaire saisi
         const comment = ref("");
 
         // TODO : Récupération des commentaires via l'API et un appel AJAX avec fetch
@@ -740,7 +740,7 @@ Quelques éléments, en VueJS, nous utilisons la directive `v-for` afin de faire
     @{{ comment.id }}
     @{{ comment.content }}
 
-    <!-- Évidement, vous reprendrez votre style et l'affichage que vous avez fait avant -->
+    <!-- Évidemment, vous reprendrez votre style et l'affichage que vous avez fait avant -->
 </div>
 ```
 
@@ -755,7 +755,7 @@ La notation JavaScript est légèrement différente pour naviguer dans un objet 
 
 Je vous laisse mettre en place ce code dans votre projet. Si vous avez des difficultés, n'hésitez pas à me demander de l'aide. Une fois intégré, vous devriez obtenir un fonctionnement similaire à avant, mais en utilisant votre API.
 
-Normalement il vous suffit de remplacer le `@foreach` par un `v-for` et de remplacer les <span v-pre>`{{ }}`</span> par des <span v-pre>`@{{ }}`</span> et évidement de passer de la notation `->` à la notation `.`.
+Normalement il vous suffit de remplacer le `@foreach` par un `v-for` et de remplacer les <span v-pre>`{{ }}`</span> par des <span v-pre>`@{{ }}`</span> et évidemment de passer de la notation `->` à la notation `.`.
 
 #### Ajouter un commentaire
 
@@ -816,7 +816,7 @@ Maintenant que vous avez vu comment mettre en place une API, je vous laisse mett
 - Tester votre API avec PostMan.
 - Créer une version de votre home page qui utilise votre API.
 
-### Bonus: Sauvegarde du commentaire
+### Bonus : Sauvegarde du commentaire
 
 Actuellement le commentaire saisi par l'utilisateur est perdu lors du rechargement de la page. Nous allons donc mettre en place un système de sauvegarde du commentaire. Nous allons donc modifier le code du composant afin de sauvegarder le commentaire dans le local storage.
 
@@ -824,10 +824,10 @@ Je ne vais pas vous donner le code, mais juste les éléments qui vont vous perm
 
 ```js
 
-// Récupération du commentaire saisie
+// Récupération du commentaire saisi
 const comment = ref(localStorage.getItem("comment") ?? "");
 
-// Evenement qui permet de sauvegarder le commentaire quand l'utilisateur saisie du texte
+// Événement qui permet de sauvegarder le commentaire quand l'utilisateur saisit du texte
 @input="saveComment"
 
 // Sauvegarde du commentaire dans le local storage
@@ -847,7 +847,7 @@ Notre code est découpé en plusieurs parties :
 
 L'assemblage est réalisé grâce à l'AJAX. C'est-à-dire que nous utilisons des appels AJAX pour récupérer les données de l'API. Nous utilisons ensuite VueJS pour mettre à jour le DOM.
 
-C'est une autre façon de travailler, qui permet d'avoir un site Web plus réactif, plus fluide. C'est le fonctionnement des sites web moderne.
+C'est une autre façon de travailler, qui permet d'avoir un site Web plus réactif, plus fluide. C'est le fonctionnement des sites web modernes.
 
 ## Toujours plus haut, toujours plus loin
 

@@ -25,17 +25,17 @@ Voilà un exemple simple de XSS via un input non filtré.
 
 ::: danger Quoi faire ?
 
-Ici, l'idée, est de trouver comment éxécuter du code via un simple chargement d'image ! Pour ça il faut connaître un peu le HTML et le fonctionnement des balises classique.
+Ici, l'idée est de trouver comment exécuter du code via un simple chargement d'image ! Pour ça il faut connaître un peu le HTML et le fonctionnement des balises classiques.
 
-Une balise img, vous connaissez… Elle prend en paramètre un attribut `src`… ok ! Mais elle a également un autre attribut … nommé … `onload` cet attribut permet d'éxécuter du code quand la ressource (l'image) est chargé. Nous allons donc exploiter un code « mal écrit » pour charger du code JavaScript.
+Une balise img, vous connaissez… Elle prend en paramètre un attribut `src`… ok ! Mais elle a également un autre attribut … nommé … `onload` ; cet attribut permet d'exécuter du code quand la ressource (l'image) est chargée. Nous allons donc exploiter un code « mal écrit » pour charger du code JavaScript.
 
-Pour ça, dans le champs de saisie, je vous propose de mettre:
+Pour ça, dans le champ de saisie, je vous propose de mettre :
 
 ```
 https://fakeimg.pl/300/" onload="alert('Coucou'); window.location='https://bit.ly/3Bpiela'"
 ```
 
-Que-se passe-t-il ? Pourquoi ? Regardons le code source ensemble !
+Que se passe-t-il ? Pourquoi ? Regardons le code source ensemble !
 
 :::
 
@@ -43,15 +43,15 @@ Que-se passe-t-il ? Pourquoi ? Regardons le code source ensemble !
 
 En partant du code précédent, afficher dans la page un formulaire en exploitant la faille `onload` du code fourni.
 
-### 2.1 La même chose mais par lien…
+### 2.2 La même chose, mais par lien…
 
 Vous l'avez peut-être remarqué, dans le code JavaScript il est également possible de spécifier une image. Par exemple il est possible d'écrire un lien :
 
 - [https://cours.brosseau.ovh/demo/xss/index.html?uri=https://fakeimg.pl/600/](https://cours.brosseau.ovh/demo/xss/index.html?uri=https://fakeimg.pl/600/)
 
-Ce lien est source **d'un très grand danger**, je vous propose de réfléchir à comment il serait possible d'exploiter « le paramètre uri » afin de lui donner de détourner le comportement du site.
+Ce lien est source **d'un très grand danger**, je vous propose de réfléchir à comment il serait possible d'exploiter « le paramètre uri » afin de détourner le comportement du site.
 
-- Trouver un moyer de réaliser la même attaque que le code précédent (point 2.0).
+- Trouver un moyen de réaliser la même attaque que le code précédent (point 2.0).
 - Envoyer le lien à une autre personne.
 - Lire des données sur son ordinateur (nous allons le faire ensemble).
 

@@ -4,16 +4,16 @@ description: Objectif réaliser votre CV
 
 # Mon CV
 
-## Objectif réaliser votre CV
+## Objectif : réaliser votre CV
 
 - Trouver une idée de design
 - Réaliser le HTML + CSS
 - Être original
 - Lien vers les réseaux sociaux
 
-## Allez plus loin
+## Aller plus loin
 
-Vous avez déjà votre CV ? Créer votre Portefolio.
+Vous avez déjà votre CV ? Créer votre Portfolio.
 
 ## Hébergement
 

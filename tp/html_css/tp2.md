@@ -1,10 +1,10 @@
 ---
-description: Dans ce TP nous allons découvrir les bases du CSS à travers personnalisation d'une page web.
+description: Dans ce TP nous allons découvrir les bases du CSS à travers la personnalisation d'une page web.
 ---
 
 # Découverte de la CSS
 
-Dans ce TP nous allons découvrir les bases du CSS à travers personnalisation d'une page web.
+Dans ce TP nous allons découvrir les bases du CSS à travers la personnalisation d'une page web.
 
 ## Introduction
 
@@ -53,7 +53,7 @@ Une CSS seule ne veut pas dire grand-chose. Afin de tester certaines fonctionnal
     <ul>
       <li>Je découvre le HTML</li>
       <li>Je vais bientôt faire de la CSS</li>
-      <li>,Mais également du PHP</li>
+      <li>Mais également du PHP</li>
     </ul>
 
     <h2>Mon pied de page</h2>
@@ -62,19 +62,19 @@ Une CSS seule ne veut pas dire grand-chose. Afin de tester certaines fonctionnal
 </html>
 ```
 
-Dans un premier temps, valider que votre site fonctionne correctement. Pour ça, affichez celui-ci dans votre navigateur.
+Dans un premier temps, validez que votre site fonctionne correctement. Pour ça, affichez celui-ci dans votre navigateur.
 
 ::: warning STOP
-Double cliquer sur le fichier « ça fonctionne ». Mais je vous conseille vivement de passer par un serveur web local (type Wamp, Mamp, …). Pourquoi ? Simplement afin de reproduire le plus possible les conditions réelles.
+Double-cliquer sur le fichier « ça fonctionne ». Mais je vous conseille vivement de passer par un serveur web local (type Wamp, Mamp, …). Pourquoi ? Simplement afin de reproduire le plus possible les conditions réelles.
 :::
 
 ### Étape 2 : La feuille de style
 
-Dans votre éditeur favori crée un nouveau fichier nommé `style.css`. Votre projet doit maintenant ressembler à :
+Dans votre éditeur favori créez un nouveau fichier nommé `style.css`. Votre projet doit maintenant ressembler à :
 
 ![Vue du projet](./res/structure.png)
 
-Comme vous pouvez le constater, votre fichier CSS est « à côté » de votre fichier HTML. Si vous voulez la ranger dans un sous-dossier c'est possible, libre à vous de vous organiser comme bon vous semble.
+Comme vous pouvez le constater, votre fichier CSS est « à côté » de votre fichier HTML. Si vous voulez le ranger dans un sous-dossier c'est possible, libre à vous de vous organiser comme bon vous semble.
 
 ### Étape 3 : Déclarer la feuille de style
 
@@ -87,12 +87,12 @@ Vous avez vos deux fichiers « le HTML et la CSS ». Nous allons donc maintenant
 ![Sample](./res/sample.png)
 
 ::: tip Petite note rapide
-La ligne que vous avez ajouté indique que votre fichier HTML doit charger une autre ressource en même temps que la page. À savoir le fichier style.css
+La ligne que vous avez ajoutée indique que votre fichier HTML doit charger une autre ressource en même temps que la page. À savoir le fichier style.css
 :::
 
 ### Étape 4 : Ajouter vos directives CSS
 
-Votre fichier CSS est pour l'instant vide il n'a donc aucun effet. Je vous propose de commencer par une première directive CSS :
+Votre fichier CSS est pour l'instant vide, il n'a donc aucun effet. Je vous propose de commencer par une première directive CSS :
 
 ```css
 p {
@@ -114,7 +114,7 @@ _Retirer la ligne :_
 <link rel="stylesheet" href="style.css" />
 ```
 
-_remplacer la par :_
+_Remplacez-la par :_
 
 ```html
 <style>
@@ -131,7 +131,7 @@ Bien qu'il soit possible de mettre la CSS dans une balise, style. Je déconseill
 
 Nous le verrons plus tard en PHP ou en JavaScript/Typescript, un développeur doit être organisé et doit rendre générique son travail. L'objectif de cette organisation ? Être efficace dans ses missions quotidiennes.
 
-Dans le cas présent, votre site sera certainement à terme constitué de plusieurs pages… Ça semble donc évident de ne pas « copier / coller » la CSS dans chaque page. Mais évidement de la mettre dans un fichier externe.
+Dans le cas présent, votre site sera certainement à terme constitué de plusieurs pages… Ça semble donc évident de ne pas « copier / coller » la CSS dans chaque page. Mais évidemment de la mettre dans un fichier externe.
 :::
 
 ## Quelques explications
@@ -140,7 +140,7 @@ Avant de continuer petit rappel vis-à-vis du cours :
 
 ![Règle CSS](/cours/sources/introduction_css/res/css-ruleset.png)
 
-Votre fichier CSS sera constitué de règles CSS (sélécteur). Pour l'instant vous n'en avez qu'une seule. Celle-ci indique que le texte de toutes les balises `<p>` doit être rouge.
+Votre fichier CSS sera constitué de règles CSS (sélecteur). Pour l'instant vous n'en avez qu'une seule. Celle-ci indique que le texte de toutes les balises `<p>` doit être rouge.
 
 ## Styliser les titres
 
@@ -173,7 +173,7 @@ h2 {
 
 ## Appliquer le style sur un id ou class
 
-Le CSS permet d'applique de la CSS de manière fine. Pour l'instant vous avez appliqué la CSS sur « un type d'élément » (p, h1, div… ). Il est possible d'être bien plus précis que ça.
+Le CSS permet d'appliquer de la CSS de manière fine. Pour l'instant vous avez appliqué la CSS sur « un type d'élément » (p, h1, div… ). Il est possible d'être bien plus précis que ça.
 
 En CSS vous avez la possibilité d'écrire des sélecteurs sur un certain nombre d'éléments, nous allons pour l'instant nous concentrer sur « ceux de base » à savoir les `id` et les `class`. L'id comme la class sont des attributs que nous pouvons ajouter sur une balise HTML.
 
@@ -188,13 +188,13 @@ Un attribut HTML est un élément que vous allez ajouter **dans** la balise HTML
 <div id="monId">Ceci est une démo</div>
 ```
 
-Différence entre `class` et `id` ? L'id doit-être unique dans votre page, il va également nous permettre de manipuler simplement l'élément en JavaScript.
+Différence entre `class` et `id` ? L'id doit être unique dans votre page, il va également nous permettre de manipuler simplement l'élément en JavaScript.
 
 :::
 
 ### Rappel sur les sélecteurs
 
-Il est difficile de faire un « mémo » sur la CSS. Cependant, vous pouvez retenir cette liste de sélecteurs elle vous sera toujours utile. C'est en quelques sortes la base :
+Il est difficile de faire un « mémo » sur la CSS. Cependant, vous pouvez retenir cette liste de sélecteurs, elle vous sera toujours utile. C'est en quelque sorte la base :
 
 | Sélecteur | Cible                               |
 | --------- | ----------------------------------- |

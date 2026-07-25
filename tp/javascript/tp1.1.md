@@ -2,7 +2,7 @@
 description: Nous avons vu comment déclarer une balise `script`. Un code sans variable c'est un peu comme une pizza sans olives…
 ---
 
-# Des variables en veux tu en voilà !
+# Des variables en veux-tu en voilà !
 
 Nous avons vu comment déclarer une balise `script`. Un code sans variable c'est un peu comme une pizza sans olives…
 
@@ -55,7 +55,7 @@ let age = prompt("Votre âge ?");
 
 ## Et si nous allions plus loin ?
 
-Maintenant que vous savez poser des questions et afficher des valeurs. Je vous propose de créer une machine à additionner pour ça votre programme doit :
+Maintenant que vous savez poser des questions et afficher des valeurs. Je vous propose de créer une machine à additionner. Pour ça votre programme doit :
 
 - Demander la première valeur à additionner à l'utilisateur
 - Demander la seconde valeur à l'utilisateur
@@ -64,5 +64,5 @@ Maintenant que vous savez poser des questions et afficher des valeurs. Je vous p
 C'est à vous :)
 
 ::: tip Astuce
-Il est possible en JavaSscript de « changer le type d'une variable ». [Je vous laisse tester](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
+Il est possible en JavaScript de « changer le type d'une variable ». [Je vous laisse tester](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
 :::

@@ -8,7 +8,7 @@ Dans ce TP nous allons mettre en pratique l'Ajax au travers de deux exemples.
 
 ## Introduction
 
-L'Ajax est vraiment le coeur de nos sites Internet moderne. On le retrouve dans de simples chats comme dans des applications « complexes ». Avec l'avènement des PWA, nous utilisons maintenant l'Ajax comme nous pouvons utiliser une API dans une application classique.
+L'Ajax est vraiment le cœur de nos sites Internet modernes. On le retrouve dans de simples chats comme dans des applications « complexes ». Avec l'avènement des PWA, nous utilisons maintenant l'Ajax comme nous pouvons utiliser une API dans une application classique.
 
 ## Cas 1 : Le serveur génère toujours la page (mais pas entière)
 
@@ -65,11 +65,11 @@ Je vous laisse mettre en place le code suivant sur votre machine.
 - Que va-t-il se passer ?
 - À quoi sert la fonction `setTimeout`, pourquoi est-ce inutile ? Mais dans notre cas utile ?
 - À quoi correspond le `then` ?
-- Seriez-vous capable de le faire seule ?
+- Seriez-vous capable de le faire seul ?
 
 ::: tip setTimeout ?
 
-Le `setTimeout` n'est pas obligatoire. Il permet juste de créer un faux délai afin de visualiser le côté asynchrone du chargement de la page. La partie de l'Ajax ce résume donc à :
+Le `setTimeout` n'est pas obligatoire. Il permet juste de créer un faux délai afin de visualiser le côté asynchrone du chargement de la page. La partie de l'Ajax se résume donc à :
 
 ```js
 fetch("./monContenuAsynchrone.php")
@@ -114,9 +114,9 @@ C'est à vous, je vous laisse :
 
 #### Évolution 2
 
-Je vous laisse maintenant utiliser la fonction `$.post` en utilisant la documentation du jQuery, je vous laisse écrire l'appel en POST vers votre serveur.
+Je vous laisse maintenant utiliser la fonction `$.post` en utilisant la documentation de jQuery, je vous laisse écrire l'appel en POST vers votre serveur.
 
-Le but envoyer un nombre dynamique de résultats en retour de l'API. Vous allez donc devoir :
+Le but : envoyer un nombre dynamique de résultats en retour de l'API. Vous allez donc devoir :
 
 - Ajouter un paramètre de type POST dans votre script PHP (et l'utiliser dans la boucle).
 - L'envoyer dans le POST de votre appel Ajax.
@@ -125,9 +125,9 @@ Le but envoyer un nombre dynamique de résultats en retour de l'API. Vous allez 
 
 Nous allons ici faire travailler à la fois votre navigateur et le serveur. Le serveur va nous produire de la donnée « au format brut », c'est-à-dire un format compréhensible par un ordinateur. Votre JavaScript construira le code HTML par rapport à cette donnée.
 
-C'est la façon que moi je préfère, on verra plus tard avec VueJS que cette solution nous permettra de réaliser rapidement, et sans écrire énormément de code des interfaces web réactivent.
+C'est la façon que moi je préfère, on verra plus tard avec VueJS que cette solution nous permettra de réaliser rapidement, et sans écrire énormément de code, des interfaces web réactives.
 
-Avant d'allez plus loin, voyons un exemple simple ensemble :
+Avant d'aller plus loin, voyons un exemple simple ensemble :
 
 ```html
 <!DOCTYPE html>
@@ -186,11 +186,11 @@ Je vous laisse mettre en place le code sur votre ordinateur.
 - `json_encode` ? À quoi sert cette fonction ?
 
 ::: tip API ?
-Ce que vous venez de créer est une API. Une API est le coeur de beaucoup de systèmes moderne. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
+Ce que vous venez de créer est une API. Une API est le cœur de beaucoup de systèmes modernes. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
 
-Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser si vous le souhaitez différent client pour la même donnée (exemple Twitter avec des clients multiplateformes).
+Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser si vous le souhaitez différents clients pour la même donnée (exemple Twitter avec des clients multiplateformes).
 
-Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simplement, car l'API va être universelle; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif.
+Pourquoi préférer une API « JSON / XML » à un retour HTML basique ? Tout simplement, car l'API va être universelle ; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif.
 :::
 
 ### Évolution 3 : Intégrer une API publique
@@ -204,15 +204,15 @@ https://reqres.in/api/users
 Modifier la page pour :
 
 - Afficher un tableau.
-- Qui contiendra autant de ligne que d'utilisateur présent dans la partie `data`.
+- Qui contiendra autant de lignes que d'utilisateurs présents dans la partie `data`.
 - Chaque ligne du tableau devra afficher l'email & l'avatar (dans une balise `<img>`).
 
 ### Regardons d'autres sites.
 
-Nous avons vu qu'il était possible assez simplement de charger de contenu de manière asynchrone. Ce chargement asynchrone est la base du web que vous pratiquez tous les jours (sans vous en rendre compte). Maintenant que vous savez ça, je vous propose une petite expérimentation :
+Nous avons vu qu'il était possible assez simplement de charger du contenu de manière asynchrone. Ce chargement asynchrone est la base du web que vous pratiquez tous les jours (sans vous en rendre compte). Maintenant que vous savez ça, je vous propose une petite expérimentation :
 
 - Rendez-vous sur GMAIL, constatez que le chargement est fait « de manière asynchrone », et que seul l'intérieur change.
-- Idem sur Facebook (ou instagram Web)
+- Idem sur Facebook (ou Instagram Web)
 - Idem sur Twitter
 
 Nous allons maintenant regarder ce qu'il se passe « à l'intérieur » (dans le code), grâce à `l'inspecteur d'éléments` vous allez pouvoir entrevoir ce qu'il se passe. Rendez-vous sur par exemple `Facebook`, puis ouvrez l'inspecteur :

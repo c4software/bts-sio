@@ -8,7 +8,7 @@ Dans ce TP nous allons « mettre en pratique » ce que nous avons vu de manière
 
 ## Introduction
 
-Comme nous l'avons vu dans le cours, la problématique du responsive ne dois pas être prise à la légère. C'est une vraie compétence que vous devez maitriser. Nous allons donc mettre en pratique cette compétence en partant d'un modèle très proche de celui précédemment fait.
+Comme nous l'avons vu dans le cours, la problématique du responsive ne doit pas être prise à la légère. C'est une vraie compétence que vous devez maitriser. Nous allons donc mettre en pratique cette compétence en partant d'un modèle très proche de celui précédemment fait.
 
 Voilà le rendu de ce que nous allons devoir obtenir :
 
@@ -21,7 +21,7 @@ Avant d'aller plus loin, je vous laisse regarder la vidéo, l'analyser, afin de 
 
 ## Activation du responsive
 
-En cours je vous ai parlé de « deux d'étapes » pour activer le responsive. La première est la mise en place de la `meta` indiquant à votre navigateur le contenu doit prendre la largeur de l'écran. Pour ça ajouter la `meta` suivante dans votre projet.
+En cours je vous ai parlé de « deux étapes » pour activer le responsive. La première est la mise en place de la `meta` indiquant à votre navigateur que le contenu doit prendre la largeur de l'écran. Pour ça ajouter la `meta` suivante dans votre projet.
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,9 +30,9 @@ En cours je vous ai parlé de « deux d'étapes » pour activer le responsive. L
 - Ajouter la meta dans votre code
 - Regarder si le comportement de votre page a changé lors du redimensionnement de votre navigateur.
 
-## Des colonnes ? Et veux-tu, en voilà !
+## Des colonnes ? En veux-tu, en voilà !
 
-Nous avons activé le responsive, mais pour l'instant nous n'avons pas indiqué les règles « à appliquer en fonction de la taille de l'écran ». Pour ça nous allons utiliser les `media-query`. Pour gérer le responsive, nous avons plusieurs façons de faire écrire des règles « pour l'ensemble des éléments », ou alors écrire quelque chose de très générique en utilisant par exemple le `display: flex`.
+Nous avons activé le responsive, mais pour l'instant nous n'avons pas indiqué les règles « à appliquer en fonction de la taille de l'écran ». Pour ça nous allons utiliser les `media-query`. Pour gérer le responsive, nous avons plusieurs façons de faire : écrire des règles « pour l'ensemble des éléments », ou alors écrire quelque chose de très générique en utilisant par exemple le `display: flex`.
 
 C'est la solution `display: flex` que je vous propose de mettre en place ([rappel sur le Flex](/tp/html_css/support.md#la-revolution-des-flex)). Ajouter la CSS suivante **à la fin**
 
@@ -82,7 +82,7 @@ Je vous laisse analyser la CSS, mais côté responsive nous avons seulement :
 
 ### Modification
 
-Tester de modifier la CSS, retirer par exemple :
+Essayer de modifier la CSS, retirer par exemple :
 
 ```css
 main > section {
@@ -100,7 +100,7 @@ main > section {
 
 ### Sortir les règles de « Responsive »
 
-Dans le cours nous avons parlé de deux façons d'écrire les règles de responsive. Je vous laisse modifier votre code source, afin de « sortir » les règles de CSS relatif à la partie responsive.
+Dans le cours nous avons parlé de deux façons d'écrire les règles de responsive. Je vous laisse modifier votre code source, afin de « sortir » les règles de CSS relatives à la partie responsive.
 
 ::: tip Astuce du chef
 N'oubliez pas de retirer les « media-queries » de la CSS, elles ne sont pas nécessaires du fait que vous avez conditionné le chargement entier de la feuille de style.
@@ -114,4 +114,4 @@ Nous l'avons vu en cours il est possible de personnaliser l'affichage lors de l'
 - Les liens de navigation
 - Le pied de page
 
-Au final j'aimerais qu'il ne reste que « les articles », simplement entouré d'une petite bordure de type `dashed`.
+Au final j'aimerais qu'il ne reste que « les articles », simplement entourés d'une petite bordure de type `dashed`.

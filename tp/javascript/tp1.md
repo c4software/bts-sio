@@ -8,7 +8,7 @@ C'est un grand classique, nous allons faire notre premier Hello World.
 
 ## Introduction
 
-Nous avons vu dans [le cours](./support.md) qu'il était possible de mettre de balises script n'importe où dans le code HTML. Je vais vous laisser tester cette fonctionnalité avec trois cas d'usage.
+Nous avons vu dans [le cours](./support.md) qu'il était possible de mettre des balises script n'importe où dans le code HTML. Je vais vous laisser tester cette fonctionnalité avec trois cas d'usage.
 
 ## Une alerte dans le code HTML
 
@@ -18,11 +18,11 @@ En utilisant le support de cours, mettre en place une alerte qui dit « Bonjour 
 
 Mettre le code dans la page directement n'est pas super. Je vous propose de sortir le code afin de le mettre dans un autre fichier. En utilisant les bonnes pratiques d'organisation que nous avons vues précédemment, je vous laisse mettre votre `alert` dans un fichier « externe ».
 
-Une fois mise en place vérifiée que votre code fonctionne tout le temps.
+Une fois mise en place, vérifier que votre code fonctionne tout le temps.
 
 ## Remplacer l'alerte par un console.log
 
-Je vous propose maintenant de tester la console de votre navigateur. La console vas nous permettre de débugger un programme. Elle va nous permettre également d'afficher du texte (de debug). En utilisant la ligne de code suivante :
+Je vous propose maintenant de tester la console de votre navigateur. La console va nous permettre de débugger un programme. Elle va nous permettre également d'afficher du texte (de debug). En utilisant la ligne de code suivante :
 
 ```js
 console.log("Bonjour à tous");

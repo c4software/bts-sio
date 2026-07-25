@@ -12,23 +12,23 @@ Ce document est un complément du cours. Il vous permettra de revenir sur les di
 
 ## Introduction
 
-Le JavaScript… Vous allez l'aimer… Ou le détester ! Mais en tout cas c'est l'incontournable du développeur Web. Le JavaScript est maintenant partout, dans votre navigateur bien évidemment, mais également sur nos serveurs, mais aussi dans nos applications! Bref il est littéralement partout.
+Le JavaScript… Vous allez l'aimer… Ou le détester ! Mais en tout cas c'est l'incontournable du développeur Web. Le JavaScript est maintenant partout, dans votre navigateur bien évidemment, mais également sur nos serveurs, mais aussi dans nos applications ! Bref il est littéralement partout.
 
 Dans ce cours nous allons voir les bases du JavaScript, nous ne reverrons pas ici [les bases du développement comme ce que nous avons fait en PHP](/tp/php/support.md).
 
 ![Logo JavaScript](./res/logo.svg)
 
 ::: warning Prérequis
-Le cours fait référence à des notions de programmation orientée-objet, je ne couvrirais pas les bases de la programmation objet.
+Le cours fait référence à des notions de programmation orientée-objet, je ne couvrirai pas les bases de la programmation objet.
 :::
 
 ## Le fonctionnement
 
 Le JavaScript est un langage de programmation relativement récent, il date de **1994**. Cependant il a connu une évolution assez rapide ces dernières années et ne ressemble plus vraiment au JavaScript du début.
 
-Le JavaScript est une implémentation d'une norme plus large l'ECMAScript (aussi appelé ES20XX, mais également ESX), cette norme définit le fonctionnement du langage aussi bien dans un navigateur, mais également sur d'autres supports comme les serveurs.
+Le JavaScript est une implémentation d'une norme plus large, l'ECMAScript (aussi appelé ES20XX, mais également ESX), cette norme définit le fonctionnement du langage aussi bien dans un navigateur, mais également sur d'autres supports comme les serveurs.
 
-Nous allons utiliser au maximum les dernières fonctionnalités de la norme (ES6), celle-ci est maintenant largement compatible avec le parc de navigateur actuel. Si par hasard vous devez supporter un navigateur incompatible, nous aborderons les options pour « le gérer ».
+Nous allons utiliser au maximum les dernières fonctionnalités de la norme (ES6), celle-ci est maintenant largement compatible avec le parc de navigateurs actuel. Si par hasard vous devez supporter un navigateur incompatible, nous aborderons les options pour « le gérer ».
 
 Le JavaScript qui fonctionne dans votre navigateur est un langage **client,** il est donc exécuté _dans votre navigateur_ et ce détail est important. Ça veut dire que votre serveur ne sera pas du tout sollicité lors de l'exécution d'un programme codé en JavaScript.
 
@@ -36,7 +36,7 @@ Votre navigateur est très puissant, tellement puissant que nous allons pouvoir 
 
 - Contrôle de saisie.
 - Interactivité avec le client (interaction avec l'utilisateur, clic, clavier, mouvement de la souris).
-- Afficher / masqué des éléments aux cliques.
+- Afficher / masquer des éléments aux clics.
 - Ajouter des éléments dans une page, manipuler la CSS.
 - Charger des éléments de manière asynchrone via le Réseau (Ajax)
 - Utiliser les Cookies (comme en PHP).
@@ -50,7 +50,7 @@ Mais… Ce n’est pas tout ! Votre navigateur est tellement puissant que vous a
 - La liste est vraiment infinie !
 
 ::: tip
-Le JavaScript est vraiment le miroir de la vitesse avec laquelle Web est une plateforme qui va très vite. Il ne se passe pas 6 mois sans que vous puissiez faire encore plus.
+Le JavaScript est le reflet de la vitesse à laquelle évolue la plateforme Web. Il ne se passe pas 6 mois sans que vous puissiez faire encore plus.
 
 La veille dans ce domaine est donc primordiale. Nous allons voir ici seulement les bases de ce qui vous servira plus tard dans votre métier.
 :::
@@ -82,13 +82,13 @@ Votre navigateur possède donc un « Moteur JavaScript » que l'on appelle parfo
 ::: tip Un Moteur ?
 Le moteur a pour but de :
 
-- Lis le JavaScript.
-- Compile le JavaScript en langage machine (et le valide).
+- Lire le JavaScript.
+- Compiler le JavaScript en langage machine (et le valider).
 - Votre ordinateur exécute le langage machine (très rapide)
 
 :::
 
-### Pourquoi le JavaScript est-il donc incontournable.
+### Pourquoi le JavaScript est-il donc incontournable ?
 
 - Intégration avec le HTML/CSS.
 - Simple d'apprentissage et dans la manipulation.
@@ -102,16 +102,16 @@ L'autre gros sujet du JS est le support… Vous êtes certainement jeunes, vous 
 - Safari
 - Firefox
 - Edge
-- Internet Explorer `> 11`
-- Interne Explorer `< 10`
+- Internet Explorer `11`
+- Internet Explorer `10` (et antérieurs)
 
-Ça vous parait très certainement anecdotique, mais les navigateurs n'interprètent pas vraiment de la même façon le code, le JavaScript en fait parti. En fonction des navigateurs, le support sera plus ou moins complet. En 2020 nous n'avons plus trop de problèmes. L'ensemble des navigateurs support « à peu près là même choses ». Mais avant ce n'était clairement pas le cas.
+Ça vous parait très certainement anecdotique, mais les navigateurs n'interprètent pas vraiment de la même façon le code, le JavaScript en fait partie. En fonction des navigateurs, le support sera plus ou moins complet. En 2020 nous n'avons plus trop de problèmes. L'ensemble des navigateurs supporte « à peu près la même chose ». Mais avant ce n'était clairement pas le cas.
 
-Nous allons donc avoir besoin de [_librairies_ (appelé polyfill)](https://polyfill.io/v3/), ces librairies ont pour but d'ajouter le support de fonctionnalité moderne sur d’anciens navigateurs. Le support n'est évidemment pas total, et souvent les performances sont un peu moins bonnes. Mais cette solution est souvent la meilleure pour supporter les anciens navigateurs.
+Nous allons donc avoir besoin de [_librairies_ (appelées polyfill)](https://polyfill.io/v3/), ces librairies ont pour but d'ajouter le support de fonctionnalités modernes sur d’anciens navigateurs. Le support n'est évidemment pas total, et souvent les performances sont un peu moins bonnes. Mais cette solution est souvent la meilleure pour supporter les anciens navigateurs.
 
 ## Librairies or not ?
 
-C'est la grande question ! En JS nous avons la possibilité de nous passer complètement de librairie afin d'utiliser uniquement ce que propose le navigateur, c'est ce que l'on appelle `VanillaJS`. En 2020 ça fonctionne très bien! C'est même ce que j'aurais tendance à conseiller… Mais (oui il y a toujours un mais) la réalité est qu’en agence vous allez rencontrer des projets qui utiliseront [jQuery](https://jquery.com/).
+C'est la grande question ! En JS nous avons la possibilité de nous passer complètement de librairie afin d'utiliser uniquement ce que propose le navigateur, c'est ce que l'on appelle `VanillaJS`. En 2020 ça fonctionne très bien ! C'est même ce que j'aurais tendance à conseiller… Mais (oui il y a toujours un mais) la réalité est qu’en agence vous allez rencontrer des projets qui utiliseront [jQuery](https://jquery.com/).
 
 Au vu du temps que nous allons avoir à consacrer au JS ça me semble important de vous parler un peu de `jQuery` mais également des équivalents `VanillaJS`.
 
@@ -125,12 +125,12 @@ _Sachez juste qu'il est possible de tout faire avec un framework JS (type `VueJS
 
 ## Les animations
 
-Attention à ne pas tomber dans le piège du tout JavaScript. Il peut-être tentant de tout faire un JavaScript, il fut un temps ou c'était une solution acceptable. Maintenant que nos navigateurs sont très puissants, cette solution devient même imaginable…
+Attention à ne pas tomber dans le piège du tout JavaScript. Il peut être tentant de tout faire en JavaScript, il fut un temps où c'était une solution acceptable. Maintenant que nos navigateurs sont très puissants, cette solution devient même imaginable…
 
-Mais **il ne faut pas le faire** ! Si vous souhaitez animer votre page, **privilégiez au maximum le combo CSS + HTML** (et JavaScript si un pilotage est nécessaire). Pourquoi est-ce important ? C'est important, car l'exécution du votre CSS est complètement différentes que le JS :
+Mais **il ne faut pas le faire** ! Si vous souhaitez animer votre page, **privilégiez au maximum le combo CSS + HTML** (et JavaScript si un pilotage est nécessaire). Pourquoi est-ce important ? C'est important, car l'exécution de votre CSS est complètement différente de celle du JS :
 
-- La CSS est en grande partie gérée par votre GPU (Carte graphique). Cela utilise donc des instructions très spécifiques, optimisé, et très rapide (fluide).
-- Le JS est quant à lui exécuté sur votre CPU (Processeur). Donc, en fonction de votre ordinateur, les performances sont plus ou moins bonnes (et consomme plus de batteries).
+- La CSS est en grande partie gérée par votre GPU (Carte graphique). Cela utilise donc des instructions très spécifiques, optimisées, et très rapides (fluide).
+- Le JS est quant à lui exécuté sur votre CPU (Processeur). Donc, en fonction de votre ordinateur, les performances sont plus ou moins bonnes (et consomme plus de batterie).
 
 ::: tip Vous vous souvenez des boucles ?
 Les animations en JS sont faites de boucles « infinies » ou très longues. C'est donc très peu optimisé. **Méfiance donc !**
@@ -138,10 +138,10 @@ Les animations en JS sont faites de boucles « infinies » ou très longues. C'e
 
 ## JavaScript do you speak JavaScript ?
 
-Nous allons voir plus tard que le JavaScript à certains défauts. Nous ne l'évoquerons pas vraiment dans ce cours, mais il est possible d'écrire du JavaScript dans d'autres langages qui seront ensuite « transpilé » (converti lors d'une étape de compilation) en du JavaScript :
+Nous allons voir plus tard que le JavaScript a certains défauts. Nous ne l'évoquerons pas vraiment dans ce cours, mais il est possible d'écrire du JavaScript dans d'autres langages qui seront ensuite « transpilés » (convertis lors d'une étape de compilation) en du JavaScript :
 
 - CoffeeScript, syntaxe plus concise très utilisée par les utilisateurs de Ruby.
-- TypeScript, très populaire, il permet principalement de typer « fortement les données. Il permet de créer du code propre même dans le cas de gros projets complexes. Il est développé par Microsoft. (Très intéressant).
+- TypeScript, très populaire, il permet principalement de typer « fortement » les données. Il permet de créer du code propre même dans le cas de gros projets complexes. Il est développé par Microsoft. (Très intéressant).
 - Kotlin, Kotlin le langage utilisé par la plateforme Android de Google. Le compilateur permet de créer également du code JS à partir de fichier `.kt`.
 
 Il y a encore beaucoup d'exemples, le langage n'étant que « Transpilé » il est important de comprendre le JavaScript pour l'utiliser efficacement.
@@ -156,17 +156,17 @@ Le JavaScript ne déroge pas à la règle, pour bien travailler, il nous faut de
 - [https://kangax.github.io/compat-table/es6/](https://kangax.github.io/compat-table/es6/)
 
 ::: tip Un instant
-Bien évidemment cette liste peut-être bien plus grande. N'hésitez pas à vous inspirer :
+Bien évidemment cette liste peut être bien plus grande. N'hésitez pas à vous inspirer :
 
 - De certains projets Github.
-- De compte Twitter
+- De comptes Twitter
 - …
 
 :::
 
 ### Les IDE
 
-L'IDE est aussi important que les idées. Pour éditer du JavaScript, vous pouvez utiliser un simple éditeur de texte (type Notepad). Cependant, je vous déconseille vraiment de le faire, écrire du JavaScript peut parfois être complexe, et il faut bien l'avouer un peu d'aide de la part d'un IDE peut-être **très très intéressant**, vous avez beaucoup de possibilités :
+L'IDE est aussi important que les idées. Pour éditer du JavaScript, vous pouvez utiliser un simple éditeur de texte (type Notepad). Cependant, je vous déconseille vraiment de le faire, écrire du JavaScript peut parfois être complexe, et il faut bien l'avouer un peu d'aide de la part d'un IDE peut être **très très intéressant**, vous avez beaucoup de possibilités :
 
 - WebStorm (Payant, mais très bon).
 - VisualStudio Code (Gratuit, bon aussi).
@@ -193,13 +193,13 @@ Cette console existe sur l'ensemble des navigateurs modernes. Elle contient des 
 
 La ligne `Uncaught ReferenceError: test is not defined at index.html:11`, nous indique que notre page `index.html` contient une erreur à la ligne 11.
 
-Vous pouvez, vous aussi testez [cette page en cliquant ici](/demo/js/index.html)
+Vous pouvez, vous aussi, tester [cette page en cliquant ici](/demo/js/index.html)
 
 :::
 
 ## Votre premier Hello World
 
-Concentrons-nous maintenant sur le code en lui-même. Nous allons travailler exclusivement dans notre navigateur. Un peu comme la balise `form` la balise `script` peut-être mise n'importe où dans le code HTML. Cette balise peut fonctionner de deux façons différentes :
+Concentrons-nous maintenant sur le code en lui-même. Nous allons travailler exclusivement dans notre navigateur. Un peu comme la balise `form` la balise `script` peut être mise n'importe où dans le code HTML. Cette balise peut fonctionner de deux façons différentes :
 
 - Code JavaScript directement dans le code
 - Code JavaScript chargé depuis un fichier externe.
@@ -210,7 +210,7 @@ _Directement dans le code :_
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Titre de la bage</title>
+    <title>Titre de la page</title>
   </head>
   <body>
     <p>Lorem Ipsum</p>
@@ -239,7 +239,7 @@ Vous pouvez bien évidemment mettre **plusieurs** balises script. Un peu comme l
 <script src="/public/js/votre_script3.js"></script>
 ```
 
-Vous pouvez également charger des scripts « externe » :
+Vous pouvez également charger des scripts « externes » :
 
 ```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -248,7 +248,7 @@ Vous pouvez également charger des scripts « externe » :
 :::
 
 ::: warning
-Attention à la sécurité dans le cas du chargement via un CDN. Vous charger du contenu « non sure depuis Internet ». C'est à mon sens un très gros risque.
+Attention à la sécurité dans le cas du chargement via un CDN. Vous chargez du contenu « non sûr depuis Internet ». C'est à mon sens un très gros risque.
 :::
 
 ### Mise en pratique
@@ -259,7 +259,7 @@ Rien de bien compliqué dans le TP, il s'agit juste de mettre en pratique.
 
 ## Plusieurs lignes ?
 
-Pour l'instant nous avons écrit du code très simple. Nous allons plus tard avoir bien évidemment des fonctions, des conditions des boucles, bref plusieurs lignes de code. En JavaScript chaque ligne de code **doit se terminer par un `;`**.
+Pour l'instant nous avons écrit du code très simple. Nous allons plus tard avoir bien évidemment des fonctions, des conditions, des boucles, bref plusieurs lignes de code. En JavaScript chaque ligne de code **doit se terminer par un `;`**.
 
 ```javascript
 console.log("Ceci est un message dans la console");
@@ -272,28 +272,28 @@ Commenter son code c'est important (pour vous). Il faut le faire dès que cela e
 
 ```js
 /**
- * Commentaire multignes
+ * Commentaire multilignes
  * Par exemple en début de fichier pour détailler le contenu
  */
 
 // Commenter une ligne.
 console.log("Ceci est un exemple");
 
-console.log("Ceci est un exemple 2"); // Peux également être placé en fin de ligne.
+console.log("Ceci est un exemple 2"); // Peut également être placé en fin de ligne.
 ```
 
 ::: tip Astuce d'ancien !
-Commenté, commenté, commente votre code. Il n'y a jamais trop de commentaires dans du code. Et par pitié :pray: utiliser les raccourcis clavier de votre éditeur pour commenter :+1:
+Commentez, commentez, commentez votre code. Il n'y a jamais trop de commentaires dans du code. Et par pitié :pray: utilisez les raccourcis clavier de votre éditeur pour commenter :+1:
 :::
 
 ## Les variables
 
-Comme en PHP (ou d'autres langages), il est possible d'écrire des variables en JavaScript. Les variables fonctionnent de la même façon qu'en PHP, celle-ci sont « temporaire » leur contenu est remis à zéro à chaque lancement de votre script.
+Comme en PHP (ou d'autres langages), il est possible d'écrire des variables en JavaScript. Les variables fonctionnent de la même façon qu'en PHP, celles-ci sont « temporaires », leur contenu est remis à zéro à chaque lancement de votre script.
 
-Nous avons deux types de variables en PHP :
+Nous avons deux types de variables en JavaScript :
 
 - Les variables, fonctionnement classique.
-- Les constantes, variable qui ne peut-être écrite qu'une seule fois. Si vous tentez de « l'écraser » votre navigateur produira une erreur.
+- Les constantes, variable qui ne peut être écrite qu'une seule fois. Si vous tentez de « l'écraser » votre navigateur produira une erreur.
 
 ### Les variables
 
@@ -303,7 +303,7 @@ Les variables s'utilisent de la même façon que ce que vous avez déjà vu à s
 - Des assignations
 - Des « manipulations » (conditions, boucles, fonctions, etc.)
 
-La déclaration d'une variable doit-être faite avec le mot-clé `let`, par exemple :
+La déclaration d'une variable doit être faite avec le mot-clé `let`, par exemple :
 
 ```javascript
 let nom;
@@ -311,17 +311,17 @@ nom = "Brosseau";
 alert(nom);
 
 // Ou alors en une seule ligne.
-let nom = "Brosesau";
+let nom = "Brosseau";
 alert(nom);
 ```
 
-::: tip Un peu d'historiques
+::: tip Un peu d'historique
 L'usage du mot-clé `let` est plutôt récent en JavaScript. Historiquement nous utilisions plus le mot `var`. Il n'y a pas vraiment de différence entre les deux. Sachez juste que maintenant vous devez utiliser `let` plutôt que `var`.
 :::
 
 ::: warning Attention
 
-Contrairement au PHP, une variable déclarée ne peut-être redéclarée, si vous tenter de le faire, votre navigateur produira une erreur dans la console. :
+Contrairement au PHP, une variable déclarée ne peut être redéclarée, si vous tentez de le faire, votre navigateur produira une erreur dans la console :
 
 ```javascript
 let nom = "Valentin";
@@ -345,7 +345,7 @@ age_du_capitaine = 33;
 // VM1583:2 Uncaught TypeError: Assignment to constant variable.
 ```
 
-Un exemple d'usage ? Par exemple, un lien « vers une API », ou encore la couleur principale de votre site web. Où plus simplement mémoriser sous « une étiquette » des valeurs plus longue :
+Un exemple d'usage ? Par exemple, un lien « vers une API », ou encore la couleur principale de votre site web. Ou plus simplement mémoriser sous « une étiquette » des valeurs plus longues :
 
 ```javascript
 const IN_PROGRESS = "200";
@@ -370,7 +370,7 @@ if (order.status == 400) {
 ```
 
 ::: tip Astuce de pro
-Je vous conseille de nommer vos constantes avec un nom en majuscule. Ça vous permettra de toutes de suite les reconnaitre
+Je vous conseille de nommer vos constantes avec un nom en majuscule. Ça vous permettra de tout de suite les reconnaitre.
 :::
 
 ### Les types
@@ -379,11 +379,11 @@ Comme en PHP les variables possèdent des types « implicitement déterminés »
 
 | Type      | Contenu                                 | Type d'opération                | Usage                                                                               |
 | --------- | --------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------- |
-| `string`  | "Une chaine de caractère"               | Gestion du texte, concaténation | Permets de stocker du texte (saisie utilisateur par exemple).                       |
+| `string`  | "Une chaine de caractère"               | Gestion du texte, concaténation | Permet de stocker du texte (saisie utilisateur par exemple).                       |
 | `int`     | 42                                      | Opération mathématique          | Comme en mathématique                                                               |
-| `boolean` | `True` ou `False`                       | Opération logique               | Permets de faire des actions logiques. C'est un type très important en informatique. |
+| `boolean` | `True` ou `False`                       | Opération logique               | Permet de faire des actions logiques. C'est un type très important en informatique. |
 | `float`   | 10.3                                    | Opération mathématique          | Comme en mathématique. Attention la notation du chiffre à virgule est avec un `.`.  |
-| `array`   | ["a", "b", "c"]                         |                                 | Contiens des listes de « quelques choses »                                          |
+| `array`   | ["a", "b", "c"]                         |                                 | Contient des listes de « quelque chose »                                          |
 | `object`  | `{nom: "Brosseau", prenom: "Valentin"}` |                                 | Structure de données                                                                |
 
 En JS, nous n'avons pas de « Tableaux associatifs », nous avons à la place un type `object`, il nous permettra de structurer au mieux nos données.
@@ -394,7 +394,7 @@ Nous avons vu comment déclarer des variables, [je vous propose de les manipuler
 
 ## Manipuler les données
 
-Un langage de programmation est prévu pour manipuler des données. Pour le JavaScript c'est la même chose, toutes les opérations vues en PHP fonctionneront de la même façon en JS, la syntaxe sera très proche voir identique. Voici quelques exemples.
+Un langage de programmation est prévu pour manipuler des données. Pour le JavaScript c'est la même chose, toutes les opérations vues en PHP fonctionneront de la même façon en JS, la syntaxe sera très proche voire identique. Voici quelques exemples.
 
 ### Les conditions
 
@@ -411,7 +411,7 @@ if (age > 18) {
 let estMajeur = true;
 if (estMajeur) {
   // Est équivalent à estMajeur == true
-  alert("La personne est majeur");
+  alert("La personne est majeure");
 }
 
 // Exemple 3
@@ -441,7 +441,7 @@ arr.forEach((i) => {
 });
 
 // Transforme le tableau
-arrModif = arr.map((i) => {
+const arrModif = arr.map((i) => {
   return i * 2;
 });
 
@@ -473,15 +473,15 @@ console.log(maFonctionQuiRetourne42()); // Affiche dans la console 42
 alert(addition(40, 2)); // Affiche une alert avec le résultat de l'addition 40 + 2 => 42
 ```
 
-Elle fonctionne et s'utilise comme ce que nous avons précédemment vu.
+Elles fonctionnent et s'utilisent comme ce que nous avons précédemment vu.
 
 ### À faire
 
-Tester en JavaScript l'usage de Fonctions, Condition, et Boucle. (Nous utiliserons plus en détail cet élément après avoir vu comment manipuler le DOM)
+Testez en JavaScript l'usage de Fonctions, Condition, et Boucle. (Nous utiliserons plus en détail cet élément après avoir vu comment manipuler le DOM)
 
 ## Manipuler le HTML et la CSS
 
-Comme je disais précédemment, le JavaScript et le HTML sont « entièrement » compatible, vous pouvez créer, supprimer, modifier n'import quels éléments présents dans votre page. Il est donc possible de créer entièrement une page HTML via du JS. Il est également possible de modifier le style de chacun des éléments présents dans votre page Internet.
+Comme je disais précédemment, le JavaScript et le HTML sont « entièrement » compatibles, vous pouvez créer, supprimer, modifier n'importe quels éléments présents dans votre page. Il est donc possible de créer entièrement une page HTML via du JS. Il est également possible de modifier le style de chacun des éléments présents dans votre page Internet.
 
 Cette interaction entre les deux nous permettra plus tard de créer « de vraies expériences » 100% en JavaScript.
 
@@ -495,12 +495,12 @@ Je ne pense pas qu'il soit très important de connaitre ce genre de manipulation
 
 Votre navigateur ne fera aucune distinction entre un élément créé « normalement » et un élément créé via le JavaScript. La création d'un élément se passera en deux temps :
 
-- Le créer l'élément, le personnaliser (contenu, texte, css).
+- Créer l'élément, le personnaliser (contenu, texte, css).
 - L'ajouter dans votre page
 
 ### Le DOM
 
-Avant d'écrire du code, un peu de théorie ! Votre navigateur n'est pas magique, il repose sur une logique qui est toujours la même depuis le début. Celui-ci repose sur ce qu’on l'arbre du DOM (**D**ocument **O**bject **M**odel). Nous parlerons donc d'un Arbre HTML, prenons un exemple :
+Avant d'écrire du code, un peu de théorie ! Votre navigateur n'est pas magique, il repose sur une logique qui est toujours la même depuis le début. Celui-ci repose sur ce qu’on appelle l'arbre du DOM (**D**ocument **O**bject **M**odel). Nous parlerons donc d'un Arbre HTML, prenons un exemple :
 
 ```html
 <!DOCTYPE html>
@@ -510,7 +510,7 @@ Avant d'écrire du code, un peu de théorie ! Votre navigateur n'est pas magique
   </head>
   <body>
     <h1>A heading</h1>
-    <a href="http://…">Link text<a>
+    <a href="http://…">Link text</a>
   </body>
 </html>
 ```
@@ -520,7 +520,7 @@ Peut être représenté comme ça :
 ![Dom graph](./res/dom-sample.png)
 
 ::: tip Remarque
-L'Arbre du DOM peut-être très gros, nous allons plus tard parler de ShadowDow / Dom Virtuel. Même si vous ne manipulez pas cette notion, il est important de voir que celle-ci existe. Elle est pour l'instant la pierre angulaire des Frameworks JS moderne.
+L'Arbre du DOM peut être très gros, nous allons plus tard parler de Shadow DOM / Dom Virtuel. Même si vous ne manipulez pas cette notion, il est important de voir que celle-ci existe. Elle est pour l'instant la pierre angulaire des Frameworks JS modernes.
 :::
 
 ### Exemple de création d'éléments
@@ -530,7 +530,7 @@ La logique est toujours la même :
 ```javascript
 var h = document.createElement("h1"); // Création de l'élément h1
 h.innerHTML = "Ceci est un titre"; // Ajout du texte dans le h1
-h.className = "titleClass"; // Définition d'un titre pour l'élément
+h.className = "titleClass"; // Définition de la classe CSS de l'élément
 
 // Ajout du titre dans le body de la page courante.
 document.body.appendChild(h);
@@ -553,7 +553,7 @@ Dans une page ça peut donner :
     <script>
       var h = document.createElement("h1"); // Création de l'élément h1
       h.innerHTML = "Ceci est un titre"; // Ajout du texte dans le h1
-      h.className = "titleClass"; // Définition d'un titre pour l'élément
+      h.className = "titleClass"; // Définition de la classe CSS de l'élément
 
       // Ajout du titre dans la page en cours
       document.body.appendChild(h);
@@ -568,11 +568,11 @@ Dans le précédent exemple, nous avons ajouté l'élément « à la fin » du b
 
 - `node.append(nodes ou strings)` – ajoute « nodes ou strings » à la fin,
 - `node.prepend(nodes ou strings)` – ajoute « nodes ou strings » au début,
-- `node.before(nodes ou strings)` –- ajoute « nodes ou strings » avant le node,
-- `node.after(nodes ou strings)` –- ajoute « nodes ou strings » après le node,
-- `node.replaceWith(nodes ou strings)` –- remplace le node par l'élément fourni « nodes or strings ».
+- `node.before(nodes ou strings)` – ajoute « nodes ou strings » avant le node,
+- `node.after(nodes ou strings)` – ajoute « nodes ou strings » après le node,
+- `node.replaceWith(nodes ou strings)` – remplace le node par l'élément fourni « nodes or strings ».
 
-:warning Nous allons voir qu'il est possible de choisir le `node` via un sélecteur.
+:warning: Nous allons voir qu'il est possible de choisir le `node` via un sélecteur.
 :::
 
 #### À faire
@@ -595,9 +595,9 @@ document.body.insertAdjacentHTML(
 Comme dans l'exemple précédent, c'est la position de l'élément que vous souhaitez insérer. Les valeurs possibles sont les suivantes :
 
 - `beforebegin` : Avant l'élément lui-même.
-- `afterbegin` : Juste à l'intérieur de l'élément , avant son premier enfant.
-- `beforeend` : Juste à l'intérieur de l'élément , après son dernier enfant.
-- `afterend` : Après élément lui-même.
+- `afterbegin` : Juste à l'intérieur de l'élément, avant son premier enfant.
+- `beforeend` : Juste à l'intérieur de l'élément, après son dernier enfant.
+- `afterend` : Après l'élément lui-même.
 
 L'exemple de la W3School est très explicite :
 
@@ -621,9 +621,9 @@ Donc méfiance.
 
 ### Les sélecteurs
 
-Vous vous doutez que nous allons pas tout gérer avec un simple `document.body`. Le JS nous offre beaucoup de possibilités, et nous offre surtout une « interface » très puissante pour choisir l'endroit où nous allons insérer un élément (très très puissante vous allez voir).
+Vous vous doutez que nous n'allons pas tout gérer avec un simple `document.body`. Le JS nous offre beaucoup de possibilités, et nous offre surtout une « interface » très puissante pour choisir l'endroit où nous allons insérer un élément (très très puissante vous allez voir).
 
-Vous vous souvenez des sélecteurs en CSS ? Et bien, nous avons la même chose en JavaScript. Nous avons de **base sans rien ajouter** une méthode permettant de « trouver » un élément dans le DOM
+Vous vous souvenez des sélecteurs en CSS ? Eh bien, nous avons la même chose en JavaScript. Nous avons de **base sans rien ajouter** une méthode permettant de « trouver » un élément dans le DOM.
 
 ```javascript
 // Retourne la liste (array) des éléments
@@ -631,16 +631,16 @@ document.querySelectorAll("#elementId");
 document.querySelectorAll(".maClass");
 document.querySelectorAll("div");
 
-// Retourn le premier élément trouvé
+// Retourne le premier élément trouvé
 document.querySelector("#elementId");
 document.querySelector(".maClass");
 document.querySelector("div");
 ```
 
 ::: tip C'est « neuf »
-Ces API (Méthodes) sont très peu utilisés (voir même connues), elles sont pourtant très puissantes. Elles sont à choisir si vous souhaitez faire du code moderne.
+Ces API (Méthodes) sont très peu utilisées (voire même connues), elles sont pourtant très puissantes. Elles sont à choisir si vous souhaitez faire du code moderne.
 
-Sur Internet (voir dans du code existant), vous trouverez l'ancienne version à savoir :
+Sur Internet (voire dans du code existant), vous trouverez l'ancienne version à savoir :
 
 ```javascript
 document.getElementById("elementId");
@@ -655,9 +655,9 @@ Aucun changement dans le fonctionnement.
 
 ### Les sélecteurs et jQuery
 
-À plusieurs reprises je vous ai parlé de jQuery sans vraiment vous expliquer pourquoi celui-ci était aussi populaire. jQuery est populaire, car il va nous permettre des raccourcis. Si on reprend l'exemple du sélecteur, jQuery va nous permettre d'unifier la manière dont ont trouve / manipule un élément.
+À plusieurs reprises je vous ai parlé de jQuery sans vraiment vous expliquer pourquoi celui-ci était aussi populaire. jQuery est populaire, car il va nous permettre des raccourcis. Si on reprend l'exemple du sélecteur, jQuery va nous permettre d'unifier la manière dont on trouve / manipule un élément.
 
-Dès lors que vous ajoutez jQuery dans votre code, nous allons avoir à notre disposition un nouveau « objet » nommé tout simplement `$` (rien à voir avec les variables en PHP), cet objet va nous permettre plein de choses (vraiment plein). Si on reprend la recherche d'un élément :
+Dès lors que vous ajoutez jQuery dans votre code, nous allons avoir à notre disposition un nouvel « objet » nommé tout simplement `$` (rien à voir avec les variables en PHP), cet objet va nous permettre plein de choses (vraiment plein). Si on reprend la recherche d'un élément :
 
 ```javascript
 $("#elementId");
@@ -665,7 +665,7 @@ $(".maClass");
 $("div");
 ```
 
-Je ne vais pas m'étaler sur le sujet, mais si on souhaite masquer tous les éléments trouvés avec jQuery, et bien c'est _très_ simple…
+Je ne vais pas m'étaler sur le sujet, mais si on souhaite masquer tous les éléments trouvés avec jQuery, eh bien c'est _très_ simple…
 
 ```javascript
 $("div").hide();
@@ -754,7 +754,7 @@ Nous allons créer une page fictive afin de tester un peu le fonctionnement :
     <div id="cacheMoi">lorem ipsum…</div>
 
     <!-- Je souhaite que le texte soit rouge -->
-    <div id="redText">Le texte présent ici doit-être rouge</div>
+    <div id="redText">Le texte présent ici doit être rouge</div>
 
     <!-- Ajouter ici un paragraphe (p) en JavaScript-->
 
@@ -773,7 +773,7 @@ Les consignes sont présentes dans les commentaires du code fourni. Je vous lais
 
 ### Mise en pratique
 
-J'ai encore beaucoup parlé! Place à une mise en pratique. Je vous propose de mettre en pratique tous que nous avons vu précédemment [dans un TP regroupant CSS, HTML & JS.](./tp2.md)
+J'ai encore beaucoup parlé ! Place à une mise en pratique. Je vous propose de mettre en pratique tout ce que nous avons vu précédemment [dans un TP regroupant CSS, HTML & JS.](./tp2.md)
 
 [Pour la suite c'est par ici](./tp2.md)
 
@@ -799,7 +799,7 @@ Nous avons vu pour l'instant du JS très simple, il ressemble beaucoup à du cod
 
 Le but du JavaScript est vraiment d'interagir avec l'utilisateur, pour améliorer l'interactivité de votre site Internet afin par exemple de valider une saisie « côté client ».
 
-Pour ça nous allons avoir à notre disposition des évènements, ces évènements nous permettront de réagir « instantanément » aux demandes de l'utilisateur. La construction des évènements est toujours la même à savoir « **on** quelques chose », par exemple :
+Pour ça nous allons avoir à notre disposition des évènements, ces évènements nous permettront de réagir « instantanément » aux demandes de l'utilisateur. La construction des évènements est toujours la même à savoir « **on** quelque chose », par exemple :
 
 - onclick
 - onsubmit
@@ -815,7 +815,7 @@ Nous avons deux façons d'attacher les évènements :
 
 ![Event click](./res/event_click.png)
 
-(Appelé au moment du clique par l'utilisateur utilisateur)
+(Appelé au moment du clic par l'utilisateur)
 
 ### Dans le DOM
 
@@ -830,7 +830,7 @@ Nous avons deux façons d'attacher les évènements :
 ```
 
 ::: warning this ?
-Le `this` corresponds à l'élément sur lequel vous avez cliqué.
+Le `this` correspond à l'élément sur lequel vous avez cliqué.
 :::
 
 ### En JavaScript
@@ -866,17 +866,17 @@ Cette partie est importante. Trêve de bavardage ! [Place à la pratique](./tp3.
 
 ## L'Ajax
 
-Difficile de parler du JavaScript sans parler de l'Ajax. L'Ajax est la base du web tel que nous le connaissons aujourd'hui, pour l'instant nous avons vu des pages basiques… Les pages chargent « et ne change que quand l'utilisateur interagit » ! Avec l'Ajax nous pouvons faire bien plus ! Beaucoup plus ! Vous l'avez remarqué, votre Gmail, Facebook, etc. change sans que vous rechargiez la page. Et bien cette fonctionnalité est possible uniquement grâce à l'Ajax !
+Difficile de parler du JavaScript sans parler de l'Ajax. L'Ajax est la base du web tel que nous le connaissons aujourd'hui, pour l'instant nous avons vu des pages basiques… Les pages chargent « et ne changent que quand l'utilisateur interagit » ! Avec l'Ajax nous pouvons faire bien plus ! Beaucoup plus ! Vous l'avez remarqué, votre Gmail, Facebook, etc. change sans que vous rechargiez la page. Eh bien cette fonctionnalité est possible uniquement grâce à l'Ajax !
 
 L'Ajax c'est donc du contenu que nous allons charger de manière asynchrone, c'est-à-dire après le chargement complet de la page ; cela va nous permettre de vraies interactions modernes pour réaliser des sites web / applications web tels que :
 
 - Chat.
 - Progressive Web App (PWA).
-- Client Web / Alernative à une application
+- Client Web / Alternative à une application
 
 L'Ajax en 2020 va donc nous permettre de créer de vraies applications. Ces applications consommeront de la donnée, cette donnée pourra provenir d'un serveur qui vous appartient ou depuis des serveurs tiers. Nous allons donc créer des sites web Client / Serveur avec des API pour interconnecter l'ensemble. Le Web deviendra donc une plateforme comme une autre.
 
-Bref, vous allez le voir, l'Ajax deviendra très rapidement une pierre angulaire de vos développements, et nous le verrons plus tard avec des frameworks web (comme VueJS) il serra possible de créer des applications « dynamique » sans avoir à écrire une seule ligne de PHP (ou autre langage serveur).
+Bref, vous allez le voir, l'Ajax deviendra très rapidement une pierre angulaire de vos développements, et nous le verrons plus tard avec des frameworks web (comme VueJS) il sera possible de créer des applications « dynamiques » sans avoir à écrire une seule ligne de PHP (ou autre langage serveur).
 
 ::: tip Un INSTANT !
 Une API ? What ? Alors, une API dans le fond c'est « comme un site web ». Mais, cette page web ne produit pas du HTML et n'a pas pour vocation d'être lue par un humain.
@@ -886,14 +886,14 @@ C'est donc du code (PHP ou autre) qui va permettre de faire parler deux ordinate
 
 ### L'asynchrone c'est quoi ?
 
-Avant d'aller plus loin, détaillons un peu ce que veut dire Asynchrone. L'objectif de L'Ajax est de charger / recharger une partie de votre page sans l'intervention de l'utilisateur et surtout sans que celui-ci ne recharge « L'ensemble du site ». C'est donc une opération transparente pour lui, mais vous allez le voir cette opération ne sera pas transparent pour vous.
+Avant d'aller plus loin, détaillons un peu ce que veut dire Asynchrone. L'objectif de L'Ajax est de charger / recharger une partie de votre page sans l'intervention de l'utilisateur et surtout sans que celui-ci ne recharge « L'ensemble du site ». C'est donc une opération transparente pour lui, mais vous allez le voir cette opération ne sera pas transparente pour vous.
 
-Qui dit asynchrone dit « avec un délai », vous aviez l'habitude jusqu'à présent d'avoir l'information instantanément disponible, quand vous faites un sélecteur à la ligne 1, et bien à la ligne 2 vous avez une réponse… Avec l'Ajax ça va être légèrement différent. Vous allez faire votre demande à la ligne 1… mais en fonction de différents paramètres (vitesse d'internet, vitesse de l'ordinateur, etc.) votre contenu pourra être disponible plus tard. Combien de temps plus tard ? Et bien vous ne le savez pas pour l'instant.
+Qui dit asynchrone dit « avec un délai », vous aviez l'habitude jusqu'à présent d'avoir l'information instantanément disponible, quand vous faites un sélecteur à la ligne 1, eh bien à la ligne 2 vous avez une réponse… Avec l'Ajax ça va être légèrement différent. Vous allez faire votre demande à la ligne 1… mais en fonction de différents paramètres (vitesse d'internet, vitesse de l'ordinateur, etc.) votre contenu pourra être disponible plus tard. Combien de temps plus tard ? Eh bien vous ne le savez pas pour l'instant.
 
 Nous allons donc introduire la notion de « callback » (et plus tard de promise). Un callback est une fonction, rien de bien différent des précédentes, la seule différence est que celle-ci sera appelée **non pas par vous** mais **automatiquement par le navigateur** quand le contenu sera disponible.
 
 ::: tip Ça parait simple ?
-Écrite comme ça, cela peu paraitre simple. Dans les faits, ce n’est pas vraiment complexe, mais par contre je vous le garantis, au début vous allez vous faire avoir en pensant « comme avant » et en imaginant que votre contenu est immédiatement disponible.
+Écrite comme ça, cela peut paraitre simple. Dans les faits, ce n’est pas vraiment complexe, mais par contre je vous le garantis, au début vous allez vous faire avoir en pensant « comme avant » et en imaginant que votre contenu est immédiatement disponible.
 :::
 
 | ![Principe Ajax](./res/ajax.svg) |
@@ -902,14 +902,14 @@ Nous allons donc introduire la notion de « callback » (et plus tard de promise
 
 ### Charger du contenu « à la demande »
 
-Nous allons donc charger du contenu « à la demande », le contenu peut-être ce que vous souhaitez, du HTML par exemple, mais également du JSON (un format de données d'échange). Il sera chargé au moment d'une interaction utilisateurs, ou alors automatiquement, par exemple dans le cas de Gmail toutes les X minutes afin d'offrir à votre utilisateur un rafraichissement régulier de contenu de votre page.
+Nous allons donc charger du contenu « à la demande », le contenu peut être ce que vous souhaitez, du HTML par exemple, mais également du JSON (un format de données d'échange). Il sera chargé au moment d'une interaction utilisateur, ou alors automatiquement, par exemple dans le cas de Gmail toutes les X minutes afin d'offrir à votre utilisateur un rafraichissement régulier de contenu de votre page.
 
 Comme précédemment notre contenu sera chargé depuis un serveur, mais celui-ci sera partiel. Il ne contiendra « que le coeur » de ce que vous souhaitez afficher (exit donc le chargement d'une page entière en Ajax, ça n’aurait à mon sens aucun intérêt).
 
 Comme précédemment nous allons voir deux façons de procéder. La première est sans librairie en utilisant uniquement ce que nous propose notre navigateur :
 
 - Fetch
-- Selecteur
+- Sélecteur
 - Les Promises
 
 La seconde façon va être en utilisant jQuery :
@@ -918,18 +918,18 @@ La seconde façon va être en utilisant jQuery :
 - \$.post
 
 ::: danger Comment choisir ?
-J'ai toujours tendance à préférer la version « Native ». **MAIS**, si vous avez déjà jQuery dans votre site? N'hésitez pas à utiliser la version jQuery.
+J'ai toujours tendance à préférer la version « Native ». **MAIS**, si vous avez déjà jQuery dans votre site ? N'hésitez pas à utiliser la version jQuery.
 :::
 
 ### Mettre en pratique l'Ajax
 
-L'Ajax c'est un gros morceau, tellement gros, qui serait possible d'y passer des heures et des heures tellement le sujet est vaste. Nous allons donc réaliser une première expérimentation.
+L'Ajax c'est un gros morceau, tellement gros, qu'il serait possible d'y passer des heures et des heures tellement le sujet est vaste. Nous allons donc réaliser une première expérimentation.
 
 [La suite c'est par ici](./tp4.md)
 
 ## Allons un peu plus loin
 
-Le JavaScript comme le PHP est un langage avec énormément de possibilités. Nous avons ici effleuré ce qui était possible de faire, il faut savoir que le JavaScript est un langage un peu particulier il permet de faire ce que l'on appelle dans le monde du développement du « Full-Stack ». Le JS est un langage à la fois Serveur et Client (web), vous pouvez donc réaliser :
+Le JavaScript comme le PHP est un langage avec énormément de possibilités. Nous avons ici effleuré ce qui était possible de faire, il faut savoir que le JavaScript est un langage un peu particulier, il permet de faire ce que l'on appelle dans le monde du développement du « Full-Stack ». Le JS est un langage à la fois Serveur et Client (web), vous pouvez donc réaliser :
 
 - Des sites web (JavaScript)
 - Des applications Web (VueJS, ReactJS, progressive Web App)
@@ -944,7 +944,7 @@ Revenons à ce qui nous intéresse le JavaScript dans un navigateur, vous avez l
 
 ```html
 <section id="section1">
-  <h1 id="titre">Ceci est un titre</h1>
+  <h1 id="titre1">Ceci est un titre</h1>
   <p>Et voilà un texte</p>
 </section>
 
@@ -958,15 +958,15 @@ Revenons à ce qui nous intéresse le JavaScript dans un navigateur, vous avez l
   titre1.parentElement; // Va retourner l'élément section parent
 
   let section1 = document.getElementById("section1");
-  section1.firstChild; // Va retourner le premier enfant de la section1, soit le h1
+  section1.firstElementChild; // Va retourner le premier élément enfant de la section1, soit le h1
 </script>
 ```
 
-Nous avons vu qu'un exemple en fonction des cas, et surtout grâce à la documentation, vous serez capable de naviguer les yeux fermés dans le DOM de votre HTML.
+Nous n'avons vu qu'un exemple, en fonction des cas, et surtout grâce à la documentation, vous serez capable de naviguer les yeux fermés dans le DOM de votre HTML.
 
 ### Les sélecteurs jQuery « avancés »
 
-jQuery permet également de naviguer rapidement dans le DOM avec des sélecteurs complexe (comme ceux utilisés en CSS) :
+jQuery permet également de naviguer rapidement dans le DOM avec des sélecteurs complexes (comme ceux utilisés en CSS) :
 
 ```html
 <section id="section1">
@@ -982,13 +982,13 @@ jQuery permet également de naviguer rapidement dans le DOM avec des sélecteurs
 <script>
   let h1 = $("#section1 > h1"); // Retourne le H1 présent dans la section1
 
-  let h1bis = $("section > h1"); // Retourne l'ensemble des H1 présent dans les éléments section (c'est donc un tableau)
+  let h1bis = $("section > h1"); // Retourne l'ensemble des H1 présents dans les éléments section (c'est donc un tableau)
 
   let h1ter = $("#section1:first-child"); // Retourne le premier enfant dans l'élément avec comme id section1, soit le titre
 </script>
 ```
 
-Nous avons vu qu'un exemple en fonction des cas, et surtout grâce à la documentation, vous serez capable de naviguer les yeux fermés dans le DOM de votre HTML.
+Nous n'avons vu qu'un exemple, en fonction des cas, et surtout grâce à la documentation, vous serez capable de naviguer les yeux fermés dans le DOM de votre HTML.
 
 ### L'inspecteur d'éléments
 
@@ -996,7 +996,7 @@ Votre inspecteur d'éléments (Chrome, Firefox, Safari) est très performant. Il
 
 - La console permet de voir les erreurs.
 - La console permet également d'écrire du code JS.
-- Si vous sélectionnez un élément dans le HTML. Vous avez une variable `$0` dans la console qui va contenir l'élément courant. Pratique!
+- Si vous sélectionnez un élément dans le HTML. Vous avez une variable `$0` dans la console qui va contenir l'élément courant. Pratique !
 - Le code est autocomplété avec le même raccourci que votre IDE (ctrl+espace)
 
 Testons ensemble.

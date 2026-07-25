@@ -31,7 +31,7 @@ Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoir
 
 ::: tip Important
 
-- Cette clé est générée sur votre profil utilisateur, et ce quelques soit le poste au lycée. Vous pouvez donc utiliser cette clé sur plusieurs projets.
+- Cette clé est générée sur votre profil utilisateur, et ce quel que soit le poste au lycée. Vous pouvez donc utiliser cette clé sur plusieurs projets.
 - Cette opération ne doit être faite qu’une seule fois.
 
 :::
@@ -48,9 +48,9 @@ Rendez-vous sur l'aide mémoire pour suivre la procédure : [Voir l'aide mémoir
 
 ## Introduction
 
-Dans ce projet, vous avez accès à un ensemble de fichiers. Le site proposé est déjà fonctionnel, mais il manque quelques fonctionnalités (listé dans les issues).
+Dans ce projet, vous avez accès à un ensemble de fichiers. Le site proposé est déjà fonctionnel, mais il manque quelques fonctionnalités (listées dans les issues).
 
-Dans un premier temps, vous pouvez voir le site en accédant à l'adresse suivante : [https://pages.gitlab.dombtsig.local/slam-1ere-ann-e/entrainement-gitlab/]
+Dans un premier temps, vous pouvez voir le site en accédant à l'adresse suivante : [https://pages.gitlab.dombtsig.local/slam-1ere-ann-e/entrainement-gitlab/](https://pages.gitlab.dombtsig.local/slam-1ere-ann-e/entrainement-gitlab/)
 
 ## Cloner le projet
 
@@ -71,7 +71,7 @@ Il est important de cloner en SSH pour pouvoir pousser vos modifications. Et opt
 
 ## Traiter une des issues
 
-Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab » sont disponibles, choisissez en une. Traitez là en utilisant le « Worflow GitLab » :
+Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab » sont disponibles, choisissez-en une. Traitez-la en utilisant le « Workflow GitLab » :
 
 - Assignation de l’issue à vous-même.
 - Création d’une branche relative à l’issue (un bouton permet de le faire directement).
@@ -121,17 +121,17 @@ $
 
 ## Bonne nouvelle !
 
-Vous venez (normalement) d’avoir au moins un « merge request » d’assigner. Vous allez devoir traiter la demande, à votre avis, comment se déroule la suite ?
+Vous venez (normalement) d’avoir au moins un « merge request » d’assigné. Vous allez devoir traiter la demande, à votre avis, comment se déroule la suite ?
 
 ## La revue de code
 
 - Regarder l’issue.
 - Regarder le code de votre « collègue ».
 - Apporter des commentaires
-  _Dans l’issue, générale.
-  _ Directement dans la partie code de l’issue.
+  - Dans l’issue, générale.
+  - Directement dans la partie code de l’issue.
 - Laisser votre collègue effectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc.). DISCUTER ! (du code)
-- Si tout vous semble correcte « Merger » les modifications.
+- Si tout vous semble correct « Merger » les modifications.
 
 ### Questions
 

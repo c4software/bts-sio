@@ -1,10 +1,10 @@
 ---
-description: Vous vous souvenez du générateur de Bart écrit en PHP? Et bien cette fois-ci nous allons coder la version JavaScript du générateur de phrase.
+description: Vous vous souvenez du générateur de Bart écrit en PHP ? Eh bien cette fois-ci nous allons coder la version JavaScript du générateur de phrase.
 ---
 
 # Le retour de Bart
 
-[Vous vous souvenez du générateur de Bart écrit en PHP?](/tp/php/tp1.1.md) Et bien cette fois-ci nous allons coder la version JavaScript du générateur de phrase.
+[Vous vous souvenez du générateur de Bart écrit en PHP ?](/tp/php/tp1.1.md) Eh bien cette fois-ci nous allons coder la version JavaScript du générateur de phrase.
 
 ## Introduction
 
@@ -14,7 +14,7 @@ Dans ce TP nous allons pratiquer la manipulation du DOM en JavaScript. Bien que 
 
 ## Création de la structure
 
-Nous l'avons fait de multiple fois, je vous laisse mettre en place la structure de votre projet. J'ai souhaite cependant que celle-ci respecte quelques règles :
+Nous l'avons fait de multiples fois, je vous laisse mettre en place la structure de votre projet. Je souhaite cependant que celle-ci respecte quelques règles :
 
 - Votre fichier HTML doit s'appeler `index.html`.
 - L'ensemble de vos ressources `public` doivent être dans un dossier `public`.
@@ -59,9 +59,9 @@ Voilà la structure de **mon HTML** :
 </html>
 ```
 
-## le JS
+## Le JS
 
-Votre fichier JavaScript va contenir la logique de notre application. Pour rappel, celle-ci est très simple elle ne « fait que » afficher des phrases dans la `div` avec comme édentant `#tableau`.
+Votre fichier JavaScript va contenir la logique de notre application. Pour rappel, celle-ci est très simple, elle ne « fait que » afficher des phrases dans la `div` avec comme identifiant `#tableau`.
 
 Votre travail va donc se résumer à :
 
@@ -78,7 +78,7 @@ Votre travail va donc se résumer à :
 
 Maintenant que vous avez votre code JavaScript, vous avez deux solutions :
 
-- La première est de mettre votre JS à la fin de votre HTML. L'objectif faire en sorte que celui-ci soit exécuté quand votre page est chargée. (À votre avis, est-ce une bonne idée ?)
+- La première est de mettre votre JS à la fin de votre HTML. L'objectif : faire en sorte que celui-ci soit exécuté quand votre page est chargée. (À votre avis, est-ce une bonne idée ?)
 - La seconde est de mettre votre JS dans le `head` de votre site. Celui-ci sera donc chargé au plus tôt par contre le code sera lancé immédiatement… Alors, comment faire ?
 
 ::: tip La solution ?
@@ -87,7 +87,7 @@ Attendre que votre page « soit entièrement chargée » afin de déclencher vot
 
 Concrètement il faut écrire :
 
-_En pure JS :_
+_En pur JS :_
 
 ```js
 document.addEventListener("DOMContentLoaded", function () {
@@ -118,10 +118,10 @@ Besoin d'aide ? [Voici ma version](/demo/js/bart/index.html)
 
 ## Allons plus loin
 
-Vous avez codé votre application en pure JS. Je vous laisse migrer votre code pour utiliser :
+Vous avez codé votre application en pur JS. Je vous laisse migrer votre code pour utiliser :
 
 - Les sélecteurs [jQuery](https://jquery.com/).
-- La création et la manipulation du DOM grace à jQuery.
+- La création et la manipulation du DOM grâce à jQuery.
 
 ::: tip Petit rappel
 

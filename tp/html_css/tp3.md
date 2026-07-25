@@ -1,12 +1,12 @@
 ---
-description: Nous avons vu « beaucoup » d'élément de manière théorique, il faut maintenant pratiquer pour assimiler l'ensemble des concepts. Le plus simple, et surtout le plus efficace c'est de réaliser une vraie page Web.
+description: Nous avons vu « beaucoup » d'éléments de manière théorique, il faut maintenant pratiquer pour assimiler l'ensemble des concepts. Le plus simple, et surtout le plus efficace c'est de réaliser une vraie page Web.
 ---
 
 # Mise en pratique CSS
 
-Nous avons vu « beaucoup » d'élément de manière théorique, il faut maintenant pratiquer pour assimiler l'ensemble des concepts. Le plus simple, et surtout le plus efficace c'est de réaliser une vraie page Web.
+Nous avons vu « beaucoup » d'éléments de manière théorique, il faut maintenant pratiquer pour assimiler l'ensemble des concepts. Le plus simple, et surtout le plus efficace c'est de réaliser une vraie page Web.
 
-Dans ce TP, je vais vous donner une base de code HTML « mais sans CSS ». Je vous donne le résultat à obtenir, et grâce aux ressources vues ensemble ([et listée ici](/tp/html_css/support.html)) je vous laisse (avec mon aide si besoin) réaliser la feuille de style nécessaire.
+Dans ce TP, je vais vous donner une base de code HTML « mais sans CSS ». Je vous donne le résultat à obtenir, et grâce aux ressources vues ensemble ([et listées ici](/tp/html_css/support.html)) je vous laisse (avec mon aide si besoin) réaliser la feuille de style nécessaire.
 
 ## Code source
 
@@ -36,7 +36,7 @@ Voilà le code source
       <section id="qui">
         <h2>Qui ?</h2>
         <p>
-          Bienvenu sur ma page. Celle-ci a été réalisée dans le cadre d'un TP au
+          Bienvenue sur ma page. Celle-ci a été réalisée dans le cadre d'un TP au
           Greta. [À compléter]
         </p>
       </section>
@@ -94,7 +94,7 @@ J'ai préparé dans le code quelques class, mais il faudra très certainement en
 Les images à utiliser dans votre page :
 
 - Dans le header en haut.
-- Au survol sur le card en bas.
+- Au survol sur la card en bas.
 
 ![Header](./res/tp3/ressources/double-bubble-dark.png)
 
@@ -116,7 +116,7 @@ La page de base :
 
 ![Page normal](./res/tp3/base.png)
 
-Les différents survol :
+Les différents survols :
 ![Survol Menu](./res/tp3/hover_menu.png)
 ![Survol 1](./res/tp3/hover_footer_1.png)
 ![Survol 2](./res/tp3/hover_footer_2.png)

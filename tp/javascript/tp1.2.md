@@ -1,10 +1,10 @@
 ---
-description: Nous allons créer une page fictive afin de tester un peu le fonctionnement des selecteurs.
+description: Nous allons créer une page fictive afin de tester un peu le fonctionnement des sélecteurs.
 ---
 
 # Une petite mise en bouche
 
-Nous allons créer une page fictive afin de tester un peu le fonctionnement des selecteurs.
+Nous allons créer une page fictive afin de tester un peu le fonctionnement des sélecteurs.
 
 Pour réaliser ce TP nous utiliserons [les ressources disponibles ici](/tp/javascript/support.md#manipuler-le-html-et-la-css)
 
@@ -25,7 +25,7 @@ Pour réaliser ce TP nous utiliserons [les ressources disponibles ici](/tp/javas
     <div id="cacheMoi">lorem ipsum…</div>
 
     <!-- Je souhaite que le texte soit rouge -->
-    <div id="redText">Le texte présent ici doit-être rouge</div>
+    <div id="redText">Le texte présent ici doit être rouge</div>
 
     <!-- Ajouter ici un paragraphe (p) en JavaScript-->
 

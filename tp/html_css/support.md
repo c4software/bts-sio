@@ -1,10 +1,10 @@
 ---
-description: Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples. La CSS est un vaste sujet il serait difficile de tout couvrir dans un simple document.
+description: Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples. La CSS est un vaste sujet, il serait difficile de tout couvrir dans un simple document.
 ---
 
 # Complément du cours CSS
 
-Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples. La CSS est un vaste sujet il serait difficile de tout couvrir dans un simple document.
+Ce document est un complément du cours. Il vous permettra de revenir sur les différentes notions avec différents exemples. La CSS est un vaste sujet, il serait difficile de tout couvrir dans un simple document.
 
 ::: details Table des matières
 [[toc]]
@@ -44,8 +44,8 @@ C'est une notation universelle qui sera également valable en JavaScript
 
 Actuellement vos éléments sont tous « collés » aux autres. C'est normal vous n'avez aucun espacement de défini. En CSS vous avez la possibilité de choisir deux types d'espacements :
 
-- `padding` (Espacement à l'intérieure de l'élément)
-- `margin` (Espacement à l'extérieure de l'élément)
+- `padding` (Espacement à l'intérieur de l'élément)
+- `margin` (Espacement à l'extérieur de l'élément)
 
 ![margin & padding](./res/margin_padding.png)
 
@@ -56,7 +56,7 @@ En termes d'unités, nous avons plusieurs choix :
 
 ## Fonds et couleurs
 
-Il faut imaginer votre navigateur un peu comme Word (ou Libre Office Writter), c'est-à-dire un logiciel capable de faire de la mise en forme « d'éléments ». Dans le cas du navigateur nous n'avons pas d'interface graphique pour le faire, nous avons seulement du code.
+Il faut imaginer votre navigateur un peu comme Word (ou Libre Office Writer), c'est-à-dire un logiciel capable de faire de la mise en forme « d'éléments ». Dans le cas du navigateur nous n'avons pas d'interface graphique pour le faire, nous avons seulement du code.
 
 La base de la personnalisation c'est les « couleurs » et les images de fonds.
 
@@ -85,15 +85,15 @@ Vous pouvez l'écrire à la main… C'est une question d'habitude! Mais le plus 
 
 Mais votre navigateur ne se limite pas à une simple couleur de fond et du texte… Il permet également d'afficher des images. Nous l'avons vu il est possible d'afficher des images avec la balise `<img />`, mais pas uniquement.
 
-Il est possible également d'afficher des images en CSS. Via la propriété `background-…` ou `background`. La propriété `background` est très puissante et vous nous permettre de « composer » un fond avec énormément de possibilités.
+Il est possible également d'afficher des images en CSS. Via la propriété `background-…` ou `background`. La propriété `background` est très puissante et va nous permettre de « composer » un fond avec énormément de possibilités.
 
 ::: tip Ah oui !
-Vous allez le voir, il est possible d'appliquer un fond sur « presque » n'importe quels éléments HTML. (div, h1, p, body, …)
+Vous allez le voir, il est possible d'appliquer un fond sur « presque » n'importe quel élément HTML. (div, h1, p, body, …)
 :::
 
 #### Définir un fond
 
-Mettre un fond à un élément en HTML s'effectue avec la propriété `background-image`. Celle-ci accepte plusieurs formats d'image cette liste dépend de votre navigateur, mais à minima vous pouvez mettre :
+Mettre un fond à un élément en HTML s'effectue avec la propriété `background-image`. Celle-ci accepte plusieurs formats d'image, cette liste dépend de votre navigateur, mais a minima vous pouvez mettre :
 
 - png
 - jpeg
@@ -116,7 +116,7 @@ _Exemple avec le logo du Greta :_
 
 #### Régler son comportement
 
-Comme vous avez pu le constater, nous avons pour l'instant un fond qui se répète dans toute les directions. Dans certains cas c'est pratique, par exemple un fond de site qui va se répéter à l'infini pour créer un « pattern ». Mais dans certains cas nous ne voulons pas forcément de répétitions.
+Comme vous avez pu le constater, nous avons pour l'instant un fond qui se répète dans toutes les directions. Dans certains cas c'est pratique, par exemple un fond de site qui va se répéter à l'infini pour créer un « pattern ». Mais dans certains cas nous ne voulons pas forcément de répétitions.
 
 Nous avons donc la liste suivante :
 
@@ -126,11 +126,11 @@ Nous avons donc la liste suivante :
 | background-repeat     | no-repeat, repeat-x, repeat-y, repeat        |
 | background-position   | en pixel, ou top, bottom, left, right center |
 
-`background-repeat` vas nous permettre de choisir le comportement de répétitions du fond. Cette propriété permet de définir une non-répétition avec `no-repeat`, mais également d'autres options comme une répétition seulement en `x` ou seulement en `y`.
+`background-repeat` va nous permettre de choisir le comportement de répétitions du fond. Cette propriété permet de définir une non-répétition avec `no-repeat`, mais également d'autres options comme une répétition seulement en `x` ou seulement en `y`.
 
-`background-attachment` permet de choisir comment le fond va se comporter lors du scroll. Par défaut votre fond `scroll` quand vous vous descendez dans la page. Mais vous pouvez également choisir « d'ancrer » le fond pour que celui-ci soit toujours visible.
+`background-attachment` permet de choisir comment le fond va se comporter lors du scroll. Par défaut votre fond `scroll` quand vous descendez dans la page. Mais vous pouvez également choisir « d'ancrer » le fond pour que celui-ci soit toujours visible.
 
-`background-position` permet de choisir la position de notre fond, celle-ci peut-être exprimé en pixel ou en « anglais » avec `top`, `bottom`, `left`, `right` ou encore `center`. Avec cette propriété vous allez pouvoir placer finement votre fond, avec une notation X,Y exemple :
+`background-position` permet de choisir la position de notre fond, celle-ci peut être exprimée en pixel ou en « anglais » avec `top`, `bottom`, `left`, `right` ou encore `center`. Avec cette propriété vous allez pouvoir placer finement votre fond, avec une notation X,Y exemple :
 
 ```css
 .monElement {
@@ -185,16 +185,16 @@ Comme je vous le disais précédemment, votre navigateur est un vrai « Word »,
 | font-weight     | Indique « le gras de votre texte » | 100 à 900 (ou bold, bolder, light, lighter, normal)           |
 | font-style      | Style de votre texte               | normal, italic                                                |
 | text-decoration | Décoration de votre police         | underline, line-through                                       |
-| font-size       | Défini la taille de votre texte    | Taille absolue _ou_ relative (px, em ou anglais)              |
-| color           | La couleur de votre texte          | Couleur en hexa, Anglais ou RGB (comme les fond donc)         |
+| font-size       | Définit la taille de votre texte   | Taille absolue _ou_ relative (px, em ou anglais)              |
+| color           | La couleur de votre texte          | Couleur en hexa, Anglais ou RGB (comme les fonds donc)         |
 | text-align      | Position de votre texte            | Positionnement de votre texte (left, right, center, justify…) |
-| font-family     | Police à utiliser                  | Nom d'une police « présent sur le navigateur de la personne » |
+| font-family     | Police à utiliser                  | Nom d'une police « présente sur le navigateur de la personne » |
 
 ### Choisir la police
 
-Voilà un point épineux… La police, par defaut vous n'avez accès qu'au police présent sur l'ordinateur de la personne. C'est rapidement problématique, on nous demande que rarement d'installer la font X Y Z pour accéder à un site Internet.
+Voilà un point épineux… La police, par défaut vous n'avez accès qu'aux polices présentes sur l'ordinateur de la personne. C'est rapidement problématique, on ne nous demande que rarement d'installer la font X Y Z pour accéder à un site Internet.
 
-Le CSS intègre un système nous permettant d'afficher la police de notre choix. Pour son utilisation c'est simple il faut utiliser `font-family` et spécifier ensuite le nom de la font souhaité par exemple :
+Le CSS intègre un système nous permettant d'afficher la police de notre choix. Pour son utilisation c'est simple il faut utiliser `font-family` et spécifier ensuite le nom de la font souhaitée par exemple :
 
 ```css
 .monElement {
@@ -236,7 +236,7 @@ En CSS nous avons deux possibilités pour la taille de la police.
 
 #### Absolue
 
-Si vous choisissez de définir votre taille de texte en valeur absolue, vous devez indiquer votre taille en `pixel` avec la notation px. Cette notation doit être utilisée avec la plus grande des précautions en effet, en fonction de l'écran (densité de pixels) le texte peut apparaitre trop petit.
+Si vous choisissez de définir votre taille de texte en valeur absolue, vous devez indiquer votre taille en `pixel` avec la notation px. Cette notation doit être utilisée avec la plus grande des précautions. En effet, en fonction de l'écran (densité de pixels) le texte peut apparaitre trop petit.
 
 ```css
 .element {
@@ -268,7 +268,7 @@ Dans notre « traitement de texte » sans interface, nous avons également la po
 
 `font-style` nous permet d'indiquer le style de la police à savoir `italic` ou `normal`.
 
-`font-decoration` nous permet de « décorer » votre texte. Concrètement ça veut dire si celui-ci sera souligné ou barré par exemple.
+`text-decoration` nous permet de « décorer » votre texte. Concrètement ça veut dire si celui-ci sera souligné ou barré par exemple.
 
 ::: tip Astuce de pro
 Votre navigateur vous propose une interface de développement puissante vous permettant de voir les valeurs possibles pour chaque propriété. C'est disponible dans votre inspecteur d'éléments.
@@ -298,7 +298,7 @@ En CSS il est possible de placer les éléments dans la page. Nous avons deux po
 
 Les positions absolue et relative fonctionnent de la même façon, mais n'ont pas la même référence de placement
 
-`absolue` Un placement absolu prend ça référence par rapport au coin en haut à gauche du navigateur du client.
+`absolue` Un placement absolu prend sa référence par rapport au coin en haut à gauche du navigateur du client.
 
 ```html
 <html>
@@ -322,7 +322,7 @@ Les positions absolue et relative fonctionnent de la même façon, mais n'ont pa
 
 ![Position Absolute](./res/absolute.png)
 
-`relative` Un placement relative prend ça référence par rapport au parent de l'élément à placer.
+`relative` Un placement relatif prend sa référence par rapport au parent de l'élément à placer.
 
 ```html
 <html>
@@ -360,7 +360,7 @@ Le placement en CSS fonctionne donc toujours de la même façon :
 
 ### Les unités
 
-Vous utilisez un mobile, vous savez donc que la taille d'un écran est « variable » et surtout plus ou moins grande. Pour répondre à cette problématique, le placement (`top`, `bottom`, `right`, `left`) possède une multitude d'unités possible :
+Vous utilisez un mobile, vous savez donc que la taille d'un écran est « variable » et surtout plus ou moins grande. Pour répondre à cette problématique, le placement (`top`, `bottom`, `right`, `left`) possède une multitude d'unités possibles :
 
 - En pixel (non responsive :danger:).
 - en pourcentage (attention responsive, mais par rapport **à la largeur de l'écran**).
@@ -428,14 +428,14 @@ Tout ce qui va suivre sera automatiquement flottant. Si vous voulez arrêter « 
 - […](https://web.dev/centering-in-css/)
 
 ::: tip La pratique est la clé
-C'est seulement avec la pratique et la mise en situation que vous allez réussir à centrer vos différends en CSS. Sachez juste que, le **display: flex** n'est pas la solution ultime à tous les centrages. Dans beaucoup de cas, un simple `text-align: center` voir un `margin: auto` sera suffisant.
+C'est seulement avec la pratique et la mise en situation que vous allez réussir à centrer vos différents éléments en CSS. Sachez juste que, le **display: flex** n'est pas la solution ultime à tous les centrages. Dans beaucoup de cas, un simple `text-align: center` voire un `margin: auto` sera suffisant.
 :::
 
 ## Le placement simplifié
 
-Nous avons maintenant un moyen plus simple pour placer des éléments en CSS, le `flex`. Le `display: flex` vas nous permettre de placer relativement finement les éléments. Le `flex` propose pas mal d'options, mais nous pouvons l'utiliser « simplement » et rapidement en ne connaissant que la base.
+Nous avons maintenant un moyen plus simple pour placer des éléments en CSS, le `flex`. Le `display: flex` va nous permettre de placer relativement finement les éléments. Le `flex` propose pas mal d'options, mais nous pouvons l'utiliser « simplement » et rapidement en ne connaissant que la base.
 
-_Le Flex repose sur quatre règles :_
+_Le Flex repose sur cinq règles :_
 
 - La direction de l'affichage : colonne ou ligne. (`flex-direction`)
 - Le comportement si la place nécessaire pour l'affichage est insuffisante. (`flex-wrap`)
@@ -538,13 +538,13 @@ Exemple :
 
 ### Shadow (les ombres)
 
-La propriété `box-shadow` nous permet de définir un ensemble de paramètres permettant de créer des « ombrages ». Cette propriété est « complexe », elle est vaste à couvrir le plus simple est très certainement de la tester directement via un outil :
+La propriété `box-shadow` nous permet de définir un ensemble de paramètres permettant de créer des « ombrages ». Cette propriété est « complexe », elle est vaste à couvrir, le plus simple est très certainement de la tester directement via un outil :
 
 [Tester en ligne](https://cssgenerator.org/box-shadow-css-generator.html)
 
 ## Interactivité
 
-Vous l'avez certainement remarqué vos liens (balise `<a></a>`) ne sont pas vraiment très jolie, ils sont certainement violet et de couleurs différentes si vous avez cliqué sur le lien en question, ou même simplement au survol de la souris
+Vous l'avez certainement remarqué vos liens (balise `<a></a>`) ne sont pas vraiment très jolis, ils sont certainement violets et de couleurs différentes si vous avez cliqué sur le lien en question, ou même simplement au survol de la souris
 
 Nous avons la possibilité en CSS de personnaliser via un sélecteur le comportement d'un élément pour des états spécifiques (survol, visité …)
 
@@ -608,7 +608,7 @@ body {
 
 ::: tip L'astuce du jour
 
-Ça semble anodin… Mais cette notation avec des variables permet de simplifier grandement les animations CSS. Pourquoi ? Et bien, tout simplement, car maintenant si vous souhaitez changer une couleur au survol il suffit de redéfinir la variable.
+Ça semble anodin… Mais cette notation avec des variables permet de simplifier grandement les animations CSS. Pourquoi ? Eh bien, tout simplement, car maintenant si vous souhaitez changer une couleur au survol il suffit de redéfinir la variable.
 
 ```css
 :root {
@@ -655,15 +655,15 @@ transition: all 1s;
 
 Le responsive ? Le responsive, c'est le nom que l'on donne à un site web qui s'adapte à la taille de l'écran. C'est un vaste sujet, très vaste… Nous sommes ici dans une introduction aux bases du HTML, je pense qu'il faudrait plus de détail pour vraiment comprendre les tenants et les aboutissants du responsive.
 
-Ce que vous pouvez retenir c'est de manière générale le responsive est exprimé en colonnes, généralement 12. Nous allons donc déterminer combien de colonnes doivent s'afficher en fonction de la taille de l'écran (large, medium, small). C'est donc une langue commune entre le designer et le développeur.
+Ce que vous pouvez retenir, c'est que de manière générale le responsive est exprimé en colonnes, généralement 12. Nous allons donc déterminer combien de colonnes doivent s'afficher en fonction de la taille de l'écran (large, medium, small). C'est donc une langue commune entre le designer et le développeur.
 
 ::: warning Un instant
 
-Pour l'instant, ce qu'il faut retenir, c'est que si vous souhaitez faire du « Responsive » le plus simple est d'utiliser un « Framework CSS » type [Bootstrap](https://getbootstrap.com/) ou [Tailwind](https://tailwindcss.com/) ils vous permettront de gérer simplement ce système de colonne.
+Pour l'instant, ce qu'il faut retenir, c'est que si vous souhaitez faire du « Responsive » le plus simple est d'utiliser un « Framework CSS » type [Bootstrap](https://getbootstrap.com/) ou [Tailwind](https://tailwindcss.com/) ils vous permettront de gérer simplement ce système de colonnes.
 
 :::
 
-Pour nous développeur CSS, comment ça fonctionne ? Tailwind, Bootstrap et autre framework fonctionnent tous de la même façon, il définisse des règles d'affichage en fonction de la taille d'écran. Pour faire ça en CSS nous, utilisons-les `media queries`. Les médias queries c'est une notation particulière qui nous permet décrire des sélecteurs CSS en fonction de paramètres du navigateur du client (la larguer, la hauteur, etc.)
+Pour nous développeur CSS, comment ça fonctionne ? Tailwind, Bootstrap et autres frameworks fonctionnent tous de la même façon, ils définissent des règles d'affichage en fonction de la taille d'écran. Pour faire ça en CSS, nous utilisons les `media queries`. Les media queries c'est une notation particulière qui nous permet d'écrire des sélecteurs CSS en fonction de paramètres du navigateur du client (la largeur, la hauteur, etc.)
 
 [En savoir plus sur MDN](https://developer.mozilla.org/fr/docs/Web/CSS/Requ%C3%AAtes_m%C3%A9dia/Utiliser_les_Media_queries#Am%C3%A9liorations_syntaxiques_avec_la_sp%C3%A9cification_de_niveau_4)
 
@@ -691,13 +691,13 @@ Il existe une autre façon de faire, il est possible de conditionner directement
 <link rel="stylesheet" media="screen and (max-width: 960px)" href="small.css" />
 ```
 
-::: tip Pas de solution universel
+::: tip Pas de solution universelle
 
 Que vous choisissiez la première ou la seconde façon de faire il n'y a pas de solution « miracle », j'aurais personnellement tendance à choisir la première solution par habitude. Mais le `<link>` conditionné est également valide.
 
 :::
 
-### Quelques exemple de Media Queries
+### Quelques exemples de Media Queries
 
 ```css
 /** Largeur min 400px AND paysage **/
@@ -720,12 +720,12 @@ Que vous choisissiez la première ou la seconde façon de faire il n'y a pas de 
 
 ## Les tailles d'affichage
 
-| Mobile  | Taille d'affichage (par defaut) |
+| Mobile  | Taille d'affichage (par défaut) |
 | ------- | ------------------------------- |
 | iPhone  | 980 px                          |
 | Android | 800px                           |
 
-## Des « Breakpoints générique » ?
+## Des « Breakpoints génériques » ?
 
 ```css
 // Small devices (landscape phones, 576px and up)
@@ -751,18 +751,18 @@ Que vous choisissiez la première ou la seconde façon de faire il n'y a pas de 
 
 ## La propriété display
 
-Nous avons plusieurs types d'affichage possible en CSS, de base les éléments sont soient :
+Nous avons plusieurs types d'affichage possible en CSS, de base les éléments sont soit :
 
 - `none` (cache l'élément)
 - `inline` (en ligne, les éléments côte à côte).
-- `block` (les un après les autres, à la ligne)
+- `block` (les uns après les autres, à la ligne)
 - `table` (spécifique aux `<table></table>`)
 
-Il y'a d'autres types d'affichage, mais c'est grossièrement les principales façons d'affiche le contenu.
+Il y a d'autres types d'affichage, mais c'est grossièrement les principales façons d'afficher le contenu.
 
 ### La révolution des flex
 
-Vous allez rapidement vous rendre compte qu'il est assez difficile de centrer des éléments en CSS (surtout verticalement). Pendant longtemps c'était un problème… Mais plus maintenant, nous avons à notre disposition un nouveau type d'affichage, le `display: flex`. Le `flex` est très puissant, votre navigateur calcul l'ensemble des contraintes pour placer très finement vos éléments. Difficiles de le décrire en quelques mot le plus simple. Le tester :
+Vous allez rapidement vous rendre compte qu'il est assez difficile de centrer des éléments en CSS (surtout verticalement). Pendant longtemps c'était un problème… Mais plus maintenant, nous avons à notre disposition un nouveau type d'affichage, le `display: flex`. Le `flex` est très puissant, votre navigateur calcule l'ensemble des contraintes pour placer très finement vos éléments. Difficile de le décrire en quelques mots, le plus simple est de le tester :
 
 [flexbox.help](http://flexbox.help/)
 
@@ -774,7 +774,7 @@ Le principe de fonctionnement repose sur un système de colonne(s) _ou_ de ligne
 
 ### Mettre en pratique un « Framework »
 
-À partir de maintenant nous avons vu les bases de la CSS, je vous propose d'utiliser un framework qu'énormément de développeurs Web utilisent à savoir « Boostrap »
+À partir de maintenant nous avons vu les bases de la CSS, je vous propose d'utiliser un framework qu'énormément de développeurs Web utilisent à savoir « Bootstrap »
 
 [Réaliser un site avec Bootstrap](./bootstrap.md)
 
@@ -783,14 +783,14 @@ Le principe de fonctionnement repose sur un système de colonne(s) _ou_ de ligne
 
 - Vous faire gagner du temps.
 - Améliorer la qualité de vos sites Internet.
-- Vous montrer comment intégrer les éléments de Boostrap.
+- Vous montrer comment intégrer les éléments de Bootstrap.
 
-N'hésitez pas à vous en servir dans vos développements. Ils sont [disponible ici](https://getbootstrap.com/docs/4.5/examples)
+N'hésitez pas à vous en servir dans vos développements. Ils sont [disponibles ici](https://getbootstrap.com/docs/4.5/examples)
 :::
 
 ### La révolution du grid
 
-Le flex répond à beaucoup de problématique… Mais pas à toutes ! Il y a des cas où nous voulons faire un layout complexe, où les éléments sont agencés en ligne et en colonnes en même temps.
+Le flex répond à beaucoup de problématiques… Mais pas à toutes ! Il y a des cas où nous voulons faire un layout complexe, où les éléments sont agencés en ligne et en colonnes en même temps.
 
 ![Grid](./res/grid.png)
 
@@ -816,7 +816,7 @@ Le système de grid est plutôt « récent » l'ensemble des navigateurs n'intè
 
 #### S'entrainer avec le Grid
 
-Comme pour le flex, voilà une solution en ligne afin de vous entrainer à utiliser le flex [CSS Grid Garden](https://cssgridgarden.com/#fr)
+Comme pour le flex, voilà une solution en ligne afin de vous entrainer à utiliser le grid [CSS Grid Garden](https://cssgridgarden.com/#fr)
 
 ![Chrome Guide Grid](./res/grid_help_chrome.png)
 
@@ -824,7 +824,7 @@ Comme pour le flex, voilà une solution en ligne afin de vous entrainer à utili
 
 ## L'organisation de la CSS
 
-L'organisation / la structure est un élément important en développement. Le monde du développement est régi pas un certain nombre de designs patterns, ils sont là pour vous assurer que votre « code » sera compris par tous, et que vous pourrez le maintenir pendant longtemps.
+L'organisation / la structure est un élément important en développement. Le monde du développement est régi par un certain nombre de designs patterns, ils sont là pour vous assurer que votre « code » sera compris par tous, et que vous pourrez le maintenir pendant longtemps.
 
 ### Les Designs Patterns
 
@@ -841,7 +841,7 @@ Nous avons maintenant un certain nombre d'outils appelés « Pré-Processeurs CS
 - [Less](http://lesscss.org/)
 - [Post CSS](https://postcss.org/)
 
-C'est un vaste sujet, ce qu'il faut retenir c'est que votre navigateur ne comprend **que la CSS**, la SCSS (ou autre) est écrite par vous et transformé par un outil en CSS pour que votre navigateur puisse le comprendre. Voilà quelques exemples :
+C'est un vaste sujet, ce qu'il faut retenir c'est que votre navigateur ne comprend **que la CSS**, la SCSS (ou autre) est écrite par vous et transformée par un outil en CSS pour que votre navigateur puisse le comprendre. Voilà quelques exemples :
 
 ```scss
 a {
@@ -918,4 +918,4 @@ div > p:hover {
 
 ## Les frameworks CSS
 
-[Voir la page dédiée](./framework_css/indroduction.md)
+[Voir la page dédiée](./framework_css/introduction.md)

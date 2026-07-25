@@ -7,7 +7,7 @@ description: Nous avons créé deux cas « de tests », je vous propose de le me
 Nous avons créé deux cas « de tests », je vous propose de le mettre en place dans un code existant. Nous avons réalisé un site la BTS TV, ce site comportait **« deux pages »** :
 
 - Une page d'accueil `home.php`, qui affiche la liste des vidéos.
-- Une page `tv.php` ayant pour but l'affichage de la vidéo souhaité.
+- Une page `tv.php` ayant pour but l'affichage de la vidéo souhaitée.
 
 ::: tip Vous n'avez pas le code source ?
 Celui-ci est [disponible ici](/demo/php/bts-tv/refactor-structure.zip). Il pourra vous servir de base de travail. (c'est une version sans base de données, pour simplifier l'installation locale)
@@ -33,9 +33,9 @@ Comment allons-nous procéder ?
 Nous allons rendre dynamique la page d'accueil `home.php`, dans le sens où :
 
 - Notre serveur va générer une page « Vide » (c'est-à-dire sans la liste de vidéos).
-- Notre navigateur va, via un appel Ajax charger la liste des vidéos, et se charger en JavaScript de l'affichage de la liste.
+- Notre navigateur va, via un appel Ajax, charger la liste des vidéos, et se charger en JavaScript de l'affichage de la liste.
 
-Avant tout, **pourquoi faire ça ?** L'avantage de découper le traitement comme ça. C'est que nous pourrions très simplement créer un client « Mobile », et ça sans toucher au code de notre serveur. Pleins d'avantages :
+Avant tout, **pourquoi faire ça ?** L'avantage de découper le traitement comme ça, c'est que nous pourrions très simplement créer un client « Mobile », et ça sans toucher au code de notre serveur. Plein d'avantages :
 
 - Code unique pour le Web et les autres plateformes
 - Centralisation de la logique dans un code dédié à la récupération « du contenu » (les vidéos en l'occurrence).
@@ -77,7 +77,7 @@ foreach ($videos as $id) {
 Nous pouvons y voir un exemple de code PHP très simple à savoir :
 
 - Une variable `$videos`, celle-ci contient la liste des vidéos à afficher. _C'est notre source de données_.
-- `$i` est une variable qui permettra d'afficher `Video X` (1… X). _Note, cette variable peut-être remplacée par une boucle foreach différente `foreach $videos as $i => $id`_
+- `$i` est une variable qui permettra d'afficher `Video X` (1… X). _Note, cette variable peut être remplacée par une boucle foreach différente `foreach $videos as $i => $id`_
 - Du code HTML, celui-ci permet d'afficher une liste de Card à la suite avec dedans un bouton permettant d'accéder à la page `tv.php`.
 
 :::
@@ -88,19 +88,19 @@ Une autre partie du code est intéressante, le fichier `index.php` ; ce fichier 
 
 ::: tip Whitelist ?
 
-La sécurité, vous connaissez ? J'espère, quand vous développez un site Internet, vous êtes par définition « en short » sur la toile. Votre site peut-être et sera certainement (je vous le garantis pour l'avoir vécue) piraté par une personne malveillante. Comment s'en prémunir alors ? Tout simplement empêchant au maximum l'exploitation de problème connut.
+La sécurité, vous connaissez ? J'espère, quand vous développez un site Internet, vous êtes par définition « en short » sur la toile. Votre site peut être et sera certainement (je vous le garantis pour l'avoir vécu) piraté par une personne malveillante. Comment s'en prémunir alors ? Tout simplement en empêchant au maximum l'exploitation de problèmes connus.
 
-Créer une `whitelist` va nous permettre de dormir paisiblement, nous allons contrôler finement ce que l'utilisateur va pouvoir inclure. Vous retrouverez cette pratique dans différents langages sous différent nom (Un `router` peut-être assimilé à ce genre de pratique).
+Créer une `whitelist` va nous permettre de dormir paisiblement, nous allons contrôler finement ce que l'utilisateur va pouvoir inclure. Vous retrouverez cette pratique dans différents langages sous différents noms (un `router` peut être assimilé à ce genre de pratique).
 
 :::
 
 ---
 
-Le précédent développeur a visiblement travaillé pour vous… :wink: :wink:. Vous trouverez également dans le projet un fichier `api.php` ainsi qu'un dossier `api` celui-ci contient le code permettant de :
+Le précédent développeur a visiblement travaillé pour vous… :wink: :wink:. Vous trouverez également dans le projet un fichier `api.php` ainsi qu'un dossier `api` ; celui-ci contient le code permettant de :
 
 - Déclarer des API. (dossier `api/`)
 - Sécuriser les API.
-- Centraliser la gestion de celle-ci. (`api.php`)
+- Centraliser la gestion de celles-ci. (`api.php`)
 
 ::: tip 👀 Vous pouvez tester dès maintenant 👀
 
@@ -133,13 +133,13 @@ _Source:_ Wikipédia
 
 Nous devons donc écrire une API… Une API c'est **juste un fichier PHP** comme un autre ; à la seule différence que celui-ci ne retourne pas du HTML, mais du JSON. Vous avez un exemple d'API dans le projet avec le fichier `sample.php`, je vous laisse le regarder…
 
-Une fois celui-ci analysé, je vous laisse créer votre fichier, par exemple `videos.php` **dans le dossier `api/`** ça sera notre futur API ! Nous avons maintenant une API **vide** ! Mais que mettre dedans ?
+Une fois celui-ci analysé, je vous laisse créer votre fichier, par exemple `videos.php` **dans le dossier `api/`**, ça sera notre future API ! Nous avons maintenant une API **vide** ! Mais que mettre dedans ?
 
 - À votre avis ?
 - Du code PHP :-O
 - La réponse D ?
 
-Je vous aide! Nous allons y mettre du code PHP… Et plus particulièrement le contenu de **notre source de données** ! Mais quel code à votre avis ?
+Je vous aide ! Nous allons y mettre du code PHP… Et plus particulièrement le contenu de **notre source de données** ! Mais quel code à votre avis ?
 
 - Vous allez devoir créer la variable `$videos` (comme sur la home).
 - Utiliser la fonction `json_encode` et `echo` pour envoyer le contenu de la variable au client au format JSON.
@@ -167,7 +167,7 @@ Téléchargez-le [ici](https://www.getpostman.com/)
 
 ### Étape 2 : Modifier le code existant
 
-Je vous laisse modifier le code PHP de la page `home.php` pour le vider de tout `PHP` celui-ci doit-être vide ! Il ne va contenir que le minimum à savoir la structure interne de la page :
+Je vous laisse modifier le code PHP de la page `home.php` pour le vider de tout `PHP`, celui-ci doit être vide ! Il ne va contenir que le minimum à savoir la structure interne de la page :
 
 ```html
 <div class="container">
@@ -191,12 +191,11 @@ Comme nous l'avons fait précédemment, je vous laisse reprendre le code. Mais l
 fetch("./api.php?page=videos")
   .then((response) => response.json())
   .then((datas) => {
-      // Votre code ICI, vous devez parcourir les vidéos (comme dans l'exemple précédent) pour les ajouter dans le #content (comme dans l'exemple précédent)
-    });
+    // Votre code ICI, vous devez parcourir les vidéos (comme dans l'exemple précédent) pour les ajouter dans le #content (comme dans l'exemple précédent)
   });
 ```
 
-::: details à court d'idées sur le code à écrire ?
+::: details À court d'idées sur le code à écrire ?
 
 NON ? Vous n'allez pas tricher comme ça… Non pas vous ?
 
@@ -216,6 +215,7 @@ datas.forEach((el) => {
     </div>
     `
     );
+});
 ```
 
 ⚠️ Non… Ce n'est pas la seule façon de faire. Maintenant que vous avez vu MA solution. Je vous laisse écrire la vôtre.
@@ -229,7 +229,7 @@ datas.forEach((el) => {
 Ajouter un bouton rafraîchir dans la page. Le bouton rafraîchir doit permettre de récupérer à nouveau la liste des vidéos pour les mettre à jour dans la page.
 
 - Ajouter une icône à droite dans l'interface.
-- Utiliser les icônes fournies par bootstrap.
+- Utiliser les icônes fournies par Bootstrap.
 - Ajouter une action `onClick` permettant de déclencher l'action (`function`) permettant d'obtenir les vidéos en Ajax (c'est le code que vous avez déjà écrit)
 
 Voilà la maquette :
@@ -276,7 +276,7 @@ Je vous ai indiqué en introduction que le but de créer des API était de perme
 - Avoir une information indiquant chargement pendant la récupération de la liste des vidéos.
 
 ::: warning Un instant !
-Lors de votre développement, vous allez rencontrer un problème de Cross Origin. Le Cross Origin Resource Sharing (CORS) est une protection intégrée dans votre navigateur qui vous empêche depuis le domaine A d'appeler une ressource sur le domaine B. La raison ? Elle est simple empêcher le partage non désiré d'information entre deux sites.
+Lors de votre développement, vous allez rencontrer un problème de Cross Origin. Le Cross Origin Resource Sharing (CORS) est une protection intégrée dans votre navigateur qui vous empêche depuis le domaine A d'appeler une ressource sur le domaine B. La raison ? Elle est simple : empêcher le partage non désiré d'information entre deux sites.
 
 En tant que développeur (si si), vous pouvez contrôler comment fonctionne cette protection. Vous pouvez dans vos API décider qui vous appellera (quel domaine), de manière fine ou de manière complètement ouverte (`*`). Pour rendre votre code le plus permissif possible vous pouvez ajouter dans votre API PHP le code suivant (tout en haut) :
 

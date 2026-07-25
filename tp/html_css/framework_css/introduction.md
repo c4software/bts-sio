@@ -5,7 +5,7 @@
 :::
 
 
-Vous avez maintenant découvert le HTML et le CSS, et l'imbrication des balises. Vous avez également entre-aperçu l'importance de la CSS pour la mise en forme de votre site (sans CSS, votre site est vraiment basique).
+Vous avez maintenant découvert le HTML et le CSS, et l'imbrication des balises. Vous avez également entraperçu l'importance de la CSS pour la mise en forme de votre site (sans CSS, votre site est vraiment basique).
 
 Vous avez également découvert le CSS, et vous avez pu voir que le CSS est un langage très puissant, mais peut-être un peu complexe à prendre en main (ça va venir, ne vous inquiétez pas, il faut juste un peu de pratique).
 
@@ -17,11 +17,11 @@ En tant que futur développeur, vous allez devoir également apprendre à être 
 
 Un framework (ou cadre de travail en français) est un ensemble de fichiers et de dossiers qui permettent de créer un site web rapidement et efficacement. C'est en quelque sorte un squelette / ou une base de travail. Il existe des frameworks pour tous les langages de programmation, et donc également pour le CSS.
 
-L'avantage d'un framework CSS est qu'il permet de gagner du temps, et de ne pas avoir à réinventer la roue. En effet, un framework CSS contient déjà des styles CSS pour les éléments de base (boutons, formulaires, etc.), et permet donc de gagner du temps. **Et surtout** de partager des pratiques / des standards communes avec d'autres développeurs.
+L'avantage d'un framework CSS est qu'il permet de gagner du temps, et de ne pas avoir à réinventer la roue. En effet, un framework CSS contient déjà des styles CSS pour les éléments de base (boutons, formulaires, etc.), et permet donc de gagner du temps. **Et surtout** de partager des pratiques / des standards communs avec d'autres développeurs.
 
 ## Une multitude de frameworks CSS
 
-Comme dans beaucoup de domaine de l'informatique, nous allons avoir le choix entre plusieurs frameworks CSS. Il existe des frameworks CSS très simples, et d'autres beaucoup plus complexes. Certains sont très populaires, d'autres beaucoup moins. L'important est de comprendre qu'il s'agit d'un outil, et que vous devez choisir l'outil qui vous convient le mieux.
+Comme dans beaucoup de domaines de l'informatique, nous allons avoir le choix entre plusieurs frameworks CSS. Il existe des frameworks CSS très simples, et d'autres beaucoup plus complexes. Certains sont très populaires, d'autres beaucoup moins. L'important est de comprendre qu'il s'agit d'un outil, et que vous devez choisir l'outil qui vous convient le mieux.
 
 ## Les frameworks CSS les plus populaires
 
@@ -40,13 +40,13 @@ Bien entendu, il en existe d'autres, mais nous allons nous concentrer sur les pl
 
 Bootstrap est le framework CSS le plus populaire. Il est utilisé par de nombreux développeurs, et est très complet. Il est également très simple à prendre en main, et permet de créer des sites web rapidement.
 
-L'avantage de Boostrap est qu'il permet de créer très rapidement des sites web avec un ensemble d'éléments de base (boutons, formulaires, etc.). Il permet également de créer des sites web responsive (qui s'adaptent à la taille de l'écran).
+L'avantage de Bootstrap est qu'il permet de créer très rapidement des sites web avec un ensemble d'éléments de base (boutons, formulaires, etc.). Il permet également de créer des sites web responsive (qui s'adaptent à la taille de l'écran).
 
 Mais il a l'inconvénient d'être très utilisé, et donc de créer des sites web qui se ressemblent tous. Il est difficile de créer des sites web personnalisés avec Bootstrap.
 
 ::: tip Un instant
 
-Bootstrap est un incontournable… Oui… mais pour combien de temps ? Boostrap vieillis et commence à être dépassé par d'autres frameworks CSS. Je vous conseille de vous tourner vers d'autres frameworks CSS, comme Tailwind CSS. Qui ont une approche différente, et qui sont plus modernes.
+Bootstrap est un incontournable… Oui… mais pour combien de temps ? Bootstrap vieillit et commence à être dépassé par d'autres frameworks CSS. Je vous conseille de vous tourner vers d'autres frameworks CSS, comme Tailwind CSS. Qui ont une approche différente, et qui sont plus modernes.
 
 **Mais**, faire l'impasse sur Bootstrap serait une erreur, car il est très utilisé, et vous serez amené à travailler avec.
 
@@ -87,23 +87,23 @@ Vous vous demandez peut-être pourquoi utiliser un framework CSS ? Pourquoi ne p
 - **Créer des sites web responsive** : Un framework CSS permet de créer des sites web responsive (qui s'adaptent à la taille de l'écran). C'est un point très important, car aujourd'hui, la majorité des sites web sont consultés sur mobile.
 - **Créer des sites web modernes** : Un framework CSS permet de créer des sites web modernes, avec des animations, des transitions, etc. C'est un point très important, car les sites web modernes sont très appréciés des utilisateurs.
 
-Évidemment, vous pouvez faire sans, c'est intéressant… mais la compléxité peu rapidement vous dégouter. Utiliser un framework vas vous permettre de vous concentrer sur le code, et non sur la mise en forme (dans une certaine mesure, et dans un premier temps).
+Évidemment, vous pouvez faire sans, c'est intéressant… mais la complexité peut rapidement vous dégouter. Utiliser un framework va vous permettre de vous concentrer sur le code, et non sur la mise en forme (dans une certaine mesure, et dans un premier temps).
 
 ## Comment utiliser un framework CSS ?
 
 Vous avez vu comment inclure une feuille de style CSS dans une page HTML. Mais comment inclure un framework CSS dans une page HTML ? C'est très simple, il suffit d'inclure la feuille de style CSS du framework dans votre page HTML.
 
-Et oui ! C'est aussi simple que ça !
+Eh oui ! C'est aussi simple que ça !
 
 ::: tip Un instant
 
 C'est vrai pour la majorité des frameworks CSS, mais Tailwind CSS est un peu différent, il faut également inclure un fichier JavaScript (nous reviendrons plus tard sur la raison).
 
-Il est donc préféreable de lire la documentation du framework CSS que vous souhaitez utiliser (comme toujours).
+Il est donc préférable de lire la documentation du framework CSS que vous souhaitez utiliser (comme toujours).
 
 :::
 
-## L'un empêche pas l'autre
+## L'un n'empêche pas l'autre
 
 Vous vous demandez peut-être si vous devez utiliser un framework CSS, ou si vous devez créer votre propre CSS. La réponse est simple : **les deux**.
 
@@ -115,7 +115,7 @@ En effet, vous pouvez utiliser un framework CSS pour créer rapidement un site w
 
 ## Tester Bootstrap
 
-Nous allons découvrir dans un premier temps Bootstrap. Celui-ci repose sur un ensemble de classes CSS (que vous ne pouvez pas inventer). Pour prendre en main Bootsrap il faut utiliser massivement la documentation.
+Nous allons découvrir dans un premier temps Bootstrap. Celui-ci repose sur un ensemble de classes CSS (que vous ne pouvez pas inventer). Pour prendre en main Bootstrap il faut utiliser massivement la documentation.
 
 Voici les pages importantes pour débuter :
 
@@ -128,9 +128,9 @@ Voici les pages importantes pour débuter :
 
 ::: tip Un instant
 
-Comment lire la documentation ? La documentation à toujours le même format :
+Comment lire la documentation ? La documentation a toujours le même format :
 
-- Une expliquation du composant / de la fonctionnalité.
+- Une explication du composant / de la fonctionnalité.
 - Un exemple du rendu.
 - Le code HTML pour obtenir le rendu (que vous ~pouvez~ **devez** copier / coller pour démarrer).
 :::
@@ -139,7 +139,7 @@ Comment lire la documentation ? La documentation à toujours le même format :
 
 ### Votre première page
 
-Avant d'intégrer Boostrap dans votre blog (ou pas), je vous propose de le faire « pour tester » dans une page HTML vierge. Cela vous permettra de vous familiariser avec Bootstrap, et de voir comment il fonctionne.
+Avant d'intégrer Bootstrap dans votre blog (ou pas), je vous propose de le faire « pour tester » dans une page HTML vierge. Cela vous permettra de vous familiariser avec Bootstrap, et de voir comment il fonctionne.
 
 Pour cela, je vous invite à créer un fichier `index.html` dans un dossier `bootstrap` (ou autre). Et à y copier / coller le code suivant :
 
@@ -159,7 +159,7 @@ Pour cela, je vous invite à créer un fichier `index.html` dans un dossier `boo
 </html>
 ```
 
-Vous pouvez maintenant ouvrir le fichier `index.html` dans votre navigateur, et vous devriez voir le texte `Hello, world!`. Jusque là, rien de nouveau, c'est du HTML.
+Vous pouvez maintenant ouvrir le fichier `index.html` dans votre navigateur, et vous devriez voir le texte `Hello, world!`. Jusque-là, rien de nouveau, c'est du HTML.
 
 La vraie nouveauté, c'est que vous avez inclus la feuille de style CSS de Bootstrap dans votre page HTML. Vous avez donc maintenant accès à toutes les classes CSS de Bootstrap.
 
@@ -174,7 +174,7 @@ Nous allons maintenant créer une structure responsive, modifier le code précé
 </div>
 ```
 
-Tester à nouveau dans votre navigateur. À l'aide de [la documentation](https://getbootstrap.com/docs/5.2/layout/containers/), regarder ce qui se passe lorsque vous réduisez la taille de la fenêtre. Vous devriez voir que le texte est centré, et que la largeur de la page est limitée.
+Testez à nouveau dans votre navigateur. À l'aide de [la documentation](https://getbootstrap.com/docs/5.2/layout/containers/), regardez ce qui se passe lorsque vous réduisez la taille de la fenêtre. Vous devriez voir que le texte est centré, et que la largeur de la page est limitée.
 
 #### Et que le texte soit centré ! 🎉
 
@@ -196,7 +196,7 @@ Uniquement sur mobile ?
 </div>
 ```
 
-Et oui, c'est aussi simple que ça ! Je vous laisse regarder la documentation pour en savoir plus. [La documentation](https://getbootstrap.com/docs/5.2/utilities/text/#text-alignment).
+Eh oui, c'est aussi simple que ça ! Je vous laisse regarder la documentation pour en savoir plus. [La documentation](https://getbootstrap.com/docs/5.2/utilities/text/#text-alignment).
 
 ### Une grille responsive
 
@@ -219,13 +219,13 @@ Nous allons modifier le code précédent pour créer une grille de 2 colonnes (u
 </div>
 ```
 
-Tester à nouveau dans votre navigateur. À l'aide de [la documentation](https://getbootstrap.com/docs/5.2/layout/grid/), regarder ce qui se passe lorsque vous réduisez la taille de la fenêtre. Vous devriez voir que les colonnes passent les unes en dessous des autres.
+Testez à nouveau dans votre navigateur. À l'aide de [la documentation](https://getbootstrap.com/docs/5.2/layout/grid/), regardez ce qui se passe lorsque vous réduisez la taille de la fenêtre. Vous devriez voir que les colonnes passent les unes en dessous des autres.
 
 ### Créer une liste avec des cards
 
 Les colonnes et les lignes, c'est bien, mais ce n'est pas très joli. Nous allons maintenant créer une liste avec des cards. Une `card` est un composant de Bootstrap qui permet de créer des cartes. C'est un élément que l'on retrouve un peu partout sur le web (Twitter, Facebook, etc.).
 
-La card permet de structure le contenu, et de le mettre en valeur.
+La card permet de structurer le contenu, et de le mettre en valeur.
 
 Je vous laisse modifier le code précédent pour créer une liste verticale avec 3 cards. Pour cela, il faut utiliser le code suivant :
 
@@ -256,11 +256,17 @@ Maintenant que nous avons vu comment utiliser les cards, nous allons les utilise
 Code qui affiche une card avec dedans une image à gauche et à droite un titre et un texte :
 
 ```html
-<div class="card flex-row">
-    <img class="card-img-left" src="https://picsum.photos/400/300"/>
-    <div class="card-body">
-        <h4 class="card-title">Left image</h4>
-        <p class="card-text">Example text</p>
+<div class="card">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img class="img-fluid rounded-start" src="https://picsum.photos/400/300"/>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title">Left image</h4>
+                <p class="card-text">Example text</p>
+            </div>
+        </div>
     </div>
 </div>
 ```
@@ -289,9 +295,9 @@ Pour aller plus loin, vous pouvez consulter le [TP Bootstrap](/tp/html_css/boots
 
 ## Tester Tailwind CSS
 
-L'approche de Tailwind est un peu différente. L'un des problèmes de Bootsrtrap est qu'il est « relativement » lourd (poid important) et difficile à personnaliser. L'approche de Tailwind est donc d'offrir un ensemble de classes CSS qui indépendament ne sont « que des éléments CSS classiques ». Mais qui bien assemblées permettent de créer des sites web rapidement.
+L'approche de Tailwind est un peu différente. L'un des problèmes de Bootstrap est qu'il est « relativement » lourd (poids important) et difficile à personnaliser. L'approche de Tailwind est donc d'offrir un ensemble de classes CSS qui indépendamment ne sont « que des éléments CSS classiques ». Mais qui bien assemblées permettent de créer des sites web rapidement.
 
-Exemple, si je souhaite faire une image de profile ronde, je vais devoir utiliser les classes CSS suivantes :
+Exemple, si je souhaite faire une image de profil ronde, je vais devoir utiliser les classes CSS suivantes :
 
 ```html
 <img class="w-24 h-24 rounded-full mx-auto" src="/sarah-dayan.jpg" alt="" width="384" height="512">
@@ -299,21 +305,21 @@ Exemple, si je souhaite faire une image de profile ronde, je vais devoir utilise
 
 Ce qui va donner :
 
-![Image de profile ronde](./res/rounded-pp.jpg)
+![Image de profil ronde](./res/rounded-pp.jpg)
 
 Une bonne démo de ça est disponible dès la page d'accueil de Tailwind : [https://tailwindcss.com/](https://tailwindcss.com/).
 
 ### Les classes CSS
 
-Nous avons donc à notre disposition **plein** de classe CSS :
+Nous avons donc à notre disposition **plein** de classes CSS :
 
-- `w-24` : pour définir une largeur de 24px.
-- `h-24` : pour définir une hauteur de 24px.
+- `w-24` : pour définir une largeur de 6rem (96px).
+- `h-24` : pour définir une hauteur de 6rem (96px).
 - `rounded-full` : pour définir un arrondi de 50%.
 - `mx-auto` : pour centrer l'image.
 - `bg-blue-500` : pour définir un fond bleu.
 - `hover:bg-blue-700` : pour définir un fond bleu plus foncé au survol.
-- … (la liste est litéralement infinie)
+- … (la liste est littéralement infinie)
 
 Exemple concret :
 
@@ -321,9 +327,9 @@ Exemple concret :
 
 Et bien d'autres encore. Vous pouvez consulter la [documentation](https://tailwindcss.com/docs/) pour en savoir plus.
 
-### La force, les préfixs CSS
+### La force, les préfixes CSS
 
-Tailwind est très puissant car il intègre des préfix CSS permettant de faire rapidement des comportement de base :
+Tailwind est très puissant car il intègre des préfixes CSS permettant de faire rapidement des comportements de base :
 
 - `md:` : pour les écrans de taille moyenne (tablette).
 - `lg:` : pour les écrans de grande taille (ordinateur).
@@ -331,7 +337,7 @@ Tailwind est très puissant car il intègre des préfix CSS permettant de faire 
 - `dark:` : pour les thèmes sombres.
 - …
 
-Avec ce genre de préfix, il est possible de faire des choses très rapidement. Exemple, si je souhaite faire un bouton bleu, je vais devoir utiliser les classes CSS suivantes :
+Avec ce genre de préfixes, il est possible de faire des choses très rapidement. Exemple, si je souhaite faire un bouton bleu, je vais devoir utiliser les classes CSS suivantes :
 
 ```html
 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -358,11 +364,11 @@ L'approche de Tailwind est très différente de Bootstrap, il faut donc utiliser
 - [Introduction](https://tailwindcss.com/docs/installation), qui vous explique comment installer Tailwind.
 - [Layout](https://tailwindcss.com/docs/container), qui vous explique comment créer la structure de votre page avec Tailwind.
 - [Grid](https://tailwindcss.com/docs/grid-template-columns), qui vous explique comment créer une page responsive avec Tailwind.
-- [Les modèles de la communautée](https://tailwindcomponents.com/)
+- [Les modèles de la communauté](https://tailwindcomponents.com/)
 
 ### Installer Tailwind
 
-Tailwind à pour objectif de ne pas tout générer « dans une grosses feuille de style CSS ». Tailwind repose donc sur du JavaScript pour générer les classes CSS. Idéalement, il faut utiliser des technologies comme PostCSS (que vous verez plus tard). Pour l'instant nous allons suivre la documentation officielle, et utiliser un CDN.
+Tailwind a pour objectif de ne pas tout générer « dans une grosse feuille de style CSS ». Tailwind repose donc sur du JavaScript pour générer les classes CSS. Idéalement, il faut utiliser des technologies comme PostCSS (que vous verrez plus tard). Pour l'instant nous allons suivre la documentation officielle, et utiliser un CDN.
 
 Dans un nouveau fichier `index.html` (dans le dossier `tailwind`), copier / coller le code suivant :
 
@@ -383,21 +389,21 @@ Dans un nouveau fichier `index.html` (dans le dossier `tailwind`), copier / coll
 ```
 
 ::: tip Un instant 👋
-Pas de CSS ? Et non, le code javascript inclus dans la page va générer les classes CSS. C'est un peu magique, mais c'est très efficace.
+Pas de CSS ? Eh non, le code JavaScript inclus dans la page va générer les classes CSS. C'est un peu magique, mais c'est très efficace.
 :::
 
-### Créont une structure pour un blog
+### Créons une structure pour un blog
 
 Maintenant que nous avons vu comment fonctionne Tailwind, nous allons voir comment créer une structure pour un blog. Pour cela, nous allons utiliser les classes CSS suivantes :
 
 - `bg-gray-100` : pour définir un fond gris clair.
-- `container` : pour définir une largeur de 1000px.
+- `container` : pour définir une largeur maximale adaptée à la taille de l'écran.
 - `mx-auto` : pour centrer le contenu.
-- `py-8` : pour définir un padding de 8px en haut et en bas.
-- `text-3xl` : pour définir une taille de texte de 3xl (48px).
+- `py-8` : pour définir un padding de 2rem (32px) en haut et en bas.
+- `text-3xl` : pour définir une taille de texte de 3xl (1.875rem, soit 30px).
 - `font-bold` : pour définir une police en gras.
 - `text-gray-900` : pour définir une couleur de texte grise foncée.
-- `mb-4` : pour définir une marge en bas de 4px.
+- `mb-4` : pour définir une marge en bas de 1rem (16px).
 - `grid` : pour définir une grille.
 - `grid-cols-1` : pour définir une colonne.
 - `md:grid-cols-2` : pour définir deux colonnes sur les écrans de taille moyenne.
@@ -459,7 +465,7 @@ Je vous laisse décliner une seconde page permettant d'afficher un article compl
 
 ## Tester Materialize
 
-Materialize est très similaire au autres frameworks CSS, je ne vais donc pas rentrer dans un détail trop important. Je vous invite à consulter la [documentation](https://materializecss.com/) pour en savoir plus.
+Materialize est très similaire aux autres frameworks CSS, je ne vais donc pas rentrer dans un détail trop important. Je vous invite à consulter la [documentation](https://materializecss.com/) pour en savoir plus.
 
 L'approche est semblable à Bootstrap, il faut utiliser massivement la documentation. Voici les pages importantes pour débuter :
 
@@ -482,4 +488,4 @@ Vous avez maintenant découvert les frameworks CSS, et vous avez pu voir qu'il e
 
 Vous avez également pu voir que les frameworks CSS permettent de créer des sites web responsive, et modernes. C'est un point très important, car aujourd'hui, la majorité des sites web sont consultés sur mobile.
 
-Maintenant la balle est dans votre camp, je vous invite à tester les frameworks CSS que nous avons vu, et à vous faire votre propre avis.
+Maintenant la balle est dans votre camp, je vous invite à tester les frameworks CSS que nous avons vus, et à vous faire votre propre avis.

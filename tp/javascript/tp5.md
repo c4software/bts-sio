@@ -1,13 +1,13 @@
 ---
-description: Nous avons vu ensemble que jQuery était un vrai gain te temps et de ligne en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
+description: Nous avons vu ensemble que jQuery était un vrai gain de temps et de lignes en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
 ---
 
-# Les librairies pour vous sauvez
+# Les librairies pour vous sauver
 
-Nous avons vu ensemble que jQuery était un vrai gain te temps et de ligne en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
+Nous avons vu ensemble que jQuery était un vrai gain de temps et de lignes en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
 
 ::: tip 2021 ?
-En 2021, j'ai envie de dire, vous n'avez plus besoin de jQuery ! Nous avons des supers alternatives sans librairies (ES6, etc.), et si vous voulez gagner du temps ? Je vous conseille plutôt la mise en place de Framework autorisant à être intégré comme des librairies (c'est-à-dire dans un petit morceau du site) comme par exemple VueJS.
+En 2021, j'ai envie de dire, vous n'avez plus besoin de jQuery ! Nous avons de super alternatives sans librairies (ES6, etc.), et si vous voulez gagner du temps ? Je vous conseille plutôt la mise en place de Framework autorisant à être intégré comme des librairies (c'est-à-dire dans un petit morceau du site) comme par exemple VueJS.
 
 **Attention, je ne dis pas que jQuery est un mauvais choix ! Je pense juste que celui-ci ne doit pas/plus être automatique en 2021**
 :::
@@ -45,12 +45,12 @@ Notre page est vide ! Profitons-en pour ajouter jQuery, vous avez deux choix pos
 Il n'y a pas de réponse magique, l'un comme l'autre ça va fonctionner. Cependant, ayez en tête que si vous choisissez de passer par un CDN **vous devrez avoir Internet** pour que votre site fonctionne.
 
 ::: danger Et la sécu ?
-Autre point important, jQuery « c'est que du JavaScript », en utilisant un CDN vous téléchargez du code depuis Internet sans savoir ce qui est dedans. **Pire** le contenu peut-être différent, voir modifié par un tiers plus tard dans la vie de votre site Internet.
+Autre point important, jQuery « c'est que du JavaScript », en utilisant un CDN vous téléchargez du code depuis Internet sans savoir ce qui est dedans. **Pire** le contenu peut être différent, voire modifié par un tiers plus tard dans la vie de votre site Internet.
 
 **Donc attention**
 :::
 
-Dans, notre cas, il suffit d'ajouter avant la fermeture de `</body>` :
+Dans notre cas, il suffit d'ajouter avant la fermeture de `</body>` :
 
 ```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -58,9 +58,9 @@ Dans, notre cas, il suffit d'ajouter avant la fermeture de `</body>` :
 
 ## Votre première librairie : Datatable
 
-C'est chiant les tableaux non ? La pagination vous n'aimez pas ça non ? Trier les données ne vous intéresse pas ? Et bien, rassurez-vous ! Globalement personne n'aime ça ! Les développeurs étant globalement fainéants… Ils ont créé des librairies permettant de ne plus écrire le code « chiant ». La gestion des tableaux en faisant partie je vous propose de mettre en place dans votre site Internet l'excellente librairie [Datatable](https://datatables.net/).
+C'est chiant les tableaux non ? La pagination vous n'aimez pas ça non ? Trier les données ne vous intéresse pas ? Eh bien, rassurez-vous ! Globalement personne n'aime ça ! Les développeurs étant globalement fainéants… Ils ont créé des librairies permettant de ne plus écrire le code « chiant ». La gestion des tableaux en faisant partie, je vous propose de mettre en place dans votre site Internet l'excellente librairie [Datatable](https://datatables.net/).
 
-Comme pour jQuery vous avez deux choix, le CDN ou la version téléchargés. Dans ce TP je vous propose d'utiliser la version CDN (par simplicité), nous allons donc ajouter dans notre code :
+Comme pour jQuery vous avez deux choix, le CDN ou la version téléchargée. Dans ce TP je vous propose d'utiliser la version CDN (par simplicité), nous allons donc ajouter dans notre code :
 
 ```html
 <link
@@ -93,7 +93,7 @@ Vous pouvez donc écrire :
 
 ### Transformer votre tableau
 
-Nous avons maintenant une page, un tableau… Et un truc pas vraiment sexy. C'est là ou Datatable va entrer en jeu. Avec un simple petit ajoute de JavaScript dans votre page, nous allons transformer ce simple tableau en SUPER TABLEAU.
+Nous avons maintenant une page, un tableau… Et un truc pas vraiment sexy. C'est là où Datatable va entrer en jeu. Avec un simple petit ajout de JavaScript dans votre page, nous allons transformer ce simple tableau en SUPER TABLEAU.
 
 ```js
 $(document).ready(function () {
@@ -132,7 +132,7 @@ Je vous propose d'installer FullCalendar [dans votre site](https://fullcalendar.
 
 ### Ajouter des événements
 
-Pour ajouter des évenements, [il suffit de suivre la documentation par exemple](https://fullcalendar.io/docs/event-parsing)
+Pour ajouter des événements, [il suffit de suivre la documentation par exemple](https://fullcalendar.io/docs/event-parsing)
 
 Exemple :
 
@@ -149,8 +149,8 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         title: "Valentin Brosseau",
-        start: "2021-28-02",
-        end: "2021-28-02",
+        start: "2021-02-28",
+        end: "2021-02-28",
       },
     ],
   });
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 Google Maps c'est pratique ? Si vous souhaitez un Google Maps intégrable et manipulable en code directement dans votre code, c'est possible ; et c'est plutôt simple…
 
-Grâce à [Leaflet](https://leafletjs.com/) réaliser des cartes c'est très simple! Pour l'ajouter dans votre projet :
+Grâce à [Leaflet](https://leafletjs.com/) réaliser des cartes c'est très simple ! Pour l'ajouter dans votre projet :
 
 - Dans votre head :
 

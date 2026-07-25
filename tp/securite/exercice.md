@@ -149,7 +149,7 @@ foreach ($result as $article) {
 
 L'auditeur a trouvé une faille de type XSS (Cross Site Scripting). Il a réussi à afficher une boîte de dialogue sur le navigateur de l'utilisateur.
 
-Le code source ou la faille se trouve est le suivant :
+Le code source où la faille se trouve est le suivant :
 
 ```php
 <?php
@@ -232,7 +232,7 @@ Proposez une solution permettant de mettre en place cette fonctionnalité.
 
 L'auditeur a trouvé une faille de type Injection SQL. Il a réussi à afficher les données de la base de données.
 
-Le code source ou la faille se trouve est le suivant :
+Le code source où la faille se trouve est le suivant :
 
 ```php
 <?php
@@ -296,7 +296,7 @@ Pourquoi le code source est-il vulnérable à une injection SQL ? Proposez une s
 
 L'auditeur a trouvé une faille de type CSRF (Cross Site Request Forgery). Il a réussi via un email à faire supprimer des utilisateurs par l'administrateur de la plateforme.
 
-Le code source ou la faille se trouve est le suivant :
+Le code source où la faille se trouve est le suivant :
 
 ```php
 
@@ -342,7 +342,7 @@ Proposez une solution pour corriger cette faille.
 
 L'auditeur a trouvé une faille de type Inclusion de fichier. Il a réussi à afficher le contenu du fichier `config.php`.
 
-Le code source ou la faille se trouve est le suivant :
+Le code source où la faille se trouve est le suivant :
 
 ```php
 
@@ -365,7 +365,7 @@ Proposez une solution pour corriger cette faille.
 
 L'auditeur a trouvé une faille de type bruteforce.
 
-Le code source ou la faille se trouve est le suivant :
+Le code source où la faille se trouve est le suivant :
 
 ```php
 <?php
@@ -408,7 +408,7 @@ Proposez une solution pour corriger cette faille.
 
 L'attaquant a trouvé une faille de type manque de contrôle d'accès. Il a réussi à accéder à une page qui n'est pas accessible aux utilisateurs.
 
-Le code source ou la faille se trouve est le suivant :
+Le code source où la faille se trouve est le suivant :
 
 ```php
 
@@ -500,7 +500,7 @@ Proposez une solution pour corriger cette faille. Expliquez en quoi cette faille
 
 L'auditeur a trouvé une faille de type XSS Stockée. Il a réussi à afficher une boîte de dialogue sur le navigateur des personnes visitant le site.
 
-Le code source ou la faille se trouve est le suivant :
+Le code source où la faille se trouve est le suivant :
 
 Page affichant les commentaires :
 
@@ -573,7 +573,7 @@ if ($user && password_verify($password, $user['password'])) {
 }
 ```
 
-L'auditeur vous indique que vous devez mettre en place en place un token afin d'éviter le rejeu de requête.
+L'auditeur vous indique que vous devez mettre en place un token afin d'éviter le rejeu de requête.
 
 ::: tip Protection CSRF / Token
 

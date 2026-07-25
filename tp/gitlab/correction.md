@@ -9,13 +9,13 @@ Introduction au travail à plusieurs avec GIT.
 ## Ressources utiles
 
 - [Aide mémoire](https://github.com/c4software/cheatsheet/blob/master/git/)
-- [Google](https://docs.gitlab.com/ee/README.html)
+- [Documentation GitLab](https://docs.gitlab.com/ee/README.html)
 - [Livre Git en ligne](https://git-scm.com/book/fr/v2)
 - [GitLab.com](https://www.gitlab.com/)
 
 ## Situation
 
-L’entreprise ou vous effectuez votre stage utilise GitLab, vous allez donc devoir utiliser en plus de GIT un outil permettant de gérer votre « workflow de travail ».
+L’entreprise où vous effectuez votre stage utilise GitLab, vous allez donc devoir utiliser en plus de GIT un outil permettant de gérer votre « workflow de travail ».
 
 ### Questions
 
@@ -28,16 +28,16 @@ Avant d’utiliser GitLab nous allons dans un premier temps créer un site Inter
 
 - Créer un nouveau dossier
 - Initialiser un nouveau projet Git (en ligne de commande)
-- Créer la page d’accueil du votre site Internet (quelque chose de sympa et créatif ;))
+- Créer la page d’accueil de votre site Internet (quelque chose de sympa et créatif ;))
 - Versionner cette première version. (`git commit` et vérifier avec `git status` que c’est bien ok)
-- Ajouter une 2nd page dans votre site Internet, par exemple une page vous présentant.
-- Versionner cette 2nd page. (`git commit` et vérifier avec `git status` que c’est bien ok)
-- Ajouter un « formulaire de contact », ce formulaire devra contenir à minima 3 « input » :
-  - Un champs email
-  - Un champs sujet
-  - Un champs message
+- Ajouter une seconde page dans votre site Internet, par exemple une page vous présentant.
+- Versionner cette seconde page. (`git commit` et vérifier avec `git status` que c’est bien ok)
+- Ajouter un « formulaire de contact », ce formulaire devra contenir a minima 3 « input » :
+  - Un champ email
+  - Un champ sujet
+  - Un champ message
 - Ajouter une page PHP qui enregistre les valeurs dans un fichier sur disque à chaque fois qu’un utilisateur valide le formulaire.
-- Versionner le formulaire de contact (attention, il serait intéressant de faire plusieurs `commit`, si vous avez ajouter plusieurs pages, vérifier avec `git status` que c’est bien ok)
+- Versionner le formulaire de contact (attention, il serait intéressant de faire plusieurs `commit`, si vous avez ajouté plusieurs pages, vérifier avec `git status` que c’est bien ok)
 
 ## Les logs
 
@@ -47,7 +47,7 @@ Vérifier que votre projet est bien commité, avec la commande `git status`. Vou
 
 ### Création du compte
 
-Créer votre compte sur [GitLab.com onglet Register](https://gitlab.com/users/sign_in). Se compte sera utile pour plusieurs projets, remplissez les champs avec attention.
+Créer votre compte sur [GitLab.com onglet Register](https://gitlab.com/users/sign_in). Ce compte sera utile pour plusieurs projets, remplissez les champs avec attention.
 
 #### Échange de clé
 
@@ -61,7 +61,7 @@ Sur votre ordinateur, en ligne de commande :
 $ ssh-keygen
 ```
 
-Deux fichiers seront créés une clé « publique » ET une clé privée.
+Deux fichiers seront créés : une clé « publique » ET une clé privée.
 
 ⚠️ ⚠️ Vous ne devez JAMAIS rendre publique votre clé **privée**. Si ça vous arrive, vous devez immédiatement révoquer les clés !
 
@@ -69,15 +69,15 @@ Deux fichiers seront créés une clé « publique » ET une clé privée.
 
 [Ajouter une clé sur votre profil](https://gitlab.com/profile/keys)
 
-La clé que vous devez envoyer est dans votre dossier personnel (W :) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est .pub
+La clé que vous devez envoyer est dans votre dossier personnel (`P:`) dans le dossier `.ssh`. Une fois dans le dossier (masqué par défaut) vous avez deux fichiers. Le fichier que vous devez ouvrir et copier le contenu est celui dont l’extension est .pub
 
 ### Création de votre premier projet
 
-Maintenant que votre compte est créé (et que l’échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet « gitlab », aura pour vocation de contenir les sources de votre site Internet (celui créé au début du TP). Nommer le bien !
+Maintenant que votre compte est créé (et que l’échange de clé est effectif), vous allez pouvoir créer un nouveau projet. Ce projet « gitlab », aura pour vocation de contenir les sources de votre site Internet (celui créé au début du TP). Nommez-le bien !
 
 ### Question
 
-- Comment choisir la visibilité du projet ? (Visiblity Level)
+- Comment choisir la visibilité du projet ? (Visibility Level)
 
 ### Envoi sur GitLab
 
@@ -91,7 +91,7 @@ Une fois que c’est fait. Regarder les différentes options que GitLab vous pro
 
 - Inviter un (ou plusieurs) autre étudiant dans votre projet (c’est dans l’onglet Members dans les paramètres)
 - Créer une nouvelle issue
-- Assigner l’issue à vous-même (ou a un autre étudiant).
+- Assigner l’issue à vous-même (ou à un autre étudiant).
 - Regarder les options autour de l’issue (Création de branch, issue board, etc…)
 
 ### Édition en ligne
@@ -103,11 +103,12 @@ GitLab permet de se passer (en partie) d’un éditeur sur votre poste, tester l
 - Vérifier que vous êtes bien sur la branche en question avant d’éditer le fichier index.html dans l’onglet `files`
 - Ajouter une image dans votre projet (via GitLab)
 - Ajouter dans la page index.html l’image en question (`<img src…`)
-- ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinant. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Testé 😉)
-- Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé assignez le à un autre étudiant ! Demandez-lui de le merger pour vous.
+- ⚠️ Comme en local, le commentaire est très important ! Indiquer un commentaire pertinent. (Astuce si vous ajoutez à la fin de votre commentaire Close #1, l’issue sera automatiquement « fermée » une fois votre modification en place sur la master. Testez 😉)
+- Une fois les modifications faites, vous allez pouvoir créer une `merge request`. Une fois le merge request créé, assignez-le à un autre étudiant ! Demandez-lui de le merger pour vous.
 - ⚠️ ⚠️ L’autre étudiant doit regarder le code, et si possible vous faire des commentaires, par exemple :
-  _ Tu as oublié le `alt` à ton image.
-  _ Tu as oublié le `title` à ton image. \* Ou même pourquoi as-tu choisi cette image ?
+  - Tu as oublié le `alt` à ton image.
+  - Tu as oublié le `title` à ton image.
+  - Ou même pourquoi as-tu choisi cette image ?
 - Prenez en compte les remarques et modifiez le code
 - Ajouter un commentaire (dans le merge request) pour indiquer à l’autre étudiant que vous avez terminé.
 - L’autre étudiant peut merger votre code
@@ -137,7 +138,7 @@ $ git clone git@gitlab.com:bts-sio-chevrollier/decouverte-gitlab.git
 
 ## Traiter une des issues
 
-Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab » sont disponibles choisissez en une. Traitez là en utilisant le « Worflow GitLab » :
+Un ensemble « d’issues »/tickets dans le projet « Découverte GitLab » sont disponibles, choisissez-en une. Traitez-la en utilisant le « Workflow GitLab » :
 
 - Assignation de l’issue à vous-même.
 - Création d’une branche relative à l’issue (un bouton permet de le faire directement).
@@ -163,7 +164,7 @@ $ git branch maNouvelleBranche
 $ git checkout maNouvelleBranche
 ```
 
-### Envoyer vos modifications sur le serveurs GitLab
+### Envoyer vos modifications sur le serveur GitLab
 
 ```sh
 $ git push -u origin maNouvelleBranche
@@ -181,17 +182,17 @@ $ git push -u origin maNouvelleBranche
 
 ## Bonne nouvelle !
 
-Vous venez (normalement) d’avoir au moins un « merge request » d’assigner. Vous allez devoir traiter la demande, à votre avis comment se déroule la suite ?
+Vous venez (normalement) d’avoir au moins un « merge request » d’assigné. Vous allez devoir traiter la demande, à votre avis, comment se déroule la suite ?
 
 ## La revue de code
 
 - Regarder l’issue.
 - Regarder le code de votre « collègue ».
 - Apporter des commentaires
-  _ Dans l’issue, générale.
-  _ Directement dans la partie code de l’issue.
-- Laisser votre collègue effectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc). DISCUTER ! (du code)
-- Si tout vous semble correcte « Merger » les modifications.
+  - Dans l’issue, générale.
+  - Directement dans la partie code de l’issue.
+- Laisser votre collègue effectuer « les corrections » par rapport à votre commentaire (ou débattre de pourquoi, etc.). DISCUTER ! (du code)
+- Si tout vous semble correct « Merger » les modifications.
 
 ### Questions
 

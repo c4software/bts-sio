@@ -16,9 +16,9 @@ Comprendre le fonctionnement de l'Ajax (client/serveur) et surtout le principe d
 
 ## Introduction
 
-[HTMX](https://htmx.org) est une librairie JavaScript permettant de simplifier le chargement de contenu dynamique. Elle permet de faire des appels AJAX sans avoir à écrire une seule ligne de JavaScript. Elle est très simple à utiliser et permet de rendre un site web dynamique en quelques minutes. C'est une alternative au gros framework JavaScript comme VueJS ou ReactJS.
+[HTMX](https://htmx.org) est une librairie JavaScript permettant de simplifier le chargement de contenu dynamique. Elle permet de faire des appels AJAX sans avoir à écrire une seule ligne de JavaScript. Elle est très simple à utiliser et permet de rendre un site web dynamique en quelques minutes. C'est une alternative aux gros frameworks JavaScript comme VueJS ou ReactJS.
 
-Évidemment, HTMX ne permet pas de faire l'ensemble des choses que nous pouvons faire avec VueJS par exemple. Elle prend du sens dans des projets ou nous avons un serveur en mesure de générer du contenu HTML (Laravel dans notre cas). En effet, VueJS permet de générer très facilement des SPA (Single Page Application) mais écrire des SPA n'est pas toujours la meilleure des solutions (exemple d’une application de gestion de stock complexe).
+Évidemment, HTMX ne permet pas de faire l'ensemble des choses que nous pouvons faire avec VueJS par exemple. Elle prend du sens dans des projets où nous avons un serveur en mesure de générer du contenu HTML (Laravel dans notre cas). En effet, VueJS permet de générer très facilement des SPA (Single Page Application) mais écrire des SPA n'est pas toujours la meilleure des solutions (exemple d’une application de gestion de stock complexe).
 
 Il faut donc bien comprendre que HTMX n'est pas un concurrent de VueJS ou ReactJS mais plutôt une alternative au tout JavaScript actuellement très populaire.
 
@@ -68,9 +68,9 @@ Le projet que nous allons réaliser est un système de livre d'or très simple, 
 
 ::: tip Le point de l'ancien !
 
-Le fait de charger directement du HTML depuis le serveur était en quelque sorte passé de mode. En effet, les API Rest comme nous l'avons vu dans les TP précédents sont très populaires (car ils permettent de connecter des clients de type différent). Cependant, le fait de charger du HTML depuis le serveur permet de simplifier le développement et de réduire la quantité de code à écrire.
+Le fait de charger directement du HTML depuis le serveur était en quelque sorte passé de mode. En effet, les API Rest comme nous l'avons vu dans les TP précédents sont très populaires (car elles permettent de connecter des clients de types différents). Cependant, le fait de charger du HTML depuis le serveur permet de simplifier le développement et de réduire la quantité de code à écrire.
 
-Avec la montée en complexité des applications web, certains se tournent à nouveau vers des solutions « très simples » comme HTMX. Pour avoir à nouveau des projets simples sans avoir à écrire des centaines de lignes de code pour des cas d'usage simple.
+Avec la montée en complexité des applications web, certains se tournent à nouveau vers des solutions « très simples » comme HTMX. Pour avoir à nouveau des projets simples sans avoir à écrire des centaines de lignes de code pour des cas d'usage simples.
 
 :::
 
@@ -232,7 +232,7 @@ public function comments()
 }
 ```
 
-Et oui, c'est tout ! Notre méthode va récupérer la liste des commentaires et les passer à la vue `comments` qui va se charger de les afficher. Pour cela, nous allons créer le fichier `comments.blade.php` dans le dossier `resources/views/` :
+Eh oui, c'est tout ! Notre méthode va récupérer la liste des commentaires et les passer à la vue `comments` qui va se charger de les afficher. Pour cela, nous allons créer le fichier `comments.blade.php` dans le dossier `resources/views/` :
 
 ```php
 <div>
@@ -328,7 +328,7 @@ Je vous laisse tester votre code. Si tout fonctionne, vous devriez avoir la list
 
 ::: tip Un instant
 
-Pourquoi `hx-get` et non pas `hx-post` ? Car nous n'avons pas besoin de passer de données à notre route. Nous voulons juste récupérer la liste des commentaires. Et vous avez du déclarer la route `/comments` en `GET` et non pas en `POST`.
+Pourquoi `hx-get` et non pas `hx-post` ? Car nous n'avons pas besoin de passer de données à notre route. Nous voulons juste récupérer la liste des commentaires. Et vous avez dû déclarer la route `/comments` en `GET` et non pas en `POST`.
 
 :::
 
@@ -414,7 +414,7 @@ Vous pouvez maintenant tester votre code. Si tout fonctionne, vous devriez pouvo
 
 ## Supprimer un commentaire
 
-Nous avons maintenant la possibilité d'ajouter des commentaires, il nous reste plus qu'à pouvoir les supprimer. Pour cela, nous allons utiliser l'attribut `hx-delete` sur le bouton de suppression.
+Nous avons maintenant la possibilité d'ajouter des commentaires, il ne nous reste plus qu'à pouvoir les supprimer. Pour cela, nous allons utiliser l'attribut `hx-delete` sur le bouton de suppression.
 
 ```html
 <button hx-delete="/comment/{{$comment->id}}" class="px-4 py-2 text-red-500 rounded-md">
@@ -456,7 +456,7 @@ public function delete($id)
 
 Je vous laisse compléter la méthode `delete` pour qu'elle supprime un commentaire dans la base de données. Puis retourne une chaîne vide.
 
-::: tip Une chaines vide ?
+::: tip Une chaîne vide ?
 
 Oui, c'est étonnant à première vue… Mais pour l'instant nous n'avons pas besoin de retourner une vue. Nous allons voir plus tard comment il est possible avec HTMX de mettre à jour une partie de la page sans avoir à retourner une vue.
 
@@ -540,6 +540,6 @@ Rappel :
 ?>
 ```
 
-Pour vous aider également [Aide mémoire Laravel](/cheatsheets/laravel/quick.md)
+Pour vous aider également [Aide-mémoire Laravel](/cheatsheets/laravel/quick.md)
 
 C'est à vous de jouer !

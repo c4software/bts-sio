@@ -1,10 +1,10 @@
 ---
-description: Nous avons créé dans l'exemple précédent une page avec un formulaire. Je vous propose un autre exemple très simple, nous allons créé une page interactive avec seulement du javascript.
+description: Nous avons créé dans l'exemple précédent une page avec un formulaire. Je vous propose un autre exemple très simple, nous allons créer une page interactive avec seulement du JavaScript.
 ---
 
 # Interactivité
 
-Nous avons créé dans l'exemple précédent une page avec un formulaire. Je vous propose un autre exemple très simple, nous allons créé une page interactive avec seulement du javascript.
+Nous avons créé dans l'exemple précédent une page avec un formulaire. Je vous propose un autre exemple très simple, nous allons créer une page interactive avec seulement du JavaScript.
 
 Cette fois-ci je vous laisse travailler avec comme seule information « mon cahier des charges » / « le visuel que je souhaite ».
 
@@ -19,7 +19,7 @@ Cette fois-ci je vous laisse travailler avec comme seule information « mon cahi
   - La colonne titre est remplie avec la valeur saisie.
   - La colonne date contient la date au moment de l'ajout. `Date()`.
   - L'action est un bouton permettant de supprimer la ligne en question.
-- Votre Javascript doit être externalisé (fichier .js)
+- Votre JavaScript doit être externalisé (fichier .js)
 
 ## Technologies souhaitées
 
@@ -31,14 +31,14 @@ Pour réaliser cette page, je vous propose d'utiliser :
 
 Je vous laisse plancher sur le sujet. N'oubliez pas :
 
-- [L'aide mémoire](/cheatsheets/javascript/)
+- [L'aide-mémoire](/cheatsheets/javascript/)
 - [Le support de cours](/tp/javascript/support.md)
 
 ::: danger STOP
 
 ⚠️ Un appel important ⚠️
 
-En JavaScript votre code est appelé au moment de l'interaction, **Il doit donc toujours être dans une fonction** :
+En JavaScript votre code est appelé au moment de l'interaction, **il doit donc toujours être dans une fonction** :
 
 ![Événement](./res/event_click.png)
 
