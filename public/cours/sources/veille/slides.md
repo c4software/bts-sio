@@ -2,7 +2,7 @@
 
 ## La veille du développeur
 
-Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
+Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](https://twitter.com/c4software)
 
 ---
 
@@ -55,6 +55,7 @@ Et oui… Quelles sources d'information utiliser ?
 
 - Un blog ?
 - Les réseaux sociaux ?
+- Une newsletter ?
 - Un agrégateur RSS ?
 
 ---
@@ -102,8 +103,52 @@ C'est un choix intéressant pour centraliser les informations.
 
 ## Une alternative : les agrégateurs de news
 
-- [Ycombinator](https://news.ycombinator.com/)
+- [Hacker News (Ycombinator)](https://news.ycombinator.com/)
 - [Le journal du hacker](https://www.journalduhacker.net/)
+- [GitHub Trending](https://github.com/trending)
+
+---
+
+## Encore plus simple : les newsletters
+
+---
+
+- Un email par semaine
+- La sélection est faite pour vous
+- La veille sans effort
+
+---
+
+- [TLDR](https://tldr.tech/) (tech générale, IA, DevOps…)
+- [JavaScript Weekly](https://javascriptweekly.com/)
+- [bytes.dev](https://bytes.dev/)
+
+---
+
+## Et les réseaux sociaux ?
+
+---
+
+- La communauté tech a largement quitté Twitter (X)
+- Direction [Bluesky](https://bsky.app/) et [Mastodon](https://joinmastodon.org/)
+- Suivez les créateurs des outils que vous utilisez
+
+---
+
+## Et l'IA dans tout ça ?
+
+### ChatGPT, Claude, Le Chat… peuvent-ils faire votre veille ?
+
+---
+
+- Une IA a une date de fin de connaissances
+- La veille, c'est justement ce qui est **nouveau**
+- Elle peut **résumer** et **expliquer** une actualité
+- Elle ne peut pas la **découvrir** pour vous
+
+---
+
+L'IA est un outil de compréhension, pas une source d'information.
 
 ---
 
@@ -142,8 +187,8 @@ C'est un choix intéressant pour centraliser les informations.
 
 - Les oraux en cours 😘
 - Sur vos réseaux sociaux
-- Sur le Slack de la classe (#actu-dev par exemple)
-- Sur votre Discord
+- Sur le Discord de la classe (#actu-dev par exemple)
+- Dans votre portfolio (article, retour d'expérience)
 
 ---
 
@@ -170,6 +215,15 @@ Beaucoup de sources d'informations sont disponibles.
 ## Mise en pratique
 
 ### Pendant 2 ans, nous vous inviterons à partager vos découvertes avec le groupe.
+
+---
+
+## Récap
+
+- La veille : rester à jour, en continu
+- Choisissez vos sources (RSS, newsletters, agrégateurs)
+- L'IA explique, elle ne remplace pas la veille
+- Lisez, **testez**, partagez
 
 ---
 
