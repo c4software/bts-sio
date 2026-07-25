@@ -1,0 +1,68 @@
+---
+title: Quiz d'entraînement
+aside: false
+---
+
+<script setup>
+import { ref, onMounted } from 'vue'
+import { withBase } from 'vitepress'
+
+const quizzes = ref([])
+const selected = ref('')
+const error = ref(false)
+
+onMounted(async () => {
+  try {
+    const response = await fetch(withBase('/quiz/index.json'))
+    if (!response.ok) throw new Error(response.statusText)
+    quizzes.value = await response.json()
+  } catch {
+    error.value = true
+  }
+})
+</script>
+
+# Quiz d'entraînement
+
+Ces quiz vous permettent de vérifier vos connaissances sur les différentes thématiques du cours. Ils ne sont pas notés : entraînez-vous autant de fois que nécessaire, les questions et les réponses sont mélangées à chaque tentative.
+
+::: tip Comment ça marche ?
+Choisissez une thématique, répondez aux questions, puis validez pour obtenir votre score et les explications. Vous retrouverez une partie de ces questions dans les évaluations sur Moodle.
+:::
+
+<ClientOnly>
+
+<div class="quiz-selector">
+  <label for="quiz-select"><strong>Choisissez un quiz :</strong></label>
+  <select id="quiz-select" v-model="selected">
+    <option disabled value="">— Sélectionnez une thématique —</option>
+    <option v-for="quiz in quizzes" :key="quiz.src" :value="quiz.src">
+      {{ quiz.title }} ({{ quiz.questions }} questions)
+    </option>
+  </select>
+</div>
+
+<p v-if="error">Impossible de charger la liste des quiz.</p>
+
+<QuizGift v-if="selected" :src="selected" :key="selected" />
+
+</ClientOnly>
+
+<style scoped>
+.quiz-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.quiz-selector select {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 6px;
+  padding: 8px 12px;
+  background: var(--vp-c-bg);
+  font-size: 1em;
+  max-width: 100%;
+}
+</style>

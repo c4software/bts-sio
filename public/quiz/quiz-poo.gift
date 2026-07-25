@@ -1,0 +1,195 @@
+// Questionnaire POO — La programmation orientée objet (30 questions, lot unique)
+// Basé sur cheatsheets/poo/index.md (syntaxe PHP, Java, Kotlin, C#)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
+
+$CATEGORY: POO/La programmation orientée objet
+
+// --- Les concepts ---
+
+::POO-Q1 La POO::Qu'est-ce que la programmation orientée objet (POO) ?{
+=Un paradigme de programmation qui utilise des objets pour représenter des entités du monde réel#Exact, les objets sont des instances de classes qui contiennent des données et des méthodes.
+~Un langage de programmation inventé par PHP
+~Une méthode pour écrire du code plus court
+~Un outil de gestion de base de données
+}
+
+::POO-Q2 Les avantages::Parmi ces éléments, lesquels sont des avantages de la POO ? (plusieurs réponses attendues){
+~%33.33333%La réutilisation \: on peut réutiliser des classes existantes#Exact.
+~%33.33333%L'encapsulation \: on peut cacher les données et les méthodes#Exact.
+~%33.33334%L'héritage \: on peut créer des classes à partir d'autres classes#Exact.
+~%-50%L'exécution du programme est toujours plus rapide#Non, la POO n'est pas une question de performance.
+~%-50%Le code n'a plus besoin d'être testé#Non, la POO ne dispense évidemment pas des tests.
+}
+
+::POO-Q3 Classe et objet::Quelle est la différence entre une classe et un objet ?{
+=La classe est le moule (la définition), l'objet est une instance créée à partir de ce moule#Exact \: la classe Personne définit, l'objet $personne1 représente une personne précise.
+~C'est la même chose, ce sont deux synonymes
+~L'objet est le moule, la classe est l'instance#C'est l'inverse.
+~La classe est en PHP, l'objet est en Java
+}
+
+::POO-Q4 Créer un objet::Quel mot-clé permet, dans la plupart des langages (PHP, Java, C#), de créer un objet à partir d'une classe ?{
+=new
+}
+
+::POO-Q5 Instancier::Que signifie « instancier » ?{
+=Créer un objet à partir d'une classe#Exact \: créer un objet \=\= instancier.
+~Supprimer un objet de la mémoire
+~Copier une classe dans une autre
+~Documenter une classe
+}
+
+::POO-Q6 Composition d'une classe::De quoi est composée une classe ?{
+=D'attributs (les données) et de méthodes (les actions), chacun avec une visibilité#Exact \: par exemple nom, prenom et identite(), age().
+~Uniquement de variables
+~Uniquement de fonctions
+~De pages HTML et de CSS
+}
+
+// --- Visibilité et encapsulation ---
+
+::POO-Q7 Les visibilités::Associez chaque visibilité à ce qu'elle autorise.{
+=private -> Accessible seulement depuis l'objet lui-même
+=public -> Accessible depuis n'importe où
+=protected -> Comme private, mais accessible depuis la classe fille en cas d'héritage
+}
+
+::POO-Q8 Le constructeur::Quel est le rôle du constructeur d'une classe ?{
+=Initialiser les attributs de l'objet, il est appelé automatiquement lors du new#Exact, il garantit que les objets sont initialisés de manière cohérente.
+~Détruire l'objet quand on n'en a plus besoin
+~Compiler la classe avant son utilisation
+~Créer la table correspondante dans la base de données
+}
+
+::POO-Q9 Vrai ou Faux - Constructeurs::Une classe peut définir plusieurs constructeurs avec des paramètres différents.{TRUE#Exact, c'est la surcharge appliquée au constructeur.#Relisez la partie sur le constructeur \: la surcharge permet plusieurs constructeurs avec des paramètres différents.}
+
+::POO-Q10 Getter et setter::Comment appelle-t-on les méthodes qui permettent de lire et de modifier les propriétés d'un objet ?{
+=Les accesseurs (getter) pour lire et les mutateurs (setter) pour modifier#Exact \: getSalaire() lit, setSalaire() modifie.
+~Les constructeurs et les destructeurs
+~Les méthodes statiques et dynamiques
+~Les readers et les writers
+}
+
+::POO-Q11 L'encapsulation::En quoi consiste l'encapsulation ?{
+=Cacher l'implémentation de l'objet en empêchant l'accès direct aux données autrement que par les méthodes proposées#Exact, c'est une des raisons pour lesquelles la POO favorise un développement sécurisé.
+~Compresser le code pour qu'il prenne moins de place
+~Regrouper toutes les classes dans un seul fichier
+~Protéger le code source par un mot de passe
+}
+
+::POO-Q12 La surcharge::La surcharge permet de définir plusieurs méthodes portant le même nom, à condition qu'elles aient des {=paramètres ~visibilités ~valeurs de retour ~commentaires} différents (type et/ou ordre).
+
+::POO-Q13 Le this::Dans une méthode, que désigne $this (PHP) ou this (Java, C#) ?{
+=L'objet courant, celui sur lequel la méthode est appelée#Exact \: $this->nom accède à l'attribut nom de l'objet en cours.
+~La classe mère
+~Le premier objet créé dans le programme
+~Une variable globale du programme
+}
+
+// --- L'héritage ---
+
+::POO-Q14 Identifier un héritage::Quelle question permet de savoir si une relation entre deux classes est un héritage ?{
+=Peut-on dire « est un » ?#Exact \: une Voiture « est un » Véhicule, il y a héritage.
+~Peut-on dire « possède un » ?#Non, « possède un » indique plutôt une composition ou une collection.
+~Les deux classes ont-elles le même nombre de méthodes ?
+~Les deux classes sont-elles dans le même fichier ?
+}
+
+::POO-Q15 Un bon héritage::Parmi ces relations, laquelle est un héritage valide ?{
+=Une Voiture est un Véhicule#Exact, on peut dire « est un ».
+~Un Pompier est un Camion#L'exemple du cours \: on ne peut pas dire qu'un pompier « est un » camion.
+~Une Entreprise est une Personne#Non, une entreprise est composée de personnes (agrégation).
+~Un Étudiant est un Devoir#Non, un étudiant possède des devoirs (collection).
+}
+
+::POO-Q16 Le mot-clé::Quel mot-clé permet de définir une classe enfant en PHP et en Java (exemple \: class Humain … Mammifere) ?{
+=extends
+}
+
+::POO-Q17 Mère et fille::Dans un héritage, comment répartit-on la logique entre la classe mère et la classe fille ?{
+=La classe mère contient la logique partagée, la classe fille la logique spécifique#Exact, c'est le principe de généralisation.
+~La classe mère contient tout, la fille est toujours vide
+~La classe fille contient tout, la mère ne sert qu'à donner un nom
+~La logique est dupliquée dans les deux classes
+}
+
+::POO-Q18 Appeler le parent::Depuis une classe fille, comment appelle-t-on une méthode de la classe mère ?{
+=parent\:\:maMethode() en PHP, super.maMethode() en Java#Exact, utile notamment pour spécialiser une méthode en la complétant.
+~mere.maMethode()
+~this.parent.maMethode()
+~Ce n'est pas possible
+}
+
+::POO-Q19 La redéfinition::Qu'est-ce que la redéfinition (remplacement de méthode) ?{
+=Définir dans la classe fille une méthode avec exactement la même signature que dans la classe mère, pour en remplacer le comportement#Exact, contrairement à la surcharge, la signature doit être identique.
+~Renommer une méthode dans la classe fille
+~Définir deux méthodes de même nom avec des paramètres différents#Cela, c'est la surcharge.
+~Supprimer une méthode héritée
+}
+
+::POO-Q20 Vrai ou Faux - Redéfinition::On parle de redéfinition de méthode même en dehors de tout héritage.{FALSE#Exact, c'est faux \: la redéfinition n'existe que dans le cadre de l'héritage, entre classe mère et classe fille.#Relisez le cours \: la redéfinition s'applique uniquement dans le cadre de l'héritage, à ne pas confondre avec la surcharge.}
+
+::POO-Q21 Lire un héritage::La classe Humain hérite de Mammifere et redéfinit la méthode manger(). Mammifere\:\:manger() affiche « Je mange », Humain\:\:manger() affiche « Je suis omnivore ». Qu'affiche $unHumain->manger() ?{
+=Je suis omnivore#Exact, la méthode redéfinie dans la classe fille remplace celle de la mère.
+~Je mange
+~Je mange puis Je suis omnivore#Ce serait le cas si la fille appelait parent\:\:manger() avant son propre traitement.
+~Une erreur, une méthode ne peut pas être redéfinie
+}
+
+// --- Polymorphisme et statique ---
+
+::POO-Q22 Le polymorphisme::Comment peut-on définir le polymorphisme ?{
+=La capacité de choisir dynamiquement la méthode qui correspond au type réel de l'objet#Exact, du grec poly (plusieurs) et morphisme (forme).
+~La possibilité de créer plusieurs objets d'une même classe
+~Le fait qu'une classe possède plusieurs attributs
+~La conversion automatique des types de variables
+}
+
+::POO-Q23 Polymorphisme et collections::Grâce au polymorphisme, que peut-on faire avec une liste typée sur une classe mère (ex. List&lt;MachineVolante&gt;) ?{
+=Y ranger des objets de classes filles différentes (Mig29, Helicoptere…) et appeler leurs méthodes sans connaître leur type précis#Exact, chaque objet exécute sa propre version de fly().
+~Y ranger n'importe quel objet, même sans lien avec MachineVolante
+~Rien de particulier, une liste ne peut contenir qu'un seul type exact
+~Convertir automatiquement les objets en chaînes de caractères
+}
+
+::POO-Q24 Les méthodes statiques::Quelle est la particularité d'une méthode statique ?{
+=Elle peut être appelée sans instancier d'objet#Exact \: Personne\:\:laReponseDeLunivers() en PHP, souvent utilisée pour des fonctions utilitaires.
+~Elle ne peut pas retourner de valeur
+~Elle est forcément privée
+~Elle est plus lente qu'une méthode classique
+}
+
+::POO-Q25 Clin d'œil::La méthode statique laReponseDeLunivers() de la cheatsheet retourne un nombre bien connu. Lequel ?{#42#Exact, la réponse à la grande question sur la vie, l'univers et le reste.}
+
+// --- Abstraction et interfaces ---
+
+::POO-Q26 Les classes abstraites::Quelle est la particularité d'une classe abstraite ?{
+=Elle ne peut pas être instanciée et sert de modèle à ses classes filles#Exact, elle doit posséder au moins une méthode abstraite, implémentée par les filles.
+~Elle ne peut pas avoir de classe fille
+~Elle ne contient que des attributs
+~Elle est automatiquement supprimée à la fin du programme
+}
+
+::POO-Q27 Vrai ou Faux - Classes abstraites::Une classe abstraite peut contenir à la fois des méthodes abstraites (sans code) et des méthodes concrètes (avec du code).{TRUE#Exact \: dans l'exemple, EtudiantAbstrait a des méthodes abstraites et la méthode concrète parler().#Relisez le cours \: une classe abstraite doit avoir au moins une méthode abstraite, mais peut aussi avoir des méthodes concrètes.}
+
+::POO-Q28 Les interfaces::Qu'est-ce qu'une interface ?{
+=Un contrat sans code \: la classe qui l'implémente doit obligatoirement définir toutes ses méthodes#Exact, une interface ne contient que des méthodes publiques et n'est pas instanciable.
+~Une classe avec uniquement des attributs publics
+~La partie graphique d'une application
+~Une classe qui hérite de plusieurs classes
+}
+
+::POO-Q29 Abstraite ou interface ?::Quelle est la différence de rôle entre une classe abstraite et une interface ?{
+=La classe abstraite sert à factoriser du code, l'interface à définir un contrat de service#Exact, et une classe peut implémenter plusieurs interfaces alors qu'elle ne peut généralement hériter que d'une seule classe.
+~Aucune, ce sont deux noms pour la même notion
+~L'interface contient du code, la classe abstraite n'en contient pas#C'est l'inverse \: l'interface ne contient pas de code.
+~La classe abstraite est instanciable, pas l'interface#Aucune des deux n'est instanciable.
+}
+
+::POO-Q30 Les namespaces::À quoi servent les namespaces ?{
+=À organiser les classes en groupes et à distinguer des classes portant le même nom#Exact \: une classe Personne peut exister dans deux namespaces différents sans conflit.
+~À accélérer le chargement des classes
+~À rendre les classes privées
+~À traduire les noms des classes en plusieurs langues
+}

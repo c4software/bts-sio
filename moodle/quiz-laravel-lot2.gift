@@ -1,0 +1,109 @@
+// Questionnaire Laravel — Lot 2 : Authentification, API, tests, 2FA et reset de mot de passe
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
+
+$CATEGORY: Laravel/Lot 2 - Authentification, API et tests
+
+// --- QCM ---
+
+::LARA-L2-Q1 Hashage des mots de passe::Pourquoi hashe-t-on les mots de passe avant de les stocker en base de données ?{
+=Pour qu'en cas de fuite de la base, les mots de passe ne soient pas lisibles#Exact, le hash est non réversible \: même l'administrateur ne peut pas retrouver le mot de passe.
+~Pour que les mots de passe prennent moins de place en base
+~Pour accélérer la vérification lors de la connexion
+~Pour permettre de renvoyer le mot de passe par email en cas d'oubli#C'est justement l'inverse \: le hash rend cela impossible.
+}
+
+// --- Vrai / Faux ---
+
+::LARA-L2-Q2 Vrai ou Faux - Hashage::Le hashage est une opération réversible \: à partir du hash, on peut retrouver le mot de passe d'origine.{FALSE#Exact, c'est faux \: le hashage est à sens unique, contrairement au chiffrement.#Relisez le TP authentification manuelle \: le hash est à sens unique, on compare des hashs, on ne « déhashe » jamais.}
+
+// --- QCM ---
+
+::LARA-L2-Q3 Protéger des routes::Dans Laravel, quel mécanisme permet de réserver certaines routes aux utilisateurs connectés ?{
+=Le middleware auth#Exact, il intercepte la requête et redirige vers la page de connexion si besoin.
+~Une condition if dans chaque vue Blade#Non, la protection doit se faire avant d'atteindre la vue.
+~Un fichier .htaccess
+~Le fichier .env
+}
+
+::LARA-L2-Q4 Connexion::Lors de la connexion, comment vérifie-t-on que le mot de passe saisi est correct ?{
+=On compare le hash du mot de passe saisi avec le hash stocké en base#Exact, via Hash\:\:check() par exemple.
+~On déchiffre le hash stocké et on le compare au mot de passe saisi#Impossible, le hash n'est pas réversible.
+~On compare le mot de passe saisi avec celui stocké en clair en base
+~On envoie le mot de passe au navigateur pour vérification
+}
+
+// --- Mot manquant ---
+
+::LARA-L2-Q5 Les routes d'API::Dans un projet Laravel, les routes d'API sont définies dans le fichier routes/{=api.php ~web.php ~rest.php ~json.php}, et sont automatiquement préfixées par /api.
+
+// --- QCM ---
+
+::LARA-L2-Q6 Format des API::Dans quel format une API REST échange-t-elle généralement ses données avec les clients ?{
+=JSON#Exact, un format texte léger compréhensible par tous les langages.
+~HTML
+~PDF
+~Blade
+}
+
+// --- Appariement ---
+
+::LARA-L2-Q7 Méthodes HTTP::Associez chaque méthode HTTP à son usage dans une API REST.{
+=GET -> Récupérer des données
+=POST -> Créer une nouvelle ressource
+=PUT -> Modifier une ressource existante
+=DELETE -> Supprimer une ressource
+}
+
+// --- Numérique ---
+
+::LARA-L2-Q8 Codes HTTP::Quel code de statut HTTP signifie « ressource non trouvée » ?{#404#Exact, le fameux 404 Not Found.}
+
+// --- QCM ---
+
+::LARA-L2-Q9 Types de tests::Quelle est la différence entre un test unitaire et un test Feature dans Laravel ?{
+=Le test unitaire vérifie une fonction isolée, le test Feature simule une vraie requête HTTP sur l'application#Exact, les deux sont complémentaires.
+~Le test unitaire est manuel, le test Feature est automatique
+~Le test Feature ne fonctionne qu'en production
+~Il n'y a aucune différence, ce sont deux noms pour la même chose
+}
+
+// --- Mot manquant ---
+
+::LARA-L2-Q10 Le TDD::Dans la démarche TDD (Test Driven Development), on commence par écrire {=les tests ~le code ~la documentation ~les vues} avant le reste \: c'est la phase « Red », puis on code jusqu'à la phase « Green ».
+
+// --- Réponse courte ---
+
+::LARA-L2-Q11 Lancer les tests::Quelle commande artisan permet de lancer l'ensemble des tests du projet ? (avec ou sans le préfixe php artisan){
+=test
+=php artisan test
+}
+
+// --- QCM ---
+
+::LARA-L2-Q12 La 2FA::Qu'apporte une authentification à deux facteurs (2FA) par rapport à un simple mot de passe ?{
+=Une deuxième preuve d'identité (par exemple un code temporaire), qui protège le compte même si le mot de passe est compromis#Exact, le mot de passe seul ne suffit plus.
+~Un mot de passe deux fois plus long
+~Une double saisie du mot de passe pour éviter les fautes de frappe
+~Un chiffrement de la base de données
+}
+
+::LARA-L2-Q13 Mot de passe oublié::Quel est le mécanisme correct d'un « mot de passe oublié » ?{
+=Envoyer par email un lien contenant un token unique et à durée limitée, qui permet de définir un nouveau mot de passe#Exact, c'est le mécanisme mis en place dans le TP.
+~Envoyer le mot de passe actuel par email#Impossible \: il est hashé, et ce serait une faille de sécurité.
+~Afficher le mot de passe sur la page après vérification de l'adresse email
+~Réinitialiser le mot de passe à « 123456 » et demander à l'utilisateur de le changer
+}
+
+// --- Vrai / Faux ---
+
+::LARA-L2-Q14 Vrai ou Faux - Emails de test::Pour développer l'envoi d'emails (reset de mot de passe par exemple), on peut utiliser un serveur SMTP de test qui capture les emails sans les envoyer réellement.{TRUE#Exact, c'est le principe utilisé dans le TP \: les emails sont visibles dans une interface, mais jamais réellement envoyés.#Relisez le TP reset de mot de passe \: un serveur de test capture les emails, ce qui évite d'envoyer de vrais messages pendant le développement.}
+
+// --- QCM à réponses multiples ---
+
+::LARA-L2-Q15 Bonnes pratiques::Parmi ces pratiques concernant l'authentification, lesquelles sont de BONNES pratiques ? (plusieurs réponses attendues){
+~%50%Hasher les mots de passe avant de les stocker#Exact, indispensable.
+~%50%Protéger les routes sensibles avec le middleware auth#Exact, la vérification se fait côté serveur avant tout traitement.
+~%-50%Stocker les mots de passe en clair pour pouvoir les renvoyer par email#Mauvaise pratique majeure.
+~%-50%Vérifier les droits d'accès uniquement en JavaScript côté client#La vérification côté client peut être contournée, elle doit se faire côté serveur.
+}

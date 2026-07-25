@@ -1,0 +1,112 @@
+// Questionnaire Laravel — Lot 1 : Les fondamentaux (introduction, routes, Blade, migrations, Eloquent)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique
+
+$CATEGORY: Laravel/Lot 1 - Les fondamentaux
+
+// --- QCM ---
+
+::LARA-L1-Q1 Architecture::Sur quelle architecture repose le framework Laravel ?{
+=MVC (Modèle - Vue - Contrôleur)#Exact, chaque couche a une responsabilité bien définie.
+~Client - Serveur uniquement
+~MERN
+~Micro-services obligatoirement
+}
+
+// --- Réponse courte ---
+
+::LARA-L1-Q2 La ligne de commande::Comment s'appelle l'outil en ligne de commande fourni par Laravel (utilisé par exemple pour lancer le serveur ou créer un contrôleur) ?{
+=artisan
+=php artisan
+}
+
+// --- QCM ---
+
+::LARA-L1-Q3 Les routes::Dans quel fichier définit-on les routes web d'un projet Laravel ?{
+=routes/web.php
+~app/routes.php
+~config/routes.php
+~public/index.php
+}
+
+// --- Mot manquant ---
+
+::LARA-L1-Q4 Lancer le projet::Pour lancer le serveur de développement, on utilise la commande php artisan {=serve ~start ~run ~launch} depuis la racine du projet.
+
+// --- QCM ---
+
+::LARA-L1-Q5 Les vues::Quelle extension portent les fichiers de vue utilisant le moteur de template de Laravel ?{
+=.blade.php#Exact, Blade est le moteur de template de Laravel.
+~.view.php
+~.html.php
+~.tpl
+}
+
+::LARA-L1-Q6 Blade::Dans une vue Blade, comment affiche-t-on le contenu de la variable $nom (avec échappement automatique) ?{
+=\{\{ $nom \}\}#Exact, les doubles accolades échappent automatiquement le contenu (protection XSS).
+~<?php echo $nom\; ?>#Cela fonctionne mais ce n'est pas la syntaxe Blade attendue.
+~[[ $nom ]]
+~@print($nom)
+}
+
+// --- Appariement ---
+
+::LARA-L1-Q7 Les rôles dans MVC::Associez chaque élément de Laravel à son rôle.{
+=Le routeur -> Faire correspondre une URL à une action
+=Le contrôleur -> Contenir la logique de traitement de la requête
+=Le modèle (Eloquent) -> Représenter et manipuler les données en base
+=La vue (Blade) -> Générer le HTML affiché à l'utilisateur
+}
+
+// --- Vrai / Faux ---
+
+::LARA-L1-Q8 Les migrations::Une migration est un fichier PHP qui décrit la structure d'une table et qui est versionné avec le reste du code du projet.{TRUE#Exact, c'est ce qui permet à toute l'équipe de reconstruire la même base de données.#Relisez le support \: la migration décrit la structure, elle est bien versionnée avec le code.}
+
+// --- Réponse courte ---
+
+::LARA-L1-Q9 Exécuter les migrations::Quelle commande artisan permet de créer réellement les tables en base à partir des migrations ? (avec ou sans le préfixe php artisan){
+=migrate
+=php artisan migrate
+}
+
+// --- QCM ---
+
+::LARA-L1-Q10 Eloquent::Qu'est-ce qu'Eloquent dans Laravel ?{
+=Un ORM \: il fait le lien entre les objets PHP et les tables de la base de données#Exact, il évite d'écrire les requêtes SQL à la main.
+~Le moteur de template de Laravel#Non, c'est Blade.
+~Le serveur web intégré de Laravel
+~Un éditeur de code recommandé pour Laravel
+}
+
+::LARA-L1-Q11 Requêter avec Eloquent::Que retourne l'instruction Todo\:\:all() ?{
+=L'ensemble des enregistrements de la table todos#Exact, sous forme de collection d'objets Todo.
+~Le premier enregistrement de la table todos
+~La structure de la table todos
+~Une erreur, la méthode n'existe pas
+}
+
+// --- Mot manquant ---
+
+::LARA-L1-Q12 La configuration::Les informations de configuration du projet (connexion à la base de données, nom de l'application…) sont définies dans le fichier {=.env ~config.php ~settings.json ~database.yml} à la racine du projet.
+
+// --- QCM ---
+
+::LARA-L1-Q13 Les conventions::Par convention, le modèle Todo correspond à quelle table dans la base de données ?{
+=todos#Exact, Laravel utilise le nom du modèle au pluriel et en minuscules.
+~Todo
+~table_todo
+~todo_model
+}
+
+// --- Numérique ---
+
+::LARA-L1-Q14 Le serveur de développement::Sur quel port le serveur lancé par php artisan serve écoute-t-il par défaut ?{#8000#Exact, le projet est accessible sur http\://localhost\:8000.}
+
+// --- QCM ---
+
+::LARA-L1-Q15 Les layouts::À quoi sert un layout Blade dans un projet Laravel ?{
+=À factoriser la structure HTML commune (menu, header, footer) pour ne pas la dupliquer dans chaque vue#Exact, chaque page vient ensuite « remplir » le layout avec son contenu.
+~À définir les routes de l'application
+~À configurer la connexion à la base de données
+~À gérer les droits d'accès des utilisateurs
+}

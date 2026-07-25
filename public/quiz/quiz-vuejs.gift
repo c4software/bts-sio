@@ -1,0 +1,66 @@
+// Questionnaire VueJS 3 — 10 questions, lot unique
+// Basé sur cheatsheets/vuejs3/index.md et tp/vuejs3/ (tp0, application, routeur)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant
+
+$CATEGORY: JavaScript/VueJS
+
+::VUE-Q1 VueJS::Qu'est-ce que VueJS ?{
+=Un framework JavaScript côté client, basé sur le modèle MVVM#Exact, la vue se met à jour automatiquement quand les données changent.
+~Un serveur Web pour héberger du JavaScript
+~Un langage qui remplace le JavaScript
+~Une base de données orientée documents
+}
+
+::VUE-Q2 L'interpolation::Dans le template, que fait la syntaxe \{\{ message \}\} ?{
+=Elle affiche la valeur de la donnée message, et se met à jour automatiquement si celle-ci change#Exact, c'est l'interpolation, cœur de la réactivité de Vue.
+~Elle déclare une nouvelle variable nommée message
+~Elle envoie message au serveur
+~Elle affiche littéralement le texte « message »
+}
+
+::VUE-Q3 Créer l'application::Quelle fonction de Vue permet de créer l'application avant de l'attacher à la page ?{
+=createApp
+=createApp()
+=Vue.createApp
+=Vue.createApp()
+}
+
+::VUE-Q4 Le mount::Que fait .mount('#monMessage') sur l'application Vue ?{
+=Elle attache l'application à l'élément du DOM dont l'id est monMessage#Exact, Vue ne contrôle que cette partie de la page.
+~Elle crée un élément HTML nommé monMessage
+~Elle affiche le texte monMessage dans la page
+~Elle démarre le serveur de développement
+}
+
+::VUE-Q5 Les data::Où déclare-t-on les variables réactives d'une application Vue (options API vue en TP) ?{
+=Dans la fonction data(), qui retourne un objet#Exact, chaque propriété de cet objet devient une donnée réactive utilisable dans le template.
+~Dans une balise <data> du HTML
+~Dans le fichier package.json
+~Dans le localStorage du navigateur
+}
+
+::VUE-Q6 Les directives::Associez chaque directive à son rôle.{
+=v-for -> Répéter un élément pour chaque entrée d'une liste
+=v-if -> Afficher un élément seulement si une condition est vraie
+=v-model -> Lier un input à une donnée dans les deux sens
+=v-on -> Réagir à un évènement (clic, soumission…)
+}
+
+::VUE-Q7 v-if ou v-show::Quelle est la différence entre v-if et v-show ?{
+=v-if retire complètement l'élément du DOM, v-show le masque simplement via le CSS#Exact, v-show est plus adapté si l'élément est affiché/masqué souvent.
+~Aucune, ce sont deux écritures de la même directive
+~v-show fonctionne uniquement avec les listes
+~v-if ne fonctionne que sur les formulaires
+}
+
+::VUE-Q8 Les modificateurs::Sur un formulaire, la directive v-on\:submit.{=prevent ~stop ~once ~self}\="onSubmit" empêche le comportement par défaut du navigateur (le rechargement de la page) avant d'appeler la méthode.
+
+::VUE-Q9 Cycle de vie::Quel hook du cycle de vie est appelé une fois le composant inséré dans le DOM (souvent utilisé pour charger des données) ?{
+=mounted#Exact, il suit beforeMount dans le cycle de vie.
+~created#Il est appelé avant l'insertion dans le DOM.
+~updated#Il est appelé après une mise à jour des données, pas à l'insertion.
+~unmounted#Il est appelé à la destruction du composant.
+}
+
+::VUE-Q10 Vrai ou Faux - Vue Router::Avec Vue Router, chaque changement de page provoque un rechargement complet de la page depuis le serveur.{FALSE#Exact, c'est faux \: le routeur change la vue affichée sans recharger la page, c'est le principe d'une SPA (Single Page Application).#Relisez le TP routeur \: le routeur affiche le bon composant selon l'URL, sans rechargement de la page.}

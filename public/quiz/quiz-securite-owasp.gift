@@ -1,0 +1,253 @@
+// Questionnaire Sécurité des applications (OWASP) — 40 questions, lot unique
+// Basé sur cours/securite_applications.md et cheatsheets/owasp/index.md
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
+
+$CATEGORY: Sécurité/OWASP
+
+// --- OWASP et concepts généraux ---
+
+::SECU-Q1 OWASP::Qu'est-ce que l'OWASP ?{
+=Une communauté en ligne travaillant sur la sécurité des applications Web#Exact, elle publie des recommandations et des outils libres et ouverts à tous.
+~Un antivirus pour serveurs Web
+~Une certification obligatoire pour les développeurs
+~Un pare-feu open source
+}
+
+::SECU-Q2 Le Top 10::Combien de grandes catégories de failles le Top 10 OWASP liste-t-il ?{#10#Exact, d'où son nom de « Top 10 ».}
+
+::SECU-Q3 Vrai ou Faux - Périmètre::Les recommandations OWASP ne s'appliquent qu'aux sites web.{FALSE#Exact, c'est faux \: elles s'appliquent à toutes les applications, pas seulement aux sites web.#Relisez le cours \: OWASP s'applique à toutes les applications, pas seulement aux sites web.}
+
+::SECU-Q4 Confidentialité, Intégrité, Disponibilité::Associez chaque grande catégorie de risque à un exemple.{
+=Confidentialité -> Fuite de données personnelles
+=Intégrité -> Modification non autorisée de données (injection SQL)
+=Disponibilité -> Service rendu inaccessible (attaque DDoS)
+}
+
+::SECU-Q5 Surface d'attaque::Qu'est-ce que la « surface d'attaque » d'un système ?{
+=L'ensemble des points d'entrée qui peuvent être exploités par un attaquant#Exact, la réduire consiste à minimiser les points d'entrée.
+~La taille du disque dur exposé sur Internet
+~Le nombre d'utilisateurs de l'application
+~La superficie de la salle serveur
+}
+
+::SECU-Q6 Faille ou risque ?::Avec le Top 10, OWASP parle de…{
+=Vulnérabilités#Exact, OWASP parle de vulnérabilité, et non de risque.
+~Risques
+~Menaces
+~Incidents
+}
+
+// --- Mots de passe et authentification ---
+
+::SECU-Q7 Stockage des mots de passe::Comment un mot de passe doit-il être stocké en base de données ?{
+=Haché (non réversible) et salé#Exact, jamais en clair, et le sel rend chaque hash unique.
+~Chiffré avec une clé connue de l'administrateur#Non, le chiffrement est réversible \: on veut du hachage.
+~En clair, mais dans une table protégée par mot de passe
+~Encodé en Base64#L'encodage n'est pas une protection, il est trivialement réversible.
+}
+
+::SECU-Q8 Une chaîne aléatoire::Comment s'appelle la technique qui consiste à ajouter une chaîne aléatoire au mot de passe avant de le hacher ?{
+=le salage
+=salage
+=salt
+}
+
+::SECU-Q9 Bcrypt::Parmi ces affirmations sur bcrypt, laquelle est correcte ?{
+=Il intègre le sel et un coût (nombre d'itérations) paramétrable#Exact, plus le coût est élevé, plus le hachage est long à calculer, donc plus il résiste au brute-force.
+~C'est un algorithme de chiffrement réversible
+~Il est basé sur SHA-256#Non, il est basé sur Blowfish.
+~Il ne fonctionne que sur Linux
+}
+
+::SECU-Q10 Vrai ou Faux - MD5::Stocker un mot de passe hashé en MD5 est aujourd'hui considéré comme sécurisé.{FALSE#Exact, c'est faux \: le cours cite le MD5 comme un exemple d'exposition de données sensibles, au même titre que le stockage en clair.#Relisez la partie « Exposition de données sensibles » \: un mot de passe en MD5 y est cité comme une faille.}
+
+::SECU-Q11 Le coût de bcrypt::Quelle est la conséquence d'un coût (nombre d'itérations) plus élevé dans bcrypt ?{
+=Le hachage est plus long à calculer, ce qui le rend plus résistant aux attaques par force brute#Exact, c'est un compromis entre performance et sécurité.
+~Le hash produit est plus court
+~Le mot de passe doit être plus long
+~Le sel devient inutile
+}
+
+::SECU-Q12 Les trois formes d'authentification::Associez chaque forme d'authentification à un exemple.{
+=Mémorielle (un secret que l'on connaît) -> Un mot de passe
+=Matérielle (un objet que l'on possède) -> Une clé Yubikey
+=Corporelle (un trait physique) -> Une empreinte digitale
+}
+
+::SECU-Q13 OTP::Que signifie l'acronyme OTP (utilisé par Google Authenticator ou Authy) ?{
+=One Time Password \: un mot de passe à usage unique#Exact, il change à chaque utilisation ou toutes les 30 secondes.
+~Open Transfer Protocol
+~Online Trusted Person
+~Optional Third Password
+}
+
+::SECU-Q14 Le SSO::Quel est le principal risque du SSO (Single Sign-On) ?{
+=Si un compte est compromis, l'attaquant accède à toutes les applications liées à ce compte#Exact, d'où l'importance de le combiner avec du multi-facteurs (2FA, MFA).
+~Il oblige à retenir un mot de passe différent par application#C'est l'inverse, c'est justement son intérêt.
+~Il ne fonctionne pas avec le HTTPS
+~Il est interdit par le RGPD
+}
+
+::SECU-Q15 Social Engineering::Qu'est-ce que le social engineering ?{
+=La manipulation de l'humain pour obtenir des informations ou des accès#Exact, l'humain est le maillon faible \: la contre-mesure est la formation régulière.
+~Un réseau social pour les ingénieurs en sécurité
+~Une technique d'injection SQL avancée
+~L'ingénierie des réseaux sociaux d'entreprise
+}
+
+// --- Les failles du Top 10 ---
+
+::SECU-Q16 L'injection::Une attaque par injection (SQL, OS, LDAP…) survient lorsque…{
+=Des données non fiables sont envoyées à un interpréteur en tant que commande ou requête#Exact, c'est la définition de la catégorie A03 du Top 10.
+~Un utilisateur saisit un mot de passe trop court
+~Un serveur n'est pas à jour
+~Un cookie est stocké sans expiration
+}
+
+::SECU-Q17 Corriger l'injection SQL::Pour se protéger des injections SQL, il faut toujours utiliser des requêtes {=préparées ~concaténées ~rapides ~chiffrées}, ou un ORM qui fait la même chose.
+
+::SECU-Q18 Reconnaître l'attaque::Un attaquant ouvre l'URL suivante \: http\://exemple.com/liste?id\='or '1'\='1 — de quelle attaque s'agit-il ?{
+=Une injection SQL#Exact, la condition '1'\='1' étant toujours vraie, la requête retourne toutes les lignes de la table.
+~Un XSS reflété
+~Un CSRF
+~Une attaque DDoS
+}
+
+::SECU-Q19 Le XSS::En quoi consiste une faille XSS (Cross-Site Scripting) ?{
+=Injecter du contenu (souvent du JavaScript) dans une page pour provoquer des actions non désirées#Exact, par exemple en saisissant <script>…</script> dans un champ affiché sans échappement.
+~Voler physiquement le serveur
+~Saturer le serveur de requêtes
+~Deviner un mot de passe par force brute
+}
+
+::SECU-Q20 Les deux types de XSS::Quels sont les deux types de XSS à connaître ?{
+=Persistant (stocké en base et exécuté à chaque affichage) et reflété (via un lien)#Exact.
+~Interne et externe
+~Client et serveur
+~Statique et dynamique
+}
+
+::SECU-Q21 Échapper l'affichage::Quelle fonction PHP est recommandée pour échapper une valeur avant de l'afficher dans une page (protection XSS) ?{
+=htmlspecialchars
+=htmlspecialchars()
+}
+
+::SECU-Q22 Vrai ou Faux - Requête préparée et XSS::Utiliser des requêtes préparées suffit à se protéger des failles XSS.{FALSE#Exact, c'est faux \: la requête préparée protège des injections SQL. Contre le XSS, il faut échapper les données à l'affichage (htmlspecialchars).#Attention \: la requête préparée protège la base de données (injection SQL), pas l'affichage dans le navigateur (XSS).}
+
+::SECU-Q23 Le CSRF::En quoi consiste une attaque CSRF (falsification de requête intersite) ?{
+=Faire exécuter une requête à l'insu de l'utilisateur, en profitant de sa session active#Exact, par exemple un lien piégé qui déclenche une action sur un site où il est connecté.
+~Injecter du SQL dans un formulaire
+~Écouter le trafic réseau non chiffré
+~Modifier le DNS du serveur
+}
+
+::SECU-Q24 Bloquer le CSRF::Quelle est la contre-mesure principale contre le CSRF ?{
+=Ajouter dans les formulaires un jeton unique et non réutilisable, vérifié côté serveur#Exact, c'est le csrf_token intégré de base dans Laravel.
+~Utiliser des mots de passe plus longs
+~Passer toutes les requêtes en GET
+~Désactiver JavaScript sur le site
+}
+
+::SECU-Q25 Références directes non sécurisées::Un site affiche http\://exemple.com/liste?mode\=client et un utilisateur remplace « client » par « admin » et accède aux données d'administration. Quelle est la cause du problème ?{
+=Les droits de l'utilisateur ne sont pas vérifiés côté serveur avant de charger la ressource#Exact, et notez qu'une requête préparée n'empêche pas ce danger.
+~Le site n'utilise pas le HTTPS
+~Le mot de passe de l'admin est trop faible
+~La base de données n'est pas sauvegardée
+}
+
+::SECU-Q26 Mauvaise configuration::Parmi ces situations, laquelle relève de la « mauvaise configuration de sécurité » ?{
+=Une console d'administration accessible en ligne sans authentification#Exact, comme le listage des répertoires, les exemples de code non supprimés ou une application laissée en mode debug.
+~Un mot de passe utilisateur trop court
+~Une librairie JavaScript obsolète
+~Un email de phishing envoyé aux employés
+}
+
+::SECU-Q27 Composants vulnérables::Pourquoi un CMS ou un framework non mis à jour représente-t-il une faille ?{
+=Ses vulnérabilités sont connues et documentées publiquement, un attaquant peut les exploiter directement#Exact, c'est la catégorie « composants avec des vulnérabilités connues ».
+~Parce qu'il devient plus lent avec le temps
+~Parce que sa licence expire
+~Ce n'est pas une faille tant que le site fonctionne
+}
+
+::SECU-Q28 Redirections non validées::Un attaquant diffuse le lien http\://www.shop-vdt.com/login.php?goto\=evil.com/login. Quel est l'objectif de cette attaque ?{
+=Utiliser un site légitime comme « masque » pour rediriger la victime vers une page malveillante (phishing)#Exact, la contre-mesure est de filtrer et valider les destinations de redirection.
+~Saturer le serveur shop-vdt.com
+~Injecter du SQL dans la page de login
+~Voler le certificat SSL du site
+}
+
+::SECU-Q29 Supply Chain Attack::En quoi consiste une Supply Chain Attack ?{
+=Compromettre une dépendance logicielle (npm, composer, pip…) pour distribuer un malware aux applications qui l'utilisent#Exact, l'attaque ne vise pas directement votre code mais une dépendance, comme la faille Log4Shell en 2021.
+~Attaquer les camions de livraison d'une entreprise
+~Voler les identifiants d'un fournisseur d'électricité
+~Intercepter les emails entre deux entreprises
+}
+
+::SECU-Q30 Vrai ou Faux - Session dans l'URL::Transmettre l'identifiant de session en paramètre GET (http\://exemple.com/?jsessionid\=A2938…) est une pratique sûre.{FALSE#Exact, c'est faux \: si le lien est partagé, n'importe qui obtient l'accès. Les paramètres d'URL restent aussi dans l'historique et les logs.#Relisez la partie « Violation de gestion d'authentification et de session » \: une session en paramètre GET est un danger.}
+
+// --- Secrets, API et headers ---
+
+::SECU-Q31 Vrai ou Faux - Secrets::Il est acceptable d'écrire une clé API en dur dans le code source tant que le dépôt Git est privé.{FALSE#Exact, c'est faux \: un secret ne doit jamais figurer dans le code source. Un secret commité est un secret exposé.#Relisez « La gestion des secrets » \: jamais en dur, un secret commité est un secret exposé.}
+
+::SECU-Q32 Gérer les secrets::Quelle est la bonne pratique pour gérer les secrets (clés API, mots de passe de BDD) d'une application ?{
+=Les placer dans un fichier .env exclu du versioning, ou dans des variables d'environnement#Exact, et pour les projets avancés, utiliser un coffre-fort comme HashiCorp Vault.
+~Les placer dans un fichier config.php commité avec le projet
+~Les encoder en Base64 dans le code
+~Les envoyer par email à chaque développeur
+}
+
+::SECU-Q33 Scanner les secrets::Citez un outil vu en cours permettant de détecter des secrets commités dans un dépôt Git.{
+=GitLeaks
+=gitleaks
+=TruffleHog
+=trufflehog
+=git-secrets
+}
+
+::SECU-Q34 Le JWT::Le payload d'un JWT n'est pas chiffré, il est simplement encodé en {=Base64 ~AES ~SHA-256 ~bcrypt}, il ne faut donc jamais y stocker d'informations sensibles.
+
+::SECU-Q35 Transmettre un token::Comment un client doit-il transmettre son token à une API ?{
+=Dans le header Authorization (Bearer)#Exact, jamais dans l'URL \: les paramètres GET restent dans l'historique du navigateur et les logs du serveur.
+~En paramètre GET dans l'URL
+~Dans le nom d'utilisateur
+~En commentaire HTML dans la page
+}
+
+::SECU-Q36 Rate Limiting::À quoi sert le rate limiting sur un endpoint d'authentification ?{
+=À limiter le nombre d'appels pour bloquer les attaques par force brute#Exact, par exemple le middleware throttle de Laravel.
+~À compresser les réponses de l'API
+~À mettre en cache les réponses
+~À chiffrer les requêtes
+}
+
+::SECU-Q37 Les headers de sécurité::Associez chaque header HTTP à son rôle.{
+=Content-Security-Policy -> Limiter les sources de scripts et de contenu (protection XSS)
+=Strict-Transport-Security -> Forcer le navigateur à n'utiliser que HTTPS
+=X-Frame-Options -> Empêcher le clickjacking
+=X-Content-Type-Options -> Empêcher le navigateur de deviner le type MIME
+}
+
+::SECU-Q38 Cookies sécurisés::Quels attributs doit-on poser sur un cookie de session pour le sécuriser ? (plusieurs réponses attendues){
+~%33.33333%HttpOnly#Exact, il empêche JavaScript d'accéder au cookie (protection XSS).
+~%33.33333%Secure#Exact, le cookie n'est envoyé que sur HTTPS.
+~%33.33334%SameSite\=Strict (ou Lax)#Exact, il protège contre le CSRF.
+~%-50%Public#Cet attribut n'existe pas.
+~%-50%Base64#L'encodage n'est pas un attribut de cookie et ne protège rien.
+}
+
+// --- Outils, DevSecOps et formation ---
+
+::SECU-Q39 Les outils OWASP::À quoi sert l'outil OWASP ZAP (Zed Attack Proxy) ?{
+=À auditer la sécurité d'une application Web en testant ses vulnérabilités#Exact, il peut même tourner en mode headless dans une CI pour détecter les régressions.
+~À se former à la sécurité sur une application volontairement vulnérable#Non, ça c'est Juice Shop ou WebGoat.
+~À vérifier les dépendances vulnérables#Non, ça c'est OWASP Dependency-Check.
+~À héberger des sites Web sécurisés
+}
+
+::SECU-Q40 DevSecOps::Que signifie l'approche « shift-left » en DevSecOps ?{
+=Intégrer la sécurité dès la phase de développement, pas seulement en production#Exact \: analyse statique (SAST), scan de dépendances (SCA), scan de secrets et tests de sécurité automatisés dans la CI.
+~Déplacer les serveurs vers la gauche du rack
+~Confier la sécurité uniquement à l'équipe production
+~Faire les audits de sécurité après la mise en production
+}

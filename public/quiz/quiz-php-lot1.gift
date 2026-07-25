@@ -1,0 +1,114 @@
+// Questionnaire PHP — Lot 1 : Les bases (TP1 → TP2 / passage de paramètres)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique
+
+$CATEGORY: PHP/Lot 1 - Les bases
+
+// --- QCM ---
+
+::PHP-L1-Q1 Exécution du PHP::Où s'exécute le code PHP d'une page web ?{
+=Sur le serveur#Exact, le client ne reçoit que le HTML généré.
+~Dans le navigateur du visiteur#Non, c'est le rôle du JavaScript.
+~Sur le serveur et dans le navigateur#Non, le navigateur ne comprend pas le PHP.
+~Dans la base de données#Non, la base de données ne fait que stocker les données.
+}
+
+::PHP-L1-Q2 Balises PHP::Quelles balises permettent de délimiter du code PHP dans une page ?{
+=<?php … ?>
+~<php> … </php>
+~<script> … </script>
+~[php] … [/php]
+}
+
+// --- Mot manquant ---
+
+::PHP-L1-Q3 Affichage::Pour afficher du texte dans la page, on utilise l'instruction {=echo ~print.text ~console.log} suivie de la chaîne de caractères à afficher.
+
+// --- QCM ---
+
+::PHP-L1-Q4 Résultat d'un echo::Que va afficher le code suivant ? $age \= 20\; echo "J'ai " . $age . " ans"\;{
+=J'ai 20 ans
+~J'ai $age ans
+~J'ai . 20 . ans
+~Une erreur
+}
+
+::PHP-L1-Q5 Concaténation::Quel opérateur permet de concaténer deux chaînes de caractères en PHP ?{
+=. (le point)#Exact \: "Bonjour " . $nom
+~+ (le plus)#Non, c'est le cas en JavaScript, pas en PHP.
+~& (le et commercial)
+~, (la virgule)
+}
+
+::PHP-L1-Q6 Les types::Quel est le type de la valeur "42" (avec les guillemets) ?{
+=string#Les guillemets indiquent une chaîne de caractères, même si elle contient des chiffres.
+~int
+~float
+~boolean
+}
+
+// --- Réponse courte ---
+
+::PHP-L1-Q7 Paramètres d'URL::Un visiteur ouvre la page index.php?prenom\=Bart. Quelle super globale (avec le $ et les underscores) contient la valeur « Bart » ? Répondez sans les crochets ni la clé.{
+=$_GET
+=%100%$_get#Pensez aux majuscules, mais la réponse est correcte.
+}
+
+// --- QCM ---
+
+::PHP-L1-Q8 Tableau associatif::Comment accéder à la valeur associée à la clé "nom" dans le tableau $personne ?{
+=$personne["nom"]
+~$personne.nom
+~$personne->get("nom")
+~$personne(nom)
+}
+
+// --- Appariement ---
+
+::PHP-L1-Q9 Les structures de contrôle::Associez chaque structure à son usage principal.{
+=while -> Répéter tant qu'une condition est vraie
+=for -> Répéter un nombre de fois connu à l'avance
+=foreach -> Parcourir tous les éléments d'un tableau
+=if / else -> Exécuter un code seulement si une condition est remplie
+}
+
+// --- QCM ---
+
+::PHP-L1-Q10 Comparaison::Dans une condition if, quel opérateur permet de tester l'égalité entre deux valeurs ?{
+=\=\=#Exact. Un seul \= est une affectation, pas une comparaison.
+~\=
+~\=>
+~equals
+}
+
+// --- Vrai / Faux ---
+
+::PHP-L1-Q11 Vrai ou Faux - if/else::Le bloc else d'une condition est exécuté uniquement lorsque la condition du if est fausse.{TRUE#Exact.#Relisez le support \: le else est le « sinon » de la condition.}
+
+// --- Réponse courte ---
+
+::PHP-L1-Q12 Les fonctions::Quel mot-clé permet de déclarer une fonction en PHP ?{
+=function
+}
+
+// --- QCM ---
+
+::PHP-L1-Q13 Les includes::À quoi sert l'instruction include dans un projet PHP ?{
+=À insérer le contenu d'un autre fichier PHP à l'endroit de l'appel#Exact, c'est ce qui permet de réutiliser le header, le footer ou une librairie de fonctions.
+~À importer une image dans la page
+~À inclure un fichier CSS dans le HTML
+~À télécharger une librairie depuis Internet
+}
+
+// --- Numérique ---
+
+::PHP-L1-Q14 Les boucles::Combien de fois le corps de la boucle suivante sera-t-il exécuté ? for ($i \= 0\; $i < 10\; $i++) \{ echo $i\; \}{#10#Exact \: $i prend les valeurs de 0 à 9 incluses.}
+
+// --- QCM ---
+
+::PHP-L1-Q15 Les formulaires::Un formulaire est déclaré avec method\="post". Dans quelle super globale se trouvera la valeur du champ <input name\="phrase"> après envoi ?{
+=$_POST["phrase"]#Exact. Attention, c'est bien l'attribut name du champ qui sert de clé.
+~$_GET["phrase"]#Non, $_GET correspond aux paramètres passés dans l'URL.
+~$_SESSION["phrase"]#Non, la session ne contient que ce que vous y enregistrez vous-même.
+~$_FORM["phrase"]#Cette super globale n'existe pas en PHP.
+}

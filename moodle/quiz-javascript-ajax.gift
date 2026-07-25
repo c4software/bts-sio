@@ -1,0 +1,64 @@
+// Questionnaire JavaScript — L'AJAX (10 questions, lot unique)
+// Basé sur cheatsheets/javascript/index.md (section « L'ajax »)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant
+
+$CATEGORY: JavaScript/AJAX
+
+::AJAX-Q1 Le principe::Qu'apporte l'AJAX à une page Web ?{
+=Charger ou envoyer des données au serveur sans recharger la page#Exact, la page est mise à jour dynamiquement avec la réponse.
+~Accélérer le chargement initial de la page
+~Exécuter du JavaScript côté serveur
+~Chiffrer les échanges avec le serveur
+}
+
+::AJAX-Q2 La fonction moderne::Quelle fonction JavaScript native permet de faire une requête HTTP vers le serveur ?{
+=fetch
+=fetch()
+}
+
+::AJAX-Q3 Méthode par défaut::Quelle méthode HTTP est utilisée par fetch("./monContenu.php") quand on ne précise rien ?{
+=GET#Exact, pour envoyer des données on précisera \{ method\: "POST", body\: … \}.
+~POST
+~PUT
+~AJAX#AJAX n'est pas une méthode HTTP.
+}
+
+::AJAX-Q4 Vrai ou Faux - Asynchrone::L'appel fetch bloque la page tant que le serveur n'a pas répondu.{FALSE#Exact, c'est faux \: fetch est asynchrone, la page reste utilisable et le code du .then() s'exécute quand la réponse arrive.#Relisez la cheatsheet \: le A d'AJAX signifie « asynchrone », la réponse est traitée plus tard dans le .then().}
+
+::AJAX-Q5 Le .then()::Dans fetch(…).then((response) \=> …), à quoi sert le .then() ?{
+=À exécuter du code une fois la réponse du serveur disponible#Exact, c'est la manière de traiter un résultat asynchrone.
+~À relancer la requête si elle échoue
+~À exécuter le code immédiatement, avant la requête
+~À arrêter la requête après un délai
+}
+
+::AJAX-Q6 Lire la réponse::Le serveur renvoie du JSON. Quelle méthode applique-t-on à la réponse pour la convertir en objet JavaScript ?{
+=response.json()#Exact. Pour une réponse texte ou HTML, on utiliserait response.text().
+~response.text()#Cela renvoie la réponse brute sous forme de chaîne, pas un objet.
+~response.parse()
+~response.toObject()
+}
+
+::AJAX-Q7 Envoyer du JSON::Pour envoyer l'objet data au serveur dans le body d'un POST au format JSON, on écrit body\: JSON.{=stringify ~parse ~encode ~toJson}(data).
+
+::AJAX-Q8 Gérer les erreurs::Dans une chaîne fetch, à quoi sert le .catch() ?{
+=À exécuter du code si la requête échoue (erreur réseau par exemple)#Exact, c'est le pendant du .then() pour les erreurs.
+~À attraper la réponse du serveur
+~À annuler la requête en cours
+~À relancer automatiquement la requête
+}
+
+::AJAX-Q9 Le POST::Quelle écriture permet d'envoyer une requête POST avec fetch ?{
+=fetch("./monContenu.php", \{ method\: "POST", body\: data \})#Exact, le deuxième paramètre de fetch permet de configurer la requête.
+~fetch.post("./monContenu.php", data)
+~fetch("POST", "./monContenu.php", data)
+~post("./monContenu.php", data)
+}
+
+::AJAX-Q10 Les rôles::Associez chaque élément à son rôle dans une requête AJAX.{
+=fetch(url) -> Lancer la requête vers le serveur
+=response.json() -> Convertir la réponse en objet JavaScript
+=JSON.stringify(data) -> Convertir un objet JavaScript en chaîne JSON
+=$.get(url, callback) -> L'équivalent avec la librairie jQuery
+}

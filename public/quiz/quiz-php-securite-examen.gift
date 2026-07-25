@@ -1,0 +1,211 @@
+// Questionnaire PHP — Format examen : analyse de code et sécurité OWASP (30 questions, lot unique)
+// Code à analyser / corriger : injection SQL, XSS, CSRF, visibilité, mots de passe, mauvaises pratiques
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, réponses multiples
+
+$CATEGORY: PHP/Examen - Code et sécurité
+
+// --- Injection SQL ---
+
+::SECPHP-Q1 Analyser une requête::Analysez ce code \: $req \= "SELECT * FROM users WHERE id\=" . $_GET['id']\; Quel est le problème ?{
+=Il est vulnérable à l'injection SQL \: le paramètre est concaténé sans contrôle dans la requête#Exact \: un attaquant peut injecter du SQL via le paramètre id de l'URL.
+~Il manque un point-virgule dans la requête SQL
+~$_GET ne peut pas être utilisé avec une requête SQL
+~Aucun, ce code est correct
+}
+
+::SECPHP-Q2 Corriger l'injection::Quelle version corrigée de la question précédente est sécurisée ?{
+=$req \= $pdo->prepare("SELECT * FROM users WHERE id\=\:id")\; $req->execute(['id' \=> $_GET['id']])\;#Exact \: requête préparée, la valeur est transmise séparément de la requête.
+~$req \= "SELECT * FROM users WHERE id\='" . $_GET['id'] . "'"\;#Ajouter des quotes ne protège pas \: l'attaquant peut les fermer lui-même.
+~$req \= "SELECT * FROM users WHERE id\=" . trim($_GET['id'])\;#trim() enlève les espaces, il ne neutralise pas le SQL injecté.
+~$req \= strtolower("SELECT * FROM users WHERE id\=" . $_GET['id'])\;#La casse n'a aucun effet sur l'injection.
+}
+
+::SECPHP-Q3 Le piège de l'interpolation::$id \= $_GET['id']\; $req \= "SELECT * FROM client WHERE id\='\{$id\}'"\; Ce code est-il plus sûr que la concaténation ?{
+=Non, c'est exactement la même faille \: l'interpolation de variable équivaut à une concaténation#Exact, c'est le piège signalé dans le cours \: seule la requête préparée protège.
+~Oui, les accolades neutralisent le contenu de la variable
+~Oui, car la variable est passée par une étape intermédiaire
+~Ce code ne fonctionne pas en PHP
+}
+
+::SECPHP-Q4 Comprendre l'attaque::Un formulaire de connexion exécute \: "SELECT * FROM users WHERE login\='" . $_POST['login'] . "'". Que se passe-t-il si l'utilisateur saisit \: ' OR '1'\='1 ?{
+=La condition devient toujours vraie \: la requête retourne des enregistrements et peut permettre de contourner l'authentification#Exact \: '1'\='1' est toujours vrai, c'est l'injection classique du cours.
+~Le serveur détecte l'attaque et bloque la requête#Rien ne détecte quoi que ce soit dans ce code.
+~Une erreur de syntaxe SQL empêche forcément l'attaque
+~Le mot de passe est affiché à l'écran
+}
+
+::SECPHP-Q5 Vrai ou Faux - ORM::Utiliser un ORM (comme Eloquent dans Laravel) protège des injections SQL dans les cas d'usage standards.{TRUE#Exact \: l'ORM génère des requêtes préparées. C'est l'une des deux corrections proposées par le cours avec les requêtes préparées manuelles.#Relisez la partie injection \: « Toujours utiliser des requêtes préparées, ou utiliser des ORM qui font la même chose ».}
+
+// --- XSS ---
+
+::SECPHP-Q6 Prédire le comportement::Un visiteur saisit <script>alert('XSS')</script> dans le champ nom, et la page exécute \: echo "Bonjour " . $_POST['nom']\; Que se passe-t-il à l'affichage ?{
+=Une boîte de dialogue « XSS » s'ouvre \: le script saisi est exécuté par le navigateur#Exact \: le HTML saisi est renvoyé tel quel, le navigateur l'interprète. C'est une faille XSS.
+~Le texte <script>alert('XSS')</script> s'affiche tel quel à l'écran#Ce serait le comportement APRÈS correction avec htmlspecialchars.
+~PHP détecte le script et lève une erreur#PHP ne contrôle rien \: pour lui c'est une chaîne comme une autre.
+~La page affiche seulement « Bonjour »
+}
+
+::SECPHP-Q7 Corriger le XSS::Pour afficher une donnée utilisateur sans risque, on l'échappe avec la fonction {=htmlspecialchars ~strip_secure ~escape_output ~html_clean}, recommandée avec les options ENT_QUOTES et UTF-8.
+
+::SECPHP-Q8 XSS persistant::Un site enregistre les commentaires en base de données, puis les affiche sans échappement sur la page de l'article. Un commentaire contenant un script malveillant s'exécute chez chaque visiteur. De quel type de XSS s'agit-il ?{
+=XSS persistant (stocké)#Exact \: le code malveillant est stocké en base et exécuté à chaque affichage de la page, contrairement au XSS reflété qui passe par un lien.
+~XSS reflété#Le reflété passe par un lien piégé, il n'est pas stocké.
+~Injection SQL#La base n'est que le véhicule \: la faille est à l'affichage.
+~CSRF
+}
+
+::SECPHP-Q9 Corriger un formulaire::Un champ de recherche réaffiche la saisie \: value\="<?php echo $_GET['q']\; ?>". Quelle correction faut-il apporter ?{
+=value\="<?php echo htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8')\; ?>"#Exact \: ENT_QUOTES échappe aussi les guillemets, indispensable dans un attribut HTML.
+~value\="<?php echo trim($_GET['q'])\; ?>"#trim() ne neutralise aucun caractère dangereux.
+~value\="<?php echo strtoupper($_GET['q'])\; ?>"#La casse ne change rien au problème.
+~Aucune correction nécessaire, la valeur est dans un attribut#C'est justement dans l'attribut que l'attaquant peut fermer le guillemet et injecter.
+}
+
+::SECPHP-Q10 Bien choisir sa défense::Vrai ou Faux \: utiliser des requêtes préparées suffit à protéger un site contre les failles XSS.{FALSE#Exact, c'est faux \: la requête préparée protège la base (injection SQL). Contre le XSS il faut échapper les données à l'affichage.#Deux failles, deux défenses \: requête préparée pour le SQL, htmlspecialchars pour l'affichage.}
+
+// --- Visibilité et POO ---
+
+::SECPHP-Q11 Analyser une classe::class Compte \{ public $solde\; \} Pourquoi cette classe est-elle une mauvaise pratique ?{
+=$solde est modifiable directement depuis l'extérieur, sans aucun contrôle possible#Exact \: n'importe quel code peut écrire $compte->solde \= -5000\;. L'encapsulation impose private + accesseurs.
+~Une classe ne peut pas contenir d'attribut public#Si, c'est autorisé, mais déconseillé ici.
+~Il manque une méthode toString()
+~Le nom de la classe devrait être en minuscules
+}
+
+::SECPHP-Q12 Corriger la classe::Quelle version de la classe Compte protège correctement le solde ?{
+=private $solde\; avec une méthode retirer($montant) qui vérifie le solde avant de le modifier#Exact \: l'encapsulation permet de garantir les règles métier (pas de solde négatif).
+~public $solde\; avec un commentaire "// ne pas mettre de valeur négative"#Un commentaire n'empêche rien.
+~protected $solde\; sans aucune méthode#Le solde devient inaccessible, même en lecture légitime.
+~public $solde\; mais en le vérifiant dans le HTML du site#La vérification côté client peut être contournée.
+}
+
+::SECPHP-Q13 La visibilité protected::Dans une classe mère, un attribut protected est accessible…{
+=Depuis la classe elle-même et depuis ses classes filles, mais pas depuis l'extérieur#Exact \: c'est l'intermédiaire entre private et public.
+~Depuis n'importe où
+~Uniquement depuis les classes filles, pas depuis la classe mère
+~Uniquement en lecture
+}
+
+::SECPHP-Q14 Vrai ou Faux - Tout public::Mettre tous les attributs d'une classe en public est acceptable puisque cela simplifie l'écriture du code.{FALSE#Exact, c'est faux \: on perd l'encapsulation, donc tout contrôle sur les valeurs. La visibilité est une notion fondamentale pour un développement sécurisé.#Relisez la partie encapsulation \: la gestion de l'accès aux propriétés est fondamentale pour un développement sécurisé.}
+
+// --- Les mots de passe ---
+
+::SECPHP-Q15 Analyser une inscription::$req->execute(['pass' \=> $_POST['password']])\; enregistre le mot de passe tel quel en base. Quel est le problème ?{
+=Le mot de passe est stocké en clair \: en cas de fuite de la base, tous les comptes sont compromis#Exact \: un mot de passe doit toujours être haché avant stockage.
+~La requête n'est pas préparée#Elle l'est \: le problème n'est pas l'injection, c'est le stockage en clair.
+~$_POST ne doit jamais être utilisé pour un mot de passe
+~Aucun, la base de données est un endroit sûr
+}
+
+::SECPHP-Q16 La bonne fonction::Quelle fonction PHP moderne permet de hacher un mot de passe avant de le stocker (elle gère le sel automatiquement) ?{
+=password_hash
+=password_hash()
+}
+
+::SECPHP-Q17 Et md5 ?::Un développeur propose \: $hash \= md5($_POST['password'])\;. Pourquoi est-ce insuffisant ?{
+=MD5 est un algorithme rapide et cassable \: les hashs se retrouvent facilement (rainbow tables), il faut utiliser password_hash (bcrypt)#Exact \: le cours cite le MD5 au même rang que le stockage en clair dans les données sensibles exposées.
+~md5 ne fonctionne plus depuis PHP 8
+~Le hash MD5 est trop long à calculer
+~md5 ne fonctionne qu'avec des nombres
+}
+
+::SECPHP-Q18 Prédire le comportement::Le mot de passe « azerty » est stocké hashé. À la connexion, un développeur écrit \: if (password_hash($_POST['password'], PASSWORD_DEFAULT) \=\= $user['password']). L'utilisateur saisit le bon mot de passe « azerty ». Que se passe-t-il ?{
+=La condition est fausse et la connexion échoue \: password_hash génère un sel aléatoire, deux appels produisent deux hashs différents#Exact \: c'est pour cela qu'il faut utiliser password_verify($saisi, $hash), qui retrouve le sel dans le hash stocké.
+~La condition est vraie et la connexion réussit#Non \: le sel aléatoire rend chaque hash unique, même pour un mot de passe identique.
+~PHP lève une erreur car on ne peut pas comparer deux hashs
+~La condition est vraie une fois sur deux
+}
+
+// --- Sessions et contrôle d'accès ---
+
+::SECPHP-Q19 Compléter une protection::Voici le début de la page admin.php \: session_start()\; … Quel code doit suivre pour la protéger correctement ?{
+=if (!isset($_SESSION['user'])) \{ header('Location\: /login.php')\; die()\; \}#Exact \: vérification côté serveur, redirection ET arrêt du script (exit est équivalent à die()).
+~if (!isset($_COOKIE['user'])) \{ header('Location\: /login.php')\; die()\; \}#Un cookie est modifiable par le client \: la preuve d'authentification doit être en session.
+~if (!isset($_SESSION['user'])) \{ echo "Accès refusé"\; \}#Sans arrêt ni redirection, le reste de la page s'exécute et s'affiche quand même.
+~echo "<script>if (!connecte) window.location \= '/login.php'</script>"\;#Une protection en JavaScript côté client se contourne trivialement.
+}
+
+::SECPHP-Q20 Prédire le comportement::Une page protégée contient \: if (!isset($_SESSION['user'])) \{ header('Location\: /login.php')\; \} suivi du contenu confidentiel, sans die(). Un attaquant non connecté requête la page avec curl (qui ne suit pas les redirections). Que reçoit-il ?{
+=L'en-tête de redirection ET tout le contenu confidentiel de la page#Exact \: header() ajoute un en-tête mais n'arrête pas le script. Le navigateur suit la redirection, curl lit tranquillement la suite. D'où le die() obligatoire.
+~Uniquement la page login.php#C'est ce que voit un navigateur qui suit la redirection, pas ce que le serveur envoie réellement.
+~Une page vide
+~Une erreur 403 Forbidden
+}
+
+::SECPHP-Q21 Prédire le comportement::Une page contient \: if ($_GET['role'] \=\= 'admin') \{ afficherPanneauAdmin()\; \} Un simple visiteur, non connecté, ouvre l'URL page.php?role\=admin. Que se passe-t-il ?{
+=Le panneau d'administration s'affiche \: la condition est vraie puisque le visiteur contrôle le paramètre#Exact \: on ne fait jamais confiance à une donnée venant du client. Le rôle doit être stocké en session, côté serveur.
+~Rien, PHP sait que le visiteur n'est pas administrateur#PHP ne « sait » rien \: il compare deux chaînes, et elles sont égales.
+~Une erreur car le paramètre role est réservé
+~Le visiteur est redirigé vers la page de connexion
+}
+
+::SECPHP-Q22 Référence directe::facture.php?id\=123 charge la facture 123 avec une requête préparée, sans autre contrôle. Un client change l'id et lit les factures des autres. Comment corriger ?{
+=Vérifier côté serveur que la facture demandée appartient bien à l'utilisateur connecté (WHERE id\=\:id AND user_id\=\:user_id)#Exact \: c'est une référence directe non sécurisée (IDOR), la requête préparée n'empêche pas ce danger.
+~Passer l'id en POST plutôt qu'en GET#Le client peut modifier un POST aussi facilement qu'un GET.
+~Utiliser des ids plus longs pour qu'ils soient durs à deviner#La sécurité par l'obscurité n'est pas un contrôle d'accès.
+~Chiffrer la connexion avec HTTPS#HTTPS protège le transport, pas les droits d'accès.
+}
+
+// --- CSRF ---
+
+::SECPHP-Q23 Prédire le comportement::Sur monsite.fr, supprimer.php supprime le compte de l'utilisateur connecté, sans confirmation ni jeton. Alice, connectée à monsite.fr dans un autre onglet, visite un forum contenant \: <img src\="https\://monsite.fr/supprimer.php">. Que se passe-t-il ?{
+=Le compte d'Alice est supprimé \: son navigateur charge l'« image » en envoyant automatiquement son cookie de session#Exact \: c'est une attaque CSRF. La requête vient du navigateur d'Alice, avec sa session valide, à son insu.
+~Rien, une image ne peut pas déclencher une action#Le navigateur fait une vraie requête HTTP vers l'URL, cookie compris \: le serveur ne voit aucune différence.
+~Le forum affiche une image cassée mais monsite.fr bloque la requête#L'image sera bien cassée, mais rien ne bloque la requête côté monsite.fr.
+~Alice reçoit un email de confirmation
+}
+
+::SECPHP-Q24 Corriger le CSRF::Quelle correction protège le formulaire de suppression contre le CSRF ?{
+=Ajouter un champ caché contenant un jeton unique stocké en session, et vérifier ce jeton côté serveur avant de traiter la requête#Exact \: c'est le _token intégré de base dans Laravel.
+~Passer le formulaire en méthode GET
+~Ajouter une confirmation JavaScript confirm()#Le JavaScript côté client ne protège pas \: la requête forgée ne passe pas par votre page.
+~Renommer le fichier supprimer.php avec un nom compliqué
+}
+
+// --- Mauvaises pratiques diverses ---
+
+::SECPHP-Q25 Inclusion dangereuse::Analysez ce code \: include($_GET['page'] . '.php')\; Quel est le risque ?{
+=L'utilisateur choisit le fichier inclus \: il peut charger des fichiers non prévus, voire du code malveillant#Exact \: c'est une inclusion arbitraire. La correction \: une liste blanche des pages autorisées (in_array).
+~Le fichier inclus sera trop volumineux
+~include ne fonctionne pas avec une variable
+~Aucun risque, l'extension .php est imposée#Le début du chemin reste libre \: ../../ ou un chemin distant selon la configuration.
+}
+
+::SECPHP-Q26 Secret dans le code::$apiKey \= "sk-live-8f3a…"\; est écrit en dur dans un fichier commité sur Git. Quelle est la bonne pratique ?{
+=Déplacer la clé dans un fichier .env exclu du versioning (ou une variable d'environnement) et la lire avec getenv()#Exact \: un secret commité est un secret exposé, même dans un dépôt privé.
+~Mettre la clé dans un commentaire pour la retrouver facilement
+~Encoder la clé en Base64 dans le code#L'encodage se décode trivialement, ce n'est pas une protection.
+~La laisser, le dépôt est privé#L'historique Git, les forks et les fuites de dépôt rendent le secret exposé.
+}
+
+::SECPHP-Q27 Debug en production::Un site en production affiche \: "Fatal error \: Uncaught PDOException … users.password …" avec le chemin des fichiers. En quoi est-ce une faille ?{
+=Les messages d'erreur détaillés divulguent la structure de la base et du code, précieux pour préparer une attaque#Exact \: c'est une mauvaise configuration de sécurité (messages d'erreur trop détaillés, application en debug).
+~Ce n'est pas une faille, c'est pratique pour corriger les bugs#En développement oui, jamais en production.
+~L'erreur ralentit le serveur
+~PDO ne devrait jamais lever d'exception
+}
+
+::SECPHP-Q28 Redirection ouverte::login.php?goto\=$_GET['goto'] redirige où le paramètre l'indique \: header('Location\: ' . $_GET['goto'])\;. Quel est le risque et la correction ?{
+=Redirection non validée utilisable pour du phishing \: il faut filtrer les destinations autorisées (liste blanche ou vérification du domaine)#Exact \: votre site légitime sert de « masque » vers une page malveillante.
+~Le paramètre goto est trop court, il faut le rallonger
+~header() ne peut pas recevoir de variable
+~Aucun risque, une redirection ne fait que changer de page
+}
+
+// --- Synthèse ---
+
+::SECPHP-Q29 Chaque faille sa parade::Associez chaque faille à sa correction principale.{
+=Injection SQL -> Requête préparée (prepare / execute)
+=XSS -> Échapper l'affichage avec htmlspecialchars
+=CSRF -> Jeton unique en session vérifié côté serveur
+=Mot de passe en clair -> password_hash au stockage, password_verify à la connexion
+}
+
+::SECPHP-Q30 Relecture de code::Vous relisez le code d'un camarade avant la mise en production. Quels éléments doivent être corrigés ? (plusieurs réponses attendues){
+~%33.33333%Une requête SQL construite en concaténant $_POST['email']#Exact \: injection SQL, à passer en requête préparée.
+~%33.33333%Un echo direct d'une donnée saisie par l'utilisateur#Exact \: XSS, à échapper avec htmlspecialchars.
+~%33.33334%Un mot de passe comparé avec \=\= à une colonne stockée en clair#Exact \: stockage en clair et comparaison directe, à remplacer par password_hash / password_verify.
+~%-50%Une variable d'attribut de classe déclarée private avec un getter#C'est une bonne pratique (encapsulation), rien à corriger.
+~%-50%Une requête préparée avec des marqueurs nommés#C'est justement la bonne façon de faire.
+}

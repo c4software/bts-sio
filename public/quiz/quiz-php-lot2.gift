@@ -1,0 +1,112 @@
+// Questionnaire PHP — Lot 2 : Structuration, sessions, cookies, SQL/PDO, ouverture Laravel (TP3 → TP6 + TP SQL)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
+
+$CATEGORY: PHP/Lot 2 - Sessions, BDD et structuration
+
+// --- QCM ---
+
+::PHP-L2-Q1 Point d'entrée unique::Quel est l'intérêt principal d'un point d'entrée unique (index.php) dans un projet PHP structuré ?{
+=Centraliser le chargement des pages et éviter de dupliquer le header et le footer#Exact, toutes les requêtes passent par le même fichier qui inclut la bonne page.
+~Accélérer l'exécution du code PHP
+~Rendre le site compatible avec tous les navigateurs
+~Empêcher les visiteurs de voir le code source
+}
+
+// --- Réponse courte ---
+
+::PHP-L2-Q2 Démarrer la session::Quelle fonction PHP doit être appelée avant toute utilisation de $_SESSION ? (le nom de la fonction, avec ou sans parenthèses){
+=session_start()
+=session_start
+}
+
+// --- QCM ---
+
+::PHP-L2-Q3 Stockage de la session::Où sont physiquement stockées les données de session ?{
+=Sur le serveur#Exact, le client ne conserve qu'un identifiant de session (dans un cookie).
+~Dans le navigateur du visiteur#Non, c'est le cas des cookies, pas de la session.
+~Dans la base de données obligatoirement
+~Dans le fichier index.php
+}
+
+// --- Vrai / Faux ---
+
+::PHP-L2-Q4 Vrai ou Faux - Cookies::Un cookie est stocké sur l'ordinateur du visiteur et peut donc être lu et modifié par celui-ci.{TRUE#Exact, c'est pour cela qu'on ne stocke jamais de donnée sensible dans un cookie.#Relisez le TP 4 \: le cookie est stocké côté client, contrairement à la session.}
+
+// --- Mot manquant ---
+
+::PHP-L2-Q5 Créer un cookie::Pour créer un cookie chez le visiteur, on utilise la fonction {=setcookie ~createcookie ~addcookie} en lui passant un nom, une valeur et une date d'expiration.
+
+// --- Numérique ---
+
+::PHP-L2-Q6 Limite de taille::Quelle est la taille maximale approximative d'un cookie, en kilo-octets (Ko) ?{#4:1#Exact, environ 4 Ko, c'est une des limites vues dans le TP 4.}
+
+// --- QCM ---
+
+::PHP-L2-Q7 Protéger une page::Pour protéger une page, on vérifie en début de script si l'utilisateur est connecté. S'il ne l'est pas, que fait-on ?{
+=On le redirige avec header("Location\: /login.php")\; puis on stoppe le script#Exact, sans die() ou exit le reste de la page continuerait de s'exécuter.
+~On masque le contenu avec du CSS#Non, le contenu serait quand même envoyé au navigateur.
+~On affiche un message JavaScript alert()#Non, la protection doit se faire côté serveur.
+~On supprime la page du serveur
+}
+
+// --- Réponse courte ---
+
+::PHP-L2-Q8 Déconnexion::Quelle fonction permet de détruire l'ensemble des données de la session (déconnexion) ? (le nom de la fonction, avec ou sans parenthèses){
+=session_destroy()
+=session_destroy
+}
+
+// --- Appariement ---
+
+::PHP-L2-Q9 Où vivent les données ?::Associez chaque mécanisme à l'endroit où la donnée est stockée ou transmise.{
+=Session -> Sur le serveur
+=Cookie -> Sur l'ordinateur du visiteur
+=$_GET -> Dans l'URL de la page
+=$_POST -> Dans le corps de la requête d'un formulaire
+}
+
+// --- QCM ---
+
+::PHP-L2-Q10 Le SELECT::Quelle requête SQL permet de récupérer l'ensemble des enregistrements de la table citations ?{
+=SELECT * FROM citations\;
+~GET ALL FROM citations\;
+~SELECT citations\;
+~SHOW * IN citations\;
+}
+
+::PHP-L2-Q11 L'INSERT::Quelle requête SQL permet d'ajouter un enregistrement dans la table citations ?{
+=INSERT INTO citations (texte) VALUES ("Je ne dois pas…")\;
+~ADD INTO citations SET texte \= "Je ne dois pas…"\;
+~INSERT citations VALUES texte "Je ne dois pas…"\;
+~UPDATE citations ADD texte \= "Je ne dois pas…"\;
+}
+
+// --- QCM à réponses multiples ---
+
+::PHP-L2-Q12 Requêtes préparées::Pourquoi utilise-t-on des requêtes préparées avec PDO ? (plusieurs réponses attendues){
+~%50%Pour se protéger des injections SQL#Exact, c'est la raison principale.
+~%50%Pour séparer la requête SQL des valeurs fournies par l'utilisateur#Exact, les valeurs ne peuvent pas modifier la structure de la requête.
+~%-50%Parce que MySQL refuse les requêtes non préparées#Non, une requête classique fonctionne aussi.
+~%-50%Pour éviter d'avoir à ouvrir une connexion à la base#Non, la connexion PDO reste nécessaire.
+}
+
+// --- QCM ---
+
+::PHP-L2-Q13 PDO::Avec PDO, quel est l'ordre correct pour exécuter une requête préparée ?{
+=prepare() puis execute()#Exact \: on prépare la requête avec des marqueurs, puis on l'exécute avec les valeurs.
+~execute() puis prepare()
+~connect() puis select()
+~query() puis prepare()
+}
+
+::PHP-L2-Q14 Clé étrangère::Dans une base de données, à quoi sert une clé étrangère ?{
+=À créer un lien entre deux tables en référençant la clé primaire d'une autre table#Exact, c'est ce qui garantit la cohérence des relations.
+~À chiffrer les données sensibles d'une table
+~À accélérer les requêtes SELECT
+~À empêcher l'accès à la table depuis l'extérieur
+}
+
+// --- Mot manquant ---
+
+::PHP-L2-Q15 Vers Laravel::Dans un projet Laravel, les dépendances (librairies) sont installées et gérées avec l'outil {=Composer ~npm ~apt ~Maven}, le gestionnaire de dépendances de l'écosystème PHP.

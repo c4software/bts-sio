@@ -1,0 +1,130 @@
+// Questionnaire DevOps Serveur — Lot 1 (Niveau 1) : Serveur, VM, Debian et ligne de commande (TP1 → TP1c)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique
+
+$CATEGORY: DevOps Serveur/Lot 1 - Niveau 1 (VM, Debian, ligne de commande)
+
+// --- Les notions de base ---
+
+::SRV-L1-Q1 Un serveur::Qu'est-ce qu'un serveur ?{
+=Un ordinateur qui fournit des services accessibles via le réseau#Exact, il répond aux requêtes de clients (navigateur, application…).
+~Un ordinateur forcément plus gros qu'un PC classique
+~Un logiciel de bureautique
+~Un câble réseau haute performance
+}
+
+::SRV-L1-Q2 La virtualisation::Qu'est-ce qu'une machine virtuelle (VM) ?{
+=Un ordinateur simulé par logiciel, qui partage les ressources d'une machine physique#Exact, c'est ce que fait la ferme VMWare du BTS \: plusieurs VM tournent sur les mêmes serveurs physiques.
+~Un ordinateur accessible uniquement par navigateur
+~Une sauvegarde compressée d'un disque dur
+~Un serveur qui ne peut pas être éteint
+}
+
+::SRV-L1-Q3 Serveur Web::Quel est le rôle d'un serveur Web ?{
+=Répondre aux requêtes HTTP des clients en leur servant des pages ou des fichiers#Exact, Apache en est un exemple.
+~Stocker les emails des utilisateurs
+~Gérer les impressions du réseau
+~Distribuer les adresses IP
+}
+
+::SRV-L1-Q4 Serveur de base de données::Quel est le rôle d'un serveur de base de données ?{
+=Stocker les données et répondre aux requêtes (SQL) des applications#Exact, MySQL et MariaDB en sont des exemples.
+~Héberger les pages HTML du site
+~Créer automatiquement les sauvegardes du réseau
+~Convertir les fichiers en PDF
+}
+
+::SRV-L1-Q5 Vrai ou Faux - VMWare Tools::Les VMWare Tools améliorent l'intégration entre la machine virtuelle et l'hyperviseur (la ferme).{TRUE#Exact, leur installation fait partie des règles à respecter sur la ferme du BTS.#Relisez le TP1 \: l'installation des VMWare Tools fait partie des règles à respecter.}
+
+::SRV-L1-Q6 Un ou plusieurs serveurs ?::Pourquoi sépare-t-on souvent le serveur Web et le serveur de base de données sur deux machines ?{
+=Pour séparer les rôles \: sécurité, performances et maintenance indépendantes#Exact, une machine compromise ou surchargée n'entraîne pas l'autre.
+~Parce qu'il est impossible d'installer les deux sur la même machine
+~Pour économiser de l'électricité
+~Parce que la licence Debian l'impose
+}
+
+::SRV-L1-Q7 Debian::Debian est…{
+=Une distribution Linux#Exact, c'est celle utilisée dans les TP pour installer nos serveurs.
+~Un serveur Web
+~Un hyperviseur
+~Un langage de script
+}
+
+// --- Sécurité de base ---
+
+::SRV-L1-Q8 Le superutilisateur::Comment s'appelle le compte administrateur qui a tous les droits sur un système Linux ?{
+=root
+}
+
+::SRV-L1-Q9 Mot de passe fort::Qu'est-ce qui caractérise un mot de passe fort ?{
+=Sa longueur et sa diversité de caractères (majuscules, minuscules, chiffres, caractères spéciaux)#Exact, c'est ce qui le rend résistant aux attaques par force brute.
+~Le fait qu'il soit facile à retenir, comme une date de naissance
+~Le fait qu'il soit identique sur toutes les machines pour ne pas l'oublier
+~Le fait qu'il soit écrit sur un post-it à côté de l'écran
+}
+
+::SRV-L1-Q10 Sudo::À quoi sert la commande sudo devant une autre commande ?{
+=À exécuter cette commande avec les droits administrateur#Exact, sans être connecté directement en root.
+~À exécuter la commande plus rapidement
+~À exécuter la commande sur un autre serveur
+~À annuler la commande précédente
+}
+
+// --- Connexion à distance ---
+
+::SRV-L1-Q11 Connexion à distance::Quel protocole utilise-t-on pour se connecter à distance au terminal d'un serveur Linux ?{
+=SSH#Exact, une connexion chiffrée en ligne de commande.
+~FTP
+~HTTP
+~RDP#C'est le protocole de bureau à distance de Windows.
+}
+
+::SRV-L1-Q12 Port SSH::Quel est le port par défaut du protocole SSH ?{#22#Exact.}
+
+::SRV-L1-Q13 Les clés SSH::À quoi sert la commande ssh-keygen ?{
+=À générer une paire de clés (privée et publique) pour s'authentifier sans mot de passe#Exact, la clé publique sera ensuite déposée sur le serveur.
+~À changer le mot de passe root du serveur
+~À chiffrer le disque dur de la VM
+~À générer un certificat HTTPS
+}
+
+::SRV-L1-Q14 Déployer sa clé::Que fait la commande ssh-copy-id utilisateur@adresse-ip ?{
+=Elle copie votre clé publique sur le serveur pour permettre la connexion sans mot de passe#Exact, c'est l'étape qui suit ssh-keygen.
+~Elle copie votre clé privée sur le serveur#Surtout pas \: la clé privée ne quitte jamais votre machine.
+~Elle sauvegarde l'identifiant du serveur en local
+~Elle crée un nouvel utilisateur sur le serveur
+}
+
+::SRV-L1-Q15 Vrai ou Faux - Clé privée::Il est acceptable de transmettre sa clé privée SSH à un camarade pour qu'il accède au même serveur.{FALSE#Exact, c'est faux \: la clé privée ne se partage jamais. Le camarade doit générer sa propre paire de clés et déposer sa clé publique sur le serveur.#La clé privée ne quitte jamais votre machine \: c'est la clé publique que l'on dépose sur le serveur.}
+
+// --- La ligne de commande ---
+
+::SRV-L1-Q16 Gérer les paquets::Quelle commande permet de mettre à jour la liste des paquets disponibles sur Debian ?{
+=apt update#Exact, à lancer avant toute installation.
+~apt upgrade#Cette commande met à jour les paquets installés, pas la liste.
+~apt refresh
+~update apt
+}
+
+::SRV-L1-Q17 Installer un logiciel::Pour installer le serveur Web Apache sur Debian, on utilise la commande apt {=install ~download ~get ~setup} apache2.
+
+::SRV-L1-Q18 Éditer un fichier::Quel éditeur de texte en ligne de commande est utilisé dans les TP pour modifier les fichiers de configuration ?{
+=nano
+~Word
+~VS Code#Pratique en local, mais pas dans le terminal du serveur.
+~paint
+}
+
+::SRV-L1-Q19 Les commandes de base::Associez chaque commande à son action.{
+=mkdir -> Créer un dossier
+=cd -> Se déplacer dans l'arborescence
+=ls -> Lister le contenu d'un dossier
+=touch -> Créer un fichier vide
+}
+
+::SRV-L1-Q20 Télécharger::Quelle commande permet de télécharger un fichier depuis une URL en ligne de commande ?{
+=wget#Exact, par exemple wget https\://exemple.com/valeurs.md (curl fonctionne aussi).
+~download
+~ftp
+~scp#scp copie des fichiers via SSH entre deux machines, pas depuis une URL web.
+}

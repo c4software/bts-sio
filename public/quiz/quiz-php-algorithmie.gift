@@ -1,0 +1,211 @@
+// Questionnaire PHP — Algorithmie (40 questions, lot unique)
+// Lecture de code, boucles, conditions, tableaux, fonctions et algorithmes classiques
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
+
+$CATEGORY: PHP/Algorithmie
+
+// --- Variables et opérations ---
+
+::ALGO-Q1 Affectation::Que va afficher ce code ? $x \= 5\; $x \= $x + 3\; echo $x\;{#8#Exact \: $x prend la valeur 5, puis 5 + 3.}
+
+::ALGO-Q2 Priorité des opérateurs::Que va afficher echo 2 + 3 * 4\; ?{#14#Exact \: la multiplication est prioritaire, 2 + 12 \= 14.}
+
+::ALGO-Q3 Le modulo::Que permet de calculer l'opérateur % (modulo) ?{
+=Le reste de la division entière#Exact \: 17 % 5 vaut 2, car 17 \= 3 × 5 + 2.
+~Le pourcentage d'une valeur
+~La division avec des décimales
+~La puissance d'un nombre
+}
+
+::ALGO-Q4 Calcul de modulo::Que va afficher echo 17 % 5\; ?{#2#Exact \: 17 \= 3 × 5 + 2, le reste est 2.}
+
+::ALGO-Q5 Copie de variable::Que va afficher ce code ? $a \= 5\; $b \= $a\; $a \= 10\; echo $b\;{
+=5#Exact \: $b a reçu une copie de la valeur de $a au moment de l'affectation, il n'est pas lié à $a.
+~10
+~15
+~Une erreur
+}
+
+::ALGO-Q6 Échanger deux variables::Quel code échange correctement le contenu des variables $a et $b ?{
+=$tmp \= $a\; $a \= $b\; $b \= $tmp\;#Exact, la variable temporaire évite d'écraser une des deux valeurs.
+~$a \= $b\; $b \= $a\;#Non \: la valeur de $a est écrasée avant d'avoir été sauvegardée, les deux variables finissent égales.
+~$a \= $tmp\; $b \= $a\; $tmp \= $b\;
+~echange($a, $b)\;#Cette fonction n'existe pas en PHP.
+}
+
+::ALGO-Q7 Vrai ou Faux - Incrément::L'instruction $x++ est équivalente à $x \= $x + 1.{TRUE#Exact, c'est l'incrémentation, très utilisée dans les boucles.#Relisez le support \: $x++ ajoute 1 à la variable, exactement comme $x \= $x + 1.}
+
+::ALGO-Q8 Division::Que va afficher echo 7 / 2\; ?{
+=3.5#Exact \: en PHP la division renvoie un nombre à virgule si nécessaire.
+~3#Ce serait le résultat d'une division entière (intdiv).
+~4
+~Une erreur
+}
+
+// --- Conditions et logique ---
+
+::ALGO-Q9 Lire une condition::Que va afficher ce code ? $age \= 17\; if ($age >\= 18) \{ echo "majeur"\; \} else \{ echo "mineur"\; \}{
+=mineur#Exact \: 17 >\= 18 est faux, c'est donc le bloc else qui s'exécute.
+~majeur
+~majeurmineur
+~Rien du tout
+}
+
+::ALGO-Q10 Le ET logique::Quel opérateur écrit-on en PHP pour le « ET » logique (les deux conditions doivent être vraies) ?{
+=&&
+=and
+}
+
+::ALGO-Q11 Évaluer un ET::$a \= 5\; $b \= 10\; Que vaut l'expression ($a > 3 && $b > 20) ?{
+=false#Exact \: $a > 3 est vrai, mais $b > 20 est faux. Avec un ET, il suffit d'une condition fausse pour que le tout soit faux.
+~true
+~5
+~Une erreur
+}
+
+::ALGO-Q12 Évaluer un OU::$a \= 5\; $b \= 10\; Que vaut l'expression ($a > 3 || $b > 20) ?{
+=true#Exact \: avec un OU, une seule condition vraie suffit, et $a > 3 est vrai.
+~false
+~10
+~Une erreur
+}
+
+::ALGO-Q13 La négation::$x \= 5\; Que vaut l'expression !($x \=\= 5) ?{
+=false#Exact \: $x \=\= 5 est vrai, et l'opérateur ! inverse le résultat.
+~true
+~5
+~0
+}
+
+::ALGO-Q14 Les conditions en cascade::$note \= 12\; if ($note >\= 16) \{ echo "très bien"\; \} elseif ($note >\= 10) \{ echo "admis"\; \} else \{ echo "insuffisant"\; \} Qu'affiche ce code ?{
+=admis#Exact \: 12 >\= 16 est faux, on teste la suite \: 12 >\= 10 est vrai.
+~très bien
+~insuffisant
+~admisinsuffisant#Non, un seul bloc s'exécute dans un if / elseif / else.
+}
+
+// --- Les boucles ---
+
+::ALGO-Q15 Compter les itérations::Combien de fois s'exécute le corps de la boucle for ($i \= 0\; $i < 5\; $i++) ?{#5#Exact \: $i prend les valeurs 0, 1, 2, 3 et 4.}
+
+::ALGO-Q16 Pas de deux::Combien de fois s'exécute le corps de la boucle for ($i \= 1\; $i <\= 10\; $i +\= 2) ?{#5#Exact \: $i prend les valeurs 1, 3, 5, 7 et 9.}
+
+::ALGO-Q17 Bien choisir sa boucle::Lesquelles de ces boucles affichent 01234 ? (plusieurs réponses attendues){
+~%33.33333%for ($i \= 0\; $i < 5\; $i++) \{ echo $i\; \}#Exact.
+~%33.33333%$i \= 0\; while ($i < 5) \{ echo $i\; $i++\; \}#Exact, c'est l'équivalent en while.
+~%33.33334%foreach ([0, 1, 2, 3, 4] as $v) \{ echo $v\; \}#Exact, on parcourt directement les valeurs.
+~%-50%for ($i \= 0\; $i <\= 5\; $i++) \{ echo $i\; \}#Non \: avec <\= la boucle va jusqu'à 5 inclus, elle affiche 012345.
+}
+
+::ALGO-Q18 Boucle infinie::$i \= 0\; while ($i < 10) \{ echo $i\; \} Quel est le problème de ce code ?{
+=La boucle est infinie \: $i n'est jamais incrémenté, la condition reste toujours vraie#Exact, il manque $i++ dans le corps de la boucle.
+~La condition est mal écrite, il faut \=\= à la place de <
+~On ne peut pas utiliser echo dans un while
+~Aucun, ce code affiche les nombres de 0 à 9
+}
+
+::ALGO-Q19 L'accumulateur::Que va afficher ce code ? $s \= 0\; for ($i \= 1\; $i <\= 4\; $i++) \{ $s \= $s + $i\; \} echo $s\;{#10#Exact \: on accumule 1 + 2 + 3 + 4 \= 10. C'est le motif de l'accumulateur (somme).}
+
+::ALGO-Q20 Le produit::Que va afficher ce code ? $p \= 1\; for ($i \= 1\; $i <\= 4\; $i++) \{ $p \= $p * $i\; \} echo $p\;{#24#Exact \: 1 × 2 × 3 × 4 \= 24 (c'est la factorielle de 4). Notez que $p démarre à 1 et non à 0.}
+
+::ALGO-Q21 Sortir d'une boucle::Pour interrompre immédiatement une boucle et passer à la suite du programme, on utilise l'instruction {=break ~continue ~exit ~stop}.
+
+::ALGO-Q22 Le continue::Que fait l'instruction continue dans une boucle ?{
+=Elle abandonne l'itération en cours et passe directement à la suivante#Exact, contrairement à break qui sort complètement de la boucle.
+~Elle sort complètement de la boucle#Non, ça c'est break.
+~Elle recommence la boucle depuis le début
+~Elle met la boucle en pause une seconde
+}
+
+::ALGO-Q23 Compte à rebours::Que va afficher ce code ? for ($i \= 3\; $i > 0\; $i--) \{ echo $i\; \}{
+=321#Exact \: $i démarre à 3 et décroît tant qu'il est supérieur à 0.
+~123
+~3210
+~Une boucle infinie
+}
+
+::ALGO-Q24 Vrai ou Faux - do…while::Une boucle do…while exécute toujours son corps au moins une fois, même si la condition est fausse dès le départ.{TRUE#Exact \: la condition est testée après le corps, contrairement au while classique.#Relisez le support \: dans un do…while, le corps s'exécute d'abord, la condition est vérifiée ensuite.}
+
+::ALGO-Q25 Doubler jusqu'au seuil::Que va afficher ce code ? $x \= 1\; while ($x < 20) \{ $x \= $x * 2\; \} echo $x\;{#32#Exact \: $x vaut successivement 2, 4, 8, 16 puis 32. À 16 la condition est encore vraie, on double une dernière fois.}
+
+// --- Les tableaux ---
+
+::ALGO-Q26 Taille d'un tableau::$t \= [4, 8, 15]\; Que va afficher echo count($t)\; ?{#3#Exact \: count() retourne le nombre d'éléments.}
+
+::ALGO-Q27 Les indices::$t \= [4, 8, 15]\; Que vaut $t[0] ?{
+=4#Exact \: les indices d'un tableau commencent à 0.
+~8
+~15
+~Une erreur, les indices commencent à 1
+}
+
+::ALGO-Q28 Le dernier élément::Comment accéder au dernier élément d'un tableau $t sans connaître sa taille à l'avance ?{
+=$t[count($t) - 1]#Exact \: le dernier indice vaut la taille moins 1, puisque les indices commencent à 0.
+~$t[count($t)]#Non \: cet indice n'existe pas, il dépasse d'une case.
+~$t[dernier]
+~$t[-0]
+}
+
+::ALGO-Q29 Somme d'un tableau::$t \= [2, 4, 6]\; $s \= 0\; foreach ($t as $v) \{ $s +\= $v\; \} echo $s\; Qu'affiche ce code ?{#12#Exact \: 2 + 4 + 6 \= 12, encore le motif de l'accumulateur.}
+
+::ALGO-Q30 Recherche du maximum::Pour chercher la plus grande valeur d'un tableau $t non vide, quelle est la bonne initialisation de $max avant la boucle ?{
+=$max \= $t[0]\;#Exact \: on part du premier élément. Initialiser à 0 échouerait avec un tableau de valeurs toutes négatives.
+~$max \= 0\;#Piège classique \: avec [-8, -3, -5], le maximum retourné serait 0, qui n'est pas dans le tableau.
+~$max \= 1000000\;#Avec une valeur trop grande, aucun élément ne pourra la dépasser.
+~$max \= null\; sans autre traitement
+}
+
+::ALGO-Q31 Reconnaître un algorithme::foreach ($t as $v) \{ if ($v \=\= $cherche) \{ return true\; \} \} return false\; Que fait cet algorithme ?{
+=Il teste si la valeur $cherche est présente dans le tableau#Exact, c'est une recherche séquentielle \: on sort dès qu'on trouve.
+~Il compte combien de fois $cherche apparaît
+~Il trie le tableau
+~Il supprime $cherche du tableau
+}
+
+::ALGO-Q32 Fonction toute prête::Quelle fonction PHP native permet de tester si une valeur est présente dans un tableau, comme le code de la question précédente ? La fonction {=in_array ~array_find ~contains ~has_value} fait exactement cela.
+
+::ALGO-Q33 Compter sous condition::$cpt \= 0\; foreach ([3, 8, 5, 12, 7, 6] as $v) \{ if ($v % 2 \=\= 0) \{ $cpt++\; \} \} echo $cpt\; Qu'affiche ce code ?{#3#Exact \: les valeurs paires sont 8, 12 et 6. C'est le motif du compteur conditionnel.}
+
+// --- Les fonctions ---
+
+::ALGO-Q34 Retour de fonction::function double($x) \{ return $x * 2\; \} echo double(4)\; Qu'affiche ce code ?{#8#Exact \: la fonction retourne 4 × 2.}
+
+::ALGO-Q35 Le return::Que fait l'instruction return dans une fonction ?{
+=Elle renvoie une valeur à l'appelant et termine immédiatement l'exécution de la fonction#Exact \: tout code placé après le return ne sera jamais exécuté.
+~Elle affiche la valeur à l'écran#Non, c'est le rôle d'echo. return renvoie sans afficher.
+~Elle relance la fonction depuis le début
+~Elle sauvegarde la valeur dans la session
+}
+
+::ALGO-Q36 Portée des variables::Une variable déclarée à l'intérieur d'une fonction PHP est…{
+=Locale \: elle n'existe que dans la fonction et disparaît à la fin de son exécution#Exact, c'est la portée (scope) des variables.
+~Globale \: elle est accessible partout dans le programme
+~Automatiquement sauvegardée entre deux appels
+~Partagée avec toutes les autres fonctions
+}
+
+::ALGO-Q37 Paramètre par défaut::function f($a, $b \= 3) \{ return $a + $b\; \} echo f(2)\; Qu'affiche ce code ?{#5#Exact \: $b n'est pas fourni, il prend sa valeur par défaut 3, donc 2 + 3.}
+
+::ALGO-Q38 Appels imbriqués::function double($x) \{ return $x * 2\; \} echo double(double(3))\; Qu'affiche ce code ?{
+=12#Exact \: double(3) vaut 6, puis double(6) vaut 12. L'appel intérieur est évalué en premier.
+~6
+~9
+~36
+}
+
+// --- Les motifs d'algorithmes ---
+
+::ALGO-Q39 Les motifs classiques::Associez chaque motif d'algorithme à son usage.{
+=Compteur ($cpt++ sous condition) -> Compter les éléments qui respectent un critère
+=Accumulateur ($s +\= $v) -> Calculer une somme ou un total
+=Maximum ($max \= $v si $v > $max) -> Trouver la plus grande valeur
+=Drapeau booléen ($trouve \= true) -> Retenir qu'un évènement s'est produit pendant le parcours
+}
+
+::ALGO-Q40 Multiple de 3 et de 5::Quelle condition teste qu'un nombre $n est à la fois multiple de 3 et multiple de 5 ?{
+=$n % 3 \=\= 0 && $n % 5 \=\= 0#Exact \: un nombre est multiple de 3 si le reste de sa division par 3 vaut 0. Les deux conditions doivent être vraies.
+~$n % 3 \=\= 0 || $n % 5 \=\= 0#Le OU accepterait les nombres multiples d'un seul des deux.
+~$n / 3 \=\= 0 && $n / 5 \=\= 0#La division ne teste pas le reste \: $n / 3 vaut 0 seulement si $n vaut 0.
+~$n \=\= 3 && $n \=\= 5#Un nombre ne peut pas valoir 3 et 5 à la fois.
+}
