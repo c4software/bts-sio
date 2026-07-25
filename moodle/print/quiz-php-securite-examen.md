@@ -1,4 +1,4 @@
-# PHP — Format examen : analyse de code et sécurité OWASP (30 questions, lot unique)
+# PHP Format examen : Analyse de code et sécurité OWASP
 
 Nom : ______________________  Prénom : ______________________
 

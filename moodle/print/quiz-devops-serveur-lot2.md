@@ -1,4 +1,4 @@
-# DevOps Serveur — Lot 2 (Niveau 2) : Apache, MariaDB, virtual hosts et déploiement (TP2 → TP5)
+# DevOps Serveur Lot 2 : Apache, MariaDB, virtual hosts et déploiement (TP2 à TP5)
 
 Nom : ______________________  Prénom : ______________________
 

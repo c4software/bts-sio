@@ -1,4 +1,4 @@
-# VueJS 3 — 10 questions, lot unique
+# VueJS 3
 
 Nom : ______________________  Prénom : ______________________
 

@@ -1,4 +1,4 @@
-// Questionnaire Laravel — Lot 2 : Authentification, API, tests, 2FA et reset de mot de passe
+// Questionnaire Laravel Lot 2 : Authentification, API, tests, 2FA et reset de mot de passe
 // Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
 // Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
 

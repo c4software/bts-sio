@@ -1,4 +1,4 @@
-// Questionnaire JavaScript — L'AJAX (10 questions, lot unique)
+// Questionnaire JavaScript : L'AJAX
 // Basé sur cheatsheets/javascript/index.md (section « L'ajax »)
 // Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
 // Types : QCM, vrai/faux, réponse courte, appariement, mot manquant

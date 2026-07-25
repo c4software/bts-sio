@@ -1,4 +1,4 @@
-# Laravel — Lot 1 : Les fondamentaux (introduction, routes, Blade, migrations, Eloquent)
+# Laravel Lot 1 : Les fondamentaux (routes, Blade, migrations, Eloquent)
 
 Nom : ______________________  Prénom : ______________________
 

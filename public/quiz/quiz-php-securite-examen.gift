@@ -1,4 +1,4 @@
-// Questionnaire PHP — Format examen : analyse de code et sécurité OWASP (30 questions, lot unique)
+// Questionnaire PHP Format examen : Analyse de code et sécurité OWASP
 // Code à analyser / corriger : injection SQL, XSS, CSRF, visibilité, mots de passe, mauvaises pratiques
 // Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
 // Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, réponses multiples

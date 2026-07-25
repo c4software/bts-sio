@@ -1,4 +1,4 @@
-# JavaScript — L'AJAX (10 questions, lot unique)
+# JavaScript : L'AJAX
 
 Nom : ______________________  Prénom : ______________________
 

@@ -1,4 +1,4 @@
-// Questionnaire PHP — Lot 2 : Structuration, sessions, cookies, SQL/PDO, ouverture Laravel (TP3 → TP6 + TP SQL)
+// Questionnaire PHP Lot 2 : Structuration, sessions, cookies, SQL et PDO (TP3 à TP6, TP SQL)
 // Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
 // Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
 

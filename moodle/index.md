@@ -24,10 +24,10 @@ onMounted(async () => {
 
 # Quiz d'entraînement
 
-Ces quiz vous permettent de vérifier vos connaissances sur les différentes thématiques du cours. Ils ne sont pas notés : entraînez-vous autant de fois que nécessaire, les questions et les réponses sont mélangées à chaque tentative.
+Ces quiz vous permettent de vérifier vos connaissances sur les différentes thématiques du cours. Ils ne sont pas notés : entraînez-vous autant de fois que nécessaire.
 
 ::: tip Comment ça marche ?
-Choisissez une thématique, répondez aux questions, puis validez pour obtenir votre score et les explications. Vous retrouverez une partie de ces questions dans les évaluations sur Moodle.
+Choisissez une thématique, répondez aux questions, puis validez pour obtenir votre score et les explications. À chaque tentative, 10 questions sont tirées au hasard dans la banque de la thématique : refaites le quiz plusieurs fois pour tout couvrir. Vous retrouverez une partie de ces questions dans les évaluations sur Moodle.
 :::
 
 <ClientOnly>

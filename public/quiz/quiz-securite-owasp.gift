@@ -1,4 +1,4 @@
-// Questionnaire Sécurité des applications (OWASP) — 40 questions, lot unique
+// Questionnaire Sécurité des applications (OWASP)
 // Basé sur cours/securite_applications.md et cheatsheets/owasp/index.md
 // Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
 // Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples

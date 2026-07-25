@@ -1,4 +1,4 @@
-# PHP — Algorithmie (40 questions, lot unique)
+# PHP : Algorithmie
 
 Nom : ______________________  Prénom : ______________________
 

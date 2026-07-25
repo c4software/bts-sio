@@ -1,4 +1,4 @@
-# POO — La programmation orientée objet (30 questions, lot unique)
+# POO : La programmation orientée objet
 
 Nom : ______________________  Prénom : ______________________
 

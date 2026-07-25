@@ -1,4 +1,4 @@
-# DevOps Serveur — Lot 1 (Niveau 1) : Serveur, VM, Debian et ligne de commande (TP1 → TP1c)
+# DevOps Serveur Lot 1 : Serveur, VM, Debian et ligne de commande (TP1 à TP1c)
 
 Nom : ______________________  Prénom : ______________________
 

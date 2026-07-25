@@ -1,4 +1,4 @@
-# PHP — Lot 2 : Structuration, sessions, cookies, SQL/PDO, ouverture Laravel (TP3 → TP6 + TP SQL)
+# PHP Lot 2 : Structuration, sessions, cookies, SQL et PDO (TP3 à TP6, TP SQL)
 
 Nom : ______________________  Prénom : ______________________
 

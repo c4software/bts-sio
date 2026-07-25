@@ -1,4 +1,4 @@
-// Questionnaire Laravel — Lot 1 : Les fondamentaux (introduction, routes, Blade, migrations, Eloquent)
+// Questionnaire Laravel Lot 1 : Les fondamentaux (routes, Blade, migrations, Eloquent)
 // Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
 // Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique
 

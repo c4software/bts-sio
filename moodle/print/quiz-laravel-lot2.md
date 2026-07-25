@@ -1,4 +1,4 @@
-# Laravel — Lot 2 : Authentification, API, tests, 2FA et reset de mot de passe
+# Laravel Lot 2 : Authentification, API, tests, 2FA et reset de mot de passe
 
 Nom : ______________________  Prénom : ______________________
 

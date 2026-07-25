@@ -264,7 +264,8 @@ export default {
   name: 'QuizGift',
   props: {
     src: { type: String, required: true },
-    hideTitle: { type: Boolean, default: false }
+    hideTitle: { type: Boolean, default: false },
+    limit: { type: Number, default: 10 }
   },
   data() {
     return { quiz: null, questions: [], answers: [], corrected: false, error: false }
@@ -286,7 +287,8 @@ export default {
   },
   methods: {
     setup() {
-      this.questions = this.quiz.questions.map((q) => {
+      // Tirage aléatoire de `limit` questions à chaque tentative
+      this.questions = shuffle(this.quiz.questions).slice(0, this.limit).map((q) => {
         const question = { ...q }
         if (q.options) {
           question.shuffled = shuffle(q.options)

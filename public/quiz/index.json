@@ -1,62 +1,62 @@
 [
   {
     "src": "quiz-devops-serveur-lot1",
-    "title": "DevOps Serveur — Lot 1 (Niveau 1) : Serveur, VM, Debian et ligne de commande (TP1 → TP1c)",
+    "title": "DevOps Serveur Lot 1 : Serveur, VM, Debian et ligne de commande (TP1 à TP1c)",
     "questions": 20
   },
   {
     "src": "quiz-devops-serveur-lot2",
-    "title": "DevOps Serveur — Lot 2 (Niveau 2) : Apache, MariaDB, virtual hosts et déploiement (TP2 → TP5)",
+    "title": "DevOps Serveur Lot 2 : Apache, MariaDB, virtual hosts et déploiement (TP2 à TP5)",
     "questions": 20
   },
   {
     "src": "quiz-javascript-ajax",
-    "title": "JavaScript — L'AJAX (10 questions, lot unique)",
+    "title": "JavaScript : L'AJAX",
     "questions": 10
   },
   {
     "src": "quiz-laravel-lot1",
-    "title": "Laravel — Lot 1 : Les fondamentaux (introduction, routes, Blade, migrations, Eloquent)",
+    "title": "Laravel Lot 1 : Les fondamentaux (routes, Blade, migrations, Eloquent)",
     "questions": 15
   },
   {
     "src": "quiz-laravel-lot2",
-    "title": "Laravel — Lot 2 : Authentification, API, tests, 2FA et reset de mot de passe",
+    "title": "Laravel Lot 2 : Authentification, API, tests, 2FA et reset de mot de passe",
     "questions": 15
   },
   {
     "src": "quiz-php-algorithmie",
-    "title": "PHP — Algorithmie (40 questions, lot unique)",
+    "title": "PHP : Algorithmie",
     "questions": 40
   },
   {
     "src": "quiz-php-lot1",
-    "title": "PHP — Lot 1 : Les bases (TP1 → TP2 / passage de paramètres)",
+    "title": "PHP Lot 1 : Les bases (TP1 à TP2, passage de paramètres)",
     "questions": 15
   },
   {
     "src": "quiz-php-lot2",
-    "title": "PHP — Lot 2 : Structuration, sessions, cookies, SQL/PDO, ouverture Laravel (TP3 → TP6 + TP SQL)",
+    "title": "PHP Lot 2 : Structuration, sessions, cookies, SQL et PDO (TP3 à TP6, TP SQL)",
     "questions": 15
   },
   {
     "src": "quiz-php-securite-examen",
-    "title": "PHP — Format examen : analyse de code et sécurité OWASP (30 questions, lot unique)",
+    "title": "PHP Format examen : Analyse de code et sécurité OWASP",
     "questions": 30
   },
   {
     "src": "quiz-poo",
-    "title": "POO — La programmation orientée objet (30 questions, lot unique)",
+    "title": "POO : La programmation orientée objet",
     "questions": 30
   },
   {
     "src": "quiz-securite-owasp",
-    "title": "Sécurité des applications (OWASP) — 40 questions, lot unique",
+    "title": "Sécurité des applications (OWASP)",
     "questions": 40
   },
   {
     "src": "quiz-vuejs",
-    "title": "VueJS 3 — 10 questions, lot unique",
+    "title": "VueJS 3",
     "questions": 10
   }
 ]

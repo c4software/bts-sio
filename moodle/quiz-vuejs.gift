@@ -1,4 +1,4 @@
-// Questionnaire VueJS 3 — 10 questions, lot unique
+// Questionnaire VueJS 3
 // Basé sur cheatsheets/vuejs3/index.md et tp/vuejs3/ (tp0, application, routeur)
 // Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
 // Types : QCM, vrai/faux, réponse courte, appariement, mot manquant

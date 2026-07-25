@@ -1,4 +1,4 @@
-# Sécurité des applications (OWASP) — 40 questions, lot unique
+# Sécurité des applications (OWASP)
 
 Nom : ______________________  Prénom : ______________________
 

@@ -1,4 +1,4 @@
-# PHP — Lot 1 : Les bases (TP1 → TP2 / passage de paramètres)
+# PHP Lot 1 : Les bases (TP1 à TP2, passage de paramètres)
 
 Nom : ______________________  Prénom : ______________________
 
