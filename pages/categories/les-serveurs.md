@@ -6,6 +6,10 @@ aside: false
 
 Connaitre le fonctionnement des serveurs est indispensable pour comprendre le fonctionnement des applications. Dans cette catégorie vous trouverez les ressources pour vous aider à comprendre les serveurs.
 
+## Par où commencer ?
+
+Si vous débutez, suivez [les TP serveur / DevOps dans l'ordre](/pages/categories/les-tp-devops.md) : le serveur, puis Docker, puis l'intégration continue.
+
 ## Les supports de cours
 
 - [Cours sur les serveurs](/cours/serveur.md)

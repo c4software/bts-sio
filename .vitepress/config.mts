@@ -52,6 +52,26 @@ export default defineConfig({
 
     nav: [
       { text: 'Accueil', link: '/' },
+      {
+        text: 'Catégories',
+        items: [
+          { text: 'Le Web', link: '/pages/categories/le-web.md' },
+          { text: 'Le mobile', link: '/pages/categories/le-mobile.md' },
+          { text: 'Les serveurs / DevOps', link: '/pages/categories/les-serveurs.md' },
+          { text: 'Les concepts', link: '/pages/categories/les-concepts.md' },
+          { text: 'Les aides mémoires', link: '/pages/categories/aide-memoires.md' },
+        ]
+      },
+      {
+        text: 'Les parcours',
+        items: [
+          { text: 'Les TP web de base', link: '/pages/categories/les-tp-web-de-base.md' },
+          { text: 'Les TP PHP avancés', link: '/pages/categories/les-tp-php-avances.md' },
+          { text: 'Les TP JavaScript', link: '/pages/categories/les-tp-javascript.md' },
+          { text: 'Les TP serveur / DevOps', link: '/pages/categories/les-tp-devops.md' },
+          { text: 'Les TP mobile', link: '/pages/categories/les-tp-mobile.md' },
+        ]
+      },
       { text: 'Une question ?', link: '/pages/contact.md' },
     ],
 

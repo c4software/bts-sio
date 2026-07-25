@@ -6,6 +6,10 @@ aside: false
 
 Le développement mobile évolue rapidement, vous trouverez ici des ressources pour vous aider commencer votre apprentissage.
 
+## Par où commencer ?
+
+Si vous débutez, suivez [les TP mobile dans l'ordre](/pages/categories/les-tp-mobile.md) : les bases de Compose, la communication (API, Bluetooth), puis les projets.
+
 - [Cours base Android](/cours/android_base.md)
 - [Cours Android Compose](/cours/android_compose.md)
 - [Cours Android Bluetooth](/cours/android_ble.md)
