@@ -1,5 +1,5 @@
 ---
-description: Un petit TP/Guide rapide pour créer installer et configurer un serveur Apache afin d'y déployer Mini MVC Sample.
+description: Un petit TP/Guide rapide pour créer, installer et configurer un serveur Apache afin d'y déployer Mini MVC Sample.
 ---
 
 # Déployer Mini-MVC-Sample sur Apache
@@ -34,7 +34,7 @@ apt-get install lsb-release wget apt-transport-https gnupg2 ca-certificates -y
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 
-# Ajout de PHP et des dépendances nécessaire au bon fonctionnement de Mini MVC Sample
+# Ajout de PHP et des dépendances nécessaires au bon fonctionnement de Mini MVC Sample
 apt-get update -y
 apt-get install apache2 php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl,pdo,mysql,gd,zip,xml} unzip zip -y
 
@@ -101,7 +101,7 @@ Cloner ou FTP ? Vous avez le choix !?
 
 ## Configurer Apache
 
-La dernière étape est la configuration du serveur Apache, habituellement déposer les sources suffit à faire fonctionner un site Internet avec Mini MVC Sample nous allons avoir une étape supplémentaire :
+La dernière étape est la configuration du serveur Apache, habituellement déposer les sources suffit à faire fonctionner un site Internet, avec Mini MVC Sample nous allons avoir une étape supplémentaire :
 
 Pour ça :
 
@@ -126,7 +126,7 @@ DocumentRoot /var/www/html/votresite
 </Directory>
 ```
 
-**Cette partie est importante, elle permet d'activer la réécriture d'URL nécessaire pour Mini MVC Sample.**, il faut l'ajouter dans la configuration du `VirtualHost` (entre les balises `<VirtualHost>` et `</VirtualHost>`).
+**Cette partie est importante, elle permet d'activer la réécriture d'URL nécessaire pour Mini MVC Sample**, il faut l'ajouter dans la configuration du `VirtualHost` (entre les balises `<VirtualHost>` et `</VirtualHost>`).
 
 ::: details Un exemple du résultat
 
@@ -167,7 +167,7 @@ systemctl restart apache2
 
 Voilà ! Votre site est maintenant fonctionnel sur votre serveur.
 
-Félicitation !
+Félicitations !
 
 <center>
 <iframe src="https://giphy.com/embed/NEvPzZ8bd1V4Y" width="459" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>

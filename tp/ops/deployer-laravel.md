@@ -38,7 +38,7 @@ apt-get install lsb-release wget apt-transport-https gnupg2 ca-certificates -y
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 
-# Ajout de PHP et des dépendances nécessaire au bon fonctionnement de Mini MVC Sample
+# Ajout de PHP et des dépendances nécessaires au bon fonctionnement de Mini MVC Sample
 apt-get update -y
 apt-get install apache2 php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl,pdo,mysql,gd,zip,xml} unzip zip -y
 
@@ -76,14 +76,14 @@ Exemple dans mon cas :
 ```sh
 PHP 8.4 (cli) (built: Feb 15 2025 00:18:01) (NTS)
 Copyright (c) The PHP Group
-Zend Engine v4.2.3, Copyright (c) Zend Technologies
-    with Zend OPcache v8.2.3, Copyright (c), by Zend Technologies
+Zend Engine v4.4.0, Copyright (c) Zend Technologies
+    with Zend OPcache v8.4.0, Copyright (c), by Zend Technologies
 ```
 
 ::: tip Un instant !
 
-- D'où viennent ces commande ?
-- Devez-vous ? Pouvez-vous me faire confiance et les copiez-collez directement ?
+- D'où viennent ces commandes ?
+- Devez-vous ? Pouvez-vous me faire confiance et les copier-coller directement ?
 
 :::
 
@@ -104,14 +104,14 @@ chmod +x /usr/local/bin/composer
 Votre serveur est maintenant prêt ! Il ne nous reste plus qu'à :
 
 - Mettre les sources sur le serveur
-- Configurer Apache pour indiquer où son vos sources.
+- Configurer Apache pour indiquer où sont vos sources.
 
 :::
 
 ::: tip Un instant !
 
 - Pourquoi ai-je choisi de passer par l'installation hors de `apt-get` ?
-- Selon vous, pourquoi est-ce que ça pourrait-être une mauvaise idée ?
+- Selon vous, pourquoi est-ce que ça pourrait être une mauvaise idée ?
 
 :::
 
@@ -152,7 +152,7 @@ N'oubliez pas pour que votre site fonctionne correctement, vous **devez avoir un
 
 ## Configurer Apache
 
-La dernière étape est la configuration du serveur Apache, habituellement déposer les sources suffit à faire fonctionner un site Internet avec Laravel nous allons avoir une étape supplémentaire :
+La dernière étape est la configuration du serveur Apache, habituellement déposer les sources suffit à faire fonctionner un site Internet, avec Laravel nous allons avoir une étape supplémentaire :
 
 Pour ça :
 
@@ -181,7 +181,7 @@ DocumentRoot /var/www/html/votresite/public
 </Directory>
 ```
 
-**Cette partie est importante, elle permet d'activer la réécriture d'URL nécessaire pour Laravel.**, il faut l'ajouter dans la configuration du `VirtualHost` (entre les balises `<VirtualHost>` et `</VirtualHost>`).
+**Cette partie est importante, elle permet d'activer la réécriture d'URL nécessaire pour Laravel**, il faut l'ajouter dans la configuration du `VirtualHost` (entre les balises `<VirtualHost>` et `</VirtualHost>`).
 
 
 ::: details Un exemple du résultat
@@ -245,7 +245,7 @@ npm run build
 
 Voilà ! Votre site est maintenant fonctionnel sur votre serveur.
 
-Félicitation !
+Félicitations !
 
 <center>
 <iframe src="https://giphy.com/embed/NEvPzZ8bd1V4Y" width="459" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>

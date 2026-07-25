@@ -118,6 +118,7 @@ docker compose up -d
 ```
 
 :::
+
 ## Avant-propos
 
 Docker c'est simple ! Les étapes peuvent paraître effrayantes, mais non. Pour vous le prouver, voilà une vidéo de la procédure entière (2 min top chrono, de la création du projet à la mise à disposition sur votre machine) :
@@ -134,7 +135,7 @@ cd demo
 php artisan serve
 ```
 
-Rendez-vous sur [http://localhost:8000](http://localhost:8000) — votre site doit fonctionner correctement.
+Rendez-vous sur [http://localhost:8000](http://localhost:8000) : votre site doit fonctionner correctement.
 
 ## Dockeriser votre application
 
@@ -189,7 +190,7 @@ RUN chown -R application:application .
 
 Ce fichier contient l'ensemble de la configuration pour que Laravel fonctionne correctement. Il est en quelque sorte **générique** et pourra servir quel que soit votre projet Laravel.
 
-C'est donc un outil très pratique, surtout dans le cadre de ce que l'on appelle l'intégration continue — avec **GitLab CI** par exemple.
+C'est donc un outil très pratique, surtout dans le cadre de ce que l'on appelle l'intégration continue, avec **GitLab CI** par exemple.
 
 **Attention, ce fichier doit être placé à la racine de votre projet, au même niveau que le `.env`.**
 
@@ -252,7 +253,7 @@ Pour la suite, nous allons utiliser Docker Compose afin de décrire l'ensemble d
 
 ## Docker Compose : prêt à déployer sur votre serveur
 
-Vous avez maintenant un conteneur qui fonctionne. Nous allons créer un fichier `docker-compose.yaml` pour décrire l'ensemble de l'environnement de façon déclarative. Docker Compose permet de gérer des environnements multi-conteneurs — pour l'instant nous n'aurons que Laravel, mais qui peut le plus peut le moins.
+Vous avez maintenant un conteneur qui fonctionne. Nous allons créer un fichier `docker-compose.yaml` pour décrire l'ensemble de l'environnement de façon déclarative. Docker Compose permet de gérer des environnements multi-conteneurs : pour l'instant nous n'aurons que Laravel, mais qui peut le plus peut le moins.
 
 Créez (dans le même dossier que le `Dockerfile`) un fichier nommé `docker-compose.yaml` :
 
@@ -401,7 +402,7 @@ docker compose up -d
 
 À votre avis :
 
-- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le `docker-compose.yaml` — mais comment ?)
+- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le `docker-compose.yaml`, mais comment ?)
 - Est-ce que votre service démarrera automatiquement si vous redémarrez votre serveur ?
 
 :::
@@ -421,7 +422,7 @@ Le flag `--build` force la reconstruction de l'image avant de relancer les conte
 
 ## C'est à vous
 
-Ajoutez une nouvelle page dans votre site — une page « Conditions générales » par exemple. Une fois cette page ajoutée, déployez-la sur votre serveur.
+Ajoutez une nouvelle page dans votre site, une page « Conditions générales » par exemple. Une fois cette page ajoutée, déployez-la sur votre serveur.
 
 ## La suite ?
 

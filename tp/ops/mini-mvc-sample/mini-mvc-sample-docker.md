@@ -16,7 +16,7 @@ Vous débutez avec Docker ? Je vous conseille plutôt de [démarrer par ici](../
 
 ## Avant-propos
 
-Docker c'est simple ! Les étapes peuvent paraître effrayante, mais non. Pour vous le prouver, voilà une vidéo de la procédure entière (2min top chrono de la création du projet à la mise à disposition sur votre machine) :
+Docker c'est simple ! Les étapes peuvent paraître effrayantes, mais non. Pour vous le prouver, voilà une vidéo de la procédure entière (2 min top chrono, de la création du projet à la mise à disposition sur votre machine) :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/CgEAJfltyuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -30,7 +30,7 @@ Pour tester (et pour être certains d'avoir un projet propre), nous allons crée
 php mvc serve
 ```
 
-Rendez-vous sur [http://localhost:9000](http://localhost:9000) votre site doit fonctionner correctement.
+Rendez-vous sur [http://localhost:9000](http://localhost:9000), votre site doit fonctionner correctement.
 
 ## Dockeriser votre application
 
@@ -56,15 +56,13 @@ C'est donc un outil très très pratique surtout avec ce que l'on appelle des pl
 
 ## Docker Compose : prêt à déployer sur votre serveur
 
-Vous avez maintenant « un serveur » qui fonctionne, nous allons ajouter un fichier nommé qui sera utilisé par Docker Compose, cette configuration au format YAML.
+Vous avez maintenant « un serveur » qui fonctionne, nous allons ajouter un fichier qui sera utilisé par Docker Compose, cette configuration est au format YAML.
 
-Docker Compose vas nous permet de créer de véritable environnement multi conteneur, dans notre cas pour l'instant nous n'aurons que Mini-MVC-Sample, mais qui peux le plus peux le moins.
+Docker Compose va nous permettre de créer de véritables environnements multi-conteneurs, dans notre cas pour l'instant nous n'aurons que Mini-MVC-Sample, mais qui peut le plus peut le moins.
 
 Je vous laisse créer (dans le même dossier que le `Dockerfile`) un fichier nommé `docker-compose.yaml`, pour le contenu le voilà :
 
-```dockerfile
-version: '3'
-
+```yaml
 services:
   front:
     build: .
@@ -86,15 +84,15 @@ services:
 Ce fichier indique que vous avez :
 
 - **Un** service.
-- Qui expose un port le **8080**. (accessible sur `http://votre.ip:8080`)
-- Qui (re)démarrera automatiquement au démarrage de le votre serveur.
+- Qui expose un port, le **8080**. (accessible sur `http://votre.ip:8080`)
+- Qui (re)démarrera automatiquement au démarrage de votre serveur.
 
 ::: tip Un instant ?
 
 À votre avis :
 
 - Quelles autres options avez-vous à votre disposition pour le restart ? [C'est par ici.](https://docs.docker.com/config/containers/start-containers-automatically/)
-- À quoi correspond "8080:80" ? Pourquoi avons-nous un `80` alors que le site est disponible sur le `8080` ?
+- À quoi correspond "8080:9000" ? Pourquoi avons-nous un `9000` alors que le site est disponible sur le `8080` ?
 - Est-il possible de déclarer plusieurs services ? [C'est par ici.](https://docs.docker.com/compose/compose-file/)
 
 :::
@@ -114,7 +112,7 @@ Patientez quelques instants et votre site sera disponible sur le port [http://lo
 La procédure est assez similaire à l'installation d'un package classique :
 
 ```sh
-# Ajout des éléments nécessaire à l'installation
+# Ajout des éléments nécessaires à l'installation
 apt-get update
 apt-get -y install \
     ca-certificates \
@@ -132,7 +130,7 @@ apt update
 apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 ```
 
-**Félicitation,** vous avez maintenant Docker sur votre Serveur.
+**Félicitations,** vous avez maintenant Docker sur votre serveur.
 
 ::: tip Un Instant !
 
@@ -158,7 +156,7 @@ docker compose up -d
 
 À votre avis ?
 
-- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le, `docker-compose.yml` mais comment ?)
+- Pouvez-vous modifier le port d'écoute de votre serveur ? (oui, dans le `docker-compose.yml`, mais comment ?)
 - Est-ce que votre service va démarrer automatiquement si vous redémarrez votre machine ?
 
 :::
