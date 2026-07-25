@@ -59,7 +59,7 @@ _Maintenant PHP_ => **H**ypertext **P**reprocessor
 
 ---
 
-## L'entredeux existe aussi
+## L'entre-deux existe aussi
 
 Le statique dynamique
 
@@ -85,7 +85,7 @@ Le site généré en cas de changement
 
 - Gratuit.
 - Multiplateforme.
-- Très bien documentés ([php.net](https://php.net)).
+- Très bien documenté ([php.net](https://php.net)).
 - Simple à apprendre.
 - Largement utilisé.
 - Accès aux bases de données « intégré »
@@ -109,7 +109,7 @@ Toujours la même « base »
 
 ## Les bases de PHP
 
-Votre HTML est un texte à trou. Le PHP peut-être _inséré_ n'importe où.
+Votre HTML est un texte à trou. Le PHP peut être _inséré_ n'importe où.
 
 - Le script PHP commence par `<?php`.
 - Et se termine par `?>`.
@@ -169,14 +169,14 @@ Installons ensemble votre environnement de développement.
 
 ---
 
-Permets de mémoriser le temps d'une exécution une valeur.
+Permet de mémoriser le temps d'une exécution une valeur.
 
 ---
 
 ### En PHP
 
 - Commence toujours par un `$`.
-- Est créé automatiquement lors de l'assignation.
+- Est créée automatiquement lors de l'assignation.
 - Utilisable dans votre code PHP (affichage, conditions, etc)
 
 ---
@@ -207,13 +207,13 @@ echo "Bonjour je suis $nom";
 
 ### Une variable == Un Type
 
-En PHP, mais également quelques soit le langage.
+En PHP, mais également quel que soit le langage.
 
 ---
 
 | Type      | Contenu                   | Type d'opération                |
 | --------- | ------------------------- | ------------------------------- |
-| `string`  | "Une chaine de caractère" | Gestion du texte, concaténation |
+| `string`  | "Une chaine de caractères" | Gestion du texte, concaténation |
 | `int`     | 42                        | Opération mathématique          |
 | `boolean` | `True` ou `False`         | Opération logique               |
 | `float`   | 10.3                      | Opération mathématique          |
@@ -254,7 +254,7 @@ $nom = "brosseau";
 echo $nom . " " . $prenom;
 ```
 
-Affichera : `valentin brosseau`
+Affichera : `brosseau valentin`
 
 ---
 
@@ -331,7 +331,7 @@ echo $_GET['nom'] . " " . $_GET['prenom']; // Affichera brosseau valentin
 
 ATTENTION
 
-Petit aparté sur la sécurité informatique. Nous verrons plus tard les failles de sécurités, ce que vous venez de faire en est une (c'est une XSS).
+Petit aparté sur la sécurité informatique. Nous verrons plus tard les failles de sécurité, ce que vous venez de faire en est une (c'est une XSS).
 
 ---
 
@@ -373,9 +373,9 @@ $valeurs = array('élément 1', 'élément 2', 'élément 3');
 
 // ou via un ajout automatique à la fin du tableau
 
-$valeur[] = 'élément 1';
-$valeur[] = 'élément 2';
-$valeur[] = 'élément 3';
+$valeurs[] = 'élément 1';
+$valeurs[] = 'élément 2';
+$valeurs[] = 'élément 3';
 
 // ou via un ajout à une position donnée
 
@@ -391,7 +391,7 @@ $valeurs[2] = 'élément 3';
 - Identique à un tableau numéroté.
 - La clé ne sera pas un `chiffre` mais un `string`.
 - Gagne en clarté.
-- permet de structurer vos données.
+- Permet de structurer vos données.
 
 ---
 
@@ -428,7 +428,7 @@ $students = array(
         "ordinateur" => false,
         "age" => 87,
     )
-)
+);
 ```
 
 ---
@@ -444,7 +444,7 @@ $students = array(
 ## C'est à vous
 
 - Ajouter dans votre code une variable de type tableau.
-- Puis affiché là comme nous l'avons fait pour la variable `$_SERVER`.
+- Puis l'afficher comme nous l'avons fait pour la variable `$_SERVER`.
 
 <iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
@@ -454,7 +454,7 @@ $students = array(
 
 ### Le coeur de la programmation
 
-Question posé à l'ordinateur
+Question posée à l'ordinateur
 
 ---
 
@@ -478,12 +478,12 @@ La question est « mathématique » / « Logique »
 
 | Symbole | Signification                |
 | :-----: | ---------------------------- |
-|   ==    | Est égale à                  |
+|   ==    | Est égal à                  |
 |   !=    | Est différent de             |
-|    >    | Est strictement supérieure à |
-|    <    | Est strictement inférieure à |
-|   >=    | Est supérieure ou égale à    |
-|   <=    | Est inférieure ou égale à    |
+|    >    | Est strictement supérieur à |
+|    <    | Est strictement inférieur à |
+|   >=    | Est supérieur ou égal à    |
+|   <=    | Est inférieur ou égal à    |
 
 ---
 
@@ -507,7 +507,7 @@ $age = 22;
 if($age >= 18) {
     echo "Vous pouvez passer le permis";
 } else {
-    echo "Encore un peu de patience… Pour le permis c'est à 18ans";
+    echo "Encore un peu de patience… Pour le permis c'est à 18 ans";
 }
 ```
 
@@ -523,13 +523,13 @@ if($age >= 18) {
 } else if ($age >= 14) {
     echo "Vous pouvez passer le permis 2 roues.";
 } else {
-    echo "Encore un peu de patience… Pour le permis 2 roues c'est à 14ans";
+    echo "Encore un peu de patience… Pour le permis 2 roues c'est à 14 ans";
 }
 ```
 
 ---
 
-### Condition Booléene
+### Condition Booléenne
 
 ```php
 <?php
@@ -590,7 +590,7 @@ Comme Bart, simplifiez-vous la recopie d'une punition.
 
 ### La boucle While
 
-La boucle while est la plus simple de tout, elle ne s'arrête que quand la condition de sortie est `false`.
+La boucle while est la plus simple de toutes, elle ne s'arrête que quand la condition de sortie est `false`.
 
 ---
 
@@ -694,14 +694,14 @@ Les tableaux sont un gros morceau.
 
 ## Un exemple ?
 
-Le gateau au chocolat de Mamie Huguette
+Le gâteau au chocolat de Mamie Huguette
 
 ---
 
 ```
 3 Oeufs.
 100g de sucre.
-50g de farines.
+50g de farine.
 100g de beurre.
 200g de chocolat. On mélange et on enfourne 20 minutes.
 ```
@@ -718,10 +718,10 @@ $beurre = 100;
 $chocolat = 200;
 
 $melange = $oeuf + $sucre + $farine + $beurre+ $chocolat;
-echo "Cuire 20minutes le mélange de $melange gramme.";
+echo "Cuire 20 minutes le mélange de $melange grammes.";
 ```
 
-Ça fait beaucoup de ligne ? Nous n'allons pas le copier…
+Ça fait beaucoup de lignes ? Nous n'allons pas le copier…
 
 ---
 
@@ -743,7 +743,7 @@ echo gateauHuguette();
 Si nous exécutons le code :
 
 ```
-Cuire 20minutes le mélange => 453 grammes.
+Cuire 20 minutes le mélange => 453 grammes.
 ```
 
 ---
@@ -756,32 +756,32 @@ Partout dans votre code vous allez pouvoir l'appeler, et dans tous les cas vous 
 
 ### Et les paramètres ?
 
-Permets de personnaliser le traitement interne de la fonction.
+Permet de personnaliser le traitement interne de la fonction.
 
 ---
 
 ```php
 // Moelleux
-echo gateauHugette(15);
+echo gateauHuguette(15);
 
 // ou trop cuit
-echo gateauHugette(30);
+echo gateauHuguette(30);
 ```
 
 ```
-Cuire 15minutes le mélange => 453 grammes.
+Cuire 15 minutes le mélange => 453 grammes.
 
-Cuire 30minutes le mélange => 453 grammes.
+Cuire 30 minutes le mélange => 453 grammes.
 ```
 
 ---
 
 ### Écrire sa propre fonction
 
-L'intérieure de la boite noire
+L'intérieur de la boite noire
 
 ```php
-function gateauHugette($duree){
+function gateauHuguette($duree){
     $oeuf = 3;
     $sucre = 100;
     $farine = 50;
@@ -790,7 +790,7 @@ function gateauHugette($duree){
 
     $melange = $oeuf + $sucre + $farine + $beurre+ $chocolat;
 
-    return "Cuire $duree minutes le mélange de $melange gramme.";
+    return "Cuire $duree minutes le mélange de $melange grammes.";
 }
 ```
 
@@ -802,11 +802,11 @@ Une fonction c'est une instruction classique
 
 ```php
 // La variable $mon_gateau contiendra le résultat de la fonction.
-$mon_gateau = gateauHugette(20);
+$mon_gateau = gateauHuguette(20);
 
-// Des gateaux à l'infinie
+// Des gâteaux à l'infini
 while(true){
-    echo gateauHugette(20);
+    echo gateauHuguette(20);
 }
 ```
 
@@ -827,7 +827,7 @@ L'ensemble de ces fonctions sont écrites dans la documentation officielle. [À 
 
 ## C'est à vous
 
-Maintenant que nous savons faire une fonction!
+Maintenant que nous savons faire une fonction !
 
 Je vous propose de transformer le code de [« Bart » (TP 1.1)](/tp/php/tp1.1.html)
 
@@ -894,7 +894,7 @@ Nous découpons donc notre HTML dans X fichiers PHP.
 
 ---
 
-### Les Include pour d'organisation du code
+### Les Include pour l'organisation du code
 
 [Voir le support](/tp/php/support.html#les-includes-pour-organiser-votre-code-php)
 
@@ -1034,7 +1034,7 @@ Sauvegarder des variables entre chaque chargement de pages
 ### La session
 
 - Sauvegarde pour une durée courte (quelques minutes).
-- Sauvegarder **sur** le serveur.
+- Sauvegardée **sur** le serveur.
 - La durée dépend de l'activité de l'utilisateur.
 - Propre au « domaine ».
 - Différente pour chaque utilisateur.
@@ -1071,7 +1071,7 @@ Et … C'est tout !
 
 ### Les cookies
 
-Comme la Session… Mais sauvegardé sur le poste client
+Comme la Session… Mais sauvegardés sur le poste client
 
 ---
 
@@ -1109,7 +1109,7 @@ echo $_COOKIE["monCookie"];
 
 ### Pratiquer les SESSIONS & Cookies
 
-[je vous propose de pratiquer un peu la partie session](/tp/php/tp4.html)
+[Je vous propose de pratiquer un peu la partie session](/tp/php/tp4.html)
 
 ---
 

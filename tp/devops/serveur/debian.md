@@ -12,7 +12,7 @@ Dans ce TP, nous allons créer un serveur avec Debian. Nous allons installer un 
 
 ::: danger Attention
 
-Document de référence, il est découpé en plusieurs partie pour faciliter la lecture :
+Document de référence, il est découpé en plusieurs parties pour faciliter la lecture :
 
 - [Voir page avec découpage](/pages/categories/les-serveurs.md)
 
@@ -63,7 +63,7 @@ Dans notre cas nous utiliserons Apache pour le serveur web. Apache est un serveu
 Il existe différents serveurs web, Apache est l'un des plus utilisés. Il existe également Nginx, Caddy, etc. Mais Apache est le plus utilisé, donc c'est le serveur web que nous utiliserons.
 
 - Nginx est également un serveur web très puissant, mais il est un peu plus difficile à configurer.
-- Caddy est un serveur web qui est très simple à configurer, mais il est moins puissant qu’apache.
+- Caddy est un serveur web qui est très simple à configurer, mais il est moins puissant qu’Apache.
 
 ### Qu'est-ce qu'un serveur de base de données ?
 
@@ -73,9 +73,9 @@ Dans notre cas nous utiliserons MariaDB pour le serveur de base de données. Mar
 
 ::: tip Pourquoi MariaDB et pas MySQL ?
 
-C'est une bonne question… MariaDB est un fork de MySQL, c'est-à-dire que c'est une copie de MySQL. MariaDB a été créé parce que Oracle a racheté MySQL. Oracle a ensuite décidé de rendre MySQL payant. MariaDB est donc une copie de MySQL qui est gratuite. MariaDB est donc une alternative à MySQL. 
+C'est une bonne question… MariaDB est un fork de MySQL, c'est-à-dire que c'est une copie de MySQL. MariaDB a été créé parce qu'Oracle a racheté MySQL. Oracle a ensuite décidé de rendre MySQL payant. MariaDB est donc une copie de MySQL qui est gratuite. MariaDB est donc une alternative à MySQL. 
 
-Ce sont donc deux logiciels équivalents, MariadDB est gratuit et MySQL est pour l'instant également gratuit. Mais le logiciel MySQL pourrait devenir payant à l'avenir d'où l'intérêt de se tourner vers MariaDB.
+Ce sont donc deux logiciels équivalents, MariaDB est gratuit et MySQL est pour l'instant également gratuit. Mais le logiciel MySQL pourrait devenir payant à l'avenir d'où l'intérêt de se tourner vers MariaDB.
 
 :::
 
@@ -87,7 +87,7 @@ Le TP que nous allons faire est sur une machine virtuelle. Mais vous pouvez éga
 
 ## La sécurité
 
-Héberger du contenu nécéssite de réfléchir à la sécurité. En effet, il est important de sécuriser son serveur pour éviter que des personnes malveillantes ne puissent accéder à votre serveur et à vos données.
+Héberger du contenu nécessite de réfléchir à la sécurité. En effet, il est important de sécuriser son serveur pour éviter que des personnes malveillantes ne puissent accéder à votre serveur et à vos données.
 
 Différents éléments seront à prendre en compte pour sécuriser votre serveur :
 
@@ -126,18 +126,12 @@ Il est possible d'installer un serveur dans un container Docker ou directement s
 Plus tard nous découvrirons Docker et l'avantage de celui-ci (vous verrez c'est incroyable 🎉). Il est de toute façon primordial de comprendre comment on installe un serveur classique pour comprendre l'usage de Docker.
 
 ::: tip Docker c'est vaste
-Plus tard dans l'année nous utiliserons Docker pour créer des environnements de type « Conteneurs »… Volontairement j'ai souhaité vous en parler ici. Donc soyez curieux. N'hésiter pas à vous documenter si vous le souhaitez.
+Plus tard dans l'année nous utiliserons Docker pour créer des environnements de type « Conteneurs »… Volontairement j'ai souhaité vous en parler ici. Donc soyez curieux. N'hésitez pas à vous documenter si vous le souhaitez.
 :::
-
-## La procédure en vidéo
-
-Je sais que vous aimez bien les tutos vidéo. Donc voici l'ensemble de la procédure d'installation résumé une une seule vidéo :
-
-TODO YOUTUBE
 
 ::: tip À noter
 
-Comme vous pouvez le voir la procédure est relativement courte quand on la maitrise. Seulement quelques minutes suffise pour créer un serveur Web (Apache + MySQL complet), nous allons voir plus tard qu'avec Docker il est possible de gagner encore plus de temps (sans perdre en qualité bien au contraire).
+Comme vous pouvez le voir la procédure est relativement courte quand on la maitrise. Seulement quelques minutes suffisent pour créer un serveur Web (Apache + MySQL complet), nous allons voir plus tard qu'avec Docker il est possible de gagner encore plus de temps (sans perdre en qualité bien au contraire).
 
 :::
 
@@ -158,7 +152,7 @@ Vous connaissez la procédure d'installation, mais quelques éléments sont impo
 
 ::: danger Les performances et la virtualisation
 
-Sans les VMware tools semble fonctionner correctement ? Oui… À première vue seulement… En réalité votre machine ne tire pas toutes les performances de l'environnement. Pire, elle peut dégrader les performances de toute la ferme.
+Sans les VMware Tools, ça semble fonctionner correctement ? Oui… À première vue seulement… En réalité votre machine ne tire pas toutes les performances de l'environnement. Pire, elle peut dégrader les performances de toute la ferme.
 
 Bref, n'oubliez pas d'installer les Tools pour vivre une expérience optimale 👌.
 
@@ -198,7 +192,7 @@ La clé SSH est une clé privée, donc ne la partagez pas avec n'importe qui. El
 
 :::
 
-#### Générer une clef privée/public
+#### Générer une clef privée/publique
 
 Cette opération n'est à réaliser qu'une seule fois (sur chaque machine/session). Au lycée, la clef va s'enregistrer dans votre dossier utilisateur, elle sera donc synchronisée automatiquement avec l'ensemble des ordinateurs sur lesquels vous allez pouvoir vous connecter.
 
@@ -225,7 +219,7 @@ ssh-keygen
 La commande va générer **deux fichiers** :
 
 - **id_rsa**, est privé. **Vous ne devez jamais le partager**.
-- **id_rsa.pub**, est publique, vous pouvez le partager autant que vous voulez ce fichier permettra de vous reconnaître au moment de la connexion.
+- **id_rsa.pub**, est public, vous pouvez le partager autant que vous voulez, ce fichier permettra de vous reconnaître au moment de la connexion.
 
 ::: danger Plus de sécurité
 
@@ -241,7 +235,7 @@ Pour cela, il vous suffit de faire la commande suivante sur votre ordinateur.
 ssh-copy-id <username>@<ipaddress>
 ```
 
-⚠️ Vous devez évidemment remplacer `<username>`et `<ipaddress>`par votre utilisateur et votre mot de passe. Exemple :
+⚠️ Vous devez évidemment remplacer `<username>` et `<ipaddress>` par votre utilisateur et l'adresse IP de votre serveur. Exemple :
 
 ```bash
 ssh-copy-id pi@192.168.1.253
@@ -329,7 +323,7 @@ Je vous laisse créer une petite page web, et la déployer sur votre serveur. Vo
 
 Une fois votre code réalisé, je vous propose de le déployer sur votre serveur. Pour cela, vous pouvez utiliser FileZilla. Je vous propose de créer un dossier `monsite` dans le dossier `/var/www/html`.
 
-👀 Le dossier est créé ? vous pouvez déposer votre fichier `index.html` dans le dossier `monsite`. Vous pouvez ensuite ouvrir votre navigateur et aller sur l'adresse IP de votre serveur. Vous devriez voir votre site web.
+👀 Le dossier est créé ? Vous pouvez déposer votre fichier `index.html` dans le dossier `monsite`. Vous pouvez ensuite ouvrir votre navigateur et aller sur l'adresse IP de votre serveur. Vous devriez voir votre site web.
 
 ## Installation de PHP
 
@@ -337,7 +331,7 @@ Avoir un serveur web sans PHP, c'est comme avoir un serveur web sans base de don
 
 ### Installation
 
-La version de PHP fourni par défaut sur Debian est un peu ancienne. Pour avoir la dernière version, nous devons ajouter un dépôt. Pour cela, vous pouvez utiliser les commandes suivantes :
+La version de PHP fournie par défaut sur Debian est un peu ancienne. Pour avoir la dernière version, nous devons ajouter un dépôt. Pour cela, vous pouvez utiliser les commandes suivantes :
 
 ```bash
 apt-get update
@@ -377,7 +371,7 @@ a2enconf php8.4-fpm
 systemctl restart apache2
 ```
 
-Pour vérifier que Apache + PHP fonctionne, vous pouvez créer un fichier `info.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
+Pour vérifier qu'Apache + PHP fonctionne, vous pouvez créer un fichier `info.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
 
 ```bash
 nano /var/www/html/info.php
@@ -411,7 +405,7 @@ Dans ce fichier `test.php`, vous pouvez mettre le code suivant :
 
 ```php
 <?php
-echo "Hello " + $_GET['name'];
+echo "Hello " . $_GET['name'];
 ?>
 ```
 
@@ -424,9 +418,9 @@ Vous pouvez ensuite ouvrir votre navigateur et aller sur l'adresse IP de votre s
 Maintenant que nous avons un serveur web, nous allons installer une base de données. Nous allons installer MariaDB, une base de données open source, qui est compatible avec MySQL.
 
 ::: danger Attention
-Un instant, dans ce TP nous allons installer MariaDB sur le même serveur que Apache. C'est une mauvaise pratique, car si Apache tombe, MariaDB tombe aussi. 
+Un instant, dans ce TP nous allons installer MariaDB sur le même serveur qu'Apache. C'est une mauvaise pratique, car si Apache tombe, MariaDB tombe aussi. 
 
-Dans la vraie vie, il est préférable d'avoir un serveur web et un serveur de base de données séparé. C'est plus sécurisé et plus performant.
+Dans la vraie vie, il est préférable d'avoir un serveur web et un serveur de base de données séparés. C'est plus sécurisé et plus performant.
 :::
 
 ### Installation
@@ -456,7 +450,7 @@ Avant d'utiliser MariaDB, nous devons configurer le mot de passe de l'utilisateu
 mysql_secure_installation
 ```
 
-Cette commande va vous demander de rentrer le mot de passe actuel de l'utilisateur `root`. Comme vous venez d'installer MariaDB.
+Cette commande va vous demander de rentrer le mot de passe actuel de l'utilisateur `root`. Comme vous venez d'installer MariaDB, il n'y en a pas encore : appuyez simplement sur Entrée.
 
 ::: tip Arrêtons-nous un instant
 
@@ -478,7 +472,7 @@ Cette commande va vous demander le mot de passe de l'utilisateur `root`. Si vous
 
 ### PHP et MariaDB
 
-Lors de l'installation de PHP, nous avons installé l'extension `php-mysql`. Cette extension permet d'utiliser MariaDB avec PHP, elle est donc indispensable pour faire fonctionner vos sites webs si vous utilisez une base de données.
+Lors de l'installation de PHP, nous avons installé l'extension `php-mysql`. Cette extension permet d'utiliser MariaDB avec PHP, elle est donc indispensable pour faire fonctionner vos sites web si vous utilisez une base de données.
 
 ::: tip Arrêtons-nous un instant
 
@@ -630,15 +624,15 @@ Vous avez maintenant un serveur web et une base de données. Vous pouvez mainten
 
 Même si l'ensemble des étapes ne sont pas réellement longues, il est important de bien comprendre ce que vous faites. Notamment pour la configuration de MariaDB et de phpMyAdmin. Si vous avez des questions, n'hésitez pas à me les poser.
 
-Le développeur cherche à automatiser le plus possible son installation c'est pour ça que par la suite nous verrons comment automatiser entièrement l'installation de MariaDB, PHP et Apache grâce à Docker et Docker Compose.
+Le développeur cherche à automatiser le plus possible son installation, c'est pour ça que par la suite nous verrons comment automatiser entièrement l'installation de MariaDB, PHP et Apache grâce à Docker et Docker Compose.
 
-Cependant il est important de comprendre les commandes de bases ainsi que la notion de virtual host / port, car elles seront utilisées dans le cadre de Docker.
+Cependant il est important de comprendre les commandes de base ainsi que la notion de virtual host / port, car elles seront utilisées dans le cadre de Docker.
 
 ::: danger Attention
 
 Même si vous suivez l'option SLAM, il ne faut pas perdre de vue qu'en première année de BTS SIO vous allez devoir faire un projet de fin d'année. Ce projet va vous permettre de mettre en pratique ce que vous avez appris en première année. Vous allez donc devoir créer un site web dynamique. Vous allez donc devoir utiliser PHP, MySQL ou MariaDB, et Apache.
 
-Lors de l'examen final, vous serez également amené à créer un site web dynamique. Vous allez donc devoir utiliser PHP, MySQL ou MariaDB, et Apache. Vous allez donc devoir utiliser les commandes que vous avez vu dans ce chapitre.
+Lors de l'examen final, vous serez également amené à créer un site web dynamique. Vous allez donc devoir utiliser PHP, MySQL ou MariaDB, et Apache. Vous allez donc devoir utiliser les commandes que vous avez vues dans ce chapitre.
 
 :::
 
@@ -674,10 +668,10 @@ Redémarrer le serveur MySQL
 systemctl restart mysql
 ```
 
-## tip Pourquoi ?
+**Pourquoi ?**
 
 Par défaut, le serveur MySQL n'écoutera que les connexions locales. Il faut donc autoriser les connexions distantes en modifiant la valeur de `bind-address`. **Si vous n'en avez pas besoin, vous pouvez laisser la valeur par défaut.**
 
-Changer se paramètre sera utile quand vous souhaiterez accéder à la base de données depuis un autre ordinateur (exemple développement en C#).
+Changer ce paramètre sera utile quand vous souhaiterez accéder à la base de données depuis un autre ordinateur (exemple développement en C#).
 
 :::

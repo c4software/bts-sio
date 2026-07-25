@@ -66,8 +66,8 @@ Automatiser pour simplifier et améliorer la qualité.
 
 ## Les prérequis
 
-- Versionning du code.
-- Commits régulier.
+- Versioning du code.
+- Commits réguliers.
 - Application « testable ».
 
 ---
@@ -77,7 +77,7 @@ Automatiser pour simplifier et améliorer la qualité.
 ---
 
 - Tests réguliers
-- Découpage des actions (Instal, Tests …).
+- Découpage des actions (Install, Tests …).
 - Répétable à l'infini (à chaque « Push » mais également localement).
 - Être prévenu rapidement en cas de problème (en continu).
 - L'échec est possible (pas d'erreur silencieuse).
@@ -98,7 +98,7 @@ Automatiser pour simplifier et améliorer la qualité.
 
 ---
 
-- Automatiser au maximum (Code, Configuration, Environement …)
+- Automatiser au maximum (Code, Configuration, Environnement …)
   - Dev / Staging / Review
   - Prod
 - S'assure de la qualité
@@ -112,7 +112,7 @@ Automatiser pour simplifier et améliorer la qualité.
 
 ## CI / CD
 
-### Complémentaires « s'enchaine »
+### Complémentaires « s'enchainent »
 
 ---
 
@@ -124,7 +124,7 @@ Automatiser pour simplifier et améliorer la qualité.
 
 ---
 
-## Rends le test « utile »
+## Rend le test « utile »
 
 Ou plutôt visible et très intéressant
 
@@ -203,7 +203,7 @@ Non !
 - Configuration unique
 - Facile à mettre en place
 
---- 
+---
 
 ## Docker
 
@@ -251,7 +251,7 @@ Non !
 
 ---
 
-- Réduis les erreurs (tests)
+- Réduit les erreurs (tests)
 - Amélioration de la qualité
 - Centrée client
 
@@ -313,16 +313,16 @@ Non !
 
 ---
 
-## Un seul fichier le gitlab-ci.yml
+## Un seul fichier le .gitlab-ci.yml
 
 ---
 
 ### Gitlab-ci.yml
 
-L'ensemble de la configuration de Gitlab-CI est dans un seul fichier, le `gitlab-ci.yml`, ce fichier va définir l'ensemble des règles qui serviront à valider le bon fonctionnement de votre application. Voilà un exemple :
+L'ensemble de la configuration de Gitlab-CI est dans un seul fichier, le `.gitlab-ci.yml`, ce fichier va définir l'ensemble des règles qui serviront à valider le bon fonctionnement de votre application. Voilà un exemple :
 
 ```yml
-image: node:4.2.2
+image: node:20
 
 before_script:
   - npm install

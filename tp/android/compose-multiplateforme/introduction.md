@@ -1,6 +1,6 @@
 # Compose Multiplateform
 
-Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multiplatform permet de créer des applications multi-plateforme. Nous nous intéresserons notamment aux différences avec le développement d'applications natives et plus particulièrement l'état d'esprit à adopter pour développer des applications Multiplatforms de manière efficace.
+Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multiplatform permet de créer des applications multi-plateformes. Nous nous intéresserons notamment aux différences avec le développement d'applications natives et plus particulièrement l'état d'esprit à adopter pour développer des applications Multiplatforms de manière efficace.
 
 ::: details Sommaire
 [[toc]]
@@ -42,7 +42,7 @@ Avant de rentrer dans le vif du sujet, il est important de comprendre la termino
 - **Composable** : Un Composable est une fonction qui génère un composant graphique. Il est annoté avec `@Composable`.
 - **PreCompose** : Librairie permettant de gérer la navigation et la gestion des états dans une application Compose Multiplatform.
 - **Navigation** : Système déclaratif permettant de gérer la navigation de l'utilisateur entre différentes vues de l'application.
-- **Ressources** : Les ressources sont des éléments externe au code, mais utilisé par l'application, par exemple des images, des textes, des couleurs, etc.
+- **Ressources** : Les ressources sont des éléments externes au code, mais utilisés par l'application, par exemple des images, des textes, des couleurs, etc.
 - **gradle** : Gradle est un système de build, il permet de gérer les dépendances, les tâches, les configurations, etc.
 - **libs.versions.toml** : Fichier de configuration permettant de gérer les versions des dépendances d'un projet. Il est utilisé par Gradle.
 - **ktor** : Ktor est un framework pour créer des applications serveur et client en Kotlin. Il est souvent utilisé pour créer des applications qui communiquent avec des serveurs.
@@ -126,17 +126,17 @@ Cependant, Compose n'est pas limité à Material Design, il est possible de cré
 
 C'est d'ailleurs ce que nous avons fait dans des développements précédents comme par exemple « Vivre à Angers » où nous avons utilisé Compose pour créer une application Android identique à l'application iOS.
 
-Mais vous allez me dire… Nous aurions pu utiliser Compose Multiplatform pour créer l'application ? Et bien oui… très certainement…
+Mais vous allez me dire… Nous aurions pu utiliser Compose Multiplatform pour créer l'application ? Eh bien oui… très certainement…
 
 ## Un petit parallèle avec les autres frameworks
 
 Précédemment nous avons fait des applications en Flutter, ces applications sont également compatibles avec iOS, Android et le Web. Cependant, la manière de faire est différente, Flutter utilise un langage spécifique, le Dart, et une manière de faire spécifique (Widgets, approche très similaire à React). Compose Multiplateform, lui, utilise le Kotlin, un langage que nous connaissons déjà.
 
-L'autre gros avantage Compose, c’est le Kotlin, en effet écrire du code en Kotlin nous permet de déjà de créer du code commun à plusieurs plateformes, nous l'avons déjà fait, nous savons que c'est très efficace et relativement simple à mettre en place.
+L'autre gros avantage Compose, c’est le Kotlin, en effet écrire du code en Kotlin nous permet déjà de créer du code commun à plusieurs plateformes, nous l'avons déjà fait, nous savons que c'est très efficace et relativement simple à mettre en place.
 
-Avec Compose Multilplateforme, nous passons un cran au-dessus… Faire l'intégralité d'une application !
+Avec Compose Multiplateforme, nous passons un cran au-dessus… Faire l'intégralité d'une application !
 
-Suffisant de blabla, rentrons dans le dur !
+Assez de blabla, rentrons dans le dur !
 
 <center>
     <iframe src="https://giphy.com/embed/xUA7aVcq56dQ4YueZO" width="480" height="262" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
@@ -144,7 +144,7 @@ Suffisant de blabla, rentrons dans le dur !
 
 ## L'architecture
 
-Vue que nous avons tous des bases différentes sur Compose, je me permets de vous faire un petit rappel sur les bénéfices de Compose et d'un développement à base de composants réutilisable. Dans un premier temps, intéressons-nous à un composant très important le `Scaffold`.
+Vu que nous avons tous des bases différentes sur Compose, je me permets de vous faire un petit rappel sur les bénéfices de Compose et d'un développement à base de composants réutilisables. Dans un premier temps, intéressons-nous à un composant très important : le `Scaffold`.
 
 ```kotlin
 @Composable
@@ -180,7 +180,7 @@ Le plus simple pour créer une structure de base pour notre application est d'ut
 
 ::: danger Attention
 
-Le système est pour l'instant très jeune, tout n'est pas encore vraiment compatible. Exemple si vous activé WASM, beaucoup de librairies rendront votre application non compilable (car non compatible avec WASM).
+Le système est pour l'instant très jeune, tout n'est pas encore vraiment compatible. Exemple : si vous activez WASM, beaucoup de librairies rendront votre application non compilable (car non compatible avec WASM).
 
 Ceci étant, les librairies sont en constante évolution, et il est certain que très rapidement cet avertissement ne sera plus d'actualité.
 
@@ -212,7 +212,7 @@ Pour ce support, nous allons utiliser Android Studio, mais Fleet (le nouvel IDE 
 
 ::: tip Vous êtes sous Android ?
 
-Si vous êtes sous Android Sudio, il est possible de faire l'ensemble des compilations (Android, iOS, Desktop) pour peu que vous ayez les outils de Build de Xcode et le [plugin officiel](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile)
+Si vous êtes sous Android Studio, il est possible de faire l'ensemble des compilations (Android, iOS, Desktop) pour peu que vous ayez les outils de Build de Xcode et le [plugin officiel](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile)
 
 ![Plugin](./res/kotlin-plugin.png)
 
@@ -305,11 +305,11 @@ Dans le code que vous avez généré, nous avons le minimum pour faire fonctionn
 Nous avons deux types de dépendances :
 
 - `libs.…` : Ce sont des dépendances spécifiques à Compose Multiplateform. Elles sont définies dans le fichier `gradle/libs.versions.toml`.
-- `compose.…` : Ce sont des dépendances spécifiques à Compose, elle ne sont pas défini dans notre application mia via le plugin Compose Multiplateform (pas celui installé dans Android Studio, mais celui qui est dans le fichier `build.gradle.kts`).
+- `compose.…` : Ce sont des dépendances spécifiques à Compose, elles ne sont pas définies dans notre application mais via le plugin Compose Multiplateform (pas celui installé dans Android Studio, mais celui qui est dans le fichier `build.gradle.kts`).
 
 ::: tip Remarque
 
-Cette différence est importante, en effet, pour que notre application fonctionne. Jetbrains maintient une sorte de structure de dépendances compatible, un mauvais choix ? Et votre application ne compile plus.
+Cette différence est importante, en effet, pour que notre application fonctionne : Jetbrains maintient une sorte de structure de dépendances compatible, un mauvais choix ? Et votre application ne compile plus.
 
 Ça paraît contraignant, mais c'est en réalité une très bonne chose comme nous allons le voir par la suite.
 
@@ -340,7 +340,7 @@ Concrètement, voici un exemple :
 
 ![Versions](./res/exemple-versions.png)
 
-Dans cette exemple nous avons déclaré :
+Dans cet exemple, nous avons déclaré :
 
 - Les versions des dépendances (Compose, AGP, etc.).
 - Les dépendances (androidx-ui-test-manifest, compose-ui-tooling, etc.).
@@ -364,7 +364,7 @@ compose-plugin = "1.6.0-beta02"
 Et également ajouter quelques dépendances :
 
 ```toml
-[version]
+[versions]
 koin = "3.6.0-Beta4"
 koinCompose = "1.2.0-Beta4"
 precompose = "1.6.1"
@@ -419,7 +419,7 @@ Cette façon de faire permet :
 
 ### Un exemple
 
-Prenons un exemple, simple, vous souhaitez afficher par exemple la caméra de l'utilisateur. La manière de faire sera forcément différente en fonction de la plateforme. Vous pourriez être tenté de créer un composant « CameraScreen » qui serait à implémenter pour chaque plateforme.
+Prenons un exemple simple : vous souhaitez afficher par exemple la caméra de l'utilisateur. La manière de faire sera forcément différente en fonction de la plateforme. Vous pourriez être tenté de créer un composant « CameraScreen » qui serait à implémenter pour chaque plateforme.
 
 #### La mauvaise façon de faire
 
@@ -433,7 +433,7 @@ Puis dans chaque plateforme :
 ```kotlin
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-actual fun ScanScreen() {
+actual fun CameraScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
 
         /**
@@ -777,7 +777,7 @@ private fun RealDeviceCamera(camera: AVCaptureDevice) {
 
 À première vue, la différence semble minime, mais en réalité, c'est loin d'être le cas.
 
-Si vous observez bien, dans la partie multiplateforme, nous avons globalement que la partie « interface » et dans le code Android, nous n'avons pas d'élément d'interface, mais uniquement la gestion de la caméra.
+Si vous observez bien, dans la partie multiplateforme, nous n'avons globalement que la partie « interface » et dans le code Android, nous n'avons pas d'élément d'interface, mais uniquement la gestion de la caméra.
 
 :::
 
@@ -812,9 +812,9 @@ Le mot clé `expect` est la réelle force du langage Kotlin, c'est avec lui que 
 
 ::: danger Attention
 
-C'est une force si vous l'utilisez de manière intelligente, c'est-à-dire en ciblant pour garder au maximum le code commun. Personnellement, je commence toujours par écrire le code commun (sans `excpect` donc), puis je regarde par la suite ce qui doit être spécifié par plateforme.
+C'est une force si vous l'utilisez de manière intelligente, c'est-à-dire en ciblant pour garder au maximum le code commun. Personnellement, je commence toujours par écrire le code commun (sans `expect` donc), puis je regarde par la suite ce qui doit être spécifié par plateforme.
 
-Keep it simple comme dirais l'autre…
+Keep it simple comme dirait l'autre…
 
 <center>
     <iframe src="https://giphy.com/embed/TSokjMYhJAZRMqExC2" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
@@ -824,13 +824,13 @@ Keep it simple comme dirais l'autre…
 
 ### C'est à vous
 
-Avec les éléments que nous avons vus. Je vous propose de modifier votre application pour ajouter la fameuse Caméra. Vous pouvez utiliser la librairie [CameraX](https://developer.android.com/training/camerax) pour Android, et pour iOS, vous pouvez utiliser la librairie [AVFoundation](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture).
+Avec les éléments que nous avons vus, je vous propose de modifier votre application pour ajouter la fameuse Caméra. Vous pouvez utiliser la librairie [CameraX](https://developer.android.com/training/camerax) pour Android, et pour iOS, vous pouvez utiliser la librairie [AVFoundation](https://developer.apple.com/documentation/avfoundation/cameras_and_media_capture).
 
 ### Les ressources
 
-Comme pour le code, j'ai envie de dire que les ressources doivent être les plus communes possibles ! J'ai bien l'impression que c'est la même chose pour JetBrain, les ressources sont en effet centralisées dans le dossier `composeApp/src/commonMain/resources`.
+Comme pour le code, j'ai envie de dire que les ressources doivent être les plus communes possibles ! J'ai bien l'impression que c'est la même chose pour JetBrains, les ressources sont en effet centralisées dans le dossier `composeApp/src/commonMain/resources`.
 
-Jusqu'à la version 1.6.0, les ressources étaient très librement gérées, mais avec la version 1.6.0, JetBrain a introduit une nouvelle manière de gérer les ressources (pas de dossier en particulier autre que `commonMain/resources`). Depuis la version 1.6.0, cette gestion est maintenant plus structurée et très proche de ce que nous pouvons trouver dans une application Android classique.
+Jusqu'à la version 1.6.0, les ressources étaient très librement gérées, mais avec la version 1.6.0, JetBrains a introduit une nouvelle manière de gérer les ressources (pas de dossier en particulier autre que `commonMain/resources`). Depuis la version 1.6.0, cette gestion est maintenant plus structurée et très proche de ce que nous pouvons trouver dans une application Android classique.
 
 ![Ressources](./res/ressources.png)
 
@@ -848,7 +848,7 @@ val leDrawable = Res.drawable.NOM_DE_LA_RESSOURCE
 val leTexte = stringResource(Res.string.dialog_network_confirmation_title)
 ```
 
-**Attention**, les `Res.…` ne sont visible qu'après une compilation, car gérée par le plugin Compose Multiplateform. La gestion des langues est déjà géré par les plateformes, il est donc possible d'utiliser `stringResource` pour récupérer les textes en respectant la langue de l'utilisateur. Exemple :
+**Attention**, les `Res.…` ne sont visibles qu'après une compilation, car gérés par le plugin Compose Multiplateform. La gestion des langues est déjà gérée par les plateformes, il est donc possible d'utiliser `stringResource` pour récupérer les textes en respectant la langue de l'utilisateur. Exemple :
 
 ![Ressources EN](./res/screen_en.png)
 
@@ -871,7 +871,7 @@ C'est à vous de jouer !
 
 ## `precompose`
 
-Et bien voilà, nous y sommes, nous avons vu les éléments de bases pour créer une application Compose Multiplateform. C'est bien, mais notre application est très simple (un seul écran), et nous n'avons pas encore vu la navigation, la gestion des états, etc.
+Eh bien voilà, nous y sommes, nous avons vu les éléments de base pour créer une application Compose Multiplateform. C'est bien, mais notre application est très simple (un seul écran), et nous n'avons pas encore vu la navigation, la gestion des états, etc.
 
 C'est ici que `precompose` intervient. Sur une application Android classique, nous aurions utilisé `Jetpack` pour gérer la navigation, la gestion des états, etc. Cependant, même si Google est très actif sur le multi-plateforme, il n'est pas pour l'instant possible d'utiliser les éléments comme la navigation sur autre chose qu'Android.
 
@@ -881,7 +881,7 @@ Pour l'instant ça ne semble pas être le cas. En effet, il ne faut pas oublier 
 
 :::
 
-Il existe plusieurs librairies pour gérer la navigation, la gestion des états, etc, [Jetbrains, les liste d'ailleurs sur leur documentation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html), toutes sont très bien, certaines vont très loin voir plus loin que Jetpack. Après avoir passé un peu de temps à les tester (et à lire des retours d'expérience), j'ai choisi de travailler avec `precompose`. Cette librairie est très simple à prendre en main, elle est très proche (voir identique) à ce que nous pouvons trouver dans Jetpack.
+Il existe plusieurs librairies pour gérer la navigation, la gestion des états, etc. [Jetbrains les liste d'ailleurs sur leur documentation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html), toutes sont très bien, certaines vont très loin voire plus loin que Jetpack. Après avoir passé un peu de temps à les tester (et à lire des retours d'expérience), j'ai choisi de travailler avec `precompose`. Cette librairie est très simple à prendre en main, elle est très proche (voire identique) de ce que nous pouvons trouver dans Jetpack.
 
 Vous pouvez consulter la documentation de `precompose` ici : [https://tlaster.github.io/PreCompose/](https://tlaster.github.io/PreCompose/)
 
@@ -977,7 +977,7 @@ Pourquoi ce rangement ? Organiser son code en package est une bonne pratique, l'
 
 ### La plateforme Desktop
 
-Avec la version 1.6.1 de PreCompose, il faut maintenant légèrement modifié la partie Desktop, pour que celle-ci puisse se lancer correctement. Modifier le code présent dans `composeApp/src/desktopMain/kotlin/main.kt` pour entourer la fonction `App()` par `ProvidePreComposeLocals` :
+Avec la version 1.6.1 de PreCompose, il faut maintenant légèrement modifier la partie Desktop, pour que celle-ci puisse se lancer correctement. Modifier le code présent dans `composeApp/src/desktopMain/kotlin/main.kt` pour entourer la fonction `App()` par `ProvidePreComposeLocals` :
 
 ```kotlin
 ProvidePreComposeLocals {
@@ -1062,7 +1062,7 @@ NavHost(
 }
 ```
 
-L'avantage de rendre les routes « déclaratives » est que nous améliorons la lisibilité de notre code, mais ça nous offre également une certaines souplesse, en effet nous pouvons maintenant définir des routes dynamiques en fonction de la plateforme.
+L'avantage de rendre les routes « déclaratives » est que nous améliorons la lisibilité de notre code, mais ça nous offre également une certaine souplesse, en effet nous pouvons maintenant définir des routes dynamiques en fonction de la plateforme.
 
 Avant de vous laisser implémenter cette enum, n'oubliez pas l'organisation de vos fichiers. Dans mon cas, j'ai créé un fichier `Route.kt` dans le package `navigation` :
 
@@ -1092,7 +1092,7 @@ Pour l'instant, nous indiquons juste que cette fonction doit être implémentée
 
 Je vous laisse implémenter cette fonction dans chaque plateforme. Pour Android, vous pouvez utiliser la route `/scan`, pour Desktop, vous pouvez utiliser la route `/`.
 
-N'oubliez pas que AndroidStudio / Fleet est rempli de petits raccourcis pour vous aider à implémenter ces fonctions :
+N'oubliez pas qu'AndroidStudio / Fleet est rempli de petits raccourcis pour vous aider à implémenter ces fonctions :
 
 ![Raccourcis](./res/raccourcis.png)
 
@@ -1286,7 +1286,7 @@ Plus tard, nous pourrons y ajouter des dépendances spécifiques à chaque plate
 
 ## ktor
 
-L'intérêt d'avoir un injecteur de dépendances est de pouvoir centraliser tous les éléments « réutilisables » de notre application. L'un des premiers qui peut-être intéressant est la centralisation de la gestion des appels réseaux.
+L'intérêt d'avoir un injecteur de dépendances est de pouvoir centraliser tous les éléments « réutilisables » de notre application. L'un des premiers qui peut être intéressant est la centralisation de la gestion des appels réseaux.
 
 Pour la gestion des appels réseau, nous allons utiliser `ktor`. C'est une librairie développée par JetBrains, elle est très simple à prendre en main, et elle est très puissante. Elle permet à la fois de faire des appels réseau, mais également de créer des serveurs. C'est une librairie très complète.
 
@@ -1296,7 +1296,7 @@ Nous avons dans notre setup initial déjà ajouté les dépendances pour `ktor`,
 - Déclarer le connecteur réseau (`NetworkDao.kt` dans le dossier `data.dao`).
 - Une fois le connecteur réseau déclaré, nous allons pouvoir l'utiliser dans nos ViewModels.
 
-### Déclarez-le `NetworkModule`
+### Déclarer le `NetworkModule`
 
 Pour déclarer le module Koin pour la gestion des appels réseaux, nous allons créer un fichier `NetworkModule.kt` dans le dossier `di` :
 
@@ -1308,8 +1308,7 @@ import org.koin.dsl.module
 
 val networkModule = module {
     single {
-        HttpClient {
-            CIO
+        HttpClient(CIO) {
             expectSuccess = true
             install(HttpTimeout) {
                 requestTimeoutMillis = 30_000
@@ -1394,11 +1393,11 @@ fun setupKoin() = startKoin {
 
 C'est à partir de maintenant que la magie de Koin opère, nous allons pouvoir injecter notre `NetworkOperation` dans nos ViewModels. Et donc faire des appels réseau dans nos vues.
 
-## Les ViewsModels
+## Les ViewModels
 
 Les ViewModels sont des éléments centraux de notre application, ils vont permettre de gérer l'ensemble des états de notre application. Pour l'instant nous n'avons pas encore vu comment les implémenter, mais nous allons le faire maintenant.
 
-`Precompose` Intègre le code permettant de gérer les ViewModels. Pour « tester » cette partie, nous allons créer un ViewModel qui va permettre de récupérer le contenu du fichier `hello.md` que nous avons récupéré précédemment.
+`Precompose` intègre le code permettant de gérer les ViewModels. Pour « tester » cette partie, nous allons créer un ViewModel qui va permettre de récupérer le contenu du fichier `hello.md` que nous avons récupéré précédemment.
 
 ### Créer le ViewModel
 
@@ -1453,7 +1452,7 @@ Puis dans notre fichier `Koin.kt` :
 fun setupKoin() = startKoin {
     modules(platformSpecificModule())
     modules(networkModule)
-    modules(daoModule)
+    modules(networkDaoModule)
     modules(appModule)
 }
 ```
@@ -1567,7 +1566,7 @@ Grâce à ces deux éléments, nous avons défini les règles que chaque platefo
 
 ### Android
 
-Pour Android, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
+Pour Android, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `ILocalStorage` :
 
 ```kotlin
 actual open class LocalStorage(private val context: Context): ILocalStorage {
@@ -1599,7 +1598,7 @@ actual fun storageModule() = module {
 
 ### Desktop
 
-Pour Desktop, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
+Pour Desktop, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `ILocalStorage` :
 
 ```kotlin
 actual open class LocalStorage: ILocalStorage {
@@ -1633,7 +1632,7 @@ actual fun storageModule() = module {
 
 ### iOS
 
-Pour iOS, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `LocalStorage` :
+Pour iOS, nous allons devoir créer une classe `LocalStorage` qui va implémenter l'interface `ILocalStorage` :
 
 ```kotlin
 actual open class LocalStorage: ILocalStorage {
@@ -1737,7 +1736,7 @@ Pour l'instant seulement les tests de type Desktop sont disponibles. Les tests d
 
 :::
 
-C'est à vous, je vous laisse écrire d'avantage de test pour votre application.
+C'est à vous, je vous laisse écrire davantage de tests pour votre application.
 
 ### Tester une vue avec un ViewModel
 
@@ -1841,7 +1840,7 @@ class MainTest {
 }
 ```
 
-Il faut remarquer dans ce tests que nous avons utilisé un instance mocké de notre ViewModel. Cela va nous permettre de tester **uniquement** notre composant, sans tester le ViewModel.
+Il faut remarquer dans ce test que nous avons utilisé une instance mockée de notre ViewModel. Cela va nous permettre de tester **uniquement** notre composant, sans tester le ViewModel.
 
 ## L'équivalent des flavors Android (Build Variants)
 
@@ -1849,7 +1848,7 @@ Il arrive parfois que vous ayez besoin de créer des versions différentes de vo
 
 Sur Android, nous avons à notre disposition les `flavors` qui vont nous permettre de créer ces versions. Nativement en Compose Multiplateform, nous n'avons pas cette fonctionnalité. Mais nous pouvons la recréer avec une librairie tierce.
 
-Pour cela, nous allons utiliser la librairie [`BuildKonfig`](https://github.com/yshrsmz/BuildKonfig) qui va nous permettre de créer des `Build Variants` pour notre application. Son usage est très proche de celui des `flavors` Android (voir identique) :
+Pour cela, nous allons utiliser la librairie [`BuildKonfig`](https://github.com/yshrsmz/BuildKonfig) qui va nous permettre de créer des `Build Variants` pour notre application. Son usage est très proche de celui des `flavors` Android (voire identique) :
 
 - Une configuration par défaut.
 - Une configuration par « flavor » (`staging`, `production`, `dev`, etc).
@@ -1872,6 +1871,7 @@ plugins {
     // Le reste de vos plugins
     alias(libs.plugins.buildKonfig)
 }
+```
 
 Un petit sync de votre projet, et vous avez maintenant accès à la librairie `BuildKonfig`. Pour l'utiliser, vous allez devoir modifier votre fichier `build.gradle.kts` pour y **ajouter** la configuration de votre application :
 
@@ -1900,7 +1900,7 @@ buildkonfig {
 // Le reste de votre fichier
 ```
 
-Dans cet exemple, nous avons déclaré une configuration par défaut, puis une configuration `dev`. Vous pouvez ajouter autant de configuration que vous le souhaitez.
+Dans cet exemple, nous avons déclaré une configuration par défaut, puis une configuration `dev`. Vous pouvez ajouter autant de configurations que vous le souhaitez.
 
 L'application utilise de base la configuration par défaut, mais vous pouvez changer la configuration en éditant votre fichier `gradle.properties` :
 

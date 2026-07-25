@@ -17,7 +17,7 @@ Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 - **Concept de modélisation** à travers la notion de classe et d’instanciation de ces classes.
 - **Concept d’action** à travers la notion d’envoi de messages et de méthodes à l’intérieur des objets.
 - **Concept de construction** en créant un objet en reposant sur la définition d’une classe.
-- **Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter. (inaccessible de l'exterieur).
+- **Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter. (inaccessible de l'extérieur).
 
 ::: tip Mais surtout
 Ça permet de représenter **informatiquement** quelque chose du monde réel.
@@ -41,7 +41,7 @@ La **programmation orientée objet** (POO) est un paradigme de programmation qui
 
 ### La modélisation
 
-Avant de parler des classes ou des objets, je vous propose de regarder le principe de la modélisation
+Avant de parler des classes ou des objets, je vous propose de regarder le principe de la modélisation.
 
 [Voir la version UML / Classe](/cheatsheets/poo-uml/)
 
@@ -59,20 +59,20 @@ Les attributs sont les valeurs qui feront fonctionner notre objet (exemple `nom`
 
 Les méthodes vont permettre d'effectuer des actions dans notre objet (exemple `presenter()`, `bouger()`, etc.).
 
-#### Nous avons donc deux types membres dans la classe
+#### Nous avons donc deux types de membres dans la classe
 
-- Des **propriétés** (le données de l'objet) **avec une visibilité**
+- Des **propriétés** (les données de l'objet) **avec une visibilité**
 - Des **méthodes** (les actions possibles : accélérer, freiner, etc.) **avec une visibilité**
 
 #### La visibilité ?
 
-- Privée : accessible que dans l'objet.
+- Privée : accessible uniquement dans l'objet.
 - Public : accessible hors de l'objet.
 - Protected : **Accessible** aux enfants (héritage), mais pas hors de la classe.
 
 #### Les méthodes
 
-- Comme une fonction, mais **encapsulé** dans la classe.
+- Comme une fonction, mais **encapsulée** dans la classe.
 - Possède une visibilité.
 - Possède des paramètres.
 - Surcharge: plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et/ou ordre).
@@ -169,7 +169,7 @@ class Personne
 
 
     // Constructeur
-    public Personne(String nom, String prenom, Date dateNaissance, Integer nbEnfant = 0)
+    public Personne(String nom, String prenom, Date dateNaissance, Integer nbEnfant)
     {
         this.nom = nom;
         this.prenom = prenom;
@@ -287,7 +287,7 @@ public class Personne
 
 ::: danger Ce qu'il faut retenir
 
-- Les classes sont instanciables (création d'objets, `$unPersonne = new Personne(…)`).
+- Les classes sont instanciables (création d'objets, `$unePersonne = new Personne(…)`).
 - Les propriétés sont les « variables » de l'objet.
 - Les méthodes sont les « actions » de l'objet.
 - Les méthodes **et** les propriétés _**ont des visibilités**_.
@@ -299,7 +299,7 @@ public class Personne
 
 Chaque objet représente un objet du monde réel. Exemple : une voiture, une personne, un élément de menu, etc.
 
-### exemple :
+### Exemple :
 
 - une personne **précise**
 - une voiture **spécifique**
@@ -410,7 +410,7 @@ class Personne {
   <CodeGroupItem title="Kotlin">
 
 ```kotlin
-class Personne(val nom: String, val prenom: String) {
+class Personne(var nom: String, var prenom: String) {
     // Méthode
     fun identite(): String {
         return "$nom $prenom"
@@ -474,7 +474,7 @@ $unePersonne = new Personne("Valentin", "Brosseau");
 
 ```java
 // Instanciation
-Personne unPersonne = new Personne("Valentin", "Brosseau");
+Personne unePersonne = new Personne("Valentin", "Brosseau");
 ```
 
   </CodeGroupItem>
@@ -483,7 +483,7 @@ Personne unPersonne = new Personne("Valentin", "Brosseau");
 
 ```kotlin
 // Instanciation
-unPersonne = Personne("Valentin", "Brosseau");
+val unePersonne = Personne("Valentin", "Brosseau");
 ```
 
   </CodeGroupItem>
@@ -578,7 +578,7 @@ class Personne {
 $unePersonne = new Personne("Valentin", "Brosseau");
 
 // Appel de la méthode
-$unPersonne->afficheIdentite(); // Affiche "Valentin Brosseau"
+$unePersonne->afficheIdentite(); // Affiche "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
@@ -598,7 +598,7 @@ unePersonne.afficheIdentite(); // Affiche "Valentin Brosseau"
 
 ```kotlin
 // Instanciation
-unePersonne = Personne("Valentin", "Brosseau");
+val unePersonne = Personne("Valentin", "Brosseau");
 
 // Appel de la méthode
 unePersonne.afficheIdentite(); // Affiche "Valentin Brosseau"
@@ -636,7 +636,7 @@ $unePersonne->getNom(); // Affiche "Chouette", la valeur a été modifiée
   <CodeGroupItem title="Java">
 
 ```java
-Personne unPersonne = new Personne("Valentin", "Brosseau");
+Personne unePersonne = new Personne("Valentin", "Brosseau");
 unePersonne.getNom(); // Affiche "Valentin"
 
 unePersonne.setNom("Chouette");
@@ -660,13 +660,13 @@ Console.WriteLine(unePersonne.getNom()); // Affiche "Chouette", la valeur a ét�
 
 ::: tip Attention
 
-L'accès aux propriétés ne fonctionnera que si la visibilité (`private`, `public`, `protected`) ne vous y autorise :
+L'accès aux propriétés ne fonctionnera que si la visibilité (`private`, `public`, `protected`) vous y autorise :
 
 |  Visibilité |                                                                     Accès depuis |
 | ----------: | -------------------------------------------------------------------------------: |
 |   `private` |                                             Seulement depuis l'objet en lui-même |
-|    `public` |                 Depuis n'import où (objet, depuis l'objet, ou depuis l'héritage) |
-| `protected` | Comme, `private` **mais non accessible depuis la classe fille en cas d'héritage** |
+|    `public` |                 Depuis n'importe où (objet, depuis l'objet, ou depuis l'héritage) |
+| `protected` | Comme `private`, **mais accessible depuis la classe fille en cas d'héritage** |
 
 :::
 
@@ -678,11 +678,11 @@ L'accès aux propriétés ne fonctionnera que si la visibilité (`private`, `pub
 
 ![Agrégation](./res/UML_Rel_aggregation.jpg)
 
-Ce symbole signifie la notion de composition. Dans notre cas, une Entreprise n’est composée de personne.
+Ce symbole signifie la notion d'agrégation. Dans notre cas, une Entreprise est composée de personnes.
 
 :::
 
-Permets de regrouper des listes d'objets.
+Permet de regrouper des listes d'objets.
 
 ![Représentation UML](./res/collections_2.png)
 
@@ -748,14 +748,14 @@ $nombre = sizeof($lesPersonnes); // 0
 
 ```java
 ArrayList<Personne> lesPersonnes = new ArrayList<>();
-Personne carine = new Personne("John", "Doe");
+Personne john = new Personne("John", "Doe");
 
 lesPersonnes.add(new Personne("Valentin", "Brosseau"));
-lesPersonnes.add(carine);
+lesPersonnes.add(john);
 int count = lesPersonnes.size(); // 2
 
 Personne laPersonne1 = lesPersonnes.get(0); // Valentin;
-Personne laPersonne2 = lesPersonnes.get(1); // Carine;
+Personne laPersonne2 = lesPersonnes.get(1); // John;
 
 lesPersonnes.clear();
 int count2 = lesPersonnes.size(); // 0
@@ -766,14 +766,14 @@ int count2 = lesPersonnes.size(); // 0
 
 ```kotlin
 val lesPersonnes = ArrayList<Personne>()
-val carine = Personne("John", "Doe")
+val john = Personne("John", "Doe")
 
 lesPersonnes.add(Personne("Valentin", "Brosseau"))
-lesPersonnes.add(carine)
+lesPersonnes.add(john)
 val count = lesPersonnes.size // 2
 
 val laPersonne1 = lesPersonnes[0] // Valentin;
-val laPersonne2 = lesPersonnes[1] // Carine;
+val laPersonne2 = lesPersonnes[1] // John;
 
 lesPersonnes.clear()
 val count2 = lesPersonnes.size // 0
@@ -786,15 +786,15 @@ val count2 = lesPersonnes.size // 0
 List<Personne> lesPersonnes = new List<Personne>();
 Personne unePersonne = new Personne("Doe", "John");
 
-lesPersonnes.add(new Personne("Valentin", "Brosseau");
-lesPersonnes.add(unePersonne);
+lesPersonnes.Add(new Personne("Valentin", "Brosseau"));
+lesPersonnes.Add(unePersonne);
 
 Personne unePersonne1 = lesPersonnes[0];
 Personne unePersonne2 = lesPersonnes[1];
 
-List<Personne> lesPersonnes = new List<Personne>();
+lesPersonnes.Clear();
 
-int nombre = lesPersonnes.count(); // 0
+int nombre = lesPersonnes.Count; // 0
 ```
 
   </CodeGroupItem>
@@ -806,8 +806,8 @@ int nombre = lesPersonnes.count(); // 0
   <CodeGroupItem title="PHP" active>
 
 ```php
-foreach ($lesPersonne as $laPersonne){
-    // $laPersonne contient « un pointeur » vers une des personne de la liste
+foreach ($lesPersonnes as $laPersonne){
+    // $laPersonne contient « un pointeur » vers une des personnes de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
 ```
@@ -819,13 +819,13 @@ foreach ($lesPersonne as $laPersonne){
 ```java
 // Version moderne
 lesPersonnes.forEach(laPersonne -> {
-    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // laPersonne contient « un pointeur » vers une des personnes de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 });
 
 // Version « à l'ancienne »
 for (Personne laPersonne : lesPersonnes) {
-    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // laPersonne contient « un pointeur » vers une des personnes de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
 ```
@@ -839,7 +839,7 @@ lesPersonnes.forEach { laPersonne -> }
 
 // Version « à l'ancienne »
 for (laPersonne in lesPersonnes) {
-    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // laPersonne contient « un pointeur » vers une des personnes de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
 ```
@@ -850,7 +850,7 @@ for (laPersonne in lesPersonnes) {
 
 ```cs
 foreach (Personne laPersonne in lesPersonnes){
-	// laPersonne contient « un pointeur » vers une des personne de la liste
+	// laPersonne contient « un pointeur » vers une des personnes de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
 ```
@@ -860,9 +860,9 @@ foreach (Personne laPersonne in lesPersonnes){
 
 ## L'héritage
 
-L'héritage permet de généraliser le fonctionnement d'un objet. L'idée est de mettre dans un « objet parent » la logique de plusieurs objets qui fonctionne de la même façon. **Exemple**
+L'héritage permet de généraliser le fonctionnement d'un objet. L'idée est de mettre dans un « objet parent » la logique de plusieurs objets qui fonctionnent de la même façon. **Exemple**
 
-- Un **humain** et une baleine partage des propriété et fonctionnement commun. Nous allons donc créer une super classe **mammifère,** celle-ci contiendra les méthodes et les propriétés communes.
+- Un **humain** et une baleine partagent des propriétés et un fonctionnement communs. Nous allons donc créer une super classe **mammifère,** celle-ci contiendra les méthodes et les propriétés communes.
 - Une **Voiture** et une **Moto** sont des véhicules. Nous pouvons donc créer une super classe « **Véhicule** ».
 - …
 
@@ -891,13 +891,13 @@ class Mammifere {
 }
 
 // Humain hérite de Mammifere
-class Humain extends mammifere {
+class Humain extends Mammifere {
     private $prenom = "";
 
     function __construct($prenom)
     {
         parent::__construct();
-        this->$prenom = $prenom;
+        $this->prenom = $prenom;
     }
 
     public function manger(){
@@ -923,7 +923,7 @@ class Mammifere {
     }
 
     // Redéfinition de méthode
-    public String manger(){
+    public void manger(){
         System.out.println("Je mange");
     }
 }
@@ -931,14 +931,14 @@ class Mammifere {
 class Humain extends Mammifere {
     private String prenom = "";
 
-    public Hunain(String prenom)
+    public Humain(String prenom)
     {
         super();
         this.prenom = prenom;
     }
 
     // Redéfinition de méthode
-    public String manger(){
+    public void manger(){
         System.out.println("Je suis omnivore");
     }
 }
@@ -969,23 +969,21 @@ internal class Humain(val prenom: String) : Mammifere() {
     override fun manger() {
         println("Je suis omnivore")
     }
-
-    var unHumain = Humain("Valentin")
 }
 
-Humain unHumain = Humain("Valentin");
+val unHumain = Humain("Valentin");
 unHumain.print(); // Je suis un mammifère.
 unHumain.manger(); // Je suis omnivore.
 ```
 
   </CodeGroupItem>
   
-  <CodeGroupItem>
+  <CodeGroupItem title="C#">
     
 ```cs
 public class Mammifere {
     
-    private Bool vertebre = true;
+    private bool vertebre = true;
 
     public void print() 
     {
@@ -1006,14 +1004,14 @@ public class Humain : Mammifere {
         this.prenom = prenom;
     }
 
-    public string manger()
+    public void manger()
     {
         Console.WriteLine("Je suis omnivore");
     }
 }
 
 Humain unHumain = new Humain("Valentin");
-unHumain.string(); // Je suis un mammifère
+unHumain.print(); // Je suis un mammifère
 unHumain.manger(); // Je suis omnivore
 ```
     
@@ -1027,7 +1025,7 @@ unHumain.manger(); // Je suis omnivore
 - Si nous pouvons dire « est un » alors il s'agit d'un héritage.
 - Un mot-clé Extends `class Humain extends Mammifere`.
 - **Vous devez** construire le parent dans le constructeur de l'enfant.
-- **Permets de généraliser un objet afin de partager des propriétés communes.**.
+- **Permet de généraliser un objet afin de partager des propriétés communes.**
 - **mais** il est également possible de spécialiser / redéfinir un objet.
   - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.
 - Il est possible d'appeler une méthode de la classe mère depuis la classe fille.
@@ -1049,7 +1047,7 @@ Mécanisme consistant à rassembler les données et les méthodes au sein d'une 
 
 ::: danger Sécurité ?
 
-Vous avez ici un élément important, la notion de visibilité et de gestion de l'accès aux propriétés est **fondamentale**. L'encapsulation fait partie d'une des raisons pourquoi la POO est à favoriser pour réaliser un développement sécurisé.
+Vous avez ici un élément important, la notion de visibilité et de gestion de l'accès aux propriétés est **fondamentale**. L'encapsulation fait partie d'une des raisons pour lesquelles la POO est à favoriser pour réaliser un développement sécurisé.
 
 :::
 
@@ -1131,7 +1129,7 @@ Personne.laReponseDeLunivers();
 _Définition :_
 
 - Une classe abstraite est une classe qui ne peut pas être instanciée.
-- Permets de définir des comportements (méthodes) dont l'implémentation (le code dans la méthode) se fait dans les classes filles.
+- Permet de définir des comportements (méthodes) dont l'implémentation (le code dans la méthode) se fait dans les classes filles.
 
  Ainsi, on a l'assurance que les classes filles respecteront le contrat défini par la classe mère abstraite.
 
@@ -1147,8 +1145,8 @@ Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'e
 - Ne peuvent pas être instanciées (pas de new).
 - Sont des modèles pour d'autres classes.
 - Permettent de factoriser du code.
-- Doivent être héritée depuis une classe fille.
-- Apporte une sécurité grâce à l'encapsulation.
+- Doivent être héritées depuis une classe fille.
+- Apportent une sécurité grâce à l'encapsulation.
 
 ![Abstract UML](./res/abstract_uml.png)
 
@@ -1171,7 +1169,7 @@ abstract class EtudiantAbstrait
     }
 }
 
-// Classe fille, instanciable car concrète l'ensemble des méthodes possède du code
+// Classe fille, instanciable car concrète : l'ensemble des méthodes possède du code
 class EtudiantSIO extends EtudiantAbstrait
 {
     private $option = "SLAM";
@@ -1185,7 +1183,7 @@ class EtudiantSIO extends EtudiantAbstrait
     }
 }
 
-// Classe fille, instanciable car concrète l'ensemble des méthodes possède du code
+// Classe fille, instanciable car concrète : l'ensemble des méthodes possède du code
 class EtudiantSEN extends EtudiantAbstrait
 {
     private $competences = "SOUDER";
@@ -1223,7 +1221,7 @@ abstract class EtudiantAbstrait
 
     // méthode commune
     public void parler() {
-        print this.getBlahBlah();
+        System.out.println(this.getBlahBlah());
     }
 }
 
@@ -1233,7 +1231,7 @@ class EtudiantSIO extends EtudiantAbstrait
 
     @Override
     protected String getBlahBlah() {
-      return "L'informatique c'est cool, je suis : {$this->option}";
+      return "L'informatique c'est cool, je suis : " + this.option;
     }
 
     @Override
@@ -1248,7 +1246,7 @@ class EtudiantSEN extends EtudiantAbstrait
 
     @Override
     protected String getBlahBlah() {
-      return "L'électronique c'est cool, je connais comment {$this->competences}";
+      return "L'électronique c'est cool, je connais comment " + this.competences;
     }
 
     @Override
@@ -1259,7 +1257,7 @@ class EtudiantSEN extends EtudiantAbstrait
 
 EtudiantSIO class1 = new EtudiantSIO();
 class1.parler();
-$class1->demarrerUneDiscussion('La sécurité')
+class1.demarrerUneDiscussion("La sécurité");
 ```
 
   </CodeGroupItem>
@@ -1274,7 +1272,7 @@ abstract class EtudiantAbstrait
     abstract public string demarrerUneDiscussion(string sujet);
 
     // méthode commune
-    public string parler() {
+    public void parler() {
         Console.WriteLine(this.getBlahBlah());
     }
 }
@@ -1283,12 +1281,12 @@ public class EtudiantSIO : EtudiantAbstrait
 {
     private string option = "SLAM";
 
-     protected string getBlahBlah() {
-       Console.WriteLine("L'informatique c'est cool, je suis : " + option.toString());
+     protected override string getBlahBlah() {
+       return "L'informatique c'est cool, je suis : " + option;
      }
 
-     public string demarrerUneDiscussion(string sujet) {
-       Console.WriteLine("Je vais vous parler de " + sujet.toString());
+     public override string demarrerUneDiscussion(string sujet) {
+       return "Je vais vous parler de « " + sujet + " »";
     }
 }
 
@@ -1296,18 +1294,18 @@ public class EtudiantSEN : EtudiantAbstrait
 {
     private string competences = "SOUDER";
 
-     protected function getBlahBlah() {
-       Console.WriteLine("L'électronique c'est cool, je connais comment " + competences.toString());
+     protected override string getBlahBlah() {
+       return "L'électronique c'est cool, je connais comment " + competences;
      }
 
-     public string demarrerUneDiscussion(string sujet) {
-       Console.WriteLine("Je vais vous parler de ' " + sujet.toString() + " ' ");
+     public override string demarrerUneDiscussion(string sujet) {
+       return "Je vais vous parler de « " + sujet + " »";
     }
 }
 
 EtudiantSIO class1 = new EtudiantSIO();
-class1.parler(); // L'électronique c'est cool, je connais comment SOUDER
-class1.demarrerUneDiscussion('La sécurité'); // Je vais vous parler de ' La sécurité ' 
+class1.parler(); // L'informatique c'est cool, je suis : SLAM
+class1.demarrerUneDiscussion("La sécurité"); // Je vais vous parler de « La sécurité »
 ```
 
   </CodeGroupItem>
@@ -1324,14 +1322,14 @@ Quand une classe implémente une interface, elle **doit** définir l'ensemble de
 
 **C'est obligatoire**. C'est une sorte de contrat entre la classe fille et l'interface.
 
-À quoi sert une interface ? **A définir un comportement**. 
+À quoi sert une interface ? **À définir un comportement**. 
 
 #### Les interfaces :
 
 - Ne contiennent que des méthodes publiques.
 - Ne contiennent pas de code.
-- N'est pas instanciable.
-- Son « un contrat » que les classes filles devront **implémenter**.
+- Ne sont pas instanciables.
+- Sont « un contrat » que les classes filles devront **implémenter**.
 
 ![UML Interface](./res/interface_uml.png)
 
@@ -1360,7 +1358,7 @@ class CompteEnLigne implements Compte
     }
 
     public function getBalance() {
-        return $montant;
+        return $this->montant;
     }
 }
 
@@ -1435,7 +1433,7 @@ internal class CompteEnLigne(var contenu: Int = 0) : Compte {
         contenu -= montant
     }
 
-    override fun balance(): Int {
+    override fun getBalance(): Int {
         return contenu
     }
 }
@@ -1500,13 +1498,13 @@ Les interfaces et les classes abstraites remplissent un rôle différent :
 
 ::: tip Un instant !
 
-L'avantage d'une Interface est qu'il est possible pour une classe d'implémenter plusieurs « contrat » (Interface). Alors que dans la plupart des langages, il n'est pas possible d'hériter de plusieurs classes abstraites.
+L'avantage d'une Interface est qu'il est possible pour une classe d'implémenter plusieurs « contrats » (Interface). Alors que dans la plupart des langages, il n'est pas possible d'hériter de plusieurs classes abstraites.
 
 :::
 
 ## Redéfinition (Remplacement de méthode)
 
-La redéfinition est la possibilité d’utiliser exactement la même signature pour définir une méthode dans une classe mère et dans une classe fille. Contrairement à la surcharge, la signature (nom et paramètre doivent **être identiques**).
+La redéfinition est la possibilité d’utiliser exactement la même signature pour définir une méthode dans une classe mère et dans une classe fille. Contrairement à la surcharge, la signature (nom et paramètres) doit **être identique**.
 
 ![Concept de redéfinition](./res/overriding_concept.png)
 
@@ -1545,7 +1543,7 @@ class Humain extends Animal {
 
   @Override
   public void bruit(){
-    super.bruit()
+    super.bruit();
     System.out.print(" (Oui mais compréhensible)");
   }
 
@@ -1554,8 +1552,8 @@ class Humain extends Animal {
 
 }
 
-$humain = new Humain();
-$humain.bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
+Humain humain = new Humain();
+humain.bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
 ```
 
   </CodeGroupItem>
@@ -1566,7 +1564,7 @@ class Animal{
   // Reste de la classe
   // …
 
-  public bruit(){
+  public function bruit(){
     echo "BRUUUUIIIITTTT";
   }
 
@@ -1578,8 +1576,8 @@ class Humain extends Animal {
   // Reste de la classe
   // …
 
-  public bruit(){
-    parent::bruit()
+  public function bruit(){
+    parent::bruit();
     echo " (Oui mais compréhensible)";
   }
 
@@ -1597,10 +1595,10 @@ $humain->bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
   <CodeGroupItem title="Kotlin">
 
 ```kotlin
-class Animal {
+open class Animal {
     // Reste de la classe
     // …
-    public fun bruit() {
+    open fun bruit() {
         print("BRUUUUIIIITTTT")
     }
     // Reste de la classe
@@ -1618,8 +1616,8 @@ class Humain : Animal() {
     // …
 }
 
-humain = Humain()
-humaim.bruit() // BRUUUUIIIITTTT (Oui mais compréhensible)
+val humain = Humain()
+humain.bruit() // BRUUUUIIIITTTT (Oui mais compréhensible)
 
 ```
 
@@ -1632,7 +1630,7 @@ class Animal{
   // Reste de la classe
   // …
 
-  public void bruit(){
+  public virtual void bruit(){
     Console.WriteLine("BRUUUUIIIITTTT");
   }
 
@@ -1647,7 +1645,7 @@ class Humain : Animal {
   // …
 
   public override void bruit() {
-    base.bruit()
+    base.bruit();
     Console.WriteLine(" (Oui mais compréhensible)");
   }
 
@@ -1686,30 +1684,29 @@ Grâce au polymorphisme, nous allons pouvoir créer des `array` (liste, tableau 
 
 ```java
 abstract class MachineVolante {
-    public void fly()
+    public abstract void fly();
 }
 
 class Mig29 extends MachineVolante {
     @Override
     public void fly() {
-        out.println("Start, fly");
+        System.out.println("Start, fly");
     }
 
     public void bombardment() {
-        out.println("Fire missile");
+        System.out.println("Fire missile");
     }
 }
 
 class Helicoptere extends MachineVolante {
     @Override
     public void fly() {
-        out.println("Start vertically, hover, fly");
+        System.out.println("Start vertically, hover, fly");
     }
 }
 
 // La liste est du type de la classe mère
 List<MachineVolante> machines = new ArrayList<MachineVolante>();
-machines.add(new MachineVolante());
 machines.add(new Mig29());
 machines.add(new Helicoptere());
 machines.add(new Mig29());
@@ -1725,7 +1722,7 @@ for (MachineVolante m : machines) {
 
 ```cs
 abstract class MachineVolante {
-    public void fly()
+    public abstract void fly();
 }
 
 class Mig29 : MachineVolante {
@@ -1740,17 +1737,17 @@ class Mig29 : MachineVolante {
 }
 
 class Helicoptere : MachineVolante {
-    public void fly() : base() {
+    public override void fly() {
         Console.WriteLine("Start vertically, hover, fly");
     }
 }
 
 // La liste est du type de la classe mère
 List<MachineVolante> machines = new List<MachineVolante>();
-machines.add(new MachineVolante()); // Une erreur apparait ici
-machines.add(new Mig29());
-machines.add(new Helicoptere());
-machines.add(new Mig29());
+machines.Add(new MachineVolante()); // Une erreur apparaît ici
+machines.Add(new Mig29());
+machines.Add(new Helicoptere());
+machines.Add(new Mig29());
 
 // On boucle sans en connaitre le type
 foreach (MachineVolante m in machines) {
@@ -1768,7 +1765,7 @@ foreach (MachineVolante m in machines) {
 Les namespaces permettent d'organiser les classes en groupes. Cela permet de mieux s'y retrouver dans un projet et de mieux gérer les dépendances. Les namespaces sont des espaces de noms. Ils permettent de regrouper des classes ayant un nom identique, mais qui ne sont pas les mêmes. Par exemple, si vous avez une classe `Personne` dans votre projet, vous pouvez avoir une classe `Personne` dans un namespace `Mammifere` et une classe `Personne` dans un namespace `Primate`. Les deux classes `Personne` ne seront pas les mêmes.
 
 ```php
-namespace Mammifere\Primate ;
+namespace Mammifere\Primate;
 
 class Personne { // etc...
 }

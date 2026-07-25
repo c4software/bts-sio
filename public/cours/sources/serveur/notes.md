@@ -12,18 +12,18 @@
   - Les distributions
 - Windows et les développeurs
 - MacOS et les développeurs
-- Qu’est-ce qu’une serveur
-  - Ordinateur qui fourni des services à un tiers (ordinateur, smartphone, voiture, etc)
+- Qu’est-ce qu’un serveur
+  - Ordinateur qui fournit des services à un tiers (ordinateur, smartphone, voiture, etc)
   - Disponible H24
-  - Dans une environnement spécial
+  - Dans un environnement spécial
   - Ou plus simplement « chez vous ».
   - Exemple de serveur (Web, Base de données, Domotique, Fichier)
-  - Pourquoi avoir un serveur « chez soit »
+  - Pourquoi avoir un serveur « chez soi »
 - Se représenter un serveur
   - (Voir image)
 - Un serveur Web
   - Serveur de fichier
-  - Execution de code (PHP, NodeJS, etc)
+  - Exécution de code (PHP, NodeJS, etc)
   - Apache
   - Nginx
   - Autre
@@ -32,10 +32,10 @@
 - Un serveur de base de données
   - Gestion des données
   - MySQL
-  - Postqresql
+  - PostgreSQL
 - La notion de LAMP
   - Linux, Apache, MySQL, PHP
-  - C’est une Stack Logiciel
+  - C’est une Stack Logicielle
 
 === FIN SLIDE 1 ===
 
@@ -62,7 +62,7 @@
   - Les droits utilisateurs
 - L’organisation d’un Linux (Dossier, concept)
   - Normé (liste à montrer)
-  - Ne voir que les éléments de bases et introduire vers « la suite)
+  - Ne voir que les éléments de base et introduire vers « la suite »
 - Installer un logiciel
   - La commande apt (ou apt-get)
   - Les dépôts
@@ -74,8 +74,8 @@
   - Pourquoi ?
   - Systemctl
 - Les utilisateurs
-  - Les différents compte
-  - L’importance des différents compte
+  - Les différents comptes
+  - L’importance des différents comptes
   - Les mots de passe et la sécurité.
 - L’accès à distance
   - SSH
@@ -103,11 +103,11 @@
   - Les ports
   - Les services
   - Les utilisateurs
-  - Les sauvegarde
+  - Les sauvegardes
 - Serveur Physique ou Serveur Virtuel
   - Comparaison des deux
   - Comment choisir
-- Un serveur ou plusieurs serveur ?
+- Un serveur ou plusieurs serveurs ?
   - Découpage des services
   - Les différents environnements
 - La réplication
@@ -122,5 +122,5 @@
   - Comment choisir / pourquoi c’est intéressant.
   - À détailler
 - Docker Compose
-  - Créer des stocks applicative
+  - Créer des stacks applicatives
   - Sécurité des ports

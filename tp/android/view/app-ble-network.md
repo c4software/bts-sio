@@ -28,7 +28,7 @@ L'équipement dispose des caractéristiques suivantes :
 - Récupérer le nombre de fois que la LED a été allumée et éteinte.
 - Récupérer la liste des réseaux WiFi disponibles environnants.
 - Changer le nom de l'équipement.
-- Allumer ou éteindre la LED en suivant un paterne (1 étant allumé, 0 étant éteint. Alors S.O.S = `1010100011101110111000101010`).
+- Allumer ou éteindre la LED en suivant un pattern (1 étant allumé, 0 étant éteint. Alors S.O.S = `1010100011101110111000101010`).
 - Définir les informations de connexion au réseau WiFi.
 - **Si un réseau Wifi est défini**, lancement d'un serveur sur le port 80 permettant :
   - D'afficher l'état de la LED (`/status`).
@@ -43,16 +43,16 @@ Le projet final a pour objectif de réaliser une application Android **propre** 
 - Ne scanner que les équipements compatibles.
 - Vider la liste après une connexion (et ne pas avoir de doublons dans la liste).
 - Personnaliser l'icône de l'application (mettre le logo de l'école + ampoule).
-- L'ensemble des textes **doivent-être** dans le `strings.xml`. Deux langues minimum (français + italien).
+- L'ensemble des textes **doivent être** dans le `strings.xml`. Deux langues minimum (français + italien).
 - Empêcher la rotation de l'ensemble de l'application (`manifest.xml`).
 - Permettre l'allumage / l'extinction de la LED.
 - Afficher le nombre de fois que la LED a été allumée / éteinte.
 - Implémenter la partie notification BLE.
 - Implémenter l'animation de la LED en envoyant une chaîne de caractères du type `1010100011101110111000101010`.
-- Bonus: Afficher la liste des réseaux WiFi disponibles.
-- Bonus: Changer le nom de l'équipement.
-- Bonus: Proposer à l'utilisateur une liste de pattern (S.O.S, etc.) pour animer la LED.
-- Bonus: Le réseau WiFi est défini, il est possible d'allumer / éteindre la LED via un accès HTTP.
+- Bonus : Afficher la liste des réseaux WiFi disponibles.
+- Bonus : Changer le nom de l'équipement.
+- Bonus : Proposer à l'utilisateur une liste de patterns (S.O.S, etc.) pour animer la LED.
+- Bonus : Le réseau WiFi est défini, il est possible d'allumer / éteindre la LED via un accès HTTP.
 
 ::: tip Rappel
 
@@ -92,7 +92,7 @@ Composable :
 
 ### La classe LocalPreferences ?
 
-Cette classe va nous permettre de sauvegarder de manière « persistant » des paramètres.
+Cette classe va nous permettre de sauvegarder de manière « persistante » des paramètres.
 
 Pour l'instant nous allons sauvegarder le nom du dernier périphérique connecté.
 

@@ -47,7 +47,7 @@ docker pull nginx
 ## Lancer un conteneur
 
 - Démarre l’image ubuntu:latest
-- `--rm` supprime le container avant de le relancer.
+- `--rm` supprime automatiquement le conteneur à son arrêt.
 - Déclare le port `80` du conteneur sur le port 3000 de votre machine.
 - Monte le dossier courant dans le dossier `/data` du conteneur
 - Note: Sur Windows vous devez remplacer `-v ${PWD}:/data` par `-v "C:\Data":/data`
@@ -83,7 +83,7 @@ docker logs monConteneur -f
 
 ## Statistiques / Configuration
 
-### Statistique du conteuner
+### Statistiques du conteneur
 
 ```sh
 docker stats monConteneur
@@ -107,7 +107,7 @@ docker port monConteneur
 docker diff monConteneur
 ```
 
-### Supprimer les images / container plus utilisées
+### Supprimer les images / conteneurs non utilisés
 
 ```sh
 docker system prune
@@ -141,10 +141,10 @@ docker commit nginx
 ```sh
 FROM debian:latest
 
-RUN apt-get update && apt-get install -y wget zip python-pip git
+RUN apt-get update && apt-get install -y wget zip python3-pip git
 
 # Ajout Yasb
-RUN pip install http://github.com/c4software/YASB/archive/master.zip
+RUN pip3 install http://github.com/c4software/YASB/archive/master.zip
 
 RUN mkdir /sources/
 WORKDIR /sources/
@@ -153,7 +153,7 @@ WORKDIR /sources/
 #### Build
 
 ```sh
-docker build  -t exemple/yasb .
+docker build -t exemple/yasb .
 ```
 
 ## Nettoyage
@@ -175,7 +175,7 @@ Au premier plan :
 docker compose up
 ```
 
-En arrière plan :
+En arrière-plan :
 
 ```sh
 docker compose up -d

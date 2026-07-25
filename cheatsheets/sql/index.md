@@ -7,7 +7,7 @@ description: Aide mémoire sur le SQL. Vous retrouverez dans cet aide mémoire l
 Aide mémoire sur le SQL. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.
 
 ::: warning
-Cet aide mémoire n'est pas exhaustif, elle ne contient que le minimum à connaitre pour débuter sereinement.  
+Cet aide mémoire n'est pas exhaustif, il ne contient que le minimum à connaitre pour débuter sereinement.  
 :::
 
 | Catégorie                | Mot-clé                                         | Usage                                      |
@@ -25,26 +25,26 @@ SELECT quoi FROM votreTable WHERE condition(s);
 ```
 
 - `quoi` : Ce que vous souhaitez obtenir, `*` pour l'ensemble, sinon `nom_colonne` séparé par des virgules.
-- `table` : La table que vous souhaitez requêter.
+- `votreTable` : La table que vous souhaitez requêter.
 - `condition(s)` : La ou les condition(s) que vous souhaitez appliquer à votre récupération de données.
 
 ```sql
--- Toutes le données de la table « t »
+-- Toutes les données de la table « t »
 SELECT * FROM t;
 
 -- Colonne « nom » et « age » pour l'ensemble des données de la table « t »
 SELECT nom, age FROM t;
 
--- Toutes le données de la table « t » respectant la condition
+-- Toutes les données de la table « t » respectant la condition
 SELECT * FROM t WHERE CONDITION;
 
--- Dans la table « t » récupération de l'ensemble des enregistrements dont la colonne « age » est plus grand que 18.
+-- Dans la table « t » récupération de l'ensemble des enregistrements dont la colonne « age » est plus grande que 18.
 SELECT * FROM t WHERE age > 18;
 
--- Dans la table « t » récupération de l'ensemble des enregistrements dont la colonne « age » est plus grand que 18 et ayant comme « country » FRA.
+-- Dans la table « t » récupération de l'ensemble des enregistrements dont la colonne « age » est plus grande que 18 et ayant comme « country » FRA.
 SELECT * FROM t WHERE age > 18 AND country = "FRA";
 
--- Calcul de l'age moyen Age moyen.
+-- Calcul de l'age moyen.
 SELECT avg(age) FROM t;
 
 -- Récupération des données triées
@@ -57,13 +57,13 @@ SELECT * FROM t ORDER BY c1 LIMIT 10 OFFSET 0; -- 10 premiers résultats
 SELECT * FROM t ORDER BY c1 LIMIT 10 OFFSET 10; -- 10 suivants etc
 SELECT * FROM t ORDER BY c1 LIMIT 10 OFFSET 20; -- etc
 
--- Retourne la liste des dédoublonner des pays présent dans t.
+-- Retourne la liste dédoublonnée des pays présents dans t.
 SELECT distinct(pays) FROM t;
 
 -- Compter et Grouper, Affiche la répartition des utilisateurs par age.
 SELECT COUNT(id), age FROM t GROUP BY age;
 
--- Compter et Grouper, Affiche la répartition des utilisateurs par age pour les personnes de plus de 18ans
+-- Compter et Grouper, Affiche la répartition des utilisateurs par age pour les personnes de plus de 18 ans
 SELECT COUNT(id), age FROM t GROUP BY age HAVING age > 18;
 ```
 
@@ -72,7 +72,7 @@ SELECT COUNT(id), age FROM t GROUP BY age HAVING age > 18;
 ![SQL Join](./sql_join.png)
 
 ```sql
--- Left join t1 and t2
+-- Inner join t1 and t2
 SELECT c1, c2
 FROM t1
 INNER JOIN t2
@@ -120,7 +120,7 @@ ON videos.userId = users.id; -- Join la clé étrangère userId avec la clé pri
 
 ```sql
 -- Ajout de certains champs
-INSERT INTO utilisateurs (nom, prenom, age) VALUES (1, 'Test'), (2, 'Insert'), (3, 22);
+INSERT INTO utilisateurs (nom, prenom, age) VALUES ('Test', 'Insert', 22);
 
  -- En spécifiant l'ensemble des champs
 INSERT INTO utilisateurs VALUES (99,'Test','Insert',12, 'IT');
@@ -129,15 +129,15 @@ INSERT INTO utilisateurs VALUES (99,'Test','Insert',12, 'IT');
 ### Mise à jour
 
 ```sql
--- Met à jour l'ensemble des enregistrements en base pour la table utilisateur pour ceux ayant comme nom « Valentin »
-UPDATE utilisateurs SET name = 'valentin-update' WHERE name = 'Valentin';
+-- Met à jour l'ensemble des enregistrements en base pour la table utilisateurs pour ceux ayant comme nom « Valentin »
+UPDATE utilisateurs SET nom = 'valentin-update' WHERE nom = 'Valentin';
 
 -- Idem mais uniquement pour l'utilisateur ayant comme « id » 1
-UPDATE utilisateurs SET name = 'Valentine' WHERE id = 1;
+UPDATE utilisateurs SET nom = 'Valentine' WHERE id = 1;
 ```
 
 ::: danger ATTENTION
-Attention !!! Si vous oubliez le **WHERE** vous allez modifier l'ensemble des données présent dans la table (Et aucun retour en arrière possible)
+Attention !!! Si vous oubliez le **WHERE** vous allez modifier l'ensemble des données présentes dans la table (Et aucun retour en arrière possible)
 :::
 
 ## Suppression
@@ -152,15 +152,15 @@ Attention !!! Si vous oubliez le **WHERE** vous allez vider l'ensemble de la tab
 
 ## Mot de passe & Sécurité
 
-::: danger LES MOT NE DOIVENT PAS ÊTRE EN CLAIR
+::: danger LES MOTS DE PASSE NE DOIVENT PAS ÊTRE EN CLAIR
 Vous ne devez **JAMAIS** avoir un mot de passe en clair en base de données.
 
-Vous pouvez par exemple utiliser la fonction SQL `SHA2("VotreMotDePasse-SALT-SECRET", 512)`. Cela génèrera un mot de passe « hasher » équivalent au mot de passe.
+Vous pouvez par exemple utiliser la fonction SQL `SHA2("VotreMotDePasse-SALT-SECRET", 512)`. Cela génèrera un mot de passe « hashé » équivalent au mot de passe.
 
 Exemple d'insertion :
 
 ```sql
-INSERT INTO table ('user', 'password') VALUES ("valentin", SHA2("VotreMotDePasse-SALT-SECRET", 512));
+INSERT INTO table (user, password) VALUES ("valentin", SHA2("VotreMotDePasse-SALT-SECRET", 512));
 ```
 
 Exemple de vérification si l'utilisateur existe :
@@ -175,4 +175,4 @@ S’il y a un résultat, c'est que votre utilisateur existe et a fourni le bon m
 
 ## SQL et PHP ?
 
-PHP intègre nativement le connecteur permettant d'attaquer les bases de données les plus connues, vous avez des exemples [d'utilisations disponibles ici](/cheatsheets/php/#le-php-et-la-base-de-donnees)
+PHP intègre nativement le connecteur permettant d'attaquer les bases de données les plus connues, vous avez des exemples [d'utilisations disponibles ici](/cheatsheets/php/#le-php-et-la-base-de-donnees).

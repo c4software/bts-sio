@@ -18,7 +18,7 @@ Vous avez atteint un point étape. Vous avez maintenant la capacité de créer e
 
 <center><iframe src="https://giphy.com/embed/CjmvTCZf2U3p09Cn0h" width="480" height="452" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></center>
 
-::: tip TP évalué - Barème Indicatif (Total 22 points + Bonus)
+::: tip TP évalué - Barème Indicatif (Total 24 points + Bonus)
 
 La réalisation de ce TP sera évaluée.
 
@@ -64,16 +64,16 @@ N'oubliez pas de documenter votre travail. Vous devez fournir un rapport illustr
 
 :::
 
-## Introduction
+## Le travail à réaliser
 
-Dans ce TP, vous aller créer un serveur contenant :
+Dans ce TP, vous allez créer un serveur contenant :
 
 - Un serveur Web Apache avec PHP.
 - Un site Web (blog) déployé via Git.
 - Un site Web PHP dynamique.
 - Une base de données MySQL.
 
-Ici pas de procédure pas-à-pas. Vous devez réaliser les éléments suivants en vous basant sur vos connaissances acquises dans les TP précédents et le support de cours.:
+Ici pas de procédure pas-à-pas. Vous devez réaliser les éléments suivants en vous basant sur vos connaissances acquises dans les TP précédents et le support de cours :
 
 ## Partie Serveur
 
@@ -89,7 +89,7 @@ Ici pas de procédure pas-à-pas. Vous devez réaliser les éléments suivants e
    - Modifier le fichier `/etc/ssh/sshd_config` pour :
      - Interdire la connexion root : `PermitRootLogin no`
      - Désactiver l'authentification par mot de passe : `PasswordAuthentication no`
-     - Toutes options intéressantes comme vue en cours.
+     - Toutes les options intéressantes comme vu en cours.
    - Redémarrer le service SSH (`systemctl restart ssh`).
    - **Tester** que vous ne pouvez vous connecter qu'avec votre clé et non en root ou avec un mot de passe.
 
@@ -97,7 +97,7 @@ Ici pas de procédure pas-à-pas. Vous devez réaliser les éléments suivants e
 
 1. **Installation Apache & PHP :**
    - Installer Apache2.
-   - Installer PHP 8 (la version la plus récente disponible sur le dépôt Ondřej Sury, comme vu en TP2/TP3).
+   - Installer PHP 8 (la version la plus récente disponible sur le dépôt Ondřej Surý, comme vu en TP2/TP3).
    - Configurer Apache pour utiliser PHP-FPM.
    - Redémarrer Apache.
 2. **Configuration des Sites (Virtual Hosts basés sur les noms de domaine) :**
@@ -314,7 +314,7 @@ Pour restituer le projet, merci de me fournir les éléments suivants via le for
 2. **Fiche serveur :** Complète et à jour.
 3. **Rapport illustré :**
    - Documentez les étapes clés avec les commandes utilisées et/ou des captures d'écran pertinentes.
-   - Les bonus (cron, réflexion sur les privilèges) seront valorisés que si ils sont correctement documentés.
+   - Les bonus (cron, réflexion sur les privilèges) ne seront valorisés que s'ils sont correctement documentés.
    - **Incluez impérativement :**
       - La configuration réseau (IP/masque/passerelle/DNS).
       - Les commandes/preuves de la configuration SSH sécurisée (`PermitRootLogin no`, `PasswordAuthentication no`).

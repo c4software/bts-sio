@@ -1,13 +1,13 @@
 ---
-description: Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensembles, mais également les balises qui me semble importantes de connaitre.
+description: Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble, mais également les balises qui me semblent importantes à connaître.
 ---
 
 # Aide mémoire HTML
 
-Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensembles, mais également les balises qui me semble importantes de connaitre.
+Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble, mais également les balises qui me semblent importantes à connaître.
 
 ::: tip À savoir
-Cet aide mémoire ne contient pas l'ensemble des balises, par contre vous retrouverez (en Français) une liste complète de l'ensemble des balises sur le site de la MDM Web Docs [à consulter ici](https://developer.mozilla.org/fr/docs/Web/HTML/Element)
+Cet aide mémoire ne contient pas l'ensemble des balises, par contre vous retrouverez (en Français) une liste complète de l'ensemble des balises sur le site de la MDN Web Docs [à consulter ici](https://developer.mozilla.org/fr/docs/Web/HTML/Element)
 :::
 
 ::: details Table des matières
@@ -43,7 +43,7 @@ Les balises formant la structure de base sont restées identiques depuis la cré
 
 | Balise     | Utilité                                                       |
 | ---------- | ------------------------------------------------------------- |
-| `<title>`  | Titre à la page                                               |
+| `<title>`  | Titre de la page                                              |
 | `<style>`  | CSS (Style) de la page                                        |
 | `<script>` | JavaScript (Code dynamique)                                   |
 | `<link>`   | CSS Externe (Lien)                                            |
@@ -65,11 +65,11 @@ Dans la balise `<body>` nous allons retrouver l'ensemble des éléments qui sero
 | `<img />`  | Une image                                  |
 | `<audio>`  | Un son                                     |
 | `<br>`     | Un saut de ligne                           |
-| `<video>`  | Une video                                  |
+| `<video>`  | Une vidéo                                  |
 | `<hr />`   | Séparateur horizontal                      |
 | `<iframe>` | Affiche une autre page dans la page        |
 
-Les balises `<div></div>` ou `<span></span>` ne sont utile que d'un point de vue organisation de votre code. Elles n'ont aucun autre but que de grouper, organiser, permettre la personnalisation CSS de votre page. Il convient donc de leur adjoindre des attributs de type `class`, `id` ou `style`.
+Les balises `<div></div>` ou `<span></span>` ne sont utiles que d'un point de vue organisation de votre code. Elles n'ont aucun autre but que de grouper, organiser, permettre la personnalisation CSS de votre page. Il convient donc de leur adjoindre des attributs de type `class`, `id` ou `style`.
 
 #### Les listes
 
@@ -92,7 +92,7 @@ Les balises `<div></div>` ou `<span></span>` ne sont utile que d'un point de vue
 | Balise     | Utilité                    |
 | ---------- | -------------------------- |
 | `<p>`      | Un paragraphe              |
-| `<i>`      | Élément italic / différent |
+| `<i>`      | Élément italique / différent |
 | `<br>`     | Une nouvelle ligne         |
 | `<h1>`     | Titre de niveau 1          |
 | `<h2>`     | Titre de niveau 2          |
@@ -108,11 +108,11 @@ Les balises `<div></div>` ou `<span></span>` ne sont utile que d'un point de vue
 | Balise       | Utilité                       |
 | ------------ | ----------------------------- |
 | `<form>`     | Un formulaire                 |
-| `<input>`    | Champs du formulaire          |
-| `<select>`   | Énumération d'élément (liste) |
+| `<input>`    | Champ du formulaire           |
+| `<select>`   | Énumération d'éléments (liste) |
 | `<option>`   | Élément de la liste           |
 | `<label>`    | Libellé d'un champ            |
-| `<optgroup>` | Groupe d'élément              |
+| `<optgroup>` | Groupe d'éléments             |
 | `<fieldset>` | Groupe de champs              |
 
 #### Les tableaux
@@ -189,7 +189,7 @@ L'ensemble des balises HTML peuvent être personnalisées via des attributs.
 
 > Les attributs contiennent des informations supplémentaires qui portent sur l'élément et qu'on ne souhaite pas afficher avec le contenu. Dans cet exemple, l'attribut class permet d'utiliser un nom pour identifier l'élément et ce nom pourra être utilisé plus tard pour la mise en forme ou autre chose.
 
-Source: MDM
+Source : MDN
 
 ### Allons plus loin : La sémantique
 
@@ -206,7 +206,7 @@ Sémantiquement il est possible d'organiser encore plus votre HTML. Pour ça nou
 
 ### Activer le responsive
 
-De base votre navigateur « n'est pas responsive ». Si vous souhaitez que celui-ci ajuste sont contenu à la taille de l'écran il faut ajouter la méta suivante :
+De base votre navigateur « n'est pas responsive ». Si vous souhaitez que celui-ci ajuste son contenu à la taille de l'écran il faut ajouter la méta suivante :
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />

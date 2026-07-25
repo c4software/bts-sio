@@ -95,7 +95,7 @@ Vous en avez d’autres en tête ?
 
 ---
 
-### Les facteurs d'expositions
+### Les facteurs d'exposition
 
 ![](./img/expositions.png)
 
@@ -107,17 +107,17 @@ Entre protection et utilisabilité
 
 ---
 
-### L'insécurité à un coût
+### L'insécurité a un coût
 
 À votre avis ?
 
 ---
 
-# 4.45 Millions de dollars
+# 4,45 millions de dollars
 
 Coût moyen mondial d'une violation de données en 2023 selon IBM Security
 
-Source: Cost Of Data Breach - IBM Security 2023
+Source : Cost Of Data Breach - IBM Security 2023
 
 ---
 
@@ -133,7 +133,7 @@ Source: Cost Of Data Breach - IBM Security 2023
 
 ---
 
-### Un impact qui peut-être globalisé
+### Un impact qui peut être globalisé
 
 [https://twitter.com/awlnx/status/1445073290708533258?s=09](https://twitter.com/awlnx/status/1445073290708533258?s=09)
 
@@ -166,7 +166,7 @@ C’est aussi votre métier
 
 ---
 
-### Les deux!
+### Les deux !
 
 ---
 
@@ -192,7 +192,7 @@ C’est aussi votre métier
 
 ## Assurer la qualité
 
-s'assurer une qualité continue du code
+S'assurer une qualité continue du code
 
 - 10 règles à connaitre (OWASP).
 - Des tests unitaires.
@@ -247,7 +247,7 @@ Solution :
 <fieldset>
   <legend>Le risque, la multiplication des failles</legend>
   <p>
-  Plus vous avez de failles, plus vous avez de risques. C'est là que la sécurité devient un enjeu majeur. Car plus le nombre de failles est importantes plus <b>la surface d'attaque</b> est grande.
+  Plus vous avez de failles, plus vous avez de risques. C'est là que la sécurité devient un enjeu majeur. Car plus le nombre de failles est important, plus <b>la surface d'attaque</b> est grande.
   </p>
 </fieldset>
 
@@ -290,10 +290,10 @@ Risque d’injection SQL, Shell...
 
 ### La défaillance cryptographique
 
-Risque de casser / usurper une authentification ou une session. Comprends notamment le vol de session ou la récupération de mots de passe.
+Risque de casser / usurper une authentification ou une session. Comprend notamment le vol de session ou la récupération de mots de passe.
 
-- Données sensibles en claire.
-- Mots de passe en claire.
+- Données sensibles en clair.
+- Mots de passe en clair.
 - Mots de passe mal hachés.
 
 ---
@@ -302,13 +302,13 @@ Risque de casser / usurper une authentification ou une session. Comprends notamm
 
 Conception d'une application sans prise en compte de la sécurité.
 
-- Données en claire.
+- Données en clair.
 - Manque de contrôle d'accès.
 - Manque de contrôle de saisie.
 - Manque de contrôle de type (XSS, CSRF).
 - Absence d'anti-bots (captcha).
 - Utilisation d'une question secrète.
-- Réservation de place sans accompte.
+- Réservation de place sans acompte.
 
 ---
 
@@ -338,7 +338,7 @@ Utilisation de composants tiers vulnérables.
 
 ### Identification et authentification de mauvaise qualité
 
-Applications n’exécutent pas de manière correcte les fonctions liées à la gestion des sessions ou à l’authentification des utilisateurs
+Les applications n’exécutent pas de manière correcte les fonctions liées à la gestion des sessions ou à l’authentification des utilisateurs
 
 - Absence de double authentification.
 - Absence de règles de mots de passe (complexité, durée de vie, longueur, etc).
@@ -353,7 +353,7 @@ Cette catégorie englobe les codes et infrastructures qui ne sont pas protégés
 
 - Absence de vérification de l'intégrité des données (validation d'une mise à jour).
 - Absence de vérification de l'intégrité du logiciel (signature, hashage, etc).
-- Rejeu de requêtes possibles (absence de CSRF).
+- Rejeu de requêtes possible (absence de CSRF).
 
 ---
 
@@ -476,7 +476,7 @@ Quelle est la différence ?
 
 ---
 
-- Permets de sécuriser les mots de passe en ajoutant **une couche de sécurité supplémentaire**.
+- Permet de sécuriser les mots de passe en ajoutant **une couche de sécurité supplémentaire**.
 - Via un secret partagé entre la personne **physique** et le site/application.
 
 ---
@@ -566,7 +566,7 @@ Exécution de code JavaScript sans validation.
 Votre Nom : <input type="text" name="nom" value="" />
 ```
 
-```js
+```php
 echo "Bonjour " . $_POST['nom'];
 ```
 
@@ -669,9 +669,9 @@ if(SessionUtilisateur::estAdmin()) {
 
 ### Falsification de requête intersite (CSRF)
 
-- Rejeu de requête déjà joué.
+- Rejeu de requête déjà jouée.
 - Attaque de type brute force.
-- Exécution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tierce).
+- Exécution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tiers).
 
 ---
 
@@ -701,7 +701,7 @@ if (isset($_POST['_token']) && $_POST['_token'] == $_SESSION['_token']) {
 ### Utilisation de composants avec des vulnérabilités connues
 
 - CMS non à jour.
-- Apache non patchés.
+- Apache non patché.
 - Librairies XYZ non à jour.
 - PHP non à jour.
 - MySQL non à jour.
@@ -902,7 +902,7 @@ gitleaks protect --staged
 
 ## Zoom sur les mots de passe
 
-- Un mot de passe ne doit jamais être stocké en claire.
+- Un mot de passe ne doit jamais être stocké en clair.
 - Un mot de passe doit être haché (non réversible).
 - Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
 - Un mot de passe seul n'est souvent pas suffisant (Double authentification).
@@ -917,15 +917,15 @@ gitleaks protect --staged
 
 ## Le sel
 
-- Peut-être différent pour chaque utilisateur.
-- Peut-être global pour tous les utilisateurs.
+- Peut être différent pour chaque utilisateur.
+- Peut être global pour tous les utilisateurs.
 
 ---
 
 ## Le bcrypt
 
 - Intègre le sel automatiquement.
-- Intègre un coût (nombre d'itération) configurable.
+- Intègre un coût (nombre d'itérations) configurable.
 - Utilise Blowfish comme algorithme de base (pas SHA-256).
 - Alternatives modernes : Argon2, Scrypt.
 
@@ -958,14 +958,14 @@ gitleaks protect --staged
 
 ## La double authentification
 
-- **Mot de passe :** chaîne de caractère, chiffre, symbole.
+- **Mot de passe :** chaîne de caractères, chiffres, symboles.
 - **Application :** OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
 - **Objet physique :** U2F (Universal 2nd Factor) : Clé USB, Yubikey.
 - **Biométrie :** Empreinte digitale, Reconnaissance faciale.
 
 ---
 
-- Permets de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
+- Permet de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
 - Via un secret partagé entre la personne **physique** et le site.
 
 ---
@@ -978,7 +978,7 @@ gitleaks protect --staged
 
 ---
 
-### IPS (Intrusion Prevension Systeme)
+### IPS (Intrusion Prevention System)
 
 - Bloque **automatiquement** les attaques
 - Non fiable à 100%
@@ -986,11 +986,11 @@ gitleaks protect --staged
 
 ---
 
-### IDS (Intrusion Detection Systeme)
+### IDS (Intrusion Detection System)
 
 - Analyse
 - Repère
-- Averti
+- Avertit
 
 ![](./img/nids.png)
 
@@ -1036,7 +1036,7 @@ gitleaks protect --staged
 
 #### Vous êtes la première ligne d’informations
 
-Par deux, collecter une actualité récente « sur un problème de sécurités ».
+Par deux, collecter une actualité récente « sur un problème de sécurité ».
 
 ![QRCode](./img/code.png)
 

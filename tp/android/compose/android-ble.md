@@ -16,7 +16,7 @@ Dans cette partie nous allons voir comment interagir avec des périphériques BL
 - Découverte des périphériques (Scan)
 - Connexion à un périphérique (Connect)
 - Lire des données (Notify)
-- Ecrire des données (Write)
+- Écrire des données (Write)
 
 ## Prérequis
 
@@ -95,11 +95,11 @@ Il est donc important de bien structurer son code pour gérer les erreurs et les
 
 ::: tip Ça peut paraître négatif…
 
-C'est propos peuvent vous sembler négatifs, mais ne vous y trompez pas, le BLE est une technologie très puissante et très utilisée. Il est important de bien comprendre son fonctionnement pour éviter les erreurs.
+Ces propos peuvent vous sembler négatifs, mais ne vous y trompez pas, le BLE est une technologie très puissante et très utilisée. Il est important de bien comprendre son fonctionnement pour éviter les erreurs.
 
 :::
 
-## Découvrir le péprhérique avec nRF Connect
+## Découvrir le périphérique avec nRF Connect
 
 Pour commencer, nous allons utiliser l'application nRF Connect pour découvrir les services et les caractéristiques du périphérique.
 
@@ -108,13 +108,13 @@ Pour commencer, nous allons utiliser l'application nRF Connect pour découvrir l
 3. Vous devriez voir des périphériques nommés `PMW-…`.
 4. Cliquez sur un périphérique pour voir les services et les caractéristiques.
 
-::: tip l'objectif identifier **votre** périphérique
+::: tip L'objectif : identifier **votre** périphérique
 
 L'objectif est d'identifier **votre** périphérique. Pour cela, nous allons regarder comment envoyer des données à l'ESP32.
 
 **Nous allons le faire ensemble**, mais voici les étapes :
 
-- Allumez la led avec l'UUID : `59b6bf7f-44de-4184-81bd-a0e3b30c919b` ou avec le bouton physique.
+- Allumez la LED avec l'UUID : `59b6bf7f-44de-4184-81bd-a0e3b30c919b` ou avec le bouton physique.
 - Regardez les notifications avec l'UUID : `d75167c8-e6f9-4f0b-b688-09d96e195f00`.
 - Une fois que vous avez identifié votre ESP32, changez le nom via la caractéristique `1497b8a8-64f8-11ee-8c99-0242ac120002`.
 
@@ -131,7 +131,7 @@ Dans ce TP nous allons utiliser les API Android pour vous montrer comment foncti
 
 ::: danger Attention
 
-Même si je vous fournis le code, l'idée ici pour vous va être de comprendre le fonctionnement et l'enchaînement des opérations. **Il est donc important de ne pas copiez-collez bêtement le code que je vous donne.**
+Même si je vous fournis le code, l'idée ici pour vous va être de comprendre le fonctionnement et l'enchaînement des opérations. **Il est donc important de ne pas copier-coller bêtement le code que je vous donne.**
 
 :::
 
@@ -142,7 +142,7 @@ Même si je vous fournis le code, l'idée ici pour vous va être de comprendre l
 - Filtrer les résultats (ou pas)
 - Démarrer le Scan
 - Connexion au `BluetoothDevice`
-- Lire / Ecrire des données
+- Lire / Écrire des données
 
 ::: tip Ceci est un préparatif au projet final
 
@@ -199,7 +199,7 @@ Je vous laisse créer ce nouveau composable et son ViewModel. Vous pouvez vous i
 ```kotlin
 // Partie 1: Demander la permission
 // En fonction de la version d'Android, on demande des permissions différentes
-// Pour Android 12, on demande les permissions BLUETOOTH_CONNECT et BLUETOOTH_SCAN (qui sont moins agréssives pour l'utilisateur)
+// Pour Android 12, on demande les permissions BLUETOOTH_CONNECT et BLUETOOTH_SCAN (qui sont moins agressives pour l'utilisateur)
 // Pour les autres versions, on demande la permission ACCESS_FINE_LOCATION (Souvent non comprise par l'utilisateur)
 val toCheckPermissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
     listOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -213,7 +213,7 @@ val permissionState = rememberMultiplePermissionsState(toCheckPermissions)
  // Vérifier si la permission est accordée
 if (permissionState.allPermissionsGranted) {
     // La permission est accordée
-    // Nous sommes prêt à scanner
+    // Nous sommes prêts à scanner
 } else {
     // La permission n'est pas accordée
     // Nous devons demander la permission
@@ -275,7 +275,7 @@ Voici les éléments minimums que vous devez implémenter pour votre interface :
 
 ::: danger La liste des périphériques
 
-Évidemment la liste des périphériques est dynamique, dans ma screenshot j'ai un élément, mais pendant votre développement, vous ne devez au début pas avoir d'élément.
+Évidemment la liste des périphériques est dynamique, dans mon screenshot j'ai un élément, mais pendant votre développement, vous ne devez au début pas avoir d'élément.
 
 :::
 
@@ -337,7 +337,7 @@ fun startScan(context: Context) {
                 */
             override fun onScanResult(callbackType: Int, result: ScanResult) {
                 super.onScanResult(callbackType, result)
-                // On ajoute le résultat dans le set, si il n'y est pas déjà
+                // On ajoute le résultat dans le set, s'il n'y est pas déjà
                 // L'ajout retourne null si l'élément n'était pas déjà présent
                 if (scanResultsSet.put(result.device.address, result) == null) {
                     // On envoie la nouvelle liste des appareils scannés
@@ -346,13 +346,13 @@ fun startScan(context: Context) {
             }
         }
 
-        // On lance le scan BLE a la souscription de scanFlow
+        // On lance le scan BLE à la souscription de scanFlow
         bluetoothLeScanner.startScan(scanFilters, scanSettings, scanCallback)
 
         // On attend la durée du scan (10 secondes)
         delay(scanDuration)
 
-        // Lorsque scanFlow est stoppé, on stop le scan BLE
+        // Lorsque scanFlow est stoppé, on stoppe le scan BLE
         bluetoothLeScanner.stopScan(scanCallback)
 
         // On indique que nous ne sommes plus en train de scanner
@@ -402,7 +402,7 @@ val isScanning by viewModel.isScanningFlow.collectAsStateWithLifecycle()
 
 ### Côté interface
 
-L'Action de connexion déclenchée par l'utilisateur. (Clic sur un élément de la liste). Prévoir l'affichage d'un loader pendant la connexion. Une fois établi l'écran la liste est remplacé par un nouveau composant d'action. Dans mon cas :
+L'Action de connexion déclenchée par l'utilisateur. (Clic sur un élément de la liste). Prévoir l'affichage d'un loader pendant la connexion. Une fois la connexion établie, l'écran de liste est remplacé par un nouveau composant d'action. Dans mon cas :
 
 ![Action Layout](./img/ble/action_screen.png)
 
@@ -426,7 +426,7 @@ val isConnectedToDeviceFlow = MutableStateFlow(false)
 ```kotlin
 @SuppressLint("MissingPermission")
 fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
-    // On arrête le scan si il est en cours
+    // On arrête le scan s'il est en cours
     stopScan()
 
     // On indique que nous sommes en train de nous connecter (pour afficher un loader par exemple)
@@ -462,7 +462,7 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
 }
 ```
 
-::: tip avez-vous remarqué ?
+::: tip Avez-vous remarqué ?
 
 - La méthode `connect` est une méthode asynchrone.
 - Elle repose sur un `GattCallback` pour gérer les événements BLE.
@@ -473,8 +473,8 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
 #### La classe `BluetoothLEManager`
 
 - Code générique pour gérer les états BLE.
-- Contiens les UUIDs des services et caractéristiques.
-- Contiens-le `GattCallback` pour gérer les événements BLE.
+- Contient les UUIDs des services et caractéristiques.
+- Contient le `GattCallback` pour gérer les événements BLE.
 - Écrit par moi-même pour simplifier le code.
 
 Ce code est à ajouter dans un fichier `BluetoothLEManager.kt` dans un package `data.ble`
@@ -502,7 +502,7 @@ class BluetoothLEManager {
     }
 
     /**
-     * Définitionn de la classe GattCallback qui va nous permettre de gérer les différents événements BLE
+     * Définition de la classe GattCallback qui va nous permettre de gérer les différents événements BLE
      * Elle implémente la classe BluetoothGattCallback fournie par Android
      */
     open class GattCallback(
@@ -512,7 +512,7 @@ class BluetoothLEManager {
     ) : BluetoothGattCallback() {
 
         /**
-         * Méthode appelé au moment ou les « services » ont été découvert
+         * Méthode appelée au moment où les « services » ont été découverts
          */
         override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
             super.onServicesDiscovered(gatt, status)
@@ -524,7 +524,7 @@ class BluetoothLEManager {
         }
 
         /**
-         * Méthode appelé au moment du changement d'état de la stack BLE
+         * Méthode appelée au moment du changement d'état de la stack BLE
          */
         @SuppressLint("MissingPermission")
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
@@ -536,7 +536,7 @@ class BluetoothLEManager {
         }
 
         /**
-         * Méthode appelé lorsqu'une caractéristique a été modifiée
+         * Méthode appelée lorsqu'une caractéristique a été modifiée
          * Dans les nouvelles versions d'Android, cette méthode est appelée
          */
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic, value: ByteArray) {
@@ -545,7 +545,7 @@ class BluetoothLEManager {
         }
 
         /**
-         * Méthode appelé lorsqu'une caractéristique a été modifiée
+         * Méthode appelée lorsqu'une caractéristique a été modifiée
          * Ancienne méthode utilisée sur les versions antérieures d'Android
          */
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
@@ -566,7 +566,7 @@ class BluetoothLEManager {
 
 ::: tip À vous
 
-- Créer l'action de connexion dans la Vue (clique sur un élément de la liste).
+- Créer l'action de connexion dans la Vue (clic sur un élément de la liste).
 - Écouter les variables du ViewModel.
 - Créer un **Composant** pour afficher les actions.
 - Gérer les différents états (scan, connexion, actions).
@@ -575,7 +575,7 @@ Pour vous aider :
 
 ![Machine à état](./img/ble/state_screen.png)
 
-**Notez le découpage en composant, c'est important pour la suite. Notez également les paramètres pour le composant `DisplayConnectedActions`, notamment les callbacks pour les actions (toggle, etc).**
+**Notez le découpage en composant, c'est important pour la suite. Notez également les paramètres pour le composant `DisplayConnectedActions`, notamment les callbacks pour les actions (toggle, etc.).**
 
 :::
 
@@ -612,7 +612,7 @@ private fun writeCharacteristic(uuid: UUID, value: String) {
             return
         }
 
-        Log.i("BluetoothLEManager", "Ecriture de la valeur $value dans la caractéristique $uuid")
+        Log.i("BluetoothLEManager", "Écriture de la valeur $value dans la caractéristique $uuid")
 
         // En fonction de la version de l'OS, on utilise la méthode adaptée
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -689,7 +689,7 @@ Pour que le code fonctionne, vous devez indiquer à l'ESP32 que vous souhaitez r
 @SuppressLint("MissingPermission")
 private fun enableNotify() {
     getMainService()?.let { service ->
-        // Indique que le GATT Client va écouter les notifications sur le charactérisque
+        // Indique que le GATT Client va écouter les notifications sur la caractéristique
         val notificationStatus = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
         val notificationLedCount = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_COUNT)
         val wifiScan = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI)

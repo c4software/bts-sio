@@ -1,5 +1,5 @@
 ---
-description: Même si celle-ci n’est pas obligatoire dans une expérience mobile… Celle-ci peut changer radicalement l'expérience de vos utilisateurs. Sur Android (comme souvent) nous avons plusieurs façons de faire nos animations.
+description: Même si celles-ci ne sont pas obligatoires dans une expérience mobile… Celles-ci peuvent changer radicalement l'expérience de vos utilisateurs. Sur Android (comme souvent) nous avons plusieurs façons de faire nos animations.
 ---
 
 # Suite découverte des bases d'Android
@@ -16,9 +16,9 @@ Nous sommes en 2021, le monde d'Android évolue… Pendant des années l'écritu
 
 ## Les animations
 
-Même si celle-ci n’est pas obligatoire dans une expérience mobile… Celle-ci peut changer radicalement l'expérience de vos utilisateurs. Sur Android nous avons plusieurs façons de faire nos animations (comme souvent) :
+Même si celles-ci ne sont pas obligatoires dans une expérience mobile… Celles-ci peuvent changer radicalement l'expérience de vos utilisateurs. Sur Android nous avons plusieurs façons de faire nos animations (comme souvent) :
 
-- Les animations automatiques `animationLayoutChange`.
+- Les animations automatiques `animateLayoutChanges`.
 - Les Gifs.
 - Lottie
 - Les « transitions programmées ».
@@ -28,9 +28,9 @@ Même si celle-ci n’est pas obligatoire dans une expérience mobile… Celle-c
 
 Celle-ci est certainement la plus simple à mettre en place. Vous n'aurez aucun contrôle sur celle-ci ; c'est le système Android qui vous animera automatiquement les changements d'état de votre Interface. Pratique pour les cas simples.
 
-Pour mettre en place les animations automatiques il suffit d'ajouter `animationLayoutChange` à la racine du layout à animé layout. Je vous laisse le mettre en place dans votre projet :
+Pour mettre en place les animations automatiques il suffit d'ajouter `animateLayoutChanges` à la racine du layout à animer. Je vous laisse le mettre en place dans votre projet :
 
-- Modifier le layout de votre `splash` pour y ajouter le `animationLayoutChange`.
+- Modifier le layout de votre `splash` pour y ajouter le `animateLayoutChanges`.
 - Masquer de base le logo de l'école.
 - Afficher celui-ci après un délai (comme vu précédemment).
 - Le changement sera normalement « animé ».
@@ -39,7 +39,7 @@ Je vous laisse tester.
 
 ### Les GIF
 
-AKA la technique cheap « et pas ouf ». Je vous l'indique, car c'est marrant ! Et que nous sommes dans un monde où nous utilisons des GIF souvent… Mais en réalité c'est nul comme technique… Lire des GIF ne sont pas supportés nativement par Android, par contre c'est assez simple d'ajouter le support :
+AKA la technique cheap « et pas ouf ». Je vous l'indique, car c'est marrant ! Et que nous sommes dans un monde où nous utilisons des GIF souvent… Mais en réalité c'est nul comme technique… Lire des GIF n'est pas supporté nativement par Android, par contre c'est assez simple d'ajouter le support :
 
 - Ajouter la librairie [GifView](https://github.com/Cutta/GifView).
 - Remplacer le logo de l'école par un logo animé sur votre Splash.
@@ -49,9 +49,9 @@ Je vous laisse tester.
 
 ### Lottie
 
-[Lottie](https://airbnb.design/lottie/) est une librairie permettant de faire des animations de qualités, bien au-dessus des GIF ! En plus Lottie est vraiment simple à utiliser :
+[Lottie](https://airbnb.design/lottie/) est une librairie permettant de faire des animations de qualité, bien au-dessus des GIF ! En plus Lottie est vraiment simple à utiliser :
 
-- Installez-la [librairie lottie](https://github.com/airbnb/lottie-android) :
+- Installez la [librairie lottie](https://github.com/airbnb/lottie-android) :
 
 ```txt
 dependencies {
@@ -60,7 +60,7 @@ dependencies {
 ```
 
 - [Chercher une animation sur le site](https://lottiefiles.com/)
-- [En suivant la documentation officiel](http://airbnb.io/lottie/#/android?id=from-xml) Placer l'animation à la place de l'image GIF du `SplashScreen`.
+- [En suivant la documentation officielle](http://airbnb.io/lottie/#/android?id=from-xml) placer l'animation à la place de l'image GIF du `SplashScreen`.
 
 C'est à vous, je vous laisse mettre en place l'animation.
 
@@ -78,10 +78,10 @@ Je vous laisse tester sur votre layout de `Splash` :
 
 ## Les extensions Kotlin
 
-Kotlin permet d'étendre le langage de manière assez particulière. Vous pouvez ajouter de nouvelles méthodes dans des objets « existant ». Écrit comme ça, ça peut sembler étrange… Mais en réalité ça ouvre des options intéressantes… Ça vous nous permettre de :
+Kotlin permet d'étendre le langage de manière assez particulière. Vous pouvez ajouter de nouvelles méthodes dans des objets « existant ». Écrit comme ça, ça peut sembler étrange… Mais en réalité ça ouvre des options intéressantes… Ça va nous permettre de :
 
-- Partage simplement du code. ([Exemple ici](http://kotlinextensions.com/))
-- Masquer du code « complexe » que vous pourriez avoir à utiliser à différent endroit.
+- Partager simplement du code. ([Exemple ici](http://kotlinextensions.com/))
+- Masquer du code « complexe » que vous pourriez avoir à utiliser à différents endroits.
 
 Créer dans votre projet un fichier nommé `helpers.kt`, dans celui-ci ajouter le code suivant :
 
@@ -122,9 +122,9 @@ Je vous laisse mettre en place le code sur votre `Home`. Je souhaite avoir :
 
 ## Les Fragments
 
-Dans le monde d'Android nous n'avons pas que les `Activity` de disponibles, nous avons également les `Fragment` ; les Fragments sont une autre façon d'organiser vos vues. Ils sont utilisés massivement par certains, et pour d'autre pas du tout. Les fragments vont donc permettre de découper la logique de votre vue en différents morceaux. Les différents morceaux ont leurs propres cycles de vies et permettent de faire grossièrement la même chose qu'une activité.
+Dans le monde d'Android nous n'avons pas que les `Activity` de disponibles, nous avons également les `Fragment` ; les Fragments sont une autre façon d'organiser vos vues. Ils sont utilisés massivement par certains, et pour d'autres pas du tout. Les fragments vont donc permettre de découper la logique de votre vue en différents morceaux. Les différents morceaux ont leurs propres cycles de vies et permettent de faire grossièrement la même chose qu'une activité.
 
-Il y a un endroit ou nous serons « obligé » d'utiliser les fragments c'est dans le cas d'une Bottom Navigation Bar (vous les connaissez très certainement… c'est les bar avec les boutons en bas de l'écran) :
+Il y a un endroit où nous serons « obligés » d'utiliser les fragments c'est dans le cas d'une Bottom Navigation Bar (vous les connaissez très certainement… c'est les barres avec les boutons en bas de l'écran) :
 
 ![Fragment et Bottom Bar](./ressources/mock-fragment.png)
 
@@ -132,7 +132,7 @@ Il y a un endroit ou nous serons « obligé » d'utiliser les fragments c'est da
 Les Fragments sont un concept pas forcément très compliqué, mais celui-ci demande un peu de concentration pour l'implémenter sans trop de problèmes.
 :::
 
-La première étape va être l'ajoute des différentes librairies :
+La première étape va être l'ajout des différentes librairies :
 
 ```txt
     implementation "androidx.fragment:fragment-ktx:1.2.5"
@@ -142,7 +142,7 @@ La première étape va être l'ajoute des différentes librairies :
 
 ### Manuellement
 
-Avant de voir la façon « tout automatique », nous allons implémenter ensemble la version « manuel » des Fragments. La logique des fragments n'est pas vraiment complexe, mais celle-ci demande de la rigueur et de l'organisation. Je vous montre l'objectif à atteindre :
+Avant de voir la façon « tout automatique », nous allons implémenter ensemble la version « manuelle » des Fragments. La logique des fragments n'est pas vraiment complexe, mais celle-ci demande de la rigueur et de l'organisation. Je vous montre l'objectif à atteindre :
 
 | ![Objectif à atteindre](./ressources/objectif.png) |
 | :------------------------------------------------: |
@@ -222,7 +222,9 @@ Avant de voir la façon « tout automatique », nous allons implémenter ensembl
           setContentView(R.layout.activity_bottom)
 
           showFragment(page1Instance)
-          bottom_navigation.setOnNavigationItemSelectedListener { item ->
+
+          val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+          bottomNavigation.setOnItemSelectedListener { item ->
               when (item.itemId) {
                   R.id.page_1 -> {
                       // Item 1 action
@@ -251,7 +253,7 @@ Avant de voir la façon « tout automatique », nous allons implémenter ensembl
 ::: tip qu'avons-nous ici ?
 
 - Nous avons ajouté dans notre activity 1 méthode, et deux variables qui seront « les fragments » (page1 et page2).
-- Nous avons « ensuite connecté » les cliques sur la `BottomNavigationView` aux actions permettant d'afficher le fragment dans le frame.
+- Nous avons « ensuite connecté » les clics sur la `BottomNavigationView` aux actions permettant d'afficher le fragment dans le frame.
 
 :::
 
@@ -276,7 +278,7 @@ Je vous passe la création des activités et des Fragments. Ce que nous allons a
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation.xml"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/mobile_navigation"
     app:startDestination="@id/page_1">
 
     <fragment
@@ -393,7 +395,7 @@ findNavController().navigate(
 
 #### Récupérer le paramètre
 
-Vous avez de la chance avec Kotlin cette partie est très simple. Si vous souhaitez récupérer le paramètres il suffit d'ajouter une propriété dans la class du fragement de destination, le code à ajouter est le suivant :
+Vous avez de la chance avec Kotlin cette partie est très simple. Si vous souhaitez récupérer le paramètre il suffit d'ajouter une propriété dans la class du fragment de destination, le code à ajouter est le suivant :
 
 ```kotlin
 val args: VotreClassFragmentArgs by navArgs()
@@ -418,7 +420,7 @@ Et pour utiliser la donnée ? C'est simple, voici un exemple pour « rafraichir 
 
 ### Drawer Layout
 
-En vous servant de l'outil intégré à Android Studio créé une Interface intégrant :
+En vous servant de l'outil intégré à Android Studio, créer une Interface intégrant :
 
 - Un Drawer
 - Un BottomNavigationView

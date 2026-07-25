@@ -5,7 +5,7 @@ tags: [Android, Compose, API, Rest, Retrofit]
 
 # Android Compose, une liste et une API Rest
 
-Dans cette page vous trouverez un exemple d'application Android utilisant Jetpack Compose et appellant une API Rest.
+Dans cette page vous trouverez un exemple d'application Android utilisant Jetpack Compose et appelant une API Rest.
 
 ::: details Table des matières
 [[toc]]
@@ -99,7 +99,7 @@ Vous pouvez également utiliser [une solution en ligne](https://m3.material.io/t
 Le fichier `ApiService.kt` contient le service d'appel à l'API. Il utilise la librairie [Retrofit](https://square.github.io/retrofit/) pour appeler l'API.
 
 ```kotlin
-interface ApiService {
+interface APIService {
     @GET("todos")
     suspend fun getTodos(): List<Todo>
 
@@ -179,7 +179,7 @@ val loadingState = MutableStateFlow<LOADING_STATES>(LOADING_STATES.LOADING)
 
 // Récupération des éléments.
 // On utilise un CoroutineScope pour pouvoir faire des appels réseaux
-// sans bloquer le thread principal (c'est à dire l'interface)
+// sans bloquer le thread principal (c'est-à-dire l'interface)
 fun getItems() {
     // On indique que les données sont en cours de chargement (chargement)
     loadingState.value = LOADING_STATES.LOADING
@@ -193,7 +193,7 @@ fun getItems() {
             itemsList.value = APIService.getInstance().getTodos()
 
             // On indique que les données sont chargées (terminé)
-            loadingState.value =LOADING_STATES.LOADED
+            loadingState.value = LOADING_STATES.LOADED
         } catch (e: Throwable) {
             // En cas d'erreur
             // On indique qu'une erreur est survenue (erreur)
@@ -205,9 +205,9 @@ fun getItems() {
 
 ::: tip C'est presque générique !
 
-Le code d'accès à la donnée est presque générique, il suffit de changer la méthode `getTodos()` pour récupérer les données depuis une autre source (préalablement créé dans l'APIService).
+Le code d'accès à la donnée est presque générique, il suffit de changer la méthode `getTodos()` pour récupérer les données depuis une autre source (préalablement créée dans l'APIService).
 
-La gestion des états est toujours là même :
+La gestion des états est toujours la même :
 
 - J'indique que les données sont en cours de chargement.
 - Je lance une coroutine pour récupérer les données.
@@ -236,14 +236,14 @@ Le paramètre de la fonction `ListScreen` est un `ListViewModel`, il s'agit du `
 Notre vue écoute des données, pour ça nous avons besoin de deux variables :
 
 ```kotlin
-// Variable qui changeront d'état lors du chargement des données
+// Variables qui changeront d'état lors du chargement des données
 val loadingState = viewModel.loadingState.collectAsState()
 val items = viewModel.itemsList.collectAsState()
 ```
 
 Ces deux variables sont « réactives », c'est-à-dire qu'elles seront mises à jour lorsqu'une donnée change. Nous utilisons la fonction `collectAsState()`. CollectAsState est une méthode qui nous permettra d'écouter les changements des données directement dans notre interface.
 
-- loadingState : État du chargement des données (chargement, erreur, terminée).
+- loadingState : État du chargement des données (chargement, erreur, terminé).
 - items : Liste des données (l'ensemble des données retournées par l'API).
 
 Puis nous avons la demande de chargement des données :
@@ -294,11 +294,11 @@ Nous affichons donc un loader, la liste des données ou un message d'erreur en f
 
 Dans ce projet nous avons défini 2 énums :
 
-L'enum `LOADING_STATE` est utilisé pour définir l'état du chargement des données :
+L'enum `LOADING_STATES` est utilisé pour définir l'état du chargement des données :
 
 - `LOADING`: Les données sont en cours de chargement.
 - `ERROR`: Une erreur est survenue lors du chargement des données.
-- `SUCCESS`: Les données ont été chargées avec succès.
+- `LOADED`: Les données ont été chargées avec succès.
 
 L'enum `STATES` est utilisé pour définir quel écran est actuellement affiché en fonction de la NavBar en bas de l'écran :
 
@@ -312,7 +312,7 @@ L'enum `STATES` est utilisé pour définir quel écran est actuellement affiché
 
 En Kotlin un composant peut définir un paramètre de type `() -> Unit` pour définir un callback. Ce callback sera appelé au moment de l'utilisation par l'utilisateur. 
 
-Par exemple, dans le composant, `ListItems` nous avons défini un callback `onItemClicked` :
+Par exemple, dans le composant `ListItem`, nous avons défini un callback `onClick` :
 
 ```kotlin
 @Composable
@@ -346,7 +346,7 @@ ListItem(item = todo.title, onClick = {
 })
 ```
 
-Les deux syntaxes sont correctes. En Kotlin il est préférable d'écrire la première syntaxe. Car elle est plus concise et plus lisible.
+Les deux syntaxes sont correctes. En Kotlin il est préférable d'écrire la première syntaxe, car elle est plus concise et plus lisible.
 
 :::
 
@@ -364,7 +364,7 @@ Le fonctionnement est le suivant :
 Vous pouvez [voir le code ici](https://github.com/c4software/project-compose-api-sample/tree/main/app/src/main/java/com/example/exemplecomposelisteapi/screens/login)
 
 ::: danger Ici pas de sauvegarde de l'authentification
-L'idée ici est de voir comment naviguer entre différent écran, et de découvrir comment il est possible de lier l'ensemble (API, Navigation entre les vues, etc).
+L'idée ici est de voir comment naviguer entre différents écrans, et de découvrir comment il est possible de lier l'ensemble (API, Navigation entre les vues, etc.).
 
 La sauvegarde de l'authentification n'est donc pas traitée ici. 
 :::
@@ -408,7 +408,7 @@ Pour charger une image distante, nous utilisons le composant `Image` :
 
 ```kotlin
 AsyncImage(
-    data = "https://picsum.photos/200/200",
+    model = "https://picsum.photos/200/200",
     contentDescription = "Image",
     modifier = Modifier
         .size(200.dp)
@@ -442,7 +442,7 @@ fun PhotoItem(photo: Photo) {
 
 Dans cette application nous utilisons des tabs (NavBar) pour naviguer entre les écrans. Pour cela nous utilisons le composant `BottomNavigation` de Jetpack Compose.
 
-Ce Composant contient une liste de `BottomNavigationItem` qui correspondent aux différents différents éléments de la NavBar. Chaque élément est associé à un écran. Écrans qui seront affichés lors du clic sur l'élément via le callback `onClick`.
+Ce Composant contient une liste de `BottomNavigationItem` qui correspondent aux différents éléments de la NavBar. Chaque élément est associé à un écran. Écrans qui seront affichés lors du clic sur l'élément via le callback `onClick`.
 
 ![Tabs](./img/tabs.jpg)
 
@@ -488,7 +488,7 @@ Malheureusement, le système de `Preview` est assez lent. Il faut donc faire att
 
 ## Conclusion
 
-Dans ce support nous avons vu comment l'architecture d'une application Android avec Jetpack Compose et qui appelle une API. Comme dans le TP précédent, nous nous sommes efforcés de découper notre application en plusieurs parties :
+Dans ce support nous avons vu l'architecture d'une application Android avec Jetpack Compose et qui appelle une API. Comme dans le TP précédent, nous nous sommes efforcés de découper notre application en plusieurs parties :
 
 - `screens` : Ce sont les écrans de l'application.
 - `components` : Ce sont les composants utilisés dans les différents écrans

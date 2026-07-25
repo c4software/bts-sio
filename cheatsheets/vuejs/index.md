@@ -9,7 +9,7 @@ description: Le document présent ainsi que les supports de cours et TP sont act
 :::
 
 ::: danger Remarque Décembre 2020
-Nous sommes actuellement à une periode charnière de VueJS. La version 3.0 bien que stable n'est pas encore la version « par defaut ».
+Nous sommes actuellement à une période charnière de VueJS. La version 3.0 bien que stable n'est pas encore la version « par défaut ».
 
 Le document présent ainsi que les supports de cours et TP sont actuellement écrits pour VueJS 2.0
 :::
@@ -24,7 +24,7 @@ Installation
 $ npm install -g vue-cli
 ```
 
-Créer un projet «application » depuis le template officiel
+Créer un projet « application » depuis le template officiel
 
 ```sh
 $ vue init webpack my-project
@@ -44,13 +44,13 @@ Exemple de HTML existant dans la page :
 
 ```html
 <div id="monMessage">
-  <h1>{{ titre }}<h1>
+  <h1>{{ message }}</h1>
 </div>
 ```
 
 Code Javascript à ajouter :
 
-```html
+```js
 var app = new Vue({ el: '#monMessage', data: { message: 'Bonjour Monde' } })
 ```
 
@@ -71,7 +71,7 @@ var app = new Vue({ el: '#monMessage', data: { message: 'Bonjour Monde' } })
 - beforeUpdate
 - updated
 - beforeDestroy
-- detroyed
+- destroyed
 
 [Les cycles de vie](https://fr.vuejs.org/images/lifecycle.png)
 

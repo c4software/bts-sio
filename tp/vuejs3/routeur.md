@@ -12,7 +12,7 @@ Dans ce TP, nous allons voir comment utiliser un routeur avec VueJS 3. Nous util
 
 Un routeur est un composant qui va permettre de gérer les routes de notre application. Une route est une URL qui va permettre d'accéder à une page de notre application.
 
-Par exemple, si nous avons une application qui permet de gérer des tâches, nous aurrons plusieurs routes :
+Par exemple, si nous avons une application qui permet de gérer des tâches, nous aurons plusieurs routes :
 
 - Une route pour afficher la liste des tâches
 - Une route pour afficher le détail d'une tâche
@@ -38,7 +38,7 @@ Je vous laisse choisir le nom du projet.
 
 ## Installation des dépendances
 
-Avant d'ajouter le routeur assurez vous que votre projet fonctionne correctement.
+Avant d'ajouter le routeur, assurez-vous que votre projet fonctionne correctement.
 
 ```sh
 cd le-nom-du-projet
@@ -62,7 +62,7 @@ La commande `npm install` va télécharger les dépendances du projet. Ici nous 
 
 Elle va aussi créer un dossier `node_modules` qui va contenir les dépendances du projet. 
 
-Rappel: Ce dossier ne doit pas être versionné.
+Rappel : ce dossier ne doit pas être versionné.
 
 :::
 
@@ -86,7 +86,7 @@ Une fois réalisé vous devriez avoir un fichier `App.vue` qui ressemble à ça 
 </style>
 ```
 
-::: tip C'est l'invonvénient d'un projet avec du code de base
+::: tip C'est l'inconvénient d'un projet avec du code de base
 
 Nous allons devoir supprimer le code de base pour pouvoir utiliser le routeur. C'est un peu dommage, mais c'est le prix à payer quand on souhaite un effet wahou dès le début.
 
@@ -130,7 +130,7 @@ Nous allons créer également un composant `About.vue` dans le dossier `src/view
 </template>
 ```
 
-Nous avons maintenant tous les vues / composant dont nous avons besoin pour configurer le routeur :
+Nous avons maintenant toutes les vues / composants dont nous avons besoin pour configurer le routeur :
 
 - Home: Sera affiché par défaut, il s'agit de la page d'accueil de notre application.
 - NotFound: Sera affiché si aucune route ne correspond à l'URL.
@@ -182,10 +182,10 @@ export default createRouter({
 
 ```
 
-Qu'est ce que nous avons fait ?
+Qu'est-ce que nous avons fait ?
 
 - Nous avons importé les fonctions `createRouter` et `createWebHistory` qui vont nous permettre de créer le routeur.
-- Nous avons importé les composants que nous avons créé précédemment.
+- Nous avons importé les composants que nous avons créés précédemment.
 - Nous avons créé un tableau `routes` qui contient les routes de notre application.
 - Nous avons créé le routeur avec la fonction `createRouter` en lui passant en paramètre le tableau `routes`.
 - Nous avons exporté le routeur pour pouvoir l'utiliser dans notre application.
@@ -193,7 +193,7 @@ Qu'est ce que nous avons fait ?
 
 ::: tip C'est à vous de jouer
 
-Je vous laisse créer le fichier `router.ts` et de le remplir avec le code ci-dessus.
+Je vous laisse créer le fichier `router.ts` et le remplir avec le code ci-dessus.
 
 :::
 
@@ -261,7 +261,7 @@ Les liens accessibles sont :
 
 ## Et le style ?
 
-Pour l'instant nous avons une application qui affiche les composants que nous avons créé. C'est bien, mais c'est moche. Nous allons donc ajouter du style à notre application.
+Pour l'instant nous avons une application qui affiche les composants que nous avons créés. C'est bien, mais c'est moche. Nous allons donc ajouter du style à notre application.
 
 Vous l'aurez compris, nous allons utiliser TailwindCSS. Nous allons donc ajouter TailwindCSS à notre application.
 
@@ -295,7 +295,7 @@ Nous allons maintenant modifier le fichier `style.css` dans le dossier `src` :
 
 Le plugin TailwindCSS va générer le fichier CSS à partir du fichier `style.css`. 
 
-Je vous laisse regarder le code source de votre page généré pour voir comment celui-ci est injecté dans votre page.
+Je vous laisse regarder le code source de votre page générée pour voir comment celui-ci est injecté dans votre page.
 
 :::
 
@@ -309,16 +309,16 @@ Puis modifier le fichier `App.vue` pour qu'il utilise TailwindCSS :
 </template>
 ```
 
-Aucun changement ? Oui, c'est normal. Nous n'avons pas encore ajouté TailwindCSS à notre application. Nous allons maintenant le faire.
+Aucun changement visible ? Oui, c'est normal. TailwindCSS est bien installé, mais nous n'avons pas encore utilisé ses classes pour styliser nos pages. Nous allons maintenant le faire.
 
 ## Ajouter une navbar
 
-Vue que nous sommes des gens bien, nous allons ajouter une navbar à notre application, celle-ci permettra de naviguer entre les différentes pages de notre application :
+Vu que nous sommes des gens bien, nous allons ajouter une navbar à notre application, celle-ci permettra de naviguer entre les différentes pages de notre application :
 
 - La page d'accueil: `/`
 - La page `About`: `/about`
 
-Vue que nous sommes organisés, nous allons créer un composant `Navbar.vue` dans le dossier `src/components`. Celui-ci contiendra le code HTML + CSS de notre navbar.
+Vu que nous sommes organisés, nous allons créer un composant `Navbar.vue` dans le dossier `src/components`. Celui-ci contiendra le code HTML + CSS de notre navbar.
 
 ```vue
 <template>
@@ -417,7 +417,7 @@ Vous devriez avoir quelque chose comme ça :
 
 ## Afficher la liste
 
-Je vous propose de reprendre le système de Card que nous avons utilisé dans le TP Précédent. Mais comme nous sommes des gens bien, nous allons créer un composant `Card.vue` dans le dossier `src/components` et l'utiliser dans notre composant `PokemonList.vue`.
+Je vous propose de reprendre le système de Card que nous avons utilisé dans le TP précédent. Mais comme nous sommes des gens bien, nous allons créer un composant `Card.vue` dans le dossier `src/components` et l'utiliser dans notre composant `PokemonList.vue`.
 
 ### Créer un composant `Card.vue`
 
@@ -550,7 +550,7 @@ Par rapport aux liens précédents, nous allons avoir un lien dynamique. Pour ce
 }
 ```
 
-Ajouter le code précédent dans le fichier `router.js` et tester que vous pouvez accéder à la page `/pokemon/1`.
+Ajouter le code précédent dans le fichier `router.ts` et tester que vous pouvez accéder à la page `/pokemon/1`.
 
 ::: tip Que signifie le `:id` ?
 
@@ -576,9 +576,9 @@ Nous allons maintenant créer un lien vers la page de détails. Pour cela, nous 
 
 ### La vue de détails
 
-Nous avons défini le lien qui permettra d'accéder à la page de détails ainsi qu'une vue pour l'instant vide  Nous allons maintenant afficher les détails d'un pokémon. Pour cela, nous allons utiliser l'ID présent dans l'URL.
+Nous avons défini le lien qui permettra d'accéder à la page de détails ainsi qu'une vue pour l'instant vide. Nous allons maintenant afficher les détails d'un pokémon. Pour cela, nous allons utiliser l'ID présent dans l'URL.
 
-Pour récupérer l'ID, nous allons utiliser le code suivant `this.$route.params.id`. Cet ID nous servira ensuite lors de l'appel à l'API pour récupérer les détails de l'ID passé en paramètre. Comme toujours nous allons utiliser la fonction `fetch` de JavaScript.
+Pour récupérer l'ID, nous allons utiliser le code suivant `route.params.id`. Cet ID nous servira ensuite lors de l'appel à l'API pour récupérer les détails de l'ID passé en paramètre. Comme toujours nous allons utiliser la fonction `fetch` de JavaScript.
 
 Voici le code à mettre dans votre setup de votre page `PokemonDetails.vue` :
 
@@ -613,7 +613,7 @@ Quelques explications :
 - `fetchPokemon` : fonction qui va appeler l'API pour récupérer les détails du pokémon
 - `fetchPokemon()` : appel de la fonction `fetchPokemon` pour récupérer les détails.
 
-Je vous laisse ajouter ce code dans le composant `PokemonDetails.vue` et tester que vous récupérez bien les détails du pokémon. Vous pouvez également afficher les détails du pokémon dans la console avec `console.log(this.pokemon)` dans le `then`.
+Je vous laisse ajouter ce code dans le composant `PokemonDetails.vue` et tester que vous récupérez bien les détails du pokémon. Vous pouvez également afficher les détails du pokémon dans la console avec `console.log(pokemon)` dans le `then`.
 
 ::: tip Que contient la variable `pokemon` ?
 
@@ -668,7 +668,7 @@ En reprenant la logique vue précédemment, ajoutez une page `contact` qui conti
   - Prénom
   - Email
   - Message
-- Le formulaire doit être stylisé. (Vous pouvez vous inspirer de [https://flowbite.com/blocks/marketing/contact/](https://flowbite.com/blocks/marketing/contact/])
+- Le formulaire doit être stylisé. (Vous pouvez vous inspirer de [https://flowbite.com/blocks/marketing/contact/](https://flowbite.com/blocks/marketing/contact/))
 
 ::: tip Comment récupérer les données du formulaire ?
 
@@ -702,7 +702,7 @@ function onSubmit() {
 </script>
 ```
 
-::::
+:::
 
 ## Évolution de l'application
 
@@ -711,7 +711,7 @@ Je vous laisse travailler sur le style de l'application pour que celle-ci soit p
 - Ajouter un bouton pour revenir à la liste.
 - Ajouter un bouton pour aller au suivant.
 - Ajouter un bouton pour aller au précédent.
-- Afficher un pokémeon en aléatoire. (`math.random…`).
+- Afficher un pokémon en aléatoire. (`Math.random…`).
 
 - Vous n'oublierez pas de compléter la page `about` avec des informations sur l'application.
 - Vous n'oublierez pas de compléter la page `home`, celle-ci doit inviter l'utilisateur à aller sur la page `pokemons`.
@@ -720,7 +720,7 @@ Je vous laisse travailler sur le style de l'application pour que celle-ci soit p
 
 Nous avons vu comment créer une application VueJS avec TailwindCSS. Nous avons également vu comment créer des pages et des composants. Nous avons également vu comment récupérer des données depuis une API.
 
-Le découpage de l'application en vue est primordial pour la maintenabilité de l'application. Même si votre site est développé en JavaScript / Typescript, il est important de séparer les différentes parties de l'application. C'était important en PHP avec Laravel et en MVC ça l'ait toujours en JavaScript avec VueJS.
+Le découpage de l'application en vue est primordial pour la maintenabilité de l'application. Même si votre site est développé en JavaScript / Typescript, il est important de séparer les différentes parties de l'application. C'était important en PHP avec Laravel et en MVC, ça l'est toujours en JavaScript avec VueJS.
 
 ## Ressources
 

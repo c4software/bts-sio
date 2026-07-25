@@ -21,7 +21,7 @@ Ici nous allons voir comment utiliser VueJS pour simplifier la récupération de
 Pour commencer, créer un fichier `index.html` puis insérer à l'intérieur « une structure HTML 5 »
 
 ::: tip
-Si vous utilisez Visual Studio Code, vous pouvez faire html:5<kbd>Tab</kbd> une structure HTML sera automatiquement écrite.
+Si vous utilisez Visual Studio Code, vous pouvez faire html:5 <kbd>Tab</kbd>, une structure HTML sera automatiquement écrite.
 :::
 
 ```html
@@ -67,7 +67,7 @@ Pour déclarer notre script VueJS, il faut ajouter une balise script dans le bod
 
 Pour l'instant rien ne se passe, c'est normal. Nous allons maintenant ajouter un template, avant d'aller plus loin, je vous invite à regarder la console de votre navigateur. Vous devriez voir le message `Application montée`.
 
-## l'API
+## L'API
 
 Pour récupérer les données depuis l'API, nous allons utiliser la fonction `fetch` de JavaScript. Cette fonction permet de faire des requêtes HTTP.
 
@@ -169,7 +169,7 @@ Je vous laisse tester le code ci-dessus. Vous devriez voir la liste des posts de
 
 Pour l'instant, nous avons une liste de posts. Nous allons maintenant afficher les détails d'un post. En effet si vous avez regardé l'API, vous avez vu que chaque post contient un `id`, un `title` et un `body`.
 
-C'est à vous modifier le code de votre application pour afficher le `title` et le `body` d'un post.
+C'est à vous de modifier le code de votre application pour afficher le `title` et le `body` d'un post.
 
 ## Et le visuel ?
 
@@ -281,7 +281,7 @@ Pour l'instant, nous avons une navbar avec un lien vers la liste des posts. Je v
 
 ::: tip Rappel
 
-Pour recharger la liste des posts, vous pouvez utiliser la fonction `fetchData()`. Avec vueJS pour rendre un élément cliquable, vous pouvez utiliser la directive `@click` suivie de la fonction à appeler. Par exemple :
+Pour recharger la liste des posts, vous pouvez utiliser la fonction `fetchData()`. Avec VueJS pour rendre un élément cliquable, vous pouvez utiliser la directive `@click` suivie de la fonction à appeler. Par exemple :
 
 ```html
 <button @click="fetchData()">Recharger</button>
@@ -330,7 +330,7 @@ computed: {
 ```
 
 ::: tip Comment ça marche ?
-La variable `filteredItems` est calculée à partir de la variable `items` et de la variable `search`. À chaque fois que le tableau `items` ou la variable `search` est modifié, la variable `filteredItems` est recalculée. C'est très pratique !
+La variable `filteredItems` est calculée à partir de la variable `items` et de la variable `search`. À chaque fois que le tableau `items` ou la variable `search` est modifiée, la variable `filteredItems` est recalculée. C'est très pratique !
 
 La ligne `return this.items.filter(item => item.title.includes(this.search))` permet de filtrer le tableau `items` en ne gardant que les éléments dont le titre contient la valeur de la variable `search`. C'est possible grâce à la fonction `includes()` qui permet de savoir si une chaîne de caractères est incluse dans une autre chaîne de caractères ([documentée ici](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String/includes)).
 :::
@@ -349,7 +349,7 @@ Je vous laisse **modifier votre code HTML** tel que décrit ci-dessus.
 
 ## Conclusion
 
-Nous avons vu comment créer une application VueJS 3.0. Nous avons surtout vu comment VueJS simplifiait l'appel à une API. Ce genre de fonctionnement est le coeur de beaucoup de site internet moderne qui utilisent des API pour récupérer des données :
+Nous avons vu comment créer une application VueJS 3.0. Nous avons surtout vu comment VueJS simplifiait l'appel à une API. Ce genre de fonctionnement est le cœur de beaucoup de sites internet modernes qui utilisent des API pour récupérer des données :
 
 - Les réseaux sociaux.
 - Les Webmail.
@@ -382,7 +382,7 @@ Vous avez envie de découvrir VueJS en mode CLI ? Je vous invite à lire le TP s
 
 Si vous souhaitez utiliser VueUse en mode amélioration d'un site existant (sans vite donc), c'est complètement possible.
 
-Pour rappel, VueUse est une collection de composition VueJS. Ces compositions permettent de simplifier la création d'application VueJS. Vous pouvez par exemple utiliser la composition `useMouse` pour récupérer la position de la souris, ou encore la composition `useLocalStorage` pour sauvegarder des données dans le navigateur, ou encore la composition `useFetch` pour faire des requêtes HTTP.
+Pour rappel, VueUse est une collection de compositions VueJS. Ces compositions permettent de simplifier la création d'applications VueJS. Vous pouvez par exemple utiliser la composition `useMouse` pour récupérer la position de la souris, ou encore la composition `useLocalStorage` pour sauvegarder des données dans le navigateur, ou encore la composition `useFetch` pour faire des requêtes HTTP.
 
 Pour plus d'informations, je vous invite à consulter la documentation de VueUse : [https://vueuse.org/](https://vueuse.org/)
 

@@ -29,7 +29,7 @@ Un composant est une instance de code (d'interface et de logique liées à celle
 ## Un peu d'histoire…
 
 - Organisation en fichier (include).
-- Code et affichage séparé.
+- Code et affichage séparés.
 - CSS (style) à côté et inclus.
 - Les librairies de templates
 
@@ -98,10 +98,10 @@ Exemples avec des projets open source.
     const router = useRouter();
     
     function home(){
-        router.go("/");    
+        router.push("/");    
     }
 </script>
-<style scopped>
+<style scoped>
     div{
         background: red;
         width: 100vw;
@@ -178,7 +178,7 @@ Qu'observez-vous ? Est-ce différent ?
 - Interface réactive.
 - Interaction simplifiée.
 
-Exemple: [Un chat](https://cours.brosseau.ovh/cours/demo/vuejs/chat.html)
+Exemple : [Un chat](https://cours.brosseau.ovh/cours/demo/vuejs/chat.html)
 
 ---
 

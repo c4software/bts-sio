@@ -10,7 +10,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www
 
 ---
 
-## Objectifs remplacer le XML
+## Objectif : remplacer le XML
 
 - Plus simple.
 - Plus rapide.
@@ -279,7 +279,7 @@ Column {
         Text("Visible")
     }
 
-    AnimatedContent(targetState = count) { targetState ->
+    AnimatedContent(targetState = counter) { targetState ->
         Text(text = "Count: $targetState")
     }
 }
@@ -297,9 +297,9 @@ Column {
 ## Le ViewModel
 
 - Le code qui gère la logique.
-- Intéragit avec les données seulement.
+- Interagit avec les données seulement.
 - Ne gère pas l'interface.
-- Peut-être testé ou remplacé sans toucher à l'interface.
+- Peut être testé ou remplacé sans toucher à l'interface.
 
 ---
 
@@ -321,7 +321,7 @@ Une dernière chose…
 
 Jetpack Compose c'est jeune.
 
-Il faut donc accepter que ça évolue vite / change / sois instable.
+Il faut donc accepter que ça évolue vite / change / soit instable.
 
 ---
 

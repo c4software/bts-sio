@@ -13,7 +13,7 @@ description: ViteJS est une des nouvelles façons de créer un projet « moderne
 ViteJS est une des nouvelles façons de créer un projet « moderne » avec VueJS (mais pas que). L'objectif est la création de projets « rapide » permettant au développeur de créer des projets avec une structure simple et moderne. Cette organisation repose sur quatre éléments :
 
 - Un serveur web de développement qui utilise les modules EcmaScript intégrant un Hot Reload très rapide des ressources modifiées.
-- Une commande de compilation, préconfigurée pour optimiser les ressources pour la production en utilisant [Rollup](https://rollupjs.org/) et non pas WebPack
+- Une commande de compilation, préconfigurée pour optimiser les ressources pour la production en utilisant [Rollup](https://rollupjs.org/) et non pas WebPack.
 - Un système reposant sur des plug-ins permettant des projets personnalisés si besoin.
 - Intègre nativement le support du [TypeScript](https://www.typescriptlang.org/)
 
@@ -22,12 +22,12 @@ L'ensemble du fonctionnement est détaillé sur [la documentation officielle](ht
 ::: danger ViteJS est rapide oui…
 Vite est très rapide… mais contrairement à `vue-cli`, `ViteJS` n'a pas pour objectif de faire du code compatible avec les vieux navigateurs (avant ES2015) ; dans la plupart des cas, ça ne pose vraiment aucun problème…
 
-Cependant attention, si vous souhaitez supporter d'ancien navigateur (au hasard IE11), `ViteJS` ne sera pas le bon outil.
+Cependant attention, si vous souhaitez supporter d'anciens navigateurs (au hasard IE11), `ViteJS` ne sera pas le bon outil.
 :::
 
 ## Installation / Création du projet
 
-Contrairement aux anciens outils fonctionnement avec VueJS, ViteJS ne nécessite rien d'autre que d'avoir sur votre ordinateur `NodeJS` (minimum 12) et `NPM`. Si c'est le cas pour vous, il vous suffit de saisir dans votre terminal :
+Contrairement aux anciens outils fonctionnant avec VueJS, ViteJS ne nécessite rien d'autre que d'avoir sur votre ordinateur `NodeJS` (minimum 12) et `NPM`. Si c'est le cas pour vous, il vous suffit de saisir dans votre terminal :
 
 ```sh
 npm create vite@latest
@@ -42,7 +42,7 @@ L'ensemble du processus est interactif ; il vous suffit donc de suivre les étap
 ![ViteJS création d'un projet](./res/vitejs.jpg)
 
 ::: warning plusieurs choix !
-Vous avez le choix du type de projet ; nous allons choisir **Vue** puis **Typescript**. Cette sélection du type de projet est la vraie force de ViteJS, grâce à son système de plug-in ViteJS est complètement agnostique il est donc complètement possible de faire autre chose que du VueJS (et ça, c'est cool).
+Vous avez le choix du type de projet ; nous allons choisir **Vue** puis **Typescript**. Cette sélection du type de projet est la vraie force de ViteJS, grâce à son système de plug-in, ViteJS est complètement agnostique, il est donc complètement possible de faire autre chose que du VueJS (et ça, c'est cool).
 :::
 
 ## Lancer le projet
@@ -65,6 +65,16 @@ Vous pouvez tester la page dans [votre navigateur](http://127.0.0.1:5173/).
 
 Le projet que vous avez initialisé a une structure particulière que vous devez respecter :
 
+- `index.html` : le point d'entrée de votre application. C'est lui qui charge le fichier `src/main.ts`.
+- `src/main.ts` : le fichier qui initialise VueJS et « monte » l'application dans la page.
+- `src/App.vue` : le composant racine de votre application.
+- `src/components/` : le dossier qui contient vos composants.
+- `src/assets/` : les ressources (images, CSS…) utilisées par vos composants.
+- `public/` : les fichiers statiques servis tels quels (favicon…).
+- `vite.config.ts` : la configuration de ViteJS.
+
+Prenez quelques minutes pour ouvrir ces fichiers et regarder leur contenu.
+
 ## VueJS 2.0 -> VueJS 3.0
 
 Entre VueJS 2.0 et VueJS 3.0, il y a quelques nuances, mais dans l'idée le fonctionnement d'un composant est très proche. Les composants VueJS peuvent maintenant fonctionner de deux façons différentes :
@@ -76,11 +86,11 @@ Entre VueJS 2.0 et VueJS 3.0, il y a quelques nuances, mais dans l'idée le fonc
 Les deux façons sont **toutes aussi valides l'une que l'autre**. C'est à vous de voir en fonction de vos préférences.
 :::
 
-### La nouveautée la composition API
+### La nouveauté : la composition API
 
-La composition API est une nouvelle façon de déclarer les variables d'état d'un composant. Cette déclaration est faite dans la méthode `setup()`. Le code de la méthode `setup()` est semblable à n'importe quelles méthodes. Vous écrivez **votre code**, **votre logique** la seule subtilité est que vous allez devoir indiquer à VueJS les variables qu'il va devoir observer ainsi que des méthodes « à ajouter à l'instance ».
+La composition API est une nouvelle façon de déclarer les variables d'état d'un composant. Cette déclaration est faite dans la méthode `setup()`. Le code de la méthode `setup()` est semblable à n'importe quelle méthode. Vous écrivez **votre code**, **votre logique** la seule subtilité est que vous allez devoir indiquer à VueJS les variables qu'il va devoir observer ainsi que des méthodes « à ajouter à l'instance ».
 
-Cette déclaration sera aussi simple que d'écrire `ref()`. La fonction / méthodes `ref()` prend un paramètre, celui-ci est la valeur par d'initialisation de la variable.
+Cette déclaration sera aussi simple que d'écrire `ref()`. La fonction / méthode `ref()` prend un paramètre, celui-ci est la valeur d'initialisation de la variable.
 
 Un exemple sera bien plus parlant :
 
@@ -90,10 +100,10 @@ import { ref } from 'vue'
 
 defineProps<{ msg: string }>()
 
-// Déclaration d'une variable « observé » de type Int
+// Déclaration d'une variable « observée » de type Int
 const count = ref(0)
 
-// Déclaration d'une variable « observé » de type String
+// Déclaration d'une variable « observée » de type String
 const input = ref('Votre nom')
 </script>
 ```
@@ -108,9 +118,9 @@ const input = ref('Votre nom')
 ::: tip Un instant
 ```<script setup lang="ts">``` ? Késako ? 
 
-Ici nous utilisons la nouvelle syntaxe de VueJS 3.0. Cette syntaxe est encore en phase de test, mais elle est déjà utilisable. Elle permet de déclarer les variables d'état d'un composant de manière plus concise.
+Ici nous utilisons la syntaxe recommandée de VueJS 3 (stable depuis la version 3.2). Elle permet de déclarer les variables d'état d'un composant de manière plus concise.
 
-Nous indiquons à VueJS que nous souhaitons utiliser la syntaxe `setup` en indiquant `lang="ts"`.
+Nous indiquons à VueJS que nous souhaitons utiliser la syntaxe `setup` en indiquant `setup` dans la balise script.
 :::
 
 ### Testons ensemble
@@ -123,10 +133,10 @@ import { ref } from 'vue'
 
 defineProps<{ msg: string }>()
 
-// Déclaration d'une variable « observé » de type Int
+// Déclaration d'une variable « observée » de type Int
 const count = ref(0)
 
-// Déclaration d'une variable « observé » de type String
+// Déclaration d'une variable « observée » de type String
 const input = ref('Votre nom')
 </script>
 
@@ -158,7 +168,7 @@ const input = ref('Votre nom')
 ::: tip Un instant
 Analysons le code ci-dessus :
 
-- `script` : Déclrations des variables d'état et des propriétés du composant.
+- `script` : Déclarations des variables d'état et des propriétés du composant.
 - `template` : Utilisation des variables d'état et des propriétés du composant. Ici nous écrivons du HTML + du code VueJS (comme les directives `v-model` ou le `@click`).
 - `style` : Déclaration du style du composant. Le style est encapsulé dans le composant (il n'affecte que le composant) c'est possible grâce à la directive `scoped`.
 
@@ -166,7 +176,7 @@ Analysons le code ci-dessus :
 
 ### La force ? Les plugins
 
-La force de cette nouvelle façon de faire? La possibilité d'installer des « plugins » / « extensions » nous permettant d'observer diverses valeurs de votre navigateur (la position de la souris, le thème sombre, etc.).
+La force de cette nouvelle façon de faire ? La possibilité d'installer des « plugins » / « extensions » nous permettant d'observer diverses valeurs de votre navigateur (la position de la souris, le thème sombre, etc.).
 
 Par exemple l'excellent [vueuse](https://github.com/vueuse/vueuse)
 
@@ -196,7 +206,7 @@ import { useMouse, usePreferredDark, useLocalStorage } from '@vueuse/core'
 </script>
 ```
 
-::: tip Astuce de chef!
+::: tip Astuce de chef !
 Rien de magique ! [vueuse](https://github.com/vueuse/vueuse) est « juste » un raccourci à ce que l'on peut faire en JavaScript.
 :::
 
@@ -219,7 +229,7 @@ Je vous laisse tester et explorer les possibilités de cette nouvelle syntaxe. V
 
 ## C'est du TypeScript
 
-Contrairement à ce que nous avons vu précédemment la structure n'est pas en JavaScript. Celle-ci est en Typescript fondamentalement ça ne change pas grand-chose… La seule différence pour l'instant (pour ce qui nous intéresse) dans le fond, c'est qu'il est possible d'ajouter des types sur les données.
+Contrairement à ce que nous avons vu précédemment la structure n'est pas en JavaScript. Celle-ci est en TypeScript, fondamentalement ça ne change pas grand-chose… La seule différence pour l'instant (pour ce qui nous intéresse) dans le fond, c'est qu'il est possible d'ajouter des types sur les données.
 
 ::: warning Des différences oui
 Nous allons voir des différences oui… mais elles seront principalement dues au fait que nous migrons de VueJS 2.0 à VueJS 3.0.
@@ -228,7 +238,7 @@ Nous allons voir des différences oui… mais elles seront principalement dues a
 Le `TypeScript` est également activé grâce à la définition du langage `<script lang="ts">` dans la balise script du composant.
 
 ::: tip Pourquoi privilégier le TypeScript ?
-Nous pourrions très bien utiliser uniquement le JavaScript même avec VueJS 3.0, mais je pense que nous sommes à un tournant du développement client ou il est **impossible** de ne pas aborder le TypeScript. Le voir à travers un Framework comme VueJS est un très bon moyen de le voir.
+Nous pourrions très bien utiliser uniquement le JavaScript même avec VueJS 3.0, mais je pense que nous sommes à un tournant du développement client où il est **impossible** de ne pas aborder le TypeScript. Le voir à travers un Framework comme VueJS est un très bon moyen de le voir.
 :::
 
 ## Les variables computed
@@ -265,14 +275,14 @@ const publishedBooksMessage = computed(() => {
   </ul>
 
   <p>
-  Nombre de livre : <span>{{ publishedBooksMessage }}</span>
+  Nombre de livres : <span>{{ publishedBooksMessage }}</span>
   </p>
 </template>
 ```
 
 ::: tip Comment lire le code ?
 
-- Nous avons déclaré une variable `author` qui est un objet. Nous avons déclaré cette variable avec la fonction `reactive` de VueJS. Pourquoi `reactive` ? Une variable `reactive` est comme une, `ref` mais dédié aux objets.
+- Nous avons déclaré une variable `author` qui est un objet. Nous avons déclaré cette variable avec la fonction `reactive` de VueJS. Pourquoi `reactive` ? Une variable `reactive` est comme une `ref`, mais dédiée aux objets.
 - Nous avons déclaré une variable `publishedBooksMessage` qui est une variable calculée. Nous avons déclaré cette variable avec la fonction `computed` de VueJS. Cette variable sera recalculée à chaque fois que l'une des variables dépendantes sera modifiée.
 
 :::
@@ -325,7 +335,7 @@ const filteredBooks = computed(() => {
   </ul>
 
   <p>
-  Nombre de livre : <span>{{ publishedBooksMessage }}</span>
+  Nombre de livres : <span>{{ publishedBooksMessage }}</span>
   </p>
 </template>
 ```
@@ -336,7 +346,7 @@ Plusieurs différences sont à noter par rapport au code précédent :
 
 - Nous avons déclaré une variable `search` qui est une variable `ref`.
 - Nous avons déclaré une variable `filteredBooks` qui est une variable calculée. Cette variable contient la liste des livres filtrés en fonction de la valeur de la variable `search` (qui est une `ref`).
-- Nous avons modifié la variable `publishedBooksMessage` pour qu'elle retourne le nombre de livres filtrés. En ce basant sur la variable `filteredBooks`.
+- Nous avons modifié la variable `publishedBooksMessage` pour qu'elle retourne le nombre de livres filtrés. En se basant sur la variable `filteredBooks`.
 
 :::
 
@@ -370,7 +380,7 @@ En utilisant le template ☝️. Je vous laisse écrire un composant « à l'anc
 
 - Un titre.
 - Un bouton.
-- L'action du bouton doit permettre d'incrémenter un compteur à chaque clique.
+- L'action du bouton doit permettre d'incrémenter un compteur à chaque clic.
 - Vous devez ranger le code dans un dossier `components` et le nommer `Test.vue`.
 - Vous devez utiliser ce nouveau composant dans le fichier `App.vue`.
 
@@ -404,11 +414,11 @@ Comme toujours vous ne devez pas avoir plusieurs `script` dans un composant, ni 
 
 ## Et Vuetify ou VueBootstrap ?
 
-C'est là que le bât blesse… Actuellement seule Vuetify est en version Next (c'est à dire compatible VueJS 3.0), pour BootstrapVue par contre pour l'instant celui-ci n'est pas compatible avec VueJS 3.0… Mais rien n'est impossible ! Bien au contraire !
+C'est là que le bât blesse… Actuellement seule Vuetify est en version Next (c'est-à-dire compatible VueJS 3.0), pour BootstrapVue par contre pour l'instant celui-ci n'est pas compatible avec VueJS 3.0… Mais rien n'est impossible ! Bien au contraire !
 
 Ce que nous n'avons pas de disponible c'est « Les jeux de composants », par contre, aucun problème pour installer / utiliser Bootstrap tel que nous le ferions dans un développement classique.
 
-Je vous propose d'ailleurs de tester… Ajoutons Bootsrap dans notre projet.
+Je vous propose d'ailleurs de tester… Ajoutons Bootstrap dans notre projet.
 
 ::: danger La situation est particulière
 Le texte que vous lisez a été écrit fin 2022, début 2023. Le monde du JS va très vite. Au moment où vous lisez ces lignes. VueBootstrap (ou autre) est peut-être maintenant disponible pour VueJS 3.0.
@@ -431,7 +441,7 @@ Les deux formules sont valides. Je vous propose dans notre cas d'utiliser plutô
 
 ### Déclarer Bootstrap
 
-Nous avons installé bootstrap! Mais celui-ci n'est pas encore actif. Pour l'activer dans notre projet. Il suffit… de l'importer ! Ajouter dans votre fichier `main.ts` la ligne suivante :
+Nous avons installé bootstrap ! Mais celui-ci n'est pas encore actif. Pour l'activer dans notre projet, il suffit… de l'importer ! Ajouter dans votre fichier `main.ts` la ligne suivante :
 
 ```ts
 import "bootstrap/dist/css/bootstrap.css";
@@ -441,7 +451,7 @@ Et voilà. Votre projet inclut maintenant Bootstrap 🚀
 
 ### Utiliser Bootstrap
 
-Pour l'utilisation de bootstrap il faut se référer à la documentation (vous le saviez déjà, mais je préfère le rappeler). Vue que nous n'avons pas de composant de disponible, je vous propose de créer les nôtres :
+Pour l'utilisation de bootstrap il faut se référer à la documentation (vous le saviez déjà, mais je préfère le rappeler). Vu que nous n'avons pas de composant de disponible, je vous propose de créer les nôtres :
 
 - Un composant `button`. (Avec comme `props` le `label` et la `color`)
 - Un composant `card`.
@@ -484,7 +494,7 @@ import Card from "./components/card.vue";
 
 ::: tip C'est à vous
 
-Je vous laisse créer les 3 composants. :
+Je vous laisse créer les 3 composants :
 
 - Un composant `button`. (Avec comme `props` le `label` et la `color`)
 - Un composant `card`.
@@ -503,8 +513,6 @@ Rappel sur les `props` :
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-
 const props = defineProps({
   label: {
     type: String,

@@ -8,14 +8,14 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Coeur du web moderne
+## Cœur du web moderne
 
 - Point central (TV, WebApp, IoT, …)
-- Contiens la logique d'accès aux données.
+- Contient la logique d'accès aux données.
 
 ---
 
-Vous avez déjà entendu parler des API?
+Vous avez déjà entendu parler des API ?
 
 ---
 
@@ -109,7 +109,7 @@ PWA, Site Web, WebApp, …
 
 ---
 
-## Utilisations des « Verbes HTTP »
+## Utilisation des « Verbes HTTP »
 
 ---
 
@@ -178,7 +178,7 @@ http://www.restapitutorial.com/httpstatuscodes.html
 
 ---
 
-Format de communication universelle
+Format de communication universel
 
 ---
 

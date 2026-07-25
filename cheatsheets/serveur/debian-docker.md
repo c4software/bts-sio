@@ -2,7 +2,7 @@
 description: "Aide mémoire pour installer et configurer Docker sur une Debian."
 ---
 
-# Installer Docker sur une debian
+# Installer Docker sur une Debian
 
 Dans cet aide-mémoire vous trouverez l'ensemble des éléments de base pour installer Docker sur une machine Debian.
 
@@ -30,7 +30,7 @@ sudo su -
 
 ### Si vous avez déjà un MariaDB installé
 
-Si vous avez déjà un MariaDB installé sur votre machine, il est nécessaire de le désinstaller avant d'installer Mysql via Docker. Pour cela, vous pouvez utiliser la commande suivante :
+Si vous avez déjà un MariaDB installé sur votre machine, il est nécessaire de le désinstaller avant d'installer MySQL via Docker. Pour cela, vous pouvez utiliser la commande suivante :
 
 ```bash
 apt-get remove --purge mariadb-server mariadb-client -y
@@ -45,7 +45,7 @@ Cette commande va supprimer MariaDB de votre machine. Assurez-vous d'avoir une s
 ### Installation de Docker
 
 ```bash
-# Ajout des éléments nécessaire à l'installation
+# Ajout des éléments nécessaires à l'installation
 apt-get update
 apt-get -y install \
     ca-certificates \
@@ -82,7 +82,7 @@ Vous pouvez maintenant vous déconnecter du compte `root` et vous reconnecter av
 exit
 ```
 
-Pour que vous puissez utiliser Docker sans avoir à passer par un `sudo`, il est nécessaire de vous déconnecter et de vous reconnecter (quitter la session SSH et vous reconnecter).
+Pour que vous puissiez utiliser Docker sans avoir à passer par un `sudo`, il est nécessaire de vous déconnecter et de vous reconnecter (quitter la session SSH et vous reconnecter).
 
 ## Démarrer Docker au démarrage de la machine
 
@@ -142,7 +142,7 @@ Vous pouvez maintenant accéder à PHPMyAdmin via l'adresse :
 
 ## Héberger un site PHP
 
-Pour héberger un site PHP, nous allons utiliser un conteneur PHP officiel. Cepedant, il est nécessaire de le personnaliser pour y ajouter les extensions nécessaires.
+Pour héberger un site PHP, nous allons utiliser un conteneur PHP officiel. Cependant, il est nécessaire de le personnaliser pour y ajouter les extensions nécessaires.
 
 Créez un fichier `Dockerfile` avec le contenu suivant :
 

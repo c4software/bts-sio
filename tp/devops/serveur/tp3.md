@@ -18,7 +18,7 @@ Pour réaliser ce TP vous devez connaître les éléments suivants :
 
 ## Objectifs
 
-Ce TP / TD a pour objectif de vous faire découvrir comment configurer un serveur de base de données (MySQL) pour qu'il soit utilisable par un serveur Web (Apache), mais également par une application client (C#, Java, PHP, etc.).
+Ce TP / TD a pour objectif de vous faire découvrir comment configurer un serveur de base de données (MySQL) pour qu'il soit utilisable par un serveur Web (Apache), mais également par une application cliente (C#, Java, PHP, etc.).
 
 ::: tip Application cliente ?
 
@@ -48,14 +48,14 @@ Rappel, en informatique, il est important de différencier les différents envir
 - **Test** / **Staging** : C'est l'environnement qui est utilisé pour tester les nouvelles fonctionnalités.
 - **Développement** : C'est l'environnement qui est utilisé par les développeurs pour tester leur code.
 
-Chaque environnement à un rôle bien précis, il convient donc de travailler différemment sur chacun d'eux.
+Chaque environnement a un rôle bien précis, il convient donc de travailler différemment sur chacun d'eux.
 
 - Votre machine est votre environnement de **développement**.
-- La machine que nous allons créer aujourd'hui peut-être votre environnement distant de base de données (**test** ou **staging**).
+- La machine que nous allons créer aujourd'hui peut être votre environnement distant de base de données (**test** ou **staging**).
 - La machine sur laquelle vous allez déployer votre site web de l'AP sera votre environnement de **production**.
 
 ::: tip Gare au nommage
-Nous allons créer dans ce TP / TD une machine qui pourra vous servir de base de données pour vos différents projets. Je vous invite donc à être vigilant sur le nommage de cette machine, pour que celle-ci soit un nom qui va permettre son identification.
+Nous allons créer dans ce TP / TD une machine qui pourra vous servir de base de données pour vos différents projets. Je vous invite donc à être vigilant sur le nommage de cette machine, pour que celle-ci ait un nom qui va permettre son identification.
 :::
 
 <center><iframe src="https://giphy.com/embed/si4P9VBMEIhq40i6tT" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></center>
@@ -94,9 +94,9 @@ Avant de créer votre machine, je vous invite à réfléchir sur ces choix. Une 
 - OS : Debian 13.
 - Logiciels : MySQL / MariaDB, SSH, Apache, PHP.
 - Accès SSH : Sans mot de passe, uniquement avec une clé SSH.
-- Votre machine **ne doit pas avoir de d’interface graphique** (inutile pour un serveur).
+- Votre machine **ne doit pas avoir d’interface graphique** (inutile pour un serveur).
 
-Pourquoi cette configuration ? Apache et PHP sont installés, car, nous allons mettre sur votre serveur PHPMyAdmin. Si vous ne souhaitez pas installer PHPMyAdmin, vous pouvez supprimer Apache et PHP.
+Pourquoi cette configuration ? Apache et PHP sont installés, car nous allons mettre sur votre serveur PHPMyAdmin. Si vous ne souhaitez pas installer PHPMyAdmin, vous pouvez supprimer Apache et PHP.
 
 :::
 
@@ -133,7 +133,7 @@ Dans cette version, vous allez créer votre VM à partir d'un modèle. Le modèl
 Je vous laisse suivre le TP suivant pour configurer votre machine :
 
 - [TP2. Avoir une machine Debian avec Apache + PHP](/tp/devops/serveur/tp2.md)
-- **ou la synthèse de ce TP** : [Configurer une serveur Debian pour le Web](/cheatsheets/serveur/debian-web.md)
+- **ou la synthèse de ce TP** : [Configurer un serveur Debian pour le Web](/cheatsheets/serveur/debian-web.md)
 
 ::: tip Question…
 
@@ -218,7 +218,7 @@ Pourquoi ces deux paquets ? `mariadb-server` est le serveur de base de données,
 - Pourquoi faire un update avant d'installer un paquet ?
 - À quoi correspond le `-y` à la fin de la commande ?
 - Selon vous, est-ce que votre serveur de base de données est démarré ? Si oui, comment le vérifier ?
-- Que veux dire **localement** ?
+- Que veut dire **localement** ?
 
 ### Configuration
 
@@ -228,7 +228,7 @@ Avant d'utiliser MariaDB, nous devons configurer le mot de passe de l'utilisateu
 mariadb-secure-installation
 ```
 
-Cette commande va vous demander de rentrer le mot de passe actuel de l'utilisateur `root`. Comme vous venez d'installer MariaDB.
+Cette commande va vous demander de rentrer le mot de passe actuel de l'utilisateur `root`. Comme vous venez d'installer MariaDB, il n'y en a pas encore : appuyez simplement sur Entrée.
 
 - Qu'est-ce que `mariadb-secure-installation` ?
 - Pourquoi est-ce important de changer le mot de passe de l'utilisateur `root` ?
@@ -390,7 +390,7 @@ L'installation est le résultat de plusieurs commandes :
 - `cd /var/www/html` : on se déplace dans le dossier `/var/www/html`.
 - `wget …` : on télécharge le fichier `phpMyAdmin-5.2.1-all-languages.zip`. Depuis les serveurs de phpMyAdmin.
 - `unzip …` : on décompresse le fichier `phpMyAdmin-5.2.1-all-languages.zip`.
-- `mv …` : on renomme le dossier `phpMyAdmin-5.2.1-all-languages` en `phpmyadmin`. Car il est plus simple de taper `phpmyadmin` que `phpMyAdmin-5.2.0-all-languages`.
+- `mv …` : on renomme le dossier `phpMyAdmin-5.2.1-all-languages` en `phpmyadmin`. Car il est plus simple de taper `phpmyadmin` que `phpMyAdmin-5.2.1-all-languages`.
 - `rm …` : on supprime le fichier `phpMyAdmin-5.2.1-all-languages.zip`. Car il n'est plus utile.
 
 ::: tip Arrêtons-nous un instant
@@ -424,7 +424,7 @@ Le port est un numéro qui permet de différencier les différents services qui 
 
 Maintenant que MariaDB est configuré pour accepter les connexions distantes, nous allons voir comment se connecter à MariaDB avec DBeaver.
 
-Dbeaver est déjà installé sur votre machine. Vous pouvez le lancer via le menu démarrer.
+DBeaver est déjà installé sur votre machine. Vous pouvez le lancer via le menu démarrer.
 
 ![DBeaver](./res/dbeaver.png)
 
@@ -546,7 +546,7 @@ CREATE TABLE absence (
 
 ## Un virtual host pour PHPMyAdmin ?
 
-Si vous souhaiter avoir un virtual host pour PHPMyAdmin, vous pouvez suivre les instructions suivantes :
+Si vous souhaitez avoir un virtual host pour PHPMyAdmin, vous pouvez suivre les instructions suivantes :
 
 ⚠️ Cette partie est optionnelle. Si vous ne souhaitez pas avoir un virtual host pour PHPMyAdmin, vous pouvez passer à la partie suivante.
 
@@ -596,7 +596,7 @@ systemctl restart apache2
 
 ::: details Écouter le port 9090
 
-Pour que le virtual host fonctionne, il faut que Apache écoute sur le port 9090. Pour cela, vous pouvez modifier le fichier `/etc/apache2/ports.conf` :
+Pour que le virtual host fonctionne, il faut qu'Apache écoute sur le port 9090. Pour cela, vous pouvez modifier le fichier `/etc/apache2/ports.conf` :
 
 ```apache
 Listen 80
@@ -613,7 +613,7 @@ systemctl restart apache2
 
 ## Vous vous sentez l'âme d'un devops ?
 
-Je vous propose d'aller au bout du processus en configurant un déploiement continue de votre site en utilisant Gitlab-CI.
+Je vous propose d'aller au bout du processus en configurant un déploiement continu de votre site en utilisant Gitlab-CI.
 
 [La suite par ici](/tp/ci/ci-simple.md)
 

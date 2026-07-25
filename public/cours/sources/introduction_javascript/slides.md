@@ -153,8 +153,8 @@ Un conseil de vieux… Créer des librairies / externaliser vos JS.
 ## Des plateformes, des langages…
 
 - CoffeeScript, syntaxe plus concise très utilisée par les utilisateurs de Ruby.
-- TypeScript, très populaire, il permet principalement de typer « fortement les données. Il permet de créer du code propre même dans le cas de gros projets complexes. Il est développé par Microsoft. (Très intéressant).
-- Kotlin, Kotlin le langage utilisé par la plateforme Android de Google. Le compilateur permet de créer également du code JS à partir de fichier .kt.
+- TypeScript, très populaire, il permet principalement de typer « fortement » les données. Il permet de créer du code propre même dans le cas de gros projets complexes. Il est développé par Microsoft. (Très intéressant).
+- Kotlin, le langage utilisé par la plateforme Android de Google. Le compilateur permet de créer également du code JS à partir de fichier .kt.
 
 ---
 
@@ -187,7 +187,7 @@ Un langage oui…
 
 Mais faiblement typé !
 
-(voir pas du tout… Enfin, si, mais non)
+(voire pas du tout… Enfin, si, mais non)
 
 ---
 
@@ -215,14 +215,14 @@ Quelques rappels
 
 ```js
 /**
- * Commentaire multignes
+ * Commentaire multilignes
  * Par exemple en début de fichier pour détailler le contenu
  */
 
 // Commenter une ligne.
 console.log("Ceci est un exemple");
 
-console.log("Ceci est un exemple 2"); // Peux également être placé en fin de ligne.
+console.log("Ceci est un exemple 2"); // Peut également être placé en fin de ligne.
 ```
 
 ---
@@ -232,7 +232,7 @@ console.log("Ceci est un exemple 2"); // Peux également être placé en fin de 
 ```js
 var maVariable;
 let maVariable;
-const maVariable;
+const maVariable = 42;
 ```
 
 ---
@@ -312,11 +312,11 @@ if (order.status == 400) {
 
 | Type      | Contenu                                 | Type d'opération                | Usage                                                                               |
 | --------- | --------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------- |
-| `string`  | "Une chaine de caractère"               | Gestion du texte, concaténation | Permets de stocker du texte (saisie utilisateur par exemple).                       |
+| `string`  | "Une chaîne de caractères"              | Gestion du texte, concaténation | Permet de stocker du texte (saisie utilisateur par exemple).                        |
 | `int`     | 42                                      | Opération mathématique          | Comme en mathématique                                                               |
-| `boolean` | `True` ou `False`                       | Opération logique               | Permets de faire des actions logiques. C'est un type très important en informatique |
+| `boolean` | `True` ou `False`                       | Opération logique               | Permet de faire des actions logiques.  C'est un type très important en informatique |
 | `float`   | 10.3                                    | Opération mathématique          | Comme en mathématique. Attention la notation du chiffre à virgule est avec un `.`.  |
-| `array`   | ["a", "b", "c"]                         |                                 | Contiens des listes de « quelques choses »                                          |
+| `array`   | ["a", "b", "c"]                         |                                 | Contient des listes de « quelque chose »                                            |
 | `object`  | `{nom: "Brosseau", prenom: "Valentin"}` |                                 | Structure de données                                                                |
 
 ---
@@ -400,7 +400,7 @@ if (order.status == 400) {
   let estMajeur = true;
   if (estMajeur) {
     // Est équivalent à estMajeur == true
-    alert("La personne est majeur");
+    alert("La personne est majeure");
   }
 
   // Exemple 3
@@ -433,7 +433,7 @@ if (order.status == 400) {
   for (let i = 0; i < 3; i++) {
     alert(i);
   }
-<script>
+</script>
 ```
 
 ---
@@ -482,7 +482,7 @@ arr.filter((curr) => curr > 2); // --> Retourne un tableau avec seulement les va
 
 ## Testons dans la console
 
-- Les boucles (ancienne et nouvelles)
+- Les boucles (anciennes et nouvelles)
 - Le filtrage
 - …
 
@@ -571,7 +571,7 @@ document.querySelectorAll("#elementId");
 document.querySelectorAll(".maClass");
 document.querySelectorAll("div");
 
-// Retourn le premier élément trouvé
+// Retourne le premier élément trouvé
 document.querySelector("#elementId");
 document.querySelector(".maClass");
 document.querySelector("div");
@@ -650,7 +650,7 @@ $("div").addClass("maClass");
 
 ---
 
-## Obtenir les valeurs saisie dans la page
+## Obtenir les valeurs saisies dans la page
 
 ```html
 <input type="text" id="monInput" />
@@ -729,13 +729,13 @@ $("#monInput").val();
 </script>
 ```
 
-Le `this` corresponds à l'élément sur lequel vous avez cliqué.
+Le `this` correspond à l'élément sur lequel vous avez cliqué.
 
 ---
 
 ![Event click](./img/event_click.png)
 
-(Appelé au moment du clique par l'utilisateur utilisateur)
+(Appelé au moment du clic par l'utilisateur)
 
 ---
 
@@ -812,7 +812,7 @@ Les promises
 
 ---
 
-L'Ajax c'est un gros morceau, tellement gros, qui serait possible d'y passer des heures et des heures tellement le sujet est vaste.
+L'Ajax c'est un gros morceau, tellement gros, qu'il serait possible d'y passer des heures et des heures tellement le sujet est vaste.
 
 Nous allons donc réaliser [une première expérimentation](/tp/javascript/tp4.html)
 

@@ -14,7 +14,7 @@ Dans ce TP nous allons aller plus loin en créant une application Web complète.
 
 Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus moderne, celle qui utilise à 100% le modèle MVVM (Modèle Vue, Vue-Modèle) ainsi que la puissance de VueJS (.vue, TypeScript, Composition API).
 
-![MMVM Pattern](./res/MVVMPattern.png)
+![MVVM Pattern](./res/MVVMPattern.png)
 
 ::: details Table des matières
 [[toc]]
@@ -47,7 +47,7 @@ Non, mais moi je connais que MVC, c’est quoi MVVM ?
 
 MVVM est un design pattern, souvent utilisé par les bibliothèques JavaScript modernes (Ionic, VueJS, ReactJS). À l’origine, MVVM a été introduit par Microsoft.
 
-Ce pattern a spécialement été conçu pour améliorer la séparation entre les données et la vue qui les affichent. Le lien entre la vue et le modèle de données est fait par des mécanismes de binding. Le binding est un mécanisme qui permet de faire des liaisons entre des données de manière dynamiques. Ce qui veut dire que si A et B sont liés, le fait de modifier A va être répercuté sur B et inversement.
+Ce pattern a spécialement été conçu pour améliorer la séparation entre les données et la vue qui les affiche. Le lien entre la vue et le modèle de données est fait par des mécanismes de binding. Le binding est un mécanisme qui permet de faire des liaisons entre des données de manière dynamique. Ce qui veut dire que si A et B sont liés, le fait de modifier A va être répercuté sur B et inversement.
 
 - Model : le modèle contient les données.
 - View : la vue correspond à ce qui est affiché. C’est notre site Web.
@@ -57,7 +57,7 @@ L’important avec MVVM c’est que **_la vue ne doit jamais traiter de données
 
 ## Introduction
 
-Maintenant que vous savez ce que c’est le MVVM, nous allons attaquer le TP pour de vrai. Nous allons réaliser « une application » à l’aide de VueJS. Cette application est purement démonstrative. Cette application calculera la hauteur d’une falaise (ou de n’importe quoi de suffisamment haut) en fonction du temps chute d’un objet jeter du haut de celle-ci.
+Maintenant que vous savez ce que c’est le MVVM, nous allons attaquer le TP pour de vrai. Nous allons réaliser « une application » à l’aide de VueJS. Cette application est purement démonstrative. Cette application calculera la hauteur d’une falaise (ou de n’importe quoi de suffisamment haut) en fonction du temps de chute d’un objet jeté du haut de celle-ci.
 
 ![Cliff-Height-Timer-VueJS](https://github.com/c4software/Cliff-Height-Timer-VueJS/raw/master/demo.png)
 
@@ -93,7 +93,7 @@ Les sources de l’application sont dans le dossier `src/` il contient l’ensem
 
 ## L’IDE
 
-Pour faire du VueJS le mieux, c’est d’avoir un bon IDE. Au revoir, Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit 💰).
+Pour faire du VueJS le mieux, c’est d’avoir un bon IDE. Au revoir, Notepad++, bonjour WebStorm ? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit 💰).
 
 Pour ceux qui n’ont pas de licence, je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plug-in `Volar` pour pouvoir éditer les `.vue` dans de bonnes conditions.
 
@@ -124,7 +124,7 @@ La commande `npm install` va télécharger les dépendances du projet. Ici nous 
 
 Elle va aussi créer un dossier `node_modules` qui va contenir les dépendances du projet.
 
-Rappel: Ce dossier ne doit pas être versionné.
+Rappel : ce dossier ne doit pas être versionné.
 
 :::
 
@@ -432,7 +432,7 @@ Pour faire cette vue, vous allez avoir besoin des éléments suivants :
 Étape de la création :
 
 - Modifier le fichier `Home.vue` dans le dossier `src/screens/`
-- Le contenu de la Vue sera la suivante :
+- Le contenu de la Vue sera le suivant :
 
 ```vue
 <template>
@@ -575,7 +575,7 @@ Voilà le rendu de « la page » que vous devez réaliser :
 
 ### Ajout du : Drawer
 
-Dans le monde « mobile », un menu s’appelle un Drawer (un tiroir). Nous allons donc créer un Drawer. Pour ça nous allons avoir besoin des ressources suivantes:
+Dans le monde « mobile », un menu s’appelle un Drawer (un tiroir). Nous allons donc créer un Drawer. Pour ça nous allons avoir besoin des ressources suivantes :
 
 - [v-toolbar](https://next.vuetifyjs.com/components/toolbars)
 - [v-list](https://next.vuetifyjs.com/components/lists)
@@ -648,22 +648,22 @@ npm run dev
 
 ### La page : Historique
 
-Notre application est maintenant fonctionnelle. Nous avons la capacité de calculer des chutes, d’afficher les informations sur l’application, et bonus dans plusieurs langues !
+Notre application est maintenant fonctionnelle. Nous avons la capacité de calculer des chutes et d’afficher les informations sur l’application !
 
 Mais je pense qu’une application n’est jamais vraiment complète sans une notion d’historique. Pour ça nous allons créer une nouvelle « vue »
 
-- Créer le fichier `src/screen/History.vue`
+- Créer le fichier `src/screens/History.vue`
 - Vérifier la route dans votre Router.
 - N’oubliez pas également d’ajouter l’élément dans le menu Drawer.
 
-Pour réaliser la vue historique, nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le `Localstorage`, avant d’allez plus loin je vous propose un peu de lecture sur le localStorage :
+Pour réaliser la vue historique, nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le `localStorage`, avant d’aller plus loin je vous propose un peu de lecture sur le localStorage :
 
-> La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session du navigateur prend fin — donc quand on ferme le navigateur.
+> La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session du navigateur prend fin, donc quand on ferme le navigateur.
 
-Source: [https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
+Source : [https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
 
 ::: tip Un instant
-⚠️ Petite subtilité, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
+⚠️ Petite subtilité, vous ne pouvez pas stocker de tableau (array) dans le localStorage, nous allons devoir utiliser un JSON.
 :::
 
 #### Sauvegarder un élément dans le localStorage
@@ -671,7 +671,7 @@ Source: [https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage](http
 Voilà comment il est possible de sauvegarder un élément dans le localStorage :
 
 ```javascript
-localStorage.setItem("historique", JSON.stringify([]));
+localStorage.setItem("history", JSON.stringify([]));
 ```
 
 Ici nous avons utilisé la méthode `setItem` pour sauvegarder un élément dans le localStorage. Nous avons utilisé la méthode `JSON.stringify` pour convertir notre tableau en JSON.
@@ -754,7 +754,7 @@ Pour ça nous allons utiliser deux sites :
 >
 > Les manifests font partie d'un ensemble de technologies appelées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion Internet et sont capables de recevoir des notifications push.
 
-Source: Mozilla.org
+Source : Mozilla.org
 
 - Générer les icônes ainsi que le fichier Manifest
 - Télécharger le manifest.json et le mettre dans le dossier `static/` faire la même chose pour les icônes.
@@ -782,9 +782,9 @@ Les composants du type :
 - Appbar
 - Card
 
-Sont des éléments des plus courants dans les applications mobiles, les avoirs dans votre boîte à outils vous permettront de créer des applications mobiles rapidement en utilisant les technologies web (VueJS, Vuetify, etc.)
+Sont des éléments des plus courants dans les applications mobiles, les avoir dans votre boîte à outils vous permettra de créer des applications mobiles rapidement en utilisant les technologies web (VueJS, Vuetify, etc.)
 
-## Resources
+## Ressources
 
 - [Vuetify](https://next.vuetifyjs.com/en/)
 - [VueJS](https://vuejs.org/)

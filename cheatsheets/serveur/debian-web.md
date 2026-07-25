@@ -4,7 +4,7 @@ description: "Aide mémoire pour installer un serveur LAMP (Web) à base de Debi
 
 # Créer un serveur LAMP / WEB (Apache, MariaDB, PHP) avec Debian
 
-Dans cet aide mémoire vous trouverez l'ensemble des commandes et des opérations à réaliser pour installer un serveur LAMP (Web) à base de Debian.
+Dans cet aide-mémoire vous trouverez l'ensemble des commandes et des opérations à réaliser pour installer un serveur LAMP (Web) à base de Debian.
 
 ::: tip Documents connexes :
 
@@ -83,7 +83,7 @@ systemctl restart apache2
 systemctl enable apache2
 ```
 
-### Vérifie la bonne installation
+### Vérifier la bonne installation
 
 Et voilà, nous avons la base, votre serveur est prêt à recevoir votre code ! Avant de continuer, vérifiez avec la commande suivante que votre version de PHP est au moins égale à 8.
 
@@ -149,7 +149,7 @@ systemctl restart mysql
 ::: tip Pourquoi ?
 Par défaut, le serveur MySQL n'écoutera que les connexions locales. Il faut donc autoriser les connexions distantes en modifiant la valeur de `bind-address`. **Si vous n'en avez pas besoin, vous pouvez laisser la valeur par défaut.**
 
-Changer se paramètre sera utile quand vous souhaiterez accéder à la base de données depuis un autre ordinateur (exemple développement en C#).
+Changer ce paramètre sera utile quand vous souhaiterez accéder à la base de données depuis un autre ordinateur (exemple développement en C#).
 :::
 
 ## Activer la réécriture d'URL
@@ -177,7 +177,7 @@ Ajoutez la ligne suivante dans la section `<VirtualHost *:80>`.
 ```
 
 ::: tip Rewrite ?
-Plus tard nous utiliserons la réécriture d'URL pour personnaliser le lien indépendamment du nom des fichiers sur le disque. Pour faire simple grâce à l'URL Rewrite nous pouvons écrire des belles urls (liens) :
+Plus tard nous utiliserons la réécriture d'URL pour personnaliser le lien indépendamment du nom des fichiers sur le disque. Pour faire simple grâce à l'URL Rewrite nous pouvons écrire de belles URL (liens) :
 
 - `qui-sommes-nous.html` => `index.php?page=quisommesnous`
 - `presentation.html` => `index.php?page=pres`

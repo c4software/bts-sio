@@ -12,13 +12,13 @@ Ce document vous donnera les clés afin de comprendre le fonctionnement et de vo
 
 ::: danger XML ou Compose ?
 
-Nous sommes en 2021, le monde d'Android évolue… Pendant des années l'écriture des « layouts » (interface) n'était possible que via du XML. Il est maintenant possible d'écrire les layouts de manières bien plus modernes avec [JetPack Compose](https://developer.android.com/jetpack/compose). Le TP que vous suivez est toujours valide, mais repose sur l'utilisation de XML.
+Nous sommes en 2021, le monde d'Android évolue… Pendant des années l'écriture des « layouts » (interface) n'était possible que via du XML. Il est maintenant possible d'écrire les layouts de manière bien plus moderne avec [JetPack Compose](https://developer.android.com/jetpack/compose). Le TP que vous suivez est toujours valide, mais repose sur l'utilisation de XML.
 
 :::
 
 ## But du code
 
-Le but du code fourni sur Github est de simplifier la mise en place d'une base applicative Android « moderne ». Il ne contient aucun code (presque). Il est donc clonnable / téléchargeable et utilisable tel quel, l'idée étant vraiment d'avoir presque un template d'application réutilisable à volonté.
+Le but du code fourni sur Github est de simplifier la mise en place d'une base applicative Android « moderne ». Il ne contient aucun code (presque). Il est donc clonable / téléchargeable et utilisable tel quel, l'idée étant vraiment d'avoir presque un template d'application réutilisable à volonté.
 
 Ceci étant annoncé, passons au détail du fonctionnement.
 
@@ -47,10 +47,10 @@ Afin de simplifier l'entrée dans le code, j'ai volontairement limité l'organis
 
 ![structure dossier](./view/ressources/structures.png)
 
-- `data` : Contiens la définition (interface) de vos sources de données (exemple la définition des appels réseau).
+- `data` : Contient la définition (interface) de vos sources de données (exemple la définition des appels réseau).
 - `di` : La définition des éléments qui sont « injectés ».
 - `domain` : Votre code métier, celui qui fait le traitement (soit local, ou alors les appels aux APIs HTTP par exemple)
-- `utils` : L'ensemble de vos « helpers » / fonctions que vous vous servez à plusieurs endroits dans votre code.
+- `utils` : L'ensemble de vos « helpers » / fonctions dont vous vous servez à plusieurs endroits dans votre code.
 - `view` : Vos « vues », c'est-à-dire vos différents écrans de votre application.
 
 ## MVVM ? Kézako !?
@@ -65,19 +65,19 @@ Cette méthode permet, tel le modèle MVC (modèle-vue-contrôleur), de séparer
 
 Il faut donc distinguer _3 parties_ :
 
-- Le modèle : Les données au sens pures (de la data sous forme d'objet), elles peuvent provenir d'API, de base de données, de sources locales.
-- La vue : L'affichage utilisé utilisateur, la gestion des clicks… Et _uniquement_ ça, la logique associée à la donnée est effectuée dans le `Vue-Modèle` (via « le bus des évènements »)
-- Le Vue-Modèle : Intéragie avec la couche `modèle` et envoi les nouveaux états résultat à la vue (via le « bus des évènements »).
+- Le modèle : Les données au sens pur (de la data sous forme d'objet), elles peuvent provenir d'API, de base de données, de sources locales.
+- La vue : L'affichage utilisateur, la gestion des clics… Et _uniquement_ ça, la logique associée à la donnée est effectuée dans le `Vue-Modèle` (via « le bus des évènements »)
+- Le Vue-Modèle : Interagit avec la couche `modèle` et envoie les nouveaux états résultat à la vue (via le « bus des évènements »).
 
-Nous allons, donc devoir définir « des » bus de communication entre le Vue-Modèle et la Vue afin de permettre l'actualisation des données. Cette organisation vous nous permettre une fois en place de ne manipuler essentiellement plus que de la donnée. La vue sera donc « automatiquement » mise à jour, et ce en fonction de l'état de la donnée (exemple les loaders / les mises à jour de liste, etc.)
+Nous allons, donc devoir définir « des » bus de communication entre le Vue-Modèle et la Vue afin de permettre l'actualisation des données. Cette organisation va nous permettre une fois en place de ne manipuler essentiellement plus que de la donnée. La vue sera donc « automatiquement » mise à jour, et ce en fonction de l'état de la donnée (exemple les loaders / les mises à jour de liste, etc.)
 
-📖Pour ceux ayant déjà fait du VueJS (ou autre framework JavaScript récent), le découpage est très proche, vous ne serez pas perdu.
+📖Pour ceux ayant déjà fait du VueJS (ou autre framework JavaScript récent), le découpage est très proche, vous ne serez pas perdus.
 
 ## DI ? Injection de dépendances, Koin quelques explications
 
-En introduction j'ai indiqué que mon « Boilerplate » était le strict minimum viable pour un projet… Et bien je vous ai menti ! Mais garder confiance c'est pour votre bien…
+En introduction j'ai indiqué que mon « Boilerplate » était le strict minimum viable pour un projet… Eh bien je vous ai menti ! Mais gardez confiance, c'est pour votre bien…
 
-Alors, l'injection des dépendances petite définition Wikipedia :
+Alors, l'injection des dépendances, petite définition Wikipedia :
 
 > Il consiste à créer dynamiquement (injecter) les dépendances entre les différents objets en s'appuyant sur une description (fichier de configuration ou métadonnées) ou de manière programmatique. Ainsi les dépendances entre composants logiciels ne sont plus exprimées dans le code de manière statique, mais déterminées dynamiquement à l'exécution.
 
@@ -85,14 +85,14 @@ Pour faire simple, le but est de ne plus avoir à créer des objets dans votre c
 
 Quelques avantages à utiliser de l'injection :
 
-- Réduction du code (les créations d'objets sont effectuées qu'une seule fois et injectées automatiquement grâce au typage).
-- Réduction de la mémoire, logique moins d'instance d'objet identique créer à plusieurs endroits dans votre code.
-- Isolation entre la logique de l'objet et votre code, vous n'êtes qu'un consommateur de fonctionnalités la logique peut-être carrément écrite par quelqu'un d'autre, voir dans certains cas externalisés dans des librairies externes (Kotlin Native par exemple).
+- Réduction du code (les créations d'objets ne sont effectuées qu'une seule fois et injectées automatiquement grâce au typage).
+- Réduction de la mémoire, logique moins d'instances d'objets identiques créées à plusieurs endroits dans votre code.
+- Isolation entre la logique de l'objet et votre code, vous n'êtes qu'un consommateur de fonctionnalités, la logique peut être carrément écrite par quelqu'un d'autre, voire dans certains cas externalisée dans des librairies externes (Kotlin Native par exemple).
 - Etc.
 
 ### Koin
 
-Dans notre nous allons utiliser la librairie Koin, elle est complètement écrite en Kotlin, elle a comme avantage d'être simple à utiliser avec très peut de code à écrire (et donc à comprendre).
+Dans notre cas, nous allons utiliser la librairie Koin, elle est complètement écrite en Kotlin, elle a comme avantage d'être simple à utiliser avec très peu de code à écrire (et donc à comprendre).
 
 ### Concrètement ça ressemble à quoi
 
@@ -119,13 +119,13 @@ val remoteDataSourceModule = module {
 val moduleApp = listOf(appModule, remoteDataSourceModule)
 ```
 
-L'ensemble est, je pense, relativement parlant, mais regardons en détail le `get()`, comme vous pouvez le voir celui-ci est présent un peu partout dans la déclaration de nos éléments à injecter. Ce mot-clé est _magique_ il permet à [Koin](https://insert-koin.io/) de détecter le type de paramètre attendu et d'injecter automatiquement le bon objet.
+L'ensemble est, je pense, relativement parlant, mais regardons en détail le `get()`, comme vous pouvez le voir celui-ci est présent un peu partout dans la déclaration de nos éléments à injecter. Ce mot-clé est _magique_, il permet à [Koin](https://insert-koin.io/) de détecter le type de paramètre attendu et d'injecter automatiquement le bon objet.
 
-Par exemple nous indiquons que `createWebService(client: OkHttpClient, url: String)`, automatiquement Koin va chercher dans les objets qu'il connait ceux correspondant à la signature (dans notre cas `single { createOkHttpClient() }`) et `BuildConfig.REMOTE_URI` étant la String attendu.
+Par exemple nous indiquons que `createWebService(client: OkHttpClient, url: String)`, automatiquement Koin va chercher dans les objets qu'il connait ceux correspondant à la signature (dans notre cas `single { createOkHttpClient() }`) et `BuildConfig.REMOTE_URI` étant la String attendue.
 
 Dans le cas d'un objet de notre vue, nous avons dans le même principe :
 
-`viewModel { MainViewModel(get(), get()) }` qui représente le View-Modele de notre Activity.
+`viewModel { MainViewModel(get(), get()) }` qui représente le View-Modèle de notre Activity.
 
 Celui-ci attend deux paramètres :
 
@@ -135,7 +135,7 @@ Compliqué ? Pas tellement, avec la pratique ça vous semblera automatique. 😊
 
 ## Modifier le package « sample »
 
-Comme vous le savez, sur Android les applications doivent être uniques « de manière cryptographique » une partie du test est basé sur leur package. Nous allons donc faire en sorte de personnaliser le package afin de le rendre unique pour vous et votre téléphone.
+Comme vous le savez, sur Android les applications doivent être uniques « de manière cryptographique » une partie du test est basée sur leur package. Nous allons donc faire en sorte de personnaliser le package afin de le rendre unique pour vous et votre téléphone.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3tULbe0wPmU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -155,7 +155,7 @@ J'ai donc initialisé dans mon petit Boilerplate `REMOTE_URI` qui sera dans votr
 
 ## Repository ? Kézako !?
 
-Contiens la logique autour de vos données. Elle expose au reste de l'application une API (Interne) permettant de gérer la mise à jour des données.
+Contient la logique autour de vos données. Elle expose au reste de l'application une API (Interne) permettant de gérer la mise à jour des données.
 
 Cette « brique de code » va permettre d'agréger les différentes sources de données afin d'être utilisable simplement dans vos VueModel (ViewModel).
 
@@ -163,23 +163,23 @@ Cette « brique de code » va permettre d'agréger les différentes sources de d
 
 ### LocalRepository ?
 
-Dans le code fourni en exemple, le `Local Repository` « simule » un repository qui accèderait à des données « local » c'est-à-dire dans votre téléphone (mémoire interne par exemple).
+Dans le code fourni en exemple, le `Local Repository` « simule » un repository qui accèderait à des données « locales » c'est-à-dire dans votre téléphone (mémoire interne par exemple).
 
 ### RemoteRepository ?
 
 Dans le code fourni en exemple, le `Remote Repository` « simule » une interaction avec « l'extérieur » de votre téléphone c'est-à-dire dans notre cas `Internet` via un appel d'API via le protocole HTTP.
 
-## Ajouter une nouvelle route d'API distance
+## Ajouter une nouvelle route d'API distante
 
-Ajouter une nouvelle route d'API à notre projet va se résumer à la modification de quelques fichiers. À premier vu ça peut sembler fastidieux, mais vous allez rapidement voir que ce découpage va nous permettre d'organiser le code au mieux afin de le rendre maintenant dans la durée. Et finalement n'est-ce pas le plus important ?
+Ajouter une nouvelle route d'API à notre projet va se résumer à la modification de quelques fichiers. À première vue ça peut sembler fastidieux, mais vous allez rapidement voir que ce découpage va nous permettre d'organiser le code au mieux afin de le rendre maintenable dans la durée. Et finalement n'est-ce pas le plus important ?
 
-Je vais prendre un exemple simple, le souhaite ajouter une nouvelle route disponible sur `https://rest.ensembl.org/` dans mon projet. Au hasard la route `/info/rest?content-type=application/json`.
+Je vais prendre un exemple simple, je souhaite ajouter une nouvelle route disponible sur `https://rest.ensembl.org/` dans mon projet. Au hasard la route `/info/rest?content-type=application/json`.
 
 🤔Je rappelle au passage que la finalité est de « Récupérer l'information » du serveur, le faire transiter dans votre code, pour au final l'afficher quelque part dans votre application.
 
 ### Déclarer l'appel HTTP dans SampleRemoteDataSource
 
-Déclarer une méthode dans le fichier `sampleRemoteDataSource.kt`, ce fichier est une Interface, qui va « déclarer » l'ensemble des méthodes HTTP appelable dans le code. La déclaration de celles-ci est effectuée via des annotations (symbolisé avec `@`). Dans notre cas le fichier contient actuellement :
+Déclarer une méthode dans le fichier `sampleRemoteDataSource.kt`, ce fichier est une Interface, qui va « déclarer » l'ensemble des méthodes HTTP appelables dans le code. La déclaration de celles-ci est effectuée via des annotations (symbolisées avec `@`). Dans notre cas le fichier contient actuellement :
 
 ```kotlin
 @GET("info/ping?content-type=application/json")
@@ -197,7 +197,7 @@ Nous allons ajouter la seconde méthode de la même façon
 suspend fun restInfo(): RestResult
 ```
 
-Vous allez devoir créer une Data Class `RestResult` qui servira à déserialser le retour de l'API. Elle va ressembler à :
+Vous allez devoir créer une Data Class `RestResult` qui servira à désérialiser le retour de l'API. Elle va ressembler à :
 
 ```kotlin
 data class RestResult(val release: String) {}
@@ -207,7 +207,7 @@ data class RestResult(val release: String) {}
 
 #### Comment ça fonctionne en deux mots ?
 
-Déclarer une méthode dans une Interface pour permettre d'appeler un WebService !? C'est magique ? En réalité tout ça est possible grace à OkHTTP2, Retrofit, et l'injection de dépendance. Pour les curieux, toute la logique est ici `src/main/java/com/boilerplate/app/di/remote_datasource_model.kt`
+Déclarer une méthode dans une Interface pour permettre d'appeler un WebService !? C'est magique ? En réalité tout ça est possible grâce à OkHTTP2, Retrofit, et l'injection de dépendance. Pour les curieux, toute la logique est ici `src/main/java/com/boilerplate/app/di/remote_datasource_model.kt`
 
 ### Déclarer la méthode dans SampleRemoteRepository
 
@@ -223,10 +223,10 @@ Nous allons donc tout simplement :
 Pour tester (et uniquement pour tester), nous allons appeler la nouvelle méthode depuis la vue principale. La procédure va être relativement simple :
 
 - Ajout d'une méthode dans `MainViewModel.kt`
-  - La méthode doit implémenter les states. (Chargement, et retour de la « string reçu »)
-- Appeler la méthode déclarée dans le MainViewModel depuis l'activity. (ex `myViewModel.getRestInfomations()`).
+  - La méthode doit implémenter les states. (Chargement, et retour de la « string reçue »)
+- Appeler la méthode déclarée dans le MainViewModel depuis l'activity. (ex `myViewModel.getRestInformations()`).
 
-Dans l'implémentation actuelle, je vous propose d'afficher un `un Toast` lors de la réception de la donnée.
+Dans l'implémentation actuelle, je vous propose d'afficher un `Toast` lors de la réception de la donnée.
 
 ## Ajouter une nouvelle Activity
 
@@ -261,11 +261,11 @@ class YourActivity : AppCompatActivity() {
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/M1RJ1kQg7Hg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Si vous souhaitez plus de détail, inspirer du code présent dans le `MainActivity.kt` ou dans les exemples que nous avons évoqués pendant le cours.
+Si vous souhaitez plus de détail, inspirez-vous du code présent dans le `MainActivity.kt` ou dans les exemples que nous avons évoqués pendant le cours.
 
 #### getStartIntent ?
 
-Cette méthode a pour but de simplifier la lecture (et la navigation) entre les vues. Cette méthode est statique, elle sera appelée que vous souhaiterez appeler votre `activity` depuis une autre `vue` / `activity`. Elle retourne une `Intent` qui nous servira à démarrer l'activity souhaitée.
+Cette méthode a pour but de simplifier la lecture (et la navigation) entre les vues. Cette méthode est statique, elle sera appelée quand vous souhaiterez appeler votre `activity` depuis une autre `vue` / `activity`. Elle retourne une `Intent` qui nous servira à démarrer l'activity souhaitée.
 
 _Exemple :_
 
@@ -279,16 +279,16 @@ _Exemple :_
 
 ```kotlin
 companion object {
-    const val AGE_DU_CAPITPAINE = "AGE_DU_CAPITPAINE"
+    const val AGE_DU_CAPITAINE = "AGE_DU_CAPITAINE"
     fun getStartIntent(ctx: Context, ageDuCapitaine: Int): Intent {
         return Intent(ctx, MainActivity::class.java).apply {
-            putExtra(FROM_HOME, ageDuCapitaine)
+            putExtra(AGE_DU_CAPITAINE, ageDuCapitaine)
         }
     }
 }
 
 // Pour récupérer cette valeur.
-private fun ageDuCapitaine(): Int = intent.getBooleanExtra(AGE_DU_CAPITPAINE, 33)
+private fun ageDuCapitaine(): Int = intent.getIntExtra(AGE_DU_CAPITAINE, 33)
 ```
 
 ## Rendre accessible cette vue / activity
@@ -301,7 +301,7 @@ Si vous souhaitez réaliser cette action à la main. Il suffit d'ajouter « dans
     <activity android:name="com.boilerplate.app.view.main.MainActivity">
 ```
 
-⚠️ Mais sérieusement, ne l'ajoutez pas à la main. Faite plutôt alt entrée sur le nom de votre class dans l'IDE l'action vous sera proposée.
+⚠️ Mais sérieusement, ne l'ajoutez pas à la main. Faites plutôt alt entrée sur le nom de votre class dans l'IDE l'action vous sera proposée.
 
 ![ajouter au manifeste](./view/ressources/add_manifest.png)
 
@@ -309,7 +309,7 @@ Si vous souhaitez réaliser cette action à la main. Il suffit d'ajouter « dans
 
 En suivant le même principe que précédemment, créez une Home avec deux boutons permettant d'accéder à la `MainActivity` et à `InfoRestActivity`.
 
-Petit rappel, pour « attacher » une action de clique sur un bouton :
+Petit rappel, pour « attacher » une action de clic sur un bouton :
 
 ```kotlin
 btnMain.setOnClickListener {
@@ -332,7 +332,7 @@ Un certain nombre de paramètres autour des intent est modifiable directement da
 </intent-filter>
 ```
 
-Déplacer `l'intent filter` dans bloc correspondant à votre activity.
+Déplacer `l'intent filter` dans le bloc correspondant à votre activity.
 
 ### Connecter le tout
 
@@ -342,7 +342,7 @@ Votre application contient maintenant 3 activités :
 - L'activité permettant de connaitre la version du serveur. `infoRest`
 - Une activité permettant de « réaliser des pings ».
 
-Appeler les différends `getStartIntent()` depuis les bonnes vues.
+Appeler les différents `getStartIntent()` depuis les bonnes vues.
 
 Exemple :
 
@@ -354,7 +354,7 @@ fun startMainActivity(){
 
 ## Utiliser un Repository depuis une nouvelle activity
 
-Comme indiqué précédemment, nous n'allons pas directement appeler notre `Repository` directement depuis notre `Activity`.
+Comme indiqué précédemment, nous n'allons pas appeler notre `Repository` directement depuis notre `Activity`.
 
 ::: tip Petit rappel
 

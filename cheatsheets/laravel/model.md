@@ -26,7 +26,7 @@ class LeNomDeVotreTableEnBase extends Model
 
 ⚠️ Le nom de la classe sera le nom de votre table
 
-De base le nome de la classe sera le nom de votre table. Si vous souhaitez changer le comportement, il vous suffit de :
+De base le nom de la classe sera le nom de votre table. Si vous souhaitez changer le comportement, il vous suffit de :
 
 ```php
 <?php
@@ -53,7 +53,7 @@ $todos = LeNomDeVotreTableEnBase::all();
 // Ou pour l’enregistrement avec l’identifiant « 42 »
 $todo = LeNomDeVotreTableEnBase::find(42);
 
-// Obtenir, mais filtrer et ordonné et avec une limite
+// Obtenir, mais filtré et ordonné et avec une limite
 $todos = LeNomDeVotreTableEnBase::where('termine', 1)->orderBy('id', 'desc')->take(10)->get();
 
 // Ou avec un where
@@ -74,7 +74,7 @@ LeNomDeVotreTableEnBase::create(array(
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\LeNomDeVotreTableEnBase::find(1);
+$todo = App\Models\LeNomDeVotreTableEnBase::find(1);
 
 // Le passer à terminer
 $todo->termine = true;
@@ -85,25 +85,25 @@ $todo->save();
 
 ### Supprimer un enregistrement
 
-Plusieurs façon :
+Plusieurs façons :
 
 ```php
 // Façon 1
 // Rechercher celui avec l’id 1
-$todo = App\LeNomDeVotreTableEnBase::find(1);
+$todo = App\Models\LeNomDeVotreTableEnBase::find(1);
 $todo->delete(); // Le supprimer
 
 // Façon 2
 // Le supprimer directement
-App\LeNomDeVotreTableEnBase::destroy(1);
+App\Models\LeNomDeVotreTableEnBase::destroy(1);
 
 // Façon 3
 // En supprimer plusieurs directement
-App\LeNomDeVotreTableEnBase::destroy(1,2,3);
+App\Models\LeNomDeVotreTableEnBase::destroy(1,2,3);
 
 // Façon 4
 // Supprimer avec une condition
-App\LeNomDeVotreTableEnBase::where('termine', '=', 1)->delete();
+App\Models\LeNomDeVotreTableEnBase::where('termine', '=', 1)->delete();
 ```
 
 ### Les jointures
@@ -126,7 +126,7 @@ class Todo extends Model {
 }
 ```
 
-⚠️ Éloquent supposera que dans le modèle Catégorie contiendra une colonne todo_id.
+⚠️ Éloquent supposera que le modèle Catégorie contiendra une colonne todo_id.
 
 #### One To Many
 
@@ -194,7 +194,7 @@ class Role extends Model
 
 ### Générer les modèles
 
-Il est également possible de générer les modèles à partir de la base de données. Cette fonctionnalitée n'est pas disponible de base dans Laravel, il faut donc installer une dépendance supplémentaire :
+Il est également possible de générer les modèles à partir de la base de données. Cette fonctionnalité n'est pas disponible de base dans Laravel, il faut donc installer une dépendance supplémentaire :
 
 ```sh
 composer require reliese/laravel --dev
@@ -238,30 +238,30 @@ Nous avons vu comment définir les relations, mais comment les utiliser ? C’es
 
 ```php
 // Récupérer les commentaires d’un post
-$comments = App\Post::find(1)->comments()->get();
+$comments = App\Models\Post::find(1)->comments()->get();
 
 // Récupérer les commentaires d’un post et les ordonner par date
-$comments = App\Post::find(1)->comments()->orderBy('created_at', 'desc')->get();
+$comments = App\Models\Post::find(1)->comments()->orderBy('created_at', 'desc')->get();
 
 // Récupérer les commentaires d’un post et les ordonner par date et avec une limite
-$comments = App\Post::find(1)->comments()->orderBy('created_at', 'desc')->take(10)->get();
+$comments = App\Models\Post::find(1)->comments()->orderBy('created_at', 'desc')->take(10)->get();
 
 // Utiliser le with pour récupérer les données en une seule requête
 // Ici on récupère les posts avec leurs commentaires
-$posts = App\Post::with('comments')->get();
+$posts = App\Models\Post::with('comments')->get();
 
 // Obtenir les articles d’un utilisateur
-$articles = App\User::find(1)->articles()->get();
+$articles = App\Models\User::find(1)->articles()->get();
 
 // Réaliser plusieurs jointures avec le with
 // Ici on récupère les utilisateurs avec leurs rôles et leurs articles
-$users = App\User::with('roles', 'posts')->get();
+$users = App\Models\User::with('roles', 'posts')->get();
 
 // Jointure conditionnelle obtenir les articles d’un utilisateur dont le titre contient « Laravel »
-$articles = App\User::find(1)->articles()->where('title', 'like', '%Laravel%')->get();
+$articles = App\Models\User::find(1)->articles()->where('title', 'like', '%Laravel%')->get();
 
-// Obtenir un utilisateurs avec les posts et les commentaires via le with
-$users = App\User::with('posts.comments')->get();
+// Obtenir un utilisateur avec les posts et les commentaires via le with
+$users = App\Models\User::with('posts.comments')->get();
 ```
 
 Le `with()` permet de récupérer les données d'une autre table. Vous pouvez également déclarer le `with()` dans le modèle. 
@@ -269,7 +269,7 @@ Le `with()` permet de récupérer les données d'une autre table. Vous pouvez é
 Exemple, **dans le modèle `Commande`** :
 
 ```php
-$with = ['produit'];
+protected $with = ['produit'];
 ```
 
 En indiquant le `$with` dans le modèle, votre jointure sera automatiquement effectuée. Vous n'aurez plus besoin de passer par le `with()` dans le contrôleur. Pratique pour automatiser les jointures.
@@ -278,24 +278,24 @@ En indiquant le `$with` dans le modèle, votre jointure sera automatiquement eff
 
 ```php
 // Ajouter un commentaire à un post
-$comment = new App\Comment(['message' => 'A new comment.']);
-$post = App\Post::find(1);
+$comment = new App\Models\Comment(['message' => 'A new comment.']);
+$post = App\Models\Post::find(1);
 $post->comments()->save($comment);
 
 // Ajouter un commentaire à un post avec un utilisateur
-$comment = new App\Comment(['message' => 'A new comment.']);
-$user = App\User::find(1);
-$post = App\Post::find(1);
+$comment = new App\Models\Comment(['message' => 'A new comment.']);
+$user = App\Models\User::find(1);
+$post = App\Models\Post::find(1);
 $post->comments()->save($comment, ['user_id' => $user->id]);
 
 // Attacher un rôle à un utilisateur
-$user = App\User::find(1);
+$user = App\Models\User::find(1);
 $user->roles()->attach($roleId);
 
-// Attacher des roles à un utilisateur nouvellement créé
-$user = App\User::create($attributes);
+// Attacher des rôles à un utilisateur nouvellement créé
+$user = App\Models\User::create($attributes);
 $user->roles()->attach([1, 2, 3]);
 
-// Syncroniser les rôles d'un utilisateur (remplace les rôles existants)
+// Synchroniser les rôles d'un utilisateur (remplace les rôles existants)
 $user->roles()->sync([1, 2, 3]);
 ```

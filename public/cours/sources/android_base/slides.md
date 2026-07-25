@@ -42,7 +42,7 @@ Point statistique :
 
 ---
 
-- Un Android ? Non… des Android!
+- Un Android ? Non… des Android !
 
 ---
 
@@ -68,10 +68,10 @@ Linux ?
 
 ## Android is not Linux
 
-Construis autour du noyau Linux mais … c'est tout
+Construit autour du noyau Linux mais … c'est tout
 
 - Noyau Linux : Drivers, Batterie, Ram.
-- Runtime Android (ART, Dalvik) : Fais tourner les applications Android.
+- Runtime Android (ART, Dalvik) : Fait tourner les applications Android.
 - App Framework : Android Framework (Android API).
 
 ---
@@ -149,7 +149,7 @@ Trop pour certains… Mais le reflet de la réalité (foldable, 5G, Bluetooth LE
 
 ## Nous sommes en transition
 
-### Dommage pour vous ? Pas certains…
+### Dommage pour vous ? Pas certain…
 
 #### Cette année, nous utiliserons Compose + Kotlin
 
@@ -202,7 +202,7 @@ fun Greeting(name: String) {
 
 ---
 
-Le composant sont maintenant un principe de base de la conception d'interface utilisateur.
+Les composants sont maintenant un principe de base de la conception d'interface utilisateur.
 
 ---
 
@@ -373,7 +373,7 @@ Column {
         Text("Visible")
     }
 
-    AnimatedContent(targetState = count) { targetState ->
+    AnimatedContent(targetState = counter) { targetState ->
         Text(text = "Count: $targetState")
     }
 }
@@ -394,7 +394,7 @@ Le renouveau du développement Android
 ---
 
 - Plus simple
-- Permets de faire des animations simplement
+- Permet de faire des animations simplement
 - Écriture plus moderne
 - Repose sur des Composants (comme React, Vue, Flutter…)
 - Pensez réutilisation
@@ -413,7 +413,7 @@ Arrêtons-nous un instant…
 
 ---
 
-Jetbrains a développé Kotlin, Google l'a adopté. Les deux travaillent ensemble. Activement. 
+JetBrains a développé Kotlin, Google l'a adopté. Les deux travaillent ensemble. Activement. 
 
 Le tout est Open Source.
 
@@ -422,8 +422,8 @@ Le tout est Open Source.
 Trois termes à retenir :
 
 - **Compose** : La librairie de Google pour Android => Interface déclarative.
-- **KMM** : Kotlin Multiplatform (Jetbrains) => Logique métier partagée.
-- **CMP** : Compose Multiplatform (Jetbrains) => Interface partagée.
+- **KMM** : Kotlin Multiplatform (JetBrains) => Logique métier partagée.
+- **CMP** : Compose Multiplatform (JetBrains) => Interface partagée.
 
 ---
 
@@ -437,7 +437,7 @@ Une dernière chose…
 
 Jetpack Compose c'est jeune.
 
-Il faut donc accepter que ça évolue vite / change / sois (parfois) instable.
+Il faut donc accepter que ça évolue vite / change / soit (parfois) instable.
 
 ---
 
@@ -459,7 +459,7 @@ Accompanist est voué à disparaître. Car les fonctionnalités seront intégré
 
 - l'IDE
 - Java + Kotlin
-- Version spéciale de Intellij
+- Version spéciale d'IntelliJ
 
 ---
 
@@ -484,7 +484,7 @@ Deux façons de travailler :
 
 - Intégré dans Android Studio (🙌).
 - Performances suffisantes pour tester.
-- Consomme de la RAM (car c'est un VM).
+- Consomme de la RAM (car c'est une VM).
 - BLE / Bluetooth partiellement disponible (**très limité**).
 
 ---
@@ -522,8 +522,8 @@ Deux façons de travailler :
 ### **R.java.class**
 
 - Généré automatiquement.
-- Contiens les références de tous les id.
-- Permets l'accès aux ressources depuis votre code :
+- Contient les références de tous les id.
+- Permet l'accès aux ressources depuis votre code :
   - `stringResource(R.string.hello)`
   - `imageResource(R.drawable.image)`
   - …
@@ -540,7 +540,7 @@ Deux façons de travailler :
 
 ## Débugger
 
-- Points d'arrêts.
+- Points d'arrêt.
   - Avec arrêt.
   - Sans arrêt.
   - Conditionnés
@@ -600,7 +600,7 @@ Deux façons de travailler :
 ---
 
 - Dans le fichier `AndroidManifest.xml` (édition du fichier strings.xml)
-- Via l'outil d'Android Studio (clique droit sur `res` > New > Image Asset)
+- Via l'outil d'Android Studio (clic droit sur `res` > New > Image Asset)
 
 ---
 
@@ -679,7 +679,7 @@ Box {
 
 ---
 
-## Définir un taille
+## Définir une taille
 
 ```kotlin
 Row(modifier = Modifier.size(100.dp))
@@ -744,7 +744,7 @@ Nous avons à notre disposition un ensemble de composants « fonctionnels » qui
 - `Switch` : Un composant qui permet d'afficher un toggle (un bouton qui peut être activé ou désactivé).
 - `Image` : Un composant qui permet d'afficher une image.
 - `LazyColumn` : Un composant qui permet d'afficher une liste.
-- `Scaffold` : Un composant qui permet de créer une structure de base pour notre application (barre de navigation, - etc.).
+- `Scaffold` : Un composant qui permet de créer une structure de base pour notre application (barre de navigation, etc.).
 - `TopAppBar` : Un composant qui permet de créer une barre de navigation en haut de l'application.
 - `Card` : Un composant qui permet de créer une carte.
 - `IconButton` : Un composant qui permet de créer un bouton avec une icône.
@@ -950,7 +950,7 @@ Column(
 
 Avant de continuer, une petite pause…
 
-Nous allons en profiter pour créer un composant (vous aller voir c'est simple).
+Nous allons en profiter pour créer un composant (vous allez voir, c'est simple).
 
 ---
 
@@ -996,9 +996,9 @@ Text(
 ## Exemple les dimensions
 
 ```kotlin
-Modifier.fillMaxWidth() // Rempli la largeur
-Modifier.fillMaxHeight() // Rempli la hauteur
-Modifier.fillMaxSize() // Rempli la taille
+Modifier.fillMaxWidth() // Remplit la largeur
+Modifier.fillMaxHeight() // Remplit la hauteur
+Modifier.fillMaxSize() // Remplit la taille
 ```
 
 ---
@@ -1029,7 +1029,7 @@ Text(text = content, fontWeight = FontWeight.Light, fontSize = 10.sp)
 ## Ou via un style
 
 ```kotlin
-// Défini dans le theme
+// Défini dans le thème
 val monStyle = TextStyle(
     fontWeight = FontWeight.Light,
     fontSize = 10.sp
@@ -1072,7 +1072,7 @@ Via Android Studio bien évidemment. Et de préférence via l'éditeur XML
 ## Les images
 
 - `res/drawable/`
-- Un nom sans espace, sans accent, sans caractère spéciaux.
+- Un nom sans espace, sans accent, sans caractères spéciaux.
 - Importable directement dans le code (`R.drawable.nom_image`).
 
 ---
@@ -1087,7 +1087,7 @@ Image(
 )
 ```
 
-Placer l'image dans le dossier `res/drawable/`. Puis ajouter le au-dessus de votre `Text` qui est actuellement au centre de votre `Column`.
+Placer l'image dans le dossier `res/drawable/`. Puis l'ajouter au-dessus de votre `Text` qui est actuellement au centre de votre `Column`.
 
 ---
 
@@ -1160,7 +1160,7 @@ Placer l'image dans le dossier `res/drawable/`. Puis ajouter le au-dessus de vot
 
 ## Le dossier `res` en détail 2
 
-### AKA les ressources alternative
+### AKA les ressources alternatives
 
 Chaque dossier peut être redéfini en fonction de la résolution. (`-hdpi`, `-mdpi`, `-xxhdpi`…)
 
@@ -1168,7 +1168,7 @@ Chaque dossier peut être redéfini en fonction de la résolution. (`-hdpi`, `-m
 
 ## Dingue, non ?
 
-- Vous connaissez un équivalent dans d'autre environnement ?
+- Vous connaissez un équivalent dans d'autres environnements ?
 
 ---
 
@@ -1214,7 +1214,7 @@ Ajouter un Toast dans votre interface
 // Récupération du context
 val context = LocalContext.current
 
-Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show();
+Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show()
 ```
 
 ⚠️ Avec la complétion d'Android Studio.
@@ -1251,7 +1251,7 @@ C'est un objet important dans Android, car il est utilisé pour accéder à de n
 
 ---
 
-## 6. Les interactions
+## 5. Les interactions
 
 ---
 
@@ -1323,7 +1323,7 @@ Button(onClick = {
 
 ---
 
-Où sur une `Image` :
+Ou sur une `Image` :
 
 ```kotlin
 val context = LocalContext.current
@@ -1425,7 +1425,7 @@ showDialog est un état qui permet de savoir si le Dialog doit être affiché ou
 
 ## Material ?
 
-Ensemble « de règles » / de bonne pratique pour avoir des interfaces de qualités _ou_ cohérentes.
+Ensemble « de règles » / de bonnes pratiques pour avoir des interfaces de qualité _ou_ cohérentes.
 
 ---
 
@@ -1545,7 +1545,7 @@ Screen 2 doit afficher le nom passé en paramètre.
 
 ## Testons ensemble
 
-- Rendre dynamique le nom saisi dans la le Screen 1.
+- Rendre dynamique le nom saisi dans le Screen 1.
 - À votre avis, comment faire ? Quelle ressource utiliser ?
 
 ---
@@ -1554,7 +1554,7 @@ Voir le support de cours
 
 ---
 
-## 7. Structure
+## 6. Structure
 
 ---
 
@@ -1596,7 +1596,7 @@ Mettre en place un Scaffold dans votre `Screen1` et `Screen2`.
 
 ---
 
-## 8. Les données
+## 7. Les données
 
 ---
 
@@ -1608,7 +1608,7 @@ Mettre en place un Scaffold dans votre `Screen1` et `Screen2`.
 
 ---
 
-Il faut comprendre ici que notre vue sera « **recomposée** » à chaque fois que nous allons mettre à jours nos données.
+Il faut comprendre ici que notre vue sera « **recomposée** » à chaque fois que nous allons mettre à jour nos données.
 
 ---
 
@@ -1634,8 +1634,8 @@ Il faut comprendre ici que notre vue sera « **recomposée** » à chaque fois q
 
 - Un composant de l'architecture Jetpack.
 - Stocke et gère les données.
-- Survis aux changements de configuration.
-- Ne contiens pas de référence à la vue.
+- Survit aux changements de configuration.
+- Ne contient pas de référence à la vue.
 
 ---
 
@@ -1673,7 +1673,7 @@ class Screen3ViewModel : ViewModel() {
 fun Screen3(
     navController: NavController,
     name: String,
-    viewModel: Screen2ViewModel = viewModel()
+    viewModel: Screen3ViewModel = viewModel()
 ) {
     // Liste dynamique de String
     val list by viewModel.listFlow.collectAsStateWithLifecycle()
@@ -1739,7 +1739,7 @@ val list by viewModel.listFlow.collectAsStateWithLifecycle()
 
 ---
 
-## 9. Découper
+## 8. Découper
 
 ---
 

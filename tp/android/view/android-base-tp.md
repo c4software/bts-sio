@@ -30,17 +30,17 @@ Je vous laisse suivre les étapes de création d'un nouveau projet.
 
 - Le choix du package est très important. Comme nous avons vu ensemble en cours, le « Package » doit être unique. En effet deux applications ne peuvent pas avoir le même.
 - Choisir un min SDK qui correspond aux cibles des mobiles souhaités. (Si vous êtes en France ou dans un autre pays, il conviendra de faire le bon choix).
-- Kotlin est maintenant le langage à choisir, Java et Kotlin cohabite sans problème vous n'aurez donc aucun problème de compatibilité.
+- Kotlin est maintenant le langage à choisir, Java et Kotlin cohabitent sans problème, vous n'aurez donc aucun problème de compatibilité.
 
 :::
 
 ## Création de l'émulateur
 
-Comme vu ensemble pendant le cours, l'émulateur va nous permettre de tester « simplement » notre application avec des performances _suffisante dans les cas simple_. La création de celui-ci est intégrée à Android Studio. Dans Android Studio la partie émulateur s'appelle Device Manager et est disponible dans le menu `tools`
+Comme vu ensemble pendant le cours, l'émulateur va nous permettre de tester « simplement » notre application avec des performances _suffisantes dans les cas simples_. La création de celui-ci est intégrée à Android Studio. Dans Android Studio la partie émulateur s'appelle Device Manager et est disponible dans le menu `tools`
 
 ![AVD](./ressources/avd.jpg)
 
-Pour le choix du type de devices vous êtes libres… Mais le mieux est de choisir un « template de mobile » assez représentatif de ce que l'on trouve chez les clients. Un bon choix est par exemple un « Pixel 6a » avec Android Oreo.
+Pour le choix du type de devices vous êtes libres… Mais le mieux est de choisir un « template de mobile » assez représentatif de ce que l'on trouve chez les clients. Un bon choix est par exemple un « Pixel 6a » avec Android 14.
 
 ::: tip
 
@@ -60,7 +60,7 @@ L'ensemble des textes de votre application _doit être_ dans le fichier `values/
 
 En complément de ce dont je vous ai parlé en cours, je vous laisse quelques minutes découvrir l'ensemble des dossiers. Je vous laisse regarder plus en détail le dossier `res`, mais également les fichiers `gradle`.
 
-Quelques points d'attentions :
+Quelques points d'attention :
 
 - Le dossier `res`.
 - Les images déjà présentes dans votre projet, notamment le XML pour l'icône.
@@ -80,7 +80,7 @@ Pour rappel le fichier manifest va nous permettre d'exposer « de la configurati
 
 - Éditer le fichier `AndroidManifest.xml`.
 - Changer le nom de votre application (attention à bien utiliser la mécanique `i18n`).
-- Regarder l'ensemble des paramètres spécifier dans le XML
+- Regarder l'ensemble des paramètres spécifiés dans le XML
 - Tester à nouveau votre application
 
 ::: tip
@@ -106,7 +106,7 @@ _Notamment :_
 Si vous avez ouvert le fichier `activity_main.xml` vous avez certainement constaté que celui-ci était très simple. Nous allons donc le modifier un petit peu.
 
 ::: tip
-Android Studio vous propose un éditeur graphique de l'interface, c'est pratique, mais pour apprendre ce n'est pas idéal. Je vous propose de changer de mode d'édition afin de passer en mode XML via la vue `Split`. Qui nous affichera à la fois le graphique ainsi que le XML.
+Android Studio vous propose un éditeur graphique de l'interface, c'est pratique, mais pour apprendre ce n'est pas idéal. Je vous propose de changer de mode d'édition afin de passer en mode XML via la vue `Split`, qui nous affichera à la fois le graphique ainsi que le XML.
 
 ![SPLIT](./ressources/split.png)
 
@@ -120,7 +120,7 @@ Android Studio vous propose un éditeur graphique de l'interface, c'est pratique
 
 ### Les ressources alternatives
 
-Android intègre la gestion des ressources « alternative », c'est-à-dire la possibilité de charger automatiquement des ressources en fonction de conditions liées au téléphone du client type :
+Android intègre la gestion des ressources « alternatives », c'est-à-dire la possibilité de charger automatiquement des ressources en fonction de conditions liées au téléphone du client type :
 
 - Taille de l'écran.
 - Langue.
@@ -146,13 +146,13 @@ L'ensemble des ressources (`res`) est redéfinissable sans écrire de code. Par 
 
 - Éditer le layout `activity_main.xml`.
 - Ajouter une balise TextView.
-- Dans le `android:text` utiliser une strings `android:text="@strings/monString"`.
+- Dans le `android:text` utiliser une string `android:text="@string/monString"`.
 - Celle-ci doit être différente en fonction si l'utilisateur a son téléphone en paysage (`land`) ou en portrait.
-- Ajuster également la taille du logo pour que celui-ci soit plus petit si le téléphone est en portrait (`land`).
+- Ajuster également la taille du logo pour que celui-ci soit plus petit si le téléphone est en portrait (`port`).
 
 ### Les dimensions et contraintes
 
-Vous avez donc ajouté deux nouveaux éléments dans votre layout, mais ils n'ont n'y taille ni « positions ». En effet, comme vu ensemble en cours, nous utilisons un layout de type « ConstraintLayout » c'est-à-dire que vos éléments doivent être contraints les uns par rapport aux autres.
+Vous avez donc ajouté deux nouveaux éléments dans votre layout, mais ils n'ont ni taille ni « positions ». En effet, comme vu ensemble en cours, nous utilisons un layout de type « ConstraintLayout » c'est-à-dire que vos éléments doivent être contraints les uns par rapport aux autres.
 
 Vous allez donc devoir ajouter les attributs suivants sur vos deux nouveaux éléments :
 
@@ -171,7 +171,7 @@ Vous allez donc devoir ajouter les attributs suivants sur vos deux nouveaux él�
 _Un peu d'explication :_
 
 - `android:id` permet de rendre l'élément accessible depuis le code, ou tout simplement depuis un autre élément afin de définir une contrainte.
-- `android:layout_width` et `android:layout_height` définisse la taille de votre élément. `wrap_content` indique que la taille doit être celle du contenu. Je vous laisse découvrir les autres propriétés avec <kbd>alt</kbd> + <kbd>entrée</kbd> sur `wrap_content`.
+- `android:layout_width` et `android:layout_height` définissent la taille de votre élément. `wrap_content` indique que la taille doit être celle du contenu. Je vous laisse découvrir les autres propriétés avec <kbd>alt</kbd> + <kbd>entrée</kbd> sur `wrap_content`.
 - `app:layout_constraint…` définissent les contraintes entre l'élément et les autres éléments de layout. Dans notre cas « parent » signifie que les contraintes seront avec le parent, c'est-à-dire la fenêtre dans le cas présent.
 
 ::: tip
@@ -201,7 +201,7 @@ Ajouter celui-ci dans la méthode `onCreate` de votre `MainActivity.kt`.
 Vous pouvez utiliser la complétion de votre IDE, `toast` puis <kbd>tab</kbd>.
 
 ::: tip
-Les toasts sont rapides et simples à mettre en place. Cependant, ils ne sont pas très beaux. C'est pour ça que nous les utiliserons principalement que pour « les informations de tests ou sans grandes importances ».
+Les toasts sont rapides et simples à mettre en place. Cependant, ils ne sont pas très beaux. C'est pour ça que nous ne les utiliserons principalement que pour « les informations de tests ou sans grande importance ».
 :::
 
 ### À faire :
@@ -214,7 +214,7 @@ Les toasts sont rapides et simples à mettre en place. Cependant, ils ne sont pa
 
 ### La Snackbar
 
-Un autre moyen d'interagir avec l'utilisateur, c'est via un Snackbar. Une snackbar est très similaire à un Toast, cependant elle pourra servir pour afficher des messages importants et surtout des messages avec lesquels nous allons pouvoir interagir.
+Un autre moyen d'interagir avec l'utilisateur, c'est via une Snackbar. Une snackbar est très similaire à un Toast, cependant elle pourra servir pour afficher des messages importants et surtout des messages avec lesquels nous allons pouvoir interagir.
 
 Je vous laisse modifier votre code pour remplacer le Toast par :
 
@@ -232,7 +232,7 @@ Snackbar.make(findViewById(android.R.id.content), "Je suis une Snackbar", Snackb
 
 ::: tip Vous souhaitez changer la durée d'affichage ?
 
-Plusieurs options s'offre à vous :
+Plusieurs options s'offrent à vous :
 
 - `Snackbar.LENGTH_SHORT`
 - `Snackbar.LENGTH_LONG`
@@ -240,7 +240,7 @@ Plusieurs options s'offre à vous :
 
 :::
 
-## Rendre un élément clickable
+## Rendre un élément cliquable
 
 Pour rendre un élément cliquable sur Android, nous avons plusieurs façons de faire. La première c'est dans le code via son id et la méthode `findViewById`.
 
@@ -256,12 +256,12 @@ Et voilà… Votre bouton est cliquable.
 
 ### À faire
 
-- Rendre votre bouton clickable.
+- Rendre votre bouton cliquable.
 - Afficher un Toast sur le OnClick.
 
 :warning: Attention à bien référencer le bon `R.id.myButton` par rapport à votre layout.
 
-## Rendre un élément clickable 2
+## Rendre un élément cliquable 2
 
 Le `ViewBinding` est maintenant la nouvelle façon moderne de gérer « les références à la vue depuis le code Kotlin ». Ça fonctionne un peu comme le `findViewById` sauf que le Binding est automatique et surtout celui-ci gère automatiquement le typage !
 
@@ -281,7 +281,7 @@ Exemple dans mon cas :
 
 ![ide sync](./ressources/sync.png)
 
-Maintenant nous avons maintenant un Binding automatique entre « La vue et le Code Kotlin », cependant pour que celui-ci soit accessible de l'ensemble de notre classe, nous allons devoir modifier légèrement notre `class`.
+Nous avons maintenant un Binding automatique entre « La vue et le Code Kotlin », cependant pour que celui-ci soit accessible de l'ensemble de notre classe, nous allons devoir modifier légèrement notre `class`.
 
 Exemple de modification dans la `MainActivity` :
 
@@ -377,7 +377,7 @@ Maintenant que notre « Splash » s'affiche, nous allons pouvoir lancer l'autre 
 
 Lancer une activity sur Android est aussi simple que d'appeler la méthode `startActivity` au moment voulu. Pour « simplifier l'écriture » et éviter le code spaghetti, nous allons ajouter dans le code de la MainActivity une méthode qui sera en charge de « retourner les informations (appelée une `Intent`) » nécessaires au lancement de celle-ci.
 
-En Kotlin les méthodes static **doivent être mise** dans `companion object`. Nous allons donc ajouter « un compagnon » dans notre class. Un compagnon Object va nous permettre de créer une méthode « static » qui sera accessible directement sans instancier là class.
+En Kotlin les méthodes static **doivent être mises** dans `companion object`. Nous allons donc ajouter « un compagnon » dans notre class. Un compagnon Object va nous permettre de créer une méthode « static » qui sera accessible directement sans instancier la class.
 
 À faire :
 
@@ -403,13 +403,13 @@ Dans le code de la _SplashActivity_ nous allons lancer après quelques secondes 
 ```
 
 ::: tip Analyse du code
-Le code à proprement dit qui lance l'activity est le suivant :
+Le code proprement dit qui lance l'activity est le suivant :
 
 ```kotlin
     startActivity(MainActivity.getStartIntent(this))
 ```
 
-Et oui c'est aussi simple que ça!
+Et oui c'est aussi simple que ça !
 :::
 
 - À quoi correspond le `this` ?
@@ -419,7 +419,7 @@ Et oui c'est aussi simple que ça!
 
 ## Démarrer une activité avec des paramètres
 
-En reprenant le principe précédent, il est tout a fait possible de « passer des paramètres » à votre activity :
+En reprenant le principe précédent, il est tout à fait possible de « passer des paramètres » à votre activity :
 
 ### Dans l'activity à démarrer
 
@@ -456,7 +456,7 @@ startActivity(VotreActivityADemarrer.getStartIntent(this, "CECI-EST-UN-IDENTIFIA
 
 ## Thème et Drawable
 
-Le grand chalenge d'une application mobile c'est « le côté visuel ». Bien évidemment je sais que vous n'êtes pas des experts UI/UX, Google le sait également. C'est pour ça qu'ils ont intégré dans Android Studio un catalogue d'icône nous permettant nous développeurs de travailler avec des éléments propres et de qualité.
+Le grand challenge d'une application mobile c'est « le côté visuel ». Bien évidemment je sais que vous n'êtes pas des experts UI/UX, Google le sait également. C'est pour ça qu'ils ont intégré dans Android Studio un catalogue d'icônes nous permettant nous développeurs de travailler avec des éléments propres et de qualité.
 
 Pour rappel, les images dans Android s'appellent des `Drawables` et sont dans le dossier `Res`. Android Studio intègre un catalogue nommé « Vector Asset », celui-ci est disponible dans les menus :
 
@@ -470,7 +470,7 @@ Pour choisir une icône :
 
 - Ajouter un nouveau drawable dans votre projet.
 - Que constatez-vous comme changement dans les Drawable ?
-- Utiliser l'image choisie dans votre layout « Splash ». L'image choisie doit-être en bas à droite.
+- Utiliser l'image choisie dans votre layout « Splash ». L'image choisie doit être en bas à droite.
 
 ## Thème de couleurs
 
@@ -481,7 +481,7 @@ Je vous propose de les modifier. Première étape, ajouter vos couleurs dans le 
 ### À faire
 
 - Ajouter une couleur (`colors.xml`). Par exemple, ajouter une « mainPrimaryColor ».
-- L'utiliser dans le thème (`themes.xml`) en modifiant par le `colorPrimary` pour utiliser votre nouvelle couleur.
+- L'utiliser dans le thème (`themes.xml`) en modifiant le `colorPrimary` pour utiliser votre nouvelle couleur.
 
 ## Les Intent externes / tierces
 
@@ -521,7 +521,7 @@ Maintenant que vous savez comment ouvrir une intent Externe :
 - Ajouter sur la `MainActivity` une icône en haut à droite type « Settings ».
 - Celle-ci doit être cliquable et doit permettre d'ouvrir les paramètres (`ACTION_SETTINGS`).
 - Ajouter sous le bouton « En bas de l'activité » un texte cliquable `TextView` permettant d'ouvrir le site de l'école.
-- Ajoute à côté du `TextView` un second `TextView` qui ouvre l'adresse / la position GPS de l'école dans Google Maps.
+- Ajouter à côté du `TextView` un second `TextView` qui ouvre l'adresse / la position GPS de l'école dans Google Maps.
 
 Exemple :
 
@@ -566,7 +566,7 @@ private fun hasPermission(): Boolean {
 ```kotlin
 companion object {
     // Permet d'identifier le fait que nous demandons la permission
-    // Le code peut-être n'importe quoi, mais il doit être unique
+    // Le code peut être n'importe quoi, mais il doit être unique
     // Il vous permettra de savoir si l'utilisateur revient de la demande de permission (onRequestPermissionsResult)
     private const val PERMISSION_REQUEST_LOCATION = 9999
 }
@@ -590,11 +590,11 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
         PERMISSION_REQUEST_LOCATION -> {
             // If request is cancelled, the result arrays are empty.
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                // Permission obtenue, Nous continuons la suite de la logique.
+                // Permission obtenue, nous continuons la suite de la logique.
                 getLocation()
             } else {
                 // TODO
-                // Permission non accepté, expliqué ici via une activité ou une dialog pourquoi nous avons besoin de la permission
+                // Permission non acceptée, expliquer ici via une activité ou une dialog pourquoi nous avons besoin de la permission
             }
             return
         }
@@ -689,7 +689,7 @@ private fun geoCode(location: Location){
 
 ### À faire
 
-Je vous laisse implémenter le code… N'hésiter pas à reprendre le « graph » il vous sera utile pour déterminer qu'elle méthode appeler en premier lors de l'appui sur le bouton « Localiser Moi ». Un petit indice… on commence toujours par vérifier si l'application a le droit d'accéder « à la fonctionnalité ».
+Je vous laisse implémenter le code… N'hésitez pas à reprendre le « graph » il vous sera utile pour déterminer quelle méthode appeler en premier lors de l'appui sur le bouton « Localiser Moi ». Un petit indice… on commence toujours par vérifier si l'application a le droit d'accéder « à la fonctionnalité ».
 
 ::: tip La toolbar
 Pour activer l'action retour dans la Toolbar d'une activité. **Vous devez** ajouter le code suivant dans le `OnCreate` :
@@ -702,7 +702,7 @@ supportActionBar?.apply {
 }
 ```
 
-Puis vous devez override la méthode `onSupportNavigateUp` qui est appelée lors de l'appui sur le « l'icône retour »:
+Puis vous devez override la méthode `onSupportNavigateUp` qui est appelée lors de l'appui sur « l'icône retour » :
 
 ```kotlin
 override fun onSupportNavigateUp(): Boolean {
@@ -715,7 +715,7 @@ override fun onSupportNavigateUp(): Boolean {
 
 ::: details Voir une solution complète
 
-Vous séchez ? \__Je vous invite à me demander avant de regarder la solution…_ cependant, si vous souhaitez par contre vérifier votre solution.
+Vous séchez ? _Je vous invite à me demander avant de regarder la solution…_ cependant, si vous souhaitez par contre vérifier votre solution.
 
 [Sachez que vous avez une version du code ici](https://gist.github.com/c4software/a3fa7f584a464a6308648b7fcce28add)
 
@@ -731,7 +731,7 @@ Mais dans les grandes lignes :
 
 - Ajouter une nouvelle activité.
 - Ajout d'un bouton sur la home permettant de la lancer.
-- Dans la nouvelle activity, un RecyclerView qui contiendra « des éléments de type Strings ». (`<androidx.recyclerview.widget.RecyclerView android:layout_width="wrap_content"android:layout_height="wrap_content" …`)
+- Dans la nouvelle activity, un RecyclerView qui contiendra « des éléments de type Strings ». (`<androidx.recyclerview.widget.RecyclerView android:layout_width="wrap_content" android:layout_height="wrap_content" …`)
 - Chaque élément de la liste doit ressembler à (je vous laisse créer le fichier nommé `item_list.xml` dans les layouts).
 
 ![List Item Layout](./ressources/layout_list_item.png)
@@ -782,7 +782,7 @@ Je vous laisse créer une nouvelle activité. Celle-ci **doit être** constitué
   - Un lien vers le Google Maps de l'école.
 
 ::: danger Votre RecyclerView
-Votre RecyclerView va contenir des objets du type SettingsItem (class a créé). Chaque élément va ressembler à :
+Votre RecyclerView va contenir des objets du type SettingsItem (class à créer). Chaque élément va ressembler à :
 
 _Exemple d'un élément de liste :_
 
@@ -790,7 +790,7 @@ _Exemple d'un élément de liste :_
 
 ![ressources list_item_sample.png](./ressources/rv_sample_settings.png)
 
-_Les objet de type `SettingsItem.kt`_:
+_Les objets de type `SettingsItem.kt`_ :
 
 ```kotlin
 // Définition de la Class qui sera dans notre RecyclerView
@@ -817,7 +817,7 @@ val mesItems = arrayOf(
 // Je vous laisse implémenter votre ViewHolder, pour référencer dans votre vue (via des findViewById comme vus ensemble)
 // -> name
 // -> icon
-// -> l'action aux cliques
+// -> l'action aux clics
 ```
 
 :::
@@ -833,7 +833,7 @@ supportActionBar?.apply {
 }
 ```
 
-Puis vous devez override la méthode `onSupportNavigateUp` qui est appelée lors de l'appui sur le « l'icône retour »:
+Puis vous devez override la méthode `onSupportNavigateUp` qui est appelée lors de l'appui sur « l'icône retour » :
 
 ```kotlin
 override fun onSupportNavigateUp(): Boolean {
@@ -846,7 +846,7 @@ override fun onSupportNavigateUp(): Boolean {
 
 ### La classe LocalPreferences (AKA Sauvegarder des paramètres)
 
-Cette classe va nous permettre de sauvegarder de manière « persistant » des paramètres.
+Cette classe va nous permettre de sauvegarder de manière « persistante » des paramètres.
 
 ```kotlin
 
@@ -925,6 +925,6 @@ J'aimerais que nous puissions sauvegarder l'ensemble des positions de l'utilisat
 
 :::
 
-- Modifier votre activity « Localisation » pour sauvegarder chaque position « détecté ». (vous pouvez valider la bonne insertion de votre donnée via un point d'arrêt dans votre code)
-- Créer une nouvelle `activity` qui va afficher l'ensemble des données présent dans votre historique (via un `RecyclerView`).
+- Modifier votre activity « Localisation » pour sauvegarder chaque position « détectée ». (vous pouvez valider la bonne insertion de votre donnée via un point d'arrêt dans votre code)
+- Créer une nouvelle `activity` qui va afficher l'ensemble des données présentes dans votre historique (via un `RecyclerView`).
 - Rendre cette nouvelle activity accessible depuis « la home de votre application ». (uniquement s’il y a des données).

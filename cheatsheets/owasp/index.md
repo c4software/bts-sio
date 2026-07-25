@@ -24,7 +24,7 @@ Prévenir plutôt que guérir… Quelques sites à surveiller :
 Vous êtes la première ligne d’informations !
 :::
 
-## Les grande catégories 
+## Les grandes catégories
 
 - **Confidentialité** : Risque de divulgation d’informations sensibles (ex. fuite de données personnelles).
 - **Intégrité** : Risque de modification non autorisée de données ou de code (ex. injection SQL, XSS).
@@ -39,7 +39,7 @@ Vous êtes la première ligne d’informations !
 
 ::: danger Le risque ?
 
-Le risque est la multiplication des failles. Plus vous avez de failles, plus vous avez de risques. C'est là que la sécurité devient un enjeu majeur. Car plus le nombre de failles est importantes plus **la surface d'attaque** est grande.
+Le risque est la multiplication des failles. Plus vous avez de failles, plus vous avez de risques. C'est là que la sécurité devient un enjeu majeur. Car plus le nombre de failles est important, plus **la surface d'attaque** est grande.
 
 :::
 
@@ -57,7 +57,7 @@ Un serveur mal configuré (ports ouverts, services non sécurisés, etc.) a une 
 
 Réduire la surface d'attaque est un enjeu majeur en sécurité informatique. Réduire la surface d'attaque implique de minimiser les points d'entrée.
 
-## L'authentication
+## L'authentification
 
 Il est possible de sécuriser l'authentification de plusieurs manières :
 
@@ -71,7 +71,7 @@ Il est possible de sécuriser l'authentification de plusieurs manières :
 
 Zoom sur les mots de passe :
 
-- Un mot de passe ne doit jamais être stocké en claire.
+- Un mot de passe ne doit jamais être stocké en clair.
 - Un mot de passe doit être haché (non réversible).
 - Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
 - Un mot de passe seul n'est souvent pas suffisant (Double authentification).
@@ -97,16 +97,16 @@ Le salage est une technique qui permet d’ajouter une chaîne aléatoire au mot
 Le bcrypt est un algorithme de hachage qui :
 
 - Intègre le sel.
-- Intègre un coût (nombre d'itération). Plus le coût est élevé, plus le hachage est long (et donc plus sécurisé).
+- Intègre un coût (nombre d'itérations). Plus le coût est élevé, plus le hachage est long (et donc plus sécurisé).
 - Est basé sur l'algorithme de chiffrement Blowfish (et non SHA-256).
 
 ## Résumé :
 
 Les mots de passe :
 
-- Un mot de passe ne doit jamais être stocké en claire. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
-- Le sel peut-être différent pour chaque utilisateur ou global pour tous les utilisateurs. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe.
-- Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (SHA-256).
+- Un mot de passe ne doit jamais être stocké en clair. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
+- Le sel peut être différent pour chaque utilisateur ou global pour tous les utilisateurs. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe.
+- Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (basé sur Blowfish, et non SHA-256).
 
 ## Authentification à plusieurs facteurs
 
@@ -125,7 +125,7 @@ Des **outils** :
 
 Mais surtout c'est :
 
-- Permets de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
+- Permet de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
 - Via un secret partagé entre la personne **physique** et le site.
 
 ### Les impacts liés à la sécurité
@@ -259,7 +259,7 @@ Au passage, si vous écrivez :
 
 ```php
 $id = $_GET['id'];
-$maRequete = "SELECT * FROM client WHERE id='{$id}'"
+$maRequete = "SELECT * FROM client WHERE id='{$id}'";
 ```
 
 ⚠️ C'est aussi une faille, celle-ci est identique à la précédente.
@@ -278,7 +278,7 @@ $maRequete->execute(['id' => $_GET['id']]);
 
 ### Violation de Gestion d’Authentification et de Session
 
-Risque de casser / usurper une authentification ou une session. Comprends notamment le vol de session ou la récupération de mots de passe.
+Risque de casser / usurper une authentification ou une session. Comprend notamment le vol de session ou la récupération de mots de passe.
 
 Une session en paramètre GET == ⚠️. Si vous partagez le lien, n'importe qui pourra obtenir votre accès !
 
@@ -294,9 +294,9 @@ http://exemple.com/?jsessionid=A2938298D293
 
 ### Cross-Site Scripting (XSS)
 
-Risque d'injection de contenu dans une page pour but de provoquer des actions non désirées dans celle-ci.
+Risque d'injection de contenu dans une page dans le but de provoquer des actions non désirées dans celle-ci.
 
-Les failles XSS sont particulièrement répandues parmi les failles de sécurités Web.
+Les failles XSS sont particulièrement répandues parmi les failles de sécurité Web.
 
 Exécution de code JavaScript sans validation. Le risque ici est qu'il est possible de changer le comportement initialement attendu pour en détourner le sens.
 
@@ -304,7 +304,7 @@ Exécution de code JavaScript sans validation. Le risque ici est qu'il est possi
 Votre Nom : <input type="text" name="nom" value="" />
 ```
 
-```js
+```php
 echo "Bonjour " . $_POST['nom'];
 ```
 
@@ -322,7 +322,7 @@ Le code sera exécuté dans le navigateur de l'utilisateur lors de l'affichage d
 
 Deux types sont à connaître :
 
-- XSS Persistant (stocké en base de données, dans un logs, et exécuté à chaque affichage de la page)
+- XSS Persistant (stocké en base de données, dans un log, et exécuté à chaque affichage de la page)
 - XSS Reflété (via un lien)
 
 #### Comment corriger ?
@@ -363,7 +363,7 @@ $stmt->bindParam(1, $mode);
 
 ::: tip Requête préparée
 
-Vous noterez ici que nous avons une requête « préparé » ça n'empêche pas le danger…
+Vous noterez ici que nous avons une requête « préparée », ça n'empêche pas le danger…
 
 :::
 
@@ -384,7 +384,7 @@ if ($_SESSION['mode'] == 'client') {
 
 ### Mauvaise configuration Sécurité
 
-Corresponds aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
+Correspond aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
 
 - Console d’administration disponible sans authentification en ligne.
 - Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
@@ -442,7 +442,7 @@ Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
 
 - Rejeu de requête déjà joué.
 - Attaque de type brute force.
-- Exécution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tierce).
+- Exécution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tiers).
 
 ::: tip Comment le bloquer ?
 
@@ -482,7 +482,7 @@ Failles liées à l’utilisation de composants tiers vulnérables.
 
 ### Redirections et Renvois non validés
 
-Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante
+Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante.
 
 - Utilisation de votre site comme « masque » dans du phishing
 

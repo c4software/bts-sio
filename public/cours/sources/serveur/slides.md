@@ -366,7 +366,7 @@ Le cloud, c'est « juste » l'ordinateur d'un autre.
 
 ## Et si vous pensiez plus petit ?
 
-Les raspberry pi sont des ordinateurs à 35€. Ils peuvent être utilisés comme serveur.
+Les Raspberry Pi sont des ordinateurs à 35€. Ils peuvent être utilisés comme serveur.
 
 ---
 
@@ -385,7 +385,7 @@ Créer un serveur à domicile permet réellement de progresser.
 
 ## Un bon moyen de se familiariser avec la notion de serveur.
 
-Essayer d'être curieux, en code oui, mais aussi sur les serveurs.
+Essayez d'être curieux, en code oui, mais aussi sur les serveurs.
 
 ---
 
@@ -415,13 +415,13 @@ Les ports vont permettre de rendre accessible le service depuis l'extérieur (de
 
 ---
 
-- **Les utilisateurs** : Une machine == au moins un utilisateur le **root**.
+- **Les utilisateurs** : Une machine == au moins un utilisateur, le **root**.
 
-Pour respecter les bonnes pratiques, il est préférable de créer un utilisateur dédié à chaque service. Nous utiliserons l'approche du moindre privilège pour réstreindre les accès, et utiliser sudo pour les accès administratifs.
+Pour respecter les bonnes pratiques, il est préférable de créer un utilisateur dédié à chaque service. Nous utiliserons l'approche du moindre privilège pour restreindre les accès, et utiliser sudo pour les accès administratifs.
 
 ---
 
-- **Les services** : Ce sont définition des applications qui vont tourner en arrière-plan.
+- **Les services** : Ce sont par définition des applications qui vont tourner en arrière-plan.
 
 Par exemple, un serveur Web, un serveur de base de données, etc.
 
@@ -437,7 +437,7 @@ Par exemple, Apache, MySQL, etc.
 
 ---
 
-- **Les données** : Ce sont des fichiers exemple le code source de vos applications, ou encore les données de la base de données.
+- **Les données** : Ce sont des fichiers, par exemple le code source de vos applications, ou encore les données de la base de données.
 
 ---
 
@@ -475,7 +475,7 @@ Penser sécurité dès le début.
 
 ## Rappel SSHD
 
-- `permitrootlogin no`
+- `PermitRootLogin no`
 - `PasswordAuthentication no`
 - `PubkeyAuthentication yes`
 - `AllowUsers vbrosseau`
@@ -586,8 +586,8 @@ Les ports 80, 443, 8080, 8443 sont les ports par défaut du web… **Mais vous p
 ## Les noms de domaine
 
 - Payant (ou interne à l'organisation).
-- Permets segmenter les services. (Exemple : `api.example.com`).
-- Permets de rendre accessible le service depuis l'intérieur.
+- Permet de segmenter les services. (Exemple : `api.example.com`).
+- Permet de rendre accessible le service depuis l'intérieur.
 - Un nom de domaine = une infinité de sous-domaines sur un port unique (Exemple : `api.example.com`, `api.dev.example.com`, `api.prod.example.com`).
 
 ---
@@ -687,9 +687,9 @@ Pour MariaDB, vous le connaissez ?
 
 Comme pour l'accès au serveur, nous allons privilégier l'approche du moindre privilège pour les accès à la base de données.
 
-- Un utilisateur par pour chaque application.
+- Un utilisateur pour chaque application.
 - Un utilisateur avec des droits limités (SELECT, INSERT, UPDATE, DELETE).
-- Comme pour l'accès root interdit sur le serveur, interdit l'accès root à la base de données.
+- Comme pour l'accès root interdit sur le serveur, interdire l'accès root à la base de données.
 
 ---
 
@@ -730,7 +730,7 @@ Il existe au minimum deux types d'environnements :
 
 - Un serveur distant.
 - Accessible par les utilisateurs.
-- Ne dois jamais être en panne.
+- Ne doit jamais être en panne.
 
 ---
 
@@ -742,7 +742,7 @@ Deux ? Non… Trois !
 
 - Un serveur distant.
 - Accessible par les développeurs.
-- Permets de valider les changements avant la production.
+- Permet de valider les changements avant la production.
 
 ---
 
@@ -799,11 +799,11 @@ C'est ce que l'on appelle une **stack** (ou pile logicielle).
   </p>
 
   <p>
-    Elle peut-être <b>local</b> (sur votre ordinateur) ou <b>distante</b> (sur un serveur).
+    Elle peut être <b>locale</b> (sur votre ordinateur) ou <b>distante</b> (sur un serveur).
   </p>
 
   <p>
-    Elle peut-être de <b>développement<b>, <b>recette</b> ou de <b>production</b>.
+    Elle peut être de <b>développement</b>, <b>recette</b> ou de <b>production</b>.
   </p>
 </fieldset>
 

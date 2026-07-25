@@ -18,7 +18,7 @@ Ce document présente l'équivalence entre une représentation UML et la syntaxe
 
 ## Multiplicité
 
-![Les multiplicité](./res/multiplicite.jpg)
+![Les multiplicités](./res/multiplicite.jpg)
 
 ## La navigabilité
 
@@ -101,9 +101,9 @@ class SimpleClass
 ?>
 ```
 
-## Une personne possède une ou des voiture
+## Une personne possède une ou des voitures
 
-![La classe Caserne & Pompier](./res/uml_simple_multiplicite.png)
+![La classe Personne & Voiture](./res/uml_simple_multiplicite.png)
 
 ```php
 class Voiture {
@@ -114,19 +114,19 @@ class Voiture {
 
     function __construct($nombreKm, $date, $lePropriétaire){
         $this->nombreKm = $nombreKm;
-        $this->annéeFabrication = $annéeFabrication;
+        $this->annéeFabrication = $date;
         $this->lePropriétaire = $lePropriétaire;
     }
 
     function __construct($nombreKm, $date){
         $this->nombreKm = $nombreKm;
-        $this->annéeFabrication = $annéeFabrication;
+        $this->annéeFabrication = $date;
     }
 
     // Reste des méthodes
 
     function affecterPropriétaire(Personne $p){
-        $this->lePropriétaire = $p
+        $this->lePropriétaire = $p;
     }
 }
 
@@ -143,12 +143,12 @@ class Personne {
     }
 
     function presenter(){
-        return $this->nom . " " . $ths->prenom;
+        return $this->nom . " " . $this->prenom;
     }
 }
 ```
 
-## Un enseignant stagiaire à un Tuteur
+## Un enseignant stagiaire a un Tuteur
 
 ![La classe Enseignant et la récursive avec un Tuteur de type enseignant](./res/uml_recursive.png)
 
@@ -156,7 +156,7 @@ class Personne {
 class Enseignant {
     private string $nom;
     private string $prenom;
-    private Enseignant unTuteur;
+    private Enseignant $unTuteur;
 
     function __construct($nom, $prenom, $tuteur){
         $this->nom = $nom;
@@ -171,7 +171,7 @@ class Enseignant {
 }
 ```
 
-⚠️ Nous avons ici une récursive, une classe qui possède une propriété du même type à l'intérieur. **(Autre exemple, un Client possède un Parrain de type Client)**
+⚠️ Nous avons ici une relation récursive, une classe qui possède une propriété du même type à l'intérieur. **(Autre exemple, un Client possède un Parrain de type Client)**
 
 ## Classe Caserne & lien avec Pompier & collection de camions
 
@@ -279,12 +279,12 @@ $etudiant->toString(); // Affiche « Valentin, 34, 0X… »
 class Personne {
     private nom;
     public age;
-    private lesAdresses = []
+    private lesAdresses = [];
 
     function __construct($nom, $age, $lesAdresses){
         $this->nom = $nom;
         $this->age = $age;
-        $this->$lesAdresses = $lesAdresses;
+        $this->lesAdresses = $lesAdresses;
     }
 
     function estMajeur(){
@@ -301,13 +301,13 @@ class Etudiant extends Personne {
     }
 
     function toString(){
-        return "{$this->nom}, {$this->age}, {$this->ine}, Nombre d'adresse => {count($this->lesAdresses)}";
+        return "{$this->nom}, {$this->age}, {$this->ine}, Nombre d'adresses => {count($this->lesAdresses)}";
     }
 }
 
 $etudiant = new Etudiant("0X…", "Valentin", 34, [new Adresse("YOLO", "Angers")]);
 $etudiant->estMajeur(); // Appel d'une méthode du parent => True
-$etudiant->toString(); // Affiche « Valentin, 34, 0X…, Nombre d'adresse => 1»
+$etudiant->toString(); // Affiche « Valentin, 34, 0X…, Nombre d'adresses => 1 »
 ```
 
 ## Cas complet
@@ -412,7 +412,7 @@ class Enseignant extends Personne
     private $salaire = 0;
 
     public function printInfo() {
-        return $this->nom . " => " . $this->$salaire;
+        return $this->nom . " => " . $this->salaire;
     }
 }
 
@@ -421,7 +421,7 @@ class Etudiant extends Personne
     private $INE = "";
 
     public function printInfo() {
-        return $this->INE . " => " . $this->$nom;
+        return $this->INE . " => " . $this->nom;
     }
 }
 ```
@@ -470,7 +470,7 @@ class TapePlayer implements Player, Recorder{
     // Vous avez ici des éléments propres à un
     // lecteur cassette. Mais la DOUBLE implémentation
     // FORCERA à déclarer au moins les 4 méthodes suivantes
-    // + La méthode record de l'interface REcorder
+    // + La méthode record de l'interface Recorder
 
     public function record() {
         // Implémentation de la méthode

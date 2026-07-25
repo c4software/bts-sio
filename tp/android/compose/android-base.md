@@ -12,7 +12,7 @@ Dans ce TP, nous allons découvrir Android Compose, la nouvelle façon de créer
 
 Nous allons y découvrir les bases de Compose, comment créer des interfaces, comment gérer les états, et comment interagir avec les utilisateurs.
 
-L'objectif est de vous donner les clefs pour réaliser le projet final de ce cours : Une application Android qui dialogue avec un périphérique Bluetooth (BLE).
+L'objectif est de vous donner les clefs pour réaliser le projet final de ce cours : une application Android qui dialogue avec un périphérique Bluetooth (BLE).
 
 ::: tip Note importante
 
@@ -24,7 +24,7 @@ Elle va surtout nous servir à comprendre comment fonctionne Compose, et comment
 
 :::
 
-## Fonctionnement de Android
+## Fonctionnement d'Android
 
 Android est une plateforme mobile développée par Google. Elle repose sur un noyau Linux et est globalement utilisée pour des smartphones et des tablettes.
 
@@ -44,12 +44,12 @@ Android étant relativement ancien, beaucoup d'éléments reposent sur du XML. C
 
 ### Sécurité
 
-Lors de l'installation d'une application Android. Techniquement, l'application est isolée des autres applications :
+Lors de l'installation d'une application Android, techniquement, l'application est isolée des autres applications :
 
 - Utilisation de permissions pour accéder à des ressources.
 - Isolation des applications (sandbox).
 - Sécurité des données (chiffrement, etc.).
-- Permissions pour accéder à des ressources (caméra, contacts, localisation, etc).
+- Permissions pour accéder à des ressources (caméra, contacts, localisation, etc.).
 
 ::: tip Signature
 
@@ -73,13 +73,13 @@ Il est très performant et permet de créer des interfaces fluides et réactives
 
 ::: tip Performances
 
-Seul les composants qui ont changé sont mis à jour, ce qui permet d'optimiser les performances.
+Seuls les composants qui ont changé sont mis à jour, ce qui permet d'optimiser les performances.
 
 :::
 
 ### Multiplateforme
 
-Avec Compose, il est également possible de créer des interfaces pour d'autres plateformes (Web, Desktop, iOS.). Plusieurs approches sont possibles :
+Avec Compose, il est également possible de créer des interfaces pour d'autres plateformes (Web, Desktop, iOS). Plusieurs approches sont possibles :
 
 Trois termes à retenir :
 
@@ -106,17 +106,17 @@ Je vous laisse suivre les étapes de création d'un nouveau projet.
 
 - Le choix du package est très important. Comme nous avons vu ensemble en cours, le « Package » doit être unique. En effet deux applications ne peuvent pas avoir le même.
 - Choisir un min SDK qui correspond aux cibles des mobiles souhaités. (Si vous êtes en France ou dans un autre pays, il conviendra de faire le bon choix).
-- Kotlin est maintenant le langage à choisir, Java et Kotlin cohabite sans problème vous n'aurez donc aucun problème de compatibilité.
+- Kotlin est maintenant le langage à choisir, Java et Kotlin cohabitent sans problème, vous n'aurez donc aucun problème de compatibilité.
 
 :::
 
 ### L'émulateur
 
-Comme vu ensemble pendant le cours, l'émulateur va nous permettre de tester « simplement » notre application avec des performances _suffisantes dans les cas simples_. La création de celui-ci est intégrée à Android Studio. Dans Android Studio la partie émulateur s'appelle Device Manager et est disponible dans le menu. `tools`
+Comme vu ensemble pendant le cours, l'émulateur va nous permettre de tester « simplement » notre application avec des performances _suffisantes dans les cas simples_. La création de celui-ci est intégrée à Android Studio. Dans Android Studio la partie émulateur s'appelle Device Manager et est disponible dans le menu `tools`.
 
 ![AVD](./img/avd.jpg)
 
-Pour le choix du type de devices vous êtes libres… Mais le mieux est de choisir un « template de mobile » assez représentatif de ce que l'on trouve chez les clients. Un bon choix est par exemple un « Pixel 6a » avec Android Oreo.
+Pour le choix du type de devices vous êtes libres… Mais le mieux est de choisir un « template de mobile » assez représentatif de ce que l'on trouve chez les clients. Un bon choix est par exemple un « Pixel 6a » avec Android 14.
 
 ::: tip
 
@@ -161,11 +161,11 @@ Un projet Android est composé de plusieurs dossiers :
 - `app` : C'est le dossier principal de l'application. Il contient le code source, les ressources, les fichiers de configuration, etc.
 - `build` : C'est le dossier où sont stockés les fichiers générés par Gradle lors de la compilation de l'application.
 - `gradle` : C'est le dossier où sont stockés les fichiers de configuration de Gradle.
-- `res` : C'est le dossier où sont stockées les ressources de l'application (images, fichiers XML, etc). Nous avons dans ce dossier plusieurs sous-dossiers :
+- `res` : C'est le dossier où sont stockées les ressources de l'application (images, fichiers XML, etc.). Nous avons dans ce dossier plusieurs sous-dossiers :
   - `drawable` : C'est le dossier où sont stockées les images.
   - `layout` : C'est le dossier où sont stockés les fichiers XML qui définissent l'interface de l'application.
   - `mipmap` : C'est le dossier où sont stockées les icônes de l'application.
-  - `values` : C'est le dossier où sont stockés les fichiers XML qui définissent les valeurs de l'application (couleurs, dimensions, etc).
+  - `values` : C'est le dossier où sont stockés les fichiers XML qui définissent les valeurs de l'application (couleurs, dimensions, etc.).
 
 ### Les textes
 
@@ -191,7 +191,7 @@ Pour rappel le fichier manifest va nous permettre d'exposer « de la configurati
 
 - Éditer le fichier `AndroidManifest.xml`.
 - Changer le nom de votre application (attention à bien utiliser la mécanique `i18n`).
-- Regarder l'ensemble des paramètres spécifier dans le XML
+- Regarder l'ensemble des paramètres spécifiés dans le XML
 - Tester à nouveau votre application
 
 ::: tip
@@ -208,7 +208,7 @@ Une fois fait, regarder les modifications dans votre projet.
 
 _Notamment :_
 
-- Le fichier `AndroidManifest.xml` est-ce que celui-ci a été modifié ?
+- Le fichier `AndroidManifest.xml`, est-ce que celui-ci a été modifié ?
 - Si oui, quel(s) élément(s) sont différents ?
 - Si non, pouvez-vous me dire pourquoi ?
 
@@ -236,7 +236,7 @@ Nous avons également des composants qui sont là pour définir la structure de 
 - `Box` : Un composant qui permet de créer une boîte.
 - `Spacer` : Un composant qui permet de créer un espace entre deux éléments.
 
-Les composants sont des fonctions que nous allons pouvoir appeler dans notre code. Ils seront appelés au bon moment en fonction de conditions que nous allons définir. Les composants seront imbriquables les uns dans les autres, ce qui nous permettra de créer des interfaces complexe. Par exemple :
+Les composants sont des fonctions que nous allons pouvoir appeler dans notre code. Ils seront appelés au bon moment en fonction de conditions que nous allons définir. Les composants seront imbriquables les uns dans les autres, ce qui nous permettra de créer des interfaces complexes. Par exemple :
 
 ```kotlin
 Column() {
@@ -276,15 +276,15 @@ Column() {
 Cet exemple est là pour vous montrer la puissance de Compose. Compose a été pensé pour être simple et modulaire, par exemple pour un bouton le principe est le même :
 
 ```kotlin
-Button(onClick = { /* Code appelé lors du clique sur le bouton */ }) {
+Button(onClick = { /* Code appelé lors du clic sur le bouton */ }) {
     Text("Mon bouton")
 }
 ```
 
-Ici nous voyons que le composant `Button` prend en paramètre une action (un code qui sera appelé lors du clique sur le bouton) et un composant `Text` qui sera affiché dans le bouton. Pratique ! Et si nous souhaitons un bouton avec un loader ? Et bien c'est simple il suffit de changer le composant `Text` par un composant `CircularProgressIndicator` (qui est un loader).
+Ici nous voyons que le composant `Button` prend en paramètre une action (un code qui sera appelé lors du clic sur le bouton) et un composant `Text` qui sera affiché dans le bouton. Pratique ! Et si nous souhaitons un bouton avec un loader ? Et bien c'est simple il suffit de changer le composant `Text` par un composant `CircularProgressIndicator` (qui est un loader).
 
 ```kotlin
-Button(onClick = { /* Code appelé lors du clique sur le bouton */ }) {
+Button(onClick = { /* Code appelé lors du clic sur le bouton */ }) {
     CircularProgressIndicator()
 }
 ```
@@ -307,21 +307,21 @@ Ou plus largement, nous allons pouvoir définir des tailles par rapport à l'éc
 ```kotlin
 Text(
     text = "Hello World",
-    modifier = Modifier.fillMaxWidth() // Rempli toute la largeur de l'écran
+    modifier = Modifier.fillMaxWidth() // Remplit toute la largeur de l'écran
 )
 ```
 
 ```kotlin
 Text(
     text = "Hello World",
-    modifier = Modifier.fillMaxHeight() // Rempli toute la hauteur de l'écran
+    modifier = Modifier.fillMaxHeight() // Remplit toute la hauteur de l'écran
 )
 ```
 
 ```kotlin
 Text(
     text = "Hello World",
-    modifier = Modifier.fillMaxSize() // Rempli toute la taille de l'écran
+    modifier = Modifier.fillMaxSize() // Remplit toute la taille de l'écran
 )
 ```
 
@@ -329,7 +329,7 @@ Text(
 
 Le `Modifier` est disponible sur tous les composants. Il permet de modifier le comportement du composant (taille, couleur, etc.). Nous verrons plus en détail le `Modifier` plus tard.
 
-Vous pouvez le découvrir en utilisant l'autocomplétion de votre IDE. Point important, il est également chaînable. Ce qu'il signifie que vous pouvez enchaîner plusieurs modificateurs les uns après les autres, exemple :
+Vous pouvez le découvrir en utilisant l'autocomplétion de votre IDE. Point important, il est également chaînable. Ce qui signifie que vous pouvez enchaîner plusieurs modificateurs les uns après les autres, exemple :
 
 ```kotlin
 Text(
@@ -400,13 +400,13 @@ Column {
         Text("Visible")
     }
 
-    AnimatedContent(targetState = count) { targetState ->
+    AnimatedContent(targetState = counter) { targetState ->
         Text(text = "Count: $targetState")
     }
 }
 ```
 
-Dans cet exemple, nous avons un compteur qui va être incrémenté lors du clique sur le bouton. Lorsque le compteur est supérieur à 0, le texte « Visible » va apparaître avec une animation. Et le texte « Count: $targetState » va être mis à jour avec une animation.
+Dans cet exemple, nous avons un compteur qui va être incrémenté lors du clic sur le bouton. Lorsque le compteur est supérieur à 0, le texte « Visible » va apparaître avec une animation. Et le texte « Count: $targetState » va être mis à jour avec une animation.
 
 ::: tip C'est pour vous
 
@@ -432,7 +432,7 @@ Ce TP est guidé, vous n'avez pas à « apprendre la documentation », par contr
 
 ## Définir notre layout / composant
 
-Maintenant que nous avons vu, les bases du fonctionnement de compose (et que vous avez observé le code de l'application de base), nous allons pouvoir commencer à définir notre propre layout.
+Maintenant que nous avons vu les bases du fonctionnement de Compose (et que vous avez observé le code de l'application de base), nous allons pouvoir commencer à définir notre propre layout.
 
 Dans un premier temps, nous allons modifier le composant `Greeting` pour qu'il affiche « autre chose ». Il va devenir en quelque sorte notre composant principal (`home`).
 
@@ -537,7 +537,7 @@ Pour cette première fois, je vais vous donner le code complet (profitez-en, ce 
 @Composable
 fun Home(){
     Column(
-        modifier = Modifier.padding(innerPadding)
+        modifier = Modifier.fillMaxSize()
     ) {
         Spacer(modifier = Modifier.weight(1f))
 
@@ -601,9 +601,9 @@ Text(
 ##### Exemple les dimensions
 
 ```kotlin
-Modifier.fillMaxWidth() // Rempli la largeur
-Modifier.fillMaxHeight() // Rempli la hauteur
-Modifier.fillMaxSize() // Rempli la taille
+Modifier.fillMaxWidth() // Remplit la largeur
+Modifier.fillMaxHeight() // Remplit la hauteur
+Modifier.fillMaxSize() // Remplit la taille
 ```
 
 ---
@@ -626,7 +626,7 @@ Text(text = content, fontWeight = FontWeight.Light, fontSize = 10.sp)
 Les ressources sont un élément important d'une application Android. Elles peuvent être de plusieurs types :
 
 - `drawable` : Les images.
-- `miap` : Les icônes.
+- `mipmap` : Les icônes.
 - `values` : Les valeurs (couleurs, textes, dimensions, etc.).
 
 ### Les images
@@ -637,7 +637,7 @@ Je vous laisse chercher le logo de l'ESEO, et l'ajouter à votre application (un
 
 #### À faire
 
-Placer l'image dans le dossier `res/drawable/`. Puis ajouter le au-dessus de votre `Text` qui est actuellement au centre de votre `Column`.
+Placer l'image dans le dossier `res/drawable/`. Puis l'ajouter au-dessus de votre `Text` qui est actuellement au centre de votre `Column`.
 
 ```kotlin
 Image(
@@ -674,7 +674,7 @@ fun MyButton(onClick: () -> Unit) {
 
 :::
 
-Intéragir avec l'utilisateur est un élément clé d'une application. Sur Android, au-delà dès `onClick` que nous avons vu, nous avons également accès à d'autres interactions :
+Interagir avec l'utilisateur est un élément clé d'une application. Sur Android, au-delà du `onClick` que nous avons vu, nous avons également accès à d'autres interactions :
 
 - **Toast** : Un message qui s'affiche à l'écran.
 - **Snackbar** : Un message qui s'affiche en bas de l'écran.
@@ -684,7 +684,7 @@ Intéragir avec l'utilisateur est un élément clé d'une application. Sur Andro
 
 Je ne le répéterai jamais assez, l'internationalisation est un élément important d'une application. Android Studio propose un outil pour gérer les traductions de votre application.
 
-Extraire les textes de votre application est donc un **un incontournable**. Android Studio vous guide pour cela :
+Extraire les textes de votre application est donc **un incontournable**. Android Studio vous guide pour cela :
 
 ![Extract String](./img/base/astuce_extract.png)
 
@@ -739,7 +739,7 @@ Ajouter un toast directement dans le `setContent` de votre `MainActivity` :
 Vous pouvez utiliser la complétion de votre IDE, `toast` puis <kbd>tab</kbd>.
 
 ::: tip
-Les toasts sont rapides et simples à mettre en place. Cependant, ils ne sont pas très beaux. C'est pour ça que nous les utiliserons principalement que pour « les informations de tests ou sans grandes importances ».
+Les toasts sont rapides et simples à mettre en place. Cependant, ils ne sont pas très beaux. C'est pour ça que nous les utiliserons principalement pour « les informations de test ou sans grande importance ».
 :::
 
 Le code à ajouter :
@@ -764,7 +764,7 @@ Documentation : [https://developer.android.com/develop/ui/compose/components/sna
 
 ::: tip Des durées d'affichage différentes
 
-Plusieurs options s'offre à vous :
+Plusieurs options s'offrent à vous :
 
 - `Snackbar.LENGTH_SHORT`
 - `Snackbar.LENGTH_LONG`
@@ -776,7 +776,7 @@ Plusieurs options s'offre à vous :
 
 Pour rappel, le `Context` est un objet qui permet d'accéder à des informations sur l'application. Dans notre cas, nous allons avoir besoin du contexte pour accéder au Bluetooth du téléphone.
 
-Le terme `Context` est un utilisé dans le développement Android pour faire référence à l'environnement dans lequel l'application s'exécute. Il permet d'accéder à des ressources, des services et des informations sur l'application (préférences, ressources, bleuetooth, etc.).
+Le terme `Context` est utilisé dans le développement Android pour faire référence à l'environnement dans lequel l'application s'exécute. Il permet d'accéder à des ressources, des services et des informations sur l'application (préférences, ressources, bluetooth, etc.).
 
 ⚠️ C'est un élément obligatoire. Et une notion importante à comprendre pour le développement Android. Sans `Context`, vous ne pouvez pas accéder aux ressources de l'application, ni aux services du téléphone.
 
@@ -790,19 +790,19 @@ Button(onClick = { /* Action */ }) {
 }
 ```
 
-- `onClick` : L'action à réaliser lors du clique sur le bouton.
+- `onClick` : L'action à réaliser lors du clic sur le bouton.
 
 Ici, nous avons une action vide (en commentaire `/* Action */`). Nous allons maintenant ajouter une action qui va afficher un toast.
 
 ### À faire
 
-Je vous laisse modifier le code pour afficher le toast **uniquement** lors du clique sur le bouton.
+Je vous laisse modifier le code pour afficher le toast **uniquement** lors du clic sur le bouton.
 
 ### Les dialogues
 
 Les dialogues sont des fenêtres qui s'affichent à l'écran. Ils permettent de demander une confirmation à l'utilisateur, de lui demander de saisir des informations, etc.
 
-Elles sont très utilisées dans les applications mobiles, car elles sont très rapides à mettre en place :
+Ils sont très utilisés dans les applications mobiles, car ils sont très rapides à mettre en place :
 
 ```kotlin
 val context = LocalContext.current
@@ -886,7 +886,7 @@ Image(
 )
 ```
 
-Bien que pratique, cette méthode n'est pas la plus propre. En effet, d'un point de vue de l'accéssibilité, il est préférable d'utiliser un bouton.
+Bien que pratique, cette méthode n'est pas la plus propre. En effet, d'un point de vue de l'accessibilité, il est préférable d'utiliser un bouton.
 
 :::
 
@@ -925,7 +925,7 @@ NavHost(
 }
 ```
 
-Dans cet exemple, nous avons un `NavHost` qui contient deux `Screen` : `Screen1` et `Screen2`. `Screen2` Prends un paramètre `name` qui est un `String`.
+Dans cet exemple, nous avons un `NavHost` qui contient deux `Screen` : `Screen1` et `Screen2`. `Screen2` prend un paramètre `name` qui est un `String`.
 
 - `goBack = { navController.popBackStack() }` permet de revenir à l'écran précédent. C'est une fonction de callback que nous allons passer à la `Screen2` pour lui permettre de revenir à l'écran précédent.
 
@@ -988,7 +988,7 @@ Les `Screen` sont des composants comme les autres. Vous pouvez les ranger dans u
 
 ::: danger Des callbacks partout ?
 
-Il est possible que vous trouviez cela « bizarre » d'avoir des callbacks partout. C'est normal, c'est le principe de la programmation avec Compose. Ça nous permet de garder une application simple et modulaire. Et avec des composants réutilisables, indpendants les uns des autres. 
+Il est possible que vous trouviez cela « bizarre » d'avoir des callbacks partout. C'est normal, c'est le principe de la programmation avec Compose. Ça nous permet de garder une application simple et modulaire. Et avec des composants réutilisables, indépendants les uns des autres. 
 
 En effet, les composants ne connaissent pas le contexte dans lequel ils sont utilisés. Ils ne font qu'afficher des données et appeler des actions. C'est à vous de gérer la logique de votre application.
 
@@ -1051,7 +1051,7 @@ Et d'un point de vue code :
 
 Nous avons vu ensemble comment passer des paramètres. Mais le nom `Valentin` est un peu statique. Nous allons voir ensemble comment rendre cet élément dynamique.
 
-- Rendre dynamique le nom saisi dans la le Screen 1.
+- Rendre dynamique le nom saisi dans le Screen 1.
 - À votre avis, comment faire ? Quelle ressource utiliser ?
 
 ## Le scaffold
@@ -1104,11 +1104,11 @@ Votre top-bar est blanche ? C'est normal, nous n'avons pas encore ajouté de th�
 topBar = {
     TopAppBar(
         title = {Text("Top App Bar") }, // Titre de la barre
-        colors = TopAppBarDefaults.smallTopAppBarColors(
+        colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             titleContentColor = MaterialTheme.colorScheme.primary,
         ), // Couleur de la barre
-    ),
+    )
 },
 ```
 
@@ -1116,9 +1116,9 @@ topBar = {
 
 ## Les données
 
-Depuis le début, nous avons globalement travaillé sur des données statique. Android est une plateforme « très ouverte », il est donc très facilement possible de faire « n'importe quoi ».
+Depuis le début, nous avons globalement travaillé sur des données statiques. Android est une plateforme « très ouverte », il est donc très facilement possible de faire « n'importe quoi ».
 
-Dans cette partie nous allons voir l'organisation des données, et surtout l'organinisation du code pour les gérer.
+Dans cette partie nous allons voir l'organisation des données, et surtout l'organisation du code pour les gérer.
 
 Avant de rentrer dans le vif du sujet, voici ce que nous allons réaliser :
 
@@ -1146,7 +1146,7 @@ Quelques points sont à retenir :
 
 ::: tip Découper plus ?
 
-Il est bien évidemment possible de découper d'avantage le code. Par exemple, nous pourrions ajouter un `Repository` ou un `Service` qui va permettre de gérer les données. Mais pour l'instant, nous allons nous concentrer sur le MVVM. Ceux qui ont l'habitude de travailler avec des architectures plus complexes pourront facilement adapter ce modèle.
+Il est bien évidemment possible de découper davantage le code. Par exemple, nous pourrions ajouter un `Repository` ou un `Service` qui va permettre de gérer les données. Mais pour l'instant, nous allons nous concentrer sur le MVVM. Ceux qui ont l'habitude de travailler avec des architectures plus complexes pourront facilement adapter ce modèle.
 
 Ce qu'il faut retenir, c'est que Google vous laisse de la liberté dans l'organisation de votre code, mais recommande fortement le MVVM pour les applications Android.
 
@@ -1154,7 +1154,7 @@ Ce qu'il faut retenir, c'est que Google vous laisse de la liberté dans l'organi
 
 ### La recomposition
 
-Il faut comprendre ici que notre vue sera « recomposée » à chaque fois que nous allons mettre à jours nos données. Nous allons donc devoir gérer des listes qui vont être modifiées en temps réel. Pour ça nous allons utiliser un `MutableStateFlow`, le `MutableStateFlow` sera un flux de données qui va nous permettre de mettre à jour notre liste (visuellement dans notre interface).
+Il faut comprendre ici que notre vue sera « recomposée » à chaque fois que nous allons mettre à jour nos données. Nous allons donc devoir gérer des listes qui vont être modifiées en temps réel. Pour ça nous allons utiliser un `MutableStateFlow`, le `MutableStateFlow` sera un flux de données qui va nous permettre de mettre à jour notre liste (visuellement dans notre interface).
 
 ![Recomposition](./img/base/lifecycle-composition.png)
 
@@ -1175,7 +1175,7 @@ Ici, il faut bien voir que je vous communique une façon correcte de faire. Nous
 
 :::
 
-### Quelques libraires à ajouter
+### Quelques librairies à ajouter
 
 Pour que nous puissions faire notre scan en arrière-plan et échanger les données entre la `View` et le `ViewModel` nous allons avoir besoin de quelques librairies :
 
@@ -1228,7 +1228,7 @@ Créer le fichier `Screen3ViewModel.kt` dans le bon dossier. Et ajouter le code 
 
 ### Création de la `View`
 
-Pour la vue, nous allons procéder différement. Je vais vous montrer le résultat final, et vous allez devoir le reproduire étape par étape.
+Pour la vue, nous allons procéder différemment. Je vais vous montrer le résultat final, et vous allez devoir le reproduire étape par étape.
 
 ![Résultat final](./img/base/mvvm_result.png)
 
@@ -1238,7 +1238,7 @@ Avant de continuer, qu'observez-vous dans l'image ci-dessus ?
 
 - Quels éléments sont présents ?
 - À votre avis, quels sont les composants utilisés ?
-- Combien avons-nous d'actions
+- Combien avons-nous d'actions ?
 
 :::
 
@@ -1315,7 +1315,7 @@ Dans le composant, nous allons observer le flow avec un `collectAsStateWithLifec
 
 ### La TopAppBar
 
-La `TopAppBar` dois permettre dans cet écran de :
+La `TopAppBar` doit permettre dans cet écran de :
 
 - Revenir à l'écran précédent.
 - Afficher le titre de l'écran.
@@ -1382,7 +1382,7 @@ floatingActionButton = {
 ```
 
 - `FloatingActionButton` : Le bouton flottant.
-- `onClick` : L'action à réaliser lors du clique sur le bouton.
+- `onClick` : L'action à réaliser lors du clic sur le bouton.
 - `Icon` : L'icône du bouton.
 
 L'action à réaliser appelle la fonction `addElement` du `ViewModel` avec un élément de la forme `Element ${list.size + 1}`. Cela va permettre d'ajouter un élément à la liste.
@@ -1429,7 +1429,7 @@ Avant de continuer, analysons ensemble ce que nous avons :
 
 ### Organisation du code
 
-Ici, les cards ne sont pas des `Screens` Mais un simple composant, nous allons donc les ranger dans un dossier différent. Pour cela, je vous laisse créer un dossier `components` dans votre dossier `ui`.
+Ici, les cards ne sont pas des `Screens`, mais un simple composant, nous allons donc les ranger dans un dossier différent. Pour cela, je vous laisse créer un dossier `components` dans votre dossier `ui`.
 
 ![Création dossier](./img/base/organisation_list_item.png)
 
@@ -1467,7 +1467,7 @@ Maintenant que vous avez votre liste d'éléments avec un peu de style, je vous 
 
 Nous avons créé des composants simples, mais il est possible d'aller beaucoup plus loin. Par exemple, vous n'avez pas l'impression que votre Scaffold est toujours un peu identique ?
 
-Et oui, c'est toujours un peu là mêmes choses, je vous propose de créer un composant `MyScaffold` qui va permettre de simplifier la création de vos `Screen`.
+Et oui, ce sont toujours un peu les mêmes choses, je vous propose de créer un composant `MyScaffold` qui va permettre de simplifier la création de vos `Screen`.
 
 ![MyScaffold](./img/base/myscaffold.png)
 
@@ -1505,7 +1505,7 @@ fun MyScaffold(title: String, onBackClick: () -> Unit, content: @Composable () -
 
 ### À faire
 
-Je vous laisse mettre à jours vos `Screen1`, `Screen2` pour utiliser ce nouveau composant.
+Je vous laisse mettre à jour vos `Screen1`, `Screen2` pour utiliser ce nouveau composant.
 
 ::: danger Pourquoi pas le `Screen3`
 
@@ -1523,11 +1523,11 @@ Elles sont obligatoires pour accéder à certaines fonctionnalités de l'apparei
 
 ::: danger Point important
 
-L'utilisateur aura toujours le choix d'accepter ou de refuser une permission. Il est donc important de gérer les deux cas. De plus, l'utilisateur peut également changer sont choix à posteriori dans les paramètres de l'application.
+L'utilisateur aura toujours le choix d'accepter ou de refuser une permission. Il est donc important de gérer les deux cas. De plus, l'utilisateur peut également changer son choix a posteriori dans les paramètres de l'application.
 
 Il ne faut donc **jamais** sauvegarder le choix de l'utilisateur dans une base de données ou autre. Il est important de toujours demander la permission à chaque lancement de l'application.
 
-Si l'utilisateur à déjà accepté la permission, la demande sera automatiquement acceptée **et donc invisible pour lui**
+Si l'utilisateur a déjà accepté la permission, la demande sera automatiquement acceptée **et donc invisible pour lui**.
 
 :::
 
@@ -1578,7 +1578,7 @@ Avant de demander les permissions, nous allons devoir les déclarer pour que l'a
 
 Avec Android S, Google a ajouté de nouvelles permissions pour le BLE. Il est donc important de les ajouter pour que votre application fonctionne correctement sur les appareils Android 12 et plus.
 
-C'est permissions vont permettre de demander l'accès au BLE sans demander l'accès à la localisation. Cela permet surtout de ne pas effrayer l'utilisateur avec une demande de permission de localisation (qui souvent est mal perçue).
+Ces permissions vont permettre de demander l'accès au BLE sans demander l'accès à la localisation. Cela permet surtout de ne pas effrayer l'utilisateur avec une demande de permission de localisation (qui souvent est mal perçue).
 
 :::
 
@@ -1596,7 +1596,7 @@ Quelques explications :
 - `toCheckPermissions` : La liste des permissions à vérifier.
 - `permissionState` : L'état des permissions. Cet état va nous permettre de savoir si les permissions sont accordées ou non.
 
-Maintenant que nous avons notre état, nous allons pouvoir l'utiliser pour demander les permissions à l'utilisateur. Pour ça nous allons utiliser un composant nommé `PermissionRequired` :
+Maintenant que nous avons notre état, nous allons pouvoir l'utiliser pour demander les permissions à l'utilisateur. Pour ça, un simple test sur l'état des permissions suffit :
 
 ```kotlin
 if (!permissionState.allPermissionsGranted) {
@@ -1652,7 +1652,7 @@ Pour obtenir la dernière localisation connue de l'appareil, nous allons utilise
 val applicationContext = androidx.compose.ui.platform.LocalContext.current
 
 // Récupérer la dernière localisation connue. C'est une variable mutable
-// c'est à dire que nous allons pouvoir la modifier. Et la vue sera mise à jour
+// c'est-à-dire que nous allons pouvoir la modifier. Et la vue sera mise à jour
 var locationText by remember { mutableStateOf("") }
 
 // Récupérer la position de l'utilisateur. Cette récupération

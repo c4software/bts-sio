@@ -10,7 +10,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## La CSS
 
-Décris la présentation de vos pages Internet
+Décrit la présentation de vos pages Internet
 
 ---
 
@@ -28,7 +28,7 @@ _En français :_ Une feuille de style
 
 - CSS1 1996
 - CSS2 1998 (amélioration de CSS1)
-- CSS3 la version courant (amélioration et fonction type bord arrondi, animation, etc.)
+- CSS3 la version courante (amélioration et fonction type bord arrondi, animation, etc.)
 
 ---
 
@@ -50,7 +50,7 @@ CSS1 est développé pour être un sous-ensemble de CSS2, qui est lui-même dév
 
 ## Plus le navigateur est ancien…
 
-# moins ils ne connaissent de propriétés CSS
+# moins il connaît de propriétés CSS
 
 ---
 
@@ -79,7 +79,7 @@ Nous devons donc vérifier le support.
 
 ## Id ou Class ?
 
-| Selecteur | Usage                                         |
+| Sélecteur | Usage                                         |
 | --------- | --------------------------------------------- |
 | #item     | Élément unique dans votre page                |
 | .rouge    | Class réutilisable (multiple) dans votre code |
@@ -174,7 +174,7 @@ Comment le lire ?
 
 ## En résumé
 
-| Selecteur | Cible                               |
+| Sélecteur | Cible                               |
 | --------- | ----------------------------------- |
 | #item     | Élément avec id `item`              |
 | .item     | Élément(s) avec class `item`        |
@@ -187,17 +187,17 @@ Consulter [une liste plus complète ici](https://www.w3.org/Style/css3-selectors
 
 ---
 
-## Ou déclarer la feuille de style ?
+## Où déclarer la feuille de style ?
 
 - Dans un fichier externe `monfichier.css`. (👍)
-- Dans le document `<style>p {color.red}</style>`.
+- Dans le document `<style>p {color: red}</style>`.
 - Dans l'élément via l'attribut `style=''` `<p style='color: red'>Ceci est rouge</p>`. (🙅‍♂️)
 
 ---
 
 ## Pourquoi choisir la CSS Externe ?
 
-### Permets de partager la CSS entre plusieurs pages.
+### Permet de partager la CSS entre plusieurs pages.
 
 ---
 
@@ -242,7 +242,7 @@ Espacement à l'intérieur de l'élément
 
 ## Margin
 
-Espacement à l'extérieure de l'élément
+Espacement à l'extérieur de l'élément
 
 ---
 
@@ -324,7 +324,7 @@ Identique à la notation en hexadécimal.
 }
 
 .maClass {
-  /* Couleur du bordure */
+  /* Couleur de la bordure */
   border: 1px solid #fafafa;
 }
 ```
@@ -374,7 +374,7 @@ body {
 | --------------------- | -------------------------------------------- |
 | background-attachment | fixed, scroll                                |
 | background-repeat     | no-repeat, repeat-x, repeat-y, repeat        |
-| background-position   | en pixel, ou top, bottom, left, right center |
+| background-position   | en pixel, ou top, bottom, left, right, center |
 
 ---
 
@@ -393,7 +393,7 @@ body {
 
 ---
 
-## Le propriété background est « combinable »
+## La propriété background est « combinable »
 
 ### Ce qui donne
 
@@ -409,7 +409,7 @@ background: url("greta.png") fixed no-repeat center;
 - Font-Style
 - Font-Family
 - Taille du texte (em, rem, px)
-- Les alignements (lef, right, center)
+- Les alignements (left, right, center)
 
 ---
 
@@ -465,14 +465,14 @@ right: 0;
 
 ---
 
-## Flotant
+## Flottant
 
 ![Float left](./res/float-left.png)
 ![Float right](./res/float-right.png)
 
 ---
 
-## Flotant
+## Flottant
 
 ```html
 <html>
@@ -591,7 +591,7 @@ Les pseudo-classes permettent d'appliquer un style à un élément non seulement
 
 ## Analyser / Copier
 
-- Vous avez pour ça « l'inspecteur d'élément ».
+- Vous avez pour ça « l'inspecteur d'éléments ».
 - Aide & Code source
 
 ---
@@ -600,7 +600,7 @@ Les pseudo-classes permettent d'appliquer un style à un élément non seulement
 
 ---
 
-## Le CSS « avancés »
+## Le CSS « avancé »
 
 - Les variables CSS
 - Les animations
@@ -623,14 +623,14 @@ Les pseudo-classes permettent d'appliquer un style à un élément non seulement
 
 ### Les Designs Patterns
 
-- [BEM - BEM - Block Element Modifier](http://getbem.com/)
+- [BEM - Block Element Modifier](http://getbem.com/)
 - [Atomic Design](https://atomicdesign.bradfrost.com/)
 
 ---
 
 ## Écrire moins… Pour gagner plus !
 
-[Le framework Boostrap](/tp/html_css/bootstrap.html)
+[Le framework Bootstrap](/tp/html_css/bootstrap.html)
 
 ---
 

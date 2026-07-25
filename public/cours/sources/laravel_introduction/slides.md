@@ -128,7 +128,7 @@ Le terminal vous fait gagner du temps. Beaucoup.
 
 Deux réflexes dès aujourd'hui :
 
-- `@csrf` dans chaque formulaire (protection anti-rejeu).
+- `@csrf` dans chaque formulaire (protection contre les requêtes forgées, et évite également le rejeu d'une requête).
 - Un **message flash** après le traitement : un message stocké en session, affiché une seule fois.
 
 ---

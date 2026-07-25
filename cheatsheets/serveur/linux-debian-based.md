@@ -4,7 +4,7 @@ description: "Aide mémoire pour configurer un Linux à base Debian."
 
 # Machine à base de Debian
 
-Dans cette aide-mémoire vous trouverez l'ensemble des éléments de base pour configurer un serveur Debian.
+Dans cet aide-mémoire vous trouverez l'ensemble des éléments de base pour configurer un serveur Debian.
 
 ::: details Table des matières
 [[toc]]
@@ -43,7 +43,7 @@ Par la suite vous pourrez vous connecter à la machine sans avoir à rentrer vot
 
 :::
 
-## Emplacement important
+## Emplacements importants
 
 ### Emplacement des fichiers de configuration
 
@@ -98,7 +98,7 @@ La ligne de commande est très puissante. Voici quelques astuces pour vous facil
 
 - La touche `tab` : permet de compléter une commande ou un chemin de fichier.
 - `!!` : permet de répéter la dernière commande.
-- `ctlr + r` : permet de rechercher une commande dans l'historique.
+- `ctrl + r` : permet de rechercher une commande dans l'historique.
 - `échap puis :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
 - `échap puis :q!` : permet de quitter un fichier ouvert avec `vim` sans sauvegarder.
 
@@ -162,10 +162,10 @@ su -
 ```
 
 ::: danger `su -` ?
-L'option `-` permet de passer en `root` et de conserver les variables d'environnement. 
+L'option `-` permet de passer en `root` en chargeant les variables d'environnement de `root`. 
 :::
 
-### Mettre à jour les paquets
+### Mettre à jour la liste des paquets
 
 ```bash
 apt update

@@ -16,7 +16,7 @@ La première étape va être l’installation de NodeJS, la démarche est diffé
 
 - [sous Windows c’est ici](https://nodejs.org/en/download/) prendre la version CURRENT.
 - Sous OSX le plus simple c’est via [Brew](https://brew.sh) `brew install nodejs`.
-- Sous Linux c’est via le gestionnaire de paquet `apt install nodejs`.
+- Sous Linux c’est via le gestionnaire de paquets `apt install nodejs`.
 
 Une fois installé, vous êtes prêt !
 
@@ -73,7 +73,7 @@ L'ensemble du code qui nous intéresse réellement est dans le dossier `src` :
 
 - Un fichier `App.vue` qui est le composant principal de notre application. Nous avons également un fichier `main.ts` qui est le point d'entrée de notre application.
 - Un dossier `components` qui contient tous les composants de notre application (ici nous n'en avons qu'un seul).
-- Un dossier `router` qui contient la configuration de notre routeur (la définition des routes, comment nous y accédons et quel view est utilisé).
+- Un dossier `router` qui contient la configuration de notre routeur (la définition des routes, comment nous y accédons et quelle view est utilisée).
 - Un dossier `layouts` qui contient les layouts de notre application. Layout est un terme qui est utilisé dans le monde du web pour définir une page qui contient d'autres pages. Par exemple, vous pouvez avoir un layout qui contient un header, un footer et un contenu. Le contenu est la page qui est affichée. Le header et le footer sont les mêmes pour toutes les pages.
 - Un dossier `plugins` qui contient les plugins de notre application. Un plugin est un module qui est chargé au démarrage de l'application. Il permet d'ajouter des fonctionnalités à notre application.
 - Un dossier `views` qui contient les vues de notre application. Une vue est un composant qui est affiché dans le layout. C'est le composant qui contient le contenu de la page.
@@ -112,7 +112,7 @@ Le fameux dossier `layouts` que nous avons vu précédemment est utilisé ici. C
 
 Si vous avez regardé correctement le routeur, vous avez vu que la page d'accueil est la page `Home.vue`. C'est donc dans ce fichier que nous allons modifier le contenu de la page d'accueil.
 
-Je vous propose de modifier le contenu de la page d'accueil pour qu'elle celle-ci contienne le nom de l'école ainsi que votre nom et prénom :
+Je vous propose de modifier le contenu de la page d'accueil pour que celle-ci contienne le nom de l'école ainsi que votre nom et prénom :
 
 ```vue
 <template>
@@ -143,7 +143,7 @@ Je vous laisse tester le code ci-dessus dans votre projet.
 
 ::: tip Un instant
 
-Qu'avons nous dans le code précédent :
+Qu'avons-nous dans le code précédent :
 
 - Nous avons un composant `v-container` qui permet de définir un container. C'est un composant qui permet de définir une zone de contenu.
 - Nous avons un composant `v-row` qui permet de définir une ligne.
@@ -154,7 +154,7 @@ Qu'avons nous dans le code précédent :
 
 Et pour le Script ? 
 
-- Nous avons une variable `data` qui contient un tableau de chaîne de caractères. Ce tableau est utilisé dans la directive `v-for` pour afficher les différentes valeurs.
+- Nous avons une variable `data` qui contient un tableau de chaînes de caractères. Ce tableau est utilisé dans la directive `v-for` pour afficher les différentes valeurs.
 
 :::
 
@@ -197,7 +197,7 @@ Vuetify est une librairie très puissante qui permet de gagner un temps fou. Je 
 
 ### Le bouton
 
-[En suivant la documentation](https://next.vuetifyjs.com/en/components/buttons/) ajouter le code *à la place du commentaire « votre code ici »* inséré :
+[En suivant la documentation](https://next.vuetifyjs.com/en/components/buttons/) ajouter le code suivant *à la place du commentaire « votre code ici »* :
 
 ```vue
 <div class="text-center pa-10">
@@ -265,9 +265,7 @@ Ajouter *dans* la balise `<template v-slot:text>` le code suivant :
 La page home contient un bouton qui permet de naviguer vers la page « À propos ». Il est temps de créer cette page. Comme dans le TP routeur nous allons :
 
 - Créer un fichier `About.vue` dans le dossier `src/views`.
-- Créer une nouvelle route dans le fichier `src/router/index.js`. (attention, il faut que celle-ci soit une children de la route principale).
-
-La pr
+- Créer une nouvelle route dans le fichier `src/router/index.ts`. (attention, il faut que celle-ci soit une children de la route principale).
 
 ### La page « À propos »
 
@@ -278,7 +276,7 @@ La page que vous allez créer va contenir :
 - Une timeline (<https://next.vuetifyjs.com/en/components/timelines/>) de type side.
 - Un bouton qui permet de revenir sur la page d'accueil (regardez comment fonctionne le bouton sur la home).
 
-C'est à vous je vous laisse créer la page.
+C'est à vous, je vous laisse créer la page.
 
 ### La route
 
@@ -300,11 +298,11 @@ Je vous laisse écrire la route. Je vous rappelle que celle-ci doit être une `c
 
 Dans le monde du mobile, les menus de navigation sont appelés des `Navigations Drawers`. Ce composant existe également chez Vuetify.
 
-[En utilisant la documentation](https://next.vuetifyjs.com/en/components/navigation-drawers/) implémentée un `Navigation Drawer` dans votre application.
+[En utilisant la documentation](https://next.vuetifyjs.com/en/components/navigation-drawers/) implémentez un `Navigation Drawer` dans votre application.
 
 Je vous propose de l'ajouter pour que celui-ci soit disponible sur toutes les pages de votre application :
 
-- Ajouter votre drawer dans le fichier `View.vue`.
+- Ajouter votre drawer dans le fichier `layouts/default/Default.vue`.
 - Ajouter un bouton qui permet d'ouvrir le `Navigation Drawer`.
 - Ajouter un lien vers la page `À propos` dans le `Navigation Drawer`.
 - Ajouter un lien vers la page `Home` dans le `Navigation Drawer`.

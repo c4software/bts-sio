@@ -120,8 +120,8 @@ Pour vous, c'est quoi ?
 ---
 
 - DAO : « Data Access Object »
-- Défini les méthodes qui accèdent à la donnée
-- Retourne un objet « typé. » (un modèle)
+- Définit les méthodes qui accèdent à la donnée
+- Retourne un objet « typé » (un modèle)
 
 ---
 
@@ -233,7 +233,7 @@ function conditionPermis(age, heureConduite){
     }
 }
 
-permis = conditionsPermis(person.age, lecon.nbHeure);
+permis = conditionPermis(person.age, lecon.nbHeure);
 ```
 
 Est-ce simplifiable ?

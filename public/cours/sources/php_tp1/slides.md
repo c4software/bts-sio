@@ -10,7 +10,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 Vous écrivez du PHP… mais le navigateur, lui, ne reçoit **que du HTML**.
 
-Question : si vous faites « affichez le code source » dans le navigateur, que voyez-vous ?
+Question : si vous faites « afficher le code source » dans le navigateur, que voyez-vous ?
 
 ---
 

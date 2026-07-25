@@ -1,12 +1,12 @@
 ---
-description: L'objectif de cette application est de valider votre maitrise /connaissances des éléments vus ensemble. Dans « ce cahier des charges » vous avez les éléments **minimums** à fournir, **cependant** je vous invite vivement à vous approprier le sujet pour proposer une application originale et qui vous ressemble.
+description: L'objectif de cette application est de valider votre maitrise / connaissances des éléments vus ensemble. Dans « ce cahier des charges » vous avez les éléments **minimums** à fournir, **cependant** je vous invite vivement à vous approprier le sujet pour proposer une application originale et qui vous ressemble.
 ---
 
 # Android base : Projet final
 
-L'objectif de cette application est de valider votre maitrise /connaissances des éléments vus ensemble. Dans « ce cahier des charges » vous avez les éléments **minimums** à fournir, **cependant** je vous invite vivement à vous approprier le sujet pour proposer une application originale et qui vous ressemble.
+L'objectif de cette application est de valider votre maitrise / connaissances des éléments vus ensemble. Dans « ce cahier des charges » vous avez les éléments **minimums** à fournir, **cependant** je vous invite vivement à vous approprier le sujet pour proposer une application originale et qui vous ressemble.
 
-Au dela du rendu et de l'aspect fonctionnel de votre application, je vous invite également à soigner :
+Au-delà du rendu et de l'aspect fonctionnel de votre application, je vous invite également à soigner :
 
 - La qualité de code (indentation, organisation).
 - La mise en place de commentaires (pour faciliter la compréhension).
@@ -18,19 +18,19 @@ L'application à fournir doit contenir **au minimum** les éléments suivants :
 
 - L'icône de l'application doit être personnalisée.
 - Les textes doivent être « i18n » (en Français **et** en Anglais)
-- La structure de votre application doit être rangée en « package », en suivant l'organisation proposé en cours, ou la vôtre si celle-ci montre une organisation compréhensible.
+- La structure de votre application doit être rangée en « package », en suivant l'organisation proposée en cours, ou la vôtre si celle-ci montre une organisation compréhensible.
 - Un « splashscreen » qui s'affiche au minimum 2s. Celui-ci doit être constitué d'une image « logo », et d'un texte indiquant votre nom + prénom ainsi que l'année.
 - Une activity Home avec :
   - Un logo
   - 3 éléments cliquables :
     - Localisation
-    - Historique des localisations précédemment réalisé.
+    - Historique des localisations précédemment réalisées.
     - Paramétrages
 - Une activity Localisation permettant de :
   - Localiser la personne (via le GPS ou le Réseau au choix).
-  - Une fois la localisation obtenue, la distance entre l'école et sa position doit être affichée en **kilomètre**.
+  - Une fois la localisation obtenue, la distance entre l'école et sa position doit être affichée en **kilomètres**.
   - À chaque localisation, à l'aide des **SharedPreferences**, enregistrez la demande pour la lister dans la vue « historique ».
-  - Vous devez gérer correctement le flow permission comme vue ensemble (avec gestion des erreurs)
+  - Vous devez gérer correctement le flow permission comme vu ensemble (avec gestion des erreurs)
 - Une activity Historique :
   - Utilisation d'un **Recyclerview**.
   - Affiche l'historique des positions enregistrées.

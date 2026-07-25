@@ -1,6 +1,6 @@
 # Cordova
 
-### Réaliser des applications mobile grace au Javascript.
+### Réaliser des applications mobiles grâce au Javascript.
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
@@ -135,7 +135,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Pour être honnête…
 
-- L'integration
+- L'intégration
 - Performances 3D
 - Les navigateurs (Internet Explorer…)
 
@@ -168,7 +168,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 - NodeJS
 - npm
-- Le SDK de la plateforme voulu (Android, iOs, …)
+- Le SDK de la plateforme voulue (Android, iOS, …)
 
 ---
 
@@ -225,7 +225,7 @@ Installing "cordova-plugin-camera" for android
 
 ## Ionic
 
-- UI multiplateforme (iOs et Android)
+- UI multiplateforme (iOS et Android)
 - Typescript
 - Structure complexe (?)
 
@@ -273,7 +273,7 @@ Installing "cordova-plugin-camera" for android
 ## Les « .vue »
 
 - Un fichier
-- CSS « scoppé »
+- CSS « scopée »
 - Gestion des évènements
 
 ---
@@ -340,7 +340,7 @@ $ cordova platform add android
 ## « Compiler » la version Web
 
 ```
-$ npm run build # à la racine de projet
+$ npm run build # à la racine du projet
 $ cd cordova_app/ && cordova run
 ```
 

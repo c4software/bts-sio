@@ -47,7 +47,7 @@ class Dog extends Animal {
 
 ---
 
-## Pratique! Mais…
+## Pratique ! Mais…
 
 ### Si l’on souhaite spécialiser et pas remplacer ?
 
@@ -63,7 +63,7 @@ class Animal{
 class Humain extends Animal {
   @Override
   public void bruit(){
-    super.bruit()
+    super.bruit();
     System.out.print(" (Oui mais compréhensible)");
   }
 }
@@ -76,8 +76,8 @@ class Humain extends Animal {
 Que va afficher le programme suivant ?
 
 ```java
-$humain = new Humain();
-$humain.bruit();
+Humain humain = new Humain();
+humain.bruit();
 ```
 
 ---
@@ -90,7 +90,7 @@ abstract class Animal{
 class Humain extends Animal {
   @Override
   public void bruit(){
-    super.bruit()
+    super.bruit();
     System.out.print(" (Oui mais compréhensible)");
   }
 }

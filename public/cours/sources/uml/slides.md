@@ -48,7 +48,7 @@ Spécification de la navigabilité :
 
 ---
 
-### Attributs et des opérations au sein d'une classe
+### Attributs et opérations au sein d'une classe
 
 ![Exemple UML](./res/attribut-visibilite.jpg)
 

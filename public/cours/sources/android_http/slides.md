@@ -8,7 +8,7 @@
 
 ---
 
-- Les appels ne doivent **pas** être fait dans le Thread UI.
+- Les appels ne doivent **pas** être faits dans le Thread UI.
 - Le traitement de l'affichage doit être fait sur le Thread UI.
 
 ---
@@ -57,7 +57,7 @@ implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
 ## GSON
 
-- Sérialisation / Deserialisation automatique entre un JSON et un Objet Java / Kotlin
+- Sérialisation / Désérialisation automatique entre un JSON et un Objet Java / Kotlin
 
 ---
 
@@ -131,7 +131,7 @@ suspend fun writeStatus(@Body status: LedStatus): LedStatus
 ---
 
 [Télécharger le fichier LedStatus.java](https://gist.github.com/c4software/11c170fde7c1f93b0ae9e562856c56a8)
-(À ranger dans le package `….data.modele`.
+(À ranger dans le package `….data.modele`)
 
 ---
 
@@ -144,7 +144,7 @@ suspend fun writeStatus(@Body status: LedStatus): LedStatus
 
 ---
 
-[Télécharge le fichier ApiService.kt](https://gist.github.com/c4software/b3eb79cc5649d12e497dbf6d35649dcd)
+[Télécharger le fichier ApiService.kt](https://gist.github.com/c4software/b3eb79cc5649d12e497dbf6d35649dcd)
 (À ranger dans le package `….data.service`)
 
 ---

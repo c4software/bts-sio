@@ -31,7 +31,7 @@ Nous traiterons de ce sujet plus en détail en 2ème année.
 Il existe plusieurs stratégies de déploiement :
 
 - Déploiement via FTP.
-- Déploiement via SSH (SFPT).
+- Déploiement via SSH (SFTP).
 - Déploiement avec Git.
 
 ### Déploiement via FTP
@@ -44,9 +44,9 @@ Le déploiement via FTP est une stratégie de déploiement très simple. Elle co
 
 De plus, elle nécessite de mettre en place un serveur FTP sur le serveur, ce qui n'est pas forcément le cas.
 
-### Déploiement via SSH (SFPT)
+### Déploiement via SSH (SFTP)
 
-Le déploiement via SSH (autrement appelé SFTP) est une stratégie de déploiement également très répandue. Elle repose sur l'utilisation du serveur SSH déjà présent sur votre serveur. En effet, le serveur SSH permet de commande une machine à distance (via la ligne de commande). Mais le serveur SSH permet aussi de transférer des fichiers, c'est ce que l'on appelle le SFTP (Secure File Transfer Protocol). Cette stratégie présente des avantages par rapport à la stratégie FTP :
+Le déploiement via SSH (autrement appelé SFTP) est une stratégie de déploiement également très répandue. Elle repose sur l'utilisation du serveur SSH déjà présent sur votre serveur. En effet, le serveur SSH permet de commander une machine à distance (via la ligne de commande). Mais le serveur SSH permet aussi de transférer des fichiers, c'est ce que l'on appelle le SFTP (Secure File Transfer Protocol). Cette stratégie présente des avantages par rapport à la stratégie FTP :
 
 - La sécurité : le SFTP utilise le protocole SSH, ce qui permet de chiffrer les échanges.
 - L'absence de service supplémentaire à installer sur le serveur.
@@ -55,7 +55,7 @@ Nous aborderons le SFTP plus en détail dans ce TP / TD.
 
 ### Déploiement avec Git
 
-Utiliser Git pour déployer son code est également une stratégie intéressante. En effet, même si GIT n'est pas fait pour déployer son code, il est possible de détourner son fonctionnement pour déployer son code. Cette stratégie présente plusieurs avantages :
+Utiliser Git pour déployer son code est également une stratégie intéressante. En effet, même si Git n'est pas fait pour déployer son code, il est possible de détourner son fonctionnement pour déployer son code. Cette stratégie présente plusieurs avantages :
 
 - Le code est versionné.
 - Il est possible de revenir en arrière.
@@ -112,13 +112,13 @@ curl -s --head http://localhost:80 | grep "HTTP/1.[01] [23].." && echo "Le serve
 
 Votre serveur doit être accessible depuis votre navigateur. Pour cela, vous devez utiliser l'adresse IP de votre serveur.
 
-## Les virtuals hosts
+## Les virtual hosts
 
-Vu que nous allons déployer deux sites sur un seul serveur, nous allons utiliser les **virtuals hosts**. Les virtuals hosts permettent de définir plusieurs sites sur un seul serveur.
+Vu que nous allons déployer deux sites sur un seul serveur, nous allons utiliser les **virtual hosts**. Les virtual hosts permettent de définir plusieurs sites sur un seul serveur.
 
 ### Créer les dossiers
 
-Nous allons créer deux dossiers dans `/var/www/html` :
+Nous allons créer deux dossiers dans `/var/www` :
 
 ```bash
 mkdir /var/www/siteA
@@ -180,7 +180,7 @@ a2ensite siteB
 
 ::: tip La commande ne fonctionne pas ?
 
-Pour que la commande fonctionne vous devez être en `root` avec les variables d'environnement chargée :
+Pour que la commande fonctionne vous devez être en `root` avec les variables d'environnement chargées :
 
 ```bash
 su -
@@ -220,14 +220,14 @@ En :
 ```apache
 Listen 80
 Listen 8080
-Listen 8888
+Listen 8181
 ```
 
 ::: tip ici nous avons
 
 - `Listen 80` : le port par défaut d'Apache
 - `Listen 8080` : le port sur lequel le site A est accessible
-- `Listen 8888` : le port sur lequel le site B est accessible
+- `Listen 8181` : le port sur lequel le site B est accessible
 
 Si nous voulions ajouter un quatrième site Web, nous aurions donc ajouté une ligne `Listen 8282` dans le fichier `ports.conf`. Ou tout autre port libre sur le serveur.
 
@@ -287,7 +287,7 @@ La procédure sera la suivante sur votre serveur :
 - Installer Git : `apt install git`.
 - Créer un dépôt sur votre machine et le partager sur Github / Gitlab.
 - Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/)).
-- Travailler sur votre machine les pusher régulièrement
+- Travailler sur votre machine et pusher régulièrement.
 - Puller les modifications sur le serveur.
 
 Voilà un exemple complet de procédure **SUR LE SERVEUR** :
@@ -313,7 +313,7 @@ git clone git@gitlab.com:c4software/votre-projet-deja-existant.git .
 # et pusher les modifications régulièrement
 
 # Pour puller les modifications
-cd /var/www/siteA
+cd /var/www/siteB
 git pull
 ```
 

@@ -28,10 +28,10 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Quelques éléments de réponse
 
-- Documentés
+- Documenté
 - **Modulaire**
 - Clair et précis
-- Utilise des termes « **anglais** » / « nommage principalement en Anglais »
+- Utilise des termes « **anglais** » / « nommage principalement en anglais »
 - **Réutilisable**
 - **Évolutif**
 - Découpé pour pouvoir **travailler à plusieurs**
@@ -61,7 +61,7 @@ C'est un code qui permet à une équipe de travailler, et est compréhensible pa
 
 ---
 
-## Pourquoi le point d'entrée unique _est primordiale_ ?
+## Pourquoi le point d'entrée unique _est primordial_ ?
 
 ---
 
@@ -85,7 +85,7 @@ C'est un code qui permet à une équipe de travailler, et est compréhensible pa
 
 ---
 
-Nous allons donc préférer un développement en couche
+Nous allons donc préférer un développement en couches
 
 ---
 
@@ -132,14 +132,14 @@ L'idée est de créer différentes couches à partir des éléments
 ## Le modèle
 
 - Fichier PHP qui va contenir toute la logique de la récupération des données
-- En POO, on essai de créer autant d'objets de que problématique, ici c'est pareil
+- En POO, on essaie de créer autant d'objets que de problématiques, ici c'est pareil
   - Un Objet == une table
 
 ---
 
 ## La Vue
 
-- C'est un Fichier **HTML** ou **PHP**.
+- C'est un fichier **HTML** ou **PHP**.
 - Qui ne contiendra **QUE** la vue de votre page (et uniquement de la page).
 
 ---
@@ -147,12 +147,12 @@ L'idée est de créer différentes couches à partir des éléments
 ## Le Contrôleur
 
 - **Il gère le lien entre « Le(s) Modèle(s) » et « la Vue »**
-- Contiens la logique de votre page **ET NON LA RÉCUPÉRATION DES DONNÉES**
+- Contient la logique de votre page **ET NON LA RÉCUPÉRATION DES DONNÉES**
 - Donc nous aurons ici seulement la logique (**les boucles, les conditions, etc**)
 
 ---
 
-Ce découpage s'appelle un développement en couche.
+Ce découpage s'appelle un développement en couches.
 
 « 3 - Tiers » / « N - Tiers »
 
@@ -174,7 +174,7 @@ Ce découpage s'appelle un développement en couche.
 
 ---
 
-### Définission de la correspondance entre
+### Définition de la correspondance entre
 
 **un lien (navigateur)** 
 
@@ -220,6 +220,6 @@ Vous en connaissez ?
 
 ---
 
-Organiser notre code « autour de ces 3 couches.
+Organiser notre code autour de ces 3 couches.
 
 C'est là où la POO arrive.

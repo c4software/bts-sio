@@ -20,7 +20,7 @@ Pour coder vous aurez besoin d'un éditeur de texte ou d'un IDE. Voici quelques 
 
 ## Windows
 
-::: tip 2025 ? Solution WSL !
+::: tip Windows? Solution WSL !
 
 WSL permet d'obtenir un environnement Linux directement sous Windows, idéal pour le développement.
 
@@ -45,12 +45,12 @@ Vous avez ainsi un environnement Linux complet, léger et prêt à l’emploi, c
 
 :::
 
-👋 Si vous avez fait le choix de WSL ? Pas besoin de faire la suite.
+👋 Si vous avez fait le choix de WSL, pas besoin de faire la suite.
 
 Pour commencer à développer sous Windows, il est recommandé d'installer un environnement comprenant les outils essentiels comme un serveur web, un interpréteur de langage (PHP, Node.js, Python...), et un gestionnaire de paquets.
 
 - [Installation du VCRedist](https://github.com/abbodi1406/vcredist/releases).
-- [Installation de Wamp.](https://wampserver.aviatechno.net/).
+- [Installation de Wamp](https://wampserver.aviatechno.net/).
 - Installer Wamp, et vérifier que celui-ci fonctionne correctement.
 - Gitbash : [Téléchargement](https://git-scm.com/download/win) et installation.
 

@@ -12,7 +12,7 @@ Une API REST (Representational State Transfer Application Program Interface) per
 
 En utilisant le protocole HTTP, les API REST permettent aux logiciels d’un appareil de communiquer avec les logiciels d’un autre appareil (ou du même appareil) même s’ils utilisent des systèmes d’exploitation et des architectures différents.
 
-La communication va reposer sur le protocole HTTP (Compris par le client et le serveur), le serveur renvoie la ressource avec un langage que le client accepte. La réponse du serveur peut-être de différent type :
+La communication va reposer sur le protocole HTTP (Compris par le client et le serveur), le serveur renvoie la ressource avec un langage que le client accepte. La réponse du serveur peut être de différents types :
 
 - JSON (JavaScript Object Notation), le format JSON est le plus utilisé actuellement du fait de sa simplicité.
 - XML (Extensible Markup Language, comme le HTML par exemple).
@@ -46,10 +46,10 @@ Si cette étape est correctement réalisée, il sera même possible de réaliser
 Les méthodes « HTTP » ?
 
 - GET (**Obtenir** des données)
-- PUT (**Ajouter** des données)
+- PUT (**Remplacer / Mettre à jour** des données)
 - POST (**Ajouter** des données)
 - PATCH (**Modifier** des données)
-- DELETE (**Supprimer** une données)
+- DELETE (**Supprimer** une donnée)
 
 ### Mais également des ressources attendues
 
@@ -84,7 +84,7 @@ On répond avec un « HTTP Status Codes », un code « normé » qui signifie qu
 - 500 Internal Server Error
 - 503 Service Unavailable
 
-[Les d'informations](http://www.restapitutorial.com/httpstatuscodes.html)
+[Plus d'informations](http://www.restapitutorial.com/httpstatuscodes.html)
 
 ### Un format de retour
 
@@ -115,7 +115,7 @@ On répond avec un « HTTP Status Codes », un code « normé » qui signifie qu
 }
 ```
 
-## Découper pour mieux débuggé / supervisé / maintenir
+## Découper pour mieux débugger / superviser / maintenir
 
 L'utilisation d'API permet de découper la logique en différents « services » qui auront chacun un but précis ([Micro-Service](https://fr.wikipedia.org/wiki/Microservices)).
 
@@ -127,7 +127,7 @@ Chaque Micro-Service aura une tâche précise par exemple :
 - Envoyer un SMS
 - …
 
-Le découpage en API va permettre de découper **la logique en différent tiers pour** :
+Le découpage en API va permettre de découper **la logique en différents tiers pour** :
 
 - Simplifier la maintenance.
 - Faciliter la supervision de chaque élément.
@@ -139,7 +139,7 @@ Le découpage en API va permettre de découper **la logique en différent tiers 
 
 ::: tip observer le fonctionnement
 
-Pour observer le fonctionnement, vous devez utiliser`L'inspecteur d'éléments` de votre navigateur.
+Pour observer le fonctionnement, vous devez utiliser `l'inspecteur d'éléments` de votre navigateur.
 
 En développement, vous devez être acteur de votre analyse, ça passe par l'utilisation des outils intégrés à votre navigateur.
 

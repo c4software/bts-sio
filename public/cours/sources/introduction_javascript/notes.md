@@ -1,18 +1,18 @@
 ⚠️ NOTE FUTURE INTÉGRATION SLIDE ⚠️
 
-- Différent JS (Client, Server, App)
+- Différents JS (Client, Server, App)
 - Les versions du JS
 - Les librairies
 - Les variables
 - Les fonctions
-- Les conditions (parler des risques de l'évaluation « très souble »)
+- Les conditions (parler des risques de l'évaluation « très souple »)
 - Les boucles
   - Les boucles classiques.
   - Les boucles « modernes ».
 - Présenter le DOM
   - base + attributs
   - Hack via devtools ($0, etc)
-- Les sélécteurs
+- Les sélecteurs
   - VanillaJS
   - avec jQuery
 - Attacher des événements (onMachinChose)
@@ -31,7 +31,7 @@
   - Parler historique.
   - Hack via console démo.
   - Fetch vs XMLhttpRequest vs jQuery
-- Parler des ressources en lignes (codepen)
+- Parler des ressources en ligne (codepen)
 - Parler des frameworks
 
 ⚠️ INSERER LES TP + Phase de test DANS LA PRÉSENTATION ⚠️

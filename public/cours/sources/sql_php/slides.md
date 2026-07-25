@@ -8,11 +8,11 @@ La base de données est un vaste sujet. Nous avons ici une introduction à ce qu
 
 ---
 
-Les premières bases de données (en Anglais database) sont apparues en **1960**
+Les premières bases de données (en anglais database) sont apparues en **1960**
 
 ---
 
-## Coeur de l'informatique moderne.
+## Cœur de l'informatique moderne.
 
 ---
 
@@ -28,14 +28,14 @@ Objet de toutes les convoitises
 
 - Hack.
 - Faille de sécurité.
-- Injectin SQL.
+- Injection SQL.
 
 ---
 
 ## Plusieurs types de bases de données
 
-- Relationnelles: SQL (MariaDB, MySQL, Postgresql, Oracle…)
-- Non Relationnelles: NoSQL (MongoDB, Firestore, Redis… )
+- Relationnelles : SQL (MariaDB, MySQL, Postgresql, Oracle…)
+- Non Relationnelles : NoSQL (MongoDB, Firestore, Redis… )
 
 ---
 
@@ -53,7 +53,7 @@ Objet de toutes les convoitises
 - NoSQL (Not Only SQL)
 - Gère de très gros volumes
 - Ensemble de documents sans forcément avoir de structure identique.
-- Redondances possibles (voire encouragés)
+- Redondances possibles (voire encouragées)
 
 ---
 
@@ -131,11 +131,11 @@ La clé primaire sert à identifier une ligne de manière unique.
 
 ---
 
-La clé étrangère permet de gérer des relations entre plusieurs tables, **et garantissent la cohérence des données.**
+La clé étrangère permet de gérer des relations entre plusieurs tables, **et garantit la cohérence des données.**
 
 ---
 
-L'INDEX est utilisé pour accélérer les requêtes indispensable à la création de clés primaires et de clés étrangères.
+L'INDEX est utilisé pour accélérer les requêtes. Il est indispensable à la création de clés primaires et de clés étrangères.
 
 ---
 
@@ -180,7 +180,7 @@ Pour réaliser le MCD/MLD nous avons plusieurs solutions :
 
 🤓 J'aime bien l'approche papier et un crayon.
 
-Pourquoi ? Tout simplement pour ne pas être polluer par l'outil 👋.
+Pourquoi ? Tout simplement pour ne pas être pollué par l'outil 👋.
 
 ---
 
@@ -201,7 +201,7 @@ Des pays (Code Pays, Nom).
 
 ---
 
-Compliqué? Pas d'inquiétude, nous allons en refaire plusieurs.
+Compliqué ? Pas d'inquiétude, nous allons en refaire plusieurs.
 
 ---
 
@@ -340,10 +340,10 @@ Exemple de table
 -- Récupère l'ensemble des utilisateurs
 SELECT * FROM utilisateurs;
 
--- Utilisateur de plus de 18ans
+-- Utilisateur de plus de 18 ans
 SELECT * FROM utilisateurs WHERE age > 18;
 
--- Utilisateurs de plus de 18ans et de France
+-- Utilisateurs de plus de 18 ans et de France
 SELECT * FROM utilisateurs WHERE age > 18 AND pays = "FR";
 
 -- Nom et Prénom des Utilisateurs
@@ -357,8 +357,8 @@ SELECT nom, prenom FROM utilisateurs;
 | =                                  | Égal à                |
 | >                                  | Supérieur à           |
 | <                                  | Inférieur à           |
-| =>                                 | Strictement supérieur |
-| >=                                 | Strictement inférieur |
+| >=                                 | Supérieur ou égal     |
+| <=                                 | Inférieur ou égal     |
 | !=                                 | Différent de          |
 
 ---
@@ -401,19 +401,19 @@ SELECT * FROM utilisateurs LIMIT 10 OFFSET 10;
 
 ## Ordre de récupération
 
-Trier les résultat
+Trier les résultats
 
 ```sql
--- Trier page age croissante
+-- Trier par age croissant
 SELECT * FROM utilisateurs ORDER BY age ASC;
 
--- Trier page age décroissante
+-- Trier par age décroissant
 SELECT * FROM utilisateurs ORDER BY age DESC;
 ```
 
 ---
 
-## Obtenir de données de plusieurs tables
+## Obtenir des données de plusieurs tables
 
 Éviter la redondance / doublons vous vous souvenez ?
 
@@ -437,7 +437,7 @@ Mais sachez que dans 90% du temps ce que vous souhaitez faire c'est un **LEFT JO
 
 ## C'est à vous
 
-- Créer une seconde table (`pays`) elle contiendra la liste des pays en lien avec la table `utilisateurs` créés précédemment.
+- Créer une seconde table (`pays`) elle contiendra la liste des pays en lien avec la table `utilisateurs` créée précédemment.
 - Insérer une liste de pays suffisamment importante
 - Créer la requête qui permet d'afficher les informations du pays en plus de l'utilisateur
 
@@ -461,7 +461,7 @@ Via la commande `INSERT`
 
 ```sql
 -- Ajout de certains champs
-insert into utilisateurs (nom, prenom, age) values (1, 'Test'), (2, 'Insert'), (3, 22);
+INSERT INTO utilisateurs (nom, prenom, age) VALUES ('Test', 'Insert', 22);
 
 -- Tous les champs
 INSERT INTO utilisateurs VALUES (99,'Test','Insert',12, 'IT');
@@ -474,8 +474,8 @@ INSERT INTO utilisateurs VALUES (99,'Test','Insert',12, 'IT');
 Via la commande `UPDATE`
 
 ```sql
-UPDATE utilisateurs SET name = 'valentin' WHERE name = 'Valentin-Update';
-UPDATE utilisateurs SET name = 'Valentine' WHERE id = 1;
+UPDATE utilisateurs SET prenom = 'valentin' WHERE prenom = 'Valentin-Update';
+UPDATE utilisateurs SET prenom = 'Valentine' WHERE id = 1;
 ```
 
 ---
@@ -517,7 +517,7 @@ Testons ensemble.
 
 ---
 
-À mon avis **PDO** est doit-être votre choix par défaut dans le cas d'un nouveau projet.
+À mon avis **PDO** doit être votre choix par défaut dans le cas d'un nouveau projet.
 
 ---
 
@@ -567,7 +567,7 @@ $pdo = new PDO($dsn, $user, $passwd);
 
 ## Pour l'utiliser ?
 
-- inclure `utils/db.php` dans les pages ou c'est nécessaire.
+- inclure `utils/db.php` dans les pages où c'est nécessaire.
 
 ---
 

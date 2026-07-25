@@ -125,7 +125,7 @@ Mais !? Y'a-t-il des équivalents ?
 - Branches privées (payant)
 - Intégration continue (Service tiers)
 - Hébergement interne (payant)
-- Microsoft (Rachat en 2017, 7,5 milliards de $)
+- Microsoft (Rachat en 2018, 7,5 milliards de $)
 
 ---
 
@@ -152,7 +152,7 @@ Mais !? Y'a-t-il des équivalents ?
 - Wiki
 - Issues
 - Branches privées
-- Intégration continue (Integré : Gitlab-CI)
+- Intégration continue (Intégré : Gitlab-CI)
 - Hébergement interne (Intégré, simple .rpm / .deb)
 
 ---
@@ -161,8 +161,8 @@ Mais !? Y'a-t-il des équivalents ?
 
 - Indisponibilité
 - Lenteur
-- Dépends de VOTRE connexion Internet
-- Dépends de LEUR connexion Internet
+- Dépend de VOTRE connexion Internet
+- Dépend de LEUR connexion Internet
 - Sécurité
 - Faille
 
@@ -212,11 +212,11 @@ Mais !? Y'a-t-il des équivalents ?
 
 ---
 
-### Gestion de tableau de taches
+### Gestion de tableau de tâches
 
 ### Un peu comme Trello
 
-Mais intégré dans le développement (vous aller voir c’est génial)
+Mais intégré dans le développement (vous allez voir c’est génial)
 
 ---
 
@@ -248,7 +248,7 @@ Des morceaux de code que l’on partage.
 
 ### Des « Web hooks »
 
-Des URL appelées lors d’action dans l’interface (Intégration Slack par exemple)
+Des URL appelées lors d’actions dans l’interface (Intégration Slack par exemple)
 
 ![Chat qui lit 2](img/chat.gif)
 
@@ -267,7 +267,7 @@ On en reparlera…
 
 ---
 
-## Gitlab, GitHub va vous identifier par votre clef SSH.
+## Gitlab, GitHub vont vous identifier par votre clef SSH.
 
 ---
 
@@ -354,7 +354,7 @@ Un serveur local ici même !
 
 ### Les tests unitaires
 
-- Permets de valider le fonctionnement
+- Permettent de valider le fonctionnement
 - Évite les régressions
 - Façon de penser
 
@@ -362,8 +362,8 @@ Un serveur local ici même !
 
 ### Les livrables
 
-- Identifié par un tag
-- Si possible, automatisé
+- Identifiés par un tag
+- Si possible, automatisés
 
 Sur quelle branche ? Pourquoi ?
 

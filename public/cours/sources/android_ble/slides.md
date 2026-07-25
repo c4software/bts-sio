@@ -86,15 +86,15 @@ Avec l'application « nRF Connect »
 
 ## La librairie
 
-- Plus simple (beaucoup moins de question à se poser, version, permissions… )
+- Plus simple (beaucoup moins de questions à se poser, version, permissions… )
 
 ---
 
 ## La librairie (suite)
 
 - [Android-Ble-Librairie](https://github.com/NordicSemiconductor/Android-BLE-Library)
-- Proposé par … Nordic.
-- Assez mal-documentée.
+- Proposée par … Nordic.
+- Assez mal documentée.
 - Très rapide « simple d'utilisation ».
 - Un entre-deux « Code / Librairie ».
 
@@ -119,7 +119,7 @@ Avec l'application « nRF Connect »
 
 ---
 
-## Avant propos, nous allons co-réfléchir sur le projet
+## Avant-propos, nous allons co-réfléchir sur le projet
 
 ### Je vous propose du code
 
@@ -189,7 +189,7 @@ Avec l'application « nRF Connect »
 ```kotlin
 // Partie 1: Demander la permission
 // En fonction de la version d'Android, on demande des permissions différentes
-// Pour Android 12, on demande les permissions BLUETOOTH_CONNECT et BLUETOOTH_SCAN (qui sont moins agréssives pour l'utilisateur)
+// Pour Android 12, on demande les permissions BLUETOOTH_CONNECT et BLUETOOTH_SCAN (qui sont moins agressives pour l'utilisateur)
 // Pour les autres versions, on demande la permission ACCESS_FINE_LOCATION (Souvent non comprise par l'utilisateur)
 val toCheckPermissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
     listOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -203,7 +203,7 @@ val permissionState = rememberMultiplePermissionsState(toCheckPermissions)
  // Vérifier si la permission est accordée
 if (permissionState.allPermissionsGranted) {
     // La permission est accordée
-    // Nous sommes prêt à scanner
+    // Nous sommes prêts à scanner
 } else {
     // La permission n'est pas accordée
     // Nous devons demander la permission
@@ -331,7 +331,7 @@ fun startScan(context: Context) {
                 */
             override fun onScanResult(callbackType: Int, result: ScanResult) {
                 super.onScanResult(callbackType, result)
-                // On ajoute le résultat dans le set, si il n'y est pas déjà
+                // On ajoute le résultat dans le set, s'il n'y est pas déjà
                 // L'ajout retourne null si l'élément n'était pas déjà présent
                 if (scanResultsSet.put(result.device.address, result) == null) {
                     // On envoie la nouvelle liste des appareils scannés
@@ -340,13 +340,13 @@ fun startScan(context: Context) {
             }
         }
 
-        // On lance le scan BLE a la souscription de scanFlow
+        // On lance le scan BLE à la souscription de scanFlow
         bluetoothLeScanner.startScan(scanFilters, scanSettings, scanCallback)
 
         // On attend la durée du scan (10 secondes)
         delay(scanDuration)
 
-        // Lorsque scanFlow est stoppé, on stop le scan BLE
+        // Lorsque scanFlow est stoppé, on stoppe le scan BLE
         bluetoothLeScanner.stopScan(scanCallback)
 
         // On indique que nous ne sommes plus en train de scanner
@@ -429,7 +429,7 @@ val isConnectedToDeviceFlow = MutableStateFlow(false)
 ```kotlin
 @SuppressLint("MissingPermission")
 fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
-    // On arrête le scan si il est en cours
+    // On arrête le scan s'il est en cours
     stopScan()
 
     // On indique que nous sommes en train de nous connecter (pour afficher un loader par exemple)
@@ -477,8 +477,8 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
 ## BluetoothLEManager
 
 - Code générique pour gérer les états BLE.
-- Contiens les UUIDs des services et caractéristiques.
-- Contiens-le `GattCallback` pour gérer les événements BLE.
+- Contient les UUIDs des services et caractéristiques.
+- Contient le `GattCallback` pour gérer les événements BLE.
 - Écrit par moi-même pour simplifier le code.
 
 ---
@@ -510,7 +510,7 @@ class BluetoothLEManager {
     }
 
     /**
-     * Définitionn de la classe GattCallback qui va nous permettre de gérer les différents événements BLE
+     * Définition de la classe GattCallback qui va nous permettre de gérer les différents événements BLE
      * Elle implémente la classe BluetoothGattCallback fournie par Android
      */
     open class GattCallback(
@@ -520,7 +520,7 @@ class BluetoothLEManager {
     ) : BluetoothGattCallback() {
 
         /**
-         * Méthode appelé au moment ou les « services » ont été découvert
+         * Méthode appelée au moment où les « services » ont été découverts
          */
         override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
             super.onServicesDiscovered(gatt, status)
@@ -532,7 +532,7 @@ class BluetoothLEManager {
         }
 
         /**
-         * Méthode appelé au moment du changement d'état de la stack BLE
+         * Méthode appelée au moment du changement d'état de la stack BLE
          */
         @SuppressLint("MissingPermission")
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
@@ -544,7 +544,7 @@ class BluetoothLEManager {
         }
 
         /**
-         * Méthode appelé lorsqu'une caractéristique a été modifiée
+         * Méthode appelée lorsqu'une caractéristique a été modifiée
          * Dans les nouvelles versions d'Android, cette méthode est appelée
          */
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic, value: ByteArray) {
@@ -553,7 +553,7 @@ class BluetoothLEManager {
         }
 
         /**
-         * Méthode appelé lorsqu'une caractéristique a été modifiée
+         * Méthode appelée lorsqu'une caractéristique a été modifiée
          * Ancienne méthode utilisée sur les versions antérieures d'Android
          */
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
@@ -700,7 +700,7 @@ if(ledState) {
 @SuppressLint("MissingPermission")
 private fun enableNotify() {
     getMainService()?.let { service ->
-        // Indique que le GATT Client va écouter les notifications sur le charactérisque
+        // Indique que le GATT Client va écouter les notifications sur la caractéristique
         val notificationStatus = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
         val notificationLedCount = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_COUNT)
         val wifiScan = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI)
@@ -752,7 +752,7 @@ private fun enableNotify() {
 
 ---
 
-- Les appels ne doivent **pas** être fait dans le Thread UI.
+- Les appels ne doivent **pas** être faits dans le Thread UI.
 - Le traitement de l'affichage doit être fait sur le Thread UI.
 
 ---
@@ -801,7 +801,7 @@ implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
 ## GSON
 
-- Sérialisation / Deserialisation automatique entre un JSON et un Objet Java / Kotlin
+- Sérialisation / Désérialisation automatique entre un JSON et un Objet Java / Kotlin
 
 ---
 
@@ -875,7 +875,7 @@ suspend fun writeStatus(@Body status: LedStatus): LedStatus
 ---
 
 [Télécharger le fichier LedStatus.java](https://gist.github.com/c4software/11c170fde7c1f93b0ae9e562856c56a8)
-(À ranger dans le package `….data.modele`.
+(À ranger dans le package `….data.modele`)
 
 ---
 
@@ -888,7 +888,7 @@ suspend fun writeStatus(@Body status: LedStatus): LedStatus
 
 ---
 
-[Télécharge le fichier ApiService.kt](https://gist.github.com/c4software/b3eb79cc5649d12e497dbf6d35649dcd)
+[Télécharger le fichier ApiService.kt](https://gist.github.com/c4software/b3eb79cc5649d12e497dbf6d35649dcd)
 (À ranger dans le package `….data.service`)
 
 ---
@@ -967,7 +967,7 @@ companion object {
     private const val IDENTIFIANT_ID = "IDENTIFIANT_ID"
 
     fun getStartIntent(context: Context, identifiant: String?): Intent {
-        return Intent(context, RemoteActivity::class.java).apply {
+        return Intent(context, ActionActivity::class.java).apply {
             putExtra(IDENTIFIANT_ID, identifiant)
         }
     }
@@ -998,9 +998,9 @@ private fun getIdentifiant(): String? {
 
 ### En quelques mots…
 
-- Vous devez obtenir l'état de la led en arrivant dans la Vue.
-- Vous devez modifier l'état de la led avec le bouton.
-- Vous devez pouvoir obtenir l'état de la led aux cliques sur le symbole « refresh ».
+- Vous devez obtenir l'état de la LED en arrivant dans la Vue.
+- Vous devez modifier l'état de la LED avec le bouton.
+- Vous devez pouvoir obtenir l'état de la LED au clic sur le symbole « refresh ».
 
 ---
 

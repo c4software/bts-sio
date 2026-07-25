@@ -15,7 +15,7 @@ Dans ce TP nous allons découvrir l'utilisation de VueJS sans bundler. Nous allo
 Ajouter VueJS dans un projet est aussi simple que d'ajouter une librairie. Première étape, créer un fichier `index.html` puis insérer à l'intérieur « une structure HTML 5 »
 
 ::: tip
-Si vous utilisez Visual Studio Code, vous pouvez faire html:5<kbd>Tab</kbd> une structure HTML sera automatiquement écrite.
+Si vous utilisez Visual Studio Code, vous pouvez faire html:5 <kbd>Tab</kbd>, une structure HTML sera automatiquement écrite.
 :::
 
 ```html
@@ -125,7 +125,7 @@ Nous allons maintenant modifier une variable depuis la vue. Pour cela nous allon
 
 ### Les data
 
-Vous vous souvenez comment déclarer les datas ? Non !? un petit rappel alors, nous allons déclarer une variable directement dans la méthode `data` de notre objet VueJS. Quelque chose comme :
+Vous vous souvenez comment déclarer les datas ? Non !? Un petit rappel alors, nous allons déclarer une variable directement dans la méthode `data` de notre objet VueJS. Quelque chose comme :
 
 ```js
 data(){
@@ -167,12 +167,12 @@ Nous allons maintenant modifier la variable depuis le template. Pour cela il suf
 
 Un bouton c'est bien, mais une liste c'est mieux non ? Vous allez voir qu'afficher une liste c'est aussi simple qu'un bonjour 👋. Comme vu ensemble en cours, nous allons :
 
-- Déclarez-les `data`.
+- Déclarer les `data`.
 - Faire un `v-for` dans le code.
 
 ### Les data
 
-Vous vous souvenez comment déclarer les datas ? Non !? un petit rappel alors, nous allons déclarer un tableau (`[]`) directement dans la méthode `data` de notre objet VueJS. Quelque chose comme :
+Vous vous souvenez comment déclarer les datas ? Non !? Un petit rappel alors, nous allons déclarer un tableau (`[]`) directement dans la méthode `data` de notre objet VueJS. Quelque chose comme :
 
 ```js
 data(){
@@ -211,7 +211,7 @@ app.mount("#app");
 
 ### Afficher la liste
 
-Pour afficher la liste nous allons devoir faire un `v-for` sur l'élément qui sera `répété` ou `afficher plusieurs fois`. Exemple :
+Pour afficher la liste nous allons devoir faire un `v-for` sur l'élément qui sera `répété` ou `affiché plusieurs fois`. Exemple :
 
 ```html
 <ul>
@@ -219,7 +219,7 @@ Pour afficher la liste nous allons devoir faire un `v-for` sur l'élément qui s
 </ul>
 ```
 
-Ajouter le code HTML dans la `div#data`, vous devez obtenir :
+Ajouter le code HTML dans la `div#app`, vous devez obtenir :
 
 ```html
 <div id="app">
@@ -233,13 +233,13 @@ Ajouter le code HTML dans la `div#data`, vous devez obtenir :
 
 🚀 Tester votre application ! Vous devez voir les éléments de votre liste.
 
-🤓 Tester d'ajouter un élément « à la main » via les VueJS dev tools.
+🤓 Essayer d'ajouter un élément « à la main » via les VueJS dev tools.
 
 ## Ajouter un élément dans la liste
 
 Le but de VueJS c'est aussi de rendre simple la modification de la vue / template / affichage. Nous allons (enfin vous…) modifier le code précédent pour ajouter dans la liste l'élément saisi par l'utilisateur :
 
-Modifier la méthode action pour y mettre le code suivante :
+Modifier la méthode action pour y mettre le code suivant :
 
 ```js
 this.liste.push(prompt("Entrer une valeur"));
@@ -261,12 +261,12 @@ Un prompt c'est « pas très beau » non ? Passer par un input HTML serait quand
 
 ☝️ Quelques explications :
 
-- `@keyup.enter` Permets de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
+- `@keyup.enter` Permet de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
 - `ref` permet de déclarer une référence vers l'élément HTML, celui-ci sera ensuite disponible par `$refs['input']`
 
-## Et via un input version à privilegier ?
+## Et via un input version à privilégier ?
 
-La première solution est pas trop mal, mais, utiliser les data serait certainement une meilleure idée. Autre solution, mais tout aussi simple (et certainement bien meilleure).
+La première solution n'est pas trop mal, mais, utiliser les data serait certainement une meilleure idée. Autre solution, mais tout aussi simple (et certainement bien meilleure).
 
 - Déclarer une nouvelle variable dans les `data`, par exemple, dans mon cas la variable est `saisie` :
 
@@ -279,7 +279,7 @@ data(){
 }
 ```
 
-- Ajouter un input qui utiliser la variable saisie :
+- Ajouter un input qui utilise la variable saisie :
 
 ```html
 <input type="text" v-model="saisie" @keyup.enter="liste.push(saisie)" />
@@ -287,12 +287,12 @@ data(){
 
 ☝️ Quelques explications :
 
-- `v-model` Permets de connecter la variable saisie à votre input.
-- `@keyup.enter` Permets de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
+- `v-model` Permet de connecter la variable saisie à votre input.
+- `@keyup.enter` Permet de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
 
 ## L'input n'est pas vidé ?
 
-Comme vous l'avez très certainement remarqué, le champ n'est pas vidé après une saisie… Vous avez deux solutions pour faire ça:
+Comme vous l'avez très certainement remarqué, le champ n'est pas vidé après une saisie… Vous avez deux solutions pour faire ça :
 
 ### Solution 1 : Via une méthode
 

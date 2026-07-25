@@ -70,7 +70,7 @@ Paiement en ligne
 
 RGPD
 
-- Choix de Amazon (Privacy Shield)
+- Choix d'Amazon (Privacy Shield)
 - Cartographie des données
 - Sécurisation des données
   - Mot de passe (Annexe 6)
@@ -151,7 +151,7 @@ _Objectif :_ Pratiquer les bases
 
 - Outillage.
 - Création d'un projet de test.
-- Fair découvrir l'aspect simple.
+- Faire découvrir l'aspect simple.
   - Plugins / extensions
 - Évaluation formative « Est-ce que je suis capable de »
 
@@ -173,7 +173,7 @@ Séance 5 (2h théorie)
 _Objectif :_ Comprendre les API
 
 - Repose sur les acquis précédents
-- Qu'est-ce REST
+- Qu'est-ce que REST
 - Découverte via leur navigateur que les API sont partout
 - Bloc 3 : Sécurisation des API
 
@@ -200,17 +200,17 @@ _Objectif :_ Évaluation
   - Création de comptes / connexion
   - Liste des produits
   - Utilisation d'une API pour envoyer un SMS
-- Restitution via GIT après 1 semaine
+- Restitution via Git après 1 semaine
 
 ---
 
 ### Notions connexes
 
 - Sécurisation d'API.
-- Maquetage.
+- Maquettage.
 - Authentification d'un utilisateur (double authentification).
 - Droits d'accès aux données.
-- Droits à l'oubli.
+- Droit à l'oubli.
 
 ---
 

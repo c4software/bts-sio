@@ -73,7 +73,7 @@ Le choix du framework dépend du projet en question… Et parfois pas de framewo
 - 2011: Création
 - 2016: Projet PHP le mieux noté sur GitHub
 
-La communauté s’est rapidement formée autour du projet. C’est bon signe!
+La communauté s’est rapidement formée autour du projet. C’est bon signe !
 
 ---
 
@@ -210,7 +210,7 @@ $ composer install
 
 ## Les « routes »
 
-- Gestion des URL's de l’application
+- Gestion des URLs de l’application
 - Assemble l'ensemble (le contrôleur et la vue)
 
 ---
@@ -297,7 +297,7 @@ Ex: L'authentification, token, etc…
 Vous pouvez également créer vos propres middlewares.
 
 ```bash
-php artisan make:middleware isEquipeConnected
+php artisan make:middleware IsEquipeConnected
 ```
 
 ---
@@ -340,7 +340,7 @@ Route::get('/me', [EquipeController::class, "me"])->middleware(IsEquipeConnected
 
 ## Les contrôleurs
 
-Gestion de la logique « metier » pour traiter chaque demande
+Gestion de la logique « métier » pour traiter chaque demande
 
 ```bash
 $ php artisan make:controller DemoController
@@ -351,6 +351,7 @@ $ php artisan make:controller DemoController
 ```php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class DemoController extends Controller
 {
@@ -397,7 +398,7 @@ return view('view.name', ['name' => 'John']);
 // Retourne une vue avec un message flash (session)
 return redirect('/home')->with('status', 'Task was successful!');
 
-// Retourn une redirection vers une route nommée
+// Retourne une redirection vers une route nommée
 return redirect()->route('profile');
 
 // Retourne une redirection vers une route nommée avec des paramètres
@@ -452,7 +453,7 @@ $ php artisan make:model TodoList
 ---
 
 ```php
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -468,7 +469,7 @@ class TodoList extends Model
 ## « Initialiser » la base de données
 
 ```bash
-$ php artisan migrate:make create_todoList_table --create=todoList
+$ php artisan make:migration create_todoList_table --create=todoList
 ```
 
 Création d'un script PHP qui représente la définition de la base de données.
@@ -476,7 +477,7 @@ Création d'un script PHP qui représente la définition de la base de données.
 ---
 
 ```php
-// app/database/migrations/####_##_##_######_create_todoList_table.php
+// database/migrations/####_##_##_######_create_todoList_table.php
 
 Schema::create('todoList', function(Blueprint $table)
 {
@@ -504,11 +505,11 @@ $ php artisan migrate
 ## Éloquent : Le « Query Builder »
 
 ```php
-use App\TodoList;
+use App\Models\TodoList;
 
-$todos = App\TodoList::all();
+$todos = App\Models\TodoList::all();
 // Ou pour le Todo avec l’identifiant « 42 »
-$todo = App\TodoList::find(42);
+$todo = App\Models\TodoList::find(42);
 ```
 
 ---
@@ -516,7 +517,7 @@ $todo = App\TodoList::find(42);
 ## Éloquent : Le « Query Builder »
 
 ```php
-    $flights = App\TodoList::where('termine', 1)
+    $todos = App\Models\TodoList::where('termine', 1)
     ->orderBy('id', 'desc')
     ->take(10)
     ->get();
@@ -540,7 +541,7 @@ Quel est l'avantage à votre avis de faire ce genre de requêtes ?
 
 ```php
 // Créer une Todo
-App\TodoList::create(array(
+App\Models\TodoList::create(array(
     'texte'     => 'Super Cool',
     'termine'   => false
 ));
@@ -553,7 +554,7 @@ App\TodoList::create(array(
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1);
+$todo = App\Models\TodoList::find(1);
 
 // Le passer à terminer
 $todo->termine = true;
@@ -568,19 +569,19 @@ $todo->save();
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\TodoList::find(1);
+$todo = App\Models\TodoList::find(1);
 
 // Le supprimer
 $todo->delete();
 
 // Le supprimer directement
-App\TodoList::destroy(1);
+App\Models\TodoList::destroy(1);
 
 // En supprimer plusieurs directement
-App\TodoList::destroy(1,2,3);
+App\Models\TodoList::destroy(1,2,3);
 
 // Supprimer avec une condition
-App\TodoList::where('termine', '=', 1)->delete();
+App\Models\TodoList::where('termine', '=', 1)->delete();
 ```
 
 ---
@@ -607,7 +608,7 @@ class Todo extends Model {
 }
 ```
 
-Éloquent supposera que dans le modèle `Categorie` contiendra une colonne `todo_id`.
+Éloquent supposera que le modèle `Categorie` contiendra une colonne `todo_id`.
 
 ---
 
@@ -688,10 +689,10 @@ Via le modèle, il est possible de récupérer les données de l’autre modèle
 
 ```php
 // Récupérer les rôles d’un utilisateur
-$roles = App\User::find(1)->roles;
+$roles = App\Models\User::find(1)->roles;
 
 // Récupérer les utilisateurs d’un rôle
-$users = App\Role::find(1)->users;
+$users = App\Models\Role::find(1)->users;
 ```
 
 ---
@@ -699,7 +700,7 @@ $users = App\Role::find(1)->users;
 Ou automatiquement via la méthode `with`
 
 ```php
-$users = App\User::with('roles')->get();
+$users = App\Models\User::with('roles')->get();
 ```
 
 ---
@@ -723,16 +724,16 @@ Le attach
 
 ```php
 // Ajouter un commentaire à un post
-$comment = new App\Comment(['message' => 'A new comment.']);
-$post = App\Post::find(1);
+$comment = new App\Models\Comment(['message' => 'A new comment.']);
+$post = App\Models\Post::find(1);
 $post->comments()->save($comment);
 
 // Attacher un rôle à un utilisateur
-$user = App\User::find(1);
+$user = App\Models\User::find(1);
 $user->roles()->attach($roleId);
 
-// Attacher des roles à un utilisateur nouvellement créé
-$user = App\User::create($attributes);
+// Attacher des rôles à un utilisateur nouvellement créé
+$user = App\Models\User::create($attributes);
 $user->roles()->attach([1, 2, 3]);
 ```
 
@@ -745,7 +746,7 @@ La différence ?
 
 ---
 
-[En savoir plus dans la documentation](https://laravel.com/docs/10.x/eloquent-relationships)
+[En savoir plus dans la documentation](https://laravel.com/docs/12.x/eloquent-relationships)
 
 ---
 
@@ -784,7 +785,7 @@ class ArticleComment extends Model{}
 ```
 
 - Que constatez-vous ?
-- Combien il y a-t-il de table ?
+- Combien y a-t-il de tables ?
 - Voyez-vous un/des problème(s) ?
 
 ---
@@ -806,7 +807,7 @@ class ArticleComment extends Model{}
 
 ## Automatisation de la création des modèles
 
-Créer les modèles peut-être fastidieux, il existe un outil pour automatiser la création des modèles depuis la base de données.
+Créer les modèles peut être fastidieux, il existe un outil pour automatiser la création des modèles depuis la base de données.
 
 [https://github.com/reliese/laravel](https://github.com/reliese/laravel)
 
@@ -874,7 +875,7 @@ Route::get('/', function () {
 @section('titre', 'Page enfant')
 
 @section('sidebar')
-  @parent // <-- Hérite des donnés du parent
+  @parent // <-- Hérite des données du parent
   Données de l’enfant
 @endsection
 
@@ -890,18 +891,18 @@ Route::get('/', function () {
 Blade intègre également un système de composant permettant de découper son travail.
 
 ```html
-<VotreComposant nom="Valentin"></VotreComposant>
+<x-votre-composant nom="Valentin"></x-votre-composant>
 ```
 
 ---
 
-[Documentation composant](https://laravel.com/docs/10.x/blade#components)
+[Documentation composant](https://laravel.com/docs/12.x/blade#components)
 
 ---
 
 ## Les composants pour le layout
 
-[La documentation](https://laravel.com/docs/10.x/blade#layouts-using-components)
+[La documentation](https://laravel.com/docs/12.x/blade#layouts-using-components)
 
 ---
 
@@ -937,7 +938,7 @@ Blade intègre également un système de composant permettant de découper son t
 
 - Écrire le Blade / HTML permettant :
   - D'afficher la barre « Bienvenue » **uniquement** si la personne est connectée.
-  - D'affiche la table de manière dynamique
+  - D'afficher la table de manière dynamique
 
 ---
 
@@ -1016,15 +1017,15 @@ Permet de :
 
 ## L’authentification
 
-Intégré dans Laravel, s’initialise simplement en suivant la documentation.
+Intégrée dans Laravel, s’initialise simplement en suivant la documentation.
 
-[En savoir plus](https://laravel.com/docs/5.7/authentication)
+[En savoir plus](https://laravel.com/docs/12.x/authentication)
 
 ---
 
 - Heu, mais c'est lourd, non ?
 
-Éffectivement Laravel est un « gros » Framework. Dans certains cas on veut plus simple.
+Effectivement Laravel est un « gros » Framework. Dans certains cas on veut plus simple.
 
 Dans quel cas par exemple ?
 

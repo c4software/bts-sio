@@ -1,7 +1,8 @@
 ---
 description: Aide mémoire Git avec les commandes les plus courantes.
-# Aide mémoire Git
 ---
+
+# Aide mémoire Git
 
 ::: details Table des matières
 [[toc]]
@@ -237,7 +238,7 @@ Ajouter un dépôt distant :
 git remote add origin git@domain.com:user/repo.git
 ```
 
-Premier push et définition du upstream :
+Premier push et définition de l'upstream :
 
 ```sh
 git push -u origin main

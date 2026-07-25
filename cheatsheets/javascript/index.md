@@ -7,7 +7,7 @@ description: Aide mémoire sur les structures JavaScript. Vous retrouverez dans 
 Aide mémoire sur les structures JavaScript. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.
 
 ::: warning
-Cet aide mémoire n'est pas exhaustif, elle ne contient que le minimum à connaitre pour débuter sereinement.  
+Cet aide mémoire n'est pas exhaustif, il ne contient que le minimum à connaitre pour débuter sereinement.  
 :::
 
 ::: details Table des matières
@@ -16,13 +16,13 @@ Cet aide mémoire n'est pas exhaustif, elle ne contient que le minimum à connai
 
 ## Type de JavaScript
 
-Le JavaScript peut-être exécuté dans différents environnements :
+Le JavaScript peut être exécuté dans différents environnements :
 
 - Serveur (NodeJS)
 - Un navigateur (Chrome, Firefox, Safari, …)
 - Une application (Électron, Cordova …)
 
-Les compétences traitées dans le [support de cours](/tp/javascript/support.md) et dans cet aide mémoire couvre l'ensemble des usages.
+Les compétences traitées dans le [support de cours](/tp/javascript/support.md) et dans cet aide mémoire couvrent l'ensemble des usages.
 
 ## Dans le navigateur
 
@@ -118,13 +118,13 @@ C'est super simple, il suffit « juste » d'ajouter dans votre page :
   let estMajeur = true;
   if (estMajeur) {
     // Est équivalent à estMajeur == true
-    alert("La personne est majeur");
+    alert("La personne est majeure");
   }
 
   // Exemple 3
   if (maFonctionDeTest() == true) {
     alert(
-      "la fonction est appelé, et si celle-ci « return » true l'alert est affiché"
+      "la fonction est appelée, et si celle-ci « return » true l'alerte est affichée"
     );
   }
 </script>
@@ -152,7 +152,7 @@ Plusieurs façons de faire :
   });
 
   // Transforme le tableau
-  arrModif = arr.map((i) => {
+  const arrModif = arr.map((i) => {
     return i * 2;
   }); // arrModif contiendra => [2, 4, 6, 8];
 </script>
@@ -177,7 +177,7 @@ arr.filter((curr) => curr > 2); // --> Retourne un tableau avec seulement les va
 | onDblClick  | Double clic                         |
 | onDragDrop  | Déplacement d'un élément amovible   |
 | onError     | Chargement non réalisé              |
-| onFocus     | Élement devient accessible          |
+| onFocus     | Élément devient accessible          |
 | onKeyDown   | Touche du clavier maintenue appuyée |
 | onKeyPress  | Touche pressée/relâchée             |
 | onKeyUp     | Touche relâchée                     |
@@ -186,7 +186,7 @@ arr.filter((curr) => curr > 2); // --> Retourne un tableau avec seulement les va
 | onMouseMove | Souris déplacée                     |
 | onMouseOut  | Souris hors de l'élément            |
 | onMouseOver | Souris au dessus                    |
-| onMouseUp   | Bouton de souris relaché            |
+| onMouseUp   | Bouton de souris relâché            |
 | onReset     | Bouton reset de formulaire          |
 | onResize    | Dimensions changées dynamiquement   |
 | onSelect    | Sélection d'une partie de contenu   |
@@ -203,7 +203,7 @@ h.className = "titleClass"; // Définition d'un titre pour l'élément
 // Ajout du titre dans le body de la page courante.
 document.body.appendChild(h);
 
-// Ajout du titre dans l'élément qui nommé id
+// Ajout du titre dans l'élément dont l'id est « monId »
 document.getElementById("monId").appendChild(h);
 ```
 
@@ -236,11 +236,11 @@ Dans le précédent exemple, nous avons ajouté l'élément « à la fin » du b
 
 - `node.append(nodes ou strings)` – ajoute « nodes ou strings » à la fin,
 - `node.prepend(nodes ou strings)` – ajoute « nodes ou strings » au début,
-- `node.before(nodes ou strings)` –- ajoute « nodes ou strings » avant le node,
-- `node.after(nodes ou strings)` –- ajoute « nodes ou strings » après le node,
-- `node.replaceWith(nodes ou strings)` –- remplace le node par l'élément fourni « nodes or strings ».
+- `node.before(nodes ou strings)` – ajoute « nodes ou strings » avant le node,
+- `node.after(nodes ou strings)` – ajoute « nodes ou strings » après le node,
+- `node.replaceWith(nodes ou strings)` – remplace le node par l'élément fourni « nodes ou strings ».
 
-:warning Nous allons voir qu'il est possible de choisir le `node` via un sélecteur.
+:warning: Nous allons voir qu'il est possible de choisir le `node` via un sélecteur.
 :::
 
 ### Création d'éléments version alternative
@@ -248,7 +248,7 @@ Dans le précédent exemple, nous avons ajouté l'élément « à la fin » du b
 Nous pouvons également insérer « une chaine de caractère », celle-ci sera transformée automatiquement en code HTML valide par votre navigateur :
 
 ```javascript
-// Ajout du titre dans le body de la page courante.
+// Ajout du titre juste après l'élément body (valeur « afterend »).
 document.body.insertAdjacentHTML(
   "afterend",
   "<h1 class='titleClass'>Ceci est un titre</h1>"
@@ -261,7 +261,7 @@ Comme dans l'exemple précédent, c'est la position de l'élément que vous souh
 - `beforebegin` : Avant l'élément lui-même.
 - `afterbegin` : Juste à l'intérieur de l'élément , avant son premier enfant.
 - `beforeend` : Juste à l'intérieur de l'élément , après son dernier enfant.
-- `afterend` : Après élément lui-même.
+- `afterend` : Après l'élément lui-même.
 
 L'exemple de la W3School est très explicite :
 
@@ -277,7 +277,7 @@ L'exemple de la W3School est très explicite :
 
 :::
 
-## Les sélécteurs
+## Les sélecteurs
 
 ```javascript
 // Retourne la liste (array) des éléments
@@ -285,13 +285,13 @@ document.querySelectorAll("#elementId");
 document.querySelectorAll(".maClass");
 document.querySelectorAll("div");
 
-// Retourn le premier élément trouvé
+// Retourne le premier élément trouvé
 document.querySelector("#elementId");
 document.querySelector(".maClass");
 document.querySelector("div");
 
 // Exemples d'utilisations
-document.querySelector("#elementId").innerHTML = "Voilà valeur";
+document.querySelector("#elementId").innerHTML = "Voilà la valeur";
 
 document.querySelectorAll("div").forEach((it) => {
   it.innerHTML = "Parcours chaque div et remplace le contenu par <=";
@@ -299,9 +299,9 @@ document.querySelectorAll("div").forEach((it) => {
 ```
 
 ::: tip C'est « neuf »
-Ces API (Méthodes) sont très peu utilisés (voir même connues), elles sont pourtant très puissantes. Elles sont à choisir si vous souhaitez faire du code moderne.
+Ces API (Méthodes) sont très peu utilisées (voire même connues), elles sont pourtant très puissantes. Elles sont à choisir si vous souhaitez faire du code moderne.
 
-Sur Internet (voir dans du code existant), vous trouverez l'ancienne version à savoir :
+Sur Internet (voire dans du code existant), vous trouverez l'ancienne version à savoir :
 
 ```javascript
 document.getElementById("elementId");
@@ -314,7 +314,7 @@ Aucun changement dans le fonctionnement.
 
 :::
 
-## Les sélécteurs jQuery
+## Les sélecteurs jQuery
 
 ```javascript
 $("#elementId");
@@ -323,7 +323,7 @@ $("div");
 ```
 
 ```javascript
-// Cacher toute les divs
+// Cacher toutes les divs
 $("div").hide();
 ```
 
@@ -356,7 +356,7 @@ element.classList.add("maClass");
 ```
 
 ::: warning Hey ! classList ?
-Oui… Il est possible de mettre « plusieurs classes », donc nous avons ici un tableau `array`. Un tableau se manipule avec des méthodes comme vues précédemment. Il faut donc utiliser la méthode `add` pour ajouter une classe.
+Oui… Il est possible de mettre « plusieurs classes », donc nous avons ici un tableau `array`. Un tableau se manipule avec des méthodes comme vu précédemment. Il faut donc utiliser la méthode `add` pour ajouter une classe.
 :::
 
 ## Obtenir la valeur d'un input
@@ -377,7 +377,7 @@ $("#monInput").val();
 
 ![Event_click](./event_click.png)
 
-Fonction appelé seulement au moment du clique utilisateur
+Fonction appelée seulement au moment du clic utilisateur
 
 ### Dans le DOM
 
@@ -386,7 +386,7 @@ Fonction appelé seulement au moment du clique utilisateur
 ```
 
 ```html
-<form id="form" onsubmit="maFonction(this)" ">
+<form id="form" onsubmit="maFonction(this)">
 ```
 
 ```html
@@ -400,7 +400,7 @@ Fonction appelé seulement au moment du clique utilisateur
 ```
 
 ::: warning this ?
-Le `this` corresponds à l'élément sur lequel vous avez cliqué.
+Le `this` correspond à l'élément sur lequel vous avez cliqué.
 :::
 
 ### En JavaScript

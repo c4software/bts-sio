@@ -4,6 +4,6 @@ Pourquoi :
 
 * ...
 
-Ce changement était nécéssaire car :
+Ce changement était nécessaire car :
 
 * ...

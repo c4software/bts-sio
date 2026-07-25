@@ -57,7 +57,7 @@ Mon choix… Mobile first.
 ## Des media Queries
 
 ```css
-/** Valeur par defaut **/
+/** Valeur par défaut **/
 body {
   background: red;
 }
@@ -89,7 +89,7 @@ body {
 
 ---
 
-[Support avec plus détail](/tp/html_css/support.html)
+[Support avec plus de détails](/tp/html_css/support.html)
 
 ---
 
@@ -99,7 +99,7 @@ body {
 
 ---
 
-## Certains en réfléchi au sujet
+## Certains ont réfléchi au sujet
 
 ---
 
@@ -128,7 +128,7 @@ body {
 
 ---
 
-## Repose sur des class « déjà faite »
+## Repose sur des classes « déjà faites »
 
 ### Exemple avec Bootstrap
 

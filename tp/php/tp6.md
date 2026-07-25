@@ -60,7 +60,7 @@ Pour « installer » Laravel sous Windows, vous devez dans un premier temps inst
 - Installer Wamp, et vérifier que celui-ci fonctionne correctement.
 - Activer l’extension `php_openssl.dll` dans la liste des extensions PHP.
 
-::: tip 2025 ? Solution WSL !
+::: tip Windows? Solution WSL !
 
 WSL vous permet d'avoir un environnement Linux directement sous Windows. C'est une excellente solution pour développer sous Windows.
 

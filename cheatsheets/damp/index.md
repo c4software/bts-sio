@@ -22,14 +22,14 @@ DAMP contient les éléments suivants :
 
 ### DAMP c'est deux choses
 
-- Un stack via Docker Compose pour créer un environnement de développement.
+- Une stack via Docker Compose pour créer un environnement de développement.
 - Une interface graphique pour gérer les conteneurs (Démarrer, arrêter, etc.).
 
 ::: tip L'interface graphique
 
 L'interface graphique est optionnelle, vous pouvez très bien utiliser DAMP sans l'interface graphique en utilisant uniquement le script `startup.sh`.
 
-👋 Je vous conseille vivement, d'utiliser l'interface en ligne de commande, elle est plus simple à utiliser et plus rapide à démarrer.
+👋 Je vous conseille vivement d'utiliser l'interface en ligne de commande, elle est plus simple à utiliser et plus rapide à démarrer.
 
 :::
 
@@ -48,7 +48,7 @@ Il est également possible que Docker Desktop vous demande de mettre à jour vot
 - Ouvrir un terminal (cmd, powershell, etc.)
 - Exécuter la commande suivante : `wsl --update`
 
-::::
+:::
 
 ## Installation & Lancement
 
@@ -58,8 +58,8 @@ L'interface graphique n'est pas pré-compilée pour Linux et MacOS. Vous pouvez 
 
 - 1. [Télécharger la stack docker](https://github.com/c4software/DAMP-docker-stack/archive/refs/tags/1.1.zip).
 - 2. Lancer Docker.
-- 2. Éxraire l'archive de DAMP.
-- 3. Plusieurs solutions s'offrent à vous :
+- 3. Extraire l'archive de DAMP.
+- 4. Plusieurs solutions s'offrent à vous :
   - Sous Windows : `startup.bat` (lancement sans gestion des ports dynamiques) **RECOMMANDÉ**
   - Sous Windows : `startup.ps1` (lancement avec gestion des ports dynamiques)
   - Sous Linux / MacOS : `startup.sh` (lancement avec gestion des ports dynamiques)
@@ -80,7 +80,7 @@ Pour installer DAMP, il suffit de :
 - 2. Décompresser l'archive.
 - 3. Lancer le `damp.exe`.
 
-Le premier démarrage peut prendre plusieurs minutes, le temps de télécharger les images Docker. Vous pouvez utiliser le bouton `Refresh` pour actualiser l'état. Vous pouvez également ouvrir la feneêtre de Docker Desktop pour suivre l'avancement (dans la partie Conteneurs).
+Le premier démarrage peut prendre plusieurs minutes, le temps de télécharger les images Docker. Vous pouvez utiliser le bouton `Refresh` pour actualiser l'état. Vous pouvez également ouvrir la fenêtre de Docker Desktop pour suivre l'avancement (dans la partie Conteneurs).
 
 :::
 

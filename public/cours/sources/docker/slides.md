@@ -20,7 +20,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 - Migrer la puissance dans le Cloud
 - Changement d’environnement/plateforme simplifié
-- Pas de « Bloquage / Fermeture » d’un constructeur
+- Pas de « Blocage / Fermeture » d’un constructeur
 
 ---
 
@@ -78,7 +78,7 @@ Très très long… (Linux ~2h, Firefox 40min)
 ### La solution : « Les microservices »
 
 - Découper l’application en fonctionnalités indépendantes
-- Rends l’application indépendante des autres
+- Rend l’application indépendante des autres
 - Capable de « multiplier » l’application sur plein de serveurs pour absorber une hausse de la demande.
 - Une conception qui rend l’application hautement disponible
 
@@ -86,7 +86,7 @@ Très très long… (Linux ~2h, Firefox 40min)
 
 ### Un autre mouvement… L’intégration continue / Livraison continue
 
-- Tests en continues
+- Tests en continu
 - Validation du fonctionnement en continu
 - Mise en production continue
 
@@ -154,8 +154,8 @@ Votre avis sur cette solution ?
 
 #### Un conteneur c’est…
 
-- Un moyen standardiser de packager l’application
-- Un moyen d’isoler les applications entres elles
+- Un moyen standardisé de packager l’application
+- Un moyen d’isoler les applications entre elles
 - Un partage du noyau avec la machine physique
 
 ---
@@ -183,7 +183,7 @@ Votre avis sur cette solution ?
 - _Image_ Les fichiers, le contenu de votre « système »
 - _Container_ L’image quand elle est en fonctionnement.
 - _Engine_ Ce qui fait fonctionner votre « container ». Les volumes et le réseau font partie de « l’engine ».
-- _Registry_ Entrepôt d’image à télécharger (fourni par d’autres, ou construite par vous). [https://hub.docker.com/](https://hub.docker.com/)
+- _Registry_ Entrepôt d’images à télécharger (fournies par d’autres, ou construites par vous). [https://hub.docker.com/](https://hub.docker.com/)
 - _Volume_, les « montages » / ressources, emplacement (réseau ou non) disponible dans votre Container.
 
 ---
@@ -191,7 +191,7 @@ Votre avis sur cette solution ?
 ### Pour résumer Docker c’est :
 
 - Un projet open source qui a pour but d’automatiser le déploiement d’applications dans un « container »
-- Le container une sorte « d’archive » qui contient tout ce qu’il faut pour faire fonctionner un logiciel : Code, Librairies pour l’exécution, outils système, et librairies système. (autonome)
+- Le container est une sorte « d’archive » qui contient tout ce qu’il faut pour faire fonctionner un logiciel : Code, Librairies pour l’exécution, outils système, et librairies système. (autonome)
 - Ça garantit que le code fonctionnera toujours de la même façon, quel que soit l’environnement.
 
 ---
@@ -313,8 +313,8 @@ docker run -p 5432:5432 --name pgServer -e POSTGRES_USER=monUser -e POSTGRES_PAS
 FROM ubuntu:latest
 
 RUN apt-get update
-RUN apt-get install -y python python-pip wget
-RUN pip install Flask
+RUN apt-get install -y python3 python3-pip wget
+RUN pip3 install Flask
 
 ADD hello.py /home/hello.py
 
@@ -425,7 +425,7 @@ Sans volume : les données n'existent que le temps de vie du container.
 
 ---
 
-### Des stocks complètent
+### Des stacks complètes
 
 ### Souvent un produit c’est plusieurs applications
 
@@ -441,7 +441,7 @@ Sans volume : les données n'existent que le temps de vie du container.
 
 ### Docker Compose
 
-Permets de composer une stack ou une infrastructure complète de conteneurs. Celui-ci permet de simplifier la création, l'interconnexion et la multiplication de conteneurs.
+Permet de composer une stack ou une infrastructure complète de conteneurs. Celui-ci permet de simplifier la création, l'interconnexion et la multiplication de conteneurs.
 
 ---
 
@@ -460,8 +460,8 @@ services:
     network_mode: host
     image: nginx
     volumes:
-      - ../.acme.sh/:/etc./letsencrypt/
-      - ./nginx.conf:/etc./nginx/nginx.conf
+      - ../.acme.sh/:/etc/letsencrypt/
+      - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
 ---
@@ -484,7 +484,7 @@ services:
     image: ghcr.io/home-assistant/home-assistant:stable
     volumes:
       - ./config:/config
-      - /etc./localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     devices:
       - "/dev/ttyACM0:/dev/ttyACM0:rwm"
@@ -498,7 +498,7 @@ services:
 ```yaml
 services:
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     volumes:
       - db_data:/var/lib/mysql
     restart: always

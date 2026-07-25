@@ -1,10 +1,10 @@
 ---
-description: Appeler une API peut-être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles sont imposées par la plateforme Android
+description: Appeler une API peut être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles sont imposées par la plateforme Android
 ---
 
 # Appeler une API simplement
 
-Appeler une API peut-être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles sont imposées par la plateforme Android :
+Appeler une API peut être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles sont imposées par la plateforme Android :
 
 - Pas d'appel réseau depuis le `UIThread`.
 - Pas de manipulation de l'interface depuis le `IOThread`.
@@ -26,7 +26,7 @@ Internet est une variable incontrôlable dans un projet Android, vous n'êtes pa
 - Que votre serveur ne soit pas surchargé.
 - Que votre serveur soit rapide.
 
-C'est pour l'ensemble de ces raisons que le code qui repose sur un appel réseau peut faire peur ! Mais vous allez le voir avec Kotlin, et les librairies de qualités à notre disposition un appel réseau sera aussi simple qu'une « `setOnClickListener` »
+C'est pour l'ensemble de ces raisons que le code qui repose sur un appel réseau peut faire peur ! Mais vous allez le voir avec Kotlin, et les librairies de qualité à notre disposition un appel réseau sera aussi simple qu'une « `setOnClickListener` »
 
 ## Travailler intelligemment
 
@@ -50,7 +50,7 @@ Les librairies en question sont à ajouter dans votre fichier `Gradle`, nous all
 
 ---
 
-### Les permissinos
+### Les permissions
 
 Pour accéder à Internet, il faut ajouter une permission, celle-ci autorisera à votre application l'accès à Internet. Aucune confirmation utilisateur ne sera demandée.
 
@@ -75,7 +75,7 @@ Vous pouvez, **si vous le souhaitez**, ajouter dans votre `Build.gradle` (app) l
 ::: tip suspend ?
 Les coroutines sont dites « suspendable », elles vont pouvoir donc attendre que le réseau donne sa réponse pour réveiller le traitement. Pour nous ça va indiquer que notre code sera appelé « plus tard » au moment où le contenu sera disponible.
 
-Magique ? Non pas vraiment, mais pratique ça c'est certains. En tout cas, ce mot-clé est très pratique il nous simplifiera très grandement la partie appel HTTP en retirant toute la partie `enqueue` que vous avez peut-être déjà croisé sur Internet.
+Magique ? Non pas vraiment, mais pratique ça c'est certain. En tout cas, ce mot-clé est très pratique il nous simplifiera très grandement la partie appel HTTP en retirant toute la partie `enqueue` que vous avez peut-être déjà croisé sur Internet.
 :::
 
 [Plus d'informations](https://kotlinlang.org/docs/coroutines-overview.html)
@@ -91,7 +91,7 @@ Client HTTP permettant de :
 
 ### GSON
 
-Cette librairie va nous permettre la Sérialisation / Deserialisation automatique entre un JSON et un Objet Java / Kotlin
+Cette librairie va nous permettre la Sérialisation / Désérialisation automatique entre un JSON et un Objet Java / Kotlin
 
 ### Retrofit
 
@@ -121,7 +121,7 @@ Notre projet est maintenant prêt pour faire des appels réseau. Nous allons éc
 
 ## Définir les modèles de retour
 
-La première étape et certainement la plus importante, c'est la définition des modèles de retour de votre API. En tant que débutant vous négligez souvent cette partie-là du travail. C'est pourtant l'un des éléments les plus importants. Pour l'exemple, je vais prendre un retour d'API tels que :
+La première étape et certainement la plus importante, c'est la définition des modèles de retour de votre API. En tant que débutant vous négligez souvent cette partie-là du travail. C'est pourtant l'un des éléments les plus importants. Pour l'exemple, je vais prendre un retour d'API tel que :
 
 ```json
 [
@@ -156,7 +156,7 @@ Le code que vous allez voir, est là juste pour illustrer il ne fonctionne pas d
 // Objet présent dans la liste (structure objet)
 data class SampleObject (var id : Int, var name : String, var content : String, var done : Boolean)
 
-// Données fourni par l'API
+// Données fournies par l'API
 Array<SampleObject>
 ```
 
@@ -183,7 +183,7 @@ Plutôt que des grandes explications, voilà un exemple de comment ça fonctionn
  */
 interface ApiService {
 
-    // Début définition des différentes API disponible sur votre serveur
+    // Début définition des différentes API disponibles sur votre serveur
     @GET("/status")
     suspend fun readStatus(@Query("identifier") identifier: String): Array<SampleObject>
 
@@ -191,7 +191,7 @@ interface ApiService {
     suspend fun writeStatus(@Body status: SampleObject): Array<SampleObject>
     // Fin de la définition
 
-    // Équivalenent en kotlin d'élément « static »
+    // Équivalent en kotlin d'élément « static »
     companion object {
         /**
          * Création d'un singleton pour la simplicité, mais normalement nous utilisons plutôt un
@@ -230,7 +230,7 @@ interface ApiService {
 ::: tip Oui c'est tout
 Cette Interface contient l'ensemble de la logique nécessaire. Le reste, ça va être votre code « permettant d'utiliser l'API ». Et c'est là le grand avantage de cette stack applicative.
 
-Vous allez donc consommer de la donnée dans des types « natifs » comme si vos données étaient en locale, le tout typer. La Rolls donc 👌
+Vous allez donc consommer de la donnée dans des types « natifs » comme si vos données étaient en local, le tout typé. La Rolls donc 👌
 :::
 
 ::: danger N'oubliez pas la structure
@@ -251,7 +251,7 @@ Pour l'exemple voilà notre Interface :
 
 ```kotlin
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Votre code de d'habitude…
+        // Votre code d'habitude…
 
         findViewById<Button>(R.id.httpButton).setOnClickListener{
             CoroutineScope(Dispatchers.IO).launch {
@@ -270,7 +270,7 @@ Pour l'exemple voilà notre Interface :
 
 Détaillons le code, nous avons une partie de votre `onCreate`, pour l'instant aucun changement.
 
-La partie qui vous intéresse est la suivante, pour que celle-ci soit compréhensible là voilà documenté.
+La partie qui vous intéresse est la suivante, pour que celle-ci soit compréhensible la voilà documentée.
 
 ```kotlin
 // Démarrage d'une coroutine sur le thread IO celui permettant de faire un appel réseau.
@@ -278,9 +278,9 @@ La partie qui vous intéresse est la suivante, pour que celle-ci soit compréhen
 CoroutineScope(Dispatchers.IO).launch {
     runCatching {
 
-        // « Le Scope » présent ici est capable de s'arrêter et de se réveiller en fonction d'action extérieur, dans notre cas, il va être actif au moment de la demande « de la ressource » réseau.
+        // « Le Scope » présent ici est capable de s'arrêter et de se réveiller en fonction d'actions extérieures, dans notre cas, il va être actif au moment de la demande « de la ressource » réseau.
 
-        // On appel le code généré par « Retrofit », en suivant la définition de votre interface.
+        // On appelle le code généré par « Retrofit », en suivant la définition de votre interface.
         // Nous allons donc ici avoir en retour un tableau de « SampleObject »
         val arrStatus = ApiService.instance.readStatus(ledStatus.identifier)
 

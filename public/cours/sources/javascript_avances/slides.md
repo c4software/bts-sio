@@ -315,24 +315,24 @@ Pour faire « simple », ça remplace les `callback` et évite les `callback hel
 
 ### then
 
-Éxécuté en cas de réussite.
+Exécuté en cas de réussite.
 
 ---
 
 ### catch
 
-Éxécuté en cas d'échec (Erreur, Throw, …).
+Exécuté en cas d'échec (Erreur, Throw, …).
 
 ---
 
 ### Promise.all
 
-Promise.all() outil de composition qui permet de mener des opérations asynchrones en parallèle.
+Promise.all() est un outil de composition qui permet de mener des opérations asynchrones en parallèle.
 
 ```javascript
 Promise
     .all([promesse1(), promesse2(), promesse3()])
-    .then(([resultat1, resultat2, resultat3] => {
+    .then(([resultat1, resultat2, resultat3]) => {
         // Code
     });
 ```
@@ -360,7 +360,7 @@ Async / Await permet de rendre « synchrone » du code asynchrone.
 - Attendre le retour d'une requête Ajax avant de continuer.
 - À votre avis, quels sont les risques ?
 - Catch.
-- Bloquage de l'interface.
+- Blocage de l'interface.
 
 ---
 
@@ -372,7 +372,7 @@ Async / Await permet de rendre « synchrone » du code asynchrone.
 
 ---
 
-- Les bundler (Webpack)
+- Les bundlers (Webpack)
 
 ---
 

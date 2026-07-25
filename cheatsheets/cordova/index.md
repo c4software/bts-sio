@@ -24,11 +24,11 @@ Créer un nouveau projet
 $ cordova create demo com.vbrosseau.demo Demo
 ```
 
-> Créer un nouveau projet dans le dossier « demo » avec comme namespace « com.vbrosseau.demo . Le namespace doit être unique sur le périphérique de destination.
+> Créer un nouveau projet dans le dossier « demo » avec comme namespace « com.vbrosseau.demo ». Le namespace doit être unique sur le périphérique de destination.
 
 ### Les plateformes
 
-Lister les plateformes actuellement installé pour le projet
+Lister les plateformes actuellement installées pour le projet
 
 ```
 $ cordova platform ls
@@ -80,7 +80,7 @@ Création de l’APK Android
 $ cordova build android
 ```
 
-Lancement de l’application en mode « debug ». Une fois lancer l’application est visible dans [Chrome Inspect](chrome://inspect/#devices)
+Lancement de l’application en mode « debug ». Une fois lancée, l’application est visible dans [Chrome Inspect](chrome://inspect/#devices)
 
 ```
 $ cordova run android

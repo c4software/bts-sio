@@ -8,7 +8,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 - Test immédiat des modifications. 
 - Notification rapide en cas de code incompatible ou manquant. 
-- Les problèmes d'intégration sont détectés et réparés de façon continue, évitant les problèmes de dernière minute .
+- Les problèmes d'intégration sont détectés et réparés de façon continue, évitant les problèmes de dernière minute.
 - Une version est toujours disponible pour un test, une démonstration ou une distribution. 
 
 ---
@@ -75,7 +75,7 @@ nodejs_test:
 - Démon sur une machine
 - Piloté par Gitlab-ci (Ordre)
 - Taggé (lancement conditionné, OS, tag, etc…)
-- Plusieurs mode de fonctionnement : « Executor »
+- Plusieurs modes de fonctionnement : « Executor »
 
 ---
 
@@ -104,7 +104,7 @@ Les actions à faire pour notre test/compilation/déploiement
 
 - script
 - image
-- stage (test/build/depoy)
+- stage (test/build/deploy)
 - type
 - variables
 
@@ -138,7 +138,7 @@ cache:
   untracked: true
   key: "$CI_PROJECT_ID"
   paths:
-    - nodes_modules/
+    - node_modules/
     - plugins/
 ```
 
@@ -154,7 +154,7 @@ La force de Gitlab-CI
 
 ---
 
-#### Dans une « stage »
+#### Dans un « stage »
 
 ```yaml
 artifacts:
@@ -167,7 +167,7 @@ artifacts:
 ### Cas d’usages
 
 - Tests unitaires
-- Compilation d’application (Android, iOs)
+- Compilation d’application (Android, iOS)
 - « Compilation » de site statique
 - Hébergement de « page » directement dans GitLab
 - Etc…

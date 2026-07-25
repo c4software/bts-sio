@@ -9,7 +9,7 @@ keywords: SSH, ssh-key, clé SSH, clef ssh, clés ssh, ssh-keygen
 [[toc]]
 :::
 
-Dans cet aide mémoire vous allez retrouver l'ensemble des commandes et des opérations à réaliser pour réaliser une clef SSH sur votre machine et l'échanger avec un tiers pour vous authentifier sans mot de passe.
+Dans cet aide mémoire vous allez retrouver l'ensemble des commandes et des opérations à réaliser pour créer une clef SSH sur votre machine et l'échanger avec un tiers pour vous authentifier sans mot de passe.
 
 > Autrefois, tout le monde employait l'authentification typique par le principe identifiant - mot de passe. Cependant si quelqu'un connaît votre mot de passe ou le découvre au moyen d'une attaque, la sécurité est compromise. De plus, utiliser un mot de passe différent pour chaque serveur et le saisir à chaque connexion peut s'avérer contraignant.
 >
@@ -55,7 +55,7 @@ ssh-keygen
 La commande va générer **deux fichiers** :
 
 - **id_rsa**, est privé. **Vous ne devez jamais le partager**.
-- **id_rsa.pub**, est publique, vous pouvez le partager autant que vous voulez ce fichier permettra de vous reconnaître au moment de la connexion.
+- **id_rsa.pub**, est public, vous pouvez le partager autant que vous voulez. Ce fichier permettra de vous reconnaître au moment de la connexion.
 
 ::: danger Plus de sécurité
 
@@ -71,7 +71,7 @@ Maintenant que nous avons généré les clefs, il vous suffit d'envoyer votre cl
 
 Pour ajouter votre clef, vous devez :
 
-- Copier **le contenu** du fichier `id_rsa.pub`(ouvrir le fichier avec par exemple Notepad++)
+- Copier **le contenu** du fichier `id_rsa.pub` (ouvrir le fichier avec par exemple Notepad++)
 - L'ajouter à votre profil Github [en cliquant ici](https://github.com/settings/ssh/new)
 - Tester votre connexion avec la commande `ssh -T git@github.com`
 
@@ -79,15 +79,15 @@ Pour ajouter votre clef, vous devez :
 
 #### Étape 1 : Settings
 
-![Étape 1](./img//step1-github.jpg)
+![Étape 1](./img/step1-github.jpg)
 
 #### Étape 2 : SSH & GPG Key
 
-![Étape 2](./img//step2-github.png)
+![Étape 2](./img/step2-github.png)
 
 #### Étape 3 : Coller et ajouter votre clef
 
-![Étape 3](./img//step3-github.jpg)
+![Étape 3](./img/step3-github.jpg)
 
 :::
 
@@ -95,11 +95,11 @@ Pour ajouter votre clef, vous devez :
 
 La procédure avec Gitlab est très similaire, vous devez :
 
-- Copier **le contenu** du fichier `id_rsa.pub`(ouvrir le fichier avec par exemple Notepad++)
+- Copier **le contenu** du fichier `id_rsa.pub` (ouvrir le fichier avec par exemple Notepad++)
 - L'ajouter à votre profil Gitlab de la section [en cliquant ici](https://gitlab.dombtsig.local/-/profile/keys) ou [Gitlab.com](https://gitlab.com/-/profile/keys)
 - Tester votre connexion avec la commande `ssh -T git@gitlab.com`
 
-## Dans le cadre de la gestion à distance de serveur (ssh, sft, etc)
+## Dans le cadre de la gestion à distance de serveur (ssh, sftp, etc.)
 
 Votre clef est également compatible pour vous connecter sur un serveur SSH distant (pratique pour ne **jamais oublier son mot de passe**).
 
@@ -109,7 +109,7 @@ Pour cela, il vous suffit de faire la commande suivante sur votre ordinateur.
 ssh-copy-id <username>@<ipaddress>
 ```
 
-⚠️ Vous devez évidemment remplacer `<username>`et `<ipaddress>`par votre utilisateur et votre mot de passe. Exemple :
+⚠️ Vous devez évidemment remplacer `<username>` et `<ipaddress>` par votre utilisateur et l'adresse IP de votre serveur. Exemple :
 
 ```bash
 ssh-copy-id pi@192.168.1.253

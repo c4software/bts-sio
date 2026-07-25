@@ -4,7 +4,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Que vous souvenez-vous de PHP ?
+## Que vous rappelez-vous de PHP ?
 
 ---
 
@@ -72,7 +72,7 @@ Sauvegarder des variables entre chaque chargement de pages
 ### La session
 
 - Sauvegarde pour une durée courte (quelques minutes).
-- Sauvegarder **sur** le serveur.
+- Sauvegardée **sur** le serveur.
 - La durée dépend de l'activité de l'utilisateur.
 - Propre au « domaine ».
 - Différente pour chaque utilisateur.
@@ -107,13 +107,13 @@ Et … C'est tout !
 
 ---
 
-Et si vous oublier le `session_start()` ?
+Et si vous oubliez le `session_start()` ?
 
 ---
 
 ### Les cookies
 
-Comme la Session… Mais sauvegardé sur le poste client
+Comme la Session… Mais sauvegardés sur le poste client
 
 ---
 
@@ -157,7 +157,7 @@ echo $_COOKIE["monCookie"];
 - Vous devez autoriser la connexion si le mot de passe est `1234`.
 - Si la connexion est réussie, vous devez afficher un message de bienvenue.
 - Si la connexion est en erreur, vous devez afficher un message d'erreur.
-- Vous devez sauvegarder les informations suivante pour authentifier automatiquement l'utilisateur :
+- Vous devez sauvegarder les informations suivantes pour authentifier automatiquement l'utilisateur :
   - `nom`
   - `email`
 
@@ -167,7 +167,7 @@ echo $_COOKIE["monCookie"];
 
 ### Pratiquer les SESSIONS & Cookies
 
-[je vous propose de pratiquer un peu la partie session](/tp/php/tp4.html)
+[Je vous propose de pratiquer un peu la partie session](/tp/php/tp4.html)
 
 ---
 

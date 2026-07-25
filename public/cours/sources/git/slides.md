@@ -68,7 +68,7 @@ Les dépôts Git d’un projet sont donc **distribués** : aucun dépôt n’est
 
 ## Git
 
-### (2005 — récent à l’époque)
+### (2005, récent à l’époque)
 
 ---
 
@@ -221,7 +221,7 @@ Nombre de commits par semaine chez Facebook :
 ```sh
 git config --global user.name "Valentin Brosseau"
 git config --global user.email "c4software@gmail.com"
-````
+```
 
 ---
 

@@ -15,11 +15,11 @@ Dans ce document, nous allons voir ce que sont les serveurs, les serveurs Web, l
 
 Voici un résumé de ce qu'il est possible de retenir de ce document (évidemment, je vous conseille vivement de lire l'ensemble de celui-ci, mais voilà les grandes idées).
 
-L'approche DevOps à pour objectif principal d'automatiser pour assurer la qualité via par entre autres le test et la répétabilité.
+L'approche DevOps a pour objectif principal d'automatiser pour assurer la qualité via, entre autres, le test et la répétabilité.
 
 Les développeurs sont également des utilisateurs d'un OS et pour le comprendre nous réfléchirons aux différentes distributions Linux disponibles en les comparant à Windows et macOS.
 
-Beaucoup de types de serveurs existent (serveurs Web, de base de données, de fichiers, etc). en SLAM la notion de la stack logicielle est importante et surtout celle nommée LAMP (Linux, Apache, MySQL, PHP). Un serveur ne fonctionne pas sans que le réseau (adresses IP, DNS, DHCP, les ports permettant de communiquer). Sans entrer dans une complexité extrême, il sera important d'en connaître les bases.
+Beaucoup de types de serveurs existent (serveurs Web, de base de données, de fichiers, etc.). En SLAM la notion de la stack logicielle est importante et surtout celle nommée LAMP (Linux, Apache, MySQL, PHP). Un serveur ne fonctionne pas sans le réseau (adresses IP, DNS, DHCP, les ports permettant de communiquer). Sans entrer dans une complexité extrême, il sera important d'en connaître les bases.
 
 Nous étudierons également comment la ligne de commandes fonctionne, ainsi que l'architecture d'un serveur Linux (système de fichier, utilisateurs, droits). Un serveur Linux ne possédant pas d'interface graphique, nous utiliserons les protocoles de communication suivants pour l'administrer :
 
@@ -27,11 +27,11 @@ Nous étudierons également comment la ligne de commandes fonctionne, ainsi que 
 - FTP
 - SFTP
 
-⚠️ L'ensemble protégé pas seulement par des mots de passe, mais également par des clés SSH.
+⚠️ L'ensemble protégé non seulement par des mots de passe, mais également par des clés SSH.
 
 Nous regarderons comment il est possible de mettre en place une analyse pertinente **des logs d'erreurs**. Ainsi qu'une politique de sauvegarde pour s'assurer que notre machine soit toujours fonctionnelle, quels que soient les problèmes qu'elle pourra rencontrer.
 
-Et finalement nous regarderons comment doit être prise la décision entre un serveur physique ou virtuel. Ainsi que les différents types d'hébergement disponible (mutualisés, dédiés, SaaS) et comment choisir le meilleur pour les besoins.
+Et finalement nous regarderons comment doit être prise la décision entre un serveur physique ou virtuel. Ainsi que les différents types d'hébergement disponibles (mutualisés, dédiés, SaaS) et comment choisir le meilleur pour les besoins.
 
 :::
 
@@ -52,7 +52,7 @@ Le terme de DevOps est un peu fourre-tout, car il regroupe plusieurs métiers. E
 - Administrateur réseau.
 - Administrateur de base de données.
 
-Le DevOps est donc un métier qui regroupe plusieurs métiers. Il est donc difficile de définir précisément ce qu'est un DevOps. Mais en général, on peut dire que le DevOps est un développeur qui a des connaissances en administration, système, réseau et base de données. L'objectif du devops étant :
+Le DevOps est donc un métier qui regroupe plusieurs métiers. Il est donc difficile de définir précisément ce qu'est un DevOps. Mais en général, on peut dire que le DevOps est un développeur qui a des connaissances en administration système, réseau et base de données. L'objectif du devops étant :
 
 - Développer (et maintenir) des applications.
 - Choisir la configuration de votre serveur _(choix de l'OS, de la distribution, etc.)_.
@@ -66,7 +66,7 @@ Mais surtout le DevOps **s'assure de la qualité** de son application. Il s'assu
 ![DevOps](./res/devops_loop.webp)
 
 ::: tip Définition
-Le DevOps **s'assure de la qualité** de son application, de la  **disponibilité**, **performances** et **sécurité**.
+Le DevOps **s'assure de la qualité** de son application, de la **disponibilité**, des **performances** et de la **sécurité**.
 :::
 
 ## L'environnement des développeurs
@@ -196,10 +196,10 @@ Cette représentation est très simple, mais elle permet de comprendre les diff�
 - **Le système d'exploitation** est la couche la plus basse. C'est la couche qui permet de faire fonctionner le serveur. Dans notre cas Linux.
 - **Les Ports** : Ce sont des numéros qui permettent d'identifier un service. Les ports vont permettre de rendre accessible le service depuis l'extérieur.
 - **Les utilisateurs** : Une machine == au moins un utilisateur le **root**. Pour respecter les bonnes pratiques, il est préférable de créer un utilisateur dédié à chaque service.
-- **Les services** : Ce sont définition des applications qui vont tourner en arrière-plan. Par exemple, un serveur Web, un serveur de base de données, etc.
+- **Les services** : Ce sont des applications qui vont tourner en arrière-plan. Par exemple, un serveur Web, un serveur de base de données, etc.
 - **Les applications** : Ce sont les binaires qui vont être exécutés. Par exemple, Apache, MySQL, etc.
 - **Les Logs** : Ce sont des fichiers (habituellement dans le dossier `/var/log`) qui vont contenir les messages générés par les applications (erreurs, informations, etc.).
-- **Les données** : Ce sont des fichiers exemple le code source de vos applications, ou encore les données de la base de données.
+- **Les données** : Ce sont des fichiers, par exemple le code source de vos applications, ou encore les données de la base de données.
 
 ### Comment résumer cette composition ?
 
@@ -231,7 +231,7 @@ Dans notre cas nous utiliserons Apache pour le serveur Web. Apache est un serveu
 Il existe différents serveurs Web, Apache est l'un des plus utilisés. Il existe également Nginx, Caddy, etc. Mais Apache est le plus utilisé, donc c'est le serveur Web que nous utiliserons.
 
 - Nginx est également un serveur Web très puissant, mais il est un peu plus difficile à configurer.
-- Caddy est un serveur Web qui est très simple à configurer, mais il est moins puissant qu’apache.
+- Caddy est un serveur Web qui est très simple à configurer, mais il est moins puissant qu’Apache.
 
 ![Serveur](./res/serveur.jpg)
 
@@ -246,7 +246,7 @@ Un nom de domaine est un nom qui permet de se connecter à un serveur. Par exemp
 
 Techniquement, un nom de domaine est un nom qui est associé à une adresse IP. 
 
-Si votre serveur possède un nom de domaine, nous allons pouvoir également créer ce que l'on appelle des Virtual Hosts. Un Virtual Host est une configuration spécifique qui permet de faire correspondre un sous-domaine avec une site Web sur la machine :
+Si votre serveur possède un nom de domaine, nous allons pouvoir également créer ce que l'on appelle des Virtual Hosts. Un Virtual Host est une configuration spécifique qui permet de faire correspondre un sous-domaine avec un site Web sur la machine :
 
 - `monsite.com` correspondra au site Web par défaut.
 - `blog.monsite.com` correspondra au site Web du blog.
@@ -285,7 +285,7 @@ Ici nous avons un virtual host qui permet d'accéder à phpmyadmin via le port 9
 
 `AllowOverride` permet de définir si les fichiers `.htaccess` sont autorisés ou non. Si vous mettez `AllowOverride None`, alors les fichiers `.htaccess` ne seront pas pris en compte. Si vous mettez `AllowOverride All`, alors les fichiers `.htaccess` seront pris en compte.
 
-Le fichier `.htaccess` est un fichier qui va permettre de surcharger la configuration d'Apache. Il est possible de définir par exemple:
+Le fichier `.htaccess` est un fichier qui va permettre de surcharger la configuration d'Apache. Il est possible de définir par exemple :
 
 - Réécrire les URL (ex. `http://monsite.com/monfichier.php?id=1` devient `http://monsite.com/monfichier/1`).
 - Protéger un dossier par mot de passe.
@@ -303,9 +303,9 @@ Dans notre cas nous utiliserons MariaDB pour le serveur de base de données. Mar
 
 ::: tip Pourquoi MariaDB et pas MySQL ?
 
-C'est une bonne question… MariaDB est un fork de MySQL, c'est-à-dire que c'est une copie de MySQL. MariaDB a été créé parce que Oracle a racheté MySQL. Oracle a ensuite décidé de rendre MySQL payant. MariaDB est donc une copie de MySQL qui est gratuite. MariaDB est donc une alternative à MySQL.
+C'est une bonne question… MariaDB est un fork de MySQL, c'est-à-dire que c'est une copie de MySQL. MariaDB a été créé parce qu'Oracle a racheté MySQL. Oracle a ensuite décidé de rendre MySQL payant. MariaDB est donc une copie de MySQL qui est gratuite. MariaDB est donc une alternative à MySQL.
 
-Ce sont donc deux logiciels équivalents, MariadDB est gratuit et MySQL est pour l'instant également gratuit. Mais le logiciel MySQL pourrait devenir payant à l'avenir d'où l'intérêt de se tourner vers MariaDB.
+Ce sont donc deux logiciels équivalents, MariaDB est gratuit et MySQL est pour l'instant également gratuit. Mais le logiciel MySQL pourrait devenir payant à l'avenir d'où l'intérêt de se tourner vers MariaDB.
 
 :::
 
@@ -344,7 +344,7 @@ Par exemple, si vous ouvrez le port 80 sur votre serveur, alors les ordinateurs 
 
 La liste des ports est standardisée, chaque serveur possède 65535 ports. Les ports vont de 0 à 65535 :
 
-- Les ports vont de 0 à 1023 sont réservés pour les services système. 
+- Les ports qui vont de 0 à 1023 sont réservés pour les services système. 
 - Les ports qui vont de 1024 à 65535 sont réservés pour les services utilisateurs.
 
 Dans les ports réservés pour les services système, il y a les ports suivants :
@@ -352,11 +352,11 @@ Dans les ports réservés pour les services système, il y a les ports suivants 
 - 22 : SSH
 - 80 : HTTP
 - 443 : HTTPS
-- 3306 : MariaDB
 - …
 
 Dans les ports réservés pour les services utilisateurs, nous retrouvons souvent les ports suivants :
 
+- 3306 : MariaDB
 - 8080 : HTTP
 - 8443 : HTTPS
 
@@ -370,13 +370,13 @@ La notion de port est **très importante,** car il est possible d'ouvrir des por
 
 ::: danger Attention
 
-Les ports sont le moyen de faire communiquer votre serveur avec les ordinateurs distants. Même si il est possible d'ouvrir des ports sur votre serveur, il est important de ne pas ouvrir tous les ports. En effet, si vous ouvrez tous les ports, alors n'importe quel ordinateur pourra communiquer avec votre serveur. Cela peut être dangereux, car un pirate pourrait alors se connecter à votre serveur et faire des choses malveillantes.
+Les ports sont le moyen de faire communiquer votre serveur avec les ordinateurs distants. Même s'il est possible d'ouvrir des ports sur votre serveur, il est important de ne pas ouvrir tous les ports. En effet, si vous ouvrez tous les ports, alors n'importe quel ordinateur pourra communiquer avec votre serveur. Cela peut être dangereux, car un pirate pourrait alors se connecter à votre serveur et faire des choses malveillantes.
 
 :::
 
 ### iptables
 
-Sous Linux nous pouvons utiliser iptables pour gérer les ports, grâce à iptable qui est un quelques sortes un pare-feu nous allons pouvoir gérer les ports ouverts / accessibles sur notre serveur. Cette configuration n'est pas à négliger, car elle permet de sécuriser votre serveur.
+Sous Linux nous pouvons utiliser iptables pour gérer les ports, grâce à iptables qui est en quelque sorte un pare-feu nous allons pouvoir gérer les ports ouverts / accessibles sur notre serveur. Cette configuration n'est pas à négliger, car elle permet de sécuriser votre serveur.
 
 Par exemple, si nous réalisons un serveur Web, nous allons ouvrir uniquement le port 80 et le port 443. Nous allons donc bloquer tous les autres ports. Cela permet de sécuriser notre serveur.
 
@@ -484,7 +484,7 @@ Pour changer le propriétaire d'un fichier, vous pouvez utiliser la commande `ch
 chown <propriétaire>:<groupe> <fichier>
 ```
 
-Par exemple si nous voulons autoriser l'utilisateur apache a lire et écrire dans le fichier `index.html`, nous pouvons utiliser la commande suivante :
+Par exemple si nous voulons autoriser l'utilisateur apache à lire et écrire dans le fichier `index.html`, nous pouvons utiliser la commande suivante :
 
 ```bash
 chown apache:apache index.html
@@ -502,7 +502,7 @@ Le fichier `index.html` est maintenant accessible en lecture et en écriture par
 
 ## La structure des dossiers
 
-L'architecture des dossiers d'un linux est très simple. Elle est composée de différentes parties :
+L'architecture des dossiers d'un Linux est très simple. Elle est composée de différentes parties :
 
 - `/` : le dossier racine.
 - `/home` : les dossiers des utilisateurs.
@@ -594,7 +594,7 @@ Mais il est important de réfléchir à la question suivante : quels services vo
 
 ### Gérer les services
 
-Beaucoup de distribution Linux moderne utilise SystemD pour gérer les services. Il permet de démarrer, d'arrêter, de redémarrer, de recharger, de vérifier l'état des services.
+Beaucoup de distributions Linux modernes utilisent SystemD pour gérer les services. Il permet de démarrer, d'arrêter, de redémarrer, de recharger, de vérifier l'état des services.
 
 Pour vérifier l'état des services, vous pouvez utiliser la commande suivante :
 
@@ -667,7 +667,7 @@ Pour éviter tout problème (erreur, sécurité, etc), il est également intére
 
 ## L'accès à distance
 
-Vous vous doutez que nous n'accédons pas à un serveur comme nous accédons à une machine physique (via un clavier et un souris), nous allons utiliser un accès à distance. Il existe plusieurs méthodes pour accéder à distance à votre serveur :
+Vous vous doutez que nous n'accédons pas à un serveur comme nous accédons à une machine physique (via un clavier et une souris), nous allons utiliser un accès à distance. Il existe plusieurs méthodes pour accéder à distance à votre serveur :
 
 - SSH
 - FTP
@@ -689,18 +689,18 @@ systemctl enable ssh
 
 ### Configuration SSH
 
-SSh est un service « critique » de votre serveur. Il est donc important de le configurer correctement. Pour cela, vous devez modifier le fichier de configuration SSH. Pour cela, vous devez modifier le fichier `/etc/ssh/sshd_config`. Voici quelques options intéressantes à modifier :
+SSH est un service « critique » de votre serveur. Il est donc important de le configurer correctement. Pour cela, vous devez modifier le fichier de configuration SSH. Pour cela, vous devez modifier le fichier `/etc/ssh/sshd_config`. Voici quelques options intéressantes à modifier :
 
 - `PermitRootLogin no` : interdit la connexion au compte root.
 - `PasswordAuthentication no` : interdit la connexion avec un mot de passe.
 - `PubkeyAuthentication yes` : autorise la connexion avec une clé SSH.
 - `Port 22` : change le port d'écoute du service SSH (par défaut 22).
 - `AllowUsers <utilisateur>` : autorise uniquement certains utilisateurs à se connecter au service SSH.
-- `DenyUsers <utilisateur>` : interdit certains utilisateurs à se connecter au service SSH.
+- `DenyUsers <utilisateur>` : interdit à certains utilisateurs de se connecter au service SSH.
 - `MaxAuthTries 3` : limite le nombre de tentatives de connexion à 3.
 - `MaxSessions 2` : limite le nombre de sessions à 2.
 - `ClientAliveInterval 300` : envoie un message au client toutes les 5 minutes pour vérifier qu'il est toujours connecté.
-- `ClientAliveCountMax 0` : déconnecte le client si il ne répond pas au message envoyé par le serveur.
+- `ClientAliveCountMax 0` : déconnecte le client s'il ne répond pas au message envoyé par le serveur.
 
 Bien évidemment, il n'est pas nécessaire de modifier toutes ces options, mais il est important de savoir qu'elles existent. Vous pouvez les modifier en fonction de vos besoins.
 
@@ -715,7 +715,7 @@ Il est important de modifier ces options pour plusieurs raisons :
 - Limiter le nombre de tentatives de connexion : cela permet de limiter le nombre de tentatives de connexion à 3. Si un pirate parvient à se connecter à votre serveur avec un mot de passe, il aura tous les droits sur votre machine. Il pourra donc faire ce qu'il veut.
 - Limiter le nombre de sessions : cela permet de limiter le nombre de sessions à 2. Si un pirate parvient à se connecter à votre serveur avec un mot de passe, il aura tous les droits sur votre machine. Il pourra donc faire ce qu'il veut.
 - Envoyer un message au client toutes les 5 minutes : cela permet d'envoyer un message au client toutes les 5 minutes pour vérifier qu'il est toujours connecté. Si le client ne répond pas au message envoyé par le serveur, il sera déconnecté.
-- Déconnecter le client si il ne répond pas au message envoyé par le serveur : cela permet de déconnecter le client si il ne répond pas au message envoyé par le serveur. Si le client ne répond pas au message envoyé par le serveur, il sera déconnecté.
+- Déconnecter le client s'il ne répond pas au message envoyé par le serveur : cela permet de déconnecter le client s'il ne répond pas au message envoyé par le serveur. Si le client ne répond pas au message envoyé par le serveur, il sera déconnecté.
 
 :::
 
@@ -791,10 +791,10 @@ Lorsque vous vous connectez à votre serveur avec la commande `ssh`, le serveur 
 
 Techniquement il y a plusieurs étapes :
 
-- Le serveur génère une donnée aléatoire et le chiffre avec la clé privée et calcule le hash md5 de la valeur chiffré.
-- Le serveur envoie la donnée au client.
-- Le client déchiffre le chiffre avec la clé publique.
-- Le client renvoie le hash md5 de la valeur déchiffré au serveur.
+- Le serveur génère une donnée aléatoire, la chiffre avec la clé publique et calcule le hash md5 de la donnée d'origine.
+- Le serveur envoie la donnée chiffrée au client.
+- Le client déchiffre la donnée avec sa clé privée.
+- Le client renvoie le hash md5 de la valeur déchiffrée au serveur.
 - Si les deux md5 sont identiques, le serveur accepte la connexion.
 
 ![Fonctionnement d'une clé SSH](./res/ssh-key-based-authentication.png)
@@ -896,7 +896,7 @@ En général, les logs d'erreurs sont plus importants que les logs de débogage.
 
 ::: tip Point cybersécurité
 
-Les logs sont des fichiers qui contiennent des informations sensibles. Les logs d’Apache ou Nginx contiennent entre autres les accès au votre serveur. Ils sont donc utiles pour observer si vous subissez des attaques. Ils sont également très sensibles, et très attractifs pour des attaquants.
+Les logs sont des fichiers qui contiennent des informations sensibles. Les logs d’Apache ou Nginx contiennent entre autres les accès à votre serveur. Ils sont donc utiles pour observer si vous subissez des attaques. Ils sont également très sensibles, et très attractifs pour des attaquants.
 
 Si votre organisation le permet, les logs peuvent être externalisés pour être centralisés dans un serveur centralisé. Ce qui va permettre de les sécuriser, ainsi que les analyser plus facilement (avec des outils comme Kibana, Graylog…).
 
@@ -926,7 +926,7 @@ Vous pouvez avoir différentes erreurs dans vos logs :
 
 - Des erreurs de configuration serveur. (ex. : mauvaise configuration d’Apache, erreur de type 500).
 - Des erreurs d'application. (ex. : erreur dans le code de votre site en PHP, erreur de type 500).
-- Des erreurs de type ressource introuvables. (ex : un fichier n'existe pas, erreur de type 404).
+- Des erreurs de type ressource introuvable. (ex : un fichier n'existe pas, erreur de type 404).
 
 ### Exemple de logs
 
@@ -1019,16 +1019,16 @@ Le découpage en environnement est une pratique très répandue. Elle permet de 
 
 La **réplication informatique des données** est un procédé qui consiste à copier les données d’un serveur maître et à les stocker sur d’autres supports, la plupart du temps un ou **différents serveurs**. On les appelle serveurs cibles, aussi appelés **serveurs esclaves** ou de destination, et l’on parle de réplication de serveur à serveur en réseau.
 
-Nous allosn pouvoir réaliser de la réplication de données de plusieurs manières :
+Nous allons pouvoir réaliser de la réplication de données de plusieurs manières :
 
 - Réplication de base de données (très courant).
 - Réplication de fichiers / Serveur.
 
-La réplication de base de données est très réppandue dans l'organisation. Elle permet de s'assurer de la disponibilité des données. En effet, si le serveur de base de données tombe en panne, il est possible de récupérer les données sur un autre serveur. Il ne faut pas confondre la réplication de base de données avec la sauvegarde de base de données. Ici nous nous **concentrons sur la haute disponibilité des données**. En s'assurant que les données soit très rapidement disponibles en cas de problème.
+La réplication de base de données est très répandue dans l'organisation. Elle permet de s'assurer de la disponibilité des données. En effet, si le serveur de base de données tombe en panne, il est possible de récupérer les données sur un autre serveur. Il ne faut pas confondre la réplication de base de données avec la sauvegarde de base de données. Ici nous nous **concentrons sur la haute disponibilité des données**. En s'assurant que les données soient très rapidement disponibles en cas de problème.
 
 Comme pour la base de données, il est possible d'avoir une copie parfaite des fichiers de son serveur (fichier, et configuration) afin d'être en capacité d'avoir instantanément un serveur de remplacement en cas de problème.
 
-### Plusieurs type de réplications existent
+### Plusieurs types de réplications existent
 
 Pour les réplications de base de données :
 
@@ -1065,7 +1065,7 @@ Les hébergeurs mutualisés sont des hébergeurs qui proposent des serveurs mutu
 
 Dans le cas d'un hébergement dédié, vous louez un serveur qui est entièrement dédié à votre site Web. Vous pouvez donc installer les services que vous voulez sur votre serveur. Vous pouvez donc installer un serveur Web, un serveur de base de données, etc.
 
-Le serveur peut-être physique ou virtuel. Mais dans tous les cas vous avez un accès complet à l'OS.
+Le serveur peut être physique ou virtuel. Mais dans tous les cas vous avez un accès complet à l'OS.
 
 #### Les hébergements de type SaaS
 
@@ -1137,7 +1137,7 @@ Un conteneur est un environnement qui contient un service. Par exemple, vous pou
 
 ### Installation dans un container Docker ou directement sur la machine ?
 
-Là c'est à vous de voir, les deux sont possibles. Personnellement je préfère l'utilisation de Docker, car cela permet de créer des environnements de fonctionnement différent en fonction du projet. Nous pouvons avoir des architectures vraiment spécifiques à chaque projet :
+Là c'est à vous de voir, les deux sont possibles. Personnellement je préfère l'utilisation de Docker, car cela permet de créer des environnements de fonctionnement différents en fonction du projet. Nous pouvons avoir des architectures vraiment spécifiques à chaque projet :
 
 - Projet A : Apache + Mysql version 5.7
 - Projet B : Nginx + MariaDB version 10.5

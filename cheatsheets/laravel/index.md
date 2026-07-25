@@ -1,10 +1,10 @@
 ---
-description: Cet aide mémoire n’est pas exhaustif, elle contient les connaissances minimums pour réaliser un site avec Laravel.
+description: Cet aide-mémoire n’est pas exhaustif, il contient les connaissances minimums pour réaliser un site avec Laravel.
 ---
 
 # Laravel
 
-Cet aide mémoire n’est pas exhaustif, elle contient les connaissances minimums pour réaliser un site avec Laravel.
+Cet aide-mémoire n’est pas exhaustif, il contient les connaissances minimums pour réaliser un site avec Laravel.
 
 ::: details Sommaire
 [[toc]]
@@ -36,7 +36,7 @@ composer create-project laravel/laravel le-nom-de-votre-projet
 ```
 
 ::: danger ATTENTION
-Le projet va être crée dans mon exemple dans un dossier nommé `le-nom-de-votre-projet` (dans le dossier courant). Attention à ne pas être n’importe où.
+Le projet va être créé dans mon exemple dans un dossier nommé `le-nom-de-votre-projet` (dans le dossier courant). Attention à ne pas être n’importe où.
 :::
 
 ## Réinstaller un projet
@@ -127,7 +127,7 @@ Starting Laravel development server: http://127.0.0.1:8000
 L’ensemble des routes sont dans **3 fichiers** :
 
 - `routes/web.php`: Gestion des urls pour les clients (web)
-- `routes/api.php`: Gestion des urls pour les échanges « technique » API.
+- `routes/api.php`: Gestion des urls pour les échanges « techniques » API.
 - `routes/console.php`: Gestion des commandes pour la console Laravel.
 
 ### Définir une route simple
@@ -150,12 +150,12 @@ L’avantage d’un framework, c’est la simplicité. Si vous souhaitez déclar
 Route::get('/demo/{id}', [DemoController::class, "voir"]);
 ```
 
-Qu’avons nous ici ?
+Qu’avons-nous ici ?
 
 | Le code                           | L’action                                                                                                   |
 | :-------------------------------- | :--------------------------------------------------------------------------------------------------------- |
 | `/demo/{id}`                      | Le lien d’accès avec une variable `{id}`                                                                   |
-| `[DemoController::class, "voir"]` | La méthode à appeler dans le contrôleur (en l’occurence la méthode `voir` dans la classe `DemoController`) |
+| `[DemoController::class, "voir"]` | La méthode à appeler dans le contrôleur (en l’occurrence la méthode `voir` dans la classe `DemoController`) |
 
 ### Et en POST ?
 
@@ -167,7 +167,7 @@ Route::post('/demo/{id}', [DemoController::class, "voir"]);
 
 ::: danger Un instant ✋
 
-En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `DemoController` soit accessible depuis le router il faudra :
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespaces, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `DemoController` soit accessible depuis le router il faudra :
 
 ```php
 use App\Http\Controllers\DemoController;
@@ -188,7 +188,7 @@ Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
 ## Les contrôleurs
 
-Le contrôleur va contenir la logique « métier » pour traiter les demandes du clients.
+Le contrôleur va contenir la logique « métier » pour traiter les demandes du client.
 
 ```sh
 php artisan make:controller DemoController
@@ -232,7 +232,7 @@ Il suffit donc de créer une méthode, les paramètres seront automatiquement re
 
 ::: tip C’est aussi simple oui
 
-Ne reflichissez pas trop… C’est vraiment aussi simple que ça.
+Ne réfléchissez pas trop… C’est vraiment aussi simple que ça.
 
 :::
 
@@ -253,7 +253,7 @@ function votreMethode(Request $request){
     $request->input('name', 'John'); // Récupère la valeur de la donnée "name" du formulaire. Si la donnée n'existe pas, la valeur par défaut est "John"
 
     // Paramètres de requête www.demo.html?name=mike
-    request()->input('nom'); //mike
+    request()->input('name'); //mike
 
     // Données du formulaire (ou valeur par défaut)
     request()->input('email', 'no@email.com');
@@ -270,7 +270,7 @@ function votreMethode($name, $email){
 }
 ```
 
-### Les retours possible d'une méthode
+### Les retours possibles d'une méthode
 
 ```php
 // Retourne une vue
@@ -279,7 +279,7 @@ return view('view.name', ['name' => 'John']);
 // Retourne une vue avec un message flash (session)
 return redirect('/home')->with('status', 'Task was successful!');
 
-// Retourn une redirection vers une route nommée
+// Retourne une redirection vers une route nommée
 return redirect()->route('profile');
 
 // Retourne une redirection vers une route nommée avec des paramètres
@@ -299,9 +299,9 @@ return response()->json($user);
 
 ### La migration
 
-Une migration c’est ce qui va nous permettre d’initialiser la base de données directement depuis Laravel. Bien que cette partie _est optionnelle_ je vous conseille vivement de l’utiliser (c’est un standard en entreprise.)
+Une migration c’est ce qui va nous permettre d’initialiser la base de données directement depuis Laravel. Bien que cette partie _soit optionnelle_ je vous conseille vivement de l’utiliser (c’est un standard en entreprise.)
 
-```php
+```sh
 php artisan make:migration le_nom_de_votre_migration --create=leNomDeVotreTableEnBase
 ```
 
@@ -384,7 +384,7 @@ class LeNomDeVotreTableEnBase extends Model
 
 ::: danger Le nom de la classe sera le nom de votre table
 
-De base le nome de la classe sera le nom de votre table. Si vous souhaitez changer le comportement, il vous suffit de :
+De base le nom de la classe sera le nom de votre table. Si vous souhaitez changer le comportement, il vous suffit de :
 
 ```php
 <?php
@@ -413,7 +413,7 @@ $todos = LeNomDeVotreTableEnBase::all();
 // Ou pour l’enregistrement avec l’identifiant « 42 »
 $todo = LeNomDeVotreTableEnBase::find(42);
 
-// Obtenir, mais filtrer et ordonné et avec une limite
+// Obtenir, mais filtré et ordonné et avec une limite
 $todos = LeNomDeVotreTableEnBase::where('termine', 1)->orderBy('id', 'desc')->take(10)->get();
 
 // Ou avec un where
@@ -422,7 +422,7 @@ $users = User::where('votes', '>', 100)->get();
 
 ::: danger Un instant ✋
 
-En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `LeNomDeVotreTableEnBase` soit accessible depuis le contrôleur il faudra :
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespaces, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `LeNomDeVotreTableEnBase` soit accessible depuis le contrôleur il faudra :
 
 ```php
 use App\Models\LeNomDeVotreTableEnBase;
@@ -453,7 +453,7 @@ LeNomDeVotreTableEnBase::create(array(
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\LeNomDeVotreTableEnBase::find(1);
+$todo = App\Models\LeNomDeVotreTableEnBase::find(1);
 
 // Le passer à terminer
 $todo->termine = true;
@@ -464,25 +464,25 @@ $todo->save();
 
 ### Supprimer un enregistrement
 
-Plusieurs façon :
+Plusieurs façons :
 
 ```php
 // Façon 1
 // Rechercher celui avec l’id 1
-$todo = App\LeNomDeVotreTableEnBase::find(1);
+$todo = App\Models\LeNomDeVotreTableEnBase::find(1);
 $todo->delete(); // Le supprimer
 
 // Façon 2
 // Le supprimer directement
-App\LeNomDeVotreTableEnBase::destroy(1);
+App\Models\LeNomDeVotreTableEnBase::destroy(1);
 
 // Façon 3
 // En supprimer plusieurs directement
-App\LeNomDeVotreTableEnBase::destroy(1,2,3);
+App\Models\LeNomDeVotreTableEnBase::destroy(1,2,3);
 
 // Façon 4
 // Supprimer avec une condition
-App\LeNomDeVotreTableEnBase::where('termine', '=', 1)->delete();
+App\Models\LeNomDeVotreTableEnBase::where('termine', '=', 1)->delete();
 ```
 
 ### Les jointures
@@ -506,7 +506,7 @@ class Todo extends Model {
 ```
 
 ::: tip
-Éloquent supposera que dans le modèle Catégorie contiendra une colonne todo_id.
+Éloquent supposera que le modèle Catégorie contiendra une colonne todo_id.
 :::
 
 #### One To Many
@@ -580,7 +580,7 @@ class Role extends Model
 
 ### Générer les modèles
 
-Il est également possible de générer les modèles à partir de la base de données. Cette fonctionnalitée n'est pas disponible de base dans Laravel, il faut donc installer une dépendance supplémentaire :
+Il est également possible de générer les modèles à partir de la base de données. Cette fonctionnalité n'est pas disponible de base dans Laravel, il faut donc installer une dépendance supplémentaire :
 
 ```sh
 composer require reliese/laravel --dev
@@ -622,36 +622,38 @@ class Client extends Model
 
 :::
 
+:::
+
 ### Requêter les données
 
 Nous avons vu comment définir les relations, mais comment les utiliser ? C’est très simple, vous pouvez utiliser les méthodes de relations comme si elles étaient des méthodes de modèle.
 
 ```php
 // Récupérer les commentaires d’un post
-$comments = App\Post::find(1)->comments()->get();
+$comments = App\Models\Post::find(1)->comments()->get();
 
 // Récupérer les commentaires d’un post et les ordonner par date
-$comments = App\Post::find(1)->comments()->orderBy('created_at', 'desc')->get();
+$comments = App\Models\Post::find(1)->comments()->orderBy('created_at', 'desc')->get();
 
 // Récupérer les commentaires d’un post et les ordonner par date et avec une limite
-$comments = App\Post::find(1)->comments()->orderBy('created_at', 'desc')->take(10)->get();
+$comments = App\Models\Post::find(1)->comments()->orderBy('created_at', 'desc')->take(10)->get();
 
 // Utiliser le with pour récupérer les données en une seule requête
 // Ici on récupère les posts avec leurs commentaires
-$posts = App\Post::with('comments')->get();
+$posts = App\Models\Post::with('comments')->get();
 
 // Obtenir les articles d’un utilisateur
-$articles = App\User::find(1)->articles()->get();
+$articles = App\Models\User::find(1)->articles()->get();
 
 // Réaliser plusieurs jointures avec le with
 // Ici on récupère les utilisateurs avec leurs rôles et leurs articles
-$users = App\User::with('roles', 'posts')->get();
+$users = App\Models\User::with('roles', 'posts')->get();
 
 // Jointure conditionnelle obtenir les articles d’un utilisateur dont le titre contient « Laravel »
-$articles = App\User::find(1)->articles()->where('title', 'like', '%Laravel%')->get();
+$articles = App\Models\User::find(1)->articles()->where('title', 'like', '%Laravel%')->get();
 
-// Obtenir un utilisateurs avec les posts et les commentaires via le with
-$users = App\User::with('posts.comments')->get();
+// Obtenir un utilisateur avec les posts et les commentaires via le with
+$users = App\Models\User::with('posts.comments')->get();
 ```
 
 ::: tip `with()`
@@ -661,7 +663,7 @@ Le `with()` permet de récupérer les données d'une autre table. Vous pouvez é
 Exemple, **dans le modèle `Commande`** :
 
 ```php
-$with = ['produit'];
+protected $with = ['produit'];
 ```
 
 En indiquant le `$with` dans le modèle, votre jointure sera automatiquement effectuée. Vous n'aurez plus besoin de passer par le `with()` dans le contrôleur. Pratique pour automatiser les jointures.
@@ -672,25 +674,25 @@ En indiquant le `$with` dans le modèle, votre jointure sera automatiquement eff
 
 ```php
 // Ajouter un commentaire à un post
-$comment = new App\Comment(['message' => 'A new comment.']);
-$post = App\Post::find(1);
+$comment = new App\Models\Comment(['message' => 'A new comment.']);
+$post = App\Models\Post::find(1);
 $post->comments()->save($comment);
 
 // Ajouter un commentaire à un post avec un utilisateur
-$comment = new App\Comment(['message' => 'A new comment.']);
-$user = App\User::find(1);
-$post = App\Post::find(1);
+$comment = new App\Models\Comment(['message' => 'A new comment.']);
+$user = App\Models\User::find(1);
+$post = App\Models\Post::find(1);
 $post->comments()->save($comment, ['user_id' => $user->id]);
 
 // Attacher un rôle à un utilisateur
-$user = App\User::find(1);
+$user = App\Models\User::find(1);
 $user->roles()->attach($roleId);
 
-// Attacher des roles à un utilisateur nouvellement créé
-$user = App\User::create($attributes);
+// Attacher des rôles à un utilisateur nouvellement créé
+$user = App\Models\User::create($attributes);
 $user->roles()->attach([1, 2, 3]);
 
-// Syncroniser les rôles d'un utilisateur (remplace les rôles existants)
+// Synchroniser les rôles d'un utilisateur (remplace les rôles existants)
 $user->roles()->sync([1, 2, 3]);
 ```
 
@@ -730,7 +732,7 @@ Ici pas besoin de faire un `htmlspecialchars`… **C’est automatique**
 
 ### Retourner une vue bis
 
-Depuis un contrôleur l’approche est là même :
+Depuis un contrôleur l’approche est la même :
 
 Votre contrôleur :
 
@@ -756,7 +758,7 @@ Dans votre fichier `resources/views/votrePage.blade.php` :
 
 ### Les directives
 
-Les directives sont une syntaxe particulière permettant de conditionner, répéter, ajuster l’affichage en fonctions des données
+Les directives sont une syntaxe particulière permettant de conditionner, répéter, ajuster l’affichage en fonction des données
 
 #### LES CONDITIONS
 
@@ -843,7 +845,7 @@ Organiser le code en parent et en enfants :
 ![Parent & Enfant](./res/parent-enfant.png)
 
 - `Le parent` est la **structure** de notre page.
-- `L’enfant` est le **contenu** page désirée
+- `L’enfant` est le **contenu** de la page désirée
 
 Le parent :
 
@@ -877,7 +879,7 @@ L’enfant (une de vos pages) :
 
 ::: tip C’est une notion importante
 
-Je ne le répèterai jamais assez, mais l’organisation est la clé de la réussite. Même si ce découpage vous semble « complèxe » à première vue, c’est quelque chose de courant et de pratiquer dans beaucoup (toutes ?) les entreprises.
+Je ne le répèterai jamais assez, mais l’organisation est la clé de la réussite. Même si ce découpage vous semble « complexe » à première vue, c’est quelque chose de courant et de pratiqué dans beaucoup (toutes ?) les entreprises.
 
 :::
 
@@ -909,7 +911,7 @@ Si vous souhaitez que votre composant puisse avoir du code enfant, il faudra ajo
 {{ $slot }}
 ```
 
-- `$slot` contiendra le contenu de l’enfant (c'est à dire le contenu entre les balises du composant).
+- `$slot` contiendra le contenu de l’enfant (c'est-à-dire le contenu entre les balises du composant).
 
 Si vous souhaitez que votre composant puisse avoir des attributs, il faudra modifier le code du composant. Par exemple, si vous souhaitez que votre composant puisse avoir un attribut `nom` :
 

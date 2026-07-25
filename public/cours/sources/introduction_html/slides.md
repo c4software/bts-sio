@@ -37,7 +37,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-- 1997: HTML 4.0 (Création de la W3C)
+- 1997: HTML 4.0 (Création du W3C)
 - 2000: XHTML
 
 ---
@@ -185,7 +185,7 @@ Nous avons donc, un texte entouré d'une balise :
 
 ---
 
-## Chaque balise peut-être imbriquée
+## Chaque balise peut être imbriquée
 
 ```html
 <p>Le HTML c'est <strong>très</strong> simple !</p>
@@ -215,7 +215,7 @@ Nous avons donc, un texte entouré d'une balise :
 
 ## Les commentaires
 
-En informatique _ils sont importants_, et peut prendre plusieurs formes.
+En informatique _ils sont importants_, et peuvent prendre plusieurs formes.
 
 ### En HTML c'est :
 
@@ -329,7 +329,7 @@ La toile, Le Web…
 
 - Google
 - Stackoverflow
-- [MDM](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
 
 ---
 
@@ -380,11 +380,11 @@ Tester mon site… Le faire tester « en local »
 
 ## Local ?
 
-C'est à dire « sur votre ordinateur »
+C'est-à-dire « sur votre ordinateur »
 
 ---
 
-- Tester pendant le developpement
+- Tester pendant le développement
 - Faire tester à vos proches
 
 ---

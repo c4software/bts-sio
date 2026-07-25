@@ -5,15 +5,15 @@ tags: [debian, réseau, configuration]
 
 # Générateur configuration réseau pour Debian
 
-Vous trouverez dans cette page la procédure permettant de générer une configuration réseau en IP static pour Debian.
+Vous trouverez dans cette page la procédure permettant de générer une configuration réseau en IP statique pour Debian.
 
-1. Obtenir le nom de la carte réseau à configurer (`ip a` ou `find /sys/class/net -type l -execdir basename '{}' ';' | grep -v "^lo$"`
+1. Obtenir le nom de la carte réseau à configurer (`ip a` ou `find /sys/class/net -type l -execdir basename '{}' ';' | grep -v "^lo$"`)
 
 2. Génération de la configuration (remplacer les valeurs pour adapter à votre réseau)
 
 <DebianConfiguration />
 
-3. Copier la configuration obtenue et la mettre dans le fichier `nano /etc/network/interfaces`
+3. Copier la configuration obtenue et la mettre dans le fichier `/etc/network/interfaces` (`nano /etc/network/interfaces`)
 
 4. Redémarrer le service réseau
 
@@ -47,6 +47,6 @@ Le fichier `/etc/resolv.conf` est un fichier de configuration qui permet de conf
 ::: tip Documents connexes :
 
 - [Serveur Web avec Debian](./debian-web.md)
-- [Configurer le réseau](./linux-debian-based.md)
+- [Linux à base de Debian](./linux-debian-based.md)
 
 :::

@@ -75,7 +75,7 @@ Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez p
 Configurez la VM pour qu'elle respecte les spécifications suivantes :
 
 - La VM doit avoir une IP statique. (Vous pouvez utiliser le générateur de configuration).
-- La VM doit avoir accès à Internet (`ping www.google.com` dois fonctionner).
+- La VM doit avoir accès à Internet (`ping www.google.com` doit fonctionner).
 - La VM doit posséder les **vmtools**. (`apt install open-vm-tools`).
 
 ### Étape 3 : Accès SSH à la VM
@@ -95,7 +95,7 @@ Pour installer votre clé SSH sur votre serveur, il vous suffit de faire la comm
 ssh-copy-id <username>@<ipaddress>
 ```
 
-⚠️ Vous devez évidemment remplacer `<username>`et `<ipaddress>`par votre utilisateur et votre mot de passe. Exemple :
+⚠️ Vous devez évidemment remplacer `<username>` et `<ipaddress>` par votre utilisateur et l'adresse IP de votre serveur. Exemple :
 
 ```bash
 ssh-copy-id pi@192.168.1.253
@@ -167,9 +167,9 @@ chown -R <VOTRE-UTILISATEUR>:www-data /var/www/
 
 Maintenant que nous avons un serveur Web, nous allons installer PHP. Pour l'instant vous avez utilisé PHP sur votre machine Windows (via XAMPP). Mais PHP peut également être installé sur un serveur Linux. Pour cela, nous allons utiliser la commande `apt` pour installer le paquet `php`.
 
-Debian est une distribution un peu particulière, elle est dite « stable ». C'est-à-dire que les versions des paquets peuvent-être un peu ancien. Pour cela nous allons devoir ajouter un dépôt supplémentaire pour avoir accès aux dernières versions de PHP.
+Debian est une distribution un peu particulière, elle est dite « stable ». C'est-à-dire que les versions des paquets peuvent être un peu anciennes. Pour cela nous allons devoir ajouter un dépôt supplémentaire pour avoir accès aux dernières versions de PHP.
 
-Le Dépôt est une source supplémentaire pour l'installation de paquets. Il est possible d'ajouter plusieurs dépôts, et de choisir la version de paquet que l'on souhaite installer.
+Le dépôt est une source supplémentaire pour l'installation de paquets. Il est possible d'ajouter plusieurs dépôts, et de choisir la version de paquet que l'on souhaite installer.
 
 ### Étape 1 : Ajout du dépôt
 
@@ -195,7 +195,7 @@ Un peu de détail sur les commandes :
 Le dépôt est celui de [Ondřej Surý](https://deb.sury.org/). Il est très connu pour proposer des versions de PHP plus récentes que celles proposées par Debian.
 ::: tip cette étape est importante.
 
-Si vous ne faites pas cette étape, vous n'aurez pas accès aux dernières versions de PHP. Vous aurez donc une version de PHP qui n'est pas à jour, et qui ne sera pas compatible avec les dernières versions fonctionnalités de PHP. Car oui, de base Debian va posséder l'ensemble des paquets qui nous seront utiles, mais dans une version un peu plus ancienne (mais plus stable du coup).
+Si vous ne faites pas cette étape, vous n'aurez pas accès aux dernières versions de PHP. Vous aurez donc une version de PHP qui n'est pas à jour, et qui ne sera pas compatible avec les dernières fonctionnalités de PHP. Car oui, de base Debian va posséder l'ensemble des paquets qui nous seront utiles, mais dans une version un peu plus ancienne (mais plus stable du coup).
 
 :::
 
@@ -225,7 +225,7 @@ Il est possible que plus tard pour un développement vous ayez besoin d'ajouter 
 
 #### Petit aparté sur PHP-fpm
 
-PHP-FPM est un outil qui permet de faire tourner PHP en tant que service. C'est-à-dire que PHP va tourner en arrière plan, et que les pages Web vont être générées par PHP. C'est un peu comme si vous aviez un serveur Apache, et un serveur PHP qui tourne en arrière plan. C'est la nouvelle façon de faire tourner PHP.
+PHP-FPM est un outil qui permet de faire tourner PHP en tant que service. C'est-à-dire que PHP va tourner en arrière-plan, et que les pages Web vont être générées par PHP. C'est un peu comme si vous aviez un serveur Apache, et un serveur PHP qui tourne en arrière-plan. C'est la nouvelle façon de faire tourner PHP.
 
 👋 C'est surtout la bonne façon de le faire fonctionner en 2024 (même si les autres façons fonctionnent évidemment encore).
 
@@ -237,7 +237,7 @@ Maintenant que nous avons installé PHP, nous pouvons le vérifier via la comman
 php -v
 ```
 
-Vous devriez voir quelque chose similaire à :
+Vous devriez voir quelque chose de similaire à :
 
 ![Version de PHP](./res/php-version.jpg)
 
@@ -256,11 +256,11 @@ Que font ces commandes ?
 - `a2enmod proxy_fcgi setenvif rewrite` permet d'activer les modules Apache qui vont nous permettre d'utiliser PHP.
   - `proxy_fcgi` est le module qui permet d'utiliser PHP-FPM (mode FastCGI).
   - `setenvif` est le module qui permet d'envoyer des variables d'environnement à PHP.
-  - `rewrite`est le module qui permet de faire de la réécriture d'URL, c'est très utile pour les frameworks.
+  - `rewrite` est le module qui permet de faire de la réécriture d'URL, c'est très utile pour les frameworks.
 - `a2enconf php8.4-fpm` permet d'activer la configuration de PHP dans Apache.
 - `systemctl restart apache2` permet de redémarrer Apache, pour prendre en compte les modifications.
 
-Pour vérifier que Apache + PHP fonctionne, vous pouvez créer un fichier `info.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
+Pour vérifier qu'Apache + PHP fonctionne, vous pouvez créer un fichier `info.php` dans le dossier `/var/www/html`. Vous pouvez utiliser la commande suivante pour y accéder :
 
 ```bash
 nano /var/www/html/info.php
@@ -286,7 +286,7 @@ Comme par exemple `php-pdo` et `php-mysql` pour la base de données.
 
 ::: danger Attention
 
-Ce fichier dangereux, ne pas laisser ce fichier sur un serveur en production. Il permet d'afficher des informations sensibles sur le serveur. En effet, il est possible d'avoir des informations sur les modules installés, les versions de PHP, les extensions installées, etc. Il est donc très important de ne pas laisser ce fichier sur un serveur en production.
+Ce fichier est dangereux, ne pas laisser ce fichier sur un serveur en production. Il permet d'afficher des informations sensibles sur le serveur. En effet, il est possible d'avoir des informations sur les modules installés, les versions de PHP, les extensions installées, etc. Il est donc très important de ne pas laisser ce fichier sur un serveur en production.
 
 🚨 Ne **JAMAIS** laisser un `phpinfo()` sur un serveur en production, **JAMAIS**.
 
@@ -310,11 +310,11 @@ Pour ajouter une erreur, vous pouvez modifier le fichier `info.php` et ajouter u
 
 Je vous laisse accéder à la page `info.php` pour voir ce qu'il se passe.
 
-Qu'avez vous vu ? Une page blanche, une erreur 500 ? C'est normal ! Notre serveur est configuré comme un serveur de **production**. C'est-à-dire que les erreurs PHP ne sont pas affichées dans le navigateur, mais dans un fichier de log.
+Qu'avez-vous vu ? Une page blanche, une erreur 500 ? C'est normal ! Notre serveur est configuré comme un serveur de **production**. C'est-à-dire que les erreurs PHP ne sont pas affichées dans le navigateur, mais dans un fichier de log.
 
-### Étape 2 : Vérifier les logs
+### Étape 3 : Vérifier les logs
 
-Maintenant que nous avons un erreur, nous allons vérifier les logs d'Apache. Pour cela, nous allons utiliser la commande `tail` :
+Maintenant que nous avons une erreur, nous allons vérifier les logs d'Apache. Pour cela, nous allons utiliser la commande `tail` :
 
 ```bash
 tail -f /var/log/apache2/error.log
@@ -407,9 +407,9 @@ Pour tester le principe des VirtualHost, nous allons créer deux sites Internet 
 
 ::: tip Port ou Domaine ?
 
-Dans la configuration d'appache, il est possible de faire du VirtualHost en utilisant des ports différents, ou en utilisant des domaines différents. Pour l'instant, nous allons utiliser des ports différents.
+Dans la configuration d'Apache, il est possible de faire du VirtualHost en utilisant des ports différents, ou en utilisant des domaines différents. Pour l'instant, nous allons utiliser des ports différents.
 
-Mais, au lycée, nous avons mis en place un système de DNS local ou vous avez la possibilité de « réserver » des nom de domaine terminant par `.etud`.
+Mais, au lycée, nous avons mis en place un système de DNS local où vous avez la possibilité de « réserver » des noms de domaine terminant par `.etud`.
 
 Exemple, dans le cas de ce TP, vous pourriez réserver les domaines suivants :
 
@@ -497,7 +497,7 @@ sudo a2ensite siteA
 sudo a2ensite siteB
 ```
 
-`a2ensite` ? Cette commande va permettre d'activer les site web que vous avez créé dans le dossier `/etc/apache2/sites-available/`. Cette commande va créer un lien symbolique dans le dossier `/etc/apache2/sites-enabled/`.
+`a2ensite` ? Cette commande va permettre d'activer les sites web que vous avez créés dans le dossier `/etc/apache2/sites-available/`. Cette commande va créer un lien symbolique dans le dossier `/etc/apache2/sites-enabled/`.
 
 Un lien symbolique est un fichier qui pointe vers un autre fichier, c'est un peu comme un raccourci. Dans notre cas, le lien symbolique va pointer vers le fichier de configuration du site Web.
 
@@ -539,8 +539,8 @@ Listen 8181
 ::: tip ici nous avons
 
 - `Listen 80` : le port par défaut d'Apache
-- `Listen 8181` : le port sur lequel le site A est accessible
-- `Listen 8080` : le port sur lequel le site B est accessible
+- `Listen 8080` : le port sur lequel le site A est accessible
+- `Listen 8181` : le port sur lequel le site B est accessible
 
 Si nous voulions ajouter un troisième site Web, nous aurions donc ajouté une ligne `Listen 8282` dans le fichier `ports.conf`. Ou tout autre port libre sur le serveur.
 
@@ -567,7 +567,7 @@ Vous devriez voir les deux sites Web :
 
 ::: tip Qu'observez-vous ?
 
-Nous avons deux sites Web qui sont accessibles, mais pour le moment ils sont vides. Vu que nous n'avons pas encore mis de `index.html` ou `index.php` dans les dossiers apache nous liste les fichiers présents dans le dossier.
+Nous avons deux sites Web qui sont accessibles, mais pour le moment ils sont vides. Vu que nous n'avons pas encore mis de `index.html` ou `index.php` dans les dossiers, Apache nous liste les fichiers présents dans le dossier.
 
 :::
 
@@ -599,7 +599,7 @@ N'oubliez pas de remplacer `votrelogin` par votre login. Et surtout, n'oubliez p
 
 ### Masquer les fichiers présents dans le dossier
 
-Si vous souhaitez que Apache ne liste pas les fichiers présents dans le dossier, vous pouvez ajouter la ligne suivante dans le fichier de configuration du site Web (à l'intérieur de la balise `<VirtualHost>`), exemple pour le site A :
+Si vous souhaitez qu'Apache ne liste pas les fichiers présents dans le dossier, vous pouvez ajouter la ligne suivante dans le fichier de configuration du site Web (à l'intérieur de la balise `<VirtualHost>`), exemple pour le site A :
 
 ```apache
 <Directory /var/www/siteA>
@@ -629,11 +629,11 @@ L'option importante dans le fichier de configuration est `Options -Indexes`. Cet
 
 Notre serveur Apache est maintenant configuré, et permet même de créer plusieurs sites Web. Pour valider son bon fonctionnement, nous allons créer trois sites Web :
 
-- Sur le port `80`: Une page listant les différents sites Web (site A et site B).
+- Sur le port `80` : Une page listant les différents sites Web (site A et site B).
 - Sur le port `8080` : Une page en PHP qui affiche le nom du serveur (centré au milieu de la page et en gras et gros).
 - Sur le port `8181` : Une page en PHP qui liste les fichiers présents dans le dossier `/var/www/siteB`.
 
-Si vous préférez utiliser 3 noms domaines, aucun problème, vous pouvez faire la même chose avec les noms de domaine `sitea.votrelogin.etud` et `siteb.votrelogin.etud`.
+Si vous préférez utiliser 3 noms de domaine, aucun problème, vous pouvez faire la même chose avec les noms de domaine `sitea.votrelogin.etud` et `siteb.votrelogin.etud`.
 
 ## Comment travailler avec le serveur ?
 
@@ -686,7 +686,7 @@ La procédure sera la suivante :
 - Installer Git sur le serveur : `apt install git`.
 - Créer un dépôt sur votre machine et le partager sur Github / Gitlab.
 - Cloner le dépôt sur le serveur : `git clone <url>`. (après avoir généré une clé SSH sur le serveur, et l'avoir ajoutée à votre compte Github / Gitlab [voir la procédure](/cheatsheets/ssh-key/)).
-- Travailler sur votre machine les pusher régulièrement
+- Travailler sur votre machine et pusher régulièrement.
 - Puller les modifications sur le serveur.
 
 Voilà un exemple complet de procédure sur le serveur :

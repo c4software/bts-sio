@@ -52,7 +52,7 @@ Créer une VM à partir d'un modèle est plus rapide que de créer une VM à par
 Pour créer une VM, il faut :
 
 - Sélectionner le modèle dans le dossier « MODELES ».
-- Clique droit sur la VM que vous souhaitez prendre comme modèle
+- Clic droit sur la VM que vous souhaitez prendre comme modèle.
 - Puis « Nouvelle VM à partir de ce modèle ».
 
 ### 1. Choix du modèle dans la liste
@@ -66,7 +66,7 @@ Le nom du modèle est composé de la façon suivante :
 - `MODELE-` : Préfixe.
 - `OS` : Nom de l'OS (exemple : `debian`).
 - `VERSION` : Version de l'OS (exemple : `11.5`).
-- `UTILISATEUR` : Nom de l'utilisateur pour utiliser le modèle (exemple: `root`).
+- `UTILISATEUR` : Nom de l'utilisateur pour utiliser le modèle (exemple : `root`).
 - `Mot de passe` : Mot de passe de l'utilisateur pour utiliser le modèle (exemple : `root`). **Ce mot de passe est à changer une fois la VM créée.**
 
 :::
@@ -101,7 +101,7 @@ Cependant, vu qu'il s'agit d'une VM créée à partir d'un modèle, il y a quelq
 
 - Changer la configuration réseau.
 - Changer le mot de passe de l'utilisateur `root`.
-- Vous créez un compte utilisateur.
+- Créer un compte utilisateur.
 - Mettre à jour le système.
 
 ### Changer la configuration réseau
@@ -110,15 +110,15 @@ Pour cette étape vous pouvez utiliser l'outil disponible dans l'aide mémoire :
 
 En utilisant l'aide mémoire [disponible ici](/cheatsheets/serveur/debian-reseau.md), générer une nouvelle adresse IP pour votre serveur.
 
-Une fois les lignes `address` et `gateway` modifié dans le fichier `/etc/network/interfaces`, vous pouvez redémarrer votre serveur pour que les modifications soient prises en compte.
+Une fois les lignes `address` et `gateway` modifiées dans le fichier `/etc/network/interfaces`, vous pouvez redémarrer votre serveur pour que les modifications soient prises en compte.
 
 ```bash
 reboot
 ```
 
-Une fois suivi vous pouvez vérifier que votre serveur a bien une nouvelle adresse IP en utilisant la commande `ip a`.
+Une fois suivi, vous pouvez vérifier que votre serveur a bien une nouvelle adresse IP en utilisant la commande `ip a`.
 
-Vous pouvez aussi vérifier l'accès à internet en utilisant la commande `ping google.com`
+Vous pouvez aussi vérifier l'accès à internet en utilisant la commande `ping google.com`.
 
 ::: tip Ça ne fonctionne pas ?
 
@@ -130,7 +130,7 @@ Vous pouvez aussi vérifier l'accès à internet en utilisant la commande `ping 
 
 ### Changer le mot de passe de l'utilisateur `root`
 
-Pour changer le mot de passe de l'utilisateur, `root` vous pouvez utiliser la commande `passwd`.
+Pour changer le mot de passe de l'utilisateur `root`, vous pouvez utiliser la commande `passwd`.
 
 ### Créer un compte utilisateur
 
@@ -147,7 +147,7 @@ Il est important de créer un compte utilisateur pour ne pas utiliser le compte 
 Pour pouvoir passer des commandes en tant que super utilisateur, vous pouvez ajouter votre utilisateur au groupe `sudo`.
 
 ```bash
-usermod -aG sudo <votre-nom-d-utilsateur>
+usermod -aG sudo <votre-nom-d-utilisateur>
 ```
 
 ### Mettre à jour le système
@@ -169,7 +169,7 @@ Par défaut le nom de la machine sera celui du modèle. Pour changer le nom de l
 hostnamectl set-hostname votre-nouveau-nom-de-machine
 ```
 
-Puis changer le fichiers `/etc/hosts` pour que le nom de la machine soit correct. Dans mon cas je vais remplacer :
+Puis changer le fichier `/etc/hosts` pour que le nom de la machine soit correct. Dans mon cas je vais remplacer :
 
 ```bash
 192.168.137.10 modele-debian-11
@@ -183,7 +183,7 @@ Par :
 
 Vous pouvez utiliser `vim` ou `nano` pour modifier le fichier.
 
-::: details le fichiers /etc/hosts avant modification
+::: details le fichier /etc/hosts avant modification
 
 ![Fichier /etc/hosts](./res/edit-hostname.jpg)
 

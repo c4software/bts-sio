@@ -7,7 +7,7 @@ description: Aide mémoire sur les structures PHP. Vous retrouverez dans cet aid
 Aide mémoire sur les structures PHP. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.
 
 ::: warning
-Cet aide mémoire n'est pas exhaustif, elle ne contient que le minimum à connaitre pour débuter sereinement.  
+Cet aide mémoire n'est pas exhaustif, il ne contient que le minimum à connaitre pour débuter sereinement.  
 :::
 
 ::: details Table des matières
@@ -16,7 +16,7 @@ Cet aide mémoire n'est pas exhaustif, elle ne contient que le minimum à connai
 
 ## Structure
 
-Pour être exécuté votre code doit-être dans un fichier nommé `quelqueschoses.php` et doit être mis tel que :
+Pour être exécuté votre code doit être dans un fichier nommé `quelqueschoses.php` et doit être mis tel que :
 
 ```php
 <?php
@@ -66,21 +66,21 @@ Pour envoyer le paramètre `param` & `nb` à la page `index.php` :
 ```php
 $var1 = 1; // Valeur numérique
 $var2 = "Démonstration"; // Valeur texte
-$var3 = true; // Valeur Booléene
+$var3 = true; // Valeur Booléenne
 $var4 = Array("a","b","c"); // Tableau
 ```
 
 | Type      | Contenu                   | Type d'opération                | Usage                                                                                                               |
 | --------- | ------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `string`  | "Une chaine de caractère" | Gestion du texte, concaténation | Permets de stocker du texte (saisie utilisateur par exemple). La valeur doit être entourée de « `"` » ou de « `'` » |
+| `string`  | "Une chaine de caractère" | Gestion du texte, concaténation | Permet de stocker du texte (saisie utilisateur par exemple). La valeur doit être entourée de « `"` » ou de « `'` » |
 | `int`     | 42                        | Opération mathématique          | Comme en mathématique                                                                                               |
-| `boolean` | `True` ou `False`         | Opération logique               | Permets de faire des actions logiques. C'est un type très important en informatique                                 |
+| `boolean` | `True` ou `False`         | Opération logique               | Permet de faire des actions logiques. C'est un type très important en informatique                                 |
 | `float`   | 10.3                      | Opération mathématique          | Comme en mathématique. Attention la notation du chiffre à virgule est avec un `.`.                                  |
-| `array`   | ["a", "b", "c"]           |                                 | Contiens des listes de « quelques choses »                                                                          |
+| `array`   | ["a", "b", "c"]           |                                 | Contient des listes de « quelque chose »                                                                          |
 
 ::: tip
 
-Pour concaténer / fusionner deux variables en PHP nous utiliseront le caractère `.` exemple :
+Pour concaténer / fusionner deux variables en PHP nous utiliserons le caractère `.` exemple :
 
 ```php
 echo "=> " . $var1 . "<=";
@@ -92,20 +92,20 @@ echo "=> " . $var1 . "<=";
 
 | Variables   | Usage                                                                                                               |
 | ----------- | ------------------------------------------------------------------------------------------------------------------- |
-| `$_SERVER`  | Contiens les informations « technique » de la connexion. Adresse IP du client, etc.                                 |
-| `$_GET`     | Contiens les paramètres envoyés dans l'URL.                                                                         |
+| `$_SERVER`  | Contient les informations « techniques » de la connexion. Adresse IP du client, etc.                                 |
+| `$_GET`     | Contient les paramètres envoyés dans l'URL.                                                                         |
 |             | `index.php?prenom=valentin`, `prenom` est donc un paramètre et `valentin` la valeur.                                |
 |             | Vous pouvez avoir plusieurs paramètres avec le caractère `&`. <br> Ex. `index.php?nom=brosseau&prenom=valentin`     |
-| `$_POST`    | Contiens les paramètres envoyés dans le corps de la requête (on y reviendra)                                        |
-| `$_FILES`   | Contiens les fichiers envoyés à votre serveur (nous y reviendrons)                                                  |
-| `$_SESSION` | Permets de sauvegarder des valeurs pour quelques minutes des valeurs le temps de la navigation (nous y reviendrons) |
-| `$_COOKIES` | Permets de sauvegarder des valeurs pour un temps plus long (mais pas illimité, nous y reviendrons)                  |
+| `$_POST`    | Contient les paramètres envoyés dans le corps de la requête (on y reviendra)                                        |
+| `$_FILES`   | Contient les fichiers envoyés à votre serveur (nous y reviendrons)                                                  |
+| `$_SESSION` | Permet de sauvegarder des valeurs pour quelques minutes, le temps de la navigation (nous y reviendrons) |
+| `$_COOKIE`  | Permet de sauvegarder des valeurs pour un temps plus long (mais pas illimité, nous y reviendrons)                  |
 
 ## Les conditions
 
 ```php
 $age = 22;
-if($var3 === 22){
+if($age === 22){
     echo "Je suis affiché si $age est === 22";
 }
 
@@ -113,7 +113,7 @@ if($var3 === 22){
 if($age >= 18) {
     echo "Vous pouvez passer le permis";
 } else {
-    echo "Encore un peu de patience… Pour le permis c'est à 18ans";
+    echo "Encore un peu de patience… Pour le permis c'est à 18 ans";
 }
 ```
 
@@ -133,7 +133,7 @@ _La boucle while_ :
 $i = 0;
 $max = 100;
 while($i < $max){
-    echo "Je serais affiché 100x";
+    echo "Je serai affiché 100x";
     $i = $i + 1; // équivalent à $i++;
 }
 ```
@@ -143,7 +143,7 @@ _La boucle for_ :
 ```php
 $max = 100;
 
-for ($i = 0; $ecrite <= $max; $i++){
+for ($i = 0; $i < $max; $i++){
     echo "Je vais m'afficher 100x";
 }
 ```
@@ -154,7 +154,7 @@ $etudiants = array(
     array('nom' => 'Doe')
 );
 
-// Je vais afficher l'ensemble des étudiants présent dans le tableau.
+// Je vais afficher l'ensemble des étudiants présents dans le tableau.
 for($i = 0; $i < count($etudiants); ++$i) {
     echo $etudiants[$i]['nom'];
 }
@@ -170,7 +170,7 @@ $etudiants = array(
     array('nom' => 'Doe')
 );
 
-// Je vais afficher l'ensemble des étudiants présent dans le tableau.
+// Je vais afficher l'ensemble des étudiants présents dans le tableau.
 foreach ($etudiants as $current) {
     echo $current['nom'];
 }
@@ -228,7 +228,7 @@ function gateauHugette($duree){
 
     $melange = $oeuf + $sucre + $farine + $beurre+ $chocolat;
 
-    return "Cuire $duree minutes le mélange de $melange gramme.";
+    return "Cuire $duree minutes le mélange de $melange grammes.";
 }
 ```
 
@@ -236,7 +236,7 @@ utiliser la fonction :
 
 ```php
 echo gateauHugette(50);
-// Je vais afficher à l'écran "Cuire 50 minutes le mélange de 453 gramme.";
+// Je vais afficher à l'écran "Cuire 50 minutes le mélange de 453 grammes.";
 ```
 
 ## La SESSION
@@ -251,7 +251,7 @@ session_start();
 
 ```php
 $_SESSION["groupe"] = "admin";
-// Cette valeur est maintenant persisté sur le serveur, votre utilisateur sera admin jusqu'à ce que la SESSION soit détruite.
+// Cette valeur est maintenant persistée sur le serveur, votre utilisateur sera admin jusqu'à ce que la SESSION soit détruite.
 ```
 
 ::: danger Et pour détruire les données ?
@@ -288,7 +288,7 @@ En PHP vous pouvez rediriger l'utilisateur d'une page à l'autre assez simplemen
 ```
 
 ::: tip die ?
-La fonction `die()` permet d'arrête l'exécution de la suite du script. Dans le cadre d'une redirection ça permet d'être certains que la suite du code ne sera pas exécutée.
+La fonction `die()` permet d'arrêter l'exécution de la suite du script. Dans le cadre d'une redirection ça permet d'être certain que la suite du code ne sera pas exécutée.
 :::
 
 ## Exemple simple
@@ -306,7 +306,7 @@ $a_ecrire = "Ceci est ma phrase par défaut"; // phrase par défaut
 
 // Test si le paramètre nb est passé dans la barre d'adresse.
 if(isset($_GET['nb'])){
-    // on redéfinie nb_ligne par rapport à ce qui est dans la barre
+    // on redéfinit nb_lignes par rapport à ce qui est dans la barre
     $nb_lignes = $_GET['nb'];
 }
 
@@ -325,7 +325,7 @@ while($phrase < $nb_lignes){
 
 ## Page de traitement
 
-Une page de traitement est une page « avec un traitement côté serveur », la structure de celle-ci est toujours là même :
+Une page de traitement est une page « avec un traitement côté serveur », la structure de celle-ci est toujours la même :
 
 ```php
 <?php
@@ -347,9 +347,9 @@ Une page de traitement est une page « avec un traitement côté serveur », la 
 
 ## Gestion basique d'une authentification « Simple »
 
-En PHP, il est possible assez simplement de gérer des espaces d'administrations. Les espaces d'administrations sont « des simples pages web », elles sont juste protégées par un login et un mot de passe avant d'entrer sur la page souhaitée.
+En PHP, il est possible assez simplement de gérer des espaces d'administration. Les espaces d'administration sont « de simples pages web », elles sont juste protégées par un login et un mot de passe avant d'entrer sur la page souhaitée.
 
-### Nous pouvons représenter notre problématique tels que :
+### Nous pouvons représenter notre problématique telle que :
 
 ![UML représentant la tentative d'accès d'un utilisateur](./uml-connexion.png)
 
@@ -378,12 +378,12 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
 <?php
     if(isset($_POST['login']) && isset($_POST['password'])){
         // Gestion du login utilisateur
-        // Ici vous implémenter votre logique de connexion (par exemple vérification en base de données, ou un simple test, etc…)
+        // Ici vous implémentez votre logique de connexion (par exemple vérification en base de données, ou un simple test, etc…)
 
-        // Bien évidement c'est un exemple.
+        // Bien évidemment c'est un exemple.
         // UTILISER UNE BASE DE DONNÉES À LA PLACE !!
         if($_POST['login'] == 'admin' && $_POST['password'] == "SPHHIBGjXKqkTubwIY1JZv6hukaMBH3"){
-            // Si les informations saisies par l'utilisateur corresponds, celui-ci est maintenant connecté
+            // Si les informations saisies par l'utilisateur correspondent, celui-ci est maintenant connecté
             $_SESSION['user'] = 'admin';
             header('location: index.php?page=home'); // Redirection de l'utilisateur car correctement connecté.
             die();
@@ -417,7 +417,7 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
             header("location: / ");
             die();
         } else {
-            // Action en cas d'echec de connexion
+            // Action en cas d'échec de connexion
         }
     }
 ?>
@@ -435,7 +435,7 @@ Si vous souhaitez l'aide mémoire pour [la partie SQL c'est par ici](/cheatsheet
 
 ### Le code de connexion
 
-Ce code est à mettre dans un fichier `utils/db.php`, il suffira de l'inclure dans les pages où vous souhaiter faire des requêtes.
+Ce code est à mettre dans un fichier `utils/db.php`, il suffira de l'inclure dans les pages où vous souhaitez faire des requêtes.
 
 ```php
 // Cette partie est à customiser
@@ -480,21 +480,21 @@ Dans quel cas utiliser l'un, et dans quel cas utiliser l'autre ? C'est simple, v
 
 :::
 
-### Faire une requête préparée avec des paramètres typé
+### Faire une requête préparée avec des paramètres typés
 
 ```php
 // ATTENTION ATTENTION : Cette ligne ne doit être mise qu'une seule fois.
 include('./utils/db.php');
 
-$nbParPage = 2; // Nombre d'élément par page
-$page = 0; // Page actuellement affiché
+$nbParPage = 2; // Nombre d'éléments par page
+$page = 0; // Page actuellement affichée
 
 $stmt= $pdo->prepare("SELECT * FROM phrases LIMIT ? OFFSET ?");
 
 $stmt->bindValue(1, $nbParPage, PDO::PARAM_INT); // Paramètre qui va remplacer le 1er « ? »
-$stmt->bindValue(2, $limit * $page, PDO::PARAM_INT); // Paramètre qui va remplacer le 2nd « ? ».
+$stmt->bindValue(2, $nbParPage * $page, PDO::PARAM_INT); // Paramètre qui va remplacer le 2nd « ? ».
 
-// On lance la requête sur le server de BDD
+// On lance la requête sur le serveur de BDD
 $stmt->execute();
 
 // Récupération des résultats dans la variable $results.
@@ -523,5 +523,5 @@ Nous avons donc une règle qui indique :
 
 `(.*).html` => `index.php?page=$1 [L,QSA]`
 
-Le `(.*).html` veut dire n'importe quel texte saisi avant le `.html` sera transformé en `index.php?page=$1`. `$1` étant « le n'importe quoi saisi avant le `.html`.
+Le `(.*).html` veut dire n'importe quel texte saisi avant le `.html` sera transformé en `index.php?page=$1`. `$1` étant « le n'importe quoi saisi avant le `.html` ».
 :::

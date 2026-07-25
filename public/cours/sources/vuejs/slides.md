@@ -46,7 +46,7 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 
 ---
 
-- Pour tous, quelques soit le navigateur
+- Pour tous, quel que soit le navigateur
 - Responsive
 - Indépendant du réseau (via des services Workers, fonctionne hors-ligne ou en ligne)
 - App-like
@@ -80,7 +80,7 @@ Bluffant n’est-ce pas ? (psst c’est du ReactJS)
 Attention au support des navigateurs
 
 - [Can I Use : Connaitre le support d’une fonctionnalité](https://caniuse.com)
-- [MDM Webdoc](https://developer.mozilla.org/)
+- [MDN Webdoc](https://developer.mozilla.org/)
 
 ---
 
@@ -104,7 +104,7 @@ Faire des PWA simplement (il y en a d'autres bien évidemment, en connaissez-vou
 - Première version « stable » **février 2014**
 - **V1.0** Octobre 2015
 - La version **2** toujours distribuée sur les CDN.
-- La version **3** arrive. Elle est en stable, mais l'écosystème est jeune.
+- La version **3** arrive. Elle est stable, mais l'écosystème est jeune.
 
 ---
 
@@ -315,7 +315,7 @@ Vue.createApp({
 
 ---
 
-### À votre avis, comment doit-être la structure de la donnée ?
+### À votre avis, comment doit être la structure de la donnée ?
 
 ---
 
@@ -386,8 +386,8 @@ VueJS c'est simple et très complet. La suite en pratique et sur [le site de Vue
 ### Premier usage, dans une « page web »
 
 - Librairie externe à ajouter au projet (« vuejs.js »).
-- S'utilise un peu comme jquery.
-- Le but rendre « réactif » un développement basique (Une partie de la page).
+- S'utilise un peu comme jQuery.
+- Le but : rendre « réactif » un développement basique (Une partie de la page).
 - C'est puissant, et très simple. Un exemple.
 
 ---
@@ -427,7 +427,7 @@ On est vraiment loin d’une page Web dans la conception
 
 ---
 
-### La force des VueJS
+### La force de VueJS
 
 ---
 
@@ -503,7 +503,7 @@ C'est deux éléments importants
 ---
 
 - Rollup est plus « simple » que Webpack, mais moins « complet ». 
-- C'est le coeur de ViteJS.
+- C'est le cœur de ViteJS.
 
 ---
 
@@ -654,7 +654,7 @@ $ npm run dev
 ### Les devs tools
 
 - Intégration dans le processus de développement
-- Permets de voir les « vue »
+- Permet de voir les « vue »
 - L’état de vue
 - Le « store »
 
@@ -685,7 +685,7 @@ $ npm run dev
 ### Le store : Pinia
 
 - Gestionnaire d'état
-- Bibliothèque (optionel) à VueJS
+- Bibliothèque (optionnelle) à VueJS
 - Zone de stockage de données centralisée pour tous les composants dans une application
 - S'assurer que l'état reste « cohérent »
 - Visualisation de l’état grâce au dev-tools
@@ -784,10 +784,10 @@ $ npm run dev
 
 ```typescript
 setup: () => {
-  // Déclaration d'une variable « observé » de type Int
+  // Déclaration d'une variable « observée » de type Int
   const count = ref(0);
 
-  // Déclaration d'une seconde variable « observé » de type String
+  // Déclaration d'une seconde variable « observée » de type String
   const title = ref("Ceci est un titre");
 
   // Ne pas oublier de retourner les observations afin que VueJS réagisse au changement des variables en question.
@@ -821,7 +821,7 @@ export default {
 
     return { x, y, isDark, store }
   }
-})
+}
 ```
 
 ---
@@ -836,14 +836,14 @@ npm create vite@latest
 
 ## TypeScript ?
 
-- Permets de typer nos variables.
+- Permet de typer nos variables.
 - Complètement optionnel (mais je vous le conseille).
 
 ---
 
 ## ViteJS
 
-- Permets la création de projets
+- Permet la création de projets
 - Rapide
 - Simple
 - Ne fonctionnera que sur les navigateurs « récents »

@@ -4,7 +4,7 @@
 [[toc]]
 :::
 
-Cette page est un résumé rapide des fonctionnalités Laravel qui peuvent vous être utiles. Pour plus de détail :
+Cette page est un résumé rapide des fonctionnalités Laravel qui peuvent vous être utiles. Pour plus de détails :
 
 - [Support de cours](/cours/laravel.md)
 - [Laravel - Complément cours](/cheatsheets/laravel/)
@@ -92,14 +92,14 @@ $ php artisan migrate
 // Ensemencement des données
 $ php artisan db:seed
 
-// Migration de la table de création
+// Migration de création de table
 $ php artisan make:migration create_products_table
 
 // Créer à partir du modèle avec des options : 
 // -m (migration), -c (contrôleur), -r (contrôleurs de ressources), -f (factory), -s (seeder)
 $ php artisan make:model Product -mcf
 
-// Créez un contrôleur
+// Créer un contrôleur
 $ php artisan make:controller ProductsController
 
 // Mise à jour de la migration des tables
@@ -133,7 +133,7 @@ Schema::create('products', function (Blueprint $table) {
     // created_at et updated_at
     $table->timestamps();
     // Contrainte d'unicité
-    $table->chaîne('modelNo')->unique();
+    $table->string('modelNo')->unique();
     // Non requis
     $table->text('description')->nullable();
     // Valeur par défaut
@@ -164,8 +164,8 @@ Schema::table('users', function (Blueprint $table) {
 
 ## Les modèles
 
-```shell
-// Attributs exclus de la liste. affectation de masse du modèle
+```php
+// Attributs exclus de l'affectation de masse du modèle
 protected $guarded = []; // empty == All
 
 // Ou liste des attributs inclus
@@ -175,7 +175,7 @@ protected $fillable = ['name', 'email', 'password',];
 // Relation One to Many (articles avec de nombreux commentaires)
 public function comments() 
 {
-    return $this->hasMany(Comment:class); 
+    return $this->hasMany(Comment::class); 
 }
 
 // Relation "One to Many" (commentaires avec un article) 
@@ -215,7 +215,7 @@ public function tags()
 
 ## Générer les modèles
 
-Il est également possible de générer les modèles à partir de la base de données. Cette fonctionnalitée n'est pas disponible de base dans Laravel, il faut donc installer une dépendance supplémentaire :
+Il est également possible de générer les modèles à partir de la base de données. Cette fonctionnalité n'est pas disponible de base dans Laravel, il faut donc installer une dépendance supplémentaire :
 
 ```sh
 composer require reliese/laravel --dev
@@ -223,7 +223,7 @@ php artisan vendor:publish --tag=reliese-models
 php artisan config:clear
 ```
 
-Le plugin en question [Reliese Laravel Model Generator](https://github.com/reliese/laravel). Je vous laisse regarder la documentation pour plus d'informations.
+Le plugin en question : [Reliese Laravel Model Generator](https://github.com/reliese/laravel). Je vous laisse regarder la documentation pour plus d'informations.
 
 ::: tip Attention
 
@@ -271,7 +271,7 @@ Dans votre modèle, vous devez ajouter le trait `HasFactory` :
 Extrait du modèle :
 
 ```php
-use Illuminate\Database\Eloquent\Factories\HasFactory; <== Ajouter cette ligne
+use Illuminate\Database\Eloquent\Factories\HasFactory; // <== Ajouter cette ligne
 
 class Product extends Model
 {
@@ -345,29 +345,29 @@ $deletedRows = Flight::where('active', 0)->delete();
 // Obtenir tous les enregistrements d'une table équivaut à SELECT * FROM table
 $items = Item::all(); 
 
-// Trouver un enregistrement en base de données à partir de son id (équivaut à SELECT * FROM table WHERE id = $id). La colonne id est définit dans votre modèle (protected $primaryKey = 'id';)
+// Trouver un enregistrement en base de données à partir de son id (équivaut à SELECT * FROM table WHERE id = $id). La colonne id est définie dans votre modèle (protected $primaryKey = 'id';)
 $flight = Flight::find(1);
 
-// Obtiens l'enregistrement avec l'id 1 ou lève une exception
+// Obtient l'enregistrement avec l'id 1 ou lève une exception
 $model = Flight::findOrFail(1); 
 
 // Obtient le dernier enregistrement de la table
-$items = Item::latest()->get()
+$items = Item::latest()->get();
 
 // Réaliser une requête personnalisée. Trouve tous les enregistrements actifs et les trie par nom dans l'ordre décroissant. Limite le nombre de résultats à 10
-$flights = App\Flight::where('active', 1)->orderBy('name', 'desc')->take(10)->get();
+$flights = App\Models\Flight::where('active', 1)->orderBy('name', 'desc')->take(10)->get();
 
-// Cherche un enregistrement en base de données à partir de son id. Si l'enregistrement n'existe pas la requête renvoi une exception
-Todo::where('id', $id)->firstOrFail()  
+// Cherche un enregistrement en base de données à partir de son id. Si l'enregistrement n'existe pas, la requête renvoie une exception
+Todo::where('id', $id)->firstOrFail();
 
 // Réaliser un where de type LIKE
-Todos::where('name', 'like', '%' . $my . '%')->get()
+Todo::where('name', 'like', '%' . $my . '%')->get();
 
 // Réalise une requête avec plusieurs conditions de type OR
-Todos::where('name', 'mike')->orWhere('title', '=', 'Admin')->get();
+Todo::where('name', 'mike')->orWhere('title', '=', 'Admin')->get();
 
 // Réalise une requête avec plusieurs conditions de type AND
-Todos::where('name', 'mike')->where('title', '=', 'Admin')->get();
+Todo::where('name', 'mike')->where('title', '=', 'Admin')->get();
 
 // Compter le nombre d'enregistrements
 $count = Flight::where('active', 1)->count();
@@ -386,7 +386,7 @@ $users = User::select('name', 'email as user_email')->where('name', 'John')->get
 ```
 
 ::: tip La documentation officielle de Laravel sur l'ORM
-Pour aller plus loins, vous trouverez dans la documentation officielle de Laravel une liste des méthodes / ainsi que leurs utilisations :
+Pour aller plus loin, vous trouverez dans la documentation officielle de Laravel une liste des méthodes ainsi que leurs utilisations :
 
 [https://laravel.com/docs/12.x/eloquent](https://laravel.com/docs/12.x/eloquent)
 :::
@@ -416,25 +416,25 @@ $articlesUtilisateur = App\Models\User::find($id)->articles()->where('title', 'l
 $users = App\Models\User::with('articles', 'comments')->get();
 
 // Ajouter un commentaire à un post
-$comment = new App\Comment(['message' => 'A new comment.']);
-$post = App\Post::find(1);
+$comment = new App\Models\Comment(['message' => 'A new comment.']);
+$post = App\Models\Post::find(1);
 $post->comments()->save($comment);
 
 // Ajouter un commentaire à un post avec un utilisateur
-$comment = new App\Comment(['message' => 'A new comment.']);
-$user = App\User::find(1);
-$post = App\Post::find(1);
+$comment = new App\Models\Comment(['message' => 'A new comment.']);
+$user = App\Models\User::find(1);
+$post = App\Models\Post::find(1);
 $post->comments()->save($comment, ['user_id' => $user->id]);
 
 // Attacher un rôle à un utilisateur
-$user = App\User::find(1);
+$user = App\Models\User::find(1);
 $user->roles()->attach($roleId);
 
-// Attacher des roles à un utilisateur nouvellement créé
-$user = App\User::create($attributes);
+// Attacher des rôles à un utilisateur nouvellement créé
+$user = App\Models\User::create($attributes);
 $user->roles()->attach([1, 2, 3]);
 
-// Syncroniser les rôles d'un utilisateur (remplace les rôles existants)
+// Synchroniser les rôles d'un utilisateur (remplace les rôles existants)
 $user->roles()->sync([1, 2, 3]);
 ```
 
@@ -447,7 +447,7 @@ Le `with()` permet de récupérer les données d'une autre table. Vous pouvez é
 Exemple, **dans le modèle `Commande`** :
 
 ```php
-$with = ['produit'];
+protected $with = ['produit'];
 ```
 
 En indiquant le `$with` dans le modèle, votre jointure sera automatiquement effectuée. Vous n'aurez plus besoin de passer par le `with()` dans le contrôleur. Pratique pour automatiser les jointures.
@@ -502,14 +502,14 @@ Route::get(
 // Ressource
 Route::resource('photos', PhotoController::class);
 
-// Génération des routeus suivantes :
+// Génération des routes suivantes :
 /*
 GET /photos index photos.index
 GET /photos/create create photos.create
 POST /photos store photos.store
 GET /photos/{photo} show photos.show
 GET /photos/{photo}/edit edit photos.edit
-PUT/PATCH /photos/{photo} mettre à jour les photos.update
+PUT/PATCH /photos/{photo} update photos.update
 DELETE /photos/{photo} destroy photos.destroy
 */
 
@@ -519,8 +519,8 @@ Route::resource('photos.comments', PhotoCommentController::class);
 // Ressource partielle (uniquement les méthodes index et show seront accessibles)
 Route::resource('photos', PhotoController::class)->only(['index', 'show']);
 
-// Ressource partielle (toutes les méthodes sauf index et show seront accessibles)
-Route::resource('photos', PhotoController::class)->except(['create', 'save', 'update', 'destroy']);
+// Ressource partielle (toutes les méthodes sauf create, store, update et destroy seront accessibles)
+Route::resource('photos', PhotoController::class)->except(['create', 'store', 'update', 'destroy']);
 
 // Génération d'une URL à partir du nom de la route
 $url = route('profile', ['id' => 1]);
@@ -543,7 +543,7 @@ Route::get('/users/{user}', function (User $user) {
 });
 
 // Liaison du modèle de route (autre que l'identifiant)
-use App\Models\User;
+use App\Models\Post;
 Route::get('/posts/{post:slug}', function (Post $post) {
     return view('post', ['post' => $post]);
 });
@@ -566,10 +566,10 @@ protected $rules = [
 ];
 
 // Valider
-$validatedData = $request->validate($rules)
+$validatedData = $request->validate($rules);
 
 // Affiche la page d'erreur 404
-abort(404, 'Sorry, Post not found')
+abort(404, 'Sorry, Post not found');
 
 // Exemple de contrôleur CRUD
 class ProductsController
@@ -577,9 +577,9 @@ class ProductsController
 
    public function index()
    {
-       $produits = Product::all();
+       $products = Product::all();
 
-       // app/resources/views/produits/index.blade.php
+       // resources/views/products/index.blade.php
        return view('products.index', ['products' => $products]); 
    }
 
@@ -607,12 +607,12 @@ class ProductsController
 
    public function edit(Product $product)
    {
-       return view('produits.edit', ['produit' => $produit]); 
+       return view('produits.edit', ['produit' => $product]); 
    }
 
    public function update(Product $product)
    {
-       Product::update(request()->validate([
+       $product->update(request()->validate([
            'name' => 'required',
            'price' => 'required',
            'note' => 'nullable'
@@ -623,7 +623,7 @@ class ProductsController
 
    public function delete(Product $product)
    {
-        $produit->delete();
+        $product->delete();
         return redirect("/contacts");
    }
 }
@@ -646,7 +646,7 @@ function votreMethode(Request $request){
     $request->input('name', 'John'); // Récupère la valeur de la donnée "name" du formulaire. Si la donnée n'existe pas, la valeur par défaut est "John"
 
     // Paramètres de requête www.demo.html?name=mike
-    request()->input('nom'); //mike
+    request()->input('name'); //mike
 
     // Données du formulaire (ou valeur par défaut)
     request()->input('email', 'no@email.com');
@@ -663,7 +663,7 @@ function votreMethode($name, $email){
 }
 ```
 
-## Les retours possible d'une méthode
+## Les retours possibles d'une méthode
 
 ```php
 // Retourne une vue
@@ -672,7 +672,7 @@ return view('view.name', ['name' => 'John']);
 // Retourne une vue avec un message flash (session)
 return redirect('/home')->with('status', 'Task was successful!');
 
-// Retourn une redirection vers une route nommée
+// Retourne une redirection vers une route nommée
 return redirect()->route('profile');
 
 // Retourne une redirection vers une route nommée avec des paramètres
@@ -703,14 +703,14 @@ return response()->json($user);
 @include('view.name', ['name' => 'John'])
 
 <!-- Modèle de variable -->
-{{ var_name }} 
+{{ $var_name }} 
 
 <!-- Variable html raw safe --> 
-{!! var_name !!}
+{!! $var_name !!}
 
-<!-- Interation -->
+<!-- Itération -->
 @foreach ($items as $item)
-   {{ $item.name }}
+   {{ $item->name }}
    @if($loop->last) 
        $loop->index 
    @endif
@@ -720,7 +720,7 @@ return response()->json($user);
 @if ($post->id === 1) 
     'Post one' 
 @elseif ($post->id === 2)
-    'Publier deux !'
+    'Post two'
 @else 
     Autre 
 @endif
@@ -759,7 +759,7 @@ return response()->json($user);
     </div>
 @endif
 
-<!-- Check a specific attributes -->
+<!-- Check a specific attribute -->
 <input id="title" type="text" class="@error('title') is-invalid @enderror">
 
 <!-- Remettre les données du précédent submit -->
@@ -773,14 +773,14 @@ return response()->json($user);
 $request->session()->flash('status', 'Task was successful!');
 
 // Flash avec redirection
-return redirect('/home')->with('success' => 'email sent!');
+return redirect('/home')->with('success', 'email sent!');
 
 // Définir la session
 $request->session()->put('key', 'value');
 
 // Récupération de la session
 $value = session('key');
-Si session : if ($request->session()->has('users'))
+// Si la session existe : if ($request->session()->has('users'))
 
 // Suppression de la session
 $request->session()->forget('key');

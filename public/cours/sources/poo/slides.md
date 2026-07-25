@@ -10,7 +10,7 @@ Pourquoi la Programmation Orientée Objet ?
 
 En groupe de 2 ou 3
 
-- Que vous souvenez-vous ?
+- De quoi vous souvenez-vous ?
 - Où faites-vous déjà de la POO ? Quels sont les avantages ?
 
 ---
@@ -31,7 +31,7 @@ En groupe de 2 ou 3
 
 ---
 
-**Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter (inaccessible de l'exterieur de l'objet).
+**Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter (inaccessible de l'extérieur de l'objet).
 
 ---
 
@@ -74,35 +74,35 @@ Une classe étant **une définition**, elle nous servira plus tard à créer **d
 
 ---
 
-### Nous avons donc deux types membres dans la classe
+### Nous avons donc deux types de membres dans la classe
 
-- Des **propriétés** (le données de l'objet) **avec une visibilité**
+- Des **propriétés** (les données de l'objet) **avec une visibilité**
 - Des **méthodes** (les actions possibles : accélérer, freiner, etc.) **avec une visibilité**
 
 ---
 
 ### La visibilité ?
 
-- Privée : accessible que dans l'objet.
+- Privée : accessible uniquement dans l'objet.
 - Public : accessible hors de l'objet.
 - Protected : **accessible** aux enfants (héritage) mais **pas en dehors**.
 
 ---
 
-![Visiblité d'un objet](./res/visibilite.jpg)
+![Visibilité d'un objet](./res/visibilite.jpg)
 
 ---
 
 ### Les méthodes
 
-- Comme une fonction, mais **encapsulé** dans la classe.
+- Comme une fonction, mais **encapsulée** dans la classe.
 - Possède une visibilité.
 - Possède des paramètres.
 - Surcharge: plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et/ou ordre).
 
 ---
 
-### Les type de méthodes
+### Les types de méthodes
 
 - Le constructeur.
 - Les méthodes d'actions.
@@ -143,7 +143,7 @@ class Personne
     }
 
     // Accesseur
-    public function getSalaire($valeur)
+    public function getSalaire()
     {
         return $this->salaire;
     }
@@ -220,7 +220,7 @@ class SimpleClass
     <li>Les classes sont instanciables (création d'objets, <code>new Personne(…)</code>).</li>
     <li>Les propriétés sont les « variables » de l'objet.</li>
     <li>Les méthodes sont les « actions » de l'objet.</li>
-    <li>Les méthodes <b>et</b> les propriétés <b>ont des visiblités</b>.</li>
+    <li>Les méthodes <b>et</b> les propriétés <b>ont des visibilités</b>.</li>
     <li>Les méthodes peuvent être surchargées.</li>
 </fieldset>
 
@@ -257,7 +257,7 @@ Nous souhaitons modéliser la problématique d'un vendeur de voitures.
 
 Supposons que chaque Voiture possède :
 
-- les « attributs » suivant :
+- les « attributs » suivants :
   - Une vitesse.
   - Un nombre de km.
   - Une année de fabrication.
@@ -269,7 +269,7 @@ Supposons que chaque Voiture possède :
 
 _Une solution possible_
 
-![Visiblité d'un objet](./res/modelisationVoiture.jpg)
+![Visibilité d'un objet](./res/modelisationVoiture.jpg)
 
 ---
 
@@ -290,15 +290,15 @@ Une personne possède une ou des voiture(s).
 ```php
 class Voiture {
 
-    private Integer $vitesse;
-    private Integer $nombreKm;
-    private Date $annéeFabrication;
+    private int $vitesse;
+    private int $nombreKm;
+    private DateTime $annéeFabrication;
     private Personne $lePropriétaire;
 
     // Reste de la classe
 
     function affecterPropriétaire($propriétaire){
-        $this->lePropriétaire = $propriétaire
+        $this->lePropriétaire = $propriétaire;
     }
 
 }
@@ -408,8 +408,8 @@ Java
 En PHP :
 
 ```php
-foreach($lesPersonne as $laPersonne){
-    // $laPersonne contient « un pointeur » vers une des personne de la liste
+foreach($lesPersonnes as $laPersonne){
+    // $laPersonne contient « un pointeur » vers une des personnes de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
 ```
@@ -421,13 +421,13 @@ En Java :
 ```java
 // Version moderne
 lesPersonnes.forEach(laPersonne -> {
-    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // laPersonne contient « un pointeur » vers une des personnes de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 });
 
 // Version « à l'ancienne »
 for (Personne laPersonne : lesPersonnes) {
-    // laPersonne contient « un pointeur » vers une des personne de la liste
+    // laPersonne contient « un pointeur » vers une des personnes de la liste
     // À chaque tour de boucle nous avons la personne suivante.
 }
 ```
@@ -474,11 +474,11 @@ class Mammifere {
     protected $vertebre = true;
     protected $espece = "";
 
-    public __construct($espece) {
+    public function __construct($espece) {
         $this->espece = $espece;
     }
 
-    public print() {
+    public function print() {
         echo "Je suis un mammifère";
     }
 
@@ -510,7 +510,7 @@ $unHumain->manger(); // Je suis omnivore.
 
 <fieldset>
   <legend>La visibilité !</legend>
-    <li>Privée : accessible que dans l'objet.</li>
+    <li>Privée : accessible uniquement dans l'objet.</li>
     <li>Public : accessible hors de l'objet.</li>
     <li>Protected : <b>accessible</b> aux enfants (héritage) mais <b>pas en dehors</b>.</li>
 </fieldset>
@@ -525,7 +525,7 @@ $unHumain->manger(); // Je suis omnivore.
 
 - Est-ce que le chien et le chat peuvent avoir un nom ?
 - Pourquoi l'héritage est intéressant ici ?
-- Écrire la définition de classe correspondant au diagrame UML.
+- Écrire la définition de classe correspondant au diagramme UML.
 
 ---
 
@@ -570,7 +570,7 @@ Comment détecter l'héritage ?
 - Que constatez-vous ?
 - Pourquoi avons-nous décidé de découper la logique comme ceci ?
 - Pourquoi l'héritage est intéressant ici ?
-- Écrire la définition de classe correspondant au diagrame UML.
+- Écrire la définition de classe correspondant au diagramme UML.
 
 ---
 
@@ -596,8 +596,8 @@ Que constatez-vous ?
 Deux solutions :
 
 ```php
-$this->estMajeur(); // Appel la méthode la plus proche.
-parent::estMajeur(); // Appel la méthode de la classe parente.
+$this->estMajeur(); // Appelle la méthode la plus proche.
+parent::estMajeur(); // Appelle la méthode de la classe parente.
 ```
 
 ---
@@ -611,12 +611,12 @@ Car les enfants peuvent **redéfinir** les méthodes de la classe parente. (**Re
 
 ---
 
-```java
+```php
 class Personne {
-    protected int age = 0;
+    protected $age = 0;
 
     public function estMajeur(){
-        return $this.age >= 18;
+        return $this->age >= 18;
     }
 }
 
@@ -624,7 +624,7 @@ class Americain extends Personne {
     /**
      * @override
      * @return bool
-     * @description Retourne vrai si la personne est majeur.
+     * @description Retourne vrai si la personne est majeure.
      */
     public function estMajeur(){
         return $this->age >= 21;
@@ -652,13 +652,13 @@ Un autre exemple du monde réel ?
 
 ---
 
-## Un arbre ou il faut initialiser le parent
+## Un arbre où il faut initialiser le parent
 
 ```php
 class Mammifere {
     protected $espece = "";
 
-    public __construct($espece) {
+    public function __construct($espece) {
         $this->espece = $espece;
     }
 
@@ -708,7 +708,7 @@ class Chien extends Mammifere {
 - Créer un Chien nommé « Médor ».
 - Mettre les trois objets dans une liste.
 - Parcourir la liste et afficher le nom de chaque objet.
-- Écrire ce que vas afficher le parcours de la liste.
+- Écrire ce que va afficher le parcours de la liste.
 
 ---
 
@@ -736,7 +736,7 @@ class Chien extends Mammifere {
     <li>La classe fille contient la logique <b>spécifique</b>.</li>
     <li>Un mot-clé Extends <code>class Humain extends Mammifere</code>.</li>
     <li><b>Vous devez</b> construire le parent dans le constructeur de l'enfant.</li>
-    <li><b>Permets de généraliser un objet afin de partager des propriétés communes.</b>.</li>
+    <li><b>Permet de généraliser un objet afin de partager des propriétés communes.</b></li>
     <li><b>mais</b> il est également possible de spécialiser / redéfinir un objet.</li>
     <li>Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.</li>
     <li>Il est possible d'appeler les méthodes du parent via `$this->…` ou `parent::…`</li>
@@ -769,8 +769,8 @@ Mise en pratique.
 
 ## Les classes Statiques
 
-- Méthode & Propriété accessible **sans besoin d'un new**
-- Permets d'encapsuler une logique.
+- Méthode & Propriété accessibles **sans besoin d'un new**
+- Permet d'encapsuler une logique.
 
 ---
 
@@ -784,7 +784,7 @@ class Greeting {
 Greeting::welcome();
 ```
 
-- Que constatez vous ?
+- Que constatez-vous ?
 - Avez-vous des exemples d'usage en tête ?
 
 ---
@@ -803,7 +803,7 @@ Classe dont l'implémentation n'est pas complète et qui **n'est pas instanciabl
 
 ## STOP !
 
-Non instanciable ? Qu-est-ce que ça veux dire ?
+Non instanciable ? Qu'est-ce que ça veut dire ?
 
 ---
 
@@ -817,10 +817,10 @@ Non instanciable ? Qu-est-ce que ça veux dire ?
 
 <fieldset>
   <legend>Définition</legend>
-    <li>Sers de base à d'autres classes dérivées (héritées).</li>
+    <li>Sert de base à d'autres classes dérivées (héritées).</li>
     <li>Ne peut pas être instanciée (pas de new).</li>
-    <li>Permets de factoriser du code.</li>
-    <li>Dois être héritée depuis une classe fille.</li>
+    <li>Permet de factoriser du code.</li>
+    <li>Doit être héritée depuis une classe fille.</li>
     <li>Apporte une sécurité grâce à l'encapsulation.</li>
 </fieldset>
 
@@ -830,7 +830,7 @@ Encapsulation ? Pouvez-vous me redonner la définition.
 
 ---
 
-Avez-vous déjà vu des classes asbtraites ?
+Avez-vous déjà vu des classes abstraites ?
 
 ---
 
@@ -851,9 +851,9 @@ abstract class EtudiantAbstrait
     }
 }
 
-class EtudiantSIO extends AbstractClass
+class EtudiantSIO extends EtudiantAbstrait
 {
-    $option = "";
+    private $option = "";
 
     function __construct($option){
         $this->option = $option;
@@ -864,7 +864,7 @@ class EtudiantSIO extends AbstractClass
     }
 
     protected function setSpecificite($valeur) {
-       $this->option = $valeur
+       $this->option = $valeur;
     }
 }
 ```
@@ -877,10 +877,10 @@ Une interface ressemble à une classe abstraite dans laquelle aucune méthode ne
 
 <fieldset>
   <legend>Définition</legend>
-    <li>Ne contiens que des méthodes publiques.</li>
-    <li>Ne contiens aucun code.</li>
+    <li>Ne contient que des méthodes publiques.</li>
+    <li>Ne contient aucun code.</li>
     <li>N'est pas instanciable.</li>
-    <li>Son « un contrat » que les classes filles devront <b>implémenter</b>.</li>
+    <li>C'est « un contrat » que les classes filles devront <b>implémenter</b>.</li>
 </fieldset>
 ---
 
@@ -896,7 +896,7 @@ Une interface ressemble à une classe abstraite dans laquelle aucune méthode ne
 
 ---
 
-- Quelle(s) différence(s) avez-vous constatez ?
+- Quelle(s) différence(s) avez-vous constatée(s) ?
 
 ---
 

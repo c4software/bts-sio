@@ -10,7 +10,7 @@ Les Interfaces sont des sortes de `classe`
 
 Mais celles-ci sont `abstraites`
 
-Elles ne sont donc pas **instantiables**
+Elles ne sont donc pas **instanciables**
 
 ---
 
@@ -20,7 +20,7 @@ Elles ne sont donc pas **instantiables**
 
 <fieldset>
   <legend>Une Interface</legend>
-    <li>Permets de décrire un comportement.</li>
+    <li>Permet de décrire un comportement.</li>
     <li>Définir les signatures des méthodes et propriétés</li>
     <li>Garantir au code qui fait l'appel que la méthode existera.</li>
 </fieldset>
@@ -140,7 +140,7 @@ class Cheval implements SpeciesInterface, DeplacementInterface{
 
 <br>
 
-- `Array Object` implément combien d'interfaces ?
+- `Array Object` implémente combien d'interfaces ?
 - Quel est l'impact ?
 - Quel est le but ?
 

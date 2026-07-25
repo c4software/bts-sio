@@ -69,7 +69,7 @@ Et oui… Quelles sources d'information utiliser ?
 
 ---
 
-Permets de centraliser les informations dans un outil
+Permet de centraliser les informations dans un outil
 
 ---
 
@@ -100,7 +100,7 @@ C'est un choix intéressant pour centraliser les informations.
 
 ---
 
-## Une alternative les agrégateurs de news
+## Une alternative : les agrégateurs de news
 
 - [Ycombinator](https://news.ycombinator.com/)
 - [Le journal du hacker](https://www.journalduhacker.net/)
@@ -126,7 +126,7 @@ C'est un choix intéressant pour centraliser les informations.
 - Testez les méthodes
 - Testez les frameworks
 - Testez les solutions serveur
-- Rendez compte de vos tests (dans notion par exemple)
+- Rendez compte de vos tests (dans Notion par exemple)
 
 ---
 
@@ -134,7 +134,7 @@ C'est un choix intéressant pour centraliser les informations.
 
 ---
 
-<iframe src="https://giphy.com/embed/jUJeNMVX2f7OuhCdu6" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen>
+<iframe src="https://giphy.com/embed/jUJeNMVX2f7OuhCdu6" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
 ---
 

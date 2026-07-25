@@ -20,7 +20,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Pour moi
 
-- Règle et bonne pratique partagées (dossiers, organisation …) 
+- Règles et bonnes pratiques partagées (dossiers, organisation …) 
 - Réutilisable 
 - Documenté 
 - Composable / Étendable 
@@ -68,7 +68,7 @@ Oui… Mais pas que… Et surtout pas que !
 - Librairie client.
 - _ou_ Application client.
 - JavaScript _ou_ Typescript.
-- Découpage en composant.
+- Découpage en composants.
 - Réactivité.
 
 ---

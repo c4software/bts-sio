@@ -24,7 +24,7 @@ Pour réaliser ce TP vous devez savoir créer une VM sur la ferme. Si vous ne sa
 Vous avez créé votre VM ? Alors c'est parti !
 
 ::: tip Installer Debian
-Même si au premier abord installer une Debian semble intimidant vous allez voir qu'en réalité c'est plutôt très simple.
+Même si au premier abord installer une Debian semble intimidant, vous allez voir qu'en réalité c'est plutôt très simple.
 
 PS: Si vous cherchez plus de défi, vous pouvez installer une [Arch Linux](https://wiki.archlinux.org/index.php/Installation_guide) ou une [Alpine Linux](https://www.alpinelinux.org/). Mais attention, c'est plus compliqué ! **Et surtout non utilisé en entreprise.**
 
@@ -65,13 +65,13 @@ Le fichier ISO est une copie parfaite d'un disque physique.
 
 Pour connecter un ISO à votre VM :
 
-- Clique droit sur votre VM et « Modifier les paramètres ».
+- Clic droit sur votre VM et « Modifier les paramètres ».
 
 ![Modifier les paramètres](./res/ferme-modifier-vm.jpg)
 
 ![Choix de l'ISO](./res/ferme-iso-1.jpg)
 
-- choisir l’image iso (liste déroulante) que vous souhaitez : Par exemple `debian-11.5.0-amd64-netinst.iso` qui se trouve dans la banque de données ISO puis répertoire `\LINUX\`.
+- choisir l’image iso (liste déroulante) que vous souhaitez : Par exemple `debian-13.1.0-amd64-netinst.iso` qui se trouve dans la banque de données ISO puis répertoire `\LINUX\`.
 - N’oubliez pas de cocher la case « Connecter lors de la mise sous tension » sinon votre vm ne bootera pas sur votre iso/cd au démarrage.
 
 ![Choix de l'ISO 2](./res/ferme-iso-2.jpg)
@@ -79,13 +79,13 @@ Pour connecter un ISO à votre VM :
 
 ::: tip Et voilà !
 
-Vous venez de créer votre première VM. Celle-ci est prête à être démarrée et à être installé (comme un véritable ordinateur).
+Vous venez de créer votre première VM. Celle-ci est prête à être démarrée et à être installée (comme un véritable ordinateur).
 
 :::
 
 ## La sécurité
 
-Héberger du contenu nécéssite de réfléchir à la sécurité. En effet, il est important de sécuriser son serveur pour éviter que des personnes malveillantes ne puissent accéder à votre serveur et à vos données.
+Héberger du contenu nécessite de réfléchir à la sécurité. En effet, il est important de sécuriser son serveur pour éviter que des personnes malveillantes ne puissent accéder à votre serveur et à vos données.
 
 Différents éléments seront à prendre en compte pour sécuriser votre serveur :
 
@@ -116,7 +116,7 @@ Dans les prochaines semaines nous installerons plusieurs serveurs, pas de paniqu
 
 ### Choix du type d'installation
 
-Quand Debian Boot, vous avez le choix entre plusieurs types d'installation :
+Quand Debian boot, vous avez le choix entre plusieurs types d'installation :
 
 - Graphical install : Installation graphique.
 - Install : Installation en mode texte. (C'est celui que nous allons utiliser).
@@ -164,16 +164,16 @@ L'installeur va nous demander la configuration réseau de notre serveur. Ici imp
 
 Pour vous aider dans la configuration vous pouvez utiliser l'utilitaire que j'ai développé : [Générateur de configuration](https://cours.brosseau.ovh/cheatsheets/serveur/debian-reseau.html).
 
-Pour simplifier son usage, voilà la version intégré dans ce support :
+Pour simplifier son usage, voilà la version intégrée dans ce support :
 
 <DebianConfiguration />
 
-Une fois votre configuration généré par l'outils vous pouvez renseigner les différentes étapes dans votre VM.
+Une fois votre configuration générée par l'outil, vous pouvez renseigner les différentes étapes dans votre VM.
 
 **Dans mon cas**, avec le VLAN 537, j'ai donc :
 
 ![Adresse IP](./res/tp1b/5-ip.jpg)
-![Masque de sous réeau](./res/tp1b/5-masque.jpg)
+![Masque de sous réseau](./res/tp1b/5-masque.jpg)
 ![Gateway](./res/tp1b/5-gateway.jpg)
 ![DNS](./res/tp1b/5-dns.jpg)
 
@@ -187,12 +187,12 @@ Pour assurer la cohérence, le nom de la machine doit être le même que celui q
 
 ### Le choix du mot de passe root
 
-À cet étape, vous devez choisir un mot de passe pour l'utilisateur root. C'est l'utilisateur qui a tous les droits sur le serveur.
+À cette étape, vous devez choisir un mot de passe pour l'utilisateur root. C'est l'utilisateur qui a tous les droits sur le serveur.
 
 ⚠️ Il est donc important de choisir un mot de passe fort.
 
 ::: tip Un instant 👋
-Même si nous faisons actuellement une machine « de test », je vous invite des à présent à prendre l'habitude de mettre un mot de passe fort.
+Même si nous faisons actuellement une machine « de test », je vous invite dès à présent à prendre l'habitude de mettre un mot de passe fort.
 :::
 
 #### Qu'est-ce qu'un mot de passe fort ?
@@ -215,7 +215,7 @@ Pour générer un mot de passe fort vous pouvez utiliser un outil en ligne :
 
 ::: warning Quelques conseils
 
-Le mot de passe va être très longs. Vous pouvez des à présent le mettre dans la fiche serveur. Ou voir mieux, dans un gestionnaire de mot de passe comme [KeePass](https://keepass.info/).
+Le mot de passe va être très long. Vous pouvez dès à présent le mettre dans la fiche serveur. Ou mieux, dans un gestionnaire de mot de passe comme [KeePass](https://keepass.info/).
 
 :::
 
@@ -235,7 +235,7 @@ Le mot de passe de votre compte utilisateur doit être différent du mot de pass
 
 ### Les partitions
 
-L'installeur va maintenant nous demander de créer les partitions de notre serveur. Dans le cadre d'un serveur le choix est simple, nous allons dédié l'intégralité du disque dur à Linux.
+L'installeur va maintenant nous demander de créer les partitions de notre serveur. Dans le cadre d'un serveur le choix est simple, nous allons dédier l'intégralité du disque dur à Linux.
 
 ![Création des partitions](./res/tp1b/7.jpg)
 ![Création des partitions](./res/tp1b/7a.jpg)
@@ -243,22 +243,22 @@ L'installeur va maintenant nous demander de créer les partitions de notre serve
 ![Création des partitions](./res/tp1b/7c.jpg)
 
 ::: tip Vous voulez utiliser Linux sur votre PC ?
-Si vous souhaitez utiliser Linux en parallèle de Windows sur votre ordinateur (ce que je vous conseil vivement 👀), l'étape du partitionnement est un peu différente car il ne faut bien entendu pas détruire votre système d'exploitation actuel.
+Si vous souhaitez utiliser Linux en parallèle de Windows sur votre ordinateur (ce que je vous conseille vivement 👀), l'étape du partitionnement est un peu différente car il ne faut bien entendu pas détruire votre système d'exploitation actuel.
 :::
 
 ### Installation
 
 L'installation va maintenant commencer. Vous pouvez suivre l'avancement de l'installation en temps réel.
 
-### Le mirroir
+### Le miroir
 
-L'installeur va vous demander de choisir un mirroir. Un mirroir est un serveur qui contient une copie des paquets Debian. Cela permet de réduire la charge sur les serveurs officiels et de gagner du temps lors de l'installation.
+L'installeur va vous demander de choisir un miroir. Un miroir est un serveur qui contient une copie des paquets Debian. Cela permet de réduire la charge sur les serveurs officiels et de gagner du temps lors de l'installation.
 
-Le mirroir est un serveur Web qui contient une copie des paquets Debian, ils seront utilisé pour finaliser l'installation.
+Le miroir est un serveur Web qui contient une copie des paquets Debian, ils seront utilisés pour finaliser l'installation.
 
-![Mirroir](./res/tp1b/8.jpg)
+![Miroir](./res/tp1b/8.jpg)
 
-Les mirroirs sont classés par pays. Je vous conseil de choisir un mirroir proche de chez vous, car cela va réduire le temps de téléchargement des paquets. En effet plus le serveur est proche de chez vous, plus la connexion sera rapide.
+Les miroirs sont classés par pays. Je vous conseille de choisir un miroir proche de chez vous, car cela va réduire le temps de téléchargement des paquets. En effet plus le serveur est proche de chez vous, plus la connexion sera rapide.
 
 ::: tip Serveur mandataire ?
 Un serveur mandataire est un Proxy. Ici au lycée nous n'en avons pas, mais si nous en avions un il pourrait être utilisé pour accélérer le téléchargement des paquets en mettant en cache les paquets déjà téléchargés. C'est une fonctionnalité avancée, vous n'avez pas besoin de vous en préoccuper.
@@ -275,7 +275,7 @@ Nous allons pouvoir pré-configurer les logiciels que nous allons installer sur 
 Vous pouvez sélectionner les logiciels à installer en utilisant les touches fléchées du clavier. Vous pouvez aussi utiliser la barre d'espace pour sélectionner ou désélectionner un logiciel.
 
 - **Vous devez sélectionner le paquet `Serveur SSH`**. C'est le logiciel qui va nous permettre de nous connecter à notre serveur à distance.
-- **Vous devez désélectionner `Environnement de bureau`** et `GNOME`. Il ne nous seront pas utile et il surchargeront inutilement notre serveur.
+- **Vous devez désélectionner `Environnement de bureau`** et `GNOME`. Ils ne nous seront pas utiles et ils surchargeront inutilement notre serveur.
 
 :::
 
@@ -305,7 +305,7 @@ Si tout s'est bien passé, vous devriez voir :
 
 ## Configuration du réseau
 
-Normalement votre serveur doit avoir l'adresse IP que vous lui avez attribué lors de l'installation. Cette adresse IP est configurée dans le fichier `/etc/network/interfaces`.
+Normalement votre serveur doit avoir l'adresse IP que vous lui avez attribuée lors de l'installation. Cette adresse IP est configurée dans le fichier `/etc/network/interfaces`.
 
 ### Vérifier l'accès à Internet
 
@@ -327,13 +327,13 @@ Les VMware tools sont des outils qui vont permettre à votre machine virtuelle d
 
 ::: danger Les performances et la virtualisation
 
-Sans les VMware tools semble fonctionner correctement ? Oui… À première vue seulement… En réalité votre machine ne tire pas toutes les performances de l'environnement. Pire, elle peut dégrader les performances de toute la ferme.
+Sans les VMware tools votre machine semble fonctionner correctement ? Oui… À première vue seulement… En réalité votre machine ne tire pas toutes les performances de l'environnement. Pire, elle peut dégrader les performances de toute la ferme.
 
 Bref, n'oubliez pas d'installer les Tools pour vivre une expérience optimale 👌.
 
 :::
 
-Comment installer les VMware tools ? Et bien avec `apt` évidemment :
+Comment installer les VMware tools ? Eh bien avec `apt` évidemment :
 
 ```bash
 apt update
@@ -390,7 +390,7 @@ reboot
 
 ::: tip Alternative ?
 
-En tant normal un `systemctl restart networking`, cette commande va redémarrer le service réseau de votre serveur pour lui faire prendre en compte la nouvelle configuration.
+En temps normal un `systemctl restart networking`, cette commande va redémarrer le service réseau de votre serveur pour lui faire prendre en compte la nouvelle configuration.
 
 :::
 
@@ -404,13 +404,13 @@ Dans ce cas, dès le premier boot, nous irons modifier l'adresse du serveur pour
 
 Pour installer un logiciel sur un serveur, il faut utiliser la commande `apt` (ou `apt-get`). Cette commande permet d'ajouter des nouveaux programmes sur votre serveur.
 
-Les programmes sont stockés dans des dépots (le mirroir que vous avez choisit lors de l'installation). Pour installer un logiciel il faut d'abord mettre à jour la liste des dépots :
+Les programmes sont stockés dans des dépôts (le miroir que vous avez choisi lors de l'installation). Pour installer un logiciel il faut d'abord mettre à jour la liste des dépôts :
 
 ```bash
 apt update
 ```
 
-Une fois la liste des dépots mise à jour, vous pouvez installer un logiciel avec la commande `apt install` :
+Une fois la liste des dépôts mise à jour, vous pouvez installer un logiciel avec la commande `apt install` :
 
 ```bash
 apt install <nom_du_logiciel>
@@ -447,12 +447,12 @@ apt install vim
 ```
 
 ::: tip Pourquoi `vim` ?
-`vim` est un éditeur de texte. Il est très utilisé sur les serveurs car il est très rapide et très léger. Il est également très simple à utiliser. Vous pouvez bien évidemment utiliser un autre éditeur de texte tel que `nano`. Mais personnellement je trouve `vim` très pratiques.
+`vim` est un éditeur de texte. Il est très utilisé sur les serveurs car il est très rapide et très léger. Il est également très simple à utiliser. Vous pouvez bien évidemment utiliser un autre éditeur de texte tel que `nano`. Mais personnellement je trouve `vim` très pratique.
 :::
 
 ### Installation de SSH
 
-Dans quelques instant nous allons voir comment accèder à votre serveur. Pour ça nous utiliserons SSH. SSH est un protocole de communication sécurisé.
+Dans quelques instants nous allons voir comment accéder à votre serveur. Pour ça nous utiliserons SSH. SSH est un protocole de communication sécurisé.
 
 Pour installer SSH sur votre serveur nous allons utiliser la commande `apt` :
 
@@ -478,7 +478,7 @@ Fini la fenêtre web très peu pratique pour accéder à votre serveur. Vous pou
 
 Pour accéder à votre serveur, nous allons utiliser un client SSH. Un client SSH est un programme que vous pouvez installer sur votre ordinateur. Il permet de se connecter à un serveur en utilisant le protocole SSH. Il existe plusieurs clients SSH (exemple `Putty` pour Windows), mais depuis quelques mois nous avons de base un client SSH (sous Windows, sous Linux et sous Mac).
 
-Pour utiliser le client SSH intégré à votre ordinateur, il faut ouvrir un terminal. Sous Windows, il faut ouvrir le terminal `cmd` (sous Windows je vous conseil `git-bash` qui est très proche d'un terminal Linux). Sous Linux et sous Mac, il faut ouvrir le terminal.
+Pour utiliser le client SSH intégré à votre ordinateur, il faut ouvrir un terminal. Sous Windows, il faut ouvrir le terminal `cmd` (sous Windows je vous conseille `git-bash` qui est très proche d'un terminal Linux). Sous Linux et sous Mac, il faut ouvrir le terminal.
 
 ### Accès SSH
 
@@ -538,7 +538,7 @@ Avant de continuer, je vous propose que l'on discute un peu de la sécurité.
 
 ## L'échange de clés
 
-Les mots de passe… Vous en avez plein, vous les perdez souvent ! Et si je vous disais qu'il existe une autre méthode pour se connecter à un serveur ? Une méthode qui ne nécessite pas de mot de passe ? Et bien c'est possible ! Il suffit d'utiliser l'échange de clés.
+Les mots de passe… Vous en avez plein, vous les perdez souvent ! Et si je vous disais qu'il existe une autre méthode pour se connecter à un serveur ? Une méthode qui ne nécessite pas de mot de passe ? Eh bien c'est possible ! Il suffit d'utiliser l'échange de clés.
 
 L'échange de clé repose sur le principe suivant : Vous avez une clé privée et une clé publique. Vous donnez votre clé publique à votre serveur. Vous donnez votre clé privée à votre client. Quand vous voulez vous connecter à votre serveur, vous utilisez votre clé privée pour vous connecter. Votre serveur utilise votre clé publique pour vérifier que vous êtes bien le propriétaire de la clé privée.
 
@@ -555,10 +555,10 @@ La clé SSH est une clé privée, donc ne la partagez pas avec n'importe qui. El
 ### Générer une clé SSH
 
 ::: danger À ne faire qu'une seule fois !
-Vous ne devez générer une clé SSH qu'une seule fois. Si vous en générer une nouvelle, vous ne pourrez plus vous connecter à votre serveur.
+Vous ne devez générer une clé SSH qu'une seule fois. Si vous en générez une nouvelle, vous ne pourrez plus vous connecter à votre serveur.
 :::
 
-#### Générer une clef privée/public
+#### Générer une clef privée/publique
 
 Cette opération n'est à réaliser qu'une seule fois (sur chaque machine/session). Au lycée, la clef va s'enregistrer dans votre dossier utilisateur, elle sera donc synchronisée automatiquement avec l'ensemble des ordinateurs sur lesquels vous allez pouvoir vous connecter.
 
@@ -583,7 +583,7 @@ ssh-keygen
 La commande va générer **deux fichiers** :
 
 - **id_rsa**, est privé. **Vous ne devez jamais le partager**.
-- **id_rsa.pub**, est publique, vous pouvez le partager autant que vous voulez ce fichier permettra de vous reconnaître au moment de la connexion.
+- **id_rsa.pub**, est public, vous pouvez le partager autant que vous voulez, ce fichier permettra de vous reconnaître au moment de la connexion.
 
 ::: danger Plus de sécurité
 
@@ -710,7 +710,7 @@ apt install apache2
 
 ### Vérification
 
-Pour vérifier que Apache est bien installé, nous allons utiliser la commande `systemctl` :
+Pour vérifier qu'Apache est bien installé, nous allons utiliser la commande `systemctl` :
 
 ```bash
 systemctl status apache2
@@ -735,7 +735,7 @@ http://192.168.1.1
 
 ::: tip Comment trouver l'adresse IP de votre serveur ?
 
-Pour obtenir l'adresse IP de votre serveur, vous pouvez utiliser la commande `IP.` :
+Pour obtenir l'adresse IP de votre serveur, vous pouvez utiliser la commande `ip` :
 
 ```bash
 ip a
@@ -785,7 +785,7 @@ Nous verrons ensuite comment mettre en place un serveur web dans son intégralit
 _À votre avis :_
 
 - Pouvons-nous faire du PHP sur notre serveur ?
-- Comment pouvons nous envoyer des fichiers sur notre serveur ?
+- Comment pouvons-nous envoyer des fichiers sur notre serveur ?
 
 ## Conclusion
 

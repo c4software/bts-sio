@@ -22,7 +22,7 @@ Avant de commencer, il est important de savoir que la ligne de commande est un o
 
 ## Préparation
 
-Pour réaliser ce TP, vous aurez besoin d'un environnement de Linux. Je vous propose d'en créer une en suivant le [TP précédent](./tp1b.md).
+Pour réaliser ce TP, vous aurez besoin d'un environnement Linux. Je vous propose d'en créer un en suivant le [TP précédent](./tp1b.md).
 
 ## Pré-requis
 
@@ -63,7 +63,7 @@ Ici je ne vais pas vous redonner les commandes, je vous laisse chercher dans les
 - [Créer une VM plus rapidement depuis un modèle](./tp1alt.md)
 - Votre prise de notes
 
-c'est à vous de jouer !
+C'est à vous de jouer !
 
 :::
 
@@ -108,7 +108,7 @@ Pour installer votre clé SSH sur votre serveur, il vous suffit de faire la comm
 ssh-copy-id <username>@<ipaddress>
 ```
 
-⚠️ Vous devez évidemment remplacer `<username>`et `<ipaddress>`par votre utilisateur et votre mot de passe. Exemple :
+⚠️ Vous devez évidemment remplacer `<username>` et `<ipaddress>` par votre utilisateur et votre adresse IP. Exemple :
 
 ```bash
 ssh-copy-id pi@192.168.1.253
@@ -138,9 +138,9 @@ Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisée
 
 ::: tip Quelques astuces
 
-- La touche `tab` : permets de compléter une commande ou un chemin de fichier.
+- La touche `tab` : permet de compléter une commande ou un chemin de fichier.
 - `!!` : permet de répéter la dernière commande.
-- `ctlr + r` : permet de rechercher une commande dans l'historique.
+- `ctrl + r` : permet de rechercher une commande dans l'historique.
 - `échap puis :wq` : permet de sauvegarder et quitter un fichier ouvert avec `vim`.
 - `échap puis :q!` : permet de quitter un fichier ouvert avec `vim` sans sauvegarder.
 
@@ -157,7 +157,7 @@ Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisée
 
 ::: danger Problème de droits ?
 
-Si vous avez un problème de droits, c'est normal. Vous devez modifier les droits des dossiers et fichiers pour que votre utilisateur puisse les modifier. Dans un premier temps créer le dossier `/home/restitution` en root (`sudo mkdir /home/restitution`) puis changer le propriétaire du dossier (`sudo chown -R <votre utilisateur>:<votre utilisateur> /home/restitution`). Vous pourrez ensuite créer les dossiers et fichiers sans problème.
+Si vous avez un problème de droits, c'est normal. Vous devez modifier les droits des dossiers et fichiers pour que votre utilisateur puisse les modifier. Dans un premier temps créez le dossier `/home/restitution` en root (`sudo mkdir /home/restitution`) puis changez le propriétaire du dossier (`sudo chown -R <votre utilisateur>:<votre utilisateur> /home/restitution`). Vous pourrez ensuite créer les dossiers et fichiers sans problème.
 
 :::
 
@@ -184,7 +184,7 @@ Voici le contenu du fichier 2.
 - Déplacez le fichier `fichier1.md` dans le dossier `/home/restitution/`.
 - Dupliquez le fichier `fichier2.md` dans le dossier `/home/restitution/tp1/` et renommez-le `fichier2bis.md`.
 - Renommez le fichier `fichier1.md` en `introduction.md`.
-- Changer le contenu du fichier `introduction.md` pour qu'il contienne :
+- Changez le contenu du fichier `introduction.md` pour qu'il contienne :
 
 ```bash
 Avec ce fichier je vais avoir une bonne note.
@@ -256,7 +256,7 @@ chown -R <VOTRE-UTILISATEUR>:www-data /var/www/
 
 ::: tip Les droits de base
 
-Le dossier `/var/www/` sont uniquement accessible pour l'utilisateur :
+Le dossier `/var/www/` est uniquement accessible pour les utilisateurs :
 
 - `www-data` : C'est l'utilisateur qui va exécuter le serveur web.
 - `root` : C'est l'utilisateur qui a tous les droits sur le système.
@@ -303,7 +303,7 @@ Ici `777` équivaut à `ugo+rwx`.
 
 Il est important de ne pas donner des droits trop permissifs à un fichier ou un dossier. Cela peut entraîner des problèmes de sécurité. Par exemple, si vous donnez tous les droits à un fichier, n'importe qui pourra le modifier.
 
-Si vous êtes entrain de faire un 777, vous êtes très probablement en train de faire une erreur. Il est important de bien comprendre les droits et de ne donner que les droits nécessaires.
+Si vous êtes en train de faire un 777, vous êtes très probablement en train de faire une erreur. Il est important de bien comprendre les droits et de ne donner que les droits nécessaires.
 
 :::
 
@@ -312,9 +312,9 @@ Si vous êtes entrain de faire un 777, vous êtes très probablement en train de
 Avec les commandes vues précédemment, modifiez les permissions des fichiers et dossiers suivants :
 
 - Donnez tous les droits à l'utilisateur sur le fichier `introduction.md` (`rwx`).
-- Changer le propriétaire du fichier `introduction.md` pour qu'il appartienne à votre utilisateur.
+- Changez le propriétaire du fichier `introduction.md` pour qu'il appartienne à votre utilisateur.
 
-Créer un script nommé `hello.sh` dans le dossier `/home/restitution/` celui-ci doit contenir :
+Créez un script nommé `hello.sh` dans le dossier `/home/restitution/`, celui-ci doit contenir :
 
 ```bash
 #!/bin/bash
@@ -322,8 +322,8 @@ Créer un script nommé `hello.sh` dans le dossier `/home/restitution/` celui-ci
 echo "Hello World"
 ```
 
-- Donner les droits d'exécution au fichier `hello.sh` (`chmod +x hello.sh`).
-- Exécutez le script `hello.sh` en utilisant la commande `./hello.sh` (`./` permets d'exécuter un script dans le dossier courant).
+- Donnez les droits d'exécution au fichier `hello.sh` (`chmod +x hello.sh`).
+- Exécutez le script `hello.sh` en utilisant la commande `./hello.sh` (`./` permet d'exécuter un script dans le dossier courant).
 
 ::: tip Bravo !
 
@@ -411,7 +411,7 @@ Bon courage !
 
 ## Finalisation de votre site
 
-Ajouter une page `contact.html` qui contiendra un formulaire de contact. Ce formulaire devra contenir les champs suivants :
+Ajoutez une page `contact.html` qui contiendra un formulaire de contact. Ce formulaire devra contenir les champs suivants :
 
 - Nom.
 - Prénom.
@@ -429,7 +429,7 @@ Votre réalisation est maintenant terminée, il est temps de me donner accès à
 La procédure est la suivante :
 
 - Récupérez ma clé SSH publique (télécharger le fichier [ici](https://gist.githubusercontent.com/c4software/7902465cf82695ab5260a202757fe0ca/raw/dda707234b009333483556da61f8a990e08215ed/id_rsa_etudiant.pub)).
-- Ajouter le contenu du fichier `id_rsa_etudiant.pub` dans le fichier `~/.ssh/authorized_keys` de votre utilisateur sur le serveur (exemple : `/home/vbrosseau/.ssh/authorized_keys`).
+- Ajoutez le contenu du fichier `id_rsa_etudiant.pub` dans le fichier `~/.ssh/authorized_keys` de votre utilisateur sur le serveur (exemple : `/home/vbrosseau/.ssh/authorized_keys`).
   - Vous pouvez utiliser `nano` ou `vim` pour éditer le fichier.
 - Vous pouvez également le faire via la commande curl :
 
@@ -456,7 +456,7 @@ ssh-rsa MaClé ...
 
 :::
 
-À présent, si vous me donnez l'adresse IP de votre serveur, je pourrais me connecter dessus et vérifier votre travail. Si vous avez des problèmes, n'hésitez pas à me contacter.
+À présent, si vous me donnez l'adresse IP de votre serveur, je pourrai me connecter dessus et vérifier votre travail. Si vous avez des problèmes, n'hésitez pas à me contacter.
 
 ::: danger Attention
 
@@ -888,7 +888,3 @@ Pour le point 2, vous pouvez temporairement modifier la fréquence de la tâche 
 En DevOps, une tâche manuelle est une tâche qui finira par être oubliée. Automatiser les sauvegardes garantit que vos données sont protégées de façon fiable et régulière, sans intervention humaine. C'est l'un des premiers réflexes d'automatisation à acquérir.
 
 :::
-
-```
-
-```

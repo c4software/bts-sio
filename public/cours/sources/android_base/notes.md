@@ -4,7 +4,7 @@ Plan à détailler :
 - Comparaison iOS
 - Les permissions (pourquoi, pour qui, comment, l'histoire)
 - Le Material Design.
-- L'émulateurs.
+- L'émulateur.
 - L'IDE.
 - L'organisation (Package, etc).
 - L'Interface :

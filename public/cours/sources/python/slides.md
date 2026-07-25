@@ -14,9 +14,9 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ![](./img/python.png)
 
-- Language Interprété
-- Orientés objets
-- Également procédurale
+- Langage Interprété
+- Orienté objet
+- Également procédural
 
 ---
 
@@ -32,8 +32,8 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - Open source
 - Multi-plateforme
 - De gros acteurs
-- Batteries « inclus »
-- Multi-paradigmes (Procédurale ou Objet)
+- Batteries « incluses »
+- Multi-paradigmes (Procédural ou Objet)
 
 ---
 
@@ -67,20 +67,20 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 - Linux : Inclus
 - OSX : Inclus
 - Windows : Installation sur python.org
-- Windows 10 : Fais parti de WSL 🎉
+- Windows 10 : Fait partie de WSL 🎉
 - Intégré sur les cartes type Raspberry Pi, Banana Pi…
 
 ---
 
-### Un Language « différent »
+### Un Langage « différent »
 
 - Basé sur l’indentation
 - Pas d’accolade
-- Des opérateurs logiques en anglais (and, or, not au lieux de &&, ||, !)
+- Des opérateurs logiques en anglais (and, or, not au lieu de &&, ||, !)
 
 ---
 
-### Batteries « inclus »
+### Batteries « incluses »
 
 Librairie de base très complète
 
@@ -145,7 +145,7 @@ demo
 >>> 3 in ma_liste
 >>> True
 >>> len(ma_liste)
->>> 3
+>>> 4
 ```
 
 ---
@@ -158,7 +158,7 @@ demo
 >>> x
 >>> range(0, 5)
 >>> list(x)
->>> [0, 1, 2, 3, 4, 5]
+>>> [0, 1, 2, 3, 4]
 >>> for i in x:
 >>> ... print (i)
 >>> ...
@@ -167,7 +167,6 @@ demo
 >>> 2
 >>> 3
 >>> 4
->>> 5
 ```
 
 ---
@@ -184,13 +183,13 @@ demo
 
 ---
 
-### Batteries « Inclus »
+### Batteries « Incluses »
 
 ```python
 >>> from random import choice
 
 >>> def lettre():
->>> ... choice("abcdefghijklmnopqrstuvwxyz")
+>>> ... return choice("abcdefghijklmnopqrstuvwxyz")
 >>>
 >>> lettre()
 >>> v
@@ -258,7 +257,7 @@ else:
 
 ### Plus ?
 
-## [Quelques modules intéréssants](http://python.lycee.free.fr/modules_utiles.html)
+## [Quelques modules intéressants](http://python.lycee.free.fr/modules_utiles.html)
 
 ---
 
@@ -340,7 +339,7 @@ def get_file(filename = None):
 
 ### Les templates
 
-[http://flask.pocoo.org/docs/1.0/quickstart/#rendering-templates](La documentation)
+[La documentation](http://flask.pocoo.org/docs/1.0/quickstart/#rendering-templates)
 
 ---
 
@@ -350,7 +349,7 @@ Créer simplement & rapidement des backends. Pratique en cas de prototypage rapi
 
 ---
 
-#### L'hebergement
+#### L'hébergement
 
 - Firebase 🔥
 - Docker image 👍 (OpenFaaS)

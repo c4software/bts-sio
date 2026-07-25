@@ -16,9 +16,9 @@ Intégré dans Android / Android Studio
 
 ---
 
-### 4 façons de faire
+### 5 façons de faire
 
-- Les animations automatiques `animationLayoutChange`.
+- Les animations automatiques `animateLayoutChanges`.
 - Les Gifs.
 - Lottie
 - Les « transitions programmées ».
@@ -69,7 +69,7 @@ votreImageId.animate().translationYBy(450F).setDuration(1500).start();
 
 ---
 
-### Comment choisir?
+### Comment choisir ?
 
 Et bien ça dépend…
 
@@ -88,7 +88,7 @@ Et bien ça dépend…
 
 ---
 
-### On test ?
+### On teste ?
 
 ---
 
@@ -100,13 +100,13 @@ Découper vos vues
 
 L'objectif :
 
-- Découper votre vue en élément réutilisable.
+- Découper votre vue en éléments réutilisables.
 - Exemple « Bottom Bar Navigation »
 
 ---
 
 - Une activité racine « contient les fragments »
-- N fragments en fonctions des cas.
+- N fragments en fonction des cas.
 
 ---
 
@@ -135,7 +135,7 @@ L'objectif :
     implementation "androidx.navigation:navigation-ui-ktx:2.3.2"
 ```
 
-<small>En réalité pas vraiment… mais parlons en !</small>
+<small>En réalité pas vraiment… mais parlons-en !</small>
 
 ---
 
@@ -181,7 +181,7 @@ C'est là où l'organisation sera importante 🚀
 Comment ça fonctionne ?
 
 - Les menus sont déclarés dans `bottom_navigation_menu.xml`.
-- Lors du click, on charge le bon fragment (préalablement déclaré).
+- Lors du clic, on charge le bon fragment (préalablement déclaré).
 
 ---
 
@@ -191,7 +191,7 @@ Comment ça fonctionne ?
 
 ---
 
-## On test ! C'est parti 🚀
+## On teste ! C'est parti 🚀
 
 ---
 
