@@ -5,7 +5,7 @@ import sidebar from './sidebar'
 export default defineConfig({
   title: "Cours",
   description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA, et dans différentes interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
-  srcExclude: ['public/**/*.md'],
+  srcExclude: ['public/**/*.md', 'moodle/print/**'],
   ignoreDeadLinks: [
     /^https?:\/\/localhost:*/,
   ],
@@ -72,6 +72,7 @@ export default defineConfig({
           { text: 'Les TP mobile', link: '/pages/categories/les-tp-mobile.md' },
         ]
       },
+      { text: 'Quiz', link: '/moodle/' },
       { text: 'Une question ?', link: '/pages/contact.md' },
     ],
 
