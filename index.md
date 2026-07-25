@@ -44,9 +44,9 @@ features:
   - title: Les ressources
     link: /tp/veille/ressources.md
     details: Les ressources pour la veille
-  - title: DAMP
-    link: /cheatsheets/damp/index.md
-    details: Docker, Apache, MySQL, PHP
+  - title: Le DevOps
+    link: /pages/categories/les-tp-devops.md
+    details: Du serveur au déploiement automatisé
 
 ---
 
