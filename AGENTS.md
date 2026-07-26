@@ -71,3 +71,4 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
   - QCM et mot manquant : au moins 3 distracteurs.
   - Réponses multiples : au moins 2 distracteurs (poids négatifs `~%-50%`).
   - Appariement : 2 distracteurs avec la syntaxe côté gauche vide `= -> Texte distracteur`.
+- Images dans les énoncés : sources dans `moodle/img/` (copiées vers `public/quiz/img/` par le build), référencées en URL absolue échappée `<img src\="https\://cours.brosseau.ovh/quiz/img/<nom>.png">` pour fonctionner aussi après import Moodle. Chaque question doit être autonome (tirage aléatoire) : répéter l'image dans chaque question qui en dépend.

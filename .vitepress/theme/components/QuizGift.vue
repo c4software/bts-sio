@@ -9,6 +9,10 @@
         <span v-if="q.origin" class="origin">{{ q.origin }}</span>
       </p>
 
+      <p v-for="(img, ii) in q.images" :key="'img' + ii" class="diagram">
+        <img :src="resolveImage(img)" alt="Diagramme UML" />
+      </p>
+
       <!-- Mot manquant : la phrase contient le trou -->
       <p v-if="q.type === 'missingword'">
         {{ q.text }}
@@ -117,6 +121,11 @@ const ESCAPES = [
   ['\\;', '\x06']
 ]
 
+// Les images des énoncés sont référencées en absolu dans les .gift (pour
+// Moodle) : en ligne, on les ressert depuis le site courant.
+const SITE = 'https://cours.brosseau.ovh'
+const IMAGE = /<img src="([^"]+)"\s*\/?>/g
+
 function protect(text) {
   for (const [raw, sentinel] of ESCAPES) {
     text = text.split(raw).join(sentinel)
@@ -219,9 +228,18 @@ function parseQuestion(chunk) {
   const m = body.match(/^([\s\S]*?)\{([\s\S]*)\}([\s\S]*)$/)
   if (!m) return null
 
+  const images = []
+  const text = restore(m[1])
+    .replace(IMAGE, (_, src) => {
+      images.push(src)
+      return ''
+    })
+    .trim()
+
   const question = {
     title: displayTitle(title),
-    text: restore(m[1]),
+    text,
+    images,
     after: restore(m[3]),
     ...parseAnswers(m[2].trim())
   }
@@ -292,6 +310,9 @@ export default {
     }
   },
   methods: {
+    resolveImage(src) {
+      return src.startsWith(SITE) ? withBase(src.slice(SITE.length)) : src
+    },
     async loadOne(src) {
       const response = await fetch(withBase(`/quiz/${src}.gift`))
       if (!response.ok) throw new Error(response.statusText)
@@ -451,6 +472,14 @@ label {
   font-style: italic;
   font-size: 0.9em;
   margin: 4px 0;
+}
+
+/* Fond blanc : les diagrammes restent lisibles en thème sombre */
+.diagram img {
+  max-width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  padding: 8px;
 }
 
 .free-input,

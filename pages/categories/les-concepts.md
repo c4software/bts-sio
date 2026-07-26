@@ -21,7 +21,7 @@ Dans cette pages vous trouverez les ressources pour vous aider à comprendre la 
 - [Lire un diagramme UML](/cours/uml.md)
 - [Les interfaces](/cours/les_interfaces.md)
 - [Redéfinition & Polymorphisme](/cours/poo_redefinition_polymorphisme.md)
-- [S'entrainer](/pages/urdle.md)
+- [S'entraîner avec les quiz](/moodle/)
 
 ## Le versionning
 

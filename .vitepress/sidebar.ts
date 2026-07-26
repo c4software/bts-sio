@@ -37,7 +37,7 @@ export default [
                 "text": "Les exercices",
                 "collapsed": true,
                 items: [
-                    { text: "Entrainement multi exercices", link: "/pages/urdle" },
+                    { text: "Quiz Lecture d'UML", link: "/moodle/" },
                     { text: "Redéfinition", link: "/cours/exercices/poo/redefinition", },
                     { text: "Polymorphisme", link: "/cours/exercices/poo/polymorphisme" },
                     { text: "Les Interface 1", link: "/cours/exercices/poo/les-interfaces-1" },

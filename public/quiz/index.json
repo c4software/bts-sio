@@ -35,6 +35,11 @@
     "questions": 15
   },
   {
+    "src": "quiz-lecture-uml",
+    "title": "Lecture d'UML : les diagrammes de classes",
+    "questions": 28
+  },
+  {
     "src": "quiz-php-algorithmie",
     "title": "PHP : Algorithmie",
     "questions": 40

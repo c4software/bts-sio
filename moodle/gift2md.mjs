@@ -12,9 +12,13 @@
 // côté client). Ces quiz en ligne sont des outils d'entraînement, pas d'évaluation.
 
 import { createHash } from 'node:crypto'
-import { copyFileSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+// URL publique du site : les .gift référencent les images en absolu pour
+// qu'elles s'affichent aussi après un import dans Moodle.
+const SITE = 'https://cours.brosseau.ovh'
 
 // Les caractères spéciaux GIFT échappés sont remplacés par des sentinelles
 // le temps du découpage, puis restaurés dans le texte final.
@@ -44,9 +48,13 @@ function restore(text) {
   return text.trim()
 }
 
-// Restaure puis échappe les chevrons pour que <?php survive au rendu HTML
+// Restaure, convertit les balises <img> en images Markdown (chemin local
+// pour l'impression), puis échappe les chevrons pour que <?php survive au rendu HTML
 function md(text) {
-  return restore(text).replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  return restore(text)
+    .replace(/<img src="([^"]+)"\s*\/?>/g, (_, src) =>
+      `![Diagramme](${src.replace(`${SITE}/quiz/img/`, '../img/')})`)
+    .replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 // Mélange déterministe (même sujet imprimé à chaque génération)
@@ -249,3 +257,13 @@ for (const name of readdirSync(here).filter((f) => f.endsWith('.gift')).sort()) 
 }
 writeFileSync(join(webdir, 'index.json'), JSON.stringify(manifest, null, 2), 'utf-8')
 console.log(`index.json : ${manifest.length} quiz référencés`)
+
+// Copie les images des énoncés (moodle/img/) vers public/quiz/img/
+const imgsrc = join(here, 'img')
+if (existsSync(imgsrc)) {
+  const imgdir = join(webdir, 'img')
+  mkdirSync(imgdir, { recursive: true })
+  const images = readdirSync(imgsrc)
+  for (const f of images) copyFileSync(join(imgsrc, f), join(imgdir, f))
+  console.log(`img : ${images.length} images copiées vers public/quiz/img/`)
+}

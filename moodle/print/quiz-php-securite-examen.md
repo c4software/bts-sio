@@ -214,7 +214,7 @@ facture.php?id=123 charge la facture 123 avec une requête préparée, sans autr
 
 **Question 23 — Prédire le comportement**
 
-Sur monsite.fr, supprimer.php supprime le compte de l'utilisateur connecté, sans confirmation ni jeton. Alice, connectée à monsite.fr dans un autre onglet, visite un forum contenant : &lt;img src="https://monsite.fr/supprimer.php"&gt;. Que se passe-t-il ?
+Sur monsite.fr, supprimer.php supprime le compte de l'utilisateur connecté, sans confirmation ni jeton. Alice, connectée à monsite.fr dans un autre onglet, visite un forum contenant : ![Diagramme](https://monsite.fr/supprimer.php). Que se passe-t-il ?
 
 - ☐ **a.** Le compte d'Alice est supprimé : son navigateur charge l'« image » en envoyant automatiquement son cookie de session
 - ☐ **b.** Rien, une image ne peut pas déclencher une action

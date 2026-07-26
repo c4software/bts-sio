@@ -11,7 +11,6 @@ import Reveal from './components/Reveal.vue'
 import Sample from './components/Sample.vue'
 import SlidesDeck from './components/SlidesDeck.vue'
 import Center from './components/Center.vue'
-import Urdle from './components/Urdle.vue'
 import DebianConfiguration from './components/DebianConfiguration.vue'
 import './custom.css'
 
@@ -28,7 +27,6 @@ export default {
     app.component('Sample', Sample)
     app.component('SlidesDeck', SlidesDeck)
     app.component('center', Center)
-    app.component('Urdle', Urdle)
     app.component('DebianConfiguration', DebianConfiguration)
   }
 } satisfies Theme

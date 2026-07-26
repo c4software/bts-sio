@@ -1,0 +1,227 @@
+// Questionnaire Lecture d'UML : les diagrammes de classes
+// Basé sur les exercices d'entraînement à la lecture d'UML
+// Les images sont servies depuis https://cours.brosseau.ovh/quiz/img/ (fonctionne aussi après import Moodle)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
+
+$CATEGORY: POO/Lecture d'UML
+
+// --- La notation ---
+
+::UML-Q1 Visibilité privée::Dans un diagramme de classes, que signifie le symbole « - » devant « -nom\: String » ?{
+=L'attribut nom est privé, il n'est accessible que depuis l'intérieur de la classe#Exact, c'est pour cela qu'on passe par des getters / setters ou des méthodes publiques.
+~L'attribut nom est optionnel
+~L'attribut nom est en lecture seule
+~L'attribut nom sera supprimé dans une prochaine version
+}
+
+::UML-Q2 Les symboles de visibilité::Associez chaque symbole UML à la visibilité qu'il représente.{
+=+ -> public
+=- -> private
+=\# -> protected
+= -> static
+= -> abstract
+}
+
+::UML-Q3 Méthode publique::La notation « +presenter()\: String » désigne une méthode publique qui retourne une chaîne de caractères.{TRUE#Exact \: « + » pour public, et le type après « \: » est le type de retour.}
+
+::UML-Q4 Le mot void::Dans la signature « +ajouterEnfant(enfant\: Personne)\: void », que signifie void ?{
+=La méthode ne retourne aucune valeur#Exact, elle fait une action mais ne renvoie rien.
+~La méthode est vide, il n'y a rien à écrire
+~La méthode est privée
+~Le paramètre enfant peut être nul
+}
+
+::UML-Q5 Multiplicité 0..*::Une multiplicité « 0..* » sur une association signifie que l'objet peut être lié à {=zéro ou plusieurs ~exactement un ~au moins un ~au plus un} objets de l'autre classe.
+
+::UML-Q6 Constructeurs et getters::Les constructeurs, getters et setters n'apparaissent pas dans le diagramme, il est donc impossible d'en écrire dans le code.{FALSE#Au contraire \: par convention ils sont souvent omis du diagramme, mais vous devez les écrire dans votre code.}
+
+// --- La maison ---
+
+::UML-Q7 Le propriétaire de la maison::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-1.png">
+Que peut-on déduire de l'association entre Maison et Personne ?{
+=Une maison a exactement un propriétaire, et une personne peut posséder plusieurs maisons#Exact \: « 1 » côté Personne, « 0..* » côté Maison.
+~Une maison peut avoir plusieurs propriétaires
+~Une personne possède obligatoirement une maison
+~Une maison peut ne pas avoir de propriétaire
+}
+
+::UML-Q8 Traduire une association::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-1.png">
+Comment se traduit le rôle « -leProprietaire » dans le code de la classe Maison ?{
+=Par un attribut privé de type Personne dans la classe Maison#Exact \: une association navigable devient un attribut du type de la classe liée.
+~Par un attribut public de type String
+~Par une nouvelle classe nommée LeProprietaire
+~Par un attribut privé de type Maison dans la classe Personne
+}
+
+::UML-Q9 Type de retour::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-1.png">
+Quel est le type de retour de la méthode presenterProprietaire() de la classe Maison ?{
+=String
+}
+
+// --- Le tuteur ---
+
+::UML-Q10 L'auto-association::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-2.png">
+La classe Enseignant est associée à elle-même (rôle -unTuteur). Que signifie cette association ?{
+=Un enseignant peut avoir au plus un tuteur, qui est lui-même un Enseignant#Exact \: une classe peut être associée à elle-même, ici avec un tuteur optionnel (« 0..1 »).
+~Un enseignant a obligatoirement un tuteur
+~Un enseignant peut avoir plusieurs tuteurs
+~Le tuteur est une personne extérieure à la classe Enseignant
+}
+
+::UML-Q11 Compter les attributs::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-2.png">
+Combien d'attributs sont déclarés dans la classe Enseignant ?{#4}
+
+// --- La caserne ---
+
+::UML-Q12 La caserne::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-3.png">
+Que signifie la multiplicité « 1..* » côté Camion (rôle -lesCamions) ?{
+=Une caserne possède au moins un camion#Exact \: « 1..* » se lit « de un à plusieurs ».
+~Une caserne possède exactement un camion
+~Une caserne peut ne posséder aucun camion
+~Un camion appartient à plusieurs casernes
+}
+
+::UML-Q13 Le chef optionnel::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-3.png">
+Avec la multiplicité « 0..1 » sur le rôle -leChef, une caserne peut très bien ne pas avoir de chef.{TRUE#Exact \: c'est pour cela que appelerChef() doit vérifier qu'un chef existe avant de l'appeler.}
+
+::UML-Q14 Faire klaxonner les camions::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-3.png">
+Comment implémenter la méthode faireKlaxonnerLesCamions() de la classe Caserne ?{
+=Parcourir la collection -lesCamions et appeler klaxonner() sur chaque camion#Exact \: une multiplicité « * » devient une liste qu'on parcourt avec une boucle.
+~Appeler klaxonner() directement sur la classe Camion
+~Créer un nouveau Camion puis le faire klaxonner
+~Retourner la liste des immatriculations
+}
+
+// --- La famille ---
+
+::UML-Q15 Attributs accessibles::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-4.png">
+Quels attributs de la classe Personne sont directement accessibles depuis l'extérieur de la classe ? (plusieurs réponses attendues){
+~%50%nom#Exact, il est précédé de « + ».
+~%50%prenom#Exact, il est précédé de « + ».
+~%-50%salaire#Non, il est privé (« - »).
+~%-50%dateNaissance#Non, il est privé (« - »).
+}
+
+// --- L'entreprise ---
+
+::UML-Q16 Les rôles de l'entreprise::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-5.png">
+Associez chaque élément de la classe Entreprise à sa traduction dans le code.{
+=-sonAdresse -> Un attribut de type Adresse (exactement une)
+=-lesEmployes -> Une collection de Personne (au moins une)
+=-creation -> Un attribut de type Date
+= -> Une collection d'Adresse
+= -> Un attribut de type String
+}
+
+::UML-Q17 Représentation en chaîne::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-5.png">
+Les classes Adresse et Personne possèdent toutes les deux une méthode « +toString()\: String ». Quel est son rôle ?{
+=Retourner une représentation de l'objet sous forme de chaîne de caractères#Exact, pratique pour afficher l'objet.
+~Convertir la classe en String définitivement
+~Sauvegarder l'objet dans un fichier texte
+~Comparer deux objets entre eux
+}
+
+// --- L'équipe et les matchs ---
+
+::UML-Q18 L'arbitre du match::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-6.png">
+Combien d'arbitres possède un match ?{#1}
+
+::UML-Q19 Le type Boolean::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-6.png">
+Dans la classe Equipe, la méthode « +estValide()\: Boolean » retourne \:{
+=Vrai ou faux#Exact \: un Boolean ne peut prendre que deux valeurs.
+~Un nombre entier
+~Le nom de l'équipe
+~Rien du tout
+}
+
+// --- La TodoList ---
+
+::UML-Q20 Retourner une collection::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-7.png">
+Que retourne la méthode listerNonTerminer() de la classe TodoList ?{
+=Une collection (un tableau) de TodoItem#Exact \: la notation « [*] » indique un tableau d'éléments.
+~Un seul TodoItem
+~Le nombre de TodoItem non terminés
+~Une chaîne de caractères
+}
+
+::UML-Q21 Les listes de l'utilisateur::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-7.png">
+Avec la multiplicité « 0..* » sur le rôle -lesTodoLists, un utilisateur peut posséder plusieurs listes.{TRUE#Exact \: il peut même n'en avoir aucune.}
+
+// --- Le forum ---
+
+::UML-Q22 Les multiplicités du forum::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-8.png">
+Associez chaque rôle à sa multiplicité.{
+=-lesCategories -> 1..*
+=-lesMessages -> *
+=-leForum -> 1
+= -> 0..1
+= -> 2..*
+}
+
+::UML-Q23 Supprimer un post::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-8.png">
+Combien de paramètres la méthode supprimerPost() de la classe Categorie attend-elle ?{#2}
+
+// --- Le cinéma ---
+
+::UML-Q24 Le cinéma piégeux::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-9.png">
+Depuis l'extérieur de la classe Cinema, il est possible d'appeler directement ajouterFilm().{FALSE#Bien vu \: les trois méthodes sont précédées de « - », elles sont donc privées et inaccessibles depuis l'extérieur.}
+
+// --- L'héritage ---
+
+::UML-Q25 La flèche d'héritage::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-10.png">
+Etudiant et Enseignant pointent vers Personne avec une flèche à pointe triangulaire vide. Que signifie cette flèche ?{
+=Etudiant et Enseignant héritent de Personne#Exact \: la flèche triangulaire vide représente l'héritage (la généralisation).
+~Etudiant et Enseignant contiennent un objet Personne
+~Personne hérite d'Etudiant et d'Enseignant#C'est l'inverse, la flèche pointe vers la classe mère.
+~Les trois classes sont identiques
+}
+
+::UML-Q26 L'italique::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-10.png">
+Le nom de la classe Personne et la méthode printInfo() sont écrits en italique. Qu'est-ce que cela signifie ?{
+=La classe est abstraite \: on ne peut pas l'instancier directement, et printInfo() doit être redéfinie dans les classes filles#Exact \: l'italique signale l'abstraction en UML.
+~La classe est plus importante que les autres
+~La classe est dépréciée, il ne faut plus l'utiliser
+~C'est purement décoratif
+}
+
+::UML-Q27 Les attributs hérités::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-10.png">
+Grâce à l'héritage, quels attributs possède un objet Etudiant ? (plusieurs réponses attendues){
+~%33.33333%nom#Exact, hérité de Personne.
+~%33.33333%prenom#Exact, hérité de Personne.
+~%33.33334%INE#Exact, déclaré dans Etudiant.
+~%-50%salaire#Non, salaire appartient à Enseignant, pas à Etudiant.
+~%-50%specialite#Non, cet attribut n'existe nulle part dans ce diagramme.
+}
+
+// --- La classe ---
+
+::UML-Q28 Les élèves absents::Observez le diagramme \:
+<img src\="https\://cours.brosseau.ovh/quiz/img/uml-11.png">
+Comment implémenter la méthode listerLesElevesAbsents() de la classe Enseignant ?{
+=Parcourir la collection -desEleves et retourner ceux dont l'attribut present vaut faux#Exact \: on filtre la collection issue de l'association.
+~Retourner l'attribut present de la classe Eleve
+~Créer de nouveaux élèves absents
+~Appeler sePresenter() sur tous les élèves
+}
