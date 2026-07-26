@@ -62,9 +62,11 @@ Associez chaque visibilité à ce qu'elle autorise.
 
 | | À relier à… |
 |---|---|
-| private → ______ | • Accessible seulement depuis l'objet lui-même |
-| public → ______ | • Comme private, mais accessible depuis la classe fille en cas d'héritage |
-| protected → ______ | • Accessible depuis n'importe où |
+| private → ______ | • Accessible uniquement en lecture |
+| public → ______ | • Accessible seulement depuis l'objet lui-même |
+| protected → ______ | • Comme private, mais accessible depuis la classe fille en cas d'héritage |
+|  | • Accessible seulement depuis les méthodes statiques |
+|  | • Accessible depuis n'importe où |
 
 **Question 8 — Le constructeur**
 

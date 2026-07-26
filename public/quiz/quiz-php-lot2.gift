@@ -35,7 +35,7 @@ $CATEGORY: PHP/Lot 2 - Sessions, BDD et structuration
 
 // --- Mot manquant ---
 
-::PHP-L2-Q5 Créer un cookie::Pour créer un cookie chez le visiteur, on utilise la fonction {=setcookie ~createcookie ~addcookie} en lui passant un nom, une valeur et une date d'expiration.
+::PHP-L2-Q5 Créer un cookie::Pour créer un cookie chez le visiteur, on utilise la fonction {=setcookie ~createcookie ~addcookie ~newcookie ~storecookie} en lui passant un nom, une valeur et une date d'expiration.
 
 // --- Numérique ---
 
@@ -64,6 +64,8 @@ $CATEGORY: PHP/Lot 2 - Sessions, BDD et structuration
 =Cookie -> Sur l'ordinateur du visiteur
 =$_GET -> Dans l'URL de la page
 =$_POST -> Dans le corps de la requête d'un formulaire
+= -> Dans le code source HTML de la page
+= -> Dans un fichier sur le poste du développeur
 }
 
 // --- QCM ---

@@ -58,8 +58,10 @@ Associez chaque méthode HTTP à son usage dans une API REST.
 |---|---|
 | GET → ______ | • Récupérer des données |
 | POST → ______ | • Modifier une ressource existante |
-| PUT → ______ | • Créer une nouvelle ressource |
-| DELETE → ______ | • Supprimer une ressource |
+| PUT → ______ | • Lister les méthodes autorisées par le serveur |
+| DELETE → ______ | • Créer une nouvelle ressource |
+|  | • Supprimer une ressource |
+|  | • Demander uniquement les en-têtes de la réponse |
 
 **Question 8 — Codes HTTP**
 

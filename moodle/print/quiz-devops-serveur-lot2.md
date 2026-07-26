@@ -118,8 +118,10 @@ Associez chaque commande à son action.
 |---|---|
 | a2ensite → ______ | • Désactiver un site Web |
 | a2dissite → ______ | • Activer un module Apache |
-| a2enmod → ______ | • Prendre en compte la nouvelle configuration |
-| systemctl restart apache2 → ______ | • Activer un site Web |
+| a2enmod → ______ | • Désactiver un module Apache |
+| systemctl restart apache2 → ______ | • Consulter les journaux d'erreur |
+|  | • Prendre en compte la nouvelle configuration |
+|  | • Activer un site Web |
 
 **Question 15 — Vrai ou Faux - Rechargement**
 

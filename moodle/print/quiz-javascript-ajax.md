@@ -80,10 +80,12 @@ Associez chaque élément à son rôle dans une requête AJAX.
 
 | | À relier à… |
 |---|---|
-| fetch(url) → ______ | • Convertir la réponse en objet JavaScript |
-| response.json() → ______ | • L'équivalent avec la librairie jQuery |
-| JSON.stringify(data) → ______ | • Convertir un objet JavaScript en chaîne JSON |
-| $.get(url, callback) → ______ | • Lancer la requête vers le serveur |
+| fetch(url) → ______ | • Bloquer le script en attendant la réponse |
+| response.json() → ______ | • Convertir la réponse en objet JavaScript |
+| JSON.stringify(data) → ______ | • L'équivalent avec la librairie jQuery |
+| $.get(url, callback) → ______ | • Convertir un objet JavaScript en chaîne JSON |
+|  | • Lancer la requête vers le serveur |
+|  | • Recharger complètement la page |
 
 
 <div style="page-break-before: always;"></div>

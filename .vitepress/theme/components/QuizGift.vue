@@ -17,14 +17,14 @@
         </select>
         {{ q.after }}
       </p>
-      <p v-else>{{ q.text }}</p>
+      <p v-else class="multiline">{{ q.text }}</p>
 
       <!-- QCM à réponse unique -->
       <ul v-if="q.type === 'multichoice'">
         <li v-for="(o, oi) in q.shuffled" :key="oi">
           <label>
             <input type="radio" :name="`q${qi}`" :value="oi" v-model="answers[qi]" :disabled="corrected" />
-            {{ o.text }}
+            <span class="multiline">{{ o.text }}</span>
           </label>
         </li>
       </ul>
@@ -36,7 +36,7 @@
           <li v-for="(o, oi) in q.shuffled" :key="oi">
             <label>
               <input type="checkbox" :value="oi" v-model="answers[qi]" :disabled="corrected" />
-              {{ o.text }}
+              <span class="multiline">{{ o.text }}</span>
             </label>
           </li>
         </ul>
@@ -178,12 +178,16 @@ function parseAnswers(raw) {
 
   if (prefixes.every((p) => p === '=')) {
     if (entries.every((e) => e.text.includes('->'))) {
+      // Une entrée sans partie gauche est un distracteur : sa proposition
+      // s'ajoute à la liste déroulante sans correspondre à aucune ligne.
+      const all = entries.map((e) => {
+        const parts = e.text.split('->')
+        return { left: restore(parts[0]), right: restore(parts.slice(1).join('->')) }
+      })
       return {
         type: 'matching',
-        pairs: entries.map((e) => {
-          const [left, right] = e.text.split('->')
-          return { left: restore(left), right: restore(right) }
-        })
+        pairs: all.filter((p) => p.left),
+        rights: all.map((p) => p.right)
       }
     }
     return {
@@ -294,7 +298,7 @@ export default {
           question.shuffled = shuffle(q.options)
         }
         if (q.type === 'matching') {
-          question.shuffledRights = shuffle(q.pairs.map((p) => p.right))
+          question.shuffledRights = shuffle(q.rights)
         }
         return question
       })
@@ -440,6 +444,13 @@ select {
 
 .feedback p {
   margin: 4px 0;
+}
+
+/* Préserve les retours à la ligne (code, réponses longues) */
+.multiline,
+.expected,
+.explain {
+  white-space: pre-wrap;
 }
 
 .good {

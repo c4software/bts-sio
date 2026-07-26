@@ -56,6 +56,8 @@ $CATEGORY: Laravel/Lot 1 - Les fondamentaux
 =Le contrôleur -> Contenir la logique de traitement de la requête
 =Le modèle (Eloquent) -> Représenter et manipuler les données en base
 =La vue (Blade) -> Générer le HTML affiché à l'utilisateur
+= -> Gérer les dépendances du projet
+= -> Stocker les fichiers CSS et images publics
 }
 
 // --- Vrai / Faux ---

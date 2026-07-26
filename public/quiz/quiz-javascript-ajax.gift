@@ -61,4 +61,6 @@ $CATEGORY: JavaScript/AJAX
 =response.json() -> Convertir la réponse en objet JavaScript
 =JSON.stringify(data) -> Convertir un objet JavaScript en chaîne JSON
 =$.get(url, callback) -> L'équivalent avec la librairie jQuery
+= -> Recharger complètement la page
+= -> Bloquer le script en attendant la réponse
 }

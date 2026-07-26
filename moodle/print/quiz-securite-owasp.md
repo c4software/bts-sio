@@ -30,8 +30,10 @@ Associez chaque grande catégorie de risque à un exemple.
 | | À relier à… |
 |---|---|
 | Confidentialité → ______ | • Fuite de données personnelles |
-| Intégrité → ______ | • Modification non autorisée de données (injection SQL) |
-| Disponibilité → ______ | • Service rendu inaccessible (attaque DDoS) |
+| Intégrité → ______ | • Installation d'un antivirus sur le serveur |
+| Disponibilité → ______ | • Modification non autorisée de données (injection SQL) |
+|  | • Service rendu inaccessible (attaque DDoS) |
+|  | • Sauvegarde quotidienne de la base de données |
 
 **Question 5 — Surface d'attaque**
 
@@ -96,9 +98,11 @@ Associez chaque forme d'authentification à un exemple.
 
 | | À relier à… |
 |---|---|
-| Mémorielle (un secret que l'on connaît) → ______ | • Un mot de passe |
-| Matérielle (un objet que l'on possède) → ______ | • Une clé Yubikey |
-| Corporelle (un trait physique) → ______ | • Une empreinte digitale |
+| Mémorielle (un secret que l'on connaît) → ______ | • Une adresse IP |
+| Matérielle (un objet que l'on possède) → ______ | • Un nom d'utilisateur |
+| Corporelle (un trait physique) → ______ | • Un mot de passe |
+|  | • Une clé Yubikey |
+|  | • Une empreinte digitale |
 
 **Question 13 — OTP**
 
@@ -302,9 +306,11 @@ Associez chaque header HTTP à son rôle.
 | | À relier à… |
 |---|---|
 | Content-Security-Policy → ______ | • Forcer le navigateur à n'utiliser que HTTPS |
-| Strict-Transport-Security → ______ | • Empêcher le navigateur de deviner le type MIME |
-| X-Frame-Options → ______ | • Limiter les sources de scripts et de contenu (protection XSS) |
-| X-Content-Type-Options → ______ | • Empêcher le clickjacking |
+| Strict-Transport-Security → ______ | • Mettre la page en cache côté navigateur |
+| X-Frame-Options → ______ | • Empêcher le navigateur de deviner le type MIME |
+| X-Content-Type-Options → ______ | • Compresser la réponse HTTP |
+|  | • Limiter les sources de scripts et de contenu (protection XSS) |
+|  | • Empêcher le clickjacking |
 
 **Question 38 — Cookies sécurisés**
 

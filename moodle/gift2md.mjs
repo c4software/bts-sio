@@ -130,13 +130,21 @@ function render(qnum, q) {
 
   if (type === 'matching') {
     subject.push(text, '')
-    const lefts = entries.map((e) => md(e.text.split('->')[0]))
-    const rights = entries.map((e) => md(e.text.split('->').slice(1).join('->')))
+    // Une entrée sans partie gauche est un distracteur : il apparaît dans
+    // les propositions mais ne correspond à aucune réponse.
+    const all = entries.map((e) => ({
+      left: md(e.text.split('->')[0]),
+      right: md(e.text.split('->').slice(1).join('->'))
+    }))
+    const pairs = all.filter((p) => p.left)
     subject.push('| | À relier à… |')
     subject.push('|---|---|')
-    const shuffled = shuffle(rights, q.title)
-    lefts.forEach((l, i) => subject.push(`| ${l} → ______ | • ${shuffled[i]} |`))
-    answerKey = lefts.map((l, i) => `${l} → ${rights[i]}`).join(' ; ')
+    const shuffled = shuffle(all.map((p) => p.right), q.title)
+    for (let i = 0; i < shuffled.length; i++) {
+      const left = pairs[i] ? `${pairs[i].left} → ______` : ''
+      subject.push(`| ${left} | • ${shuffled[i]} |`)
+    }
+    answerKey = pairs.map((p) => `${p.left} → ${p.right}`).join(' ; ')
   } else if (type === 'shortanswer' || type === 'numerical') {
     subject.push(after ? `${text} ______ ${after}` : text)
     subject.push('', 'Réponse : ' + '_'.repeat(40))

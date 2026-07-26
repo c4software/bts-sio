@@ -36,7 +36,7 @@ Un cookie est stocké sur l'ordinateur du visiteur et peut donc être lu et modi
 
 Pour créer un cookie chez le visiteur, on utilise la fonction ______ en lui passant un nom, une valeur et une date d'expiration.
 
-(a) addcookie / (b) setcookie / (c) createcookie
+(a) addcookie / (b) setcookie / (c) createcookie / (d) storecookie / (e) newcookie
 
 **Question 6 — Limite de taille**
 
@@ -65,10 +65,12 @@ Associez chaque mécanisme à l'endroit où la donnée est stockée ou transmise
 
 | | À relier à… |
 |---|---|
-| Session → ______ | • Sur l'ordinateur du visiteur |
-| Cookie → ______ | • Dans l'URL de la page |
-| $_GET → ______ | • Dans le corps de la requête d'un formulaire |
-| $_POST → ______ | • Sur le serveur |
+| Session → ______ | • Dans le code source HTML de la page |
+| Cookie → ______ | • Sur l'ordinateur du visiteur |
+| $_GET → ______ | • Dans l'URL de la page |
+| $_POST → ______ | • Dans un fichier sur le poste du développeur |
+|  | • Dans le corps de la requête d'un formulaire |
+|  | • Sur le serveur |
 
 **Question 10 — Le SELECT**
 

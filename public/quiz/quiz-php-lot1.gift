@@ -22,7 +22,7 @@ $CATEGORY: PHP/Lot 1 - Les bases
 
 // --- Mot manquant ---
 
-::PHP-L1-Q3 Affichage::Pour afficher du texte dans la page, on utilise l'instruction {=echo ~print.text ~console.log} suivie de la chaîne de caractères à afficher.
+::PHP-L1-Q3 Affichage::Pour afficher du texte dans la page, on utilise l'instruction {=echo ~print.text ~console.log ~display ~write.line} suivie de la chaîne de caractères à afficher.
 
 // --- QCM ---
 
@@ -70,6 +70,8 @@ $CATEGORY: PHP/Lot 1 - Les bases
 =for -> Répéter un nombre de fois connu à l'avance
 =foreach -> Parcourir tous les éléments d'un tableau
 =if / else -> Exécuter un code seulement si une condition est remplie
+= -> Définir une fonction réutilisable
+= -> Inclure un autre fichier PHP
 }
 
 // --- QCM ---

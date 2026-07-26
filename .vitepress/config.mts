@@ -5,7 +5,7 @@ import sidebar from './sidebar'
 export default defineConfig({
   title: "Cours",
   description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA, et dans différentes interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
-  srcExclude: ['public/**/*.md', 'moodle/print/**'],
+  srcExclude: ['public/**/*.md', 'moodle/print/**', 'AGENTS.md', 'CLAUDE.md'],
   ignoreDeadLinks: [
     /^https?:\/\/localhost:*/,
   ],

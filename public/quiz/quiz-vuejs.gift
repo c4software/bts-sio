@@ -45,6 +45,8 @@ $CATEGORY: JavaScript/VueJS
 =v-if -> Afficher un élément seulement si une condition est vraie
 =v-model -> Lier un input à une donnée dans les deux sens
 =v-on -> Réagir à un évènement (clic, soumission…)
+= -> Importer un composant externe
+= -> Déclarer une donnée réactive
 }
 
 ::VUE-Q7 v-if ou v-show::Quelle est la différence entre v-if et v-show ?{

@@ -120,6 +120,8 @@ $CATEGORY: DevOps Serveur/Lot 1 - Niveau 1 (VM, Debian, ligne de commande)
 =cd -> Se déplacer dans l'arborescence
 =ls -> Lister le contenu d'un dossier
 =touch -> Créer un fichier vide
+= -> Supprimer un fichier
+= -> Afficher le contenu d'un fichier
 }
 
 ::SRV-L1-Q20 Télécharger::Quelle commande permet de télécharger un fichier depuis une URL en ligne de commande ?{

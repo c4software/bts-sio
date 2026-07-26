@@ -53,6 +53,8 @@ $CATEGORY: POO/La programmation orientée objet
 =private -> Accessible seulement depuis l'objet lui-même
 =public -> Accessible depuis n'importe où
 =protected -> Comme private, mais accessible depuis la classe fille en cas d'héritage
+= -> Accessible uniquement en lecture
+= -> Accessible seulement depuis les méthodes statiques
 }
 
 ::POO-Q8 Le constructeur::Quel est le rôle du constructeur d'une classe ?{

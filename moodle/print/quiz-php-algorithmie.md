@@ -132,9 +132,10 @@ Lesquelles de ces boucles affichent 01234 ? (plusieurs réponses attendues)
 *Plusieurs réponses possibles.*
 
 - ☐ **a.** $i = 0; while ($i &lt; 5) { echo $i; $i++; }
-- ☐ **b.** for ($i = 0; $i &lt;= 5; $i++) { echo $i; }
-- ☐ **c.** for ($i = 0; $i &lt; 5; $i++) { echo $i; }
-- ☐ **d.** foreach ([0, 1, 2, 3, 4] as $v) { echo $v; }
+- ☐ **b.** for ($i = 1; $i &lt; 5; $i++) { echo $i; }
+- ☐ **c.** for ($i = 0; $i &lt;= 5; $i++) { echo $i; }
+- ☐ **d.** for ($i = 0; $i &lt; 5; $i++) { echo $i; }
+- ☐ **e.** foreach ([0, 1, 2, 3, 4] as $v) { echo $v; }
 
 **Question 18 — Boucle infinie**
 
@@ -299,9 +300,11 @@ Associez chaque motif d'algorithme à son usage.
 | | À relier à… |
 |---|---|
 | Compteur ($cpt++ sous condition) → ______ | • Trouver la plus grande valeur |
-| Accumulateur ($s += $v) → ______ | • Retenir qu'un évènement s'est produit pendant le parcours |
-| Maximum ($max = $v si $v &gt; $max) → ______ | • Calculer une somme ou un total |
-| Drapeau booléen ($trouve = true) → ______ | • Compter les éléments qui respectent un critère |
+| Accumulateur ($s += $v) → ______ | • Trier les éléments par ordre croissant |
+| Maximum ($max = $v si $v &gt; $max) → ______ | • Retenir qu'un évènement s'est produit pendant le parcours |
+| Drapeau booléen ($trouve = true) → ______ | • Calculer une somme ou un total |
+|  | • Supprimer les doublons d'un tableau |
+|  | • Compter les éléments qui respectent un critère |
 
 **Question 40 — Multiple de 3 et de 5**
 
@@ -349,7 +352,7 @@ Quelle condition teste qu'un nombre $n est à la fois multiple de 3 et multiple 
 
 **16.** 5 — *Exact : $i prend les valeurs 1, 3, 5, 7 et 9.*
 
-**17.** (a) $i = 0; while ($i &lt; 5) { echo $i; $i++; } ; (c) for ($i = 0; $i &lt; 5; $i++) { echo $i; } ; (d) foreach ([0, 1, 2, 3, 4] as $v) { echo $v; } — *Exact, c'est l'équivalent en while. / Exact. / Exact, on parcourt directement les valeurs.*
+**17.** (a) $i = 0; while ($i &lt; 5) { echo $i; $i++; } ; (d) for ($i = 0; $i &lt; 5; $i++) { echo $i; } ; (e) foreach ([0, 1, 2, 3, 4] as $v) { echo $v; } — *Exact, c'est l'équivalent en while. / Exact. / Exact, on parcourt directement les valeurs.*
 
 **18.** (c) La boucle est infinie : $i n'est jamais incrémenté, la condition reste toujours vraie — *Exact, il manque $i++ dans le corps de la boucle.*
 

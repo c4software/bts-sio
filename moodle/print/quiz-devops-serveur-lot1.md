@@ -157,8 +157,10 @@ Associez chaque commande à son action.
 |---|---|
 | mkdir → ______ | • Créer un fichier vide |
 | cd → ______ | • Lister le contenu d'un dossier |
-| ls → ______ | • Se déplacer dans l'arborescence |
-| touch → ______ | • Créer un dossier |
+| ls → ______ | • Supprimer un fichier |
+| touch → ______ | • Se déplacer dans l'arborescence |
+|  | • Afficher le contenu d'un fichier |
+|  | • Créer un dossier |
 
 **Question 20 — Télécharger**
 

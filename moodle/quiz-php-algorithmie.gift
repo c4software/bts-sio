@@ -96,6 +96,7 @@ $CATEGORY: PHP/Algorithmie
 ~%33.33333%$i \= 0\; while ($i < 5) \{ echo $i\; $i++\; \}#Exact, c'est l'équivalent en while.
 ~%33.33334%foreach ([0, 1, 2, 3, 4] as $v) \{ echo $v\; \}#Exact, on parcourt directement les valeurs.
 ~%-50%for ($i \= 0\; $i <\= 5\; $i++) \{ echo $i\; \}#Non \: avec <\= la boucle va jusqu'à 5 inclus, elle affiche 012345.
+~%-50%for ($i \= 1\; $i < 5\; $i++) \{ echo $i\; \}#Non \: la boucle démarre à 1, elle affiche 1234.
 }
 
 ::ALGO-Q18 Boucle infinie::$i \= 0\; while ($i < 10) \{ echo $i\; \} Quel est le problème de ce code ?{
@@ -201,6 +202,8 @@ $CATEGORY: PHP/Algorithmie
 =Accumulateur ($s +\= $v) -> Calculer une somme ou un total
 =Maximum ($max \= $v si $v > $max) -> Trouver la plus grande valeur
 =Drapeau booléen ($trouve \= true) -> Retenir qu'un évènement s'est produit pendant le parcours
+= -> Trier les éléments par ordre croissant
+= -> Supprimer les doublons d'un tableau
 }
 
 ::ALGO-Q40 Multiple de 3 et de 5::Quelle condition teste qu'un nombre $n est à la fois multiple de 3 et multiple de 5 ?{

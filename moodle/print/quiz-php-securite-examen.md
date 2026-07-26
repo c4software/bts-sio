@@ -245,10 +245,12 @@ Associez chaque faille à sa correction principale.
 
 | | À relier à… |
 |---|---|
-| Injection SQL → ______ | • Jeton unique en session vérifié côté serveur |
-| XSS → ______ | • Requête préparée (prepare / execute) |
-| CSRF → ______ | • Échapper l'affichage avec htmlspecialchars |
-| Mot de passe en clair → ______ | • password_hash au stockage, password_verify à la connexion |
+| Injection SQL → ______ | • Encoder la donnée en base64 |
+| XSS → ______ | • Jeton unique en session vérifié côté serveur |
+| CSRF → ______ | • Requête préparée (prepare / execute) |
+| Mot de passe en clair → ______ | • Masquer le champ avec du CSS |
+|  | • Échapper l'affichage avec htmlspecialchars |
+|  | • password_hash au stockage, password_verify à la connexion |
 
 **Question 30 — Relecture de code**
 

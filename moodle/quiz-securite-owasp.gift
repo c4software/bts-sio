@@ -22,6 +22,8 @@ $CATEGORY: Sécurité/OWASP
 =Confidentialité -> Fuite de données personnelles
 =Intégrité -> Modification non autorisée de données (injection SQL)
 =Disponibilité -> Service rendu inaccessible (attaque DDoS)
+= -> Sauvegarde quotidienne de la base de données
+= -> Installation d'un antivirus sur le serveur
 }
 
 ::SECU-Q5 Surface d'attaque::Qu'est-ce que la « surface d'attaque » d'un système ?{
@@ -73,6 +75,8 @@ $CATEGORY: Sécurité/OWASP
 =Mémorielle (un secret que l'on connaît) -> Un mot de passe
 =Matérielle (un objet que l'on possède) -> Une clé Yubikey
 =Corporelle (un trait physique) -> Une empreinte digitale
+= -> Un nom d'utilisateur
+= -> Une adresse IP
 }
 
 ::SECU-Q13 OTP::Que signifie l'acronyme OTP (utilisé par Google Authenticator ou Authy) ?{
@@ -226,6 +230,8 @@ $CATEGORY: Sécurité/OWASP
 =Strict-Transport-Security -> Forcer le navigateur à n'utiliser que HTTPS
 =X-Frame-Options -> Empêcher le clickjacking
 =X-Content-Type-Options -> Empêcher le navigateur de deviner le type MIME
+= -> Compresser la réponse HTTP
+= -> Mettre la page en cache côté navigateur
 }
 
 ::SECU-Q38 Cookies sécurisés::Quels attributs doit-on poser sur un cookie de session pour le sécuriser ? (plusieurs réponses attendues){

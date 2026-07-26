@@ -59,7 +59,9 @@ Associez chaque élément de Laravel à son rôle.
 | Le routeur → ______ | • Contenir la logique de traitement de la requête |
 | Le contrôleur → ______ | • Représenter et manipuler les données en base |
 | Le modèle (Eloquent) → ______ | • Faire correspondre une URL à une action |
-| La vue (Blade) → ______ | • Générer le HTML affiché à l'utilisateur |
+| La vue (Blade) → ______ | • Gérer les dépendances du projet |
+|  | • Générer le HTML affiché à l'utilisateur |
+|  | • Stocker les fichiers CSS et images publics |
 
 **Question 8 — Les migrations**
 

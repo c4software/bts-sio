@@ -24,7 +24,7 @@ Quelles balises permettent de délimiter du code PHP dans une page ?
 
 Pour afficher du texte dans la page, on utilise l'instruction ______ suivie de la chaîne de caractères à afficher.
 
-(a) console.log / (b) echo / (c) print.text
+(a) console.log / (b) display / (c) write.line / (d) echo / (e) print.text
 
 **Question 4 — Résultat d'un echo**
 
@@ -74,10 +74,12 @@ Associez chaque structure à son usage principal.
 
 | | À relier à… |
 |---|---|
-| while → ______ | • Exécuter un code seulement si une condition est remplie |
-| for → ______ | • Répéter tant qu'une condition est vraie |
-| foreach → ______ | • Répéter un nombre de fois connu à l'avance |
-| if / else → ______ | • Parcourir tous les éléments d'un tableau |
+| while → ______ | • Définir une fonction réutilisable |
+| for → ______ | • Exécuter un code seulement si une condition est remplie |
+| foreach → ______ | • Répéter tant qu'une condition est vraie |
+| if / else → ______ | • Répéter un nombre de fois connu à l'avance |
+|  | • Parcourir tous les éléments d'un tableau |
+|  | • Inclure un autre fichier PHP |
 
 **Question 10 — Comparaison**
 
@@ -133,7 +135,7 @@ Un formulaire est déclaré avec method="post". Dans quelle super globale se tro
 
 **2.** (c) &lt;?php … ?&gt;
 
-**3.** (b) echo
+**3.** (d) echo
 
 **4.** (d) J'ai 20 ans
 

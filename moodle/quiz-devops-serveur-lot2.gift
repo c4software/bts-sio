@@ -95,6 +95,8 @@ $CATEGORY: DevOps Serveur/Lot 2 - Niveau 2 (Web, BDD, déploiement)
 =a2dissite -> Désactiver un site Web
 =a2enmod -> Activer un module Apache
 =systemctl restart apache2 -> Prendre en compte la nouvelle configuration
+= -> Désactiver un module Apache
+= -> Consulter les journaux d'erreur
 }
 
 ::SRV-L2-Q15 Vrai ou Faux - Rechargement::Après avoir modifié un fichier de configuration d'Apache, il faut redémarrer (ou recharger) le service pour que la modification soit prise en compte.{TRUE#Exact, d'où le systemctl restart apache2 systématique dans les TP.#Relisez le TP \: la configuration n'est lue qu'au démarrage du service.}

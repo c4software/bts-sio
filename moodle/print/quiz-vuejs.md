@@ -50,10 +50,12 @@ Associez chaque directive à son rôle.
 
 | | À relier à… |
 |---|---|
-| v-for → ______ | • Afficher un élément seulement si une condition est vraie |
-| v-if → ______ | • Répéter un élément pour chaque entrée d'une liste |
-| v-model → ______ | • Réagir à un évènement (clic, soumission…) |
-| v-on → ______ | • Lier un input à une donnée dans les deux sens |
+| v-for → ______ | • Déclarer une donnée réactive |
+| v-if → ______ | • Importer un composant externe |
+| v-model → ______ | • Afficher un élément seulement si une condition est vraie |
+| v-on → ______ | • Répéter un élément pour chaque entrée d'une liste |
+|  | • Réagir à un évènement (clic, soumission…) |
+|  | • Lier un input à une donnée dans les deux sens |
 
 **Question 7 — v-if ou v-show**
 

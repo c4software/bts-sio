@@ -53,6 +53,8 @@ $CATEGORY: Laravel/Lot 2 - Authentification, API et tests
 =POST -> Créer une nouvelle ressource
 =PUT -> Modifier une ressource existante
 =DELETE -> Supprimer une ressource
+= -> Demander uniquement les en-têtes de la réponse
+= -> Lister les méthodes autorisées par le serveur
 }
 
 // --- Numérique ---

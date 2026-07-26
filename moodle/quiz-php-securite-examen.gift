@@ -200,6 +200,8 @@ $CATEGORY: PHP/Examen - Code et sécurité
 =XSS -> Échapper l'affichage avec htmlspecialchars
 =CSRF -> Jeton unique en session vérifié côté serveur
 =Mot de passe en clair -> password_hash au stockage, password_verify à la connexion
+= -> Encoder la donnée en base64
+= -> Masquer le champ avec du CSS
 }
 
 ::SECPHP-Q30 Relecture de code::Vous relisez le code d'un camarade avant la mise en production. Quels éléments doivent être corrigés ? (plusieurs réponses attendues){
