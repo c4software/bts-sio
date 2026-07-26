@@ -185,6 +185,7 @@ export default [
             },
             {
                 text: "TP évalués (points étapes)", collapsed: true, items: [
+                    { text: "Entraînement : passage de paramètres", link: "/tp/php/exercice-parametres.md" },
                     { text: "Évaluation 1 : Ma page profil dynamique", link: "/tp/php/eval1.md" },
                     { text: "Évaluation 2 : Le livre d'or", link: "/tp/php/eval2.md" },
                     { text: "Évaluation 3 : Le mini catalogue", link: "/tp/php/eval3.md" }
@@ -293,7 +294,7 @@ export default [
                 items: [
                     { text: "Slides Introduction API", link: "/cours/introduction_api" },
                     { text: "Aide mémoire API", link: "/cheatsheets/api/" },
-                    { text: "Exercice passage de paramètres", link: "/tp/api/exercice.md" }
+                    { text: "Exercice passage de paramètres", link: "/tp/php/exercice-parametres.md" }
                 ]
             },
             {

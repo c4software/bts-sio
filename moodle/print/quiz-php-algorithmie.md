@@ -4,7 +4,10 @@ Nom : ______________________  Prénom : ______________________
 
 **Question 1 — Affectation**
 
-Que va afficher ce code ? $x = 5; $x = $x + 3; echo $x;
+Que va afficher ce code ?
+$x = 5;
+$x = $x + 3;
+echo $x;
 
 Réponse : ________________________________________
 
@@ -31,7 +34,11 @@ Réponse : ________________________________________
 
 **Question 5 — Copie de variable**
 
-Que va afficher ce code ? $a = 5; $b = $a; $a = 10; echo $b;
+Que va afficher ce code ?
+$a = 5;
+$b = $a;
+$a = 10;
+echo $b;
 
 - ☐ **a.** 10
 - ☐ **b.** 15
@@ -64,7 +71,13 @@ Que va afficher echo 7 / 2; ?
 
 **Question 9 — Lire une condition**
 
-Que va afficher ce code ? $age = 17; if ($age &gt;= 18) { echo "majeur"; } else { echo "mineur"; }
+Que va afficher ce code ?
+$age = 17;
+if ($age &gt;= 18) {
+    echo "majeur";
+} else {
+    echo "mineur";
+}
 
 - ☐ **a.** Rien du tout
 - ☐ **b.** mineur
@@ -79,7 +92,9 @@ Réponse : ________________________________________
 
 **Question 11 — Évaluer un ET**
 
-$a = 5; $b = 10; Que vaut l'expression ($a &gt; 3 && $b &gt; 20) ?
+$a = 5;
+$b = 10;
+Que vaut l'expression ($a &gt; 3 && $b &gt; 20) ?
 
 - ☐ **a.** 5
 - ☐ **b.** false
@@ -88,7 +103,9 @@ $a = 5; $b = 10; Que vaut l'expression ($a &gt; 3 && $b &gt; 20) ?
 
 **Question 12 — Évaluer un OU**
 
-$a = 5; $b = 10; Que vaut l'expression ($a &gt; 3 || $b &gt; 20) ?
+$a = 5;
+$b = 10;
+Que vaut l'expression ($a &gt; 3 || $b &gt; 20) ?
 
 - ☐ **a.** 10
 - ☐ **b.** false
@@ -106,7 +123,15 @@ $x = 5; Que vaut l'expression !($x == 5) ?
 
 **Question 14 — Les conditions en cascade**
 
-$note = 12; if ($note &gt;= 16) { echo "très bien"; } elseif ($note &gt;= 10) { echo "admis"; } else { echo "insuffisant"; } Qu'affiche ce code ?
+$note = 12;
+if ($note &gt;= 16) {
+    echo "très bien";
+} elseif ($note &gt;= 10) {
+    echo "admis";
+} else {
+    echo "insuffisant";
+}
+Qu'affiche ce code ?
 
 - ☐ **a.** insuffisant
 - ☐ **b.** admisinsuffisant
@@ -139,7 +164,11 @@ Lesquelles de ces boucles affichent 01234 ? (plusieurs réponses attendues)
 
 **Question 18 — Boucle infinie**
 
-$i = 0; while ($i &lt; 10) { echo $i; } Quel est le problème de ce code ?
+$i = 0;
+while ($i &lt; 10) {
+    echo $i;
+}
+Quel est le problème de ce code ?
 
 - ☐ **a.** Aucun, ce code affiche les nombres de 0 à 9
 - ☐ **b.** La condition est mal écrite, il faut == à la place de &lt;
@@ -148,13 +177,23 @@ $i = 0; while ($i &lt; 10) { echo $i; } Quel est le problème de ce code ?
 
 **Question 19 — L'accumulateur**
 
-Que va afficher ce code ? $s = 0; for ($i = 1; $i &lt;= 4; $i++) { $s = $s + $i; } echo $s;
+Que va afficher ce code ?
+$s = 0;
+for ($i = 1; $i &lt;= 4; $i++) {
+    $s = $s + $i;
+}
+echo $s;
 
 Réponse : ________________________________________
 
 **Question 20 — Le produit**
 
-Que va afficher ce code ? $p = 1; for ($i = 1; $i &lt;= 4; $i++) { $p = $p * $i; } echo $p;
+Que va afficher ce code ?
+$p = 1;
+for ($i = 1; $i &lt;= 4; $i++) {
+    $p = $p * $i;
+}
+echo $p;
 
 Réponse : ________________________________________
 
@@ -175,7 +214,10 @@ Que fait l'instruction continue dans une boucle ?
 
 **Question 23 — Compte à rebours**
 
-Que va afficher ce code ? for ($i = 3; $i &gt; 0; $i--) { echo $i; }
+Que va afficher ce code ?
+for ($i = 3; $i &gt; 0; $i--) {
+    echo $i;
+}
 
 - ☐ **a.** 123
 - ☐ **b.** 321
@@ -190,7 +232,12 @@ Une boucle do…while exécute toujours son corps au moins une fois, même si la
 
 **Question 25 — Doubler jusqu'au seuil**
 
-Que va afficher ce code ? $x = 1; while ($x &lt; 20) { $x = $x * 2; } echo $x;
+Que va afficher ce code ?
+$x = 1;
+while ($x &lt; 20) {
+    $x = $x * 2;
+}
+echo $x;
 
 Réponse : ________________________________________
 
@@ -220,7 +267,13 @@ Comment accéder au dernier élément d'un tableau $t sans connaître sa taille 
 
 **Question 29 — Somme d'un tableau**
 
-$t = [2, 4, 6]; $s = 0; foreach ($t as $v) { $s += $v; } echo $s; Qu'affiche ce code ?
+$t = [2, 4, 6];
+$s = 0;
+foreach ($t as $v) {
+    $s += $v;
+}
+echo $s;
+Qu'affiche ce code ?
 
 Réponse : ________________________________________
 
@@ -235,7 +288,13 @@ Pour chercher la plus grande valeur d'un tableau $t non vide, quelle est la bonn
 
 **Question 31 — Reconnaître un algorithme**
 
-foreach ($t as $v) { if ($v == $cherche) { return true; } } return false; Que fait cet algorithme ?
+foreach ($t as $v) {
+    if ($v == $cherche) {
+        return true;
+    }
+}
+return false;
+Que fait cet algorithme ?
 
 - ☐ **a.** Il supprime $cherche du tableau
 - ☐ **b.** Il trie le tableau
@@ -250,13 +309,24 @@ Quelle fonction PHP native permet de tester si une valeur est présente dans un 
 
 **Question 33 — Compter sous condition**
 
-$cpt = 0; foreach ([3, 8, 5, 12, 7, 6] as $v) { if ($v % 2 == 0) { $cpt++; } } echo $cpt; Qu'affiche ce code ?
+$cpt = 0;
+foreach ([3, 8, 5, 12, 7, 6] as $v) {
+    if ($v % 2 == 0) {
+        $cpt++;
+    }
+}
+echo $cpt;
+Qu'affiche ce code ?
 
 Réponse : ________________________________________
 
 **Question 34 — Retour de fonction**
 
-function double($x) { return $x * 2; } echo double(4); Qu'affiche ce code ?
+function double($x) {
+    return $x * 2;
+}
+echo double(4);
+Qu'affiche ce code ?
 
 Réponse : ________________________________________
 
@@ -280,13 +350,21 @@ Une variable déclarée à l'intérieur d'une fonction PHP est…
 
 **Question 37 — Paramètre par défaut**
 
-function f($a, $b = 3) { return $a + $b; } echo f(2); Qu'affiche ce code ?
+function f($a, $b = 3) {
+    return $a + $b;
+}
+echo f(2);
+Qu'affiche ce code ?
 
 Réponse : ________________________________________
 
 **Question 38 — Appels imbriqués**
 
-function double($x) { return $x * 2; } echo double(double(3)); Qu'affiche ce code ?
+function double($x) {
+    return $x * 2;
+}
+echo double(double(3));
+Qu'affiche ce code ?
 
 - ☐ **a.** 6
 - ☐ **b.** 36

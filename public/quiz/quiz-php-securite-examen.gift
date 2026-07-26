@@ -7,7 +7,9 @@ $CATEGORY: PHP/Examen - Code et sécurité
 
 // --- Injection SQL ---
 
-::SECPHP-Q1 Analyser une requête::Analysez ce code \: $req \= "SELECT * FROM users WHERE id\=" . $_GET['id']\; Quel est le problème ?{
+::SECPHP-Q1 Analyser une requête::Analysez ce code \:
+$req \= "SELECT * FROM users WHERE id\=" . $_GET['id']\;
+Quel est le problème ?{
 =Il est vulnérable à l'injection SQL \: le paramètre est concaténé sans contrôle dans la requête#Exact \: un attaquant peut injecter du SQL via le paramètre id de l'URL.
 ~Il manque un point-virgule dans la requête SQL
 ~$_GET ne peut pas être utilisé avec une requête SQL
@@ -21,14 +23,19 @@ $CATEGORY: PHP/Examen - Code et sécurité
 ~$req \= strtolower("SELECT * FROM users WHERE id\=" . $_GET['id'])\;#La casse n'a aucun effet sur l'injection.
 }
 
-::SECPHP-Q3 Le piège de l'interpolation::$id \= $_GET['id']\; $req \= "SELECT * FROM client WHERE id\='\{$id\}'"\; Ce code est-il plus sûr que la concaténation ?{
+::SECPHP-Q3 Le piège de l'interpolation::Voici un code \:
+$id \= $_GET['id']\;
+$req \= "SELECT * FROM client WHERE id\='\{$id\}'"\;
+Ce code est-il plus sûr que la concaténation ?{
 =Non, c'est exactement la même faille \: l'interpolation de variable équivaut à une concaténation#Exact, c'est le piège signalé dans le cours \: seule la requête préparée protège.
 ~Oui, les accolades neutralisent le contenu de la variable
 ~Oui, car la variable est passée par une étape intermédiaire
 ~Ce code ne fonctionne pas en PHP
 }
 
-::SECPHP-Q4 Comprendre l'attaque::Un formulaire de connexion exécute \: "SELECT * FROM users WHERE login\='" . $_POST['login'] . "'". Que se passe-t-il si l'utilisateur saisit \: ' OR '1'\='1 ?{
+::SECPHP-Q4 Comprendre l'attaque::Un formulaire de connexion exécute \:
+"SELECT * FROM users WHERE login\='" . $_POST['login'] . "'".
+Que se passe-t-il si l'utilisateur saisit \: ' OR '1'\='1 ?{
 =La condition devient toujours vraie \: la requête retourne des enregistrements et peut permettre de contourner l'authentification#Exact \: '1'\='1' est toujours vrai, c'est l'injection classique du cours.
 ~Le serveur détecte l'attaque et bloque la requête#Rien ne détecte quoi que ce soit dans ce code.
 ~Une erreur de syntaxe SQL empêche forcément l'attaque
@@ -39,7 +46,9 @@ $CATEGORY: PHP/Examen - Code et sécurité
 
 // --- XSS ---
 
-::SECPHP-Q6 Prédire le comportement::Un visiteur saisit <script>alert('XSS')</script> dans le champ nom, et la page exécute \: echo "Bonjour " . $_POST['nom']\; Que se passe-t-il à l'affichage ?{
+::SECPHP-Q6 Prédire le comportement::Un visiteur saisit <script>alert('XSS')</script> dans le champ nom, et la page exécute \:
+echo "Bonjour " . $_POST['nom']\;
+Que se passe-t-il à l'affichage ?{
 =Une boîte de dialogue « XSS » s'ouvre \: le script saisi est exécuté par le navigateur#Exact \: le HTML saisi est renvoyé tel quel, le navigateur l'interprète. C'est une faille XSS.
 ~Le texte <script>alert('XSS')</script> s'affiche tel quel à l'écran#Ce serait le comportement APRÈS correction avec htmlspecialchars.
 ~PHP détecte le script et lève une erreur#PHP ne contrôle rien \: pour lui c'est une chaîne comme une autre.
@@ -66,7 +75,11 @@ $CATEGORY: PHP/Examen - Code et sécurité
 
 // --- Visibilité et POO ---
 
-::SECPHP-Q11 Analyser une classe::class Compte \{ public $solde\; \} Pourquoi cette classe est-elle une mauvaise pratique ?{
+::SECPHP-Q11 Analyser une classe::Voici un code \:
+class Compte \{
+    public $solde\;
+\}
+Pourquoi cette classe est-elle une mauvaise pratique ?{
 =$solde est modifiable directement depuis l'extérieur, sans aucun contrôle possible#Exact \: n'importe quel code peut écrire $compte->solde \= -5000\;. L'encapsulation impose private + accesseurs.
 ~Une classe ne peut pas contenir d'attribut public#Si, c'est autorisé, mais déconseillé ici.
 ~Il manque une méthode toString()
@@ -110,7 +123,9 @@ $CATEGORY: PHP/Examen - Code et sécurité
 ~md5 ne fonctionne qu'avec des nombres
 }
 
-::SECPHP-Q18 Prédire le comportement::Le mot de passe « azerty » est stocké hashé. À la connexion, un développeur écrit \: if (password_hash($_POST['password'], PASSWORD_DEFAULT) \=\= $user['password']). L'utilisateur saisit le bon mot de passe « azerty ». Que se passe-t-il ?{
+::SECPHP-Q18 Prédire le comportement::Le mot de passe « azerty » est stocké hashé. À la connexion, un développeur écrit \:
+if (password_hash($_POST['password'], PASSWORD_DEFAULT) \=\= $user['password']).
+L'utilisateur saisit le bon mot de passe « azerty ». Que se passe-t-il ?{
 =La condition est fausse et la connexion échoue \: password_hash génère un sel aléatoire, deux appels produisent deux hashs différents#Exact \: c'est pour cela qu'il faut utiliser password_verify($saisi, $hash), qui retrouve le sel dans le hash stocké.
 ~La condition est vraie et la connexion réussit#Non \: le sel aléatoire rend chaque hash unique, même pour un mot de passe identique.
 ~PHP lève une erreur car on ne peut pas comparer deux hashs
@@ -119,21 +134,33 @@ $CATEGORY: PHP/Examen - Code et sécurité
 
 // --- Sessions et contrôle d'accès ---
 
-::SECPHP-Q19 Compléter une protection::Voici le début de la page admin.php \: session_start()\; … Quel code doit suivre pour la protéger correctement ?{
+::SECPHP-Q19 Compléter une protection::Voici le début de la page admin.php \:
+session_start()\; …
+Quel code doit suivre pour la protéger correctement ?{
 =if (!isset($_SESSION['user'])) \{ header('Location\: /login.php')\; die()\; \}#Exact \: vérification côté serveur, redirection ET arrêt du script (exit est équivalent à die()).
 ~if (!isset($_COOKIE['user'])) \{ header('Location\: /login.php')\; die()\; \}#Un cookie est modifiable par le client \: la preuve d'authentification doit être en session.
 ~if (!isset($_SESSION['user'])) \{ echo "Accès refusé"\; \}#Sans arrêt ni redirection, le reste de la page s'exécute et s'affiche quand même.
 ~echo "<script>if (!connecte) window.location \= '/login.php'</script>"\;#Une protection en JavaScript côté client se contourne trivialement.
 }
 
-::SECPHP-Q20 Prédire le comportement::Une page protégée contient \: if (!isset($_SESSION['user'])) \{ header('Location\: /login.php')\; \} suivi du contenu confidentiel, sans die(). Un attaquant non connecté requête la page avec curl (qui ne suit pas les redirections). Que reçoit-il ?{
+::SECPHP-Q20 Prédire le comportement::Une page protégée contient \:
+if (!isset($_SESSION['user'])) \{
+    header('Location\: /login.php')\;
+\}
+suivi du contenu confidentiel, sans die(). Un attaquant non connecté requête la page avec curl (qui ne suit pas les redirections).
+Que reçoit-il ?{
 =L'en-tête de redirection ET tout le contenu confidentiel de la page#Exact \: header() ajoute un en-tête mais n'arrête pas le script. Le navigateur suit la redirection, curl lit tranquillement la suite. D'où le die() obligatoire.
 ~Uniquement la page login.php#C'est ce que voit un navigateur qui suit la redirection, pas ce que le serveur envoie réellement.
 ~Une page vide
 ~Une erreur 403 Forbidden
 }
 
-::SECPHP-Q21 Prédire le comportement::Une page contient \: if ($_GET['role'] \=\= 'admin') \{ afficherPanneauAdmin()\; \} Un simple visiteur, non connecté, ouvre l'URL page.php?role\=admin. Que se passe-t-il ?{
+::SECPHP-Q21 Prédire le comportement::Une page contient \:
+if ($_GET['role'] \=\= 'admin') \{
+    afficherPanneauAdmin()\;
+\}
+Un simple visiteur, non connecté, ouvre l'URL page.php?role\=admin.
+Que se passe-t-il ?{
 =Le panneau d'administration s'affiche \: la condition est vraie puisque le visiteur contrôle le paramètre#Exact \: on ne fait jamais confiance à une donnée venant du client. Le rôle doit être stocké en session, côté serveur.
 ~Rien, PHP sait que le visiteur n'est pas administrateur#PHP ne « sait » rien \: il compare deux chaînes, et elles sont égales.
 ~Une erreur car le paramètre role est réservé

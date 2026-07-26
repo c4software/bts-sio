@@ -55,7 +55,7 @@ Côté navigateur, suivez [les TP JavaScript](/pages/categories/les-tp-javascrip
 ### API
 
 - [Cours Introduction API](/cours/introduction_api.md)
-- [Exercices passage de paramètres](/tp/api/exercice.md)
+- [Exercices passage de paramètres](/tp/php/exercice-parametres.md)
 - [Aide mémoire API](/cheatsheets/api/)
 - [Aide mémoire Ajax](/cheatsheets/javascript/)
 - [Créer des API avec Laravel](/tp/laravel/laravel_api.md)

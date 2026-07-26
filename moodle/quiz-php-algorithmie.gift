@@ -7,7 +7,10 @@ $CATEGORY: PHP/Algorithmie
 
 // --- Variables et opérations ---
 
-::ALGO-Q1 Affectation::Que va afficher ce code ? $x \= 5\; $x \= $x + 3\; echo $x\;{#8#Exact \: $x prend la valeur 5, puis 5 + 3.}
+::ALGO-Q1 Affectation::Que va afficher ce code ?
+$x \= 5\;
+$x \= $x + 3\;
+echo $x\;{#8#Exact \: $x prend la valeur 5, puis 5 + 3.}
 
 ::ALGO-Q2 Priorité des opérateurs::Que va afficher echo 2 + 3 * 4\; ?{#14#Exact \: la multiplication est prioritaire, 2 + 12 \= 14.}
 
@@ -20,7 +23,11 @@ $CATEGORY: PHP/Algorithmie
 
 ::ALGO-Q4 Calcul de modulo::Que va afficher echo 17 % 5\; ?{#2#Exact \: 17 \= 3 × 5 + 2, le reste est 2.}
 
-::ALGO-Q5 Copie de variable::Que va afficher ce code ? $a \= 5\; $b \= $a\; $a \= 10\; echo $b\;{
+::ALGO-Q5 Copie de variable::Que va afficher ce code ?
+$a \= 5\;
+$b \= $a\;
+$a \= 10\;
+echo $b\;{
 =5#Exact \: $b a reçu une copie de la valeur de $a au moment de l'affectation, il n'est pas lié à $a.
 ~10
 ~15
@@ -45,7 +52,13 @@ $CATEGORY: PHP/Algorithmie
 
 // --- Conditions et logique ---
 
-::ALGO-Q9 Lire une condition::Que va afficher ce code ? $age \= 17\; if ($age >\= 18) \{ echo "majeur"\; \} else \{ echo "mineur"\; \}{
+::ALGO-Q9 Lire une condition::Que va afficher ce code ?
+$age \= 17\;
+if ($age >\= 18) \{
+    echo "majeur"\;
+\} else \{
+    echo "mineur"\;
+\}{
 =mineur#Exact \: 17 >\= 18 est faux, c'est donc le bloc else qui s'exécute.
 ~majeur
 ~majeurmineur
@@ -57,14 +70,18 @@ $CATEGORY: PHP/Algorithmie
 =and
 }
 
-::ALGO-Q11 Évaluer un ET::$a \= 5\; $b \= 10\; Que vaut l'expression ($a > 3 && $b > 20) ?{
+::ALGO-Q11 Évaluer un ET::$a \= 5\;
+$b \= 10\;
+Que vaut l'expression ($a > 3 && $b > 20) ?{
 =false#Exact \: $a > 3 est vrai, mais $b > 20 est faux. Avec un ET, il suffit d'une condition fausse pour que le tout soit faux.
 ~true
 ~5
 ~Une erreur
 }
 
-::ALGO-Q12 Évaluer un OU::$a \= 5\; $b \= 10\; Que vaut l'expression ($a > 3 || $b > 20) ?{
+::ALGO-Q12 Évaluer un OU::$a \= 5\;
+$b \= 10\;
+Que vaut l'expression ($a > 3 || $b > 20) ?{
 =true#Exact \: avec un OU, une seule condition vraie suffit, et $a > 3 est vrai.
 ~false
 ~10
@@ -78,7 +95,15 @@ $CATEGORY: PHP/Algorithmie
 ~0
 }
 
-::ALGO-Q14 Les conditions en cascade::$note \= 12\; if ($note >\= 16) \{ echo "très bien"\; \} elseif ($note >\= 10) \{ echo "admis"\; \} else \{ echo "insuffisant"\; \} Qu'affiche ce code ?{
+::ALGO-Q14 Les conditions en cascade::$note \= 12\;
+if ($note >\= 16) \{
+    echo "très bien"\;
+\} elseif ($note >\= 10) \{
+    echo "admis"\;
+\} else \{
+    echo "insuffisant"\;
+\}
+Qu'affiche ce code ?{
 =admis#Exact \: 12 >\= 16 est faux, on teste la suite \: 12 >\= 10 est vrai.
 ~très bien
 ~insuffisant
@@ -99,16 +124,30 @@ $CATEGORY: PHP/Algorithmie
 ~%-50%for ($i \= 1\; $i < 5\; $i++) \{ echo $i\; \}#Non \: la boucle démarre à 1, elle affiche 1234.
 }
 
-::ALGO-Q18 Boucle infinie::$i \= 0\; while ($i < 10) \{ echo $i\; \} Quel est le problème de ce code ?{
+::ALGO-Q18 Boucle infinie::$i \= 0\;
+while ($i < 10) \{
+    echo $i\;
+\}
+Quel est le problème de ce code ?{
 =La boucle est infinie \: $i n'est jamais incrémenté, la condition reste toujours vraie#Exact, il manque $i++ dans le corps de la boucle.
 ~La condition est mal écrite, il faut \=\= à la place de <
 ~On ne peut pas utiliser echo dans un while
 ~Aucun, ce code affiche les nombres de 0 à 9
 }
 
-::ALGO-Q19 L'accumulateur::Que va afficher ce code ? $s \= 0\; for ($i \= 1\; $i <\= 4\; $i++) \{ $s \= $s + $i\; \} echo $s\;{#10#Exact \: on accumule 1 + 2 + 3 + 4 \= 10. C'est le motif de l'accumulateur (somme).}
+::ALGO-Q19 L'accumulateur::Que va afficher ce code ?
+$s \= 0\;
+for ($i \= 1\; $i <\= 4\; $i++) \{
+    $s \= $s + $i\;
+\}
+echo $s\;{#10#Exact \: on accumule 1 + 2 + 3 + 4 \= 10. C'est le motif de l'accumulateur (somme).}
 
-::ALGO-Q20 Le produit::Que va afficher ce code ? $p \= 1\; for ($i \= 1\; $i <\= 4\; $i++) \{ $p \= $p * $i\; \} echo $p\;{#24#Exact \: 1 × 2 × 3 × 4 \= 24 (c'est la factorielle de 4). Notez que $p démarre à 1 et non à 0.}
+::ALGO-Q20 Le produit::Que va afficher ce code ?
+$p \= 1\;
+for ($i \= 1\; $i <\= 4\; $i++) \{
+    $p \= $p * $i\;
+\}
+echo $p\;{#24#Exact \: 1 × 2 × 3 × 4 \= 24 (c'est la factorielle de 4). Notez que $p démarre à 1 et non à 0.}
 
 ::ALGO-Q21 Sortir d'une boucle::Pour interrompre immédiatement une boucle et passer à la suite du programme, on utilise l'instruction {=break ~continue ~exit ~stop}.
 
@@ -119,7 +158,10 @@ $CATEGORY: PHP/Algorithmie
 ~Elle met la boucle en pause une seconde
 }
 
-::ALGO-Q23 Compte à rebours::Que va afficher ce code ? for ($i \= 3\; $i > 0\; $i--) \{ echo $i\; \}{
+::ALGO-Q23 Compte à rebours::Que va afficher ce code ?
+for ($i \= 3\; $i > 0\; $i--) \{
+    echo $i\;
+\}{
 =321#Exact \: $i démarre à 3 et décroît tant qu'il est supérieur à 0.
 ~123
 ~3210
@@ -128,7 +170,12 @@ $CATEGORY: PHP/Algorithmie
 
 ::ALGO-Q24 Vrai ou Faux - do…while::Une boucle do…while exécute toujours son corps au moins une fois, même si la condition est fausse dès le départ.{TRUE#Exact \: la condition est testée après le corps, contrairement au while classique.#Relisez le support \: dans un do…while, le corps s'exécute d'abord, la condition est vérifiée ensuite.}
 
-::ALGO-Q25 Doubler jusqu'au seuil::Que va afficher ce code ? $x \= 1\; while ($x < 20) \{ $x \= $x * 2\; \} echo $x\;{#32#Exact \: $x vaut successivement 2, 4, 8, 16 puis 32. À 16 la condition est encore vraie, on double une dernière fois.}
+::ALGO-Q25 Doubler jusqu'au seuil::Que va afficher ce code ?
+$x \= 1\;
+while ($x < 20) \{
+    $x \= $x * 2\;
+\}
+echo $x\;{#32#Exact \: $x vaut successivement 2, 4, 8, 16 puis 32. À 16 la condition est encore vraie, on double une dernière fois.}
 
 // --- Les tableaux ---
 
@@ -148,7 +195,13 @@ $CATEGORY: PHP/Algorithmie
 ~$t[-0]
 }
 
-::ALGO-Q29 Somme d'un tableau::$t \= [2, 4, 6]\; $s \= 0\; foreach ($t as $v) \{ $s +\= $v\; \} echo $s\; Qu'affiche ce code ?{#12#Exact \: 2 + 4 + 6 \= 12, encore le motif de l'accumulateur.}
+::ALGO-Q29 Somme d'un tableau::$t \= [2, 4, 6]\;
+$s \= 0\;
+foreach ($t as $v) \{
+    $s +\= $v\;
+\}
+echo $s\;
+Qu'affiche ce code ?{#12#Exact \: 2 + 4 + 6 \= 12, encore le motif de l'accumulateur.}
 
 ::ALGO-Q30 Recherche du maximum::Pour chercher la plus grande valeur d'un tableau $t non vide, quelle est la bonne initialisation de $max avant la boucle ?{
 =$max \= $t[0]\;#Exact \: on part du premier élément. Initialiser à 0 échouerait avec un tableau de valeurs toutes négatives.
@@ -157,7 +210,13 @@ $CATEGORY: PHP/Algorithmie
 ~$max \= null\; sans autre traitement
 }
 
-::ALGO-Q31 Reconnaître un algorithme::foreach ($t as $v) \{ if ($v \=\= $cherche) \{ return true\; \} \} return false\; Que fait cet algorithme ?{
+::ALGO-Q31 Reconnaître un algorithme::foreach ($t as $v) \{
+    if ($v \=\= $cherche) \{
+        return true\;
+    \}
+\}
+return false\;
+Que fait cet algorithme ?{
 =Il teste si la valeur $cherche est présente dans le tableau#Exact, c'est une recherche séquentielle \: on sort dès qu'on trouve.
 ~Il compte combien de fois $cherche apparaît
 ~Il trie le tableau
@@ -166,11 +225,22 @@ $CATEGORY: PHP/Algorithmie
 
 ::ALGO-Q32 Fonction toute prête::Quelle fonction PHP native permet de tester si une valeur est présente dans un tableau, comme le code de la question précédente ? La fonction {=in_array ~array_find ~contains ~has_value} fait exactement cela.
 
-::ALGO-Q33 Compter sous condition::$cpt \= 0\; foreach ([3, 8, 5, 12, 7, 6] as $v) \{ if ($v % 2 \=\= 0) \{ $cpt++\; \} \} echo $cpt\; Qu'affiche ce code ?{#3#Exact \: les valeurs paires sont 8, 12 et 6. C'est le motif du compteur conditionnel.}
+::ALGO-Q33 Compter sous condition::$cpt \= 0\;
+foreach ([3, 8, 5, 12, 7, 6] as $v) \{
+    if ($v % 2 \=\= 0) \{
+        $cpt++\;
+    \}
+\}
+echo $cpt\;
+Qu'affiche ce code ?{#3#Exact \: les valeurs paires sont 8, 12 et 6. C'est le motif du compteur conditionnel.}
 
 // --- Les fonctions ---
 
-::ALGO-Q34 Retour de fonction::function double($x) \{ return $x * 2\; \} echo double(4)\; Qu'affiche ce code ?{#8#Exact \: la fonction retourne 4 × 2.}
+::ALGO-Q34 Retour de fonction::function double($x) \{
+    return $x * 2\;
+\}
+echo double(4)\;
+Qu'affiche ce code ?{#8#Exact \: la fonction retourne 4 × 2.}
 
 ::ALGO-Q35 Le return::Que fait l'instruction return dans une fonction ?{
 =Elle renvoie une valeur à l'appelant et termine immédiatement l'exécution de la fonction#Exact \: tout code placé après le return ne sera jamais exécuté.
@@ -186,9 +256,17 @@ $CATEGORY: PHP/Algorithmie
 ~Partagée avec toutes les autres fonctions
 }
 
-::ALGO-Q37 Paramètre par défaut::function f($a, $b \= 3) \{ return $a + $b\; \} echo f(2)\; Qu'affiche ce code ?{#5#Exact \: $b n'est pas fourni, il prend sa valeur par défaut 3, donc 2 + 3.}
+::ALGO-Q37 Paramètre par défaut::function f($a, $b \= 3) \{
+    return $a + $b\;
+\}
+echo f(2)\;
+Qu'affiche ce code ?{#5#Exact \: $b n'est pas fourni, il prend sa valeur par défaut 3, donc 2 + 3.}
 
-::ALGO-Q38 Appels imbriqués::function double($x) \{ return $x * 2\; \} echo double(double(3))\; Qu'affiche ce code ?{
+::ALGO-Q38 Appels imbriqués::function double($x) \{
+    return $x * 2\;
+\}
+echo double(double(3))\;
+Qu'affiche ce code ?{
 =12#Exact \: double(3) vaut 6, puis double(6) vaut 12. L'appel intérieur est évalué en premier.
 ~6
 ~9

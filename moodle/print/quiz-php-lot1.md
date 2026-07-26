@@ -28,7 +28,9 @@ Pour afficher du texte dans la page, on utilise l'instruction ______ suivie de l
 
 **Question 4 — Résultat d'un echo**
 
-Que va afficher le code suivant ? $age = 20; echo "J'ai " . $age . " ans";
+Que va afficher le code suivant ?
+$age = 20;
+echo "J'ai " . $age . " ans";
 
 - ☐ **a.** J'ai . 20 . ans
 - ☐ **b.** Une erreur
@@ -113,7 +115,10 @@ Réponse : ________________________________________
 
 **Question 14 — Les boucles**
 
-Combien de fois le corps de la boucle suivante sera-t-il exécuté ? for ($i = 0; $i &lt; 10; $i++) { echo $i; }
+Combien de fois le corps de la boucle suivante sera-t-il exécuté ?
+for ($i = 0; $i &lt; 10; $i++) {
+    echo $i;
+}
 
 Réponse : ________________________________________
 

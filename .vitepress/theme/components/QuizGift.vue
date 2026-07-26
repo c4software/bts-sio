@@ -6,6 +6,7 @@
       <p class="question-title">
         <strong>Question {{ qi + 1 }}</strong>
         <span v-if="q.title"> — {{ q.title }}</span>
+        <span v-if="q.origin" class="origin">{{ q.origin }}</span>
       </p>
 
       <!-- Mot manquant : la phrase contient le trou -->
@@ -267,7 +268,10 @@ function shuffle(array) {
 export default {
   name: 'QuizGift',
   props: {
-    src: { type: String, required: true },
+    // Quiz unique (nom du fichier sans extension) ou mode multi
+    src: { type: String, default: '' },
+    // Mode multi : pioche les questions dans tous les quiz du manifeste
+    multi: { type: Boolean, default: false },
     hideTitle: { type: Boolean, default: false },
     limit: { type: Number, default: 10 }
   },
@@ -281,15 +285,30 @@ export default {
   },
   async mounted() {
     try {
-      const response = await fetch(withBase(`/quiz/${this.src}.gift`))
-      if (!response.ok) throw new Error(response.statusText)
-      this.quiz = parseGift(await response.text())
+      this.quiz = this.multi ? await this.loadAll() : await this.loadOne(this.src)
       this.setup()
     } catch {
       this.error = true
     }
   },
   methods: {
+    async loadOne(src) {
+      const response = await fetch(withBase(`/quiz/${src}.gift`))
+      if (!response.ok) throw new Error(response.statusText)
+      return parseGift(await response.text())
+    },
+    // Rassemble les questions de tous les quiz du manifeste,
+    // chaque question garde la thématique dont elle provient.
+    async loadAll() {
+      const response = await fetch(withBase('/quiz/index.json'))
+      if (!response.ok) throw new Error(response.statusText)
+      const manifest = await response.json()
+      const all = await Promise.all(manifest.map((m) => this.loadOne(m.src)))
+      const questions = all.flatMap((quiz) =>
+        quiz.questions.map((q) => ({ ...q, origin: quiz.title }))
+      )
+      return { title: 'Toutes les thématiques', questions }
+    },
     setup() {
       // Tirage aléatoire de `limit` questions à chaque tentative
       this.questions = shuffle(this.quiz.questions).slice(0, this.limit).map((q) => {
@@ -404,6 +423,17 @@ export default {
 
 .question-title {
   margin: 0 0 8px;
+}
+
+.origin {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 10px;
+  background: var(--vp-c-default-soft);
+  color: var(--vp-c-text-2);
+  font-size: 0.75em;
+  vertical-align: middle;
 }
 
 ul {

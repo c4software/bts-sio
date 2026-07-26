@@ -26,7 +26,9 @@ $CATEGORY: PHP/Lot 1 - Les bases
 
 // --- QCM ---
 
-::PHP-L1-Q4 Résultat d'un echo::Que va afficher le code suivant ? $age \= 20\; echo "J'ai " . $age . " ans"\;{
+::PHP-L1-Q4 Résultat d'un echo::Que va afficher le code suivant ?
+$age \= 20\;
+echo "J'ai " . $age . " ans"\;{
 =J'ai 20 ans
 ~J'ai $age ans
 ~J'ai . 20 . ans
@@ -104,7 +106,10 @@ $CATEGORY: PHP/Lot 1 - Les bases
 
 // --- Numérique ---
 
-::PHP-L1-Q14 Les boucles::Combien de fois le corps de la boucle suivante sera-t-il exécuté ? for ($i \= 0\; $i < 10\; $i++) \{ echo $i\; \}{#10#Exact \: $i prend les valeurs de 0 à 9 incluses.}
+::PHP-L1-Q14 Les boucles::Combien de fois le corps de la boucle suivante sera-t-il exécuté ?
+for ($i \= 0\; $i < 10\; $i++) \{
+    echo $i\;
+\}{#10#Exact \: $i prend les valeurs de 0 à 9 incluses.}
 
 // --- QCM ---
 

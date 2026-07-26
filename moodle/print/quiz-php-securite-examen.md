@@ -4,7 +4,9 @@ Nom : ______________________  Prénom : ______________________
 
 **Question 1 — Analyser une requête**
 
-Analysez ce code : $req = "SELECT * FROM users WHERE id=" . $_GET['id']; Quel est le problème ?
+Analysez ce code :
+$req = "SELECT * FROM users WHERE id=" . $_GET['id'];
+Quel est le problème ?
 
 - ☐ **a.** Il est vulnérable à l'injection SQL : le paramètre est concaténé sans contrôle dans la requête
 - ☐ **b.** $_GET ne peut pas être utilisé avec une requête SQL
@@ -22,7 +24,10 @@ Quelle version corrigée de la question précédente est sécurisée ?
 
 **Question 3 — Le piège de l'interpolation**
 
-$id = $_GET['id']; $req = "SELECT * FROM client WHERE id='{$id}'"; Ce code est-il plus sûr que la concaténation ?
+Voici un code :
+$id = $_GET['id'];
+$req = "SELECT * FROM client WHERE id='{$id}'";
+Ce code est-il plus sûr que la concaténation ?
 
 - ☐ **a.** Oui, car la variable est passée par une étape intermédiaire
 - ☐ **b.** Ce code ne fonctionne pas en PHP
@@ -31,7 +36,9 @@ $id = $_GET['id']; $req = "SELECT * FROM client WHERE id='{$id}'"; Ce code est-i
 
 **Question 4 — Comprendre l'attaque**
 
-Un formulaire de connexion exécute : "SELECT * FROM users WHERE login='" . $_POST['login'] . "'". Que se passe-t-il si l'utilisateur saisit : ' OR '1'='1 ?
+Un formulaire de connexion exécute :
+"SELECT * FROM users WHERE login='" . $_POST['login'] . "'".
+Que se passe-t-il si l'utilisateur saisit : ' OR '1'='1 ?
 
 - ☐ **a.** Une erreur de syntaxe SQL empêche forcément l'attaque
 - ☐ **b.** Le mot de passe est affiché à l'écran
@@ -46,7 +53,9 @@ Utiliser un ORM (comme Eloquent dans Laravel) protège des injections SQL dans l
 
 **Question 6 — Prédire le comportement**
 
-Un visiteur saisit &lt;script&gt;alert('XSS')&lt;/script&gt; dans le champ nom, et la page exécute : echo "Bonjour " . $_POST['nom']; Que se passe-t-il à l'affichage ?
+Un visiteur saisit &lt;script&gt;alert('XSS')&lt;/script&gt; dans le champ nom, et la page exécute :
+echo "Bonjour " . $_POST['nom'];
+Que se passe-t-il à l'affichage ?
 
 - ☐ **a.** PHP détecte le script et lève une erreur
 - ☐ **b.** Une boîte de dialogue « XSS » s'ouvre : le script saisi est exécuté par le navigateur
@@ -85,7 +94,11 @@ Vrai ou Faux : utiliser des requêtes préparées suffit à protéger un site co
 
 **Question 11 — Analyser une classe**
 
-class Compte { public $solde; } Pourquoi cette classe est-elle une mauvaise pratique ?
+Voici un code :
+class Compte {
+    public $solde;
+}
+Pourquoi cette classe est-elle une mauvaise pratique ?
 
 - ☐ **a.** Il manque une méthode toString()
 - ☐ **b.** Le nom de la classe devrait être en minuscules
@@ -142,7 +155,9 @@ Un développeur propose : $hash = md5($_POST['password']);. Pourquoi est-ce insu
 
 **Question 18 — Prédire le comportement**
 
-Le mot de passe « azerty » est stocké hashé. À la connexion, un développeur écrit : if (password_hash($_POST['password'], PASSWORD_DEFAULT) == $user['password']). L'utilisateur saisit le bon mot de passe « azerty ». Que se passe-t-il ?
+Le mot de passe « azerty » est stocké hashé. À la connexion, un développeur écrit :
+if (password_hash($_POST['password'], PASSWORD_DEFAULT) == $user['password']).
+L'utilisateur saisit le bon mot de passe « azerty ». Que se passe-t-il ?
 
 - ☐ **a.** La condition est vraie et la connexion réussit
 - ☐ **b.** La condition est fausse et la connexion échoue : password_hash génère un sel aléatoire, deux appels produisent deux hashs différents
@@ -151,7 +166,9 @@ Le mot de passe « azerty » est stocké hashé. À la connexion, un développeu
 
 **Question 19 — Compléter une protection**
 
-Voici le début de la page admin.php : session_start(); … Quel code doit suivre pour la protéger correctement ?
+Voici le début de la page admin.php :
+session_start(); …
+Quel code doit suivre pour la protéger correctement ?
 
 - ☐ **a.** if (!isset($_COOKIE['user'])) { header('Location: /login.php'); die(); }
 - ☐ **b.** if (!isset($_SESSION['user'])) { header('Location: /login.php'); die(); }
@@ -160,7 +177,12 @@ Voici le début de la page admin.php : session_start(); … Quel code doit suivr
 
 **Question 20 — Prédire le comportement**
 
-Une page protégée contient : if (!isset($_SESSION['user'])) { header('Location: /login.php'); } suivi du contenu confidentiel, sans die(). Un attaquant non connecté requête la page avec curl (qui ne suit pas les redirections). Que reçoit-il ?
+Une page protégée contient :
+if (!isset($_SESSION['user'])) {
+    header('Location: /login.php');
+}
+suivi du contenu confidentiel, sans die(). Un attaquant non connecté requête la page avec curl (qui ne suit pas les redirections).
+Que reçoit-il ?
 
 - ☐ **a.** Une page vide
 - ☐ **b.** Uniquement la page login.php
@@ -169,7 +191,12 @@ Une page protégée contient : if (!isset($_SESSION['user'])) { header('Location
 
 **Question 21 — Prédire le comportement**
 
-Une page contient : if ($_GET['role'] == 'admin') { afficherPanneauAdmin(); } Un simple visiteur, non connecté, ouvre l'URL page.php?role=admin. Que se passe-t-il ?
+Une page contient :
+if ($_GET['role'] == 'admin') {
+    afficherPanneauAdmin();
+}
+Un simple visiteur, non connecté, ouvre l'URL page.php?role=admin.
+Que se passe-t-il ?
 
 - ☐ **a.** Rien, PHP sait que le visiteur n'est pas administrateur
 - ☐ **b.** Une erreur car le paramètre role est réservé

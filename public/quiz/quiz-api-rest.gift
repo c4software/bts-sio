@@ -1,0 +1,267 @@
+// Questionnaire API REST : Observation et analyse
+// Basé sur public/cours/sources/api/slides.md, tp/laravel/api_produit.md et tp/php/exercice-parametres.md
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM (observation de code et de requêtes), vrai/faux, réponse courte, appariement, mot manquant, numérique, réponses multiples
+
+$CATEGORY: API/REST
+
+// --- Lire une requête et une réponse HTTP ---
+
+::API-Q1 Pourquoi une API ?::Pourquoi préférer une API JSON à un retour HTML classique ?{
+=L'API est universelle \: la même donnée peut être consommée par un site web, une application mobile, une TV, un objet connecté…#Exact, c'est la séparation entre le client et le serveur qui rend cela possible.
+~Le JSON est plus rapide à afficher qu'une page HTML dans le navigateur
+~Le HTML ne peut pas contenir de données
+~Une API est obligatoirement plus sécurisée qu'un site web
+}
+
+::API-Q2 Observer une requête::Voici une requête HTTP \:
+GET /api/produits HTTP/1.1
+Host\: boutique.exemple.fr
+Accept\: application/json
+Que demande le client ?{
+=La liste des produits au format JSON, sur le serveur boutique.exemple.fr#Exact \: méthode GET, chemin /api/produits, l'en-tête Accept précise le format attendu.
+~La création d'un produit sur le serveur#Une création passerait par POST avec un corps de requête.
+~Le téléchargement du fichier produits.json depuis son propre ordinateur
+~La suppression de tous les produits
+}
+
+::API-Q3 Observer une réponse::Un client appelle GET /api/produit/999 et reçoit une réponse avec le code 404. Qu'en déduisez-vous ?{
+=Le produit demandé n'existe pas, la ressource est introuvable#Exact, 404 Not Found.
+~Le serveur est en panne#Ce serait un code 5xx (500, 503…).
+~Le client n'a pas le droit d'accéder à ce produit#Ce serait un 403 Forbidden.
+~La requête a réussi mais le produit est vide
+}
+
+::API-Q4 Les codes HTTP::Associez chaque code de statut HTTP à sa signification.{
+=201 -> La ressource a été créée
+=301 -> La ressource a été déplacée définitivement
+=403 -> L'accès est interdit
+=500 -> Erreur interne du serveur
+= -> Le service est temporairement indisponible (maintenance)
+= -> La requête doit être authentifiée à nouveau
+}
+
+::API-Q5 Le code de la création::Votre API vient de créer une ressource suite à un POST. Quel code de statut HTTP est le plus approprié pour la réponse ?{#201#Exact, 201 Created. Le 200 OK est accepté mais moins précis.}
+
+::API-Q6 La bonne méthode::Quelle méthode HTTP est prévue pour mettre à jour partiellement une ressource ?{
+=PATCH#Exact, PUT remplace la ressource, PATCH la modifie partiellement.
+~GET#GET sert à récupérer des données.
+~UPDATE#Cette méthode n'existe pas en HTTP.
+~SEND#Cette méthode n'existe pas en HTTP.
+}
+
+::API-Q7 Vrai ou Faux - Sécurité des méthodes::Les paramètres envoyés en POST sont invisibles et ne peuvent pas être modifiés par le client, contrairement au GET.{FALSE#Exact, c'est faux \: avec le bon outil, tout est visible et modifiable. POST n'est pas un mécanisme de sécurité.#Relisez l'exercice \: il faut oublier l'idée que POST \=\= invisible. Tout est visible et modifiable.}
+
+// --- Le passage de paramètres ---
+
+::API-Q8 Prédire le comportement::Le client appelle l'URL suivante \:
+http\://localhost\:8080/api/users?id\=42
+Quel code PHP permet de récupérer la valeur 42 côté serveur ?{
+=$id \= $_GET['id']\;#Exact, un paramètre d'URL se récupère dans la superglobale $_GET.
+~$id \= $_POST['id']\;#$_POST récupère le corps de la requête, pas les paramètres d'URL.
+~$id \= $_URL['id']\;#Cette superglobale n'existe pas.
+~$id \= getParameter("id")\;#Cette fonction n'existe pas en PHP.
+}
+
+::API-Q9 Filtre et pagination::Quelle URL permet de récupérer la page 3 des utilisateurs dont le nom est Doe ?{
+=/api/users?filter\=Doe&page\=3#Exact, ? introduit le premier paramètre, & sépare les suivants.
+~/api/users?filter\=Doe?page\=3#Le ? ne s'utilise qu'une seule fois, ensuite c'est &.
+~/api/users/filter/Doe/page/3#Ce format ne transmet pas de paramètres de requête ($_GET).
+~/api/users&filter\=Doe&page\=3#Le premier paramètre doit être introduit par ?.
+}
+
+::API-Q10 Analyser un besoin::Vous devez écrire la requête « supprimer la commande 12 » dans une API REST. Quelle forme est la plus appropriée ?{
+=DELETE /api/commandes/12#Exact \: le verbe exprime l'action, l'URL identifie la ressource.
+~GET /api/commandes/supprimer?id\=12#GET ne doit jamais modifier des données.
+~POST /api/supprimerCommande12#L'URL ne doit pas contenir l'action ni l'identifiant en dur.
+~DELETE /api/commandes?action\=delete#Le verbe DELETE suffit, inutile de le répéter en paramètre.
+}
+
+// --- Lire du JSON ---
+
+::API-Q11 Observer du JSON::Voici une réponse d'API \:
+\{
+  "id"\: 42,
+  "nom"\: "Chez Marcel",
+  "adresse"\: \{ "latitude"\: 47.47, "longitude"\: -0.55 \},
+  "plats"\: [
+    \{ "id"\: 1, "nom"\: "Menu du jour", "prix"\: 14.5 \},
+    \{ "id"\: 2, "nom"\: "Plat du chef", "prix"\: 19 \}
+  ]
+\}
+Comment accéder à la latitude du restaurant ?{
+=Par les clés \: adresse puis latitude#Exact, adresse est un objet imbriqué dont on lit la clé latitude.
+~Par l'index \: adresse[0]#adresse est un objet à clés, pas un tableau.
+~Par la clé latitude directement à la racine#latitude n'existe pas à la racine, elle est dans adresse.
+~Impossible, le JSON ne peut pas contenir d'objets imbriqués
+}
+
+::API-Q12 Observer du JSON 2::Dans le JSON de la question précédente, que représente la valeur de la clé plats ?{
+=Un tableau de deux objets, chacun décrivant un plat#Exact \: les crochets indiquent un tableau, chaque élément est un dictionnaire.
+~Un objet unique avec deux clés
+~Une chaîne de caractères contenant les deux plats
+~Un tableau de chaînes de caractères
+}
+
+::API-Q13 Les qualités du JSON::Quelles affirmations sont vraies à propos du JSON ? (plusieurs réponses attendues){
+~%33.33333%Il est léger et décodable simplement#Exact.
+~%33.33333%Il est lisible par un humain#Exact.
+~%33.33334%Il est faiblement typé#Exact.
+~%-50%Il est fortement typé#Non, c'est l'inverse.
+~%-50%Il ne peut être lu que par des clients JavaScript#Non, c'est un format universel, tous les langages savent le décoder.
+}
+
+::API-Q14 Le format des API::Quel est le format de données le plus utilisé par les API REST modernes ?{
+=JSON
+=Le JSON#Exact, léger, universel et lisible par un humain.
+}
+
+// --- Observer du code Laravel ---
+
+::API-Q15 Activer les API::Depuis Laravel 11, la partie API n'est plus activée par défaut. On l'active avec la commande php artisan {=install\:api ~enable\:api ~make\:api ~api\:start}.
+
+::API-Q16 Prédire le comportement::Voici une route et une méthode \:
+Route\:\:get('/produits/\{id\}', [ProduitsController\:\:class, "detail"])\;
+
+function detail($id) \{
+    return response()->json(Produit\:\:find($id))\;
+\}
+Que se passe-t-il quand un client appelle GET /api/produits/12 ?{
+=La méthode detail est appelée avec $id valant 12 et retourne le produit 12 en JSON#Exact, le paramètre entre accolades dans la route est transmis à la méthode.
+~Une erreur \: une route ne peut pas contenir de paramètre
+~La méthode detail est appelée avec $id valant "\{id\}"
+~Tous les produits sont retournés, le paramètre est ignoré
+}
+
+::API-Q17 Prédire le comportement::Un client envoie POST /api/produits avec le corps JSON \:
+\{ "nom"\: "Clavier", "prix"\: 49.99 \}
+Le contrôleur exécute \:
+function ajouter(Request $request) \{
+    $produit \= new Produit()\;
+    $produit->nom \= $request->nom\;
+    $produit->prix \= $request->prix\;
+    $produit->save()\;
+    return response()->json($produit)\;
+\}
+Que se passe-t-il ?{
+=Un produit « Clavier » à 49.99 est créé en base et retourné en JSON au client#Exact, $request contient les données envoyées, save() insère en base.
+~Le produit est créé mais rien n'est retourné au client
+~Une erreur \: on ne peut pas lire $request->nom sans formulaire HTML#L'API lit le corps JSON de la requête, pas un formulaire.
+~Le produit n'est pas créé car il manque la requête SQL INSERT#Eloquent génère la requête SQL lors du save().
+}
+
+::API-Q18 Observer la différence::Comparez ces deux méthodes \:
+Version A \:
+return response()->json(Commande\:\:where('id_client', $id)->get())\;
+Version B \:
+return response()->json(Commande\:\:where('id_client', $id)->with('produit')->get())\;
+Qu'observe-t-on dans la réponse de la version B par rapport à la A ?{
+=Chaque commande contient en plus le produit associé (la jointure est chargée)#Exact, with() exploite la relation définie dans le modèle. On peut aussi déclarer $with dans le modèle pour l'automatiser.
+~La version B retourne uniquement les produits, sans les commandes
+~La version B filtre les commandes qui n'ont pas de produit
+~Aucune différence, with() ne change que les performances
+}
+
+::API-Q19 Prédire le comportement::La table commandes contient les commandes 1 et 2. Le code suivant s'exécute \:
+Commande\:\:destroy(3)\;
+Que se passe-t-il ?{
+=Rien, la commande 3 n'existe pas, aucune erreur n'est levée#Exact, destroy() supprime si la ressource existe, sinon ne fait rien.
+~Une exception est levée et le script s'arrête
+~La table commandes est vidée
+~La commande la plus récente est supprimée par défaut
+}
+
+::API-Q20 Les commandes artisan::Associez chaque commande artisan à son action.{
+=php artisan make\:controller -> Créer un contrôleur
+=php artisan db\:seed -> Remplir la base avec les données des seeders
+=php artisan serve -> Lancer le serveur de développement
+=php artisan code\:models -> Générer les modèles depuis la base de données (plugin Reliese)
+= -> Vider la base de données
+= -> Déployer l'application en production
+}
+
+::API-Q21 Observer une factory::Voici une factory \:
+public function definition() \{
+    return [
+        'nom' \=> $this->faker->firstName,
+        'email' \=> fake()->unique()->safeEmail(),
+    ]\;
+\}
+Et dans le seeder \: Client\:\:factory()->count(50)->create()\;
+Qu'obtient-on après php artisan db\:seed ?{
+=50 clients avec des noms et des emails fictifs et uniques dans la table clients#Exact, la factory décrit un enregistrement, le seeder en crée en masse.
+~Un seul client nommé firstName
+~50 lignes vides dans la table clients
+~Une erreur \: une factory ne peut créer qu'un enregistrement à la fois
+}
+
+::API-Q22 Tester son API::Pourquoi faut-il un outil comme Postman pour tester la route POST /api/produits, alors qu'un navigateur suffisait pour GET /api/produits ?{
+=La barre d'adresse d'un navigateur n'envoie que des requêtes GET, il faut un outil pour construire un POST avec un corps JSON#Exact, Postman permet de choisir la méthode et de remplir le Body.
+~Les navigateurs bloquent le format JSON
+~Postman est plus rapide que le navigateur
+~Le POST ne fonctionne que sur le port de Postman
+}
+
+// --- Sécuriser une API ---
+
+::API-Q23 Observer une requête authentifiée::Voici une requête \:
+GET /api/users HTTP/1.1
+Host\: cours.brosseau.ovh
+Authorization\: Bearer faf1c7e0-6e5b-11eb-9439-0242ac130002
+À quoi sert la troisième ligne ?{
+=Elle transmet le token qui identifie l'utilisateur \: le serveur peut vérifier son authentification à chaque requête#Exact, c'est un bearer token.
+~Elle chiffre la requête de bout en bout#Le chiffrement est assuré par HTTPS, pas par cet en-tête.
+~Elle indique le mot de passe de l'utilisateur en clair
+~Elle précise la version de l'API à utiliser
+}
+
+::API-Q24 L'en-tête du token::Pour s'authentifier auprès d'une API, le client envoie son token dans l'en-tête HTTP {=Authorization ~Authentication ~Token ~Api-Key} avec une valeur de la forme « Bearer eyJhbGci… ».
+
+::API-Q25 Le middleware::Dans le contexte d'une API, qu'est-ce qu'un middleware ?{
+=Un code exécuté avant celui de l'API, à chaque requête, par exemple pour vérifier l'authentification et les droits#Exact, comme ->middleware('auth\:sanctum') dans Laravel.
+~Un serveur intermédiaire entre le client et la base de données
+~Une librairie qui convertit le JSON en XML
+~Le composant qui gère l'affichage des erreurs
+}
+
+::API-Q26 Prédire le comportement::Dans la méthode login du TP, le client envoie un email inconnu. Le code exécute \:
+if (!auth()->attempt($request->only('email', 'password'))) \{
+    return response(['message' \=> 'Invalid credentials'], 401)\;
+\}
+Que reçoit le client ?{
+=Une réponse avec le code 401 Unauthorized et le message Invalid credentials#Exact, attempt() échoue, les identifiants sont invalides.
+~Une réponse 200 avec un token vide
+~Une réponse 404 car l'utilisateur n'existe pas#Le 404 est réservé aux ressources introuvables, pas à l'authentification.
+~Le serveur crée automatiquement le compte
+}
+
+::API-Q27 Observer une route protégée::Voici une route \:
+Route\:\:get('/commandes', [CommandesController\:\:class, "liste"])
+    ->middleware('auth\:sanctum', 'abilities\:admin')\;
+Un utilisateur authentifié avec un token SANS l'ability admin appelle cette route. Que se passe-t-il ?{
+=La requête est refusée \: le token est valide mais n'a pas les droits requis#Exact, l'authentification passe (auth\:sanctum) mais pas l'autorisation (abilities\:admin).
+~La requête passe, être authentifié suffit
+~Le token reçoit automatiquement l'ability admin
+~Le compte de l'utilisateur est supprimé
+}
+
+::API-Q28 Prédire le comportement::Un client exécute \:
+curl -X POST http\://localhost\:8000/api/login
+     -H "Content-Type\: application/json"
+     -d '\{ "email"\: "valentin@demo.fr", "password"\: "password" \}'
+Les identifiants sont corrects. Que contient la réponse d'après le code du TP ?{
+=L'utilisateur authentifié et un token à utiliser dans les prochaines requêtes#Exact, le token (Sanctum) servira de bearer token.
+~Uniquement le code 200, sans corps de réponse
+~Le mot de passe hashé de l'utilisateur
+~Un cookie de session PHP classique#En mode API, c'est un token qui est retourné, pas une session.
+}
+
+::API-Q29 Vrai ou Faux - JWT::Le contenu d'un JWT (JSON Web Token) est chiffré, on peut donc y stocker des informations sensibles sans risque.{FALSE#Exact, c'est faux \: le JWT est encodé (lisible par tous), pas chiffré. Il ne faut pas y mettre d'informations sensibles.#Relisez le cours \: le JWT contient des informations lisibles, attention à ce que l'on y met.}
+
+::API-Q30 Relecture de code::Votre API propose une route POST /api/client pour créer un compte. Quelles vérifications le serveur doit-il faire ? (plusieurs réponses attendues){
+~%33.33333%Vérifier que l'email n'est pas déjà utilisé#Exact.
+~%33.33333%Vérifier que le mot de passe fait au moins 8 caractères#Exact.
+~%33.33334%Hasher le mot de passe avant de l'enregistrer#Exact, jamais de mot de passe en clair en base.
+~%-50%Stocker le mot de passe en clair pour pouvoir le renvoyer par email#Non, jamais \: en cas de fuite, tous les comptes sont compromis.
+~%-50%Faire confiance aux vérifications déjà faites côté client#Non, tout ce qui vient du client est modifiable, le serveur doit revalider.
+}

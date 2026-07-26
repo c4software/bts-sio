@@ -1,5 +1,15 @@
 [
   {
+    "src": "quiz-android-compose",
+    "title": "Android : Kotlin et Compose",
+    "questions": 38
+  },
+  {
+    "src": "quiz-api-rest",
+    "title": "API REST : Observation et analyse",
+    "questions": 30
+  },
+  {
     "src": "quiz-devops-serveur-lot1",
     "title": "DevOps Serveur Lot 1 : Serveur, VM, Debian et ligne de commande (TP1 à TP1c)",
     "questions": 20

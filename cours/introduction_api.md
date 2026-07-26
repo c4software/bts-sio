@@ -11,7 +11,7 @@ aside: false
 ## Support
 
 - [Aide mémoire API](/cheatsheets/api/)
-- [Exercices passage de paramètres](/tp/api/exercice.md)
+- [Exercices passage de paramètres](/tp/php/exercice-parametres.md)
 - [Aide mémoire Ajax](/cheatsheets/javascript/)
 - [Exemple](./demo/vuejs/chat.md)
 - [Créer des API avec Laravel](/tp/laravel/api_produit.md)

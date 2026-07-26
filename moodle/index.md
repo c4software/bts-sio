@@ -27,7 +27,7 @@ onMounted(async () => {
 Ces quiz vous permettent de vérifier vos connaissances sur les différentes thématiques du cours. Ils ne sont pas notés : entraînez-vous autant de fois que nécessaire.
 
 ::: tip Comment ça marche ?
-Choisissez une thématique, répondez aux questions, puis validez pour obtenir votre score et les explications. À chaque tentative, 10 questions sont tirées au hasard dans la banque de la thématique : refaites le quiz plusieurs fois pour tout couvrir. Vous retrouverez une partie de ces questions dans les évaluations sur Moodle.
+Choisissez une thématique, répondez aux questions, puis validez pour obtenir votre score et les explications. À chaque tentative, 10 questions sont tirées au hasard dans la banque de la thématique : refaites le quiz plusieurs fois pour tout couvrir. Le mode « Mélange » pioche dans l'ensemble des thématiques, idéal pour réviser en fin d'année. Vous retrouverez une partie de ces questions dans les évaluations sur Moodle.
 :::
 
 <ClientOnly>
@@ -36,6 +36,7 @@ Choisissez une thématique, répondez aux questions, puis validez pour obtenir v
   <label for="quiz-select"><strong>Choisissez un quiz :</strong></label>
   <select id="quiz-select" v-model="selected">
     <option disabled value="">— Sélectionnez une thématique —</option>
+    <option value="__all__">Mélange : toutes les thématiques</option>
     <option v-for="quiz in quizzes" :key="quiz.src" :value="quiz.src">
       {{ quiz.title }} ({{ quiz.questions }} questions)
     </option>
@@ -44,7 +45,7 @@ Choisissez une thématique, répondez aux questions, puis validez pour obtenir v
 
 <p v-if="error">Impossible de charger la liste des quiz.</p>
 
-<QuizGift v-if="selected" :src="selected" :key="selected" />
+<QuizGift v-if="selected" :src="selected === '__all__' ? '' : selected" :multi="selected === '__all__'" :key="selected" />
 
 </ClientOnly>
 
