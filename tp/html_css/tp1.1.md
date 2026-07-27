@@ -192,7 +192,7 @@ Votre blog va prendre de l'ampleur, c'est à vous de jouer :
 - Dans la page article, faire un lien de retour vers la page d'accueil.
 - Ajouter une image dans la page d'accueil et une dans la page article (avec des `alt` pertinents !).
 
-::: details Coup de pouce : les chemins
+::: details Besoin d'aide pour les chemins ?
 Votre article est dans un sous-dossier, votre index à la racine. Le lien aller n'est donc pas symétrique du lien retour… Souvenez-vous du `../`.
 :::
 

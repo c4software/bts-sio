@@ -7,6 +7,15 @@ description: La liste des TP serveur et DevOps dans l'ordre dans lequel je vous 
 
 Vous trouverez ici la liste des TP serveur et DevOps, dans l'ordre dans lequel je vous conseille de les réaliser. Nous partons de la création d'une machine virtuelle pour aller jusqu'au déploiement automatisé.
 
+::: tip Les supports du parcours
+Gardez-les à portée de main pendant tous les TP, c'est important :
+
+- [Le complément de cours Serveur](/tp/devops/serveur/support.md)
+- [Le complément de cours DevOps (Docker + CI/CD)](/tp/devops/support-docker-cicd.md)
+- [Le cours Serveur / DevOps](/cours/serveur.md)
+
+:::
+
 ## Étape 1 : Le serveur
 
 La base de tout : créer, installer et configurer un serveur. Les TP suivent [le complément de cours Serveur](/tp/devops/serveur/support.md).

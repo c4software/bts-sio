@@ -1,6 +1,6 @@
-# Le Javascript
+# Le JavaScript
 
-## Au-delà de IE6 😅
+## La version moderne
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
@@ -45,15 +45,6 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-<!-- .slide: data-background-iframe="https://twitter.com/c4software?ref_src=twsrc%5Etfw" -->
-
-<div class="frame-cover">
-  <h2>Twitter</h2>
-  <p>Utilise le JS pour charger le flux</p>
-</div>
-
----
-
 <!-- .slide: data-background-iframe="https://reactnative.dev/showcase" -->
 
 <div class="frame-cover">
@@ -72,7 +63,9 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## JavaScript -> ECMAScript (201X, 2017, 2020, …)
+## JavaScript = ECMAScript
+
+Une nouvelle version de la norme chaque année (ES2015, ES2020, ES2024, …)
 
 ---
 
@@ -102,7 +95,7 @@ Pouvez-vous me dire à quoi ça correspond ?
 ---
 
 ```javascript [1|3|7|4]
-var resultat = "";
+let resultat = "";
 
 ajax("http://api/getRandom", (randomValue) => {
   resultat = randomValue;
@@ -233,7 +226,6 @@ Quelle est l'autre écriture du `forEach` ?
 - Rendre la syntaxe plus lisible et concise.
 - Tout est « chainable ».
 - L'utiliser tout le temps (disponible depuis très longtemps).
-- [Polyfill](https://polyfill.io/)
 
 ---
 
@@ -341,9 +333,9 @@ Promise
 
 ### finally
 
-Appelée dans tous les cas de terminaison.
+Appelée dans tous les cas de terminaison (réussite comme échec).
 
-⚠️ Attention ne fonctionne pas partout ⚠️
+Pratique pour masquer un indicateur de chargement par exemple.
 
 ---
 
@@ -380,8 +372,15 @@ Mais maintenant… nous avons [ViteJS](https://vitejs.dev/) 🎉
 
 ---
 
-## Conclusion
+## Récapitulatif
+
+- Le JavaScript est partout : navigateur, serveur, applications.
+- Fonctions fléchées, `let` / `const`, string templates, modules.
+- Des tableaux et objets faciles à manipuler (`map`, `filter`, `forEach`).
+- L'asynchrone : Fetch, Promises, `async` / `await`.
 
 ---
 
 ## Des questions ?
+
+Place au TP 🚀

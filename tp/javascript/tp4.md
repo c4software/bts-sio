@@ -198,14 +198,18 @@ Pourquoi préférer une API « JSON / XML » à un retour HTML basique ? Tout si
 Nous avons utilisé pour l'instant une API que vous avez créée. Nous allons tenter l'utilisation d'une API (json) fournie par un autre développeur. En utilisant l'API suivante :
 
 ```
-https://reqres.in/api/users
+https://dummyjson.com/users
 ```
 
 Modifier la page pour :
 
 - Afficher un tableau.
-- Qui contiendra autant de lignes que d'utilisateurs présents dans la partie `data`.
-- Chaque ligne du tableau devra afficher l'email & l'avatar (dans une balise `<img>`).
+- Qui contiendra autant de lignes que d'utilisateurs présents dans la partie `users` de la réponse.
+- Chaque ligne du tableau devra afficher l'email & l'avatar (la propriété `image`, dans une balise `<img>`).
+
+::: tip Avant de coder
+Ouvrez l'URL directement dans votre navigateur pour observer la structure du JSON retourné. C'est un réflexe à prendre : on regarde toujours la donnée avant d'écrire le code qui la consomme.
+:::
 
 ### Regardons d'autres sites.
 
@@ -213,7 +217,7 @@ Nous avons vu qu'il était possible assez simplement de charger du contenu de ma
 
 - Rendez-vous sur GMAIL, constatez que le chargement est fait « de manière asynchrone », et que seul l'intérieur change.
 - Idem sur Facebook (ou Instagram Web)
-- Idem sur Twitter
+- Idem sur X (Twitter)
 
 Nous allons maintenant regarder ce qu'il se passe « à l'intérieur » (dans le code), grâce à `l'inspecteur d'éléments` vous allez pouvoir entrevoir ce qu'il se passe. Rendez-vous sur par exemple `Facebook`, puis ouvrez l'inspecteur :
 
@@ -225,5 +229,5 @@ Nous avons fait deux pages de tests, je vous propose de faire la même chose, ma
 
 - [→ Ajouter de l'Ajax dans la BTS TV / Site PHP ←](./tp4.1.md)
 - [→ Ajouter de l'Ajax dans Larablog / Site Laravel ←](./tp6.md)
-- [→ Découverte de HTMX ←](../htmx/tp1.md)
+- [→ Découverte de HTMX ←](./htmx.md)
 - [→ Ajouter un chat dans Laravel ←](../laravel/authentification.md#ajouter-un-système-de-chat)

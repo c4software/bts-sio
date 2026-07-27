@@ -43,3 +43,5 @@ Je vous laisse les tester.
 :::
 
 :hand: Oui c'était simple… Mais l'idée est de prendre en main le langage. :hand:
+
+La suite ? [Le TP 1.1 pour manipuler des variables](./tp1.1.md).

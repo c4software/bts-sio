@@ -58,7 +58,7 @@ Vous allez réaliser la **page d'accueil d'un journal en ligne** (la « une »).
    - Un `main` contenant au moins 6 articles (`article`) : image d'illustration, titre, chapô de deux lignes, lien « Lire la suite ».
    - Un `footer` avec les mentions habituelles.
 
-::: details Coup de pouce : la structure
+::: details Besoin d'aide pour la structure ?
 C'est la structure du [TP 3](./tp3.md), regardez le code source que je vous avais fourni. Pour les images d'illustration, [picsum.photos](https://picsum.photos/) fera parfaitement l'affaire.
 :::
 
@@ -75,7 +75,7 @@ Un conteneur en `display: flex` avec `flex-wrap: wrap`, et une base de largeur s
    - Sur mobile : les articles passent en une seule colonne, la navigation reste utilisable.
    - À vous de choisir vos breakpoints (et de les justifier dans le README).
 
-::: details Coup de pouce : le responsive
+::: details Besoin d'aide pour le responsive ?
 N'oubliez pas la meta viewport, sans elle rien ne fonctionne ([TP 4](./tp4.md#activation-du-responsive)). Testez en continu avec le mode mobile de l'inspecteur d'éléments, pas seulement à la fin.
 :::
 

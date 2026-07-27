@@ -8,6 +8,10 @@ description: Dans ce TP, nous allons voir comment s'utilise HTMX une librairie J
 [[toc]]
 :::
 
+::: tip Un TP bonus
+Ce TP est un bonus, pour les étudiants en avance ou curieux d'une autre approche que le « tout JavaScript ». Il suppose d'avoir terminé la séquence JavaScript (et notamment [le TP Ajax](./tp4.md)).
+:::
+
 ## Prérequis
 
 Dans ce TP nous allons voir comment intégrer HTMX dans un projet pour le rendre dynamique (via des appels AJAX). Pour réaliser ce TP, nous allons créer un projet Laravel fictif qui nous servira de base pour intégrer HTMX.

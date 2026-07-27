@@ -24,7 +24,7 @@ Le cours fait référence à des notions de programmation orientée-objet, je ne
 
 ## Le fonctionnement
 
-Le JavaScript est un langage de programmation relativement récent, il date de **1994**. Cependant il a connu une évolution assez rapide ces dernières années et ne ressemble plus vraiment au JavaScript du début.
+Le JavaScript est un langage de programmation relativement récent, il date de **1995**. Cependant il a connu une évolution assez rapide ces dernières années et ne ressemble plus vraiment au JavaScript du début.
 
 Le JavaScript est une implémentation d'une norme plus large, l'ECMAScript (aussi appelé ES20XX, mais également ESX), cette norme définit le fonctionnement du langage aussi bien dans un navigateur, mais également sur d'autres supports comme les serveurs.
 
@@ -96,22 +96,21 @@ Le moteur a pour but de :
 
 ## Les navigateurs
 
-L'autre gros sujet du JS est le support… Vous êtes certainement jeunes, vous n'avez connu _que Google Chrome_, la réalité est plus complexe que ça (surtout en entreprise). Dans votre carrière vous allez rencontrer des blocages et obligations de support. Même en 2020 nous avons des navigateurs différents (pourvu que ça dure) :
+L'autre gros sujet du JS est le support… Vous êtes certainement jeunes, vous n'avez connu _que Google Chrome_, la réalité est plus complexe que ça (surtout en entreprise). Dans votre carrière vous allez rencontrer des blocages et obligations de support. Aujourd'hui encore nous avons des navigateurs différents (pourvu que ça dure) :
 
 - Google Chrome
 - Safari
 - Firefox
 - Edge
-- Internet Explorer `11`
-- Internet Explorer `10` (et antérieurs)
+- Les navigateurs intégrés (webview d'applications, TV connectées, etc.)
 
-Ça vous parait très certainement anecdotique, mais les navigateurs n'interprètent pas vraiment de la même façon le code, le JavaScript en fait partie. En fonction des navigateurs, le support sera plus ou moins complet. En 2020 nous n'avons plus trop de problèmes. L'ensemble des navigateurs supporte « à peu près la même chose ». Mais avant ce n'était clairement pas le cas.
+Ça vous parait très certainement anecdotique, mais les navigateurs n'interprètent pas vraiment de la même façon le code, le JavaScript en fait partie. En fonction des navigateurs, le support sera plus ou moins complet. La situation s'est beaucoup améliorée : l'ensemble des navigateurs modernes supporte « à peu près la même chose ». Mais avant ce n'était clairement pas le cas.
 
-Nous allons donc avoir besoin de [_librairies_ (appelées polyfill)](https://polyfill.io/v3/), ces librairies ont pour but d'ajouter le support de fonctionnalités modernes sur d’anciens navigateurs. Le support n'est évidemment pas total, et souvent les performances sont un peu moins bonnes. Mais cette solution est souvent la meilleure pour supporter les anciens navigateurs.
+Pour les fonctionnalités récentes non supportées partout, il existe des _librairies_ appelées « polyfill », elles ont pour but d'ajouter le support de fonctionnalités modernes sur d'anciens navigateurs. Le support n'est évidemment pas total, et souvent les performances sont un peu moins bonnes. Avant d'utiliser une fonctionnalité récente, le réflexe reste de vérifier sa compatibilité sur [Can I Use](https://caniuse.com/).
 
 ## Librairies or not ?
 
-C'est la grande question ! En JS nous avons la possibilité de nous passer complètement de librairie afin d'utiliser uniquement ce que propose le navigateur, c'est ce que l'on appelle `VanillaJS`. En 2020 ça fonctionne très bien ! C'est même ce que j'aurais tendance à conseiller… Mais (oui il y a toujours un mais) la réalité est qu’en agence vous allez rencontrer des projets qui utiliseront [jQuery](https://jquery.com/).
+C'est la grande question ! En JS nous avons la possibilité de nous passer complètement de librairie afin d'utiliser uniquement ce que propose le navigateur, c'est ce que l'on appelle `VanillaJS`. Aujourd'hui ça fonctionne très bien ! C'est même ce que j'aurais tendance à conseiller… Mais (oui il y a toujours un mais) la réalité est qu’en agence vous allez rencontrer des projets qui utiliseront [jQuery](https://jquery.com/).
 
 Au vu du temps que nous allons avoir à consacrer au JS ça me semble important de vous parler un peu de `jQuery` mais également des équivalents `VanillaJS`.
 
@@ -153,7 +152,7 @@ Le JavaScript ne déroge pas à la règle, pour bien travailler, il nous faut de
 - [https://developer.mozilla.org/](https://developer.mozilla.org/)
 - [https://caniuse.com/](https://caniuse.com/)
 - [https://web.dev/](https://web.dev/)
-- [https://kangax.github.io/compat-table/es6/](https://kangax.github.io/compat-table/es6/)
+- [https://compat-table.github.io/compat-table/es6/](https://compat-table.github.io/compat-table/es6/)
 
 ::: tip Un instant
 Bien évidemment cette liste peut être bien plus grande. N'hésitez pas à vous inspirer :
@@ -170,7 +169,6 @@ L'IDE est aussi important que les idées. Pour éditer du JavaScript, vous pouve
 
 - WebStorm (Payant, mais très bon).
 - VisualStudio Code (Gratuit, bon aussi).
-- Atom (je ne le conseille plus).
 - Vim (pour les experts seulement).
 
 ::: tip Astuce du pro
@@ -316,7 +314,7 @@ alert(nom);
 ```
 
 ::: tip Un peu d'historique
-L'usage du mot-clé `let` est plutôt récent en JavaScript. Historiquement nous utilisions plus le mot `var`. Il n'y a pas vraiment de différence entre les deux. Sachez juste que maintenant vous devez utiliser `let` plutôt que `var`.
+L'usage du mot-clé `let` est plutôt récent en JavaScript. Historiquement nous utilisions plus le mot `var`. Il existe des différences (notamment sur la « portée » de la variable, c'est-à-dire l'endroit où elle est utilisable), mais retenez surtout que maintenant vous devez utiliser `let` plutôt que `var`.
 :::
 
 ::: warning Attention
@@ -874,7 +872,7 @@ L'Ajax c'est donc du contenu que nous allons charger de manière asynchrone, c'e
 - Progressive Web App (PWA).
 - Client Web / Alternative à une application
 
-L'Ajax en 2020 va donc nous permettre de créer de vraies applications. Ces applications consommeront de la donnée, cette donnée pourra provenir d'un serveur qui vous appartient ou depuis des serveurs tiers. Nous allons donc créer des sites web Client / Serveur avec des API pour interconnecter l'ensemble. Le Web deviendra donc une plateforme comme une autre.
+L'Ajax va donc nous permettre de créer de vraies applications. Ces applications consommeront de la donnée, cette donnée pourra provenir d'un serveur qui vous appartient ou depuis des serveurs tiers. Nous allons donc créer des sites web Client / Serveur avec des API pour interconnecter l'ensemble. Le Web deviendra donc une plateforme comme une autre.
 
 Bref, vous allez le voir, l'Ajax deviendra très rapidement une pierre angulaire de vos développements, et nous le verrons plus tard avec des frameworks web (comme VueJS) il sera possible de créer des applications « dynamiques » sans avoir à écrire une seule ligne de PHP (ou autre langage serveur).
 

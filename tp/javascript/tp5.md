@@ -1,15 +1,15 @@
 ---
-description: Nous avons vu ensemble que jQuery était un vrai gain de temps et de lignes en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
+description: "Les librairies JavaScript sont un vrai gain de temps : plutôt que de tout coder vous-même, vous pouvez vous appuyer sur le travail d'autres développeurs. Dans ce TP nous allons en intégrer quelques-unes."
 ---
 
 # Les librairies pour vous sauver
 
-Nous avons vu ensemble que jQuery était un vrai gain de temps et de lignes en termes d'écriture de JavaScript. Même si celui-ci n'est plus « aussi obligatoire » / « courant » qu'il y a quelques années ; celui-ci reste quand même un incontournable que vous devez au moins connaitre.
+Les librairies JavaScript sont un vrai gain de temps : plutôt que de tout coder vous-même, vous pouvez vous appuyer sur le travail d'autres développeurs. Dans ce TP nous allons en intégrer quelques-unes.
 
-::: tip 2021 ?
-En 2021, j'ai envie de dire, vous n'avez plus besoin de jQuery ! Nous avons de super alternatives sans librairies (ES6, etc.), et si vous voulez gagner du temps ? Je vous conseille plutôt la mise en place de Framework autorisant à être intégré comme des librairies (c'est-à-dire dans un petit morceau du site) comme par exemple VueJS.
+::: tip Et jQuery dans tout ça ?
+Aujourd'hui, vous n'avez plus vraiment besoin de jQuery : le JavaScript moderne (sélecteurs, fetch, etc.) couvre l'essentiel. Si vous voulez gagner du temps sur de l'interface, je vous conseille plutôt un framework qui accepte d'être intégré comme une librairie (c'est-à-dire dans un petit morceau du site), comme VueJS.
 
-**Attention, je ne dis pas que jQuery est un mauvais choix ! Je pense juste que celui-ci ne doit pas/plus être automatique en 2021**
+**Attention, je ne dis pas que jQuery est un mauvais choix ! Je dis juste que celui-ci ne doit plus être un réflexe automatique.** Certaines librairies historiques (comme Datatable) s'appuient cependant toujours dessus.
 :::
 
 Dans ce TP nous allons voir l'avantage des librairies « add-on » que nous avons à disposition sur Internet.
@@ -23,7 +23,6 @@ Première étape, nous allons créer une page vide, elle nous servira de base de
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
@@ -37,7 +36,7 @@ Votre IDE intègre très certainement un template permettant la création du fic
 `html:5` suivi de la touche `tab`
 :::
 
-Notre page est vide ! Profitons-en pour ajouter jQuery, vous avez deux choix possibles :
+Notre page est vide ! Profitons-en pour ajouter jQuery (il sera nécessaire pour Datatable), vous avez deux choix possibles :
 
 - Télécharger jQuery
 - Utiliser un CDN
@@ -53,7 +52,7 @@ Autre point important, jQuery « c'est que du JavaScript », en utilisant un CDN
 Dans notre cas, il suffit d'ajouter avant la fermeture de `</body>` :
 
 ```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 ```
 
 ## Votre première librairie : Datatable
@@ -65,9 +64,9 @@ Comme pour jQuery vous avez deux choix, le CDN ou la version téléchargée. Dan
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"
+  href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"
 />
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 ```
 
 ### Ajouter une table
@@ -96,8 +95,8 @@ Vous pouvez donc écrire :
 Nous avons maintenant une page, un tableau… Et un truc pas vraiment sexy. C'est là où Datatable va entrer en jeu. Avec un simple petit ajout de JavaScript dans votre page, nous allons transformer ce simple tableau en SUPER TABLEAU.
 
 ```js
-$(document).ready(function () {
-  $("#myTable").DataTable();
+document.addEventListener("DOMContentLoaded", function () {
+  new DataTable("#myTable");
 });
 ```
 
@@ -107,18 +106,14 @@ Je vous laisse mettre le code.
 
 Dans le même genre, nous avons également FullCalendar. [FullCalendar](https://fullcalendar.io/) est une librairie qui nous affiche un calendrier. Ce n’est certes pas une problématique que vous allez souvent rencontrer, mais si ça vous arrive avant de vouloir tout développer vous-même sachez que certains ont déjà réfléchi à ce sujet… Et mieux que vous !
 
-Je vous propose d'installer FullCalendar [dans votre site](https://fullcalendar.io/docs/initialize-globals):
+Je vous propose d'installer FullCalendar [dans votre site](https://fullcalendar.io/docs/initialize-globals) :
 
 ```html
-<link
-  href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css"
-  rel="stylesheet"
-/>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    var calendarEl = document.getElementById("calendar");
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    const calendarEl = document.getElementById("calendar");
+    const calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: "dayGridMonth",
     });
     calendar.render();
@@ -138,19 +133,19 @@ Exemple :
 
 ```js
 document.addEventListener("DOMContentLoaded", function () {
-  var calendarEl = document.getElementById("calendar");
-  var calendar = new FullCalendar.Calendar(calendarEl, {
+  const calendarEl = document.getElementById("calendar");
+  const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
     events: [
       {
         title: "New Year",
-        start: "2021-01-01",
-        end: "2021-01-01",
+        start: "2026-01-01",
+        end: "2026-01-01",
       },
       {
         title: "Valentin Brosseau",
-        start: "2021-02-28",
-        end: "2021-02-28",
+        start: "2026-02-28",
+        end: "2026-02-28",
       },
     ],
   });
@@ -160,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 ## Et si nous voulons une carte ?
 
-Google Maps c'est pratique ? Si vous souhaitez un Google Maps intégrable et manipulable en code directement dans votre code, c'est possible ; et c'est plutôt simple…
+Google Maps c'est pratique ? Si vous souhaitez une carte intégrable et manipulable directement dans votre code, c'est possible ; et c'est plutôt simple…
 
 Grâce à [Leaflet](https://leafletjs.com/) réaliser des cartes c'est très simple ! Pour l'ajouter dans votre projet :
 
@@ -169,15 +164,9 @@ Grâce à [Leaflet](https://leafletjs.com/) réaliser des cartes c'est très sim
 ```html
 <link
   rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-  crossorigin=""
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 />
-<script
-  src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-  crossorigin=""
-></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <style>
   #mapid {
@@ -191,14 +180,11 @@ Grâce à [Leaflet](https://leafletjs.com/) réaliser des cartes c'est très sim
 ```html
 <div id="mapid"></div>
 <script>
-  var mymap = L.map("mapid").setView([47.4661788, -0.5560418], 13);
+  const mymap = L.map("mapid").setView([47.4661788, -0.5560418], 13);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 18,
     attribution:
       'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    id: "mapbox/streets-v11",
-    tileSize: 512,
-    zoomOffset: -1,
   }).addTo(mymap);
 </script>
 ```
@@ -210,21 +196,21 @@ Je vous laisse intégrer ce code.
 ### Ajouter un marker dans la carte
 
 ```javascript
-var marker = L.marker([47.4661788, -0.5560418]).addTo(mymap);
+const marker = L.marker([47.4661788, -0.5560418]).addTo(mymap);
 ```
 
 C'est à vous, je vous laisse ajouter le code.
 
 ## Allons plus loin… VueJS en tant que librairie
 
-Utiliser du code automatique c'est bien… Mais nous avons accès à d'autres librairies ! Des librairies, un peu comme jQuery, des librairies permettant d'écrire moins de code, rendre notre code dynamique, globalement mieux travailler.
+Utiliser du code automatique c'est bien… Mais nous avons accès à d'autres librairies ! Des librairies permettant d'écrire moins de code, rendre notre code dynamique, globalement mieux travailler.
 
 Vous allez voir c'est très simple, mais alors très simple.
 
 - Dans votre head :
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
 
 - Dans votre page :
@@ -236,17 +222,18 @@ Vous allez voir c'est très simple, mais alors très simple.
 </div>
 
 <script>
-  var app = new Vue({
-    el: "#app",
-    data: {
-      message: "Bonjour 👋!",
+  Vue.createApp({
+    data() {
+      return {
+        message: "Bonjour 👋!",
+      };
     },
     methods: {
       clickMe() {
         alert("Click YES");
       },
     },
-  });
+  }).mount("#app");
 </script>
 ```
 
@@ -254,9 +241,7 @@ Vous allez voir c'est très simple, mais alors très simple.
 
 ## Allons plus loin… VueJS et Leaflet
 
-Avec le code précédent, nous avons vu qu'il était finalement assez simple d'ajouter VueJS dans un site existant. Nous pourrions utiliser l'excellent Vue2Leaflet… Mais finalement ce n’est pas forcément obligatoire.
-
-En utilisant le code du premier exemple, je vous propose d'ajouter une carte interactive. Cette fois-ci pas de code fourni. ~Vous allez l'écrire~, nous allons l'écrire ensemble. Je vous offre juste le visuel à réaliser (vous allez être déçu 👀) :
+Avec le code précédent, nous avons vu qu'il était finalement assez simple d'ajouter VueJS dans un site existant. En utilisant le code du premier exemple, je vous propose d'ajouter une carte interactive. Cette fois-ci pas de code fourni. ~Vous allez l'écrire~, nous allons l'écrire ensemble. Je vous offre juste le visuel à réaliser (vous allez être déçu 👀) :
 
 ![Aperçu du projet](./res/projet.png)
 

@@ -1,3 +1,7 @@
 # Anciennes URLs (renommage de la catégorie « Les TP web de base »)
 /pages/categories/les-tp-web-de-base.html /pages/categories/les-tp-php-de-base.html 301
 /pages/categories/les-tp-web-de-base /pages/categories/les-tp-php-de-base 301
+
+# Ancienne URL du TP HTMX (déplacé avec les TP JavaScript)
+/tp/htmx/tp1.html /tp/javascript/htmx.html 301
+/tp/htmx/tp1 /tp/javascript/htmx 301

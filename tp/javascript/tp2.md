@@ -92,22 +92,12 @@ _En pur JS :_
 ```js
 document.addEventListener("DOMContentLoaded", function () {
   // Votre code ici
-  for (let index = 0; index < 10000000; index++) {
-    console.log("Je m'affiche quand la page est chargée entièrement.");
-  }
-});
-```
-
-_Avec jQuery :_
-
-```js
-$(function () {
   console.log("Je m'affiche quand la page est chargée entièrement.");
 });
 ```
 
 ::: tip Une petite remarque
-Comme vous pouvez le constater jQuery est bien plus concis, on verra qu'avec VueJS ça sera encore plus simple.
+Vous croiserez peut-être dans du code existant l'écriture jQuery équivalente : `$(function () { … });`. C'est plus concis, mais ça nécessite une librairie externe. On verra qu'avec VueJS ça sera encore plus simple, sans réinventer la roue.
 :::
 
 Je vous laisse écrire le code nécessaire au bon fonctionnement de votre site.
@@ -117,6 +107,10 @@ Besoin d'aide ? [Voici ma version](/demo/js/bart/index.html)
 :::
 
 ## Allons plus loin
+
+::: tip Vous êtes en avance ?
+Cette partie est un bonus pour les étudiants qui ont terminé. [jQuery](https://jquery.com/) n'est plus un choix automatique aujourd'hui, mais vous le croiserez très certainement dans des projets existants en entreprise. Autant savoir le reconnaitre et le manipuler.
+:::
 
 Vous avez codé votre application en pur JS. Je vous laisse migrer votre code pour utiliser :
 
@@ -128,7 +122,7 @@ Vous avez codé votre application en pur JS. Je vous laisse migrer votre code po
 Inclure jQuery dans votre projet est aussi simple que d'ajouter dans votre `head` :
 
 ```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 ```
 
 :::

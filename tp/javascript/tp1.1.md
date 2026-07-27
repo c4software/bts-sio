@@ -30,7 +30,11 @@ const nom = "Brosseau";
 nom = "valentin";
 ```
 
-Vérifier que la constante n'est pas écrasée pendant le fonctionnement de votre programme.
+Vérifier que la constante n'est pas écrasée pendant le fonctionnement de votre programme. Que voyez-vous dans la console de votre navigateur ?
+
+::: details La réponse
+Votre navigateur produit une erreur : `Uncaught TypeError: Assignment to constant variable.`. Une constante ne peut pas être réécrite, c'est tout l'intérêt.
+:::
 
 ## Poser une question ?
 
@@ -61,8 +65,10 @@ Maintenant que vous savez poser des questions et afficher des valeurs. Je vous p
 - Demander la seconde valeur à l'utilisateur
 - Réaliser l'opération `variable1 + variable2` et afficher le résultat à l'utilisateur (dans la console ou dans une alerte).
 
-C'est à vous :)
+C'est à vous de jouer !
 
 ::: tip Astuce
-Il est possible en JavaScript de « changer le type d'une variable ». [Je vous laisse tester](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
+Surpris par le résultat ? `10 + 5` qui donne `105` ? La fonction `prompt` retourne toujours du **texte**, l'opérateur `+` fait donc une concaténation. Il est possible en JavaScript de « changer le type d'une variable » avec [parseInt](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/parseInt). Je vous laisse tester.
 :::
+
+La suite ? [Le TP 1.2 pour découvrir les sélecteurs](./tp1.2.md).

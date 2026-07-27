@@ -913,7 +913,7 @@ Les messages seront affichés dans la balise `div` avec l'identifiant `messages`
 
 HTMX est une librairie JavaScript qui permet de faire des requêtes HTTP pour récupérer du HTML et l'ajouter à la page. C'est une approche très simple et très efficace pour faire des applications Web modernes.
 
-Pour les curieux, je vous invite à consulter le site officiel de [HTMX](https://htmx.org/). Ou mon TP sur le sujet [ici](../htmx/tp1.md)
+Pour les curieux, je vous invite à consulter le site officiel de [HTMX](https://htmx.org/). Ou mon TP sur le sujet [ici](../javascript/htmx.md)
 
 Pour utiliser HTMX dans votre projet, vous pouvez ajouter la librairie via un CDN :
 

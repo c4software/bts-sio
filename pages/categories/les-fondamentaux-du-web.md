@@ -9,6 +9,16 @@ Vous trouverez ici le parcours HTML + CSS complet, calibré pour une dizaine de 
 
 Ce parcours est traversé par un **fil rouge** : votre blog, un vrai site que vous faites grandir à chaque TP. Et il est ponctué de **trois points étapes évalués** (barème sur 20, rendu sur Moodle).
 
+::: tip Les supports du parcours
+Gardez-les à portée de main pendant tous les TP, c'est important :
+
+- [Le Mémo HTML](/cheatsheets/html/)
+- [Le complément de cours CSS](/tp/html_css/support.md)
+- [Les slides](/cours/introduction_html_css.md)
+- [Les quiz d'entrainement](/moodle/) (HTML lot 1 et CSS lot 2)
+
+:::
+
 ## Étape 1 : Le HTML
 
 Avant de mettre en forme, il faut savoir construire une page.
@@ -48,10 +58,6 @@ Du maquettage à la mise en ligne.
 
 ::: warning Point étape final
 [Évaluation finale : Mon CV en ligne](/tp/html_css/tp5.md). La synthèse du parcours : de la maquette Figma à la mise en ligne sur Netlify.
-:::
-
-::: tip Les supports associés
-[Le Mémo HTML](/cheatsheets/html/), [le complément de cours CSS](/tp/html_css/support.md), [les slides](/cours/introduction_html_css.md) et [les quiz d'entrainement](/moodle/) (HTML lot 1 et CSS lot 2).
 :::
 
 ## Et ensuite ?

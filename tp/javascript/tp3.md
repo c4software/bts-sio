@@ -10,7 +10,7 @@ Nous allons pratiquer les évènements JavaScript en ajoutant à notre TP Bart (
 
 L'objectif étant donc d'ajouter des contrôles de saisie sur votre page formulaire.
 
-Deux solutions sont possibles : coder nous-mêmes, ou faire confiance à une librairie « provenant d'Internet ».
+Deux solutions sont possibles : coder les contrôles nous-mêmes en JavaScript, ou s'appuyer sur la validation native du navigateur. Nous allons voir les deux.
 
 ## Ajouter le formulaire sur votre page
 
@@ -36,21 +36,24 @@ En pratique ça va donner :
 
 ```javascript
 function validateForm(evt) {
+  // Empêche l'envoi du formulaire au serveur (nous n'en avons pas ici),
+  // c'est notre JavaScript qui va faire le travail.
+  evt.preventDefault();
+
   const name = document.getElementById("name").value;
   const password = document.getElementById("password").value;
 
   if (name == null || name == "") {
     alert("Name can't be blank");
-    evt.preventDefault();
-  } else if (password.length < 6) {
-    alert("Password must be at least 6 characters long.");
-    evt.preventDefault();
+    return;
   }
 
-  // Cas de réussite
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return;
+  }
 
-  // Empêche le submit du formulaire
-  evt.preventDefault();
+  // Cas de réussite : la saisie est valide, votre code ici.
 }
 
 // Attacher l'évènement en JS
@@ -71,7 +74,6 @@ document
 
 - Je vous laisse le mettre en place dans votre code.
 - Rendre la page interactive avec les données saisies (via un `onsubmit` en HTML ou, `submit` via les events)
-- Je vous laisse écrire la même chose avec jQuery.
 
 ## Faire l'action souhaitée
 
@@ -94,20 +96,26 @@ Je vous rappelle que vous avez [l'aide-mémoire](/cheatsheets/javascript/) ainsi
 
 :::
 
-## Avec une Librairie
+## Avec la validation native du navigateur
 
 Nous avons vu la façon manuelle de valider les formulaires. Je pense que sans vous faire un dessin… vous vous rendez compte que si nous avons 200 champs, ça va être plus compliqué ! D'autant plus que plus notre formulaire sera complexe, plus celui-ci aura des règles complexes.
 
-Heureusement des gens ont déjà pensé à ce genre de problématique pour vous… Je vous propose d'utiliser :
+Heureusement, votre navigateur sait déjà faire une grande partie du travail, directement en HTML :
 
-- [jQuery Validation](https://github.com/jquery-validation/jquery-validation)
+```html
+<input type="text" id="name" required minlength="2" />
+<input type="password" id="password" required minlength="6" />
+<input type="email" id="email" required />
+```
 
-::: warning C'est un plug-in parmi tant d'autres
-Ce plug-in est juste « un parmi tant d'autres », comme toujours utilisez le plus adapté à votre problématique.
+Avec les attributs `required`, `minlength`, `type="email"`, etc. le navigateur bloque la soumission et affiche un message d'erreur, sans une seule ligne de JavaScript.
 
-Par exemple quand nous ferons du VueJS, **il ne faudra plus utiliser jQuery** !
+::: tip Alors pourquoi avoir codé la validation ?
+Bonne question ! La validation native couvre les cas simples. Le JavaScript reste nécessaire pour les règles métier (comparer deux champs, vérifier un format spécifique, afficher une erreur personnalisée…). En pratique, on combine les deux. Et rappelez-vous : la validation côté client est du **confort utilisateur**, le serveur doit **toujours** revalider les données (vous l'avez vu en PHP).
 :::
 
 ### À faire
 
-Réécrire votre code précédent pour implémenter une validation via jQuery Validation.
+Réécrire votre formulaire pour utiliser la validation native du navigateur en complément de votre validation JavaScript.
+
+La suite ? [Le TP 3.1 pour une page 100% interactive](./tp3.1.md).

@@ -11,6 +11,16 @@ Vous trouverez ici la liste des TP PHP « de base », dans l'ordre dans lequel j
 Le HTML et la CSS doivent être acquis avant de commencer : c'est l'objet du parcours [Les fondamentaux du web](/pages/categories/les-fondamentaux-du-web.md). Si ce n'est pas encore fait, commencez par là.
 :::
 
+::: tip Les supports du parcours
+Gardez-les à portée de main pendant tous les TP, c'est important :
+
+- [Le cours sur le PHP](/cours/introduction_php.md)
+- [Le complément de cours PHP](/tp/php/support.md)
+- [Le cours PHP & SQL](/cours/introduction_sql_php.md)
+- [Le complément de cours SQL](/tp/php/sql/support.md)
+
+:::
+
 ## Étape 1 : Les bases du PHP
 
 Le passage au dynamique. Les TP suivent le [complément de cours PHP](/tp/php/support.md).

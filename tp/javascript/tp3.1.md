@@ -25,8 +25,8 @@ Cette fois-ci je vous laisse travailler avec comme seule information « mon cahi
 
 Pour réaliser cette page, je vous propose d'utiliser :
 
-- Bootstrap (ou tailwind).
-- jQuery (ou du VanillaJS).
+- Bootstrap (ou Tailwind).
+- Du VanillaJS (ou jQuery si vous voulez pratiquer la syntaxe vue en bonus).
 - Datatable pour avoir une table interactive. (en option, plus complexe)
 
 Je vous laisse plancher sur le sujet. N'oubliez pas :

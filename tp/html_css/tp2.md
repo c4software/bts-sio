@@ -311,7 +311,7 @@ Votre blog mérite lui aussi sa feuille de style, c'est parti :
 - Faire le lien vers la feuille de style dans **toutes** les pages du blog (l'index **et** l'article).
 - Et normalement tout fonctionne 😊 ou non, donc au boulot !
 
-::: details Coup de pouce : le chemin depuis l'article
+::: details Besoin d'aide pour le chemin depuis l'article ?
 Votre page article est dans le dossier `article/`, mais la CSS est dans `css/`. Le `href` du `<link>` n'est donc pas le même que depuis l'index… Le `../` vu au TP précédent va encore servir.
 :::
 

@@ -64,7 +64,7 @@ Vous allez réaliser un **mini site de deux pages sur une passion de votre choix
    - Une seconde page de votre choix (par exemple « en détail », « le matériel », « les personnages »…).
    - Les images dans un dossier `img/`, la feuille de style dans un dossier `css/`.
 
-::: details Coup de pouce : la structure
+::: details Besoin d'aide pour la structure ?
 C'est la même organisation que votre blog du fil rouge. Reprenez le squelette HTML 5 vu au [TP 1](./tp1.md), et souvenez-vous des règles de nommage des fichiers.
 :::
 
@@ -88,7 +88,7 @@ La question à vous poser pour chaque élément : « quelle balise porte le bon 
    - Une charte assumée : police (avec police de secours), tailles en `em`, palette de couleurs en hexadécimal, un fond (couleur ou image).
    - Au moins une `class` réutilisée à plusieurs endroits.
 
-::: details Coup de pouce : la CSS
+::: details Besoin d'aide pour la CSS ?
 Pensez héritage : définissez le style général sur `body`, puis affinez. Trois règles bien pensées valent mieux que quinze règles copiées / collées. Et attention au chemin de la feuille de style : elle est dans `css/`, vos pages à la racine.
 :::
 

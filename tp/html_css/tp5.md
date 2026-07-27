@@ -49,7 +49,7 @@ Vous allez réaliser votre CV, en une page web :
 
 2. **Le contenu :** votre identité et votre titre, une accroche « à propos », vos formations, vos compétences, vos expériences (stages, projets), et les liens vers vos réseaux.
 
-::: details Coup de pouce : le contenu
+::: details Besoin d'aide pour le contenu ?
 Un CV est un document très structuré : chaque rubrique est une `section` avec son titre, les compétences sont une liste, le parcours peut être un tableau ou une liste ordonnée… Vous connaissez la musique : la bonne balise pour le bon sens.
 :::
 
@@ -63,7 +63,7 @@ Vous pouvez réaliser votre CV en CSS « pure » ou avec un framework CSS ([Boot
 
 4. **La mise en ligne :** pour l'hébergement je vous propose d'utiliser [Netlify](https://www.netlify.com/) ! C'est parti… « Mets en prod ». Pour rappel, Netlify est un hébergeur qui vous permettra d'héberger très simplement votre site statique.
 
-::: details Coup de pouce : la mise en ligne
+::: details Besoin d'aide pour la mise en ligne ?
 Créez un compte Netlify, puis le plus simple : le glisser / déposer de votre dossier de projet sur [app.netlify.com/drop](https://app.netlify.com/drop). Votre site est en ligne en quelques secondes, avec une URL à partager. Pour mettre à jour le site, on redépose le dossier, tout simplement. Plus tard dans l'année, quand nous aurons vu Git, vous découvrirez comment automatiser complètement cette mise en ligne.
 :::
 

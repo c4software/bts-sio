@@ -338,7 +338,7 @@ Vous l'avez remarqué, pour l'instant notre code ne fait rien. Nous avons juste 
 
 ::: tip Beaucoup de code
 
-Vous l'avez remarqué, pour l'instant je vous donne énormément de code. En effet, vous débutez en VueJS, et je ne veux pas vous perdre avec des détails techniques. Mais, sachez que vous pouvez très bien faire ce TP sans mon aide. Pour cela, je vous invite à lire la documentation de VueJS : [https://v3.vuejs.org/guide/introduction.html]
+Vous l'avez remarqué, pour l'instant je vous donne énormément de code. En effet, vous débutez en VueJS, et je ne veux pas vous perdre avec des détails techniques. Mais, sachez que vous pouvez très bien faire ce TP sans mon aide. Pour cela, je vous invite à lire la documentation de VueJS : [https://vuejs.org/guide/introduction.html]
 
 Continuons notre TP, nous allons maintenant coder notre consommateur.
 
@@ -791,7 +791,7 @@ Ici nous avons implémenté un système très simple qui repose sur l'authentifi
 
 Sanctum repose sur un système de token. C'est-à-dire que l'utilisateur devra s'authentifier une première fois afin de récupérer un token. Ce token sera ensuite utilisé pour s'authentifier sur les API. Cela permet de ne pas utiliser les cookies de session pour s'authentifier sur les API.
 
-En savoir plus sur Sanctum : [https://laravel.com/docs/10.x/sanctum]
+En savoir plus sur Sanctum : [https://laravel.com/docs/sanctum]
 
 :::
 
@@ -853,8 +853,8 @@ C'est une autre façon de travailler, qui permet d'avoir un site Web plus réact
 
 Pour aller plus loin dans la partie API, vous pouvez :
 
-- [Utiliser `sanctum` pour créer des tokens d'authentification.](https://laravel.com/docs/10.x/sanctum)
-- [Utiliser les `abilities` pour gérer les droits d'accès.](https://laravel.com/docs/10.x/sanctum#token-abilities)
+- [Utiliser `sanctum` pour créer des tokens d'authentification.](https://laravel.com/docs/sanctum)
+- [Utiliser les `abilities` pour gérer les droits d'accès.](https://laravel.com/docs/sanctum#token-abilities)
 
 Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous avons « juste » la logique pour :
 

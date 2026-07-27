@@ -43,7 +43,7 @@ Côté navigateur, suivez [les TP JavaScript](/pages/categories/les-tp-javascrip
 - [Introduction Mini MVC Sample](/tp/php/mvc/tp1.md)
 - [Aide mémoire Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 - [Cours VueJS](/cours/vuejs.md)
-- [Introduction HTMX](/tp/htmx/tp1.md)
+- [Introduction HTMX](/tp/javascript/htmx.md)
 
 ### Laravel
 

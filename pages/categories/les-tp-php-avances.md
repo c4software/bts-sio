@@ -11,6 +11,15 @@ Vous trouverez ici la liste des TP « avancés » du PHP, dans l'ordre dans lequ
 Vous n'avez pas encore terminé [les TP PHP de base](/pages/categories/les-tp-php-de-base.md) ? Commencez par là, l'ensemble des TP de cette page s'appuie dessus.
 :::
 
+::: tip Les supports du parcours
+Gardez-les à portée de main pendant tous les TP, c'est important :
+
+- [Le cours MVC](/cours/mvc.md) et [le support MVC](/tp/mvc/support.md)
+- [Le cours Laravel](/cours/laravel.md) et [le support Laravel](/tp/laravel/support.md)
+- [L'aide mémoire Laravel](/cheatsheets/laravel/)
+
+:::
+
 ## Étape 1 : La POO et le MVC
 
 Avant le framework, nous structurons le code autour d'objets et du design pattern MVC. Les TP s'appuient sur [le cours MVC](/cours/mvc.md) et [le support MVC](/tp/mvc/support.md).

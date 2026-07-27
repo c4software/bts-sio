@@ -338,8 +338,12 @@ export default [
         items: [
             { text: "Le cours", link: "/cours/securite_applications" },
             { text: "Synthèse du cours", link: "/cheatsheets/owasp/" },
-            { text: "Exercices OWASP", link: "/tp/securite/exercice.md" },
-            { text: "TP Sécurité", link: "/tp/securite/" },
+            { text: "Présentation de la série", link: "/tp/securite/" },
+            { text: "TP 1 : Les injections SQL", link: "/tp/securite/tp1_injection_sql.md" },
+            { text: "TP 2 : Les failles XSS", link: "/tp/securite/tp2_xss.md" },
+            { text: "TP 3 : Contrôle d'accès et journalisation", link: "/tp/securite/tp3_controle_acces.md" },
+            { text: "TP 4 : Authentification et sessions", link: "/tp/securite/tp4_authentification.md" },
+            { text: "Révisions examen", link: "/tp/securite/exercice.md" },
             { text: "Analyser une application", link: "/tp/securite/reverse.md" },
         ]
     },

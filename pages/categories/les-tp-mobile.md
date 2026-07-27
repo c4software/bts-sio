@@ -11,6 +11,15 @@ Vous trouverez ici la liste des TP mobile, dans l'ordre dans lequel je vous cons
 La programmation orientée objet doit être acquise avant de commencer (voir [les concepts](/pages/categories/les-concepts.md)).
 :::
 
+::: tip Les supports du parcours
+Gardez-les à portée de main pendant tous les TP, c'est important :
+
+- [Le cours Android Base](/cours/android_base.md)
+- [Le cours Android Compose](/cours/android_compose.md)
+- [Le cours Android + HTTP](/cours/android_http.md) et [le cours Android + BLE](/cours/android_ble.md)
+
+:::
+
 ## Étape 1 : Les bases d'Android Compose
 
 Les TP suivent [le cours Android Base](/cours/android_base.md) et [le cours Android Compose](/cours/android_compose.md).
