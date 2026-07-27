@@ -10,6 +10,16 @@
     "questions": 30
   },
   {
+    "src": "quiz-devops-cicd-lot4",
+    "title": "DevOps Lot 4 : CI/CD (Gitlab-CI, pipelines, runners)",
+    "questions": 20
+  },
+  {
+    "src": "quiz-devops-docker-lot3",
+    "title": "DevOps Lot 3 : Docker (conteneurs, Dockerfile, Compose)",
+    "questions": 20
+  },
+  {
     "src": "quiz-devops-serveur-lot1",
     "title": "DevOps Serveur Lot 1 : Serveur, VM, Debian et ligne de commande (TP1 à TP1c)",
     "questions": 20
@@ -82,6 +92,6 @@
   {
     "src": "quiz-vuejs",
     "title": "VueJS 3",
-    "questions": 10
+    "questions": 17
   }
 ]

@@ -1,0 +1,136 @@
+// Questionnaire DevOps Lot 4 : CI/CD (Gitlab-CI, pipelines, runners)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, réponses multiples
+
+$CATEGORY: DevOps Serveur/Lot 4 - CI/CD (Gitlab-CI, pipelines, runners)
+
+// --- Les concepts ---
+
+::CICD-L4-Q1 L'intégration continue::Qu'est-ce que l'intégration continue (CI) ?{
+=Vérifier automatiquement (compilation, tests) chaque modification poussée sur le dépôt#Exact, l'objectif est de détecter les problèmes au plus tôt, à chaque push.
+~Fusionner toutes les branches une fois par mois
+~Déployer manuellement le site chaque vendredi
+~Sauvegarder le code sur une clef USB
+}
+
+::CICD-L4-Q2 Livraison ou déploiement::Quelle est la différence entre la livraison continue et le déploiement continu ?{
+=En livraison continue la mise en production reste déclenchée manuellement, en déploiement continu elle est automatique#Exact, dans les deux cas tout le reste de la chaîne est automatisé.
+~La livraison concerne le front, le déploiement le back
+~Le déploiement continu ne passe pas par les tests
+~Aucune, ce sont deux synonymes
+}
+
+::CICD-L4-Q3 Le fichier::Quel fichier, placé à la racine du dépôt, décrit la pipeline Gitlab-CI ?{
+=.gitlab-ci.yml
+=gitlab-ci.yml#Presque \: n'oubliez pas le point au début du nom du fichier.
+}
+
+::CICD-L4-Q4 Déclenchement::Quand une pipeline Gitlab-CI se déclenche-t-elle par défaut ?{
+=À chaque push sur le dépôt#Exact, c'est le principe du « en continu » \: chaque modification est vérifiée.
+~Uniquement quand on clique sur un bouton
+~Une fois par jour, la nuit
+~Uniquement lors de la création d'un tag
+}
+
+// --- La pipeline ---
+
+::CICD-L4-Q5 Les stages::À quoi servent les stages dans un .gitlab-ci.yml ?{
+=À ordonner l'exécution des jobs \: un stage ne démarre que si le précédent a réussi#Exact, par exemple build puis test puis deploy.
+~À limiter le nombre de développeurs sur le projet
+~À définir les branches du dépôt
+~À colorer l'interface de Gitlab
+}
+
+::CICD-L4-Q6 Vrai ou Faux - Échec d'un job::Si un job échoue, les stages suivants de la pipeline ne sont pas exécutés et la pipeline est marquée en échec.{TRUE#Exact, c'est ce qui empêche de déployer un code dont les tests échouent.#Relisez le TP \: un job en échec bloque les stages suivants, le déploiement n'a pas lieu.}
+
+::CICD-L4-Q7 L'image d'un job::Dans un job, que définit le mot-clef image\: (par exemple image\: node\:22) ?{
+=L'image Docker dans laquelle le script du job sera exécuté#Exact, chaque job tourne dans un conteneur créé à partir de cette image.
+~L'image de fond affichée dans l'interface Gitlab
+~Le logo du projet
+~L'image Docker qui sera déployée en production
+}
+
+::CICD-L4-Q8 Vrai ou Faux - Environnement propre::Chaque job démarre dans un environnement neuf \: les fichiers créés par un job ne sont pas automatiquement disponibles dans le suivant.{TRUE#Exact, c'est le rôle des artifacts (ou du cache) de transmettre des fichiers entre les jobs.#Relisez le TP \: chaque job part d'un conteneur neuf, il faut des artifacts pour transmettre des fichiers.}
+
+::CICD-L4-Q9 Les artifacts::À quoi servent les artifacts d'un job ?{
+=À conserver des fichiers produits par le job et les transmettre aux jobs suivants#Exact, par exemple le dossier de build transmis au job de déploiement.
+~À accélérer le téléchargement des images Docker
+~À stocker les mots de passe du projet
+~À archiver le code source du dépôt
+}
+
+::CICD-L4-Q10 Cibler la branche::Complétez \: pour ne lancer un job que sur la branche par défaut, on écrit rules\: - if\: $CI_COMMIT_BRANCH \=\= {=$CI_DEFAULT_BRANCH ~$CI_JOB_NAME ~$CI_PIPELINE_ID ~$CI_PAGES_URL}.
+
+::CICD-L4-Q11 Associez les mots-clefs::Associez chaque mot-clef d'un .gitlab-ci.yml à son rôle.{
+=script -> Les commandes exécutées par le job
+=stage -> L'étape de la pipeline à laquelle appartient le job
+=rules -> Les conditions de déclenchement du job
+=artifacts -> Les fichiers conservés à la fin du job
+= -> Le nom de la branche principale du dépôt
+= -> La liste des développeurs autorisés
+}
+
+// --- Gitlab Pages ---
+
+::CICD-L4-Q12 Gitlab Pages::Pour publier un site avec Gitlab Pages, quelles sont les deux conditions à respecter dans la pipeline ?{
+=Un job nommé pages et les fichiers du site placés dans un dossier public déclaré en artifact#Exact, c'est cette convention qui déclenche la publication.
+~Un job nommé deploy et un dossier www
+~Un fichier pages.yml et un dossier site
+~Un tag de version et un dossier dist
+}
+
+// --- Les runners ---
+
+::CICD-L4-Q13 Le runner::Qu'est-ce qu'un runner Gitlab ?{
+=Une machine (ou un conteneur) qui exécute les jobs des pipelines#Exact, sans runner disponible, la pipeline reste bloquée en attente.
+~Un développeur chargé de valider les merge requests
+~Un robot qui écrit le code à votre place
+~Le serveur qui héberge le dépôt Git
+}
+
+::CICD-L4-Q14 Vrai ou Faux - Minutes offertes::Sur gitlab.com, l'utilisation des runners partagés est gratuite et illimitée.{FALSE#Exact, c'est faux \: le tier gratuit offre un quota mensuel de « compute minutes », d'où l'intérêt de créer son propre runner.#Relisez le TP runner \: le quota mensuel de compute minutes est limité sur le tier gratuit.}
+
+::CICD-L4-Q15 Les tags d'un runner::À quoi servent les tags associés à un runner ?{
+=À faire correspondre les jobs et les runners \: un job tagué ne s'exécute que sur un runner ayant ce tag#Exact, pratique pour réserver certains jobs à une machine précise.
+~À indiquer la version de Gitlab installée
+~À numéroter les versions du code déployé
+~À classer les runners par ordre alphabétique
+}
+
+::CICD-L4-Q16 Les secrets::Où doit-on stocker un token ou un mot de passe utilisé par la pipeline (par exemple un token Docker Hub) ?{
+=Dans les variables CI/CD du projet (Settings > CI/CD > Variables), idéalement masquées#Exact, jamais en clair dans le .gitlab-ci.yml qui est versionné et visible.
+~Directement dans le .gitlab-ci.yml
+~Dans un commentaire du README
+~Dans le nom de la branche
+}
+
+// --- Packager avec Docker ---
+
+::CICD-L4-Q17 Pourquoi packager::Quel est l'intérêt de faire produire une image Docker par la pipeline ?{
+=Obtenir un livrable identique et exécutable partout, du poste de dev au serveur#Exact, l'image versionnée est le livrable \: plus de « ça marche sur ma machine ».
+~Réduire la taille du dépôt Git
+~Éviter d'écrire des tests
+~Rendre le code source secret
+}
+
+::CICD-L4-Q18 Le service dind::Pourquoi ajoute-t-on le service docker\:27-dind à un job qui construit une image Docker ?{
+=Le job s'exécute déjà dans un conteneur \: dind fournit un démon Docker pour pouvoir construire des images à l'intérieur#Exact, « dind » signifie Docker in Docker.
+~Pour doubler la vitesse de construction
+~Pour scanner l'image contre les virus
+~Pour déployer l'image sur le serveur de production
+}
+
+::CICD-L4-Q19 Le registre du projet::Que permet le Container Registry intégré à Gitlab ?{
+=Stocker les images Docker construites par la pipeline, à côté du code du projet#Exact, accessible via les variables $CI_REGISTRY et un login automatique dans la CI.
+~Compiler les images plus rapidement que le Docker Hub
+~Héberger le site web du projet
+~Sauvegarder les branches supprimées
+}
+
+::CICD-L4-Q20 Une bonne pipeline::Quels éléments retrouve-t-on dans une pipeline complète de déploiement continu vue en TP ? (plusieurs réponses){
+~%33.33333%Un stage de tests exécuté à chaque push#Oui, on ne déploie jamais un code non testé.
+~%33.33333%La construction d'un livrable (site compilé ou image Docker)#Oui, c'est le rôle du stage de build.
+~%33.33333%Un déploiement conditionné à la branche par défaut#Oui, via rules et $CI_DEFAULT_BRANCH.
+~%-50%La modification manuelle des fichiers directement sur le serveur#Non, c'est justement ce que la CI/CD élimine.
+~%-50%L'envoi du code par email à l'hébergeur#Non, tout passe par la pipeline.
+}

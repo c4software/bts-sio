@@ -87,6 +87,66 @@ Avec Vue Router, chaque changement de page provoque un rechargement complet de l
 
 ☐ Vrai  ☐ Faux
 
+**Question 11 — La composition API**
+
+Dans un composant écrit avec &lt;script setup&gt;, comment déclare-t-on une donnée réactive ?
+
+- ☐ **a.** Avec la fonction data() qui retourne un objet
+- ☐ **b.** En déclarant la variable dans le localStorage
+- ☐ **c.** Avec le mot-clef reactive devant la variable
+- ☐ **d.** Avec la fonction ref(), en accédant à sa valeur via .value dans le script
+
+**Question 12 — Les props**
+
+À quoi servent les props d'un composant ?
+
+- ☐ **a.** À transmettre des données du composant parent vers le composant enfant
+- ☐ **b.** À définir le style CSS du composant
+- ☐ **c.** À stocker les données dans le navigateur
+- ☐ **d.** À transmettre des données de l'enfant vers le parent
+
+**Question 13 — Les événements**
+
+Votre composant Card doit prévenir son parent qu'un utilisateur a cliqué sur « J'aime ». Quel mécanisme utilisez-vous ?
+
+- ☐ **a.** Une prop modifiée directement par l'enfant
+- ☐ **b.** Un événement déclaré avec defineEmits et émis avec emit('liked')
+- ☐ **c.** Un rechargement de la page
+- ☐ **d.** Une variable globale window.liked
+
+**Question 14 — Vrai ou Faux - Les instances**
+
+Si vous affichez trois fois le même composant &lt;Card /&gt;, les trois cartes partagent le même état interne (le même compteur de likes par exemple).
+
+☐ Vrai  ☐ Faux
+
+**Question 15 — La clef des listes**
+
+Complétez : dans une liste générée par v-for, l'attribut spécial ______ permet à Vue d'identifier chaque élément de façon unique pour ne redessiner que ce qui change.
+
+(a) :id / (b) :key / (c) :ref / (d) :index
+
+**Question 16 — Un fichier .vue**
+
+Associez chaque bloc d'un fichier .vue à son contenu.
+
+| | À relier à… |
+|---|---|
+| &lt;template&gt; → ______ | • La liste des dépendances du projet |
+| &lt;script setup&gt; → ______ | • La logique du composant (composition API) |
+| &lt;style scoped&gt; → ______ | • La configuration du serveur de développement |
+|  | • Le CSS appliqué uniquement à ce composant |
+|  | • Le HTML du composant |
+
+**Question 17 — Firebase temps réel**
+
+Dans le TP Firebase, quelle fonction de la Realtime Database permet d'être prévenu automatiquement à chaque modification des données ?
+
+- ☐ **a.** fetch
+- ☐ **b.** addEventListener
+- ☐ **c.** setInterval
+- ☐ **d.** onValue
+
 
 <div style="page-break-before: always;"></div>
 
@@ -111,3 +171,17 @@ Avec Vue Router, chaque changement de page provoque un rechargement complet de l
 **9.** (d) mounted — *Exact, il suit beforeMount dans le cycle de vie.*
 
 **10.** Faux — *Exact, c'est faux : le routeur change la vue affichée sans recharger la page, c'est le principe d'une SPA (Single Page Application).*
+
+**11.** (d) Avec la fonction ref(), en accédant à sa valeur via .value dans le script — *Exact, dans le template le .value est ajouté automatiquement.*
+
+**12.** (a) À transmettre des données du composant parent vers le composant enfant — *Exact, déclarées avec defineProps, elles rendent le composant réutilisable avec des données différentes.*
+
+**13.** (b) Un événement déclaré avec defineEmits et émis avec emit('liked') — *Exact, l'enfant émet un signal, le parent l'écoute avec @liked et décide quoi en faire.*
+
+**14.** Faux — *Exact, c'est faux : chaque balise crée une instance indépendante, avec son propre état, comme les instances d'une classe en POO.*
+
+**15.** (b) :key
+
+**16.** &lt;template&gt; → Le HTML du composant ; &lt;script setup&gt; → La logique du composant (composition API) ; &lt;style scoped&gt; → Le CSS appliqué uniquement à ce composant
+
+**17.** (d) onValue — *Exact, le callback est rappelé à chaque changement : c'est ce qui rend la carte collaborative en temps réel, sans rechargement.*

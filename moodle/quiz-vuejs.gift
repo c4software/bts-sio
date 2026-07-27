@@ -1,5 +1,5 @@
 // Questionnaire VueJS 3
-// Basé sur cheatsheets/vuejs3/index.md et tp/vuejs3/ (tp0, application, routeur)
+// Basé sur cheatsheets/vuejs3/index.md, tp/vuejs3/ (tp0, application, routeur, firebase) et tp/composants/vuejs.md
 // Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
 // Types : QCM, vrai/faux, réponse courte, appariement, mot manquant
 
@@ -66,3 +66,43 @@ $CATEGORY: JavaScript/VueJS
 }
 
 ::VUE-Q10 Vrai ou Faux - Vue Router::Avec Vue Router, chaque changement de page provoque un rechargement complet de la page depuis le serveur.{FALSE#Exact, c'est faux \: le routeur change la vue affichée sans recharger la page, c'est le principe d'une SPA (Single Page Application).#Relisez le TP routeur \: le routeur affiche le bon composant selon l'URL, sans rechargement de la page.}
+
+::VUE-Q11 La composition API::Dans un composant écrit avec <script setup>, comment déclare-t-on une donnée réactive ?{
+=Avec la fonction ref(), en accédant à sa valeur via .value dans le script#Exact, dans le template le .value est ajouté automatiquement.
+~Avec la fonction data() qui retourne un objet#C'est l'options API, pas la composition API utilisée avec script setup.
+~Avec le mot-clef reactive devant la variable
+~En déclarant la variable dans le localStorage
+}
+
+::VUE-Q12 Les props::À quoi servent les props d'un composant ?{
+=À transmettre des données du composant parent vers le composant enfant#Exact, déclarées avec defineProps, elles rendent le composant réutilisable avec des données différentes.
+~À transmettre des données de l'enfant vers le parent#C'est le rôle des événements (defineEmits).
+~À stocker les données dans le navigateur
+~À définir le style CSS du composant
+}
+
+::VUE-Q13 Les événements::Votre composant Card doit prévenir son parent qu'un utilisateur a cliqué sur « J'aime ». Quel mécanisme utilisez-vous ?{
+=Un événement déclaré avec defineEmits et émis avec emit('liked')#Exact, l'enfant émet un signal, le parent l'écoute avec @liked et décide quoi en faire.
+~Une prop modifiée directement par l'enfant#Les props sont en lecture seule côté enfant.
+~Une variable globale window.liked
+~Un rechargement de la page
+}
+
+::VUE-Q14 Vrai ou Faux - Les instances::Si vous affichez trois fois le même composant <Card />, les trois cartes partagent le même état interne (le même compteur de likes par exemple).{FALSE#Exact, c'est faux \: chaque balise crée une instance indépendante, avec son propre état, comme les instances d'une classe en POO.#Relisez le TP composants \: chaque instance possède son propre état, les compteurs sont indépendants.}
+
+::VUE-Q15 La clef des listes::Complétez \: dans une liste générée par v-for, l'attribut spécial {=\:key ~\:id ~\:index ~\:ref} permet à Vue d'identifier chaque élément de façon unique pour ne redessiner que ce qui change.
+
+::VUE-Q16 Un fichier .vue::Associez chaque bloc d'un fichier .vue à son contenu.{
+=<template> -> Le HTML du composant
+=<script setup> -> La logique du composant (composition API)
+=<style scoped> -> Le CSS appliqué uniquement à ce composant
+= -> La configuration du serveur de développement
+= -> La liste des dépendances du projet
+}
+
+::VUE-Q17 Firebase temps réel::Dans le TP Firebase, quelle fonction de la Realtime Database permet d'être prévenu automatiquement à chaque modification des données ?{
+=onValue#Exact, le callback est rappelé à chaque changement \: c'est ce qui rend la carte collaborative en temps réel, sans rechargement.
+~fetch#C'est une requête ponctuelle, pas une écoute en temps réel.
+~setInterval#Ce serait du polling, pas du temps réel poussé par le serveur.
+~addEventListener#C'est pour les événements du DOM, pas pour Firebase.
+}
