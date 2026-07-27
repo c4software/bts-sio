@@ -1,16 +1,16 @@
 ---
-description: Dans cette mise en pratique nous allons voir comment déclarer et utiliser des `Interfaces PHP`. Les interfaces sont un éléments importants de la programmation objet, pour rappel les Interfaces sont des class abstraites (instanciation impossible)
+description: Dans cette mise en pratique nous allons voir comment déclarer et utiliser des `Interfaces PHP`. Les interfaces sont un élément important de la programmation objet, pour rappel les Interfaces ressemblent à des classes abstraites (instanciation impossible)
 ---
 
 # Interface : Mise en pratique 2
 
-Dans cette mise en pratique nous allons voir comment déclarer et utiliser des `Interfaces PHP`. Les interfaces sont un élément important de la programmation-objet, pour rappel les Interfaces sont des class abstraites (instanciation impossible):
+Dans cette mise en pratique nous allons voir comment déclarer et utiliser des `Interfaces PHP`. Les interfaces sont un élément important de la programmation objet, pour rappel les Interfaces ressemblent à des classes abstraites (instanciation impossible), elles vont :
 
-- Va d'écrire un comportement.
-- Définir les signatures des méthodes et propriétés
+- Décrire un comportement.
+- Définir les signatures des méthodes.
 - Garantir au code qui fait l'appel que la méthode existera.
 
-C'est donc un contrat que la `class` **doit respecter** si elle implémente l'interface, si celle-ci implémente une Interface, elle devra forcément avoir l'ensemble des méthodes « décrite » dans l'interface.
+C'est donc un contrat que la `class` **doit respecter** : si celle-ci implémente une Interface, elle devra forcément avoir l'ensemble des méthodes « décrites » dans l'interface.
 
 ::: details Sommaire
 [[toc]]
@@ -30,12 +30,12 @@ Je vous propose d'illustrer les Interfaces avec le calcul d'une surface. Objecti
 - Création d'une Interface `IISurface`.
   - L'interface `IISurface` doit contenir une méthode `public` nommée `surface()` celle-ci doit retourner un `int`
 - Utiliser l'interface dans l'ensemble des `class` formes (`Circle`, `Square`, …).
-  - Implémenter le code pour chaque « forme », celui-ci doit retourner la surface de chaque `forme`
+  - Implémenter le code pour chaque « forme », celui-ci doit retourner la surface de chaque `forme`.
 - Valider que le code fonctionne.
 
 ### Déclarer l'interface
 
-La première étape est de créer l'interface en elle-même :
+La première étape est de créer l'interface en elle-même (dans un fichier `SurfaceInterface.php`) :
 
 ```php
 interface IISurface{
@@ -50,7 +50,7 @@ Nous avons maintenant notre Interface, celle-ci seule ne fait rien. Elle est abs
 - Première étape, créer votre fichier PHP `Circle.class.php`.
 - Créer le code de votre class. **Votre class doit implements IISurface**
 
-Je vous aide voilà le début de la classe
+Je vous aide, voilà le début de la classe :
 
 ```php
 class Circle implements IISurface{
@@ -58,8 +58,8 @@ class Circle implements IISurface{
 }
 ```
 
-- Je vous laisse trouver les/la `propriété(s)` nécessaire au bon fonctionnement de la `class`.
-- Je vous laisse implémenter le code de la méthode `Surface`.
+- Je vous laisse trouver la ou les `propriété(s)` nécessaire(s) au bon fonctionnement de la `class`.
+- Je vous laisse implémenter le code de la méthode `surface()`.
 
 ::: details Code de la class (à ne regarder que si vous ne trouvez pas)
 
@@ -100,8 +100,8 @@ class Square implements IISurface{
 }
 ```
 
-- Je vous laisse trouver les/la `propriété(s)` nécessaire au bon fonctionnement de la `class`.
-- Je vous laisse implémenter le code de la méthode `Surface`.
+- Je vous laisse trouver la ou les `propriété(s)` nécessaire(s) au bon fonctionnement de la `class`.
+- Je vous laisse implémenter le code de la méthode `surface()`.
 
 ### Valider le fonctionnement
 

@@ -4,13 +4,12 @@ description: Dans cette mise en pratique, nous allons voir comment déclarer et 
 
 # Classe abstraite : Mise en pratique
 
-Dans cette mise en pratique, nous allons voir comment déclarer et utiliser des `Classes Abstraites en PHP`. Les classes abstraites sont un élément important de la programmation-objet, pour rappel :
+Dans cette mise en pratique, nous allons voir comment déclarer et utiliser des `Classes Abstraites en PHP`. Les classes abstraites sont un élément important de la programmation objet, pour rappel, une classe abstraite :
 
-- Sers de base à d'autres classes dérivées (héritées).
-- Ne peut pas être instanciée (pas de new).
-- Permets de factoriser du code.
-- Les classes abstraites ne sont pas instanciable
-- Dois être héritée depuis une classe fille.
+- Sert de base à d'autres classes dérivées (héritées).
+- Ne peut pas être instanciée (pas de `new`).
+- Permet de factoriser du code.
+- Doit être héritée par une classe fille.
 
 ::: details Sommaire
 [[toc]]
@@ -42,7 +41,7 @@ abstract class EtudiantAbstrait
 
 ::: tip Questionnement
 
-- Une classe`abstraite` est définie avec le mot clé :
+- Une classe `abstraite` est définie avec le mot clé :
 - Identifier les particularités de la classe `EtudiantAbstrait`
   - **Particularité 1 :**
   - **Particularité 2 :**
@@ -50,13 +49,13 @@ abstract class EtudiantAbstrait
 - D'un point de vue sécurité, qu'apporte cette organisation ? (Une piste, encapsulation…)
 - Selon vous, pourquoi la classe abstraite ne possède-t-elle pas de constructeur ?
 
-::::
+:::
 
 ## Déclarer les classes
 
 Pour utiliser une classe abstraite, nous allons devoir « **hériter** » de celle-ci avec les mots clés que vous connaissez déjà :
 
-- `extends` en php et en java.
+- `extends` en PHP et en Java.
 - `:` en C#.
 
 La différence avec un simple héritage, c'est que vous devrez « implémenter » / « écrire » les deux méthodes :
@@ -83,13 +82,13 @@ Pour la méthode `parler()` c'est au choix. Vous pouvez :
 
 Je souhaite créer **6 étudiants** (3 SEN et 3 SIO).
 
-Pour les SEN ils doivent avoir les compétences suivantes
+Pour les SEN, ils doivent avoir les compétences suivantes :
 
 - La sécurité.
 - La soudure.
 - Le réseau.
 
-Pour le SIO ils doivent avoir les options suivantes :
+Pour les SIO, ils doivent avoir les options suivantes :
 
 - SLAM
 - SISR
@@ -112,7 +111,7 @@ Après réflexion, vous souhaitez changer le comportement de la méthode `parler
 
 Vous souhaitez que le message soit le suivant :
 
-```php
+```text
 Je suis un étudiant SIO et je suis spécialisé en sécurité.
 ```
 
@@ -149,7 +148,7 @@ $etudiant = new EtudiantAbstrait();
 
 En exécutant ce code, vous obtenez l'erreur suivante :
 
-```php
+```text
 Cannot instantiate abstract class EtudiantAbstrait
 ```
 

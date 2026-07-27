@@ -1,10 +1,10 @@
 ---
-description: Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
+description: Ce document présente la syntaxe objet avec des exemples PHP, Java, Kotlin & C#
 ---
 
 # La syntaxe Objet
 
-Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
+Ce document présente la syntaxe objet avec des exemples PHP, Java, Kotlin & C#.
 
 ::: details Sommaire
 [[toc]]
@@ -17,7 +17,7 @@ Ce document présente la syntaxe objet avec des exemples PHP, Java & Kotlin
 - **Concept de modélisation** à travers la notion de classe et d’instanciation de ces classes.
 - **Concept d’action** à travers la notion d’envoi de messages et de méthodes à l’intérieur des objets.
 - **Concept de construction** en créant un objet en reposant sur la définition d’une classe.
-- **Concept d'encapsulation** l'accès aux propriétés se fait via un getter et un setter. (inaccessible de l'extérieur).
+- **Concept d'encapsulation** : l'accès aux propriétés se fait via un getter et un setter (les propriétés sont inaccessibles de l'extérieur).
 
 ::: tip Mais surtout
 Ça permet de représenter **informatiquement** quelque chose du monde réel.
@@ -50,10 +50,10 @@ Avant de parler des classes ou des objets, je vous propose de regarder le princi
 - Serviront de moule pour créer des objets.
 - Une classe étant **une définition**, elle nous servira plus tard à créer **des objets**.
 
-#### Une classe est composée de :
+#### Une classe est composée :
 
-- D'attributs (variable d'instance ou propriété).
-- De méthodes (actions / opération au niveau de la classe).
+- D'attributs (variables d'instance ou propriétés).
+- De méthodes (actions / opérations au niveau de la classe).
 
 Les attributs sont les valeurs qui feront fonctionner notre objet (exemple `nom`, `prenom`, `age` etc.).
 
@@ -66,16 +66,16 @@ Les méthodes vont permettre d'effectuer des actions dans notre objet (exemple `
 
 #### La visibilité ?
 
-- Privée : accessible uniquement dans l'objet.
-- Public : accessible hors de l'objet.
-- Protected : **Accessible** aux enfants (héritage), mais pas hors de la classe.
+- `private` : accessible uniquement dans l'objet.
+- `public` : accessible hors de l'objet.
+- `protected` : **accessible** aux enfants (héritage), mais pas hors de la classe.
 
 #### Les méthodes
 
 - Comme une fonction, mais **encapsulée** dans la classe.
 - Possède une visibilité.
 - Possède des paramètres.
-- Surcharge: plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et/ou ordre).
+- Surcharge : plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et/ou ordre).
 
 #### Les types de méthodes
 
@@ -85,7 +85,7 @@ Dans une classe nous avons différents types de méthodes :
 - Les méthodes d'actions.
 - Les méthodes accesseurs / mutateurs.
 
-Le constructeur est une méthode qui permet d'initialiser un objet. Il est appelé automatiquement lors de la création d'un objet (`new`). Son rôle est d'initialiser les attributs de l'objet avec des valeurs spécifiques, selon les paramètres fournis lors de la création de l'objet. Il est possible de définir plusieurs constructeurs dans une classe (surcharge). Il permet de garantir l'intégrité des objets et de s'assurer qu'ils sont initialisés de manière cohérente.
+Le constructeur est une méthode qui permet d'initialiser un objet. Il est appelé automatiquement lors de la création d'un objet (`new`). Son rôle est d'initialiser les attributs de l'objet avec des valeurs spécifiques, selon les paramètres fournis lors de la création de l'objet. Dans certains langages (Java, C#…), il est possible de définir plusieurs constructeurs dans une classe (surcharge). Il permet de garantir l'intégrité des objets et de s'assurer qu'ils sont initialisés de manière cohérente.
 
 Les méthodes d'actions sont des méthodes qui permettent d'effectuer des actions sur l'objet. Exemple : `accelerer()`, `freiner()`, `tourner()`, etc.
 
@@ -271,12 +271,12 @@ public class Personne
 		return this.nom + " " + this.prenom;
 	}
 	
-	public int age()
+	public void age()
 	{
 		//Implémentation
 	}
 	
-	public void argentPoche(int value)
+	public void argentPoche()
 	{
 		//Implémentation
 	}
@@ -301,11 +301,11 @@ Chaque objet représente un objet du monde réel. Exemple : une voiture, une per
 
 ### Exemple :
 
-- une personne **précise**
-- une voiture **spécifique**
+- Une personne **précise**.
+- Une voiture **spécifique**.
 - Un élément de menu.
 
-⚠️ Utilise les classes précédemment définies ⚠️
+⚠️ Nous utilisons les classes précédemment définies ⚠️
 
 <CodeGroup>
   <CodeGroupItem title="PHP" active>
@@ -410,7 +410,7 @@ class Personne {
   <CodeGroupItem title="Kotlin">
 
 ```kotlin
-class Personne(var nom: String, var prenom: String) {
+class Personne(private var nom: String, private var prenom: String) {
     // Méthode
     fun identite(): String {
         return "$nom $prenom"
@@ -578,7 +578,7 @@ class Personne {
 $unePersonne = new Personne("Valentin", "Brosseau");
 
 // Appel de la méthode
-$unePersonne->afficheIdentite(); // Affiche "Valentin Brosseau"
+$unePersonne->identite(); // Retourne "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
@@ -590,7 +590,7 @@ $unePersonne->afficheIdentite(); // Affiche "Valentin Brosseau"
 Personne unePersonne = new Personne("Valentin", "Brosseau");
 
 // Appel de la méthode
-unePersonne.afficheIdentite(); // Affiche "Valentin Brosseau"
+unePersonne.identite(); // Retourne "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
@@ -601,7 +601,7 @@ unePersonne.afficheIdentite(); // Affiche "Valentin Brosseau"
 val unePersonne = Personne("Valentin", "Brosseau");
 
 // Appel de la méthode
-unePersonne.afficheIdentite(); // Affiche "Valentin Brosseau"
+unePersonne.identite(); // Retourne "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
@@ -612,23 +612,23 @@ unePersonne.afficheIdentite(); // Affiche "Valentin Brosseau"
 Personne unePersonne = new Personne("Valentin", "Brosseau");
 
 // Appel de la méthode
-unePersonne.identite(); // Affiche "Valentin Brosseau"
+unePersonne.identite(); // Retourne "Valentin Brosseau"
 ```
 
   </CodeGroupItem>
 </CodeGroup>
 
-## Accès à une propriété // Accesseur et Mutateur
+## Accès à une propriété (accesseur et mutateur)
 
 <CodeGroup>
   <CodeGroupItem title="PHP" active>
 
 ```php
 $unePersonne = new Personne("Valentin", "Brosseau");
-$unePersonne->getNom(); // Affiche "Valentin"
+$unePersonne->getNom(); // Retourne "Valentin"
 
 $unePersonne->setNom("Chouette");
-$unePersonne->getNom(); // Affiche "Chouette", la valeur a été modifiée
+$unePersonne->getNom(); // Retourne "Chouette", la valeur a été modifiée
 ```
 
   </CodeGroupItem>
@@ -637,10 +637,10 @@ $unePersonne->getNom(); // Affiche "Chouette", la valeur a été modifiée
 
 ```java
 Personne unePersonne = new Personne("Valentin", "Brosseau");
-unePersonne.getNom(); // Affiche "Valentin"
+unePersonne.getNom(); // Retourne "Valentin"
 
 unePersonne.setNom("Chouette");
-unePersonne.getNom(); // Affiche "Chouette", la valeur a été modifiée
+unePersonne.getNom(); // Retourne "Chouette", la valeur a été modifiée
 ```
 
   </CodeGroupItem>
@@ -662,11 +662,11 @@ Console.WriteLine(unePersonne.getNom()); // Affiche "Chouette", la valeur a ét�
 
 L'accès aux propriétés ne fonctionnera que si la visibilité (`private`, `public`, `protected`) vous y autorise :
 
-|  Visibilité |                                                                     Accès depuis |
-| ----------: | -------------------------------------------------------------------------------: |
-|   `private` |                                             Seulement depuis l'objet en lui-même |
-|    `public` |                 Depuis n'importe où (objet, depuis l'objet, ou depuis l'héritage) |
-| `protected` | Comme `private`, **mais accessible depuis la classe fille en cas d'héritage** |
+|  Visibilité |                                                                   Accès depuis |
+| ----------: | -----------------------------------------------------------------------------: |
+|   `private` |                                              Seulement depuis l'objet lui-même |
+|    `public` |                        Depuis n'importe où (intérieur ou extérieur de l'objet) |
+| `protected` |  Comme `private`, **mais accessible depuis la classe fille en cas d'héritage** |
 
 :::
 
@@ -692,7 +692,7 @@ En modélisation, la flèche signifie un lien entre les deux classes. En l'occur
 - Le nombre minimum & maximum.
 - Exemple, **1** étudiant possède plusieurs devoirs.
 
-Fonctionnellement, nous allons donc avoir dans l'étudiant une collection d'objets du type devoirs. Celle-ci sera nommée **lesDevoirs**. **lesDevoirs** sera une propriété de la classe Étudiant.
+Fonctionnellement, nous allons donc avoir dans l'étudiant une collection d'objets du type `Devoir`. Celle-ci sera nommée **lesDevoirs**. **lesDevoirs** sera une propriété de la classe Étudiant.
 
 ### Déclaration
 
@@ -708,7 +708,7 @@ $lesPersonnes = [];
   <CodeGroupItem title="Java">
 
 ```java
-ArrayList<Personne> lesPersonnes = new ArrayList();
+ArrayList<Personne> lesPersonnes = new ArrayList<>();
 ```
 
   </CodeGroupItem>
@@ -862,8 +862,8 @@ foreach (Personne laPersonne in lesPersonnes){
 
 L'héritage permet de généraliser le fonctionnement d'un objet. L'idée est de mettre dans un « objet parent » la logique de plusieurs objets qui fonctionnent de la même façon. **Exemple**
 
-- Un **humain** et une baleine partagent des propriétés et un fonctionnement communs. Nous allons donc créer une super classe **mammifère,** celle-ci contiendra les méthodes et les propriétés communes.
-- Une **Voiture** et une **Moto** sont des véhicules. Nous pouvons donc créer une super classe « **Véhicule** ».
+- Un **humain** et une baleine partagent des propriétés et un fonctionnement communs. Nous allons donc créer une super-classe **Mammifère**, celle-ci contiendra les méthodes et les propriétés communes.
+- Une **Voiture** et une **Moto** sont des véhicules. Nous pouvons donc créer une super-classe « **Véhicule** ».
 - …
 
 Comment identifier qu'il s'agit d'un héritage ? **C'est simple**, si vous pouvez dire « est un » alors il s'agit d'un héritage. Exemple :
@@ -896,7 +896,6 @@ class Humain extends Mammifere {
 
     function __construct($prenom)
     {
-        parent::__construct();
         $this->prenom = $prenom;
     }
 
@@ -922,7 +921,7 @@ class Mammifere {
         System.out.println("Je suis un mammifère");
     }
 
-    // Redéfinition de méthode
+    // Méthode qui sera redéfinie dans la classe fille
     public void manger(){
         System.out.println("Je mange");
     }
@@ -958,7 +957,7 @@ internal open class Mammifere {
         println("Je suis un mammifère")
     }
 
-    // Redéfinition de méthode
+    // Méthode qui pourra être redéfinie (open)
     open fun manger() {
         println("Je mange")
     }
@@ -990,7 +989,8 @@ public class Mammifere {
         Console.WriteLine("Je suis un mammifère");
     }
 
-    public void manger()
+    // Méthode qui sera redéfinie dans la classe fille
+    public virtual void manger()
     {
         Console.WriteLine("Je mange");
     }
@@ -1004,7 +1004,8 @@ public class Humain : Mammifere {
         this.prenom = prenom;
     }
 
-    public void manger()
+    // Redéfinition de méthode
+    public override void manger()
     {
         Console.WriteLine("Je suis omnivore");
     }
@@ -1023,10 +1024,10 @@ unHumain.manger(); // Je suis omnivore
 - La classe mère contient la logique **partagée**.
 - La classe fille contient la logique **spécifique**.
 - Si nous pouvons dire « est un » alors il s'agit d'un héritage.
-- Un mot-clé Extends `class Humain extends Mammifere`.
-- **Vous devez** construire le parent dans le constructeur de l'enfant.
+- Un mot-clé : `extends` (`class Humain extends Mammifere`).
+- **Vous devez** construire le parent dans le constructeur de l'enfant (si le parent possède un constructeur).
 - **Permet de généraliser un objet afin de partager des propriétés communes.**
-- **mais** il est également possible de spécialiser / redéfinir un objet.
+- **Mais** il est également possible de spécialiser / redéfinir un objet.
   - Redéfinition, comme la surcharge, mais entre la classe fille et la classe mère.
 - Il est possible d'appeler une méthode de la classe mère depuis la classe fille.
   - `parent::manger();` // `super.manger();`
@@ -1131,14 +1132,14 @@ _Définition :_
 - Une classe abstraite est une classe qui ne peut pas être instanciée.
 - Permet de définir des comportements (méthodes) dont l'implémentation (le code dans la méthode) se fait dans les classes filles.
 
- Ainsi, on a l'assurance que les classes filles respecteront le contrat défini par la classe mère abstraite.
+Ainsi, on a l'assurance que les classes filles respecteront le contrat défini par la classe mère abstraite.
 
 Nous aurons donc deux types de classes :
 
 - Des classes abstraites (sans code, non instanciable).
 - Des classes concrètes (avec du code, et instanciable).
 
-Une classe abstraite **doit posséder** au moins une méthode **abstraite** (c'est-à-dire sans code). Si nécessaire, elle peut également avoir des méthodes **concrètes** (avec du code).
+Une classe abstraite possède **généralement** au moins une méthode **abstraite** (c'est-à-dire sans code). Si nécessaire, elle peut également avoir des méthodes **concrètes** (avec du code).
 
 #### Les classes abstraites :
 
@@ -1236,7 +1237,7 @@ class EtudiantSIO extends EtudiantAbstrait
 
     @Override
     public String demarrerUneDiscussion(String sujet) {
-      return String.format("Moi en SIO, je vais vous parler de « {%s} »", sujet);
+      return String.format("Je vais vous parler de « %s »", sujet);
     }
 }
 
@@ -1251,7 +1252,7 @@ class EtudiantSEN extends EtudiantAbstrait
 
     @Override
     public String demarrerUneDiscussion(String sujet) {
-      return String.format("Je vais vous parler de « {%s} »", sujet);
+      return String.format("Je vais vous parler de « %s »", sujet);
     }
 }
 
@@ -1314,13 +1315,13 @@ class1.demarrerUneDiscussion("La sécurité"); // Je vais vous parler de « La s
 
 ### Les Interfaces
 
-Une Interface ressemble beaucoup à une classe abstraite. **Sauf que** celle-ci ne possède pas de code. Une Interface définit un comportement qui **devra être** implémenté par la classe fille.
+Une Interface ressemble beaucoup à une classe abstraite. **Sauf que** celle-ci ne possède pas de code. Une Interface définit un comportement qui **devra être** implémenté par les classes qui l'utilisent.
 
-Les classes filles **implémentent** une interface, une classe fille peut **implémenter** plusieurs interfaces.
+Les classes **implémentent** une interface, une classe peut **implémenter** plusieurs interfaces.
 
 Quand une classe implémente une interface, elle **doit** définir l'ensemble des méthodes de l'interface.
 
-**C'est obligatoire**. C'est une sorte de contrat entre la classe fille et l'interface.
+**C'est obligatoire**. C'est une sorte de contrat entre la classe et l'interface.
 
 À quoi sert une interface ? **À définir un comportement**. 
 
@@ -1337,7 +1338,7 @@ Quand une classe implémente une interface, elle **doit** définir l'ensemble de
   <CodeGroupItem title="PHP" active>
 
 ```php
-// Declaration de l'interface 'Template'
+// Déclaration de l'interface « Compte »
 interface Compte
 {
     public function deposer($montant);
@@ -1375,7 +1376,7 @@ $class1->getBalance(); // 1000
   <CodeGroupItem title="Java">
 
 ```java
-// Declaration de l'interface 'Template'
+// Déclaration de l'interface « Compte »
 interface Compte
 {
     public void deposer(int montant );
@@ -1401,7 +1402,7 @@ class CompteEnLigne implements Compte
     public int getBalance() {
         return this.montant;
     }
-};
+}
 
 
 CompteEnLigne class1 = new CompteEnLigne();
@@ -1417,7 +1418,7 @@ class1.getBalance(); // 1000
   <CodeGroupItem title="Kotlin">
 
 ```kotlin
-// Declaration de l'interface 'Template'
+// Déclaration de l'interface « Compte »
 internal interface Compte {
     fun deposer(montant: Int)
     fun retirer(montant: Int)
@@ -1452,7 +1453,7 @@ fun main(){
 <CodeGroupItem title="C#">
 
 ```cs
-// Declaration de l'interface 'Template'
+// Déclaration de l'interface « Compte »
 interface Compte
 {
     public void deposer(int montant);
@@ -1631,7 +1632,7 @@ class Animal{
   // …
 
   public virtual void bruit(){
-    Console.WriteLine("BRUUUUIIIITTTT");
+    Console.Write("BRUUUUIIIITTTT");
   }
 
   // Reste de la classe
@@ -1646,7 +1647,7 @@ class Humain : Animal {
 
   public override void bruit() {
     base.bruit();
-    Console.WriteLine(" (Oui mais compréhensible)");
+    Console.Write(" (Oui mais compréhensible)");
   }
 
   // Reste de la classe
@@ -1744,7 +1745,7 @@ class Helicoptere : MachineVolante {
 
 // La liste est du type de la classe mère
 List<MachineVolante> machines = new List<MachineVolante>();
-machines.Add(new MachineVolante()); // Une erreur apparaît ici
+machines.Add(new MachineVolante()); // Erreur : impossible d'instancier une classe abstraite
 machines.Add(new Mig29());
 machines.Add(new Helicoptere());
 machines.Add(new Mig29());
@@ -1765,8 +1766,15 @@ foreach (MachineVolante m in machines) {
 Les namespaces permettent d'organiser les classes en groupes. Cela permet de mieux s'y retrouver dans un projet et de mieux gérer les dépendances. Les namespaces sont des espaces de noms. Ils permettent de regrouper des classes ayant un nom identique, mais qui ne sont pas les mêmes. Par exemple, si vous avez une classe `Personne` dans votre projet, vous pouvez avoir une classe `Personne` dans un namespace `Mammifere` et une classe `Personne` dans un namespace `Primate`. Les deux classes `Personne` ne seront pas les mêmes.
 
 ```php
-namespace Mammifere\Primate;
+namespace Mammifere;
 
 class Personne { // etc...
+}
+```
+
+```php
+namespace Primate;
+
+class Personne { // Une autre classe Personne, différente de Mammifere\Personne
 }
 ```

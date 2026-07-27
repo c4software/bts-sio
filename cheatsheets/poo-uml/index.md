@@ -10,6 +10,12 @@ Ce document présente l'équivalence entre une représentation UML et la syntaxe
 [[toc]]
 :::
 
+::: warning Un instant !
+
+Certains exemples de ce document utilisent une écriture « pseudo-PHP » pour coller au plus près du diagramme UML. En particulier, la surcharge (plusieurs méthodes ou constructeurs avec le même nom) **n'existe pas en PHP** : dans un vrai projet PHP, vous utiliseriez un seul constructeur avec des paramètres optionnels. En Java ou en C#, la surcharge est en revanche possible.
+
+:::
+
 ## Un diagramme de classes est un graphe :
 
 - Nœud du graphe = Classe
@@ -43,8 +49,8 @@ Spécification de la navigabilité :
 
 ```php
 class Personne {
-    private String nom;
-    public int age;
+    private string $nom;
+    public int $age;
 
     function __construct($nom, $age){
         $this->nom = $nom;
@@ -60,7 +66,7 @@ class Personne {
     }
 
     function setNom($nom){
-        return $this->nom = $nom;
+        $this->nom = $nom;
     }
 }
 ```
@@ -68,6 +74,8 @@ class Personne {
 ## La surcharge
 
 ![La surcharge](./res/uml_surcharge.png)
+
+⚠️ Rappel : ce code illustre le concept, mais la surcharge n'est pas possible en PHP (ce code provoquerait une erreur). Elle est en revanche valide en Java ou en C#.
 
 ```php
 <?php
@@ -107,9 +115,9 @@ class SimpleClass
 
 ```php
 class Voiture {
-    public Integer $vitesse;
-    private Integer $nombreKm;
-    private Date $annéeFabrication;
+    public int $vitesse;
+    private int $nombreKm;
+    private DateTime $annéeFabrication;
     private Personne $lePropriétaire;
 
     function __construct($nombreKm, $date, $lePropriétaire){
@@ -131,11 +139,11 @@ class Voiture {
 }
 
 class Personne {
-    private String $nom;
-    private String $prenom;
-    private String $salaire;
-    private Date $dateNaissance;
-    Int $nbEnfant;
+    private string $nom;
+    private string $prenom;
+    private float $salaire;
+    private DateTime $dateNaissance;
+    public int $nbEnfant;
 
     function __construct($nom, $prenom){
         $this->nom = $nom;
@@ -179,10 +187,10 @@ class Enseignant {
 
 ```php
 class Caserne {
-    private string nom;
-    private string addresse;
-    private Pompier leChef;
-    private Camion[] lesCamions = [];
+    private string $nom;
+    private string $addresse;
+    private Pompier $leChef;
+    private array $lesCamions = []; // Collection de Camion
 
     function __construct($nom, $addresse, $leChef){
         $this->nom = $nom;
@@ -210,7 +218,7 @@ class Caserne {
 }
 
 class Pompier {
-    private nom;
+    private $nom;
 
     function __construct($nom){
         $this->nom = $nom;
@@ -222,7 +230,7 @@ class Pompier {
 }
 
 class Camion {
-    private immatriculation;
+    private $immatriculation;
 
     function __construct($immatriculation){
         $this->immatriculation = $immatriculation;
@@ -240,8 +248,8 @@ class Camion {
 
 ```php
 class Personne {
-    private nom;
-    public age;
+    protected $nom; // protected : accessible depuis les classes filles
+    public $age;
 
     function __construct($nom, $age){
         $this->nom = $nom;
@@ -254,7 +262,7 @@ class Personne {
 }
 
 class Etudiant extends Personne {
-    private ine;
+    private $ine;
 
     function __construct($ine, $nom, $age){
         parent::__construct($nom, $age);
@@ -277,9 +285,9 @@ $etudiant->toString(); // Affiche « Valentin, 34, 0X… »
 
 ```php
 class Personne {
-    private nom;
-    public age;
-    private lesAdresses = [];
+    protected $nom; // protected : accessible depuis les classes filles
+    public $age;
+    protected $lesAdresses = [];
 
     function __construct($nom, $age, $lesAdresses){
         $this->nom = $nom;
@@ -293,7 +301,7 @@ class Personne {
 }
 
 class Etudiant extends Personne {
-    private ine;
+    private $ine;
 
     function __construct($ine, $nom, $age, $lesAdresses){
         parent::__construct($nom, $age, $lesAdresses);
@@ -301,7 +309,7 @@ class Etudiant extends Personne {
     }
 
     function toString(){
-        return "{$this->nom}, {$this->age}, {$this->ine}, Nombre d'adresses => {count($this->lesAdresses)}";
+        return "{$this->nom}, {$this->age}, {$this->ine}, Nombre d'adresses => " . count($this->lesAdresses);
     }
 }
 
@@ -316,10 +324,10 @@ $etudiant->toString(); // Affiche « Valentin, 34, 0X…, Nombre d'adresses => 1
 
 ```php
 class Caserne {
-    private nom;
-    private addresse;
-    private leChef;
-    private lesCamions = [];
+    private $nom;
+    private $addresse;
+    private $leChef;
+    private $lesCamions = [];
 
     function __construct($nom, $addresse, $leChef){
         $this->nom = $nom;
@@ -347,8 +355,8 @@ class Caserne {
 }
 
 class Personne {
-    private nom;
-    public age;
+    protected $nom;
+    public $age;
 
     function __construct($nom, $age){
         $this->nom = $nom;
@@ -361,7 +369,7 @@ class Personne {
 }
 
 class Pompier extends Personne {
-    private grade;
+    private $grade;
 
     function __construct($nom, $age, $grade){
         parent::__construct($nom, $age);
@@ -374,7 +382,7 @@ class Pompier extends Personne {
 }
 
 class Camion {
-    private immatriculation;
+    private $immatriculation;
 
     function __construct($immatriculation){
         $this->immatriculation = $immatriculation;
@@ -393,8 +401,8 @@ class Camion {
 ```php
 abstract class Personne
 {
-    private $nom = "";
-    private $prenom = "";
+    protected $nom = ""; // protected : accessible depuis les classes filles
+    protected $prenom = "";
 
     abstract public function printInfo();
 

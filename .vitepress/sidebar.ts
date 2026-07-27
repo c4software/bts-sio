@@ -41,7 +41,8 @@ export default [
           { text: "Polymorphisme", link: "/cours/exercices/poo/polymorphisme" },
           { text: "Les Interface 1", link: "/cours/exercices/poo/les-interfaces-1" },
           { text: "Les Interface 2", link: "/cours/exercices/poo/les-interfaces-2" },
-          { text: "Les classes abstraites", link: "/cours/exercices/poo/les-classes-abstraites.md" }
+          { text: "Les classes abstraites", link: "/cours/exercices/poo/les-classes-abstraites.md" },
+          { text: "Préparation à l'examen", link: "/cours/exercices/poo/preparation-examen" }
         ]
       },
 

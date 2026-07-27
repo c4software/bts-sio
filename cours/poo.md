@@ -2,7 +2,7 @@
 aside: false
 ---
 
-# Slides POO la Programmation Orientée Objet
+# Slides POO : la Programmation Orientée Objet
 
 <ClientOnly>
 <SlidesDeck src="poo" />
