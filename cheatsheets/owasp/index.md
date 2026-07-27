@@ -16,7 +16,7 @@ Prévenir plutôt que guérir… Quelques sites à surveiller :
 - [The Hacker News](https://thehackernews.com/)
 - [Zataz](https://www.zataz.com/)
 - [Reddit NetSec](https://www.reddit.com/r/netsec/)
-- [Next INpact](https://www.nextinpact.com/) (~payant)
+- [Next (anciennement Next INpact)](https://next.ink/) (~payant)
 - [CERT-FR (ANSSI)](https://www.cert.ssi.gouv.fr/)
 - Google Actu
 
@@ -32,7 +32,7 @@ Vous êtes la première ligne d’informations !
 
 ## Les grandes catégories de failles
 
-- Les mots de passe (multi-facteurs, complexité, hashage).
+- Les mots de passe (multi-facteurs, complexité, hachage).
 - Les failles dans le code (injections, XSS, CSRF, etc.).
 - Les failles dans les configurations (serveur, application, etc.).
 - Le social engineering (le maillon faible, l'humain).
@@ -86,11 +86,11 @@ Il est donc important de sécuriser le SSO avec des méthodes d'authentification
 
 ### Principes de base
 
-Avoir un mot de passe hashé ne suffit pas. Il faut aussi le saler.
+Avoir un mot de passe haché ne suffit pas. Il faut aussi le saler.
 
 ![Salage](./res/salt.png)
 
-Le salage est une technique qui permet d’ajouter une chaîne aléatoire au mot de passe avant (ou après) de le hacher. Idéalement le sel est différent par utilisateur, cela permet de rendre le mot de passe unique pour chaque utilisateur.
+Le salage est une technique qui permet d’ajouter une chaîne aléatoire au mot de passe avant de le hacher. Idéalement le sel est différent par utilisateur, cela permet de rendre le hachage unique pour chaque utilisateur.
 
 ### Des algorithmes : Le bcrypt
 
@@ -100,7 +100,7 @@ Le bcrypt est un algorithme de hachage qui :
 - Intègre un coût (nombre d'itérations). Plus le coût est élevé, plus le hachage est long (et donc plus sécurisé).
 - Est basé sur l'algorithme de chiffrement Blowfish (et non SHA-256).
 
-## Résumé :
+## Résumé
 
 Les mots de passe :
 
@@ -119,18 +119,18 @@ Les mots de passe :
 Des **outils** :
 
 - **Mot de passe :** Un mot de passe avec un niveau de sécurité suffisant (longueur, caractères spéciaux, majuscules, minuscules, chiffres).
-- **Application :** OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
+- **Application :** OTP (One Time Password) : SMS, Google Authenticator, Authy.
 - **Objet physique :** U2F (Universal 2nd Factor) : Clé USB, Yubikey.
 - **Biométrie :** Empreinte digitale, Reconnaissance faciale.
 
-Mais surtout c'est :
+Mais surtout, l'authentification à plusieurs facteurs :
 
-- Permet de sécuriser les mots de passe en ajoutant une couche de sécurité supplémentaire.
-- Via un secret partagé entre la personne **physique** et le site.
+- Sécurise le compte en ajoutant une couche de sécurité supplémentaire au mot de passe.
+- Repose sur un secret partagé entre la personne **physique** et le site.
 
 ### Les impacts liés à la sécurité
 
-La sécurité informatique dans une application c’est un « équilibre »
+La sécurité informatique dans une application, c’est un « équilibre » :
 
 - Impact fonctionnel
 - Limitation de l’expérience utilisateur (UX)
@@ -160,7 +160,7 @@ Deux exemples en vidéo :
 
 La sécurité c’est un état d’esprit à intégrer.
 
-C’est **votre métier**
+C’est **votre métier**.
 
 ![](./res/toutes_les_etapes.png)
 
@@ -172,7 +172,7 @@ La traçabilité est un élément clé de la sécurité. Elle permet de savoir q
 
 ## Supply Chain Attacks
 
-Les Supply Chain Attacks sont des attaques ciblant les dépendances logicielles. Très courantes de nos jours. Les dépendances logicielles sont partout dans nos applications (nuget, composer, npm, pip, etc.), mais également sur nos serveurs (apt, yum, docker, etc.). Exemple : la faille Log4Shell en 2021.
+Les Supply Chain Attacks sont des attaques ciblant les dépendances logicielles. Très courantes de nos jours. Les dépendances logicielles sont partout dans nos applications (nuget, composer, npm, pip, etc.), mais également sur nos serveurs (apt, yum, docker, etc.). Exemples : l'attaque SolarWinds en 2020, la backdoor découverte dans XZ Utils en 2024.
 
 Concrètement, voici comment ça peut se dérouler :
 
@@ -197,12 +197,16 @@ S'assurer d'une qualité continue du code avec :
 
 > _Source: Wikipédia_
 
-[Site de Owasp](https://owasp.org/)
+[Site d'OWASP](https://owasp.org/)
+
+::: tip Au passage
+Depuis 2023, l'acronyme OWASP signifie officiellement « Open **Worldwide** Application Security Project », pour refléter un périmètre plus large que le seul Web.
+:::
 
 OWASP liste 10 grandes catégories de failles **à connaître** (version 2021) :
 
 - **A01:2021 – Contrôles d'accès défaillants** : Les vulnérabilités liées aux contrôles d'accès permettent aux utilisateurs d'agir en dehors de leurs permissions prévues.
-- **A02:2021 – Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire. Exemple : mots de passe non hashés en base de données, absence de HTTPS.
+- **A02:2021 – Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire. Exemple : mots de passe non hachés en base de données, absence de HTTPS.
 - **A03:2021 – Injection** : Les attaques par injection (SQL, NoSQL, OS, LDAP) surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête.
 - **A04:2021 – Conception non sécurisée** : Désigne l'absence ou la faiblesse de la conception des contrôles de sécurité. Exemple : absence de contrôle dans un système de routage Web, manque de validation des entrées, absence de protection anti-bot.
 - **A05:2021 – Mauvaise configuration de sécurité** : Configuration incomplète ou trop permissive, services inutiles activés, comptes par défaut non modifiés, messages d'erreur trop détaillés.
@@ -243,12 +247,12 @@ Injection SQL, Shell...
 
 Souvent la plus connue et la plus rencontrée :
 
-```sql
-SELECT * FROM client WHERE id='" . $_GET["id"] . "'
+```php
+$maRequete = "SELECT * FROM client WHERE id='" . $_GET["id"] . "'";
 ```
 
 ```
-http://exemple.com/liste?id='or '1'='1
+http://exemple.com/liste?id=1' or '1'='1
 ```
 
 ::: tip C'est la base de la sécurité
@@ -288,8 +292,8 @@ http://exemple.com/?jsessionid=A2938298D293
 
 #### Comment corriger ?
 
-- Toujours utiliser des sessions cryptées.
-- Toujours utiliser des sessions avec un identifiant unique.
+- Toujours transmettre l'identifiant de session via un cookie sécurisé (`HttpOnly`, `Secure`), jamais dans l'URL.
+- Toujours utiliser des sessions avec un identifiant unique et aléatoire.
 - Toujours utiliser des sessions avec un TTL (Time To Live).
 
 ### Cross-Site Scripting (XSS)
@@ -410,7 +414,7 @@ Exposition de données sensibles comme les mots de passe, les numéros de carte 
 #### Comment corriger ?
 
 - Toujours utiliser le HTTPS.
-- Toujours utiliser des mots de passe chiffrés (hashés + sel).
+- Toujours stocker les mots de passe hachés et salés (jamais chiffrés, le hachage n'est pas réversible).
 - Toujours supprimer les données inutiles.
 - Toujours supprimer les données sensibles des logs.
 - Protéger les données sensibles dans la base de données (chiffrement).
@@ -455,15 +459,23 @@ Ajoutez un identifiant/jeton dans la requête, unique et non réutilisable. Int�
 - Ajouter un jeton unique dans les formulaires.
 
 ```php
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
+<input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
 
-// Côté PHP
-if (isset($_POST['_token']) && $_POST['_token'] == $_SESSION['_token']) {
+// Côté PHP, à la réception du formulaire
+if (isset($_POST['_token']) && hash_equals($_SESSION['_token'], $_POST['_token'])) {
     // On peut traiter la requête
 } else {
     die();
 }
 ```
+
+::: tip Pourquoi `hash_equals()` et pas `==` ?
+
+Une comparaison classique (`==` ou `===`) s'arrête au premier caractère différent. Le temps de réponse du serveur varie donc selon le nombre de caractères corrects au début de la chaîne. En mesurant très précisément ces temps de réponse, un attaquant peut deviner le jeton caractère par caractère : c'est une **attaque temporelle** (timing attack).
+
+`hash_equals()` compare toujours les deux chaînes en entier, quel que soit l'endroit où elles diffèrent. Le temps de réponse est constant et ne révèle aucune information. À utiliser dès que vous comparez un secret (jeton CSRF, signature, clé API).
+
+:::
 
 ### Utilisation de composants avec des vulnérabilités connues
 
@@ -478,7 +490,7 @@ Failles liées à l’utilisation de composants tiers vulnérables.
 #### Comment corriger ?
 
 - Toujours mettre à jour les composants tiers.
-- Ne pas utiliser de vieux frameworks (exemple PHP 4, ou Symfony 1.4)
+- Ne pas utiliser de vieux frameworks (exemple : PHP 4 ou Symfony 1.4).
 
 ### Redirections et Renvois non validés
 
