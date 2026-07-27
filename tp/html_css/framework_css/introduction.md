@@ -70,7 +70,7 @@ Par contre, il implémente des « codes » / « usages » de Google, et permet d
 
 J'ai volontairement limité la liste des frameworks CSS à 3, mais il en existe d'autres. Je vous invite à les découvrir, et à vous faire votre propre avis.
 
-Avant d'allez plus loin, je vous invite à vous rendre sur la liste des frameworks CSS présentés un peu plus haut, et à regarder les sites web de démonstration. Cela vous permettra de vous faire une idée de ce que vous pouvez faire avec ces frameworks CSS.
+Avant d'aller plus loin, je vous invite à vous rendre sur la liste des frameworks CSS présentés un peu plus haut, et à regarder les sites web de démonstration. Cela vous permettra de vous faire une idée de ce que vous pouvez faire avec ces frameworks CSS.
 
 ::: tip Un instant
 
@@ -119,12 +119,12 @@ Nous allons découvrir dans un premier temps Bootstrap. Celui-ci repose sur un e
 
 Voici les pages importantes pour débuter :
 
-- [Introduction](https://getbootstrap.com/docs/5.2/getting-started/introduction/), qui vous explique comment créer la première page HTML avec Bootstrap.
-- [Layout](https://getbootstrap.com/docs/5.2/layout/containers/), qui vous explique comment créer la structure de votre page avec Bootstrap.
-- [Grid](https://getbootstrap.com/docs/5.2/layout/grid/), qui vous explique comment créer une page responsive avec Bootstrap.
-- [Les formulaires](https://getbootstrap.com/docs/5.2/forms/overview/), qui vous explique comment créer des formulaires avec Bootstrap.
-- [Les boutons](https://getbootstrap.com/docs/5.2/components/buttons/), qui vous explique comment créer des boutons avec Bootstrap.
-- [Les cards](https://getbootstrap.com/docs/5.2/components/card/), qui vous explique comment créer des cards avec Bootstrap.
+- [Introduction](https://getbootstrap.com/docs/5.3/getting-started/introduction/), qui vous explique comment créer la première page HTML avec Bootstrap.
+- [Layout](https://getbootstrap.com/docs/5.3/layout/containers/), qui vous explique comment créer la structure de votre page avec Bootstrap.
+- [Grid](https://getbootstrap.com/docs/5.3/layout/grid/), qui vous explique comment créer une page responsive avec Bootstrap.
+- [Les formulaires](https://getbootstrap.com/docs/5.3/forms/overview/), qui vous explique comment créer des formulaires avec Bootstrap.
+- [Les boutons](https://getbootstrap.com/docs/5.3/components/buttons/), qui vous explique comment créer des boutons avec Bootstrap.
+- [Les cards](https://getbootstrap.com/docs/5.3/components/card/), qui vous explique comment créer des cards avec Bootstrap.
 
 ::: tip Un instant
 
@@ -145,16 +145,16 @@ Pour cela, je vous invite à créer un fichier `index.html` dans un dossier `boo
 
 ```html
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
     <h1>Hello, world!</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
 ```
@@ -174,7 +174,7 @@ Nous allons maintenant créer une structure responsive, modifier le code précé
 </div>
 ```
 
-Testez à nouveau dans votre navigateur. À l'aide de [la documentation](https://getbootstrap.com/docs/5.2/layout/containers/), regardez ce qui se passe lorsque vous réduisez la taille de la fenêtre. Vous devriez voir que le texte est centré, et que la largeur de la page est limitée.
+Testez à nouveau dans votre navigateur. À l'aide de [la documentation](https://getbootstrap.com/docs/5.3/layout/containers/), regardez ce qui se passe lorsque vous réduisez la taille de la fenêtre. Vous devriez voir que le texte est centré, et que la largeur de la page est limitée.
 
 #### Et que le texte soit centré ! 🎉
 
@@ -196,7 +196,7 @@ Uniquement sur mobile ?
 </div>
 ```
 
-Eh oui, c'est aussi simple que ça ! Je vous laisse regarder la documentation pour en savoir plus. [La documentation](https://getbootstrap.com/docs/5.2/utilities/text/#text-alignment).
+Eh oui, c'est aussi simple que ça ! Je vous laisse regarder la documentation pour en savoir plus. [La documentation](https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment).
 
 ### Une grille responsive
 
@@ -219,7 +219,7 @@ Nous allons modifier le code précédent pour créer une grille de 2 colonnes (u
 </div>
 ```
 
-Testez à nouveau dans votre navigateur. À l'aide de [la documentation](https://getbootstrap.com/docs/5.2/layout/grid/), regardez ce qui se passe lorsque vous réduisez la taille de la fenêtre. Vous devriez voir que les colonnes passent les unes en dessous des autres.
+Testez à nouveau dans votre navigateur. À l'aide de [la documentation](https://getbootstrap.com/docs/5.3/layout/grid/), regardez ce qui se passe lorsque vous réduisez la taille de la fenêtre. Vous devriez voir que les colonnes passent les unes en dessous des autres.
 
 ### Créer une liste avec des cards
 

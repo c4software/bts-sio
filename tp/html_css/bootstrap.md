@@ -10,7 +10,7 @@ Dans ce TP nous allons découvrir le framework CSS Bootstrap.
 
 ## Introduction
 
-Bootstrap est un Framework massivement utilisé dans le monde des développeurs Web. Il date maintenant de quelques années, mais celui-ci est mis à jour régulièrement, ce qui lui permet d'être toujours à jour et toujours très intéressant. Les créateurs de Bootstrap sont Twitter, vous ne serez donc pas vraiment surpris si celui-ci ressemble « sous certains aspects » à l'interface du site Twitter.com.
+Bootstrap est un Framework massivement utilisé dans le monde des développeurs Web. Il date maintenant de quelques années, mais celui-ci est mis à jour régulièrement, ce qui lui permet d'être toujours à jour et toujours très intéressant. Bootstrap a été créé par Twitter, vous ne serez donc pas vraiment surpris si celui-ci ressemble « sous certains aspects » à l'interface du site Twitter.com.
 
 Bootstrap est très vaste, et très bien documenté. Le TP n'a pas pour but de vous apprendre « à utiliser Bootstrap », mais plutôt vous faire découvrir celui-ci pour que vous l'utilisiez aussi souvent que possible.
 
@@ -34,7 +34,7 @@ Vous pouvez également remplacer votre fichier HTML vide par [le starter templat
 
 Je vous laisse valider que votre site fonctionne correctement.
 
-:hand: Vérifiez bien qu'il n'y a pas d'erreur réseau lors du chargement de la page (avec l'inspecteur d'élément).
+:hand: Vérifiez bien qu'il n'y a pas d'erreur réseau lors du chargement de la page (avec l'inspecteur d'éléments).
 
 Questions :
 
@@ -67,20 +67,22 @@ Voilà un exemple de NavBar :
 
 ```html
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Contact</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 ```

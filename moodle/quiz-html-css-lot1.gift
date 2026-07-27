@@ -1,0 +1,114 @@
+// Questionnaire HTML Lot 1 : Les bases (structure, texte, liens, images, tableaux)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique
+
+$CATEGORY: HTML CSS/Lot 1 - Les bases du HTML
+
+// --- QCM ---
+
+::HTML-L1-Q1 Les rôles::Dans un site web, quel est le rôle du HTML ?{
+=Structurer et organiser le contenu#Exact, la mise en forme est le rôle de la CSS.
+~Mettre en forme les couleurs et les polices#Non, c'est le rôle de la CSS.
+~Rendre la page interactive#Non, c'est plutôt le rôle du JavaScript.
+~Stocker les données du site#Non, c'est le rôle d'une base de données.
+}
+
+::HTML-L1-Q2 Le doctype::Quelle est la toute première ligne d'une page HTML 5 ?{
+=<!DOCTYPE html>#Exact, elle indique au navigateur qu'il s'agit d'une page HTML 5.
+~<html version\="5">
+~<doctype html5>
+~<head>
+}
+
+// --- Mot manquant ---
+
+::HTML-L1-Q3 L'encodage::Pour que les accents s'affichent correctement, on ajoute dans le head la balise <meta {=charset ~encoding ~lang ~format ~accents}\="utf-8" />.
+
+// --- Vrai/Faux ---
+
+::HTML-L1-Q4 Les sauts de ligne::Dans un fichier HTML, appuyer sur la touche Entrée crée un saut de ligne visible sur la page.{F#Non, le navigateur ignore les retours à la ligne du code. C'est la structure (paragraphes, balises) qui gère l'affichage.}
+
+::HTML-L1-Q5 Code source public::N'importe quel visiteur peut afficher le code HTML de votre page (commentaires compris).{T#Exact, clic droit puis « Afficher le code source ». Il ne faut donc jamais y mettre d'information sensible.}
+
+// --- QCM ---
+
+::HTML-L1-Q6 Les titres::Combien de balises <h1> est-il recommandé d'avoir par page ?{
+=Une seule#Exact, le h1 est le titre principal, la suite de la hiérarchie utilise h2, h3…
+~Une par section
+~Autant que l'on veut, c'est une question de taille de texte
+~Aucune, c'est une balise obsolète
+}
+
+::HTML-L1-Q7 Le sens du texte::Quelle balise indique qu'un mot est fortement important (affiché en gras par défaut) ?{
+=<strong>#Exact, et c'est bien une question de sens, pas d'apparence.
+~<b>#La balise b existe, mais elle ne porte pas de sens, strong est la réponse attendue dans ce cours.
+~<em>#Non, em est une emphase légère (italique par défaut).
+~<bold>
+}
+
+// --- Réponse courte ---
+
+::HTML-L1-Q8 Attribut d'image::Quel attribut obligatoire de la balise img contient la description textuelle de l'image (accessibilité, référencement) ? Répondez par le nom de l'attribut uniquement.{
+=alt
+=%100%ALT#Pensez aux minuscules, mais la réponse est correcte.
+}
+
+// --- QCM ---
+
+::HTML-L1-Q9 Chemin relatif::Votre page est dans le dossier article/, votre image dans le dossier img/ (à la racine). Quel chemin fonctionne depuis la page ?{
+=../img/photo.jpg#Exact, il faut d'abord remonter d'un dossier avec ../
+~img/photo.jpg#Non, ce chemin cherche un dossier img à l'intérieur du dossier article.
+~/article/img/photo.jpg
+~photo.jpg
+}
+
+::HTML-L1-Q10 Le mailto::Quel href permet d'ouvrir le logiciel de messagerie du visiteur ?{
+=mailto\:contact@exemple.fr#Exact.
+~mail\:contact@exemple.fr
+~email\:contact@exemple.fr
+~send\:contact@exemple.fr
+}
+
+// --- Réponses multiples ---
+
+::HTML-L1-Q11 Formats d'image::Quels formats d'image sont adaptés au web ? (plusieurs réponses){
+~%50%JPEG (pour les photos)
+~%50%PNG (pour les graphiques et la transparence)
+~%-50%BMP#Non, format non compressé, beaucoup trop lourd pour le web.
+~%-50%DOCX#Non, ce n'est pas un format d'image.
+}
+
+// --- Appariement ---
+
+::HTML-L1-Q12 Balises et usages::Associez chaque balise à son usage.{
+=<ul> -> Une liste à puces
+=<ol> -> Une liste numérotée
+=<a> -> Un lien
+=<table> -> Un tableau
+= -> Un saut de page
+= -> Une image de fond
+}
+
+// --- Mot manquant ---
+
+::HTML-L1-Q13 Fusion de cellules::Pour fusionner deux cellules côte à côte dans un tableau, on utilise l'attribut {=colspan ~rowspan ~merge ~colfusion ~span}\="2" sur la cellule.
+
+// --- QCM ---
+
+::HTML-L1-Q14 Structure de tableau::Quelle balise regroupe la ligne d'en-tête d'un tableau ?{
+=<thead>#Exact, avec tbody pour le corps et tfoot pour le pied.
+~<theader>
+~<th>#Presque : th est une cellule d'en-tête, pas le groupe de lignes.
+~<caption>#Non, caption est le titre du tableau.
+}
+
+::HTML-L1-Q15 Balises structurantes::Quelle balise HTML 5 contient les liens de navigation principaux du site ?{
+=<nav>#Exact.
+~<menu>
+~<header>#Non, le header est l'en-tête (logo, titre), même s'il contient souvent le nav.
+~<links>
+}
+
+// --- Numérique ---
+
+::HTML-L1-Q16 Niveaux de titres::Combien de niveaux de titres (h1, h2, …) existe-t-il en HTML ?{#6}

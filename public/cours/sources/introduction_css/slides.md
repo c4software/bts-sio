@@ -73,7 +73,7 @@ Nous devons donc vérifier le support.
 
 ---
 
-![CSS Rulset](./res/css-ruleset.png)
+![CSS Ruleset](./res/css-ruleset.png)
 
 ---
 
@@ -179,11 +179,29 @@ Comment le lire ?
 | #item     | Élément avec id `item`              |
 | .item     | Élément(s) avec class `item`        |
 | p         | Élément(s) de type `p`              |
-| div, p    | Élément(s) de type `div`, `p`       |
-| p > i     | Élément(s) de type `i` dans `p`     |
-| .item > i | Élément(s) de type `i` dans `.item` |
+| div, p    | Élément(s) de type `div` ou `p`     |
+| p > i     | Élément(s) de type `i` enfant direct de `p`     |
+| .item > i | Élément(s) de type `i` enfant direct de `.item` |
 
-Consulter [une liste plus complète ici](https://www.w3.org/Style/css3-selectors-updates/WD-css3-selectors-20010126.fr.html#selectors)
+Consulter [une liste plus complète ici](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_selectors)
+
+---
+
+## Les balises « neutres »
+
+- `<span>` : une portion **dans** une ligne.
+- `<div>` : un **bloc** entier.
+
+Aucun sens, juste des crochets pour votre CSS.
+
+---
+
+## Les commentaires
+
+```css
+/* Ceci est un commentaire CSS,
+   sur plusieurs lignes si besoin */
+```
 
 ---
 
@@ -222,366 +240,6 @@ color: red !important;
 
 ---
 
-## Mise en pratique
-
-[Découverte de la CSS](/tp/html_css/tp2.html)
-
----
-
-## Espacement
-
-### Reproduire un design
-
----
-
-## Padding
-
-Espacement à l'intérieur de l'élément
-
----
-
-## Margin
-
-Espacement à l'extérieur de l'élément
-
----
-
-![Padding et Margin](./res/margin_padding.png)
-
----
-
-## Fond et couleurs
-
-Bien évidemment en CSS nous pouvons personnaliser les fonds (couleurs et images)
-
----
-
-## Les couleurs
-
-### 3 notations
-
----
-
-## En anglais
-
-- blue
-- red
-- …
-
-Assez rapidement limité. [Seulement 140 couleurs](https://www.w3schools.com/cssref/css_colors.asp)
-
----
-
-## En hexadécimal
-
-![Hex Reading](./res/hex-reading.png)
-
-Notation connue et utilisée partout.
-
----
-
-## RGB
-
-```css
-rgb(246, 243, 242);
-```
-
-Identique à la notation en hexadécimal.
-
----
-
-## Comment choisir ?
-
-![Color Picker](./res/picker.png)
-
----
-
-- Gimp
-- Photoshop
-- [Ou en ligne](https://www.webfx.com/web-design/color-picker/)
-- [Directement sur Google](https://www.google.com/search?q=colorpicker&oq=colorpicker)
-
----
-
-## Utilisation
-
-- Couleur du texte.
-- Couleur du fond.
-- Les bordures
-- …
-
----
-
-```css
-.maClass {
-  /* Couleur de fond */
-  background-color: #fafafa;
-}
-
-.maClass {
-  /* Couleur du texte */
-  color: #fafafa;
-}
-
-.maClass {
-  /* Couleur de la bordure */
-  border: 1px solid #fafafa;
-}
-```
-
----
-
-```css
-body {
-  background: black;
-  color: white;
-}
-```
-
-Que va-t-il s'afficher ?
-
----
-
-## Les images
-
-Les images ne sont pas limitées à la balise `<img>`
-
----
-
-## C'est possible en CSS
-
-### Et partout
-
-```css
-body {
-  background-image: url("greta.png");
-}
-```
-
----
-
-![Logo Repeat](./res/logo_repeat.png)
-
----
-
-## C'est moche hein ?
-
----
-
-## Vous pouvez compléter avec :
-
-| Propriété             | Valeurs                                      |
-| --------------------- | -------------------------------------------- |
-| background-attachment | fixed, scroll                                |
-| background-repeat     | no-repeat, repeat-x, repeat-y, repeat        |
-| background-position   | en pixel, ou top, bottom, left, right, center |
-
----
-
-```css
-body {
-  background-image: url("greta.png");
-  background-attachment: fixed; /* Le Logo sera fixe */
-  background-repeat: no-repeat; /* Le logo ne sera pas répété */
-  background-position: center; /* Le logo sera centré */
-}
-```
-
----
-
-![Center](./res/logo_center.png)
-
----
-
-## La propriété background est « combinable »
-
-### Ce qui donne
-
-```css
-background: url("greta.png") fixed no-repeat center;
-```
-
----
-
-## Formater du texte
-
-- Gras, Italic, Souligné
-- Font-Style
-- Font-Family
-- Taille du texte (em, rem, px)
-- Les alignements (left, right, center)
-
----
-
-[Voir le support de cours](/tp/html_css/support.html)
-
----
-
-## Placer les éléments
-
-- Absolute ?
-- Relative ?
-- Flottant ?
-
----
-
-## Absolute
-
-### Point d'origine « la fenêtre entière »
-
-![Position Absolute](./res/absolute.png)
-
----
-
-```css
-position: absolute;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-```
-
----
-
-## Relative
-
-### Point d'origine le parent
-
-![Position relative](./res/relative.png)
-
----
-
-```css
-position: relative;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-```
-
----
-
-[Jouer avec les positions](https://www.w3schools.com/cssref/playit.asp?filename=playcss_position)
-
----
-
-## Flottant
-
-![Float left](./res/float-left.png)
-![Float right](./res/float-right.png)
-
----
-
-## Flottant
-
-```html
-<html>
-  <body>
-    <h1>Mon titre</h1>
-    <p>
-      <img
-        class="float"
-        src="https://www.greta-cfa-paysdelaloire.fr/wp-content/themes/kookline/static/img/logo-cfa.png"
-      />
-      L’accueil de tous les publics : les formations du GRETA-CFA 49 concernent
-      les salariés d’entreprises, les jeunes en insertion professionnelle et les
-      demandeurs d’emploi, mais aussi toute personne qui souhaite se former à
-      titre individuel.
-    </p>
-
-    <style>
-      .float {
-        float: left;
-      }
-    </style>
-  </body>
-</html>
-```
-
----
-
-## Centrer en CSS
-
-- `text-align: center`
-- `margin: auto`
-- `display: flex`
-- `display: grid`
-- […](https://web.dev/centering-in-css/)
-
----
-
-## Le placement simplifié
-
-### avec `Flex`
-
----
-
-## `Flexbox`
-
-- Placer vos éléments en colonnes, en X, en Y.
-- Gérer en colonne et en ligne.
-- Gérer l'ordre d'affichage.
-- Gérer le centrage.
-
----
-
-[Voir le support de cours](/tp/html_css/support.html#le-placement-simplifie)
-
-(Et surtout mettre en pratique)
-
----
-
-## Décoration / Mise en forme
-
-### Se passer des images pour le style
-
----
-
-- Box-shadow
-- border
-- border-radius
-
----
-
-![Border et Shadow](./res/border_shadow.png)
-
----
-
-```css
-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-```
-
-[Générateur en ligne](https://cssgenerator.org/box-shadow-css-generator.html)
-
----
-
-```css
-border: 1px solid red;
-border-radius: 10px;
-```
-
----
-
-## Interactivité
-
-### Les pseudo-classes
-
----
-
-Les pseudo-classes permettent d'appliquer un style à un élément non seulement en fonction de son contenu dans l'arbre du document, mais aussi en fonction de facteurs externes (l'historique de navigation par exemple avec :visited ; le statut du contenu avec :checked ; la position de la souris :hover).
-
----
-
-- :hover
-- :active
-- :visited
-
----
-
-<iframe src="/demo/css/survol/index.html" />
-
----
-
 ## Les ressources d'exemples
 
 - CodePen
@@ -600,44 +258,21 @@ Les pseudo-classes permettent d'appliquer un style à un élément non seulement
 
 ---
 
-## Le CSS « avancé »
+## Récapitulatif
 
-- Les variables CSS
-- Les animations
-- Le responsive
-- Grid & Flex
+- Une règle CSS : un sélecteur + des déclarations.
+- Les sélecteurs : balise, `.class`, `#id`.
+- La feuille de style externe, partagée entre les pages.
+- La cascade décide qui gagne.
 
 ---
 
-[Voir le support de cours](/tp/html_css/support.html#le-css-«-plus-plus-»)
+## Des questions ?
+
+Place au TP 🚀
 
 ---
 
 ## Mise en pratique
 
-[Mise en pratique](/tp/html_css/tp3.html)
-
----
-
-## L'organisation de la CSS
-
-### Les Designs Patterns
-
-- [BEM - Block Element Modifier](http://getbem.com/)
-- [Atomic Design](https://atomicdesign.bradfrost.com/)
-
----
-
-## Écrire moins… Pour gagner plus !
-
-[Le framework Bootstrap](/tp/html_css/bootstrap.html)
-
----
-
-## Écrire moins… Pour gagner plus !
-
-![Sass Logo](./res/sass.png)
-
-- [Sass / Scss](https://sass-lang.com/)
-- [Less](http://lesscss.org/)
-- [Post CSS](https://postcss.org/)
+[Découverte de la CSS](/tp/html_css/tp2.html)

@@ -8,7 +8,7 @@ description: La liste des TP JavaScript (des bases jusqu'à VueJS) dans l'ordre 
 Vous trouverez ici la liste des TP JavaScript, dans l'ordre dans lequel je vous conseille de les réaliser. Le JavaScript s'exécute dans le navigateur, il vient compléter ce que vous avez vu côté serveur avec le PHP.
 
 ::: warning Les prérequis
-Le HTML et la CSS doivent être acquis avant de commencer (voir [les TP web de base](/pages/categories/les-tp-web-de-base.md)).
+Le HTML et la CSS doivent être acquis avant de commencer (voir [les fondamentaux du web](/pages/categories/les-fondamentaux-du-web.md)).
 :::
 
 ## Étape 1 : Les bases du JavaScript

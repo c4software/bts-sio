@@ -1,10 +1,92 @@
 ---
-description: Dans ce TP nous allons « mettre en pratique » ce que nous avons vu de manière théorique dans le cours sur le Responsive. Cette notion est primordiale, le trafic provenant d'un mobile n'est pas/plus à négliger.
+description: "Dans ce TP nous allons découvrir Flexbox puis mettre en pratique le Responsive. Cette notion est primordiale, le trafic provenant d'un mobile n'est pas/plus à négliger."
 ---
 
-# Mise en pratique Responsive
+# Flexbox et Responsive
 
-Dans ce TP nous allons « mettre en pratique » ce que nous avons vu de manière théorique dans le cours sur le Responsive. Cette notion est primordiale, le trafic provenant d'un mobile n'est pas/plus à négliger.
+::: details Sommaire
+[[toc]]
+:::
+
+Dans ce TP nous allons « mettre en pratique » ce que nous avons vu de manière théorique dans le cours sur le Responsive. Cette notion est primordiale, le trafic provenant d'un mobile n'est pas/plus à négliger. Et pour y arriver, nous allons d'abord nous équiper de l'outil de mise en page moderne par excellence : **Flexbox**.
+
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : Flexbox (conteneur, direction, alignements) et les media queries.
+
+<ClientOnly>
+<SlidesDeck src="css_flexbox_responsive" />
+</ClientOnly>
+
+## Prérequis
+
+- Avoir réalisé le [TP 3 : Mise en pratique CSS](./tp3.md).
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- Mettre en page des éléments avec Flexbox.
+- Activer le responsive avec la meta viewport.
+- Adapter l'affichage à la taille d'écran avec les media queries.
+
+## Flexbox, la mise en page moderne
+
+Historiquement, les développeurs ont tout essayé pour mettre des éléments côte à côte : des tableaux HTML (berk), des `float` (bof)… Aujourd'hui nous avons **Flexbox** : vous déclarez un **conteneur**, et le navigateur place ses **enfants directs** intelligemment.
+
+```css
+.conteneur {
+  display: flex;
+}
+```
+
+C'est tout : les enfants du conteneur se placent côte à côte. Ensuite, cinq propriétés couvrent l'essentiel des besoins :
+
+- `flex-direction` : le sens (`row` en ligne, `column` en colonne).
+- `flex-wrap` : le comportement quand la place manque (`wrap` autorise le passage à la ligne).
+- `justify-content` : la répartition sur l'axe principal (`center`, `space-between`, …).
+- `align-items` : l'alignement sur l'axe secondaire (`center`, `stretch`, …).
+- `flex` (sur un enfant) : sa capacité à grandir (`flex: 1` = « prends l'espace disponible »).
+
+Le fameux centrage parfait, horizontal **et** vertical, tient en trois lignes :
+
+```css
+.conteneur {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
+::: details Question : justify-content ou align-items, comment s'en souvenir ?
+`justify-content` travaille sur l'axe **principal** (celui de `flex-direction`), `align-items` sur l'axe **secondaire** (perpendiculaire). En `row` (le défaut) : justify = horizontal, align = vertical. Si vous passez en `column`, les deux s'inversent ! C'est le piège classique.
+:::
+
+::: tip S'entrainer en s'amusant
+Le meilleur moyen d'ancrer Flexbox : [Flexbox Froggy](https://flexboxfroggy.com/#fr), un petit jeu où vous placez des grenouilles en écrivant de la CSS. Je vous laisse faire quelques niveaux, c'est redoutablement efficace. Le détail complet des propriétés est [dans le support](/tp/html_css/support.md#le-placement-simplifie).
+:::
+
+### À faire
+
+Sur une page de test, réaliser une barre de navigation avec Flexbox : un logo à gauche, trois liens à droite.
+
+::: details Voir l'une des solutions possibles
+
+```css
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+```
+
+:::
 
 ## Introduction
 
@@ -21,7 +103,7 @@ Avant d'aller plus loin, je vous laisse regarder la vidéo, l'analyser, afin de 
 
 ## Activation du responsive
 
-En cours je vous ai parlé de « deux étapes » pour activer le responsive. La première est la mise en place de la `meta` indiquant à votre navigateur que le contenu doit prendre la largeur de l'écran. Pour ça ajouter la `meta` suivante dans votre projet.
+En cours je vous ai parlé de « deux étapes » pour activer le responsive. La première est la mise en place de la `meta` indiquant à votre navigateur que le contenu doit prendre la largeur de l'écran. Pour ça, ajoutez la `meta` suivante dans votre projet.
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -82,7 +164,7 @@ Je vous laisse analyser la CSS, mais côté responsive nous avons seulement :
 
 ### Modification
 
-Essayer de modifier la CSS, retirer par exemple :
+Essayez de modifier la CSS, retirez par exemple :
 
 ```css
 main > section {
@@ -115,3 +197,33 @@ Nous l'avons vu en cours il est possible de personnaliser l'affichage lors de l'
 - Le pied de page
 
 Au final j'aimerais qu'il ne reste que « les articles », simplement entourés d'une petite bordure de type `dashed`.
+
+## Le fil rouge : votre blog
+
+Le grand final du fil rouge : rendre votre blog **adaptable à toute taille d'écran** !
+
+- Ajouter la meta viewport dans toutes les pages.
+- Sur grand écran : les cartes d'articles s'affichent en grille (Flexbox + `flex-wrap`).
+- Sur mobile : les cartes passent les unes sous les autres, les espacements se resserrent.
+- Tester avec le mode mobile de l'inspecteur d'éléments.
+
+::: details Coup de pouce : par où commencer ?
+C'est exactement ce que vous venez de faire dans ce TP, appliqué à votre projet : un `display: flex; flex-wrap: wrap;` sur le conteneur des cartes, et une media query pour ajuster ce qui doit l'être. Repartez de votre code du TP, adaptez les sélecteurs.
+:::
+
+::: tip Point de contrôle
+Votre blog est agréable à lire du téléphone au grand écran, sans défilement horizontal. Faites-moi valider avant de partir : c'est la dernière étape du fil rouge, votre blog est terminé, bravo !
+:::
+
+## Conclusion
+
+Dans ce TP vous avez :
+
+- Mis en page des éléments avec Flexbox (conteneur, axes, alignements).
+- Activé le responsive avec la meta viewport.
+- Écrit des media queries pour adapter l'affichage (écran et impression).
+- Rendu votre blog responsive, dernière étape du fil rouge.
+
+Pensez à sauvegarder votre travail. La suite : le [deuxième point étape évalué](./eval2.md), puis [le maquettage](./maquette.md) et [les frameworks CSS](./framework_css/introduction.md).
+
+👋 Si vous avez des questions, n'hésitez pas.

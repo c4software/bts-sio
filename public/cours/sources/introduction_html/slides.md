@@ -32,17 +32,17 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 ---
 
 - 1989-1990 : Création du « concept »
-- 1993: HTML 1.0
-- 1995: HTML 2.0
+- 1993 : HTML 1.0
+- 1995 : HTML 2.0
 
 ---
 
-- 1997: HTML 4.0 (Création du W3C)
-- 2000: XHTML
+- 1997 : HTML 4.0 (Création du W3C)
+- 2000 : XHTML
 
 ---
 
-- 2007: Le renouveau
+- 2007 : Le renouveau
 
 ---
 
@@ -108,7 +108,7 @@ La structure
 
 ---
 
-## Le HTML c'est du XML
+## Le HTML c'est un langage de balises
 
 ### Avec au minimum 4 éléments
 
@@ -125,9 +125,9 @@ La structure
 ---
 
 - Le doctype
-- <html> En tout début et en toute fin de document.
-- <head> Informations servant au navigateur, mais non affichées (Méta, CSS, JS, etc.).
-- <body> Corps de votre page (ce que vous allez afficher)
+- `<html>` En tout début et en toute fin de document.
+- `<head>` Informations servant au navigateur, mais non affichées (Méta, CSS, JS, etc.).
+- `<body>` Corps de votre page (ce que vous allez afficher)
 
 ---
 
@@ -315,7 +315,7 @@ La toile, Le Web…
 
 ---
 
-## Créer une seconde page:
+## Créer une seconde page
 
 - Ajouter un titre (`<h1>` + `<title>`)
 - Ajouter une balise audio `<audio>`
@@ -330,16 +330,6 @@ La toile, Le Web…
 - Google
 - Stackoverflow
 - [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
-
----
-
-## Créer une troisième page
-
-- Ajouter un titre (`<h1>` + `<title>`)
-- Créer un tableau (`table`). Celui-ci doit contenir.
-  - 3 colonnes
-  - 20 lignes
-  - Un entête et un pied de tableau
 
 ---
 
@@ -422,7 +412,17 @@ Rendre mon site visible au public
 
 ---
 
+## Récapitulatif
+
+- Le HTML structure le contenu (balises, attributs, arbre DOM).
+- La sémantique donne du sens (header, nav, section, footer…).
+- Un site se teste en local, puis s'héberge en ligne.
+
+---
+
 ## Des questions ?
+
+Place au TP 🚀
 
 ---
 

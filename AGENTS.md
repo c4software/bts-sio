@@ -59,6 +59,7 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
 - Consignes sans pas-à-pas, mais un bloc `::: details Coup de pouce : <sujet>` après chaque étape.
 - Pas de rapport : tout passe par le README.md (contenu attendu défini dans tp/php/eval1.md#le-readme-md, y renvoyer).
 - Restitution : code poussé sur https://gitlab.dombtsig.local puis lien déposé dans Moodle. Pas de zip ni de formulaire.
+- Exception séquence 1er semestre (Git pas encore vu) : aucune mention de Git ni de commit dans les TP ; restitution des évaluations en archive zip déposée sur Moodle (avec rappel de vérifier l'archive avant dépôt).
 
 ## Quiz GIFT (`moodle/*.gift`)
 

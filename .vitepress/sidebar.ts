@@ -91,11 +91,23 @@ export default [
                 collapsed: true,
                 text: "Les TP",
                 items: [
-                    { text: "Découverte du HTML", link: "/tp/html_css/tp1.md" },
-                    { text: "Découverte de la CSS", link: "/tp/html_css/tp2.md" },
-                    { text: "Mise en pratique CSS", link: "/tp/html_css/tp3.md" },
-                    { text: "Mise en pratique Responsive", link: "/tp/html_css/tp4.md" },
-                    { text: "Mon CV", link: "/tp/html_css/tp5.md" },
+                    { text: "Le parcours (10 semaines)", link: "/pages/categories/les-fondamentaux-du-web.md" },
+                    { text: "TP 1 : Découverte du HTML", link: "/tp/html_css/tp1.md" },
+                    { text: "TP 1.1 : Liens, images et tableaux", link: "/tp/html_css/tp1.1.md" },
+                    { text: "TP 2 : Découverte de la CSS", link: "/tp/html_css/tp2.md" },
+                    { text: "TP 2.1 : Texte, couleurs et fonds", link: "/tp/html_css/tp2.1.md" },
+                    { text: "TP 2.2 : Le modèle des boîtes", link: "/tp/html_css/tp2.2.md" },
+                    { text: "TP 3 : Mise en pratique CSS", link: "/tp/html_css/tp3.md" },
+                    { text: "TP 4 : Flexbox et Responsive", link: "/tp/html_css/tp4.md" },
+                ]
+            },
+            {
+                collapsed: true,
+                text: "Les évaluations",
+                items: [
+                    { text: "Éval 1 : Ma page passion", link: "/tp/html_css/eval1.md" },
+                    { text: "Éval 2 : La une du journal", link: "/tp/html_css/eval2.md" },
+                    { text: "Éval finale : Mon CV en ligne", link: "/tp/html_css/tp5.md" },
                 ]
             },
             {
@@ -149,7 +161,7 @@ export default [
         text: "Le PHP",
         collapsed: true,
         items: [
-            { text: "Le parcours conseillé", link: "/pages/categories/les-tp-web-de-base.md" },
+            { text: "Le parcours conseillé", link: "/pages/categories/les-tp-php-de-base.md" },
             {
                 text: "Les cours", collapsed: true, items: [
                     { text: "Slides introduction PHP", link: "/cours/introduction_php" },

@@ -1,0 +1,123 @@
+// Questionnaire CSS Lot 2 : Les bases de la CSS (sélecteurs, boîtes, flexbox, responsive)
+// Import Moodle : Banque de questions > Importer > Format GIFT (encodage UTF-8)
+// Types : QCM, vrai/faux, réponse courte, appariement, mot manquant, numérique
+
+$CATEGORY: HTML CSS/Lot 2 - Les bases de la CSS
+
+// --- QCM ---
+
+::CSS-L2-Q1 Où déclarer la CSS::Quelle est la façon recommandée de déclarer sa CSS ?{
+=Dans un fichier externe lié avec une balise link#Exact, la CSS est ainsi centralisée et partagée entre toutes les pages.
+~Dans une balise style du head#Possible, mais la CSS n'est alors pas partagée entre les pages.
+~Dans l'attribut style de chaque balise#La pire pratique, à éviter au maximum.
+~Dans un fichier nommé obligatoirement design.txt
+}
+
+// --- Mot manquant ---
+
+::CSS-L2-Q2 La balise link::Pour charger une feuille de style, on écrit dans le head \: <link rel\="stylesheet" {=href ~src ~url ~file ~link}\="css/style.css" />.
+
+// --- QCM ---
+
+::CSS-L2-Q3 Les sélecteurs::Que cible le sélecteur .rouge ?{
+=Tous les éléments ayant class\="rouge"#Exact, le point cible une class.
+~L'élément ayant id\="rouge"#Non, un id se cible avec un dièse.
+~Toutes les balises <rouge>
+~Tous les textes de couleur rouge
+}
+
+// --- Vrai/Faux ---
+
+::CSS-L2-Q4 Unicité de l'id::Un même id peut être utilisé sur plusieurs éléments d'une même page.{F#Non, un id doit être unique dans la page. Pour réutiliser un style, on utilise une class.}
+
+// --- QCM ---
+
+::CSS-L2-Q5 L'héritage::Vous écrivez body { color\: blue\; }. De quelle couleur seront les paragraphes de la page (sans autre règle) ?{
+=Bleus#Exact, ils héritent de la couleur du body. C'est l'héritage, le « C » de CSS.
+~Noirs#Non, les paragraphes héritent de la couleur définie sur leur parent.
+~Sans couleur, il faut obligatoirement une règle sur p
+~Une erreur s'affiche
+}
+
+::CSS-L2-Q6 Les unités::Pourquoi privilégier l'unité em plutôt que le pixel pour la taille du texte ?{
+=La taille s'adapte au contexte et aux préférences du visiteur#Exact, 1.3em signifie 30 % plus grand que le parent.
+~Le em s'affiche plus net que le pixel
+~Le pixel est interdit en CSS 3
+~Le em est plus rapide à charger
+}
+
+// --- Réponse courte ---
+
+::CSS-L2-Q7 Couleur du texte::Quelle propriété CSS définit la couleur du texte d'un élément ? Répondez par le nom de la propriété uniquement.{
+=color
+=%100%COLOR#Pensez aux minuscules, mais la réponse est correcte.
+}
+
+// --- QCM ---
+
+::CSS-L2-Q8 L'hexadécimal::Que représente la couleur \#FFFFFF ?{
+=Le blanc#Exact, toutes les composantes rouge, vert et bleu au maximum.
+~Le noir#Non, le noir c'est \#000000.
+~Le rouge pur
+~Une couleur invalide
+}
+
+// --- Appariement ---
+
+::CSS-L2-Q9 Propriétés et effets::Associez chaque propriété CSS à son effet.{
+=font-weight -> Le niveau de gras du texte
+=text-align -> L'alignement du texte
+=border-radius -> Les coins arrondis
+=box-shadow -> L'ombre d'un bloc
+= -> La vitesse de chargement
+= -> Le nombre de colonnes du tableau
+}
+
+// --- QCM ---
+
+::CSS-L2-Q10 Padding ou margin::Vous voulez écarter le texte de la bordure de sa boîte. Quelle propriété utilisez-vous ?{
+=padding#Exact, le padding est l'espace intérieur (le « rembourrage »).
+~margin#Non, la margin est l'espace extérieur, entre la boîte et ses voisines.
+~spacing
+~border-space
+}
+
+// --- Mot manquant ---
+
+::CSS-L2-Q11 Centrer un bloc::Pour centrer horizontalement un bloc qui a une largeur définie, on écrit margin\: {=auto ~center ~middle ~0 ~50%}\;.
+
+// --- Réponses multiples ---
+
+::CSS-L2-Q12 Les balises block::Parmi ces balises, lesquelles sont de type « block » ? (plusieurs réponses){
+~%50%<p>
+~%50%<div>
+~%-50%<span>#Non, span est une balise inline.
+~%-50%<strong>#Non, strong est une balise inline.
+}
+
+// --- QCM ---
+
+::CSS-L2-Q13 Les pseudo-classes::Quel sélecteur applique un style au survol de la souris ?{
+=a\:hover#Exact.
+~a\:survol
+~a\:active#Non, active correspond au moment du clic.
+~a\:focus#Non, focus correspond à la sélection au clavier.
+}
+
+::CSS-L2-Q14 Flexbox::Dans un conteneur display\: flex\; en direction row, quelle propriété répartit les éléments sur l'axe horizontal ?{
+=justify-content#Exact, justify-content agit sur l'axe principal.
+~align-items#Non, align-items agit sur l'axe secondaire (vertical en row).
+~text-align#Non, text-align aligne du texte, pas des boîtes flex.
+~flex-align
+}
+
+::CSS-L2-Q15 Media queries::Que signifie @media (min-width\: 768px) { … } ?{
+=Les règles s'appliquent si l'écran fait 768px de large ou plus#Exact, min-width signifie « à partir de ».
+~Les règles s'appliquent si l'écran fait moins de 768px#Non, ça c'est max-width.
+~La page ne peut pas être affichée sous 768px
+~L'image de fond fera au minimum 768px
+}
+
+// --- Vrai/Faux ---
+
+::CSS-L2-Q16 La meta viewport::Sans la balise meta viewport, les media queries ne donnent pas le résultat attendu sur mobile.{T#Exact, sans elle le mobile simule un grand écran (environ 980px). C'est la première étape du responsive.}

@@ -5,10 +5,10 @@ description: La liste des TP « PHP avancés » (POO, MVC, Laravel) dans l'ordre
 
 # Les TP PHP avancés
 
-Vous trouverez ici la liste des TP « avancés » du PHP, dans l'ordre dans lequel je vous conseille de les réaliser. Ce parcours prend la suite [des TP web de base](/pages/categories/les-tp-web-de-base.md) : la structure, les formulaires, la session et la base de données doivent être acquis avant de commencer.
+Vous trouverez ici la liste des TP « avancés » du PHP, dans l'ordre dans lequel je vous conseille de les réaliser. Ce parcours prend la suite [des TP PHP de base](/pages/categories/les-tp-php-de-base.md) : la structure, les formulaires, la session et la base de données doivent être acquis avant de commencer.
 
 ::: warning Les prérequis
-Vous n'avez pas encore terminé [les TP web de base](/pages/categories/les-tp-web-de-base.md) ? Commencez par là, l'ensemble des TP de cette page s'appuie dessus.
+Vous n'avez pas encore terminé [les TP PHP de base](/pages/categories/les-tp-php-de-base.md) ? Commencez par là, l'ensemble des TP de cette page s'appuie dessus.
 :::
 
 ## Étape 1 : La POO et le MVC

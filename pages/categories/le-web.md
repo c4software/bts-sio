@@ -8,7 +8,7 @@ Le développement Web est un domaine très vaste. Vous trouverez ici des ressour
 
 ## Par où commencer ?
 
-Si vous débutez, suivez [les TP web de base dans l'ordre](/pages/categories/les-tp-web-de-base.md) : HTML/CSS, puis PHP, puis SQL, et enfin la transition vers Laravel.
+Si vous débutez, commencez par [les fondamentaux du web](/pages/categories/les-fondamentaux-du-web.md) (HTML + CSS), puis enchainez avec [les TP PHP de base](/pages/categories/les-tp-php-de-base.md) : PHP, puis SQL, et enfin la transition vers Laravel.
 
 Les bases acquises, poursuivez avec [les TP PHP avancés](/pages/categories/les-tp-php-avances.md) : la POO, le MVC, puis Laravel jusqu'au déploiement.
 

@@ -40,6 +40,30 @@ Cette liste est bien évidemment non exhaustive.
 C'est une notation universelle qui sera également valable en JavaScript
 :::
 
+## L'héritage et la cascade
+
+Le « C » de CSS signifie **Cascading** : les styles « ruissellent » de parent en enfant. Concrètement, une balise hérite des propriétés définies sur ses parents :
+
+```css
+body {
+  font-family: Verdana, sans-serif;
+  color: #333333;
+}
+```
+
+Avec ces quelques lignes, tout votre site (paragraphes, listes, titres…) est en Verdana gris foncé, sans écrire une seule règle sur `p` ou `h1`.
+
+Et si plusieurs règles se disputent un même élément ? Deux principes :
+
+- **La règle la plus précise gagne** : une règle sur `h1` bat l'héritage venu de `body`.
+- **À précision égale, la dernière déclarée gagne** : l'ordre de votre fichier compte.
+
+Pour la culture, l'ordre général d'application est : style du navigateur, puis CSS externe, puis balise `<style>`, puis attribut `style=""`. Et il existe un `!important` qui court-circuite tout… à réserver aux cas désespérés, il rend la CSS très difficile à maintenir.
+
+::: tip La bonne stratégie
+Définissez le style « général » sur `body` (police, couleurs), puis affinez uniquement ce qui doit être différent. Moins de code, plus de cohérence.
+:::
+
 ## Les espacements
 
 Actuellement vos éléments sont tous « collés » aux autres. C'est normal vous n'avez aucun espacement de défini. En CSS vous avez la possibilité de choisir deux types d'espacements :
@@ -53,6 +77,29 @@ En termes d'unités, nous avons plusieurs choix :
 
 - en pixel (exemple `padding: 10px`)
 - en pourcentage (exemple `margin: 10%`)
+
+## Dimensions : min, max et débordement
+
+Pour dimensionner un élément, vous avez `width` et `height`. Mais une valeur fixe est rigide, et un pourcentage parfois trop petit… Les propriétés `min-width`, `max-width` (et leurs équivalentes en hauteur) permettent d'encadrer la taille :
+
+```css
+.contenu {
+  width: 60%;
+  min-width: 400px; /* Jamais plus étroit que 400px */
+  max-width: 900px; /* Jamais plus large que 900px */
+}
+```
+
+Ces propriétés sont précieuses pour le responsive : votre bloc s'adapte, mais dans des limites que vous maitrisez.
+
+Et si le contenu est plus grand que la boîte ? La propriété `overflow` décide du comportement :
+
+| Valeur    | Comportement                          |
+| --------- | ------------------------------------- |
+| `visible` | Le contenu dépasse (défaut)           |
+| `hidden`  | Le contenu est coupé                  |
+| `scroll`  | Barres de défilement toujours visibles |
+| `auto`    | Barres de défilement si nécessaire 👍 |
 
 ## Fonds et couleurs
 
@@ -74,7 +121,7 @@ Une couleur « Hex » est représentée comme ça :
 
 ![Couleur Hexa](/cours/sources/introduction_css/res/hex-reading.png)
 
-Vous pouvez l'écrire à la main… C'est une question d'habitude! Mais le plus simple est de passer par un logiciel qui possède un « colorimètre » (un Color Picker en anglais) :
+Vous pouvez l'écrire à la main… C'est une question d'habitude ! Mais le plus simple est de passer par un logiciel qui possède un « colorimètre » (un Color Picker en anglais) :
 
 - Gimp
 - Photoshop
@@ -93,7 +140,7 @@ Vous allez le voir, il est possible d'appliquer un fond sur « presque » n'impo
 
 #### Définir un fond
 
-Mettre un fond à un élément en HTML s'effectue avec la propriété `background-image`. Celle-ci accepte plusieurs formats d'image, cette liste dépend de votre navigateur, mais a minima vous pouvez mettre :
+Mettre un fond à un élément s'effectue en CSS avec la propriété `background-image`. Celle-ci accepte plusieurs formats d'image, cette liste dépend de votre navigateur, mais a minima vous pouvez mettre :
 
 - png
 - jpeg
@@ -110,7 +157,7 @@ Une fois votre fichier « au bon format » il vous suffit de spécifier le lien 
 ::: danger Attention
 De base, le fond se répète à l'infini dans toutes les directions.
 
-_Exemple avec le logo du Greta :_
+_Exemple avec le logo du lycée :_
 ![Fond répétition](/cours/sources/introduction_css/res/logo_repeat.png)
 :::
 
@@ -124,7 +171,7 @@ Nous avons donc la liste suivante :
 | --------------------- | -------------------------------------------- |
 | background-attachment | fixed, scroll                                |
 | background-repeat     | no-repeat, repeat-x, repeat-y, repeat        |
-| background-position   | en pixel, ou top, bottom, left, right center |
+| background-position   | en pixel, ou top, bottom, left, right, center |
 
 `background-repeat` va nous permettre de choisir le comportement de répétitions du fond. Cette propriété permet de définir une non-répétition avec `no-repeat`, mais également d'autres options comme une répétition seulement en `x` ou seulement en `y`.
 
@@ -151,14 +198,14 @@ L'ensemble des propriétés est combinable afin d'afficher le fond **tel que vou
 
 ```css
 body {
-  background-image: url("greta.png");
+  background-image: url("logo.png");
   background-attachment: fixed; /* Le Logo sera fixe */
   background-repeat: no-repeat; /* Le logo ne sera pas répété */
   background-position: center; /* Le logo sera centré */
 }
 ```
 
-_En reprenant le logo du greta comme exemple :_
+_En reprenant le logo du lycée comme exemple :_
 
 ![Fond sans répétition](/cours/sources/introduction_css/res/logo_center.png)
 
@@ -169,12 +216,24 @@ _En reprenant le logo du greta comme exemple :_
 Comme vous pouvez le voir, rapidement « ça va être verbeux », en CSS vous pouvez combiner l'ensemble des propriétés via une notation appelée « short-hand » :
 
 ```css
-background: url("greta.png") fixed no-repeat center;
+background: url("logo.png") fixed no-repeat center;
 ```
 
 ::: tip Astuce de pro
 Ne vous inquiétez pas, votre IDE (éditeur de code) vous proposera très certainement de simplifier votre CSS.
 :::
+
+#### La transparence
+
+La propriété `opacity` (de 0 à 1) rend un élément plus ou moins transparent :
+
+```css
+img {
+  opacity: 0.6; /* 60 % opaque */
+}
+```
+
+Attention, elle s'applique à l'élément **entier**, ses enfants compris (le texte d'une `div` à `opacity: 0.5` sera lui aussi à moitié transparent). Pour un simple fond semi-transparent, préférez une couleur `rgba(0, 0, 0, 0.5)` (le dernier paramètre est l'alpha).
 
 ## Formater du texte
 
@@ -187,7 +246,7 @@ Comme je vous le disais précédemment, votre navigateur est un vrai « Word »,
 | text-decoration | Décoration de votre police         | underline, line-through                                       |
 | font-size       | Définit la taille de votre texte   | Taille absolue _ou_ relative (px, em ou anglais)              |
 | color           | La couleur de votre texte          | Couleur en hexa, Anglais ou RGB (comme les fonds donc)         |
-| text-align      | Position de votre texte            | Positionnement de votre texte (left, right, center, justify…) |
+| text-align      | Alignement de votre texte          | Positionnement de votre texte (left, right, center, justify…) |
 | font-family     | Police à utiliser                  | Nom d'une police « présente sur le navigateur de la personne » |
 
 ### Choisir la police
@@ -250,7 +309,7 @@ Les `px` ne sont pas la seule unité disponible vous pouvez également définir 
 
 #### Relative
 
-La notation relative est clairement la notation à privilégier, celle-ci utilise une notation en `em` (ou `rem`) elle permet de définir une taille de texte qui changera proportionnellement à la densité de pixel de l'écran de la personne qui visite votre site 👌.
+La notation relative est clairement la notation à privilégier, celle-ci utilise une notation en `em` (ou `rem`). Elle permet de définir une taille de texte relative, qui s'adaptera à la configuration (taille de texte par défaut, écran) de la personne qui visite votre site 👌.
 
 ::: tip À savoir
 `em`, `rem` ? Kézako ? La notation `em` est relative au parent. La notation `rem` est basée à la racine de votre document. Concrètement ça veut dire que votre taille sera relative au parent ou non.
@@ -287,6 +346,40 @@ Je vais me répéter, mais comme dans « word » vous pouvez en CSS placer votre
 
 Je ne m'étale pas sur le sujet les valeurs parlent d'elles-mêmes.
 
+## Mettre en forme les tableaux
+
+Sans CSS, un tableau HTML s'affiche « à plat », sans bordures. Quelques propriétés à connaitre :
+
+```css
+td,
+th {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+table {
+  border-collapse: collapse; /* Fusionne les bordures voisines */
+}
+```
+
+- `border-collapse: collapse` évite l'effet « double bordure » entre les cellules, c'est quasiment systématique.
+- `vertical-align` (sur `td`) contrôle l'alignement vertical du contenu dans la cellule (`top`, `middle`, `bottom`).
+
+::: tip Le tableau zébré
+Un grand classique pour la lisibilité, une ligne sur deux colorée grâce à la pseudo-classe `:nth-child` :
+
+```css
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #e0e0e0;
+}
+```
+
+:::
+
 ## Placer des éléments
 
 En CSS il est possible de placer les éléments dans la page. Nous avons deux possibilités pour placer les éléments :
@@ -298,7 +391,7 @@ En CSS il est possible de placer les éléments dans la page. Nous avons deux po
 
 Les positions absolue et relative fonctionnent de la même façon, mais n'ont pas la même référence de placement
 
-`absolue` Un placement absolu prend sa référence par rapport au coin en haut à gauche du navigateur du client.
+`absolute` Un placement absolu prend sa référence par rapport au coin en haut à gauche de la fenêtre du navigateur (ou du premier parent lui-même positionné).
 
 ```html
 <html>
@@ -322,7 +415,7 @@ Les positions absolue et relative fonctionnent de la même façon, mais n'ont pa
 
 ![Position Absolute](./res/absolute.png)
 
-`relative` Un placement relatif prend sa référence par rapport au parent de l'élément à placer.
+`relative` Un placement relatif décale l'élément par rapport à sa position « normale » dans la page (celle qu'il aurait sans positionnement).
 
 ```html
 <html>
@@ -362,8 +455,8 @@ Le placement en CSS fonctionne donc toujours de la même façon :
 
 Vous utilisez un mobile, vous savez donc que la taille d'un écran est « variable » et surtout plus ou moins grande. Pour répondre à cette problématique, le placement (`top`, `bottom`, `right`, `left`) possède une multitude d'unités possibles :
 
-- En pixel (non responsive :danger:).
-- en pourcentage (attention responsive, mais par rapport **à la largeur de l'écran**).
+- En pixel (non responsive ⚠️).
+- En pourcentage (responsive, par rapport **à la taille du parent**).
 - en VH (pourcentage par rapport à la hauteur de l'écran).
 - en VW (pourcentage par rapport à la largeur de l'écran).
 
@@ -383,14 +476,11 @@ Autre possibilité de placement. En CSS il est possible de rendre les éléments
   <body>
     <h1>Mon titre</h1>
     <p>
-      <img
-        class="float"
-        src="https://www.greta-cfa-paysdelaloire.fr/wp-content/themes/kookline/static/img/logo-cfa.png"
-      />
-      L’accueil de tous les publics : les formations du GRETA-CFA 49 concernent
-      les salariés d’entreprises, les jeunes en insertion professionnelle et les
-      demandeurs d’emploi, mais aussi toute personne qui souhaite se former à
-      titre individuel.
+      <img class="float" src="logo.png" alt="Logo du lycée" />
+      Le BTS SIO (Services Informatiques aux Organisations) forme en deux ans
+      aux métiers de l'informatique : le développement d'applications avec
+      l'option SLAM, ou l'administration des systèmes et des réseaux avec
+      l'option SISR.
     </p>
 
     <style>
@@ -461,7 +551,7 @@ _Nous allons simplement écrire :_
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -476,7 +566,7 @@ _Nous allons simplement écrire :_
   </head>
   <body>
     <div class="flex">
-      <img src="greta.png" alt="Logo du Greta" />
+      <img src="logo.png" alt="Logo du lycée" />
       <h1>Ceci est un titre</h1>
     </div>
   </body>
@@ -544,7 +634,7 @@ La propriété `box-shadow` nous permet de définir un ensemble de paramètres p
 
 ## Interactivité
 
-Vous l'avez certainement remarqué vos liens (balise `<a></a>`) ne sont pas vraiment très jolis, ils sont certainement violets et de couleurs différentes si vous avez cliqué sur le lien en question, ou même simplement au survol de la souris
+Vous l'avez certainement remarqué vos liens (balise `<a></a>`) ne sont pas vraiment très jolis, ils sont certainement violets et de couleurs différentes si vous avez cliqué sur le lien en question, ou même simplement au survol de la souris.
 
 Nous avons la possibilité en CSS de personnaliser via un sélecteur le comportement d'un élément pour des états spécifiques (survol, visité …)
 
@@ -588,7 +678,7 @@ En quelques mots, avec les pseudo-éléments nous allons pouvoir faire des séle
 
 ## Les variables CSS
 
-Vous l'avez certainement remarqué, en CSS nous avons beaucoup d'unité, de valeurs, de couleurs… Historiquement nous devions manuellement « recopier » les valeurs identiques partout ou nous les utilisions (ou alors utiliser des solutions alternative tel que [la SCSS](https://sass-lang.com/)). En CSS 3.0 nous avons la possibilité de déclarer des variables qui seront utilisables plus tard, la syntaxe est similaire à ce que nous avons déjà vu à savoir `clé: valeur`.
+Vous l'avez certainement remarqué, en CSS nous avons beaucoup d'unités, de valeurs, de couleurs… Historiquement nous devions manuellement « recopier » les valeurs identiques partout où nous les utilisions (ou alors utiliser des solutions alternatives telles que [la SCSS](https://sass-lang.com/)). En CSS 3.0 nous avons la possibilité de déclarer des variables qui seront utilisables plus tard, la syntaxe est similaire à ce que nous avons déjà vu à savoir `clé: valeur`.
 
 Pour déclarer une variable, il suffit d'ajouter `--` devant une propriété par exemple :
 
@@ -653,7 +743,7 @@ transition: all 1s;
 
 ## Le responsive
 
-Le responsive ? Le responsive, c'est le nom que l'on donne à un site web qui s'adapte à la taille de l'écran. C'est un vaste sujet, très vaste… Nous sommes ici dans une introduction aux bases du HTML, je pense qu'il faudrait plus de détail pour vraiment comprendre les tenants et les aboutissants du responsive.
+Le responsive ? Le responsive, c'est le nom que l'on donne à un site web qui s'adapte à la taille de l'écran. C'est un vaste sujet, très vaste… Nous sommes ici dans une introduction aux bases du HTML et de la CSS, je pense qu'il faudrait plus de détails pour vraiment comprendre les tenants et les aboutissants du responsive.
 
 Ce que vous pouvez retenir, c'est que de manière générale le responsive est exprimé en colonnes, généralement 12. Nous allons donc déterminer combien de colonnes doivent s'afficher en fonction de la taille de l'écran (large, medium, small). C'est donc une langue commune entre le designer et le développeur.
 
@@ -728,22 +818,22 @@ Que vous choisissiez la première ou la seconde façon de faire il n'y a pas de 
 ## Des « Breakpoints génériques » ?
 
 ```css
-// Small devices (landscape phones, 576px and up)
+/* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
   /* Votre CSS pour cette résolution */
 }
 
-// Medium devices (tablets, 768px and up)
+/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   /* Votre CSS pour cette résolution */
 }
 
-// Large devices (desktops, 992px and up)
+/* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   /* Votre CSS pour cette résolution */
 }
 
-// Extra large devices (large desktops, 1200px and up)
+/* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   /* Votre CSS pour cette résolution */
 }
@@ -785,7 +875,7 @@ Le principe de fonctionnement repose sur un système de colonne(s) _ou_ de ligne
 - Améliorer la qualité de vos sites Internet.
 - Vous montrer comment intégrer les éléments de Bootstrap.
 
-N'hésitez pas à vous en servir dans vos développements. Ils sont [disponibles ici](https://getbootstrap.com/docs/4.5/examples)
+N'hésitez pas à vous en servir dans vos développements. Ils sont [disponibles ici](https://getbootstrap.com/docs/5.3/examples/)
 :::
 
 ### La révolution du grid
@@ -810,8 +900,8 @@ grid: auto-flow dense / 40px 40px 1fr;
 
 ![grid2](./res/grid2.png)
 
-::: danger Attention au support
-Le système de grid est plutôt « récent » l'ensemble des navigateurs n'intègre pas encore toute la spécification. N'hésitez pas à aller voir [Can I Use](https://caniuse.com/?search=grid)
+::: tip Et le support ?
+Le système de grid est aujourd'hui très bien supporté par l'ensemble des navigateurs récents. En cas de doute sur une fonctionnalité précise, n'hésitez pas à aller voir [Can I Use](https://caniuse.com/?search=grid)
 :::
 
 #### S'entrainer avec le Grid
@@ -833,7 +923,7 @@ L'organisation / la structure est un élément important en développement. Le m
 
 ### Écrire moins… Pour gagner plus !
 
-Vous l'avez remarqué (si ce n’est pas le cas, vous allez rapidement le voir), la CSS est rapidement très « verbeux » c'est-à-dire que nous avons à écrire beaucoup de choses pour faire ce que l'on souhaite. (Les sélecteurs, les propriétés, etc.)
+Vous l'avez remarqué (si ce n’est pas le cas, vous allez rapidement le voir), la CSS est rapidement très « verbeuse » c'est-à-dire que nous avons à écrire beaucoup de choses pour faire ce que l'on souhaite. (Les sélecteurs, les propriétés, etc.)
 
 Nous avons maintenant un certain nombre d'outils appelés « Pré-Processeurs CSS » qui ont pour but de nous faire écrire moins (ou mieux), le plus utilisé pour l'instant est Sass / Scss. Mais il existe des alternatives :
 
@@ -841,7 +931,7 @@ Nous avons maintenant un certain nombre d'outils appelés « Pré-Processeurs CS
 - [Less](http://lesscss.org/)
 - [Post CSS](https://postcss.org/)
 
-C'est un vaste sujet, ce qu'il faut retenir c'est que votre navigateur ne comprend **que la CSS**, la SCSS (ou autre) est écrite par vous et transformée par un outil en CSS pour que votre navigateur puisse le comprendre. Voilà quelques exemples :
+C'est un vaste sujet, ce qu'il faut retenir c'est que votre navigateur ne comprend **que la CSS**, la SCSS (ou autre) est écrite par vous et transformée par un outil en CSS pour que votre navigateur puisse la comprendre. Voilà quelques exemples :
 
 ```scss
 a {

@@ -1,27 +1,17 @@
 ---
 aside: false
-description: La liste des TP « web de base » dans l'ordre dans lequel je vous conseille de les réaliser.
+description: La liste des TP PHP « de base » dans l'ordre dans lequel je vous conseille de les réaliser.
 ---
 
-# Les TP web de base
+# Les TP PHP de base
 
-Vous trouverez ici la liste des TP « de base » du web, dans l'ordre dans lequel je vous conseille de les réaliser. Chaque TP s'appuie sur les notions vues dans les précédents, respecter l'ordre vous garantit d'avoir toujours les prérequis nécessaires.
+Vous trouverez ici la liste des TP PHP « de base », dans l'ordre dans lequel je vous conseille de les réaliser. Chaque TP s'appuie sur les notions vues dans les précédents, respecter l'ordre vous garantit d'avoir toujours les prérequis nécessaires.
 
-## Étape 1 : HTML et CSS
-
-Avant de rendre un site dynamique, il faut savoir construire une page.
-
-1. [TP 1 : Découverte du HTML](/tp/html_css/tp1.md)
-2. [TP 2 : Découverte de la CSS](/tp/html_css/tp2.md)
-3. [TP 3 : Mise en pratique CSS](/tp/html_css/tp3.md)
-4. [TP 4 : Mise en pratique Responsive](/tp/html_css/tp4.md)
-5. [TP 5 : Mon CV](/tp/html_css/tp5.md)
-
-::: tip Les supports associés
-[Complément HTML](/cheatsheets/html/) et [Complément CSS](/tp/html_css/support.md).
+::: warning Les prérequis
+Le HTML et la CSS doivent être acquis avant de commencer : c'est l'objet du parcours [Les fondamentaux du web](/pages/categories/les-fondamentaux-du-web.md). Si ce n'est pas encore fait, commencez par là.
 :::
 
-## Étape 2 : Les bases du PHP
+## Étape 1 : Les bases du PHP
 
 Le passage au dynamique. Les TP suivent le [complément de cours PHP](/tp/php/support.md).
 
@@ -48,7 +38,7 @@ Le TP de réorganisation s'appuie sur les [Slides Organisation](/cours/organisat
 [Évaluation 2 : Le livre d'or](/tp/php/eval2.md). Un mini projet évalué pour valider les formulaires, l'entry-point, la session et la protection de pages.
 :::
 
-## Étape 3 : La base de données
+## Étape 2 : La base de données
 
 Une fois le PHP maitrisé, nous ajoutons la persistance avec SQL. Les TP suivent le [complément de cours SQL](/tp/php/sql/support.md).
 
@@ -59,7 +49,7 @@ Une fois le PHP maitrisé, nous ajoutons la persistance avec SQL. Les TP suivent
 [Évaluation 3 : Le mini catalogue](/tp/php/eval3.md). La synthèse évaluée du parcours : structure, session, authentification et base de données.
 :::
 
-## Étape 4 : Vers le framework
+## Étape 3 : Vers le framework
 
 Vous avez maintenant l'ensemble des bases. La suite logique est de passer sur un framework.
 

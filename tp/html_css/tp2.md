@@ -1,10 +1,34 @@
 ---
-description: Dans ce TP nous allons découvrir les bases du CSS à travers la personnalisation d'une page web.
+description: Dans ce TP nous allons découvrir les bases de la CSS à travers la personnalisation d'une page web.
 ---
 
 # Découverte de la CSS
 
-Dans ce TP nous allons découvrir les bases du CSS à travers la personnalisation d'une page web.
+::: details Sommaire
+[[toc]]
+:::
+
+Dans le [TP précédent](./tp1.1.md) votre site a gagné des pages, des liens et des images… mais il ressemble encore à un document de 1995. Dans ce TP nous allons découvrir les bases de la CSS à travers la personnalisation d'une page web.
+
+## Les slides
+
+Avant de commencer, un tour rapide des compétences du jour : la syntaxe d'une règle CSS, les sélecteurs et la cascade.
+
+<ClientOnly>
+<SlidesDeck src="introduction_css" />
+</ClientOnly>
+
+## Prérequis
+
+- Avoir réalisé les TP précédents ([TP 1](./tp1.md) et [TP 1.1](./tp1.1.md)).
+
+## Objectifs
+
+À la fin de ce TP vous saurez :
+
+- Déclarer une feuille de style externe.
+- Écrire une règle CSS (sélecteur, propriété, valeur).
+- Cibler des éléments par balise, par `class` et par `id`.
 
 ## Introduction
 
@@ -44,10 +68,11 @@ Une CSS seule ne veut pas dire grand-chose. Afin de tester certaines fonctionnal
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>Ma première page Web</title>
   </head>
   <body>
-    <h1>Testons ensemble le CSS</h1>
+    <h1>Testons ensemble la CSS</h1>
 
     <p>Ceci est un <strong>paragraphe</strong></p>
     <ul>
@@ -74,7 +99,7 @@ Dans votre éditeur favori créez un nouveau fichier nommé `style.css`. Votre p
 
 ![Vue du projet](./res/structure.png)
 
-Comme vous pouvez le constater, votre fichier CSS est « à côté » de votre fichier HTML. Si vous voulez le ranger dans un sous-dossier c'est possible, libre à vous de vous organiser comme bon vous semble.
+Comme vous pouvez le constater, votre fichier CSS est « à côté » de votre fichier HTML. Si vous voulez le ranger dans un sous-dossier c'est possible, libre à vous de vous organiser comme bon vous semble (dans le fil rouge, nous le rangerons dans un dossier `css/`).
 
 ### Étape 3 : Déclarer la feuille de style
 
@@ -100,7 +125,7 @@ p {
 }
 ```
 
-Ajouter le code précédent dans votre fichier CSS et recharger votre page. Allez dans votre navigateur pour constater le changement.
+Ajoutez le code précédent dans votre fichier CSS et rechargez votre page. Allez dans votre navigateur pour constater le changement.
 
 ![resultat](./res/resultat1.png)
 
@@ -124,10 +149,10 @@ _Remplacez-la par :_
 </style>
 ```
 
-Tester à nouveau votre site.
+Testez à nouveau votre site.
 
 ::: danger Attention
-Bien qu'il soit possible de mettre la CSS dans une balise, style. Je déconseille vraiment cette pratique, en effet, le but de la CSS est de changer l'apparence de **l'ensemble** des pages de votre site. Le but ? Donner un style unique à tout votre site web. Le plus simple est donc de « sortir » la CSS afin que celle-ci soit centralisée à un seul endroit.
+Bien qu'il soit possible de mettre la CSS dans une balise style, je déconseille vraiment cette pratique. En effet, le but de la CSS est de changer l'apparence de **l'ensemble** des pages de votre site. Le but ? Donner un style unique à tout votre site web. Le plus simple est donc de « sortir » la CSS afin que celle-ci soit centralisée à un seul endroit.
 
 Nous le verrons plus tard en PHP ou en JavaScript/Typescript, un développeur doit être organisé et doit rendre générique son travail. L'objectif de cette organisation ? Être efficace dans ses missions quotidiennes.
 
@@ -142,9 +167,22 @@ Avant de continuer petit rappel vis-à-vis du cours :
 
 Votre fichier CSS sera constitué de règles CSS (sélecteur). Pour l'instant vous n'en avez qu'une seule. Celle-ci indique que le texte de toutes les balises `<p>` doit être rouge.
 
+::: tip Les commentaires en CSS
+Comme en HTML, vous pouvez (devez) commenter votre CSS. La syntaxe est différente :
+
+```css
+/* Ceci est un commentaire CSS,
+   il peut tenir sur plusieurs lignes */
+p {
+  color: red; /* Ou en fin de ligne */
+}
+```
+
+:::
+
 ## Styliser les titres
 
-Je vous propose maintenant de changer le style des titres. Je vous propose donc de changer le style des deux titres :
+Je vous propose maintenant de changer le style des deux titres :
 
 - Augmenter la taille de la police `font-size: 4em`.
 - Mettre les textes en bleu `color: #1D2D3A`.
@@ -173,7 +211,7 @@ h2 {
 
 ## Appliquer le style sur un id ou class
 
-Le CSS permet d'appliquer de la CSS de manière fine. Pour l'instant vous avez appliqué la CSS sur « un type d'élément » (p, h1, div… ). Il est possible d'être bien plus précis que ça.
+La CSS permet d'appliquer un style de manière fine. Pour l'instant vous avez appliqué la CSS sur « un type d'élément » (p, h1, div… ). Il est possible d'être bien plus précis que ça.
 
 En CSS vous avez la possibilité d'écrire des sélecteurs sur un certain nombre d'éléments, nous allons pour l'instant nous concentrer sur « ceux de base » à savoir les `id` et les `class`. L'id comme la class sont des attributs que nous pouvons ajouter sur une balise HTML.
 
@@ -192,20 +230,42 @@ Différence entre `class` et `id` ? L'id doit être unique dans votre page, il v
 
 :::
 
+## Les balises span et div
+
+Parfois, vous voudrez styliser une portion de page… qui ne correspond à aucune balise existante. Le HTML propose pour ça deux balises « neutres », sans aucun sens particulier :
+
+- `<span>` : pour une portion **dans** une ligne (quelques mots dans un paragraphe).
+- `<div>` : pour un **bloc** entier (un groupe d'éléments).
+
+```html
+<p>Mon numéro préféré est le <span class="highlight">42</span>.</p>
+
+<div class="carte">
+  <h2>Un titre</h2>
+  <p>Un contenu regroupé dans un bloc.</p>
+</div>
+```
+
+::: warning Ne divisez pas tout
+`div` et `span` sont des balises « de dernier recours » : si une balise avec du sens existe (un titre, un paragraphe, une liste…), utilisez-la. Un site tout en `div` est illisible, pour les développeurs comme pour les moteurs de recherche. Nous en reparlerons avec les balises structurantes.
+:::
+
 ### Rappel sur les sélecteurs
 
 Il est difficile de faire un « mémo » sur la CSS. Cependant, vous pouvez retenir cette liste de sélecteurs, elle vous sera toujours utile. C'est en quelque sorte la base :
 
 | Sélecteur | Cible                               |
 | --------- | ----------------------------------- |
+| \*        | Tous les éléments de la page        |
 | #item     | Élément avec id `item`              |
 | .item     | Élément(s) avec class `item`        |
 | p         | Élément(s) de type `p`              |
 | div, p    | Élément(s) de type `div` ou `p`     |
-| p > i     | Élément(s) de type `i` dans `p`     |
-| .item > i | Élément(s) de type `i` dans `.item` |
+| p i       | Élément(s) de type `i` contenu dans un `p` (descendant) |
+| p > i     | Élément(s) de type `i` enfant direct de `p`     |
+| .item > i | Élément(s) de type `i` enfant direct de `.item` |
 
-Cette liste est « non-exhaustive ». Consulter [une liste plus complète ici](https://www.w3.org/Style/css3-selectors-updates/WD-css3-selectors-20010126.fr.html#selectors)
+Cette liste est « non-exhaustive ». Consulter [une liste plus complète ici](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_selectors)
 
 ## Id ou Class ?
 
@@ -229,7 +289,7 @@ C'est une notation universelle qui sera également valable en JavaScript
 ### À faire
 
 - Ajouter dans votre page un nouveau paragraphe `p`. Avec comme class `text`. (`<p class='text'>Votre texte</p>`)
-- Créer le sélecteur pour customiser l'élément.
+- Créer le sélecteur pour personnaliser l'élément.
 
 ### À faire 2
 
@@ -240,3 +300,34 @@ C'est une notation universelle qui sera également valable en JavaScript
 Maintenant que vous savez faire quelques « sélecteurs » en CSS. Je vous laisse reprendre vos premières pages pour tenter de modifier un peu le style.
 
 En manque d'inspiration ? [CodePen vous aidera à trouver des idées](https://codepen.io/)
+
+## Le fil rouge : votre blog
+
+Votre blog mérite lui aussi sa feuille de style, c'est parti :
+
+- Dans le dossier `blog`, créer un dossier `css`.
+- Dans le dossier `css`, créer un fichier `style.css`.
+- Définir une première charte graphique pour vos titres (police, tailles, couleurs) et l'écrire dans `style.css`.
+- Faire le lien vers la feuille de style dans **toutes** les pages du blog (l'index **et** l'article).
+- Et normalement tout fonctionne 😊 ou non, donc au boulot !
+
+::: details Coup de pouce : le chemin depuis l'article
+Votre page article est dans le dossier `article/`, mais la CSS est dans `css/`. Le `href` du `<link>` n'est donc pas le même que depuis l'index… Le `../` vu au TP précédent va encore servir.
+:::
+
+::: tip Point de contrôle
+La même charte s'applique sur toutes les pages du blog (modifiez une couleur dans `style.css` : tout le site change d'un coup). Faites-moi valider avant de partir.
+:::
+
+## Conclusion
+
+Dans ce TP vous avez :
+
+- Déclaré une feuille de style externe, partagée entre les pages.
+- Écrit vos premières règles CSS (sélecteur, propriété, valeur).
+- Ciblé des éléments par balise, `class` et `id`.
+- Donné une première charte graphique à votre blog.
+
+Pensez à sauvegarder votre travail. La suite : [le texte, les couleurs et les fonds](./tp2.1.md), pour donner une vraie personnalité à vos pages.
+
+👋 Si vous avez des questions, n'hésitez pas.

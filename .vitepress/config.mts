@@ -65,7 +65,8 @@ export default defineConfig({
       {
         text: 'Les parcours',
         items: [
-          { text: 'Les TP web de base', link: '/pages/categories/les-tp-web-de-base.md' },
+          { text: 'Les fondamentaux du web', link: '/pages/categories/les-fondamentaux-du-web.md' },
+          { text: 'Les TP PHP de base', link: '/pages/categories/les-tp-php-de-base.md' },
           { text: 'Les TP PHP avancés', link: '/pages/categories/les-tp-php-avances.md' },
           { text: 'Les TP JavaScript', link: '/pages/categories/les-tp-javascript.md' },
           { text: 'Les TP serveur / DevOps', link: '/pages/categories/les-tp-devops.md' },

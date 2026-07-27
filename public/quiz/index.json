@@ -20,6 +20,16 @@
     "questions": 20
   },
   {
+    "src": "quiz-html-css-lot1",
+    "title": "HTML Lot 1 : Les bases (structure, texte, liens, images, tableaux)",
+    "questions": 16
+  },
+  {
+    "src": "quiz-html-css-lot2",
+    "title": "CSS Lot 2 : Les bases de la CSS (sélecteurs, boîtes, flexbox, responsive)",
+    "questions": 16
+  },
+  {
     "src": "quiz-javascript-ajax",
     "title": "JavaScript : L'AJAX",
     "questions": 10
