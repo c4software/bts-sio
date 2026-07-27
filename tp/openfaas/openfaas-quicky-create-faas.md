@@ -1,12 +1,16 @@
 ---
-description: Ce document s'intéresse uniquement à la partie création du projet openfaas et pas à la partie « création de la stack inital openfaas
+description: Ce document s'intéresse uniquement à la création d'un projet OpenFaas (NodeJS + Express), et pas à la création de la stack initiale OpenFaas.
 ---
 
 # Création d'un projet OpenFaas (Express)
 
-Ce document s'intéresse uniquement à la partie création du projet openfaas et pas à la partie « [création de la stack inital openfaas](./openfaas-quicky-installation) ».
+::: details Sommaire
+[[toc]]
+:::
 
-## Création dossier pour le projet
+Ce document s'intéresse uniquement à la création du projet OpenFaas, et pas à la partie « [création de la stack initiale OpenFaas](./openfaas-quicky-installation) ».
+
+## Création du dossier pour le projet
 
 ```sh
 mkdir exempleValentin && cd exempleValentin
@@ -14,29 +18,29 @@ mkdir exempleValentin && cd exempleValentin
 
 ## Création du projet
 
-Faas-cli intègre un système de template qui vas nous permettre d'initialiser simplement un projet. Dans notre cas, nous allons créer un projet de type « Docker ».
+Faas-cli intègre un système de templates qui va nous permettre d'initialiser simplement un projet. Dans notre cas, nous allons créer un projet de type « Docker ».
 
 ```sh
 faas-cli new --lang dockerfile --prefix c4software exempleValentin
 ```
 
 ::: warning --prefix ?
-Le prefix vas nous permettre de faire une image privée sur le DockerHub, vous devez donc le remplacer par votre nom d'utilisateur Docker.
+Le préfixe va nous permettre de créer une image privée sur le Docker Hub, vous devez donc le remplacer par votre nom d'utilisateur Docker.
 :::
 
 **Et c'est tout !** Votre stack est maintenant prête, nous allons créer un petit projet NodeJS + Express pour constater la simplicité.
 
-## Init projet Express
+## Init du projet Express
 
 ```sh
 cd exempleValentin
 npm init -y
-pnpm i --save express
+npm i --save express
 ```
 
-Nous allons créer un projet, celui-ci va contenir notre code source JavaScript
+Nous allons créer un projet, celui-ci va contenir notre code source JavaScript.
 
-## Création index.js
+## Création de l'index.js
 
 ```js
 const express = require("express");
@@ -56,7 +60,7 @@ app.listen(port, () => {
 });
 ```
 
-## Docker à modifier
+## Dockerfile à modifier
 
 ```dockerfile
 FROM --platform=${TARGETPLATFORM:-linux/amd64} node:12.13.0-alpine as ship
@@ -81,7 +85,7 @@ USER app
 CMD ["node", "index.js"]
 ```
 
-## Lancer dans openfaas
+## Lancer dans OpenFaas
 
 ```sh
 faas-cli up -f exempleValentin.yml
@@ -91,17 +95,17 @@ faas-cli up -f exempleValentin.yml
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0lODC-vSGHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Source : https://www.openfaas.com/blog/serverless-nodejs/
+Source : [https://www.openfaas.com/blog/serverless-nodejs/](https://www.openfaas.com/blog/serverless-nodejs/)
 
 ## Créer une image pour ARM
 
-Dans le premier cas nous avons réalisé une image à destination de la même architecture, si vous souhaitez déployer sur une architecture de processeur différente il faut :
+Dans le premier cas, nous avons réalisé une image à destination de la même architecture. Si vous souhaitez déployer sur une architecture de processeur différente, il faut :
 
 ```sh
 # Compiler
-faas-cli publish -f exempleValentin.yml --platforms linux/arm/v7 # ARM 32bits
-faas-cli publish -f exempleValentin.yml --platforms linux/arm64 # ARM 64Bits
-faas-cli publish -f exempleValentin.yml --platforms linux/arm64,linux/arm/v7,linux/amd64 # ARM 64Bits, 32Bts, x86
+faas-cli publish -f exempleValentin.yml --platforms linux/arm/v7 # ARM 32 bits
+faas-cli publish -f exempleValentin.yml --platforms linux/arm64 # ARM 64 bits
+faas-cli publish -f exempleValentin.yml --platforms linux/arm64,linux/arm/v7,linux/amd64 # ARM 64 bits, 32 bits, x86
 
 # Déployer
 faas-cli deploy -f exempleValentin.yml

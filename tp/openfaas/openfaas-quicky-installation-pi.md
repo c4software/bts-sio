@@ -1,16 +1,20 @@
 ---
-description: Ce document s'intéresse uniquement à la partie création de la stack initial faasd qui nous permettra d'utiliser OpenFaas. Le but de ce document est de monter rapidement / simplement une stack OpenFaas pour tester la solution.
+description: Ce document s'intéresse uniquement à la création de la stack initiale faasd sur un Raspberry Pi. Le but est de monter rapidement et simplement une stack OpenFaas pour tester la solution.
 ---
 
 # Création stack OpenFaas (faasd) sur un Raspberry Pi
 
-Ce document s'intéresse uniquement à la partie création de la stack initial faasd qui nous permettra d'utiliser OpenFaas. Le but de ce document est de monter rapidement / simplement une stack OpenFaas pour tester la solution.
+::: details Sommaire
+[[toc]]
+:::
 
-Pour simplifier, la création de l'environnement nous utiliserons [Faasd](https://github.com/openfaas/faasd/)
+Ce document s'intéresse uniquement à la création de la stack initiale faasd qui nous permettra d'utiliser OpenFaas. Le but est de monter rapidement et simplement une stack OpenFaas pour tester la solution.
+
+Pour simplifier la création de l'environnement, nous utiliserons [Faasd](https://github.com/openfaas/faasd/).
 
 ## Installer faas-cli
 
-`faas-cli` est l'outil / client qui nous permettra de parler avec notre instance OpenFaas. Bien évidemment nous allons travailler dans un environnement client / server.
+`faas-cli` est l'outil / client qui nous permettra de parler avec notre instance OpenFaas. Bien évidemment, nous allons travailler dans un environnement client / serveur :
 
 - Votre machine sera le client (via faas-cli).
 - Notre « Raspberry Pi » sera le serveur faisant fonctionner notre stack OpenFaas.
@@ -23,7 +27,7 @@ Sans être root :
 curl -sSL https://cli.openfaas.com | sh
 ```
 
-Via brew (Mac OS) :
+Via brew (macOS) :
 
 ```sh
 brew install faas-cli
@@ -36,11 +40,11 @@ $version = (Invoke-WebRequest "https://api.github.com/repos/openfaas/faas-cli/re
 (New-Object System.Net.WebClient).DownloadFile("https://github.com/openfaas/faas-cli/releases/download/$version/faas-cli.exe", "faas-cli.exe")
 ```
 
-## OpenFaas et RaspberryPi
+## OpenFaas et Raspberry Pi
 
-Pour installer OpenFaas sur un Raspberry Pi il suffit de :
+Pour installer OpenFaas sur un Raspberry Pi, il suffit de :
 
-```
+```sh
 sudo apt install git -y
 git clone https://github.com/openfaas/faasd
 cd faasd
@@ -48,17 +52,17 @@ cd faasd
 ```
 
 ::: danger Attention c'est long !
-L'installation va prendre quelques minutes, mais le premier démarrage va également prendre quelques secondes.
+L'installation va prendre quelques minutes, et le premier démarrage va également prendre quelques secondes.
 :::
 
 ## Récupération de l'authentification
 
-Votre machine est maintenant créée. Pour pouvoir se connecter à Open-faas vous devez récupérer le fichier `basic-auth-password` pour ça nous allons :
+Votre stack est maintenant installée. Pour pouvoir vous connecter à OpenFaas, vous devez récupérer le fichier `basic-auth-password`. Pour ça, nous allons :
 
-- Avoir besoin de l'IP de votre RaspberryPi
-- Récupéré via SSH le fichier d'auth
+- Récupérer l'IP de votre Raspberry Pi.
+- Récupérer via SSH le fichier d'authentification.
 
-Dans mon cas l'IP est dans `openfaas.local`, via la commande :
+Dans mon cas, la machine est accessible via `openfaas.local`. Via la commande :
 
 ```sh
 ssh pi@openfaas.local "sudo cat /var/lib/faasd/secrets/basic-auth-password" > basic-auth-password
@@ -78,12 +82,16 @@ faas-cli version
 
 ![result](./res/result.png)
 
-Vous pouvez également accéder à l'interface d'admin WEB via :
+Vous pouvez également accéder à l'interface d'administration web via :
 
-[openfaas.local:8080](openfaas.local:8080)
+[http://openfaas.local:8080](http://openfaas.local:8080)
 
-Votre ordinateur est maintenant prêt, nous avons donc créé :
+Votre installation est maintenant prête, nous avons donc :
 
-- Une Raspberry Pi contenant open-faas (votre serveur).
-- Le CLI pour contrôler `open-faas`.
-- Connecter votre ordinateur à votre serveur.
+- Un Raspberry Pi contenant OpenFaas (votre serveur).
+- Le CLI pour contrôler `OpenFaas`.
+- La connexion entre votre ordinateur et votre serveur.
+
+## La suite ?
+
+Maintenant que nous avons notre serveur, nous allons pouvoir déployer une fonction : [la suite, c'est par ici](./openfaas-quicky-create-faas.md).

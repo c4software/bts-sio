@@ -6,8 +6,12 @@ description: Dans ce TP nous allons voir comment monter rapidement (et très sim
 
 Dans ce TP nous allons voir comment monter rapidement (et très simplement) un service avec Docker. Ici pas de Docker Compose ou autre… Il s'agit de voir que Docker va nous permettre de créer très simplement un « serveur » pour répondre à une problématique ponctuelle de développement.
 
+::: details Sommaire
+[[toc]]
+:::
+
 ::: danger Un point important
-Le plus important dans ce genre d'usage c'est de se souvenir qu'un conteneur Docker est « stateless », c'est-à-dire que les données seront effacées à chaque redémarrage du conteneur — sauf si vous utilisez un volume. Donc attention !
+Le plus important dans ce genre d'usage c'est de se souvenir qu'un conteneur Docker est « stateless », c'est-à-dire que les données seront effacées à chaque redémarrage du conteneur (sauf si vous utilisez un volume). Donc attention !
 :::
 
 Vous avez oublié comment fonctionne la ligne de commande de Docker ? [Petit rappel ici](/cheatsheets/docker/)
@@ -27,7 +31,7 @@ docker run --rm -p 8080:80 -v "${PWD}:/var/www/html/" php:7-apache
 ```
 
 ::: tip Pourquoi ça ne fonctionne pas ?
-L'image `php:7-apache` n'existe plus sur Docker Hub — PHP 7 est en fin de vie depuis décembre 2022. Essayez de chercher sur [hub.docker.com](https://hub.docker.com/_/php/tags) quelle est la dernière image `php:7.x-apache` encore disponible, ou passez directement à PHP 8 ci-dessous.
+L'image `php:7-apache` n'existe plus sur Docker Hub : PHP 7 est en fin de vie depuis décembre 2022. Essayez de chercher sur [hub.docker.com](https://hub.docker.com/_/php/tags) quelle est la dernière image `php:7.x-apache` encore disponible, ou passez directement à PHP 8 ci-dessous.
 :::
 
 ### PHP 8
@@ -57,7 +61,7 @@ C'est très pratique pour tester rapidement un projet, une idée, ou pour faire 
 
 ## PostgreSQL (ou autre BDD)
 
-Créer temporairement un serveur de base de données peut être intéressant pour tester un projet. Vous utilisez peut-être XAMPP ou WAMP pour ce genre de choses, mais vous êtes limité à une version précise — avec Docker, vous avez l'embarras du choix.
+Créer temporairement un serveur de base de données peut être intéressant pour tester un projet. Vous utilisez peut-être XAMPP ou WAMP pour ce genre de choses, mais vous êtes limité à une version précise. Avec Docker, vous avez l'embarras du choix.
 
 ```sh
 docker run -p 5432:5432 --name fixy-postgres \
@@ -87,7 +91,7 @@ En regardant la documentation, je vous laisse faire la même chose que pour Post
 Le port par défaut de MySQL est le `3306`.
 :::
 
-::: details Solution
+::: details Voir l'une des solutions possibles
 
 ```sh
 docker run -p 3306:3306 --name fixy-mysql \
@@ -100,7 +104,7 @@ docker run -p 3306:3306 --name fixy-mysql \
 
 ## WordPress
 
-Nous avons vu PHP et des bases de données — pourquoi ne pas aller plus loin ? Docker ne se limite pas à des briques techniques, on peut packager des applications complètes. C'est le cas de WordPress : une [image officielle est disponible sur Docker Hub](https://hub.docker.com/_/wordpress).
+Nous avons vu PHP et des bases de données, pourquoi ne pas aller plus loin ? Docker ne se limite pas à des briques techniques, on peut packager des applications complètes. C'est le cas de WordPress : une [image officielle est disponible sur Docker Hub](https://hub.docker.com/_/wordpress).
 
 ```sh
 # Sous Linux / macOS
@@ -116,7 +120,7 @@ docker run \
 ::: danger Vous voyez le problème ?
 WordPress seul n'est pas très utile ! Il lui faut une base de données pour fonctionner. C'est à partir d'ici que Docker Compose prend tout son sens : [voir le TP Docker Compose](/tp/docker/docker_compose.md).
 
-Bien évidemment Docker Compose n'est pas obligatoire — je vous laisse chercher comment relier les deux conteneurs sans lui.
+Bien évidemment Docker Compose n'est pas obligatoire : je vous laisse chercher comment relier les deux conteneurs sans lui.
 :::
 
 ## Créer un serveur local multi-services

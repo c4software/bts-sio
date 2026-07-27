@@ -4,12 +4,41 @@ aside: false
 ---
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { withBase } from 'vitepress'
 
 const quizzes = ref([])
 const selected = ref('')
 const error = ref(false)
+
+// Regroupe les quiz par le premier mot de leur titre, mais seulement quand
+// ce mot apparaît plus d'une fois. Les thématiques uniques restent seules.
+const quizGroups = computed(() => {
+  const firstWord = t => (t || '').trim().split(/\s+/)[0] || ''
+
+  const counts = {}
+  quizzes.value.forEach(q => {
+    const w = firstWord(q.title).toLowerCase()
+    counts[w] = (counts[w] || 0) + 1
+  })
+
+  const groups = []
+  const indexByWord = {}
+  quizzes.value.forEach(q => {
+    const w = firstWord(q.title).toLowerCase()
+    if (counts[w] > 1) {
+      if (indexByWord[w] === undefined) {
+        indexByWord[w] = groups.length
+        groups.push({ label: firstWord(q.title), quizzes: [] })
+      }
+      groups[indexByWord[w]].quizzes.push(q)
+    } else {
+      groups.push({ label: null, quizzes: [q] })
+    }
+  })
+
+  return groups
+})
 
 onMounted(async () => {
   try {
@@ -37,9 +66,16 @@ Choisissez une thématique, répondez aux questions, puis validez pour obtenir v
   <select id="quiz-select" v-model="selected">
     <option disabled value="">— Sélectionnez une thématique —</option>
     <option value="__all__">Mélange : toutes les thématiques</option>
-    <option v-for="quiz in quizzes" :key="quiz.src" :value="quiz.src">
-      {{ quiz.title }} ({{ quiz.questions }} questions)
-    </option>
+    <template v-for="(group, gi) in quizGroups" :key="gi">
+      <optgroup v-if="group.label" :label="group.label">
+        <option v-for="quiz in group.quizzes" :key="quiz.src" :value="quiz.src">
+          {{ quiz.title }} ({{ quiz.questions }} questions)
+        </option>
+      </optgroup>
+      <option v-else v-for="quiz in group.quizzes" :key="quiz.src" :value="quiz.src">
+        {{ quiz.title }} ({{ quiz.questions }} questions)
+      </option>
+    </template>
   </select>
 </div>
 

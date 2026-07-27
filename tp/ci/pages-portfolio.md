@@ -6,7 +6,7 @@ next: /tp/ops/deployer-laravel-ci.md
 
 # Déployer votre portfolio avec GitLab CI
 
-::: details Sommaires
+::: details Sommaire
 [[toc]]
 :::
 
@@ -34,7 +34,7 @@ Vous avez très certainement déjà envoyé votre code source sur Github, pas de
 
 :::
 
-Commitez et pushez votre travail sur GitLab (dans le projet que vous venez de créer)
+Commitez et pushez votre travail sur GitLab (dans le projet que vous venez de créer).
 
 Rappel :
 
@@ -52,8 +52,7 @@ git push
 
 Vous n'avez pas de Portfolio ? Aucun problème, [vous pouvez utiliser celui-ci.](https://startbootstrap.com/theme/stylish-portfolio)
 
-PS: N'oubliez pas que vous devez avoir un portfolio de prêt pour votre passage de titre.
-start
+PS : N'oubliez pas que vous devez avoir un portfolio prêt pour votre passage de titre.
 :::
 
 ## Activation de GitLab-CI
@@ -62,7 +61,7 @@ start
 Gitlab-CI nécessite de mettre votre carte bleue pour prouver que vous êtes un humain. Si vous ne souhaitez pas la mettre vous pouvez déployer un runner Gitlab-CI sur votre machine en suivant le TP ici : [Installer un runner Gitlab-CI](/tp/ci/gitlab/runner.md)
 :::
 
-Maintenant que votre première version est prête, nous allons activer Gitlab-CI pour ça, il faut **simplement** créer un fichier intitulé `.gitlab-ci.yml` à la racine de votre projet. Mettez-y le contenu suivant :
+Maintenant que votre première version est prête, nous allons activer Gitlab-CI. Pour ça, il faut **simplement** créer un fichier intitulé `.gitlab-ci.yml` à la racine de votre projet. Mettez-y le contenu suivant :
 
 ```yml
 pages:
@@ -80,11 +79,11 @@ pages:
 
 ::: tip Un instant
 
-Regarder le contenu du fichier, étudier les différentes instructions.
+Regardez le contenu du fichier, étudiez les différentes instructions.
 
 - Que font les instructions / commandes dans `script` ?
-- À quoi correspond artifacts ?
-- `only: master` ? Que se passe-t-il si vous créez une branche à votre avis ?
+- À quoi correspond `artifacts` ?
+- `rules` avec `$CI_DEFAULT_BRANCH` ? Que se passe-t-il si vous créez une branche à votre avis ?
 
 :::
 
@@ -94,21 +93,21 @@ Pushez votre code sur GitLab, votre portfolio va « se compiler » dans la parti
 
 ## Voir votre site
 
-Après quelques secondes, votre site va être disponible, oui, mais où ? Le système de Gitlab Pages s'active automatiquement, vous retrouverez l'adresse dans le menu : « Settings > Pages »
+Après quelques secondes, votre site va être disponible, oui, mais où ? Le système de Gitlab Pages s'active automatiquement, vous retrouverez l'adresse dans le menu : « Settings > Pages ».
 
 ![Gitlab Pages](./res/ci-pages.png)
 
 ## Gitlab-CI ≠ Netlify
 
-Sur le papier Netlify semble très proche de Gitlab-CI, mais en réalité les deux solutions sont vraiment différentes, et Gitlab-CI est 1000× plus avancés que Netlify sur la partie « Compilation »
+Sur le papier Netlify semble très proche de Gitlab-CI, mais en réalité les deux solutions sont vraiment différentes, et Gitlab-CI est 1000× plus avancé que Netlify sur la partie « Compilation ».
 
-Chez Gitlab, les étapes de compilation sont appelées des Pipelines
+Chez Gitlab, les étapes de compilation sont appelées des Pipelines.
 
 ![Pipeline](./res/pipeline.png)
 
 ![Compilation en cours](./res/build-ci-progress.png)
 
-Contrairement à Netlify, nous avons ici la vision de l'ensemble des opérations
+Contrairement à Netlify, nous avons ici la vision de l'ensemble des opérations :
 
 ![Les étapes](./res/ci-steps.png)
 
@@ -124,27 +123,27 @@ Vous pouvez avoir des sites accessibles uniquement par vous. Pratique pour de la
 
 ## Apporter une modification
 
-Je vous laisse valider que votre CI fonctionne correctement, apporter une modification à  votre site et vérifier que celle-ci est bien visible en ligne.
+Je vous laisse valider que votre CI fonctionne correctement : apportez une modification à votre site et vérifiez que celle-ci est bien visible en ligne.
 
 ## Petit point d'étape
 
-Ce que nous venons de faire est générique! Ça veut dire que si vous souhaitez héberger rapidement (et gratuitement) un petit site Internet codé en HTML, CSS, JavaScript vous avez l'ensemble des éléments.
+Ce que nous venons de faire est générique ! Ça veut dire que si vous souhaitez héberger rapidement (et gratuitement) un petit site Internet codé en HTML, CSS, JavaScript, vous avez l'ensemble des éléments.
 
-Vous ajoutez à votre code source un fichier `.gitlab-ci.yml` avec le contenu précédent et c'est terminé quelques minutes plus tard, votre site est en ligne.
+Vous ajoutez à votre code source un fichier `.gitlab-ci.yml` avec le contenu précédent et c'est terminé : quelques minutes plus tard, votre site est en ligne.
 
 C'est **LA** force de l'intégration continue !
 
-## Allez plus loin
+## Aller plus loin
 
-Écrire du code c’est bien, mais le faire en automatique c’est mieux. C’est pour ça que GitLab-CI et GitLab Pages existent, écrire du HTML pour une page c’est possible, mais quand il s’agit d’un site entier, ce n’est pas forcément adapté. C’est pour ça que l’on utilise régulièrement des CMS (écrit en PHP, Python, Ruby …), mais ce n’est pas la seule façon de faire.
+Écrire du code c’est bien, mais le faire en automatique c’est mieux. C’est pour ça que GitLab-CI et GitLab Pages existent : écrire du HTML pour une page c’est possible, mais quand il s’agit d’un site entier, ce n’est pas forcément adapté. C’est pour ça que l’on utilise régulièrement des CMS (écrits en PHP, Python, Ruby…), mais ce n’est pas la seule façon de faire.
 
-On trouve aussi régulièrement des « générateurs de sites statiques », un générateur c’est un « logiciel » qui va « compiler » votre site pour générer toutes les pages de votre site web (sans avoir à tous les écrire).
+On trouve aussi régulièrement des « générateurs de sites statiques », un générateur c’est un « logiciel » qui va « compiler » votre site pour générer toutes les pages de votre site web (sans avoir à toutes les écrire).
 
 Plusieurs avantages :
 
-- Cout d’hébergement réduit (pas de PHP, juste du HTML).
+- Coût d’hébergement réduit (pas de PHP, juste du HTML).
 - Sauvegarde simple (c’est juste des fichiers).
-- Rapide ! (Oui, pas de PHP)
+- Rapide ! (Oui, pas de PHP.)
 
 Inconvénients :
 
@@ -176,7 +175,7 @@ pages:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
-Quelle différence notez-vous par rapport au précédent YAML?
+Quelle différence notez-vous par rapport au précédent YAML ?
 
 ::: tip Vous souhaitez tester ?
 
@@ -186,7 +185,7 @@ Si vous souhaitez créer un site avec ViteJS, vous pouvez utiliser la commande s
 npm create vite@latest
 ```
 
-Une fois le projet créé, ajouter le fichier `.gitlab-ci.yml` et envoyer votre code sur Gitlab. La magie opérera d'elle-même.
+Une fois le projet créé, ajoutez le fichier `.gitlab-ci.yml` et envoyez votre code sur Gitlab. La magie opérera d'elle-même.
 
 :::
 
@@ -198,19 +197,19 @@ Surge c'est un peu technique, mais si vous souhaitez tester voilà la procédure
 
 ### Sur votre machine
 
-Installation du CLI de Surge
+Installation du CLI de Surge :
 
 ```sh
 npm install -g surge
 ```
 
-Création de votre compte
+Création de votre compte :
 
 ```sh
 surge login
 ```
 
-Obtention d'un token qui vous permettra de déployer sur votre compte
+Obtention d'un token qui vous permettra de déployer sur votre compte :
 
 ```sh
 surge token

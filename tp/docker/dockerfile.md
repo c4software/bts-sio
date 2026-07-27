@@ -1,22 +1,26 @@
 ---
-description: Comme nous l’avons chaque image Docker repose sur un fichier Dockerfile. Pour l’instant, nous n’avons pas écrit le nôtre, nous avons juste utilisé ceux fournis sur le DockerHub. Dans ce TP nous allons voir la structure d’un fichier Dockerfile, et vous allez écrire votre premier Dockerfile. Il aura pour but de définir l’ensemble de la « stack applicative » nécessaire au bon fonctionnement de l’application « TODO ».
+description: Chaque image Docker repose sur un fichier Dockerfile. Dans ce TP nous allons voir la structure d’un fichier Dockerfile, et vous allez écrire votre premier Dockerfile pour définir la « stack applicative » nécessaire au bon fonctionnement de l’application « TODO ».
 ---
 
-# Les Dockerfile’s
+# Les Dockerfile
+
+::: details Sommaire
+[[toc]]
+:::
 
 ## Introduction
 
-Comme nous l’avons vu dans [le premier TP](introduction.md) chaque image Docker repose sur un fichier Dockerfile. Pour l’instant, nous n’avons pas écrit le nôtre, nous avons juste utilisé ceux fournis sur le DockerHub. Dans ce TP nous allons voir la structure d’un fichier Dockerfile, et vous allez écrire votre premier Dockerfile. Il aura pour but de définir l’ensemble de la « stack applicative » nécessaire au bon fonctionnement de l’application « TODO ».
+Comme nous l’avons vu dans [le premier TP](introduction.md), chaque image Docker repose sur un fichier Dockerfile. Pour l’instant, nous n’avons pas écrit le nôtre, nous avons juste utilisé ceux fournis sur le DockerHub. Dans ce TP nous allons voir la structure d’un fichier Dockerfile, et vous allez écrire votre premier Dockerfile. Il aura pour but de définir l’ensemble de la « stack applicative » nécessaire au bon fonctionnement de l’application « TODO ».
 
 ## Pourquoi faire des Dockerfile
 
-Comme vous avez pu le voir sur le DockerHub il existe énormément d’images déjà prêtes, elles nous seront bien évidement utiles dans nos images Docker, mais tels quelles elles n’ont que « peu d’intérêts ». Nous allons donc écrire un fichier Dockefile qui va permettre de créer toute la définition pour le bon fonctionnement de l’application « TODO » que vous avez écrit dans un autre TP.
+Comme vous avez pu le voir sur le DockerHub il existe énormément d’images déjà prêtes. Elles nous seront bien évidemment utiles dans nos images Docker, mais telles quelles elles n’ont que « peu d’intérêt ». Nous allons donc écrire un fichier Dockerfile qui va contenir toute la définition nécessaire au bon fonctionnement de l’application « TODO » que vous avez écrite dans un autre TP.
 
-Une fois le fichier Dockerfile écrit, votre application sera fonctionnelle sur toutes les plateformes supportées par Docker (Windows, Linux, OSX, Raspberry Pi…), fonctionnelles oui, mais surtout fonctionnel en quelques secondes !
+Une fois le fichier Dockerfile écrit, votre application sera fonctionnelle sur toutes les plateformes supportées par Docker (Windows, Linux, macOS, Raspberry Pi…). Fonctionnelle oui, mais surtout fonctionnelle en quelques secondes !
 
 ## Créer un Dockerfile
 
-Les « Dockerfile » sont des simples fichiers textes, mais avec un formalisme précis. Par exemple :
+Les « Dockerfile » sont de simples fichiers texte, mais avec un formalisme précis. Par exemple :
 
 ```dockerfile
 FROM alpine:latest
@@ -26,11 +30,11 @@ ENTRYPOINT ["echo", "Mon premier Dockerfile"]
 
 Avant de « builder » cette première image, arrêtons-nous sur les différentes lignes :
 
-- « FROM alpine:latest », c’est l’image de référence, dans le cas présent une image très légère (un linux avec très peu de dépendances).
+- « FROM alpine:latest », c’est l’image de référence, dans le cas présent une image très légère (un Linux avec très peu de dépendances).
 - « LABEL Valentin Brosseau "c4software@gmail.com" », le mainteneur de l’image (purement indicatif).
-- « ENTRYPOINT ["echo", "'Mon premier Dockerfile'"] », la commande qui sera lancée au **démarrage** de votre image.
+- « ENTRYPOINT ["echo", "Mon premier Dockerfile"] », la commande qui sera lancée au **démarrage** de votre image.
 
-Pour finir, enregistrer la définition précédente dans un fichier nommé « Dockerfile ».
+Pour finir, enregistrez la définition précédente dans un fichier nommé « Dockerfile ».
 
 ## Builder votre image
 
@@ -46,13 +50,13 @@ Avant de lancer cette commande, regardons les différents éléments :
 - « …:latest », c’est la version de votre image. Latest indique la version la plus récente.
 - « . » indique à Docker que le fichier Dockerfile est dans le dossier courant.
 
-Lancer la précédente commande dans le dossier où vous avez créé le fichier Dockerfile.
+Lancez la commande précédente dans le dossier où vous avez créé le fichier Dockerfile.
 
 ![exemple build](./ressources/build.png)
 
 ## Image Docker pour l’application "TODO"
 
-Faire un test c’est bien! Mais maintenant que l’on connaît les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à nous soucier de l’environnement sur lequel vous allez lancer « votre application / site web ».
+Faire un test c’est bien ! Mais maintenant que l’on connaît les bases d’une image Docker, nous allons créer une image Docker qui va nous permettre de lancer rapidement (et très simplement) l’application sans avoir à nous soucier de l’environnement sur lequel vous allez lancer « votre application / site web ».
 
 ### 1. Écriture du Dockerfile
 
@@ -68,8 +72,8 @@ Une fois que c’est fait, il faut trouver une image de base qui nous servira de
 Pour continuer, nous allons utiliser l’image PHP 8 Apache. Voilà le début de notre Dockerfile :
 
 ```dockerfile
-FROM php:7-apache
-MAINTAINER Valentin Brosseau "c4software@gmail.com"
+FROM php:8-apache
+LABEL Valentin Brosseau "c4software@gmail.com"
 ```
 
 La base de votre Dockerfile est terminée. Nous allons voir comment ajouter le code source dans l’image.

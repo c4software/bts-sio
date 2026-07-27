@@ -1,10 +1,10 @@
 ---
-description: Dans ce TP nous allons voir l'installation de Docker et les premiers exemples d'utilisations de votre nouvel environnement.
+description: Dans ce TP nous allons voir l'installation de Docker et les premiers exemples d'utilisation de votre nouvel environnement.
 ---
 
 # Introduction à Docker
 
-Dans ce TP nous allons voir l'installation de Docker et les premiers exemples d'utilisations de votre nouvel environnement.
+Dans ce TP nous allons voir l'installation de Docker et les premiers exemples d'utilisation de votre nouvel environnement.
 
 ::: details Sommaire
 [[toc]]
@@ -16,7 +16,7 @@ Pour installer Docker rien de plus simple, il suffit d'utiliser l'installeur off
 
 ## Lancer Docker
 
-Lancez Docker Desktop. Au premier démarrage, Docker vous demandera peut-être d'activer WSL2 (Windows Subsystem for Linux 2) — acceptez, c'est le backend recommandé.
+Lancez Docker Desktop. Au premier démarrage, Docker vous demandera peut-être d'activer WSL2 (Windows Subsystem for Linux 2) : acceptez, c'est le backend recommandé.
 
 ## Quota et utilisation
 
@@ -66,7 +66,7 @@ Maintenant que nous avons vu le projet, entrons plus en détail, allons voir la 
 
 Peu d'informations, 3 lignes :
 
-- `FROM scratch` (Image de base, celle utilisée comme référence — elle aussi possède un Dockerfile).
+- `FROM scratch` (Image de base, celle utilisée comme référence ; elle aussi possède un Dockerfile).
 - `COPY hello /` (ajoute le fichier hello à la racine de votre « machine »).
 - `CMD ["/hello"]` (Commande lancée au démarrage de votre image).
 
@@ -89,14 +89,14 @@ Et voilà, vous avez un Linux complètement opérationnel en quelques minutes su
 Utilisez un peu le shell de votre « nouveau Linux », exemples de commandes :
 
 - `uname -a` : Affiche la version du noyau.
-- `whoami` : Qui suis-je ? (normalement root — d'ailleurs, est-ce normal ?).
+- `whoami` : Qui suis-je ? (normalement root, d'ailleurs, est-ce normal ?).
 - `top` : Affiche les processus en cours.
 - `ls /`
 
 Questions :
 
 - D'ailleurs, pourquoi `top` ne retourne-t-il que deux processus ?
-- Aucune trace des fichiers de votre machine… normale, de base rien n'est accessible.
+- Aucune trace des fichiers de votre machine… normal, de base rien n'est accessible.
 
 ### Créer un fichier dans la machine
 
@@ -136,7 +136,7 @@ Sous Unix / macOS :
 docker run -v $(pwd):/mnt/ -it ubuntu bash # Monte le dossier courant dans le /mnt du Docker.
 ```
 
-Lancez la commande, `ls /mnt` vous devriez voir vos fichiers.
+Lancez la commande, puis faites un `ls /mnt` : vous devriez voir vos fichiers.
 
 #### Monter un fichier
 
@@ -229,7 +229,7 @@ docker images         # Liste toutes les images téléchargées
 docker system prune   # Supprime les conteneurs arrêtés, images inutilisées et cache
 ```
 
-> ⚠️ `docker system prune` est irreversible. Vérifiez ce que vous supprimez avant de confirmer.
+> ⚠️ `docker system prune` est irréversible. Vérifiez ce que vous supprimez avant de confirmer.
 
 ## Allons plus loin
 
