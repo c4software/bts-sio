@@ -91,7 +91,7 @@ export default [
         collapsed: true,
         text: "Les TP",
         items: [
-          { text: "Le parcours (10 semaines)", link: "/pages/categories/les-fondamentaux-du-web.md" },
+          { text: "Les fondamedamentaux du web", link: "/pages/categories/les-fondamentaux-du-web.md" },
           { text: "TP 1 : Découverte du HTML", link: "/tp/html_css/tp1.md" },
           { text: "TP 1.1 : Liens, images et tableaux", link: "/tp/html_css/tp1.1.md" },
           { text: "TP 2 : Découverte de la CSS", link: "/tp/html_css/tp2.md" },
