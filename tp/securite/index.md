@@ -23,7 +23,8 @@ La difficulté augmente d'un TP à l'autre. Suivez-les dans l'ordre : chacun s'a
 
 ## Pour réviser et aller plus loin
 
-- **[Révisions examen](./exercice.md)** : une banque d'extraits de code à analyser, dans le même esprit que l'épreuve.
+- **[Révisions examen](./exercice.md)** : une sélection d'extraits de code à analyser, dans le même esprit que l'épreuve.
+- **[Exercices OWASP (banque de failles)](./failles.md)** : une quinzaine de failles à identifier et corriger, dans le rôle du développeur qui répond à un audit.
 - **[Analyser une application](./reverse.md)** : un TP avancé de reverse engineering sur une vraie application Android (pour les plus rapides).
 
 ## Le cours et la synthèse
