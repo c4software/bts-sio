@@ -66,7 +66,4 @@ Le framework côté client. Les TP utilisent VueJS 3, la version actuelle.
 4. [VueJS 3 et un routeur](/tp/vuejs3/routeur.md)
 5. [Les composants avec VueJS 3](/tp/composants/vuejs.md)
 6. [Créer une application Web avec VueJS 3](/tp/vuejs3/application.md)
-
-::: tip Et après VueJS ?
-[Larablog 2.0 (Ajax & VueJS)](/tp/javascript/tp6.md) si vous avez suivi [les TP PHP avancés](/pages/categories/les-tp-php-avances.md), [Vuetify](/tp/vuejs3/vuetify.md) pour l'interface, ou [Firebase + VueJS 3](/tp/vuejs3/firebase.md) pour la persistance sans serveur.
-:::
+7. [Firebase + VueJS 3 : une carte collaborative en temps réel](/tp/vuejs3/firebase.md)
