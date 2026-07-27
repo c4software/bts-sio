@@ -1,10 +1,10 @@
 ---
-description: Vous avez déjà fait du JavaScript, mais certainement avec jQuery et surement sans utiliser les fonctions « modernes » de celui-ci.
+description: Vous avez déjà fait du JavaScript, mais certainement avec jQuery et sûrement sans utiliser les fonctions « modernes » de celui-ci.
 ---
 
 # Prise en main « JavaScript avancé »
 
-Vous avez déjà fait du JavaScript, mais certainement avec jQuery et surement sans utiliser les fonctions « modernes » de celui-ci.
+Vous avez déjà fait du JavaScript, mais certainement avec jQuery et sûrement sans utiliser les fonctions « modernes » de celui-ci.
 
 Dans ce TP et au travers de quelques exemples, nous allons découvrir en pratique les nouveautés.
 
@@ -38,7 +38,7 @@ for (c in capacites){
 
 ## Question 2
 
-Réécrire le code suivant en utilisant les `fonctions flechés` et les `string templates`.
+Réécrire le code suivant en utilisant les `fonctions fléchées` et les `string templates`.
 
 ```javascript
 function hello(nom) {
@@ -51,7 +51,7 @@ hello(nom);
 
 ## Question 3
 
-En utilisant la méthode `filter` d'un tableau filtrer l'ensemble des éléments `non pairs` du tableau suivant :
+En utilisant la méthode `filter` d'un tableau, filtrer l'ensemble des éléments `non pairs` du tableau suivant :
 
 ```JavaScript
 const valeurs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -65,7 +65,7 @@ Les nombres non pairs se trouvent via un `% 2`.
 
 Manipuler un `objet` avec des méthodes, c'est toujours plus simple que de manipuler un simple Object.
 
-En utilisant le code fourni, « remaper / transformer » grâce à la fonction `map` l'ensemble des `objects` en `Person`
+En utilisant le code fourni, « remapper / transformer » grâce à la fonction `map` l'ensemble des `objects` en `Person`.
 
 ```javascript
 class Person {
@@ -85,25 +85,25 @@ const clients = [
 ];
 ```
 
-### Question 5
+## Question 5
 
 Ajouter une méthode dans l'objet `Person` qui retourne `true` si la personne est majeure.
 
 ⚠️ Ne pas oublier d'ajouter l'âge dans le constructeur comme `name`.
 
-### Question 6
+## Question 6
 
 En utilisant l'instruction `filter`, filtrer le tableau résultat pour ne garder que les personnes majeures.
 
-### Question 7
+## Question 7
 
 Ajouter une méthode dans l'objet. Celle-ci doit retourner une string contenant le `nom` et `âge` en utilisant String template.
 
-### Question 8
+## Question 8
 
 Utiliser la méthode précédemment créée pour faire un `console.log` pour chaque (`forEach`) élément `filtré`.
 
-### Question 9
+## Question 9
 
 Avant le JavaScript « moderne » il était courant d'utiliser l'objet `xmlhttprequest` pour faire des appels réseau.
 
@@ -130,15 +130,15 @@ req.open("GET", "https://jsonplaceholder.typicode.com/todos/", true);
 req.send(null);
 ```
 
-### Question 10
+## Question 10
 
-Même question, mais en utilisant [Wretch](https://elbywan.github.io/wretch/)
+Même question, mais en utilisant [Wretch](https://elbywan.github.io/wretch/).
 
-### Question 11
+## Question 11
 
-Créer une classe pour la liste des `Todos`, puis en utilisant le `chainage` (then) des `Promises` et la méthode `map` d'un tableau transformer l'ensemble des Todos du retour en objet de type `Todo`.
+Créer une classe pour la liste des `Todos`, puis en utilisant le `chainage` (then) des `Promises` et la méthode `map` d'un tableau, transformer l'ensemble des Todos du retour en objets de type `Todo`.
 
-Exemple pour l'appel réseau:
+Exemple pour l'appel réseau :
 
 ```javascript
 fetch("VOTRE_URL")
@@ -149,10 +149,10 @@ fetch("VOTRE_URL")
     // pour transformer l'ensemble des éléments du tableau
     // en objet de type Todo.
     // return todo.map(el => …)
-  })};
+  });
 ```
 
-### Question 12
+## Question 12
 
 Via l'instruction `filter`, filtrer l'ensemble des Todos qui sont pour l'utilisateur 2 _et_ non completed.
 
@@ -172,16 +172,16 @@ Exemple :
   // Il est donc possible d'utiliser la méthode filter
   // pour filtrer l'ensemble des éléments du tableau en respectant la condition (vous pouvez également déclarer une méthode dans la classe Todo)
   // return todo.filter(el => …)
-}):
+});
 ```
 
-### Question 13
+## Question 13
 
 Réécrire le code de la question 12 en utilisant `async` / `await`.
 
 ::: tip Rappel
 
-async / await permettent de transformer des fonctions retournant une `Promise` en fonction « normale ». 
+async / await permettent de transformer des fonctions retournant une `Promise` en fonctions « normales ».
 
 Exemple :
 
@@ -197,9 +197,9 @@ console.log(retourAPI);
 
 :::
 
-### Question 14
+## Question 14
 
-Lister l'ensemble des valeurs de l'ensemble de la liste des Todos créé précédemment.
+Lister l'ensemble des valeurs de la liste des Todos créée précédemment.
 
 ::: tip
 `Object.values(…)`

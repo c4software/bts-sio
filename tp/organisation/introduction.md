@@ -27,7 +27,7 @@ L'application doit ressembler à :
 
 ## Première analyse du code
 
-Maintenant que vous avez pris en main le code source, quelles sont les remarques sur le code pouvez-vous émettre :
+Maintenant que vous avez pris en main le code source, quelles remarques pouvez-vous émettre sur le code :
 
 ```
 Vos remarques
@@ -35,9 +35,9 @@ Vos remarques
 
 ```
 
-PS Cette première analyse est importante !
+PS : Cette première analyse est importante !
 
-<Reveal text="Cliquer pour voir ma « solution »">
+::: details Voir l'une des solutions possibles
 
 - Non-utilisation de template.
 - Le code des listes est répété (sans utilisation de fonction).
@@ -48,7 +48,7 @@ PS Cette première analyse est importante !
 - Il n'y a aucun modèle de données.
 - Pas de configuration centralisée.
 
-</Reveal>
+:::
 
 ## Détail des fonctionnalités
 
@@ -62,7 +62,7 @@ Avant de commencer à modifier le code, il faut « lister / détailler » les di
 
 ## Début des modifications
 
-Comme vous l'avez constaté, l'application comporte de nombreux défauts (plus ou moins important). Nous allons les prendre dans l'ordre :
+Comme vous l'avez constaté, l'application comporte de nombreux défauts (plus ou moins importants). Nous allons les prendre dans l'ordre :
 
 - Le découpage (pour éviter la duplication du code HTML).
 - Réécrire la page d'accueil pour ne plus avoir 3x le même code à la suite.
@@ -139,9 +139,9 @@ C'est bien, mais est-il possible de faire autrement ? Pouvons-nous utiliser un o
 - Est-ce intéressant ?
 - Quel est l'avantage ?
 
-### Réécriture des listes de lien
+### Réécriture des listes de liens
 
-Comme vous l'avez constaté, les listes de lien (ainsi que le code PHP) sont répétés 3x. Procéder ainsi est à la fois inefficace et inutile. Prendre du temps pour éviter ce genre de choses est primordial et vous évitera bien des tracas en cas de mise à jour de votre code (ou de celui d'un collègue).
+Comme vous l'avez constaté, les listes de liens (ainsi que le code PHP) sont répétées 3x. Procéder ainsi est à la fois inefficace et inutile. Prendre du temps pour éviter ce genre de choses est primordial et vous évitera bien des tracas en cas de mise à jour de votre code (ou de celui d'un collègue).
 
 Pour rappel, les listes de liens ressemblent à :
 
@@ -172,7 +172,7 @@ Regardons ensemble le code source de cet élément :
 
 ### Place au code
 
-Cette fois-ci pas ou peu d'explication… Dans `fonctions/index.php` ajouter une fonction nommée `genereListe`. Pour la suite, je vous laisse chercher.
+Cette fois-ci pas ou peu d'explications… Dans `fonctions/index.php`, ajouter une fonction nommée `genereListe`. Pour la suite, je vous laisse chercher.
 
 ```php
 function genereListe($title, $file){
@@ -180,7 +180,7 @@ function genereListe($title, $file){
 }
 ```
 
-Remplacer le code dupliqué, par l'appel à votre fonction.
+Remplacer le code dupliqué par l'appel à votre fonction.
 
 ### Tester
 
@@ -196,7 +196,7 @@ Comme vous devez le constater, nous n'avons pas retiré le code dupliqué… Nou
 
 À votre avis, comment procéder ?
 
-<Reveal text="Cliquer pour voir ma « solution »">
+::: details Voir l'une des solutions possibles
 
 ```php
 $elements = [
@@ -213,7 +213,7 @@ foreach($elements as $el){
 - Quel est l'avantage de ma solution ?
 - Est-ce meilleur que la vôtre ?
 
-</Reveal>
+:::
 
 ## Le modèle de la donnée
 
@@ -221,11 +221,11 @@ Lors de l'analyse du code, vous avez remarqué qu'il était possible d'ajouter d
 
 L'ajout est fait « à l'arrache », oui ça fonctionne… Mais ce n'est clairement pas optimal.
 
-Nous allons donc commencer par créer un modèle, le modèle va permettre de « normaliser » notre développement et va simplifier la réutilisation du code.
+Nous allons donc commencer par créer un modèle. Le modèle va permettre de « normaliser » notre développement et va simplifier la réutilisation du code.
 
-Par formalisme, nous allons appeler notre dossier `modeles` avec dedans un fichier `lien.php`.
+Par formalisme, nous allons appeler notre dossier `modeles`, avec dedans un fichier `lien.php`.
 
-C'est à vous créer le dossier et le fichier.
+C'est à vous de créer le dossier et le fichier.
 
 Votre arborescence doit maintenant ressembler à :
 
@@ -241,10 +241,10 @@ Votre arborescence doit maintenant ressembler à :
 ├── modeles
 │   └── lien.php
 └── public
-    └── main.cs
+    └── main.css
 ```
 
-### La class PhP
+### La classe PHP
 
 Pour vous aider, voilà la classe Lien :
 
@@ -262,14 +262,14 @@ class Lien {
 }
 ```
 
-### Utiliser la class
+### Utiliser la classe
 
-Maintenant que nous avons défini la classe utilisons là !
+Maintenant que nous avons défini la classe, utilisons-la !
 
 Dans le fichier `detail.php` :
 
 - Trouvez l'endroit où se trouve l'ajout (`array_push`…)
-- Remplacez le Tableau par l'utilisation de l'objet.
+- Remplacez le tableau par l'utilisation de l'objet.
 
 ### Tester
 
@@ -282,7 +282,7 @@ Le gros plus d'avoir un modèle, c'est la possibilité d'ajouter des méthodes. 
 Créer une méthode avec le code suivant :
 
 ```php
-$url = filter_var($this->link, FILTER_SANITIZE_URL);
+$url = filter_var($this->lien, FILTER_SANITIZE_URL);
 return filter_var($url, FILTER_VALIDATE_URL) !== false;
 ```
 
@@ -294,9 +294,9 @@ Valider que le site fonctionne toujours.
 
 ## Le DAO
 
-Le DAO, est également un élément important. Cette classe va nous centraliser le code pour tout ce qui est l'accès à la donnée (ajout, suppression, liste).
+Le DAO est également un élément important. Cette classe va centraliser le code pour tout ce qui concerne l'accès à la donnée (ajout, suppression, liste).
 
-Comme vu en cours, l'une des possibilités pour un DAO est de créer une classe avec des méthodes `static` (c'est-à-dire accessible sans créer l'objet). C'est cette solution que je vous propose de faire.
+Comme vu en cours, l'une des possibilités pour un DAO est de créer une classe avec des méthodes `static` (c'est-à-dire accessibles sans créer l'objet). C'est cette solution que je vous propose de faire.
 
 Dans le code, nous avons deux actions possibles :
 
@@ -305,7 +305,7 @@ Dans le code, nous avons deux actions possibles :
 
 ### L'organisation
 
-La première étape est de créer les dossiers, par convention, nous allons « ranger » notre `DAO` dans un dossier nommé dao et dans un fichier qui regroupe les actions similaires (ou qui font référence à la même chose). Dans notre cas :
+La première étape est de créer les dossiers. Par convention, nous allons « ranger » notre `DAO` dans un dossier nommé `dao` et dans un fichier qui regroupe les actions similaires (ou qui font référence à la même chose). Dans notre cas :
 
 - Créer un dossier nommé `dao`
 - Créer un fichier dedans nommé `liens.php`
@@ -350,7 +350,7 @@ class LienDao {
 - Compléter les méthodes avec le code précédemment réalisé, en ne gardant bien évidemment que le code PHP…
 - Utiliser le DAO dans votre code PHP (`index.php` et `detail.php`)
 
-⚠️ Rappel les méthodes `static` en PHP sont appelées comme ça `LienDao::get("")`.
+⚠️ Rappel : les méthodes `static` en PHP sont appelées comme ceci : `LienDao::get("")`.
 
 ### Tester
 
@@ -358,19 +358,19 @@ Valider que le site fonctionne toujours.
 
 ## Les paramètres
 
-Nous avons maintenant mis en place la structure. Mais comme vous pouvez le constater, nous avons encore à un certain nombre d'endroits « des éléments en dur ».
+Nous avons maintenant mis en place la structure. Mais comme vous pouvez le constater, nous avons encore, à un certain nombre d'endroits, « des éléments en dur ».
 
-Par exemple le tableau « \$elements », celui-ci contient des valeurs static « twitter », « search », etc. Si vous souhaitez ajouter une nouvelle catégorie, vous allez devoir ajouter un élément dans le tableau (et surtout vous souvenir à quel endroit celui-ci est défini).
+Par exemple le tableau « \$elements », celui-ci contient des valeurs statiques « twitter », « search », etc. Si vous souhaitez ajouter une nouvelle catégorie, vous allez devoir ajouter un élément dans le tableau (et surtout vous souvenir à quel endroit celui-ci est défini).
 
 De la même façon, le chemin vers les « data » est également écrit en dur dans votre DAO.
 
-Également le nom de votre site est également écrit en dur.
+Le nom de votre site est lui aussi écrit en dur.
 
-Les 3 points que j'ai évoqués ne gênent évidemment en rien le bon fonctionnement de votre site web. Cependant ça rend votre code très « opaque » au changement. Une bonne habitude est donc de sortir dans « un fichier de paramètre » ce qui vous semble pouvoir varier ou changer un jour.
+Les 3 points que j'ai évoqués ne gênent évidemment en rien le bon fonctionnement de votre site web. Cependant ça rend votre code très « opaque » au changement. Une bonne habitude est donc de sortir dans « un fichier de paramètres » ce qui vous semble pouvoir varier ou changer un jour.
 
 ### Modification du code
 
-Nous allons donc créer un dossier « paramètre » et un fichier « parametres.php »
+Nous allons donc créer un dossier « parametre » et un fichier « parametres.php » :
 
 - Créer un dossier `parametre`.
 - Créer un fichier `parametres.php`.

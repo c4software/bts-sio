@@ -154,7 +154,7 @@ Inconvénients :
 Je vous laisse observer l'exemple :
 
 ```yaml
-image: node:16.5.0
+image: node:22
 pages:
   stage: deploy
   cache:
@@ -219,32 +219,32 @@ surge token
 Le token que vous avez obtenu représente votre compte. Il faut donc le garder secret.
 :::
 
-Compiler / Créer une première version de votre site. Exemple avec ViteJS
+Compilez / créez une première version de votre site. Exemple avec ViteJS :
 
 ```sh
 npm run build
 ```
 
-::: tip ?
+::: tip Que fait cette commande ?
 Cette commande va créer un dossier `dist` qui contient l'ensemble de votre site.
 :::
 
-Déployer votre site
+Déployez votre site :
 
 ```sh
 surge ./dist https://votre-domaine-unique.surge.sh --token VOTRE_TOKEN_OBTENU_PRECEDEMMENT
 ```
 
-Et voilà, votre site est en ligne ! Rendez-vous sur votre domaine pour le voir (<https://votre-domaine-unique.surge.sh>)
+Et voilà, votre site est en ligne ! Rendez-vous sur votre domaine pour le voir (<https://votre-domaine-unique.surge.sh>).
 
 ### Sur Gitlab-CI
 
 Maintenant que nous avons déployé une première version depuis votre poste, nous allons automatiser le déploiement avec Gitlab-CI.
 
-Créer un fichier `.gitlab-ci.yml` avec le contenu suivant :
+Créez un fichier `.gitlab-ci.yml` avec le contenu suivant :
 
 ```yaml
-image: node:16.5.0
+image: node:22
 
 cache:
   key:
@@ -260,25 +260,25 @@ stages:
 build:
   stage: build
   before_script:
-    - npm run ci
+    - npm ci
   script:
     - npm run build
   artifacts:
     paths:
-      - build
+      - dist
 
 deploy:
   stage: deploy
   before_script:
     - npm install -g surge
   script:
-    - surge ./build $SURGE_DOMAIN --token $SURGE_TOKEN
+    - surge ./dist $SURGE_DOMAIN --token $SURGE_TOKEN
 ```
 
 Que font les différentes étapes ? Nous avons ici la logique de compilation et de déploiement de notre site web :
 
-- `build` : Compilation du site, via la commande `npm run build`
-- `deploy` : Déploiement du site, via la commande `surge ./build $SURGE_DOMAIN --token $SURGE_TOKEN`
+- `build` : Compilation du site, via la commande `npm run build`.
+- `deploy` : Déploiement du site, via la commande `surge ./dist $SURGE_DOMAIN --token $SURGE_TOKEN`.
 
 ::: tip Des variables d'environnement ?
 
@@ -294,6 +294,7 @@ Je vous laisse ajouter les variables d'environnement dans votre projet Gitlab :
 
 - SURGE_LOGIN = `Votre login de connexion à Surge (email)`
 - SURGE_TOKEN = `Votre token obtenu précédemment`
+- SURGE_DOMAIN = `Votre domaine Surge (https://votre-domaine-unique.surge.sh)`
 
 Maintenant que vos variables sont ajoutées, nous pouvons **commiter** et **pusher** notre code sur Gitlab ! Et place à la magie !
 
@@ -301,7 +302,7 @@ Maintenant que vos variables sont ajoutées, nous pouvons **commiter** et **push
 
 ## On copie / colle ?
 
-Ça semble étonnant peut-être. Dans ce TP vous avez massivement copié / collé des commandes. Mais c'est normal… L'intégration continue c'est l'automatisation de tâches. 
+Ça semble peut-être étonnant : dans ce TP vous avez massivement copié / collé des commandes. Mais c'est normal… L'intégration continue, c'est l'automatisation de tâches.
 
 Et quand on débute, on copie / colle, on adapte, et on debug. C'est comme ça que ça marche.
 
@@ -311,7 +312,7 @@ Dans ce TP, j'ai passé le temps d'assemblage en lisant, testant, collectant les
 
 Compiler et héberger des sites statiques, ce n'est qu'une partie des possibilités de Gitlab-CI, vous pouvez faire bien plus !
 
-Pour ceux qui voudrais mettre en place de l'intégration continue pour créer l'architecture [Docker pour héberger un site Laravel c'est par ici](/tp/ops/deployer-laravel-ci.md)
+Pour ceux qui voudraient mettre en place de l'intégration continue pour créer l'architecture [Docker pour héberger un site Laravel, c'est par ici](/tp/ops/deployer-laravel-ci.md).
 
 ::: tip Ça semble compliqué ?
 

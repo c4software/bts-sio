@@ -1,7 +1,11 @@
+---
+description: "Introduction : cours et TP utilisés en BTS SIO, à l'ESEO et lors de diverses interventions."
+---
+
 # Introduction
 
-Cours et TP utilisé dans :
+Cours et TP utilisés :
 
 - En BTS SIO.
-- ESEO
-- Divers cours et interventions.
+- À l'ESEO.
+- Dans divers cours et interventions.

@@ -4,7 +4,15 @@ description: Dans ce TP nous allons découvrir Firebase RealtimeDB (base de donn
 
 # Firebase + VueJS 2.0
 
+::: warning Ce contenu est conservé à titre d'archive
+Ce TP repose sur VueJS 2, qui n'est plus maintenu depuis fin 2023. Pour apprendre Vue aujourd'hui, suivez plutôt [la version VueJS 3 de ce TP](/tp/vuejs3/firebase.md).
+:::
+
 Dans ce TP nous allons découvrir Firebase RealtimeDB (base de données temps réel). Nous allons coupler cette base de données temps réel à la puissance de VueJS pour obtenir en un rien de temps une application web surpuissante.
+
+::: details Table des matières
+[[toc]]
+:::
 
 ## Introduction
 
@@ -14,9 +22,9 @@ Nous allons mettre en place une carte du monde qui affiche en temps réel l'empl
 
 ## La mise en place
 
-Nous allons utiliser VueCreate pour initialiser le projet, première étape l'installation.
+Nous allons utiliser Vue-Create pour initialiser le projet. Première étape : l'installation.
 
-## Installer NodeJS + VueCreate
+## Installer NodeJS + Vue-Create
 
 Avant de commencer, nous allons avoir besoin de plusieurs outils :
 
@@ -25,13 +33,13 @@ Avant de commencer, nous allons avoir besoin de plusieurs outils :
 
 ## NodeJS
 
-La première étape va être l’installation de NodeJS, la démarche est différente en fonction de votre environnement, mais pour résumer [sous Windows c’est ici](https://nodejs.org/en/download/) prendre la version CURRENT, sous OSX le plus simple c’est via Brew `brew install nodejs`, et sous Linux c’est via le gestionnaire de paquet `apt install nodejs`
+La première étape va être l’installation de NodeJS, la démarche est différente en fonction de votre environnement, mais pour résumer [sous Windows c’est ici](https://nodejs.org/en/download/) prendre la version CURRENT, sous OSX le plus simple c’est via Brew `brew install nodejs`, et sous Linux c’est via le gestionnaire de paquets `apt install nodejs`.
 
 ## Initialiser le projet
 
 La création d'un nouveau projet est très simple. Il suffit de rentrer la commande suivante :
 
-```js
+```sh
 npm create vue@legacy firebase-vuejs
 ```
 
@@ -96,7 +104,7 @@ Maintenant que nous avons vu comment s'intègre le Leaflet, réfléchissons comm
 
 ### Création de la partie plugin
 
-Créer le fichier `src/plugins/vue2-leaflet.js` y mettre dedans :
+Créer le fichier `src/plugins/vue2-leaflet.js` et y mettre :
 
 ```js
 import { Icon } from "leaflet";
@@ -116,7 +124,7 @@ Icon.Default.mergeOptions({
 
 ### Déclarer le plugin
 
-Maintenant que la configuration du « plugin » est effective nous devons le déclarer dans notre fichier `main.js` pour ça rien de compliquer.
+Maintenant que la configuration du « plugin » est effective, nous devons le déclarer dans notre fichier `main.js`, pour ça rien de compliqué.
 
 Ajouter l'import :
 
@@ -135,7 +143,7 @@ import "./plugins/vue2-leaflet";
 
 Le gros avantage de NPM (et de NodeJS) c'est la quantité de librairies disponibles pour répondre à un besoin, nous allons donc en profiter pour gagner du temps dans notre réalisation.
 
-Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre pas directement avec le « state » d'un composant VueJS! Mais grâce à d'excellents développeurs c'est maintenant possible et très simplement. Pour ça nous allons utiliser :
+Firebase est plutôt simple à utiliser, mais nativement celle-ci ne s'intègre pas directement avec le « state » d'un composant VueJS ! Grâce à d'excellents développeurs c'est maintenant possible, et très simplement. Pour ça nous allons utiliser :
 
 - [Vuefire](https://vuefire.vuejs.org/)
 
@@ -226,7 +234,7 @@ import "./plugins/firebase";
 
 ## Testons
 
-Bien maintenant, que nous avons mis en place les bases de notre projet, testons si celui-ci fonctionne correctement. Pour ça (dans un terminal) :
+Bien, maintenant que nous avons mis en place les bases de notre projet, testons si celui-ci fonctionne correctement. Pour ça (dans un terminal) :
 
 ```bash
 npm run serve
@@ -240,7 +248,7 @@ Et dans votre navigateur toujours la même chose à savoir :
 
 ![VueJS init](./ressources/vuejs-init.png)
 
-## Création de notre première vue / composant.
+## Création de notre première vue / composant
 
 Notre projet est maintenant prêt à recevoir son premier `.vue` bien à vous. Toujours dans le but d'organiser son travail, nous allons commencer par créer un dossier :
 
@@ -380,7 +388,7 @@ Et voilà ! Votre base RealtimeDB est accessible !
 
 ## Connecter Firebase à notre vue
 
-Grâce au plugin l'intégration de Firebase va être très simplifiée. Déjà vous avez mis en place Firebase et injecter le connecteur de base de données grâce au « plugin » et « Vue.prototype », nous allons devoir l'utiliser. Pour ça, modifiez le fichier `maps.vue` pour ajouter (après name) :
+Grâce au plugin l'intégration de Firebase va être très simplifiée. Vous avez déjà mis en place Firebase et injecté le connecteur de base de données grâce au « plugin » et « Vue.prototype », nous allons maintenant l'utiliser. Pour ça, modifiez le fichier `map.vue` pour ajouter (après name) :
 
 ```js
 firebase() {
@@ -396,24 +404,24 @@ Ajouter également dans les `data` de votre composant une variable nommée `mark
 markerList: [];
 ```
 
-### Questions :
+### Questions
 
 - D'où vient `this.$db` ?
 - À quoi correspond le `/markerList/` ?
 
-Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable de disponible, `markerList` celle-ci est synchronisée avec votre base de données temps réel (Firebase RealtimeDB).
+Et c'est tout ! Vous avez maintenant dans votre objet vue une nouvelle variable disponible : `markerList`. Celle-ci est synchronisée avec votre base de données temps réel (Firebase RealtimeDB).
 
 ## Manipuler la base RealtimeDB
 
 La manipulation de la base RealtimeDB va se faire via l'objet `this.$firebaseRefs`. Voilà l'ensemble des actions possibles :
 
-### Ajouter une nouvelle entrée :
+### Ajouter une nouvelle entrée
 
 ```js
 this.$firebaseRefs.markerList.push(/*…*/);
 ```
 
-### Modifier une entrée :
+### Modifier une entrée
 
 ```js
 this.$firebaseRefs.markerList[0].update(/*...*/).then(() => {
@@ -428,7 +436,7 @@ this.$firebaseRefs.markerList[0].update(/*...*/).then(() => {
 
 :::
 
-### Supprimer un élément :
+### Supprimer un élément
 
 ```js
 this.$firebaseRefs.markerList.child(identifiant).remove();
@@ -465,14 +473,14 @@ addMarker(position) {
 
 ## Tester
 
-- Ouvrer la [console de Firebase](https://console.firebase.google.com/) rendez-vous dans la partie `Database`.
+- Ouvrir la [console de Firebase](https://console.firebase.google.com/) et se rendre dans la partie `Database`.
 - Lancer votre projet local `npm run serve`.
 - Cliquer sur la carte.
 - Que constatez-vous ?
 
 ## Afficher les markers
 
-Les markers ne s'affichent pas ? C'est normal! Pour l'instant nous n'avons pas mis le code permettant de les afficher. C'est l'étape à laquelle nous sommes.
+Les markers ne s'affichent pas ? C'est normal ! Pour l'instant nous n'avons pas mis le code permettant de les afficher. C'est l'étape à laquelle nous sommes.
 
 La logique va être simpliste, nous devons afficher TOUS les éléments contenus dans la variable `markerList` déclarée précédemment.
 
@@ -500,9 +508,9 @@ Le marker est à mettre dans le `l-map`.
 
 Nous avons donc ici :
 
-- Un élément que nous allons répéter autant de fois que nous avons d'enregistrement en base de données.
+- Un élément que nous allons répéter autant de fois que nous avons d'enregistrements en base de données.
 - `:key` qui permet d'optimiser les affichages.
-- `:lat-lng` qui positionne le marker (le picto) à l'endroit du click.
+- `:lat-lng` qui positionne le marker (le picto) à l'endroit du clic.
 
 :::
 
@@ -514,7 +522,7 @@ Toujours avec `npm run serve`, normalement des markers doivent s'afficher. Tente
 
 ## Suppression d'un marker
 
-Bon maintenant qu'il y a plein de marker partout nous allons mettre en place le code pour les supprimer ! Voilà la procédure à suivre :
+Bon, maintenant qu'il y a plein de markers partout, nous allons mettre en place le code pour les supprimer ! Voilà la procédure à suivre :
 
 - Ajout d'une méthode `removeMarker`
 
@@ -530,11 +538,11 @@ removeMarker(markerKey) {
 @click="() => removeMarker(marker['.key'])"
 ```
 
-::: tip Qu'avons nous ici ?
+::: tip Qu'avons-nous ici ?
 
-`() => removeMarker(marker['.key'])` Représente une fonction qui sera appelée au click. Cette fonction déclenchera la suppression du marker. Le `marker['.key']` est l'identifiant de l'élément que l'on souhaite supprimer.
+`() => removeMarker(marker['.key'])` représente une fonction qui sera appelée au clic. Cette fonction déclenchera la suppression du marker. Le `marker['.key']` est l'identifiant de l'élément que l'on souhaite supprimer.
 
-le `…['.key']` est automatiquement ajouté par la librairie `Vuefire`.
+Le `…['.key']` est automatiquement ajouté par la librairie `Vuefire`.
 
 :::
 
@@ -550,12 +558,12 @@ Accéder à plusieurs au même projet (via votre IP) pour tester la synchronisat
 
 Profitons des nouvelles fonctionnalités de nos navigateurs pour améliorer notre carte. Actuellement la carte est centrée sur Angers… C'est pratique… Si on se trouve à Angers… dans tous les autres cas, ce n’est pas forcément adapté. Nous allons donc utiliser l'API `geolocation` de notre navigateur.
 
-Celle-ci permet de localiser une personne en fonction de sa connexion Internet (ou GPS / Réseau téléphonique si disponible)
+Celle-ci permet de localiser une personne en fonction de sa connexion Internet (ou GPS / réseau téléphonique si disponible).
 
 - [Documentation de l'API geolocation](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 - Ajouter une méthode dans le code dans le composant `map.vue`.
 - La méthode doit mettre à jour la Data `this.center = [lat, lng]`.
-- La méthode doit être appelée via un clique utilisateur [Documentation de LControl](https://vue2-leaflet.netlify.app/examples/custom-control.html)
+- La méthode doit être appelée via un clic utilisateur [Documentation de LControl](https://vue2-leaflet.netlify.app/examples/custom-control.html).
 
 <Reveal text="Voir la solution">
 
@@ -587,9 +595,7 @@ getUserLocation() {
 
 ### Intégrer Bootstrap
 
-En utilisant la documentation fournie sur le site de [Vue-Bootstrap](https://bootstrap-vue.org/docs)
-
-Modifier l'affichage du `button` précédemment ajouté pour lui donner un style plus propre.
+En utilisant la documentation fournie sur le site de [Vue-Bootstrap](https://bootstrap-vue.org/docs), modifier l'affichage du `button` précédemment ajouté pour lui donner un style plus propre.
 
 ### Ajouter une confirmation
 
@@ -597,13 +603,13 @@ Actuellement la suppression d'un Marker est faite sans confirmation. En utilisan
 
 ```js
 this.$bvModal.msgBoxConfirm("Are you sure?").then((confirmation) => {
-  // Confirmation peut-être true ou false en fonction du choix de l'utilisateur.
+  // Confirmation peut être true ou false en fonction du choix de l'utilisateur.
 });
 ```
 
-### Personalisation du Marker
+### Personnalisation du Marker
 
-La carte est basique… beaucoup trop ! Et si nous placions des markers différents en fonction du navigateur de l'utilisateur. Je vous laisse réfléchir à comment nous pouvons faire ça :
+La carte est basique… beaucoup trop ! Et si nous placions des markers différents en fonction du navigateur de l'utilisateur ? Je vous laisse réfléchir à comment nous pouvons faire ça :
 
 - À la fois dans le code.
 - À la fois dans la base de données.
@@ -612,7 +618,7 @@ La carte est basique… beaucoup trop ! Et si nous placions des markers différe
 
 En utilisant « Une Dialog » de Bootstrap ajouter le code nécessaire à la modification du Marker :
 
-- Un click sur un Marker permet de choisis une nouvelle icône.
+- Un clic sur un Marker permet de choisir une nouvelle icône.
 - Un bouton « valider » enregistre la modification.
 
 ### Ajouter une UI à votre projet
@@ -622,7 +628,7 @@ Actuellement nous avons une carte pleine page qui s'affiche dès notre arrivée 
 En utilisant mes talents de design, voilà l'interface que je souhaite obtenir. Vous noterez que j'ai en haut deux boutons me permettant d'accéder à deux fonctions de mon site (Carte & Liste).
 
 - La Vue carte, est similaire à celle actuelle, elle n’est par contre pas pleine page.
-- La Vue liste est une vision liste de l'ensemble des points présent en base de données.
+- La Vue liste est une vision liste de l'ensemble des points présents en base de données.
 
 ![Évolution](./ressources/evolution_carte.png)
 

@@ -4,6 +4,10 @@ description: Dans le cadre du TP, vous allez devoir « moderniser » une applica
 
 # Ajouter VueJS 2.0 dans une application existante
 
+::: warning Ce contenu est conservé à titre d'archive
+Ce TP repose sur VueJS 2, qui n'est plus maintenu depuis fin 2023. Pour apprendre Vue aujourd'hui, suivez plutôt [les TP VueJS 3](/pages/categories/les-tp-javascript.md).
+:::
+
 Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration _uniquement_.
 
 L’application existante est une « todo liste » codée en PHP + HTML.
@@ -86,15 +90,15 @@ Voilà un exemple de code pour réaliser un fichier JSON en PHP :
 ?>
 ```
 
-Rappel: Avant de pouvoir utiliser la session, vous devez faire un `session_start();`
+Rappel : avant de pouvoir utiliser la session, vous devez faire un `session_start();`
 
-C’est à vous, réaliser votre première API.
+C’est à vous, réalisez votre première API.
 
 ### Comment procéder pour les prochaines API
 
-✋ En tant que développeur vous devez être malin (et fainéants…). Pour écrire les autres API, ne tentez pas de réinventer la roue, utiliser les exemples fournis dans le code actuel (dans le dossier `actions` par exemple).
+✋ En tant que développeur vous devez être malin (et fainéant…). Pour écrire les autres API, ne tentez pas de réinventer la roue, utilisez les exemples fournis dans le code actuel (dans le dossier `actions` par exemple).
 
-### L’API de création: creation.php
+### L’API de création : creation.php
 
 L’API « creation.php » va permettre la création de nouvelles « tâches », une fois l’ajout réalisé, celle-ci doit retourner un JSON permettant de savoir dans votre application si le traitement s’est bien passé. Cette API ne doit fonctionner qu’en POST.
 
@@ -137,11 +141,11 @@ Par exemple :
 { "success": true }
 ```
 
-Vous pouvez également utiliser les codes de retour HTTP pour indique l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+Vous pouvez également utiliser les codes de retour HTTP pour indiquer l’état du résultat. [Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
 ### L’API pour marquer une tâche comme terminée : terminer.php
 
-L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de s’avoir si le traitement c’est bien déroulé.
+L’API « terminer.php » va changer l’état du flag « termine ». Vous devez retourner un JSON permettant à votre future application de savoir si le traitement s’est bien déroulé.
 
 Paramètre d’entrée :
 
@@ -151,7 +155,7 @@ Paramètre d’entrée :
 
 ### L’API de suppression : suppression.php
 
-L’API « suppression » va permettre la suppression de la « tâche » passée en paramètre, **_uniquement_** les tâches dont le paramètre `termine == true` peuvent être terminé, dans tous les cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement c’est bien passé. L’API doit fonctionner en GET et en POST.
+L’API « suppression » va permettre la suppression de la « tâche » passée en paramètre, **_uniquement_** les tâches dont le paramètre `termine == true` peuvent être supprimées, dans tous les cas l’API doit retourner un JSON permettant de savoir dans votre application si le traitement s’est bien passé. L’API doit fonctionner en GET et en POST.
 
 Contraintes :
 
@@ -176,7 +180,7 @@ Pour tester vos traitements, vous avez la possibilité d’utiliser le logiciel 
 
 Téléchargez-le [ici](https://www.getpostman.com/)
 
-Une fois installé, tester les appels à vos APIs pour valider le bon fonctionnement
+Une fois installé, tester les appels à vos API pour valider le bon fonctionnement.
 
 - Valider le fonctionnement à chaque étape (Création, liste, terminer, suppression).
 
@@ -216,7 +220,7 @@ Pour réaliser la suite du TP, nous allons avoir besoin des ressources suivantes
 - [VueJS](https://vuejs.org)
 - [CanIUse](https://caniuse.com)
 
-### Création de la structure de « futur » projet
+### Création de la structure du « futur » projet
 
 Maintenant que nous avons les API, nous allons pouvoir créer la structure de la « V2 ». La suite du TP va détailler le processus, mais voilà le rendu du projet que vous allez obtenir :
 
@@ -251,11 +255,11 @@ Valider le fonctionnement grâce à la « Console de Développement » de votre 
 
 Ajouter avant la balise `</body>` de l’index.html un nouveau script `main.js`, il contiendra le code nécessaire au fonctionnement de notre site Web.
 
-😅 Vous devez bien évidement créer le fichier `main.js`.
+😅 Vous devez bien évidemment créer le fichier `main.js`.
 
 #### Déclarer votre premier composant
 
-Pour déclarer votre premier composant / objet VueJS, c’est simple il suffit de mettre dans le fichier `main.js` le code suivant :
+Pour déclarer votre premier composant / objet VueJS, c’est simple, il suffit de mettre dans le fichier `main.js` le code suivant :
 
 ```javascript
 var app = new Vue({
@@ -280,10 +284,10 @@ L'API Fetch fournit une interface JavaScript pour l'accès et la manipulation de
 
 Ce genre de fonctionnalité était auparavant réalisé avec XMLHttpRequest. Fetch fournit une meilleure alternative qui peut être utilisée facilement par d’autres technologies comme Service Workers. Fetch fournit aussi un endroit unique et logique pour la définition d'autres concepts liés à HTTP comme CORS et les extensions d'HTTP.
 
-(Source: MDM)
+(Source : MDN)
 
 Le support de l'API Fetch peut être détecté en vérifiant l'existence de Headers, Request, Response ou fetch() sur la portée de Window ou de Worker.
-Par exemple, vous pouvez faire cela dans votre script:
+Par exemple, vous pouvez faire cela dans votre script :
 
 ```javascript
 if (self.fetch) {
@@ -311,11 +315,9 @@ fetch("api/liste.php", { method: "GET", credentials: "same-origin" })
   });
 ```
 
-⚠️ Que veux dire `credentials: 'same-origin'`? Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant `credentials: 'same-origin'`. Si vous ne le faites pas vos `$_SESSION` ne seront pas sauvegardées ⚠️
+⚠️ Que veut dire `credentials: 'same-origin'` ? Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant `credentials: 'same-origin'`. Si vous ne le faites pas vos `$_SESSION` ne seront pas sauvegardées ⚠️
 
-Tester le code précédent dans :
-
-- Tester dès à présent cet appel dans la « Console développeur »
+- Tester dès à présent cet appel dans la « Console développeur » de votre navigateur.
 
 Pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc.)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch)
 
@@ -371,7 +373,7 @@ var app = new Vue({
 </ul>
 ```
 
-Adapter l’exemple précédant pour afficher les tâches comme ils l’étaient dans la page en version PHP.
+Adapter l’exemple précédent pour afficher les tâches comme elles l’étaient dans la page en version PHP.
 
 [Plus de détail sur la partie « rendu des listes »](https://fr.vuejs.org/v2/guide/list.html)
 
@@ -413,7 +415,7 @@ Maintenant que la liste est affichée, vous allez pouvoir gérer le cas de l’a
 
 - Créer une méthode JavaScript, réalisant l’appel de l’API.
 
-⚠️ Attention: L’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, et/ou via [librairie Sweetalert](https://sweetalert.js.org/guides/#cdn)) ⚠️
+⚠️ Attention : l’utilisateur devant être prévenu de l’aspect obligatoire du contenu, vous devez rendre la saisie obligatoire (contrôle de saisie, et/ou via [librairie Sweetalert](https://sweetalert.js.org/guides/#cdn)) ⚠️
 
 ```javascript
 var app = new Vue({
@@ -457,7 +459,7 @@ fetch("api/creation.php", {
   });
 ```
 
-- Rafraichir la liste des tâches, pour ça vous allez créer une 2nd méthode qui réalise l’appel Ajax de récupération de la liste. Une fois cette méthode faite, appeler la dans la partie `// traiter le retour`.
+- Rafraichir la liste des tâches, pour ça vous allez créer une seconde méthode qui réalise l’appel Ajax de récupération de la liste. Une fois cette méthode faite, appelez-la dans la partie `// traiter le retour`.
 - Optimiser votre code en remplaçant le code dans le `beforeMount` par un appel à la méthode que vous avez créée.
 
 Votre objet VueJS doit ressembler à quelque chose comme ça :
@@ -497,9 +499,9 @@ var app = new Vue({
 
 #### Marquer une tâche comme terminée
 
-Pour marquer une tâche comme terminée, vous allez devoir appeler l’api « terminer.php ». Cette API doit être appelée lors du clic sur l’icône qui a comme class « oi oi-check ».
+Pour marquer une tâche comme terminée, vous allez devoir appeler l’API « terminer.php ». Cette API doit être appelée lors du clic sur l’icône qui a comme class « oi oi-check ».
 
-- Utilisez-le [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
+- Utiliser [v-on:click](https://fr.vuejs.org/v2/guide/events.html)
 - Remplacer :
 
 ```html
@@ -515,7 +517,7 @@ Par
 ```
 
 - Déclarer la méthode « terminer » dans votre objet VueJS. Faites l’appel à votre API.
-- L’objet VueJS doit maintenant ressemble à quelque chose comme ça :
+- L’objet VueJS doit maintenant ressembler à quelque chose comme ça :
 
 ```javascript
 var app = new Vue({
@@ -553,7 +555,7 @@ La suppression d’une tâche est très similaire à l’action « terminer.php 
 
 Ne pas oublier la règle de gestion : « Une tâche non marquée comme terminée ne peut être supprimée. »
 
-L’objet doit maintenant ressembler à (Le code que vous avez écrit en moins):
+L’objet doit maintenant ressembler à (le code que vous avez écrit en moins) :
 
 ```javascript
 var app = new Vue({
@@ -586,15 +588,15 @@ var app = new Vue({
 
 #### Optimisation
 
-Comme vous l’avez certainement constaté, les deux dernières actions sont très similaires. Faites fusionner les deux actions en ajoutant par exemple un paramètre « action ». Ce paramètre vous permettra de savoir dans quel cas vous vous trouvez, je vous laisse écrire le code.
+Comme vous l’avez certainement constaté, les deux dernières actions sont très similaires. Fusionnez les deux actions en ajoutant par exemple un paramètre « action ». Ce paramètre vous permettra de savoir dans quel cas vous vous trouvez, je vous laisse écrire le code.
 
-## Allez plus loin
+## Aller plus loin
 
 Quelques pistes pour aller plus loin dans le code :
 
 ### Mettre en place des « alertes »
 
-Vous n'avez certainement pas mis les messages en cas « d'erreur » comme indiqué aux différentes étapes, comme par exemple :
+Vous n'avez certainement pas mis les messages en cas « d'erreur » comme indiqué aux différentes étapes, par exemple :
 
 - En cas d'absence de texte au moment de la validation du formulaire.
 - En cas d'erreur de récupération des TODO par l'API.
@@ -607,7 +609,7 @@ Ajout des confirmations avant les actions « marquer comme terminé » et l’ac
 
 ### Utiliser l'API de partage
 
-Depuis quelques mois Chrom(e|ium) propose une nouvelle API nommée « Web Share Api », Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités natives du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est présente avec
+Depuis quelques mois Chrom(e|ium) propose une nouvelle API nommée « Web Share API ». Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités natives du téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS, vous devez tester si celle-ci est présente avec :
 
 ```javascript
 if (navigator.share) {
@@ -616,7 +618,7 @@ if (navigator.share) {
 
 [Voir le support de Share](https://caniuse.com/#search=Web%20Share%20Api)
 
-Mais comme nous sommes avec VueJS nous allons gérer ça avec le MVVM (Modèle Vue, Vue-Modèle), ça va nous permettre d’injecter une variable à la création de l’objet `app` pour connaitre si le partage est disponible. Exemple :
+Mais comme nous sommes avec VueJS nous allons gérer ça avec le MVVM (Modèle Vue, Vue-Modèle), ça va nous permettre d’injecter une variable à la création de l’objet `app` pour savoir si le partage est disponible. Exemple :
 
 ```javascript
 var app = new Vue({
@@ -631,7 +633,7 @@ var app = new Vue({
   […]
 ```
 
-Une fois fait, vous avez une variable `isShare` qui sera `True` Ou `False` en fonction du support du navigateur. Maintenant que le booléen est disponible, vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
+Une fois fait, vous avez une variable `isShare` qui sera `true` ou `false` en fonction du support du navigateur. Maintenant que le booléen est disponible, vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
 
 ```javascript
 […]

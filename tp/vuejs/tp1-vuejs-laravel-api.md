@@ -4,6 +4,10 @@ description: Dans le cadre du TP, vous allez devoir « moderniser » une applica
 
 # Ajouter VueJS 2.0 + Laravel
 
+::: warning Ce contenu est conservé à titre d'archive
+Ce TP repose sur VueJS 2, qui n'est plus maintenu depuis fin 2023. Pour apprendre Vue aujourd'hui, suivez plutôt [les TP VueJS 3](/pages/categories/les-tp-javascript.md).
+:::
+
 Dans le cadre du TP, vous allez devoir « moderniser » une application simple. L’application à migrer a été réalisée dans le cadre de la démonstration.
 
 ::: details Table des matières
@@ -27,7 +31,7 @@ La « nouvelle version » de notre page va utiliser des API (et de l'Ajax), ça 
 - Marquer un élément comme terminé.
 - Supprimer un élément.
 
-✋ En tant que développeur vous devez être malin (et fainéants…). Pour écrire les autres API ne tenter pas de réinventer la roue, nous allons utiliser le même code que le contrôleur actuel !
+✋ En tant que développeur vous devez être malin (et fainéant…). Pour écrire les autres API ne tentez pas de réinventer la roue, nous allons utiliser le même code que le contrôleur actuel !
 
 Les seules différences seront :
 
@@ -75,7 +79,7 @@ Dans le fichier, `app/Http/Controllers/api.php` ajoutez une méthode nommée `li
 
 ##### L'ajout
 
-Pour l'ajout, le code va être **identique** à celui de premier TP, la seule différence c'est que celui-ci doit retourner 1 ou 0 en fonction de la réussite ou non :
+Pour l'ajout, le code va être **identique** à celui du premier TP, la seule différence c'est que celui-ci doit retourner 1 ou 0 en fonction de la réussite ou non :
 
 ```php
   return response()->json(array("status" => "1"));
@@ -89,7 +93,7 @@ Comme pour l'ajout, le code va être identique au TP précédent à l'exception 
 
 ```php
   return response()->json(array("status" => "1"));
-  // Ou en en cas échec
+  // Ou en cas d'échec
   return response()->json(array("status" => "0"));
 ```
 
@@ -100,7 +104,7 @@ Comme pour l'ajout, le code va être identique au TP précédent à l'exception 
 ```php
   return response()->json(array("status" => "1"));
 
-  // Ou en en cas échec d'ajout il faudra retourner
+  // Ou en cas d'échec il faudra retourner
   return response()->json(array("status" => "0"));
 ```
 
@@ -108,7 +112,7 @@ Comme pour l'ajout, le code va être identique au TP précédent à l'exception 
 
 ##### Perdu
 
-Normalement vous avez l'ensemble des informations pour y arriver seul, si vous bloquez voilà :
+Normalement vous avez l'ensemble des informations pour y arriver seul. Si vous bloquez, voilà :
 
 <Reveal text="Voir la définition des méthodes">
 
@@ -157,15 +161,15 @@ Route::delete('/delete/{id}', "api@remove")->name('api.remove');
 
 Simplement avec Laravel toutes les routes dans le fichier `routes/api.php` sont automatiquement préfixées par `/api/`. 🤯
 
-Vous API sont maintenant accessibles.
+Vos API sont maintenant accessibles.
 
 ##### Validation des API
 
 Valider que vos API fonctionnent correctement grâce à l'outil [Postman](https://www.getpostman.com/).
 
-(Pssst! La création de comptes **n'est pas obligatoire**) <-- ⚠️⚠️
+(Pssst ! La création de compte **n'est pas obligatoire**) <-- ⚠️⚠️
 
-🤓 Commencez par la plus simple, par exemple `/api/` qui doit normalement lister votre actuelle TodoList.
+🤓 Commencez par la plus simple, par exemple `/api/` qui doit normalement lister votre TodoList actuelle.
 
 ✋ Tester l'ensemble de vos API avant de continuer.
 
@@ -255,7 +259,7 @@ public function homevue(){
 
 ### Liste des todos
 
-Même si pour l'instant nous n'avons pas encore fait le code pour appeler les API, ajouter le code HTML suivant après `<!-- Liste des todos -->` présente dans le fichier `homevue.blade.php`:
+Même si pour l'instant nous n'avons pas encore fait le code pour appeler les API, ajouter le code HTML suivant après `<!-- Liste des Todos -->` présent dans le fichier `homevue.blade.php` :
 
 ```html
 <ul class="list-group pt-3">
@@ -280,9 +284,9 @@ Même si pour l'instant nous n'avons pas encore fait le code pour appeler les AP
 
 ### @ ? Hey !
 
-- `@` À quoi correspond le `@` ? (Pssst, c'est en lien avec Laravel)
-- Tenter de le retirer pour voir ce qui se passe ?
-- Pourquoi ça ne fonctionne plus?
+- À quoi correspond le `@` ? (Pssst, c'est en lien avec Laravel)
+- Tenter de le retirer pour voir ce qui se passe.
+- Pourquoi ça ne fonctionne plus ?
 
 ### Asynchrone
 
@@ -294,10 +298,10 @@ L'API Fetch fournit une interface JavaScript pour l'accès et la manipulation de
 
 Ce genre de fonctionnalité était auparavant réalisé avec XMLHttpRequest. Fetch fournit une meilleure alternative qui peut être utilisée facilement par d’autres technologies comme Service Workers. Fetch fournit aussi un endroit unique et logique pour la définition d'autres concepts liés à HTTP comme CORS et les extensions d'HTTP.
 
-(Source: MDM)
+(Source : MDN)
 
 Le support de l'API Fetch peut être détecté en vérifiant l'existence de Headers, Request, Response ou fetch() sur la portée de Window ou de Worker.
-Par exemple, vous pouvez faire cela dans votre script:
+Par exemple, vous pouvez faire cela dans votre script :
 
 ```javascript
 if (self.fetch) {
@@ -327,7 +331,7 @@ fetch("api/", { method: "GET", credentials: "same-origin" })
   });
 ```
 
-⚠️ Que veut dire `credentials: 'same-origin'`?
+⚠️ Que veut dire `credentials: 'same-origin'` ?
 
 Par défaut, Fetch n’utilise pas les Cookies, vous pouvez forcer l’utilisation des cookies en indiquant `credentials: 'same-origin'`. Si vous ne le faites pas, votre `$_SESSION` ne sera pas sauvegardée ⚠️.
 
@@ -337,7 +341,7 @@ Pour valider le bon fonctionnement, nous allons utiliser la « Console développ
 
 Fetch est une librairie très complète, pour aller plus loin dans l’utilisation de Fetch, je vous recommande la lecture de [la documentation complète (gestion des headers, paramètres, mode, etc.)](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch).
 
-Tester de récupérer vos « todos » depuis votre console.
+Essayer de récupérer vos « todos » depuis votre console.
 
 ## La structure du code JavaScript
 
@@ -345,7 +349,7 @@ Maintenant que nos API sont terminées et que notre appel via Fetch fonctionne, 
 
 Nous allons utiliser massivement la gestion d'évènement de VueJS.
 
-Pour rappel, n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png)).
+Pour rappel, n’hésitez pas à consulter le [cycle de vie des composants](https://vuejs.org/images/lifecycle.png).
 
 ### La liste
 
@@ -400,7 +404,7 @@ Pour ajouter votre script, nous allons faire simple, nous allons « juste » l'a
 <script type="text/JavaScript" src="{{ asset('js/main.js') }}"></script>
 ```
 
-Tester d'accéder à nouveau à votre site web, vous devez maintenant voir dans `la console de développeur` de votre navigateur le texte suivant :
+Accéder à nouveau à votre site web, vous devez maintenant voir dans `la console de développeur` de votre navigateur le texte suivant :
 
 ![VueJS Console](./ressources/vuejs-console.png)
 
@@ -409,7 +413,7 @@ Pas de liste de todo dans votre page ? C'est normal ! Nous allons maintenant ajo
 #### Questions
 
 - À quoi correspond `asset` ?
-- À quoi correspond `el: '.container',` pourquoi est-ce très important ?
+- À quoi correspond `el: '.container'` ? Pourquoi est-ce très important ?
 
 ### Récupérer les Todos
 
@@ -514,7 +518,7 @@ La logique pour la partie suppression va être identique à la partie `done`. Je
 
 #### Aide
 
-Votre API attend un appel de type `PATCH` :
+Votre API attend un appel de type `DELETE` :
 
 ```js
 fetch("…", { method: "DELETE" });
@@ -610,7 +614,7 @@ Afficher des messages d'erreurs en cas de `catch` lors des appels réseau.
 
 ### Partager les TODOS au monde !
 
-Depuis quelques jours, Chrome propose une nouvelle API nommée « Web Share Api ». Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités natives du Téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS vous devez tester si celle-ci est disponible via :
+Depuis quelque temps, Chrome propose une nouvelle API nommée « Web Share API ». Cette API permet de déclencher « le Partage » d’une information en utilisant les possibilités natives du téléphone. Comme cette API n’est disponible que sur un téléphone et uniquement en HTTPS, vous devez tester si celle-ci est disponible via :
 
 ```JavaScript
 if (navigator.share) {
@@ -634,7 +638,7 @@ var app = new Vue({
   […]
 ```
 
-Une fois fait, vous avez une variable `isShare` qui sera `true` Ou `false` en fonction du support du navigateur. Maintenant que le booléen est disponible, vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
+Une fois fait, vous avez une variable `isShare` qui sera `true` ou `false` en fonction du support du navigateur. Maintenant que le booléen est disponible, vous pouvez ajouter un élément cliquable pour déclencher l’action (prendre exemple sur la suppression ou le marquer comme terminé). Exemple de code pour déclencher le partage :
 
 ```javascript
 […]
@@ -661,7 +665,7 @@ C’est à vous !
 
 Dans les exemples précédents, nous avons utilisé VueJS pour « améliorer » l'interface de notre site web existant. Mais avec VueJS il est possible d'aller beaucoup plus loin. Il est possible de réécrire l'ensemble pour utiliser des composants fournis par la communauté.
 
-Je vous propose donc de réécrire la page que vous avez ajoutée en utilisant [Bootsrap VueJS](https://bootstrap-vue.js.org/)
+Je vous propose donc de réécrire la page que vous avez ajoutée en utilisant [Bootstrap VueJS](https://bootstrap-vue.js.org/) :
 
 - Réécrire l'interface.
 - Utiliser les composants pour les boutons.

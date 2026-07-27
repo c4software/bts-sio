@@ -4,6 +4,10 @@ description: Dans ce TP nous allons voir dans un premier temps comment créer un
 
 # Vuetify + VueJS 2.0
 
+::: warning Ce contenu est conservé à titre d'archive
+Ce TP repose sur VueJS 2, qui n'est plus maintenu depuis fin 2023. Pour apprendre Vue aujourd'hui, suivez plutôt [les TP VueJS 3](/pages/categories/les-tp-javascript.md).
+:::
+
 Dans ce TP nous allons voir dans un premier temps comment créer une application VueJS avec VueCLI. Puis à partir de ce projet, nous allons y ajouter la librairie Vuetify afin de manipuler des composants fournis par un développeur tiers.
 
 ::: details Table des matières
@@ -31,9 +35,9 @@ Une fois installé, vous êtes prêt, vous allez pouvoir installer l’outil Vue
 
 ### Vue-cli
 
-Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
+Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de templates fournis par la communauté.
 
-Pour ceux sous Windows lancez `Node.js Command Prompt` :
+Pour ceux sous Windows, lancer dans le `Node.js Command Prompt` :
 
 ```sh
 npm install -g @vue/cli
@@ -67,7 +71,7 @@ Votre ordinateur va vous poser quelques questions :
 
 Pour l'instant, nous allons rester sur VueJS 2.0 comme évoqué en cours. Valider votre choix avec la touche entrée.
 
-VueCLI est en train d'installer l'ensemble des dépendances nécessaire au bon fonctionnement de votre application. Cette étape va prendre quelques secondes / minutes.
+VueCLI est en train d'installer l'ensemble des dépendances nécessaires au bon fonctionnement de votre application. Cette étape va prendre quelques secondes / minutes.
 
 ## Tester
 
@@ -93,9 +97,9 @@ Rappel, la commande `cd` permet de vous déplacer dans le dossier `vuetify-vuejs
 La commande `npm run serve` est une commande interne à votre projet, elle va lancer un « serveur » qui vous permettra de tester votre code pendant la phase de développement.
 :::
 
-Votre code [est disponible ici](https://localhost:8080)
+Votre code [est disponible ici](http://localhost:8080).
 
-Vous devez voir quelque chose qui ressemble à
+Vous devez voir quelque chose qui ressemble à :
 
 ![vuejs](./ressources/vuejs-init.png)
 
@@ -104,7 +108,7 @@ Vous devez voir quelque chose qui ressemble à
 Maintenant que votre code fonctionne, nous allons le faire évoluer pour ajouter Vuetify. Avec Vue-Cli c'est très simple. Il suffit de saisir une commande.
 
 ::: danger ATTENTION
-la commande va modifier en profondeur votre projet. Il ne faut pas la faire à n'importe quel moment. Il est préférable de faire celle-ci _au début de la création de votre projet_.
+La commande va modifier en profondeur votre projet. Il ne faut pas la lancer à n'importe quel moment. Il est préférable de faire celle-ci _au début de la création de votre projet_.
 :::
 
 Dans le dossier de votre projet :
@@ -121,7 +125,7 @@ Votre projet va être modifié, afin d'inclure vuetify.
 
 Pour tester, il suffit de saisir à nouveau la commande `npm run serve`.
 
-Votre projet est maintenant différent, il doit ressembler à
+Votre projet est maintenant différent, il doit ressembler à :
 
 ![vuetify-init](./ressources/vuetify-init.png)
 
@@ -163,7 +167,7 @@ Tester à nouveau votre application.
 
 ## Test & Évolutions
 
-Afin de tester les possibilités de Vuetify, nous allons ajouter des éléments dans l'interface. _En vous servant de la documentation_.
+Afin de tester les possibilités de Vuetify, nous allons ajouter des éléments dans l'interface, _en vous servant de la documentation_.
 
 Dans la balise `v-main` nous allons ajouter :
 
@@ -173,7 +177,7 @@ Dans la balise `v-main` nous allons ajouter :
 
 ### Le bouton
 
-[En suivant la documentation](https://vuetifyjs.com/en/components/buttons/) ajouter le code _à la place du commentaire « votre code ici »_ inséré :
+[En suivant la documentation](https://vuetifyjs.com/en/components/buttons/) ajouter le code suivant _à la place du commentaire « Votre Code ICI »_ :
 
 ```html
 <v-btn>Clique ici</v-btn>
@@ -229,7 +233,7 @@ Ajouter _dans_ la balise `v-card-text` le code suivant :
 
 ## Créer un composant
 
-Le principe même de VueJS c'est la création de composants. Pour l'instant nous avons tout mis dans « le App.vue », ça fonctionne… mais clairement pas idéal.
+Le principe même de VueJS c'est la création de composants. Pour l'instant nous avons tout mis dans « le App.vue », ça fonctionne… mais ce n'est clairement pas idéal.
 
 Nous allons donc remédier à ça en créant votre premier composant.
 
@@ -288,7 +292,7 @@ Voilà un exemple :
 </script>
 ```
 
-À faire:
+À faire :
 
 - Adapter le code fourni pour l'utiliser dans votre projet.
 
@@ -300,10 +304,10 @@ Avec _VueJS en mode application_ ça sera un peu différent, nous allons devoir 
 
 ### Ajout du plugin
 
-La première étape est l'ajout du plugin. Avec `vue cli` il nous suffit de faire _dans le bon dossier_.
+La première étape est l'ajout du plugin. Avec `vue cli` il nous suffit de lancer la commande suivante _dans le bon dossier_.
 
 ::: danger ATTENTION
-Comme l'installation de Vuetify cette étape va reconfigurer « de manière » importante votre projet. Ça veut dire que votre fichier `App.vue` va être remplacé par une nouvelle version qui contiendra le nécessaire au bon fonctionnement du VueRouter.
+Comme l'installation de Vuetify, cette étape va reconfigurer de manière importante votre projet. Ça veut dire que votre fichier `App.vue` va être remplacé par une nouvelle version qui contiendra le nécessaire au bon fonctionnement du VueRouter.
 :::
 
 ```sh
@@ -316,13 +320,13 @@ En quelques mots :
 
 - Le fichier `App.vue` est différent.
 - Le dossier `router`.
-- Le dossier `view`.
+- Le dossier `views`.
 
 Arrêtons-nous ensemble pour regarder les modifications en détail.
 
 ### Création d'une nouvelle vue
 
-Ajouter un nouveau fichier `vue` dans le dossier `view`. Nommé le comme bon vous semble c'est votre page 🥰.
+Ajouter un nouveau fichier `vue` dans le dossier `views`. Nommez-le comme bon vous semble, c'est votre page 🥰.
 
 ### Et pour le contenu ?
 
@@ -335,10 +339,10 @@ Nous avons maintenant plusieurs pages, nous allons donc remettre notre AppBar. [
 À faire :
 
 - Ajouter un titre.
-- Ajouter au bout 3 boutons nous permettant de naviguer entre les pages.
+- Ajouter à droite 3 boutons nous permettant de naviguer entre les pages.
 
 ### Aller plus loin ?
 
-Dans le monde du mobile, les menus de navigation sont appelés des `Navigations Drawers`. Ce composant existe également chez Vuetify.
+Dans le monde du mobile, les menus de navigation sont appelés des `Navigation Drawers`. Ce composant existe également chez Vuetify.
 
-[En utilisant la documentation](https://vuetifyjs.com/en/components/navigation-drawers/#props) implémenté un `Navigation Drawer` dans votre application.
+[En utilisant la documentation](https://vuetifyjs.com/en/components/navigation-drawers/#props) implémenter un `Navigation Drawer` dans votre application.

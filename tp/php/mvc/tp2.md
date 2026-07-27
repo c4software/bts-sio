@@ -1,3 +1,7 @@
+---
+description: "TP : pratiquer la POO et le MVC en réalisant un mini CRM (liste, recherche, fiche client, produits et adresses)."
+---
+
 # Pratiquer la POO et le MVC
 
 Dans ce TP, nous allons continuer notre découverte de la POO au travers du MVC.
@@ -14,17 +18,17 @@ Dans le [TP todo liste](./tp1.1.md) nous avons vu la mise en place du design pat
 - [La modélisation objet](/cheatsheets/poo-uml/)
 - [Aide mémoire Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 
-Le projet que vous allez réaliser est ce que l'on appelle une CRM (Customer Relationship Management), c'est un site (outil) qui va permettre d'afficher des informations clients sous le format d'une `Fiche Client`. Vous allez donc de voir créer quelques éléments de cette application à savoir :
+Le projet que vous allez réaliser est ce que l'on appelle un CRM (Customer Relationship Management), c'est un site (outil) qui va permettre d'afficher des informations clients sous le format d'une `Fiche Client`. Vous allez donc devoir créer quelques éléments de cette application à savoir :
 
 - Lister les clients.
 - Rechercher les clients.
-- Voir la fiche d'un client (et afficher ces informations).
-- Voir la liste des produits commandée par le client consulté.
+- Voir la fiche d'un client (et afficher ses informations).
+- Voir la liste des produits commandés par le client consulté.
 - _Bonus_ : Afficher la liste des contacts d'un client.
 
 ::: danger Un instant
 
-Nous allons nous placer ici dans un contexte type « entreprise » ou vous aurez à votre disposition un code existant. Pas d'inquiétude, le code de base est relativement petit, cependant il intègre des fonctionnements nouveaux. Donc, comme d'habitude je vous demande d'être curieux et de fouiner dans le code avant d'attaquer votre travail.
+Nous allons nous placer ici dans un contexte type « entreprise » où vous aurez à votre disposition un code existant. Pas d'inquiétude, le code de base est relativement petit, cependant il intègre des fonctionnements nouveaux. Donc, comme d'habitude je vous demande d'être curieux et de fouiner dans le code avant d'attaquer votre travail.
 
 :::
 
@@ -38,7 +42,7 @@ Même si celui-ci contient à première vue « beaucoup de fichiers », le proje
 
 ## PDO vous connaissez ?
 
-Évidemment [PDO](https://www.php.net/manual/en/book.pdo.php) vous connaissez… Mais connaissez-vous `FETCH_CLASS` ? Vous ne l'avez peut-être pas remarqué, mais la structure MVC n'utilise pas l'habituel`FETCH_ASSOC` , mais `FETCH_CLASS`. Ça veut dire qu'à partir de maintenant nous allons utiliser une syntaxe objet plutôt que des tableaux lors de la récupération de données en base !
+Évidemment [PDO](https://www.php.net/manual/en/book.pdo.php) vous connaissez… Mais connaissez-vous `FETCH_CLASS` ? Vous ne l'avez peut-être pas remarqué, mais la structure MVC n'utilise pas l'habituel `FETCH_ASSOC`, mais `FETCH_CLASS`. Ça veut dire qu'à partir de maintenant nous allons utiliser une syntaxe objet plutôt que des tableaux lors de la récupération de données en base !
 
 ![WHY](./res/jackie-chan-why.jpg)
 
@@ -112,7 +116,7 @@ ou encore :
 - `/sample/fiche/1` => Consulter la fiche avec comme identifiant **1**.
 - `/sample/fiche/123` => Consulter la fiche avec comme identifiant **123**.
 
-C'est routes sont des équivalents à :
+Ces routes sont des équivalents à :
 
 - `/sample/utilisateur?id=42` => Consulter l'utilisateur avec comme identifiant **42**.
 - `/sample/utilisateur?id=420` => Consulter l'utilisateur avec comme identifiant **420**.
@@ -152,11 +156,11 @@ Je vous laisse tester.
 
 ## Le code de base
 
-Ici dans ce TP vous ne partirez pas de 0. J'ai écrit pour vous la partie « couche de données », il faudra donc avant d'attaquer analyser les différents diagrammes pour comprendre le code fourni.
+Ici dans ce TP vous ne partirez pas de 0. J'ai écrit pour vous la partie « couche de données », il faudra donc, avant d'attaquer, analyser les différents diagrammes pour comprendre le code fourni.
 
 ### Les modèles
 
-Dans ce TP vous allez travailler essentiellement la manipulation d'objet. Pour attaquer directement ce qui nous intéresse, voilà quelques modèles à télécharger et à déposer dans le dossier `models` de votre projet.
+Dans ce TP vous allez travailler essentiellement la manipulation d'objets. Pour attaquer directement ce qui nous intéresse, voilà quelques modèles à télécharger et à déposer dans le dossier `models` de votre projet.
 
 [Télécharger les classes et modèles](https://cours.brosseau.ovh/demo/php/poo-mvc/tp2-modele-class.zip)
 
@@ -174,7 +178,7 @@ Je vous laisse importer la base de données sur votre ordinateur.
 
 ::: tip Import ?
 
-Point important la base de données n'oubliez pas le dossier migration. En déposant le script dans le dossier `migration` de votre projet. Vous pourrez initialiser la base de données avec la commande suivante :
+Point important pour la base de données : n'oubliez pas le dossier `migrations`. En déposant le script dans le dossier `migrations` de votre projet, vous pourrez initialiser la base de données avec la commande suivante :
 
 ```sh
 php mvc db:migrate
@@ -213,7 +217,7 @@ Pour vous aider dans votre conception l'entreprise vous fournit le « mockup » 
 
 ::: tip Quelques éléments pour vous aider.
 
-Les zones « blanches » visibles dans le design sont appelées des Cards. Ils sont fournis de base dans Bootstrap ou Tailwind. N'hésitez pas à les utiliser.
+Les zones « blanches » visibles dans le design sont appelées des Cards. Elles sont fournies de base dans Bootstrap ou Tailwind. N'hésitez pas à les utiliser.
 
 Les résultats (liste des clients) sont une donnée tabulée, plutôt que de réinventer ce genre de choses avec des `div` n'hésitez pas à utiliser l'élément HTML prévu à cet effet à savoir une `table`.
 
@@ -245,7 +249,7 @@ Maintenant que nous avons créé la base de notre contrôleur, nous pouvons pré
 
 ::: tip Quelques éléments pour vous aider.
 
-Les zones « blanches » visibles dans le design sont appelées des Cards. Ils sont fournis de base dans Bootstrap ou Tailwind. N'hésitez pas à les utiliser.
+Les zones « blanches » visibles dans le design sont appelées des Cards. Elles sont fournies de base dans Bootstrap ou Tailwind. N'hésitez pas à les utiliser.
 
 Les résultats (liste des clients) sont une donnée tabulée, plutôt que de réinventer ce genre de choses avec des `div` n'hésitez pas à utiliser l'élément HTML prévu à cet effet à savoir une `table`.
 
@@ -253,7 +257,7 @@ Les résultats (liste des clients) sont une donnée tabulée, plutôt que de ré
 
 ### Créer la route /
 
-Maintenant que nous avons notre contrôleur et notre vue, nous devons ajouter notre route. Le client souhaite une CRM Client, il faut donc remplacer la page d'accueil de base de la structure par votre page fraîchement créé. 
+Maintenant que nous avons notre contrôleur et notre vue, nous devons ajouter notre route. Le client souhaite un CRM Client, il faut donc remplacer la page d'accueil de base de la structure par votre page fraîchement créée.
 
 Modifier votre routeur pour faire pointer le lien `/` vers votre contrôleur ainsi que vers votre méthode. Pour vous aider, vous devriez avoir dans votre routeur **une** ligne ressemblant à ceci :
 
@@ -269,7 +273,7 @@ Ceci est un objet instancié à partir de la classe de votre ClientControleur. P
 
 ### Afficher la liste des clients
 
-Nous y voilà ! Vous avez Votre Vue, Votre Controleur… Il ne manque plus que le modèle. Dans ce projet vous n'allez pas écrire de modèle, mais vous allez utiliser des modèles existants créés par un tiers (ce qui risque d'arriver par exemple … en stage).
+Nous y voilà ! Vous avez votre Vue, votre Contrôleur… Il ne manque plus que le modèle. Dans ce projet vous n'allez pas écrire de modèle, mais vous allez utiliser des modèles existants créés par un tiers (ce qui risque d'arriver par exemple … en stage).
 
 Avant de continuer cette première page, il faut trouver le bon modèle à utiliser pour pouvoir construire votre liste de clients. Vu que c'est le premier, je vous propose que nous le fassions ensemble…
 
@@ -288,8 +292,8 @@ $clientModele = new ClientModele();
 // Récupère les clients en base.
 $lesClients = $clientModele->liste();
 
-// Affiche l'ensemble des clients en base. 
-// Pour chaque client, affiche les informations général de celui
+// Affiche l'ensemble des clients en base.
+// Pour chaque client, affiche les informations générales de celui-ci.
 // La méthode generalInfo() est disponible dans la classe Client.
 foreach ($lesClients as $leClient){
     echo $leClient->generalInfo();
@@ -321,13 +325,13 @@ function liste($page = 0): string
 
 ### Ajouter la pagination et la fonctionnalité de recherche
 
-Vous avez à votre disposition dans le bon modèle `ClientModele` une méthode permettant d'effectuer une recherche. Après l'avoir trouvé, je vous laisse écrire le code dans votre contrôleur pour effectuer une recherche dans la base de données des clients.
+Vous avez à votre disposition dans le bon modèle `ClientModele` une méthode permettant d'effectuer une recherche. Après l'avoir trouvée, je vous laisse écrire le code dans votre contrôleur pour effectuer une recherche dans la base de données des clients.
 
-⚠️ Un instant ! Ici pas besoin de créer une nouvelle route ! Vous devez modifier la méthode de liste pour ajouter de nouveaux paramètres pour la pagination et la partie recherche.
+⚠️ Un instant ! Ici pas besoin de créer une nouvelle route ! Vous devez modifier la méthode `liste` pour ajouter de nouveaux paramètres pour la pagination et la partie recherche.
 
 ::: tip Vous ne pouvez pas deviner
 
-Il faut donc « tester », « expérimenter », pour ça vous avez à votre disposition la documentation de PHP, mais également vos connaisances de première année. Par exemple, pour passer un paramètre à votre PHP en GET vous savez déjà faire :
+Il faut donc « tester », « expérimenter », pour ça vous avez à votre disposition la documentation de PHP, mais également vos connaissances de première année. Par exemple, pour passer un paramètre à votre PHP en GET vous savez déjà faire :
 
 ```php
 <a href="/?nom=valeur">Lien vers une page avec un paramètre</a>
@@ -348,7 +352,7 @@ $maVariable = 0;
 $maVariable++;
 ```
 
-Ici, nous incrémentons la variable de 1, mais celle-ci sera directement modifiée. C'est pratique, mais dans le cas d'une pagination (ou nous allons faire +1 et -1) il faut faire attention **à ne pas modifier** la variable d'origine. Pour cela, il faut utiliser la syntaxe suivante :
+Ici, nous incrémentons la variable de 1, mais celle-ci sera directement modifiée. C'est pratique, mais dans le cas d'une pagination (où nous allons faire +1 et -1) il faut faire attention **à ne pas modifier** la variable d'origine. Pour cela, il faut utiliser la syntaxe suivante :
 
 ```php
 $maVariable = 1;
@@ -360,17 +364,17 @@ echo $maVariable - 1; // Affiche 0
 
 ## La fiche client
 
-Maintenant que la liste des clients fonctionne, nous allons créer la fiche client. Celle-ci a pour but d'afficher les informations **d'un client**, il va donc falloir être capables de récupérer les informations d'un client via `son identifiant` puis d'en afficher le détail. L'entreprise pour vous aider vous propose le design suivant :
+Maintenant que la liste des clients fonctionne, nous allons créer la fiche client. Celle-ci a pour but d'afficher les informations **d'un client**, il va donc falloir être capable de récupérer les informations d'un client via `son identifiant` puis d'en afficher le détail. L'entreprise pour vous aider vous propose le design suivant :
 
 ![Idée de design](./res/tp2-fiche-client-ui.png)
 
 ::: danger Vous n'oublierez pas
-Évidement, vous n'oublierez pas de gérer la pagination de l'ensemble des listes.
+Évidemment, vous n'oublierez pas de gérer la pagination de l'ensemble des listes.
 :::
 
 ### Le contrôleur
 
-Nous avons un controleur existant `ClientControleur`, celui-ci va devoir être modifié pour ajouter une nouvelle méthode `fiche`. Celle-ci va devoir récupérer les informations d'un client et les passer à la vue.
+Nous avons un contrôleur existant `ClientController`, celui-ci va devoir être modifié pour ajouter une nouvelle méthode `fiche`. Celle-ci va devoir récupérer les informations d'un client et les passer à la vue.
 
 ```php
 public function fiche($id="")
@@ -386,7 +390,7 @@ public function fiche($id="")
 
 ### Créer la route /client/{id}
 
-Nous avons vu en introduction de ce TP qu'il était possible de réaliser des routes assez jolies. Je vous laisse créer une nouvelle route dans votre projet. Celle-ci va devoir devra appeler la méthode `fiche` de votre contrôleur `FicheControleur`.
+Nous avons vu en introduction de ce TP qu'il était possible de réaliser des routes assez jolies. Je vous laisse créer une nouvelle route dans votre projet. Celle-ci devra appeler la méthode `fiche` de votre contrôleur `ClientController`.
 
 ### Créer la fiche client
 
@@ -394,7 +398,7 @@ Nous avons vu en introduction de ce TP qu'il était possible de réaliser des ro
 
 ::: tip Quelques éléments pour vous aider.
 
-Les zones « blanches » visibles dans le design sont appelées des Cards. Ils sont fournis de base dans Bootstrap ou Tailwind. N'hésitez pas à les utiliser.
+Les zones « blanches » visibles dans le design sont appelées des Cards. Elles sont fournies de base dans Bootstrap ou Tailwind. N'hésitez pas à les utiliser.
 
 Les différentes listes (produits, adresses) sont des données tabulées, plutôt que de réinventer ce genre de choses avec des `div` n'hésitez pas à utiliser l'élément HTML prévu à cet effet à savoir une `table`.
 
@@ -422,7 +426,7 @@ $leClient = $clientModele->getByClientId(1);
 // Exemple, retourne le nom du client.
 $leClient->getNom();
 
-// Exemple, retourne la liste des clients du produit.
+// Exemple, retourne la liste des produits du client.
 $lesProduitDuClient = $leClient->lesProduits();
 ```
 
@@ -432,9 +436,9 @@ $lesProduitDuClient = $leClient->lesProduits();
 
 ### Afficher la liste des produits d'un client
 
-Si vous avez avancé comme prévu, vous avez à votre disposition dans votre vue un objet de type Client. Cet objet possède une méthode `lesProduits()` (comme indiqué dans le diagramme UML), celle-ci va pour permettre de récupérer la liste des produits commandés par le client. Vous allez devoir l'utiliser dans votre HTML.
+Si vous avez avancé comme prévu, vous avez à votre disposition dans votre vue un objet de type Client. Cet objet possède une méthode `lesProduits()` (comme indiqué dans le diagramme UML), celle-ci va vous permettre de récupérer la liste des produits commandés par le client. Vous allez devoir l'utiliser dans votre HTML.
 
-Cette méthode va retourner une liste (array). Cette liste ne sera pas de n'importe quel type ça sera une liste de `Produit`, nous pouvons donc écrire que cette liste retourne `Produit[]`.
+Cette méthode va retourner une liste (array). Cette liste ne sera pas de n'importe quel type, ça sera une liste de `Produit`, nous pouvons donc écrire que cette méthode retourne `Produit[]`.
 
 _Exemple d'utilisation_ :
 
@@ -450,7 +454,7 @@ Je vous laisse écrire le code dans votre vue afin d'afficher la liste des produ
 
 ### Ajouter un produit au client
 
-Ajouter le code permettant d'ajouter un produit à un client. Pour réaliser cette action, vous aller avoir besoin :
+Ajouter le code permettant d'ajouter un produit à un client. Pour réaliser cette action, vous allez avoir besoin :
 
 - D'une vue avec un formulaire (pour choisir le produit).
 - D'une route permettant d'ajouter le produit choisi à l'utilisateur actuellement consulté.
@@ -460,10 +464,10 @@ Ajouter le code permettant d'ajouter un produit à un client. Pour réaliser cet
 
 ## Les adresses clients
 
-En reprenant le principe de la liste des produits dans la fiche client, écrire le code qui permet : 
+En reprenant le principe de la liste des produits dans la fiche client, écrire le code qui permet :
 
 - D'afficher la liste des adresses d'un client.
-- Créer et ajouter une adresse à un client.
+- De créer et ajouter une adresse à un client.
 
 ::: warning En manque d'inspiration ?
 
@@ -479,14 +483,14 @@ En reprenant le principe de la partie « Produit » ou « Adresse ». Le dévelo
 
 - Votre client possède plusieurs données de contact `(Nom du contact, Numéro, Email)`.
 
-Il vous demande de modifier l'objet `Client` pour ajouter un nouveau `getters` permettant d'obtenir l'ensemble des contacts d'un client.
+Il vous demande de modifier l'objet `Client` pour ajouter un nouveau `getter` permettant d'obtenir l'ensemble des contacts d'un client.
 
 ::: tip À faire
 
 Pour traiter ce problème, vous devez découper votre travail en différentes étapes :
 
-- Créer un nouveau modèle `php mvc model:create ContactModele`
-- Ajouter en base la tables.
+- Créer un nouveau modèle `php mvc model:create ContactModele`.
+- Ajouter la table en base.
 - Écrire les requêtes dans votre modèle.
 - Créer un objet `Contact` (prendre exemple sur ceux déjà présents dans le code, dans le dossier `classes`).
 - Afficher les contacts du client dans la partie Fiche Client.
@@ -495,7 +499,7 @@ Pour traiter ce problème, vous devez découper votre travail en différentes é
 
 ## Restitution du travail
 
-Vous avez atteint la fin du TP (hors bonus). Il est temps de rendre votre travail. Pour cela, vous remplissez le formulaire suivant :
+Vous avez atteint la fin du TP (hors bonus). Il est temps de rendre votre travail. Pour cela, remplissez le formulaire suivant :
 
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfybcRlzChYkU3rj3orI4Fkh82mOalfN4myNzMNdIHydMzNZQ/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 
@@ -503,9 +507,9 @@ Vous avez atteint la fin du TP (hors bonus). Il est temps de rendre votre travai
 
 Un bon TP se termine toujours par de bons bonus. Les bonus vont vous permettre de voir si vous avez compris les manipulations précédemment réalisées.
 
-### Bonus : Ajouter une pagination dans la fonctionnalitée de recherche.
+### Bonus : Ajouter une pagination dans la fonctionnalité de recherche
 
-Modifier votre code pour ajouter un système de pagination (10 clients par 10 clients) dans votre liste. Les méthodes que vous avez utilisées comportent différents paramètres permettant de réaliser des listes paginées. Après l'avoir trouvé, je vous laisse donc :
+Modifier votre code pour ajouter un système de pagination (10 clients par 10 clients) dans votre liste. Les méthodes que vous avez utilisées comportent différents paramètres permettant de réaliser des listes paginées. Après les avoir trouvés, je vous laisse donc :
 
 - Modifier l'interface afin de permettre la pagination.
 - Modifier vos appels aux modèles pour réaliser des listes paginées.
@@ -516,9 +520,9 @@ Vous avez précédemment codé la partie Fiche client. Le développeur de l'entr
 
 #### Bonus : Lister les produits en base
 
-- Créer la vue permettant de liste les produits présente en base.
+- Créer la vue permettant de lister les produits présents en base.
 - Créer la route permettant d'afficher votre vue.
-- À l'aide du bon modèle affiché la liste de l'ensemble des produits.
+- À l'aide du bon modèle, afficher la liste de l'ensemble des produits.
 
 Voilà à quoi pourrait ressembler l'écran :
 
@@ -545,3 +549,5 @@ Le développeur de l'entreprise vous demande d'ajouter un système d'authentific
 - N'oubliez pas de modifier votre routeur pour que la page d'accueil pointe vers votre nouvelle page de connexion.
 
 - N'oubliez pas également de modifier votre routeur afin de ne pas autoriser l'accès à votre CRM sans être connecté (sauf la page de connexion évidemment).
+
+:::

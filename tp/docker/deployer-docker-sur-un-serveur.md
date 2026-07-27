@@ -251,7 +251,7 @@ services:
 Notez que PHPMyAdmin utilise `PMA_HOST=db` pour se connecter à la base de données. `db` est le nom du service défini dans ce même fichier. Docker Compose crée automatiquement un réseau interne entre les conteneurs, ce qui leur permet de communiquer par leur nom de service.
 :::
 
-Je vous propose de lire ce fichier ligne par ligne — nous allons le faire ensemble.
+Je vous propose de lire ce fichier ligne par ligne : nous allons le faire ensemble.
 
 ### Lancer votre stack
 
@@ -364,6 +364,6 @@ dig @<ip.de.votre.serveur> google.com
 
 ## Conclusion
 
-Dans ce TP nous avons vu comment Docker facilite la mise en place de services sur un serveur. Nous avons vu comment Docker permet de créer rapidement des infrastructures répétables, quel que soit la version, la configuration, ou l'OS de la machine.
+Dans ce TP nous avons vu comment Docker facilite la mise en place de services sur un serveur. Nous avons vu comment Docker permet de créer rapidement des infrastructures répétables, quelles que soient la version, la configuration, ou l'OS de la machine.
 
 Nous avons également vu comment Docker Compose permet de lancer plusieurs conteneurs simultanément et de les faire communiquer entre eux (exemple : un serveur MySQL et PHPMyAdmin).

@@ -4,6 +4,10 @@ description: Dans ce TP nous allons voir une autre façon d’utiliser VueJS, un
 
 # Réaliser une application avec VueJS 2.0
 
+::: warning Ce contenu est conservé à titre d'archive
+Ce TP repose sur VueJS 2, qui n'est plus maintenu depuis fin 2023. Pour apprendre Vue aujourd'hui, suivez plutôt [les TP VueJS 3](/pages/categories/les-tp-javascript.md).
+:::
+
 Dans ce TP nous allons voir une autre façon d’utiliser VueJS, une façon plus moderne, celle qui utilise à 100% le modèle MVVM (Modèle Vue, Vue-Modèle) ainsi que la puissance de VueJS (`.vue`, VueCli, ES5).
 
 ![MVVM](./MVVMPattern.png)
@@ -18,7 +22,7 @@ Non, mais moi je connais que MVC, c’est quoi MVVM ?
 
 MVVM est un design pattern, souvent utilisé par les bibliothèques JavaScript modernes (Ionic, VueJS, ReactJS). À l’origine, MVVM a été introduit par Microsoft.
 
-Ce pattern a spécialement été conçu pour améliorer la séparation entre les données et la vue qui les affichent. Le lien entre la vue et le modèle de données est fait par des mécanismes de binding. Le binding est un mécanisme qui permet de faire des liaisons entre des données de manière dynamiques. Ce qui veut dire que si A et B sont liés, le fait de modifier A va être répercuté sur B et inversement.
+Ce pattern a spécialement été conçu pour améliorer la séparation entre les données et la vue qui les affiche. Le lien entre la vue et le modèle de données est fait par des mécanismes de binding. Le binding est un mécanisme qui permet de faire des liaisons entre des données de manière dynamique. Ce qui veut dire que si A et B sont liés, le fait de modifier A va être répercuté sur B et inversement.
 
 - Model : le modèle contient les données.
 - View : la vue correspond à ce qui est affiché. C’est notre site Web.
@@ -28,7 +32,7 @@ L’important avec MVVM c’est que **_la vue ne doit jamais traiter de données
 
 ## Introduction
 
-Maintenant que vous savez ce que c’est le MVVM, nous allons attaquer le TP pour de vrai. Nous allons réaliser « une application » à l’aide de VueJS. Cette application est purement démonstrative. Cette application calculera la hauteur d’une falaise (ou de n’importe quoi de suffisamment haut) en fonction du temps chute d’un objet jeter du haut de celle-ci.
+Maintenant que vous savez ce qu’est le MVVM, nous allons attaquer le TP pour de vrai. Nous allons réaliser « une application » à l’aide de VueJS. Cette application est purement démonstrative. Cette application calculera la hauteur d’une falaise (ou de n’importe quoi de suffisamment haut) en fonction du temps de chute d’un objet jeté du haut de celle-ci.
 
 ![Cliff-Height-Timer-VueJS](https://github.com/c4software/Cliff-Height-Timer-VueJS/raw/master/demo.png)
 
@@ -41,13 +45,13 @@ Avant de commencer, nous allons avoir besoin de plusieurs outils :
 
 ### NodeJS
 
-La première étape va être l’installation de NodeJS, la démarche est différente en fonction de votre environnement, mais pour résumer [sous Windows c’est ici](https://nodejs.org/en/download/) prendre la version CURRENT, sous OSX le plus simple c’est via Brew `brew install nodejs`, et sous Linux c’est via le gestionnaire de paquet `apt install nodejs`
+La première étape va être l’installation de NodeJS, la démarche est différente en fonction de votre environnement, mais pour résumer [sous Windows c’est ici](https://nodejs.org/en/download/) prendre la version CURRENT, sous OSX le plus simple c’est via Brew `brew install nodejs`, et sous Linux c’est via le gestionnaire de paquets `apt install nodejs`.
 
-Une fois installé, vous êtes prêt, votre PC est prêt à accueillir l’outil VueCLI
+Une fois installé, votre PC est prêt à accueillir l’outil VueCLI.
 
 ### Vue-cli
 
-Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de template fourni par la communauté.
+Vue-cli est un outil qui simplifie la création d’un nouveau projet Vue-JS à partir de templates fournis par la communauté.
 
 Dans un terminal, lancer la commande suivante dans le `Node.js Command Prompt` :
 
@@ -55,9 +59,9 @@ Dans un terminal, lancer la commande suivante dans le `Node.js Command Prompt` :
 npm install -g @vue/cli
 ```
 
-Maintenant que vue-cli est installé, vous avez à votre disposition sur votre ordinateur une nouvelle commande, la commande `vue`
+Maintenant que vue-cli est installé, vous avez à votre disposition sur votre ordinateur une nouvelle commande, la commande `vue`.
 
-Pour créer un nouveau projet, c’est simple il suffit de lancer la commande suivante dans le `Node.js Command Prompt`
+Pour créer un nouveau projet, c’est simple, il suffit de lancer la commande suivante dans le `Node.js Command Prompt` :
 
 ```bash
 vue create cliff-height-timer
@@ -75,7 +79,7 @@ Voilà, notre projet est maintenant prêt. Place à la suite.
 
 Le projet que vous avez initialisé est « prêt pour être utilisé ».
 
-Si vous changez d'ordinateur, il faudra réinstaller les librairies NodeJS. Cette étape n’est à faire qu’une seule fois sur votre poste, en effet en général on ne commit pas les fichiers « librairies » qui sont présents dans le futur dossier `node_module` pour la simple et bonne raison que celui-ci est gros et rempli de plein de petits fichiers (et qu’en plus ça se retélécharge facilement depuis Internet).
+Si vous changez d'ordinateur, il faudra réinstaller les librairies NodeJS. Cette étape n’est à faire qu’une seule fois sur votre poste, en effet en général on ne commite pas les fichiers « librairies » qui sont présents dans le futur dossier `node_modules` pour la simple et bonne raison que celui-ci est gros et rempli de plein de petits fichiers (et qu’en plus ça se retélécharge facilement depuis Internet).
 
 Pour l’installation la procédure est la suivante :
 
@@ -86,17 +90,17 @@ npm install
 
 ⚠️ L’installation risque de prendre plusieurs secondes (enfin 1 ou 2 minutes).
 
-Une fois terminé votre projet est prêt à être lancé. Au passage vous pouvez vérifier que le dossier `node_module` dans le `.gitignore`.
+Une fois terminé, votre projet est prêt à être lancé. Au passage vous pouvez vérifier que le dossier `node_modules` est bien dans le `.gitignore`.
 
 ## Premier lancement (l’exemple)
 
-Les librairies étant maintenant disponible, nous allons pouvoir lancer l’exemple fourni par Vue-Cli, pour ça rien de plus simple
+Les librairies étant maintenant disponibles, nous allons pouvoir lancer l’exemple fourni par Vue-Cli, pour ça rien de plus simple :
 
 ```bash
 npm run serve
 ```
 
-Une fois cette commande lancée vous pouvez ouvrir un onglet dans votre navigateur `http://127.0.0.1:8080`
+Une fois cette commande lancée, vous pouvez ouvrir un onglet dans votre navigateur : `http://127.0.0.1:8080`
 
 ![sample application](./ressources/vuejs-init.png)
 
@@ -119,7 +123,7 @@ Les sources de l’application sont dans le dossier `src/` il contient l’ensem
 
 ### L’IDE
 
-Pour faire du VueJS le mieux, c’est d’avoir un bon IDE. Au revoir, Notepad++, bonjour WebStorm? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit 💰).
+Pour faire du VueJS le mieux, c’est d’avoir un bon IDE. Au revoir Notepad++, bonjour WebStorm ? Malheureusement WebStorm est payant, si vous avez une licence tant mieux (pour les étudiants c’est gratuit 💰).
 
 Pour ceux qui n’ont pas de licence, je vous propose d’utiliser [Visual Studio Code](https://code.visualstudio.com) et d’ajouter le plug-in `Vetur` pour pouvoir éditer les `.vue` dans de bonnes conditions.
 
@@ -131,7 +135,7 @@ Comme vu en cours l'avantage de Vue-Cli c'est qu'il intègre un système de plug
 - vue-router
 - vuetify
 
-Certains plug-ins modifient plus ou moins votre projet. Vuetify par exemple altère de manière importante votre projet. Nous allons donc l'ajouter en premier. Dans un terminal
+Certains plug-ins modifient plus ou moins votre projet. Vuetify par exemple altère de manière importante votre projet. Nous allons donc l'ajouter en premier. Dans un terminal :
 
 ```sh
 $ vue add vuetify
@@ -229,19 +233,19 @@ L'ensemble du code que vous devez écrire va se trouver dans `src`
 
 - `assets/` : Les images / ressources static.
 - `components/` : Les composants réutilisables.
-- `locales/` : Vos textes rangés par langes.
+- `locales/` : Vos textes rangés par langues.
 - `plug-ins/` : La configuration de vos plug-ins.
 - `views/` : Les pages de votre site.
-- `App.vue` : Le template / base / point d'entrée de vos vue.
-- `i18n.js` : La configuration de Vue-i18n
-- `main.js` : Le point d'entrée JavaScript de votre projet
+- `App.vue` : Le template / base / point d'entrée de vos vues.
+- `i18n.js` : La configuration de Vue-i18n.
+- `main.js` : Le point d'entrée JavaScript de votre projet.
 - `router.js` : La configuration de vos routes.
 
-⚠️ Je vous invite à regarder le contenu de l'ensemble des fichiers et dossier avant de continuer.
+⚠️ Je vous invite à regarder le contenu de l'ensemble des fichiers et dossiers avant de continuer.
 
 ### Lancer le projet
 
-Le projet est actuellement non fonctionnel, principalement à cause de Vuetify et Vue Router qui de base configure le projet différemment.
+Le projet est actuellement non fonctionnel, principalement à cause de Vuetify et Vue Router qui de base configurent le projet différemment.
 
 Pour regarder le souci, lancez le projet et testez-le :
 
@@ -384,13 +388,13 @@ Au début du TP, nous avons installé Vue-i18n, nous allons maintenant configure
 
 ### Déclarer un nouveau texte
 
-Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier. `/components/MyToolbar.vue`
+Notre internationalisation est maintenant prête à être utilisée. Nous allons l’utiliser dès maintenant dans le fichier `/components/MyToolbar.vue`.
 
 Remplacer le texte `Cliff height timer` par :
 
 <code v-pre>`{{$t("title")}}`</code>
 
-Le titre doit maintenant s’afficher. Et c’est normal la clé « title » est déjà présente dans le fichier : `i18n/index.js`, modifier le titre pour la langue « fr ».
+Le titre doit maintenant s’afficher. Et c’est normal, la clé « title » est déjà présente dans le fichier `i18n/index.js` : modifier le titre pour la langue « fr ».
 
 ℹ️ `$t` est un objet qui permet d’accéder aux textes actuellement chargés pour la langue de l’utilisateur.
 
@@ -404,7 +408,7 @@ npm run serve
 
 ## Les .vues
 
-Maintenant que nous avons la base de notre projet, nous allons commencer à créer les différents fichiers Vue’s.
+Maintenant que nous avons la base de notre projet, nous allons commencer à créer les différents fichiers `.vue`.
 
 ✋ Un peu de ménage s'impose. Avant de continuer, supprimer le fichier `About.vue`, celui-ci ne nous sera pas utile.
 
@@ -568,7 +572,7 @@ Voilà le rendu de « la page » que vous devez réaliser :
 </script>
 ```
 
-⚠️ N’oubliez pas que **l'ensemble** les textes doivent-être dans le fichier `locales/fr.json` et dans `locales/en.json` et être utilisés avec par exemple :
+⚠️ N’oubliez pas que **l'ensemble des textes** doit être dans le fichier `locales/fr.json` et dans `locales/en.json`, et être utilisé avec par exemple :
 
 <code v-pre>{{ $t("label") }}</code>
 
@@ -578,7 +582,7 @@ Voilà le rendu de « la page » que vous devez réaliser :
 
 ### Ajout du : Drawer
 
-Dans le monde « mobile », un menu s’appelle un Drawer (un tiroir). Nous allons donc créer un Drawer. Pour ça nous allons avoir besoin des ressources suivantes:
+Dans le monde « mobile », un menu s’appelle un Drawer (un tiroir). Nous allons donc créer un Drawer. Pour ça nous allons avoir besoin des ressources suivantes :
 
 - [v-toolbar](https://vuetifyjs.com/components/toolbars)
 - [v-list](https://vuetifyjs.com/components/lists)
@@ -662,20 +666,20 @@ npm run serve
 
 Notre application est maintenant fonctionnelle. Nous avons la capacité de calculer des chutes, d’afficher les informations sur l’application, et bonus dans plusieurs langues !
 
-Mais je pense qu’une application n’est jamais vraiment complète sans une notion d’historique. Pour ça nous allons créer une nouvelle « vue »
+Mais je pense qu’une application n’est jamais vraiment complète sans une notion d’historique. Pour ça nous allons créer une nouvelle « vue ».
 
 - Créer le fichier `src/views/History.vue`
 - Créer la correspondance entre la Vue et le chemin dans le fichier `router/index.js`
 - N’oubliez pas également d’ajouter l’élément dans le menu Drawer.
 - Les textes doivent également être mis dans la partie i18n
 
-Pour réaliser la vue historique, nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le `Localstorage`, avant d’allez plus loin je vous propose un peu de lecture sur le localStorage :
+Pour réaliser la vue historique, nous allons devoir sauvegarder les différents résultats. Pour ça nous allons utiliser le `localStorage`, avant d’aller plus loin je vous propose un peu de lecture sur le localStorage :
 
-> La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session du navigateur prend fin — donc quand on ferme le navigateur.
+> La propriété localStorage vous permet d'accéder à un objet local Storage. Le localStorage est similaire au sessionStorage. La seule différence : les données stockées dans le localStorage n'ont pas de délai d'expiration, alors que les données stockées dans le sessionStorage sont nettoyées quand la session du navigateur prend fin, donc quand on ferme le navigateur.
 
 Source: [https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage](https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage)
 
-⚠️ Petite subtilité, vous ne pouvez pas stocker de tableau (array) dans le localStorage nous allons devoir utiliser un JSON.
+⚠️ Petite subtilité, vous ne pouvez pas stocker de tableau (array) dans le localStorage, nous allons devoir utiliser du JSON.
 
 #### Sauvegarder un élément dans le localStorage
 
@@ -716,7 +720,7 @@ Ajouter une nouvelle page, celle-ci permettra d'ajouter une entrée manuellement
 
 ## Distribuer vos sources
 
-Voilà votre application est maintenant terminée, bravo 👏👏. Cependant vous ne savez pas encore comment packager/distribuer votre application. Pour ça rien de plus simple il vous suffit de faire
+Voilà, votre application est maintenant terminée, bravo 👏👏. Cependant vous ne savez pas encore comment packager / distribuer votre application. Pour ça rien de plus simple, il vous suffit de faire :
 
 ```bash
 npm run build
@@ -724,7 +728,7 @@ npm run build
 
 Cette commande va compiler votre application et vous fournir une version que vous allez pouvoir héberger comme n’importe quel site Internet (sur un serveur Apache par exemple).
 
-Le résultat de la compilation est dans le dossier `dist/`
+Le résultat de la compilation est dans le dossier `dist/`.
 
 - Héberger le résultat sur un serveur Apache (wamp).
 
@@ -741,10 +745,10 @@ Pour ça nous allons utiliser deux sites :
 >
 > Les manifests font partie d'un ensemble de technologies appelées les applications web progressives (progressive web apps). Il s'agit d'applications web qui peuvent être installées sur la page d'accueil d'un appareil sans que l'utilisateur ait à se rendre dans une boutique d'applications. De plus, une fois installées, elles peuvent être utilisées sans connexion internet et sont capables de recevoir des notifications push.
 
-Source: Mozilla.org
+Source : Mozilla.org
 
-- Générer les icônes ainsi que le fichier Manifest
-- Télécharger le manifest.json et le mettre dans le dossier `static/` faire la même chose pour les icônes.
+- Générer les icônes ainsi que le fichier Manifest.
+- Télécharger le manifest.json et le mettre dans le dossier `static/`, faire la même chose pour les icônes.
 - Éditer le fichier `index.html` du dossier public pour y ajouter :
 
 ```html
@@ -757,7 +761,7 @@ Source: Mozilla.org
 npm run build
 ```
 
-- Tester l’application depuis votre Téléphone Android / iOs.
+- Tester l’application depuis votre téléphone Android / iOS.
 
 ### Ajouter Firebase
 

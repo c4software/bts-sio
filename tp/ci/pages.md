@@ -48,8 +48,8 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
 - Regardez le contenu du fichier, étudiez les différentes instructions.
@@ -90,8 +90,8 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
 #### npm run gitlab ?
@@ -146,8 +146,8 @@ variables:
 test:
   script:
     - hugo
-  except:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
 
 pages:
   script:
@@ -155,8 +155,8 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
 Celui-ci est très proche du nôtre, et c’est normal ! Avec Gitlab-CI c’est toujours très simple à mettre en place.

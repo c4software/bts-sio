@@ -7,13 +7,13 @@ next: ../pages-portfolio.md
 
 Dans ce document nous allons voir comment déployer votre portfolio simplement dans « le cloud » avec la plateforme [Netlify](https://www.netlify.com).
 
-::: details Sommaires
+::: details Sommaire
 [[toc]]
 :::
 
 ## Introduction
 
-Netlify est une plateforme gérant l'ensemble des problématiques de déploiement, mais également d'intégration continue pour que vous puisiez vous concentrer dans ce qui **vous intéresse** le développement de votre site Internet.
+Netlify est une plateforme gérant l'ensemble des problématiques de déploiement, mais également d'intégration continue, pour que vous puissiez vous concentrer sur ce qui **vous intéresse** : le développement de votre site Internet.
 
 La solution de Netlify est intéressante, car elle nous permet entre autres de :
 
@@ -22,11 +22,11 @@ La solution de Netlify est intéressante, car elle nous permet entre autres de :
 - Déploiement continu (CD).
 - Intercepter les formulaires pour envoyer des emails sans devoir ajouter du PHP.
 
-Et le tout vous allez le voir très très simplement (et en grande partie gratuitement)
+Et le tout, vous allez le voir, très très simplement (et en grande partie gratuitement).
 
 ## Principe de fonctionnement
 
-NetLify est une solution qui repose entièrement sur votre Workflow de travail GIT (vous pouvez passer par une archive ZIP, mais ça n'aurait aucun sens).
+Netlify est une solution qui repose entièrement sur votre workflow de travail Git (vous pouvez passer par une archive ZIP, mais ça n'aurait aucun sens).
 
 ![Workflow GIT](./res/workfow_git.png)
 
@@ -34,19 +34,19 @@ Nous allons donc :
 
 - Connecter Github / Gitlab.
 - Choisir le projet.
-- Configurer le projet (branche, formulaire, script de déploiement)
+- Configurer le projet (branche, formulaire, script de déploiement).
 
 Vous allez le voir, la solution vous guidera pour que vous connectiez simplement votre projet Git et Netlify.
 
 ::: danger Trop beau pour être vrai ?
-C'est magique, ça semble parfait, non ? Si c'est magique … C'est qu'il y a un truc ! Le truc ici c'est que Netlify est compatible uniquement avec des sites pensés jamStack.
+C'est magique, ça semble parfait, non ? Si c'est magique… c'est qu'il y a un truc ! Le truc ici c'est que Netlify est compatible uniquement avec des sites pensés JamStack.
 :::
 
 ### JamStack ?
 
-La JamStack c'est une nouvelle façon de voir la conception de site Internet, cette nouvelle façon de faire va nous permettre de réduire les couts d'hébergements / et bénéficier de l'avantage du Cloud (CI/CD, compression des ressources graphiques également nommées ASSETS, FAAS…)
+La JamStack, c'est une nouvelle façon de voir la conception de site Internet, cette nouvelle façon de faire va nous permettre de réduire les couts d'hébergement et bénéficier des avantages du Cloud (CI/CD, compression des ressources graphiques également nommées ASSETS, FAAS…).
 
-Plein de mots qui font peur, mais ne vous inquiétez pas… C'est beaucoup plus simple qu'il n'y parait. Ici pas de PHP pour générer vos pages nous allons tout concevoir en HTML / JavaScript (VanillaJS, React, Vue, …) / CSS
+Plein de mots qui font peur, mais ne vous inquiétez pas… C'est beaucoup plus simple qu'il n'y parait. Ici pas de PHP pour générer vos pages, nous allons tout concevoir en HTML / JavaScript (VanillaJS, React, Vue, …) / CSS.
 
 ![JamStack](./res/jamstack-horizontal.svg)
 
@@ -57,7 +57,7 @@ Les fonctionnalités dynamiques sont gérées par JavaScript. Vous êtes libres 
 Les opérations côté serveur sont abstraites sous forme d’APIs réutilisables, accessibles en HTTPS à l’aide de JavaScript. Ces opérations peuvent être déléguées à des services tiers ou bien à vos propres fonctions. C'est ce que l'on appelle souvent FAAS (Function As A Service)
 
 **Markup**
-Les sites web sont servis sous forme de fichiers HTML statiques. Ses fichiers peuvent être générés à partir de fichiers sources (Markdown, générateur de sites, ou simplement avec du HTML à l'ancienne).
+Les sites web sont servis sous forme de fichiers HTML statiques. Ces fichiers peuvent être générés à partir de fichiers sources (Markdown, générateur de sites, ou simplement avec du HTML à l'ancienne).
 
 ::: danger Est-ce la meilleure façon ?
 C'est à la mode, oui… Mais est-ce la meilleure façon ? Je ne sais pas. Sachez juste que pour l'instant c'est un standard et que beaucoup l'utilisent.
@@ -65,7 +65,7 @@ C'est à la mode, oui… Mais est-ce la meilleure façon ? Je ne sais pas. Sache
 **Il faut donc le connaitre / le maitriser.**
 :::
 
-[Plus d'information sur la JamStack](https://jamstack.wtf/)
+[Plus d'informations sur la JamStack](https://jamstack.wtf/)
 
 ::: tip Votre portfolio est-il JamStack ?
 
@@ -83,12 +83,12 @@ Avant de continuer, nous allons tester en local votre portfolio afin de vérifie
 
 Vous devez avoir un portfolio pour l'examen, mais si vous n'avez pour l'instant rien de disponible, il est tout à fait possible de continuer le TP. Pour ça je vous propose d'utiliser autre chose !
 
-Vous utilisez depuis le début d'année mon site, mon site est **un site  de type JamStack** il utilise VueJS et pour écrire les pages je ne fais pas de HTML j'écris du Markdown.
+Vous utilisez depuis le début de l'année mon site, c'est **un site de type JamStack** : il utilise VueJS et, pour écrire les pages, je ne fais pas de HTML, j'écris du Markdown.
 
 Je n'ai rien inventé. J'utilise un outil qui s'appelle [VuePress](https://vuepress.vuejs.org/), VuePress est un générateur de site statique, c'est-à-dire un site qui ne sera pas différent à chaque chargement de page. Il est possible d'utiliser VuePress dans beaucoup d'usages différents :
 
 - De la documentation.
-- Un Blog
+- Un blog.
 - Un portfolio ([exemple](https://github.com/forestryio/portfolio-vuepress))
 - Et via les thèmes vous pouvez tout imaginer ([exemple](https://github.com/vuepress/awesome-vuepress#community-themes))
 
@@ -116,7 +116,7 @@ Vous devriez avoir :
 
 ### Créer le site sur Github / Gitlab
 
-Nous allons utiliser à 100% le principe de CI / CD, nous allons donc mettre en place notre projet sur Github / Gitlab pour que celui-ci puisse être « observer » (*watch* en anglais) par Netlify.
+Nous allons utiliser à 100% le principe de CI / CD, nous allons donc mettre en place notre projet sur Github / Gitlab pour que celui-ci puisse être « observé » (*watch* en anglais) par Netlify.
 
 ![Intégration continue](./res/continuous-integration-2.png)
 
@@ -147,7 +147,7 @@ Concrètement, qu'est-ce que ça veut dire ? Lors d'une modification de votre co
 - Sauvegardera dans leur CDN le résultat de la compilation.
 - … (et bien plus si vous avez activé d'autres options).
 
-Nous allons donc suivre la configuration « ultra simple » de Netlify
+Nous allons donc suivre la configuration « ultra simple » de Netlify.
 
 ![Step 1](./res/step1-portfolio.png)
 ![Step 2](./res/step2-portfolio.png)
@@ -176,11 +176,11 @@ Je vous laisse regarder ce que fait Netlify pendant le build notamment le Deploy
 ![Step 6](./res/step6-portfolio-logs.png)
 :::
 
-Le site est [maintenant en ligne voici le mien par exemple](https://pedantic-leakey-407680.netlify.app/)
+Le site est maintenant en ligne, [voici le mien par exemple](https://pedantic-leakey-407680.netlify.app/).
 
 ### Apporter des modifications
 
-Je vous laisse modifier votre portfolio. Si vous avez correctement configuré votre stack applicatif, vous devriez normalement déclencher une recompilation de votre site web.
+Je vous laisse modifier votre portfolio. Si vous avez correctement configuré votre stack applicative, vous devriez normalement déclencher une recompilation de votre site web.
 
 C'est à vous.
 
@@ -188,11 +188,11 @@ PS: N'oubliez pas de commiter et pusher.
 
 ### Paramétrage
 
-Mais Netlify c'est pas uniquement un simple CDN qui compile automatiquement vos sources ! C'est aussi tout un tas d'options permettant d'optimiser votre site.
+Mais Netlify, ce n'est pas uniquement un simple CDN qui compile automatiquement vos sources ! C'est aussi tout un tas d'options permettant d'optimiser votre site.
 
 ![Settings](./res/settings.png)
 
-Ces règles sont nommées PostProcessing sur Netlify. Ne vous y trompez pas, les règles en question ne sont que des outils préparamètrés pour vous faire gagner du temps. Si vous le souhaitez, il est complètement possible de faire la même chose avec des solutions comme Gitlab-CI.
+Ces règles sont nommées PostProcessing sur Netlify. Ne vous y trompez pas, les règles en question ne sont que des outils préparamétrés pour vous faire gagner du temps. Si vous le souhaitez, il est complètement possible de faire la même chose avec des solutions comme Gitlab-CI.
 
 Nous allons faire le tour ensemble des options. Je vous attends.
 
@@ -202,7 +202,7 @@ Nous avons vu la base, regardons ce que nous allons pouvoir faire très simpleme
 
 #### Les branches
 
-Tester en production, personne n'aime ça… Pourtant vous pourriez vouloir montrer à votre client / collègue votre travail sans forcément le montrer sur votre ordinateur. Avec Netlify c'est possible :
+Tester en production, personne n'aime ça… Pourtant vous pourriez vouloir montrer votre travail à votre client / collègue sans forcément le présenter sur votre ordinateur. Avec Netlify c'est possible :
 
 Dans les paramètres de votre projet, vérifiez que les options suivantes sont actives :
 
@@ -223,12 +223,12 @@ Dans les paramètres de votre projet, vérifiez que les options suivantes sont a
 
 #### Les formulaires
 
-Notre site est statique, oui… Donc exit le traitement serveur vous me direz ? Et bien pas vraiment… Souvent sur un site Internet ce que nous avons besoin c'est « juste » d'un envoi d'email.
+Notre site est statique, oui… Donc exit le traitement serveur, me direz-vous ? Eh bien pas vraiment… Souvent sur un site Internet, ce dont nous avons besoin, c'est « juste » d'un envoi d'email.
 
-Et bien avec Netlify c'est possible ! Et c'est très simple ! La procédure sera la suivante :
+Eh bien avec Netlify c'est possible ! Et c'est très simple ! La procédure sera la suivante :
 
 - Ajouter un formulaire dans notre site Internet.
-- Activation de l'option et mise en place de notification
+- Activation de l'option et mise en place de notifications.
 
 La documentation explique très bien la procédure : [consulter la documentation](https://docs.netlify.com/forms/setup/#html-forms)
 

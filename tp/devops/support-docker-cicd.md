@@ -14,7 +14,7 @@ Ce document est un complément du cours. Il vous permettra de revenir sur les di
 
 Le terme « Full Stack » est un gros mot, il se cache derrière plein de définitions différentes. Nous allons voir un aspect de celui-ci dans ce document et dans nos échanges.
 
-Nous allons découvrir comment vous allez pouvoir « Développer, Tester, Déployer » sans vous prendre la tête avec différentes technologies qui sont maintenant la base de tout bon développeur (Docker, l'intégration Continue, la JamaStack, les Function As A Service − FaaS −). L'idée étant qu'à la fin de ce document vous soyez capable de construire, maintenir, mais également comprendre la révolution « Cloud » autour du métier du développeur.
+Nous allons découvrir comment vous allez pouvoir « Développer, Tester, Déployer » sans vous prendre la tête avec différentes technologies qui sont maintenant la base de tout bon développeur (Docker, l'intégration continue, la JamStack, les Function As A Service, ou FaaS). L'idée étant qu'à la fin de ce document vous soyez capable de construire, maintenir, mais également comprendre la révolution « Cloud » autour du métier du développeur.
 
 Nous allons donc voir comment le développeur seul sera capable de mettre en place une infrastructure d'exécution de son application ; cette infrastructure sera complètement automatisée pour « se recréer » / « se mettre à jour » en fonction des actions (commit) que vous ferez dans votre code source. J'ai utilisé le terme « commit », car oui, cette automatisation est possible en grande partie grâce à notre système de version de sources (par exemple, GIT).
 
@@ -28,7 +28,7 @@ Je vous propose de commencer notre pèlerinage par la découverte de Docker.
 
 Docker c'est « une petite révolution » ! Docker est une plateforme datant de 2013 permettant aux développeurs de déployer, mais également d'exécuter des applications avec **des conteneurs**. Docker permet de packager une application (ainsi que ses dépendances) dans un process isolé nommé conteneur. Ce conteneur peut ensuite être exécuté sur n'importe quelle machine (ARM, X86…), mais également sur n'importe quel système d'exploitation (Linux, Windows, macOS).
 
-Docker est une technologie française, mais celle-ci est utilisée mondialement ; elle est devenue un standard en très peu de temps ce qui en fait un incontournable à connaitre pour vous développeur. Et vous allez le voir, celle-ci va vous faire gagner un temps fou !
+Docker est une technologie française, mais celle-ci est utilisée mondialement ; elle est devenue un standard en très peu de temps, ce qui en fait un incontournable à connaitre pour vous, développeur. Et vous allez le voir, celle-ci va vous faire gagner un temps fou !
 
 ::: tip Quelques chiffres autour de Docker
 
@@ -38,15 +38,15 @@ Docker est une technologie française, mais celle-ci est utilisée mondialement 
 - 3300 contributeurs au projet
   :::
 
-Comme je disais cette technologie est au cœur de l'évolution du paysage informatique (IT)
+Comme je le disais, cette technologie est au cœur de l'évolution du paysage informatique (IT).
 
 ![It Évolution](./res/it_evolution.png)
 
-Cette révolution consiste globalement à migrer les infrastructures locales (serveurs) vers « Le cloud » et ce pour plusieurs raisons :
+Cette révolution consiste globalement à migrer les infrastructures locales (serveurs) vers « Le cloud », et ce pour plusieurs raisons :
 
 - Migrer la puissance dans le Cloud
 - Changement d’environnement/plateforme simplifié
-- Pas de « Bloquage / Fermeture » d’un constructeur
+- Pas de « Blocage / Fermeture » d’un constructeur
 
 ::: tip Un instant !
 Mais avant de continuer pour vous le cloud, c'est quoi ?
@@ -69,12 +69,12 @@ Et maintenant :
 ::: warning Docker la solution ultime ?
 L'objectif ici est de voir les avantages de Docker, mais comme tout en informatique Docker n'est pas la solution ultime ; Docker répond à un problème précis de découpage en container. C'est-à-dire en « petit conteneur » permettant de faire fonctionner votre application.
 
-**Soyez critique, rester en veille.**
+**Soyez critique, restez en veille.**
 :::
 
 ### Les microservices
 
-Et oui ! Le découpage actuelle / « la mode du moment », c'est de découper en microservices. C'est-à-dire de passer de :
+Et oui ! Le découpage actuel / « la mode du moment », c'est de découper en microservices. C'est-à-dire de passer de :
 
 ![Microservice](./res/simplification.png)
 
@@ -87,7 +87,7 @@ Cette simplification est là pour répondre à plusieurs problématiques :
 Le découpage en microservices va donc nous permettre de répondre à l'ensemble des problématiques :
 
 - Découper l’application en fonctionnalités indépendantes
-- Rends l’application indépendante des autres
+- Rend l’application indépendante des autres
 - Capable de « multiplier » l’application sur plein de serveurs pour absorber une hausse de la demande.
 - Une conception qui rend l’application hautement disponible
 
@@ -99,7 +99,7 @@ Ce découpage permet également de rentrer dans un autre mouvement, celui de la 
 
 Alors là vous allez me dire, non, mais je connais ce que tu nous racontes là !? Embarquez une application dans un truc transportable, quelle que soit la machine, je connais déjà ! C'est une machine virtuelle…
 
-Alors oui vous avez raison… Il y a quelques années nous avions **une application == un serveur**, puis nous avons eu **un serveur => Un hyperviseur => Des machines**, mais nous allons voir qu'avec Docker plus d'hyperviseur nous avons « que notre applicatif dans un conteneur ».
+Alors oui vous avez raison… Il y a quelques années nous avions **une application == un serveur**, puis nous avons eu **un serveur => Un hyperviseur => Des machines**, mais nous allons voir qu'avec Docker, plus d'hyperviseur : nous avons « que notre applicatif dans un conteneur ».
 
 Un serveur :
 ![Un serveur](./res/un_serveur.png)
@@ -107,17 +107,17 @@ Un serveur :
 Un hyperviseur :
 ![Un hyperviseur](./res/hyperviseur.png)
 
-Les machines virtuelles vous connaissez déjà, et vous savez que le but c'est de mutualiser la puissance du serveur pour y mettre **plusieurs machines** / **systèmes d'exploitation entiers**. Mais cette organisation à des limites :
+Les machines virtuelles vous connaissez déjà, et vous savez que le but c'est de mutualiser la puissance du serveur pour y mettre **plusieurs machines** / **systèmes d'exploitation entiers**. Mais cette organisation a des limites :
 
 - Des ressources allouées pour chaque machine (CPU, Disque, Ram)
 - Un OS complet sur chaque machine (virtuelle)
 - Plus il y a de machines plus il faut de puissance (ressources perdues)
 - Ressources perdues par… des parties de l’OS virtualisées pour rien (les crons, mais également les I/O).
 
-Le conteneur va donc répondre à une problématique, éviter la multiplication des petites ressources perdue, le conteneur c'est donc :
+Le conteneur va donc répondre à une problématique, éviter la multiplication des petites ressources perdues, le conteneur c'est donc :
 
-- Un moyen standardiser de packager l’application
-- Un moyen d’isoler les applications entres elles
+- Un moyen standardisé de packager l’application
+- Un moyen d’isoler les applications entre elles
 - Un partage du noyau avec la machine physique
 
 **Les conteneurs**
@@ -126,7 +126,7 @@ Le conteneur va donc répondre à une problématique, éviter la multiplication 
 **VM vs Conteneur :**
 ![VM Vs Conteneur](./res/vm_vs_conteneur.png)
 
-::: tip, Mais est-ce la fin des VM ?
+::: tip Mais est-ce la fin des VM ?
 Bien évidemment non, les VM sont là pour rester, elles sont une vraie réponse sur la mutualisation des machines ; mais également une vraie sécurité entre les machines. En effet, l'hyperviseur est là pour nous garantir au maximum la séparation des processus entre « **Les VM** » et la machine physique.
 
 D'ailleurs il est complètement possible de faire :
@@ -143,7 +143,7 @@ D'ailleurs il est complètement possible de faire :
 
 ![L'architecture de docker](./res/docker_architecture.png)
 
-Avec docker pas « d'hyperviseur », nous avons un morceau aux milieux qui s'appelle le « Docker Engine », il repose sur les technologies du noyau Linux, il est donc plus lège qu'un Hyperviseur entier (comme VMWare ou Dropbox) il aura en charge la gestion de :
+Avec Docker pas « d'hyperviseur », nous avons un morceau au milieu qui s'appelle le « Docker Engine », il repose sur les technologies du noyau Linux, il est donc plus léger qu'un hyperviseur entier (comme VMware ou VirtualBox). Il aura en charge la gestion de :
 
 - La sécurité
 - Le réseau
@@ -152,20 +152,20 @@ Avec docker pas « d'hyperviseur », nous avons un morceau aux milieux qui s'app
 
 ![Le Docker Engine](./res/engine.png)
 
-Comme j'indiquai en introduction, l'angine de Docker est multiplateforme, il fonctionne donc sans problème sur :
+Comme je l'indiquais en introduction, le moteur de Docker est multiplateforme, il fonctionne donc sans problème sur :
 
 - Linux
 - Windows
 - macOS
 
-Mais également quelques soit l'architecture de l'ordinateur :
+Mais également quelle que soit l'architecture de l'ordinateur :
 
-- Un raspberry Pi
+- Un Raspberry Pi
 - Un processeur Intel
 - Un processeur AMD
-- Un M1 de Apple
+- Un M1 d'Apple
 
-Docker **vous assure** que votre application tournera de la même façon quelques soit là ou vous souhaiter la faire fonctionner.
+Docker **vous assure** que votre application tournera de la même façon quel que soit l'endroit où vous souhaitez la faire fonctionner.
 
 ### Créer des machines simplement
 
@@ -176,7 +176,7 @@ Avant d'aller plus loin, je vous propose de faire un point terminologie :
 - **Image** Les fichiers, le contenu de votre « système »
 - **Container** L’image quand elle est en fonctionnement.
 - **Engine** Ce qui fait fonctionner votre « container ». Les volumes et le réseau font partie de « l’engine ».
-- **Registry** Entrepôt d’image à télécharger (fourni par d’autres, ou construite par vous). <https://hub.docker.com/>
+- **Registry** Entrepôt d’images à télécharger (fournies par d’autres, ou construites par vous). <https://hub.docker.com/>
 - **Volume**, les « montages » / ressources, emplacement (réseau ou non) disponible dans votre Container.
 
 #### Registry
@@ -190,7 +190,7 @@ Avant d'aller plus loin, je vous propose de faire un point terminologie :
 
 C’est une sorte de « template », les images sont en lecture seule. Enfin pas vraiment en lecture seule, elles ont un état qui sera **remis à zéro à chaque lancement de votre container**. Il faut les voir comme les données de base de votre application.
 
-Exemple: Ubuntu avec un Apache et GLPI déjà installés.
+Exemple : Ubuntu avec un Apache et GLPI déjà installés.
 
 - Une façon simple de distribuer vos applications
 - Pas de risque d’oubli de dépendances lors de l’installation (un environnement maitrisé)
@@ -198,7 +198,7 @@ Exemple: Ubuntu avec un Apache et GLPI déjà installés.
 
 ### La ligne de commande
 
-Docker c'est principalement une « interface » avec laquelle nous devons communiquer en ligne de commande. Il n'y a pas beaucoup de commandes à retenir et celle-ci est logique. Quoi qu’il en soit je vous ai résumé l'ensemble dans [le document ici](/cheatsheets/docker/).
+Docker c'est principalement une « interface » avec laquelle nous devons communiquer en ligne de commande. Il n'y a pas beaucoup de commandes à retenir et celles-ci sont logiques. Quoi qu’il en soit je vous ai résumé l'ensemble dans [le document ici](/cheatsheets/docker/).
 
 Mais pour résumer, voilà les éléments importants :
 
@@ -220,12 +220,12 @@ docker run --rm --name monConteneur -it -p 3000:80 -v %cd%:/data ubuntu:latest
 
 | Paramètre                        | action                                                                                  |
 | :------------------------------- | :-------------------------------------------------------------------------------------- |
-| -p portLocal:portContainer       | Permets de rendre visible un port dans le container sur votre machine (ex. -p 8080:80)  |
+| -p portLocal:portContainer       | Permet de rendre visible un port dans le container sur votre machine (ex. -p 8080:80)  |
 | -v dossierLocal:dossierContainer | permet d'exposer un dossier local à l'intérieur du container (ex -v ./vosSource:/data) |
 
 ### Les volumes
 
-Comme je disais en introduction, les Containers sont stateless ; ça veut dire qu'ils sont **remis à zéro** à chaque lancement, nous allons donc devoir mettre en place un volume entre celui-ci et votre machine, un volume c'est :
+Comme je le disais en introduction, les Containers sont stateless ; ça veut dire qu'ils sont **remis à zéro** à chaque lancement, nous allons donc devoir mettre en place un volume entre celui-ci et votre machine, un volume c'est :
 
 - Un dossier « partagé » entre votre machine et le container
 - Une sorte de point de montage
@@ -262,11 +262,11 @@ docker run -p 5432:5432 --name pgServer -e POSTGRES_USER=monUser -e POSTGRES_PAS
 
 ### Mettre en pratique
 
-Je vous propose de mettre en pratique ce que nous avons vu de manière théorique. [La suite dans le TP suivant](/tp/docker/introduction.md) puis [dans le suivant](/tp/docker/creer_server_local.md)
+Je vous propose de mettre en pratique ce que nous avons vu de manière théorique. [La suite dans le TP suivant](/tp/docker/introduction.md) puis [dans le suivant](/tp/docker/creer_server_local.md).
 
 ### Le DockerFile
 
-Nous avons lancé des Containeurs qui repose sur des images, mais pour l'instant nous n'avons rien écrit « rien packagé ». La force de Docker c'est que tout le monde peut créer des images docker pour distribuer des applications, bien évidement il est possible de distribuer les applications sur le DockerHub, mais **rien d'obligatoire**, vous êtes en entreprise votre code est privée vous pouvez très bien créer votre image uniquement sur votre machine.
+Nous avons lancé des Containeurs qui reposent sur des images, mais pour l'instant nous n'avons rien écrit, « rien packagé ». La force de Docker c'est que tout le monde peut créer des images Docker pour distribuer des applications. Bien évidemment il est possible de distribuer les applications sur le DockerHub, mais **rien d'obligatoire** : vous êtes en entreprise, votre code est privé, vous pouvez très bien créer votre image uniquement sur votre machine.
 
 ::: tip Vous pouvez également utiliser un Registry privé
 Mais si vous le souhaitez, vous pouvez utiliser un Hub privé ; Gitlab par exemple, en propose un gratuitement pour vos projets. D'ailleurs avec le CI/CD il sera possible de Builder et de sauvegarder l'image Docker résultat directement dans le Registry interne à Gitlab.
@@ -331,7 +331,7 @@ Dans le monde de Docker, c'est ce que nous appellerons l'orchestration.
 
 L'orchestration, ça va être le fait de construire une « stack » applicative entière avec l'intégralité des serveurs nécessaires au bon fonctionnement de notre application (exemple PHP, BDD, FTP). Dans le monde de Docker, nous avons un outil qui permet de construire ça. Le `Docker Compose` permet de composer une stack ou une infrastructure complète de conteneurs ; il permet de simplifier la création, l'interconnexion et la multiplication de conteneurs.
 
-[C'est un outil officiel fourni directement et maintenu par la société Docker](https://docs.docker.com/compose/) il repose sur **un seul fichier** le `docker-compose.yml`, celui-ci énumèrera l'ensemble de votre infrastructure, les volumes, les ports, les images, etc. Bref tout ce que vous pouvez faire avec la ligne de commande vous aller être capable de le définir dans un fichier `docker-compose.yml`.
+[C'est un outil officiel fourni directement et maintenu par la société Docker](https://docs.docker.com/compose/) il repose sur **un seul fichier** le `docker-compose.yml`, celui-ci énumérera l'ensemble de votre infrastructure, les volumes, les ports, les images, etc. Bref, tout ce que vous pouvez faire avec la ligne de commande, vous allez être capable de le définir dans un fichier `docker-compose.yml`.
 
 Voilà un exemple très simple :
 
@@ -343,11 +343,11 @@ services:
     network_mode: host
     image: nginx
     volumes:
-      - ../.acme.sh/:/,etc/letsencrypt/
-      - ./nginx.conf:/,etc/nginx/nginx.conf
+      - ../.acme.sh/:/etc/letsencrypt/
+      - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
-Une fois créée vous pourrez lancer votre infra via :
+Une fois créée, vous pourrez lancer votre infra via :
 
 ```sh
 # Lancement sans rendre la main
@@ -360,7 +360,7 @@ docker compose up -d
 La force de Docker Compose c'est :
 
 - Autonome (car prête à être « mise en place » partout, quelle que soit la plateforme cible).
-- Préparamètre (tout est dans le fichier docker-compose.yml).
+- Préparamétrée (tout est dans le fichier docker-compose.yml).
 - Isolé (tous les services ne sont pas forcément accessibles du public, mais sont accessibles par vos autres applications).
 - Administrable simplement grâce au cli (docker compose up/down/start/stop)
 
@@ -372,7 +372,7 @@ La meilleure façon de voir comment fonctionne l'orchestration c'est de la prati
 
 ### Les alternatives
 
-Quand je présente une solution, j'aime bien parler des alternatives. Vous vous doutez bien que Docker n'est pas la seule solution de container disponible sur le marché voilà une liste non exhaustive de « conccurent » :
+Quand je présente une solution, j'aime bien parler des alternatives. Vous vous doutez bien que Docker n'est pas la seule solution de container disponible sur le marché ; voilà une liste non exhaustive de « concurrents » :
 
 - containerd
 - podman
@@ -385,7 +385,7 @@ Différence fondamentale entre Kubernetes et Docker : Kubernetes est conçu pour
 
 ### Une stack complète sur un Raspberry Pi
 
-Nous l'avons vu dans les différents exemples précédents, Docker est un vrai petit bijou pour la conception du « stack » applicative. C'est en partant de cette constatation que j'ai décidé de créer moi-même une « Stack » permettant de créer un serveur d'évaluation / de développement personnel basé sur du matériel « pas cher » à savoir un Raspberry Pi.
+Nous l'avons vu dans les différents exemples précédents, Docker est un vrai petit bijou pour la conception d'une « stack » applicative. C'est en partant de cette constatation que j'ai décidé de créer moi-même une « Stack » permettant de créer un serveur d'évaluation / de développement personnel basé sur du matériel « pas cher » à savoir un Raspberry Pi.
 
 Une solution qui dans mon cas ressemble à :
 
@@ -406,13 +406,13 @@ Voilà un gros mot que vous avez très certainement vu / croisé lors de votre v
 - Les déploiements / livraison.
 - Mesurer la qualité de votre code.
 
-Cette automatisation ne sera pas faite à n'importe quel moment ? Elle sera faite en **continue…** Et c'est bien là la force du CI / CD. Il faut voir le CI/CD comme une boite à outils qui vous permettra de dormir tranquille.
+Cette automatisation ne sera pas faite à n'importe quel moment ! Elle sera faite en **continu…** Et c'est bien là la force du CI / CD. Il faut voir le CI/CD comme une boite à outils qui vous permettra de dormir tranquille.
 
 ![Flow](./res/flow.png)
 
 ### CI (Intégration continue)
 
-Le premier point du CI/CD c'est le CI ; CI signifie « Continous Integration » en français Intégration Continu, c'est la mécanique qui vous permettra de vous assurer de la qualité de votre application au travers d'indicateurs. Si je dois résumer le CI avant de le détailler, je dirais :
+Le premier point du CI/CD c'est le CI ; CI signifie « Continuous Integration », en français « intégration continue ». C'est la mécanique qui vous permettra de vous assurer de la qualité de votre application au travers d'indicateurs. Si je dois résumer le CI avant de le détailler, je dirais :
 
 - Validation en continu
 - Régulièrement
@@ -423,7 +423,7 @@ L'idée est donc comme je le disais en introduction de répéter un certain nomb
 
 - Dans une image PHP
 - Installer votre application
-- Lancer l'installation des dépendances nécessaire au bon fonctionnement.
+- Lancer l'installation des dépendances nécessaires au bon fonctionnement.
 - Lancer les tests
 
 ::: danger L'échec est une possibilité
@@ -436,25 +436,25 @@ Le CI c'est également un ensemble d'indicateurs nous permettant de valider que 
 
 ### CD (Déploiement continu / Livraison continue)
 
-Le second point dans le CI/CD, c'est le CD ; CD signifie « Continous Delivery », en Français livraison continue. Il faut bien distinguer deux opérations différentes dans le CD, nous avons la livraison et le Déploiement ; cette nuance est importante je reviendrai dessus ultérieurement. L'objectif du CD c'est :
+Le second point dans le CI/CD, c'est le CD ; CD signifie « Continuous Delivery », en français « livraison continue ». Il faut bien distinguer deux opérations différentes dans le CD, nous avons la livraison et le déploiement ; cette nuance est importante, j'y reviendrai ultérieurement. L'objectif du CD c'est :
 
 - Si l'ensemble du CI est « OK »
 - Mise en ligne « régulière »
   - Prod
   - Staging
 
-Nous avons deux options dans le CD, La Livraison et le Déploiement fondamentalement les deux répondent à la même problématique, automatiser les tâches pour vous simplifier la vie et automatiser la mise à disposition de votre application à vos utilisateurs, le **plus souvent possibles** en vous assurant en permanence de la qualité de ce que vous livrez :
+Nous avons deux options dans le CD, la livraison et le déploiement. Fondamentalement, les deux répondent à la même problématique : automatiser les tâches pour vous simplifier la vie et automatiser la mise à disposition de votre application à vos utilisateurs, le **plus souvent possible**, en vous assurant en permanence de la qualité de ce que vous livrez :
 
-- Automatiser au maximum (Code, Configuration, Environement …)
+- Automatiser au maximum (Code, Configuration, Environnement…)
   - Dev / Staging / Review
   - Prod
 - S'assure de la qualité
 - Versionne la livraison (suivi, archivage, rollback)
 
-- Le déploiement en continu, est la finalité ultime elle consiste à mettre en ligne en continu votre applicatif sans intervention de votre part.
+- Le déploiement en continu est la finalité ultime, il consiste à mettre en ligne en continu votre applicatif sans intervention de votre part.
 - La livraison en continu est une étape intermédiaire, elle consiste à faire construire en automatique le livrable de votre application via un enchainement de scripts tournant dans un environnement distant.
 
-![Gitlab Worflow](./res/gitlab_workflow_example_extended_v12_3.png)
+![Gitlab Workflow](./res/gitlab_workflow_example_extended_v12_3.png)
 
 #### La clé « L'automatisation »
 
@@ -469,22 +469,22 @@ Votre CI/CD repose donc sur une brique logicielle (Cloud ou local) permettant l�
 #### Les prérequis
 
 - Versionning du code.
-- Commits régulier.
+- Commits réguliers.
 - Application « testable ».
 
 #### Les tests
 
-Vous l'avez compris, le CI/CD repose sur **les tests**. Vous avez vu précédemment que les tests c'est très important… Mais comme beaucoup vous ne voyez pas vraiment pourquoi c'est important ! Et c'est bien normal, vous écrivez des tests, mais vous avez certainement appris à les lancer **uniquement** sur votre ordinateur. Et je suis bien d'accord à se compte là… l'intérêt est plutôt limité.
+Vous l'avez compris, le CI/CD repose sur **les tests**. Vous avez vu précédemment que les tests c'est très important… Mais comme beaucoup vous ne voyez pas vraiment pourquoi c'est important ! Et c'est bien normal, vous écrivez des tests, mais vous avez certainement appris à les lancer **uniquement** sur votre ordinateur. Et je suis bien d'accord, à ce compte-là… l'intérêt est plutôt limité.
 
-Quand nous mettons en place un CI/CD nous allons rendre les tests visibles / utiles / intéressants en effet ils vont être lancé à chaque modification du code sources. Et ils vont vous assurer que la qualité de celui-ci n'est pas détériorée par une modification récente.
+Quand nous mettons en place un CI/CD nous allons rendre les tests visibles / utiles / intéressants : en effet ils vont être lancés à chaque modification du code source. Et ils vont vous assurer que la qualité de celui-ci n'est pas détériorée par une modification récente.
 
-- Simplification de leurs exécutions
+- Simplification de leur exécution
 - Aussi simple qu'en « Local »
 - Libère du temps
 
-Libère du temps ? Et oui ! Nous n'allons plus perdre du temps « j'attends que les tests passent » non non. Nous allons demander à un serveur distant de le faire à notre place, et une fois terminée ils nous préviendra du résultat… Voire mieux si le CD est en place il livrera en automatique votre application sur le(s) serveurs.
+Libère du temps ? Et oui ! Nous n'allons plus perdre du temps « j'attends que les tests passent » non non. Nous allons demander à un serveur distant de le faire à notre place, et une fois terminé il nous préviendra du résultat… Voire mieux, si le CD est en place il livrera en automatique votre application sur le(s) serveur(s).
 
-Mais bien évidemment, il n'y a pas que le test dans la vie nous pourrons également :
+Mais bien évidemment, il n'y a pas que le test dans la vie, nous pourrons également :
 
 - Vérifier le Lint
 - Analyse statique
@@ -498,12 +498,12 @@ Mais bien évidemment, il n'y a pas que le test dans la vie nous pourrons égale
 
 ![Cout des tests](./res/cost_test_unit.jpeg)
 
-Nous pouvons tout tester avec le CI, mais à votre avis qu'allons-nous tester?
+Nous pouvons tout tester avec le CI, mais à votre avis qu'allons-nous tester ?
 :::
 
 #### Les indicateurs
 
-Je vous parlais d'indicateur au début, les indicateurs de réussite sont multiples, nous aurons bien évidemment :
+Je vous parlais d'indicateurs au début, les indicateurs de réussite sont multiples, nous aurons bien évidemment :
 
 - Le résultat « vert de chaque test ».
 - Le Lint (analyse statique du code).
@@ -513,10 +513,10 @@ Je vous parlais d'indicateur au début, les indicateurs de réussite sont multip
 
 #### Les artefacts
 
-Je vous parlais du livrable en introduction. Dans le monde de l'intégration, le livrable nous appellerons ça un « artifacts », c'est le résultat de cette automatisation de tâches. Il est le résultat du « Test & Build » cette opération sur ce que nous avons vu précédemment :
+Je vous parlais du livrable en introduction. Dans le monde de l'intégration, le livrable, nous appellerons ça un « artifact », c'est le résultat de cette automatisation de tâches. Il est le résultat du « Test & Build », cette opération s'appuie sur ce que nous avons vu précédemment :
 
 - Docker pour isoler et être capable de répéter de manière stateless l'opération.
-- Répétable (à l'identique, quelques soit la modification).
+- Répétable (à l'identique, quelle que soit la modification).
 - Multidéveloppeur (identique pour tous les membres de l'équipe).
 
 ![CI Flow](./res/ci_flow.png)
@@ -525,7 +525,7 @@ L'artéfact est donc :
 
 - Toujours présent
 - Centralisé (sur le serveur de CI/CD)
-- Nommage cohérent (oui, car il repose sur **le commit** associés)
+- Nommage cohérent (oui, car il repose sur **le commit** associé)
 
 Et pourquoi c'est très très intéressant ?
 
@@ -539,7 +539,7 @@ Et pourquoi c'est très très intéressant ?
 
 ## Gitlab CI
 
-Et c'est ici que rentre en jeu les solutions cloud de CI/CD. Comme tout dans les outils, il y a plusieurs solutions répondant aux mêmes problèmes. J'ai décidé de vous parler de Gitlab-CI, car il est gratuit et intégré de base dans Gitlab aucun compte supplémentaire de requis ! Et surtout il est très puissant… Car il repose sur **Docker**, et vous l'avez compris maintenant ça veut dire que nous serons capables de tout faire.
+Et c'est ici que rentrent en jeu les solutions cloud de CI/CD. Comme toujours dans les outils, il y a plusieurs solutions répondant aux mêmes problèmes. J'ai décidé de vous parler de Gitlab-CI, car il est gratuit et intégré de base dans Gitlab, aucun compte supplémentaire requis ! Et surtout il est très puissant… Car il repose sur **Docker**, et vous l'avez compris maintenant ça veut dire que nous serons capables de tout faire.
 
 ![Résultat du pipeline](./res/pipelines_index_v13_0.png)
 
@@ -550,7 +550,7 @@ Les fondations de Gitlab-CI sont :
 - Amélioration continue
 
 ::: tip Amélioration continue ?
-Je ne suis pas dupe, je suis comme vous… Parfois je code à l'arrache ! Le CI/CD n'est pas là pour vous faire la morale. Nous l'avons vu avec SonarQube l'idée n'est pas de vous punir de la mauvaise qualité de votre développement ; l'idée est plutôt de vous faire progresser petit à petit en testant / analysant seulement les parties modifiées de votre code.
+Je ne suis pas dupe, je suis comme vous… Parfois je code à l'arrache ! Le CI/CD n'est pas là pour vous faire la morale. Nous l'avons vu avec SonarQube, l'idée n'est pas de vous punir de la mauvaise qualité de votre développement ; l'idée est plutôt de vous faire progresser petit à petit en testant / analysant seulement les parties modifiées de votre code.
 
 Pourquoi est-ce important ? Tout simplement pour voir au fur et à mesure pourquoi les règles sont importantes.
 :::
@@ -562,8 +562,8 @@ Et l'objectif est :
 - Automatisation de la livraison
 - Déploiement plus fréquent
 
-::: danger évidemment il y a des alternatives
-Je vous entends déjà, non, mais moi je n’utilise pas Gitlab, mais Github… Évidemment il y a des alternatives des options pour faire plaisir à tous. [Vous avez ici une liste complète à jour des alternatives disponibles](https://github.com/ligurio/awesome-ci)
+::: danger Évidemment il y a des alternatives
+Je vous entends déjà, non, mais moi je n’utilise pas Gitlab, mais Github… Évidemment il y a des alternatives, des options pour faire plaisir à tous. [Vous avez ici une liste complète à jour des alternatives disponibles](https://github.com/ligurio/awesome-ci)
 :::
 
 ### Gitlab-ci.yml
@@ -598,18 +598,18 @@ test_db:
 
 ### Gitlab Pages
 
-Le meilleur moyen pour mettre en place un CI/CD ces le déploiement « en automatique » d'un petit site web statique.
+Le meilleur moyen pour mettre en place un CI/CD, c'est le déploiement « en automatique » d'un petit site web statique.
 
 [La suite ici](/tp/ci/pages.md)
 
 ### Tester en continu
 
-Vous l'avez vu dans l'exemple Gitlab-Pages il n'y avait pas de tests autre que ceux « de base » qui sont :
+Vous l'avez vu dans l'exemple Gitlab-Pages, il n'y avait pas de tests autres que ceux « de base » qui sont :
 
 - L'installation
 - Le Lint fait sur votre code source lors du build.
 
-Ici, je vous propose d'aller plus loin c'est-à-dire de mettre en place des tests qui seront exécutés à chaque push.
+Ici, je vous propose d'aller plus loin, c'est-à-dire de mettre en place des tests qui seront exécutés à chaque push.
 
 [La suite ici](/tp/ci/ci-test/tests.md)
 
@@ -623,13 +623,13 @@ Le tout sans intervention de votre part. Avant de continuer, appelez-moi, je vai
 
 ## Netlify
 
-Netlify est une solution simple qui vous permettra d'héberger / déployer / automatiser la mise à disposition de votre site Internet. Ici nous ne parlons pas de site « classique » comme un WordPress, mais de site qui repose sur la Jamstack.
+Netlify est une solution simple qui vous permettra d'héberger / déployer / automatiser la mise à disposition de votre site Internet. Ici nous ne parlons pas de site « classique » comme un WordPress, mais de sites qui reposent sur la Jamstack.
 
 ### La JamStack ?
 
-La jamstack c'est une nouvelle façon de voir la conception de site Internet, cette nouvelle façon de faire va nous permettre de réduire les couts d'hébergements / et bénéficier de l'avantage du Cloud (CI/CD, compression des assets, FAAS…)
+La jamstack c'est une nouvelle façon de voir la conception de site Internet, cette nouvelle façon de faire va nous permettre de réduire les couts d'hébergement et de bénéficier des avantages du Cloud (CI/CD, compression des assets, FaaS…).
 
-Plein de mots qui font peur, mais ne vous inquiétez pas… C'est beaucoup plus simple qu'il n'y parait. Ici pas de PHP pour générer vos pages nous allons tout concevoir en HTML / JavaScript (VanillaJS, React, Vue, …) / CSS
+Plein de mots qui font peur, mais ne vous inquiétez pas… C'est beaucoup plus simple qu'il n'y parait. Ici pas de PHP pour générer vos pages, nous allons tout concevoir en HTML / JavaScript (VanillaJS, React, Vue, …) / CSS.
 
 ![JamStack](./res/jamstack-horizontal.svg)
 
@@ -646,7 +646,7 @@ Vous l'avez vu en pratique, il n’est parfois pas simple de déployer un site L
 
 ### FaaS
 
-Function As A Service, c'est le truc qui va fous faire passer dans une autre dimension. L'idée étant la suivante :
+Function As A Service, c'est le truc qui va vous faire passer dans une autre dimension. L'idée étant la suivante :
 
 Le FaaS ou Function-as-a-Service est un type de service cloud permettant de déployer une fonction unique de logiciel en serverless. Découvrez tout ce que vous devez savoir à ce sujet.
 
@@ -654,7 +654,7 @@ Le développement et le lancement d’une application peuvent être très diffic
 
 Source: <https://www.lebigdata.fr/>
 
-Le FaaS est donc en quelques sortes la finalité de tout ce que nous avons vu ! Il s'agit de découper votre code en petit morceau qui sera packagé dans des conteneurs et lancer à la demande « quand les utilisateurs auront besoin de la fonctionnalité ». Le but ?
+Le FaaS est donc en quelque sorte la finalité de tout ce que nous avons vu ! Il s'agit de découper votre code en petits morceaux qui seront packagés dans des conteneurs et lancés à la demande « quand les utilisateurs auront besoin de la fonctionnalité ». Le but ?
 
 - Réduire les couts (les serveurs sont arrêtés très souvent).
 - Réduire l'empreinte carbone des applications.
@@ -665,13 +665,13 @@ Il y a beaucoup de fournisseurs de FaaS :
 - Amazon avec Lambda.
 - Google avec Firebase Function.
 - Google avec Cloud Run (lancement d'image Docker à la demande)
-- OpenFaas solution libre similaire aux précédentes.
+- OpenFaas, solution libre similaire aux précédentes.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eOBq__h4OJ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/vr0Gfvp5v1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Pour simplifier nos tests, nous allons nous concentrer sur la dernière solution OpenFaas, car elle nous permettra sans dépenser d'argent de tester la puissance du FaaS
+Pour simplifier nos tests, nous allons nous concentrer sur la dernière solution, OpenFaas, car elle nous permettra de tester la puissance du FaaS sans dépenser d'argent.
 
 - [Installation d'OpenFaas](/tp/openfaas/openfaas-quicky-installation.md)
 - [Installation d'OpenFaas sur un Raspberry Pi](/tp/openfaas/openfaas-quicky-installation-pi.md)

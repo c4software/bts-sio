@@ -1,11 +1,15 @@
+---
+description: "Présentation de la structure MVC pédagogique : routeur, contrôleurs, modèles, vues et outils en ligne de commande."
+---
+
 # Structure de développement MVC
 
 Cette structure est réalisée à des fins pédagogiques. Elle est un intermédiaire permettant d'introduire les concepts du
-framework Laravel sur des bases de développement PHP connu.
+framework Laravel sur des bases de développement PHP connues.
 
 ::: tip Attention
 Si vous souhaitez réaliser un développement d'envergure, je vous déconseille vivement l'utilisation de ce code.
-Préférez plutôt l'utilisation d'un framework tel que Laravel
+Préférez plutôt l'utilisation d'un framework tel que Laravel.
 :::
 
 ::: details Sommaire
@@ -18,24 +22,24 @@ Préférez plutôt l'utilisation d'un framework tel que Laravel
 
 ## Introduction
 
-Un des plus célèbres design patterns s’appelle MVC (Modèle - Vue - Contrôleur) ce pattern permet une bonne organisation du son code source. Pour l'instant vous codiez sans vraiment de structure, avec globalement, même si c'était rangé ; des pages Web qui mélangent traitement (PHP), accès aux données (SQL) et présentation (balises HTML). Même si c'est complètement fonctionnel, nous allons nous efforcer à partir de maintenant à séparer ces parties.
+Un des plus célèbres design patterns s’appelle MVC (Modèle - Vue - Contrôleur), ce pattern permet une bonne organisation de votre code source. Jusqu'à présent, vous codiez sans vraiment de structure, avec globalement, même si c'était rangé, des pages Web qui mélangent traitement (PHP), accès aux données (SQL) et présentation (balises HTML). Même si c'est complètement fonctionnel, nous allons nous efforcer à partir de maintenant de séparer ces parties.
 
 La structure MVC présentée dans cet exemple est classique. Elle intègre les concepts MVC classiques à savoir :
 
 - Modèle (Accès à la base de données)
 - Vue (Représentation pour le client)
-- Contrôleur (Traitement des requêtes HTTP entrant)
+- Contrôleur (Traitement des requêtes HTTP entrantes)
 
 Le projet proposé dépasse le simple MVC, il intègre en effet les bases pour un développement serein à savoir :
 
 - Un routeur : Correspondance entre un chemin (route) et une fonctionnalité (méthode d'un contrôleur).
-- Un ensemble d'interfaces et class permettant
+- Un ensemble d'interfaces et de classes permettant
   - la réalisation d'API.
-  - l'Accès à la base de données.
-  - La gestion de la SESSION.
-- Une organisation structurée permettant la réalisation de projet de taille moyenne / grande.
+  - l'accès à la base de données.
+  - la gestion de la SESSION.
+- Une organisation structurée permettant la réalisation de projets de taille moyenne / grande.
 
-::: tip Point important sur la structure.
+::: tip Point important sur la structure
 Cette base de développement intègre une structure **qu'il faut respecter** pour développer dans de bonnes conditions.
 :::
 
@@ -49,10 +53,10 @@ Voilà le rendu :
 
 ## Installer Composer
 
-Sur les PC du lycée, tout est déjà installé, mais si vous souhaitez travailler chez vous, il vous faudra installer Composer. Composer est un gestionnaire de dépendance pour PHP. Il permettra de configurer correctement le path pour avoir PHP et les librairies nécessaires au bon fonctionnement du code.
+Sur les PC du lycée, tout est déjà installé, mais si vous souhaitez travailler chez vous, il vous faudra installer Composer. Composer est un gestionnaire de dépendances pour PHP. Il permettra de configurer correctement le path pour avoir PHP et les librairies nécessaires au bon fonctionnement du code.
 
-- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version >= 8.2 minimum de PHP.
-- Cocher bien la case `Add to the PATH` afin de pouvoir utiliser Composer depuis n'importe quel terminal.
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. **Attention :** bien sélectionner une version de PHP >= 8.2 minimum.
+- Cochez bien la case `Add to the PATH` afin de pouvoir utiliser Composer depuis n'importe quel terminal.
 
 ::: danger Cette étape n'est pas à faire au lycée !
 
@@ -71,7 +75,7 @@ La structure de base en termes de dossier ressemble à :
 ![Structure des dossiers](./res/structure_dossiers.png)
 
 ::: tip Compliqué ?
-Pas d'inquiétude, pas de stress ! nous allons voir ensemble comment prendre en main le code.
+Pas d'inquiétude, pas de stress ! Nous allons voir ensemble comment prendre en main le code.
 :::
 
 ### Globalement
@@ -88,7 +92,7 @@ Les éléments de `base` sont toujours dans un dossier nommé `base`. Vous retro
 
 Avant d'aller plus loin, intéressons-nous à la configuration. Dans un projet, il est évident qu'il ne faut pas mettre la configuration n'importe où. Vous l'avez vécu en entreprise, vous avez peut-être eu à votre disposition plusieurs serveurs / machines / ordinateurs.
 
-Votre code va fonctionner de manière identique entre chaque environnement, par contre ce qui va certainement changer c'est l'accès à la base de données. Cet accès, est dépendant d'une configuration (Utilisateur, Mot de passe, Serveur …) dans une structure MVC on essai de ne pas mettre cette configuration n'importe où !
+Votre code va fonctionner de manière identique entre chaque environnement, par contre ce qui va certainement changer c'est l'accès à la base de données. Cet accès est dépendant d'une configuration (Utilisateur, Mot de passe, Serveur…). Dans une structure MVC, on essaie de ne pas mettre cette configuration n'importe où !
 
 Dans l'organisation que je vous propose, cette configuration est centralisée dans le fichier `configs.php` à la racine du code source.
 
@@ -118,13 +122,13 @@ return array(
 
 :::
 
-- Debug ? Vous avez dit debug ? À quoi correspond cette variable à votre avis ? Comment faire pour. Est-ce important de la mettre à `true` ?
+- Debug ? Vous avez dit debug ? À quoi correspond cette variable à votre avis ? Est-ce important de la mettre à `true` ?
 
-::: details Non, mais un instant ? Mon code est différent.
+::: details Non, mais un instant ! Mon code est différent.
 
-Et oui ! L'exemple que je vous communique plus haut est simpliste. Dans le code que vous avez récupéré, le fichier `configs.php` est légèrement différent. En effet, celui-ci prend un ensemble de variables depuis `les variables d'environnements` kézako !? Les variables d'environnement sont des variables définies au niveau du système qui nous permettra de changer la configuration sans modifier le code.
+Et oui ! L'exemple que je vous communique plus haut est simpliste. Dans le code que vous avez récupéré, le fichier `configs.php` est légèrement différent. En effet, celui-ci prend un ensemble de variables depuis `les variables d'environnement`, kézako ? Les variables d'environnement sont des variables définies au niveau du système qui nous permettront de changer la configuration sans modifier le code.
 
-Ce système de variables d'environnements est très intéressant, car il nous permettra avec l'intégration continue de personnaliser le programme au moment de l'exécution sans en changer le code source (Exemple PROD et DEV).
+Ce système de variables d'environnement est très intéressant, car il nous permettra avec l'intégration continue de personnaliser le programme au moment de l'exécution sans en changer le code source (Exemple PROD et DEV).
 
 :::
 
@@ -144,7 +148,7 @@ Cette commande intégrée à la structure MVC lancera un serveur automatiquement
 
 :::
 
-::: details Comment ça fonctionne? 
+::: details Comment ça fonctionne ?
 
 ```sh
 # Windows (avec XAMPP)
@@ -161,15 +165,15 @@ php -S localhost:9000
 
 ### L'entry Point (`index.php`)
 
-Le fichier `index.php` présent à la racine du projet est, ce que l'on appelle, un **entry point**. Ce point d'entrée en
-français est le fichier qui va « prendre le trafic » de votre projet.
+Le fichier `index.php` présent à la racine du projet est ce que l'on appelle un **entry point** (« point d'entrée » en
+français). C'est le fichier qui va « prendre le trafic » de votre projet.
 
 Concrètement, qu'est-ce que ça veut dire ? Ça veut dire que ce fichier est grandement générique ; en effet, quel que soit
 le projet celui-ci restera grandement inchangé. Il intègre les initialisations de base permettant à votre projet de
 fonctionner correctement. Je vous invite par curiosité à regarder son contenu. Mais pas de modification à prévoir dans
 ce fichier.
 
-Une représentation possible peut-être la suivante :
+Une représentation possible peut être la suivante :
 
 ![Structure & Entry Point](./res/organisation_structure.png)
 
@@ -179,25 +183,25 @@ Le dossier `routes/` contient l'ensemble du code relatif au Router. Le router es
 MVC, en effet votre utilisateur passera obligatoirement par celui-ci.
 
 Le routeur est un élément simple qui permet de sécuriser votre code. Celui-ci est en réalité un simple « tableau »
-contenant l'ensemble des fichiers / ressources accessible depuis le navigateur du client.
+contenant l'ensemble des fichiers / ressources accessibles depuis le navigateur du client.
 
-Cet élément repose sur le principe de la `WhiteList` (Liste blanche), nous avons donc de lister l'ensemble « paths
-» (chemins) autorisé pour deux types de ressources :
+Cet élément repose sur le principe de la `WhiteList` (Liste blanche), nous allons donc lister l'ensemble des « paths
+» (chemins) autorisés pour trois types de ressources :
 
 - Web (`Web.php`) : Page Web classique, affichée dans un navigateur Web (Chrome, Firefox, etc.)
 - Api (`Api.php`) : Échange entre un client et le serveur (Ajax, Application, etc.)
-- Cli (`Cli.php`) : Définission d'actions accessibles uniquement via la ligne de commande (initialisation de Model, contrôleur, initialisation de la base de données)
+- Cli (`Cli.php`) : Définition d'actions accessibles uniquement via la ligne de commande (initialisation de Model, contrôleur, initialisation de la base de données)
 
 Nous avons un fichier `Router.php` qui comme l'entry-point est générique, il initialise seulement le code (je vous laisse
 le regarder par curiosité).
 
-La logique de chargement d'une route est dans `routes/base/Route.php`, c'est dans ce fichier que ce cache la
-fameuse, `Whitelist` mais également la logique de chargement d'une page par rapport à une demande d'un utilisateur (
+La logique de chargement d'une route est dans `routes/base/Route.php`, c'est dans ce fichier que se cache la
+fameuse `Whitelist`, mais également la logique de chargement d'une page par rapport à une demande d'un utilisateur (
 chargement en GET ou en POST).
 
 #### `Web.php` et `Api.php`
 
-Les deux fichiers ont une syntaxe identique, c'est normal, il s’agit de la réaliser la déclaration des routes, celle-ci
+Les deux fichiers ont une syntaxe identique, c'est normal, il s’agit de réaliser la déclaration des routes, celle-ci
 prendra toujours la même forme :
 
 ```php
@@ -226,7 +230,7 @@ class Web
 }
 ```
 
-Je pense qu'ici pas de problème! Vous comprenez l'idée, une nouvelle page ?
+Je pense qu'ici pas de problème ! Vous comprenez l'idée, une nouvelle page ?
 
 - Une nouvelle route
 - Une nouvelle méthode dans le contrôleur…
@@ -258,7 +262,7 @@ class Web
 }
 ```
 
-::: danger 👋
+::: danger Attention
 
 Utile pour du code très simple, ou lors d’un test **uniquement**. L’utilisation d'un contrôleur est préférable.
 
@@ -311,9 +315,9 @@ Le dossier `controllers/` contiendra l'ensemble des contrôleurs de votre projet
 
 **Ça veut dire** que vous pouvez créer autant de contrôleurs que nécessaire, il s'agit ici d'un découpage logique des fonctionnalités que vous souhaitez mettre en place.
 
-Le contrôleur est la class PHP qui va faire le lien entre la demande de l'utilisateur (Route) et la donnée (modèle), son rôle sera donc toujours un peu le même :
+Le contrôleur est la classe PHP qui va faire le lien entre la demande de l'utilisateur (Route) et la donnée (modèle), son rôle sera donc toujours un peu le même :
 
-- Récupéré de la donnée (BDD, Session, Fichier, etc.).
+- Récupérer de la donnée (BDD, Session, Fichier, etc.).
 - La mettre en forme si nécessaire.
 - La retourner à l'utilisateur.
 
@@ -338,18 +342,18 @@ class MonControleur extends WebController
 
 Comme vous pouvez le constater ici pas énormément de code, en effet une partie de la complexité est encapsulée dans l'héritage (`extends WebController`).
 
-Un contrôleur est donc une classe, avec un ensemble de méthodes technique permettant de réaliser des opérations. La ligne :
+Un contrôleur est donc une classe, avec un ensemble de méthodes techniques permettant de réaliser des opérations. La ligne :
 
 ```php
 Template::render("views/monControleur/methodeDExemple.php", array());
 ```
 
-Seront votre « traitement » / « votre page », nous avons :
+Sera votre « traitement » / « votre page », nous avons :
 
-- `Template::render` méthode qui permet d'afficher votre **vue**. Le premier argument est le fichier à utiliser, le second est un tableau de paramètre.
-- La tableau de paramètre (`array()`), contiendra l'ensemble des variables accessible dans votre vue. Exemple, `array("nom" => "valentin")` va déclarer une variable `$nom` dans votre **vue**.
+- `Template::render` méthode qui permet d'afficher votre **vue**. Le premier argument est le fichier à utiliser, le second est un tableau de paramètres.
+- Le tableau de paramètres (`array()`) contiendra l'ensemble des variables accessibles dans votre vue. Exemple, `array("nom" => "valentin")` va déclarer une variable `$nom` dans votre **vue**.
 
-Techniquement, si vous regardez le contenu de la méthode, `render` vous verrez 3 lignes :
+Techniquement, si vous regardez le contenu de la méthode `render`, vous verrez 3 lignes :
 
 - `header();` : Le haut de votre page (avant votre contenu)
 - `include($filepath);` : Votre contenu HTML (**et uniquement votre contenu**)
@@ -361,13 +365,13 @@ Nous pouvons le représenter de cette façon-ci :
 
 ::: tip L'astuce du chef
 
-Si vous avez regardé un peu le code, vous avez certainement remarqué que les paramètres `$_GET` était automatiquement disponible en tant que paramètre de votre méthode. Exemple :
+Si vous avez regardé un peu le code, vous avez certainement remarqué que les paramètres `$_GET` étaient automatiquement disponibles en tant que paramètres de votre méthode. Exemple :
 
 ```php
 // Si l'utilisateur accède à /home?nom=brosseau&prenom=valentin
 
 function home($nom, $prenom){
-    // $prenom contiendra ici "brosseau" et $prenom contiendra "valentin"
+    // $nom contiendra ici "brosseau" et $prenom contiendra "valentin"
 }
 ```
 
@@ -375,7 +379,7 @@ function home($nom, $prenom){
 
 #### L'héritage
 
-Les contrôleurs **doivent hériter** de l'une des deux interfaces `Web` ou `Api`. Ces deux classes définissent un comportement standardisé entre les différents contrôleurs que vous allez écrire.
+Les contrôleurs **doivent hériter** de l'une des deux classes `Web` ou `Api`. Ces deux classes définissent un comportement standardisé entre les différents contrôleurs que vous allez écrire.
 
 Les différentes relations peuvent être représentées avec l'UML suivant :
 
@@ -389,11 +393,11 @@ Ne prenez pas automatiquement pour acquis ce que je vous écris. Allez voir le c
 
 ### Le dossier `views/`
 
-Le dossier `views/` va contenir l'ensemble des fichiers « d'interface » de votre application. Ces fichiers sont en réalité massivement des fichiers HTML classiques.
+Le dossier `views/` va contenir l'ensemble des fichiers « d'interface » de votre application. Ces fichiers sont en réalité pour l'essentiel des fichiers HTML classiques.
 
-Détail important, nous allons ici privilégier le découpage et la réutilisation. Il est donc important de constater que nous avons un dossier `views/common/` celui-ci contient l'ensemble des éléments commun à toutes vos pages comme vues précédemment. (haut de page et pied de page).
+Détail important, nous allons ici privilégier le découpage et la réutilisation. Il est donc important de constater que nous avons un dossier `views/common/`, celui-ci contient l'ensemble des éléments communs à toutes vos pages, comme vu précédemment (haut de page et pied de page).
 
-Vos différentes pages **ne contiendront donc** que le contenu réel de la page exemple :
+Vos différentes pages **ne contiendront donc** que le contenu réel de la page, exemple :
 
 ```html
 <h1>Ceci est un titre</h1>
@@ -401,7 +405,7 @@ Vos différentes pages **ne contiendront donc** que le contenu réel de la page 
 ```
 
 ::: tip Pourquoi est-ce important ?
-Au-delà de tout ce que nous voyons ensemble, mon but est de vous rendre autonome pour que vous puissiez réaliser vos propres projets. Et quand il s'agit de projet, le plus important à retenir c'est l'organisation, mais également éviter toutes répétitions.
+Au-delà de tout ce que nous voyons ensemble, mon but est de vous rendre autonome pour que vous puissiez réaliser vos propres projets. Et quand il s'agit de projet, le plus important à retenir c'est l'organisation, mais également éviter toute répétition.
 
 L'une des principales sources de répétition dans un site Web c'est le code présent dans le header et dans le footer de votre site. C'est pourquoi je vous propose de ne pas le mettre dans chaque page.
 
@@ -412,17 +416,17 @@ L'une des principales sources de répétition dans un site Web c'est le code pr�
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/TFzF4XtoS4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Le dossier `models/` contiens les classes qui vont représenter les tables en base de données. Ces classes vont faire « l'interface » entre votre contrôleur et votre base de données.
+Le dossier `models/` contient les classes qui vont représenter les tables en base de données. Ces classes vont faire « l'interface » entre votre contrôleur et votre base de données.
 
-Finis donc les requêtes SQL partout dans votre code. À partir de maintenant, vos requêtes sont **dans le modèle** et uniquement dans le modèle.
+Finies donc les requêtes SQL partout dans votre code. À partir de maintenant, vos requêtes sont **dans le modèle** et uniquement dans le modèle.
 
 ::: warning Un instant
-Cette notion de modèle **est très importante**, en effet il s'agit ici d'être explicit et de ne pas faire une classe fourretout!
+Cette notion de modèle **est très importante**, en effet il s'agit ici d'être explicite et de ne pas faire une classe fourre-tout !
 
 Je ne veux donc pas voir de fichier model.php avec 5000 lignes de code. Et encore moins de requêtes SQL dans vos contrôleurs.
 :::
 
-Comme pour les contrôleurs, vous avez à votre disposition (dans le dossier, base) une classe générique vous permettant d'automatiser certaines requêtes (`getAll`, `getOne`, `deleteOne`, `updateOne`). Bien évidemment ce ne sont que des raccourcis, vous pouvez sans problème écrire les requêtes via PDO.
+Comme pour les contrôleurs, vous avez à votre disposition (dans le dossier `base`) une classe générique vous permettant d'automatiser certaines requêtes (`getAll`, `getOne`, `deleteOne`, `updateOne`). Bien évidemment ce ne sont que des raccourcis, vous pouvez sans problème écrire les requêtes via PDO.
 
 Voici un exemple minimal de Modèle :
 
@@ -467,7 +471,7 @@ class DBVideo extends SQL
     function getByVideoId($videoId)
     {
         // Utilisation d'une query à la place d'un simple getOne car la requête
-        // est réalisé sur un champ différent que l'ID de la table.
+        // est réalisée sur un champ différent de l'ID de la table.
 
         $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE videoId = ?");
         $stmt->execute([$videoId]);
@@ -480,7 +484,7 @@ class DBVideo extends SQL
 
 Si vous avez été curieux… Vous avez certainement remarqué qu'à aucun moment nous n’avons parlé de la connexion à la base de données ! C'est aussi ça l'avantage d'une organisation structurée, je me suis occupé de cette partie-là pour vous.
 
-La connexion à la base de données est intégrée dans la classe `models/base/Database.php` qui est utilisé dans la classe fille `models/base/SQL.php`.
+La connexion à la base de données est intégrée dans la classe `models/base/Database.php` qui est utilisée dans la classe fille `models/base/SQL.php`.
 
 Pour l'instant vous serez « utilisateur » de cette architecture. Mais, voilà le diagramme de classe de celle-ci :
 
@@ -490,41 +494,41 @@ Pour l'instant vous serez « utilisateur » de cette architecture. Mais, voilà 
 
 Le diagramme de classe vous semble peut-être très compliqué au vu de la problématique… Mais c'est tout là l'intérêt de réaliser des Interfaces. En effet, je vous offre (c'est cadeau, c'est pour moi) la classe SQL ; mais peut-être que vous voulez faire du Oracle ? Ou bien du MongoDB ?
 
-Avec une Interface, aucun problème. Votre code restera inchangé, quelle que soit l'implémentation de votre connecteur. En effet, implémenter l'interface vous obligera l'écriture des 4 méthodes minimale au bon fonctionnement de votre code.
+Avec une Interface, aucun problème. Votre code restera inchangé, quelle que soit l'implémentation de votre connecteur. En effet, implémenter l'interface vous obligera à écrire les 4 méthodes minimales au bon fonctionnement de votre code.
 
-Ne vous inquiétez pas! L'interface est une notion que nous reverrons ensemble plus tard… Sachez juste qu'elle est une des bases de la programmation orientée objet.
+Ne vous inquiétez pas ! L'interface est une notion que nous reverrons ensemble plus tard… Sachez juste qu'elle est une des bases de la programmation orientée objet.
 
 :::
 
 ::: tip Be curious (bis)
-Ne vous contentez pas de dire « ça marche », allez regarder ma classe `SQL`! Je pense qu'elle est intéressante, et que vous devriez la regarder.
+Ne vous contentez pas de dire « ça marche », allez regarder ma classe `SQL` ! Je pense qu'elle est intéressante, et que vous devriez la regarder.
 :::
 
 ### Le dossier `public/`
 
-Le dossier `public/` va contenir l'ensemble des données « publics » de votre projet. Ces fichiers sont ceux distribués directement au navigateur de votre client.
+Le dossier `public/` va contenir l'ensemble des données « publiques » de votre projet. Ces fichiers sont ceux distribués directement au navigateur de votre client.
 
-Ça semble un détail peut-être ? Pourtant c'est un élément important ! En effet pourquoi solliciter votre code PHP pour distribuer de la CSS ou des images en plus d'être inutile ça surcharge votre serveur inutilement ?
+Ça semble un détail peut-être ? Pourtant c'est un élément important ! En effet, pourquoi solliciter votre code PHP pour distribuer de la CSS ou des images ? En plus d'être inutile, ça surcharge votre serveur.
 
 ### Le dossier `utils/`
 
 Le dossier `utils/` contient dans la structure de base une classe permettant de gérer la SESSION et une classe permettant de générer une image [Gravatar](https://www.gravatar.com/).
 
-Mais vous allez placer ici l'ensemble des **librairies PHP** nécessaire au bon fonctionnement de votre projet.
+Mais vous allez placer ici l'ensemble des **librairies PHP** nécessaires au bon fonctionnement de votre projet.
 
-Un morceau de code que vous avez trouvé sur StackOverflow ? Une librairie que vous avez conçue ? Pas de problème ! Rangez-les dans le dossier. `utils/`
+Un morceau de code que vous avez trouvé sur StackOverflow ? Une librairie que vous avez conçue ? Pas de problème ! Rangez-les dans le dossier `utils/`.
 
 ### Le dossier `migrations/`
 
-Le dossier `migrations/` contient l'ensemble des fichiers nécessaire à l'installation de votre base de données. Le fichier `RunMigration.php` **(à lancer depuis la console)** charge et exécute l'ensemble des fichiers `*.sql`. Cette fonctionnalité vous permettra :
+Le dossier `migrations/` contient l'ensemble des fichiers nécessaires à l'installation de votre base de données. Le fichier `RunMigration.php` **(à lancer depuis la console)** charge et exécute l'ensemble des fichiers `*.sql`. Cette fonctionnalité vous permettra :
 
 - De garder une trace de votre schéma.
-- Lancer simplement l'installation de votre base de données.
-- Historiser vos « migrations ». En effet le script va charger **l'ensemble** des fichiers SQL.
+- De lancer simplement l'installation de votre base de données.
+- D'historiser vos « migrations ». En effet le script va charger **l'ensemble** des fichiers SQL.
 
 Pour l'utiliser, vous devez passer via la ligne de commande. En effet, pour des raisons de sécurité, impossible de lancer les migrations depuis votre navigateur.
 
-```php
+```sh
 php mvc db:migrate
 ```
 
@@ -587,15 +591,15 @@ class VotreTable extends SQL
 }
 ```
 
-- Le `namespace models;` permet de structure votre code, et permettra via l'auto-loader l'import automatique de vos classes.
-- `class VotreTable extends SQL` indique que votre classe hérite de SQL. Elle possèdera donc automatiquement des méthodes (accessible via `$this`) :
+- Le `namespace models;` permet de structurer votre code, et permettra via l'auto-loader l'import automatique de vos classes.
+- `class VotreTable extends SQL` indique que votre classe hérite de SQL. Elle possèdera donc automatiquement des méthodes (accessibles via `$this`) :
   - `getAll`
   - `getOne`
   - `deleteOne`
   - `updateOne`
 - Le constructeur `__construct()` va permettre de créer le parent (Class SQL), le premier paramètre est le nom de votre table en **base de données**.
 
-::: danger On ne range pas le model n'importe où !
+::: danger On ne range pas le modèle n'importe où !
 Vos modèles doivent être obligatoirement dans le dossier `models/`
 :::
 
@@ -609,8 +613,8 @@ php mvc model:create NomDeVotreModel
 
 :::
 
-::: tip Vous n'etes pas limité
-Le modèle va centraliser l'ensemble de vos requêtes, même si de base nous avons quelques méthodes de base, vous pouvez évidemment en ajouter autant que vous souhaitez.
+::: tip Vous n'êtes pas limités
+Le modèle va centraliser l'ensemble de vos requêtes, même si de base nous avons quelques méthodes fournies, vous pouvez évidemment en ajouter autant que vous le souhaitez.
 
 Exemple :
 
@@ -631,7 +635,7 @@ class Video extends SQL
     function getPublicVideos()
     {
         // utilise la connexion BDD pour réaliser les requêtes vers les données
-        // ici retourne l'ensemble des vidéos de type accessibles à tous (public)
+        // ici retourne l'ensemble des vidéos accessibles à tous (public)
 
         $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE public = 1");
         $stmt->execute();
@@ -641,7 +645,7 @@ class Video extends SQL
     function getByVideoId($videoId)
     {
         // Utilisation d'une query à la place d'un simple getOne car la requête
-        // est réalisé sur un champs différent que l'ID de la table.
+        // est réalisée sur un champ différent de l'ID de la table.
 
         $stmt = $this->getPdo()->prepare("SELECT * FROM video WHERE videoId = ?");
         $stmt->execute([$videoId]);
@@ -675,14 +679,14 @@ class VotreControleur extends WebController
 }
 ```
 
-- Le `namespace controllers;` permet de structure votre code, et permettra via l'auto-loader l'import automatique de vos classes.
+- Le `namespace controllers;` permet de structurer votre code, et permettra via l'auto-loader l'import automatique de vos classes.
 - `class VotreControleur extends WebController` indique que votre classe hérite de Web (une page client). Elle possèdera donc automatiquement la méthode (accessible via `$this`) :
   - `redirectTo`
 
 ::: tip Et c'est tout !
 Créer un contrôleur est aussi simple que ça. C'est tellement simple que je vous encourage à en créer autant que nécessaire.
 
-Dans mon exemple il y a qu'une seule méthode `methodeDExemple()`, évidemment vous pouvez en créer autant que vous le souhaitez **(il n'y a pas de limite)**.
+Dans mon exemple il n'y a qu'une seule méthode `methodeDExemple()`, évidemment vous pouvez en créer autant que vous le souhaitez **(il n'y a pas de limite)**.
 :::
 
 ::: warning Version alternative
@@ -697,6 +701,6 @@ php mvc controller:create NomDeVotreControleur
 
 ## Utiliser un contrôleur récemment créé
 
-Nous avons créé un contrôleur, mais pour l'utiliser il faut le déclarer dans le routeur (par exemple dans le router Web). Mieux que des mots voilà une vidéo résumant comment procéder :
+Nous avons créé un contrôleur, mais pour l'utiliser il faut le déclarer dans le routeur (par exemple dans le routeur Web). Mieux que des mots, voilà une vidéo résumant comment procéder :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/6oTe_fO0fVI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

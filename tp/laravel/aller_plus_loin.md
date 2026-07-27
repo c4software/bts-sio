@@ -16,7 +16,7 @@ Dans ce dernier TP, nous allons **finaliser** ce projet comme le ferait un déve
 
 Dans ce TP, je vous invite à avoir en parallèle :
 
-- [L'aide mémoire Laravel](/cheatsheets/laravel/)
+- [L'aide-mémoire Laravel](/cheatsheets/laravel/)
 - [La synthèse des commandes](/cheatsheets/laravel/quick.md)
 
 ## Prérequis
@@ -48,7 +48,7 @@ Le rate limiting est une technique qui permet de limiter le nombre de requêtes 
 
 Celui-ci est documenté [ici](https://laravel.com/docs/11.x/routing#rate-limiting).
 
-Comme souvent, nous allons protéger au plus proche de l'appel réseau, c'est à dire dans le routeur. Pour cela, nous allons ajouter une méthode `middleware` à notre route :
+Comme souvent, nous allons protéger au plus proche de l'appel réseau, c'est-à-dire dans le routeur. Pour cela, nous allons ajouter une méthode `middleware` à notre route :
 
 ```php
 Route::middleware('throttle:5,1')->get('/throttle', function () {
@@ -56,7 +56,7 @@ Route::middleware('throttle:5,1')->get('/throttle', function () {
 });
 ```
 
-Ici pour tester nous avons déclaré une route `/throttle` qui va limiter à 5 requêtes par minute. Vous pouvez tester directement avec votre navigateur. Après 5 requêtes, vous devriez voir une erreur `429 Too Many Requests`.
+Ici, pour tester, nous avons déclaré une route `/throttle` qui va limiter à 5 requêtes par minute. Vous pouvez tester directement avec votre navigateur. Après 5 requêtes, vous devriez voir une erreur `429 Too Many Requests`.
 
 Question :
 
@@ -139,7 +139,7 @@ public function definition(): array
 }
 ```
 
-::: tip Qu'avons nous fait ici ?
+::: tip Qu'avons-nous fait ici ?
 
 Nous avons utilisé la bibliothèque `Faker` pour générer des données factices. La méthode `fake()->sentence()` génère une phrase aléatoire, et la méthode `fake()->boolean()` génère un booléen aléatoire.
 
@@ -162,7 +162,7 @@ public function run(): void
 
 Cette commande définit le nombre de données factices à créer (ici 50).
 
-Il faut maintenant indiquer à Laravel que notre `Model` `Todo` possède une factory, pour cela ajouter dans le modèle `app/Models/Todo.php` le code suivant :
+Il faut maintenant indiquer à Laravel que notre `Model` `Todo` possède une factory. Pour cela, ajoutez dans le modèle `app/Models/Todo.php` le code suivant :
 
 ```php
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -275,7 +275,7 @@ Maintenant que les relations sont en place, vous pouvez :
 - Modifier la méthode `addTodo` pour ajouter l'id de l'utilisateur dans la TODO (vous pouvez récupérer l'utilisateur connecté avec `Auth::user()`, ou directement son id avec `Auth::id()`).
 - Modifier la méthode `listTodo` pour afficher uniquement les TODO de l'utilisateur connecté.
 
-C'est à vous ! Je vous laisse réaliser ces étapes en vous aidant de [l'aide mémoire](/cheatsheets/laravel/) et de la [documentation de Laravel](https://laravel.com/docs/11.x/eloquent-relationships).
+C'est à vous ! Je vous laisse réaliser ces étapes en vous aidant de [l'aide-mémoire](/cheatsheets/laravel/) et de la [documentation de Laravel](https://laravel.com/docs/11.x/eloquent-relationships).
 
 ::: tip Testez avec Tinker
 
@@ -302,7 +302,7 @@ C'est à vous ! Je vous laisse réaliser ces étapes.
 
 ::: details Besoin d'un indice pour la route ?
 
-Vous avez déjà fait une route avec un paramètre dans le TP base de données : <code v-pre>`Route::get('/todo/terminer/{id}', …)`</code>. Ici ce sera le même principe avec l'id de l'utilisateur.
+Vous avez déjà fait une route avec un paramètre dans le TP base de données : <code v-pre>Route::get('/todo/terminer/{id}', …)</code>. Ici ce sera le même principe avec l'id de l'utilisateur.
 
 :::
 
@@ -316,7 +316,7 @@ C'est à vous !
 
 ::: tip N'oubliez pas les composants
 
-Nous avons le temps, explorer la création de composants pour structurer / réutiliser votre code. Pourquoi ne pas créer des composants :
+Nous avons le temps, explorez la création de composants pour structurer / réutiliser votre code. Pourquoi ne pas créer des composants :
 
 - Pour la barre de navigation.
 - Pour les boutons.

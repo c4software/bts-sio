@@ -1,6 +1,10 @@
+---
+description: "TP guidé : réaliser une TODO List avec la structure MVC (modèle, contrôleur, routes, vues et authentification)."
+---
+
 # TP TODO List
 
-Dans ce TP, nous allons prendre en main [la structure de code présente ici](./tp1.md).
+Dans ce TP, nous allons prendre en main [la structure de code présentée ici](./tp1.md).
 
 ::: details Sommaire
 [[toc]]
@@ -15,12 +19,12 @@ Comme précisé dans le cours et dans nos échanges, la structure « MVC » est 
 - [Aide mémoire Mini MVC Sample](/cheatsheets/mini-mvc-sample/)
 
 ::: tip C'est important
-Le point d'introduction est important. Savoir justifier d'une solution est tout aussi important que la solution en elle-même. Si vous décidez d'utiliser ma structure dans d'autres développements vous devez le faire avec conviction et pas juste « parceque ».
+Le point d'introduction est important. Savoir justifier d'une solution est tout aussi important que la solution en elle-même. Si vous décidez d'utiliser ma structure dans d'autres développements vous devez le faire avec conviction et pas juste « parce que ».
 
 Des changements mineurs ont été ajoutés à la structure en 2022/2023 :
 
 - Le système de « template » n'affiche plus par défaut la page. Il ne faut pas oublier le return.
-- L'accès à base de données est maintenant « Lazy », la connexion à celle-ci ne sera faite que lors de la **première requête**.
+- L'accès à la base de données est maintenant « Lazy », la connexion à celle-ci ne sera faite que lors de la **première requête**.
 - Le connecteur de base de données est maintenant partagé avec l'ensemble des modèles.
 
 Ceci étant dit, nous pouvons continuer 🚀 !
@@ -83,16 +87,16 @@ Ce qu'il faut retenir c'est :
 :::
 
 ::: tip CRUD
-Ce genre d'objet s'appelle un CRUD (Create, Update, Delete). C'est une structure que nous retrouverons très souvent. Vous allez voir que c'est tellement courant qu'en général ils sont écrits automatiquement par le Framework.
+Ce genre d'objet s'appelle un CRUD (Create, Read, Update, Delete). C'est une structure que nous retrouverons très souvent. Vous allez voir que c'est tellement courant qu'en général ils sont écrits automatiquement par le Framework.
 
 <iframe src="https://giphy.com/embed/11ISwbgCxEzMyY" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 :::
 
 ### La Vue
 
-La vue, vous connaissez! Ici, rien de nouveau. Le `V` de MVC c'est juste la représentation graphique de ce que vous souhaitez afficher (en HTML + CSS + JavaScript).
+La vue, vous connaissez ! Ici, rien de nouveau. Le `V` de MVC c'est juste la représentation graphique de ce que vous souhaitez afficher (en HTML + CSS + JavaScript).
 
-Cependant par rapport à vos premiers développements nous allons découper au maximum le code HTML en différents fichiers ; Objectif éviter le code dupliqué en utilisant une organisation qui ressemblera à :
+Cependant, par rapport à vos premiers développements, nous allons découper au maximum le code HTML en différents fichiers. Objectif : éviter le code dupliqué en utilisant une organisation qui ressemblera à :
 
 ![Découpage](./res/parties.png)
 
@@ -106,18 +110,18 @@ Cependant par rapport à vos premiers développements nous allons découper au m
 
 ### Le Contrôleur
 
-Et le contrôleur dans tout ça ? Et bien le contrôleur va assembler :
+Et le contrôleur dans tout ça ? Eh bien le contrôleur va assembler :
 
 - Votre modèle (l'accès aux données).
 - Votre Vue (l'affichage).
 
 Le code va prendre les demandes des clients « appel HTTP » réaliser le traitement en base de données et afficher « la vue » résultat au client.
 
-Comme pour le modèle, le contrôleur est un objet qui doit posséder idéalement autant de méthode que de page (et peut-être plus).
+Comme pour le modèle, le contrôleur est un objet qui doit posséder idéalement autant de méthodes que de pages (et peut-être plus).
 
 ### Le Routeur
 
-Nous l'avons vu en cours, en plus du MVC classique, nous allons ajouter une dernière brique « essentiel » au bon fonctionnement et à la maintenance de votre site Internet. Cette brique est nommée un **Routeur**.
+Nous l'avons vu en cours, en plus du MVC classique, nous allons ajouter une dernière brique « essentielle » au bon fonctionnement et à la maintenance de votre site Internet. Cette brique est nommée un **Routeur**.
 
 Le routeur va contenir la déclaration des « liens » de votre site Internet afin de les aiguiller vers la bonne fonctionnalité dans votre contrôleur.
 
@@ -127,13 +131,13 @@ Nous pouvons schématiser le fonctionnement :
 
 ::: tip Vous êtes ici ?
 
-Appeler-moi nous allons discuter un peu de cette architecture, qui est la base de presque l'ensemble des frameworks modernes (Laravel, VueJS, React …)
+Appelez-moi, nous allons discuter un peu de cette architecture, qui est la base de presque l'ensemble des frameworks modernes (Laravel, VueJS, React…).
 
 :::
 
 ### Vous souhaitez plus de détail ?
 
-L'idée ici était de rappeler les bases, si vous souhaitez plus de détail sur l'architecture MVC que je vous propose [rendez-vous ici](./tp1.md)
+L'idée ici était de rappeler les bases, si vous souhaitez plus de détails sur l'architecture MVC que je vous propose, [rendez-vous ici](./tp1.md).
 
 ## Récupérer le code source d'exemple
 
@@ -150,7 +154,7 @@ La structure de base en termes de dossier ressemble à :
 ![Structure des dossiers](./res/structure_dossiers.png)
 
 ::: tip Compliqué ?
-Pas d'inquiétude, pas de stress ! nous allons voir ensemble comment prendre en main le code.
+Pas d'inquiétude, pas de stress ! Nous allons voir ensemble comment prendre en main le code.
 :::
 
 ### Globalement
@@ -167,7 +171,7 @@ Les éléments de `base` sont toujours dans un dossier nommé `base`. Vous retro
 
 Avant d'aller plus loin, intéressons-nous à la configuration. Dans un projet, il est évident qu'il ne faut pas mettre la configuration n'importe où. Vous l'avez vécu en entreprise, vous avez peut-être eu à votre disposition plusieurs serveurs / machines / ordinateurs.
 
-Votre code va fonctionner de manière identique entre chaque environnement, par contre ce qui va certainement changer c'est l'accès à la base de données. Cet accès, est dépendant d'une configuration (Utilisateur, Mot de passe, Serveur …) dans une structure MVC on essai de ne pas mettre cette configuration n'importe où !
+Votre code va fonctionner de manière identique entre chaque environnement, par contre ce qui va certainement changer c'est l'accès à la base de données. Cet accès est dépendant d'une configuration (Utilisateur, Mot de passe, Serveur…). Dans une structure MVC, on essaie de ne pas mettre cette configuration n'importe où !
 
 Dans l'organisation que je vous propose, cette configuration est centralisée dans le fichier `configs.php` à la racine du code source.
 
@@ -179,22 +183,22 @@ Prenez **dès maintenant** l'habitude de mettre votre configuration (IP, Serveur
 
 ### Télécharger le code source
 
-Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/2.8.zip)
+Le projet de base est disponible [à l'adresse suivante en cliquant ici](https://github.com/c4software/mini-mvc-sample/archive/refs/tags/3.1.zip)
 
 ::: tip C'est un projet vide
-Même si celui-ci contient à première vue « beaucoup de fichiers », le projet vous avez téléchargé est bien un projet vide.
+Même si celui-ci contient à première vue « beaucoup de fichiers », le projet que vous avez téléchargé est bien un projet vide.
 :::
 
 ## Faire fonctionner le code
 
 La première étape est de faire fonctionner le code sur votre machine. Je vous laisse mettre en place le code fourni dans votre dossier `htdocs` ou `www` en fonction de l'outil que vous utilisez.
 
-**Attention aux fichiers cachés**, dans l'archive il y a un fichier .htaccess ne l'oubliez pas !
+**Attention aux fichiers cachés**, dans l'archive il y a un fichier `.htaccess`, ne l'oubliez pas !
 
 ::: tip .htaccess ?
-Vous avez déjà entendu parler de ce fichier ? C'est un fichier important, il va nous permettre de définir / redéfinir le comportement de votre serveur Web pour par exemple activer l’URL REWRITING` (réécriture d'URL).
+Vous avez déjà entendu parler de ce fichier ? C'est un fichier important, il va nous permettre de définir / redéfinir le comportement de votre serveur Web pour par exemple activer l'`URL REWRITING` (réécriture d'URL).
 
-La réécriture d'url va nous permettre d'avoir de beaux liens exemple `index.php?page=toto` deviendra seulement `toto.html`. Vous voulez en savoir plus ? Je suis là 👋, je vais vous donner un complément d'information.
+La réécriture d'URL va nous permettre d'avoir de beaux liens, exemple : `index.php?page=toto` deviendra seulement `toto.html`. Vous voulez en savoir plus ? Je suis là 👋, je vais vous donner un complément d'information.
 :::
 
 |                                                                               |
@@ -218,7 +222,7 @@ Cette commande intégrée à la structure MVC lancera un serveur automatiquement
 
 :::
 
-::: details Comment ça fonctionne?
+::: details Comment ça fonctionne ?
 
 ```sh
 # Windows (avec XAMPP)
@@ -243,29 +247,29 @@ Je vous propose de mettre en place sur la page d'accueil une photo / image (de v
 
 ::: tip C'est à vous
 
-La bonne démarche à mon sens est là suivante :
+La bonne démarche à mon sens est la suivante :
 
 - Utiliser un IDE pertinent (exemple PHPStorm ou VSCode).
-- Repenser à l'introduction et la notion de MVC. Nous allons effectivement toucher le `Vue` (elle même appelé par le contrôleur), ça veut dire que vous allez trouver votre fichier dans le dossier `views`.
+- Repenser à l'introduction et la notion de MVC. Nous allons effectivement toucher la `Vue` (elle-même appelée par le contrôleur), ça veut dire que vous allez trouver votre fichier dans le dossier `views`.
 - Pour trouver le bon fichier, je vous laisse un peu investiguer, mais sachez que regarder dans le contrôleur semble être une bonne idée…
 
 👋 Je suis là pour ceux qui sont perdus 🤕
 
 :::
 
-## Créer la page « Test »
+## Créer la page « À propos »
 
 Maintenant que vous avez réalisé votre modification, je vous propose de regarder « Comment ajouter une nouvelle page dans cette superbe architecture (que je trouve déjà géniale) ».
 
 J'imagine que pour l'instant vous avez peur :
 
-- Mais comment faire pour ajouter une page?
-- J'ai bien du HTML dans `views` mais comment je l'appelle?
+- Mais comment faire pour ajouter une page ?
+- J'ai bien du HTML dans `views`, mais comment je l'appelle ?
 
-Et bien la réponse à vos questions est
+Eh bien la réponse à vos questions est :
 
 - Une **nouvelle** méthode dans le bon contrôleur.
-- Un fichier `test.php` dans `views`.
+- Un fichier `about.php` dans `views`.
 - Une correspondance entre « Votre méthode » et une route dans le `routes/Web.php`.
 
 ::: tip Nous l'avons vu ensemble
@@ -289,18 +293,18 @@ Nous allons dans un premier temps créer une méthode dans le contrôleur `Sampl
 ```php
 function about()
 {
-    return Template::render("views/global/test.php");
+    return Template::render("views/global/about.php");
 }
 ```
 
-Pour l'instant aucun changement, si vous utilisez PHPStorm celui-ci va vous proposer de créer le fichier `test.php` directement en cliquant sur « la petite lampe jaune ».
+Pour l'instant aucun changement, si vous utilisez PHPStorm celui-ci va vous proposer de créer le fichier `about.php` directement en cliquant sur « la petite lampe jaune ».
 
 ### Créer la vue / page
 
-Si ce n'est pas déjà fait, créé le fichier `views/global/test.php`. Pour le contenu, je vous laisse libre. Je vous rappelle juste que nous sommes entrain de créer une page « À propos ».
+Si ce n'est pas déjà fait, créez le fichier `views/global/about.php`. Pour le contenu, je vous laisse libre. Je vous rappelle juste que nous sommes en train de créer une page « À propos ».
 
 ::: tip Rappel
-ici nous n'écrivons que le contenu, l'entête et le pied de page sont « automatiquement » ajoutés grâce au code présent dans la méthode home de votre contrôleur.
+Ici nous n'écrivons que le contenu, l'entête et le pied de page sont « automatiquement » ajoutés grâce au code présent dans la méthode de votre contrôleur.
 :::
 
 ### Utiliser des variables dans votre vue
@@ -310,13 +314,13 @@ Nous avons ajouté une page, cependant, cette page est relativement « statique 
 Si nous reprenons l'exemple précédent :
 
 ```php
-return Template::render("views/global/test.php", array());
+return Template::render("views/global/about.php", array());
 ```
 
 Combien de variables passons-nous ? Aucune, pour la suite, je vous propose d'ajouter une première variable :
 
 ```php
-return Template::render("views/global/test.php", array("titre" => "À Propos"));
+return Template::render("views/global/about.php", array("titre" => "À Propos"));
 ```
 
 Puis modifier votre vue pour y ajouter l'usage de votre variable :
@@ -329,9 +333,9 @@ C'est à vous, je vous laisse tester !
 
 ### Ajouter une seconde variable
 
-Pour vérifier que vous avez bien compris la procédure. Je vous laisse ajouter une seconde variable. Celle-ci doit-être la date du jour ainsi que l'heure.
+Pour vérifier que vous avez bien compris la procédure, je vous laisse ajouter une seconde variable. Celle-ci doit être la date du jour ainsi que l'heure.
 
-**Bien évidemment cette valeur doit être dynamique et changée à chaque chargement de page**.
+**Bien évidemment cette valeur doit être dynamique et changer à chaque chargement de page**.
 
 Besoin d'aide ? Voilà un indice :
 
@@ -349,10 +353,10 @@ C'est à vous :
 
 Voilà nous avons maintenant l'ensemble du code, mais celui-ci n'est pas encore accessible. Pour le rendre accessible, vous devez le déclarer dans le routeur.
 
-Ici nous sommes entrain de faire une page `Web`, vous devez donc ajouter dans le routeur `Web.php` l'accès à votre page via l'ajout de la ligne suivante :
+Ici nous sommes en train de faire une page `Web`, vous devez donc ajouter dans le routeur `Web.php` l'accès à votre page via l'ajout de la ligne suivante :
 
 ```php
-Route::Add('/test', [$main, 'test']);
+Route::Add('/about', [$main, 'about']);
 ```
 
 - **Évidemment** c'est à ajouter après la route existante.
@@ -368,19 +372,19 @@ Maintenant que nous avons pris en main le code existant, je vous propose de réa
 
 Nous allons donc créer une TODO List. Une TODO List c'est toujours le même genre d'action :
 
-- Une Liste.
+- Une liste.
 - Un ajout dans la liste.
-- Un marqué comme terminer « une todo ».
-- Un supprimé qui supprime uniquement les taches « avec comme statut, termine = 1 ».
+- Un marquage « comme terminée » d'une todo.
+- Une suppression qui ne supprime que les tâches « avec comme statut termine = 1 ».
 
-Nous allons donc avoir 4 fonctionnalités dans notre application. Chaque fonctionnalité je le rappelle sera une méthode de notre contrôleur :
+Nous allons donc avoir 4 fonctionnalités dans notre application. Chaque fonctionnalité, je le rappelle, sera une méthode de notre contrôleur :
 
-|    Route     | Méthode dans le contrôleur |
-| :----------: | -------------------------: |
-|   `/list`    |                  `liste()` |
-|  `/ajouter`  |          `ajouter($texte)` |
-| `/terminer`  |            `terminer($id)` |
-| `/supprimer` |           `supprimer($id)` |
+|       Route       | Méthode dans le contrôleur |
+| :---------------: | -------------------------: |
+|   `/todo/liste`   |                  `liste()` |
+|  `/todo/ajouter`  |          `ajouter($texte)` |
+| `/todo/terminer`  |            `terminer($id)` |
+| `/todo/supprimer` |           `supprimer($id)` |
 
 L'étape de définition des différentes actions est **primordiale**, ça va nous permettre de créer notre objet de manière efficace, l'autre bonne façon de représenter notre objet est via une modélisation UML.
 
@@ -391,7 +395,7 @@ Parlons un peu de la modélisation UML que je vous propose, comme vous pouvez le
 
 Nous avons également une classe en plus ; cette classe est « la base » d'un contrôleur, elle définit les méthodes de bases communes à l'ensemble des contrôleurs du framework.
 
-🗣 Cette classe ne sera **jamais** instanciée directement, la flèche « extends » défini la notion d'héritage.
+🗣 Cette classe ne sera **jamais** instanciée directement, la flèche « extends » définit la notion d'héritage.
 :::
 
 ### Bootstrap
@@ -403,7 +407,7 @@ Nous allons utiliser Bootstrap pour coder l'interface, n'hésitez donc pas à co
 
 ### Modélisation de la base de données
 
-Avant de continuer, je vous propose de définir le format de la base de données. En effet, notre modèle reposera sur celle-ci il faut donc réfléchir à celle-ci. L'idée ici est de faire du code, j'ai donc réfléchi (un peu) à votre place. Le minimum pour que nous puissions réaliser notre « TodoList » est la création de la table suivante :
+Avant de continuer, je vous propose de définir le format de la base de données. En effet, notre modèle reposera sur celle-ci, il faut donc y réfléchir. L'idée ici est de faire du code, j'ai donc réfléchi (un peu) à votre place. Le minimum pour que nous puissions réaliser notre « TodoList » est la création de la table suivante :
 
 ![Modélisation table TODO](./res/todos.png)
 
@@ -411,13 +415,13 @@ Nous allons créer cette table plus tard, mais pour l'instant, nous avons besoin
 
 ### Créer le modèle
 
-Le modèle va être le moyen d'accéder à nos données, c'est ici que nous allons écrire nos requêtes SQL (**et uniquement ici**). Utiliser un framework signifie en général gagner du temps ! Pour l'instant, j'imagine que vous n'en avez pas l'impression, mais je vous assure quand vous maitrisez un framework et/ou une architecture vous gagnerez un temps fou. Ce gain de temps vient de deux éléments :
+Le modèle va être le moyen d'accéder à nos données, c'est ici que nous allons écrire nos requêtes SQL (**et uniquement ici**). Utiliser un framework signifie en général gagner du temps ! Pour l'instant, j'imagine que vous n'en avez pas l'impression, mais je vous assure quand vous maitrisez un framework et/ou une architecture vous gagnerez un temps fou. Ce gain de temps vient de plusieurs éléments :
 
 - L'architecture des dossiers et du code propre et bien organisé.
 - Des outils pour créer les différents éléments.
-- Du code partagé, utilisé sans copier / collé.
+- Du code partagé, utilisé sans copier / coller.
 
-Le framework que je vous propose entre directement dans cette catégorie « Gagner du temps ». Pour créer notre modèle au lieu de copier / coller du code vous avez de base (intégrer dans le code) un outil en ligne de commande qui s'occupe de tout (si si). Pour créer votre modèle pour accéder au TodoList il vous suffit de :
+Le framework que je vous propose entre directement dans cette catégorie « Gagner du temps ». Pour créer notre modèle, au lieu de copier / coller du code, vous avez de base (intégré dans le code) un outil en ligne de commande qui s'occupe de tout (si si). Pour créer votre modèle pour accéder à la TodoList il vous suffit de :
 
 ```sh
 # Hors Windows
@@ -427,13 +431,13 @@ php mvc model:create TodoModel
 C:/xampp/php/php mvc model:create TodoModel
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php8.0.14/php mvc model:create TodoModel
+C:/wamp64/bin/php/php8.2.13/php mvc model:create TodoModel
 ```
 
-**Et c'est tout !** votre modèle pour accéder aux données est prêt 🤝 (il est créé automatiquement dans le dossier `models`). Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
+**Et c'est tout !** Votre modèle pour accéder aux données est prêt 🤝 (il est créé automatiquement dans le dossier `models`). Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
 
 - Via les méthodes « de base » (comme vu en cours via l'héritage présent dans la classe).
-- Via **_vos méthodes_** directement écrite par vous.
+- Via **_vos méthodes_** directement écrites par vous.
 
 ::: tip Pas de magie (jamais)
 Je vous invite à regarder comment fonctionne cette partie dans le code. Ce n’est pas bien compliqué. D'ailleurs, regardons ensemble !
@@ -467,13 +471,13 @@ Dans le diagramme UML j'indique la présence d'une méthode `marquerCommeTermine
 - Pourquoi la méthode n'est pas présente ?
 - Pourquoi ne pas utiliser les méthodes fournies par le parent ?
 
-Cette méthode doit marquer comme terminé un enregistrement en base de données, nous allons donc avoir besoin
+Cette méthode doit marquer comme terminé un enregistrement en base de données, nous allons donc avoir besoin :
 
 - D'un `id` en paramètre de la méthode.
 - D'une requête d'update.
 - D'un connecteur PDO (pour parler à la base de données)
 
-Vu que c'est la première fois je vous donne du code, mais attention à bien comprendre ce que vous copié/collé :
+Vu que c'est la première fois je vous donne du code, mais attention à bien comprendre ce que vous copiez/collez :
 
 ```php
 function marquerCommeTermine($id){
@@ -494,7 +498,7 @@ Vous avez 4 possibilités :
 :::
 
 ::: details Besoin d'aide ?
-Votre classe doit maintenant ressembler à
+Votre classe doit maintenant ressembler à :
 
 ```php
 <?php
@@ -531,9 +535,9 @@ Votre projet avance petit à petit, nous avons déjà créé :
 - Le modèle pour accéder aux données.
 - Les méthodes permettant de modifier les données.
 
-C'est déjà pas mal, mais il manque maintenant la base de données en elle-même. Dans un framework cette partie-là est également automatisable (vous verrez avec Laravel c'est encore plus puissant). Dans un framework appliqué les modifications dans la base de données s'appellent réaliser une « migration », avec notre « mini framework » pour créer la base de données il suffit de créer **un fichier** dans le dossier `migrations` :
+C'est déjà pas mal, mais il manque maintenant la base de données en elle-même. Dans un framework cette partie-là est également automatisable (vous verrez avec Laravel c'est encore plus puissant). Dans un framework, appliquer les modifications dans la base de données s'appelle réaliser une « migration », avec notre « mini framework » pour créer la base de données il suffit de créer **un fichier** dans le dossier `migrations` :
 
-- Créer le fichier `init.sql` dans le dossier Migration, y mettre le contenu suivant :
+- Créer le fichier `init.sql` dans le dossier `migrations`, y mettre le contenu suivant :
 
 ```sql
 --
@@ -579,10 +583,10 @@ php mvc db:migrate
 C:/xampp/php/php mvc db:migrate
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php7.4.9/php mvc db:migrate
+C:/wamp64/bin/php/php8.2.13/php mvc db:migrate
 ```
 
-Si tout va bien vous devriez avoir le résultat suivant:
+Si tout va bien vous devriez avoir le résultat suivant :
 
 ```sh
 => Start migration of « migrations/init.sql »
@@ -591,8 +595,8 @@ Si tout va bien vous devriez avoir le résultat suivant:
 
 ::: tip Point d'avancement
 
-- Ça ne fonctionne pas ? Avez-vous vérifié si vous avez configuré votre projet (`configs.php`).
-- Vérifier si la base a bien été créée dans votre PhpMyAdmin / DataGrip 👌
+- Ça ne fonctionne pas ? Avez-vous vérifié la configuration de votre projet (`configs.php`) ?
+- Vérifiez si la base a bien été créée dans votre PhpMyAdmin / DataGrip 👌
 - Mais c'est génial !
 
 <iframe src="https://giphy.com/embed/SACoDGYTvVNhZYNb5a" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
@@ -611,14 +615,14 @@ php mvc controller:create TodoWeb
 C:/xampp/php/php mvc controller:create TodoWeb
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php7.4.9/php mvc controller:create TodoWeb
+C:/wamp64/bin/php/php8.2.13/php mvc controller:create TodoWeb
 ```
 
 Cette commande va initialiser un contrôleur de type Web. Celui-ci est pour l'instant vide de méthode :
 
 ![Modélisation UML](./res/todoControler.png)
 
-Ce contrôleur est pour l'instant vide, nous allons dans un premier temps devoir lui créer un constructeur afin de créer le modèle permettant l'accès à la base de données.
+Nous allons dans un premier temps devoir lui créer un constructeur afin d'instancier le modèle permettant l'accès à la base de données.
 
 ### Définir les routes dans le routeur
 
@@ -646,7 +650,7 @@ Dans le fichier `routes/Web.php`, ajouter les lignes :
 
 ### Ajouter le constructeur `__construct()`
 
-Le contrôleur aura pour but d'aller récupérer les Todo en base **via** le modèle. Il faut donc donner un accès au modèle depuis la classe. Nous allons donc écrire **le constructeur** de la méthode. En PHP, le constructeur s'écrit :
+Le contrôleur aura pour but d'aller récupérer les Todo en base **via** le modèle. Il faut donc donner un accès au modèle depuis la classe. Nous allons donc écrire **le constructeur** de la classe. En PHP, le constructeur s'écrit :
 
 ```php
     private $todoModel;
@@ -656,9 +660,9 @@ Le contrôleur aura pour but d'aller récupérer les Todo en base **via** le mod
     }
 ```
 
-Je vous laisse réfléchir sur l'endroit ou mettre le code en question.
+Je vous laisse réfléchir sur l'endroit où mettre le code en question.
 
-::: details Voir une solution
+:::: details Voir l'une des solutions possibles
 
 ```php
 <?php
@@ -677,9 +681,9 @@ class TodoWeb extends WebController
 }
 ```
 
-::: danger un instant ✋
+::: danger Un instant
 
-En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que la classe `Demo` soit accessible depuis une autre classe, il faudra :
+En PHP objet il y a la notion de namespace, Laravel utilise de base les namespaces, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que la classe `Demo` soit accessible depuis une autre classe, il faudra :
 
 ```php
 use App\Models\Demo;
@@ -688,7 +692,7 @@ use App\Models\Demo;
 - ⚠️ Si vous utilisez **PHPStorm,** cet import sera automatique.
 - ⚠️ Si vous utilisez **VSCode,** il faudra passer par une extension [disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
 
-Pour **PHPStorm**, alt+entrée permettra de déclencher l'ajout dû use.
+Pour **PHPStorm**, alt+entrée permettra de déclencher l'ajout du `use`.
 
 Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
@@ -696,13 +700,13 @@ Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
 :::
 
-:::
+::::
 
 ### La méthode `liste()`
 
 La première méthode que nous allons créer est celle de la liste. Elle se nommera `liste()`, cette méthode sera automatiquement appelée via le `routeur` à **chaque visite d'un utilisateur**. L'objectif de cette méthode est :
 
-- Récupérer l'ensemble des TODO (Array) actuellement en base via la méthode `getAll()` du TodoModel modèle.
+- Récupérer l'ensemble des TODO (Array) actuellement en base via la méthode `getAll()` du modèle `TodoModel`.
 - Afficher votre `vue` via un `return Template::render`.
 
 ::: tip Toujours la même forme
@@ -712,12 +716,12 @@ Vous allez rapidement vous apercevoir que la structure de base est toujours la m
 ```php
     function maMethodeQueJaiCopierColler()
     {
-        // Pourquoi j'ai copier / coller ceci ? C'est un exemple seulement
+        // Pourquoi j'ai copié / collé ceci ? C'est un exemple seulement
         return Template::render("views/global/home.php");
     }
 ```
 
-**Pssst**, ne copier / coller pas le code précédent !! C'est un simple exemple.
+**Pssst**, ne copiez / collez pas le code précédent ! C'est un simple exemple.
 
 :::
 
@@ -731,7 +735,7 @@ function liste()
     }
 ```
 
-Et c'est tout ! La puissance d'un Frawerork c'est aussi ça, écrire finalement pas énormément de ligne pour afficher une page. Pourtant cette page :
+Et c'est tout ! La puissance d'un framework c'est aussi ça, écrire finalement pas énormément de lignes pour afficher une page. Pourtant cette page :
 
 - Affiche une entête.
 - Récupère en base de données les éléments.
@@ -742,7 +746,7 @@ Et c'est tout ! La puissance d'un Frawerork c'est aussi ça, écrire finalement 
 
 Votre IDE doit actuellement être moyen content… Effectivement, nous avons fait un `Template::render` de `"views/todos/liste.php"` pourtant ce fichier n'existe pas.
 
-Vu qu'il s'agit ici d'un projet découvert, je vais vous en donner le contenu (si vous le souhaitez, vous pouvez également l'écrire) voilà le rendu :
+Vu qu'il s'agit ici d'un projet de découverte, je vais vous en donner le contenu (si vous le souhaitez, vous pouvez également l'écrire), voilà le rendu :
 
 ![Interface TODO](./res/todoPreview.png)
 
@@ -800,7 +804,7 @@ Si vous accédez à votre page `todo/liste` vous devriez avoir le contenu suivan
 
 ### La méthode `ajouter($texte = '')`
 
-Cette méthode sera automatiquement appelé quand vous aller appuyer sur la touche **Entrer** de votre clavier dans le champ de saisie sur la page `Liste`. L'objectif de cette méthode est de traiter l'action « J'ajoute un nouvel enregistrement dans la base Todo ».
+Cette méthode sera automatiquement appelée quand vous allez appuyer sur la touche **Entrée** de votre clavier dans le champ de saisie sur la page `Liste`. L'objectif de cette méthode est de traiter l'action « J'ajoute un nouvel enregistrement dans la base Todo ».
 
 Pour le code, je vais vous aider un peu, voilà le code du contrôleur :
 
@@ -808,18 +812,18 @@ Pour le code, je vais vous aider un peu, voilà le code du contrôleur :
 function ajouter($texte = "")
 {
     $this->todoModel->ajouterTodo($texte);
-    $this->redirect("./liste");
+    $this->redirectTo("./liste");
 }
 ```
 
-- À quoi correspond la méthode `redirect(…)` ? D'où provient-elle ?
+- À quoi correspond la méthode `redirectTo(…)` ? D'où provient-elle ?
 
 _C'est à vous :_
 
 - Mettre en place le code dans le contrôleur.
 - Écrire la méthode ajouterTodo dans le modèle `TodoModel` (n'oubliez pas l'autocomplétion).
   - Écrire la requête `INSERT …`
-- Tester le bon fonctionnement
+- Tester le bon fonctionnement.
 
 Dans mon cas voilà le résultat :
 
@@ -829,7 +833,7 @@ Dans mon cas voilà le résultat :
 
 Actuellement dans le code que vous avez copié il est possible d'ajouter des « TODO » sans texte. Je vous propose donc d'ajouter un contrôle de saisie **dans le PHP**.
 
-Le contrôle doit empêcher l'ajoute d'une TODO si `$texte == ''`.
+Le contrôle doit empêcher l'ajout d'une TODO si `$texte == ''`.
 
 - Où placez-vous le contrôle ?
 - Pourquoi ?
@@ -844,7 +848,7 @@ function terminer($id = ''){
         $this->todoModel->marquerCommeTermine($id);
     }
 
-    $this->redirect("./liste");
+    $this->redirectTo("./liste");
 }
 ```
 
@@ -853,9 +857,9 @@ function terminer($id = ''){
 
 _À faire_ :
 
-- Mettre en place le code, valider le bon fonctionnement avec **PHPMyAdmin**
-- Modifier la vue pour afficher le bouton vert **seulement si** la tâche est non terminée
-- Ajouter un bouton supprimé visible **uniquement si** la tâche est terminée
+- Mettre en place le code, valider le bon fonctionnement avec **PHPMyAdmin**.
+- Modifier la vue pour afficher le bouton vert **seulement si** la tâche est non terminée.
+- Ajouter un bouton « Supprimer » visible **uniquement si** la tâche est terminée.
 
 ![Résultat Liste vide](./res/todo_resultat_terminer.png)
 
@@ -887,13 +891,13 @@ Je vous laisse modifier :
 
 ::: details Un doute sur comment procéder ?
 
-Vous devez réaliser une requête directement depuis votre modèle. Celle-ci devras retourner le résultat d'une requête SQL via un FetchAll de PDO.
+Vous devez réaliser une requête directement depuis votre modèle. Celle-ci devra retourner le résultat d'une requête SQL via un FetchAll de PDO.
 
 ```php
-function getAllTermine($id){
-    $stmt = $this->getPdo()->prepare("SELECT * FROM todos WHERE termine = 1");
+function getAllNonTermine(){
+    $stmt = $this->getPdo()->prepare("SELECT * FROM todos WHERE termine = 0");
     $stmt->execute([]);
-    return $stmt->fetch(\PDO::FETCH_OBJ);
+    return $stmt->fetchAll(\PDO::FETCH_OBJ);
 }
 ```
 
@@ -901,23 +905,23 @@ function getAllTermine($id){
 
 ## Ajouter une page d'authentification
 
-La partie TODOList ne doit pas être accessible à tous. En utilisant les techniques vues avec la SESSION (`$_SESSION`) ainsi qu'en réfléchissant sur les impacts en termes de sécurité (protection dans le routeur par exemple). Limiter l'accès de la partie TODOList seulement aux personnes avec un compte sur la plateforme.
+La partie TODOList ne doit pas être accessible à tous. En utilisant les techniques vues avec la SESSION (`$_SESSION`), ainsi qu'en réfléchissant aux impacts en termes de sécurité (protection dans le routeur par exemple), limitez l'accès de la partie TODOList aux seules personnes avec un compte sur la plateforme.
 
 ::: tip Quelques éléments pour vous aider
 
 Pour réaliser une page d'authentification dans votre projet, vous allez devoir ajouter :
 
 - Une page avec un formulaire pour vous connecter (votre vue).
-- Une table en base (qui sera utilisé via un modèle).
-- Un modèle et un contrôleur dédié à cette action (`php mvc model:create AuthModel` et `php mvc controller:create AuthControler`)
-- Modifier le routeur pour n'autoriser l'accès aux utilisateurs **authentifié**.
+- Une table en base (qui sera utilisée via un modèle).
+- Un modèle et un contrôleur dédiés à cette action (`php mvc model:create AuthModel` et `php mvc controller:create AuthControler`).
+- Modifier le routeur pour n'autoriser l'accès qu'aux utilisateurs **authentifiés**.
 
 :::
 
 - Quels impacts sont à prévoir dans le routeur ?
 - Est-ce nécessaire de créer un nouveau modèle ?
 - Est-ce nécessaire de créer un nouveau contrôleur ?
-- Combien de vue sera(ont) nécessaire(s) en plus de celles existantes ?
+- Combien de vues seront nécessaires en plus de celles existantes ?
 
 ::: danger Attention
 
@@ -932,7 +936,7 @@ Pour réaliser une page d'authentification dans votre projet, vous allez devoir 
 
 Maintenant que nous avons un système d'authentification, je vous propose de sauvegarder qui a créé la TODO pour ce faire :
 
-- Modifier la base de données afin d'ajouter « l'email / nom d'utilisateur » de la personne ayant créé la TODO (évidement, il faudra utiliser une clé étrangère).
+- Modifier la base de données afin d'ajouter « l'email / nom d'utilisateur » de la personne ayant créé la TODO (évidemment, il faudra utiliser une clé étrangère).
 - Modifier la méthode d'ajout dans le modèle pour enregistrer l'information
   - Attention, comment allez-vous procéder pour récupérer la personne actuellement connectée ?
 - Ajouter **dans la vue**, l'affichage de l'identité de la personne.
@@ -941,9 +945,9 @@ Maintenant que nous avons un système d'authentification, je vous propose de sau
 
 ## Évolution 2 : Envoi d'email
 
-Vous avez mis en place un système de connexion, mais pour l'instant l'utilisateur ne reçois aucun email. Il serait intéressant de lui envoyer un email après la création du compte afin de lui confirmer la bonne création de celui-ci. Il existe plein de façon d'envoyer des emails en PHP. Dans ce TP je vous propose d'utiliser PHPMailer. 
+Vous avez mis en place un système de connexion, mais pour l'instant l'utilisateur ne reçoit aucun email. Il serait intéressant de lui envoyer un email après la création du compte afin de lui confirmer la bonne création de celui-ci. Il existe plein de façons d'envoyer des emails en PHP. Dans ce TP je vous propose d'utiliser PHPMailer.
 
-PHPMail est une librairie PHP permettant d'envoyer des emails. Celle-ci s'installe via composer. Pour l'installer, il suffit de lancer la commande suivante (à la racine de votre projet)
+PHPMailer est une librairie PHP permettant d'envoyer des emails. Celle-ci s'installe via Composer. Pour l'installer, il suffit de lancer la commande suivante (à la racine de votre projet) :
 
 ```sh
 composer require phpmailer/phpmailer
@@ -952,9 +956,10 @@ composer require phpmailer/phpmailer
 ::: danger Installation de composer
 
 Pour que la commande précédente fonctionne, il faut que composer soit installé sur votre machine. Pour l'installer, je vous invite à suivre la documentation officielle [disponible ici](https://getcomposer.org/download/). Composer est un outil permettant de gérer les dépendances d'un projet PHP, il est très utilisé dans le monde PHP (notamment avec Laravel).
+
 :::
 
-Dans l'AP, vous avez dans le code source un utilitaire permettant la gestion de l'envoi d'email. Celui-ci est présent dans le dossier `utils`, pour les besoin de cette évolution nous allons en avoir besoin :
+Dans l'AP, vous avez dans le code source un utilitaire permettant la gestion de l'envoi d'email. Celui-ci est présent dans le dossier `utils`, pour cette évolution nous allons en avoir besoin :
 
 ```php
 <?php
@@ -998,7 +1003,7 @@ include("vendor/autoload.php"); // Pour les librairies externes. (PHPMailer, etc
 
 ::: tip Avant de continuer
 
-Appeler-moi nous allons discuter un peu de ce code, il y a plein de choses à dire dessus !
+Appelez-moi, nous allons discuter un peu de ce code, il y a plein de choses à dire dessus !
 
 :::
 
@@ -1010,7 +1015,7 @@ EmailUtils::sendEmail("you@test.com", "Mon sujet", "monTemplate", array("name" =
 
 - Quels sont les paramètres de la méthode ?
 - À quoi correspond l'array de données ?
-- À quoi correspond le paramètre `monTemplate`, ou doit-il être dans votre projet ?
+- À quoi correspond le paramètre `monTemplate`, où doit-il être dans votre projet ?
 - Est-ce que le code proposé est suffisant pour envoyer un email ?
 
 ::: tip C'est à vous
@@ -1038,7 +1043,7 @@ Il serait intéressant d'arriver sur une page d'accueil personnalisée. Pour ce 
 
 - Créer dans votre contrôleur une méthode qui sera appelée par défaut.
 - Modifier votre routeur afin de rediriger vers cette méthode par défaut (si non connecté).
-- Créer votre page d'accueil personnalisée (elle doit contenir au minimum un titre, une bouton invitant à la création d'un compte, un bouton invitant à la connexion)
+- Créer votre page d'accueil personnalisée (elle doit contenir au minimum un titre, un bouton invitant à la création d'un compte, un bouton invitant à la connexion).
 - Si l'utilisateur est déjà connecté, rediriger vers la TODOList.
 
 Pour vous aider dans la conception de votre page d'accueil, vous pouvez utiliser un template « bootstrap » disponible [ici](https://bootstrapmade.com/bootstrap-landing-page-templates/).

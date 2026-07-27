@@ -1,3 +1,7 @@
+---
+description: "TP Laravel en autonomie : construisez une plateforme de micro-messages inspirée de X (Twitter) avec Breeze, Eloquent et Blade."
+---
+
 # Plateforme de Micro-Messages
 
 ::: details Sommaire
@@ -12,7 +16,7 @@ Ce TP est l’occasion idéale pour manipuler Laravel de manière concrète et a
 Au programme :  
 Laravel, Breeze, routes, contrôleurs, middleware, modèles Eloquent, Blade et Tailwind (ou Bootstrap).
 
-## Exemple de base données simplifié pour les messages :
+## Exemple de base de données simplifiée pour les messages
 
 - Table `users` :
 
@@ -31,7 +35,7 @@ Laravel, Breeze, routes, contrôleurs, middleware, modèles Eloquent, Blade et T
 
 Ce qui donne une migration + modèle Eloquent :
 
-```php
+```bash
 php artisan make:model Message -m
 ```
 
@@ -46,7 +50,7 @@ Schema::create('messages', function (Blueprint $table) {
 });
 ```
 
-Psst ! N’oubliez pas de définir la relation dans le modèle User et Message. Ainsi que le `$fillable` dans le modèle Message.
+Psst ! N’oubliez pas de définir la relation dans les modèles User et Message, ainsi que le `$fillable` dans le modèle Message.
 
 ::: details Un doute sur les relations Eloquent ?
 
@@ -64,7 +68,7 @@ public function user(){
 
 :::
 
-C'est parti ! À partir de maintenant, fini les roulettes vous êtes le pilote !
+C'est parti ! À partir de maintenant, fini les roulettes, vous êtes le pilote !
 
 ## Rappel Twitter au début 2007
 
@@ -86,7 +90,7 @@ Un visiteur non connecté reste simple spectateur.
 ### Mur Public
 
 Dès la page d’accueil, l’utilisateur découvre tous les messages publiés par la communauté.  
-Le mur affiche les messages du plus récent au plus ancien — une vraie timeline.
+Le mur affiche les messages du plus récent au plus ancien : une vraie timeline.
 
 Chaque message affiche :
 
@@ -165,7 +169,8 @@ Trois zones de lecture sont ainsi disponibles :
 - le mur public
 - le mur d’un utilisateur spécifique
 - le flux des suivis
-- Affichage des followers / followings sur le profil utilisateur
+
+Ajoutez également l'affichage des followers / followings sur le profil utilisateur.
 
 ## Modèle de Données (simplifié)
 
@@ -205,7 +210,7 @@ Un compteur rend visible la popularité de chaque publication.
 ### Commentaires
 
 Sous chaque message, une zone permet de réagir.  
-Courts, concis, expressifs — comme les messages, limités à environ 140 caractères.
+Courts, concis, expressifs, comme les messages : limités à environ 140 caractères.
 
 ### Avatar
 
@@ -229,7 +234,7 @@ Une barre de recherche permet de filtrer par :
 
 Un moyen rapide de retrouver une idée, une personne, un message.
 
-### Citer une utilisateur
+### Citer un utilisateur
 
 Permettre de mentionner un utilisateur dans un message avec `@username`. Si l'utilisateur existe, un lien vers son profil est créé.
 
@@ -278,4 +283,4 @@ Pour valider le projet, chaque point doit être fonctionnel :
 
 Ce TP est une excellente occasion de mettre en pratique Laravel dans un contexte concret. Il vous permettra de combiner plusieurs aspects du framework tout en construisant une application web simple mais complète. Bonne chance et amusez-vous bien !
 
-La suite, ça sera [Larablog](./larablog.md), une plateforme de blog codé entièrement avec Laravel.
+La suite, ce sera [Larablog](./larablog.md), une plateforme de blog codée entièrement avec Laravel.

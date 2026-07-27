@@ -66,10 +66,24 @@ Automatiser les tests et les déploiements à chaque push.
 
 Une fois les bases acquises, plusieurs directions possibles selon vos projets :
 
+**Industrialiser votre CI :**
+
 - [Intégration continue avec Laravel](/tp/ops/deployer-laravel-ci.md)
+- [Créer votre propre runner Gitlab](/tp/ci/gitlab/runner.md)
+- [Compiler une application hybride avec Gitlab-CI](/tp/ci/ci-hybride.md)
+
+**Déployer autrement :**
+
 - [Déploiement automatique avec Kamal](/tp/docker/kamal.md)
 - [Déploiement avec Dokploy](/tp/devops/paas/dokploy.md)
 - [Déployer une image Docker dans Kubernetes](/tp/ci/kubernetes/deploy-container-in-kubernetes.md)
+- [Le déploiement continu avec Kubernetes](/tp/ci/kubernetes/cd-avec-kubernetes.md)
+
+**Le cloud et le serverless :**
+
+- [Déployer un site avec Netlify (Jamstack)](/tp/ci/jamstack/netlify.md)
+- [Des fonctions serverless avec Firebase](/tp/ci/firebase/functions.md)
+- OpenFaas : [installer la stack avec Multipass](/tp/openfaas/openfaas-quicky-installation.md) (ou [sur un Raspberry Pi](/tp/openfaas/openfaas-quicky-installation-pi.md)), puis [écrire et déployer votre première fonction](/tp/openfaas/openfaas-quicky-create-faas.md)
 
 ::: tip Et ensuite ?
 L'ensemble des procédures et des TP complémentaires se trouve dans la catégorie [Les serveurs / DevOps](/pages/categories/les-serveurs.md).

@@ -12,7 +12,7 @@ Nous l'avons vu en cours. La force de Docker est la portabilité des conteneurs.
 
 ## Prérequis
 
-Pour ce TP, vous allez avoir besoin d'une VM (avec ou sans docker). Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 13](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
+Pour ce TP, vous allez avoir besoin d'une VM (avec ou sans Docker). Si ce n'est pas le cas, je vous invite à consulter l'aide-mémoire [Installer Debian 13](/tp/devops/serveur/tp1.md) ([ou via un modèle](/tp/devops/serveur/tp1alt.md)).
 
 ::: tip Votre serveur doit être vierge
 
@@ -84,7 +84,7 @@ Si vous téléchargez le script, vous verrez qu'il est très simple. Voici ce qu
 - Vérifie si le script est exécuté à l'intérieur d'un conteneur Docker.
 - Vérifie si les ports 80 et 443 sont libres.
 - Installe Docker si ce n'est pas déjà fait.
-- Initialise un Docker Swarm
+- Initialise un Docker Swarm.
 - Crée un réseau Docker overlay nommé `dokploy-network`.
 - Télécharge l'image Docker de Dokploy.
 - Crée un service Docker pour Dokploy avec les paramètres nécessaires.
@@ -137,7 +137,7 @@ Nous n'allons bien évidemment pas tout tester. Mais sachez que la solution est 
 
 Pour tester simplement Dokploy, je vous propose de déployer une image Docker existante sur Docker Hub. Pour cela, plusieurs choix, mais nous allons prendre une image très légère, le serveur web Nginx.
 
-::: tip Point terminologie.
+::: tip Point terminologie
 
 Dokploy repose sur deux niveaux de catégorisation, le premier est le projet, c'est le groupe de services qui vont être déployés ensemble. Le second est le service, c'est l'élément qui va être déployé (un conteneur Docker, un site statique, une base de données, etc.).
 
@@ -151,8 +151,8 @@ Dokploy repose sur deux niveaux de catégorisation, le premier est le projet, c'
 ![Création d'un projet](./img/dokploy-create-project.png)
 
 3. Nommez votre projet (par exemple `nginx`).
-4. Créer un nouveau service de type « Application ».
-5. Nommer votre service (par exemple `Frontend`).
+4. Créez un nouveau service de type « Application ».
+5. Nommez votre service (par exemple `Frontend`).
 
 ![Création d'un service](./img/dokploy-create-service.png)
 ![Choix du service](./img/dokploy-create-service2.png)
@@ -168,11 +168,11 @@ Patientez quelques instants, et vous devriez voir votre service déployé. Vous 
 
 Vous avez un nom de domaine ? Aucun problème, il suffit d'ajouter un enregistrement DNS pour pointer vers votre serveur.
 
-Pour tester, Dokploy intègre un système de nom de domaine « dynamique » (qui fonctionne seulement en interne). Pouvez l'utiliser en allant dans l'interface de Dokploy, configurer l'onglet « Domains » pour ajouter un domaine en utilisant le petit symbole « aléatoire » (une sorte de dé).
+Pour tester, Dokploy intègre un système de nom de domaine « dynamique » (qui fonctionne seulement en interne). Vous pouvez l'utiliser en allant dans l'interface de Dokploy : configurez l'onglet « Domains » pour ajouter un domaine en utilisant le petit symbole « aléatoire » (une sorte de dé).
 
 ::: danger Attention
 
-Pour que cela fonctionne vous devez vérifier que votre IP est bien configurée dans les paramètres de Dokploy :
+Pour que cela fonctionne, vous devez vérifier que votre IP est bien configurée dans les paramètres de Dokploy :
 
 ![IP](./img/dokploy-server-ip.png)
 
@@ -206,7 +206,7 @@ Dans le menu, rendez-vous dans « SSH Keys » puis « + Add SSH Key ».
 
 ![SSH Key](./img/ssh-key.png)
 
-Une fois généré, vous pouvez ajouter cette clef SSH sur votre projet dans la partie « Settings » puis « Deploy Keys ». Ou bien, vous pouvez ajouter cette clef SSH sur votre compte Github / Gitlab.
+Une fois générée, vous pouvez ajouter cette clef SSH sur votre projet dans la partie « Settings » puis « Deploy Keys ». Ou bien, vous pouvez ajouter cette clef SSH sur votre compte Github / Gitlab.
 
 ::: tip Important
 Cette étape est importante, si vous ne le faites pas, Dokploy ne pourra pas accéder à votre repository. Et donc, vous ne pourrez pas déployer votre application.
@@ -220,7 +220,7 @@ Pour ce second exemple, nous allons déployer un site statique, mais un peu plus
 npm create vite@latest test-dokploy
 ```
 
-Pour ce déploiement, nous allons utiliser [nixpacks](https://nixpacks.com/), cet outil permet d'éviter la création d'un fichier `Dockerfile`. Dans votre projet, créer un fichier `nixpacks.toml` avec le contenu suivant :
+Pour ce déploiement, nous allons utiliser [nixpacks](https://nixpacks.com/), cet outil permet d'éviter la création d'un fichier `Dockerfile`. Dans votre projet, créez un fichier `nixpacks.toml` avec le contenu suivant :
 
 ```toml
 [phases.setup]
@@ -240,6 +240,7 @@ Ce fichier contient l'ensemble des commandes pour construire votre application. 
 Nous aurions pu utiliser un `Dockerfile`, mais nixpacks est une solution plus simple et plus rapide pour déployer des applications.
 
 :::
+
 Puis, nous allons partager ce projet sur Github, Gitlab ou autre (en privé ou public, ça n'a pas d'importance).
 
 ### Connectez votre repository et c'est parti !
@@ -256,7 +257,7 @@ Docker Deployed: ✅
 
 ## Déployer un site Laravel
 
-Pour ce second exemple, nous allons déployer un site Laravel.
+Pour ce troisième exemple, nous allons déployer un site Laravel.
 
 Deux solutions s'offrent à nous :
 
@@ -293,7 +294,7 @@ Ce nom sera le `nom de l'hôte` de votre base de données (à définir par exemp
 
 ::: tip Vous souhaitez la rendre accessible depuis l'extérieur ?
 
-Si vous souhaitez vous connecter depuis le réseau local (ou depuis un autre serveur), vous pouvez également activer un « port » pour rendre votre base de données accessible depuis l'exterieur.
+Si vous souhaitez vous connecter depuis le réseau local (ou depuis un autre serveur), vous pouvez également activer un « port » pour rendre votre base de données accessible depuis l'extérieur.
 
 ![Base de données](./img/external_port.png)
 
@@ -328,19 +329,19 @@ Vous pouvez également déployer PHPMyAdmin en mode `Application` en utilisant l
 
 Nous installons ici un outil qui permet de gérer la base de données. Il est important de sécuriser cet outil. Vous devez donc impérativement avoir un mot de passe fort pour l'accès à votre base de données.
 
-Autre point important, je vous conseille vivement de ne pas exposer le port `3306` de votre base de données sur Internet. Il est préférable de le garder uniquement ouvert au sein du réseau interne de Docker. Si réellement vous avez besoin d'accéder à votre base de données depuis l'exterieur (ex depuis C#), alors je vous conseille de choisir un port aléatoire différent du port `3306` et de le configurer dans votre application.
+Autre point important, je vous conseille vivement de ne pas exposer le port `3306` de votre base de données sur Internet. Il est préférable de le garder uniquement ouvert au sein du réseau interne de Docker. Si réellement vous avez besoin d'accéder à votre base de données depuis l'extérieur (par exemple depuis C#), alors je vous conseille de choisir un port aléatoire différent du port `3306` et de le configurer dans votre application.
 
 :::
 
-## Configurer l'auto-deploiement
+## Configurer l'auto-déploiement
 
-L'auto-deploiement est une fonctionnalité très intéressante de Dokploy. Elle permet de déployer automatiquement votre application à chaque push sur votre repository. Pour cela, rendez-vous dans les paramètres de votre projet, puis dans l'onglet « Deployment ».
+L'auto-déploiement est une fonctionnalité très intéressante de Dokploy. Elle permet de déployer automatiquement votre application à chaque push sur votre repository. Pour cela, rendez-vous dans les paramètres de votre projet, puis dans l'onglet « Deployment ».
 
-[Puis suivez les étapes décrite ici](https://docs.dokploy.com/docs/core/auto-deploy)
+[Puis suivez les étapes décrites ici](https://docs.dokploy.com/docs/core/auto-deploy).
 
 L'auto-déploiement repose sur un webhook, c'est-à-dire une URL que vous allez devoir ajouter dans les paramètres de votre repository. À chaque push, votre repository enverra une requête à cette URL, et Dokploy déclenchera un déploiement.
 
-Cela sous entend que votre serveur doit être accessible depuis votre serveur Gitlab / Github. Si vous utilisez **le Gitlab de la section aucun problème.**
+Cela sous-entend que votre serveur doit être accessible depuis votre serveur Gitlab / Github. Si vous utilisez **le Gitlab de la section**, aucun problème.
 
 ## Tester c'est bien !
 
@@ -348,7 +349,7 @@ Je vous laisse tester le déploiement en mode zip.
 
 ## Conclusion
 
-Dans ce TP nous avons exploré comment déployer différents types de site via une solution de PaaS (Plateform As A Service) open-source, Dokploy. Nous avons vu comment déployer une image Docker, un site statique, un site ViteJS et un site Laravel.
+Dans ce TP nous avons exploré comment déployer différents types de sites via une solution de PaaS (Platform As A Service) open-source, Dokploy. Nous avons vu comment déployer une image Docker, un site statique, un site ViteJS et un site Laravel.
 
 L'idée ici n'est pas de vous montrer toutes les possibilités de Dokploy, mais plutôt de vous montrer que c'est très simple de déployer une application via une solution open-source.
 

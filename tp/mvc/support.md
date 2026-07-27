@@ -1,4 +1,12 @@
+---
+description: "Support de cours : le pattern MVC (Modèle, Vue, Contrôleur), le point d'entrée unique et le rôle du routeur."
+---
+
 # MVC : Le développement organisé
+
+::: details Sommaire
+[[toc]]
+:::
 
 ## Introduction au code professionnel
 
@@ -28,14 +36,14 @@ Toutes les requêtes passent par un seul point d'entrée, généralement un fich
 
 ::: danger include ?
 
-Ici, nous utilisons l'include pour inclure les pages dans une autre. Cette technique est très courante en PHP, elle est pourtant parfois risquée. En effet, si vous ne filtrez pas ce que vous tentez d'inclure vous avez créé une faille **grave de sécurité**.
+Ici, nous utilisons l'include pour inclure les pages dans une autre. Cette technique est très courante en PHP, elle est pourtant parfois risquée. En effet, si vous ne filtrez pas ce que vous tentez d'inclure, vous avez créé une **grave faille de sécurité**.
 
-Ici, nous réduisons le risque en mettant en place ce que l'on appelle une `Whiteliste` (liste d'autorisations). Cette whiteliste est à mettre en parallèle avec ce que vous connaissez également une `Blackliste` (liste de filtres).
+Ici, nous réduisons le risque en mettant en place ce que l'on appelle une `Whitelist` (liste d'autorisations). Cette whitelist est à mettre en parallèle avec ce que vous connaissez également, une `Blacklist` (liste de filtres).
 
-- Avec une `Whiteliste` nous allons tout interdire **sauf** ce que nous souhaitons autoriser.
-- Avec une `Blackliste` nous allons tout autoriser **sauf** ce que nous souhaitons interdire.
+- Avec une `Whitelist` nous allons tout interdire **sauf** ce que nous souhaitons autoriser.
+- Avec une `Blacklist` nous allons tout autoriser **sauf** ce que nous souhaitons interdire.
 
-La Blackliste est donc moins contraignante pour le développeur… **Mais elle est surtout moins sécurisée**.
+La Blacklist est donc moins contraignante pour le développeur… **Mais elle est surtout moins sécurisée**.
 
 :::
 
@@ -47,7 +55,7 @@ Exemple d'un code pas rangé :
 
 ![HTML, PHP, SQL mélangés](./res/html-php-db-beurk-orig.png)
 
-Voici, comment découper / identifier les différentes parties du code à ranger dans une structure type MVC :
+Voici comment découper / identifier les différentes parties du code à ranger dans une structure type MVC :
 
 ![HTML, PHP, SQL mélangés](./res/html-php-db-beurk-commente.png)
 
@@ -63,7 +71,7 @@ Nous avons ici trois tiers, mais sachez que plus globalement on parle de dévelo
 
 - Gère la logique de données.
 - Interagit avec la base de données.
-- En POO, on crée généralement un objet ou entité.
+- En POO, on crée généralement un objet ou une entité.
 
 ::: tip Requête ou pas requête ici ?
 
@@ -78,16 +86,16 @@ En fonction du framework utilisé, plusieurs options sont possibles.
 
 ### Vue
 
-- S'occupe de l'affichage
-- Contient le HTML et le minimum de logique d'affichage
-- Ne doit pas contenir de logique métier
+- S'occupe de l'affichage.
+- Contient le HTML et le minimum de logique d'affichage.
+- Ne doit pas contenir de logique métier.
 
 ::: danger Attention !
 
 Pas de traitement ici. Le découpage est la clé de la réussite. Vous devez ici ne faire que la logique d'affichage des données.
 
-- Boucle
-- Mise en forme
+- Boucles.
+- Mise en forme.
 - Pas d'accès au(x) modèle(s) ici.
 
 :::
@@ -95,9 +103,9 @@ Pas de traitement ici. Le découpage est la clé de la réussite. Vous devez ici
 
 ### Contrôleur
 
-- Fait le lien entre le Modèle et la Vue
-- Contient la logique de l'application
-- Traite les requêtes, manipule les données via le Modèle, et prépare les données pour la Vue
+- Fait le lien entre le Modèle et la Vue.
+- Contient la logique de l'application.
+- Traite les requêtes, manipule les données via le Modèle, et prépare les données pour la Vue.
 
 ::: danger Attention !
 
@@ -109,8 +117,8 @@ Pas de requête SQL dans un contrôleur. Ici nous **devons** faire appel à un M
 
 Le routeur est un composant crucial dans une architecture MVC :
 
-- Il définit la correspondance entre les URLs et les actions du contrôleur
-- Il dirige les requêtes vers le bon contrôleur et la bonne méthode
+- Il définit la correspondance entre les URL et les actions du contrôleur.
+- Il dirige les requêtes vers le bon contrôleur et la bonne méthode.
 
 ::: tip Comment le représenter ?
 

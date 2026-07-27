@@ -1,3 +1,7 @@
+---
+description: "Projet Larablog : créez une plateforme de blogging collaborative avec Laravel (authentification, articles, commentaires, catégories et likes)."
+---
+
 # Projet - Larablog
 
 ::: details Sommaire
@@ -8,47 +12,47 @@
 
 Le projet consiste à créer une plateforme de blogging collaborative où les utilisateurs peuvent s'inscrire, se connecter et créer des articles. Chaque utilisateur peut écrire, éditer et supprimer ses propres articles. Les articles peuvent être associés à des catégories et des tags pour faciliter la recherche. Les utilisateurs peuvent également commenter les articles et interagir avec d'autres utilisateurs à travers les commentaires.
 
-Voici un aperçu de la plateforme que vous allez réaliser:
+Voici un aperçu de la plateforme que vous allez réaliser :
 
 <center>
 <iframe width="100%" height="700px" src="https://www.youtube-nocookie.com/embed/fevKbHEFDzk?si=EdcDYdQh5SqKNkSO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </center>
 
-### Authentification des Utilisateurs:
+### Authentification des utilisateurs
 
 - Inscription, connexion et déconnexion des utilisateurs.
 - Réinitialisation de mot de passe par email.
 
-### Gestion des Articles:
+### Gestion des articles
 
 - Création, édition et suppression d'articles.
 - Association d'articles à des catégories et des tags.
 - Fonctionnalité de brouillon pour enregistrer les articles non publiés.
 
-### Gestion des Commentaires:
+### Gestion des commentaires
 
 - Ajout, édition et suppression de commentaires sur les articles.
 
-### Interface Utilisateur Conviviale:
+### Interface utilisateur conviviale
 
 - Interface utilisateur intuitive pour la lecture des articles, l'écriture de commentaires et l'interaction avec d'autres utilisateurs.
 
-### Sécurité:
+### Sécurité
 
 - Validation des données côté serveur pour prévenir les attaques CSRF et XSS.
 - Modération des commentaires pour prévenir le spam et le contenu inapproprié.
 
 ## Prérequis
 
-Pour réaliser ce projet, nous allons utiliser Laravel 10. Pour réaliser le projet, vous aurez besoin des connaissainces en :
+Pour réaliser ce projet, nous allons utiliser Laravel 10. Vous aurez besoin de connaissances en :
 
 - PHP (HTML et CSS).
 - Structure MVC.
 - Requêtage SQL.
 
-## Avant propos
+## Avant-propos
 
-Ce TP conclut l'apprentissage des bases de Laravel. Nous referrons d'autres TP pour entretenir ces bases. Mais ce que vous allez réaliser dans ce TP est un projet complet. Vous allez mettre en pratique toutes les connaissances que vous avez acquises jusqu'à présent.
+Ce TP conclut l'apprentissage des bases de Laravel. Nous referons d'autres TP pour entretenir ces bases. Mais ce que vous allez réaliser dans ce TP est un projet complet. Vous allez mettre en pratique toutes les connaissances que vous avez acquises jusqu'à présent.
 
 Ce TP sera noté, vous pouvez vous entraider, mais vous devez réaliser le projet seul. Lors de mon évaluation, je tiendrai compte de :
 
@@ -75,13 +79,13 @@ composer create-project laravel/laravel larablog
 
 Lorsque vous exécutez la commande `composer create-project`, le projet est créé dans un dossier portant le nom du projet. Dans notre cas, le dossier s'appelle `larablog`. 
 
-Placez-vous dans un dossier vous appartenant avant de réaliser la commande
+Placez-vous dans un dossier vous appartenant avant de lancer la commande.
 
 :::
 
 ::: warning N'oubliez pas la debugbar
 
-N'oubliez pas d'installer la debugbar dans votre projet. Elle vous sera très utile pour débugger votre projet.
+N'oubliez pas d'installer la debugbar dans votre projet. Elle vous sera très utile pour déboguer votre projet.
 
 :::
 
@@ -208,7 +212,7 @@ CREATE TABLE comments (
 );
 ```
 
-Avant de continuer étudiont un peu la base de données :
+Avant de continuer, étudions un peu la base de données :
 
 ![Schéma de la base de données](./ressources/larablog_bdd.jpg)
 
@@ -220,16 +224,16 @@ Vous pouvez utiliser votre machine en local pour mettre la base de données, mai
 
 ## L'interface
 
-Pour réaliser l'interface de notre projet, nous allons utiliser le framework CSS [TailwindCSS](https://tailwindcss.com/). Celui-ci sera **automatiquement** installé dans notre projet grace à l'ajout de Breeze.
+Pour réaliser l'interface de notre projet, nous allons utiliser le framework CSS [TailwindCSS](https://tailwindcss.com/). Celui-ci sera **automatiquement** installé dans notre projet grâce à l'ajout de Breeze.
 
 Si vous souhaitez en savoir plus sur TailwindCSS, je vous invite à consulter la [documentation](https://tailwindcss.com/docs).
 
-Sachez juste que TailwindCSS est un framework CSS qui permet de créer des interfaces rapidement. Il est très utilisé dans le monde du développement web. Il repose cependant sur l'utilisation de NPM, pour que votre CSS fonctionne correctement deux solutions :
+Sachez juste que TailwindCSS est un framework CSS qui permet de créer des interfaces rapidement. Il est très utilisé dans le monde du développement web. Il repose cependant sur l'utilisation de NPM. Pour que votre CSS fonctionne correctement, deux solutions :
 
-- Éxecuter périodiquement la commande `npm run build` pour compiler votre CSS.
+- Exécuter périodiquement la commande `npm run build` pour compiler votre CSS.
 - Observer les changements de votre CSS avec la commande `npm run dev`.
 
-::: tip Comment moi je fais ?
+::: tip Et moi, comment je fais ?
 
 Personnellement, j'utilise la commande `npm run dev` pour observer les changements de mon CSS. Je n'ai pas besoin de compiler mon CSS à chaque fois que je fais une modification.
 
@@ -243,16 +247,16 @@ Maintenant que nous avons notre base de données, nous allons générer les mod�
 composer require reliese/laravel --dev
 ```
 
-Cette commande va installer le package `reliese/laravel` qui va nous permettre de générer les modèles. Une fois le package installé.
+Cette commande va installer le package `reliese/laravel` qui va nous permettre de générer les modèles. Une fois le package installé :
 
-```php
+```bash
 php artisan vendor:publish --tag=reliese-models
 php artisan config:clear
 ```
 
 Puis nous allons générer les modèles en lien avec notre base de données :
 
-```php
+```bash
 php artisan code:models --table=comments
 php artisan code:models --table=articles
 php artisan code:models --table=categories
@@ -280,7 +284,7 @@ Quelques remarques sur la classe `Article` :
 - La classe `Article` possède une propriété `$fillable` qui indique les champs de la table qui peuvent être modifiés par l'utilisateur. (Dans notre cas, les champs `user_id`, `title`, `content` et `draft`).
 - La classe `Article` possède une propriété `$casts` qui indique le type des champs de la table. (Dans notre cas, le champ `draft` est un booléen).
 
-Quelques remarques sur les relations générées:
+Quelques remarques sur les relations générées :
 
 - Le modèle `Article` possède une relation `belongsTo` vers le modèle `User`. C'est la relation `user` qui a été générée. (Un article appartient à un utilisateur).
 - Le modèle `Article` possède une relation `belongsToMany` vers le modèle `Category`. C'est la relation `categories` qui a été générée. (Un article peut avoir plusieurs catégories).
@@ -291,11 +295,11 @@ Quelques remarques sur les relations générées:
 
 Nous avons maintenant la base de notre projet. Nous allons pouvoir commencer à coder. N'oubliez pas de faire un premier commit de votre projet.
 
-Pssssttt! Bien entendu, vous pouvez faire des commits au fur et à mesure de votre avancement.
+Pssssttt ! Bien entendu, vous pouvez faire des commits au fur et à mesure de votre avancement.
 
-## Les fonctionnalités de base.
+## Les fonctionnalités de base
 
-Avant d'entrer dans le coeur de la création de notre plateforme, nous allons découper en grandes étapes les fonctionnalités que nous allons réaliser.
+Avant d'entrer dans le cœur de la création de notre plateforme, nous allons découper en grandes étapes les fonctionnalités que nous allons réaliser.
 
 - Espace utilisateur
   - [x] Inscription
@@ -316,7 +320,7 @@ Ces étapes sont la base de notre projet. Nous avons effectivement d'autres él�
 
 ::: tip L'organisation
 
-Dans un gros projet comme celui-ci, il est important de bien s'organiser. Découper le projet en étape est une bonne chose, ces différentes étapes seront vos objectifs. Vous pouvez les noter sur un papier ou dans un fichier texte. Vous pouvez également utiliser un outil de gestion de projet comme [Trello](https://trello.com/).
+Dans un gros projet comme celui-ci, il est important de bien s'organiser. Découper le projet en étapes est une bonne chose, ces différentes étapes seront vos objectifs. Vous pouvez les noter sur un papier ou dans un fichier texte. Vous pouvez également utiliser un outil de gestion de projet comme [Trello](https://trello.com/).
 
 :::
 
@@ -424,10 +428,10 @@ Un peu de détail sur le code :
 
 ### Le menu
 
-Pour l'instant nous ne pouvons pas accéder à la page de création d'un article. Nous allons donc ajouter un lien dans le menu de notre application. Pour cela, nous allons modifier le fichier `resources/views/layouts/navigation.blade.php`. Pour y ajouter l'élément suivant
+Pour l'instant nous ne pouvons pas accéder à la page de création d'un article. Nous allons donc ajouter un lien dans le menu de notre application. Pour cela, nous allons modifier le fichier `resources/views/layouts/navigation.blade.php`, pour y ajouter l'élément suivant :
 
 ```html
-<x-nav-link :href="route('articles.create')" :active="request()->routeIs('article.create')">
+<x-nav-link :href="route('articles.create')" :active="request()->routeIs('articles.create')">
     Créer un article
 </x-nav-link>
 ```
@@ -442,7 +446,7 @@ Je vous laisse tester votre code. Vous devriez avoir quelque chose comme ça :
 
 ### Enregistrer l'article
 
-Maintenant que nous avons notre formulaire, nous allons pouvoir enregistrer notre article. Pour cela nous allons devoir faire le code derrère la route `articles.store` que nous avons créée précédemment.
+Maintenant que nous avons notre formulaire, nous allons pouvoir enregistrer notre article. Pour cela, nous allons devoir écrire le code derrière la route `articles.store` que nous avons créée précédemment.
 
 Notre méthode a pour but de récupérer les données du formulaire et de les enregistrer dans la base de données. Pour cela, nous allons utiliser la méthode `store` du contrôleur `UserController`.
 
@@ -459,7 +463,7 @@ public function store(Request $request)
     $data['draft'] = isset($data['draft']) ? 1 : 0;
 
     // On crée l'article
-    $article = Article::create($data); // $Article est l'objet article nouvellement créé
+    $article = Article::create($data); // $article est l'objet article nouvellement créé
 
     // Exemple pour ajouter la catégorie 1 à l'article
     // $article->categories()->sync(1);
@@ -635,7 +639,7 @@ Une page :
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                   <!-- Input de titret de l'article -->
+                   <!-- Input de titre de l'article -->
                    <input type="text" value="{{ $article->title }}" name="title" id="title" placeholder="Titre de l'article" class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 </div>
 
@@ -709,7 +713,7 @@ Le message flash doit être de type `error` et doit contenir le message suivant 
 
 ![Message flash](./ressources/larablog_article_error.jpg)
 
-::: details un peu d'aide ?
+::: details Un peu d'aide ?
 
 ```html
 @if (session('error'))
@@ -777,7 +781,7 @@ Route::get('/{user}/{article}', [PublicController::class, 'show'])->name('public
 
 ::: tip Cette route
 
-Cette route doit être la dernière route de votre fichier `web.php`. En effet, elle doit être la dernière route de votre fichier pour ne pas interférer avec les autres routes.
+Cette route doit être la dernière de votre fichier `web.php`, pour ne pas interférer avec les autres routes.
 
 Elle doit permettre d'afficher la liste des articles publiés d'un utilisateur.
 
@@ -891,7 +895,7 @@ Je vous laisse écrire le code de la méthode `show` et de la vue `public.show`.
 
 ### Amélioration de l'interface
 
-Modifier le composant `x-guest-layout` pour que celui ne soit plus centré. Profitez-en également pour le modifier afin d'avoir un header et un footer.
+Modifier le composant `x-guest-layout` pour que celui-ci ne soit plus centré. Profitez-en également pour le modifier afin d'avoir un header et un footer.
 
 Le composant se trouve dans le fichier `resources/views/layouts/guest.blade.php`.
 
@@ -946,7 +950,7 @@ Je vous laisse retrouver la commande pour créer un contrôleur (vous l'avez dé
 
 Maintenant que nous avons notre contrôleur, nous allons créer la route `comments.store` qui va nous permettre d'ajouter un commentaire.
 
-::: details un peu d'aide ?
+::: details Un peu d'aide ?
 
 Vous ne devriez pas avoir de difficulté à créer la route. Vous pouvez vous inspirer des routes déjà présentes dans le fichier `routes/web.php`. Mais voici un petit rappel.
 
@@ -1030,7 +1034,7 @@ N'oubliez pas qu'il ne doit être possible d'ajouter un commentaire que pour les
 
 ```php
 @auth
-    <!-- Le code affiché si la personne est connecté -->
+    <!-- Le code affiché si la personne est connectée -->
 @endauth
 ```
 
@@ -1126,7 +1130,7 @@ $categories = Category::all();
 Si vous souhaitez sauvegarder les catégories d'un article, vous pouvez utiliser la méthode `sync` du modèle `Article`.
 
 ```php
-    // $article est l'article sauvé en base de données (resultat de la méthode create ou d'un update)
+    // $article est l'article sauvé en base de données (résultat de la méthode create ou d'un update)
     // Exemple pour ajouter des catégories à l'article en venant du formulaire
     $article->categories()->sync($request->input('categories'));
 ```
@@ -1146,7 +1150,7 @@ Ajout d'un lien « voir mon blog » dans le menu de l'utilisateur. Ce lien doit 
 
 ![Lien voir mon blog](./ressources/larablog_voir_blog.jpg)
 
-::: details un peu d'aide ?
+::: details Un peu d'aide ?
 
 ```html
 <x-nav-link :href="route('public.index', Auth::id())" :active="request()->routeIs('article.index')">
@@ -1158,7 +1162,7 @@ Ajout d'un lien « voir mon blog » dans le menu de l'utilisateur. Ce lien doit 
 
 ## Amélioration de l'interface 2
 
-Pour l'instant il est probable que votre page « publique » ne possède pas de menu de navigation. Je vous propose de l'ajouter dans le fichier `guest.blade.php`:
+Pour l'instant il est probable que votre page « publique » ne possède pas de menu de navigation. Je vous propose de l'ajouter dans le fichier `guest.blade.php` :
 
 ```html
 @auth
@@ -1190,11 +1194,11 @@ Vous arrivez à la fin de votre projet. Il ne vous reste plus qu'une fonctionnal
 
 Sur chaque article, vous devez ajouter un bouton qui va permettre de liker l'article. Lorsque l'utilisateur clique sur le bouton, vous devez ajouter un like à l'article. Ce compteur doit être à l'infini. C'est-à-dire que l'utilisateur peut liker plusieurs fois le même article.
 
-Vous devez également afficher le nombre de like sur chaque article.
+Vous devez également afficher le nombre de likes sur chaque article.
 
 ::: tip Rappel
 
-Pour réaliser cette fonctionnalité, vous devrez ajouter une nouvelle colonne dans la table `articles`. Cette colonne de type intégré va nous permettre de stocker le nombre de like de l'article.
+Pour réaliser cette fonctionnalité, vous devrez ajouter une nouvelle colonne dans la table `articles`. Cette colonne de type entier (integer) va nous permettre de stocker le nombre de likes de l'article.
 
 Une fois la colonne ajoutée, vous devrez modifier le modèle `Article` pour ajouter la colonne dans la propriété `$fillable` et `$casts`.
 
@@ -1204,26 +1208,30 @@ Pour vous aider dans votre réalisation, voici les étapes à réaliser :
 
 - Ajouter une colonne `likes` dans la table `articles`.
 - Modifier le modèle `Article` pour ajouter la colonne dans la propriété `$fillable` et `$casts`.
-- Modifier la vue `public.show` pour ajouter un bouton « like » et le nombre de like.
-- Ajouter une route `articles.like` qui va nous permettre de liker un article.
-- Ajouter la méthode `like` dans le contrôleur `ArticleController`.
+- Modifier la vue `public.show` pour ajouter un bouton « like » et le nombre de likes.
+- Ajouter une route `articles.like` qui va nous permettre de liker un article. Comme le like est réservé aux utilisateurs connectés, cette route doit être placée avec les autres routes `articles.*` protégées de votre fichier `web.php`.
+- Ajouter la méthode `like` dans le contrôleur `UserController` (comme les autres actions sur les articles réservées aux utilisateurs connectés).
+
+```php
+Route::get('/articles/{article}/like', [UserController::class, 'like'])->name('articles.like');
+```
 
 Voici un peu de HTML pour vous aider :
 
 ```html
 @auth
-<a href="{{ route('article.like', $article->id) }}" class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center">
+<a href="{{ route('articles.like', $article->id) }}" class="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-center">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M9.719,17.073l-6.562-6.51c-0.27-0.268-0.504-0.567-0.696-0.888C1.385,7.89,1.67,5.613,3.155,4.14c0.864-0.856,2.012-1.329,3.233-1.329c1.924,0,3.115,1.12,3.612,1.752c0.499-0.634,1.689-1.752,3.612-1.752c1.221,0,2.369,0.472,3.233,1.329c1.484,1.473,1.771,3.75,0.693,5.537c-0.19,0.32-0.425,0.618-0.695,0.887l-6.562,6.51C10.125,17.229,9.875,17.229,9.719,17.073 M6.388,3.61C5.379,3.61,4.431,4,3.717,4.707C2.495,5.92,2.259,7.794,3.145,9.265c0.158,0.265,0.351,0.51,0.574,0.731L10,16.228l6.281-6.232c0.224-0.221,0.416-0.466,0.573-0.729c0.887-1.472,0.651-3.346-0.571-4.56C15.57,4,14.621,3.61,13.612,3.61c-1.43,0-2.639,0.786-3.268,1.863c-0.154,0.264-0.536,0.264-0.69,0C9.029,4.397,7.82,3.61,6.388,3.61" clip-rule="evenodd" />
     </svg>
-    <span>{{$article->like}}</span>
+    <span>{{$article->likes}}</span>
 </a>
 @endauth
 ```
 
 - Nous avons un lien qui pointe vers la route `articles.like`.
 - Nous avons un bouton avec un SVG pour afficher un cœur.
-- Nous avons un span qui affiche le nombre de like.
+- Nous avons un span qui affiche le nombre de likes.
 
 Voici le rendu :
 
@@ -1231,14 +1239,14 @@ Voici le rendu :
 
 ## La page d'accueil
 
-Maintenant que vous avez toutes les fonctionnalités de votre site Internet, vous allez pouvoir créer une page d'accueil. Cette page va afficher les articles le plus liké de la plateforme.
+Maintenant que vous avez toutes les fonctionnalités de votre site Internet, vous allez pouvoir créer une page d'accueil. Cette page va afficher les articles les plus likés de la plateforme.
 
 ::: tip Rappel
 
 Pour réaliser cette fonctionnalité, vous allez devoir modifier :
 
 - Le contrôleur `PublicController` pour ajouter la méthode `home`.
-- Le fichier `routes/web.php` pour ajouter la route `/`. (Vous allez devoir remplacer déjà présente par la votre).
+- Le fichier `routes/web.php` pour ajouter la route `/`. (Vous allez devoir remplacer celle déjà présente par la vôtre).
 
 :::
 
@@ -1254,17 +1262,17 @@ Maintenant que votre projet est terminé, vous allez pouvoir le déployer sur un
 Pour déployer votre projet, vous avez deux solutions :
 
 - Installation classique de Laravel, via un serveur web (Apache).
-- Installation de Laravel via Docker <- Je vous conseille cette solution, c'est simple et rapide (il faut juste ajouter deux fichiers dans votre projet)
+- Installation de Laravel via Docker (je vous conseille cette solution, c'est simple et rapide : il faut juste ajouter deux fichiers dans votre projet).
 
 Pour moi, la solution Docker **est celle à privilégier**. Même si vous ne connaissez pas Docker, vous pouvez suivre le TP. Il est très simple et vous permettra de déployer votre projet rapidement.
 
-**Avoir docker sur un serveur va vous permettre de déployer votre architecture très rapidement, sans n'avoir rien à installer (autre que Docker) sur votre serveur. Pratique.**
+**Avoir Docker sur un serveur va vous permettre de déployer votre architecture très rapidement, sans rien avoir à installer (autre que Docker) sur votre serveur. Pratique.**
 
-PS: Déployer le site aveck Docker prend 2min et 20seconde (en comptant le temps de téléchargement de l'image Docker). C'est très rapide.
+PS : déployer le site avec Docker prend 2 min et 20 secondes (en comptant le temps de téléchargement de l'image Docker). C'est très rapide.
 
 :::
 
-PS: N'oubliez pas de faire un commit de votre projet avant de le déployer. Pour finaliser votre projet, vous devez le déployer sur un serveur. Vous devez me partager l'URL de votre projet déployé.
+PS : n'oubliez pas de faire un commit de votre projet avant de le déployer. Pour finaliser votre projet, vous devez le déployer sur un serveur. Vous devez me partager l'URL de votre projet déployé.
 
 ## Bonus
 
@@ -1280,7 +1288,7 @@ Vous avez terminé votre projet ? Vous avez encore du temps ? Voici quelques id�
 
 Vous avez terminé votre projet. Vous avez maintenant un blog fonctionnel. Vous pouvez maintenant le personnaliser à votre guise.
 
-Je vous laisse faire un dernier commit de votre projet. Puis vous pouvez me le partager sur Github / Gitlab (`valentin brosseau` ou `c4software`).
+Je vous laisse faire un dernier commit de votre projet. Puis vous pouvez me le partager sur GitHub / GitLab (`valentin brosseau` ou `c4software`).
 
 ## Restitution
 

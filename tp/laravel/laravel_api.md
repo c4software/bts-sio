@@ -10,16 +10,16 @@ description: Nous avons vu précédemment qu'il était simple de créer des site
 
 Nous avons vu précédemment qu'il était simple de créer des sites Web avec Laravel. Dans le monde du développement, il est très courant de ne pas échanger entre le client et le serveur directement en HTML, mais directement en JSON.
 
-Nous appelons cette façon des API (dans notre cas des API REST), c'est le fondement même de beaucoup de sites Internet que vous utilisez tous les jours (Gmail, Facebook, …).
+Nous appelons cela des API (dans notre cas des API REST), c'est le fondement même de beaucoup de sites Internet que vous utilisez tous les jours (Gmail, Facebook, …).
 
 Laravel étant un framework « à tout faire » celui-ci nous permet bien évidemment de créer également des API. C'est ce que nous allons faire dans ce TP.
 
 ::: tip API ?
-Ce que vous venez de créer est une API. Une API est le coeur de beaucoup de systèmes moderne. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
+Ce que vous allez créer est une API. Une API est le cœur de beaucoup de systèmes modernes. Il est important de comprendre ce concept dès à présent. Pourquoi faire une API ?
 
-Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser si vous le souhaitez différent client pour la même donnée (exemple Twitter avec des clients multiplateformes).
+Une API va nous permettre de séparer la logique entre client et serveur afin de réaliser, si vous le souhaitez, différents clients pour la même donnée (exemple Twitter avec des clients multiplateformes).
 
-Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simplement, car l'API va être universelle; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif (web, Android, iOs, une voiture, une TV…).
+Pourquoi préférer une API « JSON / XML » à un retour HTML basique ? Tout simplement, car l'API va être universelle ; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif (web, Android, iOS, une voiture, une TV…).
 :::
 
 ::: details Sommaire
@@ -30,11 +30,11 @@ Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simp
 
 Pour cette étape, je vous laisse suivre le début du [précédent TP](./introduction.md).
 
-**Attention** a bien installer au moins la version >11 de Laravel.
+**Attention** à bien installer au moins la version 11 de Laravel.
 
 ## Activer les API
 
-Depuis Laravel 11 la structure des fichiers/dossiers à changé. Les API ne sont maintenant plus activée par défaut. Pour les activer il suffit de lancer la commande suivante :
+Depuis Laravel 11, la structure des fichiers / dossiers a changé. Les API ne sont maintenant plus activées par défaut. Pour les activer, il suffit de lancer la commande suivante :
 
 ```bash
 php artisan install:api
@@ -63,7 +63,7 @@ Je vous laisse réaliser les étapes suivantes :
 - Lancer la migration `php artisan migrate`
 
 ::: tip Un doute sur comment faire ?
-Ça fait plusieurs fois que nous faisons ce genre d'opération. Si vous avez un doute, vous pouvez regarder le détail [dans le TP](./introduction.md#la-base-de-donnees)
+Ça fait plusieurs fois que nous faisons ce genre d'opération. Si vous avez un doute, vous pouvez regarder le détail [dans le TP base de données](./base_de_donnees.md)
 :::
 
 ::: danger STOP !
@@ -72,21 +72,21 @@ Nous avons donc maintenant une base de données de test. Avant d'aller plus loin
 Vous avez deux façons de faire ça :
 
 - Directement en base « manuellement ».
-- [Via Une Factories + Un Seeder de Laravel](https://laravel.com/docs/8.x/seeding)
+- [Via une Factory + un Seeder de Laravel](https://laravel.com/docs/8.x/seeding)
 
-L'avantage du seeder ? Il va permettre de créer beaucoup de données en un rien de temps ! 50 Concerts ? Aucun problème il suffit de faire :
+L'avantage du seeder ? Il va permettre de créer beaucoup de données en un rien de temps ! 50 concerts ? Aucun problème, il suffit de faire :
 
 ```php
 Concert::factory()->count(50)->create();
 ```
 
-Pour l'implémentation nous allons le faire ensemble, mais ça se résume à :
+Pour l'implémentation, nous allons le faire ensemble, mais ça se résume à :
 
 ```shell
 php artisan make:factory ConcertFactory
 ```
 
-Je vous laisse configurer la factory (`/database/factories/ConcertFactory.php`) en prenant exemple sur celle de la partie User. Mais dans les grandes ligne il faut ajouter
+Je vous laisse configurer la factory (`/database/factories/ConcertFactory.php`) en prenant exemple sur celle de la partie User. Mais dans les grandes lignes, il faut ajouter :
 
 ```php
 public function definition(){
@@ -97,7 +97,7 @@ public function definition(){
 }
 ```
 
-Éditer maintenant le DatabaseSeeder pour ajouter dans le run() :
+Éditer maintenant le `DatabaseSeeder` pour ajouter dans le `run()` :
 
 ```php
 Concert::factory()->count(50)->create();
@@ -114,7 +114,7 @@ Pratique !
 
 ## Création de l'API
 
-La création d'une API va être très proche de ce que nous connaissons déjà. Première étape créer un contrôleur ; pour rappel celui-ci permet de gérer le traffic et de répondre aux demandes des / du clients.
+La création d'une API va être très proche de ce que nous connaissons déjà. Première étape : créer un contrôleur ; pour rappel, celui-ci permet de gérer le trafic et de répondre aux demandes du / des clients.
 
 Notre API sera très simple, elle contiendra **3 routes / fonctionnalités** :
 
@@ -129,7 +129,7 @@ L'ensemble des routes va retourner du JSON. Comme vu ensemble en cours, le forma
 ::: warning Avant de coder il faut définir
 Le petit tableau que je vous propose ici est très important. Il permet de savoir ce que je veux faire. Nous sommes ici dans un TP… Mais vous codez comme si vous étiez dans un projet « classique ».
 
-Il est donc important de définir ce que l'on souhaite faire… Pour soit, mais également pour vos collègues qu'ils sachent ce que vous êtes entrain de faire.
+Il est donc important de définir ce que l'on souhaite faire… Pour soi, mais également pour vos collègues, afin qu'ils sachent ce que vous êtes en train de faire.
 :::
 
 ### Création du contrôleur
@@ -137,18 +137,18 @@ Il est donc important de définir ce que l'on souhaite faire… Pour soit, mais 
 Le contrôleur vous savez faire, nous allons faire un nouveau contrôleur, celui-ci sera dédié à la partie API :
 
 ```bash
-php artisan make:controller ApiControler
+php artisan make:controller ApiController
 ```
 
-Je ne vous détaille pas plus cette étape nous l'avons vu plusieurs fois précédemment.
+Je ne vous détaille pas plus cette étape, nous l'avons vue plusieurs fois précédemment.
 
-Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidemment (liste, création, terminer, suppression).
+Bien ! Notre code est maintenant prêt. Nous allons créer les méthodes permettant la manipulation de notre base de données tout en répondant à nos API bien évidemment (liste, création, suppression).
 
 Nous allons maintenant écrire une méthode pour chaque action. Avec les différentes conditions nécessaires au bon fonctionnement de votre application.
 
 ### Liste
 
-La méthode `liste` est certainement la plus simple, nous allons simplement faire appel à la méthode `all()` de Eloquent (ORM pour l’accès à la base de données). Pour ça créez une nouvelle méthode dans la Class `ApiController` avec le code suivant :
+La méthode `liste` est certainement la plus simple, nous allons simplement faire appel à la méthode `all()` de Eloquent (ORM pour l’accès à la base de données). Pour ça, créez une nouvelle méthode dans la classe `ApiController` avec le code suivant :
 
 ```php
 public function listApi(){
@@ -156,7 +156,7 @@ public function listApi(){
 }
 ```
 
-Rien de bien compliqué, comme vous pouvez le voir le `response()->json(…)` permet de créer une réponse au format JSON pour votre API (que l’on utilisera plus tard au moment de la mise en place des routes).
+Rien de bien compliqué, comme vous pouvez le voir, le `response()->json(…)` permet de créer une réponse au format JSON pour votre API (que l’on utilisera plus tard au moment de la mise en place des routes).
 
 ::: tip Et oui !
 C'est aussi simple que ça ! Avec cette simple méthode, vous avez écrit votre première API.
@@ -166,7 +166,7 @@ C'est aussi simple que ça ! Avec cette simple méthode, vous avez écrit votre 
 
 ::: danger Un instant ✋
 
-En PHP objet il y a la notion de namespace, Laravel utilise de base les namespace, ça veut dire que nous allons avoir à utiliser le mot clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `Concert` soit accessible depuis le contrôleur il faudra :
+En PHP objet, il y a la notion de namespace. Laravel utilise de base les namespaces, ça veut dire que nous allons devoir utiliser le mot-clé `use` pour importer (include). Quand vous voulez utiliser une classe qui n'est pas dans le même fichier, il faudra déclarer l'emplacement via un `use`. Exemple, pour que `Concert` soit accessible depuis le contrôleur, il faudra :
 
 ```php
 use App\Models\Concert;
@@ -197,12 +197,12 @@ public function createApi(Request $request){
 ```
 
 ::: tip 😬
-Que va-t-il se passer lors de l’appel ? L’objet `$request` contiens tous les paramètres de l’appel HTTP, la méthode `all()` permets de les récupérer. L’objet `Concerts` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `createApi()` permettre de renseigner automatiquement les champs en base de données.
+Que va-t-il se passer lors de l’appel ? L’objet `$request` contient tous les paramètres de l’appel HTTP, la méthode `all()` permet de les récupérer. L’objet `Concert` possède une méthode permettant de créer un nouvel enregistrement en base de données. Les valeurs passées en paramètre de `create()` permettent de renseigner automatiquement les champs en base de données.
 :::
 
 ### Création, version alternative
 
-La première approche est la plus rapide, mais elle sous-entend que tous les paramètres soient bien initialisés dans « l’input » HTTP. Dans cette version la méthode est plus complète et gère la création de l’objet Concert manuellement en récupérant les différents éléments dans la requête HTTP
+La première approche est la plus rapide, mais elle sous-entend que tous les paramètres soient bien initialisés dans « l’input » HTTP. Dans cette version, la méthode est plus complète et gère la création de l’objet Concert manuellement, en récupérant les différents éléments dans la requête HTTP :
 
 ```php
 public function createApi(Request $request){
@@ -239,23 +239,23 @@ public function deleteApi($id){
 
 ### Définir les routes
 
-Votre code est maintenant prêt, il faut le « brancher » dans votre `Router` pour que celui-ci soit accessible aux utilisateurs. Cette fois-ci nous n'allons pas ajouter nos routes dans le fichier `web.php` car ce ne sont pas des liens « web »… Mais dans attention…
+Votre code est maintenant prêt, il faut le « brancher » dans votre `Router` pour que celui-ci soit accessible aux utilisateurs. Cette fois-ci, nous n'allons pas ajouter nos routes dans le fichier `web.php`, car ce ne sont pas des liens « web »… Mais alors, où ?
 
 …Roulement de tambour…
 …
 …Attention…
 …
 
-`api.php` Je vous donne le code à ajouter, mais celui-ci est classique, c'est juste des liens tels que nous le faisons dans la partie `web.php` :
+Dans `api.php` ! Je vous donne le code à ajouter, mais celui-ci est classique, ce sont juste des routes telles que nous les écrivons dans la partie `web.php` :
 
 ::: details Je pense que vous savez faire… Mais si vous avez oublié …
 
 Je sais que vous avez cliqué sans vraiment chercher…
 
 ```php
-Route::get('/concert', ['App\Http\Controllers\ApiControler', 'listApi']);
-Route::post('/concert', ['App\Http\Controllers\ApiControler', 'createApi']);
-Route::delete('/concert/{id}', ['App\Http\Controllers\ApiControler', 'deleteApi']);
+Route::get('/concert', ['App\Http\Controllers\ApiController', 'listApi']);
+Route::post('/concert', ['App\Http\Controllers\ApiController', 'createApi']);
+Route::delete('/concert/{id}', ['App\Http\Controllers\ApiController', 'deleteApi']);
 ```
 
 :::
@@ -268,13 +268,15 @@ N'oubliez pas le type de la méthode ! Surtout pas ! Dans le tableau nous avons 
 
 ### Tester votre API
 
-Maintenant que l’ensemble de votre code est terminé (et commenté 🕵🏻), nous allons pouvoir le tester, pour tester les API c’est plutôt simple. Il suffit d’utiliser des outils tels que [Postman](https://www.getpostman.com/), l’idée c’est de se construire un « cahier » de test vous permettant de valider le fonctionnement de votre application rapidement (comprendre dès que vous modifiez le code). C’est dans ce but que je vous ai préparé une collection de « tests » qui devrait vous permettre de valider rapidement le bon fonctionnement de vos API.
+Maintenant que l’ensemble de votre code est terminé (et commenté 🕵🏻), nous allons pouvoir le tester, pour tester les API c’est plutôt simple. Vous pouvez utiliser au choix :
 
-Valider que vos API fonctionnent correctement grâce à l'outil [Postman](https://www.getpostman.com/).
+- Votre navigateur, pour les routes en `GET` (il suffit de saisir l'URL).
+- La fonction `fetch` dans la console de votre navigateur, pour les routes en `POST` et en `DELETE`.
+- Un client REST tel que [Postman](https://www.getpostman.com/) ou [Bruno](https://www.usebruno.com/), l'idée étant de vous construire un « cahier » de tests vous permettant de valider le fonctionnement de votre application rapidement (comprendre dès que vous modifiez le code).
 
-(Pssst! La création de comptes **n'est pas obligatoire**) <-- ⚠️⚠️
+(Pssst ! Si vous choisissez Postman, la création de compte **n'est pas obligatoire**) ⚠️⚠️
 
-🤓 Commencez par la plus simple, par exemple `/api/` qui doit normalement liste actuelle de concert. 🤓
+🤓 Commencez par la plus simple, par exemple `/api/concert` qui doit normalement retourner la liste actuelle des concerts. 🤓
 
 ✋ Tester l'ensemble de vos API avant de continuer.
 
@@ -320,7 +322,7 @@ Si nous suivons la documentation, nous voyons qu'il suffit d'ajouter dans votre 
     height: "311px",
     layout: "fitColumns",
     ajaxURL: "/api/concert",
-    placeholder: "Aucune données",
+    placeholder: "Aucune donnée",
     columns: [
       { title: "Nom", field: "name", sorter: "string", width: 200 },
       { title: "Date du concert", field: "date", sorter: "date" },
@@ -331,8 +333,8 @@ Si nous suivons la documentation, nous voyons qu'il suffit d'ajouter dans votre 
 </script>
 ```
 
-::: danger La documentation, La documentation
-Je n'invente rien ! Tout ce que je vous donne ici ne sont que des utilisations telles que défini dans la [documentation](http://tabulator.info/docs/4.9/columns).
+::: danger La documentation, la documentation
+Je n'invente rien ! Tout ce que je vous donne ici ne sont que des utilisations telles que définies dans la [documentation](http://tabulator.info/docs/4.9/columns).
 :::
 
 ### Ajouter les filtres dans Tabulator
@@ -363,17 +365,17 @@ Ce n'est pas le but de ce TP, mais si vous souhaitez supprimer un élément via 
 
 ```javascript
 function deleteNewConcert(id) {
-  fetch("/api/deleteConcert" + id, { method: "DELETE" })
+  fetch("/api/concert/" + id, { method: "DELETE" })
     .then((res) => res.json())
     .then((res) => console.log(res));
 }
 ```
 
-Vous pouvez par exemple [l'implémenter en utilisant](http://tabulator.info/examples/3.1#callbacks)
+Vous pouvez par exemple l'implémenter en utilisant [les callbacks de Tabulator](http://tabulator.info/examples/3.1#callbacks).
 
 ## Création de l'API utilisateur
 
-En reprenant le la démarche précédente, je vous laisse implémenter la même logique pour créer l'API utilisateur
+En reprenant la démarche précédente, je vous laisse implémenter la même logique pour créer l'API utilisateur :
 
 | Méthode | Chemin             | Fonctionnalité                                                              |
 | ------- | ------------------ | --------------------------------------------------------------------------- |

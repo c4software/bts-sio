@@ -16,13 +16,13 @@ Ce TP fait suite au cours sur Android Compose, je vous invite donc à le lire av
 
 ::: danger Important
 
-Ce TP ce concentre sur le découpage en composants et la réactivité. Il s'agit d'un TP d'introduction seulement.
+Ce TP se concentre sur le découpage en composants et la réactivité. Il s'agit d'un TP d'introduction seulement.
 
 :::
 
 ## Aperçu du projet
 
-L'application que nous allons réaliser ici est très simple. Il s'agit juste d'une liste et d'une vue de détail. Elle nous servira à comprendre le système de composant.
+L'application que nous allons réaliser ici est très simple. Il s'agit juste d'une liste et d'une vue de détail. Elle nous servira à comprendre le système de composants.
 
 ![Application](./res/application.jpg)
 
@@ -44,8 +44,8 @@ Je vous laisse suivre les étapes de création d'un nouveau projet.
 ::: warning Mais quelques petites remarques :
 
 - Le choix du package est très important. Comme nous avons vu ensemble en cours, le « Package » doit être unique. En effet deux applications ne peuvent pas avoir le même.
-- Choisir un min SDK qui correspond aux cibles des mobiles souhaités. (Si vous êtes en France ou dans un autre pays, il conviendra de faire le bon choix).
-- Kotlin est maintenant le langage à choisir, Java et Kotlin cohabite sans problème vous n'aurez donc aucun problème de compatibilité.
+- Choisir un min SDK qui correspond aux mobiles que vous ciblez (en fonction du marché visé, il conviendra de faire le bon choix).
+- Kotlin est maintenant le langage à choisir, Java et Kotlin cohabitent sans problème, vous n'aurez donc aucun souci de compatibilité.
 
 :::
 
@@ -66,7 +66,7 @@ Nous allons donc retravailler tout ça pour organiser un minimum notre code sour
 
 ## La structure / Les composants
 
-Compose repose sur l'utilisation du code pour définir l'interface que l'utilisateur va voir. Elle reprend les principes de la programmation en composant qui est largement utilisée dans le développement web.
+Compose repose sur l'utilisation du code pour définir l'interface que l'utilisateur va voir. Elle reprend les principes de la programmation en composants qui est largement utilisée dans le développement web.
 
 Nous avons à notre disposition un ensemble de composants « fonctionnels » qui vont nous permettre de créer les éléments de notre interface :
 
@@ -88,7 +88,7 @@ Nous avons également des composants qui sont là pour définir la structure de 
 - `Box` : Un composant qui permet de créer une boîte.
 - `Spacer` : Un composant qui permet de créer un espace entre deux éléments.
 
-Les composants sont des fonctions que nous allons pouvoir appeler dans notre code. Ils seront appelés au bon moment en fonction de conditions que nous allons définir. Les composants seront imbriquables les uns dans les autres, ce qui nous permettra de créer des interfaces complexe. Par exemple :
+Les composants sont des fonctions que nous allons pouvoir appeler dans notre code. Ils seront appelés au bon moment en fonction de conditions que nous allons définir. Les composants seront imbriquables les uns dans les autres, ce qui nous permettra de créer des interfaces complexes. Par exemple :
 
 ```kotlin
 Column() {
@@ -128,15 +128,15 @@ Column() {
 Cet exemple est là pour vous montrer la puissance de Compose. Compose a été pensé pour être simple et modulaire, par exemple pour un bouton le principe est le même :
 
 ```kotlin
-Button(onClick = { /* Code appelé lors du clique sur le bouton */ }) {
+Button(onClick = { /* Code appelé lors du clic sur le bouton */ }) {
     Text("Mon bouton")
 }
 ```
 
-Ici nous voyons que le composant `Button` prend en paramètre une action (un code qui sera appelé lors du clique sur le bouton) et un composant `Text` qui sera affiché dans le bouton. Pratique ! Et si nous souhaitons un bouton avec un loader ? Et bien c'est simple il suffit de changer le composant `Text` par un composant `CircularProgressIndicator` (qui est un loader).
+Ici nous voyons que le composant `Button` prend en paramètre une action (un code qui sera appelé lors du clic sur le bouton) et un composant `Text` qui sera affiché dans le bouton. Pratique ! Et si nous souhaitons un bouton avec un loader ? Et bien c'est simple il suffit de changer le composant `Text` par un composant `CircularProgressIndicator` (qui est un loader).
 
 ```kotlin
-Button(onClick = { /* Code appelé lors du clique sur le bouton */ }) {
+Button(onClick = { /* Code appelé lors du clic sur le bouton */ }) {
     CircularProgressIndicator()
 }
 ```
@@ -200,7 +200,7 @@ Je vous laisse modifier le code de la méthode `onCreate`, pour y mettre :
 setContent {
     MyApplicationTheme {
         Scaffold(
-            topBar = { TopAppBar(title = {Text("Top App Bar")}  },
+            topBar = { TopAppBar(title = { Text("Top App Bar") }) },
         ) {
             Greeting(name = "Valentin")
         }
@@ -230,11 +230,11 @@ topBar = {
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             titleContentColor = MaterialTheme.colorScheme.primary,
         ), // Couleur de la barre
-    ),
+    )
 },
 ```
 
-Une couleur personnalisée ? C'est possible, soit via le thème de votre application (Theme.kt), soit un utilisant une couleur personnalisée :
+Une couleur personnalisée ? C'est possible, soit via le thème de votre application (Theme.kt), soit en utilisant une couleur personnalisée :
 
 ```kotlin
 val example = Color(0xFFD1C1D) // Couleur personnalisée (Rouge ici)
@@ -342,7 +342,7 @@ Je vous laisse mettre en place le code. Et valider que celui-ci s'affiche correc
 
 Nous avons réalisé notre premier composant, nous allons maintenant utiliser le composant dans notre application.
 
-Pour ça nous allons créer une liste (`LazyColumn` étant l'équivalent d'un `RecyclerView`, mais en beaucoup plus simple) Celui-ci contiendra le composant que vous avez créé.
+Pour ça nous allons créer une liste (`LazyColumn` étant l'équivalent d'un `RecyclerView`, mais en beaucoup plus simple). Celle-ci contiendra le composant que vous avez créé.
 
 ```kotlin
 val myData = listOf("Card 1","Card 2","Card 3","Card 4","Card 5","Card 6","Card 7","Card 8","Card 9","Card 10")
@@ -350,7 +350,7 @@ val myData = listOf("Card 1","Card 2","Card 3","Card 4","Card 5","Card 6","Card 
 LazyColumn {
     items(myData) { item ->
         ElementList(title = item) {
-            // Code appelé lors du clique sur un élément de la liste.
+            // Code appelé lors du clic sur un élément de la liste.
         }
     }
 }
@@ -364,9 +364,9 @@ Vous devez obtenir :
 
 ### Rendre votre liste interactive
 
-Maintenant que notre liste s'affiche, nous allons la rendre interactive lors du touch / clique de l'utilisateur sur un élément de la liste. Nous allons avoir besoin de deux choses :
+Maintenant que notre liste s'affiche, nous allons la rendre interactive lors du toucher / clic de l'utilisateur sur un élément de la liste. Nous allons avoir besoin de deux choses :
 
-- Une variable qui permettra de connaitre quel élément à été cliqué.
+- Une variable qui permettra de connaitre quel élément a été cliqué.
 - Une condition (`if`) pour savoir si nous devons afficher la `LazyColumn` ou seulement un `ElementList`.
 
 Pour la variable, la déclaration de celle-ci est un peu particulière :
@@ -386,7 +386,7 @@ Je vous laisse ajouter la condition pour :
 ```kotlin
 if (selectedItem != null) {
     ElementList(title = selectedItem!!) {
-        // Code appelé lors du clique sur un élément de la liste.
+        // Code appelé lors du clic sur un élément de la liste.
     }
 } else {
     LazyColumn {
@@ -404,7 +404,7 @@ if (selectedItem != null) {
 ```kotlin
 selectedItem?.let {
     ElementList(title = it) {
-        // Code appelé lors du clique sur un élément de la liste.
+        // Code appelé lors du clic sur un élément de la liste.
     }
 } ?: run {
     LazyColumn {
@@ -417,7 +417,7 @@ selectedItem?.let {
 }
 ```
 
-Le mot-clé `let` permet d'exécuter un bloc de code si la variable n'est pas `null`. Le mot-clé `run` permet d'exécuter un bloc de code si la variable est `null`. Cela permet d'éviter les exceptions et de rendre le code plus lisible. À l'interieur du `let`, nous avons automatiquement accès à la variable `it` qui est la valeur de `selectedItem` (non nullable).
+Le mot-clé `let` permet d'exécuter un bloc de code si la variable n'est pas `null`. Le mot-clé `run` permet d'exécuter un bloc de code si la variable est `null`. Cela permet d'éviter les exceptions et de rendre le code plus lisible. À l'intérieur du `let`, nous avons automatiquement accès à la variable `it` qui est la valeur de `selectedItem` (non nullable).
 
 :::
 
@@ -425,7 +425,7 @@ Le mot-clé `let` permet d'exécuter un bloc de code si la variable n'est pas `n
 
 Si tout fonctionne comme prévu, vous devez avoir la possibilité de sélectionner un élément. Mais pour l'instant pas moyen de revenir sur la liste entière.
 
-Pour ça nous allons ajouter un nouvel attribut dans notre `TopAppBar`
+Pour ça nous allons ajouter un nouvel attribut dans notre `TopAppBar` :
 
 ```kotlin
 navigationIcon = {
@@ -440,7 +440,7 @@ Cet attribut va ajouter un bouton retour si un élément est sélectionné. Je v
 
 ## Utiliser toute la puissance des composants
 
-Vous l'avez peut-être remarqué, pour l'instant notre liste est très simple. Vous avez déclaré une liste de `string`, je vais vous demander d'allez un peu plus loin. Vous allez créer une liste `d'objet` (plutôt que `string`).
+Vous l'avez peut-être remarqué, pour l'instant notre liste est très simple. Vous avez déclaré une liste de `string`, je vais vous demander d'aller un peu plus loin. Vous allez créer une liste `d'objets` (plutôt que de `string`).
 
 Évidemment, je vais vous demander d'organiser tout ça.
 
@@ -464,7 +464,7 @@ La `Data class` est un type de classe en Kotlin qui a pour but de stocker des do
 
 :::
 
-C'est à vous, je vous laisse modifier votre liste (nommé `myData`) par une liste de `CardContent` (la classe que vous avez créée). Cette liste doit contenir 10 éléments avec des titres, des contenus et une image différente que celle par défaut (le logo de l'école par exemple).
+C'est à vous, je vous laisse modifier votre liste (nommée `myData`) par une liste de `CardContent` (la classe que vous avez créée). Cette liste doit contenir 10 éléments avec des titres, des contenus et une image différente que celle par défaut (le logo de l'école par exemple).
 
 ::: details Besoin d'aide ?
 
@@ -492,13 +492,13 @@ TopAppBar(
 )
 ```
 
-Une fois ce composant créé (dans le bon dossier), je vous laisse l'utilisé directement dans votre `Scaffold`.
+Une fois ce composant créé (dans le bon dossier), je vous laisse l'utiliser directement dans votre `Scaffold`.
 
 ::: tip Rappel
 
 ![Paramètres](./res/parameters.jpg)
 
-Les éléments encadrés en rouge sont les paramètres de chaque méthode. Certains sont des strings, d'autres des actions, mais un paramètre peut-être un composant. C'est le cas ici avec `topBar =`. 
+Les éléments encadrés en rouge sont les paramètres de chaque méthode. Certains sont des strings, d'autres des actions, mais un paramètre peut être un composant. C'est le cas ici avec `topBar =`. 
 
 :::
 
@@ -511,7 +511,7 @@ Une liste c'est bien ! Mais une liste avec des animations c'est encore mieux !
 ```kotlin
 AnimatedContent(label = "") (/* Votre Condition OU votre état */ ) { targetState ->
     when (targetState) {
-        true -> { /* Composant affiché quand la condition est vrai */ }
+        true -> { /* Composant affiché quand la condition est vraie */ }
         false -> { /* Composant affiché quand la condition est fausse */ }
     }
 }
@@ -529,15 +529,15 @@ _Source:_ [Twitter](https://twitter.com/JorgeCastilloPr/status/15790570963600793
 
 ## Utiliser les ressources textes
 
-Avoir des composants ne veut pas dire oublier les bonnes pratiques bien au contraire ! Pour finaliser votre application, je vous laisse sortir les différents textes dans le fichier. `strings.xml`
+Avoir des composants ne veut pas dire oublier les bonnes pratiques bien au contraire ! Pour finaliser votre application, je vous laisse sortir les différents textes dans le fichier `strings.xml`.
 
-Une fois vos textes externalisés, vous pouvez rendre visible via :
+Une fois vos textes externalisés, vous pouvez les rendre visibles via :
 
 ```kotlin
 getString(R.string.id_de_votre_string_dans_le_xml)
 ```
 
-Je vous laisse utiliser cette méthode aux différents endroits ou vous avez mis du texte « en dur ».
+Je vous laisse utiliser cette méthode aux différents endroits où vous avez mis du texte « en dur ».
 
 ## Naviguer entre différents composants
 
@@ -613,7 +613,7 @@ fun LoginScreen(onLogin: () -> Unit) {
 
 Un peu de détail sur le composant LoginScreen :
 
-- `onLogin` est une action qui sera émise par le composant. Cette action sera émise lors du clique sur le bouton (par l'utilisateur). C'est ce que nous appelons un callback, il permet de faire remonter une action dans le composant parent.
+- `onLogin` est une action qui sera émise par le composant. Cette action sera émise lors du clic sur le bouton (par l'utilisateur). C'est ce que nous appelons un callback, il permet de faire remonter une action dans le composant parent.
 
 L'utilisation de ces deux composants, dans un Scaffold :
 
@@ -710,7 +710,7 @@ Avant de demander les permissions, nous allons devoir les déclarer pour que l'a
 
 ### Utiliser la librairie
 
-Cette librarie va nous permettre de demander les permissions à l'utilisateur et de gérer l'état de la demande (acceptée, refusée, etc.). Si vous avez compris ce que nous avons vus précédemment, vous vous doutez que tout va être géré par un état.
+Cette librairie va nous permettre de demander les permissions à l'utilisateur et de gérer l'état de la demande (acceptée, refusée, etc.). Si vous avez compris ce que nous avons vu précédemment, vous vous doutez que tout va être géré par un état.
 
 ```kotlin
 val toCheckPermissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
@@ -725,7 +725,7 @@ val permissionState = rememberMultiplePermissionsState(toCheckPermissions)
 Quelques explications :
 
 - `toCheckPermissions` est une liste de permissions à vérifier. Dans notre cas, nous allons vérifier les permissions pour le Bluetooth. En fonction de la version d'Android, nous n'allons pas vérifier les mêmes permissions. C'est pour ça que nous avons une condition qui permet de vérifier la version d'Android.
-- `rememberMultiplePermissionsState` est un état qui va contenir l'état de la demande de permission. Cet état va nous permettre de savoir si les permissions sont accordés ou non.
+- `rememberMultiplePermissionsState` est un état qui va contenir l'état de la demande de permission. Cet état va nous permettre de savoir si les permissions sont accordées ou non.
 
 Maintenant que nous avons notre état, nous allons pouvoir l'utiliser pour demander les permissions à l'utilisateur. Pour ça nous allons utiliser un composant nommé `PermissionRequired` :
 
@@ -734,7 +734,7 @@ if (!permissionState.allPermissionsGranted) {
     Button(onClick = { permissionState.launchMultiplePermissionRequest() }) {
         Text(text = "Demander la permission")
     }
-else {
+} else {
     Text(text = "Permission accordée")
 }
 ```
@@ -746,7 +746,7 @@ Que fait ce code ?
 
 ## Scannez les périphériques BLE
 
-Sans entrer dans le détails des subtilités du Bluetooth, nous allons décomposer le code permettant de scanner les périphérique BLE. Voilà le résultat final :
+Sans entrer dans le détail des subtilités du Bluetooth, nous allons décomposer le code permettant de scanner les périphériques BLE. Voilà le résultat final :
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/WZessnr9gZ4?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -764,7 +764,7 @@ Pour scanner les périphériques BLE, nous allons avoir besoin de plusieurs chos
 
 Pour rappel, le `Context` est un objet qui permet d'accéder à des informations sur l'application. Dans notre cas, nous allons avoir besoin du contexte pour accéder au Bluetooth du téléphone.
 
-Le terme `Context` est un utilisé dans le développement Android pour faire référence à l'environnement dans lequel l'application s'exécute. Il permet d'accéder à des ressources, des services et des informations sur l'application (préférences, ressources, bleuetooth, etc.).
+Le terme `Context` est utilisé dans le développement Android pour faire référence à l'environnement dans lequel l'application s'exécute. Il permet d'accéder à des ressources, des services et des informations sur l'application (préférences, ressources, Bluetooth, etc.).
 
 ⚠️ C'est un élément obligatoire.
 
@@ -802,7 +802,7 @@ Pour revenir au `Context`, il est possible de le récupérer depuis la vue via u
 
 :::
 
-### Quelques libraires à ajouter
+### Quelques librairies à ajouter
 
 Pour que nous puissions faire notre scan en arrière-plan et échanger les données entre la `View` et le `ViewModel` nous allons avoir besoin de quelques librairies :
 
@@ -907,7 +907,7 @@ class ScanViewModel : ViewModel() {
             val scanCallback = object : ScanCallback() {
                 override fun onScanResult(callbackType: Int, result: ScanResult) {
                     super.onScanResult(callbackType, result)
-                    // On ajoute le résultat dans le set, si il n'y est pas déjà
+                    // On ajoute le résultat dans le set, s'il n'y est pas déjà
                     // L'ajout retourne null si l'élément n'était pas déjà présent
                     if (scanResultsSet.put(result.device.address, result) == null) {
                         // On envoie la nouvelle liste des appareils scannés
@@ -916,12 +916,12 @@ class ScanViewModel : ViewModel() {
                 }
             }
 
-            // On lance le scan BLE a la souscription de scanFlow
+            // On lance le scan BLE à la souscription de scanFlow
             bluetoothLeScanner.startScan(scanFilters, scanSettings, scanCallback)
 
             delay(10000)
 
-            // Lorsque scanFlow est stoppé, on stop le scan BLE
+            // Lorsque scanFlow est stoppé, on stoppe le scan BLE
             bluetoothLeScanner.stopScan(scanCallback)
 
             // On indique que nous ne sommes plus en train de scanner
@@ -940,13 +940,13 @@ Quelques explications :
 
 - `scanItemsFlow` est un `Flow` qui va contenir la liste des appareils scannés. Ce `Flow` va être mis à jour à chaque fois que nous allons scanner un nouvel appareil.
 - `isScanningFlow` est un `Flow` qui va contenir l'état du scan. Ce `Flow` va être mis à jour à chaque fois que nous allons démarrer ou arrêter le scan.
-- `scanJob` est un `Job` qui va contenir le processus de scan. Ce `Job` sera la tâche en cours d'exécution. Elle permettrait de l'annuler si besoin.
+- `scanJob` est un `Job` qui va contenir le processus de scan. Ce `Job` sera la tâche en cours d'exécution. Il permettra de l'annuler si besoin.
 - `bluetoothLeScanner` est un objet qui permet de scanner les périphériques BLE. C'est un objet fourni par Android.
 - `scanFilters` est une liste de filtres qui permet de filtrer les périphériques scannés. Dans notre cas, nous ne filtrons rien.
 - `scanSettings` est un objet qui permet de définir les paramètres du scan. Dans notre cas, nous définissons le mode de scan en `SCAN_MODE_LOW_LATENCY` (le mode le plus rapide, pour avoir les résultats le plus rapidement possible).
 - `scanResultsSet` est un `Set` qui va contenir les résultats du scan. Nous utilisons un `Set` pour éviter d'avoir des doublons dans notre liste.
-- `startScan` est une fonction qui permet de démarrer le scan. Cette fonction va être appelée lors du clique sur le bouton « Débuter le scan ».
-- `clearScanItems` est une fonction qui permet de vider la liste des appareils scannés. Cette fonction va être appelée lors du clique sur le bouton « Vider la liste ».
+- `startScan` est une fonction qui permet de démarrer le scan. Cette fonction va être appelée lors du clic sur le bouton « Débuter le scan ».
+- `clearScanItems` est une fonction qui permet de vider la liste des appareils scannés. Cette fonction va être appelée lors du clic sur le bouton « Vider la liste ».
 - `scanCallback` est un objet qui va être appelé à chaque résultat de scan. Cet objet va nous permettre de mettre à jour notre liste des appareils scannés.
 
 Ici nous avons un code qui est un peu plus complexe, mais complètement lisible. Il faut juste prendre le temps de le décomposer et de comprendre ce que nous faisons (notamment le flow et le callback).
@@ -993,7 +993,7 @@ Quelques explications :
 
 - `ApplicationRoot` est une classe qui permet de récupérer le contexte de l'application depuis n'importe où dans le code. Pour cela il suffit d'appeler `ApplicationRoot.getContext()`.
 - `getContext()` est une fonction qui permet de récupérer le contexte de l'application.
-- `Compagnon` est un objet qui permet de créer des fonctions et des variables statiques. C'est un peu comme si nous avions une classe avec des fonctions et des variables statiques.
+- Le `companion object` est un objet qui permet de créer des fonctions et des variables statiques. C'est un peu comme si nous avions une classe avec des fonctions et des variables statiques.
 
 ### Le fichier AndroidManifest.xml
 
@@ -1011,7 +1011,7 @@ android:name=".ApplicationRoot"
 
 En déclarant notre `ApplicationRoot` dans le `AndroidManifest.xml`, nous indiquons à Android que nous souhaitons utiliser notre classe `ApplicationRoot` comme classe principale de notre application. C'est cette classe qui sera appelée en premier lors du lancement de l'application.
 
-Celle-ci n'affichera rien mais elle sera lancé en premier. C'est ce que nous appelons un point d'entrée, « elle tiendra » une référence au contexte de l'application. C'est ce qui nous permettra d'accéder au Bluetooth depuis notre ViewModel.
+Celle-ci n'affichera rien, mais elle sera lancée en premier. C'est ce que nous appelons un point d'entrée, « elle tiendra » une référence au contexte de l'application. C'est ce qui nous permettra d'accéder au Bluetooth depuis notre ViewModel.
 
 Il n'y a pour l'instant pas d'autre moyen de faire, c'est une limitation de Compose (ou du moins un comportement / astuce à connaitre).
 
@@ -1066,4 +1066,4 @@ Même si je vous ai donné le code au fur et à mesure, je vous laisse le code c
 
 [Code complet](https://github.com/c4software/Android-Composant-sample-ble-scan)
 
-PS: Je vous conseil de créer vous même votre application, c'est en forgeant que l'on devient forgeron.
+PS : je vous conseille de créer vous-même votre application, c'est en forgeant que l'on devient forgeron.

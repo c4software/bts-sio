@@ -1,10 +1,18 @@
+---
+description: "Support de cours sur le framework Laravel : architecture MVC, routeur, contrôleurs, Eloquent, Blade, migrations et sécurité."
+---
+
 # Le framework Laravel
+
+::: details Sommaire
+[[toc]]
+:::
 
 ## Introduction à Laravel
 
 Laravel est un framework PHP moderne pour le développement web, créé par Taylor Otwell en 2011. Il est devenu l'un des frameworks PHP les plus populaires grâce à sa philosophie de "développement web artisanal".
 
-- **Open-source et gratuit**: Laravel est gratuit et open-source sa communauté contribue activement à son développement.
+- **Open-source et gratuit**: Laravel est gratuit et open-source, sa communauté contribue activement à son développement.
 - **Approche MVC**: Laravel utilise le modèle Modèle-Vue-Contrôleur (MVC) pour organiser le code de l'application.
 - **Simplicité et facilité d'apprentissage**: Laravel est conçu pour être accessible aux débutants tout en offrant des fonctionnalités puissantes pour les développeurs expérimentés.
 
@@ -12,7 +20,7 @@ Taylor Otwell a créé Laravel en réaction à la complexité de CodeIgniter, vi
 
 ::: tip Laravel et Symfony
 
-Certains en stage ont peut-être utilisé Symfony. Laravel est souvent comparé à Symfony, un autre framework PHP populaire. Laravel est souvent considéré comme plus simple et plus rapide à prendre en main que Symfony, qui est plus complexe, mais offre une plus grande flexibilité.
+Certains d'entre vous ont peut-être utilisé Symfony en stage. Laravel est souvent comparé à Symfony, un autre framework PHP populaire. Laravel est souvent considéré comme plus simple et plus rapide à prendre en main que Symfony, qui est plus complexe, mais offre une plus grande flexibilité.
 
 **Cependant**, Laravel utilise de nombreux composants de Symfony, notamment le composant HTTP Kernel, le composant Routing, le composant Console, etc. Les deux frameworks partagent donc des similitudes malgré leurs différences.
 
@@ -33,7 +41,7 @@ L'architecture MVC de Laravel se compose de trois parties principales :
 
 1. **Modèle (Model)**: Gère la logique de données et les interactions avec la base de données via la librairie Eloquent (ORM: Object-Relational Mapping).
 2. **Vue (View)**: Gère la présentation des données, principalement à travers le moteur de template Blade.
-3. **Contrôleur (Controller)**: Gère la logique de l'application et sers d'intermédiaire entre le Modèle et la Vue.
+3. **Contrôleur (Controller)**: Gère la logique de l'application et sert d'intermédiaire entre le Modèle et la Vue.
 
 ## Fonctionnement de Laravel
 
@@ -43,8 +51,8 @@ L'architecture MVC de Laravel se compose de trois parties principales :
 
 Le système de routage de Laravel permet de définir les URL de l'application et de les lier aux contrôleurs appropriés. Les routes sont définies dans différents fichiers selon leur usage :
 
-- `web.php`: Pour les routes web standard (sans préfixe). (Par exemple, `/`, `/about`, `/contact`
-- `api.php`: Pour les routes d'API. (Toujours préfixé par `/api`, automatiquement. L'authentification est également gérée différemment. Via un système de jetons avec [Laravel Sanctum](https://laravel.com/docs/12.x/sanctum))
+- `web.php`: Pour les routes web standard (sans préfixe). (Par exemple, `/`, `/about`, `/contact`)
+- `api.php`: Pour les routes d'API. (Toujours préfixées par `/api`, automatiquement. L'authentification est également gérée différemment. Via un système de jetons avec [Laravel Sanctum](https://laravel.com/docs/12.x/sanctum))
 - `console.php`: Pour les commandes console. Nous ne les verrons pas en cours, mais c'est un élément important dans la souplesse de Laravel.
 
 Exemple de définition de route **très simple** :
@@ -166,7 +174,7 @@ Bien que peu recommandé, il est évidemment possible d'écrire des requêtes SQ
 DB::select('select * from todoList where termine = ?', [true]);
 ```
 
-Ici l'objet `DB` est un variable qui représente la base de données. Vous pouvez lui passer des requêtes SQL brutes.
+Ici, l'objet `DB` représente la base de données. Vous pouvez lui passer des requêtes SQL brutes.
 
 :::
 
@@ -185,7 +193,7 @@ Exemple de template Blade (en utilisant la syntaxe `@extends` pour l'héritage d
 @endsection
 ```
 
-Exemple de template blade (en utilisant le système de composants) :
+Exemple de template Blade (en utilisant le système de composants) :
 
 ```html
 <layout-guest>
@@ -205,7 +213,7 @@ Les deux méthodes sont valables et peuvent être utilisées en fonction des bes
 
 :::
 
-### 4.1. Blade les directives
+### 4.1. Les directives Blade
 
 Blade propose des directives pour simplifier l'écriture de templates. Voici quelques exemples de directives courantes :
 
@@ -213,7 +221,7 @@ Blade propose des directives pour simplifier l'écriture de templates. Voici que
 - `@foreach`, `@for`, `@while`: Pour les boucles.
 - `@include`: Pour inclure un autre template.
 
-Avec ces instruction / directives vous pourrez manipuler vos données et les afficher de manière dynamique.
+Avec ces instructions / directives, vous pourrez manipuler vos données et les afficher de manière dynamique.
 
 Exemple d'utilisation de directives :
 
@@ -229,17 +237,17 @@ Exemple d'utilisation de directives :
 @endforeach
 ```
 
-::: tip d'où viennent les données ?
+::: tip D'où viennent les données ?
 
 Les données sont généralement passées aux vues depuis les contrôleurs. Par exemple :
 
 ```php
 $users = User::all();
 $user = User::find(1);
-return view('example.index', ['users' => $users, '$user' => $user]);
+return view('example.index', ['users' => $users, 'user' => $user]);
 ```
 
-Dans cet exemple, `$users` est un tableau d'utilisateurs, et `$user` est un utilisateur spécifique. Les données sont ensuite accessibles dans la vue via la syntaxe Blade `{{ $variable }}`.
+Dans cet exemple, `$users` est un tableau d'utilisateurs, et `$user` est un utilisateur spécifique. Les données sont ensuite accessibles dans la vue via la syntaxe Blade <code v-pre>{{ $variable }}</code>.
 
 :::
 
@@ -275,12 +283,12 @@ Route::get('/demo/{id}', [DemoController::class, "voir"])->middleware('auth');
 
 ::: tip Middleware en deux mots
 
-Un middleware (code intercépteur) est un code qui s'exécute avant ou après une requête HTTP. Il permet de modifier la requête, de vérifier des informations, ou de réaliser des actions spécifiques (exemple: journalisation, gestion des droits, de la sécurité, etc.).
+Un middleware (code intercepteur) est un code qui s'exécute avant ou après une requête HTTP. Il permet de modifier la requête, de vérifier des informations, ou de réaliser des actions spécifiques (exemple: journalisation, gestion des droits, de la sécurité, etc.).
 
 Vous pouvez créer vos propres middlewares pour des besoins spécifiques :
 
 ```bash
-php artisan make:middleware IsUserConnceted
+php artisan make:middleware IsUserConnected
 ```
 
 C'est le cas par exemple dans l'AP3 hackathon, où un middleware vérifie si l'utilisateur est connecté avant de lui permettre d'accéder à certaines pages.
@@ -367,7 +375,7 @@ La sécurité est un aspect crucial du développement web. Laravel offre des fon
 
 ## Laravel is PHP
 
-Laravel est un framework PHP, vous avez donc accès à toutes les fonctionnalités de PHP. Vous pouvez utiliser des bibliothèques tierces, des extensions PHP, etc. Et surtout le code PHP comme vous avez l'habitude de le faire. Exemple, voici les équivalents Laravel et PHP pour le traitement de formulaires et la session :
+Laravel est un framework PHP, vous avez donc accès à toutes les fonctionnalités de PHP. Vous pouvez utiliser des bibliothèques tierces, des extensions PHP, etc. Et surtout le code PHP comme vous avez l'habitude de le faire. Par exemple, voici les équivalents Laravel et PHP pour le traitement de formulaires et la session :
 
 ### $_GET
 

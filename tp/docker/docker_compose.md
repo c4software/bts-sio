@@ -4,15 +4,19 @@ description: Dans ce TP nous allons voir comment créer une vraie arborescence d
 
 # Docker Compose
 
+::: details Sommaire
+[[toc]]
+:::
+
 ## Introduction
 
 Dans ce TP nous allons voir comment créer une vraie arborescence de services avec Docker. Dans une application réelle, il n'est pas rare d'avoir plusieurs technologies (ou plusieurs « services ») pour assurer le bon fonctionnement d'un système dans son ensemble (exemple : pour faire fonctionner mon application j'ai besoin de MySQL, PHP, et d'un serveur Web pour l'interface client).
 
 C'est dans des cas comme celui-ci que nous allons utiliser Docker Compose. Avec Docker Compose, nous allons créer une architecture multi-conteneurs que l'on peut appeler « stack ». Cette stack sera :
 
-- **Autonome** — prête à être déployée partout, quelle que soit la plateforme cible.
-- **Pré-paramétrée** — tout est décrit dans le fichier `docker-compose.yml`.
-- **Isolée** — tous les services ne sont pas forcément accessibles depuis l'extérieur, mais peuvent communiquer entre eux.
+- **Autonome** : prête à être déployée partout, quelle que soit la plateforme cible.
+- **Pré-paramétrée** : tout est décrit dans le fichier `docker-compose.yml`.
+- **Isolée** : tous les services ne sont pas forcément accessibles depuis l'extérieur, mais peuvent communiquer entre eux.
 - **Administrable simplement** grâce au CLI (`docker compose up/down/start/stop`).
 
 ## Docker Compose est déjà installé

@@ -2,7 +2,7 @@
 description: La solution présentée dans cette page décrit l'installation de la solution Open-Source développée par Valentin Brosseau disponible sur GitHub
 ---
 
-# Transformer un Raspberry Pi en server Web
+# Transformer un Raspberry Pi en serveur Web
 
 ::: details Sommaire
 [[toc]]
@@ -16,7 +16,7 @@ La solution présentée dans cette page décrit l'installation de la solution Op
 
 Dans cette page nous allons détailler la mise en place d'un serveur web « Multi-utilisateur » / « Multi-Projets ». Ce serveur reposera sur une plateforme connue du type Raspberry Pi et sur le système de container Docker.
 
-La solution final pourra ressembler à :
+La solution finale pourra ressembler à :
 
 | ![Version 1](./res/version1.jpg) | ![Version 2](./res/version2.jpg) |
 | -------------------------------- | -------------------------------- |
@@ -29,7 +29,7 @@ Ce que nous allons installer n'est pas conçu pour héberger des sites publics. 
 L'autre raison est le FTP, celui-ci est volontairement ouvert à toutes les connexions. Ce fonctionnement nous sera très utile pour la phase de création d'un site, mais **c'est bien évidemment à proscrire** pour une machine ouverte sur Internet.
 :::
 
-Ce que nous allons installé s'appelle une stack LAMP (Linux, Apache, MySQL, PHP) elle ne diffère pas de celle que vous pouvez installer sur votre ordinateur avec des logiciels tels que (XAMPP ou WAMP ou autres). La seule différence c'est que nous allons dédier une machine pour ça.
+Ce que nous allons installer s'appelle une stack LAMP (Linux, Apache, MySQL, PHP), elle ne diffère pas de celle que vous pouvez installer sur votre ordinateur avec des logiciels tels que XAMPP, WAMP ou autres. La seule différence c'est que nous allons dédier une machine pour ça.
 
 <center>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/y7HzFidjKjs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -51,18 +51,18 @@ La version Lite ne contient aucun environnement de bureau. Il faudra donc active
 
 ### Activer le SSH
 
-Avant de redémarrer le Raspberry Pi avec la carte SD inséré, nous allons activer le SSH sur le « mini-ordinateur ». Pour ça rien de bien compliqué il suffit de créer un fichier nommé `ssh` sur la partition de boot de la carte SD.
+Avant de démarrer le Raspberry Pi avec la carte SD insérée, nous allons activer le SSH sur le « mini-ordinateur ». Pour ça rien de bien compliqué, il suffit de créer un fichier nommé `ssh` sur la partition de boot de la carte SD.
 
 ```sh
 # Exemple sous mac
 touch /Volumes/boot/ssh
 ```
 
-Une fois le fichier créé vous pouvez retirer la Carte SD et l'insérer dans votre Raspberry Pi
+Une fois le fichier créé, vous pouvez retirer la carte SD et l'insérer dans votre Raspberry Pi.
 
 ## Installer Docker
 
-Docker n'est pas disponible de base sur l'OS fourni par la fondation. Par contre il est très simple de l'installer grace au système de paquet intégré à Raspbian (pardon Raspberry Pi OS).
+Docker n'est pas disponible de base sur l'OS fourni par la fondation. Par contre il est très simple de l'installer grâce au système de paquets intégré à Raspbian (pardon, Raspberry Pi OS).
 
 ```sh
 # Étape 1 : Mettre à jour l'OS
@@ -81,7 +81,7 @@ De manière générale lancer **en root** un script téléchargé depuis Interne
 
 ## Installer Docker-Compose
 
-Docker compose est un ajout intéressant à Docker, il va nous permettre de définir des « stacks applicatives » à base de différent container Docker. Dans notre cas, ça va être très intéressant en effet un serveur LAMP est en réalité constitué de différents logiciels :
+Docker compose est un ajout intéressant à Docker, il va nous permettre de définir des « stacks applicatives » à base de différents containers Docker. Dans notre cas, ça va être très intéressant : en effet, un serveur LAMP est en réalité constitué de différents logiciels :
 
 - Apache + PHP.
 - MySQL.
@@ -100,7 +100,7 @@ sudo pip3 -v install docker-compose
 
 ## Installer la stack LAMP
 
-Docker est maintenant disponible sur notre machine. Nous allons donc simplement récupérer les sources « de la stacks » LAMP pour la lancer sur notre Raspberry Pi. Le code est entièrement disponible sur [mon compte Github](https://github.com/c4software/rpi-docker-lamp-stack) nous allons donc avoir besoin de `git` pour le récupérer :
+Docker est maintenant disponible sur notre machine. Nous allons donc simplement récupérer les sources « de la stack » LAMP pour la lancer sur notre Raspberry Pi. Le code est entièrement disponible sur [mon compte Github](https://github.com/c4software/rpi-docker-lamp-stack) nous allons donc avoir besoin de `git` pour le récupérer :
 
 ```sh
 sudo apt install git
@@ -118,7 +118,7 @@ En réalisant cette commande vous allez créer dans **le dossier courant** un do
 
 ## Lancer la stack LAMP
 
-Maintenant que le code est sur votre Raspberry Pi. Il suffit de le lancer pour le rendre actif. Avec Docker, pas d'icône sur le bureau! Il suffit de :
+Maintenant que le code est sur votre Raspberry Pi, il suffit de le lancer pour le rendre actif. Avec Docker, pas d'icône sur le bureau ! Il suffit de :
 
 ```sh
 cd rpi-docker-lamp-stack
@@ -133,7 +133,7 @@ Votre stack LAMP est maintenant disponible sur votre Raspberry Pi. Vous pouvez y
 
 ## Fonctionnement
 
-Vous avez donc lancé l'ensemble des services de la stack LAMP sur votre Raspberry PI. C'est terminé ! Votre serveur est prêt à recevoir vos projets ; Votre Raspberry Pi expose les services suivants :
+Vous avez donc lancé l'ensemble des services de la stack LAMP sur votre Raspberry Pi. C'est terminé ! Votre serveur est prêt à recevoir vos projets. Votre Raspberry Pi expose les services suivants :
 
 | Service |  Port |
 | ------- | ----: |
@@ -169,19 +169,19 @@ Le FTP possède deux modes de fonctionnement :
 - Un mode « ouvert à tous » avec des mots de passe autogénérés acceptant l'ensemble des utilisateurs présentant le bon format de mot de passe.
 - Un mode classique reposant sur une liste de comptes « préalablement fournie ».
 
-Nous avons donc un serveur FTP, celui-ci est disponible sur le port 20121 (pourquoi pas sur le port 21 ? Tout simplement pour _réduire_ un piratage…). Il fonctionne comme un FTP classique, vous devez donc utiliser un logiciel du type [Filezilla](https://filezilla-project.org/), [Cyberduck](https://cyberduck.io/).
+Nous avons donc un serveur FTP, celui-ci est disponible sur le port 20121 (pourquoi pas sur le port 21 ? Tout simplement pour _réduire_ les risques de piratage…). Il fonctionne comme un FTP classique, vous devez donc utiliser un logiciel du type [Filezilla](https://filezilla-project.org/), [Cyberduck](https://cyberduck.io/).
 
 ::: danger À noter
 Les deux modes sont exclusifs, si vous fournissez une liste d'utilisateurs (mode classique) celui-ci remplacera le mode automatique.
 :::
 
-### Mode 1 : Ouvert à tous.
+### Mode 1 : Ouvert à tous
 
 ::: tip IMPORTANT
 Le FTP intégré est un peu particulier. Il est volontairement ouvert à tous, qu'est-ce que ça veut dire concrètement ?
 :::
 
-Pour le fonctionnement, celui-ci accepte n'import quel nom d'utilisateur du moment que le mot de passe fourni respecte le formalisme suivant :
+Pour le fonctionnement, celui-ci accepte n'importe quel nom d'utilisateur du moment que le mot de passe fourni respecte le formalisme suivant :
 
 ```c
 # Example
@@ -203,11 +203,11 @@ password: RPI|anythingyouwant|LAMP
 # etc.
 ```
 
-Le compte de l'utilisateur est automatiquement créé lors de la première connexion. Dès l'instant que le FTP fonctionne, la partie WEB fonctionnera également 🚀.
+Le compte de l'utilisateur est automatiquement créé lors de la première connexion. Dès l'instant où le FTP fonctionne, la partie Web fonctionnera également 🚀.
 
 ### Mode 2 : Le mode classique
 
-Dans le mode classique, vous devez spécifier la liste des utilisateurs ayant accès au FTP. Cette liste est au format `JSON`, le fichier est dans `ftp/users/users.json`. La liste doit-être au format JSON par exemple :
+Dans le mode classique, vous devez spécifier la liste des utilisateurs ayant accès au FTP. Cette liste est au format `JSON`, le fichier est dans `ftp/users/users.json`. Par exemple :
 
 ```json
 {
@@ -218,7 +218,7 @@ Dans le mode classique, vous devez spécifier la liste des utilisateurs ayant ac
 
 ## Accéder à votre Raspberry Pi
 
-Maintenant que vous avez envoyé votre code source sur le serveur FTP celui-ci est accessible via le lien :
+Maintenant que vous avez envoyé votre code source sur le serveur FTP, celui-ci est accessible via le lien :
 
 ```c
 http://raspberrypi.local/~lenomducompte

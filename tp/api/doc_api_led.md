@@ -1,14 +1,14 @@
 ---
-description: Cette documentation décrit le fonctionnement de l'API « Fake LED »
+description: Cette documentation décrit le fonctionnement de l'API « Fake LED ».
 ---
 
-# Fake LED Api
+# Fake LED API
 
-Cette documentation décrit le fonctionnement de l'API « Fake LED »
+Cette documentation décrit le fonctionnement de l'API « Fake LED ».
 
 ## Modèle
 
-Voilà le modèle des données renvoyé par le serveur.
+Voilà le modèle des données renvoyées par le serveur.
 
 ## Status
 
@@ -38,7 +38,7 @@ GET
 https://[SERVER]/setStatus?name=[NAME]&status=false
 ```
 
-### Obtenir le status
+### Obtenir le statut
 
 GET
 

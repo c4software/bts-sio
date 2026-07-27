@@ -1,12 +1,16 @@
+---
+description: Questions complémentaires pour réviser le JavaScript moderne (string templates, fetch, forEach, map, filter).
+---
+
 # Questions complémentaires
 
 ## Question 1
 
-Réécrire le code suivant via le String Templates :
+Réécrire le code suivant via les String Templates :
 
 ```javascript
 let prenom = "valentin";
-console.log("Bonjour " + valentin + ", ceci est la première question.");
+console.log("Bonjour " + prenom + ", ceci est la première question.");
 ```
 
 ## Question 2
@@ -27,7 +31,7 @@ let tableau = ["MyDigitalSchool", "ESEO", "BTS", "Playmoweb"];
 
 ## Question 4
 
-En utilisant la méthode `map`, multiplier par `10` l'ensemble des éléments présent dans le tableau suivant :
+En utilisant la méthode `map`, multiplier par `10` l'ensemble des éléments présents dans le tableau suivant :
 
 ```javascript
 let tableau = [1, 2, 3, 4, 5];
@@ -35,7 +39,7 @@ let tableau = [1, 2, 3, 4, 5];
 
 ## Question 5
 
-En utilisant la méthode `map` et `filter`, multiplier l'ensemble des éléments par `10` et filtrer pour ne garder que ceux `supérieurs à 20`.
+En utilisant les méthodes `map` et `filter`, multiplier l'ensemble des éléments par `10` et filtrer pour ne garder que ceux `supérieurs à 20`.
 
 ```javascript
 let tableau = [1, 2, 3, 4, 5];

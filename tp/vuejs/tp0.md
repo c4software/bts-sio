@@ -4,6 +4,10 @@ description: Dans ce TP nous allons découvrir l'utilisation de VueJS sans Webpa
 
 # Prise en main de VueJS 2.0
 
+::: warning Ce contenu est conservé à titre d'archive
+Ce TP repose sur VueJS 2, qui n'est plus maintenu depuis fin 2023. Pour apprendre Vue aujourd'hui, suivez plutôt [les TP VueJS 3](/pages/categories/les-tp-javascript.md).
+:::
+
 Dans ce TP nous allons découvrir l'utilisation de VueJS sans Webpack. Nous allons donc utiliser directement le CDN de VueJS.
 
 ::: details Table des matières
@@ -15,7 +19,7 @@ Dans ce TP nous allons découvrir l'utilisation de VueJS sans Webpack. Nous allo
 Ajouter VueJS dans un projet est aussi simple que d'ajouter une librairie. Première étape, créer un fichier `index.html` puis insérer à l'intérieur « une structure HTML 5 »
 
 ::: tip
-Si vous utilisez Visual Studio Code, vous pouvez faire html:5<kbd>Tab</kbd> une structure HTML sera automatiquement écrite.
+Si vous utilisez Visual Studio Code, vous pouvez taper `html:5` puis <kbd>Tab</kbd> : une structure HTML sera automatiquement écrite.
 :::
 
 ```html
@@ -32,7 +36,7 @@ Si vous utilisez Visual Studio Code, vous pouvez faire html:5<kbd>Tab</kbd> une 
 </html>
 ```
 
-Pour ajouter VueJS dans la page ? Il faut juste ajouter la balise script suivante dans le « head » de votre page :
+Comment ajouter VueJS dans la page ? Il faut juste ajouter la balise script suivante dans le « head » de votre page :
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
@@ -89,7 +93,7 @@ new Vue({
 });
 ```
 
-Vous venez de déclarer une nouvelle méthode, celle-ci se nomme `action`, celle-ci affiche « Bravo ». Il faut donc maintenant l'appeler…
+Vous venez de déclarer une nouvelle méthode, celle-ci se nomme `action` et affiche « Bravo ». Il faut donc maintenant l'appeler…
 
 En VueJS, c'est simple ! Il vous suffit d'ajouter _dans_ `<div id="app"></div>` un bouton. Après modification votre code doit ressembler à :
 
@@ -107,12 +111,12 @@ En VueJS, c'est simple ! Il vous suffit d'ajouter _dans_ `<div id="app"></div>` 
 
 Un bouton c'est bien, mais une liste c'est mieux non ? Vous allez voir qu'afficher une liste c'est aussi simple qu'un bonjour 👋. Comme vu ensemble en cours, nous allons :
 
-- Déclarez-les `data`.
+- Déclarer les `data`.
 - Faire un `v-for` dans le code.
 
 ### Les data
 
-Vous vous souvenez comment déclarer les datas ? Non !? un petit rappel alors, nous allons déclarer un tableau (`[]`) directement dans la méthode `data` de notre objet VueJS. Quelque chose comme :
+Vous vous souvenez comment déclarer les datas ? Non !? Un petit rappel alors : nous allons déclarer un tableau (`[]`) directement dans la méthode `data` de notre objet VueJS. Quelque chose comme :
 
 ```js
 data(){
@@ -149,7 +153,7 @@ new Vue({
 
 ### Afficher la liste
 
-Pour afficher la liste nous allons devoir faire un `v-for` sur l'élément qui sera `répété` ou `afficher plusieurs fois`. Exemple :
+Pour afficher la liste nous allons devoir faire un `v-for` sur l'élément qui sera `répété` ou `affiché plusieurs fois`. Exemple :
 
 ```html
 <ul>
@@ -157,7 +161,7 @@ Pour afficher la liste nous allons devoir faire un `v-for` sur l'élément qui s
 </ul>
 ```
 
-Ajouter le code HTML dans la `div#data`, vous devez obtenir :
+Ajouter le code HTML dans la `div#app`, vous devez obtenir :
 
 ```html
 <div id="app">
@@ -171,13 +175,13 @@ Ajouter le code HTML dans la `div#data`, vous devez obtenir :
 
 🚀 Tester votre application ! Vous devez voir les éléments de votre liste.
 
-🤓 Tester d'ajouter un élément « à la main » via les VueJS dev tools.
+🤓 Essayer d'ajouter un élément « à la main » via les VueJS dev tools.
 
 ## Ajouter un élément dans la liste
 
 Le but de VueJS c'est aussi de rendre simple la modification de la vue / template / affichage. Nous allons (enfin vous…) modifier le code précédent pour ajouter dans la liste l'élément saisi par l'utilisateur :
 
-Modifier la méthode action pour y mettre le code suivante :
+Modifier la méthode `action` pour y mettre le code suivant :
 
 ```js
 this.liste.push(prompt("Entrer une valeur"));
@@ -199,12 +203,12 @@ Un prompt c'est « pas très beau » non ? Passer par un input HTML serait quand
 
 ☝️ Quelques explications :
 
-- `@keyup.enter` Permets de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
-- `ref` permet de déclarer une référence vers l'élément HTML, celui-ci sera ensuite disponible par `$refs['input']`
+- `@keyup.enter` permet de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
+- `ref` permet de déclarer une référence vers l'élément HTML, celui-ci sera ensuite disponible par `$refs['input']`.
 
 ## Et via un input 2 ?
 
-La première solution est pas trop mal, mais, utiliser les data est serait certainement une meilleure idée. Autre solution, mais tout aussi simple (et certainement bien meilleur).
+La première solution n'est pas trop mal, mais utiliser les data serait certainement une meilleure idée. Voici une autre solution, tout aussi simple (et certainement bien meilleure).
 
 - Déclarer une nouvelle variable dans les `data`, par exemple, dans mon cas la variable est `saisie` :
 
@@ -217,7 +221,7 @@ data(){
 }
 ```
 
-- Ajouter un input qui utiliser la variable saisie :
+- Ajouter un input qui utilise la variable `saisie` :
 
 ```html
 <input type="text" v-model="saisie" @keyup.enter="liste.push(saisie)" />
@@ -225,14 +229,14 @@ data(){
 
 ☝️ Quelques explications :
 
-- `v-model` Permets de connecter la variable saisie à votre input.
-- `@keyup.enter` Permets de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
+- `v-model` permet de connecter la variable `saisie` à votre input.
+- `@keyup.enter` permet de déclarer une méthode qui sera appelée lors de l'appui sur la touche entrée.
 
 ## L'input n'est pas vidé ?
 
-Comme vous l'avez très certainement remarqué, le champ n'est pas vidé après une saisie… Vous avez deux solutions pour faire ça:
+Comme vous l'avez très certainement remarqué, le champ n'est pas vidé après une saisie… Vous avez deux solutions pour faire ça :
 
 - Modifier le code dans le `@keyup.enter` pour effacer la variable `saisie`. (Via la création d'une nouvelle méthode dans votre objet).
 - Autre solution via un watcher sur la variable `saisie`.
 
-C'est à vous implémenté la première solution, puis la seconde.
+C'est à vous : implémentez la première solution, puis la seconde.

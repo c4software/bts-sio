@@ -1,15 +1,23 @@
 ---
-description: Maintenant que nous avons vu les bases de Cordova (Création, Plateforme, plug-in). Intéressons-nous à la création d’une vraie application.
+description: "Maintenant que nous avons vu les bases de Cordova (création, plateformes, plug-ins), intéressons-nous à la création d’une vraie application."
 ---
 
 # VueJS et Cordova
 
-Maintenant que nous avons vu les bases de Cordova (Création, Plateforme, plug-in). Intéressons-nous à la création d’une vraie application. Dans le monde de Cordova il existe plusieurs façons de faire :
+::: warning Ce contenu est conservé à titre d'archive
+Cordova n'est plus activement maintenu. Ce TP reste consultable pour comprendre les concepts, mais pour un nouveau projet mobile hybride, orientez-vous plutôt vers [Capacitor](https://capacitorjs.com/) ou [Flutter](/tp/flutter/sample_code.md).
+:::
 
-- Sans Framework.
-- Avec un framework web classique (type VueJS, ReactJS…)
-- Avec un framework dédié type Ionic
-- Avec des solutions comme Phonegap
+::: details Sommaire
+[[toc]]
+:::
+
+Maintenant que nous avons vu les bases de Cordova (création, plateformes, plug-ins), intéressons-nous à la création d’une vraie application. Dans le monde de Cordova il existe plusieurs façons de faire :
+
+- Sans framework.
+- Avec un framework web classique (type VueJS, ReactJS…).
+- Avec un framework dédié type Ionic.
+- Avec des solutions comme Phonegap.
 
 Pour ce TP nous allons réaliser une application en utilisant Cordova + VueJS.
 
@@ -19,7 +27,7 @@ Nous allons réaliser une application qui teste plusieurs plug-ins Cordova. Cett
 
 ![Sample](./ressources/sample.png)
 
-Cette application sera très simple. Mais va permettre de tester la puissance de Cordova, nous allons utiliser les plug-ins suivants :
+Cette application sera très simple, mais elle va permettre de tester la puissance de Cordova. Nous allons utiliser les plug-ins suivants :
 
 - cordova-plugin-dialogs
 - cordova-plugin-vibration
@@ -34,11 +42,11 @@ Cette application sera très simple. Mais va permettre de tester la puissance de
 
 Le projet étant assez conséquent je vous propose de partir d’une base déjà faite de l’application. Celle-ci contient :
 
-- L’accueil
-- Les scripts pour compiler la partie Cordova
+- L’accueil.
+- Les scripts pour compiler la partie Cordova.
 - Les plug-ins « préconfigurés » / déclarés dans le fichier `config.xml`.
 
-Le code est [téléchargeable ici](/sample/vuejs-cordova-sample.zip)
+Le code est [téléchargeable ici](/sample/vuejs-cordova-sample.zip).
 
 ## Utiliser le code fourni
 
@@ -46,23 +54,23 @@ Maintenant que vous avez récupéré le code. Nous allons le rendre fonctionnel 
 
 ### 1. Compiler une première fois le code (VueJS)
 
-Le projet étant « non compilé » / « non installé », nous allons devoir dans un premier temps installer les dépendances nécessaires à notre projet. Pour se faire nous allons utiliser `npm` avec la commande `install`. Dans le dossier du projet :
+Le projet étant « non compilé » / « non installé », nous allons devoir dans un premier temps installer les dépendances nécessaires à notre projet. Pour ce faire, nous allons utiliser `npm` avec la commande `install`. Dans le dossier du projet :
 
 ```bash
 npm install .
 ```
 
-Les dépendances « VueJS » s’installent, l’installation peut prendre quelques minutes. Une fois installé tester le fonctionnement avec la commande :
+Les dépendances « VueJS » s’installent, l’installation peut prendre quelques minutes. Une fois l’installation terminée, testez le fonctionnement avec la commande :
 
 ```bash
 npm run serve
 ```
 
-Ouvrez un navigateur et accédez à l’url suivante [http://localhost:8080/](http://localhost:8080/) vous devez voir :
+Ouvrez un navigateur et accédez à l’URL suivante [http://localhost:8080/](http://localhost:8080/), vous devez voir :
 
 ![run1](./ressources/run1.png)
 
-- Passer en mode « simulation de mobile » pour être proche de la compilation final.
+- Passer en mode « simulation de mobile » pour être proche du rendu final.
 
 ### 2. Ajouter la plateforme (Cordova)
 
@@ -74,7 +82,7 @@ mkdir www
 cordova platform add android
 ```
 
-✋ Attention, veiller à bien créer le dossier `www` pour que l'outil Cordova détecte bien le projet comme étant un projet Cordova.
+✋ Attention, veillez à bien créer le dossier `www` pour que l'outil Cordova détecte bien le projet comme étant un projet Cordova.
 
 ### 3. Lancer sur votre mobile (ou émulateur)
 
@@ -84,12 +92,12 @@ Maintenant que la plateforme est prête et que notre code est disponible, nous a
 npm run build
 ```
 
-✋ La configuration de base d’un projet VueJS créé par VueCLI n’est pas forcément le plus adaptée pour Cordova. J’ai donc édité les fichiers :
+✋ La configuration de base d’un projet VueJS créé par VueCLI n’est pas forcément la plus adaptée pour Cordova. J’ai donc édité les fichiers :
 
 - `build/build.js`
 - `config/index.js`
 
-Vous pouvez jeter un coup d’oeil pour voir les différences avec la version normale. Notamment la partie concernant le file://, cordova utilise l’URI `file://` pour servir les ressources dans l’APK, par défaut les développeurs de VueCLI ont mis des liens avec `/` en dur ce qui pose des soucis. J’ai donc remplacé le `/` par `./` ce qui corrige le souci.
+Vous pouvez jeter un coup d’œil pour voir les différences avec la version normale, notamment la partie concernant le `file://`. Cordova utilise l’URI `file://` pour servir les ressources dans l’APK ; par défaut, les développeurs de VueCLI ont mis des liens avec `/` en dur, ce qui pose des soucis. J’ai donc remplacé le `/` par `./`, ce qui corrige le souci.
 
 Maintenant que le « build » est terminé, nous pouvons réaliser le lancement sur le mobile via les commandes suivantes :
 
@@ -106,7 +114,7 @@ Pour commencer, nous allons ajouter la vue « Localisation ». C’est certainem
 
 ![Localisation](./ressources/localisation.png)
 
-- Créer un fichier `Localisation.vue` dans le dossier `views/`
+- Créer un fichier `Localisation.vue` dans le dossier `views/`.
 - Ajouter le contenu suivant :
 
 ```js
@@ -232,7 +240,7 @@ import Localisation from "@/views/Localisation";
 }
 ```
 
-- Lancer le serveur des developpement :
+- Lancer le serveur de développement :
 
 ```bash
 npm run serve
@@ -254,12 +262,12 @@ Cette vue est très simple, elle a pour but d’utiliser le plug-in vibration. A
 L’écriture de la fonctionnalité va se dérouler en 3 étapes :
 
 - Création de `Vibration.vue` dans `views`.
-- Écriture de code de la vue.
+- Écriture du code de la vue.
 - Déclaration de la route.
 
 ### 1. Le code
 
-Le projet étant déjà réalisé le plug-in est déjà installé, il nous suffit donc d’écrire le code de la vue. Je vous laisse la base du code, je vous laisse écrire le code permettant la vibration :
+Le projet étant déjà réalisé, le plug-in est déjà installé, il nous suffit donc d’écrire le code de la vue. Je vous fournis la base, je vous laisse écrire le code permettant la vibration :
 
 ```js
 // Require Cordova plugin : cordova-plugin-vibration
@@ -277,7 +285,7 @@ Le projet étant déjà réalisé le plug-in est déjà installé, il nous suffi
       doVibrate () {
         // Test si la vibration est disponible
         if (navigator.vibrate){
-            // Code ICI (utiliser la documentation bien évidement…)
+            // Code ICI (utiliser la documentation bien évidemment…)
         }else{
           console.error("[cordova-plugin-vibration] Is required to use this function");
         }
@@ -307,21 +315,21 @@ import Vibration from "@/views/Vibration";
 
 ## Ajouter la vue Flash
 
-Une lampe torche c’est drôle non ? Et bien nous allons réaliser une nouvelle page qui aura pour simple but d’allumer (ou éteindre) le flash de votre téléphone. Pour ça nous allons utiliser le plug-in `cordova-plugin-flashlight`, avant d’écrire le code nous allons lire la documentation à [l’adresse suivante](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin). C’est fait ? Passons au code.
+Une lampe torche, c’est drôle non ? Eh bien nous allons réaliser une nouvelle page qui aura pour simple but d’allumer (ou éteindre) le flash de votre téléphone. Pour ça nous allons utiliser le plug-in `cordova-plugin-flashlight`, avant d’écrire le code nous allons lire la documentation à [l’adresse suivante](https://github.com/EddyVerbruggen/Flashlight-PhoneGap-Plugin). C’est fait ? Passons au code.
 
 L’écriture va se dérouler en 3 étapes :
 
 - Création de `Flash.vue` dans `views`.
-- Écriture de code de la vue.
+- Écriture du code de la vue.
 - Déclaration de la route.
 
-✋ Petite subtilité! N’oubliez pas, VueJS propose une gestion du cycle de vie. Dans cette vue ça va nous servir, nous allons utiliser le `beforeDestroy` pour éteindre la lampe si celle si est allumée.
+✋ Petite subtilité ! N’oubliez pas, VueJS propose une gestion du cycle de vie. Dans cette vue ça va nous servir, nous allons utiliser le `beforeDestroy` pour éteindre la lampe si celle-ci est allumée.
 
 ### 1. Le code
 
 Voici la structure de code. Je vous laisse la compléter.
 
-✋ N’oublier pas de gérer le `beforeDestroy` pour stopper le flash en changeant de « page »
+✋ N’oubliez pas de gérer le `beforeDestroy` pour stopper le flash en changeant de « page ».
 
 ```js
 <template>
@@ -401,17 +409,17 @@ import Flash from "@/views/Flash";
 
 ## Ajouter la vue Camera
 
-Après le flash, pourquoi ne pas prendre une photo? Et bien avec Cordova c’est très simple. En quelques bouts de code JavaScript, vous allez pouvoir utiliser l’appareil photo du téléphone. Nous allons utiliser le plug-in `cordova-plugin-camera`, avant d’attaquer le code regardez la documentation [disponible ici](https://github.com/apache/cordova-plugin-camera#api-reference-).
+Après le flash, pourquoi ne pas prendre une photo ? Eh bien avec Cordova c’est très simple. En quelques bouts de code JavaScript, vous allez pouvoir utiliser l’appareil photo du téléphone. Nous allons utiliser le plug-in `cordova-plugin-camera`, avant d’attaquer le code regardez la documentation [disponible ici](https://github.com/apache/cordova-plugin-camera#api-reference-).
 
 L’écriture va se dérouler en 3 étapes :
 
 - Création de `Camera.vue` dans `views`.
-- Écriture de code de la vue.
+- Écriture du code de la vue.
 - Déclaration de la route.
 
 ### 1. Le code
 
-Pour la caméra, nous allons « juste » faire une simple vue qui permet de lancer l’appareil photo et on affichera l’image prise dans l’application (tester différentes options pour regarder le fonctionnement du plug-in). Voici la structure de code :
+Pour la caméra, nous allons « juste » faire une simple vue qui permet de lancer l’appareil photo, et on affichera l’image prise dans l’application (testez différentes options pour observer le fonctionnement du plug-in). Voici la structure de code :
 
 ```js
 // Require Cordova plugin : cordova-plugin-camera
@@ -469,7 +477,7 @@ Pour la caméra, nous allons « juste » faire une simple vue qui permet de lanc
 - Ajouter l’import dans `router/index.js` :
 
 ```js
-import Vibration from "@/views/Camera";
+import Camera from "@/views/Camera";
 ```
 
 - Ajouter l’élément **_au bon endroit_** suivant dans `router/index.js` :
@@ -484,17 +492,17 @@ import Vibration from "@/views/Camera";
 
 ## Un peu plus? Oui! Le NFC
 
-Il est également possible d’interagir avec la « puce » NFC de votre mobile (si équipé bien sûr). Comme toujours ça passe par un plug-in `phonegap-nfc` le plug-in est plus complet, mais par contre la lecture du serial number est plutôt simple. C’est ce que l’on va voir dans cette partie.
+Il est également possible d’interagir avec la « puce » NFC de votre mobile (s’il en est équipé bien sûr). Comme toujours, ça passe par un plug-in : `phonegap-nfc`. Le plug-in est assez complet, mais la lecture du serial number est plutôt simple. C’est ce que l’on va voir dans cette partie.
 
 L’écriture va se dérouler en 3 étapes :
 
 - Création de `Nfc.vue` dans `views`.
-- Écriture de code de la vue.
+- Écriture du code de la vue.
 - Déclaration de la route.
 
 ### 1. Le code
 
-Le code de la partie NFC est un peu plus complexe. Pour la démo, j’ai mis un exemple de lecture du « numéro de série » d’un tag NFC (avec historique)
+Le code de la partie NFC est un peu plus complexe. Pour la démo, j’ai mis un exemple de lecture du « numéro de série » d’un tag NFC (avec historique).
 
 ```js
 // Require Cordova plugin : phonegap-nfc
@@ -620,7 +628,7 @@ Le code de la partie NFC est un peu plus complexe. Pour la démo, j’ai mis un 
 - Ajouter l’import dans `router/index.js` :
 
 ```js
-import Vibration from "@/views/Nfc";
+import Nfc from "@/views/Nfc";
 ```
 
 - Ajouter l’élément **_au bon endroit_** suivant dans `router/index.js` :
@@ -633,24 +641,24 @@ import Vibration from "@/views/Nfc";
 }
 ```
 
-### Évolution 0
+## Évolution 0
 
-L'ensemble de vos boutons d'action ne sont pas centrés… Plutôt moche n'est-ce pas ! Regarder la documentation de Vuetify (par [ici est une bonne piste](https://vuetifyjs.com/en/framework/alignment)) et trouver une solution pour aligner les différents boutons.
+Vos boutons d'action ne sont pas centrés… Plutôt moche, n'est-ce pas ? Regardez la documentation de Vuetify ([par ici](https://vuetifyjs.com/en/framework/alignment), c'est une bonne piste) et trouvez une solution pour aligner les différents boutons.
 
-### Évolution 1
+## Évolution 1
 
-Le code de la vue NFC est plutôt… complexe ! Remplacez-le `v-list` de la vue précédente par un tableau `v-datatable`, attention à bien regarder la documentation.
+Le code de la vue NFC est plutôt… complexe ! Remplacez le `v-list` de la vue précédente par un tableau `v-datatable`, attention à bien regarder la documentation.
 
-### Évolution 2
+## Évolution 2
 
 L'ouverture du menu est actuellement possible, mais uniquement en appuyant sur le bouton, c'est bien, mais ce n’est pas vraiment ce que l'on attend d'une application mobile, heureusement Vuetify propose nativement une option pour effectuer une action via un « swipe ».
 
 - Pour ça il faut ajouter la directive [v-touch](https://vuetifyjs.com/en/directives/touch-support#touch-support).
-- Éditer le fichier `App.vue` ajouter le `v-touch` sur le `v-content` comme spécifié dans la documentation.
-- Sur la direction voulu ajouter l'appel à une `methods` qui exécute le code :
+- Éditer le fichier `App.vue` pour ajouter le `v-touch` sur le `v-content` comme spécifié dans la documentation.
+- Sur la direction voulue, ajouter l'appel à une `methods` qui exécute le code :
 
 ```js
 document.dispatchEvent(new CustomEvent("toggleDrawer", {}));
 ```
 
-⚠️ Arrivé ici ? Appelez-moi ! On debrief.
+⚠️ Arrivés ici ? Appelez-moi ! On débriefe ensemble.

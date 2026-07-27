@@ -14,7 +14,7 @@ Dans ce TP/TD nous allons voir comment il est possible d'automatiser l'installat
 
 Nous avons vu via les différents TP qu'il était relativement simple de conteneuriser une application Web. Nous avons également vu qu'il était possible de créer une stack complète avec Docker Compose ([voir aide mémoire](/cheatsheets/serveur/debian-docker.md)).
 
-Cependant, l'installation reste manuelle (`docker compose up -d`) et peut être source d'erreur (oubli de paramètre, erreur de syntaxe, etc.). Pour pallier à ce problème, de nombreux outils existent (Kubernetes, Rancher, etc.). Cependant, ces outils sont souvent complexes à mettre en place et à maintenir.
+Cependant, l'installation reste manuelle (`docker compose up -d`) et peut être source d'erreur (oubli de paramètre, erreur de syntaxe, etc.). Pour pallier ce problème, de nombreux outils existent (Kubernetes, Rancher, etc.). Cependant, ces outils sont souvent complexes à mettre en place et à maintenir.
 
 Aujourd'hui, nous allons voir un outil simple et efficace pour automatiser le déploiement de nos applications Web : [Kamal](https://kamal-deploy.org/).
 
@@ -29,7 +29,7 @@ Kamal est un outil en ligne de commande, celui-ci peut être installé de deux m
 - Via un Gem (gestionnaire de paquets Ruby). Pour cela, il vous faudra installer Ruby sur votre machine.
 - Via Docker. (Évite d'installer Ruby sur votre machine)
 
-Dans ce TP, nous allons utiliser la deuxième méthode. Nous allons ajouter un alias dans Bash/Zsh, celui-ci donner l'impression que la commande `kamal` est installée sur notre machine.
+Dans ce TP, nous allons utiliser la deuxième méthode. Nous allons ajouter un alias dans Bash/Zsh, celui-ci donnera l'impression que la commande `kamal` est installée sur notre machine.
 
 ```bash
 alias kamal='docker run -it --rm -v "${PWD}:/workdir" -v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock" -e SSH_AUTH_SOCK="/run/host-services/ssh-auth.sock" -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/basecamp/kamal:latest'
@@ -39,13 +39,13 @@ Pour l'instant vous pouvez juste copier/coller cette commande dans votre termina
 
 - `alias kamal=` : Crée un alias `kamal` (concrètement, cela veut dire que lorsque vous taperez `kamal` dans votre terminal, la commande après le `=` sera exécutée).
 - `docker run -it --rm` : Lance un conteneur Docker en mode interactif et le supprime une fois la commande terminée.
-- `-v "${PWD}:/workdir"` : Montre le répertoire courant (`$PWD`) dans le conteneur Docker sous le nom `workdir`.
-- `-v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock"` : Montre le socket SSH de votre machine dans le conteneur Docker.
+- `-v "${PWD}:/workdir"` : Monte le répertoire courant (`$PWD`) dans le conteneur Docker sous le nom `workdir`.
+- `-v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock"` : Monte le socket SSH de votre machine dans le conteneur Docker.
 - `-e SSH_AUTH_SOCK="/run/host-services/ssh-auth.sock"` : Définit la variable d'environnement `SSH_AUTH_SOCK` dans le conteneur Docker.
-- `-v /var/run/docker.sock:/var/run/docker.sock` : Montre le socket Docker de votre machine dans le conteneur Docker.
+- `-v /var/run/docker.sock:/var/run/docker.sock` : Monte le socket Docker de votre machine dans le conteneur Docker.
 - `ghcr.io/basecamp/kamal:latest` : L'image Docker à utiliser pour lancer Kamal.
 
-Pourquoi le SSH ? Kamal va se connecter à votre serveur distant pour déployer votre application. Pour cela, il va utiliser votre clé SSH pour se connecter à votre serveur. C'est pour cela que nous devons montrer le socket SSH de notre machine dans le conteneur Docker.
+Pourquoi le SSH ? Kamal va se connecter à votre serveur distant pour déployer votre application. Pour cela, il va utiliser votre clé SSH pour se connecter à votre serveur. C'est pour cela que nous devons monter le socket SSH de notre machine dans le conteneur Docker.
 
 ::: tip Vous souhaitez utiliser un gem ?
 Si vous souhaitez utiliser un gem, vous pouvez suivre les instructions sur le [site officiel de Kamal](https://kamal-deploy.org/docs/installation/).
@@ -53,7 +53,7 @@ Si vous souhaitez utiliser un gem, vous pouvez suivre les instructions sur le [s
 
 ::: danger Vous êtes sous macOS ?
 
-Sur ma machine, j'ai rencontré un problème pour le Socket SSH. En effet, celui-ci n'était pas accessible. Pour pallier à ce problème, je dois  lancer Docker depuis le terminal (et non depuis Docker Desktop). Pour cela, je lance la commande suivante :
+Sur ma machine, j'ai rencontré un problème pour le Socket SSH. En effet, celui-ci n'était pas accessible. Pour pallier ce problème, je dois lancer Docker depuis le terminal (et non depuis Docker Desktop). Pour cela, je lance la commande suivante :
 
 ```bash
 /Applications/Docker.app/Contents/MacOS/Docker\ Desktop.app/Contents/MacOS/Docker\ Desktop
@@ -73,13 +73,13 @@ La phase de récupération de l'image Docker sur notre serveur distant sera auto
 
 La logique sera donc la suivante :
 
-1. On décrit/écris notre application dans un fichier `Dockerfile`
+1. On décrit/écrit notre application dans un fichier `Dockerfile`
 2. On lance la bonne commande Kamal pour construire notre image Docker & la pousser sur le Docker Hub
 3. Kamal se connecte à notre serveur distant, récupère l'image Docker et la déploie
 
 ### Choisir ce que l'on veut déployer
 
-Dans ce TP, nous allons déployer un projet fictif. Pour tester, nous allons créer un simple PHP Info en PHP (évidemment, si vous avez un projet plus complexe, vous pouvez le déployer, exemple un projet Laravel, ou autre.
+Dans ce TP, nous allons déployer un projet fictif. Pour tester, nous allons créer un simple PHP Info en PHP (évidemment, si vous avez un projet plus complexe, vous pouvez le déployer : un projet Laravel par exemple, ou autre).
 
 Créez un dossier `hello-world` et placez-vous dedans. Créez un fichier `index.php` avec le contenu suivant :
 
@@ -92,11 +92,11 @@ phpinfo();
 Créez un fichier `Dockerfile` avec le contenu suivant :
 
 ```dockerfile
-FROM php:8.0-apache
+FROM php:8.2-apache
 
 COPY index.php /var/www/html/index.php
 
-# Page permettant de vérifier que le serveur est en ligne (pour Kamal en interne)
+# Page permettant de vérifier que le serveur est en ligne (pour kamal-proxy)
 RUN echo "OK" > /var/www/html/health
 
 EXPOSE 80
@@ -104,9 +104,9 @@ EXPOSE 80
 
 Pas besoin de détailler le fichier PHP, il est très simple. Le `Dockerfile` par contre mérite quelques explications :
 
-- `FROM php:8.0-apache` : Utilise l'image Docker `php:8.0-apache` comme base pour notre image.
+- `FROM php:8.2-apache` : Utilise l'image Docker `php:8.2-apache` comme base pour notre image.
 - `COPY index.php /var/www/html/index.php` : Copie le fichier `index.php` dans le répertoire `/var/www/html` de notre conteneur.
-- `RUN echo "OK" > /var/www/html/health` : Crée un fichier `health` dans le répertoire `/var/www/html` de notre conteneur. Ce fichier contient simplement le mot `OK`. Il est utilisé par Kamal pour vérifier que notre application est en ligne.
+- `RUN echo "OK" > /var/www/html/health` : Crée un fichier `health` dans le répertoire `/var/www/html` de notre conteneur. Ce fichier contient simplement le mot `OK`. Il est utilisé par kamal-proxy (le composant de Kamal qui reçoit le trafic sur le serveur) pour vérifier que notre application est en ligne.
 - `EXPOSE 80` : Expose le port 80 de notre conteneur.
 
 Pour que Kamal puisse déployer notre application, celle-ci doit être versionnée. Pour cela, nous allons initialiser un dépôt Git dans notre dossier `hello-world` :
@@ -136,14 +136,15 @@ kamal init
 Cette commande va créer différents fichiers dans votre dossier :
 
 - `config/deploy.yml` : Le fichier de configuration de Kamal utilisé pour déployer votre application.
-- `.env` : Les variables d'environnement qui seront utilisées par Kamal pour déployer votre application (Exemple : le token pour se connecter au Docker Hub).
+- `.kamal/secrets` : Les secrets qui seront utilisés par Kamal pour déployer votre application (Exemple : le token pour se connecter au Docker Hub).
+- `.kamal/hooks/` : Des exemples de scripts que Kamal peut exécuter à certaines étapes du déploiement (nous n'y toucherons pas dans ce TP).
 
 ::: danger Avant de continuer !
 
-Il est important de ne pas versionner le fichier `.env` dans votre dépôt Git. En effet, celui-ci contient des informations sensibles (clés d'API, tokens, etc.). Pour cela, créez un fichier `.gitignore` et ajoutez-y la ligne `.env`.
+Il est important de ne pas versionner le fichier `.kamal/secrets` dans votre dépôt Git. En effet, celui-ci contient des informations sensibles (clés d'API, tokens, etc.). Pour cela, créez un fichier `.gitignore` et ajoutez-y la ligne `.kamal/secrets`.
 
 ```text
-.env
+.kamal/secrets
 ```
 
 Puis commitez les modifications :
@@ -164,9 +165,9 @@ Nous allons donc devoir créer un compte sur le [Docker Hub](https://hub.docker.
 - Connectez-vous à votre compte Docker Hub
 - Allez dans [`Account Settings` > `Security` > `New Access Token`](https://hub.docker.com/settings/security)
 
-[Token](./ressources/token.png)
+![Token](./ressources/token.png)
 
-Créez un token avec les droits `read` et `write` sur le `Docker Registry`. Copiez le token et collez-le dans le fichier `.env` :
+Créez un token avec les droits `read` et `write` sur le `Docker Registry`. Copiez le token et collez-le dans le fichier `.kamal/secrets` :
 
 ```text
 DOCKER_HUB_TOKEN=le-token-que-vous-avez-copié
@@ -174,7 +175,7 @@ DOCKER_HUB_TOKEN=le-token-que-vous-avez-copié
 
 **Attention** : Ne partagez pas ce token, il est l'équivalent de votre mot de passe. Il permettrait à quelqu'un de pousser des images sur votre compte Docker Hub ou de les supprimer.
 
-::: tip Prennons quelques secondes analyser
+::: tip Prenons quelques secondes pour analyser
 
 Utiliser le Docker Hub est intéressant pour tester, ou pour des projets publics. Cependant, pour des projets d'entreprise, on préférera utiliser un Registry Docker privé (GitLab, GitHub, etc.). Cela permet de garder le contrôle sur les images Docker et de ne pas les rendre publiques.
 
@@ -182,11 +183,11 @@ Utiliser le Docker Hub est intéressant pour tester, ou pour des projets publics
 
 :::
 
-::: danger Le .env
+::: danger Le fichier de secrets
 
-Un fichier `.env` aussi appelé Dot Env (ou fichier de variables d'environnement) est un fichier texte qui contient des variables d'environnement est un standard pour stocker des informations sensibles (clés d'API, tokens, etc.).
+Le fichier `.kamal/secrets` fonctionne comme un fichier `.env` (aussi appelé Dot Env ou fichier de variables d'environnement) : un fichier texte qui contient des variables d'environnement. C'est un standard pour stocker des informations sensibles (clés d'API, tokens, etc.).
 
-On retrouve ce genre de fichier dans de nombreux type de projets (Node.js, Laravel, etc.). Ces fichiers sont **ultra-sensibles** et ne doivent jamais être versionnés dans un dépôt Git. Car ils contiennent des informations souvent plus que critiques (mot de passe, token, hash de sécurité de session).
+On retrouve ce genre de fichier dans de nombreux types de projets (Node.js, Laravel, etc.). Ces fichiers sont **ultra-sensibles** et ne doivent jamais être versionnés dans un dépôt Git, car ils contiennent des informations souvent plus que critiques (mot de passe, token, hash de sécurité de session).
 :::
 
 #### La configuration de Kamal
@@ -194,11 +195,11 @@ On retrouve ce genre de fichier dans de nombreux type de projets (Node.js, Larav
 Nous avons maintenant :
 
 1. Un projet à déployer (notre page PHP)
-2. Un compte Docker Hub avec un token (stocké dans le fichier `.env`)
+2. Un compte Docker Hub avec un token (stocké dans le fichier `.kamal/secrets`)
 3. Un projet Kamal initialisé (`kamal init`)
 4. Un fichier de configuration Kamal (`config/deploy.yml`)
 
-Nous sommes maintenant prêt à configurer Kamal pour déployer notre page PHP. Ouvrez le fichier `config/deploy.yml` et ajoutez le code suivant :
+Nous sommes maintenant prêts à configurer Kamal pour déployer notre page PHP. Ouvrez le fichier `config/deploy.yml` et ajoutez le code suivant :
 
 ```yaml
 service: front
@@ -211,38 +212,40 @@ ssh:
   user: root
 
 builder:
-  multiarch: false
+  arch: amd64
 
 registry:
   username: VOTRE_USERNAME_DOCKER_HUB_A_REMPLACER
   password:
     - DOCKER_HUB_TOKEN
 
-healthcheck:
-  path: /health
-  port: 80
+proxy:
+  app_port: 80
+  healthcheck:
+    path: /health
 ```
 
-Qu'avons nous mis dans ce fichier ?
+Qu'avons-nous mis dans ce fichier ?
 
 - `service: front` : Le nom de notre service (ici, notre front). Ce nom doit être unique sur votre serveur.
 - `image: VOTRE_USERNAME_DOCKER_HUB_A_REMPLACER/test-kamal-php` : Le nom de l'image Docker que nous allons construire et pousser sur le Docker Hub. Remplacez `VOTRE_USERNAME_DOCKER_HUB_A_REMPLACER` par votre nom d'utilisateur Docker Hub.
 - `servers` : La liste des serveurs sur lesquels nous allons déployer notre application. Remplacez `IP_DE_VOTRE_SERVEUR_A_REMPLACER` par l'adresse IP de votre serveur. Vous pouvez ajouter autant de serveurs que vous le souhaitez, votre application sera déployée sur chacun d'eux.
 - `ssh` : Les informations de connexion SSH à votre serveur.
-- `builder` : Les informations pour construire l'image Docker. `multiarch` Permets de construire une image multiarchitecture (utile pour les serveurs ARM par exemple). Nous n'en avons pas besoin ici, le mettre à `false` permet de gagner du temps lors de la construction de l'image.
-- `registry` : Les informations pour se connecter au Docker Hub. Remplacez `VOTRE_USERNAME_DOCKER_HUB_A_REMPLACER` par votre nom d'utilisateur Docker Hub. Par contre, `DOCKER_HUB_TOKEN` doit rester tel quel, en effet, Kamal va remplacer cette valeur par le contenu du fichier `.env`.
-- `healthcheck` : Les informations pour vérifier que notre application est en ligne. `path` est le chemin vers le fichier `health` que nous avons créé dans notre `Dockerfile`. `port` est le port sur lequel notre application écoute.
+- `builder` : Les informations pour construire l'image Docker. `arch` indique l'architecture cible de l'image (`amd64` pour un serveur classique, `arm64` pour un serveur ARM). En indiquant une seule architecture, on gagne du temps lors de la construction de l'image.
+- `registry` : Les informations pour se connecter au Docker Hub. Remplacez `VOTRE_USERNAME_DOCKER_HUB_A_REMPLACER` par votre nom d'utilisateur Docker Hub. Par contre, `DOCKER_HUB_TOKEN` doit rester tel quel, en effet, Kamal va remplacer cette valeur par le contenu du fichier `.kamal/secrets`.
+- `proxy` : La configuration de kamal-proxy, le reverse proxy que Kamal installe automatiquement sur votre serveur. C'est lui qui reçoit le trafic (ports 80 et 443) et le transmet à votre conteneur, ce qui permet notamment des mises à jour sans coupure. `app_port` est le port sur lequel notre application écoute dans le conteneur. `healthcheck.path` est le chemin vers le fichier `health` que nous avons créé dans notre `Dockerfile` : kamal-proxy l'interroge pour vérifier que la nouvelle version est en ligne avant de lui envoyer le trafic.
 
 ### Déployer une première fois
 
-Le premier déploiement avec Kamal est un peu particulier. En effet, nous allons utiliser la commande `kamal setup` qui à pour but de configurer notre serveur puis de déployer notre application. Concrètement, cette commande va :
+Le premier déploiement avec Kamal est un peu particulier. En effet, nous allons utiliser la commande `kamal setup` qui a pour but de configurer notre serveur puis de déployer notre application. Concrètement, cette commande va :
 
 1. Se connecter à votre serveur distant
 2. Installer Docker (si ce n'est pas déjà fait)
-3. Builder l'image Docker sur votre machine locale
-4. Pousser l'image Docker sur le Docker Hub
-5. Récupérer l'image Docker sur votre serveur distant
-6. Déployer l'application
+3. Démarrer kamal-proxy sur votre serveur (le reverse proxy qui recevra le trafic)
+4. Builder l'image Docker sur votre machine locale
+5. Pousser l'image Docker sur le Docker Hub
+6. Récupérer l'image Docker sur votre serveur distant
+7. Déployer l'application
 
 Et tout ça en une seule commande ! Pour lancer le déploiement, lancez la commande suivante dans le dossier de votre projet :
 
@@ -299,7 +302,7 @@ Ces outils sont particulièrement utiles pour les équipes / développeurs qui n
 
 Avec Kamal, il est possible de déployer des services supplémentaires (base de données, cache, etc.). Pour cela, nous allons devoir déclarer des `accessories` dans notre fichier `deploy.yml`.
 
-Un accessory est un service, qui ne sera pas compilé / packagé par nous. Il sera directement déployé par Kamal lors de la phase de `setup`. Les accessories n'ont pas vocation à être mis à jour aussi fréquemment que notre application principale.
+Un accessory est un service qui ne sera pas compilé / packagé par nous. Il sera directement déployé par Kamal lors de la phase de `setup`. Les accessories n'ont pas vocation à être mis à jour aussi fréquemment que notre application principale.
 
 Pour tester nous allons déployer une base de données MySQL 8, dans votre fichier `deploy.yml` ajoutez le code suivant :
 
@@ -325,7 +328,7 @@ accessories:
   db:
     service: mysql
     image: mysql:8
-    port: 3306
+    port: "3306:3306"
     host: IP_DE_VOTRE_SERVEUR_A_REMPLACER
     env:
       MYSQL_ROOT_PASSWORD: root
@@ -334,7 +337,7 @@ accessories:
       MYSQL_PASSWORD: kamal
 ```
 
-Cette ligne rendra le port 3306 de votre base de données accessible depuis l'extérieur. Vous pourrez alors vous connecter à votre base de données depuis votre machine locale (ou tout autre machine) en utilisant l'adresse IP de votre serveur et le port 3306.
+Cette ligne rendra le port 3306 de votre base de données accessible depuis l'extérieur. Vous pourrez alors vous connecter à votre base de données depuis votre machine locale (ou toute autre machine) en utilisant l'adresse IP de votre serveur et le port 3306.
 
 :::
 
@@ -349,7 +352,7 @@ kamal setup
 Il est également possible de déployer un accessory via la commande
 
 ```bash
-kamal accessory deploy all
+kamal accessory boot all
 ```
 
 :::
@@ -379,11 +382,11 @@ Dans ce fichier, nous nous connectons à la base de données MySQL en utilisant 
 Avec l'image PHP Docker que nous utilisons, l'extension PDO n'est pas activée par défaut. Pour l'activer, nous devons ajouter une ligne dans notre `Dockerfile` :
 
 ```dockerfile
-FROM php:8.0-apache
+FROM php:8.2-apache
 
 COPY index.php /var/www/html/index.php
 
-# Page permettant de vérifier que le serveur est en ligne (pour Kamal en interne)
+# Page permettant de vérifier que le serveur est en ligne (pour kamal-proxy)
 RUN echo "OK" > /var/www/html/health
 
 # Activation de l'extension PDO
@@ -425,10 +428,10 @@ Nous avons au lycée un serveur Gitlab, nous allons donc voir comment il est pos
 
 À cette étape je pars du principe que vous avez :
 
-1. Déjà versionner votre application sur le GitLab du lycée ;
-2. Réaliser l'étape d'initialisation de Kamal (`kamal init`) ;
-3. Configurer Kamal pour déployer votre application (`config/deploy.yml`) ;
-4. Réaliser un premier déploiement (`kamal setup`) ;
+1. Déjà versionné votre application sur le GitLab du lycée ;
+2. Réalisé l'étape d'initialisation de Kamal (`kamal init`) ;
+3. Configuré Kamal pour déployer votre application (`config/deploy.yml`) ;
+4. Réalisé un premier déploiement (`kamal setup`).
 
 :::
 
@@ -439,12 +442,12 @@ La logique ici va être d'utiliser un outil de CI/CD (GitLab CI, GitHub Actions,
 La logique sera donc la suivante :
 
 1. On pousse notre code sur notre dépôt Git
-2. Notre CI/CD construit l'image Docker & la pousse l'image Docker sur le Registry Docker intégré
+2. Notre CI/CD construit l'image Docker et la pousse sur le Registry Docker intégré
 3. Avec Kamal, on se connecte à notre serveur distant, le configure, puis déploie notre application
 
 ::: tip Niveau BTS
 
-Point important, en BTS on ne s'attend pas à ce que vous soyez capable de mettre en place un CI/CD. Cependant, il est important de comprendre le principe et de savoir que cela existe. C'est un point qui peut être abordé lors de l'oral de projet. Je vais donc vous fournir un exemple de `.gitlab-ci.yml` pour que vous puissiez voir comment cela fonctionne, ce fichier sera à adapter à votre projet (compétence attendue en BTS).
+Point important, en BTS on ne s'attend pas à ce que vous soyez capables de mettre en place un CI/CD. Cependant, il est important de comprendre le principe et de savoir que cela existe. C'est un point qui peut être abordé lors de l'oral de projet. Je vais donc vous fournir un exemple de `.gitlab-ci.yml` pour que vous puissiez voir comment cela fonctionne, ce fichier sera à adapter à votre projet (compétence attendue en BTS).
 
 :::
 
@@ -467,6 +470,7 @@ build:
   stage: build
   allow_failure: false
   script:
+    - mkdir -p .kamal && echo "DOCKER_HUB_TOKEN=${DOCKER_HUB_TOKEN}" > .kamal/secrets
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - kamal build push
   when: manual
@@ -477,6 +481,7 @@ deploy:
     entrypoint: [""]
   stage: deploy
   script:
+    - mkdir -p .kamal && echo "DOCKER_HUB_TOKEN=${DOCKER_HUB_TOKEN}" > .kamal/secrets
     - eval $(ssh-agent -s)
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
@@ -494,8 +499,9 @@ Qu'avons-nous mis dans ce fichier ? Essentiellement des informations qui sont e
 
 - Nous avons deux étapes : `build` et `deploy`. La première étape va construire l'image Docker et la pousser sur le Registry Docker de Gitlab. La deuxième étape va déployer notre application sur notre serveur distant.
 - `variables` : Les variables d'environnement pour notre CI/CD. Ici, nous définissons le `DOCKER_HOST` pour se connecter à notre Registry Docker, le `DOCKER_DRIVER` pour le stockage des images Docker, et le `DOCKER_TLS_CERTDIR` pour la sécurité.
-- `build` : L'étape de construction de l'image Docker. Nous utilisons l'image Docker de Kamal pour construire notre image Docker et la pousser sur le Registry Docker de Gitlab. Contrairement à la première partie, nous n'avons pas besoin de stocker notre image sur le Docker Hub. Mais directement sur le Registry Docker de Gitlab. Pour les identifiants, nous utilisons les variables d'environnement de Gitlab (`$CI_REGISTRY_USER`, `$CI_REGISTRY_PASSWORD`, `$CI_REGISTRY`).
-- `deploy` : L'étape de déploiement de notre application. Nous utilisons l'image Docker de Kamal pour déployer notre application. Pour cela, nous devons nous connecter à notre serveur distant. Pour cela, nous devons utiliser notre clé SSH. Pour stocker cette clé SSH, nous utilisons les secrets de Gitlab (`$SSH_PRIVATE_KEY`, `$SSH_CONFIG`).
+- `build` : L'étape de construction de l'image Docker. Nous utilisons l'image Docker de Kamal pour construire notre image Docker et la pousser sur le Registry Docker de Gitlab. Contrairement à la première partie, nous ne stockons pas notre image sur le Docker Hub, mais directement sur le Registry Docker de Gitlab. Pour les identifiants, nous utilisons les variables d'environnement de Gitlab (`$CI_REGISTRY_USER`, `$CI_REGISTRY_PASSWORD`, `$CI_REGISTRY`).
+- `deploy` : L'étape de déploiement de notre application. Nous utilisons l'image Docker de Kamal pour déployer notre application. Pour cela, nous devons nous connecter à notre serveur distant, et donc utiliser notre clé SSH. Pour stocker cette clé, nous utilisons les secrets de Gitlab (`$SSH_PRIVATE_KEY`, `$SSH_CONFIG`).
+- Dans les deux étapes, nous recréons le fichier `.kamal/secrets` à partir d'une variable Gitlab (`$DOCKER_HUB_TOKEN`). Rappelez-vous : ce fichier n'est pas versionné dans le dépôt Git, il faut donc le reconstruire dans la CI/CD pour que Kamal puisse s'authentifier auprès du Registry.
 
 Les deux étapes sont en manuel, c'est-à-dire qu'elles ne se déclenchent pas automatiquement. Vous devrez les déclencher manuellement depuis l'interface de Gitlab. Vous pouvez bien évidemment automatiser le déploiement en déclenchant par exemple au moment d'un tag ou d'un commit.
 
@@ -521,6 +527,10 @@ Host *
   StrictHostKeyChecking no
   IdentityFile ~/.ssh/id_rsa
 ```
+
+#### `DOCKER_HUB_TOKEN`
+
+Le token que vous avez créé dans la première partie du TP (celui que vous avez mis dans le fichier `.kamal/secrets`). Il sera utilisé par la CI/CD pour reconstruire le fichier `.kamal/secrets`. Cette variable est de type `Variable` (et non `File`).
 
 ### Testons
 

@@ -63,7 +63,7 @@ app.listen(port, () => {
 ## Dockerfile à modifier
 
 ```dockerfile
-FROM --platform=${TARGETPLATFORM:-linux/amd64} node:12.13.0-alpine as ship
+FROM --platform=${TARGETPLATFORM:-linux/amd64} node:22-alpine as ship
 
 RUN apk --no-cache add curl ca-certificates \
     && addgroup -S app && adduser -S -g app app

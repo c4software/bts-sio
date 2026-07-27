@@ -19,7 +19,7 @@ Façon de parler évidemment… En sécurité l'humain est source de vulnérabil
 
 - D'erreurs.
 - De corruption du livrable.
-- de perte de temps.
+- De perte de temps.
 
 :::
 
@@ -45,7 +45,7 @@ npm init @vitejs/app
 
 ![Vite Init](./ressources/vite-init.png)
 
-Un projet vide vient d'être créé. Je vous laisse le tester dans un premier temps sur votre ordinateur, dans mon cas
+Un projet vide vient d'être créé. Je vous laisse le tester dans un premier temps sur votre ordinateur, dans mon cas :
 
 ```sh
 cd ci-packaging
@@ -59,13 +59,13 @@ npm run dev
 Personnellement j'utilise `pnpm`, pourquoi ? À cause du dépôt centralisé ; vous souhaitez en savoir plus ? Je suis là 👋  
 :::
 
-::: tip Vous souhaitez packager autres choses ?
+::: tip Vous souhaitez packager autre chose ?
 **Aucun problème** je peux vous aider à packager votre site / api / service.
 :::
 
 ### Commiter / pusher une première version
 
-Maintenant que tout fonctionne, nous allons créer une première version. Ici bien évidemment on utilise `git` (ça semble évident…).
+Maintenant que tout fonctionne, nous allons créer une première version. Ici, bien entendu, on utilise `git` (ça semble évident…).
 
 ## Ajouter un gitlab-ci.yml
 
@@ -78,19 +78,19 @@ build:
   script:
     - npm install
     - npm run build
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
 ::: tip Comprendre le fonctionnement
-Vous voyez ici que finalement l'important c'est de comprendre le fonctionnement pour l'adapteur à notre besoin. Dans le cadre du CI/CD, il faut souvent lire la documentation, adapter, réessayer, etc.
+Vous voyez ici que finalement l'important c'est de comprendre le fonctionnement pour l'adapter à notre besoin. Dans le cadre du CI/CD, il faut souvent lire la documentation, adapter, réessayer, etc.
 
 Mais une fois configuré… La vie sera belle et votre travail en grande partie automatisé.
 :::
 
 ### Tester
 
-Pour l'instant pas de création d'image Docker, nous allons-y aller étape par étape. La première ? Valider que l'installation des dépendances fonctionne sans problème sur Gitlab-CI.
+Pour l'instant pas de création d'image Docker, nous allons y aller étape par étape. La première ? Valider que l'installation des dépendances fonctionne sans problème sur Gitlab-CI.
 
 Je vous laisse donc commiter **et pusher** votre code source.
 
@@ -100,9 +100,9 @@ Si tout se passe bien vous devez avoir :
 
 ### Dockeriser
 
-La première étape est de `Dockeriser` votre application actuelle. L'idée est donc de créer le fichier Dockerfile nécessaire au bon fonctionnement de votre site web. Je vous laisse réfléchir au besoin, mais pensez qu'ici nous avons un site **static** qui ne possède aucune dépendance ; vous pouvez donc rester très très simple !
+La première étape est de `Dockeriser` votre application actuelle. L'idée est donc de créer le fichier Dockerfile nécessaire au bon fonctionnement de votre site web. Je vous laisse réfléchir au besoin, mais pensez qu'ici nous avons un site **statique** qui ne possède aucune dépendance ; vous pouvez donc rester très très simple !
 
-[Vous n'avez pas d'inspiration ? Pas de problème, la documentation officielle nous aide](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
+[Vous n'avez pas d'inspiration ? Pas de problème, la documentation officielle nous aide.](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
 
 ::: details Vous avez besoin d'aide ?
 
@@ -116,7 +116,7 @@ CMD ["nginx", "-g", "daemon off;"]
 :::
 
 ::: danger STOP !
-Avant de pusher votre code, tester sur votre ordinateur le bon fonctionnement !
+Avant de pusher votre code, testez sur votre ordinateur le bon fonctionnement !
 
 Dans mon cas :
 
@@ -131,7 +131,7 @@ docker run -it -p 8080:80 --rm --name vuetest vue:test
 
 Nous avons maintenant tout le nécessaire pour packager notre application directement sur Gitlab-CI et la publier sur le Registry interne à GitLab. Nous allons devoir modifier notre fichier `.gitlab-ci.yml` pour y ajouter une autre step, celle de « release » / « packaging » / « encapsulation ».
 
-La conception de ce gitlab-ci, est un peu plus complexe, je vous propose de vous le donner pour que nous le décortiquer ensemble :
+La conception de ce gitlab-ci est un peu plus complexe, je vous propose de vous le donner pour que nous le décortiquions ensemble :
 
 ```yaml
 stages:
@@ -144,28 +144,28 @@ build:
   script:
     - npm install
     - npm run build
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   artifacts:
     paths:
       - dist/
     expire_in: 1 hour
 
 release-img:
-  image: docker:19.03.12
+  image: docker:27
   stage: release
   dependencies:
     - build
   services:
-    - docker:19.03.12-dind
+    - docker:27-dind
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
 
 Normalement si tout se passe bien vous devriez avoir …
@@ -181,12 +181,12 @@ Normalement si tout se passe bien vous devriez avoir …
 Votre image est maintenant sauvegardée sur les serveurs de Gitlab, nous pouvons donc maintenant nous en servir sans la builder sur notre poste préalablement. Cependant ce « hub » n'est pas public comme l'officiel, il faudra donc se connecter préalablement / s'authentifier auprès des serveurs de Gitlab.
 
 ::: danger STOP
-Votre mot de passe ne fonctionnera pas ! Pour des raisons de sécurité vous ne pourrez pas utiliser votre propre mot de passe pour vous authentifiez. [Vous allez devoir générer un Token depuis votre profil](https://gitlab.com/-/profile/personal_access_tokens)
+Votre mot de passe ne fonctionnera pas ! Pour des raisons de sécurité vous ne pourrez pas utiliser votre propre mot de passe pour vous authentifier. [Vous allez devoir générer un token depuis votre profil.](https://gitlab.com/-/profile/personal_access_tokens)
 
 ![Si tout se passe bien…](./ressources/token.png)
 :::
 
-Une fois le token généré il suffit de vous connecter au Registry via la commande :
+Une fois le token généré, il suffit de vous connecter au Registry via la commande :
 
 ```sh
 docker login registry.gitlab.com
@@ -204,43 +204,41 @@ docker run registry.gitlab.com/vbrosseau/ci-packaging:master
 
 ## Apporter des modifications
 
-Votre stack est maintenant prête, elle est jouable / rejouable à l'infinie. Je vous laisse apporter des modifications « importante » à votre site Internet pour tester que l'image Docker s'update correctement après vos commits.
+Votre stack est maintenant prête, elle est jouable / rejouable à l'infini. Je vous laisse apporter des modifications « importantes » à votre site Internet pour tester que l'image Docker se met bien à jour après vos commits.
 
 ## Booster les performances
 
-Votre compilation doit-être actuellement plutôt lente… C'est normal l'installation des dépendances prend un peu de temps. Dans gitlab-ci nous pouvons ajouter du cache, j'ai donné pas mal de pistes pour les autres étapes… Pour celle-ci je vous laisse chercher dans la documentation.
+Votre compilation doit être actuellement plutôt lente… C'est normal, l'installation des dépendances prend un peu de temps. Dans Gitlab-CI nous pouvons ajouter du cache, j'ai donné pas mal de pistes pour les autres étapes… Pour celle-ci je vous laisse chercher dans la documentation.
 
 [Gestion du cache](https://docs.gitlab.com/ee/ci/caching/)
 
 ### Image multi-architectures ?
 
-Vous souhaitez créer une image qui fonctionnera sur un Raspberry Pi, mais également sur une machine X86? C'est possible, c'est ce que l'on appel le « Multi-architectures. Nous sommes plus dans quelques choses d'aussi simple qu'avec l'exemple précédent, mais vous pouvez le faire sans problème depuis Gitlab-CI ?
+Vous souhaitez créer une image qui fonctionnera sur un Raspberry Pi, mais également sur une machine x86 ? C'est possible, c'est ce que l'on appelle le « multi-architectures ». Nous ne sommes plus dans quelque chose d'aussi simple que l'exemple précédent, mais vous pouvez le faire sans problème depuis Gitlab-CI :
 
 ```yaml
 dockerise:
-  image: docker:19.03.12
+  image: docker:27
   stage: deploy
   dependencies:
     - build
   services:
-    - name: docker:19.03.12-dind
-      command: ["--experimental"]
+    - docker:27-dind
   variables:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-    BUILDX_VERSION: v0.4.1
   before_script:
-    - apk add curl
-    - mkdir -p ~/.docker/cli-plugins
-    - curl -sSLo ~/.docker/cli-plugins/docker-buildx https://github.com/docker/buildx/releases/download/$BUILDX_VERSION/buildx-$BUILDX_VERSION.linux-amd64
-    - chmod +x ~/.docker/cli-plugins/docker-buildx
     - docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
     - docker info
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker buildx create --use
     - docker buildx build --push --platform linux/arm/v8,linux/amd64 -t $IMAGE_TAG .
-  only:
-    - master
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 ```
+
+::: tip Et buildx ?
+Les images `docker` récentes incluent directement le plugin `buildx`, il n'est donc plus nécessaire de le télécharger manuellement comme c'était le cas il y a quelques années.
+:::

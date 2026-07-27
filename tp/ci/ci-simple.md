@@ -37,8 +37,8 @@ stages:
 deploy:
   image: alpine:latest
   stage: deploy
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   before_script:
     - apk update
     - apk add openssh-client
@@ -51,12 +51,12 @@ deploy:
     - rm -rf ~/.ssh
 ```
 
-::: tip Qu'avons nous ici ?
+::: tip Qu'avons-nous ici ?
 
 - `stages` : Nous définissons les différentes étapes de notre pipeline, ici nous n'avons qu'une seule étape qui est le déploiement.
 - `deploy` : C'est le nom de notre job, il peut être n'importe quel nom que vous souhaitez.
 - `image` : Nous utilisons une image Docker légère basée sur Alpine Linux, qui contient les outils nécessaires pour se connecter à notre serveur web via SSH.
-- `only` : Nous spécifions que ce job ne doit être exécuté que lorsque nous poussons du code sur la branche `main`.
+- `rules` : Nous spécifions que ce job ne doit être exécuté que lorsque nous poussons du code sur la branche par défaut du projet (`$CI_DEFAULT_BRANCH`, en général `main`).
 - `before_script` : Avant d'exécuter le script de déploiement, nous installons les outils nécessaires pour se connecter à notre serveur web via SSH, et nous configurons la clé SSH pour permettre à Gitlab de se connecter à notre serveur web.
 - `script` : C'est la partie où nous exécutons les commandes pour déployer notre site internet. Ici, nous nous connectons à notre serveur web via SSH et nous exécutons la commande `git pull` pour récupérer les dernières modifications du code source de notre site internet.
 - `after_script` : Après l'exécution du script de déploiement, nous supprimons la configuration SSH pour des raisons de sécurité.
@@ -67,16 +67,16 @@ deploy:
 
 Nous avons besoin de deux clefs SSH pour que ce déploiement fonctionne :
 
-- Autoriser votre serveur à se connecter à votre dépôt Gitlab pour récupérer le code source de votre site internet. (il faut donc créer une clef SSH **sur votre serveur web** et ajouter la clé publique dans les clés SSH de votre projet Gitlab).
-- Autoriser Gitlab à se connecter en SSH à votre serveur Web (depuis la CI), pour ça nous allons avoir devoir créer des variables dans gitlab pour stocker la clé SSH privée, l'hôte SSH, l'utilisateur SSH et le répertoire de travail sur le serveur web.
+- Autoriser votre serveur à se connecter à votre dépôt Gitlab pour récupérer le code source de votre site internet (il faut donc créer une clef SSH **sur votre serveur web** et ajouter la clé publique dans les clés SSH de votre projet Gitlab).
+- Autoriser Gitlab à se connecter en SSH à votre serveur web (depuis la CI). Pour ça, nous allons devoir créer des variables dans Gitlab pour stocker la clé SSH privée, l'hôte SSH, l'utilisateur SSH et le répertoire de travail sur le serveur web.
 
 ## Initialiser le dépôt Gitlab sur votre serveur web
 
 La première étape est d'avoir votre serveur complètement prêt à recevoir votre site :
 
 - Avoir un serveur Web avec un virtual host configuré pour héberger votre site internet.
-- Avoir git d'installé sur votre serveur web.
-- Avoir cloné votre dépôt Gitlab sur votre serveur web par exemple `/var/www/html/votreSite`.
+- Avoir Git installé sur votre serveur web.
+- Avoir cloné votre dépôt Gitlab sur votre serveur web, par exemple dans `/var/www/html/votreSite`.
 
 ::: tip Comment cloner votre dépôt Gitlab sur votre serveur web ?
 
@@ -103,7 +103,7 @@ Voici les variables à définir :
 
 ## La clef SSH d'accès à votre serveur web
 
-Votre serveur contient déjà une clef SSH, la votre, celle que vous utilisez pour vous connecter à votre serveur. Nous allons créer maintenant une clef SSH privée spécialement pour Gitlab-CI, afin de ne pas compromettre la sécurité de votre serveur web.
+Votre serveur contient déjà une clef SSH, la vôtre, celle que vous utilisez pour vous connecter à votre serveur. Nous allons maintenant créer une clef SSH privée spécialement pour Gitlab-CI, afin de ne pas compromettre la sécurité de votre serveur web.
 
 Pour créer une nouvelle clef SSH privée, **sur votre ordinateur** :
 
@@ -111,12 +111,12 @@ Pour créer une nouvelle clef SSH privée, **sur votre ordinateur** :
 ssh-keygen -t rsa -b 4096 -C "gitlab-ci" -f gitlab_ci_key
 ```
 
-**Attention** : Ne pas ajouter de passphrase lors de la création de la clef SSH, sinon Gitlab-CI ne pourra pas se connecter à votre serveur web.
+**Attention** : N'ajoutez pas de passphrase lors de la création de la clef SSH, sinon Gitlab-CI ne pourra pas se connecter à votre serveur web.
 **Attention 2** : La clef SSH sera sauvegardée dans le répertoire où vous avez exécuté la commande, assurez-vous de vous trouver dans un répertoire sécurisé avant de créer la clef SSH.
 
 Cette commande va créer une nouvelle paire de clés SSH, avec le nom `gitlab_ci_key` pour la clé privée et `gitlab_ci_key.pub` pour la clé publique.
 
-Nous allons maintenant ajouter cette clef sur votre serveur en utilisant la commande suivante :
+Nous allons maintenant ajouter cette clef sur votre serveur avec la commande suivante :
 
 ```bash
 ssh-copy-id -i gitlab_ci_key.pub <votre_utilisateur>@<ip.de.votre.serveur>
@@ -156,4 +156,4 @@ Dans ce TP, nous avons vu comment mettre en place un déploiement continu pour u
 
 Cette méthode de déploiement continu est très simple à mettre en place et peut être utilisée pour n'importe quel site internet, que ce soit un site statique ou un site dynamique. Elle permet d'automatiser le processus de déploiement et de s'assurer que votre site internet est toujours à jour avec les dernières modifications du code source.
 
-Elle est évidemment très basique, et il existe de nombreuses autres méthodes pour mettre en place un déploiement continu plus avancé, mais cette méthode est un bon point de départ pour comprendre les concepts de base du déploiement continu avec Gitlab-CI. Qui ne sont finalement que des automatisations de commandes que vous pourriez exécuter manuellement pour déployer votre site internet.
+Elle est évidemment très basique, et il existe de nombreuses autres méthodes pour mettre en place un déploiement continu plus avancé, mais cette méthode est un bon point de départ pour comprendre les concepts de base du déploiement continu avec Gitlab-CI, des concepts qui ne sont finalement que des automatisations de commandes que vous pourriez exécuter manuellement pour déployer votre site internet.

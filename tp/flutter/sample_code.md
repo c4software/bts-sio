@@ -1,3 +1,7 @@
+---
+description: "Exemple de code Flutter : une application qui affiche une liste de films récupérés via une API REST, avec navigation vers une vue de détail et un exemple d'authentification."
+---
+
 # Flutter, une liste et une API REST
 
 Cet exemple montre comment utiliser Flutter pour créer une application récupérant des données via une API REST.
@@ -16,7 +20,7 @@ L'application affiche une liste de films récupérés via une API REST. Lorsque 
 
 Pour pouvoir utiliser cet exemple, vous devez avoir installé Flutter sur votre machine.
 
-## Installation de flutter
+## Installation de Flutter
 
 [Documentation officielle](https://flutter.dev/docs/get-started/install).
 
@@ -61,7 +65,7 @@ flutter run
 L'objectif de ce projet est de présenter une application simple Flutter qui implémente :
 
 - Des tabs pour accéder au contenu.
-- Une liste de « Image » en provenance d'une API.
+- Une liste d'images en provenance d'une API.
 - Une vue de détail.
 
 ## Organisation du code
@@ -77,7 +81,7 @@ Le code est organisé de la manière suivante :
 
 ::: danger Attention
 
-Tout comme l'approche MVC, l'organisation du code est très importante. il est important de séparer les différentes parties de l'application. Cela permet de mieux comprendre le code et de le maintenir plus facilement.
+Tout comme l'approche MVC, l'organisation du code est très importante. Il est important de séparer les différentes parties de l'application. Cela permet de mieux comprendre le code et de le maintenir plus facilement.
 
 Le découpage en Widgets, Screens et Services est une approche très courante. C'est une approche que je **vous recommande** d'utiliser pour vos projets.
 
@@ -89,7 +93,7 @@ Les tabs sont des éléments permettant de naviguer entre les différentes pages
 
 ![Tabs](./res/bottombar.jpg)
 
-Ce composant ce nomme une `BottomNavigationBar`. Il fonctionne de la façon suivante :
+Ce composant se nomme une `BottomNavigationBar`. Il fonctionne de la façon suivante :
 
 - On définit une liste d'éléments. (Les Widgets à afficher dans notre vue, nommés dans mon code `_children`).
 - On définit une `BottomNavigationBar` qui contient la liste des icônes à afficher.
@@ -127,7 +131,7 @@ static Future getPhotos() {
 }
 ```
 
-On utilise la librairie `http` pour faire l'appel à l'API. On utilise la méthode `get` pour récupérer les données. On passe en paramètre l'URL de l'API. La méthode `get` retourne un `Future` qui contient les données récupérées, celle-ci est traitée dans le fichier `HomePageScreen.dart` :
+On utilise la librairie `http` pour faire l'appel à l'API. On utilise la méthode `get` pour récupérer les données. On passe en paramètre l'URL de l'API. La méthode `get` retourne un `Future` qui contient les données récupérées, celles-ci sont traitées dans le fichier `HomePageScreen.dart` :
 
 ```dart
 _getData() async {
@@ -156,9 +160,9 @@ _getData() async {
 On utilise la méthode `setState` pour mettre à jour l'état de l'application. Cela permet de rafraichir l'affichage de l'application, et de mettre à jour les données affichées.
 
 ::: tip Asynchrone
-L'appel à l'API est asynchrone. Cela signifie que l'application ne va pas attendre la réponse de l'API pour continuer son exécution. Cela permet d'avoir une application plus fluide, mais ça veux dire aussi que vous allez devoir gérer une vue de chargement / une vue d'attente.
+L'appel à l'API est asynchrone. Cela signifie que l'application ne va pas attendre la réponse de l'API pour continuer son exécution. Cela permet d'avoir une application plus fluide, mais ça veut dire aussi que vous allez devoir gérer une vue de chargement / une vue d'attente.
 
-Vous pouvez voir l'implémentation de ce fonctionnement dans le fichier [`HomePageScreen.dart` disponible en cliquant ici](https://github.com/c4software/flutter-list-sample/blob/master/lib/ui/screens/home/tabs/ListTab.dart)
+Vous pouvez voir l'implémentation de ce fonctionnement dans le fichier [`ListTab.dart` disponible en cliquant ici](https://github.com/c4software/flutter-list-sample/blob/master/lib/ui/screens/home/tabs/ListTab.dart)
 :::
 
 ## Les modèles de données
@@ -215,13 +219,13 @@ Dans le projet vous avez un exemple d'authentification avec un formulaire. Le fo
 - `username` : le nom d'utilisateur.
 - `password` : le mot de passe.
 
-Le code est dans le fichier [`lib/ui/scroons/home/tabs/LoginTab.dart`](https://github.com/c4software/flutter-list-sample/blob/master/lib/ui/screens/home/tabs/LoginTab.dart). Il est composé des éléments suivants :
+Le code est dans le fichier [`lib/ui/screens/home/tabs/LoginTab.dart`](https://github.com/c4software/flutter-list-sample/blob/master/lib/ui/screens/home/tabs/LoginTab.dart). Il est composé des éléments suivants :
 
 - LoginTab : la classe qui représente le formulaire d'authentification.
 - FormAuthWidget : le widget qui représente le formulaire d'authentification. (avec les champs et le bouton de validation).
 - AuthUserInformationWidget : le widget qui représente les informations de l'utilisateur connecté.
 
-Les actions sont réalisés via des `Callback` (`onLogin` et `onLogout`, …).
+Les actions sont réalisées via des `Callback` (`onLogin` et `onLogout`, …).
 
 ### L'API de l'authentification
 

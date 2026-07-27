@@ -80,22 +80,22 @@ La base de votre Dockerfile est terminée. Nous allons voir comment ajouter le c
 
 ### 2. Ajout des sources dans l’image
 
-Nous avons vu dans le premier TP qu’il était possible de faire un « montage ». C’est pratique, pour ajouter de la donnée temporaire, mais dans le cas présent ce que l’on veut c’est faire une image statique qui sera transportable nous allons donc utiliser la commande `COPY`.
+Nous avons vu dans le premier TP qu’il était possible de faire un « montage ». C’est pratique pour ajouter de la donnée temporaire, mais dans le cas présent ce que l’on veut c’est une image statique et transportable : nous allons donc utiliser la commande `COPY`.
 
-La commande `COPY` permet de copier des fichiers (dossiers, fichiers, etc.) directement dans l’image qui sera construite. Une fois « builder » les données seront persistantes et les modifications seront effacées à chaque redémarrage de l’image (intéressant d’un point de vue de la sécurité).
+La commande `COPY` permet de copier des fichiers (dossiers, fichiers, etc.) directement dans l’image qui sera construite. Une fois l’image « buildée », les données seront persistantes et les modifications seront effacées à chaque redémarrage de l’image (intéressant d’un point de vue de la sécurité).
 
-La commande `COPY` prend deux arguments le fichier « sources » et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande `COPY` suivante :
+La commande `COPY` prend deux arguments : le dossier « source » et la destination dans votre image. Modifions le fichier Dockerfile pour ajouter la commande `COPY` suivante :
 
 ```dockerfile
 FROM php:8-apache
-MAINTAINER Valentin Brosseau "c4software@gmail.com"
+LABEL Valentin Brosseau "c4software@gmail.com"
 
 COPY src/ /var/www/html/
 ```
 
-Le premier dossier c’est vos sources, sur votre machine dans le même dossier que le fichier Dockerfile, créez un dossier nommé `src` avec à l’intérieur les sources de votre projet `todo-php`.
+Le premier dossier correspond à vos sources. Sur votre machine, dans le même dossier que le fichier Dockerfile, créez un dossier nommé `src` avec à l’intérieur les sources de votre projet `todo-php`.
 
-Et voilà! C’est terminé. Votre image est prête à être « build ».
+Et voilà ! C’est terminé. Votre image est prête à être « build ».
 
 ### 3. Build de l’image
 
@@ -109,10 +109,10 @@ Ding ! C’est prêt.
 
 ### 4. Lancer votre application
 
-Votre application étant buildée pour la lancer, il suffit de faire :
+Votre application étant buildée, pour la lancer il suffit de faire :
 
 ```bash
 docker run -p 8888:80 php-todo:latest
 ```
 
-Votre application est maintenant [disponible ici](http://localhost:8080).
+Votre application est maintenant [disponible ici](http://localhost:8888).
