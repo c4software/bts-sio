@@ -148,7 +148,7 @@ Pour se protéger des injections SQL, il faut toujours utiliser des requêtes __
 
 **Question 18 — Reconnaître l'attaque**
 
-Un attaquant ouvre l'URL suivante : http://exemple.com/liste?id='or '1'='1 — de quelle attaque s'agit-il ?
+Un attaquant ouvre l'URL suivante : http://exemple.com/liste?id='or '1'='1. De quelle attaque s'agit-il ?
 
 - ☐ **a.** Une attaque DDoS
 - ☐ **b.** Une injection SQL
@@ -377,7 +377,7 @@ Que signifie l'approche « shift-left » en DevSecOps ?
 
 **15.** (a) La manipulation de l'humain pour obtenir des informations ou des accès — *Exact, l'humain est le maillon faible : la contre-mesure est la formation régulière.*
 
-**16.** (b) Des données non fiables sont envoyées à un interpréteur en tant que commande ou requête — *Exact, c'est la définition de la catégorie A03 du Top 10.*
+**16.** (b) Des données non fiables sont envoyées à un interpréteur en tant que commande ou requête — *Exact, c'est la définition de la catégorie A05 du Top 10 (version 2025).*
 
 **17.** (a) préparées
 

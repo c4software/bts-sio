@@ -16,7 +16,7 @@ aside: false
 
 - Le principe de sécurisation des mots de passe (hashage, salage, double authentification ...)
 - OWASP est une communauté en ligne travaillant sur la sécurité des applications Web.
-- OWASP liste 10 grandes catégories de failles à connaître.
-- OWASP évolue en fonction des nouvelles failles découvertes et de l'évolution des technologies.
+- OWASP liste 10 grandes catégories de failles à connaître (version actuelle : le Top 10 2025).
+- OWASP évolue en fonction des nouvelles failles découvertes et de l'évolution des technologies. En 2025 : le SSRF rejoint les contrôles d'accès (A01), la chaîne d'approvisionnement logicielle (A03) et la mauvaise gestion des conditions exceptionnelles (A10) font leur entrée.
 - S'applique à toutes les applications, pas seulement aux sites web.
-- Les Supply Chain Attacks sont des attaques ciblant les dépendances logicielles. Très courante de nos jours.
+- Les Supply Chain Attacks sont des attaques ciblant les dépendances logicielles. Très courantes de nos jours, au point de devenir une catégorie à part entière du Top 10 2025.

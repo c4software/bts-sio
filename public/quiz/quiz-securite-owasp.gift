@@ -103,7 +103,7 @@ $CATEGORY: Sécurité/OWASP
 // --- Les failles du Top 10 ---
 
 ::SECU-Q16 L'injection::Une attaque par injection (SQL, OS, LDAP…) survient lorsque…{
-=Des données non fiables sont envoyées à un interpréteur en tant que commande ou requête#Exact, c'est la définition de la catégorie A03 du Top 10.
+=Des données non fiables sont envoyées à un interpréteur en tant que commande ou requête#Exact, c'est la définition de la catégorie A05 du Top 10 (version 2025).
 ~Un utilisateur saisit un mot de passe trop court
 ~Un serveur n'est pas à jour
 ~Un cookie est stocké sans expiration
@@ -111,7 +111,7 @@ $CATEGORY: Sécurité/OWASP
 
 ::SECU-Q17 Corriger l'injection SQL::Pour se protéger des injections SQL, il faut toujours utiliser des requêtes {=préparées ~concaténées ~rapides ~chiffrées}, ou un ORM qui fait la même chose.
 
-::SECU-Q18 Reconnaître l'attaque::Un attaquant ouvre l'URL suivante \: http\://exemple.com/liste?id\='or '1'\='1 — de quelle attaque s'agit-il ?{
+::SECU-Q18 Reconnaître l'attaque::Un attaquant ouvre l'URL suivante \: http\://exemple.com/liste?id\='or '1'\='1. De quelle attaque s'agit-il ?{
 =Une injection SQL#Exact, la condition '1'\='1' étant toujours vraie, la requête retourne toutes les lignes de la table.
 ~Un XSS reflété
 ~Un CSRF

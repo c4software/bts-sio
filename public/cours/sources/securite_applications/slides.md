@@ -263,16 +263,25 @@ Solution :
 
 ---
 
-- A01:2021-Contrôles d'accès défaillants ;
-- A02:2021-Défaillances cryptographiques ;
-- A03:2021-Injection ;
-- A04:2021-Conception non sécurisée ;
-- A05:2021-Mauvaise configuration de sécurité ;
-- A06:2021-Composants vulnérables et obsolètes ;
-- A07:2021-Identification et authentification de mauvaise qualité ;
-- A08:2021-Manque d'intégrité des données et du logiciel ;
-- A09:2021-Carence des systèmes de contrôle et de journalisation ;
-- A10:2021-Falsification de requête côté serveur ;
+### Un changement récent
+
+- La version 2025 vient d'être publiée (fin 2025).
+- La précédente datait de 2021.
+- Beaucoup de ressources citent encore la version 2021.
+- Les codes changent, les concepts restent.
+
+---
+
+- A01:2025-Contrôles d'accès défaillants (inclut le SSRF) ;
+- A02:2025-Mauvaise configuration de sécurité ;
+- A03:2025-Défaillances de la chaîne d'approvisionnement logicielle ;
+- A04:2025-Défaillances cryptographiques ;
+- A05:2025-Injection ;
+- A06:2025-Conception non sécurisée ;
+- A07:2025-Défaillances d'authentification ;
+- A08:2025-Manque d'intégrité des données et du logiciel ;
+- A09:2025-Carence de journalisation et d'alerte ;
+- A10:2025-Mauvaise gestion des conditions exceptionnelles ;
 
 ---
 
@@ -336,7 +345,19 @@ Utilisation de composants tiers vulnérables.
 
 ---
 
-### Identification et authentification de mauvaise qualité
+### Défaillances de la chaîne d'approvisionnement logicielle
+
+Nouvelle catégorie 2025, qui élargit les composants vulnérables :
+
+- Dépendances compromises (npm, composer, pip…).
+- Outils de build et pipelines CI/CD.
+- Chaîne de distribution du logiciel.
+
+Nous y reviendrons : les Supply Chain Attacks.
+
+---
+
+### Défaillances d'authentification
 
 Les applications n’exécutent pas de manière correcte les fonctions liées à la gestion des sessions ou à l’authentification des utilisateurs
 
@@ -373,12 +394,24 @@ La **traçabilité** est un élément clé de la sécurité. Elle permet de savo
 
 ---
 
-### Falsification de requête côté serveur
+### Falsification de requête côté serveur (SSRF)
 
 Elle permet à un hacker d’inciter l’application côté serveur à envoyer des requêtes à un endroit non prévu.
 
 - Absence de vérification de l'origine de la requête.
 - Absence de vérification de l'origine de l'utilisateur.
+
+Depuis 2025, le SSRF fait partie de A01 (contrôles d'accès défaillants).
+
+---
+
+### Mauvaise gestion des conditions exceptionnelles
+
+Nouvelle catégorie 2025 : que se passe-t-il quand ça se passe mal ?
+
+- Exceptions non traitées.
+- « Fail open » : le système laisse passer en cas d'erreur.
+- Messages d'erreur qui révèlent des informations internes.
 
 ---
 
@@ -425,7 +458,7 @@ Les gens sont souvent trop confiants.
 
 - [OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
 - [WebGoat (Formation, Java)](https://owasp.org/www-project-webgoat/)
-- [ZAP - Zed Attack Proxy (Audit, remplace WebScarab)](https://www.zaproxy.org/)
+- [ZAP - Zed Attack Proxy (audit ; a quitté la fondation OWASP en 2023)](https://www.zaproxy.org/)
 - [OWASP Testing Guide (Guide de test de sécurité)](https://owasp.org/www-project-web-security-testing-guide/)
 - [OWASP Code Review Guide (Méthode d'audit de code)](https://owasp.org/www-project-code-review-guide/)
 - [OWASP Dependency-Check (Vérification des composants vulnérables)](https://owasp.org/www-project-dependency-check/)
@@ -894,9 +927,9 @@ gitleaks protect --staged
 
 ### OWASP un classement qui évolue
 
-![Mapping 2017 -> 2021](./img/mapping.png)
+![Mapping 2021 -> 2025](./img/mapping-2025.png)
 
-[Source](https://owasp.org/www-project-top-ten/)
+[Source](https://owasp.org/Top10/2025/)
 
 ---
 

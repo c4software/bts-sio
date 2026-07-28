@@ -183,6 +183,8 @@ Concrètement, voici comment ça peut se dérouler :
 
 Vous êtes donc la cible ici d'une attaque pas directement de votre code, mais d'une dépendance que vous utilisez.
 
+Ce type d'attaque est devenu si courant que depuis 2025, il a sa propre catégorie dans le Top 10 OWASP : **A03:2025 Software Supply Chain Failures** (voir plus bas).
+
 ## Assurer la qualité
 
 S'assurer d'une qualité continue du code avec :
@@ -203,26 +205,30 @@ S'assurer d'une qualité continue du code avec :
 Depuis 2023, l'acronyme OWASP signifie officiellement « Open **Worldwide** Application Security Project », pour refléter un périmètre plus large que le seul Web.
 :::
 
-OWASP liste 10 grandes catégories de failles **à connaître** (version 2021) :
+::: warning Un changement récent
+Le Top 10 vient d'être mis à jour : la version 2025 (8e édition) a été publiée fin 2025, la précédente datait de 2021. Vous croiserez donc encore beaucoup de ressources, d'articles et de sujets qui référencent la version 2021 : les codes et l'ordre changent, mais les grandes idées restent les mêmes.
+:::
 
-- **A01:2021 – Contrôles d'accès défaillants** : Les vulnérabilités liées aux contrôles d'accès permettent aux utilisateurs d'agir en dehors de leurs permissions prévues.
-- **A02:2021 – Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire. Exemple : mots de passe non hachés en base de données, absence de HTTPS.
-- **A03:2021 – Injection** : Les attaques par injection (SQL, NoSQL, OS, LDAP) surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête.
-- **A04:2021 – Conception non sécurisée** : Désigne l'absence ou la faiblesse de la conception des contrôles de sécurité. Exemple : absence de contrôle dans un système de routage Web, manque de validation des entrées, absence de protection anti-bot.
-- **A05:2021 – Mauvaise configuration de sécurité** : Configuration incomplète ou trop permissive, services inutiles activés, comptes par défaut non modifiés, messages d'erreur trop détaillés.
-- **A06:2021 – Composants vulnérables et obsolètes** : L'utilisation de logiciels ou composants obsolètes (frameworks, bibliothèques, systèmes) peut exposer l'application à des attaques connues.
-- **A07:2021 – Identification et authentification de mauvaise qualité** : Vulnérabilités liées à l'authentification : absence de MFA, mots de passe faibles acceptés, sessions mal gérées, identifiants par défaut.
-- **A08:2021 – Manque d'intégrité des données et du logiciel** : Code et infrastructure non protégés contre les violations d'intégrité. Exemple : mises à jour non signées, pipelines CI/CD non sécurisés, désérialisation non sécurisée.
-- **A09:2021 – Carence des systèmes de contrôle et de journalisation** : Absence de logs, logs insuffisants, ou absence de surveillance permettant de détecter et répondre aux incidents de sécurité.
-- **A10:2021 – Falsification de requête côté serveur (SSRF)** : Permet à un attaquant d'inciter le serveur à envoyer des requêtes vers des destinations non prévues (services internes, cloud metadata, etc.).
+OWASP liste 10 grandes catégories de failles **à connaître** (version 2025, la 8e édition du Top 10) :
 
-::: tip Et la version 2025 ?
-L'OWASP a publié une version 2025 du Top 10. Les grandes lignes : **A01 Broken Access Control** reste en tête, le **SSRF** y est fusionné, et deux catégories font leur apparition : « **Software Supply Chain Failures** » (élargissement de l'ancien A06, en lien direct avec les [Supply Chain Attacks](#supply-chain-attacks) vues plus haut) et « **Mishandling of Exceptional Conditions** » (mauvaise gestion des erreurs et cas exceptionnels). La version 2021 reste la référence pour ce cours.
+- **A01:2025 – Contrôles d'accès défaillants** : Les vulnérabilités liées aux contrôles d'accès permettent aux utilisateurs d'agir en dehors de leurs permissions prévues. Cette catégorie inclut désormais la falsification de requête côté serveur (SSRF) : inciter le serveur à envoyer des requêtes vers des destinations non prévues (services internes, cloud metadata, etc.).
+- **A02:2025 – Mauvaise configuration de sécurité** : Configuration incomplète ou trop permissive, services inutiles activés, comptes par défaut non modifiés, messages d'erreur trop détaillés. En forte progression : de la 5e à la 2e place.
+- **A03:2025 – Défaillances de la chaîne d'approvisionnement logicielle (Software Supply Chain Failures)** : Compromission des dépendances, des outils de build ou de la chaîne de distribution du logiciel. Élargit l'ancienne catégorie « Composants vulnérables et obsolètes » : c'est la traduction dans le Top 10 des [Supply Chain Attacks](#supply-chain-attacks) vues plus haut.
+- **A04:2025 – Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire. Exemple : mots de passe non hachés en base de données, absence de HTTPS.
+- **A05:2025 – Injection** : Les attaques par injection (SQL, NoSQL, OS, LDAP) surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête.
+- **A06:2025 – Conception non sécurisée** : Désigne l'absence ou la faiblesse de la conception des contrôles de sécurité. Exemple : absence de contrôle dans un système de routage Web, manque de validation des entrées, absence de protection anti-bot.
+- **A07:2025 – Défaillances d'authentification** : Vulnérabilités liées à l'authentification : absence de MFA, mots de passe faibles acceptés, sessions mal gérées, identifiants par défaut.
+- **A08:2025 – Manque d'intégrité des données et du logiciel** : Code et infrastructure non protégés contre les violations d'intégrité. Exemple : mises à jour non signées, pipelines CI/CD non sécurisés, désérialisation non sécurisée.
+- **A09:2025 – Carence de journalisation et d'alerte** : Absence de logs, logs insuffisants, ou absence de surveillance et d'alerte permettant de détecter et répondre aux incidents de sécurité.
+- **A10:2025 – Mauvaise gestion des conditions exceptionnelles** : Erreurs et cas limites mal gérés : exceptions non traitées, comportement « fail open » (le système laisse passer en cas d'erreur au lieu de bloquer), messages d'erreur qui révèlent des informations internes.
+
+::: tip Qu'est-ce qui change par rapport à 2021 ?
+La version 2025 (publiée fin 2025) apporte trois évolutions principales : le **SSRF** (ancien A10) est fusionné dans les contrôles d'accès (A01), la **chaîne d'approvisionnement logicielle** devient une catégorie à part entière (A03, élargissement de l'ancien « Composants vulnérables et obsolètes »), et la **mauvaise gestion des conditions exceptionnelles** fait son entrée (A10). La « Mauvaise configuration de sécurité » grimpe de la 5e à la 2e place.
 :::
 
 ## Top 10 : Simplifié
 
-Le TOP 10 2021 est très intéressant, car il met en lumière le croisement entre les failles et les risques. Mais il est plus complexe à mémoriser. Il est donc également possible de classer les failles de manière brute :
+Le TOP 10 2025 est très intéressant, car il met en lumière le croisement entre les failles et les risques. Mais il est plus complexe à mémoriser. Il est donc également possible de classer les failles de manière brute :
 
 - **Injection** : Injection SQL, NoSQL, OS, LDAP...
 - **Violation de Gestion d'Authentification et de Session** : Risque de casser / usurper une authentification ou une session.
@@ -238,7 +244,7 @@ Le TOP 10 2021 est très intéressant, car il met en lumière le croisement entr
 Ce classement est plus simple à mémoriser et permet de se rappeler des failles les plus courantes.
 
 ::: tip Je n'invente rien
-Ce classement correspond à la version OWASP TOP 10 de 2017. Bien que mise à jour en 2021, ces concepts restent valables et pertinents.
+Ce classement correspond à la version OWASP TOP 10 de 2017. Bien que le classement officiel ait été mis à jour depuis (2021, puis 2025), ces concepts restent valables et pertinents.
 :::
 
 ### Les failles

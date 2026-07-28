@@ -60,7 +60,7 @@ Oui. La même adresse `192.168.1.4` demande des factures par **numéros consécu
 :::
 
 ::: details Question : à quoi servent les logs ici ? Le traitement doit-il être manuel ou automatisé ?
-Les logs donnent la **traçabilité** : qui a fait quoi, quand. Ils permettent de détecter une attaque même quand le code « fonctionne ». Sur cet exemple, une lecture manuelle suffit, mais en production le volume est énorme : le repérage doit être **automatisé** (détection d'un même IP qui enchaîne des identifiants, un pic de 404, etc.), avec une alerte. C'est le rôle de l'observabilité (catégorie A09 de l'OWASP : carence de journalisation et de supervision).
+Les logs donnent la **traçabilité** : qui a fait quoi, quand. Ils permettent de détecter une attaque même quand le code « fonctionne ». Sur cet exemple, une lecture manuelle suffit, mais en production le volume est énorme : le repérage doit être **automatisé** (détection d'un même IP qui enchaîne des identifiants, un pic de 404, etc.), avec une alerte. C'est le rôle de l'observabilité (catégorie A09 de l'OWASP : carence de journalisation et d'alerte).
 :::
 
 ## Exercice 2 : la faille IDOR (corriger)

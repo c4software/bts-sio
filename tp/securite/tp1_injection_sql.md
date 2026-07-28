@@ -278,7 +278,7 @@ Les `?` sont **seuls**, sans guillemets. Les valeurs arrivent par `execute([...]
 
 ## Conclusion
 
-Vous savez maintenant repérer et corriger la première grande faille de l'OWASP. Dans ce TP vous avez appris à :
+Vous savez maintenant repérer et corriger l'une des failles les plus emblématiques de l'OWASP (catégorie A05 du Top 10 2025). Dans ce TP vous avez appris à :
 
 - Observer une requête et repérer une concaténation dangereuse.
 - Corriger avec une requête préparée.
