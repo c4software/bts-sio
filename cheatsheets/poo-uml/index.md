@@ -12,7 +12,7 @@ Ce document présente l'équivalence entre une représentation UML et la syntaxe
 
 ::: warning Un instant !
 
-Certains exemples de ce document utilisent une écriture « pseudo-PHP » pour coller au plus près du diagramme UML. En particulier, la surcharge (plusieurs méthodes ou constructeurs avec le même nom) **n'existe pas en PHP** : dans un vrai projet PHP, vous utiliseriez un seul constructeur avec des paramètres optionnels. En Java ou en C#, la surcharge est en revanche possible.
+Les exemples de ce document utilisent la syntaxe **PHP 8** (propriétés et paramètres typés, types de retour). Attention cependant : la surcharge (plusieurs méthodes ou constructeurs avec le même nom) **n'existe pas en PHP**, même en PHP 8. Quand le diagramme UML montre plusieurs constructeurs, l'équivalent PHP est **un seul constructeur avec des paramètres optionnels** (valeur par défaut, type nullable `?Type`). En Java ou en C#, la surcharge est en revanche possible.
 
 :::
 
@@ -52,20 +52,20 @@ class Personne {
     private string $nom;
     public int $age;
 
-    function __construct($nom, $age){
+    function __construct(string $nom, int $age){
         $this->nom = $nom;
         $this->age = $age;
     }
 
-    function estMajeur(){
+    function estMajeur(): bool {
         return $this->age >= 18;
     }
 
-    function getNom(){
+    function getNom(): string {
         return $this->nom;
     }
 
-    function setNom($nom){
+    function setNom(string $nom): void {
         $this->nom = $nom;
     }
 }
@@ -86,27 +86,39 @@ class SimpleClass
     private string $var2 = 'une valeur par défaut';
 
     // Constructeur
-    function __construct($var, $var2)
+    function __construct(string $var, string $var2)
     {
         $this->var = $var;
         $this->var2 = $var2;
     }
 
     // déclaration des méthodes
-    public function displayVar() {
+    public function displayVar(): void {
         echo $this->var;
     }
 
-    public function setVar($var){
+    public function setVar(string $var){
         $this->var = $var;
     }
 
-    public function setVar($var, $var2){
+    public function setVar(string $var, string $var2){
         $this->var = $var;
         $this->var2 = $var2;
     }
 }
 ?>
+```
+
+En PHP, l'équivalent valide s'écrit avec **un seul** `setVar` et un paramètre optionnel :
+
+```php
+public function setVar(string $var, ?string $var2 = null): void {
+    $this->var = $var;
+
+    if ($var2 !== null) {
+        $this->var2 = $var2;
+    }
+}
 ```
 
 ## Une personne possède une ou des voitures
@@ -118,22 +130,18 @@ class Voiture {
     public int $vitesse;
     private int $nombreKm;
     private DateTime $annéeFabrication;
-    private Personne $lePropriétaire;
+    private ?Personne $lePropriétaire;
 
-    function __construct($nombreKm, $date, $lePropriétaire){
+    // Le propriétaire est optionnel : un seul constructeur suffit en PHP
+    function __construct(int $nombreKm, DateTime $date, ?Personne $lePropriétaire = null){
         $this->nombreKm = $nombreKm;
         $this->annéeFabrication = $date;
         $this->lePropriétaire = $lePropriétaire;
     }
 
-    function __construct($nombreKm, $date){
-        $this->nombreKm = $nombreKm;
-        $this->annéeFabrication = $date;
-    }
-
     // Reste des méthodes
 
-    function affecterPropriétaire(Personne $p){
+    function affecterPropriétaire(Personne $p): void {
         $this->lePropriétaire = $p;
     }
 }
@@ -145,12 +153,12 @@ class Personne {
     private DateTime $dateNaissance;
     public int $nbEnfant;
 
-    function __construct($nom, $prenom){
+    function __construct(string $nom, string $prenom){
         $this->nom = $nom;
         $this->prenom = $prenom;
     }
 
-    function presenter(){
+    function presenter(): string {
         return $this->nom . " " . $this->prenom;
     }
 }
@@ -164,17 +172,13 @@ class Personne {
 class Enseignant {
     private string $nom;
     private string $prenom;
-    private Enseignant $unTuteur;
+    private ?Enseignant $unTuteur;
 
-    function __construct($nom, $prenom, $tuteur){
+    // Le tuteur est optionnel : un seul constructeur suffit en PHP
+    function __construct(string $nom, string $prenom, ?Enseignant $tuteur = null){
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->unTuteur = $tuteur;
-    }
-
-    function __construct($nom, $prenom){
-        $this->nom = $nom;
-        $this->prenom = $prenom;
     }
 }
 ```
@@ -189,54 +193,46 @@ class Enseignant {
 class Caserne {
     private string $nom;
     private string $addresse;
-    private Pompier $leChef;
-    private array $lesCamions = []; // Collection de Camion
+    private ?Pompier $leChef;
+    private array $lesCamions; // Collection de Camion
 
-    function __construct($nom, $addresse, $leChef){
-        $this->nom = $nom;
-        $this->addresse = $addresse;
-        $this->leChef = $leChef;
-    }
-
-    function __construct($nom, $addresse, $leChef, $lesCamions){
+    // Le chef et les camions sont optionnels : un seul constructeur suffit en PHP
+    function __construct(string $nom, string $addresse, ?Pompier $leChef = null, array $lesCamions = []){
         $this->nom = $nom;
         $this->addresse = $addresse;
         $this->leChef = $leChef;
         $this->lesCamions = $lesCamions;
     }
 
-    function __construct($nom, $addresse){
-        $this->nom = $nom;
-        $this->addresse = $addresse;
-    }
-
-    function appelerChef(){
+    function appelerChef(): ?string {
         if($this->leChef){
             return $this->leChef->appeler();
         }
+
+        return null;
     }
 }
 
 class Pompier {
-    private $nom;
+    private string $nom;
 
-    function __construct($nom){
+    function __construct(string $nom){
         $this->nom = $nom;
     }
 
-    function appeler(){
+    function appeler(): string {
         return "Appel du pompier";
     }
 }
 
 class Camion {
-    private $immatriculation;
+    private string $immatriculation;
 
-    function __construct($immatriculation){
+    function __construct(string $immatriculation){
         $this->immatriculation = $immatriculation;
     }
 
-    function klaxonner(){
+    function klaxonner(): void {
         echo "PimPom PimPom";
     }
 }
@@ -248,28 +244,28 @@ class Camion {
 
 ```php
 class Personne {
-    protected $nom; // protected : accessible depuis les classes filles
-    public $age;
+    protected string $nom; // protected : accessible depuis les classes filles
+    public int $age;
 
-    function __construct($nom, $age){
+    function __construct(string $nom, int $age){
         $this->nom = $nom;
         $this->age = $age;
     }
 
-    function estMajeur(){
+    function estMajeur(): bool {
         return $this->age >= 18;
     }
 }
 
 class Etudiant extends Personne {
-    private $ine;
+    private string $ine;
 
-    function __construct($ine, $nom, $age){
+    function __construct(string $ine, string $nom, int $age){
         parent::__construct($nom, $age);
         $this->ine = $ine;
     }
 
-    function toString(){
+    function toString(): string {
         return "{$this->nom}, {$this->age}, {$this->ine}";
     }
 }
@@ -285,30 +281,30 @@ $etudiant->toString(); // Affiche « Valentin, 34, 0X… »
 
 ```php
 class Personne {
-    protected $nom; // protected : accessible depuis les classes filles
-    public $age;
-    protected $lesAdresses = [];
+    protected string $nom; // protected : accessible depuis les classes filles
+    public int $age;
+    protected array $lesAdresses = [];
 
-    function __construct($nom, $age, $lesAdresses){
+    function __construct(string $nom, int $age, array $lesAdresses){
         $this->nom = $nom;
         $this->age = $age;
         $this->lesAdresses = $lesAdresses;
     }
 
-    function estMajeur(){
+    function estMajeur(): bool {
         return $this->age >= 18;
     }
 }
 
 class Etudiant extends Personne {
-    private $ine;
+    private string $ine;
 
-    function __construct($ine, $nom, $age, $lesAdresses){
+    function __construct(string $ine, string $nom, int $age, array $lesAdresses){
         parent::__construct($nom, $age, $lesAdresses);
         $this->ine = $ine;
     }
 
-    function toString(){
+    function toString(): string {
         return "{$this->nom}, {$this->age}, {$this->ine}, Nombre d'adresses => " . count($this->lesAdresses);
     }
 }
@@ -324,71 +320,63 @@ $etudiant->toString(); // Affiche « Valentin, 34, 0X…, Nombre d'adresses => 1
 
 ```php
 class Caserne {
-    private $nom;
-    private $addresse;
-    private $leChef;
-    private $lesCamions = [];
+    private string $nom;
+    private string $addresse;
+    private ?Pompier $leChef;
+    private array $lesCamions;
 
-    function __construct($nom, $addresse, $leChef){
-        $this->nom = $nom;
-        $this->addresse = $addresse;
-        $this->leChef = $leChef;
-    }
-
-    function __construct($nom, $addresse, $leChef, $lesCamions){
+    // Le chef et les camions sont optionnels : un seul constructeur suffit en PHP
+    function __construct(string $nom, string $addresse, ?Pompier $leChef = null, array $lesCamions = []){
         $this->nom = $nom;
         $this->addresse = $addresse;
         $this->leChef = $leChef;
         $this->lesCamions = $lesCamions;
     }
 
-    function __construct($nom, $addresse){
-        $this->nom = $nom;
-        $this->addresse = $addresse;
-    }
-
-    function appelerChef(){
+    function appelerChef(): ?string {
         if($this->leChef){
             return $this->leChef->appeler();
         }
+
+        return null;
     }
 }
 
 class Personne {
-    protected $nom;
-    public $age;
+    protected string $nom;
+    public int $age;
 
-    function __construct($nom, $age){
+    function __construct(string $nom, int $age){
         $this->nom = $nom;
         $this->age = $age;
     }
 
-    function estMajeur(){
+    function estMajeur(): bool {
         return $this->age >= 18;
     }
 }
 
 class Pompier extends Personne {
-    private $grade;
+    private string $grade;
 
-    function __construct($nom, $age, $grade){
+    function __construct(string $nom, int $age, string $grade){
         parent::__construct($nom, $age);
         $this->grade = $grade;
     }
 
-    function appeler(){
+    function appeler(): string {
         return "Appel du pompier";
     }
 }
 
 class Camion {
-    private $immatriculation;
+    private string $immatriculation;
 
-    function __construct($immatriculation){
+    function __construct(string $immatriculation){
         $this->immatriculation = $immatriculation;
     }
 
-    function klaxonner(){
+    function klaxonner(): void {
         echo "PimPom PimPom";
     }
 }
@@ -401,34 +389,34 @@ class Camion {
 ```php
 abstract class Personne
 {
-    protected $nom = ""; // protected : accessible depuis les classes filles
-    protected $prenom = "";
+    protected string $nom = ""; // protected : accessible depuis les classes filles
+    protected string $prenom = "";
 
-    abstract public function printInfo();
+    abstract public function printInfo(): string;
 
-    public function getNom() {
+    public function getNom(): string {
         return $this->nom . "\n";
     }
 
-    public function getPrenom() {
+    public function getPrenom(): string {
         return $this->prenom . "\n";
     }
 }
 
 class Enseignant extends Personne
 {
-    private $salaire = 0;
+    private float $salaire = 0;
 
-    public function printInfo() {
+    public function printInfo(): string {
         return $this->nom . " => " . $this->salaire;
     }
 }
 
 class Etudiant extends Personne
 {
-    private $INE = "";
+    private string $INE = "";
 
-    public function printInfo() {
+    public function printInfo(): string {
         return $this->INE . " => " . $this->nom;
     }
 }
@@ -440,14 +428,14 @@ class Etudiant extends Personne
 
 ```php
 interface Player{
-    public function play();
-    public function stop();
-    public function pause();
-    public function reverse();
+    public function play(): void;
+    public function stop(): void;
+    public function pause(): void;
+    public function reverse(): void;
 }
 
 interface Recorder{
-    public function record();
+    public function record(): void;
 }
 
 class DVDPlayer implements Player{
@@ -456,19 +444,19 @@ class DVDPlayer implements Player{
     // Lecteur DVD. Mais l'implémentation
     // FORCERA à déclarer au moins les 4 méthodes suivantes
 
-    public function play() {
+    public function play(): void {
         // Implémentation de la méthode
     }
 
-    public function stop() {
+    public function stop(): void {
         // Implémentation de la méthode
     }
 
-    public function pause() {
+    public function pause(): void {
         // Implémentation de la méthode
     }
 
-    public function reverse() {
+    public function reverse(): void {
         // Implémentation de la méthode
     }
 }
@@ -480,23 +468,23 @@ class TapePlayer implements Player, Recorder{
     // FORCERA à déclarer au moins les 4 méthodes suivantes
     // + La méthode record de l'interface Recorder
 
-    public function record() {
+    public function record(): void {
         // Implémentation de la méthode
     }
 
-    public function play() {
+    public function play(): void {
         // Implémentation de la méthode
     }
 
-    public function stop() {
+    public function stop(): void {
         // Implémentation de la méthode
     }
 
-    public function pause() {
+    public function pause(): void {
         // Implémentation de la méthode
     }
 
-    public function reverse() {
+    public function reverse(): void {
         // Implémentation de la méthode
     }
 }
@@ -504,10 +492,10 @@ class TapePlayer implements Player, Recorder{
 
 class Studio{
 
-    // Player
-    private $player;
+    // Le type est l'interface : n'importe quel Player convient (DVDPlayer, TapePlayer…)
+    private Player $player;
 
-    function __construct($player){
+    function __construct(Player $player){
         $this->player = $player;
     }
 }

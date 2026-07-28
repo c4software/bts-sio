@@ -77,6 +77,10 @@ Les méthodes vont permettre d'effectuer des actions dans notre objet (exemple `
 - Possède des paramètres.
 - Surcharge : plusieurs **méthodes** peuvent avoir le même nom et des paramètres différents (type et/ou ordre).
 
+::: warning Et en PHP ?
+La surcharge « classique » (plusieurs méthodes portant le même nom) n'existe pas en PHP, même en PHP 8. En pratique, on obtient un résultat équivalent avec les **valeurs par défaut** (`function manger(int $quantite = 1)`) ou les **types union** (`int|string $valeur`).
+:::
+
 #### Les types de méthodes
 
 Dans une classe nous avons différents types de méthodes :
@@ -103,15 +107,15 @@ class Personne
 {
 
     // Attribut
-    public $nom;
-    public $prenom;
-    private $dateNaissance;
-    private $salaire;
-    public $nbEnfant;
+    public string $nom;
+    public string $prenom;
+    private string $dateNaissance;
+    private ?int $salaire = null;
+    public int $nbEnfant;
 
 
     // Constructeur
-    function __construct($nom, $prenom, $dateNaissance, $nbEnfant = 0)
+    function __construct(string $nom, string $prenom, string $dateNaissance, int $nbEnfant = 0)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -120,31 +124,32 @@ class Personne
     }
 
     // Mutateurs
-    public function setSalaire($valeur)
+    public function setSalaire(int $valeur): void
     {
         $this->salaire = $valeur;
     }
 
     // Accesseur
-    public function getSalaire()
+    public function getSalaire(): ?int
     {
         return $this->salaire;
     }
 
 
     // Méthode
-    public function identite(){
+    public function identite(): string
+    {
         return $this->nom . " " . $this->prenom;
     }
 
     // Méthode
-    public function age()
+    public function age(): int
     {
         // Implémentation
     }
 
     // Méthode
-    public function argentPoche()
+    public function argentPoche(): int
     {
         // Implémentation
     }
@@ -339,29 +344,30 @@ Personne personne2 = new Personne("John", "Doe", "01/01/1970", 12);
 class Personne
 {
     // Attribut
-    private $nom;
-    private $prenom;
+    private string $nom;
+    private string $prenom;
 
     // Constructeur
-    function __construct($nom, $prenom)
+    function __construct(string $nom, string $prenom)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
     }
 
     // Méthode
-    public function identite(){
+    public function identite(): string
+    {
         return $this->nom . " " . $this->prenom;
     }
 
     // Accesseur
-    public function getNom()
+    public function getNom(): string
     {
         return $this->nom;
     }
 
     // Mutateur
-    public function setNom($nom)
+    public function setNom(string $nom): void
     {
         $this->nom = $nom;
     }
@@ -507,14 +513,26 @@ Personne unePersonne = new Personne("Valentin", "Brosseau");
 class Personne
 {
     // Attribut
-    private $nom;
-    private $prenom;
+    private string $nom;
+    private string $prenom;
 
     // Constructeur
-    function __construct($nom, $prenom)
+    function __construct(string $nom, string $prenom)
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
+    }
+}
+```
+
+Depuis PHP 8, il est possible d'utiliser la **promotion de propriétés** : les propriétés sont déclarées directement dans le constructeur, en une seule fois. Le code suivant est équivalent au précédent :
+
+```php
+class Personne
+{
+    // Constructeur : déclare ET initialise les propriétés
+    function __construct(private string $nom, private string $prenom)
+    {
     }
 }
 ```
@@ -879,27 +897,30 @@ Le mot clé **extends** permet de définir une classe enfant. **Exemple**
 
 ```php
 class Mammifere {
-    private $vertebre = true;
+    private bool $vertebre = true;
 
-    public function print() {
+    public function print(): void
+    {
         echo "Je suis un mammifère";
     }
 
-    public function manger(){
+    public function manger(): void
+    {
         echo "Je mange";
     }
 }
 
 // Humain hérite de Mammifere
 class Humain extends Mammifere {
-    private $prenom = "";
+    private string $prenom;
 
-    function __construct($prenom)
+    function __construct(string $prenom)
     {
         $this->prenom = $prenom;
     }
 
-    public function manger(){
+    public function manger(): void
+    {
         echo "Je suis omnivore";
     }
 }
@@ -1062,7 +1083,8 @@ Les méthodes statiques sont des méthodes qui peuvent être appelées sans avoi
 ```php
 // Déclaration
 class Personne {
-    static function laReponseDeLunivers(){
+    static function laReponseDeLunivers(): int
+    {
         return 42;
     }
 }
@@ -1161,11 +1183,12 @@ Une classe abstraite possède **généralement** au moins une méthode **abstrai
 abstract class EtudiantAbstrait
 {
     // Force les classes filles à définir cette méthode
-    abstract protected function getBlahBlah();
-    abstract public function demarrerUneDiscussion($sujet);
+    abstract protected function getBlahBlah(): string;
+    abstract public function demarrerUneDiscussion(string $sujet): string;
 
     // méthode commune
-    public function parler() {
+    public function parler(): void
+    {
         print $this->getBlahBlah() . "\n";
     }
 }
@@ -1173,13 +1196,13 @@ abstract class EtudiantAbstrait
 // Classe fille, instanciable car concrète : l'ensemble des méthodes possède du code
 class EtudiantSIO extends EtudiantAbstrait
 {
-    private $option = "SLAM";
+    private string $option = "SLAM";
 
-     protected function getBlahBlah() {
+     protected function getBlahBlah(): string {
        return "L'informatique c'est cool, je suis : {$this->option}";
      }
 
-     public function demarrerUneDiscussion($sujet) {
+     public function demarrerUneDiscussion(string $sujet): string {
        return "Je vais vous parler de « {$sujet} »";
     }
 }
@@ -1187,13 +1210,13 @@ class EtudiantSIO extends EtudiantAbstrait
 // Classe fille, instanciable car concrète : l'ensemble des méthodes possède du code
 class EtudiantSEN extends EtudiantAbstrait
 {
-    private $competences = "SOUDER";
+    private string $competences = "SOUDER";
 
-     protected function getBlahBlah() {
+     protected function getBlahBlah(): string {
        return "L'électronique c'est cool, je connais comment {$this->competences}";
      }
 
-     public function demarrerUneDiscussion($sujet) {
+     public function demarrerUneDiscussion(string $sujet): string {
        return "Je vais vous parler de « {$sujet} »";
     }
 }
@@ -1341,24 +1364,27 @@ Quand une classe implémente une interface, elle **doit** définir l'ensemble de
 // Déclaration de l'interface « Compte »
 interface Compte
 {
-    public function deposer($montant);
-    public function retirer($montant);
-    public function getBalance();
+    public function deposer(int $montant): void;
+    public function retirer(int $montant): void;
+    public function getBalance(): int;
 }
 
 class CompteEnLigne implements Compte
 {
-    private $montant = 0;
+    private int $montant = 0;
 
-    public function deposer($montant){
+    public function deposer(int $montant): void
+    {
         $this->montant += $montant;
     }
 
-    public function retirer($montant){
+    public function retirer(int $montant): void
+    {
         $this->montant -= $montant;
     }
 
-    public function getBalance() {
+    public function getBalance(): int
+    {
         return $this->montant;
     }
 }
@@ -1565,7 +1591,8 @@ class Animal{
   // Reste de la classe
   // …
 
-  public function bruit(){
+  public function bruit(): void
+  {
     echo "BRUUUUIIIITTTT";
   }
 
@@ -1577,7 +1604,8 @@ class Humain extends Animal {
   // Reste de la classe
   // …
 
-  public function bruit(){
+  public function bruit(): void
+  {
     parent::bruit();
     echo " (Oui mais compréhensible)";
   }
