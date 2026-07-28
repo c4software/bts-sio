@@ -20,6 +20,10 @@ DAMP contient les éléments suivants :
 - MongoDB (dernière version)
 - MailHog (dernière version, serveur SMTP pour le développement)
 
+::: tip À propos de MailHog
+MailHog n'est plus maintenu (l'équivalent moderne est [Mailpit](https://mailpit.axllent.org/)), mais il reste parfaitement fonctionnel pour des tests en local.
+:::
+
 ### DAMP c'est deux choses
 
 - Une stack via Docker Compose pour créer un environnement de développement.
@@ -27,9 +31,9 @@ DAMP contient les éléments suivants :
 
 ::: tip L'interface graphique
 
-L'interface graphique est optionnelle, vous pouvez très bien utiliser DAMP sans l'interface graphique en utilisant uniquement le script `startup.sh`.
+L'interface graphique est optionnelle : vous pouvez très bien utiliser DAMP uniquement avec le script `startup.sh` (ligne de commande).
 
-👋 Je vous conseille vivement d'utiliser l'interface en ligne de commande, elle est plus simple à utiliser et plus rapide à démarrer.
+👋 C'est d'ailleurs ce que je vous recommande : la ligne de commande est plus simple à utiliser et plus rapide à démarrer.
 
 :::
 
@@ -54,7 +58,7 @@ Il est également possible que Docker Desktop vous demande de mettre à jour vot
 
 ![CLI](./demo2.jpg)
 
-L'interface graphique n'est pas pré-compilée pour Linux et MacOS. Vous pouvez [la compiler vous même](https://github.com/c4software/DAMP), mais je vous conseille d'utiliser la version en ligne de commande :
+L'interface graphique n'est pas pré-compilée pour Linux et MacOS. Vous pouvez [la compiler vous-même](https://github.com/c4software/DAMP), mais je vous conseille d'utiliser la version en ligne de commande :
 
 - 1. [Télécharger la stack docker](https://github.com/c4software/DAMP-docker-stack/archive/refs/tags/1.1.zip).
 - 2. Lancer Docker.
@@ -127,7 +131,7 @@ PHPMyAdmin est accessible à l'adresse suivante : [http://localhost:9090](http:/
 
 ### Comment accéder à MongoDB ?
 
-MongoDB est accessible à l'adresse suivante : [http://localhost:27017](http://localhost:27017). Cette information est également disponible dans l'interface graphique ou dans le terminal.
+MongoDB est accessible sur le port 27017 (`mongodb://localhost:27017`). Attention, MongoDB ne se consulte pas dans un navigateur : utilisez un client dédié (mongosh, MongoDB Compass, etc.). Cette information est également disponible dans l'interface graphique ou dans le terminal.
 
 🚨 MongoDB n'est pas démarré par défaut, il faut le démarrer dans l'interface graphique ou dans le terminal. 🚨
 
@@ -146,6 +150,8 @@ PHP est accessible à l'adresse suivante : [http://localhost:8080](http://localh
 MailHog est accessible à l'adresse suivante : [http://localhost:8025](http://localhost:8025). Cette information est également disponible dans l'interface graphique ou dans le terminal.
 
 MailHog expose également un serveur SMTP sur le port `1025` de l'adresse `localhost`.
+
+Pour rappel, MailHog n'est plus maintenu (Mailpit est son équivalent moderne), mais il reste fonctionnel pour les tests locaux.
 
 ### Est-ce Open Source ?
 

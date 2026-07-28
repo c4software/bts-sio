@@ -275,7 +275,8 @@ git push --tags
 Retirer des fichiers de l’index :
 
 ```sh
-git reset HEAD fichier.txt
+git restore --staged fichier.txt
+# Ancienne syntaxe : git reset HEAD fichier.txt
 ```
 
 Restaurer un fichier (commande moderne) :

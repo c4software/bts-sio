@@ -14,15 +14,11 @@ Vous trouverez ici les commandes de base pour utiliser Docker et Docker Compose.
 
 ### Windows
 
-```sh
-https://www.docker.com/products/docker-desktop
-```
+Télécharger et installer Docker Desktop : [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
 ### MacOS
 
-```sh
-https://www.docker.com/products/docker-desktop
-```
+Télécharger et installer Docker Desktop : [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
 ### Linux (Debian/Ubuntu)
 
@@ -50,7 +46,7 @@ docker pull nginx
 - `--rm` supprime automatiquement le conteneur à son arrêt.
 - Déclare le port `80` du conteneur sur le port 3000 de votre machine.
 - Monte le dossier courant dans le dossier `/data` du conteneur
-- Note: Sur Windows vous devez remplacer `-v ${PWD}:/data` par `-v "C:\Data":/data`
+- Note : Sur Windows, `%cd%` correspond au dossier courant (équivalent de `$(pwd)` sous Linux/macOS). Vous pouvez aussi utiliser un chemin en dur, par exemple `-v "C:\Data":/data`
 
 ```sh
 # *nix
@@ -107,14 +103,7 @@ docker port monConteneur
 docker diff monConteneur
 ```
 
-### Supprimer les images / conteneurs non utilisés
-
-```sh
-docker system prune
-docker volume prune
-```
-
-## Les images
+## Gérer les images
 
 ### Liste
 
@@ -130,8 +119,10 @@ docker rmi nginx
 
 ### Créer une image depuis un conteneur
 
+Le second paramètre est le nom (et le tag) de l'image qui sera créée :
+
 ```sh
-docker commit nginx
+docker commit nginx mon-image:ma-version
 ```
 
 ### Le Dockerfile
@@ -144,7 +135,9 @@ FROM debian:latest
 RUN apt-get update && apt-get install -y wget zip python3-pip git
 
 # Ajout Yasb
-RUN pip3 install http://github.com/c4software/YASB/archive/master.zip
+# (--break-system-packages est nécessaire sur les Debian récentes,
+# où pip refuse par défaut d'installer hors d'un environnement virtuel)
+RUN pip3 install --break-system-packages https://github.com/c4software/YASB/archive/master.zip
 
 RUN mkdir /sources/
 WORKDIR /sources/

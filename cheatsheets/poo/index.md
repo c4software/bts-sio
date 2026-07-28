@@ -751,13 +751,13 @@ $unePersonne = new Personne("Doe", "John");
 array_push($lesPersonnes, new Personne("Brosseau", "Valentin"));
 array_push($lesPersonnes, $unePersonne);
 
-$nombre = sizeof($lesPersonnes); // 2
+$nombre = count($lesPersonnes); // 2
 
 $unePersonne1 = $lesPersonnes[0]; // Valentin Brosseau
 $unePersonne2 = $lesPersonnes[1]; // John Doe
 
 $lesPersonnes = [];
-$nombre = sizeof($lesPersonnes); // 0
+$nombre = count($lesPersonnes); // 0
 ```
 
   </CodeGroupItem>
@@ -1054,12 +1054,6 @@ unHumain.manger(); // Je suis omnivore
   - `parent::manger();` // `super.manger();`
   - Ou d'appeler la méthode la plus proche de la classe fille :
   - `$this->manger();`
-
-## Le polymorphisme
-
-Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la méthode qui correspond au type réel de l’objet. C’est un concept fondamental de la programmation orientée objet.
-
-Le mot polymorphisme vient du grec poly (plusieurs) et morphisme (forme). Il signifie donc « plusieurs formes ». **L'héritage est une forme de polymorphisme.**
 
 ## L'encapsulation
 
@@ -1692,9 +1686,11 @@ humain.bruit(); // BRUUUUIIIITTTT (Oui mais compréhensible)
 
 :::
 
-## Polymorphisme
+## Le polymorphisme
 
-Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la méthode qui correspond au type réel de l’objet.
+Le polymorphisme peut être vu comme la capacité de choisir dynamiquement la méthode qui correspond au type réel de l’objet. C’est un concept fondamental de la programmation orientée objet.
+
+Le mot polymorphisme vient du grec poly (plusieurs) et morphisme (forme). Il signifie donc « plusieurs formes ». **Le polymorphisme s'appuie sur l'héritage : un objet enfant peut être manipulé comme son type parent.**
 
 - Si la classe B hérite de la classe A
 
@@ -1773,7 +1769,7 @@ class Helicoptere : MachineVolante {
 
 // La liste est du type de la classe mère
 List<MachineVolante> machines = new List<MachineVolante>();
-machines.Add(new MachineVolante()); // Erreur : impossible d'instancier une classe abstraite
+// machines.Add(new MachineVolante()); // Erreur : impossible d'instancier une classe abstraite
 machines.Add(new Mig29());
 machines.Add(new Helicoptere());
 machines.Add(new Mig29());

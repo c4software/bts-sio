@@ -15,12 +15,12 @@ Pour coder vous aurez besoin d'un éditeur de texte ou d'un IDE. Voici quelques 
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) - Un formateur de code pour divers langages, y compris JavaScript, HTML et CSS.
     - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) - Fournit l'autocomplétion et la documentation pour Tailwind CSS.
 - [WebStorm](https://www.jetbrains.com/webstorm/) - Un IDE complet pour le développement web, avec des fonctionnalités avancées.
-- [PHPStorm](https://www.jetbrains.com/phpstorm/) - Un IDE dédié au développement PHP, avec des outils intégrés pour le débogage et le testing.
+- [PHPStorm](https://www.jetbrains.com/phpstorm/) - Un IDE dédié au développement PHP, avec des outils intégrés pour le débogage et les tests.
 - [NeoVim](https://neovim.io/) - Un éditeur de texte moderne basé sur Vim, très personnalisable et extensible. Très puissant une fois maîtrisé.
 
 ## Windows
 
-::: tip Windows? Solution WSL !
+::: tip Windows ? Solution WSL !
 
 WSL permet d'obtenir un environnement Linux directement sous Windows, idéal pour le développement.
 
@@ -62,7 +62,7 @@ Pour commencer à développer sous Windows, il est recommandé d'installer un en
 
 ## Linux
 
-Sous Linux, il suffit d'installer les langages et outils nécessaires via le gestionnaire de paquets de votre distribution (ex : `apt`, `dnf`, `pacman`, etc.). Exemple pour installer PHP, Node.js et Python :
+Sous Linux, il suffit d'installer les langages et outils nécessaires via le gestionnaire de paquets de votre distribution (ex : `apt`, `dnf`, `pacman`, etc.). Exemple pour installer PHP, Node.js et Python sous Debian/Ubuntu :
 
 ```bash
 sudo apt install php nodejs npm git vim
@@ -73,7 +73,7 @@ Pour installer Composer (pour PHP) :
 ```bash
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
-chmod +x /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
 ```
 
 ## macOS

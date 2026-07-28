@@ -105,7 +105,7 @@ Le bcrypt est un algorithme de hachage qui :
 Les mots de passe :
 
 - Un mot de passe ne doit jamais être stocké en clair. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
-- Le sel peut être différent pour chaque utilisateur ou global pour tous les utilisateurs. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe.
+- Le sel doit être unique par utilisateur. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe. Un secret global partagé par tous les utilisateurs existe aussi : on l'appelle un « poivre » (pepper), il vient en complément du sel, pas en remplacement.
 - Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (basé sur Blowfish, et non SHA-256).
 
 ## Authentification à plusieurs facteurs
@@ -216,9 +216,13 @@ OWASP liste 10 grandes catégories de failles **à connaître** (version 2021) :
 - **A09:2021 – Carence des systèmes de contrôle et de journalisation** : Absence de logs, logs insuffisants, ou absence de surveillance permettant de détecter et répondre aux incidents de sécurité.
 - **A10:2021 – Falsification de requête côté serveur (SSRF)** : Permet à un attaquant d'inciter le serveur à envoyer des requêtes vers des destinations non prévues (services internes, cloud metadata, etc.).
 
+::: tip Et la version 2025 ?
+L'OWASP a publié une version 2025 du Top 10. Les grandes lignes : **A01 Broken Access Control** reste en tête, le **SSRF** y est fusionné, et deux catégories font leur apparition : « **Software Supply Chain Failures** » (élargissement de l'ancien A06, en lien direct avec les [Supply Chain Attacks](#supply-chain-attacks) vues plus haut) et « **Mishandling of Exceptional Conditions** » (mauvaise gestion des erreurs et cas exceptionnels). La version 2021 reste la référence pour ce cours.
+:::
+
 ## Top 10 : Simplifié
 
-Le nouveau TOP 10 est très intéressant, car il met en lumière le croisement entre les failles et les risques. Mais il est plus complexe à mémoriser. Il est donc également possible de classer les failles de manière brute :
+Le TOP 10 2021 est très intéressant, car il met en lumière le croisement entre les failles et les risques. Mais il est plus complexe à mémoriser. Il est donc également possible de classer les failles de manière brute :
 
 - **Injection** : Injection SQL, NoSQL, OS, LDAP...
 - **Violation de Gestion d'Authentification et de Session** : Risque de casser / usurper une authentification ou une session.
@@ -335,7 +339,7 @@ Deux types sont à connaître :
 
 ```php
 $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-// ou
+// ou (insuffisant seul : ne protège pas dans un contexte d'attribut HTML)
 $nom = strip_tags($_POST['nom']);
 // ou (recommandé pour l'affichage)
 $nom = htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8');
@@ -458,10 +462,21 @@ Ajoutez un identifiant/jeton dans la requête, unique et non réutilisable. Int�
 
 - Ajouter un jeton unique dans les formulaires.
 
-```php
-<input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
+Génération du jeton (au moment d'afficher le formulaire) :
 
-// Côté PHP, à la réception du formulaire
+```php
+$_SESSION['_token'] = bin2hex(random_bytes(32));
+```
+
+Dans le formulaire HTML :
+
+```html
+<input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
+```
+
+Côté PHP, à la réception du formulaire :
+
+```php
 if (isset($_POST['_token']) && hash_equals($_SESSION['_token'], $_POST['_token'])) {
     // On peut traiter la requête
 } else {
@@ -614,7 +629,7 @@ setcookie('session', $token, [
 
 - [OWASP Juice Shop (Formation, JavaScript)](https://owasp.org/www-project-juice-shop/)
 - [WebGoat (Formation, Java)](https://owasp.org/www-project-webgoat/)
-- [ZAP - Zed Attack Proxy (Audit, remplace WebScarab)](https://www.zaproxy.org/)
+- [ZAP - Zed Attack Proxy (audit ; a quitté la fondation OWASP en 2023, désormais porté par Checkmarx)](https://www.zaproxy.org/)
 - [OWASP Testing Guide (Guide de test de sécurité)](https://owasp.org/www-project-web-security-testing-guide/)
 - [OWASP Code Review Guide (Méthode d'audit de code)](https://owasp.org/www-project-code-review-guide/)
 - [OWASP Dependency-Check (Vérification des composants vulnérables)](https://owasp.org/www-project-dependency-check/)

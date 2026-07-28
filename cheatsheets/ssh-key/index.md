@@ -9,7 +9,7 @@ keywords: SSH, ssh-key, clé SSH, clef ssh, clés ssh, ssh-keygen
 [[toc]]
 :::
 
-Dans cet aide mémoire vous allez retrouver l'ensemble des commandes et des opérations à réaliser pour créer une clef SSH sur votre machine et l'échanger avec un tiers pour vous authentifier sans mot de passe.
+Dans cet aide-mémoire vous allez retrouver l'ensemble des commandes et des opérations à réaliser pour créer une clef SSH sur votre machine et l'échanger avec un tiers pour vous authentifier sans mot de passe.
 
 > Autrefois, tout le monde employait l'authentification typique par le principe identifiant - mot de passe. Cependant si quelqu'un connaît votre mot de passe ou le découvre au moyen d'une attaque, la sécurité est compromise. De plus, utiliser un mot de passe différent pour chaque serveur et le saisir à chaque connexion peut s'avérer contraignant.
 >
@@ -23,10 +23,6 @@ Dans cet aide mémoire vous allez retrouver l'ensemble des commandes et des opé
 > La clef privée est en principe unique : chaque utilisateur possède une clef privée qu'il peut copier sur les terminaux auxquels il accède physiquement et depuis lesquels il a besoin d'un accès SSH (via le client SSH).
 >
 > Source : [doc.ubuntu-fr](https://doc.ubuntu-fr.org/ssh)
-
-::: details Sommaire
-[[toc]]
-:::
 
 ## Générer une clef privée/publique
 
@@ -54,12 +50,16 @@ ssh-keygen
 
 La commande va générer **deux fichiers** :
 
-- **id_rsa**, est privé. **Vous ne devez jamais le partager**.
-- **id_rsa.pub**, est public, vous pouvez le partager autant que vous voulez. Ce fichier permettra de vous reconnaître au moment de la connexion.
+- **id_ed25519**, est privé. **Vous ne devez jamais le partager**.
+- **id_ed25519.pub**, est public, vous pouvez le partager autant que vous voulez. Ce fichier permettra de vous reconnaître au moment de la connexion.
 
-::: danger Plus de sécurité
+::: tip Sur un système plus ancien
+Sur une machine plus ancienne, les fichiers générés peuvent s'appeler `id_rsa` et `id_rsa.pub` (ancien format par défaut de `ssh-keygen`).
+:::
 
-Vous pouvez faire « entrée (3×) » pour générer une clef sans mot de passe. Vous pouvez également faire le choix de mettre un mot de passe sur votre clef pour plus de sécurité.
+::: tip Plus de sécurité
+
+Vous pouvez appuyer 3 fois sur Entrée pour générer une clef sans mot de passe. Vous pouvez également faire le choix de mettre un mot de passe sur votre clef pour plus de sécurité.
 
 :::
 
@@ -71,7 +71,7 @@ Maintenant que nous avons généré les clefs, il vous suffit d'envoyer votre cl
 
 Pour ajouter votre clef, vous devez :
 
-- Copier **le contenu** du fichier `id_rsa.pub` (ouvrir le fichier avec par exemple Notepad++)
+- Copier **le contenu** du fichier `id_ed25519.pub` (ouvrir le fichier avec par exemple Notepad++ sous Windows, ou `cat ~/.ssh/id_ed25519.pub` dans un terminal macOS / Linux)
 - L'ajouter à votre profil Github [en cliquant ici](https://github.com/settings/ssh/new)
 - Tester votre connexion avec la commande `ssh -T git@github.com`
 
@@ -95,7 +95,7 @@ Pour ajouter votre clef, vous devez :
 
 La procédure avec Gitlab est très similaire, vous devez :
 
-- Copier **le contenu** du fichier `id_rsa.pub` (ouvrir le fichier avec par exemple Notepad++)
+- Copier **le contenu** du fichier `id_ed25519.pub` (ouvrir le fichier avec par exemple Notepad++ sous Windows, ou `cat ~/.ssh/id_ed25519.pub` dans un terminal macOS / Linux)
 - L'ajouter à votre profil Gitlab de la section [en cliquant ici](https://gitlab.dombtsig.local/-/profile/keys) ou [Gitlab.com](https://gitlab.com/-/profile/keys)
 - Tester votre connexion avec la commande `ssh -T git@gitlab.com`
 
@@ -117,6 +117,6 @@ ssh-copy-id pi@192.168.1.253
 
 ::: tip Et voilà !
 
-Rien de plus, à partir de maintenant votre serveur acceptera votre connexion sans vous demander de mot de passe. Pratique non ? (Et surtout très sécurisé)
+Rien de plus, à partir de maintenant votre serveur acceptera votre connexion sans vous demander de mot de passe. Pratique non ? (et c'est bien plus sûr)
 
 :::

@@ -25,9 +25,9 @@ php artisan serve --host=0.0.0.0
 
 ::: tip Host ?
 
-0.0.0.0 est l'adresse IP de la machine locale. Cela signifie que le serveur sera accessible depuis n'importe quelle adresse IP de la machine locale.
+0.0.0.0 signifie « écouter sur toutes les interfaces réseau de la machine » (contrairement à 127.0.0.1 qui est l'adresse locale, accessible uniquement depuis votre machine). Votre serveur sera donc joignable depuis les autres appareils du réseau.
 
-Exemple, depuis le Wifi ou depuis un autre ordinateur ou mobile sur le réseau local.
+Exemple : depuis le Wifi, ou depuis un autre ordinateur ou mobile sur le réseau local.
 
 :::
 
@@ -293,7 +293,7 @@ public function definition() {
         'price' => $this->faker->numberBetween(10, 10000),
     ];
 }
-// all fakers options : https://github.com/fzaninotto/Faker
+// all fakers options : https://fakerphp.org/
 ```
 
 ### Seeder
@@ -424,7 +424,8 @@ $post->comments()->save($comment);
 $comment = new App\Models\Comment(['message' => 'A new comment.']);
 $user = App\Models\User::find(1);
 $post = App\Models\Post::find(1);
-$post->comments()->save($comment, ['user_id' => $user->id]);
+$comment->user_id = $user->id; // On renseigne l'utilisateur avant la sauvegarde
+$post->comments()->save($comment);
 
 // Attacher un rôle à un utilisateur
 $user = App\Models\User::find(1);
@@ -585,7 +586,7 @@ class ProductsController
 
    public function create()
    {
-       return view('produits.create');
+       return view('products.create');
    }
 
    public function store()
@@ -600,14 +601,14 @@ class ProductsController
    }
 
    //méthode avec injection de modèle
-   public function show(Produit $produit)
+   public function show(Product $product)
    {
-       return view('produits.show', ['produit' => $produit]); 
+       return view('products.show', ['product' => $product]); 
    }
 
    public function edit(Product $product)
    {
-       return view('produits.edit', ['produit' => $product]); 
+       return view('products.edit', ['product' => $product]); 
    }
 
    public function update(Product $product)
@@ -618,7 +619,7 @@ class ProductsController
            'note' => 'nullable'
        ]));
 
-       return redirect(route($product->path()));
+       return redirect($product->path());
    }
 
    public function delete(Product $product)
@@ -686,7 +687,7 @@ $user = App\Models\User::find(1);
 return response()->json($user);
 ```
 
-[En savoir plus](https://laravel.com/docs/10.x/requests#retrieving-input)
+[En savoir plus](https://laravel.com/docs/12.x/requests#retrieving-input)
 
 ## Blade (les templates, la vue)
 

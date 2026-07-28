@@ -7,7 +7,7 @@ description: Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide 
 Aide mémoire sur les balises HTML. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble, mais également les balises qui me semblent importantes à connaître.
 
 ::: tip À savoir
-Cet aide mémoire ne contient pas l'ensemble des balises, par contre vous retrouverez (en Français) une liste complète de l'ensemble des balises sur le site de la MDN Web Docs [à consulter ici](https://developer.mozilla.org/fr/docs/Web/HTML/Element)
+Cet aide mémoire ne contient pas l'ensemble des balises, par contre vous retrouverez (en français) une liste complète de l'ensemble des balises sur le site de la MDN Web Docs [à consulter ici](https://developer.mozilla.org/fr/docs/Web/HTML/Reference/Elements)
 :::
 
 ::: details Table des matières
@@ -59,14 +59,14 @@ Dans la balise `<body>` nous allons retrouver l'ensemble des éléments qui sero
 | ---------- | ------------------------------------------ |
 | `<div>`    | Balise de type block (sans signification)  |
 | `<span>`   | Balise de type Inline (sans signification) |
-| `<em>`     | Élément notable                            |
+| `<em>`     | Emphase (italique)                         |
 | `<small>`  | Petit texte                                |
 | `<i>`      | Élément différent                          |
-| `<img />`  | Une image                                  |
+| `<img>`    | Une image                                  |
 | `<audio>`  | Un son                                     |
 | `<br>`     | Un saut de ligne                           |
 | `<video>`  | Une vidéo                                  |
-| `<hr />`   | Séparateur horizontal                      |
+| `<hr>`     | Séparateur horizontal                      |
 | `<iframe>` | Affiche une autre page dans la page        |
 
 Les balises `<div></div>` ou `<span></span>` ne sont utiles que d'un point de vue organisation de votre code. Elles n'ont aucun autre but que de grouper, organiser, permettre la personnalisation CSS de votre page. Il convient donc de leur adjoindre des attributs de type `class`, `id` ou `style`.

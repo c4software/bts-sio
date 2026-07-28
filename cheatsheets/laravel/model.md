@@ -2,13 +2,13 @@
 
 Le modèle est l’objet qui nous permettra de faire « nos requêtes SQL », l’accès à nos données.
 
-La grande force de Laravel, son Framework [Eloquent](https://laravel.com/docs/12.x/eloquent). Laravel intègre une commande pour créer un modèle vide :
+La grande force de Laravel, son Framework [Eloquent](https://laravel.com/docs/12.x/eloquent). Laravel intègre une commande pour créer un modèle vide (le nom du modèle s'écrit **au singulier**) :
 
 ```sh
-php artisan make:model LeNomDeVotreTableEnBase
+php artisan make:model LeNomDeVotreModele
 ```
 
-Cette action va créer un squelette de modèle à l’emplacement suivant : `app/Models/LeNomDeVotreTableEnBase.php`. Le contenu sera le minimum :
+Cette action va créer un squelette de modèle à l’emplacement suivant : `app/Models/LeNomDeVotreModele.php`. Le contenu sera le minimum :
 
 ```php
 <?php
@@ -18,15 +18,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LeNomDeVotreTableEnBase extends Model
+class LeNomDeVotreModele extends Model
 {
     use HasFactory;
 }
 ```
 
-⚠️ Le nom de la classe sera le nom de votre table
+⚠️ Le nom de la table est déduit du nom de votre classe
 
-De base le nom de la classe sera le nom de votre table. Si vous souhaitez changer le comportement, il vous suffit de :
+Par convention, Eloquent utilise comme nom de table le pluriel du nom de la classe, en snake_case. Exemple : un modèle `Flight` sera lié à la table `flights`. Si votre table ne suit pas cette convention, il vous suffit de préciser son nom :
 
 ```php
 <?php
@@ -36,7 +36,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LeNomDeVotreTableEnBase extends Model
+class LeNomDeVotreModele extends Model
 {
     protected $table = "CECI_EST_LE_NOM_DE_MA_TABLE";
 
@@ -48,13 +48,13 @@ class LeNomDeVotreTableEnBase extends Model
 
 ```php
 // Tout obtenir
-$todos = LeNomDeVotreTableEnBase::all();
+$todos = LeNomDeVotreModele::all();
 
 // Ou pour l’enregistrement avec l’identifiant « 42 »
-$todo = LeNomDeVotreTableEnBase::find(42);
+$todo = LeNomDeVotreModele::find(42);
 
 // Obtenir, mais filtré et ordonné et avec une limite
-$todos = LeNomDeVotreTableEnBase::where('termine', 1)->orderBy('id', 'desc')->take(10)->get();
+$todos = LeNomDeVotreModele::where('termine', 1)->orderBy('id', 'desc')->take(10)->get();
 
 // Ou avec un where
 $users = User::where('votes', '>', 100)->get();
@@ -64,17 +64,17 @@ $users = User::where('votes', '>', 100)->get();
 
 ```php
 // Création d’une nouvelle entrée en BDD (équivalent d’un INSERT INTO)
-LeNomDeVotreTableEnBase::create(array(
+LeNomDeVotreModele::create([
     'texte'     => 'Super Cool',
     'termine'   => false
-));
+]);
 ```
 
 ### Mettre à jour un enregistrement
 
 ```php
 // Rechercher celui avec l’id 1
-$todo = App\Models\LeNomDeVotreTableEnBase::find(1);
+$todo = App\Models\LeNomDeVotreModele::find(1);
 
 // Le passer à terminer
 $todo->termine = true;
@@ -90,20 +90,20 @@ Plusieurs façons :
 ```php
 // Façon 1
 // Rechercher celui avec l’id 1
-$todo = App\Models\LeNomDeVotreTableEnBase::find(1);
+$todo = App\Models\LeNomDeVotreModele::find(1);
 $todo->delete(); // Le supprimer
 
 // Façon 2
 // Le supprimer directement
-App\Models\LeNomDeVotreTableEnBase::destroy(1);
+App\Models\LeNomDeVotreModele::destroy(1);
 
 // Façon 3
 // En supprimer plusieurs directement
-App\Models\LeNomDeVotreTableEnBase::destroy(1,2,3);
+App\Models\LeNomDeVotreModele::destroy(1,2,3);
 
 // Façon 4
 // Supprimer avec une condition
-App\Models\LeNomDeVotreTableEnBase::where('termine', '=', 1)->delete();
+App\Models\LeNomDeVotreModele::where('termine', '=', 1)->delete();
 ```
 
 ### Les jointures
@@ -126,7 +126,7 @@ class Todo extends Model {
 }
 ```
 
-⚠️ Éloquent supposera que le modèle Catégorie contiendra une colonne todo_id.
+⚠️ Eloquent supposera que le modèle Catégorie contiendra une colonne todo_id.
 
 #### One To Many
 
@@ -144,7 +144,7 @@ class Post extends Model {
 }
 ```
 
-⚠️ Éloquent supposera que la colonne de clé étrangère sur le modèle Comment est post_id.
+⚠️ Eloquent supposera que la colonne de clé étrangère sur le modèle Comment est post_id.
 
 
 #### L’inverse du One To Many : le « Belong To »
@@ -161,8 +161,8 @@ class Comment extends Model
 }
 ```
 
-- Éloquent tentera de trouver un modèle Post dont l’identifiant correspond à la colonne post_id du modèle Comment.
-- Éloquent supposera que la clé étrangère du modèle Post sur la table des commentaires est post_id.
+- Eloquent tentera de trouver un modèle Post dont l’identifiant correspond à la colonne post_id du modèle Comment.
+- Eloquent supposera que la clé étrangère du modèle Post sur la table des commentaires est post_id.
 
 #### Many To Many
 
@@ -286,7 +286,8 @@ $post->comments()->save($comment);
 $comment = new App\Models\Comment(['message' => 'A new comment.']);
 $user = App\Models\User::find(1);
 $post = App\Models\Post::find(1);
-$post->comments()->save($comment, ['user_id' => $user->id]);
+$comment->user_id = $user->id; // On renseigne l'utilisateur avant la sauvegarde
+$post->comments()->save($comment);
 
 // Attacher un rôle à un utilisateur
 $user = App\Models\User::find(1);

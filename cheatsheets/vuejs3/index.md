@@ -10,16 +10,22 @@ description: Le document présent ainsi que les supports de cours et TP sont act
 
 [Débuter en Français](https://fr.vuejs.org/guide/introduction.html)
 
+::: tip Options API et Composition API
+Cette fiche utilise l'Options API. Vue 3 propose également la Composition API avec `<script setup>`, très utilisée dans les projets récents. Voir la [documentation officielle](https://fr.vuejs.org/guide/introduction.html#api-styles).
+:::
+
 ## Vite (Recommandé pour les débutants)
 
 Installation
 
 ```sh
-$ npm init @vitejs/app my-project --template vue
+$ npm create vue@latest
 $ cd my-project
 $ npm install
 $ npm run dev
 ```
+
+> Alternative : `npm create vite@latest mon-projet -- --template vue` pour un projet Vite minimal.
 
 ## Utilisation en mode « standalone »
 
@@ -28,7 +34,7 @@ Ajout de VueJS dans un projet classique, usage en mode « déclaratif »
 Ajouter la librairie
 
 ```html
-<script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/vue@3"></script>
 ```
 
 Exemple de HTML existant dans la page :
@@ -70,11 +76,11 @@ const app = Vue.createApp({
 - beforeUnmount
 - unmounted
 
-[Les cycles de vie](https://fr.vuejs.org/images/lifecycle.png)
+[Les cycles de vie (documentation officielle)](https://vuejs.org/guide/essentials/lifecycle.html)
 
 ## Les directives
 
-Les directives sont des attributs html propres à VueJS
+Les directives sont des attributs HTML propres à VueJS
 
 - v-text
 - v-html

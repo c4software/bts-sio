@@ -1,14 +1,14 @@
 ---
-description: Aide mémoire API
+description: Aide-mémoire API
 ---
 
-# Aide mémoire API
+# Aide-mémoire API
 
 ::: details Sommaire
 [[toc]]
 :::
 
-Une API REST (Representational State Transfer Application Program Interface) permet aux logiciels de communiquer entre eux sur un réseau ou sur un même appareil. Le plus souvent les développeurs utilisent des API REST pour créer des services web. Les API REST utilisent des méthodes HTTP (Verbe HTTP et Code de Retour) pour récupérer et publier des données entre **un client** et **un serveur**.
+Une API REST (REST pour « Representational State Transfer » et API pour « Application Programming Interface ») permet aux logiciels de communiquer entre eux sur un réseau ou sur un même appareil. Le plus souvent les développeurs utilisent des API REST pour créer des services web. Les API REST utilisent des méthodes HTTP (Verbe HTTP et Code de Retour) pour récupérer et publier des données entre **un client** et **un serveur**.
 
 En utilisant le protocole HTTP, les API REST permettent aux logiciels d’un appareil de communiquer avec les logiciels d’un autre appareil (ou du même appareil) même s’ils utilisent des systèmes d’exploitation et des architectures différents.
 
@@ -51,11 +51,11 @@ Les méthodes « HTTP » ?
 - PATCH (**Modifier** des données)
 - DELETE (**Supprimer** une donnée)
 
-### Mais également des ressources attendues
+### Mais également des en-têtes (headers)
 
 - `Accept`
 - `Content-Type`
-- `Authorization …`
+- `Authorization`
 - …
 
 Exemple :
@@ -84,7 +84,7 @@ On répond avec un « HTTP Status Codes », un code « normé » qui signifie qu
 - 500 Internal Server Error
 - 503 Service Unavailable
 
-[Plus d'informations](http://www.restapitutorial.com/httpstatuscodes.html)
+[Plus d'informations](https://restapitutorial.com/httpstatus-codes)
 
 ### Un format de retour
 

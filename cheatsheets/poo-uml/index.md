@@ -129,20 +129,20 @@ public function setVar(string $var, ?string $var2 = null): void {
 class Voiture {
     public int $vitesse;
     private int $nombreKm;
-    private DateTime $annéeFabrication;
-    private ?Personne $lePropriétaire;
+    private DateTime $anneeFabrication;
+    private ?Personne $leProprietaire;
 
     // Le propriétaire est optionnel : un seul constructeur suffit en PHP
-    function __construct(int $nombreKm, DateTime $date, ?Personne $lePropriétaire = null){
+    function __construct(int $nombreKm, DateTime $date, ?Personne $leProprietaire = null){
         $this->nombreKm = $nombreKm;
-        $this->annéeFabrication = $date;
-        $this->lePropriétaire = $lePropriétaire;
+        $this->anneeFabrication = $date;
+        $this->leProprietaire = $leProprietaire;
     }
 
     // Reste des méthodes
 
-    function affecterPropriétaire(Personne $p): void {
-        $this->lePropriétaire = $p;
+    function affecterProprietaire(Personne $p): void {
+        $this->leProprietaire = $p;
     }
 }
 
@@ -192,14 +192,14 @@ class Enseignant {
 ```php
 class Caserne {
     private string $nom;
-    private string $addresse;
+    private string $adresse;
     private ?Pompier $leChef;
     private array $lesCamions; // Collection de Camion
 
     // Le chef et les camions sont optionnels : un seul constructeur suffit en PHP
-    function __construct(string $nom, string $addresse, ?Pompier $leChef = null, array $lesCamions = []){
+    function __construct(string $nom, string $adresse, ?Pompier $leChef = null, array $lesCamions = []){
         $this->nom = $nom;
-        $this->addresse = $addresse;
+        $this->adresse = $adresse;
         $this->leChef = $leChef;
         $this->lesCamions = $lesCamions;
     }
@@ -321,14 +321,14 @@ $etudiant->toString(); // Affiche « Valentin, 34, 0X…, Nombre d'adresses => 1
 ```php
 class Caserne {
     private string $nom;
-    private string $addresse;
+    private string $adresse;
     private ?Pompier $leChef;
     private array $lesCamions;
 
     // Le chef et les camions sont optionnels : un seul constructeur suffit en PHP
-    function __construct(string $nom, string $addresse, ?Pompier $leChef = null, array $lesCamions = []){
+    function __construct(string $nom, string $adresse, ?Pompier $leChef = null, array $lesCamions = []){
         $this->nom = $nom;
-        $this->addresse = $addresse;
+        $this->adresse = $adresse;
         $this->leChef = $leChef;
         $this->lesCamions = $lesCamions;
     }

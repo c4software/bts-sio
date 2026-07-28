@@ -87,7 +87,7 @@ Cette commande permet de suivre en temps réel les logs d'erreur d'Apache. `tail
 Il existe de nombreuses autres commandes, mais celles-ci sont les plus utilisées. **Il est important de savoir les utiliser.**
 
 ::: tip Un doute sur une commande ?
-Si vous avez un doute sur une commande, vous pouvez taper `man <nom-de-la-commande>` pour afficher le manuel de la commande. 
+Si vous avez un doute sur une commande, vous pouvez taper `man <nom-de-la-commande>` pour afficher le manuel de la commande.
 
 Exemple : `man ls`.
 :::

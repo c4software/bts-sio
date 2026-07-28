@@ -1,13 +1,13 @@
 ---
-description: Aide mémoire sur les structures PHP. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.
+description: Aide-mémoire sur les structures PHP. Vous retrouverez dans cet aide-mémoire les éléments que nous avons vus ensemble.
 ---
 
-# Aide mémoire PHP
+# Aide-mémoire PHP
 
-Aide mémoire sur les structures PHP. Vous retrouverez dans cet aide mémoire les éléments que nous avons vus ensemble.
+Aide-mémoire sur les structures PHP. Vous retrouverez dans cet aide-mémoire les éléments que nous avons vus ensemble.
 
 ::: warning
-Cet aide mémoire n'est pas exhaustif, il ne contient que le minimum à connaitre pour débuter sereinement.  
+Cet aide-mémoire n'est pas exhaustif, il ne contient que le minimum à connaitre pour débuter sereinement.  
 :::
 
 ::: details Table des matières
@@ -16,7 +16,7 @@ Cet aide mémoire n'est pas exhaustif, il ne contient que le minimum à connaitr
 
 ## Structure
 
-Pour être exécuté votre code doit être dans un fichier nommé `quelqueschoses.php` et doit être mis tel que :
+Pour être exécuté, votre code doit être placé dans un fichier avec l'extension `.php` (par exemple `ma-page.php`) et écrit entre les balises suivantes :
 
 ```php
 <?php
@@ -29,11 +29,11 @@ Pour être exécuté votre code doit être dans un fichier nommé `quelqueschose
 ```php
 <h1><?php echo "Ceci est un titre"; ?></h1>
 
-// Ou
+<!-- Ou -->
 
 <?php echo "Ceci est un <i>titre</i>"; ?>
 
-// Ou
+<!-- Ou -->
 
 <?php
     $test = "Ceci est une variable";
@@ -67,7 +67,7 @@ Pour envoyer le paramètre `param` & `nb` à la page `index.php` :
 $var1 = 1; // Valeur numérique
 $var2 = "Démonstration"; // Valeur texte
 $var3 = true; // Valeur Booléenne
-$var4 = Array("a","b","c"); // Tableau
+$var4 = ["a","b","c"]; // Tableau
 ```
 
 | Type      | Contenu                   | Type d'opération                | Usage                                                                                                               |
@@ -149,10 +149,10 @@ for ($i = 0; $i < $max; $i++){
 ```
 
 ```php
-$etudiants = array(
-    array('nom' => 'Brosseau'),
-    array('nom' => 'Doe')
-);
+$etudiants = [
+    ['nom' => 'Brosseau'],
+    ['nom' => 'Doe']
+];
 
 // Je vais afficher l'ensemble des étudiants présents dans le tableau.
 for($i = 0; $i < count($etudiants); ++$i) {
@@ -165,10 +165,10 @@ _La boucle foreach_ :
 Identique à la boucle `for` mais plus concise
 
 ```php
-$etudiants = array(
-    array('nom' => 'Brosseau'),
-    array('nom' => 'Doe')
-);
+$etudiants = [
+    ['nom' => 'Brosseau'],
+    ['nom' => 'Doe']
+];
 
 // Je vais afficher l'ensemble des étudiants présents dans le tableau.
 foreach ($etudiants as $current) {
@@ -270,19 +270,19 @@ En PHP vous pouvez rediriger l'utilisateur d'une page à l'autre assez simplemen
 ```php
     <?php
         // Redirection vers Google
-        header('location: https://www.google.com');
+        header('Location: https://www.google.com');
         die();
     ?>
 
     <?php
         // Redirection vers une page de votre site
-        header('location: ./connexion.php');
+        header('Location: ./connexion.php');
         die();
     ?>
 
     <?php
         // Redirection vers une page de votre site avec des paramètres.
-        header('location: index.php?page=connexion');
+        header('Location: index.php?page=connexion');
         die();
     ?>
 ```
@@ -364,7 +364,7 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
     // Vérification si l'utilisateur est connecté
     if(!isset($_SESSION['user']) || $_SESSION['user'] == ''){
         // La personne n'est pas connectée, redirection vers la page de connexion
-        header('location: index.php?page=connexion');
+        header('Location: index.php?page=connexion');
         die();
     }
 ?>
@@ -385,7 +385,7 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
         if($_POST['login'] == 'admin' && $_POST['password'] == "SPHHIBGjXKqkTubwIY1JZv6hukaMBH3"){
             // Si les informations saisies par l'utilisateur correspondent, celui-ci est maintenant connecté
             $_SESSION['user'] = 'admin';
-            header('location: index.php?page=home'); // Redirection de l'utilisateur car correctement connecté.
+            header('Location: index.php?page=home'); // Redirection de l'utilisateur car correctement connecté.
             die();
         } else {
             unset($_SESSION['user']);
@@ -405,16 +405,16 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
 ```php
 <?php
     if(isset($_POST['login']) && isset($_POST['password'])){
-        // Vérification si l'utilisateur existe
-        $stmt= $pdo->prepare("SELECT * FROM users WHERE login=? AND password=SHA2(?, 512)");
-        $stmt->execute([$_POST['login'], $_POST['password']]);
-        $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        // Récupération de l'utilisateur via son login
+        $stmt= $pdo->prepare("SELECT * FROM users WHERE login=?");
+        $stmt->execute([$_POST['login']]);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        // La personne existe en base de données (nous allons donc la connecter)
-        if(count($users) == 1){
+        // L'utilisateur existe et le mot de passe saisi correspond au hash en base de données
+        if($user && password_verify($_POST['password'], $user['password'])){
             // Réussite de la connexion, on sauvegarde dans la SESSION les informations.
-            $_SESSION['user'] = $users[0];
-            header("location: / ");
+            $_SESSION['user'] = $user;
+            header("Location: /");
             die();
         } else {
             // Action en cas d'échec de connexion
@@ -429,9 +429,13 @@ Le code pour écrire une telle problématique est simple, **il se résume à tes
 </form>
 ```
 
+::: warning Et à l'inscription ?
+Le mot de passe ne doit **jamais** être stocké en clair en base de données. Au moment de l'inscription, vous devez le hacher côté PHP avec `password_hash($_POST['password'], PASSWORD_DEFAULT)`, c'est ce hash que `password_verify()` comparera ensuite. Pour en savoir plus, consultez [l'aide-mémoire OWASP](/cheatsheets/owasp/).
+:::
+
 ## Le PHP et la base de données
 
-Si vous souhaitez l'aide mémoire pour [la partie SQL c'est par ici](/cheatsheets/sql/)
+Si vous souhaitez l'aide-mémoire pour [la partie SQL c'est par ici](/cheatsheets/sql/)
 
 ### Le code de connexion
 

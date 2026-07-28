@@ -20,7 +20,11 @@ Le JavaScript peut être exécuté dans différents environnements :
 
 - Serveur (NodeJS)
 - Un navigateur (Chrome, Firefox, Safari, …)
-- Une application (Électron, Cordova …)
+- Une application (Electron, Capacitor …)
+
+::: tip À noter
+Cordova, longtemps utilisé pour les applications mobiles, est en fin de vie. L'écosystème est passé à [Capacitor](https://capacitorjs.com/).
+:::
 
 Les compétences traitées dans le [support de cours](/tp/javascript/support.md) et dans cet aide mémoire couvrent l'ensemble des usages.
 
@@ -56,7 +60,7 @@ Dans cet aide mémoire je vais me concentrer sur le VanillaJS, car finalement c'
 C'est super simple, il suffit « juste » d'ajouter dans votre page :
 
 ```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 ```
 
 :::
@@ -175,11 +179,12 @@ arr.filter((curr) => curr > 2); // --> Retourne un tableau avec seulement les va
 | onChange    | Modification d'un état ou contenu   |
 | onClick     | Clic sur un élément                 |
 | onDblClick  | Double clic                         |
-| onDragDrop  | Déplacement d'un élément amovible   |
+| onDragStart | Début du déplacement d'un élément   |
+| onDrop      | Dépôt d'un élément déplacé          |
 | onError     | Chargement non réalisé              |
 | onFocus     | Élément devient accessible          |
 | onKeyDown   | Touche du clavier maintenue appuyée |
-| onKeyPress  | Touche pressée/relâchée             |
+| onKeyPress  | Touche pressée (déprécié, préférez onKeyDown) |
 | onKeyUp     | Touche relâchée                     |
 | onLoad      | Au chargement                       |
 | onMouseDown | Appui sur un bouton de souris       |
@@ -191,14 +196,14 @@ arr.filter((curr) => curr > 2); // --> Retourne un tableau avec seulement les va
 | onResize    | Dimensions changées dynamiquement   |
 | onSelect    | Sélection d'une partie de contenu   |
 | onSubmit    | Bouton soumettre                    |
-| onUnload    | Fermeture de la page                |
+| onUnload    | Fermeture de la page (déprécié, préférez beforeunload) |
 
 ## Créer des éléments
 
 ```javascript
-var h = document.createElement("h1"); // Création de l'élément h1
+let h = document.createElement("h1"); // Création de l'élément h1
 h.innerHTML = "Ceci est un titre"; // Ajout du texte dans le h1
-h.className = "titleClass"; // Définition d'un titre pour l'élément
+h.className = "titleClass"; // Définition d'une classe CSS pour l'élément
 
 // Ajout du titre dans le body de la page courante.
 document.body.appendChild(h);
@@ -263,7 +268,7 @@ Comme dans l'exemple précédent, c'est la position de l'élément que vous souh
 - `beforeend` : Juste à l'intérieur de l'élément , après son dernier enfant.
 - `afterend` : Après l'élément lui-même.
 
-L'exemple de la W3School est très explicite :
+L'exemple de la MDN est très explicite :
 
 ```html
 <!-- beforebegin -->
@@ -280,7 +285,7 @@ L'exemple de la W3School est très explicite :
 ## Les sélecteurs
 
 ```javascript
-// Retourne la liste (array) des éléments
+// Retourne la liste des éléments (NodeList, parcourable avec forEach)
 document.querySelectorAll("#elementId");
 document.querySelectorAll(".maClass");
 document.querySelectorAll("div");
@@ -298,10 +303,10 @@ document.querySelectorAll("div").forEach((it) => {
 });
 ```
 
-::: tip C'est « neuf »
-Ces API (Méthodes) sont très peu utilisées (voire même connues), elles sont pourtant très puissantes. Elles sont à choisir si vous souhaitez faire du code moderne.
+::: tip Le standard moderne
+`querySelector` et `querySelectorAll` sont le standard moderne pour sélectionner des éléments, elles acceptent n'importe quel sélecteur CSS et sont donc très puissantes. C'est la façon de faire à privilégier.
 
-Sur Internet (voire dans du code existant), vous trouverez l'ancienne version à savoir :
+Sur Internet (voire dans du code existant), vous trouverez également les méthodes historiques, toujours valides mais moins flexibles :
 
 ```javascript
 document.getElementById("elementId");
@@ -356,7 +361,7 @@ element.classList.add("maClass");
 ```
 
 ::: warning Hey ! classList ?
-Oui… Il est possible de mettre « plusieurs classes », donc nous avons ici un tableau `array`. Un tableau se manipule avec des méthodes comme vu précédemment. Il faut donc utiliser la méthode `add` pour ajouter une classe.
+Oui… Il est possible de mettre « plusieurs classes », `classList` est donc une liste de classes (une `DOMTokenList`). Elle se manipule avec les méthodes `add` (ajouter une classe), `remove` (retirer une classe) et `toggle` (ajouter ou retirer selon la présence).
 :::
 
 ## Obtenir la valeur d'un input
@@ -373,7 +378,7 @@ document.getElementById("monInput").value;
 $("#monInput").val();
 ```
 
-## Les évènements
+## Réagir aux évènements
 
 ![Event_click](./event_click.png)
 
@@ -410,10 +415,10 @@ Le `this` correspond à l'élément sur lequel vous avez cliqué.
 
 <script>
   // Pure JS
-  document.getElementById("btn").addEventListener("click", maFonction, true);
+  document.getElementById("btn").addEventListener("click", maFonction);
 
   // Pure JS
-  document.getElementById("form").addEventListener("submit", maFonction, true);
+  document.getElementById("form").addEventListener("submit", maFonction);
 
   // jQuery
   $("#btn").click(maFonction);
@@ -465,11 +470,11 @@ fetch("./monContenuAsynchrone.php", {
   });
 
 // Format POST Data
-let data = new URLSearchParams();
-data.append(`key`, `value`);
-data.append(`anotherKey`, `another value`);
+let formData = new URLSearchParams();
+formData.append(`key`, `value`);
+formData.append(`anotherKey`, `another value`);
 
-fetch("./monContenuAsynchrone.php", { method: "POST", body: data })
+fetch("./monContenuAsynchrone.php", { method: "POST", body: formData })
   .then((response) => response.json())
   .then((data) => {
     console.log("Success:", data);

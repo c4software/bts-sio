@@ -8,27 +8,17 @@ description: Le document présent ainsi que les supports de cours et TP sont act
 [[toc]]
 :::
 
-::: danger Remarque Décembre 2020
-Nous sommes actuellement à une période charnière de VueJS. La version 3.0 bien que stable n'est pas encore la version « par défaut ».
-
-Le document présent ainsi que les supports de cours et TP sont actuellement écrits pour VueJS 2.0
+::: warning Vue 2 est en fin de vie
+Vue 2 n'est plus maintenu depuis le 31 décembre 2023. Cette fiche est conservée pour référence, pour tout nouveau projet consultez la [fiche Vue 3](/cheatsheets/vuejs3/).
 :::
 
-[Débuter en Français](https://fr.vuejs.org/v2/guide/index.html)
+[Débuter en Français](https://v2.fr.vuejs.org/v2/guide/index.html)
 
-## VueCLI (Recommandé pour les débutants)
+## Outillage
 
-Installation
-
-```sh
-$ npm install -g vue-cli
-```
-
-Créer un projet « application » depuis le template officiel
-
-```sh
-$ vue init webpack my-project
-```
+::: warning
+L'outillage Vue 2 (`vue-cli`, templates webpack) n'est plus maintenu, il n'est donc pas présenté ici. Pour un nouveau projet, utilisez Vue 3 et son outillage moderne.
+:::
 
 ## Utilisation en mode « standalone »
 
@@ -37,7 +27,7 @@ Ajout de VueJS dans un projet classique, usage en mode « déclaratif »
 Ajouter la librairie
 
 ```html
-<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue@2"></script>
 ```
 
 Exemple de HTML existant dans la page :
@@ -73,11 +63,11 @@ var app = new Vue({ el: '#monMessage', data: { message: 'Bonjour Monde' } })
 - beforeDestroy
 - destroyed
 
-[Les cycles de vie](https://fr.vuejs.org/images/lifecycle.png)
+[Les cycles de vie](https://v2.fr.vuejs.org/images/lifecycle.png)
 
 ## Les directives
 
-Les directives sont des attributs html propres à VueJS
+Les directives sont des attributs HTML propres à VueJS
 
 - v-text
 - v-html

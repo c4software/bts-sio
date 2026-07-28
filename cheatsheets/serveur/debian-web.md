@@ -29,7 +29,7 @@ sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/
 
 # Installer Apache + PHP
 apt update
-apt install curl zip open-vm-tools apache2 php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl,pdo,mysql,gd,xml} -y
+apt install curl zip open-vm-tools apache2 php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl,mysql,gd,xml} -y
 
 # Activer PHP dans Apache
 a2enmod proxy_fcgi setenvif rewrite headers
@@ -50,15 +50,15 @@ curl -s --head http://localhost:80 | grep "HTTP/1.[01] [23].." && echo "Le serve
 ## Installer Apache
 
 ```bash
-apt-get update
-apt-get install apache2 -y
+apt update
+apt install apache2 -y
 ```
 
 ## Ajouter le dépôt pour PHP 8
 
 ```bash
-apt-get update
-apt-get install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
+apt update
+apt install wget lsb-release apt-transport-https gnupg2 ca-certificates -y
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
 ```
@@ -71,7 +71,7 @@ Debian est une distribution stable, mais stabilité ≠ modernité. Pour avoir l
 
 ```bash
 apt update
-apt install zip php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl,pdo,mysql,gd,xml}  -y
+apt install zip php8.4 php8.4-fpm php8.4-cli php8.4-{bz2,curl,mbstring,intl,mysql,gd,xml} -y
 ```
 
 Démarrez le serveur Apache
@@ -92,10 +92,10 @@ php -v
 ```
 
 ```bash
-PHP 8.4 (cli) (built: Feb 15 2023 00:18:01) (NTS)
+PHP 8.4.6 (cli) (built: Apr 10 2025 21:29:07) (NTS)
 Copyright (c) The PHP Group
-Zend Engine v4.2.3, Copyright (c) Zend Technologies
-    with Zend OPcache v8.2.3, Copyright (c), by Zend Technologies
+Zend Engine v4.4.6, Copyright (c) Zend Technologies
+    with Zend OPcache v8.4.6, Copyright (c), by Zend Technologies
 ```
 
 ## Installer MariaDB
@@ -103,8 +103,8 @@ Zend Engine v4.2.3, Copyright (c) Zend Technologies
 Évidemment vous n'êtes pas obligé d'installer MariaDB et Apache sur le même serveur. Vous pouvez très bien installer MariaDB sur un autre serveur et vous connecter à distance.
 
 ```bash
-apt-get update
-apt-get install mariadb-server mariadb-client -y
+apt update
+apt install mariadb-server mariadb-client -y
 ```
 
 Démarrer le serveur MariaDB
@@ -140,14 +140,14 @@ Ajoutez la ligne suivante dans la section `[mysqld]`.
 bind-address = 0.0.0.0
 ```
 
-Redémarrer le serveur MySQL
+Redémarrer le serveur MariaDB
 
 ```bash
-systemctl restart mysql
+systemctl restart mariadb
 ```
 
 ::: tip Pourquoi ?
-Par défaut, le serveur MySQL n'écoutera que les connexions locales. Il faut donc autoriser les connexions distantes en modifiant la valeur de `bind-address`. **Si vous n'en avez pas besoin, vous pouvez laisser la valeur par défaut.**
+Par défaut, le serveur MariaDB n'écoutera que les connexions locales. Il faut donc autoriser les connexions distantes en modifiant la valeur de `bind-address`. **Si vous n'en avez pas besoin, vous pouvez laisser la valeur par défaut.**
 
 Changer ce paramètre sera utile quand vous souhaiterez accéder à la base de données depuis un autre ordinateur (exemple développement en C#).
 :::
@@ -186,7 +186,7 @@ Ce ne sont évidemment que des exemples.
 
 :::
 
-## Les virtualHost
+## Les VirtualHost
 
 ```bash
 nano /etc/apache2/sites-available/votre-virtual-host.conf
@@ -208,6 +208,10 @@ nano /etc/apache2/sites-available/votre-virtual-host.conf
 </VirtualHost>
 ```
 
+::: warning Un port différent de 80 ?
+Cet exemple écoute sur le port `9090`. Pour qu'Apache accepte les connexions sur un port autre que 80, vous devez ajouter la ligne `Listen 9090` dans la configuration d'Apache (voir le bloc « Écouter le port 9090 » plus bas dans cette page).
+:::
+
 Activer un virtual host :
 
 ```bash
@@ -227,10 +231,10 @@ Pour installer phpMyAdmin, vous pouvez utiliser la commande suivante :
 ```bash
 apt install unzip
 cd /var/www/html
-wget https://files.phpmyadmin.net/phpMyAdmin/5.2.0/phpMyAdmin-5.2.0-all-languages.zip
-unzip phpMyAdmin-5.2.0-all-languages.zip
-mv phpMyAdmin-5.2.0-all-languages phpmyadmin
-rm phpMyAdmin-5.2.0-all-languages.zip
+wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.zip
+unzip phpMyAdmin-latest-all-languages.zip
+mv phpMyAdmin-*-all-languages phpmyadmin
+rm phpMyAdmin-latest-all-languages.zip
 ```
 
 ### Créer un virtual host dédié à phpMyAdmin

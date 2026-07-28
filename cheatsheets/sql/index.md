@@ -42,9 +42,9 @@ SELECT * FROM t WHERE CONDITION;
 SELECT * FROM t WHERE age > 18;
 
 -- Dans la table « t » récupération de l'ensemble des enregistrements dont la colonne « age » est plus grande que 18 et ayant comme « country » FRA.
-SELECT * FROM t WHERE age > 18 AND country = "FRA";
+SELECT * FROM t WHERE age > 18 AND country = 'FRA';
 
--- Calcul de l'age moyen.
+-- Calcul de l'âge moyen.
 SELECT avg(age) FROM t;
 
 -- Récupération des données triées
@@ -58,14 +58,18 @@ SELECT * FROM t ORDER BY c1 LIMIT 10 OFFSET 10; -- 10 suivants etc
 SELECT * FROM t ORDER BY c1 LIMIT 10 OFFSET 20; -- etc
 
 -- Retourne la liste dédoublonnée des pays présents dans t.
-SELECT distinct(pays) FROM t;
+SELECT DISTINCT pays FROM t;
 
 -- Compter et Grouper, Affiche la répartition des utilisateurs par age.
 SELECT COUNT(id), age FROM t GROUP BY age;
 
--- Compter et Grouper, Affiche la répartition des utilisateurs par age pour les personnes de plus de 18 ans
-SELECT COUNT(id), age FROM t GROUP BY age HAVING age > 18;
+-- Compter et Grouper, Affiche uniquement les âges regroupant plus de 5 utilisateurs.
+SELECT COUNT(id), age FROM utilisateurs GROUP BY age HAVING COUNT(id) > 5;
 ```
+
+::: tip WHERE ou HAVING ?
+`WHERE` filtre les lignes **avant** le regroupement, `HAVING` filtre les groupes **après** l'agrégation. Pour filtrer sur une colonne simple (comme `age > 18`), utilisez `WHERE`. Réservez `HAVING` aux conditions portant sur un agrégat (`COUNT`, `AVG`, `SUM`, etc.).
+:::
 
 ## Obtenir des données depuis _plusieurs tables_
 
@@ -155,22 +159,26 @@ Attention !!! Si vous oubliez le **WHERE** vous allez vider l'ensemble de la tab
 ::: danger LES MOTS DE PASSE NE DOIVENT PAS ÊTRE EN CLAIR
 Vous ne devez **JAMAIS** avoir un mot de passe en clair en base de données.
 
-Vous pouvez par exemple utiliser la fonction SQL `SHA2("VotreMotDePasse-SALT-SECRET", 512)`. Cela génèrera un mot de passe « hashé » équivalent au mot de passe.
+Vous pouvez par exemple utiliser la fonction SQL `SHA2('VotreMotDePasse-SALT-SECRET', 512)`. Cela génèrera un mot de passe « hashé » équivalent au mot de passe.
 
 Exemple d'insertion :
 
 ```sql
-INSERT INTO table (user, password) VALUES ("valentin", SHA2("VotreMotDePasse-SALT-SECRET", 512));
+INSERT INTO table (user, password) VALUES ('valentin', SHA2('VotreMotDePasse-SALT-SECRET', 512));
 ```
 
 Exemple de vérification si l'utilisateur existe :
 
 ```sql
-SELECT * FROM table WHERE user = "valentin" AND password = SHA2("VotreMotDePasse-SALT-SECRET", 512);
+SELECT * FROM table WHERE user = 'valentin' AND password = SHA2('VotreMotDePasse-SALT-SECRET', 512);
 ```
 
 S’il y a un résultat, c'est que votre utilisateur existe et a fourni le bon mot de passe.
 
+:::
+
+::: warning POUR COMPRENDRE LE PRINCIPE, PAS POUR LA PRODUCTION
+L'exemple `SHA2` avec un sel global est montré ici pour comprendre le principe du hachage. En production, vous devez utiliser un algorithme dédié aux mots de passe (bcrypt ou Argon2, via `password_hash()` en PHP) avec un sel unique par utilisateur. Plus de détails dans [l'aide mémoire OWASP](/cheatsheets/owasp/).
 :::
 
 ## SQL et PHP ?

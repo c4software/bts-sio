@@ -30,7 +30,7 @@ sudo su -
 
 ### Si vous avez déjà un MariaDB installé
 
-Si vous avez déjà un MariaDB installé sur votre machine, il est nécessaire de le désinstaller avant d'installer MySQL via Docker. Pour cela, vous pouvez utiliser la commande suivante :
+Si vous avez déjà un MariaDB installé sur votre machine, il est nécessaire de le désinstaller avant d'installer MySQL via Docker : MariaDB occupe le port 3306, qui doit être libre pour le conteneur MySQL. Pour cela, vous pouvez utiliser la commande suivante :
 
 ```bash
 apt-get remove --purge mariadb-server mariadb-client -y
@@ -55,7 +55,7 @@ apt-get -y install \
 
 # Ajout du dépôt permettant d'installer Docker
 mkdir -m 0755 -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # Update la liste des packages et installation de Docker
@@ -104,6 +104,7 @@ services:
     container_name: db
     restart: always
     environment:
+      - MYSQL_DATABASE=ma-base
       - MYSQL_USER=user
       - MYSQL_PASSWORD=user-password
       - MYSQL_ROOT_PASSWORD=root
@@ -135,6 +136,7 @@ Vous pouvez maintenant accéder à PHPMyAdmin via l'adresse :
 
 - Accéder à votre PHPMyAdmin : http://ip-de-votre-machine:8081
 - Pour le MYSQL vous avez les informations suivantes :
+  - Base de données : `ma-base`
   - Utilisateur : `user`
   - Mot de passe : `user-password`
   - Utilisateur root : `root`
