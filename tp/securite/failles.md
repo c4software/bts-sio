@@ -778,4 +778,4 @@ Route::put('/data', 'DataController@ajouter');
 Route::delete('/data', 'DataController@supprimer');
 ```
 
-Expliquez à Antonin pourquoi il reçoit une erreur 405 et proposez une solution pour corriger ce problème.
+Expliquez à Antonin pourquoi il reçoit une erreur 405 (méthode Not Allowed) et proposez une solution pour corriger ce problème.
