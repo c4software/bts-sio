@@ -151,7 +151,7 @@ export default [
           { text: "Pratiquer l'Ajax", link: "/tp/javascript/tp4.md" },
           { text: "La BTS TV 2.0 (Ajax)", link: "/tp/javascript/tp4.1.md" },
           { text: "Larablog 2.0 (Ajax & VueJS)", link: "/tp/javascript/tp6.md" },
-          { text: "Découverte de HTMX", link: "/tp/htmx/tp1.md" }
+          { text: "Découverte de HTMX", link: "/tp/javascript/htmx.md" }
         ]
       },
     ]
