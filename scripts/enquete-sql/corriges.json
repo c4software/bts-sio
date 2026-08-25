@@ -21,5 +21,11 @@
     "controleur (repérage)": "SELECT p.nom FROM personne p JOIN revenu r ON r.nir=p.nir WHERE p.nom_rue='Chemin du Port' ORDER BY r.revenu_annuel ASC LIMIT 1",
     "complice (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN evenement_participation e ON e.personne_id=p.id WHERE pc.genre='homme' AND pc.couleur_cheveux='roux' AND pc.couleur_yeux='bleu' AND pc.age BETWEEN 20 AND 29 AND e.nom_evenement='Soirée western' AND e.date BETWEEN 20190501 AND 20190531 GROUP BY p.id HAVING COUNT(DISTINCT e.date)=2",
     "cerveau (indices)": "SELECT p.nom FROM personne p JOIN revenu r ON r.nir=p.nir JOIN salle_sport_membre m ON m.personne_id=p.id JOIN salle_sport_passage s ON s.membre_id=m.id WHERE r.revenu_annuel>200000 AND p.nom_rue='Avenue Anatole-France' AND m.statut_abonnement='standard' AND m.id LIKE '%6J%' AND s.date_passage=20190613 AND s.heure_entree BETWEEN 1900 AND 2000 GROUP BY p.id"
+  },
+  "nova_city": {
+    "agent (repérage)": "SELECT nom FROM personne WHERE nom_rue='Chemin de l''Industrie' ORDER BY numero_rue DESC LIMIT 1",
+    "joggeuse (repérage)": "SELECT nom FROM personne WHERE nom_rue='Avenue Kennedy' AND nom LIKE 'Justine %' AND numero_rue BETWEEN 300 AND 400",
+    "main (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN salle_sport_membre m ON m.personne_id=p.id WHERE m.statut_abonnement='standard' AND m.id LIKE '1H%' AND pc.genre='homme' AND pc.couleur_cheveux='roux' AND pc.couleur_yeux='bleu' AND pc.taille BETWEEN 173 AND 176",
+    "cerveau (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN revenu r ON r.nir=p.nir JOIN evenement_participation e ON e.personne_id=p.id WHERE pc.marque_voiture='Mercedes' AND pc.modele_voiture='Classe C' AND pc.immatriculation LIKE '%3R5G%' AND e.nom_evenement='Conférence Cybersécurité' AND e.date BETWEEN 20220301 AND 20220331 AND r.revenu_annuel>100000 GROUP BY p.id HAVING COUNT(DISTINCT e.date)=2"
   }
 }

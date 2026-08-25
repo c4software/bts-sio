@@ -64,5 +64,22 @@
       "coupable",
       "cerveau"
     ]
+  },
+  {
+    "empreintes": [
+      "e6612699125d0394ae4bf50028da1eb110a419cbf38c5a200319cdc3d7dc45fb",
+      "57fd3d4cd692b516c22d6138183b3849f97bf3a3decbe00073945b423fad37f1"
+    ],
+    "id": "nova_city",
+    "titre": "Menace sur Nova City",
+    "fichier": "nova_city.sqlite",
+    "date": "12 avril 2022",
+    "date_sql": 20220412,
+    "type": "sabotage",
+    "brief": "12 avril 2022 : la centrale électrique de SQL Ville (rebaptisée Nova City pour l'occasion) a été sabotée et la ville plongée dans le noir pendant six heures. Un message a été projeté sur la mairie : « Ceci n'est qu'un avertissement ». La police cherche l'homme de main… et le cerveau qui se cache derrière.",
+    "etapes": [
+      "main",
+      "cerveau"
+    ]
   }
 ]

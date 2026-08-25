@@ -1,0 +1,48 @@
+# Ambiance « Menace sur Nova City » (Unlock!) : un super-vilain, un homme de main, un plan diabolique.
+# Structure : rapport -> 2 témoins ; le témoin 1 mène à l'homme de main ; l'homme de main ET le témoin 2
+# détiennent chacun une partie des indices sur le cerveau. Il faut croiser deux dépositions.
+
+[histoire]
+id = "nova_city"
+titre = "Menace sur Nova City"
+ordre = 5
+seed = 2049
+date = 20220412
+type = "sabotage"
+brief = "12 avril 2022 : la centrale électrique de SQL Ville (rebaptisée Nova City pour l'occasion) a été sabotée et la ville plongée dans le noir pendant six heures. Un message a été projeté sur la mairie : « Ceci n'est qu'un avertissement ». La police cherche l'homme de main… et le cerveau qui se cache derrière."
+rapport = "La centrale a été sabotée à 2h du matin. Deux témoins : un agent de sécurité, qui {agent}, et une joggeuse qui {joggeuse}. L'agent a vu l'homme de main de près ; la joggeuse a vu quelqu'un d'autre attendre dans une voiture, un peu plus loin."
+rapports_leurres = [
+  { type = "sabotage", description = "Le panneau lumineux de la gare affiche « Nova City » au lieu de « SQL Ville », piratage présumé." },
+  { type = "vandalisme", description = "Rapport non disponible." },
+  { ville = "Lyon", description = "Coupure de courant dans un quartier, cause technique." },
+]
+
+[personnage.agent]
+nom = "Marcel Bourgeois"
+reperage = { rue = "Chemin de l'Industrie", position = "dernier" }
+dit = "Je faisais ma ronde quand quelqu'un est sorti du bâtiment des transformateurs. {main:physique} {main:salle} J'ai essayé de le suivre mais il a sauté dans une camionnette."
+
+[personnage.joggeuse]
+nom = "Justine Payet"
+genre = "femme"
+reperage = { rue = "Avenue Kennedy", prenom = true, numero = [300, 400] }
+dit = "Je courais le long de la centrale, il était tôt. Une voiture attendait tous feux éteints, une femme au volant. {cerveau:vehicule} Elle a démarré dès que l'alarme a sonné."
+
+[personnage.main]
+nom = "Kevin Lacroix"
+genre = "homme"
+reponse = 1
+message = "L'homme de main est sous les verrous, mais il n'a fait qu'exécuter les ordres. Lisez sa déposition, puis croisez-la avec celle de la joggeuse : le cerveau se cache dans la voiture qui attendait."
+traits.physique = { genre = "homme", cheveux = "?", yeux = "?", taille = "?" }
+traits.salle = { statut = "?", id_debut = "?" }
+dit = "Je n'ai jamais vu son visage, elle porte toujours un masque. Mais je sais des choses. {cerveau:revenu} {cerveau:evenement} Elle dit qu'elle veut « rendre la ville à ceux qui la méritent »."
+
+[personnage.cerveau]
+nom = "Helene Marchal"
+genre = "femme"
+reponse = 2
+message = "Le masque tombe : le cerveau de la Menace est arrêtée, la lumière revient sur Nova City. Les habitants vous offrent une statue… en forme de clé primaire. Félicitations !"
+traits.vehicule = { marque = "?", modele = "?", plaque_contient = "?" }
+traits.revenu = { min = "?" }
+traits.evenement = { nom = "Conférence Cybersécurité", fois = "?", mois = 202203 }
+dit = "Une ville qui tourne avec des mots de passe en 1234 mérite une leçon. Je n'ai fait que la donner."
