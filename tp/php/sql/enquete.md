@@ -59,50 +59,10 @@ La base vous répond si c'est la bonne personne… et si l'enquête continue.
 Pas de `SELECT * FROM personne` en espérant repérer le coupable à l'œil : il y a 10 000 habitants. L'objectif est justement d'écrire des requêtes qui **réduisent** le nombre de résultats jusqu'à n'en avoir qu'un.
 :::
 
-## Choisissez votre histoire
+::: details La méthode, en quatre étapes (à lire une fois, puis à garder sous le coude)
+Quelle que soit l'histoire, la démarche est toujours la même.
 
-Sélectionnez une histoire, lisez le brief, puis écrivez vos requêtes dans l'éditeur. Tout s'exécute dans votre navigateur (rien n'est envoyé sur un serveur) et le bouton « Réinitialiser » remet la base dans son état d'origine.
-
-<ClientOnly>
-<SqlEnquete />
-</ClientOnly>
-
-::: tip Vous préférez un vrai client SQL ?
-Le lien « Télécharger la base » vous donne le fichier `.sqlite`. Ouvrez-le avec [DB Browser for SQLite](https://sqlitebrowser.org/), PhpStorm ou la ligne de commande `sqlite3`. Les requêtes sont exactement les mêmes.
-:::
-
-## Le schéma de la base
-
-![Schéma relationnel de la base Enquête SQL](./res/enquete_schema.svg)
-
-Les flèches partent d'une clé étrangère (FK) vers la clé primaire (PK) qu'elle référence : c'est exactement le `ON` de vos jointures. `rapport_police` et `solution` ne sont reliées à rien : la première se lit seule, la seconde sert à valider votre réponse.
-
-| Table | Ce qu'elle contient |
-| --- | --- |
-| `rapport_police` | `date`, `type`, `description`, `ville` |
-| `personne` | `id`, `nom`, `permis_id`, `numero_rue`, `nom_rue`, `nir` |
-| `permis_conduire` | `id`, `age`, `taille`, `couleur_yeux`, `couleur_cheveux`, `genre`, `immatriculation`, `marque_voiture`, `modele_voiture` |
-| `revenu` | `nir`, `revenu_annuel` |
-| `interrogatoire` | `personne_id`, `transcription` |
-| `salle_sport_membre` | `id`, `personne_id`, `nom`, `date_debut_abonnement`, `statut_abonnement` |
-| `salle_sport_passage` | `membre_id`, `date_passage`, `heure_entree`, `heure_sortie` |
-| `evenement_participation` | `personne_id`, `evenement_id`, `nom_evenement`, `date` |
-| `solution` | `utilisateur`, `valeur` (pour valider votre réponse) |
-
-Question de réflexion : comment relie-t-on une personne à sa voiture ? Et à son revenu ?
-
-::: details Réponse
-- `personne.permis_id` → `permis_conduire.id` pour la voiture et la description physique.
-- `personne.nir` → `revenu.nir` pour le revenu.
-- `personne.id` → `salle_sport_membre.personne_id`, puis `salle_sport_membre.id` → `salle_sport_passage.membre_id` pour la salle de sport.
-- `personne.id` → `evenement_participation.personne_id` et `interrogatoire.personne_id`.
-:::
-
-## La méthode
-
-Quelle que soit l'histoire, la démarche est toujours la même. Je vous la détaille pour la première étape, ensuite c'est à vous.
-
-### Étape 1 : lire le rapport de police
+**Étape 1 : lire le rapport de police**
 
 Vous connaissez la date, le type de crime et la ville : c'est un simple filtre.
 
@@ -113,7 +73,7 @@ WHERE ville = 'SQL Ville' AND type = 'meurtre' AND date = 20180115;
 
 Attention, il peut y avoir plusieurs rapports le même jour dans la même ville. Lisez la `description` : elle vous dit comment **retrouver les témoins** (une rue, un prénom, un numéro, un revenu…).
 
-### Étape 2 : identifier les témoins
+**Étape 2 : identifier les témoins**
 
 Le rapport ne donne jamais un nom, seulement une manière de le retrouver. Quelques exemples de formulations et la requête qui va avec :
 
@@ -126,25 +86,48 @@ Le rapport ne donne jamais un nom, seulement une manière de le retrouver. Quelq
 
 Une fois les témoins identifiés, lisez leur `interrogatoire` : c'est là que se trouvent les indices sur le coupable.
 
-### Étape 3 : croiser les indices
+**Étape 3 : croiser les indices**
 
 Chaque témoin donne un ou plusieurs indices (une plaque, une salle de sport, un événement, une description physique…). **Tous** les indices sont nécessaires : la base contient volontairement des personnes qui correspondent à presque tout.
 
 Construisez une requête qui part de `personne` et ajoute une jointure par indice. Testez au fur et à mesure : à chaque condition ajoutée, le nombre de lignes doit diminuer.
 
-::: tip Que se passe-t-il derrière ?
+**Que se passe-t-il derrière ?**
 Quand un indice parle de « trois fois à un événement », un simple `WHERE` ne suffit pas : il faut compter les participations par personne avec `GROUP BY personne_id HAVING COUNT(*) = 3`. C'est exactement ce que vous ferez plus tard pour compter les commandes d'un client ou les articles d'un panier.
-:::
 
-### Étape 4 : valider, puis continuer
+**Étape 4 : valider, puis continuer**
 
 Validez avec `INSERT INTO solution`. Si le message vous dit que l'histoire continue, lisez l'interrogatoire du coupable : il a peut-être été payé par quelqu'un.
-
-::: tip Point de contrôle
-Vous avez un nom, la table `solution` vous félicite et vous savez expliquer **chaque** jointure de votre requête finale. Sinon, reprenez les indices un par un.
 :::
 
-## Pas à pas : la première enquête, ensemble
+## Le plan de la ville : les tables
+
+![Schéma relationnel de la base Enquête SQL](./res/enquete_schema.svg)
+
+Tout ce que la police sait tient dans ces neuf tables. Une flèche part d'une clé étrangère (FK, en bleu) vers la clé primaire (PK) qu'elle désigne : c'est exactement le `ON` de vos jointures. `rapport_police` et `solution` ne sont reliées à rien : la première se lit seule, la seconde sert à valider votre réponse.
+
+Question de réflexion : comment relie-t-on une personne à sa voiture ? Et à son revenu ?
+
+::: details Réponse
+- `personne.permis_id` → `permis_conduire.id` pour la voiture et la description physique.
+- `personne.nir` → `revenu.nir` pour le revenu.
+- `personne.id` → `salle_sport_membre.personne_id`, puis `salle_sport_membre.id` → `salle_sport_passage.membre_id` pour la salle de sport.
+- `personne.id` → `evenement_participation.personne_id` et `interrogatoire.personne_id`.
+:::
+
+## À vous de jouer : choisissez votre enquête
+
+Sélectionnez une histoire, lisez le brief, puis écrivez vos requêtes dans l'éditeur. Tout s'exécute dans votre navigateur (rien n'est envoyé sur un serveur) et le bouton « Réinitialiser » remet la base dans son état d'origine.
+
+<ClientOnly>
+<SqlEnquete />
+</ClientOnly>
+
+::: tip Vous préférez un vrai client SQL ?
+Le lien « Télécharger la base » vous donne le fichier `.sqlite`. Ouvrez-le avec [DB Browser for SQLite](https://sqlitebrowser.org/), PhpStorm ou la ligne de commande `sqlite3`. Les requêtes sont exactement les mêmes.
+:::
+
+## Enquête n° 1 : on la fait ensemble
 
 Pour prendre en main l'outil, nous allons résoudre **Le meurtre de SQL Ville** ensemble, requête par requête. Sélectionnez cette histoire dans l'éditeur ci-dessus, puis copiez chaque requête et comparez votre résultat au mien. Les autres histoires seront à faire seul.
 
@@ -262,9 +245,9 @@ Il reste à combiner avec la description physique et la voiture (dans `permis_co
 Vous avez validé les deux noms de la première histoire et vous savez expliquer chaque `JOIN`. Vous êtes prêt pour les trois autres enquêtes, sans pas-à-pas cette fois.
 :::
 
-## Les indices, histoire par histoire
+## Enquêtes suivantes : indices et solutions
 
-Essayez d'abord sans. Ouvrez les blocs seulement si vous bloquez, dans l'ordre : ils sont de plus en plus précis.
+Les trois autres enquêtes sont à faire seul. Essayez d'abord sans rien ouvrir. Si vous bloquez, dépliez les indices dans l'ordre : ils sont de plus en plus précis, la solution complète vient en dernier.
 
 ### Le meurtre de SQL Ville
 
