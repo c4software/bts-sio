@@ -4,6 +4,8 @@ description: "TP bonus : menez l'enquête à SQL Ville uniquement avec des requ�
 
 # TP Bonus : Enquête SQL
 
+![Enquête SQL : 10 000 habitants, un seul coupable](./res/enquete_intro.svg)
+
 ::: details Sommaire
 [[toc]]
 :::
@@ -71,6 +73,10 @@ Le lien « Télécharger la base » vous donne le fichier `.sqlite`. Ouvrez-le a
 
 ## Le schéma de la base
 
+![Schéma relationnel de la base Enquête SQL](./res/enquete_schema.svg)
+
+Les flèches partent d'une clé étrangère (FK) vers la clé primaire (PK) qu'elle référence : c'est exactement le `ON` de vos jointures. `rapport_police` et `solution` ne sont reliées à rien : la première se lit seule, la seconde sert à valider votre réponse.
+
 | Table | Ce qu'elle contient |
 | --- | --- |
 | `rapport_police` | `date`, `type`, `description`, `ville` |
@@ -136,6 +142,124 @@ Validez avec `INSERT INTO solution`. Si le message vous dit que l'histoire conti
 
 ::: tip Point de contrôle
 Vous avez un nom, la table `solution` vous félicite et vous savez expliquer **chaque** jointure de votre requête finale. Sinon, reprenez les indices un par un.
+:::
+
+## Pas à pas : la première enquête, ensemble
+
+Pour prendre en main l'outil, nous allons résoudre **Le meurtre de SQL Ville** ensemble, requête par requête. Sélectionnez cette histoire dans l'éditeur ci-dessus, puis copiez chaque requête et comparez votre résultat au mien. Les autres histoires seront à faire seul.
+
+### 1. Le rapport de police
+
+Le brief vous donne trois informations : un meurtre, le 15 janvier 2018, à SQL Ville. Le lien « Insérer la requête de départ » écrit cette requête pour vous :
+
+```sql
+SELECT * FROM rapport_police
+WHERE ville = 'SQL Ville' AND type = 'meurtre' AND date = 20180115;
+```
+
+Vous devez obtenir **une ligne**. Lisez sa description : deux témoins, le premier habite la dernière maison de « Rue du Nord-Ouest », le second se prénomme Annabel et habite « Avenue Franklin ».
+
+::: tip Que se passe-t-il si j'enlève le `type` ?
+Essayez ! Vous obtenez trois rapports ce jour-là. C'est le principe de toute l'enquête : chaque condition retire des lignes.
+:::
+
+### 2. Retrouver les deux témoins
+
+« La dernière maison » = le plus grand numéro de la rue. On trie les habitants de cette rue par numéro décroissant et on garde le premier :
+
+```sql
+SELECT * FROM personne
+WHERE nom_rue = 'Rue du Nord-Ouest'
+ORDER BY numero_rue DESC
+LIMIT 1;
+```
+
+Résultat attendu : **Martin Chapuis**.
+
+Pour Annabel, on filtre sur le début du nom (le prénom est suivi d'une espace) :
+
+```sql
+SELECT * FROM personne
+WHERE nom_rue = 'Avenue Franklin' AND nom LIKE 'Annabel %';
+```
+
+Résultat attendu : **Annabel Meunier**.
+
+### 3. Lire leurs dépositions
+
+Les dépositions sont dans `interrogatoire`, reliée à `personne` par `personne_id` (suivez la flèche sur le schéma). Plutôt que de recopier les `id`, faisons une jointure et filtrons sur les noms :
+
+```sql
+SELECT p.nom, i.transcription
+FROM interrogatoire i
+JOIN personne p ON p.id = i.personne_id
+WHERE p.nom IN ('Martin Chapuis', 'Annabel Meunier');
+```
+
+Lisez bien les deux textes. Martin donne : un sac de la salle « Forme Express » dont le numéro de membre commence par « 48Z », un abonnement « or », un passage à la salle le 9 janvier 2018 et une plaque contenant « H42W ». Annabel confirme le passage à la salle le 9 janvier.
+
+### 4. Traduire chaque indice en condition SQL
+
+| Indice | Table | Condition |
+| --- | --- | --- |
+| numéro de membre commence par 48Z | `salle_sport_membre` | `m.id LIKE '48Z%'` |
+| abonnement or | `salle_sport_membre` | `m.statut_abonnement = 'or'` |
+| passage le 9 janvier 2018 | `salle_sport_passage` | `s.date_passage = 20180109` |
+| plaque contient H42W | `permis_conduire` | `pc.immatriculation LIKE '%H42W%'` |
+
+On part de `personne` et on ajoute les jointures **une par une**, en exécutant à chaque fois pour voir le nombre de lignes diminuer :
+
+```sql
+-- Étape a : seulement la salle de sport (plusieurs résultats)
+SELECT p.nom, m.id, m.statut_abonnement
+FROM personne p
+JOIN salle_sport_membre m ON m.personne_id = p.id
+WHERE m.id LIKE '48Z%' AND m.statut_abonnement = 'or';
+
+-- Étape b : on ajoute le passage du 9 janvier (moins de résultats)
+SELECT p.nom, m.id, s.date_passage
+FROM personne p
+JOIN salle_sport_membre m ON m.personne_id = p.id
+JOIN salle_sport_passage s ON s.membre_id = m.id
+WHERE m.id LIKE '48Z%' AND m.statut_abonnement = 'or'
+  AND s.date_passage = 20180109;
+
+-- Étape c : on ajoute la plaque (un seul résultat)
+SELECT p.nom, pc.immatriculation
+FROM personne p
+JOIN salle_sport_membre m ON m.personne_id = p.id
+JOIN salle_sport_passage s ON s.membre_id = m.id
+JOIN permis_conduire pc ON pc.id = p.permis_id
+WHERE m.id LIKE '48Z%' AND m.statut_abonnement = 'or'
+  AND s.date_passage = 20180109
+  AND pc.immatriculation LIKE '%H42W%';
+```
+
+Résultat attendu à l'étape c : **Jeremy Boivin**.
+
+### 5. Valider
+
+```sql
+INSERT INTO solution VALUES (1, 'Jeremy Boivin');
+SELECT valeur FROM solution;
+```
+
+La base vous félicite… et vous dit que l'enquête continue : lisez l'interrogatoire de Jeremy Boivin (même requête qu'à l'étape 3 avec son nom). Il décrit la femme qui l'a payé. À vous de traduire ces nouveaux indices en conditions, comme à l'étape 4. Le seul piège : « trois fois au concert » demande de **compter** les participations par personne :
+
+```sql
+SELECT p.nom, COUNT(*) AS participations
+FROM personne p
+JOIN evenement_participation e ON e.personne_id = p.id
+WHERE e.nom_evenement = 'Concert Symphonique SQL'
+  AND e.date BETWEEN 20171201 AND 20171231
+GROUP BY p.id
+HAVING COUNT(*) = 3;
+```
+
+Il reste à combiner avec la description physique et la voiture (dans `permis_conduire`). Si vous bloquez, la solution complète est dans la section suivante.
+
+::: tip Point de contrôle
+Vous avez validé les deux noms de la première histoire et vous savez expliquer chaque `JOIN`. Vous êtes prêt pour les trois autres enquêtes, sans pas-à-pas cette fois.
 :::
 
 ## Les indices, histoire par histoire

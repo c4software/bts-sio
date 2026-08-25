@@ -17,7 +17,8 @@
       <p>{{ histoire.brief }}</p>
       <p class="hint">
         Point de départ : la table <code>rapport_police</code>, type <code>{{ histoire.type }}</code>,
-        ville <code>SQL Ville</code>.
+        ville <code>SQL Ville</code>, date <code>{{ histoire.date_sql }}</code>.
+        <button class="link" @click="depart">Insérer la requête de départ</button>
       </p>
     </div>
 
@@ -166,6 +167,12 @@ function reset() {
   loadDb()
 }
 
+function depart() {
+  const h = histoire.value
+  sql.value = `SELECT * FROM rapport_police\nWHERE ville = 'SQL Ville' AND type = '${h.type}' AND date = ${h.date_sql};`
+  run()
+}
+
 watch(selected, () => {
   saveState()
   loadDb()
@@ -302,5 +309,15 @@ onMounted(async () => {
 }
 .download {
   font-size: 0.9em;
+}
+button.link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 0.4rem;
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
 }
 </style>

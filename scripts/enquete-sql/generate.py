@@ -1098,7 +1098,8 @@ PLACEHOLDER = re.compile(r"\{(\w+)(?::(\w+))?\}")
 def entree_index(h, persos):
     reponses = sorted((pc["reponse"], key) for key, pc in persos.items() if "reponse" in pc)
     return {"ordre": h.get("ordre", 99), "id": h["id"], "titre": h["titre"], "fichier": f"{h['id']}.sqlite",
-            "date": date_fr(h["date"]), "type": h["type"], "brief": h["brief"], "etapes": [key for _, key in reponses]}
+            "date": date_fr(h["date"]), "date_sql": h["date"], "type": h["type"], "brief": h["brief"],
+            "etapes": [key for _, key in reponses]}
 
 
 def build(cfg_path, force=False):
