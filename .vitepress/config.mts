@@ -76,10 +76,13 @@ export default defineConfig({
       },
       { text: 'Quiz', link: '/moodle/' },
       { text: 'Enquête SQL', link: '/tp/php/sql/enquete.md' },
-      { text: 'Une question ?', link: '/pages/contact.md' },
     ],
 
     lastUpdatedText: 'Mis à jour le',
+
+    footer: {
+      message: '<a href="/pages/contact.html">Une question ? Contactez-moi</a>',
+    },
 
     sidebar: sidebar,
     logo: '/icons/icon-192x192.png',
