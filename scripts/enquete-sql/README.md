@@ -1,6 +1,13 @@
-# Écrire une histoire d'enquête SQL
+# Enquête SQL : moteur et histoires
 
-Une histoire = un fichier `.toml` dans ce dossier. Génération :
+Contenu du dossier :
+
+- `generate.py` : le moteur (monde aléatoire, injection des personnages, leurres, vérification, bases SQLite, index, solutions).
+- `histoires/*.toml` : une histoire par fichier.
+- `mcd.py` : génère le MCD `tp/php/sql/res/enquete_schema.svg`.
+- `corriges.json` : requêtes de vérification, généré.
+
+Une histoire = un fichier `.toml` dans `histoires/`. Génération :
 
 ```bash
 python3 scripts/enquete-sql/generate.py                       # génère les bases manquantes, reconstruit l'index

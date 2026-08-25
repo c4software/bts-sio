@@ -76,7 +76,7 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
 
 ## Enquête SQL (`scripts/enquete-sql/`)
 
-- Les bases du TP `tp/php/sql/enquete.md` sont générées une seule fois (« one shot ») par `python3 scripts/enquete-sql/generate.py` (Python 3.11+, aucune dépendance) et versionnées. Une histoire = un fichier `histoires/*.toml` (format dans `histoires/README.md`).
+- Les bases du TP `tp/php/sql/enquete.md` sont générées une seule fois (« one shot ») par `python3 scripts/enquete-sql/generate.py` (Python 3.11+, aucune dépendance) et versionnées. Une histoire = un fichier `histoires/*.toml` (format et procédure dans `scripts/enquete-sql/README.md`).
 - Le script ne régénère jamais une base existante (il faut `--force`) et n'est pas appelé par le build : les histoires publiées doivent rester stables, les indices du TP en dépendent. Les indices et solutions du TP (`public/sqlite/enquete/solutions/*.md`) sont générés par le même script et inclus dans le TP via `@include` : ne jamais les écrire à la main.
 - `public/sqlite/enquete/` (bases + `index.json`) et `scripts/enquete-sql/corriges.json` sont générés : ne pas éditer à la main.
 - `scripts/enquete-sql/mcd.py` génère le MCD `tp/php/sql/res/enquete_schema.svg` (ne pas éditer le SVG à la main).

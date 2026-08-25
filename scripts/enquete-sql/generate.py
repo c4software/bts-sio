@@ -8,7 +8,7 @@ Une base déjà présente n'est JAMAIS régénérée sans --force : les histoire
 (les indices du TP en dépendent). Ce script n'est pas appelé par le build du site.
 Sortie : public/sqlite/enquete/<id>.sqlite + index.json
 
-Une histoire = un fichier TOML (voir histoires/README.md pour le format). Le moteur :
+Une histoire = un fichier TOML (voir README.md pour le format et la procédure). Le moteur :
   1. construit un monde aléatoire (10 000 personnes, permis, revenus, salle de sport, événements) ;
   2. y injecte les personnages de l'histoire, avec leurs traits (indices) ;
   3. ajoute, pour chaque indice, un leurre qui coche tout SAUF cet indice (chaque indice est donc nécessaire) ;
