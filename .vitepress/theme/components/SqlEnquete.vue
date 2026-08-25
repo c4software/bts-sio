@@ -74,18 +74,6 @@
       </div>
     </div>
 
-    <div class="accuser">
-      <label>
-        J'accuse :
-        <input v-model="accuse" placeholder="Prénom Nom" @keydown.enter.prevent="accuser" :disabled="!db" />
-      </label>
-      <button @click="accuser" :disabled="!db || !accuse.trim()">Accuser</button>
-      <span class="hint">(exécute <code>INSERT INTO solution VALUES (1, '…')</code> puis <code>SELECT valeur FROM solution</code>)</span>
-    </div>
-    <div v-if="verdict" class="verdict" :class="verdict.ok ? 'ok' : 'ko'">
-      <pre class="sqlfait">{{ verdict.sql }}</pre>
-      <p>{{ verdict.texte }}</p>
-    </div>
 
     <div v-if="error" class="error">{{ error }}</div>
 
@@ -105,6 +93,9 @@
       </div>
     </div>
     <p v-if="db && !results.length && !error && ran" class="count">La requête n'a renvoyé aucune ligne.</p>
+    <div v-if="verdict" class="verdict" :class="verdict.ok ? 'ok' : 'ko'">
+      <p>{{ verdict.texte }}</p>
+    </div>
   </div>
 </template>
 
@@ -126,7 +117,6 @@ const status = ref('')
 const loading = ref(false)
 const ran = ref(false)
 const schema = ref([])
-const accuse = ref('')
 const verdict = ref(null)
 const progres = ref([])
 const termine = computed(() => histoire.value && progres.value.length && progres.value.every(Boolean))
@@ -173,25 +163,6 @@ async function sha256(texte) {
   return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 
-async function accuser() {
-  if (!db.value || !accuse.value.trim()) return
-  const nom = accuse.value.trim().replace(/'/g, "''")
-  const sqlFait = `INSERT INTO solution VALUES (1, '${nom}');\nSELECT valeur FROM solution;`
-  try {
-    db.value.exec(`INSERT INTO solution VALUES (1, '${nom}')`)
-    const out = db.value.exec('SELECT valeur FROM solution')
-    const texte = out.length ? out[0].values[0][0] : 'Aucune réponse.'
-    const h = await sha256(accuse.value.trim().toLowerCase())
-    const idx = histoire.value.empreintes.indexOf(h)
-    if (idx >= 0) {
-      progres.value[idx] = accuse.value.trim()
-      saveProgres()
-    }
-    verdict.value = { sql: sqlFait, texte, ok: idx >= 0 }
-  } catch (e) {
-    verdict.value = { sql: sqlFait, texte: e.message, ok: false }
-  }
-}
 
 async function loadDb() {
   if (!histoire.value) return
@@ -241,9 +212,26 @@ function run() {
       truncated: r.values.length > MAX_ROWS,
     }))
     status.value = ''
+    verifierAccusation()
   } catch (e) {
     error.value = e.message
   }
+}
+
+// Le cœur du jeu : l'INSERT dans solution. On repère le nom accusé pour tenir le journal de bord.
+async function verifierAccusation() {
+  const m = sql.value.match(/INSERT\s+INTO\s+solution\s+VALUES\s*\(\s*1\s*,\s*'((?:[^']|'')*)'\s*\)/i)
+  if (!m || !histoire.value) return
+  const nom = m[1].replace(/''/g, "'").trim()
+  const h = await sha256(nom.toLowerCase())
+  const idx = histoire.value.empreintes.indexOf(h)
+  const out = db.value.exec('SELECT valeur FROM solution')
+  const texte = out.length ? out[0].values[0][0] : ''
+  if (idx >= 0) {
+    progres.value[idx] = nom
+    saveProgres()
+  }
+  verdict.value = { texte, ok: idx >= 0 }
 }
 
 function reset() {
@@ -259,7 +247,6 @@ function depart() {
 watch(selected, () => {
   saveState()
   verdict.value = null
-  accuse.value = ''
   loadProgres()
   loadDb()
 })
@@ -427,35 +414,6 @@ onMounted(async () => {
 .memo th {
   white-space: normal;
 }
-.accuser {
-  margin-top: 1rem;
-  padding-top: 0.8rem;
-  border-top: 1px dashed var(--vp-c-divider);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
-}
-.accuser input {
-  margin-left: 0.4rem;
-  padding: 0.35rem 0.5rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 4px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-}
-.accuser button {
-  padding: 0.4rem 0.9rem;
-  border-radius: 4px;
-  border: 1px solid var(--vp-c-danger-1);
-  background: var(--vp-c-danger-1);
-  color: #fff;
-  cursor: pointer;
-}
-.accuser button:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
 .verdict {
   margin-top: 0.6rem;
   padding: 0.7rem 0.9rem;
@@ -470,12 +428,6 @@ onMounted(async () => {
 .verdict p {
   margin: 0.4rem 0 0;
   font-weight: 600;
-}
-.sqlfait {
-  margin: 0;
-  font-size: 0.8em;
-  color: var(--vp-c-text-2);
-  white-space: pre-wrap;
 }
 button.link {
   background: none;

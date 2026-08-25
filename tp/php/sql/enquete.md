@@ -36,14 +36,14 @@ Il vous faut le [TP 5 SQL](./tp5.md) (SELECT, WHERE, jointures) et [l'aide-mémo
 - Toutes les histoires se passent dans la même base : mêmes tables, mêmes colonnes. Seules les données changent.
 - Chaque enquête commence par la table `rapport_police`. Le rapport vous dit comment trouver les témoins, les témoins vous décrivent le coupable, et parfois le coupable vous mène plus loin encore.
 - Les dates sont stockées sous la forme d'un nombre entier `AAAAMMJJ` (le 15 janvier 2018 s'écrit `20180115`), les heures sous la forme `HHMM` (`1830` pour 18h30).
-- Quand vous pensez avoir trouvé, vous **accusez** quelqu'un (champ « J'accuse » sous l'éditeur, ou à la main) : la base vous répond si c'est la bonne personne… et si l'enquête continue. Derrière, c'est une simple insertion :
+- Quand vous pensez avoir trouvé, vous **accusez** quelqu'un en insérant son nom dans la table `solution`. La base vous répond si c'est la bonne personne… et si l'enquête continue :
 
 ```sql
 INSERT INTO solution VALUES (1, 'Prénom Nom');
 SELECT valeur FROM solution;
 ```
 
-- Le journal de bord au-dessus de l'éditeur retient les noms validés (dans votre navigateur uniquement).
+- Le journal de bord au-dessus de l'éditeur coche les étapes au fur et à mesure de vos `INSERT` réussis (dans votre navigateur uniquement).
 
 ::: warning Interdit
 Pas de `SELECT * FROM personne` en espérant repérer le coupable à l'œil : il y a 10 000 habitants. L'objectif est justement d'écrire des requêtes qui **réduisent** le nombre de résultats jusqu'à n'en avoir qu'un.
@@ -94,16 +94,7 @@ Validez avec `INSERT INTO solution`. Si le message vous dit que l'histoire conti
 
 ![Schéma relationnel de la base Enquête SQL](./res/enquete_schema.svg)
 
-Tout ce que la police sait tient dans ces neuf tables. Une flèche part d'une clé étrangère (FK, en bleu) vers la clé primaire (PK) qu'elle désigne : c'est exactement le `ON` de vos jointures. `rapport_police` et `solution` ne sont reliées à rien : la première se lit seule, la seconde sert à valider votre réponse.
-
-Question de réflexion : comment relie-t-on une personne à sa voiture ? Et à son revenu ?
-
-::: details Réponse
-- `personne.permis_id` → `permis_conduire.id` pour la voiture et la description physique.
-- `personne.nir` → `revenu.nir` pour le revenu.
-- `personne.id` → `salle_sport_membre.personne_id`, puis `salle_sport_membre.id` → `salle_sport_passage.membre_id` pour la salle de sport.
-- `personne.id` → `evenement_participation.personne_id` et `interrogatoire.personne_id`.
-:::
+Tout ce que la police sait tient dans ce MCD. Chaque association devient une clé étrangère dans les tables : `Posséder` donne `personne.permis_id`, `Percevoir` donne `personne.nir`, `Être inscrit` donne `salle_sport_membre.personne_id`, `Effectuer` donne `salle_sport_passage.membre_id`, `Déposer` donne `interrogatoire.personne_id`, et `Participer` devient la table `evenement_participation` (avec `personne_id`, `evenement_id`, `nom_evenement` et `date`). Ce sont exactement les `ON` de vos jointures ; le schéma des tables est aussi dépliable dans l'éditeur.
 
 ## À vous de jouer : choisissez votre enquête
 
