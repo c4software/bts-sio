@@ -75,6 +75,7 @@ export default defineConfig({
         ]
       },
       { text: 'Quiz', link: '/moodle/' },
+      { text: 'Enquête SQL', link: '/tp/php/sql/enquete.md' },
       { text: 'Une question ?', link: '/pages/contact.md' },
     ],
 
