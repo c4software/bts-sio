@@ -1,0 +1,48 @@
+# Ambiance « L'Infiltré de Little Italy » (Unlock!) : racket, informateur, capo.
+# Structure : rapport -> témoin 1 (le restaurateur) -> sa déposition explique comment retrouver l'informateur
+# (repérage dans un interrogatoire, pas dans le rapport) -> l'informateur décrit le collecteur -> le collecteur
+# donne le capo. Quatre sauts, deux réponses.
+
+[histoire]
+id = "little_italy"
+titre = "L'Infiltré de Little Italy"
+ordre = 6
+seed = 1955
+date = 20230918
+type = "chantage"
+brief = "18 septembre 2023 : le patron de la trattoria « Da Giuseppe », dans le quartier de Little Italy à SQL Ville, porte plainte pour racket. Un collecteur passe chaque lundi. La police a un informateur infiltré dans le milieu, mais seul le restaurateur sait comment le joindre."
+rapport = "Plainte pour extorsion : un homme passe chaque lundi encaisser « la protection ». Le plaignant {restaurateur}. Il refuse de parler au téléphone, à interroger sur place."
+rapports_leurres = [
+  { type = "chantage", description = "Rapport non disponible." },
+  { type = "vol", description = "Un scooter de livraison volé devant une pizzeria, retrouvé sans ses pneus." },
+  { ville = "Marseille", description = "Plainte pour racket d'un bar du Vieux-Port, classée sans suite." },
+]
+
+[personnage.restaurateur]
+nom = "Giuseppe Ferreira"
+reperage = { rue = "Rue de Nantes", revenu = "max" }
+dit = "Je ne dirai rien sur le collecteur, j'ai une famille. Mais quelqu'un peut parler à ma place : un client, un habitué, qui travaille pour vous sans que personne le sache. Il {informateur}. Dites-lui que c'est Giuseppe qui vous envoie."
+
+[personnage.informateur]
+nom = "Antoine Rey"
+reperage = { rue = "Impasse des Vignes", prenom = true }
+dit = "Giuseppe a raison de se taire. Le collecteur, je le connais. {collecteur:physique} {collecteur:adresse} Attention, il n'est qu'un exécutant."
+
+[personnage.collecteur]
+nom = "Enzo Chauvin"
+genre = "homme"
+reponse = 1
+message = "Le collecteur est arrêté, mais l'argent remonte plus haut. Faites-le parler (table interrogatoire) : il connaît le capo."
+traits.physique = { genre = "homme", cheveux = "?", age = "?" }
+traits.adresse = { rue = "?", numero = "?" }
+dit = "Je collecte, c'est tout. Le patron, c'est un homme qui ne se salit jamais les mains. {capo:vehicule} {capo:salle} {capo:revenu}"
+
+[personnage.capo]
+nom = "Salvatore Guerin"
+genre = "homme"
+reponse = 2
+message = "Le capo de Little Italy est tombé. Giuseppe vous offre des lasagnes à vie, et la police de SQL Ville vous nomme inspecteur d'honneur. Félicitations !"
+traits.vehicule = { marque = "?", plaque_debut = "?" }
+traits.salle = { statut = "or", passage = 20230918, entre = "?" }
+traits.revenu = { min = "?" }
+dit = "Des lasagnes, des chansons, une famille unie. Je ne vois pas de quoi vous parlez."

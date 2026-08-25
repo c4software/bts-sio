@@ -27,5 +27,11 @@
     "joggeuse (repérage)": "SELECT nom FROM personne WHERE nom_rue='Avenue Kennedy' AND nom LIKE 'Justine %' AND numero_rue BETWEEN 300 AND 400",
     "main (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN salle_sport_membre m ON m.personne_id=p.id WHERE m.statut_abonnement='standard' AND m.id LIKE '1H%' AND pc.genre='homme' AND pc.couleur_cheveux='roux' AND pc.couleur_yeux='bleu' AND pc.taille BETWEEN 173 AND 176",
     "cerveau (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN revenu r ON r.nir=p.nir JOIN evenement_participation e ON e.personne_id=p.id WHERE pc.marque_voiture='Mercedes' AND pc.modele_voiture='Classe C' AND pc.immatriculation LIKE '%3R5G%' AND e.nom_evenement='Conférence Cybersécurité' AND e.date BETWEEN 20220301 AND 20220331 AND r.revenu_annuel>100000 GROUP BY p.id HAVING COUNT(DISTINCT e.date)=2"
+  },
+  "little_italy": {
+    "restaurateur (repérage)": "SELECT p.nom FROM personne p JOIN revenu r ON r.nir=p.nir WHERE p.nom_rue='Rue de Nantes' ORDER BY r.revenu_annuel DESC LIMIT 1",
+    "informateur (repérage)": "SELECT nom FROM personne WHERE nom_rue='Impasse des Vignes' AND nom LIKE 'Antoine %'",
+    "collecteur (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id WHERE p.nom_rue='Rue des Vignes' AND p.numero_rue BETWEEN 260 AND 360 AND pc.genre='homme' AND pc.couleur_cheveux='brun' AND pc.age BETWEEN 66 AND 71",
+    "capo (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN revenu r ON r.nir=p.nir JOIN salle_sport_membre m ON m.personne_id=p.id JOIN salle_sport_passage s ON s.membre_id=m.id WHERE pc.marque_voiture='Honda' AND pc.immatriculation LIKE '5Y9F%' AND m.statut_abonnement='or' AND s.date_passage=20230918 AND s.heure_entree BETWEEN 1000 AND 1100 AND r.revenu_annuel>200000 GROUP BY p.id"
   }
 }

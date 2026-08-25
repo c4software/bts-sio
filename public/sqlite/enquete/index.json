@@ -81,5 +81,22 @@
       "main",
       "cerveau"
     ]
+  },
+  {
+    "empreintes": [
+      "cf5411d46869e4453165091b30a921f9a45584f9b861960f75b65bfe73262b5f",
+      "c305c047e428256b5e62a138b481009bdb94ae940d5821e7afe4fb1571ea517f"
+    ],
+    "id": "little_italy",
+    "titre": "L'Infiltré de Little Italy",
+    "fichier": "little_italy.sqlite",
+    "date": "18 septembre 2023",
+    "date_sql": 20230918,
+    "type": "chantage",
+    "brief": "18 septembre 2023 : le patron de la trattoria « Da Giuseppe », dans le quartier de Little Italy à SQL Ville, porte plainte pour racket. Un collecteur passe chaque lundi. La police a un informateur infiltré dans le milieu, mais seul le restaurateur sait comment le joindre.",
+    "etapes": [
+      "collecteur",
+      "capo"
+    ]
   }
 ]

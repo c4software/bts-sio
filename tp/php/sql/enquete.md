@@ -250,6 +250,10 @@ Les autres enquêtes sont à faire seul. Essayez d'abord sans rien ouvrir. Si vo
 
 <!--@include: ../../../public/sqlite/enquete/solutions/nova_city.md-->
 
+### L'Infiltré de Little Italy
+
+<!--@include: ../../../public/sqlite/enquete/solutions/little_italy.md-->
+
 ## Pour aller plus loin
 
 - Résolvez la dernière étape d'une histoire en **une seule requête** (toutes les jointures d'un coup).

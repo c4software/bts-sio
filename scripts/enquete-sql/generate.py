@@ -830,6 +830,9 @@ def draw_adresse(rng, t):
     t = dict(t)
     if t.get("rue") == "?":
         t["rue"] = f"{rng.choice(RUES_PREFIX)} {rng.choice(RUES_SUFFIX)}"
+    if t.get("numero") == "?":
+        base = rng.randint(1, 80) * 10
+        t["numero"] = [base, base + rng.choice([50, 100])]
     return t
 
 
