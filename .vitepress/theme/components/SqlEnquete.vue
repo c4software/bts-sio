@@ -22,6 +22,14 @@
       </p>
     </div>
 
+    <div v-if="histoire" class="journal">
+      <strong>Journal de bord</strong>
+      <span v-for="(e, i) in histoire.empreintes" :key="i" class="etape" :class="{ ok: progres[i] }">
+        {{ progres[i] ? '✔ ' + progres[i] : 'Étape ' + (i + 1) + ' : ?' }}
+      </span>
+      <span v-if="termine" class="fin">Enquête résolue 🎉</span>
+    </div>
+
     <details class="schema" v-if="schema.length">
       <summary>Schéma de la base ({{ schema.length }} tables)</summary>
       <ul>
@@ -29,6 +37,25 @@
           <code>{{ t.name }}</code> : {{ t.columns.join(', ') }}
         </li>
       </ul>
+    </details>
+
+    <details class="schema">
+      <summary>Aide-mémoire : traduire un indice en SQL</summary>
+      <table class="memo">
+        <thead><tr><th>L'indice dit…</th><th>Table</th><th>Condition</th></tr></thead>
+        <tbody>
+          <tr><td>la dernière maison / le plus petit numéro de la rue X</td><td><code>personne</code></td><td><code>WHERE nom_rue = 'X' ORDER BY numero_rue DESC LIMIT 1</code> (ou <code>ASC</code>)</td></tr>
+          <tr><td>prénommé Lucas, rue X</td><td><code>personne</code></td><td><code>nom LIKE 'Lucas %' AND nom_rue = 'X'</code></td></tr>
+          <tr><td>le revenu le plus élevé de la rue X</td><td><code>personne</code> + <code>revenu</code></td><td><code>JOIN revenu r ON r.nir = p.nir … ORDER BY r.revenu_annuel DESC LIMIT 1</code></td></tr>
+          <tr><td>ce que dit un témoin</td><td><code>interrogatoire</code></td><td><code>JOIN interrogatoire i ON i.personne_id = p.id</code></td></tr>
+          <tr><td>cheveux roux, entre 165 et 168 cm, 40 à 45 ans</td><td><code>permis_conduire</code></td><td><code>pc.couleur_cheveux = 'roux' AND pc.taille BETWEEN 165 AND 168</code></td></tr>
+          <tr><td>plaque qui commence par / finit par / contient ABC</td><td><code>permis_conduire</code></td><td><code>pc.immatriculation LIKE 'ABC%'</code> / <code>'%ABC'</code> / <code>'%ABC%'</code></td></tr>
+          <tr><td>membre « or », numéro qui commence par 48Z</td><td><code>salle_sport_membre</code></td><td><code>m.statut_abonnement = 'or' AND m.id LIKE '48Z%'</code></td></tr>
+          <tr><td>passé à la salle le 9 janvier 2018 entre 18h et 19h</td><td><code>salle_sport_passage</code></td><td><code>s.date_passage = 20180109 AND s.heure_entree BETWEEN 1800 AND 1900</code></td></tr>
+          <tr><td>allé 3 fois au concert X en décembre 2017</td><td><code>evenement_participation</code></td><td><code>e.nom_evenement = 'X' AND e.date BETWEEN 20171201 AND 20171231 GROUP BY p.id HAVING COUNT(*) = 3</code></td></tr>
+          <tr><td>gagne plus de 200 000 € par an</td><td><code>revenu</code></td><td><code>r.revenu_annuel > 200000</code></td></tr>
+        </tbody>
+      </table>
     </details>
 
     <div class="editor">
@@ -45,6 +72,19 @@
         <button @click="reset" :disabled="loading" class="secondary">Réinitialiser la base</button>
         <span class="status">{{ status }}</span>
       </div>
+    </div>
+
+    <div class="accuser">
+      <label>
+        J'accuse :
+        <input v-model="accuse" placeholder="Prénom Nom" @keydown.enter.prevent="accuser" :disabled="!db" />
+      </label>
+      <button @click="accuser" :disabled="!db || !accuse.trim()">Accuser</button>
+      <span class="hint">(exécute <code>INSERT INTO solution VALUES (1, '…')</code> puis <code>SELECT valeur FROM solution</code>)</span>
+    </div>
+    <div v-if="verdict" class="verdict" :class="verdict.ok ? 'ok' : 'ko'">
+      <pre class="sqlfait">{{ verdict.sql }}</pre>
+      <p>{{ verdict.texte }}</p>
     </div>
 
     <div v-if="error" class="error">{{ error }}</div>
@@ -86,6 +126,10 @@ const status = ref('')
 const loading = ref(false)
 const ran = ref(false)
 const schema = ref([])
+const accuse = ref('')
+const verdict = ref(null)
+const progres = ref([])
+const termine = computed(() => histoire.value && progres.value.length && progres.value.every(Boolean))
 let SQL = null
 let db = ref(null)
 
@@ -108,6 +152,45 @@ function saveState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ selected: selected.value, sql: sql.value }))
   } catch (e) {}
+}
+
+function loadProgres() {
+  progres.value = histoire.value ? histoire.value.empreintes.map(() => null) : []
+  try {
+    const p = JSON.parse(localStorage.getItem(STORAGE_KEY + ':' + selected.value) || 'null')
+    if (Array.isArray(p) && p.length === progres.value.length) progres.value = p
+  } catch (e) {}
+}
+
+function saveProgres() {
+  try {
+    localStorage.setItem(STORAGE_KEY + ':' + selected.value, JSON.stringify(progres.value))
+  } catch (e) {}
+}
+
+async function sha256(texte) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(texte))
+  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+async function accuser() {
+  if (!db.value || !accuse.value.trim()) return
+  const nom = accuse.value.trim().replace(/'/g, "''")
+  const sqlFait = `INSERT INTO solution VALUES (1, '${nom}');\nSELECT valeur FROM solution;`
+  try {
+    db.value.exec(`INSERT INTO solution VALUES (1, '${nom}')`)
+    const out = db.value.exec('SELECT valeur FROM solution')
+    const texte = out.length ? out[0].values[0][0] : 'Aucune réponse.'
+    const h = await sha256(accuse.value.trim().toLowerCase())
+    const idx = histoire.value.empreintes.indexOf(h)
+    if (idx >= 0) {
+      progres.value[idx] = accuse.value.trim()
+      saveProgres()
+    }
+    verdict.value = { sql: sqlFait, texte, ok: idx >= 0 }
+  } catch (e) {
+    verdict.value = { sql: sqlFait, texte: e.message, ok: false }
+  }
 }
 
 async function loadDb() {
@@ -175,6 +258,9 @@ function depart() {
 
 watch(selected, () => {
   saveState()
+  verdict.value = null
+  accuse.value = ''
+  loadProgres()
   loadDb()
 })
 
@@ -309,6 +395,87 @@ onMounted(async () => {
 }
 .download {
   font-size: 0.9em;
+}
+.journal {
+  margin: 0.8rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.9em;
+}
+.etape {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px dashed var(--vp-c-divider);
+  color: var(--vp-c-text-2);
+}
+.etape.ok {
+  border-style: solid;
+  border-color: var(--vp-c-success-1);
+  color: var(--vp-c-success-1);
+}
+.fin {
+  font-weight: 600;
+  color: var(--vp-c-success-1);
+}
+.memo {
+  font-size: 0.85em;
+  margin: 0.5rem 0;
+}
+.memo td,
+.memo th {
+  white-space: normal;
+}
+.accuser {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--vp-c-divider);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.accuser input {
+  margin-left: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 4px;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+}
+.accuser button {
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  border: 1px solid var(--vp-c-danger-1);
+  background: var(--vp-c-danger-1);
+  color: #fff;
+  cursor: pointer;
+}
+.accuser button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.verdict {
+  margin-top: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 6px;
+  border-left: 4px solid var(--vp-c-danger-1);
+  background: var(--vp-c-danger-soft);
+}
+.verdict.ok {
+  border-left-color: var(--vp-c-success-1);
+  background: var(--vp-c-success-soft);
+}
+.verdict p {
+  margin: 0.4rem 0 0;
+  font-weight: 600;
+}
+.sqlfait {
+  margin: 0;
+  font-size: 0.8em;
+  color: var(--vp-c-text-2);
+  white-space: pre-wrap;
 }
 button.link {
   background: none;

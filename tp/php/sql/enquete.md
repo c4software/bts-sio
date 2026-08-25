@@ -18,10 +18,9 @@ Ce TP est une adaptation en français du [SQL Murder Mystery](https://github.com
 Ce TP est un **bonus** : il n'est pas noté et ne demande aucun rendu. Vous pouvez le faire en autonomie, seul ou à deux, dès que vous avez terminé le TP en cours. Comptez environ une heure par histoire.
 :::
 
-## Prérequis
+## Avant de commencer
 
-- Avoir terminé le [TP 5 SQL](./tp5.md) (SELECT, WHERE, jointures).
-- Avoir sous la main [l'aide-mémoire SQL](/cheatsheets/sql/).
+Il vous faut le [TP 5 SQL](./tp5.md) (SELECT, WHERE, jointures) et [l'aide-mémoire SQL](/cheatsheets/sql/) sous la main. À la fin, vous saurez explorer une base que vous n'avez pas conçue, croiser plusieurs tables avec `JOIN`, et réduire 10 000 habitants à un seul nom avec `LIKE`, `BETWEEN`, `ORDER BY` et `GROUP BY … HAVING`.
 
 ::: details Rattrapage express : les mots-clés dont vous aurez besoin
 - `SELECT … FROM … WHERE …` : filtrer des lignes.
@@ -32,28 +31,19 @@ Ce TP est un **bonus** : il n'est pas noté et ne demande aucun rendu. Vous pouv
 - `GROUP BY … HAVING COUNT(*) = n` : compter par personne.
 :::
 
-## Objectifs
-
-À la fin de ce TP vous saurez :
-
-- Explorer une base de données que vous n'avez pas conçue.
-- Enchaîner des requêtes pour croiser des informations entre plusieurs tables.
-- Utiliser `LIKE`, `BETWEEN`, `ORDER BY`, `JOIN` et `GROUP BY … HAVING` dans un cas concret.
-- Formuler une hypothèse et la vérifier avec des données.
-
 ## Les règles du jeu
 
 - Toutes les histoires se passent dans la même base : mêmes tables, mêmes colonnes. Seules les données changent.
 - Chaque enquête commence par la table `rapport_police`. Le rapport vous dit comment trouver les témoins, les témoins vous décrivent le coupable, et parfois le coupable vous mène plus loin encore.
 - Les dates sont stockées sous la forme d'un nombre entier `AAAAMMJJ` (le 15 janvier 2018 s'écrit `20180115`), les heures sous la forme `HHMM` (`1830` pour 18h30).
-- Quand vous pensez avoir trouvé, vous validez avec la table `solution` :
+- Quand vous pensez avoir trouvé, vous **accusez** quelqu'un (champ « J'accuse » sous l'éditeur, ou à la main) : la base vous répond si c'est la bonne personne… et si l'enquête continue. Derrière, c'est une simple insertion :
 
 ```sql
 INSERT INTO solution VALUES (1, 'Prénom Nom');
 SELECT valeur FROM solution;
 ```
 
-La base vous répond si c'est la bonne personne… et si l'enquête continue.
+- Le journal de bord au-dessus de l'éditeur retient les noms validés (dans votre navigateur uniquement).
 
 ::: warning Interdit
 Pas de `SELECT * FROM personne` en espérant repérer le coupable à l'œil : il y a 10 000 habitants. L'objectif est justement d'écrire des requêtes qui **réduisent** le nombre de résultats jusqu'à n'en avoir qu'un.

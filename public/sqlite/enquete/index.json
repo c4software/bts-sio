@@ -1,5 +1,9 @@
 [
   {
+    "empreintes": [
+      "b2f076723f867048a9b41a7220e0824d83b724b64d4c311760661ce83497adaf",
+      "f50f76adf7964f34eadf17b42ad6394f744bb60ff1b2c455ffdb1d9d6f134269"
+    ],
     "id": "meurtre",
     "titre": "Le meurtre de SQL Ville",
     "fichier": "meurtre.sqlite",
@@ -13,6 +17,10 @@
     ]
   },
   {
+    "empreintes": [
+      "26c9e8df3be9adb63cb6e92a440d091c73cf18c0fb2775ead9da535cc7ff00f4",
+      "6495b6ebc2b22a92f7b89a7a8787c9febdbb520afeab0a968527a9c8b1fc3d97"
+    ],
     "id": "sql_express",
     "titre": "Le braquage du SQL Express",
     "fichier": "sql_express.sqlite",
@@ -26,6 +34,9 @@
     ]
   },
   {
+    "empreintes": [
+      "435db947cfcd771fb77bced53a39dd0e795e40220a376831f2ddda8098adea89"
+    ],
     "id": "formule",
     "titre": "La formule du professeur Noside",
     "fichier": "formule.sqlite",
@@ -38,6 +49,10 @@
     ]
   },
   {
+    "empreintes": [
+      "48a6a9825f44689dd79fc97993221b45a4fadfa27318f05046ecc6c8f08b6487",
+      "80d7b1b6b68a39afd8c41157f3a857f0ccc4df8a610ada930d0ce5d582acce72"
+    ],
     "id": "septieme_seance",
     "titre": "Panique à la septième séance",
     "fichier": "septieme_seance.sqlite",
