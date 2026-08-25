@@ -1,0 +1,41 @@
+# Ambiance « Tombstone Express » (Unlock!) : un train, un coffre, un complice.
+# Structure : rapport -> 1 témoin -> complice (qui parle) -> cerveau. Les valeurs « ? » sont tirées au sort.
+
+[histoire]
+id = "sql_express"
+titre = "Le braquage du SQL Express"
+ordre = 2
+seed = 847
+date = 20190614
+type = "vol"
+brief = "Le 14 juin 2019, le coffre du wagon postal du SQL Express a été vidé entre deux gares. Le contrôleur a tout vu, mais la police ne sait même pas où il habite."
+rapport = "Le coffre du wagon postal a été forcé pendant le trajet. Le seul témoin est le contrôleur du train : il {controleur}. Il a été trop secoué pour être interrogé sur place."
+rapports_leurres = [
+  { type = "vol", description = "Une valise a disparu sur le quai 3, retrouvée à la consigne." },
+  { type = "vandalisme", description = "Des graffitis sur le SQL Express, la SNCF porte plainte." },
+  { ville = "Lyon", description = "Rapport non disponible." },
+]
+
+[personnage.controleur]
+nom = "Gaston Perrier"
+reperage = { rue = "Chemin du Port", revenu = "min" }
+dit = "Un passager a bloqué la porte du wagon pendant que quelqu'un forçait le coffre. Je ne l'avais jamais vu avant. {complice:physique} {complice:evenement} C'est tout ce que j'ai pu voir, il est descendu à la première gare."
+
+[personnage.complice]
+nom = "Bastien Mallet"
+genre = "homme"
+reponse = 1
+message = "Vous tenez le complice, mais il n'a fait que bloquer la porte... Lisez son interrogatoire pour remonter jusqu'à la personne qui a forcé le coffre et empoché l'argent."
+traits.physique = { genre = "homme", cheveux = "?", yeux = "?", age = "?" }
+traits.evenement = { nom = "Soirée western", fois = 2, mois = 201905 }
+dit = "D'accord, je bloquais la porte, mais l'argent n'est pas chez moi. C'est un membre de ma salle de sport qui a tout organisé. {cerveau:salle} {cerveau:revenu} {cerveau:adresse}"
+
+[personnage.cerveau]
+nom = "Louis Vasseur"
+genre = "homme"
+reponse = 2
+message = "Le coffre est retrouvé, le SQL Express repart à l'heure. Félicitations, inspecteur !"
+traits.salle = { statut = "?", id_contient = "?", passage = 20190613, entre = "?" }
+traits.revenu = { min = "?" }
+traits.adresse = { rue = "?" }
+dit = "Un train ? Je ne prends jamais le train, j'ai le mal des transports."

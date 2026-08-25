@@ -1,0 +1,47 @@
+# Traduction de l'histoire originale « SQL Murder Mystery » (NUKnightLab).
+# Structure : rapport -> 2 témoins -> coupable -> commanditaire.
+
+[histoire]
+id = "meurtre"
+titre = "Le meurtre de SQL Ville"
+ordre = 1
+seed = 2018
+date = 20180115
+type = "meurtre"
+brief = "Un meurtre a été commis. Vous ne vous souvenez plus du nom du coupable, seulement que le crime a eu lieu le 15 janvier 2018 à SQL Ville."
+rapport = "Les caméras de surveillance montrent qu'il y avait 2 témoins. Le premier témoin {temoin1}. Le second témoin {temoin2}."
+rapports_leurres = [
+  { type = "agression", description = "Hamilton : Lee, vous rendez-vous ? Burr : Vous l'avez touché au flanc ! Oui, il se rend !" },
+  { type = "vol", description = "Rapport non disponible." },
+  { ville = "Paris", description = "Rapport non disponible." },
+]
+
+[personnage.temoin1]
+nom = "Martin Chapuis"
+reperage = { rue = "Rue du Nord-Ouest", position = "dernier" }
+dit = "J'ai entendu un coup de feu puis j'ai vu un homme sortir en courant. {tueur:salle} {tueur:vehicule}"
+
+[personnage.temoin2]
+nom = "Annabel Meunier"
+genre = "femme"
+reperage = { rue = "Avenue Franklin", prenom = true }
+dit = "J'ai vu le meurtre se produire, et j'ai reconnu le tueur : il était à ma salle de sport quand je m'y entraînais la semaine dernière, le 9 janvier."
+
+[personnage.tueur]
+nom = "Jeremy Boivin"
+genre = "homme"
+reponse = 1
+message = "Bravo, vous avez trouvé le meurtrier ! Mais ce n'est pas fini... Si vous vous sentez d'attaque, interrogez le meurtrier (table interrogatoire) pour trouver le véritable cerveau de cette affaire. Utilisez le même INSERT avec le nouveau nom pour vérifier votre réponse."
+traits.salle = { statut = "or", id_debut = "48Z", passage = 20180109 }
+traits.vehicule = { plaque_contient = "H42W" }
+dit = "J'ai été engagé par une femme très riche. Je ne connais pas son nom. {cerveau:physique} {cerveau:vehicule} {cerveau:evenement}"
+
+[personnage.cerveau]
+nom = "Miranda Prieur"
+genre = "femme"
+reponse = 2
+message = "Félicitations, vous avez démasqué le cerveau de l'affaire ! Toute SQL Ville vous acclame comme le plus grand détective SQL de tous les temps. Sortez le champagne !"
+traits.physique = { genre = "femme", cheveux = "roux", taille = [165, 168] }
+traits.vehicule = { marque = "Tesla", modele = "Model S" }
+traits.evenement = { nom = "Concert Symphonique SQL", fois = 3, mois = 201712 }
+dit = "Je n'ai rien à vous dire. Mon avocat s'occupera de tout."

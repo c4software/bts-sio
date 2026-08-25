@@ -1,0 +1,25 @@
+{
+  "formule": {
+    "gardien (repérage)": "SELECT nom FROM personne WHERE nom_rue='Impasse Blaise-Pascal' ORDER BY numero_rue ASC LIMIT 1",
+    "voisine (repérage)": "SELECT nom FROM personne WHERE nom_rue='Rue Pierre-Curie' AND nom LIKE 'Colette %' AND numero_rue BETWEEN 200 AND 300",
+    "livreur (repérage)": "SELECT p.nom FROM personne p JOIN revenu r ON r.nir=p.nir WHERE p.nom_rue='Avenue de l''Industrie' ORDER BY r.revenu_annuel DESC LIMIT 1",
+    "voleuse (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN salle_sport_membre m ON m.personne_id=p.id JOIN salle_sport_passage s ON s.membre_id=m.id WHERE m.statut_abonnement='standard' AND s.date_passage=20200206 AND s.heure_entree BETWEEN 1300 AND 1400 AND pc.marque_voiture='Dacia' AND pc.immatriculation LIKE '%7X1S' AND pc.genre='femme' AND pc.couleur_cheveux='blond' AND pc.taille BETWEEN 162 AND 165 GROUP BY p.id"
+  },
+  "meurtre": {
+    "temoin1 (repérage)": "SELECT nom FROM personne WHERE nom_rue='Rue du Nord-Ouest' ORDER BY numero_rue DESC LIMIT 1",
+    "temoin2 (repérage)": "SELECT nom FROM personne WHERE nom_rue='Avenue Franklin' AND nom LIKE 'Annabel %'",
+    "tueur (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN salle_sport_membre m ON m.personne_id=p.id JOIN salle_sport_passage s ON s.membre_id=m.id WHERE pc.immatriculation LIKE '%H42W%' AND m.statut_abonnement='or' AND m.id LIKE '48Z%' AND s.date_passage=20180109 GROUP BY p.id",
+    "cerveau (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN evenement_participation e ON e.personne_id=p.id WHERE pc.genre='femme' AND pc.couleur_cheveux='roux' AND pc.taille BETWEEN 165 AND 168 AND e.nom_evenement='Concert Symphonique SQL' AND e.date BETWEEN 20171201 AND 20171231 AND pc.marque_voiture='Tesla' AND pc.modele_voiture='Model S' GROUP BY p.id HAVING COUNT(DISTINCT e.date)=3"
+  },
+  "septieme_seance": {
+    "ouvreuse (repérage)": "SELECT nom FROM personne WHERE nom_rue='Boulevard Georges-Brassens' AND nom LIKE 'Solène %'",
+    "suspect (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN evenement_participation e ON e.personne_id=p.id WHERE pc.genre='homme' AND pc.couleur_cheveux='noir' AND pc.age BETWEEN 70 AND 75 AND e.nom_evenement='Avant-première au Grand Rex' AND e.date=20211030 GROUP BY p.id HAVING COUNT(DISTINCT e.date)=1",
+    "coupable (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN salle_sport_membre m ON m.personne_id=p.id WHERE m.id LIKE '8U%' AND pc.modele_voiture='i20' AND pc.immatriculation LIKE '8V9B%' AND pc.genre='homme' AND pc.couleur_yeux='vert'",
+    "cerveau (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN revenu r ON r.nir=p.nir JOIN evenement_participation e ON e.personne_id=p.id WHERE r.revenu_annuel>200000 AND pc.genre='femme' AND pc.taille BETWEEN 163 AND 167 AND pc.age BETWEEN 39 AND 43 AND e.nom_evenement='Festival du Film Court' AND e.date BETWEEN 20210901 AND 20210931 GROUP BY p.id HAVING COUNT(DISTINCT e.date)=3"
+  },
+  "sql_express": {
+    "controleur (repérage)": "SELECT p.nom FROM personne p JOIN revenu r ON r.nir=p.nir WHERE p.nom_rue='Chemin du Port' ORDER BY r.revenu_annuel ASC LIMIT 1",
+    "complice (indices)": "SELECT p.nom FROM personne p JOIN permis_conduire pc ON pc.id=p.permis_id JOIN evenement_participation e ON e.personne_id=p.id WHERE pc.genre='homme' AND pc.couleur_cheveux='roux' AND pc.couleur_yeux='bleu' AND pc.age BETWEEN 20 AND 29 AND e.nom_evenement='Soirée western' AND e.date BETWEEN 20190501 AND 20190531 GROUP BY p.id HAVING COUNT(DISTINCT e.date)=2",
+    "cerveau (indices)": "SELECT p.nom FROM personne p JOIN revenu r ON r.nir=p.nir JOIN salle_sport_membre m ON m.personne_id=p.id JOIN salle_sport_passage s ON s.membre_id=m.id WHERE r.revenu_annuel>200000 AND p.nom_rue='Avenue Anatole-France' AND m.statut_abonnement='standard' AND m.id LIKE '%6J%' AND s.date_passage=20190613 AND s.heure_entree BETWEEN 1900 AND 2000 GROUP BY p.id"
+  }
+}

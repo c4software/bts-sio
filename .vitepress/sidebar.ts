@@ -192,7 +192,8 @@ export default [
       {
         text: "TP SQL", collapsed: true, items: [
           { text: "Bart PHP et MySQL", link: "/tp/php/sql/tp5.md" },
-          { text: "BTS TV - Administrable", link: "/tp/php/sql/tp6.md" }
+          { text: "BTS TV - Administrable", link: "/tp/php/sql/tp6.md" },
+          { text: "Bonus : Enquête SQL", link: "/tp/php/sql/enquete.md" }
         ]
       },
       {

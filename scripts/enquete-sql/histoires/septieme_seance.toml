@@ -1,0 +1,51 @@
+# Ambiance « La Septième Séance » (Unlock!) : un cinéma, une fausse piste.
+# Structure : rapport -> 1 témoin -> suspect innocent (fausse piste, il a un alibi et parle) -> coupable -> commanditaire.
+
+[histoire]
+id = "septieme_seance"
+titre = "Panique à la septième séance"
+ordre = 4
+seed = 707
+date = 20211030
+type = "sabotage"
+brief = "Le 30 octobre 2021, la septième séance du cinéma Le Grand Rex de SQL Ville a tourné au cauchemar : le projecteur a été saboté et la salle plongée dans le noir. Attention aux fausses pistes."
+rapport = "Le projecteur de la salle 7 a été saboté juste avant la séance de 22h. L'ouvreuse a vu quelqu'un sortir de la cabine de projection : elle {ouvreuse}."
+rapports_leurres = [
+  { type = "vol", description = "Vol de pop-corn en grande quantité au Grand Rex, la police ne rit pas." },
+  { type = "vandalisme", description = "Rapport non disponible." },
+  { ville = "Cannes", description = "Une projection interrompue par une alarme incendie, fausse alerte." },
+]
+
+[personnage.ouvreuse]
+nom = "Solène Barbier"
+genre = "femme"
+reperage = { rue = "Boulevard Georges-Brassens", prenom = true }
+dit = "J'ai vu quelqu'un sortir de la cabine en courant. {suspect:physique} {suspect:evenement} Je suis sûre de moi."
+
+[personnage.suspect]
+nom = "Theo Rocher"
+genre = "homme"
+message = "Ce n'est pas lui ! Il était bien dans la cabine, mais lisez son interrogatoire : il a un alibi et il a vu la vraie personne."
+traits.physique = { genre = "homme", cheveux = "?", age = "?" }
+traits.evenement = { nom = "Avant-première au Grand Rex", fois = 1, date = 20211030 }
+dit = "Oui, je suis sorti de la cabine, mais c'est parce que j'ai surpris quelqu'un dedans ! J'ai pris peur. Le projectionniste peut confirmer que j'étais à l'accueil avec lui à 21h50. {coupable:physique} {coupable:vehicule} {coupable:salle}"
+
+[personnage.coupable]
+nom = "Nathan Guichard"
+genre = "homme"
+reponse = 1
+message = "Bien joué, vous avez trouvé qui a saboté le projecteur ! Mais pourquoi ? Son interrogatoire pourrait bien mener à quelqu'un qui avait tout à gagner..."
+traits.physique = { genre = "homme", yeux = "?" }
+traits.vehicule = { modele = "?", plaque_debut = "?" }
+traits.salle = { id_debut = "?" }
+dit = "On m'a payé pour ça. Une femme, propriétaire d'un autre cinéma je crois. {cerveau:physique} {cerveau:revenu} {cerveau:evenement}"
+
+[personnage.cerveau]
+nom = "Valerie Humbert"
+genre = "femme"
+reponse = 2
+message = "Félicitations ! La concurrente jalouse est démasquée et la septième séance peut enfin reprendre. Vous avez droit à un pop-corn gratuit à vie."
+traits.physique = { genre = "femme", age = "?", taille = "?" }
+traits.revenu = { min = "?" }
+traits.evenement = { nom = "Festival du Film Court", fois = "?", mois = 202109 }
+dit = "Le Grand Rex me vole mes clients depuis des années. Je ne regrette rien."

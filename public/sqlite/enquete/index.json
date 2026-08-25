@@ -1,0 +1,49 @@
+[
+  {
+    "id": "meurtre",
+    "titre": "Le meurtre de SQL Ville",
+    "fichier": "meurtre.sqlite",
+    "date": "15 janvier 2018",
+    "type": "meurtre",
+    "brief": "Un meurtre a été commis. Vous ne vous souvenez plus du nom du coupable, seulement que le crime a eu lieu le 15 janvier 2018 à SQL Ville.",
+    "etapes": [
+      "tueur",
+      "cerveau"
+    ]
+  },
+  {
+    "id": "sql_express",
+    "titre": "Le braquage du SQL Express",
+    "fichier": "sql_express.sqlite",
+    "date": "14 juin 2019",
+    "type": "vol",
+    "brief": "Le 14 juin 2019, le coffre du wagon postal du SQL Express a été vidé entre deux gares. Le contrôleur a tout vu, mais la police ne sait même pas où il habite.",
+    "etapes": [
+      "complice",
+      "cerveau"
+    ]
+  },
+  {
+    "id": "formule",
+    "titre": "La formule du professeur Noside",
+    "fichier": "formule.sqlite",
+    "date": "7 février 2020",
+    "type": "cambriolage",
+    "brief": "Dans la nuit du 7 février 2020, le laboratoire du professeur Noside à SQL Ville a été cambriolé : la formule de son sérum a disparu. Trois personnes ont vu quelque chose, chacune un détail différent.",
+    "etapes": [
+      "voleuse"
+    ]
+  },
+  {
+    "id": "septieme_seance",
+    "titre": "Panique à la septième séance",
+    "fichier": "septieme_seance.sqlite",
+    "date": "30 octobre 2021",
+    "type": "sabotage",
+    "brief": "Le 30 octobre 2021, la septième séance du cinéma Le Grand Rex de SQL Ville a tourné au cauchemar : le projecteur a été saboté et la salle plongée dans le noir. Attention aux fausses pistes.",
+    "etapes": [
+      "coupable",
+      "cerveau"
+    ]
+  }
+]

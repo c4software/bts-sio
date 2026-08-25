@@ -1,0 +1,43 @@
+# Ambiance « La Formule » / Professeur Noside (Unlock!).
+# Structure : rapport -> 3 témoins (chacun ne connaît qu'un indice) -> coupable. Pas de commanditaire.
+
+[histoire]
+id = "formule"
+titre = "La formule du professeur Noside"
+ordre = 3
+seed = 1931
+date = 20200207
+type = "cambriolage"
+brief = "Dans la nuit du 7 février 2020, le laboratoire du professeur Noside à SQL Ville a été cambriolé : la formule de son sérum a disparu. Trois personnes ont vu quelque chose, chacune un détail différent."
+rapport = "Le laboratoire a été fouillé, seul le carnet de la formule manque. Trois témoins ont été identifiés : le premier {gardien}, le deuxième {voisine}, le troisième {livreur}. Chacun n'a vu qu'un détail."
+rapports_leurres = [
+  { type = "cambriolage", description = "Vol de deux blouses et d'un microscope dans un autre laboratoire." },
+  { type = "vol", description = "Rapport non disponible." },
+  { ville = "Grenoble", description = "Un chercheur signale la disparition de ses notes, retrouvées dans sa voiture." },
+]
+
+[personnage.gardien]
+nom = "Roger Delmas"
+reperage = { rue = "Impasse Blaise-Pascal", position = "premier" }
+dit = "Je faisais ma ronde. La personne est passée en courant devant ma guérite. {voleuse:physique}"
+
+[personnage.voisine]
+nom = "Colette Lemaire"
+genre = "femme"
+reperage = { rue = "Rue Pierre-Curie", prenom = true, numero = [200, 300] }
+dit = "J'ai regardé par la fenêtre à cause du bruit. {voleuse:vehicule} Je n'ai pas vu son visage."
+
+[personnage.livreur]
+nom = "Karim Boyer"
+reperage = { rue = "Avenue de l'Industrie", revenu = "max" }
+dit = "Je livrais un colis au laboratoire d'à côté. Je l'ai reconnue, je l'ai déjà vue à la salle de sport. {voleuse:salle}"
+
+[personnage.voleuse]
+nom = "Margaux Tessier"
+genre = "femme"
+reponse = 1
+message = "Félicitations, la formule est retrouvée et le professeur Noside vous offre un échantillon de son sérum. À vos risques et périls !"
+traits.physique = { genre = "femme", cheveux = "?", taille = "?" }
+traits.vehicule = { marque = "?", plaque_fin = "?" }
+traits.salle = { statut = "?", passage = 20200206, entre = "?" }
+dit = "Le professeur Noside m'a volé cette formule il y a dix ans. Je n'ai fait que la reprendre."
