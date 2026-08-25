@@ -20,6 +20,56 @@ Le moteur garantit que chaque personnage est identifiable de façon **unique** a
 ajoute pour chaque indice un leurre qui coche tout sauf cet indice (un indice ignoré = plusieurs suspects).
 Si la vérification échoue, la génération s'arrête avec la requête fautive.
 
+## Procédure : créer une nouvelle histoire
+
+1. **Écrire le scénario sur papier** : quel crime, quelle date, qui sont les témoins, qui est à identifier,
+   qui révèle quoi. Choisissez une structure différente des histoires existantes (voir « Varier la structure »).
+2. **Créer `histoires/<id>.toml`** en copiant l'histoire existante la plus proche. `id` devient le nom de la base ;
+   choisissez un `ordre` (position dans le sélecteur) et une `seed` (voir ci-dessous).
+3. **Décrire les personnages** : un `reperage` pour chaque témoin, des `traits` pour chaque personne à identifier,
+   `reponse = n` et `message` pour ceux qu'il faut accuser. Mettez `"?"` partout où la valeur importe peu,
+   le moteur la tirera au sort.
+4. **Rédiger les textes** (`rapport`, `dit`) avec les placeholders : `{temoin}` pour dire comment retrouver un
+   témoin, `{cible:groupe}` pour révéler un groupe de traits. Chaque trait doit être révélé quelque part,
+   sinon le moteur avertit et l'indice ne sert à rien. Noms des personnages à accuser **sans accent**
+   (les étudiants les tapent dans l'`INSERT`).
+5. **Générer** : `python3 scripts/enquete-sql/generate.py`. Le moteur vérifie que chaque personnage est unique
+   et que chaque indice est nécessaire ; s'il s'arrête sur une erreur, la requête fautive est affichée
+   (le plus souvent, un indice non discriminant : changez sa valeur ou la seed).
+6. **Relire les textes générés** : `sqlite3 public/sqlite/enquete/<id>.sqlite "SELECT transcription FROM
+   interrogatoire WHERE personne_id IN (SELECT id FROM personne WHERE nom IN ('…'))"`. Si une phrase sonne
+   faux, ajustez le `dit` (les gabarits de phrases sont dans `generate.py`, fonctions `text_*`).
+7. **Brancher dans le TP** : dans `tp/php/sql/enquete.md`, section « Enquêtes suivantes », ajouter un titre
+   `### Titre` puis `<!--@include: ../../../public/sqlite/enquete/solutions/<id>.md-->`.
+8. **Vérifier et publier** : `npm run docs:build`, commit de tout (`histoires/<id>.toml`, la base `.sqlite`,
+   `index.json`, `solutions/<id>.md`, `corriges.json`, le TP), push.
+
+Pour retoucher une histoire déjà publiée : modifier le TOML puis `--force histoires/<id>.toml`. Les valeurs `"?"`
+sont retirées si la seed ou l'ordre des tirages change ; les indices et solutions du TP suivent automatiquement.
+
+## La seed
+
+`seed` est l'entier qui initialise le générateur pseudo-aléatoire de l'histoire. Tout ce qui est « au hasard »
+en découle, de façon **reproductible** : même TOML + même seed = base identique à l'octet près.
+
+La seed détermine :
+
+- le monde : les 10 000 habitants (noms, adresses, permis, revenus), les rapports de police de remplissage,
+  les membres de la salle de sport et leurs passages, les participations aux événements ;
+- toutes les valeurs `"?"` des traits (couleur de cheveux, fragment de plaque, statut, créneau horaire…) ;
+- les leurres (les personnes qui cochent tout sauf un indice) ;
+- la variante de phrase choisie pour chaque indice.
+
+Elle ne détermine pas ce que vous écrivez en dur : noms des personnages, rues des repérages, dates, textes.
+
+En pratique :
+
+- une seed différente par histoire, sinon deux histoires partagent les mêmes habitants ;
+- changer la seed régénère une variante de la même histoire (autres valeurs `"?"`, autres leurres) : utile si
+  la vérification échoue ou si les valeurs tirées sont peu lisibles ;
+- ne jamais changer la seed d'une histoire publiée sans `--force` et sans prévenir : les étudiants en cours
+  de partie auraient des indices qui ne correspondent plus à leur base téléchargée.
+
 ## Squelette
 
 ```toml
@@ -27,7 +77,7 @@ Si la vérification échoue, la génération s'arrête avec la requête fautive.
 id = "mon_histoire"          # nom du fichier .sqlite
 titre = "Titre affiché"
 ordre = 5                    # position dans le sélecteur
-seed = 1234                  # change la seed = change toutes les valeurs « ? »
+seed = 1234                  # initialise le hasard (monde, valeurs « ? », leurres), voir « La seed »
 date = 20220101              # AAAAMMJJ
 type = "vol"                 # type du rapport (vol, meurtre, cambriolage, incendie, sabotage, chantage…)
 brief = "Texte d'accroche affiché sous le sélecteur."
@@ -83,6 +133,9 @@ Toute valeur peut être `"?"` : elle est alors tirée au sort (de façon reprodu
 | `revenu` | `min` ou `max` | `revenu` |
 | `adresse` | `rue`, `numero = [min, max]` | `personne` |
 
+`rue`, `numero`, `fois`, `min`, `max`, `entre`, `id_debut`, `id_contient`, `statut`, `marque`, `modele`,
+`plaque_*`, `genre`, `cheveux`, `yeux`, `taille`, `age`, `nom` (événement) acceptent tous `"?"`.
+
 Valeurs possibles : cheveux `brun, châtain, blond, noir, roux, gris, blanc, chauve` ; yeux `marron, bleu, vert,
 noisette, gris` ; marques et modèles dans `MARQUES` de `generate.py` ; événements dans `EVENEMENTS` (un nom inconnu
 est ajouté automatiquement).
@@ -96,6 +149,10 @@ La chaîne n'est pas figée : c'est l'enchaînement des `dit` qui la dessine.
 - Trois témoins qui connaissent chacun un seul groupe de traits, pas de commanditaire (`formule.toml`).
 - Fausse piste : un personnage avec `message` mais **sans** `reponse` ; valider son nom affiche son message et
   son interrogatoire relance l'enquête (`septieme_seance.toml`).
+- Indices répartis : les traits d'un même personnage révélés par deux personnes différentes, il faut croiser
+  deux dépositions (`nova_city.toml`).
+- Repérage en cascade : un témoin explique dans son `dit` comment retrouver un autre témoin (`{autre_temoin}`
+  fonctionne aussi dans un interrogatoire, pas seulement dans le rapport) (`little_italy.toml`).
 
 Après toute modification (`--force`), relancer la génération : les indices et solutions du TP sont régénérés
 automatiquement. Pour une nouvelle histoire, ajouter un titre `###` et la ligne `@include` dans `tp/php/sql/enquete.md`.
