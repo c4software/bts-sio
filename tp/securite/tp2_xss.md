@@ -44,6 +44,12 @@ Commençons par la voir fonctionner. Voici un mini-site volontairement vulnérab
 
 <Sample src="xss" />
 
+La même chose, mais interactive et avec le HTML généré sous les yeux (et le correctif à un clic) :
+
+<ClientOnly>
+<XssLab type="reflechie" />
+</ClientOnly>
+
 Le code derrière ce champ construit une balise `<img src="...">` à partir de votre saisie, sans la filtrer. Une balise `img`, vous connaissez : elle a un attribut `src`… mais aussi un attribut `onload` qui exécute du JavaScript une fois l'image chargée.
 
 ::: danger À tester ensemble
@@ -176,6 +182,12 @@ Un visiteur peut poster un commentaire contenant `<script>...</script>`. Ce cont
 Non : il n'a ni `method="post"` ni `action`. Par défaut il enverrait en `GET`, donc `$_POST['content']` resterait vide. Un bug à corriger en même temps.
 :::
 
+Avant de corriger, voyez la faille frapper un **autre** visiteur. Postez un commentaire piégé, puis rechargez la page « dans le navigateur de Bob » : le code s'exécute chez lui, et peut même voler son cookie de session.
+
+<ClientOnly>
+<XssLab type="livre" />
+</ClientOnly>
+
 Deux solutions sont possibles pour la faille XSS. À vous de les mettre en place.
 
 ::: tip Point de contrôle
@@ -225,6 +237,27 @@ setcookie('session', $id, ['httponly' => true, 'secure' => true, 'samesite' => '
 
 Même en cas de XSS, `document.cookie` ne verra plus le cookie de session. On combine toujours les deux : échapper l'affichage **et** protéger le cookie. Nous reviendrons sur les cookies sécurisés au [TP 4](./tp4_authentification.md).
 :::
+
+## À vous d'attaquer
+
+Vous avez vu la faille et appris à la corriger. Passons de l'autre côté : rien de tel que de réussir une attaque soi-même pour la comprendre. Quatre épreuves, chacune sur une page isolée dans votre navigateur ; la progression se coche quand vous y arrivez.
+
+::: warning Un rappel important
+Ces techniques ne se pratiquent **que** sur des systèmes qu'on vous autorise explicitement à tester. Ici, tout est simulé localement dans votre navigateur : aucune donnée réelle, aucun serveur. Les utiliser sur un système tiers sans autorisation est un délit.
+:::
+
+<ClientOnly>
+<XssLab type="defis" />
+</ClientOnly>
+
+Les quatre épreuves, dans l'ordre :
+
+1. **XSS réfléchie** : faites exécuter du JavaScript via un champ recopié dans une balise `<img>`.
+2. **Contourner un filtre naïf** : le site retire les `<script>`, mais pas un `onerror` sur une autre balise.
+3. **XSS stockée** : un message piégé qui s'exécute chez **un autre** visiteur (Bob), pas seulement chez vous.
+4. **Vol de session** : le même message, mais qui envoie le **cookie** de Bob vers le serveur de l'attaquant.
+
+Sur chaque épreuve, basculez sur « affichage échappé » et retentez : `htmlspecialchars` neutralise l'attaque à chaque fois.
 
 ## À retenir
 

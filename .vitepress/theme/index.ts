@@ -2,6 +2,7 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import AlgoEnquete from './components/AlgoEnquete.vue'
+import AuthLab from './components/AuthLab.vue'
 import Contact from './components/Contact.vue'
 import ExternalIframe from './components/ExternalIframe.vue'
 import NoBreak from './components/NoBreak.vue'
@@ -13,6 +14,7 @@ import Sample from './components/Sample.vue'
 import SlidesDeck from './components/SlidesDeck.vue'
 import SqlEnquete from './components/SqlEnquete.vue'
 import SqlInjection from './components/SqlInjection.vue'
+import XssLab from './components/XssLab.vue'
 import Center from './components/Center.vue'
 import DebianConfiguration from './components/DebianConfiguration.vue'
 import './custom.css'
@@ -21,6 +23,7 @@ export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
     app.component('AlgoEnquete', AlgoEnquete)
+    app.component('AuthLab', AuthLab)
     app.component('Contact', Contact)
     app.component('ExternalIframe', ExternalIframe)
     app.component('NoBreak', NoBreak)
@@ -32,6 +35,7 @@ export default {
     app.component('SlidesDeck', SlidesDeck)
     app.component('SqlEnquete', SqlEnquete)
     app.component('SqlInjection', SqlInjection)
+    app.component('XssLab', XssLab)
     app.component('center', Center)
     app.component('DebianConfiguration', DebianConfiguration)
   }

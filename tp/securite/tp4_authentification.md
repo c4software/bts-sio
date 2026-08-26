@@ -92,6 +92,12 @@ password_verify($password, $hash);                   // à la connexion (true / 
 `password_hash` ajoute automatiquement un **sel** aléatoire : deux utilisateurs avec le même mot de passe auront un hash différent.
 :::
 
+Avant de corriger, comparez les trois stratégies de stockage et voyez ce qu'un attaquant récupère quand la base fuite :
+
+<ClientOnly>
+<AuthLab type="hash" />
+</ClientOnly>
+
 À vous de corriger les deux extraits.
 
 ::: tip Point de contrôle
@@ -161,6 +167,12 @@ Plusieurs se combinent :
 
 L'objectif n'est pas de rendre l'attaque impossible, mais **trop lente pour être rentable**.
 :::
+
+Lancez l'attaque par dictionnaire ci-dessous, puis activez les protections et relancez : vous verrez l'attaque ralentir, puis échouer.
+
+<ClientOnly>
+<AuthLab type="bruteforce" />
+</ClientOnly>
 
 À vous de mettre en place une limite simple de tentatives (par exemple en session).
 
