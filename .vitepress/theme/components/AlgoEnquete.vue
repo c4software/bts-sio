@@ -212,7 +212,7 @@ async function importPhpWeb() {
       if (!mod || typeof mod.PhpWeb !== 'function') throw new Error('module inattendu (export PhpWeb absent)')
       const instance = new mod.PhpWeb({ version: PHP_VERSION })
       // `binary` est résolue quand le .wasm est téléchargé et instancié
-      await avecDelai(instance.binary, PHP_WASM_TIMEOUT)
+      await avecDelai(instance.binary, PHP_WASM_TIMEOUT * 2)
       return instance
     } catch (e) {
       lastError = e
