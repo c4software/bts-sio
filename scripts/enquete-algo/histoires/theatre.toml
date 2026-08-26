@@ -1,0 +1,38 @@
+# Histoire POO niveau 2 : l'étudiant structure son code dans sa propre classe (encapsulation,
+# méthodes qui retournent des Habitant[], comptage via $ville->passagesDe()).
+# Structure : rapport -> 1 témoin (revenu max) -> le Fantôme (comptage de passages) -> l'actrice.
+
+[histoire]
+id = "theatre"
+titre = "Le fantôme du théâtre"
+ordre = 6
+seed = 606
+date = 20250117
+type = "chantage"
+mode = "poo"
+niveau_poo = 2
+brief = "Le directeur du théâtre de la Passerelle reçoit des lettres de menace signées « le Fantôme ». Structurez votre enquête dans une classe : le directeur exige un travail propre."
+rapport = "Le directeur du théâtre de la Passerelle reçoit des lettres de chantage depuis début janvier 2025. La mécène du théâtre a des soupçons : elle {temoin}."
+
+[personnage.temoin]
+nom = "Margaux Prieur"
+genre = "femme"
+reperage = { rue = "Rue Émile-Zola", revenu = "max" }
+dit = "Quelqu'un rôde dans les coulisses après les représentations, toujours le même. {fantome:physique} {fantome:passage}"
+
+[personnage.fantome]
+nom = "Serge Humbert"
+reponse = 1
+message = "Le Fantôme est démasqué ! Mais les lettres n'étaient pas son idée : lisez son témoignage pour remonter jusqu'à la commanditaire, puis appelez à nouveau verifier()."
+traits.physique = { genre = "homme", taille = "?" }
+traits.passage = { lieu = "Théâtre de la Passerelle", mois = 202501, fois = 4 }
+dit = "Les lettres, c'était l'idée d'une ancienne actrice de la troupe. Elle me payait pour les déposer. {actrice:physique} {actrice:vehicule}"
+
+[personnage.actrice]
+nom = "Monique Vallet"
+genre = "femme"
+reponse = 2
+message = "Félicitations ! L'actrice évincée voulait faire annuler la saison. Le rideau peut se lever, et Algoville vous applaudit à tout rompre."
+traits.physique = { genre = "femme", cheveux = "?" }
+traits.vehicule = { marque = "?", plaque_debut = "?" }
+dit = "On m'a retiré le premier rôle après quinze ans de scène. Je voulais juste qu'on parle encore de moi."

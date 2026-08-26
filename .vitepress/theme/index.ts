@@ -1,6 +1,7 @@
 // .vitepress/theme/index.ts
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import AlgoEnquete from './components/AlgoEnquete.vue'
 import Contact from './components/Contact.vue'
 import ExternalIframe from './components/ExternalIframe.vue'
 import NoBreak from './components/NoBreak.vue'
@@ -18,6 +19,7 @@ import './custom.css'
 export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
+    app.component('AlgoEnquete', AlgoEnquete)
     app.component('Contact', Contact)
     app.component('ExternalIframe', ExternalIframe)
     app.component('NoBreak', NoBreak)

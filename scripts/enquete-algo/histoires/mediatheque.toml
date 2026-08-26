@@ -1,0 +1,25 @@
+# Histoire d'introduction, résolue ensemble dans le TP procédural.
+# Structure : rapport -> 1 témoin (dernier numéro d'une rue) -> voleuse (filtre foreach + if).
+
+[histoire]
+id = "mediatheque"
+titre = "Le vol de la médiathèque"
+ordre = 1
+seed = 101
+date = 20240116
+type = "vol"
+mode = "procedural"
+brief = "Le manuscrit ancien exposé à la médiathèque Jean-Moulin a disparu le 16 janvier 2024. Une enquête idéale pour prendre l'outil en main : nous la résolvons ensemble dans le TP."
+rapport = "Le manuscrit ancien de la médiathèque Jean-Moulin a été volé le 16 janvier 2024, peu avant la fermeture. Un témoin a tout vu : il {temoin}."
+
+[personnage.temoin]
+nom = "Gaston Lefebvre"
+reperage = { rue = "Rue des Tilleuls", position = "dernier" }
+dit = "J'étais au rayon des bandes dessinées quand j'ai vu quelqu'un glisser le manuscrit sous son manteau. {voleur:physique}"
+
+[personnage.voleur]
+nom = "Camille Perrot"
+genre = "femme"
+reponse = 1
+message = "Bravo, vous avez retrouvé le manuscrit et démasqué la voleuse ! Algoville vous décerne sa carte de bibliothèque d'honneur. Vous êtes maintenant prêt pour les enquêtes suivantes."
+traits.physique = { genre = "femme", cheveux = "?", age = "?", taille = "?" }

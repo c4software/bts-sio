@@ -1,0 +1,36 @@
+# Première histoire POO (niveau 1 : objets, propriétés, méthodes fournies par Ville).
+# Structure classique : rapport -> 1 témoin -> voleuse -> collectionneur.
+
+[histoire]
+id = "observatoire"
+titre = "L'affaire de l'observatoire"
+ordre = 5
+seed = 505
+date = 20241105
+type = "cambriolage"
+mode = "poo"
+niveau_poo = 1
+brief = "La grande lentille du télescope de l'observatoire a été dérobée le 5 novembre 2024. Une première enquête pour manipuler des objets : les habitants d'Algoville sont désormais des instances de la classe Habitant."
+rapport = "La lentille du grand télescope a disparu pendant la nuit du 5 novembre 2024. Le gardien de l'observatoire a vu quelqu'un s'enfuir : il {temoin}."
+
+[personnage.temoin]
+nom = "Hugo Chapuis"
+reperage = { rue = "Chemin du Parc", position = "dernier" }
+dit = "La personne est passée juste sous le lampadaire de l'allée, je l'ai bien vue. {voleur:physique} {voleur:vehicule}"
+
+[personnage.voleur]
+nom = "Laure Guichard"
+genre = "femme"
+reponse = 1
+message = "Bien vu ! La lentille est retrouvée dans son coffre... mais elle volait pour quelqu'un d'autre. Lisez son témoignage, puis appelez à nouveau verifier() avec le nouveau nom."
+traits.physique = { genre = "femme", cheveux = "?", age = "?" }
+traits.vehicule = { marque = "?", modele = "?" }
+dit = "Un collectionneur m'a promis une fortune pour cette lentille. Je ne l'ai jamais rencontré, mais je sais des choses. {collectionneur:adresse} {collectionneur:revenu}"
+
+[personnage.collectionneur]
+nom = "Albert Delmas"
+reponse = 2
+message = "Félicitations, le collectionneur est confondu et la lentille retrouve son télescope ! Les étoiles d'Algoville brillent à nouveau grâce à vous."
+traits.adresse = { rue = "?", numero = "?" }
+traits.revenu = { min = "?" }
+dit = "Cette lentille aurait été la pièce maîtresse de ma collection. Vous ne comprenez rien à la beauté."

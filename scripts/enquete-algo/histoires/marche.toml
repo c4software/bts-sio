@@ -1,0 +1,36 @@
+# Structure : rapport -> 1 témoin (revenu le plus faible d'une rue) -> ravisseur (comptage de
+# passages avec un tableau compteur) -> cerveau (str_contains sur la plaque + revenu).
+
+[histoire]
+id = "marche"
+titre = "Le disparu du marché couvert"
+ordre = 3
+seed = 303
+date = 20240521
+type = "enlèvement"
+mode = "procedural"
+brief = "Le célèbre fromager du Marché couvert n'a pas ouvert son étal depuis trois jours. Son voisin d'étal parle d'un enlèvement, et d'une recette secrète qui attise les convoitises."
+rapport = "Le fromager du Marché couvert a disparu depuis le 18 mai 2024. Son voisin d'étal pense qu'on l'a enlevé pour lui voler sa recette secrète. Une personne aurait des informations : elle {temoin}."
+
+[personnage.temoin]
+nom = "Colette Hamon"
+genre = "femme"
+reperage = { rue = "Rue du Moulin", revenu = "min" }
+dit = "J'ai vu quelqu'un rôder autour de l'étal toute la semaine, toujours à l'heure de la fermeture. {ravisseur:physique} {ravisseur:passage}"
+
+[personnage.ravisseur]
+nom = "Thierry Vasseur"
+reponse = 1
+message = "Vous avez retrouvé le fromager, enfermé dans une cave d'affinage ! Mais le ravisseur n'a pas agi seul : lisez son témoignage pour remonter la piste, puis appelez à nouveau verifier()."
+traits.physique = { genre = "homme", cheveux = "?" }
+traits.passage = { lieu = "Marché couvert", mois = 202405, fois = 3 }
+dit = "On m'a promis une belle somme pour la recette. Je devais la livrer discrètement. {cerveau:vehicule} {cerveau:revenu}"
+
+[personnage.cerveau]
+nom = "Edith Fleury"
+genre = "femme"
+reponse = 2
+message = "Félicitations ! La grande industrielle du fromage voulait produire la recette en usine. Le fromager est libre, la recette est sauve, et Algoville vous offre un plateau de fromages."
+traits.vehicule = { plaque_contient = "?" }
+traits.revenu = { min = "?" }
+dit = "Ce fromage produit en usine aurait fait ma fortune. Tant pis, je retourne au fromage en tranches."

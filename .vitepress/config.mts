@@ -75,7 +75,14 @@ export default defineConfig({
         ]
       },
       { text: 'Quiz', link: '/moodle/' },
-      { text: 'Enquête SQL', link: '/tp/php/sql/enquete.md' },
+      {
+        text: 'Enquêtes',
+        items: [
+          { text: 'Enquête PHP (algorithmes)', link: '/tp/php/enquete-algo.md' },
+          { text: 'Enquête POO', link: '/tp/php/enquete-poo.md' },
+          { text: 'Enquête SQL', link: '/tp/php/sql/enquete.md' },
+        ]
+      },
     ],
 
     lastUpdatedText: 'Mis à jour le',

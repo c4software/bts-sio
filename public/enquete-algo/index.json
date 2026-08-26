@@ -1,0 +1,117 @@
+[
+  {
+    "empreintes": [
+      "3f6fdd75b1fdb7dceea75c6290353d4dc8efabe8c6e730cc56a48df1983817c9"
+    ],
+    "id": "mediatheque",
+    "titre": "Le vol de la médiathèque",
+    "fichier": "mediatheque.php",
+    "mode": "procedural",
+    "date": "16 janvier 2024",
+    "type": "vol",
+    "brief": "Le manuscrit ancien exposé à la médiathèque Jean-Moulin a disparu le 16 janvier 2024. Une enquête idéale pour prendre l'outil en main : nous la résolvons ensemble dans le TP.",
+    "etapes": [
+      "voleur"
+    ]
+  },
+  {
+    "empreintes": [
+      "1019701b85471d96fcf7389a31ecd436f30031a9b9b19baf8a55c72e0786d625",
+      "4fb621eb4be266658adba73e8f3f14fa8690fa5475cced44bc668c4f2511da0a"
+    ],
+    "id": "gymnase",
+    "titre": "Sabotage au gymnase",
+    "fichier": "gymnase.php",
+    "mode": "procedural",
+    "date": "9 mars 2024",
+    "type": "sabotage",
+    "brief": "À la veille du tournoi régional de badminton, les filets et les tapis du Gymnase municipal ont été lacérés. Le tournoi est menacé, la ville compte sur vous.",
+    "etapes": [
+      "coupable",
+      "commanditaire"
+    ]
+  },
+  {
+    "empreintes": [
+      "0d2960fef7f39715db75d9b152a3947076bd3b108b3cf94dfa9ec9491c003274",
+      "673065da307f77be993e2dca4816b160b237219d6014e7bc6e7bb8712b884b95"
+    ],
+    "id": "marche",
+    "titre": "Le disparu du marché couvert",
+    "fichier": "marche.php",
+    "mode": "procedural",
+    "date": "21 mai 2024",
+    "type": "enlèvement",
+    "brief": "Le célèbre fromager du Marché couvert n'a pas ouvert son étal depuis trois jours. Son voisin d'étal parle d'un enlèvement, et d'une recette secrète qui attise les convoitises.",
+    "etapes": [
+      "ravisseur",
+      "cerveau"
+    ]
+  },
+  {
+    "empreintes": [
+      "939d4ced0a2dff31528550edc58b53c73bd39dc76b78fd2093c799ced96e0284"
+    ],
+    "id": "carnaval",
+    "titre": "Fausse piste au carnaval",
+    "fichier": "carnaval.php",
+    "mode": "procedural",
+    "date": "13 février 2024",
+    "type": "vandalisme",
+    "brief": "Le char de la Reine du carnaval a été entièrement repeint en vert fluo pendant la nuit. Le défilé est dans deux jours. Attention : tout ce qui brille n'est pas coupable.",
+    "etapes": [
+      "coupable"
+    ]
+  },
+  {
+    "empreintes": [
+      "92c5914c855b9c3a4b1de70f1a8c6f5dbbc8394f17cd3d700510fc411afb31a9",
+      "61b28a28e9aaeeb431213ce0c2fe430416b6a31aa7372b08cea7356fc0bc02a4"
+    ],
+    "id": "observatoire",
+    "titre": "L'affaire de l'observatoire",
+    "fichier": "observatoire.php",
+    "mode": "poo",
+    "date": "5 novembre 2024",
+    "type": "cambriolage",
+    "brief": "La grande lentille du télescope de l'observatoire a été dérobée le 5 novembre 2024. Une première enquête pour manipuler des objets : les habitants d'Algoville sont désormais des instances de la classe Habitant.",
+    "etapes": [
+      "voleur",
+      "collectionneur"
+    ]
+  },
+  {
+    "empreintes": [
+      "9b6bd99a93751939f0b40f1251e865bdca9cb07e72b2fa98dc80a7fe8468283a",
+      "495dfbea319c957bdd48fe71fed7652fa7b3aa6d1d87edc1166db6ab07d1dda9"
+    ],
+    "id": "theatre",
+    "titre": "Le fantôme du théâtre",
+    "fichier": "theatre.php",
+    "mode": "poo",
+    "date": "17 janvier 2025",
+    "type": "chantage",
+    "brief": "Le directeur du théâtre de la Passerelle reçoit des lettres de menace signées « le Fantôme ». Structurez votre enquête dans une classe : le directeur exige un travail propre.",
+    "etapes": [
+      "fantome",
+      "actrice"
+    ]
+  },
+  {
+    "empreintes": [
+      "2200f29433d4d50b9d162915176bf276f0f9e3ff07c0699ffbbd2e16a6ae54d2",
+      "fe078c3b9211cd5d3d6faf2f41bf2948b142b9d11f239a52c490d9c86d9ecfd5"
+    ],
+    "id": "regate",
+    "titre": "Le naufrage de la régate",
+    "fichier": "regate.php",
+    "mode": "poo",
+    "date": "14 juin 2025",
+    "type": "sabotage",
+    "brief": "Le voilier favori de la grande régate d'Algoville a coulé au départ : la coque avait été sciée. Composez vos propres critères de filtrage... et méfiez-vous des fausses pistes.",
+    "etapes": [
+      "saboteur",
+      "armatrice"
+    ]
+  }
+]

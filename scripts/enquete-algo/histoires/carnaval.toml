@@ -1,0 +1,41 @@
+# Structure : rapport -> 2 témoins qui connaissent chacun UN indice du même suspect (indices
+# répartis) -> fausse piste (message sans reponse : son témoignage relance l'enquête) -> coupable.
+# Exerce aussi le créneau horaire (entre/et) et le repérage par prénom avec intervalle de numéros.
+
+[histoire]
+id = "carnaval"
+titre = "Fausse piste au carnaval"
+ordre = 4
+seed = 404
+date = 20240213
+type = "vandalisme"
+mode = "procedural"
+brief = "Le char de la Reine du carnaval a été entièrement repeint en vert fluo pendant la nuit. Le défilé est dans deux jours. Attention : tout ce qui brille n'est pas coupable."
+rapport = "Le char de la Reine du carnaval a été repeint en vert fluo dans la nuit du 12 au 13 février 2024, dans le hangar de la Salle des fêtes. Deux témoins se sont manifestés : le premier {temoin1}. Le second {temoin2}."
+
+[personnage.temoin1]
+nom = "Louis Pasquier"
+reperage = { rue = "Boulevard Voltaire", prenom = true, numero = [10, 30] }
+dit = "J'ai vu quelqu'un s'éloigner du hangar avec des pots de peinture. {suspect:physique}"
+
+[personnage.temoin2]
+nom = "Rose Bertin"
+genre = "femme"
+reperage = { rue = "Place Molière", position = "dernier" }
+dit = "Quelqu'un a badgé à la Salle des fêtes le soir du 12, je l'ai entendu se vanter d'avoir un accès. {suspect:passage}"
+
+[personnage.suspect]
+nom = "Axel Bazin"
+message = "Ce n'est pas lui ! Axel a bien badgé à la Salle des fêtes ce soir-là, mais lisez son témoignage : il a un alibi, et il a vu le vrai coupable."
+traits.physique = { genre = "homme", cheveux = "?" }
+traits.passage = { lieu = "Salle des fêtes", date = 20240212, entre = "?" }
+dit = "Je préparais la sono du bal masqué, l'organisateur peut confirmer ! En repartant, j'ai vu quelqu'un entrer dans le hangar avec un rouleau de peinture. {coupable:vehicule} {coupable:adresse}"
+
+[personnage.coupable]
+nom = "Sylvie Delaunay"
+genre = "femme"
+reponse = 1
+message = "Bravo, vous avez démasqué la coupable sans tomber dans le piège ! L'ancienne Reine du carnaval n'avait pas digéré de rendre sa couronne. Le char sera repeint à temps pour le défilé."
+traits.vehicule = { modele = "?", plaque_fin = "?" }
+traits.adresse = { rue = "?", numero = "?" }
+dit = "Le vert fluo, c'est ma couleur préférée. Chacun ses goûts."

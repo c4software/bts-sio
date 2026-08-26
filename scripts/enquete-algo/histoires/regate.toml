@@ -1,0 +1,47 @@
+# Histoire POO niveau 3 : l'étudiant implémente l'interface Critere (une classe par indice)
+# et combine ses critères avec filtrer(). Fausse piste incluse.
+# Structure : rapport -> 1 témoin -> skipper rival (fausse piste) -> saboteuse -> armatrice.
+
+[histoire]
+id = "regate"
+titre = "Le naufrage de la régate"
+ordre = 7
+seed = 707
+date = 20250614
+type = "sabotage"
+mode = "poo"
+niveau_poo = 3
+brief = "Le voilier favori de la grande régate d'Algoville a coulé au départ : la coque avait été sciée. Composez vos propres critères de filtrage... et méfiez-vous des fausses pistes."
+rapport = "Le voilier « L'Étoile d'Algoville » a coulé quelques minutes après le départ de la régate du 14 juin 2025 : la coque avait été sciée pendant la nuit. Le gardien du port a vu quelqu'un sur le ponton : il {temoin}."
+
+[personnage.temoin]
+nom = "Paul Cordier"
+reperage = { rue = "Rue du Port", prenom = true }
+dit = "Vers minuit, j'ai entendu du bruit sur le ponton et j'ai braqué ma lampe. {rival:physique} {rival:adresse}"
+
+[personnage.rival]
+nom = "Denis Leveque"
+message = "Ce n'est pas lui ! Le skipper rival était bien sur le ponton, mais lisez son témoignage : il vérifiait son propre bateau, et il a croisé la vraie personne."
+traits.physique = { genre = "homme", cheveux = "?" }
+traits.adresse = { rue = "?", numero = "?" }
+dit = "Je vérifiais mon gréement avant la course, la capitainerie a mes horaires ! En repartant, j'ai croisé quelqu'un qui portait une scie dans un sac de sport. {saboteur:physique} {saboteur:vehicule} {saboteur:passage}"
+
+[personnage.saboteur]
+nom = "Fanny Monnier"
+genre = "femme"
+reponse = 1
+message = "Bravo, vous avez identifié la saboteuse sans accuser un innocent ! Mais elle n'a pas agi pour son compte : son témoignage mène à la commanditaire. Appelez à nouveau verifier()."
+traits.physique = { genre = "femme", age = "?" }
+traits.vehicule = { plaque_contient = "?" }
+traits.passage = { lieu = "Piscine des Lilas", mois = 202506, fois = 3 }
+dit = "Une armatrice m'a payée pour que son voilier gagne enfin cette régate. {armatrice:physique} {armatrice:vehicule} {armatrice:revenu}"
+
+[personnage.armatrice]
+nom = "Charlotte Bailly"
+genre = "femme"
+reponse = 2
+message = "Félicitations, l'armatrice jalouse est confondue et la régate sera recourue ! Le port d'Algoville vous salue, pavillon haut."
+traits.physique = { genre = "femme", cheveux = "?", taille = "?" }
+traits.vehicule = { marque = "Tesla", modele = "?" }
+traits.revenu = { min = "?" }
+dit = "Mon voilier devait gagner cette régate. La mer en a décidé autrement, moi aussi."

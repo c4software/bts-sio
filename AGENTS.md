@@ -81,3 +81,11 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
 - `public/sqlite/enquete/` (bases + `index.json`) et `scripts/enquete-sql/corriges.json` sont générés : ne pas éditer à la main.
 - `scripts/enquete-sql/mcd.py` génère le MCD `tp/php/sql/res/enquete_schema.svg` (ne pas éditer le SVG à la main).
 - `public/sqlite/sqljs/` : sql.js vendu localement (chargé par le composant `SqlEnquete.vue`).
+
+## Enquête PHP (`scripts/enquete-algo/`)
+
+- Déclinaison « algorithmes » de l'enquête SQL : deux TP bonus, `tp/php/enquete-algo.md` (procédural, 1er semestre : aucune mention de Git ni de SQL) et `tp/php/enquete-poo.md` (POO, après les cours POO/interfaces/polymorphisme). Composant commun `.vitepress/theme/components/AlgoEnquete.vue` (`<AlgoEnquete />` ou `<AlgoEnquete mode="poo" />`).
+- Les données du TP sont générées une seule fois (« one shot ») par `python3 scripts/enquete-algo/generate.py` (Python 3.11+, aucune dépendance) et versionnées. Une histoire = un fichier `histoires/*.toml` avec `mode = "procedural"` ou `"poo"` (format et procédure dans `scripts/enquete-algo/README.md`).
+- Le script ne régénère jamais un fichier existant (il faut `--force`) et n'est pas appelé par le build : les histoires publiées doivent rester stables, les indices des TP en dépendent. Les indices et solutions (`public/enquete-algo/solutions/*.md`) sont générés par le même script et inclus dans les TP via `@include` : ne jamais les écrire à la main.
+- `public/enquete-algo/` (`*.php`, `index.json`, `solutions/*.md`) et `scripts/enquete-algo/corriges.json` sont générés : ne pas éditer à la main.
+- PHP tourne dans le navigateur via php-wasm, chargé depuis jsDelivr (version épinglée dans `AlgoEnquete.vue`) : c'est l'exception au « tout auto-hébergé » ; pour vendre localement, copier le loader et son `.wasm` dans `public/` et changer la constante d'URL du composant.

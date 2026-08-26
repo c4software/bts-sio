@@ -1,0 +1,41 @@
+# Structure : rapport -> 2 témoins (prénom sur une rue, plus petit numéro) -> coupable (croisement
+# avec les véhicules, str_starts_with) -> commanditaire (adresse + revenu).
+
+[histoire]
+id = "gymnase"
+titre = "Sabotage au gymnase"
+ordre = 2
+seed = 203
+date = 20240309
+type = "sabotage"
+mode = "procedural"
+brief = "À la veille du tournoi régional de badminton, les filets et les tapis du Gymnase municipal ont été lacérés. Le tournoi est menacé, la ville compte sur vous."
+rapport = "Les filets et les tapis du Gymnase municipal ont été lacérés dans la nuit du 8 au 9 mars 2024. Deux personnes ont remarqué un rôdeur : la première {temoin1}. La seconde {temoin2}."
+
+[personnage.temoin1]
+nom = "Ines Roussel"
+genre = "femme"
+reperage = { rue = "Avenue Pasteur", prenom = true }
+dit = "Je rentrais de mon entraînement quand j'ai croisé quelqu'un qui courait, un cutter à la main. {coupable:physique}"
+
+[personnage.temoin2]
+nom = "Marcel Guerin"
+reperage = { rue = "Rue du Stade", position = "premier" }
+dit = "Une voiture est restée garée devant le gymnase une bonne partie de la nuit, moteur allumé. {coupable:vehicule}"
+
+[personnage.coupable]
+nom = "Bruno Marchal"
+reponse = 1
+message = "Bien joué, vous tenez le saboteur ! Mais il n'a pas agi seul : lisez son témoignage pour découvrir qui l'a payé, puis appelez à nouveau verifier() avec le nouveau nom."
+traits.physique = { genre = "homme", cheveux = "?" }
+traits.vehicule = { marque = "?", plaque_debut = "?" }
+dit = "D'accord, c'est moi. Mais on m'a payé pour le faire, je ne connais même pas le badminton ! {commanditaire:adresse} {commanditaire:revenu}"
+
+[personnage.commanditaire]
+nom = "Josephine Baron"
+genre = "femme"
+reponse = 2
+message = "Félicitations ! La présidente du club rival voulait récupérer l'organisation du tournoi. Grâce à vous, il aura bien lieu au Gymnase municipal d'Algoville."
+traits.adresse = { rue = "?", numero = "?" }
+traits.revenu = { min = "?" }
+dit = "Notre salle méritait ce tournoi bien plus que ce vieux gymnase. Je ne regrette rien."

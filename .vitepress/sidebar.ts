@@ -45,6 +45,7 @@ export default [
           { text: "Préparation à l'examen", link: "/cours/exercices/poo/preparation-examen" }
         ]
       },
+      { text: "Bonus : Enquête POO", link: "/tp/php/enquete-poo.md" },
 
     ]
   },
@@ -186,7 +187,8 @@ export default [
           { text: "Jouer avec les formulaires", link: "/tp/php/tp2.md" },
           { text: "Structurer mon code", link: "/tp/php/tp3.md" },
           { text: "Utiliser la session", link: "/tp/php/tp4.md" },
-          { text: "Protéger des pages à l'aide de la session", link: "/tp/php/tp5.md" }
+          { text: "Protéger des pages à l'aide de la session", link: "/tp/php/tp5.md" },
+          { text: "Bonus : Enquête PHP", link: "/tp/php/enquete-algo.md" }
         ]
       },
       {
