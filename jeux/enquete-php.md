@@ -4,6 +4,8 @@ description: "Jeu : menez l'enquête à Algoville uniquement avec du PHP. D'abor
 
 # Jeu : Enquête PHP
 
+![Enquête PHP : 500 habitants, un seul coupable](./res/enquete_php_intro.svg)
+
 ::: details Sommaire
 [[toc]]
 :::
