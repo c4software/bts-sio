@@ -4,7 +4,7 @@
       <label>
         Histoire :
         <select v-model="selected" :disabled="loading">
-          <option v-for="h in histoires" :key="h.id" :value="h.id">{{ h.titre }} ({{ h.date }})</option>
+          <option v-for="h in histoires" :key="h.id" :value="h.id">{{ h.titre }} ({{ h.date }}){{ h.mode === 'poo' ? ' · POO' : '' }}</option>
         </select>
       </label>
       <a v-if="histoire" :href="dataUrl(histoire)" :download="histoire.fichier" class="download">
@@ -112,10 +112,6 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
 
-const props = defineProps({
-  mode: { type: String, default: 'procedural' },
-})
-
 const BASE = '/enquete-algo/'
 // php-wasm (PHP compilé en WebAssembly), chargé depuis jsDelivr au premier « Exécuter ».
 // Version épinglée : le loader résout son .wasm (~13 Mo, mis en cache par le navigateur) tout seul.
@@ -128,6 +124,9 @@ const MARQUEUR = /^\[\[ENQUETE:([0-9a-f]+|KO)\]\]$/
 const histoires = ref([])
 const selected = ref('')
 const histoire = computed(() => histoires.value.find((h) => h.id === selected.value))
+// le mode (procédural ou POO) est porté par chaque histoire : il pilote le code de départ,
+// l'aide-mémoire et la description des données
+const mode = computed(() => (histoire.value && histoire.value.mode) || 'procedural')
 const code = ref('')
 const sortie = ref(null)
 const tronquee = ref(false)
@@ -255,7 +254,7 @@ function traiterSortie() {
 }
 
 function depart() {
-  code.value = props.mode === 'poo'
+  code.value = mode.value === 'poo'
     ? '<?php\n\necho $ville->rapport();\n'
     : '<?php\n\necho $rapport;\n'
 }
@@ -280,8 +279,7 @@ watch(selected, (nouveau, ancien) => {
 
 onMounted(async () => {
   try {
-    const index = await fetch(BASE + 'index.json').then((r) => r.json())
-    histoires.value = index.filter((h) => h.mode === props.mode)
+    histoires.value = await fetch(BASE + 'index.json').then((r) => r.json())
   } catch (e) {
     error.value = 'Impossible de charger la liste des histoires.'
     return

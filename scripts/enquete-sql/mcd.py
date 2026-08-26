@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Génère le MCD (Merise) du TP Enquête SQL : tp/php/sql/res/enquete_schema.svg"""
+"""Génère le MCD (Merise) du jeu Enquête SQL : jeux/res/enquete_schema.svg"""
 import os
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-OUT = os.path.join(ROOT, "tp", "php", "sql", "res", "enquete_schema.svg")
+OUT = os.path.join(ROOT, "jeux", "res", "enquete_schema.svg")
 W, LH, HH = 220, 17, 26
 COL = {"id": "#3b5bdb", "sport": "#e8590c", "ev": "#7048e8", "enq": "#2f9e44", "sol": "#868e96"}
 E = {

@@ -4,7 +4,7 @@ Contenu du dossier :
 
 - `generate.py` : le moteur (monde aléatoire, injection des personnages, leurres, vérification, bases SQLite, index, solutions).
 - `histoires/*.toml` : une histoire par fichier.
-- `mcd.py` : génère le MCD `tp/php/sql/res/enquete_schema.svg`.
+- `mcd.py` : génère le MCD `jeux/res/enquete_schema.svg`.
 - `corriges.json` : requêtes de vérification, généré.
 
 Une histoire = un fichier `.toml` dans `histoires/`. Génération :
@@ -21,7 +21,7 @@ par le build du site : les `.sqlite` sont versionnés.
 Sorties : `public/sqlite/enquete/<id>.sqlite`, `public/sqlite/enquete/index.json` (lu par le composant `SqlEnquete.vue`),
 `scripts/enquete-sql/corriges.json` (requêtes de vérification) et `public/sqlite/enquete/solutions/<id>.md`
 (indices dégressifs + solutions, générés à chaque exécution et inclus dans le TP par
-`<!--@include: ../../../public/sqlite/enquete/solutions/<id>.md-->`).
+`<!--@include: ../public/sqlite/enquete/solutions/<id>.md-->`).
 
 Le moteur garantit que chaque personnage est identifiable de façon **unique** avec les indices révélés, et
 ajoute pour chaque indice un leurre qui coche tout sauf cet indice (un indice ignoré = plusieurs suspects).
@@ -46,8 +46,8 @@ Si la vérification échoue, la génération s'arrête avec la requête fautive.
 6. **Relire les textes générés** : `sqlite3 public/sqlite/enquete/<id>.sqlite "SELECT transcription FROM
    interrogatoire WHERE personne_id IN (SELECT id FROM personne WHERE nom IN ('…'))"`. Si une phrase sonne
    faux, ajustez le `dit` (les gabarits de phrases sont dans `generate.py`, fonctions `text_*`).
-7. **Brancher dans le TP** : dans `tp/php/sql/enquete.md`, section « Enquêtes suivantes », ajouter un titre
-   `### Titre` puis `<!--@include: ../../../public/sqlite/enquete/solutions/<id>.md-->`.
+7. **Brancher dans le TP** : dans `jeux/enquete-sql.md`, section « Enquêtes suivantes », ajouter un titre
+   `### Titre` puis `<!--@include: ../public/sqlite/enquete/solutions/<id>.md-->`.
 8. **Vérifier et publier** : `npm run docs:build`, commit de tout (`histoires/<id>.toml`, la base `.sqlite`,
    `index.json`, `solutions/<id>.md`, `corriges.json`, le TP), push.
 
@@ -162,4 +162,4 @@ La chaîne n'est pas figée : c'est l'enchaînement des `dit` qui la dessine.
   fonctionne aussi dans un interrogatoire, pas seulement dans le rapport) (`little_italy.toml`).
 
 Après toute modification (`--force`), relancer la génération : les indices et solutions du TP sont régénérés
-automatiquement. Pour une nouvelle histoire, ajouter un titre `###` et la ligne `@include` dans `tp/php/sql/enquete.md`.
+automatiquement. Pour une nouvelle histoire, ajouter un titre `###` et la ligne `@include` dans `jeux/enquete-sql.md`.

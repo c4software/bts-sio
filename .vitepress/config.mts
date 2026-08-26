@@ -78,9 +78,18 @@ export default defineConfig({
       {
         text: 'Enquêtes',
         items: [
-          { text: 'Enquête PHP (algorithmes)', link: '/tp/php/enquete-algo.md' },
-          { text: 'Enquête POO', link: '/tp/php/enquete-poo.md' },
-          { text: 'Enquête SQL', link: '/tp/php/sql/enquete.md' },
+          {
+            text: 'PHP',
+            items: [
+              { text: 'Enquête PHP', link: '/jeux/enquete-php.md' },
+            ]
+          },
+          {
+            text: 'SQL',
+            items: [
+              { text: 'Enquête SQL', link: '/jeux/enquete-sql.md' },
+            ]
+          },
         ]
       },
     ],

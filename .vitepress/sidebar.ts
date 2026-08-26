@@ -45,7 +45,7 @@ export default [
           { text: "Préparation à l'examen", link: "/cours/exercices/poo/preparation-examen" }
         ]
       },
-      { text: "Bonus : Enquête POO", link: "/tp/php/enquete-poo.md" },
+      { text: "Jeu : Enquête PHP (suite POO)", link: "/jeux/enquete-php.md#la-suite-en-oriente-objet" },
 
     ]
   },
@@ -188,14 +188,14 @@ export default [
           { text: "Structurer mon code", link: "/tp/php/tp3.md" },
           { text: "Utiliser la session", link: "/tp/php/tp4.md" },
           { text: "Protéger des pages à l'aide de la session", link: "/tp/php/tp5.md" },
-          { text: "Bonus : Enquête PHP", link: "/tp/php/enquete-algo.md" }
+          { text: "Jeu : Enquête PHP", link: "/jeux/enquete-php.md" }
         ]
       },
       {
         text: "TP SQL", collapsed: true, items: [
           { text: "Bart PHP et MySQL", link: "/tp/php/sql/tp5.md" },
           { text: "BTS TV - Administrable", link: "/tp/php/sql/tp6.md" },
-          { text: "Bonus : Enquête SQL", link: "/tp/php/sql/enquete.md" }
+          { text: "Jeu : Enquête SQL", link: "/jeux/enquete-sql.md" }
         ]
       },
       {

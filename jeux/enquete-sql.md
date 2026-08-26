@@ -1,8 +1,8 @@
 ---
-description: "TP bonus : menez l'enquête à SQL Ville uniquement avec des requêtes SQL (SELECT, WHERE, LIKE, JOIN, GROUP BY). Plusieurs histoires au choix, directement dans le navigateur."
+description: "Jeu : menez l'enquête à SQL Ville uniquement avec des requêtes SQL (SELECT, WHERE, LIKE, JOIN, GROUP BY). Plusieurs histoires au choix, directement dans le navigateur."
 ---
 
-# TP Bonus : Enquête SQL
+# Jeu : Enquête SQL
 
 ![Enquête SQL : 10 000 habitants, un seul coupable](./res/enquete_intro.svg)
 
@@ -12,15 +12,15 @@ description: "TP bonus : menez l'enquête à SQL Ville uniquement avec des requ�
 
 Vous savez maintenant écrire des requêtes SQL et les exécuter depuis PHP avec PDO. Il est temps de vérifier que vous savez aussi **lire des données** pour en tirer une conclusion. Un crime a été commis à SQL Ville, la police a une base de données… et rien d'autre. C'est à vous de jouer !
 
-Ce TP est une adaptation en français du [SQL Murder Mystery](https://github.com/NUKnightLab/sql-mysteries) de NUKnightLab, avec plusieurs histoires différentes pour ne pas refaire toujours la même enquête.
+Ce jeu est une adaptation en français du [SQL Murder Mystery](https://github.com/NUKnightLab/sql-mysteries) de NUKnightLab, avec plusieurs histoires différentes pour ne pas refaire toujours la même enquête.
 
 ::: tip Pour les étudiants en avance
-Ce TP est un **bonus** : il n'est pas noté et ne demande aucun rendu. Vous pouvez le faire en autonomie, seul ou à deux, dès que vous avez terminé le TP en cours. Comptez environ une heure par histoire.
+Ce jeu est un **bonus** : il n'est pas noté et ne demande aucun rendu. Vous pouvez y jouer en autonomie, seul ou à deux, dès que vous avez terminé le TP en cours. Comptez environ une heure par histoire.
 :::
 
 ## Avant de commencer
 
-Il vous faut le [TP 5 SQL](./tp5.md) (SELECT, WHERE, jointures) et [l'aide-mémoire SQL](/cheatsheets/sql/) sous la main. À la fin, vous saurez explorer une base que vous n'avez pas conçue, croiser plusieurs tables avec `JOIN`, et réduire 10 000 habitants à un seul nom avec `LIKE`, `BETWEEN`, `ORDER BY` et `GROUP BY … HAVING`.
+Il vous faut le [TP 5 SQL](/tp/php/sql/tp5.md) (SELECT, WHERE, jointures) et [l'aide-mémoire SQL](/cheatsheets/sql/) sous la main. En jouant, vous apprendrez à explorer une base que vous n'avez pas conçue, croiser plusieurs tables avec `JOIN`, et réduire 10 000 habitants à un seul nom avec `LIKE`, `BETWEEN`, `ORDER BY` et `GROUP BY … HAVING`.
 
 ::: details Rattrapage express : les mots-clés dont vous aurez besoin
 - `SELECT … FROM … WHERE …` : filtrer des lignes.
@@ -232,27 +232,27 @@ Les autres enquêtes sont à faire seul. Essayez d'abord sans rien ouvrir. Si vo
 
 ### Le meurtre de SQL Ville
 
-<!--@include: ../../../public/sqlite/enquete/solutions/meurtre.md-->
+<!--@include: ../public/sqlite/enquete/solutions/meurtre.md-->
 
 ### Le braquage du SQL Express
 
-<!--@include: ../../../public/sqlite/enquete/solutions/sql_express.md-->
+<!--@include: ../public/sqlite/enquete/solutions/sql_express.md-->
 
 ### La formule du professeur Noside
 
-<!--@include: ../../../public/sqlite/enquete/solutions/formule.md-->
+<!--@include: ../public/sqlite/enquete/solutions/formule.md-->
 
 ### Panique à la septième séance
 
-<!--@include: ../../../public/sqlite/enquete/solutions/septieme_seance.md-->
+<!--@include: ../public/sqlite/enquete/solutions/septieme_seance.md-->
 
 ### Menace sur Nova City
 
-<!--@include: ../../../public/sqlite/enquete/solutions/nova_city.md-->
+<!--@include: ../public/sqlite/enquete/solutions/nova_city.md-->
 
 ### L'Infiltré de Little Italy
 
-<!--@include: ../../../public/sqlite/enquete/solutions/little_italy.md-->
+<!--@include: ../public/sqlite/enquete/solutions/little_italy.md-->
 
 ## Pour aller plus loin
 
@@ -262,7 +262,7 @@ Les autres enquêtes sont à faire seul. Essayez d'abord sans rien ouvrir. Si vo
 
 ## Conclusion
 
-Dans ce TP vous avez :
+En jouant, vous avez :
 
 - Exploré une base inconnue en partant de son schéma.
 - Enchaîné filtres, jointures et agrégats pour passer de 10 000 habitants à un seul nom.

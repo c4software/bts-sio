@@ -16,14 +16,14 @@ python3 scripts/enquete-algo/generate.py --force histoires/x.toml   # régénèr
 ```
 
 **Génération « one shot »** : un fichier déjà présent dans `public/enquete-algo/` n'est jamais régénéré sans
-`--force`, pour que les histoires publiées (et les indices des TP) restent stables. Le script n'est pas appelé
+`--force`, pour que les histoires publiées (et les indices du jeu) restent stables. Le script n'est pas appelé
 par le build du site : les `.php` sont versionnés.
 
 Sorties : `public/enquete-algo/<id>.php` (données + fonction `verifier()`, lu par le composant `AlgoEnquete.vue`
 et téléchargeable pour travailler en local), `public/enquete-algo/index.json` (titres, briefs, empreintes SHA-256
 des réponses), `scripts/enquete-algo/corriges.json` (blocs PHP de vérification) et
 `public/enquete-algo/solutions/<id>.md` (indices dégressifs + solutions, générés à chaque exécution et inclus
-dans les TP par `<!--@include: ../../public/enquete-algo/solutions/<id>.md-->`).
+dans le jeu par `<!--@include: ../public/enquete-algo/solutions/<id>.md-->`).
 
 Le moteur garantit que chaque personnage est identifiable de façon **unique** avec les indices révélés, et
 ajoute pour chaque indice un leurre qui coche tout sauf cet indice (un indice ignoré = plusieurs suspects).
@@ -34,9 +34,9 @@ s'arrête avec le prédicat fautif (le plus souvent, un indice non discriminant 
 
 Le monde et le format TOML sont identiques ; seul le fichier PHP émis change.
 
-- `mode = "procedural"` (TP `tp/php/enquete-algo.md`) : quatre tableaux `$habitants`, `$vehicules`,
+- `mode = "procedural"` (histoires 1 à 4 de `jeux/enquete-php.md`) : quatre tableaux `$habitants`, `$vehicules`,
   `$temoignages`, `$passages` + `$rapport` + `verifier()`.
-- `mode = "poo"` (TP `tp/php/enquete-poo.md`) : les mêmes données exposées en objets : classes `Habitant`,
+- `mode = "poo"` (histoires 5 à 7, section « La suite en orienté objet » de la même page) : les mêmes données exposées en objets : classes `Habitant`,
   `Vehicule`, `Passage`, une classe `Ville` (accès encapsulé : `habitants()`, `vehiculeDe()`, `temoignageDe()`,
   `passagesDe()`, `rapport()`), l'interface `Critere` et la fonction `filtrer()`, plus `$ville` et `verifier()`.
   `niveau_poo` (1, 2 ou 3) ne change que le style des solutions générées : 1 = boucles sur les objets et
@@ -66,11 +66,12 @@ Identique à l'enquête SQL (voir `scripts/enquete-sql/README.md`), avec ces dif
    plaque_debut, plaque_fin, plaque_contient), `passage` (lieu parmi `LIEUX` de `generate.py`, date ou mois,
    fois, entre/et), `adresse` (rue, numero), `revenu` (min ou max). Toute valeur accepte `"?"`.
 3. Repérages des témoins : `position = "dernier"/"premier"`, `prenom = true` (+ `numero = [a, b]`),
-   `revenu = "max"/"min"` — comme en SQL.
+   `revenu = "max"/"min"`, comme en SQL.
 4. Pas de `rapports_leurres` : le rapport est un simple texte (`$rapport`), pas une table.
-5. Après génération, ajoutez dans le TP concerné (`enquete-algo.md` ou `enquete-poo.md`) un titre `###`
+5. Après génération, ajoutez dans `jeux/enquete-php.md` (partie procédurale ou section POO selon le mode) un titre `###`
    puis la ligne `@include` affichée en fin d'exécution.
 
 Relisez les textes générés (le rapport et les témoignages sont dans le `.php`), et exécutez les corrigés
 si un binaire `php` est disponible : chaque bloc de `corriges.json`, précédé du fichier de données, doit
-afficher exactement le nom attendu.
+afficher exactement le nom attendu (en POO niveau 3, les blocs d'une même histoire s'enchaînent dans un seul
+fichier : les classes ne sont émises qu'une fois).

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Moteur du TP « Enquête PHP » (déclinaison algorithmique de l'Enquête SQL du repo).
+Moteur du jeu « Enquête PHP » (jeux/enquete-php.md) (déclinaison algorithmique de l'Enquête SQL du repo).
 
 Usage : python3 scripts/enquete-algo/generate.py [--force] [histoire.toml ...]
         (sans argument : toutes les histoires de scripts/enquete-algo/histoires/)
 Un fichier de données déjà présent n'est JAMAIS régénéré sans --force : les histoires publiées
-restent stables (les indices du TP en dépendent). Ce script n'est pas appelé par le build du site.
+restent stables (les indices du jeu en dépendent). Ce script n'est pas appelé par le build du site.
 Sortie : public/enquete-algo/<id>.php + index.json + solutions/<id>.md + corriges.json
 
 Une histoire = un fichier TOML (voir README.md pour le format et la procédure). Le moteur :
@@ -1137,7 +1137,7 @@ def ecrire_php(w, h, path, messages):
         f.write("\n".join(lignes) + "\n")
 
 
-# ---------------------------------------------------------------- indices et solutions (markdown inclus dans le TP)
+# ---------------------------------------------------------------- indices et solutions (markdown inclus dans la page du jeu)
 
 SOL_DIR = os.path.join(OUT, "solutions")
 
@@ -1179,7 +1179,7 @@ INDICE_GROUPE_POO = {
 
 
 def ecrire_solutions(h, persos, corriges):
-    """Fichier markdown : indices dégressifs puis solution complète, à inclure dans le TP."""
+    """Fichier markdown : indices dégressifs puis solution complète, à inclure dans la page du jeu."""
     os.makedirs(SOL_DIR, exist_ok=True)
     mode = h.get("mode", "procedural")
     # ordre narratif : témoins dans l'ordre du rapport, puis chaîne des réponses, fausses pistes à leur place
@@ -1409,5 +1409,5 @@ if __name__ == "__main__":
     with open(corriges_path, "w", encoding="utf-8") as f:
         json.dump(corriges, f, ensure_ascii=False, indent=2)
     print("index.json, corriges.json et solutions/*.md écrits")
-    print("Pour une nouvelle histoire, ajoutez dans le TP concerné :")
-    print("  <!--@include: ../../public/enquete-algo/solutions/<id>.md-->")
+    print("Pour une nouvelle histoire, ajoutez dans jeux/enquete-php.md :")
+    print("  <!--@include: ../public/enquete-algo/solutions/<id>.md-->")

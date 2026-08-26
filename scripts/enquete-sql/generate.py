@@ -1246,5 +1246,5 @@ if __name__ == "__main__":
     with open(corriges_path, "w", encoding="utf-8") as f:
         json.dump(corriges, f, ensure_ascii=False, indent=2)
     print("index.json, corriges.json et solutions/*.md écrits")
-    print("Pour une nouvelle histoire, ajoutez dans tp/php/sql/enquete.md :")
-    print("  <!--@include: ../../../public/sqlite/enquete/solutions/<id>.md-->")
+    print("Pour une nouvelle histoire, ajoutez dans jeux/enquete-sql.md :")
+    print("  <!--@include: ../public/sqlite/enquete/solutions/<id>.md-->")

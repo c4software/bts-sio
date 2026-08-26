@@ -5,3 +5,7 @@
 # Ancienne URL du TP HTMX (déplacé avec les TP JavaScript)
 /tp/htmx/tp1.html /tp/javascript/htmx.html 301
 /tp/htmx/tp1 /tp/javascript/htmx 301
+
+# L'Enquête SQL a rejoint l'espace jeux
+/tp/php/sql/enquete.html /jeux/enquete-sql.html 301
+/tp/php/sql/enquete /jeux/enquete-sql 301
