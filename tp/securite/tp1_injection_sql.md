@@ -1,5 +1,5 @@
 ---
-description: "Premier TP de la série sécurité : comprendre, repérer et corriger les injections SQL. Faille jouable en direct dans le navigateur et épreuves d'attaque façon WebGoat."
+description: "Premier TP de la série sécurité : comprendre, repérer et corriger les injections SQL. Faille jouable en direct dans le navigateur et épreuves d'attaque à réussir soi-même."
 ---
 
 # TP 1 : Les injections SQL
@@ -280,7 +280,7 @@ if (isset($_POST['name']) && isset($_POST['email'])) {
 Les `?` sont **seuls**, sans guillemets. Les valeurs arrivent par `execute([...])`.
 :::
 
-## À vous d'attaquer (façon WebGoat)
+## À vous d'attaquer
 
 Vous avez vu la faille, vous avez appris à la corriger. Passons de l'autre côté : pour bien comprendre une attaque, rien de tel que de la réussir soi-même. Voici quatre épreuves de difficulté croissante, chacune sur une base isolée dans votre navigateur. Pour chacune, un objectif à atteindre **par l'injection** ; la progression se coche quand vous y arrivez.
 
