@@ -282,7 +282,7 @@ Les `?` sont **seuls**, sans guillemets. Les valeurs arrivent par `execute([...]
 
 ## À vous d'attaquer
 
-Vous avez vu la faille, vous avez appris à la corriger. Passons de l'autre côté : pour bien comprendre une attaque, rien de tel que de la réussir soi-même. Voici quatre épreuves de difficulté croissante, chacune sur une base isolée dans votre navigateur. Pour chacune, un objectif à atteindre **par l'injection** ; la progression se coche quand vous y arrivez.
+Vous avez vu la faille, vous avez appris à la corriger. Passons de l'autre côté : pour bien comprendre une attaque, rien de tel que de la réussir soi-même. Voici cinq épreuves de difficulté croissante, chacune sur une base isolée dans votre navigateur. Pour chacune, un objectif à atteindre **par l'injection** (la progression se coche quand vous y arrivez).
 
 ::: warning Un rappel important
 Ces techniques ne se pratiquent **que** sur des systèmes qu'on vous autorise explicitement à tester (le vôtre, un environnement d'entraînement, une mission de test d'intrusion mandatée). Ici, tout est simulé localement dans votre navigateur : aucune donnée réelle, aucun serveur. Utiliser ces méthodes sur un système tiers sans autorisation est un délit.
@@ -292,15 +292,41 @@ Ces techniques ne se pratiquent **que** sur des systèmes qu'on vous autorise ex
 <SqlInjection type="defis" />
 </ClientOnly>
 
-Les quatre épreuves, dans l'ordre :
+Les cinq épreuves, dans l'ordre :
 
 1. **Contournement de connexion** : entrez en tant qu'`admin` sans son mot de passe (injection de chaîne, `admin' --`).
 2. **Injection numérique** : quand la valeur n'est pas entre apostrophes, une condition toujours vraie (`1 OR 1=1`) suffit à tout faire sortir.
 3. **Exfiltration par UNION** : `UNION SELECT` recolle les colonnes d'une **autre** table (ici les mots de passe) dans le résultat affiché.
 4. **Requête empilée** : un `;` permet d'enchaîner une seconde requête qui **modifie** la base (`UPDATE`). C'est ce qu'un simple audit en lecture ne montre jamais.
+5. **Injection à l'aveugle** : même quand la page n'affiche **aucune** donnée, on peut quand même voler des informations. Explications juste en dessous.
+
+### L'injection à l'aveugle, en détail
+
+Les quatre premières épreuves supposaient que la page vous **montrait** quelque chose (une liste, un message d'erreur). Mais souvent, une application prudente n'affiche rien de tout ça : elle répond juste « Compte trouvé » ou « Compte inconnu ». Beaucoup pensent qu'on est alors protégé. **C'est faux**, et c'est ce que montre l'épreuve 5.
+
+L'idée tient en une phrase : si la page **réagit différemment** selon que votre condition est vraie ou fausse, alors chaque essai vous donne une réponse **oui/non**. Et avec des questions oui/non, on peut tout deviner, un morceau à la fois. C'est le principe du « plus petit / plus grand » ou du jeu du pendu : lent, mais imparable.
+
+L'outil clé est la fonction SQL `substr(texte, position, longueur)`, qui découpe une chaîne. `substr(code, 1, 1)` renvoie le **1er caractère** de `code`, `substr(code, 2, 1)` le deuxième, etc. On teste alors un caractère à la fois :
+
+::: details Comment retrouver un code chiffre par chiffre
+La page vérifie l'existence d'un compte avec `... WHERE login = '$saisie'`. On injecte une condition sur le code secret de l'admin :
+
+```
+admin' AND substr(code_secours, 1, 1) = '4' --
+```
+
+- Si la page répond **« Compte trouvé »**, la condition est vraie : le 1er chiffre est bien `4`.
+- Si elle répond **« Compte inconnu »**, c'est faux : on essaie `0`, `1`, `2`… jusqu'à trouver.
+
+Une fois le 1er chiffre connu, on passe au deuxième (`substr(code_secours, 2, 1)`), puis au troisième, au quatrième. En quelques essais par position, le code entier est reconstitué, **sans qu'il s'affiche jamais à l'écran**.
+
+Pour aller plus vite, au lieu de tester chaque chiffre un par un, on peut couper en deux : `substr(code_secours, 1, 1) < '5'` répond « le chiffre est-il petit (0-4) ou grand (5-9) ? ». Deux ou trois questions suffisent alors par position.
+:::
+
+La leçon : **cacher les messages d'erreur ne corrige pas la faille**, cela la rend seulement plus lente à exploiter. La seule vraie protection reste la même qu'aux épreuves précédentes : la requête préparée.
 
 ::: tip Le correctif est toujours le même
-Sur chaque épreuve, basculez sur « Le même en requête préparée » et retentez votre injection : elle échoue à chaque fois. Une requête préparée rend ces quatre attaques inopérantes, sans exception.
+Sur chaque épreuve, basculez sur « Le même en requête préparée » et retentez votre injection : elle échoue à chaque fois. Une requête préparée rend ces cinq attaques inopérantes, sans exception.
 :::
 
 ## Bac à sable SQL

@@ -84,7 +84,7 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
 
 ## Bac à sable SQL du TP injections (`SqlInjection.vue`)
 
-- `tp/securite/tp1_injection_sql.md` intègre le composant `.vitepress/theme/components/SqlInjection.vue` (prop `type` : `login`, `defis`, `editor`) pour jouer les injections SQL en direct et réussir des épreuves façon WebGoat.
+- `tp/securite/tp1_injection_sql.md` intègre le composant `.vitepress/theme/components/SqlInjection.vue` (prop `type` : `login`, `defis`, `editor`) pour jouer les injections SQL en direct et réussir 5 épreuves (contournement de login, injection numérique, UNION SELECT, requête empilée, injection à l'aveugle).
 - Le composant crée ses bases **en mémoire** (`new SQL.Database()` + `db.run(schema)`, schémas écrits en dur dans le composant) : aucun fichier `.sqlite`, rien à générer ni à versionner. Il réutilise sql.js vendu dans `public/sqlite/sqljs/`. Progression des épreuves en `localStorage` (`sql-injection:defis`).
 
 ## Enquête PHP (`scripts/enquete-algo/`)

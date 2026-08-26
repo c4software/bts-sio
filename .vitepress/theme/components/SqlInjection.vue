@@ -152,6 +152,15 @@ INSERT INTO paiements VALUES
  (1, 'jdupont', '4539-1234-5678-9010', 199.00),
  (2, 'mmartin', '4916-9999-8888-7777',  59.00);
 `
+// pour l'épreuve « à l'aveugle » : l'admin cache un code de secours à 4 chiffres
+const COMPTES_SECRET = `
+CREATE TABLE utilisateurs (id INTEGER PRIMARY KEY, login TEXT, mot_de_passe TEXT, role TEXT, code_secours TEXT);
+INSERT INTO utilisateurs VALUES
+ (1, 'admin',   'Tr0ub4dour&3', 'admin',  '4082'),
+ (2, 'jdupont', 'azerty123',    'membre', '1573'),
+ (3, 'mmartin', 'soleil2024',   'membre', '6640'),
+ (4, 'invite',  'invite',       'invite', '0000');
+`
 
 // --- les épreuves du niveau 3 (contenu pédagogique écrit à la main)
 const DEFIS = [
@@ -229,6 +238,26 @@ const DEFIS = [
     },
     succes: 'Le compte « invite » est devenu administrateur : une requête empilée peut modifier la base, pas seulement la lire.',
     indice: "Terminez la première requête et enchaînez la vôtre : `x'; UPDATE utilisateurs SET role='admin' WHERE login='invite'; --`.",
+  },
+  {
+    id: 'aveugle',
+    titre: "Injection à l'aveugle",
+    aveugle: true,
+    scenario: "Cette page ne montre plus aucune donnée : elle répond seulement « Compte trouvé » ou « Compte inconnu ». L'admin protège un code de secours à 4 chiffres. La requête reste vulnérable.",
+    objectif: "Retrouvez le code de secours (4 chiffres) de l'admin en ne posant que des questions oui/non, puis saisissez-le.",
+    schema: COMPTES_SECRET,
+    champs: [
+      { name: 'q', label: 'Champ vulnérable (votre question oui/non)', placeholder: "admin' AND substr(code_secours,1,1)='4' --" },
+      { name: 'code', label: 'Le code que vous avez trouvé', placeholder: '4 chiffres' },
+    ],
+    requete: (s) => `SELECT id FROM utilisateurs\nWHERE login = '${s.q || ''}'`,
+    prepare: {
+      sql: 'SELECT id FROM utilisateurs\nWHERE login = ?',
+      params: (s) => [s.q || ''],
+    },
+    resolu: (db, rows, s) => (s.code || '').trim() === '4082',
+    succes: 'Bravo, vous avez reconstitué le code chiffre par chiffre, sans jamais l\'afficher à l\'écran : c\'est toute la force (et le danger) de l\'injection à l\'aveugle.',
+    indice: "La page répond seulement oui/non, alors transformez chaque chiffre en question. `substr(code_secours, 1, 1)` isole le 1er chiffre : testez `admin' AND substr(code_secours,1,1)='4' --`. « Compte trouvé » = le 1er chiffre est 4. Sinon essayez 0, 1, 2… Recommencez avec la position 2 (`substr(code_secours,2,1)`), puis 3 et 4. Astuce : `substr(...) < '5'` coupe la recherche en deux (le chiffre est-il petit ou grand ?).",
   },
 ]
 
@@ -369,7 +398,8 @@ async function runDefi() {
       while (stmt.step()) rows.push(stmt.getAsObject())
       stmt.free()
       out = rows.length ? [{ columns: Object.keys(rows[0]), values: rows.map((r) => Object.values(r)) }] : []
-      results.value = versResultats(out)
+      // en mode aveugle, on ne révèle jamais les lignes (même corrigé) : la page ne montre que oui/non
+      results.value = d.aveugle ? [] : versResultats(out)
       verdict.value = { ok: false, texte: 'Requête préparée : votre saisie est traitée comme une donnée, l\'injection est neutralisée. C\'est exactement le correctif à retenir.' }
       db.close()
       return
@@ -377,8 +407,28 @@ async function runDefi() {
     const q = d.requete(saisies.value)
     requete.value = q
     out = db.exec(q)
+    const objs = enObjets(out)
+    if (d.aveugle) {
+      // la page ne montre aucune donnée : seulement la réaction oui/non (l'oracle)
+      results.value = []
+      const trouve = objs.length > 0
+      const oracle = trouve
+        ? '✅ Compte trouvé : votre condition est VRAIE.'
+        : '❌ Compte inconnu : votre condition est FAUSSE (ou l\'identifiant n\'existe pas).'
+      if (d.resolu(db, objs, saisies.value)) {
+        verdict.value = { ok: true, texte: d.succes }
+        resolus.value = { ...resolus.value, [d.id]: true }
+        sauverProgres()
+      } else if ((saisies.value.code || '').trim()) {
+        verdict.value = { ok: false, texte: oracle + ` Mais le code « ${saisies.value.code} » n'est pas le bon, continuez à interroger la base.` }
+      } else {
+        verdict.value = { ok: false, texte: oracle + ' Notez la réponse, puis testez le chiffre ou la position suivante.' }
+      }
+      db.close()
+      return
+    }
     results.value = versResultats(out)
-    if (d.resolu(db, enObjets(out), saisies.value)) {
+    if (d.resolu(db, objs, saisies.value)) {
       verdict.value = { ok: true, texte: d.succes }
       resolus.value = { ...resolus.value, [d.id]: true }
       sauverProgres()
@@ -388,8 +438,9 @@ async function runDefi() {
     db.close()
   } catch (e) {
     error.value = 'La base a renvoyé une erreur : ' + e.message + ' (une injection provoque souvent une erreur de syntaxe : ajustez vos apostrophes).'
+  } finally {
+    loading.value = false
   }
-  loading.value = false
 }
 
 function montrerSolution() {
