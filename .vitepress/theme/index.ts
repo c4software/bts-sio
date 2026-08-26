@@ -12,6 +12,7 @@ import Reveal from './components/Reveal.vue'
 import Sample from './components/Sample.vue'
 import SlidesDeck from './components/SlidesDeck.vue'
 import SqlEnquete from './components/SqlEnquete.vue'
+import SqlInjection from './components/SqlInjection.vue'
 import Center from './components/Center.vue'
 import DebianConfiguration from './components/DebianConfiguration.vue'
 import './custom.css'
@@ -30,6 +31,7 @@ export default {
     app.component('Sample', Sample)
     app.component('SlidesDeck', SlidesDeck)
     app.component('SqlEnquete', SqlEnquete)
+    app.component('SqlInjection', SqlInjection)
     app.component('center', Center)
     app.component('DebianConfiguration', DebianConfiguration)
   }

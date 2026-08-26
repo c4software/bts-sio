@@ -1,5 +1,5 @@
 ---
-description: "Premier TP de la série sécurité : comprendre, repérer et corriger les injections SQL en observant et en réparant du code PHP vulnérable."
+description: "Premier TP de la série sécurité : comprendre, repérer et corriger les injections SQL. Faille jouable en direct dans le navigateur et épreuves d'attaque façon WebGoat."
 ---
 
 # TP 1 : Les injections SQL
@@ -53,6 +53,18 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 ## Le principe en une phrase
 
 Une injection SQL survient quand une **donnée** fournie par l'utilisateur est **interprétée comme du code** SQL. La cause est presque toujours la même : on a **collé** (concaténé) une saisie directement dans une requête.
+
+## La faille en direct
+
+Assez de théorie, voyons-la fonctionner. Ci-dessous, un vrai formulaire de connexion : la requête est construite en **collant** votre identifiant et votre mot de passe. Tapez d'abord des identifiants au hasard : refusé, normal. Puis cliquez sur l'exemple d'injection (ou saisissez `' OR '1'='1' --` dans l'identifiant) et regardez ce qui se passe.
+
+<ClientOnly>
+<SqlInjection type="login" />
+</ClientOnly>
+
+::: tip Point de contrôle
+En version vulnérable, `' OR '1'='1' --` vous connecte sans mot de passe valide : votre saisie a **refermé la chaîne** puis ajouté une condition toujours vraie, le reste étant mis en commentaire par `--`. Basculez sur « Version corrigée (requête préparée) » et retentez la même injection : elle ne fonctionne plus, car la saisie est traitée comme une simple donnée. C'est tout l'objet de ce TP.
+:::
 
 ## Exercice 1 : la faille de base (observer et corriger)
 
@@ -267,6 +279,37 @@ if (isset($_POST['name']) && isset($_POST['email'])) {
 
 Les `?` sont **seuls**, sans guillemets. Les valeurs arrivent par `execute([...])`.
 :::
+
+## À vous d'attaquer (façon WebGoat)
+
+Vous avez vu la faille, vous avez appris à la corriger. Passons de l'autre côté : pour bien comprendre une attaque, rien de tel que de la réussir soi-même. Voici quatre épreuves de difficulté croissante, chacune sur une base isolée dans votre navigateur. Pour chacune, un objectif à atteindre **par l'injection** ; la progression se coche quand vous y arrivez.
+
+::: warning Un rappel important
+Ces techniques ne se pratiquent **que** sur des systèmes qu'on vous autorise explicitement à tester (le vôtre, un environnement d'entraînement, une mission de test d'intrusion mandatée). Ici, tout est simulé localement dans votre navigateur : aucune donnée réelle, aucun serveur. Utiliser ces méthodes sur un système tiers sans autorisation est un délit.
+:::
+
+<ClientOnly>
+<SqlInjection type="defis" />
+</ClientOnly>
+
+Les quatre épreuves, dans l'ordre :
+
+1. **Contournement de connexion** : entrez en tant qu'`admin` sans son mot de passe (injection de chaîne, `admin' --`).
+2. **Injection numérique** : quand la valeur n'est pas entre apostrophes, une condition toujours vraie (`1 OR 1=1`) suffit à tout faire sortir.
+3. **Exfiltration par UNION** : `UNION SELECT` recolle les colonnes d'une **autre** table (ici les mots de passe) dans le résultat affiché.
+4. **Requête empilée** : un `;` permet d'enchaîner une seconde requête qui **modifie** la base (`UPDATE`). C'est ce qu'un simple audit en lecture ne montre jamais.
+
+::: tip Le correctif est toujours le même
+Sur chaque épreuve, basculez sur « Le même en requête préparée » et retentez votre injection : elle échoue à chaque fois. Une requête préparée rend ces quatre attaques inopérantes, sans exception.
+:::
+
+## Bac à sable SQL
+
+Envie d'explorer par vous-même ? Voici une base d'exemple et un éditeur libre. Écrivez les requêtes que vous voulez (tentez un `UNION SELECT`, un `OR 1=1`, regardez le schéma). Tout tourne dans votre navigateur, le bouton « Réinitialiser la base » remet tout en ordre.
+
+<ClientOnly>
+<SqlInjection type="editor" />
+</ClientOnly>
 
 ## À retenir
 

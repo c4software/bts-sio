@@ -80,7 +80,12 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
 - Le script ne régénère jamais une base existante (il faut `--force`) et n'est pas appelé par le build : les histoires publiées doivent rester stables, les indices du jeu en dépendent. Les indices et solutions (`public/sqlite/enquete/solutions/*.md`) sont générés par le même script et inclus dans la page via `@include` : ne jamais les écrire à la main.
 - `public/sqlite/enquete/` (bases + `index.json`) et `scripts/enquete-sql/corriges.json` sont générés : ne pas éditer à la main.
 - `scripts/enquete-sql/mcd.py` génère le MCD `jeux/res/enquete_schema.svg` (ne pas éditer le SVG à la main).
-- `public/sqlite/sqljs/` : sql.js vendu localement (chargé par le composant `SqlEnquete.vue`).
+- `public/sqlite/sqljs/` : sql.js vendu localement (chargé par les composants `SqlEnquete.vue` et `SqlInjection.vue`).
+
+## Bac à sable SQL du TP injections (`SqlInjection.vue`)
+
+- `tp/securite/tp1_injection_sql.md` intègre le composant `.vitepress/theme/components/SqlInjection.vue` (prop `type` : `login`, `defis`, `editor`) pour jouer les injections SQL en direct et réussir des épreuves façon WebGoat.
+- Le composant crée ses bases **en mémoire** (`new SQL.Database()` + `db.run(schema)`, schémas écrits en dur dans le composant) : aucun fichier `.sqlite`, rien à générer ni à versionner. Il réutilise sql.js vendu dans `public/sqlite/sqljs/`. Progression des épreuves en `localStorage` (`sql-injection:defis`).
 
 ## Enquête PHP (`scripts/enquete-algo/`)
 

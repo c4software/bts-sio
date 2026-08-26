@@ -74,22 +74,12 @@ export default defineConfig({
           { text: 'La sécurité OWASP', link: '/pages/categories/securite-owasp.md' },
         ]
       },
-      { text: 'Quiz', link: '/moodle/' },
       {
-        text: 'Enquêtes',
+        text: 'Jeux',
         items: [
-          {
-            text: 'PHP',
-            items: [
-              { text: 'Enquête PHP', link: '/jeux/enquete-php.md' },
-            ]
-          },
-          {
-            text: 'SQL',
-            items: [
-              { text: 'Enquête SQL', link: '/jeux/enquete-sql.md' },
-            ]
-          },
+          { text: 'Quiz', link: '/moodle/' },
+          { text: 'Enquête PHP', link: '/jeux/enquete-php.md' },
+          { text: 'Enquête SQL', link: '/jeux/enquete-sql.md' },
         ]
       },
     ],

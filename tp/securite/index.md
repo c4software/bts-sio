@@ -36,8 +36,9 @@ Avant ou pendant les TP, gardez sous la main :
 
 ## Pour s'entraîner en autonomie
 
-Deux plateformes interactives complètent parfaitement ces TP, si vous voulez manipuler davantage :
+Plusieurs pistes complètent ces TP, si vous voulez manipuler davantage :
 
+- Les **épreuves d'injection SQL** du [TP 1](./tp1_injection_sql.md#a-vous-d-attaquer-facon-webgoat) : quatre attaques à réussir vous-même, directement dans le navigateur, sans rien à installer (une alternative locale à WebGoat pour la partie SQL).
 - [Hacksplaining](https://www.hacksplaining.com/exercises) : des tutoriels guidés faille par faille (injection SQL, XSS stockée…).
 - WebGoat : l'application d'entraînement de l'OWASP, à lancer en local.
 
