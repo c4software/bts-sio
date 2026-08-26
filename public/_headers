@@ -1,0 +1,4 @@
+# Copie locale de php-wasm (repli si le CDN est indisponible) : chemin versionné, donc
+# mise en cache longue et immuable côté navigateur pour économiser la bande passante Netlify.
+/php-wasm/*
+  Cache-Control: public, max-age=31536000, immutable

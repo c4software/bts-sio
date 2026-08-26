@@ -113,9 +113,16 @@
 import { ref, computed, watch, onMounted } from 'vue'
 
 const BASE = '/enquete-algo/'
-// php-wasm (PHP compilé en WebAssembly), chargé depuis jsDelivr au premier « Exécuter ».
+// php-wasm (PHP compilé en WebAssembly), chargé au premier « Exécuter ».
 // Version épinglée : le loader résout son .wasm (~13 Mo, mis en cache par le navigateur) tout seul.
-const PHP_WASM_URL = 'https://cdn.jsdelivr.net/npm/php-wasm@0.1.0/PhpWeb.mjs'
+// Source principale : le CDN jsDelivr. Repli : la copie embarquée dans public/php-wasm/0.1.0/
+// (sous-ensemble du paquet npm php-wasm@0.1.0 limité à PHP 8.3 web), utilisée si le CDN est
+// injoignable (réseau filtré, panne) ou trop lent.
+const PHP_WASM_URLS = [
+  'https://cdn.jsdelivr.net/npm/php-wasm@0.1.0/PhpWeb.mjs',
+  '/php-wasm/0.1.0/PhpWeb.mjs',
+]
+const PHP_WASM_TIMEOUT = 60000
 const PHP_VERSION = '8.3'
 const MAX_LINES = 200
 const STORAGE_KEY = 'algo-enquete'
@@ -187,11 +194,39 @@ async function loadDonnees() {
   }
 }
 
+// Essaie chaque source dans l'ordre (CDN puis copie locale). On passe à la suivante si
+// l'import échoue, dépasse le délai, ou si le module chargé n'est pas exploitable (CDN qui
+// a changé, export manquant, wasm qui ne démarre pas) : on attend que PHP soit réellement prêt.
+function avecDelai(promesse, ms) {
+  return Promise.race([
+    promesse,
+    new Promise((_, reject) => setTimeout(() => reject(new Error('délai dépassé')), ms)),
+  ])
+}
+
+async function importPhpWeb() {
+  let lastError = null
+  for (const url of PHP_WASM_URLS) {
+    try {
+      const mod = await avecDelai(import(/* @vite-ignore */ url), PHP_WASM_TIMEOUT)
+      if (!mod || typeof mod.PhpWeb !== 'function') throw new Error('module inattendu (export PhpWeb absent)')
+      const instance = new mod.PhpWeb({ version: PHP_VERSION })
+      // `binary` est résolue quand le .wasm est téléchargé et instancié
+      await avecDelai(instance.binary, PHP_WASM_TIMEOUT)
+      return instance
+    } catch (e) {
+      lastError = e
+      console.warn('php-wasm : échec du chargement depuis ' + url + ', essai de la source suivante', e)
+      status.value = 'CDN indisponible, chargement de PHP depuis le site…'
+    }
+  }
+  throw new Error('Impossible de charger PHP : ' + (lastError && lastError.message))
+}
+
 async function loadPhp() {
   if (php) return
   status.value = 'Chargement de PHP (environ 13 Mo, une seule fois)…'
-  const { PhpWeb } = await import(/* @vite-ignore */ PHP_WASM_URL)
-  php = new PhpWeb({ version: PHP_VERSION })
+  php = await importPhpWeb()
   php.addEventListener('output', (e) => { stdout += e.detail })
   php.addEventListener('error', (e) => { stderr += e.detail })
 }
