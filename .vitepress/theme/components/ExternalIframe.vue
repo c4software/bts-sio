@@ -1,5 +1,5 @@
 <template>
-  <div :class="{bordered}">
+  <div :class="{bordered}" tabindex="0" @keydown="handleKeyPress" ref="root">
     <iframe :src="src" frameborder="0" ref="iframe" />
     <div class="actions">
       <button class="action" @click="() => requestFullscreen($refs['iframe'])" v-if="isFullScreenAvailable">
@@ -33,17 +33,19 @@ export default {
       }
     }
   },
-  mounted() {
-    window.addEventListener('keydown', this.handleKeyPress);
-  },
-  beforeUnmount() {
-    window.removeEventListener('keydown', this.handleKeyPress);
-  },
   methods: {
+    // Raccourci « f » : uniquement quand le focus est dans le composant
+    // (l'écouteur est posé sur la racine, pas sur window), et jamais
+    // pendant une saisie ni avec un modificateur.
     handleKeyPress(event) {
-      if (event.key === 'f' || event.key === 'F') {
-        this.toggleFullscreen();
-      }
+      if (event.key !== 'f' && event.key !== 'F') return;
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      const root = this.$refs.root;
+      if (!root || !root.contains(document.activeElement)) return;
+      const tag = event.target && event.target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || (event.target && event.target.isContentEditable)) return;
+      event.preventDefault();
+      this.toggleFullscreen();
     },
     toggleFullscreen() {
       const element = this.$refs.iframe;
@@ -88,6 +90,16 @@ export default {
 </script>
 
 <style scoped>
+
+div[tabindex]:focus {
+  outline: none;
+}
+
+div[tabindex]:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1, #3451b2);
+  outline-offset: 2px;
+  border-radius: 5px;
+}
 
 iframe {
   width: 100%;
