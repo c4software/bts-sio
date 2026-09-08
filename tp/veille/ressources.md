@@ -103,6 +103,8 @@ Un email par semaine, la veille sans effort :
 - [Codewars](https://www.codewars.com/) <- Défis de code par niveau.
 - [CSS Battle](https://cssbattle.dev/) <- Reproduire un visuel avec le moins de CSS possible.
 
+Pour une liste plus complète de plateformes (tronc commun, SISR, SLAM) et le fonctionnement de l'option parcours de certification complémentaire, voir la page [Option parcours de certification complémentaire](/tp/veille/plateformes.md).
+
 ## Assistants IA
 
 Des outils devenus incontournables, à utiliser pour **comprendre** et non pour produire à votre place : en évaluation comme en entretien, vous serez seul face au code.

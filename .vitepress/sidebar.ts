@@ -8,7 +8,8 @@ export default [
     collapsed: true, text: "Veille & Ressources",
     items: [
       { text: "La veille de développeur", link: "/cours/veille.md" },
-      { text: "Ressources veille & développement", link: "/tp/veille/ressources.md" }
+      { text: "Ressources veille & développement", link: "/tp/veille/ressources.md" },
+      { text: "Option certification complémentaire", link: "/tp/veille/plateformes.md" }
     ]
   },
 
