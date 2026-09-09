@@ -8,6 +8,7 @@ Le BTS SIO propose une option facultative, le **Parcours de certification compl�
 
 ::: details Table des matières
 [[toc]]
+:::
 
 ## Les slides
 
@@ -160,6 +161,7 @@ Et quelques chaînes YouTube pour apprendre en regardant :
 * 🇫🇷 [Xavki](https://www.youtube.com/@xavki) : DevOps, Docker, Kubernetes, Ansible ; une chaîne très complète.
 * 🇫🇷 [Micode](https://www.youtube.com/@Micode) : cybersécurité et culture tech, davantage orientée grand public.
 * 🇫🇷 [Underscore_](https://www.youtube.com/@Underscore_) : actualité tech et culture développeur, utile notamment pour la veille.
+* 🇫🇷 [Science Étonnante (David Louapre)](https://www.youtube.com/@ScienceEtonnante) : vulgarisation scientifique, avec d'excellentes vidéos sur l'intelligence artificielle, les réseaux de neurones et les LLM. Une très bonne porte d'entrée si vous vous orientez vers un parcours IA.
 * 🇬🇧 [typecraft](https://www.youtube.com/@typecraft_dev) : Neovim, terminal et outillage du développeur.
 * 🇬🇧 [ThePrimeagen](https://www.youtube.com/@ThePrimeagen) : Vim, performance et culture développeur, avec un style très animé.
 * 🇬🇧 [NetworkChuck](https://www.youtube.com/@NetworkChuck) : réseau, Linux et cybersécurité, avec des contenus accessibles aux débutants.
