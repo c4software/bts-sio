@@ -629,6 +629,127 @@ Pour aller plus loin sur Blade et les directives, je vous invite à consulter la
 
 Ou regarder l'aide mémoire : [les directives de blades](/cheatsheets/laravel/#les-directives)
 
+## Mise en pratique : Pour vraiment pratiquer !
+
+::: tip Vous avez terminé ?
+Vous avez compris le reste ? Place à la pratique, Comptez 45 minutes, tout se termine en séance, sans rendu. L'objectif est de refaire **une seconde fois, avec moins d'aide**, les trois notions du jour : les routes, les vues Blade et les messages flash.
+
+Deux exercices, du plus guidé au moins guidé. Vous venez de tout faire une fois dans ce TP : relisez votre propre code avant d'ouvrir une aide.
+:::
+
+### Exercice 1 : le générateur de punitions
+
+Bart a encore des lignes à copier. Vous allez refaire, en Laravel, le petit générateur de punitions de première année (si vous ne l'avez jamais fait, ce n'est pas grave, tout tient dans ces quelques lignes).
+
+Ce qui est attendu :
+
+- Une page `/bart` qui affiche un formulaire : une phrase, un nombre de lignes, un bouton.
+- Le formulaire est envoyé en POST sur la **même URL** `/bart` : une route `GET` pour afficher, une route `POST` pour traiter, toutes les deux vers un contrôleur `BartController`.
+- Si la phrase ou le nombre est vide : retour au formulaire avec un message flash d'erreur.
+- Sinon : la **même vue** affiche le formulaire, et en dessous la phrase répétée autant de fois que demandé.
+
+::: details Besoin d'aide pour répéter la phrase ?
+Blade a une directive pour la boucle `for`, sur le même principe que `@foreach` :
+
+```html
+@for($i = 0; $i < $nombre; $i++)
+    {{ $phrase }}<br />
+@endfor
+```
+
+Reste à décider quand l'afficher : au premier chargement de la page, `$phrase` n'existe pas encore. La directive `@isset($phrase) … @endisset` n'affiche le bloc que si la variable a été transmise par le contrôleur.
+:::
+
+::: details Besoin d'aide pour le traitement ?
+Le contrôleur reçoit un `Request`, comme dans `TestFlashController`. La seule différence : en cas de succès, on ne redirige pas, on renvoie la vue avec les deux valeurs dans le tableau.
+:::
+
+Voici ce que vous devez obtenir (la mise en forme n'est pas l'objectif, un peu de CSS dans le layout suffit) :
+
+![Le générateur de punitions en Laravel](./ressources/exercice_bart.png)
+
+::: tip Point de contrôle
+Le formulaire vide affiche le message d'erreur, « Je ne copie pas le code de Valentin » avec 10 renvoie dix lignes sous le formulaire, et `php artisan route:list --path=bart` liste vos deux routes.
+:::
+
+### Exercice 2 : pile ou face
+
+Cette fois, aucune aide : vous avez tout ce qu'il faut dans ce TP et dans l'exercice précédent.
+
+- Une page `/jeu` avec un seul bouton « Lancer la pièce » (un formulaire POST, sans champ).
+- Le contrôleur tire au sort « Pile » ou « Face » et **redirige** vers `/jeu` avec le résultat dans un message flash.
+- La vue affiche le résultat en bleu pour Pile et en orange pour Face, et rien du tout tant qu'on n'a pas lancé.
+
+![Pile ou face après un lancer](./ressources/exercice_jeu.png)
+
+::: tip Point de contrôle
+Trois clics, des résultats qui changent, et un rechargement de la page (F5) qui ne relance pas la pièce. Si le F5 relance, c'est qu'il manque la redirection.
+:::
+
+### Exercice 3 : la boîte à outils
+
+Dernier exercice, un peu plus long : une petite **boîte à outils** en trois pages. Une page d'accueil `/outils` qui présente les deux outils, puis une sous-page par outil : `/outils/mot-de-passe` pour générer un mot de passe aléatoire, `/outils/hash` pour générer un hash bcrypt. Cette fois, le site doit être présentable : vous utilisez **Bootstrap**.
+
+Ce qui est attendu :
+
+- Bootstrap chargé dans le layout, depuis son CDN, pour que toutes vos pages en profitent. Le layout gagne au passage une **barre de navigation** Bootstrap (`navbar`) avec les liens vers vos pages, et affiche les messages flash dans une `alert`.
+- Un contrôleur `OutilsController` et cinq routes : `GET /outils` (l'accueil, deux `card` côte à côte avec un bouton « Ouvrir » chacune), `GET` et `POST /outils/mot-de-passe`, `GET` et `POST /outils/hash`. Une méthode par route.
+- Chaque sous-page affiche son formulaire (`form-control`, `btn btn-primary`) et, après traitement, **redirige vers elle-même** avec le résultat dans un flash, affiché dans une `card`.
+- Le générateur de mot de passe reçoit une longueur (entre 8 et 64) et fabrique un **vrai mot de passe utilisable**, une chaîne qui mélange lettres minuscules et majuscules, chiffres et symboles, par exemple `Ah4oYXQAqeS%0NB0`.
+- Le générateur de hash reçoit un texte et un coût (entre 4 et 14), produit un hash bcrypt avec la **fonction native de PHP**.
+- Une longueur ou un coût hors limites : retour sur la sous-page avec un message d'erreur.
+
+Deux fonctions PHP à connaître, le reste est entre vos mains :
+
+- `random_int($min, $max)` tire un nombre au hasard de façon **sûre** (à préférer à `rand()` pour tout ce qui touche à la sécurité). Attention, ce nombre n'est pas le mot de passe : il sert à **choisir une position** dans une chaîne de caractères autorisés (`'abc…XYZ0123456789!@#$%&*?'`). Une boucle qui pioche un caractère à chaque tour et l'ajoute au résultat, et vous avez votre mot de passe.
+- `password_hash($texte, PASSWORD_BCRYPT, ['cost' => $cout])` produit le hash. Le coût est le nombre de tours de calcul, en puissance de deux.
+
+::: details Besoin d'aide pour tirer un caractère au hasard ?
+`$caracteres[random_int(0, strlen($caracteres) - 1)]` : une chaîne se lit comme un tableau de caractères, on tire un indice au hasard entre 0 et sa longueur moins un, et on obtient **un caractère**. Il ne reste qu'à le concaténer au mot de passe en cours de construction (`$motDePasse .= …`), dans une boucle de la longueur demandée.
+:::
+
+::: details Besoin d'aide pour la barre de navigation ?
+La [documentation Bootstrap](https://getbootstrap.com/docs/5.3/components/navbar/) donne le HTML complet. Une `navbar navbar-expand navbar-dark bg-dark` avec un `container`, un `navbar-brand` et des `nav-link` suffisent largement.
+:::
+
+Le résultat attendu, page par page :
+
+![L'accueil de la boîte à outils](./ressources/exercice_outils.png)
+
+![La sous-page du générateur de mot de passe](./ressources/exercice_outils_mdp.png)
+
+![La sous-page du générateur de hash](./ressources/exercice_outils_hash.png)
+
+::: tip Point de contrôle
+`php artisan route:list --path=outils` liste vos cinq routes. Un mot de passe de 20 caractères différent à chaque clic, un hash qui commence par `$2y$10$` avec un coût de 10 (et par `$2y$12$` avec 12), et un F5 qui ne relance rien. Faites l'essai avec un coût de 14 : la page met plusieurs secondes à répondre. C'est voulu, et c'est tout l'intérêt de bcrypt : rendre chaque tentative coûteuse pour un attaquant. Vous en reparlerez dans le TP sur l'authentification.
+:::
+
+### Vous en voulez encore ? La validation
+
+Votre `if` sur les champs vides fonctionne, mais Laravel sait faire beaucoup mieux, en une seule instruction dans le contrôleur :
+
+```php
+$request->validate([
+    'phrase' => 'required|min:5',
+    'nombre' => 'required|integer|min:1|max:100',
+]);
+```
+
+Si une règle échoue, Laravel **redirige tout seul** vers le formulaire, avec les erreurs et les valeurs saisies. Dans la vue, chaque champ affiche son erreur avec la directive `@error` et retrouve sa valeur avec `old()` :
+
+```html
+<input type="number" name="nombre" value="{{ old('nombre') }}" />
+@error('nombre') <p style="color: red;">{{ $message }}</p> @enderror
+```
+
+Je vous laisse remplacer votre `if` dans le générateur de punitions (puis dans la boîte à outils) et tester avec 500 lignes. Les messages sont en anglais par défaut, c'est normal, la traduction viendra plus tard. Toutes les règles disponibles (il y en a des dizaines) sont dans [la documentation officielle](https://laravel.com/docs/validation#available-validation-rules).
+
+N'oubliez pas de commiter avant de partir.
+
+<center>
+<iframe src="https://giphy.com/embed/NEvPzZ8bd1V4Y" width="459" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+</center>
+
 ## Conclusion
 
 Ce premier TP de découverte est terminé, vous avez maintenant les bases de Laravel :
@@ -655,4 +776,3 @@ La suite de la découverte se déroule en quatre TP, toujours sur ce même proje
 Et en bonus pour les plus rapides : [La double authentification (2FA)](./2fa.md).
 
 Rendez-vous dans le TP [Introduction base de données et ORM avec Laravel](./base_de_donnees.md) 🚀.
-
