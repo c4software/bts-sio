@@ -371,29 +371,172 @@ $student = array(
 
 Beaucoup plus lisible non ? Vous noterez au passage que le tableau associatif est également un conteneur. Nous avons donc dedans plusieurs types de données.
 
-::: tip Astuce de pro
+### À plusieurs dimensions
 
-Nous avons vu la base des tableaux, avec des exemples concrets irons évidement bien plus loin. Mais à noter qu'il est évidemment possible de mélanger les deux types de tableaux. Par exemple si vous souhaitez créer une `liste d'étudiants` :
+Nous savons stocker **un** étudiant. Mais dans une classe, il y en a 30. Allons-nous écrire `$student1`, `$student2`, … jusqu'à `$student30` ? Vous imaginez la suite : impossible à parcourir, impossible à maintenir.
+
+Réfléchissez une seconde : quel outil connaissons-nous pour stocker une liste ? Un tableau, bien sûr. Sauf qu'ici, chaque élément de la liste est lui-même un tableau associatif. Nous allons donc créer **un tableau de tableaux** :
 
 ```php
 $students = array(
     array(
-        "nom" => "Brosseau",
-        "prenom" => "Valentin",
-        "ordinateur" => true,
-        "age" => 33,
+        "prenom" => "Bart",
+        "nom" => "Simpson",
+        "age" => 10,
     ),
     array(
-        "nom" => "Doe",
-        "prenom" => "John",
-        "ordinateur" => false,
-        "age" => 87,
-    )
-)
+        "prenom" => "Lisa",
+        "nom" => "Simpson",
+        "age" => 8,
+    ),
+    array(
+        "prenom" => "Maggie",
+        "nom" => "Simpson",
+        "age" => 1,
+    ),
+);
 ```
 
-Nous rencontrerons plus tard ce genre de « format » lors de nos requêtes à la base de données.
+C'est ce que nous appelons un **tableau à plusieurs dimensions** (ici deux dimensions). À l'extérieur, un tableau numéroté (0, 1, 2…). À l'intérieur de chaque case, un tableau associatif.
+
+Le plus simple pour se le représenter, c'est de le voir comme une grille, exactement comme une feuille de calcul : une ligne par étudiant, une colonne par clé.
+
+| Case | prenom | nom     | age |
+| :--: | ------ | ------- | --: |
+|  0   | Bart   | Simpson |  10 |
+|  1   | Lisa   | Simpson |   8 |
+|  2   | Maggie | Simpson |   1 |
+
+#### Accéder à une valeur
+
+Pour lire une information, nous donnons d'abord la ligne, puis la colonne :
+
+```php
+echo $students[0]['prenom']; // Bart
+echo $students[2]['age'];    // 1
+```
+
+Lisez de gauche à droite : « la case 0, puis la clé prenom ». Je vous laisse deviner ce que vaut `$students[1]['age']`.
+
+#### Ajouter un étudiant
+
+Comme pour un tableau numéroté classique, les crochets vides ajoutent à la fin :
+
+```php
+$students[] = array(
+    "prenom" => "Milhouse",
+    "nom" => "Van Houten",
+    "age" => 10,
+);
+```
+
+La nouvelle case prend automatiquement l'indice suivant (ici 3).
+
+#### Parcourir le tableau
+
+C'est là que tout devient intéressant. Une boucle `foreach` suffit pour afficher toute la classe, qu'elle contienne 3 ou 300 étudiants :
+
+```php
+echo "<ul>";
+foreach ($students as $student) {
+    echo "<li>" . $student['prenom'] . " " . $student['nom'] . "</li>";
+}
+echo "</ul>";
+```
+
+À chaque tour de boucle, `$student` contient **un tableau associatif** (une ligne de la grille). C'est pour cela que nous écrivons ensuite `$student['prenom']`.
+
+Et si nous voulions afficher **toutes** les clés, sans les connaître à l'avance ? Il nous faut alors une boucle dans la boucle :
+
+```php
+echo "<table>";
+foreach ($students as $student) {
+    echo "<tr>";
+    foreach ($student as $cle => $valeur) {
+        echo "<td>" . $cle . " : " . $valeur . "</td>";
+    }
+    echo "</tr>";
+}
+echo "</table>";
+```
+
+La première boucle avance sur les lignes, la seconde sur les colonnes. Pas de panique si cela vous semble abstrait : dessinez la grille sur une feuille, et suivez la boucle avec le doigt.
+
+#### Et pourquoi s'arrêter à deux dimensions ?
+
+Rien ne nous empêche d'imbriquer encore. Ajoutons les notes de chaque étudiant :
+
+```php
+$students = array(
+    array(
+        "prenom" => "Bart",
+        "nom" => "Simpson",
+        "notes" => array("php" => 8, "sql" => 6),
+    ),
+    array(
+        "prenom" => "Lisa",
+        "nom" => "Simpson",
+        "notes" => array("php" => 19, "sql" => 20),
+    ),
+);
+
+echo $students[0]['notes']['php']; // 8
+```
+
+Toujours la même logique : nous descendons niveau par niveau, de gauche à droite.
+
+#### Voir ce qu'il y a dedans
+
+Vous êtes perdu dans la structure de votre tableau ? Affichez-le, comme nous l'avons fait avec `$_SERVER` :
+
+```php
+echo "<pre>" . print_r($students, true) . "</pre>";
+```
+
+Le `<pre>` conserve les retours à la ligne et l'indentation, c'est ce qui rend la lecture possible. C'est votre meilleur allié pour comprendre ce que contient réellement une variable.
+
+::: tip Pourquoi c'est important ?
+Ce format n'est pas un exercice de style. C'est exactement ce que nous rencontrerons plus tard lors de nos requêtes à la base de données : une ligne de résultat sera un tableau associatif, et le résultat complet une liste de ces lignes. Bien comprendre les tableaux à plusieurs dimensions aujourd'hui, c'est gagner beaucoup de temps le jour où nous attaquerons le SQL.
 :::
+
+::: tip Une petite note de syntaxe
+Vous croiserez souvent l'écriture courte `[…]` à la place de `array(…)`. Les deux font strictement la même chose :
+
+```php
+$prenoms = array("Bart", "Lisa");
+$prenoms = ["Bart", "Lisa"]; // identique
+```
+
+:::
+
+### Quelques fonctions utiles
+
+PHP fournit énormément de fonctions pour manipuler les tableaux. En voici quelques-unes que vous utiliserez dès vos premiers TP :
+
+| Fonction       | À quoi ça sert                                        |
+| -------------- | ----------------------------------------------------- |
+| `count()`      | Compter le nombre d'éléments du tableau.              |
+| `in_array()`   | Vérifier si une valeur est présente dans le tableau.  |
+| `array_keys()` | Récupérer la liste des clés.                          |
+| `array_sum()`  | Additionner toutes les valeurs (des nombres).          |
+| `sort()`       | Trier les valeurs du tableau (il est modifié sur place). |
+
+Quelques exemples :
+
+```php
+$notes = array(12, 8, 17, 15);
+
+echo count($notes);          // 4
+echo array_sum($notes);      // 52
+echo array_sum($notes) / count($notes); // la moyenne : 13
+
+$student = array("prenom" => "Bart", "nom" => "Simpson", "age" => 10);
+print_r(array_keys($student)); // prenom, nom, age
+
+if (in_array(17, $notes)) {
+    echo "Quelqu'un a eu 17 !";
+}
+```
 
 ::: tip Astuce de Pro 2
 L'avantage de PHP ? Les fonctions fournies de bases. Pour manipuler les tableaux, nous avons énormément de possibilités. Il y a certainement la réponse à tous vos problèmes dans la documentation.
@@ -404,6 +547,14 @@ L'avantage de PHP ? Les fonctions fournies de bases. Pour manipuler les tableaux
 ### À faire
 
 Je vous laisse créer un tableau dans votre code d'exemple. :hand: Une fois créé tenter de l'afficher un peu comme ce que nous avons pu faire avec notre variable `$_SERVER`.
+
+Puis, pour aller plus loin :
+
+- Créez un tableau à deux dimensions contenant 3 étudiants (prénom, nom, âge).
+- Affichez-les avec une boucle `foreach`, sous forme de liste `<ul>` / `<li>`.
+- Ajoutez un quatrième étudiant avec `$students[] = array(…);` puis affichez le nombre total d'étudiants avec `count()`.
+
+C'est à vous de jouer !
 
 ## Les conditions
 
@@ -1330,7 +1481,7 @@ Nous avons maintenant organisé notre code afin que celui-ci soit moins « broui
 
 La session est maintenant maitrisée. Nous allons nous en servir pour un usage très classique : protéger l'accès à certaines pages avec un login et un mot de passe.
 
-[Protéger des pages à l'aide de la session (TP 5)](./tp5.md)
+[Protéger des pages, première partie (TP 5)](./tp5.md)
 
 ::: warning Point étape 2 (TP évalué)
 Formulaires, structure, session et protection de pages : le deuxième mini projet évalué mobilise tout ça. [Évaluation 2 : Le livre d'or](./eval2.md).

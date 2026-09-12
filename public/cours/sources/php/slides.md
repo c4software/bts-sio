@@ -406,29 +406,163 @@ $student = array(
 
 ---
 
-## Associatifs et Numérotés ?
+## Un étudiant, c'est bien
 
-### Oui c'est possible
+### Et si nous en avions 30 ?
 
-Exemple retour de base de données
+```php
+$student1 = array("prenom" => "Bart");
+$student2 = array("prenom" => "Lisa");
+// … jusqu'à $student30 ?
+```
 
 ---
 
+## À votre avis…
+
+Comment stocker plusieurs étudiants dans **une seule** variable ?
+
+---
+
+## Un tableau… de tableaux
+
 ```php
 $students = array(
-    array(
-        "nom" => "Brosseau",
-        "prenom" => "Valentin",
-        "ordinateur" => true,
-        "age" => 33,
-    ),
-    array(
-        "nom" => "Doe",
-        "prenom" => "John",
-        "ordinateur" => false,
-        "age" => 87,
-    )
+    array("prenom" => "Bart", "nom" => "Simpson", "age" => 10),
+    array("prenom" => "Lisa", "nom" => "Simpson", "age" => 8),
+    array("prenom" => "Maggie", "nom" => "Simpson", "age" => 1),
 );
+```
+
+---
+
+## Un tableau à plusieurs dimensions
+
+### C'est le nom officiel
+
+- Un tableau numéroté (0, 1, 2…).
+- Chaque case contient un tableau associatif.
+
+---
+
+## Voyez ça comme une grille
+
+| Case | prenom | nom     | age |
+| :--: | ------ | ------- | --: |
+|  0   | Bart   | Simpson |  10 |
+|  1   | Lisa   | Simpson |   8 |
+|  2   | Maggie | Simpson |   1 |
+
+Comme une feuille de calcul : une ligne, des colonnes.
+
+---
+
+## Accéder à une valeur
+
+```php
+echo $students[0]['prenom']; // Bart
+```
+
+Lisez de gauche à droite : la case `0`, puis la clé `prenom`.
+
+---
+
+## Question
+
+Que vaut `$students[1]['age']` ?
+
+---
+
+## Ajouter un étudiant
+
+```php
+$students[] = array(
+    "prenom" => "Milhouse",
+    "nom" => "Van Houten",
+    "age" => 10,
+);
+```
+
+La nouvelle case prend automatiquement l'indice suivant.
+
+---
+
+## Parcourir la liste
+
+```php
+foreach ($students as $student) {
+    echo $student['prenom'];
+}
+```
+
+À chaque tour, `$student` est **un tableau associatif**.
+
+---
+
+## Et pour afficher toutes les clés ?
+
+---
+
+## Un foreach dans un foreach
+
+```php
+foreach ($students as $student) {
+    foreach ($student as $cle => $valeur) {
+        echo $cle . " : " . $valeur . "<br>";
+    }
+}
+```
+
+---
+
+## Aller plus loin : trois niveaux
+
+```php
+$students[0]['notes'] = array("php" => 15, "sql" => 12);
+
+echo $students[0]['notes']['php']; // 15
+```
+
+Un tableau peut contenir un tableau… qui contient un tableau.
+
+---
+
+## Voir ce qu'il y a dedans
+
+```php
+echo "<pre>" . print_r($students, true) . "</pre>";
+```
+
+Exactement comme pour `$_SERVER` tout à l'heure.
+
+---
+
+## Pourquoi c'est important ?
+
+- C'est le format que renverra **la base de données**.
+- Une ligne de résultat : un tableau associatif.
+- Le résultat complet : une liste de lignes.
+
+---
+
+## Quelques fonctions utiles
+
+```php
+count($students);            // 3
+in_array("Bart", $prenoms);  // true / false
+array_keys($students[0]);    // prenom, nom, age
+array_sum($notes);           // la somme
+```
+
+---
+
+## Petite note de syntaxe
+
+`array(…)` et `[…]` font la même chose :
+
+```php
+$prenoms = array("Bart", "Lisa");
+$prenoms = ["Bart", "Lisa"]; // identique
 ```
 
 ---
@@ -443,8 +577,9 @@ $students = array(
 
 ## C'est à vous
 
-- Ajouter dans votre code une variable de type tableau.
-- Puis l'afficher comme nous l'avons fait pour la variable `$_SERVER`.
+- Créer un tableau à deux dimensions avec 3 étudiants.
+- L'afficher avec une boucle `foreach`.
+- Puis avec `print_r` dans un `<pre>`.
 
 <iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
@@ -1123,7 +1258,7 @@ echo $_COOKIE["monCookie"];
 
 Mettons en pratique l'authentification :
 
-[Protéger des pages à l'aide de la session (TP 5)](/tp/php/tp5.html)
+[Protéger des pages, première partie (TP 5)](/tp/php/tp5.html)
 
 <iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
