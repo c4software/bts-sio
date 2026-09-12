@@ -1,6 +1,12 @@
-# Protéger des pages à l'aide de la session
+---
+description: "Première partie : protéger des pages avec la session, un login en dur, et une whitelist qui change selon que le visiteur est connecté ou non."
+---
 
-Dans ce TP nous allons voir comment ajouter une couche d'authentification sur vos pages PHP.
+# Protéger des pages : première partie
+
+Au [TP 4](./tp4.md), nous avons terminé sur une question : « et si on voulait se souvenir de QUI est connecté ? ». Voilà le programme du jour.
+
+Ce TP est court (comptez 45 minutes à 1 heure) et il a un objectif unique : comprendre **le mécanisme** d'une page protégée. Pour ça, nous allons tricher sur un point, le login et le mot de passe seront écrits en dur dans le code. La vraie version, avec une table `utilisateurs` et des mots de passe hachés, c'est la seconde partie, juste après.
 
 ::: details Sommaire
 [[toc]]
@@ -14,149 +20,197 @@ Avant de commencer, un tour rapide des compétences du jour : le test de session
 <SlidesDeck src="php_tp5" />
 </ClientOnly>
 
-## Projet de référence
+## Prérequis
 
-Pour continuer ce TP, vous devez reprendre le code du [TP précédent sur l'utilisation de la Session / Cookies](./tp4.md). Ce TP va donc être découpé en plusieurs étapes :
+- Votre projet Bart à la fin du [TP 4](./tp4.md) : le point d'entrée avec `ob_start()` et `session_start()`, la whitelist, le message flash.
 
-- Création d'une page « Home » affichée à l'arrivée sur le site.
-- Création d'une page « Login » qui permettra à l'utilisateur de s'authentifier.
-- Gestion de l'authentification et des autorisations dans la Whitelist.
-
-## Création de la Home
-
-Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Votre page doit être rangée correctement. En regardant le projet, vous pouvez voir que les pages sont rangées dans le dossier `pages`. Je vous laisse créer la page d'accueil de votre site.
-
-N'oubliez pas de l'autoriser dans la whitelist. **Point important** cette page doit s'afficher lors de l'accès à votre site Internet.
-
-![Home démo](./res/home-demo.jpg)
-
-::: tip N'oubliez pas
-
-N'oubliez pas d'y inclure un lien vers votre future page de connexion.
-
+::: tip Vous n'avez pas terminé le TP 4 ?
+Pas de panique, [récupérez le projet ici](/demo/php/bart/bart-form-session-sql.zip) (le script `bart.sql` est dans l'archive).
 :::
 
-## Utiliser la session pour créer un accès protégé
+## Objectifs
 
-Nous avons vu qu'il était possible assez simplement de sauvegarder des informations persistantes entre les rechargements avec une SESSION (ou un Cookie). Je vous propose de réfléchir à l'utilisation de la SESSION pour sauvegarder une authentification.
+À la fin de ce TP vous saurez :
 
-Nous allons sauvegarder des informations dans celle-ci pour sauvegarder la réussite d'un login utilisateur. Pour ça, je vous propose de réaliser une nouvelle page PHP, celle-ci va contenir :
+- Écrire un formulaire de connexion et vérifier des identifiants.
+- Mémoriser l'utilisateur connecté dans `$_SESSION['user']`.
+- Rendre votre **whitelist conditionnelle** : les pages disponibles dépendent de l'état de connexion.
+- Écrire une déconnexion propre.
+- Expliquer pourquoi un identifiant écrit en dur dans le code est inacceptable en production.
 
-- Un formulaire
-- Un message indiquant « Bienvenue EMAIL » si la personne c'est connecté avec le bon « EMAIL & MOT DE PASSE ».
+## Le flux de connexion
 
-### Créer la page
-
-Bon ici pas d'aide, je pense que vous savez tous créer un fichier `.php`. Votre page doit être rangée correctement. En regardant le projet, vous pouvez voir que les pages sont rangées dans le dossier `pages`.
-
-Dans la nouvelle page, je vous propose de créer un simple formulaire. Pour le formulaire, vous pouvez de [vous inspirer de ceux proposés par Bootstrap.](https://getbootstrap.com/docs/4.0/components/forms/)
-
-::: warning N'oubliez pas…
-
-Pour que Bootstrap fonctionne, votre site doit avoir la librairie Bootstrap. Si ce n'est pas le cas, vous pouvez l'ajouter dans le fichier `header.php`.
-
-::: details D'ailleurs, pourquoi dans `header.php` ?
-
-L'organisation ! Voilà pourquoi, en organisant notre code, nous allons produire des applicatifs de « qualité » ou il sera simple d'y apporter des modifications (demain, à la fin de l'année, dans 10 ans).
-
-:::
-
-:::
-
-::: tip GET ou POST ?
-À votre avis ? GET ou POST pour notre formulaire ?
-:::
-
-Je vous laisse créer un formulaire similaire à :
-
-![Exemple de formulaire](./res/form.png)
-
-PS: En Français dans notre cas…
-
-### Tester votre page
-
-Comment accéder à votre page ? Avec l'organisation proposée vous ne pouvez pas accéder directement à votre page PHP pour l'afficher. **Vous devez** passer par `l'entry-point`, c'est pour ça que les liens auront la forme suivante :
-
-```
-index.php?page=login
-```
-
-ou par exemple :
-
-```
-index.php?page=logout
-```
-
-::: tip Le point important
-
-Ici, il est important de constater l'usage d'une variable nommée page. Celle-ci est utilisé dans le fichier `index.php` pour charger la page que l'utilisateur souhaite.
-
-:::
-
-### Vérifier l'authentification
-
-La logique que nous allons mettre en place est la suivante : 
+La logique que nous allons mettre en place est la suivante :
 
 ![Flow authentification](./res/flow_login_tp5.png)
 
-Pour vérifier l'authentification, nous allons rester simples (car ici l'objectif est de voir la SESSION, rien de plus). Je vous propose de considérer une authentification valide si :
+Rien de magique : une page protégée, c'est une page normale, précédée d'un test sur la session.
 
-- Email == "admin@exemple.com"
-- Mot de passe == "mdp"
+## Créer la page de connexion
 
-Si nous écrivons « l'algo » de notre vérification d'authentification, ça va donner :
+Créez la page `pages/login.php`, et ajoutez-la à la whitelist (sinon elle n'existe pas pour votre site). Elle contient deux choses :
 
-```
-SI email === "admin@exemple.com" ET mot_de_passe == "mdp" ALORS
+- Un formulaire (email + mot de passe).
+- Le traitement de ce formulaire, en haut du fichier.
 
-    SAUVEGARDER_DANS_LA_SESSION[CONNECTE] = email
-
-FIN SI
-```
-
-::: danger Non !
-Évidemment, nous sommes d'accord **c'est nul** en termes de sécurité ! Vous ne devez JAMAIS « écrire en dur » un login de mot de passe dans votre code.
-
-=> À votre avis pourquoi ?
+::: tip GET ou POST ?
+À votre avis ? GET ou POST pour ce formulaire ? Regardez à quoi ressemble l'URL après l'envoi dans chacun des cas, vous aurez la réponse.
 :::
 
-- C'est à vous, je vous laisse écrire le code dans la page que vous avez précédemment créée.
+Pour la vérification, nous allons rester simples (l'objectif du jour est la session, rien d'autre). L'authentification est valide si :
 
-### Autoriser l'accès à la page de génération (ou pas)
+- Email == `admin@exemple.com`
+- Mot de passe == `mdp`
 
-Maintenant que nous avons sauvegardé dans la SESSION le fait que la personne est connectée, je vous propose de conditionner l'affichage du formulaire ; celui-ci ne doit pas être visible si la personne est connectée. Comment allons-nous faire ça ? En utilisant la Whiteliste évidemment !
+Si nous écrivons « l'algo » de notre vérification, ça donne :
 
-Vous devez conditionner votre Whiteliste en fonction de l'état de connexion de votre utilisateur, exemple en `algo` :
+```txt
+SI email === "admin@exemple.com" ET mot_de_passe === "mdp" ALORS
 
-```
-$whitelist = [];
+    SAUVEGARDER_DANS_LA_SESSION[user] = email
+    REDIRIGER vers l'accueil
 
-SI EST DEFINI (SAUVEGARDER_DANS_LA_SESSION[CONNECTE]) ALORS
+SINON
 
-    $whitelist = ['bart', 'home', 'logout'];
-
-SINON SI
-
-    $whitelist = ['login', 'home'];
+    PREPARER un message d'erreur
 
 FIN SI
 ```
 
-::: tip prenez le temps de réfléchir et comprendre le code proposé
+::: danger Non, ça ne se fait pas
 
-Avant de continuer, arrêtons-nous un instant sur le code proposé :
+Un login et un mot de passe écrits en dur dans le code, nous sommes d'accord : **c'est nul** en termes de sécurité. Nous le faisons ici **pour comprendre le mécanisme, et seulement pour ça**.
+
+À votre avis, pourquoi est-ce inacceptable ?
+
+- Le mot de passe est en clair dans un fichier que tout le monde (collègues, stagiaires, et toute personne qui récupère le code) peut lire.
+- Il se retrouve dans l'historique du projet, et y reste pour toujours.
+- Il est le même pour tout le monde : impossible de savoir qui s'est connecté, impossible de le changer pour une seule personne.
+- Il n'y a qu'un seul compte, et créer un utilisateur veut dire modifier le code.
+
+La version correcte, c'est la seconde partie de ce TP. Promis, vous n'attendrez pas longtemps.
+:::
+
+C'est à vous, je vous laisse écrire le code de la page.
+
+::: details Voir l'une des solutions possibles
+
+```php
+<?php
+$error = "";
+
+// Le formulaire a-t-il été envoyé ?
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    if ($_POST['email'] === "admin@exemple.com" && $_POST['password'] === "mdp") {
+        // Connexion réussie : on garde l'information en session
+        $_SESSION['user'] = $_POST['email'];
+        $_SESSION['message'] = "Bienvenue " . $_POST['email'];
+
+        header('location: index.php?page=home');
+        die();
+    } else {
+        $error = "Email ou mot de passe incorrect.";
+    }
+}
+?>
+<div class="card">
+    <h2>Connexion</h2>
+
+    <?php if ($error !== "") { ?>
+        <p class="erreur"><?php echo $error; ?></p>
+    <?php } ?>
+
+    <form action="index.php?page=login" method="post">
+        <div class="form-group">
+            <label for="email">Email :</label>
+            <input type="email" class="form-control" name="email" id="email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Mot de passe :</label>
+            <input type="password" class="form-control" name="password" id="password">
+        </div>
+
+        <input type="submit" value="Se connecter" class="btn btn-danger ma-auto">
+    </form>
+</div>
+```
+
+Vous reconnaissez le `header()` + `die()` du TP 4, ainsi que le message flash. Tout est déjà en place.
+
+Et pour le message d'erreur, une ligne de CSS dans `public/main.css` :
+
+```css
+.erreur {
+  color: #dc3545;
+  font-weight: bold;
+}
+```
+
+:::
+
+Votre page doit ressembler à :
+
+![La page de connexion](./res/tp5_login.png)
+
+::: tip Point de contrôle
+Avec un mauvais mot de passe, le message d'erreur s'affiche et vous restez sur la page. Avec les bons identifiants, vous êtes redirigé vers l'accueil, et le message « Bienvenue admin@exemple.com » s'affiche.
+:::
+
+## Autoriser l'accès à la page de génération (ou pas)
+
+Voilà le cœur du TP. Maintenant que la session sait qui est connecté, nous allons décider **quelles pages existent** pour ce visiteur. Et pour ça, nous avons déjà l'outil parfait : la whitelist.
+
+Jusqu'ici, elle était figée. Elle va maintenant dépendre de l'état de connexion :
+
+```txt
+$whitelist = ['home', 'about', 'theme'];
+
+SI EST DEFINI (SAUVEGARDER_DANS_LA_SESSION[user]) ALORS
+
+    AJOUTER 'bart' ET 'logout' à $whitelist
+
+SINON
+
+    AJOUTER 'login' à $whitelist
+
+FIN SI
+```
+
+::: tip Prenez le temps de réfléchir et de comprendre le code proposé
+
+Avant de continuer, arrêtons-nous un instant :
 
 - Que veut-il dire ?
-- Où celui-ci doit-être mis ?
-- Avons-nous déjà une variable $whitelist ?
+- Où celui-ci doit-il être mis ?
+- Avons-nous déjà une variable `$whitelist` ?
+- Que se passe-t-il si un visiteur non connecté demande `index.php?page=bart` ?
 
 :::
 
-Il faudra donc :
+::: details Voir l'une des solutions possibles
 
-- Faire une condition (if) pour vérifier que l'élément est présent en SESSION :
-  - Si présent => autoriser de la page `de génération des punitions`.
-  - Si non présent => autoriser les pages dites « publiques » de la page `Home`.
+Dans `index.php`, à la place de votre whitelist actuelle :
+
+```php
+// Les pages autorisées dépendent maintenant de l'état de connexion du visiteur
+$whitelist = ['home', 'about', 'theme'];
+
+if (isset($_SESSION['user'])) {
+    // Le visiteur est connecté
+    $whitelist[] = 'bart';
+    $whitelist[] = 'logout';
+} else {
+    // Le visiteur est anonyme
+    $whitelist[] = 'login';
+}
+```
+
+Un visiteur non connecté qui demande `index.php?page=bart` ne provoque aucune erreur : la page n'est tout simplement pas dans sa liste, il retombe sur l'accueil. La protection n'est pas un message, c'est une **absence**.
+
+:::
+
+Profitez-en pour conditionner l'affichage du formulaire sur l'accueil : inutile de proposer un bouton « Générer la punition » à quelqu'un qui n'a pas le droit d'y accéder. Affichez plutôt une invitation à se connecter.
 
 ::: warning Note pour le vous du futur
 
@@ -166,28 +220,76 @@ Aujourd'hui nous parlons de Whitelist, demain nous emploierons le terme de `Rout
 
 :::
 
-### Gérer la déconnexion
+## Les liens dans le header
 
-À votre avis, comment allons-nous gérer la déconnexion ?
+Dans `common/header.php`, ajoutez à côté de votre lien de thème :
 
-### Évolution finale : Une sécurité bien gérée
+- « Connexion » si personne n'est connecté.
+- « Déconnexion (email) » sinon.
 
-::: warning Évolution optionnelle
-Cette évolution utilise une base de données et PDO, des notions que nous verrons dans [le cours SQL](./sql/support.md). Si vous n'avez pas encore vu cette partie, gardez cette évolution de côté et revenez-y plus tard.
-:::
+```php
+<?php if (isset($_SESSION['user'])) { ?>
+    <a href="index.php?page=logout">Déconnexion (<?php echo htmlspecialchars($_SESSION['user']); ?>)</a>
+<?php } else { ?>
+    <a href="index.php?page=login">Connexion</a>
+<?php } ?>
+```
 
-Pour tester, nous avons mis un login et un mot de passe en dur. Évidemment dans la vraie vie ce n'est pas comme ça que nous procèderons. Je vous laisse créer la base de données et la table permettant de sauvegarder un mot de passe **en intégrant les notions de sécurité**.
+![Le header une fois connecté](./res/tp5_header_connecte.png)
 
-- Le mot de passe ne doit pas être en clair.
-- Ajouter dans le projet la connexion à la base de données.
-  - Comment ?
-  - Où ?
-- Intégrer le code permettant de valider le mot de passe fourni par l'utilisateur.
-- Valider le bon fonctionnement avec un jeu d'essai.
+::: details D'ailleurs, pourquoi dans header.php ?
 
-::: danger Un peu d'aide
-
-- Comment allez-vous enregistrer le mot de passe en base ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-hash.php))
-- Comment allez-vous vérifier l'authentification ? ([Un peu d'aide](https://www.php.net/manual/en/function.password-verify.php))
+L'organisation ! Voilà pourquoi. En rangeant ce test à un seul endroit, il s'applique à toutes les pages du site, et le jour où vous changez le libellé, vous le changez une fois. Demain, à la fin de l'année, dans 10 ans.
 
 :::
+
+## Gérer la déconnexion
+
+À votre avis, comment allons-nous gérer la déconnexion ? Vous avez déjà tout ce qu'il faut.
+
+Créez `pages/logout.php` : le site doit oublier l'utilisateur, afficher un message, et renvoyer le visiteur sur l'accueil.
+
+::: details Voir l'une des solutions possibles
+
+```php
+<?php
+// Le site oublie qui était connecté
+unset($_SESSION['user']);
+
+$_SESSION['message'] = "Vous êtes déconnecté.";
+
+header('location: index.php?page=home');
+die();
+```
+
+Pourquoi `unset($_SESSION['user'])` plutôt que `session_destroy()` ? Parce que nous voulons oublier **l'utilisateur**, pas toute la session : le message flash que nous venons d'écrire doit survivre jusqu'à la page suivante. `session_destroy()` détruirait tout, message compris.
+
+:::
+
+::: tip Point de contrôle
+
+Déroulez le scénario complet :
+
+1. Non connecté, l'accueil affiche « Connexion » et pas de formulaire de génération.
+2. `index.php?page=bart` en direct : vous retombez sur l'accueil, sans erreur.
+3. Connexion avec les bons identifiants : message de bienvenue, le formulaire apparait, le header affiche « Déconnexion ».
+4. Une punition est générée et enregistrée normalement.
+5. Déconnexion : message, et le formulaire a disparu.
+
+:::
+
+## Conclusion
+
+Récapitulons :
+
+- Une page protégée, ce n'est pas de la magie : c'est un test sur la session.
+- Une connexion réussie, c'est une valeur écrite dans `$_SESSION` et une redirection.
+- La **whitelist conditionnelle** est votre garde-barrière : la page interdite n'existe simplement pas.
+- `header()` puis `die()`, les deux, toujours.
+- Et un mot de passe en dur dans le code, c'est bon pour comprendre, pas pour la vraie vie.
+
+Seconde partie : [TP Authentification : les bonnes pratiques](./sql/tp-authentification.md), où le login en dur est remplacé par une vraie table `utilisateurs`, des mots de passe hachés avec `password_hash()`, une inscription et une connexion en requêtes préparées.
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/php/bart/bart-form-login.zip) (le script `bart.sql` est dans l'archive).
+
+👋 Si vous avez des questions, n'hésitez pas.

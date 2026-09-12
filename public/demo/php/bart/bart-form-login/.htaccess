@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !index.php
+RewriteRule (.*).html index.php?page=$1 [L,QSA]

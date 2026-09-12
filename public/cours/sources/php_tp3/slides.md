@@ -36,12 +36,27 @@ Indice : que se passe-t-il si un visiteur demande `?page=../../config` ?
 
 ---
 
+## Le code commun, une seule fois
+
+```php
+ob_start();
+session_start();
+include('utils/db.php');
+```
+
+La connexion à la base est écrite **une fois**, pas dans chaque page.
+
+C'est tout l'intérêt du point d'entrée.
+
+---
+
 ## Récapitulatif
 
 - Un entry-point unique = un seul endroit pour le code commun.
 - La page demandée passe par `?page=`.
 - La whitelist contrôle ce qui peut être inclus : c'est de la **sécurité**.
-- Dossiers : `common/`, `pages/`, `public/`.
+- Dossiers : `common/`, `pages/`, `public/`, `utils/`.
+- `ob_start()` en première ligne : la redirection restera possible.
 
 ---
 
