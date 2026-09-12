@@ -15,7 +15,7 @@ Vous savez écrire des requêtes SQL ? Il est temps de vérifier que vous savez 
 Ce jeu est une adaptation en français du [SQL Murder Mystery](https://github.com/NUKnightLab/sql-mysteries) de NUKnightLab, avec plusieurs histoires différentes pour ne pas refaire toujours la même enquête.
 
 ::: tip Pour les étudiants en avance
-Ce jeu est un **bonus** : il n'est pas noté et ne demande aucun rendu. Vous pouvez y jouer en autonomie, seul ou à deux, dès que vous avez terminé le TP en cours. Comptez environ une heure par histoire. Il vous faut le [TP 5 SQL](/tp/php/sql/tp5.md) (SELECT, WHERE, jointures) et [l'aide-mémoire SQL](/cheatsheets/sql/) sous la main.
+Ce jeu est un **bonus** : il n'est pas noté et ne demande aucun rendu. Vous pouvez y jouer en autonomie, seul ou à deux, dès que vous avez terminé le TP en cours. Comptez environ une heure par histoire. Il vous faut votre cours de base de données (SELECT, WHERE, jointures) et [l'aide-mémoire SQL](/cheatsheets/sql/) sous la main.
 :::
 
 ## À vous de jouer : choisissez votre enquête
