@@ -1,0 +1,78 @@
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #222;
+    line-height: 1.5;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+header .logo {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #222;
+}
+
+nav a {
+    margin-left: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+input {
+    padding: 8px;
+    width: 320px;
+    max-width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+}
+
+button,
+.button {
+    display: inline-block;
+    padding: 9px 16px;
+    border: 0;
+    border-radius: 4px;
+    background: #2b6cb0;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.erreur {
+    background: #fdecea;
+    border: 1px solid #e0b4b4;
+    color: #a02020;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+.succes {
+    background: #eaf7ea;
+    border: 1px solid #b4e0b4;
+    color: #206020;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+footer {
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    color: #777;
+    font-size: 0.9em;
+}

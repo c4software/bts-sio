@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS espace_membre
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE espace_membre;
+
+DROP TABLE IF EXISTS utilisateurs;
+
+CREATE TABLE utilisateurs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(150) NOT NULL UNIQUE,
+  mot_de_passe VARCHAR(255) NOT NULL,
+  date_inscription DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
