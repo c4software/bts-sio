@@ -61,6 +61,18 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
 - Restitution : code poussé sur https://gitlab.dombtsig.local puis lien déposé dans Moodle. Pas de zip ni de formulaire.
 - Exception séquence 1er semestre (Git pas encore vu) : aucune mention de Git ni de commit dans les TP ; restitution des évaluations en archive zip déposée sur Moodle (avec rappel de vérifier l'archive avant dépôt).
 
+### Structure de projet des TP PHP (à partir du TP 3)
+
+- Tout TP PHP après `tp/php/tp3.md` utilise l'organisation entry-point : `index.php` avec `$whitelist` + `in_array()`, `common/header.php`, `common/footer.php`, `pages/<page>.php`, `public/`, `utils/db.php` (PDO). Liens sous la forme `index.php?page=xxx`.
+- Première ligne d'`index.php` : `ob_start();` (expliquée une fois par TP dans un tip « Que se passe-t-il derrière ? ») : les pages redirigent après l'include du header, sans tampon de sortie `header()` échoue hors XAMPP.
+- TP POO (`tp/php/poo/`) : même structure, plus `classes/` (un fichier par classe, `Database::getPdo()`, un **modèle** par table, ex. `Idea`, qui porte à la fois les données (propriétés typées, constructeur) et les méthodes d'accès : `Idea::all()`, `Idea::find()`, `$idea->save()`, `$idea->delete()`) et un autoloader `spl_autoload_register` dans `index.php`. Jamais de « repository » ni de « dépôt » séparé. Aucun équivalent Laravel dans la partie POO (trop tôt), pas de namespace ni d'héritage à ce niveau.
+- La base de données arrive dès le TP 2 (formulaires) sur le fil rouge Bart (base `bart`, table `phrases`). La modélisation et le langage SQL sont enseignés par un autre enseignant : les supports du site n'expliquent que l'accès depuis PHP (PDO, `query`, `prepare`/`execute`, `fetchAll`) et fournissent les requêtes nécessaires, sans cours de MCD ni de SQL.
+- La session sert à l'état du visiteur (préférence, message flash, connecté ou non), jamais à stocker des données métier.
+- Nommage : variables, fonctions, classes en anglais ; tables, colonnes SQL et noms de pages en français ; tableaux en `[...]` (équivalence avec `array()` rappelée une fois).
+- TP de création (`creation-*.md`) : intro en séance (2 h), suite à la maison, grille de validation « validé / à revoir » (pas de barème), README par renvoi à `tp/php/eval1.md#le-readme-md`, rendu Git + Moodle.
+- Captures d'écran des TP dans le dossier `res/` voisin (`<tp>_<page>.png`, 1000 px, Chrome headless sur une solution de référence).
+- Validation : tout code donné dans un TP doit provenir d'une solution complète exécutée (PHP 8.3 + MariaDB via Docker, image locale `bts-php` avec `pdo_mysql`, serveur `php -S`), captures prises sur cette solution.
+
 ## Quiz GIFT (`moodle/*.gift`)
 
 - Ligne 1 : `// Questionnaire <Titre affiché>` (sans nombre de questions ni cadratin), puis `$CATEGORY: <Thème>/<Lot>`.

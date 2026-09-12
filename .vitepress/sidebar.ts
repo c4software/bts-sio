@@ -5,6 +5,11 @@ export default [
   },
 
   {
+    text: "Le Web : tous les supports",
+    link: "/pages/categories/le-web.md",
+  },
+
+  {
     collapsed: true, text: "Veille & Ressources",
     items: [
       { text: "La veille de développeur", link: "/cours/veille.md" },
@@ -168,13 +173,17 @@ export default [
         text: "Les cours", collapsed: true, items: [
           { text: "Slides introduction PHP", link: "/cours/introduction_php" },
           { text: "Slides la structure (entry-point)", link: "/cours/php_structure" },
-          { text: "Slides introduction à SQL avec PHP", link: "/cours/introduction_sql_php" }
+          { text: "Slides PHP et la base de données", link: "/cours/introduction_sql_php" },
+          { text: "Slides les bases de la sécurité du web", link: "/cours/securite_bases" },
+          { text: "Slides PHP et POO", link: "/cours/php_poo" }
         ]
       },
       {
         text: "En + du cours", collapsed: true, items: [
           { text: "Complément du cours PHP", link: "/tp/php/support.md" },
-          { text: "Complément cours SQL", link: "/tp/php/sql/support.md" },
+          { text: "Complément PHP et base de données", link: "/tp/php/sql/support.md" },
+          { text: "Complément sécurité web", link: "/tp/php/securite/support.md" },
+          { text: "Complément PHP et POO", link: "/tp/php/poo/support.md" },
           { text: "Exercices en classe", link: "/tp/php/exercices.md" },
           { text: "Exercices à la maison", link: "/tp/php/exercices-maison.md" }
         ]
@@ -182,29 +191,39 @@ export default [
       {
         text: "TP bases", collapsed: true, items: [
           { text: "Créer ma première page PHP", link: "/tp/php/tp1.md" },
-          { text: "Le passage de paramètres", link: "/tp/php/tp-param.md" },
           { text: "Le générateur de Bart", link: "/tp/php/tp1.1.md" },
           { text: "Utiliser des includes et une librairie", link: "/tp/php/tp1.2.md" },
-          { text: "Jouer avec les formulaires", link: "/tp/php/tp2.md" },
-          { text: "Structurer mon code", link: "/tp/php/tp3.md" },
-          { text: "Utiliser la session", link: "/tp/php/tp4.md" },
-          { text: "Protéger des pages à l'aide de la session", link: "/tp/php/tp5.md" },
+          { text: "Le passage de paramètres", link: "/tp/php/tp-param.md" },
+          { text: "Entraînement : passage de paramètres", link: "/tp/php/exercice-parametres.md" },
+          { text: "Évaluation 1 : Ma page profil dynamique", link: "/tp/php/eval1.md" },
           { text: "Jeu : Enquête PHP", link: "/jeux/enquete-php.md" }
         ]
       },
       {
-        text: "TP SQL", collapsed: true, items: [
-          { text: "Bart PHP et MySQL", link: "/tp/php/sql/tp5.md" },
+        text: "TP formulaires et base de données", collapsed: true, items: [
+          { text: "Les formulaires et la première table", link: "/tp/php/tp2.md" },
+          { text: "Structurer mon code", link: "/tp/php/tp3.md" },
+          { text: "Les tableaux : le carnet de notes de Springfield", link: "/tp/php/tp-tableaux.md" },
+          { text: "Utiliser la session", link: "/tp/php/tp4.md" },
+          { text: "Protéger des pages, première partie", link: "/tp/php/tp5.md" },
+          { text: "L'authentification : les bonnes pratiques", link: "/tp/php/sql/tp-authentification.md" },
+          { text: "Création : la TODO List", link: "/tp/php/creation-todo.md" },
+          { text: "(Ré)organiser mon code", link: "/tp/organisation/introduction" },
+          { text: "Évaluation 2 : Le livre d'or", link: "/tp/php/eval2.md" }
+        ]
+      },
+      {
+        text: "TP modéliser et relier", collapsed: true, items: [
           { text: "BTS TV - Administrable", link: "/tp/php/sql/tp6.md" },
+          { text: "Création : la médiathèque", link: "/tp/php/sql/creation-mediatheque.md" },
+          { text: "Évaluation 3 : Le mini catalogue", link: "/tp/php/eval3.md" },
           { text: "Jeu : Enquête SQL", link: "/jeux/enquete-sql.md" }
         ]
       },
       {
-        text: "TP évalués (points étapes)", collapsed: true, items: [
-          { text: "Entraînement : passage de paramètres", link: "/tp/php/exercice-parametres.md" },
-          { text: "Évaluation 1 : Ma page profil dynamique", link: "/tp/php/eval1.md" },
-          { text: "Évaluation 2 : Le livre d'or", link: "/tp/php/eval2.md" },
-          { text: "Évaluation 3 : Le mini catalogue", link: "/tp/php/eval3.md" }
+        text: "TP POO", collapsed: true, items: [
+          { text: "La boîte à idées", link: "/tp/php/poo/tp1.md" },
+          { text: "Home et connexion en POO", link: "/tp/php/poo/tp2.md" }
         ]
       }
     ]
@@ -223,7 +242,6 @@ export default [
     text: "Le PHP Avancé",
     collapsed: true,
     items: [
-      { text: "Introduction", link: "/pages/categories/le-web.md" },
       { text: "Le poste de travail", link: "/cheatsheets/web/index.md" },
       { text: "Rappels PHP", link: "/cours/php_rappels.md" },
       {

@@ -16,8 +16,10 @@ Gardez-les à portée de main pendant tous les TP, c'est important :
 
 - [Le cours sur le PHP](/cours/introduction_php.md)
 - [Le complément de cours PHP](/tp/php/support.md)
-- [Le cours PHP & SQL](/cours/introduction_sql_php.md)
-- [Le complément de cours SQL](/tp/php/sql/support.md)
+- [Le cours PHP et la base de données](/cours/introduction_sql_php.md)
+- [Le complément PHP et base de données](/tp/php/sql/support.md)
+- [Les bases de la sécurité du web](/cours/securite_bases.md) et [le complément sécurité](/tp/php/securite/support.md)
+- [Le cours PHP et POO](/cours/php_poo.md) et [le complément PHP et POO](/tp/php/poo/support.md)
 
 :::
 
@@ -34,34 +36,56 @@ Le passage au dynamique. Les TP suivent le [complément de cours PHP](/tp/php/su
 [Évaluation 1 : Ma page profil dynamique](/tp/php/eval1.md). Un mini projet évalué pour valider les bases (variables, boucles, includes, paramètres).
 :::
 
-5. [TP 2 : Jouer avec les formulaires](/tp/php/tp2.md)
+## Étape 2 : Formulaires, base de données et organisation
+
+À partir d'ici, chaque TP ajoute une notion PHP et une notion d'accès à la base de données depuis PHP. Le SQL lui-même (modélisation, langage) est vu dans votre cours de base de données : ici, vous l'appliquez. Les TP suivent le [complément PHP et base de données](/tp/php/sql/support.md).
+
+5. [TP 2 : Les formulaires et la première table](/tp/php/tp2.md)
 6. [TP 3 : Structurer mon code (entry-point)](/tp/php/tp3.md)
-7. [TP 4 : Utiliser la session](/tp/php/tp4.md)
-8. [TP 5 : Protéger des pages à l'aide de la session](/tp/php/tp5.md)
-9. [TP : (Ré)organiser mon code](/tp/organisation/introduction.md)
+7. [TP Tableaux : Le carnet de notes de Springfield](/tp/php/tp-tableaux.md)
+8. [TP 4 : Utiliser la session](/tp/php/tp4.md)
+9. [TP 5 : Protéger des pages, première partie](/tp/php/tp5.md)
+10. [TP Authentification : les bonnes pratiques (seconde partie du TP 5)](/tp/php/sql/tp-authentification.md)
+11. [TP Création : La TODO List](/tp/php/creation-todo.md)
+12. [TP : (Ré)organiser mon code](/tp/organisation/introduction.md)
 
 ::: tip Les supports associés
-Le TP de réorganisation s'appuie sur les [Slides Organisation](/cours/organisations).
+Le TP 5 et le TP Authentification s'appuient sur [les slides des bases de la sécurité du web](/cours/securite_bases.md) et sur [le complément sécurité](/tp/php/securite/support.md). Le TP de réorganisation, étape clé du parcours, s'appuie sur les [Slides Organisation](/cours/organisations).
+:::
+
+::: tip Les TP de création
+Les TP de création (la TODO List, puis la médiathèque) commencent en séance et se terminent à la maison. Ils ne sont pas notés comme les points étapes, mais ils donnent lieu à un rendu que je valide (validé / à revoir).
 :::
 
 ::: warning Point étape 2
-[Évaluation 2 : Le livre d'or](/tp/php/eval2.md). Un mini projet évalué pour valider les formulaires, l'entry-point, la session et la protection de pages.
+[Évaluation 2 : Le livre d'or](/tp/php/eval2.md). Un mini projet évalué pour valider les formulaires, la base de données, l'entry-point, la session et la protection de pages.
 :::
 
-## Étape 2 : La base de données
+## Étape 3 : Modéliser et relier
 
-Une fois le PHP maitrisé, nous ajoutons la persistance avec SQL. Les TP suivent le [complément de cours SQL](/tp/php/sql/support.md).
+Vous savez lire et écrire dans une table. Place aux projets à plusieurs tables, où vous appliquez la modélisation vue en cours de base de données.
 
-1. [TP 5 SQL : Bart PHP et MySQL](/tp/php/sql/tp5.md)
-2. [TP 6 SQL : BTS TV administrable](/tp/php/sql/tp6.md)
+1. [TP 6 SQL : BTS TV administrable](/tp/php/sql/tp6.md)
+2. [TP Création : La médiathèque](/tp/php/sql/creation-mediatheque.md)
 
 ::: warning Point étape 3
 [Évaluation 3 : Le mini catalogue](/tp/php/eval3.md). La synthèse évaluée du parcours : structure, session, authentification et base de données.
 :::
 
-## Étape 3 : Vers le framework
+## Étape 4 : PHP et POO
 
-Vous avez maintenant l'ensemble des bases. La suite logique est de passer sur un framework.
+Vous savez écrire un site en PHP « procédural ». Avant le framework, nous réécrivons ce que vous savez faire avec des classes et des objets. Les TP suivent [les slides PHP et POO](/cours/php_poo.md) et [le complément PHP et POO](/tp/php/poo/support.md).
+
+1. [TP POO 1 : La boîte à idées](/tp/php/poo/tp1.md)
+2. [TP POO 2 : Home et connexion en POO](/tp/php/poo/tp2.md)
+
+::: tip Les supports associés
+[L'aide mémoire POO](/cheatsheets/poo/) et, pour approfondir (héritage, interfaces), [le cours POO complet](/cours/poo.md).
+:::
+
+## Étape 5 : Vers le framework
+
+Vous avez maintenant l'ensemble des bases, et vos premières classes. La suite logique est de passer sur un framework.
 
 1. [TP 6 : Transition vers Laravel](/tp/php/tp6.md)
 
