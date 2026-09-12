@@ -1,0 +1,61 @@
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 3rem;
+    color: #222;
+    line-height: 1.5;
+}
+
+header nav a, header nav .user {
+    margin-right: 1rem;
+}
+
+header nav .user {
+    color: #555;
+}
+
+.idea {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.meta {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.error {
+    color: #b00020;
+    font-weight: bold;
+}
+
+.message {
+    color: #0a6b2d;
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+}
+
+footer {
+    margin-top: 2rem;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+input, textarea {
+    padding: 0.3rem;
+    min-width: 18rem;
+}
