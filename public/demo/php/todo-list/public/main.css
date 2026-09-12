@@ -1,0 +1,55 @@
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #222;
+}
+
+nav a {
+    margin-right: 15px;
+}
+
+ul.tasks {
+    list-style: none;
+    padding: 0;
+}
+
+ul.tasks li {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+ul.tasks li.done .title {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.category {
+    background: #eee;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.85em;
+}
+
+.error {
+    color: #b00;
+}
+
+footer {
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.flash {
+    background: #eef7ee;
+    border: 1px solid #cbe3cb;
+    padding: 8px 12px;
+}
+
+.filters a {
+    margin-right: 10px;
+}
