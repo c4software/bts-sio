@@ -1,577 +1,308 @@
-# Introduction aux bases de données avec PHP
+# PHP et la base de données
+
+## Lire et écrire des données depuis PHP
 
 Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
 ---
 
-La base de données est un vaste sujet. Nous avons ici une introduction à ce qu'il faut connaitre **au minimum** pour avancer dans nos différents projets.
+## Où en sommes-nous ?
 
----
-
-Les premières bases de données (en anglais database) sont apparues en **1960**
-
----
-
-## Cœur de l'informatique moderne.
-
----
-
-## On stocke de plus en plus d'informations.
-
-Chaque jour, **2,5 quintillions de bytes** de données sont générés.
-
----
-
-## Attention dangers
-
-Objet de toutes les convoitises
-
-- Hack.
-- Faille de sécurité.
-- Injection SQL.
-
----
-
-## Plusieurs types de bases de données
-
-- Relationnelles : SQL (MariaDB, MySQL, Postgresql, Oracle…)
-- Non Relationnelles : NoSQL (MongoDB, Firestore, Redis… )
-
----
-
-## Relationnelles
-
-- SQL
-- Intégré à Xampp, Wamp, … (MariaDB)
-- Ensemble cohérent de données, avec des relations, contraintes entre les données
-- Absence de redondances (découpage, clé, etc.)
-
----
-
-## Non Relationnelles
-
-- NoSQL (Not Only SQL)
-- Gère de très gros volumes
-- Ensemble de documents sans forcément avoir de structure identique.
-- Redondances possibles (voire encouragées)
-
----
-
-## Qu'est-ce qu'une base de données ?
-
----
-
-- Ensemble de tables
-- Qui contiendra des données structurées :
-  - Type de données
-  - Organisé en colonnes (nom, prénom …)
-  - Avec des relations entre les tables (contraintes)
-
----
-
-![Serveur de base de données](./res/server_bdd.png)
-
----
-
-## Dans l'ensemble des cas (SQL _ou_ NoSQL)
-
-### La Modélisation
-
----
-
-## MCD / MLD
-
-### **M**odèle **C**onceptuel de **D**onnées
-
-Le minimum à connaitre, c'est une représentation universelle.
-
----
-
-Technique pour représenter une base de données.
-
-⚠️ Étape très importante, c'est la base de notre projet. ⚠️
-
----
-
-- Structure de la base de données:
-  - Nom des tables.
-  - Nom des colonnes
-  - Type de données.
-- Contraintes relationnelles :
-  - Contraintes entre les tables (nombre).
-  - Jointure
-
----
-
-## Concrètement un MCD c'est :
-
-- Des rectangles avec des noms en haut
-- Des traits entre les rectangles
-
----
-
-| Table                 |
-| --------------------- |
-| <u>#idTable (int)</u> |
-| nom (varchar)         |
-| prénom (int)          |
-
-- Un rectangle.
-- En titre le nom de la table.
-- En dessous la liste des champs avec le type de la donnée.
-  - L'élément souligné est une clé (également préfixé par un `#`)
-
----
-
-## Les Contraintes
-
----
-
-La clé primaire sert à identifier une ligne de manière unique.
-
----
-
-La clé étrangère permet de gérer des relations entre plusieurs tables, **et garantit la cohérence des données.**
-
----
-
-L'INDEX est utilisé pour accélérer les requêtes. Il est indispensable à la création de clés primaires et de clés étrangères.
-
----
-
-## Une clé ?
-
-- Obligatoire.
-- Représente une valeur unique dans la base.
-- Effectuer des opérations sur la table (UPDATE, DELETE, …).
-- Permettre la jointure entre les tables.
-
-⚠️ Vous devez **toujours** avoir une clé ⚠️
-
----
-
-## Les cardinalités
-
-Les cardinalités seront les liens entre nos tables
-
-| Cardinalités |                  Usages                  |
-| :----------: | :--------------------------------------: |
-|     0..1     |          Aucune ou une instance          |
-|      1       |         Une instance exactement          |
-| 0..\* ou \*  |      Aucune ou plusieurs instances       |
-|    1..\*     | Une instance ou plusieurs (au moins une) |
-
----
-
-## Votre premier MCD/MLD
-
-- Des Utilisateurs (Identifiant, Nom, Prénom, Date de naissance, Sexe, Code Pays).
-- Des pays (Code Pays, Nom).
-
----
-
-## Comment faire ?
-
-Pour réaliser le MCD/MLD nous avons plusieurs solutions :
-
-- Avec un papier et un crayon.
-- [DBDiagram](https://dbdiagram.io/home)
-- [draw.io](http://draw.io/)
-
-🤓 J'aime bien l'approche papier et un crayon.
-
-Pourquoi ? Tout simplement pour ne pas être pollué par l'outil 👋.
-
----
-
-## C'est à vous
-
-```text
-Des Utilisateurs (Identifiant, Nom, Prénom, Date de naissance, Sexe, Code Pays).
-Des pays (Code Pays, Nom).
-```
-
-<iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-
----
-
-## Ma version
-
-![Exemple 2](./res/mcd/exemple_mcd.png)
-
----
-
-Compliqué ? Pas d'inquiétude, nous allons en refaire plusieurs.
-
----
-
-## Clés étrangères et relations
-
-- NO ACTION
-- CASCADE
-- SET NULL
-- SET DEFAULT
-
-Combinaison possible CASCADE, SET NULL, SET DEFAULT et NO ACTION
-
----
-
-## Quand ?
-
-- Suppression (ON DELETE)
-- De mise à jour (ON UPDATE)
-
----
-
-## Comment ?
-
-- Moteur de base
-
----
-
-## Gérer la base de données
+- Vous savez écrire des pages PHP.
+- Vous savez recevoir un formulaire.
+- Vous affichez le résultat…
 
-### PHPMyAdmin
+Et au rechargement de la page, **tout a disparu**.
 
 ---
 
-![PHPMyAdmin](./res/phpmyadmin/phpmyadmin.png)
+## La vraie question
 
----
-
-- Écrit en PHP.
-- Gratuit.
-- Visuel.
-- S'utilise sans connaissance de SQL.
-
----
-
-## Faisons le tour ensemble de l'interface
-
----
-
-PHPMyAdmin est très complet et permet de tout faire. **Mais ce n'est pas le seul outil** qui permet d'administrer une base de données.
-
-Nous avons également :
-
-- [MySQLWorkbench (gratuit)](https://www.mysql.com/fr/products/workbench/)
-- [DataGrip (payant)](https://www.jetbrains.com/datagrip/features/)
-- [DBeaver (gratuit)](https://dbeaver.io/)
-
----
-
-Je vous propose de tester DBeaver
-
----
-
-## SQL : Le langage de requêtage
-
----
-
-Nous avons un langage « universel » pour accéder / manipuler une base de données. Ce langage est découpé en 4 grandes catégories.
-
-| Catégorie             | Mot-clé                                         | Usage                |
-| --------------------- | ----------------------------------------------- | -------------------- |
-| Définition d'une base | `CREATE`, `ALTER`, `TRUNCATE`, `DROP`, `RENAME` | Structure de la base |
-
----
-
-| Catégorie                | Mot-clé                               | Usage                       |
-| ------------------------ | ------------------------------------- | --------------------------- |
-| Manipulation des données | `INSERT`, `UPDATE`, `DELETE`, `MERGE` | Gestion des données en base |
-
----
-
-| Catégorie   | Mot-clé              | Usage                   |
-| ----------- | -------------------- | ----------------------- |
-| Transaction | `COMMIT`, `ROLLBACK` | Groupement d'opérations |
-
----
-
-| Catégorie        | Mot-clé           | Usage                     |
-| ---------------- | ----------------- | ------------------------- |
-| Contrôle d'accès | `GRANT`, `REVOKE` | Droit d'accès aux données |
-
----
-
-| Catégorie         | Mot-clé  | Usage                                      |
-| ----------------- | -------- | ------------------------------------------ |
-| Accès aux données | `SELECT` | Récupération d'enregistrements de table(s) |
-
----
-
-## Obtenir des données
-
----
-
-L'obtention de données se réalise avec la commande.
-
-```sql
-SELECT
-```
-
----
-
-**Toujours** formée de la même manière à savoir :
-
-```sql
-SELECT quoi FROM votreTable WHERE condition(s);
-```
-
----
-
-- `quoi` : Ce que vous souhaitez obtenir, `*` pour l'ensemble, sinon `nom_colonne` séparé par des virgules.
-- `table` : La table que vous souhaitez requêter.
-- `condition(s)` : La ou les condition(s) que vous souhaitez appliquer à votre récupération de données.
-
----
-
-Exemple de table
-
-| #idTable | nom      | prenom   | age | pays |
-| -------- | -------- | -------- | --- | ---- |
-| 1        | Brosseau | Valentin | 33  | FR   |
-| 2        | Doe      | John     | 14  | US   |
-| 3        | Bernard  | Michel   | 56  | FR   |
-
----
-
-```sql
--- Récupère l'ensemble des utilisateurs
-SELECT * FROM utilisateurs;
-
--- Utilisateur de plus de 18 ans
-SELECT * FROM utilisateurs WHERE age > 18;
-
--- Utilisateurs de plus de 18 ans et de France
-SELECT * FROM utilisateurs WHERE age > 18 AND pays = "FR";
-
--- Nom et Prénom des Utilisateurs
-SELECT nom, prenom FROM utilisateurs;
-```
-
----
-
-| Liste des opérateurs de conditions |                       |
-| ---------------------------------- | --------------------- |
-| =                                  | Égal à                |
-| >                                  | Supérieur à           |
-| <                                  | Inférieur à           |
-| >=                                 | Supérieur ou égal     |
-| <=                                 | Inférieur ou égal     |
-| !=                                 | Différent de          |
-
----
-
-| Liste des opérateurs de conditions |                                                   |
-| ---------------------------------- | ------------------------------------------------- |
-| BETWEEN                            | Entre deux valeurs `WHERE age BETWEEN 30 AND 50;` |
-| LIKE                               | Recherche `WHERE nom LIKE 'val%';`                |
-| IN                                 | Plusieurs valeurs `WHERE pays IN ('FRA','USA');`  |
-
----
-
-## C'est à vous
-
-- Nous allons maintenant créer notre première `base de données` et notre première `table` grâce à PHPMyAdmin.
-- Insérer un jeu de données fictif.
-- Réaliser des requêtes pour s'entrainer.
-
-<iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-
----
-
-## Pagination
-
-![Pagination exemple](./res/pagination.png)
-
----
-
-```sql
--- Première page (0 à 10)
-SELECT * FROM utilisateurs LIMIT 10 OFFSET 0;
-
--- Seconde page (10 à 20)
-SELECT * FROM utilisateurs LIMIT 10 OFFSET 10;
-
---- …
-```
-
----
-
-## Ordre de récupération
-
-Trier les résultats
-
-```sql
--- Trier par age croissant
-SELECT * FROM utilisateurs ORDER BY age ASC;
-
--- Trier par age décroissant
-SELECT * FROM utilisateurs ORDER BY age DESC;
-```
-
----
-
-## Obtenir des données de plusieurs tables
-
-Éviter la redondance / doublons vous vous souvenez ?
-
----
-
-## Les jointures
-
-Cette opération en SQL est appelée une `jointure`. Nous avons plusieurs façons de joindre les données.
+Vos données, vous les rangez **où** ?
 
----
-
-![Jointure SQL](./res/sql_join.png)
-
----
-
-Le choix dépend des données et des opérations que vous souhaitez faire.
-
-Mais sachez que dans 90% du temps ce que vous souhaitez faire c'est un **LEFT JOIN**.
-
----
-
-## C'est à vous
-
-- Créer une seconde table (`pays`) elle contiendra la liste des pays en lien avec la table `utilisateurs` créée précédemment.
-- Insérer une liste de pays suffisamment importante
-- Créer la requête qui permet d'afficher les informations du pays en plus de l'utilisateur
-
----
-
-| #code | nom       | iso_code |
-| ----- | --------- | -------- |
-| FR    | France    | FRA      |
-| DE    | Allemagne | DEU      |
-| IT    | Italie    | ITA      |
+Un fichier ? La session ? Une variable ?
 
-<iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-
 ---
-
-## Ajouter des données
 
-Autrement que via PHPMyAdmin, tel que vous allez le faire en PHP.
+## Dans une base de données
 
-Via la commande `INSERT`
+- Elle survit au rechargement, au redémarrage, au changement de navigateur.
+- Elle est partagée par tous les visiteurs.
+- C'est un **serveur** à part, à qui on parle depuis PHP.
 
-```sql
--- Ajout de certains champs
-INSERT INTO utilisateurs (nom, prenom, age) VALUES ('Test', 'Insert', 22);
-
--- Tous les champs
-INSERT INTO utilisateurs VALUES (99,'Test','Insert',12, 'IT');
-```
-
 ---
 
-## Modifier des données
+## Le vocabulaire minimal
 
-Via la commande `UPDATE`
+- Une **base** contient des **tables**.
+- Une table a des **colonnes** (id, phrase, nombre).
+- Chaque enregistrement est une **ligne**.
 
-```sql
-UPDATE utilisateurs SET prenom = 'valentin' WHERE prenom = 'Valentin-Update';
-UPDATE utilisateurs SET prenom = 'Valentine' WHERE id = 1;
-```
+La modélisation et le langage SQL, c'est votre cours de base de données. Ici, on apprend à **s'en servir depuis PHP**.
 
 ---
-
-## Supprimer une donnée
 
-```sql
-DELETE FROM utilisateurs WHERE id = 1;
-```
+## Notre table de travail
 
----
+| id  | phrase                        | nombre |
+| --- | ----------------------------- | ------ |
+| 1   | Je ne ferai plus de bêtises   | 10     |
+| 2   | Je rendrai mes devoirs à temps | 5      |
 
-**Attention !!!** si vous oubliez le **WHERE** vous allez vider l'ensemble de la table. (Et aucun retour en arrière possible)
+Une ligne = une punition de Bart.
 
 ---
-
-## C'est à vous
 
-Testons ensemble.
+## phpMyAdmin
 
-<iframe src="https://giphy.com/embed/ZVik7pBtu9dNS" width="480" height="268" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+- Livré avec XAMPP, accessible sur `http://localhost/phpmyadmin/`.
+- C'est un **site web** pour regarder votre base.
+- Vos bases à gauche, le contenu de la table au centre.
 
 ---
-
-## MySQL et PHP
-
-- Intégré
-- Sécurisé
-- Simple
-- Documenté
 
----
+## phpMyAdmin : deux onglets utiles
 
-## Plusieurs connecteurs SQL (API).
+- **Importer** : je vous fournis un fichier `.sql`, vous le chargez.
+- **SQL** : vous collez une requête et vous l'exécutez.
 
-- mysql\_\* (déprécié, n'existe plus, mais vous trouverez encore peut-être des exemples en ligne **à éviter**)
-- MySQLi (le remplacement de mysql\_\*)
-- PDO (PDO_MySQL)
+C'est votre outil de vérification : « ma ligne est-elle bien arrivée ? »
 
 ---
 
-À mon avis **PDO** doit être votre choix par défaut dans le cas d'un nouveau projet.
+## Comment PHP parle-t-il à MySQL ?
 
----
+PHP n'est pas la base de données.
 
-![PDO vs MySQL](./res/pdo_mysqli.jpg)
+Il faut donc un **intermédiaire**. Lequel ?
 
 ---
-
-## Travailler intelligemment
-
-- Des includes
-- Des variables
-- Organisation
 
----
+## Plusieurs connecteurs, un seul choix
 
-## Au minimum
+- `mysql_*` : supprimé de PHP, à fuir (vous en trouverez en ligne).
+- `mysqli` : son remplaçant.
+- **PDO** : celui que nous utiliserons, toujours.
 
-- l'IP du serveur de base de données.
-- Le login.
-- Le mot de passe.
-- Le nom de la base de données
+PDO parle à MySQL, MariaDB, PostgreSQL, SQLite… avec le même code.
 
 ---
-
-## Créer une « librairie »
 
-Le code suivant pourra vous servir dans l'ensemble de vos projets
-
----
+## La connexion en 4 lignes
 
-`utils/db.php`:
+`utils/db.php` :
 
 ```php
-// Cette partie est à customiser
 $server = "localhost";
 $db = "bart";
 $user = "root";
 $passwd = "";
-// Fin de la partie customisable
 
-// Cette partie est générique à l'ensemble de vos projets utilisant une base de données.
-$dsn = "mysql:host=$server;dbname=$db";
+$dsn = "mysql:host=$server;dbname=$db;charset=utf8mb4";
 $pdo = new PDO($dsn, $user, $passwd);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+```
+
+Une « librairie » : ce fichier se copie tel quel dans chacun de vos projets, seules les 4 premières lignes changent.
+
+---
+
+## Lire des données
+
+```php
+$phrases = $pdo->query("SELECT * FROM phrases")
+               ->fetchAll(PDO::FETCH_ASSOC);
+```
+
+Une requête, un résultat. Rien de plus.
+
+---
+
+## Question
+
+`$phrases`, ça contient quoi exactement ?
+
+Quel **type** PHP renvoie `fetchAll` ?
+
+---
+
+## Un tableau de tableaux associatifs
+
+```php
+[
+  ['id' => 1, 'phrase' => 'Je ne ferai plus de bêtises', 'nombre' => 10],
+  ['id' => 2, 'phrase' => 'Je rendrai mes devoirs à temps', 'nombre' => 5],
+]
+```
+
+Exactement la structure du TP Tableaux : une ligne = un tableau associatif.
+
+---
+
+## Donc on l'affiche comme d'habitude
+
+```php
+foreach ($phrases as $phrase) {
+    echo "<li>" . htmlspecialchars($phrase['phrase']) . "</li>";
+}
+```
+
+Vous savez déjà faire, la seule nouveauté est **d'où vient** le tableau.
+
+---
+
+## Une seule ligne ?
+
+```php
+$stmt = $pdo->prepare("SELECT * FROM phrases WHERE id = ?");
+$stmt->execute([1]);
+$phrase = $stmt->fetch(PDO::FETCH_ASSOC);
+```
+
+`fetchAll` : toutes les lignes. `fetch` : **une seule** ligne.
+
+---
+
+## Et si la ligne n'existe pas ?
+
+`fetch()` renvoie `false`.
+
+```php
+if ($phrase === false) {
+    echo "Cette phrase n'existe pas.";
+}
+```
+
+À tester **avant** d'afficher, sinon `Undefined array key`.
+
+---
+
+## Une valeur qui vient de l'utilisateur
+
+L'identifiant arrive en `$_GET['id']`.
+
+Question : on le colle directement dans la requête ?
+
+```php
+$pdo->query("SELECT * FROM phrases WHERE id = " . $_GET['id']);
 ```
 
 ---
 
-## Pour l'utiliser ?
+## Jamais. Regardez pourquoi
 
-- inclure `utils/db.php` dans les pages où c'est nécessaire.
+Le visiteur appelle `index.php?page=phrase&id=1 OR 1=1`
+
+```sql
+SELECT * FROM phrases WHERE id = 1 OR 1=1
+```
+
+Toute la table sort. Avec un peu d'imagination, la table des mots de passe aussi.
 
 ---
 
-## Mise en pratique
+## La requête préparée
 
-- [Persister Bart en Base de données](/tp/php/sql/tp5.md)
-- [BTS TV personnalisable](/tp/php/sql/tp6.md)
+```php
+$stmt = $pdo->prepare("SELECT * FROM phrases WHERE id = ?");
+$stmt->execute([$_GET['id']]);
+$phrase = $stmt->fetch(PDO::FETCH_ASSOC);
+```
+
+Le `?` est un **trou**. La valeur est envoyée à part, elle ne peut plus devenir du SQL.
+
+---
+
+## La règle, une seule à retenir
+
+Une valeur **variable** dans la requête (formulaire, URL, session) ?
+
+**Requête préparée. Toujours.**
+
+Sinon (requête 100 % en dur), `query()` suffit.
+
+---
+
+## Écrire : ajouter une ligne
+
+```php
+$stmt = $pdo->prepare("INSERT INTO phrases (phrase, nombre) VALUES (?, ?)");
+$stmt->execute([$_POST['phrase'], $_POST['nombre']]);
+
+$id = $pdo->lastInsertId();
+```
+
+`lastInsertId()` vous donne l'identifiant qui vient d'être créé.
+
+---
+
+## Écrire : modifier une ligne
+
+```php
+$stmt = $pdo->prepare("UPDATE phrases SET phrase = ?, nombre = ? WHERE id = ?");
+$stmt->execute([$_POST['phrase'], $_POST['nombre'], $_POST['id']]);
+```
+
+Sans `WHERE`, vous modifiez **toute** la table.
+
+---
+
+## Écrire : supprimer une ligne
+
+```php
+$stmt = $pdo->prepare("DELETE FROM phrases WHERE id = ?");
+$stmt->execute([$_GET['id']]);
+
+echo $stmt->rowCount() . " ligne(s) supprimée(s)";
+```
+
+Pas de corbeille, pas de retour en arrière.
+
+---
+
+## Afficher proprement
+
+```php
+echo htmlspecialchars($phrase['phrase']);
+```
+
+Le contenu de la base a été saisi par un visiteur : il peut contenir du HTML.
+
+---
+
+## Et pour deux tables ?
+
+```php
+$livres = $pdo->query("SELECT livres.titre, auteurs.nom
+                       FROM livres
+                       LEFT JOIN auteurs ON livres.id_auteur = auteurs.id")
+              ->fetchAll(PDO::FETCH_ASSOC);
+```
+
+Une jointure s'exécute **exactement** comme le reste. L'écrire, c'est votre cours de base de données.
+
+---
+
+## Où mettre tout ce code ?
+
+- `utils/db.php` : inclus **une seule fois**, dans `index.php`.
+- La requête : en haut de `pages/xxx.php`.
+- L'affichage : en dessous, dans le HTML.
+
+On récupère d'abord, on affiche ensuite.
+
+---
+
+## Récapitulatif
+
+- Les données vivent en base, pas dans une variable PHP.
+- `utils/db.php` crée `$pdo`, une fois pour tout le projet.
+- `query()` + `fetchAll()` pour lire, `fetch()` pour une ligne (`false` si rien).
+- Valeur variable : `prepare()` + `execute([...])`, toujours.
+- `INSERT`, `UPDATE`, `DELETE` : le même `prepare` / `execute`.
+
+---
+
+## Des questions ?
+
+Place au TP 🚀
