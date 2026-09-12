@@ -277,6 +277,10 @@ Dans le cas de la table `articles` vous pouvez observer :
 
 ![Modèle Article](./ressources/larablog_article.jpg)
 
+Vue d'ensemble des modèles générés et de leurs relations (c'est ce que vous utiliserez dans tout le projet) :
+
+![Les modèles du Larablog et leurs relations](./ressources/larablog_modeles_relations.svg)
+
 Quelques remarques sur la classe `Article` :
 
 - La classe `Article` hérite de la classe `Model` de Laravel.
@@ -318,6 +322,10 @@ Avant d'entrer dans le cœur de la création de notre plateforme, nous allons d�
 
 Ces étapes sont la base de notre projet. Nous avons effectivement d'autres éléments à réaliser, mais nous allons commencer par ces étapes.
 
+Pour garder le cap, voilà comment le site se découpe : deux espaces, deux contrôleurs, et Breeze qui s'occupe de l'authentification.
+
+![Les deux espaces du Larablog](./ressources/larablog_architecture.svg)
+
 ::: tip L'organisation
 
 Dans un gros projet comme celui-ci, il est important de bien s'organiser. Découper le projet en étapes est une bonne chose, ces différentes étapes seront vos objectifs. Vous pouvez les noter sur un papier ou dans un fichier texte. Vous pouvez également utiliser un outil de gestion de projet comme [Trello](https://trello.com/).
@@ -335,6 +343,10 @@ php artisan make:controller UserController
 ```
 
 Ce controller va nous permettre de gérer les fonctionnalités liées à l'espace utilisateur. Breeze nous a déjà généré toute la partie authentification, nous allons donc nous concentrer sur les fonctionnalités suivantes.
+
+Avant de coder, gardez en tête le cycle de vie d'un article : il naît en brouillon, l'auteur le publie, et seuls les articles publiés sont visibles dans la partie publique.
+
+![Le cycle de vie d'un article](./ressources/larablog_cycle_article.svg)
 
 ### Création d'un article
 
@@ -939,6 +951,10 @@ Pour traiter cet ajout de fonctionnalité, nous allons procéder de la manière 
   - Un formulaire pour ajouter un commentaire. (Si l'utilisateur est connecté).
 - Nous avons à notre disposition un modèle `Comment` qui va nous permettre de stocker les commentaires.
 - Nous avons une relation entre les modèles `Article` et `Comment` qui va nous permettre de récupérer les commentaires d'un article.
+
+En image, le parcours complet d'un commentaire :
+
+![Le parcours d'un commentaire](./ressources/larablog_commentaire_flux.svg)
 
 ### Création du contrôleur
 

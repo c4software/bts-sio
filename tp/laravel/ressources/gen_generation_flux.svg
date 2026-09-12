@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="300" viewBox="0 0 900 300"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="300" fill="#ffffff"/>
+<g stroke="#475569" stroke-width="2" fill="#f1f5f9"><path d="M60,60 a50,14 0 0,1 100,0 v110 a50,14 0 0,1 -100,0 z"/><ellipse cx="110" cy="60" rx="50" ry="14"/></g>
+<text x="110" y="110" text-anchor="middle" font-weight="600">Base existante</text>
+<text x="110" y="130" text-anchor="middle" font-size="12" fill="#475569">classicmodels</text>
+<text x="110" y="148" text-anchor="middle" font-size="11" fill="#475569">tables, colonnes,</text>
+<text x="110" y="163" text-anchor="middle" font-size="11" fill="#475569">clés étrangères</text>
+<text x="214" y="105" text-anchor="middle" font-size="11" fill="#475569">1. lit</text>
+<line x1="170" y1="115" x2="258" y2="115" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="260" y="70" width="240" height="90" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="380" y="100" text-anchor="middle" font-weight="600">Le générateur</text>
+<text x="380" y="124" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13">php artisan code:models</text>
+<text x="380" y="146" text-anchor="middle" font-size="12" fill="#475569">(plugin reliese/laravel)</text>
+<line x1="500" y1="115" x2="588" y2="115" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="544" y="105" text-anchor="middle" font-size="11" fill="#475569">2. écrit</text>
+<rect x="590" y="30" width="290" height="170" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="735" y="56" text-anchor="middle" font-weight="600">app/Models/</text>
+<g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">
+<text x="606" y="82">📄 Customer.php   orders(), payments()</text>
+<text x="606" y="104">📄 Order.php      customer(), orderdetails()</text>
+<text x="606" y="126">📄 Orderdetail.php  order(), product()</text>
+<text x="606" y="148">📄 Product.php    orderdetails()</text>
+<text x="606" y="170">📄 Payment.php    customer()</text>
+<text x="606" y="190">…</text>
+</g>
+<rect x="20" y="230" width="860" height="50" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="450" y="251" text-anchor="middle" font-weight="600">Pas de magie</text>
+<text x="450" y="269" text-anchor="middle" font-size="12">Le plugin écrit le code Eloquent de la documentation ($fillable, belongsTo, hasMany…) : vous pourriez l'écrire à la main.</text>
+</svg>

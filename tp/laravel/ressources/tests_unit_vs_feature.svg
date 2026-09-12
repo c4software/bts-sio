@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="300" viewBox="0 0 900 300"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="300" fill="#ffffff"/>
+<!-- Unit -->
+<rect x="20" y="20" width="400" height="260" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="220" y="48" text-anchor="middle" font-weight="600" font-size="15">Test unitaire (tests/Unit)</text>
+<rect x="50" y="80" width="150" height="60" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="125" y="105" text-anchor="middle" font-weight="600">Le test</text>
+<text x="125" y="125" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">CalculatriceTest</text>
+<line x1="200" y1="110" x2="258" y2="110" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="229" y="102" text-anchor="middle" font-size="10" fill="#475569">appelle</text>
+<rect x="260" y="80" width="130" height="60" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="325" y="105" text-anchor="middle" font-weight="600">Une classe</text>
+<text x="325" y="125" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">Calculatrice</text>
+<g font-size="12" fill="#0f172a">
+<text x="50" y="180">• Pas de requête HTTP, pas de base de données</text>
+<text x="50" y="202">• Vérifie une méthode isolée : entrée, sortie</text>
+<text x="50" y="224">• Très rapide (des milliers par seconde)</text>
+<text x="50" y="256" font-family="ui-monospace, monospace" font-size="11" fill="#475569">assertEquals(3, Calculatrice::addition(1, 2))</text>
+</g>
+<!-- Feature -->
+<rect x="450" y="20" width="430" height="260" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="665" y="48" text-anchor="middle" font-weight="600" font-size="15">Test Feature (tests/Feature)</text>
+<rect x="470" y="80" width="110" height="60" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="525" y="105" text-anchor="middle" font-weight="600">Le test</text>
+<text x="525" y="125" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">ConnexionTest</text>
+<line x1="580" y1="104" x2="628" y2="104" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="604" y="94" text-anchor="middle" font-size="10" fill="#475569">GET /todo</text>
+<rect x="630" y="70" width="230" height="80" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="745" y="92" text-anchor="middle" font-weight="600">Toute l'application</text>
+<text x="745" y="112" text-anchor="middle" font-size="11">routes → middleware → contrôleur</text>
+<text x="745" y="130" text-anchor="middle" font-size="11">→ modèle → vue</text>
+<line x1="630" y1="130" x2="582" y2="130" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+<text x="604" y="146" text-anchor="middle" font-size="10" fill="#2563eb">réponse</text>
+<g font-size="12" fill="#0f172a">
+<text x="470" y="180">• Simule une vraie requête HTTP, sans navigateur ni serveur</text>
+<text x="470" y="202">• Vérifie la réponse : statut, redirection, contenu</text>
+<text x="470" y="224">• Passe par le middleware, donc teste aussi la sécurité</text>
+<text x="470" y="256" font-family="ui-monospace, monospace" font-size="11" fill="#475569">$this->get('/todo')->assertRedirect('/login')</text>
+</g>
+</svg>

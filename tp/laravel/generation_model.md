@@ -82,6 +82,8 @@ Pourquoi générer nos modèles ? L'avantage de générer nos modèles c'est qu'
 
 Ils contiendront évidemment les, `$fillable` mais également les jointures entre les tables !
 
+![Du schéma de la base aux modèles générés](./ressources/gen_generation_flux.svg)
+
 ### Importer la BDD
 
 Dans un premier temps, je vous laisse restaurer la base suivante :
@@ -91,6 +93,12 @@ Dans un premier temps, je vous laisse restaurer la base suivante :
 ![Aperçu de la bdd](./ressources/sample_db.png)
 
 - Je vous laisse importer la base de données dans MySQL.
+
+::: tip En ligne de commande ?
+
+Le script ne crée pas la base : créez d'abord `classicmodels` (`CREATE DATABASE classicmodels;`) puis importez le script dedans. Avec phpMyAdmin, créez la base, sélectionnez-la, puis onglet « Importer ».
+
+:::
 
 ::: warning Un instant !
 
@@ -134,8 +142,22 @@ Pour générer **l'ensemble des modèles,** nous allons saisir une nouvelle comm
 php artisan code:models
 ```
 
+```
+$ php artisan code:models
+Check out your models for classicmodels
+```
+
 ::: tip C'est rapide et ça fonctionne !
-En quelques secondes le plugin a créé l'ensemble des modèles de votre projet. Je vous laisser regarder les modifications dans votre projet, et surtout le dossier `models`
+En quelques secondes le plugin a créé l'ensemble des modèles de votre projet (le message est discret, mais regardez le dossier `app/Models`) :
+
+![Le dossier app/Models après la génération](./ressources/gen_models_dossier.png)
+
+:::
+
+::: warning Laravel a besoin de ses propres tables
+
+Depuis Laravel 11, la session et le cache sont stockés en base par défaut : au premier chargement de page vous aurez une erreur `Table 'sessions' doesn't exist`. Deux options : lancer `php artisan migrate` (Laravel ajoute ses tables `users`, `sessions`, `cache`… dans `classicmodels`, et `code:models` générera aussi des modèles pour elles), ou plus simple, passer dans le `.env` `SESSION_DRIVER=file` et `CACHE_STORE=file`.
+
 :::
 
 ### Point de vigilance le modele `User`
@@ -199,11 +221,25 @@ class User extends Authenticatable
 
 Avant d'aller plus loin, regardons ensemble un peu les modèles :
 
-![Les modèles](./ressources/les-modeles.png)
+![Le modèle Order généré](./ressources/gen_model_order.png)
 
-Vous vous souvenez des jointures ? Je vous avais expliqué qu'il était possible de les définir dans Laravel pour requêter simplement votre base de données. Dans le code généré par le plugins, nous avons évidemment celle-ci, voilà un exemple :
+Vous vous souvenez des jointures ? Je vous avais expliqué qu'il était possible de les définir dans Laravel pour requêter simplement votre base de données. Dans le code généré par le plugin, nous avons évidemment celles-ci, voilà ce que contient `Order.php` (lignes 50 à 58 de la capture) :
 
-![Les modèles](./ressources/un-modele-en-detail.png)
+```php
+public function customer()
+{
+    return $this->belongsTo(Customer::class, 'customerNumber');
+}
+
+public function orderdetails()
+{
+    return $this->hasMany(Orderdetail::class, 'orderNumber');
+}
+```
+
+Pour vous repérer dans les tables que nous allons utiliser, voilà les relations principales et la méthode générée qui correspond à chaque clé étrangère :
+
+![Les tables utilisées dans ce TP et leurs relations](./ressources/gen_classicmodels_schema.svg)
 
 ::: danger STOP
 
@@ -339,7 +375,7 @@ Vous l'avez vu, nous avons besoin d'un template pour que la page s'affiche. Cré
 
 Je vous laisse tester dans votre navigateur, si tout fonctionne correctement vous devriez avoir :
 
-![Exemple de résultat](./ressources/exemple-resultat.png)
+![La liste des commandes](./ressources/gen_orders_liste.png)
 
 ::: tip Un instant !
 
@@ -420,7 +456,7 @@ Je vous laisse l'écrire, celui-ci va afficher (de manière sympa, dans une Card
 
 Ce n’est pas beau, mais ça fonctionne :
 
-![C'est moche, mais ça fonctionne](./ressources/moche-mais-fonctionne.png)
+![C'est moche, mais ça fonctionne](./ressources/gen_orders_detail_moche.png)
 
 :::
 
@@ -535,6 +571,15 @@ function create(Request $request){
 
 C'est à vous ! Je vous laisse assembler le code pour créer une commande.
 
+![Le formulaire de création d'une commande](./ressources/gen_orders_create.png)
+
+::: warning Deux pièges au moment de tester
+
+- **L'ordre des routes** : `/orders/{id}` est déclarée avant `/orders/create`, donc Laravel prend « create » pour un identifiant et affiche une page vide. Déclarez la route `create` **avant** la route `{id}`.
+- **Les colonnes obligatoires** : la table `orders` impose `orderDate` et `requiredDate` (`NOT NULL`). Sans elles, l'insertion échoue. Ajoutez par exemple `$order->orderDate = now();` et `$order->requiredDate = now()->addDays(7);` avant le `save()`.
+
+:::
+
 ::: tip N'oubliez pas !
 
 Nous créons une nouvelle commande, mais nous n'avons pas de vérification sur les données. Vous pouvez ajouter des vérifications sur les données, par exemple :
@@ -580,7 +625,7 @@ Dans le template `orders-list.blade.php` :
 {{ $orders->links() }}
 ```
 
-![Pagination](./ressources/pagination-tailwind.png)
+![Les liens de pagination générés par Laravel](./ressources/gen_orders_pagination.png)
 
 Nous touchons du doigt l'un des avantage d'un framework (ici Laravel). Si vous aviez dû écrire le code pour gérer la pagination, vous auriez passé du temps à écire un code assez complexe. Ici, en une ligne, vous avez la pagination. C'est l'intérêt de la standardisation, et de l'uniformisation du code.
 
@@ -776,6 +821,10 @@ $customer = Customer::find(103);
 $customer->categories()->detach(1);
 ```
 
+Pour bien visualiser ce que chaque méthode fait dans la table pivot :
+
+![attach, sync et detach sur la table pivot](./ressources/gen_pivot_attach_sync.svg)
+
 ::: tip C'est à vous !
 
 Pour l'instant notre application ne gère pas les `customer`, nous allons donc simplement créer une route pour tester cette nouvelle fonctionnalité.
@@ -787,6 +836,22 @@ Route::get('/customers/{id}/categories', [CustomersController::class, 'categorie
 **Je vous laisse tester les différentes méthodes (sync, attach, detach) en regardant le résultat dans votre base de données.** Exemple avec un sync :
 
 ![Sync](./ressources/sync_exemple.png)
+
+Ce que vous devez observer dans la table pivot, en enchaînant les trois méthodes sur le client 103 :
+
+```
+-- après attach([1, 2])
+customerNumber  category_id
+103             1
+103             2
+
+-- après sync([3, 4]) : les anciennes lignes ont disparu
+103             3
+103             4
+
+-- après detach(3)
+103             4
+```
 
 :::
 
@@ -938,6 +1003,10 @@ Un peu de lecture :
 
 :::
 
+Un exemple de page de détail, avec les adresses, les commandes et les catégories du client :
+
+![La page de détail d'un client](./ressources/gen_customer_detail.png)
+
 ### 5. Créer une nouvelle adresse
 
 Maintenant que nous avons corrigé la vue, nous allons pouvoir créer une nouvelle adresse pour un client. Pour ça nous allons créer deux nouvelles routes :
@@ -979,18 +1048,20 @@ function createAddress(Request $request, $id){
 Et enfin le template :
 
 ```html
-<form action="/customers/{{$customer->id}}/addresses/create" method="post">
+<form action="/customers/{{$customer->customerNumber}}/addresses/create" method="post">
   @csrf
   <!-- Je vous laisse écrire l'interieur du formulaire -->
 </form>
 ```
 
 - `@csrf` ? C'est une protection anti-rejeu de Laravel, il faut toujours l'ajouter dans les formulaires.
-- <span v-pre>`{{$customer->id}}`</span> ? C'est l'identifiant du client, il est nécessaire pour ajouter l'adresse au client.
+- <span v-pre>`{{$customer->customerNumber}}`</span> ? C'est l'identifiant du client, il est nécessaire pour ajouter l'adresse au client. Attention, dans cette base la clé primaire ne s'appelle pas `id` : `$customer->id` serait vide.
 
 ::: tip C'est à vous !
 
 Je vous laisse assembler le code pour créer de nouvelle adresse pour un client.
+
+![Le formulaire d'ajout d'adresse](./ressources/gen_customer_create_address.png)
 
 :::
 
@@ -1020,6 +1091,8 @@ Comment ça fonctionne ?
 
 L'avantage ? Les variables de session ajoutées avec `with` seront automatiquement supprimées après la première lecture. Pratique !
 
+![Le message de succès après l'ajout d'une adresse](./ressources/gen_customer_adresse_succes.png)
+
 ### 7. Supprimer une adresse
 
 Maintenant que vous avez compris le principe. Je vous laisse créer le code pour supprimer une adresse. Pour vous aider dans la démarche, voilà les étapes :
@@ -1027,6 +1100,7 @@ Maintenant que vous avez compris le principe. Je vous laisse créer le code pour
 - Créer une nouvelle route `customers/{id}/addresses/{addressId}/delete`.
 - Créer une nouvelle méthode dans le contrôleur `deleteAddress`.
 - Le code doit trouver l'adresse en base de données et la supprimer. (`find` et `delete`).
+- Attention : l'adresse est référencée par la table `customers_addresses` (clé étrangère sans `ON DELETE CASCADE`). Retirez d'abord la relation (`$customer->addresses()->detach($addressId)`) puis supprimez l'adresse.
 - Le code doit rediriger vers la page de détail du client avec un message de succès ou d'erreur.
 
 N'oubliez pas, pour vous aider, vous avez l'aide mémoire :

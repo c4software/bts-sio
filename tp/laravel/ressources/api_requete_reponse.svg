@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="360" viewBox="0 0 900 360"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="360" fill="#ffffff"/>
+<!-- request -->
+<rect x="20" y="20" width="400" height="200" rx="10" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+<text x="220" y="46" text-anchor="middle" font-weight="600" font-size="15" fill="#2563eb">La requête (envoyée par le client)</text>
+<g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">
+<text x="36" y="76"><tspan fill="#d97706" font-weight="700">POST</tspan> /api/produits</text>
+<text x="36" y="96" fill="#475569">Content-Type: application/json</text>
+<text x="36" y="126">{</text>
+<text x="52" y="144">"nom": "Clavier mécanique",</text>
+<text x="52" y="162">"description": "Switchs rouges",</text>
+<text x="52" y="180">"prix": 89.90, "tva": 20</text>
+<text x="36" y="198">}</text>
+</g>
+<text x="300" y="76" font-size="11" fill="#475569">verbe + chemin</text>
+<text x="300" y="150" font-size="11" fill="#475569">le corps (body)</text>
+<text x="300" y="164" font-size="11" fill="#475569">en JSON</text>
+<line x1="420" y1="120" x2="478" y2="120" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<!-- response -->
+<rect x="480" y="20" width="400" height="200" rx="10" fill="#f8fafc" stroke="#16a34a" stroke-width="2"/>
+<text x="680" y="46" text-anchor="middle" font-weight="600" font-size="15" fill="#16a34a">La réponse (renvoyée par l'API)</text>
+<g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">
+<text x="496" y="76"><tspan fill="#16a34a" font-weight="700">200 OK</tspan></text>
+<text x="496" y="96" fill="#475569">Content-Type: application/json</text>
+<text x="496" y="126">{</text>
+<text x="512" y="144">"id": 21,</text>
+<text x="512" y="162">"nom": "Clavier mécanique",</text>
+<text x="512" y="180">"prix": "89.90", "tva": "20.00"</text>
+<text x="496" y="198">}</text>
+</g>
+<text x="760" y="76" font-size="11" fill="#475569">le code de statut</text>
+<text x="760" y="150" font-size="11" fill="#475569">le produit créé,</text>
+<text x="760" y="164" font-size="11" fill="#475569">avec son id</text>
+<!-- verbs -->
+<g font-size="12">
+<rect x="20" y="240" width="860" height="100" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="35" y="262" font-weight="600">Le verbe HTTP dit ce que l'on veut faire, le chemin dit sur quoi :</text>
+<text x="35" y="286"><tspan font-family="ui-monospace, monospace" font-weight="700" fill="#2563eb">GET</tspan> /api/produits → lire la liste</text>
+<text x="330" y="286"><tspan font-family="ui-monospace, monospace" font-weight="700" fill="#2563eb">GET</tspan> /api/produits/1 → lire un produit</text>
+<text x="35" y="310"><tspan font-family="ui-monospace, monospace" font-weight="700" fill="#d97706">POST</tspan> /api/produits → créer</text>
+<text x="330" y="310"><tspan font-family="ui-monospace, monospace" font-weight="700" fill="#dc2626">DELETE</tspan> /api/commandes/1 → supprimer</text>
+<text x="35" y="332" fill="#475569">Codes de statut à connaître : 200 OK, 201 Created, 401 Unauthorized, 403 Forbidden, 404 Not Found, 422 données invalides.</text>
+</g>
+</svg>

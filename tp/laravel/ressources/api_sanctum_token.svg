@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="310" viewBox="0 0 900 310"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="300" fill="#ffffff"/>
+<rect x="40" y="20" width="160" height="40" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="2"/><text x="120" y="45" text-anchor="middle" font-weight="600">Client (appli)</text>
+<rect x="540" y="20" width="160" height="40" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/><text x="620" y="45" text-anchor="middle" font-weight="600">API Laravel</text>
+<rect x="740" y="20" width="140" height="40" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="810" y="45" text-anchor="middle" font-weight="600">Base</text>
+<g stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"><line x1="120" y1="60" x2="120" y2="290"/><line x1="620" y1="60" x2="620" y2="290"/><line x1="810" y1="60" x2="810" y2="290"/></g>
+<g stroke="#475569" stroke-width="2" marker-end="url(#arrow)"><line x1="120" y1="95" x2="618" y2="95"/><line x1="620" y1="120" x2="808" y2="120"/></g>
+<text x="370" y="88" text-anchor="middle" font-size="12"><tspan font-family="ui-monospace, monospace" font-weight="700">POST /api/login</tspan>  { email, password }</text>
+<text x="715" y="113" text-anchor="middle" font-size="11">vérifie, crée un token</text>
+<line x1="620" y1="150" x2="122" y2="150" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+<text x="370" y="143" text-anchor="middle" font-size="12" fill="#2563eb">200  { "token": "3|xK9…aZ" }   ← à conserver côté client</text>
+<g stroke="#475569" stroke-width="2" marker-end="url(#arrow)"><line x1="120" y1="200" x2="618" y2="200"/><line x1="620" y1="222" x2="808" y2="222"/></g>
+<text x="370" y="180" text-anchor="middle" font-size="12"><tspan font-family="ui-monospace, monospace" font-weight="700">GET /api/user</tspan></text>
+<text x="370" y="194" text-anchor="middle" font-size="11" font-family="ui-monospace, monospace">Authorization: Bearer 3|xK9…aZ</text>
+<text x="715" y="215" text-anchor="middle" font-size="11">token connu ? abilities ?</text>
+<line x1="620" y1="250" x2="122" y2="250" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+<text x="370" y="243" text-anchor="middle" font-size="12" fill="#2563eb">200 + les données de l'utilisateur</text>
+<text x="40" y="285" font-size="11" fill="#dc2626">Sans token, ou token inconnu : 401. Token sans l'ability demandée : 403.</text>
+<text x="880" y="303" text-anchor="end" font-size="11" fill="#475569" font-family="ui-monospace, monospace">route protégée : ->middleware('auth:sanctum')</text>
+</svg>

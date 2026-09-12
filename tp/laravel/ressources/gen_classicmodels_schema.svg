@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="360" viewBox="0 0 900 360"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="360" fill="#ffffff"/>
+<!-- helper: table box -->
+<g stroke="#475569" stroke-width="1.5">
+<rect x="20" y="120" width="170" height="110" rx="8" fill="#fff"/><rect x="20" y="120" width="170" height="28" rx="8" fill="#2563eb"/><rect x="20" y="136" width="170" height="12" fill="#2563eb" stroke="none"/>
+<rect x="290" y="120" width="170" height="110" rx="8" fill="#fff"/><rect x="290" y="120" width="170" height="28" rx="8" fill="#475569"/><rect x="290" y="136" width="170" height="12" fill="#475569" stroke="none"/>
+<rect x="560" y="120" width="170" height="110" rx="8" fill="#fff"/><rect x="560" y="120" width="170" height="28" rx="8" fill="#475569"/><rect x="560" y="136" width="170" height="12" fill="#475569" stroke="none"/>
+<rect x="730" y="250" width="160" height="90" rx="8" fill="#fff"/><rect x="730" y="250" width="160" height="28" rx="8" fill="#16a34a"/><rect x="730" y="266" width="160" height="12" fill="#16a34a" stroke="none"/>
+<rect x="290" y="260" width="170" height="80" rx="8" fill="#fff"/><rect x="290" y="260" width="170" height="28" rx="8" fill="#475569"/><rect x="290" y="276" width="170" height="12" fill="#475569" stroke="none"/>
+<rect x="20" y="15" width="170" height="70" rx="8" fill="#fff"/><rect x="20" y="15" width="170" height="28" rx="8" fill="#d97706"/><rect x="20" y="31" width="170" height="12" fill="#d97706" stroke="none"/>
+<rect x="290" y="15" width="170" height="70" rx="8" fill="#fff" stroke-dasharray="5 3"/><rect x="290" y="15" width="170" height="28" rx="8" fill="#d97706"/><rect x="290" y="31" width="170" height="12" fill="#d97706" stroke="none"/>
+</g>
+<g fill="#fff" font-weight="600" text-anchor="middle">
+<text x="105" y="139">customers</text><text x="375" y="139">orders</text><text x="645" y="139">orderdetails</text><text x="810" y="269">products</text><text x="375" y="279">payments</text><text x="105" y="34">categories</text><text x="375" y="34">category_customer</text>
+</g>
+<g font-family="ui-monospace, monospace" font-size="11" fill="#0f172a">
+<text x="30" y="166" font-weight="600">customerNumber</text><text x="30" y="184">customerName</text><text x="30" y="202">contactLastName</text><text x="30" y="220">city, country…</text>
+<text x="300" y="166" font-weight="600">orderNumber</text><text x="300" y="184">orderDate</text><text x="300" y="202">status</text><text x="300" y="220" fill="#dc2626">customerNumber</text>
+<text x="570" y="166" font-weight="600" fill="#dc2626">orderNumber</text><text x="570" y="184" font-weight="600" fill="#dc2626">productCode</text><text x="570" y="202">quantityOrdered</text><text x="570" y="220">priceEach</text>
+<text x="740" y="296" font-weight="600">productCode</text><text x="740" y="314">productName</text><text x="740" y="332">buyPrice</text>
+<text x="300" y="306" font-weight="600">checkNumber</text><text x="300" y="324" fill="#dc2626">customerNumber</text>
+<text x="30" y="61" font-weight="600">id</text><text x="30" y="79">name, description</text>
+<text x="300" y="61" fill="#dc2626">customerNumber</text><text x="300" y="79" fill="#dc2626">category_id</text>
+</g>
+<!-- relations -->
+<g stroke="#dc2626" stroke-width="2" fill="none">
+<line x1="190" y1="175" x2="290" y2="175"/><line x1="460" y1="175" x2="560" y2="175"/><line x1="730" y1="175" x2="810" y2="175"/><line x1="810" y1="175" x2="810" y2="250"/>
+<line x1="105" y1="230" x2="105" y2="300"/><line x1="105" y1="300" x2="290" y2="300"/>
+<line x1="105" y1="85" x2="105" y2="120"/><line x1="190" y1="50" x2="290" y2="50"/>
+<line x1="375" y1="85" x2="375" y2="120"/>
+</g>
+<g fill="#dc2626" font-weight="600" font-size="12">
+<text x="196" y="170">1</text><text x="272" y="170">n</text>
+<text x="466" y="170">1</text><text x="542" y="170">n</text>
+<text x="716" y="170">n</text><text x="816" y="245">1</text>
+<text x="110" y="245">1</text><text x="272" y="296">n</text>
+<text x="196" y="45">n</text><text x="272" y="45">n</text>
+<text x="380" y="112">n</text><text x="110" y="112">n</text>
+</g>
+<text x="240" y="195" text-anchor="middle" font-size="11" fill="#475569">Order::customer()</text>
+<text x="510" y="195" text-anchor="middle" font-size="11" fill="#475569">Order::orderdetails()</text>
+<text x="735" y="244" font-size="11" fill="#475569">Orderdetail::product()</text>
+<text x="200" y="316" font-size="11" fill="#475569">Customer::payments()</text>
+<text x="240" y="65" text-anchor="middle" font-size="11" fill="#475569">pivot (TP)</text>
+<text x="470" y="65" font-size="11" fill="#475569">Customer::categories() : belongsToMany</text>
+<text x="470" y="82" font-size="11" fill="#475569">(tables ajoutées dans ce TP)</text>
+<text x="480" y="352" font-size="11" fill="#475569">Une clé étrangère en base = une méthode de relation dans le modèle généré.</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="330" viewBox="0 0 900 330"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="330" fill="#ffffff"/>
+<text x="20" y="30" font-weight="600" font-size="14">Client 103 et sa table pivot category_customer</text>
+<!-- 4 states -->
+<g font-family="ui-monospace, monospace" font-size="12">
+<rect x="20" y="60" width="200" height="120" rx="8" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+<text x="110" y="82" text-anchor="middle" font-weight="600" font-family="system-ui, sans-serif">Au départ</text>
+<text x="35" y="106" fill="#475569">customer | category</text>
+<text x="110" y="140" text-anchor="middle" fill="#94a3b8" font-family="system-ui, sans-serif">(aucune ligne)</text>
+
+<rect x="240" y="60" width="200" height="120" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<text x="340" y="82" text-anchor="middle" font-weight="600" font-family="system-ui, sans-serif">attach([1, 2])</text>
+<text x="255" y="106" fill="#475569">customer | category</text>
+<text x="255" y="128" fill="#16a34a">103      | 1   + ajouté</text>
+<text x="255" y="148" fill="#16a34a">103      | 2   + ajouté</text>
+
+<rect x="460" y="60" width="200" height="120" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="560" y="82" text-anchor="middle" font-weight="600" font-family="system-ui, sans-serif">sync([3, 4])</text>
+<text x="475" y="106" fill="#475569">customer | category</text>
+<text x="475" y="126" fill="#dc2626" text-decoration="line-through">103      | 1</text>
+<text x="475" y="142" fill="#dc2626" text-decoration="line-through">103      | 2</text>
+<text x="475" y="158" fill="#16a34a">103      | 3   + ajouté</text>
+<text x="475" y="174" fill="#16a34a">103      | 4   + ajouté</text>
+
+<rect x="680" y="60" width="200" height="120" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="780" y="82" text-anchor="middle" font-weight="600" font-family="system-ui, sans-serif">detach(3)</text>
+<text x="695" y="106" fill="#475569">customer | category</text>
+<text x="695" y="128" fill="#dc2626" text-decoration="line-through">103      | 3</text>
+<text x="695" y="148">103      | 4</text>
+</g>
+<g stroke="#475569" stroke-width="2" marker-end="url(#arrow)"><line x1="220" y1="120" x2="238" y2="120"/><line x1="440" y1="120" x2="458" y2="120"/><line x1="660" y1="120" x2="678" y2="120"/></g>
+<!-- legend -->
+<g font-size="12">
+<rect x="20" y="210" width="860" height="100" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="35" y="234"><tspan font-weight="600" font-family="ui-monospace, monospace">attach</tspan> : ajoute des lignes dans la pivot, sans toucher aux existantes.</text>
+<text x="35" y="258"><tspan font-weight="600" font-family="ui-monospace, monospace">sync</tspan> : la pivot devient exactement la liste donnée (les lignes absentes de la liste sont supprimées). Idéal pour un formulaire avec cases à cocher.</text>
+<text x="35" y="282"><tspan font-weight="600" font-family="ui-monospace, monospace">detach</tspan> : supprime les lignes indiquées (sans argument : toutes).</text>
+<text x="35" y="302" fill="#475569">Dans tous les cas, ce sont des lignes de la table pivot qui bougent : les tables customers et categories ne changent pas.</text>
+</g>
+</svg>

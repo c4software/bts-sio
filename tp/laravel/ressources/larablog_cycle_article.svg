@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="262" viewBox="0 0 900 262"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="260" fill="#ffffff"/>
+<rect x="20" y="70" width="180" height="80" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+<text x="110" y="100" text-anchor="middle" font-weight="600">Création</text>
+<text x="110" y="120" text-anchor="middle" font-size="12" fill="#475569">formulaire, articles.store</text>
+<text x="110" y="138" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11">user_id = Auth::id()</text>
+<line x1="200" y1="110" x2="258" y2="110" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="260" y="70" width="200" height="80" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<text x="360" y="100" text-anchor="middle" font-weight="600">Brouillon</text>
+<text x="360" y="120" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">draft = 1</text>
+<text x="360" y="138" text-anchor="middle" font-size="12" fill="#475569">visible seulement par l'auteur</text>
+<line x1="460" y1="110" x2="538" y2="110" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="499" y="100" text-anchor="middle" font-size="11" fill="#16a34a">publier</text>
+<line x1="540" y1="125" x2="462" y2="125" stroke="#475569" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#arrow)"/>
+<text x="499" y="164" text-anchor="middle" font-size="11" fill="#475569">repasser en brouillon</text>
+<rect x="540" y="70" width="200" height="80" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="640" y="100" text-anchor="middle" font-weight="600">Publié</text>
+<text x="640" y="120" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">draft = 0</text>
+<text x="640" y="138" text-anchor="middle" font-size="12" fill="#475569">visible dans la partie publique</text>
+<line x1="740" y1="110" x2="798" y2="110" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="800" y="70" width="80" height="80" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="840" y="105" text-anchor="middle" font-size="12">lecture,</text>
+<text x="840" y="121" text-anchor="middle" font-size="12">commentaires,</text>
+<text x="840" y="137" text-anchor="middle" font-size="12">likes</text>
+<!-- edit / delete -->
+<path d="M360,150 V205 H640 V150" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+<text x="500" y="222" text-anchor="middle" font-size="12" fill="#2563eb">Édition et suppression possibles dans les deux états, par l'auteur seulement</text>
+<text x="450" y="250" text-anchor="middle" font-size="12" fill="#dc2626">La partie publique filtre toujours : <tspan font-family="ui-monospace, monospace">where('draft', false)</tspan></text>
+</svg>

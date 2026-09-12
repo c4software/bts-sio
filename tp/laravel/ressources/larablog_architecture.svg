@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="330" viewBox="0 0 900 330"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="330" fill="#ffffff"/>
+<!-- Breeze -->
+<rect x="20" y="20" width="860" height="56" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<text x="450" y="44" text-anchor="middle" font-weight="600">Authentification : générée par Breeze</text>
+<text x="450" y="64" text-anchor="middle" font-size="12" fill="#475569">inscription, connexion, déconnexion, mot de passe oublié, dashboard (rien à coder)</text>
+<!-- user space -->
+<rect x="20" y="100" width="410" height="210" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="225" y="126" text-anchor="middle" font-weight="600" font-size="15">Espace utilisateur (connecté)</text>
+<text x="225" y="146" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">UserController · middleware auth</text>
+<g font-size="12" fill="#0f172a">
+<text x="40" y="178">• Mes articles (brouillons et publiés)</text>
+<text x="40" y="200">• Créer un article</text>
+<text x="40" y="222">• Éditer, publier, supprimer <tspan fill="#475569">mes</tspan> articles</text>
+<text x="40" y="244">• Choisir des catégories</text>
+<text x="40" y="266" fill="#475569">Routes : /articles, /articles/create, /articles/{id}/edit…</text>
+<text x="40" y="292" fill="#dc2626" font-weight="600">Un utilisateur ne touche qu'à ses propres articles.</text>
+</g>
+<!-- public -->
+<rect x="470" y="100" width="410" height="210" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="675" y="126" text-anchor="middle" font-weight="600" font-size="15">Partie publique (tout le monde)</text>
+<text x="675" y="146" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">PublicController · sans middleware</text>
+<g font-size="12" fill="#0f172a">
+<text x="490" y="178">• Le blog d'un utilisateur : ses articles <tspan font-weight="600">publiés</tspan></text>
+<text x="490" y="200">• Lire un article (s'il est publié)</text>
+<text x="490" y="222">• Voir les commentaires, les catégories, les likes</text>
+<text x="490" y="244">• Commenter <tspan fill="#475569">(uniquement si connecté)</tspan></text>
+<text x="490" y="266" fill="#475569">Routes : /{user}, /{user}/{article} (public.index, public.show)</text>
+<text x="490" y="292" fill="#dc2626" font-weight="600">Jamais de brouillon visible ici.</text>
+</g>
+</svg>

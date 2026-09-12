@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="330" viewBox="0 0 900 330"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="330" fill="#ffffff"/>
+<g stroke-width="2">
+<rect x="40" y="120" width="150" height="70" rx="10" fill="#fef3c7" stroke="#d97706"/>
+<rect x="370" y="120" width="170" height="70" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+<rect x="720" y="30" width="150" height="60" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+<rect x="720" y="125" width="150" height="60" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+<rect x="720" y="220" width="150" height="60" rx="10" fill="#f1f5f9" stroke="#475569"/>
+</g>
+<g text-anchor="middle" fill="#0f172a">
+<text x="115" y="150" font-weight="600" font-size="15">User</text><text x="115" y="172" font-size="11" fill="#475569">(Breeze)</text>
+<text x="455" y="150" font-weight="600" font-size="15">Article</text><text x="455" y="172" font-size="11" fill="#475569">title, content, draft, likes</text>
+<text x="795" y="55" font-weight="600" font-size="15">Category</text><text x="795" y="75" font-size="11" fill="#475569">pivot article_category</text>
+<text x="795" y="150" font-weight="600" font-size="15">Tag</text><text x="795" y="170" font-size="11" fill="#475569">pivot article_tag</text>
+<text x="795" y="245" font-weight="600" font-size="15">Comment</text><text x="795" y="265" font-size="11" fill="#475569">content</text>
+</g>
+<g stroke="#475569" stroke-width="2" fill="none">
+<line x1="190" y1="155" x2="370" y2="155"/>
+<line x1="540" y1="145" x2="720" y2="60"/>
+<line x1="540" y1="155" x2="720" y2="155"/>
+<line x1="540" y1="165" x2="720" y2="250"/>
+<path d="M115,190 V300 H795 V280"/>
+</g>
+<g font-size="12" fill="#dc2626" font-weight="600">
+<text x="198" y="150">1</text><text x="352" y="150">n</text>
+<text x="548" y="140">n</text><text x="700" y="70">n</text>
+<text x="548" y="150">n</text><text x="700" y="150">n</text>
+<text x="548" y="185">1</text><text x="700" y="240">n</text>
+<text x="122" y="215">1</text><text x="770" y="296">n</text>
+</g>
+<g font-size="11" fill="#475569">
+<text x="280" y="144" text-anchor="middle">$user->articles / $article->user</text>
+<text x="600" y="72" text-anchor="middle">$article->categories (belongsToMany)</text>
+<text x="630" y="140" text-anchor="middle">$article->tags (belongsToMany)</text>
+<text x="600" y="240" text-anchor="middle">$article->comments (hasMany)</text>
+<text x="455" y="316" text-anchor="middle">$comment->user : l'auteur du commentaire</text>
+</g>
+<text x="20" y="30" font-size="12" fill="#0f172a">Les relations sont déjà écrites dans les modèles générés : à vous de les utiliser dans les contrôleurs et les vues.</text>
+</svg>

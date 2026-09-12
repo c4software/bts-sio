@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="320" viewBox="0 0 900 320"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="320" fill="#ffffff"/>
+<!-- clients -->
+<g stroke-width="2">
+<rect x="20" y="30" width="180" height="60" rx="10" fill="#f1f5f9" stroke="#475569"/>
+<rect x="20" y="130" width="180" height="60" rx="10" fill="#f1f5f9" stroke="#475569"/>
+<rect x="20" y="230" width="180" height="60" rx="10" fill="#f1f5f9" stroke="#475569" stroke-dasharray="6 4"/>
+</g>
+<g text-anchor="middle" fill="#0f172a">
+<text x="110" y="55" font-weight="600">Site web</text><text x="110" y="75" font-size="12" fill="#475569">Vue.js</text>
+<text x="110" y="155" font-weight="600">Application mobile</text><text x="110" y="175" font-size="12" fill="#475569">Flutter</text>
+<text x="110" y="255" font-weight="600">N'importe quel client</text><text x="110" y="275" font-size="12" fill="#475569">script, TV, voiture…</text>
+</g>
+<!-- arrows to api -->
+<g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+<path d="M200,60 H260 V160 H318"/><path d="M200,160 H318"/><path d="M200,260 H260 V160 H318"/>
+</g>
+<text x="285" y="118" text-anchor="middle" font-size="11" fill="#475569">HTTP</text>
+<text x="285" y="132" text-anchor="middle" font-size="11" fill="#475569">JSON</text>
+<!-- API -->
+<rect x="320" y="60" width="320" height="200" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="480" y="88" text-anchor="middle" font-weight="600" font-size="15">L'API (Laravel)</text>
+<g font-size="12">
+<rect x="340" y="105" width="280" height="36" rx="6" fill="#fff" stroke="#93c5fd"/><text x="480" y="128" text-anchor="middle" font-family="ui-monospace, monospace">routes/api.php   /api/produits</text>
+<rect x="340" y="150" width="280" height="36" rx="6" fill="#fff" stroke="#93c5fd"/><text x="480" y="173" text-anchor="middle" font-family="ui-monospace, monospace">ProduitsController</text>
+<rect x="340" y="195" width="280" height="36" rx="6" fill="#fff" stroke="#93c5fd"/><text x="480" y="218" text-anchor="middle" font-family="ui-monospace, monospace">response()->json(Produit::all())</text>
+</g>
+<text x="480" y="250" text-anchor="middle" font-size="11" fill="#475569">pas de HTML, pas de vue Blade : uniquement des données</text>
+<g stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"><line x1="480" y1="141" x2="480" y2="148"/><line x1="480" y1="186" x2="480" y2="193"/></g>
+<!-- DB -->
+<line x1="640" y1="160" x2="738" y2="160" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="690" y="150" text-anchor="middle" font-size="11" fill="#475569">Eloquent</text>
+<g stroke="#475569" stroke-width="2" fill="#f1f5f9"><path d="M750,110 a50,14 0 0,1 100,0 v90 a50,14 0 0,1 -100,0 z"/><ellipse cx="800" cy="110" rx="50" ry="14"/></g>
+<text x="800" y="160" text-anchor="middle" font-weight="600" font-size="12">MySQL</text>
+<text x="800" y="178" text-anchor="middle" font-size="11" fill="#475569">produits, clients,</text>
+<text x="800" y="192" text-anchor="middle" font-size="11" fill="#475569">commandes</text>
+<text x="470" y="312" text-anchor="middle" font-size="12" fill="#0f172a">Une seule API, la même donnée pour tous les clients : c'est tout l'intérêt de séparer client et serveur.</text>
+</svg>

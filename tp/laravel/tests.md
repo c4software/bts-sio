@@ -65,6 +65,14 @@ php artisan test
 
 `php artisan test` s'exécute et affiche les tests d'exemple en `PASS`.
 
+![Les deux tests d'exemple passent](./ressources/tests_exemples.png)
+
+:::
+
+::: details Le test Feature d'exemple échoue ?
+
+`tests/Feature/ExampleTest.php` vérifie que la page `/` répond `200`. Si dans votre projet la racine redirige (vers `/todo` par exemple), ce test échoue : adaptez l'URL (`/login`) ou supprimez ce fichier d'exemple. Un test doit décrire **votre** application.
+
 :::
 
 Question :
@@ -121,7 +129,11 @@ Lancez les tests :
 php artisan test
 ```
 
-Vos deux tests apparaissent en vert. Décortiquons ce que nous venons d'écrire :
+Vos deux tests apparaissent en vert :
+
+![Les tests de la calculatrice passent](./ressources/tests_calculatrice.png)
+
+Décortiquons ce que nous venons d'écrire :
 
 - Une classe de test = un fichier dans `tests/`, dont le nom se termine par `Test`.
 - Une méthode = un scénario, son nom commence par `test_` et **décrit le comportement attendu**.
@@ -155,7 +167,11 @@ class DivisionTest extends TestCase
 }
 ```
 
-Lancez `php artisan test` : les tests **échouent**, la méthode `division` n'existe pas. Je vous laisse l'ajouter dans la classe `Calculatrice` et relancer les tests jusqu'au vert.
+Lancez `php artisan test` : les tests **échouent**, la méthode `division` n'existe pas. PHPUnit vous montre exactement la ligne du test concernée et l'erreur (`Call to undefined method`) :
+
+![Les tests de division échouent : la méthode n'existe pas](./ressources/tests_division_rouge.png)
+
+Je vous laisse l'ajouter dans la classe `Calculatrice` et relancer les tests jusqu'au vert.
 
 ## Le cahier des charges change
 
@@ -175,7 +191,11 @@ public function test_division_par_zero_interdite(): void
 }
 ```
 
-Lancez les tests : le nouveau test est **rouge**. Je vous laisse modifier la méthode `division` pour le faire passer au vert.
+Lancez les tests : le nouveau test est **rouge**. Lisez bien le message : PHP a levé une `DivisionByZeroError`, pas l'`InvalidArgumentException` attendue.
+
+![Le test attend une InvalidArgumentException, PHP lève une DivisionByZeroError](./ressources/tests_exception_rouge.png)
+
+Je vous laisse modifier la méthode `division` pour le faire passer au vert.
 
 ::: details Un indice pour lever l'exception ?
 
@@ -184,6 +204,14 @@ if ($b == 0) {
     throw new \InvalidArgumentException("Division par zéro impossible");
 }
 ```
+
+:::
+
+::: tip Point de contrôle
+
+Les 7 tests sont verts, y compris `division par zero interdite`.
+
+![Les sept tests passent](./ressources/tests_exception_vert.png)
 
 :::
 
@@ -204,6 +232,8 @@ Questions :
 
 Les tests unitaires vérifient une classe isolée. Mais notre application, c'est surtout des **pages**. Les tests **Feature** simulent une vraie requête HTTP, sans navigateur et sans serveur lancé.
 
+![Test unitaire et test Feature](./ressources/tests_unit_vs_feature.svg)
+
 Créez `tests/Feature/ConnexionTest.php` :
 
 ```php
@@ -211,10 +241,14 @@ Créez `tests/Feature/ConnexionTest.php` :
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ConnexionTest extends TestCase
 {
+    // Les tests Feature tournent sur une base de test vide : ce trait y rejoue vos migrations
+    use RefreshDatabase;
+
     public function test_page_connexion_accessible(): void
     {
         $this->get('/login')->assertStatus(200);
@@ -245,7 +279,9 @@ Un test ne sert que s'il détecte les régressions. Vérifions :
 - Commentez le middleware `CheckAuth` sur la route `/todo` dans `routes/web.php`.
 - Relancez `php artisan test`.
 
-Le test `test_todo_list_protegee` doit passer au **rouge** : vous venez de simuler une régression de sécurité, détectée automatiquement.
+Le test `test_todo_list_protegee` doit passer au **rouge** : vous venez de simuler une régression de sécurité, détectée automatiquement. Le message dit tout : une redirection était attendue, la page a répondu `200`.
+
+![La régression est détectée : 200 au lieu d'une redirection](./ressources/tests_regression_rouge.png)
 
 Remettez le middleware et vérifiez que tout repasse au vert.
 
@@ -265,6 +301,10 @@ Passons en conditions réelles, cette fois c'est vous qui faites tout le cycle. 
 
 > Pour afficher une barre de progression sur la TODO List, il faut une méthode `Calculatrice::progression($total, $terminees)` qui retourne le pourcentage de TODO terminées, **arrondi à l'entier**. Si `$total` vaut zéro, la progression est de 0 (pas de division par zéro !). Si `$terminees` est plus grand que `$total`, une exception `InvalidArgumentException` doit être levée.
 
+Le cycle à suivre, toujours dans cet ordre :
+
+![Le cycle TDD : Red, Green, Refactor](./ressources/tests_tdd_cycle.svg)
+
 ### 🔴 Red : écrivez les tests d'abord
 
 Créez `tests/Unit/ProgressionTest.php` et écrivez **avant tout code** les tests correspondant au cahier des charges :
@@ -276,9 +316,13 @@ Créez `tests/Unit/ProgressionTest.php` et écrivez **avant tout code** les test
 
 Lancez les tests : tout est rouge, c'est normal, c'est même le but.
 
+![Les quatre tests de progression échouent, la méthode n'existe pas encore](./ressources/tests_tdd_rouge.png)
+
 ### 🟢 Green : codez jusqu'au vert
 
-Écrivez maintenant la méthode `progression` dans `Calculatrice`, et relancez `php artisan test` jusqu'à ce que les 4 tests passent, **sans casser les anciens**.
+Écrivez maintenant la méthode `progression` dans `Calculatrice`, et relancez `php artisan test` jusqu'à ce que les 4 tests passent, **sans casser les anciens**. Astuce : `php artisan test --filter=Progression` ne lance que les tests dont le nom contient « Progression ».
+
+![Seuls les tests de progression, avec le filtre](./ressources/tests_filtre.png)
 
 ::: details Besoin d'un indice ?
 
@@ -345,6 +389,8 @@ Vous savez déjà lire l'essentiel ! Trois nouveautés tout de même :
 - `Utilisateur::factory()->create([...])` : crée un utilisateur de test en une ligne (vous avez vu les factories dans [le TP Aller plus loin](./aller_plus_loin.md)).
 - `Mail::fake()` : désactive le véritable envoi d'emails pendant le test.
 
+Et `RefreshDatabase`, vous l'avez déjà utilisé dans votre `ConnexionTest`. Sans lui, la base de test est vide (aucune table) et la moindre requête Eloquent explose avec `no such table`.
+
 ### À vous : l'analyse
 
 En vous appuyant sur ce que vous avez vu dans [le TP reset de mot de passe](./reset_mot_de_passe.md), répondez :
@@ -352,11 +398,13 @@ En vous appuyant sur ce que vous avez vu dans [le TP reset de mot de passe](./re
 1. Que vérifie exactement `test_envoi_email_reset_pour_email_connu` ? Reformulez-le en une phrase en français.
 2. Pourquoi le second test est-il un test de **sécurité** ? Quelle attaque empêche-t-il de réintroduire ?
 3. Pourquoi `Mail::fake()` est-il indispensable ici ? Que se passerait-il sans lui ?
-4. Pourquoi ces tests ont-ils besoin de `RefreshDatabase` alors que ceux de votre `ConnexionTest` n'en avaient pas besoin ?
+4. Dans votre `ConnexionTest`, que se serait-il passé sans `RefreshDatabase` au moment où vous avez retiré le middleware ? (indice : sans middleware, le contrôleur interroge la table `todos`… sur une base de test vide)
 
 ::: tip Point de contrôle final
 
-Vous devez avoir au minimum 11 tests au vert (`php artisan test`) : les exemples de Laravel, la calculatrice (addition, division, exception), la connexion, et la progression. Et vous devez savoir répondre aux 4 questions d'analyse ci-dessus.
+Vous devez avoir 13 tests au vert (`php artisan test`) : les 2 exemples de Laravel, la calculatrice (2 additions, 2 divisions, l'exception), les 2 tests de connexion et les 4 tests de progression. Et vous devez savoir répondre aux 4 questions d'analyse ci-dessus.
+
+![Les 13 tests passent](./ressources/tests_final.png)
 
 :::
 

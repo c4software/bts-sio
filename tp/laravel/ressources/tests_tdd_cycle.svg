@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="320" viewBox="0 0 900 320"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="320" fill="#ffffff"/>
+<!-- circle arrows -->
+<g fill="none" stroke-width="3">
+<path d="M335,70 A160,90 0 0,1 578,90" stroke="#dc2626" marker-end="url(#arrowr)"/>
+<path d="M690,185 A170,120 0 0,1 525,262" stroke="#16a34a" marker-end="url(#arrowg)"/>
+<path d="M298,265 A170,120 0 0,1 225,135" stroke="#2563eb" marker-end="url(#arrowb)"/>
+</g>
+<!-- Red -->
+<rect x="130" y="40" width="200" height="90" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+<text x="230" y="68" text-anchor="middle" font-weight="700" font-size="16" fill="#dc2626">1. Red</text>
+<text x="230" y="90" text-anchor="middle" font-size="12">Écrire le test qui décrit le besoin.</text>
+<text x="230" y="108" text-anchor="middle" font-size="12">Le lancer : il échoue (normal !).</text>
+<!-- Green -->
+<rect x="580" y="90" width="200" height="90" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="680" y="118" text-anchor="middle" font-weight="700" font-size="16" fill="#16a34a">2. Green</text>
+<text x="680" y="140" text-anchor="middle" font-size="12">Écrire le code le plus simple</text>
+<text x="680" y="158" text-anchor="middle" font-size="12">qui fait passer le test.</text>
+<!-- Refactor -->
+<rect x="300" y="215" width="220" height="90" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="410" y="243" text-anchor="middle" font-weight="700" font-size="16" fill="#2563eb">3. Refactor</text>
+<text x="410" y="265" text-anchor="middle" font-size="12">Améliorer le code (lisibilité, doublons).</text>
+<text x="410" y="283" text-anchor="middle" font-size="12">Les tests restent verts : rien n'est cassé.</text>
+<!-- center -->
+<text x="440" y="160" text-anchor="middle" font-size="12" fill="#475569">et on recommence</text>
+<text x="440" y="178" text-anchor="middle" font-size="12" fill="#475569">pour le besoin suivant</text>
+<!-- side note -->
+<text x="20" y="200" font-size="12" fill="#475569">Terminé quand :</text>
+<text x="20" y="218" font-size="12" fill="#475569">tous les tests du</text>
+<text x="20" y="236" font-size="12" fill="#475569">cahier des charges</text>
+<text x="20" y="254" font-size="12" fill="#475569">sont verts.</text>
+</svg>

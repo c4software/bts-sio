@@ -46,6 +46,8 @@ Une API va nous permettre de séparer la logique entre client et serveur afin de
 Pourquoi préférer une API « JSON / XML » à un retour HTML basic ? Tout simplement, car l'API va être universelle; nous pourrons donc l'utiliser dans un site Internet, mais également dans une application ou n'importe quel client applicatif (web, Android, iOs, une voiture, une TV…).
 :::
 
+![Une API, plusieurs clients](./ressources/api_architecture.svg)
+
 ## Prérequis
 
 Pour pouvoir réaliser ce TP, vous devez avoir installé Composer sur votre machine. Je vous invite à suivre la documentation officielle : [https://getcomposer.org/download/](https://getcomposer.org/download/) si ce n'est pas déjà fait.
@@ -259,7 +261,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 :::
 
-⚠️ Sans cela, vous ne pourrez pas utiliser les factories.
+⚠️ Sans cela, vous ne pourrez pas utiliser les factories. Le générateur ne les ajoute pas : pensez-y aussi pour le modèle `Produit`.
 
 ### Créer une factory
 
@@ -317,6 +319,10 @@ Notre API sera très simple, elle contiendra **3 routes / fonctionnalités** :
 | GET     | `/api/produit/{id}` | Obtention du produit spécifié en paramètre `id`                              |
 | POST    | `/api/produit`      | Ajouter un nouveau produit dans la table `Produit`                           |
 | POST    | `/api/commande`     | Ajout d'une commande nouvelle commande pour « un produit » et « un client »  |
+
+Une requête vers une API, c'est un verbe HTTP, un chemin, et du JSON dans les deux sens :
+
+![Anatomie d'une requête et d'une réponse JSON](./ressources/api_requete_reponse.svg)
 
 ## Testons les modèles
 
@@ -389,7 +395,9 @@ Pour tester, nous avons deux cas, soit vous avez un navigateur, soit vous avez u
 
 #### Avec un navigateur
 
-Si vous avez un navigateur, vous pouvez aller sur la route `/api/produits` et vous devriez voir un tableau JSON.
+Si vous avez un navigateur, vous pouvez aller sur la route `/api/produits` et vous devriez voir un tableau JSON (Chrome propose une case « Pretty-print » pour le rendre lisible) :
+
+![La liste des produits en JSON dans le navigateur](./ressources/api_produits_navigateur.png)
 
 #### Avec un outil de requête HTTP
 
@@ -410,7 +418,15 @@ Nous allons le tester ensemble.
 - Dans la barre d'adresse, tapez `http://localhost:8000/api/produits`
 - Cliquez sur le bouton `Send`
 
-Vous devriez voir une réponse de type `200` et un tableau JSON. 
+Vous devriez voir une réponse de type `200` et un tableau JSON. En ligne de commande, `curl` donne le même résultat, en-têtes compris :
+
+```
+$ curl -i http://localhost:8000/api/produits
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[{"id":1,"nom":"rem quos","description":"Nobis perferendis voluptatem nulla consequatur.","lien_image":"https://picsum.photos/200/300","prix":199.11,"tva":20},{"id":2,"nom":"dolores quam",…
+```
 
 ## Point étape : GIT
 
@@ -456,6 +472,8 @@ C'est à vous, je vous laisse écrire le code et tester :
 - Créez la route.
 - Créez la méthode dans le contrôleur.
 - Testez avec Postman (ou un navigateur).
+
+![Un seul produit, en JSON](./ressources/api_produit_detail.png)
 
 N'oubliez pas de faire un commit si tout fonctionne.
 
@@ -504,7 +522,22 @@ Nous allons le réaliser ensemble, mais si vous le souhaitez, voilà la procédu
 - Dans la partie, `Body` tapez les données du produit à créer
 - Cliquez sur le bouton `Send`
 
-Vous devriez voir une réponse de type `200` et le produit créé en JSON.
+Vous devriez voir une réponse de type `200` et le produit créé en JSON (avec son `id`, attribué par la base) :
+
+![La requête POST et sa réponse dans un client HTTP](./ressources/api_postman_like.png)
+
+L'équivalent avec `curl` :
+
+```sh
+curl -i -X POST http://localhost:8000/api/produits \
+     -H "Content-Type: application/json" \
+     -d '{"nom":"Clavier mécanique","description":"Un clavier pour développeur","lien_image":"https://picsum.photos/200/300","prix":89.90,"tva":20}'
+```
+
+```
+HTTP/1.1 200 OK
+{"nom":"Clavier mécanique","description":"Un clavier pour développeur","lien_image":"https://picsum.photos/200/300","prix":89.9,"tva":20,"id":21}
+```
 
 ## Point étape : GIT
 
@@ -634,7 +667,16 @@ function commandesClient($idClient){
 }
 ```
 
-Je vous laisse observer la différence entre les deux réponses.
+Je vous laisse observer la différence entre les deux réponses :
+
+```
+# sans with('produit')
+[{"id":1,"id_client":1,"id_produit":1,"quantite":3,"date":"2026-09-12T00:00:00.000000Z"}]
+
+# avec with('produit') : le produit est imbriqué dans chaque commande
+[{"id":1,"id_client":1,"id_produit":1,"quantite":3,"date":"2026-09-12T00:00:00.000000Z",
+  "produit":{"id":1,"nom":"rem quos","description":"Nobis perferendis voluptatem nulla consequatur.","lien_image":"https://picsum.photos/200/300","prix":199.11,"tva":20}}]
+```
 
 ::: tip `with()`
 
@@ -720,6 +762,13 @@ function creerClient(Request $request){
 
 Attention également à bien hasher le mot de passe avant de l'enregistrer dans la base de données.
 
+Pour une API, une erreur se signale par un **code de statut** et un message JSON, par exemple `422` (données invalides) :
+
+```
+HTTP/1.1 422 Unprocessable Content
+{"message":"Cet email est déjà utilisé"}
+```
+
 :::
 
 ## Authentification d'un client
@@ -749,7 +798,13 @@ function authentifierClient(Request $request){
 
 Vous allez devoir utiliser password_verify() pour vérifier le mot de passe.
 
-⚠️ N'oublier pas de retourner le client authentifié.
+⚠️ N'oublier pas de retourner le client authentifié. Et en cas d'échec, un `401` :
+
+```
+HTTP/1.1 401 Unauthorized
+{"message":"Identifiants invalides"}
+```
+
 :::
 
 ## Aller plus loin
@@ -765,9 +820,30 @@ Sanctum, c'est un package (un peu comme Breeze), mais ici pas d'interface, nous 
 - Gérer les droits d'accès pour chaque route (`->middleware('auth:sanctum')`)
 - Authentifier les utilisateurs via un token (appelé bearer token).
 
+![Le parcours d'un token Sanctum](./ressources/api_sanctum_token.svg)
+
 ::: tip C'est du bonus
 
 Cette partie n'intéressera pas tout le monde. Si vous êtes intéressé, vous pouvez regarder la documentation de Sanctum. Et me demander si vous avez des questions.
+
+:::
+
+::: warning Avant de copier le code : trois réglages
+
+Ce code suppose que le modèle authentifié est `User`. Pour l'utiliser avec votre modèle `Client` :
+
+1. `Client` doit hériter de `Illuminate\Foundation\Auth\User` (comme dans [le TP Comprendre l'authentification](./authentification_manuelle.md)) et utiliser `HasApiTokens`.
+2. Dans `config/auth.php`, faites pointer le provider sur `App\Models\Client::class`, sinon `auth()->attempt()` cherche dans la table `users`.
+3. Depuis Laravel 11, les middlewares `abilities` et `ability` ne sont plus enregistrés d'office. Ajoutez-les dans `bootstrap/app.php` :
+
+```php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->alias([
+        'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
+        'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
+    ]);
+})
+```
 
 :::
 
@@ -839,6 +915,13 @@ Validation du token :
 curl -X GET http://localhost:8000/api/user -H "Authorization: Bearer TOKEN-OBTENU-PRECÉDEMMENT"
 ```
 
+Ce que vous devez observer : avec le token, `200` et les données du client ; sans token (ou avec un token révoqué par `logout`), `401` :
+
+```
+HTTP/1.1 401 Unauthorized
+{"message":"Unauthenticated."}
+```
+
 ### À faire
 
 - Ajouter une route permettant de lister les produits. Cette route doit être accessible uniquement aux utilisateurs authentifiés.
@@ -849,6 +932,17 @@ Pour créer un token avec des abilities, il suffit de passer un tableau associat
 ```php
 $token = $request->user()->createToken('token-name', ['admin'])->plainTextToken;
 ```
+
+::: warning Piège
+
+Un token créé sans liste d'abilities (`createToken('token-name')`) possède l'ability `*` : il passe **tous** les contrôles, y compris `abilities:admin`. Pour que la démonstration ait un sens, donnez une ability explicite aux tokens ordinaires (`['client']` par exemple). Un token sans la bonne ability doit obtenir :
+
+```
+HTTP/1.1 403 Forbidden
+{"message":"Invalid ability provided."}
+```
+
+:::
 
 Puis dans le middleware, vous pouvez vérifier les abilities de l'utilisateur. Exemple :
 
