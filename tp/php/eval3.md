@@ -10,7 +10,7 @@ description: Troisième point étape évalué. Un mini projet de synthèse pour 
 
 ## Introduction
 
-Dans les précédents TP, nous avons vu la modélisation et le langage SQL ([le complément SQL](./sql/support.md)), l'intégration d'une base de données dans un projet PHP ([TP 5 SQL](./sql/tp5.md)) et un projet administrable complet ([TP 6 SQL](./sql/tp6.md)).
+Dans les précédents TP, nous avons vu la modélisation et le langage SQL ([le complément SQL](./sql/support.md)), l'intégration d'une base de données dans un projet PHP (dès le [TP 2](./tp2.md)), l'authentification ([TP Authentification](./sql/tp-authentification.md)) et un projet administrable complet ([TP 6 SQL](./sql/tp6.md)).
 
 Vous avez atteint le dernier point étape du PHP « à la main ». Ce mini projet est une **synthèse évaluée** de l'ensemble du parcours : structure, formulaires, session, authentification et base de données. Il n'y aura pas de procédure pas à pas, à vous de mobiliser vos connaissances.
 
@@ -51,7 +51,7 @@ Vous avez à votre disposition l'ensemble des documents nécessaires :
 
 - [Le complément de cours PHP](./support.md)
 - [Le complément de cours SQL](./sql/support.md)
-- [TP 5 SQL : Bart PHP et MySQL](./sql/tp5.md)
+- [TP Authentification : les bonnes pratiques](./sql/tp-authentification.md)
 - [TP 6 SQL : BTS TV administrable](./sql/tp6.md)
 
 ## Le projet
