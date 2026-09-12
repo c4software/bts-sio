@@ -17,6 +17,7 @@ import SqlInjection from './components/SqlInjection.vue'
 import XssLab from './components/XssLab.vue'
 import Center from './components/Center.vue'
 import DebianConfiguration from './components/DebianConfiguration.vue'
+import HomeContent from './components/HomeContent.vue'
 import './custom.css'
 
 export default {
@@ -38,5 +39,6 @@ export default {
     app.component('XssLab', XssLab)
     app.component('center', Center)
     app.component('DebianConfiguration', DebianConfiguration)
+    app.component('HomeContent', HomeContent)
   }
 } satisfies Theme

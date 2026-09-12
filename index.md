@@ -1,6 +1,10 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
-layout: home
+# Layout `doc` (et non `home`) pour conserver le menu latéral ; le hero et les
+# features sont rendus par le composant <HomeContent />.
+pageClass: home-doc
+aside: false
+editLink: false
+lastUpdated: false
 
 hero:
   name: Bienvenue 👋
@@ -50,3 +54,4 @@ features:
 
 ---
 
+<HomeContent />
