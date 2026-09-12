@@ -41,15 +41,7 @@ Vous l'avez forcément déjà vécue : après le mot de passe, le site vous dema
 
 Le parcours de connexion devient :
 
-```
-POST /traitementLogin (mot de passe OK)
-        → génération d'un code à 6 chiffres (stocké en base, avec expiration)
-        → le code est transmis à l'utilisateur
-        → GET /verification : formulaire de saisie du code
-        → POST /verification : code correct et non expiré ?
-              → oui : le code est invalidé, Auth::login(), c'est gagné
-              → non : « Code invalide ou expiré »
-```
+![Le parcours de connexion avec la double authentification](./ressources/2fa_parcours.svg)
 
 Point important : tant que le code n'est pas validé, l'utilisateur n'est **pas connecté** (pas de `Auth::login()`).
 
@@ -101,6 +93,20 @@ if ($estValide) {
 
 N'oubliez pas le `use Illuminate\Support\Facades\Log;`.
 
+Après un login réussi, votre fichier `storage/logs/laravel.log` se termine par une ligne de ce type, et les deux colonnes sont remplies en base :
+
+```
+[2026-09-12 12:09:44] local.INFO: Code 2FA pour jane@doe.com : 535842
+```
+
+```
+sqlite> SELECT id, email, two_factor_code, two_factor_expires_at FROM utilisateurs;
+id  email         two_factor_code  two_factor_expires_at
+--  ------------  ---------------  ---------------------
+1   jane@doe.com  535842           2026-09-12 12:19:44
+2   john@doe.com
+```
+
 ::: tip Et le vrai envoi ?
 
 En production, ce code partirait par **email ou SMS**, jamais dans un log. Nous verrons comment envoyer des emails avec Laravel dans le TP [Le reset de mot de passe](./reset_mot_de_passe.md). En attendant, le fichier `storage/logs/laravel.log` jouera le rôle de la boîte mail. Si vous avez déjà fait le TP reset, vous pouvez d'ailleurs remplacer le `Log::info` par un envoi via votre `EmailHelpers` !
@@ -118,6 +124,8 @@ Question :
 - Deux routes : GET `/verification` et POST `/verification`.
 - Une méthode `showVerification` : si la session ne contient pas `2fa_email`, redirigez vers `/login` (personne n'a rien à faire sur cette page sans avoir passé l'étape du mot de passe). Sinon, affichez la vue.
 - Une vue avec un formulaire : un champ `code`, un bouton, `@csrf`, et l'affichage de l'erreur avec `@error('code')`.
+
+![La page de vérification du code](./ressources/2fa_verification.png)
 
 ## Étape 4 : vérifier le code
 
@@ -149,6 +157,10 @@ Déroulez le parcours complet :
 2. Récupérez le code dans `storage/logs/laravel.log` et saisissez-le : vous êtes connecté.
 3. Modifiez à la main `two_factor_expires_at` en base pour mettre une date passée : le code doit être refusé.
 4. Après une connexion réussie, vérifiez en base : les deux colonnes 2FA sont repassées à `NULL`.
+
+![Un code faux ou expiré est refusé](./ressources/2fa_verification_erreur.png)
+
+![Le bon code : connecté, avec le message de bienvenue](./ressources/2fa_todo_bienvenue.png)
 
 :::
 

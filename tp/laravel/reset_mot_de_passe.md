@@ -58,15 +58,9 @@ Reprenez le [TP Comprendre l'authentification](./authentification_manuelle.md), 
 
 Vous l'avez vu dans les slides, le parcours complet est le suivant :
 
-```
-1. GET  /mot-de-passe-oublie          → formulaire « votre email ? »
-2. POST /mot-de-passe-oublie          → génère un token + envoie l'email
-                                        (réponse identique que l'email existe ou non)
-3. L'utilisateur clique sur le lien reçu par email :
-   GET  /reset-mot-de-passe/{token}   → formulaire « nouveau mot de passe »
-4. POST /reset-mot-de-passe/{token}   → vérifie le token, enregistre le hash,
-                                        invalide le token
-```
+![Le parcours complet du reset de mot de passe](./ressources/reset_parcours.svg)
+
+Quatre routes, deux formulaires, un email : gardez ce schéma sous les yeux, chaque étape du TP correspond à une case.
 
 Question :
 
@@ -175,6 +169,19 @@ Mail::raw('Coucou depuis Laravel', fn ($message) => $message->to('test@test.com'
 ```
 
 Ouvrez maintenant le fichier `storage/logs/laravel.log` (allez tout en bas) : votre email est là.
+
+```
+[2026-09-12 12:17:11] local.DEBUG: From: Laravel <hello@example.com>
+To: test@test.com
+Subject: Mon premier email
+MIME-Version: 1.0
+Date: Sat, 12 Sep 2026 12:17:11 +0000
+Message-ID: <1ad58c6746b4ee9224b8422639bcef9e@example.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Coucou depuis Laravel
+```
 
 ::: tip Point de contrôle
 
@@ -293,6 +300,10 @@ Il reste la méthode `showMotDePasseOublie` et sa vue. Vous avez déjà fait des
 - N'oubliez pas `@extends('layouts.base')` et `@csrf`.
 - Ajoutez un lien « Mot de passe oublié ? » sur votre page de connexion.
 
+![Le lien sur la page de connexion](./ressources/reset_login_lien.png)
+
+![Le formulaire « mot de passe oublié »](./ressources/reset_mot_de_passe_oublie.png)
+
 ::: tip Point de contrôle
 
 Saisissez l'email d'un utilisateur existant dans votre formulaire :
@@ -302,6 +313,30 @@ Saisissez l'email d'un utilisateur existant dans votre formulaire :
 - Dans votre outil SQLite, l'utilisateur a maintenant un `reset_token` et une date d'expiration.
 
 Testez aussi avec un email **inexistant** : même message, pas d'email dans le log, rien en base.
+
+![Le même message, que l'email existe ou non](./ressources/reset_mot_de_passe_oublie_succes.png)
+
+L'email dans le log ressemble à ceci (le lien est généré par `url()`, le HTML vient de votre template Blade) :
+
+```
+[2026-09-12 12:07:04] local.DEBUG: From: Laravel <hello@example.com>
+To: jane@doe.com
+Subject: =?utf-8?Q?R=C3=A9initialisation?= de votre mot de passe
+Content-Type: text/html; charset=utf-8
+
+<!DOCTYPE html>
+<html lang="fr">
+<body>
+    <p>Bonjour Jane Doe,</p>
+    <p>Vous avez demandé la réinitialisation de votre mot de passe. […]</p>
+    <p><a href="http://localhost:8000/reset-mot-de-passe/NOxrc3W6x5m9FuZUR1oM3S4XNtmDWuuK3SkQn8dvKQmCX7lmo1htX9Ey97xG9Adr">http://localhost:8000/reset-mot-de-passe/NOxrc3W6…</a></p>
+    <p>Ce lien est valable 30 minutes.</p>
+    […]
+```
+
+Et si l'email est vide ou mal formé, c'est `$request->validate()` qui renvoie l'utilisateur sur le formulaire avec l'erreur (affichez-la avec <span v-pre>`@error('email')`</span>, le message est en anglais par défaut) :
+
+![Erreur de validation sur l'email](./ressources/reset_email_invalide.png)
 
 :::
 
@@ -332,6 +367,16 @@ Je vous laisse écrire la méthode `showResetMotDePasse(string $token)` :
 ::: details Besoin d'un indice pour la vue ?
 
 Le formulaire a besoin de connaître le token pour construire son `action`. Passez-le à la vue (`return view('reset-mot-de-passe', ['token' => $token]);`) et utilisez-le dans l'attribut `action` du formulaire.
+
+:::
+
+::: tip Point de contrôle
+
+Avec le lien du log, le formulaire s'affiche. Avec un token inventé, retour sur « mot de passe oublié » avec l'erreur.
+
+![Le formulaire de nouveau mot de passe](./ressources/reset_nouveau_mot_de_passe.png)
+
+![Lien invalide ou expiré](./ressources/reset_lien_invalide.png)
 
 :::
 
@@ -368,6 +413,10 @@ $request->validate([
 ```
 
 Votre formulaire doit donc contenir un champ nommé `password` et un champ nommé `password_confirmation`.
+
+En cas d'échec (mot de passe trop court, confirmation différente), Laravel renvoie sur le formulaire avec l'erreur :
+
+![Mot de passe trop court](./ressources/reset_validation.png)
 
 :::
 

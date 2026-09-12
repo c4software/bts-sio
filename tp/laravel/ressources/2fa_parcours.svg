@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="380" viewBox="0 0 900 380" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13"> 
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="380" fill="#ffffff"/>
+  <!-- step 1 -->
+  <rect x="20" y="30" width="200" height="70" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="120" y="58" text-anchor="middle" font-weight="600">1. POST /traitementLogin</text>
+  <text x="120" y="80" text-anchor="middle" fill="#475569">email + mot de passe ✓</text>
+  <line x1="220" y1="65" x2="268" y2="65" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- step 2 -->
+  <rect x="270" y="20" width="240" height="90" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="390" y="46" text-anchor="middle" font-weight="600">2. Génération du code</text>
+  <text x="390" y="68" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">two_factor_code = 483 921</text>
+  <text x="390" y="88" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">expires_at = now + 10 min</text>
+  <line x1="510" y1="65" x2="558" y2="65" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- step 3 -->
+  <rect x="560" y="20" width="320" height="90" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="720" y="46" text-anchor="middle" font-weight="600">3. Code transmis à l'utilisateur</text>
+  <text x="720" y="68" text-anchor="middle" fill="#475569">email, SMS… (ici : le fichier de log)</text>
+  <text x="720" y="90" text-anchor="middle" fill="#dc2626" font-weight="600">Toujours PAS connecté (pas de Auth::login)</text>
+  <!-- down arrow -->
+  <line x1="720" y1="110" x2="720" y2="148" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="732" y="134" fill="#475569" font-size="12">session : 2fa_email</text>
+  <!-- step 4 -->
+  <rect x="560" y="150" width="320" height="60" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="720" y="175" text-anchor="middle" font-weight="600">4. GET /verification</text>
+  <text x="720" y="196" text-anchor="middle" fill="#475569">formulaire : saisissez le code</text>
+  <line x1="560" y1="180" x2="512" y2="180" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- step 5 decision -->
+  <polygon points="390,140 510,180 390,220 270,180" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="390" y="172" text-anchor="middle" font-weight="600">5. POST /verification</text>
+  <text x="390" y="190" text-anchor="middle" font-size="12">code correct ET non expiré ?</text>
+  <!-- no -->
+  <line x1="390" y1="220" x2="390" y2="288" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+  <text x="400" y="258" fill="#dc2626" font-weight="600">non</text>
+  <rect x="270" y="290" width="240" height="60" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="390" y="315" text-anchor="middle" font-weight="600" fill="#dc2626">« Code invalide ou expiré »</text>
+  <text x="390" y="336" text-anchor="middle" fill="#475569">retour au formulaire</text>
+  <!-- yes -->
+  <line x1="270" y1="180" x2="222" y2="180" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="246" y="172" text-anchor="middle" fill="#16a34a" font-weight="600">oui</text>
+  <rect x="20" y="130" width="200" height="220" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="120" y="158" text-anchor="middle" font-weight="600">6. Dans l'ordre</text>
+  <g fill="#0f172a">
+    <text x="34" y="190">1. code invalidé</text>
+    <text x="50" y="208" font-size="12" fill="#475569">(colonnes à NULL)</text>
+    <text x="34" y="236">2. session nettoyée</text>
+    <text x="50" y="254" font-size="12" fill="#475569">forget('2fa_email')</text>
+    <text x="34" y="282" font-weight="600">3. Auth::login()</text>
+    <text x="50" y="300" font-size="12" fill="#475569">+ regenerate()</text>
+    <text x="34" y="330">4. redirection /todo 🎉</text>
+  </g>
+</svg>

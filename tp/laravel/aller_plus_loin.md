@@ -58,6 +58,17 @@ Route::middleware('throttle:5,1')->get('/throttle', function () {
 
 Ici, pour tester, nous avons déclaré une route `/throttle` qui va limiter à 5 requêtes par minute. Vous pouvez tester directement avec votre navigateur. Après 5 requêtes, vous devriez voir une erreur `429 Too Many Requests`.
 
+![La page 429 de Laravel](./ressources/apl_throttle_429.png)
+
+Regardez aussi les en-têtes de la réponse (onglet Réseau des outils développeur, ou `curl -i`) : Laravel indique la limite, ce qu'il reste, et dans combien de temps réessayer.
+
+```
+HTTP/1.1 429 Too Many Requests
+x-ratelimit-limit: 5
+x-ratelimit-remaining: 0
+retry-after: 60
+```
+
 Question :
 
 - `throttle` est un middleware fourni par Laravel. Quel autre middleware avez-vous déjà écrit vous-même dans les TP précédents ?
@@ -68,6 +79,12 @@ Je vous laisse modifier votre code, pour intégrer la règle suivante :
 
 - Limiter à 50 requêtes par minute la route permettant de lister les TODO.
 - Limiter à 10 requêtes par minute la route permettant d'ajouter une TODO.
+
+::: warning Un compteur partagé
+
+Le compteur de `throttle` est calculé à partir de l'utilisateur connecté (ou de l'adresse IP), **pas** de la route. Deux routes avec `throttle:…` partagent donc le même compteur : après une dizaine de chargements de la liste, l'ajout renverra un 429. Pour des compteurs séparés, la documentation propose de nommer ses limiteurs (`RateLimiter::for('ajout-todo', …)`) : je vous laisse la lire si vous voulez aller plus loin, sinon gardez simplement cet effet en tête.
+
+:::
 
 ## Étape 2 : Laravel Tinker
 
@@ -83,6 +100,22 @@ Vous pouvez maintenant exécuter du code PHP dans le contexte de votre applicati
 
 ```php
 App\Models\Todo::all();
+```
+
+Tinker affiche le résultat directement :
+
+```
+> App\Models\Todo::all();
+= Illuminate\Database\Eloquent\Collection {#7263
+    all: [
+      App\Models\Todo {#7207
+        id: 1,
+        texte: "Réviser le TP Laravel",
+        termine: 0,
+        created_at: "2026-09-12 12:06:03",
+        updated_at: "2026-09-12 12:06:03",
+      },
+      …
 ```
 
 Je vous laisse tester rapidement.
@@ -184,6 +217,8 @@ php artisan db:seed --class=TodoSeeder
 
 Rechargez votre page `/todo`, vous devez voir vos 50 TODO factices.
 
+![La liste remplie par le seeder](./ressources/apl_todo_seed.png)
+
 :::
 
 ## Étape 4 : Lier les TODO à un utilisateur
@@ -197,6 +232,10 @@ Nous l'avons vu ensemble, Laravel utilise des conventions de nommage. Pour les r
 En respectant ces conventions, Laravel va automatiquement faire le lien entre les tables et vous permettre de récupérer les données facilement (c'est la magie de l'ORM Eloquent). Ici Laravel va automatiquement lier la colonne `utilisateur_id` de la table `todos` à la colonne `id` de la table `utilisateurs`.
 
 :::
+
+Voilà ce que nous allons obtenir, côté tables et côté modèles :
+
+![La relation entre utilisateurs et todos : un utilisateur possède plusieurs TODO](./ressources/apl_relation.svg)
 
 Pour commencer, créez une migration pour ajouter la colonne `utilisateur_id` :
 
@@ -237,6 +276,12 @@ Schema::table('todos', function (Blueprint $table) {
 Si votre table `todos` contient déjà des données (les 50 TODO factices de l'étape 3 par exemple), l'ajout d'une colonne obligatoire avec clé étrangère peut échouer. Le plus simple dans notre cas : repartir d'une base propre avec `php artisan migrate:fresh` (⚠️ cette commande **supprime toutes les données**, y compris vos utilisateurs, il faudra donc vous réinscrire).
 
 Question : pourquoi une telle commande est-elle acceptable en développement, mais interdite en production ?
+
+:::
+
+::: warning Et le seeder ?
+
+Maintenant qu'une TODO doit avoir un `utilisateur_id`, votre `TodoFactory` de l'étape 3 ne fonctionne plus telle quelle (clé étrangère manquante). Ajoutez-lui la ligne `'utilisateur_id' => 1,` (l'utilisateur 1 doit exister) avant de relancer `php artisan db:seed --class=TodoSeeder`.
 
 :::
 
@@ -287,6 +332,21 @@ Vous venez d'apprendre Tinker, c'est le moment de l'utiliser : vérifiez vos rel
 
 Créez deux comptes utilisateurs, ajoutez des TODO avec chacun. Chaque utilisateur ne doit voir **que ses propres TODO**.
 
+Et dans Tinker, la relation répond directement :
+
+```
+> App\Models\Utilisateur::find(1)->todos;
+= Illuminate\Database\Eloquent\Collection {#7489
+    all: [
+      App\Models\Todo {#7543
+        id: 1,
+        texte: "Réviser le TP Laravel",
+        termine: 1,
+        utilisateur_id: 1,
+      },
+      …
+```
+
 :::
 
 ## Étape 5 : Les pages « profil »
@@ -299,6 +359,12 @@ Pour compléter notre application, je vous propose de créer des pages permettan
 - Créer une page listant l'ensemble des utilisateurs et permettant de voir les TODO de chaque utilisateur.
 
 C'est à vous ! Je vous laisse réaliser ces étapes.
+
+Un exemple de résultat (la liste, puis la page d'un utilisateur) :
+
+![La liste des utilisateurs](./ressources/apl_utilisateurs.png)
+
+![Les TODO d'un utilisateur](./ressources/apl_profil.png)
 
 ::: details Besoin d'un indice pour la route ?
 

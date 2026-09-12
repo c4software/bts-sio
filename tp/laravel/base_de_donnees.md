@@ -59,11 +59,9 @@ Avec Laravel, nous allons utiliser **Eloquent**, l'ORM (Object-Relational Mappin
 
 Le flux complet dans notre application sera donc :
 
-```
-Navigateur → Route → Contrôleur → Modèle (Eloquent) → Base de données
-                          ↓
-                       Vue (Blade) → HTML renvoyé au navigateur
-```
+![Le chemin d'une requête : navigateur, route, contrôleur, modèle, base de données, puis vue](./ressources/bdd_flux_requete.svg)
+
+Le contrôleur ne parle jamais SQL : il demande au modèle, qui s'en charge, puis transmet les objets obtenus à la vue.
 
 L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique où tout est à « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite.
 
@@ -124,6 +122,12 @@ Cette commande va créer « la définition du modèle » (le modèle la représe
 Vous avez demandé un modèle `Todo`, et Laravel a nommé la table `todos`… C'est une **convention** : le modèle est au singulier, la table au pluriel. En respectant cette convention, Laravel fait le lien automatiquement entre les deux, sans aucune configuration.
 
 :::
+
+Pour bien visualiser le rôle de chacun de ces deux fichiers :
+
+![De la migration à la table, de la table à l'objet](./ressources/bdd_migration_modele.svg)
+
+La **migration** décrit la structure (elle crée la table), le **modèle** permet de manipuler son contenu (chaque ligne devient un objet `Todo`).
 
 ### Définir la migration (structure de la table)
 
@@ -199,9 +203,10 @@ Retour dans la ligne de commande :
 
 ```sh
 $ php artisan migrate
-[…]
-Migrating: YEAR_MONTH_DAY_TIME_create_todos_table
-Migrated:  YEAR_MONTH_DAY_TIME_create_todos_table
+
+   INFO  Running migrations.
+
+  YEAR_MONTH_DAY_TIME_create_todos_table .......... 1.50ms DONE
 ```
 
 ::: warning Un instant
@@ -312,6 +317,10 @@ public function addTodo(Request $request){
 - Ajouter une méthode qui va afficher l'ensemble des entrées présent dans votre base de données (affichage dans une `table` HTML).
 - Ajouter un formulaire dans votre `Vue` permettant d'ajouter des données dans la table.
 
+Voilà à quoi peut ressembler votre page une fois le formulaire et la liste en place (ici avec un peu de Bootstrap, le visuel n'est pas l'objectif) :
+
+![La TODO List vide, avec son formulaire d'ajout](./ressources/bdd_todo_vide.png)
+
 ::: tip Un instant
 
 Nous l'avons vu en cours, la syntaxe du moteur de template blade. Ici il faudra donc bien utiliser Blade pour générer **votre page**, et plus particulièrement [les directives de blades](/cheatsheets/laravel/#les-directives). Vous allez devoir utiliser la boucle `Foreach`, la notation est rappelée dans l'aide mémoire. Mais voilà une idée de ce qu'il faudra faire :
@@ -356,6 +365,21 @@ PS: Je vous laisse constater l'impact dans le code **en observant le code source
 ::: tip Point de contrôle
 
 À ce stade vous devez pouvoir ajouter une TODO via votre formulaire, la voir apparaître dans la liste, **et** la retrouver dans votre base via votre outil SQLite. Vérifiez avant de continuer.
+
+![La liste après quelques ajouts](./ressources/bdd_todo_liste.png)
+
+En ligne de commande, `sqlite3 database/database.sqlite` permet aussi de vérifier (les outils graphiques cités plus haut affichent la même chose) :
+
+```
+sqlite> .headers on
+sqlite> .mode column
+sqlite> SELECT id, texte, termine FROM todos;
+id  texte                          termine
+--  -----------------------------  -------
+1   Réviser le TP Laravel          0
+3   Acheter du café                0
+4   Préparer la réunion de projet  1
+```
 
 :::
 
@@ -436,6 +460,12 @@ Dans le TP d'introduction, nous avons vu les **messages flash**. Je vous laisse 
 - Un message de succès après la suppression.
 - Un message d'erreur si l'utilisateur tente de supprimer une TODO non terminée.
 
+Ce que l'utilisateur doit voir :
+
+![Message de succès après l'ajout](./ressources/bdd_todo_ajout_succes.png)
+
+![Message d'erreur : suppression refusée](./ressources/bdd_todo_suppression_refusee.png)
+
 ::: details Un trou de mémoire sur les messages flash ?
 
 Côté contrôleur :
@@ -495,6 +525,14 @@ Question :
 
 - À votre avis, pourquoi placer ce contrôle dans un Middleware plutôt que directement dans la méthode `addTodo` du contrôleur ?
 
+::: tip Point de contrôle
+
+Tentez d'ajouter une TODO contenant le mot « twitter » : elle n'est pas enregistrée et le message du Middleware s'affiche (le `redirect()->back()` vous ramène sur la liste).
+
+![Le Middleware refuse la TODO](./ressources/bdd_todo_twitter.png)
+
+:::
+
 ## Un formulaire de contact
 
 J'aimerais que notre petit site de démonstration intègre un formulaire de demande de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
@@ -507,6 +545,10 @@ J'aimerais que notre petit site de démonstration intègre un formulaire de dema
 - Un message flash doit être affiché pour indiquer à l'utilisateur que sa demande n'a pas été prise en compte.
 
 C'est à vous ! Je suis là si besoin 🚀.
+
+Un exemple de résultat attendu, après l'envoi d'une demande :
+
+![Le formulaire de contact avec son message de confirmation](./ressources/bdd_contact.png)
 
 ::: tip Prenez du recul
 

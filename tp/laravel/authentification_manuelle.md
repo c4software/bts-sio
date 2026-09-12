@@ -52,6 +52,12 @@ Une authentification, c'est toujours le même mécanisme, quel que soit le langa
 3. **La session** : si la comparaison est bonne, le serveur mémorise dans **la session** que l'utilisateur est connecté. À chaque requête suivante, le serveur retrouve cette information.
 4. **La déconnexion** : le serveur vide la session.
 
+En image, avec les routes que nous allons créer dans ce TP :
+
+![Les quatre étapes d'une authentification : inscription, connexion, requêtes suivantes, déconnexion](./ressources/auth_session.svg)
+
+Remarquez que le mot de passe ne circule qu'à deux moments (inscription et connexion) : ensuite, c'est le **cookie de session** qui permet au serveur de reconnaître l'utilisateur.
+
 ### Pourquoi hasher les mots de passe ?
 
 Les mots de passe ne doivent **jamais** être stockés en clair dans la base de données. Pourquoi ?
@@ -62,10 +68,7 @@ Les mots de passe ne doivent **jamais** être stockés en clair dans la base de 
 
 La solution : le **hash**. Un hash est une fonction **à sens unique** : facile de calculer le hash d'un mot de passe, mais impossible de retrouver le mot de passe à partir du hash.
 
-```
-"monSuperMotDePasse"  →  password_hash()  →  "$2y$12$k7aP…Xz9"   ✅ possible
-"$2y$12$k7aP…Xz9"     →  ???              →  "monSuperMotDePasse"  ❌ impossible
-```
+![Le hash est à sens unique : on hashe à l'inscription, on compare à la connexion](./ressources/auth_hash_sens_unique.svg)
 
 Pour vérifier un mot de passe, on ne « déchiffre » donc pas le hash : on hash le mot de passe fourni par l'utilisateur et on **compare**. C'est le rôle de `password_verify`.
 
@@ -140,6 +143,14 @@ $utilisateurs = [
 ```
 
 Je vous laisse compléter les deux `TODO` avec vos connaissances de PHP de première année. Pas de piège : un `if`, `isset`, `password_verify`, `$_SESSION`.
+
+Les trois états de la page, sans aucune mise en forme (ce n'est pas le sujet) :
+
+![Le formulaire de connexion en PHP pur](./ressources/auth_php_pur_login.png)
+
+![Identifiants incorrects](./ressources/auth_php_pur_erreur.png)
+
+![Connecté : la session contient l'email](./ressources/auth_php_pur_connecte.png)
 
 ::: details Voir l'une des solutions possibles
 
@@ -284,6 +295,13 @@ Route::post('/traitementRegister', [AuthentificationControleur::class, 'traiteme
 
 `php artisan route:list` doit lister vos quatre routes (le `use App\Http\Controllers\AuthentificationControleur;` est bien présent en haut de `web.php` ?). Pour l'instant elles pointent vers des méthodes qui n'existent pas encore : c'est l'objet des étapes suivantes.
 
+```
+  GET|HEAD   login ................ AuthentificationControleur@login
+  GET|HEAD   register .......... AuthentificationControleur@register
+  POST       traitementLogin .. AuthentificationControleur@traitementLogin
+  POST       traitementRegister  AuthentificationControleur@traitementRegister
+```
+
 :::
 
 ### La page de connexion
@@ -324,6 +342,8 @@ Et voilà la vue `resources/views/login.blade.php` complète :
 
 Rien de nouveau : le layout et `@csrf` viennent du [TP d'introduction](./introduction.md), le formulaire ressemble à celui de votre TODO List. Testez : `/login` doit afficher votre formulaire.
 
+![La page de connexion](./ressources/auth_login.png)
+
 ### La page d'inscription : à vous
 
 Sur **exactement le même modèle** (méthode `register()` + vue `register.blade.php`), je vous laisse créer la page d'inscription. Seules différences :
@@ -335,6 +355,8 @@ Sur **exactement le même modèle** (méthode `register()` + vue `register.blade
 ::: tip Point de contrôle
 
 `/login` et `/register` affichent chacun leur formulaire, avec votre layout. Les boutons ne font encore rien d'utile (les méthodes de traitement n'existent pas), c'est normal.
+
+![La page d'inscription](./ressources/auth_register.png)
 
 :::
 
@@ -363,6 +385,15 @@ N'oubliez pas le `use App\Models\Utilisateur;` en haut du contrôleur. Et souven
 ::: tip Point de contrôle
 
 Inscrivez-vous via `/register`, puis ouvrez votre outil SQLite : l'utilisateur est en base, et la colonne `password` contient bien un **hash** (`$2y$…`), pas votre mot de passe. Ajoutez l'affichage du message flash `success` sur la page de connexion pour un retour utilisateur propre.
+
+```
+sqlite> SELECT id, name, email, password FROM utilisateurs;
+id  name      email         password
+--  --------  ------------  ------------------------------------------------------------
+1   Jane Doe  jane@doe.com  $2y$12$/7VUNIazbl5AhyA7njV8r.a…
+```
+
+![Après l'inscription, retour sur la connexion avec le message flash](./ressources/auth_login_compte_cree.png)
 
 :::
 
@@ -450,6 +481,8 @@ Les deux fonctionnent ! Le message flash convient à un message **global** (« V
 
 Le parcours complet fonctionne : inscription, puis connexion avec redirection vers `/todo`. Avec un mauvais mot de passe (ou un email inconnu), le message « Identifiants incorrects » s'affiche et la saisie de l'email est conservée.
 
+![Mauvais mot de passe : l'erreur sous le champ, l'email conservé](./ressources/auth_login_erreur.png)
+
 :::
 
 ### La déconnexion
@@ -512,6 +545,14 @@ C'est le moment de tout relier : je vous laisse protéger **l'ensemble des route
 - Un utilisateur connecté doit pouvoir utiliser la TODO List normalement.
 
 Testez les deux cas (une navigation privée est pratique pour tester « non connecté »).
+
+::: tip Point de contrôle
+
+Connecté, la TODO List s'affiche et le lien « Déconnexion » est visible dans le layout. Non connecté, `/todo` renvoie sur `/login`.
+
+![La TODO List une fois connecté, avec le lien Déconnexion](./ressources/auth_todo_connecte.png)
+
+:::
 
 ::: tip Vous êtes en avance ?
 
