@@ -154,6 +154,64 @@ Technique de programmation informatique qui crée l'illusion d'une base de donn�
 
 ---
 
+## Laravel is PHP
+
+---
+
+Avant de commencer, il est important de comprendre que Laravel est un framework PHP. Il utilise donc les fonctionnalités de PHP.
+
+---
+
+## Quelques équivalents ($_GET, $_POST, etc…)
+
+---
+
+- `$_GET['id']` <=> `$request->query('id')`
+- `$_POST['id']` <=> `$request->input('id')`
+- `$_FILES['photo']` <=> `$request->file('photo')`
+
+---
+
+## Et pour les sessions ?
+
+---
+
+- `$_SESSION['user']` <=> `$request->session()->get('user')`
+- `$_SESSION = []` <=> `$request->session()->flush()`
+- `$_SESSION` <=> `$request->session()->all()`
+- `isset($_SESSION['user'])` <=> `$request->session()->has('user')`
+
+---
+
+Et la base de données ?
+
+```php
+// Eloquent
+$users = User::where('name', 'John')->get();
+
+// PDO
+$stmt = $pdo->prepare('SELECT * FROM users WHERE name = :name');
+$stmt->execute(['name' => 'John']);
+```
+
+---
+
+```php
+// Eloquent
+$user = new User();
+$user->name = 'John';
+$user->save();
+
+// Eloquent (alternative)
+User::create(['name' => 'John']);
+
+// PDO
+$stmt = $pdo->prepare('INSERT INTO users (name) VALUES (:name)');
+$stmt->execute(['name' => 'John']);
+```
+
+---
+
 ## Comment ça fonctionne ?
 
 ---
@@ -422,12 +480,274 @@ return response()->json($allUsers);
 
 ---
 
-Exercice :
+## Observation
 
-- Créer une méthode dans le contrôleur User qui permet de récupérer un utilisateur par son identifiant.
-- Créer une route qui retourne une réponse JSON de l’utilisateur 1.
-- Créer une redirection vers la route `/` avec un `message` flash « Bienvenue ».
-- Créer une route qui va retourner l'ensemble des utilisateurs au format JSON.
+<div class="colContainer">
+<div class="col">
+<pre style="font-size:0.42em"><code class="php" data-trim data-line-numbers="2-3|4-5|6-7" data-fragment-index="0">// routes/web.php
+Route::get('/users',
+    [UserController::class, 'liste']);
+Route::get('/users/{id}',
+    [UserController::class, 'voir']);
+Route::get('/bienvenue',
+    [UserController::class, 'bienvenue']);</code></pre>
+</div>
+<div class="col">
+<pre style="font-size:0.42em"><code class="php" data-trim data-line-numbers="1-4|6-9|11-15" data-fragment-index="0">public function liste()
+{
+    return response()-&gt;json(User::all());
+}
+&#8203;
+public function voir(Request $request, $id)
+{
+    return response()-&gt;json(User::find($id));
+}
+&#8203;
+public function bienvenue()
+{
+    return redirect('/')
+        -&gt;with('message', 'Bienvenue');
+}</code></pre>
+</div>
+</div>
+
+<ul>
+<li>Que reçoit le navigateur en consultant <strong>/users</strong> ?</li>
+<li class="fragment" data-fragment-index="0">Et en consultant <strong>/users/1</strong> ? Où est passé le <code>1</code> de l'URL ?</li>
+<li class="fragment" data-fragment-index="1">Que se passe-t-il en consultant <strong>/bienvenue</strong> ?</li>
+</ul>
+
+---
+
+## La Vue : Blade
+
+- Moteur de template
+- Performant
+- Héritage et redéfinition
+- Les fichiers Blade sont des fichiers PHP
+- Contrairement à beaucoup d’autres moteurs de template, le mix PHP + HTML est possible (mais personnellement je ne trouve pas que ça soit une bonne idée…)
+
+---
+
+## Utilisation
+
+Afficher un template
+
+```php
+Route::get('/', function () {
+    return view('accueil');
+});
+```
+
+---
+
+## Organiser les templates
+
+- Pourquoi ?
+- Comment ?
+- À votre avis pourquoi est-ce très important ?
+
+---
+
+![Parent enfant](./img/parent-enfant.png)
+
+---
+
+## Le template principal
+
+```html
+<!-- Sauvegardé dans resources/views/layouts/app.blade.php -->
+<html>
+  <head>
+    <title>Site Exemple - @yield('titre')</title>
+  </head>
+  <body>
+    @section('sidebar') « Section » barre latérale principale @show
+
+    <div class="container">@yield('content')</div>
+  </body>
+</html>
+```
+
+---
+
+## Le template « enfant »
+
+```php
+<!-- Sauvegardé dans resources/views/child.blade.php -->
+
+@extends('layouts.app')
+
+@section('titre', 'Page enfant')
+
+@section('sidebar')
+  @parent // <-- Hérite des données du parent
+  Données de l’enfant
+@endsection
+
+@section('content')
+  <p>Contenu de la page enfant.</p>
+@endsection
+```
+
+---
+
+## Les composants
+
+Blade intègre également un système de composant permettant de découper son travail.
+
+```html
+<x-votre-composant nom="Valentin"></x-votre-composant>
+```
+
+---
+
+[Documentation composant](https://laravel.com/docs/12.x/blade#components)
+
+---
+
+## Les composants pour le layout
+
+[La documentation](https://laravel.com/docs/12.x/blade#layouts-using-components)
+
+---
+
+## Les directives « Blade »
+
+---
+
+## Les conditions
+
+- **@if**, **@elseif**, **@else** et **@endif**
+- **@switch**, **@case**, **@break**, **@default** et **@endswitch**
+
+---
+
+## Les boucles
+
+- **@for**, **@endfor**
+- **@foreach**, **@endforeach**
+- **@forelse**, **@empty**, **@endforelse** <= Permet d’afficher autre chose si pas de données dans la boucle
+
+---
+
+## L'héritage
+
+- **@include**('view.name') <= Inclusion d’une autre vue
+- **@include**When(\$boolean, 'view.name') <= Inclusion conditionnelle
+
+---
+
+## Observation
+
+<div class="colContainer">
+<div class="col">
+<img src="./img/sample.png" alt="Sample" />
+</div>
+<div class="col">
+<pre style="font-size:0.42em"><code class="php" data-trim data-line-numbers="1-3|5-14|11-12">@auth
+  &lt;div&gt;Bienvenue {{ $user-&gt;name }}&lt;/div&gt;
+@endauth
+&#8203;
+&lt;table&gt;
+  @forelse ($diplomes as $diplome)
+    &lt;tr&gt;
+      &lt;td&gt;{{ $diplome-&gt;nom }}&lt;/td&gt;
+      &lt;td&gt;{{ $diplome-&gt;date }}&lt;/td&gt;
+    &lt;/tr&gt;
+  @empty
+    &lt;tr&gt;&lt;td&gt;Aucun diplôme&lt;/td&gt;&lt;/tr&gt;
+  @endforelse
+&lt;/table&gt;</code></pre>
+</div>
+</div>
+
+---
+
+- Dans quel cas la barre « Bienvenue » s'affiche-t-elle ?
+- Que verra-t-on si la liste des diplômes est vide ?
+- D'où viennent `$user` et `$diplomes` ?
+
+---
+
+## Gestion des droits d’accès
+
+```php
+@auth
+  // L'utilisateur est authentifié...
+@endauth
+
+@guest
+  // L'utilisateur n'est pas authentifié...
+@endguest
+```
+
+---
+
+## **@stack**
+
+Zone dans le code où il sera possible « d'injecter » ultérieurement du code.
+
+Exemple, zone dans le header pour injecter des scripts JS utiles que dans certaines pages.
+
+---
+
+### Dans la vue parent
+
+```html
+<head>
+  […] @stack('scripts') […]
+</head>
+```
+
+---
+
+### Dans la vue enfant
+
+```php
+@push('scripts')
+    <script src="/demo.js"></script>
+@endpush
+```
+
+---
+
+## La sécurité : le CSRF
+
+### Un autre site peut-il envoyer un formulaire à votre place ?
+
+---
+
+## La protection : <code>@csrf</code>
+
+<div class="colContainer">
+<div class="col">
+<pre style="font-size:0.42em"><code class="php" data-trim data-line-numbers="2|1-4" data-fragment-index="0">&lt;form method="POST" action="/compte/supprimer"&gt;
+    @csrf
+    &lt;button&gt;Supprimer mon compte&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+<div class="col">
+<pre style="font-size:0.42em"><code class="html" data-trim data-line-numbers="2-3|1-5" data-fragment-index="0">&lt;form method="POST" action="/compte/supprimer"&gt;
+    &lt;input type="hidden" name="_token"
+           value="Xk9fQ2mP7vLr..."&gt;
+    &lt;button&gt;Supprimer mon compte&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+</div>
+</div>
+
+<ul>
+<li>Que devient <code>@csrf</code> une fois la page générée ?</li>
+<li class="fragment" data-fragment-index="0">Le site pirate peut-il deviner cette valeur ?</li>
+</ul>
+
+---
+
+## Sans jeton valide ?
+
+La requête est refusée : **419 Page Expired**.
+
+La vérification est **automatique**, aucun code à écrire.
 
 ---
 
@@ -594,19 +914,20 @@ Quel type de jointure connaissez-vous ?
 
 ### One To One
 
-![One to One](./img/one-to-one.png)
-
-```php
-class Todo extends Model {
-
-  // Dans le modèle
+<div class="colContainer">
+<div class="col">
+<img src="./img/one-to-one.png" alt="One to One" />
+</div>
+<div class="col">
+<pre style="font-size:0.42em"><code class="php" data-trim>class Todo extends Model
+{
   public function categorie()
   {
-      return $this->hasOne(Categorie::class);
+    return $this-&gt;hasOne(Categorie::class);
   }
-
-}
-```
+}</code></pre>
+</div>
+</div>
 
 Éloquent supposera que le modèle `Categorie` contiendra une colonne `todo_id`.
 
@@ -614,19 +935,20 @@ class Todo extends Model {
 
 ### One To Many
 
-![One to One](./img/one-to-many.png)
-
-```php
-class Post extends Model {
-
-  // Dans le modèle
+<div class="colContainer">
+<div class="col">
+<img src="./img/one-to-many.png" alt="One to Many" />
+</div>
+<div class="col">
+<pre style="font-size:0.42em"><code class="php" data-trim>class Post extends Model
+{
   public function comments()
   {
-      return $this->hasMany(Comment::class);
+    return $this-&gt;hasMany(Comment::class);
   }
-
-}
-```
+}</code></pre>
+</div>
+</div>
 
 Éloquent supposera que la colonne de clé étrangère sur le modèle `Comment` est `post_id`.
 
@@ -637,10 +959,10 @@ class Post extends Model {
 ```php
 class Comment extends Model
 {
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
+  public function post()
+  {
+    return $this->belongsTo(Post::class);
+  }
 }
 ```
 
@@ -651,37 +973,27 @@ class Comment extends Model
 
 ### Many To Many
 
-![Many To Many](./img/many-to-many.png)
-
----
-
-```php
-class User extends Model
+<div class="colContainer">
+<div class="col">
+<img src="./img/many-to-many.png" alt="Many To Many" />
+</div>
+<div class="col">
+<pre style="font-size:0.42em"><code class="php" data-trim>class User extends Model
 {
-    /**
-     * The roles that belong to the user.
-     */
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
+  public function roles()
+  {
+    return $this-&gt;belongsToMany(Role::class);
+  }
 }
-```
-
----
-
-```php
 class Role extends Model
 {
-    /**
-     * The users that belong to the role.
-     */
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
-}
-```
+  public function users()
+  {
+    return $this-&gt;belongsToMany(User::class);
+  }
+}</code></pre>
+</div>
+</div>
 
 ---
 
@@ -705,10 +1017,36 @@ $users = App\Models\User::with('roles')->get();
 
 ---
 
-Créer des enregistrements avec des relations. Deux méthodes sont disponibles :
+La différence ?
 
-- `attach` <= Ajoute une relation en plus de celles existantes
-- `sync` <= Remplace les relations existantes par celles données
+- `->roles` : la requête est exécutée au moment où on accède à la relation (lazy loading).
+- `with('roles')` : les rôles sont chargés en même temps que les utilisateurs, lors du `get` (eager loading).
+
+---
+
+## Donner des rôles à un utilisateur
+
+```php
+$user = User::find(1); // Rôles actuels : 1 (admin), 2 (éditeur)
+
+$user->roles()->attach([2, 3]); // 3 = modérateur
+// ou
+$user->roles()->sync([2, 3]);
+```
+
+Quels rôles aura l'utilisateur dans chaque cas ?
+
+---
+
+## `attach` ou `sync` ?
+
+Rôles actuels : **1** et **2**. On passe `[2, 3]`.
+
+|                  | `attach`       | `sync`         |
+| ---------------- | -------------- | -------------- |
+| Rôles après      | 1, 2, **2**, 3 | 2, 3           |
+| Rôle 1 (absent)  | Conservé       | **Supprimé**   |
+| Usage            | Ajouter        | Cases à cocher |
 
 ---
 
@@ -739,67 +1077,93 @@ $user->roles()->attach([1, 2, 3]);
 
 ---
 
-La différence ?
-
-- Dans le premier cas, la requête est exécutée au moment de l’appel (lazy loading).
-- Dans le second cas, la requête est exécutée au moment de l’appel de la méthode `get` (eager loading).
-
----
-
 [En savoir plus dans la documentation](https://laravel.com/docs/12.x/eloquent-relationships)
 
 ---
 
-```php
-class Article extends Model{
-    public function comments(){
-        return $this->hasMany(Comment::class);
-    }
-    public function categories(){
-        return $this->belongsToMany(Category::class);
-    }
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-}
-class User extends Model{
-    public function articles(){
-        return $this->hasMany(Article::class);
-    }
-}
-class Comment extends Model{
-    public function article(){
-        return $this->belongsTo(Article::class);
-    }
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-}
-class Category extends Model{
-    public function articles(){
-        return $this->belongsToMany(Article::class);
-    }
-}
-class ArticleCategory extends Model{}
-class ArticleComment extends Model{}
-```
+## Observation : un blog
 
-- Que constatez-vous ?
-- Combien y a-t-il de tables ?
-- Voyez-vous un/des problème(s) ?
+<div class="colContainer">
+<div class="col">
+<img src="./img/uml_article.png" alt="Version UML" />
+</div>
+<div class="col">
+<pre style="font-size:0.38em"><code class="php" data-trim data-line-numbers="1-12|13-18|19-27|28-33|34-35" data-fragment-index="0">class Article extends Model
+{
+  public function comments() {
+    return $this-&gt;hasMany(Comment::class);
+  }
+  public function categories() {
+    return $this-&gt;belongsToMany(Category::class);
+  }
+  public function user() {
+    return $this-&gt;belongsTo(User::class);
+  }
+}
+class User extends Model
+{
+  public function articles() {
+    return $this-&gt;hasMany(Article::class);
+  }
+}
+class Comment extends Model
+{
+  public function article() {
+    return $this-&gt;belongsTo(Article::class);
+  }
+  public function user() {
+    return $this-&gt;belongsTo(User::class);
+  }
+}
+class Category extends Model
+{
+  public function articles() {
+    return $this-&gt;belongsToMany(Article::class);
+  }
+}
+class ArticleCategory extends Model {}
+class ArticleComment extends Model {}</code></pre>
+</div>
+</div>
+
+<ul>
+<li>Retrouvez-vous chaque relation du schéma dans le code ?</li>
+<li class="fragment" data-fragment-index="3">Combien y a-t-il de tables ? Voyez-vous un problème ?</li>
+</ul>
 
 ---
 
-![Version UML](./img/uml_article.png)
+## Observation : utiliser les relations
+
+<div class="colContainer">
+<div class="col">
+<pre style="font-size:0.42em"><code class="php" data-trim data-line-numbers="1-2|4-6|8|10-13" data-fragment-index="0">$users = User::all();
+$articles = User::find(4)-&gt;articles;
+&#8203;
+$article = Article::find(1);
+$article-&gt;title = 'Nouveau titre';
+$article-&gt;save();
+&#8203;
+Comment::where('user_id', 10)-&gt;delete();
+&#8203;
+$article-&gt;comments()-&gt;save(
+    new Comment(['content' =&gt; 'Super article'])
+);
+$article-&gt;categories()-&gt;attach([1, 2, 3]);</code></pre>
+</div>
+<div class="col">
+<img src="./img/uml_article.png" alt="Version UML" />
+</div>
+</div>
+
+<ul>
+<li>Que contiennent <code>$users</code> et <code>$articles</code> ?</li>
+<li class="fragment" data-fragment-index="0">Que fait ce bloc ?</li>
+<li class="fragment" data-fragment-index="1">Pourquoi pas de relation ici ? Pouvait-on en utiliser une ?</li>
+<li class="fragment" data-fragment-index="2">Quelles relations sont utilisées ? Pourquoi <code>attach</code> et pas <code>sync</code> ?</li>
+</ul>
 
 ---
-
-- Écrire le code permettant d'obtenir l'ensemble des utilisateurs.
-- Écrire le code permettant d'avoir l'ensemble des Article de l'utilisateur 4.
-- Écrire le code permettant de modifier l'article 1.
-- Écrire le code permettant de supprimer l'ensemble des messages de l'utilisateur 10.
-- Écrire le code permettant d'ajouter un commentaire à l'article 1.
-- Écrire le code permettant d'ajouter les catégories 1, 2 et 3 à l'article 1.
 
 [Aide mémoire](https://cours.brosseau.ovh/cheatsheets/laravel/quick.html#l-orm-relations)
 
@@ -810,192 +1174,6 @@ class ArticleComment extends Model{}
 Créer les modèles peut être fastidieux, il existe un outil pour automatiser la création des modèles depuis la base de données.
 
 [https://github.com/reliese/laravel](https://github.com/reliese/laravel)
-
----
-
-## La Vue : Blade
-
-- Moteur de template
-- Performant
-- Héritage et redéfinition
-- Les fichiers Blade sont des fichiers PHP
-- Contrairement à beaucoup d’autres moteurs de template, le mix PHP + HTML est possible (mais personnellement je ne trouve pas que ça soit une bonne idée…)
-
----
-
-## Utilisation
-
-Afficher un template
-
-```php
-Route::get('/', function () {
-    return view('accueil');
-});
-```
-
----
-
-## Organiser les templates
-
-- Pourquoi ?
-- Comment ?
-- À votre avis pourquoi est-ce très important ?
-
----
-
-![Parent enfant](./img/parent-enfant.png)
-
----
-
-## Le template principal
-
-```html
-<!-- Sauvegardé dans resources/views/layouts/app.blade.php -->
-<html>
-  <head>
-    <title>Site Exemple - @yield('titre')</title>
-  </head>
-  <body>
-    @section('sidebar') « Section » barre latérale principale @show
-
-    <div class="container">@yield('content')</div>
-  </body>
-</html>
-```
-
----
-
-## Le template « enfant »
-
-```php
-<!-- Sauvegardé dans resources/views/child.blade.php -->
-
-@extends('layouts.app')
-
-@section('titre', 'Page enfant')
-
-@section('sidebar')
-  @parent // <-- Hérite des données du parent
-  Données de l’enfant
-@endsection
-
-@section('content')
-  <p>Contenu de la page enfant.</p>
-@endsection
-```
-
----
-
-## Les composants
-
-Blade intègre également un système de composant permettant de découper son travail.
-
-```html
-<x-votre-composant nom="Valentin"></x-votre-composant>
-```
-
----
-
-[Documentation composant](https://laravel.com/docs/12.x/blade#components)
-
----
-
-## Les composants pour le layout
-
-[La documentation](https://laravel.com/docs/12.x/blade#layouts-using-components)
-
----
-
-## Les directives « Blade »
-
----
-
-## Les conditions
-
-- **@if**, **@elseif**, **@else** et **@endif**
-- **@switch**, **@case**, **@break**, **@default** et **@endswitch**
-
----
-
-## Les boucles
-
-- **@for**, **@endfor**
-- **@foreach**, **@endforeach**
-- **@forelse**, **@empty**, **@endforelse** <= Permet d’afficher autre chose si pas de données dans la boucle
-
----
-
-## L'héritage
-
-- **@include**('view.name') <= Inclusion d’une autre vue
-- **@include**When(\$boolean, 'view.name') <= Inclusion conditionnelle
-
----
-
-## Cas pratique
-
-![Sample](./img/sample.png)
-
-- Écrire le Blade / HTML permettant :
-  - D'afficher la barre « Bienvenue » **uniquement** si la personne est connectée.
-  - D'afficher la table de manière dynamique
-
----
-
-## Gestion des droits d’accès
-
-```php
-@auth
-  // L'utilisateur est authentifié...
-@endauth
-
-@guest
-  // L'utilisateur n'est pas authentifié...
-@endguest
-```
-
----
-
-## **@stack**
-
-Zone dans le code où il sera possible « d'injecter » ultérieurement du code.
-
-Exemple, zone dans le header pour injecter des scripts JS utiles que dans certaines pages.
-
----
-
-### Dans la vue parent
-
-```html
-<head>
-  […] @stack('scripts') […]
-</head>
-```
-
----
-
-### Dans la vue enfant
-
-```php
-@push('scripts')
-    <script src="/demo.js"></script>
-@endpush
-```
-
----
-
-## La sécurité
-
-Exemple le CSRF
-
-```html
-<form method="POST" action="/profile">
-    @csrf
-    […]
-</form>
-```
-
-La vérification côté serveur est **automatique**.
 
 ---
 
@@ -1017,9 +1195,9 @@ Permet de :
 
 ## L’authentification
 
-Intégrée dans Laravel, s’initialise simplement en suivant la documentation.
+Laravel Breeze installe en quelques commandes la connexion, l'inscription et la réinitialisation du mot de passe.
 
-[En savoir plus](https://laravel.com/docs/12.x/authentication)
+[Mise en place de Breeze](https://cours.brosseau.ovh/tp/laravel/authentification.html#ajout-de-la-dependance)
 
 ---
 
@@ -1028,64 +1206,6 @@ Intégrée dans Laravel, s’initialise simplement en suivant la documentation.
 Effectivement Laravel est un « gros » Framework. Dans certains cas on veut plus simple.
 
 Dans quel cas par exemple ?
-
----
-
-## Laravel is PHP
-
----
-
-Avant de commencer, il est important de comprendre que Laravel est un framework PHP. Il utilise donc les fonctionnalités de PHP.
-
----
-
-## Quelques équivalents ($_GET, $_POST, etc…)
-
----
-
-- `$_GET['id']` <=> `$request->query('id')`
-- `$_POST['id']` <=> `$request->input('id')`
-- `$_FILES['photo']` <=> `$request->file('photo')`
-
----
-
-## Et pour les sessions ?
-
----
-
-- `$_SESSION['user']` <=> `$request->session()->get('user')`
-- `$_SESSION = []` <=> `$request->session()->flush()`
-- `$_SESSION` <=> `$request->session()->all()`
-- `isset($_SESSION['user'])` <=> `$request->session()->has('user')`
-
----
-
-Et la base de données ?
-
-```php
-// Eloquent
-$users = User::where('name', 'John')->get();
-
-// PDO
-$stmt = $pdo->prepare('SELECT * FROM users WHERE name = :name');
-$stmt->execute(['name' => 'John']);
-```
-
----
-
-```php
-// Eloquent
-$user = new User();
-$user->name = 'John';
-$user->save();
-
-// Eloquent (alternative)
-User::create(['name' => 'John']);
-
-// PDO
-$stmt = $pdo->prepare('INSERT INTO users (name) VALUES (:name)');
-$stmt->execute(['name' => 'John']);
-```
 
 ---
 

@@ -30,6 +30,11 @@ code.hljs {
     box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
 }
 
+/* Étapes de mise en évidence : copies empilées, une seule ombre */
+code.hljs.fragment {
+    box-shadow: none;
+}
+
 code.lang-sh {
     padding: 10px !important;
     border-radius: 5px;
