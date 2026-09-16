@@ -37,6 +37,28 @@ Dans ce TP, je vous invite à avoir en parallèle :
 - [L'aide mémoire Laravel](/cheatsheets/laravel/)
 - [La synthèse des commandes](/cheatsheets/laravel/quick.md)
 
+## Prérequis
+
+Nous allons continuer sur le projet créé lors du [TP d'introduction](./introduction.md). Ouvrez le dossier de votre projet et vérifiez qu'il se lance toujours :
+
+```sh
+php artisan serve
+```
+
+::: details Vous n'avez pas le projet du TP précédent ?
+
+Pas de panique, vous pouvez repartir de zéro :
+
+```sh
+composer create-project --prefer-dist laravel/laravel mon-premier-projet
+```
+
+Il vous faudra également recréer un layout de base `resources/views/layouts/base.blade.php` (voir [le TP d'introduction](./introduction.md#creer-le-layout)), c'est lui que nous utiliserons pour nos vues.
+
+Si vous récupérez votre projet depuis GIT, n'oubliez pas de réinstaller les dépendances avec `composer install`.
+
+:::
+
 ## Objectifs
 
 À la fin de ce TP vous saurez :
@@ -63,31 +85,9 @@ Le flux complet dans notre application sera donc :
 
 Le contrôleur ne parle jamais SQL : il demande au modèle, qui s'en charge, puis transmet les objets obtenus à la vue.
 
-L'avantage d'utiliser un Framework, c'est qu'il est très simple d'y intégrer la partie base de données, contrairement à un développement classique où tout est à « ré-inventer » un framework nous donne une structure / un cadre pour aller plus vite.
+L'avantage d'un framework, c'est qu'il intègre déjà toute la partie base de données. Dans un développement classique, tout serait à « ré-inventer » ; ici le framework nous donne une structure et un cadre pour aller plus vite.
 
-## Reprendre votre projet
-
-Nous allons continuer sur le projet créé lors du [TP d'introduction](./introduction.md). Ouvrez le dossier de votre projet et vérifiez qu'il se lance toujours :
-
-```sh
-php artisan serve
-```
-
-::: details Vous n'avez pas le projet du TP précédent ?
-
-Pas de panique, vous pouvez repartir de zéro :
-
-```sh
-composer create-project --prefer-dist laravel/laravel mon-premier-projet
-```
-
-Il vous faudra également recréer un layout de base `resources/views/layouts/base.blade.php` (voir [le TP d'introduction](./introduction.md#creer-le-layout)), c'est lui que nous utiliserons pour nos vues.
-
-Si vous récupérez votre projet depuis GIT, n'oubliez pas de réinstaller les dépendances avec `composer install`.
-
-:::
-
-## La base de données
+## Créer la table et son modèle
 
 Dans les versions précédentes de Laravel la base de données était préconfigurée pour utiliser MySQL. Depuis Laravel en version 11, la base de données par défaut est SQLite, **évidemment** vous pouvez changer cette configuration dans le fichier `.env`, mais pour l'instant nous allons rester sur SQLite.
 
@@ -95,7 +95,7 @@ Dans les versions précédentes de Laravel la base de données était préconfig
 
 SQLite est un système de gestion de base de données relationnelle, il est très simple à mettre en place et ne nécessite pas de configuration particulière. C'est donc parfait pour un TP.
 
-Pour entrer un peu plus dans le détails, SQLite est un système de base de données (comme MySQL) mais qui ne nécessite pas de serveur. Les données sont stockées dans un fichier `.sqlite` (ou `.db`). Ce genre de base de données est très utilisée pour les applications mobiles par exemple.
+Pour entrer un peu plus dans le détail, SQLite est un système de base de données (comme MySQL) mais qui ne nécessite pas de serveur. Les données sont stockées dans un fichier `.sqlite` (ou `.db`). Ce genre de base de données est très utilisée pour les applications mobiles par exemple.
 
 C'est un excellent moyen également de prototyper très rapidement une idée sans même avoir besoin de serveur distant.
 
@@ -112,7 +112,7 @@ Comme pour la création d'un contrôleur, la première étape va passer par de l
 php artisan make:model Todo --migration
 ```
 
-Cette commande va créer « la définition du modèle » (le modèle la représentation objet de notre table), mais également la migration. La migration est le fichier qui va définir la structure de notre `Table`. Vous avez maintenant, dans votre projet, deux nouveaux fichiers :
+Cette commande va créer « la définition du modèle » (le modèle, c'est-à-dire la représentation objet de notre table), mais également la migration. La migration est le fichier qui va définir la structure de notre `Table`. Vous avez maintenant, dans votre projet, deux nouveaux fichiers :
 
 - `app/Models/Todo.php`
 - `database/migrations/YEAR_MONTH_DAY_TIME_create_todos_table.php`
@@ -189,10 +189,10 @@ Vous vous en doutez, si nous avons ajouté un champ dans notre « migration » /
     protected $fillable = ['texte', 'termine'];
 ```
 
-Avec cet ajout, nous indiquons à Laravel que nous allons avoir un champ `texte` qui pourra être assigné en automatique lors de la création d'une entrée en base de données.
+Avec cet ajout, nous indiquons à Laravel que les champs `texte` et `termine` pourront être assignés automatiquement lors de la création d'une entrée en base de données.
 
 ::: tip optionnel, mais intéressant !
-Cette propriété est optionnelle, elle vous autorisera plus tard à faire du « mass-assignment » c'est-à-dire à créer un objet « Todo » depuis par exemple le POST HTTP.
+Cette propriété n'est pas obligatoire dans tous les cas, mais elle devient indispensable dès que vous utilisez `Todo::create([...])` (le « mass-assignment », c'est-à-dire créer un objet depuis un tableau, par exemple les données d'un formulaire). Sans elle, Laravel refuse l'affectation en masse.
 :::
 
 ### Créer réellement vos tables
@@ -202,7 +202,7 @@ Maintenant que le script est terminé, nous allons indiquer à Laravel d'effectu
 Retour dans la ligne de commande :
 
 ```sh
-$ php artisan migrate
+php artisan migrate
 
    INFO  Running migrations.
 
@@ -231,19 +231,19 @@ Je vous laisse ouvrir le fichier et vérifier que la table `todos` est bien pré
 Tout au long du TP, vous pourrez vérifier que vos actions (ajout, modification, suppression) ont bien un impact en base de données. C'est un excellent réflexe de développeur.
 :::
 
-### Requêter votre table
+## Requêter votre table
 
 Pour vous montrer la simplicité d'Eloquent, voici les appels de méthodes les plus courants (nous les avons vus ensemble lors du cours).
 
 ::: danger Ce ne sont que des exemples
 
-Cette section est un **catalogue** : lisez-le, comprenez-le, mais ne recopiez rien pour l'instant. Vous utiliserez ces appels dans la section suivante, quand vous écrirez votre contrôleur.
+Cette section est un **catalogue** : lisez-le, comprenez-le, mais ne recopiez rien pour l'instant. Vous les utiliserez un peu plus loin, quand vous écrirez le contrôleur de la TODO List.
 
-Vous n'avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère [la documentation officielle](https://laravel.com/docs/11.x/eloquent).
+Vous n'avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère [la documentation officielle](https://laravel.com/docs/eloquent).
 
 :::
 
-#### Voici quelques exemples
+### Voici quelques exemples
 
 Dans tous les exemples ci-dessous, `Todo` est votre modèle, c'est-à-dire la classe `app/Models/Todo.php` créée tout à l'heure. Chaque appel est transformé par Eloquent en une requête SQL, vous n'en écrivez aucune.
 
@@ -292,7 +292,7 @@ Questions :
 - À votre avis, quelle requête SQL est générée par `Todo::all()` ? Par `Todo::find(1)` ? Et par la version avec filtre ?
 - Pourquoi `Todo::create([...])` fonctionne-t-il avec un simple tableau ? Relisez la section « Définition du modèle ».
 
-#### Testez-les avec Tinker
+### Testez-les avec Tinker
 
 Pas besoin d'écrire un contrôleur pour essayer ces exemples : Laravel fournit **Tinker**, une console interactive dans laquelle vous pouvez taper du PHP et manipuler vos modèles directement. Lancez-la dans un second terminal (le premier fait tourner `php artisan serve`) :
 
@@ -303,29 +303,41 @@ php artisan tinker
 Puis, ligne par ligne, créez une TODO, listez-les, modifiez-en une et supprimez-la :
 
 ```php
+> use App\Models\Todo;
+
 > Todo::create(['texte' => 'Réviser le TP Laravel']);
-= App\Models\Todo {#5100
+= App\Models\Todo {#7900
     texte: "Réviser le TP Laravel",
-    updated_at: "2026-09-16 10:12:03",
-    created_at: "2026-09-16 10:12:03",
+    updated_at: "2026-09-16 18:38:27",
+    created_at: "2026-09-16 18:38:27",
     id: 1,
   }
 
 > Todo::all();
-= Illuminate\Database\Eloquent\Collection {#5110
+= Illuminate\Database\Eloquent\Collection {#7457
     all: [
-      App\Models\Todo {#5112
+      App\Models\Todo {#7456
         id: 1,
         texte: "Réviser le TP Laravel",
         termine: 0,
-        created_at: "2026-09-16 10:12:03",
-        updated_at: "2026-09-16 10:12:03",
+        created_at: "2026-09-16 18:38:27",
+        updated_at: "2026-09-16 18:38:27",
       },
     ],
   }
 
 > $todo = Todo::find(1);
+= App\Models\Todo {#7417
+    id: 1,
+    texte: "Réviser le TP Laravel",
+    termine: 0,
+    created_at: "2026-09-16 18:38:27",
+    updated_at: "2026-09-16 18:38:27",
+  }
+
 > $todo->termine = true;
+= true
+
 > $todo->save();
 = true
 
@@ -333,7 +345,7 @@ Puis, ligne par ligne, créez une TODO, listez-les, modifiez-en une et supprimez
 = true
 ```
 
-Dans Tinker, le `use App\Models\Todo;` n'est pas nécessaire : Laravel retrouve le modèle tout seul. Pour quitter, tapez `exit`.
+Commencez bien par la ligne `use App\Models\Todo;`. Tinker sait parfois retrouver vos modèles tout seul, mais uniquement si Composer a déjà « vu » passer la classe : juste après un `make:model`, ce n'est pas encore le cas et vous obtiendrez `Class "Todo" not found`. Le `use` règle la question (vous pouvez sinon lancer `composer dump-autoload` avant d'ouvrir Tinker). Pour quitter, tapez `exit`.
 
 ::: tip Regardez ce qui se passe en base
 
@@ -346,14 +358,14 @@ Questions :
 - Après `Todo::create(...)`, quelle valeur a la colonne `termine` ? Pourquoi, alors que vous ne l'avez pas indiquée ?
 - Que retourne `Todo::find(42)` si la ligne n'existe pas ? Testez.
 
-#### Où écrirons nous ces appels ?
+### Où écrirons ces appels ?
 
-Reprenez le schéma du début du TP : le contrôleur demande au modèle, puis transmet le résultat à la vue. Les appels ci-dessus se placent donc **dans une méthode de contrôleur**, jamais dans une vue.
+Si vous reprenez le schéma du début du TP : le contrôleur demande au modèle, puis transmet le résultat à la vue. Les appels ci-dessus se placent donc **dans une méthode de contrôleur**, jamais dans une vue.
 
 Par exemple, pour afficher toutes les TODO :
 
 ```php
-public function listTodo(Request $request)
+public function listTodo()
 {
     // La vue « todo » reçoit une variable $todos contenant toutes les lignes de la table
     return view("todo", ["todos" => Todo::all()]);
@@ -366,7 +378,7 @@ Et pour enregistrer ce qu'un formulaire envoie en POST :
 public function addTodo(Request $request)
 {
     // $request contient les données envoyées par le formulaire
-    Todo::create([…]);
+    Todo::create([...]);
     return redirect("/todo");
 }
 ```
@@ -381,8 +393,8 @@ En PHP objet il y a la notion de namespace, Laravel utilise de base les namespac
 use App\Models\Todo;
 ```
 
-- ⚠️ Si vous utilisez **PHPStorm,** cet import sera automatique.
-- ⚠️ Si vous utilisez **VSCode,** il faudra passer par une extension [disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
+- ⚠️ Si vous utilisez **PHPStorm**, cet import sera automatique.
+- ⚠️ Si vous utilisez **VSCode**, il faudra passer par une extension [disponible ici](https://marketplace.visualstudio.com/items?itemName=MehediDracula.php-namespace-resolver)
 
 Pour **PHPStorm**, alt+entrée permettra de déclencher l'ajout du use.
 
@@ -396,9 +408,11 @@ Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
 À partir de maintenant vous avez tout ce qu'il faut pour interroger votre base de données… Et oui c'est aussi simple que ça ! Pour la suite je vous laisse écrire le code par vous-même, **étape par étape**. À chaque étape, je vous indique quoi faire et où, mais pas le code : c'est à vous de jouer !
 
-Voilà à quoi peut ressembler votre page une fois le formulaire et la liste en place (ici avec un peu de Bootstrap, le visuel n'est pas l'objectif) :
+Voilà l'objectif final de cette partie, une fois toutes les étapes terminées (ici avec un peu de Bootstrap, le visuel n'est pas l'objectif) :
 
-![La TODO List vide, avec son formulaire d'ajout](./ressources/bdd_todo_vide.png)
+![La TODO List terminée : formulaire d'ajout, message de confirmation, liste des tâches et boutons Terminer et Supprimer](./ressources/bdd_todo_final.png)
+
+Nous allons y arriver progressivement, étape par étape.
 
 ### Étape 1 : le contrôleur
 
@@ -407,7 +421,7 @@ Créez un contrôleur `TodoControleur` avec `artisan`, comme dans le TP d'introd
 - `listTodo()` : récupère toutes les TODO et les transmet à la vue.
 - `addTodo(Request $request)` : enregistre la TODO reçue du formulaire, puis redirige vers la liste.
 
-Vous avez vu ces deux méthodes dans la section précédente. N'oubliez pas le `use App\Models\Todo;` en haut du fichier.
+Vous avez vu ces deux méthodes dans la section « Où écrire ces appels ? ». N'oubliez pas le `use App\Models\Todo;` en haut du fichier.
 
 ### Étape 2 : les routes
 
@@ -427,9 +441,7 @@ Créez la vue `resources/views/todo.blade.php` :
 - Héritez de votre layout principal avec `@extends('layouts.base')`.
 - Affichez les TODO dans une `table` HTML : une ligne par TODO, avec une boucle `@foreach` sur la variable transmise par le contrôleur.
 
-::: tip Un instant
-
-Nous l'avons vu en cours, la syntaxe du moteur de template blade. Ici il faudra donc bien utiliser Blade pour générer **votre page**, et plus particulièrement [les directives de blades](/cheatsheets/laravel/#les-directives). Vous allez devoir utiliser la boucle `Foreach`, la notation est rappelée dans l'aide mémoire. Mais voilà une idée de ce qu'il faudra faire :
+Nous l'avons vu en cours, c'est [une directive Blade](/cheatsheets/laravel/#les-directives) qu'il faut utiliser ici. Voilà l'idée, à vous de l'adapter au nom de votre variable :
 
 ```html
 <table>
@@ -441,11 +453,15 @@ Nous l'avons vu en cours, la syntaxe du moteur de template blade. Ici il faudra 
 </table>
 ```
 
-:::
-
 ::: tip Point de contrôle
 
-Ouvrez `/todo` dans votre navigateur : la page s'affiche, avec un tableau vide. Pour vérifier votre boucle sans attendre le formulaire, ajoutez une ligne à la main dans la table `todos` via votre outil SQLite, puis rechargez la page : elle doit apparaître.
+Ouvrez `/todo` dans votre navigateur : la page s'affiche et le tableau est vide (ou contient les lignes laissées par vos essais dans Tinker).
+
+![La page /todo avec son tableau vide, sans formulaire](./ressources/bdd_etape3_vide.png)
+
+Pour vérifier votre boucle sans attendre le formulaire, ajoutez une ligne à la main dans la table `todos` via votre outil SQLite, puis rechargez la page : elle doit apparaître.
+
+![La page /todo affiche la ligne ajoutée à la main dans la base](./ressources/bdd_etape3_ligne_manuelle.png)
 
 :::
 
@@ -459,7 +475,7 @@ Ajoutez dans la même vue, au-dessus du tableau, un formulaire qui permet de sai
 - La directive `@csrf` juste après la balise `<form>` (voir ci-dessous).
 
 ::: danger N'oubliez pas le CSRF
-Je vous ai parlé de la sécurité non ? Laravel intègre directement la protection anti-rejeux. Pour pouvoir valider votre formulaire, vous allez devoir intégrer dans votre formulaire une petite annotation.
+Je vous ai parlé de la sécurité non ? Laravel intègre directement la protection anti-rejeu (CSRF : une requête forgée par un autre site en votre nom). Pour pouvoir valider votre formulaire, vous allez devoir intégrer dans votre formulaire une petite annotation.
 
 `@csrf`
 
@@ -475,7 +491,29 @@ Exemple :
 
 PS: Je vous laisse constater l'impact dans le code **en observant le code source via votre navigateur**.
 
-[Plus d'information](https://laravel.com/docs/11.x/csrf)
+[Plus d'information](https://laravel.com/docs/csrf)
+
+:::
+
+Rechargez `/todo` : le formulaire est là, au-dessus du tableau (encore vide si vous avez supprimé vos essais).
+
+![La TODO List avec son formulaire d'ajout et une liste vide](./ressources/bdd_todo_vide.png)
+
+Maintenant que la page a sa forme définitive, c'est le bon moment pour l'habiller un peu si vous le souhaitez.
+
+::: details Un peu de Bootstrap pour habiller la page ?
+
+Bootstrap est déjà chargé dans votre layout depuis l'exercice « boîte à outils » du [TP d'introduction](./introduction.md), toutes vos pages en profitent donc automatiquement. Si ce n'est pas le cas, reprenez la balise `<link>` sur [la page d'installation par CDN](https://getbootstrap.com/docs/5.3/getting-started/download/#cdn-via-jsdelivr) et collez-la dans le `<head>` de `layouts/base.blade.php`.
+
+Les composants utiles pour ce TP :
+
+- [Les tableaux](https://getbootstrap.com/docs/5.3/content/tables/) : `table table-striped` sur votre `<table>` et la liste est déjà lisible.
+- [Les formulaires](https://getbootstrap.com/docs/5.3/forms/overview/) : `form-control` sur le champ de saisie, `input-group` pour coller le champ et son bouton.
+- [Les boutons](https://getbootstrap.com/docs/5.3/components/buttons/) : `btn btn-primary` pour valider, `btn btn-sm btn-success` ou `btn btn-sm btn-danger` pour les actions d'une ligne.
+- [Les alertes](https://getbootstrap.com/docs/5.3/components/alerts/) : `alert alert-success` et `alert alert-danger` pour afficher vos messages flash.
+- [Les badges](https://getbootstrap.com/docs/5.3/components/badge/) : parfaits pour signaler l'état d'une tâche (« En cours », « Terminée »).
+
+Le visuel n'est pas l'objectif de ce TP, ne passez pas votre séance dessus.
 
 :::
 
@@ -494,15 +532,21 @@ sqlite> SELECT id, texte, termine FROM todos;
 id  texte                          termine
 --  -----------------------------  -------
 1   Réviser le TP Laravel          0
-3   Acheter du café                0
-4   Préparer la réunion de projet  1
+2   Acheter du café                0
+3   Préparer la réunion de projet  0
 ```
+
+## Aller plus loin : terminer, supprimer, filtrer
+
+Jusqu'ici je vous ai guidé pas à pas, en vous indiquant précisément quoi écrire et où. À partir de maintenant, le régime change : vous n'avez plus que la procédure et l'aide-mémoire, le code est entièrement à vous.
+
+C'est le moment de voler de vos propres ailes, prenez le temps de réfléchir avant d'ouvrir les blocs d'aide. Je reste évidemment disponible si vous bloquez !
 
 ### Changer l'état d'une TODO
 
-En utilisant [l'aide mémoire](/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/11.x/eloquent) ajoutez :
+En utilisant [l'aide mémoire](/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/eloquent) ajoutez :
 
-- Une action permettant de marquer « comme terminer » une TODO. (l'action peut-être un lien, ou un bouton)
+- Une action permettant de marquer une TODO « comme terminée ». (l'action peut être un lien, ou un bouton)
 - Cette action doit être mise dans le bon contrôleur
 
 ::: tip Rappel
@@ -518,52 +562,62 @@ $todo->termine = true;
 $todo->save();
 ```
 
-#### Besoin d'aide ?
+:::
+
+Une fois l'action en place, la tâche terminée se distingue des autres dans la liste :
+
+![Une TODO marquée comme terminée dans la liste](./ressources/bdd_todo_terminee.png)
+
+::: details Besoin d'aide pour l'action terminer ?
 
 Je ne vais pas vous donner le code. Mais plutôt la procédure, vous devez :
 
-- Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut-être du type <code v-pre>`/todo/terminer/{{ $unElement->id}}`</code>.
-- Ajout d'une route permettant de faire fonctionner le lien. Exemple : <code v-pre>`Route::get('/todo/terminer/{id}', [TodoControleur::class, 'markAsDone']);`</code>.
-- Ajouter la méthode `markAsDone` dans votre contrôleur `public function markAsDone($id)`, celle-ci va réaliser l'action de marquer comme « terminer » pour la TODO `$id`
+- Pour chaque ligne de votre tableau : ajouter un lien qui permettra de modifier l'état d'un élément en base. Le lien peut être du type <code v-pre>/todo/terminer/{{ $unElement->id }}</code>.
+- Ajout d'une route permettant de faire fonctionner le lien. Exemple : <code v-pre>Route::get('/todo/terminer/{id}', [TodoControleur::class, 'markAsDone']);</code>.
+- Ajouter la méthode `markAsDone` dans votre contrôleur `public function markAsDone($id)`, celle-ci va réaliser l'action de marquer comme « terminée » pour la TODO `$id`
 - À la fin du traitement, vous devez rediriger le demandeur avec `return redirect("/todo");`
 
 :::
 
 ### Supprimer une TODO
 
-En utilisant [l'aide mémoire](/cheatsheets/laravel/) et la [documentation de Laravel,](https://laravel.com/docs/11.x/eloquent) ajoutez :
+En utilisant [l'aide mémoire](/cheatsheets/laravel/) et la [documentation de Laravel](https://laravel.com/docs/eloquent), ajoutez :
 
-- Une action permettant de marquer « supprimer » une TODO.
+- Une action permettant de supprimer une TODO.
 - Cette action doit être mise dans le bon contrôleur.
+- Il ne doit pas être possible de supprimer une TODO qui n'est pas terminée.
 
-::: tip Rappel
+La procédure est identique à celle de l'action terminer (lien, route, méthode, redirection). Pour la suppression elle-même, Eloquent vous laisse le choix :
 
 ```php
-// Façon 1
-// Rechercher celui avec l’id 1
+// Façon 1 : retrouver la ligne, puis la supprimer
 $todo = Todo::find(1);
-$todo->delete(); // Le supprimer
+$todo->delete();
 
-// Façon 2
-// Le supprimer directement
+// Façon 2 : supprimer directement à partir de l'id
 Todo::destroy(1);
 
-// Façon 3
-// En supprimer plusieurs directement
-Todo::destroy(1,2,3);
+// Façon 3 : en supprimer plusieurs
+Todo::destroy(1, 2, 3);
 
-// Façon 4
-// Supprimer avec une condition
+// Façon 4 : supprimer avec une condition
 Todo::where('termine', '=', 1)->delete();
 ```
 
-N'oubliez pas la sécurité. Et n'oubliez pas également qu'il ne doit pas être possible de supprimer une TODO qui n'est pas terminée en base de données.
+Avant de supprimer, votre méthode doit vérifier que la TODO est bien terminée : pensez à ce qu'il se passe si quelqu'un tape l'URL de suppression à la main.
 
-:::
+::: tip Point de contrôle
 
-::: details Besoin d'aide ?
+Déroulez le scénario complet, en gardant votre outil SQLite ouvert à côté :
 
-Ici pas de code, mais la procédure sera identique à celle de l'action terminer.
+1. Ajoutez une TODO depuis le formulaire, la ligne apparaît dans la table `todos`.
+2. Tentez de la supprimer tout de suite : l'opération doit être refusée, car elle n'est pas terminée. La ligne est toujours en base.
+3. Marquez-la « terminée », la colonne `termine` passe à 1.
+4. Supprimez-la : cette fois l'opération est acceptée et la ligne disparaît de la table.
+
+![La liste après la suppression de la TODO terminée](./ressources/bdd_todo_supprimee.png)
+
+Si les quatre étapes se comportent comme prévu, votre CRUD est complet et vos règles de sécurité fonctionnent.
 
 :::
 
@@ -612,7 +666,7 @@ php artisan make:middleware CheckTodo
 Ajoutez la logique dans le Middleware :
 
 ```php
-public function handle(Request $request, Closure $next)
+public function handle(Request $request, Closure $next): Response
 {
     if (strpos($request->texte, 'twitter') !== false) {
         return redirect()->back()->with('error', 'Le mot twitter est interdit');
@@ -627,6 +681,8 @@ Ajouter le Middleware sur la route que vous souhaitez protéger :
 ```php
 ->middleware(CheckTodo::class)
 ```
+
+Pensez également à ajouter `use App\Http\Middleware\CheckTodo;` en tête de votre fichier de routes, sans quoi la classe ne sera pas trouvée.
 
 ::: tip Besoin d'aide ?
 
@@ -648,7 +704,13 @@ Tentez d'ajouter une TODO contenant le mot « twitter » : elle n'est pas enregi
 
 :::
 
-## Un formulaire de contact
+Gardez bien ce mécanisme en tête : nous allons le réutiliser dès le TP suivant, mais cette fois pour protéger votre TODO List derrière une authentification.
+
+## Exercice : un formulaire de contact
+
+::: tip Vous êtes en avance ?
+Cette partie est un bonus pour les étudiants qui ont terminé. Le TP suivant ne dépend pas de ce formulaire, vous pouvez donc y aller directement si le temps vous manque.
+:::
 
 J'aimerais que notre petit site de démonstration intègre un formulaire de demande de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
 
