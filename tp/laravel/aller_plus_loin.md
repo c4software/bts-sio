@@ -42,7 +42,7 @@ Reprenez le TP concerné, les étapes y sont détaillées. Ce TP est une consoli
 - Créer des **relations** entre vos tables (`belongsTo` / `hasMany`).
 - Structurer vos vues avec des **composants**.
 
-## Étape 1 : Limiter le nombre d'appels à une route
+## Limiter le nombre d'appels à une route
 
 Le rate limiting est une technique qui permet de limiter le nombre de requêtes à une route. Cela permet de protéger votre application contre les abus (robots, utilisateurs malveillants…). Laravel propose un système de rate limiting très simple à mettre en place.
 
@@ -86,7 +86,7 @@ Le compteur de `throttle` est calculé à partir de l'utilisateur connecté (ou 
 
 :::
 
-## Étape 2 : Laravel Tinker
+## Laravel Tinker
 
 Laravel Tinker est un outil en ligne de commande qui permet d'interagir avec votre application Laravel. Il est basé sur PsySH, un shell interactif pour PHP. Il permet d'exécuter du code PHP dans le contexte de votre application Laravel. C'est un outil très puissant pour tester du code, interagir avec la base de données, etc.
 
@@ -150,7 +150,7 @@ Question :
 
 - Après avoir créé une TODO depuis Tinker, rechargez votre page `/todo` dans le navigateur. Que constatez-vous ? Qu'est-ce que ça prouve sur le fonctionnement de Tinker ?
 
-## Étape 3 : Remplir la base de données avec des données factices
+## Remplir la base de données avec des données factices
 
 Pour tester une application, il faut des données. Les saisir à la main est long et pénible… Laravel propose les `factories` pour générer rapidement des données factices en base. C'est ce que l'on appelle du `seeding`.
 
@@ -221,7 +221,7 @@ Rechargez votre page `/todo`, vous devez voir vos 50 TODO factices.
 
 :::
 
-## Étape 4 : Lier les TODO à un utilisateur
+## Lier les TODO à un utilisateur
 
 Actuellement, tous les utilisateurs voient les mêmes TODO… Nous allons lier chaque TODO à l'utilisateur qui l'a créée. Pour cela, nous allons ajouter une colonne `utilisateur_id` dans la table `todos`. Cette colonne va contenir l'id de l'utilisateur qui a créé la TODO.
 
@@ -273,7 +273,7 @@ Schema::table('todos', function (Blueprint $table) {
 
 ::: warning Votre migration ne passe pas ?
 
-Si votre table `todos` contient déjà des données (les 50 TODO factices de l'étape 3 par exemple), l'ajout d'une colonne obligatoire avec clé étrangère peut échouer. Le plus simple dans notre cas : repartir d'une base propre avec `php artisan migrate:fresh` (⚠️ cette commande **supprime toutes les données**, y compris vos utilisateurs, il faudra donc vous réinscrire).
+Si votre table `todos` contient déjà des données (les 50 TODO factices générées avec le seeder par exemple), l'ajout d'une colonne obligatoire avec clé étrangère peut échouer. Le plus simple dans notre cas : repartir d'une base propre avec `php artisan migrate:fresh` (⚠️ cette commande **supprime toutes les données**, y compris vos utilisateurs, il faudra donc vous réinscrire).
 
 Question : pourquoi une telle commande est-elle acceptable en développement, mais interdite en production ?
 
@@ -281,7 +281,7 @@ Question : pourquoi une telle commande est-elle acceptable en développement, ma
 
 ::: warning Et le seeder ?
 
-Maintenant qu'une TODO doit avoir un `utilisateur_id`, votre `TodoFactory` de l'étape 3 ne fonctionne plus telle quelle (clé étrangère manquante). Ajoutez-lui la ligne `'utilisateur_id' => 1,` (l'utilisateur 1 doit exister) avant de relancer `php artisan db:seed --class=TodoSeeder`.
+Maintenant qu'une TODO doit avoir un `utilisateur_id`, votre `TodoFactory` ne fonctionne plus telle quelle (clé étrangère manquante). Ajoutez-lui la ligne `'utilisateur_id' => 1,` (l'utilisateur 1 doit exister) avant de relancer `php artisan db:seed --class=TodoSeeder`.
 
 :::
 
@@ -349,7 +349,7 @@ Et dans Tinker, la relation répond directement :
 
 :::
 
-## Étape 5 : Les pages « profil »
+## Les pages « profil »
 
 Pour compléter notre application, je vous propose de créer des pages permettant de voir les TODO d'un utilisateur. Pour cela, vous allez devoir :
 

@@ -64,9 +64,9 @@ Quatre routes, deux formulaires, un email : gardez ce schéma sous les yeux, cha
 
 Question :
 
-- À l'étape 2, pourquoi la réponse doit-elle être identique que l'email existe ou non en base ? (la réponse est dans les slides)
+- Lors du traitement de la demande de réinitialisation, pourquoi la réponse doit-elle être identique que l'email existe ou non en base ? (la réponse est dans les slides)
 
-## Étape 1 : La migration
+## La migration
 
 Notre table `utilisateurs` a besoin de deux nouvelles colonnes : le token, et sa date d'expiration. Créez une migration :
 
@@ -110,7 +110,7 @@ Ouvrez votre base avec votre outil SQLite (vu dans [le TP base de données](./ba
 
 :::
 
-## Étape 2 : Envoyer des emails (sans serveur mail)
+## Envoyer des emails (sans serveur mail)
 
 Pas de panique, nous n'allons pas installer de serveur mail. En développement, Laravel propose le « mailer » `log` : les emails ne partent pas sur internet, ils sont **écrits dans le fichier de log** du projet. Vérifiez dans votre `.env` :
 
@@ -205,7 +205,7 @@ C'est totalement optionnel pour ce TP (le mailer `log` suffit), mais retenez le 
 
 :::
 
-## Étape 3 : « Mot de passe oublié »
+## « Mot de passe oublié »
 
 Passons au cœur du sujet. Créez un contrôleur dédié :
 
@@ -340,7 +340,7 @@ Et si l'email est vide ou mal formé, c'est `$request->validate()` qui renvoie l
 
 :::
 
-## Étape 4 : Le lien reçu par email
+## Le lien reçu par email
 
 L'utilisateur clique sur le lien de l'email. Il faut maintenant afficher le formulaire de nouveau mot de passe, **uniquement si le token est valide**.
 
@@ -384,11 +384,11 @@ Question :
 
 - Un token expiré est toujours présent en base, pourtant la page affiche « lien invalide ». Quelle partie de la requête Eloquent s'en charge ?
 
-## Étape 5 : Enregistrer le nouveau mot de passe
+## Enregistrer le nouveau mot de passe
 
 Dernière ligne droite, et cette fois c'est vous qui écrivez tout. La méthode `resetMotDePasse(Request $request, string $token)` doit :
 
-1. Vérifier le token avec **la même requête** qu'à l'étape 4 (un token peut expirer entre l'affichage du formulaire et sa soumission !).
+1. Vérifier le token avec **la même requête** que dans « Le lien reçu par email » (un token peut expirer entre l'affichage du formulaire et sa soumission !).
 2. Valider le formulaire : mot de passe obligatoire, 8 caractères minimum, et identique à la confirmation.
 3. Enregistrer le nouveau mot de passe **hashé** (souvenez-vous : `password_hash`, comme à l'inscription).
 4. **Invalider le token** : remettre `reset_token` et `reset_token_expires_at` à `null`.
@@ -397,7 +397,7 @@ Dernière ligne droite, et cette fois c'est vous qui écrivez tout. La méthode 
 ::: warning Les pièges à éviter
 
 - Stocker le mot de passe en clair : c'est **le** point de vérification numéro 1 (regardez en base après votre test).
-- Oublier l'étape 4 : le token resterait valable 30 minutes **après** le changement de mot de passe. Quelqu'un qui met la main sur l'email pourrait re-changer le mot de passe.
+- Oublier d'invalider le token : le token resterait valable 30 minutes **après** le changement de mot de passe. Quelqu'un qui met la main sur l'email pourrait re-changer le mot de passe.
 - Oublier de re-vérifier le token dans le POST : la vérification du GET ne protège pas le POST.
 
 :::
@@ -433,13 +433,13 @@ Déroulez le parcours complet :
 
 :::
 
-## Étape 6 : Testez comme un attaquant
+## Testez comme un attaquant
 
 Un système d'authentification se teste aussi « en mode attaquant ». Vérifiez par vous-même :
 
 - Que se passe-t-il avec un token inventé (`/reset-mot-de-passe/nimportequoi`) ?
 - Modifiez à la main `reset_token_expires_at` en base pour mettre une date passée : le lien doit être refusé.
-- Le message de l'étape 3 est-il vraiment identique pour un email existant et inexistant ? (comparez aussi le **temps de réponse**, pour la culture)
+- Le message de « Mot de passe oublié » est-il vraiment identique pour un email existant et inexistant ? (comparez aussi le **temps de réponse**, pour la culture)
 
 Questions :
 

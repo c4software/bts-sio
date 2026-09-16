@@ -44,7 +44,7 @@ Pas de panique. Créez un dossier `bart` dans votre `htdocs` avec, pour l'instan
 - Un dossier `public/` avec votre feuille de style `main.css` et l'image de Bart.
 - Un dossier `common/` avec `header.php` et `footer.php`.
 
-Si vous n'avez pas de CSS sous la main, celle utilisée pour les captures de ce TP est fournie plus bas, dans l'étape 1.
+Si vous n'avez pas de CSS sous la main, celle utilisée pour les captures de ce TP est fournie plus bas, dans la section « La structure du projet ».
 :::
 
 ## Objectifs
@@ -62,7 +62,7 @@ Si vous n'avez pas de CSS sous la main, celle utilisée pour les captures de ce 
 
 Nous commençons par la partie « visible » : demander son choix à l'utilisateur.
 
-### Étape 1 : la structure du projet
+### La structure du projet
 
 Notre projet va maintenant contenir **deux pages** :
 
@@ -142,7 +142,7 @@ C'est la feuille de style utilisée pour les captures de ce TP. Elle n'est pas l
 <a target="_blank" href="/demo/php/bart/bart-form-sql.zip">Télécharger le projet complet du TP (CSS, image et code)</a>
 :::
 
-### Étape 2 : la page d'accueil et son formulaire (index.php)
+### La page d'accueil et son formulaire (index.php)
 
 La page `index.php` affiche le formulaire. Celui-ci permet de choisir :
 
@@ -199,7 +199,7 @@ Ouvrez `http://localhost/bart/index.php`, vous devez obtenir :
 Cliquez sur le bouton : vous arrivez sur `bart.php`, qui n'existe pas encore. C'est normal, c'est l'étape suivante.
 :::
 
-### Étape 3 : la page de résultat (bart.php)
+### La page de résultat (bart.php)
 
 La page `bart.php` reçoit les valeurs du formulaire et affiche le tableau, comme au TP 1.1.
 
@@ -256,7 +256,7 @@ Remplissez le formulaire, validez, et vous devez obtenir votre tableau :
 ![Le résultat](./res/tp2_resultat.png)
 :::
 
-### Étape 4 : les valeurs par défaut
+### Les valeurs par défaut
 
 Votre page fonctionne, bravo ! Mais tapez directement `http://localhost/bart/bart.php` dans la barre d'adresse, **sans passer par le formulaire** : PHP vous affiche un avertissement `Undefined array key "phrase"` et la page est vide. C'est dommage.
 
@@ -321,7 +321,7 @@ Pour garder une trace, il nous faut un endroit où **ranger les données durable
 La modélisation (le MCD, les cardinalités) et le langage SQL, c'est le cours de votre professeur de base de données. Ici, nous appliquons : **exécuter depuis PHP** des requêtes qui vous sont données. Je vous fournis donc la table et les requêtes, votre travail est de les brancher au bon endroit dans le code.
 :::
 
-### Étape 5 : créer la base et la table
+### Créer la base et la table
 
 Ouvrez phpMyAdmin ([http://localhost/phpmyadmin](http://localhost/phpmyadmin)), puis cliquez sur l'onglet **SQL** en haut. Cette zone permet d'exécuter directement des requêtes SQL.
 
@@ -374,7 +374,7 @@ INSERT INTO phrases (phrase, nombre) VALUES
 Onglet « Parcourir » de la table `phrases` : vos trois lignes sont là, avec un `id` différent pour chacune et une `date_creation` remplie.
 :::
 
-### Étape 6 : se connecter à la base depuis PHP
+### Se connecter à la base depuis PHP
 
 Notre code PHP doit maintenant parler à ce serveur de base de données. En PHP, on utilise **PDO**, il est livré avec PHP, il n'y a rien à installer.
 
@@ -412,10 +412,10 @@ include('utils/db.php');
 :::
 
 ::: details Besoin d'aide pour vérifier la connexion ?
-Chargez `index.php`. Si la page s'affiche normalement, la connexion fonctionne. Si vous obtenez une erreur du type `SQLSTATE[HY000] [1049] Unknown database 'bart'`, c'est que le nom de la base ne correspond pas à ce que vous avez créé à l'étape 5. `Connection refused` ? MySQL n'est pas démarré dans XAMPP.
+Chargez `index.php`. Si la page s'affiche normalement, la connexion fonctionne. Si vous obtenez une erreur du type `SQLSTATE[HY000] [1049] Unknown database 'bart'`, c'est que le nom de la base ne correspond pas à ce que vous avez créé dans la section « Créer la base et la table ». `Connection refused` ? MySQL n'est pas démarré dans XAMPP.
 :::
 
-### Étape 7 : afficher les dernières punitions
+### Afficher les dernières punitions
 
 Nous allons afficher, **sous le formulaire**, les 5 dernières punitions générées. La requête vous est donnée :
 
@@ -502,7 +502,7 @@ Votre page d'accueil affiche le formulaire **et** la liste de vos punitions de t
 ![La liste des dernières punitions](./res/tp2_liste.png)
 :::
 
-### Étape 8 : enregistrer la punition
+### Enregistrer la punition
 
 La lecture fonctionne, passons à l'écriture. Dans `bart.php`, **avant** l'affichage du tableau, nous allons ajouter une ligne dans la table.
 
@@ -578,14 +578,14 @@ Générez une punition avec une phrase contenant une apostrophe, puis revenez à
 ![La punition enregistrée apparaît en tête de liste](./res/tp2_apres_insert.png)
 :::
 
-### Étape 9 : réutiliser une punition
+### Réutiliser une punition
 
 Dernière touche, très pratique : rendre chaque phrase de la liste **cliquable**, pour qu'un clic la remette dans le formulaire.
 
 La logique, vous la connaissez déjà, c'est celle du [passage de paramètres](./tp-param.md) :
 
 - Chaque phrase de la liste devient un lien vers `index.php?phrase=...`.
-- En haut d'`index.php`, on récupère `$_GET['phrase']` (avec une valeur par défaut, comme à l'étape 4).
+- En haut d'`index.php`, on récupère `$_GET['phrase']` (avec une valeur par défaut, comme dans la section « Les valeurs par défaut »).
 - On place cette valeur dans l'attribut `value` du champ texte.
 
 Deux fonctions vous seront utiles, et elles ne sont pas interchangeables :

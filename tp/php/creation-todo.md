@@ -17,7 +17,7 @@ Attention, ce TP n'est pas un point étape noté. C'est un **TP de création** :
 Ce qui est attendu :
 
 - **En fin de séance** : la partie 1 terminée, c'est à dire une liste dans laquelle on peut ajouter une tâche, la terminer et la supprimer.
-- **À la maison** : la partie 2 (les catégories, le filtre, les compteurs) puis la première étape de la partie 3 (modifier une tâche).
+- **À la maison** : la partie 2 (les catégories, le filtre, les compteurs) puis la première section de la partie 3 (modifier une tâche).
 
 ::: tip Ce n'est pas un TP de design
 L'objectif ici, c'est la **logique** : décrire des données, les lire avec une requête, boucler dessus, et transformer un clic en action. Une simple liste `<ul>` avec des liens suffit largement. Je vous fournis même la CSS pour que ce soit lisible. Un peu de décoration à la fin si le cœur vous en dit, mais ça ne rapporte rien.
@@ -123,7 +123,7 @@ Le vocabulaire que nous utiliserons dans tout le TP :
 
 Cette première partie est **très guidée** : je vous donne le code complet et commenté, vous le recopiez, vous le lisez et vous le comprenez. À chaque étape, je vous montre à quoi le résultat doit ressembler. Ne passez jamais à l'étape suivante sans avoir vu la même chose que moi à l'écran.
 
-### Étape 1 : la base et la structure du projet
+### La base et la structure du projet
 
 #### La base de données
 
@@ -197,11 +197,11 @@ todo/
     └── db.php           La connexion PDO (voir le rattrapage plus haut)
 ```
 
-Voici le contenu de `index.php`. Il reprend le point d'entrée du [TP 3](./tp3.md), avec deux nouveautés en tête : une ligne `ob_start()` (je vous l'explique à l'étape 3) et l'`include` de la connexion à la base, **avant** le header, pour que toutes vos pages disposent de `$pdo`.
+Voici le contenu de `index.php`. Il reprend le point d'entrée du [TP 3](./tp3.md), avec deux nouveautés en tête : une ligne `ob_start()` (je vous l'explique dans la section « Ajouter une tâche ») et l'`include` de la connexion à la base, **avant** le header, pour que toutes vos pages disposent de `$pdo`.
 
 ```php
 <?php
-// Permet d'utiliser header() même si du HTML a déjà été envoyé (voir l'étape 3)
+// Permet d'utiliser header() même si du HTML a déjà été envoyé (voir la section « Ajouter une tâche »)
 ob_start();
 
 // La session : elle ne sert ici qu'au message flash
@@ -352,7 +352,7 @@ Deux vérifications avant d'aller plus loin.
 Si vous obtenez `SQLSTATE[HY000] [1049] Unknown database 'todo'`, c'est que le script SQL n'a pas été exécuté. Si c'est `Access denied`, revoyez le `$user` et le `$passwd` de `utils/db.php`.
 :::
 
-### Étape 2 : afficher la liste
+### Afficher la liste
 
 Nos tâches sont en base, il est temps de les afficher.
 
@@ -407,7 +407,7 @@ Vous devez voir vos deux tâches, la seconde barrée puisque sa colonne `termine
 ![La liste des deux tâches, la seconde barrée](./res/todo_liste.png)
 :::
 
-### Étape 3 : ajouter une tâche
+### Ajouter une tâche
 
 Nos tâches ont été insérées à la main dans phpMyAdmin. Il est temps de laisser l'utilisateur en créer.
 
@@ -522,7 +522,7 @@ Saisissez « Faire les courses », choisissez « Maison », cliquez sur Ajouter.
 Rechargez la page : le message a disparu. Essayez aussi de valider le formulaire **vide** : rien ne doit être ajouté, et le message doit vous le dire. Enfin, vérifiez dans phpMyAdmin que la ligne est bien là, avec son `id` tout neuf.
 :::
 
-### Étape 4 : terminer une tâche
+### Terminer une tâche
 
 Ajouter, c'était un formulaire. Terminer, ce sera un simple **lien**, puisqu'il n'y a rien à saisir : il suffit de dire de quelle tâche on parle.
 
@@ -578,7 +578,7 @@ Cliquez sur « Terminer » : la tâche est barrée et son lien a disparu.
 Testez maintenant les cas tordus en tapant directement dans la barre d'adresse : `index.php?page=terminer&id=42` puis `index.php?page=terminer&id=bonjour`. Dans les deux cas, vous devez simplement revenir à la liste, **sans aucun message d'erreur ni avertissement PHP**.
 :::
 
-### Étape 5 : supprimer une tâche
+### Supprimer une tâche
 
 Même mécanisme, une seule nouveauté : la requête.
 
@@ -627,7 +627,7 @@ Si vous en êtes là, la séance est réussie. La suite se fait à la maison. �
 
 Le guidage diminue. Ici, je décris ce qui est attendu et je vous montre le résultat, mais c'est vous qui écrivez le code. Une aide repliée vous attend à chaque étape si vous bloquez.
 
-### Étape 6 : gérer les catégories
+### Gérer les catégories
 
 Le menu contient déjà un lien « Mes catégories » qui ne mène nulle part. Réparons ça.
 
@@ -641,7 +641,7 @@ Le menu contient déjà un lien « Mes catégories » qui ne mène nulle part. R
 
 ::: details Besoin d'aide pour refuser les doublons ?
 
-Vous avez déjà écrit cette vérification à l'étape 3, il suffit de changer la colonne et d'inverser la réponse :
+Vous avez déjà écrit cette vérification dans la section « Ajouter une tâche », il suffit de changer la colonne et d'inverser la réponse :
 
 ```php
 $stmt = $pdo->prepare("SELECT COUNT(*) FROM categories WHERE nom = ?");
@@ -663,7 +663,7 @@ Cette fois, le traitement peut vivre **dans la même page** que le formulaire : 
 Ajoutez la catégorie « Sport », puis retournez sur vos tâches : elle est proposée dans le menu déroulant du formulaire d'ajout, sans que vous ayez touché à `home.php`. Essayez ensuite d'ajouter « Sport » une deuxième fois : elle doit être refusée avec un message, et **pas** avec une erreur PHP.
 :::
 
-### Étape 7 : filtrer par catégorie
+### Filtrer par catégorie
 
 Quand la liste s'allonge, on veut pouvoir n'afficher qu'une catégorie.
 
@@ -686,7 +686,7 @@ if (isset($_GET['categorie']) && ctype_digit($_GET['categorie'])) {
 }
 
 if ($filterId === null) {
-    // La requête de l'étape 2, sans changement
+    // La requête de la section « Afficher la liste », sans changement
 } else {
     $sql = "SELECT taches.*, categories.nom AS categorie
             FROM taches
@@ -703,7 +703,7 @@ if ($filterId === null) {
 Pour le message, `count($tasks) === 0` suffit : peu importe que la catégorie n'existe pas ou qu'elle soit simplement vide, le résultat à afficher est le même.
 :::
 
-### Étape 8 : les compteurs
+### Les compteurs
 
 Un peu de chiffres pour finir.
 
@@ -769,23 +769,23 @@ Mais posez-vous la question du jour où la table contiendra 50 000 tâches : la 
 Plus de code, plus d'aide détaillée : juste l'objectif et une ligne pour vous orienter.
 
 ::: warning Ce qui est attendu
-La **première étape (modifier une tâche) fait partie de la validation**. Tout le reste de cette partie 3 est du bonus, à faire si le sujet vous plait.
+La **première section (modifier une tâche) fait partie de la validation**. Tout le reste de cette partie 3 est du bonus, à faire si le sujet vous plait.
 :::
 
-### Étape 9 : modifier une tâche
+### Modifier une tâche
 
 Ajoutez un lien « Modifier » sur chaque tâche, qui mène à `index.php?page=modifier&id=X`. Cette page affiche un formulaire **prérempli** avec le titre et la catégorie actuels de la tâche. À la validation, la tâche est mise à jour et l'utilisateur revient sur la liste.
 
 Quatre lignes d'aide :
 
-- La page commence par les vérifications de l'étape 4, plus une requête préparée qui va chercher la tâche (`SELECT * FROM taches WHERE id = ?`). Si `fetch()` rend `false`, la tâche n'existe pas : redirigez vers la liste sans rien faire.
+- La page commence par les vérifications de la section « Terminer une tâche », plus une requête préparée qui va chercher la tâche (`SELECT * FROM taches WHERE id = ?`). Si `fetch()` rend `false`, la tâche n'existe pas : redirigez vers la liste sans rien faire.
 - Pour préremplir le champ texte : `<input type="text" name="titre" value="<?php echo $task['titre']; ?>">`.
 - Pour présélectionner la bonne option du `<select>`, l'attribut HTML s'appelle `selected` : à l'intérieur de votre boucle sur les catégories, ajoutez le seulement quand l'`id` du tour correspond au `categorie_id` de la tâche.
 - La mise à jour est un `UPDATE taches SET titre = ?, categorie_id = ? WHERE id = ?`. Trois valeurs, trois `?`, dans l'ordre.
 
 ![Le formulaire de modification prérempli](./res/todo_modifier.png)
 
-### Étape 10 : les bonus
+### Les bonus
 
 **Tout terminer** : un lien qui passe toutes les tâches à l'état terminé. Une seule requête suffit, et cette fois elle n'a pas de `WHERE` sur l'`id`.
 
@@ -825,7 +825,7 @@ Vous avez trois options, et il faut en choisir une :
 
 1. **Interdire** la suppression : comptez d'abord les tâches de la catégorie, et si le compteur n'est pas nul, affichez un message clair (« Cette catégorie contient encore 3 tâches ») sans rien supprimer.
 2. **Supprimer les tâches d'abord**, puis la catégorie. Simple, mais l'utilisateur perd des données sans forcément s'y attendre : prévenez-le.
-3. **Ne proposer le lien** que pour les catégories vides (vous avez déjà le compteur de l'étape 8).
+3. **Ne proposer le lien** que pour les catégories vides (vous avez déjà le compteur de la section « Les compteurs »).
 
 Dans tous les cas, votre page ne doit **pas** planter avec une erreur PHP brute. Justifiez votre choix dans le README.
 :::

@@ -319,7 +319,7 @@ Bien que pratique, cette méthode n'est maintenant plus « la bonne façon de fa
 
 Nous allons ajouter une nouvelle activity, celle-ci sera un « Splash Screen », elle sera donc affichée au lancement de l'application.
 
-#### Étape 1 : Créer l'activity
+#### Créer l'activity
 
 Pour créer une activity, Android Studio nous propose dans les menus une action qui automatise l'ensemble du processus à savoir :
 
@@ -336,7 +336,7 @@ Puis :
 
 ![create_activity](./ressources/create_activity2.png)
 
-#### Étape 2 : Voir / Modifier le fichier AndroidManifest.xml
+#### Voir / Modifier le fichier AndroidManifest.xml
 
 L'activity est maintenant créée. Sauf que… nous avons deux activity qui se lancent au démarrage. Modifier le AndroidManifest pour retirer :
 
@@ -359,13 +359,13 @@ Exemple :
 
 :hand: Lancer l'application. Vous devez être bloqué sur une « vue blanche ».
 
-#### Étape 3 : Modifier le layout
+#### Modifier le layout
 
 Je vous laisse modifier le layout pour que celui-ci ressemble à :
 
 ![Splash](./ressources/splash.png)
 
-#### Étape 4 : Lancer une activity
+#### Lancer une activity
 
 Maintenant que notre « Splash » s'affiche, nous allons pouvoir lancer l'autre activity après _un délai_. Dans cette partie, nous allons voir comment lancer une activité, et plus précisément comment nous pouvons « simplifier » / « uniformiser » le lancement via une méthode static.
 
@@ -373,7 +373,7 @@ Maintenant que notre « Splash » s'affiche, nous allons pouvoir lancer l'autre 
 :nerd_face: Si vous avez déjà fait du développement Android, rien de nouveau, je vous propose simplement juste **une autre façon** de vous organiser.
 :::
 
-#### Étape 4.1 : Méthode « static »
+#### Méthode « static »
 
 Lancer une activity sur Android est aussi simple que d'appeler la méthode `startActivity` au moment voulu. Pour « simplifier l'écriture » et éviter le code spaghetti, nous allons ajouter dans le code de la MainActivity une méthode qui sera en charge de « retourner les informations (appelée une `Intent`) » nécessaires au lancement de celle-ci.
 
@@ -391,7 +391,7 @@ companion object {
 }
 ```
 
-#### Étape 4.2 : Appeler la méthode
+#### Appeler la méthode
 
 Dans le code de la _SplashActivity_ nous allons lancer après quelques secondes le code permettant de lancer la _MainActivity_. Pour ça ajouter le code suivant dans le `onCreate` de votre `SplashActivity`.
 

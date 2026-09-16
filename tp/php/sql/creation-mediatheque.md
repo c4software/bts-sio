@@ -201,7 +201,7 @@ Retenez bien ce dernier point, c'est la clé de tout le TP : `date_retour IS NUL
 
 Cette partie est guidée. Suivez-la dans l'ordre, elle construit le socle du projet.
 
-### Étape 1 : explorer la base dans phpMyAdmin
+### Explorer la base dans phpMyAdmin
 
 Avant d'écrire une ligne de PHP, on regarde ce qu'on a sous la main. Ouvrez phpMyAdmin, sélectionnez la base `mediatheque`, puis l'onglet **SQL**, et répondez aux questions suivantes **par une requête**.
 
@@ -251,7 +251,7 @@ SELECT * FROM emprunts WHERE livre_id = 16 AND date_retour IS NULL;
 :::
 ::::
 
-### Étape 2 : se connecter et lister les catégories
+### Se connecter et lister les catégories
 
 On passe au PHP. Créez votre projet (ou repartez de celui du TP 6) avec la structure habituelle, et mettez en place `utils/db.php` avec le code du rattrapage plus haut (n'oubliez pas `dbname=mediatheque`).
 
@@ -303,7 +303,7 @@ Voici ce que vous devez obtenir :
 
 ![La page d'accueil avec les six catégories et leur nombre de livres](./res/mediatheque_accueil.png)
 
-### Étape 3 : les livres d'une catégorie
+### Les livres d'une catégorie
 
 Créez maintenant la page `categorie`, appelée via `index.php?page=categorie&id=1`. Elle doit afficher le nom de la catégorie et la liste de ses livres (titre, auteur, année), chaque titre étant un lien vers la fiche du livre (`index.php?page=livre&id=…`).
 
@@ -368,7 +368,7 @@ Voici ce que vous devez obtenir :
 
 ![La page d'une catégorie avec la liste de ses livres](./res/mediatheque_categorie.png)
 
-### Étape 4 : la fiche d'un livre
+### La fiche d'un livre
 
 Créez la page `livre` (`index.php?page=livre&id=…`). Elle doit afficher :
 
@@ -408,7 +408,7 @@ Voici ce que vous devez obtenir pour un livre disponible, puis pour un livre emp
 
 ![La fiche d'un livre emprunté, avec le nom de l'adhérent et la date](./res/mediatheque_livre_emprunte.png)
 
-### Étape 5 : la recherche
+### La recherche
 
 Ajoutez un formulaire de recherche (en **GET**) qui permet de chercher un livre par son titre. Le formulaire peut être dans votre barre de navigation, les résultats s'affichent sur une page `recherche`.
 
@@ -457,7 +457,7 @@ Si c'est bon, la suite se fait à la maison. Sinon, terminez cette partie **avan
 
 À partir d'ici, je vous donne les consignes et une aide repliée par étape, mais plus de code complet. C'est à vous de jouer !
 
-### Étape 6 : la liste des adhérents
+### La liste des adhérents
 
 Créez une page `adherents` qui affiche tous les adhérents (nom, prénom, email, date d'inscription) **avec le nombre d'emprunts en cours** de chacun.
 
@@ -488,7 +488,7 @@ Voici ce que vous devez obtenir :
 
 ![La liste des dix adhérents avec leur nombre d'emprunts en cours](./res/mediatheque_adherents.png)
 
-### Étape 7 : enregistrer un emprunt
+### Enregistrer un emprunt
 
 Sur la fiche d'un livre **disponible**, ajoutez un formulaire (en **POST**) permettant d'enregistrer un emprunt :
 
@@ -513,7 +513,7 @@ $stmt->execute([$bookId, $_POST['adherent_id']]);
 `CURDATE()` est la fonction SQL qui donne la date du jour. Côté PHP, l'équivalent serait `date('Y-m-d')` : les deux marchent, choisissez.
 :::
 
-### Étape 8 : le retour d'un livre
+### Le retour d'un livre
 
 Sur la fiche d'un livre **emprunté**, ajoutez un bouton « Retour ». Au clic, l'emprunt en cours de ce livre doit recevoir une `date_retour`, et le livre redevient donc disponible.
 
@@ -529,12 +529,12 @@ $stmt->execute([$bookId]);
 ⚠️ Ne jamais oublier le `WHERE` sur un `UPDATE`. Sans lui, vous rendez d'un coup **tous** les livres de la médiathèque.
 :::
 
-### Étape 9 : ajouter un livre
+### Ajouter un livre
 
 Créez une page avec un formulaire d'ajout de livre : titre, auteur, année, et la catégorie dans un `<select>` alimenté depuis la table `categories`. À la validation, le livre est inséré puis vous redirigez vers sa fiche (ou vers sa catégorie).
 
 ::: details Besoin d'aide pour le `select` des catégories ?
-C'est exactement la même logique que le `select` des adhérents de l'étape 7 : une requête qui récupère les catégories, une boucle qui génère les `<option>` avec l'`id` en `value`.
+C'est exactement la même logique que le `select` des adhérents de la section « Enregistrer un emprunt » : une requête qui récupère les catégories, une boucle qui génère les `<option>` avec l'`id` en `value`.
 
 ```php
 <select name="categorie_id">
@@ -547,7 +547,7 @@ C'est exactement la même logique que le `select` des adhérents de l'étape 7 :
 Pensez à vérifier que les champs sont bien remplis avant d'insérer (`isset()` et champs non vides).
 :::
 
-### Étape 10 : supprimer un livre
+### Supprimer un livre
 
 Ajoutez la possibilité de supprimer un livre depuis sa fiche (la forme générale du `DELETE` est [dans le support](./support.md#supprimer-une-donnee)).
 
@@ -575,9 +575,9 @@ Choisissez votre option, implémentez-la, et **justifiez votre choix dans le REA
 
 ## Partie 3 : protéger et aller plus loin (en autonomie)
 
-Ici, plus d'aide : juste des consignes. La première étape est **attendue** pour la validation, les bonus sont là si vous voulez pousser.
+Ici, plus d'aide : juste des consignes. La première section est **attendue** pour la validation, les bonus sont là si vous voulez pousser.
 
-### Étape 11 : protéger les manipulations (attendue)
+### Protéger les manipulations (attendue)
 
 Consulter la médiathèque peut être ouvert à tous. **Modifier** la base, non.
 
@@ -592,7 +592,7 @@ Deux niveaux acceptés :
 Masquer le lien « Ajouter un livre » dans le menu, ce n'est **pas** protéger la page. Il faut la vérification dans l'entry-point (ou en tête de chaque page concernée). L'astuce de la whitelist différente selon que l'on est connecté ou non, vue au TP 6, fonctionne très bien ici.
 :::
 
-### Étape 12 : les bonus
+### Les bonus
 
 Vous avez terminé et vous voulez pousser ? Au choix :
 
@@ -620,7 +620,7 @@ Votre rendu sera relu avec cette grille. Il n'y a pas de note : chaque ligne est
 | Structure | Entry-point avec whitelist, `pages/`, `common/`, `utils/db.php` : l'organisation vue en cours est respectée. |
 | README.md | Présent à la racine et complet (voir la section dédiée). |
 
-**Validé** : les parties 1 et 2 sont complètes **et** la protection de l'étape 11 est en place.
+**Validé** : les parties 1 et 2 sont complètes **et** la protection de la section « Protéger les manipulations » est en place.
 
 **À revoir** : sinon. Ce n'est pas grave : vous corrigez les points signalés et vous redéposez.
 
@@ -637,7 +637,7 @@ Votre projet doit contenir un fichier `README.md` **à la racine**. Le contenu a
 Pour ce TP, ajoutez-y en plus :
 
 - Les **captures d'écran** suivantes (dans un dossier `docs/` de votre dépôt) : la page d'accueil avec les catégories, la fiche d'un livre **disponible**, la fiche d'un livre **emprunté**, un résultat de recherche et la liste des adhérents.
-- Votre **choix pour la suppression** d'un livre (étape 10) et pourquoi.
+- Votre **choix pour la suppression** d'un livre (section « Supprimer un livre ») et pourquoi.
 - Le **login et le mot de passe** permettant d'accéder aux pages protégées (pour que je puisse tester).
 - Les **bonus** réalisés, s'il y en a.
 

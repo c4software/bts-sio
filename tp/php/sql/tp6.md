@@ -85,7 +85,7 @@ La page devant être protégée, vous devez mettre en place une mécanique comme
 
 ![ceci est la mécanique de connexion](../res/uml-connexion.png)
 
-### Étape 1 : Création de la page de connexion
+### Création de la page de connexion
 
 En vous inspirant de [l'aide mémoire PHP](/cheatsheets/php/#gestion-basique-d-une-authentification-«-simple-»), je vous laisse écrire le code permettant :
 
@@ -152,7 +152,7 @@ if(isset($_SESSION["user"])){
 Je veux que les boutons s'affiche dans la NavBar. Donc le code doit-être… Dans la NavBar!
 :::
 
-### Étape 3 : Page de déconnexion
+### Page de déconnexion
 
 La page de déconnexion va avoir comme role de « supprimer la session ». Il faut donc créer une page, celle-ci contiendra au minimum le code suivant :
 
@@ -162,7 +162,7 @@ session_destroy();
 
 👀 Je vous laisse écrire la suite
 
-### Étape 4 : Crééer la page de gestion des vidéos
+### Crééer la page de gestion des vidéos
 
 Pour la page de gestion des vidéos, je vous propose de réaliser une page ressemblant à ceci :
 

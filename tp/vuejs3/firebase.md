@@ -41,7 +41,7 @@ Pas de panique. Le TP est réalisable en autonomie, mais je vous invite fortemen
 - Écrire des données dans une base temps réel (`push`).
 - Écouter les changements de la base en temps réel (`onValue`) pour synchroniser tous les clients.
 
-## Étape 1 : créer le projet Vue
+## Créer le projet Vue
 
 Comme dans les TP précédents, nous allons utiliser Vite pour initialiser notre projet :
 
@@ -69,7 +69,7 @@ npm run dev
 Votre navigateur affiche la page de démonstration de Vite + Vue sur [http://localhost:5173](http://localhost:5173). Si ce n'est pas le cas, ne continuez pas : vérifiez votre installation de NodeJS avant d'aller plus loin.
 :::
 
-## Étape 2 : installer les dépendances
+## Installer les dépendances
 
 Notre projet va utiliser deux librairies :
 
@@ -91,7 +91,7 @@ Une question pour vous : dans le TP en VueJS 2, nous devions installer une versi
 Depuis la version 9, Firebase propose un SDK dit « modulaire » : on importe uniquement les fonctions dont on a besoin (`initializeApp`, `getDatabase`, `push`…). Ce SDK s'intègre naturellement avec la composition API de VueJS 3, sans avoir besoin d'une librairie de liaison comme Vuefire. Moins de dépendances, moins de contraintes de versions.
 :::
 
-## Étape 3 : créer le projet sur Firebase
+## Créer le projet sur Firebase
 
 Nous allons maintenant créer le projet côté Firebase. Rendez-vous sur [la console Firebase](https://console.firebase.google.com/) (connexion avec votre compte Google) et créez un nouveau projet :
 
@@ -133,7 +133,7 @@ Contrairement à ce que son nom laisse penser, l'`apiKey` de Firebase n'est pas 
 La sécurité repose sur les **règles de sécurité** (Security Rules) définies côté Firebase, et éventuellement sur l'authentification des utilisateurs. Dans ce TP nous utiliserons le « mode test », qui laisse la base ouverte : acceptable pour un TP, inacceptable en production.
 :::
 
-## Étape 4 : activer la Realtime Database
+## Activer la Realtime Database
 
 Toujours dans la console Firebase, activez la **Realtime Database** (menu « Créer », ou « Build » en anglais) :
 
@@ -149,7 +149,7 @@ En mode test, tout le monde peut lire et écrire dans votre base (et Firebase la
 
 🤓 Pensez à récupérer l'URL de votre base (visible en haut de l'onglet « Données »), c'est la valeur `databaseURL` de votre fichier de configuration. Vérifiez qu'elle est bien renseignée dans `src/config/firebase.ts`.
 
-## Étape 5 : brancher Firebase dans le projet
+## Brancher Firebase dans le projet
 
 Nous avons la configuration, il faut maintenant initialiser Firebase dans notre application. Plutôt que de mettre ce code « à l'arrache » dans un composant, nous allons le ranger dans un dossier `plugins`. Créez le fichier `src/plugins/firebase.ts` :
 
@@ -180,7 +180,7 @@ La configuration est une donnée (des identifiants propres à votre projet), l'i
 `initializeApp` ne fait pas encore de requête réseau : il enregistre simplement votre configuration. C'est `getDatabase` qui prépare la connexion. La connexion réelle (un WebSocket vers les serveurs de Google) ne sera ouverte qu'au premier accès aux données. Ce WebSocket restera ouvert et c'est lui qui permettra à Firebase de « pousser » les changements vers votre navigateur en temps réel.
 :::
 
-## Étape 6 : afficher la carte avec Leaflet
+## Afficher la carte avec Leaflet
 
 Place à la carte ! Leaflet a besoin d'un peu de configuration avec Vite : les images des marqueurs ne sont pas trouvées automatiquement par le bundler. Comme pour Firebase, nous allons ranger cette configuration dans un plugin. Créez le fichier `src/plugins/leaflet.ts` :
 
@@ -290,7 +290,7 @@ Lancez `npm run dev` : vous devez voir une carte pleine page, centrée sur Anger
 Si la carte est grise ou coupée, relisez la partie CSS (hauteur de la `div`) et vérifiez l'import du plugin Leaflet dans `main.ts`.
 :::
 
-## Étape 7 : écrire dans la base au clic
+## Écrire dans la base au clic
 
 Nous avons une carte, nous avons une base de données : connectons les deux. Objectif : à chaque clic sur la carte, la position cliquée est enregistrée dans Firebase.
 
@@ -344,7 +344,7 @@ Que remarquez-vous sur les clés générées par `push` ?
 Chaque `push` génère une clé unique du type `-Nxf3aB…`. Ces clés sont générées **côté client** (pas besoin d'aller-retour serveur) et sont triables chronologiquement : deux clients peuvent écrire en même temps sans conflit. C'est l'équivalent d'un auto-incrément, version base distribuée.
 :::
 
-## Étape 8 : afficher les marqueurs en temps réel
+## Afficher les marqueurs en temps réel
 
 Les données sont en base, mais rien ne s'affiche sur la carte. C'est l'étape la plus intéressante du TP, et cette fois c'est à vous de jouer !
 
@@ -422,7 +422,7 @@ onMounted(() => {
 Le vrai test : ouvrez votre application dans **deux navigateurs côte à côte** (ou partagez votre IP avec un voisin pour tester à plusieurs). Un clic dans l'un fait apparaître le marqueur dans l'autre, instantanément. Vous venez d'écrire une application temps réel multi-utilisateurs sans une seule ligne de code serveur 🚀
 :::
 
-## Étape 9 : supprimer un marqueur
+## Supprimer un marqueur
 
 Bon, maintenant qu'il y a des marqueurs partout, il serait bien de pouvoir les supprimer ! Objectif : un clic sur un marqueur le supprime de la base (et donc de la carte de tout le monde, temps réel oblige).
 

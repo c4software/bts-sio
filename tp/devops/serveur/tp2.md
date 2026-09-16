@@ -52,7 +52,7 @@ Pour ce TP je vais vous demander de créer une VM. Cette VM doit respecter les s
 - CPU : 1.
 - Disque : 20Go (ou la configuration du modèle).
 
-### Étape 1 : Créez une VM
+### Créez une VM
 
 À l'aide des TP précédents (et de vos notes), créez une VM qui respecte les spécifications ci-dessus.
 
@@ -70,7 +70,7 @@ Dans cette version, vous allez devoir créer la VM depuis le début. Vous avez p
 
 :::
 
-### Étape 2 : Configurez la VM
+### Configurez la VM
 
 Configurez la VM pour qu'elle respecte les spécifications suivantes :
 
@@ -78,7 +78,7 @@ Configurez la VM pour qu'elle respecte les spécifications suivantes :
 - La VM doit avoir accès à Internet (`ping www.google.com` doit fonctionner).
 - La VM doit posséder les **vmtools**. (`apt install open-vm-tools`).
 
-### Étape 3 : Accès SSH à la VM
+### Accès SSH à la VM
 
 Pour vous connecter à la VM, vous devez utiliser la commande `ssh` depuis votre machine hôte. Pour que cela fonctionne :
 
@@ -118,7 +118,7 @@ apt install open-vm-tools
 
 Vous l'avez compris, nous allons installer un serveur Web Apache sur notre VM. Pour cela, nous allons utiliser la commande `apt` pour installer le paquet `apache2`.
 
-### Étape 1 : Installation d'Apache
+### Installer le paquet
 
 Pour installer Apache, vous devez utiliser la commande `apt` :
 
@@ -127,7 +127,7 @@ apt update
 apt install apache2
 ```
 
-### Étape 2 : Vérification de l'installation
+### Vérification de l'installation
 
 #### Vérifier en ligne de commande que le serveur est démarré
 
@@ -171,7 +171,7 @@ Debian est une distribution un peu particulière, elle est dite « stable ». C'
 
 Le dépôt est une source supplémentaire pour l'installation de paquets. Il est possible d'ajouter plusieurs dépôts, et de choisir la version de paquet que l'on souhaite installer.
 
-### Étape 1 : Ajout du dépôt
+### Ajout du dépôt
 
 Nous allons donc ajouter un nouveau dépôt pour avoir accès aux dernières versions de PHP.
 
@@ -199,7 +199,7 @@ Si vous ne faites pas cette étape, vous n'aurez pas accès aux dernières versi
 
 :::
 
-### Étape 2 : Installation de PHP
+### Installer les paquets
 
 Maintenant que nous avons ajouté le dépôt, nous allons pouvoir installer PHP.
 
@@ -241,7 +241,7 @@ Vous devriez voir quelque chose de similaire à :
 
 ![Version de PHP](./res/php-version.jpg)
 
-### Étape 3 : Activer PHP dans Apache
+### Activer PHP dans Apache
 
 Maintenant que notre PHP est installé, il faut l'activer :
 
@@ -296,7 +296,7 @@ Ce fichier est dangereux, ne pas laisser ce fichier sur un serveur en production
 
 Actuellement, notre script est parfait, et il n'y a pas d'erreur. Nous allons le modifier pour y ajouter une erreur, et voir comment cela se passe.
 
-### Étape 1 : Ajouter une erreur
+### Ajouter une erreur
 
 Pour ajouter une erreur, vous pouvez modifier le fichier `info.php` et ajouter une erreur :
 
@@ -306,13 +306,13 @@ Pour ajouter une erreur, vous pouvez modifier le fichier `info.php` et ajouter u
     phpinfo();
 ```
 
-### Étape 2 : Accéder à la page
+### Accéder à la page
 
 Je vous laisse accéder à la page `info.php` pour voir ce qu'il se passe.
 
 Qu'avez-vous vu ? Une page blanche, une erreur 500 ? C'est normal ! Notre serveur est configuré comme un serveur de **production**. C'est-à-dire que les erreurs PHP ne sont pas affichées dans le navigateur, mais dans un fichier de log.
 
-### Étape 3 : Vérifier les logs
+### Vérifier les logs
 
 Maintenant que nous avons une erreur, nous allons vérifier les logs d'Apache. Pour cela, nous allons utiliser la commande `tail` :
 
@@ -595,7 +595,7 @@ Puis maintenant, il faut modifier les fichiers de configuration des sites Web po
 
 N'oubliez pas de remplacer `votrelogin` par votre login. Et surtout, n'oubliez pas de changer le port d'écoute de `8080` à `80`. Pour le site B, vous devez faire la même chose, mais avec le nom de domaine `siteb.votrelogin.etud`.
 
-Étape 3 : Redémarrer Apache
+Enfin, redémarrez Apache pour prendre en compte les modifications.
 
 ### Masquer les fichiers présents dans le dossier
 

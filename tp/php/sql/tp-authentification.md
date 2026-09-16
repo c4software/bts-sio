@@ -12,7 +12,7 @@ Ce TP est la **seconde partie du [TP 5](../tp5.md)**. En première partie, pour 
 
 Aujourd'hui, nous faisons les choses correctement. Nous allons construire un petit site complet, « l'espace membre », dans lequel n'importe qui peut **créer un compte**, **se connecter**, accéder à une **page réservée**, et se **déconnecter**. Les mots de passe seront stockés en base de données, hachés, salés, et impossibles à relire.
 
-Ce mécanisme, vous allez le réutiliser tout le temps. Dès le [TP Création : la médiathèque](./creation-mediatheque.md) d'ailleurs, dont l'étape 11 vous demande exactement ceci.
+Ce mécanisme, vous allez le réutiliser tout le temps. Dès le [TP Création : la médiathèque](./creation-mediatheque.md) d'ailleurs, dont la section « Protéger les manipulations » vous demande exactement ceci.
 
 ::: tip Votre projet, ou celui-ci ?
 Le projet « espace membre » décrit ici est **autonome** : vous pouvez le créer de zéro en suivant le TP, c'est ce que je vous conseille si vous voulez un projet propre et dédié à l'authentification.
@@ -82,7 +82,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 - Protéger des pages avec une whitelist conditionnelle et une session régénérée.
 - Faire une déconnexion propre.
 
-## Étape 1 : comprendre avant de coder
+## Comprendre avant de coder
 
 Avant la première ligne de PHP, prenons dix minutes de théorie. Sans elle, le code que vous allez écrire n'est qu'une recette de cuisine.
 
@@ -197,7 +197,7 @@ Retenez juste ceci : **un hash bcrypt commence par `$2y$` et fait 60 caractères
 La règle, dans votre vie professionnelle entière : **utilisez les fonctions standard du langage**. En PHP, ce sont `password_hash()` et `password_verify()`, et rien d'autre.
 :::
 
-## Étape 2 : la base et la structure du projet
+## La base et la structure du projet
 
 ### La base de données
 
@@ -332,7 +332,7 @@ footer {
 
 ### Le point d'entrée
 
-Voici `index.php` en entier. Nous reviendrons sur la whitelist à l'étape 5, pour l'instant recopiez-le :
+Voici `index.php` en entier. Nous reviendrons sur la whitelist dans la section « La page protégée et la déconnexion », pour l'instant recopiez-le :
 
 ```php
 <?php
@@ -441,7 +441,7 @@ Ouvrez `http://localhost/espace-membre/index.php`. Vous devez voir la page d'acc
 Si vous avez une erreur PDO, c'est `utils/db.php` : vérifiez le nom de la base (`espace_membre`), l'utilisateur (`root`) et le mot de passe (vide sur XAMPP).
 :::
 
-## Étape 3 : l'inscription
+## L'inscription
 
 C'est la page la plus importante du TP : c'est ici que le mot de passe est haché.
 
@@ -577,7 +577,7 @@ La colonne `mot_de_passe` contient bien une chaîne commençant par `$2y$` et lo
 Testez aussi les cas qui doivent échouer : un email invalide (`pasunemail`), un mot de passe de 5 caractères, une confirmation différente, et une deuxième inscription avec le même email. Chacun doit afficher son message, sans enregistrer quoi que ce soit.
 :::
 
-## Étape 4 : la connexion
+## La connexion
 
 L'inscription enregistre une empreinte. La connexion la vérifie. Créez `pages/connexion.php`, en commençant par le traitement :
 
@@ -675,7 +675,7 @@ Saisissez un mauvais mot de passe : vous devez obtenir ceci, et rien de plus bav
 Essayez ensuite avec un email qui n'existe pas : **le message doit être exactement le même**.
 :::
 
-## Étape 5 : la page protégée et la déconnexion
+## La page protégée et la déconnexion
 
 ### La whitelist conditionnelle
 
@@ -753,7 +753,7 @@ Le cycle complet doit fonctionner : inscription, connexion, « Mon espace » ave
 👋 Si vous avez des questions, n'hésitez pas.
 :::
 
-## Étape 6 : vérifier que c'est solide
+## Vérifier que c'est solide
 
 Le code fonctionne. Maintenant, essayons de le casser. Quatre tests, à faire dans l'ordre.
 
@@ -823,7 +823,7 @@ if (password_needs_rehash($user['mot_de_passe'], PASSWORD_DEFAULT)) {
 Ce n'est pas demandé dans ce TP, mais retenez que ça existe : c'est ce qui permet de migrer une base d'utilisateurs sans jamais demander à personne de changer son mot de passe.
 :::
 
-## Étape 7 : les bonus
+## Les bonus
 
 Vous avez terminé et il vous reste du temps ? Voici trois pistes, de la plus simple à la plus ambitieuse.
 
@@ -848,7 +848,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_SESSION['attempts'] >= 5) {
         $error = "Trop de tentatives, patientez un instant avant de réessayer.";
     } else {
-        // … le traitement de l'étape 4 …
+        // … le traitement de la section « La connexion » …
 
         // En cas de succès, ne pas oublier de remettre le compteur à zéro
         // $_SESSION['attempts'] = 0;
@@ -898,7 +898,7 @@ Vous venez de construire une authentification correcte, et ce mécanisme vous se
 
 Et maintenant ?
 
-- Direction le [TP Création : la médiathèque](./creation-mediatheque.md). Son étape 11 vous demande exactement ce que vous venez de faire : vous savez déjà comment vous y prendre.
+- Direction le [TP Création : la médiathèque](./creation-mediatheque.md). Sa section « Protéger les manipulations » vous demande exactement ce que vous venez de faire : vous savez déjà comment vous y prendre.
 - Un peu plus tard, [le TP 2 de la POO](/tp/php/poo/tp2.md) reprendra la même chose, mais en objets. Le raisonnement sera identique, seule l'organisation du code changera.
 
 👋 Si vous avez des questions, n'hésitez pas.

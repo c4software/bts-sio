@@ -65,7 +65,7 @@ Attention, ce serveur ne vous donne que PHP : la base de données, elle, reste c
 - Déposer et lire un **cookie** pour une préférence d'affichage.
 - Faire la différence entre ce qui survit à la fermeture du navigateur et ce qui ne survit pas.
 
-## Étape 1 : comprendre avant de coder
+## Comprendre avant de coder
 
 En PHP, deux super-globales servent à se souvenir de quelque chose d'un chargement de page à l'autre :
 
@@ -120,7 +120,7 @@ if (isset($_SESSION['phrase'])) {
 unset($_SESSION['phrase']);
 ```
 
-## Étape 2 : se souvenir du dernier choix
+## Se souvenir du dernier choix
 
 Premier usage concret. Aujourd'hui, quand vous revenez sur l'accueil, le formulaire est remis à zéro. Dommage : le visiteur qui génère trois punitions de suite doit tout retaper.
 
@@ -186,7 +186,7 @@ Le résultat attendu, après une génération, en revenant sur l'accueil :
 Générez une punition avec « Je ne parle pas en classe » et 20 lignes, revenez sur l'accueil : le champ texte contient votre phrase et le `select` est positionné sur 20.
 :::
 
-## Étape 3 : le message flash
+## Le message flash
 
 Aujourd'hui, la page `pages/bart.php` enregistre la punition **puis** affiche le tableau. Il y a un petit problème avec ça : si le visiteur recharge la page (F5), le navigateur renvoie le formulaire, et la punition est enregistrée **une deuxième fois**.
 
@@ -232,7 +232,7 @@ Un message flash, c'est donc toujours le même trio : j'écris, j'affiche, j'oub
 
 :::
 
-Et le tableau de Bart, alors ? Il ne disparait pas : puisque la dernière phrase est en session depuis l'étape 2, affichez-le sur l'accueil, sous le formulaire.
+Et le tableau de Bart, alors ? Il ne disparait pas : puisque la dernière phrase est en session depuis la section « Se souvenir du dernier choix », affichez-le sur l'accueil, sous le formulaire.
 
 ```php
 <?php if (isset($_SESSION['last_phrase'])) { ?>
@@ -250,7 +250,7 @@ Le résultat, juste après une génération :
 Générez une punition : vous arrivez sur l'accueil, l'URL est bien `index.php?page=home`, le message vert s'affiche et le tableau apparait. Rechargez la page (F5) : plus de message, plus de double enregistrement, et la liste des dernières punitions n'a pas bougé.
 :::
 
-## Étape 4 : un compteur de visite
+## Un compteur de visite
 
 Ajoutons une petite information sur l'accueil : « vous avez généré N punitions pendant cette visite ».
 
@@ -288,7 +288,7 @@ Ces deux chiffres racontent deux choses différentes. Rangez au bon endroit : **
 
 :::
 
-## Étape 5 : le cookie, une préférence d'affichage
+## Le cookie, une préférence d'affichage
 
 Passons au cookie. La différence avec la session, vous la connaissez : la valeur est stockée **chez le visiteur**, et vous choisissez sa durée de vie.
 

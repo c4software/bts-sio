@@ -79,10 +79,10 @@ L'avantage de VueJS est que celui-ci va nous simplifier la manipulation du DOM (
 
 Avant de commencer nos évolutions, nous allons mettre en place une méthodologie de travail. En effet, pour ne pas se retrouver submergé par les modifications, il est important de découper notre travail en plusieurs étapes.
 
-- Étape 1 : Les données, de quelles données allons-nous avoir besoin ? Comment les obtenir ?
-- Étape 2 : Quelle partie du code va être ajoutée ? Les contrôleurs, les vues, les routes ?
-- Étape 3 : Quelle partie du code va être modifiée ? Les contrôleurs, les vues, les routes ?
-- Étape 4 : Quelle partie du code va être supprimée ? Les contrôleurs, les vues, les routes ?
+- Les données : de quelles données allons-nous avoir besoin ? Comment les obtenir ?
+- Les ajouts : quelle partie du code va être ajoutée ? Les contrôleurs, les vues, les routes ?
+- Les modifications : quelle partie du code va être modifiée ? Les contrôleurs, les vues, les routes ?
+- Les suppressions : quelle partie du code va être supprimée ? Les contrôleurs, les vues, les routes ?
 
 Cette étape est importante, car si vous ne la réalisez pas, vous serez vite perdu et dépassé par les évolutions que vous allez mettre en place.
 
@@ -104,7 +104,7 @@ Lors du chargement de la page « /like/{id} » le contrôleur récupère l'artic
 
 Nous allons donc modifier le comportement de la page article, afin que celle-ci ne se recharge pas entièrement, mais que seul le compteur de like soit mis à jour lors de l'appui sur le bouton « like » (fonctionnement très similaire à celui de X par exemple).
 
-### Étape 1 : Les données
+### Les données du like
 
 Nous allons maintenant chercher dans notre code existant, le code que nous devons reprendre / modifier. Nous avons dans notre code deux parties qui sont intéressantes :
 
@@ -153,7 +153,7 @@ php artisan make:controller ApiController
 
 Nous avons maintenant un nouveau contrôleur, nous allons donc pouvoir commencer à coder nos méthodes.
 
-### Étape 2 : Ajout des méthodes
+### Ajout des méthodes
 
 Pour retourner du JSON, nous allons utiliser la méthode « json » de Laravel. Nous allons donc ajouter cette méthode dans notre contrôleur :
 
@@ -242,7 +242,7 @@ Vous n'avez jamais utilisé PostMan, nous allons le faire ensemble. Mais voilà 
 
 Votre code fonctionne ? Vous avez bien un retour au format JSON ? Si oui, nous pouvons passer à l'étape suivante.
 
-### Étape 3 : Modification du code
+### Modification du code
 
 Maintenant que nous avons nos API, nous allons modifier notre code afin de consommer ces API. Nous allons commencer par la page « article.blade.php ». Nous allons modifier le code de la page afin de mettre en place le système de like avec VueJS.
 
@@ -472,7 +472,7 @@ D'ailleurs… c'est une bonne idée ! Je vous laisse ajouter le composant « lik
 
 :::
 
-### Étape 4 : Interdire l'auto-like
+### Interdire l'auto-like
 
 Actuellement il est possible de s'auto-liker. C'est-à-dire que vous pouvez liker votre propre article. Je vous laisse trouver comment interdire cela dans votre API.
 
@@ -520,7 +520,7 @@ Ici nous parlons d'un problème de « sécurité », le code doit être placé a
 
 Nous avons vu ensemble comment mettre en place un système de like. Nous allons maintenant mettre en place un système de commentaire. Nous allons commencer par lister les commentaires d'un article.
 
-### Étape 1 : Les données
+### Les données des commentaires
 
 Nous allons commencer par créer deux nouvelles routes dans le fichier `routes/api.php` :
 
@@ -635,11 +635,11 @@ Un peu de détail sur le résultat :
 - Chaque commentaire est un tableau associatif qui contient les informations du commentaire.
 - Les deux méthodes retournent le même résultat, c'est-à-dire que la méthode `addComment` retourne le même résultat que la méthode `getComments`.
 
-### Étape 1b : Nettoyage du code
+### Nettoyage du code
 
 Le code que nous avons écrit est normalement déjà présent dans votre projet, mais dans la partie non API. Nous allons donc supprimer le code de la partie non API. Nous allons donc supprimer les méthodes `getComments` et `addComment` du contrôleur `ArticleController`.
 
-### Étape 2 : Créer le « composant »
+### Créer le « composant »
 
 Nous allons maintenant créer le composant qui va afficher les commentaires. Nous allons créer un fichier `comments.js` dans le dossier `public/`.
 
@@ -717,7 +717,7 @@ Qu'avons-nous dans ce code ?
 
 Les TODO sont à compléter par vos soins. Je vous laisse mettre en place ce code dans votre projet.
 
-### Étape 3 : Modifier le code HTML
+### Modifier le code HTML
 
 #### Lister les commentaires
 

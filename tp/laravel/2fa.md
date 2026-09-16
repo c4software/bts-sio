@@ -51,7 +51,7 @@ La 2FA (ou MFA, Multi-Factor Authentication) est **la** contre-mesure recommand�
 
 :::
 
-## Étape 1 : la migration
+## La migration
 
 Deux colonnes suffisent, comme souvent avec les codes temporaires :
 
@@ -68,7 +68,7 @@ Schema::table('utilisateurs', function (Blueprint $table) {
 
 Je vous laisse compléter la méthode `down()`, lancer `php artisan migrate`, et ajouter les deux colonnes dans le `$fillable` du modèle.
 
-## Étape 2 : générer le code au login
+## Générer le code au login
 
 Dans `traitementLogin`, quand le mot de passe est correct, nous ne connectons **plus** l'utilisateur directement. À la place :
 
@@ -117,7 +117,7 @@ Question :
 
 - Pourquoi stocker `2fa_email` en session plutôt que de considérer l'utilisateur comme connecté ?
 
-## Étape 3 : la page de vérification
+## La page de vérification
 
 À vous de jouer pour cette étape, vous avez tous les outils :
 
@@ -127,7 +127,7 @@ Question :
 
 ![La page de vérification du code](./ressources/2fa_verification.png)
 
-## Étape 4 : vérifier le code
+## Vérifier le code
 
 Pour la vérification, je vous donne la requête clé, qui vérifie le code **et** son expiration en une seule fois :
 

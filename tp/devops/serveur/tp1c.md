@@ -67,7 +67,7 @@ C'est à vous de jouer !
 
 :::
 
-### Étape 1 : Créez une VM
+### Créez une VM
 
 ### Création complète de la VM
 
@@ -83,7 +83,7 @@ Dans cette version, vous allez créer votre VM à partir d'un modèle. Le modèl
 
 À l'aide des TP précédents, créez une VM qui respecte les spécifications ci-dessus.
 
-### Étape 2 : Configurez la VM
+### Configurez la VM
 
 Vérifier que votre VM respecte les spécifications suivantes :
 
@@ -91,7 +91,7 @@ Vérifier que votre VM respecte les spécifications suivantes :
 - La VM doit avoir accès à Internet (`ping www.google.com` doit fonctionner).
 - La VM doit posséder les **vmtools** (`apt install open-vm-tools`)
 
-### Étape 3 : Connectez-vous à la VM
+### Connectez-vous à la VM
 
 Pour vous connecter à la VM, vous devez utiliser la commande `ssh` depuis votre machine hôte. Pour que cela fonctionne :
 

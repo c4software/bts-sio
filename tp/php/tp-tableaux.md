@@ -14,7 +14,7 @@ Depuis le premier TP, vous utilisez des tableaux sans forcément le savoir. `$_G
 
 Aujourd'hui, nous allons prendre le sujet par le bon bout. Skinner en a assez de son classeur papier : il veut le carnet de notes de la classe de Bart sur le réseau du collège. Une classe, des élèves, des matières, des notes, des moyennes. Pour représenter tout ça, une variable simple ne suffit plus.
 
-Vous savez déjà interroger une base de données depuis PHP (c'était le [TP 2](./tp2.md), avec PDO et les requêtes préparées). Nous allons commencer par écrire nos données « à la main » dans un fichier PHP, pour nous concentrer sur leur **structure**, puis, à l'étape 7, nous irons chercher exactement les mêmes données dans une base. Vous verrez alors que rien d'autre ne change dans le projet : c'est tout l'intérêt de séparer les données de l'affichage.
+Vous savez déjà interroger une base de données depuis PHP (c'était le [TP 2](./tp2.md), avec PDO et les requêtes préparées). Nous allons commencer par écrire nos données « à la main » dans un fichier PHP, pour nous concentrer sur leur **structure**, puis, dans la section « Les mêmes données, depuis la base », nous irons chercher exactement les mêmes données dans une base. Vous verrez alors que rien d'autre ne change dans le projet : c'est tout l'intérêt de séparer les données de l'affichage.
 
 ::: warning Le visuel, on s'en occupe plus tard
 Dans ce TP, nous nous concentrons sur **la logique** et sur **les données**. Un `<table>` HTML tout simple suffira largement. Si vous voulez ajouter Bootstrap à la fin, libre à vous, mais seulement à la fin.
@@ -33,7 +33,7 @@ Avant de commencer, un tour rapide des compétences du jour : le tableau de tabl
 - Un environnement PHP qui fonctionne (XAMPP, WAMP, ou le serveur intégré `php -S localhost:9000`).
 - Avoir fait les TP 1 à 5 : variables, boucles, conditions, `include`, `$_GET`.
 - Connaître la structure « entry-point » du [TP 3](./tp3.md) (un `index.php`, une whitelist, des dossiers `common/` et `pages/`) : c'est celle que nous allons réutiliser.
-- Savoir interroger une base de données avec PDO depuis le [TP 2](./tp2.md) : le fichier `utils/db.php`, `query()`, `fetchAll()` et les requêtes préparées. Tout est rappelé dans [le support SQL, section « Obtenir des données »](./sql/support.md#obtenir-des-donnees). Vous en aurez besoin à l'étape 7.
+- Savoir interroger une base de données avec PDO depuis le [TP 2](./tp2.md) : le fichier `utils/db.php`, `query()`, `fetchAll()` et les requêtes préparées. Tout est rappelé dans [le support SQL, section « Obtenir des données »](./sql/support.md#obtenir-des-donnees). Vous en aurez besoin dans la section « Les mêmes données, depuis la base ».
 - Avoir lu (ou relu) la partie [Les tableaux](./support.md#les-tableaux) du support, en particulier [À plusieurs dimensions](./support.md#a-plusieurs-dimensions).
 
 ::: details Rattrapage express sur le foreach
@@ -74,18 +74,18 @@ foreach ($subjects as $key => $subject) {
 ::: tip Pour tenir les 2 heures
 Voici un rythme indicatif, gardez un oeil sur l'horloge :
 
-| Étape | Sujet | Durée |
-| --- | --- | --- |
-| 1 | La liste des matières | 10 min |
-| 2 | La fiche d'un élève | 10 min |
-| 3 | La classe entière | 20 min |
-| 4 | Les notes et les moyennes | 25 min |
-| 5 | Un peu de logique | 20 min |
-| 6 | Filtrer avec l'URL | 15 min |
-| 7 | Les mêmes données, depuis la base | 20 min |
-| 8 | Bonus | si vous êtes en avance |
+| Section | Durée |
+| --- | --- |
+| La liste des matières | 10 min |
+| La fiche d'un élève | 10 min |
+| La classe entière | 20 min |
+| Les notes et les moyennes | 25 min |
+| Un peu de logique | 20 min |
+| Filtrer avec l'URL | 15 min |
+| Les mêmes données, depuis la base | 20 min |
+| Bonus | si vous êtes en avance |
 
-Si vous prenez du retard sur une étape, passez à la suivante et revenez-y à la fin. L'important est d'arriver à l'étape 4, puis de prendre le temps de l'étape 7 qui referme le TP.
+Si vous prenez du retard sur une section, passez à la suivante et revenez-y à la fin. L'important est d'arriver aux notes et aux moyennes, puis de prendre le temps de la section « Les mêmes données, depuis la base » qui referme le TP.
 :::
 
 ## Préparer le projet
@@ -103,7 +103,7 @@ carnet/
     └── home.php       <- la première page
 ```
 
-Pourquoi un fichier `data.php` à part ? Parce que les données et l'affichage sont deux choses différentes. À l'étape 7, vos données viendront d'une base de données : seul `common/data.php` changera, vos pages continueront de fonctionner sans qu'on y touche. C'est exactement le même réflexe que les `include` du TP 3.
+Pourquoi un fichier `data.php` à part ? Parce que les données et l'affichage sont deux choses différentes. Dans la section « Les mêmes données, depuis la base », vos données viendront d'une base de données : seul `common/data.php` changera, vos pages continueront de fonctionner sans qu'on y touche. C'est exactement le même réflexe que les `include` du TP 3.
 
 Le fichier `index.php` est celui du TP 3, auquel on ajoute l'include des données **avant** le header, pour que les tableaux soient disponibles dans toutes les pages. La première ligne, `ob_start()`, demande à PHP de garder le HTML en mémoire jusqu'à la fin du script : elle permet de faire une redirection depuis une page même si le header est déjà affiché, vous en aurez besoin dans le bonus, prenez l'habitude de la mettre :
 
@@ -212,7 +212,7 @@ Un fichier qui ne contient **que** du PHP n'a pas besoin de `?>` à la fin. C'es
 `index.php` affiche le titre, le menu, votre page d'accueil et le pied de page. `index.php?page=nimportequoi` affiche aussi l'accueil : la whitelist fait son travail.
 :::
 
-## Étape 1 : la liste des matières
+## La liste des matières
 
 Skinner commence petit : il veut la liste des matières enseignées.
 
@@ -289,7 +289,7 @@ Vous connaissez déjà `isset()` : c'est exactement ce que vous faisiez sur `$_G
 
 :::
 
-## Étape 2 : la fiche d'un élève
+## La fiche d'un élève
 
 Passons à un élève. Un élève, ce n'est pas une liste de valeurs interchangeables : c'est un prénom, un nom, un âge. Chaque information a un rôle différent. C'est le cas d'usage typique du tableau **associatif**, où la clé est un texte.
 
@@ -335,7 +335,7 @@ Voici ce que vous devez obtenir :
 
 ![La page d'accueil avec la liste des matières et la fiche de Bart](./res/tableaux_home.png)
 
-## Étape 3 : la classe entière
+## La classe entière
 
 Un élève, c'est bien. Skinner en a une classe entière. Et là, la question intéressante : comment stocker six élèves ?
 
@@ -421,7 +421,7 @@ Testez-le, puis essayez `$students[0]['nom']` et `$students[5]['age']`.
 
 ::: details Besoin d'aide pour la boucle ?
 
-La structure est exactement la même qu'à l'étape 1, sauf qu'à chaque tour la variable de boucle contient un **tableau** et non une chaîne de caractères. Il faut donc utiliser ses clés pour en sortir les valeurs :
+La structure est exactement la même que dans la section « La liste des matières », sauf qu'à chaque tour la variable de boucle contient un **tableau** et non une chaîne de caractères. Il faut donc utiliser ses clés pour en sortir les valeurs :
 
 ```php
 <?php foreach ($students as $student) { ?>
@@ -465,7 +465,7 @@ La structure est exactement la même qu'à l'étape 1, sauf qu'à chaque tour la
 `index.php?page=classe` affiche six lignes, une par élève, dans l'ordre du fichier `common/data.php`. Ajoutez un septième élève dans `common/data.php` (Todd Flanders, 10 ans, par exemple) : la ligne doit apparaître **sans que vous touchiez à `pages/classe.php`**. Si c'est le cas, vous avez compris l'intérêt de séparer les données de l'affichage. Vous pouvez ensuite le retirer.
 :::
 
-## Étape 4 : les notes
+## Les notes
 
 Nous y voilà. Skinner veut les notes, et une note appartient à un élève **et** à une matière. Nous allons donc ajouter à chaque élève une clé `notes`, qui contient elle-même un tableau associatif matière vers note. Nous passons à trois niveaux.
 
@@ -627,7 +627,7 @@ Remplacez votre boucle d'accumulation par `array_sum()`, votre code doit continu
 Lisa a 19, 18 et 17. Sa moyenne affichée doit être **18**. Bart a 6, 8 et 11, sa moyenne doit être **8.33**. Si vous obtenez autre chose (souvent la dernière note, ou une valeur énorme), c'est que votre accumulateur n'est pas remis à zéro au bon endroit.
 :::
 
-## Étape 5 : un peu de logique
+## Un peu de logique
 
 Cette fois, plus de code donné. Vous avez tout ce qu'il faut, ce sont les consignes seules. Prenez une feuille et écrivez l'algorithme avant de taper, ça va beaucoup plus vite ensuite.
 
@@ -714,7 +714,7 @@ Voici ce que vous devez obtenir :
 Le meilleur élève doit être **Lisa** avec 18/20, et deux élèves seulement doivent être « Non admis » : Bart et Ralph. Si Nelson apparaît comme admis, revérifiez le calcul de sa moyenne (9 + 7 + 14 = 30, donc 10, il est donc admis de justesse, le `>=` compte).
 :::
 
-## Étape 6 : filtrer avec l'URL
+## Filtrer avec l'URL
 
 Skinner veut maintenant pouvoir consulter le classement d'**une** matière. Nous allons créer une page `pages/matiere.php` (whitelist !) qui reçoit la matière en paramètre. L'adresse ressemblera à :
 
@@ -815,7 +815,7 @@ Et pour une matière qui n'existe pas :
 Testez les trois cas dans votre navigateur : `index.php?page=matiere`, `index.php?page=matiere&matiere=sql` et `index.php?page=matiere&matiere=cuisine`. Le troisième doit afficher **votre** message d'erreur, et surtout aucun `Warning: Undefined array key` de PHP. Si vous voyez un avertissement, c'est que vous accédez au tableau avant d'avoir vérifié la validité de la matière.
 :::
 
-## Étape 7 : les mêmes données, depuis la base
+## Les mêmes données, depuis la base
 
 Depuis le début du TP, la classe de Skinner est écrite à la main dans `common/data.php`. C'est pratique pour apprendre, mais ce n'est évidemment pas comme ça qu'on travaille : dans la vraie vie, les élèves sont dans une base de données. Et vous savez déjà l'interroger, c'était le [TP 2](./tp2.md).
 
@@ -942,7 +942,7 @@ foreach ($students as $key => $student) {
 }
 ```
 
-Relisez la ligne importante : `$students[$key]['notes'][$row['matiere']] = $row['note'];`. La requête vous rend des lignes (`php`, `6`), (`sql`, `8`)… et la boucle les range dans un tableau associatif matière vers note, sous la clé `notes` de l'élève. Vous reconstruisez, ligne par ligne, la structure à trois niveaux de l'étape 4.
+Relisez la ligne importante : `$students[$key]['notes'][$row['matiere']] = $row['note'];`. La requête vous rend des lignes (`php`, `6`), (`sql`, `8`)… et la boucle les range dans un tableau associatif matière vers note, sous la clé `notes` de l'élève. Vous reconstruisez, ligne par ligne, la structure à trois niveaux de la section « Les notes ».
 
 ::: tip Pourquoi `as $key => $student` et pas juste `as $student` ?
 Parce que `$student` est une **copie** de la case du tableau : si vous écrivez dedans, vous écrivez dans la copie, et le vrai tableau `$students` ne bouge pas. En récupérant aussi la clé, vous écrivez dans `$students[$key]`, c'est-à-dire dans l'original. Testez les deux, faites un `print_r($students)` après la boucle : c'est une erreur très fréquente, autant l'avoir vue une fois.
@@ -984,7 +984,7 @@ Le tableau `$subjects` reste écrit à la main : la liste des matières au progr
 ::: tip Point de contrôle
 Rechargez `index.php?page=classe` : **aucune page ne change**. Mêmes six élèves, même moyenne de 8.33 pour Bart et de 18 pour Lisa, Nelson toujours admis avec 10, moyenne générale de la classe toujours à 11.56. `index.php?page=matiere&matiere=sql` fonctionne aussi, sans que vous ayez ouvert `pages/matiere.php`.
 
-C'est **tout l'intérêt** de la séparation données / affichage : vous venez de changer la source de vos données, et vos pages n'en ont rien su. Si vous avez dû modifier une page, c'est que quelque chose ne colle pas dans la structure reconstruite : un `print_r($students)` et comparez avec celle de l'étape 4.
+C'est **tout l'intérêt** de la séparation données / affichage : vous venez de changer la source de vos données, et vos pages n'en ont rien su. Si vous avez dû modifier une page, c'est que quelque chose ne colle pas dans la structure reconstruite : un `print_r($students)` et comparez avec celle de la section « Les notes ».
 :::
 
 ::: details Question : deux requêtes par élève, c'est beaucoup, existe-t-il mieux ?
@@ -1022,7 +1022,7 @@ Une seule requête, qui renvoie 18 lignes (une par note, avec l'élève répét�
 
 :::
 
-## Étape 8 : vous êtes en avance ?
+## Vous êtes en avance ?
 
 ::: tip Pour les étudiants en avance
 Les évolutions qui suivent sont bonus. Si vous n'y arrivez pas aujourd'hui, ce n'est pas grave : nous les reverrons.
@@ -1091,7 +1091,7 @@ Vous avez de quoi être fiers, cette séance couvre une notion centrale de toute
 - Séparer les données (`common/data.php`) des pages qui les affichent vous permet de changer l'un sans casser l'autre. Et la structure du TP 3 (entry-point, whitelist, `pages/`) tient toujours : gardez-la pour tous vos projets.
 - Un `fetchAll(PDO::FETCH_ASSOC)` vous rend **exactement** un tableau numéroté de tableaux associatifs : une case par ligne, une clé par colonne.
 
-Retenez surtout ceci : à l'étape 7, vous avez remplacé six élèves écrits à la main par six élèves lus en base, et **aucune page n'a bougé**. Mêmes moyennes, même classement, même filtre par matière. C'est la preuve que vos pages ne travaillaient pas sur « des données écrites dans un fichier » mais sur une **structure** : un tableau à plusieurs dimensions. C'est ce format que la base vous rendra pour le reste de votre année, et vous savez déjà le parcourir, l'afficher et le filtrer.
+Retenez surtout ceci : dans la section « Les mêmes données, depuis la base », vous avez remplacé six élèves écrits à la main par six élèves lus en base, et **aucune page n'a bougé**. Mêmes moyennes, même classement, même filtre par matière. C'est la preuve que vos pages ne travaillaient pas sur « des données écrites dans un fichier » mais sur une **structure** : un tableau à plusieurs dimensions. C'est ce format que la base vous rendra pour le reste de votre année, et vous savez déjà le parcourir, l'afficher et le filtrer.
 
 Pour la suite, place à un projet complet où vous allez tout combiner : [TP Création : La TODO List](./creation-todo.md).
 

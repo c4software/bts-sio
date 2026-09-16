@@ -101,7 +101,7 @@ Nous recroiserons OWASP dans les prochains TP.
 
 :::
 
-## Étape 0 : l'authentification en PHP pur (sans Laravel, sans BDD)
+## L'authentification en PHP pur (sans Laravel, sans BDD)
 
 Avant de passer à Laravel, nous allons faire le mécanisme complet dans **un seul fichier PHP**, sans base de données. Objectif : voir le mécanisme « nu », sans framework autour. Comptez 30 minutes maximum.
 
@@ -399,7 +399,7 @@ id  name      email         password
 
 ### La connexion : `traitementLogin`
 
-Vous l'avez fait en PHP pur dans l'étape 0, c'est **exactement le même mécanisme** ici : retrouver l'utilisateur par son email, vérifier le mot de passe contre le hash, puis ouvrir la session. Je vous donne le cœur de la méthode, à vous de l'assembler :
+Vous l'avez fait en PHP pur au début de ce TP, c'est **exactement le même mécanisme** ici : retrouver l'utilisateur par son email, vérifier le mot de passe contre le hash, puis ouvrir la session. Je vous donne le cœur de la méthode, à vous de l'assembler :
 
 ```php
 $mdp = $request->input('password');
@@ -419,7 +419,7 @@ if ($estValide) {
 
 ::: tip Que fait Auth::login() derrière ?
 
-Rien de magique : **exactement ce que vous avez fait à la main dans l'étape 0**. En PHP pur vous aviez écrit `$_SESSION['user'] = $email;`. La version Laravel « manuelle » serait `$request->session()->put('user', $utilisateur->id);`. `Auth::login()` fait la même chose : il stocke **l'identifiant** de l'utilisateur dans la session.
+Rien de magique : **exactement ce que vous avez fait à la main en PHP pur**. En PHP pur vous aviez écrit `$_SESSION['user'] = $email;`. La version Laravel « manuelle » serait `$request->session()->put('user', $utilisateur->id);`. `Auth::login()` fait la même chose : il stocke **l'identifiant** de l'utilisateur dans la session.
 
 Deux différences intéressantes :
 
@@ -493,7 +493,7 @@ Il manque une étape du mécanisme : la déconnexion. Je vous laisse ajouter :
 - Une méthode `logout` dans votre contrôleur, qui déconnecte l'utilisateur (`Auth::logout();`) puis redirige vers `/login`.
 - Un lien « Déconnexion » dans votre layout, affiché **uniquement** si l'utilisateur est connecté (une condition `@if(Auth::check())` fera l'affaire).
 
-::: tip Le parallèle avec l'étape 0
+::: tip Le parallèle avec le PHP pur
 
 - `Auth::logout()` retire l'utilisateur de la session : c'est votre `session_destroy()` du PHP pur (version Laravel « manuelle » : `session()->forget('user')`).
 - `Auth::check()` vérifie la présence de l'utilisateur en session : c'est votre `isset($_SESSION['user'])` (version Laravel « manuelle » : `session()->has('user')`).

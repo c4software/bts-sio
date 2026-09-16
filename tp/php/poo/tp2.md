@@ -58,7 +58,7 @@ boite-a-idees/
 
 Plus la base `boite_idees` avec la table `idees (id, titre, auteur, contenu, date_creation)`.
 
-Si `Idea::delete()` (le bonus du TP 1) vous manque, ce n'est pas grave : nous l'écrirons ensemble à l'étape 5.
+Si `Idea::delete()` (le bonus du TP 1) vous manque, ce n'est pas grave : nous l'écrirons ensemble dans la section « L'espace d'administration ».
 :::
 
 ## Objectifs
@@ -72,7 +72,7 @@ Si `Idea::delete()` (le bonus du TP 1) vous manque, ce n'est pas grave : nous l'
 - Conditionner la whitelist de votre entry-point à l'état de connexion.
 - Protéger un espace d'administration et y proposer une suppression.
 
-## Étape 1 : la table des utilisateurs
+## La table des utilisateurs
 
 Nos utilisateurs vont vivre en base, à côté des idées. Voici le script, à exécuter dans l'onglet **SQL** de phpMyAdmin (après avoir sélectionné la base `boite_idees` à gauche) :
 
@@ -124,7 +124,7 @@ Dans phpMyAdmin, la table `utilisateurs` contient une ligne, et la colonne `mot_
 Relancez `hash.php` (avant de le supprimer) plusieurs fois avec le **même** mot de passe : vous obtenez un hash **différent** à chaque fois. Surpris ? C'est le sel (« salt ») qui est tiré au hasard et rangé dans le hash lui-même. Deux utilisateurs avec le même mot de passe auront deux empreintes différentes, et une table arc-en-ciel ne sert plus à rien. L'explication complète est dans [le TP sur l'authentification](../sql/tp-authentification.md).
 :::
 
-## Étape 2 : le modèle User
+## Le modèle User
 
 Vous avez écrit `Idea` au TP 1. Ici, c'est exactement la même logique, appliquée à une autre table : une classe `User`, avec les données d'une ligne **et** la méthode qui va la chercher en base. Je vous donne les squelettes, à vous de remplir les trous.
 
@@ -199,7 +199,7 @@ Vous devez obtenir :
 Si les deux renvoient `NULL`, votre requête ou votre base ne sont pas d'accord. Pensez à retirer ce `var_dump()` ensuite.
 :::
 
-## Étape 3 : la classe Auth
+## La classe Auth
 
 Nous avons de quoi retrouver un utilisateur. Il faut maintenant vérifier son mot de passe et se souvenir qu'il est connecté.
 
@@ -286,7 +286,7 @@ RENVOYER vrai
 ```
 
 ::: tip Que se passe-t-il derrière ?
-**`password_verify($saisi, $hash)`** : on ne compare **jamais** deux hashs avec `==`. Pourquoi ? Parce que re-hacher le mot de passe saisi donnerait une empreinte différente (le sel est tiré au hasard, souvenez-vous de l'étape 1). `password_verify()` fait le travail correctement : il relit le sel et l'algorithme **à l'intérieur** du hash stocké, recalcule l'empreinte du mot de passe saisi avec ce sel-là, et compare le résultat en temps constant (pour ne pas donner d'indice à un attaquant qui chronomètre les réponses).
+**`password_verify($saisi, $hash)`** : on ne compare **jamais** deux hashs avec `==`. Pourquoi ? Parce que re-hacher le mot de passe saisi donnerait une empreinte différente (le sel est tiré au hasard, souvenez-vous de la section « La table des utilisateurs »). `password_verify()` fait le travail correctement : il relit le sel et l'algorithme **à l'intérieur** du hash stocké, recalcule l'empreinte du mot de passe saisi avec ce sel-là, et compare le résultat en temps constant (pour ne pas donner d'indice à un attaquant qui chronomètre les réponses).
 
 **`session_regenerate_id(true)`** : au moment où l'utilisateur change de statut (anonyme, puis connecté), on lui donne un **nouvel identifiant de session** et on détruit l'ancien (c'est le rôle du `true`). Ça bloque une attaque qui s'appelle la « fixation de session » : un attaquant qui aurait réussi à imposer un identifiant de session à sa victime avant sa connexion se retrouve avec un identifiant périmé juste après. Une ligne, une classe d'attaque en moins.
 :::
@@ -317,7 +317,7 @@ public static function attempt(string $email, string $password): bool
 Remarquez l'ordre : on sort **tôt** (`return false`) dès qu'une condition n'est pas remplie, plutôt que d'empiler des `if` imbriqués. Le code se lit mieux, et le chemin « tout va bien » reste en bas, sans indentation.
 :::
 
-## Étape 4 : la page de connexion et la whitelist
+## La page de connexion et la whitelist
 
 Vous avez le moteur, il manque le tableau de bord.
 
@@ -419,7 +419,7 @@ Créez `pages/deconnexion.php`. Deux lignes utiles : appeler `Auth::logout()`, p
 - « Déconnexion » vous ramène à la home, avec le lien « Connexion » de retour.
 :::
 
-## Étape 5 : l'espace d'administration
+## L'espace d'administration
 
 Cette fois, pas de squelette : **vous avez tout ce qu'il faut**. Voici le cahier des charges, à vous de jouer.
 

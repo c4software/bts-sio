@@ -94,7 +94,7 @@ Idea              Représenter UNE idée, et savoir la lire, l'enregistrer, la s
 
 `Idea`, c'est ce qu'on appelle un **modèle** (*model* en anglais) : la classe qui représente une ligne de la table `idees` **et** qui sait aller la chercher en base. Retenez cette découpe, c'est le cœur du TP : **une classe = une responsabilité**.
 
-## Étape 1 : la base de données et la structure du projet
+## La base de données et la structure du projet
 
 ### La base
 
@@ -361,7 +361,7 @@ Créez enfin un `pages/home.php` provisoire, avec un simple `<h1>Les idées dép
 En ouvrant `http://localhost/boite-a-idees/index.php`, vous voyez le bandeau bleu, le titre et le pied de page. Aucune erreur PHP à l'écran. Le squelette est en place, on peut passer aux choses sérieuses.
 :::
 
-## Étape 2 : la classe Database
+## La classe Database
 
 Dans les TP SQL, votre connexion vivait dans `utils/db.php`, un fichier qui créait une variable globale `$pdo`. Nous remplaçons ce fichier par une classe.
 
@@ -427,12 +427,12 @@ var_dump(Database::getPdo());
 ::: tip Point de contrôle
 Votre page affiche quelque chose comme `object(PDO)#2 (0) { }`. Vous n'avez écrit **aucun** `require` : c'est l'autoloader qui est allé chercher `classes/Database.php` tout seul.
 
-Une erreur `SQLSTATE[HY000] [1049] Unknown database` ? Le script SQL de l'étape 1 n'a pas été exécuté, ou le nom de la base est mal orthographié dans le `$dsn`.
+Une erreur `SQLSTATE[HY000] [1049] Unknown database` ? Le script SQL de la section « La base de données et la structure du projet » n'a pas été exécuté, ou le nom de la base est mal orthographié dans le `$dsn`.
 :::
 
 Supprimez le `var_dump` avant de continuer.
 
-## Étape 3 : la classe Idea, les données
+## La classe Idea, les données
 
 `Database` sait se connecter. Il nous faut maintenant de quoi représenter **une idée**.
 
@@ -526,7 +526,7 @@ Avec un objet, la liste des propriétés est **écrite dans la classe**. Ce qui 
 
 Supprimez le code de test avant de continuer.
 
-## Étape 4 : le modèle va chercher les idées
+## Le modèle va chercher les idées
 
 Nous avons une connexion et un moule à idées. Il manque le lien entre les deux : de quoi aller chercher les données en base.
 
@@ -635,7 +635,7 @@ Votre page d'accueil affiche les trois idées d'exemple, la plus récente en pre
 Prenez trente secondes pour relire `home.php` : il n'y a **plus une seule ligne de SQL** dedans. Une ligne suffit à obtenir les données, le reste est du HTML. C'est exactement l'objectif.
 :::
 
-## Étape 5 : déposer une idée
+## Déposer une idée
 
 Une boîte à idées où personne ne peut déposer d'idée, ça manque d'ambition. Passons au formulaire.
 
@@ -828,7 +828,7 @@ Testez aussi le cas d'erreur : envoyez le formulaire vide, le message rouge doit
 Un formulaire HTML est devenu un tableau `$_POST`, qui est devenu un objet `Idea`, qui s'est lui-même transformé en `INSERT`, qui a produit une ligne dans MySQL. Chaque étape a **une** responsabilité, et une seule. C'est tout l'intérêt de la découpe.
 :::
 
-## Étape 6 : compter et retrouver une idée
+## Compter et retrouver une idée
 
 Cette fois, les consignes seules. L'aide est repliée, ouvrez-la si vous bloquez plus de cinq minutes.
 

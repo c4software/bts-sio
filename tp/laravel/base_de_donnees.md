@@ -414,7 +414,7 @@ Voilà l'objectif final de cette partie, une fois toutes les étapes terminées 
 
 Nous allons y arriver progressivement, étape par étape.
 
-### Étape 1 : le contrôleur
+### Le contrôleur
 
 Créez un contrôleur `TodoControleur` avec `artisan`, comme dans le TP d'introduction. Il contiendra pour l'instant deux méthodes :
 
@@ -423,7 +423,7 @@ Créez un contrôleur `TodoControleur` avec `artisan`, comme dans le TP d'introd
 
 Vous avez vu ces deux méthodes dans la section « Où écrire ces appels ? ». N'oubliez pas le `use App\Models\Todo;` en haut du fichier.
 
-### Étape 2 : les routes
+### Les routes
 
 Ajoutez dans `routes/web.php` :
 
@@ -434,7 +434,7 @@ Question :
 
 - Pourquoi deux routes avec la même URL mais deux verbes HTTP différents ? Que se passerait-il avec une seule route en `GET` ?
 
-### Étape 3 : la vue, afficher la liste
+### La vue, afficher la liste
 
 Créez la vue `resources/views/todo.blade.php` :
 
@@ -465,11 +465,11 @@ Pour vérifier votre boucle sans attendre le formulaire, ajoutez une ligne à la
 
 :::
 
-### Étape 4 : le formulaire d'ajout
+### Le formulaire d'ajout
 
 Ajoutez dans la même vue, au-dessus du tableau, un formulaire qui permet de saisir une nouvelle TODO :
 
-- Méthode `POST`, action `/todo` (la route de l'étape 2).
+- Méthode `POST`, action `/todo` (la route `POST` déclarée plus haut).
 - Un champ texte nommé `texte` : c'est ce nom que le contrôleur lit dans `$request->texte`, et c'est aussi le nom de la colonne en base.
 - Un bouton pour valider.
 - La directive `@csrf` juste après la balise `<form>` (voir ci-dessous).
@@ -517,7 +517,7 @@ Le visuel n'est pas l'objectif de ce TP, ne passez pas votre séance dessus.
 
 :::
 
-### Étape 5 : tester
+### Tester
 
 À ce stade vous devez pouvoir ajouter une TODO via votre formulaire, la voir apparaître dans la liste, **et** la retrouver dans votre base via votre outil SQLite. Vérifiez avant de continuer.
 

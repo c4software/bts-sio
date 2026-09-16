@@ -47,7 +47,7 @@ Une API ? What ? Alors, une API dans le fond c'est « comme un site web ». Mais
 C'est donc du code (PHP ou autre) qui va permettre de faire parler deux ordinateurs (le client et le serveur) dans un langage spécifique (XML, JSON …)
 :::
 
-### Étape 1 : Analyse du code
+### Analyse du code
 
 La première étape va être de créer l'API, nous allons donc regarder comment fonctionne le code que vous avez téléchargé. Je vous laisse regarder, une fois analysé, nous allons en parler ensemble.
 
@@ -111,7 +111,7 @@ Vous avez une API de disponible dans le projet. Celle-ci contient du contenu fic
 🤓 Je vous laisse tester.
 :::
 
-### Étape 2 : Créer l'API
+### Créer l'API
 
 Nous avons maintenant analysé le code actuellement fonctionnel. Nous allons donc créer une API qui devra retourner « seulement la liste des vidéos ». Nous allons utiliser la fonction `json_encode` fournie **de base** en PHP.
 
@@ -165,7 +165,7 @@ Pour tester votre API, vous avez la possibilité d’utiliser le logiciel PostMa
 Téléchargez-le [ici](https://www.getpostman.com/)
 :::
 
-### Étape 3 : Modifier le code existant
+### Modifier le code existant
 
 Je vous laisse modifier le code PHP de la page `home.php` pour le vider de tout `PHP`, celui-ci doit être vide ! Il ne va contenir que le minimum à savoir la structure interne de la page :
 
@@ -183,7 +183,7 @@ Je vous laisse modifier le code PHP de la page `home.php` pour le vider de tout 
 </script>
 ```
 
-### Étape 4 : Appeler l'API en Ajax
+### Appeler l'API en Ajax
 
 Comme nous l'avons fait précédemment, je vous laisse reprendre le code. Mais le code va ressembler à :
 
@@ -224,7 +224,7 @@ datas.forEach((el) => {
 
 🤓 Je vous laisse travailler à la mise en place du code en question. Tester ensuite que la page s'affiche comme précédemment.
 
-### Étape 5 : Évolution de la page
+### Évolution de la page
 
 Ajouter un bouton rafraîchir dans la page. Le bouton rafraîchir doit permettre de récupérer à nouveau la liste des vidéos pour les mettre à jour dans la page.
 

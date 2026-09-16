@@ -60,7 +60,7 @@ Comme vu ensemble nous avons 3 façons de déclarer notre CSS :
 Comme évoqué ensemble pendant le cours, je vous conseille vivement de faire un fichier externe pour déclarer votre CSS. Et d'éviter au maximum de faire des déclarations via l'attribut `style=''`.
 :::
 
-### Première étape : Un fichier HTML
+### Un fichier HTML
 
 Une CSS seule ne veut pas dire grand-chose. Afin de tester certaines fonctionnalités de la CSS, je vous propose le contenu suivant :
 
@@ -93,7 +93,7 @@ Dans un premier temps, validez que votre site fonctionne correctement. Pour ça,
 Double-cliquer sur le fichier « ça fonctionne ». Mais je vous conseille vivement de passer par un serveur web local (type Wamp, Mamp, …). Pourquoi ? Simplement afin de reproduire le plus possible les conditions réelles.
 :::
 
-### Étape 2 : La feuille de style
+### La feuille de style
 
 Dans votre éditeur favori créez un nouveau fichier nommé `style.css`. Votre projet doit maintenant ressembler à :
 
@@ -101,7 +101,7 @@ Dans votre éditeur favori créez un nouveau fichier nommé `style.css`. Votre p
 
 Comme vous pouvez le constater, votre fichier CSS est « à côté » de votre fichier HTML. Si vous voulez le ranger dans un sous-dossier c'est possible, libre à vous de vous organiser comme bon vous semble (dans le fil rouge, nous le rangerons dans un dossier `css/`).
 
-### Étape 3 : Déclarer la feuille de style
+### Déclarer la feuille de style
 
 Vous avez vos deux fichiers « le HTML et la CSS ». Nous allons donc maintenant ajouter une ligne dans votre fichier HTML dans la balise `<head>` :
 
@@ -115,7 +115,7 @@ Vous avez vos deux fichiers « le HTML et la CSS ». Nous allons donc maintenant
 La ligne que vous avez ajoutée indique que votre fichier HTML doit charger une autre ressource en même temps que la page. À savoir le fichier style.css
 :::
 
-### Étape 4 : Ajouter vos directives CSS
+### Ajouter vos directives CSS
 
 Votre fichier CSS est pour l'instant vide, il n'a donc aucun effet. Je vous propose de commencer par une première directive CSS :
 

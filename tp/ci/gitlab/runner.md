@@ -103,7 +103,7 @@ Nous avons vu dans les exécuteurs qu'il était possible de choisir **Shell**. M
 
 Si vous cherchez une solution simple pour configurer / installer un runner Gitlab, la solution Docker est clairement la plus facile. Elle vous permettra en quelques minutes de monter un Runner. La [documentation officielle](https://docs.gitlab.com/runner/install/docker.html) explique bien comment procéder, mais si on résume, la procédure se déroulera en deux temps :
 
-#### Étape 1 : Création du Runner dans l'interface Gitlab
+#### Création du Runner dans l'interface Gitlab
 
 Depuis Gitlab 16, la création d'un runner commence dans l'interface web (l'ancien « registration token » partagé n'existe plus). Rendez-vous dans votre projet :
 
@@ -124,7 +124,7 @@ La capture ci-dessus a pu évoluer légèrement, l'important est de retrouver le
 - À quoi correspondent les tags ?
 - Pourquoi ce token est-il affiché une seule fois ?
 
-#### Étape 2 : Enregistrement du Runner
+#### Enregistrement du Runner
 
 L'étape d'enregistrement n'est à réaliser qu'une seule fois. Elle a pour but d'autoriser Gitlab à communiquer avec votre runner, elle s'assure aussi que seuls vos jobs vont être lancés sur votre Runner.
 
@@ -135,7 +135,7 @@ docker run --rm -it -v $(pwd)/config:/etc/gitlab-runner gitlab/gitlab-runner reg
 La commande va vous poser quelques questions :
 
 - **GitLab instance URL** : `https://gitlab.com` (ou l'URL de votre instance Gitlab).
-- **Runner authentication token** : le token `glrt-…` récupéré à l'étape précédente.
+- **Runner authentication token** : le token `glrt-…` récupéré dans l'interface Gitlab.
 - **Name for the runner** : un nom libre pour identifier votre machine.
 - **Executor** : `docker`.
 - **Default Docker image** : par exemple `alpine:latest` (l'image utilisée si votre `.gitlab-ci.yml` n'en précise pas).
@@ -150,7 +150,7 @@ Vous remarquerez que la commande ne vous demande plus les tags : ceux-ci sont ma
 La configuration de votre runner est maintenant générée. Celle-ci est contenue dans le fichier `config`. Je vous laisse la regarder.
 :::
 
-#### Étape 3 : Lancer le runner
+#### Lancer le runner
 
 Notre runner est maintenant connu de Gitlab, il n'est par contre pas encore en fonction pour l'instant.
 
