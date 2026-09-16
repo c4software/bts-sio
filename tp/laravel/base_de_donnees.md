@@ -233,49 +233,145 @@ Tout au long du TP, vous pourrez vérifier que vos actions (ajout, modification,
 
 ### Requêter votre table
 
-Pour vous montrer la simplicité de Eloquent, je vous laisse juste avec les appels de méthodes (nous avons vu ça ensemble lors du cours)
-
-::: danger Liste non exhaustive
-Vous n’avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère plutôt [la documentation officielle](https://laravel.com/docs/11.x/eloquent)
-:::
-
-#### Obtenir toutes les données
-
-Voilà un exemple de code pour obtenir l'ensemble des données dans la table `todos`.
-
-```php
-$valeursEnBase = Todo::all();
-```
-
-#### Obtenir toutes les données avec filtre
-
-Voilà un exemple de code pour obtenir 10 lignes de données avec un filtre et trié par `id`.
-
-```php
-$valeursFiltre = Todo::where('texte', "YOLO")->orderBy('id')->take(10)->get();
-```
+Pour vous montrer la simplicité d'Eloquent, voici les appels de méthodes les plus courants (nous les avons vus ensemble lors du cours).
 
 ::: danger Ce ne sont que des exemples
 
-Vous avez ici des exemples, ça ne sert à rien de les prendre maintenant. Nous allons les utiliser **dans votre contrôleur**.
+Cette section est un **catalogue** : lisez-le, comprenez-le, mais ne recopiez rien pour l'instant. Vous utiliserez ces appels dans la section suivante, quand vous écrirez votre contrôleur.
+
+Vous n'avez ici qu'une petite liste de ce qu'il est possible de faire. Pour voir l'ensemble, je vous suggère [la documentation officielle](https://laravel.com/docs/11.x/eloquent).
 
 :::
 
-Question :
+#### Voici quelques exemples
 
-- À votre avis, quelle requête SQL est générée par `Todo::all()` ? Et par la version avec filtre ?
+Dans tous les exemples ci-dessous, `Todo` est votre modèle, c'est-à-dire la classe `app/Models/Todo.php` créée tout à l'heure. Chaque appel est transformé par Eloquent en une requête SQL, vous n'en écrivez aucune.
 
-#### Utiliser les données depuis votre « vue »
-
-Et c'est tellement simple que si vous souhaitez tout récupérer pour utiliser les données il vous suffit de faire :
+**Lire**
 
 ```php
-public function listTodo(Request $request){
-  // Retourne à l'utilisateur le template nommés « monLayout » avec dedans une variable nommé `$todos` qui contiendra l'ensemble des éléments dans la table
-  // Votre template devra utiliser cette variable avec par exemple un @foreach($todos as $todo) … @endforeach
-  return view("monLayout", ["todos" => Todo::all()]);
+// Toutes les lignes de la table `todos`
+$todos = Todo::all();
+
+// Une seule ligne, à partir de son id
+$todo = Todo::find(1);
+
+// Avec un filtre, un tri et une limite : les 10 premières TODO non terminées
+$todos = Todo::where('termine', false)->orderBy('id')->take(10)->get();
+```
+
+**Créer**
+
+```php
+// Façon 1 : créer et enregistrer en une seule ligne (possible grâce au $fillable du modèle)
+Todo::create(['texte' => 'Réviser le TP Laravel']);
+
+// Façon 2 : construire l'objet, puis l'enregistrer
+$todo = new Todo();
+$todo->texte = 'Réviser le TP Laravel';
+$todo->save();
+```
+
+**Modifier**
+
+```php
+$todo = Todo::find(1);  // Retrouver la ligne
+$todo->termine = true;  // Modifier l'objet
+$todo->save();          // Enregistrer (Eloquent génère un UPDATE)
+```
+
+**Supprimer**
+
+```php
+$todo = Todo::find(1);
+$todo->delete();
+```
+
+Questions :
+
+- À votre avis, quelle requête SQL est générée par `Todo::all()` ? Par `Todo::find(1)` ? Et par la version avec filtre ?
+- Pourquoi `Todo::create([...])` fonctionne-t-il avec un simple tableau ? Relisez la section « Définition du modèle ».
+
+#### Testez-les avec Tinker
+
+Pas besoin d'écrire un contrôleur pour essayer ces exemples : Laravel fournit **Tinker**, une console interactive dans laquelle vous pouvez taper du PHP et manipuler vos modèles directement. Lancez-la dans un second terminal (le premier fait tourner `php artisan serve`) :
+
+```sh
+php artisan tinker
+```
+
+Puis, ligne par ligne, créez une TODO, listez-les, modifiez-en une et supprimez-la :
+
+```php
+> Todo::create(['texte' => 'Réviser le TP Laravel']);
+= App\Models\Todo {#5100
+    texte: "Réviser le TP Laravel",
+    updated_at: "2026-09-16 10:12:03",
+    created_at: "2026-09-16 10:12:03",
+    id: 1,
+  }
+
+> Todo::all();
+= Illuminate\Database\Eloquent\Collection {#5110
+    all: [
+      App\Models\Todo {#5112
+        id: 1,
+        texte: "Réviser le TP Laravel",
+        termine: 0,
+        created_at: "2026-09-16 10:12:03",
+        updated_at: "2026-09-16 10:12:03",
+      },
+    ],
+  }
+
+> $todo = Todo::find(1);
+> $todo->termine = true;
+> $todo->save();
+= true
+
+> $todo->delete();
+= true
+```
+
+Dans Tinker, le `use App\Models\Todo;` n'est pas nécessaire : Laravel retrouve le modèle tout seul. Pour quitter, tapez `exit`.
+
+::: tip Regardez ce qui se passe en base
+
+Gardez votre outil SQLite ouvert à côté : après chaque commande dans Tinker, rafraîchissez la table `todos`. Vous verrez la ligne apparaître, puis `termine` passer à 1, puis la ligne disparaître. C'est exactement ce que fera votre contrôleur dans un instant.
+
+:::
+
+Questions :
+
+- Après `Todo::create(...)`, quelle valeur a la colonne `termine` ? Pourquoi, alors que vous ne l'avez pas indiquée ?
+- Que retourne `Todo::find(42)` si la ligne n'existe pas ? Testez.
+
+#### Où écrire ces appels ?
+
+Reprenez le schéma du début du TP : le contrôleur demande au modèle, puis transmet le résultat à la vue. Les appels ci-dessus se placent donc **dans une méthode de contrôleur**, jamais dans une vue.
+
+Par exemple, pour afficher toutes les TODO :
+
+```php
+public function listTodo(Request $request)
+{
+    // La vue « todo » reçoit une variable $todos contenant toutes les lignes de la table
+    return view("todo", ["todos" => Todo::all()]);
 }
 ```
+
+Et pour enregistrer ce qu'un formulaire envoie en POST :
+
+```php
+public function addTodo(Request $request)
+{
+    // $request contient les données envoyées par le formulaire
+    Todo::create(['texte' => $request->texte]);
+    return redirect("/todo");
+}
+```
+
+Dans la vue, la variable `$todos` s'utilise ensuite avec une boucle `@foreach`, exactement comme dans le TP d'introduction.
 
 ::: danger Un instant ✋
 
@@ -296,30 +392,40 @@ Pour **VSCode** je vous laisse regarder l'usage de l'extension :
 
 :::
 
-#### Créer des données depuis un formulaire en POST
-
-```php
-public function addTodo(Request $request){
-  // $request contient l'ensemble des données envoyées par le formulaire
-  // request()->all() retourne un tableau associatif avec l'ensemble des données
-  Todo::create($request->all());
-  return redirect("/todo");
-}
-```
-
 ## La TODO List
 
-À partir de maintenant vous avez tout ce qu'il faut pour interroger votre base de données… Et oui c'est aussi simple que ça ! Pour la suite je vous laisse écrire le code par vous-même, mais la procédure va être la suivante :
-
-- Créer un contrôleur « TodoControleur ».
-- Créer la `Vue` (template blade) associée à votre contrôleur.
-- Ajouter la route qui permettra d'accéder à cette page.
-- Ajouter une méthode qui va afficher l'ensemble des entrées présent dans votre base de données (affichage dans une `table` HTML).
-- Ajouter un formulaire dans votre `Vue` permettant d'ajouter des données dans la table.
+À partir de maintenant vous avez tout ce qu'il faut pour interroger votre base de données… Et oui c'est aussi simple que ça ! Pour la suite je vous laisse écrire le code par vous-même, **étape par étape**. À chaque étape, je vous indique quoi faire et où, mais pas le code : c'est à vous de jouer !
 
 Voilà à quoi peut ressembler votre page une fois le formulaire et la liste en place (ici avec un peu de Bootstrap, le visuel n'est pas l'objectif) :
 
 ![La TODO List vide, avec son formulaire d'ajout](./ressources/bdd_todo_vide.png)
+
+### Étape 1 : le contrôleur
+
+Créez un contrôleur `TodoControleur` avec `artisan`, comme dans le TP d'introduction. Il contiendra pour l'instant deux méthodes :
+
+- `listTodo()` : récupère toutes les TODO et les transmet à la vue.
+- `addTodo(Request $request)` : enregistre la TODO reçue du formulaire, puis redirige vers la liste.
+
+Vous avez vu ces deux méthodes dans la section précédente. N'oubliez pas le `use App\Models\Todo;` en haut du fichier.
+
+### Étape 2 : les routes
+
+Ajoutez dans `routes/web.php` :
+
+- Une route en `GET` sur `/todo` qui appelle `listTodo`.
+- Une route en `POST` sur `/todo` qui appelle `addTodo`.
+
+Question :
+
+- Pourquoi deux routes avec la même URL mais deux verbes HTTP différents ? Que se passerait-il avec une seule route en `GET` ?
+
+### Étape 3 : la vue, afficher la liste
+
+Créez la vue `resources/views/todo.blade.php` :
+
+- Héritez de votre layout principal avec `@extends('layouts.base')`.
+- Affichez les TODO dans une `table` HTML : une ligne par TODO, avec une boucle `@foreach` sur la variable transmise par le contrôleur.
 
 ::: tip Un instant
 
@@ -337,9 +443,20 @@ Nous l'avons vu en cours, la syntaxe du moteur de template blade. Ici il faudra 
 
 :::
 
-::: danger N'oubliez pas
-Utilisez `@extends('layouts.base')` pour « hériter » de votre layout principal.
+::: tip Point de contrôle
+
+Ouvrez `/todo` dans votre navigateur : la page s'affiche, avec un tableau vide. Pour vérifier votre boucle sans attendre le formulaire, ajoutez une ligne à la main dans la table `todos` via votre outil SQLite, puis rechargez la page : elle doit apparaître.
+
 :::
+
+### Étape 4 : le formulaire d'ajout
+
+Ajoutez dans la même vue, au-dessus du tableau, un formulaire qui permet de saisir une nouvelle TODO :
+
+- Méthode `POST`, action `/todo` (la route de l'étape 2).
+- Un champ texte nommé `texte` : c'est ce nom que le contrôleur lit dans `$request->texte`, et c'est aussi le nom de la colonne en base.
+- Un bouton pour valider.
+- La directive `@csrf` juste après la balise `<form>` (voir ci-dessous).
 
 ::: danger N'oubliez pas le CSRF
 Je vous ai parlé de la sécurité non ? Laravel intègre directement la protection anti-rejeux. Pour pouvoir valider votre formulaire, vous allez devoir intégrer dans votre formulaire une petite annotation.
@@ -361,6 +478,8 @@ PS: Je vous laisse constater l'impact dans le code **en observant le code source
 [Plus d'information](https://laravel.com/docs/11.x/csrf)
 
 :::
+
+### Étape 5 : tester
 
 ::: tip Point de contrôle
 
