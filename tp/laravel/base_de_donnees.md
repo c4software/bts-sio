@@ -346,7 +346,7 @@ Questions :
 - Après `Todo::create(...)`, quelle valeur a la colonne `termine` ? Pourquoi, alors que vous ne l'avez pas indiquée ?
 - Que retourne `Todo::find(42)` si la ligne n'existe pas ? Testez.
 
-#### Où écrire ces appels ?
+#### Où écrirons nous ces appels ?
 
 Reprenez le schéma du début du TP : le contrôleur demande au modèle, puis transmet le résultat à la vue. Les appels ci-dessus se placent donc **dans une méthode de contrôleur**, jamais dans une vue.
 
@@ -366,7 +366,7 @@ Et pour enregistrer ce qu'un formulaire envoie en POST :
 public function addTodo(Request $request)
 {
     // $request contient les données envoyées par le formulaire
-    Todo::create(['texte' => $request->texte]);
+    Todo::create([…]);
     return redirect("/todo");
 }
 ```
@@ -481,8 +481,6 @@ PS: Je vous laisse constater l'impact dans le code **en observant le code source
 
 ### Étape 5 : tester
 
-::: tip Point de contrôle
-
 À ce stade vous devez pouvoir ajouter une TODO via votre formulaire, la voir apparaître dans la liste, **et** la retrouver dans votre base via votre outil SQLite. Vérifiez avant de continuer.
 
 ![La liste après quelques ajouts](./ressources/bdd_todo_liste.png)
@@ -499,8 +497,6 @@ id  texte                          termine
 3   Acheter du café                0
 4   Préparer la réunion de projet  1
 ```
-
-:::
 
 ### Changer l'état d'une TODO
 
