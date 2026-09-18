@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="980" height="390" viewBox="0 0 980 390" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <rect width="980" height="390" fill="#ffffff"/>
+  <!-- tags -->
+  <g stroke="#475569" stroke-width="1.5">
+    <rect x="20" y="40" width="250" height="150" rx="8" fill="#ffffff"/>
+    <rect x="20" y="40" width="250" height="34" rx="8" fill="#7c3aed"/>
+    <rect x="20" y="60" width="250" height="14" fill="#7c3aed" stroke="none"/>
+  </g>
+  <text x="145" y="63" text-anchor="middle" font-weight="600" fill="#ffffff">tags</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#0f172a">
+    <text x="35" y="98" font-weight="600">id</text><text x="255" y="98" text-anchor="end" fill="#475569">clé primaire</text>
+    <text x="35" y="124">nom</text>
+    <text x="35" y="150">created_at</text>
+    <text x="35" y="176">updated_at</text>
+  </g>
+  <g stroke="#e2e8f0"><line x1="20" y1="106" x2="270" y2="106"/><line x1="20" y1="132" x2="270" y2="132"/><line x1="20" y1="158" x2="270" y2="158"/></g>
+  <!-- tag_todo (table pivot) -->
+  <g stroke="#475569" stroke-width="1.5">
+    <rect x="365" y="40" width="250" height="150" rx="8" fill="#ffffff"/>
+    <rect x="365" y="40" width="250" height="34" rx="8" fill="#dc2626"/>
+    <rect x="365" y="60" width="250" height="14" fill="#dc2626" stroke="none"/>
+  </g>
+  <text x="490" y="63" text-anchor="middle" font-weight="600" fill="#ffffff">tag_todo</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#0f172a">
+    <text x="380" y="98" font-weight="600" fill="#dc2626">tag_id</text><text x="600" y="98" text-anchor="end" fill="#dc2626">clé étrangère</text>
+    <text x="380" y="124" font-weight="600" fill="#dc2626">todo_id</text><text x="600" y="124" text-anchor="end" fill="#dc2626">clé étrangère</text>
+  </g>
+  <g stroke="#e2e8f0"><line x1="365" y1="106" x2="615" y2="106"/><line x1="365" y1="132" x2="615" y2="132"/></g>
+  <text x="380" y="160" fill="#475569" font-size="12">clé primaire : les deux colonnes</text>
+  <text x="380" y="180" fill="#475569" font-size="12">une ligne = une association</text>
+  <!-- todos -->
+  <g stroke="#475569" stroke-width="1.5">
+    <rect x="710" y="40" width="250" height="150" rx="8" fill="#ffffff"/>
+    <rect x="710" y="40" width="250" height="34" rx="8" fill="#16a34a"/>
+    <rect x="710" y="60" width="250" height="14" fill="#16a34a" stroke="none"/>
+  </g>
+  <text x="835" y="63" text-anchor="middle" font-weight="600" fill="#ffffff">todos</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#0f172a">
+    <text x="725" y="98" font-weight="600">id</text><text x="945" y="98" text-anchor="end" fill="#475569">clé primaire</text>
+    <text x="725" y="124">texte</text>
+    <text x="725" y="150">termine</text>
+    <text x="725" y="176">categorie_id</text>
+  </g>
+  <g stroke="#e2e8f0"><line x1="710" y1="106" x2="960" y2="106"/><line x1="710" y1="132" x2="960" y2="132"/><line x1="710" y1="158" x2="960" y2="158"/></g>
+  <!-- relation tags 1 - n tag_todo -->
+  <line x1="270" y1="94" x2="365" y2="94" stroke="#dc2626" stroke-width="2"/>
+  <line x1="278" y1="86" x2="278" y2="102" stroke="#dc2626" stroke-width="2"/>
+  <g stroke="#dc2626" stroke-width="2" fill="none">
+    <line x1="365" y1="94" x2="347" y2="82"/>
+    <line x1="365" y1="94" x2="347" y2="106"/>
+  </g>
+  <text x="290" y="78" fill="#dc2626" font-weight="600">1</text>
+  <text x="340" y="126" fill="#dc2626" font-weight="600">n</text>
+  <!-- relation todos 1 - n tag_todo -->
+  <line x1="615" y1="120" x2="710" y2="94" stroke="#dc2626" stroke-width="2"/>
+  <line x1="702" y1="88" x2="706" y2="104" stroke="#dc2626" stroke-width="2"/>
+  <g stroke="#dc2626" stroke-width="2" fill="none">
+    <line x1="615" y1="120" x2="633" y2="108"/>
+    <line x1="615" y1="120" x2="633" y2="132"/>
+  </g>
+  <text x="686" y="78" fill="#dc2626" font-weight="600">1</text>
+  <text x="640" y="150" fill="#dc2626" font-weight="600">n</text>
+  <!-- légende -->
+  <text x="490" y="218" text-anchor="middle" fill="#0f172a">une TODO peut porter plusieurs étiquettes</text>
+  <text x="490" y="236" text-anchor="middle" fill="#475569" font-size="12">une étiquette peut être posée sur plusieurs TODO</text>
+  <!-- code -->
+  <rect x="20" y="258" width="460" height="100" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="35" y="281" font-weight="600">Modèle Tag</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#0f172a">
+    <text x="35" y="307">todos() → $this-&gt;belongsToMany(Todo::class,</text>
+    <text x="55" y="327">'tag_todo', 'tag_id', 'todo_id')</text>
+  </g>
+  <rect x="500" y="258" width="460" height="100" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="515" y="281" font-weight="600">Modèle Todo</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#0f172a">
+    <text x="515" y="307">tags() → $this-&gt;belongsToMany(Tag::class,</text>
+    <text x="535" y="327">'tag_todo', 'todo_id', 'tag_id')</text>
+  </g>
+</svg>
