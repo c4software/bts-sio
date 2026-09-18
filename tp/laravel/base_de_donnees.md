@@ -1,5 +1,5 @@
 ---
-description: Dans ce TP nous allons découvrir la base de données et l'ORM avec Laravel. Migrations, modèles, Eloquent… Nous allons construire une TODO List persistante.
+description: Dans ce TP nous allons découvrir la base de données et l'ORM avec Laravel. Migrations, modèles, relations entre tables, Eloquent… Nous allons construire une TODO List persistante.
 ---
 
 # Introduction base de données et ORM avec Laravel
@@ -67,6 +67,7 @@ Si vous récupérez votre projet depuis GIT, n'oubliez pas de réinstaller les d
 - Créer / mettre à jour la structure de votre base de données avec `php artisan migrate`.
 - Interroger votre base de données avec **Eloquent** (l'ORM de Laravel) : lister, créer, modifier, supprimer.
 - Construire une application complète : la TODO List (lister, ajouter, terminer, supprimer une tâche).
+- Faire évoluer une base existante et lier deux tables avec une **relation** Eloquent (`belongsTo` / `hasMany`).
 - Créer un **Middleware** pour filtrer les requêtes.
 
 ## Pourquoi un ORM ?
@@ -536,7 +537,7 @@ id  texte                          termine
 3   Préparer la réunion de projet  0
 ```
 
-## Aller plus loin : terminer, supprimer, filtrer
+## Aller plus loin : terminer, supprimer
 
 Jusqu'ici je vous ai guidé pas à pas, en vous indiquant précisément quoi écrire et où. À partir de maintenant, le régime change : vous n'avez plus que la procédure et l'aide-mémoire, le code est entièrement à vous.
 
@@ -653,7 +654,277 @@ Côté vue :
 
 :::
 
-### Créer un Middleware
+## Faire évoluer la base de données : les catégories
+
+Votre TODO List fonctionne, mais toutes les tâches sont mélangées : « Acheter du café » et « Réviser le TP Laravel » se retrouvent dans la même liste. Nous allons les classer par **catégorie** (Maison, Travail, Études, Courses).
+
+Pour y arriver, il nous faut deux choses : une nouvelle table `categories` (un identifiant, un nom, et les dates), et une colonne `categorie_id` dans la table `todos` pour indiquer, tâche par tâche, à quelle catégorie elle appartient.
+
+![La relation entre les catégories et les TODO : une catégorie possède plusieurs TODO](./ressources/bdd_relation_categorie.svg)
+
+Question :
+
+- Pourquoi créer une table séparée plutôt que d'ajouter simplement une colonne texte `categorie` dans la table `todos` ? Pensez au jour où vous voudrez renommer une catégorie, ou simplement lister les catégories disponibles dans un menu déroulant.
+
+### Faire évoluer la structure en SQL
+
+Cette fois, pas de migration. Ce n'est pas une obligation dans Laravel : c'est un outil pratique, mais rien ne vous empêche de créer vos tables autrement. Nous allons donc le faire « à la main » : uniquement la définition du modèle côté Laravel, et un script SQL pour la structure. C'est exactement ce que vous ferez en AP, où la base de données vous est fournie sous forme de script SQL.
+
+Je vous donne le SQL, c'est vous qui allez l'exécuter sur la base. Au passage, vous verrez concrètement ce qu'une migration fabrique « derrière » (une migration, au final, ce n'est que du SQL généré pour vous), et vous vérifierez qu'Eloquent sait très bien travailler avec une table qu'il n'a pas créée lui-même, du moment que les conventions sont respectées.
+
+Voici le SQL à exécuter (il est écrit pour SQLite) :
+
+```sql
+CREATE TABLE categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    created_at DATETIME NULL,
+    updated_at DATETIME NULL
+);
+
+INSERT INTO categories (nom, created_at, updated_at) VALUES
+    ('Maison', datetime('now'), datetime('now')),
+    ('Travail', datetime('now'), datetime('now')),
+    ('Études', datetime('now'), datetime('now')),
+    ('Courses', datetime('now'), datetime('now'));
+
+ALTER TABLE todos ADD COLUMN categorie_id INTEGER NULL REFERENCES categories(id);
+```
+
+Prenez le temps de lire ces trois instructions : la première crée la table, la deuxième insère quatre catégories par défaut, la troisième ajoute la clé étrangère dans `todos`. La colonne est `NULL` par défaut, vos TODO existantes ne seront donc pas perdues : elles se retrouveront simplement « sans catégorie ».
+
+::: details Et si on l'avait fait avec une migration ?
+
+C'est tout à fait possible, et c'est même ce que vous feriez en équipe. Vous créeriez le fichier avec :
+
+```sh
+php artisan make:migration create_categories_table
+```
+
+Puis, dans la méthode `up()` :
+
+```php
+Schema::create('categories', function (Blueprint $table) {
+    $table->id();
+    $table->string('nom');
+    $table->timestamps();
+});
+
+Schema::table('todos', function (Blueprint $table) {
+    $table->foreignId('categorie_id')->nullable()->constrained();
+});
+```
+
+L'avantage est évident : le fichier part dans Git, et vos collègues obtiennent la même structure avec un simple `php artisan migrate`.
+
+⚠️ Attention à l'inverse : une table créée « à la main » comme nous venons de le faire n'est connue de personne d'autre. Le jour où quelqu'un lance un `php artisan migrate:fresh`, la base est reconstruite à partir des seules migrations, et votre table `categories` disparaît.
+
+:::
+
+### Exécuter ce SQL avec DBeaver
+
+Pour taper du SQL, il vous faut un outil connecté à votre base. [DBeaver](https://dbeaver.io/) est gratuit, multiplateforme, et vous l'avez déjà utilisé avec MariaDB : il sait aussi ouvrir un fichier SQLite. Voilà la marche à suivre :
+
+- Créez une nouvelle connexion (l'icône « prise » en haut à gauche, ou le menu `Base de données` puis `Nouvelle connexion`).
+- Dans la liste des bases proposées, choisissez **SQLite**.
+- Dans le champ `Chemin` (Path), sélectionnez le fichier `database/database.sqlite` de votre projet.
+- DBeaver vous propose de télécharger le pilote SQLite : acceptez, puis cliquez sur `Terminer`.
+- Faites un clic droit sur votre connexion, puis `Éditeur SQL` et `Nouveau script`.
+- Collez le SQL ci-dessus dans l'éditeur.
+- Exécutez le **script entier** avec `Alt`+`X` (ou le bouton « Exécuter le script »). Attention, `Ctrl`+`Entrée` n'exécute que l'instruction sous le curseur, vous n'auriez alors qu'un tiers du travail de fait.
+- Dépliez `Tables` dans l'arborescence de gauche, puis actualisez avec `F5` (ou clic droit, `Actualiser`) pour voir apparaître la table `categories` et la nouvelle colonne de `todos`.
+
+Les autres outils cités plus haut (DB Browser for SQLite, l'extension VSCode, la vue Database de PHPStorm) proposent tous un onglet permettant de taper du SQL : si vous préférez rester sur celui que vous utilisez depuis le début du TP, c'est parfait aussi.
+
+::: tip Point de contrôle
+
+La table `categories` contient quatre lignes, et la table `todos` possède une nouvelle colonne `categorie_id`. En ligne de commande avec `sqlite3 database/database.sqlite`, vous devez obtenir :
+
+```
+sqlite> .headers on
+sqlite> .mode column
+sqlite> SELECT * FROM categories;
+id    nom        created_at           updated_at
+--  -------  -------------------  -------------------
+ 1  Maison   2026-09-18 19:45:01  2026-09-18 19:45:01
+ 2  Travail  2026-09-18 19:45:01  2026-09-18 19:45:01
+ 3  Études   2026-09-18 19:45:01  2026-09-18 19:45:01
+ 4  Courses  2026-09-18 19:45:01  2026-09-18 19:45:01
+```
+
+:::
+
+Profitez-en pour relancer `php artisan migrate` : Laravel vous répond `Nothing to migrate`, il ne voit aucun conflit avec ce que vous venez de faire à la main.
+
+### Le modèle Categorie
+
+La table existe déjà, nous n'avons donc besoin que du modèle. Cette fois, pas de `--migration` :
+
+```sh
+php artisan make:model Categorie
+```
+
+Le lien entre la classe et la table se fait tout seul : Laravel met le nom du modèle au pluriel « à l'anglaise » (il ajoute un `s`), `Categorie` devient donc `categories`. Ça tombe bien, c'est exactement le nom que nous avons donné à notre table en SQL.
+
+Comme pour `Todo`, ajoutez la propriété qui autorise l'affectation en masse dans `app/Models/Categorie.php` :
+
+```php
+    protected $fillable = ['nom'];
+```
+
+Vérifiez tout de suite dans Tinker que le modèle voit bien vos quatre catégories :
+
+```php
+> use App\Models\Categorie;
+
+> Categorie::all();
+= Illuminate\Database\Eloquent\Collection {#8138
+    all: [
+      App\Models\Categorie {#8134
+        id: 1,
+        nom: "Maison",
+        created_at: "2026-09-18 19:45:01",
+        updated_at: "2026-09-18 19:45:01",
+      },
+      App\Models\Categorie {#8133
+        id: 2,
+        nom: "Travail",
+        ...
+      },
+      ...
+    ],
+  }
+```
+
+Quatre objets `Categorie` sortent d'une table qu'Eloquent n'a jamais créée : la convention a suffi.
+
+Question :
+
+- Que se serait-il passé si nous avions appelé notre table `categorie` (sans `s`) ?
+
+::: details La réponse
+
+Laravel aurait cherché la table `categories` et vous auriez obtenu une erreur SQL du type `no such table: categories`. Il faut alors lui indiquer le nom réel, en ajoutant dans le modèle :
+
+```php
+    protected $table = 'categorie';
+```
+
+C'est possible, mais retenez surtout que respecter les conventions vous évite ce genre de ligne.
+
+:::
+
+### Lier les deux modèles
+
+Nos deux tables sont reliées par la colonne `categorie_id`, mais Eloquent ne le sait pas encore. Nous allons lui décrire la relation, des deux côtés.
+
+Dans `app/Models/Todo.php`, une TODO appartient à une catégorie :
+
+```php
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+```
+
+Dans `app/Models/Categorie.php`, une catégorie possède plusieurs TODO :
+
+```php
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
+```
+
+Là encore, tout repose sur une convention : le nom de la méthode (`categorie`) suivi de `_id` donne le nom de la colonne attendue, `categorie_id`. C'est précisément celle que nous avons créée en SQL.
+
+Pensez enfin à autoriser l'enregistrement de cette colonne, en complétant le `$fillable` de `Todo` :
+
+```php
+    protected $fillable = ['texte', 'termine', 'categorie_id'];
+```
+
+Ces relations sont résumées dans [les jointures de l'aide mémoire](/cheatsheets/laravel/#les-jointures) et dans [la synthèse des commandes, section relations](/cheatsheets/laravel/quick.md#l-orm-relations). La documentation officielle est [ici](https://laravel.com/docs/eloquent-relationships).
+
+Retour dans Tinker pour tester dans les deux sens (adaptez les identifiants à vos données, et n'oubliez pas d'affecter une catégorie à au moins une TODO dans votre outil SQLite) :
+
+```php
+> use App\Models\Todo;
+
+> Todo::find(1)->categorie;
+= App\Models\Categorie {#8573
+    id: 3,
+    nom: "Études",
+    created_at: "2026-09-18 19:45:01",
+    updated_at: "2026-09-18 19:45:01",
+  }
+
+> use App\Models\Categorie;
+
+> Categorie::find(3)->todos;
+= Illuminate\Database\Eloquent\Collection {#8569
+    all: [
+      App\Models\Todo {#8573
+        id: 1,
+        texte: "Réviser le TP Laravel",
+        termine: 0,
+        created_at: "2026-09-18 19:45:25",
+        updated_at: "2026-09-18 19:45:25",
+        categorie_id: 3,
+      },
+    ],
+  }
+```
+
+Regardez bien : <code v-pre>$todo->categorie</code> renvoie **un objet**, alors que <code v-pre>$categorie->todos</code> renvoie **une collection**. C'est toute la différence entre `belongsTo` et `hasMany`, et vous n'avez écrit aucune jointure SQL.
+
+### Utiliser les catégories dans l'application
+
+Il ne reste plus qu'à faire vivre tout ça dans l'interface. Je vous donne la procédure, le code est à vous :
+
+- Dans `listTodo`, transmettez aussi la liste des catégories à la vue, en plus des TODO (`Categorie::all()`), sans oublier le `use App\Models\Categorie;` en haut du contrôleur.
+- Dans le formulaire d'ajout, ajoutez un menu déroulant `<select name="categorie_id">` rempli par une boucle `@foreach` sur ces catégories.
+- Dans `addTodo`, enregistrez la valeur reçue, par exemple avec `'categorie_id' => $request->categorie_id` dans votre `Todo::create([...])`.
+- Dans le tableau, ajoutez une colonne « Catégorie » qui affiche le nom de la catégorie de chaque TODO.
+
+Pour le menu déroulant, voilà l'idée à adapter :
+
+```html
+<select name="categorie_id" class="form-select">
+  <option value="">Sans catégorie</option>
+  @foreach($categories as $uneCategorie)
+  <option value="{{ $uneCategorie->id }}">{{ $uneCategorie->nom }}</option>
+  @endforeach
+</select>
+```
+
+Pour la colonne du tableau, attention : vos anciennes TODO ont un `categorie_id` à `NULL`, et demander le `nom` de « rien du tout » provoque une erreur. Le plus court est d'utiliser l'opérateur `?->` (appelle la propriété seulement si l'objet existe) avec une valeur de repli :
+
+```html
+<td>{{ $unElement->categorie?->nom ?? 'Sans catégorie' }}</td>
+```
+
+Un `@if` sur <code v-pre>$unElement->categorie</code> ferait tout aussi bien l'affaire, à vous de choisir.
+
+::: tip Que se passe-t-il derrière ?
+
+À chaque ligne affichée, Eloquent repart chercher la catégorie en base : une requête pour la liste, puis une requête par TODO (c'est le fameux problème « N+1 »). Vous pouvez tout charger d'un coup en remplaçant `Todo::all()` par `Todo::with('categorie')->get()`. Gardez l'idée dans un coin de votre tête, elle vous servira dès que vos listes s'allongeront.
+
+:::
+
+Rechargez `/todo` : le formulaire propose maintenant une catégorie, et chaque tâche affiche la sienne.
+
+::: tip Point de contrôle
+
+Ajoutez une TODO en choisissant « Travail » dans le menu déroulant : la ligne apparaît avec sa catégorie, et la colonne `categorie_id` de la table `todos` contient bien l'identifiant correspondant.
+
+![La TODO List avec le menu déroulant des catégories et la colonne Catégorie dans le tableau](./ressources/bdd_categorie_formulaire.png)
+
+:::
+
+Si vous voulez aller plus loin, essayez (sans aide cette fois) de filtrer la liste par catégorie, avec un lien du type `/todo?categorie=1`.
+
+## Créer un Middleware
 
 Pour tester les middleware, nous allons créer un Middleware qui va vérifier la présence d'un mot dans le texte de la TODO. Si le mot est présent, la TODO ne pourra pas être ajoutée en base de données.
 
@@ -706,10 +977,10 @@ Tentez d'ajouter une TODO contenant le mot « twitter » : elle n'est pas enregi
 
 Gardez bien ce mécanisme en tête : nous allons le réutiliser dès le TP suivant, mais cette fois pour protéger votre TODO List derrière une authentification.
 
-## Exercice : un formulaire de contact
+## Exercice 1 : un formulaire de contact
 
 ::: tip Vous êtes en avance ?
-Cette partie est un bonus pour les étudiants qui ont terminé. Le TP suivant ne dépend pas de ce formulaire, vous pouvez donc y aller directement si le temps vous manque.
+Les deux exercices qui suivent sont un bonus pour les étudiants qui ont terminé. Le TP suivant ne dépend pas de ce formulaire de contact, vous pouvez donc y aller directement si le temps vous manque.
 :::
 
 J'aimerais que notre petit site de démonstration intègre un formulaire de demande de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
@@ -733,6 +1004,38 @@ Ce formulaire de contact, c'est un mini-projet complet : migration + modèle + c
 
 :::
 
+## Exercice 2 : des catégories pour le contact
+
+Vos demandes de contact arrivent toutes dans le même sac. Reprenons la mécanique de la section précédente, mais cette fois sans aide pas à pas : vous connaissez le chemin.
+
+- Créez une table de catégories de demande, contenant par exemple « Question », « Bug », « Partenariat » et « Autre ».
+- Cette fois, faites-le avec une **migration** Laravel, pas en SQL. Les quatre catégories par défaut doivent être insérées dès la migration (ou, si vous préférez, depuis Tinker).
+- Ajoutez la clé étrangère correspondante sur la table des demandes de contact.
+- Créez le modèle de cette nouvelle table, puis déclarez la relation **dans les deux modèles**.
+- Ajoutez un menu déroulant dans le formulaire de contact pour choisir le type de demande.
+- Affichez enfin la catégorie choisie, soit dans le message flash de confirmation, soit dans une page listant les demandes reçues.
+
+C'est à vous de jouer ! Je reste disponible si vous bloquez.
+
+Le résultat attendu, après l'envoi d'une demande :
+
+![Le formulaire de contact avec son menu déroulant et le message de confirmation indiquant la catégorie](./ressources/bdd_contact_categorie.png)
+
+::: details Besoin d'aide ?
+
+Pas de code ici, seulement la procédure :
+
+- `php artisan make:model CategorieContact --migration` crée le modèle et sa migration.
+- Dans la méthode `up()` de cette migration : la création de la table (un `id`, un `nom`, les `timestamps`), puis l'insertion des quatre catégories avec `DB::table('categorie_contacts')->insert([...])`.
+- ⚠️ Le piège est là : pour un modèle `CategorieContact`, Laravel attend la table `categorie_contacts` et la clé étrangère `categorie_contact_id`. Respectez ces noms, ou déclarez le vôtre avec `protected $table = '...';` dans le modèle.
+- Une seconde migration (ou la même) ajoute la colonne sur la table des contacts, avec `foreignId(...)->nullable()->constrained()`.
+- `php artisan migrate` pour appliquer le tout, puis vérification de la table dans votre outil SQLite.
+- Les relations : un `belongsTo` côté demande de contact, un `hasMany` côté catégorie. Sans oublier la nouvelle colonne dans le `$fillable` du modèle de contact.
+- Le contrôleur transmet la liste des catégories à la vue du formulaire, et enregistre la valeur reçue du `<select>`.
+- Pour le message flash, la relation vous donne directement le nom, par exemple avec `$contact->categorieContact->nom`.
+
+:::
+
 ## Conclusion
 
 Dans ce TP vous avez découvert toute la chaîne de persistance de Laravel :
@@ -740,6 +1043,7 @@ Dans ce TP vous avez découvert toute la chaîne de persistance de Laravel :
 - Les **migrations** pour définir (et versionner) la structure de votre base de données.
 - Les **modèles** et **Eloquent** pour manipuler vos données sans écrire de SQL.
 - Un CRUD complet (Create, Read, Update, Delete) avec la TODO List.
+- Les **relations** entre deux tables (`belongsTo` et `hasMany`) pour classer vos TODO par catégorie.
 - Les **middlewares** pour filtrer les requêtes.
 
 N'oubliez pas de **commiter votre projet**, nous allons le réutiliser dans le TP suivant.
