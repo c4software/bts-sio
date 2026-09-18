@@ -69,7 +69,6 @@ Si vous récupérez votre projet depuis GIT, n'oubliez pas de réinstaller les d
 - Construire une application complète : la TODO List (lister, ajouter, terminer, supprimer une tâche).
 - Faire évoluer une base existante et lier deux tables avec une **relation** Eloquent (`belongsTo` / `hasMany`).
 - Gérer une relation plusieurs-à-plusieurs avec une **table pivot** (`belongsToMany`, `sync`).
-- Créer un **Middleware** pour filtrer les requêtes (en bonus).
 
 ## Pourquoi un ORM ?
 
@@ -1159,7 +1158,7 @@ Si vous voulez aller plus loin, essayez d'ajouter un lien sur chaque badge pour 
 ## Exercice 1 : un formulaire de contact
 
 ::: tip Vous êtes en avance ?
-Les trois exercices qui suivent sont un bonus pour les étudiants qui ont terminé. Le TP suivant ne dépend pas de ce formulaire de contact, vous pouvez donc y aller directement si le temps vous manque.
+Les deux exercices qui suivent sont un bonus pour les étudiants qui ont terminé. Le TP suivant ne dépend pas de ce formulaire de contact, vous pouvez donc y aller directement si le temps vous manque.
 :::
 
 J'aimerais que notre petit site de démonstration intègre un formulaire de demande de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
@@ -1215,72 +1214,6 @@ Pas de code ici, seulement la procédure :
 
 :::
 
-## Exercice 3 : filtrer les ajouts avec un Middleware
-
-Dernier bonus, et il vous servira dès le TP suivant. Un **Middleware**, c'est un filtre exécuté **avant** le contrôleur : il regarde la requête qui arrive et décide de la laisser passer… ou pas.
-
-```
-Requête → Middleware → Contrôleur
-              ↓
-        (ou redirection)
-```
-
-Votre mission : interdire le mot « twitter » dans une TODO.
-
-- Créez un Middleware chargé d'inspecter le texte reçu.
-- Si le texte contient le mot « twitter », l'utilisateur est renvoyé vers la liste avec un message d'erreur (un message flash, comme ceux que vous affichez déjà).
-- Dans ce cas, la TODO ne doit **pas** être enregistrée en base de données.
-- Branchez ce Middleware sur la route qui reçoit le formulaire d'ajout, et uniquement sur celle-là.
-
-Question :
-
-- Pourquoi placer ce contrôle dans un Middleware plutôt que dans un simple `if` au début de la méthode `addTodo` ?
-
-::: details Besoin d'aide ?
-
-La création passe par `artisan`, comme d'habitude :
-
-```sh
-php artisan make:middleware CheckTodo
-```
-
-La logique se place dans la méthode `handle` du fichier créé :
-
-```php
-public function handle(Request $request, Closure $next): Response
-{
-    if (strpos($request->texte, 'twitter') !== false) {
-        return redirect()->back()->with('error', 'Le mot twitter est interdit');
-    }
-
-    return $next($request);
-}
-```
-
-Tout est dans le `return $next($request);` : c'est lui qui passe la main à la suite (le contrôleur). Si vous ne l'appelez pas, la requête s'arrête là.
-
-Il reste à accrocher le Middleware sur la route à protéger, dans `routes/web.php` :
-
-```php
-->middleware(CheckTodo::class)
-```
-
-Pensez également à ajouter `use App\Http\Middleware\CheckTodo;` en tête de votre fichier de routes, sans quoi la classe ne sera pas trouvée.
-
-:::
-
-Une fois votre Middleware écrit et branché, il est temps de le mettre à l'épreuve.
-
-::: tip Point de contrôle
-
-Tentez d'ajouter une TODO contenant le mot « twitter » : elle n'est pas enregistrée et le message du Middleware s'affiche (le `redirect()->back()` vous ramène sur la liste).
-
-![Le Middleware refuse la TODO](./ressources/bdd_todo_twitter.png)
-
-:::
-
-Gardez bien ce mécanisme en tête : nous allons le réutiliser dès le TP suivant, mais cette fois pour protéger votre TODO List derrière une authentification.
-
 ## Conclusion
 
 Dans ce TP vous avez découvert toute la chaîne de persistance de Laravel :
@@ -1290,7 +1223,6 @@ Dans ce TP vous avez découvert toute la chaîne de persistance de Laravel :
 - Un CRUD complet (Create, Read, Update, Delete) avec la TODO List.
 - Les **relations** entre deux tables (`belongsTo` et `hasMany`) pour classer vos TODO par catégorie.
 - La **table pivot** et `belongsToMany` pour poser plusieurs étiquettes sur une même TODO (avec `sync`).
-- Les **middlewares** pour filtrer les requêtes (en bonus).
 
 N'oubliez pas de **commiter votre projet**, nous allons le réutiliser dans le TP suivant.
 

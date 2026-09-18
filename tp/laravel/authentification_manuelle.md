@@ -505,8 +505,6 @@ Il manque une étape du mécanisme : la déconnexion. Je vous laisse ajouter :
 
 Maintenant que vous avez un système d'authentification, je vous propose de créer un Middleware qui va vérifier si l'utilisateur est connecté. Si l'utilisateur n'est pas connecté, il sera redirigé vers la page de connexion.
 
-Si vous avez fait l'exercice bonus du TP précédent, vous connaissez déjà le principe ; sinon pas de panique, un Middleware est simplement un filtre exécuté avant le contrôleur ([l'exercice en question est ici](./base_de_donnees.md#exercice-3-filtrer-les-ajouts-avec-un-middleware)).
-
 Pour commencer, créez un Middleware :
 
 ```sh

@@ -221,20 +221,6 @@ Le modèle, la table pivot, ma clé, la clé de l'autre.
 
 ---
 
-## En bonus : le middleware
-
-Un **filtre** exécuté avant le contrôleur :
-
-```
-Requête → Middleware → Contrôleur
-              ↓
-        (ou redirection)
-```
-
-Écrit une fois, appliqué à toutes les routes que vous voulez.
-
----
-
 ## Récapitulatif
 
 - **ORM** : une table = une classe, une ligne = un objet.
@@ -243,7 +229,6 @@ Requête → Middleware → Contrôleur
 - **Eloquent** : le CRUD sans écrire de SQL.
 - **Relations** : `hasMany` d'un côté, `belongsTo` de l'autre.
 - **Table pivot** : `belongsToMany` + `sync` pour le plusieurs-à-plusieurs.
-- **Middleware** (bonus) : un filtre avant le contrôleur.
 
 ---
 
