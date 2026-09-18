@@ -68,7 +68,8 @@ Si vous récupérez votre projet depuis GIT, n'oubliez pas de réinstaller les d
 - Interroger votre base de données avec **Eloquent** (l'ORM de Laravel) : lister, créer, modifier, supprimer.
 - Construire une application complète : la TODO List (lister, ajouter, terminer, supprimer une tâche).
 - Faire évoluer une base existante et lier deux tables avec une **relation** Eloquent (`belongsTo` / `hasMany`).
-- Créer un **Middleware** pour filtrer les requêtes.
+- Gérer une relation plusieurs-à-plusieurs avec une **table pivot** (`belongsToMany`, `sync`).
+- Créer un **Middleware** pour filtrer les requêtes (en bonus).
 
 ## Pourquoi un ORM ?
 
@@ -918,63 +919,247 @@ Ajoutez une TODO en choisissant « Travail » dans le menu déroulant : la ligne
 
 Si vous voulez aller plus loin, essayez (sans aide cette fois) de filtrer la liste par catégorie, avec un lien du type `/todo?categorie=1`.
 
-## Créer un Middleware
+## Plusieurs étiquettes par TODO : la table pivot
 
-Pour tester les middleware, nous allons créer un Middleware qui va vérifier la présence d'un mot dans le texte de la TODO. Si le mot est présent, la TODO ne pourra pas être ajoutée en base de données.
+Regardez le chemin parcouru depuis le début du TP : nous avons commencé avec **une** table (`todos`), puis nous sommes passés à **deux** tables liées par une clé étrangère (`categories` et `todos`). Nous allons maintenant travailler avec **trois** tables, grâce à ce que l'on appelle une **table pivot**.
 
-Pour commencer, créez un Middleware :
-
-```sh
-php artisan make:middleware CheckTodo
-```
-
-Ajoutez la logique dans le Middleware :
-
-```php
-public function handle(Request $request, Closure $next): Response
-{
-    if (strpos($request->texte, 'twitter') !== false) {
-        return redirect()->back()->with('error', 'Le mot twitter est interdit');
-    }
-
-    return $next($request);
-}
-```
-
-Ajouter le Middleware sur la route que vous souhaitez protéger :
-
-```php
-->middleware(CheckTodo::class)
-```
-
-Pensez également à ajouter `use App\Http\Middleware\CheckTodo;` en tête de votre fichier de routes, sans quoi la classe ne sera pas trouvée.
-
-::: tip Besoin d'aide ?
-
-Je vous laisse implémenter le code dans votre projet. Si vous avez des questions, je suis là pour vous aider.
-
-Le système de middleware est très puissant, c'est un peu comme un filtre qui va être exécuté avant ou après une action. C'est très utile pour la sécurité, la gestion des erreurs, etc.
-
-:::
+Pourquoi une troisième table ? Parce que la catégorie et l'étiquette ne se comportent pas de la même façon. Une catégorie est **unique** pour une tâche : « Acheter du café » est dans « Courses », et nulle part ailleurs. Une **étiquette** (un *tag*) est bien plus souple : une même TODO peut être « Urgent » **et** « Perso » en même temps, et l'étiquette « Urgent » se retrouve sur plusieurs TODO à la fois.
 
 Question :
 
-- À votre avis, pourquoi placer ce contrôle dans un Middleware plutôt que directement dans la méthode `addTodo` du contrôleur ?
+- Peut-on gérer ça avec une simple colonne `tag_id` dans la table `todos`, comme nous l'avons fait pour `categorie_id` ?
 
-::: tip Point de contrôle
+::: details La réponse
 
-Tentez d'ajouter une TODO contenant le mot « twitter » : elle n'est pas enregistrée et le message du Middleware s'affiche (le `redirect()->back()` vous ramène sur la liste).
+Non. Une colonne ne contient qu'**une seule** valeur : avec `tag_id`, une TODO ne pourrait porter qu'une étiquette. Et ajouter `tag_id_2`, `tag_id_3`, `tag_id_4` serait une très mauvaise idée (combien en prévoir ? comment chercher toutes les TODO « Urgent » ?).
 
-![Le Middleware refuse la TODO](./ressources/bdd_todo_twitter.png)
+La solution est une **table intermédiaire**, appelée **table pivot** : elle ne contient que des couples d'identifiants, une ligne par association « cette étiquette est posée sur cette TODO ».
 
 :::
 
-Gardez bien ce mécanisme en tête : nous allons le réutiliser dès le TP suivant, mais cette fois pour protéger votre TODO List derrière une authentification.
+Voilà ce que nous allons construire :
+
+![Les trois tables : tags, la table pivot tag_todo et todos, avec la relation belongsToMany des deux côtés](./ressources/bdd_relation_pivot.svg)
+
+À partir d'ici, le guidage baisse encore d'un cran : je vous donne la procédure et le code vraiment nouveau, le reste est du déjà-vu. Prenez le temps de relire la section précédente si vous hésitez.
+
+### Créer les deux tables en SQL
+
+Comme pour les catégories, pas de migration : nous restons en mode « comme en AP », avec un script SQL que vous exécutez vous-même. La marche à suivre dans DBeaver est décrite plus haut, je ne la répète pas : rouvrez simplement un éditeur SQL sur votre base.
+
+Voici le SQL à exécuter :
+
+```sql
+CREATE TABLE tags (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    created_at DATETIME NULL,
+    updated_at DATETIME NULL
+);
+
+INSERT INTO tags (nom, created_at, updated_at) VALUES
+    ('Urgent', datetime('now'), datetime('now')),
+    ('Perso', datetime('now'), datetime('now')),
+    ('Pro', datetime('now'), datetime('now')),
+    ('Rapide', datetime('now'), datetime('now'));
+
+CREATE TABLE tag_todo (
+    tag_id INTEGER NOT NULL REFERENCES tags(id),
+    todo_id INTEGER NOT NULL REFERENCES todos(id),
+    PRIMARY KEY (tag_id, todo_id)
+);
+```
+
+Deux choses méritent votre attention dans ce script.
+
+Le nom `tag_todo` d'abord : c'est la **convention** de Laravel pour une table pivot, les deux noms de modèles au singulier, séparés par un `_`, dans l'ordre alphabétique (`tag` avant `todo`). Nous allons cependant écrire la relation de façon **explicite** dans nos modèles : avec cette écriture, n'importe quel nom de table fonctionnerait. C'est exactement ce dont vous aurez besoin en AP, où les tables existent déjà et ne suivent pas les conventions de Laravel.
+
+La clé primaire ensuite : elle porte sur les **deux** colonnes à la fois. Impossible d'associer deux fois la même étiquette à la même TODO. Vous remarquerez aussi qu'il n'y a pas de `created_at` / `updated_at` ici : une table pivot n'a pas besoin de dates, elle ne stocke qu'un lien.
+
+::: tip Point de contrôle
+
+Dans DBeaver, actualisez l'arborescence (`F5`) : les tables `tags` et `tag_todo` sont apparues. L'onglet « Données » de `tags` affiche vos quatre étiquettes (Urgent, Perso, Pro, Rapide), celui de `tag_todo` est vide pour l'instant, avec ses deux colonnes `tag_id` et `todo_id`.
+
+:::
+
+### Le modèle Tag
+
+Les tables existent, il ne manque que le modèle. Comme pour `Categorie`, pas de `--migration` :
+
+```sh
+php artisan make:model Tag
+```
+
+Puis, dans `app/Models/Tag.php`, la propriété habituelle :
+
+```php
+    protected $fillable = ['nom'];
+```
+
+Vérifiez tout de suite dans Tinker que le modèle voit vos étiquettes :
+
+```php
+> use App\Models\Tag;
+
+> Tag::all();
+= Illuminate\Database\Eloquent\Collection {#8142
+    all: [
+      App\Models\Tag {#8138
+        id: 1,
+        nom: "Urgent",
+        created_at: "2026-09-18 20:29:40",
+        updated_at: "2026-09-18 20:29:40",
+      },
+      App\Models\Tag {#8137
+        id: 2,
+        nom: "Perso",
+        ...
+      },
+      ...
+    ],
+  }
+```
+
+Rien de nouveau : `Tag` au singulier, `tags` au pluriel, la convention fait le lien toute seule.
+
+### Déclarer la relation dans les deux modèles
+
+C'est le cœur de cette partie. Une TODO a plusieurs étiquettes, une étiquette a plusieurs TODO : la relation s'appelle `belongsToMany`, et elle s'écrit **des deux côtés**.
+
+Dans `app/Models/Todo.php` :
+
+```php
+    public function tags()
+    {
+        // Relation Eloquent : table pivot tag_todo, colonne todo_id vers cette TODO, colonne tag_id vers l'étiquette
+        return $this->belongsToMany(Tag::class, 'tag_todo', 'todo_id', 'tag_id');
+    }
+```
+
+Dans `app/Models/Tag.php` :
+
+```php
+    public function todos()
+    {
+        // Relation Eloquent : table pivot tag_todo, colonne tag_id vers cette étiquette, colonne todo_id vers la TODO
+        return $this->belongsToMany(Todo::class, 'tag_todo', 'tag_id', 'todo_id');
+    }
+```
+
+Les trois paramètres qui suivent le modèle se lisent toujours dans le même ordre :
+
+1. Le nom de la **table pivot** (`'tag_todo'`).
+2. La colonne du pivot qui pointe vers **ce modèle-ci** (`'todo_id'` dans `Todo`, `'tag_id'` dans `Tag`).
+3. La colonne du pivot qui pointe vers **l'autre modèle** (`'tag_id'` dans `Todo`, `'todo_id'` dans `Tag`).
+
+Regardez bien : les deux méthodes sont symétriques, seuls les deux derniers paramètres s'inversent. Ces trois paramètres sont **facultatifs** tant que vous respectez les conventions de Laravel, exactement comme le `'categorie_id'` de la section précédente. Nous les écrivons quand même, pour deux raisons : la relation devient lisible sans connaître les conventions par cœur, et surtout vous saurez la déclarer le jour où la base ne les respecte pas (en AP, ce sera la règle plutôt que l'exception).
+
+Testons dans Tinker. Nous allons associer les étiquettes 1 et 2 à la TODO numéro 1, puis interroger la relation dans les deux sens (adaptez les identifiants à vos données) :
+
+```php
+> use App\Models\Todo;
+
+> Todo::find(1)->tags()->attach([1, 2]);
+= null
+
+> Todo::find(1)->tags;
+= Illuminate\Database\Eloquent\Collection {#8596
+    all: [
+      App\Models\Tag {#8577
+        id: 1,
+        nom: "Urgent",
+        ...
+        pivot: Illuminate\Database\Eloquent\Relations\Pivot {#8581
+          todo_id: 1,
+          tag_id: 1,
+        },
+      },
+      App\Models\Tag {#8579
+        id: 2,
+        nom: "Perso",
+        ...
+      },
+    ],
+  }
+
+> use App\Models\Tag;
+
+> Tag::find(1)->todos;
+= Illuminate\Database\Eloquent\Collection {#8186
+    all: [
+      App\Models\Todo {#8603
+        id: 1,
+        texte: "Réviser le TP Laravel",
+        termine: 0,
+        categorie_id: 3,
+        pivot: Illuminate\Database\Eloquent\Relations\Pivot {#8581
+          tag_id: 1,
+          todo_id: 1,
+        },
+      },
+    ],
+  }
+```
+
+Les deux sens renvoient une **collection**, et chaque objet transporte au passage la ligne du pivot qui a permis de le trouver. Retournez voir la table `tag_todo` dans DBeaver : elle contient maintenant deux lignes, `(1, 1)` et `(2, 1)`. C'est votre `attach` qui les a écrites, sans une ligne de SQL.
+
+### Utiliser les étiquettes dans l'application
+
+Il ne reste plus qu'à ouvrir tout ça aux utilisateurs. La procédure, le code est à vous :
+
+- Dans `listTodo`, transmettez aussi la liste des étiquettes à la vue (`Tag::all()`), sans oublier le `use App\Models\Tag;` en haut du contrôleur.
+- Dans le formulaire d'ajout, affichez une case à cocher par étiquette, avec une boucle `@foreach`.
+- Dans `addTodo`, après le `Todo::create([...])`, enregistrez les étiquettes cochées.
+- Dans le tableau, ajoutez une colonne « Étiquettes » qui affiche les étiquettes de chaque TODO sous forme de badges Bootstrap (`badge bg-secondary`).
+
+Pour les cases à cocher, le point important est le nom du champ : `tags[]`, avec les crochets. C'est ce qui permet à PHP de recevoir **plusieurs** valeurs dans un seul champ, sous forme de tableau.
+
+```html
+@foreach($tags as $unTag)
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $unTag->id }}" id="tag{{ $unTag->id }}">
+  <label class="form-check-label" for="tag{{ $unTag->id }}">{{ $unTag->nom }}</label>
+</div>
+@endforeach
+```
+
+Côté contrôleur, l'enregistrement tient en une ligne, juste après la création de la TODO (pensez à récupérer l'objet créé dans une variable) :
+
+```php
+$todo->tags()->sync($request->tags ?? []);
+```
+
+Le `?? []` mérite une explication : si l'utilisateur ne coche **aucune** case, le navigateur n'envoie pas le champ `tags` du tout, et `$request->tags` vaut `null`. Laravel s'en accommode (il traite `null` comme une liste vide), mais écrire explicitement `?? []` rend l'intention lisible : « aucune case cochée, donc aucune étiquette ».
+
+Deux méthodes se ressemblent beaucoup ici, ne les confondez pas :
+
+- `attach([1, 2])` **ajoute** des associations aux existantes (celle que nous avons utilisée dans Tinker).
+- `sync([1, 2])` **remplace** toutes les associations par celles de la liste (les autres sont supprimées).
+
+Pour un formulaire à cases à cocher, c'est toujours `sync` qu'il vous faut : ce qui est coché devient la liste complète. Vous retrouverez ces méthodes dans [la synthèse des commandes, section relations](/cheatsheets/laravel/quick.md#l-orm-relations), avec les autres opérations possibles sur une table pivot.
+
+::: tip Que se passe-t-il derrière ?
+
+Une TODO, ses étiquettes, sa catégorie… cela fait beaucoup d'allers-retours en base. Comme pour les catégories, vous pouvez tout charger d'un coup : `Todo::with('categorie', 'tags')->get()` ramène la liste complète en **trois** requêtes (les TODO, puis les catégories, puis les étiquettes avec le pivot), quel que soit le nombre de lignes affichées.
+
+:::
+
+Rechargez `/todo` : les cases à cocher sont sous le formulaire, et chaque tâche affiche ses étiquettes.
+
+::: tip Point de contrôle
+
+Ajoutez une TODO en cochant « Urgent » et « Pro » : la ligne apparaît dans la liste avec ses deux badges, et la table `tag_todo` contient deux nouvelles lignes. Recommencez sans cocher aucune case : la TODO est bien enregistrée, sans aucune ligne ajoutée dans le pivot.
+
+![La TODO List avec les cases à cocher des étiquettes et les badges dans le tableau](./ressources/bdd_pivot_liste.png)
+
+:::
+
+Si vous voulez aller plus loin, essayez d'ajouter un lien sur chaque badge pour n'afficher que les TODO portant cette étiquette.
 
 ## Exercice 1 : un formulaire de contact
 
 ::: tip Vous êtes en avance ?
-Les deux exercices qui suivent sont un bonus pour les étudiants qui ont terminé. Le TP suivant ne dépend pas de ce formulaire de contact, vous pouvez donc y aller directement si le temps vous manque.
+Les trois exercices qui suivent sont un bonus pour les étudiants qui ont terminé. Le TP suivant ne dépend pas de ce formulaire de contact, vous pouvez donc y aller directement si le temps vous manque.
 :::
 
 J'aimerais que notre petit site de démonstration intègre un formulaire de demande de contact. Je vous laisse réfléchir comment réaliser l'opération, quelques pistes pour débuter :
@@ -1030,6 +1215,72 @@ Pas de code ici, seulement la procédure :
 
 :::
 
+## Exercice 3 : filtrer les ajouts avec un Middleware
+
+Dernier bonus, et il vous servira dès le TP suivant. Un **Middleware**, c'est un filtre exécuté **avant** le contrôleur : il regarde la requête qui arrive et décide de la laisser passer… ou pas.
+
+```
+Requête → Middleware → Contrôleur
+              ↓
+        (ou redirection)
+```
+
+Votre mission : interdire le mot « twitter » dans une TODO.
+
+- Créez un Middleware chargé d'inspecter le texte reçu.
+- Si le texte contient le mot « twitter », l'utilisateur est renvoyé vers la liste avec un message d'erreur (un message flash, comme ceux que vous affichez déjà).
+- Dans ce cas, la TODO ne doit **pas** être enregistrée en base de données.
+- Branchez ce Middleware sur la route qui reçoit le formulaire d'ajout, et uniquement sur celle-là.
+
+Question :
+
+- Pourquoi placer ce contrôle dans un Middleware plutôt que dans un simple `if` au début de la méthode `addTodo` ?
+
+::: details Besoin d'aide ?
+
+La création passe par `artisan`, comme d'habitude :
+
+```sh
+php artisan make:middleware CheckTodo
+```
+
+La logique se place dans la méthode `handle` du fichier créé :
+
+```php
+public function handle(Request $request, Closure $next): Response
+{
+    if (strpos($request->texte, 'twitter') !== false) {
+        return redirect()->back()->with('error', 'Le mot twitter est interdit');
+    }
+
+    return $next($request);
+}
+```
+
+Tout est dans le `return $next($request);` : c'est lui qui passe la main à la suite (le contrôleur). Si vous ne l'appelez pas, la requête s'arrête là.
+
+Il reste à accrocher le Middleware sur la route à protéger, dans `routes/web.php` :
+
+```php
+->middleware(CheckTodo::class)
+```
+
+Pensez également à ajouter `use App\Http\Middleware\CheckTodo;` en tête de votre fichier de routes, sans quoi la classe ne sera pas trouvée.
+
+:::
+
+Une fois votre Middleware écrit et branché, il est temps de le mettre à l'épreuve.
+
+::: tip Point de contrôle
+
+Tentez d'ajouter une TODO contenant le mot « twitter » : elle n'est pas enregistrée et le message du Middleware s'affiche (le `redirect()->back()` vous ramène sur la liste).
+
+![Le Middleware refuse la TODO](./ressources/bdd_todo_twitter.png)
+
+:::
+
+Gardez bien ce mécanisme en tête : nous allons le réutiliser dès le TP suivant, mais cette fois pour protéger votre TODO List derrière une authentification.
+
 ## Conclusion
 
 Dans ce TP vous avez découvert toute la chaîne de persistance de Laravel :
@@ -1038,7 +1289,8 @@ Dans ce TP vous avez découvert toute la chaîne de persistance de Laravel :
 - Les **modèles** et **Eloquent** pour manipuler vos données sans écrire de SQL.
 - Un CRUD complet (Create, Read, Update, Delete) avec la TODO List.
 - Les **relations** entre deux tables (`belongsTo` et `hasMany`) pour classer vos TODO par catégorie.
-- Les **middlewares** pour filtrer les requêtes.
+- La **table pivot** et `belongsToMany` pour poser plusieurs étiquettes sur une même TODO (avec `sync`).
+- Les **middlewares** pour filtrer les requêtes (en bonus).
 
 N'oubliez pas de **commiter votre projet**, nous allons le réutiliser dans le TP suivant.
 
