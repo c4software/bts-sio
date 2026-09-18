@@ -723,7 +723,9 @@ L'avantage est évident : le fichier part dans Git, et vos collègues obtiennent
 
 ### Exécuter ce SQL avec DBeaver
 
-Pour taper du SQL, il vous faut un outil connecté à votre base. [DBeaver](https://dbeaver.io/) est gratuit, multiplateforme, et vous l'avez déjà utilisé avec MariaDB : il sait aussi ouvrir un fichier SQLite. Voilà la marche à suivre :
+Pour taper du SQL, il vous faut un outil connecté à votre base. [DBeaver](https://dbeaver.io/) est gratuit, multiplateforme, et vous l'avez déjà utilisé avec MariaDB : il sait aussi ouvrir un fichier SQLite.
+
+::: details La marche à suivre dans DBeaver
 
 - Créez une nouvelle connexion (l'icône « prise » en haut à gauche, ou le menu `Base de données` puis `Nouvelle connexion`).
 - Dans la liste des bases proposées, choisissez **SQLite**.
@@ -734,23 +736,13 @@ Pour taper du SQL, il vous faut un outil connecté à votre base. [DBeaver](http
 - Exécutez le **script entier** avec `Alt`+`X` (ou le bouton « Exécuter le script »). Attention, `Ctrl`+`Entrée` n'exécute que l'instruction sous le curseur, vous n'auriez alors qu'un tiers du travail de fait.
 - Dépliez `Tables` dans l'arborescence de gauche, puis actualisez avec `F5` (ou clic droit, `Actualiser`) pour voir apparaître la table `categories` et la nouvelle colonne de `todos`.
 
+:::
+
 Les autres outils cités plus haut (DB Browser for SQLite, l'extension VSCode, la vue Database de PHPStorm) proposent tous un onglet permettant de taper du SQL : si vous préférez rester sur celui que vous utilisez depuis le début du TP, c'est parfait aussi.
 
 ::: tip Point de contrôle
 
-La table `categories` contient quatre lignes, et la table `todos` possède une nouvelle colonne `categorie_id`. En ligne de commande avec `sqlite3 database/database.sqlite`, vous devez obtenir :
-
-```
-sqlite> .headers on
-sqlite> .mode column
-sqlite> SELECT * FROM categories;
-id    nom        created_at           updated_at
---  -------  -------------------  -------------------
- 1  Maison   2026-09-18 19:45:01  2026-09-18 19:45:01
- 2  Travail  2026-09-18 19:45:01  2026-09-18 19:45:01
- 3  Études   2026-09-18 19:45:01  2026-09-18 19:45:01
- 4  Courses  2026-09-18 19:45:01  2026-09-18 19:45:01
-```
+Dans DBeaver, ouvrez la table `categories` (onglet « Données ») : elle contient vos quatre lignes, Maison, Travail, Études et Courses. Ouvrez ensuite la table `todos` (onglet « Propriétés », puis « Colonnes ») : la colonne `categorie_id` est bien là, et vos anciennes TODO ont cette colonne à `NULL`.
 
 :::
 
@@ -823,7 +815,8 @@ Dans `app/Models/Todo.php`, une TODO appartient à une catégorie :
 ```php
     public function categorie()
     {
-        return $this->belongsTo(Categorie::class);
+        // Relation Eloquent : la colonne categorie_id de todos pointe vers l'id de categories
+        return $this->belongsTo(Categorie::class, 'categorie_id');
     }
 ```
 
@@ -832,11 +825,12 @@ Dans `app/Models/Categorie.php`, une catégorie possède plusieurs TODO :
 ```php
     public function todos()
     {
-        return $this->hasMany(Todo::class);
+        // Relation Eloquent : toutes les todos dont categorie_id vaut l'id de cette catégorie
+        return $this->hasMany(Todo::class, 'categorie_id');
     }
 ```
 
-Là encore, tout repose sur une convention : le nom de la méthode (`categorie`) suivi de `_id` donne le nom de la colonne attendue, `categorie_id`. C'est précisément celle que nous avons créée en SQL.
+Le second paramètre, `'categorie_id'`, indique explicitement à Eloquent la colonne qui porte la clé étrangère. Ici il est facultatif : par convention, le nom de la méthode (`categorie`) suivi de `_id` donne exactement `categorie_id`, et Laravel l'aurait deviné seul. Je vous le fais écrire quand même, pour que la relation soit lisible dans le code sans avoir à connaître la convention, et parce que vous en aurez besoin dès que vos noms de colonnes s'en écarteront (en AP par exemple).
 
 Pensez enfin à autoriser l'enregistrement de cette colonne, en complétant le `$fillable` de `Todo` :
 
