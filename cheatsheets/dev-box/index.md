@@ -40,6 +40,7 @@ La dev-box contient les éléments suivants :
 - **Vous installez uniquement ce dont vous avez besoin.** Un menu, vous cochez Laravel et Python, c'est prêt.
 - **Vos données survivent.** Votre dossier personnel et vos projets sont stockés dans des volumes : mettre à jour la dev-box ne supprime rien.
 - **Vous travaillez comme sur un vrai serveur Linux.** SSH, terminal, services : les réflexes que vous prenez ici sont ceux que vous utiliserez en production (voir par exemple [Installer Docker sur une Debian](/cheatsheets/serveur/debian-docker.md)).
+- **Votre environnement vous suit partout.** Avec Tailscale, vous retrouvez la même dev-box depuis le lycée, chez vous ou sur une tablette (voir [Votre dev-box partout avec Tailscale](#votre-dev-box-partout-avec-tailscale)).
 - **Une seule commande à retenir : `devbox`.** Elle liste tout ce que la dev-box sait faire, avec un menu.
 - **Rien ne se met à jour dans votre dos.** La dev-box vous prévient quand une mise à jour est disponible, c'est vous qui décidez quand l'appliquer.
 
@@ -141,17 +142,7 @@ Lors de la première utilisation, l'image (environ 2 Go) est téléchargée, pui
 
 :::
 
-### Accéder à la dev-box depuis n'importe où (optionnel)
-
-Par défaut, la dev-box est pensée pour [Tailscale](https://tailscale.com/) : un réseau privé entre vos machines. Avec Tailscale, vous pouvez vous connecter à votre dev-box depuis n'importe quel appareil (un autre PC, une tablette, etc.) sans ouvrir de port sur votre box Internet.
-
-Pour l'utiliser, laissez `TS_DISABLE=false` dans le `.env`, démarrez la dev-box, puis ouvrez l'adresse affichée dans `docker compose logs -f` pour ajouter la machine à votre réseau Tailscale. Vous vous connectez ensuite avec :
-
-```bash
-ssh dev@dev-box
-```
-
-Tout est détaillé dans le [README du projet](https://github.com/c4software/dev-box#quick-start).
+Vous voulez retrouver cette même dev-box depuis le lycée, un autre ordinateur ou une tablette ? C'est le rôle de Tailscale, présenté dans la partie [Votre dev-box partout avec Tailscale](#votre-dev-box-partout-avec-tailscale).
 
 ## Installer vos environnements
 
@@ -295,9 +286,53 @@ Besoin d'un paquet Arch Linux qui n'est pas dans le catalogue ? `devbox pkg add 
 
 Claude Code, Codex, opencode et d'autres agents sont disponibles directement dans le terminal. `devbox agent` permet de choisir votre agent par défaut, de le lancer dans le dossier courant et de suivre votre consommation.
 
-### Travailler depuis n'importe où
+## Votre dev-box partout avec Tailscale
 
-Avec Tailscale (voir [Accéder à la dev-box depuis n'importe où](#acceder-a-la-dev-box-depuis-n-importe-ou-optionnel)), votre dev-box vous suit : vous pouvez vous connecter depuis un autre ordinateur, partager un site en cours de développement avec `devbox serve 8000`, ou envoyer un fichier vers une autre de vos machines avec `devbox tailscale send`.
+Jusqu'ici, la dev-box tourne sur votre ordinateur et vous vous y connectez depuis ce même ordinateur. C'est déjà très bien, mais la dev-box a été pensée pour aller plus loin : **une seule dev-box, accessible depuis toutes vos machines**. Elle peut tourner sur votre PC, sur un serveur ou même sur un Raspberry Pi 5, et vous la retrouvez depuis le lycée, depuis chez vous ou depuis une tablette, avec vos projets, vos onglets tmux et vos serveurs toujours en place.
+
+C'est [Tailscale](https://tailscale.com/) qui rend ça possible.
+
+### Tailscale, c'est quoi ?
+
+Tailscale crée un **réseau privé** (un VPN) entre vos appareils, où qu'ils soient. Chaque machine y reçoit un nom : votre dev-box s'appelle simplement `dev-box`. Vous installez Tailscale sur votre ordinateur (ou votre téléphone), la dev-box a déjà Tailscale intégré, et les deux se voient comme s'ils étaient sur le même réseau local.
+
+- **Rien à ouvrir sur votre box Internet** : aucun port n'est publié, la dev-box n'est pas visible depuis Internet.
+- **Pas de clé SSH à copier** : c'est votre compte Tailscale qui vous authentifie.
+- **Gratuit** pour un usage personnel.
+
+::: tip Et Headscale ?
+
+Tailscale s'appuie sur un serveur de coordination hébergé par l'entreprise Tailscale. [Headscale](https://headscale.net/) est une alternative Open Source à ce serveur, que vous pouvez héberger vous-même. La dev-box fonctionne avec les deux : il suffit de renseigner l'adresse de votre serveur dans `TS_LOGIN_SERVER`.
+
+:::
+
+### Activer Tailscale
+
+1. Créez un compte sur [tailscale.com](https://tailscale.com/) et installez Tailscale sur votre ordinateur.
+2. Dans le `.env` de la dev-box, passez `TS_DISABLE` à `false` (c'est la valeur par défaut).
+3. Relancez la dev-box et affichez les logs :
+
+```bash
+docker compose up -d
+docker compose logs -f
+```
+
+4. Les logs affichent une adresse : ouvrez-la dans votre navigateur pour ajouter la dev-box à votre réseau Tailscale. Cette étape n'est à faire qu'une seule fois.
+5. Depuis n'importe quel appareil connecté à votre réseau Tailscale :
+
+```bash
+ssh dev@dev-box
+```
+
+Selon les réglages de votre compte, Tailscale peut vous demander de confirmer la connexion dans votre navigateur.
+
+### Ce que Tailscale vous apporte en plus
+
+- **Voir vos sites sans rien configurer.** Un serveur lancé avec `--host=0.0.0.0` est directement accessible sur `http://dev-box:8000` depuis toutes vos machines, sans `compose.override.yaml`.
+- **Partager un site en cours de développement.** `devbox serve 8000` publie le port sur votre réseau Tailscale et affiche l'adresse à ouvrir, même pour un serveur qui n'écoute que sur `127.0.0.1`. `devbox serve off 8000` arrête le partage.
+- **Envoyer des fichiers entre vos machines.** `devbox tailscale send` envoie un fichier vers un autre de vos appareils (un menu vous demande lequel), `devbox tailscale receive` réceptionne ceux qu'on vous envoie dans `~/inbox`. Dans le gestionnaire de fichiers `yazi`, le raccourci `c` puis `t` fait la même chose.
+
+Tous les détails (auth key, Headscale, règles d'accès) sont dans le [README du projet](https://github.com/c4software/dev-box#headscale-setup).
 
 ## Configuration
 
