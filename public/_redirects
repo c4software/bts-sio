@@ -13,3 +13,8 @@
 # Le TP « Bart PHP et MySQL » est fondu dans le TP 2 (formulaires et première table)
 /tp/php/sql/tp5.html /tp/php/tp2.html 301
 /tp/php/sql/tp5 /tp/php/tp2 301
+
+# DAMP est remplacé par la dev-box
+/cheatsheets/damp/index.html /cheatsheets/dev-box/ 301
+/cheatsheets/damp/ /cheatsheets/dev-box/ 301
+/cheatsheets/damp /cheatsheets/dev-box/ 301

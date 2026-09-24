@@ -243,6 +243,7 @@ export default [
     collapsed: true,
     items: [
       { text: "Le poste de travail", link: "/cheatsheets/web/index.md" },
+      { text: "La dev-box (environnement Docker)", link: "/cheatsheets/dev-box/" },
       { text: "Rappels PHP", link: "/cours/php_rappels.md" },
       {
         text: "MVC",
@@ -654,7 +655,8 @@ export default [
               { link: "/cheatsheets/serveur/linux-debian-based.md", text: "Linux à base Debian" },
               { link: "/cheatsheets/serveur/debian-reseau.md", text: "Générateur de config réseau" },
               { link: "/cheatsheets/serveur/debian-web.md", text: "Debian : Apache, PHP, MariaDB" },
-              { link: "/cheatsheets/serveur/debian-docker.md", text: "Installer Docker sur Debian" }
+              { link: "/cheatsheets/serveur/debian-docker.md", text: "Installer Docker sur Debian" },
+              { link: "/cheatsheets/dev-box/", text: "La dev-box (environnement Docker)" }
             ]
           },
           {
