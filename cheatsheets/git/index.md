@@ -313,6 +313,7 @@ git reset --hard <commit>
 
 Git peut être utilisé via des interfaces graphiques :
 
+* Gitoryx
 * GitKraken
 * Visual Studio Code
 * Tower
