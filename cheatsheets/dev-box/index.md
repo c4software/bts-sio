@@ -172,6 +172,10 @@ Lors du premier démarrage, la dev-box prépare votre dossier personnel et insta
 
 :::
 
+_Démo, de la commande d'installation à la première connexion (dans la vidéo, l'image était déjà téléchargée, et la visite guidée est remise à plus tard pour aller à l'essentiel) :_
+
+<video controls preload="metadata" poster="./res/dev-box-installation.jpg" src="./res/dev-box-installation.mp4" style="width: 100%; border-radius: 8px;"></video>
+
 ::: details Pour aller plus loin : installer depuis le dépôt Git
 
 Le script d'installation est la méthode conseillée. Vous pouvez aussi cloner le dépôt et construire l'image vous-même, par exemple pour tester une modification de la dev-box :
