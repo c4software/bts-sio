@@ -84,29 +84,30 @@ Votre clé SSH doit aussi exister **côté Ubuntu** : si `ls ~/.ssh/*.pub` ne do
 
 ## Installation & Lancement
 
-L'installation se fait avec un script. Pas besoin de Git ni de télécharger le code de la dev-box : le script récupère l'image déjà construite et la démarre pour vous. Dans votre terminal (le terminal Ubuntu sous Windows), commencez par télécharger le script :
+L'installation tient en une commande. Pas besoin de Git ni de télécharger le code de la dev-box : un script récupère l'image déjà construite et la démarre pour vous. Dans votre terminal (le terminal Ubuntu sous Windows) :
 
 ```bash
-curl -fsSLo devbox.sh https://cours.brosseau.ovh/devbox.sh
+curl -fsSL https://cours.brosseau.ovh/devbox.sh | sh
 ```
 
-Pas de `curl` sur votre machine ? `wget` fait la même chose : `wget -O devbox.sh https://cours.brosseau.ovh/devbox.sh`.
+Pas de `curl` sur votre machine ? `wget` fait la même chose : `wget -qO- https://cours.brosseau.ovh/devbox.sh | sh`.
 
-Jetez un œil à ce qu'il contient (`q` pour quitter), puis lancez-le :
+::: warning Une mauvaise pratique, pourtant très répandue
 
-```bash
-less devbox.sh
-sh devbox.sh
-```
-
-::: warning Pourquoi ne pas tout faire en une ligne ?
-
-Vous croiserez souvent des installations du type `curl https://... | sh` : le script téléchargé est envoyé directement au shell, qui l'exécute. C'est une mauvaise pratique :
+Cette commande envoie le script téléchargé directement au shell, qui l'exécute. Vous croiserez ce type d'installation partout, mais c'est une mauvaise pratique :
 
 - vous exécutez du code **sans l'avoir lu**, avec vos droits, sur votre machine ;
 - si le téléchargement est coupé en plein milieu, le shell exécute un script **tronqué**, avec des résultats imprévisibles.
 
-Télécharger, lire, puis exécuter : prenez ce réflexe, pour la dev-box comme pour n'importe quel script trouvé sur Internet.
+Le bon réflexe : **télécharger avant d'exécuter**. On récupère le script, on le lit (`q` pour quitter), puis on le lance :
+
+```bash
+curl -fsSLo devbox.sh https://cours.brosseau.ovh/devbox.sh
+less devbox.sh
+sh devbox.sh
+```
+
+C'est ce que montre la vidéo plus bas. Prenez ce réflexe, pour la dev-box comme pour n'importe quel script trouvé sur Internet.
 
 :::
 
@@ -536,7 +537,7 @@ docker compose start  # La redémarre
 Deux niveaux de mise à jour :
 
 - Les outils (environnements, Neovim, agents, etc.) : `devbox update` dans la dev-box.
-- L'image elle-même (Arch Linux, PHP, etc.) : téléchargez à nouveau le script (pour avoir sa dernière version) et relancez-le avec `sh devbox.sh`. Il détecte la dev-box existante, télécharge la dernière image et redémarre la dev-box, **sans jamais toucher** à votre `.env`, à votre `compose.override.yaml` ni au dossier `data`. Vous pouvez aussi, depuis `~/dev-box`, lancer `docker compose pull && docker compose up -d`.
+- L'image elle-même (Arch Linux, PHP, etc.) : relancez simplement la commande d'installation (ou retéléchargez le script et relancez `sh devbox.sh`). Il détecte la dev-box existante, télécharge la dernière image et redémarre la dev-box, **sans jamais toucher** à votre `.env`, à votre `compose.override.yaml` ni au dossier `data`. Vous pouvez aussi, depuis `~/dev-box`, lancer `docker compose pull && docker compose up -d`.
 
 La dev-box vous indique à la connexion quand une mise à jour est disponible, et `devbox changelog` vous montre ce qui a changé.
 
