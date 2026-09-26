@@ -18,3 +18,6 @@
 /cheatsheets/damp/index.html /cheatsheets/dev-box/ 301
 /cheatsheets/damp/ /cheatsheets/dev-box/ 301
 /cheatsheets/damp /cheatsheets/dev-box/ 301
+
+# Installation de la dev-box : curl -fsSL https://cours.brosseau.ovh/devbox.sh | sh
+/devbox.sh https://raw.githubusercontent.com/c4software/dev-box/main/setup.sh 302

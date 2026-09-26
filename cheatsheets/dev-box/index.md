@@ -87,13 +87,13 @@ Votre clé SSH doit aussi exister **côté Ubuntu** : si `ls ~/.ssh/*.pub` ne do
 L'installation tient en une commande. Pas besoin de Git ni de télécharger le code de la dev-box : un script récupère l'image déjà construite et la démarre pour vous. Dans votre terminal (le terminal Ubuntu sous Windows) :
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/c4software/dev-box/main/setup.sh | sh
+curl -fsSL https://cours.brosseau.ovh/devbox.sh | sh
 ```
 
 Pas de `curl` sur votre machine ? `wget` fait la même chose :
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/c4software/dev-box/main/setup.sh | sh
+wget -qO- https://cours.brosseau.ovh/devbox.sh | sh
 ```
 
 Le script vérifie que Docker est bien là, puis vous pose quelques questions. `Entrée` garde la valeur proposée, et tout reste modifiable plus tard dans le fichier `.env`. Si [gum](https://github.com/charmbracelet/gum) est installé sur votre machine, les questions sont plus agréables (une liste pour choisir, un bouton oui / non), mais ce n'est pas nécessaire.
