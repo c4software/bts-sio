@@ -95,6 +95,26 @@ Prenez ce réflexe, pour la dev-box comme pour n'importe quel script trouvé sur
 
 Le script vérifie que Docker est bien là, puis vous pose quelques questions. `Entrée` garde la valeur proposée, et tout reste modifiable plus tard dans le fichier `.env`. Si [gum](https://github.com/charmbracelet/gum) est installé sur votre machine, les questions sont plus agréables (une liste pour choisir, un bouton oui / non), mais ce n'est pas nécessaire.
 
+::: details Installer gum (facultatif)
+
+gum est un petit outil qui rend les questions des scripts plus lisibles (c'est lui que vous voyez dans la vidéo plus bas). À installer **avant** de lancer le script :
+
+- Ubuntu (et donc WSL), Debian :
+
+```bash
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+sudo apt update && sudo apt install gum
+```
+
+- macOS : `brew install gum`
+- Arch Linux : `sudo pacman -S gum`
+
+Sans gum, le script pose exactement les mêmes questions, en texte simple.
+
+:::
+
 | Question                                 | Ce que je vous conseille de répondre                                                        |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------- |
 | Install directory                        | `Entrée` : la dev-box s'installe dans `~/dev-box`                                            |
@@ -103,6 +123,7 @@ Le script vérifie que Docker est bien là, puis vous pose quelques questions. `
 | Access (tailscale or ssh)                | `ssh` pour commencer (Tailscale est présenté [plus bas](#votre-dev-box-partout-avec-tailscale)) |
 | GitHub user whose public keys are allowed in | Votre pseudo GitHub si vous y avez ajouté votre clé SSH (le script récupère les clés de votre compte), sinon `Entrée` pour passer |
 | Public key of this machine allowed in    | `Entrée` : le script a trouvé votre clé publique dans `~/.ssh`. Les clés GitHub et celle de votre machine sont toutes autorisées |
+| Add another key?                         | `Entrée` (non), sauf si vous voulez autoriser une autre machine : chemin d'un `.pub`, la clé elle-même ou `github:pseudo`, puis la question revient |
 | SSH port on this host                    | `Entrée` : le port `2222`                                                                    |
 | Address the SSH port listens on          | `Entrée` : `127.0.0.1`, la dev-box n'est accessible que depuis votre machine                 |
 | GitHub token                             | Facultatif, voir ci-dessous                                                                 |
