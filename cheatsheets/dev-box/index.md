@@ -4,7 +4,7 @@ description: "La dev-box : un environnement de développement complet (PHP, Lara
 
 # La dev-box : votre environnement de développement dans Docker
 
-Document présentant l'installation et l'utilisation de la dev-box, l'environnement de développement qui remplace DAMP.
+Document présentant l'installation et l'utilisation de la dev-box, votre environnement de développement complet dans Docker.
 
 ::: details Sommaire
 [[toc]]
@@ -43,12 +43,6 @@ La dev-box contient les éléments suivants :
 - **Votre environnement vous suit partout.** Avec Tailscale, vous retrouvez la même dev-box depuis le lycée, chez vous ou sur une tablette (voir [Votre dev-box partout avec Tailscale](#votre-dev-box-partout-avec-tailscale)).
 - **Une seule commande à retenir : `devbox`.** Elle liste tout ce que la dev-box sait faire, avec un menu.
 - **Rien ne se met à jour dans votre dos.** La dev-box vous prévient quand une mise à jour est disponible, c'est vous qui décidez quand l'appliquer.
-
-::: tip Et DAMP ?
-
-La dev-box remplace DAMP. DAMP fonctionne toujours (le code reste disponible sur [GitHub](https://github.com/c4software/DAMP-docker-stack)), mais il n'évolue plus : PHP n'y est plus à jour et MailHog n'est plus maintenu. Si vous démarrez, partez directement sur la dev-box.
-
-:::
 
 ## Prérequis
 
@@ -102,7 +96,7 @@ Pas de `curl` sur votre machine ? `wget` fait la même chose :
 wget -qO- https://raw.githubusercontent.com/c4software/dev-box/main/setup.sh | sh
 ```
 
-Le script vérifie que Docker est bien là, puis vous pose quelques questions. `Entrée` garde la valeur proposée entre crochets, et tout reste modifiable plus tard dans le fichier `.env`.
+Le script vérifie que Docker est bien là, puis vous pose quelques questions. `Entrée` garde la valeur proposée, et tout reste modifiable plus tard dans le fichier `.env`. Si [gum](https://github.com/charmbracelet/gum) est installé sur votre machine, les questions sont plus agréables (une liste pour choisir, un bouton oui / non), mais ce n'est pas nécessaire.
 
 | Question                                 | Ce que je vous conseille de répondre                                                        |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------- |
@@ -110,12 +104,13 @@ Le script vérifie que Docker est bien là, puis vous pose quelques questions. `
 | Unix user inside the box                 | `Entrée` : l'utilisateur `dev`                                                               |
 | Timezone                                 | `Entrée` : le fuseau horaire de votre machine                                                |
 | Access (tailscale or ssh)                | `ssh` pour commencer (Tailscale est présenté [plus bas](#votre-dev-box-partout-avec-tailscale)) |
-| Public key allowed in                    | `Entrée` : le script a trouvé votre clé publique dans `~/.ssh`. Sur un serveur, `github:votre-pseudo` autorise les clés de votre compte GitHub (celles de votre poste, si vous les y avez ajoutées) |
+| Public key allowed in                    | `Entrée` : le script a trouvé votre clé publique dans `~/.ssh`. Sur un serveur, `github:votre-pseudo` autorise les clés de votre compte GitHub (celles de votre poste, si vous les y avez ajoutées). Sans clé dans `~/.ssh`, le script vous demande directement votre pseudo GitHub (« GitHub user to take the public keys from ») |
 | SSH port on this host                    | `Entrée` : le port `2222`                                                                    |
-| Address it listens on                    | `Entrée` : `127.0.0.1`, la dev-box n'est accessible que depuis votre machine                 |
+| Address the SSH port listens on          | `Entrée` : `127.0.0.1`, la dev-box n'est accessible que depuis votre machine                 |
 | GitHub token                             | Facultatif, voir ci-dessous                                                                 |
 | Dev environments                         | Par exemple `laravel python` (voir [Installer vos environnements](#installer-vos-environnements)) |
 | Turn podman on?                          | `y` si vous avez besoin des bases de données (voir [les bases de données](#les-bases-de-donnees)) |
+| Pull the image and start the box now?    | `Entrée` : oui, le script télécharge l'image et démarre la dev-box                          |
 
 ::: tip Et Tailscale ?
 
@@ -123,7 +118,7 @@ Pour démarrer, l'accès `ssh` est le plus simple. Mais gardez Tailscale en têt
 
 :::
 
-Le script écrit ensuite le fichier `~/dev-box/.env` avec vos réponses, télécharge l'image (environ 2 Go, quelques minutes la première fois) puis démarre la dev-box. À la fin, il vous affiche la commande pour vous connecter.
+Le script écrit ensuite le fichier `~/dev-box/.env` avec vos réponses, puis, après la dernière question, télécharge l'image (environ 2 Go, quelques minutes la première fois) et démarre la dev-box. À la fin, il vous affiche la commande pour vous connecter.
 
 ::: details Le token GitHub, c'est quoi ?
 
@@ -133,13 +128,13 @@ C'est facultatif : vous pouvez laisser vide et l'ajouter plus tard dans le `.env
 
 :::
 
-::: tip Sans questions
+### Voir votre site depuis le navigateur
 
-Le script accepte aussi ses réponses en options, pratique pour réinstaller rapidement. Par exemple : `curl -fsSL https://raw.githubusercontent.com/c4software/dev-box/main/setup.sh | sh -s -- --access ssh --dev-envs "laravel python" --podman`. La liste complète s'affiche avec `--help`.
+::: danger Accès par Tailscale ?
+
+Bonne nouvelle, vous n'avez rien à faire : tous les ports de votre dev-box sont accessibles depuis votre réseau Tailscale (par exemple `http://dev-box:8000` pour un serveur lancé avec `--host=0.0.0.0`). Cette partie ne concerne que l'accès par SSH.
 
 :::
-
-### Voir votre site depuis le navigateur
 
 Par défaut, seul le port SSH est ouvert. Pour voir dans votre navigateur les sites que vous lancerez dans la dev-box, il faut rendre le port `8000` accessible. Dans le dossier `~/dev-box`, créez (ou complétez) le fichier `compose.override.yaml` :
 
