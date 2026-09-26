@@ -334,6 +334,14 @@ Python, Java, Go, Rust, .NET, Node.js, Bun, Deno, Flutter, Ruby, Elixir, etc. : 
 
 `devbox dev-env media` installe de quoi télécharger, convertir et analyser des fichiers audio, vidéo et images : `ffmpeg`, `yt-dlp`, des optimiseurs d'images (`oxipng`, `pngquant`, `jpegoptim`, `cwebp`), `exiftool` (lire ou effacer les métadonnées d'une photo, dont la position GPS) et `mediainfo`. Bonus : avec `ffmpeg` installé, le gestionnaire de fichiers `yazi` affiche l'aperçu des vidéos.
 
+### Réseau, bases de données et Ansible
+
+Vous êtes en SISR ? Les outils de base sont déjà là : `dig`, `nslookup`, `nc`, `whois`, `traceroute`, `ping`, `ip`. `devbox dev-env network` ajoute `nmap`, `tcpdump`, `iperf3`, `mtr` et `doggo` (un `dig` plus lisible). Les commandes qui demandent les droits administrateur passent par `sudo`, sans mot de passe : `sudo nmap -sS 192.168.1.0/24`, `sudo tcpdump -i any port 80`. Attention tout de même, la dev-box est un conteneur : `tcpdump` ne voit que son propre trafic, pas celui de votre ordinateur ni du réseau local.
+
+Pour interroger les bases de [`devbox dbs`](#les-bases-de-donnees), `psql` et `mariadb` sont fournis. `devbox dev-env db-clients` ajoute `mongosh` (MongoDB), `mycli` (MariaDB et MySQL, avec autocomplétion) et `usql` (un seul client pour presque toutes les bases, SQL Server compris).
+
+Enfin, `devbox dev-env ansible` installe Ansible et `ansible-lint` : la dev-box devient votre poste d'administration, et vos cibles sont vos machines virtuelles ou les serveurs du labo, joints en SSH.
+
 ### Docker dans la dev-box
 
 Une fois Podman activé (voir [les bases de données](#les-bases-de-donnees)), vous pouvez utiliser les commandes Docker habituelles dans la dev-box : `docker run`, `docker build`, `docker compose up`. C'est idéal pour tester le `docker-compose.yml` d'un projet ou suivre l'[aide-mémoire Docker](/cheatsheets/docker/). La commande `devbox tui lazydocker` vous installe même une interface pour gérer vos conteneurs.
