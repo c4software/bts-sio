@@ -89,7 +89,7 @@ less devbox.sh
 sh devbox.sh
 ```
 
-C'est ce que montre la vidéo plus bas. Prenez ce réflexe, pour la dev-box comme pour n'importe quel script trouvé sur Internet.
+Prenez ce réflexe, pour la dev-box comme pour n'importe quel script trouvé sur Internet.
 
 :::
 
@@ -169,9 +169,9 @@ Lors du premier démarrage, la dev-box prépare votre dossier personnel et insta
 
 :::
 
-_Démo, du téléchargement du script à la première connexion (dans la vidéo, gum est installé, d'où l'apparence des questions ; l'image était déjà téléchargée, et la visite guidée est remise à plus tard pour aller à l'essentiel) :_
+_Démo, de la commande d'installation à la première connexion (dans la vidéo, gum est installé, d'où l'apparence des questions ; l'image était déjà téléchargée, et la visite guidée est remise à plus tard pour aller à l'essentiel) :_
 
-<video controls preload="metadata" poster="./res/dev-box-installation.jpg" src="./res/dev-box-installation.mp4" style="width: 100%; border-radius: 8px;"></video>
+<video controls preload="metadata" poster="./res/dev-box-installation.jpg" src="https://cdn.jsdelivr.net/gh/c4software/dev-box@main/docs/videos/dev-box-installation.mp4" style="width: 100%; border-radius: 8px;"></video>
 
 ::: details Pour aller plus loin : installer depuis le dépôt Git
 
@@ -189,7 +189,7 @@ La construction de l'image prend nettement plus de temps que son téléchargemen
 
 _Démo de cette méthode, de zéro à la première connexion (dans la vidéo, le `.env` pointe sur l'image déjà construite avec `DEVBOX_IMAGE=ghcr.io/c4software/dev-box:latest`, ce qui évite la construction) :_
 
-<video controls preload="metadata" poster="./res/dev-box-creation.jpg" src="./res/dev-box-creation.mp4" style="width: 100%; border-radius: 8px;"></video>
+<video controls preload="metadata" poster="./res/dev-box-creation.jpg" src="https://cdn.jsdelivr.net/gh/c4software/dev-box@main/docs/videos/dev-box-creation.mp4" style="width: 100%; border-radius: 8px;"></video>
 
 Tous les détails sont dans la page [installation manuelle](https://github.com/c4software/dev-box/blob/main/docs/manual-install.md) du dépôt.
 
@@ -231,7 +231,7 @@ Les environnements donnés lors de l'installation sont notés dans le `.env` (`D
 
 _Démo, un projet Laravel (comme dans le TP [Introduction à Laravel](/tp/laravel/introduction.md)) puis Python :_
 
-<video controls preload="metadata" poster="./res/dev-box-utilisation.jpg" src="./res/dev-box-utilisation.mp4" style="width: 100%; border-radius: 8px;"></video>
+<video controls preload="metadata" poster="./res/dev-box-utilisation.jpg" src="https://cdn.jsdelivr.net/gh/c4software/dev-box@main/docs/videos/dev-box-utilisation.mp4" style="width: 100%; border-radius: 8px;"></video>
 
 Dans cette vidéo, je :
 
