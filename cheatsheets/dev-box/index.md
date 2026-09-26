@@ -101,7 +101,8 @@ Le script vérifie que Docker est bien là, puis vous pose quelques questions. `
 | Unix user inside the box                 | `Entrée` : l'utilisateur `dev`                                                               |
 | Timezone                                 | `Entrée` : le fuseau horaire de votre machine                                                |
 | Access (tailscale or ssh)                | `ssh` pour commencer (Tailscale est présenté [plus bas](#votre-dev-box-partout-avec-tailscale)) |
-| Public key allowed in                    | `Entrée` : le script a trouvé votre clé publique dans `~/.ssh`. Sur un serveur, `github:votre-pseudo` autorise les clés de votre compte GitHub (celles de votre poste, si vous les y avez ajoutées). Sans clé dans `~/.ssh`, le script vous demande directement votre pseudo GitHub (« GitHub user to take the public keys from ») |
+| GitHub user whose public keys are allowed in | Votre pseudo GitHub si vous y avez ajouté votre clé SSH (le script récupère les clés de votre compte), sinon `Entrée` pour passer |
+| Public key of this machine allowed in    | `Entrée` : le script a trouvé votre clé publique dans `~/.ssh`. Les clés GitHub et celle de votre machine sont toutes autorisées |
 | SSH port on this host                    | `Entrée` : le port `2222`                                                                    |
 | Address the SSH port listens on          | `Entrée` : `127.0.0.1`, la dev-box n'est accessible que depuis votre machine                 |
 | GitHub token                             | Facultatif, voir ci-dessous                                                                 |
