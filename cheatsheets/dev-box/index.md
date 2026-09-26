@@ -26,8 +26,8 @@ Un conteneur n'est pas une machine virtuelle : il partage le noyau de votre mach
 
 La dev-box contient les éléments suivants :
 
-- Des environnements de développement à installer en une commande (`devbox dev-env`) : PHP et Composer, Laravel, Symfony, Node.js, Python, Java, Go, Rust, .NET, Flutter, etc.
-- Des bases de données à la demande (`devbox dbs`) : MariaDB, MySQL, PostgreSQL, Redis, MongoDB.
+- Des environnements de développement à installer en une commande (`devbox dev-env`) : PHP et Composer, Laravel, Symfony, Node.js, Python, Java, Go, Rust, .NET, Flutter, des outils audio et vidéo, etc.
+- Des bases de données à la demande (`devbox dbs`) : MariaDB, MySQL, PostgreSQL, Redis, MongoDB, SQL Server.
 - Docker dans la dev-box : `docker run` et `docker compose` fonctionnent à l'intérieur (grâce à Podman).
 - Un terminal prêt à l'emploi : zsh, tmux, Neovim (LazyVim), lazygit, yazi (gestionnaire de fichiers), fzf, etc.
 - Un catalogue d'outils en ligne de commande à installer au besoin (`devbox tui`) : btop, lazydocker, pgcli, etc.
@@ -36,7 +36,7 @@ La dev-box contient les éléments suivants :
 ### Pourquoi c'est intéressant ?
 
 - **Le même environnement pour tout le monde.** Fini le « chez moi ça marche » : toute la classe a les mêmes versions.
-- **Rien à installer sur votre machine**, à part Docker. Vous voulez tout supprimer ? Un dossier à effacer, et c'est tout.
+- **Rien à installer sur votre machine**, à part Docker. L'installation tient en une commande, et vous voulez tout supprimer ? Un dossier à effacer, et c'est tout.
 - **Vous installez uniquement ce dont vous avez besoin.** Un menu, vous cochez Laravel et Python, c'est prêt.
 - **Vos données survivent.** Votre dossier personnel et vos projets sont stockés dans des volumes : mettre à jour la dev-box ne supprime rien.
 - **Vous travaillez comme sur un vrai serveur Linux.** SSH, terminal, services : les réflexes que vous prenez ici sont ceux que vous utiliserez en production (voir par exemple [Installer Docker sur une Debian](/cheatsheets/serveur/debian-docker.md)).
@@ -70,44 +70,78 @@ Il est également possible que Docker Desktop vous demande de mettre à jour vot
 
 Vous avez également besoin d'une **clé SSH** : c'est elle qui vous permet d'entrer dans la dev-box, sans mot de passe. Si vous n'en avez pas encore, suivez l'aide-mémoire [La clé SSH](/cheatsheets/ssh-key/) (une seule commande : `ssh-keygen -t ed25519`).
 
+### Sous Windows : WSL 2
+
+Sous Windows, **WSL 2 est obligatoire** : la dev-box s'installe et se lance dans WSL 2 (le Linux intégré à Windows), avec Ubuntu, et pas directement depuis PowerShell ou un autre terminal Windows. Si ce n'est pas déjà fait :
+
+1. Dans un terminal PowerShell, installez Ubuntu : `wsl --install -d Ubuntu`, puis redémarrez si Windows vous le demande.
+2. Dans Docker Desktop, ouvrez **Settings**, puis **Resources**, puis **WSL integration**, et activez l'intégration pour Ubuntu.
+3. Ouvrez le terminal **Ubuntu** (depuis le menu Démarrer) : c'est dans ce terminal que vous lancerez toutes les commandes de cette page.
+
+Vérifiez que Docker répond bien depuis Ubuntu avec `docker compose version`.
+
+::: warning Restez dans votre dossier Linux
+
+Lancez l'installation depuis votre dossier personnel Linux (`~`, c'est-à-dire `/home/<vous>`), **jamais** depuis `/mnt/c/...` : le disque Windows vu depuis WSL est très lent et ne gère pas les droits des fichiers Linux. L'installation vous prévient d'ailleurs si vous êtes au mauvais endroit.
+
+Votre clé SSH doit aussi exister **côté Ubuntu** : si `ls ~/.ssh/*.pub` ne donne rien dans le terminal Ubuntu, lancez-y `ssh-keygen -t ed25519`.
+
+:::
+
 ## Installation & Lancement
 
-_Démo, de zéro à la première connexion :_
-
-<video controls preload="metadata" poster="./res/dev-box-creation.jpg" src="./res/dev-box-creation.mp4" style="width: 100%; border-radius: 8px;"></video>
-
-Cinq étapes, quelques minutes (le plus long est le premier téléchargement de l'image).
-
-**1. Récupérer la dev-box**
+L'installation tient en une commande. Pas besoin de Git ni de télécharger le code de la dev-box : un script récupère l'image déjà construite et la démarre pour vous. Dans votre terminal (le terminal Ubuntu sous Windows) :
 
 ```bash
-git clone https://github.com/c4software/dev-box.git
-cd dev-box
-cp .env.example .env
+curl -fsSL https://raw.githubusercontent.com/c4software/dev-box/main/setup.sh | sh
 ```
 
-Pas de Git sur votre machine ? Vous pouvez aussi [télécharger l'archive](https://github.com/c4software/dev-box/archive/refs/heads/main.zip) et l'extraire.
-
-**2. Modifier trois lignes du fichier `.env`**
-
-Ouvrez le fichier `.env` avec l'éditeur de votre choix (Neovim dans la vidéo, mais le Bloc-notes ou VSCode font très bien l'affaire) et modifiez les lignes suivantes :
+Pas de `curl` sur votre machine ? `wget` fait la même chose :
 
 ```bash
-# Utiliser l'image déjà construite (pas de compilation sur votre machine)
-DEVBOX_IMAGE=ghcr.io/c4software/dev-box:latest
-
-# Connexion SSH classique (sans Tailscale)
-TS_DISABLE=true
-
-# Votre clé publique (le contenu de ~/.ssh/id_ed25519.pub)
-SSH_AUTHORIZED_KEYS="ssh-ed25519 AAAA... vous@votre-pc"
+wget -qO- https://raw.githubusercontent.com/c4software/dev-box/main/setup.sh | sh
 ```
 
-Pour afficher votre clé publique : `cat ~/.ssh/id_ed25519.pub` (fonctionne aussi dans PowerShell). Copiez **toute** la ligne.
+Le script vérifie que Docker est bien là, puis vous pose quelques questions. `Entrée` garde la valeur proposée entre crochets, et tout reste modifiable plus tard dans le fichier `.env`.
 
-**3. Rendre le port 8000 accessible depuis votre navigateur**
+| Question                                 | Ce que je vous conseille de répondre                                                        |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Install directory                        | `Entrée` : la dev-box s'installe dans `~/dev-box`                                            |
+| Unix user inside the box                 | `Entrée` : l'utilisateur `dev`                                                               |
+| Timezone                                 | `Entrée` : le fuseau horaire de votre machine                                                |
+| Access (tailscale or ssh)                | `ssh` pour commencer (Tailscale est présenté [plus bas](#votre-dev-box-partout-avec-tailscale)) |
+| Public key allowed in                    | `Entrée` : le script a trouvé votre clé publique dans `~/.ssh`                               |
+| SSH port on this host                    | `Entrée` : le port `2222`                                                                    |
+| Address it listens on                    | `Entrée` : `127.0.0.1`, la dev-box n'est accessible que depuis votre machine                 |
+| GitHub token                             | Facultatif, voir ci-dessous                                                                 |
+| Dev environments                         | Par exemple `laravel python` (voir [Installer vos environnements](#installer-vos-environnements)) |
+| Turn podman on?                          | `y` si vous avez besoin des bases de données (voir [les bases de données](#les-bases-de-donnees)) |
 
-Créez un fichier `compose.override.yaml` à côté de `compose.yaml` :
+::: tip Et Tailscale ?
+
+Pour démarrer, l'accès `ssh` est le plus simple. Mais gardez Tailscale en tête : avec lui, votre dev-box devient accessible de partout, au lycée, à la maison ou depuis une tablette, avec vos projets et vos serveurs toujours en place, sans rien ouvrir sur votre box Internet. Vous pourrez l'activer à tout moment : tout est expliqué dans [Votre dev-box partout avec Tailscale](#votre-dev-box-partout-avec-tailscale).
+
+:::
+
+Le script écrit ensuite le fichier `~/dev-box/.env` avec vos réponses, télécharge l'image (environ 2 Go, quelques minutes la première fois) puis démarre la dev-box. À la fin, il vous affiche la commande pour vous connecter.
+
+::: details Le token GitHub, c'est quoi ?
+
+Pendant l'installation de ses outils, la dev-box interroge beaucoup GitHub. Sans compte, GitHub limite le nombre de requêtes, et une installation peut échouer à cause de cette limite (surtout si toute la classe partage la même connexion). Un token GitHub **sans aucun droit** (aucune case cochée) suffit à lever cette limite : vous pouvez le créer dans les [paramètres de votre compte GitHub](https://github.com/settings/tokens).
+
+C'est facultatif : vous pouvez laisser vide et l'ajouter plus tard dans le `.env` (`GITHUB_TOKEN=...`).
+
+:::
+
+::: tip Sans questions
+
+Le script accepte aussi ses réponses en options, pratique pour réinstaller rapidement. Par exemple : `curl -fsSL https://raw.githubusercontent.com/c4software/dev-box/main/setup.sh | sh -s -- --access ssh --dev-envs "laravel python" --podman`. La liste complète s'affiche avec `--help`.
+
+:::
+
+### Voir votre site depuis le navigateur
+
+Par défaut, seul le port SSH est ouvert. Pour voir dans votre navigateur les sites que vous lancerez dans la dev-box, il faut rendre le port `8000` accessible. Dans le dossier `~/dev-box`, créez (ou complétez) le fichier `compose.override.yaml` :
 
 ```yaml
 services:
@@ -116,17 +150,16 @@ services:
       - "127.0.0.1:8000:8000"
 ```
 
-Cette ligne redirige le port `8000` de votre machine vers le port `8000` de la dev-box : c'est exactement le même principe que dans l'aide-mémoire [Installer Docker sur une Debian](/cheatsheets/serveur/debian-docker.md#heberger-un-site-php).
+Si vous avez répondu `y` pour Podman, ce fichier existe déjà : ajoutez simplement les deux lignes `ports` sous `dev-box:`, sans toucher au reste.
 
-**4. Démarrer**
+Cette ligne redirige le port `8000` de votre machine vers le port `8000` de la dev-box : c'est exactement le même principe que dans l'aide-mémoire [Installer Docker sur une Debian](/cheatsheets/serveur/debian-docker.md#heberger-un-site-php). Relancez ensuite la dev-box pour prendre en compte le changement :
 
 ```bash
+cd ~/dev-box
 docker compose up -d
 ```
 
-Vous pouvez suivre le démarrage avec `docker compose logs -f` (`Ctrl + C` pour quitter les logs, la dev-box continue de tourner).
-
-**5. Se connecter**
+### Se connecter
 
 ```bash
 ssh -p 2222 dev@localhost
@@ -134,15 +167,37 @@ ssh -p 2222 dev@localhost
 
 À la première connexion, SSH vous demande si vous faites confiance à cette machine : répondez `yes`. Et voilà, vous êtes dans la dev-box 🎉
 
+Vous pouvez suivre ce que fait la dev-box avec `docker compose logs -f`, depuis le dossier `~/dev-box` (`Ctrl + C` pour quitter les logs, la dev-box continue de tourner).
+
 ::: tip Première utilisation
 
-Lors de la première utilisation, l'image (environ 2 Go) est téléchargée, puis la dev-box prépare votre dossier personnel et installe ses outils en tâche de fond. Cela peut prendre plusieurs minutes.
+Lors du premier démarrage, la dev-box prépare votre dossier personnel et installe ses outils (et les environnements demandés) en tâche de fond. Cela peut prendre plusieurs minutes : pas de panique si tout n'est pas encore là à la première connexion.
 
 À la première connexion, la dev-box vous propose une visite guidée de deux minutes. Je vous conseille de l'accepter ; vous pourrez la relancer plus tard avec `devbox tour`.
 
 :::
 
-Vous voulez retrouver cette même dev-box depuis le lycée, un autre ordinateur ou une tablette ? C'est le rôle de Tailscale, présenté dans la partie [Votre dev-box partout avec Tailscale](#votre-dev-box-partout-avec-tailscale).
+::: details Pour aller plus loin : installer depuis le dépôt Git
+
+Le script d'installation est la méthode conseillée. Vous pouvez aussi cloner le dépôt et construire l'image vous-même, par exemple pour tester une modification de la dev-box :
+
+```bash
+git clone https://github.com/c4software/dev-box.git
+cd dev-box
+cp .env.example .env
+# Modifiez le .env (TS_DISABLE, SSH_AUTHORIZED_KEYS, etc.), puis :
+docker compose up -d --build
+```
+
+La construction de l'image prend nettement plus de temps que son téléchargement.
+
+_Démo de cette méthode, de zéro à la première connexion (dans la vidéo, le `.env` pointe sur l'image déjà construite avec `DEVBOX_IMAGE=ghcr.io/c4software/dev-box:latest`, ce qui évite la construction) :_
+
+<video controls preload="metadata" poster="./res/dev-box-creation.jpg" src="./res/dev-box-creation.mp4" style="width: 100%; border-radius: 8px;"></video>
+
+Tous les détails sont dans la page [installation manuelle](https://github.com/c4software/dev-box/blob/main/docs/manual-install.md) du dépôt.
+
+:::
 
 ## Installer vos environnements
 
@@ -172,7 +227,7 @@ Les environnements sont installés avec [mise](https://mise.jdx.dev/), un gestio
 
 PHP fait exception : le compiler prendrait plusieurs minutes, il est donc déjà intégré à l'image (avec Composer, Xdebug et les extensions habituelles). `devbox dev-env php` vérifie simplement qu'il est prêt.
 
-Vous voulez que certains environnements soient toujours installés, même sur une dev-box toute neuve ? Ajoutez-les dans le `.env` : `DEV_ENVS="laravel python"`.
+Les environnements donnés lors de l'installation sont notés dans le `.env` (`DEV_ENVS="laravel python"`) : ils sont réinstallés automatiquement s'ils manquent, même sur une dev-box toute neuve. Vous pouvez compléter cette ligne à tout moment (puis `docker compose up -d`). Conséquence : un environnement listé dans `DEV_ENVS` ne peut pas être supprimé avec `--remove`, il faut d'abord le retirer du `.env`.
 
 :::
 
@@ -212,6 +267,8 @@ Les commandes à retenir :
 | `devbox status`            | État de la dev-box (outils, bases, mises à jour)            |
 | `devbox update`            | Met à jour les outils, quand vous le décidez                |
 | `devbox tour`              | Relance la visite guidée                                    |
+| `devbox override`          | Ce que vous avez modifié, et comment revenir en arrière     |
+| `devbox diagnostic`        | Cherche ce qui ne va pas (voir [la FAQ](#quelque-chose-ne-fonctionne-pas-que-faire)) |
 
 ### Le terminal : tmux et Neovim
 
@@ -228,7 +285,9 @@ Vous n'êtes pas à l'aise avec Neovim ? Pas de panique : vos projets sont aussi
 
 ### Les bases de données
 
-`devbox dbs` démarre une base de données dans un conteneur, **à l'intérieur** de la dev-box. Pour cela, il faut autoriser la dev-box à lancer ses propres conteneurs. Complétez votre `compose.override.yaml` :
+`devbox dbs` démarre une base de données dans un conteneur, **à l'intérieur** de la dev-box. Pour cela, il faut autoriser la dev-box à lancer ses propres conteneurs (Podman).
+
+Si vous avez répondu `y` à la question « Turn podman on? » de l'installation, c'est déjà fait, passez directement à la commande `devbox dbs mariadb` ci-dessous. Sinon, complétez votre `compose.override.yaml` (dans `~/dev-box`) :
 
 ```yaml
 services:
@@ -244,7 +303,7 @@ services:
       - apparmor=unconfined
 ```
 
-Puis dans le fichier `.env`, passez `PODMAN_ENABLE` à `true` et relancez avec `docker compose up -d`. Ensuite, dans la dev-box :
+Puis dans le fichier `.env`, passez `PODMAN_ENABLE` à `true` et relancez avec `docker compose up -d`. En cas d'oubli, pas de panique : `devbox dbs` vous rappelle ces étapes. Ensuite, dans la dev-box :
 
 ```bash
 devbox dbs mariadb
@@ -272,6 +331,10 @@ La dev-box ne se limite pas au développement web en PHP. Voici ce que vous pouv
 
 Python, Java, Go, Rust, .NET, Node.js, Bun, Deno, Flutter, Ruby, Elixir, etc. : tout passe par `devbox dev-env`. La démo ci-dessus installe Python à côté de Laravel, et les deux cohabitent sans problème. Pour Python, l'outil [uv](https://docs.astral.sh/uv/) est installé en même temps : il gère vos dépendances et vos environnements virtuels.
 
+### Audio, vidéo et images
+
+`devbox dev-env media` installe de quoi télécharger, convertir et analyser des fichiers audio, vidéo et images : `ffmpeg`, `yt-dlp`, des optimiseurs d'images (`oxipng`, `pngquant`, `jpegoptim`, `cwebp`), `exiftool` (lire ou effacer les métadonnées d'une photo, dont la position GPS) et `mediainfo`. Bonus : avec `ffmpeg` installé, le gestionnaire de fichiers `yazi` affiche l'aperçu des vidéos.
+
 ### Docker dans la dev-box
 
 Une fois Podman activé (voir [les bases de données](#les-bases-de-donnees)), vous pouvez utiliser les commandes Docker habituelles dans la dev-box : `docker run`, `docker build`, `docker compose up`. C'est idéal pour tester le `docker-compose.yml` d'un projet ou suivre l'[aide-mémoire Docker](/cheatsheets/docker/). La commande `devbox tui lazydocker` vous installe même une interface pour gérer vos conteneurs.
@@ -284,7 +347,7 @@ Besoin d'un paquet Arch Linux qui n'est pas dans le catalogue ? `devbox pkg add 
 
 ### Les agents de code
 
-Claude Code, Codex, opencode et d'autres agents sont disponibles directement dans le terminal. `devbox agent` permet de choisir votre agent par défaut, de le lancer dans le dossier courant et de suivre votre consommation.
+Claude Code, Codex, opencode, pi et omp sont disponibles directement dans le terminal. `devbox agent` permet de choisir votre agent par défaut, de le lancer dans le dossier courant et de suivre votre consommation.
 
 ## Votre dev-box partout avec Tailscale
 
@@ -308,8 +371,12 @@ Tailscale s'appuie sur un serveur de coordination hébergé par l'entreprise Tai
 
 ### Activer Tailscale
 
+Le plus simple est de choisir Tailscale dès l'installation : c'est d'ailleurs la réponse par défaut à la question « Access (tailscale or ssh) ». Le script affiche alors l'adresse à ouvrir dans votre navigateur pour ajouter la dev-box à votre réseau Tailscale.
+
+Vous avez commencé en SSH classique ? Vous pouvez passer à Tailscale à tout moment :
+
 1. Créez un compte sur [tailscale.com](https://tailscale.com/) et installez Tailscale sur votre ordinateur.
-2. Dans le `.env` de la dev-box, passez `TS_DISABLE` à `false` (c'est la valeur par défaut).
+2. Dans le fichier `~/dev-box/.env`, passez `TS_DISABLE` à `false`.
 3. Relancez la dev-box et affichez les logs :
 
 ```bash
@@ -332,34 +399,52 @@ Selon les réglages de votre compte, Tailscale peut vous demander de confirmer l
 - **Partager un site en cours de développement.** `devbox serve 8000` publie le port sur votre réseau Tailscale et affiche l'adresse à ouvrir, même pour un serveur qui n'écoute que sur `127.0.0.1`. `devbox serve off 8000` arrête le partage.
 - **Envoyer des fichiers entre vos machines.** `devbox tailscale send` envoie un fichier vers un autre de vos appareils (un menu vous demande lequel), `devbox tailscale receive` réceptionne ceux qu'on vous envoie dans `~/inbox`. Dans le gestionnaire de fichiers `yazi`, le raccourci `c` puis `t` fait la même chose.
 
-Tous les détails (auth key, Headscale, règles d'accès) sont dans le [README du projet](https://github.com/c4software/dev-box#headscale-setup).
+Tous les détails (auth key, Headscale, règles d'accès) sont dans la page [accès à la box](https://github.com/c4software/dev-box/blob/main/docs/access.md) du dépôt.
 
 ## Configuration
 
-La configuration de la dev-box se fait en modifiant les fichiers :
+La configuration de la dev-box se fait en modifiant les fichiers du dossier `~/dev-box` de votre machine :
 
-- `.env` : contient les réglages de la dev-box (utilisateur, SSH, Tailscale, bases de données, etc.)
+- `.env` : écrit par le script d'installation avec vos réponses, il contient les réglages de la dev-box (utilisateur, SSH, Tailscale, bases de données, etc.)
 - `compose.override.yaml` : contient vos réglages propres à votre machine (ports supplémentaires, dossiers partagés, limites de mémoire, etc.)
 
 Les principales variables du `.env` :
 
-- `DEVBOX_IMAGE` : l'image à utiliser. Vide, l'image est construite sur votre machine (plus long).
+- `DEVBOX_IMAGE` : l'image à utiliser (`ghcr.io/c4software/dev-box:latest`, l'image déjà construite).
+- `USER_NAME` : votre nom d'utilisateur dans la dev-box (`dev` par défaut).
+- `TZ` : le fuseau horaire.
 - `TS_DISABLE` : `true` pour se connecter en SSH classique, `false` pour passer par Tailscale.
 - `SSH_AUTHORIZED_KEYS` : la ou les clés publiques autorisées à se connecter (une par ligne).
 - `SSH_PORT` : le port SSH sur votre machine (`2222` par défaut).
+- `SSH_BIND` : l'adresse sur laquelle ce port écoute (`127.0.0.1` : votre machine uniquement).
 - `PROJECTS_DIR` : le dossier de votre machine qui contient vos projets (`./data/projets` par défaut).
 - `PODMAN_ENABLE` : `true` pour pouvoir lancer des conteneurs (et donc des bases de données) dans la dev-box.
 - `DEV_ENVS` : les environnements à installer automatiquement au démarrage, par exemple `DEV_ENVS="laravel python"`.
+- `GITHUB_TOKEN` : le token GitHub facultatif (voir [l'installation](#installation-lancement)).
 
-Après chaque modification, relancez la dev-box avec `docker compose up -d`.
+Après chaque modification, relancez la dev-box avec `docker compose up -d` (depuis `~/dev-box`).
+
+::: tip Qu'est-ce que j'ai changé ?
+
+À force de personnaliser votre dev-box (configuration de Neovim, outils ajoutés, réglages du `.env`, etc.), il est facile d'oublier ce que vous avez modifié. Dans la dev-box, `devbox override` liste tout ce qui diffère de la configuration d'origine, et donne pour chaque point la commande qui permet de revenir en arrière. Elle ne modifie rien : elle se contente d'afficher. `devbox override --diff` montre le détail des modifications dans les fichiers.
+
+C'est la première commande à lancer si votre dev-box ne se comporte pas comme celle de votre voisin.
+
+:::
 
 ## Où sont les fichiers ?
 
-Vos projets doivent être placés dans le dossier `~/projets` de la dev-box. Ce dossier correspond au dossier `data/projets` sur votre machine : c'est **le même dossier**, vu des deux côtés.
+Vos projets doivent être placés dans le dossier `~/projets` de la dev-box. Ce dossier correspond au dossier `~/dev-box/data/projets` sur votre machine : c'est **le même dossier**, vu des deux côtés.
 
-Vous pouvez donc ouvrir `data/projets` dans VSCode sur votre machine, et lancer vos commandes (`php`, `composer`, `npm`, `python`, etc.) dans la dev-box.
+Vous pouvez donc ouvrir `~/dev-box/data/projets` dans VSCode sur votre machine, et lancer vos commandes (`php`, `composer`, `npm`, `python`, etc.) dans la dev-box.
 
-Votre dossier personnel (configuration, historique, outils installés) est dans `data/home`. Ces deux dossiers survivent aux mises à jour de la dev-box.
+Votre dossier personnel (configuration, historique, outils installés) est dans `~/dev-box/data/home`. Ces deux dossiers survivent aux mises à jour de la dev-box.
+
+::: tip Sous Windows
+
+Le dossier est dans Ubuntu (WSL) : depuis l'Explorateur Windows, vous le retrouvez sous **Linux**, puis **Ubuntu**, puis `home/<vous>/dev-box/data/projets`. Pour VSCode, le plus confortable est de lancer `code ~/dev-box/data/projets` depuis le terminal Ubuntu (avec l'extension WSL de VSCode).
+
+:::
 
 ::: danger Attention
 
@@ -380,7 +465,7 @@ php -S 0.0.0.0:8000                # PHP « classique »
 
 Votre site est alors accessible à l'adresse suivante : [http://localhost:8000](http://localhost:8000).
 
-⚠️ Il faut avoir créé le `compose.override.yaml` avec la ligne `ports` (étape 3 de l'installation). ⚠️
+⚠️ Il faut avoir créé le `compose.override.yaml` avec la ligne `ports` (voir [Voir votre site depuis le navigateur](#voir-votre-site-depuis-le-navigateur)). ⚠️
 
 Besoin d'un autre port (par exemple `5173` pour Vite) ? Ajoutez une ligne `- "127.0.0.1:5173:5173"` sous `ports`, puis relancez avec `docker compose up -d`.
 
@@ -396,7 +481,9 @@ ssh -p 2222 -L 3306:127.0.0.1:3306 dev@localhost
 
 ### Et MySQL, PostgreSQL, MongoDB ?
 
-Même principe : `devbox dbs mysql`, `devbox dbs postgres`, `devbox dbs mongodb`, etc. La commande `devbox dbs --list` affiche l'image, le port et l'état de chaque base. Pour MongoDB, l'utilisateur est `admin` et le mot de passe `admin123`.
+Même principe : `devbox dbs mysql`, `devbox dbs postgres`, `devbox dbs mongodb`, `devbox dbs redis`, etc. La commande `devbox dbs --list` affiche l'image, le port et l'état de chaque base. Pour PostgreSQL, l'utilisateur est `postgres` (sans mot de passe) ; pour MongoDB, l'utilisateur est `admin` et le mot de passe `admin123`.
+
+MariaDB et MySQL utilisent tous les deux le port `3306` : une seule des deux peut tourner à la fois. `devbox dbs --stop mariadb` arrête une base sans rien supprimer.
 
 ### Où est PHPMyAdmin ?
 
@@ -414,7 +501,7 @@ Le serveur SMTP est alors disponible sur le port `1025` de l'adresse `127.0.0.1`
 
 ### Comment arrêter la dev-box ?
 
-Depuis le dossier `dev-box` de votre machine :
+Depuis le dossier `~/dev-box` de votre machine :
 
 ```bash
 docker compose stop   # Arrête la dev-box
@@ -428,15 +515,46 @@ docker compose start  # La redémarre
 Deux niveaux de mise à jour :
 
 - Les outils (environnements, Neovim, agents, etc.) : `devbox update` dans la dev-box.
-- L'image elle-même (Arch Linux, PHP, etc.) : `docker compose pull && docker compose up -d` sur votre machine.
+- L'image elle-même (Arch Linux, PHP, etc.) : relancez simplement la commande d'installation sur votre machine. Elle détecte la dev-box existante, télécharge la dernière image et redémarre la dev-box, **sans jamais toucher** à votre `.env`, à votre `compose.override.yaml` ni au dossier `data`. Vous pouvez aussi, depuis `~/dev-box`, lancer `docker compose pull && docker compose up -d`.
 
-La dev-box vous indique à la connexion quand une mise à jour est disponible.
+La dev-box vous indique à la connexion quand une mise à jour est disponible, et `devbox changelog` vous montre ce qui a changé.
+
+### Comment désinstaller la dev-box ?
+
+Depuis votre machine :
+
+```bash
+cd ~/dev-box
+docker compose down --rmi all
+```
+
+Puis supprimez le dossier `~/dev-box`. Attention : c'est ce dossier qui contient `data`, donc **vos projets et votre dossier personnel**. Sous Linux, certains fichiers appartiennent à `root` : il faut alors `sudo rm -rf ~/dev-box`.
+
+### Quelque chose ne fonctionne pas, que faire ?
+
+Pas de panique, la dev-box sait s'examiner elle-même. Dans l'ordre :
+
+1. `devbox status` affiche l'état général : accès, Podman, outils, environnements en cours d'installation, mises à jour.
+2. `devbox diagnostic "votre problème"` lance votre agent de code sur un guide de diagnostic : il rassemble les informations, vous explique ce qui ne va pas et vous propose la correction. Il vous demande toujours votre accord avant de modifier quoi que ce soit. Par exemple : `devbox diagnostic "MariaDB ne démarre pas"`. Sans description, il cherche tout seul ce qui cloche.
+3. Vous n'avez pas d'agent configuré, ou le problème persiste ? `devbox diagnostic --report` produit le même état des lieux, sans IA. Enregistrez-le dans un fichier et envoyez-le moi :
+
+```bash
+devbox diagnostic --report > ~/diagnostic.txt
+```
+
+Le fichier se retrouve sur votre machine dans `~/dev-box/data/home/diagnostic.txt`. Il ne contient aucun secret (ni token, ni clé), vous pouvez l'envoyer tel quel.
+
+Et si vous n'arrivez même plus à vous connecter en SSH ? Depuis votre machine, cette commande vous ouvre un terminal dans la dev-box sans passer par SSH :
+
+```bash
+docker exec -it -u dev dev-box zsh -l
+```
 
 ### Est-ce Open Source ?
 
 Oui la dev-box est Open Source, vous pouvez retrouver le code source sur GitHub :
 
-- [La dev-box](https://github.com/c4software/dev-box) (le README détaille toutes les options)
+- [La dev-box](https://github.com/c4software/dev-box) et sa [documentation](https://github.com/c4software/dev-box/tree/main/docs) : [personnalisation](https://github.com/c4software/dev-box/blob/main/docs/customization.md), [commandes](https://github.com/c4software/dev-box/blob/main/docs/commands.md), [dépannage](https://github.com/c4software/dev-box/blob/main/docs/troubleshooting.md)
 - [La configuration du terminal (dotarchy)](https://github.com/c4software/dotarchy)
 
 ### Comment puis-je contribuer ?
