@@ -93,7 +93,7 @@ Prenez ce réflexe, pour la dev-box comme pour n'importe quel script trouvé sur
 
 :::
 
-Le script vérifie que Docker est bien là, puis vous pose quelques questions. `Entrée` garde la valeur proposée, et tout reste modifiable plus tard dans le fichier `.env`. Si [gum](https://github.com/charmbracelet/gum) est installé sur votre machine, les questions sont plus agréables (une liste pour choisir, un bouton oui / non), mais ce n'est pas nécessaire.
+Le script vérifie que Docker est bien là, puis vous pose quelques questions. `Entrée` garde la valeur proposée, et tout reste modifiable plus tard dans le fichier `.env`. Si [gum](https://github.com/charmbracelet/gum) est installé sur votre machine, les questions sont plus agréables (une liste pour choisir, un bouton oui / non), mais ce n'est pas nécessaire. À la fin, il vous laisse dans le dossier `~/dev-box` (un nouveau terminal y est ouvert : `exit` vous ramène là où vous étiez).
 
 ::: details Installer gum (facultatif)
 
