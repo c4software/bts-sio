@@ -120,6 +120,7 @@ Sans gum, le script pose exactement les mêmes questions, en texte simple.
 | Install directory                        | `Entrée` : la dev-box s'installe dans `~/dev-box`                                            |
 | Unix user inside the box                 | `Entrée` : l'utilisateur `dev`                                                               |
 | Timezone                                 | `Entrée` : le fuseau horaire de votre machine                                                |
+| Language of the box                      | `Entrée` : la langue de votre machine (`fr_FR.UTF-8` met le menu `devbox` et les astuces de connexion en français) |
 | Access (tailscale or ssh)                | `ssh` pour commencer (Tailscale est présenté [plus bas](#votre-dev-box-partout-avec-tailscale)) |
 | GitHub user whose public keys are allowed in | Votre pseudo GitHub si vous y avez ajouté votre clé SSH (le script récupère les clés de votre compte), sinon `Entrée` pour passer |
 | Public key of this machine allowed in    | `Entrée` : le script a trouvé votre clé publique dans `~/.ssh`. Les clés GitHub et celle de votre machine sont toutes autorisées |
@@ -439,6 +440,7 @@ Les principales variables du `.env` :
 - `DEVBOX_IMAGE` : l'image à utiliser (`ghcr.io/c4software/dev-box:latest`, l'image déjà construite).
 - `USER_NAME` : votre nom d'utilisateur dans la dev-box (`dev` par défaut).
 - `TZ` : le fuseau horaire.
+- `LANG` : la langue de la dev-box, par exemple `fr_FR.UTF-8` ou `C.UTF-8` (anglais). En français, le menu `devbox` et les astuces affichées à la connexion sont traduits ; le reste (messages des commandes, documentation) reste en anglais.
 - `TS_DISABLE` : `true` pour se connecter en SSH classique, `false` pour passer par Tailscale.
 - `SSH_AUTHORIZED_KEYS` : la ou les clés publiques autorisées à se connecter (une par ligne).
 - `SSH_PORT` : le port SSH sur votre machine (`2222` par défaut).
