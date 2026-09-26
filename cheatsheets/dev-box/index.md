@@ -64,27 +64,9 @@ Il est également possible que Docker Desktop vous demande de mettre à jour vot
 
 Vous avez également besoin d'une **clé SSH** : c'est elle qui vous permet d'entrer dans la dev-box, sans mot de passe. Si vous n'en avez pas encore, suivez l'aide-mémoire [La clé SSH](/cheatsheets/ssh-key/) (une seule commande : `ssh-keygen -t ed25519`).
 
-### Sous Windows : WSL 2
-
-Sous Windows, **WSL 2 est obligatoire** : la dev-box s'installe et se lance dans WSL 2 (le Linux intégré à Windows), avec Ubuntu, et pas directement depuis PowerShell ou un autre terminal Windows. Si ce n'est pas déjà fait :
-
-1. Dans un terminal PowerShell, installez Ubuntu : `wsl --install -d Ubuntu`, puis redémarrez si Windows vous le demande.
-2. Dans Docker Desktop, ouvrez **Settings**, puis **Resources**, puis **WSL integration**, et activez l'intégration pour Ubuntu.
-3. Ouvrez le terminal **Ubuntu** (depuis le menu Démarrer) : c'est dans ce terminal que vous lancerez toutes les commandes de cette page.
-
-Vérifiez que Docker répond bien depuis Ubuntu avec `docker compose version`.
-
-::: warning Restez dans votre dossier Linux
-
-Lancez l'installation depuis votre dossier personnel Linux (`~`, c'est-à-dire `/home/<vous>`), **jamais** depuis `/mnt/c/...` : le disque Windows vu depuis WSL est très lent et ne gère pas les droits des fichiers Linux. L'installation vous prévient d'ailleurs si vous êtes au mauvais endroit.
-
-Votre clé SSH doit aussi exister **côté Ubuntu** : si `ls ~/.ssh/*.pub` ne donne rien dans le terminal Ubuntu, lancez-y `ssh-keygen -t ed25519`.
-
-:::
-
 ## Installation & Lancement
 
-L'installation tient en une commande. Pas besoin de Git ni de télécharger le code de la dev-box : un script récupère l'image déjà construite et la démarre pour vous. Dans votre terminal (le terminal Ubuntu sous Windows) :
+L'installation tient en une commande. Pas besoin de Git ni de télécharger le code de la dev-box : un script récupère l'image déjà construite et la démarre pour vous. Dans votre terminal (sous Windows, dans Ubuntu : voir [En plus : Windows et WSL 2](#en-plus-windows-et-wsl-2)) :
 
 ```bash
 curl -fsSL https://cours.brosseau.ovh/devbox.sh | sh
@@ -462,17 +444,37 @@ Vous pouvez donc ouvrir `~/dev-box/data/projets` dans VSCode sur votre machine, 
 
 Votre dossier personnel (configuration, historique, outils installés) est dans `~/dev-box/data/home`. Ces deux dossiers survivent aux mises à jour de la dev-box.
 
-::: tip Sous Windows
-
-Le dossier est dans Ubuntu (WSL) : depuis l'Explorateur Windows, vous le retrouvez sous **Linux**, puis **Ubuntu**, puis `home/<vous>/dev-box/data/projets`. Pour VSCode, le plus confortable est de lancer `code ~/dev-box/data/projets` depuis le terminal Ubuntu (avec l'extension WSL de VSCode).
-
-:::
-
 ::: danger Attention
 
 Le dossier `data` contient tout votre travail. Ne le supprimez pas, et pensez à versionner vos projets avec Git (voir l'[aide-mémoire Git](/cheatsheets/git/)).
 
 :::
+
+Sous Windows, le dossier est côté Ubuntu : voir [Où sont vos fichiers sous Windows ?](#ou-sont-vos-fichiers-sous-windows).
+
+## En plus : Windows et WSL 2
+
+Vous êtes sous Windows ? Voici ce qu'il faut préparer avant l'installation, et où retrouver vos fichiers ensuite.
+
+Sous Windows, **WSL 2 est obligatoire** : la dev-box s'installe et se lance dans WSL 2 (le Linux intégré à Windows), avec Ubuntu, et pas directement depuis PowerShell ou un autre terminal Windows. Si ce n'est pas déjà fait :
+
+1. Dans un terminal PowerShell, installez Ubuntu : `wsl --install -d Ubuntu`, puis redémarrez si Windows vous le demande.
+2. Dans Docker Desktop, ouvrez **Settings**, puis **Resources**, puis **WSL integration**, et activez l'intégration pour Ubuntu.
+3. Ouvrez le terminal **Ubuntu** (depuis le menu Démarrer) : c'est dans ce terminal que vous lancerez toutes les commandes de cette page.
+
+Vérifiez que Docker répond bien depuis Ubuntu avec `docker compose version`.
+
+::: warning Restez dans votre dossier Linux
+
+Lancez l'installation depuis votre dossier personnel Linux (`~`, c'est-à-dire `/home/<vous>`), **jamais** depuis `/mnt/c/...` : le disque Windows vu depuis WSL est très lent et ne gère pas les droits des fichiers Linux. L'installation vous prévient d'ailleurs si vous êtes au mauvais endroit.
+
+Votre clé SSH doit aussi exister **côté Ubuntu** : si `ls ~/.ssh/*.pub` ne donne rien dans le terminal Ubuntu, lancez-y `ssh-keygen -t ed25519`.
+
+:::
+
+### Où sont vos fichiers sous Windows ?
+
+Le dossier est dans Ubuntu (WSL) : depuis l'Explorateur Windows, vous le retrouvez sous **Linux**, puis **Ubuntu**, puis `home/<vous>/dev-box/data/projets`. Pour VSCode, le plus confortable est de lancer `code ~/dev-box/data/projets` depuis le terminal Ubuntu (avec l'extension WSL de VSCode).
 
 ## FAQ
 
