@@ -246,7 +246,7 @@ class Utilisateur extends Authenticatable
 }
 ```
 
-2\. Dans `config/auth.php`, pointez le « provider » vers notre modèle :
+2\. Dans `config/auth.php`, pointez le « provider » vers notre modèle. Dans un projet récent, vous trouverez la ligne `'model' => env('AUTH_MODEL', User::class),` : c'est elle qu'il faut remplacer, pour obtenir :
 
 ```php
 'providers' => [
