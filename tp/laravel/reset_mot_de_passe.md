@@ -260,7 +260,7 @@ public function envoyerMotDePasseOublie(Request $request)
 
 ::: tip Deux nouveautés dans ce code
 
-- `$request->validate([...])` : jusqu'ici nous vérifiions les champs à la main. Laravel propose un système de validation intégré, avec des règles comme `required`, `email`, `min:8`… En cas d'échec, l'utilisateur est automatiquement redirigé vers le formulaire. [La documentation est ici](https://laravel.com/docs/11.x/validation).
+- `$request->validate([...])` : jusqu'ici nous vérifiions les champs à la main. Laravel propose un système de validation intégré, avec des règles comme `required`, `email`, `min:8`… En cas d'échec, l'utilisateur est automatiquement redirigé vers le formulaire. [La documentation est ici](https://laravel.com/docs/validation).
 - `now()` : retourne la date et l'heure actuelles, et `->addMinutes(30)` fait ce que son nom indique. Pratique pour notre expiration.
 
 N'oubliez pas les `use` en haut du fichier : `App\Models\Utilisateur`, `App\Utils\EmailHelpers` et `Illuminate\Support\Str`.
@@ -458,6 +458,89 @@ Si vous êtes en avance :
 
 - Après un reset réussi, envoyez un **email de confirmation** « Votre mot de passe a été modifié » (réutilisez votre `EmailHelpers`). Pourquoi cet email est-il une bonne pratique de sécurité ?
 - Pour les plus curieux : limitez le nombre de requêtes sur les deux routes POST du TP avec le middleware `throttle:5,1` (5 requêtes par minute). Nous détaillerons le rate limiting dans [le TP Aller plus loin](./aller_plus_loin.md).
+
+## Exercice 1 : mot de passe oublié dans la bibliothèque
+
+::: tip Vous êtes en avance ?
+
+Les deux exercices qui suivent reprennent le projet `ma-bibliotheque` utilisé dans [l'exercice du TP Comprendre l'authentification](./authentification_manuelle.md#exercice-l-authentification-de-la-bibliotheque). Si vous ne l'avez pas, commencez par là. Le TP suivant ne dépend pas de ces exercices, vous pouvez donc y aller directement si le temps vous manque.
+
+:::
+
+Les membres de la bibliothèque oublient eux aussi leur mot de passe. Je vous laisse reproduire le parcours complet de ce TP dans `ma-bibliotheque` (migration, `EmailHelpers`, les quatre routes, les vues, l'email), sur la table `membres` cette fois, avec deux différences :
+
+- Le lien est valable **15 minutes**, pas 30 (pensez aussi au texte de l'email).
+- Le token est stocké **hashé** en base : le lien envoyé par email contient le token en clair, mais la colonne `reset_token` ne contient que `hash('sha256', $token)`.
+
+C'est la seconde règle qui va vous faire réfléchir : relisez chaque endroit où votre code manipule le token, et demandez-vous s'il doit travailler avec la version en clair ou la version hashée.
+
+### La demande de réinitialisation
+
+- Un lien « Mot de passe oublié ? » sur la page de connexion.
+- Une page `/mot-de-passe-oublie` qui génère le token, le stocke hashé avec son expiration, envoie l'email, et affiche **toujours** le même message.
+
+La cible, après l'envoi du formulaire (que l'email existe ou non) :
+
+![Le formulaire « mot de passe oublié » de la bibliothèque, avec le message de confirmation](./ressources/reset_exo_mot_de_passe_oublie.png)
+
+### Le nouveau mot de passe
+
+- Le lien reçu par email affiche le formulaire de nouveau mot de passe, uniquement si le token est valide et non expiré.
+- Le formulaire enregistre le nouveau mot de passe hashé, invalide le token et renvoie vers la connexion.
+
+La cible, en ouvrant le lien de l'email :
+
+![Le formulaire de nouveau mot de passe de la bibliothèque](./ressources/reset_exo_nouveau_mot_de_passe.png)
+
+::: tip Point de contrôle
+
+Demandez un reset pour un membre, puis comparez le token du lien (dans `storage/logs/laravel.log`) avec la colonne `reset_token` en base : les deux valeurs sont **différentes**. Le lien fonctionne quand même, et le parcours complet se déroule comme dans le TP (nouveau mot de passe, token remis à `NULL`, lien inutilisable une seconde fois).
+
+:::
+
+Questions :
+
+- Pourquoi stocker le token hashé ? Imaginez que votre base de données fuite pendant qu'un membre attend son email de reset.
+- Pour les mots de passe, nous utilisons `password_hash`. Pourquoi ne peut-on pas l'utiliser ici pour le token, alors que `hash('sha256', ...)` fonctionne ? (indice : essayez d'écrire la requête `where` qui retrouve le membre)
+
+::: details Les réponses
+
+- En clair, un token en base est un **mot de passe temporaire** : quelqu'un qui lit la base peut ouvrir le lien et changer le mot de passe du membre avant lui. Hashé, le token de la base ne sert à rien sans sa version en clair, qui n'existe que dans l'email. C'est d'ailleurs une recommandation de la [Forgot Password Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html) de l'OWASP.
+- `password_hash` ajoute un sel aléatoire : le même token donne un hash différent à chaque appel, impossible donc de le retrouver avec un `where('reset_token', ...)`. `hash('sha256', ...)` donne toujours le même résultat pour la même entrée, la recherche fonctionne. Et ce n'est pas un problème de sécurité ici : un token de 64 caractères aléatoires est impossible à deviner, alors qu'un mot de passe choisi par un humain a besoin d'un hash lent et salé pour résister aux attaques par dictionnaire.
+
+:::
+
+## Exercice 2 : changer son mot de passe
+
+Le reset sert quand on a **oublié** son mot de passe. Mais un membre connecté doit aussi pouvoir le changer quand il le souhaite. Je vous laisse ajouter un formulaire « Changer mon mot de passe » sur la page `/mon-compte` (créée dans [l'exercice du TP 2FA](./2fa.md#exercice-une-2fa-a-la-carte-dans-la-bibliotheque), sinon créez-la, réservée aux membres connectés) :
+
+- Trois champs : le mot de passe **actuel**, le nouveau, et sa confirmation.
+- Si le mot de passe actuel est faux, l'erreur s'affiche sous ce champ et rien n'est modifié.
+- Le nouveau mot de passe respecte les mêmes règles que dans ce TP (8 caractères minimum, identique à la confirmation).
+- Le nouveau mot de passe est enregistré **hashé**, et un éventuel token de reset en cours est invalidé.
+- Un email « Votre mot de passe a été modifié » est envoyé au membre.
+
+C'est à vous de jouer !
+
+La cible, en saisissant un mauvais mot de passe actuel :
+
+![La page Mon compte avec le formulaire de changement de mot de passe, et l'erreur sous le champ du mot de passe actuel](./ressources/reset_exo_changer_mdp.png)
+
+::: tip Point de contrôle
+
+Changez votre mot de passe depuis `/mon-compte`, déconnectez-vous, puis reconnectez-vous : seul le **nouveau** mot de passe fonctionne. L'email de confirmation est dans `storage/logs/laravel.log`. Recommencez avec un mauvais mot de passe actuel : l'erreur s'affiche et le hash en base ne change pas.
+
+:::
+
+Question :
+
+- Le membre est déjà connecté : pourquoi lui redemander son mot de passe actuel avant d'en changer ?
+
+::: details La réponse
+
+Parce qu'être connecté prouve seulement que **quelqu'un** a la session, pas que c'est le propriétaire du compte. Sans cette vérification, une personne qui trouve une session ouverte (ou qui a volé le cookie de session) pourrait changer le mot de passe et s'approprier définitivement le compte. Vous retrouverez ce réflexe sur tous les sites sérieux, pour toutes les actions sensibles : changer d'email, désactiver la 2FA, supprimer son compte…
+
+:::
 
 ## Conclusion
 

@@ -169,6 +169,74 @@ Questions :
 - Un code à 6 chiffres n'offre que 1 000 000 de possibilités, un script peut toutes les essayer en quelques minutes… Quelles protections rendent malgré tout ce mécanisme sûr ? (il y en a au moins deux dans votre code, et une troisième arrive dans le TP [Aller plus loin](./aller_plus_loin.md))
 - Que se passe-t-il si l'utilisateur ferme son navigateur entre le mot de passe et la saisie du code ?
 
+## Exercice : une 2FA à la carte dans la bibliothèque
+
+::: tip Vous êtes en avance ?
+
+Cet exercice reprend le projet `ma-bibliotheque` utilisé dans [l'exercice du TP Comprendre l'authentification](./authentification_manuelle.md#exercice-l-authentification-de-la-bibliotheque). Si vous ne l'avez pas, commencez par là : c'est un bon entraînement avant d'attaquer celui-ci.
+
+:::
+
+Dans la TODO List, tout le monde passe par la 2FA. Beaucoup de sites laissent pourtant le choix : c'est l'utilisateur qui **active** la double authentification depuis son compte. C'est ce que je vous propose de construire dans la bibliothèque, cette fois sans aide pas à pas. Pour chaque étape, une cible vous indique ce que vous devez obtenir.
+
+C'est à vous de jouer ! Je reste disponible si vous bloquez.
+
+### La page « Mon compte »
+
+- Ajoutez à la table `membres` les deux colonnes du TP, ainsi qu'une colonne `two_factor_active` (booléen, `false` par défaut).
+- Créez une page `/mon-compte`, réservée aux membres connectés : elle affiche le pseudo, l'email, l'état de la 2FA (activée ou non) et un bouton pour l'activer ou la désactiver.
+- Le bouton envoie un formulaire en **POST**, qui inverse l'état de la 2FA du membre connecté puis revient sur `/mon-compte` avec un message flash.
+- Ajoutez un lien « Mon compte » dans le layout, visible uniquement par les membres connectés.
+
+La cible, juste après avoir activé la 2FA :
+
+![La page Mon compte de la bibliothèque, avec l'état de la 2FA et le bouton pour la désactiver](./ressources/2fa_exo_mon_compte.png)
+
+### La connexion en deux temps
+
+- Si la 2FA du membre est désactivée, il est connecté directement, comme avant.
+- Si elle est activée, il suit le parcours de ce TP : code à 6 chiffres dans le log, page de vérification, expiration de 10 minutes, usage unique.
+- Après la saisie du bon code, le membre arrive sur la liste des livres (et plus sur la TODO List !).
+
+La cible, pour un membre qui a activé sa 2FA, juste après la saisie de son mot de passe :
+
+![La page de vérification du code dans la bibliothèque](./ressources/2fa_exo_verification.png)
+
+::: details Besoin d'aide ?
+
+Pas de code ici, seulement la procédure :
+
+- Une migration `add_two_factor_to_membres` avec les trois colonnes (`$table->boolean('two_factor_active')->default(false);` pour la dernière), puis `php artisan migrate`. N'oubliez pas le `$fillable`.
+- `Auth::user()` retourne le membre connecté : dans la méthode qui traite le bouton, modifiez son `two_factor_active` puis `save()`, comme n'importe quel objet Eloquent.
+- Dans `traitementLogin`, une fois le mot de passe vérifié, c'est `$membre->two_factor_active` qui décide : connexion directe, ou génération du code et redirection vers `/verification`.
+- Les routes `/mon-compte` (GET et POST) passent par votre middleware.
+
+:::
+
+Une fois la page en place, testez les deux parcours de connexion, c'est là que se cachent les oublis.
+
+::: tip Point de contrôle
+
+Créez deux membres, puis activez la 2FA pour l'un des deux seulement :
+
+1. Le membre **sans** 2FA se connecte directement et arrive sur la bibliothèque.
+2. Le membre **avec** 2FA arrive sur `/verification` et doit saisir le code trouvé dans `storage/logs/laravel.log`.
+3. Dans votre outil SQLite, `two_factor_active` vaut `1` pour le second membre et `0` pour le premier.
+
+:::
+
+Questions :
+
+- Pourquoi le bouton d'activation passe-t-il par un formulaire POST (avec `@csrf`), plutôt que par un simple lien `/mon-compte/2fa` en GET ?
+- Désactiver la 2FA d'un simple clic, sans rien redemander, est-ce raisonnable ? Que pourrait faire quelqu'un qui trouve votre session ouverte sur un ordinateur du lycée ?
+
+::: details Les réponses
+
+- Un lien GET peut être déclenché à votre insu : il suffit qu'on vous fasse cliquer sur un lien piégé (dans un email, un message, un autre site) qui pointe vers `/mon-compte/2fa`, et votre navigateur envoie la requête avec votre cookie de session. Une action qui **modifie** des données passe donc toujours en POST, et le jeton `@csrf` garantit que le formulaire vient bien de votre site.
+- Non : il pourrait désactiver votre 2FA, puis se reconnecter plus tard avec votre seul mot de passe (s'il le connaît). Les vrais sites redemandent le mot de passe (ou un code) avant de désactiver une protection. Si vous voulez aller plus loin, ajoutez ce champ « mot de passe actuel » au formulaire de désactivation, et vérifiez-le avec `password_verify`.
+
+:::
+
 ## Conclusion
 
 Votre connexion demande maintenant deux preuves au lieu d'une :

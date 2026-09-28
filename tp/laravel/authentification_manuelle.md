@@ -554,11 +554,124 @@ Connecté, la TODO List s'affiche et le lien « Déconnexion » est visible dans
 
 :::
 
+## Exercice : l'authentification de la bibliothèque
+
 ::: tip Vous êtes en avance ?
 
-Un TP bonus vous attend : [La double authentification (2FA)](./2fa.md). Vous y renforcerez la connexion que vous venez de coder avec un code temporaire à 6 chiffres (celui présenté en fin de slides), exactement comme dans le projet que vous retrouverez en AP.
+Cet exercice est un bonus pour les étudiants qui ont terminé. Il ne touche pas à votre TODO List : il se fait sur un **second projet**, que nous réutiliserons dans les exercices des TP [La double authentification](./2fa.md) et [Le reset de mot de passe](./reset_mot_de_passe.md). Le TP suivant ne dépend pas de cet exercice, vous pouvez donc y aller directement si le temps vous manque.
+
+Autre bonus possible : le TP [La double authentification (2FA)](./2fa.md), qui renforce la connexion que vous venez de coder avec un code temporaire à 6 chiffres (celui présenté en fin de slides).
 
 :::
+
+Coder une authentification en suivant un TP, c'est bien. La recoder seul, dans un autre projet, c'est la vraie preuve que vous avez compris. Je vous fournis pour ça une petite application : une **bibliothèque partagée**, dans laquelle on enregistre les livres que l'on a lus.
+
+### Le projet de départ
+
+[Téléchargez le projet ma-bibliotheque](/demo/laravel/ma-bibliotheque.zip), puis décompressez-le **à côté** de votre projet TODO (pas dedans !). Comme pour tout projet Laravel récupéré (depuis une archive ou depuis Git), il faut installer les dépendances et préparer la configuration avant de le lancer :
+
+```sh
+cd ma-bibliotheque
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+```
+
+Si `migrate` vous demande de créer le fichier `database.sqlite`, répondez `yes`. Le `--seed` remplit la table `livres` avec quelques exemples (nous verrons comment dans le TP [Aller plus loin](./aller_plus_loin.md)).
+
+Le projet contient uniquement ce que vous savez déjà faire : un layout, un modèle `Livre` (titre, auteur), un `LivreControleur` et une page `/livres` qui liste les livres, avec un formulaire d'ajout. Aucune authentification.
+
+Avant de coder, prenez cinq minutes pour lire le projet : `routes/web.php`, le contrôleur, le modèle, la migration et les vues. Vous devez être capable d'expliquer le chemin d'un ajout de livre, du formulaire jusqu'à la base.
+
+Regardez aussi comment est fait le visuel : [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) est chargé **par CDN** dans le `<head>` de `layouts/base.blade.php` (une balise `<link>` pour le CSS, une balise `<script>` pour le JavaScript), rien à installer. Toute la mise en forme vient ensuite de classes posées sur le HTML : `navbar`, `card`, `form-control`, `btn btn-primary`, `table table-striped`, `alert alert-success`… Inspirez-vous-en pour vos pages de connexion et d'inscription.
+
+Une fois lancé, voilà ce que vous devez obtenir sur `/livres` :
+
+![Le projet de départ : la liste des livres et le formulaire d'ajout, sans aucune authentification](./ressources/auth_exo_depart.png)
+
+::: tip Point de contrôle
+
+`/livres` affiche les livres d'exemple, et un livre ajouté depuis le formulaire apparaît dans la liste et dans la table `livres` de votre outil SQLite.
+
+:::
+
+### À vous : l'authentification des membres
+
+Notre bibliothèque est ouverte à tous les vents : n'importe qui peut ajouter un livre. Je vous laisse mettre en place l'authentification, avec les mêmes mécanismes que dans le TP (inscription, connexion, déconnexion, middleware), mais quelques règles changent. Pour chaque étape, une cible vous indique ce que vous devez obtenir.
+
+C'est à vous de jouer ! Je suis là si besoin 🚀.
+
+#### Les membres et l'inscription
+
+- Les comptes sont des **membres** : modèle `Membre`, table `membres`, avec les colonnes `pseudo`, `email`, `password` et les dates. Pas de modèle `Utilisateur` cette fois, à vous de retrouver ce qu'il faut adapter pour que `Auth::` s'y retrouve.
+- Une page `/register` avec les champs pseudo, email et mot de passe, qui crée le membre (mot de passe **hashé**) puis renvoie vers la connexion.
+- Un email ne peut être utilisé qu'une seule fois : s'il existe déjà, l'erreur s'affiche sous le champ et la saisie est conservée.
+
+La cible, en tentant de s'inscrire avec un email déjà utilisé :
+
+![L'inscription refusée : l'erreur sous le champ email, le pseudo et l'email conservés](./ressources/auth_exo_inscription.png)
+
+Et en base, après une inscription réussie :
+
+```
+sqlite> SELECT id, pseudo, email, password FROM membres;
+id  pseudo  email             password
+--  ------  ----------------  ------------------------------------------------------------
+1   jdoe    jdoe@example.com  $2y$12$…
+```
+
+#### La connexion et la déconnexion
+
+- Une page `/login` qui connecte le membre avec `Auth::login()`, puis le renvoie vers la liste des livres.
+- En cas d'erreur (email inconnu ou mauvais mot de passe), le même message « Identifiants incorrects » sous le champ email, avec l'email conservé.
+- Une route `/logout` qui déconnecte le membre.
+- Le layout affiche « Bonjour » suivi du pseudo et un lien « Déconnexion » quand un membre est connecté, sinon les liens « Connexion » et « Inscription ».
+
+La cible, avec un mauvais mot de passe :
+
+![La connexion refusée : « Identifiants incorrects » sous le champ email, l'email conservé](./ressources/auth_exo_connexion.png)
+
+#### Protéger l'ajout de livres
+
+- Contrairement à la TODO List, la liste des livres reste **publique** : tout le monde peut consulter la bibliothèque. Seul l'**ajout** d'un livre est réservé aux membres connectés, grâce à un middleware.
+- Le formulaire d'ajout n'est affiché qu'aux membres connectés. Les visiteurs voient à la place un lien « Connectez-vous pour ajouter un livre ».
+
+La cible, côté visiteur :
+
+![La bibliothèque vue par un visiteur : la liste est visible, un lien invite à se connecter pour ajouter un livre](./ressources/auth_exo_biblio_visiteur.png)
+
+Et côté membre connecté, juste après un ajout :
+
+![La bibliothèque vue par un membre connecté : le formulaire d'ajout et le pseudo dans le menu](./ressources/auth_exo_biblio_membre.png)
+
+::: details Besoin d'aide ?
+
+Pas de code ici, seulement la procédure :
+
+- `php artisan make:model Membre --migration`, puis les colonnes dans la migration et le `$fillable` dans le modèle.
+- Le modèle `Membre` doit hériter de `Authenticatable`, et `config/auth.php` doit pointer vers `App\Models\Membre::class` (relisez « Brancher notre modèle sur Laravel »). Dans un projet récent, la ligne ressemble à `'model' => env('AUTH_MODEL', User::class),` : c'est bien elle qu'il faut modifier.
+- Pour l'email unique : avant le `Membre::create(...)`, vérifiez si `Membre::where('email', ...)->exists()`, et si oui renvoyez vers le formulaire avec `withErrors` et `withInput`.
+- `Auth::user()` retourne le membre connecté (un objet `Membre`) : <code v-pre>{{ Auth::user()->pseudo }}</code> dans le layout.
+- <span v-pre>`@auth … @else … @endauth`</span> dans la vue pour afficher le formulaire ou le lien selon le cas.
+- Le middleware ne protège **que** la route POST d'ajout, pas la route GET de la liste.
+
+:::
+
+Question :
+
+- Masquer le formulaire aux visiteurs, est-ce suffisant pour protéger l'ajout de livres ? Pour le vérifier : ouvrez la bibliothèque en étant connecté, déconnectez-vous dans un **second onglet**, puis revenez sur le premier et soumettez le formulaire. Que doit-il se passer ?
+
+::: details La réponse
+
+Non, masquer le formulaire n'est que du confort pour l'utilisateur. Un formulaire resté ouvert, un outil comme Postman ou une page écrite par un attaquant peuvent envoyer la requête POST sans passer par votre page. La vraie protection, c'est le middleware sur la route POST : dans le test des deux onglets, le livre ne doit **pas** être ajouté et vous devez être renvoyé vers `/login` (ou tomber sur une page « 419 Page Expired » si votre déconnexion invalide aussi la session : le résultat est le même, la requête est refusée).
+
+Retenez la règle : l'interface **cache**, le serveur **interdit**.
+
+:::
+
+Si vous voulez aller plus loin, affichez à côté de chaque livre le pseudo du membre qui l'a ajouté (une colonne `membre_id` et une relation `belongsTo`, comme pour les catégories de la TODO List).
 
 ## Conclusion
 
