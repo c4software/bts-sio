@@ -556,11 +556,9 @@ Connecté, la TODO List s'affiche et le lien « Déconnexion » est visible dans
 
 ## Exercice : l'authentification de la bibliothèque
 
-::: tip Vous êtes en avance ?
+::: tip Vous avez terminé ?
 
-Cet exercice est un bonus pour les étudiants qui ont terminé. Il ne touche pas à votre TODO List : il se fait sur un **second projet**, que nous réutiliserons dans les exercices des TP [La double authentification](./2fa.md) et [Le reset de mot de passe](./reset_mot_de_passe.md). Le TP suivant ne dépend pas de cet exercice, vous pouvez donc y aller directement si le temps vous manque.
-
-Autre bonus possible : le TP [La double authentification (2FA)](./2fa.md), qui renforce la connexion que vous venez de coder avec un code temporaire à 6 chiffres (celui présenté en fin de slides).
+Cet exercice vous permet de valider si vous avez tout compris! Il ne touche pas à votre TODO List : il se fait sur un **second projet**, que nous réutiliserons dans les exercices des TP [La double authentification](./2fa.md) et [Le reset de mot de passe](./reset_mot_de_passe.md). Le TP suivant ne dépend pas de cet exercice, vous pouvez donc y aller directement si le temps vous manque.
 
 :::
 
