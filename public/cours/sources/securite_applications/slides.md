@@ -253,6 +253,36 @@ Solution :
 
 ---
 
+## L'IA génère du code… et des failles ?
+
+À votre avis, quels risques ?
+
+---
+
+## L'IA et la sécurité : les risques
+
+- Beaucoup de code produit, donc des revues plus longues.
+- Une confiance aveugle dans le code proposé.
+- Des failles classiques : injection SQL, XSS, secrets en dur.
+- Des dépendances obsolètes, voire inventées (*slopsquatting*).
+
+---
+
+## L'IA et la sécurité : les bonnes pratiques
+
+- Relire le code de l'IA comme celui d'un développeur débutant.
+- Donner des consignes de sécurité dans le prompt.
+- Centraliser les règles de l'équipe dans un fichier `AGENTS.md`, lu automatiquement par les agents IA.
+- Garder les outils automatiques (SonarQube, Dependabot).
+
+---
+
+## Un bon prompt ne remplace pas la revue de code
+
+**Vous restez responsable du code que vous poussez.**
+
+---
+
 ### Open Web Application Security Project (OWASP)
 
 #### Les dix risques par ordre de dangerosité
