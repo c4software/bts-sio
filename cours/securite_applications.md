@@ -20,3 +20,4 @@ aside: false
 - OWASP évolue en fonction des nouvelles failles découvertes et de l'évolution des technologies. En 2025 : le SSRF rejoint les contrôles d'accès (A01), la chaîne d'approvisionnement logicielle (A03) et la mauvaise gestion des conditions exceptionnelles (A10) font leur entrée.
 - S'applique à toutes les applications, pas seulement aux sites web.
 - Les Supply Chain Attacks sont des attaques ciblant les dépendances logicielles. Très courantes de nos jours, au point de devenir une catégorie à part entière du Top 10 2025.
+- Le code produit par l'IA se relit comme celui d'un développeur débutant. Les règles de sécurité de l'équipe peuvent être centralisées dans un fichier `AGENTS.md`, mais un bon prompt ne remplace pas la revue de code : vous restez responsable du code que vous poussez.

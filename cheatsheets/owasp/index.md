@@ -193,6 +193,37 @@ S'assurer d'une qualité continue du code avec :
 - Des tests unitaires.
 - Une analyse automatique du code (SonarQube).
 
+## L'IA et la sécurité
+
+Les assistants IA produisent du code rapidement et en grande quantité. C'est un gain de temps, mais aussi un nouveau risque : ce code contient les mêmes failles que celui d'un humain, et on a tendance à lui faire davantage confiance.
+
+Les risques :
+
+- Beaucoup de code produit, donc des revues de code plus longues et plus difficiles.
+- Une confiance aveugle dans le code proposé.
+- Des failles classiques : injection SQL, XSS, secrets écrits en dur.
+- Des dépendances obsolètes, voire inventées : un attaquant peut publier un paquet portant le nom inventé par l'IA (*slopsquatting*, une forme de [Supply Chain Attack](#supply-chain-attacks)).
+
+Les bonnes pratiques :
+
+- Relire le code de l'IA comme celui d'un développeur débutant : vérifier chaque dépendance ajoutée et chaque requête écrite à la main.
+- Donner des consignes de sécurité dans le prompt.
+- Centraliser les règles de l'équipe dans un fichier `AGENTS.md` à la racine du projet. Ce fichier est lu automatiquement par les agents IA et évite de compter sur chaque développeur pour répéter les consignes.
+- Garder les outils automatiques (SonarQube, Dependabot, etc.).
+
+```markdown
+<!-- Exemple d'extrait de AGENTS.md -->
+## Sécurité
+
+- Ne jamais concaténer une donnée utilisateur dans une requête SQL : utiliser Eloquent ou des requêtes préparées.
+- Ne jamais écrire de secret en dur : utiliser le fichier `.env`.
+- Ne pas ajouter de dépendance sans l'indiquer explicitement.
+```
+
+::: danger Un bon prompt ne remplace pas la revue de code
+L'IA peut ignorer une consigne, se tromper ou inventer une dépendance. **Vous restez responsable du code que vous poussez**, quel que soit l'outil qui l'a écrit.
+:::
+
 ## Open Web Application Security Project (OWASP)
 
 > Open Web Application Security Project (OWASP) est une communauté en ligne travaillant sur la sécurité des applications Web. Sa philosophie est d'être à la fois libre et ouverte à tous. Elle a pour vocation de publier des recommandations de sécurisation Web et de proposer aux internautes, administrateurs et entreprises des méthodes et outils de référence permettant de contrôler le niveau de sécurisation de ses applications Web.
