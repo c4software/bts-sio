@@ -347,6 +347,12 @@ export default [
         ]
       },
       {
+        text: "Kotlin (Ktor)", collapsed: true, items: [
+          { text: "Créer des API avec Kotlin : le projet", link: "/tp/ktor/decouverte" },
+          { text: "Créer des API avec Kotlin : CRUD et droits", link: "/tp/ktor/crud-droits" }
+        ]
+      },
+      {
         text: "TypeScript", collapsed: true, items: [
           { text: "Réaliser une API avec Bun.sh et TypeScript", link: "/tp/typescript/api" }
         ]
