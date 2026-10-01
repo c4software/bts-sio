@@ -460,6 +460,14 @@ export default [
             ]
           },
           {
+            text: "Aide-mémoire",
+            collapsed: true,
+            items: [
+              { text: "Préparer son poste", link: "/cheatsheets/poste-android/" },
+              { text: "Kotlin (depuis le C / C++)", link: "/cheatsheets/kotlin/" }
+            ]
+          },
+          {
             text: "Android Compose",
             collapsed: true,
             items: [
