@@ -30,11 +30,14 @@ Une API ne s'affiche pas joliment dans un navigateur : elle renvoie des données
 ## Prérequis
 
 - Connaître les bases de Kotlin. Vous venez d'un autre langage ? L'[aide-mémoire Kotlin](/cheatsheets/kotlin/) vous donnera l'essentiel.
-- Savoir ce qu'est une API REST et les verbes HTTP (`GET`, `POST`, `PUT`, `DELETE`). Au besoin, revoyez les [slides d'introduction aux API](/cours/introduction_api).
+- Savoir ce qu'est une API REST et les verbes HTTP (`GET`, `POST`, `PUT`, `DELETE`). Au besoin, revoyez les [slides d'introduction aux API](/cours/introduction_api) et l'[aide-mémoire API](/cheatsheets/api/).
 - Un poste avec :
   - le **JDK 21** ;
   - un IDE pour Kotlin : je vous conseille [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) (la version gratuite suffit) ;
-  - **Docker** et Docker Compose (voir l'[aide-mémoire Docker](/cheatsheets/docker/)).
+  - **Docker** et Docker Compose (voir l'[aide-mémoire Docker](/cheatsheets/docker/)) ;
+  - **Git** (voir l'[aide-mémoire Git](/cheatsheets/git/)).
+
+Pour installer et vérifier tout cela pas à pas, suivez la page [Préparer son poste](/cheatsheets/poste-android/) : chaque étape se termine par un point de contrôle (vous pouvez ignorer la partie sur le téléphone, inutile ici).
 
 ::: details Vous utilisez la dev-box ?
 La [dev-box](/cheatsheets/dev-box/) convient parfaitement à ce TP. Il vous faut :

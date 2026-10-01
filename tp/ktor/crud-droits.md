@@ -23,6 +23,7 @@ Dans ce TP, nous allons nous appuyer sur cette structure pour :
 
 - Avoir terminé le [TP précédent](./decouverte.md) : la route `GET /v1/capteurs` doit fonctionner. Pas de panique si ce n'est pas le cas : [récupérez le projet ici](/demo/ktor/api-capteurs-tp1.zip).
 - La stack Docker doit être démarrée : `docker compose up -d --wait`.
+- Connaître les codes de réponse HTTP : l'[aide-mémoire API](/cheatsheets/api/#un-code-une-signification) les résume. Pour la syntaxe Kotlin (`require`, `?:`, `companion object`, lambdas…), gardez l'[aide-mémoire Kotlin](/cheatsheets/kotlin/) sous la main.
 
 ::: tip Un TP en deux séances
 Ce TP est copieux. Il se découpe naturellement en deux séances : les parties 1 et 2 (le CRUD), puis les parties 3 et 4 (les droits). Les points étape Git marquent les bons endroits pour s'arrêter.

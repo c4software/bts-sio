@@ -459,5 +459,6 @@ fun main() {
 - [La documentation officielle de Kotlin](https://kotlinlang.org/docs/home.html)
 - [Kotlin Koans](https://play.kotlinlang.org/koans/overview) : des petits exercices progressifs, directement dans le navigateur
 - [Le cours Kotlin Multiplateforme](/tp/android/compose-multiplateforme/introduction.md)
+- [Créer des API avec Kotlin](/tp/ktor/decouverte.md) : le même langage, côté serveur
 
 👋 Si vous avez des questions, n'hésitez pas.
