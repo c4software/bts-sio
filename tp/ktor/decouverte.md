@@ -1010,4 +1010,15 @@ Cela fait beaucoup de fichiers pour une seule route, mais la structure est maint
 
 N'oubliez pas votre dernier commit avant de passer à la suite !
 
+## Le projet complet
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/ktor/api-capteurs-tp1.zip). Pour le lancer, depuis le dossier décompressé :
+
+```sh
+docker compose up -d --wait
+./gradlew run
+```
+
+Sous Windows, dans PowerShell : `.\gradlew.bat run`.
+
 👋 Si vous avez des questions, n'hésitez pas.

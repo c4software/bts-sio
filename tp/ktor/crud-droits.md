@@ -21,7 +21,7 @@ Dans ce TP, nous allons nous appuyer sur cette structure pour :
 
 ## Prérequis
 
-- Avoir terminé le [TP précédent](./decouverte.md) : la route `GET /v1/capteurs` doit fonctionner.
+- Avoir terminé le [TP précédent](./decouverte.md) : la route `GET /v1/capteurs` doit fonctionner. Pas de panique si ce n'est pas le cas : [récupérez le projet ici](/demo/ktor/api-capteurs-tp1.zip).
 - La stack Docker doit être démarrée : `docker compose up -d --wait`.
 
 ::: tip Un TP en deux séances
@@ -814,6 +814,10 @@ git commit -m "Salles : CRUD complet"
 
 ## Partie 3 : les droits
 
+::: tip Vous reprenez à une nouvelle séance ?
+Pensez à relancer la stack (`docker compose up -d --wait`). Votre CRUD des capteurs ou des salles ne fonctionne pas complètement ? Pas de panique : [récupérez le projet à cette étape ici](/demo/ktor/api-capteurs-crud.zip) (parties 1 et 2 terminées). Si Flyway refuse alors de démarrer, c'est que votre base contient vos propres migrations : repartez d'une base vide avec `docker compose down -v`.
+:::
+
 ### Le problème
 
 Pour l'instant, **n'importe qui** peut supprimer tous les capteurs de notre API : il suffit de connaître son adresse. Dans la réalité, plusieurs clients vont l'utiliser, avec des besoins différents :
@@ -1440,6 +1444,21 @@ Dans ce TP, vous avez :
 - fait évoluer la base uniquement par de nouvelles migrations.
 
 Cette organisation (des couches bien séparées, des migrations, des droits déclarés sur chaque route) est celle de nombreuses API professionnelles. Ajouter une nouvelle ressource suit maintenant toujours la même recette.
+
+### Le projet complet
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/ktor/api-capteurs-final.zip) (les quatre parties terminées). Pour le lancer, depuis le dossier décompressé :
+
+```sh
+docker compose up -d --wait
+./gradlew run
+```
+
+Sous Windows, dans PowerShell : `.\gradlew.bat run`. Les clés de test sont `cle-lecteur`, `cle-technicien` et `cle-admin`.
+
+::: warning Repartir d'une base vide
+Si vous lancez ce projet alors que la base contient déjà les tables de votre propre version, Flyway peut refuser de démarrer (les scripts diffèrent des vôtres). Dans ce cas, repartez d'une base vide avec `docker compose down -v`, puis relancez.
+:::
 
 ### Pour aller plus loin
 
