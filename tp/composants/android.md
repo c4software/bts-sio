@@ -20,6 +20,14 @@ Ce TP se concentre sur le découpage en composants et la réactivité. Il s'agit
 
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : ce qu'est un composant, ses paramètres, la liste et la réactivité.
+
+<ClientOnly>
+<SlidesDeck src="android_tp_composants" />
+</ClientOnly>
+
 ## Aperçu du projet
 
 L'application que nous allons réaliser ici est très simple. Il s'agit juste d'une liste et d'une vue de détail. Elle nous servira à comprendre le système de composants.

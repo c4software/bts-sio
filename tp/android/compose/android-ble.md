@@ -18,6 +18,16 @@ Dans cette partie nous allons voir comment interagir avec des périphériques BL
 - Lire des données (Notify)
 - Écrire des données (Write)
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : le BLE, GATT, les trois actions (lire, écrire, notifier) et le fonctionnement asynchrone.
+
+<ClientOnly>
+<SlidesDeck src="android_tp_ble" />
+</ClientOnly>
+
+Ces slides sont un condensé. Le support complet du cours est disponible ici : [Slides Android BLE](/cours/android_ble.md).
+
 ## Prérequis
 
 Pour réaliser ce TP, vous avez besoin des notions vues précédemment dans [Android Compose](./android-base.md). Et plus particulièrement le découpage MVVM (Model View ViewModel), en effet nous allons utiliser ce pattern pour dialoguer avec les périphériques BLE.

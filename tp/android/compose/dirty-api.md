@@ -19,6 +19,14 @@ Dans un vrai projet, il est fortement recommandé d'utiliser une architecture MV
 
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide des notions utilisées dans cette application : l'appel d'une API avec Retrofit, les coroutines et la gestion des états de chargement.
+
+<ClientOnly>
+<SlidesDeck src="android_tp_api" />
+</ClientOnly>
+
 ## Présentation
 
 Cette application contient les éléments suivants :

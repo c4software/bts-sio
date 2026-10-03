@@ -24,6 +24,16 @@ Elle va surtout nous servir à comprendre comment fonctionne Compose, et comment
 
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : Compose, les composants, l'état, la navigation et le découpage MVVM.
+
+<ClientOnly>
+<SlidesDeck src="android_tp_base" />
+</ClientOnly>
+
+Ces slides sont un condensé. Le support complet du cours est disponible ici : [Slides Android Base](/cours/android_base.md).
+
 ## Fonctionnement d'Android
 
 Android est une plateforme mobile développée par Google. Elle repose sur un noyau Linux et est globalement utilisée pour des smartphones et des tablettes.
