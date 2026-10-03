@@ -25,7 +25,8 @@ Gardez-les à portée de main pendant tous les TP, c'est important :
 Les TP suivent [le cours Android Base](/cours/android_base.md) et [le cours Android Compose](/cours/android_compose.md).
 
 1. [Découverte des bases d'Android](/tp/android/compose/android-base.md)
-2. [Créer une interface dynamique (les composants)](/tp/composants/android.md)
+2. [Les écrans et les données](/tp/android/compose/android-avance.md)
+3. [Créer une interface dynamique (les composants)](/tp/composants/android.md)
 
 ## Étape 2 : Communiquer avec l'extérieur
 

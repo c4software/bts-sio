@@ -19,6 +19,7 @@ Si vous débutez, suivez [les TP mobile dans l'ordre](/pages/categories/les-tp-m
 - [Cours base Android](/cours/android_base.md)
 - [Cours Android Bluetooth](/cours/android_ble.md)
 - [Support : Les bases d'Android Compose](/tp/android/compose/android-base.md)
+- [Support : Les écrans et les données](/tp/android/compose/android-avance.md)
 - [Support : Intéraction BLE](/tp/android/compose/android-ble.md)
 - [Le projet BLE](/tp/android/view/app-ble-network.md)
 

@@ -6,11 +6,55 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ---
 
-## Une application Android
+## Android
+
+Une plateforme mobile, développée par Google, qui repose sur un noyau **Linux**.
+
+- **Kotlin** : le langage.
+- **Gradle** : l'outil de build.
+- **Android SDK**, **Jetpack**, **Compose** : les bibliothèques.
+
+---
+
+## Question
+
+Vous installez une application inconnue.
+
+Peut-elle lire les données des autres applications ?
+
+---
+
+## Non
+
+- Chaque application est **isolée** (sandbox).
+- L'accès aux ressources passe par des **permissions**.
+- L'application est **signée** : elle n'a pas été modifiée depuis sa publication.
+
+---
+
+## Un projet Android
+
+- `app` : le code source et les ressources.
+- `res` : les images, les textes, les icônes.
+- `gradle` : la configuration du build.
+
+---
+
+## L'AndroidManifest
+
+La « carte d'identité » de l'application :
+
+- son nom, son icône ;
+- ses `activity` ;
+- ses permissions.
+
+---
+
+## Question
 
 Un écran, des boutons, une liste…
 
-Question : comment décrit-on une interface ?
+Comment décrit-on une interface ?
 
 ---
 
@@ -36,6 +80,14 @@ L'interface s'écrit **en Kotlin**. Vous décrivez ce que vous voulez voir.
 
 ---
 
+## Trois principes
+
+- **Déclaratif** : vous décrivez, Compose met à jour.
+- **Composable** : une fonction qui produit un morceau d'interface.
+- **Observation** : seuls les composants qui ont changé sont redessinés.
+
+---
+
 ## Tout est composant
 
 - `Text`, `Button`, `Image`… : ce qui s'affiche.
@@ -58,10 +110,59 @@ Une action, et un contenu… qui est lui-même un composant.
 
 ## Le Modifier
 
-Taille, marge, couleur, clic : tout passe par le `Modifier`.
+```kotlin
+Text(
+    text = "Hello World",
+    modifier = Modifier.fillMaxWidth() // Remplit toute la largeur de l'écran
+)
+```
 
-- Disponible sur tous les composants.
-- **Chaînable** : on enchaîne les modifications.
+Taille, marge, couleur, clic : disponible partout, et **chaînable**.
+
+---
+
+## Le Material Design
+
+Des composants prêts à l'emploi, qui intègrent les bonnes pratiques de Google.
+
+Votre projet l'utilise déjà (version 3).
+
+---
+
+## Question
+
+Votre application sort en Italie.
+
+Combien de fichiers de code faut-il modifier ?
+
+---
+
+## Aucun
+
+- Les textes vivent dans `strings.xml`, jamais en dur dans le code.
+- Une **ressource alternative** par langue.
+- Le même principe pour le thème sombre, la taille d'écran…
+
+---
+
+## Parler à l'utilisateur
+
+- **Toast** : un message rapide, sans importance.
+- **Snackbar** : un message en bas de l'écran, avec une action possible.
+- **Dialog** : une fenêtre, pour confirmer ou saisir.
+
+---
+
+## Un Toast
+
+```kotlin
+// Récupération du context
+val context = LocalContext.current
+
+Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show();
+```
+
+Le `Context` : l'accès aux ressources et aux services du téléphone.
 
 ---
 
@@ -87,80 +188,13 @@ Compose **observe** la variable : quand elle change, l'interface est recomposée
 
 ---
 
-## Les ressources
-
-- Les textes dans `strings.xml`, jamais en dur dans le code.
-- Les images dans `drawable`.
-- Des ressources alternatives : langue, thème sombre, taille d'écran…
-
----
-
-## Plusieurs écrans
-
-Un `NavHost`, et des `Screen`.
-
-La navigation est une **pile** : `popBackStack()` retire l'écran du dessus.
-
----
-
-## Question
-
-Où ranger les données et la logique d'un écran ?
-
-Dans le composant ?
-
----
-
-## MVVM
-
-- **Model** : les données (`data class`).
-- **View** : l'interface (nos composants).
-- **ViewModel** : la logique, qui fait le lien entre les deux.
-
-Le ViewModel ne connaît **pas** la vue.
-
----
-
-## Le ViewModel
-
-```kotlin
-class Screen3ViewModel: ViewModel() {
-    val listFlow = MutableStateFlow(listOf<String>())
-
-    fun addElement(element: String) {
-        listFlow.value += element
-    }
-}
-```
-
----
-
-## La vue observe
-
-```kotlin
-val list by viewModel.listFlow.collectAsStateWithLifecycle()
-```
-
-Le flow change, le composant est mis à jour. Automatiquement.
-
----
-
-## Les permissions
-
-Caméra, localisation, Bluetooth… : l'application doit **demander**.
-
-- Dans l'`AndroidManifest.xml`.
-- Puis à l'utilisateur, pendant l'exécution.
-
----
-
 ## Récapitulatif
 
+- Android : des applications **isolées**, des permissions, un manifest.
 - **Compose** : l'interface écrite en Kotlin, de façon déclarative.
 - Des **composants** imbriqués, ajustés avec le `Modifier`.
+- Les textes et les images dans les **ressources**.
 - Un **état** observé : il change, l'interface suit.
-- Un `NavHost` pour passer d'un écran à l'autre.
-- **MVVM** : la logique dans le ViewModel, l'affichage dans la vue.
 
 ---
 

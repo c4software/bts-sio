@@ -13,5 +13,6 @@ aside: false
 ## Un peu plus loin
 
 - [Les bases de la composition](/tp/android/compose/android-base.md).
+- [Les écrans et les données](/tp/android/compose/android-avance.md).
 - [Android Compose - Créer une interface dynamique](/tp/composants/android.md).
 - [Appeler des API avec Compose](/tp/android/compose/dirty-api.md)

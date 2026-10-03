@@ -6,6 +6,7 @@
 
 - [Slides Android BLE](/cours/android_ble.md)
 - [Support Android Base](./android-base.md)
+- [Support Android : les écrans et les données](./android-avance.md)
 
 ## Introduction
 
@@ -30,7 +31,7 @@ Ces slides sont un condensé. Le support complet du cours est disponible ici : [
 
 ## Prérequis
 
-Pour réaliser ce TP, vous avez besoin des notions vues précédemment dans [Android Compose](./android-base.md). Et plus particulièrement le découpage MVVM (Model View ViewModel), en effet nous allons utiliser ce pattern pour dialoguer avec les périphériques BLE.
+Pour réaliser ce TP, vous avez besoin des notions vues précédemment dans [Android Compose](./android-base.md) et [Les écrans et les données](./android-avance.md). Et plus particulièrement le découpage MVVM (Model View ViewModel), en effet nous allons utiliser ce pattern pour dialoguer avec les périphériques BLE.
 
 ## Le périphérique BLE
 
