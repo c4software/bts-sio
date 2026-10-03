@@ -27,6 +27,14 @@ Dans le [second TP](./crud-droits.md), nous compléterons l'API (création, modi
 Une API ne s'affiche pas joliment dans un navigateur : elle renvoie des données (ici en JSON) destinées à d'autres programmes. Pour la tester, nous utiliserons `curl` en ligne de commande. Vous pouvez aussi utiliser [Postman](https://www.postman.com/) ou tout autre client d'API.
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : Ktor, l'architecture en couches, les migrations, l'ORM et l'injection de dépendances.
+
+<ClientOnly>
+<SlidesDeck src="ktor_decouverte" />
+</ClientOnly>
+
 ## Prérequis
 
 - Connaître les bases de Kotlin. Vous venez d'un autre langage ? L'[aide-mémoire Kotlin](/cheatsheets/kotlin/) vous donnera l'essentiel.

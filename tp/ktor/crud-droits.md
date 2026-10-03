@@ -19,6 +19,14 @@ Dans ce TP, nous allons nous appuyer sur cette structure pour :
 3. **protéger l'API avec un système de droits** : chaque client s'identifie avec une clé, et son rôle détermine ce qu'il a le droit de faire (partie guidée) ;
 4. **appliquer ces droits aux salles**, en autonomie.
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : le CRUD, les codes HTTP, la gestion des erreurs, puis l'authentification et l'autorisation.
+
+<ClientOnly>
+<SlidesDeck src="ktor_crud_droits" />
+</ClientOnly>
+
 ## Prérequis
 
 - Avoir terminé le [TP précédent](./decouverte.md) : la route `GET /v1/capteurs` doit fonctionner. Pas de panique si ce n'est pas le cas : [récupérez le projet ici](/demo/ktor/api-capteurs-tp1.zip).
