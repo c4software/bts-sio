@@ -17,6 +17,16 @@ Un thread ou fil (d'exécution) ou tâche (terme et définition normalisée par 
 [[toc]]
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : les threads, les librairies (OkHttp, GSON, Retrofit), les coroutines et l'appel d'une API.
+
+<ClientOnly>
+<SlidesDeck src="android_tp_http" />
+</ClientOnly>
+
+Ces slides sont un condensé. Le support complet du cours est disponible ici : [Slides Android + HTTP](/cours/android_http.md).
+
 ## Pourquoi est-ce complexe ?
 
 Internet est une variable incontrôlable dans un projet Android, vous n'êtes pas certains que :

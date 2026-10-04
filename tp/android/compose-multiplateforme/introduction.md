@@ -6,6 +6,14 @@ Dans ce support, nous allons voir comment JetBrains avec son outil Compose Multi
 [[toc]]
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : le multiplateforme, l'organisation du projet, les mots clés `expect` et `actual`, et les librairies PreCompose, Koin et ktor.
+
+<ClientOnly>
+<SlidesDeck src="android_tp_multiplateforme" />
+</ClientOnly>
+
 ## Objectifs
 
 - Comprendre les enjeux du développement multi-plateforme.

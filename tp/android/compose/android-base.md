@@ -20,7 +20,7 @@ L'application que nous réalisons dans ce TP est une application « fictive », 
 
 Elle va surtout nous servir à comprendre comment fonctionne Compose, et comment l'utiliser pour réaliser des interfaces.
 
-![Application finale](./img/base/compose-base.png)
+<img src="./img/base/compose-base.png" alt="Application finale" width="250" />
 
 :::
 
