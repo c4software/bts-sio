@@ -48,7 +48,7 @@ La structure de base d'un écran :
 
 - `TopAppBar` : la barre du haut.
 - `FloatingActionButton` : le bouton flottant.
-- `BottomAppBar`, `Drawer`…
+- `BottomAppBar`, `SnackbarHost`…
 
 Chaque élément est optionnel.
 

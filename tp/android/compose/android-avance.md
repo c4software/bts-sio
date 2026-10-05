@@ -62,7 +62,6 @@ Avec Compose, nous allons utiliser un autre système : les `Screen`. Chaque `Scr
 val navController = rememberNavController()
 
 NavHost(
-    modifier = Modifier.padding(innerPadding),
     navController = navController,
     startDestination = "screen1"
 ) {
@@ -89,15 +88,31 @@ Dans cet exemple, nous avons un `NavHost` qui contient deux `Screen` : `Screen1`
 
 ---
 
-Ce code nécessite une librairie supplémentaire `navigation-compose`. Pour l'ajouter, il suffit d'ajouter la dépendance suivante dans votre `build.gradle` :
+Ce code nécessite une librairie supplémentaire `navigation-compose`. Pour l'ajouter, il suffit d'ajouter la dépendance suivante dans votre `build.gradle.kts` (celui du module `app`) :
 
-```gradle
-implementation("androidx.navigation:navigation-compose:2.7.7")
+```kotlin
+implementation("androidx.navigation:navigation-compose:2.10.2")
 ```
 
 Une fois la dépendance ajoutée, vous **devez** `Sync` votre projet.
 
 ![Sync](./img/base/sync.png)
+
+Android Studio vous proposera peut-être de déplacer la dépendance dans le catalogue de versions (`gradle/libs.versions.toml`). Vous pouvez accepter : le résultat est le même, les versions sont simplement regroupées dans un seul fichier.
+
+::: warning Une erreur à la compilation ?
+
+Les librairies récentes demandent parfois un `compileSdk` plus élevé que celui de votre projet (le message d'erreur indique la version attendue) :
+
+```text
+Dependency 'androidx.navigation:navigation-compose-android:2.10.2' requires libraries and applications
+that depend on it to compile against version 37 or later of the Android APIs.
+:app is currently compiled against android-36.
+```
+
+Il suffit alors d'ajuster la valeur de `compileSdk` dans le même fichier, puis de synchroniser à nouveau.
+
+:::
 
 ### Exemple de Screen
 
@@ -189,6 +204,8 @@ Pas de classe !?
 
 Pour le `NavHost` dans le `setContent` il est important de retirer **le Scaffold**. En effet, en le retirant nous allons pouvoir le gérer écran par écran.
 
+Tant que vos écrans n'ont pas leur propre `Scaffold`, leur contenu passe sous la barre d'état (c'est l'affichage « bord à bord », activé par `enableEdgeToEdge()`). Pas de panique, nous corrigeons ça dans la partie suivante.
+
 :::
 
 Voici le rendu attendu :
@@ -214,10 +231,10 @@ Nous avons vu ensemble comment passer des paramètres. Mais le nom `Valentin` es
 
 Le `Scaffold` est un composant qui permet de créer une structure de base pour notre application. Il contient plusieurs éléments :
 
-- `TopAppBar` : La barre de navigation en haut de l'application.
-- `BottomAppBar` : La barre de navigation en bas de l'application.
-- `FloatingActionButton` : Le bouton flottant.
-- `Drawer` : Le menu latéral.
+- `topBar` : La barre en haut de l'application (une `TopAppBar`).
+- `bottomBar` : La barre en bas de l'application (une `BottomAppBar` ou une `NavigationBar`).
+- `floatingActionButton` : Le bouton flottant.
+- `snackbarHost` : L'emplacement des Snackbars.
 
 Chaque élément est optionnel, vous pouvez donc choisir de les afficher ou non.
 
@@ -244,6 +261,20 @@ Scaffold(
 ```
 
 ![Scaffold](./img/base/topappbar.jpg)
+
+::: warning Deux points pour que ce code compile
+
+Les icônes (`Icons.…`) ne sont plus fournies avec Material 3 (erreur `Unresolved reference 'Icons'`). Ajouter la dépendance suivante dans votre `build.gradle.kts` (celui du module `app`), puis `Sync` :
+
+```kotlin
+implementation("androidx.compose.material:material-icons-core")
+```
+
+Pas de numéro de version ici : il est géré par le « BOM » Compose déjà présent dans votre projet.
+
+La `TopAppBar` est encore marquée « expérimentale ». Android Studio vous proposera d'ajouter `@OptIn(ExperimentalMaterial3Api::class)` au-dessus de votre composant : acceptez.
+
+:::
 
 ### À faire
 
@@ -314,7 +345,7 @@ Il faut comprendre ici que notre vue sera « recomposée » à chaque fois que n
 
 ![Recomposition](./img/base/lifecycle-composition.png)
 
-[En savoir plus sur la recomposition](https://developer.android.com/jetpack/compose/lifecycle?hl=fr)
+[En savoir plus sur la recomposition](https://developer.android.com/develop/ui/compose/lifecycle?hl=fr)
 
 ### Évolution de la structure
 
@@ -335,14 +366,12 @@ Ici, il faut bien voir que je vous communique une façon correcte de faire. Nous
 
 Pour que nous puissions faire notre scan en arrière-plan et échanger les données entre la `View` et le `ViewModel` nous allons avoir besoin de quelques librairies :
 
-```groovy
-implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
-implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4")
-implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4")
-implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.4")
+```kotlin
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.11.0")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0")
 ```
 
-Ajouter ces dépendances dans votre fichier `build.gradle` (celui dans `app` du projet). Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
+Ajouter ces dépendances dans votre fichier `build.gradle.kts` (celui dans `app` du projet). Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
 
 [Plus d'informations](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 
@@ -693,7 +722,7 @@ Nous allons voir comment faire avec Compose. Pour ça nous allons devoir utilise
 
 ::: tip Accompanist
 
-Accompanist est une librairie de transition, elle existe le temps que Compose évolue, mûrisse et que les fonctionnalités soient intégrées dans Compose (ou pas, mais c'est un autre débat).
+Accompanist est une librairie de transition : elle accueille des fonctionnalités le temps qu'elles soient intégrées dans Compose. La plupart de ses modules ont d'ailleurs déjà été intégrés puis retirés, la gestion des permissions fait partie de ceux qui restent.
 
 :::
 
@@ -703,10 +732,10 @@ Pour rester dans le thème du Bluetooth, nous allons regarder comment demander l
 
 ### Ajouter la librairie
 
-Pour ajouter la librairie, nous allons devoir modifier notre fichier `build.gradle` (celui dans `app` du projet). Nous allons ajouter la dépendance suivante :
+Pour ajouter la librairie, nous allons devoir modifier notre fichier `build.gradle.kts` (celui dans `app` du projet). Nous allons ajouter la dépendance suivante :
 
-```groovy
-implementation("com.google.accompanist:accompanist-permissions:0.35.1-alpha")
+```kotlin
+implementation("com.google.accompanist:accompanist-permissions:0.37.3")
 ```
 
 Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
@@ -722,9 +751,9 @@ Avant de demander les permissions, nous allons devoir les déclarer pour que l'a
     tools:targetApi="s" />
 <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
-<!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<!-- Anciennes permissions BLE (jusqu'à Android 11 inclus) -->
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
 
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -751,6 +780,8 @@ Quelques explications :
 
 - `toCheckPermissions` : La liste des permissions à vérifier.
 - `permissionState` : L'état des permissions. Cet état va nous permettre de savoir si les permissions sont accordées ou non.
+
+Cette librairie est marquée « expérimentale » : comme pour la `TopAppBar`, il faut ajouter `@OptIn(ExperimentalPermissionsApi::class)` au-dessus de votre composant.
 
 Maintenant que nous avons notre état, nous allons pouvoir l'utiliser pour demander les permissions à l'utilisateur. Pour ça, un simple test sur l'état des permissions suffit :
 
@@ -852,7 +883,7 @@ Je vous laisse créer le `Screen4` avec la demande de permission et l'affichage 
 N'oubliez pas :
 
 - La page doit être ajoutée sur la Home (bouton).
-- Les permissions doivent être demandées dans le `LaunchedEffect`.
+- La localisation doit être récupérée dans le `LaunchedEffect`, une fois les permissions accordées.
 - Votre `Screen4` doit être dans votre dossier `ui`.
 - Votre `Screen4` doit être mis dans le `NavHost`.
 
