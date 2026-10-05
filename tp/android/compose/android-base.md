@@ -50,7 +50,7 @@ Android repose sur plusieurs éléments :
 - **Jetpack** : Jetpack est un ensemble de bibliothèques qui permettent de faciliter le développement d'applications Android.
 - **View** : Les Views sont les éléments de base qui permettent de créer des interfaces pour Android (ancien système).
 
-Android étant relativement ancien, beaucoup d'éléments reposent sur du XML. Cependant, récemment, Google a annoncé Compose, une nouvelle façon de créer des interfaces pour Android. C'est celle-ci que nous allons découvrir dans ce TP.
+Android étant relativement ancien, beaucoup d'éléments reposent historiquement sur du XML. Depuis 2021, Google propose Compose, une nouvelle façon de créer des interfaces pour Android, devenue le choix par défaut pour les nouveaux projets. C'est celle-ci que nous allons découvrir dans ce TP.
 
 ### Sécurité
 
@@ -71,7 +71,7 @@ Cette signature est également utilisée pour identifier l'application et pour g
 
 ### Moteur de rendu
 
-Depuis l'arrivée de Compose, Android utilise un nouveau moteur de rendu pour afficher les interfaces. Ce moteur nommé « Skia » est un moteur de rendu 2D qui est utilisé par de nombreux projets (Chrome, Firefox, etc.).
+Pour afficher les interfaces, Android s'appuie sur un moteur de rendu 2D nommé « Skia », que l'on retrouve dans de nombreux projets (Chrome, Firefox, etc.). Compose l'utilise pour dessiner lui-même ses composants, sans passer par les Views historiques.
 
 Il est très performant et permet de créer des interfaces fluides et réactives. Il est également très flexible et permet de créer des interfaces complexes.
 
@@ -94,7 +94,7 @@ Avec Compose, il est également possible de créer des interfaces pour d'autres 
 Trois termes à retenir :
 
 - **Compose** : La librairie de Google pour Android => Interface déclarative.
-- **KMM** : Kotlin Multiplatform (Jetbrains) => Logique métier partagée.
+- **KMP** : Kotlin Multiplatform (Jetbrains) => Logique métier partagée (anciennement appelé KMM).
 - **CMP** : Compose Multiplatform (Jetbrains) => Interface partagée.
 
 ## Création du projet
@@ -103,7 +103,7 @@ Pour la création du projet, rien de spécial à prévoir. Il s'agit ici de suiv
 
 Lors de la création, Android Studio va nous poser plusieurs questions, nous allons donc choisir :
 
-- Template : Empty **Compose** Activity
+- Template : Empty Activity (c'est le modèle **Compose**, à ne pas confondre avec « Empty Views Activity »)
 - Language : Kotlin
 - SDK Min. : SDK 26. (ou plus)
 
@@ -126,7 +126,7 @@ Comme vu ensemble pendant le cours, l'émulateur va nous permettre de tester « 
 
 ![AVD](./img/avd.jpg)
 
-Pour le choix du type de devices vous êtes libres… Mais le mieux est de choisir un « template de mobile » assez représentatif de ce que l'on trouve chez les clients. Un bon choix est par exemple un « Pixel 6a » avec Android 14.
+Pour le choix du type de devices vous êtes libres… Mais le mieux est de choisir un « template de mobile » assez représentatif de ce que l'on trouve chez les clients. Un bon choix est par exemple un « Pixel 9a » avec une version récente d'Android (16 ou 17).
 
 ::: tip
 
@@ -283,6 +283,10 @@ Column() {
 }
 ```
 
+Voici le rendu des trois exemples précédents :
+
+![Column, Row, puis Column et Row imbriqués](./img/base/compose-column-row.png)
+
 Cet exemple est là pour vous montrer la puissance de Compose. Compose a été pensé pour être simple et modulaire, par exemple pour un bouton le principe est le même :
 
 ```kotlin
@@ -353,6 +357,8 @@ Text(
 
 Nous avons ici un `Text` avec un padding de 16dp, un fond bleu et une bordure noire de 1dp.
 
+![Rendu du Text avec ses modifiers](./img/base/compose-modifier.png)
+
 :::
 
 ::: danger Attention
@@ -399,7 +405,7 @@ Tout est imbriquable, vous pouvez donc imbriquer des `Column` dans des `Row`, de
 Sans entrer dans les détails, réaliser des animations avec Compose est très simple. Nous avons à notre disposition plusieurs composants qui vont nous permettre de réaliser des animations :
 
 ```kotlin
-var counter by remember { mutableStateOf(0) }
+var counter by remember { mutableIntStateOf(0) }
 
 Column {
     Button(onClick = { counter++ }) {
@@ -426,9 +432,9 @@ Je vous laisse tester, et garder ce genre de code pour votre projet final. Les a
 
 #### Aller plus loin avec les animations
 
-![Aide mémoire](https://storage.googleapis.com/android-stories/compose/Compose_Animation_Cheat_Sheet.pdf)
+[Aide-mémoire des animations Compose (PDF)](https://storage.googleapis.com/android-stories/compose/Compose_Animation_Cheat_Sheet.pdf)
 
-_Source:_ [Twitter](https://twitter.com/JorgeCastilloPr/status/1579057096360079361)
+_Source :_ [Jorge Castillo](https://x.com/JorgeCastilloPr/status/1579057096360079361)
 
 ### Le material design
 
@@ -758,8 +764,14 @@ Le code à ajouter :
 // Récupération du context
 val context = LocalContext.current
 
-Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show();
+Toast.makeText(context, "Je suis un Toast", Toast.LENGTH_LONG).show()
 ```
+
+::: tip Que se passe-t-il derrière ?
+
+Placé directement dans le `setContent`, ce code est rejoué à chaque fois que Compose redessine l'interface : le toast peut donc s'afficher plusieurs fois. Pour un premier test, ce n'est pas gênant. Nous le déplacerons dans un clic un peu plus loin.
+
+:::
 
 Évidemment, le texte du toast est à internationaliser…
 
@@ -770,15 +782,15 @@ Les snackbars sont des messages qui s'affichent en bas de l'écran. Ils sont plu
 ![Snackbar avec action](./img/base/snackbar_action.jpg)
 ![Snackbar sans action](./img/base/snackbar_sans_action.jpg)
 
-Documentation : [https://developer.android.com/develop/ui/compose/components/snackbar]
+[La documentation des Snackbars](https://developer.android.com/develop/ui/compose/components/snackbar)
 
 ::: tip Des durées d'affichage différentes
 
 Plusieurs options s'offrent à vous :
 
-- `Snackbar.LENGTH_SHORT`
-- `Snackbar.LENGTH_LONG`
-- `Snackbar.LENGTH_INDEFINITE`
+- `SnackbarDuration.Short`
+- `SnackbarDuration.Long`
+- `SnackbarDuration.Indefinite`
 
 :::
 
@@ -854,6 +866,8 @@ Je vous laisse mettre ce dialogue dans le `setContent` de votre `MainActivity`.
 
 Lancer votre application et tester le dialogue. Normalement, vous devriez voir une fenêtre s'afficher avec un titre, un contenu et deux boutons.
 
+<img src="./img/base/compose-dialog.png" alt="Le dialogue affiché dans l'application" width="250" />
+
 ### Conditionner l'affichage d'un élément
 
 Le dialogue est un bon exemple pour conditionner l'affichage d'un élément. En effet, il est possible de conditionner l'affichage d'un élément en fonction d'une condition.
@@ -904,7 +918,8 @@ Bien que pratique, cette méthode n'est pas la plus propre. En effet, d'un point
 
 N'oubliez pas, Google propose des règles pour vous aider dans le développement. Exemple pour les dialogues :
 
-- [La documentation](https://material.io/develop/android/components/dialogs)
+- [Les règles Material Design](https://m3.material.io/components/dialogs/overview)
+- [La documentation Compose](https://developer.android.com/develop/ui/compose/components/dialog)
 
 ## Conclusion
 
