@@ -1,6 +1,6 @@
 # Les bases d'Android
 
-Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www.playmoweb.com)
+Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
 ---
 
@@ -16,9 +16,8 @@ Point statistique :
 ---
 
 - Développé par Google
-- Créé en 2008 (17 ans)
-- Actuellement en version 16
-- Android 17 (Q2 2026)
+- Créé en 2008 (18 ans)
+- Actuellement en version 17
 
 ---
 
@@ -249,7 +248,7 @@ Des briques de base d'une interface.
 - Android (Maintenu par Google).
 - Desktop (Compose Multiplatform).
 - iOS (Compose Multiplatform).
-- Web (Compose Multiplatform, mais expérimental).
+- Web (Compose Multiplatform, encore en bêta).
 
 ---
 
@@ -257,8 +256,8 @@ Des briques de base d'une interface.
 
 - Compose est la nouvelle façon de faire des interfaces.
 - Poussé par Google.
-- En cours de développement.
-- En cours d'adoption par les entreprises.
+- Stable depuis 2021, en évolution constante.
+- Largement adopté par les entreprises.
 
 ---
 
@@ -422,7 +421,7 @@ Le tout est Open Source.
 Trois termes à retenir :
 
 - **Compose** : La librairie de Google pour Android => Interface déclarative.
-- **KMM** : Kotlin Multiplatform (JetBrains) => Logique métier partagée.
+- **KMP** : Kotlin Multiplatform (JetBrains) => Logique métier partagée (ex KMM).
 - **CMP** : Compose Multiplatform (JetBrains) => Interface partagée.
 
 ---
@@ -525,7 +524,7 @@ Deux façons de travailler :
 - Contient les références de tous les id.
 - Permet l'accès aux ressources depuis votre code :
   - `stringResource(R.string.hello)`
-  - `imageResource(R.drawable.image)`
+  - `painterResource(R.drawable.image)`
   - …
 
 ---
@@ -901,7 +900,7 @@ Modifier pour réaliser ceci :
 
 ![Layout](./img/compose-layout-refactor.png)
 
-- [https://developer.android.com/develop/ui/compose/layouts/basics]
+- [La documentation des layouts](https://developer.android.com/develop/ui/compose/layouts/basics)
 
 ---
 
@@ -1111,7 +1110,7 @@ Placer l'image dans le dossier `res/drawable/`. Puis l'ajouter au-dessus de votr
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.playmoweb.demo.dmocourseseo">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Nouvelles permissions permettant de scanner en BLE Android après 11 -->    
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
@@ -1119,9 +1118,9 @@ Placer l'image dans le dossier `res/drawable/`. Puis l'ajouter au-dessus de votr
         tools:targetApi="s" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
-    <!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- Anciennes permissions BLE (jusqu'à Android 11 inclus) -->
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -1134,7 +1133,7 @@ Placer l'image dans le dossier `res/drawable/`. Puis l'ajouter au-dessus de votr
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -1245,9 +1244,9 @@ C'est un objet important dans Android, car il est utilisé pour accéder à de n
 
 #### Plusieurs options s'offrent à vous :
 
-- `Snackbar.LENGTH_SHORT`
-- `Snackbar.LENGTH_LONG`
-- `Snackbar.LENGTH_INDEFINITE`
+- `SnackbarDuration.Short`
+- `SnackbarDuration.Long`
+- `SnackbarDuration.Indefinite`
 
 ---
 
@@ -1282,7 +1281,7 @@ Fonctionne dans le code, mais également dans vos composants Compose.
 ```kotlin
 @Composable
 fun MyRedButton(onClick: () -> Unit) {
-    Button(onClick = onClick, colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)) {
+    Button(onClick = onClick, colors = ButtonDefaults.buttonColors(containerColor = Color.Red)) {
         Text("Cliquez ici")
     }
 }
@@ -1345,7 +1344,7 @@ Ajouter une interaction sur votre bouton pour afficher un Toast.
 
 ---
 
-[Voir dans le support](/tp/android/android-base-tp.html#rendre-un-element-clickable-2)
+[Voir dans le support](/tp/android/compose/android-base.html#rendre-un-bouton-cliquable)
 
 ---
 
@@ -1431,7 +1430,7 @@ Ensemble « de règles » / de bonnes pratiques pour avoir des interfaces de qua
 
 ## Créer une Dialog avec la proposition de Google
 
-[La documentation](https://material.io/develop/android/components/dialogs)
+[La documentation](https://m3.material.io/components/dialogs/overview)
 
 ---
 
@@ -1445,7 +1444,6 @@ Principe du Router en Web.
 val navController = rememberNavController()
 
 NavHost(
-    modifier = Modifier.padding(innerPadding),
     navController = navController,
     startDestination = "screen1"
 ) {
@@ -1466,10 +1464,10 @@ NavHost(
 
 ---
 
-## Ajouter la dépendance dans le `build.gradle`
+## Ajouter la dépendance dans le `build.gradle.kts`
 
-```groovy
-implementation("androidx.navigation:navigation-compose:2.7.7")
+```kotlin
+implementation("androidx.navigation:navigation-compose:2.10.2")
 ```
 
 ⚠️ N'oubliez pas de `Sync` votre projet.
@@ -1616,7 +1614,7 @@ Il faut comprendre ici que notre vue sera « **recomposée** » à chaque fois q
 
 ---
 
-[En savoir plus sur la recomposition](https://developer.android.com/jetpack/compose/lifecycle?hl=fr)
+[En savoir plus sur la recomposition](https://developer.android.com/develop/ui/compose/lifecycle?hl=fr)
 
 ---
 

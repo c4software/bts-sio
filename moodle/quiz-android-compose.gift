@@ -37,11 +37,11 @@ $CATEGORY: Android/Compose
 ~Vérifier que le code ne contient pas de bug
 }
 
-::AND-Q6 Le moteur de rendu::Depuis l'arrivée de Compose, Android affiche les interfaces grâce au moteur de rendu 2D {=Skia ~Blink ~Vulkan ~WebKit}, également utilisé par Chrome et Firefox.
+::AND-Q6 Le moteur de rendu::Pour dessiner ses interfaces, Compose s'appuie sur le moteur de rendu 2D {=Skia ~Blink ~Vulkan ~WebKit}, également utilisé par Chrome et Firefox.
 
 ::AND-Q7 La terminologie multiplateforme::Associez chaque terme à sa définition.{
 =Compose -> La librairie de Google pour les interfaces déclaratives Android
-=KMM (Kotlin Multiplatform) -> Partager la logique métier entre plateformes
+=KMP (Kotlin Multiplatform) -> Partager la logique métier entre plateformes
 =CMP (Compose Multiplatform) -> Partager l'interface entre plateformes
 = -> L'outil de build du projet
 = -> L'émulateur intégré à Android Studio
@@ -152,7 +152,7 @@ Que se passe-t-il quand l'utilisateur clique sur le bouton ?{
 ~Screen2 est rechargé depuis zéro
 }
 
-::AND-Q23 Après la dépendance::Vous venez d'ajouter implementation("androidx.navigation\:navigation-compose\:2.7.7") dans le build.gradle. Avant de pouvoir l'utiliser, vous devez {=synchroniser ~signer ~compiler ~redémarrer} le projet.
+::AND-Q23 Après la dépendance::Vous venez d'ajouter implementation("androidx.navigation\:navigation-compose\:2.10.2") dans le build.gradle.kts. Avant de pouvoir l'utiliser, vous devez {=synchroniser ~signer ~compiler ~redémarrer} le projet.
 
 // --- MVVM et données ---
 

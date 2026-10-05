@@ -43,7 +43,7 @@ Réponse : ________________________________________
 
 **Question 6 — Le moteur de rendu**
 
-Depuis l'arrivée de Compose, Android affiche les interfaces grâce au moteur de rendu 2D ______ , également utilisé par Chrome et Firefox.
+Pour dessiner ses interfaces, Compose s'appuie sur le moteur de rendu 2D ______ , également utilisé par Chrome et Firefox.
 
 (a) Skia / (b) Blink / (c) WebKit / (d) Vulkan
 
@@ -54,7 +54,7 @@ Associez chaque terme à sa définition.
 | | À relier à… |
 |---|---|
 | Compose → ______ | • La librairie de Google pour les interfaces déclaratives Android |
-| KMM (Kotlin Multiplatform) → ______ | • Partager l'interface entre plateformes |
+| KMP (Kotlin Multiplatform) → ______ | • Partager l'interface entre plateformes |
 | CMP (Compose Multiplatform) → ______ | • L'émulateur intégré à Android Studio |
 |  | • Partager la logique métier entre plateformes |
 |  | • L'outil de build du projet |
@@ -197,7 +197,7 @@ L'utilisateur est sur Screen2, arrivé depuis Screen1. Le code du bouton retour 
 
 **Question 23 — Après la dépendance**
 
-Vous venez d'ajouter implementation("androidx.navigation:navigation-compose:2.7.7") dans le build.gradle. Avant de pouvoir l'utiliser, vous devez ______ le projet.
+Vous venez d'ajouter implementation("androidx.navigation:navigation-compose:2.10.2") dans le build.gradle.kts. Avant de pouvoir l'utiliser, vous devez ______ le projet.
 
 (a) redémarrer / (b) signer / (c) synchroniser / (d) compiler
 
@@ -353,7 +353,7 @@ Quelle solution est recommandée pour sauvegarder des données structurées (tab
 
 **6.** (a) Skia
 
-**7.** Compose → La librairie de Google pour les interfaces déclaratives Android ; KMM (Kotlin Multiplatform) → Partager la logique métier entre plateformes ; CMP (Compose Multiplatform) → Partager l'interface entre plateformes
+**7.** Compose → La librairie de Google pour les interfaces déclaratives Android ; KMP (Kotlin Multiplatform) → Partager la logique métier entre plateformes ; CMP (Compose Multiplatform) → Partager l'interface entre plateformes
 
 **8.** (a) Une fonction annotée @Composable qui décrit une partie de l'interface — *Exact, pas de classe : des fonctions appelées au bon moment selon les conditions.*
 
