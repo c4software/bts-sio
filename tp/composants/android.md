@@ -40,7 +40,7 @@ Pour la création du projet, rien de spécial à prévoir. Il s'agit ici de suiv
 
 Lors de la création, Android Studio va nous poser plusieurs questions, nous allons donc choisir :
 
-- Template : Empty **Compose** Activity
+- Template : Empty Activity (c'est le modèle **Compose**, à ne pas confondre avec « Empty Views Activity »)
 - Language : Kotlin
 - SDK Min. : SDK 26. (ou plus)
 
@@ -133,6 +133,10 @@ Column() {
 }
 ```
 
+Voici le rendu des trois exemples précédents :
+
+![Column, Row, puis Column et Row imbriqués](./res/compose-column-row.png)
+
 Cet exemple est là pour vous montrer la puissance de Compose. Compose a été pensé pour être simple et modulaire, par exemple pour un bouton le principe est le même :
 
 ```kotlin
@@ -180,7 +184,7 @@ Column(
 
 Nous avons vu quelques composants, et quelques modifiers. Mais il y en a beaucoup plus. Je vous laisse regarder la documentation pour en savoir plus.
 
-[Documentation](https://developer.android.com/jetpack/compose/components)
+[Documentation](https://developer.android.com/develop/ui/compose/components)
 
 ⚠️ Compose évolue très rapidement, il est donc primordial de regarder la documentation…
 
@@ -209,12 +213,16 @@ setContent {
     MyApplicationTheme {
         Scaffold(
             topBar = { TopAppBar(title = { Text("Top App Bar") }) },
-        ) {
-            Greeting(name = "Valentin")
+        ) { innerPadding ->
+            Greeting(name = "Valentin", modifier = Modifier.padding(innerPadding))
         }
     }
 }
 ```
+
+Que se passe-t-il derrière ? Le `Scaffold` indique à son contenu la place prise par la barre du haut, via `innerPadding`. Sans ce `padding`, votre contenu serait dessiné sous la `TopAppBar`.
+
+La `TopAppBar` est encore marquée « expérimentale ». Android Studio vous proposera d'ajouter `@OptIn(ExperimentalMaterial3Api::class)` : acceptez.
 
 ::: tip L'importance de la sémantique
 
@@ -234,7 +242,7 @@ Votre top-bar est blanche ? C'est normal, nous n'avons pas encore ajouté de th�
 topBar = { 
     TopAppBar(
         title = { Text("Top App Bar") }, // Titre de la barre
-        colors = TopAppBarDefaults.smallTopAppBarColors(
+        colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             titleContentColor = MaterialTheme.colorScheme.primary,
         ), // Couleur de la barre
@@ -245,7 +253,7 @@ topBar = {
 Une couleur personnalisée ? C'est possible, soit via le thème de votre application (Theme.kt), soit en utilisant une couleur personnalisée :
 
 ```kotlin
-val example = Color(0xFFD1C1D) // Couleur personnalisée (Rouge ici)
+val example = Color(0xFFFF0000) // Couleur personnalisée (Rouge ici)
 ```
 
 Pour les couleurs personnalisées, comme en HTML, vous pouvez utiliser le code hexadécimal de la couleur. Il faut juste ajouter `0xFF` au début du code pour indiquer que c'est une couleur opaque. Vous l'avez compris, il est donc également possible de jouer sur l'opacité pour avoir une couleur plus ou moins transparente.
@@ -289,11 +297,11 @@ L'idée ici est de vous faire constater le bon fonctionnement. Voilà le code de
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -305,7 +313,6 @@ import androidx.compose.ui.unit.sp
 import com.example.testcomposant.R
 import com.example.testcomposant.ui.theme.MyApplicationTheme
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ElementList(
     title: String = "Mon titre",
@@ -353,18 +360,20 @@ Nous avons réalisé notre premier composant, nous allons maintenant utiliser le
 Pour ça nous allons créer une liste (`LazyColumn` étant l'équivalent d'un `RecyclerView`, mais en beaucoup plus simple). Celle-ci contiendra le composant que vous avez créé.
 
 ```kotlin
-val myData = listOf("Card 1","Card 2","Card 3","Card 4","Card 5","Card 6","Card 7","Card 8","Card 9","Card 10")
+Column(modifier = Modifier.padding(innerPadding)) {
+    val myData = listOf("Card 1","Card 2","Card 3","Card 4","Card 5","Card 6","Card 7","Card 8","Card 9","Card 10")
 
-LazyColumn {
-    items(myData) { item ->
-        ElementList(title = item) {
-            // Code appelé lors du clic sur un élément de la liste.
+    LazyColumn {
+        items(myData) { item ->
+            ElementList(title = item) {
+                // Code appelé lors du clic sur un élément de la liste.
+            }
         }
     }
 }
 ```
 
-Je vous laisse mettre le code en question **à la place** du `Greeting` dans le composant `Scaffold`.
+Je vous laisse mettre le code en question **à la place** du `Greeting` dans le composant `Scaffold`. La `Column` conserve le décalage sous la barre (`innerPadding`) : tout le contenu que nous allons écrire ensuite ira à l'intérieur.
 
 Vous devez obtenir :
 
@@ -439,12 +448,26 @@ Pour ça nous allons ajouter un nouvel attribut dans notre `TopAppBar` :
 navigationIcon = {
     if (selectedItem != null) {
         IconButton(onClick = { selectedItem = null })
-        { Icon(Icons.Default.ArrowBack, "Back") }
+        { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back") }
     }
 },
 ```
 
 Cet attribut va ajouter un bouton retour si un élément est sélectionné. Je vous laisse mettre en place ça dans votre code.
+
+::: warning Deux points pour que ce code compile
+
+La variable `selectedItem` doit être visible à la fois dans la `topBar` et dans le contenu : déplacez sa déclaration juste avant le `Scaffold`.
+
+Les icônes (`Icons.…`) ne sont plus fournies avec Material 3. Ajouter la dépendance suivante dans votre `build.gradle.kts` (celui du module `app`), puis synchroniser le projet :
+
+```kotlin
+implementation("androidx.compose.material:material-icons-core")
+```
+
+Pas de numéro de version ici : il est géré par le « BOM » Compose déjà présent dans votre projet.
+
+:::
 
 ## Utiliser toute la puissance des composants
 
@@ -468,7 +491,7 @@ data class CardContent(val title: String, val content: String, @DrawableRes val 
 
 Nous créons fréquemment des classes dont le but principal est de conserver des données. Dans une telle classe, certaines fonctionnalités standard et fonctions utilitaires sont souvent dérivables mécaniquement à partir des données. Dans Kotlin, cela s'appelle une classe de données et est marqué comme `data`.
 
-La `Data class` est un type de classe en Kotlin qui a pour but de stocker des données. L'avantage de cette classe c'est qu'elle sera automatiquement serializable, et qu'elle va générer automatiquement les méthodes `equals`, `hashCode`, `toString`, etc. Cela permet de simplifier le code et de rendre la classe plus facile à utiliser.
+La `Data class` est un type de classe en Kotlin qui a pour but de stocker des données. L'avantage de cette classe c'est qu'elle va générer automatiquement les méthodes `equals`, `hashCode`, `toString`, etc. Cela permet de simplifier le code et de rendre la classe plus facile à utiliser.
 
 :::
 
@@ -493,7 +516,7 @@ TopAppBar(
     navigationIcon = {
         if (selectedItem != null) {
             IconButton(onClick = { selectedItem = null })
-            { Icon(Icons.Default.ArrowBack, "Back") }
+            { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back") }
         }
     },
     title = { Text("Top App Bar") },
@@ -517,7 +540,7 @@ Je vous laisse tester que votre application fonctionne toujours.
 Une liste c'est bien ! Mais une liste avec des animations c'est encore mieux !
 
 ```kotlin
-AnimatedContent(label = "") (/* Votre Condition OU votre état */ ) { targetState ->
+AnimatedContent(targetState = /* Votre condition OU votre état */, label = "") { targetState ->
     when (targetState) {
         true -> { /* Composant affiché quand la condition est vraie */ }
         false -> { /* Composant affiché quand la condition est fausse */ }
@@ -533,7 +556,7 @@ Je vous laisse intégrer ce code dans votre application afin d'animer le changem
 
 [![Aide mémoire](./res/animation.jpg)](https://storage.googleapis.com/android-stories/compose/Compose_Animation_Cheat_Sheet.pdf)
 
-_Source:_ [Twitter](https://twitter.com/JorgeCastilloPr/status/1579057096360079361)
+_Source :_ [Jorge Castillo](https://x.com/JorgeCastilloPr/status/1579057096360079361)
 
 ## Utiliser les ressources textes
 
@@ -542,8 +565,10 @@ Avoir des composants ne veut pas dire oublier les bonnes pratiques bien au contr
 Une fois vos textes externalisés, vous pouvez les rendre visibles via :
 
 ```kotlin
-getString(R.string.id_de_votre_string_dans_le_xml)
+stringResource(R.string.id_de_votre_string_dans_le_xml)
 ```
+
+`stringResource` est la version « composant » de `getString` : elle s'utilise directement dans vos fonctions `@Composable`.
 
 Je vous laisse utiliser cette méthode aux différents endroits où vous avez mis du texte « en dur ».
 
@@ -565,7 +590,7 @@ Dans cet exemple, nous avons utilisé un état pour gérer l'affichage de notre 
 **(C'est un exemple, à ne pas copier-coller)**
 
 ```kotlin
-val selectedItem = remember { mutableStateOf(null) }
+val selectedItem = remember { mutableStateOf<String?>(null) }
 
 if (selectedItem.value == null) {
     // Nous n'avons pas d'élément sélectionné, nous affichons donc la liste.
@@ -626,6 +651,7 @@ Un peu de détail sur le composant LoginScreen :
 L'utilisation de ces deux composants, dans un Scaffold :
 
 ```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyApp() {
     Scaffold(
@@ -681,7 +707,7 @@ Nous avons vu dans notre introduction Android que nous avions besoin de demander
 
 ::: tip Accompanist
 
-Accompanist est une librairie de transition, elle existe le temps que Compose évolue, mûrisse et que les fonctionnalités soient intégrées dans Compose (ou pas, mais c'est un autre débat).
+Accompanist est une librairie de transition : elle accueille des fonctionnalités le temps qu'elles soient intégrées dans Compose. La plupart de ses modules ont d'ailleurs déjà été intégrés puis retirés, la gestion des permissions fait partie de ceux qui restent.
 
 :::
 
@@ -689,10 +715,10 @@ Pour rester dans le thème du Bluetooth, nous allons regarder comment demander l
 
 ### Ajouter la librairie
 
-Pour ajouter la librairie, nous allons devoir modifier notre fichier `build.gradle` (celui dans `app` du projet). Nous allons ajouter la dépendance suivante :
+Pour ajouter la librairie, nous allons devoir modifier notre fichier `build.gradle.kts` (celui dans `app` du projet). Nous allons ajouter la dépendance suivante :
 
-```groovy
-    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
+```kotlin
+implementation("com.google.accompanist:accompanist-permissions:0.37.3")
 ```
 
 Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
@@ -708,9 +734,9 @@ Avant de demander les permissions, nous allons devoir les déclarer pour que l'a
     tools:targetApi="s" />
 <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
-<!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<!-- Anciennes permissions BLE (jusqu'à Android 11 inclus) -->
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
 
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -735,7 +761,9 @@ Quelques explications :
 - `toCheckPermissions` est une liste de permissions à vérifier. Dans notre cas, nous allons vérifier les permissions pour le Bluetooth. En fonction de la version d'Android, nous n'allons pas vérifier les mêmes permissions. C'est pour ça que nous avons une condition qui permet de vérifier la version d'Android.
 - `rememberMultiplePermissionsState` est un état qui va contenir l'état de la demande de permission. Cet état va nous permettre de savoir si les permissions sont accordées ou non.
 
-Maintenant que nous avons notre état, nous allons pouvoir l'utiliser pour demander les permissions à l'utilisateur. Pour ça nous allons utiliser un composant nommé `PermissionRequired` :
+Cette librairie est marquée « expérimentale » : comme pour la `TopAppBar`, il faut ajouter `@OptIn(ExperimentalPermissionsApi::class)` au-dessus de votre composant.
+
+Maintenant que nous avons notre état, nous allons pouvoir l'utiliser pour demander les permissions à l'utilisateur. Pour ça, un simple test sur l'état des permissions suffit :
 
 ```kotlin
 if (!permissionState.allPermissionsGranted) {
@@ -784,7 +812,7 @@ Cette interface sera également recomposée à chaque fois que nous indiquerons 
 
 ![Recomposition](./res/lifecycle-composition.png)
 
-[En savoir plus sur la recomposition](https://developer.android.com/jetpack/compose/lifecycle?hl=fr)
+[En savoir plus sur la recomposition](https://developer.android.com/develop/ui/compose/lifecycle?hl=fr)
 
 ### Le ViewModel
 
@@ -800,13 +828,13 @@ Notre projet va évoluer un peu, voici les éléments que nous allons devoir ajo
 
 - `ScanViewModel.kt` : Le ViewModel qui va contenir la logique de notre écran.
 - `ScanScreen.kt` : Le composant qui va contenir l'interface de notre écran (notre liste et nos boutons d'actions).
-- `ApplicationRoot.kt` : Une activité qui sera appelée par la plateforme Android, elle nous permettra d'avoir accès au contexte de l'application depuis notre ViewModel.
+- `ApplicationRoot.kt` : Une classe `Application` qui sera appelée par la plateforme Android au lancement, elle nous permettra d'avoir accès au contexte de l'application depuis notre ViewModel.
 
 ::: tip Pas d'inquiétude
 
 Ici, il faut bien voir que je vous communique une façon correcte de faire. Nous pourrions évidemment tout simplifier en mettant tout dans le même fichier (dans la vue par exemple). Mais à mon sens, il est important de comprendre dès le début les bonnes pratiques.
 
-Pour revenir au `Context`, il est possible de le récupérer depuis la vue via un `LocalContext`. Dans le cas présent cette solution n'est pas possible (ou partiellement), car lors de la « recomposition » (en cas de changement dans les données) de la vue, notre viewModel sera dans certains cas détruit et recréé et nous perdrons nos données.
+Pour revenir au `Context`, il est possible de le récupérer depuis la vue via un `LocalContext`. Mais ce contexte est celui de l'`Activity`, et notre ViewModel vit plus longtemps qu'elle (il survit par exemple à une rotation de l'écran). S'il conservait ce contexte, il garderait en mémoire une `Activity` détruite : c'est une fuite mémoire. Le contexte de l'application, lui, vit aussi longtemps que l'application : nous pouvons le conserver sans risque.
 
 :::
 
@@ -814,14 +842,18 @@ Pour revenir au `Context`, il est possible de le récupérer depuis la vue via u
 
 Pour que nous puissions faire notre scan en arrière-plan et échanger les données entre la `View` et le `ViewModel` nous allons avoir besoin de quelques librairies :
 
-```groovy
-implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.2")
-implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.2")
-implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.2")
-implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.2")
+```kotlin
+implementation("androidx.lifecycle:lifecycle-runtime-compose:2.11.0")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0")
 ```
 
-Ajouter ces dépendances dans votre fichier `build.gradle` (celui dans `app` du projet). Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
+Ajouter ces dépendances dans votre fichier `build.gradle.kts` (celui dans `app` du projet). Il faut ensuite synchroniser le projet avec les modifications (bandeau bleu en haut).
+
+::: warning Une erreur à la compilation ?
+
+Les librairies récentes demandent parfois un `compileSdk` plus élevé que celui de votre projet (le message d'erreur indique la version attendue, par exemple 37). Il suffit alors d'ajuster la valeur de `compileSdk` dans le même fichier, puis de synchroniser à nouveau.
+
+:::
 
 [Plus d'informations](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 
@@ -879,6 +911,7 @@ Quelques explications :
 - `scanItems` est un état qui va contenir la liste des appareils scannés. Cet état va être mis à jour à chaque fois que nous allons scanner un nouvel appareil.
 - `isScanning` est un état qui va contenir l'état du scan. Cet état va être mis à jour à chaque fois que nous allons démarrer ou arrêter le scan.
 - `LazyColumn` est un composant qui permet d'afficher une liste. Il est équivalent à un `RecyclerView` sur Android sans Compose. Cette liste contiendra autant d'éléments que d'appareils scannés.
+- `R.drawable.baseline_bluetooth_24` est une icône à ajouter à votre projet : clic droit sur `res` > New > Vector Asset, puis chercher « bluetooth ».
 
 ### Le code du ScanViewModel
 
@@ -925,12 +958,12 @@ class ScanViewModel : ViewModel() {
             }
 
             // On lance le scan BLE à la souscription de scanFlow
-            bluetoothLeScanner.startScan(scanFilters, scanSettings, scanCallback)
+            bluetoothLeScanner?.startScan(scanFilters, scanSettings, scanCallback)
 
             delay(10000)
 
             // Lorsque scanFlow est stoppé, on stoppe le scan BLE
-            bluetoothLeScanner.stopScan(scanCallback)
+            bluetoothLeScanner?.stopScan(scanCallback)
 
             // On indique que nous ne sommes plus en train de scanner
             isScanningFlow.value = false
@@ -949,10 +982,10 @@ Quelques explications :
 - `scanItemsFlow` est un `Flow` qui va contenir la liste des appareils scannés. Ce `Flow` va être mis à jour à chaque fois que nous allons scanner un nouvel appareil.
 - `isScanningFlow` est un `Flow` qui va contenir l'état du scan. Ce `Flow` va être mis à jour à chaque fois que nous allons démarrer ou arrêter le scan.
 - `scanJob` est un `Job` qui va contenir le processus de scan. Ce `Job` sera la tâche en cours d'exécution. Il permettra de l'annuler si besoin.
-- `bluetoothLeScanner` est un objet qui permet de scanner les périphériques BLE. C'est un objet fourni par Android.
+- `bluetoothLeScanner` est un objet qui permet de scanner les périphériques BLE. C'est un objet fourni par Android. Il vaut `null` si le Bluetooth est désactivé, d'où les appels avec `?.`.
 - `scanFilters` est une liste de filtres qui permet de filtrer les périphériques scannés. Dans notre cas, nous ne filtrons rien.
 - `scanSettings` est un objet qui permet de définir les paramètres du scan. Dans notre cas, nous définissons le mode de scan en `SCAN_MODE_LOW_LATENCY` (le mode le plus rapide, pour avoir les résultats le plus rapidement possible).
-- `scanResultsSet` est un `Set` qui va contenir les résultats du scan. Nous utilisons un `Set` pour éviter d'avoir des doublons dans notre liste.
+- `scanResultsSet` est une `Map` qui va contenir les résultats du scan, rangés par adresse de l'appareil. Cela nous évite d'avoir des doublons dans notre liste.
 - `startScan` est une fonction qui permet de démarrer le scan. Cette fonction va être appelée lors du clic sur le bouton « Débuter le scan ».
 - `clearScanItems` est une fonction qui permet de vider la liste des appareils scannés. Cette fonction va être appelée lors du clic sur le bouton « Vider la liste ».
 - `scanCallback` est un objet qui va être appelé à chaque résultat de scan. Cet objet va nous permettre de mettre à jour notre liste des appareils scannés.
@@ -1021,7 +1054,7 @@ En déclarant notre `ApplicationRoot` dans le `AndroidManifest.xml`, nous indiqu
 
 Celle-ci n'affichera rien, mais elle sera lancée en premier. C'est ce que nous appelons un point d'entrée, « elle tiendra » une référence au contexte de l'application. C'est ce qui nous permettra d'accéder au Bluetooth depuis notre ViewModel.
 
-Il n'y a pour l'instant pas d'autre moyen de faire, c'est une limitation de Compose (ou du moins un comportement / astuce à connaitre).
+Ce n'est pas la seule façon de faire : il est aussi possible de passer le contexte en paramètre de la méthode du ViewModel, ou d'hériter d'`AndroidViewModel`. Cette astuce a l'avantage d'être simple, et de fonctionner partout dans votre code.
 
 :::
 
@@ -1049,7 +1082,7 @@ Mais pour l'instant, nous allons nous arrêter là. Nous avons vu les bases, nou
 
 ## Aller plus loin dans la navigation
 
-Vous souhaitez aller plus loin ? Là c'est un exemple très simple, pour découvrir. Dans une application plus complexe, nous aurions besoin de Compose Navigation pour gérer les transitions entre les composants. Vous pouvez retrouver un exemple d'utilisation de Compose Navigation dans la documentation officielle : [Compose Navigation](https://developer.android.com/jetpack/compose/navigation).
+Vous souhaitez aller plus loin ? Là c'est un exemple très simple, pour découvrir. Dans une application plus complexe, nous aurions besoin de Compose Navigation pour gérer les transitions entre les composants. Vous pouvez retrouver un exemple d'utilisation de Compose Navigation dans la documentation officielle : [Compose Navigation](https://developer.android.com/guide/navigation).
 
 Compose Navigation est un composant qui permet de gérer les transitions entre les composants. Il permet de gérer les animations, les transitions, les arguments, etc. C'est l'équivalent d'un routeur dans une application web (react-router, vue-router, etc.)
 

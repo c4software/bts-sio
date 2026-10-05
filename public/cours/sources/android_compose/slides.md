@@ -1,6 +1,6 @@
 # Introduction à Android Compose
 
-Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www.playmoweb.com)
+Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
 ---
 
@@ -44,7 +44,7 @@ fun Greeting(name: String) {
 
 ---
 
-Le composant est un principe de base de la conception d'interface utilisateur en 2023.
+Le composant est un principe de base de la conception d'interface utilisateur moderne.
 
 ---
 
@@ -91,7 +91,7 @@ Des briques de base d'une interface.
 - Android (Maintenu par Google).
 - Desktop (Compose Multiplatform).
 - iOS (Compose Multiplatform).
-- Web (Compose Multiplatform, mais expérimental).
+- Web (Compose Multiplatform, encore en bêta).
 
 ---
 
@@ -109,8 +109,8 @@ Des briques de base d'une interface.
 
 - Compose est la nouvelle façon de faire des interfaces.
 - Poussé par Google.
-- En cours de développement.
-- En cours d'adoption par les entreprises.
+- Stable depuis 2021, en évolution constante.
+- Largement adopté par les entreprises.
 
 ---
 
