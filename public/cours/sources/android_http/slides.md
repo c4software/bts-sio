@@ -2,6 +2,12 @@
 
 ---
 
+## La permission
+
+- `<uses-permission android:name="android.permission.INTERNET"/>`
+
+---
+
 ### Mais avant…
 
 ## Les Threads
@@ -32,14 +38,14 @@
 - Asynchrone, vous connaissez ?
 - Un mot magique… `suspend`
 
-```txt
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8'
+```kotlin
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
 ```
 
 ---
 
-## OkHttp (3)
+## OkHttp
 
 - RestClient
 - Http2
@@ -48,9 +54,9 @@ implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8'
 
 ---
 
-```txt
-implementation 'com.squareup.okhttp3:okhttp:4.7.2'
-implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+```kotlin
+implementation("com.squareup.okhttp3:okhttp:5.5.0")
+implementation("com.squareup.okhttp3:logging-interceptor:5.5.0")
 ```
 
 ---
@@ -61,8 +67,8 @@ implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
 ---
 
-```txt
-implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+```kotlin
+implementation("com.squareup.retrofit2:converter-gson:3.0.0")
 ```
 
 ---
@@ -76,9 +82,8 @@ implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
 ---
 
-```txt
-implementation 'com.squareup.okhttp3:okhttp:4.7.2'
-implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+```kotlin
+implementation("com.squareup.retrofit2:retrofit:3.0.0")
 ```
 
 ---
@@ -159,12 +164,26 @@ BuildConfig.URI_REMOTE_SERVER ?
 
 ---
 
-```txt
-defaultConfig {
-    buildConfigField "String", "URI_REMOTE_SERVER", "\"http://IP.DE.VOTRE.ESP\""
-…
+```kotlin
+android {
+    defaultConfig {
+        buildConfigField("String", "URI_REMOTE_SERVER", "\"http://IP.DE.VOTRE.ESP\"")
+        // …
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 ```
+
+---
+
+## Une API en `http://` ?
+
+Bloqué par défaut depuis Android 9.
+
+`android:usesCleartextTraffic="true"` sur la balise `<application>` du Manifest.
 
 ---
 
@@ -181,7 +200,7 @@ defaultConfig {
 ### 1 - Obtenir l'APIService
 
 ```kotlin
-ApiService.Builder.getInstance();
+ApiService.instance
 ```
 
 ---

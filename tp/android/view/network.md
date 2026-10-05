@@ -51,7 +51,7 @@ Beaucoup de problématiques seront résolues par des librairies standards dans l
 
 ## Les librairies
 
-Les librairies en question sont à ajouter dans votre fichier `Gradle`, nous allons avoir besoin de :
+Les librairies en question sont à ajouter dans votre fichier `build.gradle.kts` (celui du module `app`), nous allons avoir besoin de :
 
 - OkHttp
 - GSON
@@ -70,11 +70,25 @@ Pour accéder à Internet, il faut ajouter une permission, celle-ci autorisera �
 
 ### La configuration
 
-Vous pouvez, **si vous le souhaitez**, ajouter dans votre `Build.gradle` (app) le domaine de votre API dans le block `defaultConfig`, exemple
+Vous pouvez, **si vous le souhaitez**, ajouter dans votre `build.gradle.kts` (celui du module `app`) le domaine de votre API dans le bloc `defaultConfig`, exemple :
 
-```txt
-    buildConfigField "String", "URI_REMOTE_SERVER", "\"http://IP.DU.ESP\""
+```kotlin
+buildConfigField("String", "URI_REMOTE_SERVER", "\"http://IP.DU.ESP\"")
 ```
+
+Sur un projet récent, la classe `BuildConfig` n'est plus générée par défaut. Il faut l'activer, dans le bloc `android` du même fichier :
+
+```kotlin
+buildFeatures {
+    buildConfig = true
+}
+```
+
+Le code de l'`ApiService` que nous allons écrire plus bas utilise `BuildConfig.DEBUG` : cette activation est donc nécessaire, même si vous ne déclarez pas votre propre champ.
+
+::: warning Une API en `http://` ?
+Depuis Android 9, les appels en clair (`http://`, sans le « s ») sont bloqués par défaut. Si votre API n'est pas en `https://` (c'est le cas de l'ESP), il faut ajouter `android:usesCleartextTraffic="true"` sur la balise `<application>` de votre `AndroidManifest.xml`.
+:::
 
 ### Les CoRoutines Kotlin
 
@@ -112,14 +126,14 @@ Surcouche à OkHttp permettant de simplifier toute la partie des appels réseaux
 - Utilise des annotations (@GET, @POST, @PUT, @DELETE, @HEAD, …)
 - Compatible CoRoutine (mais également sans)
 
-```groovy
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+```kotlin
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
 
-implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-implementation 'com.squareup.okhttp3:okhttp:4.9.3'
-implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+implementation("com.squareup.retrofit2:retrofit:3.0.0")
+implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+implementation("com.squareup.okhttp3:okhttp:5.5.0")
+implementation("com.squareup.okhttp3:logging-interceptor:5.5.0")
 ```
 
 ::: tip
@@ -243,6 +257,17 @@ Cette Interface contient l'ensemble de la logique nécessaire. Le reste, ça va 
 Vous allez donc consommer de la donnée dans des types « natifs » comme si vos données étaient en local, le tout typé. La Rolls donc 👌
 :::
 
+Grâce au `HttpLoggingInterceptor`, chaque appel réseau est visible dans le Logcat (filtrer sur `OkHttp`). C'est votre meilleur allié pour comprendre ce qui est envoyé et reçu :
+
+```text
+--> GET https://reqres.in/api/users
+--> END GET
+<-- 200 https://reqres.in/api/users (663ms)
+content-type: application/json; charset=utf-8
+{"page":1,"per_page":6,"total":12,"total_pages":2,"data":[{"id":1,"email":"george.bluth@reqres.in","first_name":"George", …
+<-- END HTTP (674ms, 1493-byte body)
+```
+
 ::: danger N'oubliez pas la structure
 Ici je me concentre sur le code et pas sur l'organisation. Bien évidemment, dans votre vrai code vous rangerez correctement cette Interface.
 
@@ -316,6 +341,10 @@ Maintenant que nous avons vu la théorie, je vous laisse implémenter la consign
 - Vous devez définir des modèles correspondant au retour.
 - Vous devez organiser votre code en package.
 - Vous devez utiliser un RecyclerView (Natif, ou librairie type Recyclical)
+
+Voici un exemple de résultat (la présentation est libre) :
+
+<img src="./ressources/reqres_result.png" alt="Exemple de résultat : la liste des utilisateurs retournée par l'API" width="250" />
 
 ::: details En panne d'inspiration ?
 [Voilà un exemple de code pour répondre à la consigne](https://github.com/c4software/android-api-course-project)
