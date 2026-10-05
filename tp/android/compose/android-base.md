@@ -104,8 +104,8 @@ Pour la création du projet, rien de spécial à prévoir. Il s'agit ici de suiv
 Lors de la création, Android Studio va nous poser plusieurs questions, nous allons donc choisir :
 
 - Template : Empty Activity (c'est le modèle **Compose**, à ne pas confondre avec « Empty Views Activity »)
-- Language : Kotlin
-- SDK Min. : SDK 26. (ou plus)
+- Minimum SDK : API 26 (ou plus), l'assistant propose l'API 24 par défaut
+- Build configuration language : Kotlin DSL (`build.gradle.kts`)
 
 Je vous laisse suivre les étapes de création d'un nouveau projet.
 
@@ -116,7 +116,7 @@ Je vous laisse suivre les étapes de création d'un nouveau projet.
 
 - Le choix du package est très important. Comme nous avons vu ensemble en cours, le « Package » doit être unique. En effet deux applications ne peuvent pas avoir le même.
 - Choisir un min SDK qui correspond aux cibles des mobiles souhaités. (Si vous êtes en France ou dans un autre pays, il conviendra de faire le bon choix).
-- Kotlin est maintenant le langage à choisir, Java et Kotlin cohabitent sans problème, vous n'aurez donc aucun problème de compatibilité.
+- Kotlin est maintenant le langage par défaut (l'assistant ne pose plus la question), Java et Kotlin cohabitent sans problème, vous n'aurez donc aucun problème de compatibilité.
 
 :::
 
