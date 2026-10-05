@@ -12,12 +12,9 @@ description: "Créer des API avec Kotlin (partie 2) : un CRUD complet avec Ktor 
 
 Dans le [TP précédent](./decouverte.md), nous avons mis en place toute la structure de notre API : la base PostgreSQL, les migrations, Exposed, Koin et une première route qui liste les capteurs.
 
-Dans ce TP, nous allons nous appuyer sur cette structure pour :
+Dans ce TP, nous allons nous appuyer sur cette structure pour **compléter le CRUD des capteurs** : obtenir, créer, modifier et supprimer, avec une gestion propre des erreurs. L'aide diminue au fil des opérations : je vous montre tout pour les deux premières, puis je vous laisse écrire de plus en plus de code. Nous relierons aussi les capteurs à une seconde table, leurs mesures, pour découvrir les jointures. Vous repartirez ensuite de zéro avec une seconde ressource, **les salles**, cette fois sans pas-à-pas.
 
-1. **compléter le CRUD des capteurs** : obtenir, créer, modifier et supprimer, avec une gestion propre des erreurs (partie guidée) ;
-2. **créer une seconde ressource, les salles**, cette fois en autonomie ;
-3. **protéger l'API avec un système de droits** : chaque client s'identifie avec une clé, et son rôle détermine ce qu'il a le droit de faire (partie guidée) ;
-4. **appliquer ces droits aux salles**, en autonomie.
+Nous protégerons enfin l'API avec un **système de droits**, en suivant la même logique : chaque client s'identifie avec une clé, et son rôle détermine ce qu'il a le droit de faire. Nous le mettrons en place ensemble sur les capteurs, puis vous l'appliquerez seuls aux salles.
 
 ## Les slides
 
@@ -34,7 +31,7 @@ Avant de commencer, voici une présentation rapide de la partie théorie de notr
 - Connaître les codes de réponse HTTP : l'[aide-mémoire API](/cheatsheets/api/#un-code-une-signification) les résume. Pour la syntaxe Kotlin (`require`, `?:`, `companion object`, lambdas…), gardez l'[aide-mémoire Kotlin](/cheatsheets/kotlin/) sous la main.
 
 ::: tip Un TP en deux séances
-Ce TP est copieux. Il se découpe naturellement en deux séances : les parties 1 et 2 (le CRUD), puis les parties 3 et 4 (les droits). Les points étape Git marquent les bons endroits pour s'arrêter.
+Ce TP est copieux. Il se découpe naturellement en deux séances : le CRUD (les capteurs, puis les salles), puis les droits.
 :::
 
 ## Objectifs
@@ -44,13 +41,12 @@ Ce TP est copieux. Il se découpe naturellement en deux séances : les parties 1
 - écrire les quatre opérations d'un CRUD avec Ktor et Exposed ;
 - recevoir et valider des données JSON ;
 - renvoyer les bons codes HTTP (`200`, `201`, `204`, `400`, `404`) et des messages d'erreur clairs ;
+- relier deux tables et les lire avec une jointure ;
 - reproduire seuls toute la structure pour une nouvelle ressource ;
 - distinguer l'**authentification** de l'**autorisation** (et donc les codes `401` et `403`) ;
 - mettre en place des droits par rôle, ressource et action.
 
-## Partie 1 : le CRUD des capteurs
-
-### Gérer les erreurs proprement
+## Gérer les erreurs proprement
 
 Que doit répondre l'API si on demande le capteur numéro 99, qui n'existe pas ? Une erreur `404`, avec un message clair. Et si le nom d'un capteur est vide ? Une erreur `400`.
 
@@ -146,9 +142,11 @@ fun ApplicationCall.requireId(): Int =
 
 `parameters["id"]` lit le paramètre `{id}` de l'URL, sous forme de texte. `toIntOrNull()` le convertit en nombre, ou renvoie `null` si ce n'est pas possible (`/v1/capteurs/abc`) : dans ce cas, l'opérateur `?:` lève une erreur `400`.
 
-### Obtenir un capteur
+## Le CRUD des capteurs
 
-Nous allons maintenant ajouter chaque opération en suivant toujours le même chemin : **DAO**, puis **service**, puis **route**.
+Nous allons maintenant ajouter chaque opération en suivant toujours le même chemin : **DAO**, puis **service**, puis **route**. Les deux premières (obtenir, créer) sont entièrement détaillées. Pour la modification, je ne vous donne que le DAO. Pour la suppression, vous écrivez tout.
+
+### Obtenir un capteur
 
 **Le DAO.** Ajoutez la méthode dans l'interface :
 
@@ -333,13 +331,6 @@ curl.exe -i -X POST http://localhost:8080/v1/capteurs -H "Content-Type: applicat
 Un client graphique comme [Postman](https://www.postman.com/) vous évitera ces subtilités.
 :::
 
-### Point étape : Git
-
-```sh
-git add .
-git commit -m "Capteurs : obtenir et créer, gestion des erreurs"
-```
-
 ### Modifier un capteur
 
 Pour la modification, nous utilisons le verbe `PUT` : le client envoie le capteur **complet**, qui remplace l'ancien. On réutilise donc `SensorRequest`.
@@ -513,16 +504,217 @@ Question :
 Les deux règles sont dans le **service** (via `validate()` et `notFound()`). La route ne fait que traduire HTTP en appels de méthodes. Si demain les capteurs peuvent aussi être créés autrement (un import de fichier, une autre route…), les règles s'appliqueront automatiquement, sans être dupliquées.
 :::
 
-## Point étape : Git
+## Relier deux tables : les mesures d'un capteur
 
-```sh
-git add .
-git commit -m "Capteurs : CRUD complet"
+Jusqu'ici, notre API ne manipule qu'une seule table. Dans une vraie base, les tables sont **reliées** entre elles : un capteur produit des **mesures**, et chaque mesure appartient à un capteur. Avant de vous lancer seuls, voyons comment lire deux tables en une seule requête, avec une **jointure**.
+
+Nous allons ajouter la route `GET /v1/capteurs/{id}/mesures`, qui renvoie les mesures d'un capteur. Chaque mesure sera accompagnée du nom et de l'unité de son capteur, deux informations qui ne se trouvent pas dans la table des mesures :
+
+```json
+[
+    { "id": 1, "sensor": "Salle serveur", "value": 21.5, "unit": "°C" },
+    { "id": 2, "sensor": "Salle serveur", "value": 22.1, "unit": "°C" }
+]
 ```
 
-## Partie 2 : à vous de jouer, les salles
+### La table des mesures
 
-Le bâtiment a des **salles**, et il faut maintenant pouvoir les gérer par l'API. Cette fois, pas de pas-à-pas : vous avez tout ce qu'il faut dans la partie précédente. C'est le moment de vérifier que vous avez compris la structure !
+Une nouvelle table, c'est une nouvelle migration. Créez `V2__create_mesure.sql` :
+
+```sql
+CREATE TABLE mesure (
+    id          SERIAL PRIMARY KEY,
+    capteur_id  INTEGER          NOT NULL REFERENCES capteur (id) ON DELETE CASCADE,
+    valeur      DOUBLE PRECISION NOT NULL
+);
+
+-- Quelques mesures de départ : on retrouve le capteur par son nom, plutôt que d'écrire son identifiant en dur
+INSERT INTO mesure (capteur_id, valeur) SELECT id, 21.5 FROM capteur WHERE nom = 'Salle serveur';
+INSERT INTO mesure (capteur_id, valeur) SELECT id, 22.1 FROM capteur WHERE nom = 'Salle serveur';
+INSERT INTO mesure (capteur_id, valeur) SELECT id, 23.4 FROM capteur WHERE nom = 'Salle serveur';
+INSERT INTO mesure (capteur_id, valeur) SELECT id, 48.0 FROM capteur WHERE nom = 'Atelier';
+INSERT INTO mesure (capteur_id, valeur) SELECT id, 51.5 FROM capteur WHERE nom = 'Atelier';
+```
+
+Toute la relation tient dans la colonne `capteur_id` :
+
+- `REFERENCES capteur (id)` en fait une **clé étrangère** : la base refuse une mesure rattachée à un capteur qui n'existe pas ;
+- `ON DELETE CASCADE` : si un capteur est supprimé, ses mesures le sont aussi. Sans cette option, la base refuserait de supprimer un capteur qui possède des mesures, et notre route `DELETE` renverrait une erreur `500`.
+
+Pour rester simple, une mesure ne contient qu'une valeur : pas de date pour l'instant.
+
+### La relation, côté Kotlin
+
+Créez le package `cours.brosseau.measure`, puis le fichier `Measure.kt`, qui décrit ce que l'API renvoie :
+
+```kotlin
+package cours.brosseau.measure
+
+import kotlinx.serialization.Serializable
+
+// Une mesure, accompagnée du nom et de l'unité de son capteur
+@Serializable
+data class Measure(
+    val id: Int,
+    val sensor: String,
+    val value: Double,
+    val unit: String
+)
+```
+
+Remarquez que cet objet ne ressemble pas à la table : il mélange des informations venant de `mesure` (`id`, `value`) et de `capteur` (`sensor`, `unit`). L'objet renvoyé par l'API décrit ce dont le client a besoin, pas la façon dont les données sont rangées.
+
+Puis la table, dans `MeasureTable.kt` :
+
+```kotlin
+package cours.brosseau.measure
+
+import cours.brosseau.sensor.SensorTable
+import org.jetbrains.exposed.v1.core.Table
+
+object MeasureTable : Table("mesure") {
+    val id = integer("id").autoIncrement()
+    val sensorId = reference("capteur_id", SensorTable.id)
+    val value = double("valeur")
+
+    override val primaryKey = PrimaryKey(id)
+}
+```
+
+La nouveauté, c'est `reference("capteur_id", SensorTable.id)`. La colonne reste un entier, mais Exposed sait maintenant qu'elle pointe vers la colonne `id` de la table `capteur` : c'est l'équivalent Kotlin du `REFERENCES` de la migration.
+
+### La jointure
+
+Créez `MeasureDao.kt` :
+
+```kotlin
+package cours.brosseau.measure
+
+import cours.brosseau.sensor.SensorTable
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.jdbc.selectAll
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+
+interface MeasureDao {
+    fun findBySensor(sensorId: Int): List<Measure>
+}
+
+class ExposedMeasureDao : MeasureDao {
+
+    override fun findBySensor(sensorId: Int): List<Measure> = transaction {
+        (MeasureTable innerJoin SensorTable)
+            .selectAll()
+            .where { MeasureTable.sensorId eq sensorId }
+            .orderBy(MeasureTable.id)
+            .map {
+                Measure(
+                    id = it[MeasureTable.id],
+                    sensor = it[SensorTable.name],
+                    value = it[MeasureTable.value],
+                    unit = it[SensorTable.unit]
+                )
+            }
+    }
+}
+```
+
+- `MeasureTable innerJoin SensorTable` réunit les deux tables. Nous n'avons pas précisé sur quelles colonnes : Exposed le déduit de la `reference` déclarée dans `MeasureTable` ;
+- chaque ligne du résultat contient les colonnes **des deux tables** : on lit `it[MeasureTable.value]` aussi bien que `it[SensorTable.name]`.
+
+::: tip Que se passe-t-il derrière ?
+Exposed génère une requête équivalente à celle que vous auriez écrite à la main :
+
+```sql
+SELECT mesure.*, capteur.*
+FROM mesure
+INNER JOIN capteur ON mesure.capteur_id = capteur.id
+WHERE mesure.capteur_id = 1
+ORDER BY mesure.id
+```
+:::
+
+### Le service et la route
+
+Le service vérifie d'abord que le capteur existe. Pas besoin de réécrire cette règle : elle se trouve déjà dans `SensorService`. Créez `MeasureService.kt` :
+
+```kotlin
+package cours.brosseau.measure
+
+import cours.brosseau.sensor.SensorService
+
+class MeasureService(
+    private val measureDao: MeasureDao,
+    private val sensorService: SensorService
+) {
+
+    fun getBySensor(sensorId: Int): List<Measure> {
+        // Lève une 404 si le capteur n'existe pas
+        sensorService.getById(sensorId)
+        return measureDao.findBySensor(sensorId)
+    }
+}
+```
+
+Un service peut donc dépendre d'un autre service : Koin fournira les deux paramètres du constructeur. Déclarez le module dans `MeasureModule.kt` :
+
+```kotlin
+package cours.brosseau.measure
+
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
+import org.koin.dsl.module
+
+val measureModule = module {
+    singleOf(::ExposedMeasureDao) bind MeasureDao::class
+    singleOf(::MeasureService)
+}
+```
+
+Puis ajoutez-le dans `plugins/Koin.kt` (avec l'import `cours.brosseau.measure.measureModule`) :
+
+```kotlin
+modules(sensorModule, measureModule)
+```
+
+Il reste la route. Son adresse commence par `/capteurs` : elle a donc sa place dans `SensorRoutes.kt`. Ajoutez l'import `cours.brosseau.measure.MeasureService`, récupérez le service à côté de `sensorService`, puis déclarez la route dans le bloc `route("/capteurs")` :
+
+```kotlin
+val measureService by inject<MeasureService>()
+```
+
+```kotlin
+get("/{id}/mesures") {
+    call.respond(measureService.getBySensor(call.requireId()))
+}
+```
+
+::: tip Point de contrôle
+Relancez le serveur : les logs indiquent `Migrating schema "public" to version "2 - create mesure"`. Puis testez :
+
+```sh
+curl -i http://localhost:8080/v1/capteurs/1/mesures    # 200 et trois mesures, avec « Salle serveur » et « °C »
+curl -i http://localhost:8080/v1/capteurs/3/mesures    # 200 et une liste vide : []
+curl -i http://localhost:8080/v1/capteurs/99/mesures   # 404 et « Le capteur 99 n'existe pas »
+```
+
+![Les mesures du capteur 1, du capteur 3, puis d'un capteur inexistant](./res/crud-droits_mesures.png)
+:::
+
+Comparez avec la table `mesure` dans Adminer : elle ne contient que des identifiants de capteur. Le nom et l'unité affichés par l'API viennent bien de la table `capteur`, grâce à la jointure.
+
+![La table mesure : uniquement l'identifiant du capteur](./res/crud-droits_adminer_mesure.png)
+
+Question :
+
+- Le capteur 3 et le capteur 99 n'ont aucune mesure. Pourquoi l'un renvoie-t-il `200` et l'autre `404` ?
+
+::: details Réponse
+Le capteur 3 **existe**, il n'a simplement pas encore de mesure : la réponse correcte est une liste vide, avec un code `200`. Le capteur 99 **n'existe pas** : la question elle-même n'a pas de sens, d'où la `404`. Sans la vérification du service, la jointure renverrait une liste vide dans les deux cas, et le client ne pourrait pas faire la différence.
+:::
+
+## Exercice : le CRUD des salles
+
+Le bâtiment a des **salles**, et il faut maintenant pouvoir les gérer par l'API. Cette fois, pas de pas-à-pas : vous repartez de zéro, et tout ce qu'il vous faut se trouve dans le CRUD des capteurs (pas de jointure ici, une salle n'est reliée à rien). C'est le moment de vérifier que vous avez compris la structure !
 
 ### Le cahier des charges
 
@@ -543,7 +735,7 @@ L'API doit proposer le CRUD complet sur `/v1/salles`, avec les mêmes codes HTTP
 
 ### La liste des tâches
 
-1. Une migration `V2__create_salle.sql`, avec la table et les deux salles. La règle « capacité supérieure à 0 » peut aussi être vérifiée par la base, avec une contrainte `CHECK`.
+1. Une migration `V3__create_salle.sql`, avec la table et les deux salles. La règle « capacité supérieure à 0 » peut aussi être vérifiée par la base, avec une contrainte `CHECK`.
 2. Dans un nouveau package `cours.brosseau.room` :
    - `Room.kt` : les classes `Room` et `RoomRequest` (avec `validate()`) ;
    - `RoomTable.kt` : la table Exposed ;
@@ -558,7 +750,7 @@ Ouvrez chaque fichier du package `sensor` à côté de celui que vous écrivez. 
 :::
 
 ::: tip Point de contrôle
-- Au démarrage, les logs indiquent `Migrating schema "public" to version "2 - create salle"`.
+- Au démarrage, les logs indiquent `Migrating schema "public" to version "3 - create salle"`.
 - `GET /v1/salles` renvoie les deux salles :
 
   ![La liste des salles](./res/crud-droits_salles.png)
@@ -801,7 +993,7 @@ fun Route.roomRoutes() {
 Dans `plugins/Koin.kt` :
 
 ```kotlin
-modules(sensorModule, roomModule)
+modules(sensorModule, measureModule, roomModule)
 ```
 
 Dans `plugins/Routing.kt` :
@@ -814,17 +1006,12 @@ route("/v1") {
 ```
 :::
 
-## Point étape : Git
+Le CRUD est maintenant complet pour les deux ressources : c'est le bon moment pour **commiter votre projet** avant de passer aux droits.
 
-```sh
-git add .
-git commit -m "Salles : CRUD complet"
-```
-
-## Partie 3 : les droits
+## Protéger l'API : les droits
 
 ::: tip Vous reprenez à une nouvelle séance ?
-Pensez à relancer la stack (`docker compose up -d --wait`). Votre CRUD des capteurs ou des salles ne fonctionne pas complètement ? Pas de panique : [récupérez le projet à cette étape ici](/demo/ktor/api-capteurs-crud.zip) (parties 1 et 2 terminées). Si Flyway refuse alors de démarrer, c'est que votre base contient vos propres migrations : repartez d'une base vide avec `docker compose down -v`.
+Pensez à relancer la stack (`docker compose up -d --wait`). Votre CRUD des capteurs ou des salles ne fonctionne pas complètement ? Pas de panique : [récupérez le projet ici](/demo/ktor/api-capteurs-crud.zip) (le CRUD des capteurs et des salles terminé). Si Flyway refuse alors de démarrer, c'est que votre base contient vos propres migrations : repartez d'une base vide avec `docker compose down -v`.
 :::
 
 ### Le problème
@@ -874,7 +1061,7 @@ Parce que plusieurs clés partagent les mêmes droits : les dix tablettes des te
 
 ### La migration
 
-Créez `V3__create_droits.sql` :
+Créez `V4__create_droits.sql` :
 
 ```sql
 CREATE TABLE role (
@@ -1059,7 +1246,7 @@ val securityModule = module {
 N'oubliez pas de l'ajouter dans `plugins/Koin.kt` :
 
 ```kotlin
-modules(sensorModule, roomModule, securityModule)
+modules(sensorModule, measureModule, roomModule, securityModule)
 ```
 
 ### L'authentification
@@ -1194,6 +1381,7 @@ Tout est prêt : il ne reste plus qu'à indiquer, pour chaque route, la permissi
 package cours.brosseau.sensor
 
 import cours.brosseau.common.requireId
+import cours.brosseau.measure.MeasureService
 import cours.brosseau.security.Action
 import cours.brosseau.security.withPermission
 import io.ktor.http.HttpStatusCode
@@ -1210,6 +1398,7 @@ import org.koin.ktor.ext.inject
 
 fun Route.sensorRoutes() {
     val sensorService by inject<SensorService>()
+    val measureService by inject<MeasureService>()
 
     route("/capteurs") {
         authenticate("api-key") {
@@ -1219,6 +1408,9 @@ fun Route.sensorRoutes() {
                 }
                 get("/{id}") {
                     call.respond(sensorService.getById(call.requireId()))
+                }
+                get("/{id}/mesures") {
+                    call.respond(measureService.getBySensor(call.requireId()))
                 }
             }
 
@@ -1247,11 +1439,11 @@ fun Route.sensorRoutes() {
 }
 ```
 
-Le code des routes n'a pas changé : il est simplement **emballé** dans deux niveaux. `authenticate("api-key")` exige une clé valide, puis `withPermission` exige la bonne permission. En lisant ce fichier, on voit immédiatement qui peut faire quoi.
+Le code des routes n'a pas changé : il est simplement **emballé** dans deux niveaux. `authenticate("api-key")` exige une clé valide, puis `withPermission` exige la bonne permission. Les mesures d'un capteur se lisent avec le même droit que le capteur lui-même. En lisant ce fichier, on voit immédiatement qui peut faire quoi.
 
 ### Tester
 
-Relancez le serveur : la migration `3 - create droits` s'applique. Regardez d'abord la table `cle_api` dans Adminer : seules les empreintes y figurent, impossible d'y lire les clés.
+Relancez le serveur : la migration `4 - create droits` s'applique. Regardez d'abord la table `cle_api` dans Adminer : seules les empreintes y figurent, impossible d'y lire les clés.
 
 ![La table cle_api : uniquement des empreintes](./res/crud-droits_adminer_cle_api.png)
 
@@ -1311,19 +1503,12 @@ Question :
 - Les routes des salles fonctionnent-elles encore sans clé ? Est-ce normal ?
 
 ::: details Réponse
-Oui : nous n'avons protégé que les capteurs. Les droits ne s'appliquent qu'aux routes placées dans `authenticate` et `withPermission`. C'est l'objet de la dernière partie.
+Oui : nous n'avons protégé que les capteurs. Les droits ne s'appliquent qu'aux routes placées dans `authenticate` et `withPermission`. C'est l'objet de l'exercice qui suit.
 :::
 
-## Point étape : Git
+## Exercice : protéger les salles
 
-```sh
-git add .
-git commit -m "Droits : clés d'API, rôles et permissions sur les capteurs"
-```
-
-## Partie 4 : à vous de jouer, protéger les salles
-
-Dernière étape : appliquer les droits aux salles. Les règles sont les suivantes :
+Il reste à appliquer les droits aux salles, cette fois sans moi. Les règles sont les suivantes :
 
 - tout le monde (lecteur, technicien, administrateur) peut **consulter** les salles ;
 - seul l'**administrateur** peut les créer, les modifier et les supprimer.
@@ -1334,11 +1519,11 @@ Deux choses à faire :
 2. protéger les routes de `RoomRoutes.kt`.
 
 ::: warning Attention au piège
-Ne modifiez pas `V3__create_droits.sql` ! Elle est déjà appliquée : Flyway refuserait de démarrer. Il faut une **nouvelle** migration.
+Ne modifiez pas `V4__create_droits.sql` ! Elle est déjà appliquée : Flyway refuserait de démarrer. Il faut une **nouvelle** migration.
 :::
 
 ::: tip Point de contrôle
-- Le serveur démarre et applique la migration `4`.
+- Le serveur démarre et applique la migration `5`.
 - `GET /v1/salles` sans clé renvoie `401`.
 - `GET /v1/salles` avec `cle-lecteur` renvoie `200`.
 - `POST /v1/salles` avec `cle-technicien` renvoie `403`.
@@ -1346,12 +1531,12 @@ Ne modifiez pas `V3__create_droits.sql` ! Elle est déjà appliquée : Flyway re
 :::
 
 ::: details Coup de pouce : la migration
-Inspirez-vous de la dernière requête de `V3__create_droits.sql` : seules la ressource et la liste des couples (rôle, action) changent.
+Inspirez-vous de la dernière requête de `V4__create_droits.sql` : seules la ressource et la liste des couples (rôle, action) changent.
 :::
 
 ::: details Voir l'une des solutions possibles
 ```sql
--- V4__permissions_salle.sql
+-- V5__permissions_salle.sql
 -- Les salles : seul l'administrateur peut les modifier, tout le monde peut les consulter
 INSERT INTO permission (role_id, ressource, action)
 SELECT r.id, 'salles', a.action
@@ -1434,13 +1619,6 @@ Question :
 Rien ! Il suffit d'une nouvelle migration qui ajoute la permission (technicien, salles, update). Les routes déclarent la permission nécessaire, et c'est la base qui décide quel rôle la possède. Séparer le « quoi » (le code) du « qui » (les données) rend les droits faciles à faire évoluer.
 :::
 
-## Point étape : Git
-
-```sh
-git add .
-git commit -m "Droits : protection des salles"
-```
-
 ## Conclusion
 
 Dans ce TP, vous avez :
@@ -1448,15 +1626,18 @@ Dans ce TP, vous avez :
 - complété un CRUD avec Ktor et Exposed, en suivant toujours le même chemin : DAO, service, route ;
 - centralisé la gestion des erreurs avec StatusPages, pour renvoyer des codes HTTP et des messages cohérents ;
 - validé les données reçues dans le service ;
+- relié deux tables par une clé étrangère, puis lu les deux avec une jointure ;
 - reproduit seuls toute la structure pour une nouvelle ressource ;
 - mis en place un système de droits : authentification par clé d'API (`401`), puis autorisation par rôle, ressource et action (`403`) ;
 - fait évoluer la base uniquement par de nouvelles migrations.
 
 Cette organisation (des couches bien séparées, des migrations, des droits déclarés sur chaque route) est celle de nombreuses API professionnelles. Ajouter une nouvelle ressource suit maintenant toujours la même recette.
 
+N'oubliez pas de **commiter votre projet** !
+
 ### Le projet complet
 
-[Le projet complet de ce TP est téléchargeable ici](/demo/ktor/api-capteurs-final.zip) (les quatre parties terminées). Pour le lancer, depuis le dossier décompressé :
+[Le projet complet de ce TP est téléchargeable ici](/demo/ktor/api-capteurs-final.zip). Pour le lancer, depuis le dossier décompressé :
 
 ```sh
 docker compose up -d --wait
@@ -1473,7 +1654,8 @@ Si vous lancez ce projet alors que la base contient déjà les tables de votre p
 
 Vous êtes en avance ? Voici quelques pistes :
 
-- **Relier les capteurs aux salles** : ajoutez une colonne `salle_id` à la table `capteur` (nouvelle migration, avec une clé étrangère), puis une route `GET /v1/salles/{id}/capteurs` qui liste les capteurs d'une salle. Regardez du côté de `innerJoin` dans Exposed.
+- **Relier les capteurs aux salles** : ajoutez une colonne `salle_id` à la table `capteur` (nouvelle migration, avec une clé étrangère), puis une route `GET /v1/salles/{id}/capteurs` qui liste les capteurs d'une salle. C'est la même recette que pour les mesures : `reference`, puis `innerJoin`.
+- **Enregistrer des mesures** : ajoutez une route `POST /v1/capteurs/{id}/mesures`, puis une date à chaque mesure (nouvelle migration, et le module `exposed-kotlin-datetime` côté Kotlin).
 - **Filtrer** : `GET /v1/capteurs?type=co2` ne renvoie que les capteurs de ce type. Le paramètre se lit avec `call.request.queryParameters["type"]`.
 - **Les tests automatisés** : Ktor fournit `testApplication`, qui permet d'appeler les routes dans un test, sans lancer de vrai serveur.
 - **Documenter l'API** : générez une page Swagger qui liste toutes les routes, avec le plugin OpenAPI de Ktor.
