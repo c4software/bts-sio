@@ -145,7 +145,7 @@ Voici les briques que nous allons assembler. Pas de panique, nous les verrons un
 
 ### Le générateur
 
-JetBrains propose un générateur de projet en ligne : [start.ktor.io](https://start.ktor.io/). Ouvrez-le et renseignez le champ **Project artifact** avec `com.example.api-capteurs`. Laissez les autres options (bouton **Configure**) par défaut : Gradle et Netty.
+JetBrains propose un générateur de projet en ligne : [start.ktor.io](https://start.ktor.io/). Ouvrez-le et renseignez le champ **Project artifact** avec `cours.brosseau.api-capteurs`. Laissez les autres options (bouton **Configure**) par défaut : Gradle et Netty.
 
 ![Le générateur de projet Ktor](./res/decouverte_generateur.png)
 
@@ -253,7 +253,7 @@ plugins {
     alias(libs.plugins.ktor)
 }
 
-group = "com.example"
+group = "cours.brosseau"
 version = "1.0.0"
 
 repositories {
@@ -261,7 +261,7 @@ repositories {
 }
 
 application {
-    mainClass.set("com.example.ApplicationKt")
+    mainClass.set("cours.brosseau.ApplicationKt")
 }
 
 kotlin {
@@ -379,7 +379,7 @@ ktor {
         port = ${?PORT}
     }
     application {
-        modules = [ com.example.ApplicationKt.module ]
+        modules = [ cours.brosseau.ApplicationKt.module ]
     }
 }
 
@@ -415,12 +415,12 @@ Ajoutez aussi `src/main/resources/logback.xml`, qui règle l'affichage des logs 
 
 ### L'application
 
-Le code source va dans `src/main/kotlin/com/example`. Créez ce dossier (le *package* `com.example`) puis le fichier `Application.kt` :
+Le code source va dans `src/main/kotlin/cours/brosseau`. Créez ce dossier (le *package* `cours.brosseau`) puis le fichier `Application.kt` :
 
 ```kotlin
-package com.example
+package cours.brosseau
 
-import com.example.plugins.configureRouting
+import cours.brosseau.plugins.configureRouting
 import io.ktor.server.application.Application
 import io.ktor.server.netty.EngineMain
 
@@ -434,7 +434,7 @@ fun Application.module() {
 ```
 
 - `main` démarre le serveur Netty, qui lit `application.conf` ;
-- la configuration indique que le module de l'application est `com.example.ApplicationKt.module` : c'est la fonction `module()` juste en dessous ;
+- la configuration indique que le module de l'application est `cours.brosseau.ApplicationKt.module` : c'est la fonction `module()` juste en dessous ;
 - `module()` configure l'application. Pour l'instant, elle ne fait qu'une chose : déclarer les routes.
 
 IntelliJ souligne `configureRouting` en rouge ? C'est normal : nous créons cette fonction juste après.
@@ -445,10 +445,10 @@ En Kotlin, une fonction peut exister en dehors de toute classe. Le compilateur l
 
 ### Une première route
 
-Créez le package `com.example.plugins` puis le fichier `Routing.kt` :
+Créez le package `cours.brosseau.plugins` puis le fichier `Routing.kt` :
 
 ```kotlin
-package com.example.plugins
+package cours.brosseau.plugins
 
 import io.ktor.server.application.Application
 import io.ktor.server.response.respondText
@@ -546,10 +546,10 @@ La migration crée la table et y insère trois capteurs, pour que nous ayons des
 
 ### Se connecter à la base au démarrage
 
-Créez le package `com.example.database` puis le fichier `Database.kt` :
+Créez le package `cours.brosseau.database` puis le fichier `Database.kt` :
 
 ```kotlin
-package com.example.database
+package cours.brosseau.database
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -595,10 +595,10 @@ Quatre étapes, dans cet ordre :
 Ajoutez l'appel dans `Application.kt`, avec son import :
 
 ```kotlin
-package com.example
+package cours.brosseau
 
-import com.example.database.configureDatabase
-import com.example.plugins.configureRouting
+import cours.brosseau.database.configureDatabase
+import cours.brosseau.plugins.configureRouting
 import io.ktor.server.application.Application
 import io.ktor.server.netty.EngineMain
 
@@ -648,10 +648,10 @@ Dans Adminer, le serveur s'appelle `postgres` et non `localhost` : Adminer tourn
 
 ### L'objet renvoyé par l'API
 
-Nous allons maintenant écrire nos couches, de bas en haut. Commençons par ce que l'API renverra : un capteur. Créez le package `com.example.sensor` (toutes les classes liées aux capteurs y seront rangées) puis le fichier `Sensor.kt` :
+Nous allons maintenant écrire nos couches, de bas en haut. Commençons par ce que l'API renverra : un capteur. Créez le package `cours.brosseau.sensor` (toutes les classes liées aux capteurs y seront rangées) puis le fichier `Sensor.kt` :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
 import kotlinx.serialization.Serializable
 
@@ -678,7 +678,7 @@ Comme dans les autres TP, le **code** (classes, variables, fonctions) est écrit
 Pour interroger la table `capteur`, Exposed a besoin de connaître sa structure. Créez `SensorTable.kt` dans le même package :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
 import org.jetbrains.exposed.v1.core.Table
 
@@ -714,7 +714,7 @@ Un ORM (*Object-Relational Mapping*) fait le lien entre les tables de la base et
 Le DAO (*Data Access Object*) contient les requêtes vers la base. Créez `SensorDao.kt` :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.jdbc.selectAll
@@ -767,7 +767,7 @@ Le service (la couche du dessus) va dépendre de l'**interface** `SensorDao`, pa
 Créez `SensorService.kt` :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
 class SensorService(private val sensorDao: SensorDao) {
 
@@ -784,7 +784,7 @@ Remarquez que le service **reçoit** son DAO dans son constructeur : il ne le cr
 C'est le rôle de **Koin**. On lui décrit comment construire nos objets, et il les crée puis les fournit là où on en a besoin. Créez `SensorModule.kt` :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
@@ -802,9 +802,9 @@ val sensorModule = module {
 Il reste à démarrer Koin. Créez `plugins/Koin.kt` :
 
 ```kotlin
-package com.example.plugins
+package cours.brosseau.plugins
 
-import com.example.sensor.sensorModule
+import cours.brosseau.sensor.sensorModule
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import org.koin.ktor.plugin.Koin
@@ -829,7 +829,7 @@ Sans injection de dépendances, il faudrait écrire quelque part `val service = 
 Pour que Ktor sache transformer nos objets en JSON, il faut installer le plugin **ContentNegotiation**. Créez `plugins/Serialization.kt` :
 
 ```kotlin
-package com.example.plugins
+package cours.brosseau.plugins
 
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.Application
@@ -853,7 +853,7 @@ fun Application.configureSerialization() {
 Dernière couche : la route. Créez `SensorRoutes.kt` dans le package `sensor` :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
 import io.ktor.server.response.respond
 import io.ktor.server.routing.Route
@@ -879,9 +879,9 @@ fun Route.sensorRoutes() {
 Branchez ces routes dans `plugins/Routing.kt`, sous le préfixe `/v1` :
 
 ```kotlin
-package com.example.plugins
+package cours.brosseau.plugins
 
-import com.example.sensor.sensorRoutes
+import cours.brosseau.sensor.sensorRoutes
 import io.ktor.server.application.Application
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
@@ -903,12 +903,12 @@ fun Application.configureRouting() {
 Et enfin, complétez `Application.kt` :
 
 ```kotlin
-package com.example
+package cours.brosseau
 
-import com.example.database.configureDatabase
-import com.example.plugins.configureKoin
-import com.example.plugins.configureRouting
-import com.example.plugins.configureSerialization
+import cours.brosseau.database.configureDatabase
+import cours.brosseau.plugins.configureKoin
+import cours.brosseau.plugins.configureRouting
+import cours.brosseau.plugins.configureSerialization
 import io.ktor.server.application.Application
 import io.ktor.server.netty.EngineMain
 
@@ -980,7 +980,7 @@ api-capteurs/
     │   ├── logback.xml              Les logs
     │   └── db/migration/
     │       └── V1__create_capteur.sql
-    └── kotlin/com/example/
+    └── kotlin/cours/brosseau/
         ├── Application.kt           Point d'entrée : assemble les briques
         ├── database/Database.kt     Pool, migrations, Exposed
         ├── plugins/                 Une brique de configuration par fichier

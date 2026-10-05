@@ -56,10 +56,10 @@ Que doit répondre l'API si on demande le capteur numéro 99, qui n'existe pas ?
 
 Plutôt que de gérer ces cas dans chaque route, nous allons utiliser des **exceptions** : n'importe quelle couche (le plus souvent le service) lève une exception, et un plugin Ktor, **StatusPages**, la transforme en réponse HTTP.
 
-Commencez par créer le package `com.example.common` et le fichier `ApiException.kt` :
+Commencez par créer le package `cours.brosseau.common` et le fichier `ApiException.kt` :
 
 ```kotlin
-package com.example.common
+package cours.brosseau.common
 
 import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.Serializable
@@ -76,10 +76,10 @@ data class ErrorResponse(val message: String)
 Puis créez `plugins/ErrorHandling.kt` :
 
 ```kotlin
-package com.example.plugins
+package cours.brosseau.plugins
 
-import com.example.common.ApiException
-import com.example.common.ErrorResponse
+import cours.brosseau.common.ApiException
+import cours.brosseau.common.ErrorResponse
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -134,7 +134,7 @@ fun Application.module() {
 Plusieurs routes vont recevoir un identifiant dans l'URL (`/v1/capteurs/{id}`). Pour ne pas répéter la lecture et la vérification de ce paramètre, créez une petite fonction dans `common/CallExtensions.kt` :
 
 ```kotlin
-package com.example.common
+package cours.brosseau.common
 
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
@@ -176,9 +176,9 @@ override fun findById(id: Int): Sensor? = transaction {
 **Le service.** C'est lui qui décide que « pas de capteur » signifie « erreur 404 » :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
-import com.example.common.ApiException
+import cours.brosseau.common.ApiException
 import io.ktor.http.HttpStatusCode
 
 class SensorService(private val sensorDao: SensorDao) {
@@ -194,7 +194,7 @@ class SensorService(private val sensorDao: SensorDao) {
 
 Remarquez que `getById` renvoie un `Sensor` et non un `Sensor?` : si la fonction se termine normalement, c'est que le capteur existe. La couche du dessus n'a plus à gérer le cas `null`.
 
-**La route.** Dans `SensorRoutes.kt`, ajoutez l'import `com.example.common.requireId`, puis à l'intérieur du bloc `route("/capteurs")` :
+**La route.** Dans `SensorRoutes.kt`, ajoutez l'import `cours.brosseau.common.requireId`, puis à l'intérieur du bloc `route("/capteurs")` :
 
 ```kotlin
 get("/{id}") {
@@ -221,7 +221,7 @@ L'option `-i` affiche aussi les en-têtes de la réponse, et donc le code HTTP :
 Pour créer un capteur, le client envoie du JSON. Mais il n'envoie pas tout : l'`id`, c'est la base qui le choisit. Il nous faut donc un second objet, qui décrit **ce que l'API reçoit**. Complétez `Sensor.kt` :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
 import kotlinx.serialization.Serializable
 
@@ -450,9 +450,9 @@ Là encore, remplacez `4` par l'identifiant de votre capteur « Hall ».
 Votre fichier `SensorRoutes.kt` doit maintenant ressembler à ceci :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
-import com.example.common.requireId
+import cours.brosseau.common.requireId
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
@@ -544,7 +544,7 @@ L'API doit proposer le CRUD complet sur `/v1/salles`, avec les mêmes codes HTTP
 ### La liste des tâches
 
 1. Une migration `V2__create_salle.sql`, avec la table et les deux salles. La règle « capacité supérieure à 0 » peut aussi être vérifiée par la base, avec une contrainte `CHECK`.
-2. Dans un nouveau package `com.example.room` :
+2. Dans un nouveau package `cours.brosseau.room` :
    - `Room.kt` : les classes `Room` et `RoomRequest` (avec `validate()`) ;
    - `RoomTable.kt` : la table Exposed ;
    - `RoomDao.kt` : l'interface et son implémentation ;
@@ -586,7 +586,7 @@ INSERT INTO salle (nom, batiment, etage, capacite) VALUES
 ::: details Coup de pouce : le modèle et la table
 ```kotlin
 // Room.kt
-package com.example.room
+package cours.brosseau.room
 
 import kotlinx.serialization.Serializable
 
@@ -616,7 +616,7 @@ data class RoomRequest(
 
 ```kotlin
 // RoomTable.kt
-package com.example.room
+package cours.brosseau.room
 
 import org.jetbrains.exposed.v1.core.Table
 
@@ -635,7 +635,7 @@ object RoomTable : Table("salle") {
 ::: details Voir l'une des solutions possibles
 ```kotlin
 // RoomDao.kt
-package com.example.room
+package cours.brosseau.room
 
 import org.jetbrains.exposed.v1.core.ResultRow
 import org.jetbrains.exposed.v1.core.eq
@@ -706,9 +706,9 @@ class ExposedRoomDao : RoomDao {
 
 ```kotlin
 // RoomService.kt
-package com.example.room
+package cours.brosseau.room
 
-import com.example.common.ApiException
+import cours.brosseau.common.ApiException
 import io.ktor.http.HttpStatusCode
 
 class RoomService(private val roomDao: RoomDao) {
@@ -738,7 +738,7 @@ class RoomService(private val roomDao: RoomDao) {
 
 ```kotlin
 // RoomModule.kt
-package com.example.room
+package cours.brosseau.room
 
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
@@ -754,9 +754,9 @@ val roomModule = module {
 ::: details Voir l'une des solutions possibles
 ```kotlin
 // RoomRoutes.kt
-package com.example.room
+package cours.brosseau.room
 
-import com.example.common.requireId
+import cours.brosseau.common.requireId
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
@@ -933,10 +933,10 @@ Une empreinte SHA-256 se calcule très vite. Pour un mot de passe choisi par un 
 
 ### Le package security
 
-Créez le package `com.example.security`. Commençons par deux petites définitions, dans `ApiClient.kt` :
+Créez le package `cours.brosseau.security`. Commençons par deux petites définitions, dans `ApiClient.kt` :
 
 ```kotlin
-package com.example.security
+package cours.brosseau.security
 
 // Le « qui » de la requête : le client identifié par sa clé d'API
 data class ApiClient(val name: String, val roleId: Int)
@@ -953,7 +953,7 @@ enum class Action(val code: String) {
 Puis la description des tables, dans `SecurityTables.kt` :
 
 ```kotlin
-package com.example.security
+package cours.brosseau.security
 
 import org.jetbrains.exposed.v1.core.Table
 
@@ -982,7 +982,7 @@ Nous n'avons pas besoin de décrire la table `role` : le code n'utilise que son 
 Le DAO répond à deux questions : « à quel client correspond cette empreinte ? » et « ce rôle a-t-il cette permission ? ». Créez `SecurityDao.kt` :
 
 ```kotlin
-package com.example.security
+package cours.brosseau.security
 
 import org.jetbrains.exposed.v1.core.and
 import org.jetbrains.exposed.v1.core.eq
@@ -1020,7 +1020,7 @@ class ExposedSecurityDao : SecurityDao {
 Le service calcule l'empreinte de la clé reçue avant d'interroger le DAO. Créez `SecurityService.kt` :
 
 ```kotlin
-package com.example.security
+package cours.brosseau.security
 
 import java.security.MessageDigest
 
@@ -1044,7 +1044,7 @@ class SecurityService(private val securityDao: SecurityDao) {
 Et le module Koin, `SecurityModule.kt` :
 
 ```kotlin
-package com.example.security
+package cours.brosseau.security
 
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
@@ -1067,9 +1067,9 @@ modules(sensorModule, roomModule, securityModule)
 Ktor fournit un plugin **Authentication**, avec plusieurs méthodes prêtes à l'emploi. Celle qui nous intéresse s'appelle `bearer` : elle lit l'en-tête `Authorization: Bearer <clé>` et nous confie la vérification de la clé. Créez `plugins/Security.kt` :
 
 ```kotlin
-package com.example.plugins
+package cours.brosseau.plugins
 
-import com.example.security.SecurityService
+import cours.brosseau.security.SecurityService
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.auth.Authentication
@@ -1110,9 +1110,9 @@ fun Application.module() {
 Il reste à vérifier, pour chaque route, que le client a la bonne permission. Nous allons écrire notre propre **plugin de route**, qui s'exécute juste après l'authentification. Créez `security/Permission.kt` :
 
 ```kotlin
-package com.example.security
+package cours.brosseau.security
 
-import com.example.common.ErrorResponse
+import cours.brosseau.common.ErrorResponse
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.createRouteScopedPlugin
 import io.ktor.server.auth.AuthenticationChecked
@@ -1191,11 +1191,11 @@ Voici le trajet d'une requête `DELETE /v1/capteurs/1` avec la clé du technicie
 Tout est prêt : il ne reste plus qu'à indiquer, pour chaque route, la permission nécessaire. Modifiez `SensorRoutes.kt` :
 
 ```kotlin
-package com.example.sensor
+package cours.brosseau.sensor
 
-import com.example.common.requireId
-import com.example.security.Action
-import com.example.security.withPermission
+import cours.brosseau.common.requireId
+import cours.brosseau.security.Action
+import cours.brosseau.security.withPermission
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.auth.authenticate
 import io.ktor.server.request.receive
@@ -1369,11 +1369,11 @@ Après le redémarrage, la table `permission` contient les droits sur les deux r
 
 ```kotlin
 // RoomRoutes.kt
-package com.example.room
+package cours.brosseau.room
 
-import com.example.common.requireId
-import com.example.security.Action
-import com.example.security.withPermission
+import cours.brosseau.common.requireId
+import cours.brosseau.security.Action
+import cours.brosseau.security.withPermission
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.auth.authenticate
 import io.ktor.server.request.receive
