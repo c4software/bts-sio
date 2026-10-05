@@ -45,7 +45,7 @@ Avant de commencer, voici une présentation rapide de la partie théorie de notr
   - **Docker** et Docker Compose (voir l'[aide-mémoire Docker](/cheatsheets/docker/)) ;
   - **Git** (voir l'[aide-mémoire Git](/cheatsheets/git/)).
 
-Pour installer et vérifier tout cela pas à pas, suivez la page [Préparer son poste](/cheatsheets/poste-android/) : chaque étape se termine par un point de contrôle (vous pouvez ignorer la partie sur le téléphone, inutile ici).
+Pour installer et vérifier tout cela pas à pas, suivez la page [Préparer son poste](/cheatsheets/poste-android/) : chaque installation se termine par un point de contrôle (vous pouvez ignorer la partie sur le téléphone, inutile ici).
 
 ::: details Vous utilisez la dev-box ?
 La [dev-box](/cheatsheets/dev-box/) convient parfaitement à ce TP. Il vous faut :
@@ -486,21 +486,9 @@ Les logs se terminent par `Responding at http://0.0.0.0:8080`. Ouvrez [http://lo
 ![Le serveur répond](./res/decouverte_accueil.png)
 :::
 
+Le projet démarre : c'est le bon moment pour initialiser le dépôt (`git init`) et faire un premier commit. Avant de commiter, vérifiez avec `git status` que ni le dossier `build/` ni le dossier `.gradle/` n'apparaissent. Si c'est le cas, revoyez votre fichier `.gitignore`.
+
 Arrêtez le serveur (`Ctrl + C`) : nous allons maintenant le relier à la base de données.
-
-## Point étape : Git
-
-Avant d'aller plus loin, c'est le bon moment pour initialiser le dépôt et faire un premier commit :
-
-```sh
-git init
-git add .
-git commit -m "Création du projet Ktor"
-```
-
-::: tip Point de contrôle
-La commande `git status` ne doit lister ni le dossier `build/`, ni le dossier `.gradle/`. Si c'est le cas, vérifiez votre fichier `.gitignore`.
-:::
 
 ## La base de données : les migrations
 
@@ -513,7 +501,7 @@ La solution : les **migrations**. Ce sont des scripts SQL numérotés, rangés d
 ```
 src/main/resources/db/migration/
 ├── V1__create_capteur.sql      ← appliqué au premier démarrage
-├── V2__create_salle.sql        ← appliqué au démarrage suivant (TP 2)
+├── V2__create_mesure.sql       ← appliqué au démarrage suivant (TP 2)
 └── V3__...
 ```
 
@@ -585,7 +573,7 @@ fun Application.configureDatabase() {
 }
 ```
 
-Quatre étapes, dans cet ordre :
+Quatre opérations, dans cet ordre :
 
 1. **Le pool de connexions** (HikariCP). Ouvrir une connexion à une base de données est lent. Le pool en ouvre quelques-unes (5 au maximum ici) et les **réutilise** d'une requête à l'autre. Les paramètres viennent de `application.conf`.
 2. **Les migrations.** Flyway cherche par défaut ses scripts dans `db/migration` et applique ceux qui manquent.
@@ -644,11 +632,13 @@ Non. Au second démarrage, Flyway voit dans `flyway_schema_history` que la versi
 Dans Adminer, le serveur s'appelle `postgres` et non `localhost` : Adminer tourne lui-même dans un conteneur, et dans le réseau créé par Docker Compose, chaque service est joignable par son nom. Notre application, elle, tourne sur votre machine : elle passe par `localhost:5432`, le port publié par Docker.
 :::
 
-## Le modèle de données
+## La liste des capteurs, couche par couche
+
+La base est prête. Nous allons maintenant écrire nos couches, de bas en haut : le modèle, la table, le DAO, le service, puis la route. Chaque couche tient dans un fichier du package `sensor`.
 
 ### L'objet renvoyé par l'API
 
-Nous allons maintenant écrire nos couches, de bas en haut. Commençons par ce que l'API renverra : un capteur. Créez le package `cours.brosseau.sensor` (toutes les classes liées aux capteurs y seront rangées) puis le fichier `Sensor.kt` :
+Commençons par ce que l'API renverra : un capteur. Créez le package `cours.brosseau.sensor` (toutes les classes liées aux capteurs y seront rangées) puis le fichier `Sensor.kt` :
 
 ```kotlin
 package cours.brosseau.sensor
@@ -709,7 +699,7 @@ Question :
 Un ORM (*Object-Relational Mapping*) fait le lien entre les tables de la base et les objets du langage. Avec Exposed, les requêtes s'écrivent en Kotlin : le compilateur vérifie les noms de colonnes et les types. Une faute de frappe dans un nom de colonne devient une erreur de compilation, au lieu d'une erreur au moment de l'exécution. Et comme les valeurs sont transmises en paramètres, les injections SQL sont évitées.
 :::
 
-## Le DAO : les requêtes
+### Le DAO : les requêtes
 
 Le DAO (*Data Access Object*) contient les requêtes vers la base. Créez `SensorDao.kt` :
 
@@ -762,7 +752,7 @@ Le service (la couche du dessus) va dépendre de l'**interface** `SensorDao`, pa
 - pour changer de technique d'accès aux données, on écrit une nouvelle implémentation sans toucher au service.
 :::
 
-## Le service : les règles métier
+### Le service : les règles métier
 
 Créez `SensorService.kt` :
 
@@ -779,7 +769,7 @@ Pour l'instant, le service se contente de transmettre l'appel au DAO. Il paraît
 
 Remarquez que le service **reçoit** son DAO dans son constructeur : il ne le crée pas lui-même. Mais alors, qui crée le DAO et le donne au service ?
 
-## L'injection de dépendances avec Koin
+### L'injection de dépendances avec Koin
 
 C'est le rôle de **Koin**. On lui décrit comment construire nos objets, et il les crée puis les fournit là où on en a besoin. Créez `SensorModule.kt` :
 
@@ -824,7 +814,7 @@ fun Application.configureKoin() {
 Sans injection de dépendances, il faudrait écrire quelque part `val service = SensorService(ExposedSensorDao())`, et faire passer ce `service` à toutes les routes qui en ont besoin. Avec Koin, chaque classe déclare simplement ce dont elle a besoin (dans son constructeur), et Koin s'occupe de « câbler » l'ensemble. Quand le projet compte des dizaines de classes, la différence est énorme.
 :::
 
-## Le JSON
+### Le JSON
 
 Pour que Ktor sache transformer nos objets en JSON, il faut installer le plugin **ContentNegotiation**. Créez `plugins/Serialization.kt` :
 
@@ -848,7 +838,7 @@ fun Application.configureSerialization() {
 
 `prettyPrint = true` indente le JSON produit. C'est plus lisible pendant le développement (en production, on le retire souvent pour alléger les réponses).
 
-## La route
+### La route
 
 Dernière couche : la route. Créez `SensorRoutes.kt` dans le package `sensor` :
 
@@ -932,7 +922,7 @@ Question :
 Les routes demandent le `SensorService` à Koin : Koin doit donc être démarré **avant** que les routes soient déclarées. De même, la base doit être prête avant qu'une requête ne l'utilise. On configure d'abord les fondations, puis ce qui s'appuie dessus.
 :::
 
-## Tester
+### Tester
 
 Relancez le serveur (`./gradlew run`), puis dans un autre terminal :
 
@@ -955,13 +945,6 @@ Dans **PowerShell**, `curl` est un alias vers une autre commande, qui n'accepte 
 :::
 
 C'est à vous de jouer ! Ajoutez un capteur directement en base, depuis Adminer (menu « Nouvel élément » sur la table `capteur`), puis rappelez la route : votre capteur doit apparaître.
-
-## Point étape : Git
-
-```sh
-git add .
-git commit -m "Liste des capteurs : migration, Exposed, Koin et première route"
-```
 
 ## Récapitulatif
 
@@ -1017,11 +1000,11 @@ Dans ce TP, vous avez :
 - relié ces couches avec Koin ;
 - renvoyé du JSON depuis une route.
 
-Cela fait beaucoup de fichiers pour une seule route, mais la structure est maintenant en place. Dans le [TP suivant](./crud-droits.md), vous verrez que chaque nouvelle fonctionnalité se glisse naturellement dans cette organisation : nous allons compléter le CRUD des capteurs, créer une seconde ressource en autonomie, puis protéger l'API avec un système de droits.
+Cela fait beaucoup de fichiers pour une seule route, mais la structure est maintenant en place. Dans le [TP suivant](./crud-droits.md), vous verrez que chaque nouvelle fonctionnalité se glisse naturellement dans cette organisation : nous allons compléter le CRUD des capteurs, relier deux tables, créer une seconde ressource en autonomie, puis protéger l'API avec un système de droits.
 
-N'oubliez pas votre dernier commit avant de passer à la suite !
+N'oubliez pas de **commiter votre projet**, nous allons le réutiliser dans le TP suivant.
 
-## Le projet complet
+### Le projet complet
 
 [Le projet complet de ce TP est téléchargeable ici](/demo/ktor/api-capteurs-tp1.zip). Pour le lancer, depuis le dossier décompressé :
 
