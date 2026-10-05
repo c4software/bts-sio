@@ -1,6 +1,6 @@
 # Android + BLE
 
-Par [Valentin Brosseau](https://github.com/c4software) / [Playmoweb](https://www.playmoweb.com)
+Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://twitter.com/c4software)
 
 ---
 
@@ -67,7 +67,7 @@ Avec l'application « nRF Connect »
 ## Le Bluetooth et Android
 
 - Les permissions (Manifest + Code)
-- Différent en fonction d'Android ( > Lolipop et Kotlin )
+- Différentes selon la version d'Android (avant / à partir d'Android 12)
 
 ---
 
@@ -150,9 +150,9 @@ Avec l'application « nRF Connect »
     tools:targetApi="s" />
 <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
-<!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<!-- Anciennes permissions BLE (jusqu'à Android 11 inclus) -->
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
 
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -189,7 +189,7 @@ Avec l'application « nRF Connect »
 ```kotlin
 // Partie 1: Demander la permission
 // En fonction de la version d'Android, on demande des permissions différentes
-// Pour Android 12, on demande les permissions BLUETOOTH_CONNECT et BLUETOOTH_SCAN (qui sont moins agressives pour l'utilisateur)
+// À partir d'Android 12, on demande les permissions BLUETOOTH_CONNECT et BLUETOOTH_SCAN (qui sont moins agressives pour l'utilisateur)
 // Pour les autres versions, on demande la permission ACCESS_FINE_LOCATION (Souvent non comprise par l'utilisateur)
 val toCheckPermissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
     listOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -311,8 +311,8 @@ private val scanResultsSet = mutableMapOf<String, ScanResult>()
 ```kotlin
 @SuppressLint("MissingPermission")
 fun startScan(context: Context) {
-    // Récupération du scanner BLE
-    val bluetoothLeScanner = (context.getSystemService(BLUETOOTH_SERVICE) as BluetoothManager).adapter.bluetoothLeScanner
+    // Récupération du scanner BLE (il vaut null si le Bluetooth est désactivé)
+    val bluetoothLeScanner = (context.getSystemService(BLUETOOTH_SERVICE) as BluetoothManager).adapter.bluetoothLeScanner ?: return
 
     // Si nous sommes déjà en train de scanner, on ne fait rien
     if (isScanningFlow.value) return
@@ -340,17 +340,19 @@ fun startScan(context: Context) {
             }
         }
 
-        // On lance le scan BLE à la souscription de scanFlow
+        // On lance le scan BLE
         bluetoothLeScanner.startScan(scanFilters, scanSettings, scanCallback)
 
-        // On attend la durée du scan (10 secondes)
-        delay(scanDuration)
+        try {
+            // On attend la durée du scan (10 secondes)
+            delay(scanDuration)
+        } finally {
+            // Dans tous les cas (fin du délai ou appel à stopScan), on stoppe le scan BLE
+            bluetoothLeScanner.stopScan(scanCallback)
 
-        // Lorsque scanFlow est stoppé, on stoppe le scan BLE
-        bluetoothLeScanner.stopScan(scanCallback)
-
-        // On indique que nous ne sommes plus en train de scanner
-        isScanningFlow.value = false
+            // On indique que nous ne sommes plus en train de scanner
+            isScanningFlow.value = false
+        }
     }
 }
 
@@ -728,280 +730,24 @@ private fun enableNotify() {
 
 ---
 
-## Interagir avec Internet
+## Et la partie réseau ?
+
+L'objet se pilote aussi en HTTP. La suite se trouve dans les autres supports :
+
+- [Android + HTTP](/cours/android_http.html)
+- [Les bases d'Android](/cours/android_base.html)
 
 ---
 
-## Android et le réseau
+## Récapitulatif
+
+- Des permissions, différentes selon la version d'Android.
+- Un scan, géré dans le ViewModel.
+- Une connexion, suivie grâce à des états (`Flow`).
+- Des caractéristiques pour écrire, des notifications pour écouter.
 
 ---
 
-## La permission
+## Des questions ?
 
-- `<uses-permission android:name="android.permission.INTERNET"/>`
-
----
-
-## Les appels réseau
-
----
-
-### Mais avant…
-
-## Les Threads
-
----
-
-- Les appels ne doivent **pas** être faits dans le Thread UI.
-- Le traitement de l'affichage doit être fait sur le Thread UI.
-
----
-
-![what](./img/what2.gif)
-
----
-
-## Les librairies
-
-- OkHttp
-- GSON
-- Retrofit
-- CoRoutines Kotlin
-
----
-
-## Les CoRoutines Kotlin
-
-- Quelques explications…
-- Asynchrone, vous connaissez ?
-- Un mot magique… `suspend`
-
-```txt
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
-implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8'
-```
-
----
-
-## OkHttp (3)
-
-- RestClient
-- Http2
-- Gestion du cache
-- Intercepteur de requête
-
----
-
-```txt
-implementation 'com.squareup.okhttp3:okhttp:4.7.2'
-implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
-```
-
----
-
-## GSON
-
-- Sérialisation / Désérialisation automatique entre un JSON et un Objet Java / Kotlin
-
----
-
-```txt
-implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-```
-
----
-
-## Retrofit
-
-- Une API Http qui s'utilise comme une « Interface Java ».
-- Conversion de données (mapping automatique des objets 🚀).
-- Utilise des annotations (@GET, @POST, @PUT, @DELETE, @HEAD, …)
-- Compatible CoRoutine (mais également sans)
-
----
-
-```txt
-implementation 'com.squareup.okhttp3:okhttp:4.7.2'
-implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
-```
-
----
-
-## Les annotations
-
-```kotlin
-@GET("/status")
-suspend fun readStatus(@Query("identifier") identifier: String): LedStatus
-
-@POST("/status")
-suspend fun writeStatus(@Body status: LedStatus): LedStatus
-```
-
----
-
-## Bon… Et maintenant !
-
----
-
-## Deux fichiers
-
-- Le `ApiService.kt` (l'interface et le builder pour la partie HTTP)
-- La classe / un modèle `LedStatus`
-
----
-
-## L'interface (et le builder)
-
-### Deux méthodes
-
-- ReadStatus
-- WriteStatus
-
----
-
-## L'objet de retour et d'action
-
-`LedStatus`
-
----
-
-## Le model : LedStatus
-
----
-
-- Construit par vous pour interagir.
-- Construit automatiquement par GSON pour avoir le Status.
-
----
-
-[Télécharger le fichier LedStatus.java](https://gist.github.com/c4software/11c170fde7c1f93b0ae9e562856c56a8)
-(À ranger dans le package `….data.modele`)
-
----
-
-## Le ApiService
-
----
-
-- Définition du « connecteur » HTTP.
-- Définition des méthodes.
-
----
-
-[Télécharger le fichier ApiService.kt](https://gist.github.com/c4software/b3eb79cc5649d12e497dbf6d35649dcd)
-(À ranger dans le package `….data.service`)
-
----
-
-BuildConfig.URI_REMOTE_SERVER ?
-
----
-
-## Externaliser la conf c'est bien !
-
-![Niiice](./img/nice.gif)
-
----
-
-```txt
-defaultConfig {
-    buildConfigField "String", "URI_REMOTE_SERVER", "\"http://IP.DU.ESP\""
-…
-}
-```
-
----
-
-## C'est à vous
-
-### Configurer votre projet
-
----
-
-## Faire un appel réseau
-
----
-
-### 1 - Obtenir l'APIService
-
-```kotlin
-ApiService.Builder.getInstance();
-```
-
----
-
-### 2 - L'appel réseau
-
-```kotlin
-CoroutineScope(Dispatchers.IO).launch {
-    runCatching {
-        val readStatus = ApiService.instance.readStatus(ledStatus.identifier)
-        ledStatus.setStatus(readStatus.status)
-        setVisualState()
-    }
-}
-```
-
-On en parle non ?
-
----
-
-### 3 - Profit !
-
----
-
-## C'est à vous !
-
-- Création d'une nouvelle activity (`ActionActivity.kt`)
-- Création du Layout `activity_action.xml`
-- Implémentation des méthodes sur les boutons.
-
----
-
-## ActionActivity
-
-Ne pas oublier la méthode static !
-
-```kotlin
-companion object {
-    private const val IDENTIFIANT_ID = "IDENTIFIANT_ID"
-
-    fun getStartIntent(context: Context, identifiant: String?): Intent {
-        return Intent(context, ActionActivity::class.java).apply {
-            putExtra(IDENTIFIANT_ID, identifiant)
-        }
-    }
-}
-```
-
-⚠️ Utiliser la méthode depuis la `MainActivity.kt`
-
----
-
-## Hey ?! Mais c'est pas le même non ?
-
-Oui… On passe des paramètres… Parlons-en des paramètres justement…
-
----
-
-## Récupérer le paramètre
-
-```kotlin
-private fun getIdentifiant(): String? {
-    return intent.extras?.getString(IDENTIFIANT_ID, null)
-}
-```
-
----
-
-## L'ActionActivity
-
-### En quelques mots…
-
-- Vous devez obtenir l'état de la LED en arrivant dans la Vue.
-- Vous devez modifier l'état de la LED avec le bouton.
-- Vous devez pouvoir obtenir l'état de la LED au clic sur le symbole « refresh ».
-
----
-
-## C'est à vous
+Place au TP 🚀

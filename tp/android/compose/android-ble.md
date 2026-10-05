@@ -180,9 +180,9 @@ Il va également reprendre le système de demande de permission que nous avons v
     tools:targetApi="s" />
 <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
-<!-- Ancienne permission pour permettre l'usage du BLE  Android avant 11 inclus -->
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<!-- Anciennes permissions BLE (jusqu'à Android 11 inclus) -->
+<uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
 
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -328,8 +328,8 @@ Et la méthode de scan :
 ```kotlin
 @SuppressLint("MissingPermission")
 fun startScan(context: Context) {
-    // Récupération du scanner BLE
-    val bluetoothLeScanner = (context.getSystemService(BLUETOOTH_SERVICE) as BluetoothManager).adapter.bluetoothLeScanner
+    // Récupération du scanner BLE (il vaut null si le Bluetooth est désactivé)
+    val bluetoothLeScanner = (context.getSystemService(BLUETOOTH_SERVICE) as BluetoothManager).adapter.bluetoothLeScanner ?: return
 
     // Si nous sommes déjà en train de scanner, on ne fait rien
     if (isScanningFlow.value) return
@@ -357,17 +357,19 @@ fun startScan(context: Context) {
             }
         }
 
-        // On lance le scan BLE à la souscription de scanFlow
+        // On lance le scan BLE
         bluetoothLeScanner.startScan(scanFilters, scanSettings, scanCallback)
 
-        // On attend la durée du scan (10 secondes)
-        delay(scanDuration)
+        try {
+            // On attend la durée du scan (10 secondes)
+            delay(scanDuration)
+        } finally {
+            // Dans tous les cas (fin du délai ou appel à stopScan), on stoppe le scan BLE
+            bluetoothLeScanner.stopScan(scanCallback)
 
-        // Lorsque scanFlow est stoppé, on stoppe le scan BLE
-        bluetoothLeScanner.stopScan(scanCallback)
-
-        // On indique que nous ne sommes plus en train de scanner
-        isScanningFlow.value = false
+            // On indique que nous ne sommes plus en train de scanner
+            isScanningFlow.value = false
+        }
     }
 }
 
