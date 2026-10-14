@@ -55,6 +55,11 @@
     "questions": 15
   },
   {
+    "src": "quiz-laravel-securite",
+    "title": "Laravel et cybersécurité (OWASP)",
+    "questions": 22
+  },
+  {
     "src": "quiz-lecture-uml",
     "title": "Lecture d'UML : les diagrammes de classes",
     "questions": 28

@@ -109,7 +109,8 @@ import { withBase } from 'vitepress'
 
 // --- Parseur du format GIFT (Moodle) ---
 // Supporte : QCM (réponse unique et multiple), vrai/faux, réponse courte,
-// numérique (avec tolérance), appariement, mot manquant.
+// numérique (avec tolérance), appariement, mot manquant. Les questions
+// libres (essay) sont ignorées.
 
 const ESCAPES = [
   ['\\=', '\x00'],
@@ -152,6 +153,10 @@ function displayTitle(title) {
 }
 
 function parseAnswers(raw) {
+  // Feedback général (####) retiré ; sans réponse, c'est une question libre
+  raw = raw.split('####')[0].trim()
+  if (raw === '') return { type: 'essay' }
+
   if (raw.startsWith('#')) {
     const [value, feedback] = stripFeedback(raw.slice(1).trim())
     const [num, tol] = value.split(':')
@@ -208,7 +213,8 @@ function parseAnswers(raw) {
   }
 
   return {
-    type: hasWeight ? 'multichoice-multi' : 'multichoice',
+    // Comme Moodle : un « = » signifie réponse unique, même avec des pondérations négatives
+    type: hasWeight && !prefixes.includes('=') ? 'multichoice-multi' : 'multichoice',
     options: entries.map((e) => ({
       correct: e.correct,
       text: restore(e.text),
@@ -268,7 +274,8 @@ function parseGift(source) {
 
   return {
     title,
-    questions: chunks.map(parseQuestion).filter(Boolean)
+    // Les questions libres demandent une correction manuelle : pas en ligne
+    questions: chunks.map(parseQuestion).filter((q) => q && q.type !== 'essay')
   }
 }
 

@@ -94,6 +94,12 @@ function parseQuestion(chunk) {
 
 // Retourne { type, entries }. Chaque entrée : { correct, text, feedback }
 function parseAnswers(raw) {
+  // Feedback général (####) : sur une question libre, il sert de grille de correction
+  const [answers, general = ''] = raw.split('####')
+  raw = answers.trim()
+  if (raw === '') {
+    return { type: 'essay', entries: [{ correct: true, text: '', feedback: general.trim() }] }
+  }
   if (raw.startsWith('#')) {
     const [text, feedback] = stripFeedback(raw.slice(1).trim())
     return { type: 'numerical', entries: [{ correct: true, text, feedback }] }
@@ -125,7 +131,9 @@ function parseAnswers(raw) {
     }
     return { type: 'shortanswer', entries }
   }
-  return { type: hasWeight ? 'multichoice-multi' : 'multichoice', entries }
+  // Comme Moodle : un « = » signifie réponse unique, même avec des pondérations négatives
+  const multi = hasWeight && !prefixes.includes('=')
+  return { type: multi ? 'multichoice-multi' : 'multichoice', entries }
 }
 
 // Rend une question en Markdown : [sujet, ligne de corrigé]
@@ -136,7 +144,13 @@ function render(qnum, q) {
   const subject = [`**Question ${qnum} — ${displayTitle(q.title)}**`, '']
   let answerKey = ''
 
-  if (type === 'matching') {
+  if (type === 'essay') {
+    // Question libre : place pour rédiger, la grille va dans le corrigé
+    subject.push(text, '', ...Array(8).fill('_'.repeat(80) + '\n'))
+    answerKey = entries[0].feedback
+      ? `Question libre (correction manuelle). ${md(entries[0].feedback)}`
+      : 'Question libre (correction manuelle).'
+  } else if (type === 'matching') {
     subject.push(text, '')
     // Une entrée sans partie gauche est un distracteur : il apparaît dans
     // les propositions mais ne correspond à aucune réponse.
@@ -240,7 +254,9 @@ function convert(path, name, printdir, webdir) {
     'utf-8'
   )
   copyFileSync(path, join(webdir, name))
-  return { title, count: questions.length }
+  // Le compteur reflète le quiz en ligne, qui écarte les questions libres
+  const online = questions.filter((q) => parseAnswers(q.answers).type !== 'essay')
+  return { title, count: online.length }
 }
 
 const here = dirname(fileURLToPath(import.meta.url))
