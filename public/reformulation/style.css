@@ -254,6 +254,25 @@
     font: inherit;
 }
 
+#modelDelete {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 5px;
+    color: var(--vp-c-text-2);
+    cursor: pointer;
+}
+
+#modelDelete:hover:not(:disabled) {
+    color: var(--vp-c-danger-1, #c0392b);
+    background-color: var(--vp-c-bg-soft);
+}
+
+#modelDelete:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
 /* Passage sélectionné rappelé en tête du chat */
 .chatSelection {
     margin: 0 0 10px;

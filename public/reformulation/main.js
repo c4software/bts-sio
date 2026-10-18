@@ -200,6 +200,84 @@ async function updateModelSelect() {
         option.disabled = !await isModelAvailable(option.value);
     }
     select.value = await getAiModel();
+    await updateDeleteButton();
+}
+
+// Variantes (f16 / f32) d'un modèle WebLLM présentes dans le cache du navigateur
+async function cachedVariants(key) {
+    const choice = AI_MODELS[key];
+    if (!choice?.f16 || !await getWebGpuAdapter()) {
+        return [];
+    }
+
+    webllm ??= await import(WEBLLM_URL);
+    const variants = [];
+    for (const model of [choice.f16, choice.f32]) {
+        if (await webllm.hasModelInCache(model)) {
+            variants.push(model);
+        }
+    }
+
+    return variants;
+}
+
+// La poubelle ne sert que pour un modèle WebLLM déjà téléchargé (Gemini Nano est géré par Chrome)
+async function updateDeleteButton() {
+    const key = document.getElementById('modelSelect').value;
+    const button = document.getElementById('modelDelete');
+
+    if (key === 'gemini') {
+        button.disabled = true;
+        button.title = "Gemini Nano est géré par Chrome : il ne peut pas être supprimé depuis cette page.";
+        return;
+    }
+
+    const cached = (await cachedVariants(key)).length > 0;
+    button.disabled = !cached;
+    button.title = cached ? `Supprimer le modèle ${AI_MODELS[key].label} téléchargé` : "Ce modèle n'est pas téléchargé.";
+}
+
+async function deleteSelectedModel() {
+    const key = document.getElementById('modelSelect').value;
+    const choice = AI_MODELS[key];
+    const variants = await cachedVariants(key);
+    if (variants.length === 0 || busy) {
+        return;
+    }
+
+    if (!confirm(`Supprimer le modèle ${choice.label} (${choice.size}) du cache du navigateur ? Il faudra le télécharger à nouveau pour l'utiliser.`)) {
+        return;
+    }
+
+    // Le modèle doit d'abord quitter la mémoire (attente d'un éventuel chargement en cours)
+    await (webllmLoading || Promise.resolve()).catch(() => null);
+    if (webllmEngine && variants.includes(webllmModel)) {
+        if (chat?.session) {
+            chat.session.destroy();
+            chat.session = null;
+        }
+        await webllmEngine.unload();
+        webllmModel = null;
+    }
+
+    for (const model of variants) {
+        await webllm.deleteModelAllInfoInCache(model);
+    }
+
+    // Retour sur Gemini Nano s'il est disponible, sinon le modèle sera retéléchargé à la prochaine question
+    if (await canChat()) {
+        saveAiModel('gemini');
+        await updateModelSelect();
+        if (chat) {
+            addMessage('info', `Modèle ${choice.label} supprimé. Retour sur Gemini Nano : la conversation repart de zéro.`);
+            await createConversationSession(chat);
+        }
+    } else {
+        await updateDeleteButton();
+        if (chat) {
+            addMessage('info', `Modèle ${choice.label} supprimé. Il vous sera proposé de le télécharger à la prochaine question.`);
+        }
+    }
 }
 
 // Charge un modèle WebLLM (après accord de l'étudiant s'il n'est pas encore en cache), null si refusé.
@@ -581,6 +659,7 @@ async function changeChatModel(key) {
     chat.session = null;
     addMessage('info', `Modèle : ${AI_MODELS[key].label}. La conversation repart de zéro.`);
     await createConversationSession(chat);
+    await updateDeleteButton(); // le modèle vient peut-être d'être téléchargé
 }
 
 // Chat sans sélection, ouvert depuis la barre du haut
@@ -688,11 +767,15 @@ if (hasPromptApi() || hasSummarizerApi() || await getWebGpuAdapter()) {
         <button id="chatStart" type="button">💬 Échanger sur le sujet</button>
 
         <form id="chatForm">
-            <label id="modelChoice">Modèle
+            <div id="modelChoice">
+                <label for="modelSelect">Modèle</label>
                 <select id="modelSelect">
                     ${Object.entries(AI_MODELS).map(([key, model]) => `<option value="${key}">${model.label}${model.size ? ` (${model.size})` : ''}</option>`).join('')}
                 </select>
-            </label>
+                <button type="button" id="modelDelete" aria-label="Supprimer le modèle téléchargé" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3zM7 6h10v13H7zm2 2v9h2V8zm4 0v9h2V8z"/></svg>
+                </button>
+            </div>
             <p id="chatContext"></p>
             <textarea id="chatInput" rows="2" placeholder="Votre question sur la partie affichée à l'écran…"></textarea>
             <button type="submit">Envoyer</button>
@@ -727,8 +810,10 @@ if (hasPromptApi() || hasSummarizerApi() || await getWebGpuAdapter()) {
 
     document.getElementById('chatStart').addEventListener('click', startChat);
     document.getElementById('modelSelect').addEventListener('change', function () {
+        updateDeleteButton();
         changeChatModel(this.value);
     });
+    document.getElementById('modelDelete').addEventListener('click', deleteSelectedModel);
 
     // Changement de mode : on rejoue la dernière sélection avec l'autre modèle
     for (const button of document.querySelectorAll('#reformulationModes button')) {
