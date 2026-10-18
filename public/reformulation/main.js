@@ -194,11 +194,21 @@ function saveAiModel(key) {
     }
 }
 
+// Seuls les modèles utilisables sur cet ordinateur sont proposés ; pas de liste s'il n'y a pas de choix
 async function updateModelSelect() {
     const select = document.getElementById('modelSelect');
-    for (const option of select.options) {
-        option.disabled = !await isModelAvailable(option.value);
+    const available = [];
+    for (const key of Object.keys(AI_MODELS)) {
+        if (await isModelAvailable(key)) {
+            available.push(key);
+        }
     }
+
+    select.innerHTML = available.map(key => {
+        const model = AI_MODELS[key];
+        return `<option value="${key}">${model.label}${model.size ? ` (${model.size})` : ''}</option>`;
+    }).join('');
+    document.getElementById('modelChoice').style.display = available.length > 1 ? 'flex' : 'none';
     select.value = await getAiModel();
     await updateDeleteButton();
 }
@@ -769,9 +779,7 @@ if (hasPromptApi() || hasSummarizerApi() || await getWebGpuAdapter()) {
         <form id="chatForm">
             <div id="modelChoice">
                 <label for="modelSelect">Modèle</label>
-                <select id="modelSelect">
-                    ${Object.entries(AI_MODELS).map(([key, model]) => `<option value="${key}">${model.label}${model.size ? ` (${model.size})` : ''}</option>`).join('')}
-                </select>
+                <select id="modelSelect"></select>
                 <button type="button" id="modelDelete" aria-label="Supprimer le modèle téléchargé" disabled>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 3v1H4v2h1v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1V4h-5V3zM7 6h10v13H7zm2 2v9h2V8zm4 0v9h2V8z"/></svg>
                 </button>
