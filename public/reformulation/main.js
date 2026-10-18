@@ -1,7 +1,7 @@
 // Reformulation d'une sélection avec un modèle d'IA exécuté localement dans le navigateur.
-// Gemini Nano (intégré à Chrome) en priorité : Summarizer API (stable depuis Chrome 138) par défaut,
-// Prompt API (LanguageModel) en secours. Sans Gemini Nano : WebLLM avec Gemma 2 (même famille que
-// Gemini Nano), téléchargé une seule fois si le navigateur a WebGPU.
+// Modèle IA au choix de l'étudiant (sélecteur du chat) : Gemini Nano intégré à Chrome (Prompt API)
+// par défaut, ou Gemma 2 / Qwen3 de taille équivalente via WebLLM (téléchargés une seule fois, WebGPU requis).
+// Le résumé Chrome utilise la Summarizer API (stable depuis Chrome 138).
 // L'étudiant choisit entre « Reformulation IA » (prompt, Prompt API ou Gemma) et « Résumé Chrome » (Summarizer).
 // Il peut ensuite « Échanger sur le sujet » : le chat
 // reçoit la partie de la page visible à l'écran (avec une marge) au moment de chaque question.
@@ -11,7 +11,10 @@ import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/+esm'
 
 let saveSelection;
 let summarizer = null;
-let webllmEngine = null; // Promise du moteur WebLLM, partagé entre reformulation et chat
+let webllm = null; // module WebLLM, importé seulement si besoin
+let webllmEngine = null; // moteur WebLLM, partagé entre reformulation et chat
+let webllmModel = null; // identifiant du modèle chargé dans le moteur
+let webllmLoading = null; // chargements enchaînés : un seul modèle à la fois en mémoire
 let webgpuAdapter = null;
 let chat = null; // { session, selection, summary, lastContext }, selection et summary à null en mode page
 let busy = false;
@@ -20,6 +23,7 @@ let requestId = 0; // seule la dernière reformulation demandée écrit dans le 
 // Les modèles reviennent souvent à la ligne sans ligne vide : breaks pour garder ces retours
 const md = markdownIt({ breaks: true })
 const MODE_STORAGE_KEY = 'reformulation-mode';
+const MODEL_STORAGE_KEY = 'reformulation-model';
 const languageOptions = {
     expectedInputs: [{ type: "text", languages: ["fr"] }],
     expectedOutputs: [{ type: "text", languages: ["fr"] }],
@@ -49,14 +53,31 @@ Titre de la page : "<<titre>>"`;
 // Zone visible envoyée au chat : l'écran plus une demi-hauteur d'écran au-dessus et en dessous
 const VISIBLE_MARGIN_RATIO = 0.5;
 const GEMINI_CONTEXT_CHARS = 8000; // ~2 000 tokens, la session Gemini Nano en accepte ~9 000 au total
-const WEBLLM_CONTEXT_CHARS = 4000; // Gemma 2 dans WebLLM : 4 096 tokens au total
+const WEBLLM_CONTEXT_CHARS = 4000; // modèles WebLLM : 4 096 tokens au total
 const ANSWER_RESERVE_TOKENS = 1000;
 
-// Repli WebLLM (version figée) : Gemma 2 2B, en f32 si la carte graphique ne gère pas les shaders f16
+// Modèles proposés pour la reformulation IA et le chat. Les modèles WebLLM (version figée) ont une taille
+// proche de Gemini Nano ; variante f32 si la carte graphique ne gère pas les shaders f16.
 const WEBLLM_URL = "https://esm.run/@mlc-ai/web-llm@0.2.85";
-const WEBLLM_MODEL_F16 = "gemma-2-2b-it-q4f16_1-MLC";
-const WEBLLM_MODEL_F32 = "gemma-2-2b-it-q4f32_1-MLC";
 const WEBLLM_CONTEXT_WINDOW = 4096;
+const AI_MODELS = {
+    gemini: { label: "Gemini Nano (intégré à Chrome)" },
+    gemma: {
+        label: "Gemma 2 2B",
+        size: "~1,9 Go",
+        f16: "gemma-2-2b-it-q4f16_1-MLC",
+        f32: "gemma-2-2b-it-q4f32_1-MLC",
+        systemRole: false, // Gemma n'a pas de rôle « system »
+    },
+    qwen: {
+        label: "Qwen3 1.7B",
+        size: "~2 Go",
+        f16: "Qwen3-1.7B-q4f16_1-MLC",
+        f32: "Qwen3-1.7B-q4f32_1-MLC",
+        systemRole: true,
+        options: { extra_body: { enable_thinking: false } }, // pas de raisonnement affiché avant la réponse
+    },
+};
 const BLOCK_SELECTOR = 'h1, h2, h3, h4, p, li, pre, table, blockquote, summary';
 
 function showAnswer(initialText) {
@@ -143,29 +164,99 @@ async function canChatAnywhere() {
     return await canChat() || !!(await getWebGpuAdapter());
 }
 
-// Charge Gemma 2 avec WebLLM (après accord de l'étudiant si le modèle n'est pas encore en cache), null si refusé
-function loadWebLLM(onProgress) {
-    webllmEngine ??= (async () => {
-        const webllm = await import(WEBLLM_URL);
+async function isModelAvailable(key) {
+    return key === 'gemini' ? canChat() : !!(await getWebGpuAdapter());
+}
+
+// Modèle choisi par l'étudiant s'il est utilisable, sinon Gemini Nano, sinon Gemma ; null si aucun
+async function getAiModel() {
+    let saved = null;
+    try {
+        saved = localStorage.getItem(MODEL_STORAGE_KEY);
+    } catch (error) {
+        // stockage indisponible : modèle par défaut
+    }
+
+    for (const key of [saved, 'gemini', 'gemma']) {
+        if (AI_MODELS[key] && await isModelAvailable(key)) {
+            return key;
+        }
+    }
+
+    return null;
+}
+
+function saveAiModel(key) {
+    try {
+        localStorage.setItem(MODEL_STORAGE_KEY, key);
+    } catch (error) {
+        // tant pis, le choix ne sera pas mémorisé
+    }
+}
+
+async function updateModelSelect() {
+    const select = document.getElementById('modelSelect');
+    for (const option of select.options) {
+        option.disabled = !await isModelAvailable(option.value);
+    }
+    select.value = await getAiModel();
+}
+
+// Charge un modèle WebLLM (après accord de l'étudiant s'il n'est pas encore en cache), null si refusé.
+// Un seul modèle en mémoire : changer de modèle remplace le précédent dans le moteur.
+function loadWebLLM(key, onProgress) {
+    const choice = AI_MODELS[key];
+    const previous = webllmLoading || Promise.resolve();
+
+    webllmLoading = previous.catch(() => null).then(async () => {
+        webllm ??= await import(WEBLLM_URL);
         const adapter = await getWebGpuAdapter();
-        const model = adapter.features.has('shader-f16') ? WEBLLM_MODEL_F16 : WEBLLM_MODEL_F32;
+        const model = adapter.features.has('shader-f16') ? choice.f16 : choice.f32;
+
+        if (webllmEngine && webllmModel === model) {
+            return webllmEngine;
+        }
 
         if (!await webllm.hasModelInCache(model)) {
-            const accepted = confirm("Gemini Nano n'est pas disponible dans ce navigateur. Voulez-vous télécharger le modèle Gemma 2 (~1,9 Go, une seule fois. Le modèle sera stocké dans le cache du navigateur.) ?");
+            const accepted = confirm(`Voulez-vous télécharger le modèle ${choice.label} (${choice.size}, une seule fois. Le modèle sera stocké dans le cache du navigateur.) ?`);
             if (!accepted) {
                 return null;
             }
         }
 
-        return webllm.CreateMLCEngine(model, {
-            initProgressCallback: (report) => onProgress(`Chargement du modèle Gemma 2... ${Math.round(report.progress * 100)}%`),
+        const initProgressCallback = (report) => onProgress(`Chargement du modèle ${choice.label}... ${Math.round(report.progress * 100)}%`);
+        webllmModel = null;
+        if (webllmEngine) {
+            webllmEngine.setInitProgressCallback(initProgressCallback);
+            await webllmEngine.reload(model);
+        } else {
+            webllmEngine = await webllm.CreateMLCEngine(model, { initProgressCallback });
+        }
+        webllmModel = model;
+
+        return webllmEngine;
+    });
+
+    return webllmLoading;
+}
+
+// Session Gemini Nano (Prompt API) ou WebLLM selon le modèle, null si l'étudiant refuse le téléchargement
+async function createAiSession(key, initialPrompts, onProgress) {
+    if (!key) {
+        return null;
+    }
+
+    if (key === 'gemini') {
+        return LanguageModel.create({
+            ...languageOptions,
+            initialPrompts,
+            monitor: m => m.addEventListener('downloadprogress', (e) => onProgress(`Chargement du modèle Gemini Nano... ${Math.round(e.loaded * 100)}%`)),
         });
-    })();
+    }
 
-    // Refus ou échec : on pourra redemander plus tard
-    webllmEngine.then(engine => engine || (webllmEngine = null), () => (webllmEngine = null));
+    const engine = await loadWebLLM(key, onProgress);
 
-    return webllmEngine;
+    return engine && createWebLLMSession(engine, AI_MODELS[key], initialPrompts);
 }
 
 // Approximation (WebLLM n'expose pas de compteur) : ~3 caractères par token en français
@@ -174,13 +265,17 @@ function estimateTokens(text) {
 }
 
 // Session WebLLM qui imite celle de la Prompt API : promptStreaming(), mesure du contexte, destroy()
-function createWebLLMSession(engine, initialPrompts) {
-    // Gemma n'a pas de rôle « system » : les consignes sont placées en tête du premier message
+function createWebLLMSession(engine, choice, initialPrompts) {
     const [system, ...history] = initialPrompts;
     const messages = history.map(message => ({ ...message }));
     let instructions = system.content;
     let generating = false;
-    if (messages.length > 0) {
+
+    // Modèle sans rôle « system » (Gemma) : les consignes sont placées en tête du premier message
+    if (choice.systemRole) {
+        messages.unshift({ role: "system", content: instructions });
+        instructions = null;
+    } else if (messages.length > 0) {
         messages[0].content = `${instructions}\n\n${messages[0].content}`;
         instructions = null;
     }
@@ -196,7 +291,7 @@ function createWebLLMSession(engine, initialPrompts) {
             let reply = "";
             generating = true;
             try {
-                const chunks = await engine.chat.completions.create({ messages, stream: true, temperature: 0.3 });
+                const chunks = await engine.chat.completions.create({ messages, stream: true, temperature: 0.3, ...choice.options });
                 for await (const chunk of chunks) {
                     const delta = chunk.choices[0]?.delta.content || "";
                     reply += delta;
@@ -227,22 +322,12 @@ async function createModel(closestParagraph, mode) {
         return getSummarizer();
     }
 
-    if (await canChat()) {
+    const key = await getAiModel();
+    if (key) {
         showAnswer("Chargement du modèle en cours...");
         const content = systemPrompt.replace("<<contexte>>", closestParagraph).replace("<<titre>>", document.title);
 
-        return LanguageModel.create({
-            ...languageOptions,
-            initialPrompts: [{ role: "system", content }],
-            monitor,
-        });
-    }
-
-    if (await getWebGpuAdapter()) {
-        const engine = await loadWebLLM(text => showAnswer(text));
-        const content = systemPrompt.replace("<<contexte>>", closestParagraph).replace("<<titre>>", document.title);
-
-        return engine && createWebLLMSession(engine, [{ role: "system", content }]);
+        return createAiSession(key, [{ role: "system", content }], text => showAnswer(text));
     }
 
     if (await canSummarize()) {
@@ -392,7 +477,7 @@ function updateChatContextLabel() {
     }
 }
 
-// Session Gemini Nano si possible, sinon WebLLM (null si l'étudiant refuse le téléchargement)
+// Session avec le modèle choisi (null si l'étudiant refuse le téléchargement)
 async function createChatSession(conversation, onProgress) {
     let content = chatSystemPrompt.replace("<<titre>>", document.title);
     const initialPrompts = [];
@@ -408,19 +493,10 @@ async function createChatSession(conversation, onProgress) {
 
     conversation.lastContext = null;
 
-    if (await canChat()) {
-        conversation.maxContextChars = GEMINI_CONTEXT_CHARS;
+    const key = await getAiModel();
+    conversation.maxContextChars = key === 'gemini' ? GEMINI_CONTEXT_CHARS : WEBLLM_CONTEXT_CHARS;
 
-        return LanguageModel.create({
-            ...languageOptions,
-            initialPrompts: [{ role: "system", content }, ...initialPrompts],
-        });
-    }
-
-    const engine = await loadWebLLM(onProgress);
-    conversation.maxContextChars = WEBLLM_CONTEXT_CHARS;
-
-    return engine && createWebLLMSession(engine, [{ role: "system", content }, ...initialPrompts]);
+    return createAiSession(key, [{ role: "system", content }, ...initialPrompts], onProgress);
 }
 
 // Les noms ont changé entre les versions de Chrome (inputQuota → contextWindow, etc.)
@@ -430,6 +506,10 @@ async function remainingTokensAfter(session, prompt) {
     const used = session.contextUsage ?? session.inputUsage;
 
     return quota - used - await measure;
+}
+
+function escapeHtml(text) {
+    return text.replace(/[<>&"]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' })[c]);
 }
 
 function addMessage(role, html) {
@@ -449,14 +529,25 @@ async function startChat(createNow = true) {
     // Panneau ancré à droite : sur grand écran, le contenu de la page se décale pour rester lisible
     document.documentElement.classList.add('reformulation-docked');
     document.querySelector('.answer > h3').textContent = chat.selection ? 'Échanger sur le sujet' : 'Échanger sur la page';
+
+    // Chat ouvert depuis une reformulation : le passage sélectionné et sa reformulation ouvrent la discussion
+    if (chat.selection) {
+        document.querySelector('#answerContent').innerHTML = `
+            <blockquote class="chatSelection"><p class="chatSelectionTitle">Passage sélectionné</p><p>${escapeHtml(chat.selection)}</p></blockquote>
+            <div class="chatMessage assistant">${md.render(chat.summary)}</div>`;
+    }
+
+    updateModelSelect();
     updateChatContextLabel();
     document.getElementById('chatInput').focus();
 
-    if (!createNow) {
-        return;
+    if (createNow) {
+        await createConversationSession(chat);
     }
+}
 
-    const conversation = chat;
+// Crée la session de la conversation (au démarrage du chat ou après un changement de modèle)
+async function createConversationSession(conversation) {
     const progress = addMessage('info', "Chargement du modèle...");
     try {
         const session = await createChatSession(conversation, text => (progress.textContent = text));
@@ -477,6 +568,19 @@ async function startChat(createNow = true) {
         console.error(error);
         progress.textContent = "Impossible de démarrer l'échange : le modèle d'IA n'a pas pu être chargé.";
     }
+}
+
+// Nouveau modèle choisi : la conversation repart de zéro (la sélection et sa reformulation sont gardées)
+async function changeChatModel(key) {
+    saveAiModel(key);
+    if (!chat || busy) {
+        return;
+    }
+
+    chat.session?.destroy();
+    chat.session = null;
+    addMessage('info', `Modèle : ${AI_MODELS[key].label}. La conversation repart de zéro.`);
+    await createConversationSession(chat);
 }
 
 // Chat sans sélection, ouvert depuis la barre du haut
@@ -513,7 +617,7 @@ async function sendQuestion(question) {
 
     const input = document.getElementById('chatInput');
     input.disabled = true;
-    addMessage('user', md.renderInline(question.replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c])));
+    addMessage('user', md.renderInline(escapeHtml(question)));
     const answer = addMessage('assistant', '…');
     document.querySelector('.answer').classList.add('animation');
 
@@ -584,6 +688,11 @@ if (hasPromptApi() || hasSummarizerApi() || await getWebGpuAdapter()) {
         <button id="chatStart" type="button">💬 Échanger sur le sujet</button>
 
         <form id="chatForm">
+            <label id="modelChoice">Modèle
+                <select id="modelSelect">
+                    ${Object.entries(AI_MODELS).map(([key, model]) => `<option value="${key}">${model.label}${model.size ? ` (${model.size})` : ''}</option>`).join('')}
+                </select>
+            </label>
             <p id="chatContext"></p>
             <textarea id="chatInput" rows="2" placeholder="Votre question sur la partie affichée à l'écran…"></textarea>
             <button type="submit">Envoyer</button>
@@ -617,6 +726,9 @@ if (hasPromptApi() || hasSummarizerApi() || await getWebGpuAdapter()) {
     });
 
     document.getElementById('chatStart').addEventListener('click', startChat);
+    document.getElementById('modelSelect').addEventListener('change', function () {
+        changeChatModel(this.value);
+    });
 
     // Changement de mode : on rejoue la dernière sélection avec l'autre modèle
     for (const button of document.querySelectorAll('#reformulationModes button')) {
