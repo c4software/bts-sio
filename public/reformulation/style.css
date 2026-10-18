@@ -18,10 +18,53 @@
     max-height: 85vh;
 }
 
-#answerContent > ul, ol{
-    list-style: initial;
-    margin: revert;
-    padding: revert;
+/* VitePress remet à zéro les marges et puces hors de .vp-doc : on les rétablit dans le panneau */
+#answerContent p, .chatMessage p {
+    margin: 0.6em 0;
+    line-height: 1.6;
+}
+
+#answerContent ul, #answerContent ol, .chatMessage ul, .chatMessage ol {
+    margin: 0.6em 0;
+    padding-left: 1.4em;
+}
+
+#answerContent ul, .chatMessage ul {
+    list-style: disc;
+}
+
+#answerContent ol, .chatMessage ol {
+    list-style: decimal;
+}
+
+#answerContent li + li, .chatMessage li + li {
+    margin-top: 0.3em;
+}
+
+#answerContent :not(pre) > code, .chatMessage :not(pre) > code {
+    padding: 2px 5px;
+    border-radius: 4px;
+    background-color: var(--vp-c-mute, rgba(127, 127, 127, 0.15));
+    font-size: 0.875em;
+}
+
+#answerContent pre, .chatMessage pre {
+    margin: 0.6em 0;
+    padding: 10px 12px;
+    border-radius: 6px;
+    background-color: var(--vp-code-block-bg, rgba(127, 127, 127, 0.12));
+    font-size: 0.85em;
+    overflow-x: auto;
+}
+
+#answerContent h1, #answerContent h2, #answerContent h3, #answerContent h4,
+.chatMessage h1, .chatMessage h2, .chatMessage h3, .chatMessage h4 {
+    margin: 0.8em 0 0.4em;
+    font-weight: 600;
+}
+
+#answerContent > :first-child {
+    margin-top: 0;
 }
 
 .answerContentInfo{
@@ -107,16 +150,75 @@
     display: none;
 }
 
-/* Mode chat : panneau latéral sur toute la hauteur, sous la barre de navigation */
+/* Choix entre la reformulation par prompt et le résumé de Chrome */
+#reformulationModes {
+    display: none;
+    gap: 4px;
+    margin-bottom: 10px;
+    padding: 3px;
+    border-radius: 20px;
+    background-color: var(--vp-c-bg-soft);
+    width: fit-content;
+}
+
+#reformulationModes button {
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    color: var(--vp-c-text-2);
+    cursor: pointer;
+}
+
+#reformulationModes button.active {
+    background-color: var(--vp-c-bg);
+    color: var(--vp-c-text-1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.answer.chat #reformulationModes {
+    display: none !important;
+}
+
+/* Mode chat : panneau ancré à droite, sur toute la hauteur sous la barre de navigation */
+:root {
+    --reformulation-panel-width: 420px;
+}
+
 .answer.chat {
     display: flex;
     flex-direction: column;
-    top: calc(var(--vp-nav-height, 64px) + 16px);
-    bottom: 16px;
-    right: 16px;
-    width: 440px;
+    top: var(--vp-nav-height, 64px);
+    bottom: 0;
+    right: 0;
+    width: var(--reformulation-panel-width);
+    max-width: 100%;
     max-height: none;
+    margin: 0;
     overflow: hidden;
+    border: none;
+    border-left: 1px solid var(--vp-c-divider, #b9b9b9);
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 25; /* sous la barre de navigation (30) et ses menus déroulants */
+}
+
+/* Tablette : la barre VitePress n'est plus fixe (elle défile), le panneau part du haut de l'écran */
+@media (min-width: 641px) and (max-width: 959px) {
+    .answer.chat {
+        top: 0;
+    }
+}
+
+/* Grand écran : le contenu se décale au lieu d'être masqué (le sommaire de droite laisse sa place au chat) */
+@media (min-width: 1280px) {
+    html.reformulation-docked .VPContent,
+    html.reformulation-docked .VPFooter {
+        padding-right: max(var(--reformulation-panel-width), calc((100vw - var(--vp-layout-max-width)) / 2)) !important;
+    }
+
+    html.reformulation-docked .VPDoc .aside {
+        display: none !important;
+    }
 }
 
 .answer.chat #chatThread {
@@ -190,11 +292,6 @@
     margin-bottom: 0;
 }
 
-.chatMessage ul, .chatMessage ol {
-    list-style: initial;
-    padding-left: 1.2em;
-}
-
 /* Mobile : panneau sur toute la largeur, et chat en tiroir en bas pour garder la page visible au-dessus */
 @media (max-width: 640px) {
     .answer {
@@ -216,7 +313,10 @@
         height: 55vh;
         height: 55dvh;
         padding: 16px;
+        border: none;
+        border-top: 1px solid var(--vp-c-divider, #b9b9b9);
         border-radius: 12px 12px 0 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
     }
 
     .answer > h3 {

@@ -2,7 +2,8 @@
 // Gemini Nano (intégré à Chrome) en priorité : Summarizer API (stable depuis Chrome 138) par défaut,
 // Prompt API (LanguageModel) en secours. Sans Gemini Nano : WebLLM avec Gemma 2 (même famille que
 // Gemini Nano), téléchargé une seule fois si le navigateur a WebGPU.
-// L'étudiant peut ensuite « Échanger sur le sujet » : le chat
+// L'étudiant choisit entre « Reformulation IA » (prompt, Prompt API ou Gemma) et « Résumé Chrome » (Summarizer).
+// Il peut ensuite « Échanger sur le sujet » : le chat
 // reçoit la partie de la page visible à l'écran (avec une marge) au moment de chaque question.
 // Le même chat s'ouvre sans sélection depuis le bouton de la barre du haut
 // (.vitepress/theme/components/ChatNavButton.vue, événements reformulation:*).
@@ -14,7 +15,11 @@ let webllmEngine = null; // Promise du moteur WebLLM, partagé entre reformulati
 let webgpuAdapter = null;
 let chat = null; // { session, selection, summary, lastContext }, selection et summary à null en mode page
 let busy = false;
-const md = markdownIt()
+let lastRequest = null; // dernière sélection reformulée, rejouée quand l'étudiant change de mode
+let requestId = 0; // seule la dernière reformulation demandée écrit dans le panneau
+// Les modèles reviennent souvent à la ligne sans ligne vide : breaks pour garder ces retours
+const md = markdownIt({ breaks: true })
+const MODE_STORAGE_KEY = 'reformulation-mode';
 const languageOptions = {
     expectedInputs: [{ type: "text", languages: ["fr"] }],
     expectedOutputs: [{ type: "text", languages: ["fr"] }],
@@ -81,6 +86,50 @@ function hasSummarizerApi() {
 
 async function canChat() {
     return hasPromptApi() && await LanguageModel.availability(languageOptions) !== "unavailable";
+}
+
+async function canSummarize() {
+    return hasSummarizerApi() && await Summarizer.availability(summarizerOptions) !== "unavailable";
+}
+
+async function getSummarizer() {
+    if (!summarizer) {
+        showAnswer("Chargement du modèle en cours...");
+        summarizer = await Summarizer.create({ ...summarizerOptions, monitor });
+    }
+
+    return summarizer;
+}
+
+// Mode choisi par l'étudiant ; par défaut la reformulation IA seulement si elle ne demande pas de téléchargement
+async function getReformulationMode() {
+    try {
+        const saved = localStorage.getItem(MODE_STORAGE_KEY);
+        if (saved === 'prompt' || saved === 'summarizer') {
+            return saved;
+        }
+    } catch (error) {
+        // stockage indisponible (navigation privée...) : mode par défaut
+    }
+
+    return await canChat() || !await canSummarize() ? 'prompt' : 'summarizer';
+}
+
+function saveReformulationMode(mode) {
+    try {
+        localStorage.setItem(MODE_STORAGE_KEY, mode);
+    } catch (error) {
+        // tant pis, le choix ne sera pas mémorisé
+    }
+}
+
+// Le sélecteur n'a de sens que si les deux modes sont possibles
+async function updateModeButtons(mode) {
+    const modes = document.getElementById('reformulationModes');
+    modes.style.display = await canSummarize() && await canChatAnywhere() ? 'flex' : 'none';
+    for (const button of modes.querySelectorAll('button')) {
+        button.classList.toggle('active', button.dataset.mode === mode);
+    }
 }
 
 // null si le navigateur n'a pas WebGPU (ou pas de carte graphique utilisable)
@@ -171,15 +220,11 @@ function createWebLLMSession(engine, initialPrompts) {
     };
 }
 
-// Crée un résumeur (Summarizer API) ou une session (Prompt API ou WebLLM), null si aucun modèle n'est utilisable
-async function createModel(closestParagraph) {
-    if (hasSummarizerApi() && await Summarizer.availability(summarizerOptions) !== "unavailable") {
-        if (!summarizer) {
-            showAnswer("Chargement du modèle en cours...");
-            summarizer = await Summarizer.create({ ...summarizerOptions, monitor });
-        }
-
-        return summarizer;
+// Crée un résumeur (Summarizer API) ou une session (Prompt API ou WebLLM) selon le mode,
+// avec repli sur l'autre mode s'il est le seul possible ; null si aucun modèle n'est utilisable
+async function createModel(closestParagraph, mode) {
+    if (mode === 'summarizer' && await canSummarize()) {
+        return getSummarizer();
     }
 
     if (await canChat()) {
@@ -200,15 +245,23 @@ async function createModel(closestParagraph) {
         return engine && createWebLLMSession(engine, [{ role: "system", content }]);
     }
 
+    if (await canSummarize()) {
+        return getSummarizer();
+    }
+
     return null;
 }
 
 async function getAnswer(text, closestParagraph) {
     exitChat();
+    const id = ++requestId;
+    lastRequest = { text, closestParagraph };
+    const mode = await getReformulationMode();
+    await updateModeButtons(mode);
 
     let model;
     try {
-        model = await createModel(closestParagraph);
+        model = await createModel(closestParagraph, mode);
     } catch (error) {
         console.error(error);
         showAnswer("Le modèle d'IA n'a pas pu être chargé dans ce navigateur.");
@@ -216,8 +269,17 @@ async function getAnswer(text, closestParagraph) {
         return;
     }
 
+    // Une autre reformulation a été demandée entre-temps (changement de mode, nouvelle sélection)
+    if (id !== requestId) {
+        if (model && model !== summarizer) {
+            model.destroy();
+        }
+        return;
+    }
+
     if (!model) {
-        showAnswer(await getWebGpuAdapter() ? "Téléchargement du modèle annulé." : "Aucun modèle d'IA local n'est disponible dans ce navigateur.");
+        const message = await getWebGpuAdapter() ? "Téléchargement du modèle annulé." : "Aucun modèle d'IA local n'est disponible dans ce navigateur.";
+        showAnswer(await canSummarize() ? `${message} Vous pouvez choisir « Résumé Chrome ».` : message);
         stopAnimationAnswer();
         return;
     }
@@ -232,6 +294,9 @@ async function getAnswer(text, closestParagraph) {
     let reply = "";
     try {
         for await (const chunk of chunks) {
+            if (id !== requestId) {
+                return; // remplacée par une reformulation plus récente
+            }
             reply += chunk;
             document.querySelector('#answerContent').innerHTML = md.render(reply);
         }
@@ -242,10 +307,14 @@ async function getAnswer(text, closestParagraph) {
         }
     } catch (error) {
         console.error(error);
-        document.querySelector('#answerContent').innerHTML = "La reformulation a échoué, réessayez avec une sélection plus courte.";
+        if (id === requestId) {
+            document.querySelector('#answerContent').innerHTML = "La reformulation a échoué, réessayez avec une sélection plus courte.";
+        }
     } finally {
         // Retrait de la sélection et de l'animation de couleur
-        stopAnimationAnswer();
+        if (id === requestId) {
+            stopAnimationAnswer();
+        }
         saveSelection = null;
 
         // La session (Prompt API ou WebLLM) embarque le contexte de la sélection : on ne la réutilise pas
@@ -377,6 +446,8 @@ function addMessage(role, html) {
 async function startChat(createNow = true) {
     document.getElementById('chatStart').style.display = 'none';
     document.querySelector('.answer').classList.add('chat', 'visible');
+    // Panneau ancré à droite : sur grand écran, le contenu de la page se décale pour rester lisible
+    document.documentElement.classList.add('reformulation-docked');
     document.querySelector('.answer > h3').textContent = chat.selection ? 'Échanger sur le sujet' : 'Échanger sur la page';
     updateChatContextLabel();
     document.getElementById('chatInput').focus();
@@ -427,6 +498,7 @@ function exitChat() {
     chat = null;
     busy = false;
     document.querySelector('.answer').classList.remove('chat');
+    document.documentElement.classList.remove('reformulation-docked');
     document.querySelector('.answer > h3').textContent = 'Reformulation';
     document.getElementById('chatStart').style.display = 'none';
     document.getElementById('chatMessages').innerHTML = '';
@@ -499,6 +571,11 @@ if (hasPromptApi() || hasSummarizerApi() || await getWebGpuAdapter()) {
 
         <h3>Reformulation</h3>
 
+        <div id="reformulationModes" role="group" aria-label="Type de reformulation">
+            <button type="button" data-mode="prompt">Reformulation IA</button>
+            <button type="button" data-mode="summarizer">Résumé Chrome</button>
+        </div>
+
         <div id="chatThread">
             <div id="answerContent"></div>
             <div id="chatMessages"></div>
@@ -540,6 +617,16 @@ if (hasPromptApi() || hasSummarizerApi() || await getWebGpuAdapter()) {
     });
 
     document.getElementById('chatStart').addEventListener('click', startChat);
+
+    // Changement de mode : on rejoue la dernière sélection avec l'autre modèle
+    for (const button of document.querySelectorAll('#reformulationModes button')) {
+        button.addEventListener('click', function () {
+            saveReformulationMode(this.dataset.mode);
+            if (lastRequest) {
+                getAnswer(lastRequest.text, lastRequest.closestParagraph);
+            }
+        });
+    }
 
     document.getElementById('chatForm').addEventListener('submit', function (event) {
         event.preventDefault();
