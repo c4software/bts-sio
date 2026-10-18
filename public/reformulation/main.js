@@ -122,7 +122,7 @@ async function getSummarizer() {
     return summarizer;
 }
 
-// Mode choisi par l'étudiant ; par défaut la reformulation IA seulement si elle ne demande pas de téléchargement
+// Mode choisi par l'étudiant ; par défaut le résumé Chrome, la reformulation IA s'il n'est pas disponible
 async function getReformulationMode() {
     try {
         const saved = localStorage.getItem(MODE_STORAGE_KEY);
@@ -133,7 +133,7 @@ async function getReformulationMode() {
         // stockage indisponible (navigation privée...) : mode par défaut
     }
 
-    return await canChat() || !await canSummarize() ? 'prompt' : 'summarizer';
+    return await canSummarize() ? 'summarizer' : 'prompt';
 }
 
 function saveReformulationMode(mode) {

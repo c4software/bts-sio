@@ -209,6 +209,12 @@
     }
 }
 
+/* Pas de halo animé sur le panneau de chat pendant la génération */
+.answer.chat.animation {
+    animation: none;
+    box-shadow: none;
+}
+
 /* Grand écran : le contenu se décale au lieu d'être masqué (le sommaire de droite laisse sa place au chat) */
 @media (min-width: 1280px) {
     html.reformulation-docked .VPContent,
@@ -377,6 +383,10 @@
         border: none;
         border-top: 1px solid var(--vp-c-divider, #b9b9b9);
         border-radius: 12px 12px 0 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .answer.chat.animation {
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
     }
 
