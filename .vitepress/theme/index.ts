@@ -1,5 +1,6 @@
 // .vitepress/theme/index.ts
 import type { Theme } from 'vitepress'
+import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import AlgoEnquete from './components/AlgoEnquete.vue'
 import AuthLab from './components/AuthLab.vue'
@@ -18,10 +19,14 @@ import XssLab from './components/XssLab.vue'
 import Center from './components/Center.vue'
 import DebianConfiguration from './components/DebianConfiguration.vue'
 import HomeContent from './components/HomeContent.vue'
+import ChatNavButton from './components/ChatNavButton.vue'
 import './custom.css'
 
 export default {
   extends: DefaultTheme,
+  Layout: () => h(DefaultTheme.Layout, null, {
+    'nav-bar-content-after': () => h(ChatNavButton),
+  }),
   enhanceApp({ app }) {
     app.component('AlgoEnquete', AlgoEnquete)
     app.component('AuthLab', AuthLab)

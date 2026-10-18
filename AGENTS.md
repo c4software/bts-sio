@@ -15,6 +15,7 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
 - `moodle/*.gift` : banques de questions au format GIFT (source unique des quiz).
 - `moodle/print/` : versions imprimables générées (sujet + corrigé). Ne pas éditer à la main.
 - `public/quiz/` : copies des .gift + `index.json` générés pour les quiz en ligne. Ne pas éditer à la main.
+- `public/reformulation/` : reformulation d'une sélection et chat sur la page (Gemini Nano intégré à Chrome, repli WebLLM avec Gemma 2 si WebGPU). Le bouton de chat de la barre du haut (`.vitepress/theme/components/ChatNavButton.vue`) ne fait qu'émettre des événements `reformulation:*` écoutés par ce script.
 - `archives/` : anciens codes conservés pour mémoire, hors de `public/` donc jamais publiés. Ne pas y mettre de `.md` (ils deviendraient des pages).
 - `.vitepress/theme/components/QuizGift.vue` : composant de quiz en ligne (parseur GIFT inline, sans lib externe), utilisé par la page `moodle/index.md`.
 

@@ -195,10 +195,36 @@
     padding-left: 1.2em;
 }
 
+/* Mobile : panneau sur toute la largeur, et chat en tiroir en bas pour garder la page visible au-dessus */
 @media (max-width: 640px) {
-    .answer.chat {
+    .answer {
+        top: calc(var(--vp-nav-height, 64px) + 16px);
         left: 16px;
+        right: 16px;
         width: auto;
         max-width: none;
+        max-height: 60vh;
+    }
+
+    .answer.chat {
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        margin: 0;
+        height: 55vh;
+        height: 55dvh;
+        padding: 16px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .answer > h3 {
+        font-size: 1.2em;
+    }
+
+    /* 16 px minimum : évite le zoom automatique du navigateur au focus du champ */
+    #chatInput {
+        font-size: 16px;
     }
 }
