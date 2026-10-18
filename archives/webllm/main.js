@@ -1,3 +1,5 @@
+// Archive : ancienne reformulation avec WebLLM (Llama 3.2), remplacée par public/reformulation/ (Gemini Nano intégré à Chrome).
+// Non chargée par le site. Pour la réactiver : copier ce dossier dans public/ et pointer le script de .vitepress/config.mts dessus.
 import * as webllm from "https://esm.run/@mlc-ai/web-llm";
 import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/+esm'
 
