@@ -89,3 +89,116 @@
         box-shadow:  0 0 10px #ff6ec4;
     }
 }
+#chatStart {
+    display: none;
+    margin: 10px auto 0;
+    padding: 6px 14px;
+    border: 1px solid var(--vp-c-divider, #b9b9b9);
+    border-radius: 20px;
+    background-color: var(--vp-c-bg-soft);
+    cursor: pointer;
+}
+
+#chatStart:hover {
+    border-color: var(--vp-c-brand-1, #3e80af);
+}
+
+#chatForm {
+    display: none;
+}
+
+/* Mode chat : panneau latéral sur toute la hauteur, sous la barre de navigation */
+.answer.chat {
+    display: flex;
+    flex-direction: column;
+    top: calc(var(--vp-nav-height, 64px) + 16px);
+    bottom: 16px;
+    right: 16px;
+    width: 440px;
+    max-height: none;
+    overflow: hidden;
+}
+
+.answer.chat #chatThread {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.answer.chat #chatForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 10px;
+    border-top: 1px solid var(--vp-c-divider, #b9b9b9);
+}
+
+#chatContext {
+    width: 100%;
+    margin: 0;
+    font-size: 0.8em;
+    color: var(--vp-c-text-2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid var(--vp-c-divider, #b9b9b9);
+    border-radius: 5px;
+    background-color: var(--vp-c-bg-soft);
+    resize: none;
+    font: inherit;
+}
+
+#chatForm > button {
+    padding: 0 12px;
+    border-radius: 5px;
+    background-color: var(--vp-c-brand-1, #3e80af);
+    color: #fff;
+    cursor: pointer;
+}
+
+.chatMessage {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.chatMessage.user {
+    margin-left: 15%;
+    background-color: var(--vp-c-brand-soft, #e8f0f7);
+}
+
+.chatMessage.assistant {
+    background-color: var(--vp-c-bg-soft);
+}
+
+.chatMessage.info {
+    font-size: 0.8em;
+    font-style: italic;
+    text-align: center;
+    color: var(--vp-c-text-2);
+}
+
+.chatMessage > :first-child {
+    margin-top: 0;
+}
+
+.chatMessage > :last-child {
+    margin-bottom: 0;
+}
+
+.chatMessage ul, .chatMessage ol {
+    list-style: initial;
+    padding-left: 1.2em;
+}
+
+@media (max-width: 640px) {
+    .answer.chat {
+        left: 16px;
+        width: auto;
+        max-width: none;
+    }
+}

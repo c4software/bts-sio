@@ -1,9 +1,13 @@
 // Reformulation d'une sélection avec Gemini Nano, le modèle intégré à Chrome.
-// Prompt API (LanguageModel) si elle est disponible, sinon Summarizer API (stable depuis Chrome 138).
+// Summarizer API (stable depuis Chrome 138) par défaut, Prompt API (LanguageModel) en secours.
+// Si la Prompt API est disponible, l'étudiant peut ensuite « Échanger sur le sujet » : le chat
+// reçoit la partie de la page visible à l'écran (avec une marge) au moment de chaque question.
 import markdownIt from 'https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/+esm'
 
 let saveSelection;
 let summarizer = null;
+let chat = null; // { session, selection, summary, lastContext }
+let busy = false;
 const md = markdownIt()
 const languageOptions = {
     expectedInputs: [{ type: "text", languages: ["fr"] }],
@@ -24,6 +28,19 @@ Réponds en français, sans titre.
 
 Voici le context de la reformulation : "<<contexte>>"
 Titre de la page : "<<titre>>"`;
+const chatSystemPrompt = `Tu aides des étudiants débutants en développement web à comprendre une page de cours.
+Réponds en français, simplement et brièvement, sans titre.
+Appuie-toi uniquement sur les extraits de la page qui te sont fournis. Si la réponse n'y figure pas, dis-le et conseille de demander à l'enseignant.
+Ne donne pas directement la solution complète d'un exercice : guide l'étudiant pas à pas.
+
+Titre de la page : "<<titre>>"
+Passage sélectionné par l'étudiant : "<<selection>>"`;
+
+// Zone visible envoyée au chat : l'écran plus une demi-hauteur d'écran au-dessus et en dessous
+const VISIBLE_MARGIN_RATIO = 0.5;
+const MAX_CONTEXT_CHARS = 8000; // ~2 000 tokens, la session Gemini Nano en accepte ~9 000 au total
+const ANSWER_RESERVE_TOKENS = 1000;
+const BLOCK_SELECTOR = 'h1, h2, h3, h4, p, li, pre, table, blockquote, summary';
 
 function showAnswer(initialText) {
     document.querySelector('#answerContent').innerHTML = initialText;
@@ -50,9 +67,22 @@ function hasSummarizerApi() {
     return 'Summarizer' in self;
 }
 
-// Crée une session (Prompt API) ou un résumeur (Summarizer API), null si le modèle n'est pas utilisable
+async function canChat() {
+    return hasPromptApi() && await LanguageModel.availability(languageOptions) !== "unavailable";
+}
+
+// Crée un résumeur (Summarizer API) ou une session (Prompt API), null si le modèle n'est pas utilisable
 async function createModel(closestParagraph) {
-    if (hasPromptApi() && await LanguageModel.availability(languageOptions) !== "unavailable") {
+    if (hasSummarizerApi() && await Summarizer.availability(summarizerOptions) !== "unavailable") {
+        if (!summarizer) {
+            showAnswer("Chargement du modèle en cours...");
+            summarizer = await Summarizer.create({ ...summarizerOptions, monitor });
+        }
+
+        return summarizer;
+    }
+
+    if (await canChat()) {
         showAnswer("Chargement du modèle en cours...");
         const content = systemPrompt.replace("<<contexte>>", closestParagraph).replace("<<titre>>", document.title);
 
@@ -63,19 +93,12 @@ async function createModel(closestParagraph) {
         });
     }
 
-    if (hasSummarizerApi() && await Summarizer.availability(summarizerOptions) !== "unavailable") {
-        if (!summarizer) {
-            showAnswer("Chargement du modèle en cours...");
-            summarizer = await Summarizer.create({ ...summarizerOptions, monitor });
-        }
-
-        return summarizer;
-    }
-
     return null;
 }
 
 async function getAnswer(text, closestParagraph) {
+    exitChat();
+
     let model;
     try {
         model = await createModel(closestParagraph);
@@ -102,6 +125,11 @@ async function getAnswer(text, closestParagraph) {
             reply += chunk;
             document.querySelector('#answerContent').innerHTML = md.render(reply);
         }
+
+        if (await canChat()) {
+            chat = { session: null, selection: text, summary: reply, lastContext: null };
+            document.getElementById('chatStart').style.display = 'block';
+        }
     } catch (error) {
         console.error(error);
         document.querySelector('#answerContent').innerHTML = "La reformulation a échoué, réessayez avec une sélection plus courte.";
@@ -117,6 +145,173 @@ async function getAnswer(text, closestParagraph) {
     }
 }
 
+// Blocs de texte de la page actuellement affichés (les <details> fermés sont ignorés : pas de solution envoyée)
+function visibleBlocks() {
+    const root = document.querySelector('.vp-doc') || document.querySelector('main') || document.body;
+    const margin = window.innerHeight * VISIBLE_MARGIN_RATIO;
+
+    return [...root.querySelectorAll(BLOCK_SELECTOR)]
+        .filter(el => !el.parentElement.closest(BLOCK_SELECTOR) && !el.closest('.answer'))
+        .filter(el => el.checkVisibility ? el.checkVisibility() : el.offsetParent !== null)
+        .filter(el => {
+            const rect = el.getBoundingClientRect();
+            return rect.bottom > -margin && rect.top < window.innerHeight + margin;
+        });
+}
+
+// Titre de la section en cours de lecture : le dernier titre passé au-dessus du tiers de l'écran
+function currentHeading() {
+    const root = document.querySelector('.vp-doc') || document.body;
+    let current = null;
+    for (const heading of root.querySelectorAll('h1, h2, h3')) {
+        if (heading.getBoundingClientRect().top > window.innerHeight / 3) {
+            break;
+        }
+        current = heading;
+    }
+
+    return (current || root.querySelector('h1, h2, h3'))?.innerText.replace(/\s*#\s*$/, '').trim() || document.title;
+}
+
+// Texte de la zone visible, en gardant d'abord les blocs les plus proches du centre de l'écran
+function visibleContext() {
+    const center = window.innerHeight / 2;
+    const distance = el => {
+        const rect = el.getBoundingClientRect();
+        return Math.abs((rect.top + rect.bottom) / 2 - center);
+    };
+
+    const blocks = visibleBlocks();
+    const kept = new Set();
+    let size = 0;
+    for (const el of [...blocks].sort((a, b) => distance(a) - distance(b))) {
+        const length = el.innerText.length;
+        if (size + length > MAX_CONTEXT_CHARS && kept.size > 0) {
+            break;
+        }
+        kept.add(el);
+        size += length;
+    }
+
+    const text = blocks.filter(el => kept.has(el)).map(el => el.innerText.trim()).join('\n\n');
+
+    return `Section : ${currentHeading()}\n\n${text.substring(0, MAX_CONTEXT_CHARS)}`;
+}
+
+function updateChatContextLabel() {
+    if (document.querySelector('.answer').classList.contains('chat')) {
+        document.getElementById('chatContext').textContent = `Contexte : « ${currentHeading()} »`;
+    }
+}
+
+function createChatSession() {
+    const content = chatSystemPrompt
+        .replace("<<titre>>", document.title)
+        .replace("<<selection>>", chat.selection.substring(0, 2000));
+
+    chat.lastContext = null;
+
+    return LanguageModel.create({
+        ...languageOptions,
+        initialPrompts: [
+            { role: "system", content },
+            { role: "user", content: "Reformule ce passage." },
+            { role: "assistant", content: chat.summary },
+        ],
+    });
+}
+
+// Les noms ont changé entre les versions de Chrome (inputQuota → contextWindow, etc.)
+async function remainingTokensAfter(session, prompt) {
+    const measure = session.measureContextUsage ? session.measureContextUsage(prompt) : session.measureInputUsage(prompt);
+    const quota = session.contextWindow ?? session.inputQuota;
+    const used = session.contextUsage ?? session.inputUsage;
+
+    return quota - used - await measure;
+}
+
+function addMessage(role, html) {
+    const message = document.createElement('div');
+    message.className = `chatMessage ${role}`;
+    message.innerHTML = html;
+    document.getElementById('chatMessages').appendChild(message);
+    message.scrollIntoView({ block: 'end' });
+
+    return message;
+}
+
+async function startChat() {
+    document.getElementById('chatStart').style.display = 'none';
+    document.querySelector('.answer').classList.add('chat');
+    document.querySelector('.answer > h3').textContent = 'Échanger sur le sujet';
+    updateChatContextLabel();
+
+    try {
+        chat.session = await createChatSession();
+        document.getElementById('chatInput').focus();
+    } catch (error) {
+        console.error(error);
+        addMessage('info', "Impossible de démarrer l'échange avec Gemini Nano.");
+    }
+}
+
+function exitChat() {
+    chat?.session?.destroy();
+    chat = null;
+    busy = false;
+    document.querySelector('.answer').classList.remove('chat');
+    document.querySelector('.answer > h3').textContent = 'Reformulation';
+    document.getElementById('chatStart').style.display = 'none';
+    document.getElementById('chatMessages').innerHTML = '';
+}
+
+async function sendQuestion(question) {
+    if (busy || !chat?.session) {
+        return;
+    }
+    busy = true;
+
+    const input = document.getElementById('chatInput');
+    input.disabled = true;
+    addMessage('user', md.renderInline(question.replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c])));
+    const answer = addMessage('assistant', '…');
+    document.querySelector('.answer').classList.add('animation');
+
+    try {
+        // La zone visible n'est renvoyée que si l'étudiant a fait défiler la page depuis la dernière question
+        const context = visibleContext();
+        const buildPrompt = () => context === chat.lastContext
+            ? question
+            : `Partie de la page actuellement à l'écran :\n"""\n${context}\n"""\n\nQuestion : ${question}`;
+
+        // Mémoire du modèle presque pleine : on repart d'une session neuve (sélection et résumé conservés)
+        if (await remainingTokensAfter(chat.session, buildPrompt()) < ANSWER_RESERVE_TOKENS) {
+            chat.session.destroy();
+            chat.session = await createChatSession();
+            addMessage('info', "La conversation était trop longue : le modèle a oublié les échanges précédents.");
+            document.getElementById('chatMessages').appendChild(answer);
+        }
+
+        const prompt = buildPrompt();
+        chat.lastContext = context;
+
+        let reply = "";
+        for await (const chunk of chat.session.promptStreaming(prompt)) {
+            reply += chunk;
+            answer.innerHTML = md.render(reply);
+            answer.scrollIntoView({ block: 'end' });
+        }
+    } catch (error) {
+        console.error(error);
+        answer.textContent = "La réponse a échoué, reformulez votre question plus brièvement.";
+    } finally {
+        stopAnimationAnswer();
+        busy = false;
+        input.disabled = false;
+        input.focus();
+    }
+}
+
 if (hasPromptApi() || hasSummarizerApi()) {
     // Inject the stylesheets
     document.head.insertAdjacentHTML('beforeend', `<link rel="stylesheet" href="/reformulation/style.css">`);
@@ -129,7 +324,18 @@ if (hasPromptApi() || hasSummarizerApi()) {
 
         <h3>Reformulation</h3>
 
-        <div id="answerContent"></div>
+        <div id="chatThread">
+            <div id="answerContent"></div>
+            <div id="chatMessages"></div>
+        </div>
+
+        <button id="chatStart" type="button">💬 Échanger sur le sujet</button>
+
+        <form id="chatForm">
+            <p id="chatContext"></p>
+            <textarea id="chatInput" rows="2" placeholder="Votre question sur la partie affichée à l'écran…"></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
 
         <p class="answerContentInfo">La reformulation (IA, Gemini Nano exécuté localement par Chrome) peut faire des erreurs. Envisagez de vérifier les informations.</p>
     </div>
@@ -139,12 +345,39 @@ if (hasPromptApi() || hasSummarizerApi()) {
     `);
 
     document.getElementsByClassName('close')[0].addEventListener('click', function () {
+        exitChat();
         document.querySelector('.answer').classList.remove('visible');
     });
 
-    document.addEventListener('mouseup', function () {
-        const selectedText = window.getSelection().toString().trim();
+    document.getElementById('chatStart').addEventListener('click', startChat);
+
+    document.getElementById('chatForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const input = document.getElementById('chatInput');
+        const question = input.value.trim();
+        if (question) {
+            input.value = '';
+            sendQuestion(question);
+        }
+    });
+
+    // Entrée pour envoyer, Maj + Entrée pour aller à la ligne
+    document.getElementById('chatInput').addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
+            document.getElementById('chatForm').requestSubmit();
+        }
+    });
+
+    document.addEventListener('mouseup', function (event) {
         const reformulateAction = document.getElementById('reformulateAction');
+
+        // Pas de bouton de reformulation pour une sélection faite dans le panneau lui-même
+        if (event.target.closest?.('.answer, #reformulateAction')) {
+            return;
+        }
+
+        const selectedText = window.getSelection().toString().trim();
 
         if (selectedText.length > 0) {
             saveSelection = window.getSelection().getRangeAt(0).cloneRange();
@@ -177,7 +410,17 @@ if (hasPromptApi() || hasSummarizerApi()) {
         this.style.display = 'none'; // Cacher le bouton après action
     });
 
+    let scrollScheduled = false;
     document.addEventListener('scroll', function () {
         document.getElementById('reformulateAction').style.display = 'none';
+
+        // Mise à jour de l'indicateur de contexte au plus une fois par image
+        if (!scrollScheduled) {
+            scrollScheduled = true;
+            requestAnimationFrame(() => {
+                scrollScheduled = false;
+                updateChatContextLabel();
+            });
+        }
     });
 }
