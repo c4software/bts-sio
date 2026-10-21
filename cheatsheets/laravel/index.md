@@ -119,7 +119,7 @@ php artisan serve
 
 ```txt
 Starting Laravel development server: http://127.0.0.1:8000
-[Mon Jan 12 10:00:00 2026] PHP 8.4.3 Development Server (http://127.0.0.1:8000) started
+[Mon Jan 12 10:00:00 2026] PHP 8.4.27 Development Server (http://127.0.0.1:8000) started
 ```
 
 ## Les routes

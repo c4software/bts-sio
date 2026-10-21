@@ -74,10 +74,10 @@ php -v
 Exemple dans mon cas :
 
 ```sh
-PHP 8.4 (cli) (built: Feb 15 2025 00:18:01) (NTS)
+PHP 8.4.27 (cli) (built: Feb 15 2025 00:18:01) (NTS)
 Copyright (c) The PHP Group
-Zend Engine v4.4.0, Copyright (c) Zend Technologies
-    with Zend OPcache v8.4.0, Copyright (c), by Zend Technologies
+Zend Engine v4.4.27, Copyright (c) Zend Technologies
+    with Zend OPcache v8.4.27, Copyright (c), by Zend Technologies
 ```
 
 ::: tip Un instant !

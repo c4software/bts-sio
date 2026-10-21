@@ -15,7 +15,7 @@ description: Aide mémoire Mini MVC Sample
 C:/xampp/php/php -S localhost:9000
 
 # Windows (avec WAMP)
-C:/wamp64/bin/php/php8.4.0/php -S localhost:9000
+C:/wamp64/bin/php/php8.4.27/php -S localhost:9000
 
 # Linux / OSX
 php mvc serve
@@ -31,7 +31,7 @@ php mvc db:migrate
 C:/xampp/php/php mvc db:migrate
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php8.4.0/php mvc db:migrate
+C:/wamp64/bin/php/php8.4.27/php mvc db:migrate
 ```
 
 ## Créer un modèle
@@ -44,7 +44,7 @@ php mvc model:create TodoModel
 C:/xampp/php/php mvc model:create TodoModel
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php8.4.0/php mvc model:create TodoModel
+C:/wamp64/bin/php/php8.4.27/php mvc model:create TodoModel
 ```
 
 ## Créer un contrôleur
@@ -57,5 +57,5 @@ php mvc controller:create TodoWeb
 C:/xampp/php/php mvc controller:create TodoWeb
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php8.4.0/php mvc controller:create TodoWeb
+C:/wamp64/bin/php/php8.4.27/php mvc controller:create TodoWeb
 ```

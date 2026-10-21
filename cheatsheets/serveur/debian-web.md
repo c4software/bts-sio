@@ -92,10 +92,10 @@ php -v
 ```
 
 ```bash
-PHP 8.4.6 (cli) (built: Apr 10 2025 21:29:07) (NTS)
+PHP 8.4.27 (cli) (built: Apr 10 2025 21:29:07) (NTS)
 Copyright (c) The PHP Group
-Zend Engine v4.4.6, Copyright (c) Zend Technologies
-    with Zend OPcache v8.4.6, Copyright (c), by Zend Technologies
+Zend Engine v4.4.27, Copyright (c) Zend Technologies
+    with Zend OPcache v8.4.27, Copyright (c), by Zend Technologies
 ```
 
 ## Installer MariaDB

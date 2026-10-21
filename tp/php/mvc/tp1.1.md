@@ -229,7 +229,7 @@ Cette commande intégrée à la structure MVC lancera un serveur automatiquement
 C:/xampp/php/php -S localhost:9000
 
 # Windows (avec WAMP)
-C:/wamp64/bin/php/php8.4.0/php -S localhost:9000
+C:/wamp64/bin/php/php8.4.27/php -S localhost:9000
 
 # Linux / OSX
 php -S localhost:9000
@@ -431,7 +431,7 @@ php mvc model:create TodoModel
 C:/xampp/php/php mvc model:create TodoModel
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php8.2.13/php mvc model:create TodoModel
+C:/wamp64/bin/php/php8.4.27/php mvc model:create TodoModel
 ```
 
 **Et c'est tout !** Votre modèle pour accéder aux données est prêt 🤝 (il est créé automatiquement dans le dossier `models`). Nous avons maintenant une classe qui nous permettra d'accéder aux données contenues dans la base de données. L'accès aux données se fera :
@@ -583,7 +583,7 @@ php mvc db:migrate
 C:/xampp/php/php mvc db:migrate
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php8.2.13/php mvc db:migrate
+C:/wamp64/bin/php/php8.4.27/php mvc db:migrate
 ```
 
 Si tout va bien vous devriez avoir le résultat suivant :
@@ -615,7 +615,7 @@ php mvc controller:create TodoWeb
 C:/xampp/php/php mvc controller:create TodoWeb
 
 # Sous Windows (avec WAMP)
-C:/wamp64/bin/php/php8.2.13/php mvc controller:create TodoWeb
+C:/wamp64/bin/php/php8.4.27/php mvc controller:create TodoWeb
 ```
 
 Cette commande va initialiser un contrôleur de type Web. Celui-ci est pour l'instant vide de méthode :
