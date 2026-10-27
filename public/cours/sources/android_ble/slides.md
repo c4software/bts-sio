@@ -56,7 +56,13 @@ Avant de rentrer dans le détail, que fait notre objet ?
 
 ---
 
-![Le tableau de bord de l'émulateur](./img/emulateur_tableau_de_bord.png)
+![Le tableau de bord de l'émulateur au démarrage](./img/emulateur_demarrage.png)
+
+---
+
+## Une écriture depuis le téléphone
+
+![Le téléphone écrit 1 : la LED s'allume, le journal montre l'écriture](./img/emulateur_bascule_telephone.png)
 
 ---
 

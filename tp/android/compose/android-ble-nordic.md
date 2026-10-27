@@ -76,7 +76,7 @@ Ouvrez ensuite le tableau de bord sur `http://localhost:8080/` : il montre la LE
 
 :::
 
-![Le tableau de bord de l'émulateur de la lampe](./img/ble/emulateur_tableau_de_bord.png)
+![Le tableau de bord de l'émulateur au démarrage : la lampe est éteinte, aucun téléphone n'est connecté](./img/ble/emulateur_demarrage.png)
 
 La lampe expose un service et quatre caractéristiques. Ce sont les mêmes que dans le TP sans librairie :
 
@@ -102,6 +102,10 @@ Plusieurs lampes `PMW-…` peuvent être allumées dans la salle. Avant de coder
 Vous retrouverez ainsi votre lampe immédiatement dans votre application.
 
 :::
+
+Quand votre téléphone écrit sur la lampe, le tableau de bord le montre : le téléphone apparaît dans « Téléphones connectés », la LED s'allume, et le journal affiche l'écriture reçue (`b'1'`) puis la bascule.
+
+![Le tableau de bord après une écriture depuis le téléphone : la LED est allumée et le journal montre l'écriture](./img/ble/emulateur_bascule_telephone.png)
 
 ## L'implémentation sur Android
 

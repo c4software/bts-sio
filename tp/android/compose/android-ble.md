@@ -93,7 +93,7 @@ Ouvrez ensuite le tableau de bord sur `http://localhost:8080/` : il montre la LE
 
 :::
 
-![Le tableau de bord de l'émulateur de la lampe](./img/ble/emulateur_tableau_de_bord.png)
+![Le tableau de bord de l'émulateur au démarrage : la lampe est éteinte, aucun téléphone n'est connecté](./img/ble/emulateur_demarrage.png)
 
 ## Rappel sur le fonctionnement du BLE
 
@@ -162,6 +162,10 @@ L'objectif est d'identifier **votre** périphérique. Pour cela, nous allons reg
 - Une fois que vous avez identifié votre lampe, changez le nom via la caractéristique `1497b8a8-64f8-11ee-8c99-0242ac120002`.
 
 :::
+
+Quand votre téléphone écrit sur la lampe, le tableau de bord le montre : le téléphone apparaît dans « Téléphones connectés », la LED s'allume, et le journal affiche l'écriture reçue (`b'1'`) puis la bascule.
+
+![Le tableau de bord après une écriture depuis le téléphone : la LED est allumée et le journal montre l'écriture](./img/ble/emulateur_bascule_telephone.png)
 
 ## L'implémentation sur Android
 
