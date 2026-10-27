@@ -1,5 +1,5 @@
 ---
-description: "Préparer son poste avant une formation Android et Kotlin : Git, JDK 21, Android Studio, téléphone en mode développeur, Docker, et un test de build pour tout valider."
+description: "Préparer son poste avant une formation Android et Kotlin : Git, Android Studio, téléphone en mode développeur, Docker, et un test de build pour tout valider."
 ---
 
 # Préparer son poste : Android et Kotlin
@@ -41,24 +41,9 @@ git config --global user.email "vous@exemple.com"
 La commande `git --version` affiche un numéro de version.
 :::
 
-## Le JDK 21
-
-Kotlin s'exécute sur la machine virtuelle Java : il faut donc un JDK (*Java Development Kit*). Nous utilisons la version **21**.
-
-1. Téléchargez le JDK 21 **Temurin** : [https://adoptium.net/](https://adoptium.net/) (choisissez la version 21, LTS).
-2. Pendant l'installation sous Windows, cochez l'option qui définit la variable `JAVA_HOME`.
-
-::: tip Point de contrôle
-Dans un **nouveau** terminal, la commande `java -version` affiche une version qui commence par `21`.
-:::
-
-::: details Plusieurs versions de Java installées ?
-Si `java -version` affiche une autre version, c'est qu'un autre JDK passe en premier. Vérifiez la variable d'environnement `JAVA_HOME` : elle doit pointer vers le dossier du JDK 21. Sous macOS et Linux, la commande `echo $JAVA_HOME` vous l'indique ; sous Windows, `echo %JAVA_HOME%`.
-:::
-
 ## Android Studio
 
-Android Studio est l'IDE officiel pour développer des applications Android. Il installe aussi le SDK Android et l'émulateur.
+Android Studio est l'IDE officiel pour développer des applications Android. Il installe aussi le SDK Android et l'émulateur, et il embarque son propre JDK : il n'y a pas de Java à installer en plus.
 
 1. Téléchargez la dernière version stable : [https://developer.android.com/studio](https://developer.android.com/studio).
 2. Lancez l'installation et choisissez le mode **Standard** : Android Studio télécharge alors le SDK et les outils nécessaires.
@@ -142,7 +127,6 @@ La commande se termine par `BUILD SUCCESSFUL`.
 Avant le premier jour, vérifiez que vous pouvez cocher chaque ligne :
 
 - [ ] `git --version` affiche une version, et vous avez accès au dépôt si nécessaire.
-- [ ] `java -version` affiche une version 21.
 - [ ] Une application de test se lance sur l'émulateur.
 - [ ] La même application se lance sur votre téléphone.
 - [ ] `docker run --rm hello-world` fonctionne.
