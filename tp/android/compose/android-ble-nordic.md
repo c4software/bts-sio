@@ -43,13 +43,23 @@ Ici, ces étapes sont toujours là, mais la librairie s'en charge. Le BLE ne cha
 
 :::
 
+## Les slides
+
+Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : le BLE, GATT, les trois actions (lire, écrire, notifier) et le fonctionnement asynchrone.
+
+<ClientOnly>
+<SlidesDeck src="android_tp_ble" />
+</ClientOnly>
+
+Ces slides sont un condensé. Le support complet du cours est disponible ici : [Slides Android BLE](/cours/android_ble.md).
+
 ## Prérequis
 
 - Avoir suivi [Les écrans et les données](./android-avance.md), en particulier le découpage MVVM et les `StateFlow`.
 - Un **téléphone Android physique** : l'émulateur n'a pas de Bluetooth. (Pas de téléphone ? Lisez la partie [Tester sans téléphone](#tester-sans-telephone-le-mode-simule).)
 - La lampe : son [émulateur](https://github.com/c4software/emulateur-lampe-ble) lancé sur un PC Linux (ou une carte ESP32), et l'application [nRF Connect](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp) pour l'identifier.
 
-## Le périphérique
+## Le périphérique BLE
 
 ::: tip Lancer la lampe
 
@@ -72,11 +82,20 @@ La lampe expose un service et quatre caractéristiques. Ce sont les mêmes que d
 
 ![Ce que la lampe expose en BLE (GATT)](./img/ble-nordic/nordic_gatt_esp32.svg)
 
+## Découvrir le périphérique avec nRF Connect
+
+Pour commencer, nous allons utiliser l'application nRF Connect pour découvrir les services et les caractéristiques du périphérique.
+
+1. Téléchargez l'application [nRF Connect](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp) sur votre téléphone. (Disponible sur Android et iOS).
+2. Ouvrez l'application et cliquez sur le bouton « Scan ».
+3. Vous devriez voir des périphériques nommés `PMW-…`.
+4. Cliquez sur un périphérique pour voir les services et les caractéristiques.
+
 ::: tip L'objectif : identifier **votre** périphérique
 
-Plusieurs lampes `PMW-…` peuvent être allumées dans la salle. Avant de coder, ouvrez nRF Connect :
+Plusieurs lampes `PMW-…` peuvent être allumées dans la salle. Avant de coder :
 
-1. Lancez un scan et connectez-vous à une lampe `PMW-…`.
+1. Connectez-vous à une lampe `PMW-…`.
 2. Écrivez `1` (en texte) dans la caractéristique `59b6bf7f-…` : la LED de **votre** lampe doit changer d'état sur le tableau de bord.
 3. Renommez votre lampe avec la caractéristique `1497b8a8-…` (par exemple `PMW-Valentin`).
 
@@ -84,7 +103,20 @@ Vous retrouverez ainsi votre lampe immédiatement dans votre application.
 
 :::
 
-## L'architecture de l'application
+## L'implémentation sur Android
+
+Pour l'implémentation nous avons plusieurs possibilités :
+
+- Utiliser une librairie tierce.
+- Utiliser les API Android.
+
+Dans ce TP nous allons utiliser la librairie de Nordic. La version avec les API Android fait l'objet d'[un TP dédié](./android-ble.md).
+
+::: danger Attention
+
+Même si je vous fournis le code, l'idée ici pour vous va être de comprendre le fonctionnement et l'enchaînement des opérations. **Il est donc important de ne pas copier-coller bêtement le code que je vous donne.**
+
+:::
 
 Nous gardons le découpage MVVM : la vue affiche, le ViewModel décide, et lui seul parle à la librairie.
 
@@ -100,7 +132,28 @@ Le projet final ne contient que quelques fichiers :
 | `MainActivity.kt` | Les permissions et le choix de l'écran à afficher |
 | `ui/ScanScreen.kt`, `ui/ConnectingScreen.kt`, `ui/ConnectedScreen.kt` | Les écrans, sans aucune logique BLE |
 
-## Étape 1 : le projet et les dépendances
+### Voici les étapes que nous allons suivre :
+
+- Ajouter la librairie
+- Demander les permissions (Manifest + Code)
+- Décrire la lampe (UUID) et créer le point d'entrée de la librairie
+- Démarrer le Scan
+- Se connecter et trouver le service
+- Recevoir les notifications, écrire des données
+
+::: tip Ceci est un préparatif au projet final
+
+Dans le projet final, vous devrez implémenter ces étapes, mais aussi gérer les erreurs, les déconnexions, les timeouts, etc. Ce que vous faites ici est donc une étape préparatoire, plus vous vous approprierez ces étapes, plus vous serez à l'aise pour le projet final.
+
+:::
+
+### Le BLE sur Android : Une boîte à états
+
+L'application passe par quelques états bien définis :
+
+![Les états de l'écran](./img/ble-nordic/nordic_etats.svg)
+
+## Ajouter la librairie
 
 Créez un nouveau projet **Empty Activity** dans Android Studio (ou repartez de votre projet du TP précédent).
 
@@ -154,9 +207,11 @@ La version 2 de la librairie est une réécriture complète, en bêta au moment 
 
 :::
 
-## Étape 2 : les permissions
+## Les permissions
 
 Rien de nouveau ici : ce sont les mêmes permissions que dans le TP sans librairie. La librairie ne peut pas vous en dispenser, c'est Android qui les impose.
+
+### Les permissions niveau AndroidManifest.xml
 
 Dans `AndroidManifest.xml`, avant la balise `<application>` :
 
@@ -177,7 +232,9 @@ Dans `AndroidManifest.xml`, avant la balise `<application>` :
 <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
 ```
 
-Dans le code, la liste des permissions dépend de la version d'Android :
+### Les permissions dans le code
+
+La liste des permissions dépend de la version d'Android :
 
 ```kotlin
 /** Permissions nécessaires au BLE, selon la version d'Android. */
@@ -189,17 +246,17 @@ private val permissionsBle: List<String> =
     }
 ```
 
-Nous l'utiliserons à l'étape 8, au moment d'assembler l'écran, avec `rememberMultiplePermissionsState(permissionsBle)`.
+Nous l'utiliserons au moment d'assembler l'écran (dans la partie sur la connexion), avec `rememberMultiplePermissionsState(permissionsBle)`.
 
 <img src="./img/ble-nordic/01_permissions.png" alt="La demande de permission Bluetooth affichée par Android" width="220" />
 
 ::: tip `neverForLocation` et la librairie
 
-Gardez ce drapeau en tête : nous allons le redonner à la librairie à l'étape 4. Il lui indique que, sur Android 12 et plus, le scan ne nécessite pas la localisation.
+Gardez ce drapeau en tête : nous allons le redonner à la librairie au moment de créer le `CentralManager`. Il lui indique que, sur Android 12 et plus, le scan ne nécessite pas la localisation.
 
 :::
 
-## Étape 3 : les UUID de la lampe
+## Les UUID de la lampe
 
 Créez un package `ble`, puis un fichier `LampeGatt.kt` :
 
@@ -240,7 +297,7 @@ La librairie utilise le type `Uuid` de Kotlin. Si Android Studio vous propose d'
 
 :::
 
-## Étape 4 : le point d'entrée de la librairie
+## Le point d'entrée de la librairie : le CentralManager
 
 Toute la librairie part d'un objet : le `CentralManager`. C'est lui qui scanne et qui se connecte. (En BLE, le téléphone joue le rôle de *central*, la lampe celui de *périphérique*.)
 
@@ -271,13 +328,11 @@ Deux notions à retenir :
 - **L'environnement** (`NativeAndroidEnvironment`) donne accès au vrai Bluetooth du téléphone. La librairie propose aussi un environnement **simulé**, que nous utiliserons à la fin du TP pour tester sans téléphone.
 - **Le scope** : le `CentralManager` lance ses coroutines dans le scope qu'on lui donne. Nous lui passerons le `viewModelScope` : quand le ViewModel disparaît, tout s'arrête proprement.
 
-## Étape 5 : les états de l'application
+## Le ViewModel
 
-Avant d'écrire la logique, décrivons ce que l'écran peut afficher. L'application passe par quelques états bien définis :
+### Les états de l'application
 
-![Les états de l'écran](./img/ble-nordic/nordic_etats.svg)
-
-Créez `LampeViewModel.kt` et commencez par ces deux types :
+Avant d'écrire la logique, décrivons ce que l'écran peut afficher : ce sont les états de la boîte à états vue plus haut. Créez `LampeViewModel.kt` et commencez par ces deux types :
 
 ```kotlin
 /** Un appareil trouvé pendant le scan. */
@@ -300,6 +355,8 @@ sealed interface Ecran {
 Une `sealed interface` liste **tous** les cas possibles. Quand la vue fera un `when (ecran)`, le compilateur vérifiera qu'aucun cas n'est oublié. C'est la machine à états du BLE, écrite en Kotlin. (Voir l'[aide-mémoire Kotlin](/cheatsheets/kotlin/) pour un rappel sur les classes scellées.)
 
 :::
+
+### La classe `LampeViewModel`
 
 Puis la classe elle-même, avec ses `StateFlow` :
 
@@ -337,7 +394,7 @@ class LampeViewModel(application: Application) : AndroidViewModel(application) {
 
 Nous utilisons un `AndroidViewModel` plutôt qu'un `ViewModel` : il reçoit l'`Application`, dont la librairie a besoin comme `Context`.
 
-## Étape 6 : le scan
+## La logique du Scan dans le ViewModel
 
 Avec la librairie, un scan est un **Flow** : chaque appareil trouvé est une nouvelle valeur. Le scan s'arrête tout seul au bout de la durée demandée, ou quand on annule la coroutine qui l'écoute.
 
@@ -381,7 +438,7 @@ Lisez ce code de haut en bas, il raconte exactement ce qui se passe :
 | `.onStart { }`, `.onCompletion { }` | Met à jour le loader au début et à la fin | Un `try / finally` autour du `delay()` |
 | `.launchIn(viewModelScope)` | Lance la collecte ; `cancel()` l'arrête | Un `Job` et un `stopScan()` à ne pas oublier |
 
-### L'écran de scan
+## La logique du Scan dans le Composable
 
 L'écran ne fait qu'afficher ce qu'on lui donne, et remonter les clics. Créez `ui/ScanScreen.kt` :
 
@@ -438,7 +495,7 @@ fun ScanScreen(
 
 ::: tip Point de contrôle
 
-Pour l'instant, branchez simplement `ScanScreen` dans votre `MainActivity` (nous ferons mieux à l'étape 8). Au clic sur « Scanner (10 s) », le loader tourne, les appareils apparaissent un à un, et votre lampe `PMW-…` est en gras. Au bout de 10 secondes, le loader disparaît tout seul.
+Pour l'instant, branchez simplement `ScanScreen` dans votre `MainActivity` (nous ferons mieux au moment de la connexion). Au clic sur « Scanner (10 s) », le loader tourne, les appareils apparaissent un à un, et votre lampe `PMW-…` est en gras. Au bout de 10 secondes, le loader disparaît tout seul.
 
 :::
 
@@ -450,9 +507,11 @@ Commencez sans filtre : voir tous les appareils de la salle aide à comprendre c
 
 :::
 
-## Étape 7 : la connexion
+## La connexion à un périphérique
 
 C'est ici que la librairie fait gagner le plus. Sans elle, la connexion se répartit entre `connectGatt()`, `onConnectionStateChange()`, `discoverServices()` et `onServicesDiscovered()`. Avec elle, ce sont quatre étapes qui se lisent dans l'ordre, dans une seule coroutine.
+
+### Côté logique du ViewModel
 
 Ajoutez cette méthode au ViewModel :
 
@@ -494,7 +553,7 @@ fun connecter(appareil: Appareil) {
             peripheralConnecte = peripheral
             _ecran.value = Ecran.Connecte(nom = appareil.nom)
 
-            // 4. Abonnement aux notifications : voir l'étape suivante.
+            // 4. Abonnement aux notifications : voir « Recevoir l'état de la LED ».
 
             // 5. On reste ici jusqu'à la déconnexion (volontaire ou perte de liaison).
             peripheral.state.first { it is ConnectionState.Disconnected }
@@ -520,6 +579,8 @@ Quelques points à observer :
 
 <img src="./img/ble-nordic/04_connexion.png" alt="L'écran de connexion avec son loader" width="220" />
 
+### Côté interface
+
 ::: tip L'écran de connexion
 
 `ui/ConnectingScreen.kt` est le plus simple des écrans :
@@ -539,8 +600,6 @@ fun ConnectingScreen(nom: String) {
 ```
 
 :::
-
-## Étape 8 : assembler l'écran
 
 Toutes les pièces sont là. Dans `MainActivity.kt`, une fonction `LampeApp` demande les permissions, écoute les `StateFlow` du ViewModel, et choisit l'écran avec un `when` :
 
@@ -601,7 +660,7 @@ fun LampeApp(viewModel: LampeViewModel = viewModel()) {
 
 1. Créez `ui/PermissionsScreen.kt` : un titre, une phrase d'explication et un bouton « Autoriser » qui appelle `onDemander`.
 2. Appelez `LampeApp()` dans le `setContent` de votre `MainActivity`.
-3. Les méthodes `basculerLed`, `renommer` et `deconnecter`, ainsi que `ConnectedScreen`, n'existent pas encore : créez-les vides pour que le projet compile. Nous les remplissons dans les étapes suivantes.
+3. Les méthodes `basculerLed`, `renommer` et `deconnecter`, ainsi que `ConnectedScreen`, n'existent pas encore : créez-les vides pour que le projet compile. Nous les remplissons dans la suite du TP.
 
 :::
 
@@ -611,7 +670,9 @@ L'application demande les permissions, scanne, et un clic sur votre lampe affich
 
 :::
 
-## Étape 9 : recevoir l'état de la LED
+## Interagir avec le périphérique
+
+### Recevoir l'état de la LED
 
 La lampe **notifie** son état : c'est elle qui envoie un message à chaque changement, que la LED soit basculée en BLE, avec le bouton physique ou en HTTP. Avec la librairie, s'abonner à une notification donne un **Flow** de valeurs.
 
@@ -657,7 +718,7 @@ Pour recevoir des notifications, un client BLE doit écrire `0x0001` dans un des
 
 :::
 
-### L'écran connecté
+#### L'écran connecté
 
 Créez `ui/ConnectedScreen.kt`. Le cercle joue le rôle de l'ampoule : jaune si la LED est allumée, gris sinon.
 
@@ -730,7 +791,7 @@ Si l'écran affiche « État de la LED inconnu » juste après la connexion, c'e
 
 :::
 
-## Étape 10 : basculer la LED
+### Basculer la LED
 
 Écrire dans une caractéristique, c'est un appel à `write()`, une fonction suspend. Si elle se termine sans exception, la lampe a bien reçu la valeur.
 
@@ -747,7 +808,7 @@ fun basculerLed() {
 }
 ```
 
-Remarquez ce que cette méthode **ne fait pas** : elle ne modifie pas `ledAllumee`. C'est la notification de l'étape précédente qui mettra l'écran à jour.
+Remarquez ce que cette méthode **ne fait pas** : elle ne modifie pas `ledAllumee`. C'est la notification (voir « Recevoir l'état de la LED ») qui mettra l'écran à jour.
 
 ![Un clic sur « Basculer la LED », de bout en bout](./img/ble-nordic/nordic_sequence_toggle.svg)
 
@@ -759,14 +820,14 @@ Un clic sur « Basculer la LED » allume la LED de **votre** carte, le cercle pa
 
 :::
 
-## Étape 11 : renommer et se déconnecter
+### Renommer et se déconnecter
 
 C'est à vous de jouer ! Il reste deux méthodes à écrire dans le ViewModel :
 
 - `renommer(nouveauNom: String)` : écrit le texte dans la caractéristique `DEVICE_NAME`. Elle ressemble beaucoup à `basculerLed`.
 - `deconnecter()` : déconnecte le périphérique connecté. Cherchez la bonne méthode sur l'objet `Peripheral`.
 
-Pour `deconnecter`, rappelez-vous de l'étape 7 : la coroutine de connexion attend déjà la déconnexion. Vous n'avez **rien** d'autre à faire pour revenir à l'écran de scan.
+Pour `deconnecter`, rappelez-vous de la connexion : la coroutine de connexion attend déjà la déconnexion. Vous n'avez **rien** d'autre à faire pour revenir à l'écran de scan.
 
 ::: details Voir l'une des solutions possibles
 
@@ -850,9 +911,15 @@ Le mode simulé est utile pour avancer sans matériel, pour écrire des tests, o
 
 Le dernier point est le plus important : la librairie ne vous dispense pas de comprendre le BLE. Elle vous dispense d'en écrire la plomberie.
 
-## Pour aller plus loin
+## Conclusion
 
-- **Filtrer le scan** sur le préfixe `PMW-` (voir l'étape 6), puis trier la liste par puissance du signal (`resultat.rssi`).
+Dans ce TP nous avons vu comment interagir avec un périphérique BLE grâce à la librairie de Nordic : scanner, nous connecter, recevoir des notifications et écrire des données. Les notions sont les mêmes que sans librairie ; c'est l'enchaînement des opérations qui devient plus simple à écrire.
+
+D'autres actions sont possibles dans l'objet. Celles-ci seront à implémenter dans le projet final.
+
+### Pour aller plus loin
+
+- **Filtrer le scan** sur le préfixe `PMW-` (voir la logique du Scan), puis trier la liste par puissance du signal (`resultat.rssi`).
 - **La liste des réseaux Wi-Fi** : la lampe expose aussi une caractéristique `10f83060-64f8-11ee-8c99-0242ac120002`. Abonnez-vous à ses notifications et affichez les réseaux reçus.
 - **Se reconnecter automatiquement** : regardez `CentralManager.ConnectionOptions.AutoConnect` dans la [documentation de la librairie](https://nordicsemi.github.io/Kotlin-BLE-Library/html/index.html).
 - **Comparer** avec le [TP sans librairie](./android-ble.md) : retrouvez, pour chaque étape de ce TP, le callback qui fait le même travail.
