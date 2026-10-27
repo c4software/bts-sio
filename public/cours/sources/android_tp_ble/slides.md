@@ -8,7 +8,7 @@ Par [Valentin Brosseau](https://github.com/c4software) / [@c4software](http://tw
 
 ## Le périphérique
 
-Un ESP32 qui simule une **lampe connectée**.
+Une **lampe connectée** en BLE : son émulateur sur un PC Linux (ou la carte ESP32 d'origine).
 
 - Allumer et éteindre la LED.
 - Être prévenu quand son état change.
@@ -32,7 +32,7 @@ Montres, capteurs, serrures, thermostats…
 
 ## Client et serveur
 
-- Le **serveur** : le périphérique (l'ESP32), qui expose ses données.
+- Le **serveur** : le périphérique (la lampe), qui expose ses données.
 - Le **client** : l'application Android, qui s'y connecte.
 
 ---
@@ -82,7 +82,7 @@ Avant d'écrire la moindre ligne de code.
 - **Sans librairie** : les API Android et leurs callbacks. On voit chaque étape.
 - **Avec la librairie Nordic** : des coroutines et des `Flow`. La plomberie en moins.
 
-Le BLE reste le même : mêmes UUID, même ESP32.
+Le BLE reste le même : mêmes UUID, même lampe.
 
 ---
 

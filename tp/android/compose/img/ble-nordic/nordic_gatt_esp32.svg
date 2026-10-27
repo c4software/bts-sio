@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="404" viewBox="0 0 900 404"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
 <rect width="900" height="404" fill="#ffffff"/>
-<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Ce que l'ESP32 expose en BLE (GATT)</text>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Ce que la lampe expose en BLE (GATT)</text>
 <rect x="20" y="52" width="230" height="64" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
 <text x="135" y="79" text-anchor="middle" font-weight="600" fill="#d97706">Périphérique PMW-1A2B</text>
 <text x="135" y="100" text-anchor="middle" font-size="12" fill="#475569">le serveur GATT</text>

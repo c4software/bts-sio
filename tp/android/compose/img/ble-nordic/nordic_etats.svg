@@ -17,7 +17,7 @@
 <text x="714" y="152" text-anchor="middle" font-size="11" fill="#475569">services trouvés</text><path d="M450 130 V170 Q450 180 440 180 H284 Q274 180 274 170 V132" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrow)"/>
 <text x="362" y="198" text-anchor="middle" font-size="11" fill="#475569">fin du scan : la liste reste affichée</text>
 <path d="M802 130 V214 Q802 224 792 224 H284 Q274 224 274 214 V200" fill="none" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowr)"/>
-<text x="540" y="244" text-anchor="middle" font-size="11" fill="#dc2626">déconnexion (bouton, ESP32 éteint, hors de portée) : retour à « Prêt »</text>
+<text x="540" y="244" text-anchor="middle" font-size="11" fill="#dc2626">déconnexion (bouton, lampe arrêtée, hors de portée) : retour à « Prêt »</text>
 <rect x="20" y="262" width="860" height="44" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
 <text x="36" y="289" fill="#475569">Chaque état correspond à une valeur de StateFlow dans le ViewModel. La vue choisit quoi afficher avec un simple when.</text>
 </svg>

@@ -24,8 +24,8 @@
 <text x="520" y="220" font-size="12" text-anchor="middle" fill="#475569">mode développeur</text>
 <text x="520" y="240" font-size="12" text-anchor="middle" fill="#475569">+ débogage USB</text>
 <rect x="720" y="170" width="160" height="86" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
-<text x="800" y="204" font-size="14" font-weight="600" text-anchor="middle" fill="#d97706">ESP32</text>
-<text x="800" y="226" font-size="12" text-anchor="middle" fill="#475569">périphérique BLE</text>
+<text x="800" y="204" font-size="14" font-weight="600" text-anchor="middle" fill="#d97706">La lampe</text>
+<text x="800" y="226" font-size="12" text-anchor="middle" fill="#475569">émulateur ou ESP32</text>
 <line x1="320" y1="99" x2="418" y2="99" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="369" y="91" font-size="12" font-weight="600" text-anchor="middle" fill="#475569" font-family="ui-monospace, monospace">adb</text>
 <line x1="320" y1="213" x2="418" y2="213" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>

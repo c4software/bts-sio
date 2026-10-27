@@ -7,7 +7,7 @@
 <line x1="330" y1="84" x2="330" y2="372" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/><rect x="480" y="50" width="160" height="34" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
 <text x="560" y="72" text-anchor="middle" font-weight="600" fill="#16a34a">Librairie Nordic</text>
 <line x1="560" y1="84" x2="560" y2="372" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/><rect x="710" y="50" width="160" height="34" rx="8" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
-<text x="790" y="72" text-anchor="middle" font-weight="600" fill="#d97706">ESP32</text>
+<text x="790" y="72" text-anchor="middle" font-weight="600" fill="#d97706">Lampe</text>
 <line x1="790" y1="84" x2="790" y2="372" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/><line x1="110" y1="110" x2="324" y2="110" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="220" y="102" text-anchor="middle" font-size="12"  fill="#0f172a">toggleLed()</text><line x1="330" y1="145" x2="554" y2="145" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="445" y="137" text-anchor="middle" font-size="12" font-family="ui-monospace, monospace" fill="#0f172a">write("1".toByteArray())</text><line x1="560" y1="180" x2="784" y2="180" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
@@ -18,6 +18,6 @@
 <text x="220" y="320" text-anchor="middle" font-size="12"  fill="#0f172a">StateFlow mis à jour</text><rect x="40" y="350" width="140" height="26" rx="13" fill="#eff6ff" stroke="#2563eb"/>
 <text x="110" y="368" text-anchor="middle" font-size="11" fill="#2563eb">recomposition</text>
 <rect x="20" y="392" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
-<text x="36" y="415" font-weight="600">L'application ne décide pas que la LED est allumée : c'est l'ESP32 qui le dit.</text>
+<text x="36" y="415" font-weight="600">L'application ne décide pas que la LED est allumée : c'est la lampe qui le dit.</text>
 <text x="36" y="434" fill="#475569">Le bouton physique ou un appel HTTP passent par le même chemin de notification, et l'écran reste juste.</text>
 </svg>

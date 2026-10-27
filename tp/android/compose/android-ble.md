@@ -1,5 +1,5 @@
 ---
-description: "Piloter un périphérique BLE (ESP32) depuis une application Compose avec les API Android, sans librairie : scan, connexion, GattCallback, notifications et écriture."
+description: "Piloter une lampe connectée en BLE (émulateur ou ESP32) depuis une application Compose avec les API Android, sans librairie : scan, connexion, GattCallback, notifications et écriture."
 ---
 
 # Android Compose et le BLE (sans librairie)
@@ -48,25 +48,27 @@ Pour réaliser ce TP, vous avez besoin des notions vues précédemment dans [And
 
 ## Le périphérique BLE
 
-Dans ce TP nous allons utiliser un périphérique BLE à base d'ESP32. Ce dernier est programmé pour simuler une « lampe connectée ». Il possède les caractéristiques suivantes :
+Dans ce TP nous allons piloter une « lampe connectée » en BLE. Nous utilisons son **émulateur**, lancé sur un PC Linux (voir ci-dessous) ; la lampe existe aussi sous forme de carte ESP32, qui se comporte exactement de la même façon. Elle possède les caractéristiques suivantes :
 
 **En BLE :**
 
 - Toggle de la LED.
 - Comptage du nombre d’allumages.
-- Changement du nom de la carte (persistant).
+- Changement du nom de la lampe (persistant).
 - Notification lors de l’allumage / extinction de la LED.
 - Liste des réseaux Wifi environnants.
 - Définition des credentials Wifi (persistant).
 
-**En WiFi :**
+**En Wi-Fi (HTTP) :**
 
 - Allumage et extinction de la LED (toggle).
 - Récupération du statut.
 
-**En Physique :**
+**Avec le bouton :**
 
-- Utilisation du bouton pour allumer et éteindre la LED.
+- Un bouton allume et éteint la LED : sur le tableau de bord de l'émulateur, ou le bouton physique de la carte ESP32.
+
+La carte ESP32 d'origine, en vidéo :
 
 <center>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LQsL3jDOc7o?si=6ceKFVKceKS3GlwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -76,11 +78,22 @@ Dans ce TP nous allons utiliser un périphérique BLE à base d'ESP32. Ce dernie
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/W9N-JtwWSzE?si=6ceKFVKceKS3GlwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </center>
 
-::: tip Pas d'ESP32 sous la main ?
+::: tip Lancer la lampe
 
-L'[émulateur de la lampe connectée](https://github.com/c4software/emulateur-lampe-ble) transforme un PC Linux en lampe BLE, avec le même service et les mêmes caractéristiques que l'ESP32. Votre téléphone s'y connecte comme à la vraie carte, et un tableau de bord web (`http://localhost:8080/`) affiche la LED, le compteur et tout ce que reçoit la lampe.
+La lampe de ce TP est un **émulateur** : un PC Linux qui se fait passer pour la lampe en Bluetooth. Il expose le même service et les mêmes caractéristiques que la carte ESP32 d'origine, et tout le code de ce TP fonctionne avec les deux.
+
+```sh
+git clone https://github.com/c4software/emulateur-lampe-ble.git
+cd emulateur-lampe-ble
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python emulateur.py
+```
+
+Ouvrez ensuite le tableau de bord sur `http://localhost:8080/` : il montre la LED, le compteur, les téléphones connectés et tout ce que reçoit la lampe. Le bouton de la carte y est cliquable. Le [README de l'émulateur](https://github.com/c4software/emulateur-lampe-ble) détaille les options et le dépannage.
 
 :::
+
+![Le tableau de bord de l'émulateur de la lampe](./img/ble/emulateur_tableau_de_bord.png)
 
 ## Rappel sur le fonctionnement du BLE
 
@@ -90,7 +103,7 @@ Il repose sur le principe de GATT (Generic Attribute Profile) qui permet de déf
 
 Dans le cadre d'un échange BLE nous avons donc :
 
-- Un Serveur : Le périphérique BLE qui expose des services et des caractéristiques. (Dans notre cas l'ESP32).
+- Un Serveur : Le périphérique BLE qui expose des services et des caractéristiques. (Dans notre cas la lampe : son émulateur, ou la carte ESP32).
 - Un Client : L'application qui va se connecter au serveur pour lire ou écrire des données. (Dans notre cas l'application Android).
 
 ::: tip Fonctionnement asynchrone
@@ -140,13 +153,13 @@ Pour commencer, nous allons utiliser l'application nRF Connect pour découvrir l
 
 ::: tip L'objectif : identifier **votre** périphérique
 
-L'objectif est d'identifier **votre** périphérique. Pour cela, nous allons regarder comment envoyer des données à l'ESP32.
+L'objectif est d'identifier **votre** périphérique. Pour cela, nous allons regarder comment envoyer des données à la lampe.
 
 **Nous allons le faire ensemble**, mais voici les étapes :
 
-- Allumez la LED avec l'UUID : `59b6bf7f-44de-4184-81bd-a0e3b30c919b` ou avec le bouton physique.
+- Allumez la LED en écrivant `1` (en texte) sur l'UUID `59b6bf7f-44de-4184-81bd-a0e3b30c919b`, ou avec le bouton du tableau de bord : la LED change d'état sur le tableau de bord.
 - Regardez les notifications avec l'UUID : `d75167c8-e6f9-4f0b-b688-09d96e195f00`.
-- Une fois que vous avez identifié votre ESP32, changez le nom via la caractéristique `1497b8a8-64f8-11ee-8c99-0242ac120002`.
+- Une fois que vous avez identifié votre lampe, changez le nom via la caractéristique `1497b8a8-64f8-11ee-8c99-0242ac120002`.
 
 :::
 
@@ -486,7 +499,7 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
                 }
             },
 
-            // L'ESP32 s'est déconnecté (BluetoothGatt.STATE_DISCONNECTED)
+            // La lampe s'est déconnectée (BluetoothGatt.STATE_DISCONNECTED)
             onDisconnect = {
                 isConnectedToDeviceFlow.value = false
             },
@@ -526,7 +539,7 @@ class BluetoothLEManager {
 
         /**
          * Les UUIDS sont des identifiants uniques qui permettent d'identifier les services et les caractéristiques.
-         * Ces UUIDs sont définis dans le code de l'ESP32.
+         * Ces UUIDs sont définis par la lampe (émulateur ou firmware de l'ESP32).
          */
         val DEVICE_UUID: UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c")
         val CHARACTERISTIC_TOGGLE_LED_UUID: UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b")
@@ -642,7 +655,7 @@ La méthode `writeCharacteristic` est générique et permet d'écrire dans une c
 ```kotlin
 @SuppressLint("MissingPermission")
 private fun writeCharacteristic(uuid: UUID, value: String) {
-    // Récupération du service principal (celui de l'ESP32)
+    // Récupération du service principal (celui de la lampe)
     getMainService()?.let { service ->
         // Récupération de la caractéristique
         val characteristic = service.getCharacteristic(uuid)
@@ -675,7 +688,7 @@ private fun getMainService(): BluetoothGattService? = currentBluetoothGatt?.getS
 Je vous laisse observer le code et le comprendre. Quelques éléments à noter :
 
 - La méthode `writeCharacteristic` est générique.
-- Elle utilise la méthode `getMainService` pour récupérer le service principal (celui de l'ESP32).
+- Elle utilise la méthode `getMainService` pour récupérer le service principal (celui de la lampe).
 - Elle utilise la méthode `getCharacteristic` pour récupérer la caractéristique à écrire (UUID dynamique en fonction de la méthode appelée).
 - En fonction de la version de l'OS, elle utilise la méthode adaptée pour écrire dans la caractéristique.
 
@@ -723,7 +736,7 @@ Ici je vous donne juste un exemple, à vous de jouer pour afficher l'image de la
 
 #### Activer les notifications
 
-Pour que le code fonctionne, vous devez indiquer à l'ESP32 que vous souhaitez recevoir des notifications. Voici comment faire :
+Pour que le code fonctionne, vous devez indiquer à la lampe que vous souhaitez recevoir des notifications. Voici comment faire :
 
 ```kotlin
 // Les caractéristiques dont il reste à activer la notification
@@ -756,7 +769,7 @@ private fun enableNextNotification() {
     // Indique que le GATT Client va écouter les notifications sur la caractéristique
     gatt.setCharacteristicNotification(characteristic, true)
 
-    // Puis on prévient l'ESP32 en écrivant dans le descripteur 0x2902 de la caractéristique
+    // Puis on prévient la lampe en écrivant dans le descripteur 0x2902 de la caractéristique
     val descriptor = characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)
     if (descriptor == null) {
         // Pas de descripteur : on passe directement à la suivante
@@ -772,11 +785,11 @@ private fun enableNextNotification() {
 }
 ```
 
-Cette méthode est à appeler après la connexion à l'ESP32 (dans le `onConnect` du `GattCallback`).
+Cette méthode est à appeler après la connexion à la lampe (dans le `onConnect` du `GattCallback`).
 
 ::: warning Une seule opération GATT à la fois
 
-Pourquoi une file d'attente, plutôt qu'une simple boucle qui écrit les trois descripteurs ? Parce qu'Android n'accepte qu'**une** opération GATT à la fois (écriture d'un descripteur, écriture ou lecture d'une caractéristique). Tant que l'ESP32 n'a pas répondu à la première écriture, les suivantes sont refusées, sans erreur visible : seule la première notification serait activée.
+Pourquoi une file d'attente, plutôt qu'une simple boucle qui écrit les trois descripteurs ? Parce qu'Android n'accepte qu'**une** opération GATT à la fois (écriture d'un descripteur, écriture ou lecture d'une caractéristique). Tant que la lampe n'a pas répondu à la première écriture, les suivantes sont refusées, sans erreur visible : seule la première notification serait activée.
 
 La file `notificationsToEnable` règle le problème : chaque fois qu'Android confirme une écriture (`onDescriptorWrite`), le `GattCallback` appelle `onDescriptorWritten`, et nous activons la notification suivante. La librairie Nordic gère cette file pour vous, c'est l'une des raisons de l'utiliser.
 

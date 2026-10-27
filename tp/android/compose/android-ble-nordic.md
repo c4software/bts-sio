@@ -1,5 +1,5 @@
 ---
-description: "Piloter un périphérique BLE (ESP32) depuis une application Compose avec la Kotlin BLE Library de Nordic : scan, connexion, découverte des services, notifications et écriture, avec des coroutines et des Flow."
+description: "Piloter une lampe connectée en BLE (émulateur ou ESP32) depuis une application Compose avec la Kotlin BLE Library de Nordic : scan, connexion, découverte des services, notifications et écriture, avec des coroutines et des Flow."
 ---
 
 # Android Compose et le BLE avec la librairie Nordic
@@ -14,7 +14,7 @@ description: "Piloter un périphérique BLE (ESP32) depuis une application Compo
 
 ## Introduction
 
-Dans ce TP, nous allons piloter la « lampe connectée » (un ESP32) depuis une application Compose. Cette fois-ci, nous n'allons pas utiliser directement les API Bluetooth d'Android : nous allons utiliser la [Kotlin BLE Library](https://github.com/NordicSemiconductor/Kotlin-BLE-Library) de Nordic Semiconductor.
+Dans ce TP, nous allons piloter la « lampe connectée » (son émulateur, ou la carte ESP32 d'origine) depuis une application Compose. Cette fois-ci, nous n'allons pas utiliser directement les API Bluetooth d'Android : nous allons utiliser la [Kotlin BLE Library](https://github.com/NordicSemiconductor/Kotlin-BLE-Library) de Nordic Semiconductor.
 
 Nordic est le fabricant des puces BLE que l'on retrouve dans une grande partie des objets connectés. Ils publient aussi les outils que vous utilisez déjà, comme nRF Connect. Leur librairie enveloppe les API Android et remplace les *callbacks* par des **coroutines** et des **Flow** : le code se lit dans l'ordre où les choses se passent.
 
@@ -37,7 +37,7 @@ Voici ce que nous allons construire :
 
 Le TP [Android Compose et le BLE (sans librairie)](./android-ble.md) fait la même chose **sans librairie**, avec `BluetoothGatt` et ses callbacks. C'est la meilleure façon de comprendre ce qui se passe réellement : l'ordre des opérations, la découverte des services, le descripteur à écrire pour activer les notifications.
 
-Ici, ces étapes sont toujours là, mais la librairie s'en charge. Le BLE ne change pas : mêmes UUID, mêmes caractéristiques, même ESP32. Seule la façon d'attendre les réponses change.
+Ici, ces étapes sont toujours là, mais la librairie s'en charge. Le BLE ne change pas : mêmes UUID, mêmes caractéristiques, même lampe. Seule la façon d'attendre les réponses change.
 
 ![La même application, deux façons de l'écrire](./img/ble-nordic/nordic_avec_sans_librairie.svg)
 
@@ -46,22 +46,39 @@ Ici, ces étapes sont toujours là, mais la librairie s'en charge. Le BLE ne cha
 ## Prérequis
 
 - Avoir suivi [Les écrans et les données](./android-avance.md), en particulier le découpage MVVM et les `StateFlow`.
-- Un **téléphone Android physique** : l'émulateur n'a pas de Bluetooth. (Pas de téléphone ? Lisez la partie [Tester sans ESP32](#tester-sans-esp32-le-mode-simule).)
-- Une lampe ESP32 allumée (ou [son émulateur](https://github.com/c4software/emulateur-lampe-ble), qui fait passer un PC Linux pour la lampe), et l'application [nRF Connect](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp) pour l'identifier.
+- Un **téléphone Android physique** : l'émulateur n'a pas de Bluetooth. (Pas de téléphone ? Lisez la partie [Tester sans téléphone](#tester-sans-telephone-le-mode-simule).)
+- La lampe : son [émulateur](https://github.com/c4software/emulateur-lampe-ble) lancé sur un PC Linux (ou une carte ESP32), et l'application [nRF Connect](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp) pour l'identifier.
 
 ## Le périphérique
 
+::: tip Lancer la lampe
+
+La lampe de ce TP est un **émulateur** : un PC Linux qui se fait passer pour la lampe en Bluetooth. Il expose le même service et les mêmes caractéristiques que la carte ESP32 d'origine, et tout le code de ce TP fonctionne avec les deux.
+
+```sh
+git clone https://github.com/c4software/emulateur-lampe-ble.git
+cd emulateur-lampe-ble
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python emulateur.py
+```
+
+Ouvrez ensuite le tableau de bord sur `http://localhost:8080/` : il montre la LED, le compteur, les téléphones connectés et tout ce que reçoit la lampe. Le bouton de la carte y est cliquable. Le [README de l'émulateur](https://github.com/c4software/emulateur-lampe-ble) détaille les options et le dépannage.
+
+:::
+
+![Le tableau de bord de l'émulateur de la lampe](./img/ble/emulateur_tableau_de_bord.png)
+
 La lampe expose un service et quatre caractéristiques. Ce sont les mêmes que dans le TP sans librairie :
 
-![Ce que l'ESP32 expose en BLE (GATT)](./img/ble-nordic/nordic_gatt_esp32.svg)
+![Ce que la lampe expose en BLE (GATT)](./img/ble-nordic/nordic_gatt_esp32.svg)
 
 ::: tip L'objectif : identifier **votre** périphérique
 
-Plusieurs lampes `PMW-…` seront allumées dans la salle. Avant de coder, ouvrez nRF Connect :
+Plusieurs lampes `PMW-…` peuvent être allumées dans la salle. Avant de coder, ouvrez nRF Connect :
 
 1. Lancez un scan et connectez-vous à une lampe `PMW-…`.
-2. Écrivez `1` dans la caractéristique `59b6bf7f-…` : la LED de **votre** carte doit changer d'état.
-3. Renommez votre carte avec la caractéristique `1497b8a8-…` (par exemple `PMW-Valentin`).
+2. Écrivez `1` (en texte) dans la caractéristique `59b6bf7f-…` : la LED de **votre** lampe doit changer d'état sur le tableau de bord.
+3. Renommez votre lampe avec la caractéristique `1497b8a8-…` (par exemple `PMW-Valentin`).
 
 Vous retrouverez ainsi votre lampe immédiatement dans votre application.
 
@@ -192,9 +209,9 @@ package fr.playmoweb.blenordic.ble
 import kotlin.uuid.Uuid
 
 /**
- * Description GATT de la lampe connectée (ESP32).
+ * Description GATT de la lampe connectée (émulateur ou ESP32).
  *
- * Ces UUID doivent être identiques à ceux déclarés dans le firmware de l'ESP32.
+ * Ces UUID doivent être identiques à ceux déclarés par la lampe.
  */
 object LampeGatt {
     /** Service principal de la lampe. */
@@ -251,7 +268,7 @@ fun createCentralManager(context: Context, scope: CoroutineScope): CentralManage
 
 Deux notions à retenir :
 
-- **L'environnement** (`NativeAndroidEnvironment`) donne accès au vrai Bluetooth du téléphone. La librairie propose aussi un environnement **simulé**, que nous utiliserons à la fin du TP pour tester sans ESP32.
+- **L'environnement** (`NativeAndroidEnvironment`) donne accès au vrai Bluetooth du téléphone. La librairie propose aussi un environnement **simulé**, que nous utiliserons à la fin du TP pour tester sans téléphone.
 - **Le scope** : le `CentralManager` lance ses coroutines dans le scope qu'on lui donne. Nous lui passerons le `viewModelScope` : quand le ViewModel disparaît, tout s'arrête proprement.
 
 ## Étape 5 : les états de l'application
@@ -427,7 +444,7 @@ Pour l'instant, branchez simplement `ScanScreen` dans votre `MainActivity` (nous
 
 ::: details Le filtre de scan
 
-Le bloc entre accolades après `scan(10.seconds)` est un filtre. `Name(Regex("PMW-.*"))` ne garde que les appareils dont le nom commence par `PMW-`. Vous pouvez aussi filtrer sur l'UUID du service avec `ServiceUuid(LampeGatt.SERVICE)`, à condition que l'ESP32 l'annonce dans ses données d'*advertising*.
+Le bloc entre accolades après `scan(10.seconds)` est un filtre. `Name(Regex("PMW-.*"))` ne garde que les appareils dont le nom commence par `PMW-`. Vous pouvez aussi filtrer sur l'UUID du service avec `ServiceUuid(LampeGatt.SERVICE)`, à condition que la lampe l'annonce dans ses données d'*advertising* (c'est le cas de l'émulateur).
 
 Commencez sans filtre : voir tous les appareils de la salle aide à comprendre ce qu'est un scan.
 
@@ -590,7 +607,7 @@ fun LampeApp(viewModel: LampeViewModel = viewModel()) {
 
 ::: tip Point de contrôle
 
-L'application demande les permissions, scanne, et un clic sur votre lampe affiche « Connexion à PMW-… » puis l'écran connecté (encore vide). En éteignant l'ESP32, l'application doit revenir d'elle-même à l'écran de scan.
+L'application demande les permissions, scanne, et un clic sur votre lampe affiche « Connexion à PMW-… » puis l'écran connecté (encore vide). En arrêtant l'émulateur de la lampe (Ctrl+C), l'application doit revenir d'elle-même à l'écran de scan.
 
 :::
 
@@ -707,7 +724,7 @@ fun ConnectedScreen(
 
 ::: tip Point de contrôle
 
-Connecté à votre lampe, appuyez sur le **bouton physique** de l'ESP32 : le cercle doit passer au jaune et le compteur augmenter, sans toucher au téléphone.
+Connecté à votre lampe, appuyez sur le **bouton** de la lampe (sur le tableau de bord de l'émulateur) : le cercle doit passer au jaune et le compteur augmenter, sans toucher au téléphone.
 
 Si l'écran affiche « État de la LED inconnu » juste après la connexion, c'est normal : ces caractéristiques ne se lisent pas, elles se notifient. L'état apparaît au premier changement.
 
@@ -715,7 +732,7 @@ Si l'écran affiche « État de la LED inconnu » juste après la connexion, c'e
 
 ## Étape 10 : basculer la LED
 
-Écrire dans une caractéristique, c'est un appel à `write()`, une fonction suspend. Si elle se termine sans exception, l'ESP32 a bien reçu la valeur.
+Écrire dans une caractéristique, c'est un appel à `write()`, une fonction suspend. Si elle se termine sans exception, la lampe a bien reçu la valeur.
 
 ```kotlin
 fun basculerLed() {
@@ -777,23 +794,20 @@ fun deconnecter() {
 
 ::: tip Point de contrôle
 
-Renommez votre lampe, déconnectez-vous et relancez un scan : elle apparaît sous son nouveau nom. (Le nom est persistant : il survit à un redémarrage de l'ESP32.)
+Renommez votre lampe, déconnectez-vous et relancez un scan : elle apparaît sous son nouveau nom. (Le nom est persistant : il survit à un redémarrage de la lampe.)
 
 :::
 
-## Tester sans ESP32 : le mode simulé
+## Tester sans téléphone : le mode simulé
 
-Deux solutions existent pour avancer sans la vraie carte :
-
-- **Vous avez un téléphone, mais pas d'ESP32** : lancez l'[émulateur de la lampe connectée](https://github.com/c4software/emulateur-lampe-ble) sur un PC Linux. Il expose le même service BLE que l'ESP32, et son tableau de bord web montre la LED s'allumer quand vous cliquez dans votre application. Rien ne change dans votre code.
-- **Vous n'avez ni téléphone, ni ESP32** : utilisez le mode simulé de la librairie, décrit ci-dessous, sur l'émulateur Android.
+L'émulateur de la lampe remplace la carte, mais il faut toujours un téléphone : l'émulateur Android n'a pas de Bluetooth. Sans téléphone, utilisez le mode simulé de la librairie, sur l'émulateur Android.
 
 
 La librairie propose un **environnement simulé** : un `CentralManager` qui ne touche pas au Bluetooth et répond comme le ferait un vrai périphérique. C'est ce qui permet de faire tourner l'application sur l'émulateur, et c'est ainsi qu'ont été réalisées les captures de ce TP.
 
 Le projet complet utilise deux **variantes** (*product flavors*) :
 
-- `native` : le vrai Bluetooth, celle que vous utilisez avec l'ESP32 ;
+- `native` : le vrai Bluetooth, celle que vous utilisez avec la lampe ;
 - `mock` : une lampe `PMW-1A2B` simulée, ainsi que deux autres appareils pour que le scan ressemble à celui d'une vraie salle.
 
 Seul le fichier `ble/CentralManagerFactory.kt` diffère entre les deux. Tout le reste de l'application (ViewModel, écrans) ne sait pas s'il parle à une vraie lampe ou à une lampe simulée. C'est un bon exemple de l'intérêt d'avoir isolé la création du `CentralManager` dans une seule fonction.
@@ -816,7 +830,7 @@ La lampe simulée (`MockLampe.kt`) reproduit le firmware : écrire `1` bascule l
 
 ::: tip Pour qui ?
 
-Le mode simulé est utile pour avancer sans matériel, pour écrire des tests, ou pour reproduire un cas difficile à obtenir avec un vrai ESP32 (une déconnexion au mauvais moment, par exemple). Dans Android Studio, la variante se choisit dans **Build > Select Build Variant** (`nativeDebug` ou `mockDebug`).
+Le mode simulé est utile pour avancer sans matériel, pour écrire des tests, ou pour reproduire un cas difficile à obtenir avec une vraie lampe (une déconnexion au mauvais moment, par exemple). Dans Android Studio, la variante se choisit dans **Build > Select Build Variant** (`nativeDebug` ou `mockDebug`).
 
 :::
 
@@ -839,7 +853,7 @@ Le dernier point est le plus important : la librairie ne vous dispense pas de co
 ## Pour aller plus loin
 
 - **Filtrer le scan** sur le préfixe `PMW-` (voir l'étape 6), puis trier la liste par puissance du signal (`resultat.rssi`).
-- **La liste des réseaux Wi-Fi** : l'ESP32 expose aussi une caractéristique `10f83060-64f8-11ee-8c99-0242ac120002`. Abonnez-vous à ses notifications et affichez les réseaux reçus.
+- **La liste des réseaux Wi-Fi** : la lampe expose aussi une caractéristique `10f83060-64f8-11ee-8c99-0242ac120002`. Abonnez-vous à ses notifications et affichez les réseaux reçus.
 - **Se reconnecter automatiquement** : regardez `CentralManager.ConnectionOptions.AutoConnect` dans la [documentation de la librairie](https://nordicsemi.github.io/Kotlin-BLE-Library/html/index.html).
 - **Comparer** avec le [TP sans librairie](./android-ble.md) : retrouvez, pour chaque étape de ce TP, le callback qui fait le même travail.
 

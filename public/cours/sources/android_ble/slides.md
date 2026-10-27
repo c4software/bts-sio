@@ -46,11 +46,17 @@ Avant de rentrer dans le détail, que fait notre objet ?
 
 ---
 
-## Pas d'ESP32 ?
+## La lampe du TP : un émulateur
 
 [L'émulateur de la lampe connectée](https://github.com/c4software/emulateur-lampe-ble) : un PC Linux qui se fait passer pour la carte.
 
-Même service BLE, et un tableau de bord web pour voir la LED.
+- Même service BLE que l'ESP32, même code côté Android.
+- Un tableau de bord web pour voir la LED, le compteur et ce que reçoit la lampe.
+- Rien à flasher, rien à brancher.
+
+---
+
+![Le tableau de bord de l'émulateur](./img/emulateur_tableau_de_bord.png)
 
 ---
 
@@ -483,7 +489,7 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
                 }
             },
 
-            // L'ESP32 s'est déconnecté (BluetoothGatt.STATE_DISCONNECTED)
+            // La lampe s'est déconnectée (BluetoothGatt.STATE_DISCONNECTED)
             onDisconnect = {
                 isConnectedToDeviceFlow.value = false
             },
@@ -529,7 +535,7 @@ class BluetoothLEManager {
 
         /**
          * Les UUIDS sont des identifiants uniques qui permettent d'identifier les services et les caractéristiques.
-         * Ces UUIDs sont définis dans le code de l'ESP32.
+         * Ces UUIDs sont définis par la lampe (émulateur ou firmware de l'ESP32).
          */
         val DEVICE_UUID: UUID = UUID.fromString("795090c7-420d-4048-a24e-18e60180e23c")
         val CHARACTERISTIC_TOGGLE_LED_UUID: UUID = UUID.fromString("59b6bf7f-44de-4184-81bd-a0e3b30c919b")
@@ -645,7 +651,7 @@ fun toggleLed() {
 ```kotlin
 @SuppressLint("MissingPermission")
 private fun writeCharacteristic(uuid: UUID, value: String) {
-    // Récupération du service principal (celui de l'ESP32)
+    // Récupération du service principal (celui de la lampe)
     getMainService()?.let { service ->
         // Récupération de la caractéristique
         val characteristic = service.getCharacteristic(uuid)
@@ -776,7 +782,7 @@ private fun enableNextNotification() {
     // Indique que le GATT Client va écouter les notifications sur la caractéristique
     gatt.setCharacteristicNotification(characteristic, true)
 
-    // Puis on prévient l'ESP32 en écrivant dans le descripteur 0x2902 de la caractéristique
+    // Puis on prévient la lampe en écrivant dans le descripteur 0x2902 de la caractéristique
     val descriptor = characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)
     if (descriptor == null) {
         // Pas de descripteur : on passe directement à la suivante
@@ -813,7 +819,7 @@ L'objet se pilote aussi en HTTP. La suite se trouve dans les autres supports :
 
 La même application avec la Kotlin BLE Library de Nordic.
 
-Mêmes UUID, mêmes caractéristiques, même ESP32. Des coroutines et des `Flow` à la place des callbacks.
+Mêmes UUID, mêmes caractéristiques, même lampe. Des coroutines et des `Flow` à la place des callbacks.
 
 ---
 
@@ -854,7 +860,7 @@ ledState.subscribe()
     .onEach { octets -> ledAllumee.value = octets.decodeToString() == "1" }
     .launchIn(this)
 
-// suspend : sans exception, l'ESP32 a reçu la valeur
+// suspend : sans exception, la lampe a reçu la valeur
 toggleLed.write("1".encodeToByteArray())
 ```
 
@@ -864,7 +870,7 @@ toggleLed.write("1".encodeToByteArray())
 
 [Android Compose et le BLE avec la librairie Nordic](/tp/android/compose/android-ble-nordic.html)
 
-Bonus : un **mode simulé** pour travailler sur l'émulateur, sans ESP32.
+Bonus : un **mode simulé** pour travailler sur l'émulateur Android, sans téléphone.
 
 ---
 
