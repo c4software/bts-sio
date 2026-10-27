@@ -480,7 +480,8 @@ export default [
               { text: "Découverte des bases d'Android", link: "/tp/android/compose/android-base.md" },
               { text: "Les écrans et les données", link: "/tp/android/compose/android-avance.md" },
               { text: "Créer une interface dynamique", link: "/tp/composants/android.md" },
-              { text: "Android et BLE", link: "/tp/android/compose/android-ble.md" },
+              { text: "Android et BLE (sans librairie)", link: "/tp/android/compose/android-ble.md" },
+              { text: "Android et BLE (librairie Nordic)", link: "/tp/android/compose/android-ble-nordic.md" },
               { text: "Android Compose, une liste et une API REST", link: "/tp/android/compose/dirty-api.md" }
             ]
           },

@@ -46,6 +46,14 @@ Avant de rentrer dans le détail, que fait notre objet ?
 
 ---
 
+## Pas d'ESP32 ?
+
+[L'émulateur de la lampe connectée](https://github.com/c4software/emulateur-lampe-ble) : un PC Linux qui se fait passer pour la carte.
+
+Même service BLE, et un tableau de bord web pour voir la LED.
+
+---
+
 ## Rappel sur le BLE
 
 - Un serveur (périphérique)
@@ -79,24 +87,41 @@ Avec l'application « nRF Connect »
 
 ## Deux solutions
 
-- Le coder.
+- Le coder, avec les API Android (sans librairie).
 - Utiliser une librairie.
 
+Deux TP : [sans librairie](/tp/android/compose/android-ble.html) puis [avec la librairie Nordic](/tp/android/compose/android-ble-nordic.html).
+
 ---
 
-## La librairie
+## Sans librairie
+
+- On voit **chaque** étape : scan, connexion, services, notifications, écriture.
+- Des callbacks (`BluetoothGattCallback`), comme des gestionnaires d'événements.
+- À nous de gérer les versions d'Android… et les pièges.
+
+**Pour comprendre.**
+
+---
+
+## Avec la librairie
 
 - Plus simple (beaucoup moins de questions à se poser, version, permissions… )
+- Les mêmes notions BLE : service, caractéristique, notification.
+- La plomberie en moins.
+
+**Pour produire.**
 
 ---
 
-## La librairie (suite)
+## Quelle librairie ?
 
-- [Android-Ble-Librairie](https://github.com/NordicSemiconductor/Android-BLE-Library)
-- Proposée par … Nordic.
-- Assez mal documentée.
-- Très rapide « simple d'utilisation ».
-- Un entre-deux « Code / Librairie ».
+Nordic (le fabricant des puces BLE) en propose deux :
+
+- [Kotlin BLE Library](https://github.com/NordicSemiconductor/Kotlin-BLE-Library) : coroutines et `Flow`, version 2 en bêta. **Celle du TP.**
+- [Android BLE Library](https://github.com/NordicSemiconductor/Android-BLE-Library) : plus ancienne, très répandue, une file de requêtes et des extensions Kotlin.
+
+Attention aux exemples en ligne : la Kotlin BLE Library v1 a une API totalement différente de la v2.
 
 ---
 
@@ -461,6 +486,11 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
             // L'ESP32 s'est déconnecté (BluetoothGatt.STATE_DISCONNECTED)
             onDisconnect = {
                 isConnectedToDeviceFlow.value = false
+            },
+
+            // Un descripteur vient d'être écrit : on peut activer la notification suivante
+            onDescriptorWritten = {
+                enableNextNotification()
             }
         ))
 }
@@ -518,7 +548,8 @@ class BluetoothLEManager {
     open class GattCallback(
         val onConnect: () -> Unit,
         val onNotify: (characteristic: BluetoothGattCharacteristic, value: String) -> Unit,
-        val onDisconnect: () -> Unit
+        val onDisconnect: () -> Unit,
+        val onDescriptorWritten: () -> Unit = {}
     ) : BluetoothGattCallback() {
 
         /**
@@ -569,6 +600,8 @@ class BluetoothLEManager {
             } else {
                 Log.e("BLE", "Descriptor write failed for ${descriptor?.characteristic?.uuid}, status: $status")
             }
+            // L'écriture est terminée (réussie ou non) : l'opération suivante peut partir
+            onDescriptorWritten()
         }
     }
 }
@@ -699,25 +732,62 @@ if(ledState) {
 ---
 
 ```kotlin
+// Les caractéristiques dont il reste à activer la notification
+private val notificationsToEnable = ArrayDeque<BluetoothGattCharacteristic>()
+
 @SuppressLint("MissingPermission")
 private fun enableNotify() {
     getMainService()?.let { service ->
-        // Indique que le GATT Client va écouter les notifications sur la caractéristique
-        val notificationStatus = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
-        val notificationLedCount = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_COUNT)
-        val wifiScan = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI)
+        // Les caractéristiques que nous voulons écouter
+        notificationsToEnable.clear()
+        listOf(
+            BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE,
+            BluetoothLEManager.CHARACTERISTIC_GET_COUNT,
+            BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI,
+        ).mapNotNull { uuid -> service.getCharacteristic(uuid) }
+            .forEach { characteristic -> notificationsToEnable.addLast(characteristic) }
 
-        listOf(notificationStatus, notificationLedCount, wifiScan).forEach { characteristic ->
-            currentBluetoothGatt?.setCharacteristicNotification(characteristic, true)
-            characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)?.let {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    currentBluetoothGatt?.writeDescriptor(it, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
-                } else {
-                    it.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
-                    currentBluetoothGatt?.writeDescriptor(it)
-                }
-            }
-        }
+        // Android n'accepte qu'une opération GATT à la fois :
+        // on active la première, les suivantes partiront depuis onDescriptorWrite
+        enableNextNotification()
+    }
+}
+```
+
+---
+
+## Une seule opération GATT à la fois
+
+Android refuse une nouvelle écriture tant que la précédente n'est pas terminée.
+
+Écrire trois descripteurs dans une boucle ? Seule la **première** notification est activée, sans erreur visible.
+
+La solution : une file, vidée au rythme de `onDescriptorWrite`.
+
+---
+
+```kotlin
+@SuppressLint("MissingPermission")
+private fun enableNextNotification() {
+    // Plus rien dans la file : toutes les notifications sont actives
+    val characteristic = notificationsToEnable.removeFirstOrNull() ?: return
+    val gatt = currentBluetoothGatt ?: return
+
+    // Indique que le GATT Client va écouter les notifications sur la caractéristique
+    gatt.setCharacteristicNotification(characteristic, true)
+
+    // Puis on prévient l'ESP32 en écrivant dans le descripteur 0x2902 de la caractéristique
+    val descriptor = characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)
+    if (descriptor == null) {
+        // Pas de descripteur : on passe directement à la suivante
+        enableNextNotification()
+        return
+    }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        gatt.writeDescriptor(descriptor, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
+    } else {
+        descriptor.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+        gatt.writeDescriptor(descriptor)
     }
 }
 ```
@@ -739,12 +809,72 @@ L'objet se pilote aussi en HTTP. La suite se trouve dans les autres supports :
 
 ---
 
+## Et avec la librairie ?
+
+La même application avec la Kotlin BLE Library de Nordic.
+
+Mêmes UUID, mêmes caractéristiques, même ESP32. Des coroutines et des `Flow` à la place des callbacks.
+
+---
+
+## Le scan devient un Flow
+
+```kotlin
+centralManager
+    .scan(10.seconds)
+    .distinctByPeripheral() // un seul résultat par appareil
+    .onEach { resultat -> /* ajouter resultat.peripheral à la liste */ }
+    .launchIn(viewModelScope)
+```
+
+Plus de `ScanCallback`, plus de `stopScan()` à ne pas oublier.
+
+---
+
+## La connexion se lit de haut en bas
+
+```kotlin
+centralManager.connect(peripheral, CentralManager.ConnectionOptions.Direct(timeout = 10.seconds, retry = 2))
+
+val services = peripheral.services(listOf(LampeGatt.SERVICE))
+    .filterIsInstance<RemoteServices.Discovered>()
+    .first()
+    .services
+```
+
+Plus de `GattCallback` : chaque ligne attend la précédente.
+
+---
+
+## Notifications et écriture
+
+```kotlin
+// Écrit le descripteur 0x2902 pour nous, et gère la file
+ledState.subscribe()
+    .onEach { octets -> ledAllumee.value = octets.decodeToString() == "1" }
+    .launchIn(this)
+
+// suspend : sans exception, l'ESP32 a reçu la valeur
+toggleLed.write("1".encodeToByteArray())
+```
+
+---
+
+## Le TP avec la librairie
+
+[Android Compose et le BLE avec la librairie Nordic](/tp/android/compose/android-ble-nordic.html)
+
+Bonus : un **mode simulé** pour travailler sur l'émulateur, sans ESP32.
+
+---
+
 ## Récapitulatif
 
 - Des permissions, différentes selon la version d'Android.
 - Un scan, géré dans le ViewModel.
 - Une connexion, suivie grâce à des états (`Flow`).
 - Des caractéristiques pour écrire, des notifications pour écouter.
+- Une opération GATT à la fois (la librairie s'en charge pour vous).
 
 ---
 

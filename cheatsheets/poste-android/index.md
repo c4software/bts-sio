@@ -23,6 +23,8 @@ Comptez environ une heure, l'essentiel étant du temps de téléchargement. Chaq
 L'émulateur suffit pour la plupart des exercices, mais il ne gère pas le Bluetooth Low Energy (BLE). Pour dialoguer avec un périphérique, un vrai téléphone est indispensable.
 :::
 
+![Du poste au périphérique : qui parle à qui](./res/poste_chaine_outils.svg)
+
 ## Git
 
 Git sert à récupérer le code source des projets.

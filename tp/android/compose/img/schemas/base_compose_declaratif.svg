@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="404" viewBox="0 0 900 404"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="404" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Le principe de Compose : l'interface est une fonction de l'état</text>
+<rect x="20" y="70" width="220" height="120" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="130" y="98" font-size="14" font-weight="600" text-anchor="middle" fill="#7c3aed">L'état</text>
+<text x="130" y="124" font-size="11" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace">var showDialog by remember</text>
+<text x="130" y="142" font-size="11" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace">{ mutableStateOf(false) }</text>
+<rect x="340" y="70" width="220" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="450" y="98" font-size="14" font-weight="600" text-anchor="middle" fill="#2563eb">La fonction @Composable</text>
+<text x="450" y="124" font-size="11" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace">if (showDialog) {</text>
+<text x="450" y="142" font-size="11" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace">  AlertDialog(…)</text>
+<text x="450" y="160" font-size="11" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace">}</text>
+<rect x="660" y="70" width="220" height="120" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="770" y="98" font-size="14" font-weight="600" text-anchor="middle" fill="#16a34a">L'interface affichée</text>
+<text x="770" y="126" font-size="12" text-anchor="middle" fill="#0f172a">le dialogue est visible</text>
+<text x="770" y="146" font-size="12" text-anchor="middle" fill="#0f172a">ou non, selon l'état</text>
+<line x1="240" y1="130" x2="338" y2="130" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="289" y="120" font-size="11" text-anchor="middle" fill="#475569">lue par</text>
+<line x1="560" y1="130" x2="658" y2="130" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="609" y="120" font-size="11" text-anchor="middle" fill="#475569">produit</text>
+<path d="M770 190 V226 Q770 236 760 236 H140 Q130 236 130 226 V194" fill="none" stroke="#d97706" stroke-width="2" marker-end="url(#arrowa)"/>
+<text x="250" y="256" font-size="12" font-weight="600" text-anchor="middle" fill="#d97706">un clic modifie l'état : showDialog = true</text>
+<text x="450" y="52" font-size="1" fill="#0f172a"></text>
+<rect x="340" y="276" width="220" height="40" rx="8" fill="#f8fafc" stroke="#475569" stroke-width="1"/>
+<text x="450" y="301" font-size="12" font-weight="600" text-anchor="middle" fill="#475569">recomposition automatique</text>
+<path d="M450 276 V194" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<rect x="20" y="336" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="36" y="359" font-size="13" font-weight="600" fill="#0f172a">Vous ne modifiez jamais l'écran directement : vous modifiez l'état, Compose redessine.</text>
+<text x="36" y="379" font-size="13" fill="#475569">Seules les fonctions qui lisent l'état modifié sont rappelées. C'est ce qui rend Compose rapide.</text>
+</svg>

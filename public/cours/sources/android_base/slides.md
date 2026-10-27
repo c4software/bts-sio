@@ -1076,7 +1076,7 @@ Via Android Studio bien évidemment. Et de préférence via l'éditeur XML
 
 ---
 
-## Ajoutons le logo de l'ESEO :
+## Ajoutons votre logo :
 
 ```kotlin
 Image(

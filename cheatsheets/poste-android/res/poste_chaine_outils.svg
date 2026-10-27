@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="344" viewBox="0 0 900 344"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="344" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Du poste au périphérique : qui parle à qui</text>
+<rect x="20" y="56" width="300" height="200" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="170" y="84" font-size="14" font-weight="600" text-anchor="middle" fill="#2563eb">Votre ordinateur</text>
+<rect x="40" y="98" width="260" height="32" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1"/>
+<text x="52" y="119" font-size="12" font-weight="600" fill="#0f172a">Android Studio</text>
+<text x="288" y="119" font-size="11" text-anchor="end" fill="#475569">l'éditeur, le bouton ▶</text>
+<rect x="40" y="136" width="260" height="32" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1"/>
+<text x="52" y="157" font-size="12" font-weight="600" fill="#0f172a">SDK Android</text>
+<text x="288" y="157" font-size="11" text-anchor="end" fill="#475569">les outils, dont adb</text>
+<rect x="40" y="174" width="260" height="32" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1"/>
+<text x="52" y="195" font-size="12" font-weight="600" fill="#0f172a">JDK inclus</text>
+<text x="288" y="195" font-size="11" text-anchor="end" fill="#475569">rien à installer en plus</text>
+<rect x="40" y="212" width="260" height="32" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="1"/>
+<text x="52" y="233" font-size="12" font-weight="600" fill="#0f172a">Git</text>
+<text x="288" y="233" font-size="11" text-anchor="end" fill="#475569">récupérer les projets</text>
+<rect x="420" y="56" width="200" height="86" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+<text x="520" y="84" font-size="14" font-weight="600" text-anchor="middle" fill="#475569">Émulateur (AVD)</text>
+<text x="520" y="106" font-size="12" text-anchor="middle" fill="#475569">un téléphone virtuel</text>
+<text x="520" y="126" font-size="11" font-weight="600" text-anchor="middle" fill="#dc2626">pas de Bluetooth</text>
+<rect x="420" y="170" width="200" height="86" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="520" y="198" font-size="14" font-weight="600" text-anchor="middle" fill="#16a34a">Téléphone Android</text>
+<text x="520" y="220" font-size="12" text-anchor="middle" fill="#475569">mode développeur</text>
+<text x="520" y="240" font-size="12" text-anchor="middle" fill="#475569">+ débogage USB</text>
+<rect x="720" y="170" width="160" height="86" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<text x="800" y="204" font-size="14" font-weight="600" text-anchor="middle" fill="#d97706">ESP32</text>
+<text x="800" y="226" font-size="12" text-anchor="middle" fill="#475569">périphérique BLE</text>
+<line x1="320" y1="99" x2="418" y2="99" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="369" y="91" font-size="12" font-weight="600" text-anchor="middle" fill="#475569" font-family="ui-monospace, monospace">adb</text>
+<line x1="320" y1="213" x2="418" y2="213" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="369" y="205" font-size="12" text-anchor="middle" fill="#475569">câble USB</text>
+<text x="369" y="231" font-size="12" font-weight="600" text-anchor="middle" fill="#475569" font-family="ui-monospace, monospace">adb</text>
+<line x1="620" y1="213" x2="718" y2="213" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<line x1="718" y1="223" x2="622" y2="223" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="669" y="205" font-size="12" text-anchor="middle" fill="#16a34a">Bluetooth</text>
+<text x="669" y="241" font-size="12" text-anchor="middle" fill="#16a34a">Low Energy</text>
+<rect x="20" y="276" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="36" y="299" font-size="13" font-weight="600" fill="#0f172a">Le bouton ▶ d'Android Studio compile l'application puis l'installe avec adb.</text>
+<text x="36" y="319" font-size="13" fill="#475569">La commande adb devices liste ce qui est branché : si votre téléphone n'y est pas, le bouton ▶ ne le verra pas non plus.</text>
+</svg>

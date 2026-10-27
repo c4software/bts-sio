@@ -50,6 +50,8 @@ Android repose sur plusieurs éléments :
 - **Jetpack** : Jetpack est un ensemble de bibliothèques qui permettent de faciliter le développement d'applications Android.
 - **View** : Les Views sont les éléments de base qui permettent de créer des interfaces pour Android (ancien système).
 
+![Android en couches : où se trouve votre application](./img/schemas/base_pile_android.svg)
+
 Android étant relativement ancien, beaucoup d'éléments reposent historiquement sur du XML. Depuis 2021, Google propose Compose, une nouvelle façon de créer des interfaces pour Android, devenue le choix par défaut pour les nouveaux projets. C'est celle-ci que nous allons découvrir dans ce TP.
 
 ### Sécurité
@@ -80,6 +82,8 @@ Il est très performant et permet de créer des interfaces fluides et réactives
 - **Déclaratif** : Compose est un framework déclaratif. Cela signifie que vous décrivez ce que vous voulez afficher, et Compose se charge de mettre à jour l'interface en fonction des changements.
 - **Composable** : Compose repose sur le concept de composable. Un composable est une fonction qui prend des paramètres et qui retourne un élément de l'interface.
 - **Observation** : Compose permet d'observer des données et de mettre à jour l'interface en fonction des changements.
+
+![Le principe de Compose : l'interface est une fonction de l'état](./img/schemas/base_compose_declaratif.svg)
 
 ::: tip Performances
 
@@ -137,6 +141,8 @@ Le Logo Playstore présent sur la ligne d'un simulateur indique que celui-ci est
 Maintenant que votre émulateur est créé, nous allons pouvoir lancer l'application « Run -> Run App ».
 
 ### Premier lancement et découverte
+
+![Du code au téléphone : ce qui se passe quand vous cliquez sur ▶](./img/schemas/base_chaine_build.svg)
 
 Pour débuter (et avant de tout retravailler), je vous laisse compiler et lancer une première fois l'application proposée par Google.
 
@@ -649,7 +655,7 @@ Les ressources sont un élément important d'une application Android. Elles peuv
 
 Nous avons dans notre application un dossier `drawable` qui contient les images de l'application. Nous allons maintenant ajouter une image à notre application.
 
-Je vous laisse chercher le logo de l'ESEO, et l'ajouter à votre application (un glisser-déposer dans le dossier `drawable` suffit).
+Je vous laisse choisir votre logo (celui de votre entreprise, par exemple), et l'ajouter à votre application (un glisser-déposer dans le dossier `drawable` suffit).
 
 #### À faire
 
@@ -721,6 +727,8 @@ Les ressources alternatives sont des ressources qui sont utilisées en fonction 
 - Thème sombre
 - Version d'Android
 - etc.
+
+![Les ressources alternatives : Android choisit le bon fichier](./img/schemas/base_ressources_alternatives.svg)
 
 Cette création de ressource est réalisable directement depuis Android Studio :
 
@@ -894,7 +902,7 @@ La variable `showDialog` est une variable d'état. Cela signifie que Compose va 
 
 #### À faire
 
-Modifier votre code pour que le dialogue ne s'affiche que si l'utilisateur clique sur le logo de l'ESEO.
+Modifier votre code pour que le dialogue ne s'affiche que si l'utilisateur clique sur votre logo.
 
 ::: tip Rendre un logo cliquable ?
 
@@ -902,8 +910,8 @@ Pour rendre un logo cliquable, il suffit d'ajouter un `clickable` sur le composa
 
 ```kotlin
 Image(
-    painter = painterResource(R.drawable.logo_eseo),
-    contentDescription = "Logo ESEO",
+    painter = painterResource(R.drawable.mon_logo),
+    contentDescription = "Mon logo",
     modifier = Modifier.size(128.dp).clickable {
         /* Action */
     }

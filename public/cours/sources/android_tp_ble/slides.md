@@ -77,6 +77,15 @@ Avant d'écrire la moindre ligne de code.
 
 ---
 
+## Deux façons de les coder
+
+- **Sans librairie** : les API Android et leurs callbacks. On voit chaque étape.
+- **Avec la librairie Nordic** : des coroutines et des `Flow`. La plomberie en moins.
+
+Le BLE reste le même : mêmes UUID, même ESP32.
+
+---
+
 ## Question
 
 Vous demandez la connexion.

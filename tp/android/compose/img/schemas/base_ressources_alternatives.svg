@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="380" viewBox="0 0 900 380"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="380" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Les ressources alternatives : Android choisit le bon fichier</text>
+<rect x="20" y="56" width="250" height="236" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="36" y="82" font-size="13" font-weight="700" fill="#0f172a" font-family="ui-monospace, monospace">res/</text>
+<rect x="36" y="98" width="218" height="30" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+<text x="46" y="117" font-size="11" font-weight="600" fill="#0f172a" font-family="ui-monospace, monospace">values/strings.xml</text>
+<rect x="36" y="136" width="218" height="30" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="46" y="155" font-size="11" font-weight="600" fill="#0f172a" font-family="ui-monospace, monospace">values-fr/strings.xml</text>
+<rect x="36" y="174" width="218" height="30" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="1.5"/>
+<text x="46" y="193" font-size="11" font-weight="600" fill="#0f172a" font-family="ui-monospace, monospace">values-it/strings.xml</text>
+<rect x="36" y="212" width="218" height="30" rx="6" fill="#ffffff" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="46" y="231" font-size="11" font-weight="600" fill="#0f172a" font-family="ui-monospace, monospace">values-night/themes.xml</text>
+<rect x="36" y="250" width="218" height="30" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+<text x="46" y="269" font-size="11" font-weight="600" fill="#0f172a" font-family="ui-monospace, monospace">values-land/dimens.xml</text>
+<rect x="330" y="120" width="200" height="110" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="430" y="148" font-size="13" font-weight="600" text-anchor="middle" fill="#7c3aed">Au lancement</text>
+<text x="430" y="172" font-size="11" text-anchor="middle" fill="#0f172a">Android lit la configuration</text>
+<text x="430" y="190" font-size="11" text-anchor="middle" fill="#0f172a">du téléphone (langue,</text>
+<text x="430" y="208" font-size="11" text-anchor="middle" fill="#0f172a">thème, orientation…)</text>
+<line x1="270" y1="175" x2="328" y2="175" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="590" y="70" width="290" height="64" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="606" y="96" font-size="12" font-weight="600" fill="#2563eb">Téléphone en français</text>
+<text x="606" y="118" font-size="11" fill="#0f172a" font-family="ui-monospace, monospace">R.string.titre → values-fr/</text>
+<rect x="590" y="152" width="290" height="64" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+<text x="606" y="178" font-size="12" font-weight="600" fill="#475569">Téléphone en allemand</text>
+<text x="606" y="200" font-size="11" fill="#0f172a" font-family="ui-monospace, monospace">pas de values-de/ → values/</text>
+<path d="M530 165 C560 165 560 102 588 102" fill="none" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+<path d="M530 185 C560 185 560 184 588 184" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="20" y="312" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="36" y="335" font-size="13" font-weight="600" fill="#0f172a">Le code ne change pas : il demande R.string.titre, Android fournit la bonne traduction.</text>
+<text x="36" y="355" font-size="13" fill="#475569">Toujours garder un fichier par défaut (values/) : c'est lui qui sert quand aucune variante ne correspond.</text>
+</svg>

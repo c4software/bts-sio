@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="586" viewBox="0 0 900 586"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="586" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">La même application, deux façons de l'écrire</text>
+<rect x="20" y="52" width="420" height="40" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="230" y="77" text-anchor="middle" font-weight="600" fill="#dc2626">Sans librairie : API Android (callbacks)</text>
+<rect x="460" y="52" width="420" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="670" y="77" text-anchor="middle" font-weight="600" fill="#16a34a">Avec la librairie Nordic (coroutines)</text>
+<text x="20" y="114" font-size="11" font-weight="600" fill="#475569" letter-spacing=".04em">SCANNER</text>
+<rect x="20" y="122" width="420" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="34" y="147" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">BluetoothLeScanner + ScanCallback</text>
+<line x1="440" y1="142" x2="458" y2="142" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="460" y="122" width="420" height="40" rx="8" fill="#f8fafc" stroke="#16a34a"/>
+<text x="474" y="147" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">centralManager.scan(10.seconds)</text>
+<text x="866" y="147" text-anchor="end" font-size="11" fill="#16a34a">un Flow de résultats</text>
+<text x="20" y="180" font-size="11" font-weight="600" fill="#475569" letter-spacing=".04em">DÉDOUBLONNER</text>
+<rect x="20" y="188" width="420" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="34" y="213" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">Map adresse → ScanResult, à la main</text>
+<line x1="440" y1="208" x2="458" y2="208" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="460" y="188" width="420" height="40" rx="8" fill="#f8fafc" stroke="#16a34a"/>
+<text x="474" y="213" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">.distinctByPeripheral()</text>
+<text x="866" y="213" text-anchor="end" font-size="11" fill="#16a34a">un opérateur</text>
+<text x="20" y="246" font-size="11" font-weight="600" fill="#475569" letter-spacing=".04em">SE CONNECTER</text>
+<rect x="20" y="254" width="420" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="34" y="279" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">connectGatt() + BluetoothGattCallback</text>
+<line x1="440" y1="274" x2="458" y2="274" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="460" y="254" width="420" height="40" rx="8" fill="#f8fafc" stroke="#16a34a"/>
+<text x="474" y="279" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">centralManager.connect(peripheral)</text>
+<text x="866" y="279" text-anchor="end" font-size="11" fill="#16a34a">une fonction suspend</text>
+<text x="20" y="312" font-size="11" font-weight="600" fill="#475569" letter-spacing=".04em">TROUVER LE SERVICE</text>
+<rect x="20" y="320" width="420" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="34" y="345" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">discoverServices() puis onServicesDiscovered</text>
+<line x1="440" y1="340" x2="458" y2="340" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="460" y="320" width="420" height="40" rx="8" fill="#f8fafc" stroke="#16a34a"/>
+<text x="474" y="345" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">peripheral.services()</text>
+<text x="866" y="345" text-anchor="end" font-size="11" fill="#16a34a">un Flow de services</text>
+<text x="20" y="378" font-size="11" font-weight="600" fill="#475569" letter-spacing=".04em">ÉCRIRE</text>
+<rect x="20" y="386" width="420" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="34" y="411" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">writeCharacteristic(), deux API selon la version</text>
+<line x1="440" y1="406" x2="458" y2="406" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="460" y="386" width="420" height="40" rx="8" fill="#f8fafc" stroke="#16a34a"/>
+<text x="474" y="411" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">characteristic.write(bytes)</text>
+<text x="866" y="411" text-anchor="end" font-size="11" fill="#16a34a">suspend, exception si échec</text>
+<text x="20" y="444" font-size="11" font-weight="600" fill="#475569" letter-spacing=".04em">RECEVOIR LES NOTIFICATIONS</text>
+<rect x="20" y="452" width="420" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="34" y="477" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">setCharacteristicNotification + descripteur 0x2902</text>
+<line x1="440" y1="472" x2="458" y2="472" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="460" y="452" width="420" height="40" rx="8" fill="#f8fafc" stroke="#16a34a"/>
+<text x="474" y="477" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">characteristic.subscribe()</text>
+<text x="866" y="477" text-anchor="end" font-size="11" fill="#16a34a">un Flow de valeurs</text>
+<rect x="20" y="512" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="36" y="535" font-weight="600">Le BLE ne change pas : mêmes UUID, mêmes caractéristiques, même ESP32.</text>
+<text x="36" y="554" fill="#475569">Seule la façon d'attendre les réponses change : des callbacks d'un côté, des coroutines et des Flow de l'autre.</text>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="414" viewBox="0 0 900 414"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="414" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Le découpage MVVM : les données descendent, les événements remontent</text>
+<rect x="20" y="60" width="240" height="170" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="140" y="88" font-size="14" font-weight="600" text-anchor="middle" fill="#2563eb">La vue (View)</text>
+<text x="140" y="108" font-size="12" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace">@Composable Screen3</text>
+<text x="140" y="140" font-size="12" text-anchor="middle" fill="#475569">affiche ce qu'elle reçoit</text>
+<text x="140" y="160" font-size="12" text-anchor="middle" fill="#475569">transmet les clics</text>
+<text x="140" y="180" font-size="12" text-anchor="middle" fill="#475569">ne décide de rien</text>
+<rect x="330" y="60" width="240" height="170" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="450" y="88" font-size="14" font-weight="600" text-anchor="middle" fill="#7c3aed">Le ViewModel</text>
+<text x="450" y="108" font-size="12" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace">Screen3ViewModel</text>
+<text x="450" y="140" font-size="12" text-anchor="middle" fill="#475569">garde l'état (StateFlow)</text>
+<text x="450" y="160" font-size="12" text-anchor="middle" fill="#475569">contient la logique</text>
+<text x="450" y="180" font-size="12" text-anchor="middle" fill="#475569">survit à la rotation</text>
+<rect x="640" y="60" width="240" height="170" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<text x="760" y="88" font-size="14" font-weight="600" text-anchor="middle" fill="#d97706">Le modèle (Model)</text>
+<text x="760" y="108" font-size="12" text-anchor="middle" fill="#0f172a">les données</text>
+<text x="760" y="140" font-size="12" text-anchor="middle" fill="#475569">liste en mémoire, base,</text>
+<text x="760" y="160" font-size="12" text-anchor="middle" fill="#475569">API, périphérique BLE…</text>
+<line x1="330" y1="112" x2="262" y2="112" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="296" y="102" font-size="11" font-weight="600" text-anchor="middle" fill="#16a34a">état</text>
+<line x1="262" y1="178" x2="328" y2="178" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+<text x="296" y="198" font-size="11" font-weight="600" text-anchor="middle" fill="#2563eb">clic</text>
+<line x1="570" y1="112" x2="638" y2="112" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="638" y1="178" x2="572" y2="178" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<rect x="20" y="252" width="860" height="76" rx="8" fill="#f8fafc" stroke="#475569" stroke-width="1"/>
+<text x="36" y="276" font-size="13" font-weight="600" fill="#0f172a">Dans le code</text>
+<text x="36" y="298" font-size="12" fill="#16a34a" font-family="ui-monospace, monospace">val items by viewModel.itemsFlow.collectAsStateWithLifecycle()</text>
+<text x="864" y="298" font-size="11" text-anchor="end" fill="#475569">l'état descend</text>
+<text x="36" y="318" font-size="12" fill="#2563eb" font-family="ui-monospace, monospace">FloatingActionButton(onClick = { viewModel.addItem() })</text>
+<text x="864" y="318" font-size="11" text-anchor="end" fill="#475569">l'événement remonte</text>
+<rect x="20" y="346" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="36" y="369" font-size="13" font-weight="600" fill="#0f172a">C'est exactement le découpage du TP BLE : le ViewModel parle à l'ESP32, la vue affiche l'état.</text>
+<text x="36" y="389" font-size="13" fill="#475569">Tourner le téléphone recrée la vue mais garde le ViewModel : la liste n'est pas perdue.</text>
+</svg>

@@ -33,7 +33,7 @@ Les TP suivent [le cours Android Base](/cours/android_base.md) et [le cours Andr
 L'application mobile prend tout son sens quand elle échange avec le monde : le réseau et le Bluetooth.
 
 1. [Android Compose, une liste et une API REST](/tp/android/compose/dirty-api.md)
-2. [Android et BLE](/tp/android/compose/android-ble.md)
+2. [Android et BLE (sans librairie)](/tp/android/compose/android-ble.md), puis [la même application avec la librairie Nordic](/tp/android/compose/android-ble-nordic.md)
 
 ::: tip Les supports associés
 [Cours Android + HTTP](/cours/android_http.md) et [cours Android + BLE](/cours/android_ble.md).

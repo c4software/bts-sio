@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="404" viewBox="0 0 900 404"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+<rect width="900" height="404" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Ce que l'ESP32 expose en BLE (GATT)</text>
+<rect x="20" y="52" width="230" height="64" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<text x="135" y="79" text-anchor="middle" font-weight="600" fill="#d97706">Périphérique PMW-1A2B</text>
+<text x="135" y="100" text-anchor="middle" font-size="12" fill="#475569">le serveur GATT</text>
+<rect x="290" y="52" width="590" height="44" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="306" y="79" font-weight="600" fill="#7c3aed">Service</text>
+<text x="370" y="79" font-family="ui-monospace, monospace" font-size="12">795090c7-420d-4048-a24e-18e60180e23c</text>
+<line x1="250" y1="74" x2="288" y2="74" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M320 96 V136 H348" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="350" y="112" width="530" height="48" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="366" y="132" font-weight="600">Basculer la LED</text>
+<text x="366" y="150" font-family="ui-monospace, monospace" font-size="11" fill="#475569">59b6bf7f-44de-4184-81bd-a0e3b30c919b</text>
+<rect x="680" y="124" width="64" height="24" rx="12" fill="#2563eb"/>
+<text x="712" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">WRITE</text>
+<text x="756" y="140" font-size="11" font-family="ui-monospace, monospace" fill="#475569">écrire "1"</text><path d="M320 96 V198 H348" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="350" y="174" width="530" height="48" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="366" y="194" font-weight="600">État de la LED</text>
+<text x="366" y="212" font-family="ui-monospace, monospace" font-size="11" fill="#475569">d75167c8-e6f9-4f0b-b688-09d96e195f00</text>
+<rect x="680" y="186" width="64" height="24" rx="12" fill="#16a34a"/>
+<text x="712" y="202" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">NOTIFY</text>
+<text x="756" y="202" font-size="11" font-family="ui-monospace, monospace" fill="#475569">"1" ou "0"</text><path d="M320 96 V260 H348" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="350" y="236" width="530" height="48" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="366" y="256" font-weight="600">Nombre d'allumages</text>
+<text x="366" y="274" font-family="ui-monospace, monospace" font-size="11" fill="#475569">a877d87f-60bf-4ad5-ba61-56133b2cd9d4</text>
+<rect x="680" y="248" width="64" height="24" rx="12" fill="#16a34a"/>
+<text x="712" y="264" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">NOTIFY</text>
+<text x="756" y="264" font-size="11" font-family="ui-monospace, monospace" fill="#475569">"12", "13"…</text><path d="M320 96 V322 H348" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="350" y="298" width="530" height="48" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="366" y="318" font-weight="600">Nom de la carte</text>
+<text x="366" y="336" font-family="ui-monospace, monospace" font-size="11" fill="#475569">1497b8a8-64f8-11ee-8c99-0242ac120002</text>
+<rect x="680" y="310" width="64" height="24" rx="12" fill="#2563eb"/>
+<text x="712" y="326" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">WRITE</text>
+<text x="756" y="326" font-size="11" font-family="ui-monospace, monospace" fill="#475569">"PMW-Salon"</text><text x="20" y="386" font-size="12" fill="#475569">Les valeurs circulent en texte UTF-8 : "1".toByteArray() pour écrire, bytes.decodeToString() pour lire.</text>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="304" viewBox="0 0 900 304"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="304" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Du code au téléphone : ce qui se passe quand vous cliquez sur ▶</text>
+<rect x="20" y="56" width="210" height="46" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="34" y="76" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace, monospace">MainActivity.kt</text>
+<text x="34" y="93" font-size="11" fill="#475569">votre code Kotlin</text>
+<path d="M230 79 C270 79 270 135 300 135" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="20" y="112" width="210" height="46" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="34" y="132" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace, monospace">res/</text>
+<text x="34" y="149" font-size="11" fill="#475569">images, textes, couleurs</text>
+<path d="M230 135 C270 135 270 135 300 135" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="20" y="168" width="210" height="46" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="34" y="188" font-size="12" font-weight="600" fill="#0f172a" font-family="ui-monospace, monospace">AndroidManifest.xml</text>
+<text x="34" y="205" font-size="11" fill="#475569">nom, icône, permissions</text>
+<path d="M230 191 C270 191 270 135 300 135" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="304" y="100" width="150" height="70" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="379" y="130" font-size="14" font-weight="600" text-anchor="middle" fill="#7c3aed">Gradle</text>
+<text x="379" y="150" font-size="11" text-anchor="middle" fill="#475569">compile et assemble</text>
+<line x1="454" y1="135" x2="512" y2="135" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="514" y="100" width="150" height="70" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<text x="589" y="128" font-size="12" font-weight="600" text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace">app-debug.apk</text>
+<text x="589" y="150" font-size="11" text-anchor="middle" fill="#475569">signé (clé de debug)</text>
+<line x1="664" y1="135" x2="722" y2="135" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="693" y="125" font-size="12" font-weight="600" text-anchor="middle" fill="#475569" font-family="ui-monospace, monospace">adb</text>
+<rect x="724" y="86" width="156" height="98" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="802" y="116" font-size="13" font-weight="600" text-anchor="middle" fill="#16a34a">Émulateur</text>
+<text x="802" y="136" font-size="13" font-weight="600" text-anchor="middle" fill="#16a34a">ou téléphone</text>
+<text x="802" y="160" font-size="11" text-anchor="middle" fill="#475569">installe et lance</text>
+<rect x="20" y="236" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="36" y="259" font-size="13" font-weight="600" fill="#0f172a">Le premier build est long : Gradle télécharge ses dépendances une seule fois.</text>
+<text x="36" y="279" font-size="13" fill="#475569">Ensuite, seuls les fichiers modifiés sont recompilés. Le fichier .apk est ce que l'on publie, signé avec une vraie clé, sur le Play Store.</text>
+</svg>

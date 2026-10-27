@@ -1,4 +1,8 @@
-# Android Compose et le BLE
+---
+description: "Piloter un périphérique BLE (ESP32) depuis une application Compose avec les API Android, sans librairie : scan, connexion, GattCallback, notifications et écriture."
+---
+
+# Android Compose et le BLE (sans librairie)
 
 ::: details Sommaire
 [[toc]]
@@ -7,6 +11,7 @@
 - [Slides Android BLE](/cours/android_ble.md)
 - [Support Android Base](./android-base.md)
 - [Support Android : les écrans et les données](./android-avance.md)
+- [Le même TP avec la librairie Nordic](./android-ble-nordic.md)
 
 ## Introduction
 
@@ -18,6 +23,14 @@ Dans cette partie nous allons voir comment interagir avec des périphériques BL
 - Connexion à un périphérique (Connect)
 - Lire des données (Notify)
 - Écrire des données (Write)
+
+::: tip Pourquoi sans librairie ?
+
+Dans ce TP, nous utilisons directement les API Bluetooth d'Android (`BluetoothGatt` et ses callbacks), **sans librairie**. Ce n'est pas la façon la plus courte d'écrire une application BLE, mais c'est la meilleure pour comprendre le principe : vous verrez chaque étape que le téléphone doit enchaîner (scan, connexion, découverte des services, activation des notifications, écriture).
+
+Une fois ces étapes comprises, le TP [Android Compose et le BLE avec la librairie Nordic](./android-ble-nordic.md) refait la même application avec la librairie de Nordic Semiconductor, qui les prend en charge.
+
+:::
 
 ## Les slides
 
@@ -62,6 +75,12 @@ Dans ce TP nous allons utiliser un périphérique BLE à base d'ESP32. Ce dernie
 <center>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/W9N-JtwWSzE?si=6ceKFVKceKS3GlwU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </center>
+
+::: tip Pas d'ESP32 sous la main ?
+
+L'[émulateur de la lampe connectée](https://github.com/c4software/emulateur-lampe-ble) transforme un PC Linux en lampe BLE, avec le même service et les mêmes caractéristiques que l'ESP32. Votre téléphone s'y connecte comme à la vraie carte, et un tableau de bord web (`http://localhost:8080/`) affiche la LED, le compteur et tout ce que reçoit la lampe.
+
+:::
 
 ## Rappel sur le fonctionnement du BLE
 
@@ -138,7 +157,7 @@ Pour l'implémentation nous avons plusieurs possibilités :
 - Utiliser une librairie tierce.
 - Utiliser les API Android.
 
-Dans ce TP nous allons utiliser les API Android pour vous montrer comment fonctionne le BLE. Mais vous allez voir que je vous ai quand même préparé quelques méthodes et classes pour vous simplifier la vie.
+Dans ce TP nous allons utiliser les API Android pour vous montrer comment fonctionne le BLE. La version avec librairie fait l'objet d'[un TP dédié](./android-ble-nordic.md). Mais vous allez voir que je vous ai quand même préparé quelques méthodes et classes pour vous simplifier la vie.
 
 ::: danger Attention
 
@@ -470,6 +489,11 @@ fun connect(context: Context, bluetoothDevice: BluetoothDevice) {
             // L'ESP32 s'est déconnecté (BluetoothGatt.STATE_DISCONNECTED)
             onDisconnect = {
                 isConnectedToDeviceFlow.value = false
+            },
+
+            // Un descripteur vient d'être écrit : on peut activer la notification suivante
+            onDescriptorWritten = {
+                enableNextNotification()
             }
         ))
 }
@@ -521,7 +545,8 @@ class BluetoothLEManager {
     open class GattCallback(
         val onConnect: () -> Unit,
         val onNotify: (characteristic: BluetoothGattCharacteristic, value: String) -> Unit,
-        val onDisconnect: () -> Unit
+        val onDisconnect: () -> Unit,
+        val onDescriptorWritten: () -> Unit = {}
     ) : BluetoothGattCallback() {
 
         /**
@@ -572,6 +597,8 @@ class BluetoothLEManager {
             } else {
                 Log.e("BLE", "Descriptor write failed for ${descriptor?.characteristic?.uuid}, status: $status")
             }
+            // L'écriture est terminée (réussie ou non) : l'opération suivante peut partir
+            onDescriptorWritten()
         }
     }
 }
@@ -699,30 +726,61 @@ Ici je vous donne juste un exemple, à vous de jouer pour afficher l'image de la
 Pour que le code fonctionne, vous devez indiquer à l'ESP32 que vous souhaitez recevoir des notifications. Voici comment faire :
 
 ```kotlin
+// Les caractéristiques dont il reste à activer la notification
+private val notificationsToEnable = ArrayDeque<BluetoothGattCharacteristic>()
+
 @SuppressLint("MissingPermission")
 private fun enableNotify() {
     getMainService()?.let { service ->
-        // Indique que le GATT Client va écouter les notifications sur la caractéristique
-        val notificationStatus = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE)
-        val notificationLedCount = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_COUNT)
-        val wifiScan = service.getCharacteristic(BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI)
+        // Les caractéristiques que nous voulons écouter
+        notificationsToEnable.clear()
+        listOf(
+            BluetoothLEManager.CHARACTERISTIC_NOTIFY_STATE,
+            BluetoothLEManager.CHARACTERISTIC_GET_COUNT,
+            BluetoothLEManager.CHARACTERISTIC_GET_SET_WIFI,
+        ).mapNotNull { uuid -> service.getCharacteristic(uuid) }
+            .forEach { characteristic -> notificationsToEnable.addLast(characteristic) }
 
-        listOf(notificationStatus, notificationLedCount, wifiScan).forEach { characteristic ->
-            currentBluetoothGatt?.setCharacteristicNotification(characteristic, true)
-            characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)?.let {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    currentBluetoothGatt?.writeDescriptor(it, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
-                } else {
-                    it.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
-                    currentBluetoothGatt?.writeDescriptor(it)
-                }
-            }
-        }
+        // Android n'accepte qu'une opération GATT à la fois :
+        // on active la première, les suivantes partiront depuis onDescriptorWrite
+        enableNextNotification()
+    }
+}
+
+@SuppressLint("MissingPermission")
+private fun enableNextNotification() {
+    // Plus rien dans la file : toutes les notifications sont actives
+    val characteristic = notificationsToEnable.removeFirstOrNull() ?: return
+    val gatt = currentBluetoothGatt ?: return
+
+    // Indique que le GATT Client va écouter les notifications sur la caractéristique
+    gatt.setCharacteristicNotification(characteristic, true)
+
+    // Puis on prévient l'ESP32 en écrivant dans le descripteur 0x2902 de la caractéristique
+    val descriptor = characteristic.getDescriptor(BluetoothLEManager.CHARACTERISTIC_UPDATE_NOTIFICATION_DESCRIPTOR_UUID)
+    if (descriptor == null) {
+        // Pas de descripteur : on passe directement à la suivante
+        enableNextNotification()
+        return
+    }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        gatt.writeDescriptor(descriptor, BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE)
+    } else {
+        descriptor.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+        gatt.writeDescriptor(descriptor)
     }
 }
 ```
 
 Cette méthode est à appeler après la connexion à l'ESP32 (dans le `onConnect` du `GattCallback`).
+
+::: warning Une seule opération GATT à la fois
+
+Pourquoi une file d'attente, plutôt qu'une simple boucle qui écrit les trois descripteurs ? Parce qu'Android n'accepte qu'**une** opération GATT à la fois (écriture d'un descripteur, écriture ou lecture d'une caractéristique). Tant que l'ESP32 n'a pas répondu à la première écriture, les suivantes sont refusées, sans erreur visible : seule la première notification serait activée.
+
+La file `notificationsToEnable` règle le problème : chaque fois qu'Android confirme une écriture (`onDescriptorWrite`), le `GattCallback` appelle `onDescriptorWritten`, et nous activons la notification suivante. La librairie Nordic gère cette file pour vous, c'est l'une des raisons de l'utiliser.
+
+:::
 
 ::: tip À vous
 

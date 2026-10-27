@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="396" viewBox="0 0 900 396"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="396" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Android en couches : où se trouve votre application</text>
+<rect x="20" y="56" width="620" height="44" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="36" y="83" font-size="13" font-weight="600" fill="#2563eb">Votre application</text>
+<text x="624" y="83" font-size="11" text-anchor="end" fill="#475569">Kotlin, Jetpack Compose, vos écrans et votre logique</text>
+<rect x="20" y="108" width="620" height="44" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="36" y="135" font-size="13" font-weight="600" fill="#7c3aed">Bibliothèques Jetpack et Play Services</text>
+<text x="624" y="135" font-size="11" text-anchor="end" fill="#475569">navigation, ViewModel, permissions, localisation…</text>
+<rect x="20" y="160" width="620" height="44" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="36" y="187" font-size="13" font-weight="600" fill="#16a34a">Framework Android (SDK)</text>
+<text x="624" y="187" font-size="11" text-anchor="end" fill="#475569">Activity, Bluetooth, capteurs, notifications</text>
+<rect x="20" y="212" width="620" height="44" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<text x="36" y="239" font-size="13" font-weight="600" fill="#d97706">ART : Android Runtime</text>
+<text x="624" y="239" font-size="11" text-anchor="end" fill="#475569">exécute le bytecode, gère la mémoire (ramasse-miettes)</text>
+<rect x="20" y="264" width="620" height="44" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+<text x="36" y="291" font-size="13" font-weight="600" fill="#475569">Noyau Linux</text>
+<text x="624" y="291" font-size="11" text-anchor="end" fill="#475569">pilotes, processus, sécurité, un utilisateur Linux par application</text>
+<rect x="670" y="56" width="210" height="252" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+<text x="775" y="84" font-size="14" font-weight="600" text-anchor="middle" fill="#dc2626">Bac à sable</text>
+<text x="775" y="112" font-size="12" text-anchor="middle" fill="#0f172a">chaque application tourne</text>
+<text x="775" y="132" font-size="12" text-anchor="middle" fill="#0f172a">isolée des autres,</text>
+<text x="775" y="152" font-size="12" text-anchor="middle" fill="#0f172a">avec ses propres fichiers.</text>
+<text x="775" y="172" font-size="12" text-anchor="middle" fill="#0f172a"></text>
+<text x="775" y="192" font-size="12" text-anchor="middle" fill="#0f172a">Pour sortir du bac à sable</text>
+<text x="775" y="212" font-size="12" text-anchor="middle" fill="#0f172a">(caméra, Bluetooth,</text>
+<text x="775" y="232" font-size="12" text-anchor="middle" fill="#0f172a">localisation), il faut</text>
+<text x="775" y="252" font-size="12" text-anchor="middle" fill="#0f172a">une permission.</text>
+<rect x="20" y="328" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="36" y="351" font-size="13" font-weight="600" fill="#0f172a">Vous écrivez la couche du haut ; tout le reste est fourni par le téléphone.</text>
+<text x="36" y="371" font-size="13" fill="#475569">Compose dessine lui-même l'interface avec le moteur de rendu Skia, sans passer par les anciennes View.</text>
+</svg>

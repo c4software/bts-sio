@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="366" viewBox="0 0 900 366"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="366" fill="#ffffff"/>
+<text x="20" y="34" font-weight="600" font-size="16" fill="#0f172a">Attendre sans bloquer : sleep() face à delay()</text>
+<text x="20" y="66" font-size="13" font-weight="600" fill="#dc2626">Thread.sleep(500) : le thread principal est bloqué</text>
+<text x="20" y="100" font-size="12" font-weight="600" fill="#0f172a">Thread principal</text>
+<rect x="170" y="78" width="130" height="34" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+<text x="235.0" y="100" font-size="11" font-weight="600" text-anchor="middle" fill="#475569">lireCapteur()</text>
+<rect x="300" y="78" width="400" height="34" rx="6" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+<text x="500.0" y="100" font-size="11" font-weight="600" text-anchor="middle" fill="#dc2626">bloqué 500 ms : l'écran ne répond plus</text>
+<rect x="700" y="78" width="180" height="34" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+<text x="790.0" y="100" font-size="11" font-weight="600" text-anchor="middle" fill="#475569">suite</text>
+<text x="20" y="150" font-size="13" font-weight="600" fill="#16a34a">delay(500) dans une coroutine : le thread reste libre</text>
+<text x="20" y="184" font-size="12" font-weight="600" fill="#0f172a">Thread principal</text>
+<rect x="170" y="162" width="130" height="34" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+<text x="235.0" y="184" font-size="11" font-weight="600" text-anchor="middle" fill="#475569">lireCapteur()</text>
+<rect x="300" y="162" width="400" height="34" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+<text x="500.0" y="184" font-size="11" font-weight="600" text-anchor="middle" fill="#16a34a">libre : dessine l'écran, gère les clics</text>
+<rect x="700" y="162" width="180" height="34" rx="6" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+<text x="790.0" y="184" font-size="11" font-weight="600" text-anchor="middle" fill="#475569">reprise de la coroutine</text>
+<path d="M300 214 Q300 236 330 236 H670 Q700 236 700 214" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowv)"/>
+<text x="500" y="254" font-size="11" text-anchor="middle" fill="#7c3aed">la coroutine est suspendue, pas le thread</text>
+<text x="170" y="284" font-size="11" text-anchor="middle" fill="#475569" font-family="ui-monospace, monospace">0 ms</text>
+<text x="700" y="284" font-size="11" text-anchor="middle" fill="#475569" font-family="ui-monospace, monospace">+500 ms</text>
+<rect x="20" y="298" width="860" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="36" y="321" font-size="13" font-weight="600" fill="#0f172a">suspend fun = « peut se mettre en pause ». C'est l'équivalent d'async def en Python.</text>
+<text x="36" y="341" font-size="13" fill="#475569">Sur un microcontrôleur, vous auriez une tâche RTOS et vTaskDelay(). Ici, des milliers de coroutines tiennent sur quelques threads.</text>
+</svg>

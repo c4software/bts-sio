@@ -23,7 +23,7 @@ Dans ce TP, nous allons continuer dans le même projet pour :
 - afficher une liste qui se met à jour toute seule ;
 - demander une permission à l'utilisateur.
 
-C'est la dernière étape avant le [TP sur le BLE](./android-ble.md), qui s'appuie directement sur le découpage MVVM vu ici.
+C'est la dernière étape avant les TP sur le BLE ([sans librairie](./android-ble.md) ou [avec la librairie Nordic](./android-ble-nordic.md)), qui s'appuient directement sur le découpage MVVM vu ici.
 
 ## Les slides
 
@@ -85,6 +85,8 @@ Dans cet exemple, nous avons un `NavHost` qui contient deux `Screen` : `Screen1`
 - `goBack = { navController.popBackStack() }` permet de revenir à l'écran précédent. C'est une fonction de callback que nous allons passer à la `Screen2` pour lui permettre de revenir à l'écran précédent.
 
 `PopBackStack` ? Il faut imaginer que votre navigation est une pile (comme un millefeuille). Chaque fois que vous naviguez vers un nouvel écran, celui-ci est ajouté en haut de la pile. Si vous ne faites qu'ajouter des écrans, vous allez finir par avoir une pile très haute. `popBackStack` permet de retirer l'écran du dessus de la pile et de revenir à l'écran précédent. C'est l'équivalent de l'action du bouton « retour » sur votre téléphone (ou du geste retour).
+
+![La pile de navigation : navigate() empile, popBackStack() dépile](./img/schemas/avance_pile_navigation.svg)
 
 ---
 
@@ -238,6 +240,8 @@ Le `Scaffold` est un composant qui permet de créer une structure de base pour n
 
 Chaque élément est optionnel, vous pouvez donc choisir de les afficher ou non.
 
+![Le Scaffold : la charpente d'un écran](./img/schemas/avance_scaffold.svg)
+
 ```kotlin
 Scaffold(
         topBar = {
@@ -322,6 +326,8 @@ Il est très utilisé dans l'approche composant, car il permet de séparer les d
 - `Model` : Les données de l'application. Sur Android nous allons utiliser des classes `data class`.
 - `View` : L'interface de l'application. Ce sont nos composants (`@Composable`).
 - `ViewModel` : La logique de l'application. Ce sont des classes particulières qui vont faire le lien entre les `Model` et les `View`.
+
+![Le découpage MVVM : les données descendent, les événements remontent](./img/schemas/avance_mvvm.svg)
 
 Quelques points sont à retenir :
 
@@ -716,7 +722,7 @@ Si l'utilisateur a déjà accepté la permission, la demande sera automatiquemen
 
 :::
 
-![Permissions](./img/base/flow_permissions.png)
+![Demander une permission : le parcours complet](./img/schemas/avance_permissions.svg)
 
 Nous allons voir comment faire avec Compose. Pour ça nous allons devoir utiliser une librairie développée par Google : [Accompanist](https://google.github.io/accompanist/)
 
@@ -898,6 +904,6 @@ Dans ce TP, vous avez :
 - découpé votre interface en composants réutilisables ;
 - demandé une permission à l'utilisateur.
 
-Gardez bien ce projet : il vous servira de référence. Dans le [TP suivant](./android-ble.md), nous allons réutiliser exactement ce découpage pour dialoguer avec un périphérique BLE.
+Gardez bien ce projet : il vous servira de référence. Dans le [TP suivant](./android-ble.md), nous allons réutiliser exactement ce découpage pour dialoguer avec un périphérique BLE (il existe aussi [une version avec la librairie Nordic](./android-ble-nordic.md)).
 
 👋 Si vous avez des questions, n'hésitez pas.
