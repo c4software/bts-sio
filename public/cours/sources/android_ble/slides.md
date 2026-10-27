@@ -60,6 +60,12 @@ Avant de rentrer dans le détail, que fait notre objet ?
 
 ---
 
+## Le téléphone s'abonne aux notifications
+
+![Le téléphone est connecté et a activé les notifications](./img/emulateur_telephone_connecte.png)
+
+---
+
 ## Une écriture depuis le téléphone
 
 ![Le téléphone écrit 1 : la LED s'allume, le journal montre l'écriture](./img/emulateur_bascule_telephone.png)

@@ -103,7 +103,7 @@ Vous retrouverez ainsi votre lampe immédiatement dans votre application.
 
 :::
 
-Quand votre téléphone écrit sur la lampe, le tableau de bord le montre : le téléphone apparaît dans « Téléphones connectés », la LED s'allume, et le journal affiche l'écriture reçue (`b'1'`) puis la bascule.
+Quand votre téléphone écrit sur la lampe, le tableau de bord le montre : le téléphone apparaît dans « Téléphones connectés », la LED s'allume, et le journal affiche l'écriture reçue (`b'1'`), la bascule, puis les notifications envoyées aux téléphones abonnés.
 
 ![Le tableau de bord après une écriture depuis le téléphone : la LED est allumée et le journal montre l'écriture](./img/ble/emulateur_bascule_telephone.png)
 
@@ -792,6 +792,10 @@ fun ConnectedScreen(
 Connecté à votre lampe, appuyez sur le **bouton** de la lampe (sur le tableau de bord de l'émulateur) : le cercle doit passer au jaune et le compteur augmenter, sans toucher au téléphone.
 
 Si l'écran affiche « État de la LED inconnu » juste après la connexion, c'est normal : ces caractéristiques ne se lisent pas, elles se notifient. L'état apparaît au premier changement.
+
+Côté lampe, le tableau de bord de l'émulateur confirme l'abonnement : « État de la LED » et « Compteur » passent au vert dans « Notifications ».
+
+![Le tableau de bord quand le téléphone a activé les notifications de l'état de la LED et du compteur](./img/ble/emulateur_telephone_connecte.png)
 
 :::
 

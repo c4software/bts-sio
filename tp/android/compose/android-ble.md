@@ -163,7 +163,7 @@ L'objectif est d'identifier **votre** périphérique. Pour cela, nous allons reg
 
 :::
 
-Quand votre téléphone écrit sur la lampe, le tableau de bord le montre : le téléphone apparaît dans « Téléphones connectés », la LED s'allume, et le journal affiche l'écriture reçue (`b'1'`) puis la bascule.
+Quand votre téléphone écrit sur la lampe, le tableau de bord le montre : le téléphone apparaît dans « Téléphones connectés », la LED s'allume, et le journal affiche l'écriture reçue (`b'1'`), la bascule, puis les notifications envoyées aux téléphones abonnés.
 
 ![Le tableau de bord après une écriture depuis le téléphone : la LED est allumée et le journal montre l'écriture](./img/ble/emulateur_bascule_telephone.png)
 
@@ -802,6 +802,14 @@ La file `notificationsToEnable` règle le problème : chaque fois qu'Android con
 ::: tip À vous
 
 Je vous laisse implémenter cette méthode dans votre ViewModel.
+
+:::
+
+::: tip Point de contrôle
+
+Sur le tableau de bord de l'émulateur, « État de la LED » et « Compteur » passent au vert dans « Notifications » : votre application est bien abonnée. Si une seule pastille est verte, l'activation s'est arrêtée en route (voir l'encadré « Une seule opération GATT à la fois »).
+
+![Le tableau de bord quand le téléphone a activé les notifications de l'état de la LED et du compteur](./img/ble/emulateur_telephone_connecte.png)
 
 :::
 
