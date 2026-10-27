@@ -16,6 +16,14 @@ Une **lampe connectée** en BLE : son émulateur sur un PC Linux (ou la carte ES
 
 ---
 
+## La lampe du TP
+
+[L'émulateur de la lampe connectée](https://github.com/c4software/emulateur-lampe-ble) : un PC Linux qui se fait passer pour la lampe en Bluetooth.
+
+Un tableau de bord web montre la LED, le compteur et ce que reçoit la lampe.
+
+---
+
 ## Question
 
 Comment une application parle-t-elle à un objet posé sur la table ?
