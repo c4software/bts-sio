@@ -534,6 +534,10 @@ fun connecter(appareil: Appareil) {
                 options = CentralManager.ConnectionOptions.Direct(timeout = 10.seconds, retry = 2),
             )
 
+            // Android garde parfois en cache la table GATT d'une connexion précédente
+            // (par exemple si la lampe a redémarré entre-temps) : on la lui fait oublier.
+            runCatching { peripheral.refreshCache() }
+
             // 2. Découverte des services : on attend l'état "Discovered".
             val services = withTimeout(10.seconds) {
                 peripheral.services(listOf(LampeGatt.SERVICE))
@@ -578,6 +582,7 @@ fun connecter(appareil: Appareil) {
 Quelques points à observer :
 
 - `connect()` est une fonction **suspend** : la ligne suivante ne s'exécute qu'une fois la connexion établie. En cas d'échec, elle lève une exception, rattrapée par le `catch`.
+- `refreshCache()` demande à Android d'oublier ce qu'il sait déjà de la lampe. Sans cet appel, après un redémarrage de la lampe (ou de son émulateur), le téléphone peut réutiliser une table GATT périmée : l'abonnement aux notifications échoue alors avec l'erreur « Invalid Handle ».
 - `services()` ne renvoie pas une liste mais un **Flow d'états** : `Unknown`, `Discovering`, puis `Discovered` (ou `Failed`). Nous attendons le premier `Discovered` avec `filterIsInstance` et `first()`.
 - `peripheral.state.first { it is ConnectionState.Disconnected }` « met en pause » la coroutine tant que la lampe est connectée. Quand elle se déconnecte, pour n'importe quelle raison, le code reprend et nous ramène à l'écran de scan.
 
@@ -689,6 +694,7 @@ ledState.subscribe()
         val allumee = octets.decodeToString() == "1"
         majConnecte { it.copy(ledAllumee = allumee) }
     }
+    .catch { e -> _erreur.value = "Notifications de la LED impossibles : ${e.message}" }
     .launchIn(this)
 
 toggleCount.subscribe()
@@ -696,6 +702,7 @@ toggleCount.subscribe()
         val compteur = octets.decodeToString().toIntOrNull()
         majConnecte { it.copy(compteur = compteur) }
     }
+    .catch { e -> _erreur.value = "Notifications du compteur impossibles : ${e.message}" }
     .launchIn(this)
 ```
 
@@ -713,6 +720,12 @@ private fun majConnecte(modification: (Ecran.Connecte) -> Ecran.Connecte) {
 Pour recevoir des notifications, un client BLE doit écrire `0x0001` dans un descripteur spécial de la caractéristique : le **CCCD** (UUID `0x2902`). Dans le TP sans librairie, c'est la méthode `enableNotify()` qui s'en charge, avec deux variantes selon la version d'Android.
 
 `subscribe()` fait exactement la même chose, pour vous. Et quand la coroutine qui écoute le Flow est annulée, la librairie désactive la notification.
+
+:::
+
+::: danger N'oubliez pas le `.catch { }`
+
+Si l'abonnement échoue (lampe qui ne répond pas, table GATT périmée…), l'erreur remonte dans la coroutine de connexion. Sans `.catch { }`, rien ne l'intercepte et **l'application plante**. Avec, l'erreur s'affiche simplement à l'écran.
 
 :::
 
@@ -821,6 +834,10 @@ Remarquez ce que cette méthode **ne fait pas** : elle ne modifie pas `ledAllume
 ![Un clic sur « Basculer la LED », de bout en bout](./img/ble-nordic/nordic_sequence_toggle.svg)
 
 <img src="./img/ble-nordic/06_connecte_led_allumee.png" alt="Après un clic, la LED est allumée et le compteur passe à 1" width="220" />
+
+Sur un vrai téléphone, avec l'émulateur de la lampe, l'application et le tableau de bord restent synchronisés : que la LED soit basculée depuis l'application ou avec le bouton de la lampe, les deux écrans affichent le même état.
+
+![Le téléphone et le tableau de bord de la lampe, synchronisés après 7 bascules](./img/ble-nordic/07_telephone_et_lampe.png)
 
 ::: tip Point de contrôle
 
