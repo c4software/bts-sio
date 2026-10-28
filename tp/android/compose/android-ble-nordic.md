@@ -900,10 +900,6 @@ Remarquez ce que cette méthode **ne fait pas** : elle ne modifie pas `ledAllume
 
 <img src="./img/ble-nordic/06_connecte_led_allumee.png" alt="Après un clic, la LED est allumée et le compteur passe à 1" width="220" />
 
-Sur un vrai téléphone, avec l'émulateur de la lampe, l'application et le tableau de bord restent synchronisés : que la LED soit basculée depuis l'application ou avec le bouton de la lampe, les deux écrans affichent le même état.
-
-![Le téléphone et le tableau de bord de la lampe, synchronisés après 7 bascules](./img/ble-nordic/07_telephone_et_lampe.png)
-
 ::: tip Point de contrôle
 
 Un clic sur « Basculer la LED » allume la LED de **votre** carte, le cercle passe au jaune et le compteur augmente. Comparez avec la méthode `writeCharacteristic` du TP sans librairie : plus de `getService()`, plus de test sur la version d'Android.
@@ -1231,6 +1227,10 @@ private fun ErreurHttp(message: String, onReessayer: () -> Unit) {
 L'écran Wi-Fi affiche l'état de la lampe. « Basculer la LED (/toggle) » allume la LED, et le journal du tableau de bord de l'émulateur affiche la requête `HTTP GET /toggle`. Si l'écran affiche « La lampe ne répond pas », vérifiez l'adresse dans `build.gradle.kts` et que le téléphone est sur le même réseau que la lampe.
 
 :::
+
+Appuyez ensuite sur le bouton de la lampe, sur le tableau de bord : l'écran Wi-Fi ne change pas, puisque la lampe ne prévient pas en HTTP. Un appui sur « Actualiser » le remet à jour. Ci-dessous, deux bascules depuis l'application, un appui sur le bouton de la lampe, puis une actualisation : les deux écrans affichent le même état, et le journal de la lampe montre chaque requête reçue.
+
+![L'application en Wi-Fi et le tableau de bord de la lampe, synchronisés après une actualisation](./img/ble-nordic/10_wifi_et_lampe.png)
 
 ## Deux onglets : Bluetooth et Wi-Fi
 
