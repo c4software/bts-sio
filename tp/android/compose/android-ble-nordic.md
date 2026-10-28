@@ -23,7 +23,8 @@ Nordic est le fabricant des puces BLE que l'on retrouve dans une grande partie d
 - scanner les appareils BLE autour du téléphone ;
 - se connecter à **votre** lampe et trouver son service ;
 - recevoir l'état de la LED et le nombre d'allumages par notification ;
-- basculer la LED et renommer la carte.
+- basculer la LED et renommer la carte ;
+- piloter la même lampe en Wi-Fi, avec des requêtes HTTP (Ktor).
 
 Voici ce que nous allons construire :
 
@@ -31,6 +32,7 @@ Voici ce que nous allons construire :
 <img src="./img/ble-nordic/03_scan_resultats.png" alt="Le scan trouve la lampe PMW-1A2B" width="200" />
 <img src="./img/ble-nordic/04_connexion.png" alt="La connexion en cours" width="200" />
 <img src="./img/ble-nordic/06_connecte_led_allumee.png" alt="La lampe connectée, LED allumée" width="200" />
+<img src="./img/ble-nordic/09_http_led_allumee.png" alt="La même lampe pilotée en Wi-Fi (HTTP)" width="200" />
 </div>
 
 ::: tip Sans librairie ou avec ?
@@ -126,15 +128,22 @@ Nous gardons le découpage MVVM : la vue affiche, le ViewModel décide, et lui s
 
 ![Qui fait quoi dans l'application](./img/ble-nordic/nordic_architecture.svg)
 
-Le projet final ne contient que quelques fichiers :
+Le projet est découpé en packages, chacun avec un rôle précis :
 
-| Fichier | Rôle |
-|---|---|
-| `ble/LampeGatt.kt` | Les UUID du service et des caractéristiques |
-| `ble/CentralManagerFactory.kt` | La création du `CentralManager`, le point d'entrée de la librairie |
-| `LampeViewModel.kt` | Toute la logique : scan, connexion, notifications, écriture |
-| `MainActivity.kt` | Les permissions et le choix de l'écran à afficher |
-| `ui/ScanScreen.kt`, `ui/ConnectingScreen.kt`, `ui/ConnectedScreen.kt` | Les écrans, sans aucune logique BLE |
+```text
+fr.playmoweb.blenordic
+├── MainActivity.kt            affiche LampeApp()
+├── ble/                       le Bluetooth : UUID de la lampe, création du CentralManager
+├── http/                      le Wi-Fi : les routes HTTP de la lampe (Ktor)
+├── model/                     les données et les états des écrans (EcranBle, EcranHttp)
+└── ui/
+    ├── LampeApp.kt            la navigation : un onglet Bluetooth, un onglet Wi-Fi
+    ├── ble/                   les écrans Bluetooth et leur ViewModel (LampeViewModel)
+    ├── http/                  l'écran Wi-Fi et son ViewModel (HttpViewModel)
+    └── components/            les éléments communs : la LED, le loader, les erreurs…
+```
+
+Chaque ViewModel est rangé à côté des écrans qu'il alimente. Les écrans n'ont aucune logique BLE ou HTTP : ils affichent l'état que le ViewModel leur donne, et lui transmettent les clics.
 
 ### Voici les étapes que nous allons suivre :
 
@@ -144,6 +153,8 @@ Le projet final ne contient que quelques fichiers :
 - Démarrer le Scan
 - Se connecter et trouver le service
 - Recevoir les notifications, écrire des données
+- Piloter la lampe en Wi-Fi (HTTP, avec Ktor)
+- Réunir Bluetooth et Wi-Fi dans deux onglets
 
 ::: tip Ceci est un préparatif au projet final
 
@@ -238,7 +249,7 @@ Dans `AndroidManifest.xml`, avant la balise `<application>` :
 
 ### Les permissions dans le code
 
-La liste des permissions dépend de la version d'Android :
+La liste des permissions dépend de la version d'Android. Nous la rangerons dans `ui/ble/BleScreen.kt`, l'écran Bluetooth :
 
 ```kotlin
 /** Permissions nécessaires au BLE, selon la version d'Android. */
@@ -336,21 +347,34 @@ Deux notions à retenir :
 
 ### Les états de l'application
 
-Avant d'écrire la logique, décrivons ce que l'écran peut afficher : ce sont les états de la boîte à états vue plus haut. Créez `LampeViewModel.kt` et commencez par ces deux types :
+Avant d'écrire la logique, décrivons ce que l'écran peut afficher : ce sont les états de la boîte à états vue plus haut. Créez le package `model`, puis `model/Appareil.kt` :
 
 ```kotlin
 /** Un appareil trouvé pendant le scan. */
 data class Appareil(val nom: String, val adresse: String, val peripheral: Peripheral)
+```
 
-/** Les écrans possibles de l'application. */
-sealed interface Ecran {
-    data object Scan : Ecran
-    data class Connexion(val nom: String) : Ecran
+Et `model/EcranBle.kt`, la machine à états de l'écran Bluetooth :
+
+```kotlin
+/**
+ * La machine à états de l'écran Bluetooth.
+ *
+ * La vue fait un `when` sur cet état : à chaque état, son composant.
+ */
+sealed interface EcranBle {
+    /** Liste des appareils, scan en cours ou non. */
+    data object Scan : EcranBle
+
+    /** Connexion en cours (loader). */
+    data class Connexion(val nom: String) : EcranBle
+
+    /** Connecté : l'état de la LED et le compteur arrivent par notification. */
     data class Connecte(
         val nom: String,
         val ledAllumee: Boolean? = null, // null tant qu'aucune notification n'est reçue
         val compteur: Int? = null,
-    ) : Ecran
+    ) : EcranBle
 }
 ```
 
@@ -362,7 +386,7 @@ Une `sealed interface` liste **tous** les cas possibles. Quand la vue fera un `w
 
 ### La classe `LampeViewModel`
 
-Puis la classe elle-même, avec ses `StateFlow` :
+Puis la classe elle-même, dans `ui/ble/LampeViewModel.kt` (à côté des écrans Bluetooth), avec ses `StateFlow` :
 
 ```kotlin
 class LampeViewModel(application: Application) : AndroidViewModel(application) {
@@ -444,7 +468,43 @@ Lisez ce code de haut en bas, il raconte exactement ce qui se passe :
 
 ## La logique du Scan dans le Composable
 
-L'écran ne fait qu'afficher ce qu'on lui donne, et remonter les clics. Créez `ui/ScanScreen.kt` :
+L'écran ne fait qu'afficher ce qu'on lui donne, et remonter les clics.
+
+### Les composants communs
+
+Certains éléments reviennent dans plusieurs écrans : une ligne de la liste, un message d'erreur, un loader, la LED. Nous les rangeons dans `ui/components`, pour ne les écrire qu'une fois. Commencez par `ui/components/AppareilItem.kt`, une ligne de la liste du scan :
+
+```kotlin
+/** Une ligne de la liste du scan. Les lampes (nom en PMW-) sont en gras. */
+@Composable
+fun AppareilItem(appareil: Appareil, onClick: () -> Unit) {
+    val estUneLampe = appareil.nom.startsWith(LampeGatt.NAME_PREFIX)
+    ListItem(
+        headlineContent = {
+            Text(appareil.nom, fontWeight = if (estUneLampe) FontWeight.Bold else FontWeight.Normal)
+        },
+        supportingContent = { Text(appareil.adresse) },
+        modifier = Modifier.clickable(onClick = onClick),
+    )
+    HorizontalDivider()
+}
+```
+
+Puis `ui/components/MessageErreur.kt` :
+
+```kotlin
+/** Une erreur à afficher, ou rien si tout va bien. */
+@Composable
+fun MessageErreur(message: String?) {
+    if (message != null) {
+        Text(message, color = MaterialTheme.colorScheme.error)
+    }
+}
+```
+
+### L'écran de scan
+
+Créez `ui/ble/ScanScreen.kt`. Il s'appuie sur les deux composants :
 
 ```kotlin
 @Composable
@@ -465,9 +525,7 @@ fun ScanScreen(
                 Button(onClick = onScan) { Text("Scanner (10 s)") }
             }
         }
-        if (erreur != null) {
-            Text(erreur, color = MaterialTheme.colorScheme.error)
-        }
+        MessageErreur(erreur)
         if (appareils.isEmpty()) {
             Text(
                 if (scanEnCours) "Recherche des appareils…" else "Aucun appareil. Lancez un scan.",
@@ -477,15 +535,7 @@ fun ScanScreen(
         }
         LazyColumn(Modifier.fillMaxWidth()) {
             items(appareils, key = { it.adresse }) { appareil ->
-                val estUneLampe = appareil.nom.startsWith(LampeGatt.NAME_PREFIX)
-                ListItem(
-                    headlineContent = {
-                        Text(appareil.nom, fontWeight = if (estUneLampe) FontWeight.Bold else FontWeight.Normal)
-                    },
-                    supportingContent = { Text(appareil.adresse) },
-                    modifier = Modifier.clickable { onClicAppareil(appareil) },
-                )
-                HorizontalDivider()
+                AppareilItem(appareil, onClick = { onClicAppareil(appareil) })
             }
         }
     }
@@ -499,7 +549,7 @@ fun ScanScreen(
 
 ::: tip Point de contrôle
 
-Pour l'instant, branchez simplement `ScanScreen` dans votre `MainActivity` (nous ferons mieux au moment de la connexion). Au clic sur « Scanner (10 s) », le loader tourne, les appareils apparaissent un à un, et votre lampe `PMW-…` est en gras. Au bout de 10 secondes, le loader disparaît tout seul.
+Pour l'instant, branchez simplement `ScanScreen` dans le `setContent` de votre `MainActivity` (nous ferons mieux au moment de la connexion). Au clic sur « Scanner (10 s) », le loader tourne, les appareils apparaissent un à un, et votre lampe `PMW-…` est en gras. Au bout de 10 secondes, le loader disparaît tout seul.
 
 :::
 
@@ -590,85 +640,83 @@ Quelques points à observer :
 
 ### Côté interface
 
-::: tip L'écran de connexion
-
-`ui/ConnectingScreen.kt` est le plus simple des écrans :
+Pendant la connexion, l'écran affiche un loader. C'est un composant commun, que nous réutiliserons en Wi-Fi : `ui/components/Chargement.kt`.
 
 ```kotlin
+/** Un loader centré et son message : connexion BLE ou requête HTTP en cours. */
 @Composable
-fun ConnectingScreen(nom: String) {
+fun Chargement(message: String) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CircularProgressIndicator()
-        Text("Connexion à $nom…")
+        Text(message)
     }
 }
 ```
 
-:::
-
-Toutes les pièces sont là. Dans `MainActivity.kt`, une fonction `LampeApp` demande les permissions, écoute les `StateFlow` du ViewModel, et choisit l'écran avec un `when` :
+Toutes les pièces sont là. L'écran Bluetooth est une **machine à états** : il écoute l'état du ViewModel et, avec un `when`, affiche le composant qui correspond à chaque état. Créez `ui/ble/BleScreen.kt` :
 
 ```kotlin
-@OptIn(ExperimentalPermissionsApi::class, ExperimentalMaterial3Api::class)
+/** Permissions nécessaires au BLE, selon la version d'Android. */
+private val permissionsBle: List<String> =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        listOf(Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT)
+    } else {
+        listOf(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+/**
+ * L'écran Bluetooth : une machine à états.
+ * La vue écoute l'état du ViewModel et affiche, pour chaque état, le composant qui lui correspond.
+ */
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun LampeApp(viewModel: LampeViewModel = viewModel()) {
+fun BleScreen(viewModel: LampeViewModel = viewModel()) {
     val permissions = rememberMultiplePermissionsState(permissionsBle)
 
-    // Les StateFlow du ViewModel deviennent des états Compose.
+    // Les StateFlow du ViewModel deviennent des états Compose
     val ecran by viewModel.ecran.collectAsStateWithLifecycle()
     val appareils by viewModel.appareils.collectAsStateWithLifecycle()
     val scanEnCours by viewModel.scanEnCours.collectAsStateWithLifecycle()
     val erreur by viewModel.erreur.collectAsStateWithLifecycle()
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Lampe connectée") },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
-            )
-        },
-    ) { padding ->
-        Box(Modifier.padding(padding)) {
-            if (!permissions.allPermissionsGranted) {
-                PermissionsScreen(onDemander = { permissions.launchMultiplePermissionRequest() })
-            } else {
-                when (val e = ecran) {
-                    Ecran.Scan -> ScanScreen(
-                        appareils = appareils,
-                        scanEnCours = scanEnCours,
-                        erreur = erreur,
-                        onScan = viewModel::demarrerScan,
-                        onStop = viewModel::arreterScan,
-                        onClicAppareil = viewModel::connecter,
-                    )
-                    is Ecran.Connexion -> ConnectingScreen(nom = e.nom)
-                    is Ecran.Connecte -> ConnectedScreen(
-                        etat = e,
-                        erreur = erreur,
-                        onBasculer = viewModel::basculerLed,
-                        onRenommer = viewModel::renommer,
-                        onDeconnecter = viewModel::deconnecter,
-                    )
-                }
-            }
-        }
+    if (!permissions.allPermissionsGranted) {
+        PermissionsScreen(onDemander = { permissions.launchMultiplePermissionRequest() })
+        return
+    }
+
+    when (val etat = ecran) {
+        EcranBle.Scan -> ScanScreen(
+            appareils = appareils,
+            scanEnCours = scanEnCours,
+            erreur = erreur,
+            onScan = viewModel::demarrerScan,
+            onStop = viewModel::arreterScan,
+            onClicAppareil = viewModel::connecter,
+        )
+        is EcranBle.Connexion -> Chargement("Connexion à ${etat.nom}…")
+        is EcranBle.Connecte -> ConnectedScreen(
+            etat = etat,
+            erreur = erreur,
+            onBasculer = viewModel::basculerLed,
+            onRenommer = viewModel::renommer,
+            onDeconnecter = viewModel::deconnecter,
+        )
     }
 }
 ```
+
+Le `when` sur `EcranBle` est le cœur de l'écran : un état, un composant. Comme `EcranBle` est une `sealed interface`, le compilateur refuse un `when` qui oublierait un état.
 
 `viewModel::demarrerScan` est une **référence de fonction** : c'est l'équivalent court de `{ viewModel.demarrerScan() }`.
 
 ::: tip C'est à vous de jouer !
 
-1. Créez `ui/PermissionsScreen.kt` : un titre, une phrase d'explication et un bouton « Autoriser » qui appelle `onDemander`.
-2. Appelez `LampeApp()` dans le `setContent` de votre `MainActivity`.
+1. Créez `ui/ble/PermissionsScreen.kt` : un titre, une phrase d'explication et un bouton « Autoriser » qui appelle `onDemander`.
+2. Dans le `setContent` de votre `MainActivity`, remplacez `ScanScreen` par `BleScreen()`.
 3. Les méthodes `basculerLed`, `renommer` et `deconnecter`, ainsi que `ConnectedScreen`, n'existent pas encore : créez-les vides pour que le projet compile. Nous les remplissons dans la suite du TP.
 
 :::
@@ -737,12 +785,48 @@ Si l'abonnement échoue (lampe qui ne répond pas, table GATT périmée…), l'e
 
 #### L'écran connecté
 
-Créez `ui/ConnectedScreen.kt`. Le cercle joue le rôle de l'ampoule : jaune si la LED est allumée, gris sinon.
+L'état de la lampe (la LED, son libellé, le compteur) s'affichera aussi dans l'écran Wi-Fi. Ce sont donc deux composants communs. D'abord `ui/components/LedIndicator.kt`, l'« ampoule » :
+
+```kotlin
+/** L'« ampoule » : un disque jaune si la LED est allumée, gris sinon, très clair si l'état est inconnu. */
+@Composable
+fun LedIndicator(ledAllumee: Boolean?, modifier: Modifier = Modifier) {
+    val couleur = when (ledAllumee) {
+        true -> Color(0xFFFFC107)
+        false -> Color(0xFFBDBDBD)
+        null -> Color(0xFFEEEEEE)
+    }
+    Box(modifier.size(140.dp).background(couleur, CircleShape).border(3.dp, Color(0xFF616161), CircleShape))
+}
+```
+
+Puis `ui/components/EtatLampe.kt`, qui l'utilise :
+
+```kotlin
+/** L'état de la lampe : la LED, son libellé et le nombre de bascules. Commun au Bluetooth et au Wi-Fi. */
+@Composable
+fun EtatLampe(ledAllumee: Boolean?, compteur: Int?) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        LedIndicator(ledAllumee)
+        Text(
+            when (ledAllumee) {
+                true -> "LED allumée"
+                false -> "LED éteinte"
+                null -> "État de la LED inconnu"
+            },
+            style = MaterialTheme.typography.headlineSmall,
+        )
+        Text("Nombre de bascules : ${compteur ?: "?"}", style = MaterialTheme.typography.bodyLarge)
+    }
+}
+```
+
+Enfin `ui/ble/ConnectedScreen.kt` :
 
 ```kotlin
 @Composable
 fun ConnectedScreen(
-    etat: Ecran.Connecte,
+    etat: EcranBle.Connecte,
     erreur: String?,
     onBasculer: () -> Unit,
     onRenommer: (String) -> Unit,
@@ -757,24 +841,7 @@ fun ConnectedScreen(
     ) {
         Text("Connecté à ${etat.nom}", style = MaterialTheme.typography.titleMedium)
 
-        // "Ampoule" : un disque jaune si la LED est allumée, gris sinon.
-        val couleur = when (etat.ledAllumee) {
-            true -> Color(0xFFFFC107)
-            false -> Color(0xFFBDBDBD)
-            null -> Color(0xFFEEEEEE)
-        }
-        Box(
-            Modifier.size(140.dp).background(couleur, CircleShape).border(3.dp, Color(0xFF616161), CircleShape)
-        )
-        Text(
-            when (etat.ledAllumee) {
-                true -> "LED allumée"
-                false -> "LED éteinte"
-                null -> "État de la LED inconnu"
-            },
-            style = MaterialTheme.typography.headlineSmall,
-        )
-        Text("Nombre de bascules : ${etat.compteur ?: "?"}", style = MaterialTheme.typography.bodyLarge)
+        EtatLampe(ledAllumee = etat.ledAllumee, compteur = etat.compteur)
 
         Button(onClick = onBasculer, modifier = Modifier.fillMaxWidth()) { Text("Basculer la LED") }
 
@@ -789,9 +856,7 @@ fun ConnectedScreen(
             Button(onClick = { onRenommer(nouveauNom) }, enabled = nouveauNom.isNotBlank()) { Text("Renommer") }
         }
 
-        if (erreur != null) {
-            Text(erreur, color = MaterialTheme.colorScheme.error)
-        }
+        MessageErreur(erreur)
 
         OutlinedButton(onClick = onDeconnecter, modifier = Modifier.fillMaxWidth()) { Text("Se déconnecter") }
     }
@@ -884,6 +949,386 @@ Renommez votre lampe, déconnectez-vous et relancez un scan : elle apparaît sou
 
 :::
 
+## Piloter la lampe en Wi-Fi avec Ktor
+
+La lampe ne parle pas que le Bluetooth : elle répond aussi en HTTP, sur le réseau Wi-Fi. Deux routes suffisent :
+
+| Route | Rôle | Réponse |
+|---|---|---|
+| `GET /status` | Lire l'état, sans rien changer | `{"state": "OFF", "count": 0}` |
+| `GET /toggle` | Basculer la LED | `{"state": "ON", "count": 1}` |
+
+Avec l'émulateur de la lampe, ces routes répondent sur le port du tableau de bord : essayez `http://<ip du PC>:8080/status` dans le navigateur du téléphone.
+
+::: tip Bluetooth ou Wi-Fi : quelle différence ?
+
+En BLE, la lampe **prévient** : elle envoie une notification à chaque changement. En HTTP, elle ne fait que **répondre** : l'application connaît l'état au moment de sa requête, pas après. Si quelqu'un appuie sur le bouton de la lampe, l'écran Wi-Fi ne le saura qu'à la prochaine requête (bouton « Actualiser »).
+
+:::
+
+### Ajouter Ktor
+
+[Ktor](https://ktor.io/) est le client HTTP de JetBrains, écrit en Kotlin et basé sur les coroutines : comme la librairie Nordic, ses appels sont des fonctions `suspend`. Ajoutez-le dans `gradle/libs.versions.toml` :
+
+```toml
+[versions]
+ktor = "3.5.2"
+serialization = "1.11.0"
+
+[libraries]
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+
+[plugins]
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+```
+
+Puis dans `app/build.gradle.kts` (et `alias(libs.plugins.kotlin.serialization) apply false` dans le `build.gradle.kts` à la racine du projet) :
+
+```kotlin
+plugins {
+    // … les plugins déjà présents
+    alias(libs.plugins.kotlin.serialization)
+}
+
+dependencies {
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.kotlinx.serialization.json)
+}
+```
+
+Le plugin `serialization` transforme automatiquement le JSON de la lampe en objet Kotlin, et inversement.
+
+### L'adresse de la lampe
+
+L'adresse de la lampe dépend du réseau : nous la mettons dans `app/build.gradle.kts`, d'où elle arrive dans le code sous le nom `BuildConfig.LAMPE_URL`.
+
+```kotlin
+android {
+    defaultConfig {
+        // Adresse de la lampe en Wi-Fi (HTTP) : l'adresse IP du PC qui fait tourner l'émulateur,
+        // ou celle de la carte ESP32. Le port est celui du tableau de bord de l'émulateur (8080).
+        buildConfigField("String", "LAMPE_URL", "\"http://192.168.1.27:8080\"")
+    }
+
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+}
+```
+
+::: warning Remplacez l'adresse IP
+
+`192.168.1.27` est l'adresse du PC du formateur. Mettez celle de **votre** lampe (`ip addr` sous Linux, `ipconfig` sous Windows pour l'adresse du PC), puis faites un `Sync`. Le téléphone et la lampe doivent être sur le même réseau Wi-Fi.
+
+:::
+
+### Les permissions réseau
+
+Dans `AndroidManifest.xml`, l'application doit avoir le droit d'utiliser le réseau. Et comme la lampe répond en HTTP simple (sans le « S » de HTTPS), il faut l'autoriser explicitement :
+
+```xml
+<!-- Wi-Fi : la lampe répond aussi en HTTP (/status et /toggle) -->
+<uses-permission android:name="android.permission.INTERNET" />
+
+<application
+    android:usesCleartextTraffic="true"
+    … >
+```
+
+### Le modèle et l'API
+
+La réponse de la lampe devient une `data class`, grâce à `@Serializable` : `model/StatutLampe.kt`.
+
+```kotlin
+/**
+ * Réponse de la lampe en HTTP, sur /status et /toggle : {"state": "ON", "count": 3}
+ */
+@Serializable
+data class StatutLampe(val state: String, val count: Int) {
+    val ledAllumee: Boolean get() = state == "ON"
+}
+```
+
+Les deux routes, dans `http/LampeApi.kt` :
+
+```kotlin
+/**
+ * Les deux routes HTTP de la lampe.
+ *
+ * @param baseUrl l'adresse de la lampe, définie dans build.gradle.kts (BuildConfig.LAMPE_URL)
+ */
+class LampeApi(private val client: HttpClient, private val baseUrl: String) {
+
+    /** GET /status : l'état actuel, sans rien changer. */
+    suspend fun statut(): StatutLampe = client.get("$baseUrl/status").body()
+
+    /** GET /toggle : bascule la LED et renvoie le nouvel état. */
+    suspend fun basculer(): StatutLampe = client.get("$baseUrl/toggle").body()
+}
+```
+
+`client.get(…)` envoie la requête et attend la réponse sans bloquer l'interface, comme `write()` en BLE. `.body()` transforme le JSON reçu en `StatutLampe`.
+
+Le client HTTP lui-même se crée dans `http/HttpClientFactory.kt` :
+
+```kotlin
+/**
+ * Variante "native" : un vrai client HTTP (moteur OkHttp), qui parle à la lampe sur le réseau.
+ */
+fun createHttpClient(): HttpClient = HttpClient(OkHttp) {
+    // Les réponses JSON deviennent directement des objets Kotlin (StatutLampe)
+    install(ContentNegotiation) {
+        json(Json { ignoreUnknownKeys = true })
+    }
+    // Une lampe injoignable ne doit pas bloquer l'écran trop longtemps
+    install(HttpTimeout) {
+        requestTimeoutMillis = 5_000
+    }
+}
+```
+
+### Le ViewModel et l'écran
+
+L'écran Wi-Fi est lui aussi une machine à états : en attente d'une réponse, la lampe a répondu, ou la lampe ne répond pas. `model/EcranHttp.kt` :
+
+```kotlin
+/**
+ * La machine à états de l'écran Wi-Fi (HTTP).
+ *
+ * La vue fait un `when` sur cet état : à chaque état, son composant.
+ */
+sealed interface EcranHttp {
+    /** Requête en cours (loader). */
+    data object Chargement : EcranHttp
+
+    /** La lampe a répondu. */
+    data class Lampe(val statut: StatutLampe) : EcranHttp
+
+    /** La lampe ne répond pas (mauvaise adresse, pas sur le même réseau…). */
+    data class Erreur(val message: String) : EcranHttp
+}
+```
+
+Le ViewModel, à côté de l'écran : `ui/http/HttpViewModel.kt`.
+
+```kotlin
+/**
+ * Le ViewModel de l'écran Wi-Fi : il parle à la lampe en HTTP et expose l'état de l'écran.
+ */
+class HttpViewModel : ViewModel() {
+
+    // Réel ou simulé selon la variante "native" / "mock" compilée
+    private val client = createHttpClient()
+    private val api = LampeApi(client, BuildConfig.LAMPE_URL)
+
+    /** L'adresse de la lampe, affichée à l'écran. */
+    val adresse: String = BuildConfig.LAMPE_URL
+
+    private val _ecran = MutableStateFlow<EcranHttp>(EcranHttp.Chargement)
+    val ecran: StateFlow<EcranHttp> = _ecran.asStateFlow()
+
+    init {
+        actualiser()
+    }
+
+    /** Lit l'état de la lampe (GET /status). */
+    fun actualiser() = appeler { api.statut() }
+
+    /** Bascule la LED (GET /toggle). */
+    fun basculer() = appeler { api.basculer() }
+
+    /** Lance une requête et fait passer l'écran par ses états : chargement, puis lampe ou erreur. */
+    private fun appeler(requete: suspend () -> StatutLampe) {
+        viewModelScope.launch {
+            _ecran.value = EcranHttp.Chargement
+            _ecran.value = try {
+                EcranHttp.Lampe(requete())
+            } catch (e: Exception) {
+                EcranHttp.Erreur("La lampe ne répond pas sur $adresse : ${e.message}")
+            }
+        }
+    }
+
+    override fun onCleared() {
+        client.close()
+    }
+}
+```
+
+Et l'écran, `ui/http/HttpScreen.kt`. Il réutilise les composants communs `Chargement`, `EtatLampe` et `MessageErreur`, et fait un `when` sur `EcranHttp`, comme `BleScreen` sur `EcranBle` :
+
+```kotlin
+/**
+ * L'écran Wi-Fi : la même lampe, pilotée en HTTP. Une machine à états, comme l'écran Bluetooth.
+ */
+@Composable
+fun HttpScreen(viewModel: HttpViewModel = viewModel()) {
+    val ecran by viewModel.ecran.collectAsStateWithLifecycle()
+
+    when (val etat = ecran) {
+        EcranHttp.Chargement -> Chargement("Requête vers ${viewModel.adresse}…")
+        is EcranHttp.Lampe -> LampeHttp(
+            adresse = viewModel.adresse,
+            statut = etat.statut,
+            onBasculer = viewModel::basculer,
+            onActualiser = viewModel::actualiser,
+        )
+        is EcranHttp.Erreur -> ErreurHttp(message = etat.message, onReessayer = viewModel::actualiser)
+    }
+}
+
+@Composable
+private fun LampeHttp(adresse: String, statut: StatutLampe, onBasculer: () -> Unit, onActualiser: () -> Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text("Lampe sur $adresse", style = MaterialTheme.typography.titleMedium)
+        EtatLampe(ledAllumee = statut.ledAllumee, compteur = statut.count)
+        Button(onClick = onBasculer, modifier = Modifier.fillMaxWidth()) { Text("Basculer la LED (/toggle)") }
+        OutlinedButton(onClick = onActualiser, modifier = Modifier.fillMaxWidth()) { Text("Actualiser (/status)") }
+        Text(
+            "En HTTP, la lampe ne prévient pas : l'état affiché est celui de la dernière requête.",
+            style = MaterialTheme.typography.bodySmall,
+            textAlign = TextAlign.Center,
+        )
+    }
+}
+
+@Composable
+private fun ErreurHttp(message: String, onReessayer: () -> Unit) {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(24.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        MessageErreur(message)
+        Text(
+            "Vérifiez que le téléphone et la lampe sont sur le même réseau, et l'adresse LAMPE_URL dans build.gradle.kts.",
+            textAlign = TextAlign.Center,
+        )
+        Button(onClick = onReessayer) { Text("Réessayer") }
+    }
+}
+```
+
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<img src="./img/ble-nordic/08_http_led_eteinte.png" alt="L'écran Wi-Fi : la lampe a répondu, LED éteinte" width="200" />
+<img src="./img/ble-nordic/09_http_led_allumee.png" alt="Après un appel à /toggle, la LED est allumée" width="200" />
+</div>
+
+::: tip Point de contrôle
+
+L'écran Wi-Fi affiche l'état de la lampe. « Basculer la LED (/toggle) » allume la LED, et le journal du tableau de bord de l'émulateur affiche la requête `HTTP GET /toggle`. Si l'écran affiche « La lampe ne répond pas », vérifiez l'adresse dans `build.gradle.kts` et que le téléphone est sur le même réseau que la lampe.
+
+:::
+
+## Deux onglets : Bluetooth et Wi-Fi
+
+Il reste à réunir les deux écrans. Nous utilisons la navigation vue dans [Les écrans et les données](./android-avance.md), avec une barre d'onglets en bas de l'écran (`NavigationBar`). Ajoutez la navigation et les icônes dans `libs.versions.toml` :
+
+```toml
+[versions]
+navigation = "2.10.2"
+
+[libraries]
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+compose-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+```
+
+```kotlin
+dependencies {
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.compose.material.icons.extended)
+}
+```
+
+Puis `ui/LampeApp.kt` :
+
+```kotlin
+/** Les deux façons de parler à la lampe, une par onglet. */
+private enum class Onglet(val route: String, val titre: String, val icone: ImageVector) {
+    BLUETOOTH("ble", "Bluetooth", Icons.Filled.Bluetooth),
+    WIFI("http", "Wi-Fi (HTTP)", Icons.Filled.Wifi),
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LampeApp() {
+    val navController = rememberNavController()
+    val routeCourante by navController.currentBackStackEntryAsState()
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Lampe connectée") },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                ),
+            )
+        },
+        bottomBar = {
+            NavigationBar {
+                Onglet.entries.forEach { onglet ->
+                    NavigationBarItem(
+                        selected = routeCourante?.destination?.route == onglet.route,
+                        onClick = {
+                            navController.navigate(onglet.route) {
+                                // Un seul exemplaire de chaque onglet dans la pile de navigation
+                                popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        },
+                        icon = { Icon(onglet.icone, contentDescription = null) },
+                        label = { Text(onglet.titre) },
+                    )
+                }
+            }
+        },
+    ) { padding ->
+        Box(Modifier.padding(padding)) {
+            NavHost(navController = navController, startDestination = Onglet.BLUETOOTH.route) {
+                composable(Onglet.BLUETOOTH.route) { BleScreen() }
+                composable(Onglet.WIFI.route) { HttpScreen() }
+            }
+        }
+    }
+}
+```
+
+Et `MainActivity.kt` n'a plus qu'à l'afficher :
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            MaterialTheme(colorScheme = lightColorScheme(primary = Color(0xFF1565C0))) {
+                LampeApp()
+            }
+        }
+    }
+}
+```
+
+::: tip Point de contrôle
+
+Deux onglets en bas de l'écran : « Bluetooth » et « Wi-Fi (HTTP) ». Allumez la LED en Bluetooth, passez sur l'onglet Wi-Fi et appuyez sur « Actualiser » : les deux écrans parlent bien à la même lampe.
+
+:::
+
 ## Tester sans téléphone : le mode simulé
 
 L'émulateur de la lampe remplace la carte, mais il faut toujours un téléphone : l'émulateur Android n'a pas de Bluetooth. Sans téléphone, utilisez le mode simulé de la librairie, sur l'émulateur Android.
@@ -896,7 +1341,7 @@ Le projet complet utilise deux **variantes** (*product flavors*) :
 - `native` : le vrai Bluetooth, celle que vous utilisez avec la lampe ;
 - `mock` : une lampe `PMW-1A2B` simulée, ainsi que deux autres appareils pour que le scan ressemble à celui d'une vraie salle.
 
-Seul le fichier `ble/CentralManagerFactory.kt` diffère entre les deux. Tout le reste de l'application (ViewModel, écrans) ne sait pas s'il parle à une vraie lampe ou à une lampe simulée. C'est un bon exemple de l'intérêt d'avoir isolé la création du `CentralManager` dans une seule fonction.
+Seuls deux fichiers diffèrent entre les deux : `ble/CentralManagerFactory.kt` et `http/HttpClientFactory.kt`. Tout le reste de l'application (ViewModels, écrans) ne sait pas s'il parle à une vraie lampe ou à une lampe simulée. C'est tout l'intérêt d'avoir isolé la création du `CentralManager` et du client HTTP dans une seule fonction chacun.
 
 ```kotlin
 // Variante "mock" : même signature que la variante native
@@ -912,7 +1357,54 @@ fun createCentralManager(context: Context, scope: CoroutineScope): CentralManage
     }
 ```
 
-La lampe simulée (`MockLampe.kt`) reproduit le firmware : écrire `1` bascule la LED, puis notifie l'état et le compteur. Vous la trouverez dans le projet complet.
+La lampe simulée (`MockLampe.kt`) reproduit le firmware : toute écriture bascule la LED, puis notifie l'état et le compteur. Vous la trouverez dans le projet complet.
+
+Côté HTTP, Ktor fournit son propre faux serveur, le `MockEngine` : il répond aux routes `/status` et `/toggle` sans quitter le téléphone.
+
+```kotlin
+/**
+ * Variante "mock" : une lampe simulée qui répond comme la vraie, sans réseau (MockEngine de Ktor).
+ */
+fun createHttpClient(): HttpClient {
+    var ledAllumee = false
+    var compteur = 0
+
+    val lampeSimulee = MockEngine { requete ->
+        delay(400) // un peu de latence, pour voir le loader
+        when (requete.url.encodedPath) {
+            "/toggle" -> { ledAllumee = !ledAllumee; compteur++ }
+            "/status" -> Unit
+            else -> return@MockEngine respond("""{"error":"not found"}""", HttpStatusCode.NotFound)
+        }
+        val etat = if (ledAllumee) "ON" else "OFF"
+        respond(
+            content = """{"state":"$etat","count":$compteur}""",
+            status = HttpStatusCode.OK,
+            headers = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString()),
+        )
+    }
+
+    return HttpClient(lampeSimulee) {
+        install(ContentNegotiation) {
+            json(Json { ignoreUnknownKeys = true })
+        }
+    }
+}
+```
+
+Les dépendances de chaque variante se choisissent dans `app/build.gradle.kts`, avec les préfixes `native` et `mock` :
+
+```kotlin
+dependencies {
+    // Bibliothèque BLE de Nordic : implémentation réelle ou simulée selon la variante.
+    "nativeImplementation"(libs.nordic.ble.client.android)
+    "mockImplementation"(libs.nordic.ble.client.android.mock)
+
+    // Moteur HTTP réel (OkHttp) ou simulé (MockEngine) selon la variante
+    "nativeImplementation"(libs.ktor.client.okhttp)
+    "mockImplementation"(libs.ktor.client.mock)
+}
+```
 
 ::: tip Pour qui ?
 
@@ -938,7 +1430,7 @@ Le dernier point est le plus important : la librairie ne vous dispense pas de co
 
 ## Conclusion
 
-Dans ce TP nous avons vu comment interagir avec un périphérique BLE grâce à la librairie de Nordic : scanner, nous connecter, recevoir des notifications et écrire des données. Les notions sont les mêmes que sans librairie ; c'est l'enchaînement des opérations qui devient plus simple à écrire.
+Dans ce TP nous avons vu comment interagir avec un périphérique BLE grâce à la librairie de Nordic : scanner, nous connecter, recevoir des notifications et écrire des données. Les notions sont les mêmes que sans librairie ; c'est l'enchaînement des opérations qui devient plus simple à écrire. Nous avons aussi piloté la même lampe en HTTP avec Ktor : une autre façon de parler à un objet, sans notification, mais sans appairage ni portée Bluetooth.
 
 D'autres actions sont possibles dans l'objet. Celles-ci seront à implémenter dans le projet final.
 
@@ -946,6 +1438,7 @@ D'autres actions sont possibles dans l'objet. Celles-ci seront à implémenter d
 
 - **Filtrer le scan** sur le préfixe `PMW-` (voir la logique du Scan), puis trier la liste par puissance du signal (`resultat.rssi`).
 - **La liste des réseaux Wi-Fi** : la lampe expose aussi une caractéristique `10f83060-64f8-11ee-8c99-0242ac120002`. Abonnez-vous à ses notifications et affichez les réseaux reçus.
+- **Actualiser automatiquement l'écran Wi-Fi** : lancez `actualiser()` toutes les 2 secondes tant que l'écran est affiché (une boucle avec `delay()` dans le `viewModelScope`). C'est ce que les notifications BLE évitent.
 - **Se reconnecter automatiquement** : regardez `CentralManager.ConnectionOptions.AutoConnect` dans la [documentation de la librairie](https://nordicsemi.github.io/Kotlin-BLE-Library/html/index.html).
 - **Comparer** avec le [TP sans librairie](./android-ble.md) : retrouvez, pour chaque étape de ce TP, le callback qui fait le même travail.
 
