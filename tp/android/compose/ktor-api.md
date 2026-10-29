@@ -24,18 +24,6 @@ Voici ce que nous allons construire :
 <img src="./img/ktor-api/android_creation.png" alt="L'application Android : l'ajout d'un lampadaire" width="200" />
 </div>
 
-![La page Vue.js : la même API, affichée dans le navigateur](./img/ktor-api/vue_detail.png)
-
-::: danger Un TP guidé… puis de moins en moins
-
-Comme pour les TP Laravel, le début est **très guidé** : je vous donne le code et je l'explique. Petit à petit, je vous laisse de plus en plus de travail, jusqu'à une partie où vous n'aurez plus que la consigne.
-
-Même quand le code est fourni, l'objectif est de comprendre l'enchaînement : **ne copiez-collez pas bêtement**, lisez chaque bloc avant de l'utiliser.
-
-👋 Si vous avez des questions, n'hésitez pas.
-
-:::
-
 ## Les slides
 
 Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : l'API REST, l'organisation en couches, Ktor côté serveur et côté client, SQLite, curl, fetch et CORS.
