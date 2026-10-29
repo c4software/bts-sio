@@ -10,6 +10,8 @@ Le développement mobile évolue rapidement, vous trouverez ici des ressources p
 
 Si vous débutez, suivez [les TP mobile dans l'ordre](/pages/categories/les-tp-mobile.md) : les bases de Compose, la communication (API, Bluetooth), puis les projets.
 
+Vous découvrez Kotlin ? Commencez par [Débuter avec Kotlin](/pages/categories/debuter-avec-kotlin.md) : le langage, puis le mobile et les API.
+
 - [Cours base Android](/cours/android_base.md)
 - [Cours Android Compose](/cours/android_compose.md)
 - [Cours Android Bluetooth](/cours/android_ble.md)

@@ -31,6 +31,12 @@ Les aides mémoires sont des fiches synthétiques qui vous permettront de vous r
 
 - [Les API](/cheatsheets/api/)
 
+## Kotlin et Android
+
+- [Kotlin (depuis le C / C++ ou le Python)](/cheatsheets/kotlin/)
+- [Préparer son poste Android](/cheatsheets/poste-android/)
+- [Débuter avec Kotlin : le parcours complet](/pages/categories/debuter-avec-kotlin.md)
+
 ## JavaScript avancé
 
 - [JavaScript Avancés](/cours/javascript_avances.md)

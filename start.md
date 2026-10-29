@@ -24,6 +24,7 @@ Supports de cours de Valentin Brosseau (BTS SIO, GRETA, MyDigitalSchool, ESEO, e
 - Programmation orientée objet (POO et UML).
 - Introduction DevOps.
 - Android (View & Compose).
+- Kotlin : le langage, le mobile avec Compose et les API avec Ktor ([débuter avec Kotlin](/pages/categories/debuter-avec-kotlin.md)).
 - Linux (Debian, Alpine, etc).
 - DevOps (Docker, Kubernetes, Gitlab CI/CD, etc).
 

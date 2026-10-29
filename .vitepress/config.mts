@@ -71,6 +71,7 @@ export default defineConfig({
           { text: 'Les TP JavaScript', link: '/pages/categories/les-tp-javascript.md' },
           { text: 'Les TP serveur / DevOps', link: '/pages/categories/les-tp-devops.md' },
           { text: 'Les TP mobile', link: '/pages/categories/les-tp-mobile.md' },
+          { text: 'Débuter avec Kotlin', link: '/pages/categories/debuter-avec-kotlin.md' },
           { text: 'La sécurité OWASP', link: '/pages/categories/securite-owasp.md' },
         ]
       },

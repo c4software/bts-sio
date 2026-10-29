@@ -45,6 +45,9 @@ features:
   - title: Le mobile
     link: /pages/categories/le-mobile.md
     details: Le développement mobile (Android, Flutter)
+  - title: Débuter avec Kotlin
+    link: /pages/categories/debuter-avec-kotlin.md
+    details: Le langage, puis le mobile (Compose) et les API (Ktor)
   - title: Les ressources
     link: /tp/veille/ressources.md
     details: Les ressources pour la veille

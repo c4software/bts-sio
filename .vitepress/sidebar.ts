@@ -348,6 +348,7 @@ export default [
       },
       {
         text: "Kotlin (Ktor)", collapsed: true, items: [
+          { text: "Débuter avec Kotlin", link: "/pages/categories/debuter-avec-kotlin.md" },
           { text: "Créer des API avec Kotlin : le projet", link: "/tp/ktor/decouverte" },
           { text: "Créer des API avec Kotlin : CRUD et droits", link: "/tp/ktor/crud-droits" },
           { text: "Une API Ktor et ses clients (Android, Vue.js)", link: "/tp/android/compose/ktor-api" }
@@ -452,6 +453,7 @@ export default [
     collapsed: true,
     items: [
       { text: "Introduction", link: "/pages/categories/le-mobile.md" },
+      { text: "Débuter avec Kotlin", link: "/pages/categories/debuter-avec-kotlin.md" },
       {
         text: "Android",
         collapsed: true,

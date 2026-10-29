@@ -8,7 +8,7 @@ description: La liste des TP mobile (Android Compose) dans l'ordre dans lequel j
 Vous trouverez ici la liste des TP mobile, dans l'ordre dans lequel je vous conseille de les réaliser. Le parcours s'appuie sur Android et Jetpack Compose, la façon moderne d'écrire des applications Android.
 
 ::: warning Les prérequis
-La programmation orientée objet doit être acquise avant de commencer (voir [les concepts](/pages/categories/les-concepts.md)).
+La programmation orientée objet doit être acquise avant de commencer (voir [les concepts](/pages/categories/les-concepts.md)). Si Kotlin est nouveau pour vous, passez d'abord par [Débuter avec Kotlin](/pages/categories/debuter-avec-kotlin.md).
 :::
 
 ::: tip Les supports du parcours
