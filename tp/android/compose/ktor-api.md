@@ -24,6 +24,19 @@ Voici ce que nous allons construire :
 <img src="./img/ktor-api/android_creation.png" alt="L'application Android : l'ajout d'un lampadaire" width="200" />
 </div>
 
+::: warning Un TP pour poser les bases
+
+L'objectif de ce TP est de comprendre le fonctionnement d'une API et de ses clients : les routes, le JSON, la base de données, les appels depuis Android et depuis le navigateur. Volontairement, plusieurs sujets indispensables à une vraie API ne sont **pas** traités ici :
+
+- l'**authentification** et les droits : n'importe qui peut ajouter ou supprimer un lampadaire ;
+- le **HTTPS** : les échanges circulent en clair ;
+- la gestion centralisée des erreurs, la validation complète des données reçues, la pagination ;
+- les migrations de la base et l'injection de dépendances.
+
+L'authentification, la gestion des erreurs, les migrations et l'injection de dépendances sont abordées dans les TP [Créer des API avec Kotlin : le projet](/tp/ktor/decouverte.md) et [CRUD et droits](/tp/ktor/crud-droits.md).
+
+:::
+
 ## Les slides
 
 Avant de commencer, voici une présentation rapide de la partie théorie de notre TP du jour : l'API REST, l'organisation en couches, Ktor côté serveur et côté client, SQLite, curl, fetch et CORS.
