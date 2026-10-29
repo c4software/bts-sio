@@ -2,7 +2,11 @@
 description: Appeler une API peut être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles sont imposées par la plateforme Android
 ---
 
-# Appeler une API simplement
+# Appeler une API simplement (Android avec les Views XML)
+
+::: warning TP legacy
+Ce TP repose sur l'ancienne façon de construire les interfaces Android : les layouts en XML, les `Activity` et `findViewById`. Il reste valide, mais ce n'est plus la méthode recommandée. Aujourd'hui, les interfaces s'écrivent avec [Jetpack Compose](https://developer.android.com/compose) : pour un nouveau projet, préférez le TP [Android Compose, une liste et une API REST](/tp/android/compose/dirty-api.md).
+:::
 
 Appeler une API peut être intimidant, par le passé il était « en effet compliqué » de faire des appels réseaux. En effet afin de s'assurer que votre application soit de qualité quelques règles sont imposées par la plateforme Android :
 

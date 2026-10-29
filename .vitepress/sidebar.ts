@@ -496,7 +496,7 @@ export default [
             text: "Les TP API",
             collapsed: true,
             items: [
-              { text: "Appeler une API Simplement", link: "/tp/android/view/network" }
+              { text: "Appeler une API (Views XML, legacy)", link: "/tp/android/view/network" }
             ]
           },
           {
