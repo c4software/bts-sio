@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="400" viewBox="0 0 900 400"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowo" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="400" fill="#ffffff"/>
+<text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">CORS : le navigateur demande l'avis du serveur</text>
+<text x="20" y="68" font-weight="600" fill="#dc2626">Sans le plugin CORS</text>
+<rect x="20" y="80" width="170" height="96" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="105.0" y="106" text-anchor="middle" font-weight="600" fill="#2563eb">Navigateur</text>
+<text x="105.0" y="128" text-anchor="middle" font-size="11" fill="#475569">page sur</text>
+<text x="105.0" y="145" text-anchor="middle" font-size="11" fill="#475569">localhost:5500</text>
+<rect x="710" y="80" width="170" height="96" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+<text x="795.0" y="106" text-anchor="middle" font-weight="600" fill="#475569">API Ktor</text>
+<text x="795.0" y="128" text-anchor="middle" font-size="11" fill="#475569">localhost:8080</text>
+<line x1="192" y1="108" x2="706" y2="108" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="449.0" y="100" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">GET /v1/lampadaires  (Origin: http://localhost:5500)</text>
+<line x1="706" y1="148" x2="194" y2="148" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+<text x="450.0" y="140" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#dc2626">200 + JSON, sans en-tête d'autorisation</text>
+<text x="450" y="172" text-anchor="middle" font-weight="600" fill="#dc2626">Le navigateur bloque : la page ne reçoit rien</text>
+<text x="20" y="218" font-weight="600" fill="#16a34a">Avec le plugin CORS</text>
+<rect x="20" y="230" width="170" height="96" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="105.0" y="256" text-anchor="middle" font-weight="600" fill="#2563eb">Navigateur</text>
+<text x="105.0" y="278" text-anchor="middle" font-size="11" fill="#475569">page sur</text>
+<text x="105.0" y="295" text-anchor="middle" font-size="11" fill="#475569">localhost:5500</text>
+<rect x="710" y="230" width="170" height="96" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="795.0" y="256" text-anchor="middle" font-weight="600" fill="#16a34a">API Ktor</text>
+<text x="795.0" y="278" text-anchor="middle" font-size="11" fill="#475569">localhost:8080</text>
+<line x1="192" y1="258" x2="706" y2="258" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="449.0" y="250" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">GET /v1/lampadaires  (Origin: http://localhost:5500)</text>
+<line x1="706" y1="298" x2="194" y2="298" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="450.0" y="290" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#16a34a">200 + JSON + Access-Control-Allow-Origin: http://localhost:5500</text>
+<text x="450" y="322" text-anchor="middle" font-weight="600" fill="#16a34a">La page reçoit les lampadaires</text>
+<rect x="20" y="352" width="860" height="36" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="36" y="374.0" fill="#0f172a">curl et l'application Android ignorent cet en-tête : CORS est une protection des navigateurs.</text>
+</svg>

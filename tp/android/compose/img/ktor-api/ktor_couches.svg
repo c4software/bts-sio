@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="470" viewBox="0 0 900 470"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowo" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="470" fill="#ffffff"/>
+<text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">Le trajet d'une requête dans le serveur</text>
+<rect x="200" y="60" width="680" height="62" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="222" y="86" font-weight="600" fill="#2563eb">Route</text>
+<text x="222" y="106" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">LampadaireRoute.kt</text>
+<text x="420" y="97" font-size="12" fill="#475569">lit la requête HTTP, répond en JSON avec le bon code (200, 201, 400, 404)</text>
+<rect x="200" y="138" width="680" height="62" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="222" y="164" font-weight="600" fill="#7c3aed">Service</text>
+<text x="222" y="184" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">LampadaireService.kt</text>
+<text x="420" y="175" font-size="12" fill="#475569">les règles métier : numéro de série obligatoire, un lampadaire neuf est en service</text>
+<rect x="200" y="216" width="680" height="62" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="222" y="242" font-weight="600" fill="#16a34a">DAO</text>
+<text x="222" y="262" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">LampadaireDao.kt</text>
+<text x="420" y="253" font-size="12" fill="#475569">les requêtes vers la base, avec Exposed</text>
+<rect x="200" y="294" width="680" height="62" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<text x="222" y="320" font-weight="600" fill="#d97706">Table</text>
+<text x="222" y="340" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">Lampadaires.kt</text>
+<text x="420" y="331" font-size="12" fill="#475569">la table décrite en Kotlin</text>
+<rect x="200" y="372" width="680" height="44" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="540" y="399" text-anchor="middle" font-weight="600" fill="#475569">SQLite : le fichier lampadaires.db</text>
+<rect x="20" y="60" width="140" height="62" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+<text x="90.0" y="86" text-anchor="middle" font-weight="600" fill="#475569">Client</text>
+<text x="90.0" y="108" text-anchor="middle" font-size="11" fill="#475569">curl, Android, Vue.js</text>
+<line x1="60" y1="124" x2="60" y2="380" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="50" y="252" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a" transform="rotate(-90 50 252)">GET /v1/lampadaires</text>
+<line x1="130" y1="380" x2="130" y2="128" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="146" y="252" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#16a34a" transform="rotate(90 146 252)">JSON</text>
+<rect x="20" y="428" width="860" height="32" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="36" y="448.0" fill="#0f172a">Chaque couche ne parle qu'à celle du dessous : la route ne fait jamais de SQL.</text>
+</svg>

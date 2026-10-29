@@ -77,6 +77,10 @@ Pour installer et vérifier tout cela pas à pas, suivez la page [Préparer son 
 
 ## Le projet
 
+Un seul serveur, et plusieurs clients qui l'interrogent :
+
+![Un serveur, plusieurs clients : curl, l'application Android et la page web parlent tous HTTP et JSON à l'API Ktor](./img/ktor-api/ktor_ensemble.svg)
+
 Notre API proposera les routes suivantes :
 
 | Méthode  | Chemin                  | Description                   |
@@ -202,24 +206,7 @@ src/main/kotlin/cours/brosseau
 
 Le trajet d'une requête traverse les couches dans l'ordre :
 
-```text
-Client (curl, Android, Vue.js)
-   │  GET /v1/lampadaires
-   ▼
-┌───────────────────────────────────────────────────────────────┐
-│ Route    Reçoit la requête HTTP, appelle le service,          │
-│          renvoie la réponse (JSON + code HTTP)                │
-├───────────────────────────────────────────────────────────────┤
-│ Service  Les règles métier (« un lampadaire neuf est en       │
-│          service », « le numéro de série est obligatoire »)   │
-├───────────────────────────────────────────────────────────────┤
-│ DAO      Les requêtes vers la base de données                 │
-├───────────────────────────────────────────────────────────────┤
-│ Table    La description de la table en Kotlin (ORM)           │
-└───────────────────────────────────────────────────────────────┘
-   ▼
-SQLite (fichier lampadaires.db)
-```
+![Le trajet d'une requête : la route, le service, le DAO, la table, puis la base SQLite](./img/ktor-api/ktor_couches.svg)
 
 La règle d'or : **chaque couche ne parle qu'à celle du dessous**. La route ne fait jamais de SQL, le DAO ne sait pas ce qu'est une requête HTTP.
 
@@ -327,6 +314,8 @@ Sous Windows, dans PowerShell : `.\gradlew.bat run`. Vous pouvez aussi lancer la
 
 ::: tip Point de contrôle
 Les logs se terminent par `Responding at http://0.0.0.0:8080`. Ouvrez [http://localhost:8080](http://localhost:8080) dans votre navigateur : le message « L'API Lampadaires fonctionne ! » s'affiche.
+
+![Le serveur répond sur le port 8080](./img/ktor-api/serveur_accueil.png)
 :::
 
 Arrêtez le serveur (`Ctrl + C`) : nous allons maintenant lui donner une base de données.
@@ -553,7 +542,13 @@ Avec Laravel, la structure de la base évolue par des migrations. Ici, `SchemaUt
 Relancez le serveur (`./gradlew run`).
 
 ::: tip Point de contrôle
-Le serveur démarre sans erreur et un fichier `lampadaires.db` est apparu à la racine du projet. Si vous avez un outil SQLite (DBeaver, l'extension SQLite de VS Code…), ouvrez-le : la table `lampadaires` contient les quatre lampadaires de départ.
+Le serveur démarre sans erreur et un fichier `lampadaires.db` est apparu à la racine du projet. Si vous avez un outil SQLite (DBeaver, l'extension SQLite de VS Code…), ouvrez-le : la table `lampadaires` contient les quatre lampadaires de départ. En ligne de commande, `sqlite3` fait aussi l'affaire :
+
+```sh
+sqlite3 -box lampadaires.db "SELECT id, numero_serie, titre, statut, date_installation FROM lampadaires;"
+```
+
+![Le contenu de la table lampadaires, vu avec sqlite3](./img/ktor-api/sqlite_lampadaires.png)
 :::
 
 Pensez à ajouter `lampadaires.db` dans votre `.gitignore` : la base est recréée automatiquement, elle n'a rien à faire dans Git.
@@ -575,6 +570,8 @@ staticResources("/images", "images")
 
 ::: tip Point de contrôle
 Relancez le serveur, puis ouvrez [http://localhost:8080/images/lampadaire-3.jpg](http://localhost:8080/images/lampadaire-3.jpg) : la photo du lampadaire de la route du col s'affiche.
+
+![La photo servie par Ktor](./img/ktor-api/navigateur_photo.png)
 :::
 
 ## Les lampadaires, couche par couche
@@ -773,6 +770,8 @@ Relancez le serveur, puis ouvrez [http://localhost:8080/v1/lampadaires](http://l
 
 ::: tip Point de contrôle
 Le navigateur affiche un tableau JSON contenant les quatre lampadaires de départ.
+
+![La liste des lampadaires en JSON, dans le navigateur](./img/ktor-api/navigateur_lampadaires.png)
 :::
 
 ### Un lampadaire
@@ -836,6 +835,10 @@ post {
 - `call.receive<CreateLampadaireDTO>()` lit le JSON reçu et le transforme en objet : c'est Content Negotiation, dans l'autre sens ;
 - le service applique ses règles : si le numéro de série est vide, son `require` lève une `IllegalArgumentException`, que la route traduit en `400 Bad Request` ;
 - le code `201 Created` indique au client que la ressource a bien été créée.
+
+Le chemin complet d'une création, à travers les trois couches :
+
+![Une création de bout en bout : le client, la route, le service, le DAO et SQLite](./img/ktor-api/ktor_sequence_post.svg)
 
 ::: tip Que se passe-t-il si le JSON est incomplet ?
 Si le client oublie un champ (par exemple, pas de `description`), `call.receive` ne peut pas construire l'objet : Ktor répond automatiquement `400 Bad Request`, sans que la route aille plus loin. Le typage fait une partie de la validation pour vous.
@@ -947,6 +950,8 @@ cours.brosseau.lampadaires
 ```
 
 Comme dans le TP BLE, les écrans n'ont aucune logique réseau : ils affichent l'état que le ViewModel leur donne, et lui transmettent les clics.
+
+![Qui fait quoi dans l'application : les écrans, les ViewModels, l'API et le serveur](./img/ktor-api/android_architecture.svg)
 
 ### Créer le projet
 
@@ -1266,6 +1271,10 @@ sealed interface EcranListe {
 }
 ```
 
+Les trois écrans de l'application suivent ce même principe. Voici leurs états, et ce qui fait passer de l'un à l'autre :
+
+![Les états de l'écran liste et de l'écran de création](./img/ktor-api/android_etats.svg)
+
 #### Le ViewModel
 
 `ui/liste/ListeViewModel.kt` :
@@ -1555,7 +1564,11 @@ Le `LaunchedEffect(Unit)`, lui, s'exécute à chaque fois que l'écran entre dan
 
 ### La navigation
 
-Pour l'instant, un seul écran, mais nous en aurons trois. Préparons la navigation tout de suite, comme dans [Les écrans et les données](./android-avance.md). Créez `ui/LampadairesApp.kt` :
+Pour l'instant, un seul écran, mais nous en aurons trois. Préparons la navigation tout de suite, comme dans [Les écrans et les données](./android-avance.md). Voici où nous allons :
+
+![La navigation : la liste ouvre le détail ou la création, navigateUp() ramène à la liste](./img/ktor-api/android_navigation.svg)
+
+Créez `ui/LampadairesApp.kt` :
 
 ```kotlin
 package cours.brosseau.lampadaires.ui
@@ -1617,11 +1630,12 @@ Vérifiez que votre serveur Ktor tourne toujours, puis lancez l'application sur 
 La liste des lampadaires s'affiche, avec leurs photos et leur statut. Ne cliquez pas encore sur un lampadaire ni sur le bouton « + » : les routes `detail` et `creation` n'existent pas encore dans le `NavHost`, et l'application s'arrêterait avec une erreur (`IllegalArgumentException` dans le Logcat).
 
 <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start">
-<img src="./img/ktor-api/android_liste_statuts.png" alt="La liste des lampadaires : photos chargées par Coil et pastilles de statut" width="220" />
-<img src="./img/ktor-api/android_erreur.png" alt="Le serveur est arrêté : l'écran affiche l'erreur et un bouton Réessayer" width="220" />
+<img src="./img/ktor-api/android_chargement.png" alt="L'état Chargement : le loader pendant la requête" width="200" />
+<img src="./img/ktor-api/android_liste_statuts.png" alt="L'état Lampadaires : photos chargées par Coil et pastilles de statut" width="200" />
+<img src="./img/ktor-api/android_erreur.png" alt="L'état Erreur : le serveur est arrêté, l'écran affiche le message et un bouton Réessayer" width="200" />
 </div>
 
-Arrêtez le serveur et relancez l'application : l'écran d'erreur s'affiche (à droite). Relancez le serveur, puis appuyez sur « Réessayer ».
+Vous retrouvez les trois états de l'écran. Le chargement est souvent trop rapide pour être vu : c'est normal. Arrêtez le serveur et relancez l'application : l'écran d'erreur s'affiche (à droite). Relancez le serveur, puis appuyez sur « Réessayer ».
 :::
 
 ### Le détail d'un lampadaire
@@ -1810,7 +1824,10 @@ Vous remarquez la ressemblance avec la route du serveur, `/{id}` ? Côté Androi
 ::: tip Point de contrôle
 Un clic sur un lampadaire ouvre son détail, et la flèche en haut à gauche ramène à la liste. Si l'écran affiche une erreur, le message de l'exception vous donne la piste (mauvaise route, serveur arrêté…), et l'onglet **Logcat** d'Android Studio contient le détail.
 
-<img src="./img/ktor-api/android_detail.png" alt="Le détail du lampadaire de la route du col, en panne" width="220" />
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start">
+<img src="./img/ktor-api/android_detail_chargement.png" alt="L'écran détail pendant la requête GET /v1/lampadaires/3" width="200" />
+<img src="./img/ktor-api/android_detail.png" alt="Le détail du lampadaire de la route du col, en panne" width="200" />
+</div>
 :::
 
 ### L'ajout d'un lampadaire
@@ -2067,27 +2084,11 @@ Respectez l'organisation en couches du projet :
 - un nouveau package `domain/test` avec son DAO, son service et sa route ;
 - la route `GET /v1/lampadaires/{id}/tests`, qui renvoie la liste des tests du lampadaire.
 
+![La relation entre les deux tables : un lampadaire a plusieurs tests](./img/ktor-api/tables_tests.svg)
+
 Testez-la avec `curl` avant de passer à Android :
 
-```text
-$ curl http://localhost:8080/v1/lampadaires/3/tests
-[
-    {
-        "id": 3,
-        "lampadaireId": 3,
-        "date": "2026-05-20",
-        "resultat": "OK",
-        "commentaire": "Mise en service conforme."
-    },
-    {
-        "id": 4,
-        "lampadaireId": 3,
-        "date": "2026-10-02",
-        "resultat": "NOK",
-        "commentaire": "La LED ne s'allume plus à la tombée de la nuit : capteur crépusculaire à remplacer."
-    }
-]
-```
+![Les deux tests du lampadaire de la route du col](./img/ktor-api/curl_tests.png)
 
 ::: details Besoin d'aide côté serveur ?
 - La clé étrangère se déclare avec `reference` : `val lampadaireId = reference("lampadaire_id", Lampadaires.id)`, et le résultat avec `enumerationByName`, comme le statut.
@@ -2321,7 +2322,11 @@ python3 -m http.server 5500
 
 ### Le piège : CORS
 
-Surprise : la page affiche « Le serveur ne répond pas. »… alors que le serveur Ktor tourne, et que `curl` fonctionne parfaitement. Ouvrez la console du navigateur (`F12`, onglet **Console**) :
+Surprise : la page affiche « Le serveur ne répond pas. »… alors que le serveur Ktor tourne, et que `curl` fonctionne parfaitement.
+
+![La page n'affiche que le message d'erreur](./img/ktor-api/vue_cors.png)
+
+Ouvrez la console du navigateur (`F12`, onglet **Console**) :
 
 ```text
 Access to fetch at 'http://localhost:8080/v1/lampadaires' from origin 'http://localhost:5500'
@@ -2339,6 +2344,8 @@ Imaginez sinon : un site malveillant que vous visitez pourrait appeler l'API de 
 
 `curl` et l'application Android ne sont pas concernés : CORS est une règle **des navigateurs**, pour protéger leurs utilisateurs.
 :::
+
+![Sans le plugin CORS, le navigateur bloque la réponse ; avec, la page reçoit les données](./img/ktor-api/cors.svg)
 
 C'est donc au **serveur** d'autoriser notre page. Ktor propose pour cela le plugin CORS : une nouvelle brique, donc un nouveau fichier dans `plugins`. Arrêtez le serveur, puis ajoutez la dépendance dans `build.gradle.kts` (projet Ktor) :
 

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="330" viewBox="0 0 900 330"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowo" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="330" fill="#ffffff"/>
+<text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">La navigation entre les trois écrans</text>
+<rect x="340" y="60" width="220" height="70" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="450.0" y="86" text-anchor="middle" font-weight="600" fill="#2563eb">liste</text>
+<text x="450.0" y="108" text-anchor="middle" font-size="11" fill="#475569">écran de départ</text>
+<rect x="20" y="200" width="240" height="70" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="140.0" y="226" text-anchor="middle" font-weight="600" fill="#7c3aed">detail/{id}</text>
+<text x="140.0" y="248" text-anchor="middle" font-size="11" fill="#475569">reçoit l'id du lampadaire</text>
+<rect x="640" y="200" width="240" height="70" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="760.0" y="226" text-anchor="middle" font-weight="600" fill="#16a34a">creation</text>
+<text x="760.0" y="248" text-anchor="middle" font-size="11" fill="#475569">le formulaire</text>
+<line x1="345" y1="118" x2="134" y2="196" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="232" y="140" text-anchor="end" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">navigate("detail/3")</text>
+<line x1="256" y1="198" x2="396" y2="134" stroke="#475569" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="336" y="196" font-family="ui-monospace, monospace" font-size="12" fill="#475569">navigateUp()</text>
+<line x1="555" y1="118" x2="766" y2="196" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="668" y="140" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">navigate("creation")</text>
+<line x1="644" y1="198" x2="504" y2="134" stroke="#475569" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="564" y="196" text-anchor="end" font-family="ui-monospace, monospace" font-size="12" fill="#475569">navigateUp()</text>
+<text x="564" y="212" text-anchor="end" font-size="11" fill="#475569">(après la création)</text>
+<rect x="20" y="288" width="860" height="32" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="36" y="308.0" fill="#0f172a">Au retour sur la liste, le LaunchedEffect recharge les lampadaires depuis l'API.</text>
+</svg>

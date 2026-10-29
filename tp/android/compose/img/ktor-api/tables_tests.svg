@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="276" viewBox="0 0 900 276"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowo" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="276" fill="#ffffff"/>
+<text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">Un lampadaire, plusieurs tests</text>
+<rect x="40" y="56" width="300" height="160" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<line x1="40" y1="90" x2="340" y2="90" stroke="#d97706" stroke-width="1.5"/>
+<text x="190.0" y="79" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#d97706">lampadaires</text>
+<text x="56" y="112" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">id</text>
+<text x="324" y="112" text-anchor="end" font-size="11" font-weight="600" fill="#d97706">PK</text>
+<text x="56" y="136" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">numero_serie</text>
+<text x="56" y="160" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">titre</text>
+<text x="56" y="184" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">statut</text>
+<text x="56" y="208" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">…</text>
+<rect x="560" y="56" width="300" height="160" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<line x1="560" y1="90" x2="860" y2="90" stroke="#16a34a" stroke-width="1.5"/>
+<text x="710.0" y="79" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#16a34a">tests_lampadaire</text>
+<text x="576" y="112" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">id</text>
+<text x="844" y="112" text-anchor="end" font-size="11" font-weight="600" fill="#16a34a">PK</text>
+<text x="576" y="136" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">lampadaire_id</text>
+<text x="844" y="136" text-anchor="end" font-size="11" font-weight="600" fill="#16a34a">FK</text>
+<text x="576" y="160" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">date</text>
+<text x="576" y="184" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">resultat</text>
+<text x="844" y="184" text-anchor="end" font-size="11" font-weight="600" fill="#16a34a">OK / NOK / STOP</text>
+<text x="576" y="208" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">commentaire</text>
+<path d="M556,132 L450,132 L450,108 L344,108" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="352" y="96" font-weight="600" fill="#475569">1</text>
+<text x="540" y="124" font-weight="600" fill="#475569">n</text>
+<rect x="20" y="232" width="860" height="34" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="36" y="253.0" fill="#0f172a">lampadaire_id est une clé étrangère : reference("lampadaire_id", Lampadaires.id)</text>
+</svg>

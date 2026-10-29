@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="460" viewBox="0 0 900 460"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowv" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker><marker id="arrowo" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker></defs>
+<rect width="900" height="460" fill="#ffffff"/>
+<text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">Les états des écrans</text>
+<text x="20" y="66" font-weight="600" fill="#475569">Écran liste (et écran détail)</text>
+<rect x="20" y="82" width="170" height="56" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+<text x="105.0" y="108" text-anchor="middle" font-weight="600" fill="#475569">Chargement</text>
+<text x="105.0" y="130" text-anchor="middle" font-size="11" fill="#475569">loader</text>
+<rect x="300" y="82" width="200" height="56" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="400.0" y="108" text-anchor="middle" font-weight="600" fill="#16a34a">Lampadaires</text>
+<text x="400.0" y="130" text-anchor="middle" font-size="11" fill="#475569">la liste des cartes</text>
+<rect x="610" y="82" width="200" height="56" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+<text x="710.0" y="108" text-anchor="middle" font-weight="600" fill="#dc2626">Erreur</text>
+<text x="710.0" y="130" text-anchor="middle" font-size="11" fill="#475569">message + Réessayer</text>
+<line x1="192" y1="102" x2="296" y2="102" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="244.0" y="94" text-anchor="middle" font-size="11" fill="#475569">réponse reçue</text>
+<path d="M120,140 L120,162 L680,162 L680,142" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+<text x="400" y="156" text-anchor="middle" font-size="11" fill="#dc2626">exception (serveur arrêté, 404, délai dépassé)</text>
+<path d="M760,140 L760,192 L60,192 L60,142" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrow)"/>
+<text x="400" y="186" text-anchor="middle" font-size="11" fill="#475569">clic sur Réessayer : on recommence</text>
+<text x="20" y="250" font-weight="600" fill="#475569">Écran de création</text>
+<rect x="20" y="266" width="150" height="56" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+<text x="95.0" y="292" text-anchor="middle" font-weight="600" fill="#475569">Saisie</text>
+<text x="95.0" y="314" text-anchor="middle" font-size="11" fill="#475569">le formulaire</text>
+<rect x="250" y="266" width="150" height="56" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="325.0" y="292" text-anchor="middle" font-weight="600" fill="#2563eb">Envoi</text>
+<text x="325.0" y="314" text-anchor="middle" font-size="11" fill="#475569">bouton désactivé</text>
+<rect x="480" y="266" width="170" height="56" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="565.0" y="292" text-anchor="middle" font-weight="600" fill="#16a34a">Cree</text>
+<text x="565.0" y="314" text-anchor="middle" font-size="11" fill="#475569">retour à la liste</text>
+<rect x="700" y="266" width="180" height="56" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+<text x="790.0" y="292" text-anchor="middle" font-weight="600" fill="#dc2626">Erreur</text>
+<text x="790.0" y="314" text-anchor="middle" font-size="11" fill="#475569">message sous le formulaire</text>
+<line x1="172" y1="286" x2="246" y2="286" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="209.0" y="278" text-anchor="middle" font-size="11" fill="#475569">clic Créer</text>
+<line x1="402" y1="286" x2="476" y2="286" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="439.0" y="278" text-anchor="middle" font-size="11" fill="#16a34a">201 Created</text>
+<path d="M325,324 L325,348 L760,348 L760,326" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+<text x="540" y="342" text-anchor="middle" font-size="11" fill="#dc2626">le serveur refuse ou ne répond pas</text>
+<path d="M95,324 L95,374 L830,374 L830,326" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowr)"/>
+<text x="460" y="368" text-anchor="middle" font-size="11" fill="#dc2626">champ vide : erreur, sans appeler le serveur</text>
+<rect x="20" y="404" width="860" height="40" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="36" y="428.0" fill="#0f172a">Chaque état est une valeur de la sealed interface : l'écran fait un simple when dessus.</text>
+</svg>
