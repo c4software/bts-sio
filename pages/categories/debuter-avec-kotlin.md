@@ -40,7 +40,7 @@ Si vous venez du C, du C++ ou du Python, l'aide-mémoire part de ce que vous con
 
 ## Outils et ressources externes
 
-- [L'émulateur de la lampe connectée](https://github.com/c4software/emulateur-lampe-ble) : le périphérique BLE des TP, qui tourne sur un PC Linux (tableau de bord sur `http://localhost:8080/`).
+- [L'émulateur de la lampe connectée](https://github.com/c4software/emulateur-lampe-ble) : le périphérique BLE des TP, qui tourne sur un PC Linux.
 - [Le projet de référence du TP BLE Nordic](/demo/android/lampe-ble-nordic.zip)
 - [nRF Connect](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp) : pour explorer un périphérique BLE depuis son téléphone.
 - [La documentation officielle de Kotlin](https://kotlinlang.org/docs/home.html)
