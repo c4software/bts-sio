@@ -349,7 +349,8 @@ export default [
       {
         text: "Kotlin (Ktor)", collapsed: true, items: [
           { text: "Créer des API avec Kotlin : le projet", link: "/tp/ktor/decouverte" },
-          { text: "Créer des API avec Kotlin : CRUD et droits", link: "/tp/ktor/crud-droits" }
+          { text: "Créer des API avec Kotlin : CRUD et droits", link: "/tp/ktor/crud-droits" },
+          { text: "Une API Ktor et ses clients (Android, Vue.js)", link: "/tp/android/compose/ktor-api" }
         ]
       },
       {
