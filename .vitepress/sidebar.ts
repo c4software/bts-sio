@@ -496,6 +496,7 @@ export default [
             text: "Les TP API",
             collapsed: true,
             items: [
+              { text: "Une API Ktor et ses clients (Android, Vue.js)", link: "/tp/android/compose/ktor-api" },
               { text: "Appeler une API (Views XML, legacy)", link: "/tp/android/view/network" }
             ]
           },
