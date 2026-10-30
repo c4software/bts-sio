@@ -293,8 +293,8 @@ AsyncImage(model = urlImage(lampadaire.image), …)
 ## Côté navigateur
 
 ```js
-lampadaires() {
-  return fetch(`${this.baseUrl}/v1/lampadaires`)
+static lampadaires() {
+  return fetch(`${API_URL}/v1/lampadaires`)
     .then((response) => response.json())
     .then((json) => json.map((l) => new LampadaireDTO(l)));
 }

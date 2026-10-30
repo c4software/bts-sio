@@ -2180,19 +2180,12 @@ const API_URL = "http://localhost:8080";
  * Les routes de notre API Ktor.
  */
 class LampadairesApi {
-  constructor(baseUrl) {
-    this.baseUrl = baseUrl;
-  }
-
   /** GET /v1/lampadaires : la liste complète. */
-  lampadaires() {
-    return fetch(`${this.baseUrl}/v1/lampadaires`)
+  static lampadaires() {
+    return fetch(`${API_URL}/v1/lampadaires`)
       .then((response) => response.json())
       .then((json) => json.map((lampadaire) => new LampadaireDTO(lampadaire)));
   }
-
-  /** Une seule instance pour toute la page. */
-  static instance = new LampadairesApi(API_URL);
 }
 
 /**
@@ -2203,7 +2196,7 @@ function urlImage(chemin) {
 }
 ```
 
-Vous reconnaissez la classe Kotlin, fonction par fonction : `fetch(…)` fait la requête, `response.json()` transforme la réponse en objets JavaScript, puis `new LampadaireDTO(…)` en fait des objets de notre contrat. L'ensemble joue le rôle de `.body()` avec Ktor. La fonction **retourne** la promesse : c'est à la page de dire quoi faire du résultat, ou de l'erreur.
+Vous reconnaissez la classe Kotlin, fonction par fonction. Une différence : les méthodes sont `static`, elles s'appellent directement sur la classe (`LampadairesApi.lampadaires()`). Pour une simple page, inutile de créer une instance. Côté code, `fetch(…)` fait la requête, `response.json()` transforme la réponse en objets JavaScript, puis `new LampadaireDTO(…)` en fait des objets de notre contrat. L'ensemble joue le rôle de `.body()` avec Ktor. La fonction **retourne** la promesse : c'est à la page de dire quoi faire du résultat, ou de l'erreur.
 
 ### La page
 
@@ -2243,13 +2236,11 @@ Toujours dans `front`, créez un fichier `index.html` :
 
       createApp({
         setup() {
-          const api = LampadairesApi.instance;
           const lampadaires = ref([]);
           const erreur = ref(null);
 
           function charger() {
-            api
-              .lampadaires()
+            LampadairesApi.lampadaires()
               .then((liste) => {
                 lampadaires.value = liste;
               })
@@ -2273,7 +2264,7 @@ Vous retrouvez la même logique que dans l'application Android :
 - `setup()` décrit le composant, et seul ce qu'il retourne (`return { … }`) est accessible depuis le template ;
 - `ref(…)` crée une donnée réactive (la liste, l'erreur éventuelle), comme le `StateFlow` du ViewModel : on la lit et on la modifie avec `.value` dans le JavaScript, mais sans `.value` dans le template ;
 - `onMounted(charger)` lance le chargement à l'affichage de la page, comme le `LaunchedEffect` ;
-- `api.lampadaires()` passe par l'instance unique de `LampadairesApi`, comme `private val api = LampadairesApi.instance` dans le ViewModel ;
+- `LampadairesApi.lampadaires()` demande la liste à la classe de l'API : la page ne fait aucun `fetch` elle-même, comme le ViewModel avec son `api` ;
 - `v-for` affiche une carte par lampadaire, comme le `items(…)` de la `LazyColumn` ;
 - `urlImage(lampadaire.image)` complète le chemin de la photo, comme côté Android. Elle fait partie du `return` : un template n'a pas accès aux fonctions globales de la page.
 
@@ -2483,8 +2474,8 @@ Au clic sur une carte, nous allons afficher le détail du lampadaire sous la lis
 
 ```js
 /** GET /v1/lampadaires/{id} : un seul lampadaire. */
-lampadaire(id) {
-  return fetch(`${this.baseUrl}/v1/lampadaires/${id}`)
+static lampadaire(id) {
+  return fetch(`${API_URL}/v1/lampadaires/${id}`)
     .then((response) => response.json())
     .then((json) => new LampadaireDTO(json));
 }
@@ -2498,7 +2489,7 @@ Puis trois ajouts dans la page :
 
 ```js
 function afficherDetail(id) {
-  api.lampadaire(id).then((lampadaire) => {
+  LampadairesApi.lampadaire(id).then((lampadaire) => {
     detail.value = lampadaire;
   });
 }
@@ -2536,7 +2527,7 @@ Pour terminer, c'est à vous : ajoutez sous la liste un formulaire (numéro de s
 
 ::: details Besoin d'aide pour l'ajout ?
 
-- Dans `LampadairesApi`, une fonction `creer(nouveau)`, sur le modèle des deux autres.
+- Dans `LampadairesApi`, une méthode `static creer(nouveau)`, sur le modèle des deux autres.
 - Dans `setup()`, un DTO vide pour le formulaire : `const nouveau = ref(new CreateLampadaireDTO());`, et des champs liés avec `v-model="nouveau.titre"`, etc.
 - Pour la liste déroulante, un `<select v-model="nouveau.image">` et une `<option>` par photo : `v-for="n in 6"` compte de 1 à 6.
 - Sur la balise `<form>`, `@submit.prevent="creer"` appelle votre fonction sans recharger la page.
@@ -2569,8 +2560,8 @@ Dans la classe `LampadairesApi`, ajoutez la route :
 
 ```js
 /** POST /v1/lampadaires : crée un lampadaire et renvoie celui enregistré par le serveur. */
-creer(nouveau) {
-  return fetch(`${this.baseUrl}/v1/lampadaires`, {
+static creer(nouveau) {
+  return fetch(`${API_URL}/v1/lampadaires`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(nouveau),
@@ -2586,7 +2577,7 @@ Dans `setup()`, ajoutez la donnée et la fonction, puis retournez-les :
 const nouveau = ref(new CreateLampadaireDTO());
 
 function creer() {
-  api.creer(nouveau.value).then(() => {
+  LampadairesApi.creer(nouveau.value).then(() => {
     nouveau.value = new CreateLampadaireDTO();
     charger();
   });
