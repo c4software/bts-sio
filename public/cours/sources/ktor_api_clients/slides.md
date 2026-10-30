@@ -293,12 +293,14 @@ AsyncImage(model = urlImage(lampadaire.image), …)
 ## Côté navigateur
 
 ```js
-fetch("http://localhost:8080/v1/lampadaires")
-  .then((response) => response.json())
-  .then((json) => { lampadaires.value = json.map((l) => new LampadaireDTO(l)); });
+lampadaires() {
+  return fetch(`${this.baseUrl}/v1/lampadaires`)
+    .then((response) => response.json())
+    .then((json) => json.map((l) => new LampadaireDTO(l)));
+}
 ```
 
-La même API et les mêmes DTO, cette fois en JavaScript, avec Vue.js.
+La même API, les mêmes DTO et le même `LampadairesApi`, cette fois en JavaScript, avec Vue.js.
 
 ---
 

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="412" viewBox="0 0 900 412"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker><marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker><marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker><marker id="arrowt" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker></defs>
+<rect width="900" height="412" fill="#ffffff"/>
+<text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">Qui fait quoi dans la page web</text>
+<rect x="10" y="48" width="430" height="202" rx="12" fill="none" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="225" y="67" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#475569">index.html</text>
+<rect x="20" y="76" width="180" height="164" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="110.0" y="102" text-anchor="middle" font-weight="600" fill="#2563eb">Le template</text>
+<text x="110.0" y="124" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">v-for, v-if</text>
+<text x="110.0" y="141" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">@click</text>
+<text x="110.0" y="158" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">v-model</text>
+<text x="110.0" y="181" text-anchor="middle" font-size="11" fill="#475569">affiche l'état</text>
+<text x="110.0" y="198" text-anchor="middle" font-size="11" fill="#475569">transmet les clics</text>
+<rect x="250" y="76" width="180" height="164" rx="10" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="340.0" y="102" text-anchor="middle" font-weight="600" fill="#7c3aed">setup()</text>
+<text x="340.0" y="124" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">ref(…)</text>
+<text x="340.0" y="141" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">onMounted(…)</text>
+<text x="340.0" y="158" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">charger(), creer()</text>
+<text x="340.0" y="181" text-anchor="middle" font-size="11" fill="#475569">l'état de la page</text>
+<text x="340.0" y="198" text-anchor="middle" font-size="11" fill="#475569">le rôle du ViewModel</text>
+<rect x="480" y="76" width="180" height="164" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="570.0" y="102" text-anchor="middle" font-weight="600" fill="#16a34a">L'API</text>
+<text x="570.0" y="124" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">LampadairesApi.js</text>
+<text x="570.0" y="147" text-anchor="middle" font-size="11" fill="#475569">une fonction par route</text>
+<text x="570.0" y="164" text-anchor="middle" font-size="11" fill="#475569">avec fetch</text>
+<text x="570.0" y="181" text-anchor="middle" font-size="11" fill="#475569">urlImage()</text>
+<rect x="710" y="76" width="170" height="164" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<text x="795.0" y="102" text-anchor="middle" font-weight="600" fill="#d97706">Le serveur</text>
+<text x="795.0" y="124" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">/v1/lampadaires</text>
+<text x="795.0" y="141" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">/images/…</text>
+<text x="795.0" y="164" text-anchor="middle" font-size="11" fill="#475569">Ktor + SQLite</text>
+<line x1="202" y1="130" x2="246" y2="130" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="246" y1="180" x2="204" y2="180" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<line x1="432" y1="130" x2="476" y2="130" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="476" y1="180" x2="434" y2="180" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<line x1="662" y1="130" x2="706" y2="130" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="684.0" y="114" text-anchor="middle" font-size="11" fill="#475569">HTTP</text>
+<line x1="706" y1="180" x2="664" y2="180" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+<text x="685.0" y="202" text-anchor="middle" font-size="11" fill="#16a34a">JSON</text>
+<rect x="250" y="274" width="410" height="52" rx="10" fill="#f0fdfa" stroke="#0d9488" stroke-width="2"/>
+<text x="455" y="295" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">LampadaireDTOs.js</text>
+<text x="455" y="314" text-anchor="middle" font-size="11" fill="#475569">LampadaireDTO, CreateLampadaireDTO : le contrat partagé</text>
+<line x1="340" y1="242" x2="340" y2="270" stroke="#0d9488" stroke-width="2" marker-end="url(#arrowt)"/>
+<line x1="570" y1="242" x2="570" y2="270" stroke="#0d9488" stroke-width="2" marker-end="url(#arrowt)"/>
+<path d="M110,242 L110,354 L795,354 L795,246" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowb)"/>
+<text x="452" y="347" text-anchor="middle" font-size="11" fill="#2563eb">Le navigateur télécharge les photos directement (balise img + urlImage)</text>
+<rect x="20" y="366" width="860" height="34" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+<text x="36" y="387.0" fill="#0f172a">Le même découpage que sur Android : seule LampadairesApi parle au serveur, le reste ne fait aucun appel réseau.</text>
+</svg>
