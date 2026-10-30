@@ -31,7 +31,7 @@ Si vous venez du C, du C++ ou du Python, l'aide-mémoire part de ce que vous con
 ## Étape 3 : Kotlin API (Ktor)
 
 1. Niveau 1 : [Une API Ktor et ses clients, Android et Vue.js (SQLite, organisation en couches)](/tp/android/compose/ktor-api.md)
-2. Niveau 2 [Créer des API avec Kotlin : le projet (PostgreSQL, Flyway, Exposed, Koin)](/tp/ktor/decouverte.md)
+2. Niveau 2 :  [Créer des API avec Kotlin : le projet (PostgreSQL, Flyway, Exposed, Koin)](/tp/ktor/decouverte.md)
 3. Niveau 3 : [Créer des API avec Kotlin : CRUD et droits (gestion des erreurs, rôles, clés d'API)](/tp/ktor/crud-droits.md)
 
 ::: tip Les supports associés
