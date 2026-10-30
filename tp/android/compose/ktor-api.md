@@ -823,6 +823,8 @@ Dernière route guidée : la création. Le client envoie un `CreateLampadaireDTO
 ```kotlin
 // Créer un lampadaire
 post {
+    // ici la données arrive dans le body en HTTP, call.receive() la transforme en objet Kotlin grâce à Content Negotiation.
+    // Si le JSON est incomplet (par exemple, pas de description), call.receive() échoue et Ktor répond automatiquement 400 Bad Request.
     val dto = call.receive<CreateLampadaireDTO>()
     try {
         call.respond(HttpStatusCode.Created, lampadaireService.create(dto))
