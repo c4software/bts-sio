@@ -69,6 +69,7 @@ Pour installer et vérifier tout cela pas à pas, suivez la page [Préparer son 
 - créer un projet Ktor avec le générateur ;
 - organiser un serveur en couches : route, service, DAO ;
 - stocker des données dans une base SQLite avec Exposed (l'ORM de JetBrains) ;
+- relier deux tables avec une clé étrangère ;
 - écrire des routes `GET` et `POST` qui répondent en JSON, et servir des fichiers (les photos) ;
 - tester une API avec `curl`, sans écrire de client ;
 - consommer cette API depuis Android avec Ktor client : liste, détail, création ;
@@ -2069,36 +2070,146 @@ Testez aussi une création avec le serveur arrêté : un message d'erreur s'affi
 Vous pouvez repartir de l'application de référence, arrivée à ce stade : [Télécharger lampadaires-android](/demo/ktor/lampadaires-android-partie2.zip). Ouvrez le dossier dans Android Studio et vérifiez l'adresse `API_URL` dans `app/build.gradle.kts`.
 :::
 
-## Remise en contexte : les tests
-
-Le régime change encore : à partir d'ici, vous n'avez plus que la consigne. Vous avez déjà tout vu, il s'agit de refaire le même chemin, seul, sur une nouvelle donnée.
+## Ajout d'une nouvelle fonctionnalité : test des lampadaires
 
 Avant sa mise en service, puis régulièrement, chaque lampadaire passe des **tests** : allumage, autonomie de la batterie, capteur crépusculaire… Un test a un `id`, l'`id` du lampadaire testé, une `date`, un `resultat` (`OK`, `NOK`, ou `STOP` si le test a été interrompu) et un `commentaire`.
 
-### Côté serveur
+Vous connaissez déjà le chemin : DTO, table, DAO, service, route, puis Android. Une seule chose est nouvelle : un test **appartient** à un lampadaire. Nos deux tables vont donc être reliées, et c'est la première fois que nous le faisons. Commençons par là.
 
-Respectez l'organisation en couches du projet :
+### Relier deux tables
 
-- l'`enum` `ResultatTest` et le DTO `TestLampadaireDTO` dans `common/domain/TestLampadaireDTOs.kt` ;
-- la table `tests_lampadaire` dans `database/tables/TestsLampadaire.kt`. La colonne qui fait le lien avec le lampadaire est une **clé étrangère** ;
-- quelques tests de départ dans `LampadairesDatabase` (au moins deux pour la route du col, dont un `NOK`) ;
-- un nouveau package `domain/test` avec son DAO, son service et sa route ;
-- la route `GET /v1/lampadaires/{id}/tests`, qui renvoie la liste des tests du lampadaire.
+Un lampadaire peut avoir plusieurs tests, et un test ne concerne qu'un seul lampadaire : c'est une relation **un à plusieurs** (on note souvent `1-n`).
 
 ![La relation entre les deux tables : un lampadaire a plusieurs tests](./img/ktor-api/tables_tests.svg)
 
-Testez-la avec `curl` avant de passer à Android :
+Question :
+
+- Dans quelle table faut-il ranger le lien : une colonne dans `lampadaires`, ou une colonne dans `tests_lampadaire` ?
+
+::: details Réponse
+Dans `tests_lampadaire`, du côté « plusieurs ». Une colonne ne contient qu'une seule valeur : côté `lampadaires`, il faudrait y loger une liste de tests. Dans l'autre sens, chaque test n'a qu'un seul lampadaire : une colonne `lampadaire_id` suffit.
+:::
+
+Cette colonne `lampadaire_id` contient l'`id` d'une ligne d'une autre table : c'est une **clé étrangère** (*foreign key*). Vous l'avez peut-être déjà rencontrée en SQL sous la forme `REFERENCES`.
+
+Commençons par ce que l'API renvoie. Créez `common/domain/TestLampadaireDTOs.kt` :
+
+```kotlin
+package cours.brosseau.common.domain
+
+import kotlinx.serialization.Serializable
+
+/**
+ * Les résultats possibles d'un test.
+ */
+@Serializable
+enum class ResultatTest { OK, NOK, STOP }
+
+/**
+ * Un test, tel que renvoyé par l'API (en JSON).
+ */
+@Serializable
+data class TestLampadaireDTO(
+    val id: Int,
+    val lampadaireId: Int,
+    val date: String,
+    val resultat: ResultatTest,
+    val commentaire: String,
+)
+```
+
+Puis la table, dans `database/tables/TestsLampadaire.kt` :
+
+```kotlin
+package cours.brosseau.database.tables
+
+import cours.brosseau.common.domain.ResultatTest
+import org.jetbrains.exposed.v1.core.Table
+
+/**
+ * La table « tests_lampadaire » : chaque ligne appartient à un lampadaire.
+ */
+object TestsLampadaire : Table("tests_lampadaire") {
+    val id = integer("id").autoIncrement()
+    val lampadaireId = reference("lampadaire_id", Lampadaires.id)
+    val date = varchar("date", 10)
+    val resultat = enumerationByName("resultat", 10, ResultatTest::class)
+    val commentaire = text("commentaire")
+
+    override val primaryKey = PrimaryKey(id)
+}
+```
+
+La nouveauté, c'est `reference("lampadaire_id", Lampadaires.id)`. La colonne reste un entier, mais Exposed sait maintenant qu'elle pointe vers la colonne `id` de la table `lampadaires`. La base peut alors garantir que le lien est valide.
+
+Peut, seulement : pour des raisons historiques, **SQLite ne vérifie pas les clés étrangères par défaut**. Il faut le lui demander, à chaque connexion. Dans `LampadairesDatabase`, modifiez l'adresse de la base :
+
+```kotlin
+Database.connect("jdbc:sqlite:lampadaires.db?foreign_keys=on", driver = "org.sqlite.JDBC")
+```
+
+Sans cette option, rien ne vous empêcherait d'ajouter un test sur le lampadaire `999`, qui n'existe pas. PostgreSQL ou MariaDB, eux, vérifient toujours.
+
+Il reste à créer la table et à la remplir, toujours dans `LampadairesDatabase`. L'ordre compte : la table `lampadaires` d'abord, puisque `tests_lampadaire` y fait référence. Même chose pour les données : un test ne peut être ajouté qu'une fois son lampadaire enregistré.
+
+```kotlin
+SchemaUtils.create(Lampadaires, TestsLampadaire)
+```
+
+Dans le `if`, **après** les `ajouterLampadaire(…)` :
+
+```kotlin
+// Le premier paramètre est la clé étrangère : l'id du lampadaire testé (1 : sentier du lac, 3 : route du col)
+ajouterTest(1, "2026-03-12", ResultatTest.OK, "Mise en service conforme.")
+ajouterTest(1, "2026-09-15", ResultatTest.OK, "Autonomie de la batterie conforme.")
+ajouterTest(3, "2026-05-20", ResultatTest.OK, "Mise en service conforme.")
+ajouterTest(3, "2026-10-02", ResultatTest.NOK, "La LED ne s'allume plus à la tombée de la nuit : capteur crépusculaire à remplacer.")
+```
+
+Et la fonction, à côté de `ajouterLampadaire` :
+
+```kotlin
+private fun ajouterTest(lampadaireId: Int, date: String, resultat: ResultatTest, commentaire: String) {
+    TestsLampadaire.insert {
+        it[TestsLampadaire.lampadaireId] = lampadaireId
+        it[TestsLampadaire.date] = date
+        it[TestsLampadaire.resultat] = resultat
+        it[TestsLampadaire.commentaire] = commentaire
+    }
+}
+```
+
+Les données de départ ne sont insérées que si la table est vide : arrêtez le serveur et supprimez `lampadaires.db`, pour que la base soit recréée avec les deux tables. Vous repartez alors des quatre lampadaires de départ, et l'`id` 3 est bien la route du col.
+
+Pour lire les tests d'un lampadaire, la clé étrangère s'utilise comme n'importe quelle colonne : un simple filtre suffit.
+
+```kotlin
+TestsLampadaire.selectAll()
+    .where { TestsLampadaire.lampadaireId eq lampadaireId }
+    .map { it.toTestLampadaireDTO() }
+```
+
+C'est l'équivalent de `SELECT * FROM tests_lampadaire WHERE lampadaire_id = 3`. Pas besoin de jointure ici, car toutes les informations sont dans la même table. Pour lire deux tables à la fois, vous verrez `innerJoin` dans le TP [CRUD et droits](/tp/ktor/crud-droits.md).
+
+Dernière conséquence : la base protège maintenant le lien dans les deux sens. Elle refuse un test rattaché à un lampadaire inexistant, mais aussi la suppression d'un lampadaire qui possède encore des tests. Votre route `DELETE` répondrait alors une erreur `500` : elle doit supprimer les tests du lampadaire **avant** le lampadaire lui-même.
+
+### Côté serveur
+
+Le reste, c'est à vous de jouer, en respectant l'organisation en couches du projet :
+
+- un nouveau package `domain/test` avec son DAO, son service et sa route ;
+- la route `GET /v1/lampadaires/{id}/tests`, qui renvoie la liste des tests du lampadaire ;
+- la suppression des tests dans votre route `DELETE`.
+
+Testez la nouvelle route avec `curl` avant de passer à Android :
 
 ![Les deux tests du lampadaire de la route du col](./img/ktor-api/curl_tests.png)
 
 ::: details Besoin d'aide côté serveur ?
 
-- La clé étrangère se déclare avec `reference` : `val lampadaireId = reference("lampadaire_id", Lampadaires.id)`, et le résultat avec `enumerationByName`, comme le statut.
-- `SchemaUtils.create(Lampadaires, TestsLampadaire)` crée les deux tables (le lampadaire d'abord, puisque le test y fait référence).
-- Le DAO n'a besoin que d'une fonction, `getByLampadaire(lampadaireId: Int)`, avec `.where { TestsLampadaire.lampadaireId eq lampadaireId }` et sans `.singleOrNull()` : nous voulons **toute** la liste (une liste vide est une réponse valide).
+- Le DAO n'a besoin que d'une fonction, `getByLampadaire(lampadaireId: Int)`, avec le filtre vu plus haut et sans `.singleOrNull()` : nous voulons **toute** la liste (une liste vide est une réponse valide).
 - La route peut recevoir le chemin complet : `testLampadaireRoutes("/lampadaires/{id}/tests", testLampadaireService)` dans le bloc `route("/v1")` de `installRouter()`, avec un simple `get(path) { … }` qui lit `call.parameters["id"]`.
-- Pensez à supprimer `lampadaires.db` (serveur arrêté) pour que les données de départ soient recréées.
-- Votre route `DELETE` doit maintenant supprimer les tests du lampadaire **avant** le lampadaire lui-même : la clé étrangère l'impose.
+- Pour la suppression, le plus simple est d'ajouter une fonction `deleteByLampadaire(lampadaireId: Int)` au DAO des tests, et de l'appeler juste avant la suppression du lampadaire.
 :::
 
 ### Côté Android
@@ -2605,7 +2716,7 @@ Ajoutez un bouton « Supprimer » dans le bloc du détail, qui appelle votre rou
 Dans ce TP, vous avez construit une application complète, du serveur jusqu'à l'écran :
 
 - une **API REST** avec Ktor, organisée en **couches** (route, service, DAO) et en packages (`plugins`, `database`, `common/domain`, `domain`) : des routes `GET`, `POST` (et `DELETE`) qui répondent en JSON avec les bons codes HTTP, et des photos servies par `staticResources` ;
-- une base **SQLite** manipulée avec **Exposed**, sans écrire de SQL ;
+- une base **SQLite** manipulée avec **Exposed**, sans écrire de SQL, avec deux tables reliées par une **clé étrangère** ;
 - des tests avec **curl**, pour valider le serveur avant d'écrire le moindre client ;
 - une **application Android** avec Ktor client : liste, détail et ajout, chaque écran étant une machine à états avec son ViewModel, et des photos chargées par **Coil** ;
 - une **page web** avec `fetch` et **Vue.js 3**, qui utilise la même API, et le mécanisme **CORS** qui protège les navigateurs.
