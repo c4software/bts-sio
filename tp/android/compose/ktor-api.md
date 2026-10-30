@@ -2092,7 +2092,9 @@ Dans `tests_lampadaire`, du côté « plusieurs ». Une colonne ne contient qu'u
 
 Cette colonne `lampadaire_id` contient l'`id` d'une ligne d'une autre table : c'est une **clé étrangère** (*foreign key*). Vous l'avez peut-être déjà rencontrée en SQL sous la forme `REFERENCES`.
 
-Commençons par ce que l'API renvoie. Créez `common/domain/TestLampadaireDTOs.kt` :
+Commençons par ce que vous savez déjà faire : le DTO. Créez `common/domain/TestLampadaireDTOs.kt`, avec l'`enum` `ResultatTest` et la classe `TestLampadaireDTO`, sur le modèle de `LampadaireDTOs.kt`. Je vous laisse réfléchir au champ qui fait le lien avec le lampadaire : quel est son nom, et quel est son type ?
+
+::: details Voir l'une des solutions possibles
 
 ```kotlin
 package cours.brosseau.common.domain
@@ -2118,7 +2120,10 @@ data class TestLampadaireDTO(
 )
 ```
 
-Puis la table, dans `database/tables/TestsLampadaire.kt` :
+Le lien est un simple `Int` : l'`id` du lampadaire testé.
+:::
+
+Passons à la nouveauté : la table. Créez `database/tables/TestsLampadaire.kt` :
 
 ```kotlin
 package cours.brosseau.database.tables
@@ -2140,33 +2145,34 @@ object TestsLampadaire : Table("tests_lampadaire") {
 }
 ```
 
-La nouveauté, c'est `reference("lampadaire_id", Lampadaires.id)`. La colonne reste un entier, mais Exposed sait maintenant qu'elle pointe vers la colonne `id` de la table `lampadaires`. La base peut alors garantir que le lien est valide.
+Vous connaissez toutes les lignes, sauf une : `reference("lampadaire_id", Lampadaires.id)`. Elle se lit en deux temps :
 
-Peut, seulement : pour des raisons historiques, **SQLite ne vérifie pas les clés étrangères par défaut**. Il faut le lui demander, à chaque connexion. Dans `LampadairesDatabase`, modifiez l'adresse de la base :
+- `"lampadaire_id"` est le nom de la colonne dans notre table ;
+- `Lampadaires.id` est la colonne visée, dans l'autre table.
+
+La colonne reste un entier, mais Exposed sait maintenant qu'elle pointe vers la colonne `id` de la table `lampadaires`, et la base peut garantir que le lien est valide.
+
+::: warning SQLite ne vérifie pas les clés étrangères par défaut
+Pour des raisons historiques, il faut le lui demander à chaque connexion. Sans cela, rien ne vous empêcherait d'ajouter un test sur le lampadaire `999`, qui n'existe pas. Dans `LampadairesDatabase`, modifiez l'adresse de la base :
 
 ```kotlin
 Database.connect("jdbc:sqlite:lampadaires.db?foreign_keys=on", driver = "org.sqlite.JDBC")
 ```
 
-Sans cette option, rien ne vous empêcherait d'ajouter un test sur le lampadaire `999`, qui n'existe pas. PostgreSQL ou MariaDB, eux, vérifient toujours.
+PostgreSQL ou MariaDB, eux, vérifient toujours.
+:::
 
-Il reste à créer la table et à la remplir, toujours dans `LampadairesDatabase`. L'ordre compte : la table `lampadaires` d'abord, puisque `tests_lampadaire` y fait référence. Même chose pour les données : un test ne peut être ajouté qu'une fois son lampadaire enregistré.
+Il reste à créer la table, toujours dans `LampadairesDatabase`. `SchemaUtils.create` accepte plusieurs tables : `SchemaUtils.create(Lampadaires, TestsLampadaire)`. Puis, à vous : ajoutez une fonction `ajouterTest(lampadaireId, date, resultat, commentaire)` sur le modèle de `ajouterLampadaire`, et appelez-la pour créer quatre tests de départ : deux sur le sentier du lac (`id` 1) et deux sur la route du col (`id` 3), dont un `NOK`. L'avenue des Pins reste volontairement sans test.
 
-```kotlin
-SchemaUtils.create(Lampadaires, TestsLampadaire)
-```
+::: tip L'ordre compte
+Un test doit pointer vers un lampadaire qui existe déjà. La table `lampadaires` est donc créée en premier, et les `ajouterTest(…)` se placent dans le `if`, **après** les `ajouterLampadaire(…)`.
+:::
 
-Dans le `if`, **après** les `ajouterLampadaire(…)` :
+Cherchez d'abord par vous-même, la fonction ressemble beaucoup à celle que vous avez déjà.
 
-```kotlin
-// Le premier paramètre est la clé étrangère : l'id du lampadaire testé (1 : sentier du lac, 3 : route du col)
-ajouterTest(1, "2026-03-12", ResultatTest.OK, "Mise en service conforme.")
-ajouterTest(1, "2026-09-15", ResultatTest.OK, "Autonomie de la batterie conforme.")
-ajouterTest(3, "2026-05-20", ResultatTest.OK, "Mise en service conforme.")
-ajouterTest(3, "2026-10-02", ResultatTest.NOK, "La LED ne s'allume plus à la tombée de la nuit : capteur crépusculaire à remplacer.")
-```
+::: details Voir l'une des solutions possibles
 
-Et la fonction, à côté de `ajouterLampadaire` :
+La fonction, à côté de `ajouterLampadaire` :
 
 ```kotlin
 private fun ajouterTest(lampadaireId: Int, date: String, resultat: ResultatTest, commentaire: String) {
@@ -2179,19 +2185,35 @@ private fun ajouterTest(lampadaireId: Int, date: String, resultat: ResultatTest,
 }
 ```
 
-Les données de départ ne sont insérées que si la table est vide : arrêtez le serveur et supprimez `lampadaires.db`, pour que la base soit recréée avec les deux tables. Vous repartez alors des quatre lampadaires de départ, et l'`id` 3 est bien la route du col.
-
-Pour lire les tests d'un lampadaire, la clé étrangère s'utilise comme n'importe quelle colonne : un simple filtre suffit.
+Les tests de départ :
 
 ```kotlin
-TestsLampadaire.selectAll()
-    .where { TestsLampadaire.lampadaireId eq lampadaireId }
-    .map { it.toTestLampadaireDTO() }
+// Le premier paramètre est la clé étrangère : l'id du lampadaire testé (1 : sentier du lac, 3 : route du col)
+ajouterTest(1, "2026-03-12", ResultatTest.OK, "Mise en service conforme.")
+ajouterTest(1, "2026-09-15", ResultatTest.OK, "Autonomie de la batterie conforme.")
+ajouterTest(3, "2026-05-20", ResultatTest.OK, "Mise en service conforme.")
+ajouterTest(3, "2026-10-02", ResultatTest.NOK, "La LED ne s'allume plus à la tombée de la nuit : capteur crépusculaire à remplacer.")
 ```
 
-C'est l'équivalent de `SELECT * FROM tests_lampadaire WHERE lampadaire_id = 3`. Pas besoin de jointure ici, car toutes les informations sont dans la même table. Pour lire deux tables à la fois, vous verrez `innerJoin` dans le TP [CRUD et droits](/tp/ktor/crud-droits.md).
+:::
 
-Dernière conséquence : la base protège maintenant le lien dans les deux sens. Elle refuse un test rattaché à un lampadaire inexistant, mais aussi la suppression d'un lampadaire qui possède encore des tests. Votre route `DELETE` répondrait alors une erreur `500` : elle doit supprimer les tests du lampadaire **avant** le lampadaire lui-même.
+Avant de relancer le serveur, il reste un détail à régler.
+
+::: warning Supprimez lampadaires.db
+Les données de départ ne sont insérées que si la table est vide. Arrêtez le serveur et supprimez `lampadaires.db`, pour que la base soit recréée avec les deux tables. Vous repartez alors des quatre lampadaires de départ, et l'`id` 3 est bien la route du col.
+:::
+
+Pour lire les tests d'un lampadaire, rien de nouveau : une clé étrangère s'utilise comme n'importe quelle colonne, et vous savez déjà filtrer avec `.where { … }`.
+
+::: tip Que se passe-t-il derrière ?
+La requête sera équivalente à `SELECT * FROM tests_lampadaire WHERE lampadaire_id = 3`. Pas besoin de jointure ici, car toutes les informations sont dans la même table. Pour lire deux tables à la fois, vous verrez `innerJoin` dans le TP [CRUD et droits](/tp/ktor/crud-droits.md).
+:::
+
+Dernière conséquence de la clé étrangère : la base protège le lien dans les deux sens.
+
+::: warning Votre route DELETE va échouer
+La base refuse maintenant de supprimer un lampadaire qui possède encore des tests, et votre route répondrait une erreur `500`. Elle doit supprimer les tests du lampadaire **avant** le lampadaire lui-même.
+:::
 
 ### Côté serveur
 
@@ -2207,7 +2229,7 @@ Testez la nouvelle route avec `curl` avant de passer à Android :
 
 ::: details Besoin d'aide côté serveur ?
 
-- Le DAO n'a besoin que d'une fonction, `getByLampadaire(lampadaireId: Int)`, avec le filtre vu plus haut et sans `.singleOrNull()` : nous voulons **toute** la liste (une liste vide est une réponse valide).
+- Le DAO n'a besoin que d'une fonction, `getByLampadaire(lampadaireId: Int)`, avec `.where { TestsLampadaire.lampadaireId eq lampadaireId }` et sans `.singleOrNull()` : nous voulons **toute** la liste (une liste vide est une réponse valide).
 - La route peut recevoir le chemin complet : `testLampadaireRoutes("/lampadaires/{id}/tests", testLampadaireService)` dans le bloc `route("/v1")` de `installRouter()`, avec un simple `get(path) { … }` qui lit `call.parameters["id"]`.
 - Pour la suppression, le plus simple est d'ajouter une fonction `deleteByLampadaire(lampadaireId: Int)` au DAO des tests, et de l'appeler juste avant la suppression du lampadaire.
 :::
