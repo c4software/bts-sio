@@ -525,7 +525,7 @@ fun Application.databaseConnect() {
 }
 ```
 
-Enfin, dans `Application.kt`, ajoutez l'appel **en premier** dans `module()` (sans oublier l'import `cours.brosseau.plugins.databaseConnect`) :
+Enfin, dans `Application.kt`, ajoutez l'appel **en premier** dans `module()` :
 
 ```kotlin
 fun Application.module() {
@@ -559,7 +559,7 @@ Les lampadaires de départ font référence à des photos (`/images/lampadaire-1
 
 Téléchargez les photos : [lampadaires-images.zip](/demo/ktor/lampadaires-images.zip). Décompressez l'archive dans `src/main/resources` : vous obtenez un dossier `src/main/resources/images` avec six photos et le fichier `CREDITS.md` (les photos viennent de Wikimedia Commons, sous licence libre, et leurs auteurs doivent être cités).
 
-Dans `installRouter()`, ajoutez une ligne juste après la route `/` (import `io.ktor.server.http.content.staticResources`) :
+Dans `installRouter()`, ajoutez une ligne juste après la route `/` :
 
 ```kotlin
 // Les photos des lampadaires : les fichiers du dossier src/main/resources/images
@@ -731,11 +731,11 @@ fun Route.lampadaireRoutes(path: String, lampadaireService: LampadaireService) {
 }
 ```
 
-`route(path) { … }` regroupe toutes les routes qui commencent par le même chemin. `call.respond(…)` renvoie la liste : grâce à Content Negotiation, elle part en JSON. Quelques imports ne servent pas encore (`post`, `receive`…) : ils serviront juste après.
+`route(path) { … }` regroupe toutes les routes qui commencent par le même chemin. `call.respond(…)` renvoie la liste : grâce à Content Negotiation, elle part en JSON.
 
 ### Relier les couches
 
-Il reste à créer les objets et à brancher les routes. Dans `Application.kt`, complétez `installRouter()` :
+Il reste à créer les objets et à brancher les routes. Pas de Koin dans cette version simple : nous allons instancier nous-mêmes les objets. Dans `Application.kt`, complétez `installRouter()` :
 
 ```kotlin
 fun Application.installRouter() {
@@ -757,8 +757,6 @@ fun Application.installRouter() {
     }
 }
 ```
-
-(Imports : `cours.brosseau.domain.lampadaire.ExposedLampadaireDao`, `cours.brosseau.domain.lampadaire.LampadaireService`, `cours.brosseau.domain.lampadaire.lampadaireRoutes` et `io.ktor.server.routing.route`.)
 
 C'est ici que le DAO est créé, puis donné au service, lui-même donné aux routes. Chaque couche reçoit celle du dessous.
 
@@ -914,15 +912,15 @@ Lampadaire introuvable
 ::: details Besoin d'aide pour la suppression ?
 Pas de code, seulement la procédure, couche par couche :
 
-- **DAO** : une fonction `delete(id: Int): Int` dans l'interface, puis dans `ExposedLampadaireDao`. Dans une `transaction`, `Lampadaires.deleteWhere { Lampadaires.id eq id }` (import `org.jetbrains.exposed.v1.jdbc.deleteWhere`) supprime la ligne et renvoie le **nombre de lignes supprimées**.
+- **DAO** : une fonction `delete(id: Int): Int` dans l'interface, puis dans `ExposedLampadaireDao`. Dans une `transaction`, `Lampadaires.deleteWhere { Lampadaires.id eq id }` supprime la ligne et renvoie le **nombre de lignes supprimées**.
 - **Service** : une fonction `delete(id: Int): Boolean` qui renvoie `true` si le DAO a supprimé au moins une ligne.
-- **Route** : `delete("/{id}") { … }` (import `io.ktor.server.routing.delete`, et `return@delete` pour sortir plus tôt). La lecture de l'`id` est identique à celle de `get("/{id}")`. Pour répondre sans contenu : `call.respond(HttpStatusCode.NoContent)`.
+- **Route** : `delete("/{id}") { … }` (`return@delete` pour sortir plus tôt). La lecture de l'`id` est identique à celle de `get("/{id}")`. Pour répondre sans contenu : `call.respond(HttpStatusCode.NoContent)`.
 :::
 
 Testez votre route avec `curl`, sans oublier les cas d'erreur (`/v1/lampadaires/abc`, un lampadaire déjà supprimé).
 
 ::: tip Vous êtes en avance ?
-Ajoutez une route `PUT /v1/lampadaires/{id}/statut` qui change le statut d'un lampadaire (signaler une panne, la fin d'une maintenance…). Le client envoie un `UpdateStatutDTO(val statut: StatutLampadaire)`, et le DAO utilise `Lampadaires.update({ Lampadaires.id eq id }) { it[statut] = … }` (import `org.jetbrains.exposed.v1.jdbc.update`). Votre API est alors un CRUD complet : Create, Read, Update, Delete.
+Ajoutez une route `PUT /v1/lampadaires/{id}/statut` qui change le statut d'un lampadaire (signaler une panne, la fin d'une maintenance…). Le client envoie un `UpdateStatutDTO(val statut: StatutLampadaire)`, et le DAO utilise `Lampadaires.update({ Lampadaires.id eq id }) { it[statut] = … }`. Votre API est alors un CRUD complet : Create, Read, Update, Delete.
 :::
 
 Notre serveur est prêt. Laissez-le tourner : nous allons maintenant écrire son premier client.
@@ -1244,7 +1242,7 @@ La requête envoyée est exactement la même. C'est tout l'intérêt d'avoir tes
 Reste une question : où créer cette instance de `LampadairesApi` ? Les trois écrans en auront besoin.
 
 ::: tip Un singleton, pour la simplicité
-Le `companion object` crée une seule instance de l'API pour toute l'application. C'est simple et suffisant ici. Dans un projet plus important, on confie plutôt ce travail à un outil d'**injection de dépendances** (comme Koin), exactement comme côté serveur.
+Pas de Koin dans cette version simple : nous allons instancier nous-mêmes les objets. Le `companion object` crée une seule instance de l'API pour toute l'application. C'est simple et suffisant ici. Dans un projet plus important, on confie plutôt ce travail à un outil d'**injection de dépendances** (comme Koin), exactement comme côté serveur. L'[annexe en fin de TP](#annexe-et-avec-koin) montre ce qu'il faudrait changer.
 :::
 
 ### L'écran liste
@@ -1817,8 +1815,6 @@ composable(
 }
 ```
 
-(Imports : `androidx.navigation.NavType`, `androidx.navigation.navArgument` et `cours.brosseau.lampadaires.ui.detail.DetailScreen`.)
-
 Vous remarquez la ressemblance avec la route du serveur, `/{id}` ? Côté Android comme côté Ktor, `{id}` est un paramètre lu dans le chemin.
 
 ::: tip Point de contrôle
@@ -2374,7 +2370,7 @@ fun Application.installCors() {
 }
 ```
 
-Et installez-le dans `module()`, avant les routes (import `cours.brosseau.plugins.installCors`) :
+Et installez-le dans `module()`, avant les routes :
 
 ```kotlin
 fun Application.module() {
@@ -2519,5 +2515,198 @@ Le point le plus important : le serveur ne sait pas qui l'appelle. Android, Vue.
 N'oubliez pas de **commiter vos projets** (le serveur, l'application et la page web).
 
 Pour aller plus loin côté serveur (base PostgreSQL, migrations avec Flyway, injection de dépendances avec Koin et gestion des droits), suivez les TP [Créer des API avec Kotlin : le projet](/tp/ktor/decouverte.md) puis [CRUD et droits](/tp/ktor/crud-droits.md).
+
+## Annexe : et avec Koin ?
+
+Dans ce TP, nous avons créé nous-mêmes les objets : `LampadaireService(ExposedLampadaireDao())` côté serveur, `LampadairesApi.instance` côté Android. Si nous voulions confier ce travail à un injecteur de dépendances comme [Koin](https://insert-koin.io/), voici ce qu'il faudrait faire. Le principe est le même des deux côtés : on **décrit** comment construire les objets dans un *module*, on **démarre** Koin, puis chaque classe **reçoit** ce dont elle a besoin par son constructeur.
+
+::: tip Rien à faire pour réussir le TP
+Cette annexe est là pour comprendre ce qui change. Le TP fonctionne très bien sans.
+:::
+
+### Côté serveur
+
+Dans `gradle/libs.versions.toml` :
+
+```toml
+[versions]
+# … les versions déjà présentes
+koin = "4.2.2"
+
+[libraries]
+# … les librairies déjà présentes
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+```
+
+Puis `implementation(libs.koin.ktor)` dans le bloc `dependencies` de `build.gradle.kts`.
+
+On décrit les objets dans `domain/lampadaire/LampadaireModule.kt` :
+
+```kotlin
+package cours.brosseau.domain.lampadaire
+
+import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
+import org.koin.dsl.module
+
+/**
+ * Comment construire les objets des lampadaires.
+ */
+val lampadaireModule = module {
+    // Une seule instance d'ExposedLampadaireDao, fournie à qui demande un LampadaireDao
+    singleOf(::ExposedLampadaireDao) bind LampadaireDao::class
+
+    // Une seule instance du service : Koin lui donne le DAO déclaré au-dessus
+    singleOf(::LampadaireService)
+}
+```
+
+On démarre Koin dans `plugins/Koin.kt` :
+
+```kotlin
+package cours.brosseau.plugins
+
+import cours.brosseau.domain.lampadaire.lampadaireModule
+import io.ktor.server.application.Application
+import io.ktor.server.application.install
+import org.koin.ktor.plugin.Koin
+
+fun Application.installKoin() {
+    install(Koin) {
+        modules(lampadaireModule)
+    }
+}
+```
+
+Les routes demandent le service à Koin au lieu de le recevoir en paramètre :
+
+```kotlin
+fun Route.lampadaireRoutes(path: String) {
+    val lampadaireService by inject<LampadaireService>()
+
+    route(path) {
+        // … les routes, inchangées
+    }
+}
+```
+
+`inject` vient de `org.koin.ktor.ext.inject`. Enfin, dans `Application.kt`, la ligne `val lampadaireService = LampadaireService(ExposedLampadaireDao())` disparaît, et Koin est démarré **avant** les routes :
+
+```kotlin
+fun Application.module() {
+    databaseConnect()
+    installKoin()
+    installCors()
+    installSerialization()
+    installRouter()
+}
+
+fun Application.installRouter() {
+    routing {
+        // … la route / et les photos, inchangées
+
+        route("/v1") {
+            lampadaireRoutes("/lampadaires")
+        }
+    }
+}
+```
+
+### Côté Android
+
+Dans `gradle/libs.versions.toml` :
+
+```toml
+[versions]
+# … les versions déjà présentes
+koin = "4.2.2"
+
+[libraries]
+# … les librairies déjà présentes
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+```
+
+Puis `implementation(libs.koin.androidx.compose)` dans le bloc `dependencies` de `app/build.gradle.kts`.
+
+On décrit les objets dans `di/AppModule.kt` :
+
+```kotlin
+package cours.brosseau.lampadaires.di
+
+import cours.brosseau.lampadaires.BuildConfig
+import cours.brosseau.lampadaires.http.LampadairesApi
+import cours.brosseau.lampadaires.http.createHttpClient
+import cours.brosseau.lampadaires.ui.creation.CreationViewModel
+import cours.brosseau.lampadaires.ui.detail.DetailViewModel
+import cours.brosseau.lampadaires.ui.liste.ListeViewModel
+import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.module
+
+/**
+ * Comment construire les objets de l'application.
+ */
+val appModule = module {
+    // Un seul client HTTP et une seule API pour toute l'application
+    single { createHttpClient() }
+    single { LampadairesApi(get(), BuildConfig.API_URL) }
+
+    // Un ViewModel par écran : Koin leur donne l'API déclarée au-dessus
+    viewModelOf(::ListeViewModel)
+    viewModelOf(::DetailViewModel)
+    viewModelOf(::CreationViewModel)
+}
+```
+
+`get()` signifie « donne-moi l'objet du bon type que tu sais construire » : ici, le `HttpClient`.
+
+Koin se démarre au lancement de l'application, dans une classe `LampadairesApplication.kt` à côté de `MainActivity` :
+
+```kotlin
+package cours.brosseau.lampadaires
+
+import android.app.Application
+import cours.brosseau.lampadaires.di.appModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+
+class LampadairesApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@LampadairesApplication)
+            modules(appModule)
+        }
+    }
+}
+```
+
+Android doit savoir qu'il faut utiliser cette classe : dans `AndroidManifest.xml`, ajoutez `android:name=".LampadairesApplication"` à la balise `<application>`.
+
+Ensuite, les trois ViewModels reçoivent l'API par leur constructeur, au lieu d'aller la chercher :
+
+```kotlin
+class ListeViewModel(private val api: LampadairesApi) : ViewModel() {
+    // La ligne « private val api = LampadairesApi.instance » disparaît
+    // … le reste, inchangé
+}
+```
+
+Le `companion object` de `LampadairesApi` n'a plus de raison d'être : supprimez-le. Enfin, dans les écrans, `viewModel()` devient `koinViewModel()` (de `org.koin.compose.viewmodel.koinViewModel`), pour que ce soit Koin qui crée le ViewModel avec son paramètre :
+
+```kotlin
+fun ListeScreen(
+    onLampadaireClick: (Int) -> Unit,
+    onAjouterClick: () -> Unit,
+    viewModel: ListeViewModel = koinViewModel(),
+)
+```
+
+Même chose pour `DetailScreen` et `CreationScreen`.
+
+### Qu'avons-nous gagné ?
+
+Sur un projet de cette taille, pas grand-chose : quelques fichiers de plus pour le même résultat. Mais chaque classe déclare maintenant ce dont elle a besoin dans son constructeur, sans savoir comment c'est construit. Pour tester `ListeViewModel`, il suffit de lui passer une fausse `LampadairesApi`. Et quand le projet compte des dizaines de classes, c'est Koin qui les relie entre elles, plus vous.
+
+Pour la version complète côté serveur, suivez le TP [Créer des API avec Kotlin : le projet](/tp/ktor/decouverte.md).
 
 👋 Si vous avez des questions, n'hésitez pas.
