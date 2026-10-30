@@ -150,6 +150,7 @@ Question :
 - À quoi servent les deux plugins que nous avons ajoutés ?
 
 ::: details Réponse
+
 - **kotlinx.serialization** sait transformer un objet Kotlin en JSON, et un JSON en objet Kotlin.
 - **Content Negotiation** fait le lien avec Ktor : quand une route répond avec un objet, il choisit le bon format (ici JSON) et appelle la sérialisation. Même chose dans l'autre sens, quand le serveur reçoit du JSON.
 
@@ -478,6 +479,7 @@ object LampadairesDatabase {
             SchemaUtils.create(Lampadaires)
 
             // Quelques lampadaires de départ, uniquement si la table est vide
+            // Ici pas de migrations, pour simplifier nous insérons des données fictive au démarrage de notre application de test
             if (Lampadaires.selectAll().empty()) {
                 ajouterLampadaire("LUM-2026-0001", "Sentier du lac", "Lampadaire solaire autonome qui éclaire le sentier piéton le long du lac.", "/images/lampadaire-1.jpg", StatutLampadaire.EN_SERVICE, "2026-03-12")
                 ajouterLampadaire("LUM-2026-0002", "Avenue des Pins", "Lampadaire solaire à tête ronde, panneau orienté plein sud.", "/images/lampadaire-2.jpg", StatutLampadaire.EN_SERVICE, "2026-04-02")
@@ -1232,6 +1234,7 @@ Question :
 - Comparez la fonction `creer` avec la commande `curl` de création. Retrouvez, dans le code Kotlin, l'équivalent de `-X POST`, de `-H "Content-Type: application/json"` et de `-d`.
 
 ::: details Réponse
+
 - `-X POST` : `client.post(…)` ;
 - `-H "Content-Type: application/json"` : `contentType(ContentType.Application.Json)` ;
 - `-d '{…}'` : `setBody(nouveau)`, l'objet étant transformé en JSON par Content Negotiation.
@@ -2087,6 +2090,7 @@ Testez-la avec `curl` avant de passer à Android :
 ![Les deux tests du lampadaire de la route du col](./img/ktor-api/curl_tests.png)
 
 ::: details Besoin d'aide côté serveur ?
+
 - La clé étrangère se déclare avec `reference` : `val lampadaireId = reference("lampadaire_id", Lampadaires.id)`, et le résultat avec `enumerationByName`, comme le statut.
 - `SchemaUtils.create(Lampadaires, TestsLampadaire)` crée les deux tables (le lampadaire d'abord, puisque le test y fait référence).
 - Le DAO n'a besoin que d'une fonction, `getByLampadaire(lampadaireId: Int)`, avec `.where { TestsLampadaire.lampadaireId eq lampadaireId }` et sans `.singleOrNull()` : nous voulons **toute** la liste (une liste vide est une réponse valide).
@@ -2106,6 +2110,7 @@ Le résultat attendu :
 <img src="./img/ktor-api/android_detail_tests.png" alt="Le détail de la route du col, avec ses deux tests : OK en vert, NOK en rouge" width="220" />
 
 ::: details Besoin d'aide côté Android ?
+
 - L'état `EcranDetail.Detail` peut porter les deux informations : `data class Detail(val lampadaire: LampadaireDTO, val tests: List<TestLampadaireDTO>)`.
 - Dans le ViewModel, les deux appels se suivent simplement dans le `try` : `EcranDetail.Detail(api.lampadaire(id), api.tests(id))`. Si l'un des deux échoue, on passe dans le `catch`.
 - Pour l'affichage, un `ListItem` (Material 3) par test, avec la date en `overlineContent`, le commentaire en `headlineContent` et le résultat en `trailingContent`. Une boucle `tests.forEach { … }` suffit : la `Column` défile déjà.
@@ -2441,6 +2446,7 @@ Un clic sur une carte affiche son détail sous la liste. Dans l'onglet **Réseau
 Pour terminer, c'est à vous : ajoutez sous la liste un formulaire (numéro de série, titre, description, et une liste déroulante pour choisir l'une des six photos) qui envoie `POST /v1/lampadaires`, puis recharge la liste.
 
 ::: details Besoin d'aide pour l'ajout ?
+
 - Dans `data()`, un objet pour le formulaire : `nouveau: { numeroSerie: "", titre: "", description: "", image: "/images/lampadaire-1.jpg" }`, et des champs liés avec `v-model="nouveau.titre"`, etc.
 - Pour la liste déroulante, un `<select v-model="nouveau.image">` et une `<option>` par photo : `v-for="n in 6"` compte de 1 à 6.
 - Sur la balise `<form>`, `@submit.prevent="creer"` appelle votre méthode sans recharger la page.
