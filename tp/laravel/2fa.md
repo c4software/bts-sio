@@ -173,7 +173,26 @@ Questions :
 
 ::: tip Vous êtes en avance ?
 
-Cet exercice reprend le projet `ma-bibliotheque` utilisé dans [l'exercice du TP Comprendre l'authentification](./authentification_manuelle.md#exercice-l-authentification-de-la-bibliotheque). Si vous ne l'avez pas, commencez par là : c'est un bon entraînement avant d'attaquer celui-ci.
+Cet exercice reprend le projet `ma-bibliotheque` utilisé dans [l'exercice du TP Comprendre l'authentification](./authentification_manuelle.md#exercice-l-authentification-de-la-bibliotheque). Si vous l'avez terminé, continuez simplement sur votre projet. Sinon, c'est un bon entraînement avant d'attaquer celui-ci, mais vous pouvez aussi récupérer le projet prêt à l'emploi ci-dessous.
+
+:::
+
+::: details Vous n'avez pas le projet ?
+
+[Téléchargez le projet ma-bibliotheque avec l'authentification](/demo/laravel/ma-bibliotheque-auth.zip), puis décompressez-le **à côté** de votre projet TODO (pas dedans !). Il contient tout le travail de l'exercice : le modèle `Membre`, l'inscription, la connexion, la déconnexion et le middleware `CheckAuth`. Comme pour tout projet Laravel récupéré, il faut l'installer avant de le lancer :
+
+```sh
+cd ma-bibliotheque
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
+php artisan serve
+```
+
+Si `migrate` vous demande de créer le fichier `database.sqlite`, répondez `yes`. Le `--seed` ne crée que les livres d'exemple : aucun membre n'existe au départ, inscrivez-vous donc sur `/register`.
+
+Prenez ensuite cinq minutes pour lire `AuthentificationControleur`, et en particulier `traitementLogin` : c'est là que vous allez travailler.
 
 :::
 
