@@ -908,9 +908,10 @@ try {
 
 ### La gestion des secrets
 
-::: danger Ne jamais écrire en dur
-Les clés API, mots de passe de BDD, tokens et certificats ne doivent **jamais** figurer dans le code source.
-:::
+<div class="danger">
+  <strong class="danger-title">Ne jamais écrire en dur</strong>
+  <p>Les clés API, mots de passe de BDD, tokens et certificats ne doivent <strong>jamais</strong> figurer dans le code source.</p>
+</div>
 
 - **Variables d'environnement** : Utiliser un fichier `.env` en local (hors git) et des variables d'environnement sur le serveur.
 - **Ne pas versionner** : Ajouter `.env` au `.gitignore`. Un secret commité est un secret exposé.

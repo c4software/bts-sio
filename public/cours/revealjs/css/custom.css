@@ -75,6 +75,25 @@ fieldset>legend {
     border-radius: 10px;
 }
 
+.reveal .danger {
+    margin: 0 0 var(--r-block-margin);
+    padding: 12px 20px;
+    font-size: 0.8em;
+    text-align: start;
+    border-left: 6px solid #c0392b;
+    border-radius: 5px;
+    background-color: rgba(192, 57, 43, 0.12);
+}
+
+.reveal .danger p {
+    margin: 0;
+}
+
+.reveal .danger .danger-title {
+    display: block;
+    color: #c0392b;
+}
+
 .frame-cover{
     position: absolute;
     width: 40%;
