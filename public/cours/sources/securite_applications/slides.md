@@ -535,20 +535,44 @@ OWASP donne la liste des grandes catégories de failles. Entrons dans le détail
 ### A01 : Contrôles d'accès défaillants
 
 ```php
-// http://exemple.com/facture.php?id=42
-// Et si je remplace 42 par 43 ?
+// http://exemple.com/facture.php?id=42, et si je mets 43 ?
 $stmt = $pdo->prepare("SELECT * FROM facture WHERE id = ?");
 $stmt->execute([$_GET["id"]]);
 ```
+
+```php
+// admin.php : aucun contrôle du rôle
+deleteUser($_GET['id']);
+```
+
+```php
+// http://www.shop-vdt.com/login.php?goto=evil.com/login
+header("Location: " . $_GET['goto']);
+```
+
+[En vidéo](https://www.youtube.com/watch?v=ibFs8FZxzu4)
 
 ---
 
 ### Correction
 
 ```php
-// La facture doit appartenir à l'utilisateur connecté
 $stmt = $pdo->prepare("SELECT * FROM facture WHERE id = ? AND client_id = ?");
 $stmt->execute([$_GET["id"], $_SESSION["client_id"]]);
+```
+
+```php
+if ($_SESSION['role'] !== 'admin') {
+    die("Accès refusé.");
+}
+```
+
+```php
+$whitelist = ['accueil', 'compte', 'panier'];
+
+if (in_array($_GET['goto'], $whitelist)) {
+    header("Location: index.php?page=" . $_GET['goto']);
+}
 ```
 
 ---
@@ -560,6 +584,11 @@ $stmt->execute([$_GET["id"], $_SESSION["client_id"]]);
 <form method="post" action="supprimer-compte.php">
     <button>Supprimer mon compte</button>
 </form>
+```
+
+```html
+<!-- En GET, une simple image dans un mail suffit -->
+<img src="http://exemple.com/supprimer-compte.php">
 ```
 
 ---
@@ -576,33 +605,9 @@ $_SESSION['token'] = bin2hex(random_bytes(32));
 ```
 
 ```php
-// Vérification (à la réception du formulaire)
+// Vérification (à la réception du formulaire, toujours en POST)
 if (!hash_equals($_SESSION['token'], $_POST['token'] ?? '')) {
     die("Requête invalide.");
-}
-```
-
----
-
-### A01 : Redirections non validées
-
-```php
-// http://www.shop-vdt.com/login.php?goto=evil.com/login
-header("Location: " . $_GET['goto']);
-```
-
-[En vidéo](https://www.youtube.com/watch?v=ibFs8FZxzu4)
-
----
-
-### Correction
-
-```php
-// Uniquement des destinations connues
-$whitelist = ['accueil', 'compte', 'panier'];
-
-if (in_array($_GET['goto'], $whitelist)) {
-    header("Location: index.php?page=" . $_GET['goto']);
 }
 ```
 
@@ -638,8 +643,13 @@ log_errors = On
 ### A03 : Chaîne d'approvisionnement logicielle
 
 ```bash
-# composer.lock ignoré, dernières versions installées sans contrôle
+# Fichiers lock ignorés, dernières versions installées sans contrôle
 composer update
+npm update
+```
+
+```json
+{ "require": { "monolog/monolog": "*" } }
 ```
 
 ---
@@ -647,11 +657,17 @@ composer update
 ### Correction
 
 ```bash
-# composer.lock versionné : les mêmes versions partout
+# Fichiers lock versionnés : les mêmes versions partout
 composer install
+npm ci
 
 # Recherche des vulnérabilités connues
 composer audit
+npm audit
+```
+
+```json
+{ "require": { "monolog/monolog": "^3.0" } }
 ```
 
 ---
@@ -659,8 +675,17 @@ composer audit
 ### A04 : Défaillances cryptographiques
 
 ```php
-// MD5 est beaucoup trop rapide à casser
+// En clair dans la base
+$hash = $_POST['password'];
+
+// MD5, SHA1 : beaucoup trop rapides à casser
 $hash = md5($_POST['password']);
+$hash = sha1($_POST['password']);
+```
+
+```html
+<!-- Sans HTTPS, le mot de passe circule en clair -->
+<form method="post" action="http://exemple.com/login.php">
 ```
 
 ---
@@ -675,14 +700,28 @@ $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 password_verify($_POST['password'], $hash);
 ```
 
+```html
+<form method="post" action="https://exemple.com/login.php">
+```
+
 ---
 
-### A05 : Injection SQL
+### A05 : Injection (SQL, XSS, Shell)
 
 ```php
 // http://exemple.com/liste?id=' OR '1'='1
 $sql = "SELECT * FROM client WHERE id='" . $_GET["id"] . "'";
-$result = $pdo->query($sql);
+$sql = "SELECT * FROM client WHERE id='{$_GET["id"]}'"; // Même faille
+```
+
+```php
+// nom = <script>alert('XSS')</script>
+echo "Bonjour " . $_POST['nom'];
+```
+
+```php
+// dossier = ; cat /etc/passwd
+system("ls " . $_GET['dossier']);
 ```
 
 ---
@@ -694,21 +733,12 @@ $stmt = $pdo->prepare("SELECT * FROM client WHERE id = ?");
 $stmt->execute([$_GET["id"]]);
 ```
 
----
-
-### A05 : Cross-Site Scripting (XSS)
-
-```php
-// nom = <script>alert('XSS')</script>
-echo "Bonjour " . $_POST['nom'];
-```
-
----
-
-### Correction
-
 ```php
 echo "Bonjour " . htmlspecialchars($_POST['nom'], ENT_QUOTES, 'UTF-8');
+```
+
+```php
+system("ls " . escapeshellarg($_GET['dossier']));
 ```
 
 ---
@@ -722,6 +752,11 @@ if ($_POST['reponse'] == $user['couleur_preferee']) {
 }
 ```
 
+```php
+// Aucun anti-bots : des milliers de comptes créés en boucle
+createAccount($_POST['email']);
+```
+
 ---
 
 ### Correction
@@ -733,6 +768,13 @@ saveResetToken($user, hash('sha256', $token), time() + 3600);
 sendResetMail($user, $token);
 ```
 
+```php
+// Un captcha, vérifié côté serveur
+if (verifyCaptcha($_POST['g-recaptcha-response'])) {
+    createAccount($_POST['email']);
+}
+```
+
 ---
 
 ### A07 : Défaillances d'authentification
@@ -742,6 +784,11 @@ sendResetMail($user, $token);
 if (password_verify($_POST['password'], $user['password'])) {
     $_SESSION['user_id'] = $user['id'];
 }
+```
+
+```html
+<!-- Partager le lien, c'est partager sa session -->
+http://exemple.com/?jsessionid=A2938298D293
 ```
 
 ---
@@ -759,6 +806,11 @@ if (password_verify($_POST['password'], $user['password'])) {
 }
 ```
 
+```ini
+; L'identifiant de session reste dans un cookie
+session.use_only_cookies = 1
+```
+
 ---
 
 ### A08 : Manque d'intégrité des données et du logiciel
@@ -766,6 +818,11 @@ if (password_verify($_POST['password'], $user['password'])) {
 ```html
 <!-- Et si le fichier est modifié sur le CDN ? -->
 <script src="https://cdn.exemple.com/lib.js"></script>
+```
+
+```php
+// Le cookie est modifiable par le visiteur
+$panier = unserialize($_COOKIE['panier']);
 ```
 
 ---
@@ -777,6 +834,11 @@ if (password_verify($_POST['password'], $user['password'])) {
 <script src="https://cdn.exemple.com/lib.js"
         integrity="sha384-..."
         crossorigin="anonymous"></script>
+```
+
+```php
+// JSON : aucune création d'objet, et le contenu reste à valider
+$panier = json_decode($_COOKIE['panier'], true);
 ```
 
 ---
@@ -815,6 +877,12 @@ try {
 }
 ```
 
+```php
+} catch (PDOException $e) {
+    echo $e->getMessage(); // Détails internes affichés au visiteur
+}
+```
+
 ---
 
 ### Correction
@@ -826,6 +894,13 @@ try {
     // En cas d'erreur, on refuse l'accès
     error_log($e->getMessage());
     $isAdmin = false;
+}
+```
+
+```php
+} catch (PDOException $e) {
+    error_log($e->getMessage());
+    die("Une erreur est survenue.");
 }
 ```
 

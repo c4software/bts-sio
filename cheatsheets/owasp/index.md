@@ -314,6 +314,11 @@ Autres exemples :
 - Page d'admin accessible avec un compte utilisateur.
 - Mode non filtré (`http://exemple.com/liste?mode=client`, et si je change client par admin ?).
 
+```php
+// admin.php : aucun contrôle du rôle
+deleteUser($_GET['id']);
+```
+
 #### Comment corriger ?
 
 - Toujours valider les entrées utilisateurs.
@@ -323,6 +328,13 @@ Autres exemples :
 // La facture doit appartenir à l'utilisateur connecté
 $stmt = $pdo->prepare("SELECT * FROM facture WHERE id = ? AND client_id = ?");
 $stmt->execute([$_GET["id"], $_SESSION["client_id"]]);
+```
+
+```php
+// Une page d'administration vérifie toujours le rôle
+if ($_SESSION['role'] !== 'admin') {
+    die("Accès refusé.");
+}
 ```
 
 ### A01 : Falsification de requête intersite (CSRF)
@@ -336,9 +348,14 @@ Failles liées à l'exécution de requêtes à l'insu de l'utilisateur. Un site 
 </form>
 ```
 
+```html
+<!-- En GET, une simple image dans un mail suffit -->
+<img src="http://exemple.com/supprimer-compte.php">
+```
+
 #### Comment corriger ?
 
-Ajoutez un jeton unique dans les formulaires. Celui-ci est intégré de base dans Laravel.
+Une action qui modifie des données passe toujours en POST. Ajoutez ensuite un jeton unique dans les formulaires. Celui-ci est intégré de base dans Laravel.
 
 Génération du jeton (au moment d'afficher le formulaire) :
 
@@ -436,8 +453,13 @@ Failles liées à l'utilisation de composants tiers vulnérables ou compromis (v
 - Framework non à jour.
 
 ```bash
-# composer.lock ignoré, dernières versions installées sans contrôle
+# Fichiers lock ignorés, dernières versions installées sans contrôle
 composer update
+npm update
+```
+
+```json
+{ "require": { "monolog/monolog": "*" } }
 ```
 
 #### Comment corriger ?
@@ -446,11 +468,17 @@ composer update
 - Ne pas utiliser de vieux frameworks (exemple : PHP 4 ou Symfony 1.4).
 
 ```bash
-# composer.lock versionné : les mêmes versions partout
+# Fichiers lock versionnés : les mêmes versions partout
 composer install
+npm ci
 
 # Recherche des vulnérabilités connues
 composer audit
+npm audit
+```
+
+```json
+{ "require": { "monolog/monolog": "^3.0" } }
 ```
 
 ### A04 : Défaillances cryptographiques
@@ -464,8 +492,17 @@ Exposition de données sensibles comme les mots de passe, les numéros de carte 
 - Données sensibles en clair dans la base de données.
 
 ```php
-// MD5 est beaucoup trop rapide à casser
+// En clair dans la base
+$hash = $_POST['password'];
+
+// MD5, SHA1 : beaucoup trop rapides à casser
 $hash = md5($_POST['password']);
+$hash = sha1($_POST['password']);
+```
+
+```html
+<!-- Sans HTTPS, le mot de passe circule en clair -->
+<form method="post" action="http://exemple.com/login.php">
 ```
 
 #### Comment corriger ?
@@ -484,7 +521,11 @@ $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 password_verify($_POST['password'], $hash);
 ```
 
-### A05 : Injection SQL
+```html
+<form method="post" action="https://exemple.com/login.php">
+```
+
+### A05 : Injection SQL et Shell
 
 Injection SQL, Shell... Souvent la plus connue et la plus rencontrée :
 
@@ -492,6 +533,11 @@ Injection SQL, Shell... Souvent la plus connue et la plus rencontrée :
 // http://exemple.com/liste?id=' OR '1'='1
 $sql = "SELECT * FROM client WHERE id='" . $_GET["id"] . "'";
 $result = $pdo->query($sql);
+```
+
+```php
+// dossier = ; cat /etc/passwd
+system("ls " . $_GET['dossier']);
 ```
 
 ::: tip C'est la base de la sécurité
@@ -517,6 +563,10 @@ $sql = "SELECT * FROM client WHERE id='{$id}'";
 ```php
 $stmt = $pdo->prepare("SELECT * FROM client WHERE id = ?");
 $stmt->execute([$_GET["id"]]);
+```
+
+```php
+system("ls " . escapeshellarg($_GET['dossier']));
 ```
 
 ### A05 : Cross-Site Scripting (XSS)
@@ -568,6 +618,11 @@ if ($_POST['reponse'] == $user['couleur_preferee']) {
 }
 ```
 
+```php
+// Aucun anti-bots : des milliers de comptes créés en boucle
+createAccount($_POST['email']);
+```
+
 #### Comment corriger ?
 
 - Penser la sécurité dès la conception.
@@ -579,6 +634,13 @@ if ($_POST['reponse'] == $user['couleur_preferee']) {
 $token = bin2hex(random_bytes(32));
 saveResetToken($user, hash('sha256', $token), time() + 3600);
 sendResetMail($user, $token);
+```
+
+```php
+// Un captcha, vérifié côté serveur
+if (verifyCaptcha($_POST['g-recaptcha-response'])) {
+    createAccount($_POST['email']);
+}
 ```
 
 ### A07 : Défaillances d'authentification
@@ -617,6 +679,11 @@ if (password_verify($_POST['password'], $user['password'])) {
 }
 ```
 
+```ini
+; L'identifiant de session reste dans un cookie
+session.use_only_cookies = 1
+```
+
 ### A08 : Manque d'intégrité des données et du logiciel
 
 Du code ou des données utilisés sans vérifier qu'ils n'ont pas été modifiés. Par exemple un script chargé depuis un CDN, ou une mise à jour non signée.
@@ -624,6 +691,11 @@ Du code ou des données utilisés sans vérifier qu'ils n'ont pas été modifié
 ```html
 <!-- Et si le fichier est modifié sur le CDN ? -->
 <script src="https://cdn.exemple.com/lib.js"></script>
+```
+
+```php
+// Le cookie est modifiable par le visiteur
+$panier = unserialize($_COOKIE['panier']);
 ```
 
 #### Comment corriger ?
@@ -635,6 +707,11 @@ Du code ou des données utilisés sans vérifier qu'ils n'ont pas été modifié
 <script src="https://cdn.exemple.com/lib.js"
         integrity="sha384-..."
         crossorigin="anonymous"></script>
+```
+
+```php
+// JSON : aucune création d'objet, et le contenu reste à valider
+$panier = json_decode($_COOKIE['panier'], true);
 ```
 
 ### A09 : Carence de journalisation et d'alerte
@@ -674,6 +751,12 @@ try {
 }
 ```
 
+```php
+} catch (PDOException $e) {
+    echo $e->getMessage(); // Détails internes affichés au visiteur
+}
+```
+
 #### Comment corriger ?
 
 - En cas d'erreur, toujours refuser l'accès (« fail closed »).
@@ -686,6 +769,13 @@ try {
     // En cas d'erreur, on refuse l'accès
     error_log($e->getMessage());
     $isAdmin = false;
+}
+```
+
+```php
+} catch (PDOException $e) {
+    error_log($e->getMessage());
+    die("Une erreur est survenue.");
 }
 ```
 
