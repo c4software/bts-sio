@@ -1,8 +1,34 @@
 import { defineConfig } from 'vitepress'
 import sidebar from './sidebar'
 
+const siteUrl = 'https://cours.brosseau.ovh'
+const siteName = 'Cours de Valentin Brosseau'
+const shareImage = `${siteUrl}/og-image.png`
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  // Aperçus des liens partagés (LinkedIn, Mastodon, messageries…)
+  transformHead({ pageData, title, description }) {
+    const isHome = pageData.relativePath === 'index.md'
+    const path = pageData.relativePath
+      .replace(/(^|\/)index\.md$/, '$1')
+      .replace(/\.md$/, '.html')
+    const shareTitle = isHome ? siteName : title
+
+    return [
+      ['meta', { property: 'og:type', content: 'website' }],
+      ['meta', { property: 'og:locale', content: 'fr_FR' }],
+      ['meta', { property: 'og:site_name', content: siteName }],
+      ['meta', { property: 'og:title', content: shareTitle }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { property: 'og:url', content: `${siteUrl}/${path}` }],
+      ['meta', { property: 'og:image', content: shareImage }],
+      ['meta', { property: 'og:image:width', content: '1200' }],
+      ['meta', { property: 'og:image:height', content: '630' }],
+      ['meta', { property: 'og:image:alt', content: siteName }],
+      ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ]
+  },
   title: "Cours",
   description: "Cette documentation est réalisée par Valentin Brosseau (pour le BTS SIO, GRETA, et dans différentes interventions), vous retrouverez dans l’ensemble des cours (slide) ainsi que les TP.",
   srcExclude: ['public/**/*.md', 'moodle/print/**', 'AGENTS.md', 'CLAUDE.md', 'scripts/**'],
