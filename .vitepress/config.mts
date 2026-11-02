@@ -1,8 +1,10 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig, type HeadConfig } from 'vitepress'
 import sidebar from './sidebar'
 
 const siteUrl = 'https://cours.brosseau.ovh'
 const siteName = 'Cours de Valentin Brosseau'
+const authorName = 'Valentin Brosseau'
+const authorUrl = 'https://www.linkedin.com/in/valentin-brosseau-99b98827/'
 const shareImage = `${siteUrl}/og-image.png`
 
 // https://vitepress.dev/reference/site-config
@@ -14,9 +16,24 @@ export default defineConfig({
       .replace(/(^|\/)index\.md$/, '$1')
       .replace(/\.md$/, '.html')
     const shareTitle = isHome ? siteName : title
+    // Date du dernier commit de la page (voir lastUpdated). L'accueil désactive
+    // lastUpdated dans son frontmatter : il prend la date du build.
+    const updatedTimestamp = pageData.lastUpdated ?? (isHome ? Date.now() : undefined)
+    const updatedAt = updatedTimestamp ? new Date(updatedTimestamp).toISOString() : undefined
 
     return [
-      ['meta', { property: 'og:type', content: 'website' }],
+      ...(updatedAt
+        ? ([
+            ['meta', { name: 'publish_date', property: 'og:publish_date', content: updatedAt }],
+            ['meta', { property: 'article:published_time', content: updatedAt }],
+            ['meta', { property: 'article:modified_time', content: updatedAt }],
+          ] as HeadConfig[])
+        : []),
+      ['meta', { name: 'author', content: authorName }],
+      ['link', { rel: 'author', href: authorUrl }],
+      ['meta', { property: 'article:author', content: authorUrl }],
+      ['meta', { name: 'twitter:creator', content: '@c4software' }],
+      ['meta', { property: 'og:type', content: 'article' }],
       ['meta', { property: 'og:locale', content: 'fr_FR' }],
       ['meta', { property: 'og:site_name', content: siteName }],
       ['meta', { property: 'og:title', content: shareTitle }],
