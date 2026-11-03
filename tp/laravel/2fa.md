@@ -127,6 +127,50 @@ Question :
 
 ![La page de vérification du code](./ressources/2fa_verification.png)
 
+## Bloquer le site pendant la vérification
+
+Tant que `2fa_email` est en session, l'utilisateur est **entre deux étapes** : son mot de passe est validé, mais pas encore son code. Rien ne l'empêche pour l'instant d'aller se promener ailleurs sur le site (`/`, `/register`, `/login`…) et d'oublier la vérification en cours. Nous allons l'obliger à terminer ce qu'il a commencé, avec un middleware.
+
+Créez le middleware :
+
+```sh
+php artisan make:middleware Check2FA
+```
+
+Ajoutez la logique dans le middleware :
+
+```php
+public function handle(Request $request, Closure $next)
+{
+    if (/* La session contient 2fa_email */) {
+        return redirect('/verification');
+    }
+
+    return $next($request);
+}
+```
+
+Ajoutez ensuite le middleware sur les routes à bloquer, comme vous l'avez fait avec `CheckAuth` :
+
+```php
+->middleware(Check2FA::class)
+```
+
+Je vous laisse l'appliquer sur **toutes les routes du site**, sauf les deux routes `/verification`.
+
+::: tip Point de contrôle
+
+1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`.
+2. Tapez à la main `/`, puis `/register`, puis `/login` dans la barre d'adresse : vous êtes systématiquement renvoyé sur `/verification`.
+3. Dans une navigation privée (donc sans `2fa_email` en session), le site fonctionne normalement.
+
+:::
+
+Questions :
+
+- Pourquoi ne faut-il surtout pas mettre `Check2FA` sur les routes `/verification` ? Que se passerait-il ?
+- L'utilisateur s'est trompé de compte et veut revenir sur `/login` : est-ce encore possible ? Comment pourriez-vous lui proposer un lien « Annuler » ?
+
 ## Vérifier le code
 
 Pour la vérification, je vous donne la requête clé, qui vérifie le code **et** son expiration en une seule fois :
@@ -263,6 +307,7 @@ Votre connexion demande maintenant deux preuves au lieu d'une :
 - Un **code temporaire** généré aléatoirement, jamais deviné.
 - Une **expiration courte** et un **usage unique** : un code intercepté ne vaut presque rien.
 - La session n'est ouverte (`Auth::login()`) qu'**après** la validation du code.
+- Un **middleware** empêche de quitter la vérification en cours tant que le code n'est pas saisi.
 
 N'oubliez pas de **commiter votre projet**.
 
