@@ -66,7 +66,7 @@ Schema::table('utilisateurs', function (Blueprint $table) {
 });
 ```
 
-Je vous laisse compléter la méthode `down()`, lancer `php artisan migrate`, et ajouter les deux colonnes dans le `$fillable` du modèle.
+Je vous laisse compléter la méthode `up()`, lancer `php artisan migrate`, et ajouter les deux colonnes dans le `$fillable` du modèle.
 
 ## Générer le code au login
 
