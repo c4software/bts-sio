@@ -142,50 +142,6 @@ public function showVerification(Request $request)
 
 ![La page de vérification du code](./ressources/2fa_verification.png)
 
-## Bloquer le site pendant la vérification
-
-Tant que `2fa_code` est en session, l'utilisateur est **entre deux étapes** : son mot de passe est validé, mais pas encore son code. Rien ne l'empêche pour l'instant d'aller se promener ailleurs sur le site (`/`, `/register`, `/login`…) et d'oublier la vérification en cours. Nous allons l'obliger à terminer ce qu'il a commencé, avec un middleware.
-
-Créez le middleware :
-
-```sh
-php artisan make:middleware Check2FA
-```
-
-Ajoutez la logique dans le middleware :
-
-```php
-public function handle(Request $request, Closure $next)
-{
-    if (/* La session contient 2fa_code */) {
-        return redirect('/verification');
-    }
-
-    return $next($request);
-}
-```
-
-Ajoutez ensuite le middleware sur les routes à bloquer, comme vous l'avez fait avec `CheckAuth` :
-
-```php
-->middleware(Check2FA::class)
-```
-
-Je vous laisse l'appliquer sur **toutes les routes du site**, sauf les deux routes `/verification`.
-
-::: tip Point de contrôle
-
-1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`.
-2. Tapez à la main `/`, puis `/register`, puis `/login` dans la barre d'adresse : vous êtes systématiquement renvoyé sur `/verification`.
-3. Dans une navigation privée (donc sans `2fa_code` en session), le site fonctionne normalement.
-
-:::
-
-Questions :
-
-- Pourquoi ne faut-il surtout pas mettre `Check2FA` sur les routes `/verification` ? Que se passerait-il ?
-- L'utilisateur s'est trompé de compte et veut revenir sur `/login` : est-ce encore possible ? Comment pourriez-vous lui proposer un lien « Annuler » ?
-
 ## Vérifier le code
 
 Pour la vérification, l'utilisateur est retrouvé grâce à l'`id` gardé en session, puis le code saisi est comparé à celui de la session, et son expiration à celle enregistrée en base. Si tout est bon, c'est **seulement maintenant** que l'utilisateur est connecté, avec le même `Auth::login()` que dans le TP [Comprendre l'authentification](./authentification_manuelle.md).
@@ -232,7 +188,7 @@ N'oubliez pas les `use App\Models\Utilisateur;` et `use Illuminate\Support\Facad
 
 Déroulez le parcours complet :
 
-1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`, **sans être connecté** (vérifiez : la TODO List sur `/` vous renvoie sur `/verification`).
+1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`, **sans être connecté** (vérifiez : la TODO List sur `/` vous renvoie sur `/login`).
 2. Récupérez le code dans `storage/logs/laravel.log` et saisissez-le : vous êtes connecté.
 3. Modifiez à la main `two_factor_expires_at` en base pour mettre une date passée : le code doit être refusé.
 4. Après une connexion réussie, vérifiez en base : les deux colonnes 2FA sont repassées à `NULL`.
@@ -247,6 +203,50 @@ Questions :
 
 - Un code à 6 chiffres n'offre que 1 000 000 de possibilités, un script peut toutes les essayer en quelques minutes… Quelles protections rendent malgré tout ce mécanisme sûr ? (il y en a au moins deux dans votre code, et une troisième arrive dans le TP [Aller plus loin](./aller_plus_loin.md))
 - Que se passe-t-il si l'utilisateur ferme son navigateur entre le mot de passe et la saisie du code ?
+
+## Bloquer le site pendant la vérification
+
+Tant que `2fa_code` est en session, l'utilisateur est **entre deux étapes** : son mot de passe est validé, mais pas encore son code. Rien ne l'empêche pour l'instant d'aller se promener ailleurs sur le site (`/`, `/register`, `/login`…) et d'oublier la vérification en cours. Nous allons l'obliger à terminer ce qu'il a commencé, avec un middleware.
+
+Créez le middleware :
+
+```sh
+php artisan make:middleware Check2FA
+```
+
+Ajoutez la logique dans le middleware :
+
+```php
+public function handle(Request $request, Closure $next)
+{
+    if (/* La session contient 2fa_code */) {
+        return redirect('/verification');
+    }
+
+    return $next($request);
+}
+```
+
+Ajoutez ensuite le middleware sur les routes à bloquer, comme vous l'avez fait avec `CheckAuth` :
+
+```php
+->middleware(Check2FA::class)
+```
+
+Je vous laisse l'appliquer sur **toutes les routes du site**, sauf les deux routes `/verification`.
+
+::: tip Point de contrôle
+
+1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`.
+2. Tapez à la main `/`, puis `/register`, puis `/login` dans la barre d'adresse : vous êtes systématiquement renvoyé sur `/verification`.
+3. Dans une navigation privée (donc sans `2fa_code` en session), le site fonctionne normalement.
+
+:::
+
+Questions :
+
+- Pourquoi ne faut-il surtout pas mettre `Check2FA` sur les routes `/verification` ? Que se passerait-il ?
+- L'utilisateur s'est trompé de compte et veut revenir sur `/login` : est-ce encore possible ? Comment pourriez-vous lui proposer un lien « Annuler » ?
 
 ## Exercice : une 2FA à la carte dans la bibliothèque
 
