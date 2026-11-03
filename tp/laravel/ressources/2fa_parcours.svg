@@ -23,7 +23,7 @@
   <text x="720" y="90" text-anchor="middle" fill="#dc2626" font-weight="600">Toujours PAS connecté (pas de Auth::login)</text>
   <!-- down arrow -->
   <line x1="720" y1="110" x2="720" y2="148" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="732" y="134" fill="#475569" font-size="12">session : 2fa_email</text>
+  <text x="732" y="134" fill="#475569" font-size="12">session : 2fa_id + 2fa_code</text>
   <!-- step 4 -->
   <rect x="560" y="150" width="320" height="60" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
   <text x="720" y="175" text-anchor="middle" font-weight="600">4. GET /verification</text>
@@ -48,7 +48,7 @@
     <text x="34" y="190">1. code invalidé</text>
     <text x="50" y="208" font-size="12" fill="#475569">(colonnes à NULL)</text>
     <text x="34" y="236">2. session nettoyée</text>
-    <text x="50" y="254" font-size="12" fill="#475569">forget('2fa_email')</text>
+    <text x="50" y="254" font-size="12" fill="#475569">forget(2fa_id, 2fa_code)</text>
     <text x="34" y="282" font-weight="600">3. Auth::login()</text>
     <text x="50" y="300" font-size="12" fill="#475569">+ regenerate()</text>
     <text x="34" y="330">4. redirection /todo 🎉</text>

@@ -84,8 +84,10 @@ if ($estValide) {
     // « Envoi » du code : dans ce TP, il est écrit dans le fichier de log
     Log::info("Code 2FA pour {$utilisateur->email} : {$code}");
 
-    // On mémorise qui est en cours de connexion (mais PAS encore connecté)
-    $request->session()->put('2fa_email', $utilisateur->email);
+    // On mémorise en session qui est en cours de connexion et son code
+    // (l'utilisateur n'est PAS encore connecté)
+    $request->session()->put('2fa_id', $utilisateur->id);
+    $request->session()->put('2fa_code', $code);
 
     return redirect('/verification');
 }
@@ -115,21 +117,21 @@ En production, ce code partirait par **email ou SMS**, jamais dans un log. Nous 
 
 Question :
 
-- Pourquoi stocker `2fa_email` en session plutôt que de considérer l'utilisateur comme connecté ?
+- Pourquoi stocker `2fa_id` et `2fa_code` en session plutôt que de considérer l'utilisateur comme connecté ?
 
 ## La page de vérification
 
 À vous de jouer pour cette étape, vous avez tous les outils :
 
 - Deux routes : GET `/verification` et POST `/verification`.
-- Une méthode `showVerification` : si la session ne contient pas `2fa_email`, redirigez vers `/login` (personne n'a rien à faire sur cette page sans avoir passé l'étape du mot de passe). Sinon, affichez la vue.
+- Une méthode `showVerification` : si la session ne contient pas `2fa_code`, redirigez vers `/login` (personne n'a rien à faire sur cette page sans avoir passé l'étape du mot de passe). Sinon, affichez la vue.
 - Une vue avec un formulaire : un champ `code`, un bouton, `@csrf`, et l'affichage de l'erreur avec `@error('code')`.
 
 ![La page de vérification du code](./ressources/2fa_verification.png)
 
 ## Bloquer le site pendant la vérification
 
-Tant que `2fa_email` est en session, l'utilisateur est **entre deux étapes** : son mot de passe est validé, mais pas encore son code. Rien ne l'empêche pour l'instant d'aller se promener ailleurs sur le site (`/`, `/register`, `/login`…) et d'oublier la vérification en cours. Nous allons l'obliger à terminer ce qu'il a commencé, avec un middleware.
+Tant que `2fa_code` est en session, l'utilisateur est **entre deux étapes** : son mot de passe est validé, mais pas encore son code. Rien ne l'empêche pour l'instant d'aller se promener ailleurs sur le site (`/`, `/register`, `/login`…) et d'oublier la vérification en cours. Nous allons l'obliger à terminer ce qu'il a commencé, avec un middleware.
 
 Créez le middleware :
 
@@ -142,7 +144,7 @@ Ajoutez la logique dans le middleware :
 ```php
 public function handle(Request $request, Closure $next)
 {
-    if (/* La session contient 2fa_email */) {
+    if (/* La session contient 2fa_code */) {
         return redirect('/verification');
     }
 
@@ -162,7 +164,7 @@ Je vous laisse l'appliquer sur **toutes les routes du site**, sauf les deux rout
 
 1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`.
 2. Tapez à la main `/`, puis `/register`, puis `/login` dans la barre d'adresse : vous êtes systématiquement renvoyé sur `/verification`.
-3. Dans une navigation privée (donc sans `2fa_email` en session), le site fonctionne normalement.
+3. Dans une navigation privée (donc sans `2fa_code` en session), le site fonctionne normalement.
 
 :::
 
@@ -173,23 +175,21 @@ Questions :
 
 ## Vérifier le code
 
-Pour la vérification, je vous donne la requête clé, qui vérifie le code **et** son expiration en une seule fois :
+Pour la vérification, l'utilisateur est retrouvé grâce à l'`id` gardé en session, puis le code saisi est comparé à celui de la session, et son expiration à celle enregistrée en base :
 
 ```php
-$email = $request->session()->get('2fa_email');
+$utilisateur = Utilisateur::find($request->session()->get('2fa_id'));
 
-$utilisateur = Utilisateur::where('email', $email)
-    ->where('two_factor_code', $request->input('code'))
-    ->where('two_factor_expires_at', '>', now())
-    ->first();
+$codeValide = $request->input('code') === $request->session()->get('2fa_code')
+    && now()->lt($utilisateur->two_factor_expires_at);
 ```
 
 Je vous laisse écrire la méthode `verification(Request $request)` :
 
-- Si `$utilisateur` est `null` : retour au formulaire avec `withErrors(['code' => 'Code invalide ou expiré'])`.
+- Si `$codeValide` est `false` : retour au formulaire avec `withErrors(['code' => 'Code invalide ou expiré'])`.
 - Sinon, dans l'ordre :
   1. Invalider le code (les deux colonnes à `null`, puis `save()`).
-  2. Nettoyer la session : `$request->session()->forget('2fa_email');`.
+  2. Nettoyer la session : `$request->session()->forget(['2fa_id', '2fa_code']);`.
   3. Connecter l'utilisateur : `Auth::login($utilisateur);` puis `$request->session()->regenerate();`.
   4. Rediriger vers la TODO List avec un message de bienvenue.
 
@@ -197,7 +197,7 @@ Je vous laisse écrire la méthode `verification(Request $request)` :
 
 Déroulez le parcours complet :
 
-1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`, **sans être connecté** (vérifiez : `/todo` doit encore rediriger vers `/login`).
+1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`, **sans être connecté** (vérifiez : `/todo` vous renvoie sur `/verification`).
 2. Récupérez le code dans `storage/logs/laravel.log` et saisissez-le : vous êtes connecté.
 3. Modifiez à la main `two_factor_expires_at` en base pour mettre une date passée : le code doit être refusé.
 4. Après une connexion réussie, vérifiez en base : les deux colonnes 2FA sont repassées à `NULL`.
