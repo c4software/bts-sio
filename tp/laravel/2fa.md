@@ -121,11 +121,24 @@ Question :
 
 ## La page de vérification
 
-À vous de jouer pour cette étape, vous avez tous les outils :
+La méthode `showVerification` affiche le formulaire de saisie du code. Personne n'a rien à faire sur cette page sans avoir passé l'étape du mot de passe : si la session ne contient pas `2fa_code`, on renvoie donc vers `/login`.
 
-- Deux routes : GET `/verification` et POST `/verification`.
-- Une méthode `showVerification` : si la session ne contient pas `2fa_code`, redirigez vers `/login` (personne n'a rien à faire sur cette page sans avoir passé l'étape du mot de passe). Sinon, affichez la vue.
-- Une vue avec un formulaire : un champ `code`, un bouton, `@csrf`, et l'affichage de l'erreur avec `@error('code')`.
+```php
+public function showVerification(Request $request)
+{
+    // Pas de code en session : l'étape du mot de passe n'a pas été passée
+    if (!$request->session()->has('2fa_code')) {
+        return redirect('/login');
+    }
+
+    return view('verification');
+}
+```
+
+À vous de jouer pour le reste de cette étape :
+
+- Deux routes : GET `/verification` (vers `showVerification`) et POST `/verification`.
+- Une vue `verification.blade.php` avec un formulaire : un champ `code`, un bouton, `@csrf`, et l'affichage de l'erreur avec `@error('code')`.
 
 ![La page de vérification du code](./ressources/2fa_verification.png)
 
@@ -175,29 +188,51 @@ Questions :
 
 ## Vérifier le code
 
-Pour la vérification, l'utilisateur est retrouvé grâce à l'`id` gardé en session, puis le code saisi est comparé à celui de la session, et son expiration à celle enregistrée en base :
+Pour la vérification, l'utilisateur est retrouvé grâce à l'`id` gardé en session, puis le code saisi est comparé à celui de la session, et son expiration à celle enregistrée en base. Si tout est bon, c'est **seulement maintenant** que l'utilisateur est connecté, avec le même `Auth::login()` que dans le TP [Comprendre l'authentification](./authentification_manuelle.md).
+
+Voici la méthode `verification` complète :
 
 ```php
-$utilisateur = Utilisateur::find($request->session()->get('2fa_id'));
+public function verification(Request $request)
+{
+    // L'utilisateur en cours de connexion, retrouvé grâce à l'id gardé en session
+    $utilisateur = Utilisateur::find($request->session()->get('2fa_id'));
 
-$codeValide = $request->input('code') === $request->session()->get('2fa_code')
-    && now()->lt($utilisateur->two_factor_expires_at);
+    // Le code saisi doit être celui de la session, et ne pas être expiré
+    $codeValide = $request->input('code') === $request->session()->get('2fa_code')
+        && now()->lt($utilisateur->two_factor_expires_at);
+
+    if (!$codeValide) {
+        return redirect('/verification')->withErrors(['code' => 'Code invalide ou expiré']);
+    }
+
+    // 1. Usage unique : le code est invalidé en base…
+    $utilisateur->two_factor_code = null;
+    $utilisateur->two_factor_expires_at = null;
+    $utilisateur->save();
+
+    // 2. … et retiré de la session
+    $request->session()->forget(['2fa_id', '2fa_code']);
+
+    // 3. Le mot de passe ET le code sont validés : on ouvre enfin la session
+    Auth::login($utilisateur);
+    // Nouvel identifiant de session (protection contre la fixation de session)
+    $request->session()->regenerate();
+
+    // 4. Direction la TODO List
+    return redirect('/')->with('success', "Bienvenue {$utilisateur->email} !");
+}
 ```
 
-Je vous laisse écrire la méthode `verification(Request $request)` :
+Lisez-la attentivement avant de la recopier : l'**ordre** des étapes compte. Le code est invalidé et la session nettoyée **avant** la connexion, pour qu'un code déjà utilisé ne puisse jamais resservir.
 
-- Si `$codeValide` est `false` : retour au formulaire avec `withErrors(['code' => 'Code invalide ou expiré'])`.
-- Sinon, dans l'ordre :
-  1. Invalider le code (les deux colonnes à `null`, puis `save()`).
-  2. Nettoyer la session : `$request->session()->forget(['2fa_id', '2fa_code']);`.
-  3. Connecter l'utilisateur : `Auth::login($utilisateur);` puis `$request->session()->regenerate();`.
-  4. Rediriger vers la TODO List avec un message de bienvenue.
+N'oubliez pas les `use App\Models\Utilisateur;` et `use Illuminate\Support\Facades\Auth;` en haut du contrôleur.
 
 ::: tip Point de contrôle
 
 Déroulez le parcours complet :
 
-1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`, **sans être connecté** (vérifiez : `/todo` vous renvoie sur `/verification`).
+1. Connectez-vous avec votre mot de passe : vous arrivez sur `/verification`, **sans être connecté** (vérifiez : la TODO List sur `/` vous renvoie sur `/verification`).
 2. Récupérez le code dans `storage/logs/laravel.log` et saisissez-le : vous êtes connecté.
 3. Modifiez à la main `two_factor_expires_at` en base pour mettre une date passée : le code doit être refusé.
 4. Après une connexion réussie, vérifiez en base : les deux colonnes 2FA sont repassées à `NULL`.

@@ -51,6 +51,6 @@
     <text x="50" y="254" font-size="12" fill="#475569">forget(2fa_id, 2fa_code)</text>
     <text x="34" y="282" font-weight="600">3. Auth::login()</text>
     <text x="50" y="300" font-size="12" fill="#475569">+ regenerate()</text>
-    <text x="34" y="330">4. redirection /todo 🎉</text>
+    <text x="34" y="330">4. redirection / (TODO) 🎉</text>
   </g>
 </svg>
