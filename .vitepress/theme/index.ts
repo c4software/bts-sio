@@ -19,6 +19,7 @@ import XssLab from './components/XssLab.vue'
 import Center from './components/Center.vue'
 import DebianConfiguration from './components/DebianConfiguration.vue'
 import HomeContent from './components/HomeContent.vue'
+import RecentPages from './components/RecentPages.vue'
 import ChatNavButton from './components/ChatNavButton.vue'
 import './custom.css'
 
@@ -45,5 +46,6 @@ export default {
     app.component('center', Center)
     app.component('DebianConfiguration', DebianConfiguration)
     app.component('HomeContent', HomeContent)
+    app.component('RecentPages', RecentPages)
   }
 } satisfies Theme

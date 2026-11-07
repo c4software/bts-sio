@@ -13,7 +13,7 @@ export interface RecentPage {
 declare const data: RecentPage[]
 export { data }
 
-const COUNT = 3
+const COUNT = 20
 const DIRS = ['tp', 'cours', 'cheatsheets']
 
 // Titre et description d'une page : frontmatter `title:` / `description:`,

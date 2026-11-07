@@ -1,12 +1,19 @@
 <script setup lang="ts">
-// Les 3 dernières pages créées ou modifiées (voir ../recent.data.ts), dans le
-// style des cartes de l'accueil.
+// Les dernières pages créées ou modifiées (voir ../recent.data.ts), dans le
+// style des cartes de l'accueil. Sur l'accueil : les 3 premières et un lien
+// vers la page /nouveautes, qui les affiche toutes.
 import { computed } from 'vue'
 import VPFeatures from 'vitepress/dist/client/theme-default/components/VPFeatures.vue'
 import { data as pages } from '../recent.data'
 
+const props = withDefaults(defineProps<{ limit?: number; title?: string; more?: boolean }>(), {
+  limit: 3,
+  title: '',
+  more: false,
+})
+
 const features = computed(() =>
-  pages.map((page) => ({
+  pages.slice(0, props.limit).map((page) => ({
     title: page.title,
     details: page.description,
     link: page.link,
@@ -17,13 +24,16 @@ const features = computed(() =>
 
 <template>
   <section v-if="features.length" class="recent-pages">
-    <h2 class="recent-pages-title">Nouveautés</h2>
+    <h2 v-if="title" class="recent-pages-title">{{ title }}</h2>
     <VPFeatures :features="features" />
+    <p v-if="more && pages.length > limit" class="recent-pages-more">
+      <a href="/nouveautes.html">Voir plus de nouveautés →</a>
+    </p>
   </section>
 </template>
 
 <style>
-.recent-pages {
+.home-content .recent-pages {
   margin-top: 48px;
 }
 
@@ -32,5 +42,51 @@ const features = computed(() =>
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
+}
+
+/* Hors de l'accueil, les cartes gardent leur style malgré les règles markdown. */
+.vp-doc .recent-pages .VPFeature,
+.vp-doc .recent-pages .VPFeature:hover {
+  color: inherit;
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+.vp-doc .recent-pages .VPFeature .title {
+  margin: 0;
+  padding: 0;
+  border-top: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.vp-doc .recent-pages .VPFeature .details {
+  margin: 0;
+}
+
+.vp-doc .recent-pages .VPFeature .link-text {
+  color: var(--vp-c-brand-1);
+}
+
+.vp-doc .recent-pages .VPFeatures {
+  padding: 0;
+}
+
+.vp-doc .recent-pages .VPFeatures .container {
+  max-width: none;
+}
+
+.vp-doc .recent-pages-more {
+  margin: 16px 0 0;
+  text-align: right;
+}
+
+.vp-doc .home-content .recent-pages-more a {
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+}
+
+.vp-doc .home-content .recent-pages-more a:hover {
+  color: var(--vp-c-brand-2);
 }
 </style>

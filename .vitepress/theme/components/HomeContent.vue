@@ -10,7 +10,7 @@ import RecentPages from './RecentPages.vue'
   <div class="VPHome home-content">
     <VPHomeHero />
     <VPHomeFeatures />
-    <RecentPages />
+    <RecentPages title="Nouveautés" more />
   </div>
 </template>
 
