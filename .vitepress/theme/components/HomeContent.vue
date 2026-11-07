@@ -3,12 +3,14 @@
 // tout en restant sur le layout `doc`, afin de conserver le menu latéral.
 import VPHomeHero from 'vitepress/dist/client/theme-default/components/VPHomeHero.vue'
 import VPHomeFeatures from 'vitepress/dist/client/theme-default/components/VPHomeFeatures.vue'
+import RecentPages from './RecentPages.vue'
 </script>
 
 <template>
   <div class="VPHome home-content">
     <VPHomeHero />
     <VPHomeFeatures />
+    <RecentPages />
   </div>
 </template>
 

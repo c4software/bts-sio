@@ -17,6 +17,7 @@ Site de cours BTS SIO (VitePress 1.x), déployé sur Netlify. Le contenu est en 
 - `public/quiz/` : copies des .gift + `index.json` générés pour les quiz en ligne. Ne pas éditer à la main.
 - `public/reformulation/` : reformulation d'une sélection et chat sur la page (Gemini Nano intégré à Chrome par défaut, ou Gemma 2 / Qwen3 au choix via WebLLM si WebGPU). Le bouton de chat de la barre du haut (`.vitepress/theme/components/ChatNavButton.vue`) ne fait qu'émettre des événements `reformulation:*` écoutés par ce script.
 - `archives/` : anciens codes conservés pour mémoire, hors de `public/` donc jamais publiés. Ne pas y mettre de `.md` (ils deviendraient des pages).
+- Bloc « Nouveautés » de l'accueil : `.vitepress/theme/recent.data.ts` lit l'historique Git au build (`tp/`, `cours/`, `cheatsheets/`) et garde les 3 dernières pages créées ou modifiées (titre = `title:` ou premier `# `, texte = `description:`), affichées par `RecentPages.vue` sous les cartes de `HomeContent.vue`. Une page avec `lastUpdated: false` n'y apparaît jamais.
 - `.vitepress/theme/components/QuizGift.vue` : composant de quiz en ligne (parseur GIFT inline, sans lib externe), utilisé par la page `moodle/index.md`.
 
 ## Exclusions de build (à ne jamais retirer)
