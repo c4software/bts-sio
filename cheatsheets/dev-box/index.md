@@ -32,6 +32,8 @@ La dev-box contient les éléments suivants :
 - Un terminal prêt à l'emploi : zsh, tmux, Neovim (LazyVim), lazygit, yazi (gestionnaire de fichiers), fzf, etc.
 - Un catalogue d'outils en ligne de commande à installer au besoin (`devbox tui`) : btop, lazydocker, pgcli, etc.
 - Les agents de code en ligne de commande (Claude Code, Codex, opencode, etc.).
+- De quoi créer des applications iPhone et iPad **sans Mac** (`devbox dev-env ios`), et les installer sur un vrai appareil, avec le câble ou en Wi-Fi (voir [Des applications iPhone et iPad](#des-applications-iphone-et-ipad)).
+- Une aide pas à pas pour tout ce qu'une commande ne peut pas faire à votre place (`devbox help`) : un compte à créer, un téléchargement, un câble à brancher, un fichier à modifier sur votre machine.
 
 ### Pourquoi c'est intéressant ?
 
@@ -130,6 +132,7 @@ Sans gum, le script pose exactement les mêmes questions, en texte simple.
 | GitHub token                             | Facultatif, voir ci-dessous                                                                 |
 | Dev environments                         | Par exemple `laravel python` (voir [Installer vos environnements](#installer-vos-environnements)) |
 | Turn podman on?                          | `y` si vous avez besoin des bases de données (voir [les bases de données](#les-bases-de-donnees)) |
+| Pass the GPU to the box?                 | Posée uniquement si votre machine a une carte graphique utilisable : `Entrée` (oui), voir [La carte graphique](#la-carte-graphique) |
 | Pull the image and start the box now?    | `Entrée` : oui, le script télécharge l'image et démarre la dev-box                          |
 
 ::: tip Et Tailscale ?
@@ -284,7 +287,9 @@ Les commandes à retenir :
 | `devbox dbs mariadb`       | Démarre MariaDB (voir [les bases de données](#les-bases-de-donnees)) |
 | `devbox tui`               | Installe des outils en ligne de commande (btop, etc.)       |
 | `devbox status`            | État de la dev-box (outils, bases, mises à jour)            |
+| `devbox help`              | Aide pas à pas pour ce que vous devez faire vous-même (`devbox help ios`, `devbox help podman`, etc.) |
 | `devbox update`            | Met à jour les outils, quand vous le décidez                |
+| `devbox changelog`         | Ce qui a changé dans les dernières versions                 |
 | `devbox tour`              | Relance la visite guidée                                    |
 | `devbox override`          | Ce que vous avez modifié, et comment revenir en arrière     |
 | `devbox diagnostic`        | Cherche ce qui ne va pas (voir [la FAQ](#quelque-chose-ne-fonctionne-pas-que-faire)) |
@@ -348,7 +353,7 @@ La dev-box ne se limite pas au développement web en PHP. Voici ce que vous pouv
 
 ### D'autres langages
 
-Python, Java, Go, Rust, .NET, Node.js, Bun, Deno, Flutter, Ruby, Elixir, etc. : tout passe par `devbox dev-env`. La démo ci-dessus installe Python à côté de Laravel, et les deux cohabitent sans problème. Pour Python, l'outil [uv](https://docs.astral.sh/uv/) est installé en même temps : il gère vos dépendances et vos environnements virtuels.
+Python, Java, Go, Rust, .NET, Node.js, Bun, Deno, Flutter, Swift, Ruby, Elixir, etc. : tout passe par `devbox dev-env`. La démo ci-dessus installe Python à côté de Laravel, et les deux cohabitent sans problème. Pour Python, l'outil [uv](https://docs.astral.sh/uv/) est installé en même temps : il gère vos dépendances et vos environnements virtuels.
 
 ### Audio, vidéo et images
 
@@ -372,9 +377,173 @@ Certains outils sont déjà là : `lazygit` (Git en mode visuel), `yazi` (un ges
 
 Besoin d'un paquet Arch Linux qui n'est pas dans le catalogue ? `devbox pkg add <paquet>` l'installe et le réinstalle automatiquement après chaque mise à jour de la dev-box.
 
+### La carte graphique
+
+Si votre machine a une carte graphique Intel, AMD (ou celle d'un Raspberry Pi), la dev-box peut s'en servir : `ffmpeg` encode et décode alors la vidéo beaucoup plus vite, et OpenGL et Vulkan fonctionnent. Les cartes NVIDIA ne sont pas prises en charge.
+
+Si vous avez répondu oui à la question « Pass the GPU to the box? », c'est déjà en place. Sinon, `devbox help gpu` donne les étapes (une ligne à ajouter dans `compose.override.yaml`). Ensuite, dans la dev-box :
+
+- `devbox gpu` : l'état de la carte graphique, et ce qui manque ;
+- `devbox gpu install` : installe les pilotes ;
+- `devbox gpu test` : encode 10 secondes de vidéo avec la carte graphique, puis avec le processeur, pour comparer (il faut `devbox dev-env media`).
+
 ### Les agents de code
 
-Claude Code, Codex, opencode, pi et omp sont disponibles directement dans le terminal. `devbox agent` permet de choisir votre agent par défaut, de le lancer dans le dossier courant et de suivre votre consommation.
+Claude Code, Codex, opencode, pi et omp sont disponibles directement dans le terminal : ils s'installent tout seuls la première fois que vous les lancez. `devbox agent` permet de choisir votre agent par défaut, de le lancer dans le dossier courant et de suivre votre consommation.
+
+::: tip Codex et son bac à sable
+
+Codex exécute ses commandes dans un bac à sable qui demande les mêmes réglages que Podman. Si vous avez activé Podman, rien à faire. Sinon, recopiez le bloc « Codex » du fichier `compose.override.example.yaml` dans votre `compose.override.yaml`, puis `docker compose up -d` : sans lui, toutes les commandes lancées par Codex échouent.
+
+:::
+
+## Des applications iPhone et iPad
+
+Normalement, développer pour iPhone demande un Mac et Xcode. Avec la dev-box, vous pouvez **écrire, compiler, signer et installer une application iOS depuis Linux**, sur un vrai iPhone ou iPad. Elle s'appuie sur deux projets Open Source : [xtool](https://github.com/xtool-org/xtool), qui remplace Xcode en ligne de commande, et [omarchy-apple-dev](https://github.com/joshuaswarren/omarchy-apple-dev), qui l'adapte à Arch Linux et comble ce qui lui manque.
+
+::: warning Avant de commencer
+
+- **Pas de simulateur** : l'application tourne sur un vrai iPhone ou iPad.
+- **Une machine x86_64 uniquement** (un PC classique, Intel ou AMD) : l'environnement ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (M1, M2, etc.). Avec un Mac, utilisez plutôt Xcode directement.
+- **Un compte Apple** : un identifiant Apple gratuit suffit pour installer vos applications sur votre appareil. La connexion par mot de passe passe par des interfaces privées d'Apple : xtool conseille d'utiliser un identifiant Apple créé pour l'occasion plutôt que votre compte personnel.
+- **Du temps et de la place** : le fichier de Xcode à télécharger pèse plusieurs Go, et la première installation prend plusieurs minutes.
+
+:::
+
+À tout moment, `devbox help ios` réaffiche toutes les étapes ci-dessous, avec les cas particuliers.
+
+Pour mettre tout ça en pratique, la série de TP [iOS sans Mac](/tp/ios/introduction.md) déroule un hello world en Swift, en Flutter et en Kotlin Multiplateforme.
+
+### 1. Installer l'environnement
+
+```bash
+devbox dev-env ios
+```
+
+Cette commande installe Swift, Python et les outils iOS (xtool, `pymobiledevice3`, etc.). La compilation de xtool prend quelques minutes la première fois. À la fin, elle affiche les étapes qui restent à faire, celles qui demandent votre compte Apple ou un câble.
+
+### 2. Le SDK iOS et votre compte Apple (une seule fois)
+
+Le SDK iOS (les bibliothèques d'Apple : UIKit, SwiftUI, etc.) ne peut pas être distribué : il faut le récupérer dans Xcode.
+
+1. Regardez la version de Swift de la dev-box : `swift --version`.
+2. Dans votre navigateur, téléchargez le Xcode qui correspond sur [developer.apple.com](https://developer.apple.com/download/all/?q=Xcode) (connexion avec un identifiant Apple) : **Xcode 27 pour Swift 6.4**, Xcode 26 pour Swift 6.3. Vous obtenez un fichier `.xip`.
+3. Déposez ce fichier dans le dossier personnel de la dev-box, c'est-à-dire `~/dev-box/data/home` sur votre machine.
+4. Dans la dev-box :
+
+```bash
+devbox ios
+```
+
+La commande vous laisse choisir le `.xip`, construit le SDK, le vérifie, vous propose de supprimer le `.xip` (gardez-le si vous avez la place : il resservira après une mise à jour de Swift), puis vous connecte à votre compte Apple (`xtool auth`). Choisissez le mode `1` (mot de passe) avec un identifiant Apple gratuit : e-mail, mot de passe, puis le code reçu sur vos appareils. Le mode `0` (clé d'API) est réservé au programme développeur payant d'Apple.
+
+`devbox ios status` affiche ensuite l'état : SDK, connexion Apple, appareils associés.
+
+### 3. Brancher l'iPhone ou l'iPad (une seule fois)
+
+Par défaut, un conteneur Docker ne voit pas les appareils USB de votre machine. Deux cas :
+
+::: details La dev-box tourne sur la machine où l'iPhone est branché (Linux)
+
+Sur votre machine, dans `~/dev-box/compose.override.yaml`, ajoutez sous `dev-box:` :
+
+```yaml
+services:
+  dev-box:
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb
+    device_cgroup_rules:
+      - 'c 189:* rmw'
+```
+
+Si une clé `volumes` ou `device_cgroup_rules` existe déjà, ajoutez-y simplement la ligne (une deuxième clé du même nom serait refusée). Toujours sur votre machine, empêchez son propre `usbmuxd` (le service qui dialogue avec l'iPhone) de garder l'appareil, puis relancez la dev-box :
+
+```bash
+sudo systemctl mask --now usbmuxd   # « unmask » pour revenir en arrière
+docker compose up -d
+```
+
+Puis dans la dev-box, branchez et déverrouillez l'appareil :
+
+```bash
+devbox pkg add usbmuxd   # une seule fois
+sudo usbmuxd             # après chaque redémarrage de la dev-box
+xtool devices            # répondez « Faire confiance » sur l'appareil, puis relancez
+```
+
+Après une reconstruction de la dev-box, l'appareil vous redemandera de lui faire confiance.
+
+:::
+
+::: details La dev-box tourne sur une autre machine, ou sous Windows ou macOS
+
+Docker Desktop (Windows et macOS) ne transmet pas l'USB aux conteneurs. Dans ce cas, c'est votre machine qui gère l'USB, et la dev-box lui parle à travers votre connexion SSH :
+
+1. Sur votre machine, installez le service qui dialogue avec l'iPhone : sous Linux le paquet `usbmuxd` (Arch : `sudo pacman -S usbmuxd`), sous macOS il est déjà là, sous Windows il est installé avec iTunes ou l'application Appareils Apple. Branchez l'appareil, déverrouillez-le et faites-lui confiance.
+2. Connectez-vous à la dev-box en emmenant ce service avec vous :
+
+```bash
+ssh -R 27015:/var/run/usbmuxd dev@dev-box          # Linux et macOS
+ssh -R 27015:127.0.0.1:27015 -p 2222 dev@localhost # Windows (PowerShell)
+```
+
+3. Dans cette session de la dev-box :
+
+```bash
+export USBMUXD_SOCKET_ADDRESS=127.0.0.1:27015
+xtool devices
+```
+
+Ajoutez la ligne `export` à votre `~/.zshrc` pour ne plus avoir à la taper. Avantage de cette méthode : rien à modifier dans `compose.override.yaml`, et une reconstruction de la dev-box ne redemande pas de faire confiance. Les détails sont dans `devbox help ios-usb`.
+
+:::
+
+### 4. Votre première application
+
+```bash
+cd ~/projets
+xtool new Hello
+cd Hello
+xtool dev        # compile, signe et installe l'application sur l'appareil
+device-run.sh    # la même chose, puis la lance et affiche ses logs
+```
+
+La première compilation prend quelques minutes, les suivantes sont rapides. Le code est dans `Sources/`, en Swift et SwiftUI : vous pouvez l'ouvrir avec Neovim ou VSCode. Sur l'appareil, la première fois :
+
+- s'il vous le demande, activez le **mode développeur** : Réglages, Confidentialité et sécurité, Mode développeur (l'appareil redémarre), puis relancez `xtool dev` ;
+- au premier lancement, l'application est bloquée (« Développeur non approuvé ») : Réglages, Général, VPN et gestion de l'appareil, votre identifiant Apple, puis « Faire confiance ».
+
+::: tip Une signature de 7 jours
+
+Avec un identifiant Apple gratuit, Apple limite la signature à 7 jours : passé ce délai, l'application ne s'ouvre plus. Relancez simplement `xtool dev` pour la renouveler.
+
+:::
+
+### Sans le câble : le Wi-Fi (iOS 27)
+
+À partir d'iOS 27, une fois l'appareil associé avec le câble, la dev-box peut installer, lancer et lire les logs de vos applications en Wi-Fi :
+
+1. Une seule fois, l'appareil branché en USB : `devbox ios pair`. L'association est gardée dans votre dossier personnel : elle survit à une reconstruction de la dev-box. Elle contient une clé privée, gardez-la comme une clé SSH.
+2. Sur l'appareil, activez le Wi-Fi et installez l'application [Tailscale](#votre-dev-box-partout-avec-tailscale), connectée au même réseau Tailscale que la dev-box. `tailscale status`, dans la dev-box, donne son adresse (`100.x.y.z`).
+3. Dans le dossier d'un projet Xcode :
+
+```bash
+devbox ios xcode --wifi 100.x.y.z        # compile, installe et lance
+devbox ios xcode logs --wifi 100.x.y.z   # les logs
+export IOS_WIFI=100.x.y.z                # pour ne plus taper --wifi
+```
+
+Attention : `xtool dev` et `device-run.sh` ont toujours besoin du câble, le Wi-Fi passe par `devbox ios xcode`. Les étapes et les pannes courantes sont dans `devbox help ios-wifi`.
+
+### Pour aller plus loin
+
+- **Un projet Xcode existant** (`.xcodeproj` ou `project.yml` de XcodeGen) : `devbox ios xcode` le compile sous Linux, le signe, l'installe et le lance. `devbox ios xcode --help` liste les options (`--configuration Release`, etc.). Cette commande demande une connexion à xtool avec une clé d'API (programme développeur payant).
+- **Kotlin Multiplatform** : `devbox ios kmp` construit la partie iOS d'un projet Kotlin Multiplatform, que Gradle ignore sous Linux (il faut aussi `devbox dev-env java`), et `devbox ios xcode --kmp :shared` construit l'application complète.
+- **Déboguer** : `device-run.sh --lldb` lance l'application avec le débogueur, `pymobiledevice3 syslog live` affiche les logs de l'appareil et `pymobiledevice3 crash pull ./crashes` récupère ses rapports de plantage.
+- **Publier** : `ship.sh` produit le `.ipa` pour l'App Store, `ship.sh --upload` l'envoie sur TestFlight (programme développeur payant).
+- **Flutter** : c'est possible aussi, voir `flutter/README.md` dans `~/.local/share/omarchy-apple-dev`.
+
+Une mise à jour de Swift demande de reconstruire le SDK : `devbox help ios` (étape 5) explique comment faire.
 
 ## Votre dev-box partout avec Tailscale
 
@@ -425,6 +594,8 @@ Selon les réglages de votre compte, Tailscale peut vous demander de confirmer l
 - **Voir vos sites sans rien configurer.** Un serveur lancé avec `--host=0.0.0.0` est directement accessible sur `http://dev-box:8000` depuis toutes vos machines, sans `compose.override.yaml`.
 - **Partager un site en cours de développement.** `devbox serve 8000` publie le port sur votre réseau Tailscale et affiche l'adresse à ouvrir, même pour un serveur qui n'écoute que sur `127.0.0.1`. `devbox serve off 8000` arrête le partage.
 - **Envoyer des fichiers entre vos machines.** `devbox tailscale send` envoie un fichier vers un autre de vos appareils (un menu vous demande lequel), `devbox tailscale receive` réceptionne ceux qu'on vous envoie dans `~/inbox`. Dans le gestionnaire de fichiers `yazi`, le raccourci `c` puis `t` fait la même chose.
+
+- **Partager un dossier entre vos machines.** `devbox tailscale share` partage le dossier courant avec vos autres machines (Taildrive), `devbox tailscale open` parcourt les partages des autres dans `yazi`, et `devbox tailscale get` en copie les fichiers dans le dossier courant. `devbox tailscale unshare` arrête le partage. Votre réseau Tailscale doit l'autoriser : les lignes à ajouter sont dans la page d'accès citée ci-dessous.
 
 Tous les détails (auth key, Headscale, règles d'accès) sont dans la page [accès à la box](https://github.com/c4software/dev-box/blob/main/docs/access.md) du dépôt.
 
@@ -582,7 +753,8 @@ Puis supprimez le dossier `~/dev-box`. Attention : c'est ce dossier qui contient
 
 Pas de panique, la dev-box sait s'examiner elle-même. Dans l'ordre :
 
-1. `devbox status` affiche l'état général : accès, Podman, outils, environnements en cours d'installation, mises à jour.
+1. `devbox status` affiche l'état général : accès, Podman, carte graphique, outils, environnements en cours d'installation, mises à jour.
+   Le problème concerne une étape à faire à la main (Podman, Tailscale, la carte graphique, un iPhone) ? `devbox help` liste les guides pas à pas.
 2. `devbox diagnostic "votre problème"` lance votre agent de code sur un guide de diagnostic : il rassemble les informations, vous explique ce qui ne va pas et vous propose la correction. Il vous demande toujours votre accord avant de modifier quoi que ce soit. Par exemple : `devbox diagnostic "MariaDB ne démarre pas"`. Sans description, il cherche tout seul ce qui cloche.
 3. Vous n'avez pas d'agent configuré, ou le problème persiste ? `devbox diagnostic --report` produit le même état des lieux, sans IA. Enregistrez-le dans un fichier et envoyez-le moi :
 

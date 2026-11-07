@@ -532,6 +532,16 @@ export default [
       },
       { text: "Flutter", collapsed: true, items: [{ text: "Exemple Flutter", link: "/tp/flutter/sample_code.md" }] },
       {
+        text: "iOS sans Mac (dev-box)",
+        collapsed: true,
+        items: [
+          { text: "Préparer la dev-box", link: "/tp/ios/introduction.md" },
+          { text: "Hello world en Swift", link: "/tp/ios/swift.md" },
+          { text: "Hello world en Flutter", link: "/tp/ios/flutter.md" },
+          { text: "Hello world en Kotlin Multiplateforme", link: "/tp/ios/kmp.md" }
+        ]
+      },
+      {
         text: "Cordova (Ancien)",
         collapsed: true,
         items: [
