@@ -1,5 +1,8 @@
 import { defineConfig, type HeadConfig } from 'vitepress'
+import { writeFileSync } from 'node:fs'
+import path from 'node:path'
 import sidebar from './sidebar'
+import { recentPages, recentRss } from './recent'
 
 const siteUrl = 'https://cours.brosseau.ovh'
 const siteName = 'Cours de Valentin Brosseau'
@@ -9,6 +12,15 @@ const shareImage = `${siteUrl}/og-image.png`
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  // Flux RSS des dernières pages créées ou modifiées (les mêmes que /nouveautes).
+  buildEnd(siteConfig) {
+    const rss = recentRss(recentPages(siteConfig.srcDir), {
+      url: siteUrl,
+      title: `${siteName} : nouveautés`,
+      description: 'Les derniers supports créés ou mis à jour : TP, cours et aide-mémoires.',
+    })
+    writeFileSync(path.join(siteConfig.outDir, 'rss.xml'), rss)
+  },
   // Aperçus des liens partagés (LinkedIn, Mastodon, messageries…)
   transformHead({ pageData, title, description }) {
     const isHome = pageData.relativePath === 'index.md'
@@ -56,6 +68,7 @@ export default defineConfig({
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
     ['link', { rel: 'icon', href: '/icons/icon-72x72.png' }],
     ['link', { rel: 'manifest', href: '/manifest.json' }],
+    ['link', { rel: 'alternate', type: 'application/rss+xml', title: 'Nouveautés', href: '/rss.xml' }],
     ['meta', { name: 'theme-color', content: '#3e80af' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
