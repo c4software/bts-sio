@@ -20,7 +20,7 @@ Voici ce que nous allons construire :
 
 ## Prérequis
 
-- La dev-box prête pour iOS (version 1.65 ou plus) : le [support précédent](./introduction.md) doit être terminé, `devbox ios status` doit afficher `SDK registered` et `Apple signed in`.
+- La dev-box prête pour iOS : le [support précédent](./introduction.md) doit être terminé, `devbox ios status` doit afficher `SDK registered` et `Apple signed in`.
 - Avoir déjà écrit une interface avec Compose (par exemple dans [Découverte des bases d'Android](/tp/android/compose/android-base.md)) : ce n'est pas obligatoire, mais les comparaisons vous parleront davantage.
 
 ## Objectifs
