@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+<rect width="900" height="400" fill="#ffffff"/>
+<text x="20" y="30" font-weight="600" fill="#0f172a">Le contexte envoyé à chaque tour, au fil d'une longue session (illustration)</text>
+<line x1="90" y1="320" x2="850" y2="320" stroke="#94a3b8" stroke-width="1.5"/>
+<line x1="90" y1="320" x2="90" y2="60" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="82" y="324" text-anchor="end" font-size="11" fill="#64748b">0 k</text>
+<text x="82" y="250" text-anchor="end" font-size="11" fill="#64748b">10 k</text>
+<line x1="90" y1="246" x2="850" y2="246" stroke="#e2e8f0"/>
+<text x="82" y="177" text-anchor="end" font-size="11" fill="#64748b">20 k</text>
+<line x1="90" y1="173" x2="850" y2="173" stroke="#e2e8f0"/>
+<text x="82" y="103" text-anchor="end" font-size="11" fill="#64748b">30 k</text>
+<line x1="90" y1="99" x2="850" y2="99" stroke="#e2e8f0"/>
+<text x="22" y="202" font-size="11" fill="#64748b" transform="rotate(-90 30 202)">tokens</text>
+<line x1="90" y1="79.1" x2="850" y2="79.1" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 5"/>
+<text x="850" y="71.1" text-anchor="end" font-size="12" fill="#dc2626" font-weight="600">la fenêtre de contexte du modèle (ici 32 768 tokens)</text>
+<polyline points="90.0,277.4 144.3,274.4 198.6,272.2 252.9,247.9 307.1,235.4 361.4,231.0 415.7,203.8 470.0,184.7 524.3,180.3 578.6,153.8 632.9,134.0 687.1,113.4 741.4,252.4 795.7,245.7 850.0,227.4" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="90.0" cy="277.4" r="4" fill="#2563eb"/>
+<text x="90.0" y="336" text-anchor="middle" font-size="11" fill="#64748b">1</text>
+<circle cx="144.3" cy="274.4" r="4" fill="#2563eb"/>
+<text x="144.3" y="336" text-anchor="middle" font-size="11" fill="#64748b">2</text>
+<circle cx="198.6" cy="272.2" r="4" fill="#2563eb"/>
+<text x="198.6" y="336" text-anchor="middle" font-size="11" fill="#64748b">3</text>
+<circle cx="252.9" cy="247.9" r="4" fill="#2563eb"/>
+<text x="252.9" y="336" text-anchor="middle" font-size="11" fill="#64748b">4</text>
+<circle cx="307.1" cy="235.4" r="4" fill="#2563eb"/>
+<text x="307.1" y="336" text-anchor="middle" font-size="11" fill="#64748b">5</text>
+<circle cx="361.4" cy="231.0" r="4" fill="#2563eb"/>
+<text x="361.4" y="336" text-anchor="middle" font-size="11" fill="#64748b">6</text>
+<circle cx="415.7" cy="203.8" r="4" fill="#2563eb"/>
+<text x="415.7" y="336" text-anchor="middle" font-size="11" fill="#64748b">7</text>
+<circle cx="470.0" cy="184.7" r="4" fill="#2563eb"/>
+<text x="470.0" y="336" text-anchor="middle" font-size="11" fill="#64748b">8</text>
+<circle cx="524.3" cy="180.3" r="4" fill="#2563eb"/>
+<text x="524.3" y="336" text-anchor="middle" font-size="11" fill="#64748b">9</text>
+<circle cx="578.6" cy="153.8" r="4" fill="#2563eb"/>
+<text x="578.6" y="336" text-anchor="middle" font-size="11" fill="#64748b">10</text>
+<circle cx="632.9" cy="134.0" r="4" fill="#2563eb"/>
+<text x="632.9" y="336" text-anchor="middle" font-size="11" fill="#64748b">11</text>
+<circle cx="687.1" cy="113.4" r="4" fill="#2563eb"/>
+<text x="687.1" y="336" text-anchor="middle" font-size="11" fill="#64748b">12</text>
+<circle cx="741.4" cy="252.4" r="4" fill="#d97706"/>
+<text x="741.4" y="336" text-anchor="middle" font-size="11" fill="#64748b">13</text>
+<circle cx="795.7" cy="245.7" r="4" fill="#2563eb"/>
+<text x="795.7" y="336" text-anchor="middle" font-size="11" fill="#64748b">14</text>
+<circle cx="850.0" cy="227.4" r="4" fill="#2563eb"/>
+<text x="850.0" y="336" text-anchor="middle" font-size="11" fill="#64748b">15</text>
+<text x="470.0" y="354" text-anchor="middle" font-size="12" fill="#64748b">tours de boucle</text>
+<text x="242.9" y="233.9" font-size="12" fill="#0f172a" text-anchor="end">un gros fichier lu</text>
+<text x="405.7" y="191.8" font-size="12" fill="#0f172a" text-anchor="end">une longue sortie de tests</text>
+<rect x="440" y="262" width="285" height="46" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/><line x1="725" y1="275" x2="737" y2="258" stroke="#d97706" stroke-width="1.5"/>
+<text x="452" y="281" font-size="12" fill="#92400e" font-weight="600">compaction : un résumé</text>
+<text x="452" y="299" font-size="12" fill="#92400e">remplace l'historique, des détails sont perdus</text>
+<text x="20" y="378" font-size="13" fill="#475569">Plus le contexte est long, plus chaque tour coûte, plus il est lent, et plus le modèle risque de « perdre » une consigne du début.</text>
+</svg>

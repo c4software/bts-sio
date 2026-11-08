@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="420" viewBox="0 0 900 420" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="420" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="160" width="190" height="90" rx="12" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="420" y="20" width="460" height="80" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="420" y="118" width="460" height="80" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="420" y="216" width="460" height="80" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="420" y="314" width="460" height="80" rx="10" fill="#f1f5f9" stroke="#475569"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="115" y="198" font-weight="700" font-size="17">OpenCode</text>
+    <text x="115" y="222" font-size="12" fill="#475569">dans votre terminal</text>
+  </g>
+  <g fill="#0f172a">
+    <text x="440" y="48" font-weight="600">Les modèles gratuits d'OpenCode</text>
+    <text x="440" y="70" font-size="12" fill="#475569">aucun compte : ils apparaissent dans /models (opencode/…-free)</text>
+    <text x="440" y="86" font-size="12" fill="#475569">pour une durée limitée, certains gardent vos données</text>
+    <text x="440" y="146" font-weight="600">NVIDIA (build.nvidia.com)</text>
+    <text x="440" y="168" font-size="12" fill="#475569">un compte et une clé nvapi-… ; variable NVIDIA_API_KEY</text>
+    <text x="440" y="184" font-size="12" fill="#475569">Nemotron et d'autres modèles, débit limité, usage d'essai</text>
+    <text x="440" y="244" font-weight="600">AMD (programme développeurs et universitaire)</text>
+    <text x="440" y="266" font-size="12" fill="#475569">accès donné par AMD, l'enseignant vous dit lequel ;</text>
+    <text x="440" y="282" font-size="12" fill="#475569">s'il est compatible OpenAI, même recette que llm-proxy</text>
+    <text x="440" y="342" font-weight="600">llm-proxy de l'enseignant</text>
+    <text x="440" y="364" font-size="12" fill="#475569">opencode.json + LLM_PROXY_URL et LLM_PROXY_API_KEY</text>
+    <text x="440" y="380" font-size="12" fill="#475569">plusieurs backends derrière une seule adresse</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M210,180 C300,180 320,60 418,60"/>
+    <path d="M210,195 C300,195 330,158 418,158"/>
+    <path d="M210,215 C300,215 330,256 418,256"/>
+    <path d="M210,230 C300,230 320,354 418,354"/>
+  </g>
+  <g font-size="11" fill="#475569">
+    <text x="345" y="50">rien à faire</text>
+    <text x="345" y="148">/connect</text>
+    <text x="340" y="276">opencode.json</text>
+    <text x="340" y="374">opencode.json</text>
+  </g>
+</svg>

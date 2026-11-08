@@ -1,0 +1,14 @@
+{
+  "name": "bts-panier",
+  "version": "1.0.0",
+  "description": "Un petit panier de boutique en JavaScript, point de départ du TP sur le développement agentique.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

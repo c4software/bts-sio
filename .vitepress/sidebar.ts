@@ -25,6 +25,15 @@ export default [
   },
 
   {
+    collapsed: true, text: "Le développement agentique",
+    items: [
+      { text: "Le principe", link: "/tp/agentic/principe.md" },
+      { text: "Utiliser un agent", link: "/tp/agentic/utilisation.md" },
+      { text: "Les limites", link: "/tp/agentic/limites.md" }
+    ]
+  },
+
+  {
     text: "Programmation Orientée Objet",
     collapsed: true,
     items: [

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boutique BTS</title>
+    <link rel="stylesheet" href="/public/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Boutique BTS</h1>
+      <p>Le matériel de la section, à prix étudiant.</p>
+    </header>
+    <main>
+      <section>
+        <h2>Catalogue</h2>
+        <ul id="catalogue"></ul>
+      </section>
+      <section>
+        <h2>Panier (<span id="nombre">0</span>)</h2>
+        <table>
+          <thead>
+            <tr><th>Produit</th><th>Quantité</th><th>Prix</th><th></th></tr>
+          </thead>
+          <tbody id="lignes"></tbody>
+        </table>
+        <p id="vide">Votre panier est vide.</p>
+        <p class="total">Sous-total : <strong id="sous-total">0,00 €</strong></p>
+      </section>
+    </main>
+    <script type="module" src="/public/app.js"></script>
+  </body>
+</html>

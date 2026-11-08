@@ -113,6 +113,8 @@ Pour une liste plus complète de plateformes (tronc commun, SISR, SLAM) et le fo
 
 Des outils devenus incontournables, à utiliser pour **comprendre** et non pour produire à votre place : en évaluation comme en entretien, vous serez seul face au code.
 
+Pour aller plus loin, et comprendre comment fonctionnent les agents de code (et leurs limites) : [la série sur le développement agentique](/tp/agentic/principe.md).
+
 - [ChatGPT](https://chatgpt.com/)
 - [Claude](https://claude.ai/)
 - [GitHub Copilot](https://github.com/features/copilot) <- Gratuit avec le [Student Pack](https://education.github.com/pack).

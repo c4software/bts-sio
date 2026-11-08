@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <rect width="900" height="400" fill="#ffffff"/>
+  <text x="20" y="30" font-weight="600" fill="#0f172a">Requêtes envoyées en une minute (ordres de grandeur)</text>
+  <!-- axe : 0 à 60 requêtes sur 600 px, x0 = 300 -->
+  <line x1="300" y1="50" x2="300" y2="330" stroke="#94a3b8" stroke-width="1.5"/>
+  <g font-size="11" fill="#64748b" text-anchor="middle">
+    <text x="300" y="348">0</text><text x="400" y="348">10</text><text x="500" y="348">20</text><text x="600" y="348">30</text><text x="700" y="348">40</text><text x="800" y="348">50</text>
+  </g>
+  <g stroke="#e2e8f0" stroke-width="1">
+    <line x1="400" y1="50" x2="400" y2="330"/><line x1="500" y1="50" x2="500" y2="330"/><line x1="600" y1="50" x2="600" y2="330"/><line x1="800" y1="50" x2="800" y2="330"/>
+  </g>
+  <g font-size="14" fill="#0f172a" text-anchor="end">
+    <text x="288" y="86">Vous, dans un chat</text>
+    <text x="288" y="146">Un agent sur une petite tâche</text>
+    <text x="288" y="206">Un agent qui boucle</text>
+    <text x="288" y="222" font-size="11" fill="#475569">(un test échoue, il réessaie)</text>
+    <text x="288" y="276">30 étudiants, une seule clé</text>
+  </g>
+  <g stroke-width="2">
+    <rect x="300" y="66" width="40" height="30" rx="4" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="300" y="126" width="150" height="30" rx="4" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="300" y="196" width="400" height="30" rx="4" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="700" y="196" width="80" height="30" rx="4" fill="#fee2e2" stroke="#dc2626"/>
+    <rect x="300" y="256" width="400" height="30" rx="4" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="700" y="256" width="118" height="30" rx="4" fill="#fee2e2" stroke="#dc2626"/>
+  </g>
+  <g font-size="12" fill="#0f172a">
+    <text x="348" y="86">≈ 4</text>
+    <text x="458" y="146">≈ 15</text>
+    <text x="788" y="216">≈ 48</text>
+    <text x="826" y="270">240</text>
+    <text x="826" y="284" font-size="10" fill="#475569">(hors échelle)</text>
+  </g>
+  <line x1="700" y1="45" x2="700" y2="330" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <text x="706" y="58" font-size="12" fill="#dc2626" font-weight="600">40 / minute</text>
+  <text x="706" y="74" font-size="11" fill="#dc2626">limite courante de l'essai NVIDIA</text>
+  <text x="20" y="372" font-size="13" fill="#475569">Au-delà de la limite, le serveur répond 429 (« trop de requêtes ») et l'agent attend ou échoue.</text>
+  <text x="20" y="392" font-size="13" fill="#475569">Un agent fait une requête par tour de boucle, sans vous demander votre avis : il atteint vite la limite.</text>
+</svg>

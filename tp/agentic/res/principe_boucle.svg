@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="430" viewBox="0 0 900 430" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="430" fill="#ffffff"/>
+  <!-- boucle -->
+  <rect x="190" y="18" width="560" height="394" rx="18" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="470" y="404" text-anchor="middle" font-size="12" fill="#64748b">la boucle de l'agent</text>
+  <g stroke-width="2">
+    <rect x="20" y="180" width="140" height="70" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="355" y="40" width="230" height="78" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="520" y="176" width="210" height="78" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="355" y="306" width="230" height="78" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="210" y="176" width="210" height="78" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="770" y="180" width="115" height="70" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="90" y="210" font-weight="600">Vous</text>
+    <text x="90" y="230" font-size="12" fill="#475569">au clavier</text>
+    <text x="98" y="50" font-size="12" fill="#475569" text-anchor="start">votre demande</text>
+    <text x="470" y="70" font-weight="600">1. Le contexte part au modèle</text>
+    <text x="470" y="92" font-size="12" fill="#475569">consignes, AGENTS.md, demande,</text>
+    <text x="470" y="108" font-size="12" fill="#475569">outils disponibles, historique</text>
+    <text x="625" y="206" font-weight="600">2. Le modèle décide</text>
+    <text x="625" y="228" font-size="12" fill="#475569">répondre, ou demander</text>
+    <text x="625" y="244" font-size="12" fill="#475569">un appel d'outil</text>
+    <text x="470" y="336" font-weight="600">3. L'agent exécute l'outil</text>
+    <text x="470" y="358" font-size="12" fill="#475569">read, edit, shell (npm test)…</text>
+    <text x="470" y="374" font-size="12" fill="#475569">sur votre machine</text>
+    <text x="315" y="206" font-weight="600">4. Il lit le résultat</text>
+    <text x="315" y="228" font-size="12" fill="#475569">le contenu du fichier,</text>
+    <text x="315" y="244" font-size="12" fill="#475569">la sortie de la commande</text>
+    <text x="827" y="210" font-weight="600">Réponse</text>
+    <text x="827" y="230" font-size="12" fill="#475569">finale</text>
+  </g>
+  <!-- flèches de la boucle -->
+  <g stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowb)">
+    <path d="M585,79 H625 V174"/>
+    <path d="M625,254 V345 H587"/>
+    <path d="M355,345 H315 V256"/>
+    <path d="M315,176 V100 H353"/>
+  </g>
+  <g font-size="12" fill="#2563eb">
+    <text x="634" y="130">requête à l'API</text>
+    <text x="634" y="300">appel d'outil</text>
+    <text x="236" y="300">résultat</text>
+    <text x="200" y="140">ajouté au contexte,</text>
+    <text x="200" y="156">on recommence</text>
+  </g>
+  <!-- entrée et sortie -->
+  <path d="M90,180 V58 H353" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M730,215 H768" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowg)"/>
+  <text x="749" y="276" text-anchor="middle" font-size="11" fill="#16a34a">plus aucun</text>
+  <text x="749" y="290" text-anchor="middle" font-size="11" fill="#16a34a">outil demandé</text>
+</svg>
