@@ -18,7 +18,7 @@ Nous allons construire le même écran que dans le TP Swift : un titre, un sous-
 
 ## Prérequis
 
-- La dev-box prête pour iOS : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
+- La dev-box prête pour iOS (version 1.61 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
 - Idéalement, avoir fait [le hello world en Swift](./swift.md) : il vérifie que toute la chaîne fonctionne.
 - Environ **10 Go** de libre en plus : Flutter, le SDK Android qu'il installe avec lui, et surtout le compilateur Dart pour iOS (7 Go).
 
@@ -234,7 +234,7 @@ Le script compile le code Dart, assemble l'application iOS, puis l'installe sur 
 Pour un projet Flutter, le script ne connaît que `run`, `install` et `build`, et l'installation passe **uniquement par le câble** : `--wifi` n'est pas disponible.
 :::
 
-Comme pour le TP Swift, la première ouverture demande de faire confiance à votre compte : **Réglages, Général, VPN et gestion de l'appareil**, votre identifiant Apple, **Faire confiance**.
+Avec un identifiant Apple gratuit, la première ouverture demande de faire confiance à votre compte : **Réglages, Général, VPN et gestion de l'appareil**, votre identifiant Apple, **Faire confiance**.
 
 ::: tip Point de contrôle
 L'application « Hello Flutter » apparaît sur l'écran d'accueil de l'iPhone, s'ouvre, et le compteur augmente à chaque clic.

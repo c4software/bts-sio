@@ -111,11 +111,11 @@ Avec l'adresse `tv.php?id=jTuBnZrLbq0&bg=noel`, la balise `<body>` reçoit la cl
 
 ## Évolution 2
 
-### Cas 1
+### Une CSS du jour
 
 Ajouter une CSS qui s'affichera uniquement aujourd'hui. Celle-ci doit modifier l'apparence de votre site Internet.
 
-### Cas 2
+### Des vidéos de saison
 
 Afficher une sélection de vidéo (`card`) en fonction de la période de l'année. Par exemple 4 vidéos sur le thème de Noël pendant la période de Noël.
 

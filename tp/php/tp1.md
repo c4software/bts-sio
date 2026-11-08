@@ -150,7 +150,7 @@ Dans l'exemple, je vous laisse modifier la date pour en changer le format **et**
 Je vous le disais au début… Nous pouvons mettre du PHP partout dans notre code. La seule contrainte pour que celui-ci soit affiché? Qu'il contienne une ou plusieurs fois le mot echo.
 
 ::: warning Attention au « ; »
-Attention en PHP chaque instruction doit-être terminé par un `;`. Si vous l'oubliez votre script sera en `erreur`.
+Attention en PHP chaque instruction doit être terminée par un `;`. Si vous l'oubliez votre script sera en `erreur`.
 
 Par exemple, voici la page obtenue quand le `;` manque à la fin d'un `echo` : PHP s'arrête et indique la ligne où il s'est perdu (souvent la ligne **suivante** de l'oubli).
 
@@ -216,7 +216,7 @@ echo '
 ';
 ```
 
-Bien évidement en
+Bien évidemment en
 
 **AUCUN CAS VOUS NE DEVEZ FAIRE ÇA !**
 

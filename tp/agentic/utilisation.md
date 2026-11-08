@@ -112,7 +112,7 @@ opencode run --model opencode/glm-5.3-flash-free "Réponds uniquement par le mot
 ```
 
 ::: warning Gratuit, mais pas sans contrepartie
-D'après [la page des modèles d'OpenCode](https://opencode.ai/docs/zen/#privacy) (relevée le 8 novembre 2026) : certains modèles gratuits ne gardent rien (GLM-5.3-Flash Free et DeepSeek V4.1 Flash Free, par exemple), d'autres **conservent vos échanges et peuvent s'en servir pour entraîner leur modèle** (Big Pickle, Iceman Free, Inkling 2 Small Free…), et certains ne sont pas disponibles dans l'Union européenne. Lisez la ligne du modèle avant de lui confier du code. Nous en reparlons dans [le TP sur les limites](./limites.md#vos-donnees-partent-chez-un-tiers).
+D'après [la page des modèles d'OpenCode](https://opencode.ai/docs/zen/#privacy) (relevée le 8 novembre 2026) : certains modèles gratuits ne gardent rien (GLM-5.3-Flash Free et DeepSeek V4.1 Flash Free, par exemple), d'autres **conservent vos échanges et peuvent s'en servir pour entraîner leur modèle** (Big Pickle, par exemple), et certains ne sont pas disponibles dans l'Union européenne. Lisez la ligne du modèle avant de lui confier du code. Nous en reparlons dans [le TP sur les limites](./limites.md#vos-donnees-partent-chez-un-tiers).
 :::
 
 ### NVIDIA
@@ -245,7 +245,7 @@ services:
       NVIDIA_API_KEY: "${NVIDIA_API_KEY}"
 ```
 
-Au redémarrage, `GET /v1/models` du proxy liste les modèles de NVIDIA, préfixés par `nvidia/` : c'est la liste de la capture plus haut. Tous les étudiants passent alors par **la même clé NVIDIA**, et donc par la même limite de 40 requêtes par minute : c'est pour ça que le proxy offre un **partage équitable** (une part de tokens par heure et par étudiant), voir [sa documentation](https://github.com/c4software/llm-proxy/blob/main/docs/tableau-de-bord.md#partage-équitable).
+Au redémarrage, `GET /v1/models` du proxy liste les modèles de NVIDIA, préfixés par `nvidia/` : c'est la liste de la capture plus haut. Tous les étudiants passent alors par **la même clé NVIDIA**, et donc par la même limite de 40 requêtes par minute : c'est pour ça que le proxy donne **une clé à chaque étudiant** et un **partage équitable** (une part de tokens par heure et par étudiant). La clé NVIDIA reste sur le serveur et le proxy sait qui consomme quoi : c'est la seule façon raisonnable de la partager, nous y revenons dans [le TP sur les limites](./limites.md). Voir [sa documentation](https://github.com/c4software/llm-proxy/blob/main/docs/tableau-de-bord.md#partage-équitable).
 :::
 
 ::: tip Point de contrôle

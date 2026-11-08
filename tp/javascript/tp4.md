@@ -367,6 +367,6 @@ Dans ce TP, vous avez :
 - Écrit votre première API en PHP, puis consommé une API publique (`dummyjson.com`) en commençant par observer sa réponse.
 - Fait les mêmes appels avec jQuery (`$.get`, `$.post`).
 
-La suite ? Si vous êtes en avance, [la BTS TV 2.0](./tp4.1.md) applique tout ça à un vrai projet PHP. Sinon, préparez-vous pour [le point étape : mon catalogue de films](./eval1.md), qui vous demandera justement du DOM, des événements et de l'Ajax avec `fetch`.
+La suite ? Si vous êtes en avance, [la BTS TV 2.0](./tp4.1.md) applique tout ça à un vrai projet PHP, et [le lecteur de veille](./tp4.2.md) à des flux RSS. Sinon, préparez-vous pour [le point étape : mon catalogue de films](./eval1.md), qui vous demandera justement du DOM, des événements et de l'Ajax avec `fetch`.
 
 👋 Si vous avez des questions, n'hésitez pas.

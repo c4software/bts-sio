@@ -64,7 +64,7 @@ nom = "valentin";
 
 Vérifier que la constante n'est pas écrasée pendant le fonctionnement de votre programme. Que voyez-vous dans la console de votre navigateur ?
 
-::: details La réponse
+::: details Réponse
 Votre navigateur produit une erreur : `Uncaught TypeError: Assignment to constant variable.`. Une constante ne peut pas être réécrite, c'est tout l'intérêt.
 
 ![La console affiche en rouge Uncaught TypeError: Assignment to constant variable., suivi du fichier et de la ligne en cause](./res/tp1.1_constante_erreur.png)

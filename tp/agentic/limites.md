@@ -152,7 +152,7 @@ Questions :
 - Un service gratuit est-il forcément « payé » par vos données ? Citez un contre-exemple de ce TP.
 
 ::: details Réponse
-- La limite de débit est par clé : 30 étudiants, c'est 30 fois plus de requêtes pour la même limite, donc des `429` pour tout le monde. Et une seule clé, c'est aussi une seule ligne dans les statistiques : impossible de savoir qui consomme quoi, ni de couper un seul utilisateur. D'où une clé par étudiant sur le proxy, et un partage équitable par compte.
+- La limite de débit est par clé : 30 étudiants, c'est 30 fois plus de requêtes pour la même limite, donc des `429` pour tout le monde. Et une seule clé, c'est aussi une seule ligne dans les statistiques : impossible de savoir qui consomme quoi, ni de couper un seul utilisateur. D'où une clé par étudiant sur le proxy, et un partage équitable par compte : la clé NVIDIA du TP précédent n'est jamais distribuée, seul le proxy s'en sert.
 - Non : certains modèles gratuits d'OpenCode annoncent ne rien conserver ni entraîner (GLM-5.3-Flash Free, DeepSeek V4.1 Flash Free), le temps d'une promotion. Et les modèles mis à disposition par AMD pour ce cours relèvent d'un programme universitaire. Mais la règle reste de **lire les conditions** à chaque fois : elles changent.
 :::
 
@@ -304,7 +304,7 @@ On attend donc d'un développeur, avec ou sans agent, qu'il sache :
 - **lire** tout le code qu'il livre, et l'**expliquer** ligne par ligne ;
 - le **tester** pour de vrai, et dire ce que ses tests garantissent ;
 - **refuser** une proposition, et dire pourquoi ;
-- savoir **ce qu'il envoie à qui**.
+- dire **ce qu'il envoie, et à qui**.
 
 C'est ce que rappelle [la page de ressources de veille](/tp/veille/ressources.md#assistants-ia) : les assistants IA sont à utiliser pour **comprendre**, et non pour produire à votre place, car **en évaluation comme en entretien, vous serez seul face au code**. Le jury de l'épreuve, comme le recruteur, vous demandera d'expliquer et de modifier votre code en direct, sans agent.
 

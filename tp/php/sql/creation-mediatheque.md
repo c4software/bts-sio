@@ -595,7 +595,7 @@ Choisissez votre option, implémentez-la, et **justifiez votre choix dans le REA
 
 Par exemple, avec l'option 1, une tentative de suppression de L'Étranger (déjà emprunté deux fois) ramène sur sa fiche avec un message clair :
 
-![La fiche de L'Étranger avec le message « Ce livre ne peut pas être supprimé, il a un historique d'emprunts. » au dessus des informations du livre, toujours disponible](./res/mediatheque_suppression_refusee.png)
+![La fiche de L'Étranger avec le message « Ce livre ne peut pas être supprimé, il a un historique d'emprunts. » au-dessus des informations du livre, toujours disponible](./res/mediatheque_suppression_refusee.png)
 
 ## Protéger et aller plus loin (en autonomie)
 

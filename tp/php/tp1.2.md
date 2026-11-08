@@ -87,7 +87,7 @@ Afin de tester les différentes fonctionnalités, je vous propose de réaliser l
 - Le décompte du nombre de jours ne doit **pas être visible** si nous sommes le jour de Noël
 - Votre page doit afficher un fond « sapin de Noël » si nous sommes au mois de décembre.
 - Votre page doit afficher un fond « père Noël » si nous sommes le jour de Noël.
-- Au **milieu de votre page** afficher une `card`, le contenu de cette `card` doit-être :
+- Au **milieu de votre page** afficher une `card`, le contenu de cette `card` doit être :
   - `Hello $prenom`, la valeur `$prenom` **doit venir** d'un paramètre `GET`.
   - Si aucune valeur n'est présente dans le paramètre `GET` vous devez afficher `world` (fonction `getOrDefault`)
   - Le lien d'accès sera donc `index.php?prenom=Valentin`

@@ -691,7 +691,7 @@ Ajoutez la catégorie « Sport », puis retournez sur vos tâches : elle est pro
 
 Quand la liste s'allonge, on veut pouvoir n'afficher qu'une catégorie.
 
-- Sur `home`, affichez au dessus de la liste un lien par catégorie, de la forme `index.php?page=home&categorie=2` (le **numéro** de la catégorie, pas son nom), plus un lien « Toutes » qui pointe simplement vers `index.php?page=home`.
+- Sur `home`, affichez au-dessus de la liste un lien par catégorie, de la forme `index.php?page=home&categorie=2` (le **numéro** de la catégorie, pas son nom), plus un lien « Toutes » qui pointe simplement vers `index.php?page=home`.
 - Quand `categorie` est présent dans l'URL, seules les tâches de cette catégorie sont affichées.
 - Si la liste obtenue est vide, affichez un message clair plutôt qu'une liste vide.
 
@@ -731,7 +731,7 @@ Pour le message, `count($tasks) === 0` suffit : peu importe que la catégorie n'
 
 Un peu de chiffres pour finir.
 
-- Sur `home`, affichez au dessus de la liste quelque chose comme « 3 tâches, 1 terminée ».
+- Sur `home`, affichez au-dessus de la liste quelque chose comme « 3 tâches, 1 terminée ».
 - À côté de chaque lien de filtre, affichez le nombre de tâches **restantes** (non terminées) de cette catégorie : « Cours (1) », « Maison (1) », « Loisirs (0) ».
 
 ![La liste avec le compteur global et les compteurs par catégorie](./res/todo_home.png)

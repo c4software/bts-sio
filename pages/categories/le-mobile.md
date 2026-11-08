@@ -1,5 +1,6 @@
 ---
 aside: false
+description: "Le développement mobile : les TP Android Compose dans l'ordre, Kotlin Multiplateforme, iOS sans Mac depuis la dev-box, les applications d'exemple et les anciens TP en View."
 ---
 
 # Le mobile

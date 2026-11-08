@@ -12,7 +12,7 @@ description: "Nous avons créé deux cas « de tests », je vous propose de les 
 Ce TP est un bonus : il reprend exactement les notions du [TP 4](./tp4.md), mais dans un vrai projet. Si vous n'avez pas terminé le TP 4, terminez-le d'abord.
 :::
 
-Nous avons créé deux cas « de tests » dans le [TP 4](./tp4.md), je vous propose de les mettre en place dans un code existant. Nous avons réalisé un site la BTS TV (dans le TP PHP [le passage de paramètres](/tp/php/tp-param.md)), ce site comportait **« deux pages »** :
+Nous avons créé deux cas « de tests » dans le [TP 4](./tp4.md), je vous propose de les mettre en place dans un code existant. Nous avons réalisé un site, la BTS TV (dans le TP PHP [le passage de paramètres](/tp/php/tp-param.md)), ce site comportait **« deux pages »** :
 
 - Une page d'accueil `home.php`, qui affiche la liste des vidéos.
 - Une page `tv.php` ayant pour but l'affichage de la vidéo souhaitée.
@@ -383,6 +383,6 @@ Dans ce TP, vous avez :
 - Vidé `home.php` de son PHP, puis reconstruit les cartes en JavaScript avec `fetch` : l'écran est identique, mais le serveur ne fabrique plus que la donnée.
 - Vu qu'une API peut servir à plusieurs clients, à condition de gérer le CORS quand ils sont hébergés ailleurs.
 
-La suite ? [Le point étape : mon catalogue de films](./eval1.md), où vous retrouverez le DOM, les événements et l'Ajax avec `fetch`.
+La suite ? Si vous êtes en avance, [le lecteur de veille](./tp4.2.md) vous fait lire des flux RSS avec `fetch`. Sinon, [le point étape : mon catalogue de films](./eval1.md), où vous retrouverez le DOM, les événements et l'Ajax avec `fetch`.
 
 👋 Si vous avez des questions, n'hésitez pas.

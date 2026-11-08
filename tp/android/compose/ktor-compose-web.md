@@ -1017,7 +1017,7 @@ Question :
 ::: details Réponse
 Aujourd'hui, quatre : celui du serveur, celui d'Android, celui de l'application Compose web (une copie de celui d'Android) et la classe JavaScript. Quatre copies du même contrat, et autant de risques d'en oublier une.
 
-Dans un vrai projet Kotlin Multiplatform, Android et le web partageraient le même module `shared` : un seul `LampadaireDTO` pour les deux applications, et même pour le serveur, si on le place dans un module commun. C'est la promesse annoncée dans le TP précédent, quand nous avons rangé les DTO dans `common/domain`.
+Dans un vrai projet Kotlin Multiplateforme, Android et le web partageraient le même module `shared` : un seul `LampadaireDTO` pour les deux applications, et même pour le serveur, si on le place dans un module commun. C'est la promesse annoncée dans le TP précédent, quand nous avons rangé les DTO dans `common/domain`.
 :::
 
 ::: tip Vous êtes en avance ?

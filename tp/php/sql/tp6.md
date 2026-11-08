@@ -1,3 +1,7 @@
+---
+description: "BTS TV administrable : concevoir la base des vidéos et des utilisateurs, une page de connexion, puis une page d'administration pour ajouter et supprimer les vidéos, avec PDO et les requêtes préparées."
+---
+
 # TP 6 SQL : BTS TV administrable
 
 Dans ce TP nous allons mettre en pratique nos connaissances autour de la base de données. Nous allons mettre en place une base de données nous permettant de rendre administrable :
@@ -64,7 +68,7 @@ Pour valider votre base de données, je vous laisse créer des données fictives
 
 Pour commencer nous allons insérer des données.
 
-::: danger LES MOT NE DOIVENT PAS ÊTRE EN CLAIR
+::: danger LES MOTS DE PASSE NE DOIVENT PAS ÊTRE EN CLAIR
 Vous ne devez **JAMAIS** avoir un mot de passe en clair en base de données.
 
 Vous pouvez par exemple utiliser la fonction SQL `SHA2("VotreMotDePasse-SALT-SECRET", 512)`. Cela génèrera un mot de passe « hasher » équivalent au mot de passe.
@@ -143,7 +147,7 @@ Pour valider l'authentification, vous devez écrire quelque chose comme :
 
 En cas d'échec, pensez à prévenir l'utilisateur plutôt que de réafficher le formulaire sans un mot. Voici ce que donne ma version avec un mauvais mot de passe :
 
-![La page de connexion de la BTS TV avec le message « Identifiant ou mot de passe incorrect. » au dessus des champs Identifiant et Mot de passe et du bouton Se connecter](./res/tp6_login_erreur.png)
+![La page de connexion de la BTS TV avec le message « Identifiant ou mot de passe incorrect. » au-dessus des champs Identifiant et Mot de passe et du bouton Se connecter](./res/tp6_login_erreur.png)
 
 ### Ajouter les boutons dans la barre
 
@@ -165,7 +169,7 @@ if(isset($_SESSION["user"])){
 ```
 
 :::tip Où mettre le code ?
-Je veux que les boutons s'affiche dans la NavBar. Donc le code doit-être… Dans la NavBar!
+Je veux que les boutons s'affichent dans la NavBar. Donc le code doit être… Dans la NavBar!
 :::
 
 ### Page de déconnexion

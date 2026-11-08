@@ -416,7 +416,7 @@ C'est à vous de jouer ! Calculez, sans le cache :
 
 1. le prix des trois tours mesurés plus haut (18 500 tokens d'entrée, environ 300 de sortie) avec Claude Sonnet 5.5 ;
 2. le prix d'une après-midi de travail avec un agent : 150 tours de boucle, avec un contexte moyen de 40 000 tokens en entrée et 500 tokens de sortie par tour, avec Claude Sonnet 5.5 puis avec DeepSeek V4.1 Flash ;
-3. le même après-midi pour une classe de 30 étudiants.
+3. la même après-midi pour une classe de 30 étudiants.
 
 ::: details Réponse
 1. Entrée : 18 500 × 2 / 1 000 000 = 0,037 $. Sortie : 300 × 10 / 1 000 000 = 0,003 $. Environ **0,04 $** : quelques centimes, pour une seule petite demande.

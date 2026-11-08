@@ -1273,7 +1273,7 @@ session_start();
 ```
 
 ::: danger
-La fonction `session_start()` doit-être la première ligne de votre fichier.
+La fonction `session_start()` doit être la première ligne de votre fichier.
 :::
 
 Puis pour enregistrer au sauvegardé une valeur, il suffit de :
