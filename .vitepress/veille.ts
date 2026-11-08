@@ -28,6 +28,8 @@ export interface VeilleData {
   items: VeilleItem[]
   // Identifiants des sources qui n'ont pas répondu.
   failed: string[]
+  // Pour chacune, la raison (code HTTP, délai dépassé…), pour le diagnostic.
+  reasons?: Record<string, string>
 }
 
 // La liste blanche : la fonction Netlify ne lit que ces adresses. Toujours le flux
@@ -141,10 +143,15 @@ export async function fetchVeille(timeoutMs = 8000): Promise<VeilleData> {
   const results = await Promise.allSettled(SOURCES.map((s) => fetchSource(s, timeoutMs)))
   const items: VeilleItem[] = []
   const failed: string[] = []
+  const reasons: Record<string, string> = {}
   results.forEach((r, i) => {
     if (r.status === 'fulfilled') items.push(...r.value)
-    else failed.push(SOURCES[i].id)
+    else {
+      failed.push(SOURCES[i].id)
+      const e = r.reason as Error
+      reasons[SOURCES[i].id] = e?.name === 'TimeoutError' ? 'délai dépassé' : String(e?.message ?? e).slice(0, 120)
+    }
   })
   items.sort((a, b) => b.date - a.date)
-  return { generated: Date.now(), items, failed }
+  return { generated: Date.now(), items, failed, reasons }
 }
