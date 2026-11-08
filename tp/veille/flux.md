@@ -20,7 +20,7 @@ Faire sa veille, c'est prendre l'habitude de lire régulièrement ce qui se pass
 Cette page est un point de départ. Pour une veille qui vous ressemble, choisissez vos propres sources et abonnez-vous à leurs flux dans un [agrégateur RSS](./ressources.md#agregateurs-rss) (Feedly, Inoreader, FreshRSS…) : vous retrouverez tout au même endroit, sans dépendre de cette page.
 
 ::: details Comment fonctionne cette page ?
-Chaque source publie un **flux RSS** (ou Atom) : un fichier XML qui liste ses derniers articles. La plupart de ces sites interdisent à un autre site de lire leur flux depuis le navigateur (c'est la politique **CORS**). Les flux sont donc récupérés côté serveur : une première fois à la publication du site, puis par une petite fonction quand vous cliquez sur « Actualiser » (sa réponse est gardée 30 minutes en cache).
+Chaque source publie un **flux RSS** (ou Atom) : un fichier XML qui liste ses derniers articles. La plupart de ces sites interdisent à un autre site de lire leur flux depuis le navigateur (c'est la politique **CORS**). Les flux sont donc récupérés côté serveur : une première fois à la publication du site, puis par une petite fonction, réservée à ce site, qui ne relit les flux que toutes les 5 heures au plus.
 
 Vous voulez construire le vôtre ? C'est l'objet du TP [Mon lecteur de veille](/tp/javascript/tp4.2.md).
 :::

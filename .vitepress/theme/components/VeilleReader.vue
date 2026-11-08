@@ -3,7 +3,7 @@
 // page Ressources (voir ../../veille.ts).
 // - au build, un instantané (../veille.data.ts) est servi avec la page ;
 // - à l'ouverture, la page demande la version à jour à la fonction Netlify
-//   /api/veille (réponse gardée 30 minutes sur le CDN : pas de coût par visite) ;
+//   /api/veille (réservée aux pages du site, cache de 5 heures côté serveur et CDN) ;
 //   en cas d'échec, l'instantané reste affiché, sans message ;
 // - le bouton « Actualiser » refait la même demande, et prévient en cas d'échec.
 // Deux modes de lecture sur mobile, comme dans FreshRSS Discover : la liste de
