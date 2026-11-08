@@ -1,23 +1,32 @@
-This is a Kotlin Multiplatform project targeting iOS.
+# Hello KMP
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Le projet du [TP Kotlin Multiplateforme](https://cours.brosseau.ovh/tp/ios/kmp.html) : une application iOS dont l'écran est écrit en Kotlin avec Compose Multiplatform, construite et installée sur un iPhone depuis Linux, avec la [dev-box](https://github.com/c4software/dev-box).
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+- `shared/` : le code Kotlin partagé (`commonMain`), et la partie propre à iOS (`iosMain`).
+- `iosApp/` : l'application iOS autour (le point d'entrée en Swift, le projet Xcode), et le script `devbox-build.sh`.
 
-### Running the apps
+## Une fois, dans la dev-box
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
+```bash
+devbox dev-env ios       # l'environnement iOS
+devbox dev-env java      # Gradle, pour la partie Kotlin
+devbox ios               # le SDK depuis le .xip de Xcode, puis la connexion à votre compte Apple
+devbox ios devices       # l'iPhone branché : répondez « Se fier » sur l'appareil, puis relancez
+```
 
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+Un identifiant Apple gratuit suffit (mode `1` de la connexion), avec le câble. Tout est détaillé dans `devbox help ios` et dans le [support de préparation](https://cours.brosseau.ovh/tp/ios/introduction.html).
 
----
+## À chaque fois, depuis votre machine
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+Le projet doit être dans le dossier des projets de la dev-box (`~/dev-box/data/projets` par défaut).
+
+```bash
+cd iosApp
+./devbox-build.sh            # framework Kotlin, application, signature, installation et lancement
+./devbox-build.sh build      # compile seulement
+./devbox-build.sh logs       # les logs de l'application
+./devbox-build.sh status     # l'état de la dev-box : SDK, connexion Apple, appareils
+./devbox-build.sh --help     # toutes les étapes et options
+```
+
+Changez le bundle ID (`PRODUCT_BUNDLE_IDENTIFIER` dans `iosApp/Configuration/Config.xcconfig`) pour le vôtre : `fr.<prenom>.<nom>.HelloKmp`.

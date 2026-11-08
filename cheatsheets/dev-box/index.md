@@ -405,7 +405,7 @@ Normalement, développer pour iPhone demande un Mac et Xcode. Avec la dev-box, v
 
 - **Pas de simulateur** : l'application tourne sur un vrai iPhone ou iPad.
 - **Une machine x86_64 uniquement** (un PC classique, Intel ou AMD) : l'environnement ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (M1, M2, etc.). Avec un Mac, utilisez plutôt Xcode directement.
-- **Un compte Apple** : un identifiant Apple gratuit suffit pour installer une application avec `xtool dev` ; `devbox ios xcode` (et le script `devbox-build.sh` des TP) demande une clé d'API du programme développeur payant. La connexion par mot de passe passe par des interfaces privées d'Apple : xtool conseille d'utiliser un identifiant Apple créé pour l'occasion plutôt que votre compte personnel.
+- **Un compte Apple** : un identifiant Apple gratuit suffit pour compiler et installer vos applications par câble ; la clé d'API du programme développeur payant ajoute le Wi-Fi et la publication. La connexion par mot de passe passe par des interfaces privées d'Apple : il est conseillé d'utiliser un identifiant Apple créé pour l'occasion plutôt que votre compte personnel.
 - **Du temps et de la place** : le fichier de Xcode à télécharger pèse plusieurs Go, et la première installation prend plusieurs minutes.
 
 :::
@@ -420,7 +420,7 @@ Pour mettre tout ça en pratique, la série de TP [iOS sans Mac](/tp/ios/introdu
 devbox dev-env ios
 ```
 
-Cette commande installe Swift, Python et les outils iOS (xtool, `pymobiledevice3`, etc.). La compilation de xtool prend quelques minutes la première fois. À la fin, elle affiche les étapes qui restent à faire, celles qui demandent votre compte Apple ou un câble.
+Cette commande installe Swift, Python et les outils iOS. Leur compilation prend quelques minutes la première fois. À la fin, elle affiche les étapes qui restent à faire, celles qui demandent votre compte Apple ou un câble.
 
 ### 2. Le SDK iOS et votre compte Apple (une seule fois)
 
@@ -435,9 +435,9 @@ Le SDK iOS (les bibliothèques d'Apple : UIKit, SwiftUI, etc.) ne peut pas être
 devbox ios
 ```
 
-La commande vous laisse choisir le `.xip`, construit le SDK, le vérifie, vous propose de supprimer le `.xip` (gardez-le si vous avez la place : il resservira après une mise à jour de Swift), puis vous connecte à votre compte Apple (`xtool auth`). Choisissez le mode `1` (mot de passe) avec un identifiant Apple gratuit : e-mail, mot de passe, puis le code reçu sur vos appareils. Le mode `0` (clé d'API) est réservé au programme développeur payant d'Apple.
+La commande vous laisse choisir le `.xip`, construit le SDK, le vérifie, vous propose de supprimer le `.xip` (gardez-le si vous avez la place : il resservira après une mise à jour de Swift), puis vous connecte à votre compte Apple. Choisissez le mode `1` (mot de passe) avec un identifiant Apple gratuit : e-mail, mot de passe, puis le code reçu sur vos appareils. Le mode `0` (clé d'API) est réservé au programme développeur payant d'Apple. Si vous avez sauté la connexion, lancez `devbox ios login` ; après un échec (mot de passe ou code erroné) ou pour changer de compte, `devbox ios logout` d'abord.
 
-`devbox ios status` affiche ensuite l'état : SDK, connexion Apple, appareils associés.
+`devbox ios status` affiche ensuite l'état : SDK, connexion Apple, appareils associés en Wi-Fi ; `devbox ios devices` liste les appareils branchés.
 
 ### 3. Brancher l'iPhone ou l'iPad (une seule fois)
 
@@ -467,8 +467,7 @@ Puis dans la dev-box, branchez et déverrouillez l'appareil :
 
 ```bash
 devbox pkg add usbmuxd   # une seule fois
-sudo usbmuxd             # après chaque redémarrage de la dev-box
-xtool devices            # répondez « Faire confiance » sur l'appareil, puis relancez
+devbox ios devices       # répondez « Faire confiance » sur l'appareil, puis relancez
 ```
 
 Après une reconstruction de la dev-box, l'appareil vous redemandera de lui faire confiance.
@@ -491,7 +490,7 @@ ssh -R 27015:127.0.0.1:27015 -p 2222 dev@localhost # Windows (PowerShell)
 
 ```bash
 export USBMUXD_SOCKET_ADDRESS=127.0.0.1:27015
-xtool devices
+devbox ios devices
 ```
 
 Ajoutez la ligne `export` à votre `~/.zshrc` pour ne plus avoir à la taper. Avantage de cette méthode : rien à modifier dans `compose.override.yaml`, et une reconstruction de la dev-box ne redemande pas de faire confiance. Les détails sont dans `devbox help ios-usb`.
@@ -510,17 +509,7 @@ cd ~/dev-box/data/projets/Hello   # sur votre machine, à côté de project.yml
 ./devbox-build.sh --help          # toutes les étapes et options
 ```
 
-Le script vérifie que la dev-box tourne et qu'elle est prête pour iOS, puis lance `devbox ios xcode` dans la dev-box (`docker exec`). Dans la dev-box, la même chose s'écrit `devbox ios xcode` (`devbox ios xcode --help`). Ces deux commandes demandent une connexion à xtool avec une **clé d'API** (programme développeur payant).
-
-Avec un identifiant Apple gratuit, xtool sait créer et installer un projet plus simple (un paquet Swift), dans la dev-box :
-
-```bash
-cd ~/projets
-xtool new Hello
-cd Hello
-xtool dev        # compile, signe et installe l'application sur l'appareil
-device-run.sh    # la même chose, puis la lance et affiche ses logs
-```
+Le script vérifie que la dev-box tourne et qu'elle est prête pour iOS, puis lance `devbox ios xcode` dans la dev-box (`docker exec`). Dans la dev-box, la même chose s'écrit `devbox ios xcode` (`devbox ios xcode --help`). Avec un identifiant Apple gratuit, l'installation passe par le câble ; avec une clé d'API, elle peut aussi passer par le Wi-Fi (plus bas).
 
 La première compilation prend quelques minutes, les suivantes sont rapides. Sur l'appareil, la première fois :
 
@@ -529,13 +518,13 @@ La première compilation prend quelques minutes, les suivantes sont rapides. Sur
 
 ::: tip Une signature de 7 jours
 
-Avec un identifiant Apple gratuit, Apple limite la signature à 7 jours : passé ce délai, l'application ne s'ouvre plus. Relancez simplement `xtool dev` pour la renouveler.
+Avec un identifiant Apple gratuit, Apple limite la signature à 7 jours et à 3 applications installées à la fois : passé ce délai, l'application ne s'ouvre plus. Relancez simplement `./devbox-build.sh` pour la renouveler.
 
 :::
 
 ### Sans le câble : le Wi-Fi (iOS 27)
 
-À partir d'iOS 27, une fois l'appareil associé avec le câble, la dev-box peut installer, lancer et lire les logs de vos applications en Wi-Fi :
+À partir d'iOS 27, avec une connexion par clé d'API et une fois l'appareil associé avec le câble, la dev-box peut installer, lancer et lire les logs de vos applications en Wi-Fi :
 
 1. Une seule fois, l'appareil branché en USB : `devbox ios pair`. L'association est gardée dans votre dossier personnel : elle survit à une reconstruction de la dev-box. Elle contient une clé privée, gardez-la comme une clé SSH.
 2. Sur l'appareil, activez le Wi-Fi et installez l'application [Tailscale](#votre-dev-box-partout-avec-tailscale), connectée au même réseau Tailscale que la dev-box. `tailscale status`, dans la dev-box, donne son adresse (`100.x.y.z`).
@@ -549,11 +538,11 @@ export IOS_WIFI=100.x.y.z                # pour ne plus taper --wifi
 
 Ou, depuis votre machine, avec le script des TP : `./devbox-build.sh run --wifi 100.x.y.z` (`./devbox-build.sh pair` fait l'étape 1).
 
-Attention : `xtool dev`, `device-run.sh` et les projets Flutter ont toujours besoin du câble, le Wi-Fi passe par `devbox ios xcode`. Les étapes et les pannes courantes sont dans `devbox help ios-wifi`.
+Attention : avec un identifiant Apple gratuit, et pour les projets Flutter, le câble reste obligatoire. Les étapes et les pannes courantes sont dans `devbox help ios-wifi`.
 
 ### Pour aller plus loin
 
-- **Un projet Xcode existant** (`.xcodeproj` ou `project.yml` de XcodeGen) : `devbox ios xcode` le compile sous Linux, le signe, l'installe et le lance. `devbox ios xcode --help` liste les options (`--configuration Release`, etc.). Cette commande demande une connexion à xtool avec une clé d'API (programme développeur payant).
+- **Un projet Xcode existant** (`.xcodeproj` ou `project.yml` de XcodeGen) : `devbox ios xcode` le compile sous Linux, le signe, l'installe et le lance. `devbox ios xcode --help` liste les options (`--configuration Release`, etc.).
 - **Kotlin Multiplateforme** : `devbox ios kmp` construit la partie iOS d'un projet Kotlin Multiplateforme, que Gradle ignore sous Linux (il faut aussi `devbox dev-env java`), et `devbox ios xcode --kmp :shared` construit l'application complète (avec `devbox-build.sh` : la ligne `APP_KMP=":shared"` en tête du script, voir le [TP Kotlin Multiplateforme](/tp/ios/kmp.md)).
 - **Déboguer** : `device-run.sh --lldb` lance l'application avec le débogueur, `pymobiledevice3 syslog live` affiche les logs de l'appareil et `pymobiledevice3 crash pull ./crashes` récupère ses rapports de plantage.
 - **Publier** : `ship.sh` produit le `.ipa` pour l'App Store, `ship.sh --upload` l'envoie sur TestFlight (programme développeur payant).

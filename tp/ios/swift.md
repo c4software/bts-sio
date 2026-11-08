@@ -20,8 +20,7 @@ Voici ce que nous allons construire :
 
 ## Prérequis
 
-- La dev-box prête pour iOS (version 1.61 ou plus) : le [support précédent](./introduction.md) doit être terminé, `devbox ios status` doit afficher `SDK registered` et `Apple signed in`.
-- Pour **installer** l'application sur l'iPhone, une connexion à Apple avec une **clé d'API** (programme développeur payant, voir [votre compte Apple](./introduction.md#votre-compte-apple)). Avec un identifiant Apple gratuit, vous pourrez suivre tout le TP et compiler l'application, mais pas l'installer.
+- La dev-box prête pour iOS (version 1.63 ou plus) : le [support précédent](./introduction.md) doit être terminé, `devbox ios status` doit afficher `SDK registered` et `Apple signed in`.
 - Avoir déjà écrit une interface avec Compose (par exemple dans [Découverte des bases d'Android](/tp/android/compose/android-base.md)) : ce n'est pas obligatoire, mais les comparaisons vous parleront davantage.
 
 ## Objectifs
@@ -263,21 +262,17 @@ L'application s'ouvre sur l'iPhone, et le compteur augmente à chaque clic.
 :::
 
 ::: tip Que veut dire XTL-… devant le bundle ID ?
-L'application est signée sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.hello`, comme le fait xtool. Ainsi, votre version de développement ne remplace jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.hello`.
+L'application est signée sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.hello`. Ainsi, votre version de développement ne remplace jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.hello`.
 :::
 
 ::: details Sans câble, en Wi-Fi
-Avec un iPhone sous iOS 27 associé à la dev-box (une fois, câble branché : `./devbox-build.sh pair`, voir `devbox help ios-wifi`), ajoutez simplement son adresse :
+Avec une connexion Apple par clé d'API (programme payant) et un iPhone sous iOS 27 associé à la dev-box (une fois, câble branché : `./devbox-build.sh pair`, voir `devbox help ios-wifi`), ajoutez simplement son adresse :
 
 ```bash
 ./devbox-build.sh run --wifi 100.x.y.z
 ```
 
 C'est ainsi qu'ont été faites les captures de ce TP.
-:::
-
-::: details Identifiant Apple gratuit : compiler sans installer
-Sans clé d'API, la dev-box ne peut pas signer l'application pour `devbox ios xcode`. Vous pouvez tout de même vérifier que tout compile avec `./devbox-build.sh build`, et travailler en binôme avec un camarade qui a accès à une clé pour l'installation.
 :::
 
 ::: details Voir les logs de l'application

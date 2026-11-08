@@ -24,7 +24,7 @@ Ce premier support prépare le terrain : une fois la dev-box prête, les trois T
 
 ## Prérequis
 
-- Une [dev-box](/cheatsheets/dev-box/) installée et à jour (version 1.61 ou plus, voir [Comment mettre à jour ?](/cheatsheets/dev-box/#comment-mettre-a-jour)), qui tourne sur un **PC x86_64** (Intel ou AMD). L'environnement iOS ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (avec un Mac, utilisez directement Xcode).
+- Une [dev-box](/cheatsheets/dev-box/) installée et à jour (version 1.63 ou plus, voir [Comment mettre à jour ?](/cheatsheets/dev-box/#comment-mettre-a-jour)), qui tourne sur un **PC x86_64** (Intel ou AMD). L'environnement iOS ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (avec un Mac, utilisez directement Xcode).
 - Un **iPhone ou un iPad**, avec son câble, sous iOS 17 au minimum.
 - Un **identifiant Apple** (gratuit). Nous verrons plus bas lequel utiliser.
 - Environ **20 Go** de libre : Xcode à télécharger pèse plusieurs Go, et le SDK construit à partir de lui aussi.
@@ -142,24 +142,32 @@ Elle enchaîne, dans l'ordre :
 2. la construction du SDK à partir de Xcode (quelques minutes) ;
 3. la vérification du SDK ;
 4. la suppression du `.xip`, si vous le souhaitez ;
-5. la connexion à votre compte Apple (`xtool auth`).
+5. la connexion à votre compte Apple (la commande vous demande de choisir un mode, voir ci-dessous).
 
 ## Votre compte Apple
 
-À l'étape `xtool auth`, deux modes vous sont proposés. Voici ce que chacun permet :
+À l'étape de connexion, `devbox ios` vous propose deux modes. Voici ce que chacun permet :
 
 | | Identifiant Apple gratuit (mode `1`, mot de passe) | Programme développeur payant (mode `0`, clé d'API) |
 |---|---|---|
 | Compiler les applications des trois TP | ✅ | ✅ |
 | Installer une application Flutter | ✅ | ✅ |
-| Installer avec `devbox ios xcode` (TP Swift et Kotlin Multiplateforme) | ❌ (compilation seulement) | ✅ |
+| Installer avec `devbox ios xcode` (TP Swift et Kotlin Multiplateforme) | ✅ (par câble) | ✅ |
+| Installer en Wi-Fi (iOS 27) | ❌ | ✅ |
 | Durée de la signature | **7 jours** | 1 an |
 | Publier sur l'App Store / TestFlight | ❌ | ✅ |
 
-Avec un identifiant Apple gratuit, vous pouvez suivre les trois TP et tout compiler, mais seule l'application Flutter s'installera sur l'iPhone. Votre enseignant vous dira si une clé d'API de la classe est disponible.
+Un identifiant Apple gratuit suffit pour les trois TP : vous compilez et installez vos applications sur l'iPhone, par câble. Choisissez donc le mode `1`. La clé d'API du programme payant ajoute le Wi-Fi, une signature d'un an et la publication.
+
+Connexion sautée ou refusée (mot de passe ou code erroné) ? Pas besoin de tout relancer :
+
+```bash
+devbox ios logout   # repart de zéro après un échec, ou pour changer de compte
+devbox ios login    # la connexion seule
+```
 
 ::: danger Un identifiant Apple dédié
-Avec le mode mot de passe, xtool se connecte à Apple par des interfaces privées (celles qu'utilise Xcode). Ça fonctionne, mais Apple ne le garantit pas. xtool conseille donc d'utiliser **un identifiant Apple créé pour l'occasion**, plutôt que celui de votre téléphone personnel (avec vos photos, vos achats, etc.).
+Avec le mode mot de passe, la dev-box se connecte à Apple par des interfaces privées (celles qu'utilise Xcode). Ça fonctionne, mais Apple ne le garantit pas. Les auteurs de l'outil de signature conseillent donc d'utiliser **un identifiant Apple créé pour l'occasion**, plutôt que celui de votre téléphone personnel (avec vos photos, vos achats, etc.).
 :::
 
 ### Le bundle ID
@@ -180,16 +188,16 @@ Apple refuse deux fois le même bundle ID, **tous comptes confondus** : le premi
 
 Par défaut, un conteneur Docker ne voit pas les appareils USB de votre machine. La marche à suivre dépend de l'endroit où tourne votre dev-box : elle est détaillée dans l'aide-mémoire, partie [Brancher l'iPhone ou l'iPad](/cheatsheets/dev-box/#_3-brancher-l-iphone-ou-l-ipad-une-seule-fois). En résumé :
 
-- **la dev-box tourne sous Linux, sur la machine où l'iPhone est branché** : un bloc à ajouter dans `compose.override.yaml`, puis `devbox pkg add usbmuxd` et `sudo usbmuxd` dans la dev-box ;
+- **la dev-box tourne sous Linux, sur la machine où l'iPhone est branché** : un bloc à ajouter dans `compose.override.yaml`, puis `devbox pkg add usbmuxd` dans la dev-box ;
 - **la dev-box tourne sous Windows, sous macOS ou sur une autre machine** : votre ordinateur gère l'USB, et la dev-box lui parle à travers votre connexion SSH (`ssh -R 27015:...`).
 
 Branchez l'appareil, déverrouillez-le, puis dans la dev-box :
 
 ```bash
-xtool devices
+devbox ios devices
 ```
 
-L'iPhone vous demande si vous faites confiance à cet ordinateur : répondez **Se fier**, puis relancez `xtool devices`. Votre appareil apparaît dans la liste.
+L'iPhone vous demande si vous faites confiance à cet ordinateur : répondez **Se fier**, puis relancez `devbox ios devices`. Votre appareil apparaît dans la liste.
 
 ::: tip Le mode développeur
 Au premier envoi d'une application, l'iPhone peut vous demander d'activer le **mode développeur** : Réglages, Confidentialité et sécurité, Mode développeur. L'appareil redémarre, c'est normal.
@@ -246,7 +254,8 @@ Ses étapes et ses réglages :
 | `build` | Compile seulement, sans signer |
 | `project`, `install`, `launch` | Une seule étape : le projet, l'installation, le lancement |
 | `logs` | Les logs de l'application sur l'iPhone |
-| `status` | L'état de la dev-box (SDK, compte Apple, appareils) |
+| `status` | L'état de la dev-box (SDK, compte Apple, appareils associés en Wi-Fi) |
+| `devices` | Les appareils branchés en USB que la dev-box voit |
 | `pair` | Associe l'iPhone pour le Wi-Fi (iOS 27), une seule fois |
 | `shell` | Un terminal dans la dev-box, dans le dossier du projet |
 | `key <AuthKey_XXXX.p8>` | Copie votre clé d'API App Store Connect dans la dev-box |
@@ -277,7 +286,7 @@ Vous devez voir :
 
 - `SDK registered`, le SDK iOS est prêt ;
 - `Apple signed in`, la dev-box est connectée à votre compte ;
-- votre appareil dans `xtool devices`.
+- votre appareil dans `devbox ios devices` (ou `./devbox-build.sh devices` depuis votre machine).
 
 Le même état s'affiche depuis votre machine, avec `./devbox-build.sh status`. Il vous manque quelque chose ? `devbox help ios` reprend chaque étape, avec les erreurs courantes.
 :::
@@ -288,7 +297,7 @@ Votre dev-box est maintenant une machine de développement iOS :
 
 - le compilateur Swift tourne sous Linux ;
 - le SDK iOS a été extrait de Xcode, une fois pour toutes ;
-- xtool signe vos applications avec votre compte Apple ;
+- la dev-box signe vos applications avec votre compte Apple ;
 - l'iPhone est relié à la dev-box, par câble ou en Wi-Fi ;
 - `devbox-build.sh` compile et installe vos applications depuis votre machine.
 

@@ -18,7 +18,7 @@ Nous allons construire le même écran que dans le TP Swift : un titre, un sous-
 
 ## Prérequis
 
-- La dev-box prête pour iOS (version 1.61 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
+- La dev-box prête pour iOS (version 1.63 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
 - Idéalement, avoir fait [le hello world en Swift](./swift.md) : il vérifie que toute la chaîne fonctionne.
 - Environ **10 Go** de libre en plus : Flutter, le SDK Android qu'il installe avec lui, et surtout le compilateur Dart pour iOS (7 Go).
 
@@ -228,7 +228,7 @@ Branchez votre iPhone, déverrouillez-le, puis :
 ./devbox-build.sh
 ```
 
-Le script compile le code Dart, assemble l'application iOS, puis l'installe sur l'appareil avec `xtool install --usb`. Avec `./devbox-build.sh build`, il s'arrête après la compilation et laisse l'application (non signée) dans `build/ios-linux/Runner.ipa`.
+Le script compile le code Dart, assemble l'application iOS, puis l'installe sur l'appareil, par le câble. Avec `./devbox-build.sh build`, il s'arrête après la compilation et laisse l'application (non signée) dans `build/ios-linux/Runner.ipa`.
 
 ::: warning Pas de Wi-Fi pour Flutter
 Pour un projet Flutter, le script ne connaît que `run`, `install` et `build`, et l'installation passe **uniquement par le câble** : `--wifi` n'est pas disponible.
@@ -245,7 +245,7 @@ L'application « Hello Flutter » apparaît sur l'écran d'accueil de l'iPhone, 
 - `missing: llvm-strip …` : `devbox pkg add llvm` n'a pas été fait.
 - `not the Linux build` : Flutter a été mis à jour et a remis le compilateur macOS. Relancez `flutter/setup.sh`.
 - `no darwin SDK bundle` : le SDK iOS n'est pas prêt, revoyez [le support de préparation](./introduction.md#le-sdk-ios).
-- Aucun appareil trouvé : `xtool devices` doit lister votre iPhone (voir [Relier l'iPhone à la dev-box](./introduction.md#relier-l-iphone-a-la-dev-box)).
+- Aucun appareil trouvé : `devbox ios devices` doit lister votre iPhone (voir [Relier l'iPhone à la dev-box](./introduction.md#relier-l-iphone-a-la-dev-box)).
 
 Le détail de chaque script est dans `flutter/README.md`, dans `~/.local/share/omarchy-apple-dev`.
 :::

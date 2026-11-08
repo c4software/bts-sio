@@ -20,9 +20,8 @@ Voici ce que nous allons construire :
 
 ## Prérequis
 
-- La dev-box prête pour iOS (version 1.61 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
+- La dev-box prête pour iOS (version 1.63 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
 - Les bases de Compose : `@Composable`, `Column`, `Button`, `remember { mutableStateOf() }` (voir [Découverte des bases d'Android](/tp/android/compose/android-base.md)).
-- Pour **installer** l'application sur l'iPhone, une connexion à Apple avec une **clé d'API** (programme développeur payant, voir [votre compte Apple](./introduction.md#votre-compte-apple)). Avec un identifiant Apple gratuit, vous pourrez suivre tout le TP et compiler l'application, mais pas l'installer.
 
 ## Objectifs
 
@@ -342,18 +341,8 @@ L'application s'appelle « iosApp » sur l'écran d'accueil (c'est le nom de la 
 L'application s'ouvre sur l'iPhone, affiche la version d'iOS de votre appareil, et le compteur augmente à chaque clic.
 :::
 
-::: details Identifiant Apple gratuit : compiler sans installer
-Sans clé d'API, `devbox ios xcode` ne peut pas signer l'application. Vous pouvez tout de même vérifier que tout compile, framework compris :
-
-```bash
-./devbox-build.sh build
-```
-
-L'application (non signée) est alors dans `iosApp/build/devbox-ios/xtool/xtool/iosApp.app`.
-:::
-
 ::: details Sans câble, en Wi-Fi
-Avec un iPhone sous iOS 27 associé à la dev-box (`./devbox-build.sh pair`, une fois, câble branché ; voir `devbox help ios-wifi`), ajoutez simplement son adresse :
+Avec une connexion Apple par clé d'API (programme payant) et un iPhone sous iOS 27 associé à la dev-box (`./devbox-build.sh pair`, une fois, câble branché ; voir `devbox help ios-wifi`), ajoutez simplement son adresse :
 
 ```bash
 ./devbox-build.sh run --wifi 100.x.y.z
@@ -363,7 +352,7 @@ Ou, pour ne plus la retaper : `export IOS_WIFI=100.x.y.z`. C'est ainsi qu'ont é
 :::
 
 ::: tip Que veut dire XTL-… devant le bundle ID ?
-`devbox ios xcode` signe l'application sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.HelloKmp`, comme le fait xtool. Ainsi, votre version de développement ne remplace jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.HelloKmp`.
+`devbox ios xcode` signe l'application sous un identifiant préfixé, `XTL-<équipe>.fr.prenom.nom.HelloKmp`. Ainsi, votre version de développement ne remplace jamais la vraie application si elle est un jour publiée sur l'App Store sous `fr.prenom.nom.HelloKmp`.
 :::
 
 ## À vous de jouer
@@ -424,8 +413,8 @@ Faisons le bilan des trois TP :
 | Interface | SwiftUI, native | Widgets Flutter, dessinés par Flutter | Compose, dessiné par Compose (ou native, si on ne partage que la logique) |
 | Ce qui est partagé | Rien, c'est du natif | Tout | Au choix : la logique seule, ou aussi les écrans |
 | Préparation dans la dev-box | Aucune | Compilateur Dart pour iOS (15 min, 7 Go) | Java, et 300 Mo au premier build |
-| Construire et installer | `devbox-build.sh` (USB ou Wi-Fi) | `devbox-build.sh` (USB seulement) | `devbox-build.sh` (USB ou Wi-Fi) |
-| Signature pour installer | Clé d'API (compte payant) | Identifiant Apple gratuit | Clé d'API (compte payant) |
+| Construire et installer | `devbox-build.sh` (USB, ou Wi-Fi avec une clé d'API) | `devbox-build.sh` (USB seulement) | `devbox-build.sh` (USB, ou Wi-Fi avec une clé d'API) |
+| Signature pour installer | Identifiant Apple gratuit | Identifiant Apple gratuit | Identifiant Apple gratuit |
 
 Il n'y a pas de « meilleur » choix : tout dépend du projet et de l'équipe. Une équipe qui fait déjà de l'Android en Kotlin ira naturellement vers Kotlin Multiplateforme ; une application uniquement pour iPhone, qui doit s'intégrer parfaitement au système, sera souvent écrite en Swift.
 
