@@ -30,8 +30,10 @@ Si vous venez du C, du C++ ou du Python, l'aide-mémoire part de ce que vous con
 
 ## Étape 3 : Kotlin API (Ktor)
 
-1. Niveau 1 : [Une API Ktor et ses clients, Android et Vue.js (SQLite, organisation en couches)](/tp/android/compose/ktor-api.md)
-   - Et ensuite : [Un client web en Kotlin avec Compose](/tp/android/compose/ktor-compose-web.md), le même client que la version Vue.js, cette fois en Compose Multiplatform pour le web (en reprenant le code de l'application Android).
+1. Niveau 1 : [Une API Ktor et ses clients (SQLite, organisation en couches)](/tp/android/compose/ktor-api.md), puis ses trois clients :
+   - [Kotlin + Android (Compose)](/tp/android/compose/ktor-api.md#le-client-android) : l'application mobile ;
+   - [Kotlin + Vue.js](/tp/android/compose/ktor-api.md#un-client-web-avec-vue-js) : un client web avec `fetch` et Vue.js 3 ;
+   - [Kotlin + Compose Web](/tp/android/compose/ktor-compose-web.md) : le même client web, cette fois en Compose Multiplatform (Kotlin/Wasm), en reprenant le code de l'application Android.
 2. Niveau 2 :  [Créer des API avec Kotlin : le projet (PostgreSQL, Flyway, Exposed, Koin)](/tp/ktor/decouverte.md)
 3. Niveau 3 : [Créer des API avec Kotlin : CRUD et droits (gestion des erreurs, rôles, clés d'API)](/tp/ktor/crud-droits.md)
 
