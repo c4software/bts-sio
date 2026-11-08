@@ -6,6 +6,10 @@ description: Pour progresser en développement il faut se maintenir à jour, et 
 
 Pour progresser en développement il faut se maintenir à jour, et pour cela il faut pratiquer. Dans cette page vous trouverez des ressources utiles à votre progression.
 
+::: tip Le fil de veille
+Les derniers articles des sources de cette page, réunis au même endroit et à filtrer par source ou par mot-clé : [le fil de veille](./flux.md).
+:::
+
 ::: details Table des matières
 [[toc]]
 :::

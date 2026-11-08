@@ -19,6 +19,7 @@ export default [
     items: [
       { text: "La veille de développeur", link: "/cours/veille.md" },
       { text: "Ressources veille & développement", link: "/tp/veille/ressources.md" },
+      { text: "Le fil de veille", link: "/tp/veille/flux.md" },
       { text: "Option certification complémentaire", link: "/tp/veille/plateformes.md" }
     ]
   },
@@ -169,6 +170,7 @@ export default [
         text: "TP l'Ajax", collapsed: true, items: [
           { text: "Pratiquer l'Ajax", link: "/tp/javascript/tp4.md" },
           { text: "La BTS TV 2.0 (si vous êtes en avance)", link: "/tp/javascript/tp4.1.md" },
+          { text: "Mon lecteur de veille (si vous êtes en avance)", link: "/tp/javascript/tp4.2.md" },
           { text: "Évaluation : Mon catalogue de films", link: "/tp/javascript/eval1.md" }
         ]
       },
