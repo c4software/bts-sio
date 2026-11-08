@@ -24,7 +24,7 @@ Ce premier support prépare le terrain : une fois la dev-box prête, les trois T
 
 ## Prérequis
 
-- Une [dev-box](/cheatsheets/dev-box/) installée et à jour (version 1.63 ou plus, voir [Comment mettre à jour ?](/cheatsheets/dev-box/#comment-mettre-a-jour)), qui tourne sur un **PC x86_64** (Intel ou AMD). L'environnement iOS ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (avec un Mac, utilisez directement Xcode).
+- Une [dev-box](/cheatsheets/dev-box/) installée et à jour (version 1.65 ou plus, voir [Comment mettre à jour ?](/cheatsheets/dev-box/#comment-mettre-a-jour)), qui tourne sur un **PC x86_64** (Intel ou AMD). L'environnement iOS ne fonctionne pas sur un Raspberry Pi ni sur un Mac à puce Apple (avec un Mac, utilisez directement Xcode).
 - Un **iPhone ou un iPad**, avec son câble, sous iOS 17 au minimum.
 - Un **identifiant Apple** (gratuit). Nous verrons plus bas lequel utiliser.
 - Environ **20 Go** de libre : Xcode à télécharger pèse plusieurs Go, et le SDK construit à partir de lui aussi.

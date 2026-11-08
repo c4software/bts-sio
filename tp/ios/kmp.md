@@ -20,7 +20,7 @@ Voici ce que nous allons construire :
 
 ## Prérequis
 
-- La dev-box prête pour iOS (version 1.63 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
+- La dev-box prête pour iOS (version 1.65 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
 - Les bases de Compose : `@Composable`, `Column`, `Button`, `remember { mutableStateOf() }` (voir [Découverte des bases d'Android](/tp/android/compose/android-base.md)).
 
 ## Objectifs

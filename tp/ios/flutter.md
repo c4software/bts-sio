@@ -18,7 +18,7 @@ Nous allons construire le même écran que dans le TP Swift : un titre, un sous-
 
 ## Prérequis
 
-- La dev-box prête pour iOS (version 1.63 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
+- La dev-box prête pour iOS (version 1.65 ou plus) : le [support de préparation](./introduction.md) doit être terminé (`devbox ios status` affiche `SDK registered` et `Apple signed in`).
 - Idéalement, avoir fait [le hello world en Swift](./swift.md) : il vérifie que toute la chaîne fonctionne.
 - Environ **10 Go** de libre en plus : Flutter, le SDK Android qu'il installe avec lui, et surtout le compilateur Dart pour iOS (7 Go).
 
