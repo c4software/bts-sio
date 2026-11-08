@@ -1,5 +1,10 @@
 export default [
   {
+    text: "Débuter : par où commencer ?",
+    link: "/pages/categories/debuter.md",
+  },
+
+  {
     text: "Aides mémoires",
     link: "/pages/categories/aide-memoires.md",
   },

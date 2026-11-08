@@ -121,6 +121,7 @@ export default defineConfig({
       {
         text: 'Les parcours',
         items: [
+          { text: 'Débuter : par où commencer ?', link: '/pages/categories/debuter.md' },
           { text: 'Les fondamentaux du web', link: '/pages/categories/les-fondamentaux-du-web.md' },
           { text: 'Les TP PHP de base', link: '/pages/categories/les-tp-php-de-base.md' },
           { text: 'Les TP PHP avancés', link: '/pages/categories/les-tp-php-avances.md' },

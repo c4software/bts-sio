@@ -9,6 +9,13 @@ import RecentPages from './RecentPages.vue'
 <template>
   <div class="VPHome home-content">
     <VPHomeHero />
+    <a class="home-start" href="/pages/categories/debuter.html">
+      <span class="home-start-text">
+        <strong>Vous débutez ? Commencez ici.</strong>
+        Comment fonctionnent les supports, comment préparer votre poste, et quel parcours suivre, dans quel ordre.
+      </span>
+      <span class="home-start-link">Par où commencer →</span>
+    </a>
     <VPHomeFeatures />
     <RecentPages title="Nouveautés" more />
   </div>
@@ -33,6 +40,50 @@ import RecentPages from './RecentPages.vue'
 .home-content .VPHero .container,
 .home-content .VPFeatures .container {
   max-width: none;
+}
+
+/* Encart « Vous débutez ? » entre le hero et les cartes. */
+.home-content .home-start {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  border: 1px solid var(--vp-c-brand-1);
+  border-radius: 12px;
+  background-color: var(--vp-c-brand-soft);
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.home-content .home-start:hover {
+  background-color: var(--vp-c-bg-soft);
+}
+
+.home-start-text {
+  line-height: 24px;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+
+.home-start-text strong {
+  display: block;
+  font-size: 16px;
+  color: var(--vp-c-text-1);
+}
+
+.home-start-link {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vp-c-brand-1);
+}
+
+@media (max-width: 640px) {
+  .home-content .home-start {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Neutralise les styles markdown (.vp-doc) sur les composants du thème. */
