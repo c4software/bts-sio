@@ -21,6 +21,13 @@ import RecentUpdates from './RecentUpdates.vue'
     <RecentPages title="Nouveautés" more>
       <RecentUpdates />
     </RecentPages>
+    <a class="home-start home-start--soft" href="/tp/veille/flux.html">
+      <span class="home-start-text">
+        <strong>Le fil de veille</strong>
+        Les derniers articles de Dev.to, Hacker News, Développez.com, Reddit et de la newsletter TLDR, réunis sur une seule page. Dix minutes de lecture, deux ou trois fois par semaine.
+      </span>
+      <span class="home-start-link">Lire la veille →</span>
+    </a>
   </div>
 </template>
 
@@ -61,6 +68,17 @@ import RecentUpdates from './RecentUpdates.vue'
 
 .home-content .home-start:hover {
   background-color: var(--vp-c-bg-soft);
+}
+
+/* Variante discrète (fil de veille, sous les nouveautés). */
+.home-content .home-start--soft {
+  margin: 32px 0 0;
+  border-color: var(--vp-c-divider);
+  background-color: var(--vp-c-bg-soft);
+}
+
+.home-content .home-start--soft:hover {
+  border-color: var(--vp-c-brand-1);
 }
 
 .home-start-text {

@@ -6,7 +6,10 @@
 //   /api/veille (réponse gardée 30 minutes sur le CDN : pas de coût par visite) ;
 //   en cas d'échec, l'instantané reste affiché, sans message ;
 // - le bouton « Actualiser » refait la même demande, et prévient en cas d'échec.
-import { computed, onMounted, ref } from 'vue'
+// Deux modes de lecture sur mobile, comme dans FreshRSS Discover : la liste de
+// cartes, et l'immersif (un article plein écran, le suivant d'un geste vers le
+// haut). Sans illustration dans les flux, une page prend la teinte de sa source.
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { data as snapshot } from '../veille.data'
 import { SOURCES, type VeilleData, type VeilleItem } from '../../veille'
 
@@ -55,6 +58,9 @@ function groupTitle(key: string, sample: number): string {
   const label = dayLabel.format(sample)
   return label.charAt(0).toUpperCase() + label.slice(1)
 }
+
+const when = (item: VeilleItem) =>
+  item.date ? `${groupTitle(dayKey.format(item.date), item.date)}, ${timeLabel.format(item.date)}` : ''
 
 // En vue d'ensemble (ni source ni recherche), au plus 3 articles par source et
 // par jour : sinon un site qui publie dix articles à la minute occuperait tout
@@ -106,6 +112,17 @@ function showSource(id: string) {
   shown.value = PAGE
 }
 
+// Une teinte par source, tirée de son nom : une source garde sa couleur d'une
+// visite à l'autre (même règle que FreshRSS Discover).
+function hueOf(id: string): number {
+  const name = byId.get(id)?.name ?? id
+  let h = 7
+  for (const c of name) h = (h * 31 + c.codePointAt(0)!) % 360
+  return h
+}
+const initialOf = (id: string) => (byId.get(id)?.name ?? '?').replace(/^(le|la|les)\s+/i, '').charAt(0).toUpperCase()
+const nameOf = (id: string) => byId.get(id)?.name ?? id
+
 const failedNames = computed(() => feed.value.failed.map((id) => byId.get(id)?.name).filter(Boolean).join(', '))
 
 async function load(silent: boolean) {
@@ -125,15 +142,74 @@ async function load(silent: boolean) {
   }
 }
 
+// Modes de lecture : sur mobile seulement, mémorisé dans le navigateur.
+type Mode = 'liste' | 'immersif'
+const MODE_KEY = 'veille-mode'
+const mobile = ref(false)
+const mode = ref<Mode>('liste')
+const immersive = computed(() => mobile.value && mode.value === 'immersif')
+const pager = ref<HTMLElement | null>(null)
+const position = ref(0)
+let media: MediaQueryList | undefined
+const onMedia = (e: MediaQueryListEvent) => (mobile.value = e.matches)
+
+function setMode(m: Mode) {
+  mode.value = m
+  try {
+    localStorage.setItem(MODE_KEY, m)
+  } catch {
+    // Stockage indisponible (navigation privée) : le mode vaut pour cette visite.
+  }
+}
+
+function onScroll() {
+  const el = pager.value
+  if (el) position.value = Math.round(el.scrollTop / Math.max(el.clientHeight, 1))
+}
+
+function onKey(e: KeyboardEvent) {
+  if (immersive.value && e.key === 'Escape') setMode('liste')
+}
+
+watch(immersive, async (on) => {
+  // La page de fond ne défile plus sous le mode immersif.
+  document.documentElement.classList.toggle('veille-immersive-open', on)
+  if (on) {
+    position.value = 0
+    await nextTick()
+    pager.value?.scrollTo({ top: 0 })
+    pager.value?.focus()
+  }
+})
+
 onMounted(() => {
   mounted.value = true
+  media = window.matchMedia('(max-width: 767px)')
+  mobile.value = media.matches
+  media.addEventListener('change', onMedia)
+  try {
+    if (localStorage.getItem(MODE_KEY) === 'immersif') mode.value = 'immersif'
+  } catch {
+    // Stockage indisponible : mode liste.
+  }
+  window.addEventListener('keydown', onKey)
   load(true)
+})
+
+onBeforeUnmount(() => {
+  media?.removeEventListener('change', onMedia)
+  window.removeEventListener('keydown', onKey)
+  document.documentElement.classList.remove('veille-immersive-open')
 })
 </script>
 
 <template>
   <div class="veille">
     <div class="veille-toolbar">
+      <div class="veille-modes" role="group" aria-label="Mode de lecture">
+        <button type="button" :class="{ active: mode === 'liste' }" :aria-pressed="mode === 'liste'" @click="setMode('liste')">Liste</button>
+        <button type="button" :class="{ active: mode === 'immersif' }" :aria-pressed="mode === 'immersif'" @click="setMode('immersif')">Immersif</button>
+      </div>
       <div class="veille-fields">
         <select v-model="source" aria-label="Source" @change="shown = PAGE">
           <option value="">Toutes les sources</option>
@@ -153,14 +229,22 @@ onMounted(() => {
 
     <section v-for="group in groups" :key="group.key" class="veille-day">
       <h3 class="veille-day-title">{{ group.title }}</h3>
-      <article v-for="item in group.items" :key="item.link" class="veille-item">
-        <div class="veille-meta">
-          <span class="veille-source">{{ byId.get(item.source)?.name }}</span>
+      <a
+        v-for="item in group.items"
+        :key="item.link"
+        :href="item.link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="veille-card"
+        :style="{ '--hue': hueOf(item.source) }"
+      >
+        <span class="veille-meta">
+          <span class="veille-source">{{ nameOf(item.source) }}</span>
           <time v-if="item.date" :datetime="new Date(item.date).toISOString()">{{ timeLabel.format(item.date) }}</time>
-        </div>
-        <a :href="item.link" target="_blank" rel="noopener noreferrer" class="veille-title">{{ item.title }}</a>
-        <p v-if="item.excerpt" class="veille-excerpt">{{ item.excerpt }}</p>
-      </article>
+        </span>
+        <span class="veille-title">{{ item.title }}</span>
+        <span v-if="item.excerpt" class="veille-excerpt">{{ item.excerpt }}</span>
+      </a>
       <p v-if="group.more.length" class="veille-also">
         Et aussi, d'autres articles du jour :
         <template v-for="(m, i) in group.more" :key="m.id">
@@ -174,6 +258,42 @@ onMounted(() => {
     </button>
 
     <p v-if="failedNames && !loading" class="veille-failed">Sans réponse lors de la dernière récupération : {{ failedNames }}.</p>
+
+    <Teleport to="body">
+      <div v-if="immersive" class="veille-immersive" role="dialog" aria-modal="true" aria-label="Fil de veille, lecture immersive">
+        <div class="veille-imm-bar">
+          <button type="button" class="veille-imm-close" @click="setMode('liste')">← Liste</button>
+          <span v-if="capped.items.length" class="veille-imm-count">{{ Math.min(position + 1, capped.items.length) }} / {{ capped.items.length }}</span>
+        </div>
+        <div ref="pager" class="veille-imm-pager" tabindex="-1" @scroll.passive="onScroll">
+          <section
+            v-for="(item, i) in capped.items"
+            :key="item.link"
+            class="veille-imm-page"
+            :style="{ '--hue': hueOf(item.source) }"
+          >
+            <span class="veille-imm-initial" aria-hidden="true">{{ initialOf(item.source) }}</span>
+            <div class="veille-imm-text">
+              <span class="veille-imm-meta">
+                <span class="veille-source">{{ nameOf(item.source) }}</span>
+                <span v-if="item.date">{{ when(item) }}</span>
+              </span>
+              <h2 class="veille-imm-title">{{ item.title }}</h2>
+              <p v-if="item.excerpt" class="veille-imm-excerpt">{{ item.excerpt }}</p>
+              <a :href="item.link" target="_blank" rel="noopener noreferrer" class="veille-imm-open">Lire l'article →</a>
+              <span v-if="i === 0" class="veille-imm-hint">Glissez vers le haut pour l'article suivant</span>
+            </div>
+          </section>
+          <section class="veille-imm-page veille-imm-end">
+            <div class="veille-imm-text">
+              <h2 class="veille-imm-title">Vous êtes à jour 🎉</h2>
+              <p class="veille-imm-excerpt">C'est tout pour cette sélection. Revenez dans quelques jours, ou changez de source dans la liste.</p>
+              <button type="button" class="veille-imm-open" @click="setMode('liste')">Revenir à la liste</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -225,6 +345,30 @@ onMounted(() => {
 .veille button:disabled {
   opacity: 0.6;
   cursor: wait;
+}
+
+/* Choix du mode de lecture : sur mobile seulement. */
+.veille-modes {
+  display: none;
+  gap: 6px;
+}
+
+@media (max-width: 767px) {
+  .veille-modes {
+    display: flex;
+  }
+}
+
+.veille .veille-modes button {
+  flex: 1;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.veille .veille-modes button.active {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-white);
+  background-color: var(--vp-c-brand-1);
 }
 
 .veille-fields {
@@ -282,7 +426,7 @@ onMounted(() => {
 }
 
 .vp-doc .veille-day-title {
-  margin: 32px 0 4px;
+  margin: 32px 0 8px;
   padding: 0;
   border: 0;
   font-size: 14px;
@@ -292,55 +436,74 @@ onMounted(() => {
   color: var(--vp-c-text-2);
 }
 
-.veille-item {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--vp-c-divider);
+/* Une carte par article, cliquable en entier. */
+.vp-doc a.veille-card {
+  display: block;
+  margin: 0 0 10px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  background-color: var(--vp-c-bg-soft);
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.vp-doc a.veille-card:hover {
+  border-color: var(--vp-c-brand-1);
 }
 
 .veille-meta {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-size: 12px;
   color: var(--vp-c-text-3);
 }
 
+/* L'étiquette de la source, à sa teinte. */
 .veille-source {
   border-radius: 6px;
   padding: 1px 8px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--vp-c-brand-1);
-  background-color: var(--vp-c-brand-soft);
+  color: hsl(var(--hue, 220) 55% 32%);
+  background-color: hsl(var(--hue, 220) 70% 92%);
 }
 
-.vp-doc a.veille-title {
+.dark .veille-source {
+  color: hsl(var(--hue, 220) 70% 78%);
+  background-color: hsl(var(--hue, 220) 35% 22%);
+}
+
+.veille-card .veille-title {
   display: block;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   color: var(--vp-c-text-1);
-  text-decoration: none;
 }
 
-.vp-doc a.veille-title:hover {
+.vp-doc a.veille-card:hover .veille-title {
   color: var(--vp-c-brand-1);
 }
 
-.vp-doc .veille-excerpt {
+.veille-card .veille-excerpt {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   overflow: hidden;
-  margin: 4px 0 0;
+  margin-top: 4px;
   font-size: 14px;
   line-height: 22px;
   color: var(--vp-c-text-2);
 }
 
 .vp-doc .veille-also {
-  margin: 10px 0 0;
+  margin: 4px 0 0;
   font-size: 13px;
   color: var(--vp-c-text-2);
 }
@@ -363,5 +526,157 @@ onMounted(() => {
   margin: 24px auto 0;
   padding: 6px 16px;
   font-size: 14px;
+}
+
+/* Mode immersif : un article plein écran, le suivant d'un geste vers le haut. */
+html.veille-immersive-open,
+html.veille-immersive-open body {
+  overflow: hidden;
+}
+
+.veille-immersive {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: var(--vp-c-bg);
+}
+
+.veille-imm-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: max(12px, env(safe-area-inset-top)) 16px 12px;
+  pointer-events: none;
+}
+
+.veille-imm-bar > * {
+  pointer-events: auto;
+}
+
+.veille-imm-close {
+  border: 0;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  background-color: color-mix(in srgb, var(--vp-c-bg) 75%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.veille-imm-count {
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--vp-c-text-2);
+  background-color: color-mix(in srgb, var(--vp-c-bg) 75%, transparent);
+}
+
+.veille-imm-pager {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y mandatory;
+  outline: none;
+}
+
+.veille-imm-page {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  /* La teinte de la source, en dégradé (pas d'illustration dans les flux). */
+  background: linear-gradient(170deg, hsl(var(--hue, 220) 60% 90%), hsl(var(--hue, 220) 55% 80%));
+}
+
+.dark .veille-imm-page {
+  background: linear-gradient(170deg, hsl(var(--hue, 220) 40% 24%), hsl(var(--hue, 220) 45% 12%));
+}
+
+.veille-imm-end {
+  background: var(--vp-c-bg-soft);
+}
+
+.dark .veille-imm-end {
+  background: var(--vp-c-bg-soft);
+}
+
+/* L'initiale de la source, en filigrane. */
+.veille-imm-initial {
+  position: absolute;
+  top: 12%;
+  right: -4%;
+  font-size: 58vh;
+  font-weight: 800;
+  line-height: 1;
+  color: hsl(var(--hue, 220) 50% 50% / 0.14);
+  user-select: none;
+}
+
+.veille-imm-text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 24px 22px max(28px, env(safe-area-inset-bottom));
+}
+
+.veille-imm-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+
+.veille-imm-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--vp-c-text-1);
+}
+
+.veille-imm-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+  overflow: hidden;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--vp-c-text-1);
+  opacity: 0.85;
+}
+
+a.veille-imm-open,
+button.veille-imm-open {
+  align-self: flex-start;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 24px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--vp-c-white);
+  text-decoration: none;
+  background-color: var(--vp-c-brand-1);
+}
+
+.veille-imm-hint {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
 }
 </style>

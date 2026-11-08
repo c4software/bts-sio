@@ -106,9 +106,17 @@ const features = computed(() =>
   -webkit-line-clamp: 2;
   line-clamp: 2;
   overflow: hidden;
+  /* La carte est une colonne flexible : sans cela, le texte s'étire à la
+     hauteur de la plus grande carte et laisse voir une troisième ligne. */
+  flex-grow: 0;
+  max-height: 44px;
   padding-top: 4px;
   font-size: 13px;
   line-height: 20px;
+}
+
+.home-content .recent-pages .VPFeature .link-text {
+  margin-top: auto;
 }
 
 .home-content .recent-pages .VPFeature .link-text {

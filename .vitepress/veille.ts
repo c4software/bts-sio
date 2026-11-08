@@ -10,7 +10,7 @@ export interface VeilleSource {
   name: string
   site: string
   feed: string
-  category: 'Développement'
+  category: 'Développement' | 'Newsletters'
 }
 
 export interface VeilleItem {
@@ -38,6 +38,7 @@ export const SOURCES: VeilleSource[] = [
   { id: 'developpez', name: 'Développez.com', site: 'https://www.developpez.com/', feed: 'https://www.developpez.com/index/rss', category: 'Développement' },
   { id: 'jdn-dev', name: 'Le journal du développeur', site: 'https://www.journaldunet.com/web-tech/developpeur/', feed: 'https://www.journaldunet.com/web-tech/developpeur/rss/', category: 'Développement' },
   { id: 'medium-webdev', name: 'Medium (web development)', site: 'https://medium.com/tag/web-development', feed: 'https://medium.com/feed/tag/web-development', category: 'Développement' },
+  { id: 'tldr', name: 'TLDR', site: 'https://tldr.tech/', feed: 'https://tldr.tech/api/rss/tech', category: 'Newsletters' },
 ]
 
 // Articles gardés par source, et taille maximale d'un extrait.
@@ -97,9 +98,21 @@ export function parseFeed(xml: string, source: string): VeilleItem[] {
     // Hacker News et quelques autres n'ont qu'un lien « Comments » en guise de description.
     if (/^comments$/i.test(summary)) summary = ''
     summary = summary.replace(/\s*Continue reading on Medium »\s*$/i, '').trim()
+    // Dev.to et d'autres recommencent l'extrait par le titre.
+    if (summary.toLowerCase().startsWith(title.toLowerCase())) summary = summary.slice(title.length).trim()
     items.push({ source, title, link, date: Number.isFinite(date) ? date : 0, excerpt: summary })
   }
-  return items.sort((a, b) => b.date - a.date).slice(0, PER_SOURCE)
+  // Un même article publié plusieurs fois (Medium) : on ne garde que le plus récent.
+  const seen = new Set<string>()
+  return items
+    .sort((a, b) => b.date - a.date)
+    .filter((item) => {
+      const key = item.title.toLowerCase()
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    .slice(0, PER_SOURCE)
 }
 
 async function fetchSource(source: VeilleSource, timeoutMs: number): Promise<VeilleItem[]> {
