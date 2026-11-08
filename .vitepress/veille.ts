@@ -30,13 +30,16 @@ export interface VeilleData {
   failed: string[]
 }
 
-// La liste blanche : la fonction Netlify ne lit que ces adresses.
+// La liste blanche : la fonction Netlify ne lit que ces adresses. Toujours le flux
+// RSS public et ouvert de la source, à son adresse finale (sans redirection).
+// Hacker News passe par hnrss.org : news.ycombinator.com/rss refuse les
+// serveurs des hébergeurs (la fonction Netlify n'obtenait aucune réponse).
 export const SOURCES: VeilleSource[] = [
   { id: 'devto', name: 'Dev.to', site: 'https://dev.to/', feed: 'https://dev.to/feed', category: 'Développement' },
   { id: 'reddit-webdev', name: 'Reddit /r/webdev', site: 'https://www.reddit.com/r/webdev/', feed: 'https://www.reddit.com/r/webdev/.rss', category: 'Développement' },
-  { id: 'hn', name: 'Hacker News', site: 'https://news.ycombinator.com/', feed: 'https://news.ycombinator.com/rss', category: 'Développement' },
+  { id: 'hn', name: 'Hacker News', site: 'https://news.ycombinator.com/', feed: 'https://hnrss.org/frontpage', category: 'Développement' },
   { id: 'developpez', name: 'Développez.com', site: 'https://www.developpez.com/', feed: 'https://www.developpez.com/index/rss', category: 'Développement' },
-  { id: 'jdn-dev', name: 'Le journal du développeur', site: 'https://www.journaldunet.com/web-tech/developpeur/', feed: 'https://www.journaldunet.com/web-tech/developpeur/rss/', category: 'Développement' },
+  { id: 'jdn-dev', name: 'Le journal du développeur', site: 'https://www.journaldunet.com/web-tech/developpeur/', feed: 'https://www.journaldunet.com/developpeur/rss/', category: 'Développement' },
   { id: 'medium-webdev', name: 'Medium (web development)', site: 'https://medium.com/tag/web-development', feed: 'https://medium.com/feed/tag/web-development', category: 'Développement' },
   { id: 'tldr', name: 'TLDR', site: 'https://tldr.tech/', feed: 'https://tldr.tech/api/rss/tech', category: 'Newsletters' },
 ]
@@ -95,8 +98,11 @@ export function parseFeed(xml: string, source: string): VeilleItem[] {
     const date = Date.parse(rawDate)
     const body = isAtom ? tag(b, 'summary') ?? tag(b, 'content') : tag(b, 'description')
     let summary = excerpt(text(body))
-    // Hacker News et quelques autres n'ont qu'un lien « Comments » en guise de description.
+    // Hacker News : pas de résumé, mais les points et les commentaires.
     if (/^comments$/i.test(summary)) summary = ''
+    const hn = summary.match(/^Article URL:.*?Points:\s*(\d+).*?# Comments:\s*(\d+)/)
+    if (hn) summary = `${hn[1]} points, ${hn[2]} commentaires sur Hacker News`
+    else if (/^Article URL:/.test(summary)) summary = ''
     summary = summary.replace(/\s*Continue reading on Medium »\s*$/i, '').trim()
     // Dev.to et d'autres recommencent l'extrait par le titre.
     if (summary.toLowerCase().startsWith(title.toLowerCase())) summary = summary.slice(title.length).trim()
