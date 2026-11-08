@@ -695,6 +695,6 @@ Bravo, vous venez de faire quelque chose que vous referez très souvent en entre
 
 N'oubliez pas de pousser votre code sur le dépôt et de déposer le lien dans Moodle.
 
-La suite ? [La transition vers Laravel](../tp6.md). Demain, un framework écrira une bonne partie de ce SQL à votre place. La différence entre vous et quelqu'un qui n'aura pas fait ce TP : vous saurez **ce qu'il fait** derrière, et le jour où il ne fera pas ce que vous voulez, vous saurez reprendre la main.
+La suite ? [La POO](../poo/tp1.md) : vous allez réécrire ce que vous savez faire avec des classes et des objets. Plus tard, un framework écrira une bonne partie de ce SQL à votre place. La différence entre vous et quelqu'un qui n'aura pas fait ce TP : vous saurez **ce qu'il fait** derrière, et le jour où il ne fera pas ce que vous voulez, vous saurez reprendre la main.
 
 👋 Si vous avez des questions, n'hésitez pas.

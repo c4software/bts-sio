@@ -1,10 +1,12 @@
 <script setup lang="ts">
-// Les dernières pages créées ou modifiées (voir ../recent.data.ts), dans le
+// Les nouveautés : pages créées ou modifiées de manière importante (voir ../recent.ts), dans le
 // style des cartes de l'accueil. Sur l'accueil : les 3 premières et un lien
 // vers la page /nouveautes, qui les affiche toutes.
 import { computed } from 'vue'
 import VPFeatures from 'vitepress/dist/client/theme-default/components/VPFeatures.vue'
-import { data as pages } from '../recent.data'
+import { data } from '../recent.data'
+
+const pages = data.pages
 
 const props = withDefaults(defineProps<{ limit?: number; title?: string; more?: boolean }>(), {
   limit: 3,
@@ -26,6 +28,7 @@ const features = computed(() =>
   <section v-if="features.length" class="recent-pages">
     <h2 v-if="title" class="recent-pages-title">{{ title }}</h2>
     <VPFeatures :features="features" />
+    <slot />
     <p v-if="more && pages.length > limit" class="recent-pages-more">
       <a href="/nouveautes.html">Voir plus de nouveautés →</a>
     </p>
@@ -88,5 +91,27 @@ const features = computed(() =>
 
 .vp-doc .home-content .recent-pages-more a:hover {
   color: var(--vp-c-brand-2);
+}
+</style>
+
+<style>
+/* Accueil : des cartes plus basses, description sur deux lignes au plus. */
+.home-content .recent-pages .VPFeature .box {
+  padding: 16px 20px;
+}
+
+.home-content .recent-pages .VPFeature .details {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  padding-top: 4px;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.home-content .recent-pages .VPFeature .link-text {
+  padding-top: 8px;
 }
 </style>

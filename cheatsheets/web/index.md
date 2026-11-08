@@ -1,3 +1,7 @@
+---
+description: "Préparer son poste de développeur web sous Windows, Linux ou macOS : éditeur, outils, et pourquoi passer à Linux (jusqu'à Omarchy) pour progresser."
+---
+
 # L'outillage du développeur
 
 Préparer son environnement de développement est une étape essentielle pour tout développeur web. Selon votre système d'exploitation, les étapes peuvent varier légèrement.

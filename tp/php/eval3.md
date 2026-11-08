@@ -177,4 +177,4 @@ Le rendu se fait en deux temps :
 
 Un doute sur Git ? [Initiation à Git](/tp/git_initiation/), [Utiliser GitLab](/tp/gitlab/), [l'aide mémoire](/cheatsheets/git/).
 
-Bravo, vous avez terminé le parcours PHP ! La suite logique : [la transition vers Laravel](./tp6.md).
+Bravo, vous avez terminé la partie base de données du parcours PHP ! La suite logique : [la POO](./poo/tp1.md), où vous réécrirez ce que vous savez faire avec des classes et des objets.

@@ -4,6 +4,7 @@
 import VPHomeHero from 'vitepress/dist/client/theme-default/components/VPHomeHero.vue'
 import VPHomeFeatures from 'vitepress/dist/client/theme-default/components/VPHomeFeatures.vue'
 import RecentPages from './RecentPages.vue'
+import RecentUpdates from './RecentUpdates.vue'
 </script>
 
 <template>
@@ -17,7 +18,9 @@ import RecentPages from './RecentPages.vue'
       <span class="home-start-link">Par où commencer →</span>
     </a>
     <VPHomeFeatures />
-    <RecentPages title="Nouveautés" more />
+    <RecentPages title="Nouveautés" more>
+      <RecentUpdates />
+    </RecentPages>
   </div>
 </template>
 

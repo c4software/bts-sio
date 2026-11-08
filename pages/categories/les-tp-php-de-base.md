@@ -83,12 +83,8 @@ Vous savez écrire un site en PHP « procédural ». Avant le framework, nous r�
 [L'aide mémoire POO](/cheatsheets/poo/) et, pour approfondir (héritage, interfaces), [le cours POO complet](/cours/poo.md).
 :::
 
-## Étape 5 : Vers le framework
+## Et ensuite ?
 
-Vous avez maintenant l'ensemble des bases, et vos premières classes. La suite logique est de passer sur un framework.
+Vous avez maintenant l'ensemble des bases, vos premières classes et un code découpé : un entry-point, des pages, des modèles. Gardez bien ce découpage en tête, c'est exactement celui d'un framework : l'entry-point et sa whitelist deviennent un routeur, vos pages deviennent des contrôleurs et des vues.
 
-1. [TP 6 : Transition vers Laravel](/tp/php/tp6.md)
-
-::: tip Et ensuite ?
-La suite se trouve dans la partie [Laravel](/cours/laravel.md) et dans [l'approche MVC](/cours/mvc.md).
-:::
+La suite se trouve dans [les TP PHP avancés](/pages/categories/les-tp-php-avances.md) : le MVC, puis Laravel.

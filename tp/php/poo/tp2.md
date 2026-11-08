@@ -530,6 +530,6 @@ Vous avez maintenant deux modèles (`Idea`, `User`), une classe utilitaire (`Dat
 
 ![Schéma des classes du projet à la fin du TP 2 : les pages appellent Auth et Idea ; Auth s'appuie sur User et sur la session (user_id, user_name) ; les modèles User et Idea passent par Database::getPdo() pour parler à MariaDB](./res/tp2_classes.svg)
 
-La suite du parcours, c'est [le TP 6](../tp6.md) et [le MVC](/tp/php/mvc/tp1.md).
+La suite, c'est [le MVC](/tp/php/mvc/tp1.md), puis Laravel : l'entry-point et sa whitelist y deviennent un routeur, vos pages des contrôleurs et des vues.
 
 👋 Si vous avez des questions, n'hésitez pas. C'est à vous de jouer !

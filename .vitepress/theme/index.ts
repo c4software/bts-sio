@@ -20,6 +20,7 @@ import Center from './components/Center.vue'
 import DebianConfiguration from './components/DebianConfiguration.vue'
 import HomeContent from './components/HomeContent.vue'
 import RecentPages from './components/RecentPages.vue'
+import RecentUpdates from './components/RecentUpdates.vue'
 import ChatNavButton from './components/ChatNavButton.vue'
 import './custom.css'
 
@@ -47,5 +48,6 @@ export default {
     app.component('DebianConfiguration', DebianConfiguration)
     app.component('HomeContent', HomeContent)
     app.component('RecentPages', RecentPages)
+    app.component('RecentUpdates', RecentUpdates)
   }
 } satisfies Theme

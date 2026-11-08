@@ -1495,12 +1495,10 @@ Cette partie est disponible ici : [Introduction à la base de données avec PHP]
 Une fois la partie base de données terminée, la synthèse du parcours vous attend : [Évaluation 3 : Le mini catalogue](./eval3.md).
 :::
 
-## La suite : un framework
-
-Vous connaissez maintenant les bases du PHP « à la main ». Dans la vraie vie, nous nous appuyons sur des frameworks qui gèrent pour nous la structure, le routeur, la sécurité…
-
-[La transition vers Laravel (TP 6)](./tp6.md)
-
 ## Le PHP Objet
 
-Nous aborderons [le PHP objet avec Laravel](/cours/laravel.html)
+Cette partie est disponible ici : [le complément PHP et POO](./poo/support.md).
+
+## La suite : un framework
+
+Vous connaissez maintenant les bases du PHP « à la main ». Dans la vraie vie, nous nous appuyons sur des frameworks qui gèrent pour nous la structure, le routeur, la sécurité… Le découpage que vous avez mis en place (un entry-point, des pages, des modèles) est exactement le leur. La suite se trouve dans [les TP PHP avancés](/pages/categories/les-tp-php-avances.md).
