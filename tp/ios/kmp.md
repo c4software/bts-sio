@@ -297,14 +297,14 @@ Le projet Xcode est dans le dossier `iosApp` : c'est là que le script va. Dans 
 
 ```bash
 cd ~/dev-box/data/projets/HelloKmp/iosApp
-curl -fsSLO https://cours.brosseau.ovh/demo/ios/devbox-build.sh
+curl -fsSLO https://raw.githubusercontent.com/c4software/dev-box/main/scripts/devbox-build.sh
 chmod +x devbox-build.sh
 ```
 
 Ouvrez `iosApp/devbox-build.sh` dans VSCode : en tête du fichier, une seule ligne est à adapter. Indiquez le module Gradle qui produit le framework iOS :
 
 ```bash
-# Kotlin Multiplateforme : le module Gradle qui produit le framework iOS (par exemple :shared), vide sinon
+# Kotlin Multiplatform: the Gradle module that produces the iOS framework (for example :shared), empty otherwise
 APP_KMP=":shared"
 ```
 

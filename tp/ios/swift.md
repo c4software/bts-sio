@@ -45,7 +45,7 @@ Tout se passe **sur votre machine**, dans le dossier des projets de la dev-box (
 cd ~/dev-box/data/projets
 mkdir -p Hello/Sources
 cd Hello
-curl -fsSLO https://cours.brosseau.ovh/demo/ios/devbox-build.sh
+curl -fsSLO https://raw.githubusercontent.com/c4software/dev-box/main/scripts/devbox-build.sh
 chmod +x devbox-build.sh
 ```
 

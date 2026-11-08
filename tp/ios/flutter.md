@@ -216,7 +216,7 @@ Comme pour les autres TP, la compilation se lance depuis **votre machine**, avec
 
 ```bash
 cd ~/dev-box/data/projets/hello_flutter
-curl -fsSLO https://cours.brosseau.ovh/demo/ios/devbox-build.sh
+curl -fsSLO https://raw.githubusercontent.com/c4software/dev-box/main/scripts/devbox-build.sh
 chmod +x devbox-build.sh
 ```
 

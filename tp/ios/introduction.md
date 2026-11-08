@@ -211,7 +211,7 @@ Dans les TP, vous écrirez votre code **sur votre machine**, dans VSCode, et c'e
 ./devbox-build.sh logs       # les logs de l'application (Ctrl-C pour arrêter)
 ```
 
-<a href="/demo/ios/devbox-build.sh" download="devbox-build.sh">Télécharger devbox-build.sh</a> (chaque TP vous dit où le placer).
+Le script est maintenu dans le dépôt de la dev-box : [`scripts/devbox-build.sh`](https://github.com/c4software/dev-box/blob/main/scripts/devbox-build.sh) ([le télécharger](https://raw.githubusercontent.com/c4software/dev-box/main/scripts/devbox-build.sh)). Il est écrit en anglais, comme tout ce dépôt : ses commentaires et ses messages aussi. Chaque TP vous dit où le placer, et `devbox help ios`, dans la dev-box, le rappelle.
 
 ![Le script devbox-build.sh, lancé sur votre machine, fait travailler la dev-box par docker exec, puis l'application part sur l'iPhone, par USB ou en Wi-Fi](./res/introduction_devbox_build.svg)
 

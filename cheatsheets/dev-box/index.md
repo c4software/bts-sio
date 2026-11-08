@@ -500,7 +500,7 @@ Ajoutez la ligne `export` à votre `~/.zshrc` pour ne plus avoir à la taper. Av
 
 ### 4. Votre première application
 
-Les TP décrivent l'application dans un fichier `project.yml` ([XcodeGen](https://github.com/yonaskolb/XcodeGen)), à côté du code Swift, et la construisent avec `devbox ios xcode` : la dev-box génère le projet Xcode, compile, signe, installe et lance l'application. Le plus simple est de le faire **depuis votre machine**, avec le script <a href="/demo/ios/devbox-build.sh" download="devbox-build.sh"><code>devbox-build.sh</code></a> posé dans le dossier du projet (tout est expliqué dans [le support de préparation](/tp/ios/introduction.md#le-script-devbox-build-sh)) :
+Les TP décrivent l'application dans un fichier `project.yml` ([XcodeGen](https://github.com/yonaskolb/XcodeGen)), à côté du code Swift, et la construisent avec `devbox ios xcode` : la dev-box génère le projet Xcode, compile, signe, installe et lance l'application. Le plus simple est de le faire **depuis votre machine**, avec le script [`devbox-build.sh`](https://github.com/c4software/dev-box/blob/main/scripts/devbox-build.sh) du dépôt de la dev-box, posé dans le dossier du projet (tout est expliqué dans [le support de préparation](/tp/ios/introduction.md#le-script-devbox-build-sh)) :
 
 ```bash
 cd ~/dev-box/data/projets/Hello   # sur votre machine, à côté de project.yml
