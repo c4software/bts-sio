@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="290" viewBox="0 0 900 290" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="290" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="40" width="250" height="170" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="345" y="85" width="190" height="80" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="610" y="40" width="270" height="170" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="145" y="72" font-weight="600" font-size="16">Votre poste</text>
+    <text x="145" y="92" font-size="12" fill="#475569">là où vous développez</text>
+    <text x="440" y="118" font-weight="600">GitLab</text>
+    <text x="440" y="140" font-size="12" fill="#475569">git push, puis déploiement</text>
+    <text x="745" y="72" font-weight="600" font-size="16">Le serveur</text>
+    <text x="745" y="92" font-size="12" fill="#475569">là où votre site est en ligne</text>
+  </g>
+  <g font-size="13" fill="#0f172a">
+    <text x="40" y="125">Système : Windows, macOS ou Linux</text>
+    <text x="40" y="150">PHP, Node.js, MariaDB, Docker</text>
+    <text x="40" y="175">Interface graphique, souris</text>
+    <text x="630" y="125">Système : Linux (Debian, Alpine…)</text>
+    <text x="630" y="150">PHP, Node.js, MariaDB, Docker</text>
+    <text x="630" y="175">Terminal uniquement, via SSH</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="272" y1="125" x2="343" y2="125"/>
+    <line x1="537" y1="125" x2="608" y2="125"/>
+  </g>
+  <rect x="120" y="235" width="660" height="40" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="450" y="260" text-anchor="middle" fill="#0f172a">Développer sous Linux, c'est travailler dès le départ dans les conditions de la production</text>
+</svg>

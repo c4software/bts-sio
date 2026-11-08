@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="290" viewBox="0 0 900 290" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <rect width="900" height="290" fill="#ffffff"/>
+  <rect x="20" y="20" width="860" height="44" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="48" text-anchor="middle" font-weight="600" font-size="16" fill="#0f172a">Votre poste de travail sous Linux</text>
+  <g stroke-width="2">
+    <rect x="20"  y="84" width="200" height="186" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="240" y="84" width="200" height="186" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="460" y="84" width="200" height="186" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="680" y="84" width="200" height="186" rx="10" fill="#f1f5f9" stroke="#475569"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="120" y="114" font-weight="600" font-size="15">Développer</text>
+    <text x="340" y="114" font-weight="600" font-size="15">Naviguer, communiquer</text>
+    <text x="560" y="114" font-weight="600" font-size="15">Bureautique</text>
+    <text x="780" y="114" font-weight="600" font-size="15">Détente</text>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="120" y="150">VS Code</text>
+    <text x="120" y="176">PhpStorm, WebStorm</text>
+    <text x="120" y="202">Android Studio</text>
+    <text x="120" y="228">Docker, DBeaver</text>
+    <text x="120" y="254">Git, le terminal</text>
+    <text x="340" y="150">Firefox, Chrome</text>
+    <text x="340" y="176">Discord, Slack</text>
+    <text x="340" y="202">Zoom</text>
+    <text x="340" y="228">Teams</text>
+    <text x="340" y="246" font-size="12" fill="#475569">(dans le navigateur)</text>
+    <text x="560" y="150">LibreOffice</text>
+    <text x="560" y="168" font-size="12" fill="#475569">(fichiers Word, Excel)</text>
+    <text x="560" y="194">Microsoft 365, Google Docs</text>
+    <text x="560" y="212" font-size="12" fill="#475569">(dans le navigateur)</text>
+    <text x="560" y="238">Thunderbird</text>
+    <text x="780" y="150">Spotify</text>
+    <text x="780" y="176">VLC, mpv</text>
+    <text x="780" y="202">Steam (Proton)</text>
+    <text x="780" y="228">GIMP, Krita</text>
+  </g>
+</svg>

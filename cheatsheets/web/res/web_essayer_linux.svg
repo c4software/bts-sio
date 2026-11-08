@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="250" viewBox="0 0 900 250" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="250" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20"  y="140" width="155" height="80" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="195" y="115" width="155" height="105" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="370" y="90"  width="155" height="130" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="545" y="65"  width="155" height="155" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="720" y="40"  width="160" height="180" rx="10" fill="#fef3c7" stroke="#d97706"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="97"  y="172" font-weight="600">WSL ou dev-box</text>
+    <text x="97"  y="194" font-size="12" fill="#475569">le terminal Linux,</text>
+    <text x="97"  y="210" font-size="12" fill="#475569">sans quitter Windows</text>
+    <text x="272" y="147" font-weight="600">Clé USB « live »</text>
+    <text x="272" y="169" font-size="12" fill="#475569">on démarre dessus,</text>
+    <text x="272" y="185" font-size="12" fill="#475569">rien n'est installé</text>
+    <text x="447" y="122" font-weight="600">Machine virtuelle</text>
+    <text x="447" y="144" font-size="12" fill="#475569">un Linux complet,</text>
+    <text x="447" y="160" font-size="12" fill="#475569">dans une fenêtre</text>
+    <text x="622" y="97"  font-weight="600">Dual boot</text>
+    <text x="622" y="119" font-size="12" fill="#475569">Linux à côté de Windows,</text>
+    <text x="622" y="135" font-size="12" fill="#475569">choisi au démarrage</text>
+    <text x="800" y="72"  font-weight="600">Linux au quotidien</text>
+    <text x="800" y="94"  font-size="12" fill="#475569">sur tout le disque,</text>
+    <text x="800" y="110" font-size="12" fill="#475569">ou un ancien PC</text>
+  </g>
+  <line x1="20" y1="238" x2="878" y2="238" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="20" y="28" fill="#475569" font-size="12">De la découverte sans risque à l'immersion complète : plus on monte, plus on apprend</text>
+</svg>
