@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="470" viewBox="0 0 900 470" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="20" width="250" height="260" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="40" y="110" width="210" height="60" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="40" y="190" width="210" height="70" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="640" y="30" width="240" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="640" y="170" width="240" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="20" y="320" width="250" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="640" y="320" width="240" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="145" y="48" font-weight="600">Navigateur</text>
+    <text x="145" y="72" font-size="13">origine de la page :</text>
+    <text x="145" y="92" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">http://localhost:9000</text>
+    <text x="145" y="136">Votre JavaScript</text>
+    <text x="145" y="158" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">fetch(…)</text>
+    <text x="145" y="216" font-weight="600">Contrôle CORS</text>
+    <text x="145" y="238" font-size="12">la réponse autorise-t-elle</text>
+    <text x="145" y="253" font-size="12">l'origine de la page ?</text>
+    <text x="760" y="64" font-weight="600">dev.to</text>
+    <text x="760" y="88" font-size="13">répond avec l'en-tête</text>
+    <text x="760" y="108" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Access-Control-Allow-Origin: *</text>
+    <text x="760" y="204" font-weight="600">journalduhacker.net</text>
+    <text x="760" y="228" font-size="13">répond 200 OK avec le flux,</text>
+    <text x="760" y="248" font-size="13">mais sans cet en-tête</text>
+    <text x="145" y="352" font-weight="600">curl, PHP (file_get_contents)</text>
+    <text x="145" y="376" font-size="13">pas de navigateur,</text>
+    <text x="145" y="396" font-size="13">donc pas de contrôle CORS</text>
+    <text x="760" y="354" font-weight="600">journalduhacker.net</text>
+    <text x="760" y="378" font-size="13">répond 200 OK avec le flux</text>
+    <text x="760" y="398" font-size="13">(le même qu'au-dessus)</text>
+  </g>
+  <line x1="270" y1="50" x2="638" y2="50" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="455" y="43" text-anchor="middle" font-size="13" fill="#0f172a">GET https://dev.to/feed</text>
+  <line x1="640" y1="95" x2="272" y2="95" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="455" y="88" text-anchor="middle" font-size="13" fill="#16a34a">en-tête présent : le JavaScript lit le flux</text>
+  <line x1="270" y1="190" x2="638" y2="190" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="455" y="183" text-anchor="middle" font-size="13" fill="#0f172a">GET https://www.journalduhacker.net/rss</text>
+  <line x1="640" y1="235" x2="272" y2="235" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+  <text x="455" y="228" text-anchor="middle" font-size="13" fill="#dc2626">pas d'en-tête : réponse bloquée</text>
+  <text x="455" y="256" text-anchor="middle" font-size="12" fill="#dc2626" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">TypeError: Failed to fetch</text>
+  <line x1="270" y1="345" x2="638" y2="345" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="455" y="338" text-anchor="middle" font-size="13" fill="#0f172a">GET https://www.journalduhacker.net/rss</text>
+  <line x1="640" y1="390" x2="272" y2="390" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="455" y="383" text-anchor="middle" font-size="13" fill="#16a34a">le flux est lu, sans aucune vérification</text>
+  <line x1="20" y1="300" x2="880" y2="300" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+  <text x="450" y="450" text-anchor="middle" fill="#475569" font-size="13">La requête part et le serveur répond : c'est le navigateur qui refuse de donner la réponse à votre JavaScript.</text>
+</svg>

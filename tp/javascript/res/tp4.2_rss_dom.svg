@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="360" viewBox="0 0 900 360" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="360" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="40" width="250" height="220" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="325" y="40" width="250" height="220" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="630" y="40" width="250" height="220" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" font-weight="600" fill="#0f172a">
+    <text x="145" y="68">1. Le texte reçu</text>
+    <text x="450" y="68">2. Un document XML</text>
+    <text x="755" y="68">3. La page</text>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#0f172a" xml:space="preserve">
+    <text x="36" y="100">&lt;rss&gt;&lt;channel&gt;</text>
+    <text x="36" y="120">  &lt;item&gt;</text>
+    <text x="36" y="140">    &lt;title&gt;Mon serveur…&lt;/title&gt;</text>
+    <text x="36" y="160">    &lt;link&gt;https://…&lt;/link&gt;</text>
+    <text x="36" y="180">    &lt;pubDate&gt;Sat, 07 Nov…</text>
+    <text x="36" y="200">  &lt;/item&gt;</text>
+    <text x="36" y="220">  &lt;item&gt;…&lt;/item&gt;</text>
+    <text x="36" y="240">&lt;/channel&gt;&lt;/rss&gt;</text>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#0f172a" xml:space="preserve">
+    <text x="345" y="96">rss</text>
+    <text x="345" y="116">└ channel</text>
+    <text x="345" y="136">  ├ item</text>
+    <text x="345" y="156">  │ ├ title</text>
+    <text x="345" y="176">  │ ├ link</text>
+    <text x="345" y="196">  │ └ pubDate</text>
+    <text x="345" y="216">  ├ item</text>
+    <text x="345" y="236">  └ …</text>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#0f172a" xml:space="preserve">
+    <text x="650" y="100">ul#articles</text>
+    <text x="650" y="122">├ li</text>
+    <text x="650" y="144">│ ├ a  (titre, lien)</text>
+    <text x="650" y="166">│ └ small (date)</text>
+    <text x="650" y="188">├ li</text>
+    <text x="650" y="210">└ …</text>
+  </g>
+  <text x="755" y="242" text-anchor="middle" font-size="12" fill="#475569">un li par item</text>
+  <line x1="270" y1="150" x2="323" y2="150" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="575" y1="150" x2="628" y2="150" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#0f172a" text-anchor="middle">
+    <text x="297" y="290">new DOMParser()</text>
+    <text x="297" y="308">.parseFromString(texte, "text/xml")</text>
+    <text x="602" y="290">querySelectorAll("item")</text>
+    <text x="602" y="308">querySelector("title").textContent</text>
+  </g>
+  <path d="M297,276 V262" stroke="#475569" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>
+  <path d="M602,276 V262" stroke="#475569" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/>
+  <text x="450" y="342" text-anchor="middle" fill="#475569" font-size="13">Le document XML n'est jamais affiché : on le parcourt avec les mêmes querySelector que la page.</text>
+</svg>

@@ -40,6 +40,7 @@ Les TP suivent [le complément de cours JavaScript](/tp/javascript/support.md).
 
 1. [TP 4 : Pratiquer l'Ajax](/tp/javascript/tp4.md)
 2. [TP 4.1 : La BTS TV 2.0 (Ajax)](/tp/javascript/tp4.1.md) (si vous êtes en avance)
+3. [TP 4.2 : Mon lecteur de veille (Ajax, RSS et CORS)](/tp/javascript/tp4.2.md) (si vous êtes en avance)
 
 ## Semaine 4 : Le point étape
 

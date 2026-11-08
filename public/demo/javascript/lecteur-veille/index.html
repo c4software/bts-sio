@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon lecteur de veille</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+      }
+      small {
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mon lecteur de veille</h1>
+
+    <label for="source">Source :</label>
+    <select id="source">
+      <option value="devto">DEV Community</option>
+      <option value="tldr">TLDR Tech</option>
+      <option value="journalduhacker">Journal du hacker</option>
+    </select>
+
+    <ul id="articles">
+      <!-- Rempli par veille.js -->
+    </ul>
+
+    <script src="veille.js"></script>
+  </body>
+</html>
