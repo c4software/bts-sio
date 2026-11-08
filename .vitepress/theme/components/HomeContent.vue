@@ -24,7 +24,8 @@ import RecentUpdates from './RecentUpdates.vue'
     <a class="home-start home-start--soft" href="/tp/veille/flux.html">
       <span class="home-start-text">
         <strong>Le fil de veille</strong>
-        Les derniers articles de Dev.to, Hacker News, Développez.com, Reddit et de la newsletter TLDR, réunis sur une seule page. Dix minutes de lecture, deux ou trois fois par semaine.
+        Les derniers articles de Dev.to, Hacker News, Développez.com, Reddit et de la newsletter TLDR, réunis sur une
+        seule page.
       </span>
       <span class="home-start-link">Lire la veille →</span>
     </a>
