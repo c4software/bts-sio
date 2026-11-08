@@ -1,14 +1,14 @@
 ---
-description: "Le fil de veille : les derniers articles des sources conseillées pour le développement (Dev.to, Hacker News, Développez.com, newsletters…), réunis sur une seule page, à filtrer par source ou par mot-clé."
+description: "Le fil de veille : les derniers articles des sources conseillées pour le développement (Dev.to, Hacker News, Développez.com, Reddit…), réunis sur une seule page, à filtrer par source ou par mot-clé."
 aside: false
 ---
 
 # Le fil de veille
 
-Faire sa veille, c'est prendre l'habitude de lire régulièrement ce qui se passe dans notre métier. Pour vous aider à démarrer, cette page réunit les derniers articles des sources de [la page Ressources](./ressources.md) consacrées au développement, et quelques newsletters.
+Faire sa veille, c'est prendre l'habitude de lire régulièrement ce qui se passe dans notre métier. Pour vous aider à démarrer, cette page réunit les derniers articles des sources de [la page Ressources](./ressources.md) consacrées au développement.
 
 ::: tip Comment l'utiliser
-- Filtrez par catégorie ou par source, ou cherchez un mot-clé (`PHP`, `Linux`, `sécurité`…).
+- Filtrez par source, ou cherchez un mot-clé (`PHP`, `Linux`, `sécurité`…).
 - Un article vous intéresse ? Il s'ouvre sur le site d'origine : c'est là qu'il faut le lire (et pas seulement le titre 😉).
 - Prenez dix minutes, deux ou trois fois par semaine. C'est la régularité qui compte, pas la quantité.
 :::

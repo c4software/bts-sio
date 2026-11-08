@@ -10,7 +10,7 @@ export interface VeilleSource {
   name: string
   site: string
   feed: string
-  category: 'Développement' | 'Newsletters'
+  category: 'Développement'
 }
 
 export interface VeilleItem {
@@ -38,8 +38,6 @@ export const SOURCES: VeilleSource[] = [
   { id: 'developpez', name: 'Développez.com', site: 'https://www.developpez.com/', feed: 'https://www.developpez.com/index/rss', category: 'Développement' },
   { id: 'jdn-dev', name: 'Le journal du développeur', site: 'https://www.journaldunet.com/web-tech/developpeur/', feed: 'https://www.journaldunet.com/web-tech/developpeur/rss/', category: 'Développement' },
   { id: 'medium-webdev', name: 'Medium (web development)', site: 'https://medium.com/tag/web-development', feed: 'https://medium.com/feed/tag/web-development', category: 'Développement' },
-  { id: 'jsweekly', name: 'JavaScript Weekly', site: 'https://javascriptweekly.com/', feed: 'https://cprss.s3.amazonaws.com/javascriptweekly.com.xml', category: 'Newsletters' },
-  { id: 'tldr', name: 'TLDR', site: 'https://tldr.tech/', feed: 'https://tldr.tech/api/rss/tech', category: 'Newsletters' },
 ]
 
 // Articles gardés par source, et taille maximale d'un extrait.

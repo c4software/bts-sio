@@ -11,11 +11,8 @@ import { data as snapshot } from '../veille.data'
 import { SOURCES, type VeilleData, type VeilleItem } from '../../veille'
 
 const PAGE = 30
-const CATEGORIES = ['Toutes', 'Développement', 'Newsletters'] as const
-type Category = (typeof CATEGORIES)[number]
 
 const feed = ref<VeilleData>(snapshot)
-const category = ref<Category>('Toutes')
 const source = ref('')
 const search = ref('')
 const shown = ref(PAGE)
@@ -26,7 +23,7 @@ const error = ref('')
 const mounted = ref(false)
 
 const byId = new Map(SOURCES.map((s) => [s.id, s]))
-const sources = computed(() => SOURCES.filter((s) => category.value === 'Toutes' || s.category === category.value))
+const sources = SOURCES
 
 const normalize = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 
@@ -35,7 +32,6 @@ const filtered = computed(() => {
   return feed.value.items.filter((item) => {
     const s = byId.get(item.source)
     if (!s) return false
-    if (category.value !== 'Toutes' && s.category !== category.value) return false
     if (source.value && item.source !== source.value) return false
     return !q || normalize(item.title + ' ' + item.excerpt).includes(q)
   })
@@ -112,12 +108,6 @@ function showSource(id: string) {
 
 const failedNames = computed(() => feed.value.failed.map((id) => byId.get(id)?.name).filter(Boolean).join(', '))
 
-function selectCategory(c: Category) {
-  category.value = c
-  if (source.value && !sources.value.some((s) => s.id === source.value)) source.value = ''
-  shown.value = PAGE
-}
-
 async function load(silent: boolean) {
   loading.value = true
   if (!silent) error.value = ''
@@ -144,16 +134,6 @@ onMounted(() => {
 <template>
   <div class="veille">
     <div class="veille-toolbar">
-      <div class="veille-categories" role="group" aria-label="Catégorie">
-        <button
-          v-for="c in CATEGORIES"
-          :key="c"
-          type="button"
-          :class="{ active: category === c }"
-          :aria-pressed="category === c"
-          @click="selectCategory(c)"
-        >{{ c }}</button>
-      </div>
       <div class="veille-fields">
         <select v-model="source" aria-label="Source" @change="shown = PAGE">
           <option value="">Toutes les sources</option>
@@ -175,7 +155,7 @@ onMounted(() => {
       <h3 class="veille-day-title">{{ group.title }}</h3>
       <article v-for="item in group.items" :key="item.link" class="veille-item">
         <div class="veille-meta">
-          <span class="veille-source" :data-category="byId.get(item.source)?.category">{{ byId.get(item.source)?.name }}</span>
+          <span class="veille-source">{{ byId.get(item.source)?.name }}</span>
           <time v-if="item.date" :datetime="new Date(item.date).toISOString()">{{ timeLabel.format(item.date) }}</time>
         </div>
         <a :href="item.link" target="_blank" rel="noopener noreferrer" class="veille-title">{{ item.title }}</a>
@@ -245,18 +225,6 @@ onMounted(() => {
 .veille button:disabled {
   opacity: 0.6;
   cursor: wait;
-}
-
-.veille-categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.veille .veille-categories button.active {
-  border-color: var(--vp-c-brand-1);
-  color: var(--vp-c-white);
-  background-color: var(--vp-c-brand-1);
 }
 
 .veille-fields {
@@ -344,16 +312,6 @@ onMounted(() => {
   font-weight: 600;
   color: var(--vp-c-brand-1);
   background-color: var(--vp-c-brand-soft);
-}
-
-.veille-source[data-category='Développement'] {
-  color: var(--vp-c-green-1);
-  background-color: var(--vp-c-green-soft);
-}
-
-.veille-source[data-category='Newsletters'] {
-  color: var(--vp-c-yellow-1);
-  background-color: var(--vp-c-yellow-soft);
 }
 
 .vp-doc a.veille-title {
