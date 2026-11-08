@@ -16,6 +16,8 @@ Cette série de trois TP fait le tour du sujet :
 2. [l'utilisation](./utilisation.md) : installer un agent, le brancher sur un modèle gratuit, et le faire travailler sur un vrai petit projet avec une méthode ;
 3. [les limites](./limites.md) : tout ce qui peut mal tourner, et ce que l'on attend de vous en tant que développeur.
 
+Les notions de la série sont aussi résumées dans [les slides du cours](/cours/agentic.md).
+
 Pas d'installation dans ce TP : on démonte la machine pour comprendre comment elle marche. Ça vous servira à chaque fois qu'un agent fera quelque chose de surprenant (et ça arrivera).
 
 ::: tip Merci à AMD University

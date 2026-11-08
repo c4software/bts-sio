@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="330" viewBox="0 0 900 330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="330" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="40" width="250" height="170" rx="12" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="325" y="40" width="250" height="170" rx="12" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="630" y="40" width="250" height="170" rx="12" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="145" y="78" font-weight="600" font-size="20">Le modèle</text>
+    <text x="145" y="102" font-size="14" fill="#1d4ed8">propose</text>
+    <text x="145" y="138" font-size="14" fill="#475569">prédit le texte le plus probable</text>
+    <text x="145" y="160" font-size="14" fill="#475569">demande des outils</text>
+    <text x="145" y="182" font-size="14" fill="#475569">ne retient rien, n'exécute rien</text>
+
+    <text x="450" y="78" font-weight="600" font-size="20">L'agent</text>
+    <text x="450" y="102" font-size="14" fill="#b45309">exécute</text>
+    <text x="450" y="138" font-size="14" fill="#475569">lit, modifie, lance les commandes</text>
+    <text x="450" y="160" font-size="14" fill="#475569">avec vos droits</text>
+    <text x="450" y="182" font-size="14" fill="#475569">dans les limites des permissions</text>
+
+    <text x="755" y="78" font-weight="600" font-size="20">Vous</text>
+    <text x="755" y="102" font-size="14" fill="#15803d">validez et livrez</text>
+    <text x="755" y="138" font-size="14" fill="#475569">relisez chaque diff</text>
+    <text x="755" y="160" font-size="14" fill="#475569">testez, commitez</text>
+    <text x="755" y="182" font-size="14" fill="#475569">savez expliquer chaque ligne</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#a)">
+    <path d="M270,125 H323"/>
+    <path d="M575,125 H628"/>
+  </g>
+  <rect x="630" y="235" width="250" height="60" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="755" y="260" text-anchor="middle" font-weight="600" fill="#166534">Le responsable du code,</text>
+  <text x="755" y="282" text-anchor="middle" font-weight="600" fill="#166534">c'est vous.</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="350" viewBox="0 0 900 350" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="350" fill="#ffffff"/>
+  <rect x="15" y="20" width="260" height="250" rx="14" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="145" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#16a34a">VOTRE MACHINE</text>
+  <g stroke-width="2">
+    <rect x="35" y="60" width="220" height="80" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="35" y="170" width="220" height="80" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="345" y="170" width="220" height="80" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="645" y="60" width="240" height="190" rx="12" fill="#fee2e2" stroke="#dc2626"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="145" y="90" font-weight="600">Le projet</text>
+    <text x="145" y="112" font-size="12" fill="#475569">code, .env, données de test,</text>
+    <text x="145" y="128" font-size="12" fill="#475569">historique Git</text>
+    <text x="145" y="200" font-weight="600">L'agent</text>
+    <text x="145" y="222" font-size="12" fill="#475569">envoie tout ce qu'il a lu</text>
+    <text x="145" y="238" font-size="12" fill="#475569">ou exécuté</text>
+    <text x="455" y="200" font-weight="600">llm-proxy (le lycée)</text>
+    <text x="455" y="222" font-size="12" fill="#475569">voit passer le contenu,</text>
+    <text x="455" y="238" font-size="12" fill="#475569">ne garde que des compteurs</text>
+    <text x="765" y="92" font-weight="600">Le fournisseur du modèle</text>
+    <text x="765" y="112" font-size="12" fill="#475569">NVIDIA, OpenCode, AMD…</text>
+    <text x="765" y="148" font-size="12" fill="#0f172a">le modèle lit tout le contexte,</text>
+    <text x="765" y="164" font-size="12" fill="#0f172a">à chaque tour</text>
+    <text x="765" y="200" font-size="12" fill="#0f172a">selon ses conditions, il peut</text>
+    <text x="765" y="216" font-size="12" fill="#0f172a">garder, journaliser ou entraîner</text>
+    <text x="765" y="232" font-size="12" fill="#0f172a">ses modèles sur vos échanges</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="145" y1="140" x2="145" y2="168"/>
+    <line x1="255" y1="210" x2="343" y2="210"/>
+    <line x1="565" y1="210" x2="643" y2="210"/>
+    <path d="M255,190 C320,120 560,100 643,100"/>
+  </g>
+  <text x="300" y="200" text-anchor="middle" font-size="11" fill="#475569">Internet</text>
+  <text x="470" y="88" text-anchor="middle" font-size="11" fill="#475569">ou directement, sans le proxy</text>
+  <text x="20" y="300" font-size="13" fill="#0f172a">Tout ce qui entre dans le contexte quitte votre machine : un fichier lu, la sortie d'une commande, un secret affiché.</text>
+  <text x="20" y="322" font-size="13" fill="#0f172a">Avant de lancer un agent sur un projet, demandez-vous : ai-je le droit d'envoyer ce code et ces données à ce service ?</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+  <text x="20" y="30" font-weight="600" fill="#0f172a">La compaction, sur une fenêtre de contexte de 32 768 tokens</text>
+
+  <!-- Avant -->
+  <text x="20" y="86" font-weight="600" fill="#0f172a">Tour 14</text>
+  <text x="20" y="104" font-size="12" fill="#475569">avant</text>
+  <rect x="170" y="62" width="600" height="44" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect x="170" y="62" width="106" height="44" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+  <rect x="276" y="62" width="403" height="44" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="223" y="89" text-anchor="middle" font-size="12" fill="#334155">consignes</text>
+  <text x="477" y="89" text-anchor="middle" font-size="12" fill="#92400e">historique : 13 tours, fichiers lus, sorties de commandes</text>
+  <text x="782" y="89" font-size="13" fill="#0f172a">≈ 27 800</text>
+  <!-- seuil 80 % -->
+  <line x1="650" y1="50" x2="650" y2="118" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="650" y="132" text-anchor="middle" font-size="12" fill="#dc2626">seuil de compaction (ici 80 %)</text>
+
+  <!-- Flèche -->
+  <line x1="450" y1="142" x2="450" y2="206" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="470" y="150" width="410" height="50" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="675" y="171" text-anchor="middle" font-size="13" font-weight="600" fill="#0f172a">Compaction</text>
+  <text x="675" y="190" text-anchor="middle" font-size="12" fill="#1e3a8a">l'agent demande au modèle de résumer l'historique</text>
+
+  <!-- Après -->
+  <text x="20" y="240" font-weight="600" fill="#0f172a">Tour 15</text>
+  <text x="20" y="258" font-size="12" fill="#475569">après</text>
+  <rect x="170" y="216" width="600" height="44" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect x="170" y="216" width="106" height="44" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+  <rect x="276" y="216" width="28" height="44" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <rect x="304" y="216" width="37" height="44" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="223" y="243" text-anchor="middle" font-size="12" fill="#334155">consignes</text>
+  <text x="353" y="243" font-size="13" fill="#0f172a">≈ 9 300 : de la place pour continuer</text>
+
+  <!-- Légende -->
+  <rect x="20" y="292" width="16" height="16" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+  <text x="44" y="305" font-size="13" fill="#0f172a">Consignes de l'agent, outils, AGENTS.md : renvoyés tels quels, ils survivent</text>
+  <rect x="20" y="318" width="16" height="16" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="44" y="331" font-size="13" fill="#0f172a">Le résumé : le but, les décisions, les fichiers modifiés, ce qu'il reste à faire</text>
+  <rect x="20" y="344" width="16" height="16" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="44" y="357" font-size="13" fill="#0f172a">L'historique : avant, tout ; après, seulement les derniers échanges</text>
+  <text x="20" y="386" font-size="13" fill="#dc2626">Ce qui n'est pas dans le résumé est perdu : le contenu exact des fichiers lus, une consigne donnée en route…</text>
+</svg>

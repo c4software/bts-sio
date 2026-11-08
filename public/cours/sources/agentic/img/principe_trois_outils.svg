@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="380" viewBox="0 0 900 380" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="380" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="20" width="270" height="290" rx="12" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="315" y="20" width="270" height="290" rx="12" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="610" y="20" width="270" height="290" rx="12" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g fill="#0f172a">
+    <text x="155" y="52" text-anchor="middle" font-weight="700" font-size="17">L'autocomplétion</text>
+    <text x="450" y="52" text-anchor="middle" font-weight="700" font-size="17">Le chat</text>
+    <text x="745" y="52" text-anchor="middle" font-weight="700" font-size="17">L'agent de code</text>
+  </g>
+  <g font-size="12" fill="#475569" font-weight="600">
+    <text x="40" y="88">CE QU'IL FAIT</text><text x="335" y="88">CE QU'IL FAIT</text><text x="630" y="88">CE QU'IL FAIT</text>
+    <text x="40" y="160">CE QU'IL VOIT</text><text x="335" y="160">CE QU'IL VOIT</text><text x="630" y="160">CE QU'IL VOIT</text>
+    <text x="40" y="232">QUI AGIT ?</text><text x="335" y="232">QUI AGIT ?</text><text x="630" y="232">QUI AGIT ?</text>
+  </g>
+  <g font-size="14" fill="#0f172a">
+    <text x="40" y="110">Propose la suite de la ligne</text>
+    <text x="40" y="128">pendant que vous tapez</text>
+    <text x="40" y="182">Le fichier ouvert,</text>
+    <text x="40" y="200">autour du curseur</text>
+    <text x="40" y="254">Vous : Tab pour accepter,</text>
+    <text x="40" y="272">un tour et c'est fini</text>
+    <text x="335" y="110">Répond par du texte</text>
+    <text x="335" y="128">et des bouts de code</text>
+    <text x="335" y="182">Seulement ce que</text>
+    <text x="335" y="200">vous collez dans la discussion</text>
+    <text x="335" y="254">Vous : copier, coller,</text>
+    <text x="335" y="272">lancer, revenir avec l'erreur</text>
+    <text x="630" y="110">Lit, modifie, lance</text>
+    <text x="630" y="128">des commandes, recommence</text>
+    <text x="630" y="182">Le projet entier,</text>
+    <text x="630" y="200">et la sortie de ses commandes</text>
+    <text x="630" y="254">Lui, en boucle, avec vos</text>
+    <text x="630" y="272">permissions ; vous relisez</text>
+  </g>
+  <g font-size="12" fill="#475569" text-anchor="middle" font-style="italic">
+    <text x="155" y="298">Les suggestions de Copilot</text>
+    <text x="450" y="298">ChatGPT, Le Chat, Claude.ai</text>
+    <text x="745" y="298">OpenCode, Claude Code, Codex, pi</text>
+  </g>
+  <path d="M40,345 H858" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <text x="450" y="337" text-anchor="middle" font-size="13" fill="#475569">de plus en plus d'autonomie… et de plus en plus de choses à vérifier</text>
+</svg>

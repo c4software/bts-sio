@@ -27,6 +27,7 @@ export default [
   {
     collapsed: true, text: "Le développement agentique",
     items: [
+      { text: "Le cours (slides)", link: "/cours/agentic.md" },
       { text: "Le principe", link: "/tp/agentic/principe.md" },
       { text: "Utiliser un agent", link: "/tp/agentic/utilisation.md" },
       { text: "Les limites", link: "/tp/agentic/limites.md" }

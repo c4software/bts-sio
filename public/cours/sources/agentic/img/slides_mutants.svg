@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+  <!-- code d'origine -->
+  <rect x="20" y="140" width="200" height="120" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="120" y="170" text-anchor="middle" font-weight="600" fill="#0f172a">Le code</text>
+  <text x="120" y="196" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#334155">subtotal &lt; 5000</text>
+  <text x="120" y="216" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#334155">? 490 : 0</text>
+  <text x="120" y="242" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#334155">remise = 0.1</text>
+  <!-- mutants -->
+  <g stroke-width="2">
+    <rect x="300" y="40" width="230" height="70" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="300" y="165" width="230" height="70" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="300" y="290" width="230" height="70" rx="10" fill="#fef3c7" stroke="#d97706"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="415" y="68" font-weight="600">Mutant 1</text>
+    <text x="415" y="92" font-family="ui-monospace, monospace" font-size="14" fill="#92400e">&lt;  devient  &lt;=</text>
+    <text x="415" y="193" font-weight="600">Mutant 2</text>
+    <text x="415" y="217" font-family="ui-monospace, monospace" font-size="14" fill="#92400e">490  devient  590</text>
+    <text x="415" y="318" font-weight="600">Mutant 3</text>
+    <text x="415" y="342" font-family="ui-monospace, monospace" font-size="14" fill="#92400e">0.1  devient  0.2</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#a)">
+    <path d="M220,185 C260,185 260,75 298,75"/>
+    <path d="M220,200 H298"/>
+    <path d="M220,215 C260,215 260,325 298,325"/>
+    <path d="M530,75 H598"/>
+    <path d="M530,200 H598"/>
+    <path d="M530,325 H598"/>
+  </g>
+  <text x="565" y="30" text-anchor="middle" font-size="13" fill="#475569">npm test</text>
+  <!-- résultats -->
+  <g stroke-width="2">
+    <rect x="600" y="40" width="280" height="70" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <rect x="600" y="165" width="280" height="70" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <rect x="600" y="290" width="280" height="70" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="740" y="68" font-weight="600" fill="#991b1b">Un test échoue</text>
+    <text x="740" y="92" font-size="13" fill="#475569">mutant tué : bon test</text>
+    <text x="740" y="193" font-weight="600" fill="#991b1b">Un test échoue</text>
+    <text x="740" y="217" font-size="13" fill="#475569">mutant tué : bon test</text>
+    <text x="740" y="318" font-weight="600" fill="#166534">Tout reste vert !</text>
+    <text x="740" y="342" font-size="13" fill="#475569">mutant survivant : il manque un test</text>
+  </g>
+</svg>

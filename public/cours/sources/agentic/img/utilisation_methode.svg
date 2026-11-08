@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="275" viewBox="0 0 900 275" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="275" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="15" y="70" width="150" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="195" y="70" width="150" height="90" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="375" y="70" width="150" height="90" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="555" y="70" width="150" height="90" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="735" y="70" width="150" height="90" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="90" y="104" font-weight="600">1. Décrire</text>
+    <text x="90" y="126" font-size="12" fill="#475569">une tâche précise,</text>
+    <text x="90" y="142" font-size="12" fill="#475569">critères de réussite</text>
+    <text x="270" y="104" font-weight="600">2. Planifier</text>
+    <text x="270" y="126" font-size="12" fill="#475569">l'agent propose,</text>
+    <text x="270" y="142" font-size="12" fill="#475569">vous validez</text>
+    <text x="450" y="104" font-weight="600">3. Relire le diff</text>
+    <text x="450" y="126" font-size="12" fill="#475569">git diff, ligne</text>
+    <text x="450" y="142" font-size="12" fill="#475569">par ligne</text>
+    <text x="630" y="104" font-weight="600">4. Tester</text>
+    <text x="630" y="126" font-size="12" fill="#475569">npm test, puis</text>
+    <text x="630" y="142" font-size="12" fill="#475569">à la main dans la page</text>
+    <text x="810" y="104" font-weight="600">5. Commiter</text>
+    <text x="810" y="126" font-size="12" fill="#475569">un commit par étape,</text>
+    <text x="810" y="142" font-size="12" fill="#475569">message écrit par vous</text>
+  </g>
+  <text x="450" y="40" text-anchor="middle" font-size="13" fill="#475569">vous êtes aux commandes à chaque flèche : l'agent ne passe jamais seul à l'étape suivante</text>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="165" y1="115" x2="193" y2="115"/>
+    <line x1="345" y1="115" x2="373" y2="115"/>
+    <line x1="525" y1="115" x2="553" y2="115"/>
+    <line x1="705" y1="115" x2="733" y2="115"/>
+  </g>
+  <g stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowr)">
+    <path d="M450,160 V220 H90 V162"/>
+    <path d="M630,160 V250 H70 V162"/>
+  </g>
+  <g font-size="12" fill="#dc2626" text-anchor="middle">
+    <text x="270" y="213">pas d'accord avec le diff ? git restore, et vous reformulez</text>
+    <text x="350" y="243">un test échoue ? vous comprenez pourquoi avant de relancer l'agent</text>
+  </g>
+  <text x="810" y="200" text-anchor="middle" font-size="12" fill="#16a34a">puis tâche suivante</text>
+</svg>

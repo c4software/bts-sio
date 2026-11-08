@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="420" viewBox="0 0 900 420" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+<rect width="900" height="420" fill="#ffffff"/>
+<text x="20" y="30" font-weight="600" fill="#0f172a">Ce qu'OpenCode envoie au modèle à chaque tour (mesuré sur le projet bts-panier)</text>
+<text x="20" y="86" font-weight="600" fill="#0f172a">Tour 1</text>
+<rect x="170.0" y="60" width="192.0" height="40" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<rect x="362.0" y="60" width="298.7" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<rect x="660.7" y="60" width="2.4" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<text x="675.1" y="86" font-size="13" fill="#0f172a">≈ 5 800 tokens</text>
+<text x="20" y="148" font-weight="600" fill="#0f172a">Tour 2</text>
+<rect x="170.0" y="122" width="192.0" height="40" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<rect x="362.0" y="122" width="298.7" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<rect x="660.7" y="122" width="2.4" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="663.1" y="122" width="33.5" height="40" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="708.6" y="148" font-size="13" fill="#0f172a">≈ 6 200 tokens</text>
+<text x="20" y="210" font-weight="600" fill="#0f172a">Tour 3</text>
+<rect x="170.0" y="184" width="192.0" height="40" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<rect x="362.0" y="184" width="298.7" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<rect x="660.7" y="184" width="2.4" height="40" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="663.1" y="184" width="33.5" height="40" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<rect x="696.6" y="184" width="29.3" height="40" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/>
+<text x="737.9" y="210" font-size="13" fill="#0f172a">≈ 6 500 tokens</text>
+<text x="266.0" y="86" text-anchor="middle" font-size="12" fill="#334155">consignes de l'agent</text>
+<text x="511.3" y="86" text-anchor="middle" font-size="12" fill="#1e3a8a">définition des 12 outils</text>
+<rect x="20" y="258" width="16" height="16" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<text x="44" y="271" font-size="13" fill="#0f172a">Consignes de l'agent et AGENTS.md (≈ 9 000 caractères)</text>
+<rect x="20" y="284" width="16" height="16" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="44" y="297" font-size="13" fill="#0f172a">Définition des outils : read, edit, shell… (≈ 14 000 caractères)</text>
+<rect x="20" y="310" width="16" height="16" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<text x="44" y="323" font-size="13" fill="#0f172a">Votre demande (114 caractères !)</text>
+<rect x="470" y="258" width="16" height="16" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+<text x="494" y="271" font-size="13" fill="#0f172a">Appel de read et contenu de src/panier.js</text>
+<rect x="470" y="284" width="16" height="16" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/>
+<text x="494" y="297" font-size="13" fill="#0f172a">Appel de shell et sortie de npm test</text>
+<text x="20" y="364" font-size="13" fill="#475569">Le modèle ne retient rien d'un tour à l'autre : tout le début est renvoyé à chaque fois.</text>
+<text x="20" y="384" font-size="13" fill="#475569">Trois tours ≈ 18 500 tokens d'entrée facturés, pour une demande de 114 caractères.</text>
+<text x="20" y="408" font-size="12" fill="#64748b">Estimation à 4 caractères par token. OpenCode 2.2.6, modèle de démonstration derrière llm-proxy.</text>
+</svg>

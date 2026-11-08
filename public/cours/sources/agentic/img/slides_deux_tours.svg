@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="470" viewBox="0 0 900 470" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="16">
+  <defs>
+    <marker id="ab" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="ao" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <!-- en-têtes -->
+  <g stroke-width="2">
+    <rect x="70" y="16" width="200" height="54" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="630" y="16" width="200" height="54" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a" font-weight="600">
+    <text x="170" y="40">L'agent</text>
+    <text x="730" y="40">Le modèle</text>
+  </g>
+  <g text-anchor="middle" font-size="12" fill="#475569">
+    <text x="170" y="60">sur votre machine</text>
+    <text x="730" y="60">chez le fournisseur</text>
+  </g>
+  <!-- lignes de vie -->
+  <g stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6">
+    <path d="M170,70 V455"/>
+    <path d="M730,70 V455"/>
+  </g>
+  <!-- tour 1 -->
+  <text x="20" y="112" font-size="13" font-weight="600" fill="#64748b">Tour 1</text>
+  <path d="M174,120 H726" stroke="#2563eb" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+  <text x="450" y="110" text-anchor="middle" fill="#2563eb">system + demande + liste des outils</text>
+  <path d="M726,170 H174" stroke="#d97706" stroke-width="2.5" fill="none" marker-end="url(#ao)"/>
+  <text x="450" y="160" text-anchor="middle" fill="#b45309">tool_calls : read("src/panier.js")</text>
+  <text x="450" y="190" text-anchor="middle" font-size="13" fill="#b45309">finish_reason : tool_calls</text>
+  <!-- exécution -->
+  <rect x="60" y="210" width="220" height="62" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="170" y="237" text-anchor="middle" font-weight="600" fill="#0f172a">L'agent lit le fichier</text>
+  <text x="170" y="258" text-anchor="middle" font-size="13" fill="#475569">le modèle, lui, n'exécute rien</text>
+  <!-- tour 2 -->
+  <text x="20" y="322" font-size="13" font-weight="600" fill="#64748b">Tour 2</text>
+  <path d="M174,330 H726" stroke="#2563eb" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+  <text x="450" y="306" text-anchor="middle" fill="#2563eb">tout l'historique, à nouveau</text>
+  <text x="450" y="322" text-anchor="middle" font-size="13" fill="#2563eb">+ l'appel d'outil + un message « tool » (le contenu du fichier)</text>
+  <path d="M726,385 H174" stroke="#16a34a" stroke-width="2.5" fill="none" marker-end="url(#ag)"/>
+  <text x="450" y="375" text-anchor="middle" fill="#15803d">« subtotal additionne prix × quantité… »</text>
+  <text x="450" y="405" text-anchor="middle" font-size="13" fill="#15803d">finish_reason : stop, la boucle s'arrête</text>
+  <!-- tokens -->
+  <rect x="610" y="420" width="240" height="40" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+  <text x="730" y="445" text-anchor="middle" font-size="13" fill="#334155">prompt_tokens : tour 2 &gt; tour 1</text>
+</svg>
