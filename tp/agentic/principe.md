@@ -91,7 +91,7 @@ Un même agent peut utiliser des modèles très différents. Un modèle plus gro
 
 Le **contexte**, c'est tout le texte envoyé au modèle à un tour donné. Le modèle ne peut en lire qu'une quantité limitée : c'est sa **fenêtre de contexte**, mesurée en tokens (de 32 000 à plus d'un million selon les modèles).
 
-Chaque fichier lu, chaque sortie de commande, chaque réponse s'ajoute au contexte. Une longue session finit donc par remplir la fenêtre : nous verrons dans [le TP sur les limites](./limites.md#la-fenetre-de-contexte-sature) ce qui se passe alors.
+Chaque fichier lu, chaque sortie de commande, chaque réponse s'ajoute au contexte. Une longue session finit donc par remplir la fenêtre : l'agent doit alors **compacter** son contexte, nous le verrons [un peu plus bas](#un-contexte-limite-la-compaction).
 
 ### Les outils
 
@@ -353,6 +353,55 @@ Ce qui frappe :
 Comme le début du contexte ne change pas d'un tour à l'autre, beaucoup de fournisseurs le gardent en **cache** et facturent ces tokens « déjà vus » bien moins cher. C'est pour ça que les agents évitent de modifier le début de la conversation. llm-proxy, lui, ne cache rien, mais il veille à ne pas casser le cache des serveurs qui sont derrière (il le mesure : colonne *Cache* de son tableau de bord).
 :::
 
+### Un contexte limité : la compaction
+
+Le contexte grossit à chaque tour, mais la fenêtre, elle, ne grandit pas. Que fait l'agent quand elle est presque pleine ? Il ne peut pas simplement couper le début : il perdrait la demande de départ, et le modèle ne saurait plus ce qu'il est en train de faire.
+
+Il **compacte**. Quand le contexte approche de la limite (le seuil dépend de l'agent), il fait une pause dans la tâche et envoie au modèle une demande spéciale : « Résume cette conversation : le but, ce qui a été fait, les décisions prises, les fichiers modifiés, ce qu'il reste à faire. » Puis il **repart de ce résumé** : l'historique complet est remplacé par le résumé et les tout derniers échanges. Les consignes de l'agent, la définition des outils et `AGENTS.md`, eux, sont toujours renvoyés tels quels.
+
+![Deux barres sur une fenêtre de 32 768 tokens. Au tour 14, les consignes (environ 5 800 tokens) et un long historique de 13 tours (fichiers lus, sorties de commandes) atteignent environ 27 800 tokens et dépassent le seuil de compaction, ici 80 %. L'agent demande au modèle de résumer l'historique. Au tour 15, il ne reste que les consignes, le résumé et les derniers échanges, environ 9 300 tokens : de la place pour continuer. Ce qui n'est pas dans le résumé est perdu, comme le contenu exact des fichiers lus ou une consigne donnée en route](./res/principe_compaction.svg)
+
+#### Un exemple
+
+Reprenons la tâche du TP suivant : vous demandez à l'agent d'ajouter la livraison et les codes promo au panier de la Boutique BTS. En route, vous lui précisez deux choses : « les prix sont en centimes, pas en euros », puis « le seuil de 50 € de la livraison offerte se calcule **après** la remise ». L'agent lit `src/panier.js`, `src/catalogue.js`, la page, lance les tests plusieurs fois, se trompe sur un arrondi, corrige… Treize tours plus tard, la fenêtre est presque pleine.
+
+Voici le genre de résumé qu'il produit pour repartir :
+
+```text
+Objectif : livraison (4,90 €, offerte dès 50 €) et codes promo
+           (BTS10 : -10 % du sous-total, LIVRAISON : livraison offerte).
+Fait : calcul de la remise et de la livraison dans src/panier.js ;
+       5 tests ajoutés dans test/panier.test.js, tous verts.
+Décisions : les montants restent en centimes (entiers).
+Reste à faire : champ « Code promo » sur la page, message pour un code inconnu.
+```
+
+Comparez avec ce que vous aviez dit : « les prix sont en centimes » a survécu, mais **« le seuil se calcule après la remise » a disparu**. Si l'agent retouche le calcul pour brancher la page, rien ne l'empêche de comparer le seuil au sous-total **avant** remise : un panier de 50,60 € avec `BTS10` (45,54 € après remise) aurait alors la livraison offerte, à tort. Et le contenu exact des fichiers lus n'est plus dans le contexte : s'il en a besoin, il devra les relire (de nouveaux tokens).
+
+Questions :
+
+- Pourquoi l'agent ne se contente-t-il pas de supprimer les premiers messages de l'historique ?
+- Comment auriez-vous pu éviter de perdre la règle du seuil de livraison ?
+
+::: details Réponse
+- Les premiers messages contiennent la demande de départ : sans elle, le modèle ne saurait plus quel est le but. Un résumé garde l'essentiel de **tout** l'historique, début compris, en beaucoup moins de tokens.
+- En l'écrivant ailleurs que dans la conversation : dans `AGENTS.md` (renvoyé à chaque tour, il survit à toutes les compactions) si c'est une règle du projet, ou dans un test (panier de 50,60 € avec `BTS10` : livraison à 4,90 €) qui échouera si l'agent l'oublie. Une règle qui compte ne doit pas vivre seulement dans le fil de la discussion.
+:::
+
+Un petit calcul : avec une fenêtre de 32 768 tokens, une compaction déclenchée à 80 % et un contexte de départ de 5 800 tokens, combien de fichiers de 2 000 tokens l'agent peut-il lire avant de devoir compacter ?
+
+::: details Réponse
+80 % de 32 768, c'est environ 26 200 tokens. Il reste 26 200 - 5 800 = 20 400 tokens, soit **10 fichiers** de 2 000 tokens (sans compter les sorties de commandes et les réponses du modèle, qui consomment aussi de la place). Sur un vrai projet, c'est vite atteint : d'où l'intérêt des modèles à grande fenêtre, et surtout de sessions courtes.
+:::
+
+::: tip Les bons réflexes
+- **Une tâche, une session** : quand une tâche est terminée et commitée, ouvrez une nouvelle session plutôt que d'enchaîner dans la même.
+- Ce qui doit durer va dans `AGENTS.md` ou dans les tests, pas dans le fil de la conversation.
+- La plupart des agents vous laissent aussi compacter à la main, au bon moment (par exemple la commande `/compact` de Claude Code, ou celle du chat de llm-proxy), et vous montrent le remplissage de la fenêtre : surveillez-le.
+:::
+
+Les risques de la compaction (des détails qui disparaissent sans prévenir) sont traités dans [le TP sur les limites](./limites.md#la-fenetre-de-contexte-sature).
+
 ### Ce que ça coûte
 
 Les fournisseurs payants facturent au **million de tokens**. Quelques prix relevés le 8 novembre 2026 sur [la page des modèles d'OpenCode](https://opencode.ai/docs/zen/), en dollars par million de tokens :
@@ -402,6 +451,7 @@ Dans ce TP, vous avez vu que :
 - un agent de code est un modèle de langage placé dans une boucle : il lit le contexte, décide, demande un outil, l'agent l'exécute et lui renvoie le résultat ;
 - le modèle n'exécute rien et ne retient rien : c'est l'agent qui agit sur votre machine et qui renvoie tout l'historique à chaque tour ;
 - un agent, c'est un modèle, un contexte limité par sa fenêtre, des outils, des permissions et des fichiers d'instructions comme `AGENTS.md` ;
+- quand la fenêtre se remplit, l'agent compacte : il remplace l'historique par un résumé, et ce qui n'y figure pas est perdu ;
 - trois API se partagent le terrain (Chat Completions, Anthropic Messages, Responses) et un proxy comme llm-proxy peut les traduire ;
 - tout se paie en tokens, et un agent en consomme beaucoup.
 
