@@ -13,7 +13,7 @@ Avant de commencer, un tour rapide des compétences du jour : la clé étrangèr
 <SlidesDeck src="sql_tp6" />
 </ClientOnly>
 
-## Première étape définir le besoin
+## Définir le besoin
 
 La première étape dans tous les projets est la définition du besoin. Vous devez avec la personne qui vous demande une mission comprendre ce qu'il attend (moi en l'occurence dans ce projet). Je souhaite donc rendre administrable l'application BTS TV.
 
@@ -38,6 +38,14 @@ N'oubliez pas les clés ! Un enregistrement de base de données **doit posséder
 :::
 
 C'est à vous ! Je vous laisse travailler le sujet.
+
+::: details Voir l'une des solutions possibles
+Mes deux tables, et la clé étrangère qui relie chaque vidéo à l'utilisateur qui l'a ajoutée :
+
+![La table videos (id clé primaire, titre, youtube_id, user_id clé étrangère) et la table users (id clé primaire, login, password en VARCHAR(128)). La colonne user_id de videos pointe vers l'id de users : n vidéos pour 1 utilisateur. SHA2(…, 512) produit 128 caractères, la colonne password doit pouvoir les contenir](./res/tp6_tables.svg)
+
+Les noms `users` et `videos` sont ceux utilisés dans les exemples de code de ce TP.
+:::
 
 ## Créer la base de données
 
@@ -64,13 +72,13 @@ Vous pouvez par exemple utiliser la fonction SQL `SHA2("VotreMotDePasse-SALT-SEC
 Exemple d'insertion :
 
 ```sql
-INSERT INTO table ('user', 'password') VALUES ("valentin", SHA2("VotreMotDePasse-SALT-SECRET", 512));
+INSERT INTO users (login, password) VALUES ("valentin", SHA2("VotreMotDePasse-SALT-SECRET", 512));
 ```
 
 Exemple de vérification si l'utilisateur existe :
 
 ```sql
-SELECT * FROM table WHERE user = "valentin" AND password = SHA2("VotreMotDePasse-SALT-SECRET", 512);
+SELECT * FROM users WHERE login = "valentin" AND password = SHA2("VotreMotDePasse-SALT-SECRET", 512);
 ```
 
 S’il y a un résultat, c'est que votre utilisateur existe et a fourni le bon mot de passe.
@@ -102,6 +110,10 @@ Pour gérer les droits d'accès vous avez deux solutions :
 - Gérer les droits dans chaque page. (Risqué à mon sens).
   :::
 
+Voici comment fonctionne ma solution favorite, la whitelist qui dépend de la connexion :
+
+![Pour une demande de index.php?page=admin, l'index regarde si $_SESSION['user'] existe. Non : la whitelist du visiteur vaut ['home', 'tv', 'login']. Oui : celle de la personne connectée vaut ['home', 'tv', 'logout', 'admin']. Ensuite in_array vérifie si la page demandée est dans la liste : si oui, pages/admin.php est incluse (seulement si connecté), sinon c'est pages/home.php, le visiteur ne voit jamais l'admin](./res/tp6_whitelist.svg)
+
 ::: details Vous séchez pour la partie requête SQL ?
 
 Pour valider l'authentification, vous devez écrire quelque chose comme :
@@ -128,6 +140,10 @@ Pour valider l'authentification, vous devez écrire quelque chose comme :
 ```
 
 :::
+
+En cas d'échec, pensez à prévenir l'utilisateur plutôt que de réafficher le formulaire sans un mot. Voici ce que donne ma version avec un mauvais mot de passe :
+
+![La page de connexion de la BTS TV avec le message « Identifiant ou mot de passe incorrect. » au dessus des champs Identifiant et Mot de passe et du bouton Se connecter](./res/tp6_login_erreur.png)
 
 ### Ajouter les boutons dans la barre
 
@@ -170,6 +186,10 @@ Pour la page de gestion des vidéos, je vous propose de réaliser une page resse
 
 Commencer par la réalisation de la page en HTML. Nous ajouterons par la suite les requêtes SQL.
 
+Une fois les requêtes branchées (un `INSERT` préparé pour le formulaire, un `SELECT` pour le tableau, un `DELETE` préparé pour le bouton), voici à quoi ressemble ma version :
+
+![La page de gestion des vidéos : le formulaire Ajouter une vidéo (nom et identifiant de la vidéo, bouton Ajouter), puis un tableau des quatre vidéos en base avec leur titre, leur identifiant YouTube, l'utilisateur qui les a ajoutées (valentin) et un bouton Supprimer](./res/tp6_admin.png)
+
 ## Modifier la page d'accueil pour utiliser la base de données
 
 Modifier la page d'accueil de votre site afin de réaliser la requête SQL permettant de récupérer l'ensemble des vidéos présentes en base de données. Utiliser le résultat afin d'afficher les vidéos.
@@ -187,6 +207,10 @@ Modifier la page d'accueil de votre site afin de réaliser la requête SQL perme
 
 :::
 
+Voici ce que vous devez obtenir, ici en étant connecté (d'où les liens « Gérer les vidéos » et « Déconnexion » dans la barre) :
+
+![La page d'accueil de la BTS TV : la barre du haut avec Gérer les vidéos et Déconnexion, puis une carte par vidéo de la base (Présentation du BTS SIO, Les métiers du développement, Les métiers du réseau), chacune avec un bouton Regarder](./res/tp6_accueil_connecte.png)
+
 ## Modifier la page `tv.php` pour utiliser la base de données
 
 Pour cette étape vous avez deux solutions :
@@ -197,6 +221,13 @@ Pour cette étape vous avez deux solutions :
 ```php
 <?php
     // L'utilisateur accède à =>  http://localhost/index.php?page=tv&id=1
+
+    // Pas d'identifiant dans l'URL : retour à l'accueil
+    if(!isset($_GET['id'])){
+        header('location: ./');
+        die();
+    }
+
     $stmt= $pdo->prepare("SELECT * FROM videos WHERE id = ?");
     $stmt->execute([$_GET['id']]); // ID reçu en paramètre
     $videos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -216,3 +247,9 @@ Pour cette étape vous avez deux solutions :
 ```
 
 C'est à vous !
+
+::: details Récupérer une solution complète du TP
+Une solution complète de ce TP est [téléchargeable ici](/demo/php/bts-tv-admin.zip) (le script `btstv.sql` est dans l'archive, avec un compte de test). Ce n'est qu'une solution parmi d'autres : votre modélisation de la base peut être différente.
+
+**Attention :** ce TP vous demande de concevoir vous-même la base, la connexion et l'administration. Utiliser le code fourni à la place du vôtre aura un impact sur votre évaluation. Ne le téléchargez que si vous êtes bloqué, pour comprendre ce qui ne fonctionne pas chez vous, puis repartez de votre propre travail.
+:::

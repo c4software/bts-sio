@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="410" viewBox="0 0 900 410" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="410" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">La boîte à idées à la fin du TP 2 : qui appelle qui ?</text>
+  <rect x="20" y="55" width="860" height="70" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="80" text-anchor="middle" font-weight="600" fill="#0f172a">index.php, common/header.php et pages/*.php</text>
+  <text x="450" y="104" text-anchor="middle" fill="#475569">afficher et traiter les formulaires, sans une ligne de SQL</text>
+  <!-- Auth -->
+  <rect x="60" y="170" width="230" height="90" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="175" y="194" text-anchor="middle" font-weight="600" fill="#0f172a">Auth (service)</text>
+  <text x="175" y="216" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">attempt() check()</text>
+  <text x="175" y="235" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">name() logout()</text>
+  <!-- User -->
+  <rect x="335" y="170" width="230" height="90" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="450" y="194" text-anchor="middle" font-weight="600" fill="#0f172a">User (modèle)</text>
+  <text x="450" y="216" text-anchor="middle" fill="#475569">table utilisateurs</text>
+  <text x="450" y="234" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">findByEmail()</text>
+  <!-- Idea -->
+  <rect x="610" y="170" width="230" height="90" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="725" y="194" text-anchor="middle" font-weight="600" fill="#0f172a">Idea (modèle)</text>
+  <text x="725" y="216" text-anchor="middle" fill="#475569">table idees</text>
+  <text x="725" y="235" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">all() find() count()</text>
+  <text x="725" y="252" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">save() delete()</text>
+  <!-- session -->
+  <rect x="60" y="310" width="230" height="60" rx="10" fill="#ffffff" stroke="#d97706" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="175" y="335" text-anchor="middle" font-weight="600" fill="#0f172a">$_SESSION</text>
+  <text x="175" y="355" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">user_id, user_name</text>
+  <!-- Database -->
+  <rect x="335" y="310" width="230" height="60" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="335" text-anchor="middle" font-weight="600" fill="#0f172a">Database (utilitaire)</text>
+  <text x="450" y="355" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">Database::getPdo()</text>
+  <rect x="610" y="310" width="230" height="60" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="725" y="335" text-anchor="middle" font-weight="600" fill="#0f172a">MariaDB</text>
+  <text x="725" y="355" text-anchor="middle" fill="#475569">base boite_idees</text>
+  <g stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="175" y1="125" x2="175" y2="168"/>
+    <line x1="725" y1="125" x2="725" y2="168"/>
+    <line x1="290" y1="215" x2="333" y2="215"/>
+    <line x1="175" y1="260" x2="175" y2="308"/>
+    <line x1="450" y1="260" x2="450" y2="308"/>
+    <path d="M700,260 L700,285 L520,285 L520,308" fill="none"/>
+    <line x1="565" y1="340" x2="608" y2="340"/>
+  </g>
+  <text x="450" y="395" text-anchor="middle" fill="#475569">Une classe, une responsabilité : le SQL ne vit que dans les modèles, la session de connexion que dans Auth.</text>
+</svg>

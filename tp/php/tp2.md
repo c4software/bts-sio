@@ -58,7 +58,7 @@ Si vous n'avez pas de CSS sous la main, celle utilisée pour les captures de ce 
 - Lire des lignes (`SELECT`, `query`, `fetchAll`) et les afficher avec un `foreach`.
 - Enregistrer une saisie utilisateur **sans risque** avec une requête préparée (`prepare` et `execute`).
 
-## Première partie : le formulaire
+## Le formulaire
 
 Nous commençons par la partie « visible » : demander son choix à l'utilisateur.
 
@@ -187,6 +187,10 @@ Trois attributs à retenir, ce sont **toujours** les mêmes :
 | `method` | La façon d'envoyer : `get` ou `post`.                                 |
 | `name`   | Le **nom de la donnée**, c'est lui que vous retrouverez côté serveur. |
 
+Pour résumer, voici le trajet de vos données quand vous cliquez sur le bouton :
+
+![Le navigateur envoie le formulaire en POST vers bart.php, chaque attribut name devient une clé de $_POST, puis le serveur renvoie le HTML du tableau](./res/tp2_formulaire_post.svg)
+
 ::: tip Pourquoi POST et pas GET ?
 Avec `get`, la saisie passe dans l'URL (`bart.php?phrase=...`), elle est visible, limitée en taille et conservée dans l'historique du navigateur. Pour un formulaire, prenez l'habitude du `post`, c'est [expliqué dans le complément de cours](./support.md#les-formulaires).
 :::
@@ -258,7 +262,9 @@ Remplissez le formulaire, validez, et vous devez obtenir votre tableau :
 
 ### Les valeurs par défaut
 
-Votre page fonctionne, bravo ! Mais tapez directement `http://localhost/bart/bart.php` dans la barre d'adresse, **sans passer par le formulaire** : PHP vous affiche un avertissement `Undefined array key "phrase"` et la page est vide. C'est dommage.
+Votre page fonctionne, bravo ! Mais tapez directement `http://localhost/bart/bart.php` dans la barre d'adresse, **sans passer par le formulaire** : PHP vous affiche deux avertissements `Undefined array key`, puis une erreur fatale (`TypeError`), car la fonction `displayPunition` attend une phrase et reçoit… rien du tout (`null`). C'est dommage.
+
+![bart.php appelée sans formulaire : deux avertissements Undefined array key puis une erreur fatale TypeError à la place du tableau](./res/tp2_sans_formulaire.png)
 
 La raison est simple : sans formulaire soumis, il n'y a **rien** dans `$_POST`. Il faut donc prévoir le coup avec une condition et la fonction `isset` :
 
@@ -311,7 +317,7 @@ if (isset($_POST['count'])) {
 `bart.php` appelée directement affiche maintenant 3 lignes d'exemple, sans aucun avertissement PHP.
 :::
 
-## Seconde partie : la première table
+## La première table
 
 Faites une punition, puis rechargez la page d'accueil. Où est passée votre punition ? **Nulle part.** Chaque chargement de page repart de zéro : les variables PHP meurent à la fin du script.
 
@@ -404,6 +410,8 @@ include('utils/db.php');
 ```
 
 À partir de là, la variable `$pdo` est disponible dans la page.
+
+![La page index.php envoie sa requête au serveur MySQL par la connexion $pdo, puis fetchAll rapatrie les lignes dans un tableau de tableaux associatifs](./res/tp2_pdo.svg)
 
 ::: tip Que se passe-t-il derrière ?
 `new PDO(...)` ouvre une **connexion réseau** vers le serveur MySQL, comme votre navigateur ouvre une connexion vers un site. L'objet `$pdo` est le « tuyau » : toutes vos requêtes passeront par lui, et PHP referme le tuyau tout seul à la fin du script.
@@ -519,6 +527,8 @@ En trois temps :
 1. `prepare()` envoie le **modèle** de la requête au serveur, avec des `?` à la place des valeurs.
 2. `execute([...])` envoie les **valeurs**, dans l'ordre des `?`.
 3. Le serveur assemble les deux, sans jamais confondre le code SQL et les données.
+
+![prepare envoie le modèle de la requête avec des points d'interrogation, execute envoie les valeurs à part ; à droite, la concaténation où l'apostrophe casse la requête](./res/tp2_prepare_execute.svg)
 
 :::: danger Jamais de concaténation avec une valeur utilisateur
 Vous verrez en ligne des exemples comme `"INSERT INTO phrases (phrase) VALUES ('" . $_POST['phrase'] . "')"`. **Ne faites jamais ça.** La saisie de l'utilisateur se retrouve mélangée à votre code SQL : c'est une **injection SQL**, la faille la plus répandue du web.
@@ -641,6 +651,8 @@ Et la liste :
 
 ::: tip Point de contrôle
 Un clic sur une punition de la liste recharge l'accueil avec la phrase **déjà saisie** dans le champ. Regardez l'URL au passage : c'est bien du `GET` cette fois, et c'est normal, il n'y a aucune donnée à protéger.
+
+![L'accueil après un clic sur « Je rendrai mes TP à l'heure » : la phrase est déjà dans le champ du formulaire](./res/tp2_reutiliser.png)
 :::
 
 ## Allons plus loin

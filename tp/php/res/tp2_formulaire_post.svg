@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="360" viewBox="0 0 900 360" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="360" fill="#ffffff"/>
+
+  <!-- navigateur -->
+  <rect x="20" y="20" width="270" height="240" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="155" y="46" text-anchor="middle" font-weight="600" fill="#0f172a">Navigateur</text>
+  <text x="155" y="66" text-anchor="middle" font-size="12" fill="#475569">index.php (le formulaire)</text>
+  <g font-size="12" fill="#0f172a">
+    <text x="40" y="96">Nombre de lignes :</text>
+    <rect x="40" y="102" width="230" height="26" rx="4" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="50" y="120">10</text>
+    <text x="40" y="150">Phrase à écrire :</text>
+    <rect x="40" y="156" width="230" height="26" rx="4" fill="#ffffff" stroke="#94a3b8"/>
+    <text x="50" y="174">Je ne copie pas le code de…</text>
+  </g>
+  <rect x="85" y="198" width="140" height="28" rx="6" fill="#dc2626"/>
+  <text x="155" y="217" text-anchor="middle" font-size="12" fill="#ffffff">Générer la punition</text>
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#2563eb" text-anchor="end">
+    <text x="270" y="96">name="count"</text>
+    <text x="270" y="150">name="phrase"</text>
+  </g>
+
+  <!-- serveur -->
+  <rect x="610" y="20" width="270" height="240" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="745" y="46" text-anchor="middle" font-weight="600" fill="#0f172a">Serveur PHP</text>
+  <text x="745" y="66" text-anchor="middle" font-size="12" fill="#475569">bart.php (la page de l'action)</text>
+  <rect x="630" y="84" width="230" height="96" rx="8" fill="#ffffff" stroke="#2563eb"/>
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">
+    <text x="642" y="106">$_POST = [</text>
+    <text x="656" y="128">'count' =&gt; '10',</text>
+    <text x="656" y="150">'phrase' =&gt; 'Je ne…',</text>
+    <text x="642" y="170">]</text>
+  </g>
+  <text x="745" y="208" text-anchor="middle" font-size="12" fill="#0f172a">displayPunition($phrase, $count)</text>
+  <text x="745" y="230" text-anchor="middle" font-size="12" fill="#475569">fabrique le HTML du tableau</text>
+
+  <!-- aller -->
+  <line x1="290" y1="110" x2="608" y2="110" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="449" y="100" text-anchor="middle" font-weight="600" fill="#0f172a">1. POST bart.php</text>
+  <text x="449" y="130" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#475569">count=10&amp;phrase=Je+ne+copie…</text>
+  <text x="449" y="148" text-anchor="middle" font-size="11" fill="#475569">(dans le corps de la requête, pas dans l'URL)</text>
+
+  <!-- retour -->
+  <line x1="610" y1="215" x2="292" y2="215" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="449" y="205" text-anchor="middle" font-weight="600" fill="#16a34a">2. Réponse : du HTML</text>
+  <text x="449" y="235" text-anchor="middle" font-size="11" fill="#16a34a">le navigateur affiche le tableau de Bart</text>
+
+  <!-- rappel -->
+  <rect x="20" y="285" width="860" height="56" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="450" y="309" text-anchor="middle" fill="#0f172a"><tspan font-family="ui-monospace, monospace" font-size="13">action</tspan> choisit la page qui reçoit, <tspan font-family="ui-monospace, monospace" font-size="13">method</tspan> la façon d'envoyer,</text>
+  <text x="450" y="329" text-anchor="middle" fill="#0f172a">et l'attribut <tspan font-family="ui-monospace, monospace" font-size="13">name</tspan> de chaque champ devient une clé de <tspan font-family="ui-monospace, monospace" font-size="13">$_POST</tspan>.</text>
+</svg>

@@ -1,6 +1,7 @@
-</main>
-<footer>
-    <p>BTS SIO, TP PHP et POO.</p>
-</footer>
+    </main>
+    <footer>
+        BTS SIO, atelier PHP et POO.
+    </footer>
 </body>
+
 </html>

@@ -186,6 +186,10 @@ livres       1 ────< n   emprunts    (un livre peut être emprunté plus
 adherents    1 ────< n   emprunts    (un adhérent peut emprunter plusieurs livres)
 ```
 
+Et la même chose sous forme de schéma, avec les colonnes de chaque table :
+
+![Les quatre tables et leurs colonnes. livres.categorie_id pointe vers categories.id, emprunts.livre_id vers livres.id et emprunts.adherent_id vers adherents.id, toujours n côté clé étrangère et 1 côté clé primaire. La colonne date_retour de emprunts est surlignée : à NULL, le livre n'est pas revenu](./res/mediatheque_schema.svg)
+
 Autrement dit :
 
 - Un **livre** appartient à **une** catégorie, et une catégorie contient **plusieurs** livres.
@@ -197,7 +201,7 @@ Autrement dit :
 Retenez bien ce dernier point, c'est la clé de tout le TP : `date_retour IS NULL`, c'est un emprunt **en cours**.
 :::
 
-## Partie 1 : découvrir et consulter (en séance)
+## Découvrir et consulter (en séance)
 
 Cette partie est guidée. Suivez-la dans l'ordre, elle construit le socle du projet.
 
@@ -247,6 +251,8 @@ L'information n'est pas stockée : elle se **déduit** des données. C'est très
 -- Le livre 16 est-il disponible ? S'il n'y a aucun résultat : oui.
 SELECT * FROM emprunts WHERE livre_id = 16 AND date_retour IS NULL;
 ```
+
+![À gauche, le livre 16 a trois emprunts : les deux premiers ont une date de retour, le troisième (emprunt 21, adhérent 3) a date_retour à NULL. La requête rend une ligne : le livre est emprunté par Inès Leroy depuis le 30/08/2026. À droite, le livre 5 n'a aucun emprunt : la requête ne rend rien, fetch() vaut false, Vipère au poing est disponible](./res/mediatheque_disponibilite.svg)
 
 :::
 ::::
@@ -440,6 +446,10 @@ Voici ce que vous devez obtenir en cherchant « tome » :
 
 ![Les résultats de la recherche du mot « tome »](./res/mediatheque_recherche.png)
 
+Et pour une recherche qui ne trouve rien, un message plutôt qu'une page vide :
+
+![La page Recherche avec le message « Aucun livre ne correspond à « Batman ». »](./res/mediatheque_recherche_vide.png)
+
 ::: tip Point de contrôle
 Fin de séance. À ce stade, vous devez pouvoir :
 
@@ -453,7 +463,13 @@ Si c'est bon, la suite se fait à la maison. Sinon, terminez cette partie **avan
 👋 Si vous avez des questions, n'hésitez pas.
 :::
 
-## Partie 2 : manipuler les données (à la maison)
+::: details Récupérer le projet de la partie en séance
+Le projet tel qu'il doit être à la fin de la partie en séance est [téléchargeable ici](/demo/php/mediatheque-seance.zip) (le script `mediatheque.sql` est dans l'archive).
+
+**Attention :** ce TP fait l'objet d'un rendu. Utiliser le code fourni à la place du vôtre aura un impact sur votre évaluation. Ne le téléchargez que si vous êtes bloqué, pour comprendre ce qui ne fonctionne pas chez vous, puis repartez de votre propre travail.
+:::
+
+## Manipuler les données (à la maison)
 
 À partir d'ici, je vous donne les consignes et une aide repliée par étape, mais plus de code complet. C'est à vous de jouer !
 
@@ -547,6 +563,10 @@ C'est exactement la même logique que le `select` des adhérents de la section �
 Pensez à vérifier que les champs sont bien remplis avant d'insérer (`isset()` et champs non vides).
 :::
 
+Voici à quoi peut ressembler le formulaire, prêt à être envoyé :
+
+![La page Ajouter un livre : les champs Titre (Le Horla), Auteur (Guy de Maupassant), Année (1887), la liste déroulante Catégorie sur Roman et le bouton Ajouter le livre](./res/mediatheque_ajout_livre.png)
+
 ### Supprimer un livre
 
 Ajoutez la possibilité de supprimer un livre depuis sa fiche (la forme générale du `DELETE` est [dans le support](./support.md#supprimer-une-donnee)).
@@ -573,7 +593,11 @@ Dans tous les cas, votre page ne doit **pas** planter avec une erreur PHP brute.
 
 Choisissez votre option, implémentez-la, et **justifiez votre choix dans le README**.
 
-## Partie 3 : protéger et aller plus loin (en autonomie)
+Par exemple, avec l'option 1, une tentative de suppression de L'Étranger (déjà emprunté deux fois) ramène sur sa fiche avec un message clair :
+
+![La fiche de L'Étranger avec le message « Ce livre ne peut pas être supprimé, il a un historique d'emprunts. » au dessus des informations du livre, toujours disponible](./res/mediatheque_suppression_refusee.png)
+
+## Protéger et aller plus loin (en autonomie)
 
 Ici, plus d'aide : juste des consignes. La première section est **attendue** pour la validation, les bonus sont là si vous voulez pousser.
 

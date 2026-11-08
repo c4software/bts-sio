@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="340" viewBox="0 0 900 340" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="340" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Idea::all() : une ligne de la base entre, un objet Idea sort</text>
+  <!-- left: row -->
+  <rect x="20" y="60" width="330" height="230" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="185" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">Une ligne renvoyée par PDO</text>
+  <text x="185" y="102" text-anchor="middle" fill="#475569">tableau associatif, clés en français</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">
+    <text x="40" y="135">$row['id']</text><text x="190" y="135">1</text>
+    <text x="40" y="165">$row['titre']</text><text x="190" y="165">'Un distributeur...'</text>
+    <text x="40" y="195">$row['auteur']</text><text x="190" y="195">'Bart'</text>
+    <text x="40" y="225">$row['contenu']</text><text x="190" y="225">'Le distributeur...'</text>
+    <text x="40" y="255">$row['date_creation']</text><text x="190" y="275">'2026-01-12 08:32:00'</text>
+  </g>
+  <!-- middle -->
+  <rect x="375" y="125" width="150" height="100" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="450" y="150" text-anchor="middle" font-weight="600" fill="#0f172a">La boucle de all()</text>
+  <text x="450" y="174" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">new Idea(</text>
+  <text x="450" y="192" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$row['titre'], ...)</text>
+  <text x="450" y="214" text-anchor="middle" fill="#475569" font-size="12">la traduction fr / en</text>
+  <line x1="350" y1="175" x2="373" y2="175" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="525" y1="175" x2="548" y2="175" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- right: object -->
+  <rect x="550" y="60" width="330" height="230" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="715" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">Un objet Idea</text>
+  <text x="715" y="102" text-anchor="middle" fill="#475569">propriétés typées, noms en anglais</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">
+    <text x="570" y="135">$idea-&gt;id</text><text x="710" y="135">1</text>
+    <text x="570" y="165">$idea-&gt;title</text><text x="710" y="165">'Un distributeur...'</text>
+    <text x="570" y="195">$idea-&gt;author</text><text x="710" y="195">'Bart'</text>
+    <text x="570" y="225">$idea-&gt;content</text><text x="710" y="225">'Le distributeur...'</text>
+    <text x="570" y="255">$idea-&gt;createdAt</text><text x="710" y="275">'2026-01-12 08:32:00'</text>
+  </g>
+  <text x="450" y="318" text-anchor="middle" fill="#475569">Une faute de frappe sur <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">$row['titer']</tspan> passe inaperçue, sur <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">$idea-&gt;titer</tspan> PHP affiche un warning.</text>
+</svg>

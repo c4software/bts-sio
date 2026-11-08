@@ -115,7 +115,7 @@ Nous allons configurer notre système afin de lui installer les paquets nécessa
 
 À partir de maintenant vous pouvez utiliser le SSH.
 
-### Première étape : Les dépôts
+### Les dépôts
 
 Pour activer le dépôt community il suffit de décommenter une ligne dans le fichier de configuration des APK.
 

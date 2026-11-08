@@ -34,6 +34,10 @@ function isChristmas() {
  */
 function daysBeforeChristmas() {
     $xmasDay = strtotime('December 25');
+    // Noël de cette année est passé (du 26 au 31 décembre) : on compte jusqu'au suivant
+    if (date('m-d') > '12-25') {
+        $xmasDay = strtotime('December 25 next year');
+    }
     return ceil(($xmasDay - time())/60/60/24);
 }
 
@@ -120,11 +124,11 @@ function postOrDefault($key, $default){
  * 
  * 
  * @param string $name Nom de la personne
- * @param int $year Année de naissance
+ * @param int|null $year Année de naissance (facultative)
  * @return string
  * </code>
  */
-function formatIdentity($name, $year){
+function formatIdentity($name, $year = null){
     if(!empty($year)){
         return "La personne « $name » est agé de " . (date("Y") - $year) . " ans.";
     } else {

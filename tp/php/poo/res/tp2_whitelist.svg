@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">La même URL, deux réponses : tout se décide dans index.php</text>
+  <rect x="300" y="50" width="300" height="44" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="77" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">index.php?page=admin</text>
+  <rect x="340" y="124" width="220" height="44" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="450" y="151" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">Auth::check() ?</text>
+  <line x1="450" y1="94" x2="450" y2="122" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M340,146 L230,146 L230,196" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="285" y="139" text-anchor="middle" fill="#16a34a" font-weight="600">true</text>
+  <path d="M560,146 L670,146 L670,196" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+  <text x="615" y="139" text-anchor="middle" fill="#dc2626" font-weight="600">false</text>
+  <!-- left -->
+  <rect x="20" y="198" width="420" height="80" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="230" y="222" text-anchor="middle" font-weight="600" fill="#0f172a">Connecté : la whitelist complète</text>
+  <text x="230" y="250" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">['home', 'proposer', 'idee',</text>
+  <text x="230" y="267" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a"><tspan font-weight="700" fill="#16a34a">'admin'</tspan>, 'deconnexion']</text>
+  <rect x="460" y="198" width="420" height="80" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="670" y="222" text-anchor="middle" font-weight="600" fill="#0f172a">Visiteur anonyme : la whitelist publique</text>
+  <text x="670" y="250" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">['home', 'proposer', 'idee',</text>
+  <text x="670" y="267" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">'connexion']</text>
+  <line x1="230" y1="278" x2="230" y2="308" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="670" y1="278" x2="670" y2="308" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="20" y="310" width="420" height="70" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="230" y="335" text-anchor="middle" fill="#0f172a"><tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">in_array('admin', ...)</tspan> : true</text>
+  <text x="230" y="360" text-anchor="middle" font-weight="600" fill="#0f172a">include pages/admin.php</text>
+  <rect x="460" y="310" width="420" height="70" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="670" y="335" text-anchor="middle" fill="#0f172a"><tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">in_array('admin', ...)</tspan> : false</text>
+  <text x="670" y="360" text-anchor="middle" font-weight="600" fill="#0f172a">include pages/home.php (admin.php jamais chargé)</text>
+</svg>

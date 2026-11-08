@@ -41,7 +41,7 @@ Avant de commencer, un tour rapide des compétences du jour : le tableau de tabl
 `foreach` sert à parcourir un tableau, du premier au dernier élément, sans avoir à gérer de compteur :
 
 ```php
-$subjects = array('PHP', 'SQL', 'Réseau');
+$subjects = ['PHP', 'SQL', 'Réseau'];
 
 foreach ($subjects as $subject) {
     echo $subject;
@@ -119,7 +119,7 @@ include('common/data.php');
 include('common/header.php');
 
 // Pages autorisées
-$whitelist = array('home');
+$whitelist = ['home'];
 
 // Gestion de l'affichage de la page demandée
 if (isset($_GET['page']) && in_array($_GET['page'], $whitelist)) {
@@ -220,11 +220,11 @@ Dans `common/data.php`, ajoutez le tableau suivant. Il s'agit d'un tableau **num
 
 ```php
 // Les matières enseignées, tableau numéroté
-$subjects = array('PHP', 'SQL', 'Réseau');
+$subjects = ['PHP', 'SQL', 'Réseau'];
 ```
 
 ::: tip array() ou les crochets ?
-Vous verrez les deux écritures dans la nature : `array('PHP', 'SQL')` et `['PHP', 'SQL']`. Elles sont **strictement équivalentes**. Dans ce TP nous utiliserons `array(...)`, comme dans le support, pour rester cohérents. Choisissez-en une et gardez-la sur tout un projet.
+Vous verrez les deux écritures dans la nature : `['PHP', 'SQL']` et `array('PHP', 'SQL')`. Elles sont **strictement équivalentes**. Dans ce TP nous utiliserons les crochets `[...]`, l'écriture moderne, comme dans le support. Choisissez-en une et gardez-la sur tout un projet.
 :::
 
 Maintenant, dans `pages/home.php`, affichez cette liste dans un `<ul>` :
@@ -297,11 +297,11 @@ Dans `common/data.php` :
 
 ```php
 // Un élève, tableau associatif
-$student = array(
+$student = [
     'prenom' => 'Bart',
     'nom' => 'Simpson',
     'age' => 10,
-);
+];
 ```
 
 Et dans `pages/home.php`, sous la liste des matières, affichez sa fiche :
@@ -331,6 +331,10 @@ Retenez la règle : **des choses de même nature, on numérote (une liste de mat
 
 :::
 
+Pour résumer :
+
+![À gauche, $subjects associe les clés 0 à 3 aux matières ; à droite, $student associe les clés prenom, nom et age aux informations de Bart](./res/tableaux_numerote_associatif.svg)
+
 Voici ce que vous devez obtenir :
 
 ![La page d'accueil avec la liste des matières et la fiche de Bart](./res/tableaux_home.png)
@@ -345,14 +349,14 @@ Dans `common/data.php`, remplacez votre `$student` par la classe complète (atte
 
 ```php
 // La classe : un tableau numéroté qui contient des tableaux associatifs
-$students = array(
-    array('prenom' => 'Bart', 'nom' => 'Simpson', 'age' => 10),
-    array('prenom' => 'Lisa', 'nom' => 'Simpson', 'age' => 8),
-    array('prenom' => 'Milhouse', 'nom' => 'Van Houten', 'age' => 10),
-    array('prenom' => 'Nelson', 'nom' => 'Muntz', 'age' => 11),
-    array('prenom' => 'Ralph', 'nom' => 'Wiggum', 'age' => 9),
-    array('prenom' => 'Martin', 'nom' => 'Prince', 'age' => 10),
-);
+$students = [
+    ['prenom' => 'Bart', 'nom' => 'Simpson', 'age' => 10],
+    ['prenom' => 'Lisa', 'nom' => 'Simpson', 'age' => 8],
+    ['prenom' => 'Milhouse', 'nom' => 'Van Houten', 'age' => 10],
+    ['prenom' => 'Nelson', 'nom' => 'Muntz', 'age' => 11],
+    ['prenom' => 'Ralph', 'nom' => 'Wiggum', 'age' => 9],
+    ['prenom' => 'Martin', 'nom' => 'Prince', 'age' => 10],
+];
 ```
 
 ### Regarder ce qu'il y a dedans
@@ -462,7 +466,11 @@ La structure est exactement la même que dans la section « La liste des matièr
 :::
 
 ::: tip Point de contrôle
-`index.php?page=classe` affiche six lignes, une par élève, dans l'ordre du fichier `common/data.php`. Ajoutez un septième élève dans `common/data.php` (Todd Flanders, 10 ans, par exemple) : la ligne doit apparaître **sans que vous touchiez à `pages/classe.php`**. Si c'est le cas, vous avez compris l'intérêt de séparer les données de l'affichage. Vous pouvez ensuite le retirer.
+`index.php?page=classe` affiche six lignes, une par élève, dans l'ordre du fichier `common/data.php` :
+
+![La page de la classe avec le tableau des six élèves (prénom, nom, âge) et le compteur « 6 élèves dans la classe »](./res/tableaux_classe_simple.png)
+
+Ajoutez un septième élève dans `common/data.php` (Todd Flanders, 10 ans, par exemple) : la ligne doit apparaître **sans que vous touchiez à `pages/classe.php`**. Si c'est le cas, vous avez compris l'intérêt de séparer les données de l'affichage. Vous pouvez ensuite le retirer.
 :::
 
 ## Les notes
@@ -472,44 +480,44 @@ Nous y voilà. Skinner veut les notes, et une note appartient à un élève **et
 Dans `common/data.php` :
 
 ```php
-$students = array(
-    array(
+$students = [
+    [
         'prenom' => 'Bart',
         'nom' => 'Simpson',
         'age' => 10,
-        'notes' => array('php' => 6, 'sql' => 8, 'reseau' => 11),
-    ),
-    array(
+        'notes' => ['php' => 6, 'sql' => 8, 'reseau' => 11],
+    ],
+    [
         'prenom' => 'Lisa',
         'nom' => 'Simpson',
         'age' => 8,
-        'notes' => array('php' => 19, 'sql' => 18, 'reseau' => 17),
-    ),
-    array(
+        'notes' => ['php' => 19, 'sql' => 18, 'reseau' => 17],
+    ],
+    [
         'prenom' => 'Milhouse',
         'nom' => 'Van Houten',
         'age' => 10,
-        'notes' => array('php' => 12, 'sql' => 11, 'reseau' => 13),
-    ),
-    array(
+        'notes' => ['php' => 12, 'sql' => 11, 'reseau' => 13],
+    ],
+    [
         'prenom' => 'Nelson',
         'nom' => 'Muntz',
         'age' => 11,
-        'notes' => array('php' => 9, 'sql' => 7, 'reseau' => 14),
-    ),
-    array(
+        'notes' => ['php' => 9, 'sql' => 7, 'reseau' => 14],
+    ],
+    [
         'prenom' => 'Ralph',
         'nom' => 'Wiggum',
         'age' => 9,
-        'notes' => array('php' => 4, 'sql' => 5, 'reseau' => 6),
-    ),
-    array(
+        'notes' => ['php' => 4, 'sql' => 5, 'reseau' => 6],
+    ],
+    [
         'prenom' => 'Martin',
         'nom' => 'Prince',
         'age' => 10,
-        'notes' => array('php' => 17, 'sql' => 16, 'reseau' => 15),
-    ),
-);
+        'notes' => ['php' => 17, 'sql' => 16, 'reseau' => 15],
+    ],
+];
 ```
 
 ::: tip Trois niveaux, trois crochets
@@ -521,6 +529,8 @@ echo $students[1]['notes']['php']; // 19
 
 `[1]` la deuxième case du tableau, `['notes']` le tableau des notes de cet élève, `['php']` la note de la matière PHP. Un crochet par niveau, toujours de gauche à droite. Relancez un `print_r($students)` pour bien visualiser les trois étages.
 :::
+
+![Les trois niveaux de $students[1]['notes']['php'] : la case 1 de la classe (Lisa), puis sa clé notes, puis la clé php qui vaut 19](./res/tableaux_trois_niveaux.svg)
 
 ### Afficher toutes les notes de tous les élèves
 
@@ -756,7 +766,7 @@ in_array('php', $validSubjects); // true ou false
 array_key_exists('php', $students[0]['notes']); // true ou false
 ```
 
-Astuce : les clés du tableau `notes` d'un élève **sont** déjà la liste des matières. `array_keys($students[0]['notes'])` vous rend `array('php', 'sql', 'reseau')` sans que vous ayez à la réécrire.
+Astuce : les clés du tableau `notes` d'un élève **sont** déjà la liste des matières. `array_keys($students[0]['notes'])` vous rend `['php', 'sql', 'reseau']` sans que vous ayez à la réécrire.
 
 **Troisième point : générer les liens.** Une boucle sur la liste des matières, et dans chaque tour un `<a href="index.php?page=matiere&matiere=...">`. Pensez à concaténer la valeur dans l'URL.
 
@@ -934,7 +944,7 @@ Il manque la clé `notes`. Les notes sont dans une autre table, et on veut celle
 $stmt = $pdo->prepare('SELECT matiere, note FROM notes WHERE eleve_id = ?');
 
 foreach ($students as $key => $student) {
-    $stmt->execute(array($student['id']));
+    $stmt->execute([$student['id']]);
 
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
         $students[$key]['notes'][$row['matiere']] = $row['note'];
@@ -943,6 +953,8 @@ foreach ($students as $key => $student) {
 ```
 
 Relisez la ligne importante : `$students[$key]['notes'][$row['matiere']] = $row['note'];`. La requête vous rend des lignes (`php`, `6`), (`sql`, `8`)… et la boucle les range dans un tableau associatif matière vers note, sous la clé `notes` de l'élève. Vous reconstruisez, ligne par ligne, la structure à trois niveaux de la section « Les notes ».
+
+![Les lignes de la table eleves deviennent les cases de $students, et les lignes de la table notes de Bart (eleve_id 1) deviennent sa clé notes, matière vers note](./res/tableaux_base_vers_tableau.svg)
 
 ::: tip Pourquoi `as $key => $student` et pas juste `as $student` ?
 Parce que `$student` est une **copie** de la case du tableau : si vous écrivez dedans, vous écrivez dans la copie, et le vrai tableau `$students` ne bouge pas. En récupérant aussi la clé, vous écrivez dans `$students[$key]`, c'est-à-dire dans l'original. Testez les deux, faites un `print_r($students)` après la boucle : c'est une erreur très fréquente, autant l'avoir vue une fois.
@@ -957,7 +969,7 @@ Votre `common/data.php` ne contient plus aucun élève écrit à la main. Vous p
 // Les données de notre carnet de notes
 
 // Les matières enseignées, tableau numéroté
-$subjects = array('PHP', 'SQL', 'Réseau');
+$subjects = ['PHP', 'SQL', 'Réseau'];
 
 // Ajout d'un élément à la fin du tableau
 $subjects[] = 'Maths';
@@ -969,7 +981,7 @@ $students = $pdo->query('SELECT * FROM eleves')->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $pdo->prepare('SELECT matiere, note FROM notes WHERE eleve_id = ?');
 
 foreach ($students as $key => $student) {
-    $stmt->execute(array($student['id']));
+    $stmt->execute([$student['id']]);
 
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
         $students[$key]['notes'][$row['matiere']] = $row['note'];
@@ -998,18 +1010,18 @@ $rows = $pdo->query('SELECT e.id, e.prenom, e.nom, e.age, n.matiere, n.note
                      FROM eleves e
                      LEFT JOIN notes n ON n.eleve_id = e.id')->fetchAll(PDO::FETCH_ASSOC);
 
-$students = array();
+$students = [];
 
 foreach ($rows as $row) {
     $id = $row['id'];
 
     if (!isset($students[$id])) {
-        $students[$id] = array(
+        $students[$id] = [
             'prenom' => $row['prenom'],
             'nom' => $row['nom'],
             'age' => $row['age'],
-            'notes' => array(),
-        );
+            'notes' => [],
+        ];
     }
 
     $students[$id]['notes'][$row['matiere']] = $row['note'];
@@ -1038,7 +1050,7 @@ L'élève d'abord :
 
 ```php
 $stmt = $pdo->prepare('INSERT INTO eleves (prenom, nom, age) VALUES (?, ?, ?)');
-$stmt->execute(array($_POST['prenom'], $_POST['nom'], $_POST['age']));
+$stmt->execute([$_POST['prenom'], $_POST['nom'], $_POST['age']]);
 ```
 
 Attention au piège : votre nouvel élève n'a aucune note, et `pages/classe.php` calcule une moyenne pour tout le monde. Créez-lui donc ses trois notes à zéro dans la foulée. Pour cela il faut son `id`, que la base vient de générer : `$pdo->lastInsertId()` vous le donne.
@@ -1047,8 +1059,8 @@ Attention au piège : votre nouvel élève n'a aucune note, et `pages/classe.php
 $id = $pdo->lastInsertId();
 $stmt = $pdo->prepare('INSERT INTO notes (eleve_id, matiere, note) VALUES (?, ?, 0)');
 
-foreach (array('php', 'sql', 'reseau') as $subject) {
-    $stmt->execute(array($id, $subject));
+foreach (['php', 'sql', 'reseau'] as $subject) {
+    $stmt->execute([$id, $subject]);
 }
 ```
 
@@ -1063,7 +1075,7 @@ die();
 
 ::: details Question : pourquoi l'élève survit-il maintenant au rechargement ?
 
-Parce qu'il n'est plus dans une variable PHP, il est **dans la base**. Un script PHP recommence de zéro à chaque requête : toutes vos variables meurent à la fin du script. Si vous aviez simplement fait `$students[] = array(...)`, PHP aurait relu `common/data.php` au rechargement suivant et votre ajout aurait disparu, comme le formulaire de Bart avant que nous découvrions la session.
+Parce qu'il n'est plus dans une variable PHP, il est **dans la base**. Un script PHP recommence de zéro à chaque requête : toutes vos variables meurent à la fin du script. Si vous aviez simplement fait `$students[] = [...]`, PHP aurait relu `common/data.php` au rechargement suivant et votre ajout aurait disparu, comme le formulaire de Bart avant que nous découvrions la session.
 
 Là, le `INSERT` a écrit une ligne sur le disque du serveur de base de données. Votre `common/data.php` la relit à chaque chargement de page, donc votre élève est là. Et il y sera encore demain, après un redémarrage du serveur, et pour **tous** les visiteurs, pas seulement pour vous (c'est la différence avec la session, qui ne concerne qu'un visiteur et une navigation).
 
@@ -1077,6 +1089,8 @@ Affichez le classement de la classe, du meilleur au moins bon. Deux pistes, au c
 
 - La méthode « algorithme » : construisez un nouveau tableau en cherchant à chaque fois le maximum restant. C'est long, mais vous comprendrez ce qu'est un tri.
 - La méthode « PHP » : cherchez du côté de `usort()`, qui trie un tableau selon une règle de comparaison que vous fournissez. C'est plus abstrait, prenez le temps de lire des exemples.
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/php/carnet-de-notes.zip) (le script `carnet.sql` est dans l'archive ; les bonus, eux, restent à faire de votre côté).
 
 ## Conclusion
 

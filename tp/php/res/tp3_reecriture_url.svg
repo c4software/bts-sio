@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="230" viewBox="0 0 900 230" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="230" fill="#ffffff"/>
+
+  <g stroke-width="2">
+    <rect x="20" y="40" width="220" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="320" y="40" width="260" height="90" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="660" y="40" width="220" height="90" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="130" y="72" font-weight="600">Navigateur</text>
+    <text x="130" y="98" font-family="ui-monospace, monospace" font-size="13">bart.html</text>
+    <text x="130" y="118" font-size="12" fill="#475569">l'adresse affichée</text>
+    <text x="450" y="72" font-weight="600">Apache et le .htaccess</text>
+    <text x="450" y="98" font-family="ui-monospace, monospace" font-size="12">(.*).html</text>
+    <text x="450" y="118" font-size="12" fill="#475569">devient <tspan font-family="ui-monospace, monospace" fill="#0f172a">index.php?page=$1</tspan></text>
+    <text x="770" y="72" font-weight="600">Le point d'entrée</text>
+    <text x="770" y="98" font-family="ui-monospace, monospace" font-size="13">index.php?page=bart</text>
+    <text x="770" y="118" font-size="12" fill="#475569">ce que PHP reçoit</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="240" y1="85" x2="318" y2="85"/>
+    <line x1="580" y1="85" x2="658" y2="85"/>
+  </g>
+
+  <rect x="20" y="158" width="860" height="52" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="450" y="189" text-anchor="middle" fill="#0f172a"><tspan font-family="ui-monospace, monospace" font-size="13">$1</tspan> vaut « bart », le texte capturé par <tspan font-family="ui-monospace, monospace" font-size="13">(.*)</tspan> : la whitelist fait ensuite son travail habituel.</text>
+</svg>

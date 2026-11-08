@@ -1,12 +1,22 @@
 <?php
-$idea = Idea::find((int) ($_GET['id'] ?? 0));
+if (!isset($_GET['id'])) {
+    header('location: index.php?page=home');
+    die();
+}
+
+$idea = Idea::find((int) $_GET['id']);
 
 if ($idea === null) {
-    echo "<p>Idée introuvable.</p>";
+    echo "<h1>Idée introuvable</h1>";
+    echo '<p><a href="index.php?page=home">Retour à la liste</a></p>';
     return;
 }
 ?>
-<h2><?= htmlspecialchars($idea->title) ?></h2>
-<p class="meta">Par <?= htmlspecialchars($idea->author) ?>, le <?= htmlspecialchars($idea->createdAt) ?></p>
-<p><?= nl2br(htmlspecialchars($idea->content)) ?></p>
+
+<h1><?php echo htmlspecialchars($idea->title); ?></h1>
+<p class="meta">
+    Par <?php echo htmlspecialchars($idea->author); ?>,
+    le <?php echo date('d/m/Y à H:i', strtotime($idea->createdAt)); ?>
+</p>
+<p><?php echo nl2br(htmlspecialchars($idea->content)); ?></p>
 <p><a href="index.php?page=home">Retour à la liste</a></p>

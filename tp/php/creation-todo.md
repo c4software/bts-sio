@@ -119,7 +119,7 @@ Le vocabulaire que nous utiliserons dans tout le TP :
 | Terminée (terminee) | L'état d'une tâche : `1` si elle est faite, `0` sinon. |
 | L'identifiant (id) | Le numéro que la base donne à la ligne à sa création, et qui ne change **jamais**. |
 
-## Partie 1 : la liste qui fonctionne (en séance)
+## La liste qui fonctionne (en séance)
 
 Cette première partie est **très guidée** : je vous donne le code complet et commenté, vous le recopiez, vous le lisez et vous le comprenez. À chaque étape, je vous montre à quoi le résultat doit ressembler. Ne passez jamais à l'étape suivante sans avoir vu la même chose que moi à l'écran.
 
@@ -347,7 +347,9 @@ Créez enfin `pages/home.php` avec une seule ligne pour l'instant :
 Deux vérifications avant d'aller plus loin.
 
 1. Dans phpMyAdmin, onglet **SQL** de la base `todo`, lancez `SELECT * FROM taches;`. Vous devez voir vos **deux** tâches, avec leurs `id` (1 et 2), leur `categorie_id` (1 et 2) et leur `date_creation` remplie toute seule.
-2. Ouvrez `index.php` dans votre navigateur. Vous devez voir le titre « Ma TODO List », le menu et « Mes tâches », **sans aucune erreur**.
+2. Ouvrez `index.php` dans votre navigateur. Vous devez voir le titre « Ma TODO List », le menu et « Mes tâches », **sans aucune erreur** :
+
+   ![La page de départ : le titre Ma TODO List, le menu avec Mes tâches et Mes catégories, le titre Mes tâches et le pied de page, sans aucune tâche affichée](./res/todo_squelette.png)
 
 Si vous obtenez `SQLSTATE[HY000] [1049] Unknown database 'todo'`, c'est que le script SQL n'a pas été exécuté. Si c'est `Access denied`, revoyez le `$user` et le `$passwd` de `utils/db.php`.
 :::
@@ -370,6 +372,10 @@ ORDER BY taches.id;
 
 Résultat : chaque ligne du `SELECT` contient les colonnes de la tâche **et** le nom de sa catégorie. Le `AS categorie` donne un nom court à cette colonne, ce qui nous permettra d'écrire `$task['categorie']` côté PHP. Sans lui, il faudrait écrire `$task['nom']`, et on ne saurait plus de quel « nom » on parle.
 :::
+
+Pour résumer, voici ce que fait la jointure avec vos deux tâches de départ :
+
+![Les tables taches et categories côte à côte : la colonne categorie_id de chaque tâche pointe vers l'id d'une catégorie (1 vers Cours, 2 vers Maison). La jointure produit une ligne par tâche qui contient ses colonnes plus une colonne categorie avec le nom Cours ou Maison](./res/todo_jointure.svg)
 
 Remplacez le contenu de `pages/home.php` par :
 
@@ -508,6 +514,10 @@ Avec `header('location: ...')` suivi de `die()`, le navigateur repart sur une pa
 Les deux lignes vont ensemble, toujours : `header()` demande la redirection, `die()` arrête le script pour être sûr que rien d'autre ne s'exécute.
 
 Et comme la page de traitement n'affiche rien, c'est la session qui transporte le message jusqu'à la page suivante : `$_SESSION['flash']` est écrit ici, lu et effacé dans le header.
+
+Le trajet complet, du clic sur « Ajouter » jusqu'au F5 :
+
+![Échange entre le navigateur, le serveur PHP et la base. 1 : le navigateur envoie le POST vers ajouter, le serveur fait l'INSERT et écrit le message flash en session, puis répond par une redirection 302 sans HTML. 2 : le navigateur demande automatiquement index.php?page=home en GET, le header affiche puis efface le flash, la liste revient avec « Tâche ajoutée. ». 3 : un F5 ne renvoie que ce GET, la liste s'affiche sans message et sans nouvel INSERT](./res/todo_post_redirect.svg)
 :::
 
 ::: tip Que se passe-t-il derrière avec `ob_start()` ?
@@ -519,7 +529,11 @@ Saisissez « Faire les courses », choisissez « Maison », cliquez sur Ajouter.
 
 ![La liste avec la nouvelle tâche ajoutée et le message flash](./res/todo_ajout.png)
 
-Rechargez la page : le message a disparu. Essayez aussi de valider le formulaire **vide** : rien ne doit être ajouté, et le message doit vous le dire. Enfin, vérifiez dans phpMyAdmin que la ligne est bien là, avec son `id` tout neuf.
+Rechargez la page : le message a disparu. Essayez aussi de valider le formulaire **vide** : rien ne doit être ajouté, et le message doit vous le dire :
+
+![La liste inchangée avec le message flash « Tâche refusée : titre vide ou catégorie inconnue. »](./res/todo_refus.png)
+
+Enfin, vérifiez dans phpMyAdmin que la ligne est bien là, avec son `id` tout neuf.
 :::
 
 ### Terminer une tâche
@@ -572,6 +586,10 @@ Et pour `id=42`, alors qu'aucune tâche ne porte ce numéro ? Il n'y a rien à f
 Retenez bien la forme de la requête : `UPDATE taches SET terminee = 1 WHERE id = ?`. Sans le `WHERE`, vous termineriez **toutes** les tâches d'un coup.
 :::
 
+Pour résumer, voici le chemin suivi par un clic sur « Terminer » :
+
+![Le clic sur Terminer envoie ?page=terminer&id=3. Si l'id est présent et ne contient que des chiffres (ctype_digit), la requête préparée UPDATE taches SET terminee = 1 WHERE id = ? reçoit 3, puis retour à la liste. Sinon (id=bonjour, id=1 OR 1=1, pas d'id), on revient directement à la liste sans parler à la base. Un id=42 qui n'existe pas ne modifie aucune ligne et ne provoque aucune erreur](./res/todo_lien_id.svg)
+
 ::: tip Point de contrôle
 Cliquez sur « Terminer » : la tâche est barrée et son lien a disparu.
 
@@ -623,7 +641,13 @@ Votre TODO List fonctionne complètement :
 Si vous en êtes là, la séance est réussie. La suite se fait à la maison. 👋 Si vous avez des questions, n'hésitez pas.
 :::
 
-## Partie 2 : les catégories (à la maison)
+::: details Récupérer le projet de la partie en séance
+Le projet tel qu'il doit être à la fin de la partie en séance est [téléchargeable ici](/demo/php/todo-list-seance.zip) (le script `todo.sql` est dans l'archive).
+
+**Attention :** ce TP fait l'objet d'un rendu. Utiliser le code fourni à la place du vôtre aura un impact sur votre évaluation. Ne le téléchargez que si vous êtes bloqué, pour comprendre ce qui ne fonctionne pas chez vous, puis repartez de votre propre travail.
+:::
+
+## Les catégories (à la maison)
 
 Le guidage diminue. Ici, je décris ce qui est attendu et je vous montre le résultat, mais c'est vous qui écrivez le code. Une aide repliée vous attend à chaque étape si vous bloquez.
 
@@ -764,7 +788,7 @@ Mais posez-vous la question du jour où la table contiendra 50 000 tâches : la 
 :::
 ::::
 
-## Partie 3 : pour aller plus loin (en autonomie)
+## Pour aller plus loin (en autonomie)
 
 Plus de code, plus d'aide détaillée : juste l'objectif et une ligne pour vous orienter.
 

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="300" viewBox="0 0 900 300" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="300" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="50" width="200" height="70" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="270" y="50" width="190" height="70" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="510" y="50" width="160" height="70" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="720" y="50" width="160" height="70" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="20" y="170" width="200" height="70" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="270" y="170" width="190" height="70" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="510" y="170" width="160" height="70" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="720" y="170" width="160" height="70" rx="10" fill="#fef3c7" stroke="#d97706"/>
+  </g>
+  <g text-anchor="middle" font-size="13" fill="#475569" font-weight="600">
+    <text x="120" y="34">Adresse demandée</text>
+    <text x="365" y="34">Contenu de $_GET</text>
+    <text x="590" y="34">isset($_GET['nb'])</text>
+    <text x="800" y="34">Valeur de $nb_ligne</text>
+  </g>
+  <g text-anchor="middle" font-size="13" fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="120" y="90">index.php?nb=5</text>
+    <text x="365" y="90">['nb' =&gt; '5']</text>
+    <text x="120" y="210">index.php</text>
+    <text x="365" y="210">[ ] (vide)</text>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="590" y="91" font-weight="600" fill="#16a34a">vrai</text>
+    <text x="590" y="211" font-weight="600" fill="#dc2626">faux</text>
+    <text x="800" y="82" font-weight="600">5</text>
+    <text x="800" y="104" font-size="12" fill="#475569">lue dans l'URL</text>
+    <text x="800" y="202" font-weight="600">100</text>
+    <text x="800" y="224" font-size="12" fill="#475569">valeur par défaut</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="220" y1="85" x2="268" y2="85"/>
+    <line x1="460" y1="85" x2="508" y2="85"/>
+    <line x1="670" y1="85" x2="718" y2="85"/>
+    <line x1="220" y1="205" x2="268" y2="205"/>
+    <line x1="460" y1="205" x2="508" y2="205"/>
+    <line x1="670" y1="205" x2="718" y2="205"/>
+  </g>
+  <text x="450" y="280" text-anchor="middle" font-size="13" fill="#0f172a">Sans le if, la seconde adresse déclencherait un avertissement (Warning) : la clé nb n'existe pas dans $_GET.</text>
+</svg>

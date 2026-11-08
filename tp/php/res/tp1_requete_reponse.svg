@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="340" viewBox="0 0 900 340" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="340" fill="#ffffff"/>
+  <rect x="330" y="20" width="550" height="300" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="605" y="44" text-anchor="middle" font-weight="600" fill="#0f172a">Serveur (WAMP)</text>
+  <g stroke-width="2">
+    <rect x="20" y="40" width="200" height="90" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="350" y="60" width="240" height="130" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="630" y="60" width="230" height="130" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="500" y="220" width="360" height="80" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="120" y="78" font-weight="600">Navigateur</text>
+    <text x="120" y="102" font-size="12" fill="#475569">localhost/index.php</text>
+    <text x="470" y="86" font-weight="600">index.php</text>
+    <text x="745" y="102" font-weight="600">Moteur PHP</text>
+    <text x="745" y="128" font-size="13" fill="#475569">exécute le code placé</text>
+    <text x="745" y="148" font-size="13" fill="#475569">entre &lt;?php et ?&gt;</text>
+    <text x="680" y="250" font-weight="600">HTML produit</text>
+  </g>
+  <g font-size="12" fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="364" y="122">&lt;p&gt;Nous sommes le</text>
+    <text x="364" y="146">&lt;?php echo date("d/m/Y") ?&gt;</text>
+    <text x="364" y="170">&lt;/p&gt;</text>
+    <text x="680" y="276" text-anchor="middle">&lt;p&gt;Nous sommes le 08/11/2026&lt;/p&gt;</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="220" y1="75" x2="348" y2="75"/>
+    <line x1="590" y1="125" x2="628" y2="125"/>
+    <line x1="745" y1="190" x2="745" y2="218"/>
+  </g>
+  <path d="M500,260 H120 V132" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowg)"/>
+  <g font-size="12" text-anchor="middle">
+    <text x="275" y="66" fill="#475569">1. requête</text>
+    <text x="225" y="250" fill="#16a34a">2. réponse : du HTML seul</text>
+  </g>
+  <text x="20" y="296" font-size="13" fill="#0f172a">Le code PHP ne quitte jamais le serveur :</text>
+  <text x="20" y="316" font-size="13" fill="#0f172a">le navigateur ne reçoit que le résultat.</text>
+</svg>

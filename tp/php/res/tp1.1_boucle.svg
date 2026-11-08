@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="290" viewBox="0 0 900 290" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="290" fill="#ffffff"/>
+  <rect x="20" y="36" width="340" height="140" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <g font-size="12" fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" xml:space="preserve">
+    <text x="34" y="68">$nb_ligne = 5;</text>
+    <text x="34" y="96">for ($i = 0; $i &lt; $nb_ligne; $i++) {</text>
+    <text x="62" y="124">echo $phrase . "&lt;br&gt;";</text>
+    <text x="34" y="152">}</text>
+  </g>
+  <text x="190" y="200" text-anchor="middle" font-size="12" fill="#475569">$i++ ajoute 1 à $i à la fin de chaque tour</text>
+  <g stroke-width="2" fill="#dbeafe" stroke="#2563eb">
+    <rect x="410" y="40" width="170" height="26" rx="8"/>
+    <rect x="410" y="72" width="170" height="26" rx="8"/>
+    <rect x="410" y="104" width="170" height="26" rx="8"/>
+    <rect x="410" y="136" width="170" height="26" rx="8"/>
+    <rect x="410" y="168" width="170" height="26" rx="8"/>
+  </g>
+  <rect x="410" y="204" width="170" height="44" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <g font-size="13" fill="#0f172a" text-anchor="middle">
+    <text x="495" y="58">tour 1 : $i vaut 0</text>
+    <text x="495" y="90">tour 2 : $i vaut 1</text>
+    <text x="495" y="122">tour 3 : $i vaut 2</text>
+    <text x="495" y="154">tour 4 : $i vaut 3</text>
+    <text x="495" y="186">tour 5 : $i vaut 4</text>
+    <text x="495" y="222" fill="#dc2626">$i vaut 5 : 5 &lt; 5 est faux</text>
+    <text x="495" y="240" fill="#dc2626">fin de la boucle</text>
+  </g>
+  <rect x="625" y="36" width="260" height="162" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <g font-size="12" fill="#0f172a">
+    <text x="637" y="58">Je ne recopierai pas l'exemple de Valentin</text>
+    <text x="637" y="90">Je ne recopierai pas l'exemple de Valentin</text>
+    <text x="637" y="122">Je ne recopierai pas l'exemple de Valentin</text>
+    <text x="637" y="154">Je ne recopierai pas l'exemple de Valentin</text>
+    <text x="637" y="186">Je ne recopierai pas l'exemple de Valentin</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="360" y1="117" x2="408" y2="117"/>
+  </g>
+  <g stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowg)">
+    <line x1="580" y1="53" x2="623" y2="53"/>
+    <line x1="580" y1="85" x2="623" y2="85"/>
+    <line x1="580" y1="117" x2="623" y2="117"/>
+    <line x1="580" y1="149" x2="623" y2="149"/>
+    <line x1="580" y1="181" x2="623" y2="181"/>
+  </g>
+  <text x="755" y="222" text-anchor="middle" font-size="12" fill="#16a34a">une ligne écrite à chaque tour</text>
+  <text x="450" y="276" text-anchor="middle" font-size="13" fill="#0f172a">La condition est testée avant chaque tour : dès qu'elle devient fausse, la boucle s'arrête.</text>
+</svg>

@@ -122,6 +122,10 @@ Voilà, nous avons le code de notre « entry-point ». Un peu de détail :
   - Si aucune page n'est fournie ou si celle-ci n'est pas autorisée, nous chargeons la page `home.php`
   - Les liens entre vous pages seront différents. Ils seront sous la forme : `index.php?page=bart`, `index.php?page=about`…
 
+Pour résumer, voici le chemin suivi par chaque demande :
+
+![Toutes les URL arrivent sur index.php, qui démarre le tampon et la session, inclut la connexion, les fonctions et le header, vérifie la page dans la whitelist (la page demandée si elle y est, l'accueil sinon), puis inclut le footer et renvoie une page complète](./res/tp3_entry_point.svg)
+
 ::: tip Que se passe-t-il derrière avec ob_start() ?
 
 `ob_start()` démarre un **tampon de sortie** (output buffering) : au lieu d'envoyer immédiatement au navigateur tout ce que vous affichez, PHP le garde de côté et l'envoie à la toute fin.
@@ -129,6 +133,8 @@ Voilà, nous avons le code de notre « entry-point ». Un peu de détail :
 Pourquoi ? Parce qu'une réponse HTTP commence toujours par ses **en-têtes** (headers), puis le contenu. Dès qu'un seul caractère est affiché, les en-têtes sont partis, et il devient impossible d'en ajouter un. Or nous en aurons besoin dès le TP 4 pour rediriger le visiteur avec `header('location: …')`, alors que le `header.php` est déjà affiché.
 
 Avec `ob_start()` en toute première ligne, rien n'est réellement envoyé avant la fin du script : la redirection reste possible. C'est une ligne que vous garderez dans tous vos projets.
+
+![Sans ob_start, le début du HTML part tout de suite et header('location') échoue ; avec ob_start, le HTML attend dans le tampon et la redirection reste possible jusqu'à la fin du script](./res/tp3_ob_start.svg)
 
 :::
 
@@ -226,10 +232,16 @@ _pages/home.php_ (la partie formulaire) :
 </div>
 ```
 
-La liste des 5 dernières punitions, elle, ne change pas : le `SELECT` est toujours là, en haut de `pages/home.php`, et il utilise la variable `$pdo` fournie par le point d'entrée.
+La liste des 5 dernières punitions, elle, ne change pas : le `SELECT` est toujours là, en haut de `pages/home.php` (avec la récupération de la phrase passée dans l'URL), et il utilise la variable `$pdo` fournie par le point d'entrée.
 
 ```php
 <?php
+// La phrase proposée dans le formulaire (modifiable via index.php?page=home&phrase=...)
+$phrase = "Je ne copie pas le code de Valentin";
+if (isset($_GET['phrase'])) {
+    $phrase = $_GET['phrase'];
+}
+
 // Les 5 dernières punitions enregistrées
 $sql = "SELECT phrase, nombre, date_creation FROM phrases ORDER BY date_creation DESC LIMIT 5";
 $punitions = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -314,6 +326,10 @@ Deux choses à faire, et une seule est « du code » :
 
 :::
 
+Voici ce que vous devez obtenir sur `index.php?page=about` :
+
+![La page À propos, affichée entre le header et le footer, avec le lien « À propos » dans le pied de page](./res/tp3_about.png)
+
 ## Réécrire les URL
 
 Nous avons vu que les liens ne sont pas très beaux. Avec Apache, il est possible de réécrire les liens pour rendre transparente l'opération.
@@ -340,6 +356,8 @@ Nous avons donc une règle qui indique :
 
 Le `(.*).html` veut dire n'importe quel texte saisi avant le `.html` sera transformé en `index.php?page=$1`. `$1` étant « le n'importe quoi saisi avant le `.html`.
 :::
+
+![Le navigateur demande bart.html, Apache applique la règle du .htaccess et PHP reçoit index.php?page=bart](./res/tp3_reecriture_url.svg)
 
 ## Toujours plus loin
 

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="300" viewBox="0 0 900 300" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+  </defs>
+  <rect width="900" height="300" fill="#ffffff"/>
+  <!-- videos -->
+  <rect x="60" y="40" width="300" height="190" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <path d="M60,80 V50 a10,10 0 0,1 10,-10 H350 a10,10 0 0,1 10,10 V80 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="210" y="66" text-anchor="middle" font-weight="600" fill="#0f172a">videos</text>
+  <g font-family="ui-monospace, monospace" font-size="13" fill="#0f172a">
+    <text x="80" y="110"><tspan font-weight="700">id</tspan></text><text x="190" y="110" fill="#475569">INT, clé primaire</text>
+    <text x="80" y="140">titre</text><text x="190" y="140" fill="#475569">VARCHAR(150)</text>
+    <text x="80" y="170">youtube_id</text><text x="190" y="170" fill="#475569">VARCHAR(20)</text>
+  </g>
+  <rect x="70" y="182" width="280" height="30" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <g font-family="ui-monospace, monospace" font-size="13" fill="#0f172a"><text x="80" y="202"><tspan font-weight="700">user_id</tspan></text><text x="190" y="202" fill="#475569">INT, clé étrangère</text></g>
+  <!-- users -->
+  <rect x="540" y="40" width="300" height="160" rx="10" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+  <path d="M540,80 V50 a10,10 0 0,1 10,-10 H830 a10,10 0 0,1 10,10 V80 Z" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="690" y="66" text-anchor="middle" font-weight="600" fill="#0f172a">users</text>
+  <g font-family="ui-monospace, monospace" font-size="13" fill="#0f172a">
+    <text x="560" y="110"><tspan font-weight="700">id</tspan></text><text x="670" y="110" fill="#475569">INT, clé primaire</text>
+    <text x="560" y="140">login</text><text x="670" y="140" fill="#475569">VARCHAR(50)</text>
+    <text x="560" y="170">password</text><text x="670" y="170" fill="#475569">VARCHAR(128)</text>
+  </g>
+  <!-- relation -->
+  <path d="M350,197 H450 V105 H538" fill="none" stroke="#d97706" stroke-width="2" marker-end="url(#arrowa)"/>
+  <text x="372" y="188" font-weight="600" fill="#d97706">n</text>
+  <text x="500" y="96" font-weight="600" fill="#d97706">1</text>
+  <text x="462" y="150" font-size="12" fill="#d97706">ajoutée par</text>
+  <!-- notes -->
+  <text x="210" y="262" text-anchor="middle" font-size="13" fill="#475569">Une vidéo est ajoutée par un seul utilisateur,</text>
+  <text x="210" y="280" text-anchor="middle" font-size="13" fill="#475569">un utilisateur peut en ajouter plusieurs.</text>
+  <text x="690" y="232" text-anchor="middle" font-size="13" fill="#475569">SHA2(…, 512) produit 128 caractères :</text>
+  <text x="690" y="250" text-anchor="middle" font-size="13" fill="#475569">la colonne doit pouvoir les contenir.</text>
+</svg>

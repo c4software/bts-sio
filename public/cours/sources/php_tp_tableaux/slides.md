@@ -19,7 +19,7 @@ Depuis le TP 1 vous manipulez des tableaux sans le savoir.
 ## Rappel : le tableau numéroté
 
 ```php
-$subjects = array('PHP', 'SQL', 'Réseau');
+$subjects = ['PHP', 'SQL', 'Réseau'];
 
 echo $subjects[0]; // PHP
 ```
@@ -32,11 +32,11 @@ echo $subjects[0]; // PHP
 ## Rappel : le tableau associatif
 
 ```php
-$student = array(
+$student = [
     'prenom' => 'Bart',
     'nom' => 'Simpson',
     'age' => 10,
-);
+];
 
 echo $student['prenom']; // Bart
 ```
@@ -68,10 +68,10 @@ Il nous faut autre chose.
 ## Un tableau… de tableaux
 
 ```php
-$students = array(
-    array('prenom' => 'Bart', 'nom' => 'Simpson'),
-    array('prenom' => 'Lisa', 'nom' => 'Simpson'),
-);
+$students = [
+    ['prenom' => 'Bart', 'nom' => 'Simpson'],
+    ['prenom' => 'Lisa', 'nom' => 'Simpson'],
+];
 ```
 
 Une case du tableau contient un autre tableau : c'est un tableau **à plusieurs dimensions**.

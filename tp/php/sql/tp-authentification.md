@@ -140,7 +140,7 @@ Deux propriétés d'un hachage, à retenir :
 Historiquement, on hachait avec `md5()` ou `sha1()`. Testez, c'est instructif :
 
 ```php
-echo md5('mdp'); // 6f8db599de986fab7a21625b7916589c
+echo md5('mdp'); // aa36dc6e81e2ac7ad03e12fedcb6a2c0
 ```
 
 Le mot de passe n'est plus lisible. Alors pourquoi est-ce insuffisant aujourd'hui ?
@@ -154,10 +154,10 @@ Le mot de passe n'est plus lisible. Alors pourquoi est-ce insuffisant aujourd'hu
 Le **sel** (salt), c'est une valeur aléatoire ajoutée au mot de passe **avant** de le hacher. Conséquence : deux personnes ayant choisi le même mot de passe n'ont pas le même résultat en base.
 
 ```php
-echo password_hash('mdp', PASSWORD_DEFAULT);
+echo password_hash('motdepasse1', PASSWORD_DEFAULT);
 // $2y$10$hjWMUhizSij9iB8LTl01..pK0w2nPBMQrDzNlhzugI8RMTRPnE8RW
 
-echo password_hash('mdp', PASSWORD_DEFAULT);
+echo password_hash('motdepasse1', PASSWORD_DEFAULT);
 // $2y$10$mT3em04Vba3dJ52zQju/Juct9Ae2HsyDzoOmJNPOc7YsQ0lN4Tnv2
 ```
 
@@ -168,6 +168,10 @@ Si le sel est différent à chaque fois, comment `password_verify()` fait-il pou
 
 Parce que le sel est **stocké dans le hash lui-même**. C'est tout l'intérêt du format que nous voyons juste en dessous : la chaîne enregistrée contient l'algorithme, le coût, le sel **et** l'empreinte. Vous n'avez donc rien d'autre à sauvegarder.
 :::
+
+Pour résumer, avec deux comptes qui ont choisi le même mot de passe :
+
+![alice et bob choisissent tous les deux motdepasse1 ; password_hash() tire un sel différent pour chacun, si bien que les deux hashs enregistrés en base diffèrent : chacun commence par $2y$10$ (algorithme et coût), suivi de 22 caractères de sel puis de l'empreinte ; password_verify() relit le sel dans le hash pour refaire le calcul](./res/auth_sel.svg)
 
 ### bcrypt, lent exprès
 
@@ -186,6 +190,10 @@ $2y$10$hjWMUhizSij9iB8LTl01..pK0w2nPBMQrDzNlhzugI8RMTRPnE8RW
  |   +----- le coût : 2^10 = 1024 tours de calcul
  +--------- l'algorithme : 2y = bcrypt
 ```
+
+::: tip `$2y$10$` ou `$2y$12$` ?
+Le coût dépend de votre version de PHP : `10` jusqu'à PHP 8.3, `12` depuis PHP 8.4 (soit 2^12 = 4096 tours, quatre fois plus lent). Si votre hash commence par `$2y$12$`, tout va bien : votre PHP est simplement plus récent que celui de l'exemple. Les ordinateurs deviennent plus rapides, PHP augmente donc le coût de temps en temps (nous en reparlons avec `password_needs_rehash()`).
+:::
 
 Retenez juste ceci : **un hash bcrypt commence par `$2y$` et fait 60 caractères**. C'est votre point de contrôle visuel tout au long du TP. Pour laisser la place aux futurs algorithmes (plus longs), la colonne sera déclarée en `VARCHAR(255)`.
 
@@ -438,6 +446,8 @@ Enfin, `pages/home.php`, la page publique d'accueil. Rien de compliqué, je vous
 ::: tip Point de contrôle
 Ouvrez `http://localhost/espace-membre/index.php`. Vous devez voir la page d'accueil, avec « Inscription » et « Connexion » dans le menu. Aucune erreur PHP, aucune erreur de connexion à la base.
 
+![La page d'accueil de l'espace membre : le titre « Bienvenue », la phrase de présentation, les boutons « Créer un compte » et « Se connecter », et les liens « Inscription » et « Connexion » dans le menu](./res/auth_accueil.png)
+
 Si vous avez une erreur PDO, c'est `utils/db.php` : vérifiez le nom de la base (`espace_membre`), l'utilisateur (`root`) et le mot de passe (vide sur XAMPP).
 :::
 
@@ -572,9 +582,13 @@ mot_de_passe : $2y$10$hjWMUhizSij9iB8LTl01..pK0w2nPBMQrDzNlhzugI8RMTRPnE8RW
 date_inscription : 2026-09-12 09:38:07
 ```
 
-La colonne `mot_de_passe` contient bien une chaîne commençant par `$2y$` et longue de 60 caractères, **et pas** `motdepasse1`. Si vous voyez le mot de passe en clair, relisez le point 4 du traitement.
+La colonne `mot_de_passe` contient bien une chaîne commençant par `$2y$` (puis `10$` ou `12$` selon votre version de PHP) et longue de 60 caractères, **et pas** `motdepasse1`. Si vous voyez le mot de passe en clair, relisez le point 4 du traitement.
 
 Testez aussi les cas qui doivent échouer : un email invalide (`pasunemail`), un mot de passe de 5 caractères, une confirmation différente, et une deuxième inscription avec le même email. Chacun doit afficher son message, sans enregistrer quoi que ce soit.
+
+Les trois premiers d'un coup, cela donne :
+
+![Le formulaire d'inscription avec, au-dessus des champs, un encadré rouge qui liste trois erreurs : l'adresse email n'est pas valide, le mot de passe doit contenir au moins 8 caractères, les deux mots de passe ne sont pas identiques](./res/auth_inscription_erreurs.png)
 :::
 
 ## La connexion
@@ -621,6 +635,10 @@ Les points à comprendre :
 - `session_regenerate_id(true)` : PHP crée un **nouvel** identifiant de session et détruit l'ancien. Si quelqu'un avait réussi à imposer un identifiant de session à votre visiteur avant sa connexion (une attaque nommée « fixation de session »), cet identifiant ne vaut plus rien. Une ligne, à mettre systématiquement au moment où l'on connecte quelqu'un. Plus de détails [dans le complément sécurité](../securite/support.md#la-session).
 - En session, on stocke l'`id` et l'email, **jamais** le mot de passe ni le hash.
 
+Pour résumer, l'inscription et la connexion côte à côte :
+
+![À gauche, l'inscription : l'email et le mot de passe passent par password_hash(), qui produit un hash de 60 caractères enregistré par un INSERT dans la table utilisateurs. À droite, la connexion : un SELECT cherche la ligne par l'email seul, puis password_verify() compare le mot de passe saisi au hash stocké ; si c'est vrai, session_regenerate_id(true), $_SESSION['user_id'] et redirection vers l'espace ; sinon, le message « Email ou mot de passe incorrect. »](./res/auth_inscription_connexion.svg)
+
 :::: tip Question de réflexion
 **Pourquoi ne pas afficher « Cet email est inconnu » quand l'email n'existe pas ?**
 
@@ -666,6 +684,10 @@ Il reste le formulaire, à la suite du traitement :
 
 <p>Pas encore de compte ? <a href="index.php?page=inscription">Créez-en un</a>.</p>
 ```
+
+Juste après une inscription réussie, la page de connexion affiche le message de confirmation :
+
+![La page de connexion après une inscription : un encadré vert « Votre compte est créé, vous pouvez maintenant vous connecter. » au-dessus du formulaire email et mot de passe](./res/auth_inscription_ok.png)
 
 ::: tip Point de contrôle
 Saisissez un mauvais mot de passe : vous devez obtenir ceci, et rien de plus bavard.
@@ -809,7 +831,7 @@ Et pensez à supprimer vos `var_dump()` avant de rendre votre travail. 😉
 :::
 
 ::: tip Note pour le vous du futur : `password_needs_rehash()`
-Un jour, PHP changera l'algorithme par défaut, ou vous augmenterez le coût du calcul. Vos anciens comptes seront alors hachés « à l'ancienne ».
+Un jour, PHP changera l'algorithme par défaut, ou le coût du calcul (c'est arrivé avec PHP 8.4, qui est passé de `10` à `12`). Vos anciens comptes seront alors hachés « à l'ancienne ».
 
 La fonction `password_needs_rehash()` sert exactement à ça : au moment d'une connexion réussie (c'est le seul moment où vous avez le mot de passe en clair sous la main), elle vous dit si le hash mérite d'être recalculé.
 
@@ -881,6 +903,8 @@ Règle générale, valable pour tout le reste de votre carrière : **tout ce qui
 Ce TP couvre les fondations. En deuxième année, la série sécurité va beaucoup plus loin sur le sujet avec le [TP 4 : authentification, mots de passe et sessions](/tp/securite/tp4_authentification.md) : attaques par force brute et comment les ralentir vraiment, jetons CSRF, double authentification (2FA), sécurisation fine des cookies de session.
 
 Si le sujet vous intéresse, allez y jeter un œil : vous avez maintenant tout le vocabulaire pour le comprendre.
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/php/espace-membre.zip) (le script `espace_membre.sql` est dans l'archive).
 
 ## Conclusion
 

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+
+  <!-- page PHP -->
+  <rect x="20" y="30" width="220" height="130" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="130" y="58" text-anchor="middle" font-weight="600" fill="#0f172a">index.php</text>
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#0f172a">
+    <text x="34" y="86">include('utils/db.php');</text>
+    <text x="34" y="108">$pdo-&gt;query($sql)</text>
+    <text x="62" y="130">-&gt;fetchAll(...);</text>
+  </g>
+
+  <!-- le tuyau -->
+  <rect x="290" y="30" width="340" height="146" rx="24" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="460" y="92" text-anchor="middle" font-weight="600" fill="#0f172a"><tspan font-family="ui-monospace, monospace">$pdo</tspan> : la connexion</text>
+  <text x="460" y="112" text-anchor="middle" font-size="12" fill="#475569">ouverte par new PDO(...) dans utils/db.php</text>
+
+  <!-- base -->
+  <g stroke="#475569" stroke-width="2" fill="#f1f5f9">
+    <path d="M700,52 a80,16 0 0,1 160,0 v90 a80,16 0 0,1 -160,0 z"/>
+    <ellipse cx="780" cy="52" rx="80" ry="16"/>
+  </g>
+  <text x="780" y="94" text-anchor="middle" font-weight="600" fill="#0f172a">MySQL</text>
+  <text x="780" y="114" text-anchor="middle" font-size="12" fill="#475569">base bart</text>
+  <text x="780" y="132" text-anchor="middle" font-size="12" fill="#475569">table phrases</text>
+
+  <!-- aller : la requete -->
+  <line x1="240" y1="60" x2="698" y2="60" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="460" y="52" text-anchor="middle" font-size="12" fill="#475569">1. query() envoie la requête SELECT</text>
+  <!-- retour : les lignes -->
+  <line x1="700" y1="140" x2="242" y2="140" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="460" y="158" text-anchor="middle" font-size="12" fill="#16a34a">2. fetchAll() rapatrie toutes les lignes</text>
+
+  <!-- vers le resultat -->
+  <line x1="130" y1="160" x2="130" y2="196" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+
+  <!-- resultat -->
+  <rect x="20" y="198" width="860" height="186" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="40" y="224" font-weight="600" fill="#0f172a"><tspan font-family="ui-monospace, monospace">$punitions</tspan> : un tableau de tableaux associatifs (une case par ligne de la table)</text>
+  <!-- en-tetes de colonnes -->
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#475569">
+    <text x="190" y="252">'phrase'</text>
+    <text x="580" y="252">'nombre'</text>
+    <text x="690" y="252">'date_creation'</text>
+  </g>
+  <g stroke="#16a34a" fill="#ffffff">
+    <rect x="40" y="262" width="120" height="34" rx="6"/>
+    <rect x="180" y="262" width="380" height="34" rx="6"/>
+    <rect x="570" y="262" width="100" height="34" rx="6"/>
+    <rect x="680" y="262" width="180" height="34" rx="6"/>
+    <rect x="40" y="306" width="120" height="34" rx="6"/>
+    <rect x="180" y="306" width="380" height="34" rx="6"/>
+    <rect x="570" y="306" width="100" height="34" rx="6"/>
+    <rect x="680" y="306" width="180" height="34" rx="6"/>
+  </g>
+  <g font-size="13" fill="#0f172a">
+    <text x="100" y="284" text-anchor="middle" font-family="ui-monospace, monospace" font-weight="600">[0]</text>
+    <text x="192" y="284">Je rendrai mes TP à l'heure</text>
+    <text x="620" y="284" text-anchor="middle">20</text>
+    <text x="692" y="284">2026-09-12 10:41:25</text>
+    <text x="100" y="328" text-anchor="middle" font-family="ui-monospace, monospace" font-weight="600">[1]</text>
+    <text x="192" y="328">Je n'utiliserai pas mon téléphone en classe</text>
+    <text x="620" y="328" text-anchor="middle">50</text>
+    <text x="692" y="328">2026-09-12 10:31:25</text>
+  </g>
+  <text x="450" y="368" text-anchor="middle" font-size="12" fill="#475569">… et ainsi de suite. Un foreach passe sur chaque case : <tspan font-family="ui-monospace, monospace">$punition['phrase']</tspan>, <tspan font-family="ui-monospace, monospace">$punition['nombre']</tspan>…</text>
+</svg>

@@ -45,6 +45,10 @@ echo $_GET['prenom']; // Affichera valentin
 echo $_GET['nom'] . " " . $_GET['prenom']; // Affichera brosseau valentin
 ```
 
+Dans la BTS TV, c'est exactement ce mécanisme qui relie les deux pages : chaque lien de `index.php` porte l'identifiant de la vidéo, et `tv.php` le lit dans `$_GET` pour afficher le bon lecteur.
+
+![Sur index.php, la card « Tri Martolod » pointe vers tv.php?id=jTuBnZrLbq0 ; au clic le navigateur demande cette adresse, tv.php lit $id dans $_GET['id'] et l'utilise dans l'adresse de l'iframe YouTube](./res/tp-param_lien_id.svg)
+
 ## Évolution 0
 
 Nous allons nous servir des `includes` pour « organiser » notre code. L'idée derrière cette organisation est simple, évitée de multiplier le code identique entre différentes pages. Si vous regardez votre code, vous allez rapidement remarquer que certains éléments sont identiques sur les deux pages :
@@ -77,6 +81,16 @@ C'est effectivement aussi simple que ça. N'oubliez pas, 50% de votre travail re
 
 Je vous laisse faire de même pour la partie `head` de votre site.
 
+Pour résumer, les deux pages incluent les mêmes fichiers :
+
+![index.php et tv.php incluent tous les deux components/head.php et components/nav.php : une modification dans nav.php change donc le menu des deux pages](./res/tp-param_includes.svg)
+
+::: tip Point de contrôle
+Ce découpage ne doit rien changer à l'écran. La page `tv.php?id=jTuBnZrLbq0` s'affiche toujours avec sa barre « BTS TV » et sa vidéo :
+
+![Page tv.php avec la barre sombre « BTS TV », le lecteur YouTube du clip « Tri Martolod » et un bouton « Retour à la liste »](./res/tp-param_tv.png)
+:::
+
 ::: tip Bon ok…
 Un petit indice pour la suite, votre structure de dossier ressemblera à :
 ![Structure BTS TV](./res/gretatv_struct.png)
@@ -88,6 +102,12 @@ Je vous propose comme évolution d'ajouter un paramètre. Celui-ci devra nous pe
 
 - Ajouter un paramètre `&bg=noel` ou `&bg=brick`, etc.
 - Utiliser le paramètre pour personnaliser le thème de la page. (Le paramètre doit être utilisé en tant que `class`).
+
+::: tip Point de contrôle
+Avec l'adresse `tv.php?id=jTuBnZrLbq0&bg=noel`, la balise `<body>` reçoit la classe `noel` et le fond de la page change (ici un fond rouge enneigé, à vous de choisir le vôtre) :
+
+![La même page tv.php, cette fois sur un fond rouge parsemé de flocons blancs](./res/tp-param_tv_noel.png)
+:::
 
 ## Évolution 2
 
@@ -109,7 +129,7 @@ La dernière grosse évolution à réaliser dans ce site, je vous propose de ren
 _Exemple simple **à ne pas recopier**_
 
 ```php
-$videos = array("BcgsOgjHgWA","lcOxhH8N3Bo","jTuBnZrLbq0", "M2VtfZDOcHQ", "i1iIaSbK9bg", "MTaHw-S6IDo", "KfMCApWc5xE", "igtN49I1CtM");
+$videos = array("lcOxhH8N3Bo", "jTuBnZrLbq0", "i1iIaSbK9bg", "MTaHw-S6IDo", "KfMCApWc5xE", "igtN49I1CtM");
 
 foreach ($videos as $id) {
     echo "- <a href='tv.php?id=" . $id . "'>Video " . $id . "</a>";
@@ -118,4 +138,10 @@ foreach ($videos as $id) {
 
 ::: tip Attention
 Le code précédent est **un exemple** ! Il faut le modifier/l'adapter pour afficher les cards tels que c'était demandé initialement.
+:::
+
+::: tip Point de contrôle
+Une fois la boucle en place, la page d'accueil n'a plus aucune card écrite à la main : elles sont toutes générées à partir du tableau, chacune avec son lien `tv.php?id=…`.
+
+![Page d'accueil de la BTS TV : six cards avec la miniature, le titre de la vidéo et un bouton « Regarder »](./res/tp-param_index.png)
 :::

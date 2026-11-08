@@ -15,12 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <h2>Connexion</h2>
 
-<?php if ($error !== null) : ?>
-    <p class="error"><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
+<?php if ($error !== null) { ?>
+    <p class="error"><?php echo $error; ?></p>
+<?php } ?>
 
 <form method="post" action="index.php?page=connexion">
-    <p><label>Email <input type="email" name="email" required></label></p>
-    <p><label>Mot de passe <input type="password" name="password" required></label></p>
-    <p><button type="submit">Se connecter</button></p>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
+
+    <label for="password">Mot de passe</label>
+    <input type="password" name="password" id="password">
+
+    <button type="submit">Se connecter</button>
 </form>

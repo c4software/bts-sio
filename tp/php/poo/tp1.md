@@ -193,6 +193,8 @@ Deux conséquences importantes :
 - Vous n'écrivez **plus jamais** de `require` pour vos classes. Vous les utilisez, elles arrivent.
 - Une classe qui n'est jamais utilisée n'est **jamais chargée**. Votre code reste léger même avec cinquante classes.
 
+![Schéma de l'autoloader en quatre étapes : la page appelle Idea::all(), PHP ne connait pas la classe Idea et appelle la fonction donnée à spl_autoload_register avec le nom "Idea", la fonction fait require_once('classes/Idea.php'), puis PHP reprend l'exécution ; les appels suivants ne repassent plus par l'autoloader](./res/tp1_autoloader.svg)
+
 Les vrais projets utilisent un autoloader tout fait, en beaucoup plus sophistiqué (gestion des namespaces, cache, etc). Le principe, lui, ne change pas. Tout est [dans le support](./support.md#charger-les-classes-automatiquement).
 :::
 ::::
@@ -359,6 +361,8 @@ Créez enfin un `pages/home.php` provisoire, avec un simple `<h1>Les idées dép
 
 ::: tip Point de contrôle
 En ouvrant `http://localhost/boite-a-idees/index.php`, vous voyez le bandeau bleu, le titre et le pied de page. Aucune erreur PHP à l'écran. Le squelette est en place, on peut passer aux choses sérieuses.
+
+![La page d'accueil provisoire : le bandeau bleu avec les liens « La boîte à idées » et « Proposer une idée », le titre « Les idées déposées » et le pied de page, sans aucune idée](./res/tp1_squelette.png)
 :::
 
 ## La classe Database
@@ -564,6 +568,8 @@ La variable `$rows` contient **exactement** ce que PDO vous renvoyait dans les T
 
 La boucle, elle, fait la traduction : pour chaque ligne, elle fabrique un `Idea`. Une ligne de la base entre, un objet sort. Et c'est ici, **à un seul endroit dans tout le projet**, que `titre` devient `title` et `contenu` devient `content`. Si demain la colonne `contenu` est renommée en base, vous corrigez cette ligne, et rien d'autre.
 
+![Schéma de la traduction faite par Idea::all() : à gauche une ligne renvoyée par PDO avec les clés françaises id, titre, auteur, contenu, date_creation ; au milieu la boucle qui appelle new Idea ; à droite l'objet Idea avec les propriétés anglaises id, title, author, content, createdAt et les mêmes valeurs](./res/tp1_ligne_objet.svg)
+
 Le type de retour `: array` annonce que la méthode rend un tableau. Ici, un tableau d'objets `Idea`.
 
 **Et pourquoi `static` ?** Parce qu'on appelle `all()` sur la **classe** : `Idea::all()`, avec le double deux-points, et non `$idea->all()`. C'est le même raisonnement que pour `Database::getPdo()` : au moment où l'on demande la liste des idées, **on n'a encore aucun objet sous la main**. C'est justement le travail de la méthode que d'en fabriquer.
@@ -660,6 +666,10 @@ Parce que `save()` a besoin d'un objet pour travailler : elle enregistre **cette
 La règle, en une phrase : si la méthode a besoin d'un objet, elle n'est pas statique ; si elle sert à en obtenir un, elle l'est. C'est détaillé dans [le support](./support.md#le-modele).
 :::
 ::::
+
+Pour résumer, voici les méthodes de `Idea` à la fin de ce TP, rangées selon cette règle :
+
+![Schéma en deux colonnes : à gauche les méthodes statiques appelées sur la classe avec ::, Idea::all() qui rend un tableau d'objets, Idea::find(3) qui rend un objet ou null, Idea::count() qui rend un entier ; à droite les méthodes d'instance appelées sur un objet avec ->, $idea->save(), $idea->delete(), $idea->getShortContent()](./res/tp1_statique_instance.svg)
 
 ::: details Besoin d'aide pour écrire `save()` ?
 
@@ -821,11 +831,17 @@ Une redirection doit partir **avant** le moindre caractère de HTML. Or `index.p
 ::: tip Point de contrôle
 Déposez une idée. Vous devez être renvoyé sur l'accueil, avec le bandeau vert de confirmation, et votre idée **en haut de la liste** (puisque c'est la plus récente). Rechargez la page : le message a disparu, l'idée est toujours là.
 
+![L'accueil juste après le dépôt d'une idée : le bandeau vert « Merci, votre idée a bien été déposée. » puis l'idée de Bart « Un club de skate le mercredi après-midi » en tête de liste](./res/tp1_confirmation.png)
+
 Testez aussi le cas d'erreur : envoyez le formulaire vide, le message rouge doit s'afficher et **aucune** ligne ne doit être créée en base.
+
+![Le formulaire réaffiché après un envoi incomplet, avec le message rouge « Tous les champs sont obligatoires. »](./res/tp1_erreur.png)
 :::
 
 ::: tip Le chemin complet, en une phrase
 Un formulaire HTML est devenu un tableau `$_POST`, qui est devenu un objet `Idea`, qui s'est lui-même transformé en `INSERT`, qui a produit une ligne dans MySQL. Chaque étape a **une** responsabilité, et une seule. C'est tout l'intérêt de la découpe.
+
+![Schéma du trajet d'une idée : le formulaire envoyé en POST, le tableau $_POST nettoyé avec trim(), l'objet créé avec new Idea(null, ...), $idea->save() qui prépare et exécute l'INSERT, MySQL qui crée la ligne et dont lastInsertId() remplit $this->id ; si un champ est vide, le formulaire est réaffiché avec le message d'erreur ; sinon un message flash est mis en session avant la redirection vers l'accueil](./res/tp1_trajet_formulaire.svg)
 :::
 
 ## Compter et retrouver une idée
@@ -1010,6 +1026,8 @@ La parade tient en une fonction : `htmlspecialchars()` transforme `<` en `&lt;`,
 Je vous laisse l'appliquer à **toutes** les valeurs qui viennent de la base ou de l'utilisateur : titre, auteur, contenu, extrait, message flash. La règle est simple et sans exception : **jamais un `echo` sans échappement sur une donnée qu'on n'a pas écrite soi-même**.
 :::
 ::::
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/php/boite-a-idees.zip) (le script `boite_idees.sql` est dans l'archive).
 
 ## Conclusion
 

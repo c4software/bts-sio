@@ -72,6 +72,10 @@ En PHP, deux super-globales servent à se souvenir de quelque chose d'un chargem
 - `$_SESSION` : les valeurs sont stockées **sur le serveur**. Le visiteur ne peut ni les lire ni les modifier. Il ne possède qu'un identifiant de session (un cookie `PHPSESSID`) qui permet au serveur de retrouver **son** tiroir.
 - `$_COOKIE` : les valeurs sont stockées **chez le visiteur**, dans son navigateur. Il peut donc les lire, les modifier, les supprimer.
 
+Pour résumer, voici où vit chaque information à la fin de ce TP :
+
+![Le navigateur ne garde que deux cookies, PHPSESSID et theme, lisibles et modifiables par le visiteur ; le cookie PHPSESSID permet au serveur PHP de retrouver le tiroir de session du visiteur (last_phrase, last_count, generated, message), tandis que les punitions restent dans la table phrases de la base bart](./res/tp4_session_cookie.svg)
+
 ::: tip Super-globales ?
 Ces deux variables sont des `super-globales` : elles sont disponibles en permanence dans votre code (dans une fonction aussi, sans le mot clé `global`), et elles sont remplies automatiquement au début du chargement de votre page.
 :::
@@ -232,6 +236,10 @@ Un message flash, c'est donc toujours le même trio : j'écris, j'affiche, j'oub
 
 :::
 
+Voici le trajet complet, du clic sur « Générer la punition » jusqu'au rechargement :
+
+![Diagramme de séquence : le navigateur envoie le POST vers page=bart, le serveur fait l'INSERT et écrit le message en session, puis répond 302 avec Location index.php?page=home ; le navigateur demande l'accueil, qui affiche le message puis le supprime ; un F5 redemande l'accueil en GET, sans message et sans nouvel INSERT](./res/tp4_flash_redirection.svg)
+
 Et le tableau de Bart, alors ? Il ne disparait pas : puisque la dernière phrase est en session depuis la section « Se souvenir du dernier choix », affichez-le sur l'accueil, sous le formulaire.
 
 ```php
@@ -271,12 +279,25 @@ Et sur l'accueil, affichez ce compteur **à côté** du total en base :
 $total = $pdo->query("SELECT COUNT(*) FROM phrases")->fetchColumn();
 ```
 
+Côté session, au premier passage la case `generated` n'existe pas encore : on part donc de zéro, comme pour le dernier choix.
+
+```php
+$generated = 0;
+if (isset($_SESSION['generated'])) {
+    $generated = $_SESSION['generated'];
+}
+```
+
 ```php
 <p>
     Vous avez généré <?php echo $generated; ?> punition(s) pendant cette visite,
     sur <?php echo $total; ?> enregistrée(s) dans la base depuis toujours.
 </p>
 ```
+
+Après deux punitions générées, voici ce que vous devez obtenir :
+
+![La carte des dernières punitions avec la phrase « Vous avez généré 2 punition(s) pendant cette visite, sur 5 enregistrée(s) dans la base depuis toujours », suivie de la liste des cinq dernières punitions](./res/tp4_compteur.png)
 
 ::: details Question : lequel des deux survit à la fermeture du navigateur ?
 
@@ -400,6 +421,8 @@ body.theme-sombre .form-control {
 
 C'est la raison de la redirection : on recharge la page pour lire le cookie tout juste déposé. Et comme `setcookie()` envoie un en-tête, elle a la même contrainte que `header()` : merci `ob_start()`.
 
+![Diagramme de séquence : le navigateur demande page=theme&value=sombre, le serveur appelle setcookie alors que $_COOKIE['theme'] n'existe pas encore, puis répond 302 avec Set-Cookie theme=sombre ; le navigateur range le cookie et redemande l'accueil en l'envoyant, $_COOKIE['theme'] vaut alors sombre et la page revient avec la classe theme-sombre](./res/tp4_setcookie.svg)
+
 :::
 
 ::: danger Jamais rien de sensible dans un cookie
@@ -429,6 +452,8 @@ die();
 ```
 
 Testez : le formulaire n'est plus pré-rempli, le compteur repart à zéro… mais le thème, lui, n'a pas bougé. Normal : `session_destroy()` vide le tiroir **du serveur**, pas les cookies du navigateur.
+
+![L'accueil après la remise à zéro : toujours en thème sombre, le formulaire est revenu à 10 lignes et « Je ne copie pas le code de Valentin », le compteur de la visite affiche 0 punition alors que la base en contient toujours 5](./res/tp4_reset.png)
 
 ::: details Et si on voulait se souvenir de QUI est connecté ?
 

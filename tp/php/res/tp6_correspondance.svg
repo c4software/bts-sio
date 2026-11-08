@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="470" viewBox="0 0 900 470" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Ce que vous écriviez à la main, ce que Laravel vous apporte</text>
+  <rect x="20" y="50" width="860" height="400" rx="10" fill="#ffffff"/>
+  <rect x="170" y="52" width="356" height="40" fill="#f1f5f9"/>
+  <path d="M530,52 L870,52 Q878,52 878,60 L878,92 L530,92 z" fill="#dbeafe"/>
+  <text x="180" y="77" font-weight="600" fill="#0f172a">PHP de première année</text>
+  <text x="540" y="77" font-weight="600" fill="#2563eb">Laravel</text>
+  <rect x="20" y="92" width="860" height="40" fill="#ffffff"/>
+  <text x="32" y="117" font-weight="600" fill="#0f172a">Les liens</text>
+  <text x="180" y="117" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">index.php?page=hello + $whitelist</text>
+  <text x="540" y="117" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">routes/web.php : Route::get('/hello', ...)</text>
+  <rect x="20" y="132" width="860" height="40" fill="#f8fafc"/>
+  <text x="32" y="157" font-weight="600" fill="#0f172a">Le traitement</text>
+  <text x="180" y="157" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">le PHP en haut de pages/hello.php</text>
+  <text x="540" y="157" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">app/Http/Controllers : HomeController</text>
+  <rect x="20" y="172" width="860" height="40" fill="#ffffff"/>
+  <text x="32" y="197" font-weight="600" fill="#0f172a">Les pages</text>
+  <text x="180" y="197" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">pages/hello.php, header.php, footer.php</text>
+  <text x="540" y="197" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">resources/views/hello.blade.php</text>
+  <rect x="20" y="212" width="860" height="40" fill="#f8fafc"/>
+  <text x="32" y="237" font-weight="600" fill="#0f172a">Afficher</text>
+  <text x="180" y="237" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">&lt;?php echo htmlspecialchars($name); ?&gt;</text>
+  <text x="540" y="237" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">{{ $name }} (échappé tout seul)</text>
+  <rect x="20" y="252" width="860" height="40" fill="#ffffff"/>
+  <text x="32" y="277" font-weight="600" fill="#0f172a">Paramètre GET</text>
+  <text x="180" y="277" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$_GET['name']</text>
+  <text x="540" y="277" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$request-&gt;input('name')</text>
+  <rect x="20" y="292" width="860" height="40" fill="#f8fafc"/>
+  <text x="32" y="317" font-weight="600" fill="#0f172a">Paramètre POST</text>
+  <text x="180" y="317" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$_POST['name']</text>
+  <text x="540" y="317" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$request-&gt;input('name') + @csrf</text>
+  <rect x="20" y="332" width="860" height="40" fill="#ffffff"/>
+  <text x="32" y="357" font-weight="600" fill="#0f172a">La session</text>
+  <text x="180" y="357" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">session_start(); $_SESSION['name']</text>
+  <text x="540" y="357" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$request-&gt;session()-&gt;get('name')</text>
+  <rect x="20" y="372" width="860" height="40" fill="#f8fafc"/>
+  <text x="32" y="397" font-weight="600" fill="#0f172a">Le serveur</text>
+  <text x="180" y="397" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">XAMPP ou WAMP (Apache)</text>
+  <text x="540" y="397" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">php artisan serve</text>
+  <g stroke="#cbd5e1" stroke-width="1">
+    <line x1="170" y1="52" x2="170" y2="412"/>
+    <line x1="528" y1="52" x2="528" y2="412"/>
+    <line x1="20" y1="92" x2="880" y2="92"/>
+  </g>
+  <text x="450" y="436" text-anchor="middle" fill="#475569">Rien de magique : les mêmes idées que dans vos TP, rangées à un endroit fixe et toujours le même.</text>
+  <rect x="20" y="50" width="860" height="400" rx="10" fill="none" stroke="#475569" stroke-width="2"/>
+</svg>

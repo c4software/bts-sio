@@ -1,5 +1,5 @@
 <?php
-// Permet d'utiliser header() même si du HTML a déjà été envoyé
+// Permet d'utiliser header() même si du HTML a déjà été envoyé (utile pour le bonus)
 ob_start();
 
 // La connexion à la base de données
@@ -12,7 +12,7 @@ include('common/data.php');
 include('common/header.php');
 
 // Pages autorisées
-$whitelist = array('home', 'classe', 'matiere', 'ajouter');
+$whitelist = ['home', 'classe', 'matiere'];
 
 // Gestion de l'affichage de la page demandée
 if (isset($_GET['page']) && in_array($_GET['page'], $whitelist)) {

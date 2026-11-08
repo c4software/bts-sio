@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Le trajet d'une requête : votre entry-point, puis celui de Laravel</text>
+  <rect x="20" y="52" width="230" height="22" rx="4" fill="#475569"/><text x="30" y="68" font-size="12" font-weight="600" fill="#ffffff">PHP de première année</text>
+  <g font-size="12">
+  <rect x="20" y="85" width="150" height="100" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="95" y="110" text-anchor="middle" font-weight="600" fill="#0f172a">Navigateur</text>
+  <text x="95" y="134" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#0f172a">index.php?page=</text>
+  <text x="95" y="150" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#0f172a">hello&amp;name=Bart</text>
+  <rect x="197" y="85" width="150" height="100" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="272" y="110" text-anchor="middle" font-weight="600" fill="#0f172a">index.php</text>
+  <text x="272" y="134" text-anchor="middle" fill="#0f172a">$whitelist</text>
+  <text x="272" y="152" text-anchor="middle" fill="#0f172a">in_array(), include</text>
+  <rect x="375" y="85" width="327" height="100" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="538" y="110" text-anchor="middle" font-weight="600" fill="#0f172a">pages/hello.php</text>
+  <text x="538" y="134" text-anchor="middle" fill="#0f172a">le traitement ($_GET) et le HTML</text>
+  <text x="538" y="152" text-anchor="middle" fill="#0f172a">dans le même fichier</text>
+  <rect x="730" y="85" width="150" height="100" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="805" y="128" text-anchor="middle" font-weight="600" fill="#0f172a">HTML renvoyé</text>
+  <text x="805" y="150" text-anchor="middle" fill="#0f172a">« Hello, Bart »</text>
+
+  <rect x="20" y="222" width="230" height="22" rx="4" fill="#2563eb"/><text x="30" y="238" font-size="12" font-weight="600" fill="#ffffff">Laravel</text>
+  <rect x="20" y="255" width="150" height="100" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="95" y="280" text-anchor="middle" font-weight="600" fill="#0f172a">Navigateur</text>
+  <text x="95" y="312" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#0f172a">/hello?name=Bart</text>
+  <rect x="197" y="255" width="150" height="100" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="272" y="280" text-anchor="middle" font-weight="600" fill="#0f172a">routes/web.php</text>
+  <text x="272" y="304" text-anchor="middle" fill="#0f172a">Route::get('/hello',</text>
+  <text x="272" y="322" text-anchor="middle" fill="#0f172a">[HomeController, 'hello'])</text>
+  <rect x="375" y="255" width="150" height="100" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="450" y="280" text-anchor="middle" font-weight="600" fill="#0f172a">HomeController</text>
+  <text x="450" y="304" text-anchor="middle" fill="#0f172a">hello($request)</text>
+  <text x="450" y="322" text-anchor="middle" fill="#0f172a">le traitement</text>
+  <rect x="552" y="255" width="150" height="100" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="627" y="280" text-anchor="middle" font-weight="600" fill="#0f172a">hello.blade.php</text>
+  <text x="627" y="304" text-anchor="middle" fill="#0f172a">view('hello', [...])</text>
+  <text x="627" y="322" text-anchor="middle" fill="#0f172a">le HTML seul</text>
+  <rect x="730" y="255" width="150" height="100" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="805" y="298" text-anchor="middle" font-weight="600" fill="#0f172a">HTML renvoyé</text>
+  <text x="805" y="320" text-anchor="middle" fill="#0f172a">« Hello, Bart »</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="170" y1="135" x2="195" y2="135"/>
+    <line x1="347" y1="135" x2="373" y2="135"/>
+    <line x1="702" y1="135" x2="728" y2="135"/>
+    <line x1="170" y1="305" x2="195" y2="305"/>
+    <line x1="347" y1="305" x2="373" y2="305"/>
+    <line x1="525" y1="305" x2="550" y2="305"/>
+    <line x1="702" y1="305" x2="728" y2="305"/>
+  </g>
+  <text x="450" y="385" text-anchor="middle" fill="#475569">Le routeur remplace la whitelist, et le traitement quitte la page pour le contrôleur.</text>
+</svg>

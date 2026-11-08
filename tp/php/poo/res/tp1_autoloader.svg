@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="290" viewBox="0 0 900 290" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="290" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Premier usage d'une classe : l'autoloader va chercher le fichier</text>
+  <rect x="20" y="60" width="190" height="120" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="115" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">1. Votre page</text>
+  <text x="115" y="104" text-anchor="middle" fill="#475569">pages/home.php</text>
+  <text x="115" y="140" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$ideas = Idea::all();</text>
+  <rect x="245" y="60" width="190" height="120" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="340" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">2. PHP</text>
+  <text x="340" y="108" text-anchor="middle" fill="#0f172a">« Idea ? Je ne connais pas</text>
+  <text x="340" y="126" text-anchor="middle" fill="#0f172a">cette classe. »</text>
+  <text x="340" y="152" text-anchor="middle" fill="#0f172a">Il appelle la fonction</text>
+  <text x="340" y="170" text-anchor="middle" fill="#0f172a">donnée à l'autoloader.</text>
+  <rect x="470" y="60" width="190" height="120" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="565" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">3. Votre fonction</text>
+  <text x="565" y="110" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$className = "Idea"</text>
+  <text x="565" y="142" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">require_once(</text>
+  <text x="565" y="160" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">'classes/Idea.php')</text>
+  <rect x="695" y="60" width="185" height="120" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="787" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">4. La classe existe</text>
+  <text x="787" y="110" text-anchor="middle" fill="#0f172a">PHP reprend là où</text>
+  <text x="787" y="128" text-anchor="middle" fill="#0f172a">il s'était arrêté :</text>
+  <text x="787" y="156" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">Idea::all()</text>
+  <g stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="210" y1="120" x2="243" y2="120"/>
+    <line x1="435" y1="120" x2="468" y2="120"/>
+    <line x1="660" y1="120" x2="693" y2="120"/>
+  </g>
+  <rect x="20" y="210" width="860" height="60" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="450" y="235" text-anchor="middle" fill="#0f172a">Appels suivants (<tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">Idea::count()</tspan>, <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">new Idea(...)</tspan>) : la classe est déjà chargée, l'autoloader n'est plus appelé.</text>
+  <text x="450" y="256" text-anchor="middle" fill="#475569">Une classe jamais utilisée n'est jamais chargée.</text>
+</svg>

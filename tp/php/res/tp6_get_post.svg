@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="380" viewBox="0 0 900 380" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="380" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Deux routes, une seule action : GET et POST arrivent au même endroit</text>
+  <rect x="20" y="60" width="240" height="80" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="140" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">Un lien ou la barre d'adresse</text>
+  <text x="140" y="108" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">GET /hello?name=Bart</text>
+  <text x="140" y="127" text-anchor="middle" font-size="12" fill="#475569">name est dans l'URL</text>
+  <rect x="20" y="170" width="240" height="80" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="140" y="194" text-anchor="middle" font-weight="600" fill="#0f172a">Le formulaire (avec @csrf)</text>
+  <text x="140" y="218" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">POST /hello</text>
+  <text x="140" y="237" text-anchor="middle" font-size="12" fill="#475569">name et _token dans le corps</text>
+  <rect x="320" y="60" width="240" height="80" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="440" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">routes/web.php</text>
+  <text x="440" y="112" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">Route::get('/hello', ...)</text>
+  <rect x="320" y="170" width="240" height="80" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="440" y="194" text-anchor="middle" font-weight="600" fill="#0f172a">routes/web.php</text>
+  <text x="440" y="222" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">Route::post('/hello', ...)</text>
+  <rect x="620" y="100" width="260" height="110" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="750" y="126" text-anchor="middle" font-weight="600" fill="#0f172a">HomeController</text>
+  <text x="750" y="152" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">hello(Request $request)</text>
+  <text x="750" y="178" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">$request-&gt;input('name')</text>
+  <text x="750" y="198" text-anchor="middle" font-size="12" fill="#475569">lit l'URL comme le corps</text>
+  <g stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="260" y1="100" x2="318" y2="100"/>
+    <line x1="260" y1="210" x2="318" y2="210"/>
+    <path d="M560,100 L590,100 L590,140 L618,140" fill="none"/>
+    <path d="M560,210 L590,210 L590,170 L618,170" fill="none"/>
+  </g>
+  <rect x="20" y="280" width="240" height="80" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="140" y="304" text-anchor="middle" font-weight="600" fill="#0f172a">Un formulaire sans @csrf</text>
+  <text x="140" y="328" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">POST /hello</text>
+  <text x="140" y="347" text-anchor="middle" font-size="12" fill="#475569">pas de _token</text>
+  <line x1="260" y1="320" x2="318" y2="320" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+  <rect x="320" y="280" width="560" height="80" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="600" y="310" text-anchor="middle" font-weight="600" fill="#0f172a">Refusé avant d'arriver au contrôleur : 419 Page Expired</text>
+  <text x="600" y="336" text-anchor="middle" font-size="12" fill="#0f172a">Le jeton prouve que le formulaire vient bien de votre site (protection CSRF).</text>
+</svg>

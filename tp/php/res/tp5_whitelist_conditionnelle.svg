@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="440" viewBox="0 0 900 440" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="440" fill="#ffffff"/>
+  <rect x="300" y="16" width="300" height="40" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="41" text-anchor="middle" font-weight="600" font-family="ui-monospace, monospace">GET index.php?page=bart</text>
+  <line x1="450" y1="56" x2="450" y2="82" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="300" y="84" width="300" height="40" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="450" y="109" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">isset($_SESSION['user']) ?</text>
+  <path d="M300,104 L230,104 L230,158" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="262" y="96" text-anchor="middle" font-weight="600">non</text>
+  <path d="M600,104 L670,104 L670,158" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="638" y="96" text-anchor="middle" font-weight="600">oui</text>
+  <!-- colonnes -->
+  <rect x="40" y="160" width="380" height="120" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="230" y="186" text-anchor="middle" font-weight="600">Visiteur anonyme</text>
+  <text x="230" y="206" text-anchor="middle" font-size="12" fill="#475569">sa whitelist :</text>
+  <rect x="65" y="222" width="75" height="28" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <text x="102.5" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">home</text>
+  <rect x="150" y="222" width="75" height="28" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <text x="187.5" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">about</text>
+  <rect x="235" y="222" width="75" height="28" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <text x="272.5" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">theme</text>
+  <rect x="320" y="222" width="75" height="28" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <text x="357.5" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">login</text>
+  <rect x="480" y="160" width="380" height="120" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="670" y="186" text-anchor="middle" font-weight="600">Visiteur connecté</text>
+  <text x="670" y="206" text-anchor="middle" font-size="12" fill="#475569">sa whitelist :</text>
+  <rect x="497" y="222" width="62" height="28" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <text x="528.0" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">home</text>
+  <rect x="569" y="222" width="62" height="28" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <text x="600.0" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">about</text>
+  <rect x="641" y="222" width="62" height="28" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <text x="672.0" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">theme</text>
+  <rect x="713" y="222" width="62" height="28" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="744.0" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">bart</text>
+  <rect x="785" y="222" width="62" height="28" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.5"/>
+  <text x="816.0" y="241" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">logout</text>
+  <line x1="230" y1="280" x2="230" y2="338" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+  <text x="240" y="314" font-size="12" font-family="ui-monospace, monospace" fill="#dc2626">'bart' absent</text>
+  <line x1="670" y1="280" x2="670" y2="338" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="680" y="314" font-size="12" font-family="ui-monospace, monospace" fill="#16a34a">'bart' présent</text>
+  <rect x="40" y="340" width="380" height="80" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="230" y="366" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">include('pages/home.php')</text>
+  <text x="230" y="388" text-anchor="middle" font-size="12">L'accueil, sans erreur :</text>
+  <text x="230" y="406" text-anchor="middle" font-size="12">pour lui, la page bart n'existe pas</text>
+  <rect x="480" y="340" width="380" height="80" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="670" y="366" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">include('pages/bart.php')</text>
+  <text x="670" y="388" text-anchor="middle" font-size="12">La punition est enregistrée,</text>
+  <text x="670" y="406" text-anchor="middle" font-size="12">puis redirection vers l'accueil</text>
+</svg>

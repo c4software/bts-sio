@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="500" viewBox="0 0 900 500" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="500" fill="#ffffff"/>
+  <!-- start -->
+  <rect x="300" y="15" width="300" height="50" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="45" text-anchor="middle" fill="#0f172a">Demande de <tspan font-family="ui-monospace, monospace" font-size="13">index.php?page=admin</tspan></text>
+  <line x1="450" y1="65" x2="450" y2="93" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- decision 1 -->
+  <path d="M450,95 L600,140 L450,185 L300,140 Z" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="450" y="137" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#0f172a">$_SESSION['user']</text>
+  <text x="450" y="155" text-anchor="middle" fill="#0f172a">existe ?</text>
+  <!-- whitelists -->
+  <rect x="50" y="200" width="290" height="64" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="195" y="224" text-anchor="middle" font-weight="600" fill="#0f172a">Whitelist du visiteur</text>
+  <text x="195" y="248" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#0f172a">['home', 'tv', 'login']</text>
+  <rect x="560" y="200" width="290" height="64" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="705" y="224" text-anchor="middle" font-weight="600" fill="#0f172a">Whitelist de la personne connectée</text>
+  <text x="705" y="248" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#0f172a">['home', 'tv', 'logout', 'admin']</text>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M300,140 H195 V198"/>
+    <path d="M600,140 H705 V198"/>
+  </g>
+  <text x="250" y="132" text-anchor="middle" font-weight="600" fill="#475569">non</text>
+  <text x="650" y="132" text-anchor="middle" font-weight="600" fill="#475569">oui</text>
+  <!-- decision 2 -->
+  <rect x="280" y="300" width="340" height="56" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="450" y="323" text-anchor="middle" fill="#0f172a">La page demandée est-elle dans la liste ?</text>
+  <text x="450" y="344" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">in_array($_GET['page'], $whitelist)</text>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M195,264 V328 H278"/>
+    <path d="M705,264 V328 H622"/>
+    <path d="M390,356 V390 H175 V418"/>
+    <path d="M510,356 V390 H725 V418"/>
+  </g>
+  <text x="300" y="382" text-anchor="middle" font-weight="600" fill="#475569">non</text>
+  <text x="600" y="382" text-anchor="middle" font-weight="600" fill="#475569">oui</text>
+  <!-- results -->
+  <rect x="40" y="420" width="270" height="64" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="175" y="445" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#0f172a">include pages/home.php</text>
+  <text x="175" y="468" text-anchor="middle" font-size="12" fill="#475569">le visiteur ne voit jamais l'admin</text>
+  <rect x="590" y="420" width="270" height="64" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="725" y="445" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" fill="#0f172a">include pages/admin.php</text>
+  <text x="725" y="468" text-anchor="middle" font-size="12" fill="#475569">seulement si connecté</text>
+</svg>

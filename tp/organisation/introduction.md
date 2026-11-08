@@ -25,6 +25,14 @@ L'application doit ressembler à :
 
 ![preview](./img/capture.png)
 
+Un clic sur le titre d'une carte ouvre la page `detail.php` de la catégorie, avec son formulaire d'ajout :
+
+![La page detail.php?c=search : une seule carte Search avec les liens Google, Qwant et DuckDuckGo, puis un formulaire avec les champs Titre du lien et Votre lien, et un bouton Ajouter](./img/orga_detail.png)
+
+Essayez d'ajouter un lien (par exemple « Ecosia », `https://www.ecosia.org`) : il apparait au bas de la liste, et il est écrit dans le fichier `data/search.json`.
+
+![La même page après l'ajout : Ecosia apparait sous DuckDuckGo dans la liste des liens](./img/orga_detail_ajout.png)
+
 ## Première analyse du code
 
 Maintenant que vous avez pris en main le code source, quelles remarques pouvez-vous émettre sur le code :
@@ -110,7 +118,7 @@ function head($titre) {
     echo "…";
 }
 
-function foot($titre) {
+function foot() {
     echo "…";
 }
 ```
@@ -125,8 +133,12 @@ Utilisez maintenant les fonctions dans votre code.
 <?php
     include("fonctions/index.php");
 
-    head();
+    head("Shitty Application");
 ```
+
+Pour résumer, voici ce que change ce découpage :
+
+![Avant : index.php et detail.php contiennent chacune leur propre copie du head, de la barre du haut et du footer, en rouge. Après : fonctions/index.php définit head($titre) et foot(), les deux pages l'incluent et n'appellent plus que head(...) en haut et foot() en bas, autour de leur contenu propre](./img/orga_decoupage.svg)
 
 ### Tester
 
@@ -209,6 +221,8 @@ foreach($elements as $el){
     genereListe($el['title'], $el['file']);
 }
 ```
+
+![Le tableau $elements contient trois lignes (search, reddit, twitter). Une boucle foreach appelle genereListe($title, $file) une fois par ligne, ce qui produit les trois cartes Rechercher, Reddit et Twitter, chacune lue dans son fichier JSON](./img/orga_genereliste.svg)
 
 - Quel est l'avantage de ma solution ?
 - Est-ce meilleur que la vôtre ?
@@ -295,6 +309,10 @@ Valider que le site fonctionne toujours.
 ## Le DAO
 
 Le DAO est également un élément important. Cette classe va centraliser le code pour tout ce qui concerne l'accès à la donnée (ajout, suppression, liste).
+
+Voici l'organisation que nous visons à la fin du TP (le fichier de paramètres arrive juste après) :
+
+![Les pages index.php et detail.php appellent LienDao::get() et LienDao::put(). Seul le DAO lit et écrit les fichiers data/*.json, et c'est lui seul qui parlera à MySQL dans la partie « En plus ». Le modèle Lien (lien, name et sa validation) circule entre les pages et le DAO. Le fichier parametre/parametres.php fournit $_SITE_TITLE et $_ELEMENTS aux pages, et $_DATA_PATH au DAO](./img/orga_couches.svg)
 
 Comme vu en cours, l'une des possibilités pour un DAO est de créer une classe avec des méthodes `static` (c'est-à-dire accessibles sans créer l'objet). C'est cette solution que je vous propose de faire.
 
@@ -413,15 +431,25 @@ $_ELEMENTS = [
     ["file" => "reddit", "title" => "Reddit"],
     ["file" => "twitter", "title" => "Twitter"],
 ];
-$_DATA_PATH = "../data/";
+$_DATA_PATH = "./data/";
 
 ```
 
 Placer ce contenu dans le fichier `parametres.php`.
 
+::: tip Pourquoi `./data/` et pas `../data/` ?
+Un chemin relatif dans `file_get_contents()` part du dossier de la page **appelée par le navigateur** (`index.php` ou `detail.php`, à la racine du projet), pas du dossier du fichier qui contient le code. Même écrit dans `dao/liens.php`, le chemin `./data/` désigne donc bien le dossier `data` de la racine.
+:::
+
 ### Utiliser les « constantes »
 
 Modifier vos différentes pages PHP pour utiliser les constantes nouvellement définies.
+
+::: tip Dans une fonction ou une méthode
+Une variable définie en dehors d'une fonction n'est **pas** visible à l'intérieur. Pour utiliser `$_DATA_PATH` dans les méthodes de votre DAO (ou `$_ELEMENTS` dans une fonction), déclarez-la en première ligne avec `global $_DATA_PATH;`, ou passez-la en paramètre.
+:::
+
+[Le projet réorganisé à la fin de ces étapes est téléchargeable ici](/demo/php/shitty-app-organisee.zip) (les deux parties « En plus » ci-dessous restent à faire).
 
 ## En plus : Ne pas autoriser plusieurs liens identiques
 

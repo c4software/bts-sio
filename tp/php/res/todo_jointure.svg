@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="420" viewBox="0 0 900 420" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+  </defs>
+  <rect width="900" height="420" fill="#ffffff"/>
+
+  <!-- table taches -->
+  <text x="30" y="38" font-weight="600" font-size="15" fill="#0f172a">Table taches</text>
+  <g stroke="#2563eb" stroke-width="1.5">
+    <rect x="30" y="50" width="460" height="30" fill="#dbeafe"/>
+    <rect x="30" y="80" width="460" height="30" fill="#ffffff"/>
+    <rect x="30" y="110" width="460" height="30" fill="#ffffff"/>
+    <line x1="80" y1="50" x2="80" y2="140"/>
+    <line x1="280" y1="50" x2="280" y2="140"/>
+    <line x1="380" y1="50" x2="380" y2="140"/>
+  </g>
+  <rect x="380" y="80" width="110" height="60" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <g fill="#0f172a">
+    <g font-weight="600"><text x="40" y="70">id</text><text x="90" y="70">titre</text><text x="290" y="70">terminee</text><text x="390" y="70">categorie_id</text></g>
+    <text x="40" y="100">1</text><text x="90" y="100">Réviser le TP tableaux</text><text x="325" y="100">0</text><text x="430" y="100">1</text>
+    <text x="40" y="130">2</text><text x="90" y="130">Sortir les poubelles</text><text x="325" y="130">1</text><text x="430" y="130">2</text>
+  </g>
+
+  <!-- table categories -->
+  <text x="640" y="38" font-weight="600" font-size="15" fill="#0f172a">Table categories</text>
+  <g stroke="#16a34a" stroke-width="1.5">
+    <rect x="640" y="50" width="200" height="30" fill="#dcfce7"/>
+    <rect x="640" y="80" width="200" height="30" fill="#ffffff"/>
+    <rect x="640" y="110" width="200" height="30" fill="#ffffff"/>
+    <rect x="640" y="140" width="200" height="30" fill="#ffffff"/>
+    <line x1="690" y1="50" x2="690" y2="170"/>
+  </g>
+  <g fill="#0f172a">
+    <g font-weight="600"><text x="650" y="70">id</text><text x="700" y="70">nom</text></g>
+    <text x="650" y="100">1</text><text x="700" y="100">Cours</text>
+    <text x="650" y="130">2</text><text x="700" y="130">Maison</text>
+    <text x="650" y="160">3</text><text x="700" y="160">Loisirs</text>
+  </g>
+
+  <!-- foreign key arrows -->
+  <g stroke="#d97706" stroke-width="2" fill="none" marker-end="url(#arrowa)">
+    <line x1="490" y1="95" x2="638" y2="95"/>
+    <line x1="490" y1="125" x2="638" y2="125"/>
+  </g>
+  <text x="564" y="88" text-anchor="middle" font-size="12" fill="#d97706">pointe vers</text>
+  <text x="520" y="160" text-anchor="middle" font-size="12" fill="#d97706">clé étrangère</text>
+  <text x="520" y="176" text-anchor="middle" font-size="12" fill="#d97706" font-family="ui-monospace, monospace">categorie_id → categories.id</text>
+
+  <!-- join -->
+  <g stroke="#475569" stroke-width="2" fill="none">
+    <line x1="260" y1="142" x2="260" y2="203"/>
+    <path d="M740,172 V203 H680"/>
+  </g>
+  <rect x="220" y="188" width="460" height="32" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="209" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">JOIN categories ON categories.id = taches.categorie_id</text>
+  <line x1="450" y1="220" x2="450" y2="270" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="464" y="252" font-weight="600" font-size="14" fill="#0f172a">Une ligne du résultat = la tâche + le nom de sa catégorie</text>
+
+  <!-- result -->
+  <g stroke="#475569" stroke-width="1.5">
+    <rect x="130" y="274" width="640" height="30" fill="#f1f5f9"/>
+    <rect x="130" y="304" width="640" height="30" fill="#ffffff"/>
+    <rect x="130" y="334" width="640" height="30" fill="#ffffff"/>
+    <line x1="180" y1="274" x2="180" y2="364"/>
+    <line x1="400" y1="274" x2="400" y2="364"/>
+    <line x1="480" y1="274" x2="480" y2="364"/>
+    <line x1="590" y1="274" x2="590" y2="364"/>
+  </g>
+  <rect x="590" y="274" width="180" height="90" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+  <g fill="#0f172a">
+    <g font-weight="600"><text x="140" y="294">id</text><text x="190" y="294">titre</text><text x="410" y="294">terminee</text><text x="490" y="294">categorie_id</text><text x="600" y="294">categorie</text></g>
+    <text x="140" y="324">1</text><text x="190" y="324">Réviser le TP tableaux</text><text x="435" y="324">0</text><text x="530" y="324">1</text><text x="600" y="324">Cours</text>
+    <text x="140" y="354">2</text><text x="190" y="354">Sortir les poubelles</text><text x="435" y="354">1</text><text x="530" y="354">2</text><text x="600" y="354">Maison</text>
+  </g>
+  <text x="450" y="396" text-anchor="middle" font-size="13" fill="#475569">taches.* donne les colonnes de la tâche, <tspan font-family="ui-monospace, monospace">categories.nom AS categorie</tspan> ajoute la dernière : <tspan font-family="ui-monospace, monospace">$task['categorie']</tspan></text>
+</svg>

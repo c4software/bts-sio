@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="320" viewBox="0 0 900 320" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="320" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="40" width="310" height="200" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="390" y="40" width="250" height="200" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="700" y="40" width="180" height="200" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" font-weight="600" fill="#0f172a">
+    <text x="175" y="66">index.php</text>
+    <text x="515" y="66">lib/sample.php</text>
+    <text x="790" y="66">Page affichée</text>
+  </g>
+  <g font-size="12" fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="32" y="104">include('lib/sample.php');</text>
+    <text x="32" y="154">echo formatIdentity('Valentin', 1987);</text>
+    <text x="32" y="204">echo getOrDefault('prenom', 'world');</text>
+    <text x="404" y="104">function isChristmas()</text>
+    <text x="404" y="154">function formatIdentity(…)</text>
+    <text x="404" y="204">function getOrDefault(…)</text>
+  </g>
+  <g font-size="12" fill="#0f172a" text-anchor="middle">
+    <text x="790" y="104" fill="#475569">(rien : l'include</text>
+    <text x="790" y="120" fill="#475569">n'affiche rien)</text>
+    <text x="790" y="150">La personne « Valentin »</text>
+    <text x="790" y="166">est agé de 39 ans.</text>
+    <text x="790" y="200">Hello Valentin</text>
+    <text x="790" y="216" fill="#475569">(index.php?prenom=Valentin)</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="330" y1="100" x2="388" y2="100" stroke-dasharray="5 4"/>
+    <line x1="330" y1="150" x2="388" y2="150"/>
+    <line x1="330" y1="200" x2="388" y2="200"/>
+  </g>
+  <g stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowg)">
+    <line x1="640" y1="150" x2="698" y2="150"/>
+    <line x1="640" y1="200" x2="698" y2="200"/>
+  </g>
+  <g font-size="11" text-anchor="middle">
+    <text x="354" y="92" fill="#475569">charge</text>
+    <text x="354" y="142" fill="#475569">appel</text>
+    <text x="354" y="192" fill="#475569">appel</text>
+    <text x="664" y="142" fill="#16a34a">retour</text>
+    <text x="664" y="192" fill="#16a34a">retour</text>
+  </g>
+  <text x="450" y="280" text-anchor="middle" font-size="13" fill="#0f172a">L'include rend les fonctions de la librairie disponibles dans la page.</text>
+  <text x="450" y="302" text-anchor="middle" font-size="13" fill="#dc2626">Sans lui : « Call to undefined function formatIdentity() ».</text>
+</svg>

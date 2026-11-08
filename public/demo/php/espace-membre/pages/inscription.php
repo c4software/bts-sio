@@ -44,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 <h1>Créer un compte</h1>
 
 <?php if (count($errors) > 0) { ?>
@@ -58,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <form method="post" action="index.php?page=inscription">
     <p>
         <label for="email">Adresse email</label>
-        <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($email); ?>" required>
+        <input type="email" name="email" id="email" required>
     </p>
     <p>
         <label for="password">Mot de passe (8 caractères minimum)</label>

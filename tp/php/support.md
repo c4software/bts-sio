@@ -333,7 +333,7 @@ Les tableaux numérotés sont les plus simples. Ils permettent de stocker des va
 Les tableaux numérotés sont très simples à créer :
 
 ```php
-$valeurs = array('élément 1', 'élément 2', 'élément 3');
+$valeurs = ['élément 1', 'élément 2', 'élément 3'];
 
 // ou via un ajout automatique à la fin du tableau
 
@@ -361,12 +361,12 @@ Le but d'un tel tableau est de gagner en clarté dans l'organisation des donnée
 Avec un exemple concret, ça donne :
 
 ```php
-$student = array(
+$student = [
     "nom" => "Brosseau",
     "prenom" => "Valentin",
     "ordinateur" => true,
     "age" => 33,
-);
+];
 ```
 
 Beaucoup plus lisible non ? Vous noterez au passage que le tableau associatif est également un conteneur. Nous avons donc dedans plusieurs types de données.
@@ -378,23 +378,23 @@ Nous savons stocker **un** étudiant. Mais dans une classe, il y en a 30. Allons
 Réfléchissez une seconde : quel outil connaissons-nous pour stocker une liste ? Un tableau, bien sûr. Sauf qu'ici, chaque élément de la liste est lui-même un tableau associatif. Nous allons donc créer **un tableau de tableaux** :
 
 ```php
-$students = array(
-    array(
+$students = [
+    [
         "prenom" => "Bart",
         "nom" => "Simpson",
         "age" => 10,
-    ),
-    array(
+    ],
+    [
         "prenom" => "Lisa",
         "nom" => "Simpson",
         "age" => 8,
-    ),
-    array(
+    ],
+    [
         "prenom" => "Maggie",
         "nom" => "Simpson",
         "age" => 1,
-    ),
-);
+    ],
+];
 ```
 
 C'est ce que nous appelons un **tableau à plusieurs dimensions** (ici deux dimensions). À l'extérieur, un tableau numéroté (0, 1, 2…). À l'intérieur de chaque case, un tableau associatif.
@@ -423,11 +423,11 @@ Lisez de gauche à droite : « la case 0, puis la clé prenom ». Je vous laisse
 Comme pour un tableau numéroté classique, les crochets vides ajoutent à la fin :
 
 ```php
-$students[] = array(
+$students[] = [
     "prenom" => "Milhouse",
     "nom" => "Van Houten",
     "age" => 10,
-);
+];
 ```
 
 La nouvelle case prend automatiquement l'indice suivant (ici 3).
@@ -467,18 +467,18 @@ La première boucle avance sur les lignes, la seconde sur les colonnes. Pas de p
 Rien ne nous empêche d'imbriquer encore. Ajoutons les notes de chaque étudiant :
 
 ```php
-$students = array(
-    array(
+$students = [
+    [
         "prenom" => "Bart",
         "nom" => "Simpson",
-        "notes" => array("php" => 8, "sql" => 6),
-    ),
-    array(
+        "notes" => ["php" => 8, "sql" => 6],
+    ],
+    [
         "prenom" => "Lisa",
         "nom" => "Simpson",
-        "notes" => array("php" => 19, "sql" => 20),
-    ),
-);
+        "notes" => ["php" => 19, "sql" => 20],
+    ],
+];
 
 echo $students[0]['notes']['php']; // 8
 ```
@@ -500,11 +500,11 @@ Ce format n'est pas un exercice de style. C'est exactement ce que nous rencontre
 :::
 
 ::: tip Une petite note de syntaxe
-Vous croiserez souvent l'écriture courte `[…]` à la place de `array(…)`. Les deux font strictement la même chose :
+Dans les supports, nous utilisons l'écriture courte `[…]`. Vous croiserez aussi, dans du code plus ancien, l'écriture `array(…)`. Les deux font strictement la même chose :
 
 ```php
-$prenoms = array("Bart", "Lisa");
-$prenoms = ["Bart", "Lisa"]; // identique
+$prenoms = ["Bart", "Lisa"];
+$prenoms = array("Bart", "Lisa"); // identique
 ```
 
 :::
@@ -524,13 +524,13 @@ PHP fournit énormément de fonctions pour manipuler les tableaux. En voici quel
 Quelques exemples :
 
 ```php
-$notes = array(12, 8, 17, 15);
+$notes = [12, 8, 17, 15];
 
 echo count($notes);          // 4
 echo array_sum($notes);      // 52
 echo array_sum($notes) / count($notes); // la moyenne : 13
 
-$student = array("prenom" => "Bart", "nom" => "Simpson", "age" => 10);
+$student = ["prenom" => "Bart", "nom" => "Simpson", "age" => 10];
 print_r(array_keys($student)); // prenom, nom, age
 
 if (in_array(17, $notes)) {
@@ -552,7 +552,7 @@ Puis, pour aller plus loin :
 
 - Créez un tableau à deux dimensions contenant 3 étudiants (prénom, nom, âge).
 - Affichez-les avec une boucle `foreach`, sous forme de liste `<ul>` / `<li>`.
-- Ajoutez un quatrième étudiant avec `$students[] = array(…);` puis affichez le nombre total d'étudiants avec `count()`.
+- Ajoutez un quatrième étudiant avec `$students[] = […];` puis affichez le nombre total d'étudiants avec `count()`.
 
 C'est à vous de jouer !
 
@@ -779,10 +779,10 @@ for ($ecrite = 0; $ecrite <= $ligne_a_ecrire; $ecrite++){
 Et voilà c'est tout… En réalité la boucle for est plus adaptés pour naviguer dans les tableaux :
 
 ```php
-$etudiants = array(
-    array('nom' => 'Brosseau'),
-    array('nom' => 'Doe')
-);
+$etudiants = [
+    ['nom' => 'Brosseau'],
+    ['nom' => 'Doe']
+];
 
 for($i = 0; $i < count($etudiants); ++$i) {
     echo $etudiants[$i]['nom'];
@@ -794,10 +794,10 @@ for($i = 0; $i < count($etudiants); ++$i) {
 Les temps évoluent, les pratiques aussi ! Maintenant pour manipuler les tableaux de données, nous avons un autre type de boucle le `forEach`. Celle-ci va simplifier notre code (un peu comme le `switch` avec le `if`).
 
 ```php
-$etudiants = array(
-    array('nom' => 'Brosseau'),
-    array('nom' => 'Doe')
-);
+$etudiants = [
+    ['nom' => 'Brosseau'],
+    ['nom' => 'Doe']
+];
 
 foreach ($etudiants as $etudiant) {
     echo $etudiant['nom'];
@@ -1436,7 +1436,7 @@ session_start();
 include('common/header.php');
 
 // Pages autorisées (configuration à sortir dans un autre fichier PHP)
-$whitelist = array('home','bart');
+$whitelist = ['home','bart'];
 
 // Gestion de l'affichage de la page demandée
 if(isset($_GET['page']) && in_array($_GET['page'], $whitelist)) {

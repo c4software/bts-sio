@@ -316,10 +316,10 @@ Appeler la page en ajoutant dans le lien :
 
 ```php
 // Exemple $_GET Contiendra
-array(
+[
     "prenom" => "valentin",
     "nom" => "brosseau",
-);
+];
 
 echo $_GET['nom']; // Affichera brosseau
 echo $_GET['prenom']; // Affichera valentin
@@ -347,7 +347,7 @@ Petit aparté sur la sécurité informatique. Nous verrons plus tard les failles
   - Liste de `string`
   - Liste de `int`
   - …
-- Variables habituellement terminées par un `s` exemple `$ages = array()`
+- Variables habituellement terminées par un `s` exemple `$ages = []`
 - Sont de deux types en PHP
 
 ---
@@ -369,7 +369,7 @@ Petit aparté sur la sécurité informatique. Nous verrons plus tard les failles
 ---
 
 ```php
-$valeurs = array('élément 1', 'élément 2', 'élément 3');
+$valeurs = ['élément 1', 'élément 2', 'élément 3'];
 
 // ou via un ajout automatique à la fin du tableau
 
@@ -396,12 +396,12 @@ $valeurs[2] = 'élément 3';
 ---
 
 ```php
-$student = array(
+$student = [
     "nom" => "Brosseau",
     "prenom" => "Valentin",
     "ordinateur" => true,
     "age" => 33,
-);
+];
 ```
 
 ---
@@ -411,8 +411,8 @@ $student = array(
 ### Et si nous en avions 30 ?
 
 ```php
-$student1 = array("prenom" => "Bart");
-$student2 = array("prenom" => "Lisa");
+$student1 = ["prenom" => "Bart"];
+$student2 = ["prenom" => "Lisa"];
 // … jusqu'à $student30 ?
 ```
 
@@ -427,11 +427,11 @@ Comment stocker plusieurs étudiants dans **une seule** variable ?
 ## Un tableau… de tableaux
 
 ```php
-$students = array(
-    array("prenom" => "Bart", "nom" => "Simpson", "age" => 10),
-    array("prenom" => "Lisa", "nom" => "Simpson", "age" => 8),
-    array("prenom" => "Maggie", "nom" => "Simpson", "age" => 1),
-);
+$students = [
+    ["prenom" => "Bart", "nom" => "Simpson", "age" => 10],
+    ["prenom" => "Lisa", "nom" => "Simpson", "age" => 8],
+    ["prenom" => "Maggie", "nom" => "Simpson", "age" => 1],
+];
 ```
 
 ---
@@ -476,11 +476,11 @@ Que vaut `$students[1]['age']` ?
 ## Ajouter un étudiant
 
 ```php
-$students[] = array(
+$students[] = [
     "prenom" => "Milhouse",
     "nom" => "Van Houten",
     "age" => 10,
-);
+];
 ```
 
 La nouvelle case prend automatiquement l'indice suivant.
@@ -518,7 +518,7 @@ foreach ($students as $student) {
 ## Aller plus loin : trois niveaux
 
 ```php
-$students[0]['notes'] = array("php" => 15, "sql" => 12);
+$students[0]['notes'] = ["php" => 15, "sql" => 12];
 
 echo $students[0]['notes']['php']; // 15
 ```
@@ -558,11 +558,11 @@ array_sum($notes);           // la somme
 
 ## Petite note de syntaxe
 
-`array(…)` et `[…]` font la même chose :
+`[…]` et `array(…)` (plus ancien) font la même chose :
 
 ```php
-$prenoms = array("Bart", "Lisa");
-$prenoms = ["Bart", "Lisa"]; // identique
+$prenoms = ["Bart", "Lisa"];
+$prenoms = array("Bart", "Lisa"); // identique
 ```
 
 ---
@@ -776,10 +776,10 @@ for ($ecrite = 0; $ecrite <= $ligne_a_ecrire; $ecrite++){
 Vraiment utile avec l'usage de tableau
 
 ```php
-$etudiants = array(
-    array('nom' => 'Brosseau'),
-    array('nom' => 'Doe')
-);
+$etudiants = [
+    ['nom' => 'Brosseau'],
+    ['nom' => 'Doe']
+];
 
 for($i = 0; $i < count($etudiants); ++$i) {
     echo $etudiants[$i]['nom'];
@@ -797,10 +797,10 @@ for($i = 0; $i < count($etudiants); ++$i) {
 Comme le `for` mais en plus lisible
 
 ```php
-$etudiants = array(
-    array('nom' => 'Brosseau'),
-    array('nom' => 'Doe')
-);
+$etudiants = [
+    ['nom' => 'Brosseau'],
+    ['nom' => 'Doe']
+];
 
 foreach ($etudiants as $etudiant) {
     echo $etudiant['nom'];

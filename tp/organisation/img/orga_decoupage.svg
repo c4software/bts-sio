@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="400" viewBox="0 0 900 400" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+  <text x="220" y="30" text-anchor="middle" font-weight="600" font-size="16" fill="#0f172a">Avant : chaque page porte tout</text>
+  <text x="680" y="30" text-anchor="middle" font-weight="600" font-size="16" fill="#0f172a">Après : écrit une fois, inclus partout</text>
+  <line x1="450" y1="15" x2="450" y2="385" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <!-- AVANT -->
+  <g font-weight="600" fill="#0f172a" text-anchor="middle">
+    <text x="120" y="70">index.php</text>
+    <text x="320" y="70">detail.php</text>
+  </g>
+  <g stroke-width="2">
+    <rect x="30" y="80" width="180" height="270" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="230" y="80" width="180" height="270" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="45" y="95" width="150" height="50" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <rect x="245" y="95" width="150" height="50" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <rect x="45" y="155" width="150" height="120" rx="10" fill="#ffffff" stroke="#475569"/>
+    <rect x="245" y="155" width="150" height="120" rx="10" fill="#ffffff" stroke="#475569"/>
+    <rect x="45" y="285" width="150" height="50" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <rect x="245" y="285" width="150" height="50" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="120" y="117">&lt;head&gt;, CSS,</text><text x="120" y="134">barre du haut</text>
+    <text x="320" y="117">&lt;head&gt;, CSS,</text><text x="320" y="134">barre du haut</text>
+    <text x="120" y="210">3 listes de liens</text>
+    <text x="320" y="210">1 liste + formulaire</text>
+    <text x="120" y="307">footer, scripts,</text><text x="120" y="324">&lt;/html&gt;</text>
+    <text x="320" y="307">footer, scripts,</text><text x="320" y="324">&lt;/html&gt;</text>
+  </g>
+  <text x="220" y="375" text-anchor="middle" fill="#dc2626">En rouge : le même HTML copié dans les deux pages</text>
+
+  <!-- APRES -->
+  <rect x="560" y="45" width="240" height="70" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="680" y="68" text-anchor="middle" font-weight="600" fill="#0f172a">fonctions/index.php</text>
+  <text x="680" y="88" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">function head($titre)</text>
+  <text x="680" y="105" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">function foot()</text>
+
+  <g font-weight="600" fill="#0f172a" text-anchor="middle">
+    <text x="575" y="175">index.php</text>
+    <text x="785" y="175">detail.php</text>
+  </g>
+  <g stroke-width="2">
+    <rect x="485" y="185" width="180" height="165" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="695" y="185" width="180" height="165" rx="10" fill="#f1f5f9" stroke="#475569"/>
+    <rect x="500" y="198" width="150" height="30" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="710" y="198" width="150" height="30" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="500" y="236" width="150" height="70" rx="10" fill="#ffffff" stroke="#475569"/>
+    <rect x="710" y="236" width="150" height="70" rx="10" fill="#ffffff" stroke="#475569"/>
+    <rect x="500" y="314" width="150" height="28" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <rect x="710" y="314" width="150" height="28" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a" font-family="ui-monospace, monospace" font-size="12">
+    <text x="575" y="218">head("Shitty…")</text>
+    <text x="785" y="218">head("Search")</text>
+    <text x="575" y="333">foot()</text>
+    <text x="785" y="333">foot()</text>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="575" y="275">3 listes de liens</text>
+    <text x="785" y="267">1 liste</text>
+    <text x="785" y="284">+ formulaire</text>
+  </g>
+  <g stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#arrowb)">
+    <path d="M620,115 L575,160"/>
+    <path d="M740,115 L785,160"/>
+  </g>
+  <g font-size="12" fill="#2563eb" font-family="ui-monospace, monospace">
+    <text x="530" y="140">include</text>
+    <text x="772" y="140">include</text>
+  </g>
+  <text x="680" y="375" text-anchor="middle" fill="#16a34a">Une modification du header : un seul fichier à changer</text>
+</svg>

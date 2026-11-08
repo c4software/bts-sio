@@ -125,6 +125,14 @@ Exemple concret sans le echo:
 Tester le code suivant, vous allez voir… sans le echo aucun signe de la date
 :::
 
+Voici ce que vous devez obtenir :
+
+![La page affiche seulement « Nous sommes le », sans aucune date derrière](./res/tp1_sans_echo.png)
+
+Pour résumer, la fonction `date` est bien exécutée dans les deux cas, mais seul `echo` envoie son résultat dans la page :
+
+![Comparaison avec et sans echo : avec echo la page affiche « Nous sommes le 08/11/2026 », sans echo elle affiche seulement « Nous sommes le », la date est calculée mais jamais affichée](./res/tp1_echo.svg)
+
 ### La fonction date
 
 La fonction date est l'une des nombreuses fonctions disponibles **de base** dans PHP. Cette fonction permet de formater la date que nous lui passons en paramètre. Si il n'y a aucun paramètre ? Et bien ça prend **now()** soit **maintenant**.
@@ -143,6 +151,10 @@ Je vous le disais au début… Nous pouvons mettre du PHP partout dans notre cod
 
 ::: warning Attention au « ; »
 Attention en PHP chaque instruction doit-être terminé par un `;`. Si vous l'oubliez votre script sera en `erreur`.
+
+Par exemple, voici la page obtenue quand le `;` manque à la fin d'un `echo` : PHP s'arrête et indique la ligne où il s'est perdu (souvent la ligne **suivante** de l'oubli).
+
+![Message « Parse error: syntax error, unexpected token "echo", expecting "," or ";" » suivi du nom du fichier et du numéro de ligne](./res/tp1_erreur_point_virgule.png)
 :::
 
 Voilà le code source d'un second script PHP :
@@ -175,6 +187,10 @@ Nous avons donc un code HTML et du code PHP entremêlé. Il possible de mettre d
 Votre code PHP ne sera jamais envoyé au client. Il est exécuté sur le serveur, seul le résultat est reçu par votre client.
 :::
 
+Pour résumer, voici le trajet complet d'une page PHP :
+
+![Le navigateur demande index.php au serveur WAMP, le moteur PHP exécute le code placé entre les balises PHP, puis seul le HTML produit (« Nous sommes le 08/11/2026 ») est renvoyé au navigateur](./res/tp1_requete_reponse.svg)
+
 ### C'est à vous
 
 Je vous laisse tester le code précédent. Modifiez-le pour y mettre vos informations.
@@ -205,3 +221,5 @@ Bien évidement en
 **AUCUN CAS VOUS NE DEVEZ FAIRE ÇA !**
 
 :::
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/php/php-tp1.zip) (`index.php` et le second script, `demo2.php`).

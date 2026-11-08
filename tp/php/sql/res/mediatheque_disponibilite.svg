@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="360" viewBox="0 0 900 360" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+  </defs>
+  <rect width="900" height="360" fill="#ffffff"/>
+  <rect x="150" y="14" width="600" height="34" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="36" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">SELECT * FROM emprunts WHERE livre_id = ? AND date_retour IS NULL</text>
+  <line x1="450" y1="60" x2="450" y2="345" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+  <text x="25" y="88" font-weight="600" font-size="14" fill="#0f172a">Livre 16 : ses emprunts</text>
+  <rect x="25" y="100" width="380" height="28" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="33" y="119" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#0f172a">id</text>
+  <text x="73" y="119" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#0f172a">adherent_id</text>
+  <text x="183" y="119" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#0f172a">date_emprunt</text>
+  <text x="298" y="119" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#0f172a">date_retour</text>
+  <rect x="25" y="128" width="380" height="28" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+  <text x="33" y="147" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">3</text>
+  <text x="73" y="147" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">3</text>
+  <text x="183" y="147" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">2026-02-10</text>
+  <text x="298" y="147" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">2026-03-01</text>
+  <rect x="25" y="156" width="380" height="28" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+  <text x="33" y="175" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">12</text>
+  <text x="73" y="175" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">5</text>
+  <text x="183" y="175" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">2026-04-28</text>
+  <text x="298" y="175" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">2026-05-14</text>
+  <rect x="25" y="184" width="380" height="28" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="33" y="203" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">21</text>
+  <text x="73" y="203" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">3</text>
+  <text x="183" y="203" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">2026-08-30</text>
+  <text x="298" y="203" font-family="ui-monospace, monospace" font-size="12" fill="#dc2626" font-weight="700">NULL</text>
+  <text x="215" y="232" text-anchor="middle" font-size="12" fill="#475569">les deux premiers sont rendus, le troisième non</text>
+  <line x1="215" y1="242" x2="215" y2="280" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="232" y="266" font-size="12" fill="#475569">la requête rend 1 ligne</text>
+  <rect x="40" y="282" width="350" height="56" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="215" y="306" text-anchor="middle" font-weight="600" fill="#0f172a">Emprunté</text>
+  <text x="215" y="326" text-anchor="middle" font-size="12" fill="#0f172a">par Inès Leroy (adhérent 3) depuis le 30/08/2026</text>
+  <text x="475" y="88" font-weight="600" font-size="14" fill="#0f172a">Livre 5 : ses emprunts</text>
+  <rect x="475" y="100" width="380" height="28" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="483" y="119" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#0f172a">id</text>
+  <text x="523" y="119" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#0f172a">adherent_id</text>
+  <text x="633" y="119" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#0f172a">date_emprunt</text>
+  <text x="748" y="119" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#0f172a">date_retour</text>
+  <rect x="475" y="128" width="380" height="28" fill="#ffffff" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="665" y="147" text-anchor="middle" font-size="12" fill="#475569">aucune ligne : jamais emprunté</text>
+  <line x1="665" y1="242" x2="665" y2="280" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="682" y="266" font-size="12" fill="#475569">0 ligne : fetch() vaut false</text>
+  <rect x="490" y="282" width="350" height="56" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="665" y="306" text-anchor="middle" font-weight="600" fill="#0f172a">Disponible</text>
+  <text x="665" y="326" text-anchor="middle" font-size="12" fill="#0f172a">Vipère au poing peut être emprunté</text>
+</svg>

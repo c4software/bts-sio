@@ -69,8 +69,8 @@ Un bon point de départ, c'est Alpine => <https://github.com/yuk7/AlpineWSL/rele
 Puis, après l'installation (il suffit de décompresser l'archive, et lancer `Alpine.exe`), vous pouvez installer les paquets suivants :
 
 ```sh
-apk add php83 php83-tokenizer php83-session php83-pdo php83-dom php83-xml php83-xmlwriter php83-fileinfo
-php83-pdo_sqlite php83-pdo_mysql php83-simplexml npm git vim
+apk add php83 php83-tokenizer php83-session php83-pdo php83-dom php83-xml php83-xmlwriter php83-fileinfo \
+  php83-pdo_sqlite php83-pdo_mysql php83-simplexml npm git vim
 ```
 
 Vous avez maintenant un environnement Linux avec PHP 8.3, Composer, Git, Vim et NodeJS. Parfait pour Laravel !
@@ -79,7 +79,7 @@ Vous avez maintenant un environnement Linux avec PHP 8.3, Composer, Git, Vim et 
 
 #### Installer Composer
 
-- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.2 minimum de PHP.
+- [Télécharger Composer pour Windows](https://getcomposer.org/Composer-Setup.exe), lors de l’installation il vous sera demandé de sélectionner l’exécutable PHP. `ATTENTION:` Bien sélectionner la version 8.3 minimum de PHP (Laravel 13 ne fonctionne pas en dessous).
 - Vérifier que la commande est bien disponible en tapant `composer` dans un nouveau terminal.
 
 ### Linux
@@ -124,7 +124,11 @@ Laravel est un framework PHP qui suit une structure bien précise. Nous n'allons
 - `resources/views` : qui contient les vues de votre application (**les pages HTML**) ;
 - `app/Http/Controllers` : qui contient les contrôleurs de votre application (**votre code PHP**).
 
-Il y évidemment d'autres dossiers, que nous verrons plus tard. L'idée ici est de vous montrer comment transposer vos connaissances en PHP pur en Laravel.
+Il y a évidemment d'autres dossiers, que nous verrons plus tard. L'idée ici est de vous montrer comment transposer vos connaissances en PHP pur en Laravel.
+
+Gardez ce tableau sous les yeux pendant tout le TP, chaque partie reprend l'une de ses lignes :
+
+![Tableau de correspondance entre le PHP de première année et Laravel : index.php?page=hello et la whitelist deviennent routes/web.php, le traitement en haut de la page devient un contrôleur, pages/hello.php avec header et footer devient resources/views/hello.blade.php, echo htmlspecialchars devient l'affichage Blade entre doubles accolades (échappé automatiquement), $_GET et $_POST deviennent $request->input(), $_SESSION devient $request->session(), et XAMPP ou WAMP devient php artisan serve](./res/tp6_correspondance.svg)
 
 ## Lancer votre projet
 
@@ -270,6 +274,10 @@ Qu'avons nous :
 - Une route `/hello` qui pointe vers la méthode `hello` de notre contrôleur `HomeController` ;
 - La méthode `hello` retourne la vue `hello` qui est stockée dans le dossier `resources/views`. L'extension `.blade.php` n'est pas nécessaire. En effet, Laravel sait que c'est une vue.
 
+Comparez avec le trajet d'une requête dans vos projets de première année :
+
+![Deux trajets de requête comparés : en PHP de première année, le navigateur demande index.php?page=hello&name=Bart, index.php vérifie la whitelist et inclut pages/hello.php qui mélange traitement et HTML ; avec Laravel, le navigateur demande /hello?name=Bart, routes/web.php choisit HomeController, sa méthode hello fait le traitement puis renvoie la vue hello.blade.php qui ne contient que le HTML](./res/tp6_trajet.svg)
+
 Maintenant, si vous accédez à l'URL `http://localhost:8000/hello`, vous devriez voir votre page en format HTML (et non plus du texte).
 
 ::: tip Et voilà !
@@ -364,6 +372,16 @@ Il est donc possible d'avoir plusieurs routes pointant vers la même action, mai
 
 :::
 
+Pour résumer :
+
+![Schéma des deux routes : GET /hello?name=Bart passe par Route::get, le formulaire envoyé en POST avec son jeton passe par Route::post, et les deux arrivent dans HomeController::hello où $request->input('name') lit l'URL comme le corps ; un POST sans @csrf est refusé avec une erreur 419 Page Expired avant d'arriver au contrôleur](./res/tp6_get_post.svg)
+
+Faites l'essai : retirez la ligne `@csrf` de votre formulaire et envoyez-le. Laravel refuse la requête :
+
+![La page d'erreur de Laravel « 419 Page Expired », obtenue en envoyant le formulaire sans @csrf](./res/tp6_419.png)
+
+Remettez le `@csrf` avant de continuer.
+
 ## Les conditions d'affichage
 
 Sans aller trop loin, voici comment réaliser une condition d'affichage dans une vue Blade.
@@ -387,6 +405,12 @@ Par exemple, pour afficher un message si le paramètre `name` est vide :
 ```
 
 Je vous laisse modifier votre vue (page HTML) pour afficher le formulaire uniquement si le paramètre `name` est vide.
+
+Attention à votre « World » de tout à l'heure : si c'est le contrôleur qui remplace un nom vide par `World`, la vue ne reçoit plus jamais de nom vide, et votre `@if ($name == '')` ne sera jamais vrai. À vous de choisir le bon endroit pour ce « World ».
+
+Sur `http://localhost:8000/hello`, sans paramètre, vous devez obtenir :
+
+![La page /hello sans paramètre : le titre « Hello, World » suivi du champ « Votre nom » et du bouton « Envoyer »](./res/tp6_formulaire.png)
 
 ## Les sessions
 
@@ -428,6 +452,8 @@ Nous allons donc sauvegarder le nom de la personne dans une session, et afficher
 Je vous laisse modifier votre contrôleur `HomeController` pour sauvegarder le nom dans une session.
 
 👋 Des questions ? Je suis là.
+
+[Le projet complet de ce TP est téléchargeable ici](/demo/php/transition-php-laravel.zip). L'archive ne contient ni le dossier `vendor/` ni le fichier `.env` : après l'avoir décompressée, placez-vous dans le dossier `transition-php-laravel` et lancez `composer install`, puis `cp .env.example .env` (`copy .env.example .env` sous Windows), `php artisan key:generate` et `php artisan migrate` (répondez `yes` pour créer la base SQLite), avant le traditionnel `php artisan serve`.
 
 ## Conclusion
 

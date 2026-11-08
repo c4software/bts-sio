@@ -1,27 +1,29 @@
 <?php
 
-// On garde le HTML en mémoire tampon : les redirections et la session
-// pourront encore envoyer leurs entêtes même après l'affichage du header.
+// Permet d'utiliser header() même si du HTML a déjà été envoyé (voir plus bas)
 ob_start();
 
-session_start();
-
-spl_autoload_register(function ($class) {
-    require_once __DIR__ . "/classes/" . $class . ".php";
+// L'autoloader : PHP appelle cette fonction dès qu'une classe inconnue est utilisée.
+spl_autoload_register(function ($className) {
+    require_once('classes/' . $className . '.php');
 });
 
+// La session sert (entre autres) à transporter le message de confirmation.
+session_start();
+
+include('common/header.php');
+
+// Les pages autorisées, et elles seules.
 if (Auth::check()) {
     $whitelist = ['home', 'proposer', 'idee', 'admin', 'deconnexion'];
 } else {
     $whitelist = ['home', 'proposer', 'idee', 'connexion'];
 }
 
-$page = $_GET['page'] ?? 'home';
-
-if (!in_array($page, $whitelist)) {
-    $page = 'home';
+if (isset($_GET['page']) && in_array($_GET['page'], $whitelist)) {
+    include('pages/' . $_GET['page'] . '.php');
+} else {
+    include('pages/home.php');
 }
 
-require_once __DIR__ . "/common/header.php";
-require_once __DIR__ . "/pages/" . $page . ".php";
-require_once __DIR__ . "/common/footer.php";
+include('common/footer.php');

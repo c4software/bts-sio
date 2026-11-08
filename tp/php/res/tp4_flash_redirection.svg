@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="470" viewBox="0 0 900 470" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <rect x="40" y="20" width="160" height="40" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="120" y="45" text-anchor="middle" font-weight="600">Navigateur</text>
+  <rect x="370" y="20" width="160" height="40" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="450" y="45" text-anchor="middle" font-weight="600">Serveur PHP</text>
+  <rect x="700" y="20" width="160" height="40" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="780" y="45" text-anchor="middle" font-weight="600">Base bart</text>
+  <g stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4">
+    <line x1="120" y1="60" x2="120" y2="455"/>
+    <line x1="450" y1="60" x2="450" y2="455"/>
+    <line x1="780" y1="60" x2="780" y2="455"/>
+  </g>
+  <g font-size="12" font-weight="600" fill="#ffffff">
+    <rect x="0" y="74" width="170" height="20" rx="4" fill="#475569"/><text x="8" y="88">1. Envoi du formulaire</text>
+    <rect x="0" y="222" width="170" height="20" rx="4" fill="#475569"/><text x="8" y="236">2. Redirection</text>
+    <rect x="0" y="342" width="170" height="20" rx="4" fill="#475569"/><text x="8" y="356">3. Rechargement (F5)</text>
+  </g>
+  <!-- 1 -->
+  <line x1="120" y1="116" x2="448" y2="116" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="285" y="110" text-anchor="middle">POST index.php?page=bart</text>
+  <line x1="450" y1="140" x2="778" y2="140" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="615" y="134" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">INSERT INTO phrases …</text>
+  <rect x="462" y="150" width="300" height="22" rx="4" fill="#fef3c7" stroke="#d97706"/>
+  <text x="612" y="165" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">$_SESSION['message'] = "Punition…"</text>
+  <line x1="450" y1="200" x2="122" y2="200" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+  <text x="285" y="194" text-anchor="middle" fill="#2563eb">Réponse 302, aucune page</text>
+  <text x="285" y="216" text-anchor="middle" fill="#2563eb" font-family="ui-monospace, monospace" font-size="12">Location: index.php?page=home</text>
+  <!-- 2 -->
+  <line x1="120" y1="264" x2="448" y2="264" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="285" y="258" text-anchor="middle">GET index.php?page=home</text>
+  <rect x="462" y="274" width="300" height="22" rx="4" fill="#fef3c7" stroke="#d97706"/>
+  <text x="612" y="289" text-anchor="middle" font-size="12">affiche le message, puis <tspan font-family="ui-monospace, monospace">unset()</tspan></text>
+  <line x1="450" y1="322" x2="122" y2="322" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+  <text x="285" y="316" text-anchor="middle" fill="#2563eb">L'accueil avec « Punition enregistrée ! »</text>
+  <!-- 3 -->
+  <line x1="120" y1="384" x2="448" y2="384" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="285" y="378" text-anchor="middle">GET index.php?page=home (pas le POST)</text>
+  <rect x="462" y="394" width="300" height="22" rx="4" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="612" y="409" text-anchor="middle" font-size="12">plus de message, aucun INSERT</text>
+  <line x1="450" y1="440" x2="122" y2="440" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+  <text x="285" y="434" text-anchor="middle" fill="#2563eb">L'accueil, sans message</text>
+</svg>

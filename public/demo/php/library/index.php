@@ -46,7 +46,7 @@
     <section class="cardContainer">
         <div class="card">
             <div class="card-body text-center">
-                <h1>Hello <?= getOrDefault('name', 'World'); ?></h1>
+                <h1>Hello <?= getOrDefault('prenom', 'world'); ?></h1>
             </div>
         </div>
 

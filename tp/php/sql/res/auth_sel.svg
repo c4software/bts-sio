@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="330" viewBox="0 0 900 330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="330" fill="#ffffff"/>
+  <rect x="20" y="40" width="150" height="60" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="95.0" y="66.0" text-anchor="middle" font-weight="600">alice</text>
+  <text x="95.0" y="84.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">motdepasse1</text>
+  <rect x="20" y="170" width="150" height="60" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="95.0" y="196.0" text-anchor="middle" font-weight="600">bob</text>
+  <text x="95.0" y="214.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">motdepasse1</text>
+  <rect x="210" y="40" width="170" height="60" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="295.0" y="66.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600">password_hash()</text>
+  <text x="295.0" y="84.0" text-anchor="middle" font-size="12">tire un sel au hasard</text>
+  <rect x="210" y="170" width="170" height="60" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="295.0" y="196.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600">password_hash()</text>
+  <text x="295.0" y="214.0" text-anchor="middle" font-size="12">tire un autre sel</text>
+  <line x1="170" y1="70" x2="208" y2="70" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="170" y1="200" x2="208" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="380" y1="70" x2="418" y2="70" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="380" y1="200" x2="418" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="420" y="40" width="460" height="60" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <rect x="420" y="170" width="460" height="60" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="432" y="66" font-family="ui-monospace, monospace" font-size="11"><tspan fill="#475569">$2y$10$</tspan><tspan fill="#d97706" font-weight="600">hjWMUhizSij9iB8LTl01..</tspan><tspan fill="#2563eb">pK0w2nPBMQrDzNlhzugI8RMTRPnE8RW</tspan></text>
+  <text x="432" y="88" font-size="12" fill="#475569">en base pour alice</text>
+  <text x="432" y="196" font-family="ui-monospace, monospace" font-size="11"><tspan fill="#475569">$2y$10$</tspan><tspan fill="#d97706" font-weight="600">mT3em04Vba3dJ52zQju/Ju</tspan><tspan fill="#2563eb">ct9Ae2HsyDzoOmJNPOc7YsQ0lN4Tnv2</tspan></text>
+  <text x="432" y="218" font-size="12" fill="#475569">en base pour bob</text>
+  <!-- légende -->
+  <g font-size="12">
+    <rect x="432" y="122" width="12" height="12" rx="2" fill="#475569"/><text x="450" y="133">algorithme et coût</text>
+    <rect x="610" y="122" width="12" height="12" rx="2" fill="#d97706"/><text x="628" y="133">le sel (22 car.)</text>
+    <rect x="740" y="122" width="12" height="12" rx="2" fill="#2563eb"/><text x="758" y="133">l'empreinte</text>
+  </g>
+  <rect x="20" y="256" width="860" height="56" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="450" y="279" text-anchor="middle">Même mot de passe, deux hashs différents : une table arc-en-ciel ne sert plus à rien.</text>
+  <text x="450" y="299" text-anchor="middle">Le sel est rangé dans le hash, <tspan font-family="ui-monospace, monospace" font-size="12">password_verify()</tspan> le relit pour refaire le même calcul.</text>
+</svg>

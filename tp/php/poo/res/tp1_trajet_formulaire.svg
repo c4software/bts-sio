@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="330" viewBox="0 0 900 330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="330" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Déposer une idée : du formulaire à la ligne en base</text>
+  <g font-size="12">
+  <rect x="20" y="60" width="150" height="90" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="95" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">Le formulaire</text>
+  <text x="95" y="106" text-anchor="middle" fill="#475569">method="post"</text>
+  <text x="95" y="124" text-anchor="middle" fill="#475569">titre, auteur, contenu</text>
+  <rect x="195" y="60" width="150" height="90" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="270" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">$_POST</text>
+  <text x="270" y="106" text-anchor="middle" fill="#475569">un tableau</text>
+  <text x="270" y="124" text-anchor="middle" fill="#475569">trim() puis vérification</text>
+  <rect x="370" y="60" width="160" height="90" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="450" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">Un objet Idea</text>
+  <text x="450" y="106" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">new Idea(null, ...)</text>
+  <text x="450" y="124" text-anchor="middle" fill="#475569">pas encore d'id</text>
+  <rect x="555" y="60" width="150" height="90" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="630" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">$idea-&gt;save()</text>
+  <text x="630" y="106" text-anchor="middle" fill="#475569">prepare + execute</text>
+  <text x="630" y="124" text-anchor="middle" fill="#475569">INSERT INTO idees</text>
+  <rect x="730" y="60" width="150" height="90" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="805" y="84" text-anchor="middle" font-weight="600" fill="#0f172a">MySQL</text>
+  <text x="805" y="106" text-anchor="middle" fill="#475569">une nouvelle ligne</text>
+  <text x="805" y="124" text-anchor="middle" fill="#475569">AUTO_INCREMENT : id</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <line x1="170" y1="105" x2="193" y2="105"/>
+    <line x1="345" y1="105" x2="368" y2="105"/>
+    <line x1="530" y1="105" x2="553" y2="105"/>
+    <line x1="705" y1="105" x2="728" y2="105"/>
+  </g>
+  <!-- id back -->
+  <path d="M805,150 L805,175 L630,175 L630,152" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="717" y="192" text-anchor="middle" font-size="12" fill="#16a34a">lastInsertId() : $this-&gt;id</text>
+  <!-- error branch -->
+  <line x1="270" y1="150" x2="270" y2="228" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+  <text x="278" y="190" font-size="12" fill="#dc2626">un champ vide</text>
+  <rect x="150" y="230" width="240" height="82" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="270" y="256" text-anchor="middle" font-weight="600" fill="#0f172a">Le formulaire réaffiché</text>
+  <text x="270" y="282" text-anchor="middle" font-size="12" fill="#0f172a">« Tous les champs sont obligatoires. »</text>
+  <!-- success branch -->
+  <rect x="470" y="230" width="410" height="82" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="675" y="254" text-anchor="middle" font-weight="600" fill="#0f172a">Message flash en session, puis redirection</text>
+  <text x="675" y="276" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">header('location: index.php?page=home');</text>
+  <text x="675" y="298" text-anchor="middle" font-size="12" fill="#475569">l'accueil affiche le bandeau vert une fois, puis le supprime de la session</text>
+  <line x1="585" y1="152" x2="585" y2="228" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="577" y="200" text-anchor="end" font-size="12" fill="#16a34a">enregistrée</text>
+</svg>

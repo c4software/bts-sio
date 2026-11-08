@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="330" viewBox="0 0 900 330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="330" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#0f172a">Sur la classe ou sur un objet ?</text>
+  <rect x="20" y="55" width="420" height="255" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="230" y="80" text-anchor="middle" font-weight="600" fill="#0f172a">Méthodes statiques : sur la classe</text>
+  <text x="230" y="100" text-anchor="middle" fill="#475569">elles servent à OBTENIR des objets (ou un nombre)</text>
+  <rect x="140" y="118" width="180" height="40" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="230" y="143" text-anchor="middle" font-weight="600" fill="#0f172a">class Idea</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">
+    <text x="50" y="190">Idea::all()</text><text x="200" y="190" font-family="system-ui, sans-serif" font-size="13" fill="#475569">un tableau d'objets Idea</text>
+    <text x="50" y="220">Idea::find(3)</text><text x="200" y="220" font-family="system-ui, sans-serif" font-size="13" fill="#475569">un objet Idea, ou null</text>
+    <text x="50" y="250">Idea::count()</text><text x="200" y="250" font-family="system-ui, sans-serif" font-size="13" fill="#475569">un entier</text>
+  </g>
+  <text x="230" y="290" text-anchor="middle" fill="#475569">Double deux-points <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">::</tspan>, pas de <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">$this</tspan></text>
+  <rect x="460" y="55" width="420" height="255" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="670" y="80" text-anchor="middle" font-weight="600" fill="#0f172a">Méthodes d'instance : sur un objet</text>
+  <text x="670" y="100" text-anchor="middle" fill="#475569">elles agissent sur CET objet-là</text>
+  <rect x="560" y="118" width="220" height="40" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="670" y="143" text-anchor="middle" font-weight="600" fill="#0f172a">$idea (un objet Idea)</text>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#0f172a">
+    <text x="490" y="190">$idea-&gt;save()</text><text x="660" y="190" font-family="system-ui, sans-serif" font-size="13" fill="#475569">INSERT de ses propriétés</text>
+    <text x="490" y="220">$idea-&gt;delete()</text><text x="660" y="220" font-family="system-ui, sans-serif" font-size="13" fill="#475569">DELETE de son id</text>
+    <text x="490" y="250">$idea-&gt;getShortContent()</text><text x="690" y="250" font-family="system-ui, sans-serif" font-size="13" fill="#475569">son extrait</text>
+  </g>
+  <text x="670" y="290" text-anchor="middle" fill="#475569">Flèche <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#0f172a">-&gt;</tspan>, et <tspan font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12">$this</tspan> désigne l'objet</text>
+</svg>

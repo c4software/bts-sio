@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="440" viewBox="0 0 900 440" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowa" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+  </defs>
+  <rect width="900" height="440" fill="#ffffff"/>
+
+  <text x="180" y="28" text-anchor="middle" font-weight="600" font-size="15" fill="#0f172a">Dans la base carnet</text>
+  <text x="720" y="28" text-anchor="middle" font-weight="600" font-size="15" fill="#0f172a">Dans PHP, après common/data.php</text>
+
+  <!-- table eleves -->
+  <text x="40" y="58" font-weight="600" fill="#0f172a">table eleves</text>
+  <g stroke="#475569" stroke-width="1">
+    <rect x="40" y="66" width="280" height="28" fill="#f1f5f9"/>
+    <rect x="40" y="94" width="280" height="28" fill="#dcfce7"/>
+    <rect x="40" y="122" width="280" height="28" fill="#ffffff"/>
+    <line x1="80" y1="66" x2="80" y2="150"/>
+    <line x1="170" y1="66" x2="170" y2="150"/>
+    <line x1="270" y1="66" x2="270" y2="150"/>
+  </g>
+  <g font-size="12" fill="#0f172a">
+    <text x="48" y="85" font-weight="600">id</text><text x="88" y="85" font-weight="600">prenom</text><text x="178" y="85" font-weight="600">nom</text><text x="278" y="85" font-weight="600">age</text>
+    <text x="48" y="113">1</text><text x="88" y="113">Bart</text><text x="178" y="113">Simpson</text><text x="278" y="113">10</text>
+    <text x="48" y="141">2</text><text x="88" y="141">Lisa</text><text x="178" y="141">Simpson</text><text x="278" y="141">8</text>
+  </g>
+  <text x="180" y="168" text-anchor="middle" font-size="12" fill="#475569">… une ligne par élève</text>
+
+  <!-- table notes -->
+  <text x="40" y="218" font-weight="600" fill="#0f172a">table notes</text>
+  <g stroke="#475569" stroke-width="1">
+    <rect x="40" y="226" width="280" height="28" fill="#f1f5f9"/>
+    <rect x="40" y="254" width="280" height="28" fill="#fef3c7"/>
+    <rect x="40" y="282" width="280" height="28" fill="#fef3c7"/>
+    <rect x="40" y="310" width="280" height="28" fill="#fef3c7"/>
+    <rect x="40" y="338" width="280" height="28" fill="#ffffff"/>
+    <line x1="80" y1="226" x2="80" y2="366"/>
+    <line x1="160" y1="226" x2="160" y2="366"/>
+    <line x1="250" y1="226" x2="250" y2="366"/>
+  </g>
+  <g font-size="12" fill="#0f172a">
+    <text x="48" y="245" font-weight="600">id</text><text x="88" y="245" font-weight="600">eleve_id</text><text x="168" y="245" font-weight="600">matiere</text><text x="258" y="245" font-weight="600">note</text>
+    <text x="48" y="273">1</text><text x="88" y="273">1</text><text x="168" y="273">php</text><text x="258" y="273">6</text>
+    <text x="48" y="301">2</text><text x="88" y="301">1</text><text x="168" y="301">sql</text><text x="258" y="301">8</text>
+    <text x="48" y="329">3</text><text x="88" y="329">1</text><text x="168" y="329">reseau</text><text x="258" y="329">11</text>
+    <text x="48" y="357">4</text><text x="88" y="357">2</text><text x="168" y="357">php</text><text x="258" y="357">19</text>
+  </g>
+  <text x="180" y="384" text-anchor="middle" font-size="12" fill="#475569">… une ligne par note</text>
+
+  <!-- resultat PHP -->
+  <rect x="560" y="44" width="320" height="330" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="720" y="70" text-anchor="middle" font-family="ui-monospace, monospace" font-weight="600" fill="#0f172a">$students[0]</text>
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">
+    <text x="580" y="100">'id' =&gt; 1,</text>
+    <text x="580" y="122">'prenom' =&gt; 'Bart',</text>
+    <text x="580" y="144">'nom' =&gt; 'Simpson',</text>
+    <text x="580" y="166">'age' =&gt; 10,</text>
+    <text x="580" y="200">'notes' =&gt;</text>
+  </g>
+  <rect x="600" y="212" width="260" height="104" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">
+    <text x="616" y="240">'php' =&gt; 6,</text>
+    <text x="616" y="264">'sql' =&gt; 8,</text>
+    <text x="616" y="288">'reseau' =&gt; 11,</text>
+  </g>
+  <text x="720" y="346" text-anchor="middle" font-size="12" fill="#475569">la même structure que dans la section « Les notes »</text>
+
+  <!-- fleches -->
+  <path d="M320,108 H558" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowg)"/>
+  <text x="440" y="96" text-anchor="middle" font-size="12" fill="#16a34a">1. SELECT * FROM eleves</text>
+  <text x="440" y="126" text-anchor="middle" font-size="11" fill="#16a34a">fetchAll : une case par élève</text>
+
+  <path d="M320,296 H598" stroke="#d97706" stroke-width="2" fill="none" marker-end="url(#arrowa)"/>
+  <text x="460" y="270" text-anchor="middle" font-size="12" fill="#d97706">2. WHERE eleve_id = ?</text>
+  <text x="460" y="286" text-anchor="middle" font-size="11" fill="#d97706">execute([1])</text>
+  <text x="460" y="316" text-anchor="middle" font-size="11" fill="#d97706">chaque ligne devient</text>
+  <text x="460" y="332" text-anchor="middle" font-size="11" fill="#d97706">matière =&gt; note</text>
+
+  <rect x="20" y="398" width="860" height="32" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="1"/>
+  <text x="450" y="419" text-anchor="middle" font-size="12" fill="#0f172a">La boucle recommence pour chaque élève : <tspan font-family="ui-monospace, monospace">$students[$key]['notes'][$row['matiere']] = $row['note'];</tspan></text>
+</svg>

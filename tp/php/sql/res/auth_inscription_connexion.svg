@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="470" viewBox="0 0 900 470" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text x="145" y="34" text-anchor="middle" font-weight="600" font-size="14">Inscription</text>
+  <text x="450" y="34" text-anchor="middle" font-weight="600" font-size="14">Base espace_membre</text>
+  <text x="755" y="34" text-anchor="middle" font-weight="600" font-size="14">Connexion</text>
+  <rect x="20" y="56" width="250" height="52" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="145.0" y="78.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">alice@exemple.com</text>
+  <text x="145.0" y="96.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">motdepasse1</text>
+  <rect x="20" y="140" width="250" height="52" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="145.0" y="162.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600">password_hash()</text>
+  <text x="145.0" y="180.0" text-anchor="middle" font-size="12">sel aléatoire + bcrypt</text>
+  <rect x="20" y="224" width="250" height="52" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="145.0" y="246.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">$2y$10$hjWMUhizSij9iB8L…</text>
+  <text x="145.0" y="264.0" text-anchor="middle" font-size="12" fill="#475569">60 caractères</text>
+  <line x1="145" y1="108" x2="145" y2="138" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="145" y1="192" x2="145" y2="222" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- base -->
+  <rect x="340" y="140" width="220" height="136" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="450" y="164" text-anchor="middle" font-weight="600" fill="#16a34a">table utilisateurs</text>
+  <line x1="352" y1="174" x2="548" y2="174" stroke="#16a34a"/>
+  <text x="360" y="196" font-size="12" fill="#475569">email</text>
+  <text x="360" y="214" font-family="ui-monospace, monospace" font-size="12">alice@exemple.com</text>
+  <text x="360" y="240" font-size="12" fill="#475569">mot_de_passe</text>
+  <text x="360" y="258" font-family="ui-monospace, monospace" font-size="12">$2y$10$hjWMUhizSij9…</text>
+  <line x1="270" y1="250" x2="338" y2="250" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="304" y="242" text-anchor="middle" font-size="11" fill="#475569">INSERT</text>
+  <rect x="630" y="56" width="250" height="52" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="755.0" y="78.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">alice@exemple.com</text>
+  <text x="755.0" y="96.0" text-anchor="middle" font-size="12" fill="#475569">le mot de passe saisi</text>
+  <rect x="630" y="140" width="250" height="52" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="755.0" y="162.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">SELECT * FROM utilisateurs</text>
+  <text x="755.0" y="180.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">WHERE email = ?</text>
+  <rect x="630" y="236" width="250" height="52" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="755.0" y="258.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600">password_verify(</text>
+  <text x="755.0" y="276.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">saisie, hash stocké)</text>
+  <line x1="755" y1="108" x2="755" y2="138" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="630" y1="166" x2="562" y2="166" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="596" y="158" text-anchor="middle" font-size="11" fill="#475569">cherche</text>
+  <line x1="562" y1="258" x2="628" y2="258" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="596" y="250" text-anchor="middle" font-size="11" fill="#16a34a">hash</text>
+  <!-- résultats -->
+  <path d="M700,288 L700,316 L560,316 L560,346" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="630" y="310" text-anchor="middle" font-size="12" font-weight="600" fill="#16a34a">true</text>
+  <line x1="810" y1="288" x2="810" y2="346" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+  <text x="822" y="322" font-size="12" font-weight="600" fill="#dc2626">false</text>
+  <rect x="380" y="348" width="360" height="100" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="560.0" y="385.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">session_regenerate_id(true)</text>
+  <text x="560.0" y="403.0" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12">$_SESSION['user_id'] = 1</text>
+  <text x="560.0" y="421.0" text-anchor="middle" font-size="12">redirection vers l'espace membre</text>
+  <rect x="752" y="348" width="128" height="100" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <text x="816.0" y="385.0" text-anchor="middle" font-size="12">« Email ou mot</text>
+  <text x="816.0" y="403.0" text-anchor="middle" font-size="12">de passe</text>
+  <text x="816.0" y="421.0" text-anchor="middle" font-size="12">incorrect. »</text>
+  <text x="145" y="320" text-anchor="middle" font-size="12" fill="#475569">Le mot de passe en clair</text>
+  <text x="145" y="338" text-anchor="middle" font-size="12" fill="#475569">n'est jamais enregistré</text>
+</svg>

@@ -1,4 +1,7 @@
 <?php
+// Permet d'utiliser header() même si du HTML a déjà été envoyé
+ob_start();
+
 // Démarrage de la session
 session_start();
 

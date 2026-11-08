@@ -76,11 +76,4 @@ class Idea
 
         $this->id = (int) $pdo->lastInsertId();
     }
-
-    // Supprime CETTE idée de la base.
-    public function delete(): void
-    {
-        $stmt = Database::getPdo()->prepare("DELETE FROM idees WHERE id = ?");
-        $stmt->execute([$this->id]);
-    }
 }

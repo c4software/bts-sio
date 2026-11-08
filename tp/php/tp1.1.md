@@ -56,6 +56,20 @@ Notre code PHP sera certainement très simple. Je vois à première vue :
 
 Voilà… Nous avons vu les éléments nécessaires… C'est à vous. Je vous laisse réaliser la page en question
 
+Avancez par étapes. Commencez par la partie HTML + CSS avec **une seule phrase** écrite en dur dans la `<div>`, sans PHP. Voici ce que vous devez obtenir avant d'écrire la boucle :
+
+![Le tableau vert bordé de marron avec Bart à droite et une seule phrase « Je ne recopierai pas l'exemple de Valentin » écrite en haut à gauche](./res/tp1.1_structure.png)
+
+Ensuite, la boucle remplace la phrase écrite en dur. Voici ce qui se passe à chaque tour, avec par exemple `$nb_ligne = 5` :
+
+![Une boucle for avec $nb_ligne à 5 : $i vaut 0, 1, 2, 3 puis 4, chaque tour écrit une ligne dans le tableau ; quand $i vaut 5 la condition 5 inférieur à 5 est fausse et la boucle s'arrête](./res/tp1.1_boucle.svg)
+
+::: tip Point de contrôle
+Avec `$nb_ligne` à 100, le tableau se remplit et une barre de défilement apparaît : Bart, lui, ne bouge pas.
+
+![Le tableau rempli de lignes « Je ne recopierai pas l'exemple de Valentin », qui continuent au-delà du bas du tableau](./res/tp1.1_cent_lignes.png)
+:::
+
 ::: tip N'oubliez pas
 Votre IDE vous aide. N'oubliez pas de le configurer pour automatiser certaines de vos actions.
 :::
@@ -69,19 +83,29 @@ _Exemple :_
 Pour la page avec un lien comme : `http://localhost/bart/index.php?nb=1000`
 
 ```php
-$nombre = $_GET['nb'];
+$nb_ligne = $_GET['nb'];
 ```
 
 ::: danger Attention
 Ne pas oublier de gérer le cas si pas de paramètre (avec un IF).
 
 ```php
-$nombre = 100;
+$nb_ligne = 100;
 if(isset($_GET['nb'])){
-    $nombre = $_GET['nb'];
+    $nb_ligne = $_GET['nb'];
 }
 ```
 
+:::
+
+Pour résumer, voici ce que contient `$_GET` selon l'adresse demandée, et la valeur que prend `$nb_ligne` :
+
+![Avec index.php?nb=5, $_GET contient la clé nb, isset est vrai et $nb_ligne vaut 5 ; avec index.php seul, $_GET est vide, isset est faux et $nb_ligne garde la valeur par défaut 100](./res/tp1.1_parametre_get.svg)
+
+::: tip Point de contrôle
+Avec l'adresse `index.php?nb=5`, le tableau ne contient plus que 5 lignes :
+
+![Le tableau de Bart avec seulement 5 lignes « Je ne recopierai pas l'exemple de Valentin »](./res/tp1.1_parametre_nb.png)
 :::
 
 ## La suite

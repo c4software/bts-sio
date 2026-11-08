@@ -154,7 +154,13 @@ Votre page doit ressembler à :
 ![La page de connexion](./res/tp5_login.png)
 
 ::: tip Point de contrôle
-Avec un mauvais mot de passe, le message d'erreur s'affiche et vous restez sur la page. Avec les bons identifiants, vous êtes redirigé vers l'accueil, et le message « Bienvenue admin@exemple.com » s'affiche.
+Avec un mauvais mot de passe, le message d'erreur s'affiche et vous restez sur la page :
+
+![La page de connexion avec, sous le titre, le message rouge « Email ou mot de passe incorrect. » et le formulaire vide](./res/tp5_login_erreur.png)
+
+Avec les bons identifiants, vous êtes redirigé vers l'accueil, et le message « Bienvenue admin@exemple.com » s'affiche :
+
+![L'accueil juste après la connexion : le bandeau vert « Bienvenue admin@exemple.com », le lien « Déconnexion (admin@exemple.com) » dans le header et le formulaire de génération](./res/tp5_bienvenue.png)
 :::
 
 ## Autoriser l'accès à la page de génération (ou pas)
@@ -210,7 +216,15 @@ Un visiteur non connecté qui demande `index.php?page=bart` ne provoque aucune e
 
 :::
 
+Pour résumer, voici ce que devient la même demande selon l'état de connexion :
+
+![La demande index.php?page=bart passe par le test isset($_SESSION['user']) : sans utilisateur en session, la whitelist contient home, about, theme et login, bart est absent et c'est pages/home.php qui est inclus ; avec un utilisateur connecté, la whitelist contient home, about, theme, bart et logout, et pages/bart.php est inclus](./res/tp5_whitelist_conditionnelle.svg)
+
 Profitez-en pour conditionner l'affichage du formulaire sur l'accueil : inutile de proposer un bouton « Générer la punition » à quelqu'un qui n'a pas le droit d'y accéder. Affichez plutôt une invitation à se connecter.
+
+Voici ce que voit maintenant un visiteur anonyme :
+
+![L'accueil sans être connecté : le header propose « Thème sombre » et « Connexion », le formulaire est remplacé par « Pour générer une punition, vous devez d'abord vous connecter », et la liste des dernières punitions reste visible](./res/tp5_accueil_anonyme.png)
 
 ::: warning Note pour le vous du futur
 
@@ -265,6 +279,10 @@ die();
 Pourquoi `unset($_SESSION['user'])` plutôt que `session_destroy()` ? Parce que nous voulons oublier **l'utilisateur**, pas toute la session : le message flash que nous venons d'écrire doit survivre jusqu'à la page suivante. `session_destroy()` détruirait tout, message compris.
 
 :::
+
+Après un clic sur « Déconnexion », vous devez obtenir :
+
+![L'accueil après la déconnexion : le bandeau vert « Vous êtes déconnecté. », le lien « Connexion » de retour dans le header, l'invitation à se connecter à la place du formulaire, et le tableau de Bart de la dernière punition toujours affiché](./res/tp5_deconnecte.png)
 
 ::: tip Point de contrôle
 

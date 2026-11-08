@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="360" viewBox="0 0 900 360" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="360" fill="#ffffff"/>
+  <!-- start -->
+  <rect x="20" y="60" width="200" height="70" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="120" y="88" text-anchor="middle" font-weight="600" fill="#0f172a">Clic sur « Terminer »</text>
+  <text x="120" y="110" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">?page=terminer&amp;id=3</text>
+  <!-- decision -->
+  <path d="M350,35 L450,95 L350,155 L250,95 Z" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+  <text x="350" y="86" text-anchor="middle" font-size="13" fill="#0f172a">id présent et</text>
+  <text x="350" y="103" text-anchor="middle" font-size="13" fill="#0f172a">que des chiffres ?</text>
+  <text x="350" y="122" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#475569">ctype_digit()</text>
+  <!-- update -->
+  <rect x="500" y="55" width="250" height="80" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="625" y="80" text-anchor="middle" font-weight="600" fill="#0f172a">Requête préparée</text>
+  <text x="625" y="101" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">UPDATE taches SET terminee = 1</text>
+  <text x="625" y="120" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">WHERE id = ?   ← 3</text>
+  <!-- note id=42 -->
+  <rect x="660" y="170" width="220" height="62" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="770" y="192" text-anchor="middle" font-size="12" fill="#0f172a">Et id=42, qui n'existe pas ?</text>
+  <text x="770" y="210" text-anchor="middle" font-size="12" fill="#475569">aucune ligne ne correspond,</text>
+  <text x="770" y="225" text-anchor="middle" font-size="12" fill="#475569">rien n'est modifié, aucune erreur</text>
+  <!-- redirect -->
+  <rect x="400" y="260" width="300" height="70" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="550" y="288" text-anchor="middle" font-weight="600" fill="#0f172a">Retour à la liste</text>
+  <text x="550" y="310" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">header('location: …'); die();</text>
+  <!-- arrows -->
+  <line x1="220" y1="95" x2="248" y2="95" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="450" y1="95" x2="498" y2="95" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="472" y="83" text-anchor="middle" font-size="13" font-weight="600" fill="#16a34a">oui</text>
+  <path d="M600,135 V258" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M350,155 V295 H398" fill="none" stroke="#dc2626" stroke-width="2" marker-end="url(#arrowr)"/>
+  <text x="362" y="190" font-size="13" font-weight="600" fill="#dc2626">non</text>
+  <text x="362" y="208" font-size="12" fill="#dc2626">id=bonjour, id=1 OR 1=1,</text>
+  <text x="362" y="224" font-size="12" fill="#dc2626">pas d'id du tout :</text>
+  <text x="362" y="240" font-size="12" fill="#dc2626">on ne parle pas à la base</text>
+</svg>

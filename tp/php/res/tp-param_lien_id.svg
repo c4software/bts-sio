@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" width="900" height="300" viewBox="0 0 900 300" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="15">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+  </defs>
+  <rect width="900" height="300" fill="#ffffff"/>
+  <g stroke-width="2">
+    <rect x="20" y="40" width="240" height="200" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="35" y="80" width="210" height="60" rx="8" fill="#ffffff" stroke="#475569"/>
+    <rect x="35" y="160" width="210" height="60" rx="8" fill="#ffffff" stroke="#475569"/>
+    <rect x="310" y="110" width="250" height="60" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <rect x="610" y="40" width="270" height="200" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <rect x="625" y="160" width="240" height="60" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  </g>
+  <g text-anchor="middle" fill="#0f172a">
+    <text x="140" y="66" font-weight="600">index.php</text>
+    <text x="140" y="104" font-size="13" font-weight="600">Tri Martolod</text>
+    <text x="140" y="184" font-size="13" font-weight="600">Starlink</text>
+    <text x="435" y="100" font-size="12" fill="#475569">adresse demandée</text>
+    <text x="745" y="66" font-weight="600">tv.php</text>
+    <text x="745" y="186" font-size="13" font-weight="600">Lecteur YouTube</text>
+    <text x="745" y="206" font-size="12" fill="#475569">vidéo jTuBnZrLbq0</text>
+  </g>
+  <g fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">
+    <text x="140" y="126" font-size="11">tv.php?id=jTuBnZrLbq0</text>
+    <text x="140" y="206" font-size="11">tv.php?id=igtN49I1CtM</text>
+    <text x="435" y="146" font-size="13">tv.php?id=jTuBnZrLbq0</text>
+  </g>
+  <g fill="#0f172a" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11">
+    <text x="624" y="100">$id = $_GET['id'];</text>
+    <text x="624" y="124">src=".../embed/&lt;?php echo $id ?&gt;"</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M245,110 H280 V140 H308"/>
+    <line x1="560" y1="140" x2="608" y2="140"/>
+  </g>
+  <text x="290" y="102" font-size="11" fill="#475569" text-anchor="middle">clic</text>
+  <text x="450" y="280" text-anchor="middle" font-size="13" fill="#0f172a">Une seule page tv.php pour toutes les vidéos : seule la valeur du paramètre id change.</text>
+</svg>

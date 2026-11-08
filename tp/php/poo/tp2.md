@@ -285,6 +285,10 @@ SESSION[user_name] = utilisateur.nom
 RENVOYER vrai
 ```
 
+Le même algorithme, vu comme un échange entre vos fichiers et vos classes :
+
+![Diagramme de séquence de la connexion : le navigateur envoie email et mot de passe en POST à pages/connexion.php, qui appelle Auth::attempt() ; Auth demande findByEmail() à User, qui exécute un SELECT filtré sur l'email et rend un objet User ou null ; Auth vérifie avec password_verify(), régénère l'identifiant de session et range user_id et user_name ; la page reçoit true, et redirige vers l'administration, ou false, et affiche « Identifiants incorrects. »](./res/tp2_connexion_flux.svg)
+
 ::: tip Que se passe-t-il derrière ?
 **`password_verify($saisi, $hash)`** : on ne compare **jamais** deux hashs avec `==`. Pourquoi ? Parce que re-hacher le mot de passe saisi donnerait une empreinte différente (le sel est tiré au hasard, souvenez-vous de la section « La table des utilisateurs »). `password_verify()` fait le travail correctement : il relit le sel et l'algorithme **à l'intérieur** du hash stocké, recalcule l'empreinte du mot de passe saisi avec ce sel-là, et compare le résultat en temps constant (pour ne pas donner d'indice à un attaquant qui chronomètre les réponses).
 
@@ -379,6 +383,10 @@ FIN SI
 
 Je vous laisse l'écrire dans `index.php`, à la place de votre whitelist actuelle.
 
+Voici ce qui se passe quand quelqu'un demande la page d'administration :
+
+![Schéma de la whitelist conditionnelle pour index.php?page=admin : si Auth::check() vaut true, la whitelist contient admin et in_array() autorise l'include de pages/admin.php ; si elle vaut false, la whitelist publique ne contient pas admin, in_array() renvoie false et c'est pages/home.php qui est inclus, admin.php n'étant jamais chargé](./res/tp2_whitelist.svg)
+
 ::: tip Prenez le temps de regarder ce tableau
 - Pourquoi `connexion` **disparait** de la liste quand on est connecté ?
 - Pourquoi `admin` et `deconnexion` ne sont-ils **pas** dans la liste des visiteurs anonymes ?
@@ -417,6 +425,14 @@ Créez `pages/deconnexion.php`. Deux lignes utiles : appeler `Auth::logout()`, p
 - Un mauvais mot de passe réaffiche le formulaire avec « Identifiants incorrects. ».
 - Le bon couple email / mot de passe vous emmène ailleurs, et le header affiche « Connecté : … ».
 - « Déconnexion » vous ramène à la home, avec le lien « Connexion » de retour.
+
+Après un mauvais mot de passe :
+
+![La page de connexion réaffichée avec le message rouge « Identifiants incorrects. », le bandeau affichant encore le lien « Connexion »](./res/tp2_erreur.png)
+
+Et une fois connecté, sur la home :
+
+![La page d'accueil une fois connecté : le bandeau affiche les liens « Administration » et « Déconnexion » et le texte « Connecté : Valentin »](./res/tp2_connecte.png)
 :::
 
 ## L'espace d'administration
@@ -452,7 +468,7 @@ if (isset($_GET['delete'])) {
 
 Pourquoi rediriger après la suppression plutôt que d'afficher directement la liste ? Pour que l'URL affichée dans le navigateur ne contienne plus `&delete=…`. Sinon, un simple F5 relance la suppression. C'est le motif « Post / Redirect / Get », et il vaut aussi pour les liens.
 
-Le `(int)` devant `$_GET['delete']`, lui, n'est pas décoratif : il garantit qu'on passe bien un entier à `delete(int $id)`, quoi que l'utilisateur ait tapé dans l'URL. Rappelez-vous la règle d'or : [on ne fait jamais confiance aux données reçues](../securite/support.md#ne-jamais-faire-confiance-aux-donnees-recues).
+Le `(int)` devant `$_GET['delete']`, lui, n'est pas décoratif : il garantit qu'on passe bien un entier à `Idea::find(int $id)`, quoi que l'utilisateur ait tapé dans l'URL. Rappelez-vous la règle d'or : [on ne fait jamais confiance aux données reçues](../securite/support.md#ne-jamais-faire-confiance-aux-donnees-recues).
 :::
 
 :::: tip Que se passe-t-il si je tape `index.php?page=admin` sans être connecté ?
@@ -494,6 +510,8 @@ Relisez toutes vos pages : chaque valeur qui vient de la base ou d'un formulaire
 
 Ajoutez une page `inscription` (publique, donc dans la whitelist des anonymes) avec un formulaire nom / email / mot de passe. Ajoutez une méthode `save(): void` à `User` (non statique, comme celle de `Idea`), et n'oubliez pas : c'est au moment de l'insertion qu'on appelle `password_hash()`. Pensez aussi au cas de l'email déjà pris (votre contrainte `UNIQUE` va lever une exception, à vous de l'attraper et d'afficher un message propre).
 
+[Le projet complet de ce TP est téléchargeable ici](/demo/php/boite-a-idees-connexion.zip) (le script `boite_idees.sql` est dans l'archive, avec le compte `admin@exemple.com` dont le mot de passe est `motdepasse`).
+
 ## Conclusion
 
 Beau travail ! Faisons le point sur ce que vous venez de construire :
@@ -509,6 +527,8 @@ Et surtout, le réflexe qui compte : quand un même bout de logique commence à 
 ### La suite
 
 Vous avez maintenant deux modèles (`Idea`, `User`), une classe utilitaire (`Database`), une classe de service (`Auth`) et des pages qui ne font plus que de l'affichage et du traitement. C'est, à peu de chose près, le découpage **MVC**, dont le principe est résumé dans [le support](./support.md#vers-le-mvc).
+
+![Schéma des classes du projet à la fin du TP 2 : les pages appellent Auth et Idea ; Auth s'appuie sur User et sur la session (user_id, user_name) ; les modèles User et Idea passent par Database::getPdo() pour parler à MariaDB](./res/tp2_classes.svg)
 
 La suite du parcours, c'est [le TP 6](../tp6.md) et [le MVC](/tp/php/mvc/tp1.md).
 
