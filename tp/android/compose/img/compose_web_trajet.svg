@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="430" viewBox="0 0 900 430">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowb" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker>
+  </defs>
+  <rect width="900" height="430" fill="#ffffff"/>
+  <text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">Deux serveurs sur le PC, une application dans le navigateur</text>
+
+  <!-- Dev server -->
+  <rect x="20" y="64" width="250" height="120" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="145" y="90" text-anchor="middle" font-weight="600" fill="#2563eb">Serveur de développement</text>
+  <text x="145" y="110" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="600" fill="#0f172a">wasmJsBrowserDevelopmentRun</text>
+  <text x="145" y="130" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">http://localhost:8081</text>
+  <text x="145" y="154" text-anchor="middle" font-size="11" fill="#475569">sert l'application, une seule fois :</text>
+  <text x="145" y="170" text-anchor="middle" font-size="11" fill="#475569">index.html, webApp.js, fichiers .wasm</text>
+
+  <!-- Browser -->
+  <rect x="325" y="64" width="250" height="250" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="450" y="90" text-anchor="middle" font-weight="600" fill="#0f172a">Le navigateur (Chrome…)</text>
+  <rect x="341" y="104" width="218" height="196" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="450" y="126" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">L'application Compose</text>
+  <text x="450" y="142" text-anchor="middle" font-size="11" fill="#475569">compilée en WebAssembly</text>
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a" text-anchor="middle">
+    <rect x="357" y="154" width="186" height="28" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.2"/>
+    <text x="450" y="173">ListeScreen…</text>
+    <rect x="357" y="192" width="186" height="28" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.2"/>
+    <text x="450" y="211">ListeViewModel…</text>
+    <rect x="357" y="230" width="186" height="28" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+    <text x="450" y="249">LampadairesApi (Ktor)</text>
+  </g>
+  <text x="450" y="284" text-anchor="middle" font-size="11" fill="#475569">dessinée dans un canvas</text>
+
+  <!-- Ktor server -->
+  <rect x="630" y="64" width="250" height="250" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <text x="755" y="90" text-anchor="middle" font-weight="600" fill="#d97706">L'API Ktor (le même serveur)</text>
+  <text x="755" y="110" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">http://localhost:8080</text>
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a" text-anchor="middle">
+    <rect x="660" y="126" width="190" height="26" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1.2"/>
+    <text x="755" y="144">route</text>
+    <rect x="660" y="160" width="190" height="26" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1.2"/>
+    <text x="755" y="178">service</text>
+    <rect x="660" y="194" width="190" height="26" rx="6" fill="#ffffff" stroke="#d97706" stroke-width="1.2"/>
+    <text x="755" y="212">DAO (Exposed)</text>
+  </g>
+  <g stroke="#475569" stroke-width="2" fill="#f1f5f9">
+    <path d="M715,240 a40,10 0 0,1 80,0 v44 a40,10 0 0,1 -80,0 z"/>
+    <ellipse cx="755" cy="240" rx="40" ry="10"/>
+  </g>
+  <text x="755" y="272" text-anchor="middle" font-size="12" fill="#0f172a">SQLite</text>
+  <text x="755" y="304" text-anchor="middle" font-size="11" fill="#475569">lampadaires.db</text>
+
+  <!-- arrows -->
+  <line x1="272" y1="124" x2="322" y2="124" stroke="#2563eb" stroke-width="2" marker-end="url(#arrowb)"/>
+  <text x="297" y="116" text-anchor="middle" font-size="11" fill="#2563eb">1</text>
+
+  <line x1="577" y1="236" x2="627" y2="236" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="602" y="226" text-anchor="middle" font-size="11" fill="#475569">2 GET</text>
+  <line x1="627" y1="258" x2="579" y2="258" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="602" y="276" text-anchor="middle" font-size="11" fill="#16a34a">JSON,</text>
+  <text x="602" y="290" text-anchor="middle" font-size="11" fill="#16a34a">photos</text>
+
+  <!-- steps -->
+  <rect x="20" y="334" width="860" height="82" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="36" y="358" fill="#0f172a"><tspan font-weight="600" fill="#2563eb">1.</tspan> Le navigateur ouvre http://localhost:8081 et télécharge l'application, qui démarre dans l'onglet.</text>
+  <text x="36" y="380" fill="#0f172a"><tspan font-weight="600" fill="#475569">2.</tspan> L'application appelle l'API sur http://localhost:8080 : la liste, un lampadaire, la création, et aussi les photos.</text>
+  <text x="36" y="402" fill="#0f172a">Ici, localhost est bien le PC : le code tourne dans le navigateur, sur la même machine que les deux serveurs.</text>
+</svg>

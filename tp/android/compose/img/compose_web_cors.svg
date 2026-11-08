@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="420" viewBox="0 0 900 420">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker>
+  </defs>
+  <rect width="900" height="420" fill="#ffffff"/>
+  <text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">CORS : la même règle que pour la page Vue.js, photos comprises</text>
+
+  <!-- Sans CORS -->
+  <text x="20" y="66" font-weight="600" fill="#dc2626">Sans le plugin CORS</text>
+  <rect x="20" y="78" width="230" height="110" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="135" y="102" text-anchor="middle" font-weight="600" fill="#0f172a">L'application Compose</text>
+  <text x="135" y="122" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">origine :</text>
+  <text x="135" y="140" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">http://localhost:8081</text>
+  <text x="135" y="168" text-anchor="middle" font-size="11" fill="#dc2626">ni liste, ni photos : erreur</text>
+
+  <rect x="650" y="78" width="230" height="110" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <text x="765" y="102" text-anchor="middle" font-weight="600" fill="#d97706">L'API Ktor</text>
+  <text x="765" y="122" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">http://localhost:8080</text>
+  <text x="765" y="148" text-anchor="middle" font-size="11" fill="#475569">répond 200, avec le JSON…</text>
+  <text x="765" y="166" text-anchor="middle" font-size="11" fill="#475569">mais sans autorisation</text>
+
+  <line x1="252" y1="110" x2="646" y2="110" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="450" y="102" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">GET /v1/lampadaires, GET /images/…</text>
+  <line x1="646" y1="156" x2="460" y2="156" stroke="#16a34a" stroke-width="2"/>
+  <line x1="440" y1="156" x2="254" y2="156" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowr)"/>
+  <g stroke="#dc2626" stroke-width="3"><line x1="442" y1="146" x2="458" y2="166"/><line x1="458" y1="146" x2="442" y2="166"/></g>
+  <text x="450" y="182" text-anchor="middle" font-size="12" fill="#dc2626">le navigateur bloque la réponse</text>
+
+  <!-- Avec CORS -->
+  <text x="20" y="232" font-weight="600" fill="#16a34a">Avec le plugin CORS</text>
+  <rect x="20" y="244" width="230" height="110" rx="10" fill="#f1f5f9" stroke="#475569" stroke-width="2"/>
+  <text x="135" y="268" text-anchor="middle" font-weight="600" fill="#0f172a">L'application Compose</text>
+  <text x="135" y="288" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">origine :</text>
+  <text x="135" y="306" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">http://localhost:8081</text>
+  <text x="135" y="334" text-anchor="middle" font-size="11" fill="#16a34a">la liste et les photos s'affichent</text>
+
+  <rect x="650" y="244" width="230" height="110" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <text x="765" y="268" text-anchor="middle" font-weight="600" fill="#d97706">L'API Ktor + CORS</text>
+  <text x="765" y="288" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">allowHost("localhost:8081")</text>
+  <text x="765" y="314" text-anchor="middle" font-size="11" fill="#475569">ajoute l'en-tête d'autorisation</text>
+  <text x="765" y="332" text-anchor="middle" font-size="11" fill="#475569">à chaque réponse, photos comprises</text>
+
+  <line x1="252" y1="276" x2="646" y2="276" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="450" y="268" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#475569">Origin: http://localhost:8081</text>
+  <line x1="646" y1="322" x2="254" y2="322" stroke="#16a34a" stroke-width="2" marker-end="url(#arrowg)"/>
+  <text x="450" y="314" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" fill="#16a34a">Access-Control-Allow-Origin: http://localhost:8081</text>
+
+  <rect x="20" y="372" width="860" height="36" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="36" y="395" fill="#0f172a">Différence avec Vue.js : une balise img n'a pas besoin de CORS, mais Compose télécharge les photos lui-même, avec Ktor.</text>
+</svg>

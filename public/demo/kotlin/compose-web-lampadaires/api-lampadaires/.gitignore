@@ -1,0 +1,6 @@
+.gradle/
+build/
+.idea/
+.kotlin/
+*.iml
+lampadaires.db

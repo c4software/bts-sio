@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="font-variant-ligatures:none" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="13" width="900" height="470" viewBox="0 0 900 470">
+  <defs>
+    <marker id="arrowg" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#16a34a"/></marker>
+    <marker id="arrowo" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#d97706"/></marker>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text x="20" y="34" font-size="16" font-weight="600" fill="#0f172a">Du projet Android au projet web : ce qui passe tel quel, ce qui change</text>
+
+  <!-- Android -->
+  <rect x="20" y="52" width="300" height="340" rx="12" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+  <text x="170" y="76" text-anchor="middle" font-weight="600" fill="#0f172a">Le projet Android (app/)</text>
+  <!-- Web -->
+  <rect x="580" y="52" width="300" height="340" rx="12" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+  <text x="730" y="76" text-anchor="middle" font-weight="600" fill="#2563eb">Le projet web (shared/commonMain)</text>
+
+  <!-- rows: identical -->
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#0f172a">
+    <!-- Android column items -->
+    <rect x="36" y="92" width="268" height="118" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="48" y="114">model/ (DTO, états des écrans)</text>
+    <text x="48" y="136">ui/components/ (4 composants)</text>
+    <text x="48" y="158">ui/…/…ViewModel.kt (3)</text>
+    <text x="48" y="180">http/LampadairesApi.kt</text>
+    <text x="48" y="200" font-size="11" fill="#475569" font-family="system-ui, sans-serif">(sauf l'adresse du serveur et le catch)</text>
+
+    <rect x="596" y="92" width="268" height="118" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="608" y="114">model/</text>
+    <text x="608" y="136">ui/components/</text>
+    <text x="608" y="158">ui/…/…ViewModel.kt</text>
+    <text x="608" y="180">http/LampadairesApi.kt</text>
+    <text x="608" y="200" font-size="11" fill="#475569" font-family="system-ui, sans-serif">(API_URL, catch (e: Throwable))</text>
+
+    <!-- changes -->
+    <rect x="36" y="224" width="268" height="152" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    <text x="48" y="246">HttpClient(OkHttp)</text>
+    <text x="48" y="268">BuildConfig.API_URL (10.0.2.2)</text>
+    <text x="48" y="290">viewModel()</text>
+    <text x="48" y="312">Icons.Filled.Add</text>
+    <text x="48" y="334">navigate("detail/$id")</text>
+    <text x="48" y="356">MainActivity + setContent</text>
+
+    <rect x="596" y="224" width="268" height="152" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    <text x="608" y="246">HttpClient (moteur Js)</text>
+    <text x="608" y="268">API_URL (localhost)</text>
+    <text x="608" y="290">viewModel { ListeViewModel() }</text>
+    <text x="608" y="312">painterResource(Res.drawable…)</text>
+    <text x="608" y="334">navigate(Detail(id))</text>
+    <text x="608" y="356">main.kt + ComposeViewport</text>
+  </g>
+
+  <!-- arrows -->
+  <line x1="306" y1="150" x2="592" y2="150" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrowg)"/>
+  <text x="450" y="138" text-anchor="middle" font-weight="600" fill="#16a34a">copiés tels quels</text>
+  <text x="450" y="172" text-anchor="middle" font-size="12" fill="#475569">même package, mêmes imports</text>
+
+  <line x1="306" y1="300" x2="592" y2="300" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arrowo)"/>
+  <text x="450" y="288" text-anchor="middle" font-weight="600" fill="#d97706">adaptés</text>
+  <text x="450" y="322" text-anchor="middle" font-size="12" fill="#475569">ce qui dépend d'Android</text>
+  <text x="450" y="340" text-anchor="middle" font-size="12" fill="#475569">ou d'une librairie Android seule</text>
+
+  <!-- bottom note -->
+  <rect x="20" y="410" width="860" height="44" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="36" y="437" fill="#0f172a">Les écrans (ListeScreen, DetailScreen, CreationScreen) ne changent qu'à deux endroits : l'icône et la création du ViewModel (et leurs imports).</text>
+</svg>

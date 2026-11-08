@@ -382,7 +382,8 @@ export default [
           { text: "Débuter avec Kotlin", link: "/pages/categories/debuter-avec-kotlin.md" },
           { text: "Créer des API avec Kotlin : le projet", link: "/tp/ktor/decouverte" },
           { text: "Créer des API avec Kotlin : CRUD et droits", link: "/tp/ktor/crud-droits" },
-          { text: "Une API Ktor et ses clients (Android, Vue.js)", link: "/tp/android/compose/ktor-api" }
+          { text: "Une API Ktor et ses clients (Android, Vue.js)", link: "/tp/android/compose/ktor-api" },
+          { text: "Un client web en Kotlin avec Compose", link: "/tp/android/compose/ktor-compose-web" }
         ]
       },
       {
@@ -531,6 +532,7 @@ export default [
             collapsed: true,
             items: [
               { text: "Une API Ktor et ses clients (Android, Vue.js)", link: "/tp/android/compose/ktor-api" },
+              { text: "Un client web en Kotlin avec Compose", link: "/tp/android/compose/ktor-compose-web" },
               { text: "Appeler une API (Views XML, legacy)", link: "/tp/android/view/network" }
             ]
           },
